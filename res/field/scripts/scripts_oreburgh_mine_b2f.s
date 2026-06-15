@@ -29,7 +29,7 @@ OreburghMineB2F_RoarkTurnBackEast:
 OreburghMineB2F_RoarkUseRockSmash:
     Message OreburghMineB2F_Text_OKStandBackAndWatchThis
     CloseMessage
-    ScrCmd_29E 2, VAR_0x8005
+    StartDestroyObstacleAnimation 2, VAR_0x8005
     WaitTime 10, VAR_RESULT
     RemoveObject LOCALID_ROCK_SMASH_1
 OreburghMineB2F_WaitRockSmash:

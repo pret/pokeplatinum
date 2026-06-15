@@ -10,11 +10,11 @@
     ScriptEntry DistortionWorldGiratinaRoom_OnTransition
     ScriptEntry DistortionWorldGiratinaRoom_OnLoad
     ScriptEntry DistortionWorldGiratinaRoom_Portal
-    ScriptEntry DistortionWorldGiratinaRoom_TriggerWarpToB7F
+    ScriptEntry DistortionWorldGiratinaRoom_CoordEvent_WarpToB7F
     ScriptEntry DistortionWorldGiratinaRoom_Giratina
     ScriptEntry DistortionWorldGiratinaRoom_Cynthia
-    ScriptEntry DistortionWorldGiratinaRoom_TriggerFirstShadow
-    ScriptEntry DistortionWorldGiratinaRoom_TriggerGiratinaArrival
+    ScriptEntry DistortionWorldGiratinaRoom_CoordEvent_FirstShadow
+    ScriptEntry DistortionWorldGiratinaRoom_CoordEvent_GiratinaArrival
     ScriptEntryEnd
 
 DistortionWorldGiratinaRoom_OnTransition:
@@ -55,7 +55,7 @@ DistortionWorldGiratinaRoom_GoToSendoffSpring:
     WaitFadeScreen
     End
 
-DistortionWorldGiratinaRoom_TriggerWarpToB7F:
+DistortionWorldGiratinaRoom_CoordEvent_WarpToB7F:
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_DISTORTION_WORLD_B7F, 0, 89, 57, DIR_SOUTH
@@ -148,7 +148,7 @@ DistortionWorldGiratinaRoom_Cynthia:
     NPCMessage DistortionWorldGiratinaRoom_Text_LetsGoBackHome
     End
 
-DistortionWorldGiratinaRoom_TriggerFirstShadow:
+DistortionWorldGiratinaRoom_CoordEvent_FirstShadow:
     LockAll
     PlayCry SPECIES_GIRATINA
     Message DistortionWorldGiratinaRoom_Text_GiratinaCryGiygogagogwoh
@@ -158,7 +158,7 @@ DistortionWorldGiratinaRoom_TriggerFirstShadow:
     ReleaseAll
     End
 
-DistortionWorldGiratinaRoom_TriggerGiratinaArrival:
+DistortionWorldGiratinaRoom_CoordEvent_GiratinaArrival:
     LockAll
     BufferPlayerName 0
     Message DistortionWorldGiratinaRoom_Text_GiratinaIsEyeingPlayer

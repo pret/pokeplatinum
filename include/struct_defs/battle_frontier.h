@@ -9,13 +9,12 @@
 #include "struct_defs/struct_0202D764.h"
 #include "struct_defs/struct_0202FF58.h"
 #include "struct_defs/struct_020300F4.h"
-#include "struct_defs/struct_02030114.h"
-#include "struct_defs/struct_0203026C.h"
 #include "struct_defs/struct_020302DC.h"
 #include "struct_defs/struct_0203041C.h"
 #include "struct_defs/struct_020304A0.h"
 #include "struct_defs/struct_020305B8.h"
 
+#include "battle_hall_save.h"
 #include "wifi_list.h"
 
 typedef struct BattleFrontierStats {
@@ -28,7 +27,7 @@ typedef struct BattleFrontier {
     union {
         UnkStruct_0202D060 unk_8E0_val1;
         UnkStruct_0202FF58 unk_8E0_val2;
-        UnkStruct_02030114 unk_8E0_val3;
+        BattleHallSave hallSave;
         UnkStruct_020302DC unk_8E0_val4;
         UnkStruct_020304A0 unk_8E0_val5;
     };
@@ -41,8 +40,8 @@ typedef struct BattleFrontier {
         UnkStruct_020300F4 unk_00;
     } unk_1614;
     struct {
-        UnkStruct_0203026C unk_00;
-    } unk_1618;
+        BattleHallStreakFlags streakFlags;
+    } hall;
     struct {
         UnkStruct_0203041C unk_00;
     } unk_161C;

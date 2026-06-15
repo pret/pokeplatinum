@@ -2,14 +2,14 @@
 
 
     ScriptEntry IronIslandB1FRightRoom_OnTransition
-    ScriptEntry IronIslandB1FRightRoom_TriggerPlatformLift
+    ScriptEntry IronIslandB1FRightRoom_CoordEvent_PlatformLift
     ScriptEntryEnd
 
 IronIslandB1FRightRoom_OnTransition:
     InitPersistedMapFeaturesForPlatformLift
     End
 
-IronIslandB1FRightRoom_TriggerPlatformLift:
+IronIslandB1FRightRoom_CoordEvent_PlatformLift:
     TriggerPlatformLift
     End
 

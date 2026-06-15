@@ -3,7 +3,7 @@
 #include "res/field/events/events_sendoff_spring.h"
 
 
-    ScriptEntry SendoffSpring_OnFrameCynthia
+    ScriptEntry SendoffSpring_OnFrame_Cynthia
     ScriptEntry SendoffSpring_Cynthia
     ScriptEntry SendoffSpring_OnTransition
     ScriptEntryEnd
@@ -16,7 +16,7 @@ SendoffSpring_ShowTurnbackCaveItem:
     ClearFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_ITEM
     Return
 
-SendoffSpring_OnFrameCynthia:
+SendoffSpring_OnFrame_Cynthia:
     LockAll
     SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     ScrCmd_2B5 MAP_HEADER_UNKNOWN_266, 762, 714

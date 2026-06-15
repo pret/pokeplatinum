@@ -5,7 +5,7 @@
 
 
     ScriptEntry CanalaveLibrary3F_OnTransition
-    ScriptEntry CanalaveLibrary3F_OnFrameExplosion
+    ScriptEntry CanalaveLibrary3F_OnFrame_Explosion
     ScriptEntry CanalaveLibrary3F_ScientistF
     ScriptEntry CanalaveLibrary3F_Youngster
     ScriptEntry CanalaveLibrary3F_SinnohMyth
@@ -15,7 +15,7 @@
     ScriptEntry CanalaveLibrary3F_TheOriginalStory
     ScriptEntry CanalaveLibrary3F_HorrificMyth
     ScriptEntry CanalaveLibrary3F_SinnohFolkStories
-    ScriptEntry CanalaveLibrary3F_Sign
+    ScriptEntry CanalaveLibrary3F_BgSign
     ScriptEntryEnd
 
 CanalaveLibrary3F_OnTransition:
@@ -32,7 +32,7 @@ CanalaveLibrary3F_SetCounterpartGraphicsLucas:
     SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-CanalaveLibrary3F_OnFrameExplosion:
+CanalaveLibrary3F_OnFrame_Explosion:
     LockAll
     BufferRivalName 0
     BufferPlayerName 1
@@ -572,7 +572,7 @@ CanalaveLibrary3F_PutSinnohFolkStoriesBack:
     ReleaseAll
     End
 
-CanalaveLibrary3F_Sign:
+CanalaveLibrary3F_BgSign:
     EventMessage CanalaveLibrary3F_Text_ManyMythsAndLegends
     End
 

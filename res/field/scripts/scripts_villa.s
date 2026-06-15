@@ -19,10 +19,10 @@
     ScriptEntry Villa_Cynthia
     ScriptEntry Villa_Flint
     ScriptEntry Villa_MayleneAndCandice
-    ScriptEntry Villa_TriggerFantina
-    ScriptEntry Villa_TriggerCrasherWake
-    ScriptEntry Villa_TriggerCandice
-    ScriptEntry Villa_TriggerCynthia
+    ScriptEntry Villa_CoordEvent_Fantina
+    ScriptEntry Villa_CoordEvent_CrasherWake
+    ScriptEntry Villa_CoordEvent_Candice
+    ScriptEntry Villa_CoordEvent_Cynthia
     ScriptEntry Villa_Furniture_Table
     ScriptEntry Villa_Furniture_BigSofa
     ScriptEntry Villa_Furniture_SmallSofa
@@ -43,9 +43,9 @@
     ScriptEntry Villa_Furniture_Masterpiece
     ScriptEntry Villa_Furniture_TeaSet
     ScriptEntry Villa_Furniture_Chandelier
-    ScriptEntry Villa_OnFrameFirstEntry
+    ScriptEntry Villa_OnFrame_FirstEntry
     ScriptEntry Villa_SchoolKidM
-    ScriptEntry Villa_TriggerDontGoYet
+    ScriptEntry Villa_CoordEvent_DontGoYet
     ScriptEntry Villa_OrderForm
     ScriptEntryEnd
 
@@ -795,7 +795,7 @@ Villa_VisitorEnd:
     ReleaseAll
     End
 
-Villa_TriggerFantina:
+Villa_CoordEvent_Fantina:
     LockAll
     PlaySE SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_HIDE_VILLA_FANTINA
@@ -826,7 +826,7 @@ Villa_Movement_FantinaEnter:
     WalkNormalWest 3
     EndMovement
 
-Villa_TriggerCrasherWake:
+Villa_CoordEvent_CrasherWake:
     LockAll
     PlaySE SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_HIDE_VILLA_CRASHER_WAKE
@@ -855,7 +855,7 @@ Villa_Movement_PlayerWatchWakeEnter:
     WalkOnSpotNormalEast
     EndMovement
 
-Villa_TriggerCandice:
+Villa_CoordEvent_Candice:
     LockAll
     PlaySE SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_HIDE_VILLA_CANDICE
@@ -886,7 +886,7 @@ Villa_Movement_PlayerWatchCandiceEnter:
     WalkOnSpotNormalWest
     EndMovement
 
-Villa_TriggerCynthia:
+Villa_CoordEvent_Cynthia:
     LockAll
     PlaySE SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_HIDE_VILLA_CYNTHIA
@@ -1099,7 +1099,7 @@ Villa_Furniture_End:
     ReleaseAll
     End
 
-Villa_OnFrameFirstEntry:
+Villa_OnFrame_FirstEntry:
     LockAll
     SetVar VAR_VILLA_STATE, 1
     ShowMoney 21, 1
@@ -1534,7 +1534,7 @@ Villa_TryEnterFurnitureVisitor:
     CallIfEq VAR_0x8002, VILLA_FURNITURE_PIANO, Villa_EnterPianoCynthia
     Return
 
-Villa_TriggerDontGoYet:
+Villa_CoordEvent_DontGoYet:
     LockAll
     ApplyMovement LOCALID_SCHOOL_KID_M, Villa_Movement_SchoolKidMWalkOnSpotSouth
     WaitMovement

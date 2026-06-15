@@ -3,9 +3,9 @@
 #include "res/field/events/events_stark_mountain_room_2.h"
 
 
-    ScriptEntry StarkMountainRoom2_TriggerBuckStartFollowing
-    ScriptEntry StarkMountainRoom2_TriggerPlayerLeaveBuck
-    ScriptEntry StarkMountainRoom2_TriggerBuckLeavePlayer
+    ScriptEntry StarkMountainRoom2_CoordEvent_BuckStartFollowing
+    ScriptEntry StarkMountainRoom2_CoordEvent_PlayerLeaveBuck
+    ScriptEntry StarkMountainRoom2_CoordEvent_BuckLeavePlayer
     ScriptEntry StarkMountainRoom2_Unused4
     ScriptEntry StarkMountainRoom2_Unused5
     ScriptEntry StarkMountainRoom2_OnTransition
@@ -19,7 +19,7 @@ StarkMountainRoom2_ResetFollowerBuckState:
     SetVar VAR_STARK_MOUNTAIN_ROOM_2_FOLLOWER_BUCK_STATE, 0
     End
 
-StarkMountainRoom2_TriggerBuckStartFollowing:
+StarkMountainRoom2_CoordEvent_BuckStartFollowing:
     LockAll
     SetPlayerBike FALSE
     CallIfUnset FLAG_TALKED_TO_STARK_MOUNTAIN_ROOM_2_BUCK, StarkMountainRoom2_BuckEnterStartFollowing
@@ -84,7 +84,7 @@ StarkMountainRoom2_UnusedMovement2:
     WalkNormalNorth
     EndMovement
 
-StarkMountainRoom2_TriggerPlayerLeaveBuck:
+StarkMountainRoom2_CoordEvent_PlayerLeaveBuck:
     LockAll
     ApplyMovement LOCALID_BUCK, StarkMountainRoom2_Movement_BuckWalkOnSpotSouth2
     ApplyMovement LOCALID_PLAYER, StarkMountainRoom2_Movement_PlayerWalkOnSpotNorth
@@ -119,7 +119,7 @@ StarkMountainRoom2_Movement_BuckWalkOnSpotSouth2:
     WalkOnSpotNormalSouth
     EndMovement
 
-StarkMountainRoom2_TriggerBuckLeavePlayer:
+StarkMountainRoom2_CoordEvent_BuckLeavePlayer:
     LockAll
     ClearHasPartner
     SetMovementType LOCALID_BUCK, MOVEMENT_TYPE_LOOK_SOUTH

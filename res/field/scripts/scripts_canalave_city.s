@@ -6,10 +6,10 @@
 
 
     ScriptEntry CanalaveCity_OnTransition
-    ScriptEntry CanalaveCity_TriggerRival
+    ScriptEntry CanalaveCity_CoordEvent_Rival
     ScriptEntry CanalaveCity_RivalBridge
-    ScriptEntry CanalaveCity_OnFrameRivalOutsideGym
-    ScriptEntry CanalaveCity_OnFrameAfterExplosion
+    ScriptEntry CanalaveCity_OnFrame_RivalOutsideGym
+    ScriptEntry CanalaveCity_OnFrame_AfterExplosion
     ScriptEntry CanalaveCity_ProfRowan
     ScriptEntry CanalaveCity_Counterpart
     ScriptEntry CanalaveCity_Collector
@@ -18,16 +18,16 @@
     ScriptEntry CanalaveCity_Lass
     ScriptEntry CanalaveCity_Psyduck
     ScriptEntry CanalaveCity_OldMan
-    ScriptEntry CanalaveCity_MapSign
-    ScriptEntry CanalaveCity_GymSign
-    ScriptEntry CanalaveCity_SignCanalaveLibrary
-    ScriptEntry CanalaveCity_SignSailorEldritchsHouse
-    ScriptEntry CanalaveCity_SignCanalaveDock
-    ScriptEntry CanalaveCity_SignHarborInn
+    ScriptEntry CanalaveCity_MapSignpost
+    ScriptEntry CanalaveCity_GymSignpost
+    ScriptEntry CanalaveCity_SignboardCanalaveLibrary
+    ScriptEntry CanalaveCity_SignboardSailorEldritchsHouse
+    ScriptEntry CanalaveCity_SignboardCanalaveDock
+    ScriptEntry CanalaveCity_SignboardHarborInn
     ScriptEntry CanalaveCity_SailorEldritch
     ScriptEntry CanalaveCity_Door
     ScriptEntry CanalaveCity_AskGoingToFullmoonIsland
-    ScriptEntry CanalaveCity_OnFrameAfterDarkrai
+    ScriptEntry CanalaveCity_OnFrame_AfterDarkrai
     ScriptEntry CanalaveCity_OnLoad
     ScriptEntry CanalaveCity_RivalLibrary
     ScriptEntryEnd
@@ -115,7 +115,7 @@ CanalaveCity_SetHarborInnDoorClosed:
     SetWarpEventPos 5, 59, 712
     Return
 
-CanalaveCity_TriggerRival:
+CanalaveCity_CoordEvent_Rival:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 723, CanalaveCity_SetRivalBridgePositionZ707
@@ -216,7 +216,7 @@ CanalaveCity_RivalBridge:
     NPCMessage CanalaveCity_Text_TrainAtIronIsland
     End
 
-CanalaveCity_OnFrameRivalOutsideGym:
+CanalaveCity_OnFrame_RivalOutsideGym:
     LockAll
     BufferRivalName 0
     BufferPlayerName 1
@@ -244,7 +244,7 @@ CanalaveCity_Movement_PlayerWatchRivalWalkToLibrary:
     WalkOnSpotNormalWest
     EndMovement
 
-CanalaveCity_OnFrameAfterExplosion:
+CanalaveCity_OnFrame_AfterExplosion:
     LockAll
     ApplyMovement LOCALID_PROF_ROWAN, CanalaveCity_Movement_ProfRowanWalkOnSpotSouth
     WaitMovement
@@ -457,33 +457,33 @@ CanalaveCity_WhatCouldExplode:
     Message CanalaveCity_Text_WhatCouldExplode
     GoTo CanalaveCity_NPCEnd
 
-CanalaveCity_MapSign:
+CanalaveCity_MapSignpost:
     ShowMapSign CanalaveCity_Text_MapSign
     End
 
-CanalaveCity_GymSign:
+CanalaveCity_GymSignpost:
     ShowScrollingSign CanalaveCity_Text_SignPokemonGym
     End
 
-CanalaveCity_SignCanalaveLibrary:
+CanalaveCity_SignboardCanalaveLibrary:
     ShowLandmarkSign CanalaveCity_Text_SignCanalaveLibrary
     End
 
-CanalaveCity_SignSailorEldritchsHouse:
+CanalaveCity_SignboardSailorEldritchsHouse:
     ShowLandmarkSign CanalaveCity_Text_SignSailorEldritchsHouse
     End
 
-CanalaveCity_SignCanalaveDock:
+CanalaveCity_SignboardCanalaveDock:
     ShowLandmarkSign CanalaveCity_Text_SignCanalaveDock
     End
 
-CanalaveCity_SignHarborInn:
+CanalaveCity_SignboardHarborInn:
     Call CanalaveCity_CheckDoDarkraiEvent
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCity_SignHarborInnFaded
+    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCity_SignboardHarborInnFaded
     ShowScrollingSign CanalaveCity_Text_SignHarborInn
     End
 
-CanalaveCity_SignHarborInnFaded:
+CanalaveCity_SignboardHarborInnFaded:
     ShowScrollingSign CanalaveCity_Text_SignHarborInnFaded
     End
 
@@ -647,7 +647,7 @@ CanalaveCity_TakeLunarWingToSon:
     ReleaseAll
     End
 
-CanalaveCity_OnFrameAfterDarkrai:
+CanalaveCity_OnFrame_AfterDarkrai:
     LockAll
     ApplyMovement LOCALID_SAILOR_ELDRITCH, CanalaveCity_Movement_SailorEldritchNoticeWalkToPlayer
     WaitMovement

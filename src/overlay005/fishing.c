@@ -200,7 +200,7 @@ static void GoFish(SysTask *task, void *fishingTaskParam)
 {
     FishingTask *fishingTask = fishingTaskParam;
     PlayerAvatar *playerAvatar = fishingTask->fieldSystem->playerAvatar;
-    MapObject *playerMapObject = Player_MapObject(playerAvatar);
+    MapObject *playerMapObject = PlayerAvatar_GetMapObject(playerAvatar);
 
     while (sFishingActions[fishingTask->fishingTask](fishingTask, playerAvatar, playerMapObject)) {}
 }

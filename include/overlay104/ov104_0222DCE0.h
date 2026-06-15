@@ -36,6 +36,6 @@ BOOL ov104_0222E3E4(BattleFrontierTrainerData *param0, const u16 param1[], const
 void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPokemonDataDTO *param4, u8 *param5, u32 *param6, u8 param7);
 void BattleFrontier_SetPartnerInStrTemplate(StringTemplate *template, u32 idx);
 enum ObjectEventGfx BattleFrontier_GetPlayerObjEventGfx(const TrainerInfo *param0);
-void ov104_0222E630(SaveData *saveData);
+void BattleFrontier_FlagGeonetLinkInfo(SaveData *saveData);
 
 #endif // POKEPLATINUM_OV104_0222DCE0_H

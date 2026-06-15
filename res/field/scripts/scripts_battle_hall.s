@@ -6,10 +6,10 @@
 
 
     ScriptEntry BattleHall_SingleAttendant
-    ScriptEntry BattleHall_OnFrameResumeChallenge
-    ScriptEntry BattleHall_OnFrameDidntSaveBeforeQuit
-    ScriptEntry BattleHall_OnFrameChallengeEndedCompletedRound
-    ScriptEntry BattleHall_OnFrameChallengeEnded
+    ScriptEntry BattleHall_OnFrame_ResumeChallenge
+    ScriptEntry BattleHall_OnFrame_DidntSaveBeforeQuit
+    ScriptEntry BattleHall_OnFrame_ChallengeEndedCompletedRound
+    ScriptEntry BattleHall_OnFrame_ChallengeEnded
     ScriptEntry BattleHall_MultiAttendant
     ScriptEntry BattleHall_Hiker
     ScriptEntry BattleHall_SnowpointNPC
@@ -567,7 +567,7 @@ BattleHall_ExplainMultiChallenge:
     Message BattleHall_Text_ExplainMultiChallenge
     Return
 
-BattleHall_OnFrameResumeChallenge:
+BattleHall_OnFrame_ResumeChallenge:
     RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 0
@@ -585,13 +585,13 @@ BattleHall_SaveGame:
     WaitSE SEQ_SE_DP_SAVE
     Return
 
-BattleHall_OnFrameDidntSaveBeforeQuit:
+BattleHall_OnFrame_DidntSaveBeforeQuit:
     Message BattleHall_Text_DidntSaveBeforeQuit
     ScrCmd_2D1 VAR_BATTLE_HALL_CHALLENGE_TYPE
     GoTo BattleHall_EndChallenge
     End
 
-BattleHall_OnFrameChallengeEndedCompletedRound:
+BattleHall_OnFrame_ChallengeEndedCompletedRound:
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_IncrementTrainerScoreRoundCompleted
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_IncrementTrainerScoreRoundCompleted
     CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 1, BattleHall_EarnedSilverPrint
@@ -622,7 +622,7 @@ BattleHall_EarnedGoldPrint:
     Common_CheckAllFrontierGoldPrintsObtained
     Return
 
-BattleHall_OnFrameChallengeEnded:
+BattleHall_OnFrame_ChallengeEnded:
     GoTo BattleHall_EndChallenge
     End
 

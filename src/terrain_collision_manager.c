@@ -297,7 +297,7 @@ BOOL TerrainCollisionManager_WillMapObjectCollide(const FieldSystem *fieldSystem
         if (!isColliding && newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_DYNAMIC) {
             u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileZ);
 
-            if (TileBehavior_IsPastoriaGymWater(tileBehavior)) {
+            if (TileBehavior_HasDynamicHeightCollision(tileBehavior)) {
                 return TRUE;
             }
         }
@@ -327,7 +327,7 @@ BOOL TerrainCollisionManager_WillPlayerCollide(FieldSystem *fieldSystem, const V
             if (!isColliding && newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_DYNAMIC) {
                 u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileZ);
 
-                if (TileBehavior_IsPastoriaGymWater(tileBehavior)) {
+                if (TileBehavior_HasDynamicHeightCollision(tileBehavior)) {
                     return TRUE;
                 }
             }

@@ -148,7 +148,7 @@ BattleCastle *ov104_022361B4(SaveData *saveData, u16 param1, u8 param2, u16 para
     }
 
     if (BattleCastle_IsMultiPlayerChallenge(v9->challengeType) == 1) {
-        ov104_0222E630(v9->saveData);
+        BattleFrontier_FlagGeonetLinkInfo(v9->saveData);
     }
 
     return v9;

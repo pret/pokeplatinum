@@ -3,7 +3,7 @@
 #include "res/field/events/events_battle_frontier_gate_to_fight_area.h"
 
 
-    ScriptEntry BattleFrontierGateToFightArea_OnFrameFirstEntry
+    ScriptEntry BattleFrontierGateToFightArea_OnFrame_FirstEntry
     ScriptEntry BattleFrontierGateToFightArea_AttendantGeneral
     ScriptEntry BattleFrontierGateToFightArea_AttendantBattleTower
     ScriptEntry BattleFrontierGateToFightArea_AttendantBattleFactory
@@ -21,7 +21,7 @@ BattleFrontierGateToFightArea_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_BATTLE_PARK
     End
 
-BattleFrontierGateToFightArea_OnFrameFirstEntry:
+BattleFrontierGateToFightArea_OnFrame_FirstEntry:
     LockAll
     SetVar VAR_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_STATE, 1
     SetFlag FLAG_HIDE_JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM_WORKER

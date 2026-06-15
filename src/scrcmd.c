@@ -408,8 +408,8 @@ static BOOL ScrCmd_UseWaterfall(ScriptContext *ctx);
 static BOOL ScrCmd_UseFly(ScriptContext *ctx);
 static BOOL ScrCmd_0C3(ScriptContext *ctx);
 static BOOL ScrCmd_0C4(ScriptContext *ctx);
-static BOOL ScrCmd_0C5(ScriptContext *ctx);
-static BOOL sub_02042C80(ScriptContext *ctx);
+static BOOL ScrCmd_PlayHMCutIn(ScriptContext *ctx);
+static BOOL ScriptContext_WaitForHMCutInFinished(ScriptContext *ctx);
 static BOOL ScrCmd_ChangeIntoContestAttire(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlayerOnBike(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx);
@@ -674,7 +674,7 @@ static BOOL ScrCmd_GetLeagueVictories(ScriptContext *ctx);
 static BOOL ScrCmd_CheckShouldShowGhost(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForDaycare(ScriptContext *ctx);
 static BOOL ScrCmd_GetDayCarePartyMenuResult(ScriptContext *ctx);
-static BOOL ScrCmd_29E(ScriptContext *ctx);
+static BOOL ScrCmd_StartDestroyObstacleAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundTalkCounter(ScriptContext *ctx);
 static BOOL ScrCmd_29F(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2A1(ScriptContext *ctx);
@@ -1438,13 +1438,13 @@ static BOOL ScriptContext_CheckABXPadPress(ScriptContext *ctx)
     }
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
-        Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_NORTH);
+        PlayerAvatar_TryFace(ctx->fieldSystem->playerAvatar, DIR_NORTH);
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_SOUTH);
+        PlayerAvatar_TryFace(ctx->fieldSystem->playerAvatar, DIR_SOUTH);
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_WEST);
+        PlayerAvatar_TryFace(ctx->fieldSystem->playerAvatar, DIR_WEST);
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_EAST);
+        PlayerAvatar_TryFace(ctx->fieldSystem->playerAvatar, DIR_EAST);
     } else if (gSystem.pressedKeys & PAD_BUTTON_X) {
         FieldSystem_ShowStartMenu(ctx->fieldSystem);
     } else {
@@ -1690,7 +1690,7 @@ static BOOL WaitScrollingSignpostInput(ScriptContext *ctx)
 
     if (dir != 0xffff) {
         Text_RemovePrinter(*printerID);
-        Player_SetDir(ctx->fieldSystem->playerAvatar, dir);
+        PlayerAvatar_TryFace(ctx->fieldSystem->playerAvatar, dir);
         *destVar = 0;
         return TRUE;
     }
@@ -1736,7 +1736,7 @@ static BOOL HandleSignpostInput(ScriptContext *ctx)
     }
 
     if (dir != 0xffff) {
-        Player_SetDir(ctx->fieldSystem->playerAvatar, dir);
+        PlayerAvatar_TryFace(ctx->fieldSystem->playerAvatar, dir);
         *destVar = 0;
         return TRUE;
     }
@@ -2237,7 +2237,7 @@ static BOOL sub_02041004(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObject **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     if (inline_020410F4_1(1 << 0) && (LocalMapObj_CheckAnimationFinished(v2) == 1)) {
         MapObject_SetPauseMovementOn(v2);
@@ -2291,7 +2291,7 @@ static BOOL ScrCmd_LockLastTalked(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObject **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    MapObject *player = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *player = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     MapObject *v3 = MapObjMan_GetLocalMapObjByMovementType(fieldSystem->mapObjMan, MOVEMENT_TYPE_FOLLOW_PLAYER);
     MapObject *v4 = sub_02069EB8(*v1);
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
@@ -2448,7 +2448,7 @@ static BOOL ScrCmd_FacePlayer(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
-    int dir = Direction_GetOpposite(PlayerAvatar_GetDir(playerAvatar));
+    int dir = Direction_GetOpposite(PlayerAvatar_GetFacingDir(playerAvatar));
     MapObject **object = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
 
     if (*object == NULL) {
@@ -2467,8 +2467,8 @@ static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx)
     u16 *destVarX = ScriptContext_GetVarPointer(ctx);
     u16 *destVarZ = ScriptContext_GetVarPointer(ctx);
 
-    *destVarX = Player_GetXPos(fieldSystem->playerAvatar);
-    *destVarZ = Player_GetZPos(fieldSystem->playerAvatar);
+    *destVarX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    *destVarZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     return FALSE;
 }
@@ -2489,7 +2489,7 @@ static BOOL ScrCmd_Unused_06A(ScriptContext *ctx)
 static BOOL ScrCmd_GetPlayerDir(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
-    *destVar = PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar);
+    *destVar = PlayerAvatar_GetFacingDir(ctx->fieldSystem->playerAvatar);
 
     return FALSE;
 }
@@ -2507,7 +2507,7 @@ static BOOL ScrCmd_MoveCamera(ScriptContext *ctx)
     pos.y = FX32_CONST(y);
     pos.z = FX32_CONST(z);
 
-    MapObject_SetSpritePosOffset(Player_MapObject(ctx->fieldSystem->playerAvatar), &pos);
+    MapObject_SetSpritePosOffset(PlayerAvatar_GetMapObject(ctx->fieldSystem->playerAvatar), &pos);
     Camera_Move(&pos, ctx->fieldSystem->camera);
 
     return FALSE;
@@ -3633,7 +3633,7 @@ static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx)
 
 static BOOL ScrCmd_UseRockClimb(ScriptContext *ctx)
 {
-    FieldTask_StartUseRockClimb(ctx->task, PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
+    FieldTask_StartUseRockClimb(ctx->task, PlayerAvatar_GetFacingDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
     return TRUE;
 }
 
@@ -3644,9 +3644,9 @@ static BOOL ScrCmd_UseSurf(ScriptContext *ctx)
     RadarChain_Clear(ctx->fieldSystem->chain);
 
     if (PlayerAvatar_DistortionStateOnFloor(ctx->fieldSystem->playerAvatar) == TRUE) {
-        direction = PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar);
+        direction = PlayerAvatar_GetFacingDir(ctx->fieldSystem->playerAvatar);
     } else {
-        direction = PlayerAvatar_GetMoveDir(ctx->fieldSystem->playerAvatar);
+        direction = PlayerAvatar_GetMovingDir(ctx->fieldSystem->playerAvatar);
     }
 
     FieldTask_StartUseSurf(ctx->task, direction, ScriptContext_GetVar(ctx));
@@ -3656,7 +3656,7 @@ static BOOL ScrCmd_UseSurf(ScriptContext *ctx)
 
 static BOOL ScrCmd_UseWaterfall(ScriptContext *ctx)
 {
-    FieldTask_StartUseWaterfall(ctx->task, PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
+    FieldTask_StartUseWaterfall(ctx->task, PlayerAvatar_GetFacingDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
     return TRUE;
 }
 
@@ -3690,24 +3690,24 @@ static BOOL ScrCmd_0C4(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0C5(ScriptContext *ctx)
+static BOOL ScrCmd_PlayHMCutIn(ScriptContext *ctx)
 {
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    void **dataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    u16 slot = ScriptContext_GetVar(ctx);
 
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), v2);
-    *v1 = HMCutIn_StartTask(ctx->fieldSystem, 0, v0, PlayerAvatar_Gender(ctx->fieldSystem->playerAvatar));
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), slot);
+    *dataPtr = HMCutIn_StartTask(ctx->fieldSystem, FALSE, mon, PlayerAvatar_GetGender(ctx->fieldSystem->playerAvatar));
 
-    ScriptContext_Pause(ctx, sub_02042C80);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForHMCutInFinished);
     return TRUE;
 }
 
-static BOOL sub_02042C80(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForHMCutInFinished(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **dataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    if (HMCutIn_IsFinished(*v0) == TRUE) {
-        HMCutIn_EndTask(*v0);
+    if (HMCutIn_IsFinished(*dataPtr) == TRUE) {
+        HMCutIn_EndTask(*dataPtr);
         return TRUE;
     }
 
@@ -3723,7 +3723,7 @@ static BOOL ScrCmd_ChangeIntoContestAttire(ScriptContext *ctx)
 static BOOL ScrCmd_CheckPlayerOnBike(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
-    *destVar = PlayerAvatar_GetPlayerState(ctx->fieldSystem->playerAvatar) == PLAYER_STATE_CYCLING;
+    *destVar = PlayerAvatar_GetPlayerState(ctx->fieldSystem->playerAvatar) == PLAYER_AVATAR_CYCLING;
     return FALSE;
 }
 
@@ -4807,7 +4807,7 @@ static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx)
     u16 *destVarY = ScriptContext_GetVarPointer(ctx);
     u16 *destVarZ = ScriptContext_GetVarPointer(ctx);
 
-    MapObject *player = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *player = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     *destVarX = MapObject_GetX(player);
     *destVarY = MapObject_GetY(player) / 2;
@@ -6359,21 +6359,21 @@ static BOOL ScrCmd_CheckShouldShowGhost(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_29E(ScriptContext *ctx)
+static BOOL ScrCmd_StartDestroyObstacleAnimation(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 obstacle = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    switch (v0) {
+    switch (obstacle) {
     case 0:
-        ov6_0224899C(fieldSystem, v1, 0, HEAP_ID_FIELD3);
+        ov6_0224899C(fieldSystem, destVar, 0, HEAP_ID_FIELD3);
         break;
     case 1:
-        ov6_0224899C(fieldSystem, v1, 1, HEAP_ID_FIELD3);
+        ov6_0224899C(fieldSystem, destVar, 1, HEAP_ID_FIELD3);
         break;
     case 2:
-        ov6_0224899C(fieldSystem, v1, 2, HEAP_ID_FIELD3);
+        ov6_0224899C(fieldSystem, destVar, 2, HEAP_ID_FIELD3);
         break;
     default:
         GF_ASSERT(FALSE);

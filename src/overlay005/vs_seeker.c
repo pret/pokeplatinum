@@ -510,8 +510,8 @@ static void VsSeekerSystem_CollectViableNPCs(VsSeekerSystem *vsSeeker)
         vsSeeker->trainers[i] = NULL;
     }
 
-    int playerX = Player_GetXPos(vsSeeker->fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(vsSeeker->fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(vsSeeker->fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(vsSeeker->fieldSystem->playerAvatar);
     xMin = playerX - VS_SEEKER_SEARCH_RADIUS_LEFT;
     xMax = playerX + VS_SEEKER_SEARCH_RADIUS_RIGHT;
     zMin = playerZ - VS_SEEKER_SEARCH_RADIUS_UP;

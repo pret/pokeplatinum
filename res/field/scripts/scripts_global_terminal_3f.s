@@ -12,8 +12,8 @@
     ScriptEntry GlobalTerminal3F_Clown
     ScriptEntry GlobalTerminal3F_Guitarist
     ScriptEntry GlobalTerminal3F_Hiker
-    ScriptEntry GlobalTerminal3F_SignWarp1F
-    ScriptEntry GlobalTerminal3F_SignWarp2F
+    ScriptEntry GlobalTerminal3F_BgSignWarp1F
+    ScriptEntry GlobalTerminal3F_BgSignWarp2F
     ScriptEntry GlobalTerminal3F_BattleVideosMachine
     ScriptEntryEnd
 
@@ -53,11 +53,11 @@ GlobalTerminal3F_Hiker:
     NPCMessage GlobalTerminal3F_Text_Hiker2FIsBrother
     End
 
-GlobalTerminal3F_SignWarp1F:
+GlobalTerminal3F_BgSignWarp1F:
     EventMessage GlobalTerminal3F_Text_WarpsTo1F
     End
 
-GlobalTerminal3F_SignWarp2F:
+GlobalTerminal3F_BgSignWarp2F:
     EventMessage GlobalTerminal3F_Text_WarpsTo2F
     End
 

@@ -5,7 +5,7 @@
 
     ScriptEntry OreburghGate1F_OnTransition
     ScriptEntry OreburghGate1F_Hiker
-    ScriptEntry OreburghGate1F_HikerTrigger
+    ScriptEntry OreburghGate1F_CoordEvent_Hiker
     ScriptEntryEnd
 
 OreburghGate1F_OnTransition:
@@ -45,7 +45,7 @@ OreburghGate1F_SetFlagReceivedHM06:
     SetVar VAR_OREBURGH_GATE_1F_HIKER_STATE, 2
     Return
 
-OreburghGate1F_HikerTrigger:
+OreburghGate1F_CoordEvent_Hiker:
     LockAll
     ApplyMovement LOCALID_HIKER, OreburghGate1F_Movement_HikerWalkToPlayer
     ApplyMovement LOCALID_PLAYER, OreburghGate1F_Movement_PlayerFaceHiker

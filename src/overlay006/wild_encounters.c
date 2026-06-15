@@ -242,8 +242,8 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
     EncounterSlot encounterTable[MAX_GRASS_ENCOUNTERS];
     WildEncounters_FieldParams encounterFieldParams;
 
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerZ);
 
     u8 encounterRate = GetTileEncounterRateAndType(fieldSystem, tileBehavior, &encounterType);
@@ -459,8 +459,8 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
     EncounterSlot encounterTable[MAX_GRASS_ENCOUNTERS];
     WildEncounters_FieldParams encounterFieldParams;
 
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerZ);
 
     u8 encounterRate = GetTileEncounterRateAndType(fieldSystem, tileBehavior, &encounterType);
@@ -570,8 +570,8 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
 
     *battleParams = NULL;
 
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerZ);
 
     u8 encounterRate = GetTileEncounterRateAndType(fieldSystem, tileBehavior, &encounterType);
@@ -710,8 +710,8 @@ static BOOL TryGenerateGrassEncounter_WithRadar(FieldSystem *fieldSystem, Pokemo
 
         if (encounterSuccess) {
             {
-                int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-                int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+                int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+                int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
                 RadarSpawnPatches(fieldSystem, playerX, playerZ, fieldSystem->chain);
             }
@@ -765,7 +765,7 @@ static BOOL ShouldGetRandomEncounter(FieldSystem *fieldSystem, const u32 encount
 
     if (TileBehavior_IsVeryTallGrass(tileBehavior)) {
         flatEncounterRate += 30;
-    } else if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == PLAYER_STATE_CYCLING) {
+    } else if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == PLAYER_AVATAR_CYCLING) {
         flatEncounterRate += 30;
     }
 

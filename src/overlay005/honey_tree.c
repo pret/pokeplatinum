@@ -102,10 +102,10 @@ BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
 
     *eventId = SCRIPT_ID(COMMON_SCRIPTS, 8);
 
-    x = Player_GetXPos(fieldSystem->playerAvatar);
-    z = Player_GetZPos(fieldSystem->playerAvatar);
+    x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
-    if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) == DIR_NORTH) { // Honey Trees can only be interacted with from below.
+    if (PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar) == DIR_NORTH) { // Honey Trees can only be interacted with from below.
         TerrainCollisionHitbox_Init(x, z, 0, -1, 1, 1, &v0);
         isFacingHoneyTree = FieldSystem_FindCollidingLoadedMapPropByModelID(fieldSystem, honey_tree_nsbmd, &v0, NULL);
     } else {

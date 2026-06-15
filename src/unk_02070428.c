@@ -89,10 +89,10 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     {
         PlayerData *v2 = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-        if ((v2->form == PLAYER_AVATAR_BIKING) && (MapHeader_IsBikeAllowed(fieldSystem->location->mapId) == 0)) {
-            v2->form = PLAYER_AVATAR_WALKING;
-        } else if (v2->form == PLAYER_AVATAR_SURFING) {
-            v2->form = PLAYER_AVATAR_WALKING;
+        if ((v2->playerState == PLAYER_AVATAR_CYCLING) && (MapHeader_IsBikeAllowed(fieldSystem->location->mapId) == 0)) {
+            v2->playerState = PLAYER_AVATAR_WALKING;
+        } else if (v2->playerState == PLAYER_AVATAR_SURFING) {
+            v2->playerState = PLAYER_AVATAR_WALKING;
         }
     }
 

@@ -434,27 +434,27 @@ enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordTradeCountInde
     return index + (isOpenLevel * 4);
 }
 
-enum BattleFrontierStatsIndex sub_0205E4E0(u8 param0, u8 param1)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallCurrentTypeRanksIndex(u8 challengeType, u8 pokemonType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 37;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_HALL_CURRENT_RANKS_NORMAL_FIGHTING_SINGLE;
         break;
-    case 1:
-        v0 = 49;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_HALL_CURRENT_RANKS_NORMAL_FIGHTING_DOUBLE;
         break;
-    case 2:
-        v0 = 61;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_HALL_CURRENT_RANKS_NORMAL_FIGHTING_MULTI;
         break;
-    case 3:
-        v0 = 125;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_HALL_CURRENT_RANKS_NORMAL_FIGHTING_MULTI_WFC;
         break;
     }
 
-    v0 += (param1 / 2);
-    return v0;
+    index += pokemonType / 2;
+    return index;
 }
 
 enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestStreakIndex(u8 challengeType)
@@ -479,26 +479,26 @@ enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestStreakIndex(u8 ch
     return index;
 }
 
-enum BattleFrontierStatsIndex sub_0205E534(u8 param0)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallCurrentStreakIndex(u8 challengeType)
 {
-    int v0;
+    enum BattleFrontierStatsIndex index;
 
-    switch (param0) {
-    case 0:
-        v0 = 34;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_HALL_CURRENT_STREAK_SINGLE;
         break;
-    case 1:
-        v0 = 46;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_HALL_CURRENT_STREAK_DOUBLE;
         break;
-    case 2:
-        v0 = 58;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_HALL_CURRENT_STREAK_MULTI;
         break;
-    case 3:
-        v0 = 122;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_HALL_CURRENT_STREAK_MULTI_WFC;
         break;
     }
 
-    return v0;
+    return index;
 }
 
 enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestSpeciesIndex(u8 challengeType)

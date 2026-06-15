@@ -1,47 +1,49 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLE_HALL_H
 #define POKEPLATINUM_STRUCT_BATTLE_HALL_H
 
-#include "struct_decls/struct_02030114_decl.h"
+#include "constants/battle_frontier.h"
+
+#include "struct_defs/pokemon.h"
 
 #include "overlay104/frontier_data_transfer.h"
 
+#include "battle_hall_save.h"
 #include "field_battle_data_transfer.h"
 #include "party.h"
-#include "pokemon.h"
 #include "savedata.h"
 
 typedef struct BattleHall {
-    int unk_00;
+    int unused;
     u8 challengeType;
     u8 unk_05;
-    u8 unk_06;
+    u8 streakActive;
     u8 unk_07;
     u16 currentStreak;
-    u16 unk_0A;
+    u16 currentRound;
     fx32 playerLevelSqrt;
     u32 unk_10;
     int wonBattle;
-    u16 trainerIDs[20];
+    u16 trainerIDs[BATTLES_PER_ROUND_HALL * 2];
     FrontierDataDTO unk_40[2];
-    u8 unk_260[2];
-    Party *unk_264;
+    u8 partySlots[2];
+    Party *party;
     u16 unk_268[20];
     FrontierPokemonDataDTO unk_290[20];
     u16 unk_6F0;
     u16 selectedTypeIdx2;
     u8 selectedType;
     u8 selectedTypeIdx;
-    UnkStruct_02030114 *unk_6F8;
+    BattleHallSave *hallSave;
     SaveData *saveData;
     FieldBattleDTO *dto;
-    u8 unk_704[4][9];
-    u16 unk_728[2];
+    u8 typeRanks[4][9];
+    u16 heldItems[2];
     u16 unk_72C[44];
     u8 unk_784[512];
     u8 unk_984[2][512];
     u16 unk_D84[2];
     u8 unk_D88;
-    Pokemon *unk_D8C;
+    Pokemon *partnersMon;
     u8 unk_D90;
     u32 unk_D94;
 } BattleHall;

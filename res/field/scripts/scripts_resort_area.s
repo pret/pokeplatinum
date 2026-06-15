@@ -7,17 +7,17 @@
     ScriptEntry ResortArea_Beauty2
     ScriptEntry ResortArea_AceTrainerF
     ScriptEntry ResortArea_BlackBelt
-    ScriptEntry ResortArea_MapSign
-    ScriptEntry ResortArea_SignRibbonSyndicate
+    ScriptEntry ResortArea_MapSignpost
+    ScriptEntry ResortArea_SignboardRibbonSyndicate
     ScriptEntry ResortArea_SwimmerM
-    ScriptEntry ResortArea_TriggerSchoolKidM
+    ScriptEntry ResortArea_CoordEvent_SchoolKidM
     ScriptEntry ResortArea_ProfRowan
     ScriptEntry ResortArea_Roark
     ScriptEntry ResortArea_Gardenia
     ScriptEntry ResortArea_Maylene
     ScriptEntry ResortArea_Byron
     ScriptEntry ResortArea_OnTransition
-    ScriptEntry ResortArea_SignVilla
+    ScriptEntry ResortArea_SignboardVilla
     ScriptEntryEnd
 
 ResortArea_OnTransition:
@@ -90,11 +90,11 @@ ResortArea_BlackBelt:
     NPCMessage ResortArea_Text_DigUpCoolStuff
     End
 
-ResortArea_MapSign:
+ResortArea_MapSignpost:
     ShowMapSign ResortArea_Text_MapSign
     End
 
-ResortArea_SignRibbonSyndicate:
+ResortArea_SignboardRibbonSyndicate:
     ShowLandmarkSign ResortArea_Text_SignRibbonSyndicate
     End
 
@@ -102,7 +102,7 @@ ResortArea_SwimmerM:
     NPCMessage ResortArea_Text_SomethingLurks
     End
 
-ResortArea_TriggerSchoolKidM:
+ResortArea_CoordEvent_SchoolKidM:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 472, ResortArea_SchoolKidMWalkToPlayerZ472
@@ -409,7 +409,7 @@ ResortArea_ByronDeclinedVisit:
     GoTo ResortArea_VillaVisitorEnd
     End
 
-ResortArea_SignVilla:
+ResortArea_SignboardVilla:
     ShowLandmarkSign ResortArea_Text_SignVilla
     End
 

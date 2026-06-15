@@ -2,18 +2,18 @@
 #include "res/text/bank/eterna_forest.h"
 #include "res/field/events/events_eterna_forest.h"
 
-    ScriptEntry EternaForest_TriggerStartFollowingCheryl
-    ScriptEntry EternaForest_TriggerPlayerLeaveCheryl
-    ScriptEntry EternaForest_TriggerCherylLeavePlayer
+    ScriptEntry EternaForest_CoordEvent_StartFollowingCheryl
+    ScriptEntry EternaForest_CoordEvent_PlayerLeaveCheryl
+    ScriptEntry EternaForest_CoordEvent_CherylLeavePlayer
     ScriptEntry EternaForest_Unused4
     ScriptEntry EternaForest_Unused5
     ScriptEntry EternaForest_BugCatcher
     ScriptEntry EternaForest_Gardenia
-    ScriptEntry EternaForest_LandmarkSignEternaForest
+    ScriptEntry EternaForest_SignboardEternaForest
     ScriptEntry EternaForest_TrainerTipsSignpost
     ScriptEntry EternaForest_MossRock
     ScriptEntry EternaForest_OnTransition
-    ScriptEntry EternaForest_OnFrameCherylOldChateauCutscene
+    ScriptEntry EternaForest_OnFrame_CherylOldChateauCutscene
     ScriptEntryEnd
 
 EternaForest_OnTransition:
@@ -24,7 +24,7 @@ EternaForest_ResetFollowerCherylState:
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 0
     End
 
-EternaForest_TriggerStartFollowingCheryl:
+EternaForest_CoordEvent_StartFollowingCheryl:
     LockAll
     SetPlayerBike FALSE
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -85,7 +85,7 @@ EternaForest_Movement_CherylNoticeAndWalkToPlayerX29:
     WalkOnSpotNormalSouth
     EndMovement
 
-EternaForest_TriggerPlayerLeaveCheryl:
+EternaForest_CoordEvent_PlayerLeaveCheryl:
     LockAll
     ClearHasPartner
     SetMovementType LOCALID_CHERYL, MOVEMENT_TYPE_LOOK_SOUTH
@@ -132,7 +132,7 @@ EternaForest_Movement_CherylWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-EternaForest_TriggerCherylLeavePlayer:
+EternaForest_CoordEvent_CherylLeavePlayer:
     LockAll
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylExclamationMark
     ApplyMovement LOCALID_PLAYER, EternaForest_Movement_PlayerWalkOnSpotWest
@@ -403,7 +403,7 @@ EternaForest_Movement_GardeniaLeaveNorth:
     WalkNormalEast 10
     EndMovement
 
-EternaForest_LandmarkSignEternaForest:
+EternaForest_SignboardEternaForest:
     ShowLandmarkSign EternaForest_Text_TheEternaForestWhereTimeFlowsEternally
     End
 
@@ -415,7 +415,7 @@ EternaForest_MossRock:
     EventMessage EternaForest_Text_TheRockIsCoveredInMoss
     End
 
-EternaForest_OnFrameCherylOldChateauCutscene:
+EternaForest_OnFrame_CherylOldChateauCutscene:
     LockAll
     SetVar VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE, 2
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylWalkOnSpotNorth

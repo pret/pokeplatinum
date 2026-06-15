@@ -142,32 +142,32 @@ Underground_GoodsVendorNeedAnythingElse_Unused:
 
 Underground_TreasuresVendor_Unused:
     UndergroundNPCMessage UndergroundNPCs_Text_IllTradeSpheresForTreasures
-    GoTo _0231
+    GoTo Underground_TreasuresVendorShopMenu_Unused
     End
 
-_0231:
+Underground_TreasuresVendorShopMenu_Unused:
     Dummy19E 2, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, -4, _0265
+    GoToIfEq VAR_0x8008, -4, Underground_TreasuresVendorNoRoom_Unused
     GoToIfEq VAR_0x8008, -1, Underground_VendorSeeYou_Unused
-    GoTo _0271
+    GoTo Underground_TreasuresVendorWaitABPress_Unused
     End
 
-_0265:
+Underground_TreasuresVendorNoRoom_Unused:
     UndergroundNPCMessage UndergroundNPCs_Text_YouDontHaveRoom
-    GoTo _027B
+    GoTo Underground_TreasuresVendorNeedAnythingElse_Unused
     End
 
-_0271:
+Underground_TreasuresVendorWaitABPress_Unused:
     WaitABPress
-    GoTo _027B
+    GoTo Underground_TreasuresVendorNeedAnythingElse_Unused
     End
 
-_027B:
+Underground_TreasuresVendorNeedAnythingElse_Unused:
     WaitABPress
     UndergroundNPCMessage UndergroundNPCs_Text_DoYouNeedAnythingElse
-    GoTo _0231
+    GoTo Underground_TreasuresVendorShopMenu_Unused
     End
 
 Underground_RoarkIntro:

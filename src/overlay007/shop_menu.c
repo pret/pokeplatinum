@@ -271,7 +271,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
 
 static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem)
 {
-    int dir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int dir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     if ((dir == DIR_NORTH) || (dir == DIR_SOUTH) || (dir == DIR_EAST)) {
         return 10;

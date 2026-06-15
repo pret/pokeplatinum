@@ -3,7 +3,7 @@
 
 
     ScriptEntry Route228NorthHouse_ExpertM
-    ScriptEntry Route228NorthHouse_Sign
+    ScriptEntry Route228NorthHouse_BgSign
     ScriptEntryEnd
 
 Route228NorthHouse_ExpertM:
@@ -162,7 +162,7 @@ Route228NorthHouse_AlreadyKnowsMove:
     ReleaseAll
     End
 
-Route228NorthHouse_Sign:
+Route228NorthHouse_BgSign:
     EventMessage Route228NorthHouse_Text_PokemonListedLearnUltimateMoves
     End
 

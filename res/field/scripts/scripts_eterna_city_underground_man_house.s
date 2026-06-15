@@ -10,7 +10,7 @@
     ScriptEntry EternaCityUndergroundManHouse_UndergroundMan
     ScriptEntry EternaCityUndergroundManHouse_Youngster
     ScriptEntry EternaCityUndergroundManHouse_ScientistM
-    ScriptEntry EternaCityUndergroundManHouse_Sign
+    ScriptEntry EternaCityUndergroundManHouse_BgSign
     ScriptEntry EternaCityUndergroundManHouse_PC
     ScriptEntry EternaCityUndergroundManHouse_BugCatcher
     ScriptEntryEnd
@@ -463,7 +463,7 @@ EternaCityUndergroundManHouse_OhYoudLikeMoreAdviceOnDiggingUpTreasureAndSpheres:
     ReleaseAll
     End
 
-EternaCityUndergroundManHouse_Sign:
+EternaCityUndergroundManHouse_BgSign:
     EventMessage EternaCityUndergroundManHouse_Text_NewAndOnSaleUndergroundRadar
     End
 

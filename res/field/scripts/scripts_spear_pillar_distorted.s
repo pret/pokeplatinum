@@ -3,7 +3,7 @@
 #include "res/field/events/events_spear_pillar_distorted.h"
 
 
-    ScriptEntry SpearPillarDistorted_OnFrameAfterWarp
+    ScriptEntry SpearPillarDistorted_OnFrame_AfterWarp
     ScriptEntry SpearPillarDistorted_Cynthia
     ScriptEntry SpearPillarDistorted_Jupiter
     ScriptEntry SpearPillarDistorted_Mars
@@ -13,7 +13,7 @@
     ScriptEntry SpearPillarDistorted_RiftPalkia
     ScriptEntryEnd
 
-SpearPillarDistorted_OnFrameAfterWarp:
+SpearPillarDistorted_OnFrame_AfterWarp:
     LockAll
     ClearFlag FLAG_HIDE_SPEAR_PILLAR_DISTORTED_MESPRIT
     AddObject LOCALID_MESPRIT

@@ -169,12 +169,12 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         }
     } break;
     case 3:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
         LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
         (param1->unk_00)++;
         break;
     case 4:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -334,18 +334,18 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         v12 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 1);
 
         if (v12) {
-            v0 = Player_MapObject(fieldSystem->playerAvatar);
+            v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
             MapObject_SetHidden(v0, 0);
             (param1->unk_00)++;
         }
     } break;
     case 3:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
         LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (param1->unk_00)++;
         break;
     case 4:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -513,7 +513,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
             return 1;
         }
 
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_PAUSE_ANIMATION);
@@ -527,7 +527,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
         MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, 2, 0, 1557);
 
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             int v8;
@@ -546,7 +546,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         (param1->unk_00)++;
         break;
     case 2:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_RESUME_ANIMATION);
@@ -554,7 +554,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         }
         break;
     case 3:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             int v9;
@@ -570,7 +570,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         }
         break;
     case 4:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -630,7 +630,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
             return 1;
         }
 
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_PAUSE_ANIMATION);
@@ -642,7 +642,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     } break;
     case 1:
         MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, 2, 0, 1557);
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             int v8;
@@ -661,7 +661,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         (param1->unk_00)++;
         break;
     case 2:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_RESUME_ANIMATION);
@@ -671,7 +671,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         }
         break;
     case 3:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -880,9 +880,9 @@ BOOL ov5_021D4E10(FieldTask *param0)
 
     switch (v2->unk_00) {
     case 0:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
-        if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) == 1) {
+        if (PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar) == 1) {
             MapObject_SetHidden(v0, 1);
             (v2->unk_00) = 1;
         } else {
@@ -902,13 +902,13 @@ BOOL ov5_021D4E10(FieldTask *param0)
         v2->unk_08 = 1;
         break;
     case 1:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
         MapObject_SetHidden(v0, 0);
         LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (v2->unk_00)++;
         break;
     case 2:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -939,7 +939,7 @@ BOOL ov5_021D4F14(FieldTask *param0)
     case 0: {
         MapObject *v2;
 
-        v2 = Player_MapObject(fieldSystem->playerAvatar);
+        v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         MapObject_SetHidden(v2, 1);
 
@@ -1009,8 +1009,8 @@ BOOL ov5_021D5020(FieldTask *param0)
         u8 v3;
         u8 v4;
 
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
-        v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
+        v3 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
         if (v3 == 1) {
             MapObject_SetHidden(v0, 1);
@@ -1049,13 +1049,13 @@ BOOL ov5_021D5020(FieldTask *param0)
         v2->unk_08 = 1;
     } break;
     case 1:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
         MapObject_SetHidden(v0, 0);
         LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (v2->unk_00)++;
         break;
     case 2:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -1088,8 +1088,8 @@ BOOL ov5_021D5150(FieldTask *param0)
         u8 v3;
         u8 v4;
 
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
-        v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
+        v3 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
         if (v3 == 1) {
             MapObject_SetHidden(v0, 1);
@@ -1102,13 +1102,13 @@ BOOL ov5_021D5150(FieldTask *param0)
         sub_02056B30(param0, 0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD2);
     } break;
     case 1:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
         MapObject_SetHidden(v0, 0);
         LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (v2->unk_00)++;
         break;
     case 2:
-        v0 = Player_MapObject(fieldSystem->playerAvatar);
+        v0 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);

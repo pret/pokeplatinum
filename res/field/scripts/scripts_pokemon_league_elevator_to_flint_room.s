@@ -3,7 +3,7 @@
 
     ScriptEntry PokemonLeagueElevatorToFlintRoom_OnTransition
     ScriptEntry PokemonLeagueElevatorToFlintRoom_DisablePlatformLift
-    ScriptEntry PokemonLeagueElevatorToFlintRoom_TriggerPlatformLift
+    ScriptEntry PokemonLeagueElevatorToFlintRoom_CoordEvent_PlatformLift
     ScriptEntryEnd
 
 PokemonLeagueElevatorToFlintRoom_OnTransition:
@@ -17,7 +17,7 @@ PokemonLeagueElevatorToFlintRoom_DisablePlatformLift:
     SetVar VAR_MAP_LOCAL_0, 1
     End
 
-PokemonLeagueElevatorToFlintRoom_TriggerPlatformLift:
+PokemonLeagueElevatorToFlintRoom_CoordEvent_PlatformLift:
     TriggerPlatformLift
     SetVar VAR_MAP_LOCAL_0, 1
     End

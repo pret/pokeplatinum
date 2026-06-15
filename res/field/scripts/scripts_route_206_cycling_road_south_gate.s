@@ -5,22 +5,22 @@
 
     ScriptEntry Route206CyclingRoadSouthGate_OnTransition
     ScriptEntry Route206CyclingRoadSouthGate_CashierM
-    ScriptEntry Route206CyclingRoadSouthGate_TriggerOnlyCyclists
-    ScriptEntry Route206CyclingRoadSouthGate_TriggerClearFlagForceBikingInGate
+    ScriptEntry Route206CyclingRoadSouthGate_CoordEvent_OnlyCyclists
+    ScriptEntry Route206CyclingRoadSouthGate_CoordEvent_ClearFlagForceBikingInGate
     ScriptEntry Route206CyclingRoadSouthGate_BattleGirl
-    ScriptEntry Route206CyclingRoadSouthGate_OnFrame
+    ScriptEntry Route206CyclingRoadSouthGate_OnFrame_TryForceBiking
     ScriptEntryEnd
 
 Route206CyclingRoadSouthGate_OnTransition:
     End
 
-Route206CyclingRoadSouthGate_OnFrame:
+Route206CyclingRoadSouthGate_OnFrame_TryForceBiking:
     GetPlayerMapPos VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5
-    CallIfLe VAR_MAP_LOCAL_5, 3, Route206CyclingRoadSouthGate_OnFrameForceBikingInGate
+    CallIfLe VAR_MAP_LOCAL_5, 3, Route206CyclingRoadSouthGate_ForceBikingInGateOnFrame
     SetVar VAR_MAP_LOCAL_3, 1
     End
 
-Route206CyclingRoadSouthGate_OnFrameForceBikingInGate:
+Route206CyclingRoadSouthGate_ForceBikingInGateOnFrame:
     SetFlag FLAG_FORCE_BIKING_IN_GATE
     Return
 
@@ -28,10 +28,10 @@ Route206CyclingRoadSouthGate_CashierM:
     NPCMessage Route206CyclingRoadSouthGate_Text_LearnHowToShiftGearsAndYoullBeAbleToRideAnywhere
     End
 
-Route206CyclingRoadSouthGate_TriggerOnlyCyclists:
+Route206CyclingRoadSouthGate_CoordEvent_OnlyCyclists:
     LockAll
     CheckPlayerOnBike VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, Route206CyclingRoadSouthGate_TriggerForceBikingInGate
+    GoToIfEq VAR_RESULT, TRUE, Route206CyclingRoadSouthGate_ForceBikingInGateCoordEvent
     ApplyMovement LOCALID_CASHIER_M_WEST, Route206CyclingRoadSouthGate_Movement_CashierMExclamationMark
     WaitMovement
     Message Route206CyclingRoadSouthGate_Text_CyclingRoadIsOpenOnlyToCyclists
@@ -41,7 +41,7 @@ Route206CyclingRoadSouthGate_TriggerOnlyCyclists:
     ReleaseAll
     End
 
-Route206CyclingRoadSouthGate_TriggerForceBikingInGate:
+Route206CyclingRoadSouthGate_ForceBikingInGateCoordEvent:
     SetFlag FLAG_FORCE_BIKING_IN_GATE
     SetVar VAR_MAP_LOCAL_2, 1
     ReleaseAll
@@ -57,7 +57,7 @@ Route206CyclingRoadSouthGate_Movement_PlayerWalkSouth:
     WalkNormalSouth
     EndMovement
 
-Route206CyclingRoadSouthGate_TriggerClearFlagForceBikingInGate:
+Route206CyclingRoadSouthGate_CoordEvent_ClearFlagForceBikingInGate:
     LockAll
     ClearFlag FLAG_FORCE_BIKING_IN_GATE
     SetVar VAR_MAP_LOCAL_2, 0

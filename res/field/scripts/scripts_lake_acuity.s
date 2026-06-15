@@ -3,10 +3,10 @@
 #include "res/field/events/events_lake_acuity.h"
 
 
-    ScriptEntry LakeAcuity_TriggerJupiterRival
+    ScriptEntry LakeAcuity_CoordEvent_JupiterRival
     ScriptEntryEnd
 
-LakeAcuity_TriggerJupiterRival:
+LakeAcuity_CoordEvent_JupiterRival:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     AddFreeCamera VAR_0x8004, VAR_0x8005

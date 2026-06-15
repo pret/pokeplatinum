@@ -2,7 +2,7 @@
 
 
     ScriptEntry IronIslandB3F_OnTransition
-    ScriptEntry IronIslandB3F_TriggerPlatformLift
+    ScriptEntry IronIslandB3F_CoordEvent_PlatformLift
     ScriptEntry IronIslandB3F_Unused
     ScriptEntry IronIslandB3F_OnLoad
     ScriptEntryEnd
@@ -29,7 +29,7 @@ IronIslandB3F_RemoveWarpIronRuinsWithoutRegisteel:
     SetWarpEventPos 2, 17, 1
     End
 
-IronIslandB3F_TriggerPlatformLift:
+IronIslandB3F_CoordEvent_PlatformLift:
     TriggerPlatformLift
     End
 

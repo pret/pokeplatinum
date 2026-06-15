@@ -5,7 +5,7 @@
 
     ScriptEntry BattleTowerCorridorMulti_OnTransition
     ScriptEntry BattleTowerCorridorMulti_OnResume
-    ScriptEntry BattleTowerCorridorMulti_OnFrameEnterBattleRoom
+    ScriptEntry BattleTowerCorridorMulti_OnFrame_EnterBattleRoom
     ScriptEntryEnd
 
 BattleTowerCorridorMulti_OnTransition:
@@ -37,7 +37,7 @@ BattleTowerCorridorMulti_HidePlayerMoveCamera:
     MoveCamera 8, 0, 0
     Return
 
-BattleTowerCorridorMulti_OnFrameEnterBattleRoom:
+BattleTowerCorridorMulti_OnFrame_EnterBattleRoom:
     LockAll
     Call BattleTowerCorridorMulti_EnterCorridor
     Call BattleTowerCorridorMulti_WalkToBattleRoom

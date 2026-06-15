@@ -6,9 +6,9 @@
 
     ScriptEntry TeamGalacticEternaBuilding1F_GruntM1
     ScriptEntry TeamGalacticEternaBuilding1F_GruntM2
-    ScriptEntry TeamGalacticEternaBuilding1F_Sign
+    ScriptEntry TeamGalacticEternaBuilding1F_BgSign
     ScriptEntry TeamGalacticEternaBuilding1F_Looker
-    ScriptEntry TeamGalacticEternaBuilding1F_OnFrameLooker
+    ScriptEntry TeamGalacticEternaBuilding1F_OnFrame_Looker
     ScriptEntry TeamGalacticEternaBuilding1F_WallBlockingRotomsRoom
     ScriptEntry TeamGalacticEternaBuilding1F_OnTransition
     ScriptEntryEnd
@@ -24,7 +24,7 @@ TeamGalacticEternaBuilding1F_GruntM2:
     NPCMessage TeamGalacticEternaBuilding1F_Text_AsAGroupTeamGalacticHasItsSightsSetOnTheStarsNotOnThisWorld
     End
 
-TeamGalacticEternaBuilding1F_Sign:
+TeamGalacticEternaBuilding1F_BgSign:
     EventMessage TeamGalacticEternaBuilding1F_Text_ThePathYouChoseLeadsToGlory
     End
 
@@ -32,7 +32,7 @@ TeamGalacticEternaBuilding1F_Looker:
     NPCMessage TeamGalacticEternaBuilding1F_Text_NowIHaveBeenConductingMyInvestigationIntoTeamGalactic
     End
 
-TeamGalacticEternaBuilding1F_OnFrameLooker:
+TeamGalacticEternaBuilding1F_OnFrame_Looker:
     LockAll
     ApplyMovement LOCALID_GRUNT_M_LOOKER, TeamGalacticEternaBuilding1F_Movement_LookerNoticeAndWalkToPlayer
     ApplyMovement LOCALID_PLAYER, TeamGalacticEternaBuilding1F_Movement_PlayerFaceLooker

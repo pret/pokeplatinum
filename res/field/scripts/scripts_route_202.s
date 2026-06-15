@@ -8,7 +8,7 @@
     ScriptEntry Route202_ArrowSignpostSandgemTown
     ScriptEntry Route202_ArrowSignpostJubilifeCity
     ScriptEntry Route202_TrainerTipsSignpost
-    ScriptEntry Route202_TriggerCatchingTutorial
+    ScriptEntry Route202_CoordEvent_CatchingTutorial
     ScriptEntry Route202_Counterpart
     ScriptEntryEnd
 
@@ -49,7 +49,7 @@ Route202_TrainerTipsSignpost:
     ShowScrollingSign Route202_Text_TrainerTipsPokemonInvolvedInBattleEarnExpPoints
     End
 
-Route202_TriggerCatchingTutorial:
+Route202_CoordEvent_CatchingTutorial:
     LockAll
     ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartNoticePlayer
     ApplyMovement LOCALID_PLAYER, Route202_Movement_PlayerDelay
@@ -370,7 +370,7 @@ Route202_Counterpart:
     CloseMessage
     PlayMusic SEQ_POKERADAR
     AddCameraOverrideObject 189, 818
-    ApplyFreeCameraMovement _06F8
+    ApplyFreeCameraMovement Route202_Movement_CameraMoveEast
     WaitMovement
     RemoveCameraOverrideObject
     ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartFaceGrassPatchEast
@@ -541,6 +541,6 @@ Route202_UnusedMovement4:
     EndMovement
 
     .balign 4, 0
-_06F8:
+Route202_Movement_CameraMoveEast:
     WalkNormalEast
     EndMovement

@@ -4,9 +4,9 @@
 
     ScriptEntry Route208_ArrowSignpostMtCoronet
     ScriptEntry Route208_ArrowSignpostHearthomeCity
-    ScriptEntry Route208_SignBerryMastersHouse
+    ScriptEntry Route208_SignboardBerryMastersHouse
     ScriptEntry Route208_BlackBelt
-    ScriptEntry Route208_TrainerTips
+    ScriptEntry Route208_TrainerTipsSignpost
     ScriptEntryEnd
 
 Route208_ArrowSignpostMtCoronet:
@@ -17,11 +17,11 @@ Route208_ArrowSignpostHearthomeCity:
     ShowArrowSign Route208_Text_SignRt208HearthomeCity
     End
 
-Route208_SignBerryMastersHouse:
+Route208_SignboardBerryMastersHouse:
     ShowLandmarkSign Route208_Text_SignBerryMastersHouse
     End
 
-Route208_TrainerTips:
+Route208_TrainerTipsSignpost:
     ShowScrollingSign Route208_Text_TrainerTipsWatchBerrySoilColor
     End
 

@@ -104,11 +104,11 @@ static void ov6_022480BC(PlayerAvatar *const playerAvatar, Easy3DObject *param1)
     int v1, v2;
     VecFx32 v3;
 
-    PlayerAvatar_PosVectorOut(playerAvatar, &v3);
+    PlayerAvatar_GetPosPtr(playerAvatar, &v3);
 
-    v1 = Player_GetXPos(playerAvatar);
-    v2 = Player_GetZPos(playerAvatar);
-    v0 = PlayerAvatar_GetDir(playerAvatar);
+    v1 = PlayerAvatar_GetXPos(playerAvatar);
+    v2 = PlayerAvatar_GetZPos(playerAvatar);
+    v0 = PlayerAvatar_GetFacingDir(playerAvatar);
 
     switch (v0) {
     case 0:
@@ -135,7 +135,7 @@ static void ov6_02248124(PlayerAvatar *const playerAvatar, Easy3DObject *param1)
 {
     VecFx32 v0;
 
-    PlayerAvatar_PosVectorOut(playerAvatar, &v0);
+    PlayerAvatar_GetPosPtr(playerAvatar, &v0);
     Easy3DObject_SetPosition(param1, v0.x, v0.y, v0.z);
 }
 
@@ -490,7 +490,7 @@ static void ov6_02248610(UnkStruct_ov6_022486B4 *param0, PlayerAvatar *const pla
 
     GF_ASSERT(param0->unk_C8 == 0);
 
-    PlayerAvatar_PosVectorOut(playerAvatar, &v0);
+    PlayerAvatar_GetPosPtr(playerAvatar, &v0);
     Easy3DObject_SetPosition(&param0->unk_00, v0.x, v0.y + param2, v0.z + param3);
 
     param0->unk_C8 = 1;
@@ -554,7 +554,7 @@ static void ov6_02248728(UnkStruct_ov6_022487F8 *param0)
 {
     VecFx32 v0;
 
-    PlayerAvatar_PosVectorOut(param0->fieldSystem->playerAvatar, &v0);
+    PlayerAvatar_GetPosPtr(param0->fieldSystem->playerAvatar, &v0);
 
     if (((v0.x - param0->unk_CF0.x) == 0) && (v0.y < param0->unk_CF0.y) && (v0.z > param0->unk_CF0.z)) {
         param0->unk_CE8 = 0;
@@ -614,7 +614,7 @@ static void ov6_022487F8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     }
 
     v0->fieldSystem = fieldSystem;
-    PlayerAvatar_PosVectorOut(v0->fieldSystem->playerAvatar, &v0->unk_CF0);
+    PlayerAvatar_GetPosPtr(v0->fieldSystem->playerAvatar, &v0->unk_CF0);
 
     v0->unk_D0C = 0;
     NARC_dtor(v2);

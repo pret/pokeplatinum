@@ -189,7 +189,7 @@ static void ScriptManager_Init(FieldSystem *fieldSystem, ScriptManager *scriptMa
 {
     u16 *targetID = ScriptManager_GetMemberPtr(scriptManager, SCRIPT_DATA_TARGET_OBJECT_ID);
 
-    scriptManager->playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    scriptManager->playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
     scriptManager->targetObject = object;
     scriptManager->scriptID = scriptID;
     scriptManager->saveType = saveType;
@@ -653,8 +653,8 @@ HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSyste
         return hiddenItems;
     }
 
-    playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     playerMinX = playerX - 7;
     playerMaxX = playerX + 7;
     playerMinZ = playerZ - 7;

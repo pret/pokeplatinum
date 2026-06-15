@@ -29,7 +29,7 @@ BOOL TileBehavior_IsTownMap(u8 behavior);
 BOOL TileBehavior_IsPastoriaGymHighGround(u8 behavior);
 BOOL TileBehavior_IsPastoriaGymMiddleGround(u8 behavior);
 BOOL TileBehavior_IsPastoriaGymLowGround(u8 behavior);
-BOOL TileBehavior_IsPastoriaGymWater(u8 behavior);
+BOOL TileBehavior_HasDynamicHeightCollision(u8 behavior);
 BOOL TileBehavior_IsEscalatorFlipFace(u8 behavior);
 BOOL TileBehavior_IsEscalator(u8 behavior);
 BOOL TileBehavior_IsWarpStairsEast(u8 behavior);

@@ -8,7 +8,7 @@
     ScriptEntry TeamGalacticEternaBuilding4F_Clefairy
     ScriptEntry TeamGalacticEternaBuilding4F_Buneary
     ScriptEntry TeamGalacticEternaBuilding4F_PokefanM
-    ScriptEntry TeamGalacticEternaBuilding4F_Sign
+    ScriptEntry TeamGalacticEternaBuilding4F_BgSign
     ScriptEntryEnd
 
 TeamGalacticEternaBuilding4F_OnLoad:
@@ -160,6 +160,6 @@ TeamGalacticEternaBuilding4F_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK
     ReleaseAll
     End
 
-TeamGalacticEternaBuilding4F_Sign:
+TeamGalacticEternaBuilding4F_BgSign:
     EventMessage TeamGalacticEternaBuilding4F_Text_WorkingForWorldPeace
     End

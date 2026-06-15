@@ -6,8 +6,8 @@
     ScriptEntry Route222_RichBoy
     ScriptEntry Route222_ArrowSignpostHotelGrandLake
     ScriptEntry Route222_ArrowSignpostSunyshoreCity
-    ScriptEntry Route222_SignPikachuFanClub
-    ScriptEntry Route222_SignPokemonSizeContest
+    ScriptEntry Route222_SignboardPikachuFanClub
+    ScriptEntry Route222_SignboardPokemonSizeContest
     ScriptEntry Route222_PolicemanThomas
     ScriptEntry Route222_OnTransition
     ScriptEntryEnd
@@ -66,11 +66,11 @@ Route222_ArrowSignpostSunyshoreCity:
     ShowArrowSign Route222_Text_SignRt222SunyshoreCity
     End
 
-Route222_SignPikachuFanClub:
+Route222_SignboardPikachuFanClub:
     ShowLandmarkSign Route222_Text_SignPikachuFanClub
     End
 
-Route222_SignPokemonSizeContest:
+Route222_SignboardPokemonSizeContest:
     ShowLandmarkSign Route222_Text_SignPokemonSizeContest
     End
 

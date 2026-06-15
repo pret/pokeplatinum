@@ -6,8 +6,8 @@
 
     ScriptEntry DistortionWorld1F_OnTransition
     ScriptEntry DistortionWorld1F_Portal
-    ScriptEntry DistortionWorld1F_OnFrameFirstEntry
-    ScriptEntry DistortionWorld1F_TriggerCynthiaElevator
+    ScriptEntry DistortionWorld1F_OnFrame_FirstEntry
+    ScriptEntry DistortionWorld1F_CoordEvent_CynthiaElevator
     ScriptEntry DistortionWorld1F_CynthiaElevator
     ScriptEntryEnd
 
@@ -38,7 +38,7 @@ DistortionWorld1F_ReturnToSpearPillar:
     WaitFadeScreen
     End
 
-DistortionWorld1F_OnFrameFirstEntry:
+DistortionWorld1F_OnFrame_FirstEntry:
     LockAll
     ApplyMovement LOCALID_PLAYER, DistortionWorld1F_Movement_PlayerWalkWest
     WaitMovement
@@ -81,7 +81,7 @@ DistortionWorld1F_OnFrameFirstEntry:
     ReleaseAll
     End
 
-DistortionWorld1F_TriggerCynthiaElevator:
+DistortionWorld1F_CoordEvent_CynthiaElevator:
     LockAll
     Message DistortionWorld1F_Text_SlabMovesIfYouStep
     WaitABPadPress

@@ -2,7 +2,7 @@
   "key": 21538,
   "messages": [
     {
-      "id": "pl_msg_00000171_00000",
+      "id": "SunyshoreCityHouse1_Text_BurmyInterestingExample",
       "en_US": [
         "Hmmm... The Pokémon BURMY is an\n",
         "interesting example...\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000171_00001",
+      "id": "SunyshoreCityHouse1_Text_DoYouHaveAllBurmy",
       "en_US": [
         "You know that Pokémon BURMY, and how\n",
         "it comes in different forms?\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000171_00002",
+      "id": "SunyshoreCityHouse1_Text_NotASingleBurmy",
       "en_US": [
         "Aww, you don’t even have a single\n",
         "BURMY?\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000171_00003",
+      "id": "SunyshoreCityHouse1_Text_CoolIfDifferentBurmy",
       "en_US": [
         "Hmm...\r",
         "It’d be cool if you had all the\n",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000171_00004",
+      "id": "SunyshoreCityHouse1_Text_ThatsAllBurmy",
       "en_US": [
         "Cool! That’s all the different kinds\n",
         "of BURMY! I feel giddy!\r",
@@ -46,14 +46,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000171_00005",
+      "id": "SunyshoreCityHouse1_Text_BagIsCrammedFull",
       "en_US": [
         "Whoops, your Bag is crammed full!\n",
         "I’ll give this to you later."
       ]
     },
     {
-      "id": "pl_msg_00000171_00006",
+      "id": "SunyshoreCityHouse1_Text_YoureGood",
       "en_US": [
         "You’re good!\n",
         "You’d make an awesome Bug Maniac!"

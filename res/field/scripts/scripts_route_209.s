@@ -10,7 +10,7 @@
     ScriptEntry Route209_JoggerRichard
     ScriptEntry Route209_JoggerRaul
     ScriptEntry Route209_OnTransition
-    ScriptEntry Route209_TrainerTips
+    ScriptEntry Route209_TrainerTipsSignpost
     ScriptEntryEnd
 
 Route209_OnTransition:
@@ -188,7 +188,7 @@ Route209_ArrowSignpostSolaceonTown:
     ShowArrowSign Route209_Text_Rt209SolaceonTown
     End
 
-Route209_TrainerTips:
+Route209_TrainerTipsSignpost:
     ShowScrollingSign Route209_Text_TrainerTipsRegisterKeyItems
     End
 

@@ -4,7 +4,7 @@
 #include "res/field/events/events_eterna_city.h"
 
 
-    ScriptEntry EternaCity_TriggerCynthiaGiveCut
+    ScriptEntry EternaCity_CoordEvent_CynthiaGiveCut
     ScriptEntry EternaCity_GruntM1
     ScriptEntry EternaCity_GruntM2
     ScriptEntry EternaCity_GruntM3
@@ -15,22 +15,22 @@
     ScriptEntry EternaCity_AceTrainerF
     ScriptEntry EternaCity_ExpertM
     ScriptEntry EternaCity_NinjaBoy
-    ScriptEntry EternaCity_MapSign
+    ScriptEntry EternaCity_MapSignpost
     ScriptEntry EternaCity_GymSignpost
-    ScriptEntry EternaCity_LandmarkSignRadRickshawsCycleShop
-    ScriptEntry EternaCity_LandmarkSignTeamGalacticEternaBuilding
-    ScriptEntry EternaCity_LandmarkSignUndergroundMansHouse
-    ScriptEntry EternaCity_LandmarkSignEternaCondominiums
+    ScriptEntry EternaCity_SignboardRadRickshawsCycleShop
+    ScriptEntry EternaCity_SignboardTeamGalacticEternaBuilding
+    ScriptEntry EternaCity_SignboardUndergroundMansHouse
+    ScriptEntry EternaCity_SignboardEternaCondominiums
     ScriptEntry EternaCity_Statue
     ScriptEntry EternaCity_PokemonBreederF2
-    ScriptEntry EternaCity_TriggerBlockExitSouth
+    ScriptEntry EternaCity_CoordEvent_BlockExitSouth
     ScriptEntry EternaCity_OnTransition
     ScriptEntry EternaCity_BugCatcher2
-    ScriptEntry EternaCity_TriggerBlockExitWest
+    ScriptEntry EternaCity_CoordEvent_BlockExitWest
     ScriptEntry EternaCity_Gardenia
-    ScriptEntry EternaCity_TriggerRival
-    ScriptEntry EternaCity_TriggerCynthiaTryGiveEgg
-    ScriptEntry EternaCity_TriggerCynthiaBlockBikeShop
+    ScriptEntry EternaCity_CoordEvent_Rival
+    ScriptEntry EternaCity_CoordEvent_CynthiaTryGiveEgg
+    ScriptEntry EternaCity_CoordEvent_CynthiaBlockBikeShop
     ScriptEntry EternaCity_Cynthia
     ScriptEntryEnd
 
@@ -97,7 +97,7 @@ EternaCity_DoYouUseYourBikesKickstand:
     ReleaseAll
     End
 
-EternaCity_MapSign:
+EternaCity_MapSignpost:
     ShowMapSign EternaCity_Text_EternaCityHistoryLiving
     End
 
@@ -105,23 +105,23 @@ EternaCity_GymSignpost:
     ShowScrollingSign EternaCity_Text_EternaCityPokemonGymLeaderGardeniaMasterOfVividPlantPokemon
     End
 
-EternaCity_LandmarkSignRadRickshawsCycleShop:
+EternaCity_SignboardRadRickshawsCycleShop:
     ShowLandmarkSign EternaCity_Text_RadRickshawsCycleShopGetOnAndRide
     End
 
-EternaCity_LandmarkSignTeamGalacticEternaBuilding:
+EternaCity_SignboardTeamGalacticEternaBuilding:
     ShowLandmarkSign EternaCity_Text_TeamGalacticEternaBuildingWeWantYourPokemon
     End
 
-EternaCity_LandmarkSignUndergroundMansHouse:
+EternaCity_SignboardUndergroundMansHouse:
     ShowLandmarkSign EternaCity_Text_UndergroundMansHouseGoinDownForAdventure
     End
 
-EternaCity_LandmarkSignEternaCondominiums:
+EternaCity_SignboardEternaCondominiums:
     ShowLandmarkSign EternaCity_Text_EternaCondominiumsNameRatingServicesAvailable
     End
 
-EternaCity_TriggerCynthiaGiveCut:
+EternaCity_CoordEvent_CynthiaGiveCut:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 522, EternaCity_SetCynthiaPositionForGiveCutZ522
@@ -395,7 +395,7 @@ EternaCity_GoingUndergroundWithTheExplorerKitIsABlastIsntIt:
     NPCMessage EternaCity_Text_GoingUndergroundWithTheExplorerKitIsABlastIsntIt
     End
 
-EternaCity_TriggerBlockExitSouth:
+EternaCity_CoordEvent_BlockExitSouth:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 303, EternaCity_PokemonBreederFBlockExitSouthX303
@@ -565,7 +565,7 @@ EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt:
     ReleaseAll
     End
 
-EternaCity_TriggerBlockExitWest:
+EternaCity_CoordEvent_BlockExitWest:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 532, EternaCity_BugCatcher2BlockExitWestZ532
@@ -702,7 +702,7 @@ EternaCity_Movement_GardeniaEnterGym:
     WalkNormalNorth
     EndMovement
 
-EternaCity_TriggerRival:
+EternaCity_CoordEvent_Rival:
     LockAll
     ScrCmd_32D
     ScrCmd_331
@@ -1008,7 +1008,7 @@ EternaCity_Movement_CyrusLeave:
     WalkNormalWest 14
     EndMovement
 
-EternaCity_TriggerCynthiaTryGiveEgg:
+EternaCity_CoordEvent_CynthiaTryGiveEgg:
     LockAll
     SetObjectEventDir LOCALID_CYNTHIA, DIR_EAST
     SetObjectEventMovementType LOCALID_CYNTHIA, MOVEMENT_TYPE_LOOK_EAST
@@ -1206,7 +1206,7 @@ EternaCity_OhYouDontNeedToFeelObligated:
     SetVar VAR_ETERNA_CITY_STATE, 4
     Return
 
-EternaCity_TriggerCynthiaBlockBikeShop:
+EternaCity_CoordEvent_CynthiaBlockBikeShop:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 540, EternaCity_CynthiaWalkOnSpotEastZ540

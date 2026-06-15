@@ -919,7 +919,7 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
     int v3 = 0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
-    MapObject *v6 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v6 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     MapObject *v7;
 
     MapObject_GetPosPtr(v6, &v1);
@@ -960,7 +960,7 @@ BOOL ScrCmd_32E(ScriptContext *ctx)
     int v0 = 0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
-    MapObject *v3 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v3 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     MapObject *v4;
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v4, &v0, MAP_OBJ_STATUS_0) == 1) {

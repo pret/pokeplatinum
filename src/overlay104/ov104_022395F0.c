@@ -18,12 +18,12 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "battle_frontier_stats.h"
+#include "battle_hall_save.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "item_use_pokemon.h"
 #include "party.h"
 #include "unk_0202D05C.h"
-#include "unk_02030108.h"
 #include "unk_02049D08.h"
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
@@ -229,7 +229,7 @@ BOOL FrontierScrCmd_B2(FrontierScriptContext *param0)
         *v9 = v4->unk_76[v7];
         break;
     case 6:
-        sub_0204FA50(v5->saveData, sub_0203026C(v5->saveData), 3);
+        sub_0204FA50(v5->saveData, BattleHallStreakFlags_Get(v5->saveData), 3);
         break;
     case 7:
         v4->unk_A0 = v7;
@@ -316,7 +316,7 @@ BOOL FrontierScrCmd_B3(FrontierScriptContext *param0)
     sub_0209B980(param0->scriptMan->unk_00, battleTower);
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
-        ov104_0222E630(v2->saveData);
+        BattleFrontier_FlagGeonetLinkInfo(v2->saveData);
     }
 
     for (v0 = 0; v0 < battleTower->partySize; v0++) {

@@ -4,7 +4,7 @@
 
 
     ScriptEntry SandgemTownLab_OnTransition
-    ScriptEntry SandgemTownLab_OnFrameGetPokedex
+    ScriptEntry SandgemTownLab_OnFrame_GetPokedex
     ScriptEntry SandgemTownLab_ProfRowan
     ScriptEntry SandgemTownLab_UnusedEntry4
     ScriptEntry SandgemTownLab_ScientistM
@@ -17,7 +17,7 @@
     ScriptEntry SandgemTownLab_PC
     ScriptEntry SandgemTownLab_UnusedEntry13
     ScriptEntry SandgemTownLab_Refrigerator
-    ScriptEntry SandgemTownLab_OnFrameReturnedFromDistortionWorld
+    ScriptEntry SandgemTownLab_OnFrame_ReturnedFromDistortionWorld
     ScriptEntryEnd
 
 SandgemTownLab_OnTransition:
@@ -76,7 +76,7 @@ SandgemTownLab_IfYouSeeCynthiaGiveHerMyBestRegards:
     ReleaseAll
     End
 
-SandgemTownLab_OnFrameReturnedFromDistortionWorld:
+SandgemTownLab_OnFrame_ReturnedFromDistortionWorld:
     LockAll
     CallIfEq VAR_EXITED_DISTORTION_WORLD_STATE, 2, SandgemTownLab_IncreaseExitedDistortionWorldState
     BufferPlayerName 1
@@ -126,7 +126,7 @@ SandgemTownLab_Movement_CounterpartTurnOnSpot:
 SandgemTownLab_UnusedEntry4:
     End
 
-SandgemTownLab_OnFrameGetPokedex:
+SandgemTownLab_OnFrame_GetPokedex:
     LockAll
     ApplyMovement LOCALID_COUNTERPART, SandgemTownLab_Movement_CounterpartWalkToProfRowan
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerWalkToProfRowan

@@ -2,8 +2,8 @@
 #include "res/text/bank/route_214.h"
 
 
-    ScriptEntry Route214_ArrowSignVeilstoneCity
-    ScriptEntry Route214_ArrowSignLakeValor
+    ScriptEntry Route214_ArrowSignpostVeilstoneCity
+    ScriptEntry Route214_ArrowSignpostLakeValor
     ScriptEntry Route214_OnTransition
     ScriptEntry Route214_OnLoad
     ScriptEntryEnd
@@ -37,10 +37,10 @@ Route214_OnTransition:
     GoToIfLt VAR_MAP_LOCAL_0, 10, Route214_RemoveWarpsManiacCaveLongAndTunnel
     End
 
-Route214_ArrowSignVeilstoneCity:
+Route214_ArrowSignpostVeilstoneCity:
     ShowArrowSign Route214_Text_SignVeilstoneCity
     End
 
-Route214_ArrowSignLakeValor:
+Route214_ArrowSignpostLakeValor:
     ShowArrowSign Route214_Text_SignLakeValor
     End

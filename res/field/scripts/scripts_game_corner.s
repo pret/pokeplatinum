@@ -25,7 +25,7 @@
     ScriptEntry GameCorner_LadyPokeBalls
     ScriptEntry GameCorner_Guitarist
     ScriptEntry GameCorner_MaylenesDad
-    ScriptEntry GameCorner_SignBonusRounds
+    ScriptEntry GameCorner_BgSignBonusRounds
     ScriptEntry GameCorner_Looker
     ScriptEntryEnd
 
@@ -312,13 +312,13 @@ GameCorner_MaylenesDad:
     NPCMessage GameCorner_Text_SighNothingGoingMyWayToday
     End
 
-GameCorner_SignBonusRounds:
-    GoToIfGt VAR_CONSECUTIVE_BONUS_ROUND_WINS, 999, GameCorner_SignBonusRounds_GreaterThan999
+GameCorner_BgSignBonusRounds:
+    GoToIfGt VAR_CONSECUTIVE_BONUS_ROUND_WINS, 999, GameCorner_BgSignBonusRounds_GreaterThan999
     BufferNumber 0, VAR_CONSECUTIVE_BONUS_ROUND_WINS
     EventMessage GameCorner_Text_ShootFor10
     End
 
-GameCorner_SignBonusRounds_GreaterThan999:
+GameCorner_BgSignBonusRounds_GreaterThan999:
     BufferNumber 0, 999
     EventMessage GameCorner_Text_ShootFor10
     End

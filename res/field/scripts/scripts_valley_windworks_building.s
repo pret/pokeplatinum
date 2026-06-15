@@ -4,9 +4,9 @@
 
 
     ScriptEntry ValleyWindworksBuilding_OnTransition
-    ScriptEntry ValleyWindworksBuilding_OnFrameFirstEntry
+    ScriptEntry ValleyWindworksBuilding_OnFrame_FirstEntry
     ScriptEntry ValleyWindworksBuilding_GruntM
-    ScriptEntry ValleyWindworksBuilding_TriggerMars
+    ScriptEntry ValleyWindworksBuilding_CoordEvent_Mars
     ScriptEntry ValleyWindworksBuilding_ScientistPapa
     ScriptEntry ValleyWindworksBuilding_Twin
     ScriptEntry ValleyWindworksBuilding_PCWest
@@ -27,7 +27,7 @@ ValleyWindworksBuilding_SetLittleGirlAndScientistPapaPositions:
     SetObjectEventMovementType LOCALID_SCIENTIST_PAPA, MOVEMENT_TYPE_LOOK_SOUTH
     End
 
-ValleyWindworksBuilding_OnFrameFirstEntry:
+ValleyWindworksBuilding_OnFrame_FirstEntry:
     LockAll
     ApplyMovement LOCALID_GALACTIC_GRUNT_1, ValleyWindworksBuilding_Movement_GalacticGrunt1NoticePlayer
     WaitMovement
@@ -61,7 +61,7 @@ ValleyWindworksBuilding_GruntM:
     NPCMessage ValleyWindworksBuilding_Text_HumphJustYouWaitOurCommanderWillSmooshYou
     End
 
-ValleyWindworksBuilding_TriggerMars:
+ValleyWindworksBuilding_CoordEvent_Mars:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 6, ValleyWindworksBuilding_MarsNoticeAndWalkToPlayer

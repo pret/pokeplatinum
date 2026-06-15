@@ -3,14 +3,14 @@
 
 #include "overlay104/defs.h"
 
-BOOL FrontierScrCmd_8B(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_InitBattleHall(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_8C(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_8D(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_FreeBattleHall(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_OpenBattleHallApp(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_BattleHall_CleanupBattle(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_BattleHall_StartBattle(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx);
-BOOL FrontierScrCmd_BattleHall_CheckWonBattle(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_BattleHall_CheckWonBattle(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_93(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_94(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_95(FrontierScriptContext *param0);

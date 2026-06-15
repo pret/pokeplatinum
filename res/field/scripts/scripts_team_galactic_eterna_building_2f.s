@@ -4,7 +4,7 @@
 
     ScriptEntry TeamGalacticEternaBuilding2F_GruntM
     ScriptEntry TeamGalacticEternaBuilding2F_GruntF
-    ScriptEntry TeamGalacticEternaBuilding2F_Sign
+    ScriptEntry TeamGalacticEternaBuilding2F_BgSign
     ScriptEntryEnd
 
 TeamGalacticEternaBuilding2F_GruntM:
@@ -15,7 +15,7 @@ TeamGalacticEternaBuilding2F_GruntF:
     NPCMessage TeamGalacticEternaBuilding2F_Text_WeAreConductingResearchOnNewFormsOfEnergy
     End
 
-TeamGalacticEternaBuilding2F_Sign:
+TeamGalacticEternaBuilding2F_BgSign:
     EventMessage TeamGalacticEternaBuilding2F_Text_LetUsMakeProgressTogether
     End
 

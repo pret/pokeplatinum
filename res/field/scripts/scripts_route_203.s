@@ -8,7 +8,7 @@
     ScriptEntry Route203_ArrowSignpostOreburghCity
     ScriptEntry Route203_TrainerTipsSignpostEast
     ScriptEntry Route203_TrainerTipsSignpostWest
-    ScriptEntry Route203_RivalTrigger
+    ScriptEntry Route203_CoordEvent_Rival
     ScriptEntryEnd
 
 Route203_Lass:
@@ -31,7 +31,7 @@ Route203_TrainerTipsSignpostWest:
     ShowScrollingSign Route203_Text_TrainerTipsPokemonMovesUseEnergyCalledPowerPoints
     End
 
-Route203_RivalTrigger:
+Route203_CoordEvent_Rival:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route203_Movement_RivalNoticePlayer
     WaitMovement

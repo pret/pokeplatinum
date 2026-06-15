@@ -3,9 +3,9 @@
 #include "res/field/events/events_route_201.h"
 
     ScriptEntry Route201_OnTransition
-    ScriptEntry Route201_TriggerChooseStarterScene
-    ScriptEntry Route201_TriggerFollowingRivalStopPlayerSouth
-    ScriptEntry Route201_TriggerPickAPokemon
+    ScriptEntry Route201_CoordEvent_ChooseStarterScene
+    ScriptEntry Route201_CoordEvent_FollowingRivalStopPlayerSouth
+    ScriptEntry Route201_CoordEvent_PickAPokemon
     ScriptEntry _0B24
     ScriptEntry Route201_ArrowSignpostTwinleafTown
     ScriptEntry Route201_ArrowSignpostSandgemTown
@@ -15,9 +15,9 @@
     ScriptEntry Route201_SchoolKidM
     ScriptEntry Route201_Lass
     ScriptEntry Route201_Briefcase
-    ScriptEntry Route201_TriggerFollowingRivalStopPlayerEast
+    ScriptEntry Route201_CoordEvent_FollowingRivalStopPlayerEast
     ScriptEntry Route201_ProfRowan
-    ScriptEntry Route201_TriggerLetsCatchThatLegendaryPokemon
+    ScriptEntry Route201_CoordEvent_LetsCatchThatLegendaryPokemon
     ScriptEntryEnd
 
 Route201_OnTransition:
@@ -34,7 +34,7 @@ Route201_SetCounterpartGraphicsLucas:
     SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-Route201_TriggerChooseStarterScene:
+Route201_CoordEvent_ChooseStarterScene:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalNoticePlayer
     WaitMovement
@@ -731,7 +731,7 @@ Route201_Movement_CounterpartLeave:
     WalkNormalEast 9
     EndMovement
 
-Route201_TriggerFollowingRivalStopPlayerEast:
+Route201_CoordEvent_FollowingRivalStopPlayerEast:
     LockAll
     GetPlayerDir VAR_RESULT
     GoToIfEq VAR_RESULT, DIR_EAST, Route201_RivalStopPlayerFacingEast
@@ -822,7 +822,7 @@ Route201_Movement_PlayerTurnToRivalSouth:
     WalkOnSpotFastSouth
     EndMovement
 
-Route201_TriggerFollowingRivalStopPlayerSouth:
+Route201_CoordEvent_FollowingRivalStopPlayerSouth:
     LockAll
     ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerTurnToRivalNorth
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFacePlayerSouth
@@ -869,7 +869,7 @@ Route201_Movement_PlayerTurnToRivalNorth:
     WalkOnSpotFastNorth
     EndMovement
 
-Route201_TriggerPickAPokemon:
+Route201_CoordEvent_PickAPokemon:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkOnSpotNormalSouth
     WaitMovement
@@ -1190,7 +1190,7 @@ Route201_ProfRowan:
     NPCMessage Route201_Text_RowanGoOnChooseAPokemon
     End
 
-Route201_TriggerLetsCatchThatLegendaryPokemon:
+Route201_CoordEvent_LetsCatchThatLegendaryPokemon:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalNoticePlayer
     WaitMovement

@@ -15,7 +15,7 @@
     ScriptEntry GlobalTerminal1F_Beauty1
     ScriptEntry GlobalTerminal1F_Picnicker
     ScriptEntry GlobalTerminal1F_Youngster
-    ScriptEntry GlobalTerminal1F_OnFrameExitGTSRoom
+    ScriptEntry GlobalTerminal1F_OnFrame_ExitGTSRoom
     ScriptEntry GlobalTerminal1F_OnResume
     ScriptEntry GlobalTerminal1F_BattleVideoRankingsMachine
     ScriptEntry GlobalTerminal1F_TrainerRankingsMachine
@@ -24,7 +24,7 @@
     ScriptEntry GlobalTerminal1F_PokemonBreederF
     ScriptEntry GlobalTerminal1F_PokemonBreederM
     ScriptEntry GlobalTerminal1F_Beauty2
-    ScriptEntry GlobalTerminal1F_Sign
+    ScriptEntry GlobalTerminal1F_BgSign
     ScriptEntryEnd
 
 GlobalTerminal1F_OnResume:
@@ -35,7 +35,7 @@ GlobalTerminal1F_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-GlobalTerminal1F_OnFrameExitGTSRoom:
+GlobalTerminal1F_OnFrame_ExitGTSRoom:
     LockAll
     Call GlobalTerminal1F_ExitGTSRoom
     ReleaseAll
@@ -529,7 +529,7 @@ GlobalTerminal1F_CheckReceivedBackdrop:
 GlobalTerminal1F_DidntReceivAllBackdrops:
     Return
 
-GlobalTerminal1F_Sign:
+GlobalTerminal1F_BgSign:
     EventMessage GlobalTerminal1F_Text_PanelsLeadTo2F3F
     End
 

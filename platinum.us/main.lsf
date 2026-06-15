@@ -143,7 +143,7 @@ Static main
 	Object main.nef.p/src_save_catchrecords.c.o
 	Object main.nef.p/src_unk_0202F1D4.c.o
 	Object main.nef.p/src_unk_0202FF4C.c.o
-	Object main.nef.p/src_unk_02030108.c.o
+	Object main.nef.p/src_battle_hall_save.c.o
 	Object main.nef.p/src_unk_020302D0.c.o
 	Object main.nef.p/src_unk_02030494.c.o
 	Object main.nef.p/src_battle_frontier_stats.c.o

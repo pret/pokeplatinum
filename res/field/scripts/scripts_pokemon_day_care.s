@@ -4,7 +4,7 @@
 
     ScriptEntry PokemonDayCare_OnTransition
     ScriptEntry PokemonDayCare_GymGuide
-    ScriptEntry PokemonDayCare_Sign
+    ScriptEntry PokemonDayCare_BgSign
     ScriptEntryEnd
 
 PokemonDayCare_OnTransition:
@@ -36,7 +36,7 @@ PokemonDayCare_CheckOnDayCarePokemon:
     ReleaseAll
     End
 
-PokemonDayCare_Sign:
+PokemonDayCare_BgSign:
     EventMessage PokemonDayCare_Text_PokemonGrowsWithYou
     End
 

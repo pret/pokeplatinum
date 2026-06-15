@@ -3,10 +3,10 @@
 #include "res/field/events/events_galactic_hq_hall.h"
 
 
-    ScriptEntry GalacticHQHall_TriggerSpeech
+    ScriptEntry GalacticHQHall_CoordEvent_Speech
     ScriptEntryEnd
 
-GalacticHQHall_TriggerSpeech:
+GalacticHQHall_CoordEvent_Speech:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     ApplyMovement LOCALID_LOOKER, GalacticHQHall_Movement_LookerNoticePlayer

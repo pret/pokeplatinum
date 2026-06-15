@@ -3,7 +3,7 @@
 
 
     ScriptEntry Route221House_ExpertM
-    ScriptEntry Route221House_Sign
+    ScriptEntry Route221House_BgSign
     ScriptEntryEnd
 
 Route221House_ExpertM:
@@ -91,7 +91,7 @@ Route221House_ComeAgainTomorrow:
     ReleaseAll
     End
 
-Route221House_Sign:
+Route221House_BgSign:
     EventMessage Route221House_Text_WinItemsFromMe
     End
 

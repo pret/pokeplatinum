@@ -3,22 +3,22 @@
 #include "res/field/events/events_sunyshore_city.h"
 
 
-    ScriptEntry SunyshoreCity_OnFrameFlint
+    ScriptEntry SunyshoreCity_OnFrame_Flint
     ScriptEntry SunyshoreCity_Unused2
     ScriptEntry SunyshoreCity_Sailor2
     ScriptEntry SunyshoreCity_Sailor1
     ScriptEntry SunyshoreCity_Worker
     ScriptEntry SunyshoreCity_PokefanF
     ScriptEntry SunyshoreCity_PokemonBreederF
-    ScriptEntry SunyshoreCity_TriggerRivalAndJasmine
+    ScriptEntry SunyshoreCity_CoordEvent_RivalAndJasmine
     ScriptEntry SunyshoreCity_Jasmine
-    ScriptEntry SunyshoreCity_MapSign
-    ScriptEntry SunyshoreCity_GymSign
-    ScriptEntry SunyshoreCity_SignVistaLighthouse
-    ScriptEntry SunyshoreCity_SignSunyshoreMarket
-    ScriptEntry SunyshoreCity_SignJuliasHouse
-    ScriptEntry SunyshoreCity_SignBlank
-    ScriptEntry SunyshoreCity_SignPokemonRock
+    ScriptEntry SunyshoreCity_MapSignpost
+    ScriptEntry SunyshoreCity_GymSignpost
+    ScriptEntry SunyshoreCity_SignboardVistaLighthouse
+    ScriptEntry SunyshoreCity_SignboardSunyshoreMarket
+    ScriptEntry SunyshoreCity_SignboardJuliasHouse
+    ScriptEntry SunyshoreCity_SignboardBlank
+    ScriptEntry SunyshoreCity_SignboardPokemonRock
     ScriptEntry SunyshoreCity_UnusedSealMerchant
     ScriptEntry SunyshoreCity_Flint
     ScriptEntry SunyshoreCity_OnTransition
@@ -41,7 +41,7 @@ SunyshoreCity_SetFlintPositionAtGate:
     SetObjectEventDir LOCALID_FLINT, DIR_WEST
     End
 
-SunyshoreCity_TriggerRivalAndJasmine:
+SunyshoreCity_CoordEvent_RivalAndJasmine:
     LockAll
     ApplyMovement LOCALID_JASMINE, SunyshoreCity_Movement_JasmineNoticePlayer
     WaitMovement
@@ -446,7 +446,7 @@ SunyshoreCity_GiveWaterfall:
     Message SunyshoreCity_Text_ThatHMContainsWaterfall
     Return
 
-SunyshoreCity_OnFrameFlint:
+SunyshoreCity_OnFrame_Flint:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 790, SunyshoreCity_FlintWalkToPlayerZ790
@@ -543,31 +543,31 @@ SunyshoreCity_PokemonBreederF:
     NPCMessage SunyshoreCity_Text_MajorPortTown
     End
 
-SunyshoreCity_MapSign:
+SunyshoreCity_MapSignpost:
     ShowMapSign SunyshoreCity_Text_MapSign
     End
 
-SunyshoreCity_GymSign:
+SunyshoreCity_GymSignpost:
     ShowScrollingSign SunyshoreCity_Text_SignPokemonGym
     End
 
-SunyshoreCity_SignVistaLighthouse:
+SunyshoreCity_SignboardVistaLighthouse:
     ShowLandmarkSign SunyshoreCity_Text_SignVistaLighthouse
     End
 
-SunyshoreCity_SignSunyshoreMarket:
+SunyshoreCity_SignboardSunyshoreMarket:
     ShowLandmarkSign SunyshoreCity_Text_SignSunyshoreMarket
     End
 
-SunyshoreCity_SignJuliasHouse:
+SunyshoreCity_SignboardJuliasHouse:
     ShowLandmarkSign SunyshoreCity_Text_SignJuliasHouse
     End
 
-SunyshoreCity_SignBlank:
+SunyshoreCity_SignboardBlank:
     ShowLandmarkSign SunyshoreCity_Text_SignBlank
     End
 
-SunyshoreCity_SignPokemonRock:
+SunyshoreCity_SignboardPokemonRock:
     ShowLandmarkSign SunyshoreCity_Text_SignPokemonRock
     End
 

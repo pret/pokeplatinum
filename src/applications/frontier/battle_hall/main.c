@@ -11,6 +11,7 @@
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223AF58.h"
 
+#include "battle_hall_save.h"
 #include "bg_window.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
@@ -44,7 +45,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02030108.h"
 #include "unk_020363E8.h"
 #include "unk_0209BA80.h"
 #include "vram_transfer.h"

@@ -4,10 +4,10 @@
 
 
     ScriptEntry Route218GateToCanalaveCity_Policeman
-    ScriptEntry Route218GateToCanalaveCity_TriggerScientistM
+    ScriptEntry Route218GateToCanalaveCity_CoordEvent_ScientistM
     ScriptEntryEnd
 
-Route218GateToCanalaveCity_TriggerScientistM:
+Route218GateToCanalaveCity_CoordEvent_ScientistM:
     LockAll
     Call Route218GateToCanalaveCity_ScientistMWalkToPlayer
     BufferPlayerName 0

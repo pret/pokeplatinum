@@ -9,12 +9,12 @@
     ScriptEntry SolaceonTown_Cowgirl2
     ScriptEntry SolaceonTown_Rancher2
     ScriptEntry SolaceonTown_RuinManiac
-    ScriptEntry SolaceonTown_MapSign
-    ScriptEntry SolaceonTown_SignPokemonDayCare
-    ScriptEntry SolaceonTown_SignPokemonNewsPress
+    ScriptEntry SolaceonTown_MapSignpost
+    ScriptEntry SolaceonTown_SignboardPokemonDayCare
+    ScriptEntry SolaceonTown_SignboardPokemonNewsPress
     ScriptEntry SolaceonTown_OnTransition
     ScriptEntry SolaceonTown_OnResume
-    ScriptEntry SolaceonTown_TriggerRival
+    ScriptEntry SolaceonTown_CoordEvent_Rival
     ScriptEntryEnd
 
 SolaceonTown_OnResume:
@@ -93,19 +93,19 @@ SolaceonTown_EachPokemonHasItsOwnHistory:
     ReleaseAll
     End
 
-SolaceonTown_MapSign:
+SolaceonTown_MapSignpost:
     ShowMapSign SolaceonTown_Text_MapSign
     End
 
-SolaceonTown_SignPokemonDayCare:
+SolaceonTown_SignboardPokemonDayCare:
     ShowLandmarkSign SolaceonTown_Text_SignPokemonDayCare
     End
 
-SolaceonTown_SignPokemonNewsPress:
+SolaceonTown_SignboardPokemonNewsPress:
     ShowLandmarkSign SolaceonTown_Text_SignPokemonNewsPress
     End
 
-SolaceonTown_TriggerRival:
+SolaceonTown_CoordEvent_Rival:
     LockAll
     ApplyMovement LOCALID_PLAYER, SolaceonTown_Movement_PlayerNoticeRival
     WaitMovement

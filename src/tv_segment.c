@@ -2191,7 +2191,7 @@ static int TVSegment_LoadMessage_YourTownsBestThree(FieldSystem *fieldSystem, St
         return TVProgramSinnohNow_Text_YourTownsBestThree_CelesticTown;
     }
 
-    if (mapID == MAP_HEADER_JUBILIFE_CITY || (mapID >= MAP_HEADER_POKETCH_CO_1F && mapID <= MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_4)) {
+    if (mapID == MAP_HEADER_JUBILIFE_CITY || (mapID >= MAP_HEADER_POKETCH_CO_1F && mapID <= MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_4)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_JubilifeCity;
     }
 
@@ -2203,7 +2203,7 @@ static int TVSegment_LoadMessage_YourTownsBestThree(FieldSystem *fieldSystem, St
         return TVProgramSinnohNow_Text_YourTownsBestThree_OreburghCity;
     }
 
-    if (mapID == MAP_HEADER_ETERNA_CITY || (mapID >= MAP_HEADER_CYCLE_SHOP && mapID <= MAP_HEADER_ETERNA_CITY_UNKNOWN_HOUSE)) {
+    if (mapID == MAP_HEADER_ETERNA_CITY || (mapID >= MAP_HEADER_CYCLE_SHOP && mapID <= MAP_HEADER_UNUSED_ETERNA_CITY_HOUSE)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_EternaCity;
     }
 

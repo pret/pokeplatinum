@@ -4,7 +4,7 @@
 
     ScriptEntry Route221_WorkerWest
     ScriptEntry Route221_WorkerEast
-    ScriptEntry Route221_SignPalPark
+    ScriptEntry Route221_SignboardPalPark
     ScriptEntry Route221_OnTransition
     ScriptEntryEnd
 
@@ -24,7 +24,7 @@ Route221_WorkerEast:
     NPCMessage Route221_Text_GettingPalParkReady
     End
 
-Route221_SignPalPark:
+Route221_SignboardPalPark:
     ShowLandmarkSign Route221_Text_SignPalPark
     End
 

@@ -5,7 +5,7 @@
 #define LOCALID_CYNTHIA 128
 
     ScriptEntry DistortionWorldB2F_OnTransition
-    ScriptEntry DistortionWorldB2F_OnFrameFirstEntry
+    ScriptEntry DistortionWorldB2F_OnFrame_FirstEntry
     ScriptEntry DistortionWorldB2F_Cynthia
     ScriptEntryEnd
 
@@ -13,7 +13,7 @@ DistortionWorldB2F_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-DistortionWorldB2F_OnFrameFirstEntry:
+DistortionWorldB2F_OnFrame_FirstEntry:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 5, DistortionWorldB2F_Cynthia

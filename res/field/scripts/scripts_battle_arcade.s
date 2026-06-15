@@ -5,10 +5,10 @@
 
 
     ScriptEntry BattleArcade_SingleAttendant
-    ScriptEntry BattleArcade_OnFrameResumeChallenge
-    ScriptEntry BattleArcade_OnFrameDidntSaveBeforeQuit
-    ScriptEntry BattleArcade_OnFrameChallengeEndedCompletedRound
-    ScriptEntry BattleArcade_OnFrameChallengeEnded
+    ScriptEntry BattleArcade_OnFrame_ResumeChallenge
+    ScriptEntry BattleArcade_OnFrame_DidntSaveBeforeQuit
+    ScriptEntry BattleArcade_OnFrame_ChallengeEndedCompletedRound
+    ScriptEntry BattleArcade_OnFrame_ChallengeEnded
     ScriptEntry BattleArcade_MultiAttendant
     ScriptEntry BattleArcade_Worker
     ScriptEntry BattleArcade_ParasolLady
@@ -444,7 +444,7 @@ BattleArcade_ExplainMultiChallenge:
     Message BattleArcade_Text_ExplainMultiChallenge
     Return
 
-BattleArcade_OnFrameResumeChallenge:
+BattleArcade_OnFrame_ResumeChallenge:
     RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 0
@@ -462,13 +462,13 @@ BattleArcade_SaveGame:
     WaitSE SEQ_SE_DP_SAVE
     Return
 
-BattleArcade_OnFrameDidntSaveBeforeQuit:
+BattleArcade_OnFrame_DidntSaveBeforeQuit:
     Message BattleArcade_Text_DidntSaveBeforeQuit
     ScrCmd_2DC VAR_BATTLE_ARCADE_CHALLENGE_TYPE
     GoTo BattleArcade_EndChallenge
     End
 
-BattleArcade_OnFrameChallengeEndedCompletedRound:
+BattleArcade_OnFrame_ChallengeEndedCompletedRound:
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleArcade_IncrementTrainerScoreRoundCompleted
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleArcade_IncrementTrainerScoreRoundCompleted
     CallIfEq VAR_BATTLE_ARCADE_PRINT_STATE, 1, BattleArcade_EarnedSilverPrint
@@ -499,7 +499,7 @@ BattleArcade_EarnedGoldPrint:
     Common_CheckAllFrontierGoldPrintsObtained
     Return
 
-BattleArcade_OnFrameChallengeEnded:
+BattleArcade_OnFrame_ChallengeEnded:
     GoTo BattleArcade_EndChallenge
     End
 

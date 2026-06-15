@@ -5,7 +5,7 @@
 
     ScriptEntry GalacticHQ3F_GruntM
     ScriptEntry GalacticHQ3F_Door
-    ScriptEntry GalacticHQ3F_Sign
+    ScriptEntry GalacticHQ3F_BgSign
     ScriptEntryEnd
 
 GalacticHQ3F_GruntM:
@@ -62,7 +62,7 @@ GalacticHQ3F_Movement_DoorEastMoveEast:
     WalkFastEast
     EndMovement
 
-GalacticHQ3F_Sign:
+GalacticHQ3F_BgSign:
     EventMessage GalacticHQ3F_Text_TeamGalacticCredo
     End
 
