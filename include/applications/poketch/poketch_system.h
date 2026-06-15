@@ -116,6 +116,11 @@ struct PoketchSystem {
     enum ButtonDir buttonDir;
 };
 
+#ifdef SDK_PORT
+void PoketchAppStaticInit_DigitalWatch();
+void PoketchAppStaticInit_Calculator();
+#endif
+
 void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BgConfig *bgl, NNSG2dOamManagerInstance *oamManager);
 void PoketchSystem_StartShutdown(PoketchSystem *poketchSys);
 BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys);

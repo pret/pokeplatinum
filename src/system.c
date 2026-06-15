@@ -12,7 +12,11 @@
 #include "sys_task_manager.h"
 
 #define MAIN_TASK_MAX        160
+#ifdef SDK_PORT
+#define VBLANK_TASK_MAX      64
+#else
 #define VBLANK_TASK_MAX      32
+#endif
 #define POST_VBLANK_TASK_MAX 32
 #define PRINT_TASK_MAX       4
 

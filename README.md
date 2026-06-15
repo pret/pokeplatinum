@@ -15,6 +15,6 @@ Alternatively:
 You can also build a ROM from the same source tree, just run:
 * make
 
-Target executable will be in ./build_(platform)/pc directory. win64 is also a supported build target, however it is untested.
+Target executable will be in ./build_(platform)/bin directory. win64 is also a supported build target, however it is untested.
 ROM will be built in /build directory
 

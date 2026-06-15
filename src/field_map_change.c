@@ -167,11 +167,19 @@ static void FieldTask_FadeInFieldWarp(FieldTask *task);
 static BOOL FieldTask_StartUndergroundMapTransition(FieldTask *task, enum UGMapTransition param1);
 
 static const MapLoadMode sMapLoadMode[] = {
+#ifdef SDK_PORT
+    { 0x1, FALSE, FALSE, 0x0, FALSE, TRUE, 0x0, 0xC4000*2 },
+    { 0x2, TRUE, TRUE, 0x1, TRUE, FALSE, 0x10, 0xC4000*2 },
+    { 0x3, FALSE, FALSE, 0x0, FALSE, TRUE, 0x0, 0xC4000*2 },
+    { 0x4, TRUE, TRUE, 0x0, TRUE, TRUE, 0x1, 0xC4000*2 },
+    { 0x1, TRUE, TRUE, 0x0, TRUE, TRUE, 0x1, 0xA0000*2 }
+#else
     { 0x1, FALSE, FALSE, 0x0, FALSE, TRUE, 0x0, 0xC4000 },
     { 0x2, TRUE, TRUE, 0x1, TRUE, FALSE, 0x10, 0xC4000 },
     { 0x3, FALSE, FALSE, 0x0, FALSE, TRUE, 0x0, 0xC4000 },
     { 0x4, TRUE, TRUE, 0x0, TRUE, TRUE, 0x1, 0xC4000 },
     { 0x1, TRUE, TRUE, 0x0, TRUE, TRUE, 0x1, 0xA0000 }
+#endif
 };
 
 static const WindowTemplate sYesNoWindowTemplate = {

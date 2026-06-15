@@ -79,6 +79,13 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
 static BOOL PoketchSystem_StartTaskIfNotActive(PoketchGraphics_TaskData *taskData, u32 taskId);
 static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y);
 
+#ifdef SDK_PORT
+static void (*PoketchOverlayLoadFunctions[])(void) = {
+    PoketchAppStaticInit_DigitalWatch,
+    PoketchAppStaticInit_Calculator,
+};
+#endif
+
 // The order of this array determines the app order in the poketch.
 static const struct {
     int appID;
@@ -470,6 +477,10 @@ static void PoketchSystem_LoadApp(PoketchSystem *poketchSys, int appID)
             }
         }
     }
+
+    #ifdef SDK_PORT
+    PoketchOverlayLoadFunctions[appID]();
+    #endif
 }
 
 static void PoketchSystem_UnloadApp(PoketchSystem *poketchSys)

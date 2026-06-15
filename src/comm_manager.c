@@ -2719,7 +2719,13 @@ static void CommTask_StartWifiBattleServer(void)
         return;
     }
 
-    Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, (0x2A000 + 0xA000 + 0x1400));
+    Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, 
+        #ifdef SDK_BUILD_ARM
+        (0x2A000 + 0xA000 + 0x1400)
+        #else
+        (0x2A000 + 0xA000 + 0x1400)*2
+        #endif
+    );
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
         NintendoWFC_Init(sCommMan->saveData, HEAP_ID_NINTENDO_WFC, (0x2B000 + 0x1400), CommLocal_MaxMachines(sCommMan->commType) + 1);

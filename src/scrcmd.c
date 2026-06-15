@@ -1003,7 +1003,12 @@ static BOOL ScrCmd_ReturnCommonScript(ScriptContext *ctx)
 
 static BOOL ScrCmd_GoTo(ScriptContext *ctx)
 {
+    #ifdef SDK_PORT
+    s32 offset = ScriptContext_ReadWord(ctx);
+    ScriptContext_Jump(ctx, ctx->scriptPtr + offset);
+    #else
     ScriptContext_Jump(ctx, ctx->scriptPtr + ScriptContext_ReadWord(ctx));
+    #endif
     return FALSE;
 }
 
@@ -1052,7 +1057,12 @@ static BOOL ScrCmd_Unused_019(ScriptContext *ctx)
 
 static BOOL ScrCmd_Call(ScriptContext *ctx)
 {
+    #ifdef SDK_PORT
+    s32	offset = ScriptContext_ReadWord(ctx);
+    ScriptContext_Call(ctx, ctx->scriptPtr + offset);
+    #else
     ScriptContext_Call(ctx, ctx->scriptPtr + ScriptContext_ReadWord(ctx));
+    #endif
     return FALSE;
 }
 
@@ -2029,7 +2039,11 @@ static BOOL ScrCmd_SetMenuYOriginSide(ScriptContext *ctx)
 static BOOL ScrCmd_ApplyMovement(ScriptContext *ctx)
 {
     u16 localID = ScriptContext_GetVar(ctx);
+    #ifdef SDK_BUILD_ARM
     u32 movementOffset = ScriptContext_ReadWord(ctx);
+    #else
+    s32 movementOffset = ScriptContext_ReadWord(ctx);
+    #endif
     MapObject *object = GetLocalMapObjByIndex(ctx->fieldSystem, localID);
     if (object == NULL) {
         GF_ASSERT(FALSE);

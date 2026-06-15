@@ -31,7 +31,11 @@ enum DSScreen {
 #define PLTT_OFFSET(i)         ((i) * PALETTE_SIZE_BYTES)
 #define PLTT_DEST(i)           ((i) * PALETTE_SIZE)
 
+#ifdef SDK_BUILD_ARM
 #define SPRITE_ANIM_SIZE 29
+#else
+#define SPRITE_ANIM_SIZE 34
+#endif
 #define MAX_SPRITES      128
 
 // Graphics engine A
