@@ -17,7 +17,7 @@ void BattleAnimSpriteFunc_Metronome(BattleAnimSystem *system, SpriteSystem *spri
 void BattleAnimSpriteFunc_Constrict(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimSpriteFunc_Bonemerang(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_FaintAttack(BattleAnimSystem *system);
-void ov12_02231650(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_ScaryFace(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void ov12_02231950(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void ov12_02231C1C(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_PlayfulHops(BattleAnimSystem *system);

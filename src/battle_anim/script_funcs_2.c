@@ -52,7 +52,7 @@ typedef struct QuickAttackContext {
 // -------------------------------------------------------------------
 // Drill Peck
 // -------------------------------------------------------------------
-typedef struct {
+typedef struct DrillPeckContext {
     BattleAnimSystem *battleAnimSys;
     int state;
     s16 delay;
@@ -485,22 +485,62 @@ enum FaintAttackState {
 #define FAINT_ATTACK_ALPHA_FADE_FRAMES  32
 #define FAINT_ATTACK_FADE_IN_DELAY      16
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    PokemonSprite *unk_10;
-    XYTransformContext unk_14;
-    int unk_38;
-    ManagedSprite *unk_3C;
-    int unk_40;
-    XYTransformContext unk_44;
-    XYTransformContext unk_68;
-    AlphaFadeContext unk_8C;
-    s16 unk_B4;
-    s16 unk_B6;
-} UnkStruct_ov12_02231508;
+// -------------------------------------------------------------------
+// Scary Face Sprite
+// -------------------------------------------------------------------
+typedef struct ScaryFaceSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    PokemonSprite *attackerSprite;
+    XYTransformContext attackerScale;
+    int attackerScaleState;
+    ManagedSprite *sprite;
+    int faceState;
+    XYTransformContext faceScale;
+    XYTransformContext facePos;
+    AlphaFadeContext faceAlpha;
+    s16 baseX;
+    s16 baseY;
+} ScaryFaceSpriteContext;
+
+enum ScaryFaceSpriteState {
+    SCARY_FACE_SPRITE_STATE_ANIMATE = 0,
+    SCARY_FACE_SPRITE_STATE_CLEANUP,
+
+    // Sub-state for attacker vertical stretch
+    SCARY_FACE_SPRITE_ATTACKER_STATE_GROW = 0,
+    SCARY_FACE_SPRITE_ATTACKER_STATE_SHRINK,
+    SCARY_FACE_SPRITE_ATTACKER_STATE_DONE,
+
+    // Sub-state for overlay sprite
+    SCARY_FACE_SPRITE_FACE_STATE_GROW_AND_MOVE = 0,
+    SCARY_FACE_SPRITE_FACE_STATE_FADE_OUT,
+    SCARY_FACE_SPRITE_FACE_STATE_DONE,
+};
+
+#define SCARY_FACE_SPRITE_ATTACKER_START_SCALE  10
+#define SCARY_FACE_SPRITE_ATTACKER_REF_SCALE    10
+#define SCARY_FACE_SPRITE_ATTACKER_END_SCALE    15
+#define SCARY_FACE_SPRITE_ATTACKER_SCALE_FRAMES 12
+#define SCARY_FACE_SPRITE_ATTACKER_NORMAL_SCALE 0x100 // 1.0 in MON_SPRITE_SCALE fixed-point
+
+#define SCARY_FACE_SPRITE_FACE_START_SCALE   5
+#define SCARY_FACE_SPRITE_FACE_REF_SCALE     10
+#define SCARY_FACE_SPRITE_FACE_END_SCALE     12
+#define SCARY_FACE_SPRITE_FACE_SCALE_FRAMES  32
+#define SCARY_FACE_SPRITE_FACE_OFFSET_X      32
+#define SCARY_FACE_SPRITE_FACE_MOVE_FRAMES   32
+#define SCARY_FACE_SPRITE_FACE_MOVE_Y_ENEMY  (-8) // attacker on the enemy side (dirY < 0)
+#define SCARY_FACE_SPRITE_FACE_MOVE_Y_PLAYER (-24) // attacker on the player side
+#define SCARY_FACE_SPRITE_FADE_EV1_START     16
+#define SCARY_FACE_SPRITE_FADE_EV1_END       0
+#define SCARY_FACE_SPRITE_FADE_EV2_START     14
+#define SCARY_FACE_SPRITE_FADE_EV2_END       16
+#define SCARY_FACE_SPRITE_FADE_FRAMES        8
+#define SCARY_FACE_SPRITE_BLEND_A            31
+#define SCARY_FACE_SPRITE_BLEND_B            26
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -2571,135 +2611,146 @@ void BattleAnimScriptFunc_FaintAttack(BattleAnimSystem *system)
     SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 }
 
-static BOOL ov12_02231508(UnkStruct_ov12_02231508 *param0)
+static BOOL ScaryFace_UpdateAttackerScale(ScaryFaceSpriteContext *ctx)
 {
-    BOOL v0 = 0;
+    BOOL done = FALSE;
 
-    switch (param0->unk_38) {
-    case 0:
-        if (ScaleLerpContext_Update(&param0->unk_14)) {
-            PokemonSprite_SetAttribute(param0->unk_10, MON_SPRITE_SCALE_Y, param0->unk_14.y);
+    switch (ctx->attackerScaleState) {
+    case SCARY_FACE_SPRITE_ATTACKER_STATE_GROW:
+        if (ScaleLerpContext_Update(&ctx->attackerScale)) {
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, ctx->attackerScale.y);
         } else {
-            param0->unk_38++;
+            ctx->attackerScaleState++;
             ScaleLerpContext_Init(
-                &param0->unk_14, 15, 10, 10, 12);
+                &ctx->attackerScale,
+                SCARY_FACE_SPRITE_ATTACKER_END_SCALE,
+                SCARY_FACE_SPRITE_ATTACKER_REF_SCALE,
+                SCARY_FACE_SPRITE_ATTACKER_START_SCALE,
+                SCARY_FACE_SPRITE_ATTACKER_SCALE_FRAMES);
         }
         break;
-    case 1:
-        if (ScaleLerpContext_Update(&param0->unk_14)) {
-            PokemonSprite_SetAttribute(param0->unk_10, MON_SPRITE_SCALE_Y, param0->unk_14.y);
+    case SCARY_FACE_SPRITE_ATTACKER_STATE_SHRINK:
+        if (ScaleLerpContext_Update(&ctx->attackerScale)) {
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, ctx->attackerScale.y);
         } else {
-            PokemonSprite_SetAttribute(param0->unk_10, MON_SPRITE_SCALE_Y, 0x100);
-            param0->unk_38++;
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, SCARY_FACE_SPRITE_ATTACKER_NORMAL_SCALE);
+            ctx->attackerScaleState++;
         }
         break;
-    case 2:
-        v0 = 1;
+    case SCARY_FACE_SPRITE_ATTACKER_STATE_DONE:
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static BOOL ov12_02231584(UnkStruct_ov12_02231508 *param0)
+// Grows the overlay sprite while sliding it into place, then fades it out.
+static BOOL ScaryFace_UpdateFace(ScaryFaceSpriteContext *ctx)
 {
-    BOOL v0 = 0;
-    BOOL v1;
+    BOOL done = FALSE;
 
-    switch (param0->unk_40) {
-    case 0:
-        ScaleLerpContext_UpdateAndApplyToSprite(&param0->unk_44, param0->unk_3C);
-        v1 = PosLerpContext_Update(&param0->unk_68);
+    switch (ctx->faceState) {
+    case SCARY_FACE_SPRITE_FACE_STATE_GROW_AND_MOVE:
+        ScaleLerpContext_UpdateAndApplyToSprite(&ctx->faceScale, ctx->sprite);
 
-        if (v1) {
-            XYTransformContext_ApplyPosOffsetToSprite(&param0->unk_68, param0->unk_3C, param0->unk_B4, param0->unk_B6);
+        if (PosLerpContext_Update(&ctx->facePos)) {
+            XYTransformContext_ApplyPosOffsetToSprite(&ctx->facePos, ctx->sprite, ctx->baseX, ctx->baseY);
         } else {
-            param0->unk_40++;
-            AlphaFadeContext_Init(&param0->unk_8C, 16, 0, 14, 16, 8);
+            ctx->faceState++;
+            AlphaFadeContext_Init(
+                &ctx->faceAlpha,
+                SCARY_FACE_SPRITE_FADE_EV1_START,
+                SCARY_FACE_SPRITE_FADE_EV1_END,
+                SCARY_FACE_SPRITE_FADE_EV2_START,
+                SCARY_FACE_SPRITE_FADE_EV2_END,
+                SCARY_FACE_SPRITE_FADE_FRAMES);
         }
         break;
-    case 1:
-        if (AlphaFadeContext_IsDone(&param0->unk_8C)) {
-            ManagedSprite_SetDrawFlag(param0->unk_3C, 0);
-            param0->unk_40++;
+    case SCARY_FACE_SPRITE_FACE_STATE_FADE_OUT:
+        if (AlphaFadeContext_IsDone(&ctx->faceAlpha)) {
+            ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
+            ctx->faceState++;
         }
         break;
-
-    case 2:
-        v0 = 1;
+    case SCARY_FACE_SPRITE_FACE_STATE_DONE:
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static void ov12_02231608(SysTask *param0, void *param1)
+static void BattleAnimTask_ScaryFace(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02231508 *v0 = param1;
+    ScaryFaceSpriteContext *ctx = param;
 
-    switch (v0->unk_0C) {
-    case 0:
-        ov12_02231508(v0);
-
-        if (ov12_02231584(v0)) {
-            v0->unk_0C++;
+    switch (ctx->state) {
+    case SCARY_FACE_SPRITE_STATE_ANIMATE:
+        ScaryFace_UpdateAttackerScale(ctx);
+        if (ScaryFace_UpdateFace(ctx)) {
+            ctx->state++;
         }
         break;
-    case 1:
-        Sprite_DeleteAndFreeResources(v0->unk_3C);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case SCARY_FACE_SPRITE_STATE_CLEANUP:
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02231650(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_ScaryFace(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_02231508 *v0;
-    int v1;
-    int v2;
-    s16 v3;
-    s16 v4;
-    int v5;
+    ScaryFaceSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ScaryFaceSpriteContext));
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02231508));
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
+    int dirX = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    int dirY = BattleAnimUtil_GetTransformDirectionY(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    v1 = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v2 = BattleAnimUtil_GetTransformDirectionY(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
 
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
+    s16 attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
+    s16 attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
 
-    v3 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
-    v4 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
+    ScaleLerpContext_Init(
+        &ctx->attackerScale,
+        SCARY_FACE_SPRITE_ATTACKER_START_SCALE,
+        SCARY_FACE_SPRITE_ATTACKER_REF_SCALE,
+        SCARY_FACE_SPRITE_ATTACKER_END_SCALE,
+        SCARY_FACE_SPRITE_ATTACKER_SCALE_FRAMES);
+    ctx->sprite = sprite;
 
-    ScaleLerpContext_Init(&v0->unk_14, 10, 10, 15, 12);
-    v0->unk_3C = param3;
+    ManagedSprite_SetAnimateFlag(ctx->sprite, TRUE);
+    ManagedSprite_SetAffineOverwriteMode(ctx->sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_XLU);
+    ManagedSprite_SetPriority(ctx->sprite, 100);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, 1);
 
-    ManagedSprite_SetAnimateFlag(v0->unk_3C, 1);
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_3C, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetExplicitOamMode(v0->unk_3C, GX_OAM_MODE_XLU);
-    ManagedSprite_SetPriority(v0->unk_3C, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_3C, 1);
+    ctx->baseX = attackerX + (SCARY_FACE_SPRITE_FACE_OFFSET_X * dirX);
+    ctx->baseY = attackerY;
 
-    v0->unk_B4 = v3 + (32 * v1);
-    v0->unk_B6 = v4;
-
-    if (v2 < 0) {
-        v5 = -8;
+    int moveY;
+    if (dirY < 0) {
+        moveY = SCARY_FACE_SPRITE_FACE_MOVE_Y_ENEMY;
     } else {
-        v5 = -24;
+        moveY = SCARY_FACE_SPRITE_FACE_MOVE_Y_PLAYER;
     }
 
-    PosLerpContext_Init(&v0->unk_68, 0, 0 * v1, 0, v5 * v2, 32);
-    ScaleLerpContext_Init(&v0->unk_44, 5, 10, 12, 32);
+    PosLerpContext_Init(&ctx->facePos, 0, 0 * dirX, 0, moveY * dirY, SCARY_FACE_SPRITE_FACE_MOVE_FRAMES);
+    ScaleLerpContext_Init(
+        &ctx->faceScale,
+        SCARY_FACE_SPRITE_FACE_START_SCALE,
+        SCARY_FACE_SPRITE_FACE_REF_SCALE,
+        SCARY_FACE_SPRITE_FACE_END_SCALE,
+        SCARY_FACE_SPRITE_FACE_SCALE_FRAMES);
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 31, 26);
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02231608, v0);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, SCARY_FACE_SPRITE_BLEND_A, SCARY_FACE_SPRITE_BLEND_B);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ScaryFace, ctx);
 }
 
 static void ov12_02231760(UnkStruct_ov12_02231760 *param0)
