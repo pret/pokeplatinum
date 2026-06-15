@@ -193,7 +193,7 @@ CommonScript_NurseIdentifiedPokerus:
     WaitMovement
     SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
-    Message CommonStrings_Text_PokecenterYourPokemonMayBeInfected
+    Message CommonStrings_Text_PokecenterPokemonMayBeInfected
     WaitButton
     CloseMessage
     ReleaseAll
@@ -736,14 +736,14 @@ CommonScript_InternalObtainUndergroundSphere:
 
 CommonScript_ObtainAccessoryWaitForConfirm:
     Call CommonScript_InternalObtainAccessory
-    Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
+    Message CommonStrings_Text_PutItemInFashionCase
     WaitButton
     ReturnCommonScript
     End
 
 CommonScript_ObtainAccessory:
     Call CommonScript_InternalObtainAccessory
-    Message CommonStrings_Text_PutAwayItemInTheFashionCase
+    Message CommonStrings_Text_PutItemInFashionCase_ArrowPrompt
     ReturnCommonScript
     End
 
@@ -759,14 +759,14 @@ CommonScript_InternalObtainAccessory:
 
 CommonScript_ObtainContestBackdropWaitForConfirm:
     Call CommonScript_InternalObtainContestBackdrop
-    Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
+    Message CommonStrings_Text_PutItemInFashionCase
     WaitButton
     ReturnCommonScript
     End
 
 CommonScript_ObtainContestBackdrop:
     Call CommonScript_InternalObtainContestBackdrop
-    Message CommonStrings_Text_PutAwayItemInTheFashionCase
+    Message CommonStrings_Text_PutItemInFashionCase_ArrowPrompt
     ReturnCommonScript
     End
 
@@ -791,7 +791,7 @@ CommonScript_InternalAddItemQuantityNoLineFeed:
     GetItemPocket VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_ObtainedKeyItem
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
-    Message CommonStrings_Text_PutItemInThePocketNoLineFeed
+    Message CommonStrings_Text_PutItemInPocket
     WaitButton
     Return
 
@@ -806,7 +806,7 @@ CommonScript_InternalAddItemQuantity:
     GetItemPocket VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_ObtainedKeyItem
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
-    Message CommonStrings_Text_PutItemInThePocket
+    Message CommonStrings_Text_PutItemInPocket_ArrowPrompt
     Return
 
 CommonScript_ObtainedKeyItem:
@@ -1204,7 +1204,7 @@ CommonScript_PokecenterBlackOutRecover:
     ChangePlayerState
     ApplyMovement LOCALID_PLAYER, CommonScript_Movement_PlayerGivePokemon
     WaitMovement
-    Message CommonStrings_Text_PokecenterFirstLetsRestoreYourPokemon
+    Message CommonStrings_Text_PokecenterFirstRestorePokemon
     Call CommonScript_GetNurseID
     Call CommonScript_NurseHealPokemon
     GoToIfBadgeAcquired BADGE_ID_COAL, CommonScript_PokecenterBlackOutRecoverHasCoalBadge

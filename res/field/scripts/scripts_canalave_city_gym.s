@@ -17,7 +17,7 @@ CanalaveGym_Byron:
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_ByronAfterBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 35, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_CANALAVE_CITY_GYM, 0, 0, 0
     Message CanalaveGym_Text_ByronIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_BYRON
@@ -37,7 +37,7 @@ CanalaveGym_Byron:
     SetTrainerFlag TRAINER_ACE_TRAINER_BREANNA
     SetTrainerFlag TRAINER_BLACK_BELT_RICKY
     SetTrainerFlag TRAINER_WORKER_GERARDO
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 35, TRAINER_LEADER_BYRON, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_CANALAVE_CITY_GYM, TRAINER_LEADER_BYRON, 0, 0
     ClearFlag FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE
     ClearFlag FLAG_HIDE_CANALAVE_CITY_RIVAL_LIBRARY
     ClearFlag FLAG_HIDE_CANALAVE_LIBRARY_RIVAL

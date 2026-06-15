@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "BerryTrees_Text_BerryWasPlantedInSoftSoil",
+      "id": "BerryTrees_Text_BerryWasPlantedInSoil",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} was planted\n",
         "in the soft, earthy soil."
@@ -104,7 +104,7 @@
       "en_US": "There! All happy!"
     },
     {
-      "id": "BerryTrees_Text_ThereAreBerriesWantToPickThem",
+      "id": "BerryTrees_Text_WantToPickBerries",
       "en_US": [
         "There are {STRVAR_1 51, 1, 0} {STRVAR_1 8, 0, 0}!\n",
         "Want to pick them?"
@@ -119,7 +119,7 @@
       "en_US": "NO"
     },
     {
-      "id": "BerryTrees_Text_PlayerLeftBerriesWhereTheyWere",
+      "id": "BerryTrees_Text_PlayerLeftBerries",
       "en_US": [
         "{STRVAR_1 3, 0, 0} left the {STRVAR_1 8, 1, 0}\n",
         "where they were."
@@ -130,14 +130,14 @@
       "en_US": "You picked the {STRVAR_1 51, 1, 0} {STRVAR_1 8, 0, 0}.\r"
     },
     {
-      "id": "BerryTrees_Text_BagIsFullBerriesCouldntBeTaken",
+      "id": "BerryTrees_Text_BagIsFull",
       "en_US": [
         "Your Bag is full.\n",
         "The {STRVAR_1 8, 0, 0} couldn’t be taken."
       ]
     },
     {
-      "id": "BerryTrees_Text_PlayerPutAwayBerriesInBagPocket",
+      "id": "BerryTrees_Text_PlayerPutBerriesInPocket",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put away the {STRVAR_1 8, 1, 0}\n",
         "in the Bag’s {STRVAR_1 18, 3, 0} Pocket.\r",
@@ -150,11 +150,11 @@
       "en_US": "It’s soft, earthy soil."
     },
     {
-      "id": "BerryTrees_Text_MulchHasBeenLaidDownAfterHarvest",
+      "id": "BerryTrees_Text_MulchLaidDownAfterHarvest",
       "en_US": "{STRVAR_1 8, 0, 0} has been laid down."
     },
     {
-      "id": "BerryTrees_Text_MulchWasScatteredOnSoilAfterHarvest",
+      "id": "BerryTrees_Text_MulchWasScatteredAfterHarvest",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} was scattered\n",
         "on the soil."
@@ -168,35 +168,35 @@
       ]
     },
     {
-      "id": "BerryTrees_Text_BerryPlantHasSproutedAfterHarvest",
+      "id": "BerryTrees_Text_PlantHasSproutedAfterHarvest",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} Berry Plant\n",
         "has sprouted."
       ]
     },
     {
-      "id": "BerryTrees_Text_BerryPlantIsGrowingBiggerAfterHarvest",
+      "id": "BerryTrees_Text_PlantIsGrowingAfterHarvest",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} Plant is growing\n",
         "bigger."
       ]
     },
     {
-      "id": "BerryTrees_Text_BerryPlantIsInBloomAfterHarvest",
+      "id": "BerryTrees_Text_PlantIsInBloomAfterHarvest",
       "en_US": [
         "This {STRVAR_1 8, 0, 0} Plant is\n",
         "in bloom!"
       ]
     },
     {
-      "id": "BerryTrees_Text_ThereIsBerryWantToPickIt",
+      "id": "BerryTrees_Text_WantToPickBerry",
       "en_US": [
         "There is {STRVAR_1 8, 0, 0}!\n",
         "Want to pick it?"
       ]
     },
     {
-      "id": "BerryTrees_Text_PlayerLeftBerryWhereItWas",
+      "id": "BerryTrees_Text_PlayerLeftBerry",
       "en_US": [
         "{STRVAR_1 3, 0, 0} left the {STRVAR_1 8, 1, 0}\n",
         "where it was."

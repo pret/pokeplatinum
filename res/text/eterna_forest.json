@@ -2,7 +2,7 @@
   "key": 1026,
   "messages": [
     {
-      "id": "EternaForest_Text_PleaseMayIGoThroughWithYou",
+      "id": "EternaForest_Text_MayIGoWithYou",
       "en_US": [
         "Hello, my name’s Cheryl.\n",
         "And you are...?\r",
@@ -27,14 +27,14 @@
       ]
     },
     {
-      "id": "EternaForest_Text_IllKeepYourPokemonInPerfectHealth",
+      "id": "EternaForest_Text_IllKeepPokemonHealthy",
       "en_US": [
         "Cheryl: I’ll keep your Pokémon\n",
         "in perfect health."
       ]
     },
     {
-      "id": "EternaForest_Text_LetsGetThroughThisForestTogether",
+      "id": "EternaForest_Text_LetsGetThroughForestTogether",
       "en_US": [
         "Cheryl: Oh, hi, {STRVAR_1 3, 0, 0}!\n",
         "I’ve been waiting like I said.\r",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "EternaForest_Text_OhTheresTheExitThankYouSoMuchPlayer",
+      "id": "EternaForest_Text_ThankYouSoMuch",
       "en_US": [
         "Cheryl: Oh! There’s the exit!\n",
         "I’m so relieved... We finally got here.\r",
@@ -60,21 +60,21 @@
       ]
     },
     {
-      "id": "EternaForest_Text_ThisIsMyTokenOfAppreciation",
+      "id": "EternaForest_Text_TokenOfAppreciation",
       "en_US": [
         "This is my token of appreciation.\n",
         "Please accept it!\r"
       ]
     },
     {
-      "id": "EternaForest_Text_ImSureWellMeetAgainSomewhere",
+      "id": "EternaForest_Text_ImSureWellMeetAgain",
       "en_US": [
         "I’m sure we’ll meet again somewhere!\n",
         "Bye for now!\r"
       ]
     },
     {
-      "id": "EternaForest_Text_ThereIsAnOldChateauAhead",
+      "id": "EternaForest_Text_OldChateauAhead",
       "en_US": [
         "Cheryl: There is an Old Chateau ahead.\r",
         "No one lives there now.\n",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "EternaForest_Text_ImSearchingForBugPokemonSoICanWinAtTheEternaGym",
+      "id": "EternaForest_Text_ImSearchingForBugPokemon",
       "en_US": [
         "I’m searching for bug Pokémon so I can\n",
         "win at the Eterna Gym.\r",
@@ -91,21 +91,21 @@
       ]
     },
     {
-      "id": "EternaForest_Text_TheRockIsCoveredInMoss",
+      "id": "EternaForest_Text_RockIsCoveredInMoss",
       "en_US": [
         "The rock is covered in moss.\n",
         "It feels pleasantly cool."
       ]
     },
     {
-      "id": "EternaForest_Text_HiyaWereYouIngriguedByTheRumorsGoingAroundToo",
+      "id": "EternaForest_Text_WereYouIngriguedByRumors",
       "en_US": [
         "Gardenia: Hiya! Were you intrigued\n",
         "by the rumors going around, too?\r"
       ]
     },
     {
-      "id": "EternaForest_Text_YouKnowPeopleveBeenTalkingAboutTheGhostPokemonOfTheOldChateau",
+      "id": "EternaForest_Text_GhostPokemonOfOldChateau",
       "en_US": [
         "You know, people’ve been talking about\n",
         "the ghost Pokémon of the Old Chateau.\r",
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "EternaForest_Text_IShouldCheckItOutMyselfButGoingInThereIs",
+      "id": "EternaForest_Text_GoodLuckWithInvestigation",
       "en_US": [
         "I should check it out myself, but\n",
         "going in there is...\r",
@@ -127,14 +127,14 @@
       ]
     },
     {
-      "id": "EternaForest_Text_TheEternaForestWhereTimeFlowsEternally",
+      "id": "EternaForest_Text_SignEternaForest",
       "en_US": [
         "The Eterna Forest\n",
         "Where Time Flows Eternally"
       ]
     },
     {
-      "id": "EternaForest_Text_TrainerTipsInForestsAndCavesThereAreManyItemsOnTheGround",
+      "id": "EternaForest_Text_TrainerTipsItemsOnGround",
       "en_US": [
         "Trainer Tips!\r",
         "In forests and caves, there are many\n",
