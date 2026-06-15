@@ -2,7 +2,7 @@
 
 This is a WIP PC port of Pokemon Platinum based on the [pret](https://github.com/pret/pokeplatinum) decompilation project.
 
-Currently it is possible to reach the first gym.
+Currently it is possible to reach the first gym. It might be possible to get farther than that, however it has not been tested.
 
 To build: 
 * make linux
