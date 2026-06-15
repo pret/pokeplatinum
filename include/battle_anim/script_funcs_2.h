@@ -19,7 +19,7 @@ void BattleAnimSpriteFunc_Bonemerang(BattleAnimSystem *system, SpriteSystem *spr
 void BattleAnimScriptFunc_FaintAttack(BattleAnimSystem *system);
 void BattleAnimSpriteFunc_ScaryFace(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimSpriteFunc_Foresight(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
-void ov12_02231C1C(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_LockOn(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_PlayfulHops(BattleAnimSystem *system);
 void BattleAnimScriptFunc_Swagger(BattleAnimSystem *system);
 void ov12_02232378(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);

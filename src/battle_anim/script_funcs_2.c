@@ -545,7 +545,7 @@ enum ScaryFaceSpriteState {
 // -------------------------------------------------------------------
 // Foresight
 // -------------------------------------------------------------------
-typedef struct ForesightContext {
+typedef struct ForesightSpriteContext {
     BattleAnimSystem *battleAnimSys;
     SpriteSystem *spriteSys;
     SpriteManager *spriteMan;
@@ -560,43 +560,76 @@ typedef struct ForesightContext {
     int delay;
 } ForesightSpriteContext;
 
-enum ForesightState {
-    FORESIGHT_STATE_DELAY = 0,
-    FORESIGHT_STATE_MOVE,
-    FORESIGHT_STATE_FADE_OUT,
-    FORESIGHT_STATE_WAIT_FLASH,
-    FORESIGHT_STATE_CLEANUP,
+enum ForesightSpriteState {
+    FORESIGHT_SPRITE_STATE_DELAY = 0,
+    FORESIGHT_SPRITE_STATE_MOVE,
+    FORESIGHT_SPRITE_STATE_FADE_OUT,
+    FORESIGHT_SPRITE_STATE_WAIT_FLASH,
+    FORESIGHT_SPRITE_STATE_CLEANUP,
 };
 
-#define FORESIGHT_MOVE_EXTENT       80
-#define FORESIGHT_MOVE_FRAMES       8
-#define FORESIGHT_SEGMENT_COUNT     6
-#define FORESIGHT_START_DELAY       4
-#define FORESIGHT_FADE_EV1_START    16
-#define FORESIGHT_FADE_EV1_END      0
-#define FORESIGHT_FADE_EV2_START    0
-#define FORESIGHT_FADE_EV2_END      16
-#define FORESIGHT_FADE_FRAMES       16
-#define FORESIGHT_FLASH_START_ALPHA 0
-#define FORESIGHT_FLASH_END_ALPHA   10
-#define FORESIGHT_FLASH_DELAY       0
-#define FORESIGHT_FLASH_COLOR       GX_RGB(31, 31, 31)
+#define FORESIGHT_SPRITE_MOVE_EXTENT       80
+#define FORESIGHT_SPRITE_MOVE_FRAMES       8
+#define FORESIGHT_SPRITE_SEGMENT_COUNT     6
+#define FORESIGHT_SPRITE_START_DELAY       4
+#define FORESIGHT_SPRITE_FADE_EV1_START    16
+#define FORESIGHT_SPRITE_FADE_EV1_END      0
+#define FORESIGHT_SPRITE_FADE_EV2_START    0
+#define FORESIGHT_SPRITE_FADE_EV2_END      16
+#define FORESIGHT_SPRITE_FADE_FRAMES       16
+#define FORESIGHT_SPRITE_FLASH_START_ALPHA 0
+#define FORESIGHT_SPRITE_FLASH_END_ALPHA   10
+#define FORESIGHT_SPRITE_FLASH_DELAY       0
+#define FORESIGHT_SPRITE_FLASH_COLOR       GX_RGB(31, 31, 31)
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    PokemonSprite *unk_10;
-    PokemonSprite *unk_14[4];
-    ManagedSprite *unk_24;
-    XYTransformContext unk_28;
-    s16 unk_4C;
-    s16 unk_4E;
-    int unk_50;
-    int unk_54;
-    int unk_58;
-} UnkStruct_ov12_022319AC;
+// -------------------------------------------------------------------
+// Lock On
+// -------------------------------------------------------------------
+typedef struct LockOnSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    PokemonSprite *defenderSprite;
+    PokemonSprite *battlerSprites[MAX_BATTLERS];
+    ManagedSprite *sprite;
+    XYTransformContext pos;
+    s16 baseX;
+    s16 baseY;
+    int segment;
+    int delay;
+    int blinkVisible;
+} LockOnSpriteContext;
+
+enum LockOnSpriteState {
+    LOCK_ON_SPRITE_STATE_DELAY = 0,
+    LOCK_ON_SPRITE_STATE_MOVE,
+    LOCK_ON_SPRITE_STATE_FLASH,
+    LOCK_ON_SPRITE_STATE_FADE_BACK,
+    LOCK_ON_SPRITE_STATE_INIT_BLINK,
+    LOCK_ON_SPRITE_STATE_BLINK,
+    LOCK_ON_SPRITE_STATE_CLEANUP,
+};
+
+#define LOCK_ON_SPRITE_MOVE_EXTENT         80
+#define LOCK_ON_SPRITE_MOVE_FRAMES         4
+#define LOCK_ON_SPRITE_SEGMENT_COUNT       4
+#define LOCK_ON_SPRITE_START_DELAY         (-16)
+#define LOCK_ON_SPRITE_MOVE_DELAY          1 // state advances once delay exceeds this
+#define LOCK_ON_SPRITE_LOCKED_ANIM         1 // reticle "locked" animation index
+#define LOCK_ON_SPRITE_FLASH_DELAY         8
+#define LOCK_ON_SPRITE_FADE_WAIT           (-8)
+#define LOCK_ON_SPRITE_BG_FADE_START       0
+#define LOCK_ON_SPRITE_BG_FADE_END         16
+#define LOCK_ON_SPRITE_MON_FADE_START      14
+#define LOCK_ON_SPRITE_MON_FADE_END        16
+#define LOCK_ON_SPRITE_MON_FADE_BACK_START 2
+#define LOCK_ON_SPRITE_MON_FADE_BACK_END   0
+#define LOCK_ON_SPRITE_FLASH_COLOR         GX_RGBA(31, 31, 31, 1)
+#define LOCK_ON_SPRITE_BLINK_COUNT         4
+#define LOCK_ON_SPRITE_BLINK_INTERVAL      4
+#define LOCK_ON_SPRITE_BLEND_A             31
+#define LOCK_ON_SPRITE_BLEND_B             26
 
 // -------------------------------------------------------------------
 // Playful Hops (Charm, Attract, Tickle, Captivate)
@@ -2783,22 +2816,22 @@ static void ForesightSprite_InitMoveSegment(ForesightSpriteContext *ctx)
 {
     switch (ctx->segment) {
     case 0:
-        PosLerpContext_Init(&ctx->pos, 0, FORESIGHT_MOVE_EXTENT / 2, 0, FORESIGHT_MOVE_EXTENT / 2, FORESIGHT_MOVE_FRAMES);
+        PosLerpContext_Init(&ctx->pos, 0, FORESIGHT_SPRITE_MOVE_EXTENT / 2, 0, FORESIGHT_SPRITE_MOVE_EXTENT / 2, FORESIGHT_SPRITE_MOVE_FRAMES);
         break;
     case 1:
-        PosLerpContext_Init(&ctx->pos, 0, 0, 0, -FORESIGHT_MOVE_EXTENT, FORESIGHT_MOVE_FRAMES);
+        PosLerpContext_Init(&ctx->pos, 0, 0, 0, -FORESIGHT_SPRITE_MOVE_EXTENT, FORESIGHT_SPRITE_MOVE_FRAMES);
         break;
     case 2:
-        PosLerpContext_Init(&ctx->pos, 0, -FORESIGHT_MOVE_EXTENT, 0, FORESIGHT_MOVE_EXTENT, FORESIGHT_MOVE_FRAMES);
+        PosLerpContext_Init(&ctx->pos, 0, -FORESIGHT_SPRITE_MOVE_EXTENT, 0, FORESIGHT_SPRITE_MOVE_EXTENT, FORESIGHT_SPRITE_MOVE_FRAMES);
         break;
     case 3:
-        PosLerpContext_Init(&ctx->pos, 0, 0, 0, -FORESIGHT_MOVE_EXTENT, FORESIGHT_MOVE_FRAMES);
+        PosLerpContext_Init(&ctx->pos, 0, 0, 0, -FORESIGHT_SPRITE_MOVE_EXTENT, FORESIGHT_SPRITE_MOVE_FRAMES);
         break;
     case 4:
-        PosLerpContext_Init(&ctx->pos, 0, FORESIGHT_MOVE_EXTENT, 0, FORESIGHT_MOVE_EXTENT, FORESIGHT_MOVE_FRAMES);
+        PosLerpContext_Init(&ctx->pos, 0, FORESIGHT_SPRITE_MOVE_EXTENT, 0, FORESIGHT_SPRITE_MOVE_EXTENT, FORESIGHT_SPRITE_MOVE_FRAMES);
         break;
     case 5:
-        PosLerpContext_Init(&ctx->pos, 0, -FORESIGHT_MOVE_EXTENT / 2, 0, -FORESIGHT_MOVE_EXTENT / 2, FORESIGHT_MOVE_FRAMES);
+        PosLerpContext_Init(&ctx->pos, 0, -FORESIGHT_SPRITE_MOVE_EXTENT / 2, 0, -FORESIGHT_SPRITE_MOVE_EXTENT / 2, FORESIGHT_SPRITE_MOVE_FRAMES);
         break;
     default:
         GF_ASSERT(FALSE);
@@ -2811,23 +2844,23 @@ static void BattleAnimTask_ForesightSprite(SysTask *task, void *param)
     ForesightSpriteContext *ctx = param;
 
     switch (ctx->state) {
-    case FORESIGHT_STATE_DELAY:
+    case FORESIGHT_SPRITE_STATE_DELAY:
         ctx->delay++;
 
-        if (ctx->delay > FORESIGHT_START_DELAY) {
+        if (ctx->delay > FORESIGHT_SPRITE_START_DELAY) {
             ForesightSprite_InitMoveSegment(ctx);
             ctx->state++;
             ctx->delay = 0;
         }
         break;
-    case FORESIGHT_STATE_MOVE:
+    case FORESIGHT_SPRITE_STATE_MOVE:
         if (PosLerpContext_Update(&ctx->pos)) {
             XYTransformContext_ApplyPosOffsetToSprite(&ctx->pos, ctx->sprite, ctx->baseX, ctx->baseY);
         } else {
             ctx->segment++;
 
-            if (ctx->segment < FORESIGHT_SEGMENT_COUNT) {
-                ctx->state = FORESIGHT_STATE_DELAY;
+            if (ctx->segment < FORESIGHT_SPRITE_SEGMENT_COUNT) {
+                ctx->state = FORESIGHT_SPRITE_STATE_DELAY;
                 ctx->baseX += ctx->pos.x;
                 ctx->baseY += ctx->pos.y;
             } else {
@@ -2836,22 +2869,22 @@ static void BattleAnimTask_ForesightSprite(SysTask *task, void *param)
                 ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_XLU);
                 AlphaFadeContext_Init(
                     &ctx->alpha,
-                    FORESIGHT_FADE_EV1_START,
-                    FORESIGHT_FADE_EV1_END,
-                    FORESIGHT_FADE_EV2_START,
-                    FORESIGHT_FADE_EV2_END,
-                    FORESIGHT_FADE_FRAMES);
+                    FORESIGHT_SPRITE_FADE_EV1_START,
+                    FORESIGHT_SPRITE_FADE_EV1_END,
+                    FORESIGHT_SPRITE_FADE_EV2_START,
+                    FORESIGHT_SPRITE_FADE_EV2_END,
+                    FORESIGHT_SPRITE_FADE_FRAMES);
 
                 PokemonSprite_StartFade(
                     ctx->defenderSprite,
-                    FORESIGHT_FLASH_START_ALPHA,
-                    FORESIGHT_FLASH_END_ALPHA,
-                    FORESIGHT_FLASH_DELAY,
-                    FORESIGHT_FLASH_COLOR);
+                    FORESIGHT_SPRITE_FLASH_START_ALPHA,
+                    FORESIGHT_SPRITE_FLASH_END_ALPHA,
+                    FORESIGHT_SPRITE_FLASH_DELAY,
+                    FORESIGHT_SPRITE_FLASH_COLOR);
             }
         }
         break;
-    case FORESIGHT_STATE_FADE_OUT:
+    case FORESIGHT_SPRITE_STATE_FADE_OUT:
         if (AlphaFadeContext_IsDone(&ctx->alpha)) {
             ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
         }
@@ -2860,18 +2893,18 @@ static void BattleAnimTask_ForesightSprite(SysTask *task, void *param)
             ctx->state++;
             PokemonSprite_StartFade(
                 ctx->defenderSprite,
-                FORESIGHT_FLASH_END_ALPHA,
-                FORESIGHT_FLASH_START_ALPHA,
-                FORESIGHT_FLASH_DELAY,
-                FORESIGHT_FLASH_COLOR);
+                FORESIGHT_SPRITE_FLASH_END_ALPHA,
+                FORESIGHT_SPRITE_FLASH_START_ALPHA,
+                FORESIGHT_SPRITE_FLASH_DELAY,
+                FORESIGHT_SPRITE_FLASH_COLOR);
         }
         break;
-    case FORESIGHT_STATE_WAIT_FLASH:
+    case FORESIGHT_SPRITE_STATE_WAIT_FLASH:
         if (PokemonSprite_IsFadeActive(ctx->defenderSprite) == FALSE) {
             ctx->state++;
         }
         break;
-    case FORESIGHT_STATE_CLEANUP:
+    case FORESIGHT_SPRITE_STATE_CLEANUP:
         Sprite_DeleteAndFreeResources(ctx->sprite);
         BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         Heap_Free(ctx);
@@ -2898,20 +2931,21 @@ void BattleAnimSpriteFunc_Foresight(BattleAnimSystem *system, SpriteSystem *spri
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ForesightSprite, ctx);
 }
 
-static void ov12_022319AC(UnkStruct_ov12_022319AC *param0)
+// Sets up the offset lerp for the current path segment, tracing the reticle in toward the target.
+static void LockOnSprite_InitMoveSegment(LockOnSpriteContext *ctx)
 {
-    switch (param0->unk_50) {
+    switch (ctx->segment) {
     case 0:
-        PosLerpContext_Init(&param0->unk_28, 0, 80, 0, 80, 4);
+        PosLerpContext_Init(&ctx->pos, 0, LOCK_ON_SPRITE_MOVE_EXTENT, 0, LOCK_ON_SPRITE_MOVE_EXTENT, LOCK_ON_SPRITE_MOVE_FRAMES);
         break;
     case 1:
-        PosLerpContext_Init(&param0->unk_28, 0, 0, 0, -80, 4);
+        PosLerpContext_Init(&ctx->pos, 0, 0, 0, -LOCK_ON_SPRITE_MOVE_EXTENT, LOCK_ON_SPRITE_MOVE_FRAMES);
         break;
     case 2:
-        PosLerpContext_Init(&param0->unk_28, 0, -80, 0, 80, 4);
+        PosLerpContext_Init(&ctx->pos, 0, -LOCK_ON_SPRITE_MOVE_EXTENT, 0, LOCK_ON_SPRITE_MOVE_EXTENT, LOCK_ON_SPRITE_MOVE_FRAMES);
         break;
     case 3:
-        PosLerpContext_Init(&param0->unk_28, 0, 80 / 2, 0, -80 / 2, 4);
+        PosLerpContext_Init(&ctx->pos, 0, LOCK_ON_SPRITE_MOVE_EXTENT / 2, 0, -LOCK_ON_SPRITE_MOVE_EXTENT / 2, LOCK_ON_SPRITE_MOVE_FRAMES);
         break;
     default:
         GF_ASSERT(FALSE);
@@ -2919,132 +2953,153 @@ static void ov12_022319AC(UnkStruct_ov12_022319AC *param0)
     }
 }
 
-static void ov12_02231A38(SysTask *param0, void *param1)
+static void BattleAnimTask_LockOnSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022319AC *v0 = param1;
-    int v1;
+    LockOnSpriteContext *ctx = param;
+    int i;
 
-    switch (v0->unk_0C) {
-    case 0:
-        v0->unk_54++;
+    switch (ctx->state) {
+    case LOCK_ON_SPRITE_STATE_DELAY:
+        ctx->delay++;
 
-        if (v0->unk_54 > 1) {
-            ov12_022319AC(v0);
-            v0->unk_0C++;
-            v0->unk_54 = 0;
+        if (ctx->delay > LOCK_ON_SPRITE_MOVE_DELAY) {
+            LockOnSprite_InitMoveSegment(ctx);
+            ctx->state++;
+            ctx->delay = 0;
         }
         break;
-    case 1:
-        if (PosLerpContext_Update(&v0->unk_28)) {
-            XYTransformContext_ApplyPosOffsetToSprite(&v0->unk_28, v0->unk_24, v0->unk_4C, v0->unk_4E);
+    case LOCK_ON_SPRITE_STATE_MOVE:
+        if (PosLerpContext_Update(&ctx->pos)) {
+            XYTransformContext_ApplyPosOffsetToSprite(&ctx->pos, ctx->sprite, ctx->baseX, ctx->baseY);
         } else {
-            v0->unk_50++;
+            ctx->segment++;
 
-            if (v0->unk_50 < 4) {
-                v0->unk_0C = 0;
-                v0->unk_4C += v0->unk_28.x;
-                v0->unk_4E += v0->unk_28.y;
+            if (ctx->segment < LOCK_ON_SPRITE_SEGMENT_COUNT) {
+                ctx->state = LOCK_ON_SPRITE_STATE_DELAY;
+                ctx->baseX += ctx->pos.x;
+                ctx->baseY += ctx->pos.y;
             } else {
-                v0->unk_0C++;
-                v0->unk_54 = 8;
+                ctx->state++;
+                ctx->delay = LOCK_ON_SPRITE_FLASH_DELAY;
 
-                ManagedSprite_SetAnim(v0->unk_24, 1);
-                ManagedSprite_SetAnimateFlag(v0->unk_24, 1);
+                ManagedSprite_SetAnim(ctx->sprite, LOCK_ON_SPRITE_LOCKED_ANIM);
+                ManagedSprite_SetAnimateFlag(ctx->sprite, TRUE);
             }
         }
         break;
-    case 2:
-        v0->unk_54--;
+    case LOCK_ON_SPRITE_STATE_FLASH:
+        ctx->delay--;
 
-        if (v0->unk_54 < 0) {
-            v0->unk_0C++;
+        if (ctx->delay < 0) {
+            ctx->state++;
 
-            PaletteData_StartFade(BattleAnimSystem_GetPaletteData(v0->unk_00), 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_00), -8, 0, 16, 0xffff);
+            PaletteData_StartFade(
+                BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+                PLTTBUF_MAIN_BG_F,
+                BattleAnimSystem_GetBaseBgPalettes(ctx->battleAnimSys),
+                LOCK_ON_SPRITE_FADE_WAIT,
+                LOCK_ON_SPRITE_BG_FADE_START,
+                LOCK_ON_SPRITE_BG_FADE_END,
+                LOCK_ON_SPRITE_FLASH_COLOR);
 
-            for (v1 = 0; v1 < 4; v1++) {
-                if (v0->unk_14[v1]) {
-                    PokemonSprite_StartFade(v0->unk_14[v1], 14, 16, 0, 0xffff);
+            for (i = 0; i < MAX_BATTLERS; i++) {
+                if (ctx->battlerSprites[i]) {
+                    PokemonSprite_StartFade(
+                        ctx->battlerSprites[i],
+                        LOCK_ON_SPRITE_MON_FADE_START,
+                        LOCK_ON_SPRITE_MON_FADE_END,
+                        0,
+                        LOCK_ON_SPRITE_FLASH_COLOR);
                 }
             }
         }
         break;
-    case 3:
-        if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(v0->unk_00)) == 0) {
-            v0->unk_0C++;
-            PaletteData_StartFade(BattleAnimSystem_GetPaletteData(v0->unk_00), 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_00), -8, 16, 0, 0xffff);
+    case LOCK_ON_SPRITE_STATE_FADE_BACK:
+        if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(ctx->battleAnimSys)) == 0) {
+            ctx->state++;
+            PaletteData_StartFade(
+                BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+                PLTTBUF_MAIN_BG_F,
+                BattleAnimSystem_GetBaseBgPalettes(ctx->battleAnimSys),
+                LOCK_ON_SPRITE_FADE_WAIT,
+                LOCK_ON_SPRITE_BG_FADE_END,
+                LOCK_ON_SPRITE_BG_FADE_START,
+                LOCK_ON_SPRITE_FLASH_COLOR);
 
-            for (v1 = 0; v1 < 4; v1++) {
-                if (v0->unk_14[v1]) {
-                    PokemonSprite_StartFade(v0->unk_14[v1], 2, 0, 0, 0xffff);
+            for (i = 0; i < MAX_BATTLERS; i++) {
+                if (ctx->battlerSprites[i]) {
+                    PokemonSprite_StartFade(
+                        ctx->battlerSprites[i],
+                        LOCK_ON_SPRITE_MON_FADE_BACK_START,
+                        LOCK_ON_SPRITE_MON_FADE_BACK_END,
+                        0,
+                        LOCK_ON_SPRITE_FLASH_COLOR);
                 }
             }
         }
         break;
-    case 4:
-        if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(v0->unk_00)) == 0) {
-            v0->unk_0C++;
-            v0->unk_54 = 4;
-            v0->unk_50 = 4;
-            v0->unk_58 = 0;
+    case LOCK_ON_SPRITE_STATE_INIT_BLINK:
+        if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(ctx->battleAnimSys)) == 0) {
+            ctx->state++;
+            ctx->delay = LOCK_ON_SPRITE_BLINK_INTERVAL;
+            ctx->segment = LOCK_ON_SPRITE_BLINK_COUNT;
+            ctx->blinkVisible = 0;
         }
         break;
-    case 5:
-        v0->unk_54--;
+    case LOCK_ON_SPRITE_STATE_BLINK:
+        ctx->delay--;
 
-        if (v0->unk_54 < 0) {
-            v0->unk_54 = 4;
-            v0->unk_50--;
+        if (ctx->delay < 0) {
+            ctx->delay = LOCK_ON_SPRITE_BLINK_INTERVAL;
+            ctx->segment--;
 
-            if (v0->unk_50 < 0) {
-                v0->unk_0C++;
+            if (ctx->segment < 0) {
+                ctx->state++;
             } else {
-                ManagedSprite_SetDrawFlag(v0->unk_24, v0->unk_58);
-                v0->unk_58 ^= 1;
+                ManagedSprite_SetDrawFlag(ctx->sprite, ctx->blinkVisible);
+                ctx->blinkVisible ^= 1;
             }
         }
         break;
-    case 6:
-        Sprite_DeleteAndFreeResources(v0->unk_24);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case LOCK_ON_SPRITE_STATE_CLEANUP:
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02231C1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_LockOn(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_022319AC *v0;
-    int v1;
+    LockOnSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(LockOnSpriteContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022319AC));
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
-
-    for (v1 = 0; v1 < 4; v1++) {
-        v0->unk_14[v1] = BattleAnimSystem_GetBattlerSprite(v0->unk_00, v1);
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        ctx->battlerSprites[i] = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, i);
     }
 
-    v0->unk_24 = param3;
+    ctx->sprite = sprite;
 
-    ManagedSprite_SetPriority(v0->unk_24, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_24, 1);
-    ManagedSprite_GetPositionXY(v0->unk_24, &v0->unk_4C, &v0->unk_4E);
+    ManagedSprite_SetPriority(ctx->sprite, 100);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, 1);
+    ManagedSprite_GetPositionXY(ctx->sprite, &ctx->baseX, &ctx->baseY);
 
-    v0->unk_4C -= 80 / 2;
-    v0->unk_4E -= 80 / 2;
+    ctx->baseX -= LOCK_ON_SPRITE_MOVE_EXTENT / 2;
+    ctx->baseY -= LOCK_ON_SPRITE_MOVE_EXTENT / 2;
 
-    ManagedSprite_SetPositionXY(v0->unk_24, v0->unk_4C, v0->unk_4E);
-    ManagedSprite_SetExplicitOamMode(v0->unk_24, GX_OAM_MODE_XLU);
+    ManagedSprite_SetPositionXY(ctx->sprite, ctx->baseX, ctx->baseY);
+    ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_XLU);
 
-    v0->unk_54 = -16;
+    ctx->delay = LOCK_ON_SPRITE_START_DELAY;
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 31, 26);
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02231A38, v0);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, LOCK_ON_SPRITE_BLEND_A, LOCK_ON_SPRITE_BLEND_B);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_LockOnSprite, ctx);
 }
 
 static void PlayfulHopsContext_InitTilt(PlayfulHopsContext *ctx, BOOL flip)
