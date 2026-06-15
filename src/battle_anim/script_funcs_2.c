@@ -542,20 +542,45 @@ enum ScaryFaceSpriteState {
 #define SCARY_FACE_SPRITE_BLEND_A            31
 #define SCARY_FACE_SPRITE_BLEND_B            26
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    PokemonSprite *unk_10;
-    ManagedSprite *unk_14;
-    XYTransformContext unk_18;
-    AlphaFadeContext unk_3C;
-    s16 unk_64;
-    s16 unk_66;
-    int unk_68;
-    int unk_6C;
-} UnkStruct_ov12_02231760;
+// -------------------------------------------------------------------
+// Foresight
+// -------------------------------------------------------------------
+typedef struct ForesightContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    PokemonSprite *defenderSprite;
+    ManagedSprite *sprite;
+    XYTransformContext pos;
+    AlphaFadeContext alpha;
+    s16 baseX;
+    s16 baseY;
+    int segment;
+    int delay;
+} ForesightSpriteContext;
+
+enum ForesightState {
+    FORESIGHT_STATE_DELAY = 0,
+    FORESIGHT_STATE_MOVE,
+    FORESIGHT_STATE_FADE_OUT,
+    FORESIGHT_STATE_WAIT_FLASH,
+    FORESIGHT_STATE_CLEANUP,
+};
+
+#define FORESIGHT_MOVE_EXTENT       80
+#define FORESIGHT_MOVE_FRAMES       8
+#define FORESIGHT_SEGMENT_COUNT     6
+#define FORESIGHT_START_DELAY       4
+#define FORESIGHT_FADE_EV1_START    16
+#define FORESIGHT_FADE_EV1_END      0
+#define FORESIGHT_FADE_EV2_START    0
+#define FORESIGHT_FADE_EV2_END      16
+#define FORESIGHT_FADE_FRAMES       16
+#define FORESIGHT_FLASH_START_ALPHA 0
+#define FORESIGHT_FLASH_END_ALPHA   10
+#define FORESIGHT_FLASH_DELAY       0
+#define FORESIGHT_FLASH_COLOR       GX_RGB(31, 31, 31)
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -2611,7 +2636,7 @@ void BattleAnimScriptFunc_FaintAttack(BattleAnimSystem *system)
     SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 }
 
-static BOOL ScaryFace_UpdateAttackerScale(ScaryFaceSpriteContext *ctx)
+static BOOL ScaryFaceSprite_UpdateAttackerScale(ScaryFaceSpriteContext *ctx)
 {
     BOOL done = FALSE;
 
@@ -2646,7 +2671,7 @@ static BOOL ScaryFace_UpdateAttackerScale(ScaryFaceSpriteContext *ctx)
 }
 
 // Grows the overlay sprite while sliding it into place, then fades it out.
-static BOOL ScaryFace_UpdateFace(ScaryFaceSpriteContext *ctx)
+static BOOL ScaryFaceSprite_UpdateFace(ScaryFaceSpriteContext *ctx)
 {
     BOOL done = FALSE;
 
@@ -2681,14 +2706,14 @@ static BOOL ScaryFace_UpdateFace(ScaryFaceSpriteContext *ctx)
     return done;
 }
 
-static void BattleAnimTask_ScaryFace(SysTask *task, void *param)
+static void BattleAnimTask_ScaryFaceSprite(SysTask *task, void *param)
 {
     ScaryFaceSpriteContext *ctx = param;
 
     switch (ctx->state) {
     case SCARY_FACE_SPRITE_STATE_ANIMATE:
-        ScaryFace_UpdateAttackerScale(ctx);
-        if (ScaryFace_UpdateFace(ctx)) {
+        ScaryFaceSprite_UpdateAttackerScale(ctx);
+        if (ScaryFaceSprite_UpdateFace(ctx)) {
             ctx->state++;
         }
         break;
@@ -2750,29 +2775,30 @@ void BattleAnimSpriteFunc_ScaryFace(BattleAnimSystem *system, SpriteSystem *spri
         SCARY_FACE_SPRITE_FACE_SCALE_FRAMES);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, SCARY_FACE_SPRITE_BLEND_A, SCARY_FACE_SPRITE_BLEND_B);
-    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ScaryFace, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ScaryFaceSprite, ctx);
 }
 
-static void ov12_02231760(UnkStruct_ov12_02231760 *param0)
+// Sets up the offset lerp for the current path segment, doing a zig-zag over the defender.
+static void ForesightSprite_InitMoveSegment(ForesightSpriteContext *ctx)
 {
-    switch (param0->unk_68) {
+    switch (ctx->segment) {
     case 0:
-        PosLerpContext_Init(&param0->unk_18, 0, 80 / 2, 0, 80 / 2, 8);
+        PosLerpContext_Init(&ctx->pos, 0, FORESIGHT_MOVE_EXTENT / 2, 0, FORESIGHT_MOVE_EXTENT / 2, FORESIGHT_MOVE_FRAMES);
         break;
     case 1:
-        PosLerpContext_Init(&param0->unk_18, 0, 0, 0, -80, 8);
+        PosLerpContext_Init(&ctx->pos, 0, 0, 0, -FORESIGHT_MOVE_EXTENT, FORESIGHT_MOVE_FRAMES);
         break;
     case 2:
-        PosLerpContext_Init(&param0->unk_18, 0, -80, 0, 80, 8);
+        PosLerpContext_Init(&ctx->pos, 0, -FORESIGHT_MOVE_EXTENT, 0, FORESIGHT_MOVE_EXTENT, FORESIGHT_MOVE_FRAMES);
         break;
     case 3:
-        PosLerpContext_Init(&param0->unk_18, 0, 0, 0, -80, 8);
+        PosLerpContext_Init(&ctx->pos, 0, 0, 0, -FORESIGHT_MOVE_EXTENT, FORESIGHT_MOVE_FRAMES);
         break;
     case 4:
-        PosLerpContext_Init(&param0->unk_18, 0, 80, 0, 80, 8);
+        PosLerpContext_Init(&ctx->pos, 0, FORESIGHT_MOVE_EXTENT, 0, FORESIGHT_MOVE_EXTENT, FORESIGHT_MOVE_FRAMES);
         break;
     case 5:
-        PosLerpContext_Init(&param0->unk_18, 0, -80 / 2, 0, -80 / 2, 8);
+        PosLerpContext_Init(&ctx->pos, 0, -FORESIGHT_MOVE_EXTENT / 2, 0, -FORESIGHT_MOVE_EXTENT / 2, FORESIGHT_MOVE_FRAMES);
         break;
     default:
         GF_ASSERT(FALSE);
@@ -2780,81 +2806,96 @@ static void ov12_02231760(UnkStruct_ov12_02231760 *param0)
     }
 }
 
-static void ov12_0223181C(SysTask *param0, void *param1)
+static void BattleAnimTask_ForesightSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02231760 *v0 = param1;
+    ForesightSpriteContext *ctx = param;
 
-    switch (v0->unk_0C) {
-    case 0:
-        v0->unk_6C++;
+    switch (ctx->state) {
+    case FORESIGHT_STATE_DELAY:
+        ctx->delay++;
 
-        if (v0->unk_6C > 4) {
-            ov12_02231760(v0);
-            v0->unk_0C++;
-            v0->unk_6C = 0;
+        if (ctx->delay > FORESIGHT_START_DELAY) {
+            ForesightSprite_InitMoveSegment(ctx);
+            ctx->state++;
+            ctx->delay = 0;
         }
         break;
-    case 1:
-        if (PosLerpContext_Update(&v0->unk_18)) {
-            XYTransformContext_ApplyPosOffsetToSprite(&v0->unk_18, v0->unk_14, v0->unk_64, v0->unk_66);
+    case FORESIGHT_STATE_MOVE:
+        if (PosLerpContext_Update(&ctx->pos)) {
+            XYTransformContext_ApplyPosOffsetToSprite(&ctx->pos, ctx->sprite, ctx->baseX, ctx->baseY);
         } else {
-            v0->unk_68++;
+            ctx->segment++;
 
-            if (v0->unk_68 < 6) {
-                v0->unk_0C = 0;
-                v0->unk_64 += v0->unk_18.x;
-                v0->unk_66 += v0->unk_18.y;
+            if (ctx->segment < FORESIGHT_SEGMENT_COUNT) {
+                ctx->state = FORESIGHT_STATE_DELAY;
+                ctx->baseX += ctx->pos.x;
+                ctx->baseY += ctx->pos.y;
             } else {
-                v0->unk_0C++;
+                ctx->state++;
 
-                ManagedSprite_SetExplicitOamMode(v0->unk_14, GX_OAM_MODE_XLU);
+                ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_XLU);
                 AlphaFadeContext_Init(
-                    &v0->unk_3C, 16, 0, 0, 16, 16);
+                    &ctx->alpha,
+                    FORESIGHT_FADE_EV1_START,
+                    FORESIGHT_FADE_EV1_END,
+                    FORESIGHT_FADE_EV2_START,
+                    FORESIGHT_FADE_EV2_END,
+                    FORESIGHT_FADE_FRAMES);
 
-                PokemonSprite_StartFade(v0->unk_10, 0, 10, 0, GX_RGB(31, 31, 31));
+                PokemonSprite_StartFade(
+                    ctx->defenderSprite,
+                    FORESIGHT_FLASH_START_ALPHA,
+                    FORESIGHT_FLASH_END_ALPHA,
+                    FORESIGHT_FLASH_DELAY,
+                    FORESIGHT_FLASH_COLOR);
             }
         }
         break;
-    case 2:
-        if (AlphaFadeContext_IsDone(&v0->unk_3C)) {
-            ManagedSprite_SetDrawFlag(v0->unk_14, 0);
+    case FORESIGHT_STATE_FADE_OUT:
+        if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+            ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
         }
 
-        if (PokemonSprite_IsFadeActive(v0->unk_10) == 0) {
-            v0->unk_0C++;
-            PokemonSprite_StartFade(v0->unk_10, 10, 0, 0, GX_RGB(31, 31, 31));
+        if (PokemonSprite_IsFadeActive(ctx->defenderSprite) == FALSE) {
+            ctx->state++;
+            PokemonSprite_StartFade(
+                ctx->defenderSprite,
+                FORESIGHT_FLASH_END_ALPHA,
+                FORESIGHT_FLASH_START_ALPHA,
+                FORESIGHT_FLASH_DELAY,
+                FORESIGHT_FLASH_COLOR);
         }
         break;
-    case 3:
-        if (PokemonSprite_IsFadeActive(v0->unk_10) == 0) {
-            v0->unk_0C++;
+    case FORESIGHT_STATE_WAIT_FLASH:
+        if (PokemonSprite_IsFadeActive(ctx->defenderSprite) == FALSE) {
+            ctx->state++;
         }
         break;
-    case 4:
-        Sprite_DeleteAndFreeResources(v0->unk_14);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case FORESIGHT_STATE_CLEANUP:
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02231950(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Foresight(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_02231760 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02231760));
+    ForesightSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ForesightSpriteContext));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
-    v0->unk_14 = param3;
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
+    ctx->sprite = sprite;
 
-    ManagedSprite_SetPriority(v0->unk_14, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_14, 1);
-    ManagedSprite_GetPositionXY(v0->unk_14, &v0->unk_64, &v0->unk_66);
+    ManagedSprite_SetPriority(ctx->sprite, 100);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, 1);
+    ManagedSprite_GetPositionXY(ctx->sprite, &ctx->baseX, &ctx->baseY);
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0223181C, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ForesightSprite, ctx);
 }
 
 static void ov12_022319AC(UnkStruct_ov12_022319AC *param0)
