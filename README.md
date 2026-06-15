@@ -2,6 +2,8 @@
 
 This is a WIP PC port of Pokemon Platinum based on the [pret](https://github.com/pret/pokeplatinum) decompilation project.
 
+Currently it is possible to reach the first gym.
+
 To build: 
 * make linux
 * (WIN64 TODO)
