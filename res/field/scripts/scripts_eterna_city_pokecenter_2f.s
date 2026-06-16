@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 EternaCityPokecenter2F_SchoolKidM:
-    NPCMessage EternaCityPokecenter2F_Text_MultiBattlesAreTheUltimateInPulsePoundingAction
+    NPCMessage EternaCityPokecenter2F_Text_MultiBattlesAreUltimateAction
     End
 
     .balign 4, 0

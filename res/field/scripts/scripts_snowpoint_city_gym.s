@@ -21,7 +21,7 @@ SnowpointGym_Candice:
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_CandiceAfterBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 167, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_SNOWPOINT_CITY_GYM, 0, 0, 0
     Message SnowpointGym_Text_CandiceIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_CANDICE
@@ -40,7 +40,7 @@ SnowpointGym_Candice:
     SetTrainerFlag TRAINER_ACE_TRAINER_SAVANNAH
     SetTrainerFlag TRAINER_ACE_TRAINER_ALICIA
     SetTrainerFlag TRAINER_ACE_TRAINER_BRENNA
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 167, TRAINER_LEADER_CANDICE, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_SNOWPOINT_CITY_GYM, TRAINER_LEADER_CANDICE, 0, 0
     SetFlag FLAG_HIDE_VEILSTONE_GALACTIC_GRUNTS
     Message SnowpointGym_Text_CandiceExplainIcicleBadge
     GoTo SnowpointGym_CandiceTryGiveTM72

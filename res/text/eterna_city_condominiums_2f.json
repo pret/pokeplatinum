@@ -2,7 +2,7 @@
   "key": 37918,
   "messages": [
     {
-      "id": "EternaCityCondominiums2F_Text_IveHadThisTMRecycleForSuchALongTimeNow",
+      "id": "EternaCityCondominiums2F_Text_HadTMLongTimeNow",
       "en_US": [
         "I’ve had this TM Recycle for such\n",
         "a long time now.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums2F_Text_FolksLikeMeHaveALongHistoryWeCanLookBackOn",
+      "id": "EternaCityCondominiums2F_Text_LongHistory",
       "en_US": [
         "Folks like me have a long history\n",
         "we can look back on.\r",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums2F_Text_GardeniaOurGymLeaderGoesOutToEternaForestEverySoOften",
+      "id": "EternaCityCondominiums2F_Text_GardeniaGoesToEternaForest",
       "en_US": [
         "Gardenia, our Gym Leader, goes out\n",
         "to Eterna Forest every so often.\r",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums2F_Text_TheMoveRecycleIsToBeUsedDuringBattle",
+      "id": "EternaCityCondominiums2F_Text_RecycleUsedDuringBattle",
       "en_US": [
         "The move Recycle is to be used during\n",
         "battle.\r",

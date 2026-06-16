@@ -20,7 +20,7 @@ VeilstoneGym_Maylene:
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_MayleneAfterBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 133, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_VEILSTONE_CITY_GYM, 0, 0, 0
     Message VeilstoneGym_Text_MayleneIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_MAYLENE
@@ -37,7 +37,7 @@ VeilstoneGym_Maylene:
     SetTrainerFlag TRAINER_BLACK_BELT_DARREN
     SetTrainerFlag TRAINER_BLACK_BELT_RAFAEL
     SetTrainerFlag TRAINER_BLACK_BELT_JEFFERY
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 133, TRAINER_LEADER_MAYLENE, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_VEILSTONE_CITY_GYM, TRAINER_LEADER_MAYLENE, 0, 0
     SetFlag FLAG_HIDE_GAME_CORNER_LOOKER
     ClearFlag FLAG_HIDE_VEILSTONE_COUNTERPART
     SetVar VAR_VEILSTONE_WAREHOUSE_GUARDS_FIGHTABLE, TRUE

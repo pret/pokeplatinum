@@ -9,19 +9,19 @@
     ScriptEntryEnd
 
 ContestHallStageNoContest_Hiker:
-    NPCMessage ContestHallStageNoContest_Text_ForTheVisualJudgingDressUpYourPokemon
+    NPCMessage ContestHallStageNoContest_Text_DressUpYourPokemon
     End
 
 ContestHallStageNoContest_Idol:
-    NPCMessage ContestHallStageNoContest_Text_ForTheDanceCompetitionMimicTheLeadDancer
+    NPCMessage ContestHallStageNoContest_Text_MimicTheLeadDancer
     End
 
 ContestHallStageNoContest_Beauty:
-    NPCMessage ContestHallStageNoContest_Text_ForThePerformancePokemonNeedTheRightMoves
+    NPCMessage ContestHallStageNoContest_Text_PokemonNeedTheRightMoves
     End
 
 ContestHallStageNoContest_BlackBelt:
-    NPCMessage ContestHallStageNoContest_Text_AtTheCoolContestPullOffACoolMove
+    NPCMessage ContestHallStageNoContest_Text_PullOffACoolMove
     End
 
     .balign 4, 0

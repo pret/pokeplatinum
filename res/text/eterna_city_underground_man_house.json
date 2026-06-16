@@ -2,7 +2,7 @@
   "key": 5195,
   "messages": [
     {
-      "id": "EternaCityUndergroundManHouse_Text_YouCanCallMeTheUndergroundManIllMakeAGiftOfThisToYou",
+      "id": "EternaCityUndergroundManHouse_Text_CallMeUndergroundMan",
       "en_US": [
         "I am! I am the first to have gone\n",
         "underground and dug some tunnels.\r",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_LetMeMentorYouIntoBecomingAFullFledgedSpelunker",
+      "id": "EternaCityUndergroundManHouse_Text_MentorYouBecomingSpelunker",
       "en_US": [
         "My gift to you, the Explorer Kit,\n",
         "will instantly take you underground!\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_LetMeMentorYouAsYouBecomeAFullFledgedSpelunker",
+      "id": "EternaCityUndergroundManHouse_Text_MentorYouBecomeSpelunker",
       "en_US": [
         "Let me mentor you as you become\n",
         "a full-fledged spelunker!\r",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_ICantForceYouToAcceptMyProposalIfYoureNotInclined",
+      "id": "EternaCityUndergroundManHouse_Text_CantForceAcceptProposal",
       "en_US": [
         "I had hoped to teach a youngster\n",
         "like you about the many charms of\f",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_IWillTeachYouByAssigningMissionsFirstGoUnderground",
+      "id": "EternaCityUndergroundManHouse_Text_FirstGoUnderground",
       "en_US": [
         "Hm!\n",
         "Well said, my young friend!\r",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_ToGetDownToTheUndergroundTunnelsYouNeedOnlyToUseYourExplorerKit",
+      "id": "EternaCityUndergroundManHouse_Text_UseExplorerKit",
       "en_US": [
         "You’ve not gone underground yet?\r",
         "To get down to the underground\n",
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_ISeeThatYouveGoneDownToTheUndergroundTunnelsTakeTheseAsRewards",
+      "id": "EternaCityUndergroundManHouse_Text_YouveGoneDownToUnderground",
       "en_US": [
         "Hm! I see that you’ve gone down to\n",
         "the underground tunnels!\r",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_ForMyNextTestIWantYouToDigUpSomeTreasureOrSpheresForMe",
+      "id": "EternaCityUndergroundManHouse_Text_DigUpTreasureOrSpheres",
       "en_US": [
         "How was it in the underground\n",
         "tunnels?\r",
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_YouveNotLocatedAnyTreasureOrSpheresYet",
+      "id": "EternaCityUndergroundManHouse_Text_CheckRadarYellowSpots",
       "en_US": [
         "You’ve not located any Treasure \n",
         "or Spheres yet?\r",
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_YouDugUpWhatIWasLookingForTakeTheseAsYourReward",
+      "id": "EternaCityUndergroundManHouse_Text_YouDugUpWhatIWasLookingFor",
       "en_US": [
         "Ah! You dug up what I was looking for!\n",
         "Good job on finding it!\r",
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_DigInTheWallsOfTheUndergroundTunnelsToUnearthHiddenStuff",
+      "id": "EternaCityUndergroundManHouse_Text_DigInWalls",
       "en_US": [
         "Dig in the walls of the underground\n",
         "tunnels to unearth hidden stuff.\r",
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_IWantYouToGoBuryTheseStrangeSpheresInTheUnderground",
+      "id": "EternaCityUndergroundManHouse_Text_BuryTheseSpheres",
       "en_US": [
         "My tests aren’t over yet!\n",
         "Next, let’s use some Spheres!\r",
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_YouveNotBuriedTheSpheresYet",
+      "id": "EternaCityUndergroundManHouse_Text_GoBuryThoseSpheres",
       "en_US": [
         "You’ve not buried the Spheres yet?\n",
         "You’re afraid of losing them?\r",
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_YouveBuriedYourSpheresThisIsYourReward",
+      "id": "EternaCityUndergroundManHouse_Text_YouveBuriedSpheres",
       "en_US": [
         "Good, good!\n",
         "You’ve buried your Spheres!\r",
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_YouMayHaveSeenThemAlreadyButTheseAreSphereCollectors",
+      "id": "EternaCityUndergroundManHouse_Text_TheseAreSphereCollectors",
       "en_US": [
         "You may have seen them already, but\n",
         "there are Sphere collectors.\r",
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_YourNextAssignmentIsGoMakeYourOwnSecretBase",
+      "id": "EternaCityUndergroundManHouse_Text_GoMakeSecretBase",
       "en_US": [
         "Have you grown weary of repeatedly\n",
         "going back to the Underground?\r",
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_HmYouDontKnowHowToUseTheDiggerDrill",
+      "id": "EternaCityUndergroundManHouse_Text_ExplainDiggerDrill",
       "en_US": [
         "Hm? You don’t know how to use\n",
         "the Digger Drill?\r",
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_AhYouveMadeYourSecretBaseTakeTheseAsYourReward",
+      "id": "EternaCityUndergroundManHouse_Text_YouveMadeSecretBase",
       "en_US": [
         "Ah, you’ve made your Secret Base!\n",
         "Excellent!\r",
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_IncidentallyADiggerDrillCanBeUsedOnlyOnce",
+      "id": "EternaCityUndergroundManHouse_Text_DiggerDrillUsedOnlyOnce",
       "en_US": [
         "Incidentally, a Digger Drill can\n",
         "be used only once.\r",
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_ForMyFinalTestIWantYouToDecorateYourSecretBase",
+      "id": "EternaCityUndergroundManHouse_Text_DecorateSecretBase",
       "en_US": [
         "Hm! You’ve stuck it out to the end!\n",
         "This is my final test.\r",
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_AhHaveIFinallyManagedToStumpYou",
+      "id": "EternaCityUndergroundManHouse_Text_FinallyStumpedYou",
       "en_US": [
         "Ah, have I finally managed to stump\n",
         "you?\r",
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_AhYouveEvenManagedToDecorateYourSecretBaseThisIsYourReward",
+      "id": "EternaCityUndergroundManHouse_Text_YouveDecoratedSecretBase",
       "en_US": [
         "Ah! You’ve even managed to decorate\n",
         "your Secret Base!\r",
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_ThereAreWaysOfCollectingMoreDecorationGoods",
+      "id": "EternaCityUndergroundManHouse_Text_WaysOfCollectingMoreGoods",
       "en_US": [
         "There are ways of collecting more\n",
         "decoration goods.\r",
@@ -324,7 +324,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_IfYouInsistThereIsOneMoreThingIShouldTellYou",
+      "id": "EternaCityUndergroundManHouse_Text_OneMoreThing",
       "en_US": [
         "I’ve taught you all I know, but if\n",
         "you insist, there is one more thing\f",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_StealYourFriendsFlagIfYouCanDoThatIWillPermitYouToMoveBoulders",
+      "id": "EternaCityUndergroundManHouse_Text_StealYourFriendsFlag",
       "en_US": [
         "...Hm! However, you are someone I’d\n",
         "recognized as a born spelunker...\r",
@@ -361,7 +361,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_IfYouManageToStealAFlagYouBeSureToComeShowMe",
+      "id": "EternaCityUndergroundManHouse_Text_IfYouStealFlagShowMe",
       "en_US": [
         "Ah! My spelunker!\n",
         "Are you spelunking with your friends?\r",
@@ -373,7 +373,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_YouveCapturedAFlagThisIsYourReward",
+      "id": "EternaCityUndergroundManHouse_Text_CapturedAFlagReward",
       "en_US": [
         "Wait! Don’t tell me!\n",
         "You’ve captured a Flag?\r",
@@ -387,7 +387,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_ThereReallyIsNothingElseThatICanTeachYou",
+      "id": "EternaCityUndergroundManHouse_Text_NothingElseICanTeachYou",
       "en_US": [
         "There really is nothing else that\n",
         "I can teach you.\r",
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_SoMySpelunkerAreYouGoingUndergroundWithYourFriends",
+      "id": "EternaCityUndergroundManHouse_Text_AreYouGoingUnderground",
       "en_US": [
         "So, my spelunker, are you going\n",
         "underground with your friends?\r",
@@ -408,7 +408,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_AhYouveCapturedThreeFlagsTakeThisAsYourReward",
+      "id": "EternaCityUndergroundManHouse_Text_CapturedThreeFlagsReward",
       "en_US": [
         "Ah, you’ve captured three Flags!\r",
         "Well done!\n",
@@ -416,7 +416,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_AhYouveCapturedTenFlagsTakeThisAsYourReward",
+      "id": "EternaCityUndergroundManHouse_Text_CapturedTenFlagsReward",
       "en_US": [
         "Ah, you’ve captured ten Flags!\r",
         "Well done!\n",
@@ -424,7 +424,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_MyGoodnessYouveCapturedFiftyFlagsTakeThisAsYourReward",
+      "id": "EternaCityUndergroundManHouse_Text_CapturedFiftyFlagsReward",
       "en_US": [
         "Oh! Oh! My goodness!\n",
         "You’ve captured fifty Flags!\r",
@@ -433,7 +433,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_FromNowOnYouAreTheSpelunkingMaster",
+      "id": "EternaCityUndergroundManHouse_Text_YouAreSpelunkingMaster",
       "en_US": [
         "You have been outstanding! There\n",
         "really is nothing left to teach you.\r",
@@ -442,7 +442,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_OhYourUndergroundPCAppearsToBeFull",
+      "id": "EternaCityUndergroundManHouse_Text_UndergroundPCAppearsFull",
       "en_US": [
         "Oh? Your underground PC appears\n",
         "to be full.\r",
@@ -458,7 +458,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_TheUndergroundTunnelsGoEverywhere",
+      "id": "EternaCityUndergroundManHouse_Text_TunnelsGoEverywhere",
       "en_US": [
         "The underground tunnels go\n",
         "everywhere!\r",
@@ -468,7 +468,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_AllIEverUnearthAreArmorFossils",
+      "id": "EternaCityUndergroundManHouse_Text_AllIUnearthAreArmorFossils",
       "en_US": [
         "All I ever unearth are Armor Fossils.\n",
         "My buddy only digs up Skull Fossils.\f",
@@ -498,7 +498,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_OhYoudLikeMoreAdviceOnDiggingUpTreasureAndSpheres",
+      "id": "EternaCityUndergroundManHouse_Text_YoudLikeMoreAdvice",
       "en_US": [
         "Oh, you’d like more advice on digging\n",
         "up Treasure and Spheres?\r",
@@ -517,7 +517,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_NewAndOnSaleUndergroundRadar",
+      "id": "EternaCityUndergroundManHouse_Text_OnSaleUndergroundRadar",
       "en_US": [
         "New and on sale!\n",
         "Underground Radar!\r",
@@ -528,18 +528,18 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_ShortcutToTheUndergroundIsOnTheScreen",
+      "id": "EternaCityUndergroundManHouse_Text_ShortcutToTheUnderground",
       "en_US": [
         "“Shortcut to the Underground” is on\n",
         "the screen.\r"
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_WhichHeadingWouldYouLikeToRead",
+      "id": "EternaCityUndergroundManHouse_Text_ReadWhichHeading",
       "en_US": "Which heading would you like to read?"
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_AFlagCanBeFoundInEverySecretBase",
+      "id": "EternaCityUndergroundManHouse_Text_ExplainFlags",
       "en_US": [
         "Flags: A Flag can be found in every\n",
         "Secret Base.\r",
@@ -551,7 +551,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_InTheUndergroundTunnelsYouCanDigUpPrettyStonesThatAreCalledSpheres",
+      "id": "EternaCityUndergroundManHouse_Text_ExplainSpheres",
       "en_US": [
         "Spheres: In the underground tunnels,\n",
         "you can dig up pretty stones that\f",
@@ -566,7 +566,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_ThereAreTrapsThatCanBePutDownInTheUndergroundTunnels",
+      "id": "EternaCityUndergroundManHouse_Text_ExplainTraps",
       "en_US": [
         "Traps: There are Traps that can be\n",
         "put down in the underground tunnels.\r",
@@ -577,7 +577,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_GoodsAreFurnitureAndDecorativeItemsForSecretBases",
+      "id": "EternaCityUndergroundManHouse_Text_ExplainGoods",
       "en_US": [
         "Goods: These are furniture and\n",
         "decorative items for Secret Bases.\r",
@@ -586,7 +586,7 @@
       ]
     },
     {
-      "id": "EternaCityUndergroundManHouse_Text_TreasuresAreRareItemsThatAppearWhileDiggingUnderground",
+      "id": "EternaCityUndergroundManHouse_Text_ExplainTreasures",
       "en_US": [
         "Treasure: These are rare items that\n",
         "appear while digging underground.\r",

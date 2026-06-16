@@ -33,12 +33,12 @@ ContestHallLobby_OnFrame_FirstEntry:
     WaitMovement
     Message ContestHallLobby_Text_WaitJohannaIsYourMom
     BufferPlayerName 0
-    Message ContestHallLobby_Text_IveNeverSpokenToPlayerAboutContests
-    Message ContestHallLobby_Text_INeedToThankYouForEarlier
+    Message ContestHallLobby_Text_NeverSpokenAboutContests
+    Message ContestHallLobby_Text_ThankYouForEarlier
     SetVar VAR_0x8004, ACCESSORY_GLITTER_POWDER
     SetVar VAR_0x8005, 1
     Common_GiveAccessory
-    Message ContestHallLobby_Text_PutThatAccessoryOnYourPokemon
+    Message ContestHallLobby_Text_PutAccessoryOnPokemon
     ApplyMovement LOCALID_KEIRA, ContestHallLobby_Movement_KeiraFaceMom
     ApplyMovement LOCALID_MOM, ContestHallLobby_Movement_MomFaceKeira
     WaitMovement
@@ -53,7 +53,7 @@ ContestHallLobby_OnFrame_FirstEntry:
     ApplyMovement LOCALID_PLAYER, ContestHallLobby_Movement_PlayerFaceMom
     WaitMovement
     BufferPlayerName 0
-    Message ContestHallLobby_Text_WereYouSurprisedToSeeMe
+    Message ContestHallLobby_Text_WereYouSurprised
     CloseMessage
     PlayFanfare SEQ_FANFA4
     GetPlayerGender VAR_RESULT
@@ -257,11 +257,11 @@ ContestHallLobby_AceTrainerF:
     End
 
 ContestHallLobby_Clown:
-    NPCMessage ContestHallLobby_Text_AContestHasVisualDanceAndActingParts
+    NPCMessage ContestHallLobby_Text_ContestHasParts
     End
 
 ContestHallLobby_SchoolKidF:
-    NPCMessage ContestHallLobby_Text_TheyPutUpPhotosOfTheWinners
+    NPCMessage ContestHallLobby_Text_PhotosOfWinners
     End
 
 ContestHallLobby_RichBoy:
@@ -270,8 +270,8 @@ ContestHallLobby_RichBoy:
     FacePlayer
     GoToIfUnset FLAG_TALKED_TO_CONTEST_HALL_LOBBY_RICH_BOY, ContestHallLobby_RichBoyFirstInteraction
     GoToIfUnset FLAG_RECEIVED_CONTEST_HALL_LOBBY_MILD_POFFIN, ContestHallLobby_HasNotReceivedPoffinYet
-ContestHallLobby_ItTakesPracticeToWinContests:
-    Message ContestHallLobby_Text_ItTakesPracticeToWinContests
+ContestHallLobby_TakesPracticeToWin:
+    Message ContestHallLobby_Text_TakesPracticeToWin
     WaitButton
     CloseMessage
     ReleaseAll
@@ -279,7 +279,7 @@ ContestHallLobby_ItTakesPracticeToWinContests:
 
 ContestHallLobby_HasNotReceivedPoffinYet:
     CheckItem ITEM_POFFIN_CASE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, ContestHallLobby_ItTakesPracticeToWinContests
+    GoToIfEq VAR_RESULT, FALSE, ContestHallLobby_TakesPracticeToWin
     Message ContestHallLobby_Text_YupYouHaveAPoffinCase
     CheckHasEmptyPoffinCaseSlot VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, ContestHallLobby_PoffinCaseIsFull
@@ -304,7 +304,7 @@ ContestHallLobby_RichBoyFirstInteraction:
     GoToIfEq VAR_RESULT, FALSE, ContestHallLobby_IDontSeeAPoffinCase
     Message ContestHallLobby_Text_YupYouHaveAPoffinCase
     CheckHasEmptyPoffinCaseSlot VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, ContestHallLobby_IllGiveItToYouAnotherTime
+    GoToIfEq VAR_RESULT, FALSE, ContestHallLobby_IllGiveItAnotherTime
     Call ContestHallLobby_GiveMildPoffin
     SetFlag FLAG_RECEIVED_CONTEST_HALL_LOBBY_MILD_POFFIN
     Message ContestHallLobby_Text_FeedThatPoffinToAPokemon
@@ -313,8 +313,8 @@ ContestHallLobby_RichBoyFirstInteraction:
     ReleaseAll
     End
 
-ContestHallLobby_IllGiveItToYouAnotherTime:
-    Message ContestHallLobby_Text_IllGiveItToYouAnotherTime
+ContestHallLobby_IllGiveItAnotherTime:
+    Message ContestHallLobby_Text_IllGiveItAnotherTime
     CloseMessage
     Call ContestHallLobby_RichBoyWalkAwayFromCounter
     ReleaseAll
@@ -333,7 +333,7 @@ ContestHallLobby_GiveMildPoffin:
     BufferPlayerName 0
     Message ContestHallLobby_Text_PlayerReceivedAMildPoffin
     WaitFanfare
-    Message ContestHallLobby_Text_TheMildPoffinWasPutAway
+    Message ContestHallLobby_Text_MildPoffinWasPutAway
     Return
 
 ContestHallLobby_RichBoyWalkAwayFromCounter:
