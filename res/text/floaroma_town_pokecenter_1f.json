@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_PoPoPokemonIWantToBecomeMoreLikeAPikachu",
+      "id": "FloaromaTownPokecenter1F_Text_ArielIntro_Unused",
       "en_US": [
         "Po-Po-Pokémon!\r",
         "I want to become more like a PIKACHU!\n",
@@ -46,15 +46,15 @@
       ]
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_PiPikachu",
+      "id": "FloaromaTownPokecenter1F_Text_ArielBattleAccepted_Unused",
       "en_US": "Pi-Pikachu!\r"
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_PiPikachu2",
+      "id": "FloaromaTownPokecenter1F_Text_ArielBattleDeclined_Unused",
       "en_US": "Pi-Pikachu!"
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_ICanMakeStaticElectricityButImNotVeryMuchLikeAPokemonYet",
+      "id": "FloaromaTownPokecenter1F_Text_ArielPostBattle_Unused",
       "en_US": [
         "I can make static electricity, but I’m\n",
         "not very much like a Pokémon yet.\r",

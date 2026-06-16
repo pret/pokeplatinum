@@ -340,7 +340,7 @@ PokemonCenterDailyTrainers_GraceIntroMessageOreburgh:
     Return
 
 PokemonCenterDailyTrainers_GraceIntroMessagePastoria:
-    Message PokemonCenterDailyTrainers_Text_GracePastiora_Intro
+    Message PokemonCenterDailyTrainers_Text_GracePastoria_Intro
     Return
 
 PokemonCenterDailyTrainers_GraceIntroMessageSnowpoint:
@@ -485,7 +485,7 @@ PokemonCenterDailyTrainers_GraceBattleAcceptedMessageOreburgh:
     Return
 
 PokemonCenterDailyTrainers_GraceBattleAcceptedMessagePastoria:
-    Message PokemonCenterDailyTrainers_Text_GracePastiora_BattleAccepted
+    Message PokemonCenterDailyTrainers_Text_GracePastoria_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_GraceBattleAcceptedMessageSnowpoint:
@@ -551,7 +551,7 @@ PokemonCenterDailyTrainers_LeeBattleAcceptedHearthome:
     Return
 
 PokemonCenterDailyTrainers_LeeBattleAcceptedPastoria:
-    Message PokemonCenterDailyTrainers_Text_LeePastiora_BattleAccepted
+    Message PokemonCenterDailyTrainers_Text_LeePastoria_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_LeeBattleAcceptedCelestic:
@@ -623,7 +623,7 @@ PokemonCenterDailyTrainers_ArturoBattleAcceptedCanalave:
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleAcceptedPastoria:
-    Message PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleAccepted
+    Message PokemonCenterDailyTrainers_Text_ArturoPastoria_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleAcceptedSunyshore:
@@ -642,7 +642,7 @@ PokemonCenterDailyTrainers_GraceBattleDeclinedOreburgh:
     Return
 
 PokemonCenterDailyTrainers_GraceBattleDeclinedPastoria:
-    Message PokemonCenterDailyTrainers_Text_GracePastiora_BattleDeclined
+    Message PokemonCenterDailyTrainers_Text_GracePastoria_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_GraceBattleDeclinedSnowpoint:
@@ -701,7 +701,7 @@ PokemonCenterDailyTrainers_LeeBattleDeclinedHearthome:
     Return
 
 PokemonCenterDailyTrainers_LeeBattleDeclinedPastoria:
-    Message PokemonCenterDailyTrainers_Text_LeePastiora_BattleDeclined
+    Message PokemonCenterDailyTrainers_Text_LeePastoria_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_LeeBattleDeclinedCelestic:
@@ -767,7 +767,7 @@ PokemonCenterDailyTrainers_ArturoBattleDeclinedCanalave:
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleDeclinedPastoria:
-    Message PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleDeclined
+    Message PokemonCenterDailyTrainers_Text_ArturoPastoria_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleDeclinedSunyshore:
@@ -787,7 +787,7 @@ PokemonCenterDailyTrainers_GracePostBattleMessageOreburgh:
     Return
 
 PokemonCenterDailyTrainers_GracePostBattleMessagePastoria:
-    Message PokemonCenterDailyTrainers_Text_GracePastiora_PostBattle
+    Message PokemonCenterDailyTrainers_Text_GracePastoria_PostBattle
     Return
 
 PokemonCenterDailyTrainers_GracePostBattleMessageSnowpoint:
@@ -853,7 +853,7 @@ PokemonCenterDailyTrainers_LeePostBattleMessageHearthome:
     Return
 
 PokemonCenterDailyTrainers_LeePostBattleMessagePastoria:
-    Message PokemonCenterDailyTrainers_Text_LeePastiora_PostBattle
+    Message PokemonCenterDailyTrainers_Text_LeePastoria_PostBattle
     Return
 
 PokemonCenterDailyTrainers_LeePostBattleMessageCelestic:
@@ -925,7 +925,7 @@ PokemonCenterDailyTrainers_ArturoPostBattleMessageCanalave:
     Return
 
 PokemonCenterDailyTrainers_ArturoPostBattleMessagePastoria:
-    Message PokemonCenterDailyTrainers_Text_ArturoPastiora_PostBattle
+    Message PokemonCenterDailyTrainers_Text_ArturoPastoria_PostBattle
     Return
 
 PokemonCenterDailyTrainers_ArturoPostBattleMessageSunyshore:

@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "CelesticTownPokecenter1F_Text_WantToBattle",
+      "id": "CelesticTownPokecenter1F_Text_LeeIntro_Unused",
       "en_US": [
         "As a clown, I like to show off Pokémon\n",
         "that are a little out of the ordinary.\r",
@@ -66,21 +66,21 @@
       ]
     },
     {
-      "id": "CelesticTownPokecenter1F_Text_DoSomethingFantastical",
+      "id": "CelesticTownPokecenter1F_Text_LeeBattleAccepted_Unused",
       "en_US": [
         "OK, how shall we do this?\n",
         "Shall we do something fantastical?\r"
       ]
     },
     {
-      "id": "CelesticTownPokecenter1F_Text_ItMakesMeLonely",
+      "id": "CelesticTownPokecenter1F_Text_LeeBattleDeclined_Unused",
       "en_US": [
         "Oh, how shall I say this...?\n",
         "It makes me all lonely, I say..."
       ]
     },
     {
-      "id": "CelesticTownPokecenter1F_Text_UselessTriviaCoulrophobia",
+      "id": "CelesticTownPokecenter1F_Text_LeePostBattle_Unused",
       "en_US": [
         "Here’s a piece of useless trivia.\n",
         "Fear of clowns is also known as\f",

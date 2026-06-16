@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_HiImGraceTheIdolSoShallWeBattle",
+      "id": "OreburghCityPokecenter1F_Text_GraceIntro_Unused",
       "en_US": [
         "Hi, I’m Grace, the Idol! I’m just back\n",
         "from a show in Oreburgh Mine!\r",
@@ -116,21 +116,21 @@
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_IllLetYouJoinMyFanClubIfYouCanBeatMe",
+      "id": "OreburghCityPokecenter1F_Text_GraceBattleAccepted_Unused",
       "en_US": [
         "I’ll let you join my fan club if you can\n",
         "beat me!\r"
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_YouWontAcceptMyChallengeButImAnIdol",
+      "id": "OreburghCityPokecenter1F_Text_GraceBattleDeclined_Unused",
       "en_US": [
         "You won’t accept my challenge?!\n",
         "But I’m an Idol..."
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_WellThatsMeAndMyPokemon",
+      "id": "OreburghCityPokecenter1F_Text_GracePostBattle_Unused",
       "en_US": [
         "Well, that’s me and my Pokémon!\n",
         "I hope you’ll support us!\r",
