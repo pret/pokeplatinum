@@ -2,128 +2,128 @@
   "key": 47894,
   "messages": [
     {
-      "id": "pl_msg_00000447_00000",
+      "id": "GeneralSentences_Text_HelloBlank",
       "en_US": [
         "Hello!\n",
         "{STRVAR_1 28, 0, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00001",
+      "id": "GeneralSentences_Text_ILoveBlank",
       "en_US": "I love {STRVAR_1 28, 0, 0}!"
     },
     {
-      "id": "pl_msg_00000447_00002",
+      "id": "GeneralSentences_Text_ILoveBlankILoveBlankToo",
       "en_US": [
         "I love {STRVAR_1 28, 0, 0}!\n",
         "I love {STRVAR_1 28, 1, 0}, too!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00003",
+      "id": "GeneralSentences_Text_ThisBlankIsBlankIsntIt",
       "en_US": [
         "This {STRVAR_1 28, 0, 0} is\n",
         "{STRVAR_1 28, 1, 0}, isn’t it?"
       ]
     },
     {
-      "id": "pl_msg_00000447_00004",
+      "id": "GeneralSentences_Text_ICanDoAnythingForBlank",
       "en_US": [
         "I can do anything for\n",
         "{STRVAR_1 28, 0, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00005",
+      "id": "GeneralSentences_Text_ThisBlankIsBlank",
       "en_US": [
         "This {STRVAR_1 28, 0, 0} is\n",
         "{STRVAR_1 28, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00006",
+      "id": "GeneralSentences_Text_BlankIsTheRealBlank",
       "en_US": [
         "{STRVAR_1 28, 0, 0} is the real\n",
         "{STRVAR_1 28, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00007",
+      "id": "GeneralSentences_Text_ItMightBeBlank",
       "en_US": "It might be {STRVAR_1 28, 0, 0}..."
     },
     {
-      "id": "pl_msg_00000447_00008",
+      "id": "GeneralSentences_Text_TheresOnlyBlankLeft",
       "en_US": [
         "There’s only {STRVAR_1 28, 0, 0}\n",
         "left!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00009",
+      "id": "GeneralSentences_Text_ItsBlankItsBlank",
       "en_US": [
         "It’s {STRVAR_1 28, 0, 0}!\n",
         "It’s {STRVAR_1 28, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00010",
+      "id": "GeneralSentences_Text_IPreferBlankAfterAll",
       "en_US": [
         "I prefer {STRVAR_1 28, 0, 0}\n",
         "after all!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00011",
+      "id": "GeneralSentences_Text_IsBlankBlank",
       "en_US": [
         "Is {STRVAR_1 28, 0, 0}\n",
         "{STRVAR_1 28, 1, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000447_00012",
+      "id": "GeneralSentences_Text_DoYouLikeBlank",
       "en_US": "Do you like {STRVAR_1 28, 0, 0}?"
     },
     {
-      "id": "pl_msg_00000447_00013",
+      "id": "GeneralSentences_Text_WhatDoYouThinkOfBlank",
       "en_US": [
         "What do you think of\n",
         "{STRVAR_1 28, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000447_00014",
+      "id": "GeneralSentences_Text_BlankIsSoBlank",
       "en_US": [
         "{STRVAR_1 28, 0, 0} is so\n",
         "{STRVAR_1 28, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00015",
+      "id": "GeneralSentences_Text_BlankAreBlank",
       "en_US": [
         "{STRVAR_1 28, 0, 0} are\n",
         "{STRVAR_1 28, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00016",
+      "id": "GeneralSentences_Text_BlankRight",
       "en_US": "{STRVAR_1 28, 0, 0}, right?"
     },
     {
-      "id": "pl_msg_00000447_00017",
+      "id": "GeneralSentences_Text_DidYouKnowBlankItsBlank",
       "en_US": [
         "Did you know {STRVAR_1 28, 0, 0}?\n",
         "It’s {STRVAR_1 28, 1, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00018",
+      "id": "GeneralSentences_Text_ExcuseMeItsBlank",
       "en_US": [
         "Excuse me...\n",
         "It’s {STRVAR_1 28, 0, 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000447_00019",
+      "id": "GeneralSentences_Text_BlankRightBlank",
       "en_US": [
         "{STRVAR_1 28, 0, 0}, right?\n",
         "{STRVAR_1 28, 1, 0}!"

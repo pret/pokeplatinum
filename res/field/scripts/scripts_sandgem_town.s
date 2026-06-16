@@ -9,7 +9,7 @@
     ScriptEntry SandgemTown_Youngster
     ScriptEntry SandgemTown_PokemonBreederM
     ScriptEntry SandgemTown_PokemonBreederF
-    ScriptEntry SandgemTown_Unused
+    ScriptEntry SandgemTown_RowansComeBack_Unused
     ScriptEntry SandgemTown_MapSignpost
     ScriptEntry SandgemTown_SignboardPokemonResearchLab
     ScriptEntry SandgemTown_SignboardCounterpartMailbox
@@ -323,12 +323,12 @@ SandgemTown_Movement_PlayerFaceCounterpartZ843:
     FaceSouth
     EndMovement
 
-SandgemTown_UnusedMovement:
+SandgemTown_Movement_Unused:
     Delay8 3
     WalkOnSpotNormalSouth
     EndMovement
 
-SandgemTown_UnusedMovement2:
+SandgemTown_Movement_Unused2:
     WalkNormalEast 4
     WalkNormalNorth 2
     EndMovement
@@ -674,7 +674,7 @@ SandgemTown_PokemonBreederF:
     NPCMessage SandgemTown_Text_IdBetterSaveThis
     End
 
-SandgemTown_Unused:
+SandgemTown_RowansComeBack_Unused:
     NPCMessage SandgemTown_Text_ProfessorRowansComeBackToTown
     End
 

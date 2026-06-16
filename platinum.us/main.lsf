@@ -56,8 +56,8 @@ Static main
 	Object main.nef.p/src_screen_scroll_manager.c.o
 	Object main.nef.p/src_particle_system.c.o
 	Object main.nef.p/src_colored_arrow.c.o
-	Object main.nef.p/src_unk_02014A84.c.o
-	Object main.nef.p/src_unk_02014D38.c.o
+	Object main.nef.p/src_easy_chat_sentence.c.o
+	Object main.nef.p/src_easy_chat_words.c.o
 	Object main.nef.p/src_software_sprite.c.o
 	Object main.nef.p/src_unk_0201567C.c.o
 	Object main.nef.p/src_poffin_types.c.o

@@ -3,7 +3,7 @@
 
 
     ScriptEntry SandgemTownMart_CommonVendor
-    ScriptEntry SandgemTownMart_Dummy
+    ScriptEntry SandgemTownMart_Dummy2
     ScriptEntry SandgemTownMart_Breeder
     ScriptEntry SandgemTownMart_SchoolBoy
     ScriptEntryEnd
@@ -12,7 +12,7 @@ SandgemTownMart_CommonVendor:
     PokeMartCommonWithGreeting 0
     End
 
-SandgemTownMart_Dummy:
+SandgemTownMart_Dummy2:
     End
 
 SandgemTownMart_Breeder:

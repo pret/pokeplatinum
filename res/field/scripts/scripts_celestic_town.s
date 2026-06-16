@@ -169,12 +169,12 @@ CelesticTown_Movement_PlayerWatchElderEnterNorth:
     WalkOnSpotNormalEast
     EndMovement
 
-CelesticTown_UnusedMovement:
+CelesticTown_Movement_Unused:
     Delay8 8
     WalkOnSpotNormalSouth
     EndMovement
 
-CelesticTown_UnusedMovement2:
+CelesticTown_Movement_Unused2:
     Delay8 9
     WalkOnSpotNormalSouth
     EndMovement

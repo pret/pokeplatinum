@@ -13,9 +13,9 @@
     ScriptEntry BattleTower_OnFrame_DidntSaveBeforeQuit
     ScriptEntry BattleTower_Teala
     ScriptEntry BattleTower_OnFrame_QuitBattleSalon
-    ScriptEntry BattleTower_Unused9
-    ScriptEntry BattleTower_Unused10
-    ScriptEntry BattleTower_Unused11
+    ScriptEntry BattleTower_Dummy9
+    ScriptEntry BattleTower_ResultsMachine0_Unused
+    ScriptEntry BattleTower_ResultsMachine1_Unused
     ScriptEntry BattleTower_MachineWiFiResults
     ScriptEntry BattleTower_MachineWiFiLeaders
     ScriptEntry BattleTower_ParasolLady
@@ -1117,7 +1117,7 @@ BattleTower_Movement_PlayerFaceEast:
     FaceEast
     EndMovement
 
-BattleTower_Unused10:
+BattleTower_ResultsMachine0_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8000, 0
@@ -1125,7 +1125,7 @@ BattleTower_Unused10:
     Call BattleTower_ResultsMachine
     End
 
-BattleTower_Unused11:
+BattleTower_ResultsMachine1_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8000, 0
@@ -1196,7 +1196,7 @@ BattleTower_SchoolKidM1:
     NPCMessage BattleTower_Text_ManyToughTrainers
     End
 
-BattleTower_Unused9:
+BattleTower_Dummy9:
     End
 
 BattleTower_Pikachu2:

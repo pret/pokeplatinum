@@ -11,7 +11,7 @@
 #include "savedata.h"
 
 BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierDataDTO *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param6, enum HeapID heapID);
-void ov104_0223A30C(SaveData *saveData, FrontierDataDTO *param1, const u8 param2);
+void BattleTower_CreateWiFiTrainerParty(SaveData *saveData, FrontierDataDTO *dto, const u8 opponentID);
 FieldBattleDTO *FieldBattleDTO_NewBattleTower(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1);
 void ov104_0223A734(BattleTower *battleTower, u16 param1);
 u16 ov104_0223A750(BattleTower *battleTower, const u16 *param1);

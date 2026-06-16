@@ -187,7 +187,7 @@ VictoryRoad1FRoom2_Movement_PlayerWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
-VictoryRoad1FRoom2_UnusedMovement:
+VictoryRoad1FRoom2_Movement_Unused:
     WalkNormalNorth
     EndMovement
 

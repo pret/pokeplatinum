@@ -1,11 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_0202D63C_H
 #define POKEPLATINUM_STRUCT_0202D63C_H
 
+#include "constants/string.h"
+
 #include "overlay104/frontier_data_transfer.h"
 
 typedef struct UnkStruct_0202D63C_t {
-    FrontierPokemonDataDTO unk_00[3];
-    u16 unk_A8[8];
+    FrontierPokemonDataDTO monDataDTO[3];
+    u16 trainerName[TRAINER_NAME_LEN + 1];
     u8 unk_B8;
     u8 unk_B9;
     u8 unk_BA;
@@ -20,10 +22,10 @@ typedef struct UnkStruct_0202D63C_t {
         };
         u8 unk_C8_val2;
     };
-    u8 unk_C9;
-    u16 unk_CA[4];
-    u16 unk_D2[4];
-    u16 unk_DA[4];
+    u8 trainerType;
+    u16 introMsg[4];
+    u16 winMsg[4];
+    u16 loseMsg[4];
     u16 unk_E2;
 } UnkStruct_0202D63C;
 

@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry PokemonLeagueNorthPokecenterB1F_UnusedEntry1
+    ScriptEntry PokemonLeagueNorthPokecenterB1F_Dummy1
     ScriptEntryEnd
 
-PokemonLeagueNorthPokecenterB1F_UnusedEntry1:
+PokemonLeagueNorthPokecenterB1F_Dummy1:
     End

@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry Empty_UnusedEntry1
+    ScriptEntry Empty_Dummy1
     ScriptEntryEnd
 
-Empty_UnusedEntry1:
+Empty_Dummy1:
     End

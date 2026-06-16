@@ -9,7 +9,7 @@
     ScriptEntry PalParkLobby_OnTransition
     ScriptEntry PalParkLobby_Worker
     ScriptEntry PalParkLobby_OnFrame_TallyScore
-    ScriptEntry PalParkLobby_RecordUnused
+    ScriptEntry PalParkLobby_Record_Unused
     ScriptEntry PalParkLobby_Daughter
     ScriptEntry PalParkLobby_Dad
     ScriptEntry PalParkLobby_ShowWatcherBoy
@@ -290,7 +290,7 @@ PalParkLobby_Movement_PlayerLeaveCounter:
     WalkNormalSouth 4
     EndMovement
 
-PalParkLobby_RecordUnused:
+PalParkLobby_Record_Unused:
     NPCMessage PalParkLobby_Text_CurrentRecordHolder
     End
 

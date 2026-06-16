@@ -6,7 +6,7 @@
 
     ScriptEntry Route207_OnTransition
     ScriptEntry Route207_CoordEvent_Counterpart
-    ScriptEntry Route207_Unused
+    ScriptEntry Route207_Dummy3
     ScriptEntry Route207_CyclistM
     ScriptEntry Route207_ArrowSignpostMtCoronet
     ScriptEntry Route207_ArrowSignpostOreburghCity
@@ -111,12 +111,12 @@ Route207_Movement_PlayerFaceCounterpart:
     WalkOnSpotNormalWest
     EndMovement
 
-Route207_UnusedMovement:
+Route207_Movement_Unused:
     Delay8 8
     WalkOnSpotNormalWest
     EndMovement
 
-Route207_UnusedMovement2:
+Route207_Movement_Unused2:
     Delay8 1
     WalkOnSpotNormalNorth
     EndMovement
@@ -137,7 +137,7 @@ Route207_Movement_CounterpartLeave:
     WalkNormalWest 8
     EndMovement
 
-Route207_Unused:
+Route207_Dummy3:
     NPCMessage Route207_Text_Dummy8
     End
 

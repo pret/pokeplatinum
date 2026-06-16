@@ -3,7 +3,7 @@
 #include "res/field/events/events_battle_frontier.h"
 
 
-    ScriptEntry BattleFrontier_Unused1
+    ScriptEntry BattleFrontier_Dummy1
     ScriptEntry BattleFrontier_NinjaBoy
     ScriptEntry BattleFrontier_BlackBelt
     ScriptEntry BattleFrontier_Idol
@@ -26,7 +26,7 @@
     ScriptEntry BattleFrontier_Fisherman
     ScriptEntry BattleFrontier_TuberM
     ScriptEntry BattleFrontier_AttendantSouthwest
-    ScriptEntry BattleFrontier_Unused24
+    ScriptEntry BattleFrontier_ScratchOffCards_Unused
     ScriptEntry BattleFrontier_AttendantSoutheast
     ScriptEntry BattleFrontier_TrainerTipsSignpostBattleTower
     ScriptEntry BattleFrontier_TrainerTipsSignpostBattleHall
@@ -152,7 +152,7 @@ BattleFrontier_AttendantSouthwest:
     ReleaseAll
     End
 
-BattleFrontier_Unused24:
+BattleFrontier_ScratchOffCards_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -275,7 +275,7 @@ BattleFrontier_Movement_PlayerEnterBattleFactory:
     WalkFastEast 6
     EndMovement
 
-BattleFrontier_Unused1:
+BattleFrontier_Dummy1:
     End
 
     .balign 4, 0

@@ -10,7 +10,6 @@
 #include "generated/journal_online_events.h"
 #include "generated/species.h"
 
-#include "struct_decls/struct_02014FB0_decl.h"
 #include "struct_decls/struct_0207E060_decl.h"
 #include "struct_defs/wi_fi_history.h"
 
@@ -40,6 +39,7 @@
 #include "overlay066/struct_ov66_022589B4.h"
 #include "overlay068/struct_ov68_0225DC74.h"
 
+#include "easy_chat_words.h"
 #include "enums.h"
 #include "font.h"
 #include "game_records.h"
@@ -57,7 +57,6 @@
 #include "string_gf.h"
 #include "system_data.h"
 #include "trainer_info.h"
-#include "unk_02014D38.h"
 #include "unk_02030EA4.h"
 #include "unk_0207E060.h"
 #include "wifi_history_save_data.h"

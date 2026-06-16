@@ -123,7 +123,7 @@ PokemonLeagueHallwayToHallOfFame_Movement_PlayerFaceCynthia:
     WalkOnSpotNormalEast
     EndMovement
 
-PokemonLeagueElevatorToHallOfFame_UnusedMovement:
+PokemonLeagueElevatorToHallOfFame_Movement_Unused:
     WalkOnSpotNormalEast
     EndMovement
 

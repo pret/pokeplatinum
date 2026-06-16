@@ -421,7 +421,7 @@ ValorLakefront_Movement_CynthiaLeave:
     WalkNormalNorth 9
     EndMovement
 
-ValorLakefront_UnusedMovement:
+ValorLakefront_Movement_Unused:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
@@ -444,7 +444,7 @@ ValorLakefront_Movement_PlayerWatchRivalLeave:
     WalkOnSpotNormalNorth
     EndMovement
 
-ValorLakefront_UnusedMovement2:
+ValorLakefront_Movement_Unused2:
     Delay8 3
     WalkOnSpotNormalNorth
     EndMovement

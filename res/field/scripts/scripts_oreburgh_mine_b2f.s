@@ -17,7 +17,7 @@ OreburghMineB2F_Roark:
     GoTo OreburghMineB2F_RoarkTurnBackEast
 
 OreburghMineB2F_Unused:
-    ApplyMovement LOCALID_ROARK, OreburghMineB2F_UnusedMovement2
+    ApplyMovement LOCALID_ROARK, OreburghMineB2F_Movement_Unused2
     WaitMovement
     GoTo OreburghMineB2F_RoarkUseRockSmash
 
@@ -41,8 +41,8 @@ OreburghMineB2F_WaitRockSmash:
     GoTo OreburghMineB2F_RoarkLeave
 
 OreburghMineB2F_Unused2:
-    ApplyMovement 0, OreburghMineB2F_UnusedMovement
-    ApplyMovement LOCALID_PLAYER, OreburghMineB2F_UnusedMovement3
+    ApplyMovement 0, OreburghMineB2F_Movement_Unused
+    ApplyMovement LOCALID_PLAYER, OreburghMineB2F_Movement_Unused3
     WaitMovement
     GoTo OreburghMineB2F_RemoveRoark
 
@@ -59,7 +59,7 @@ OreburghMineB2F_RemoveRoark:
     End
 
     .balign 4, 0
-OreburghMineB2F_UnusedMovement:
+OreburghMineB2F_Movement_Unused:
     WalkNormalNorth
     WalkNormalEast 10
     EndMovement
@@ -69,7 +69,7 @@ OreburghMineB2F_Movement_RoarkLeave:
     WalkNormalEast 10
     EndMovement
 
-OreburghMineB2F_UnusedMovement2:
+OreburghMineB2F_Movement_Unused2:
     Delay8 2
     WalkOnSpotNormalNorth
     Delay8 4
@@ -82,7 +82,7 @@ OreburghMineB2F_Movement_RoarkTurnBackEast:
     Delay8 4
     EndMovement
 
-OreburghMineB2F_UnusedMovement3:
+OreburghMineB2F_Movement_Unused3:
     Delay8
     WalkOnSpotNormalNorth
     Delay8 2

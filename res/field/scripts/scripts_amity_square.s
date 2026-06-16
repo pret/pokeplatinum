@@ -55,7 +55,7 @@
     ScriptEntry AmitySquare_Warp25
     ScriptEntry AmitySquare_Warp26
     ScriptEntry AmitySquare_Warp27
-    ScriptEntry AmitySquare_UnusedEntry45
+    ScriptEntry AmitySquare_Dummy45
     ScriptEntryEnd
 
 AmitySquare_OnTransition:
@@ -274,7 +274,7 @@ AmitySquare_Movement_WalkNorth:
     WalkNormalNorth
     EndMovement
 
-AmitySquare_UnusedMovement:
+AmitySquare_Movement_Unused:
     WalkFastestSouth 2
     FaceWest
     EndMovement
@@ -1325,7 +1325,7 @@ AmitySquare_SetPositionsWarp27:
     SetPosition LOCALID_FOLLOWER_MON, 33, 5, 7, DIR_SOUTH
     Return
 
-AmitySquare_UnusedEntry45:
+AmitySquare_Dummy45:
     LockAll
     SetVar VAR_AMITY_SQUARE_STATE, 0
     ReleaseAll

@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle_tower.h"
+#include "constants/string.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/frontier_trainers.h"
 #include "generated/object_events_gfx.h"
@@ -29,7 +30,6 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "string_gf.h"
-#include "string_padding_mode.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_0202D05C.h"

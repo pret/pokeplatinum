@@ -8,12 +8,12 @@
     ScriptEntry PokemonCenter2FCommon_AttendantColosseum
     ScriptEntry _051E
     ScriptEntry PokemonCenter2FCommon_AttendantUnionRoom
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9004
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9005
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9006
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9007
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9008
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9009
+    ScriptEntry PokemonCenter2FCommon_Dummy9004
+    ScriptEntry PokemonCenter2FCommon_Dummy9005
+    ScriptEntry PokemonCenter2FCommon_Dummy9006
+    ScriptEntry PokemonCenter2FCommon_Dummy9007
+    ScriptEntry PokemonCenter2FCommon_Dummy9008
+    ScriptEntry PokemonCenter2FCommon_Dummy9009
     ScriptEntry _06A0
     ScriptEntry PokemonCenter2FCommon_AttendantSignTrainerCard
     ScriptEntry PokemonCenter2FCommon_OnFrame_ExitColosseum
@@ -442,22 +442,22 @@ PokemonCenter2FCommon_GriseousOrbCouldNotBeRemoved:
     Common_GriseousOrbCouldNotBeRemoved
     End
 
-PokemonCenter2FCommon_UnusedScript9004:
+PokemonCenter2FCommon_Dummy9004:
     End
 
-PokemonCenter2FCommon_UnusedScript9005:
+PokemonCenter2FCommon_Dummy9005:
     End
 
-PokemonCenter2FCommon_UnusedScript9006:
+PokemonCenter2FCommon_Dummy9006:
     End
 
-PokemonCenter2FCommon_UnusedScript9007:
+PokemonCenter2FCommon_Dummy9007:
     End
 
-PokemonCenter2FCommon_UnusedScript9008:
+PokemonCenter2FCommon_Dummy9008:
     End
 
-PokemonCenter2FCommon_UnusedScript9009:
+PokemonCenter2FCommon_Dummy9009:
     End
 
 _06A0:

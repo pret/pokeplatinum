@@ -6,7 +6,6 @@
 #include "constants/battle_tower.h"
 
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202D060.h"
 #include "struct_defs/struct_0202D080.h"
 #include "struct_defs/struct_0202D314.h"
@@ -20,11 +19,11 @@
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B450_sub2.h"
 
+#include "easy_chat_sentence.h"
 #include "heap.h"
 #include "inlines.h"
 #include "message.h"
 #include "savedata.h"
-#include "unk_02014A84.h"
 
 int sub_0202D05C(void)
 {
@@ -44,10 +43,10 @@ void sub_0202D06C(UnkStruct_0202D750 *param0)
 
 void sub_0202D080(UnkStruct_0202D080 *param0)
 {
-    sub_02014AC4(&param0->unk_00[0], 0);
-    sub_02014AC4(&param0->unk_00[1], 1);
-    sub_02014AC4(&param0->unk_00[2], 2);
-    sub_02014AC4(&param0->unk_00[3], 3);
+    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[0], EASY_CHAT_SENTENCE_TYPE_PRE_BATTLE);
+    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[1], EASY_CHAT_SENTENCE_TYPE_WIN);
+    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[2], EASY_CHAT_SENTENCE_TYPE_LOSS);
+    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[3], FRONTIER_EASY_CHAT_SENTENCE_TYPE_NO_1);
 }
 
 void sub_0202D0AC(UnkStruct_0202D764 *param0)
@@ -371,13 +370,13 @@ u32 sub_0202D474(UnkStruct_0202D750 *param0)
     return param0->unk_04;
 }
 
-void sub_0202D478(SaveData *saveData, int param1, Sentence *param2)
+void sub_0202D478(SaveData *saveData, int param1, EasyChatSentence *param2)
 {
     BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    Sentence_Copy(&(frontier->unk_950.unk_168.unk_00[param1]), param2);
+    EasyChatSentence_Copy(&(frontier->unk_950.unk_168.unk_00[param1]), param2);
 }
 
-Sentence *sub_0202D498(SaveData *saveData, int param1)
+EasyChatSentence *sub_0202D498(SaveData *saveData, int param1)
 {
     BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
 
@@ -487,28 +486,28 @@ void sub_0202D628(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1)
     param1->unk_04 = param0->unk_100;
 }
 
-void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *param1, const u8 param2)
+void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *dto, const u8 opponentNum)
 {
-    FrontierTrainerDataDTO *v0 = &(param1->trDataDTO);
-    FrontierPokemonDataDTO *v1 = param1->monDataDTO;
-    UnkStruct_0202D63C *v2 = &(param0->unk_104[param2]);
+    FrontierTrainerDataDTO *trDataDTO = &(dto->trDataDTO);
+    FrontierPokemonDataDTO *monDataDTO = dto->monDataDTO;
+    UnkStruct_0202D63C *v2 = &(param0->unk_104[opponentNum]);
 
-    v0->trainerID = 10000;
-    v0->trainerType = v2->unk_C9;
+    trDataDTO->trainerID = 10000;
+    trDataDTO->trainerType = v2->trainerType;
 
     if (v2->unk_C8_val1_unk_00_0) {
-        MessageLoader *v3 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELD2);
+        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELD2);
 
-        MessageLoader_Get(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->trainerName);
-        MessageLoader_Free(v3);
+        MessageLoader_Get(msgLoader, 22 + v2->unk_C8_val1_unk_00_1, trDataDTO->trainerName);
+        MessageLoader_Free(msgLoader);
     } else {
-        MI_CpuCopy8(v2->unk_A8, v0->trainerName, 16);
+        MI_CpuCopy8(v2->trainerName, trDataDTO->trainerName, 16);
     }
 
-    MI_CpuCopy8(v2->unk_CA, v0->introMsg, 8);
-    MI_CpuCopy8(v2->unk_D2, v0->winMsg, 8);
-    MI_CpuCopy8(v2->unk_DA, v0->loseMsg, 8);
-    MI_CpuCopy8(v2->unk_00, v1, sizeof(FrontierPokemonDataDTO) * 3);
+    MI_CpuCopy8(v2->introMsg, trDataDTO->introMsg, 8);
+    MI_CpuCopy8(v2->winMsg, trDataDTO->winMsg, 8);
+    MI_CpuCopy8(v2->loseMsg, trDataDTO->loseMsg, 8);
+    MI_CpuCopy8(v2->monDataDTO, monDataDTO, sizeof(FrontierPokemonDataDTO) * 3);
 }
 
 void sub_0202D6DC(UnkStruct_0202D764 *param0, UnkStruct_ov96_0223B450_sub2 *param1, u8 param2, u8 param3)

@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry ResortAreaPokecenterB1F_UnusedEntry1
+    ScriptEntry ResortAreaPokecenterB1F_Dummy1
     ScriptEntryEnd
 
-ResortAreaPokecenterB1F_UnusedEntry1:
+ResortAreaPokecenterB1F_Dummy1:
     End

@@ -33,11 +33,11 @@
     ScriptEntry CommonScript_2004 @ 0x7D4
     ScriptEntry CommonScript_SaveAndStoreResult @ 0x7D5
     ScriptEntry CommonScript_SaveGame  @ 0x7D6
-    ScriptEntry CommonScript_EmptyScript2007 @ 0x7D7
+    ScriptEntry CommonScript_Dummy2007 @ 0x7D7
     ScriptEntry CommonScript_HoneyTree @ 0x7D8
     ScriptEntry CommonScript_ObtainPoketchApp @ 0x7D9
-    ScriptEntry CommonScript_EmptyScript2010 @ 0x7DA
-    ScriptEntry CommonScript_EmptyScript2011 @ 0x7DB
+    ScriptEntry CommonScript_Dummy2010 @ 0x7DA
+    ScriptEntry CommonScript_Dummy2011 @ 0x7DB
     ScriptEntry CommonScript_SendToUndergroundPC @ 0x7DC
     ScriptEntry CommonScript_ObtainUndergroundTrap @ 0x7DD
     ScriptEntry CommonScript_ObtainUndergroundSphere @ 0x7DE
@@ -48,9 +48,9 @@
     ScriptEntry CommonScript_VendorGreetingGeneric @ 0x7E3
     ScriptEntry CommonScript_PlayerHouseBlackOutRecover @ 0x7E4
     ScriptEntry CommonScript_PokecenterBlackOutRecover @ 0x7E5
-    ScriptEntry CommonScript_EmptyScript2022 @ 0x7E6
+    ScriptEntry CommonScript_Dummy2022 @ 0x7E6
     ScriptEntry CommonScript_2023 @ 0x7E7
-    ScriptEntry CommonScript_EmptyScript2024 @ 0x7E8
+    ScriptEntry CommonScript_Dummy2024 @ 0x7E8
     ScriptEntry CommonScript_Geonet @ 0x7E9
     ScriptEntry CommonScript_2026 @ 0x7EA
     ScriptEntry CommonScript_Vent @ 0x7EB
@@ -63,7 +63,7 @@
     ScriptEntry CommonScript_ImpossibleToSave @ 0x7F2
     ScriptEntry CommonScript_BlockPokecenterBasement @ 0x7F3
     ScriptEntry CommonScript_ObtainContestBackdropWaitForConfirm @ 0x7F4
-    ScriptEntry CommonScript_EmptyScript2037 @ 0x7F5
+    ScriptEntry CommonScript_Dummy2037 @ 0x7F5
     ScriptEntry CommonScript_PlateObtainedEngraving @ 0x7F6
     ScriptEntry CommonScript_TryUseAzureFlute @ 0x7F7
     ScriptEntry CommonScript_SetCounterpartBGM @ 0x7F8
@@ -86,10 +86,10 @@
     ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved @ 0x809
     ScriptEntryEnd
 
-CommonScript_EmptyScript2010:
+CommonScript_Dummy2010:
     End
 
-CommonScript_EmptyScript2007:
+CommonScript_Dummy2007:
     End
 
 CommonScript_PokecenterNurse:
@@ -682,7 +682,7 @@ CommonScript_ObtainedPoketchAlarmClock:
     Message CommonStrings_Text_ObtainedPoketchAlarmClock
     Return
 
-CommonScript_EmptyScript2011:
+CommonScript_Dummy2011:
     End
 
 CommonScript_SendToUndergroundPC:
@@ -1148,7 +1148,7 @@ CommonScript_PCFadeOut:
     UnloadAnimation ANIMATION_TAG_PC
     Return
 
-CommonScript_EmptyScript2022:
+CommonScript_Dummy2022:
     End
 
 CommonScript_2023:
@@ -1344,11 +1344,11 @@ CommonScript_Movement_NurseTurnToMachine:
     FaceWest
     EndMovement
 
-CommonScript_UnusedMovement:
+CommonScript_Movement_Unused:
     FaceNorth
     EndMovement
 
-CommonScript_UnusedMovement2:
+CommonScript_Movement_Unused2:
     FaceEast
     EndMovement
 
@@ -1357,7 +1357,7 @@ CommonScript_Movement_NurseTurnToPlayer:
     FaceSouth
     EndMovement
 
-CommonScript_EmptyScript2024:
+CommonScript_Dummy2024:
     End
 
 CommonScript_Geonet:
@@ -1515,7 +1515,7 @@ CommonScript_Engraving8PlatesObtained:
     Message CommonStrings_Text_Engraving8PlatesObtained
     Return
 
-CommonScript_EmptyScript2037:
+CommonScript_Dummy2037:
     End
 
 CommonScript_TryUseAzureFlute:
