@@ -7,17 +7,17 @@
 #include "easy_chat_words.h"
 #include "string_gf.h"
 
-#define ADDED_WORD_BITS_SIZE ((WORD_COUNT >> 3) + 1)
+#define ADDED_WORD_BITS_SIZE ((EASY_CHAT_WORD_COUNT >> 3) + 1)
 
 typedef struct WordList {
     const EasyChatArgs *easyChatArgs;
     EasyChatWordLoader *wordLoader;
     u32 groupWordCounts[EASY_CHAT_GROUP_COUNT];
     u32 groupStartIndices[EASY_CHAT_GROUP_COUNT];
-    u16 wordsByGroup[WORD_COUNT];
+    u16 wordsByGroup[EASY_CHAT_WORD_COUNT];
     u32 letterWordCounts[ABC_MODE_CHAR_COUNT];
     u32 letterStartIndices[ABC_MODE_CHAR_COUNT];
-    u16 wordsByLetter[WORD_COUNT];
+    u16 wordsByLetter[EASY_CHAT_WORD_COUNT];
     u8 addedWordBits[ADDED_WORD_BITS_SIZE];
 } WordList;
 

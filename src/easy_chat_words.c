@@ -56,65 +56,65 @@ static const u16 sTextBanks[] = {
 };
 
 static const u16 sDummy[] = {
-    GET_ABILITY_WORD(ABILITY_ANTICIPATION),
-    GET_FEELINGS_WORD(Feelings_Text_Anticipation)
+    ABILITY_WORD(ABILITY_ANTICIPATION),
+    FEELINGS_WORD(Feelings_Text_Anticipation)
 };
 
 static const u16 sDummy2[] = {
-    GET_GREETING_WORD(Greetings_Text_Hey),
-    GET_GREETING_WORD(Greetings_Text_Hey_Unused)
+    GREETING_WORD(Greetings_Text_Hey),
+    GREETING_WORD(Greetings_Text_Hey_Unused)
 };
 
 static const u16 sDummy3[] = {
-    GET_GREETING_WORD(Greetings_Text_Huh_Unused),
-    GET_GREETING_WORD(Greetings_Text_Huh)
+    GREETING_WORD(Greetings_Text_Huh_Unused),
+    GREETING_WORD(Greetings_Text_Huh)
 };
 
 static const u16 sDummy4[] = {
-    GET_PEOPLE_WORD(PeopleWords_Text_I_Unused),
-    GET_PEOPLE_WORD(PeopleWords_Text_I_Unused2),
-    GET_PEOPLE_WORD(PeopleWords_Text_I_Unused3),
-    GET_PEOPLE_WORD(PeopleWords_Text_I)
+    PEOPLE_WORD(PeopleWords_Text_I_Unused),
+    PEOPLE_WORD(PeopleWords_Text_I_Unused2),
+    PEOPLE_WORD(PeopleWords_Text_I_Unused3),
+    PEOPLE_WORD(PeopleWords_Text_I)
 };
 
 static const u16 sDummy5[] = {
-    GET_PEOPLE_WORD(PeopleWords_Text_Kids),
-    GET_PEOPLE_WORD(PeopleWords_Text_Kids_Unused)
+    PEOPLE_WORD(PeopleWords_Text_Kids),
+    PEOPLE_WORD(PeopleWords_Text_Kids_Unused)
 };
 
 static const u16 sDummy6[] = {
-    GET_GREETING_WORD(Greetings_Text_NoWay),
-    GET_FEELINGS_WORD(Feelings_Text_NoWay)
+    GREETING_WORD(Greetings_Text_NoWay),
+    FEELINGS_WORD(Feelings_Text_NoWay)
 };
 
 static const u16 sDummy7[] = {
-    GET_GREETING_WORD(Greetings_Text_OK),
-    GET_GREETING_WORD(Greetings_Text_OK_Unused)
+    GREETING_WORD(Greetings_Text_OK),
+    GREETING_WORD(Greetings_Text_OK_Unused)
 };
 
 static const u16 sDummy8[] = {
-    GET_MOVE_WORD(MOVE_PSYCHIC),
-    GET_TYPE_WORD(TYPE_PSYCHIC)
+    MOVE_WORD(MOVE_PSYCHIC),
+    TYPE_WORD(TYPE_PSYCHIC)
 };
 
 static const u16 sDummy9[] = {
-    GET_ABILITY_WORD(ABILITY_SIMPLE),
-    GET_FEELINGS_WORD(Feelings_Text_Simple)
+    ABILITY_WORD(ABILITY_SIMPLE),
+    FEELINGS_WORD(Feelings_Text_Simple)
 };
 
 static const u16 sDummy10[] = {
-    GET_GREETING_WORD(Greetings_Text_Welcome_Unused),
-    GET_GREETING_WORD(Greetings_Text_Welcome)
+    GREETING_WORD(Greetings_Text_Welcome_Unused),
+    GREETING_WORD(Greetings_Text_Welcome)
 };
 
 static const u16 sDummy11[] = {
-    GET_GREETING_WORD(Greetings_Text_Wow),
-    GET_GREETING_WORD(Greetings_Text_Wow_Unused)
+    GREETING_WORD(Greetings_Text_Wow),
+    GREETING_WORD(Greetings_Text_Wow_Unused)
 };
 
 static const u16 sDummy12[] = {
-    GET_PEOPLE_WORD(PeopleWords_Text_You),
-    GET_PEOPLE_WORD(PeopleWords_Text_You_Unused)
+    PEOPLE_WORD(PeopleWords_Text_You),
+    PEOPLE_WORD(PeopleWords_Text_You_Unused)
 };
 
 static const struct {
