@@ -3165,18 +3165,18 @@ static const u16 *const sWordsByAlphabet[] = {
     [EXCLAMATION] = sOtherWords
 };
 
-static void EasyChatWordList_InitGroups(WordList *wordList);
-static u32 EasyChatWordList_ProcessPokemon(WordList *wordList, const u16 *words, u32 length, u16 *outList);
-static u32 EasyChatWordList_ProcessMoves(WordList *wordList, const u16 *words, u32 length, u16 *outList);
-static u32 EasyChatWordList_ProcessToughWords(WordList *wordList, const u16 *words, u32 length, u16 *outList);
-static u32 EasyChatWordList_ProcessGreetings(WordList *wordList, const u16 *words, u32 length, u16 *outList);
-static u32 EasyChatWordList_ProcessGeneric(WordList *wordList, const u16 *words, u32 length, u16 *outList);
-static void EasyChatWordList_InitAlphabetical(WordList *wordList);
-static u32 EasyChatWordList_ProcessAlphabetical(WordList *wordList, const u16 *words, u16 *outList, u32 outListIndex);
+static void EasyChatWordList_InitGroups(EasyChatWordList *wordList);
+static u32 EasyChatWordList_ProcessPokemon(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList);
+static u32 EasyChatWordList_ProcessMoves(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList);
+static u32 EasyChatWordList_ProcessToughWords(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList);
+static u32 EasyChatWordList_ProcessGreetings(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList);
+static u32 EasyChatWordList_ProcessGeneric(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList);
+static void EasyChatWordList_InitAlphabetical(EasyChatWordList *wordList);
+static u32 EasyChatWordList_ProcessAlphabetical(EasyChatWordList *wordList, const u16 *words, u16 *outList, u32 outListIndex);
 
-WordList *EasyChatWordList_New(enum HeapID heapID, const EasyChatArgs *easyChatArgs)
+EasyChatWordList *EasyChatWordList_New(enum HeapID heapID, const EasyChatArgs *easyChatArgs)
 {
-    WordList *wordList = Heap_Alloc(heapID, sizeof(WordList));
+    EasyChatWordList *wordList = Heap_Alloc(heapID, sizeof(EasyChatWordList));
     wordList->easyChatArgs = easyChatArgs;
     wordList->wordLoader = EasyChatWordLoader_New(heapID);
 
@@ -3190,7 +3190,7 @@ WordList *EasyChatWordList_New(enum HeapID heapID, const EasyChatArgs *easyChatA
     return wordList;
 }
 
-void EasyChatWordList_Free(WordList *wordList)
+void EasyChatWordList_Free(EasyChatWordList *wordList)
 {
     if (wordList) {
         EasyChatWordLoader_Free(wordList->wordLoader);
@@ -3198,7 +3198,7 @@ void EasyChatWordList_Free(WordList *wordList)
     }
 }
 
-typedef u32 (*ProcessWordsFunc)(WordList *wordList, const u16 *words, u32 length, u16 *outList);
+typedef u32 (*ProcessWordsFunc)(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList);
 
 static const struct {
     ProcessWordsFunc processFunc;
@@ -3219,7 +3219,7 @@ static const struct {
     [GROUP_UNION] = { EasyChatWordList_ProcessGeneric, sUnionWords, NELEMS(sUnionWords) - 1 },
 };
 
-static void EasyChatWordList_InitGroups(WordList *wordList)
+static void EasyChatWordList_InitGroups(EasyChatWordList *wordList)
 {
     for (int i = 0, total = 0; i < EASY_CHAT_GROUP_COUNT; i++) {
         wordList->groupStartIndices[i] = total;
@@ -3228,17 +3228,17 @@ static void EasyChatWordList_InitGroups(WordList *wordList)
     }
 }
 
-static inline void EasyChatWordList_FlagWordAsAdded(WordList *wordList, u32 word)
+static inline void EasyChatWordList_FlagWordAsAdded(EasyChatWordList *wordList, u32 word)
 {
     wordList->addedWordBits[word >> 3] |= (1 << (word & 7));
 }
 
-static inline BOOL EasyChatWordList_WasWordAddedToGroup(const WordList *wordList, u32 word)
+static inline BOOL EasyChatWordList_WasWordAddedToGroup(const EasyChatWordList *wordList, u32 word)
 {
     return (wordList->addedWordBits[word >> 3] & (1 << (word & 7))) != 0;
 }
 
-static u32 EasyChatWordList_ProcessPokemon(WordList *wordList, const u16 *words, u32 length, u16 *outList)
+static u32 EasyChatWordList_ProcessPokemon(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList)
 {
     u32 total = 0;
     const Pokedex *pokedex = EasyChatArgs_GetPokedex(wordList->easyChatArgs);
@@ -3254,7 +3254,7 @@ static u32 EasyChatWordList_ProcessPokemon(WordList *wordList, const u16 *words,
     return total;
 }
 
-static u32 EasyChatWordList_ProcessMoves(WordList *wordList, const u16 *words, u32 length, u16 *outList)
+static u32 EasyChatWordList_ProcessMoves(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList)
 {
     if (EasyChatArgs_IsGameCompleted(wordList->easyChatArgs)) {
         for (u32 i = 0; i < length; i++) {
@@ -3268,7 +3268,7 @@ static u32 EasyChatWordList_ProcessMoves(WordList *wordList, const u16 *words, u
     }
 }
 
-static u32 EasyChatWordList_ProcessToughWords(WordList *wordList, const u16 *words, u32 length, u16 *outList)
+static u32 EasyChatWordList_ProcessToughWords(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList)
 {
     const UnlockedEasyChatWords *unlockedWords = EasyChatArgs_GetUnlockedWords(wordList->easyChatArgs);
     u32 i, total;
@@ -3285,7 +3285,7 @@ static u32 EasyChatWordList_ProcessToughWords(WordList *wordList, const u16 *wor
     return total;
 }
 
-static u32 EasyChatWordList_ProcessGreetings(WordList *wordList, const u16 *words, u32 length, u16 *outList)
+static u32 EasyChatWordList_ProcessGreetings(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList)
 {
     const UnlockedEasyChatWords *unlockedWords = EasyChatArgs_GetUnlockedWords(wordList->easyChatArgs);
 
@@ -3309,7 +3309,7 @@ static u32 EasyChatWordList_ProcessGreetings(WordList *wordList, const u16 *word
     return total;
 }
 
-static u32 EasyChatWordList_ProcessGeneric(WordList *wordList, const u16 *words, u32 length, u16 *outList)
+static u32 EasyChatWordList_ProcessGeneric(EasyChatWordList *wordList, const u16 *words, u32 length, u16 *outList)
 {
     for (u32 i = 0; i < length; i++) {
         if (*words == DUPLICATE_WORDS) {
@@ -3330,7 +3330,7 @@ static u32 EasyChatWordList_ProcessGeneric(WordList *wordList, const u16 *words,
     return length;
 }
 
-static void EasyChatWordList_InitAlphabetical(WordList *wordList)
+static void EasyChatWordList_InitAlphabetical(EasyChatWordList *wordList)
 {
     int total = 0;
 
@@ -3341,7 +3341,7 @@ static void EasyChatWordList_InitAlphabetical(WordList *wordList)
     }
 }
 
-static u32 EasyChatWordList_ProcessAlphabetical(WordList *wordList, const u16 *words, u16 *outList, u32 outListIndex)
+static u32 EasyChatWordList_ProcessAlphabetical(EasyChatWordList *wordList, const u16 *words, u16 *outList, u32 outListIndex)
 {
     u32 total = 0;
 
@@ -3372,29 +3372,29 @@ static u32 EasyChatWordList_ProcessAlphabetical(WordList *wordList, const u16 *w
     return total;
 }
 
-u32 EasyChatWordList_GetGroupWordCount(const WordList *wordList, u32 group)
+u32 EasyChatWordList_GetGroupWordCount(const EasyChatWordList *wordList, u32 group)
 {
     return wordList->groupWordCounts[group];
 }
 
-void EasyChatWordList_GetStringByGroupIndex(const WordList *wordList, u32 group, u32 index, String *out)
+void EasyChatWordList_GetStringByGroupIndex(const EasyChatWordList *wordList, u32 group, u32 index, String *out)
 {
     u32 startIndex = wordList->groupStartIndices[group];
     EasyChatWordLoader_GetString(wordList->wordLoader, wordList->wordsByGroup[startIndex + index], out);
 }
 
-u16 EasyChatWordList_GetWordByGroupIndex(const WordList *wordList, u32 group, u32 index)
+u16 EasyChatWordList_GetWordByGroupIndex(const EasyChatWordList *wordList, u32 group, u32 index)
 {
     u32 startIndex = wordList->groupStartIndices[group];
     return wordList->wordsByGroup[startIndex + index];
 }
 
-u32 EasyChatWordList_GetLetterWordCount(const WordList *wordList, u32 letter)
+u32 EasyChatWordList_GetLetterWordCount(const EasyChatWordList *wordList, u32 letter)
 {
     return wordList->letterWordCounts[letter];
 }
 
-void EasyChatWordList_GetStringByLetterIndex(const WordList *wordList, u32 letter, u32 index, String *out)
+void EasyChatWordList_GetStringByLetterIndex(const EasyChatWordList *wordList, u32 letter, u32 index, String *out)
 {
     if (wordList->letterWordCounts[letter]) {
         u16 word = EasyChatWordList_GetWordByLetterIndex(wordList, letter, index);
@@ -3402,7 +3402,7 @@ void EasyChatWordList_GetStringByLetterIndex(const WordList *wordList, u32 lette
     }
 }
 
-u16 EasyChatWordList_GetWordByLetterIndex(const WordList *wordList, u32 letter, u32 index)
+u16 EasyChatWordList_GetWordByLetterIndex(const EasyChatWordList *wordList, u32 letter, u32 index)
 {
     if (wordList->letterWordCounts[letter]) {
         u32 wordIndex = wordList->letterStartIndices[letter] + index;

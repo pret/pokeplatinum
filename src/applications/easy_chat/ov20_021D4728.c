@@ -32,7 +32,7 @@ typedef struct {
 typedef struct UnkStruct_ov20_021D4AD4_t {
     UnkStruct_ov20_021D2128 *unk_00;
     const EasyChatApp *unk_04;
-    const WordList *unk_08;
+    const EasyChatWordList *unk_08;
     BgConfig *unk_0C;
     SpriteList *unk_10;
     Sprite *unk_14;
@@ -65,7 +65,7 @@ static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C *param0);
 static void ov20_021D4C40(SysTask *param0, void *param1);
 static Sprite *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, UnkStruct_ov20_021D4B2C *param3, int param4, int param5, int param6, int param7);
 
-UnkStruct_ov20_021D4AD4 *ov20_021D4728(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const WordList *param2)
+UnkStruct_ov20_021D4AD4 *ov20_021D4728(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const EasyChatWordList *param2)
 {
     UnkStruct_ov20_021D4AD4 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D4AD4));
 

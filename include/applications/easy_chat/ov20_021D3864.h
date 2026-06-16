@@ -8,7 +8,7 @@
 #include "easy_chat_word_list.h"
 #include "narc.h"
 
-UnkStruct_ov20_021D3980 *ov20_021D3864(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const WordList *param2);
+UnkStruct_ov20_021D3980 *ov20_021D3864(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const EasyChatWordList *param2);
 void ov20_021D3880(UnkStruct_ov20_021D3980 *param0);
 void ov20_021D3898(UnkStruct_ov20_021D3980 *param0, NARC *param1);
 void ov20_021D39BC(UnkStruct_ov20_021D3980 *param0);

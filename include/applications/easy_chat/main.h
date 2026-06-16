@@ -42,7 +42,7 @@ typedef struct EasyChatApp {
     EasyChatSentence sentence;
     u16 words[MAX_EASY_CHAT_WORDS];
     UnkStruct_ov20_021D2128 *unk_14;
-    WordList *unk_18;
+    EasyChatWordList *unk_18;
     int state;
     EasyChatMainFunc mainFunc;
     EasyChatMainFunc nextMainFunc;

@@ -41,7 +41,7 @@ enum EasyChatTask {
     EASY_CHAT_SYSTASK_28,
 };
 
-UnkStruct_ov20_021D2128 *ov20_021D2098(const EasyChatApp *param0, const WordList *param1);
+UnkStruct_ov20_021D2128 *ov20_021D2098(const EasyChatApp *param0, const EasyChatWordList *param1);
 void ov20_021D2128(UnkStruct_ov20_021D2128 *param0);
 SysTask *ov20_021D2170(SysTaskFunc param0, void *param1, int param2);
 void ov20_021D21A0(UnkStruct_ov20_021D2128 *param0, int param1);

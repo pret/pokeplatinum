@@ -21,7 +21,7 @@
 typedef struct UnkStruct_ov20_021D4210_t {
     UnkStruct_ov20_021D2128 *unk_00;
     const EasyChatApp *unk_04;
-    const WordList *unk_08;
+    const EasyChatWordList *unk_08;
     BgConfig *unk_0C;
     Window unk_10;
     Window unk_20;
@@ -43,7 +43,7 @@ static void ov20_021D45AC(UnkStruct_ov20_021D4210 *param0, int param1);
 static void ov20_021D4638(UnkStruct_ov20_021D4210 *param0);
 static void ov20_021D4658(UnkStruct_ov20_021D4210 *param0, u32 param1, u32 param2);
 
-UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const WordList *param2)
+UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const EasyChatWordList *param2)
 {
     UnkStruct_ov20_021D4210 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D4210));
 

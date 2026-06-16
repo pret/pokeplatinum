@@ -21,14 +21,14 @@
 typedef struct UnkStruct_ov20_021D3980_t {
     UnkStruct_ov20_021D2128 *unk_00;
     const EasyChatApp *unk_04;
-    const WordList *unk_08;
+    const EasyChatWordList *unk_08;
     Sprite *unk_0C;
 } UnkStruct_ov20_021D3980;
 
 static void ov20_021D390C(BgConfig *param0, const WindowTemplate *param1, u32 param2);
 static void ov20_021D3980(UnkStruct_ov20_021D3980 *param0);
 
-UnkStruct_ov20_021D3980 *ov20_021D3864(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const WordList *param2)
+UnkStruct_ov20_021D3980 *ov20_021D3864(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const EasyChatWordList *param2)
 {
     UnkStruct_ov20_021D3980 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D3980));
 

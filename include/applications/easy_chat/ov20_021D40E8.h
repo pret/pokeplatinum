@@ -7,7 +7,7 @@
 
 #include "easy_chat_word_list.h"
 
-UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const WordList *param2);
+UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const EasyChatWordList *param2);
 void ov20_021D4164(UnkStruct_ov20_021D4210 *param0);
 void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0);
 void ov20_021D4294(UnkStruct_ov20_021D4210 *param0);

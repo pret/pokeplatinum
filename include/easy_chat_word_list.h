@@ -9,7 +9,7 @@
 
 #define ADDED_WORD_BITS_SIZE ((EASY_CHAT_WORD_COUNT >> 3) + 1)
 
-typedef struct WordList {
+typedef struct EasyChatWordList {
     const EasyChatArgs *easyChatArgs;
     EasyChatWordLoader *wordLoader;
     u32 groupWordCounts[EASY_CHAT_GROUP_COUNT];
@@ -19,15 +19,15 @@ typedef struct WordList {
     u32 letterStartIndices[ABC_MODE_CHAR_COUNT];
     u16 wordsByLetter[EASY_CHAT_WORD_COUNT];
     u8 addedWordBits[ADDED_WORD_BITS_SIZE];
-} WordList;
+} EasyChatWordList;
 
-WordList *EasyChatWordList_New(enum HeapID heapID, const EasyChatArgs *easyChatArgs);
-void EasyChatWordList_Free(WordList *wordList);
-u32 EasyChatWordList_GetGroupWordCount(const WordList *wordList, u32 group);
-void EasyChatWordList_GetStringByGroupIndex(const WordList *wordList, u32 group, u32 index, String *out);
-u16 EasyChatWordList_GetWordByGroupIndex(const WordList *wordList, u32 group, u32 index);
-u32 EasyChatWordList_GetLetterWordCount(const WordList *wordList, u32 letter);
-void EasyChatWordList_GetStringByLetterIndex(const WordList *wordList, u32 letter, u32 index, String *out);
-u16 EasyChatWordList_GetWordByLetterIndex(const WordList *wordList, u32 letter, u32 index);
+EasyChatWordList *EasyChatWordList_New(enum HeapID heapID, const EasyChatArgs *easyChatArgs);
+void EasyChatWordList_Free(EasyChatWordList *wordList);
+u32 EasyChatWordList_GetGroupWordCount(const EasyChatWordList *wordList, u32 group);
+void EasyChatWordList_GetStringByGroupIndex(const EasyChatWordList *wordList, u32 group, u32 index, String *out);
+u16 EasyChatWordList_GetWordByGroupIndex(const EasyChatWordList *wordList, u32 group, u32 index);
+u32 EasyChatWordList_GetLetterWordCount(const EasyChatWordList *wordList, u32 letter);
+void EasyChatWordList_GetStringByLetterIndex(const EasyChatWordList *wordList, u32 letter, u32 index, String *out);
+u16 EasyChatWordList_GetWordByLetterIndex(const EasyChatWordList *wordList, u32 letter, u32 index);
 
 #endif // POKEPLATINUM_EASY_CHAT_WORD_LIST_H

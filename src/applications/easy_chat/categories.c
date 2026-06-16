@@ -43,7 +43,7 @@ static u32 EasyChatCategories_PrintABCModeSelection(EasyChatCategoriesContext *c
 static u32 EasyChatCategories_PrintCancelText(EasyChatCategoriesContext *ctx, BgConfig *bgConfig, u32 baseTile);
 static void ov20_021D3E0C(EasyChatCategoriesContext *ctx);
 
-EasyChatCategoriesContext *EasyChatCategoriesContext_New(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *easyChatApp, const WordList *param2)
+EasyChatCategoriesContext *EasyChatCategoriesContext_New(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *easyChatApp, const EasyChatWordList *param2)
 {
     EasyChatCategoriesContext *ctx = Heap_Alloc(HEAP_ID_35, sizeof(EasyChatCategoriesContext));
 
