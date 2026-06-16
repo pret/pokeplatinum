@@ -12,7 +12,7 @@ Route216_CantRideBike_Unused:
     End
 
 Route216_ArrowSignpostMtCoronet:
-    ShowArrowSign Route216_Text_SignRt216MtCoronet
+    ShowArrowSign Route216_Text_SignMtCoronet
     End
 
 Route216_SignboardSnowboundLodge:

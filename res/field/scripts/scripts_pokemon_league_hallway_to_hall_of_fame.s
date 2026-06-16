@@ -3,11 +3,11 @@
 #include "res/field/events/events_pokemon_league_hallway_to_hall_of_fame.h"
 
 
-    ScriptEntry PokemonLeagueHallwayToHallOfFame_OnFrame
-    ScriptEntry PokemonLeagueHallwayToHallOfFame_OnFrame
+    ScriptEntry PokemonLeagueHallwayToHallOfFame_OnFrame_EnterHallOfFame
+    ScriptEntry PokemonLeagueHallwayToHallOfFame_OnFrame_EnterHallOfFame
     ScriptEntryEnd
 
-PokemonLeagueHallwayToHallOfFame_OnFrame:
+PokemonLeagueHallwayToHallOfFame_OnFrame_EnterHallOfFame:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueHallwayToHallOfFame_Movement_PlayerEnterHallway
     WaitMovement
@@ -18,7 +18,7 @@ PokemonLeagueHallwayToHallOfFame_OnFrame:
     ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_CynthiaApproachPlayer
     ApplyMovement LOCALID_PLAYER, PokemonLeagueHallwayToHallOfFame_Movement_PlayerFaceCynthia
     WaitMovement
-    Message PokemonLeagueHallwayToHallOfFame_Text_TheRoomAheadIsTheHallOfFame
+    Message PokemonLeagueHallwayToHallOfFame_Text_RoomAheadIsHallOfFame
     CloseMessage
     SetObjectEventPos LOCALID_PROF_ROWAN, 4, 14
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN
@@ -35,10 +35,10 @@ PokemonLeagueHallwayToHallOfFame_OnFrame:
     WaitMovement
     Message PokemonLeagueHallwayToHallOfFame_Text_HelloProfessorRowan
     BufferPlayerName 0
-    Message PokemonLeagueHallwayToHallOfFame_Text_YouveGrownIntoARealChampion
+    Message PokemonLeagueHallwayToHallOfFame_Text_GrownIntoRealChampion
     ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_WalkInPlaceWest
     WaitMovement
-    Message PokemonLeagueHallwayToHallOfFame_Text_ProfessorYouStillEnjoyEnthusiasm
+    Message PokemonLeagueHallwayToHallOfFame_Text_YouStillEnjoyEnthusiasm
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, PokemonLeagueHallwayToHallOfFame_StepThisWayPleaseMale
     GoToIfEq VAR_RESULT, GENDER_FEMALE, PokemonLeagueHallwayToHallOfFame_StepThisWayPleaseFemale
@@ -55,7 +55,7 @@ PokemonLeagueHallwayToHallOfFame_StepThisWayPleaseFemale:
     GoTo PokemonLeagueHallwayToHallOfFame_EnterHallOfFameRoom
 
 PokemonLeagueHallwayToHallOfFame_EnterHallOfFameRoom:
-    Message PokemonLeagueHallwayToHallOfFame_Text_ProfessorRowanPleaseJoinUs
+    Message PokemonLeagueHallwayToHallOfFame_Text_ProfessorPleaseJoinUs
     CloseMessage
     ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_CynthiaEnterHallOfFameRoom
     ApplyMovement LOCALID_PROF_ROWAN, PokemonLeagueHallwayToHallOfFame_Movement_RowanEnterHallOfFameRoom

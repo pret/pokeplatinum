@@ -37,7 +37,7 @@ PoffinHouse_AddReporter:
     End
 
 PoffinHouse_Idol:
-    NPCMessage PoffinHouse_Text_HeresMyAdviceOnCookingPoffins
+    NPCMessage PoffinHouse_Text_AdviceOnCookingPoffins
     End
 
 PoffinHouse_OldMan:
@@ -45,9 +45,9 @@ PoffinHouse_OldMan:
     End
 
 PoffinHouse_OldWoman:
-    NPCMessage PoffinHouse_Text_EatingMakesPeopleAndPokemonHappy
+    NPCMessage PoffinHouse_Text_EatingMakesPeopleHappy
     End
 
 PoffinHouse_SchoolKidF:
-    NPCMessage PoffinHouse_Text_AtTheWiFiClubICanCookWithFriends
+    NPCMessage PoffinHouse_Text_ICanCookWithFriends
     End

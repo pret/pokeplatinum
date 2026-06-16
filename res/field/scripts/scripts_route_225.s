@@ -7,9 +7,9 @@
     ScriptEntryEnd
 
 Route225_ArrowSignpostFightArea:
-    ShowArrowSign Route225_Text_SignRt225FightArea
+    ShowArrowSign Route225_Text_SignFightArea
     End
 
 Route225_ArrowSignpostSurvivalArea:
-    ShowArrowSign Route225_Text_SignRt225SurvivalArea
+    ShowArrowSign Route225_Text_SignSurvivalArea
     End

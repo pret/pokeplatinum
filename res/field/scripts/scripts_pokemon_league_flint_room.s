@@ -4,7 +4,7 @@
 
 
     ScriptEntry PokemonLeagueFlintRoom_Flint
-    ScriptEntry PokemonLeagueFlintRoom_OnFrame
+    ScriptEntry PokemonLeagueFlintRoom_OnFrame_EnterRoom
     ScriptEntryEnd
 
 PokemonLeagueFlintRoom_Flint:
@@ -98,7 +98,7 @@ PokemonLeagueFlintRoom_Movement_WalkFastInPlace:
     UnlockDir
     EndMovement
 
-PokemonLeagueFlintRoom_OnFrame:
+PokemonLeagueFlintRoom_OnFrame_EnterRoom:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueFlintRoom_Movement_PlayerEnterRoom
     WaitMovement

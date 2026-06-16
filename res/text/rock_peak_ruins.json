@@ -2,7 +2,7 @@
   "key": 25726,
   "messages": [
     {
-      "id": "RockPeakRuins_Text_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut",
+      "id": "RockPeakRuins_Text_FromSomewhereSomethingSpokeOut",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power...\r",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "RockPeakRuins_Text_ItsAStatueOfAPokemonItSeemsToExudePower",
+      "id": "RockPeakRuins_Text_SeemsToExudePower",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power..."

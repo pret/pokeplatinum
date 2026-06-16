@@ -4,10 +4,10 @@
 #include "res/field/events/events_pokemon_league_hall_of_fame.h"
 
 
-    ScriptEntry PokemonLeagueHallOfFame_OnFrame
+    ScriptEntry PokemonLeagueHallOfFame_OnFrame_EnterHallOfFame
     ScriptEntryEnd
 
-PokemonLeagueHallOfFame_OnFrame:
+PokemonLeagueHallOfFame_OnFrame_EnterHallOfFame:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeague_HallOfFame_Movement_WalkUp
     WaitMovement
@@ -42,7 +42,7 @@ PokemonLeagueHallOfFame_EnterHallOfFame:
     ApplyMovement LOCALID_PROF_ROWAN, PokemonLeagueHallOfFame_Movement_RowanFaceMachine
     ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallOfFame_Movement_CynthiaFaceMachine
     WaitMovement
-    Message PokemonLeagueHallOfFame_Text_TimeToRecordYourNameAndYourPokemon
+    Message PokemonLeagueHallOfFame_Text_RecordYourNameAndPokemon
     CloseMessage
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_4
     GetNationalDexEnabled VAR_RESULT
@@ -76,7 +76,7 @@ PokemonLeagueHallOfFame_FirstVictoryMessages:
 
 PokemonLeagueHallOfFame_RepeatVictoryMessages:
     Message PokemonLeagueHallOfFame_Text_AlwaysStraighterThanUsual
-    Message PokemonLeagueHallOfFame_Text_ThisRoomIsALegacyToPokemonAndTrainers
+    Message PokemonLeagueHallOfFame_Text_LegacyToPokemonAndTrainers
     Return
 
     .balign 4, 0
@@ -156,7 +156,7 @@ PokemonLeagueHallOfFame_ResetSpearPillarPalkiaState:
     Return
 
 PokemonLeagueHallOfFame_TryShowStarkMountainHeatran:
-    GoToIfUnset FLAG_CAUGHT_MESPRIT, PokemonLeagueHallOfFame_DontShowStarkMountainHeatran
+    GoToIfUnset FLAG_TALKED_TO_BATTLEGROUND_BUCK, PokemonLeagueHallOfFame_DontShowStarkMountainHeatran
     ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     SetVar VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1
 PokemonLeagueHallOfFame_DontShowStarkMountainHeatran:

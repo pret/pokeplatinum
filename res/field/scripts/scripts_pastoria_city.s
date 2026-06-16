@@ -29,7 +29,7 @@
     ScriptEntryEnd
 
 PastoriaCity_OnTransition:
-    SetVar VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE, 0
+    SetVar VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE, 0
     SetFlag FLAG_HIDE_ROUTE_212_BLOCKADE
     CallIfEq VAR_PASTORIA_STATE, 5, PastoriaCity_SetRivalPositionAfterExplosion
     CallIfEq VAR_PASTORIA_STATE, 4, PastoriaCity_SetRivalPositionAfterGym
@@ -941,7 +941,7 @@ PastoriaCity_Movement_RivalPushBackPlayer:
 PastoriaCity_CoordEvent_FaceBoard:
     LockAll
     GoToIfSet FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT, PastoriaCity_FaceBoardEnd
-    SetVar VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE, 1
+    SetVar VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE, 1
     GetRandom VAR_RESULT, 100
     GoToIfGe VAR_RESULT, 90, PastoriaCity_CroagunkScene
     GoTo PastoriaCity_FaceBoardEnd

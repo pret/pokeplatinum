@@ -251,7 +251,7 @@ Route210South_SignboardCafeCabin:
     End
 
 Route210South_ArrowSignpostSolaceonTown:
-    ShowArrowSign Route210South_Text_SignRt210SolaceonTown
+    ShowArrowSign Route210South_Text_SignSolaceonTown
     End
 
 Route210South_JoggerWyatt:

@@ -3,7 +3,7 @@
 #include "res/field/events/events_victory_road_1f_room_2.h"
 
 
-    ScriptEntry VictoryRoad1FRoom2_CoordEvent_StartFollowingMarley
+    ScriptEntry VictoryRoad1FRoom2_CoordEvent_MarleyStartFollowing
     ScriptEntry VictoryRoad1FRoom2_CoordEvent_PlayerLeaveMarley
     ScriptEntry VictoryRoad1FRoom2_CoordEvent_MarleyLeavePlayer
     ScriptEntry VictoryRoad1FRoom2_OnTransition
@@ -17,7 +17,7 @@ VictoryRoad1FRoom2_ResetFollowerMarleyState:
     SetVar VAR_VICTORY_ROAD_1F_ROOM_2_FOLLOWER_MARLEY_STATE, 0
     End
 
-VictoryRoad1FRoom2_CoordEvent_StartFollowingMarley:
+VictoryRoad1FRoom2_CoordEvent_MarleyStartFollowing:
     LockAll
     SetPlayerBike FALSE
     ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyNoticePlayer
@@ -34,34 +34,34 @@ VictoryRoad1FRoom2_CoordEvent_StartFollowingMarley:
 VictoryRoad1FRoom2_MarleyWalkToPlayerZ55:
     ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ55
     WaitMovement
-    GoTo VictoryRoad1FRoom2_StartFollowingMarley
+    GoTo VictoryRoad1FRoom2_MarleyStartFollowing
 
 VictoryRoad1FRoom2_MarleyWalkToPlayerZ56:
     ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ56
     WaitMovement
-    GoTo VictoryRoad1FRoom2_StartFollowingMarley
+    GoTo VictoryRoad1FRoom2_MarleyStartFollowing
 
 VictoryRoad1FRoom2_MarleyWalkToPlayerZ57:
     ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ57
     WaitMovement
-    GoTo VictoryRoad1FRoom2_StartFollowingMarley
+    GoTo VictoryRoad1FRoom2_MarleyStartFollowing
 
 VictoryRoad1FRoom2_MarleyWalkToPlayerZ58:
     ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ58
     WaitMovement
-    GoTo VictoryRoad1FRoom2_StartFollowingMarley
+    GoTo VictoryRoad1FRoom2_MarleyStartFollowing
 
 VictoryRoad1FRoom2_MarleyWalkToPlayerZ59:
     ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ59
     WaitMovement
-    GoTo VictoryRoad1FRoom2_StartFollowingMarley
+    GoTo VictoryRoad1FRoom2_MarleyStartFollowing
 
 VictoryRoad1FRoom2_MarleyWalkToPlayerZ60:
     ApplyMovement LOCALID_MARLEY, VictoryRoad1FRoom2_Movement_MarleyWalkToPlayerZ60
     WaitMovement
-    GoTo VictoryRoad1FRoom2_StartFollowingMarley
+    GoTo VictoryRoad1FRoom2_MarleyStartFollowing
 
-VictoryRoad1FRoom2_StartFollowingMarley:
+VictoryRoad1FRoom2_MarleyStartFollowing:
     BufferPlayerName 0
     CallIfUnset FLAG_TALKED_TO_VICTORY_ROAD_1F_ROOM_2_MARLEY, VictoryRoad1FRoom2_LetMeGoWithYou
     CallIfSet FLAG_TALKED_TO_VICTORY_ROAD_1F_ROOM_2_MARLEY, VictoryRoad1FRoom2_YouTookSoLong

@@ -24,12 +24,12 @@ Route205South_Grunts:
     FacePlayer
     ApplyMovement LOCALID_GRUNT_M_WEST, Route205South_Movement_GruntMWestWalkOnSpotSouth
     WaitMovement
-    Message Route205South_Text_WeTeamGalacticAreConductingResearchInTheEternaForest
+    Message Route205South_Text_TeamGalacticConductingResearch
     CloseMessage
     ApplyMovement LOCALID_GRUNT_M_EAST, Route205South_Movement_GruntMEastWalkOnSpotSouth
     WaitMovement
     Call _00B6
-    Message Route205South_Text_OurResearchInvolvesCatchingPokemonInTheFloweryMeadowsOfFloaroma2
+    Message Route205South_Text_ResearchInvolvesCatchingPokemon2
     WaitButton
     CloseMessage
     ReleaseAll
@@ -49,11 +49,11 @@ Route205South_CoordEvent_Grunts:
     LockAll
     ApplyMovement LOCALID_GRUNT_M_WEST, Route205South_Movement_GruntMWestWalkOnSpotEast
     WaitMovement
-    Message Route205South_Text_WeTeamGalacticAreConductingResearchInTheEternaForest
+    Message Route205South_Text_TeamGalacticConductingResearch
     CloseMessage
     ApplyMovement LOCALID_GRUNT_M_EAST, Route205South_Movement_GruntMEastWalkOnSpotWest
     WaitMovement
-    Message Route205South_Text_OurResearchInvolvesCatchingPokemonInTheFloweryMeadowsOfFloaroma1
+    Message Route205South_Text_ResearchInvolvesCatchingPokemon1
     CloseMessage
     ApplyMovement LOCALID_GRUNT_M_WEST, Route205South_Movement_GruntMWestPushBackPlayer
     ApplyMovement LOCALID_PLAYER, Route205South_Movement_PlayerGetPushedBack
@@ -99,27 +99,27 @@ Route205South_Movement_PlayerGetPushedBack:
     EndMovement
 
 Route205South_BugCatcher:
-    NPCMessage Route205South_Text_ManyPoisonTypePokemonMakeTheEternaForestTheirHome
+    NPCMessage Route205South_Text_ManyPoisonTypePokemon
     End
 
 Route205South_Youngster:
-    NPCMessage Route205South_Text_IfYouSlatherSweetHoneyOnASweetSmellingTree
+    NPCMessage Route205South_Text_SlatherHoneyOnATree
     End
 
 Route205South_LittleGirl:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TALKED_TO_ROUTE_205_SOUTH_LITTLE_GIRL, Route205South_IWantToSeeMyPapaHesAtTheValleyWindworks
+    GoToIfSet FLAG_TALKED_TO_ROUTE_205_SOUTH_LITTLE_GIRL, Route205South_IWantToSeeMyPapa
     Call Route205South_HideFloaromaTownGrunts
-    Message Route205South_Text_HelpHelpTrainerPleaseIWantToSeeMyPapa
+    Message Route205South_Text_HelpIWantToSeeMyPapa
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-Route205South_IWantToSeeMyPapaHesAtTheValleyWindworks:
-    Message Route205South_Text_IWantToSeeMyPapaHesAtTheValleyWindworks
+Route205South_IWantToSeeMyPapa:
+    Message Route205South_Text_IWantToSeeMyPapa
     WaitButton
     CloseMessage
     ReleaseAll
@@ -146,35 +146,35 @@ Route205South_LittleGirlNoticePlayerZ659:
     WaitMovement
     ApplyMovement LOCALID_PLAYER, Route205South_Movement_PlayerWalkOnSpotSouth
     WaitMovement
-    GoTo Route205South_HelpHelpTrainerPleaseIWantToSeeMyPapa
+    GoTo Route205South_HelpIWantToSeeMyPapa
 
 Route205South_LittleGirlNoticePlayerZ660:
     ApplyMovement LOCALID_LITTLE_GIRL, Route205South_Movement_TwinNoticePlayerZ660
     WaitMovement
     ApplyMovement LOCALID_PLAYER, Route205South_Movement_PlayerWalkOnSpotSouth
     WaitMovement
-    GoTo Route205South_HelpHelpTrainerPleaseIWantToSeeMyPapa
+    GoTo Route205South_HelpIWantToSeeMyPapa
 
 Route205South_DummyZ661:
-    GoTo Route205South_HelpHelpTrainerPleaseIWantToSeeMyPapa
+    GoTo Route205South_HelpIWantToSeeMyPapa
 
 Route205South_LittleGirlNoticePlayerZ662:
     ApplyMovement LOCALID_LITTLE_GIRL, Route205South_Movement_TwinNoticePlayerZ662
     WaitMovement
     ApplyMovement LOCALID_PLAYER, Route205South_Movement_PlayerWalkOnSpotNorth
     WaitMovement
-    GoTo Route205South_HelpHelpTrainerPleaseIWantToSeeMyPapa
+    GoTo Route205South_HelpIWantToSeeMyPapa
 
 Route205South_LittleGirlNoticePlayerZ663:
     ApplyMovement LOCALID_LITTLE_GIRL, Route205South_Movement_TwinNoticePlayerZ663
     WaitMovement
     ApplyMovement LOCALID_PLAYER, Route205South_Movement_PlayerWalkOnSpotNorth
     WaitMovement
-    GoTo Route205South_HelpHelpTrainerPleaseIWantToSeeMyPapa
+    GoTo Route205South_HelpIWantToSeeMyPapa
 
-Route205South_HelpHelpTrainerPleaseIWantToSeeMyPapa:
+Route205South_HelpIWantToSeeMyPapa:
     Call Route205South_HideFloaromaTownGrunts
-    Message Route205South_Text_HelpHelpTrainerPleaseIWantToSeeMyPapa
+    Message Route205South_Text_HelpIWantToSeeMyPapa
     WaitButton
     CloseMessage
     ReleaseAll
@@ -221,15 +221,15 @@ Route205South_Movement_TwinNoticePlayerZ663:
     EndMovement
 
 Route205South_ArrowSignpostFloaromaTown:
-    ShowArrowSign Route205South_Text_Rt205FloaromaTown
+    ShowArrowSign Route205South_Text_SignFloaromaTown
     End
 
 Route205South_ArrowSignpostEternaForest:
-    ShowArrowSign Route205South_Text_Rt205EternaForest
+    ShowArrowSign Route205South_Text_SignEternaForest
     End
 
 Route205South_TrainerTipsSignpost:
-    ShowScrollingSign Route205South_Text_TrainerTipsTheItemsPlacedInYourBagAreAutomaticallySorted
+    ShowScrollingSign Route205South_Text_TrainerTipsItemsAutomaticallySorted
     End
 
     .balign 4, 0

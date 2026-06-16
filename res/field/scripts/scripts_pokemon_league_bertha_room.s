@@ -4,7 +4,7 @@
 
 
     ScriptEntry PokemonLeagueBerthaRoom_Bertha
-    ScriptEntry PokemonLeagueBerthaRoom_OnFrame
+    ScriptEntry PokemonLeagueBerthaRoom_OnFrame_EnterRoom
     ScriptEntryEnd
 
 PokemonLeagueBerthaRoom_Bertha:
@@ -58,7 +58,7 @@ PokemonLeagueBerthaRoom_BerthaPostBattle:
     ReleaseAll
     End
 
-PokemonLeagueBerthaRoom_OnFrame:
+PokemonLeagueBerthaRoom_OnFrame_EnterRoom:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueBerthaRoom_Movement_PlayerEnterRoom
     WaitMovement

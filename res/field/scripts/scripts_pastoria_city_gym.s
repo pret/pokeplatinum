@@ -68,13 +68,13 @@ PastoriaGym_Wake:
     SetFlag FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_PASTORIA_CITY_GYM, TRAINER_LEADER_WAKE
     Message PastoriaGym_Text_WakeExplainFenBadge
-    GoTo PastoriaGym_WakeTryGiveTm55
+    GoTo PastoriaGym_WakeTryGiveTM55
     End
 
-PastoriaGym_WakeTryGiveTm55:
+PastoriaGym_WakeTryGiveTM55:
     SetVar VAR_0x8004, ITEM_TM55
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaGym_WakeCannotGiveTm55
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaGym_WakeCannotGiveTM55
     Common_GiveItemQuantity
     SetFlag FLAG_OBTAINED_WAKE_TM55
     BufferItemName 0, VAR_0x8004
@@ -85,14 +85,14 @@ PastoriaGym_WakeTryGiveTm55:
     ReleaseAll
     End
 
-PastoriaGym_WakeCannotGiveTm55:
+PastoriaGym_WakeCannotGiveTM55:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
 PastoriaGym_WakeAlreadyHaveFenBadge:
-    GoToIfUnset FLAG_OBTAINED_WAKE_TM55, PastoriaGym_WakeTryGiveTm55
+    GoToIfUnset FLAG_OBTAINED_WAKE_TM55, PastoriaGym_WakeTryGiveTM55
     Message PastoriaGym_Text_WakeAfterbadge
     WaitButton
     CloseMessage

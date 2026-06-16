@@ -67,7 +67,7 @@ Route215_ArrowSignpostWest:
     End
 
 Route215_ArrowSignpostVeilstoneCity:
-    ShowArrowSign Route215_Text_SignRt215VeilstoneCity
+    ShowArrowSign Route215_Text_SignVeilstoneCity
     End
 
 Route215_TrainerTipsSignpost:

@@ -6,7 +6,7 @@
 
     ScriptEntry IronIslandB2FLeftRoom_OnTransition
     ScriptEntry IronIslandB2FLeftRoom_CoordEvent_PlatformLift
-    ScriptEntry IronIslandB2FLeftRoom_CoordEvent_StartFollowingRiley
+    ScriptEntry IronIslandB2FLeftRoom_CoordEvent_RileyStartFollowing
     ScriptEntry IronIslandB2FLeftRoom_CoordEvent_PlayerLeaveRiley
     ScriptEntry IronIslandB2FLeftRoom_Dummy5
     ScriptEntry IronIslandB2FLeftRoom_Dummy6
@@ -35,7 +35,7 @@ IronIslandB2FLeftRoom_CoordEvent_PlatformLift:
     TriggerPlatformLift
     End
 
-IronIslandB2FLeftRoom_CoordEvent_StartFollowingRiley:
+IronIslandB2FLeftRoom_CoordEvent_RileyStartFollowing:
     LockAll
     SetPlayerBike FALSE
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

@@ -327,7 +327,7 @@ Route213_Fisherman:
     End
 
 Route213_ArrowSignpostPastoriaCity:
-    ShowArrowSign Route213_Text_SignRt213PastoriaCity
+    ShowArrowSign Route213_Text_SignPastoriaCity
     End
 
 Route213_SignboardHotelGrandLake:

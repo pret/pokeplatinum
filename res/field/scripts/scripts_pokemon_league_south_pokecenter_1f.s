@@ -28,7 +28,7 @@ PokemonLeagueSouthPokecenter1F_VendorSpecial_Unused:
     End
 
 PokemonLeagueSouthPokecenter1F_Pokefan:
-    NPCMessage PokemonLeagueSouthPokecenter1F_Text_TheObjectiveIsToReachThePokemonLeague
+    NPCMessage PokemonLeagueSouthPokecenter1F_Text_ReachThePokemonLeague
     End
 
 PokemonLeagueSouthPokecenter1F_AceTrainer:
