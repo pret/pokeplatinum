@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "FightAreaPokecenter1F_Text_WeNeedBattle",
+      "id": "FightAreaPokecenter1F_Text_KinseyIntro_Unused",
       "en_US": [
         "We’re doing a feature on tough Trainers\n",
         "in the Battle Zone.\r",
@@ -37,18 +37,18 @@
       ]
     },
     {
-      "id": "FightAreaPokecenter1F_Text_ReporterKinseysLiveInterview",
+      "id": "FightAreaPokecenter1F_Text_KinseyBattleAccepted_Unused",
       "en_US": "Reporter Kinsey’s live interview!\r"
     },
     {
-      "id": "FightAreaPokecenter1F_Text_DontBeShy",
+      "id": "FightAreaPokecenter1F_Text_KinseyBattleDeclined_Unused",
       "en_US": [
         "You don’t have to be shy.\n",
         "We can obscure your face if we have to."
       ]
     },
     {
-      "id": "FightAreaPokecenter1F_Text_IGoAfterInverviews",
+      "id": "FightAreaPokecenter1F_Text_KinseyPostBattle_Unused",
       "en_US": [
         "I go after interviews like my favorite\n",
         "Pokémon move--I tackle them!\r",
@@ -57,28 +57,28 @@
       ]
     },
     {
-      "id": "FightAreaPokecenter1F_Text_WillYouLetUsBattle",
+      "id": "FightAreaPokecenter1F_Text_TevinIntro_Unused",
       "en_US": [
         "Expert Trainer spotted!\n",
         "Will you let us battle with you?"
       ]
     },
     {
-      "id": "FightAreaPokecenter1F_Text_YouGuysAreGreat",
+      "id": "FightAreaPokecenter1F_Text_TevinBattleAccepted_Unused",
       "en_US": [
         "Great! Great!\n",
         "You guys are great!\r"
       ]
     },
     {
-      "id": "FightAreaPokecenter1F_Text_HowGoodAreYou",
+      "id": "FightAreaPokecenter1F_Text_TevinBattleDeclined_Unused",
       "en_US": [
         "Want to see how good you are before\n",
         "you go off to the Battle Frontier?"
       ]
     },
     {
-      "id": "FightAreaPokecenter1F_Text_CombinationWillTearUp",
+      "id": "FightAreaPokecenter1F_Text_TevinPostBattle_Unused",
       "en_US": [
         "The combination of you and your Pokémon\n",
         "will tear up the Battle Tower!"

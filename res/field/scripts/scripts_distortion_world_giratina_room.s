@@ -50,7 +50,7 @@ DistortionWorldGiratinaRoom_GoToSendoffSpring:
     PlaySE SEQ_SE_PL_SYUWA
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_SENDOFF_SPRING, 0, 32, 17, DIR_SOUTH
+    Warp MAP_HEADER_SENDOFF_SPRING, 32, 17, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -58,7 +58,7 @@ DistortionWorldGiratinaRoom_GoToSendoffSpring:
 DistortionWorldGiratinaRoom_CoordEvent_WarpToB7F:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_DISTORTION_WORLD_B7F, 0, 89, 57, DIR_SOUTH
+    Warp MAP_HEADER_DISTORTION_WORLD_B7F, 89, 57, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End

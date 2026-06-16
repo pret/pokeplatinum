@@ -33,7 +33,7 @@ DistortionWorld1F_ReturnToSpearPillar:
     SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 31, 33, DIR_SOUTH
+    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 31, 33, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End

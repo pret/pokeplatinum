@@ -45,7 +45,7 @@ PokemonLeagueChampionRoom_OnFrame:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME, 0, 5, 23, DIR_NORTH
+    Warp MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME, 5, 23, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -68,11 +68,11 @@ PokemonLeagueChampionRoom_StartCynthiaRematchBattle:
     Return
 
 PokemonLeagueChampionRoom_CreateJournalEventDefeatedCynthia:
-    CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, TRAINER_CHAMPION_CYNTHIA, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, TRAINER_CHAMPION_CYNTHIA
     Return
 
 PokemonLeagueChampionRoom_CreateJournalEventDefeatedRematchCynthia:
-    CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, TRAINER_CHAMPION_CYNTHIA_REMATCH, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, TRAINER_CHAMPION_CYNTHIA_REMATCH
     Return
 
 PokemonLeagueChampionRoom_BlackOut:

@@ -26,7 +26,7 @@ void sub_0202FF4C(UnkStruct_0202FF58 *param0)
 
 UnkStruct_0202FF58 *sub_0202FF58(SaveData *saveData)
 {
-    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &frontier->unk_8E0_val2;
 }
 
@@ -148,6 +148,6 @@ u32 sub_020300E0(UnkStruct_020300F4 *param0, u8 param1, u8 param2, void *param3)
 
 UnkStruct_020300F4 *sub_020300F4(SaveData *saveData)
 {
-    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &frontier->unk_1614.unk_00;
 }

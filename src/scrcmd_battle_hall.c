@@ -13,6 +13,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "battle_hall_save.h"
 #include "battle_hall_win_records.h"
@@ -85,17 +86,14 @@ BOOL ScrCmd_2CC(ScriptContext *ctx)
         break;
     case 1:
         if (arg == 3) {
-            *result = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
-                106,
-                BattleFrontierStats_GetHostFriendIdx(106));
+            *result = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData), 106);
         } else {
             *result = BattleHallStreakFlags_GetFlag(v11, 5, arg, 0, NULL);
         }
         break;
     case 2:
-        *result = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
-            BattleFrontierStats_GetHallLatestSpeciesIndex(arg),
-            BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(arg)));
+        *result = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+            BattleFrontierStats_GetHallLatestSpeciesIndex(arg));
         break;
     case 3:
         sub_0204FA50(ctx->fieldSystem->saveData, v11, arg);
@@ -612,11 +610,11 @@ BOOL ScrCmd_32A(ScriptContext *ctx)
 {
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    u16 v0 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+    u16 v0 = BattleFrontierSave_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
         BattleFrontierStats_GetHallLatestSpeciesIndex(0),
         0xff);
 
-    u16 v1 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+    u16 v1 = BattleFrontierSave_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
         BattleFrontierStats_GetHallLatestStreakIndex(0),
         0xff);
 

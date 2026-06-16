@@ -26,7 +26,7 @@
 
 #include "assert.h"
 #include "bag.h"
-#include "battle_frontier_stats.h"
+#include "battle_frontier_save.h"
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "comm_manager.h"
@@ -1720,7 +1720,7 @@ static int ov65_0222F304(UnkStruct_ov65_0222EBE0 *param0, int param1)
         if (v1 == 0) {
             WiFiList_Init(param0->unk_00);
             Email_Init(SaveData_SaveTable(param0->saveData, SAVE_TABLE_ENTRY_EMAIL));
-            BattleFrontierStats_ClearAllWFCStats(SaveData_GetBattleFrontier(param0->saveData));
+            BattleFrontierSave_ClearAllWFCStats(SaveData_GetBattleFrontier(param0->saveData));
             param0->unk_3A8 = 14;
             param0->unk_04 = CommManager_LoginWifiBattleServer(param0->saveData, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
@@ -5501,7 +5501,7 @@ static void ov65_022342A8(UnkStruct_ov65_0222EBE0 *param0, enum HeapID heapID)
 {
     int v0;
     int v1;
-    BattleFrontier *frontier;
+    BattleFrontierSave *frontier;
     String *v3;
 
     frontier = SaveData_GetBattleFrontier(param0->saveData);
@@ -5511,7 +5511,7 @@ static void ov65_022342A8(UnkStruct_ov65_0222EBE0 *param0, enum HeapID heapID)
         MessageLoader_GetString(param0->unk_168, 55, param0->unk_178);
         Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
-        v1 = BattleFrontierStats_GetStat(frontier, STAT_HALL_LATEST_SPECIES_MULTI_WFC, v0);
+        v1 = BattleFrontierSave_GetStat(frontier, STAT_HALL_LATEST_SPECIES_MULTI_WFC, v0);
         v3 = MessageUtil_SpeciesName(v1, heapID);
 
         {
@@ -5609,15 +5609,15 @@ static void ov65_02234628(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_02234694(UnkStruct_ov65_0222EBE0 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     int v0;
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(param0->saveData);
-    v0 = BattleFrontierStats_GetStat(frontier, param2, param3);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(param0->saveData);
+    v0 = BattleFrontierSave_GetStat(frontier, param2, param3);
 
     ov65_02234708(param0, param1, v0, param4, param5);
 }
 
 static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, String *param1, u32 param2, u32 param3)
 {
-    BattleFrontier *frontier;
+    BattleFrontierSave *frontier;
     BOOL v1;
     u32 v2;
     static const u32 v3[6] = {
@@ -5632,7 +5632,7 @@ static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, String *param1, u32 p
     GF_ASSERT(param2 < 6);
 
     frontier = SaveData_GetBattleFrontier(param0->saveData);
-    v1 = BattleFrontierStats_GetStat(frontier, v3[param2], param3);
+    v1 = BattleFrontierSave_GetStat(frontier, v3[param2], param3);
 
     if (v1 == 0) {
         v2 = 57;

@@ -17,7 +17,7 @@
     ScriptEntry Route201_Briefcase
     ScriptEntry Route201_CoordEvent_FollowingRivalStopPlayerEast
     ScriptEntry Route201_ProfRowan
-    ScriptEntry Route201_CoordEvent_LetsCatchThatLegendaryPokemon
+    ScriptEntry Route201_CoordEvent_LetsCatchThatLegendary
     ScriptEntryEnd
 
 Route201_OnTransition:
@@ -404,7 +404,7 @@ Route201_EndChooseStarterSequenceAndWarpHome:
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     HealParty
-    Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 0, 2, 6, DIR_NORTH
+    Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 2, 6, DIR_NORTH
     FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     ReleaseAll
@@ -1045,7 +1045,7 @@ _0CF1:
     WaitTime 30, VAR_RESULT
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
-    Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 0, 2, 6, DIR_NORTH
+    Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 2, 6, DIR_NORTH
     FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     ReleaseAll
@@ -1190,13 +1190,13 @@ Route201_ProfRowan:
     NPCMessage Route201_Text_RowanGoOnChooseAPokemon
     End
 
-Route201_CoordEvent_LetsCatchThatLegendaryPokemon:
+Route201_CoordEvent_LetsCatchThatLegendary:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalNoticePlayer
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message Route201_Text_LetsCatchThatLegendaryPokemon
+    Message Route201_Text_LetsCatchThatLegendary
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 110, Route201_RivalRunToPlayerX110

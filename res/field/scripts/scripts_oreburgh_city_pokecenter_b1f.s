@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 OreburghCityPokecenterB1F_BattleGirl:
-    NPCMessage OreburghCityPokecenterB1F_Text_IWantToBecomeFriendsWithAnExperiencedTrainerIReallyAdmire
+    NPCMessage OreburghCityPokecenterB1F_Text_IWantToBecomeFriends
     End
 
     .balign 4, 0

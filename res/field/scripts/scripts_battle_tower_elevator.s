@@ -47,7 +47,7 @@ BattleTowerElevator_BattleRoomCheckWiFi:
     WaitForTransition
     ScrCmd_2C4 5
     ReturnToField
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 15, 6, DIR_NORTH
     End
 
 BattleTowerElevator_MultiBattleRoom:
@@ -56,13 +56,13 @@ BattleTowerElevator_MultiBattleRoom:
     WaitForTransition
     ScrCmd_2C4 6
     ReturnToField
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 11, 6, DIR_NORTH
     End
 
 BattleTowerElevator_BattleSalon:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 2, DIR_SOUTH
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 8, 2, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -141,7 +141,7 @@ BattleTowerElevator_WiFiBattleRoom:
     WaitForTransition
     ScrCmd_2C4 5
     ReturnToField
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 19, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 19, 6, DIR_NORTH
     End
 
     .balign 4, 0

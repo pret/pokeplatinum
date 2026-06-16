@@ -29,7 +29,7 @@ FullmoonIslandForest_Cresselia:
     GoToIfEq VAR_ROAMING_CRESSELIA_STATE, ROAMER_STATE_RESET, FullmoonIslandForest_ResetCresseliaRoamingState
     ClearFlag FLAG_OBTAINED_FULLMOON_ISLAND_FOREST_LUNAR_WING
     AddObject LOCALID_ITEM_LUNAR_WING
-    SetFlag FLAG_OBTAINED_LUNAR_WING
+    SetFlag FLAG_MET_CRESSELIA
     Message FullmoonIslandForest_Text_SomethingSparkling
     WaitButton
     CloseMessage

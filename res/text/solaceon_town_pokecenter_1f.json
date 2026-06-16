@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "SolaceonTownPokecenter1F_Text_WillYouBattleMe",
+      "id": "SolaceonTownPokecenter1F_Text_ArielIntro_Unused",
       "en_US": [
         "Pikachu!\r",
         "I want to become more like a PIKACHU!\n",
@@ -37,15 +37,15 @@
       ]
     },
     {
-      "id": "SolaceonTownPokecenter1F_Text_PiPikachu",
+      "id": "SolaceonTownPokecenter1F_Text_ArielBattleAccepted_Unused",
       "en_US": "Pi-Pikachu!\r"
     },
     {
-      "id": "SolaceonTownPokecenter1F_Text_PiPikachu2",
+      "id": "SolaceonTownPokecenter1F_Text_ArielBattleDeclined_Unused",
       "en_US": "Pi-Pikachu!"
     },
     {
-      "id": "SolaceonTownPokecenter1F_Text_INeedToGetMoreIntoCharacter",
+      "id": "SolaceonTownPokecenter1F_Text_ArielPostBattle_Unused",
       "en_US": [
         "I need to find a way to get more into\n",
         "the character of a Pokémon...\r",

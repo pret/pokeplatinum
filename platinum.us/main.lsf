@@ -146,7 +146,7 @@ Static main
 	Object main.nef.p/src_battle_hall_save.c.o
 	Object main.nef.p/src_unk_020302D0.c.o
 	Object main.nef.p/src_unk_02030494.c.o
-	Object main.nef.p/src_battle_frontier_stats.c.o
+	Object main.nef.p/src_battle_frontier_save.c.o
 	Object main.nef.p/src_battle_hall_win_records.c.o
 	Object main.nef.p/src_unk_02030A80.c.o
 	Object main.nef.p/src_unk_02030CE8.c.o
@@ -248,6 +248,7 @@ Static main
 	Object main.nef.p/src_field_message.c.o
 	Object main.nef.p/src_map_tile_behavior.c.o
 	Object main.nef.p/src_unk_0205DFC4.c.o
+	Object main.nef.p/src_battle_frontier_stats.c.o
 	Object main.nef.p/src_player_avatar.c.o
 	Object main.nef.p/src_unk_0205F180.c.o
 	Object main.nef.p/src_map_object.c.o

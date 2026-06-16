@@ -121,7 +121,7 @@ BattleTowerBattleSalon_Quit:
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 3
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 11, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -135,7 +135,7 @@ BattleTowerBattleSalon_OnFrame_EnterBattleRoom:
     SetVar VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 3, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -339,7 +339,7 @@ BattleTowerBattleSalon_PartnerEnterBattleRoom:
     WaitMovement
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 4, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 8, 4, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

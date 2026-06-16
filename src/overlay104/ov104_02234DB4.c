@@ -12,6 +12,7 @@
 #include "overlay104/ov104_0223AF58.h"
 #include "overlay104/struct_battle_hall.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "battle_hall_save.h"
 #include "battle_hall_win_records.h"
@@ -20,7 +21,6 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "system_vars.h"
-#include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
 static void ov104_022350B8(BattleHall *param0);
@@ -62,7 +62,7 @@ BattleHall *BattleHall_Init(SaveData *saveData, u16 resumingFromSave, u8 challen
         }
 
         if (streakActive == TRUE) {
-            battleHall->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(battleHall->saveData), BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType)));
+            battleHall->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(battleHall->saveData), BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType));
         } else {
             battleHall->currentStreak = 0;
 
@@ -77,7 +77,7 @@ BattleHall *BattleHall_Init(SaveData *saveData, u16 resumingFromSave, u8 challen
         battleHall->challengeType = BattleHallSave_GetMember(currentChallenge, HALL_SAVE_CHALLENGE_TYPE, 0, 0, NULL);
         partySize = BattleHall_GetPlayerPartySize(battleHall->challengeType);
         battleHall->unk_05 = BattleHallSave_GetMember(currentChallenge, HALL_SAVE_UNK_1, 0, 0, NULL);
-        battleHall->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(battleHall->saveData), BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType)));
+        battleHall->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(battleHall->saveData), BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType));
 
         for (i = 0; i < partySize; i++) {
             battleHall->partySlots[i] = BattleHallSave_GetMember(currentChallenge, HALL_SAVE_PARTY_SLOTS, i, 0, NULL);
@@ -224,7 +224,7 @@ void BattleHall_Save(BattleHall *battleHall, u8 saveType)
     u8 u8Ptr[4];
     u16 u16Ptr[4];
     u32 u32Ptr[4];
-    BattleFrontier *frontier;
+    BattleFrontierSave *frontier;
     Pokemon *mon;
     BattleHallStreakFlags *streakFlags = BattleHallStreakFlags_Get(battleHall->saveData);
 
@@ -236,20 +236,20 @@ void BattleHall_Save(BattleHall *battleHall, u8 saveType)
 
     mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(battleHall->saveData), battleHall->partySlots[0]);
     u16 currentSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    u16 speciesOnRecord = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(battleHall->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(battleHall->challengeType)));
+    u16 speciesOnRecord = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(battleHall->challengeType));
 
     *u8Ptr = battleHall->unk_05;
     BattleHallSave_SetMember(battleHall->hallSave, HALL_SAVE_UNK_1, 0, 0, u8Ptr);
-    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType)), battleHall->currentStreak);
+    BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetHallLatestStreakIndex(battleHall->challengeType), battleHall->currentStreak);
 
     if (saveType != 2) {
         if (battleHall->challengeType != FRONTIER_CHALLENGE_MULTI_WFC) {
-            BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetHallCurrentStreakIndex(battleHall->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallCurrentStreakIndex(battleHall->challengeType)), battleHall->currentStreak);
+            BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetHallCurrentStreakIndex(battleHall->challengeType), battleHall->currentStreak);
         } else {
             if (speciesOnRecord != currentSpecies) {
-                BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetHallCurrentStreakIndex(battleHall->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallCurrentStreakIndex(battleHall->challengeType)), battleHall->currentStreak);
+                BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetHallCurrentStreakIndex(battleHall->challengeType), battleHall->currentStreak);
             } else {
-                BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetHallCurrentStreakIndex(battleHall->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallCurrentStreakIndex(battleHall->challengeType)), battleHall->currentStreak);
+                BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, BattleFrontierStats_GetHallCurrentStreakIndex(battleHall->challengeType), battleHall->currentStreak);
             }
         }
 
@@ -257,7 +257,7 @@ void BattleHall_Save(BattleHall *battleHall, u8 saveType)
         BattleHallStreakFlags_SetFlag(streakFlags, HALL_SAVE_STREAK_FLAGS, battleHall->challengeType, 0, u8Ptr);
 
         if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
-            BattleFrontierStats_SetStat(frontier, STAT_HALL_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_HALL_WFC_STREAK_ACTIVE), battleHall->streakActive);
+            BattleFrontierSave_SetStatAutoHostIdx(frontier, STAT_HALL_WFC_STREAK_ACTIVE, battleHall->streakActive);
         }
     }
 
@@ -281,7 +281,7 @@ void BattleHall_Save(BattleHall *battleHall, u8 saveType)
         BattleHallSave_SetMember(battleHall->hallSave, HALL_SAVE_UNK_4, i, 0, u16Ptr);
     }
 
-    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(battleHall->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(battleHall->challengeType)), Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL));
+    BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetHallLatestSpeciesIndex(battleHall->challengeType), Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL));
 }
 
 u16 ov104_022354B0(BattleHall *param0)
@@ -389,7 +389,7 @@ u16 ov104_02235578(BattleHall *param0)
 
 static u16 BattleHall_LoadTypeRanks(SaveData *saveData, u8 challengeType, u8 type, u16 *type1Rank, u16 *type2Rank)
 {
-    u16 rankPair = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetHallCurrentTypeRanksIndex(challengeType, type), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallCurrentTypeRanksIndex(challengeType, type)));
+    u16 rankPair = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetHallCurrentTypeRanksIndex(challengeType, type));
     rankPair &= 0xff;
 
     *type1Rank = rankPair & 0xf;
@@ -419,7 +419,7 @@ static void BattleHall_SaveTypeRank(SaveData *saveData, u8 challengeType, u8 typ
     u8 newRank = value << (4 * nybble);
     currentRanks |= newRank;
 
-    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetHallCurrentTypeRanksIndex(challengeType, type), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallCurrentTypeRanksIndex(challengeType, type)), currentRanks);
+    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetHallCurrentTypeRanksIndex(challengeType, type), currentRanks);
 }
 
 void ov104_022356A0(BattleHall *param0)

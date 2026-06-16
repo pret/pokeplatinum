@@ -1196,7 +1196,7 @@ Villa_WarpAndShowDeliveryGuyAndBook:
     ClearFlag FLAG_HIDE_VILLA_BOOK
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 10, 6, DIR_SOUTH
+    Warp MAP_HEADER_VILLA, 10, 6, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_DeliverFreeTable

@@ -3568,7 +3568,7 @@ static BOOL ScriptContext_ScreenWipeDone(ScriptContext *ctx)
 static BOOL ScrCmd_Warp(ScriptContext *ctx)
 {
     u16 mapID = ScriptContext_GetVar(ctx);
-    s16 dummy = ScriptContext_ReadHalfWord(ctx);
+    s16 unused = ScriptContext_ReadHalfWord(ctx);
     u16 x = ScriptContext_GetVar(ctx);
     u16 z = ScriptContext_GetVar(ctx);
     u16 direction = ScriptContext_GetVar(ctx);

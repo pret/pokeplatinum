@@ -17,6 +17,7 @@
 #include "overlay104/ov104_0223C164.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "battle_hall_save.h"
 #include "comm_command_frontier.h"
@@ -27,7 +28,6 @@
 #include "unk_0202D05C.h"
 #include "unk_02049D08.h"
 #include "unk_0204FA34.h"
-#include "unk_0205DFC4.h"
 #include "unk_0209B6F8.h"
 
 static BOOL ov104_02239680(FrontierScriptContext *param0);
@@ -220,10 +220,10 @@ BOOL FrontierScrCmd_B2(FrontierScriptContext *param0)
         break;
 
     case 3:
-        *v9 = (u16)BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v5->saveData), STAT_HALL_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_HALL_WFC_STREAK_ACTIVE));
+        *v9 = (u16)BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v5->saveData), STAT_HALL_WFC_STREAK_ACTIVE);
         break;
     case 4:
-        *v9 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v5->saveData), BattleFrontierStats_GetHallLatestSpeciesIndex(3), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(3)));
+        *v9 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v5->saveData), BattleFrontierStats_GetHallLatestSpeciesIndex(3));
         break;
     case 5:
         *v9 = v4->unk_76[v7];
@@ -246,24 +246,24 @@ BOOL FrontierScrCmd_B2(FrontierScriptContext *param0)
     case 11:
         *v9 = 1;
         v1 = ov104_0223C264(v4->unk_A0);
-        v2 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v4->saveData), v1, BattleFrontierStats_GetHostFriendIdx(v1));
+        v2 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1);
 
         if (v2 != v4->unk_72) {
-            BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v4->saveData), v1, BattleFrontierStats_GetHostFriendIdx(v1), 0);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1, 0);
 
             v1 = ov104_0223C29C(v4->unk_A0);
-            BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v4->saveData), v1, BattleFrontierStats_GetHostFriendIdx(v1), 0);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1, 0);
 
             *v9 = 0;
         }
         break;
     case 12:
         v1 = ov104_0223C29C(v4->unk_A0);
-        *v9 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v4->saveData), v1, BattleFrontierStats_GetHostFriendIdx(v1));
+        *v9 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1);
 
         if (*v9 == 0) {
             v1 = ov104_0223C264(v4->unk_A0);
-            BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v4->saveData), v1, BattleFrontierStats_GetHostFriendIdx(v1), 0);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1, 0);
 
             if (v4->unk_A0 == 1) {
                 v3 = sub_0202D750(v4->saveData);
@@ -271,19 +271,19 @@ BOOL FrontierScrCmd_B2(FrontierScriptContext *param0)
             }
 
             if (v4->unk_A0 == 4) {
-                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v4->saveData), STAT_CASTLE_LATEST_CP_MULTI_WFC, BattleFrontierStats_GetHostFriendIdx(v1), 0);
-                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v4->saveData), STAT_CASTLE_SPENT_CP_MULTI_WFC, BattleFrontierStats_GetHostFriendIdx(v1), 0);
+                BattleFrontierSave_SetStat(SaveData_GetBattleFrontier(v4->saveData), STAT_CASTLE_LATEST_CP_MULTI_WFC, BattleFrontierStats_GetHostFriendIdx(v1), 0);
+                BattleFrontierSave_SetStat(SaveData_GetBattleFrontier(v4->saveData), STAT_CASTLE_SPENT_CP_MULTI_WFC, BattleFrontierStats_GetHostFriendIdx(v1), 0);
             }
 
             if (v4->unk_A0 == 2) {
-                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v4->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(0, 3), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(0, 3)), 0);
+                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(0, 3), 0);
             }
 
             if (v4->unk_A0 == 3) {
-                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v4->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(1, 3), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(1, 3)), 0);
+                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(1, 3), 0);
             }
         } else {
-            BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v4->saveData), v1, BattleFrontierStats_GetHostFriendIdx(v1), 0);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1, 0);
         }
         break;
     case 13:

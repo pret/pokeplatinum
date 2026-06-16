@@ -72,7 +72,7 @@ CanalaveCityHarborInn_OnFrame_Sleep:
     FadeScreenOut FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     WaitTime 120, VAR_RESULT
-    Warp MAP_HEADER_NEWMOON_ISLAND, 0, 152, 277, DIR_SOUTH
+    Warp MAP_HEADER_NEWMOON_ISLAND, 152, 277, DIR_SOUTH
     FadeScreenIn FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     ReleaseAll

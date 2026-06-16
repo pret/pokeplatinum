@@ -2,11 +2,11 @@
   "key": 9219,
   "messages": [
     {
-      "id": "GameCorner_Text_WelcomeToTheVeilstoneGameCorner",
+      "id": "GameCorner_Text_WelcomeToGameCorner",
       "en_US": "Welcome to the Veilstone Game Corner!\r"
     },
     {
-      "id": "GameCorner_Text_DidYouWantSomeCoins_NoCoinCase",
+      "id": "GameCorner_Text_NoCoinCaseToHoldCoins",
       "en_US": [
         "Did you want some Coins for the\n",
         "slots?\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "GameCorner_Text_DidYouWantSomeCoins_1000For50Coins",
+      "id": "GameCorner_Text_1000For50Coins",
       "en_US": [
         "Did you want some game Coins?\r",
         "It’s $1000 for 50 Coins.\n",
@@ -23,35 +23,35 @@
       ]
     },
     {
-      "id": "GameCorner_Text_DidYouWantSomeCoins_ThankYouVeryMuchHereAreYourCoins",
+      "id": "GameCorner_Text_HereAreYourCoins",
       "en_US": [
         "Thank you very much!\n",
         "Here are your Coins!"
       ]
     },
     {
-      "id": "GameCorner_Text_UmYouDontAppearToHaveEnoughMoney",
+      "id": "GameCorner_Text_NotEnoughMoney",
       "en_US": [
         "Um... You don’t appear to have\n",
         "enough money..."
       ]
     },
     {
-      "id": "GameCorner_Text_OhYourCoinCaseIsFull",
+      "id": "GameCorner_Text_CoinCaseIsFull",
       "en_US": [
         "Oh?\n",
         "Your Coin Case is full."
       ]
     },
     {
-      "id": "GameCorner_Text_OhYouDontNeedCoinsThen",
+      "id": "GameCorner_Text_PleaseComeAgain",
       "en_US": [
         "Oh... You don’t need Coins, then?\n",
         "Please come again!"
       ]
     },
     {
-      "id": "GameCorner_Text_TenStraightBonusRoundsOnTheSlots",
+      "id": "GameCorner_Text_MementoForBonusRounds",
       "en_US": [
         "Ten straight bonus rounds on\n",
         "the slots! That’s amazing!\r",
@@ -62,21 +62,21 @@
       ]
     },
     {
-      "id": "GameCorner_Text_PleaseKeepPlayingTheSlots",
+      "id": "GameCorner_Text_PleaseKeepPlayingSlots",
       "en_US": [
         "Please keep playing the slots for\n",
         "another explosion of good luck!"
       ]
     },
     {
-      "id": "GameCorner_Text_OhYourBagIsFullWeWillHoldTheTMForYou",
+      "id": "GameCorner_Text_BagIsFull",
       "en_US": [
         "Oh, your Bag is full...\n",
         "We will hold the TM for you."
       ]
     },
     {
-      "id": "GameCorner_Text_WeReStillAmazedByYourTenStraightBonusRounds",
+      "id": "GameCorner_Text_StillAmazedTakeMemento",
       "en_US": [
         "We’re still amazed by your ten straight\n",
         "bonus rounds on the slots before.\r",
@@ -87,14 +87,14 @@
       ]
     },
     {
-      "id": "GameCorner_Text_YouCantPlayIfYouDontHaveACoinCase",
+      "id": "GameCorner_Text_CantPlayWithoutCoinCase",
       "en_US": [
         "You can’t play if you don’t have\n",
         "a Coin Case."
       ]
     },
     {
-      "id": "GameCorner_Text_IllEplainHowTheSlotMachinesWorkAtThisGameCorner",
+      "id": "GameCorner_Text_ExplainSlotMachines",
       "en_US": [
         "I’ll explain how the slot machines\n",
         "work at this Game Corner.\r",
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "GameCorner_Text_HeyKidIfYouWantToPlayHereYouNeedACoinCase",
+      "id": "GameCorner_Text_ManNextDoorHadCoinCase",
       "en_US": [
         "Hey, kid, if you want to play here,\n",
         "you need a Coin Case.\r",
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "GameCorner_Text_WooHooClefairyLookAtItItsDrivingMeBananas",
+      "id": "GameCorner_Text_ItsDrivingMeBananas",
       "en_US": [
         "Woohoo! CLEFAIRY! Look at it!\n",
         "It’s driving me bananas!\r",
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "GameCorner_Text_WooHooClefairyLookYeahahItsACarnival",
+      "id": "GameCorner_Text_ItsACarnival",
       "en_US": [
         "Woohoo! CLEFAIRY! Look!\n",
         "Yeahah! It’s a carnival!\r",
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "GameCorner_Text_WooHooClefairyItsAdorable",
+      "id": "GameCorner_Text_ClefairyIsAdorable",
       "en_US": [
         "Woohoo! CLEFAIRY! It’s adorable!\n",
         "Just seeing it gets my pulse racing!\r",
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "GameCorner_Text_AFriendInMyGroupScoredATonOfCoinsHere",
+      "id": "GameCorner_Text_AFriendScoredTonOfCoins",
       "en_US": [
         "A friend in my group scored a ton of\n",
         "Coins here.\r",
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "GameCorner_Text_SighNothingGoingMyWayToday",
+      "id": "GameCorner_Text_NothingGoingMyWay",
       "en_US": [
         "Sigh...\n",
         "Nothing’s going my way today...\r",
@@ -247,11 +247,11 @@
       ]
     },
     {
-      "id": "GameCorner_Text_Unused_00026",
+      "id": "GameCorner_Text_Dummy26",
       "garbage": 0
     },
     {
-      "id": "GameCorner_Text_Unused_00027",
+      "id": "GameCorner_Text_Dummy27",
       "garbage": 0
     }
   ]

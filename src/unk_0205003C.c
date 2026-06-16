@@ -17,6 +17,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "comm_command_field.h"
 #include "communication_system.h"
@@ -76,7 +77,7 @@ BOOL ScrCmd_2D9(ScriptContext *param0)
         break;
     case 1:
         if (v4 == 3) {
-            *v6 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_ARCADE_WFC_STREAK_ACTIVE));
+            *v6 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE);
         } else {
             *v6 = (u16)sub_02030600(v11, 8, v4, 0, NULL);
         }
@@ -124,10 +125,10 @@ static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 para
     sub_020305CC(param1, 8, param2, 0, v2);
 
     if (param2 == 3) {
-        BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_ARCADE_WFC_STREAK_ACTIVE), 0);
+        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, 0);
     }
 
-    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(param2), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeLatestStreakIndex(param2)), 0);
+    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(param2), 0);
 }
 
 BOOL ScrCmd_2DA(ScriptContext *param0)

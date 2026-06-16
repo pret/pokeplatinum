@@ -54,7 +54,7 @@ BattleTowerBattleRoom_WarpToLobbby:
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_5, BattleTowerBattleRoom_WarpToLobbbyWiFiAttendant
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 11, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -63,7 +63,7 @@ BattleTowerBattleRoom_WarpToLobbby:
 BattleTowerBattleRoom_WarpToLobbbyWiFiAttendant:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 15, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

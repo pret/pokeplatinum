@@ -51,7 +51,7 @@ LakeVerityLowWater_OnFrame_Cyrus:
     ApplyFreeCameraMovement LakeVerityLowWater_Movement_PanToCyrus
     WaitMovement
     WaitTime 15, VAR_RESULT
-    Message LakeVerityLowWater_Text_IWillMakeTimeAndSpaceMine
+    Message LakeVerityLowWater_Text_MakeTimeAndSpaceMine
     CloseMessage
     WaitTime 30, VAR_RESULT
     ApplyMovement LOCALID_CYRUS, LakeVerityLowWater_Movement_CyrusWalkToPlayer
@@ -79,7 +79,7 @@ LakeVerityLowWater_OnFrame_Cyrus:
     WaitMovement
     WaitTime 30, VAR_RESULT
     BufferPlayerName 1
-    Message LakeVerityLowWater_Text_LetsCatchThatLegendaryPokemon
+    Message LakeVerityLowWater_Text_LetsCatchThatLegendary
     PlayCry SPECIES_MESPRIT
     Message LakeVerityLowWater_Text_LegendaryCry
     WaitCry
@@ -92,7 +92,7 @@ LakeVerityLowWater_OnFrame_Cyrus:
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message LakeVerityLowWater_Text_ThatWasTheLegendaryPokemonCrying
+    Message LakeVerityLowWater_Text_ThatWasTheLegendaryCrying
     CloseMessage
     ApplyMovement LOCALID_RIVAL, LakeVerityLowWater_Movement_RivalExclamationMark
     WaitMovement
@@ -383,7 +383,7 @@ LakeVerityLowWater_ProfRowan:
     GoToIfSet FLAG_TALKED_TO_LAKE_VERITY_LOW_WATER_PROF_ROWAN, LakeVerityLowWater_RowanHowWasLakeValor
     SetFlag FLAG_TALKED_TO_LAKE_VERITY_LOW_WATER_PROF_ROWAN
     BufferPlayerName 0
-    Message LakeVerityLowWater_Text_RowanNoLegendaryPokemonHowWasLakeValor
+    Message LakeVerityLowWater_Text_RowanNoLegendaryHowWasLakeValor
     WaitButton
     CloseMessage
     ReleaseAll

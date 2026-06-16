@@ -173,7 +173,7 @@ RotomsRoom_RecallRotom:
 RotomsRoom_WarpInPlace:
     GetPlayerMapPos VAR_0x8006, VAR_0x8007
     GetPlayerDir VAR_RESULT
-    Warp MAP_HEADER_ROTOMS_ROOM, 0, VAR_0x8006, VAR_0x8007, VAR_RESULT
+    Warp MAP_HEADER_ROTOMS_ROOM, VAR_0x8006, VAR_0x8007, VAR_RESULT
     FadeScreenIn
     WaitFadeScreen
     End

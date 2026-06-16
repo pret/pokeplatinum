@@ -54,13 +54,13 @@ RockPeakRuins_EncounterRegirock:
     End
 
 RockPeakRuins_CaughtRegirockStatueStoppedEmanatingPower:
-    Message RockPeakRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    Message RockPeakRuins_Text_StatueStoppedEmanatingPower
     GoTo RockPeakRuins_StatueEnd
     End
 
 RockPeakRuins_DidNotCatchRegirockStatueStoppedEmanatingPower:
     SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI
-    Message RockPeakRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    Message RockPeakRuins_Text_StatueStoppedEmanatingPower
     GoTo RockPeakRuins_StatueEnd
     End
 

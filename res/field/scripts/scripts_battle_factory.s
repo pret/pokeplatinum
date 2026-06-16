@@ -238,7 +238,7 @@ BattleFactory_StartChallenge:
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleFactory_WalkBackInvisiblyDoubleChallenge
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_WalkBackInvisiblyMultiChallenge
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
-    CreateJournalEvent LOCATION_EVENT_BATTLE_FACTORY, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_FACTORY
     WaitForTransition
     ScrCmd_2C4 3
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_EndCommunication

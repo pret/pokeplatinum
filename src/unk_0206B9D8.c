@@ -16,7 +16,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
-#include "battle_frontier_stats.h"
+#include "battle_frontier_save.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_system.h"
@@ -321,8 +321,8 @@ void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2)
 
 u16 sub_0206BDBC(SaveData *saveData)
 {
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
-    u16 v3 = BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(saveData);
+    u16 v3 = BattleFrontierSave_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
 
     if (v3 < 20) {
         return 0;
@@ -390,8 +390,8 @@ u16 sub_0206BDBC(SaveData *saveData)
 
 u16 sub_0206BF04(SaveData *saveData)
 {
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
-    u16 frontierStats = BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(saveData);
+    u16 frontierStats = BattleFrontierSave_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff);
 
     if (frontierStats < 20) {
         return 0;
