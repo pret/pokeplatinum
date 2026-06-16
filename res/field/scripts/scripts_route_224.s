@@ -102,7 +102,7 @@ Route224_ExpressThanks:
     WaitFadeScreen
     EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
     SetPlayerVolume SOUND_VOLUME_MIN
-    Warp MAP_HEADER_ROUTE_224, 0, 908, 492, DIR_NORTH
+    Warp MAP_HEADER_ROUTE_224, 908, 492, DIR_NORTH
     WaitTime 15, VAR_RESULT
     FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen

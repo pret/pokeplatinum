@@ -57,7 +57,7 @@ JubilifeTV3F_ChooseCustomMessageWords:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ChooseTwoCustomMessageWords 0, VAR_RESULT, VAR_0x8000, VAR_0x8001
+    ChooseTwoCustomMessageWords VAR_RESULT, VAR_0x8000, VAR_0x8001
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -66,7 +66,7 @@ JubilifeTV3F_ChooseCustomMessageWords:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ChooseTwoCustomMessageWords 0, VAR_RESULT, VAR_0x8002, VAR_0x8003
+    ChooseTwoCustomMessageWords VAR_RESULT, VAR_0x8002, VAR_0x8003
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

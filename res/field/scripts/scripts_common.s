@@ -1551,7 +1551,7 @@ CommonScript_AskUseAzureFlute:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     FadeScreenOut FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
-    Warp MAP_HEADER_HALL_OF_ORIGIN, 0, VAR_0x8004, VAR_0x8005, DIR_NORTH
+    Warp MAP_HEADER_HALL_OF_ORIGIN, VAR_0x8004, VAR_0x8005, DIR_NORTH
     FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
     Message CommonStrings_Text_GlowingStairwayAppeared
@@ -1573,7 +1573,7 @@ CommonScript_DontUseAzureFlute:
     End
 
 CommonScript_SetCounterpartBGM:
-    StopMusic 0
+    StopMusic
     GetPlayerGender VAR_RESULT
     CallIfEq VAR_RESULT, GENDER_MALE, CommonScript_SetTheGirlBGM
     CallIfEq VAR_RESULT, GENDER_FEMALE, CommonScript_SetTheBoyBGM
@@ -1589,26 +1589,26 @@ CommonScript_SetTheBoyBGM:
     Return
 
 CommonScript_SetRivalBGM:
-    StopMusic 0
+    StopMusic
     SetBGM SEQ_THE_RIV
     ReturnCommonScript
     End
 
 CommonScript_SetFollowMeBGM:
-    StopMusic 0
+    StopMusic
     SetBGM SEQ_TSURETEKE
     ReturnCommonScript
     End
 
 CommonScript_SetLookerBGM:
-    StopMusic 0
+    StopMusic
     SetBGM SEQ_PL_HANDSOME
     ReturnCommonScript
     End
 
 CommonScript_FadeToDefaultMusic:
     FadeOutBGM 0, 30
-    StopMusic 0
+    StopMusic
     PlayDefaultMusic
     ReturnCommonScript
     End

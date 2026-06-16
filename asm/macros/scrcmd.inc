@@ -595,9 +595,9 @@
     .short \seqID
     .endm
 
-    .macro StopMusic dummy
+    .macro StopMusic
     .short SCRCMD_STOPMUSIC
-    .short \dummy
+    .short 0 // unused
     .endm
 
     // Plays the default music track based on the player's current location
@@ -1207,10 +1207,10 @@
     .short SCRCMD_WAITFADESCREEN
     .endm
 
-    .macro Warp mapID, dummy, x, z, direction
+    .macro Warp mapID, x, z, direction
     .short SCRCMD_WARP
     .short \mapID
-    .short \dummy
+    .short 0 // unused
     .short \x
     .short \z
     .short \direction
@@ -2484,9 +2484,9 @@
     .short \daycareSlot
     .endm
 
-    .macro BufferPartyMonNicknameReturnSpecies unused, partySlot, destVar
+    .macro BufferPartyMonNicknameReturnSpecies partySlot, destVar
     .short SCRCMD_BUFFERPARTYMONNICKNAMERETURNSPECIES
-    .short \unused
+    .short 0 // unused
     .short \partySlot
     .short \destVar
     .endm
@@ -2661,7 +2661,7 @@
     .short SCRCMD_GIVEJOURNAL
     .endm
 
-    .macro CreateJournalEvent eventType, eventParam, unused1, unused2, unused3
+    .macro CreateJournalEvent eventType, eventParam=0, unused1=0, unused2=0, unused3=0
     .short SCRCMD_CREATEJOURNALEVENT
     .short \eventType
     .short \eventParam
@@ -3476,16 +3476,16 @@
     .short SCRCMD_DUMMY242
     .endm
 
-    .macro ChooseCustomMessageWord unused, resultVar, destVar
+    .macro ChooseCustomMessageWord resultVar, destVar
     .short SCRCMD_CHOOSECUSTOMMESSAGEWORD
-    .short \unused
+    .short 0 // unused
     .short \resultVar
     .short \destVar
     .endm
 
-    .macro ChooseTwoCustomMessageWords unused, resultVar, destVar1, destVar2
+    .macro ChooseTwoCustomMessageWords resultVar, destVar1, destVar2
     .short SCRCMD_CHOOSETWOCUSTOMMESSAGEWORDS
-    .short \unused
+    .short 0 // unused
     .short \resultVar
     .short \destVar1
     .short \destVar2

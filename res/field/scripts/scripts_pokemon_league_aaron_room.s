@@ -39,11 +39,11 @@ PokemonLeagueAaronRoom_StartAaronRematchBattle:
     Return
 
 PokemonLeagueAaronRoom_CreateJournalEventDefeatedAaron:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON
     Return
 
 PokemonLeagueAaronRoom_CreateJournalEventDefeatedRematchAaron:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON_REMATCH, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON_REMATCH
     Return
 
 PokemonLeagueAaronRoom_BlackOut:

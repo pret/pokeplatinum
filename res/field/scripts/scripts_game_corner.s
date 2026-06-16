@@ -84,7 +84,7 @@ GameCorner_SlotMachine:
     GoToIfEq VAR_RESULT, FALSE, GameCorner_SlotMachine_NoCoinCase
     FadeScreenOut
     WaitFadeScreen
-    CreateJournalEvent LOCATION_EVENT_GAME_CORNER, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GAME_CORNER
     ScrCmd_267 LOCAL_VAR_SLOT_MACHINE_ID
     ReturnToField
     FadeScreenIn

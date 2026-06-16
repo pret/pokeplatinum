@@ -41,11 +41,11 @@ PokemonLeagueFlintRoom_StartFlintRematchBattle:
     Return
 
 PokemonLeagueFlintRoom_CreateJournalEventDefeatedFlint:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT
     Return
 
 PokemonLeagueFlintRoom_CreateJournalEventDefeatedRematchFlint:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT_REMATCH, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT_REMATCH
     Return
 
 PokemonLeagueFlintRoom_BlackOut:

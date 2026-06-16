@@ -44,7 +44,7 @@ PastoriaGym_Wake:
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_WakeAlreadyHaveFenBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_PASTORIA_CITY_GYM, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_PASTORIA_CITY_GYM
     Message PastoriaGym_Text_WakeIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_WAKE
@@ -66,7 +66,7 @@ PastoriaGym_Wake:
     SetVar VAR_PASTORIA_STATE, 3
     SetFlag FLAG_HIDE_PASTORIA_CITY_GRUNT_M
     SetFlag FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_PASTORIA_CITY_GYM, TRAINER_LEADER_WAKE, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_PASTORIA_CITY_GYM, TRAINER_LEADER_WAKE
     Message PastoriaGym_Text_WakeExplainFenBadge
     GoTo PastoriaGym_WakeTryGiveTm55
     End

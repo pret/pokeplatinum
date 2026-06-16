@@ -2389,7 +2389,7 @@ VisibleItems_BufferPocketNameBattleItems:
     End
 
 VisibleItems_MessagePlayerPutTheItemInTheItemPocket:
-    CreateJournalEvent LOCATION_EVENT_ITEM_WAS_OBTAINED, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_ITEM_WAS_OBTAINED, VAR_0x8004
     Message VisibleItems_Text_PlayerPutTheItemInTheItemPocket2
     WaitButton
     SetVar VAR_RESULT, TRUE

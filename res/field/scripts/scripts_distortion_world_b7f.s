@@ -20,7 +20,7 @@ DistortionWorldB7F_OnTransition:
 DistortionWorldB7F_CoordEvent_WarpToGiratinaRoom:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, 0, 15, 25, DIR_NORTH
+    Warp MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, 15, 25, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

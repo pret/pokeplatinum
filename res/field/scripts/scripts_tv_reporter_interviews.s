@@ -121,7 +121,7 @@ TVReporterInterviews_DoInterview:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8004
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8004
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

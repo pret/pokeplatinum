@@ -39,11 +39,11 @@ PokemonLeagueLucianRoom_StartLucianRematchBattle:
     Return
 
 PokemonLeagueLucianRoom_CreateJournalEventDefeatedLucian:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN
     Return
 
 PokemonLeagueLucianRoom_CreateJournalEventDefeatedRematchLucian:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN_REMATCH, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN_REMATCH
     Return
 
 PokemonLeagueLucianRoom_BlackOut:

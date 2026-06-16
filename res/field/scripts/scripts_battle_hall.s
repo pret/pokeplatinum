@@ -406,7 +406,7 @@ BattleHall_StartChallenge:
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_WalkBackInvisiblyDoubleChallenge
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_WalkBackInvisiblyMultiChallenge
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
-    CreateJournalEvent LOCATION_EVENT_BATTLE_HALL, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_HALL
     WaitForTransition
     ScrCmd_2C4 9
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_EndCommunication

@@ -286,7 +286,7 @@ BattleCastle_StartChallenge:
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleCastle_WalkBackInvisiblyDoubleChallenge
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleCastle_WalkBackInvisiblyMultiChallenge
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
-    CreateJournalEvent LOCATION_EVENT_BATTLE_CASTLE, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_CASTLE
     WaitForTransition
     ScrCmd_2C4 11
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleCastle_EndCommunication

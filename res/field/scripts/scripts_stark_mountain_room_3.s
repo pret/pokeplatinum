@@ -236,7 +236,7 @@ StarkMountainRoom3_OnFrame_Charon:
     ClearFlag FLAG_HIDE_STARK_MOUNTAIN_OUTSIDE_LOOKER
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_STARK_MOUNTAIN_OUTSIDE, 0, 751, 233, DIR_NORTH
+    Warp MAP_HEADER_STARK_MOUNTAIN_OUTSIDE, 751, 233, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
