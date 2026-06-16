@@ -22,28 +22,28 @@
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_AskBattleWithMe",
+      "id": "PastoriaCityPokecenter1F_Text_GraceIntro_Unused",
       "en_US": [
         "Would you like to battle with me?\n",
         "As a memento of your visit to Pastoria?"
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_JoinMyFanClub",
+      "id": "PastoriaCityPokecenter1F_Text_GraceBattleAccepted_Unused",
       "en_US": [
         "I’ll let you join my fan club if you can\n",
         "beat me!\r"
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_ImGoingToCry",
+      "id": "PastoriaCityPokecenter1F_Text_GraceBattleDeclined_Unused",
       "en_US": [
         "You’re not interested in Idols?\n",
         "...I think I’m going to cry."
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_SupportUs",
+      "id": "PastoriaCityPokecenter1F_Text_GracePostBattle_Unused",
       "en_US": [
         "Well, that’s me and my Pokémon!\n",
         "I hope you’ll support us!\r",
@@ -52,56 +52,56 @@
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_BattleWillBeFun",
+      "id": "PastoriaCityPokecenter1F_Text_LeeIntro_Unused",
       "en_US": [
         "Are we all ready to have some fun?\n",
         "Our battle will be fun! OK?!"
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_ShallWeDoThis",
+      "id": "PastoriaCityPokecenter1F_Text_LeeBattleAccepted_Unused",
       "en_US": [
         "OK, how shall we do this?\n",
         "Shall we do something fantastical?\r"
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_ItMakesMeLonely",
+      "id": "PastoriaCityPokecenter1F_Text_LeeBattleDeclined_Unused",
       "en_US": [
         "Oh, how shall I say this...?\n",
         "It makes me all lonely, I say..."
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_WhichTownNext",
+      "id": "PastoriaCityPokecenter1F_Text_LeePostBattle_Unused",
       "en_US": [
         "Well, let’s see!\n",
         "Which town will we go to next?"
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_LetsDoBattle",
+      "id": "PastoriaCityPokecenter1F_Text_ArturoIntro_Unused",
       "en_US": [
         "Come on, let’s show off our Pokémon!\n",
         "Let’s do battle, kiddo!"
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_RockInYourVeins",
+      "id": "PastoriaCityPokecenter1F_Text_ArturoBattleAccepted_Unused",
       "en_US": [
         "Your spirit’s vibes...\n",
         "You’ve got rock in your veins!\r"
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_MyGuitarLiesBroken",
+      "id": "PastoriaCityPokecenter1F_Text_ArturoBattleDeclined_Unused",
       "en_US": [
         "My guitar...\n",
         "It lies broken and weeping..."
       ]
     },
     {
-      "id": "PastoriaCityPokecenter1F_Text_RockIsAboutSpirit",
+      "id": "PastoriaCityPokecenter1F_Text_ArturoPostBattle_Unused",
       "en_US": [
         "Rock is about your spirit!\n",
         "Battling is about spirit, too!\f",

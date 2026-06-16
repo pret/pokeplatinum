@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_HiCanWeFeatureYouInANewsPieceWereDoing",
+      "id": "JubilifeCityPokecenter1F_Text_KinseyIntro_Unused",
       "en_US": [
         "Hi, can we feature you in a news piece\n",
         "we’re doing?\r",
@@ -42,18 +42,18 @@
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_ReporterKinseysLiveInterview",
+      "id": "JubilifeCityPokecenter1F_Text_KinseyBattleAccepted_Unused",
       "en_US": "Reporter Kinsey’s live interview!\r"
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_UnbelievablePressCoverageDenied",
+      "id": "JubilifeCityPokecenter1F_Text_KinseyBattleDeclined_Unused",
       "en_US": [
         "Unbelievable! Press coverage denied!\n",
         "I find you intriguing, too..."
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_ToGetPeopleToOpenUpWeApproachThemHonestly",
+      "id": "JubilifeCityPokecenter1F_Text_KinseyPostBattle_Unused",
       "en_US": [
         "To get people to open up, we approach\n",
         "them honestly with no hidden tricks.\r",
@@ -62,21 +62,21 @@
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_IsItOKToGoForTheScoop",
+      "id": "JubilifeCityPokecenter1F_Text_TevinIntro_Unused",
       "en_US": [
         "I’ve spotted a charismatic Trainer!\n",
         "Is it OK to go for the scoop?"
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_AsAProfessionalCameramanIAlwaysGoForTheBestShot",
+      "id": "JubilifeCityPokecenter1F_Text_TevinBattleAccepted_Unused",
       "en_US": [
         "As a professional cameraman, I always\n",
         "go for the best shot!\r"
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_ThatsADowner",
+      "id": "JubilifeCityPokecenter1F_Text_TevinBattleDeclined_Unused",
       "en_US": [
         "That’s a downer...\r",
         "I thought I’d found a Trainer and\n",
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_TheLivelyExpressionsOnYouAndYourPokemonsFaces",
+      "id": "JubilifeCityPokecenter1F_Text_TevinPostBattle_Unused",
       "en_US": [
         "The lively expressions on you and your\n",
         "Pokémon’s faces...\r",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_AreWeAllReadyToHaveSomeFun",
+      "id": "JubilifeCityPokecenter1F_Text_LeeIntro_Unused",
       "en_US": [
         "Are we all ready to have some fun?\n",
         "I sure am! Aren’t you having fun?!\f",
@@ -100,21 +100,21 @@
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_OKHowShallWeDoThis",
+      "id": "JubilifeCityPokecenter1F_Text_LeeBattleAccepted_Unused",
       "en_US": [
         "OK, how shall we do this?\n",
         "Shall we do something fantastical?\r"
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_OhHowShallISayThis",
+      "id": "JubilifeCityPokecenter1F_Text_LeeBattleDeclined_Unused",
       "en_US": [
         "Oh, how shall I say this...?\n",
         "It makes me all lonely, I say..."
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_AClownsMakeupIsAFaceThatsCryingWhileLaughing",
+      "id": "JubilifeCityPokecenter1F_Text_LeePostBattle_Unused",
       "en_US": [
         "A clown’s makeup is a face that’s\n",
         "crying while laughing. Mwahahah!\r",

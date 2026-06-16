@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "ResortAreaPokecenter1F_Text_WillYouBattleMe",
+      "id": "ResortAreaPokecenter1F_Text_ArielIntro_Unused",
       "en_US": [
         "Po-Po-Pokémon!\r",
         "I want to become more like a PIKACHU!\n",
@@ -28,15 +28,15 @@
       ]
     },
     {
-      "id": "ResortAreaPokecenter1F_Text_PiPikachu",
+      "id": "ResortAreaPokecenter1F_Text_ArielBattleAccepted_Unused",
       "en_US": "Pi-Pikachu!\r"
     },
     {
-      "id": "ResortAreaPokecenter1F_Text_PiPikachu2",
+      "id": "ResortAreaPokecenter1F_Text_ArielBattleDeclined_Unused",
       "en_US": "Pi-Pikachu!"
     },
     {
-      "id": "ResortAreaPokecenter1F_Text_HadTeamPampered",
+      "id": "ResortAreaPokecenter1F_Text_ArielPostBattle_Unused",
       "en_US": [
         "But I just had my team pampered at the\n",
         "Ribbon Syndicate!\r",
