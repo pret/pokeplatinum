@@ -46,9 +46,9 @@
     Entry(SCRIPT_ID_OFFSET_DAY_CARE_COMMON,                scripts_day_care_common,                TEXT_BANK_DAY_CARE_COMMON) \
     Entry(SCRIPT_ID_OFFSET_POFFIN_COMMON,                  scripts_poffin_common,                  TEXT_BANK_POFFIN_COMMON) \
     Entry(SCRIPT_ID_OFFSET_GROUP_CONNECTION,               scripts_group_connection,               TEXT_BANK_GROUP_CONNECTION) \
-    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_B1F_ATTENDANTS,  scripts_pokemon_center_b1f_attendants,  TEXT_BANK_POKEMON_CENTER_B1F_ATTENDANTS) \
+    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_B1F_COMMON,      scripts_pokemon_center_b1f_common,      TEXT_BANK_POKEMON_CENTER_B1F_COMMON) \
     Entry(SCRIPT_ID_OFFSET_COMMUNICATION_CLUB,             scripts_communication_club,             TEXT_BANK_COMMUNICATION_CLUB) \
-    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_2F_ATTENDANTS,   scripts_pokemon_center_2f_attendants,   TEXT_BANK_POKEMON_CENTER_2F_ATTENDANTS) \
+    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_2F_COMMON,       scripts_pokemon_center_2f_common,       TEXT_BANK_POKEMON_CENTER_2F_COMMON) \
     Entry(SCRIPT_ID_OFFSET_POKE_RADAR,                     scripts_poke_radar,                     TEXT_BANK_BAG) \
     Entry(SCRIPT_ID_OFFSET_VS_SEEKER,                      scripts_vs_seeker,                      TEXT_BANK_VS_SEEKER) \
     Entry(SCRIPT_ID_OFFSET_RECORD_CHATOT_CRY,              scripts_record_chatot_cry,              TEXT_BANK_RECORD_CHATOT_CRY) \
@@ -189,7 +189,7 @@ static void ScriptManager_Init(FieldSystem *fieldSystem, ScriptManager *scriptMa
 {
     u16 *targetID = ScriptManager_GetMemberPtr(scriptManager, SCRIPT_DATA_TARGET_OBJECT_ID);
 
-    scriptManager->playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    scriptManager->playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
     scriptManager->targetObject = object;
     scriptManager->scriptID = scriptID;
     scriptManager->saveType = saveType;
@@ -653,8 +653,8 @@ HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSyste
         return hiddenItems;
     }
 
-    playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     playerMinX = playerX - 7;
     playerMaxX = playerX + 7;
     playerMinZ = playerZ - 7;

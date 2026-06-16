@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle_tower.h"
+#include "constants/string.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/frontier_trainers.h"
 #include "generated/object_events_gfx.h"
@@ -29,7 +30,6 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "string_gf.h"
-#include "string_padding_mode.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_0202D05C.h"
@@ -287,8 +287,8 @@ static BattleFrontierTrainerData *sub_0204B184(FrontierDataDTO *param0, u16 para
     BattleFrontierTrainerData *v0 = sub_0204B630(param1, heapID);
 
     param0->trDataDTO.trainerID = param1;
-    param0->trDataDTO.unk_18[0] = 0xFFFF;
-    param0->trDataDTO.unk_18[1] = param1 * 3;
+    param0->trDataDTO.introMsg[0] = 0xFFFF;
+    param0->trDataDTO.introMsg[1] = param1 * 3;
     param0->trDataDTO.trainerType = v0->trainerType;
 
     String *v2 = MessageLoader_GetNewString(v1, param1);

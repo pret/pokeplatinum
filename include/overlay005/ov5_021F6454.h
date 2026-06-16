@@ -5,7 +5,7 @@
 
 BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx);
 BOOL ScrCmd_JudgeStats(ScriptContext *ctx);
-BOOL ScrCmd_31D(ScriptContext *param0);
+BOOL ScrCmd_TryRevertPartyPokemonForms(ScriptContext *ctx);
 BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0);
 BOOL ScrCmd_2F1(ScriptContext *param0);
 BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx);

@@ -102,7 +102,7 @@ BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int par
         8
     };
 
-    const VecFx32 *v8 = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
+    const VecFx32 *v8 = PlayerAvatar_GetPos(fieldSystem->playerAvatar);
     v7 = 0;
 
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
@@ -430,8 +430,8 @@ BOOL RefreshRadarChain(FieldTask *taskMan)
             *v1 = 4;
         } else {
             *v2 = 0;
-            int v3 = Player_GetXPos(fieldSystem->playerAvatar);
-            int v4 = Player_GetZPos(fieldSystem->playerAvatar);
+            int v3 = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+            int v4 = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
             RadarSpawnPatches(fieldSystem, v3, v4, fieldSystem->chain);
             if (fieldSystem->chain->active) {
                 SetupGrassPatches(fieldSystem, 0x1, fieldSystem->chain);

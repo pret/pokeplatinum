@@ -2,18 +2,18 @@
 #include "res/text/bank/eterna_forest.h"
 #include "res/field/events/events_eterna_forest.h"
 
-    ScriptEntry EternaForest_TriggerStartFollowingCheryl
-    ScriptEntry EternaForest_TriggerPlayerLeaveCheryl
-    ScriptEntry EternaForest_TriggerCherylLeavePlayer
-    ScriptEntry EternaForest_Unused4
-    ScriptEntry EternaForest_Unused5
+    ScriptEntry EternaForest_CoordEvent_CherylStartFollowing
+    ScriptEntry EternaForest_CoordEvent_PlayerLeaveCheryl
+    ScriptEntry EternaForest_CoordEvent_CherylLeavePlayer
+    ScriptEntry EternaForest_Dummy4
+    ScriptEntry EternaForest_Dummy5
     ScriptEntry EternaForest_BugCatcher
     ScriptEntry EternaForest_Gardenia
-    ScriptEntry EternaForest_LandmarkSignEternaForest
+    ScriptEntry EternaForest_SignboardEternaForest
     ScriptEntry EternaForest_TrainerTipsSignpost
     ScriptEntry EternaForest_MossRock
     ScriptEntry EternaForest_OnTransition
-    ScriptEntry EternaForest_OnFrameCherylOldChateauCutscene
+    ScriptEntry EternaForest_OnFrame_CherylOldChateauCutscene
     ScriptEntryEnd
 
 EternaForest_OnTransition:
@@ -24,7 +24,7 @@ EternaForest_ResetFollowerCherylState:
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 0
     End
 
-EternaForest_TriggerStartFollowingCheryl:
+EternaForest_CoordEvent_CherylStartFollowing:
     LockAll
     SetPlayerBike FALSE
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -35,23 +35,23 @@ EternaForest_TriggerStartFollowingCheryl:
 EternaForest_CherylNoticeAndWalkToPlayerX28:
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylNoticeAndWalkToPlayerX28
     WaitMovement
-    GoTo EternaForest_StartFollowingCheryl
+    GoTo EternaForest_CherylStartFollowing
 
 EternaForest_CherylNoticeAndWalkToPlayerX29:
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylNoticeAndWalkToPlayerX29
     WaitMovement
-    GoTo EternaForest_StartFollowingCheryl
+    GoTo EternaForest_CherylStartFollowing
 
-EternaForest_StartFollowingCheryl:
-    CallIfUnset FLAG_TALKED_TO_ETERNA_FOREST_CHERYL, EternaForest_PleaseMayIGoThroughWithYou
-    CallIfSet FLAG_TALKED_TO_ETERNA_FOREST_CHERYL, EternaForest_LetsGetThroughThisForestTogether
+EternaForest_CherylStartFollowing:
+    CallIfUnset FLAG_TALKED_TO_ETERNA_FOREST_CHERYL, EternaForest_MayIGoWithYou
+    CallIfSet FLAG_TALKED_TO_ETERNA_FOREST_CHERYL, EternaForest_LetsGetThroughForestTogether
     BufferPlayerName 0
     PlayFanfare SEQ_GONIN
     Message EternaForest_Text_PlayerDecidedToGoWithCheryl
     WaitFanfare
     SetFlag FLAG_TALKED_TO_ETERNA_FOREST_CHERYL
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 1
-    Message EternaForest_Text_IllKeepYourPokemonInPerfectHealth
+    Message EternaForest_Text_IllKeepPokemonHealthy
     WaitButton
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_CHERYL_ETERNA_FOREST
@@ -61,14 +61,14 @@ EternaForest_StartFollowingCheryl:
     ReleaseAll
     End
 
-EternaForest_PleaseMayIGoThroughWithYou:
+EternaForest_MayIGoWithYou:
     BufferPlayerName 0
-    Message EternaForest_Text_PleaseMayIGoThroughWithYou
+    Message EternaForest_Text_MayIGoWithYou
     Return
 
-EternaForest_LetsGetThroughThisForestTogether:
+EternaForest_LetsGetThroughForestTogether:
     BufferPlayerName 0
-    Message EternaForest_Text_LetsGetThroughThisForestTogether
+    Message EternaForest_Text_LetsGetThroughForestTogether
     Return
 
     .balign 4, 0
@@ -85,7 +85,7 @@ EternaForest_Movement_CherylNoticeAndWalkToPlayerX29:
     WalkOnSpotNormalSouth
     EndMovement
 
-EternaForest_TriggerPlayerLeaveCheryl:
+EternaForest_CoordEvent_PlayerLeaveCheryl:
     LockAll
     ClearHasPartner
     SetMovementType LOCALID_CHERYL, MOVEMENT_TYPE_LOOK_SOUTH
@@ -132,13 +132,13 @@ EternaForest_Movement_CherylWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-EternaForest_TriggerCherylLeavePlayer:
+EternaForest_CoordEvent_CherylLeavePlayer:
     LockAll
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylExclamationMark
     ApplyMovement LOCALID_PLAYER, EternaForest_Movement_PlayerWalkOnSpotWest
     WaitMovement
     BufferPlayerName 0
-    Message EternaForest_Text_OhTheresTheExitThankYouSoMuchPlayer
+    Message EternaForest_Text_ThankYouSoMuch
     SetVar VAR_0x8004, ITEM_SOOTHE_BELL
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaForest_CherylWalkToExit
@@ -146,7 +146,7 @@ EternaForest_TriggerCherylLeavePlayer:
     End
 
 EternaForest_GiveSootheBell:
-    Message EternaForest_Text_ThisIsMyTokenOfAppreciation
+    Message EternaForest_Text_TokenOfAppreciation
     Common_GiveItemQuantityNoLineFeed
     GoTo EternaForest_CherylWalkToExit
     End
@@ -201,7 +201,7 @@ EternaForest_CherylWalkToExitX39:
 EternaForest_CherylLeave:
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylWalkOnSpotWest
     WaitMovement
-    Message EternaForest_Text_ImSureWellMeetAgainSomewhere
+    Message EternaForest_Text_ImSureWellMeetAgain
     CloseMessage
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylLeave
     WaitMovement
@@ -321,33 +321,33 @@ EternaForest_Movement_PlayerWatchCherylWalkToExitX39:
     WalkOnSpotNormalEast
     EndMovement
 
-EternaForest_Unused4:
+EternaForest_Dummy4:
     LockAll
     BufferPlayerName 0
     ReleaseAll
     End
 
-EternaForest_Unused5:
+EternaForest_Dummy5:
     LockAll
     BufferPlayerName 0
     ReleaseAll
     End
 
 EternaForest_BugCatcher:
-    NPCMessage EternaForest_Text_ImSearchingForBugPokemonSoICanWinAtTheEternaGym
+    NPCMessage EternaForest_Text_ImSearchingForBugPokemon
     End
 
 EternaForest_Gardenia:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message EternaForest_Text_HiyaWereYouIngriguedByTheRumorsGoingAroundToo
+    Message EternaForest_Text_WereYouIngriguedByRumors
     CloseMessage
     ApplyMovement LOCALID_GARDENIA, EternaForest_Movement_GardeniaWalkOnSpotNorth
     WaitMovement
-    Message EternaForest_Text_YouKnowPeopleveBeenTalkingAboutTheGhostPokemonOfTheOldChateau
+    Message EternaForest_Text_GhostPokemonOfOldChateau
     FacePlayer
-    Message EternaForest_Text_IShouldCheckItOutMyselfButGoingInThereIs
+    Message EternaForest_Text_GoodLuckWithInvestigation
     CloseMessage
     GetPlayerDir VAR_RESULT
     GoToIfEq VAR_RESULT, DIR_NORTH, EternaForest_GardeniaLeaveNorth
@@ -403,24 +403,24 @@ EternaForest_Movement_GardeniaLeaveNorth:
     WalkNormalEast 10
     EndMovement
 
-EternaForest_LandmarkSignEternaForest:
-    ShowLandmarkSign EternaForest_Text_TheEternaForestWhereTimeFlowsEternally
+EternaForest_SignboardEternaForest:
+    ShowLandmarkSign EternaForest_Text_SignEternaForest
     End
 
 EternaForest_TrainerTipsSignpost:
-    ShowScrollingSign EternaForest_Text_TrainerTipsInForestsAndCavesThereAreManyItemsOnTheGround
+    ShowScrollingSign EternaForest_Text_TrainerTipsItemsOnGround
     End
 
 EternaForest_MossRock:
-    EventMessage EternaForest_Text_TheRockIsCoveredInMoss
+    EventMessage EternaForest_Text_RockIsCoveredInMoss
     End
 
-EternaForest_OnFrameCherylOldChateauCutscene:
+EternaForest_OnFrame_CherylOldChateauCutscene:
     LockAll
     SetVar VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE, 2
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylWalkOnSpotNorth
     WaitMovement
-    Message EternaForest_Text_ThereIsAnOldChateauAhead
+    Message EternaForest_Text_OldChateauAhead
     WaitButton
     CloseMessage
     ReleaseAll

@@ -317,46 +317,27 @@ static int pack_berries(void) {
 }
 
 static void proc_text(const char *stem, const char *name, const char *plural, datanode_t *article, datanode_t *desc) {
-    datanode_t entry;
-    char       buf[BUFSIZE] = { 0 };
+#define strfmt2(fmt, ...) (snprintf(buf2, BUFSIZE, fmt, __VA_ARGS__), buf2)
+    char buf[BUFSIZE] = { 0 };
+    char buf2[BUFSIZE] = { 0 };
 
-    entry = dp_arr_appobject(&textbanks[T_ITEM_NAMES].root);
-    dp_obj_putstring(&entry, "id", strfmt("ItemNames_Text_%s", stem));
-    dp_obj_putstring(&entry, "en_US", name);
+    bank_push(T_ITEM_NAMES, strfmt("ItemNames_Text_%s", stem), name);
+    bank_push(T_ITEM_NAMES_PLURAL, strfmt("ItemNamesPlural_Text_%s", stem), plural);
 
-    entry = dp_arr_appobject(&textbanks[T_ITEM_NAMES_PLURAL].root);
-    dp_obj_putstring(&entry, "id", strfmt("ItemNamesPlural_Text_%s", stem));
-    dp_obj_putstring(&entry, "en_US", plural);
-
-    entry = dp_arr_appobject(&textbanks[T_ITEM_NAMES_WITH_ARTICLE].root);
-    dp_obj_putstring(&entry, "id", strfmt("ItemNamesWithArticles_Text_%s", stem));
-    if (strcmp(plural, "???") == 0) dp_obj_putstring(&entry, "en_US", plural);
+    char *article_id = strfmt2("ItemNamesWithArticles_Text_%s", stem);
+    if (strcmp(plural, "???") == 0) {
+        bank_push(T_ITEM_NAMES_WITH_ARTICLE, article_id, plural);
+    }
     else if (article->type == DATAPROC_T_NULL) {
-        dp_obj_putstring(&entry, "en_US", strfmt("{COLOR 255}%s{COLOR 0}", name));
+        bank_push(T_ITEM_NAMES_WITH_ARTICLE, article_id, strfmt("{COLOR 255}%s{COLOR 0}", name));
     }
     else {
-        dp_obj_putstring(&entry, "en_US", strfmt("%s {COLOR 255}%s{COLOR 0}", dp_string(*article), name));
+        bank_push(T_ITEM_NAMES_WITH_ARTICLE, article_id, strfmt("%s {COLOR 255}%s{COLOR 0}", dp_string(*article), name));
     }
 
-    entry = dp_arr_appobject(&textbanks[T_ITEM_DESCRIPTIONS].root);
-    dp_obj_putstring(&entry, "id", strfmt("ItemDescriptions_Text_%s", stem));
-    if (desc) {
-        datanode_t desc_node = *desc;
-        if (desc_node.type == DATAPROC_T_STRING) {
-            dp_obj_putstring(&entry, "en_US", dp_string(desc_node));
-        }
-        else if (desc_node.type == DATAPROC_T_ARRAY) {
-            datanode_t   lines   = dp_obj_putarray(&entry, "en_US");
-            const size_t n_lines = dp_arrlen(desc_node);
-            for (size_t j = 0; j < n_lines; j++) {
-                dp_arr_appstring(&lines, dp_string(dp_arrelem(desc_node, j)));
-            }
-        }
-        else {
-            dp_error(desc, "expected content to be a string or an array");
-        }
-    }
-    else dp_obj_putint(&entry, "garbage", 0);
+    if (desc) bank_push(T_ITEM_DESCRIPTIONS, strfmt("ItemDescriptions_Text_%s", stem), *desc);
+    else      bank_push(T_ITEM_DESCRIPTIONS, strfmt("ItemDescriptions_Text_%s", stem), 0);
+#undef strfmt2
 }
 
 static void add_idmap(datafile_t *df, size_t i, size_t data_id) {

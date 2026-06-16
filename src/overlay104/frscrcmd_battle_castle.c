@@ -129,23 +129,23 @@ BOOL FrontierScrCmd_A4(FrontierScriptContext *ctx)
 BOOL FrontierScrCmd_BattleCastle_CleanupBattle(FrontierScriptContext *ctx)
 {
     BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
-    FieldBattleDTO *dto = battleCastle->unk_0C;
+    FieldBattleDTO *dto = battleCastle->dto;
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_1], 0);
-    Party_AddPokemonBySlotIndex(battleCastle->unk_28, 0, mon);
+    Party_AddPokemonBySlotIndex(battleCastle->playersParty, 0, mon);
 
     mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_1], 1);
-    Party_AddPokemonBySlotIndex(battleCastle->unk_28, 1, mon);
+    Party_AddPokemonBySlotIndex(battleCastle->playersParty, 1, mon);
 
     if (!BattleCastle_IsMultiPlayerChallenge(battleCastle->challengeType)) {
         mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_1], 2);
-        Party_AddPokemonBySlotIndex(battleCastle->unk_28, 2, mon);
+        Party_AddPokemonBySlotIndex(battleCastle->playersParty, 2, mon);
     } else {
         mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_2], 0);
-        Party_AddPokemonBySlotIndex(battleCastle->unk_28, 2, mon);
+        Party_AddPokemonBySlotIndex(battleCastle->playersParty, 2, mon);
 
         mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_2], 1);
-        Party_AddPokemonBySlotIndex(battleCastle->unk_28, 3, mon);
+        Party_AddPokemonBySlotIndex(battleCastle->playersParty, 3, mon);
     }
 
     battleCastle->wonBattle = CheckPlayerWonBattle(dto->resultMask);
@@ -158,8 +158,8 @@ BOOL FrontierScrCmd_BattleCastle_StartBattle(FrontierScriptContext *ctx)
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
     BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
 
-    FieldBattleDTO *dto = ov104_0223B810(battleCastle, v2);
-    battleCastle->unk_0C = dto;
+    FieldBattleDTO *dto = FieldBattleDTO_NewBattleCastle(battleCastle, v2);
+    battleCastle->dto = dto;
 
     sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, dto, 0, NULL);
     return TRUE;
@@ -192,8 +192,8 @@ BOOL FrontierScrCmd_OpenBattleCastleOpponentApp(FrontierScriptContext *ctx)
 static void SetupBattleCastleAppArgs(BattleCastleAppArgs *args, BattleCastle *battleCastle)
 {
     args->challengeType = battleCastle->challengeType;
-    args->party = battleCastle->unk_28;
-    args->opponentsParty = battleCastle->unk_2C;
+    args->party = battleCastle->playersParty;
+    args->opponentsParty = battleCastle->opponentsParty;
     args->battleCastle = battleCastle;
     args->partnersCP = battleCastle->partnersCP;
 
@@ -374,8 +374,8 @@ BOOL FrontierScrCmd_CallBattleCastleFunction(FrontierScriptContext *ctx)
         ov104_0223BB84(v12->bgConfig, battleCastle, 3);
     } break;
     case BC_FUNC_UNK_37:
-        ov104_0222E278(&(battleCastle->unk_4C[0]), battleCastle->unk_30[battleCastle->unk_11], HEAP_ID_FIELD2, 178);
-        ov104_0222E278(&(battleCastle->unk_4C[1]), battleCastle->unk_30[battleCastle->unk_11 + 7], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(battleCastle->unk_4C[0]), battleCastle->trainerIDs[battleCastle->unk_11], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(battleCastle->unk_4C[1]), battleCastle->trainerIDs[battleCastle->unk_11 + 7], HEAP_ID_FIELD2, 178);
         break;
     case BC_FUNC_UNK_38:
         *returnVar = ov104_02237338(battleCastle);
@@ -572,7 +572,7 @@ BOOL FrontierScrCmd_A9(FrontierScriptContext *param0)
         return 0;
     }
 
-    v0 = v1->unk_4C[v3].trDataDTO.unk_18;
+    v0 = v1->unk_4C[v3].trDataDTO.introMsg;
 
     ov104_022330FC(param0, v0);
     return 1;

@@ -55,7 +55,7 @@ HearthomeGym_FantinaPrepareSpinFaceWest:
 
 HearthomeGym_FantinaMain:
     GoToIfBadgeAcquired BADGE_ID_RELIC, HearthomeGym_FantinaAfterBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 91, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM, 0, 0, 0
     Message HearthomeGym_Text_FantinaIntro
     CloseMessage
     SetFlag FLAG_MAP_LOCAL
@@ -78,7 +78,7 @@ HearthomeGym_FantinaMain:
     SetTrainerFlag TRAINER_SCHOOL_KID_CHANCE
     SetTrainerFlag TRAINER_SCHOOL_KID_MACKENZIE
     SetTrainerFlag TRAINER_YOUNGSTER_DONNY
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 91, TRAINER_LEADER_FANTINA, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM, TRAINER_LEADER_FANTINA, 0, 0
     SetVar VAR_HEARTHOME_STATE, 1
     SetFlag FLAG_HIDE_HEARTHOME_ROUTE_209_ROADBLOCK
     ClearFlag FLAG_HIDE_HEARTHOME_ROUTE_209_GATE_RIVAL

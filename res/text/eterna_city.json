@@ -6,7 +6,7 @@
       "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
     },
     {
-      "id": "EternaCity_Text_YouCameToSeeThePokemonStatueRight",
+      "id": "EternaCity_Text_YouCameToSeeStatue",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\r",
         "You came to see the Pokémon statue,\n",
@@ -18,7 +18,7 @@
       "en_US": "{STRVAR_1 3, 0, 0}: What the...\r"
     },
     {
-      "id": "EternaCity_Text_SoThisIsEternasPokemonStatue",
+      "id": "EternaCity_Text_SoThisIsEternasStatue",
       "en_US": [
         "Cyrus: ...So, this is Eterna’s Pokémon\n",
         "statue...\r",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_GoCheckOutThePokemonStatueSeeYouAround",
+      "id": "EternaCity_Text_GoCheckOutStatueSeeYou",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Oh, hey!\r",
         "When we smacked together, a brilliant\n",
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_OhThatDeviceYouHaveItIsAPokedex",
+      "id": "EternaCity_Text_OhYouHaveAPokedex",
       "en_US": [
         "Oh, that device you have...\r",
         "It is a Pokédex?\n",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_TryUsingThisItShouldBeHelpful",
+      "id": "EternaCity_Text_TryUsingThis",
       "en_US": [
         "Here in Eterna City, there is a statue\n",
         "of an ancient Pokémon.\r",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_RememberTheHiddenMoveCutCanBeUsedInTheField",
+      "id": "EternaCity_Text_CutCanBeUsedInField",
       "en_US": [
         "Cynthia: Remember, the hidden move\n",
         "Cut can be used in the field.\r",
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_IWantedYouToHaveThisPokemonEggWillYouAcceptIt",
+      "id": "EternaCity_Text_WillYouAcceptEgg",
       "en_US": [
         "Cynthia: Oh, there you are!\r",
         "I was looking for you.\n",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_ThatsWonderfulThePokemonInsideTheEggIsHappyToo",
+      "id": "EternaCity_Text_ThatsWonderful",
       "en_US": [
         "Cynthia: That’s wonderful!\r",
         "The Pokémon inside the Egg is\n",
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_OhYouDontHaveRoomForThisEgg",
+      "id": "EternaCity_Text_NoRoomForEgg",
       "en_US": [
         "Cynthia: Oh?\n",
         "You have six Pokémon with you already.\f",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_OhYouDontNeedToFeelObligated",
+      "id": "EternaCity_Text_DontFeelObligated",
       "en_US": [
         "Cynthia: Oh...?\n",
         "You don’t need to feel obligated.\r",
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_DontLeaveWithoutThisPokemonEgg",
+      "id": "EternaCity_Text_DontLeaveWithoutEgg",
       "en_US": [
         "Cynthia: Oh, wait!\r",
         "Don’t leave without this Pokémon Egg.\n",
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_WillYouAcceptThisPokemonEgg",
+      "id": "EternaCity_Text_WillYouAcceptThisEgg",
       "en_US": [
         "Cynthia: Well?\n",
         "Will you accept this Pokémon Egg?"
@@ -162,7 +162,7 @@
       "garbage": 31
     },
     {
-      "id": "EternaCity_Text_KeepThatEggWithYouInYourPartyOfPokemon",
+      "id": "EternaCity_Text_KeepEggInYourParty",
       "en_US": [
         "Cynthia: Keep that Egg with you in your\n",
         "party of Pokémon.\r",
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_HiImGardeniaImThisTownsGymLeader",
+      "id": "EternaCity_Text_ImThisTownsGymLeader",
       "en_US": [
         "Hi! I’m Gardenia!\n",
         "I’m this town’s Gym Leader!\r",
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_HeyYouThereKidStayAwayFromThatPokemonStatue",
+      "id": "EternaCity_Text_StayAwayFromStatue",
       "en_US": [
         "Hey! You there, kid!\n",
         "Stay away from that Pokémon statue!\r",
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_HeyYouYeahYouTrainer",
+      "id": "EternaCity_Text_IllLetYouKeepPokemon",
       "en_US": [
         "Hey, you! Yeah, you, Trainer!\r",
         "Errr...\n",
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_SinceThatTeamGalacticBuildingWentUp",
+      "id": "EternaCity_Text_AtmosphereHasGottenCreepy",
       "en_US": [
         "Since that Team Galactic building went\n",
         "up, the city’s atmosphere has gotten\f",
@@ -230,14 +230,14 @@
       ]
     },
     {
-      "id": "EternaCity_Text_WithTeamGalacticGoneWhatsGoingToHappenToTheirBuilding",
+      "id": "EternaCity_Text_WhatWillHappenToGalacticBuilding",
       "en_US": [
         "With Team Galactic gone, what’s going\n",
         "to happen to their building?"
       ]
     },
     {
-      "id": "EternaCity_Text_MyFriendSaidTeamGalacticTookHisFavoritePokemonAway",
+      "id": "EternaCity_Text_GalacticTookFavoritePokemon",
       "en_US": [
         "My friend said Team Galactic took his\n",
         "favorite Pokémon away.\r",
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_DoYouUseYourBikesKickstand",
+      "id": "EternaCity_Text_DoYouUseKickstand",
       "en_US": [
         "Do you use your Bike’s kickstand?\r",
         "It looks cool to hop off your Bike and\n",
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_IfYoureVisitingEternaYouNeedToGetYourselfABicycle",
+      "id": "EternaCity_Text_GetYourselfABicycle",
       "en_US": [
         "If you’re visiting Eterna, you need to\n",
         "get yourself a Bicycle and take a\f",
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_OhYourPokemonAreRatherFetching",
+      "id": "EternaCity_Text_PokemonAreRatherFetching",
       "en_US": [
         "Oh, your Pokémon are rather fetching.\r",
         "Why, they look ready for Contests in\n",
@@ -279,21 +279,21 @@
       ]
     },
     {
-      "id": "EternaCity_Text_EternaCitysNotAnythingLikeItWasBefore",
+      "id": "EternaCity_Text_EternaCitysNotLikeBefore",
       "en_US": [
         "Eterna City’s not anything like it\n",
         "was before, way back in the day."
       ]
     },
     {
-      "id": "EternaCity_Text_TheySayThisIsAnAwesomePokemonThatPeopleSawLongAgo",
+      "id": "EternaCity_Text_AwesomePokemonFromLongAgo",
       "en_US": [
         "They say this is an awesome Pokémon\n",
         "that people saw long ago."
       ]
     },
     {
-      "id": "EternaCity_Text_OhDontTellMeYouDontHaveAnExplorerKit",
+      "id": "EternaCity_Text_YouDontHaveExplorerKit_ArrowPrompt",
       "en_US": [
         "Oh, don’t tell me you don’t have\n",
         "an Explorer Kit?\r",
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_OhDontTellMeYouDontHaveAnExplorerKit2",
+      "id": "EternaCity_Text_YouDontHaveExplorerKit",
       "en_US": [
         "Oh, don’t tell me you don’t have\n",
         "an Explorer Kit?\r",
@@ -311,14 +311,14 @@
       ]
     },
     {
-      "id": "EternaCity_Text_GoingUndergroundWithTheExplorerKitIsABlastIsntIt",
+      "id": "EternaCity_Text_GoingUndergroundIsABlast",
       "en_US": [
         "Going underground with the Explorer\n",
         "Kit is a blast, isn’t it?"
       ]
     },
     {
-      "id": "EternaCity_Text_OhWowYouGotABicycle",
+      "id": "EternaCity_Text_YouGotABicycle_ArrowPrompt",
       "en_US": [
         "Oh, wow!\n",
         "You got a Bicycle!\r",
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_OhWowYouGotABicycle2",
+      "id": "EternaCity_Text_YouGotABicycle",
       "en_US": [
         "Oh, wow!\n",
         "You got a Bicycle!\r",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt",
+      "id": "EternaCity_Text_FeelsGreatRidingABike",
       "en_US": [
         "It feels great riding a Bike with the\n",
         "wind in your face, doesn’t it?"
@@ -354,7 +354,7 @@
       ]
     },
     {
-      "id": "EternaCity_Text_EternaCityPokemonGymLeaderGardeniaMasterOfVividPlantPokemon",
+      "id": "EternaCity_Text_SignPokemonGym",
       "en_US": [
         "Eterna City Pokémon Gym\n",
         "Leader: Gardenia\f",
@@ -362,28 +362,28 @@
       ]
     },
     {
-      "id": "EternaCity_Text_RadRickshawsCycleShopGetOnAndRide",
+      "id": "EternaCity_Text_SignRadRickshawsCycleShop",
       "en_US": [
         "Rad Rickshaw’s Cycle Shop\n",
         "Get On and Ride!"
       ]
     },
     {
-      "id": "EternaCity_Text_TeamGalacticEternaBuildingWeWantYourPokemon",
+      "id": "EternaCity_Text_SignTeamGalacticEternaBuilding",
       "en_US": [
         "Team Galactic Eterna Building\n",
         "We Want Your Pokémon!"
       ]
     },
     {
-      "id": "EternaCity_Text_UndergroundMansHouseGoinDownForAdventure",
+      "id": "EternaCity_Text_SignUndergroundMansHouse",
       "en_US": [
         "Underground Man’s House\n",
         "Goin’ Down for Adventure!"
       ]
     },
     {
-      "id": "EternaCity_Text_EternaCondominiumsNameRatingServicesAvailable",
+      "id": "EternaCity_Text_SignEternaCondominiums",
       "en_US": [
         "Eterna Condominiums\n",
         "Name-Rating Services Available"

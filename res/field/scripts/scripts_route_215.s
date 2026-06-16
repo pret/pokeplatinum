@@ -2,14 +2,14 @@
 #include "res/text/bank/route_215.h"
 
 
-    ScriptEntry Route215_Unused
+    ScriptEntry Route215_Dummy1
     ScriptEntry Route215_BlackBelt
     ScriptEntry Route215_ArrowSignpostWest
     ScriptEntry Route215_ArrowSignpostVeilstoneCity
     ScriptEntry Route215_JoggerScott
     ScriptEntry Route215_JoggerCraig
     ScriptEntry Route215_OnTransition
-    ScriptEntry Route215_TrainerTips
+    ScriptEntry Route215_TrainerTipsSignpost
     ScriptEntryEnd
 
 Route215_OnTransition:
@@ -32,7 +32,7 @@ Route215_SetJoggersNoBattle:
     SetFlag FLAG_HIDE_ROUTE_215_JOGGER_CRAIG
     End
 
-Route215_Unused:
+Route215_Dummy1:
     NPCMessage Route215_Text_Dummy0
     End
 
@@ -70,7 +70,7 @@ Route215_ArrowSignpostVeilstoneCity:
     ShowArrowSign Route215_Text_SignRt215VeilstoneCity
     End
 
-Route215_TrainerTips:
+Route215_TrainerTipsSignpost:
     ShowScrollingSign Route215_Text_TrainerTipsPhysicalSpecial
     End
 

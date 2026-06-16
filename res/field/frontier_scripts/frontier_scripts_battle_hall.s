@@ -464,14 +464,14 @@ _0320:
     EndMovement
 
 _0326:
-    FrontierScrCmd_3E VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_0x8001
-    FrontierScrCmd_3E VAR_MAP_LOCAL_3, VAR_0x8003
-    FrontierScrCmd_3E VAR_MAP_LOCAL_2, VAR_0x8002
-    FrontierScrCmd_3E VAR_MAP_LOCAL_5, VAR_0x8000
+    GetSystemVar VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_0x8001
+    GetSystemVar VAR_MAP_LOCAL_3, VAR_0x8003
+    GetSystemVar VAR_MAP_LOCAL_2, VAR_0x8002
+    GetSystemVar VAR_MAP_LOCAL_5, VAR_0x8000
     GetPlayerObjEventGfx VAR_0x800A
     SetVar FR_VAR_0x800E, 0
     InitNewBattleRecording
-    FrontierScrCmd_8B VAR_0x8003, VAR_0x8001, VAR_0x8002, VAR_0x8000
+    InitBattleHall VAR_0x8003, VAR_0x8001, VAR_0x8002, VAR_0x8000
     CallBattleHallFunction BH_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0382
     SetVar FR_VAR_0x800F, 231
@@ -787,7 +787,7 @@ _08F1:
 _0907:
     BattleHall_StartBattle
     BattleHall_CleanupBattle
-    CallBattleHallFunction BH_FUNC_UPDATE_HELD_ITEMS, 0, 0, VAR_0x8008
+    CallBattleHallFunction BH_FUNC_RESTORE_HELD_ITEMS, 0, 0, VAR_0x8008
     CallBattleHallFunction BH_FUNC_TOGGLE_ENGINE_LAYER, 0, 0, VAR_0x8008
     FadeScreenIn
     BattleHall_CheckWonBattle VAR_0x8008
@@ -880,7 +880,7 @@ _0AC8:
 
 _0AD6:
     CallBattleHallFunction BH_FUNC_UNK_22, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 1
+    SetSystemVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 1
     CallBattleHallFunction BH_FUNC_UNK_15, 0, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
     Message BattleHallScene_Text_BPEarned
@@ -1123,11 +1123,11 @@ _0E7B:
     End
 
 _0E99:
-    FrontierScrCmd_3D VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 2
-    CallBattleHallFunction BH_FUNC_UNK_10, 0, 0, VAR_0x8008
+    SetSystemVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 2
+    CallBattleHallFunction BH_FUNC_QUICKSAVE, 0, 0, VAR_0x8008
     Call _1087
     FreeBattleRecording
-    FrontierScrCmd_8D
+    FreeBattleHall
     FadeScreenOut
     CloseMessage
     CallBattleHallFunction BH_FUNC_RESET_SYSTEM, 0, 0, VAR_0x8008
@@ -1167,7 +1167,7 @@ _0F30:
 
 _0F40:
     CallBattleHallFunction BH_FUNC_UNK_21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 3
+    SetSystemVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 3
     GoTo _100D
     End
 
@@ -1202,7 +1202,7 @@ _0FC0:
 
 _0FC8:
     CallBattleHallFunction BH_FUNC_UNK_21, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 3
+    SetSystemVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 3
     GoTo _0FDD
     End
 
@@ -1235,7 +1235,7 @@ _101D:
     CallBattleHallFunction BH_FUNC_GET_CHALLENGE_TYPE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 3, _107B
     FreeBattleRecording
-    FrontierScrCmd_8D
+    FreeBattleHall
     FrontierScrCmd_02
 
 _106B:
@@ -1250,7 +1250,7 @@ _1071:
 
 _107B:
     FreeBattleRecording
-    FrontierScrCmd_8D
+    FreeBattleHall
     FrontierScrCmd_04 14, 1
     End
 
@@ -1414,7 +1414,7 @@ _1333:
     Call _1173
     WaitForParticleSystemEmitters
     FreeParticleSystem 0
-    FrontierScrCmd_3E VAR_BATTLE_HALL_PRINT_STATE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_HALL_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 0, _1373
     Message BattleHallScene_Text_BeatArgenta
     CloseMessage
@@ -1422,7 +1422,7 @@ _1333:
     End
 
 _1373:
-    FrontierScrCmd_3D VAR_BATTLE_HALL_PRINT_STATE, 1
+    SetSystemVar VAR_BATTLE_HALL_PRINT_STATE, 1
     Return
 
 _137B:
@@ -1432,7 +1432,7 @@ _137B:
     Call _1173
     WaitForParticleSystemEmitters
     FreeParticleSystem 0
-    FrontierScrCmd_3E VAR_BATTLE_HALL_PRINT_STATE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_HALL_PRINT_STATE, VAR_0x8008
     CallIfEq VAR_0x8008, 2, _13BB
     Message BattleHallScene_Text_BeatArgentaGold
     CloseMessage
@@ -1440,7 +1440,7 @@ _137B:
     End
 
 _13BB:
-    FrontierScrCmd_3D VAR_BATTLE_HALL_PRINT_STATE, 3
+    SetSystemVar VAR_BATTLE_HALL_PRINT_STATE, 3
     Return
 
 _13C3:

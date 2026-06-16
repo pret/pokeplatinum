@@ -12,26 +12,26 @@
     ScriptEntry VeilstoneCity_Roughneck2
     ScriptEntry VeilstoneCity_Lady
     ScriptEntry VeilstoneCity_BattleGirl2
-    ScriptEntry VeilstoneCity_TriggerGruntBlockWarehouse
+    ScriptEntry VeilstoneCity_CoordEvent_GruntBlockWarehouse
     ScriptEntry VeilstoneCity_GruntMWarehouseNorth
     ScriptEntry VeilstoneCity_GruntMWarehouseSouth
     ScriptEntry VeilstoneCity_GruntMStorageKey
     ScriptEntry VeilstoneCity_GruntMSoutheast
-    ScriptEntry VeilstoneCity_TriggerCrasherWake
+    ScriptEntry VeilstoneCity_CoordEvent_CrasherWake
     ScriptEntry VeilstoneCity_Counterpart
-    ScriptEntry VeilstoneCity_MapSign
-    ScriptEntry VeilstoneCity_GymSign
-    ScriptEntry VeilstoneCity_SignGalacticWarehouse
-    ScriptEntry VeilstoneCity_SignGalacticBuilding
-    ScriptEntry VeilstoneCity_SignDepartmentStore
-    ScriptEntry VeilstoneCity_SignGameCorner
-    ScriptEntry VeilstoneCity_SignPrizeExchange
-    ScriptEntry VeilstoneCity_SignLakeValor
+    ScriptEntry VeilstoneCity_MapSignpost
+    ScriptEntry VeilstoneCity_GymSignpost
+    ScriptEntry VeilstoneCity_SignboardGalacticWarehouse
+    ScriptEntry VeilstoneCity_SignboardGalacticBuilding
+    ScriptEntry VeilstoneCity_SignboardDepartmentStore
+    ScriptEntry VeilstoneCity_SignboardGameCorner
+    ScriptEntry VeilstoneCity_SignboardPrizeExchange
+    ScriptEntry VeilstoneCity_SignboardLakeValor
     ScriptEntry VeilstoneCity_DeoxysMeteoriteSpeed
     ScriptEntry VeilstoneCity_DeoxysMeteoriteDefense
     ScriptEntry VeilstoneCity_DeoxysMeteoriteAttack
     ScriptEntry VeilstoneCity_DeoxysMeteoriteNormal
-    ScriptEntry VeilstoneCity_OnFrameCounterpartNeedsHelp
+    ScriptEntry VeilstoneCity_OnFrame_CounterpartNeedsHelp
     ScriptEntry VeilstoneCity_Looker
     ScriptEntry VeilstoneCity_Guitarist3
     ScriptEntry VeilstoneCity_BattleGirl3
@@ -65,7 +65,7 @@ VeilstoneCity_SetLookerPositionAtGalacticBuilding:
     SetObjectEventDir LOCALID_LOOKER, DIR_NORTH
     Return
 
-VeilstoneCity_TriggerCrasherWake:
+VeilstoneCity_CoordEvent_CrasherWake:
     LockAll
     ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartNoticePlayerBeforeGym
     WaitMovement
@@ -333,7 +333,7 @@ VeilstoneCity_Movement_CounterpartWatchCrasherWakeLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-VeilstoneCity_UnusedMovement:
+VeilstoneCity_Movement_Unused:
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
@@ -792,30 +792,30 @@ VeilstoneCity_Movement_CounterpartWalkToGruntNorth:
     WalkOnSpotNormalEast
     EndMovement
 
-VeilstoneCity_UnusedMovement2:
+VeilstoneCity_Movement_Unused2:
     Delay4
     WalkOnSpotNormalWest
     EmoteExclamationMark
     Delay8
     EndMovement
 
-VeilstoneCity_UnusedMovement3:
+VeilstoneCity_Movement_Unused3:
     WalkNormalWest 4
     EndMovement
 
-VeilstoneCity_UnusedMovement4:
+VeilstoneCity_Movement_Unused4:
     WalkNormalSouth 2
     WalkNormalWest 2
     WalkNormalSouth 6
     EndMovement
 
-VeilstoneCity_UnusedMovement5:
+VeilstoneCity_Movement_Unused5:
     Delay8
     WalkOnSpotNormalNorth
     WalkOnSpotNormalWest
     EndMovement
 
-VeilstoneCity_UnusedMovement6:
+VeilstoneCity_Movement_Unused6:
     Delay8
     WalkOnSpotNormalSouth
     WalkOnSpotNormalWest
@@ -858,13 +858,13 @@ VeilstoneCity_Movement_PlayerWalkToGruntNorth:
     WalkOnSpotNormalEast
     EndMovement
 
-VeilstoneCity_UnusedMovement7:
+VeilstoneCity_Movement_Unused7:
     Delay8
     WalkOnSpotNormalSouth
     WalkOnSpotNormalWest
     EndMovement
 
-VeilstoneCity_UnusedMovement8:
+VeilstoneCity_Movement_Unused8:
     Delay8
     WalkOnSpotNormalNorth
     WalkOnSpotNormalWest
@@ -885,7 +885,7 @@ VeilstoneCity_Movement_PlayerFaceLooker:
     WalkOnSpotNormalWest
     EndMovement
 
-VeilstoneCity_UnusedMovement9:
+VeilstoneCity_Movement_Unused9:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
@@ -991,7 +991,7 @@ VeilstoneCity_BattleGirl2:
     NPCMessage VeilstoneCity_Text_IBoughtANewParasol
     End
 
-VeilstoneCity_TriggerGruntBlockWarehouse:
+VeilstoneCity_CoordEvent_GruntBlockWarehouse:
     LockAll
     ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_NORTH, VeilstoneCity_Grunt_FaceSouth
     ApplyMovement LOCALID_PLAYER, VeilstoneCity_Player_FaceNorth
@@ -1247,35 +1247,35 @@ VeilstoneCity_GruntMSoutheast:
     NPCMessage VeilstoneCity_Text_WeHaveHMFlyInWarehouse
     End
 
-VeilstoneCity_MapSign:
+VeilstoneCity_MapSignpost:
     ShowMapSign VeilstoneCity_Text_MapSign
     End
 
-VeilstoneCity_GymSign:
+VeilstoneCity_GymSignpost:
     ShowScrollingSign VeilstoneCity_Text_SignPokemonGym
     End
 
-VeilstoneCity_SignGalacticWarehouse:
+VeilstoneCity_SignboardGalacticWarehouse:
     ShowLandmarkSign VeilstoneCity_Text_SignGalacticWarehouse
     End
 
-VeilstoneCity_SignGalacticBuilding:
+VeilstoneCity_SignboardGalacticBuilding:
     ShowLandmarkSign VeilstoneCity_Text_SignGalacticVeilstoneBuilding
     End
 
-VeilstoneCity_SignDepartmentStore:
+VeilstoneCity_SignboardDepartmentStore:
     ShowLandmarkSign VeilstoneCity_Text_SignVeilstoneDepartmentStore
     End
 
-VeilstoneCity_SignGameCorner:
+VeilstoneCity_SignboardGameCorner:
     ShowLandmarkSign VeilstoneCity_Text_SignVeilstoneGameCorner
     End
 
-VeilstoneCity_SignPrizeExchange:
+VeilstoneCity_SignboardPrizeExchange:
     ShowLandmarkSign VeilstoneCity_Text_SignPrizeExchange
     End
 
-VeilstoneCity_SignLakeValor:
+VeilstoneCity_SignboardLakeValor:
     ShowLandmarkSign VeilstoneCity_Text_SignLakeValor
     End
 
@@ -1342,7 +1342,7 @@ VeilstoneCity_MeteoriteFromTheStars:
     ReleaseAll
     End
 
-VeilstoneCity_OnFrameCounterpartNeedsHelp:
+VeilstoneCity_OnFrame_CounterpartNeedsHelp:
     LockAll
     ApplyMovement LOCALID_COUNTERPART, VeilstoneCity_Movement_CounterpartNoticePlayerAfterGym
     WaitMovement

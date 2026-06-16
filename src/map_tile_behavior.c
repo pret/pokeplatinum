@@ -93,7 +93,7 @@ static const u8 sTileBehaviorFlags[] = {
     [TILE_BEHAVIOR_PASTORIA_GYM_H_GROUND]      =  TILE_BEHAVIOR_FLAG_NONE,
     [TILE_BEHAVIOR_PASTORIA_GYM_M_GROUND]      =  TILE_BEHAVIOR_FLAG_NONE,
     [TILE_BEHAVIOR_PASTORIA_GYM_L_GROUND]      =  TILE_BEHAVIOR_FLAG_NONE,
-    [TILE_BEHAVIOR_PASTORIA_GYM_WATER]         =  TILE_BEHAVIOR_FLAG_NONE,
+    [TILE_BEHAVIOR_DYNAMIC_HEIGHT_COLLISION]   =  TILE_BEHAVIOR_FLAG_NONE,
     [TILE_BEHAVIOR_JUMP_NORTH_TWICE]           =  TILE_BEHAVIOR_FLAG_NONE,
     [TILE_BEHAVIOR_JUMP_SOUTH_TWICE]           =  TILE_BEHAVIOR_FLAG_NONE,
     [TILE_BEHAVIOR_JUMP_WEST_TWICE]            =  TILE_BEHAVIOR_FLAG_NONE,
@@ -403,9 +403,9 @@ BOOL TileBehavior_IsPastoriaGymLowGround(u8 behavior)
     return behavior == TILE_BEHAVIOR_PASTORIA_GYM_L_GROUND;
 }
 
-BOOL TileBehavior_IsPastoriaGymWater(u8 behavior)
+BOOL TileBehavior_HasDynamicHeightCollision(u8 behavior)
 {
-    return behavior == TILE_BEHAVIOR_PASTORIA_GYM_WATER;
+    return behavior == TILE_BEHAVIOR_DYNAMIC_HEIGHT_COLLISION;
 }
 
 BOOL TileBehavior_IsEscalatorFlipFace(u8 behavior)

@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry CanalaveCityWestHouse_Unused
+    ScriptEntry CanalaveCityWestHouse_Dummy1
     ScriptEntry CanalaveCityWestHouse_OnTransition
     ScriptEntryEnd
 
@@ -15,7 +15,7 @@ CanalaveCityWestHouse_HideReporter:
     SetFlag FLAG_HIDE_CANALAVE_CITY_WEST_HOUSE_REPORTER
     End
 
-CanalaveCityWestHouse_Unused:
+CanalaveCityWestHouse_Dummy1:
     End
 
     .balign 4, 0

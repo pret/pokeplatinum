@@ -10,9 +10,9 @@ typedef struct FrontierTrainerDataDTO {
     u16 trainerType;
     u16 unk_06;
     u16 trainerName[TRAINER_NAME_LEN + 1];
-    u16 unk_18[4];
-    u16 unk_20[4];
-    u16 unk_28[4];
+    u16 introMsg[4];
+    u16 winMsg[4];
+    u16 loseMsg[4];
 } FrontierTrainerDataDTO;
 
 typedef struct FrontierPokemonDataDTO {

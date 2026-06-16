@@ -2,122 +2,122 @@
 #include "res/text/bank/tv_reporter_interviews.h"
 
 
-    ScriptEntry _004E
-    ScriptEntry _005A
-    ScriptEntry _0066
-    ScriptEntry _0072
-    ScriptEntry _007E
-    ScriptEntry _008A
-    ScriptEntry _0096
-    ScriptEntry _00A2
-    ScriptEntry _00AE
-    ScriptEntry _00BA
-    ScriptEntry _00C6
-    ScriptEntry _00D2
-    ScriptEntry _00DE
-    ScriptEntry _00EA
-    ScriptEntry _00F6
-    ScriptEntry _0129
-    ScriptEntry _0135
-    ScriptEntry _0141
-    ScriptEntry _014D
+    ScriptEntry TVReporterInterviews_Interview1_Unused
+    ScriptEntry TVReporterInterviews_BattleTower
+    ScriptEntry TVReporterInterviews_Interview3_Unused
+    ScriptEntry TVReporterInterviews_HearthomeCityPokemonFanClub
+    ScriptEntry TVReporterInterviews_Interview5_Unused
+    ScriptEntry TVReporterInterviews_PoketchCo1F
+    ScriptEntry TVReporterInterviews_ContestHallLobby
+    ScriptEntry TVReporterInterviews_Interview8_Unused
+    ScriptEntry TVReporterInterviews_JubilifeTV2F
+    ScriptEntry TVReporterInterviews_CanalaveCityWestHouse
+    ScriptEntry TVReporterInterviews_PoffinHouse
+    ScriptEntry TVReporterInterviews_Interview12_Unused
+    ScriptEntry TVReporterInterviews_HearthomeCityGates
+    ScriptEntry TVReporterInterviews_BattleHall
+    ScriptEntry TVReporterInterviews_Route214GateToVeilstoneCity
+    ScriptEntry TVReporterInterviews_SetSegmentInYourFace2
+    ScriptEntry TVReporterInterviews_SetSegmentInYourFace3
+    ScriptEntry TVReporterInterviews_SetSegmentInYourFace4
+    ScriptEntry TVReporterInterviews_BattleFrontier
     ScriptEntryEnd
 
-_004E:
-    SetVar VAR_0x8000, 1
-    GoTo _0159
+TVReporterInterviews_Interview1_Unused:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_01
+    GoTo TVReporterInterviews_AskDoInterview
 
-_005A:
-    SetVar VAR_0x8000, 2
-    GoTo _0159
+TVReporterInterviews_BattleTower:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_BATTLE_TOWER_CORNER
+    GoTo TVReporterInterviews_AskDoInterview
 
-_0066:
-    SetVar VAR_0x8000, 3
-    GoTo _0159
+TVReporterInterviews_Interview3_Unused:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_03
+    GoTo TVReporterInterviews_AskDoInterview
 
-_0072:
-    SetVar VAR_0x8000, 4
-    GoTo _0159
+TVReporterInterviews_HearthomeCityPokemonFanClub:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_YOUR_POKEMON_CORNER
+    GoTo TVReporterInterviews_AskDoInterview
 
-_007E:
-    SetVar VAR_0x8000, 5
-    GoTo _0159
+TVReporterInterviews_Interview5_Unused:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_05
+    GoTo TVReporterInterviews_AskDoInterview
 
-_008A:
-    SetVar VAR_0x8000, 6
-    GoTo _0159
+TVReporterInterviews_PoketchCo1F:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_THE_POKETCH_WATCH
+    GoTo TVReporterInterviews_AskDoInterview
 
-_0096:
-    SetVar VAR_0x8000, 7
-    GoTo _0159
+TVReporterInterviews_ContestHallLobby:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_CONTEST_HALL
+    GoTo TVReporterInterviews_AskDoInterview
 
-_00A2:
-    SetVar VAR_0x8000, 8
-    GoTo _0159
+TVReporterInterviews_Interview8_Unused:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_08
+    GoTo TVReporterInterviews_AskDoInterview
 
-_00AE:
-    SetVar VAR_0x8000, 9
-    GoTo _0159
+TVReporterInterviews_JubilifeTV2F:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER
+    GoTo TVReporterInterviews_AskDoInterview
 
-_00BA:
-    SetVar VAR_0x8000, 10
-    GoTo _0159
+TVReporterInterviews_CanalaveCityWestHouse:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_STREET_CORNER_PERSONALITY_CHECKUP
+    GoTo TVReporterInterviews_AskDoInterview
 
-_00C6:
-    SetVar VAR_0x8000, 11
-    GoTo _0159
+TVReporterInterviews_PoffinHouse:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER
+    GoTo TVReporterInterviews_AskDoInterview
 
-_00D2:
-    SetVar VAR_0x8000, 12
-    GoTo _0159
+TVReporterInterviews_Interview12_Unused:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_INTERVIEW_UNUSED_12
+    GoTo TVReporterInterviews_AskDoInterview
 
-_00DE:
-    SetVar VAR_0x8000, 13
-    GoTo _0159
+TVReporterInterviews_HearthomeCityGates:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_AMITY_SQUARE_WATCH
+    GoTo TVReporterInterviews_AskDoInterview
 
-_00EA:
-    SetVar VAR_0x8000, 14
-    GoTo _0159
+TVReporterInterviews_BattleHall:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_SINGLE
+    GoTo TVReporterInterviews_AskDoInterview
 
-_00F6:
-    GoToIfEq VAR_RANDOM_INTERVIEW_QUESTION, 1, _0129
-    GoToIfEq VAR_RANDOM_INTERVIEW_QUESTION, 2, _0135
-    GoToIfEq VAR_RANDOM_INTERVIEW_QUESTION, 3, _0141
-    SetVar VAR_0x8000, 15
-    GoTo _0159
+TVReporterInterviews_Route214GateToVeilstoneCity:
+    GoToIfEq VAR_RANDOM_INTERVIEW_QUESTION, 1, TVReporterInterviews_SetSegmentInYourFace2
+    GoToIfEq VAR_RANDOM_INTERVIEW_QUESTION, 2, TVReporterInterviews_SetSegmentInYourFace3
+    GoToIfEq VAR_RANDOM_INTERVIEW_QUESTION, 3, TVReporterInterviews_SetSegmentInYourFace4
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_1
+    GoTo TVReporterInterviews_AskDoInterview
 
-_0129:
-    SetVar VAR_0x8000, 16
-    GoTo _0159
+TVReporterInterviews_SetSegmentInYourFace2:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_2
+    GoTo TVReporterInterviews_AskDoInterview
 
-_0135:
-    SetVar VAR_0x8000, 17
-    GoTo _0159
+TVReporterInterviews_SetSegmentInYourFace3:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_3
+    GoTo TVReporterInterviews_AskDoInterview
 
-_0141:
-    SetVar VAR_0x8000, 18
-    GoTo _0159
+TVReporterInterviews_SetSegmentInYourFace4:
+    SetVar VAR_0x8000, TV_PROGRAM_SEGMENT_IN_YOUR_FACE_INTERVIEW_QUESTION_4
+    GoTo TVReporterInterviews_AskDoInterview
 
-_014D:
+TVReporterInterviews_BattleFrontier:
     SetVar VAR_0x8000, 19
-    GoTo _0159
+    GoTo TVReporterInterviews_AskDoInterview
 
-_0159:
+TVReporterInterviews_AskDoInterview:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CheckTVInterviewEligible VAR_0x8000, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _02A1
-    Message 0
+    GoToIfEq VAR_RESULT, FALSE, TVReporterInterviews_ThanksForSharingThoughts
+    Message TVReporterInterviews_Text_MayIDoQuickInterview
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0190
-    GoTo _02AE
+    GoToIfEq VAR_RESULT, MENU_YES, TVReporterInterviews_DoInterview
+    GoTo TVReporterInterviews_ThatsTooBad
     End
 
-_0190:
+TVReporterInterviews_DoInterview:
     LoadTVInterviewMessage VAR_0x8000, VAR_0x8004, VAR_0x8005
     MessageFromBank VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8000, 10, _01F0
+    GoToIfEq VAR_0x8000, TV_PROGRAM_SEGMENT_STREET_CORNER_PERSONALITY_CHECKUP, TVReporterInterviews_TypeMenu
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
@@ -125,49 +125,49 @@ _0190:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_RESULT, 0, _02AE
+    GoToIfEq VAR_RESULT, 0, TVReporterInterviews_ThatsTooBad
     SaveTVInterviewResponse VAR_0x8000, VAR_0x8004
-    GoTo _02A1
+    GoTo TVReporterInterviews_ThanksForSharingThoughts
     End
 
-_01F0:
+TVReporterInterviews_TypeMenu:
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
-    AddListMenuEntry 22, 1
-    AddListMenuEntry 23, 2
-    AddListMenuEntry 24, 3
-    AddListMenuEntry 25, 4
-    AddListMenuEntry 26, 5
-    AddListMenuEntry 27, 6
-    AddListMenuEntry 28, 7
-    AddListMenuEntry 29, 8
-    AddListMenuEntry 30, 9
-    AddListMenuEntry 31, 10
-    AddListMenuEntry 32, 11
-    AddListMenuEntry 33, 12
-    AddListMenuEntry 34, 13
-    AddListMenuEntry 35, 14
-    AddListMenuEntry 36, 15
-    AddListMenuEntry 37, 16
-    AddListMenuEntry 38, 17
+    AddListMenuEntry TVReporterInterviews_Text_Normal, 1
+    AddListMenuEntry TVReporterInterviews_Text_Fire, 2
+    AddListMenuEntry TVReporterInterviews_Text_Water, 3
+    AddListMenuEntry TVReporterInterviews_Text_Electric, 4
+    AddListMenuEntry TVReporterInterviews_Text_Grass, 5
+    AddListMenuEntry TVReporterInterviews_Text_Ice, 6
+    AddListMenuEntry TVReporterInterviews_Text_Fighting, 7
+    AddListMenuEntry TVReporterInterviews_Text_Poison, 8
+    AddListMenuEntry TVReporterInterviews_Text_Ground, 9
+    AddListMenuEntry TVReporterInterviews_Text_Flying, 10
+    AddListMenuEntry TVReporterInterviews_Text_Psychic, 11
+    AddListMenuEntry TVReporterInterviews_Text_Bug, 12
+    AddListMenuEntry TVReporterInterviews_Text_Rock, 13
+    AddListMenuEntry TVReporterInterviews_Text_Ghost, 14
+    AddListMenuEntry TVReporterInterviews_Text_Dragon, 15
+    AddListMenuEntry TVReporterInterviews_Text_Dark, 16
+    AddListMenuEntry TVReporterInterviews_Text_Steel, 17
     ShowListMenu
-    GoToIfEq VAR_0x8004, -2, _02AE
+    GoToIfEq VAR_0x8004, -2, TVReporterInterviews_ThatsTooBad
     SaveTVInterviewResponse VAR_0x8000, VAR_0x8004
-    GoTo _02A1
+    GoTo TVReporterInterviews_ThanksForSharingThoughts
     End
 
-_02A1:
-    Message 2
+TVReporterInterviews_ThanksForSharingThoughts:
+    Message TVReporterInterviews_Text_ThanksForSharingThoughts
     WaitButton
-    GoTo _02BB
+    GoTo TVReporterInterviews_End
     End
 
-_02AE:
-    Message 1
+TVReporterInterviews_ThatsTooBad:
+    Message TVReporterInterviews_Text_ThatsTooBad
     WaitButton
-    GoTo _02BB
+    GoTo TVReporterInterviews_End
     End
 
-_02BB:
+TVReporterInterviews_End:
     CloseMessage
     ReleaseAll
     End

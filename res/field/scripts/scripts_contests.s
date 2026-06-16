@@ -13,11 +13,11 @@
 
 
     ScriptEntry Contests_LobbyOnFrameExitContestHall @ 0x2648
-    ScriptEntry Contests_EmptyScript9801 @ 0x2649
+    ScriptEntry Contests_Dummy9801 @ 0x2649
     ScriptEntry Contests_OngoingContestOnTransition @ 0x264A
     ScriptEntry Contests_LobbyOnTransition @ 0x264B
     ScriptEntry Contests_OngoingContestOnResume @ 0x264C
-    ScriptEntry Contests_UnusedEntry9805 @ 0x264D
+    ScriptEntry Contests_Dummy9805 @ 0x264D
     ScriptEntry Contests_ReceptionistOfficialContest @ 0x264E
     ScriptEntry Contests_ReceptionistLinkContest @ 0x264F
     ScriptEntry Contests_ReceptionistPracticeContest @ 0x2650
@@ -32,7 +32,7 @@ Contests_LobbyOnFrameExitContestHall:
     SetVar VAR_RESULT, 7
     Call Contests_ExitContestHall
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SetVar VAR_UNK_0x40D5, 0
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
     ReleaseAll
     End
 
@@ -121,7 +121,7 @@ Contests_Movement_PlayerWalkToOfficialReceptionist:
     WalkOnSpotFastNorth
     EndMovement
 
-Contests_EmptyScript9801:
+Contests_Dummy9801:
     End
 
 Contests_OngoingContestOnTransition:
@@ -171,7 +171,7 @@ Contests_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-Contests_UnusedEntry9805:
+Contests_Dummy9805:
     NPCMessage ContestCommon_Text_Dummy0
     End
 
@@ -221,7 +221,7 @@ Contests_ContestMenu:
 
 Contests_ContestMenuExit:
     EndCommunication
-    SetVar VAR_UNK_0x40D5, 0
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Message ContestCommon_Text_LookForwardToParticipation
     WaitButton
@@ -588,7 +588,7 @@ Contests_OfficialContestDoor:
 
 Contests_LinkContestDoor:
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SetVar VAR_UNK_0x40D5, 5
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 5
     LoadDoorAnimation 0, 0, 7, 5, ANIMATION_TAG_DOOR_1
     Call Contests_DoorOpenAnimation
     WaitMovement
@@ -816,7 +816,7 @@ Contests_EndContest:
     SetVar VAR_RESULT, 7
     Call Contests_ExitContestHall
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SetVar VAR_UNK_0x40D5, 0
+    SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
     GoTo Contests_End
 
 Contests_OfficialContestReturnToReceptionist:
@@ -948,7 +948,7 @@ Contests_Movement_PlayerWalkToPracticeContestDoor:
     WalkNormalNorth 3
     EndMovement
 
-Contests_UnusedMovement:
+Contests_Movement_Unused:
     Delay4
     FaceEast
     Delay4

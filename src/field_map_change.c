@@ -72,7 +72,7 @@
 #include "unk_02070428.h"
 #include "vars_flags.h"
 
-#include "res/text/bank/pokemon_center_2f_attendants.h"
+#include "res/text/bank/pokemon_center_2f_common.h"
 
 FS_EXTERN_OVERLAY(underground);
 
@@ -346,7 +346,7 @@ static void FieldMapChange_CreateObjects(FieldSystem *fieldSystem)
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     PlayerData *playerData = FieldOverworldState_GetPlayerData(fieldState);
 
-    fieldSystem->playerAvatar = PlayerAvatar_Init(fieldSystem->mapObjMan, fieldSystem->location->x, fieldSystem->location->z, fieldSystem->location->faceDirection, playerData->form, gender, 0, playerData);
+    fieldSystem->playerAvatar = PlayerAvatar_New(fieldSystem->mapObjMan, fieldSystem->location->x, fieldSystem->location->z, fieldSystem->location->faceDirection, playerData->playerState, gender, 0, playerData);
 
     sub_0203A418(fieldSystem);
     MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
@@ -354,7 +354,7 @@ static void FieldMapChange_CreateObjects(FieldSystem *fieldSystem)
 
 static void FieldMapChange_DeleteObjects(FieldSystem *fieldSystem)
 {
-    Player_Delete(fieldSystem->playerAvatar);
+    PlayerAvatar_Free(fieldSystem->playerAvatar);
     MapObjectMan_DeleteAll(fieldSystem->mapObjMan);
     MapObjectMan_Delete(fieldSystem->mapObjMan);
 }
@@ -368,7 +368,7 @@ static void FieldMapChange_LoadObjects(FieldSystem *fieldSystem)
     PlayerData *playerData = FieldOverworldState_GetPlayerData(fieldState);
     int gender = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
 
-    fieldSystem->playerAvatar = sub_0205E820(fieldSystem->mapObjMan, playerData, gender);
+    fieldSystem->playerAvatar = PlayerAvatar_NewLoad(fieldSystem->mapObjMan, playerData, gender);
 
     MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
 }
@@ -434,7 +434,7 @@ static void sub_020534BC(FieldSystem *fieldSystem)
 
 static void Location_SetToPlayerLocation(Location *location, const FieldSystem *fieldSystem)
 {
-    Location_Set(location, fieldSystem->location->mapId, WARP_ID_NONE, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), DIR_SOUTH);
+    Location_Set(location, fieldSystem->location->mapId, WARP_ID_NONE, PlayerAvatar_GetXPos(fieldSystem->playerAvatar), PlayerAvatar_GetZPos(fieldSystem->playerAvatar), DIR_SOUTH);
 }
 
 static BOOL FieldSystem_IsSaveInUnionRoom(const FieldSystem *fieldSystem)
@@ -884,7 +884,7 @@ static void FieldTask_FadeInFly(FieldTask *task)
         return;
     }
 
-    mapChangeData->task = FieldTask_FlyLanding_InitTask(fieldSystem, PlayerAvatar_Gender(fieldSystem->playerAvatar));
+    mapChangeData->task = FieldTask_FlyLanding_InitTask(fieldSystem, PlayerAvatar_GetGender(fieldSystem->playerAvatar));
     FieldTask_InitCall(task, FieldTask_WaitFadeInFly, mapChangeData);
 }
 
@@ -1075,7 +1075,7 @@ void FieldSystem_StartMapChangeWarpTask(FieldSystem *fieldSystem, int param1, in
 
     MI_CpuClear8(mapChangeWarpData, sizeof(MapChangeWarpData));
 
-    Location_Set(&nextLocation, param1, param2, 0, 0, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    Location_Set(&nextLocation, param1, param2, 0, 0, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     mapChangeWarpData->nextLocation = nextLocation;
     FieldSystem_CreateTask(fieldSystem, FieldTask_MapChangeWarp, mapChangeWarpData);
 }
@@ -1135,9 +1135,9 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
 
     switch (ctx->state) {
     case ENTER_UNDERGROUND_INIT:
-        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_CENTER_2F_ATTENDANTS, HEAP_ID_FIELD2);
+        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_CENTER_2F_COMMON, HEAP_ID_FIELD2);
 
-        ctx->string = MessageLoader_GetNewString(msgLoader, PokeCenter2FAttendants_Text_CommsWillBeLaunched);
+        ctx->string = MessageLoader_GetNewString(msgLoader, PokemonCenter2FCommon_Text_CommsWillBeLaunched);
         MessageLoader_Free(msgLoader);
 
         FieldMessage_AddWindow(fieldSystem->bgConfig, &ctx->window, BG_LAYER_MAIN_3);

@@ -4,17 +4,17 @@
 
 
     ScriptEntry SandgemTown_OnTransition
-    ScriptEntry SandgemTown_TriggerCounterpartLeadToLab
-    ScriptEntry SandgemTown_OnFrameExitLab
+    ScriptEntry SandgemTown_CoordEvent_CounterpartLeadToLab
+    ScriptEntry SandgemTown_OnFrame_ExitLab
     ScriptEntry SandgemTown_Youngster
     ScriptEntry SandgemTown_PokemonBreederM
     ScriptEntry SandgemTown_PokemonBreederF
-    ScriptEntry SandgemTown_Unused
-    ScriptEntry SandgemTown_MapSign
-    ScriptEntry SandgemTown_LandmarkSignPokemonResearchLab
-    ScriptEntry SandgemTown_LandmarkSignCounterpartMailbox
-    ScriptEntry SandgemTown_LandmarkSignPokeMart
-    ScriptEntry SandgemTown_LandmarkSignPokemonCenter
+    ScriptEntry SandgemTown_RowansComeBack_Unused
+    ScriptEntry SandgemTown_MapSignpost
+    ScriptEntry SandgemTown_SignboardPokemonResearchLab
+    ScriptEntry SandgemTown_SignboardCounterpartMailbox
+    ScriptEntry SandgemTown_SignboardPokeMart
+    ScriptEntry SandgemTown_SignboardPokemonCenter
     ScriptEntryEnd
 
 SandgemTown_OnTransition:
@@ -38,7 +38,7 @@ SandgemTown_SetCounterpartGraphicsLucas:
     SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-SandgemTown_TriggerCounterpartLeadToLab:
+SandgemTown_CoordEvent_CounterpartLeadToLab:
     LockAll
     ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartNoticePlayer
     WaitMovement
@@ -323,12 +323,12 @@ SandgemTown_Movement_PlayerFaceCounterpartZ843:
     FaceSouth
     EndMovement
 
-SandgemTown_UnusedMovement:
+SandgemTown_Movement_Unused:
     Delay8 3
     WalkOnSpotNormalSouth
     EndMovement
 
-SandgemTown_UnusedMovement2:
+SandgemTown_Movement_Unused2:
     WalkNormalEast 4
     WalkNormalNorth 2
     EndMovement
@@ -433,7 +433,7 @@ SandgemTown_Movement_RivalLeave:
     WalkFastEast 7
     EndMovement
 
-SandgemTown_OnFrameExitLab:
+SandgemTown_OnFrame_ExitLab:
     LockAll
     LoadDoorAnimation 5, 26, 8, 10, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
@@ -674,28 +674,28 @@ SandgemTown_PokemonBreederF:
     NPCMessage SandgemTown_Text_IdBetterSaveThis
     End
 
-SandgemTown_Unused:
+SandgemTown_RowansComeBack_Unused:
     NPCMessage SandgemTown_Text_ProfessorRowansComeBackToTown
     End
 
-SandgemTown_MapSign:
+SandgemTown_MapSignpost:
     ShowMapSign SandgemTown_Text_MapSign
     End
 
-SandgemTown_LandmarkSignPokemonResearchLab:
+SandgemTown_SignboardPokemonResearchLab:
     ShowLandmarkSign SandgemTown_Text_PokemonResearchLabSign
     End
 
-SandgemTown_LandmarkSignCounterpartMailbox:
+SandgemTown_SignboardCounterpartMailbox:
     BufferCounterpartName 0
     ShowLandmarkSign SandgemTown_Text_CounterpartMailbox
     End
 
-SandgemTown_LandmarkSignPokeMart:
+SandgemTown_SignboardPokeMart:
     ShowLandmarkSign SandgemTown_Text_PokeMartSign
     End
 
-SandgemTown_LandmarkSignPokemonCenter:
+SandgemTown_SignboardPokemonCenter:
     ShowLandmarkSign SandgemTown_Text_PokemonCenterSign
     End
 

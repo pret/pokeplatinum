@@ -189,7 +189,7 @@ void CommPlayerMan_Reinit(void)
         if (sCommPlayerManager->playerAvatar[netId] != NULL) {
             if (sCommPlayerManager->fieldSystem->playerAvatar != sCommPlayerManager->playerAvatar[netId]) {
                 if (sCommPlayerManager->isUnderground) {
-                    Player_DeleteAll(sCommPlayerManager->playerAvatar[netId]);
+                    PlayerAvatar_Delete(sCommPlayerManager->playerAvatar[netId]);
                 }
             }
 
@@ -236,12 +236,12 @@ void CommPlayer_InitPersonal(void)
 {
     sCommPlayerManager->playerAvatar[CommSys_CurNetId()] = sCommPlayerManager->fieldSystem->playerAvatar;
     sCommPlayerManager->isActive[CommSys_CurNetId()] = TRUE;
-    sCommPlayerManager->playerLocation[CommSys_CurNetId()].x = Player_GetXPos(sCommPlayerManager->fieldSystem->playerAvatar);
-    sCommPlayerManager->playerLocation[CommSys_CurNetId()].z = Player_GetZPos(sCommPlayerManager->fieldSystem->playerAvatar);
-    sCommPlayerManager->playerLocation[CommSys_CurNetId()].dir = PlayerAvatar_GetDir(sCommPlayerManager->fieldSystem->playerAvatar);
-    sCommPlayerManager->playerLocationServer[CommSys_CurNetId()].x = Player_GetXPos(sCommPlayerManager->fieldSystem->playerAvatar);
-    sCommPlayerManager->playerLocationServer[CommSys_CurNetId()].z = Player_GetZPos(sCommPlayerManager->fieldSystem->playerAvatar);
-    sCommPlayerManager->playerLocationServer[CommSys_CurNetId()].dir = PlayerAvatar_GetDir(sCommPlayerManager->fieldSystem->playerAvatar);
+    sCommPlayerManager->playerLocation[CommSys_CurNetId()].x = PlayerAvatar_GetXPos(sCommPlayerManager->fieldSystem->playerAvatar);
+    sCommPlayerManager->playerLocation[CommSys_CurNetId()].z = PlayerAvatar_GetZPos(sCommPlayerManager->fieldSystem->playerAvatar);
+    sCommPlayerManager->playerLocation[CommSys_CurNetId()].dir = PlayerAvatar_GetFacingDir(sCommPlayerManager->fieldSystem->playerAvatar);
+    sCommPlayerManager->playerLocationServer[CommSys_CurNetId()].x = PlayerAvatar_GetXPos(sCommPlayerManager->fieldSystem->playerAvatar);
+    sCommPlayerManager->playerLocationServer[CommSys_CurNetId()].z = PlayerAvatar_GetZPos(sCommPlayerManager->fieldSystem->playerAvatar);
+    sCommPlayerManager->playerLocationServer[CommSys_CurNetId()].dir = PlayerAvatar_GetFacingDir(sCommPlayerManager->fieldSystem->playerAvatar);
 }
 
 void CommPlayer_CopyPersonal(int netJd)
@@ -270,7 +270,7 @@ void CommPlayer_CopyPersonal(int netJd)
 void CommPlayer_SendXZPos(BOOL param0, int x, int z)
 {
     u8 data[5 + 1];
-    int dir = PlayerAvatar_GetDir(sCommPlayerManager->fieldSystem->playerAvatar);
+    int dir = PlayerAvatar_GetFacingDir(sCommPlayerManager->fieldSystem->playerAvatar);
 
     data[0] = x;
     data[1] = x >> 8;
@@ -288,8 +288,8 @@ void CommPlayer_SendXZPos(BOOL param0, int x, int z)
 
 void CommPlayer_SendPos(BOOL param0)
 {
-    int x = Player_GetXPos(sCommPlayerManager->fieldSystem->playerAvatar);
-    int z = Player_GetZPos(sCommPlayerManager->fieldSystem->playerAvatar);
+    int x = PlayerAvatar_GetXPos(sCommPlayerManager->fieldSystem->playerAvatar);
+    int z = PlayerAvatar_GetZPos(sCommPlayerManager->fieldSystem->playerAvatar);
 
     CommPlayer_SendXZPos(param0, x, z);
 }
@@ -336,8 +336,8 @@ static void CommPlayer_SendPosNetId(int netId, const CommPlayerLocation *playerL
 
 void CommPlayer_SendDataTask(void *data)
 {
-    int v0 = PlayerAvatar_MoveState(sCommPlayerManager->fieldSystem->playerAvatar);
-    int moveState = Player_MoveState(sCommPlayerManager->fieldSystem->playerAvatar);
+    int v0 = PlayerAvatar_GetMoveState(sCommPlayerManager->fieldSystem->playerAvatar);
+    int moveState = PlayerAvatar_GetPlayerMoveState(sCommPlayerManager->fieldSystem->playerAvatar);
 
     if ((0 == v0) && CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         if (!sCommPlayerManager->unk_2BA) {
@@ -401,12 +401,12 @@ static void CommPlayer_Add(u8 netId)
             version = 1;
         }
 
-        playerAvatar = PlayerAvatar_Init(sCommPlayerManager->fieldSystem->mapObjMan, sCommPlayerManager->playerLocation[netId].x, sCommPlayerManager->playerLocation[netId].z, sCommPlayerManager->playerLocation[netId].dir, 0x0, TrainerInfo_Gender(trainerInfo), version, NULL);
+        playerAvatar = PlayerAvatar_New(sCommPlayerManager->fieldSystem->mapObjMan, sCommPlayerManager->playerLocation[netId].x, sCommPlayerManager->playerLocation[netId].z, sCommPlayerManager->playerLocation[netId].dir, 0x0, TrainerInfo_Gender(trainerInfo), version, NULL);
 
         GF_ASSERT(playerAvatar != NULL);
         sCommPlayerManager->playerAvatar[netId] = playerAvatar;
 
-        MapObject_SetLocalID(Player_MapObject(playerAvatar), 0xff + netId + 1);
+        MapObject_SetLocalID(PlayerAvatar_GetMapObject(playerAvatar), 0xff + netId + 1);
 
         if (sCommPlayerManager->isUnderground) {
             UndergroundMan_SetLeftUndergroundMessage(netId);
@@ -439,9 +439,9 @@ void CommPlayer_Destroy(u8 netId, BOOL param1, BOOL param2)
     if (sCommPlayerManager->playerAvatar[netId] != NULL) {
         if (sCommPlayerManager->fieldSystem->playerAvatar != sCommPlayerManager->playerAvatar[netId]) {
             if (sCommPlayerManager->isUnderground || param2) {
-                Player_DeleteAll(sCommPlayerManager->playerAvatar[netId]);
+                PlayerAvatar_Delete(sCommPlayerManager->playerAvatar[netId]);
             } else {
-                Player_Delete(sCommPlayerManager->playerAvatar[netId]);
+                PlayerAvatar_Free(sCommPlayerManager->playerAvatar[netId]);
             }
         }
 
@@ -940,11 +940,11 @@ static BOOL CommPlayer_SlideAnimation(int netId, int param1, int unused, int ani
         return TRUE;
     }
 
-    MapObject *obj = Player_MapObject(sCommPlayerManager->playerAvatar[netId]);
+    MapObject *obj = PlayerAvatar_GetMapObject(sCommPlayerManager->playerAvatar[netId]);
 
-    if (PlayerAvatar_GetDir(sCommPlayerManager->playerAvatar[netId]) != CommPlayer_GetOppositeDir(sCommPlayerManager->slideAnimationDir[netId])) {
+    if (PlayerAvatar_GetFacingDir(sCommPlayerManager->playerAvatar[netId]) != CommPlayer_GetOppositeDir(sCommPlayerManager->slideAnimationDir[netId])) {
         MapObject_SetStatusFlagOff(obj, MAP_OBJ_STATUS_LOCK_DIR);
-        Player_SetDir(sCommPlayerManager->playerAvatar[netId], CommPlayer_GetOppositeDir(sCommPlayerManager->slideAnimationDir[netId]));
+        PlayerAvatar_TryFace(sCommPlayerManager->playerAvatar[netId], CommPlayer_GetOppositeDir(sCommPlayerManager->slideAnimationDir[netId]));
         MapObject_SetStatusFlagOn(obj, MAP_OBJ_STATUS_LOCK_DIR);
     }
 
@@ -1000,9 +1000,9 @@ static void CommPlayer_MoveClient(int netId)
     playerAvatar = sCommPlayerManager->playerAvatar[netId];
 
     if (playerAvatar) {
-        int dx = Player_GetXPos(playerAvatar) - playerLocation->x;
-        int dy = Player_GetZPos(playerAvatar) - playerLocation->z;
-        int dir = PlayerAvatar_GetDir(playerAvatar);
+        int dx = PlayerAvatar_GetXPos(playerAvatar) - playerLocation->x;
+        int dy = PlayerAvatar_GetZPos(playerAvatar) - playerLocation->z;
+        int dir = PlayerAvatar_GetFacingDir(playerAvatar);
 
         if ((dx == 0) && (dy == 0)) {
             pad = 0;
@@ -1193,7 +1193,7 @@ void CommPlayer_StartSlideAnimation(int netId, int dir, BOOL unused)
         return;
     }
 
-    MapObject *obj = Player_MapObject(sCommPlayerManager->playerAvatar[netId]);
+    MapObject *obj = PlayerAvatar_GetMapObject(sCommPlayerManager->playerAvatar[netId]);
 
     MapObject_SetStatusFlagOn(obj, MAP_OBJ_STATUS_LOCK_DIR);
     MapObject_SetStatusFlagOn(obj, MAP_OBJ_STATUS_PAUSE_ANIMATION);
@@ -1208,7 +1208,7 @@ void CommPlayer_StopSlideAnimation(int netId)
     }
 
     if (sCommPlayerManager->slideAnimationDir[netId] != DIR_NONE) {
-        MapObject *obj = Player_MapObject(sCommPlayerManager->playerAvatar[netId]);
+        MapObject *obj = PlayerAvatar_GetMapObject(sCommPlayerManager->playerAvatar[netId]);
 
         sub_020656AC(obj);
         MapObject_SetStatusFlagOff(obj, MAP_OBJ_STATUS_LOCK_DIR);
@@ -1640,7 +1640,7 @@ int CommPlayer_GetMovementTimerServer(int netId)
 
 void CommPlayer_SetDir(int dir)
 {
-    Player_SetDir(sCommPlayerManager->fieldSystem->playerAvatar, dir);
+    PlayerAvatar_TryFace(sCommPlayerManager->fieldSystem->playerAvatar, dir);
     sCommPlayerManager->playerLocation[CommSys_CurNetId()].dir = dir;
     CommPlayer_SendPos(FALSE);
 }
@@ -1648,7 +1648,7 @@ void CommPlayer_SetDir(int dir)
 void CommPlayer_SetDirClient(int netId, int dir)
 {
     sCommPlayerManager->playerLocation[netId].dir = dir;
-    Player_SetDir(sCommPlayerManager->playerAvatar[netId], dir);
+    PlayerAvatar_TryFace(sCommPlayerManager->playerAvatar[netId], dir);
 }
 
 int CommPlayer_DirClient(int netId)
@@ -1657,7 +1657,7 @@ int CommPlayer_DirClient(int netId)
         return -1;
     }
 
-    return PlayerAvatar_GetDir(sCommPlayerManager->playerAvatar[netId]);
+    return PlayerAvatar_GetFacingDir(sCommPlayerManager->playerAvatar[netId]);
 }
 
 void CommPlayerMan_PauseFieldSystemWithContextBit(int contextBit)
@@ -1753,7 +1753,7 @@ void CommPlayerMan_ForcePos(void)
             continue;
         }
 
-        obj = Player_MapObject(sCommPlayerManager->playerAvatar[netId]);
+        obj = PlayerAvatar_GetMapObject(sCommPlayerManager->playerAvatar[netId]);
         x = sCommPlayerManager->playerLocation[netId].x;
         z = sCommPlayerManager->playerLocation[netId].z;
         dir = sCommPlayerManager->playerLocation[netId].dir;

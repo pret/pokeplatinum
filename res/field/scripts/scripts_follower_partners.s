@@ -3,10 +3,10 @@
 
 
     ScriptEntry FollowerPartners_Rival
-    ScriptEntry FollowerPartners_UnusedEntry9701
+    ScriptEntry FollowerPartners_DummyFollower_Unused
     ScriptEntry FollowerPartners_Cheryl
     ScriptEntry FollowerPartners_Buck
-    ScriptEntry FollowerPartners_Mira
+    ScriptEntry FollowerPartners_Mira_Unused
     ScriptEntry FollowerPartners_Marley
     ScriptEntryEnd
 
@@ -85,29 +85,29 @@ FollowerPartners_Rival_IncreaseTimesTalked:
     ReleaseAll
     End
 
-FollowerPartners_UnusedEntry9701:
+FollowerPartners_DummyFollower_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_FOLLOWER_UNUSED_TIMES_TALKED, 2, FollowerPartners_UnusedFollowerTalkedGe2Times
-    GoToIfEq VAR_FOLLOWER_UNUSED_TIMES_TALKED, 1, FollowerPartners_UnusedFollowerTalked1Time
+    GoToIfGe VAR_FOLLOWER_UNUSED_TIMES_TALKED, 2, FollowerPartners_DummyFollowerTalkedGe2Times_Unused
+    GoToIfEq VAR_FOLLOWER_UNUSED_TIMES_TALKED, 1, FollowerPartners_DummyFollowerTalked1Time_Unused
     BufferRivalName 0
-    GoTo FollowerPartners_UnusedFollowerTalked0Times
+    GoTo FollowerPartners_DummyFollowerTalked0Times_Unused
     End
 
-FollowerPartners_UnusedFollowerTalkedGe2Times:
+FollowerPartners_DummyFollowerTalkedGe2Times_Unused:
     BufferRivalName 0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-FollowerPartners_UnusedFollowerTalked1Time:
+FollowerPartners_DummyFollowerTalked1Time_Unused:
     BufferRivalName 0
-    GoTo FollowerPartners_UnusedFollowerTalked0Times
+    GoTo FollowerPartners_DummyFollowerTalked0Times_Unused
     End
 
-FollowerPartners_UnusedFollowerTalked0Times:
+FollowerPartners_DummyFollowerTalked0Times_Unused:
     WaitButton
     CloseMessage
     AddVar VAR_FOLLOWER_UNUSED_TIMES_TALKED, 1
@@ -181,23 +181,23 @@ FollowerPartners_Buck_IncreaseTimesTalked:
     ReleaseAll
     End
 
-FollowerPartners_Mira:
+FollowerPartners_Mira_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, FollowerPartners_Mira_IWillTryLikeYou
-    GoToIfEq VAR_FOLLOWER_MIRA_TIMES_TALKED, 1, FollowerPartners_Mira_EasyToGetConfused
+    GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, FollowerPartners_Mira_IWillTryLikeYou_Unused
+    GoToIfEq VAR_FOLLOWER_MIRA_TIMES_TALKED, 1, FollowerPartners_Mira_EasyToGetConfused_Unused
     BufferPlayerName 0
     Message FollowerPartners_Text_Mira_ILikeHelpfulMoves
-    GoTo FollowerPartners_Mira_IncreaseTimesTalked
+    GoTo FollowerPartners_Mira_IncreaseTimesTalked_Unused
     End
 
-FollowerPartners_Mira_EasyToGetConfused:
+FollowerPartners_Mira_EasyToGetConfused_Unused:
     Message FollowerPartners_Text_Mira_EasyToGetConfused
-    GoTo FollowerPartners_Mira_IncreaseTimesTalked
+    GoTo FollowerPartners_Mira_IncreaseTimesTalked_Unused
     End
 
-FollowerPartners_Mira_IWillTryLikeYou:
+FollowerPartners_Mira_IWillTryLikeYou_Unused:
     BufferPlayerName 0
     Message FollowerPartners_Text_Mira_IWillTryLikeYou
     WaitButton
@@ -205,7 +205,7 @@ FollowerPartners_Mira_IWillTryLikeYou:
     ReleaseAll
     End
 
-FollowerPartners_Mira_IncreaseTimesTalked:
+FollowerPartners_Mira_IncreaseTimesTalked_Unused:
     AddVar VAR_FOLLOWER_MIRA_TIMES_TALKED, 1
     WaitButton
     CloseMessage

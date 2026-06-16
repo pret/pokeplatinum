@@ -1,0 +1,124 @@
+{
+  "key": 5861,
+  "messages": [
+    {
+      "id": "PreBattleSentences_Text_PleaseBlank",
+      "en_US": [
+        "Please!\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_GoBlank",
+      "en_US": "Go! {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "PreBattleSentences_Text_IllBattleWithBlank",
+      "en_US": [
+        "I’ll battle with\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_ItsBlank",
+      "en_US": "It’s {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "PreBattleSentences_Text_BlankImGoingWithBlank",
+      "en_US": [
+        "{STRVAR_1 28, 0, 0}, I’m going\n",
+        "with {STRVAR_1 28, 1, 0}!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_LookAtBlank",
+      "en_US": "Look at {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "PreBattleSentences_Text_IllShowYouBlank",
+      "en_US": "I’ll show you {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "PreBattleSentences_Text_NowBlank",
+      "en_US": [
+        "Now!\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_IllShowYouMyBlankStrategy",
+      "en_US": [
+        "I’ll show you my\n",
+        "{STRVAR_1 28, 0, 0} strategy!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_IllBlank",
+      "en_US": "I’ll {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "PreBattleSentences_Text_IllShockYouWithBlank",
+      "en_US": [
+        "I’ll shock you with\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_ThisIsBeginningOfBlank",
+      "en_US": [
+        "This is the beginning\n",
+        "of {STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_ThisBattleIsBlank",
+      "en_US": [
+        "This battle is\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_DontThinkIllLoseAtBlank",
+      "en_US": [
+        "I don’t think I’ll\n",
+        "ever lose at {STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_TeamBlankIsHere",
+      "en_US": "Team {STRVAR_1 28, 0, 0} is here!"
+    },
+    {
+      "id": "PreBattleSentences_Text_ThinkYouCanBeatBlank",
+      "en_US": [
+        "You think you can beat\n",
+        "{STRVAR_1 28, 0, 0}?"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_BlankBlankPower",
+      "en_US": [
+        "{STRVAR_1 28, 0, 0}!\n",
+        "{STRVAR_1 28, 1, 0} power!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_ThisIsTheBlankPokemon",
+      "en_US": [
+        "This is the {STRVAR_1 28, 0, 0}\n",
+        "Pokémon!"
+      ]
+    },
+    {
+      "id": "PreBattleSentences_Text_BlankWontLose",
+      "en_US": "{STRVAR_1 28, 0, 0} won’t lose!"
+    },
+    {
+      "id": "PreBattleSentences_Text_PleaseBlankBlank",
+      "en_US": [
+        "Please {STRVAR_1 28, 0, 0}!\n",
+        "{STRVAR_1 28, 1, 0}!"
+      ]
+    }
+  ]
+}

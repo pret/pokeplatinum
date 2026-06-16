@@ -196,10 +196,10 @@ static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem)
     FieldSystem_SaveObjects(fieldSystem);
     FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SAVE, 0);
 
-    fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
-    fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
+    fieldSystem->location->x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    fieldSystem->location->z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     fieldSystem->location->warpId = WARP_ID_NONE;
-    fieldSystem->location->faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    fieldSystem->location->faceDirection = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 }
 
 void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem)

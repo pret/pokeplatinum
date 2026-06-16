@@ -5,12 +5,12 @@
 
 
     ScriptEntry Route207_OnTransition
-    ScriptEntry Route207_TriggerCounterpart
-    ScriptEntry Route207_Unused
+    ScriptEntry Route207_CoordEvent_Counterpart
+    ScriptEntry Route207_Dummy3
     ScriptEntry Route207_CyclistM
     ScriptEntry Route207_ArrowSignpostMtCoronet
     ScriptEntry Route207_ArrowSignpostOreburghCity
-    ScriptEntry Route207_TrainerTips
+    ScriptEntry Route207_TrainerTipsSignpost
     ScriptEntryEnd
 
 Route207_OnTransition:
@@ -27,7 +27,7 @@ Route207_SetCounterpartGraphicsLucas:
     SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-Route207_TriggerCounterpart:
+Route207_CoordEvent_Counterpart:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetObjectEventPos LOCALID_COUNTERPART, 331, VAR_0x8005
@@ -111,12 +111,12 @@ Route207_Movement_PlayerFaceCounterpart:
     WalkOnSpotNormalWest
     EndMovement
 
-Route207_UnusedMovement:
+Route207_Movement_Unused:
     Delay8 8
     WalkOnSpotNormalWest
     EndMovement
 
-Route207_UnusedMovement2:
+Route207_Movement_Unused2:
     Delay8 1
     WalkOnSpotNormalNorth
     EndMovement
@@ -137,7 +137,7 @@ Route207_Movement_CounterpartLeave:
     WalkNormalWest 8
     EndMovement
 
-Route207_Unused:
+Route207_Dummy3:
     NPCMessage Route207_Text_Dummy8
     End
 
@@ -167,7 +167,7 @@ Route207_ArrowSignpostOreburghCity:
     ShowArrowSign Route207_Text_Rt207OreburghCity
     End
 
-Route207_TrainerTips:
+Route207_TrainerTipsSignpost:
     ShowScrollingSign Route207_Text_TrainerTipsPokemonMayBecomeImmobilizedIfTheyAreAsleepOrParalyzed
     End
 

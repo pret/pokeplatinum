@@ -4,14 +4,14 @@
 
 
     ScriptEntry Route209GateToHearthomeCity_BattleGirl
-    ScriptEntry Route209GateToHearthomeCity_TriggerRival
+    ScriptEntry Route209GateToHearthomeCity_CoordEvent_Rival
     ScriptEntryEnd
 
 Route209GateToHearthomeCity_BattleGirl:
     NPCMessage Route209GateToHearthomeCity_Text_TheresAWreckedStonePillar
     End
 
-Route209GateToHearthomeCity_TriggerRival:
+Route209GateToHearthomeCity_CoordEvent_Rival:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route209GateToHearthomeCity_Movement_RivalNoticePlayer
     WaitMovement
@@ -123,7 +123,7 @@ Route209GateToHearthomeCity_RivalLeaveZ9:
     Return
 
     .balign 4, 0
-Route209GateToHearthomeCity_UnusedMovement:
+Route209GateToHearthomeCity_Movement_Unused:
     WalkFastWest 4
     EmoteExclamationMark
     EndMovement

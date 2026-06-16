@@ -6,9 +6,9 @@
 
 
     ScriptEntry BattleTowerBattleRoom_OnTransition
-    ScriptEntry BattleTowerBattleRoom_OnFrameStartChallenge
-    ScriptEntry BattleTowerBattleRoom_OnFrameResumeChallenge
-    ScriptEntry BattleTowerBattleRoom_Unused4
+    ScriptEntry BattleTowerBattleRoom_OnFrame_StartChallenge
+    ScriptEntry BattleTowerBattleRoom_OnFrame_ResumeChallenge
+    ScriptEntry BattleTowerBattleRoom_OpponentEnterAndBattle_Unused
     ScriptEntry BattleTowerBattleRoom_OnResume
     ScriptEntryEnd
 
@@ -29,7 +29,7 @@ BattleTowerBattleRoom_SetPlayerPositionForBattle:
     SetPosition LOCALID_BT_PLAYER, 5, 0, 6, DIR_EAST
     End
 
-BattleTowerBattleRoom_Unused4:
+BattleTowerBattleRoom_OpponentEnterAndBattle_Unused:
     SetVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 0
     PlaySE SEQ_SE_CONFIRM
     LockAll
@@ -69,7 +69,7 @@ BattleTowerBattleRoom_WarpToLobbbyWiFiAttendant:
     ReleaseAll
     End
 
-BattleTowerBattleRoom_OnFrameStartChallenge:
+BattleTowerBattleRoom_OnFrame_StartChallenge:
     LockAll
     SetVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 3
     CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_RESULT
@@ -78,7 +78,7 @@ BattleTowerBattleRoom_OnFrameStartChallenge:
     GoTo BattleTowerBattleRoom_Opponent
     End
 
-BattleTowerBattleRoom_OnFrameResumeChallenge:
+BattleTowerBattleRoom_OnFrame_ResumeChallenge:
     LockAll
     SetVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 3
     CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_RESULT
@@ -300,7 +300,7 @@ BattleTowerBattleRoom_PalmerEnter:
     WaitMovement
     Return
 
-BattleTowerBattleRoom_UnusedMovement:
+BattleTowerBattleRoom_Movement_Unused:
     Delay4
     FaceWest
     WalkNormalWest 5

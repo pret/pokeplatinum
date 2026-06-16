@@ -7,7 +7,7 @@
     ScriptEntry LakeVerity_OnLoad
     ScriptEntry LakeVerity_ProfRowan
     ScriptEntry LakeVerity_Counterpart
-    ScriptEntry LakeVerity_OnFrameProfRowanNoticePlayer
+    ScriptEntry LakeVerity_OnFrame_ProfRowanNoticePlayer
     ScriptEntry LakeVerity_Mars
     ScriptEntry LakeVerity_GruntM
     ScriptEntryEnd
@@ -154,7 +154,7 @@ LakeVerity_Movement_RowanWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
-LakeVerity_OnFrameProfRowanNoticePlayer:
+LakeVerity_OnFrame_ProfRowanNoticePlayer:
     LockAll
     ApplyMovement LOCALID_PROF_ROWAN, LakeVerity_Movement_RowanNoticePlayer
     WaitMovement
@@ -236,11 +236,11 @@ LakeVerity_BlackOut:
     End
 
     .balign 4, 0
-LakeVerity_UnusedMovement:
+LakeVerity_Movement_Unused:
     WalkOnSpotNormalNorth
     EndMovement
 
-LakeVerity_UnusedMovement2:
+LakeVerity_Movement_Unused2:
     WalkNormalNorth 3
     EndMovement
 

@@ -462,7 +462,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                     break;
 
                 case PLAYER_INPUT_ITEM:
-                    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_NO_ITEMS) {
+                    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_FRONTIER_LINK) {
                         msg.id = 593; // "Items can’t be used here."
                         msg.tags = TAG_NONE;
                         BattleController_EmitSetAlertMessage(battleSys, i, msg);
@@ -2117,7 +2117,7 @@ static int BattleControllerPlayer_CheckObedience(BattleSystem *battleSys, Battle
     TrainerInfo *trInfo = BattleSystem_GetTrainerInfo(battleSys, 0);
 
     // These separate sentinels do not match if chained into a single sentinel
-    if (battleType & BATTLE_TYPE_NO_OBEDIENCE_CHECK) {
+    if (battleType & BATTLE_TYPE_FRONTIER_LINK) {
         return OBEY_CHECK_SUCCESS;
     }
     if (BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)) {

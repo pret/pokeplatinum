@@ -58,8 +58,8 @@ int BattleRegulation_GetRuleValue(const BattleRegulation *regulation, enum Battl
     case BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL:
         ruleValue = regulation->maxTotalLevel;
         break;
-    case BATTLE_REGULATION_RULE_SPECIES_RESTRICT:
-        ruleValue = regulation->speciesRestriction;
+    case BATTLE_REGULATION_RULE_EVOLUTION_RESTRICT:
+        ruleValue = regulation->evolutionRestriction;
         break;
     case BATTLE_REGULATION_RULE_HEIGHT_RESTRICT:
         ruleValue = regulation->heightRestriction;
@@ -87,8 +87,8 @@ int BattleRegulation_GetRuleValue(const BattleRegulation *regulation, enum Battl
     case BATTLE_REGULATION_RULE_SPECIES_UNIQUE:
         ruleValue = regulation->speciesUniqueness;
         break;
-    case BATTLE_REGULATION_RULE_ITEM_RESTRICT:
-        ruleValue = regulation->itemRestriction;
+    case BATTLE_REGULATION_RULE_SPECIAL_SPECIES_RESTRICT:
+        ruleValue = regulation->specialSpeciesRestriction;
         break;
     case BATTLE_REGULATION_RULE_MOVE_RESTRICTIONS:
         ruleValue = regulation->moveRestrictions;
@@ -124,8 +124,8 @@ BattleRegulation BattleRegulation_PredefinedRules[] = {
         .maxLevel = 50,
         .heightRestriction = 0,
         .weightRestriction = 0,
-        .speciesRestriction = 1,
-        .itemRestriction = 0,
+        .evolutionRestriction = 1,
+        .specialSpeciesRestriction = 0,
         .speciesUniqueness = 0,
         .itemUniqueness = 0,
         .moveRestrictions = 0,
@@ -137,8 +137,8 @@ BattleRegulation BattleRegulation_PredefinedRules[] = {
         .maxLevel = 30,
         .heightRestriction = -20,
         .weightRestriction = -20,
-        .speciesRestriction = 0,
-        .itemRestriction = 0,
+        .evolutionRestriction = 0,
+        .specialSpeciesRestriction = 0,
         .speciesUniqueness = 0,
         .itemUniqueness = 0,
         .moveRestrictions = 0,
@@ -150,8 +150,8 @@ BattleRegulation BattleRegulation_PredefinedRules[] = {
         .maxLevel = 5,
         .heightRestriction = 0,
         .weightRestriction = 0,
-        .speciesRestriction = 0,
-        .itemRestriction = 0,
+        .evolutionRestriction = 0,
+        .specialSpeciesRestriction = 0,
         .speciesUniqueness = 0,
         .itemUniqueness = 0,
         .moveRestrictions = 1,
@@ -163,8 +163,8 @@ BattleRegulation BattleRegulation_PredefinedRules[] = {
         .maxLevel = 50,
         .heightRestriction = 0,
         .weightRestriction = -99,
-        .speciesRestriction = 0,
-        .itemRestriction = 0,
+        .evolutionRestriction = 0,
+        .specialSpeciesRestriction = 0,
         .speciesUniqueness = 0,
         .itemUniqueness = 0,
         .moveRestrictions = 0,
@@ -176,8 +176,8 @@ BattleRegulation BattleRegulation_PredefinedRules[] = {
         .maxLevel = 50,
         .heightRestriction = 0,
         .weightRestriction = 0,
-        .speciesRestriction = 1,
-        .itemRestriction = 0,
+        .evolutionRestriction = 1,
+        .specialSpeciesRestriction = 0,
         .speciesUniqueness = 0,
         .itemUniqueness = 0,
         .moveRestrictions = 0,
@@ -191,8 +191,8 @@ BattleRegulation BattleRegulation_DefaultRule = {
     .maxLevel = 100,
     .heightRestriction = 0,
     .weightRestriction = 0,
-    .speciesRestriction = 1,
-    .itemRestriction = 1,
+    .evolutionRestriction = 1,
+    .specialSpeciesRestriction = 1,
     .speciesUniqueness = 1,
     .itemUniqueness = 1,
     .moveRestrictions = 0,
@@ -217,7 +217,7 @@ void BattleRegulation_GetNameByIndex(SaveData *saveData, int index, String *stri
 
     if (index < NELEMS(BattleRegulation_PredefinedRules)) {
         messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, heapID);
-        MessageLoader_GetString(messageLoader, pl_msg_00000353_00070 + index, string);
+        MessageLoader_GetString(messageLoader, Unk0353_Text_StandardCup + index, string);
         MessageLoader_Free(messageLoader);
     } else {
         BattleRegulation_GetName(BattleRegulation_Load(saveData, 0), string);

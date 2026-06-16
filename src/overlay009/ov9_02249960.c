@@ -90,10 +90,17 @@
 
 #define DISTORTION_WORLD_MAP_COUNT 10
 
-#define GIRATINA_ROOM_TELEPORT_TILE_X 15
-#define GIRATINA_ROOM_TELEPORT_TILE_Z 25
-#define B7F_TELEPORT_TILE_X           89
-#define B7F_TELEPORT_TILE_Z           57
+#define GIRATINA_ROOM_TELEPORT_TILE_X            15
+#define GIRATINA_ROOM_TELEPORT_TILE_Y            1
+#define GIRATINA_ROOM_TELEPORT_TILE_Z            25
+#define GIRATINA_ROOM_TELEPORT_SCRIPT_ID         4
+#define GIRATINA_ROOM_POST_BATTLE_CYNTHIA_TILE_X 15
+#define GIRATINA_ROOM_POST_BATTLE_CYNTHIA_TILE_Y 1
+#define GIRATINA_ROOM_POST_BATTLE_CYNTHIA_TILE_Z 15
+#define B7F_TELEPORT_TILE_X                      89
+#define B7F_TELEPORT_TILE_Y                      65
+#define B7F_TELEPORT_TILE_Z                      57
+#define B7F_TELEPORT_SCRIPT_ID                   2
 
 #define FIELD_TASK_CONTEXT_MAX_SIZE 128
 
@@ -740,8 +747,8 @@ typedef struct DistWorldFloatingPlatformJumpPointTemplate {
     s16 zDisplacement;
     s16 playerSpriteRotAngle;
     s16 movementAnimSteps;
-    u16 unk_1E;
-    u16 unk_20;
+    u16 jumpAxis;
+    u16 invertedJump;
     s16 finalFacingDir;
     s16 floatingPlatformKind;
     u16 floatingPlatformIndex;
@@ -860,7 +867,7 @@ typedef struct DistWorldFloatingPlatformJumpTaskContext {
     int state;
     int stepsRemaining;
     VecFx32 positionIncrementVec;
-    fx32 unk_14;
+    fx32 jumpOffsetIndex;
     fx32 positionIncrement;
     VecFx32 accumulatedMovement;
     VecFx32 positionIncrementVecAbs;
@@ -1510,15 +1517,15 @@ static void InitMapElements(DistWorldSystem *system);
 static void FreeMapElements(DistWorldSystem *system);
 static void PrepareLoadingActiveFloor(DistWorldSystem *system, u32 mapHeaderID);
 static void PrepareLoadingInactiveFloor(DistWorldSystem *system, u32 mapHeaderID);
-static void DistWorldMapInfoFile_Load(NARC *param0, DistWorldMapInfoFile *param1);
-static void DistWorldMapInfoFile_LoadSafe(DistWorldSystem *param0);
-static void DistWorldMapInfoFile_Free(DistWorldMapInfoFile *param0);
-static void FreeMapInfoFile(DistWorldSystem *param0);
-static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMapInfoFile *param0, enum MapHeader mapHeaderID);
+static void DistWorldMapInfoFile_Load(NARC *mainNARC, DistWorldMapInfoFile *mapInfoFile);
+static void DistWorldMapInfoFile_LoadSafe(DistWorldSystem *system);
+static void DistWorldMapInfoFile_Free(DistWorldMapInfoFile *mapInfoFile);
+static void FreeMapInfoFile(DistWorldSystem *system);
+static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMapInfoFile *mapInfoFile, enum MapHeader mapHeaderID);
 static const DistWorldMapInfo *FindMapInfo(DistWorldSystem *system, enum MapHeader mapHeaderID);
 static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeader mapHeaderID);
-static void DistWorldMapInfoFile_FindMapOffsets(const DistWorldMapInfoFile *param0, int param1, int *param2, int *param3, int *param4);
-static void FindMapOffsets(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4);
+static void DistWorldMapInfoFile_FindMapOffsets(const DistWorldMapInfoFile *mapInfoFile, int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ);
+static void FindMapOffsets(DistWorldSystem *system, int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ);
 static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *file, enum MapHeader mapHeaderID);
 static void LoadMapFiles(DistWorldSystem *system, enum MapHeader mapHeaderID, int nextMapHeaderID);
 static void LoadActiveMapFile(DistWorldSystem *system, enum MapHeader mapHeaderID);
@@ -1689,13 +1696,13 @@ static u32 DistWorldSystem_GetMapHeaderID(DistWorldSystem *system);
 static enum AvatarDistortionState GetAvatarDistortionStateForFloatingPlatformKind(u32 platformKind);
 static BOOL CheckFlagCondition(DistWorldSystem *system, enum FlagCondition flagCond, u32 val);
 static void PlaySoundIfNotActive(u16 seqID);
-static void ov9_022511F4(MapObject *param0, const VecFx32 *param1);
+static void SetMapObjectPos(MapObject *mapObj, const VecFx32 *pos);
 
 static const OverworldAnimManagerFuncs sSkyCloudsAnimFuncs;
 static const OverworldAnimManagerFuncs sMovingPlatformPropAnimFuncs;
 static const OverworldAnimManagerFuncs sGiratinaShadowPropAnimFuncs;
 static const OverworldAnimManagerFuncs sSimplePropAnimFuncs;
-static const fx32 Unk_ov9_02252CF8[16];
+static const fx32 sFloatingPlatformJumpOffsets[MAP_OBJECT_TILE_SIZE / FX32_ONE];
 static const FloatingPlatformJumpPointHandler sFloatingPlatformJumpPointHandlers[1];
 static const int sSkyCloudsCharNARCIndexes[SKY_CLOUD_RESOURCE_COUNT];
 static const int sSkyCloudsCellNARCIndexes[SKY_CLOUD_RESOURCE_COUNT];
@@ -2590,128 +2597,136 @@ BOOL DistWorld_HandlePlayerMoved(FieldSystem *fieldSystem, enum FaceDirection pl
     return FALSE;
 }
 
-BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1)
+BOOL DistWorld_HandlePlayerMovementEnd(FieldSystem *fieldSystem, enum FaceDirection playerDir)
 {
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    u32 v1 = DistWorldSystem_GetMapHeaderID(v0);
+    DistWorldSystem *system = fieldSystem->unk_04->dynamicMapFeaturesData;
+    u32 mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
 
-    switch (v1) {
-    case 581:
-        if (param1 == 0) {
-            VarsFlags *v2 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
+    switch (mapHeaderID) {
+    case MAP_HEADER_DISTORTION_WORLD_B7F:
+        if (playerDir == FACE_UP) {
+            VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
 
-            if (SystemVars_GetDistortionWorldProgress(v2) >= 10) {
-                int v3, v4, v5;
+            if (SystemVars_GetDistortionWorldProgress(varsFlags) >= 10) {
+                int playerX;
+                int playerY;
+                int playerZ;
+                GetPlayerPos(system, &playerX, &playerY, &playerZ);
 
-                GetPlayerPos(v0, &v3, &v4, &v5);
-
-                if ((v3 == 89) && (v4 == 65) && (v5 == 57)) {
-                    ScriptManager_Set(fieldSystem, 2, NULL);
-                    return 1;
+                if (playerX == B7F_TELEPORT_TILE_X && playerY == B7F_TELEPORT_TILE_Y && playerZ == B7F_TELEPORT_TILE_Z) {
+                    ScriptManager_Set(fieldSystem, B7F_TELEPORT_SCRIPT_ID, NULL);
+                    return TRUE;
                 }
             }
         }
+
         break;
-    case 582:
-        if (param1 == 1) {
-            int v6, v7, v8;
 
-            GetPlayerPos(v0, &v6, &v7, &v8);
+    case MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM:
+        if (playerDir == FACE_DOWN) {
+            int playerX;
+            int playerY;
+            int playerZ;
+            GetPlayerPos(system, &playerX, &playerY, &playerZ);
 
-            if ((v6 == 15) && (v7 == 1) && (v8 == 25)) {
-                ScriptManager_Set(fieldSystem, 4, NULL);
-                return 1;
+            if (playerX == GIRATINA_ROOM_TELEPORT_TILE_X && playerY == GIRATINA_ROOM_TELEPORT_TILE_Y && playerZ == GIRATINA_ROOM_TELEPORT_TILE_Z) {
+                ScriptManager_Set(fieldSystem, GIRATINA_ROOM_TELEPORT_SCRIPT_ID, NULL);
+                return TRUE;
             }
         }
+
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov9_0224A71C(FieldSystem *fieldSystem)
+BOOL DistWorld_HandlePlayerPositionChanged(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
-        return 0;
+    if (PersistedMapFeatures_GetID(persistedMapFeatures) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
+        return FALSE;
     }
 
-    {
-        int v1, v2, v3;
-        int v4 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
-        DistWorldSystem *v5 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    enum FaceDirection playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
+    DistWorldSystem *system = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-        GetPlayerPos(v5, &v1, &v2, &v3);
+    int playerX;
+    int playerY;
+    int playerZ;
+    GetPlayerPos(system, &playerX, &playerY, &playerZ);
 
-        if (HandleElevatorPlatformPropAnimatorAt(v5, v1, v2, v3) == 1) {
-            return 1;
-        }
+    if (HandleElevatorPlatformPropAnimatorAt(system, playerX, playerY, playerZ) == TRUE) {
+        return TRUE;
+    }
 
-        if (HandleEventAt(v5, v1, v2, v3) == 1) {
-            return 1;
-        }
+    if (HandleEventAt(system, playerX, playerY, playerZ) == TRUE) {
+        return TRUE;
+    }
 
-        {
-            u32 v6 = DistWorldSystem_GetMapHeaderID(v5);
-            VarsFlags *v7 = SaveData_GetVarsFlags(v5->fieldSystem->saveData);
+    u32 mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
 
-            if ((v6 == 581) && (v4 == 0)) {
-                if (SystemVars_GetDistortionWorldProgress(v7) >= 10) {
-                    if ((v1 == 89) && (v2 == 65) && ((v3 == 56) || (v3 == 57))) {
-                        ScriptManager_Set(fieldSystem, 2, NULL);
-                        return 1;
-                    }
-                }
-            } else if ((v6 == 582) && (v4 == 1)) {
-                if ((v1 == 15) && (v2 == 1) && ((v3 == 25) || (v3 == 26))) {
-                    ScriptManager_Set(fieldSystem, 4, NULL);
-                    return 1;
-                }
+    if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B7F && playerDir == FACE_UP) {
+        if (SystemVars_GetDistortionWorldProgress(varsFlags) >= 10) {
+            if (playerX == B7F_TELEPORT_TILE_X && playerY == B7F_TELEPORT_TILE_Y && (playerZ == B7F_TELEPORT_TILE_Z - 1 || playerZ == B7F_TELEPORT_TILE_Z)) {
+                ScriptManager_Set(fieldSystem, B7F_TELEPORT_SCRIPT_ID, NULL);
+                return TRUE;
             }
         }
+    } else if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM && playerDir == FACE_DOWN) {
+        if (playerX == GIRATINA_ROOM_TELEPORT_TILE_X && playerY == GIRATINA_ROOM_TELEPORT_TILE_Y && (playerZ == GIRATINA_ROOM_TELEPORT_TILE_Z || playerZ == GIRATINA_ROOM_TELEPORT_TILE_Z + 1)) {
+            ScriptManager_Set(fieldSystem, GIRATINA_ROOM_TELEPORT_SCRIPT_ID, NULL);
+            return TRUE;
+        }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1)
+BOOL DistWorld_CheckMapTransition(FieldSystem *fieldSystem, enum FaceDirection transitionDir)
 {
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    u32 v1 = DistWorldSystem_GetMapHeaderID(v0);
+    DistWorldSystem *system = fieldSystem->unk_04->dynamicMapFeaturesData;
+    u32 mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
 
-    switch (v1) {
-    case 581:
-        if (param1 == 0) {
-            VarsFlags *v2 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
+    switch (mapHeaderID) {
+    case MAP_HEADER_DISTORTION_WORLD_B7F:
+        if (transitionDir == FACE_UP) {
+            VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
 
-            if (SystemVars_GetDistortionWorldProgress(v2) >= 10) {
-                int v3, v4, v5;
+            if (SystemVars_GetDistortionWorldProgress(varsFlags) >= 10) {
+                int playerX;
+                int playerY;
+                int playerZ;
+                GetPlayerPos(system, &playerX, &playerY, &playerZ);
 
-                GetPlayerPos(v0, &v3, &v4, &v5);
-
-                if ((v3 == 89) && (v4 == 65) && (v5 == 57)) {
-                    ScriptManager_Set(fieldSystem, 2, NULL);
-                    return 1;
+                if (playerX == B7F_TELEPORT_TILE_X && playerY == B7F_TELEPORT_TILE_Y && playerZ == B7F_TELEPORT_TILE_Z) {
+                    ScriptManager_Set(fieldSystem, B7F_TELEPORT_SCRIPT_ID, NULL);
+                    return TRUE;
                 }
             }
         }
+
         break;
-    case 582:
-        if (param1 == 1) {
-            int v6, v7, v8;
 
-            GetPlayerPos(v0, &v6, &v7, &v8);
+    case MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM:
+        if (transitionDir == FACE_DOWN) {
+            int playerX;
+            int playerY;
+            int playerZ;
+            GetPlayerPos(system, &playerX, &playerY, &playerZ);
 
-            if ((v6 == 15) && (v7 == 1) && (v8 == 25)) {
-                ScriptManager_Set(fieldSystem, 4, NULL);
-                return 1;
+            if (playerX == GIRATINA_ROOM_TELEPORT_TILE_X && playerY == GIRATINA_ROOM_TELEPORT_TILE_Y && playerZ == GIRATINA_ROOM_TELEPORT_TILE_Z) {
+                ScriptManager_Set(fieldSystem, GIRATINA_ROOM_TELEPORT_SCRIPT_ID, NULL);
+                return TRUE;
             }
         }
+
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
@@ -2734,7 +2749,7 @@ static void InitPlayer(DistWorldSystem *system)
     int playerState;
     int rotAngles[6] = { 0, 0, 0, 90, 270, 180 };
     PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
-    MapObject *playerMapObj = Player_MapObject(playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
     GetPlayerPos(system, &playerX, &playerY, &playerZ);
 
@@ -2749,7 +2764,7 @@ static void InitPlayer(DistWorldSystem *system)
 
     PlayerAvatar_SetDistortionState(playerAvatar, floatingPlatformKind);
 
-    playerState = PLAYER_STATE_WALKING;
+    playerState = PLAYER_AVATAR_WALKING;
     u32 playerGraphicsID = MapObject_GetGraphicsID(playerMapObj);
 
     switch (playerGraphicsID) {
@@ -2766,13 +2781,13 @@ static void InitPlayer(DistWorldSystem *system)
     case OBJ_EVENT_GFX_PLAYER_M_SURF:
     case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_SURF:
         playerGraphicsID = OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_SURF;
-        playerState = PLAYER_STATE_SURFING;
+        playerState = PLAYER_AVATAR_SURFING;
         break;
 
     case OBJ_EVENT_GFX_PLAYER_F_SURF:
     case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_SURF:
         playerGraphicsID = OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_SURF;
-        playerState = PLAYER_STATE_SURFING;
+        playerState = PLAYER_AVATAR_SURFING;
         break;
 
     default:
@@ -2786,9 +2801,9 @@ static void InitPlayer(DistWorldSystem *system)
         GF_ASSERT(MapObject_IsHeightCalculationDisabled(playerMapObj) == TRUE);
     }
 
-    if (playerState == PLAYER_STATE_SURFING) {
+    if (playerState == PLAYER_AVATAR_SURFING) {
         OverworldAnimManager *animMan;
-        enum FaceDirection playerDir = PlayerAvatar_GetDir(playerAvatar);
+        enum FaceDirection playerDir = PlayerAvatar_GetFacingDir(playerAvatar);
 
         animMan = DistWorldSurfMountRenderer_HandleSurfBegin(playerAvatar, playerX, playerY, playerZ, playerDir, TRUE, floatingPlatformKind);
         PlayerAvatar_SetSurfMountAnimManager(playerAvatar, animMan);
@@ -2810,7 +2825,7 @@ static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playe
     const DistWorldFloatingPlatformJumpPointTemplate *template = FindFloatingPlatformJumpPointAt(system, playerX, playerY, playerZ, playerDir);
 
     if (template) {
-        MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+        MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
         sFloatingPlatformJumpPointHandlers[template->handlerIndex](system, template);
 
         return TRUE;
@@ -2852,7 +2867,7 @@ static BOOL JumpOnFloatingPlatform(FieldTask *task)
     DistWorldSystem *system = FieldTask_GetEnv(task);
     DistWorldFloatingPlatformJumpTaskContext *ctx = GetFieldTaskContext(system);
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
-    MapObject *playerMapObj = Player_MapObject(playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
     switch (ctx->state) {
     case FLOATING_PLATFORM_JUMP_TASK_STATE_INIT: {
@@ -2926,7 +2941,7 @@ static BOOL JumpOnFloatingPlatform(FieldTask *task)
 
         enum AvatarDistortionState playerAvatarDistortionState = AVATAR_DISTORTION_STATE_ACTIVE;
         int particlesDir = 0;
-        MapObject *playerMapObj = Player_MapObject(playerAvatar);
+        MapObject *playerMapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
         PrepareNewCurrentFloatingPlatform(system, ctx->template.floatingPlatformIndex);
         playerAvatarDistortionState = GetAvatarDistortionStateForFloatingPlatformKind(ctx->template.floatingPlatformKind);
@@ -3039,39 +3054,40 @@ static BOOL TickJumpOnFloatingPlatformMovementAnimation(DistWorldFloatingPlatfor
         MapObject_SetZ(playerMapObj, playerZ);
     }
 
-    int v3;
-    fx32 *v4;
-    VecFx32 *v5 = MapObject_GetSpriteJumpOffset1(playerMapObj);
-    const fx32 *v6 = Unk_ov9_02252CF8;
+    fx32 *targetOffset;
+    VecFx32 *spriteJumpOffset = MapObject_GetSpriteJumpOffset1(playerMapObj);
 
-    ctx->unk_14 += ctx->positionIncrement;
-    v3 = ((ctx->unk_14) / FX32_ONE);
+    ctx->jumpOffsetIndex += ctx->positionIncrement;
+    int offsetIndex = ctx->jumpOffsetIndex / FX32_ONE;
 
-    switch (template->unk_1E) {
-    case 0:
-        v4 = &v5->x;
+    switch (template->jumpAxis) {
+    case AXIS_X:
+        targetOffset = &spriteJumpOffset->x;
         break;
-    case 1:
-        v4 = &v5->y;
+
+    case AXIS_Y:
+        targetOffset = &spriteJumpOffset->y;
         break;
-    case 2:
-        v4 = &v5->z;
+
+    case AXIS_Z:
+        targetOffset = &spriteJumpOffset->z;
         break;
+
     default:
         GF_ASSERT(FALSE);
         break;
     }
 
-    *v4 = v6[v3];
+    *targetOffset = sFloatingPlatformJumpOffsets[offsetIndex];
 
-    if (template->unk_20 == 1) {
-        *v4 = -(*v4);
+    if (template->invertedJump == TRUE) {
+        *targetOffset = -(*targetOffset);
     }
 
     ctx->stepsRemaining--;
 
     if (ctx->stepsRemaining <= 0) {
-        *v4 = 0;
+        *targetOffset = 0;
 
         MapObject_UpdateCoords(playerMapObj);
         sub_02062B68(playerMapObj);
@@ -4741,7 +4757,7 @@ static void InitialLoadInactiveFloor(DistWorldSystem *system)
 
     NARC *landDataNARC = LandDataManager_GetLandDataNARC(fieldSystem->landDataMan);
     inactiveFloor->landDataMan = LandDataManager_DistortionWorldNew(inactiveFloor->mapMatrix, inactiveFloor->areaDataMan, landDataNARC);
-    LandDataManager_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), inactiveFloor->landDataMan);
+    LandDataManager_TrackTarget(PlayerAvatar_GetPos(fieldSystem->playerAvatar), inactiveFloor->landDataMan);
     LandDataManager_SetInDistortionWorld(inactiveFloor->landDataMan, TRUE);
     LandDataManager_SetSkipMapProps(inactiveFloor->landDataMan, TRUE);
 
@@ -4752,15 +4768,15 @@ static void InitialLoadInactiveFloor(DistWorldSystem *system)
     FindMapOffsets(system, nextMapHeaderID, &offsetTileX, &offsetAltitude, &offsetTileZ);
     LandDataManager_DistortionWorldSetOffsets(inactiveFloor->landDataMan, offsetTileX, offsetAltitude, offsetTileZ);
 
-    int playerPosX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerPosZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerPosX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerPosZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     LandDataManager_DistortionWorldInitialLoad(inactiveFloor->landDataMan, playerPosX, playerPosZ);
     inactiveFloor->ready = TRUE;
     inactiveFloor->valid = TRUE;
 
     if (!IsPersistedDataValid(system)) {
-        MapObject *playerMapObj = Player_MapObject(fieldSystem->playerAvatar);
+        MapObject *playerMapObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
         VecFx32 mapOffset;
         VecFx32 playerPos;
 
@@ -5009,8 +5025,8 @@ static int FloorLoadNext_MoveInactiveToActive(DistWorldSystem *system, DistWorld
     PrepareLoadingInactiveFloor(system, mapConnections->nextID);
     LandDataManager_DistortionWorldEndWithoutFreeing(fieldSystem->landDataMan);
 
-    floorLoader->playerPosX = Player_GetXPos(fieldSystem->playerAvatar);
-    floorLoader->playerPosZ = Player_GetZPos(fieldSystem->playerAvatar);
+    floorLoader->playerPosX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    floorLoader->playerPosZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     LandDataManager_DistortionWorldPrepareNextFloor(inactiveFloor->mapMatrix, inactiveFloor->areaDataMan, inactiveFloor->landDataMan, fieldSystem->landDataMan, floorLoader->playerPosX, floorLoader->playerPosZ);
     inactiveFloor->ready = FALSE;
@@ -5297,7 +5313,7 @@ static int DistWorldElevatorPlatform_BeginMovement(DistWorldSystem *system, Dist
     }
 
     const DistWorldElevatorPlatformPath *elevatorPath = GetMovingPlatformElevatorPath(elevatorPlatform->pathIndex);
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
 
     MapObject_GetPosPtr(playerMapObj, &elevatorPlatform->playerPos);
     MapObject_SetHeightCalculationDisabled(playerMapObj, TRUE);
@@ -5352,7 +5368,7 @@ static int DistWorldElevatorPlatform_BeginMovement(DistWorldSystem *system, Dist
 static int DistWorldElevatorPlatform_Vibrate(DistWorldSystem *system, DistWorldElevatorPlatform *elevatorPlatform)
 {
     PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
-    MapObject *playerMapObj = Player_MapObject(playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(playerAvatar);
     VecFx32 *elevatorPlatformPos = GetMovingPlatformPropPos(elevatorPlatform->animator->animMan);
 
     VecFx32 spritePosOffset;
@@ -5361,7 +5377,7 @@ static int DistWorldElevatorPlatform_Vibrate(DistWorldSystem *system, DistWorldE
     spritePosOffset.y = elevatorPlatform->initialPlayerY + elevatorPlatform->vibrationYDelta;
 
     MapObject_SetSpritePosOffset(playerMapObj, &spritePosOffset);
-    ov9_022511F4(playerMapObj, &elevatorPlatform->playerPos);
+    SetMapObjectPos(playerMapObj, &elevatorPlatform->playerPos);
 
     if (elevatorPlatform->passengerMapObj != NULL) {
         MapObject_GetSpritePosOffset(elevatorPlatform->passengerMapObj, &spritePosOffset);
@@ -5372,7 +5388,7 @@ static int DistWorldElevatorPlatform_Vibrate(DistWorldSystem *system, DistWorldE
 
         MapObject_GetPosPtr(elevatorPlatform->passengerMapObj, &passengerPos);
         passengerPos.y = elevatorPlatform->playerPos.y;
-        ov9_022511F4(elevatorPlatform->passengerMapObj, &passengerPos);
+        SetMapObjectPos(elevatorPlatform->passengerMapObj, &passengerPos);
     }
 
     elevatorPlatformPos->y = elevatorPlatform->initialPlatformY + elevatorPlatform->vibrationYDelta;
@@ -5413,7 +5429,7 @@ static int DistWorldElevatorPlatform_Vibrate(DistWorldSystem *system, DistWorldE
 static int DistWorldElevatorPlatform_MoveFirstHalf(DistWorldSystem *system, DistWorldElevatorPlatform *elevatorPlatform)
 {
     PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
-    MapObject *playerMapObj = Player_MapObject(playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(playerAvatar);
     VecFx32 *elevatorPlatformPos = GetMovingPlatformPropPos(elevatorPlatform->animator->animMan);
 
     if (elevatorPlatform->currPosOffset.x != elevatorPlatform->finalPosOffset.x) {
@@ -5434,14 +5450,14 @@ static int DistWorldElevatorPlatform_MoveFirstHalf(DistWorldSystem *system, Dist
         elevatorPlatformPos->z += elevatorPlatform->posDelta.z;
     }
 
-    ov9_022511F4(playerMapObj, &elevatorPlatform->playerPos);
+    SetMapObjectPos(playerMapObj, &elevatorPlatform->playerPos);
 
     if (elevatorPlatform->passengerMapObj != NULL) {
         VecFx32 passengerPos;
 
         MapObject_GetPosPtr(elevatorPlatform->passengerMapObj, &passengerPos);
         passengerPos.y = elevatorPlatform->playerPos.y;
-        ov9_022511F4(elevatorPlatform->passengerMapObj, &passengerPos);
+        SetMapObjectPos(elevatorPlatform->passengerMapObj, &passengerPos);
     }
 
     if (elevatorPlatform->currPosOffset.x == elevatorPlatform->changeMapsPosOffset.x && elevatorPlatform->currPosOffset.y == elevatorPlatform->changeMapsPosOffset.y && elevatorPlatform->currPosOffset.z == elevatorPlatform->changeMapsPosOffset.z) {
@@ -5494,7 +5510,7 @@ static int DistWorldElevatorPlatform_ChangeMaps(DistWorldSystem *system, DistWor
 static int DistWorldElevatorPlatform_MoveSecondHalf(DistWorldSystem *system, DistWorldElevatorPlatform *elevatorPlatform)
 {
     PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
-    MapObject *playerMapObj = Player_MapObject(playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(playerAvatar);
     VecFx32 *elevatorPlatformPos = GetMovingPlatformPropPos(elevatorPlatform->animator->animMan);
 
     if (elevatorPlatform->currPosOffset.x != elevatorPlatform->finalPosOffset.x) {
@@ -5515,14 +5531,14 @@ static int DistWorldElevatorPlatform_MoveSecondHalf(DistWorldSystem *system, Dis
         elevatorPlatformPos->z += elevatorPlatform->posDelta.z;
     }
 
-    ov9_022511F4(playerMapObj, &elevatorPlatform->playerPos);
+    SetMapObjectPos(playerMapObj, &elevatorPlatform->playerPos);
 
     if (elevatorPlatform->passengerMapObj != NULL) {
         VecFx32 passengerPos;
 
         MapObject_GetPosPtr(elevatorPlatform->passengerMapObj, &passengerPos);
         passengerPos.y = elevatorPlatform->playerPos.y;
-        ov9_022511F4(elevatorPlatform->passengerMapObj, &passengerPos);
+        SetMapObjectPos(elevatorPlatform->passengerMapObj, &passengerPos);
     }
 
     if (elevatorPlatform->currPosOffset.x == elevatorPlatform->finalPosOffset.x && elevatorPlatform->currPosOffset.y == elevatorPlatform->finalPosOffset.y && elevatorPlatform->currPosOffset.z == elevatorPlatform->finalPosOffset.z) {
@@ -5530,7 +5546,7 @@ static int DistWorldElevatorPlatform_MoveSecondHalf(DistWorldSystem *system, Dis
             Sound_StopEffect(SEQ_SE_PL_FW089, 0);
             elevatorPlatform->state = ELEVATOR_PLATFORM_STATE_END;
         } else {
-            MapObject *playerMapObj2 = Player_MapObject(system->fieldSystem->playerAvatar);
+            MapObject *playerMapObj2 = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
 
             MapObject_SetX(playerMapObj2, elevatorPlatform->finalPlayerTileX);
             MapObject_SetY(playerMapObj2, elevatorPlatform->finalPlayerTileY);
@@ -5558,7 +5574,7 @@ static int DistWorldElevatorPlatform_MoveSecondHalf(DistWorldSystem *system, Dis
 static int DistWorldElevatorPlatform_EndMovement(DistWorldSystem *system, DistWorldElevatorPlatform *elevatorPlatform)
 {
     if (!IsFloorLoaderActive(system)) {
-        MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+        MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
 
         MapObject_SetX(playerMapObj, elevatorPlatform->finalPlayerTileX);
         MapObject_SetY(playerMapObj, elevatorPlatform->finalPlayerTileY);
@@ -6557,7 +6573,7 @@ static int EventCmdMovePlatform_BeginMovement(DistWorldSystem *system, FieldTask
 
     if (cmdParams->movePlayer == TRUE) {
         VecFx32 spritePosOffset;
-        MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+        MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
 
         MapObject_SetHeightCalculationDisabled(playerMapObj, TRUE);
         MapObject_GetSpritePosOffset(playerMapObj, &spritePosOffset);
@@ -6579,7 +6595,7 @@ static int EventCmdMovePlatform_Vibrate(DistWorldSystem *system, FieldTask *task
     VecFx32 *movingPlatformPos = GetMovingPlatformPropPos(runData->animator->animMan);
 
     if (cmdParams->movePlayer == TRUE) {
-        playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+        playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
     }
 
     movingPlatformPos->y = runData->initialPlatformY + runData->vibrationYDelta;
@@ -6592,7 +6608,7 @@ static int EventCmdMovePlatform_Vibrate(DistWorldSystem *system, FieldTask *task
 
         MapObject_SetSpritePosOffset(playerMapObj, &spritePosOffset);
         MapObject_GetPosPtr(playerMapObj, &spritePosOffset);
-        ov9_022511F4(playerMapObj, &spritePosOffset);
+        SetMapObjectPos(playerMapObj, &spritePosOffset);
     }
 
     runData->vibrationYDelta = -runData->vibrationYDelta;
@@ -6619,7 +6635,7 @@ static int EventCmdMovePlatform_Vibrate(DistWorldSystem *system, FieldTask *task
                 MapObject_SetSpritePosOffset(playerMapObj, &spritePosOffset);
 
                 MapObject_GetPosPtr(playerMapObj, &spritePosOffset);
-                ov9_022511F4(playerMapObj, &spritePosOffset);
+                SetMapObjectPos(playerMapObj, &spritePosOffset);
             }
 
             *cmdState = EVENT_CMD_MOVE_PLATFORM_STATE_MOVE;
@@ -6665,7 +6681,7 @@ static int EventCmdMovePlatform_Move(DistWorldSystem *system, FieldTask *task, u
 
     if (cmdParams->movePlayer == TRUE) {
         VecFx32 playerPos;
-        MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+        MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
 
         MapObject_GetPosPtr(playerMapObj, &playerPos);
 
@@ -6673,7 +6689,7 @@ static int EventCmdMovePlatform_Move(DistWorldSystem *system, FieldTask *task, u
         playerPos.y += posDelta.y;
         playerPos.z += posDelta.z;
 
-        ov9_022511F4(playerMapObj, &playerPos);
+        SetMapObjectPos(playerMapObj, &playerPos);
     }
 
     if (runData->currPosOffset.x == runData->finalPosOffset.x && runData->currPosOffset.y == runData->finalPosOffset.y && runData->currPosOffset.z == runData->finalPosOffset.z) {
@@ -6688,7 +6704,7 @@ static int EventCmdMovePlatform_EndMovement(DistWorldSystem *system, FieldTask *
     const CmdParamsMovePlatform *cmdParams = params;
 
     if (cmdParams->movePlayer == TRUE) {
-        MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+        MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
         int finalPlayerTileX = MapObject_GetX(playerMapObj) + cmdParams->finalTileXOffset;
         int finalPlayerTileY = MapObject_GetY(playerMapObj) + cmdParams->finalTileYOffset * 2;
         int finalPlayerTileZ = MapObject_GetZ(playerMapObj) + cmdParams->finalTileZOffset;
@@ -7986,7 +8002,7 @@ static void RecalculateSkyBackgroundDarkness(DistWorldSystem *system)
 {
     DistWorldSkyBackground *skyBg = &system->skyBg;
     PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
-    const VecFx32 *playerPos = PlayerAvatar_PosVector(playerAvatar);
+    const VecFx32 *playerPos = PlayerAvatar_GetPos(playerAvatar);
 
     if (skyBg->darknessCalculationDisabled == FALSE) {
         skyBg->darknessLevel = (playerPos->y - MAP_OBJECT_COORD_EDGE_TO_FX32(DISTORTION_WORLD_MIN_Y)) / (MAP_OBJECT_COORD_EDGE_TO_FX32(DISTORTION_WORLD_MAX_Y - DISTORTION_WORLD_MIN_Y) / SKY_BACKGROUND_MAX_DARKNESS);
@@ -8211,7 +8227,7 @@ static const DistWorldCameraAngleTemplate sCascadeDownSecondCameraAngle = {
 
 static void UpdateCascadeDownCamera(DistWorldSystem *system, CmdRunDataCascadeDown *runData)
 {
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
     int yOffset = (runData->base.currPosOffset.y >> 4) / FX32_ONE;
 
     if (runData->cameraAngleState == 0 && yOffset == CASCADE_DOWN_FIRST_CAMERA_ANGLE_Y_OFFSET) {
@@ -8241,7 +8257,7 @@ static int EventCmdCascadeDown_Init(DistWorldSystem *system, FieldTask *task, u1
     const CmdParamsCascadeDown *cmdParams = params;
     CmdRunDataCascadeBase *baseRunData = &runData->base;
     PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
-    MapObject *playerMapObj = Player_MapObject(playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
     VecFx32 playerPos;
     MapObject_GetPosPtr(playerMapObj, &playerPos);
@@ -8295,7 +8311,7 @@ static int EventCmdCascadeDown_Init(DistWorldSystem *system, FieldTask *task, u1
 
 static int EventCmdCascadeDown_RotatePlayer(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
     CmdRunDataCascadeDown *runData = GetLoadedEventDataBuffer(system);
     CmdRunDataCascadeBase *baseRunData = &runData->base;
 
@@ -8357,7 +8373,7 @@ static int EventCmdCascadeDown_CascadeDown(DistWorldSystem *system, FieldTask *t
 {
     enum CascadeUpdateResult updateRes;
     OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
     CmdRunDataCascadeDown *runData = GetLoadedEventDataBuffer(system);
     CmdRunDataCascadeBase *baseRunData = &runData->base;
 
@@ -8427,7 +8443,7 @@ static int EventCmdCascadeDown_FinishCascading(DistWorldSystem *system, FieldTas
 {
     enum CascadeUpdateResult updateRes;
     OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
     CmdRunDataCascadeDown *runData = GetLoadedEventDataBuffer(system);
     CmdRunDataCascadeBase *baseRunData = &runData->base;
 
@@ -8507,7 +8523,7 @@ static int EventCmdCascadeDown_MoveAway(DistWorldSystem *system, FieldTask *task
 {
     u32 movements[2] = { MOVEMENT_ACTION_WALK_SLOW_WEST, MOVEMENT_ACTION_WALK_SLOWER_WEST };
     CmdRunDataCascadeDown *runData = GetLoadedEventDataBuffer(system);
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
 
     if (!LocalMapObj_IsAnimationSet(playerMapObj)) {
         return EVENT_CMD_HANDLER_RES_CONTINUE;
@@ -8548,7 +8564,7 @@ static const DistWorldCameraAngleTemplate sCascadeUpCameraAngle = {
 
 static void UpdateCascadeUpCamera(DistWorldSystem *system, CmdRunDataCascadeUp *runData)
 {
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
     int yOffset = (runData->base.currPosOffset.y >> 4) / FX32_ONE;
 
     if (runData->cameraAngleState == 0 && yOffset == CASCADE_UP_CAMERA_ANGLE_Y_OFFSET) {
@@ -8563,7 +8579,7 @@ static int EventCmdCascadeUp_Init(DistWorldSystem *system, FieldTask *task, u16 
     CmdRunDataCascadeUp *runData = ResetLoadedEventDataBuffer(system, sizeof(CmdRunDataCascadeUp));
     CmdRunDataCascadeBase *baseRunData = &runData->base;
     PlayerAvatar *playerAvatar = system->fieldSystem->playerAvatar;
-    MapObject *playerMapObj = Player_MapObject(playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(playerAvatar);
 
     VecFx32 playerPos;
     MapObject_GetPosPtr(playerMapObj, &playerPos);
@@ -8617,7 +8633,7 @@ static int EventCmdCascadeUp_Init(DistWorldSystem *system, FieldTask *task, u16 
 
 static int EventCmdCascadeUp_RotatePlayer(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
     CmdRunDataCascadeUp *runData = GetLoadedEventDataBuffer(system);
     CmdRunDataCascadeBase *baseRunData = &runData->base;
 
@@ -8676,7 +8692,7 @@ static int EventCmdCascadeUp_CascadeUp(DistWorldSystem *system, FieldTask *task,
 {
     enum CascadeUpdateResult updateRes;
     OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
     CmdRunDataCascadeUp *runData = GetLoadedEventDataBuffer(system);
     CmdRunDataCascadeBase *baseRunData = &runData->base;
 
@@ -8724,7 +8740,7 @@ static int EventCmdCascadeUp_FinishCascading(DistWorldSystem *system, FieldTask 
 {
     enum CascadeUpdateResult updateRes;
     OverworldAnimManager *mountAnimMan = PlayerAvatar_GetSurfMountAnimManager(system->fieldSystem->playerAvatar);
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
     CmdRunDataCascadeUp *runData = GetLoadedEventDataBuffer(system);
     CmdRunDataCascadeBase *baseRunData = &runData->base;
 
@@ -8801,7 +8817,7 @@ static int EventCmdCascadeUp_MoveAway(DistWorldSystem *system, FieldTask *task, 
 {
     u32 movements[3] = { MOVEMENT_ACTION_151, MOVEMENT_ACTION_147, MOVEMENT_ACTION_115 };
     CmdRunDataCascadeUp *runData = GetLoadedEventDataBuffer(system);
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
 
     if (!LocalMapObj_IsAnimationSet(playerMapObj)) {
         return EVENT_CMD_HANDLER_RES_CONTINUE;
@@ -9396,7 +9412,7 @@ static int EventCmdShowMespritBoulderTuto_Ascend(DistWorldSystem *system, FieldT
         }
 
         runData->mespritAnimTask = MapObject_StartAnimation(runData->mespritMapObj, mespritAnimCmds);
-        runData->playerAnimTask = MapObject_StartAnimation(Player_MapObject(system->fieldSystem->playerAvatar), playerAnimCmds);
+        runData->playerAnimTask = MapObject_StartAnimation(PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar), playerAnimCmds);
 
         *cmdState = EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_WAIT_FOR_ANIMATION;
     }
@@ -9618,22 +9634,17 @@ static void ApplyRotationToTargetFx32(fx32 *target, fx32 angle)
 
 static void GetPlayerPos(DistWorldSystem *system, int *playerX, int *playerY, int *playerZ)
 {
-    MapObject *playerMapObj = Player_MapObject(system->fieldSystem->playerAvatar);
+    MapObject *playerMapObj = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
 
     *playerX = MapObject_GetX(playerMapObj);
     *playerY = MapObject_GetY(playerMapObj) / 2;
     *playerZ = MapObject_GetZ(playerMapObj);
 }
 
-BOOL ov9_02250F74(FieldSystem *fieldSystem)
+BOOL DistWorld_ArePersistedFeaturesInit(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-
-    if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
-        return 0;
-    }
-
-    return 1;
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    return PersistedMapFeatures_GetID(persistedMapFeatures) == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD;
 }
 
 BOOL DistWorld_CheckCollisionOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ)
@@ -9661,21 +9672,21 @@ BOOL DistWorld_IsValidTileOnCurrentFloatingPlatform(FieldSystem *fieldSystem, in
     return TRUE;
 }
 
-BOOL ov9_02250FD8(FieldSystem *fieldSystem, int param1, int param2, int param3)
+BOOL DistWorld_AreCoordsValidOnCurrentFloatingPlatformKind(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ)
 {
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    s16 v1 = GetCurrentFloatingPlatformKind(v0);
+    DistWorldSystem *system = fieldSystem->unk_04->dynamicMapFeaturesData;
+    s16 floatingPlatformKind = GetCurrentFloatingPlatformKind(system);
 
-    return HasFloatingPlatformAtCoords(v0, param1, param2, param3, v1);
+    return HasFloatingPlatformAtCoords(system, tileX, tileY, tileZ, floatingPlatformKind);
 }
 
-void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3)
+void DistWorld_FindAndPrepareNewCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ)
 {
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    s16 v1 = GetCurrentFloatingPlatformKind(v0);
+    DistWorldSystem *system = fieldSystem->unk_04->dynamicMapFeaturesData;
+    s16 floatingPlatformKind = GetCurrentFloatingPlatformKind(system);
 
-    if (HasFloatingPlatformAtCoords(v0, param1, param2, param3, v1) == TRUE) {
-        FindAndPrepareNewCurrentFloatingPlatform(v0, param1, param2, param3, v1);
+    if (HasFloatingPlatformAtCoords(system, tileX, tileY, tileZ, floatingPlatformKind) == TRUE) {
+        FindAndPrepareNewCurrentFloatingPlatform(system, tileX, tileY, tileZ, floatingPlatformKind);
         return;
     }
 
@@ -9799,22 +9810,22 @@ static BOOL CheckFlagCondition(DistWorldSystem *system, enum FlagCondition flagC
     return FALSE;
 }
 
-BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3)
+BOOL DistWorld_IsBlockedByCynthia(FieldSystem *fieldSystem, int tileX, int tileZ, int tileY)
 {
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    DistWorldSystem *system = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-    if (DistWorldSystem_GetMapHeaderID(v0) == 582) {
-        if ((param2 == 15) && (param1 == 15) && (param3 == 1)) {
-            VarsFlags *v1 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
-            u32 v2 = SystemVars_GetDistortionWorldProgress(v1);
+    if (DistWorldSystem_GetMapHeaderID(system) == MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM) {
+        if (tileZ == GIRATINA_ROOM_POST_BATTLE_CYNTHIA_TILE_X && tileX == GIRATINA_ROOM_POST_BATTLE_CYNTHIA_TILE_Z && tileY == GIRATINA_ROOM_POST_BATTLE_CYNTHIA_TILE_Y) {
+            VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
+            u32 distWorldProgress = SystemVars_GetDistortionWorldProgress(varsFlags);
 
-            if (v2 == 14) {
-                return 1;
+            if (distWorldProgress == 14) {
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void PlaySoundIfNotActive(u16 seqID)
@@ -9824,17 +9835,17 @@ static void PlaySoundIfNotActive(u16 seqID)
     }
 }
 
-static void ov9_022511F4(MapObject *mapObj, const VecFx32 *pos)
+static void SetMapObjectPos(MapObject *mapObj, const VecFx32 *pos)
 {
     MapObject_SetPos(mapObj, pos);
-    Billboard *v0 = ov5_021EB1A0(mapObj);
+    Billboard *billboard = ov5_021EB1A0(mapObj);
 
-    if (v0 != NULL) {
-        ov5_021EDEB4(mapObj, v0);
+    if (billboard != NULL) {
+        ov5_021EDEB4(mapObj, billboard);
     }
 }
 
-static const fx32 Unk_ov9_02252CF8[16] = {
+static const fx32 sFloatingPlatformJumpOffsets[MAP_OBJECT_TILE_SIZE / FX32_ONE] = {
     4 * FX32_ONE,
     6 * FX32_ONE,
     8 * FX32_ONE,
@@ -13917,9 +13928,9 @@ static const DistWorldObjectEvent sMapObjectEventGiratinaRoom_CynthiaText = {
         .data = { 0x0, 0x0, 0x0 },
         .movementRangeX = 0x0,
         .movementRangeZ = 0x0,
-        .x = 0xF,
-        .z = 0xF,
-        .y = (1 << 4) * FX32_ONE,
+        .x = GIRATINA_ROOM_POST_BATTLE_CYNTHIA_TILE_X,
+        .z = GIRATINA_ROOM_POST_BATTLE_CYNTHIA_TILE_Z,
+        .y = (GIRATINA_ROOM_POST_BATTLE_CYNTHIA_TILE_Y << 4) * FX32_ONE,
     },
 };
 

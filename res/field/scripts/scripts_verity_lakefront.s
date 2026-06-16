@@ -4,7 +4,7 @@
 
     ScriptEntry VerityLakefront_OnLoad
     ScriptEntry VerityLakefront_OnTransition
-    ScriptEntry VerityLakefront_TriggerWereAtTheLake
+    ScriptEntry VerityLakefront_CoordEvent_WereAtTheLake
     ScriptEntry VerityLakefront_TrainerTipsSignpost
     ScriptEntryEnd
 
@@ -28,7 +28,7 @@ VerityLakefront_OnTransition:
     GoToIfSet FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, VerityLakefront_RemoveWarpsLakeVerityLowWater
     End
 
-VerityLakefront_TriggerWereAtTheLake:
+VerityLakefront_CoordEvent_WereAtTheLake:
     LockAll
     ApplyMovement LOCALID_FOLLOWER, VerityLakefront_Movement_RivalWalkOnSpotNorth
     ApplyMovement LOCALID_PLAYER, VerityLakefront_Movement_PlayerFaceRival

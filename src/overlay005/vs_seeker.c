@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/vs_seeker.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 #include "generated/trainer_types.h"
@@ -46,11 +47,6 @@
 // Number of steps for which the rematches are available
 // until the Vs. Seeker has to be used again
 #define VS_SEEKER_MAX_NUM_ACTIVE_STEPS 100
-
-#define VS_SEEKER_USE_RESULT_OK                 0
-#define VS_SEEKER_USE_RESULT_NO_BATTERY         1
-#define VS_SEEKER_USE_RESULT_NO_TRAINERS        2
-#define VS_SEEKER_USE_RESULT_NO_TRAINERS_PICKED 3 // No trainers were picked for a rematch (e.g. all the random chances failed)
 
 #define VS_SEEKER_REMATCH_DATA_INDEX_NONE 0xFF
 
@@ -514,8 +510,8 @@ static void VsSeekerSystem_CollectViableNPCs(VsSeekerSystem *vsSeeker)
         vsSeeker->trainers[i] = NULL;
     }
 
-    int playerX = Player_GetXPos(vsSeeker->fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(vsSeeker->fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(vsSeeker->fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(vsSeeker->fieldSystem->playerAvatar);
     xMin = playerX - VS_SEEKER_SEARCH_RADIUS_LEFT;
     xMax = playerX + VS_SEEKER_SEARCH_RADIUS_RIGHT;
     zMin = playerZ - VS_SEEKER_SEARCH_RADIUS_UP;

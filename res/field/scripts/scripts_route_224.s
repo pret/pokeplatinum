@@ -9,7 +9,7 @@
     ScriptEntry Route224_OnResume
     ScriptEntry Route224_Tablet
     ScriptEntry Route224_ProfOak
-    ScriptEntry Route224_TriggerMarley
+    ScriptEntry Route224_CoordEvent_Marley
     ScriptEntry Route224_Marley
     ScriptEntryEnd
 
@@ -303,7 +303,7 @@ Route224_Movement_ProfOakLookAround:
     Delay16
     EndMovement
 
-Route224_UnusedMovement:
+Route224_Movement_Unused:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -324,7 +324,7 @@ Route224_Movement_ShayminLeave:
     WalkSlightlyFastNorth 12
     EndMovement
 
-Route224_TriggerMarley:
+Route224_CoordEvent_Marley:
     LockAll
     ClearFlag FLAG_HIDE_ROUTE_224_MARLEY
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

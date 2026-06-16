@@ -195,7 +195,7 @@ BOOL FieldMoves_FlyTask(FieldTask *task)
 
     switch (ctx->state) {
     case FLY_STATE_START_CUT_IN:
-        ctx->cutInTask = HMCutIn_StartTask(ctx->fieldSystem, TRUE, ctx->mon, PlayerAvatar_Gender(ctx->fieldSystem->playerAvatar));
+        ctx->cutInTask = HMCutIn_StartTask(ctx->fieldSystem, TRUE, ctx->mon, PlayerAvatar_GetGender(ctx->fieldSystem->playerAvatar));
         ctx->state++;
         break;
     case FLY_STATE_MAIN:
@@ -260,8 +260,8 @@ void FieldMoves_SetUsableMoves(FieldSystem *fieldSystem, FieldMoveContext *field
         }
     }
 
-    playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    playerY = Player_GetZPos(fieldSystem->playerAvatar);
+    playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    playerY = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     currTileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerY);
 
     PlayerAvatar_GetFacingTileCoords(fieldSystem->playerAvatar, &playerX, &playerY);
@@ -271,7 +271,7 @@ void FieldMoves_SetUsableMoves(FieldSystem *fieldSystem, FieldMoveContext *field
         fieldMoveContext->usableMoves |= FIELD_MOVE_FLAG(FIELD_MOVE_SURF);
     }
 
-    if (PlayerAvatar_CanUseRockClimb(nextTileBehavior, PlayerAvatar_GetDir(fieldSystem->playerAvatar))) {
+    if (PlayerAvatar_CanUseRockClimb(nextTileBehavior, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar))) {
         fieldMoveContext->usableMoves |= FIELD_MOVE_FLAG(FIELD_MOVE_ROCK_CLIMB);
     }
 

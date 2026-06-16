@@ -5,9 +5,9 @@
 
 
     ScriptEntry JubilifeCity_OnTransition
-    ScriptEntry JubilifeCity_TriggerFirstArrival
-    ScriptEntry JubilifeCity_TriggerLookerBlockRoute203
-    ScriptEntry JubilifeCity_TriggerTeamGalactic
+    ScriptEntry JubilifeCity_CoordEvent_FirstArrival
+    ScriptEntry JubilifeCity_CoordEvent_LookerBlockRoute203
+    ScriptEntry JubilifeCity_CoordEvent_TeamGalactic
     ScriptEntry JubilifeCity_Looker
     ScriptEntry JubilifeCity_SchoolKidM1
     ScriptEntry JubilifeCity_Twin
@@ -20,18 +20,18 @@
     ScriptEntry JubilifeCity_Clown1
     ScriptEntry JubilifeCity_Clown2
     ScriptEntry JubilifeCity_Clown3
-    ScriptEntry JubilifeCity_TriggerPoketchCampaign
+    ScriptEntry JubilifeCity_CoordEvent_PoketchCampaign
     ScriptEntry JubilifeCity_PoketchCoPresident
-    ScriptEntry JubilifeCity_TriggerGTSGreeterBlockPlayer
+    ScriptEntry JubilifeCity_CoordEvent_GTSGreeterBlockPlayer
     ScriptEntry JubilifeCity_KidWithNDS1
     ScriptEntry JubilifeCity_KidWithNDS2
-    ScriptEntry JubilifeCity_MapSign
-    ScriptEntry JubilifeCity_LandmarkSignJubilifeCondominiums
-    ScriptEntry JubilifeCity_LandmarkSignPoketchCompany
-    ScriptEntry JubilifeCity_LandmarkSignTrainersSchool
-    ScriptEntry JubilifeCity_LandmarkSignJubilifeTV
-    ScriptEntry JubilifeCity_LandmarkSignGlobalTerminal
-    ScriptEntry JubilifeCity_TriggerLookerPalPad
+    ScriptEntry JubilifeCity_MapSignpost
+    ScriptEntry JubilifeCity_SignboardJubilifeCondominiums
+    ScriptEntry JubilifeCity_SignboardPoketchCompany
+    ScriptEntry JubilifeCity_SignboardTrainersSchool
+    ScriptEntry JubilifeCity_SignboardJubilifeTV
+    ScriptEntry JubilifeCity_SignboardGlobalTerminal
+    ScriptEntry JubilifeCity_CoordEvent_LookerPalPad
     ScriptEntryEnd
 
 JubilifeCity_OnTransition:
@@ -62,7 +62,7 @@ JubilifeCity_SetCounterpartGraphicsLucas:
     SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-JubilifeCity_TriggerFirstArrival:
+JubilifeCity_CoordEvent_FirstArrival:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 173, JubilifeCity_FirstArrivalX173
@@ -460,7 +460,7 @@ JubilifeCity_AceTrainerM3:
     NPCMessage JubilifeCity_Text_PastHereIsTheGlobalTerminal
     End
 
-JubilifeCity_TriggerGTSGreeterBlockPlayer:
+JubilifeCity_CoordEvent_GTSGreeterBlockPlayer:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 779, JubilifeCity_GTSGreeterBlockPlayerZ779
@@ -558,7 +558,7 @@ JubilifeCity_Movement_PlayerStepBackEast:
     WalkNormalEast
     EndMovement
 
-JubilifeCity_TriggerLookerBlockRoute203:
+JubilifeCity_CoordEvent_LookerBlockRoute203:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 757, JubilifeCity_LookerWalkToPlayerZ757
@@ -793,7 +793,7 @@ JubilifeCity_Movement_LookerFaceSouth:
     FaceSouth
     EndMovement
 
-JubilifeCity_TriggerTeamGalactic:
+JubilifeCity_CoordEvent_TeamGalactic:
     LockAll
     ApplyMovement LOCALID_GRUNT_M_2, JubilifeCity_Movement_GruntWalkOnSpotEast
     WaitMovement
@@ -1068,14 +1068,14 @@ JubilifeCity_Movement_PlayerWatchCounterpartAndProfRowanLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-JubilifeCity_UnusedMovement:
+JubilifeCity_Movement_Unused:
     Delay8
     WalkOnSpotNormalEast
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
-JubilifeCity_UnusedMovement2:
+JubilifeCity_Movement_Unused2:
     Delay8
     WalkOnSpotNormalWest
     Delay8
@@ -1109,12 +1109,12 @@ JubilifeCity_Movement_CounterpartLeaveAfterGalacticBattle:
     WalkNormalSouth 9
     EndMovement
 
-JubilifeCity_UnusedMovement3:
+JubilifeCity_Movement_Unused3:
     WalkNormalEast
     WalkNormalSouth 9
     EndMovement
 
-JubilifeCity_UnusedMovement4:
+JubilifeCity_Movement_Unused4:
     WalkNormalWest
     WalkOnSpotNormalEast
     WalkNormalEast
@@ -1167,11 +1167,11 @@ JubilifeCity_Movement_ProfRowanLeave:
     WalkNormalSouth 9
     EndMovement
 
-JubilifeCity_UnusedMovement5:
+JubilifeCity_Movement_Unused5:
     WalkNormalSouth 9
     EndMovement
 
-JubilifeCity_UnusedMovement6:
+JubilifeCity_Movement_Unused6:
     WalkOnSpotNormalWest
     WalkNormalWest
     WalkNormalSouth 9
@@ -1187,23 +1187,23 @@ JubilifeCity_Movement_ProfRowanWalkOnSpotWest2:
     WalkOnSpotNormalWest
     EndMovement
 
-JubilifeCity_UnusedMovement7:
+JubilifeCity_Movement_Unused7:
     WalkOnSpotNormalWest
     EndMovement
 
-JubilifeCity_UnusedMovement8:
+JubilifeCity_Movement_Unused8:
     WalkOnSpotNormalWest
     EndMovement
 
-JubilifeCity_UnusedMovement9:
+JubilifeCity_Movement_Unused9:
     WalkOnSpotNormalWest
     EndMovement
 
-JubilifeCity_UnusedMovement10:
+JubilifeCity_Movement_Unused10:
     WalkOnSpotNormalWest
     EndMovement
 
-JubilifeCity_UnusedMovement11:
+JubilifeCity_Movement_Unused11:
     WalkOnSpotNormalWest
     EndMovement
 
@@ -1287,31 +1287,31 @@ JubilifeCity_SchoolKidM2:
     NPCMessage JubilifeCity_Text_AtMostYouCanHaveSixPokemonWithYou
     End
 
-JubilifeCity_MapSign:
+JubilifeCity_MapSignpost:
     ShowMapSign JubilifeCity_Text_MapSign
     End
 
-JubilifeCity_LandmarkSignJubilifeCondominiums:
+JubilifeCity_SignboardJubilifeCondominiums:
     ShowLandmarkSign JubilifeCity_Text_JubilifeCondominiumsTenantsWanted
     End
 
-JubilifeCity_LandmarkSignPoketchCompany:
+JubilifeCity_SignboardPoketchCompany:
     ShowLandmarkSign JubilifeCity_Text_ThePoketchCompanyPokemonWatchesForTheWorld
     End
 
-JubilifeCity_LandmarkSignTrainersSchool:
+JubilifeCity_SignboardTrainersSchool:
     ShowLandmarkSign JubilifeCity_Text_TrainersSchoolTheFirstStepForTrainers
     End
 
-JubilifeCity_LandmarkSignJubilifeTV:
+JubilifeCity_SignboardJubilifeTV:
     ShowLandmarkSign JubilifeCity_Text_JubilifeTVTheFunAndGamesTVStation
     End
 
-JubilifeCity_LandmarkSignGlobalTerminal:
+JubilifeCity_SignboardGlobalTerminal:
     ShowLandmarkSign JubilifeCity_Text_TheGlobalTerminalYourGatewayToTheWholeWorld
     End
 
-JubilifeCity_TriggerPoketchCampaign:
+JubilifeCity_CoordEvent_PoketchCampaign:
     LockAll
     ApplyMovement LOCALID_POKETCH_CO_PRESIDENT, JubilifeCity_Movement_PoketchCoPresidentNoticePlayer
     ApplyMovement LOCALID_PLAYER, JubilifeCity_Movement_PlayerFaceNorthPoketchCoPresident
@@ -1627,7 +1627,7 @@ JubilifeCity_KidWithNDS2:
     NPCMessage JubilifeCity_TextIMadeMyPokemonHoldAnItemBeforeTradingIt
     End
 
-JubilifeCity_TriggerLookerPalPad:
+JubilifeCity_CoordEvent_LookerPalPad:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetObjectEventPos LOCALID_LOOKER, 179, VAR_0x8005

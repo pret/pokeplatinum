@@ -728,7 +728,7 @@ static void FreeAssets(BattleArcadeApp *app)
         }
     }
 
-    u8 numMons = BattleArcade_GetPartySize(app->challengeType, TRUE);
+    u8 numMons = BattleArcade_GetPlayerPartySize(app->challengeType, TRUE);
 
     for (i = 0; i < numMons; i++) {
         if (app->monSprites[i] != NULL) {
@@ -813,7 +813,7 @@ static void LoadAssets(BattleArcadeApp *app)
         BattleArcadeAppSprite_SetDrawFlag(app->tileSprites[i], FALSE);
     }
 
-    u8 numMons = BattleArcade_GetPartySize(app->challengeType, TRUE);
+    u8 numMons = BattleArcade_GetPlayerPartySize(app->challengeType, TRUE);
 
     u16 monYOffset, itemsYOffset;
     if (!BattleArcade_IsMultiPlayerChallenge(app->challengeType)) {
@@ -1430,7 +1430,7 @@ static u8 GetRandomCategory(BattleArcadeApp *app, u8 weightsIndex)
 
 static void UpdateItemSprites(BattleArcadeApp *app)
 {
-    u8 partySize = BattleArcade_GetPartySize(app->challengeType, TRUE);
+    u8 partySize = BattleArcade_GetPlayerPartySize(app->challengeType, TRUE);
     u8 opponentPartySize = BattleArcade_GetOpponentPartySize(app->challengeType, TRUE);
 
     for (u8 i = 0; i < partySize; i++) {

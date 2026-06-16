@@ -130,21 +130,21 @@ BOOL FrontierScrCmd_BattleArcade_CleanupBattle(FrontierScriptContext *ctx)
         partyIdx2 = BATTLER_PLAYER_2;
     }
 
-    ov104_02239054(dto->parties[partyIdx1], battleArcade->unk_70, 0, 0);
-    ov104_02239054(dto->parties[partyIdx1], battleArcade->unk_70, 1, 1);
+    ov104_02239054(dto->parties[partyIdx1], battleArcade->playersParty, 0, 0);
+    ov104_02239054(dto->parties[partyIdx1], battleArcade->playersParty, 1, 1);
 
     if (!BattleCastle_IsMultiPlayerChallenge(battleArcade->challengeType)) {
-        ov104_02239054(dto->parties[partyIdx1], battleArcade->unk_70, 2, 2);
+        ov104_02239054(dto->parties[partyIdx1], battleArcade->playersParty, 2, 2);
     } else {
-        ov104_02239054(dto->parties[partyIdx2], battleArcade->unk_70, 0, 2);
-        ov104_02239054(dto->parties[partyIdx2], battleArcade->unk_70, 1, 3);
+        ov104_02239054(dto->parties[partyIdx2], battleArcade->playersParty, 0, 2);
+        ov104_02239054(dto->parties[partyIdx2], battleArcade->playersParty, 1, 3);
     }
 
     if (battleArcade->activeEffect == ARCADE_EFFECT_ALLY_LEVEL_UP) {
-        u8 numMons = BattleArcade_GetPartySize(battleArcade->challengeType, FRONTIER_CHALLENGE_DOUBLE);
+        u8 numMons = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, FRONTIER_CHALLENGE_DOUBLE);
 
         for (i = 0; i < numMons; i++) {
-            Pokemon *mon = Party_GetPokemonBySlotIndex(battleArcade->unk_70, i);
+            Pokemon *mon = Party_GetPokemonBySlotIndex(battleArcade->playersParty, i);
             u32 level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
             level -= 3;
 
@@ -154,9 +154,9 @@ BOOL FrontierScrCmd_BattleArcade_CleanupBattle(FrontierScriptContext *ctx)
         }
     }
 
-    numMons = Party_GetCurrentCount(battleArcade->unk_70);
+    numMons = Party_GetCurrentCount(battleArcade->playersParty);
     for (i = 0; i < numMons; i++) {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(battleArcade->unk_70, i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(battleArcade->playersParty, i);
 
         stat = battleArcade->monHP[i];
         Pokemon_SetValue(mon, MON_DATA_MAX_HP, &stat);
@@ -187,7 +187,7 @@ BOOL FrontierScrCmd_BattleArcade_StartBattle(FrontierScriptContext *ctx)
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
     BattleArcade *battleArcade = sub_0209B978(ctx->scriptMan->unk_00);
 
-    FieldBattleDTO *dto = ov104_0223BDD8(battleArcade, v2);
+    FieldBattleDTO *dto = FieldBattleDTO_NewBattleArcade(battleArcade, v2);
     battleArcade->dto = dto;
 
     sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, dto, 0, NULL);
@@ -204,18 +204,18 @@ static void SetupBattleArcadeAppArgs(BattleArcadeAppArgs *args, BattleArcade *ba
     args->currentStreak = battleArcade->currentStreak;
     args->partnersStreak = battleArcade->unk_A78;
     args->rouletteSpeed = &battleArcade->unk_1C;
-    args->party = battleArcade->unk_70;
-    args->opponentsParty = battleArcade->unk_74;
+    args->party = battleArcade->playersParty;
+    args->opponentsParty = battleArcade->opponentsParty;
     args->battleArcade = battleArcade;
-    battleArcade->unk_14 = 0;
-    args->unk_08 = &battleArcade->unk_14;
+    battleArcade->weather = 0;
+    args->unk_08 = &battleArcade->weather;
     args->randomizeCursorMovement = battleArcade->unk_12;
     battleArcade->unk_12 = 0;
     battleArcade->unk_1F = 0;
 
-    int numMons = Party_GetCurrentCount(battleArcade->unk_70);
+    int numMons = Party_GetCurrentCount(battleArcade->playersParty);
     for (int i = 0; i < numMons; i++) {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(battleArcade->unk_70, i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(battleArcade->playersParty, i);
 
         battleArcade->monHP[i] = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
         battleArcade->monAtk[i] = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
@@ -295,9 +295,9 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
         break;
     case BA_FUNC_UNK_15:
         if (arg1 == 0) {
-            v1 = Party_GetPokemonBySlotIndex(battleArcade->unk_70, 0);
+            v1 = Party_GetPokemonBySlotIndex(battleArcade->playersParty, 0);
         } else {
-            v1 = Party_GetPokemonBySlotIndex(battleArcade->unk_74, 0);
+            v1 = Party_GetPokemonBySlotIndex(battleArcade->opponentsParty, 0);
         }
 
         *destVar = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
@@ -333,7 +333,7 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
         break;
     case BA_FUNC_UNK_25:
         if (battleArcade->activeEffect == 27) {
-            u8 v4 = BattleArcade_GetPartySize(battleArcade->challengeType, 1);
+            u8 v4 = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, 1);
             u8 v5 = BattleArcade_GetOpponentPartySize(battleArcade->challengeType, 1);
 
             {
@@ -382,7 +382,7 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
     case BA_FUNC_UNK_31:
         ov104_02238764(battleArcade, graphics, arg1);
 
-        u8 v4 = BattleArcade_GetPartySize(battleArcade->challengeType, 1);
+        u8 v4 = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, 1);
         u8 v5 = BattleArcade_GetOpponentPartySize(battleArcade->challengeType, 1);
 
         if (arg1 == 0) {
@@ -423,7 +423,7 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
 
         TrainerInfo *v16;
         if (v6 == 0) {
-            StringTemplate_SetFrontierTrainerName(ctx->scriptMan->strTemplate, arg1, battleArcade->unk_78[ov104_02238498(battleArcade, arg2)]);
+            StringTemplate_SetFrontierTrainerName(ctx->scriptMan->strTemplate, arg1, battleArcade->trainerIDs[ov104_02238498(battleArcade, arg2)]);
         } else {
             if (BattleArcade_IsMultiPlayerChallenge(battleArcade->challengeType) == 0) {
                 v16 = SaveData_GetTrainerInfo(v14->saveData);
@@ -439,8 +439,8 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
         ov104_02237C0C(ctx, battleArcade, arg1);
         break;
     case BA_FUNC_UNK_40:
-        ov104_0222E278(&(battleArcade->unk_F4[0]), battleArcade->unk_78[battleArcade->unk_11], HEAP_ID_FIELD2, 178);
-        ov104_0222E278(&(battleArcade->unk_F4[1]), battleArcade->unk_78[battleArcade->unk_11 + 7], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(battleArcade->unk_F4[0]), battleArcade->trainerIDs[battleArcade->unk_11], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(battleArcade->unk_F4[1]), battleArcade->trainerIDs[battleArcade->unk_11 + 7], HEAP_ID_FIELD2, 178);
         break;
     case BA_FUNC_UNK_41:
         ov104_0223886C(battleArcade, graphics, arg1, arg2);
@@ -594,7 +594,7 @@ BOOL FrontierScrCmd_C4(FrontierScriptContext *param0)
         return 0;
     }
 
-    v0 = v1->unk_F4[v3].trDataDTO.unk_18;
+    v0 = v1->unk_F4[v3].trDataDTO.introMsg;
     ov104_022330FC(param0, v0);
 
     return 1;

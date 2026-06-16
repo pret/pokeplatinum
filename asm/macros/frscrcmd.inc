@@ -352,14 +352,14 @@
     .short \unused
     .endm
 
-    .macro FrontierScrCmd_3D destVar, value
-    .short FRSCRCMD_3D
+    .macro SetSystemVar destVar, value
+    .short FRSCRCMD_SETSYSTEMVAR
     .short \destVar
     .short \value
     .endm
 
-    .macro FrontierScrCmd_3E srcVar, destVar
-    .short FRSCRCMD_3E
+    .macro GetSystemVar srcVar, destVar
+    .short FRSCRCMD_GETSYSTEMVAR
     .short \srcVar
     .short \destVar
     .endm
@@ -758,12 +758,12 @@
     .short \arg1
     .endm
 
-    .macro FrontierScrCmd_8B arg0, arg1, arg2, arg3
-    .short FRSCRCMD_8B
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .macro InitBattleHall resumingFromSave, challengeType, partySlot1, partySlot2
+    .short FRSCRCMD_INITBATTLEHALL
+    .short \resumingFromSave
+    .short \challengeType
+    .short \partySlot1
+    .short \partySlot2
     .endm
 
     .macro FrontierScrCmd_8C arg0
@@ -771,8 +771,8 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_8D
-    .short FRSCRCMD_8D
+    .macro FreeBattleHall
+    .short FRSCRCMD_FREEBATTLEHALL
     .endm
 
     .macro OpenBattleHallApp

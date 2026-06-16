@@ -22,10 +22,10 @@ static u8 BgEvent_IsHiddenItemAvailable(FieldSystem *fieldSystem, const BgEvent 
 
 static int BgEvent_GetPlayerFacingPosition(FieldSystem *fieldSystem, int *x, int *z)
 {
-    int facingDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int facingDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
-    *x = Player_GetXPos(fieldSystem->playerAvatar);
-    *z = Player_GetZPos(fieldSystem->playerAvatar);
+    *x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    *z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     switch (facingDir) {
     case DIR_NORTH:
@@ -47,7 +47,7 @@ static int BgEvent_GetPlayerFacingPosition(FieldSystem *fieldSystem, int *x, int
 
 static u8 sub_0203C9B0(PlayerAvatar *playerAvatar, MapObject *param1)
 {
-    MapObject *v0 = Player_MapObject(playerAvatar);
+    MapObject *v0 = PlayerAvatar_GetMapObject(playerAvatar);
 
     if (sub_020630DC(v0) == sub_020630DC(param1)) {
         return 1;
@@ -142,7 +142,7 @@ static u8 BgEvent_CheckPlayerFacingDirection(FieldSystem *fieldSystem, const BgE
         return TRUE;
     }
 
-    switch (PlayerAvatar_GetDir(fieldSystem->playerAvatar)) {
+    switch (PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar)) {
     case DIR_NORTH:
         if ((bgEvent->playerFacingDir == BG_EVENT_DIR_NORTH) || (bgEvent->playerFacingDir == BG_EVENT_DIR_NORTH_SOUTH)) {
             return TRUE;
@@ -173,7 +173,7 @@ u16 FieldEvent_GetInteractedWallSignScript(FieldSystem *fieldSystem, const BgEve
     int facingX, facingZ;
     int eventIndex;
 
-    if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) != DIR_NORTH) {
+    if (PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar) != DIR_NORTH) {
         return 0xffff;
     }
 
@@ -191,7 +191,7 @@ u16 FieldEvent_GetInteractedWallSignScript(FieldSystem *fieldSystem, const BgEve
 
 u8 sub_0203CBE0(FieldSystem *fieldSystem, MapObject **param1)
 {
-    if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) != DIR_NORTH) {
+    if (PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar) != DIR_NORTH) {
         return 0;
     }
 
@@ -211,8 +211,8 @@ u16 sub_0203CC14(FieldSystem *fieldSystem, void *param1, int param2)
     int v3;
 
     const CoordEvent *v0 = param1;
-    int v1 = Player_GetXPos(fieldSystem->playerAvatar);
-    int v2 = Player_GetZPos(fieldSystem->playerAvatar);
+    int v1 = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int v2 = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     for (v3 = 0; v3 < param2; v3++) {
         if ((v1 >= v0[v3].x) && (v1 < (v0[v3].x + v0[v3].width)) && (v2 >= v0[v3].z) && (v2 < (v0[v3].z + v0[v3].length)) && (FieldSystem_TryGetVar(fieldSystem, v0[v3].var) == v0[v3].value)) {

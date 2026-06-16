@@ -72,7 +72,7 @@ WifiPlazaEntrance_TakeWarpPanel:
     SetVar VAR_0x8004, VAR_RESULT
     ScrCmd_2F7 VAR_0x8004
     ReturnToField
-    SetVar VAR_UNK_0x4080, 1
+    SetVar VAR_ENTERED_WIFI_PLAZA, 1
     HideObject LOCALID_PLAYER
     FadeScreenIn
     WaitFadeScreen

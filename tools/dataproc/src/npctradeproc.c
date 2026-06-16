@@ -149,10 +149,7 @@ static void proc_text(datafile_t *df, size_t i) {
     check_name(&pk_name, pk_name_val, pk_name_len, MON_NAME_LEN, "traded Pokemon");
     check_name(&tr_name, tr_name_val, tr_name_len, TRAINER_NAME_LEN, "trading Trainer");
 
-    datanode_t entry = dp_arr_appobject(&textbanks[0].root);
-    dp_obj_putstring(&entry, "id", strfmt("NPCTradeNames_Text_Mon%zu", i));
-    dp_obj_putstring(&entry, "en_US", pk_name_val);
-
+    bank_push(0, strfmt("NPCTradeNames_Text_Mon%zu", i), pk_name_val);
     memcpy(s_trainernames[i], tr_name_val, tr_name_len); // store for later
 }
 
@@ -160,9 +157,7 @@ static void pack_trainernames(size_t count) {
     char buf[BUFSIZE] = { 0 };
 
     for (size_t i = 0; i < count; i++) {
-        datanode_t entry = dp_arr_appobject(&textbanks[0].root);
-        dp_obj_putstring(&entry, "id", strfmt("NPCTradeNames_Text_Trainer%zu", i));
-        dp_obj_putstring(&entry, "en_US", s_trainernames[i]);
+        bank_push(0, strfmt("NPCTradeNames_Text_Trainer%zu", i), s_trainernames[i]);
     }
 
     free(s_trainernames[0]);

@@ -5,7 +5,7 @@
 
     ScriptEntry BattleTowerCorridorMulti_OnTransition
     ScriptEntry BattleTowerCorridorMulti_OnResume
-    ScriptEntry BattleTowerCorridorMulti_OnFrameEnterBattleRoom
+    ScriptEntry BattleTowerCorridorMulti_OnFrame_EnterBattleRoom
     ScriptEntryEnd
 
 BattleTowerCorridorMulti_OnTransition:
@@ -19,7 +19,7 @@ BattleTowerCorridorMulti_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-BattleTowerCorridorMulti_OnFrameEnterBattleRoom:
+BattleTowerCorridorMulti_OnFrame_EnterBattleRoom:
     LockAll
     Call BattleTowerCorridorMulti_EnterCorridor
     GetRandom VAR_RESULT, 4

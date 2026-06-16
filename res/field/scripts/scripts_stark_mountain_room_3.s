@@ -5,9 +5,9 @@
 
     ScriptEntry StarkMountainRoom3_OnTransition
     ScriptEntry StarkMountainRoom3_OnLoad
-    ScriptEntry StarkMountainRoom3_Unused
+    ScriptEntry StarkMountainRoom3_Buck_Unused
     ScriptEntry StarkMountainRoom3_Heatran
-    ScriptEntry StarkMountainRoom3_OnFrameCharon
+    ScriptEntry StarkMountainRoom3_OnFrame_Charon
     ScriptEntryEnd
 
 StarkMountainRoom3_OnTransition:
@@ -45,7 +45,7 @@ StarkMountainRoom3_RemoveHeatran:
     ClearFlag FLAG_MAP_LOCAL
     End
 
-StarkMountainRoom3_UnusedMovement:
+StarkMountainRoom3_Movement_Unused:
     WalkNormalWest
     WalkOnSpotNormalEast
     WalkOnSpotNormalSouth
@@ -56,16 +56,16 @@ StarkMountainRoom3_Movement_BuckWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
-StarkMountainRoom3_UnusedMovement2:
+StarkMountainRoom3_Movement_Unused2:
     WalkOnSpotNormalNorth
     EndMovement
 
-StarkMountainRoom3_UnusedMovement3:
+StarkMountainRoom3_Movement_Unused3:
     Delay8
     WalkNormalSouth 9
     EndMovement
 
-StarkMountainRoom3_Unused:
+StarkMountainRoom3_Buck_Unused:
     BufferPlayerName 1
     NPCMessage StarkMountainRoom3_Text_ThatWasWicked
     End
@@ -117,20 +117,20 @@ StarkMountainRoom3_UnlockVSSeekerLvl5:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_5
     Return
 
-StarkMountainRoom3_UnusedMovement4:
+StarkMountainRoom3_Movement_Unused4:
     WalkNormalNorth 6
     EndMovement
 
-StarkMountainRoom3_UnusedMovement5:
+StarkMountainRoom3_Movement_Unused5:
     WalkNormalSouth 6
     EndMovement
 
-StarkMountainRoom3_UnusedMovement6:
+StarkMountainRoom3_Movement_Unused6:
     Delay8 4
     WalkOnSpotNormalSouth
     EndMovement
 
-StarkMountainRoom3_OnFrameCharon:
+StarkMountainRoom3_OnFrame_Charon:
     LockAll
     Message StarkMountainRoom3_Text_MagmaStoneWillBeMine
     CloseMessage

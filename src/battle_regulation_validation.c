@@ -28,7 +28,7 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
         return FALSE;
     }
 
-    ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_SPECIES_RESTRICT);
+    ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_EVOLUTION_RESTRICT);
 
     if (ruleValue == 0) {
         if (species != Pokemon_GetBaseSpeciesForBattle(species)) {
@@ -68,7 +68,7 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
         }
     }
 
-    ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_ITEM_RESTRICT);
+    ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_SPECIAL_SPECIES_RESTRICT);
 
     if (ruleValue == 0) {
         if (Pokemon_IsBannedFromBattleFrontier(mon)) {
@@ -79,14 +79,14 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
     return TRUE;
 }
 
-enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData, u8 *selectedSlots)
+enum BattleRegulationValidationResult BattleRegulation_ValidatePartySelection(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData, u8 *selectedSlots)
 {
     Pokemon *mon;
     int ruleValue, selectedCount = 0, i, j, totalLevel = 0;
     u16 species[MAX_PARTY_SIZE], heldItems[MAX_PARTY_SIZE];
 
     if (regulation == NULL) {
-        return BATTLE_REGULATION_VALIDATION_SUCCESS;
+        return BATTLE_REGULATION_VALIDATION_RESULT_SUCCESS;
     }
 
     for (i = 0; i < MAX_PARTY_SIZE; i++) {
@@ -101,7 +101,7 @@ enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(con
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_TEAM_SIZE);
 
     if (selectedCount != ruleValue) {
-        return BATTLE_REGULATION_VALIDATION_ERROR_INVALID_TEAM_SIZE;
+        return BATTLE_REGULATION_VALIDATION_RESULT_INVALID_TEAM_SIZE;
     }
 
     for (i = 0; i < MAX_PARTY_SIZE; i++) {
@@ -111,7 +111,7 @@ enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(con
             mon = Party_GetPokemonBySlotIndex(party, slotIndex);
 
             if (BattleRegulation_ValidatePokemon(regulation, mon, heightWeightData) == FALSE) {
-                return BATTLE_REGULATION_VALIDATION_ERROR_INVALID_POKEMON;
+                return BATTLE_REGULATION_VALIDATION_RESULT_INVALID_POKEMON;
             }
 
             species[i] = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -124,7 +124,7 @@ enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(con
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
 
     if (totalLevel > ruleValue && ruleValue != 0) {
-        return BATTLE_REGULATION_VALIDATION_ERROR_TOTAL_LEVEL_EXCEEDED;
+        return BATTLE_REGULATION_VALIDATION_RESULT_TOTAL_LEVEL_EXCEEDED;
     }
 
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_SPECIES_UNIQUE);
@@ -137,7 +137,7 @@ enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(con
         for (i = 0; i < (MAX_PARTY_SIZE - 1); i++) {
             for (j = i + 1; j < MAX_PARTY_SIZE; j++) {
                 if (species[i] == species[j] && species[i] != 0) {
-                    return BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_SPECIES;
+                    return BATTLE_REGULATION_VALIDATION_RESULT_DUPLICATE_SPECIES;
                 }
             }
         }
@@ -152,13 +152,13 @@ enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(con
         for (i = 0; i < (MAX_PARTY_SIZE - 1); i++) {
             for (j = i + 1; j < MAX_PARTY_SIZE; j++) {
                 if (heldItems[i] == heldItems[j] && species[i] != 0 && heldItems[i] != 0) {
-                    return BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_ITEMS;
+                    return BATTLE_REGULATION_VALIDATION_RESULT_DUPLICATE_ITEMS;
                 }
             }
         }
     }
 
-    return BATTLE_REGULATION_VALIDATION_SUCCESS;
+    return BATTLE_REGULATION_VALIDATION_RESULT_SUCCESS;
 }
 
 static BOOL BattleRegulation_FindValidTeamCombination(u16 *species, u16 *levels, u16 *used, int maxLevelSum, int slotIndex, int remainingSlots, int totalSlots)
@@ -198,7 +198,7 @@ static BOOL BattleRegulation_FindValidTeamCombination(u16 *species, u16 *levels,
     return FALSE;
 }
 
-enum BattleRegulationValidationError BattleRegulation_SelectValidPokemon(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData)
+enum BattleRegulationValidationResult BattleRegulation_SelectValidPokemon(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData)
 {
     Pokemon *mon;
     int ruleValue, partyCount, i, j, validCount = 0;
@@ -223,10 +223,10 @@ enum BattleRegulationValidationError BattleRegulation_SelectValidPokemon(const B
 
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_SPECIES_UNIQUE);
 
-    // Remove duplicate species by keeping the higher-level Pokémon
+    // Remove duplicate species by keeping the lower-level Pokémon
     if (ruleValue == 0 && partyCount > 1) {
         // Compare all pairs of Pokémon to find duplicates
-        for (i = 0; i < (partyCount - 1); i++) {
+        for (i = 0; i < partyCount - 1; i++) {
             for (j = i + 1; j < partyCount; j++) {
                 if (species[i] == species[j] && species[i] != 0) {
                     if (levels[i] > levels[j]) {
@@ -244,21 +244,21 @@ enum BattleRegulationValidationError BattleRegulation_SelectValidPokemon(const B
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_TEAM_SIZE);
 
     if (validCount < ruleValue) {
-        return BATTLE_REGULATION_VALIDATION_ERROR_INVALID_TEAM_SIZE;
+        return BATTLE_REGULATION_VALIDATION_RESULT_INVALID_TEAM_SIZE;
     }
 
     requiredCount = ruleValue;
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
 
     if (ruleValue == 0) {
-        return BATTLE_REGULATION_VALIDATION_SUCCESS;
+        return BATTLE_REGULATION_VALIDATION_RESULT_SUCCESS;
     }
 
     for (i = 0; i < partyCount; i++) {
         if (BattleRegulation_FindValidTeamCombination(species, levels, used, ruleValue, i, requiredCount, partyCount)) {
-            return BATTLE_REGULATION_VALIDATION_SUCCESS;
+            return BATTLE_REGULATION_VALIDATION_RESULT_SUCCESS;
         }
     }
 
-    return BATTLE_REGULATION_VALIDATION_ERROR_TOTAL_LEVEL_EXCEEDED;
+    return BATTLE_REGULATION_VALIDATION_RESULT_TOTAL_LEVEL_EXCEEDED;
 }

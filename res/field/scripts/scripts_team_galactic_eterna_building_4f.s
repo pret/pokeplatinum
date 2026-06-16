@@ -8,7 +8,7 @@
     ScriptEntry TeamGalacticEternaBuilding4F_Clefairy
     ScriptEntry TeamGalacticEternaBuilding4F_Buneary
     ScriptEntry TeamGalacticEternaBuilding4F_PokefanM
-    ScriptEntry TeamGalacticEternaBuilding4F_Sign
+    ScriptEntry TeamGalacticEternaBuilding4F_BgSign
     ScriptEntryEnd
 
 TeamGalacticEternaBuilding4F_OnLoad:
@@ -100,7 +100,7 @@ TeamGalacticEternaBuilding4F_Movement_PokefanMWalkToPlayerNorth:
     WalkNormalNorth
     EndMovement
 
-TeamGalacticEternaBuilding4F_UnusedMovement:
+TeamGalacticEternaBuilding4F_Movement_Unused:
     Delay8
     WalkNormalEast 2
     WalkOnSpotNormalNorth
@@ -124,13 +124,13 @@ TeamGalacticEternaBuilding4F_Movement_PlayerFacePokefanM:
     WalkOnSpotNormalSouth
     EndMovement
 
-TeamGalacticEternaBuilding4F_UnusedMovement2:
+TeamGalacticEternaBuilding4F_Movement_Unused2:
     WalkOnSpotNormalWest
     Delay4
     WalkOnSpotNormalSouth
     EndMovement
 
-TeamGalacticEternaBuilding4F_UnusedMovement3:
+TeamGalacticEternaBuilding4F_Movement_Unused3:
     WalkOnSpotNormalWest
     EndMovement
 
@@ -160,6 +160,6 @@ TeamGalacticEternaBuilding4F_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK
     ReleaseAll
     End
 
-TeamGalacticEternaBuilding4F_Sign:
+TeamGalacticEternaBuilding4F_BgSign:
     EventMessage TeamGalacticEternaBuilding4F_Text_WorkingForWorldPeace
     End

@@ -14,10 +14,10 @@
 #include "pc_boxes.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "save_catchrecords.h"
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0202F180.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
 

@@ -7,9 +7,6 @@
 #include "constants/communication/comm_command.h"
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_02030114_decl.h"
-#include "struct_decls/struct_0203026C_decl.h"
-
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
@@ -17,6 +14,7 @@
 
 #include "bag.h"
 #include "battle_frontier_stats.h"
+#include "battle_hall_save.h"
 #include "battle_hall_win_records.h"
 #include "comm_command_field.h"
 #include "communication_system.h"
@@ -36,7 +34,6 @@
 #include "string_template.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
-#include "unk_02030108.h"
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
 
@@ -78,8 +75,8 @@ BOOL ScrCmd_2CC(ScriptContext *ctx)
     u16 arg = ScriptContext_GetVar(ctx);
     u16 *result = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    UnkStruct_02030114 *v10 = sub_02030114(ctx->fieldSystem->saveData);
-    UnkStruct_0203026C *v11 = sub_0203026C(ctx->fieldSystem->saveData);
+    BattleHallSave *v10 = BattleHallSave_Get(ctx->fieldSystem->saveData);
+    BattleHallStreakFlags *v11 = BattleHallStreakFlags_Get(ctx->fieldSystem->saveData);
     void **partySelect = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
     switch (action) {
@@ -92,7 +89,7 @@ BOOL ScrCmd_2CC(ScriptContext *ctx)
                 106,
                 BattleFrontierStats_GetHostFriendIdx(106));
         } else {
-            *result = sub_020302B4(v11, 5, arg, 0, NULL);
+            *result = BattleHallStreakFlags_GetFlag(v11, 5, arg, 0, NULL);
         }
         break;
     case 2:
@@ -187,7 +184,7 @@ static BOOL CheckPartyIsBattleHallEligible(u16 numPokemonNeeded, SaveData *saveD
 BOOL ScrCmd_2D1(ScriptContext *ctx)
 {
     u16 challengeType = ScriptContext_GetVar(ctx);
-    UnkStruct_0203026C *v0 = sub_0203026C(ctx->fieldSystem->saveData);
+    BattleHallStreakFlags *v0 = BattleHallStreakFlags_Get(ctx->fieldSystem->saveData);
 
     sub_0204FA50(ctx->fieldSystem->saveData, v0, challengeType);
     return FALSE;

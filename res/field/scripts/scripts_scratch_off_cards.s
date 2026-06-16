@@ -2,51 +2,51 @@
 #include "res/text/bank/scratch_off_cards.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry ScratchOffCards_BattleFrontierAttendant
     ScriptEntryEnd
 
-_0006:
+ScratchOffCards_BattleFrontierAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowBattlePoints 21, 1
-    GoToIfSet FLAG_UNK_0x0072, _0031
-    SetFlag FLAG_UNK_0x0072
+    GoToIfSet FLAG_TALKED_TO_SCRATCH_OFF_CARDS_ATTENDANT, ScratchOffCards_WouldYouLikeCards
+    SetFlag FLAG_TALKED_TO_SCRATCH_OFF_CARDS_ATTENDANT
     BufferNumber 0, 1
-    Message 15
-    GoTo _0041
+    Message ScratchOffCards_Text_IntroduceScratchOffCards
+    GoTo ScratchOffCards_Menu
     End
 
-_0031:
+ScratchOffCards_WouldYouLikeCards:
     BufferNumber 0, 1
-    Message 0
-    GoTo _0041
+    Message ScratchOffCards_Text_WouldYouLikeCards
+    GoTo ScratchOffCards_Menu
     End
 
-_0041:
-    Message 1
+ScratchOffCards_Menu:
+    Message ScratchOffCards_Text_WillYouBuyCards
     InitLocalTextMenu 30, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 2, 0
-    AddMenuEntryImm 3, 1
-    AddMenuEntryImm 4, 2
+    AddMenuEntryImm ScratchOffCards_Text_Scratch, 0
+    AddMenuEntryImm ScratchOffCards_Text_Info, 1
+    AddMenuEntryImm ScratchOffCards_Text_Cancel, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0085
-    GoToIfEq VAR_0x8008, 1, _015D
-    GoTo _0152
+    GoToIfEq VAR_0x8008, 0, ScratchOffCards_TryBuyCards
+    GoToIfEq VAR_0x8008, 1, ScratchOffCards_Info
+    GoTo ScratchOffCards_PleaseVisitAgain
     End
 
-_0085:
+ScratchOffCards_TryBuyCards:
     BufferNumber 2, 1
-    Message 7
+    Message ScratchOffCards_Text_XBPForThreeCards
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0152
+    GoToIfEq VAR_RESULT, MENU_NO, ScratchOffCards_PleaseVisitAgain
     CheckBattlePoints 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0147
+    GoToIfEq VAR_RESULT, 0, ScratchOffCards_NotEnoughBP
     RemoveBattlePoints 1
     UpdateBPDisplay
-    Message 10
+    Message ScratchOffCards_Text_SelectThreeCards
     FadeScreenOut
     WaitFadeScreen
     HideBattlePoints
@@ -60,110 +60,110 @@ _0085:
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_0x8000, 0
-    Call _017A
-    GoToIfEq VAR_0x8000, 0, _01AB
+    Call ScratchOffCards_GetNumCardsWon
+    GoToIfEq VAR_0x8000, 0, ScratchOffCards_NoCardsWon
     BufferNumber 0, VAR_0x8000
-    Message 11
-    CallIfNe VAR_MAP_LOCAL_1, 0, _01B6
-    CallIfNe VAR_MAP_LOCAL_3, 0, _0200
-    CallIfNe VAR_MAP_LOCAL_5, 0, _024A
-    Message 5
-    GoTo _0172
+    Message ScratchOffCards_Text_YouWonOnXCards
+    CallIfNe VAR_MAP_LOCAL_1, 0, ScratchOffCards_HandleCard0Prize
+    CallIfNe VAR_MAP_LOCAL_3, 0, ScratchOffCards_HandleCard1Prize
+    CallIfNe VAR_MAP_LOCAL_5, 0, ScratchOffCards_HandleCard2Prize
+    Message ScratchOffCards_Text_PleaseVisitAgain
+    GoTo ScratchOffCards_End
     End
 
-_0147:
-    Message 14
-    GoTo _0168
+ScratchOffCards_NotEnoughBP:
+    Message ScratchOffCards_Text_NotEnoughBP
+    GoTo ScratchOffCards_HideBattlePoints
     End
 
-_0152:
-    Message 5
-    GoTo _0168
+ScratchOffCards_PleaseVisitAgain:
+    Message ScratchOffCards_Text_PleaseVisitAgain
+    GoTo ScratchOffCards_HideBattlePoints
     End
 
-_015D:
-    Message 6
-    GoTo _0041
+ScratchOffCards_Info:
+    Message ScratchOffCards_Text_ScratchOffCardsInfo
+    GoTo ScratchOffCards_Menu
     End
 
-_0168:
+ScratchOffCards_HideBattlePoints:
     WaitButton
     CloseMessage
     HideBattlePoints
     ReleaseAll
     End
 
-_0172:
+ScratchOffCards_End:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_017A:
-    CallIfNe VAR_MAP_LOCAL_1, 0, _01A3
-    CallIfNe VAR_MAP_LOCAL_3, 0, _01A3
-    CallIfNe VAR_MAP_LOCAL_5, 0, _01A3
+ScratchOffCards_GetNumCardsWon:
+    CallIfNe VAR_MAP_LOCAL_1, 0, ScratchOffCards_IncreaseVarCardsWon
+    CallIfNe VAR_MAP_LOCAL_3, 0, ScratchOffCards_IncreaseVarCardsWon
+    CallIfNe VAR_MAP_LOCAL_5, 0, ScratchOffCards_IncreaseVarCardsWon
     Return
 
-_01A3:
+ScratchOffCards_IncreaseVarCardsWon:
     AddVar VAR_0x8000, 1
     Return
 
-_01AB:
-    Message 5
-    GoTo _0172
+ScratchOffCards_NoCardsWon:
+    Message ScratchOffCards_Text_PleaseVisitAgain
+    GoTo ScratchOffCards_End
     End
 
-_01B6:
-    GoToIfGt VAR_MAP_LOCAL_1, 1, _01CE
+ScratchOffCards_HandleCard0Prize:
+    GoToIfGt VAR_MAP_LOCAL_1, 1, ScratchOffCards_BufferCard0PrizePlural
     BufferItemName 0, VAR_MAP_LOCAL_0
-    GoTo _01D3
+    GoTo ScratchOffCards_TryGiveCard0Prize
 
-_01CE:
+ScratchOffCards_BufferCard0PrizePlural:
     BufferItemNamePlural 0, VAR_MAP_LOCAL_0
-_01D3:
+ScratchOffCards_TryGiveCard0Prize:
     BufferNumber 1, VAR_MAP_LOCAL_1
-    GoToIfCannotFitItem VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, VAR_RESULT, _0294
+    GoToIfCannotFitItem VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, VAR_RESULT, ScratchOffCards_NoRoomForItem
     PlayFanfare SEQ_FANFA4
-    Message 13
+    Message ScratchOffCards_Text_ReceivedXItems
     AddItem VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, VAR_RESULT
     WaitFanfare
     Return
 
-_0200:
-    GoToIfGt VAR_MAP_LOCAL_3, 1, _0218
+ScratchOffCards_HandleCard1Prize:
+    GoToIfGt VAR_MAP_LOCAL_3, 1, ScratchOffCards_BufferCard1PrizePlural
     BufferItemName 0, VAR_MAP_LOCAL_2
-    GoTo _021D
+    GoTo ScratchOffCards_TryGiveCard1Prize
 
-_0218:
+ScratchOffCards_BufferCard1PrizePlural:
     BufferItemNamePlural 0, VAR_MAP_LOCAL_2
-_021D:
+ScratchOffCards_TryGiveCard1Prize:
     BufferNumber 1, VAR_MAP_LOCAL_3
-    GoToIfCannotFitItem VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_RESULT, _0294
+    GoToIfCannotFitItem VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_RESULT, ScratchOffCards_NoRoomForItem
     PlayFanfare SEQ_FANFA4
-    Message 13
+    Message ScratchOffCards_Text_ReceivedXItems
     AddItem VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_RESULT
     WaitFanfare
     Return
 
-_024A:
-    GoToIfGt VAR_MAP_LOCAL_5, 1, _0262
+ScratchOffCards_HandleCard2Prize:
+    GoToIfGt VAR_MAP_LOCAL_5, 1, ScratchOffCards_BufferCard2PrizePlural
     BufferItemName 0, VAR_MAP_LOCAL_4
-    GoTo _0267
+    GoTo ScratchOffCards_TryGiveCard2Prize
 
-_0262:
+ScratchOffCards_BufferCard2PrizePlural:
     BufferItemNamePlural 0, VAR_MAP_LOCAL_4
-_0267:
+ScratchOffCards_TryGiveCard2Prize:
     BufferNumber 1, VAR_MAP_LOCAL_5
-    GoToIfCannotFitItem VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5, VAR_RESULT, _0294
+    GoToIfCannotFitItem VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5, VAR_RESULT, ScratchOffCards_NoRoomForItem
     PlayFanfare SEQ_FANFA4
-    Message 13
+    Message ScratchOffCards_Text_ReceivedXItems
     AddItem VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5, VAR_RESULT
     WaitFanfare
     Return
 
-_0294:
-    Message 12
+ScratchOffCards_NoRoomForItem:
+    Message ScratchOffCards_Text_NoRoomForItem
     Return
 
     .balign 4, 0

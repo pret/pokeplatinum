@@ -9,14 +9,14 @@
     ScriptEntry GalacticHQControlRoom_MachineUxie
     ScriptEntry GalacticHQControlRoom_MachineMesprit
     ScriptEntry GalacticHQControlRoom_MachineAzelf
-    ScriptEntry GalacticHQControlRoom_Unused7
-    ScriptEntry GalacticHQControlRoom_Unused8
-    ScriptEntry GalacticHQControlRoom_Unused9
+    ScriptEntry GalacticHQControlRoom_Dummy7
+    ScriptEntry GalacticHQControlRoom_Dummy8
+    ScriptEntry GalacticHQControlRoom_Dummy9
     ScriptEntry GalacticHQControlRoom_Button
     ScriptEntry GalacticHQControlRoom_Uxie
     ScriptEntry GalacticHQControlRoom_Mesprit
     ScriptEntry GalacticHQControlRoom_Azelf
-    ScriptEntry GalacticHQControlRoom_TriggerSaturn
+    ScriptEntry GalacticHQControlRoom_CoordEvent_Saturn
     ScriptEntry GalacticHQControlRoom_Charon
     ScriptEntryEnd
 
@@ -161,13 +161,13 @@ GalacticHQControlRoom_AzelfWasSealedInside:
     ReleaseAll
     End
 
-GalacticHQControlRoom_Unused7:
+GalacticHQControlRoom_Dummy7:
     End
 
-GalacticHQControlRoom_Unused8:
+GalacticHQControlRoom_Dummy8:
     End
 
-GalacticHQControlRoom_Unused9:
+GalacticHQControlRoom_Dummy9:
     End
 
 GalacticHQControlRoom_Button:
@@ -304,7 +304,7 @@ GalacticHQControlRoom_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-GalacticHQControlRoom_TriggerSaturn:
+GalacticHQControlRoom_CoordEvent_Saturn:
     LockAll
     ApplyMovement LOCALID_SATURN, GalacticHQControlRoom_Movement_SaturnWalkOnSpotSouth
     WaitMovement

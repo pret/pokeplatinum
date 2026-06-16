@@ -8,14 +8,14 @@
     ScriptEntry BattleTower_SingleAttendant
     ScriptEntry BattleTower_MultiAttendant
     ScriptEntry BattleTower_WiFiAttendant
-    ScriptEntry BattleTower_OnFrameChallengeEnded
-    ScriptEntry BattleTower_OnFrameResumeChallenge
-    ScriptEntry BattleTower_OnFrameDidntSaveBeforeQuit
+    ScriptEntry BattleTower_OnFrame_ChallengeEnded
+    ScriptEntry BattleTower_OnFrame_ResumeChallenge
+    ScriptEntry BattleTower_OnFrame_DidntSaveBeforeQuit
     ScriptEntry BattleTower_Teala
-    ScriptEntry BattleTower_OnFrameQuitBattleSalon
-    ScriptEntry BattleTower_Unused9
-    ScriptEntry BattleTower_Unused10
-    ScriptEntry BattleTower_Unused11
+    ScriptEntry BattleTower_OnFrame_QuitBattleSalon
+    ScriptEntry BattleTower_Dummy9
+    ScriptEntry BattleTower_ResultsMachine0_Unused
+    ScriptEntry BattleTower_ResultsMachine1_Unused
     ScriptEntry BattleTower_MachineWiFiResults
     ScriptEntry BattleTower_MachineWiFiLeaders
     ScriptEntry BattleTower_ParasolLady
@@ -301,11 +301,11 @@ BattleTower_SelectPokemon:
     WaitFadeScreen
     Return
 
-BattleTower_OnFrameResumeChallenge:
+BattleTower_OnFrame_ResumeChallenge:
     LockAll
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 0
     CallBattleTowerFunction BT_FUNC_UNK_04, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, BattleTower_OnFrameDidntSaveBeforeQuit
+    GoToIfEq VAR_RESULT, 0, BattleTower_OnFrame_DidntSaveBeforeQuit
     Message BattleTower_Text_SaveBeforeEntering
     InitBattleTower 1, 0xFFFF
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
@@ -337,7 +337,7 @@ BattleTower_SetVarsResumeMultiChallenge:
     SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 0
     Return
 
-BattleTower_OnFrameDidntSaveBeforeQuit:
+BattleTower_OnFrame_DidntSaveBeforeQuit:
     LockAll
     Message BattleTower_Text_DidntSaveBeforeQuit
     CallBattleTowerFunction BT_FUNC_UNK_14, 0, VAR_RESULT
@@ -418,7 +418,7 @@ BattleTower_GoToWarpToElevator:
     GoTo BattleTower_WarpToElevator
     End
 
-BattleTower_OnFrameQuitBattleSalon:
+BattleTower_OnFrame_QuitBattleSalon:
     LockAll
     Call BattleTower_ResetVarsClearCommunication
     CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_RESULT
@@ -873,7 +873,7 @@ _0EA2:
     GoTo _0E58
     End
 
-BattleTower_OnFrameChallengeEnded:
+BattleTower_OnFrame_ChallengeEnded:
     LockAll
     FadeScreenIn
     WaitFadeScreen
@@ -1117,7 +1117,7 @@ BattleTower_Movement_PlayerFaceEast:
     FaceEast
     EndMovement
 
-BattleTower_Unused10:
+BattleTower_ResultsMachine0_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8000, 0
@@ -1125,7 +1125,7 @@ BattleTower_Unused10:
     Call BattleTower_ResultsMachine
     End
 
-BattleTower_Unused11:
+BattleTower_ResultsMachine1_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8000, 0
@@ -1196,7 +1196,7 @@ BattleTower_SchoolKidM1:
     NPCMessage BattleTower_Text_ManyToughTrainers
     End
 
-BattleTower_Unused9:
+BattleTower_Dummy9:
     End
 
 BattleTower_Pikachu2:

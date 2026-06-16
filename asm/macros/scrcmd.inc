@@ -26,7 +26,6 @@
 #include "generated/sdat.h"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
-#include "generated/string_padding_mode.h"
 #include "generated/time_of_day.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
@@ -55,9 +54,11 @@
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
 #include "constants/sound_volume.h"
+#include "constants/string.h"
 #include "constants/tv_broadcast.h"
 #include "constants/union_room_message_types.h"
 #include "constants/villa_visitors.h"
+#include "constants/vs_seeker.h"
 
 #include "data/scripts/scrcmd.h"
 #include "macros/movement.inc"
@@ -1245,9 +1246,9 @@
     .short SCRCMD_0C4
     .endm
 
-    .macro ScrCmd_0C5 arg0
-    .short SCRCMD_0C5
-    .short \arg0
+    .macro PlayHMCutIn slot
+    .short SCRCMD_PLAYHMCUTIN
+    .short \slot
     .endm
 
     .macro ChangeIntoContestAttire
@@ -2673,26 +2674,26 @@
     .short SCRCMD_UNUSED_1CE
     .endm
 
-    .macro Strength mode, checkDestVarID=0
-    .short SCRCMD_STRENGTH
-    .byte \mode
-    .if \mode == 2
+    .macro DoStrengthFunc func, checkDestVarID=0
+    .short SCRCMD_DOSTRENGTHFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
 
-    .macro Flash mode, checkDestVarID=0
-    .short SCRCMD_FLASH
-    .byte \mode
-    .if \mode == 2
+    .macro DoFlashFunc func, checkDestVarID=0
+    .short SCRCMD_DOFLASHFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
 
-    .macro Defog mode, checkDestVarID=0
-    .short SCRCMD_DEFOG
-    .byte \mode
-    .if \mode == 2
+    .macro DoDefogFunc func, checkDestVarID=0
+    .short SCRCMD_DODEFOGFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
@@ -2984,13 +2985,13 @@
     StartEndSafariGame SAFARI_GAME_INACTIVE
     .endm
 
-    .macro ScrCmd_203 arg0, arg1, arg2, arg3, arg4
-    .short SCRCMD_203
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .macro WarpToColosseum mapID, warpID, x, z, dir
+    .short SCRCMD_WARPTOCOLOSSEUM
+    .short \mapID
+    .short \warpID
+    .short \x
+    .short \z
+    .short \dir
     .endm
 
     .macro ScrCmd_204
@@ -3020,9 +3021,9 @@
     .short SCRCMD_REMOVEPOKEMONPREVIEW
     .endm
 
-    .macro ScrCmd_20A arg0
-    .short SCRCMD_20A
-    .short \arg0
+    .macro StartVsSeeker destVar
+    .short SCRCMD_STARTVSSEEKER
+    .short \destVar
     .endm
 
     .macro SetMoveCodeForFacingDirection
@@ -3351,9 +3352,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_239 arg0
-    .short SCRCMD_239
-    .short \arg0
+    .macro OpenBattleRegulationMenu destVar
+    .short SCRCMD_OPENBATTLEREGULATIONMENU
+    .short \destVar
     .endm
 
     .macro GetPartyMonFootprintType hasPrintVar, printTypeVar, partySlot
@@ -3816,10 +3817,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_27D arg0, arg1
-    .short SCRCMD_27D
-    .short \arg0
-    .short \arg1
+    .macro TryBufferAndUnlockRandomToughWord destVar, index
+    .short SCRCMD_TRYBUFFERANDUNLOCKRANDOMTOUGHWORD
+    .short \destVar
+    .short \index
     .endm
 
     /* Returns TRUE in destVarID if the player has bought at least 5 items at the Veilstone Department Store */
@@ -3828,9 +3829,9 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_27F arg0
-    .short SCRCMD_27F
-    .short \arg0
+    .macro CheckAllToughWordsUnlocked destVar
+    .short SCRCMD_CHECKALLTOUGHWORDSUNLOCKED
+    .short \destVar
     .endm
 
     .macro BufferVarPaddingDigits templateArg, varID, paddingMode, maxDigits
@@ -4004,10 +4005,10 @@
     .short \entryIndex
     .endm
 
-    .macro ScrCmd_29E arg0, arg1
-    .short SCRCMD_29E
-    .short \arg0
-    .short \arg1
+    .macro StartDestroyObstacleAnimation obstacle, destVar
+    .short SCRCMD_STARTDESTROYOBSTACLEANIMATION
+    .short \obstacle
+    .short \destVar
     .endm
 
     .macro ScrCmd_29F arg0
@@ -4034,14 +4035,14 @@
     .short \item
     .endm
 
-    .macro ScrCmd_2A3 arg0
-    .short SCRCMD_2A3
-    .short \arg0
+    .macro CheckHasWiFiListValidLogin destVar
+    .short SCRCMD_CHECKHASWIFILISTVALIDLOGIN
+    .short \destVar
     .endm
 
-    .macro ScrCmd_2A4 arg0
-    .short SCRCMD_2A4
-    .short \arg0
+    .macro GetWiFListValidFriendsCount destVar
+    .short SCRCMD_GETWIFLISTVALIDFRIENDSCOUNT
+    .short \destVar
     .endm
 
     .macro OpenPartyMenuForTrade
@@ -4743,9 +4744,9 @@
     .short \species
     .endm
 
-    .macro ScrCmd_31D arg0
-    .short SCRCMD_31D
-    .short \arg0
+    .macro TryRevertPartyPokemonForms destVar
+    .short SCRCMD_TRYREVERTPARTYPOKEMONFORMS
+    .short \destVar
     .endm
 
     .macro TryRevertPokemonForm partySlot, destVar
@@ -4771,9 +4772,9 @@
     .short SCRCMD_FINISHDISTORTIONWORLDGIRATINASHADOWEVENT
     .endm
 
-    .macro ScrCmd_323 arg0
-    .short SCRCMD_323
-    .short \arg0
+    .macro CheckNoWiFiPlazaCooldown destVar
+    .short SCRCMD_CHECKNOWIFIPLAZACOOLDOWN
+    .short \destVar
     .endm
 
     .macro GetBattleHallRecordKeeperStats curStreakIdx, passedMilestoneIdx, nextMilestoneIdx, earnedBPIdx, nextMilestone, response

@@ -5,7 +5,6 @@
 #include "constants/heap.h"
 #include "constants/net.h"
 
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_02034168.h"
 
@@ -13,10 +12,10 @@
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "easy_chat_sentence.h"
 #include "heap.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
 #include "unk_0203266C.h"
 #include "wireless_manager.h"
 
@@ -27,7 +26,7 @@ typedef struct {
     u8 unk_1498[8][6];
     u16 unk_14C8[16];
     void *unk_14E8;
-    Sentence unk_14EC;
+    EasyChatSentence unk_14EC;
     int unk_14F4;
     u8 unk_14F8;
     u8 unk_14F9;
@@ -88,7 +87,7 @@ void CommServerClient_Init(TrainerInfo *trainerInfo, BOOL param1)
     sCommServerClient->unk_1504 = 0x333;
     sCommServerClient->personalTrainerInfo = trainerInfo;
 
-    Sentence_Init((Sentence *)&sCommServerClient->unk_14EC);
+    EasyChatSentence_Init((EasyChatSentence *)&sCommServerClient->unk_14EC);
     sub_020334DC(param1);
 }
 
@@ -591,7 +590,7 @@ static void sub_02033AA8(void)
         v2->unk_04 = CommManager_GetCommType();
         v2->unk_05 = CommManager_GetContestRegulation();
 
-        MI_CpuCopy8(&sCommServerClient->unk_14EC, &v2->unk_08, sizeof(Sentence));
+        MI_CpuCopy8(&sCommServerClient->unk_14EC, &v2->unk_08, sizeof(EasyChatSentence));
 
         v2->unk_54 = WirelessManager_GetPauseConnection();
     } else {
@@ -903,9 +902,9 @@ void sub_0203408C(void)
     }
 }
 
-void sub_020340A8(Sentence *param0)
+void sub_020340A8(EasyChatSentence *param0)
 {
-    MI_CpuCopy8(param0, &sCommServerClient->unk_14EC, sizeof(Sentence));
+    MI_CpuCopy8(param0, &sCommServerClient->unk_14EC, sizeof(EasyChatSentence));
 }
 
 void sub_020340C4(void *param0)

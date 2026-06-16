@@ -1,0 +1,209 @@
+{
+  "key": 1593,
+  "messages": [
+    {
+      "id": "PokemonCenterB1FCommon_Text_HelloRightThisWay",
+      "en_US": [
+        "Oh, hello!\n",
+        "Right this way, please!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_GuideToWiFiClub",
+      "en_US": [
+        "Hello.\n",
+        "I’m glad to meet you.\r",
+        "My name is Teala, and I’m your guide\n",
+        "to the Pokémon Wi-Fi Club.\r",
+        "First, I need to give you this.\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_ExplainPalPad",
+      "en_US": [
+        "That’s your Pal Pad. You may register\n",
+        "your friends in it.\r",
+        "Once registered, you may link with\n",
+        "those friends over Nintendo WFC to\f",
+        "trade Pokémon, battle, and so on.\r",
+        "Would you like to know more?"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_ExplainRegisterAFriend",
+      "en_US": [
+        "You may meet people on the second\n",
+        "floor of a Pokémon Center for trades\f",
+        "or Colosseum battles.\r",
+        "You may register such people as\n",
+        "friends in your Pal Pad.\r",
+        "You may also manually register friends\n",
+        "by entering their Friend Codes into\f",
+        "your Pal Pad.\r",
+        "Would you like me to repeat that?"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_EnjoyNintendoWFC",
+      "en_US": [
+        "I hope you enjoy using Nintendo\n",
+        "WFC!"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_MayIHelpWithAnything",
+      "en_US": [
+        "Welcome to the Pokémon Center Wi-Fi\n",
+        "Club!\r",
+        "May I help you with anything?"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_ExplainWiFiClub",
+      "en_US": [
+        "Let me explain how the Pokémon Wi-Fi\n",
+        "Club is set up.\r",
+        "From the center counter, you may use\n",
+        "Nintendo Wi-Fi Connection.\r",
+        "Over Nintendo WFC, you may conduct\n",
+        "trades and battles with friends that\f",
+        "you have registered in your Pal Pad."
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_WiFiClubUseNintendoWFC",
+      "en_US": [
+        "Welcome to the Pokémon Wi-Fi Club!\r",
+        "Would you like to use Nintendo Wi-Fi\n",
+        "Connection?"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_PleaseComeAgain",
+      "en_US": "Please come again."
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_LaunchNintendoWFC",
+      "en_US": [
+        "Would you like to launch\n",
+        "Nintendo WFC?"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_RightThisWay",
+      "en_US": "Right this way, please.\r"
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_NoFriendsGetAFriendCode",
+      "en_US": [
+        "...Oh?\r",
+        "I’m sorry, but you don’t have any\n",
+        "friends registered in your Pal Pad.\r",
+        "The Wi-Fi Club cannot be used if\n",
+        "no friends are in your Pal Pad.\r",
+        "Would you like to get your own\n",
+        "Friend Code at least?"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_NoRegisteredFriends",
+      "en_US": [
+        "...Oh?\r",
+        "I’m sorry, but you don’t have any\n",
+        "friends registered in your Pal Pad.\r",
+        "The Wi-Fi Club cannot be used if\n",
+        "no friends are in your Pal Pad.\r",
+        "Please register friends in your Pal\n",
+        "Pad, and then come back."
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_WiFiClubInfo",
+      "en_US": [
+        "At any Wi-Fi Club, you may play using\n",
+        "Nintendo Wi-Fi Connection.\r",
+        "Doing so, you may trade or battle with\n",
+        "friends you have registered in your\f",
+        "Pal Pad.\r",
+        "Two kinds of battles can be conducted:\n",
+        "Single or Double.\r",
+        "For each kind, you may choose one of\n",
+        "three level restrictions: Free,\f",
+        "Level 50, or Level 100.\r",
+        "For Level 50 and Level 100, the levels\n",
+        "of all participating Pokémon will be\f",
+        "temporarily changed to the set level.\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_GoToWiFiClub",
+      "en_US": "GO TO WI-FI CLUB"
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_InfoWiFiClub",
+      "en_US": "INFO"
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_ExitWiFiClub",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_WiFiPlazaUseNintendoWFC",
+      "en_US": [
+        "Hello, you may enter our Pokémon\n",
+        "Center Wi-Fi Plaza from here.\r",
+        "Would you like to use Nintendo Wi-Fi\n",
+        "Connection?"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_Dummy18",
+      "garbage": 21
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_PleaseEnterThisWay",
+      "en_US": "Please enter this way.\r"
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_LookForwardToNextVisit",
+      "en_US": "We look forward to your next visit."
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_WiFiPlazaInfo",
+      "en_US": [
+        "The Wi-Fi Plaza is a facility where you\n",
+        "may meet Trainers from around the\f",
+        "world.\r",
+        "You can take part in chats and play\n",
+        "Plaza Games.\r",
+        "You may also play with Tap Toys\n",
+        "that are exclusive to the Wi-Fi Plaza.\r",
+        "Please note there is a time limit to the\n",
+        "Wi-Fi Plaza connection.\r",
+        "You will be disconnected after a set\n",
+        "amount of time.\r",
+        "We hope you will get the most out of\n",
+        "each visit to the Wi-Fi Plaza!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_GoToWiFiPlaza",
+      "en_US": "GO TO WI-FI PLAZA"
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_InfoWiFiPlaza",
+      "en_US": "INFO"
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_ExitWiFiPlaza",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "PokemonCenterB1FCommon_Text_PleaseComeBackLater",
+      "en_US": [
+        "Sorry, we’re getting things ready.\n",
+        "Please come back later."
+      ]
+    }
+  ]
+}

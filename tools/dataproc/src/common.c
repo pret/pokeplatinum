@@ -662,6 +662,12 @@ void bank_pushraw(datanode_t *root, const char *id, const char *content) {
     dp_obj_putstring(&entry, "en_US", content);
 }
 
+void bank_pushgarbage(datanode_t *root, const char *id, uint64_t size) {
+    datanode_t entry = dp_arr_appobject(root);
+    dp_obj_putstring(&entry, "id", id);
+    dp_obj_putint(&entry, "garbage", size);
+}
+
 void bank_pushlines(datanode_t *root, const char *id, ...) {
     va_list content;
     va_start(content, id);

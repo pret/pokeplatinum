@@ -3,10 +3,10 @@
 #include <nitro.h>
 
 #include "constants/field_base_tiles.h"
+#include "constants/string.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/object_events_gfx.h"
-#include "generated/string_padding_mode.h"
 #include "generated/vars_flags.h"
 
 #include "struct_decls/tv_broadcast.h"
@@ -217,8 +217,8 @@ static BOOL CheckABPress(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_WaitABPressTime(FrontierScriptContext *ctx);
 static BOOL DecrementABPressTimer(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_Dummy3C(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_3D(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_3E(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_SetSystemVar(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_GetSystemVar(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_2A(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_2B(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_2C(FrontierScriptContext *ctx);
@@ -1686,7 +1686,7 @@ static BOOL FrontierScrCmd_Dummy3C(FrontierScriptContext *ctx)
     return TRUE;
 }
 
-BOOL FrontierScrCmd_3D(FrontierScriptContext *ctx)
+BOOL FrontierScrCmd_SetSystemVar(FrontierScriptContext *ctx)
 {
     u16 destVarID = FrontierScriptContext_ReadHalfWord(ctx);
     u16 value = FrontierScriptContext_GetVar(ctx);
@@ -1698,14 +1698,14 @@ BOOL FrontierScrCmd_3D(FrontierScriptContext *ctx)
     return FALSE;
 }
 
-BOOL FrontierScrCmd_3E(FrontierScriptContext *ctx)
+BOOL FrontierScrCmd_GetSystemVar(FrontierScriptContext *ctx)
 {
     u16 srcVarID = FrontierScriptContext_ReadHalfWord(ctx);
-    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
+    u16 *dest = FrontierScriptContext_TryGetVarPointer(ctx);
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
 
     u16 *srcVar = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->saveData), srcVarID);
-    *destVar = *srcVar;
+    *dest = *srcVar;
 
     return FALSE;
 }

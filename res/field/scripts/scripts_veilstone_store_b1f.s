@@ -18,7 +18,7 @@
     ScriptEntry VeilstoneStoreB1F_ProfRowan
     ScriptEntry VeilstoneStoreB1F_LavaCookieVendor
     ScriptEntry VeilstoneStoreB1F_PoffinVendor
-    ScriptEntry VeilstoneStoreB1F_Dummy
+    ScriptEntry VeilstoneStoreB1F_Dummy10
     ScriptEntry VeilstoneStoreB1F_BerryVendor
     ScriptEntry VeilstoneStoreB1F_Directory
     ScriptEntryEnd
@@ -406,7 +406,7 @@ VeilstoneStoreB1F_PoffinVendorMenu:
     ShowListMenu
     Return
 
-VeilstoneStoreB1F_Dummy:
+VeilstoneStoreB1F_Dummy10:
     End
 
 VeilstoneStoreB1F_IncrementDepartmentStoreRegularCounter:

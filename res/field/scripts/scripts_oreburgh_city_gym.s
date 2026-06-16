@@ -12,7 +12,7 @@ OreburghGym_Roark:
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COAL, OreburghGym_AlreadyHaveCoalBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 47, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_OREBURGH_CITY_GYM, 0, 0, 0
     Message OreburghGym_Text_RoarkIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_ROARK
@@ -33,7 +33,7 @@ OreburghGym_Roark:
     SetVar VAR_GTS_ACCESS_STATE, 1
     SetVar VAR_JUBILIFE_LOOKER_PAL_PAD_STATE, 1
     SetVar VAR_OREBURGH_STATE, 2
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 47, TRAINER_LEADER_ROARK, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_OREBURGH_CITY_GYM, TRAINER_LEADER_ROARK, 0, 0
     SetVar VAR_JUBILIFE_CITY_STATE, 3
     ClearFlag FLAG_HIDE_JUBILIFE_CITY_COUNTERPART
     ClearFlag FLAG_HIDE_JUBILIFE_ROWAN

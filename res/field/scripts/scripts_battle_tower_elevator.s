@@ -4,9 +4,9 @@
 
 
     ScriptEntry BattleTowerElevator_OnTransition
-    ScriptEntry BattleTowerElevator_OnFrameEnterBattleRoom
-    ScriptEntry BattleTowerElevator_OnFrameEnterMultiBattleRoom
-    ScriptEntry BattleTowerElevator_OnFrameEnterBattleSalon
+    ScriptEntry BattleTowerElevator_OnFrame_EnterBattleRoom
+    ScriptEntry BattleTowerElevator_OnFrame_EnterMultiBattleRoom
+    ScriptEntry BattleTowerElevator_OnFrame_EnterBattleSalon
     ScriptEntryEnd
 
 BattleTowerElevator_OnTransition:
@@ -74,21 +74,21 @@ BattleTowerElevator_ElevatorAnimation:
     Call BattleTowerElevator_Exit
     Return
 
-BattleTowerElevator_OnFrameEnterBattleRoom:
+BattleTowerElevator_OnFrame_EnterBattleRoom:
     LockAll
     SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_UP
     Call BattleTowerElevator_ElevatorAnimation
     GoTo BattleTowerElevator_BattleRoomCheckWiFi
     End
 
-BattleTowerElevator_OnFrameEnterMultiBattleRoom:
+BattleTowerElevator_OnFrame_EnterMultiBattleRoom:
     LockAll
     SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_UP
     Call BattleTowerElevator_ElevatorAnimation
     GoTo BattleTowerElevator_MultiBattleRoom
     End
 
-BattleTowerElevator_OnFrameEnterBattleSalon:
+BattleTowerElevator_OnFrame_EnterBattleSalon:
     LockAll
     SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_DOWN
     Call BattleTowerElevator_ElevatorAnimation
@@ -106,7 +106,7 @@ BattleTowerElevator_Exit:
     WaitMovement
     Return
 
-BattleTowerElevator_UnusedMovement:
+BattleTowerElevator_Movement_Unused:
     WalkNormalNorth 2
     FaceEast
     WalkNormalEast

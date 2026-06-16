@@ -5,6 +5,7 @@
 
 #include "overlay104/frontier_data_transfer.h"
 
+#include "field_battle_data_transfer.h"
 #include "party.h"
 #include "savedata.h"
 
@@ -12,7 +13,7 @@ typedef struct BattleCastle {
     int unk_00;
     SaveData *saveData;
     UnkStruct_020302DC *unk_08;
-    void *unk_0C;
+    FieldBattleDTO *dto;
     u8 challengeType;
     u8 unk_11;
     u8 unk_12;
@@ -25,9 +26,9 @@ typedef struct BattleCastle {
     u16 unk_22;
     u8 unk_24[3];
     u8 unk_27;
-    Party *unk_28;
-    Party *unk_2C;
-    u16 unk_30[14];
+    Party *playersParty;
+    Party *opponentsParty;
+    u16 trainerIDs[14];
     FrontierDataDTO unk_4C[2];
     u16 unk_26C[4];
     u8 unk_274[4];

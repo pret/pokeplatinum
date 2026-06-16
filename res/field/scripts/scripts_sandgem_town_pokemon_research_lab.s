@@ -4,20 +4,20 @@
 
 
     ScriptEntry SandgemTownLab_OnTransition
-    ScriptEntry SandgemTownLab_OnFrameGetPokedex
+    ScriptEntry SandgemTownLab_OnFrame_GetPokedex
     ScriptEntry SandgemTownLab_ProfRowan
-    ScriptEntry SandgemTownLab_UnusedEntry4
+    ScriptEntry SandgemTownLab_Dummy4
     ScriptEntry SandgemTownLab_ScientistM
     ScriptEntry SandgemTownLab_ScientistF
-    ScriptEntry SandgemTownLab_UnusedEntry7
+    ScriptEntry SandgemTownLab_Dummy7
     ScriptEntry SandgemTownLab_BookshelfAdventureRuleNo1
     ScriptEntry SandgemTownLab_BookshelfAdventureRuleNo2
     ScriptEntry SandgemTownLab_BookshelfBooks
     ScriptEntry SandgemTownLab_BookshelfReferenceMaterial
     ScriptEntry SandgemTownLab_PC
-    ScriptEntry SandgemTownLab_UnusedEntry13
+    ScriptEntry SandgemTownLab_ResearchMaterials_Unused
     ScriptEntry SandgemTownLab_Refrigerator
-    ScriptEntry SandgemTownLab_OnFrameReturnedFromDistortionWorld
+    ScriptEntry SandgemTownLab_OnFrame_ReturnedFromDistortionWorld
     ScriptEntryEnd
 
 SandgemTownLab_OnTransition:
@@ -76,7 +76,7 @@ SandgemTownLab_IfYouSeeCynthiaGiveHerMyBestRegards:
     ReleaseAll
     End
 
-SandgemTownLab_OnFrameReturnedFromDistortionWorld:
+SandgemTownLab_OnFrame_ReturnedFromDistortionWorld:
     LockAll
     CallIfEq VAR_EXITED_DISTORTION_WORLD_STATE, 2, SandgemTownLab_IncreaseExitedDistortionWorldState
     BufferPlayerName 1
@@ -123,10 +123,10 @@ SandgemTownLab_Movement_CounterpartTurnOnSpot:
     WalkOnSpotNormalSouth
     EndMovement
 
-SandgemTownLab_UnusedEntry4:
+SandgemTownLab_Dummy4:
     End
 
-SandgemTownLab_OnFrameGetPokedex:
+SandgemTownLab_OnFrame_GetPokedex:
     LockAll
     ApplyMovement LOCALID_COUNTERPART, SandgemTownLab_Movement_CounterpartWalkToProfRowan
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerWalkToProfRowan
@@ -314,7 +314,7 @@ SandgemTownLab_CounterpartLeave:
     End
 
     .balign 4, 0
-SandgemTownPokemonResearchLab_UnusedMovement:
+SandgemTownPokemonResearchLab_Movement_Unused:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -441,7 +441,7 @@ SandgemTownLab_HearingWhatWasHappeningGaveMeShivers:
     ReleaseAll
     End
 
-SandgemTownLab_UnusedEntry7:
+SandgemTownLab_Dummy7:
     End
 
 SandgemTownLab_BookshelfAdventureRuleNo1:
@@ -465,7 +465,7 @@ SandgemTownLab_PC:
     EventMessage SandgemTownLab_Text_PlayerCheckedThePC
     End
 
-SandgemTownLab_UnusedEntry13:
+SandgemTownLab_ResearchMaterials_Unused:
     EventMessage SandgemTownLab_Text_ResearchMaterialsAreCarefullyTuckedAway
     End
 
@@ -629,7 +629,7 @@ SandgemTownLab_Movement_ProfRowanTurnOnSpot:
     WalkOnSpotNormalSouth
     EndMovement
 
-SandgemTownPokemonResearchLab_UnusedMovement2:
+SandgemTownPokemonResearchLab_Movement_Unused2:
     WalkOnSpotNormalWest
     EndMovement
 

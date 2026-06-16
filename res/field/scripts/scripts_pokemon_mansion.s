@@ -344,7 +344,7 @@ PokemonMansion_Movement_MaidTrophyGardenFaceSouth:
     FaceSouth
     EndMovement
 
-PokemonMansion_UnusedMovement:
+PokemonMansion_Movement_Unused:
     FaceEast
     EndMovement
 

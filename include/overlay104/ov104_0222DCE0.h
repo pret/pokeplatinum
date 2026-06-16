@@ -16,11 +16,11 @@
 #include "string_template.h"
 #include "trainer_info.h"
 
-BattleFrontierTrainerData *BattleTower_GetTrainerDataFromTrainerIDAndNarcID(u16 battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID);
+BattleFrontierTrainerData *BattleFrontier_GetTrainerDataFromTrainerIDAndNarcID(u16 battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID);
 void BattleTower_GetMonDataFromSetIDAndNarcID(BattleFrontierPokemonData *monData, int setID, enum NarcID narcID);
-BattleFrontierTrainerData *BattleTower_GetTrainerData(FrontierTrainerDataDTO *trDataDTO, int battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID);
+BattleFrontierTrainerData *BattleFrontier_GetTrainerData(FrontierTrainerDataDTO *trDataDTO, int battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID);
 u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 param3, u8 param4, u8 param5, BOOL param6, int param7, enum NarcID narcID);
-void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 param2);
+void FrontierPokemonDataDTO_InitPokemon(const FrontierPokemonDataDTO *pokemonDTO, Pokemon *mon, u8 param2);
 u16 BattleTower_GetObjectIDFromTrainerClass(u8 trainerClass);
 void ov104_0222E134(SaveData *saveData, Pokemon *param1);
 void ov104_0222E1C0(SaveData *saveData, Party *party, Pokemon *param2);
@@ -28,7 +28,7 @@ void BattleCastle_UpdateMonSpriteAnimID(Sprite *sprite, u8 animID);
 void BattleCastle_UpdateMonSpritePosition(Sprite *sprite, s16 x, s16 y, u8 isSelected);
 u8 BattleCastle_GetPokeIconAnimID(u16 hp, u16 maxHp);
 void ov104_0222E278(FrontierDataDTO *param0, u16 param1, enum HeapID heapID, int param3);
-void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, enum HeapID heapID);
+void FieldBattleDTO_InitFrontierTrainer(FieldBattleDTO *battleDTO, FrontierTrainerDataDTO *trDataDTO, int unused, int battlerId, enum HeapID heapID);
 u32 ov104_0222E2F0(FrontierPokemonDataDTO *param0, u16 param1, int param2, u8 param3, u32 param4, int param5, int param6);
 void ov104_0222E330(FrontierPokemonDataDTO *param0, u16 param1[], u8 param2[], u32 param3[], u32 param4[], int param5, int param6, int param7);
 u8 ov104_0222E3A8(u16 param0);
@@ -36,6 +36,6 @@ BOOL ov104_0222E3E4(BattleFrontierTrainerData *param0, const u16 param1[], const
 void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPokemonDataDTO *param4, u8 *param5, u32 *param6, u8 param7);
 void BattleFrontier_SetPartnerInStrTemplate(StringTemplate *template, u32 idx);
 enum ObjectEventGfx BattleFrontier_GetPlayerObjEventGfx(const TrainerInfo *param0);
-void ov104_0222E630(SaveData *saveData);
+void BattleFrontier_FlagGeonetLinkInfo(SaveData *saveData);
 
 #endif // POKEPLATINUM_OV104_0222DCE0_H

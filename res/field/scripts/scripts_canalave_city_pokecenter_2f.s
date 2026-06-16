@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry CanalaveCityPokecenter2F_UnusedEntry1
+    ScriptEntry CanalaveCityPokecenter2F_Dummy1
     ScriptEntryEnd
 
-CanalaveCityPokecenter2F_UnusedEntry1:
+CanalaveCityPokecenter2F_Dummy1:
     End

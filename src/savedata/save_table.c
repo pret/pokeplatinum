@@ -9,6 +9,7 @@
 #include "battle_regulation.h"
 #include "chatot_cry.h"
 #include "daycare_save.h"
+#include "easy_chat_words.h"
 #include "field_overworld_state.h"
 #include "game_records.h"
 #include "global_trade.h"
@@ -33,7 +34,6 @@
 #include "system_data.h"
 #include "trainer_case_save_data.h"
 #include "underground.h"
-#include "unk_02014D38.h"
 #include "unk_020298BC.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D778.h"
@@ -80,7 +80,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_MYSTERY_GIFT, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MysteryGift_SaveSize, (SaveEntryInitFunc)MysteryGift_Init },
     { SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MigratedPokemon_SaveSize, (SaveEntryInitFunc)PalParkTransfer_Init },
     { SAVE_TABLE_ENTRY_LINK_CONTEST_RECORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)LinkContestRecords_SaveSize, (SaveEntryInitFunc)LinkContestRecords_Init },
-    { SAVE_TABLE_ENTRY_SENTENCE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Sentence_SaveSize, (SaveEntryInitFunc)SentenceSaveData_Init },
+    { SAVE_TABLE_ENTRY_UNLOCKED_EASY_CHAT_WORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)UnlockedEasyChatWords_SaveSize, (SaveEntryInitFunc)UnlockedEasyChatWords_Init },
     { SAVE_TABLE_ENTRY_EMAIL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Email_SaveSize, (SaveEntryInitFunc)Email_Init },
     { SAVE_TABLE_ENTRY_WIFI_QUESTIONS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiQuestion_SaveSize, (SaveEntryInitFunc)WiFiQuestion_Init },
     { SAVE_TABLE_ENTRY_PC_BOXES, SAVE_BLOCK_ID_BOXES, (SaveEntrySizeFunc)PCBoxes_SaveSize, (SaveEntryInitFunc)PCBoxes_Init },

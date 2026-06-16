@@ -2,7 +2,7 @@
 #include "res/text/bank/global_terminal_2f.h"
 
 
-    ScriptEntry GlobalTerminal2F_Unused1
+    ScriptEntry GlobalTerminal2F_Dummy1
     ScriptEntry GlobalTerminal2F_Artist
     ScriptEntry GlobalTerminal2F_Hiker
     ScriptEntry GlobalTerminal2F_BattleGirl
@@ -12,8 +12,8 @@
     ScriptEntry GlobalTerminal2F_Beauty
     ScriptEntry GlobalTerminal2F_Lass
     ScriptEntry GlobalTerminal2F_Twin
-    ScriptEntry GlobalTerminal2F_SignWarp1F
-    ScriptEntry GlobalTerminal2F_SignWarp3F
+    ScriptEntry GlobalTerminal2F_BgSignWarp1F
+    ScriptEntry GlobalTerminal2F_BgSignWarp3F
     ScriptEntry GlobalTerminal2F_BoxDataMachine
     ScriptEntry GlobalTerminal2F_DressUpDataMachine
     ScriptEntryEnd
@@ -54,15 +54,15 @@ GlobalTerminal2F_Twin:
     NPCMessage GlobalTerminal2F_Text_ILikeSneakingGlances
     End
 
-GlobalTerminal2F_SignWarp1F:
+GlobalTerminal2F_BgSignWarp1F:
     EventMessage GlobalTerminal2F_Text_WarpsTo1F
     End
 
-GlobalTerminal2F_SignWarp3F:
+GlobalTerminal2F_BgSignWarp3F:
     EventMessage GlobalTerminal2F_Text_WarpsTo3F
     End
 
-GlobalTerminal2F_Unused1:
+GlobalTerminal2F_Dummy1:
     End
 
 GlobalTerminal2F_BoxDataMachine:

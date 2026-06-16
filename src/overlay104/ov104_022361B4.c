@@ -73,8 +73,8 @@ BattleCastle *ov104_022361B4(SaveData *saveData, u16 param1, u8 param2, u16 para
     v9->unk_08 = sub_020302DC(saveData);
     v9->saveData = saveData;
     v9->unk_00 = 11;
-    v9->unk_28 = Party_New(HEAP_ID_FIELD2);
-    v9->unk_2C = Party_New(HEAP_ID_FIELD2);
+    v9->playersParty = Party_New(HEAP_ID_FIELD2);
+    v9->opponentsParty = Party_New(HEAP_ID_FIELD2);
     v9->unk_A20 = param6;
 
     v4 = v9->unk_08;
@@ -130,12 +130,12 @@ BattleCastle *ov104_022361B4(SaveData *saveData, u16 param1, u8 param2, u16 para
     }
 
     v2 = SaveData_GetParty(v9->saveData);
-    v6 = BattleCastle_GetPartySize(v9->challengeType, 0);
+    v6 = BattleCastle_GetPlayerPartySize(v9->challengeType, 0);
 
     for (v7 = 0; v7 < v6; v7++) {
-        Party_AddPokemon(v9->unk_28, Party_GetPokemonBySlotIndex(v2, v9->unk_24[v7]));
+        Party_AddPokemon(v9->playersParty, Party_GetPokemonBySlotIndex(v2, v9->unk_24[v7]));
 
-        v3 = Party_GetPokemonBySlotIndex(v9->unk_28, v7);
+        v3 = Party_GetPokemonBySlotIndex(v9->playersParty, v7);
         v0 = 0;
 
         Pokemon_SetValue(v3, MON_DATA_HELD_ITEM, &v0);
@@ -148,7 +148,7 @@ BattleCastle *ov104_022361B4(SaveData *saveData, u16 param1, u8 param2, u16 para
     }
 
     if (BattleCastle_IsMultiPlayerChallenge(v9->challengeType) == 1) {
-        ov104_0222E630(v9->saveData);
+        BattleFrontier_FlagGeonetLinkInfo(v9->saveData);
     }
 
     return v9;
@@ -167,10 +167,10 @@ void ov104_02236514(BattleCastle *param0, u16 param1)
 
 static void ov104_02236528(BattleCastle *param0)
 {
-    u8 v0 = Party_GetCurrentCount(param0->unk_28);
+    u8 v0 = Party_GetCurrentCount(param0->playersParty);
 
     for (int i = 0; i < v0; i++) {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_28, i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(param0->playersParty, i);
 
         param0->unk_394[i][0] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP, NULL);
         param0->unk_394[i][1] = Pokemon_GetValue(mon, MON_DATA_MOVE2_PP, NULL);
@@ -178,9 +178,9 @@ static void ov104_02236528(BattleCastle *param0)
         param0->unk_394[i][3] = Pokemon_GetValue(mon, MON_DATA_MOVE4_PP, NULL);
     }
 
-    ov104_0223B760(param0->challengeType, ov104_0223BB60(param0), param0->unk_30, 7 * 2);
+    ov104_0223B760(param0->challengeType, ov104_0223BB60(param0), param0->trainerIDs, 7 * 2);
 
-    ov104_0222E4BC(ov104_0223B7DC(param0->challengeType, 1), param0->unk_30[param0->unk_11], param0->unk_30[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, BattleCastle_IsMultiPlayerChallenge(param0->challengeType));
+    ov104_0222E4BC(BattleCastle_GetOpponentPartySize(param0->challengeType, 1), param0->trainerIDs[param0->unk_11], param0->trainerIDs[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, BattleCastle_IsMultiPlayerChallenge(param0->challengeType));
 
     return;
 }
@@ -199,7 +199,7 @@ static void ov104_022365F8(BattleCastle *param0)
     ov104_022366A4(param0);
 
     for (v1 = 0; v1 < (7 * 2); v1++) {
-        param0->unk_30[v1] = (u16)sub_02030398(param0->unk_08, 6, v1, 0, NULL);
+        param0->trainerIDs[v1] = (u16)sub_02030398(param0->unk_08, 6, v1, 0, NULL);
     }
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -212,8 +212,8 @@ static void ov104_022365F8(BattleCastle *param0)
     v2 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v1 = 0; v1 < 4; v1++) {
-        ov104_0222DF40(&v4[v1], v2, ov104_0223BA10(param0));
-        ov104_0223BAA0(param0, param0->unk_2C, v2);
+        FrontierPokemonDataDTO_InitPokemon(&v4[v1], v2, BattleCastle_GetOpponentLevel(param0));
+        ov104_0223BAA0(param0, param0->opponentsParty, v2);
     }
 
     Heap_Free(v2);
@@ -230,10 +230,10 @@ static void ov104_022366A4(BattleCastle *param0)
     int v4;
     Pokemon *v5;
 
-    v0 = Party_GetCurrentCount(param0->unk_28);
+    v0 = Party_GetCurrentCount(param0->playersParty);
 
     for (v4 = 0; v4 < v0; v4++) {
-        v5 = Party_GetPokemonBySlotIndex(param0->unk_28, v4);
+        v5 = Party_GetPokemonBySlotIndex(param0->playersParty, v4);
 
         v2 = (u16)sub_02030398(param0->unk_08, 2, v4, 0, NULL);
         Pokemon_SetValue(v5, MON_DATA_HP, &v2);
@@ -268,12 +268,12 @@ void ov104_022367AC(BattleCastle *param0)
         return;
     }
 
-    if (param0->unk_28 != NULL) {
-        Heap_Free(param0->unk_28);
+    if (param0->playersParty != NULL) {
+        Heap_Free(param0->playersParty);
     }
 
-    if (param0->unk_2C != NULL) {
-        Heap_Free(param0->unk_2C);
+    if (param0->opponentsParty != NULL) {
+        Heap_Free(param0->opponentsParty);
     }
 
     MI_CpuClear8(param0, sizeof(BattleCastle));
@@ -324,7 +324,7 @@ void ov104_02236848(BattleCastle *param0, u8 param1)
     UnkStruct_0203041C *v13 = sub_0203041C(param0->saveData);
 
     frontier = SaveData_GetBattleFrontier(param0->saveData);
-    v3 = ov104_0223B7DC(param0->challengeType, 1);
+    v3 = BattleCastle_GetOpponentPartySize(param0->challengeType, 1);
     v4[0] = param0->challengeType;
 
     sub_02030308(param0->unk_08, 0, 0, 0, v4);
@@ -356,7 +356,7 @@ void ov104_02236848(BattleCastle *param0, u8 param1)
     }
 
     for (v0 = 0; v0 < (7 * 2); v0++) {
-        v5[0] = param0->unk_30[v0];
+        v5[0] = param0->trainerIDs[v0];
         sub_02030308(param0->unk_08, 6, v0, 0, v5);
     }
 
@@ -365,10 +365,10 @@ void ov104_02236848(BattleCastle *param0, u8 param1)
         sub_02030308(param0->unk_08, 7, v0, 0, v4);
     }
 
-    v8 = Party_GetCurrentCount(param0->unk_28);
+    v8 = Party_GetCurrentCount(param0->playersParty);
 
     for (v0 = 0; v0 < v8; v0++) {
-        v11 = Party_GetPokemonBySlotIndex(param0->unk_28, v0);
+        v11 = Party_GetPokemonBySlotIndex(param0->playersParty, v0);
 
         v5[0] = Pokemon_GetValue(v11, MON_DATA_HP, NULL);
         sub_02030308(param0->unk_08, 2, v0, 0, v5);
@@ -392,10 +392,10 @@ void ov104_02236848(BattleCastle *param0, u8 param1)
         sub_02030308(param0->unk_08, 5, v0, 0, v5);
     }
 
-    v8 = Party_GetCurrentCount(param0->unk_2C);
+    v8 = Party_GetCurrentCount(param0->opponentsParty);
 
     for (v0 = 0; v0 < v8; v0++) {
-        v11 = Party_GetPokemonBySlotIndex(param0->unk_2C, v0);
+        v11 = Party_GetPokemonBySlotIndex(param0->opponentsParty, v0);
         v5[0] = param0->unk_26C[v0];
 
         sub_02030308(param0->unk_08, 8, v0, 0, v5);
@@ -420,7 +420,7 @@ u16 ov104_02236B58(BattleCastle *param0, u8 param1)
     FrontierTrainerDataDTO v0;
     u8 v2 = param0->unk_11 + (param1 * 7);
 
-    Heap_Free(BattleTower_GetTrainerData(&v0, param0->unk_30[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleFrontier_GetTrainerData(&v0, param0->trainerIDs[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     return BattleTower_GetObjectIDFromTrainerClass(v0.trainerType);
 }
@@ -465,7 +465,7 @@ void ov104_02236BF8(BattleCastle *param0)
 {
     int v0, v1, v2;
 
-    ov104_0222E4BC(ov104_0223B7DC(param0->challengeType, 1), param0->unk_30[param0->unk_11], param0->unk_30[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, BattleCastle_IsMultiPlayerChallenge(param0->challengeType));
+    ov104_0222E4BC(BattleCastle_GetOpponentPartySize(param0->challengeType, 1), param0->trainerIDs[param0->unk_11], param0->trainerIDs[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, BattleCastle_IsMultiPlayerChallenge(param0->challengeType));
 
     for (v0 = 0; v0 < 4; v0++) {
         (void)0;
@@ -487,11 +487,11 @@ void ov104_02236C50(BattleCastle *param0)
         v0 = 2;
     }
 
-    v1 = BattleCastle_GetPartySize(param0->challengeType, 0);
-    v3 = Party_GetCurrentCount(param0->unk_28);
+    v1 = BattleCastle_GetPlayerPartySize(param0->challengeType, 0);
+    v3 = Party_GetCurrentCount(param0->playersParty);
 
     for (v2 = v0; v2 < (v1 + v0); v2++) {
-        v4 = Party_GetPokemonBySlotIndex(param0->unk_28, v2);
+        v4 = Party_GetPokemonBySlotIndex(param0->playersParty, v2);
 
         param0->unk_394[v2 - v0][0] = Pokemon_GetValue(v4, MON_DATA_MOVE1_PP, NULL);
         param0->unk_394[v2 - v0][1] = Pokemon_GetValue(v4, MON_DATA_MOVE2_PP, NULL);
@@ -499,7 +499,7 @@ void ov104_02236C50(BattleCastle *param0)
         param0->unk_394[v2 - v0][3] = Pokemon_GetValue(v4, MON_DATA_MOVE4_PP, NULL);
     }
 
-    ov104_0223BA24(param0->unk_28);
+    ov104_0223BA24(param0->playersParty);
 
     for (v2 = 0; v2 < 4; v2++) {
         param0->appIdentityUnlocked[v2] = 0;
@@ -533,11 +533,11 @@ int ov104_02236D10(BattleCastle *param0)
         v2 = 2;
     }
 
-    v0 = BattleCastle_GetPartySize(param0->challengeType, 0);
-    v1 = ov104_0223B7DC(param0->challengeType, 1);
+    v0 = BattleCastle_GetPlayerPartySize(param0->challengeType, 0);
+    v1 = BattleCastle_GetOpponentPartySize(param0->challengeType, 1);
 
     for (v5 = v2; v5 < (v0 + v2); v5++) {
-        v9 = Party_GetPokemonBySlotIndex(param0->unk_28, v5);
+        v9 = Party_GetPokemonBySlotIndex(param0->playersParty, v5);
 
         if (Pokemon_GetValue(v9, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
