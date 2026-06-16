@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 OreburghGateB1F_CyclistF:
-    NPCMessage OreburghGateB1F_Text_DoYouSeeThoseBumpsOnTheGround
+    NPCMessage OreburghGateB1F_Text_DoYouSeeThoseBumps
     End
 
     .balign 4, 0

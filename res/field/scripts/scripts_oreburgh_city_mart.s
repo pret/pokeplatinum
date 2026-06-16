@@ -21,5 +21,5 @@ OreburghCityMart_Hiker:
     End
 
 OreburghCityMart_Collector:
-    NPCMessage OreburghCityMart_Text_TwoStaffOfferDifferentMerchandise
+    NPCMessage OreburghCityMart_Text_StaffOfferDifferentMerchandise
     End

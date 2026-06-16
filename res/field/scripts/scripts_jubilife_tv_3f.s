@@ -15,12 +15,12 @@ JubilifeTV3F_Beauty1:
     FacePlayer
     ApplyMovement LOCALID_BEAUTY_1, JubilifeTV3F_Movement_BeautyFaceEastGroupRankingRoom
     WaitMovement
-    Message JubilifeTV3F_Text_TheRoomClosestToTheStairsIsTheGroupRankingRoom
+    Message JubilifeTV3F_Text_ClosestToStairsIsGroupRankingRoom
     CloseMessage
     WaitTime 8, VAR_RESULT
     ApplyMovement LOCALID_BEAUTY_1, JubilifeTV3F_Movement_BeautyFaceWestGlobalRankingRoom
     WaitMovement
-    Message JubilifeTV3F_Text_TheRoomOnTheOppositeSideIsTheGlobalRankingRoom
+    Message JubilifeTV3F_Text_OppositeSideIsGlobalRankingRoom
     WaitButton
     CloseMessage
     ReleaseAll
@@ -37,7 +37,7 @@ JubilifeTV3F_Movement_BeautyFaceWestGlobalRankingRoom:
     EndMovement
 
 JubilifeTV3F_Beauty2:
-    NPCMessage JubilifeTV3F_Text_TheMoreTradesIMakeTheBetterMyOddsOfWinningThePokemonLottery
+    NPCMessage JubilifeTV3F_Text_BetterOddsOfWinningLottery
     End
 
 JubilifeTV3F_GymGuide1:
@@ -48,10 +48,10 @@ JubilifeTV3F_GymGuide2:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message JubilifeTV3F_Text_WillYouTellMeYourOpinionOnTV
+    Message JubilifeTV3F_Text_TellMeYourOpinionOnTV
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, JubilifeTV3F_ChooseCustomMessageWords
-    GoTo JubilifeTV3F_OhAllRightICanUnderstandHowBusyItMustGetForYou
+    GoTo JubilifeTV3F_OhAllRight
 
 JubilifeTV3F_ChooseCustomMessageWords:
     FadeScreenOut
@@ -61,8 +61,8 @@ JubilifeTV3F_ChooseCustomMessageWords:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_RESULT, FALSE, JubilifeTV3F_OhAllRightICanUnderstandHowBusyItMustGetForYou
-    Message JubilifeTV3F_Text_MovingRightAlongWhatFeedbackCanYouGiveMeAboutTV
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV3F_OhAllRight
+    Message JubilifeTV3F_Text_WhatFeedbackCanYouGive
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
@@ -70,16 +70,16 @@ JubilifeTV3F_ChooseCustomMessageWords:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_RESULT, FALSE, JubilifeTV3F_OhAllRightICanUnderstandHowBusyItMustGetForYou
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV3F_OhAllRight
     GetWallpaperFromCustomMessageWords VAR_RESULT, VAR_0x8000, VAR_0x8001, VAR_0x8002, VAR_0x8003
     GoToIfEq VAR_RESULT, 0xFF, JubilifeTV3F_CheckIsMysteryGiftPhrase
     GoToIfEq VAR_RESULT, 0, JubilifeTV3F_CheckIsMysteryGiftPhrase
-    GoTo JubilifeTV3F_IThinkICanSwingADealToGetYouANewWallpaperForYourPCBoxes
+    GoTo JubilifeTV3F_DealForNewPCBoxesWallpaper
 
 JubilifeTV3F_CheckIsMysteryGiftPhrase:
     CheckIsMysteryGiftPhrase VAR_RESULT, VAR_0x8000, VAR_0x8001, VAR_0x8002, VAR_0x8003
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV3F_ThanksForAnsweringMyQuestion
-    GoTo JubilifeTV3F_IThinkICanSwingADealSoYouCanReceiveAMysteryGift
+    GoTo JubilifeTV3F_DealForMysteryGift
 
 JubilifeTV3F_ThanksForAnsweringMyQuestion:
     Message JubilifeTV3F_Text_ThanksForAnsweringMyQuestion
@@ -88,22 +88,22 @@ JubilifeTV3F_ThanksForAnsweringMyQuestion:
     ReleaseAll
     End
 
-JubilifeTV3F_OhAllRightICanUnderstandHowBusyItMustGetForYou:
-    Message JubilifeTV3F_Text_OhAllRightICanUnderstandHowBusyItMustGetForYou
+JubilifeTV3F_OhAllRight:
+    Message JubilifeTV3F_Text_OhAllRight
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-JubilifeTV3F_IThinkICanSwingADealToGetYouANewWallpaperForYourPCBoxes:
-    Message JubilifeTV3F_Text_IThinkICanSwingADealToGetYouANewWallpaperForYourPCBoxes
+JubilifeTV3F_DealForNewPCBoxesWallpaper:
+    Message JubilifeTV3F_Text_DealForNewPCBoxesWallpaper
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-JubilifeTV3F_IThinkICanSwingADealSoYouCanReceiveAMysteryGift:
-    Message JubilifeTV3F_Text_IThinkICanSwingADealSoYouCanReceiveAMysteryGift
+JubilifeTV3F_DealForMysteryGift:
+    Message JubilifeTV3F_Text_DealForMysteryGift
     WaitButton
     UnlockMysteryGift
     CloseMessage

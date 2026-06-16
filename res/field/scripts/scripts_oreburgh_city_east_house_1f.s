@@ -8,15 +8,15 @@
     ScriptEntryEnd
 
 OreburghCityEastHouse1F_PokefanM:
-    NPCMessage OreburghCityEastHouse1F_Text_WhyNotTryTrainingInTheOreburghMine
+    NPCMessage OreburghCityEastHouse1F_Text_TrainInOreburghMine
     End
 
 OreburghCityEastHouse1F_Hiker:
-    NPCMessage OreburghCityEastHouse1F_Text_IAlwaysHaveARottenTimeTryingToDecideWhichMovesMyPokemonShouldLearn
+    NPCMessage OreburghCityEastHouse1F_Text_IAlwaysHaveARottenTime
     End
 
 OreburghCityEastHouse1F_AceTrainerM:
-    NPCMessage OreburghCityEastHouse1F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon
+    NPCMessage OreburghCityEastHouse1F_Text_RemindMeOfTimeIGotMyPokemon
     End
 
     .balign 4, 0

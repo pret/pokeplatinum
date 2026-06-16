@@ -59,10 +59,10 @@ LakeVerity_Unused:
 LakeVerity_ProfRowan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_INeedYouToGoToLakeAcuity
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_GoToLakeAcuity
     ApplyMovement LOCALID_PROF_ROWAN, LakeVerity_Movement_RowanWalkOnSpotEast
     WaitMovement
-    Message LakeVerity_Text_HowDareYouMisguidedThugs
+    Message LakeVerity_Text_HowDareYou
     FacePlayer
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, LakeVerity_DawnNeedsYourHelp
@@ -72,26 +72,26 @@ LakeVerity_ProfRowan:
 LakeVerity_DawnNeedsYourHelp:
     BufferPlayerName 0
     Message LakeVerity_Text_DawnNeedsYourHelp
-    GoTo LakeVerity_CloseMessageCounterpartNeedsYourHelp
+    GoTo LakeVerity_CounterpartNeedsYourHelpEnd
     End
 
 LakeVerity_LucasNeedsYourHelp:
     BufferPlayerName 0
     Message LakeVerity_Text_LucasNeedsYourHelp
-    GoTo LakeVerity_CloseMessageCounterpartNeedsYourHelp
+    GoTo LakeVerity_CounterpartNeedsYourHelpEnd
     End
 
-LakeVerity_CloseMessageCounterpartNeedsYourHelp:
+LakeVerity_CounterpartNeedsYourHelpEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-LakeVerity_INeedYouToGoToLakeAcuity:
+LakeVerity_GoToLakeAcuity:
     FacePlayer
     BufferPlayerName 0
     BufferRivalName 1
-    Message LakeVerity_Text_INeedYouToGoToLakeAcuity
+    Message LakeVerity_Text_GoToLakeAcuity
     WaitButton
     CloseMessage
     ReleaseAll
@@ -101,7 +101,7 @@ LakeVerity_Counterpart:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_CounterpartWhatsTeamGalacticUpTo
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_CounterpartWhatsGalacticUpTo
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, LakeVerity_DawnICouldntBeatThisPerson
     GoTo LakeVerity_LucasILostToHerButJustBarely
@@ -110,40 +110,40 @@ LakeVerity_Counterpart:
 LakeVerity_DawnICouldntBeatThisPerson:
     BufferPlayerName 0
     Message LakeVerity_Text_DawnICouldntBeatThisPerson
-    GoTo LakeVerity_CloseMessageCounterpartLostToMars
+    GoTo LakeVerity_CounterpartLostToMarsEnd
     End
 
 LakeVerity_LucasILostToHerButJustBarely:
     BufferPlayerName 0
     Message LakeVerity_Text_LucasILostToHerButJustBarely
-    GoTo LakeVerity_CloseMessageCounterpartLostToMars
+    GoTo LakeVerity_CounterpartLostToMarsEnd
     End
 
-LakeVerity_CloseMessageCounterpartLostToMars:
+LakeVerity_CounterpartLostToMarsEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-LakeVerity_CounterpartWhatsTeamGalacticUpTo:
+LakeVerity_CounterpartWhatsGalacticUpTo:
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, LakeVerity_DawnWhatIsTeamGalacticUpTo
-    GoTo LakeVerity_LucasWhatsTeamGalacticUpTo
+    GoTo LakeVerity_LucasWhatsGalacticUpTo
     End
 
 LakeVerity_DawnWhatIsTeamGalacticUpTo:
     BufferPlayerName 0
     Message LakeVerity_Text_DawnWhatIsTeamGalacticUpTo
-    GoTo LakeVerity_CloseMessageWhatsTeamGalacticUpTo
+    GoTo LakeVerity_CounterpartWhatsGalacticUpToEnd
     End
 
-LakeVerity_LucasWhatsTeamGalacticUpTo:
+LakeVerity_LucasWhatsGalacticUpTo:
     BufferPlayerName 0
-    Message LakeVerity_Text_LucasWhatsTeamGalacticUpTo
-    GoTo LakeVerity_CloseMessageWhatsTeamGalacticUpTo
+    Message LakeVerity_Text_LucasWhatsGalacticUpTo
+    GoTo LakeVerity_CounterpartWhatsGalacticUpToEnd
     End
 
-LakeVerity_CloseMessageWhatsTeamGalacticUpTo:
+LakeVerity_CounterpartWhatsGalacticUpToEnd:
     WaitButton
     CloseMessage
     ReleaseAll
@@ -159,23 +159,23 @@ LakeVerity_OnFrame_ProfRowanNoticePlayer:
     ApplyMovement LOCALID_PROF_ROWAN, LakeVerity_Movement_RowanNoticePlayer
     WaitMovement
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, LakeVerity_WhatTimingYouveGotToHelpDawn
-    GoTo LakeVerity_WhatTimingYouveGotToHelpLucas
+    GoToIfEq VAR_RESULT, GENDER_MALE, LakeVerity_YouveGotToHelpDawn
+    GoTo LakeVerity_YouveGotToHelpLucas
     End
 
-LakeVerity_WhatTimingYouveGotToHelpDawn:
+LakeVerity_YouveGotToHelpDawn:
     BufferPlayerName 0
-    Message LakeVerity_Text_WhatTimingYouveGotToHelpDawn
-    GoTo LakeVerity_CloseMessageYouveGotToHelpCounterpart
+    Message LakeVerity_Text_YouveGotToHelpDawn
+    GoTo LakeVerity_YouveGotToHelpCounterpartEnd
     End
 
-LakeVerity_WhatTimingYouveGotToHelpLucas:
+LakeVerity_YouveGotToHelpLucas:
     BufferPlayerName 0
-    Message LakeVerity_Text_WhatTimingYouveGotToHelpLucas
-    GoTo LakeVerity_CloseMessageYouveGotToHelpCounterpart
+    Message LakeVerity_Text_YouveGotToHelpLucas
+    GoTo LakeVerity_YouveGotToHelpCounterpartEnd
     End
 
-LakeVerity_CloseMessageYouveGotToHelpCounterpart:
+LakeVerity_YouveGotToHelpCounterpartEnd:
     SetVar VAR_LAKE_VERITY_PROF_ROWAN_STATE, 1
     WaitButton
     CloseMessage
@@ -260,7 +260,7 @@ LakeVerity_Movement_PlayerFaceWest:
     EndMovement
 
 LakeVerity_GruntM:
-    EventMessage LakeVerity_Text_OuchWhatsWithThisOldTimer
+    EventMessage LakeVerity_Text_WhatsWithThisOldTimer
     End
 
     .balign 4, 0

@@ -20,7 +20,7 @@ JubilifeTV1F_Dummy1:
     End
 
 JubilifeTV1F_GymGuide:
-    NPCMessage JubilifeTV1F_Text_WhyDontYouTryDressingUpYourPokemonNow
+    NPCMessage JubilifeTV1F_Text_TryDressingUpPokemon
     End
 
 JubilifeTV1F_Dummy3:
@@ -31,29 +31,29 @@ JubilifeTV1F_AceTrainerSnowF:
     LockAll
     FacePlayer
     GoToIfNe VAR_LOTTERY_PRIZE_ITEM, 0, JubilifeTV1F_GiveStoredLotteryPrize
-    GoToIfSet FLAG_OBTAINED_LOTTERY_PRIZE, JubilifeTV1F_YouveAlreadyDrawnALotoTicketToday
+    GoToIfSet FLAG_OBTAINED_LOTTERY_PRIZE, JubilifeTV1F_AlreadyDrawnTicketToday
     GoToIfSet FLAG_CHECKED_LUCKY_NUMBER, JubilifeTV1F_AskCheckLuckyNumberAgain
-    Message JubilifeTV1F_Text_ThisIsThePokemonLotteryCorner
+    Message JubilifeTV1F_Text_ThisIsLotteryCorner
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, JubilifeTV1F_CheckTodaysLuckyNumber
-    GoTo JubilifeTV1F_OhISeePleaseDoVisitUsAgain
+    GoTo JubilifeTV1F_PleaseVisitAgain
 
 JubilifeTV1F_AskCheckLuckyNumberAgain:
-    Message JubilifeTV1F_Text_WouldYouLikeToCheckTodaysLuckyNumberAgain
+    Message JubilifeTV1F_Text_CheckLuckyNumberAgain
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, JubilifeTV1F_CheckTodaysLuckyNumber
-    GoTo JubilifeTV1F_OhISeePleaseDoVisitUsAgain
+    GoTo JubilifeTV1F_PleaseVisitAgain
     End
 
-JubilifeTV1F_YouveAlreadyDrawnALotoTicketToday:
-    Message JubilifeTV1F_Text_YouveAlreadyDrawnALotoTicketToday
+JubilifeTV1F_AlreadyDrawnTicketToday:
+    Message JubilifeTV1F_Text_AlreadyDrawnTicketToday
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-JubilifeTV1F_OhISeePleaseDoVisitUsAgain:
-    Message JubilifeTV1F_Text_OhISeePleaseDoVisitUsAgain
+JubilifeTV1F_PleaseVisitAgain:
+    Message JubilifeTV1F_Text_PleaseVisitAgain
     WaitButton
     CloseMessage
     ReleaseAll
@@ -61,17 +61,17 @@ JubilifeTV1F_OhISeePleaseDoVisitUsAgain:
 
 JubilifeTV1F_CheckTodaysLuckyNumber:
     SetFlag FLAG_CHECKED_LUCKY_NUMBER
-    Message JubilifeTV1F_Text_FirstIllLookUpTodaysPokemonLotteryCornerLuckyNumber
+    Message JubilifeTV1F_Text_LookUpTodaysLuckyNumber
     GetJubilifeLotteryTrainerID VAR_0x8000
     BufferVarPaddingDigits 0, VAR_0x8000, PADDING_MODE_ZEROES, 5
-    Message JubilifeTV1F_Text_YourLotoTicketNumberIsNum
+    Message JubilifeTV1F_Text_YourLotoTicketNumberIsX
     CheckForJubilifeLotteryWinner VAR_0x8001, VAR_0x8002, VAR_0x8003, VAR_0x8000
     GoToIfEq VAR_0x8002, 0, JubilifeTV1F_NoMatch
     GoToIfEq VAR_0x8003, FALSE, JubilifeTV1F_MatchedTeamsPokemon
     GoTo JubilifeTV1F_MatchedPCBoxedPokemon
 
 JubilifeTV1F_NoMatch:
-    Message JubilifeTV1F_Text_ImSorryYouDidntGetAMatch
+    Message JubilifeTV1F_Text_YouDidntGetAMatch
     WaitButton
     CloseMessage
     ReleaseAll
@@ -79,12 +79,12 @@ JubilifeTV1F_NoMatch:
 
 JubilifeTV1F_MatchedTeamsPokemon:
     BufferPartyMonNickname 0, VAR_0x8001
-    Message JubilifeTV1F_Text_CongratulationsTheIDOfYourTeamsPokemonMatchesYourLotoTicketNumber
+    Message JubilifeTV1F_Text_IDOfTeamPokemonMatchesTicketNumber
     GoTo JubilifeTV1F_CheckMatchedDigits
 
 JubilifeTV1F_MatchedPCBoxedPokemon:
     BufferMonNicknameFromPC 0, VAR_0x8001
-    Message JubilifeTV1F_Text_CongratulationsTheIDOfYourPCBoxedPokemonMatchesYourLotoTicketNumber
+    Message JubilifeTV1F_Text_IDOfBoxedPokemonMatchesTicketNumber
     GoTo JubilifeTV1F_CheckMatchedDigits
 
 JubilifeTV1F_CheckMatchedDigits:
@@ -97,24 +97,24 @@ JubilifeTV1F_CheckMatchedDigits:
     End
 
 JubilifeTV1F_LastDigitMatched:
-    Message JubilifeTV1F_Text_TheLastDigitMatchedSoYouWinTheFourthPrize
+    Message JubilifeTV1F_Text_LastDigitMatchedWinFourthPrize
     GoTo JubilifeTV1F_SetLotteryPrize
     End
 
 JubilifeTV1F_LastTwoDigitsMatched:
-    Message JubilifeTV1F_Text_TheLastTwoDigitsMatchedSoYouWinTheThirdPrize
+    Message JubilifeTV1F_Text_LastTwoDigitsMatchedWinThirdPrize
     GoTo JubilifeTV1F_SetLotteryPrize
 
 JubilifeTV1F_LastThreeDigitsMatched:
-    Message JubilifeTV1F_Text_TheLastThreeDigitsMatchedSoYouWinTheSecondPrize
+    Message JubilifeTV1F_Text_LastThreeDigitsMatchedWinSecondPrize
     GoTo JubilifeTV1F_SetLotteryPrize
 
 JubilifeTV1F_LastFourDigitsMatched:
-    Message JubilifeTV1F_Text_TheLastFourDigitsMatchedSoYouWinTheFirstPrize
+    Message JubilifeTV1F_Text_LastFourDigitsMatchedWinFirstPrize
     GoTo JubilifeTV1F_SetLotteryPrize
 
 JubilifeTV1F_LastFiveDigitsMatched:
-    Message JubilifeTV1F_Text_OhMyGoodnessAllFiveDigitsMatchedYouveWonTheJackpotPrize
+    Message JubilifeTV1F_Text_AllDigitsMatchedWinJackpot
     GoTo JubilifeTV1F_SetLotteryPrize
 
 JubilifeTV1F_SetLotteryPrize:
@@ -150,13 +150,13 @@ JubilifeTV1F_SetJackpotPrize:
 JubilifeTV1F_GiveLotteryPrize:
     SetVar VAR_0x8004, VAR_0x8003
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, JubilifeTV1F_OhYouSeemToHaveNoRoomForThis
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, JubilifeTV1F_NoRoomForThis
     Common_GiveItemQuantity
     GoTo JubilifeTV1F_PleaseDoVisitAgain
 
-JubilifeTV1F_OhYouSeemToHaveNoRoomForThis:
+JubilifeTV1F_NoRoomForThis:
     SetVar VAR_LOTTERY_PRIZE_ITEM, VAR_0x8002
-    Message JubilifeTV1F_Text_OhYouSeemToHaveNoRoomForThis
+    Message JubilifeTV1F_Text_NoRoomForThis
     WaitButton
     CloseMessage
     ReleaseAll
@@ -164,7 +164,7 @@ JubilifeTV1F_OhYouSeemToHaveNoRoomForThis:
 
 JubilifeTV1F_GiveStoredLotteryPrize:
     BufferPlayerName 0
-    Message JubilifeTV1F_Text_ThisIsThePrizeWeveBeenHoldingForYou
+    Message JubilifeTV1F_Text_ThisIsPrizeWeveBeenHolding
     SetVar VAR_0x8002, VAR_LOTTERY_PRIZE_ITEM
     GoTo JubilifeTV1F_SetLotteryPrize
 
@@ -178,18 +178,18 @@ JubilifeTV1F_PleaseDoVisitAgain:
     End
 
 JubilifeTV1F_Beauty:
-    NPCMessage JubilifeTV1F_Text_TheyKeepTrackOfOfficialRecordsHere
+    NPCMessage JubilifeTV1F_Text_TheyKeepTrackOfRecords
     End
 
 JubilifeTV1F_MiddleAgedMan:
-    NPCMessage JubilifeTV1F_Text_ImGoingToGetCommercialsShownOnTV
+    NPCMessage JubilifeTV1F_Text_CommercialsShownOnTV
     End
 
 JubilifeTV1F_Dummy7:
     End
 
 JubilifeTV1F_AceTrainerM:
-    NPCMessage JubilifeTV1F_Text_TheTVStationInterviewsAllSortsOfTrainersForItsShows
+    NPCMessage JubilifeTV1F_Text_InterviewsAllSortsOfTrainers
     End
 
     .balign 4, 0

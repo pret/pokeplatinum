@@ -2,21 +2,21 @@
   "key": 17427,
   "messages": [
     {
-      "id": "JubilifeTV3F_Text_TheRoomClosestToTheStairsIsTheGroupRankingRoom",
+      "id": "JubilifeTV3F_Text_ClosestToStairsIsGroupRankingRoom",
       "en_US": [
         "The room closest to the stairs is the\n",
         "Group Ranking Room.\r"
       ]
     },
     {
-      "id": "JubilifeTV3F_Text_TheRoomOnTheOppositeSideIsTheGlobalRankingRoom",
+      "id": "JubilifeTV3F_Text_OppositeSideIsGlobalRankingRoom",
       "en_US": [
         "The room on the opposite side\n",
         "is the Global Ranking Room."
       ]
     },
     {
-      "id": "JubilifeTV3F_Text_TheMoreTradesIMakeTheBetterMyOddsOfWinningThePokemonLottery",
+      "id": "JubilifeTV3F_Text_BetterOddsOfWinningLottery",
       "en_US": [
         "I just realized something awesome!\n",
         "I should be trading Pokémon more!\r",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "JubilifeTV3F_Text_WillYouTellMeYourOpinionOnTV",
+      "id": "JubilifeTV3F_Text_TellMeYourOpinionOnTV",
       "en_US": [
         "Hey, there!\n",
         "How’s it going?\r",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "JubilifeTV3F_Text_MovingRightAlongWhatFeedbackCanYouGiveMeAboutTV",
+      "id": "JubilifeTV3F_Text_WhatFeedbackCanYouGive",
       "en_US": [
         "Oh, yeah?\n",
         "That’s interesting.\r",
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "JubilifeTV3F_Text_OhAllRightICanUnderstandHowBusyItMustGetForYou",
+      "id": "JubilifeTV3F_Text_OhAllRight",
       "en_US": [
         "Oh, all right.\r",
         "I can understand how busy it must\n",
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "JubilifeTV3F_Text_IThinkICanSwingADealToGetYouANewWallpaperForYourPCBoxes",
+      "id": "JubilifeTV3F_Text_DealForNewPCBoxesWallpaper",
       "en_US": [
         "...Oh?\r",
         "The fact that you know that phrase\n",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "JubilifeTV3F_Text_IThinkICanSwingADealSoYouCanReceiveAMysteryGift",
+      "id": "JubilifeTV3F_Text_DealForMysteryGift",
       "en_US": [
         "...Oh?\r",
         "The fact that you know that phrase\n",

@@ -10,7 +10,7 @@ JubilifeCityCondominiums4F_Beauty:
     LockAll
     FacePlayer
     GoToIfSet FLAG_OBTAINED_FOCUS_BAND, JubilifeCityCondominiums4F_ObtainedFocusBand
-    Message JubilifeCityCondominiums4F_Text_ForSomeoneLikeYouThisMightBePerfect
+    Message JubilifeCityCondominiums4F_Text_ThisMightBePerfect
     SetVar VAR_0x8004, ITEM_FOCUS_BAND
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, JubilifeCityCondominiums4F_BagIsFull
@@ -21,7 +21,7 @@ JubilifeCityCondominiums4F_Beauty:
     End
 
 JubilifeCityCondominiums4F_ObtainedFocusBand:
-    Message JubilifeCityCondominiums4F_Text_ThereAreItemsThatAreUsefulOnlyWhenTheyreHeldByPokemon
+    Message JubilifeCityCondominiums4F_Text_SomeItemsOnlyUsefulWhenHeld
     WaitButton
     CloseMessage
     ReleaseAll

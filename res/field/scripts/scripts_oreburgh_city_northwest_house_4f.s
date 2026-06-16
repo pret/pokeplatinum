@@ -8,15 +8,15 @@
     ScriptEntryEnd
 
 OreburghCityNorthwestHouse4F_SchoolKidM:
-    NPCMessage OreburghCityNorthwestHouse4F_Text_HahahaImGonnaSwipeYourFlag
+    NPCMessage OreburghCityNorthwestHouse4F_Text_ImGonnaSwipeYourFlag
     End
 
 OreburghCityNorthwestHouse4F_NinjaBoy:
-    NPCMessage OreburghCityNorthwestHouse4F_Text_ISetSomeNastyTrapsCatchMeIfYouCan
+    NPCMessage OreburghCityNorthwestHouse4F_Text_CatchMeIfYouCan
     End
 
 OreburghCityNorthwestHouse4F_PokefanF:
-    NPCMessage OreburghCityNorthwestHouse4F_Text_ThanksToTheGymLeaderWeCanPlayUnderground
+    NPCMessage OreburghCityNorthwestHouse4F_Text_WeCanPlayUnderground
     End
 
     .balign 4, 0

@@ -2,7 +2,7 @@
   "key": 11187,
   "messages": [
     {
-      "id": "JubilifeCityPokecenter1F_Text_AllTypesHaveStrengthsAndWeaknesses",
+      "id": "JubilifeCityPokecenter1F_Text_StrengthsAndWeaknesses",
       "en_US": [
         "You know how Pokémon have types like\n",
         "Water, Fire, and Grass?\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_InTheUnionRoomUpstairsYouCanChatAndTradeWithOtherPeople",
+      "id": "JubilifeCityPokecenter1F_Text_ChatAndTradeInUnionRoom",
       "en_US": [
         "In the Union Room upstairs, you can\n",
         "chat and trade with other people.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "JubilifeCityPokecenter1F_Text_YouCanStillCatchAPokemonIfYouAlreadyHaveSixTravelingWithYou",
+      "id": "JubilifeCityPokecenter1F_Text_CanStillCatchWithSixPokemon",
       "en_US": [
         "You can still catch a Pokémon if you\n",
         "already have six traveling with you.\r",

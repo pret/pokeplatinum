@@ -2,14 +2,14 @@
   "key": 44018,
   "messages": [
     {
-      "id": "OreburghCityPokecenter1F_Text_YayIGotAPalPadAtThePokemonWiFiClubDownstairs",
+      "id": "OreburghCityPokecenter1F_Text_IGotAPalPadDownstairs",
       "en_US": [
         "Yay! I got a Pal Pad at the\n",
         "Pokémon Wi-Fi Club downstairs!"
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_SwitchOnThePCAtAnyPokemonCenter",
+      "id": "OreburghCityPokecenter1F_Text_SwitchOnThePC",
       "en_US": [
         "Switch on the PC at any Pokémon\n",
         "Center.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_WhatIsYourFavoriteKindOfTrainerCanYouTellMe",
+      "id": "OreburghCityPokecenter1F_Text_TellMeFavoriteKindOfTrainer",
       "en_US": [
         "Hmmm...!\r",
         "What is your favorite kind of Trainer?\n",
@@ -28,21 +28,21 @@
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_WhichKindOfTrainerWouldYouLikeToBe",
+      "id": "OreburghCityPokecenter1F_Text_BeWhichKindOfTrainer",
       "en_US": [
         "Which kind of Trainer would you like\n",
         "to be?"
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_AskThisIsTheKindOfTrainerYouWantToBe",
+      "id": "OreburghCityPokecenter1F_Text_IsThisWhatYouWantToBe",
       "en_US": [
         "{STRVAR_1 14, 0, 0} is the kind of Trainer\n",
         "you want to be?"
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_ISeeSoThisIsTheKindOfTrainerYouLike",
+      "id": "OreburghCityPokecenter1F_Text_SoThisIsWhatYouLike",
       "en_US": [
         "I see! So {STRVAR_1 14, 0, 0} is the kind\n",
         "of Trainer you like.\r",
@@ -51,11 +51,11 @@
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_OKThenIllJustTalkToYouLater",
+      "id": "OreburghCityPokecenter1F_Text_IllJustTalkToYouLater",
       "en_US": "OK, then I’ll just talk to you later!"
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_HowAboutTellingMeWhatKindOfTrainerYouLike",
+      "id": "OreburghCityPokecenter1F_Text_WhatKindOfTrainerDoYouLike",
       "en_US": [
         "Hello! You’ve been mistaken for\n",
         "{STRVAR_1 14, 0, 0}, haven’t you?\r",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_WhatOrWhoIsThisTeamGalacticItsAMystery",
+      "id": "OreburghCityPokecenter1F_Text_TeamGalacticIsAMystery",
       "en_US": [
         "Hmmm!\n",
         "What, or who, is this Team Galactic?!\r",
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_WhatOrWhoIsThisTeamGalactic",
+      "id": "OreburghCityPokecenter1F_Text_WhatOrWhoIsTeamGalactic",
       "en_US": [
         "Hmmm!\n",
         "What, or who, is this Team Galactic?!\r",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "OreburghCityPokecenter1F_Text_NowYouCanCaptureItAsABattleVideoUsingAVsRecorder",
+      "id": "OreburghCityPokecenter1F_Text_CaptureBattleVideoUsingVsRecorder",
       "en_US": [
         "You know how you can battle a friend\n",
         "using wireless communications?\r",

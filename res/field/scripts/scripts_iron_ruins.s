@@ -27,7 +27,7 @@ IronRuins_Statue:
     FacePlayer
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, IronRuins_CaughtRegisteelStatueStoppedEmanatingPower
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, IronRuins_DidNotCatchRegisteelStatueStoppedEmanatingPower
-    GoToIfUnset FLAG_GAME_COMPLETED, IronRuins_ItsAStatueOfAPokemonBecomeStrongerYouMust
+    GoToIfUnset FLAG_GAME_COMPLETED, IronRuins_BecomeStrongerYouMust
     CheckPartyHasFatefulEncounterRegigigas VAR_RESULT
     GoToIfEq VAR_RESULT, 0, IronRuins_ItsAStatueOfAPokemon
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, IronRuins_EncounterRegisteel
@@ -54,13 +54,13 @@ IronRuins_EncounterRegisteel:
     End
 
 IronRuins_CaughtRegisteelStatueStoppedEmanatingPower:
-    Message IronRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    Message IronRuins_Text_StatueStoppedEmanatingPower
     GoTo IronRuins_StatueEnd
     End
 
 IronRuins_DidNotCatchRegisteelStatueStoppedEmanatingPower:
     SetVar VAR_IRON_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI
-    Message IronRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    Message IronRuins_Text_StatueStoppedEmanatingPower
     GoTo IronRuins_StatueEnd
     End
 
@@ -69,8 +69,8 @@ IronRuins_BlackOut:
     ReleaseAll
     End
 
-IronRuins_ItsAStatueOfAPokemonBecomeStrongerYouMust:
-    Message IronRuins_Text_ItsAStatueOfAPokemonBecomeStrongerYouMust
+IronRuins_BecomeStrongerYouMust:
+    Message IronRuins_Text_BecomeStrongerYouMust
     GoTo IronRuins_StatueEnd
     End
 

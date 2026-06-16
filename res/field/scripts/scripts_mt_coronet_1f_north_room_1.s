@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 MtCoronet1FNorthRoom1_GruntF:
-    NPCMessage MtCoronet1FNorthRoom1_Text_TheresNoWayOfGettingToThePeakOfMtCoronetFromThisSide
+    NPCMessage MtCoronet1FNorthRoom1_Text_NoWayToPeakFromThisSide
     End
 
 MtCoronet1FNorthRoom1_GruntM:
@@ -16,10 +16,10 @@ MtCoronet1FNorthRoom1_GruntM:
     LockAll
     ApplyMovement LOCALID_GRUNT_M_1, MtCoronet1FNorthRoom1_Movement_GruntM1WalkOnSpotSouth
     WaitMovement
-    Message MtCoronet1FNorthRoom1_Text_TheFogIsSoThickAheadICantEvenSeeMyOwnHand
+    Message MtCoronet1FNorthRoom1_Text_FogIsSoThick
     ApplyMovement LOCALID_GRUNT_M_2, MtCoronet1FNorthRoom1_Movement_GruntM2WalkOnSpotNorth
     WaitMovement
-    Message MtCoronet1FNorthRoom1_Text_HahThePokemonTheyGaveMeCantUseDefogEither
+    Message MtCoronet1FNorthRoom1_Text_MyPokemonCantUseDefog
     CloseMessage
     ApplyMovement LOCALID_GRUNT_M_1, MtCoronet1FNorthRoom1_Movement_GruntMWalkOnSpotWest
     ApplyMovement LOCALID_GRUNT_M_2, MtCoronet1FNorthRoom1_Movement_GruntMWalkOnSpotWest

@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 OreburghCityNorthHouse3F_PokefanF:
-    NPCMessage OreburghCityNorthHouse3F_Text_DuringTheDaytimeEveryoneGoesOffToTheMine
+    NPCMessage OreburghCityNorthHouse3F_Text_EveryoneGoesToTheMine
     End
 
 OreburghCityNorthHouse3F_Worker:
@@ -16,7 +16,7 @@ OreburghCityNorthHouse3F_Worker:
     End
 
 OreburghCityNorthHouse3F_Twin:
-    NPCMessage OreburghCityNorthHouse3F_Text_EveryoneIncludingLotsOfPokemonDugTheBigUndergroundMaze
+    NPCMessage OreburghCityNorthHouse3F_Text_EveryoneDugUndergroundMaze
     End
 
     .balign 4, 0
