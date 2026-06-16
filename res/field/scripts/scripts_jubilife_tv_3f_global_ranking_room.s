@@ -33,17 +33,17 @@ JubilifeTV3FGlobalRankingRoom_RecordMachineContests:
     End
 
 JubilifeTV3FGlobalRankingRoom_AceTrainerF:
-    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_SomeoneBrokeMyPokemonCatchingRecord
+    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_SomeoneBrokeMyCatchingRecord
     End
 
 JubilifeTV3FGlobalRankingRoom_Collector:
-    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_IBetItdFeelGreatIfICouldBeNumberOneHere
+    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_NumberOneWouldFeelGreat
     End
 
 JubilifeTV3FGlobalRankingRoom_Fisherman:
-    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_ImTryingForTheWorldRecordAtPokemonFishing
+    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_ImTryingForRecordAtFishing
     End
 
 JubilifeTV3FGlobalRankingRoom_Worker:
-    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_SorryImStillFineTuningThisThingyHere
+    NPCMessage JubilifeTV3FGlobalRankingRoom_Text_ImStillFineTuningThisThingy
     End

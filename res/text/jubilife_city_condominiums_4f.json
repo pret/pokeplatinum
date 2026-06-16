@@ -2,7 +2,7 @@
   "key": 50230,
   "messages": [
     {
-      "id": "JubilifeCityCondominiums4F_Text_ForSomeoneLikeYouThisMightBePerfect",
+      "id": "JubilifeCityCondominiums4F_Text_ThisMightBePerfect",
       "en_US": [
         "You managed to come out here?\n",
         "That takes focus!\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "JubilifeCityCondominiums4F_Text_ThereAreItemsThatAreUsefulOnlyWhenTheyreHeldByPokemon",
+      "id": "JubilifeCityCondominiums4F_Text_SomeItemsOnlyUsefulWhenHeld",
       "en_US": [
         "There are items that are useful only\n",
         "when they’re held by Pokémon.\r",

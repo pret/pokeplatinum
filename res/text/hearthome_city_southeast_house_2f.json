@@ -2,14 +2,14 @@
   "key": 1039,
   "messages": [
     {
-      "id": "HearthomeCitySoutheastHouse2F_Text_IHaveSomethingForYourPokemon",
+      "id": "HearthomeCitySoutheastHouse2F_Text_SomethingForYourPokemon",
       "en_US": [
         "I have something for your Pokémon\n",
         "to hold. Take this {STRVAR_1 8, 0, 0}.\r"
       ]
     },
     {
-      "id": "HearthomeCitySoutheastHouse2F_Text_TheHolderRegainsHPWhenItInflictsDamage",
+      "id": "HearthomeCitySoutheastHouse2F_Text_RegainHPWhenInflictingDamage",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} should be held by\n",
         "a Pokémon in battles.\r",

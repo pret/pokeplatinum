@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 OreburghCityMiddleHouse_SchoolKidF:
-    NPCMessage OreburghCityMiddleHouse_Text_RoarkIsAUserOfRockTypePokemon
+    NPCMessage OreburghCityMiddleHouse_Text_RoarkUsesRockTypePokemon
     End
 
 OreburghCityMiddleHouse_Hiker:

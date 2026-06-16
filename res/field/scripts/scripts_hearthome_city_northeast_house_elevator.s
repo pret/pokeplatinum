@@ -1,12 +1,12 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry HearthomeCityNortheastHouseElevator_Init
+    ScriptEntry HearthomeCityNortheastHouseElevator_OnFrame_Init
     ScriptEntryEnd
 
-HearthomeCityNortheastHouseElevator_Init:
+HearthomeCityNortheastHouseElevator_OnFrame_Init:
     LockAll
-    ApplyMovement LOCALID_PLAYER, HearthomeCityNortheastHouseElevator_WalkIn
+    ApplyMovement LOCALID_PLAYER, HearthomeCityNortheastHouseElevator_Movement_PlayerWalkIn
     WaitMovement
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
     SetVar VAR_0x8008, VAR_ELEVATOR_FLOORS_ABOVE
@@ -37,19 +37,19 @@ HearthomeCityNortheastHouseElevator_ElevatorDown:
 HearthomeCityNortheastHouseElevator_ElevatorAnimation:
     WaitSE SEQ_SE_CONFIRM
     PlayElevatorAnimation VAR_0x8004, 4
-    ApplyMovement LOCALID_PLAYER, HearthomeCityNortheastHouseElevator_WalkOut
+    ApplyMovement LOCALID_PLAYER, HearthomeCityNortheastHouseElevator_Movement_PlayerWalkOut
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     Return
 
     .balign 4, 0
-HearthomeCityNortheastHouseElevator_WalkIn:
+HearthomeCityNortheastHouseElevator_Movement_PlayerWalkIn:
     WalkNormalNorth 2
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-HearthomeCityNortheastHouseElevator_WalkOut:
+HearthomeCityNortheastHouseElevator_Movement_PlayerWalkOut:
     WalkNormalSouth 2
     WalkOnSpotNormalSouth
     EndMovement

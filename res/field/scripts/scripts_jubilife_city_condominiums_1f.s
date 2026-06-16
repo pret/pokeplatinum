@@ -13,11 +13,11 @@ JubilifeCityCondominiums1F_ExpertF:
     End
 
 JubilifeCityCondominiums1F_Pikachu:
-    PokemonCryAndMessage SPECIES_PIKACHU, JubilifeCityCondominiums1F_Text_PiikaPi
+    PokemonCryAndMessage SPECIES_PIKACHU, JubilifeCityCondominiums1F_Text_PikachuCry
     End
 
 JubilifeCityCondominiums1F_Pachirisu:
-    PokemonCryAndMessage SPECIES_PACHIRISU, JubilifeCityCondominiums1F_Text_Pachipachii
+    PokemonCryAndMessage SPECIES_PACHIRISU, JubilifeCityCondominiums1F_Text_PachirisuCry
     End
 
 JubilifeCityCondominiums1F_Beauty:
@@ -26,7 +26,7 @@ JubilifeCityCondominiums1F_Beauty:
     FacePlayer
     GoToIfSet FLAG_OBTAINED_QUICK_CLAW, JubilifeCityCondominiums1F_ObtainedQuickClaw
     BufferItemName 0, ITEM_QUICK_CLAW
-    Message JubilifeCityCondominiums1F_Text_YourPokemonIsQuiteAdorableTryMakingItHoldThis
+    Message JubilifeCityCondominiums1F_Text_MakePokemonHoldThis
     SetVar VAR_0x8004, ITEM_QUICK_CLAW
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, JubilifeCityCondominiums1F_BagIsFull
@@ -43,7 +43,7 @@ JubilifeCityCondominiums1F_BagIsFull:
     End
 
 JubilifeCityCondominiums1F_ObtainedQuickClaw:
-    Message JubilifeCityCondominiums1F_Text_APokemonHoldingThatQuickClawCanSometimesAttackFirst
+    Message JubilifeCityCondominiums1F_Text_SometimesAttackFirst
     WaitButton
     CloseMessage
     ReleaseAll

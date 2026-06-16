@@ -48,13 +48,13 @@ FlowerParadise_Shaymin:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, FlowerParadise_BlackOut
     CheckDidNotCapture VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, FlowerParadise_ShayminDisappearedAmongTheFlowers
+    GoToIfEq VAR_RESULT, TRUE, FlowerParadise_ShayminDisappearedAmongFlowers
     SetFlag FLAG_CAUGHT_SHAYMIN
     ReleaseAll
     End
 
-FlowerParadise_ShayminDisappearedAmongTheFlowers:
-    Message FlowerParadise_Text_ShayminDisappearedAmongTheFlowers
+FlowerParadise_ShayminDisappearedAmongFlowers:
+    Message FlowerParadise_Text_ShayminDisappearedAmongFlowers
     WaitButton
     CloseMessage
     ClearFlag FLAG_HIDE_FLOWER_PARADISE_SHAYMIN

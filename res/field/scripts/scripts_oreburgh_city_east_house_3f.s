@@ -7,9 +7,9 @@
     ScriptEntryEnd
 
 OreburghCityEastHouse3F_ScientistM:
-    NPCMessage OreburghCityEastHouse3F_Text_TheCoalMineHeresFullyAutomated
+    NPCMessage OreburghCityEastHouse3F_Text_MineIsFullyAutomated
     End
 
 OreburghCityEastHouse3F_AceTrainerM:
-    NPCMessage OreburghCityEastHouse3F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon
+    NPCMessage OreburghCityEastHouse3F_Text_RemindMeOfFirstPokemon
     End

@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 JubilifeCitySouthHouse3F_PokefanM:
-    NPCMessage JubilifeCitySouthHouse3F_WhenIGiveMyPokemonNicknamesItsLikeTheyreMyVeryOwn
+    NPCMessage JubilifeCitySouthHouse3F_ItsLikeTheyreMyOwn
     End
 
     .balign 4, 0

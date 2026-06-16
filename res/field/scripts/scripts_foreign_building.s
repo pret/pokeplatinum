@@ -22,19 +22,19 @@ ForeignBuilding_OldMan:
     End
 
 ForeignBuilding_NinjaBoy:
-    NPCMessage ForeignBuilding_Text_PeopleAndPokemonMakeEveryoneComeTogether
+    NPCMessage ForeignBuilding_Text_ItMakesEveryoneComeTogether
     End
 
 ForeignBuilding_OldWoman:
-    NPCMessage ForeignBuilding_Text_ThatPeopleAreLonelyIsOnlyNatural
+    NPCMessage ForeignBuilding_Text_ThatPeopleAreLonelyIsNatural
     End
 
 ForeignBuilding_AceTrainerF:
-    NPCMessage ForeignBuilding_Text_ThereAreWordsThatNotEveryoneCanDescribe
+    NPCMessage ForeignBuilding_Text_WordsThatNotEveryoneCanDescribe
     End
 
 ForeignBuilding_PokefanF:
-    NPCMessage ForeignBuilding_Text_ItsOnlyNaturalWeAreDifferent
+    NPCMessage ForeignBuilding_Text_OnlyNaturalWeAreDifferent
     End
 
 ForeignBuilding_ExpertM:

@@ -11,7 +11,7 @@ MtCoronet1FSouth_CoordEvent_Cyrus:
     ApplyMovement LOCALID_PLAYER, MtCoronet1FSouth_Movement_PlayerWatchCyrusWalkToPlayer
     ApplyMovement LOCALID_CYRUS, MtCoronet1FSouth_Movement_CyrusWalkToPlayer
     WaitMovement
-    Message MtCoronet1FSouth_Text_AccordingToOneTheoryMtCoronetIsWhereTheSinnohRegionBegan
+    Message MtCoronet1FSouth_Text_MtCoronetIsWhereSinnohBegan
     CloseMessage
     ApplyMovement LOCALID_CYRUS, MtCoronet1FSouth_Movement_CyrusWalkOnSpotNorth
     ApplyMovement LOCALID_PLAYER, MtCoronet1FSouth_Movement_PlayerWalkOnSpotNorthEast

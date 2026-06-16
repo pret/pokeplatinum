@@ -7,9 +7,9 @@
     ScriptEntryEnd
 
 JubilifeCityCondominiums3F_Collector:
-    NPCMessage JubilifeCityCondominiums3F_Text_ICanTradePokemonAroundTheWorldUsingNintendoWFC
+    NPCMessage JubilifeCityCondominiums3F_Text_TradeAroundTheWorld
     End
 
 JubilifeCityCondominiums3F_Lass:
-    NPCMessage JubilifeCityCondominiums3F_Text_TheWorldYouCanReachWithNintendoWFC
+    NPCMessage JubilifeCityCondominiums3F_Text_TheWorldYouCanReach
     End

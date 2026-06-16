@@ -2,7 +2,7 @@
   "key": 25611,
   "messages": [
     {
-      "id": "OreburghCityNorthwestHouse3F_Text_IfYoudLikeLetOneHoldThisItem",
+      "id": "OreburghCityNorthwestHouse3F_Text_LetOneHoldThisItem",
       "en_US": [
         "Do you make your Pokémon hold items?\r",
         "If you’d like, let one hold this\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "OreburghCityNorthwestHouse3F_Text_ThatItemIntensifiesThePowerOfRockTypeMoves",
+      "id": "OreburghCityNorthwestHouse3F_Text_IntensifiesPowerOfRockTypeMoves",
       "en_US": [
         "That {STRVAR_1 8, 0, 0} intensifies the\n",
         "power of Rock-type moves.\r",

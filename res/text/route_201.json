@@ -432,7 +432,7 @@
       ]
     },
     {
-      "id": "Route201_Text_LetsCatchThatLegendaryPokemon",
+      "id": "Route201_Text_LetsCatchThatLegendary",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Too slow!\n",
         "{STRVAR_1 3, 1, 0}, I’m sick of waiting!\r",

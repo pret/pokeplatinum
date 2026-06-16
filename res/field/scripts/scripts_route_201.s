@@ -17,7 +17,7 @@
     ScriptEntry Route201_Briefcase
     ScriptEntry Route201_CoordEvent_FollowingRivalStopPlayerEast
     ScriptEntry Route201_ProfRowan
-    ScriptEntry Route201_CoordEvent_LetsCatchThatLegendaryPokemon
+    ScriptEntry Route201_CoordEvent_LetsCatchThatLegendary
     ScriptEntryEnd
 
 Route201_OnTransition:
@@ -1190,13 +1190,13 @@ Route201_ProfRowan:
     NPCMessage Route201_Text_RowanGoOnChooseAPokemon
     End
 
-Route201_CoordEvent_LetsCatchThatLegendaryPokemon:
+Route201_CoordEvent_LetsCatchThatLegendary:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalNoticePlayer
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message Route201_Text_LetsCatchThatLegendaryPokemon
+    Message Route201_Text_LetsCatchThatLegendary
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 110, Route201_RivalRunToPlayerX110

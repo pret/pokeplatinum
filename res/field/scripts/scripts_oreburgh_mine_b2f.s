@@ -27,7 +27,7 @@ OreburghMineB2F_RoarkTurnBackEast:
     GoTo OreburghMineB2F_RoarkUseRockSmash
 
 OreburghMineB2F_RoarkUseRockSmash:
-    Message OreburghMineB2F_Text_OKStandBackAndWatchThis
+    Message OreburghMineB2F_Text_StandBackAndWatch
     CloseMessage
     StartDestroyObstacleAnimation 2, VAR_0x8005
     WaitTime 10, VAR_RESULT
@@ -36,12 +36,12 @@ OreburghMineB2F_WaitRockSmash:
     WaitTime 1, VAR_RESULT
     GoToIfEq VAR_0x8005, 0, OreburghMineB2F_WaitRockSmash
     FacePlayer
-    Message OreburghMineB2F_Text_FallenBouldersNeedToBeSmashedSoTheyreOutOfTheWay
+    Message OreburghMineB2F_Text_BouldersNeedToBeSmashed
     CloseMessage
     GoTo OreburghMineB2F_RoarkLeave
 
 OreburghMineB2F_Unused2:
-    ApplyMovement 0, OreburghMineB2F_Movement_Unused
+    ApplyMovement LOCALID_ROARK, OreburghMineB2F_Movement_Unused
     ApplyMovement LOCALID_PLAYER, OreburghMineB2F_Movement_Unused3
     WaitMovement
     GoTo OreburghMineB2F_RemoveRoark
@@ -90,17 +90,17 @@ OreburghMineB2F_Movement_Unused3:
     EndMovement
 
 OreburghMineB2F_Machop1:
-    PokemonCryAndMessage SPECIES_MACHOP, OreburghMineB2F_Text_MachopMaaacho
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghMineB2F_Text_MachopCryMaaacho
     End
 
 OreburghMineB2F_Machop3:
-    PokemonCryAndMessage SPECIES_MACHOP, OreburghMineB2F_Text_MachopChopChop
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghMineB2F_Text_MachopCryChopChop
     End
 
 OreburghMineB2F_Machop2:
-    PokemonCryAndMessage SPECIES_MACHOP, OreburghMineB2F_Text_MachopChopmacho
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghMineB2F_Text_MachopCryChopmacho
     End
 
 OreburghMineB2F_Worker:
-    NPCMessage OreburghMineB2F_Text_IMetTheseMachopOnRoute207
+    NPCMessage OreburghMineB2F_Text_IMetMachopOnRoute207
     End

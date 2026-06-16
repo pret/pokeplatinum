@@ -2,7 +2,7 @@
   "key": 25619,
   "messages": [
     {
-      "id": "OreburghCityNorthHouse3F_Text_DuringTheDaytimeEveryoneGoesOffToTheMine",
+      "id": "OreburghCityNorthHouse3F_Text_EveryoneGoesToTheMine",
       "en_US": [
         "During the daytime, everyone goes off\n",
         "to the mine.\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "OreburghCityNorthHouse3F_Text_EveryoneIncludingLotsOfPokemonDugTheBigUndergroundMaze",
+      "id": "OreburghCityNorthHouse3F_Text_EveryoneDugUndergroundMaze",
       "en_US": [
         "Everyone, including lots of Pokémon,\n",
         "dug the big underground maze!"

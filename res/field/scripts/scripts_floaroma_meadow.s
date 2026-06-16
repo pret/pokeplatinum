@@ -78,20 +78,20 @@ FloaromaMeadow_Movement_PokefanMWalkToPlayerX13:
     EndMovement
 
 FloaromaMeadow_GruntsNoticePlayer:
-    Message FloaromaMeadow_Text_EnoughArguingHandOverThatSweetHoney
-    Message FloaromaMeadow_Text_DoAsWeSayTeamGalacticWillHaveThatHoney
+    Message FloaromaMeadow_Text_HandOverThatHoney
+    Message FloaromaMeadow_Text_DoAsWeSay
     ApplyMovement LOCALID_GRUNT_M_WEST, FloaromaMeadow_Movement_GruntNoticePlayer
     ApplyMovement LOCALID_GRUNT_M_EAST, FloaromaMeadow_Movement_GruntNoticePlayer
     WaitMovement
-    Message FloaromaMeadow_Text_HeyThisKidIsAWitnessWhatllWeDo
-    Message FloaromaMeadow_Text_TheSolutionsSimpleWeEnsureTheBratStaysQuiet
+    Message FloaromaMeadow_Text_WhatllWeDo
+    Message FloaromaMeadow_Text_EnsureTheBratStaysQuiet
     CloseMessage
     Return
 
 FloaromaMeadow_DefeatedGrunt1:
     ApplyMovement LOCALID_GRUNT_M_WEST, FloaromaMeadow_Movement_GruntWestWalkOnSpotEast
     WaitMovement
-    Message FloaromaMeadow_Text_ThisIsSoLameTheyreGoingToDockMyPay
+    Message FloaromaMeadow_Text_ThisIsSoLame
     CloseMessage
     ApplyMovement LOCALID_GRUNT_M_WEST, FloaromaMeadow_Movement_GruntWestWalkOnSpotSouth
     WaitMovement
@@ -100,7 +100,7 @@ FloaromaMeadow_DefeatedGrunt1:
     Return
 
 FloaromaMeadow_DefeatedGrunts:
-    Message FloaromaMeadow_Text_WereDoneForHereLetsGetBackToTheValleyWindworks
+    Message FloaromaMeadow_Text_LetsGetBackToWindworks
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -115,21 +115,21 @@ FloaromaMeadow_DefeatedGrunts:
     CallIfEq VAR_0x8004, 12, FloaromaMeadow_PokefanMWalkToPlayerX12
     CallIfEq VAR_0x8004, 13, FloaromaMeadow_PokefanMWalkToPlayerX13
     RemoveObject LOCALID_ITEM_WORKS_KEY
-    Message FloaromaMeadow_Text_ItsAWorksKeyItMustBeForTheValleyWindworks
+    Message FloaromaMeadow_Text_KeyMustBeForWindworks
     SetVar VAR_0x8004, ITEM_WORKS_KEY
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetFlag FLAG_OBTAINED_FLOAROMA_MEADOW_WORKS_KEY
-    Message FloaromaMeadow_Text_INeedToThankYouThisSweetSweetHoneyGoOnTakeAWholeLot
+    Message FloaromaMeadow_Text_ThankYouTakeALot
     SetVar VAR_0x8004, ITEM_HONEY
     SetVar VAR_0x8005, 10
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FloaromaMeadow_CantGiveHoneyBagIsFull
     Common_GiveItemQuantity
-    Message FloaromaMeadow_Text_SlatherThatHoneyOnASweetSmellingTree
+    Message FloaromaMeadow_Text_SlatherHoneyOnATree
     GoTo FloaromaMeadow_DefeatedGruntsReturn
 
 FloaromaMeadow_CantGiveHoneyBagIsFull:
-    Message FloaromaMeadow_Text_OhTooBadSeemsToMeYourBagsFull
+    Message FloaromaMeadow_Text_YourBagsFull
 FloaromaMeadow_DefeatedGruntsReturn:
     SetFlag FLAG_DEFEATED_FLOAROMA_MEADOW_GRUNTS
     WaitButton
@@ -158,7 +158,7 @@ FloaromaMeadow_PokefanM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message FloaromaMeadow_Text_WouldYouLikeToBuySomeHoneyForAttractingPokemon
+    Message FloaromaMeadow_Text_BuySomeHoney
     ShowMoney 20, 2
     GoTo FloaromaMeadow_ShowMenuHoney
     End
@@ -178,14 +178,14 @@ FloaromaMeadow_ShowMenuHoney:
     End
 
 FloaromaMeadow_TryBuy1Honey:
-    GoToIfNotEnoughMoney 100, FloaromaMeadow_OopsyYouDontHaveEnoughMoney
+    GoToIfNotEnoughMoney 100, FloaromaMeadow_NotEnoughMoney
     SetVar VAR_0x8005, 1
     SetVar VAR_0x8006, 100
     GoTo FloaromaMeadow_TryGiveHoney
     End
 
 FloaromaMeadow_TryBuy10Honey:
-    GoToIfNotEnoughMoney 1000, FloaromaMeadow_OopsyYouDontHaveEnoughMoney
+    GoToIfNotEnoughMoney 1000, FloaromaMeadow_NotEnoughMoney
     SetVar VAR_0x8005, 10
     SetVar VAR_0x8006, 1000
     GoTo FloaromaMeadow_TryGiveHoney
@@ -213,15 +213,15 @@ FloaromaMeadow_OopsyWellComeAgain:
     End
 
 FloaromaMeadow_CantBuyHoneyBagIsFull:
-    Message FloaromaMeadow_Text_OhTooBadSeemsToMeYourBagsFull
+    Message FloaromaMeadow_Text_YourBagsFull
     WaitButton
     HideMoney
     CloseMessage
     ReleaseAll
     End
 
-FloaromaMeadow_OopsyYouDontHaveEnoughMoney:
-    Message FloaromaMeadow_Text_OopsyYouDontHaveEnoughMoney
+FloaromaMeadow_NotEnoughMoney:
+    Message FloaromaMeadow_Text_NotEnoughMoney
     WaitButton
     HideMoney
     CloseMessage

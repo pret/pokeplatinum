@@ -24,7 +24,7 @@ HearthomeCityPokemonFanClub_Gentleman:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_POFFIN_CASE, HearthomeCityPokemonFanClub_WeAreTheNumberOneFanClub
+    GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_POFFIN_CASE, HearthomeCityPokemonFanClub_WeAreNumberOneFanClub
     Message HearthomeCityPokemonFanClub_Text_IAmTheChairman
     SetVar VAR_0x8004, ITEM_POFFIN_CASE
     SetVar VAR_0x8005, 1
@@ -37,8 +37,8 @@ HearthomeCityPokemonFanClub_Gentleman:
     ReleaseAll
     End
 
-HearthomeCityPokemonFanClub_WeAreTheNumberOneFanClub:
-    Message HearthomeCityPokemonFanClub_Text_WeAreTheNumberOneFanClub
+HearthomeCityPokemonFanClub_WeAreNumberOneFanClub:
+    Message HearthomeCityPokemonFanClub_Text_WeAreNumberOneFanClub
     WaitButton
     CloseMessage
     ReleaseAll
@@ -110,7 +110,7 @@ HearthomeCityPokemonFanClub_Friendship1To49:
     End
 
 HearthomeCityPokemonFanClub_Friendship0:
-    Message HearthomeCityPokemonFanClub_Text_ThisOneReallyHasntTakenTooKindlyToYou
+    Message HearthomeCityPokemonFanClub_Text_HasntTakenTooKindlyToYou
     WaitButton
     CloseMessage
     ReleaseAll

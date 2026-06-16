@@ -2,7 +2,7 @@
   "key": 44594,
   "messages": [
     {
-      "id": "FloaromaTownPokecenter1F_Text_IfYouveGotPokemonWithYouItsSafeToGoOffTravelingAlone",
+      "id": "FloaromaTownPokecenter1F_Text_WithPokemonSafeToTravelAlone",
       "en_US": [
         "If you’ve got Pokémon with you,\n",
         "it’s safe for even a kid like you\f",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_IHadABattleTheOtherDayAndMyPokemonsHPGotLow",
+      "id": "FloaromaTownPokecenter1F_Text_MyPokemonsHPGotLow",
       "en_US": [
         "I had a battle the other day, and my\n",
         "Pokémon’s HP got low.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_ThereveBeenProblemsWithTheElectricPowerLately",
+      "id": "FloaromaTownPokecenter1F_Text_ProblemsWithElectricPower",
       "en_US": [
         "There’ve been problems with the\n",
         "electric power lately.\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_ItsALongWayFromHereToEternaCity",
+      "id": "FloaromaTownPokecenter1F_Text_LongWayToEternaCity",
       "en_US": [
         "It’s a long way from here to Eterna\n",
         "City.\r",

@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "HearthomeCity_Text_TheyFoundAnEggAtTheDayCare",
+      "id": "HearthomeCity_Text_FoundAnEggAtDayCare",
       "en_US": [
         "Did you know?\r",
         "They found an Egg at the Day Care in\n",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "HearthomeCity_Text_TheyFindEggsInJohtoToo",
+      "id": "HearthomeCity_Text_EggsInJohtoToo",
       "en_US": [
         "Did you know?\r",
         "They find Eggs in the far-off Johto\n",
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "HearthomeCity_Text_AtTheLostTowerPeopleUnburdenThemselves",
+      "id": "HearthomeCity_Text_PeopleUnburdenThemselves",
       "en_US": [
         "At the Lost Tower, people unburden\n",
         "themselves of unbearable sorrow...\r",
@@ -140,14 +140,14 @@
       ]
     },
     {
-      "id": "HearthomeCity_Text_IUsedAFireStoneToEvolve",
+      "id": "HearthomeCity_Text_UsedFireStoneToEvolve",
       "en_US": [
         "I used a Fire Stone on my Pokémon,\n",
         "and it evolved!"
       ]
     },
     {
-      "id": "HearthomeCity_Text_MayIShowYouToTheContestHall",
+      "id": "HearthomeCity_Text_ShowYouToContestHall",
       "en_US": [
         "I’m visiting here all the way from\n",
         "the Hoenn region.\r",
@@ -203,7 +203,7 @@
       "en_US": "Apapapu!"
     },
     {
-      "id": "HearthomeCity_Text_IWentForAStrollWithPachirisu",
+      "id": "HearthomeCity_Text_StrollWithPachirisu",
       "en_US": [
         "I went for a stroll in Amity Square\n",
         "with my PACHIRISU today.\r",
@@ -218,7 +218,7 @@
       "en_US": "PACHIRISU: Kyukyuuh!"
     },
     {
-      "id": "HearthomeCity_Text_SometimesEggsAreFoundAtTheDayCare",
+      "id": "HearthomeCity_Text_SometimesEggsAtDayCare",
       "en_US": [
         "I have a professor friend, and this is\n",
         "what he told me.\r",
@@ -444,7 +444,7 @@
       ]
     },
     {
-      "id": "HearthomeCity_Text_WhatPokemonWillMyChildBefriend",
+      "id": "HearthomeCity_Text_WhatWillMyChildBefriend",
       "en_US": [
         "I can feel the baby stroller getting\n",
         "heavier each and every day.\r",
@@ -475,7 +475,7 @@
       ]
     },
     {
-      "id": "HearthomeCity_Text_IPutMyVsSeekerThroughALot",
+      "id": "HearthomeCity_Text_UsedVsSeekerALot",
       "en_US": [
         "I put my Vs. Seeker through its paces\n",
         "a lot.\r",
@@ -493,7 +493,7 @@
       ]
     },
     {
-      "id": "HearthomeCity_Text_SignHearthomeCityPokemonGym",
+      "id": "HearthomeCity_Text_SignPokemonGym",
       "en_US": [
         "Hearthome City Pokémon Gym\n",
         "Leader: Fantina\f",
@@ -543,7 +543,7 @@
       ]
     },
     {
-      "id": "HearthomeCity_Text_SignThePoffinHouse",
+      "id": "HearthomeCity_Text_SignPoffinHouse",
       "en_US": [
         "The Poffin House\n",
         "Delicious Poffins--Smiles for All"
