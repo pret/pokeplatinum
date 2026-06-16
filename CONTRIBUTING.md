@@ -22,6 +22,7 @@ Thanks again, and we look forward to hearing from you! 🎉
   - [What must I do before submitting a pull request?](#what-must-i-do-before-submitting-a-pull-request)
   - [How do I submit a pull request?](#how-do-i-submit-a-pull-request)
   - [What to Expect](#what-to-expect)
+- [AI Policy](#ai-policy)
 <!--toc:end-->
 
 ## What work is there to be done?
@@ -303,3 +304,13 @@ more-heavily scrutinized than a long-time contributor's. We all have room to
 improve. 🙏
 
 [conv-comments]: https://conventionalcomments.org/
+
+## AI Policy
+
+We unequivocally prohibit the use of artifical intelligence (AI) large language models (LLMs) to generate contributions to this project, meaningful or otherwise. Any pull request found to have used AI will be closed, and the contributor may be banned from interacting with the repository at the maintainers' discretion.
+
+The following use cases are deemed acceptable and stand as exceptions to the above statement, provided that they are disclosed in full. While this document is not legally binding, we do expect you to represent yourself truthfully.
+
+- Automating the boring stuff. So long as the task is clearly defined by a human, is boiled down to pure execution with no further creative decision-making, and is sufficiently tedious to perform by hand, you may delegate it to an AI. However, we do strongly encourage you to do as much as you can by hand or write a script to automate the task, rather than invoking an AI to do it for you.
+
+- Asking general knowledge questions about C code, the ARM processor, Pokémon, etc.
