@@ -12,8 +12,6 @@
 #include "generated/species.h"
 #include "generated/text_banks.h"
 
-#include "struct_defs/sentence.h"
-
 #include "applications/bag/application.h"
 #include "applications/mail.h"
 #include "applications/party_menu/defs.h"
@@ -35,6 +33,7 @@
 #include "comm_manager.h"
 #include "dexmode_checker.h"
 #include "easy_chat_args.h"
+#include "easy_chat_sentence.h"
 #include "evolution.h"
 #include "field_bgm.h"
 #include "field_move_tasks.h"
@@ -76,7 +75,6 @@
 #include "text.h"
 #include "trainer_case.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
 #include "unk_0202D778.h"
 #include "unk_02033200.h"
 #include "unk_0203D1B8.h"
@@ -1406,8 +1404,8 @@ static BOOL StartMenu_Chat(FieldTask *fieldTask)
 
     menu->taskData = EasyChatArgs_New(EASY_CHAT_TYPE_SENTENCE, EasyChat_Text_ChooseWordOrPhrase, fieldSystem->saveData, HEAP_ID_FIELD2);
 
-    Sentence sentence;
-    Sentence_InitWithType(&sentence, 4);
+    EasyChatSentence sentence;
+    EasyChatSentence_InitWithType(&sentence, EASY_CHAT_SENTENCE_TYPE_UNION_ROOM);
     EasyChatArgs_SetSentence(menu->taskData, &sentence);
     FieldSystem_OpenEasyChat(fieldSystem, (EasyChatArgs *)menu->taskData);
 
@@ -1422,7 +1420,7 @@ static BOOL StartMenu_ExitChat(FieldTask *fieldTask)
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
     if (!EasyChatArgs_IsUnmodified(menu->taskData)) {
-        Sentence sentence;
+        EasyChatSentence sentence;
         EasyChatArgs_CopySentenceTo(menu->taskData, &sentence);
 
         if (CommServerClient_IsInitialized()) {

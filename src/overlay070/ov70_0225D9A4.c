@@ -2006,7 +2006,7 @@ static void ov70_0225F318(UnkStruct_ov70_0225F208 *param0, u32 param1, u32 param
 
 static void ov70_0225F32C(UnkStruct_ov70_0225F208 *param0, u32 param1, u16 param2)
 {
-    StringTemplate_SetCustomMessageWord(param0->unk_00, param1, param2);
+    StringTemplate_SetEasyChatWord(param0->unk_00, param1, param2);
 }
 
 static void ov70_0225F338(UnkStruct_ov70_0225F208 *param0)

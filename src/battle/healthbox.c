@@ -7,7 +7,7 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
-#include "generated/string_padding_mode.h"
+#include "constants/string.h"
 
 #include "battle/battle_system.h"
 #include "graphics/battle/sprites.naix"

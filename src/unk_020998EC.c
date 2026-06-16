@@ -3,16 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014D38_decl.h"
-#include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 
 #include "easy_chat_args.h"
+#include "easy_chat_words.h"
 #include "heap.h"
 #include "inlines.h"
 #include "pokedex.h"
 #include "string_gf.h"
-#include "unk_02014D38.h"
 
 static const u16 Unk_020F8420[] = {
     0x1CC,
@@ -3135,7 +3133,7 @@ static const u16 *const Unk_020F74D8[] = {
 
 struct UnkStruct_020998EC_t {
     const EasyChatArgs *unk_00;
-    UnkStruct_02014D38 *unk_04;
+    EasyChatWordLoader *unk_04;
     u32 unk_08[12];
     u32 unk_38[12];
     u16 unk_68[1495];
@@ -3165,7 +3163,7 @@ UnkStruct_020998EC *sub_020998EC(u32 heapID, const EasyChatArgs *param1)
 
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_020998EC));
     v0->unk_00 = param1;
-    v0->unk_04 = sub_02014D38(heapID);
+    v0->unk_04 = EasyChatWordLoader_New(heapID);
 
     for (v1 = 0; v1 < ((1495 >> 3) + 1); v1++) {
         v0->unk_189E[v1] = 0;
@@ -3180,7 +3178,7 @@ UnkStruct_020998EC *sub_020998EC(u32 heapID, const EasyChatArgs *param1)
 void sub_0209992C(UnkStruct_020998EC *param0)
 {
     if (param0) {
-        sub_02014D70(param0->unk_04);
+        EasyChatWordLoader_Free(param0->unk_04);
         Heap_Free(param0);
     }
 }
@@ -3260,12 +3258,12 @@ static u32 sub_020999E0(UnkStruct_020998EC *param0, const u16 *param1, u32 param
 
 static u32 sub_02099A30(UnkStruct_020998EC *param0, const u16 *param1, u32 param2, u16 *param3)
 {
-    const UnkStruct_02014EC4 *v0 = sub_02097560(param0->unk_00);
+    const UnlockedEasyChatWords *v0 = EasyChatArgs_GetUnlockedWords(param0->unk_00);
     u32 v1, v2;
-    u16 v3 = sub_02014DFC(444, 0);
+    u16 v3 = EasyChatWord_FromBankAndEntry(444, 0);
 
     for (v1 = 0, v2 = 0; v1 < param2; v1++) {
-        if (sub_02014ED8(v0, param1[v1] - v3)) {
+        if (EasyChatWords_IsToughWordUnlocked(v0, param1[v1] - v3)) {
             inline_02099980(param0, param1[v1]);
             *param3++ = param1[v1];
             v2++;
@@ -3277,11 +3275,11 @@ static u32 sub_02099A30(UnkStruct_020998EC *param0, const u16 *param1, u32 param
 
 static u32 sub_02099AA0(UnkStruct_020998EC *param0, const u16 *param1, u32 param2, u16 *param3)
 {
-    const UnkStruct_02014EC4 *v0 = sub_02097560(param0->unk_00);
+    const UnlockedEasyChatWords *v0 = EasyChatArgs_GetUnlockedWords(param0->unk_00);
     u16 v1, v2;
     u32 v3, v4;
 
-    v1 = sub_02014DFC(441, 0);
+    v1 = EasyChatWord_FromBankAndEntry(441, 0);
     v2 = v1 + 6 - 1;
     v4 = 0;
 
@@ -3289,7 +3287,7 @@ static u32 sub_02099AA0(UnkStruct_020998EC *param0, const u16 *param1, u32 param
         if ((param1[v3] >= v1) && (param1[v3] <= v2)) {
             u32 v5 = param1[v3] - v1;
 
-            if (sub_02014F8C(v0, v5) == 0) {
+            if (EasyChatWords_IsGreetingUnlocked(v0, v5) == 0) {
                 continue;
             }
         }
@@ -3380,7 +3378,7 @@ u32 sub_02099CA0(const UnkStruct_020998EC *param0, u32 param1)
 void sub_02099CA8(const UnkStruct_020998EC *param0, u32 param1, u32 param2, String *param3)
 {
     u32 v0 = param0->unk_38[param1];
-    sub_02014D90(param0->unk_04, param0->unk_68[v0 + param2], param3);
+    EasyChatWordLoader_GetString(param0->unk_04, param0->unk_68[v0 + param2], param3);
 }
 
 u16 sub_02099CC8(const UnkStruct_020998EC *param0, u32 param1, u32 param2)
@@ -3398,7 +3396,7 @@ void sub_02099CEC(const UnkStruct_020998EC *param0, u32 param1, u32 param2, Stri
 {
     if (param0->unk_C18[param1]) {
         u16 v0 = sub_02099D14(param0, param1, param2);
-        sub_02014D90(param0->unk_04, v0, param3);
+        EasyChatWordLoader_GetString(param0->unk_04, v0, param3);
     }
 }
 

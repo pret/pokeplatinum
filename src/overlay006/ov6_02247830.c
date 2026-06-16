@@ -3,10 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014FB0_decl.h"
-
+#include "easy_chat_words.h"
 #include "trainer_info.h"
-#include "unk_02014D38.h"
 
 static void ov6_02247830(u8 *param0, u8 param1, u8 param2)
 {
