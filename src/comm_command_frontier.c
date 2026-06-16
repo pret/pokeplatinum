@@ -18,6 +18,7 @@
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "comm_command.h"
 #include "communication_system.h"
@@ -204,7 +205,7 @@ BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0)
     param0->unk_08[0] = param0->unk_A0;
 
     v2 = ov104_0223C264(param0->unk_A0);
-    param0->unk_08[1] = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->saveData), v2, BattleFrontierStats_GetHostFriendIdx(v2));
+    param0->unk_08[1] = BattleFrontierSave_GetStat(SaveData_GetBattleFrontier(param0->saveData), v2, BattleFrontierStats_GetHostFriendIdx(v2));
 
     if (CommSys_SendData(COMM_CMD_F_57, param0->unk_08, v1) == 1) {
         v0 = 1;

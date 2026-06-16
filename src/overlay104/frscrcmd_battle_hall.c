@@ -19,8 +19,8 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
 
-#include "comm_command_frontier.h"
 #include "battle_hall_save.h"
+#include "comm_command_frontier.h"
 #include "field_battle_data_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
