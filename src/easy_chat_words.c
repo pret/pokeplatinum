@@ -3,6 +3,9 @@
 #include <nitro.h>
 
 #include "constants/versions.h"
+#include "generated/abilities.h"
+#include "generated/moves.h"
+#include "generated/pokemon_types.h"
 #include "generated/text_banks.h"
 
 #include "graphics.h"
@@ -53,65 +56,65 @@ static const u16 sTextBanks[] = {
 };
 
 static const u16 sDummy[] = {
-    0x441,
-    0x599
+    GET_ABILITY_WORD(ABILITY_ANTICIPATION),
+    GET_FEELINGS_WORD(Feelings_Text_Anticipation)
 };
 
 static const u16 sDummy2[] = {
-    0x4C0,
-    0x4F0
+    GET_GREETING_WORD(Greetings_Text_Hey),
+    GET_GREETING_WORD(Greetings_Text_Hey_Unused)
 };
 
 static const u16 sDummy3[] = {
-    0x4A7,
-    0x4E1
+    GET_GREETING_WORD(Greetings_Text_Huh_Unused),
+    GET_GREETING_WORD(Greetings_Text_Huh)
 };
 
 static const u16 sDummy4[] = {
-    0x479,
-    0x498,
-    0x49B,
-    0x49C
+    GET_PEOPLE_WORD(PeopleWords_Text_I_Unused),
+    GET_PEOPLE_WORD(PeopleWords_Text_I_Unused2),
+    GET_PEOPLE_WORD(PeopleWords_Text_I_Unused3),
+    GET_PEOPLE_WORD(PeopleWords_Text_I)
 };
 
 static const u16 sDummy5[] = {
-    0x48F,
-    0x497
+    GET_PEOPLE_WORD(PeopleWords_Text_Kids),
+    GET_PEOPLE_WORD(PeopleWords_Text_Kids_Unused)
 };
 
 static const u16 sDummy6[] = {
-    0x4FC,
-    0x596
+    GET_GREETING_WORD(Greetings_Text_NoWay),
+    GET_FEELINGS_WORD(Feelings_Text_NoWay)
 };
 
 static const u16 sDummy7[] = {
-    0x4BB,
-    0x500
+    GET_GREETING_WORD(Greetings_Text_OK),
+    GET_GREETING_WORD(Greetings_Text_OK_Unused)
 };
 
 static const u16 sDummy8[] = {
-    0x24E,
-    0x3D2
+    GET_MOVE_WORD(MOVE_PSYCHIC),
+    GET_TYPE_WORD(TYPE_PSYCHIC)
 };
 
 static const u16 sDummy9[] = {
-    0x42C,
-    0x59D
+    GET_ABILITY_WORD(ABILITY_SIMPLE),
+    GET_FEELINGS_WORD(Feelings_Text_Simple)
 };
 
 static const u16 sDummy10[] = {
-    0x4B0,
-    0x4FF
+    GET_GREETING_WORD(Greetings_Text_Welcome_Unused),
+    GET_GREETING_WORD(Greetings_Text_Welcome)
 };
 
 static const u16 sDummy11[] = {
-    0x4B6,
-    0x505
+    GET_GREETING_WORD(Greetings_Text_Wow),
+    GET_GREETING_WORD(Greetings_Text_Wow_Unused)
 };
 
 static const u16 sDummy12[] = {
-    0x47A,
-    0x48D
+    GET_PEOPLE_WORD(PeopleWords_Text_You),
+    GET_PEOPLE_WORD(PeopleWords_Text_You_Unused)
 };
 
 static const struct {

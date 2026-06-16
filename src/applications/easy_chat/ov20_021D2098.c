@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020998EC_decl.h"
-
 #include "applications/easy_chat/categories.h"
 #include "applications/easy_chat/main.h"
 #include "applications/easy_chat/ov20_021D2EA4.h"
@@ -17,6 +15,7 @@
 #include "applications/easy_chat/struct_ov20_021D4AD4_decl.h"
 
 #include "bg_window.h"
+#include "easy_chat_word_list.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -34,7 +33,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     SysTask *unk_04;
     SysTask *unk_08[4];
     const EasyChatApp *unk_18;
-    const UnkStruct_020998EC *unk_1C;
+    const WordList *unk_1C;
     BgConfig *unk_20;
     SpriteList *unk_24;
     G2dRenderer unk_28;
@@ -54,7 +53,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
 typedef struct {
     UnkStruct_ov20_021D2128 *unk_00;
     const EasyChatApp *unk_04;
-    const UnkStruct_020998EC *unk_08;
+    const WordList *unk_08;
     u32 unk_0C;
     int unk_10;
     int unk_14;
@@ -95,7 +94,7 @@ static void ov20_021D2DA0(SysTask *param0, void *param1);
 static void ov20_021D2DBC(SysTask *param0, void *param1);
 static void ov20_021D2DD8(SysTask *param0, void *param1);
 
-UnkStruct_ov20_021D2128 *ov20_021D2098(const EasyChatApp *param0, const UnkStruct_020998EC *param1)
+UnkStruct_ov20_021D2128 *ov20_021D2098(const EasyChatApp *param0, const WordList *param1)
 {
     UnkStruct_ov20_021D2128 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D2128));
 

@@ -5,6 +5,31 @@
 #include "savedata.h"
 #include "string_gf.h"
 
+#include "res/text/bank/ability_names_uppercase.h"
+#include "res/text/bank/feelings.h"
+#include "res/text/bank/greetings.h"
+#include "res/text/bank/lifestyle_words.h"
+#include "res/text/bank/move_names_uppercase.h"
+#include "res/text/bank/people_words.h"
+#include "res/text/bank/pokemon_type_names.h"
+#include "res/text/bank/species_name.h"
+#include "res/text/bank/tough_words.h"
+#include "res/text/bank/trainer_words.h"
+#include "res/text/bank/union_words.h"
+
+#define GET_MOVE_WORD(move)           (TEXT_BANK_SPECIES_NAME_ENTRY_COUNT + move)
+#define GET_TYPE_WORD(type)           (GET_MOVE_WORD(TEXT_BANK_MOVE_NAMES_UPPERCASE_ENTRY_COUNT) + type)
+#define GET_ABILITY_WORD(ability)     (GET_TYPE_WORD(TEXT_BANK_POKEMON_TYPE_NAMES_ENTRY_COUNT) + ability)
+#define GET_TRAINER_WORD(bankEntry)   (GET_ABILITY_WORD(TEXT_BANK_ABILITY_NAMES_UPPERCASE_ENTRY_COUNT) + bankEntry)
+#define GET_PEOPLE_WORD(bankEntry)    (GET_TRAINER_WORD(TEXT_BANK_TRAINER_WORDS_ENTRY_COUNT) + bankEntry)
+#define GET_GREETING_WORD(bankEntry)  (GET_PEOPLE_WORD(TEXT_BANK_PEOPLE_WORDS_ENTRY_COUNT) + bankEntry)
+#define GET_LIFESTYLE_WORD(bankEntry) (GET_GREETING_WORD(TEXT_BANK_GREETINGS_ENTRY_COUNT) + bankEntry)
+#define GET_FEELINGS_WORD(bankEntry)  (GET_LIFESTYLE_WORD(TEXT_BANK_LIFESTYLE_WORDS_ENTRY_COUNT) + bankEntry)
+#define GET_TOUGH_WORD(bankEntry)     (GET_FEELINGS_WORD(TEXT_BANK_FEELINGS_ENTRY_COUNT) + bankEntry)
+#define GET_UNION_WORD(bankEntry)     (GET_TOUGH_WORD(TEXT_BANK_TOUGH_WORDS_ENTRY_COUNT) + bankEntry)
+
+#define WORD_COUNT GET_UNION_WORD(TEXT_BANK_UNION_WORDS_ENTRY_COUNT)
+
 #define WORD_NONE 0xFFFF
 
 enum EasyChatWordTextBank {

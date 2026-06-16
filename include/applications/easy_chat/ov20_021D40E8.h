@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_OV20_021D40E8_H
 #define POKEPLATINUM_OV20_021D40E8_H
 
-#include "struct_decls/struct_020998EC_decl.h"
-
 #include "applications/easy_chat/main.h"
 #include "applications/easy_chat/struct_ov20_021D2128_decl.h"
 #include "applications/easy_chat/struct_ov20_021D4210_decl.h"
 
-UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const UnkStruct_020998EC *param2);
+#include "easy_chat_word_list.h"
+
+UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const WordList *param2);
 void ov20_021D4164(UnkStruct_ov20_021D4210 *param0);
 void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0);
 void ov20_021D4294(UnkStruct_ov20_021D4210 *param0);
