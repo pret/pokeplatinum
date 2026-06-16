@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "bag.h"
-#include "battle_frontier_stats.h"
+#include "battle_frontier_save.h"
 #include "battle_hall_win_records.h"
 #include "battle_regulation.h"
 #include "chatot_cry.h"
@@ -69,7 +69,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_GAME_RECORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GameRecords_SaveSize, (SaveEntryInitFunc)GameRecords_Init },
     { SAVE_TABLE_ENTRY_SEAL_CASE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SealCase_SaveSize, (SaveEntryInitFunc)SealCase_Init },
     { SAVE_TABLE_ENTRY_CHATOT, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ChatotCry_SaveSize, (SaveEntryInitFunc)ChatotCry_Init },
-    { SAVE_TABLE_ENTRY_FRONTIER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BattleFrontier_SaveSize, (SaveEntryInitFunc)BattleFrontier_Init },
+    { SAVE_TABLE_ENTRY_FRONTIER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BattleFrontierSave_Size, (SaveEntryInitFunc)BattleFrontier_Init },
     { SAVE_TABLE_ENTRY_RIBBONS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Ribbons_SaveSize, (SaveEntryInitFunc)Ribbons_Init },
     { SAVE_TABLE_ENTRY_ENCOUNTERS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SpecialEncounter_SaveSize, (SaveEntryInitFunc)SpecialEncounter_Init },
     { SAVE_TABLE_ENTRY_GLOBAL_TRADE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GlobalTrade_SaveSize, (SaveEntryInitFunc)GlobalTrade_Init },

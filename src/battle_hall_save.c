@@ -15,7 +15,7 @@ void BattleHallSave_Init(BattleHallSave *challenge)
 
 BattleHallSave *BattleHallSave_Get(SaveData *saveData)
 {
-    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &frontier->hallSave;
 }
 
@@ -112,7 +112,7 @@ void BattleHallStreakFlags_Init(BattleHallStreakFlags *flags)
 
 BattleHallStreakFlags *BattleHallStreakFlags_Get(SaveData *saveData)
 {
-    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &frontier->hall.streakFlags;
 }
 

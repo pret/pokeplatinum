@@ -13,6 +13,7 @@
 #include "overlay104/struct_battle_castle.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "communication_information.h"
@@ -26,7 +27,6 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "string_gf.h"
-#include "unk_0205DFC4.h"
 
 static int ov104_0223B6F4(u8 param0, int param1, int param2);
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);
@@ -411,17 +411,17 @@ u16 ov104_0223BC24(u16 param0)
     return param0;
 }
 
-void ov104_0223BC2C(BattleFrontier *frontier, u8 challengeType, int castlePoints)
+void ov104_0223BC2C(BattleFrontierSave *frontier, u8 challengeType, int castlePoints)
 {
     u16 v0;
 
-    BattleFrontierStats_SubtractFromStat(frontier, BattleFrontierStats_GetCastleLatestCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(challengeType)), castlePoints);
-    v0 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)));
+    BattleFrontierSave_SubtractFromStat(frontier, BattleFrontierStats_GetCastleLatestCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(challengeType)), castlePoints);
+    v0 = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType));
 
     if (v0 + castlePoints > 9999) {
-        BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)), 9999);
+        BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), 9999);
     } else {
-        BattleFrontierStats_AddToStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)), castlePoints);
+        BattleFrontierSave_AddToStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)), castlePoints);
     }
 
     return;
