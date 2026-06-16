@@ -9,7 +9,7 @@
     ScriptEntry FieldMoves_Water
     ScriptEntry FieldMoves_Fog_Unused
     ScriptEntry FieldMoves_Waterfall
-    ScriptEntry FieldMoves_Dummy
+    ScriptEntry FieldMoves_Dummy8
     ScriptEntry FieldMoves_UseCutFromMenu
     ScriptEntry FieldMoves_UseRockSmashFromMenu
     ScriptEntry FieldMoves_UseStrengthFromMenu
@@ -460,7 +460,7 @@ FieldMoves_UseWaterfallFromMenu:
     ReleaseAll
     End
 
-FieldMoves_Dummy:
+FieldMoves_Dummy8:
     End
 
     .balign 4, 0

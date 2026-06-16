@@ -127,7 +127,7 @@ ContestHallLobby_Movement_MomFaceKeira:
     WalkOnSpotNormalEast
     EndMovement
 
-ContestHallLobby_UnusedMovement:
+ContestHallLobby_Movement_Unused:
     WalkOnSpotNormalEast
     EndMovement
 
@@ -136,15 +136,15 @@ ContestHallLobby_Movement_MomFacePlayer:
     WalkOnSpotNormalSouth
     EndMovement
 
-ContestHallLobby_UnusedMovement2:
+ContestHallLobby_Movement_Unused2:
     WalkNormalWest 8
     EndMovement
 
-ContestHallLobby_UnusedMovement3:
+ContestHallLobby_Movement_Unused3:
     WalkNormalNorth 6
     EndMovement
 
-ContestHallLobby_UnusedMovement4:
+ContestHallLobby_Movement_Unused4:
     WalkNormalEast 8
     EndMovement
 

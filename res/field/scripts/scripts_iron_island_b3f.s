@@ -3,7 +3,7 @@
 
     ScriptEntry IronIslandB3F_OnTransition
     ScriptEntry IronIslandB3F_CoordEvent_PlatformLift
-    ScriptEntry IronIslandB3F_Unused
+    ScriptEntry IronIslandB3F_Dummy3
     ScriptEntry IronIslandB3F_OnLoad
     ScriptEntryEnd
 
@@ -37,7 +37,7 @@ IronIslandB3F_ResetIronRuinsState:
     SetVar VAR_IRON_RUINS_STATE, 0
     Return
 
-IronIslandB3F_Unused:
+IronIslandB3F_Dummy3:
     End
 
     .balign 4, 0

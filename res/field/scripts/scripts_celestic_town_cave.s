@@ -171,7 +171,7 @@ CelesticTownCave_PlayerElderFaceEachOtherX9South:
     Return
 
 CelesticTownCave_Unused:
-    ApplyMovement LOCALID_PLAYER, CelesticTownCave_UnusedMovement
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_Unused
     ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotWest
     WaitMovement
     Return
@@ -190,7 +190,7 @@ CelesticTownCave_PlayerElderFaceEachOtherX10South:
     Return
 
 CelesticTownCave_Unused2:
-    ApplyMovement LOCALID_PLAYER, CelesticTownCave_UnusedMovement2
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_Movement_Unused2
     ApplyMovement LOCALID_ELDER, CelesticTownCave_Movement_ElderWalkOnSpotWest
     WaitMovement
     Return
@@ -303,7 +303,7 @@ CelesticTownCave_Movement_PlayerWalkNorthOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
-CelesticTownCave_UnusedMovement:
+CelesticTownCave_Movement_Unused:
     WalkNormalNorth 2
     WalkOnSpotNormalEast
     EndMovement
@@ -319,7 +319,7 @@ CelesticTownCave_Movement_PlayerWalkNorthOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
-CelesticTownCave_UnusedMovement2:
+CelesticTownCave_Movement_Unused2:
     WalkNormalNorth 2
     WalkOnSpotNormalWest
     EndMovement

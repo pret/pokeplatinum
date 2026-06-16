@@ -4,7 +4,7 @@
 
     ScriptEntry OreburghCityEastHouse2F_Gentleman
     ScriptEntry OreburghCityEastHouse2F_Youngster
-    ScriptEntry OreburghCityEastHouse2F_Unused
+    ScriptEntry OreburghCityEastHouse2F_Dummy3
     ScriptEntry OreburghCityEastHouse2F_ScientistM
     ScriptEntryEnd
 
@@ -39,7 +39,7 @@ OreburghCityEastHouse2F_BagIsFull:
     ReleaseAll
     End
 
-OreburghCityEastHouse2F_Unused:
+OreburghCityEastHouse2F_Dummy3:
     End
 
 OreburghCityEastHouse2F_ScientistM:

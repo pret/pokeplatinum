@@ -626,13 +626,13 @@ BattleHall_OnFrame_ChallengeEnded:
     GoTo BattleHall_EndChallenge
     End
 
-BattleHall_UnusedMovement:
+BattleHall_Movement_Unused:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth
     EndMovement
 
-BattleHall_UnusedMovement2:
+BattleHall_Movement_Unused2:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth

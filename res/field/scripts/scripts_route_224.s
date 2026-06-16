@@ -303,7 +303,7 @@ Route224_Movement_ProfOakLookAround:
     Delay16
     EndMovement
 
-Route224_UnusedMovement:
+Route224_Movement_Unused:
     WalkOnSpotNormalSouth
     EndMovement
 

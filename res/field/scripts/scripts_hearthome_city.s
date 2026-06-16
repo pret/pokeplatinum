@@ -145,7 +145,7 @@ HearthomeCity_ThisIsTheContestHall:
     ReleaseAll
     End
 
-HearthomeCity_UnusedMovement:
+HearthomeCity_Movement_Unused:
     EmoteExclamationMark
     Delay16
     EndMovement
@@ -517,7 +517,7 @@ HearthomeCity_Movement_BunearyEnter:
     WalkFastWest 9
     EndMovement
 
-HearthomeCity_UnusedMovement2:
+HearthomeCity_Movement_Unused2:
     WalkFastEast 8
     EndMovement
 

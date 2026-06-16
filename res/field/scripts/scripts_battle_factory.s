@@ -456,13 +456,13 @@ BattleFactory_OnFrame_ChallengeEnded:
     End
 
     .balign 4, 0
-BattleFactory_UnusedMovement:
+BattleFactory_Movement_Unused:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth
     EndMovement
 
-BattleFactory_UnusedMovement2:
+BattleFactory_Movement_Unused2:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth

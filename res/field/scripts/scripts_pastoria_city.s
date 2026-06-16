@@ -190,7 +190,7 @@ PastoriaCity_RemoveGruntM:
     End
 
     .balign 4, 0
-PastoriaCity_UnusedMovement:
+PastoriaCity_Movement_Unused:
     WalkOnSpotNormalWest
     EndMovement
 
@@ -200,7 +200,7 @@ PastoriaCity_Movement_PlayerWatchGruntMLeaveWest:
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement2:
+PastoriaCity_Movement_Unused2:
     WalkOnSpotNormalNorth
     WalkOnSpotNormalEast
     EndMovement
@@ -215,54 +215,54 @@ PastoriaCity_Movement_PlayerWatchGruntMLeaveNorth:
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement3:
+PastoriaCity_Movement_Unused3:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement4:
+PastoriaCity_Movement_Unused4:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement5:
+PastoriaCity_Movement_Unused5:
     WalkOnSpotNormalNorth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement6:
+PastoriaCity_Movement_Unused6:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement7:
+PastoriaCity_Movement_Unused7:
     WalkFastEast 9
     EndMovement
 
-PastoriaCity_UnusedMovement8:
+PastoriaCity_Movement_Unused8:
     WalkFastEast 7
     EndMovement
 
-PastoriaCity_UnusedMovement9:
+PastoriaCity_Movement_Unused9:
     WalkFastSouth
     WalkFastEast 8
     EndMovement
 
-PastoriaCity_UnusedMovement10:
+PastoriaCity_Movement_Unused10:
     WalkFastNorth
     WalkFastEast 8
     EndMovement
 
-PastoriaCity_UnusedMovement11:
+PastoriaCity_Movement_Unused11:
     EmoteExclamationMark
     EndMovement
 
-PastoriaCity_UnusedMovement12:
+PastoriaCity_Movement_Unused12:
     WalkFastSouth
     WalkFastEast 10
     EndMovement
 
-PastoriaCity_UnusedMovement13:
+PastoriaCity_Movement_Unused13:
     WalkFastEast 10
     EndMovement
 
@@ -279,25 +279,25 @@ PastoriaCity_Movement_GruntMLeaveNorthSouthEast:
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement14:
+PastoriaCity_Movement_Unused14:
     WalkFastSouth
     WalkFastEast 2
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement15:
+PastoriaCity_Movement_Unused15:
     WalkFastSouth
     WalkFastEast 4
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement16:
+PastoriaCity_Movement_Unused16:
     WalkFastNorth
     WalkFastEast 3
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement17:
+PastoriaCity_Movement_Unused17:
     WalkFastSouth
     WalkFastEast 3
     WalkOnSpotFastEast
@@ -818,11 +818,11 @@ PastoriaCity_Movement_RivalWalkOnSpotNorth:
     WalkOnSpotFastNorth
     EndMovement
 
-PastoriaCity_UnusedMovement18:
+PastoriaCity_Movement_Unused18:
     WalkFastSouth 3
     EndMovement
 
-PastoriaCity_UnusedMovement19:
+PastoriaCity_Movement_Unused19:
     WalkOnSpotFastNorth
     EndMovement
 
@@ -876,7 +876,7 @@ PastoriaCity_Movement_CrasherWakeWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
-PastoriaCity_UnusedMovement20:
+PastoriaCity_Movement_Unused20:
     WalkOnSpotNormalSouth
     EndMovement
 

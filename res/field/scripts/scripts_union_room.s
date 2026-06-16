@@ -8,7 +8,7 @@
     ScriptEntry UnionRoom_OnResume
     ScriptEntry UnionRoom_Player
     ScriptEntry UnionRoom_PlayerContactedYou
-    ScriptEntry UnionRoom_UnusedEntry6
+    ScriptEntry UnionRoom_Dummy6
     ScriptEntry UnionRoom_PlayerBusy
     ScriptEntry UnionRoom_Teala
     ScriptEntryEnd
@@ -409,7 +409,7 @@ UnionRoom_OtherPlayerDeclinedTrade:
     GoTo UnionRoom_OtherPlayerDeclinedEnd
     End
 
-UnionRoom_UnusedDecline:
+UnionRoom_Declined_Unused:
     GetUnionRoomMessage UR_MSG_DECLINED_UNUSED, VAR_RESULT
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
@@ -720,7 +720,7 @@ UnionRoom_InitCommFieldCmd:
     FadeScreenIn
     Return
 
-UnionRoom_UnusedEntry6:
+UnionRoom_Dummy6:
     NPCMessage UnionRoom_Text_Dummy207
     End
 

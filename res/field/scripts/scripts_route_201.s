@@ -490,7 +490,7 @@ Route201_Movement_RivalWalkToPlayer:
     WalkOnSpotNormalSouth
     EndMovement
 
-Route201_UnusedMovement:
+Route201_Movement_Unused:
     WalkNormalEast
     EndMovement
 
@@ -565,7 +565,7 @@ Route201_Movement_RivalMoveAwayForProfRowan:
     WalkOnSpotNormalEast
     EndMovement
 
-Route201_UnusedMovement2:
+Route201_Movement_Unused2:
     Delay8
     WalkOnSpotFastEast
     EndMovement
@@ -912,23 +912,23 @@ Route201_Movement_PlayerWalkBackNorthToBriefcase:
     WalkNormalNorth
     EndMovement
 
-Route201_UnusedMovement3:
+Route201_Movement_Unused3:
     WalkNormalNorth
     EndMovement
 
-Route201_UnusedMovement4:
+Route201_Movement_Unused4:
     WalkNormalNorth
     EndMovement
 
-Route201_UnusedMovement5:
+Route201_Movement_Unused5:
     WalkNormalWest
     EndMovement
 
-Route201_UnusedMovement6:
+Route201_Movement_Unused6:
     WalkNormalWest
     EndMovement
 
-Route201_UnusedMovement7:
+Route201_Movement_Unused7:
     WalkNormalWest
     EndMovement
 
@@ -1086,7 +1086,7 @@ _0D80:
     WalkOnSpotNormalWest
     EndMovement
 
-Route201_UnusedMovement8:
+Route201_Movement_Unused8:
     WalkOnSpotNormalWest
     EndMovement
 

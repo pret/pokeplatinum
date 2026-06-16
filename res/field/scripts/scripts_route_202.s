@@ -497,7 +497,7 @@ Route202_Movement_CounterpartWalkOnSpotNorthToFacePlayer:
     WalkOnSpotNormalNorth
     EndMovement
 
-Route202_UnusedMovement:
+Route202_Movement_Unused:
     WalkOnSpotNormalEast
     EndMovement
 
@@ -506,12 +506,12 @@ Route202_Movement_CounterpartWalkOnSpotWestToFacePlayer:
     WalkOnSpotNormalWest
     EndMovement
 
-Route202_UnusedMovement2:
+Route202_Movement_Unused2:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
-Route202_UnusedMovement3:
+Route202_Movement_Unused3:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
@@ -536,7 +536,7 @@ Route202_Movement_PlayerWalkOnSpotWestToFaceCounterpart:
     WalkOnSpotNormalWest
     EndMovement
 
-Route202_UnusedMovement4:
+Route202_Movement_Unused4:
     WalkOnSpotNormalEast
     EndMovement
 

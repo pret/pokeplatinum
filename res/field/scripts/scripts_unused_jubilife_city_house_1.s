@@ -2,10 +2,10 @@
 #include "res/text/bank/unused_jubilife_city_house_1.h"
 
 
-    ScriptEntry JubilifeCityHouse1_UnusedEntry1
+    ScriptEntry JubilifeCityHouse1_Dummy1
     ScriptEntryEnd
 
-JubilifeCityHouse1_UnusedEntry1:
+JubilifeCityHouse1_Dummy1:
     NPCMessage JubilifeCityHouse1_Text_Dummy0
     End
 

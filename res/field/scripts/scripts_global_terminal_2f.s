@@ -2,7 +2,7 @@
 #include "res/text/bank/global_terminal_2f.h"
 
 
-    ScriptEntry GlobalTerminal2F_Unused1
+    ScriptEntry GlobalTerminal2F_Dummy1
     ScriptEntry GlobalTerminal2F_Artist
     ScriptEntry GlobalTerminal2F_Hiker
     ScriptEntry GlobalTerminal2F_BattleGirl
@@ -62,7 +62,7 @@ GlobalTerminal2F_BgSignWarp3F:
     EventMessage GlobalTerminal2F_Text_WarpsTo3F
     End
 
-GlobalTerminal2F_Unused1:
+GlobalTerminal2F_Dummy1:
     End
 
 GlobalTerminal2F_BoxDataMachine:

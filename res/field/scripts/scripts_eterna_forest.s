@@ -5,8 +5,8 @@
     ScriptEntry EternaForest_CoordEvent_StartFollowingCheryl
     ScriptEntry EternaForest_CoordEvent_PlayerLeaveCheryl
     ScriptEntry EternaForest_CoordEvent_CherylLeavePlayer
-    ScriptEntry EternaForest_Unused4
-    ScriptEntry EternaForest_Unused5
+    ScriptEntry EternaForest_Dummy4
+    ScriptEntry EternaForest_Dummy5
     ScriptEntry EternaForest_BugCatcher
     ScriptEntry EternaForest_Gardenia
     ScriptEntry EternaForest_SignboardEternaForest
@@ -321,13 +321,13 @@ EternaForest_Movement_PlayerWatchCherylWalkToExitX39:
     WalkOnSpotNormalEast
     EndMovement
 
-EternaForest_Unused4:
+EternaForest_Dummy4:
     LockAll
     BufferPlayerName 0
     ReleaseAll
     End
 
-EternaForest_Unused5:
+EternaForest_Dummy5:
     LockAll
     BufferPlayerName 0
     ReleaseAll

@@ -13,11 +13,11 @@
 
 
     ScriptEntry Contests_LobbyOnFrameExitContestHall @ 0x2648
-    ScriptEntry Contests_EmptyScript9801 @ 0x2649
+    ScriptEntry Contests_Dummy9801 @ 0x2649
     ScriptEntry Contests_OngoingContestOnTransition @ 0x264A
     ScriptEntry Contests_LobbyOnTransition @ 0x264B
     ScriptEntry Contests_OngoingContestOnResume @ 0x264C
-    ScriptEntry Contests_UnusedEntry9805 @ 0x264D
+    ScriptEntry Contests_Dummy9805 @ 0x264D
     ScriptEntry Contests_ReceptionistOfficialContest @ 0x264E
     ScriptEntry Contests_ReceptionistLinkContest @ 0x264F
     ScriptEntry Contests_ReceptionistPracticeContest @ 0x2650
@@ -121,7 +121,7 @@ Contests_Movement_PlayerWalkToOfficialReceptionist:
     WalkOnSpotFastNorth
     EndMovement
 
-Contests_EmptyScript9801:
+Contests_Dummy9801:
     End
 
 Contests_OngoingContestOnTransition:
@@ -171,7 +171,7 @@ Contests_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-Contests_UnusedEntry9805:
+Contests_Dummy9805:
     NPCMessage ContestCommon_Text_Dummy0
     End
 
@@ -948,7 +948,7 @@ Contests_Movement_PlayerWalkToPracticeContestDoor:
     WalkNormalNorth 3
     EndMovement
 
-Contests_UnusedMovement:
+Contests_Movement_Unused:
     Delay4
     FaceEast
     Delay4

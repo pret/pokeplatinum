@@ -6,12 +6,12 @@
 
     ScriptEntry TrainersSchool_Rival
     ScriptEntry TrainersSchool_AceTrainerF
-    ScriptEntry TrainersSchool_Unused3
+    ScriptEntry TrainersSchool_Dummy3
     ScriptEntry TrainersSchool_Youngster1
     ScriptEntry TrainersSchool_Youngster2
     ScriptEntry TrainersSchool_Lass
-    ScriptEntry TrainersSchool_Unused7
-    ScriptEntry TrainersSchool_Unused8
+    ScriptEntry TrainersSchool_Dummy7
+    ScriptEntry TrainersSchool_Dummy8
     ScriptEntry TrainersSchool_SchoolKidHarrison
     ScriptEntry TrainersSchool_SchoolKidChristine
     ScriptEntry TrainersSchool_Blackboard
@@ -110,7 +110,7 @@ TrainersSchool_AceTrainerF:
     NPCMessage TrainersSchool_Text_DevelopAtOwnPace
     End
 
-TrainersSchool_Unused3:
+TrainersSchool_Dummy3:
     End
 
 TrainersSchool_Youngster1:
@@ -125,10 +125,10 @@ TrainersSchool_Lass:
     NPCMessage TrainersSchool_Text_PokemonUseItems
     End
 
-TrainersSchool_Unused7:
+TrainersSchool_Dummy7:
     End
 
-TrainersSchool_Unused8:
+TrainersSchool_Dummy8:
     End
 
 TrainersSchool_SchoolKidHarrison:

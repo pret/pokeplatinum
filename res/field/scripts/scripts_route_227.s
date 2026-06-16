@@ -86,7 +86,7 @@ Route227_Movement_PlayerWatchRivalLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-Route227_UnusedMovement:
+Route227_Movement_Unused:
     WalkOnSpotNormalNorth
     EndMovement
 
@@ -98,7 +98,7 @@ Route227_Movement_PlayerWalkWestWatchWakeLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-Route227_UnusedMovement2:
+Route227_Movement_Unused2:
     Delay8
     WalkOnSpotNormalWest
     Delay4
@@ -131,7 +131,7 @@ Route227_Movement_RivalLeave:
     WalkFastSouth 9
     EndMovement
 
-Route227_UnusedMovement3:
+Route227_Movement_Unused3:
     WalkFastSouth 9
     EndMovement
 
@@ -151,12 +151,12 @@ Route227_Movement_WakeWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-Route227_UnusedMovement4:
+Route227_Movement_Unused4:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
-Route227_UnusedMovement5:
+Route227_Movement_Unused5:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -166,7 +166,7 @@ Route227_Movement_WakeLeave:
     WalkNormalSouth 9
     EndMovement
 
-Route227_UnusedMovement6:
+Route227_Movement_Unused6:
     WalkNormalSouth 9
     EndMovement
 
@@ -216,7 +216,7 @@ Route227_Movement_PlayerFaceBuck:
     FaceNorth
     EndMovement
 
-Route227_UnusedMovement7:
+Route227_Movement_Unused7:
     Delay8
     WalkOnSpotNormalEast
     EndMovement

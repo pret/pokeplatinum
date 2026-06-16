@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry MtCoronet1FNorthRoom2_Unused
+    ScriptEntry MtCoronet1FNorthRoom2_Dummy1
     ScriptEntry MtCoronet1FNorthRoom2_OnTransition
     ScriptEntry MtCoronet1FNorthRoom2_OnLoad
     ScriptEntryEnd
@@ -31,7 +31,7 @@ MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice:
     SetWarpEventPos 2, 17, 16
     End
 
-MtCoronet1FNorthRoom2_Unused:
+MtCoronet1FNorthRoom2_Dummy1:
     End
 
     .balign 4, 0

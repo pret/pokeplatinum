@@ -106,7 +106,7 @@ BattleTowerElevator_Exit:
     WaitMovement
     Return
 
-BattleTowerElevator_UnusedMovement:
+BattleTowerElevator_Movement_Unused:
     WalkNormalNorth 2
     FaceEast
     WalkNormalEast

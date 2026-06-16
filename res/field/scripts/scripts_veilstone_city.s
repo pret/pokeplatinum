@@ -333,7 +333,7 @@ VeilstoneCity_Movement_CounterpartWatchCrasherWakeLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-VeilstoneCity_UnusedMovement:
+VeilstoneCity_Movement_Unused:
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
@@ -792,30 +792,30 @@ VeilstoneCity_Movement_CounterpartWalkToGruntNorth:
     WalkOnSpotNormalEast
     EndMovement
 
-VeilstoneCity_UnusedMovement2:
+VeilstoneCity_Movement_Unused2:
     Delay4
     WalkOnSpotNormalWest
     EmoteExclamationMark
     Delay8
     EndMovement
 
-VeilstoneCity_UnusedMovement3:
+VeilstoneCity_Movement_Unused3:
     WalkNormalWest 4
     EndMovement
 
-VeilstoneCity_UnusedMovement4:
+VeilstoneCity_Movement_Unused4:
     WalkNormalSouth 2
     WalkNormalWest 2
     WalkNormalSouth 6
     EndMovement
 
-VeilstoneCity_UnusedMovement5:
+VeilstoneCity_Movement_Unused5:
     Delay8
     WalkOnSpotNormalNorth
     WalkOnSpotNormalWest
     EndMovement
 
-VeilstoneCity_UnusedMovement6:
+VeilstoneCity_Movement_Unused6:
     Delay8
     WalkOnSpotNormalSouth
     WalkOnSpotNormalWest
@@ -858,13 +858,13 @@ VeilstoneCity_Movement_PlayerWalkToGruntNorth:
     WalkOnSpotNormalEast
     EndMovement
 
-VeilstoneCity_UnusedMovement7:
+VeilstoneCity_Movement_Unused7:
     Delay8
     WalkOnSpotNormalSouth
     WalkOnSpotNormalWest
     EndMovement
 
-VeilstoneCity_UnusedMovement8:
+VeilstoneCity_Movement_Unused8:
     Delay8
     WalkOnSpotNormalNorth
     WalkOnSpotNormalWest
@@ -885,7 +885,7 @@ VeilstoneCity_Movement_PlayerFaceLooker:
     WalkOnSpotNormalWest
     EndMovement
 
-VeilstoneCity_UnusedMovement9:
+VeilstoneCity_Movement_Unused9:
     Delay8
     WalkOnSpotNormalWest
     EndMovement

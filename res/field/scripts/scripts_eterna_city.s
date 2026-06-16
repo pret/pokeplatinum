@@ -10,7 +10,7 @@
     ScriptEntry EternaCity_GruntM3
     ScriptEntry EternaCity_PokemonBreederM
     ScriptEntry EternaCity_PokemonBreederF1
-    ScriptEntry EternaCity_Unused7
+    ScriptEntry EternaCity_RatherFetching_Unused
     ScriptEntry EternaCity_BugCatcher1
     ScriptEntry EternaCity_AceTrainerF
     ScriptEntry EternaCity_ExpertM
@@ -57,7 +57,7 @@ EternaCity_PokemonBreederM:
     NPCMessage EternaCity_Text_IfYoureVisitingEternaYouNeedToGetYourselfABicycle
     End
 
-EternaCity_Unused7:
+EternaCity_RatherFetching_Unused:
     NPCMessage EternaCity_Text_OhYourPokemonAreRatherFetching
     End
 
@@ -504,7 +504,7 @@ EternaCity_Movement_PokemonBreederFBlockExitSouthX307:
     WalkNormalEast 4
     EndMovement
 
-EternaCity_UnusedMovement:
+EternaCity_Movement_Unused:
     WalkOnSpotFastEast
     EndMovement
 
