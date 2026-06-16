@@ -1,6 +1,7 @@
 # include "macros/frscrcmd.inc"
 # include "res/graphics/frontier/particles/frontier_particles.naix"
 # include "res/text/bank/battle_arcade_scene.h"
+# include "constants/battle_frontier.h"
 # include "constants/battle_arcade_functions.h"
 # include "constants/battle_frontier_emitters.h"
 
@@ -941,7 +942,7 @@ _0742:
     End
 
 _0788:
-    FrontierScrCmd_03 16
+    FrontierScrCmd_03 FRONTIER_SCENE_ARCADE_BATTLE_ROOM
     SetVar VAR_0x800D, 0
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _07BC
@@ -3124,7 +3125,7 @@ _2E86:
 _2E90:
     FreeBattleRecording
     FrontierScrCmd_BA
-    FrontierScrCmd_04 14, 1
+    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
     End
 
 _2E9C:

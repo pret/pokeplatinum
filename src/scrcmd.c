@@ -6,6 +6,7 @@
 
 #include "constants/accessories.h"
 #include "constants/battle.h"
+#include "constants/battle_frontier.h"
 #include "constants/daycare.h"
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/window.h"
@@ -92,6 +93,7 @@
 
 #include "appearance.h"
 #include "bag.h"
+#include "battle_frontier.h"
 #include "bg_window.h"
 #include "binoculars_vista_lighthouse.h"
 #include "camera.h"
@@ -220,7 +222,6 @@
 #include "vars_flags.h"
 #include "wifi_list.h"
 
-#include "constdata/const_020F8BE0.h"
 #include "res/text/bank/mystery_gift_phrase.h"
 #include "res/text/bank/tough_words.h"
 
@@ -702,7 +703,7 @@ static BOOL ScrCmd_CloseSaveInfo(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2C3(ScriptContext *ctx);
 static BOOL ScrCmd_SetMenuXOriginSide(ScriptContext *ctx);
 static BOOL ScrCmd_SetMenuYOriginSide(ScriptContext *ctx);
-static BOOL ScrCmd_2C4(ScriptContext *ctx);
+static BOOL ScrCmd_LaunchBattleFrontierScene(ScriptContext *ctx);
 static BOOL ScrCmd_2C6(ScriptContext *ctx);
 static BOOL ScrCmd_IsCommGameCodePlatinum(ScriptContext *ctx);
 static BOOL ScrCmd_AdvanceEternaGymClock(ScriptContext *ctx);
@@ -6568,31 +6569,31 @@ static BOOL ScrCmd_Unused_2C3(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2C4(ScriptContext *ctx)
+static BOOL ScrCmd_LaunchBattleFrontierScene(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    u8 v1 = ScriptContext_ReadByte(ctx);
-    UnkStruct_ov104_02230BE4 *v2 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_02230BE4));
+    void **dataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    u8 sceneID = ScriptContext_ReadByte(ctx);
+    FieldFrontierDTO *fieldData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(FieldFrontierDTO));
 
-    MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02230BE4));
+    MI_CpuClear8(fieldData, sizeof(FieldFrontierDTO));
 
-    *v0 = v2;
+    *dataPtr = fieldData;
 
-    if (v1 == 5 || v1 == 6) {
-        v2->unk_00 = ctx->fieldSystem->battleTower;
+    if (sceneID == FRONTIER_SCENE_TOWER_CORRIDOR || sceneID == FRONTIER_SCENE_TOWER_MULTI_CORRIDOR) {
+        fieldData->unk_00 = ctx->fieldSystem->battleTower;
     } else {
-        v2->unk_00 = NULL;
+        fieldData->unk_00 = NULL;
     }
 
-    v2->options = SaveData_GetOptions(ctx->fieldSystem->saveData);
-    v2->sceneID = v1;
-    v2->saveData = ctx->fieldSystem->saveData;
-    v2->mapHeaderID = ctx->fieldSystem->location->mapId;
-    v2->journalEntry = ctx->fieldSystem->journalEntry;
-    v2->bagCursor = ctx->fieldSystem->bagCursor;
-    v2->subscreenCursorOn = ctx->fieldSystem->battleSubscreenCursorOn;
+    fieldData->options = SaveData_GetOptions(ctx->fieldSystem->saveData);
+    fieldData->sceneID = sceneID;
+    fieldData->saveData = ctx->fieldSystem->saveData;
+    fieldData->mapHeaderID = ctx->fieldSystem->location->mapId;
+    fieldData->journalEntry = ctx->fieldSystem->journalEntry;
+    fieldData->bagCursor = ctx->fieldSystem->bagCursor;
+    fieldData->subscreenCursorOn = ctx->fieldSystem->battleSubscreenCursorOn;
 
-    FieldTask_RunApplication(ctx->task, &Unk_020F8BE0, v2);
+    FieldTask_RunApplication(ctx->task, &gBattleFrontierAppTemplate, fieldData);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;

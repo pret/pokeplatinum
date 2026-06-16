@@ -240,7 +240,7 @@ BattleFactory_StartChallenge:
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
     CreateJournalEvent LOCATION_EVENT_BATTLE_FACTORY, 0, 0, 0, 0
     WaitForTransition
-    ScrCmd_2C4 3
+    LaunchBattleFrontierScene FRONTIER_SCENE_FACTORY_CORRIDOR
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_EndCommunication
     ReturnToField
     FadeScreenIn

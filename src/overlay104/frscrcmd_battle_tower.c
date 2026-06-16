@@ -21,6 +21,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
 
+#include "battle_frontier.h"
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "game_records.h"
@@ -29,7 +30,6 @@
 #include "tv_segment.h"
 #include "unk_020363E8.h"
 #include "unk_02049D08.h"
-#include "unk_0209B6F8.h"
 
 #include "constdata/const_020EA358.h"
 
@@ -41,12 +41,12 @@ BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
 {
     u16 functionIndex, functionArgument;
     u16 *destVar;
-    UnkStruct_ov104_02230BE4 *v8 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
     functionIndex = FrontierScriptContext_ReadHalfWord(ctx);
     functionArgument = FrontierScriptContext_GetVar(ctx);
     destVar = FrontierScriptContext_TryGetVarPointer(ctx);
-    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->frontier);
 
     switch (functionIndex) {
     case BT_FUNC_RESET_SYSTEM:
@@ -54,9 +54,9 @@ BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
         break;
     case BT_FUNC_UNK_46:
         *destVar = BattleTower_GiveBattlePointsReward(battleTower);
-        TVBroadcast *broadcast = SaveData_GetTVBroadcast(v8->saveData);
+        TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldData->saveData);
         sub_0206D0C8(broadcast, *destVar);
-        GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->saveData), RECORD_BATTLE_POINTS_RECEIVED, *destVar);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecords(fieldData->saveData), RECORD_BATTLE_POINTS_RECEIVED, *destVar);
         break;
     case BT_FUNC_GET_PARTNER_PARAM:
         *destVar = BattleTower_GetPartnerParam(battleTower, functionArgument);
@@ -77,7 +77,7 @@ BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
         *destVar = (u16)BattleTower_GetChallengeMode(battleTower);
         break;
     case BT_FUNC_SET_OPPONENT_TEAMS:
-        BattleTower_CreateOpponentParties(battleTower, v8->saveData);
+        BattleTower_CreateOpponentParties(battleTower, fieldData->saveData);
         break;
     case BT_FUNC_GET_OPPONENT_OBJECT_ID:
         *destVar = BattleTower_GetObjectIDFromOpponentIDInFrontierScript(battleTower, functionArgument);
@@ -86,10 +86,10 @@ BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
         BattleTower_SetBeatPalmer(battleTower, functionArgument);
         break;
     case BT_FUNC_UPDATE_GAME_RECORDS:
-        BattleTower_UpdateGameRecords(battleTower, v8->saveData);
+        BattleTower_UpdateGameRecords(battleTower, fieldData->saveData);
         break;
     case BT_FUNC_UPDATE_GAME_RECORDS_AND_JOURNAL:
-        BattleTower_UpdateGameRecordsAndJournal(battleTower, v8->saveData, v8->journalEntry);
+        BattleTower_UpdateGameRecordsAndJournal(battleTower, fieldData->saveData, fieldData->journalEntry);
         break;
     case BT_FUNC_UNK_39:
         sub_0204A8C8(battleTower);
@@ -153,10 +153,10 @@ BOOL FrontierScrCmd_85(FrontierScriptContext *param0)
     u8 v0;
     u16 *v1;
     BattleTower *battleTower;
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
     u16 v4 = FrontierScriptContext_ReadByte(param0);
 
-    battleTower = sub_0209B978(param0->scriptMan->unk_00);
+    battleTower = sub_0209B978(param0->scriptMan->frontier);
 
     if (battleTower == NULL) {
         return 0;
@@ -170,7 +170,7 @@ BOOL FrontierScrCmd_85(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_FreeTowerStruct(FrontierScriptContext *ctx)
 {
-    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->frontier);
     BattleTower_Free(battleTower);
 
     return FALSE;
@@ -178,21 +178,21 @@ BOOL FrontierScrCmd_FreeTowerStruct(FrontierScriptContext *ctx)
 
 BOOL FrontierScrCmd_BattleTower_StartBattle(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
-    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->frontier);
 
-    FieldBattleDTO *dto = FieldBattleDTO_NewBattleTower(battleTower, v2);
+    FieldBattleDTO *dto = FieldBattleDTO_NewBattleTower(battleTower, fieldData);
     battleTower->dto = dto;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, dto, 0, NULL);
+    sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
 
     return TRUE;
 }
 
 BOOL FrontierScrCmd_BattleTower_CheckWonBattle(FrontierScriptContext *ctx)
 {
-    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleTower *battleTower = sub_0209B978(ctx->scriptMan->frontier);
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
     FieldBattleDTO *dto = battleTower->dto;
 
@@ -206,12 +206,12 @@ BOOL FrontierScrCmd_BattleTower_CheckWonBattle(FrontierScriptContext *ctx)
 BOOL FrontierScrCmd_89(FrontierScriptContext *param0)
 {
     BattleTower *battleTower;
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 v3 = FrontierScriptContext_GetVar(param0);
     u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    battleTower = sub_0209B978(param0->scriptMan->unk_00);
+    battleTower = sub_0209B978(param0->scriptMan->frontier);
 
     switch (v2) {
     case 2:
@@ -247,11 +247,11 @@ BOOL FrontierScrCmd_8A(FrontierScriptContext *param0)
 static BOOL ov104_0223942C(FrontierScriptContext *param0)
 {
     BattleTower *battleTower;
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
 
-    battleTower = sub_0209B978(param0->scriptMan->unk_00);
+    battleTower = sub_0209B978(param0->scriptMan->frontier);
 
-    if (ov104_02239464(param0, battleTower, v1->saveData, param0->data[0], param0->data[1]) == 1) {
+    if (ov104_02239464(param0, battleTower, fieldData->saveData, param0->data[0], param0->data[1]) == 1) {
         return 1;
     }
 

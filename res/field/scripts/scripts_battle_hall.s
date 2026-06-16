@@ -408,7 +408,7 @@ BattleHall_StartChallenge:
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
     CreateJournalEvent LOCATION_EVENT_BATTLE_HALL, 0, 0, 0, 0
     WaitForTransition
-    ScrCmd_2C4 9
+    LaunchBattleFrontierScene FRONTIER_SCENE_HALL_CORRIDOR
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_EndCommunication
     ReturnToField
     FadeScreenIn

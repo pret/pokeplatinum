@@ -713,7 +713,7 @@ ScriptCommand(SCRCMD_MESSAGEAUTOSCROLL,                                    ScrCm
 ScriptCommand(SCRCMD_OPENSAVEINFO,                                         ScrCmd_OpenSaveInfo)
 ScriptCommand(SCRCMD_CLOSESAVEINFO,                                        ScrCmd_CloseSaveInfo)
 ScriptCommand(SCRCMD_UNUSED_2C3,                                           ScrCmd_Unused_2C3)
-ScriptCommand(SCRCMD_2C4,                                                  ScrCmd_2C4)
+ScriptCommand(SCRCMD_LAUNCHBATTLEFRONTIERSCENE,                            ScrCmd_LaunchBattleFrontierScene)
 ScriptCommand(SCRCMD_2C5,                                                  ScrCmd_2C5)
 ScriptCommand(SCRCMD_2C6,                                                  ScrCmd_2C6)
 ScriptCommand(SCRCMD_ISCOMMGAMECODEPLATINUM,                               ScrCmd_IsCommGameCodePlatinum)

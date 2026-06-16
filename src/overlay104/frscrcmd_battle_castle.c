@@ -17,6 +17,7 @@
 #include "overlay104/struct_battle_castle.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
+#include "battle_frontier.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "communication_system.h"
@@ -25,7 +26,6 @@
 #include "party.h"
 #include "pokemon.h"
 #include "unk_020302D0.h"
-#include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 
 #include "constdata/const_020EA358.h"
@@ -42,7 +42,7 @@ static void StoreBattleCastleAppResult(void *data);
 BOOL FrontierScrCmd_97(FrontierScriptContext *param0)
 {
     BattleCastle *v0;
-    UnkStruct_ov104_02230BE4 *v1;
+    FieldFrontierDTO *fieldData;
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 v3 = FrontierScriptContext_GetVar(param0);
     u16 v4 = FrontierScriptContext_GetVar(param0);
@@ -50,10 +50,10 @@ BOOL FrontierScrCmd_97(FrontierScriptContext *param0)
     u16 v6 = FrontierScriptContext_GetVar(param0);
     u16 *v7 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    v1 = sub_0209B970(param0->scriptMan->unk_00);
-    v0 = ov104_022361B4(v1->saveData, v2, v3, v4, v5, v6, v7);
+    fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
+    v0 = ov104_022361B4(fieldData->saveData, v2, v3, v4, v5, v6, v7);
 
-    sub_0209B980(param0->scriptMan->unk_00, v0);
+    sub_0209B980(param0->scriptMan->frontier, v0);
 
     return 0;
 }
@@ -63,7 +63,7 @@ BOOL FrontierScrCmd_98(FrontierScriptContext *param0)
     BattleCastle *v0;
     u16 v1 = FrontierScriptContext_GetVar(param0);
 
-    v0 = sub_0209B978(param0->scriptMan->unk_00);
+    v0 = sub_0209B978(param0->scriptMan->frontier);
     ov104_02236514(v0, v1);
 
     return 0;
@@ -71,7 +71,7 @@ BOOL FrontierScrCmd_98(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_99(FrontierScriptContext *param0)
 {
-    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->frontier);
     ov104_022367AC(v0);
 
     return 0;
@@ -79,7 +79,7 @@ BOOL FrontierScrCmd_99(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_OpenBattleCastleSelfApp(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
     FS_EXTERN_OVERLAY(battle_castle_app);
 
@@ -90,20 +90,20 @@ BOOL FrontierScrCmd_OpenBattleCastleSelfApp(FrontierScriptContext *ctx)
         FS_OVERLAY_ID(battle_castle_app)
     };
 
-    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->frontier);
     BattleCastleAppArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleCastleAppArgs));
 
     MI_CpuClear8(args, sizeof(BattleCastleAppArgs));
-    args->saveData = v3->saveData;
+    args->saveData = fieldData->saveData;
 
     SetupBattleCastleAppArgs(args, battleCastle);
-    sub_0209B988(ctx->scriptMan->unk_00, &sBattleCastleSelfAppTemplate, args, 0, StoreBattleCastleAppResult);
+    sub_0209B988(ctx->scriptMan->frontier, &sBattleCastleSelfAppTemplate, args, 0, StoreBattleCastleAppResult);
     return TRUE;
 }
 
 BOOL FrontierScrCmd_A4(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
     FS_EXTERN_OVERLAY(battle_castle_app);
 
@@ -114,21 +114,21 @@ BOOL FrontierScrCmd_A4(FrontierScriptContext *ctx)
         FS_OVERLAY_ID(battle_castle_app)
     };
 
-    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->frontier);
     BattleCastleAppArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleCastleAppArgs));
 
     MI_CpuClear8(args, sizeof(BattleCastleAppArgs));
-    args->saveData = v3->saveData;
+    args->saveData = fieldData->saveData;
 
     SetupBattleCastleAppArgs(args, battleCastle);
-    sub_0209B988(ctx->scriptMan->unk_00, &sBattleCastleNullTemplate, args, 0, StoreBattleCastleAppResult);
+    sub_0209B988(ctx->scriptMan->frontier, &sBattleCastleNullTemplate, args, 0, StoreBattleCastleAppResult);
 
     return TRUE;
 }
 
 BOOL FrontierScrCmd_BattleCastle_CleanupBattle(FrontierScriptContext *ctx)
 {
-    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->frontier);
     FieldBattleDTO *dto = battleCastle->dto;
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_PLAYER_1], 0);
@@ -155,19 +155,19 @@ BOOL FrontierScrCmd_BattleCastle_CleanupBattle(FrontierScriptContext *ctx)
 
 BOOL FrontierScrCmd_BattleCastle_StartBattle(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
-    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->frontier);
 
-    FieldBattleDTO *dto = FieldBattleDTO_NewBattleCastle(battleCastle, v2);
+    FieldBattleDTO *dto = FieldBattleDTO_NewBattleCastle(battleCastle, fieldData);
     battleCastle->dto = dto;
 
-    sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, dto, 0, NULL);
+    sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
     return TRUE;
 }
 
 BOOL FrontierScrCmd_OpenBattleCastleOpponentApp(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
     FS_EXTERN_OVERLAY(battle_castle_app);
 
@@ -178,14 +178,14 @@ BOOL FrontierScrCmd_OpenBattleCastleOpponentApp(FrontierScriptContext *ctx)
         FS_OVERLAY_ID(battle_castle_app)
     };
 
-    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->frontier);
     BattleCastleAppArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleCastleAppArgs));
 
     MI_CpuClear8(args, sizeof(BattleCastleAppArgs));
-    args->saveData = v3->saveData;
+    args->saveData = fieldData->saveData;
 
     SetupBattleCastleAppArgs(args, battleCastle);
-    sub_0209B988(ctx->scriptMan->unk_00, &sBattleCastleOpponentAppTemplate, args, 0, StoreBattleCastleAppResult);
+    sub_0209B988(ctx->scriptMan->frontier, &sBattleCastleOpponentAppTemplate, args, 0, StoreBattleCastleAppResult);
     return TRUE;
 }
 
@@ -214,7 +214,7 @@ static void StoreBattleCastleAppResult(void *data)
 
 BOOL FrontierScrCmd_9E(FrontierScriptContext *param0)
 {
-    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->frontier);
     ov104_02236BF0(v0);
 
     return 0;
@@ -222,7 +222,7 @@ BOOL FrontierScrCmd_9E(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_9F(FrontierScriptContext *param0)
 {
-    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->frontier);
     ov104_02236BF8(v0);
 
     return 0;
@@ -230,14 +230,14 @@ BOOL FrontierScrCmd_9F(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_CallBattleCastleFunction(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v11;
+    FieldFrontierDTO *fieldData;
     u8 command = FrontierScriptContext_ReadByte(ctx);
     u8 arg1 = FrontierScriptContext_ReadByte(ctx);
     u8 arg2 = FrontierScriptContext_ReadByte(ctx);
     u16 *returnVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
-    v11 = sub_0209B970(ctx->scriptMan->unk_00);
+    BattleCastle *battleCastle = sub_0209B978(ctx->scriptMan->frontier);
+    fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
     switch (command) {
     case BC_FUNC_SET_CHALLENGE_TYPE:
@@ -273,7 +273,7 @@ BOOL FrontierScrCmd_CallBattleCastleFunction(FrontierScriptContext *ctx)
         *returnVar = battleCastle->unk_288[arg1].moves[arg2];
         break;
     case BC_FUNC_UNK_18: {
-        Party *v2 = SaveData_GetParty(v11->saveData);
+        Party *v2 = SaveData_GetParty(fieldData->saveData);
 
         for (int v8 = 0; v8 < 3; v8++) {
             Pokemon *v1 = Party_GetPokemonBySlotIndex(v2, battleCastle->unk_24[v8]);
@@ -340,7 +340,7 @@ BOOL FrontierScrCmd_CallBattleCastleFunction(FrontierScriptContext *ctx)
         }
 
         if (v10 == 1) {
-            ov104_0223BC2C(SaveData_GetBattleFrontier(v11->saveData), battleCastle->challengeType, 50);
+            ov104_0223BC2C(SaveData_GetBattleFrontier(fieldData->saveData), battleCastle->challengeType, 50);
         } else {
             battleCastle->partnersCP -= 50;
         }
@@ -382,9 +382,9 @@ BOOL FrontierScrCmd_CallBattleCastleFunction(FrontierScriptContext *ctx)
         break;
     case BC_FUNC_UNK_39: {
         u8 v13[4];
-        *returnVar = (u16)sub_02030470(sub_0203041C(v11->saveData), 10, 0, 0, NULL);
+        *returnVar = (u16)sub_02030470(sub_0203041C(fieldData->saveData), 10, 0, 0, NULL);
         v13[0] = 1;
-        sub_02030430(sub_0203041C(v11->saveData), 10, 0, 0, v13);
+        sub_02030430(sub_0203041C(fieldData->saveData), 10, 0, 0, v13);
     } break;
     case BC_FUNC_UNK_40:
         *returnVar = 0;
@@ -410,10 +410,10 @@ BOOL FrontierScrCmd_CallBattleCastleFunction(FrontierScriptContext *ctx)
     case BC_FUNC_UNK_44:
         if (battleCastle->challengeType == 3) {
             if (arg1 == 0) {
-                battleCastle->unk_22 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType));
-                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType), battleCastle->unk_20);
+                battleCastle->unk_22 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(fieldData->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType));
+                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(fieldData->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType), battleCastle->unk_20);
             } else {
-                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v11->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType), battleCastle->unk_22);
+                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(fieldData->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType), battleCastle->unk_22);
             }
         }
         break;
@@ -427,7 +427,7 @@ BOOL FrontierScrCmd_BattleCastle_CheckWonBattle(FrontierScriptContext *ctx)
     BattleCastle *battleCastle;
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    battleCastle = sub_0209B978(ctx->scriptMan->unk_00);
+    battleCastle = sub_0209B978(ctx->scriptMan->frontier);
     *destVar = battleCastle->wonBattle;
 
     return FALSE;
@@ -440,7 +440,7 @@ BOOL FrontierScrCmd_A2(FrontierScriptContext *param0)
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 *v3 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    v0 = sub_0209B978(param0->scriptMan->unk_00);
+    v0 = sub_0209B978(param0->scriptMan->frontier);
     *v3 = ov104_02236F70(v0, v1, v2);
 
     return 1;
@@ -461,7 +461,7 @@ static BOOL ov104_02236008(FrontierScriptContext *param0)
     BattleCastle *v0;
     u16 v1 = FrontierScriptContext_TryGetVar(param0, param0->data[0]);
 
-    v0 = sub_0209B978(param0->scriptMan->unk_00);
+    v0 = sub_0209B978(param0->scriptMan->frontier);
 
     if (v0->unk_A1A >= 2) {
         v0->unk_A1A = 0;
@@ -486,7 +486,7 @@ static BOOL ov104_02236058(FrontierScriptContext *param0)
     BattleCastle *v0;
     u16 *v1 = FrontierScriptContext_GetVarPointer(param0, param0->data[0]);
 
-    v0 = sub_0209B978(param0->scriptMan->unk_00);
+    v0 = sub_0209B978(param0->scriptMan->frontier);
 
     if (v0->unk_A1B == 0) {
         return 0;
@@ -500,7 +500,7 @@ static BOOL ov104_02236058(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_50(FrontierScriptContext *param0)
 {
-    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->frontier);
     ov104_02236FC0(param0->scriptMan, v0);
 
     return 0;
@@ -508,7 +508,7 @@ BOOL FrontierScrCmd_50(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_51(FrontierScriptContext *param0)
 {
-    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->frontier);
     ov104_022370E0(param0->scriptMan, v0);
 
     return 0;
@@ -516,7 +516,7 @@ BOOL FrontierScrCmd_51(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_52(FrontierScriptContext *param0)
 {
-    BattleCastle *v0 = sub_0209B978(param0->scriptMan->unk_00);
+    BattleCastle *v0 = sub_0209B978(param0->scriptMan->frontier);
     ov104_02237180(param0->scriptMan, v0);
 
     return 0;
@@ -524,24 +524,24 @@ BOOL FrontierScrCmd_52(FrontierScriptContext *param0)
 
 BOOL FrontierScrCmd_A6(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_02230BE4 *v0;
+    FieldFrontierDTO *fieldData;
     u16 v1 = FrontierScriptContext_GetVar(param0);
     u16 *v2 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    v0 = sub_0209B970(param0->scriptMan->unk_00);
-    *v2 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v0->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v1));
+    fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
+    *v2 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(fieldData->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v1));
 
     return 0;
 }
 
 BOOL FrontierScrCmd_A7(FrontierScriptContext *param0)
 {
-    UnkStruct_ov104_02230BE4 *v0;
+    FieldFrontierDTO *fieldData;
     u16 v1 = FrontierScriptContext_GetVar(param0);
     u16 v2 = FrontierScriptContext_GetVar(param0);
 
-    v0 = sub_0209B970(param0->scriptMan->unk_00);
-    ov104_0223BC2C(SaveData_GetBattleFrontier(v0->saveData), v1, v2);
+    fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
+    ov104_0223BC2C(SaveData_GetBattleFrontier(fieldData->saveData), v1, v2);
 
     return 0;
 }
@@ -549,12 +549,12 @@ BOOL FrontierScrCmd_A7(FrontierScriptContext *param0)
 BOOL FrontierScrCmd_A8(FrontierScriptContext *param0)
 {
     u16 v0;
-    UnkStruct_ov104_02230BE4 *v1;
+    FieldFrontierDTO *fieldData;
     u16 v2 = FrontierScriptContext_GetVar(param0);
     u16 v3 = FrontierScriptContext_GetVar(param0);
 
-    v1 = sub_0209B970(param0->scriptMan->unk_00);
-    ov104_02236ED8(v1->saveData, v2, v3);
+    fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
+    ov104_02236ED8(fieldData->saveData, v2, v3);
 
     return 0;
 }
@@ -563,10 +563,10 @@ BOOL FrontierScrCmd_A9(FrontierScriptContext *param0)
 {
     u16 *v0;
     BattleCastle *v1;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
     u16 v3 = FrontierScriptContext_ReadByte(param0);
 
-    v1 = sub_0209B978(param0->scriptMan->unk_00);
+    v1 = sub_0209B978(param0->scriptMan->frontier);
 
     if (v1 == NULL) {
         return 0;

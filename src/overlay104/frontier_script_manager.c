@@ -2,21 +2,21 @@
 
 #include <nitro.h>
 
-#include "struct_decls/struct_0209B75C_decl.h"
+#include "struct_decls/battle_frontier_decl.h"
 
 #include "overlay104/defs.h"
+#include "overlay104/frontier_scenes.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frscrcmd.h"
-#include "overlay104/ov104_0222EA90.h"
 #include "overlay104/ov104_0223D860.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
 
+#include "battle_frontier.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "string_gf.h"
 #include "string_template.h"
-#include "unk_0209B6F8.h"
 
 static BOOL FrontierScriptManager_SetContext(FrontierScriptManager *scriptMan, FrontierScriptContext *ctx);
 static void FrontierScriptContext_Free(FrontierScriptManager *scriptMan, FrontierScriptContext *ctx);
@@ -24,12 +24,12 @@ static void Dummy(FrontierScriptManager *scriptMan, u16 scene, u32 *null1, void 
 static void FrontierScriptManager_LoadScriptData(u8 **script, MessageLoader **msgLoader, int scene, enum HeapID heapID);
 static void FrontierScriptContext_JumpToOffsetID(FrontierScriptContext *ctx, int offsetID);
 
-FrontierScriptManager *FrontierScriptManager_New(UnkStruct_0209B75C *param0, enum HeapID heapID, int scene)
+FrontierScriptManager *FrontierScriptManager_New(BattleFrontier *frontier, enum HeapID heapID, int scene)
 {
     FrontierScriptManager *scriptMan = Heap_Alloc(heapID, sizeof(FrontierScriptManager));
     MI_CpuClear8(scriptMan, sizeof(FrontierScriptManager));
 
-    scriptMan->unk_00 = param0;
+    scriptMan->frontier = frontier;
     scriptMan->heapID = heapID;
     scriptMan->scene = scene;
 
@@ -44,7 +44,7 @@ FrontierScriptManager *FrontierScriptManager_New(UnkStruct_0209B75C *param0, enu
     return scriptMan;
 }
 
-BOOL ov104_0222E6A8(FrontierScriptManager *scriptMan)
+BOOL FrontierScriptManager_RunScript(FrontierScriptManager *scriptMan)
 {
     if (scriptMan->numSetContexts == 0) {
         return TRUE;
@@ -55,7 +55,7 @@ BOOL ov104_0222E6A8(FrontierScriptManager *scriptMan)
             FrontierScriptContext *ctx = scriptMan->ctx[i];
 
             if (ctx != NULL) {
-                if (FrontierScriptContext_Run(ctx) == 0) {
+                if (!FrontierScriptContext_Run(ctx)) {
                     FrontierScriptContext_Free(scriptMan, ctx);
                     scriptMan->ctx[i] = NULL;
                     scriptMan->numSetContexts--;
@@ -63,7 +63,7 @@ BOOL ov104_0222E6A8(FrontierScriptManager *scriptMan)
             }
         }
 
-        ov104_0223D8C4(scriptMan->unk_00);
+        ov104_0223D8C4(scriptMan->frontier);
     }
 
     return scriptMan->numSetContexts == 0;
@@ -136,8 +136,8 @@ static void Dummy(FrontierScriptManager *scriptMan, u16 scene, u32 *null1, void 
 
 static void FrontierScriptManager_LoadScriptData(u8 **script, MessageLoader **msgLoader, int scene, enum HeapID heapID)
 {
-    int scriptID = GetFrontierSceneValue(scene, FR_SCENE_SCRIPT_ID);
-    int bankID = GetFrontierSceneValue(scene, FR_SCENE_BANK_ID);
+    int scriptID = FrontierScene_GetParam(scene, FR_SCENE_SCRIPT_ID);
+    int bankID = FrontierScene_GetParam(scene, FR_SCENE_BANK_ID);
 
     *script = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, scriptID, heapID);
     *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
@@ -145,8 +145,8 @@ static void FrontierScriptManager_LoadScriptData(u8 **script, MessageLoader **ms
 
 void FrontierScriptManager_UpdateMessageLoader(FrontierScriptManager *scriptMan, int scene, enum HeapID heapID)
 {
-    int currentBankID = GetFrontierSceneValue(scriptMan->scene, FR_SCENE_BANK_ID);
-    int newBankID = GetFrontierSceneValue(scene, FR_SCENE_BANK_ID);
+    int currentBankID = FrontierScene_GetParam(scriptMan->scene, FR_SCENE_BANK_ID);
+    int newBankID = FrontierScene_GetParam(scene, FR_SCENE_BANK_ID);
 
     if (currentBankID == newBankID) {
         return;
@@ -195,5 +195,5 @@ u16 *ov104_0222E91C(FrontierScriptManager *param0, int param1)
 
 FrontierGraphics *FrontierScriptManager_GetGraphics(FrontierScriptManager *scriptMan)
 {
-    return sub_0209B974(scriptMan->unk_00);
+    return BattleFrontier_GetGraphics(scriptMan->frontier);
 }
