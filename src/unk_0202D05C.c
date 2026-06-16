@@ -486,28 +486,28 @@ void sub_0202D628(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1)
     param1->unk_04 = param0->unk_100;
 }
 
-void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *param1, const u8 param2)
+void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *dto, const u8 opponentNum)
 {
-    FrontierTrainerDataDTO *v0 = &(param1->trDataDTO);
-    FrontierPokemonDataDTO *v1 = param1->monDataDTO;
-    UnkStruct_0202D63C *v2 = &(param0->unk_104[param2]);
+    FrontierTrainerDataDTO *trDataDTO = &(dto->trDataDTO);
+    FrontierPokemonDataDTO *monDataDTO = dto->monDataDTO;
+    UnkStruct_0202D63C *v2 = &(param0->unk_104[opponentNum]);
 
-    v0->trainerID = 10000;
-    v0->trainerType = v2->unk_C9;
+    trDataDTO->trainerID = 10000;
+    trDataDTO->trainerType = v2->trainerType;
 
     if (v2->unk_C8_val1_unk_00_0) {
-        MessageLoader *v3 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELD2);
+        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELD2);
 
-        MessageLoader_Get(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->trainerName);
-        MessageLoader_Free(v3);
+        MessageLoader_Get(msgLoader, 22 + v2->unk_C8_val1_unk_00_1, trDataDTO->trainerName);
+        MessageLoader_Free(msgLoader);
     } else {
-        MI_CpuCopy8(v2->unk_A8, v0->trainerName, 16);
+        MI_CpuCopy8(v2->trainerName, trDataDTO->trainerName, 16);
     }
 
-    MI_CpuCopy8(v2->unk_CA, v0->introMsg, 8);
-    MI_CpuCopy8(v2->unk_D2, v0->winMsg, 8);
-    MI_CpuCopy8(v2->unk_DA, v0->loseMsg, 8);
-    MI_CpuCopy8(v2->unk_00, v1, sizeof(FrontierPokemonDataDTO) * 3);
+    MI_CpuCopy8(v2->introMsg, trDataDTO->introMsg, 8);
+    MI_CpuCopy8(v2->winMsg, trDataDTO->winMsg, 8);
+    MI_CpuCopy8(v2->loseMsg, trDataDTO->loseMsg, 8);
+    MI_CpuCopy8(v2->monDataDTO, monDataDTO, sizeof(FrontierPokemonDataDTO) * 3);
 }
 
 void sub_0202D6DC(UnkStruct_0202D764 *param0, UnkStruct_ov96_0223B450_sub2 *param1, u8 param2, u8 param3)
