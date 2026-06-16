@@ -52,7 +52,7 @@ VerityLakefront_WarpToLakeValor:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_LAKE_VERITY_LOW_WATER, 0, 46, 54, DIR_NORTH
+    Warp MAP_HEADER_LAKE_VERITY_LOW_WATER, 46, 54, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

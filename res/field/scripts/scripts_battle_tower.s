@@ -443,10 +443,10 @@ BattleTower_TrySaveGame:
 
 BattleTower_WarpToElevator:
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
-    CreateJournalEvent LOCATION_EVENT_BATTLE_TOWER, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_TOWER
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 3, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

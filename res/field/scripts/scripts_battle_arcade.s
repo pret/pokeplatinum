@@ -289,7 +289,7 @@ BattleArcade_StartChallenge:
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleArcade_WalkBackInvisiblyDoubleChallenge
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_WalkBackInvisiblyMultiChallenge
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
-    CreateJournalEvent LOCATION_EVENT_BATTLE_ARCADE, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_ARCADE
     WaitForTransition
     ScrCmd_2C4 15
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_EndCommunication

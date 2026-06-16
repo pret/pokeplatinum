@@ -62,7 +62,7 @@ BattleTowerMultiBattleRoom_WarpToLobby:
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 7, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -78,7 +78,7 @@ BattleTowerMultiBattleRoom_EndCommunicationWarpToLobby:
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 8
     EndCommunication
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 7, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

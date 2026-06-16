@@ -410,7 +410,7 @@ PokemonCenterB1FCommon_GoToWiFiPlaza:
     SetVar VAR_MAP_LOCAL_3, 0
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_WIFI_PLAZA_ENTRANCE, 0, 20, 11, DIR_NORTH
+    Warp MAP_HEADER_WIFI_PLAZA_ENTRANCE, 20, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

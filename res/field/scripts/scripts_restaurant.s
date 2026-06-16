@@ -174,7 +174,7 @@ Restaurant_OnFrame_Closed:
     ReleaseAll
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VALOR_LAKEFRONT, 0, 706, 791, DIR_SOUTH
+    Warp MAP_HEADER_VALOR_LAKEFRONT, 706, 791, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End

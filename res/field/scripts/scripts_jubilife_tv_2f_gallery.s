@@ -177,7 +177,7 @@ JubilifeTV2FGallery_ThatsAnEgg:
 JubilifeTV2FGallery_SetDressUpPhotoTitle:
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8004
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8004
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

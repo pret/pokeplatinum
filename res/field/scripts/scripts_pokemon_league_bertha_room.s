@@ -39,11 +39,11 @@ PokemonLeagueBerthaRoom_StartBerthaRematchBattle:
     Return
 
 PokemonLeagueBerthaRoom_CreateJournalEventDefeatedBertha:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_BERTHA, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_BERTHA
     Return
 
 PokemonLeagueBerthaRoom_CreateJournalEventDefeatedRematchBertha:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_BERTHA_REMATCH, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_BERTHA_REMATCH
     Return
 
 PokemonLeagueBerthaRoom_BlackOut:
