@@ -362,7 +362,11 @@ static void LoadPaletteWithSrcOffset(void *nclrBuffer, enum PaletteLoadLocation 
         NNSG2dPaletteData *palette;
 
         if (NNS_G2dGetUnpackedPaletteData(nclrBuffer, &palette)) {
+            #ifdef SDK_PORT
+            palette->pRawData = (void *)((u64)palette->pRawData + srcOffset);
+            #else
             palette->pRawData = (void *)((u32)palette->pRawData + srcOffset);
+            #endif
 
             if (size == 0) {
                 size = palette->szByte - srcOffset;

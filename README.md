@@ -4,6 +4,12 @@ This is a WIP PC port of Pokemon Platinum based on the [pret](https://github.com
 
 Currently it is possible to reach the first gym. It might be possible to get farther than that, however it has not been tested.
 
+Required Packages (arch linux):
+* nasm
+* enet
+* arm-none-eabi-gcc (required by the base pret project)
+* ninja
+
 To build: 
 * make linux
 * (WIN64 TODO)
@@ -19,4 +25,6 @@ You can also build a ROM from the same source tree, just run:
 
 Target executable will be in ./build_(platform)/bin directory. win64 is also a supported build target, however it is untested.
 ROM will be built in /build directory
+
+You can update your SDKs using "meson subprojects update"
 

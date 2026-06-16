@@ -213,17 +213,33 @@ u32 ListMenu_GetIndexOfChoice(ListMenu *menu, u16 choice)
     return menu->template.choices[choice].index;
 }
 
+#ifdef SDK_PORT
+u64 ListMenu_GetAttribute(ListMenu *menu, u8 attribute)
+#else
 u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute)
+#endif
 {
+    #ifdef SDK_PORT
+    u64 result;
+    #else
     u32 result;
+    #endif
 
     switch (attribute) {
     case LIST_MENU_CURSOR_CALLBACK:
+        #ifdef SDK_PORT
+        result = (u64)menu->template.cursorCallback;
+        #else
         result = (u32)menu->template.cursorCallback;
+        #endif
         break;
 
     case LIST_MENU_PRINT_CALLBACK:
+        #ifdef SDK_PORT
+        result = (u64)menu->template.printCallback;
+        #else
         result = (u32)menu->template.printCallback;
+        #endif
         break;
 
     case LIST_MENU_COUNT:
@@ -287,11 +303,19 @@ u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute)
         break;
 
     case LIST_MENU_WINDOW:
+        #ifdef SDK_PORT
+        result = (u64)menu->template.window;
+        #else
         result = (u32)menu->template.window;
+        #endif
         break;
 
     case LIST_MENU_PARENT:
+        #ifdef SDK_PORT
+        result = (u64)menu->template.parent;
+        #else
         result = (u32)menu->template.parent;
+        #endif
         break;
 
     default:

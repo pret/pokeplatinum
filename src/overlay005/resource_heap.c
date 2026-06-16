@@ -36,7 +36,11 @@ ResourceHeap *ResourceHeap_New(enum HeapID parentHeapID, enum HeapID heapID, u32
     resHeap->itemCount = itemCount;
     resHeap->heapSize = heapSize;
     resHeap->itemHeadersSize = itemHeadersSize;
+    #ifdef SDK_PORT
+    resHeap->items = (void *)((u64)resHeap + sizeof(ResourceHeap));
+    #else
     resHeap->items = (void *)((u32)resHeap + sizeof(ResourceHeap));
+    #endif
 
     return resHeap;
 }

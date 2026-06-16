@@ -214,8 +214,13 @@ static inline void *ParticleSystem_AllocMemory(ParticleSystem *particleSystem, u
 {
     void *allocated = particleSystem->heap;
 
+    #ifdef SDK_PORT
+    u64 newHeapPos = (u64)particleSystem->heap + size;
+    u64 offset = newHeapPos % 4;
+    #else
     u32 newHeapPos = (u32)particleSystem->heap + size;
     u32 offset = newHeapPos % 4;
+    #endif
     if (offset > 0) {
         newHeapPos += 4 - offset;
     }

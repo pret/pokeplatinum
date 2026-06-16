@@ -2432,12 +2432,24 @@ static int PartyMenu_GetTouchScreenPartyBallPressed(PartyMenuApplication *applic
 
 static u8 HandleWindowInputEvent(PartyMenuApplication *application, int *partyMenuState)
 {
+    #ifdef SDK_PORT
+    u64 v0 = Menu_ProcessInput(application->contextMenu);
+    #else
     u32 v0 = Menu_ProcessInput(application->contextMenu);
+    #endif
 
     switch (v0) {
+    #ifdef SDK_PORT
+    case 0xffffffffffffffff:
+    #else
     case 0xffffffff:
+    #endif
         break;
+    #ifdef SDK_PORT
+    case 0xfffffffffffffffe:
+    #else
     case 0xfffffffe:
+    #endif
         Window_EraseMessageBox(&application->windows[33], 1);
         PartyMenu_ClearContextWindow(application);
 

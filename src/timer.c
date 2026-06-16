@@ -43,7 +43,11 @@ static u64 CalculateCurrentTimestamp(void)
     vu64 timerHigh;
     OSIntrMode irqState = OS_DisableInterrupts();
 
+    #ifdef SDK_PORT
+    timerLow = *(REGType16 *)((u64)REG_TM0CNT_L_ADDR + (OS_TIMER_3) * 4);
+    #else
     timerLow = *(REGType16 *)((u32)REG_TM0CNT_L_ADDR + (OS_TIMER_3) * 4);
+    #endif
     timerHigh = sTimerValue & 0xffffffffffffULL;
 
     if (reg_OS_IF & (OS_IE_TIMER3) && !(timerLow & 0x8000)) {

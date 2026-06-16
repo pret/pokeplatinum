@@ -2674,7 +2674,11 @@ static void DrawMoveTypeIcons(BattleSubscreen *btlSubscreen)
                 objCharPtr = G2S_GetOBJCharPtr();
                 imageProxy = Sprite_GetImageProxy(btlSubscreen->moveSelectSprites[i]->sprite);
 
+                #ifdef SDK_PORT
+                MI_CpuCopy16(moveDisplayData->moveIcons[i], (void *)((u64)objCharPtr + imageProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DSUB]), sub_0208C098(6));
+                #else
                 MI_CpuCopy16(moveDisplayData->moveIcons[i], (void *)((u32)objCharPtr + imageProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DSUB]), sub_0208C098(6));
+                #endif
             }
         }
     }

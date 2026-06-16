@@ -105,7 +105,11 @@ void ListMenu_CalcTrueCursorPos(ListMenu *menu, u16 *outPos);
 void ListMenu_GetListAndCursorPos(ListMenu *menu, u16 *outListPos, u16 *outCursorPos);
 u8 ListMenu_GetLastAction(ListMenu *menu);
 u32 ListMenu_GetIndexOfChoice(ListMenu *menu, u16 choice);
+#ifdef SDK_PORT
+u64 ListMenu_GetAttribute(ListMenu *menu, u8 attribute);
+#else
 u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute);
+#endif
 void ListMenu_SetChoices(ListMenu *menu, StringList *choices);
 
 #endif // POKEPLATINUM_LIST_MENU_H
