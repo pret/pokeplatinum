@@ -3,6 +3,7 @@
 
 #include "constants/battle.h"
 #include "constants/moves.h"
+#include "constants/pokemon.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/font_oam.h"
@@ -14,14 +15,10 @@
 
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "coordinates.h"
 #include "narc.h"
 #include "sys_task.h"
 #include "touch_screen.h"
-
-typedef struct ScreenPos {
-    s16 x;
-    s16 y;
-} ScreenPos;
 
 typedef struct SubscreenTilemapRect {
     u8 top;
@@ -60,7 +57,7 @@ typedef struct MenuButtonPressAnimState {
             u8 spriteIndex;
             u8 unread;
             u8 freeSprites;
-            ScreenPos screenPos;
+            CoordinatesS16 screenPos;
         } ButtonPressAnimationState;
         struct {
             UnusedStruct_ov16_02268A14_sub3_sub1 *unused_00[4];
@@ -170,10 +167,10 @@ typedef struct MoveDisplayInfo {
 
 typedef struct MoveDisplayData {
     MoveDisplayInfo moveDisplayInfo;
-    u16 *moveIcons[4];
-    TextWindowLayout moveNameWindows[4];
-    TextWindowLayout ppCountWindows[4];
-    TextWindowLayout ppLabelWindows[4];
+    u16 *moveIcons[LEARNED_MOVES_MAX];
+    TextWindowLayout moveNameWindows[LEARNED_MOVES_MAX];
+    TextWindowLayout ppCountWindows[LEARNED_MOVES_MAX];
+    TextWindowLayout ppLabelWindows[LEARNED_MOVES_MAX];
 } MoveDisplayData;
 
 typedef struct BattleSubscreen {
@@ -189,17 +186,17 @@ typedef struct BattleSubscreen {
     u16 *normalMovePalBuf;
     u16 *speedUpMovePalBuf;
     SysTask *speedUpPaletteTask;
-    MoveDisplayData moveDisplayData[4];
+    MoveDisplayData moveDisplayData[MAX_BATTLERS];
     UnkStruct_02012744 *fontOAMManager;
     FontOAMEntry fontOAMEntry[13];
     UnkStruct_02012B20 *unused_5B8;
-    ManagedSprite *playerPartyBallSprites[6];
-    ManagedSprite *opponentPartyBallSprites[6];
-    ManagedSprite *moveSelectSprites[4];
-    ManagedSprite *categoryIconSprites[4];
-    ManagedSprite *targetSelectPokeIconSprites[4];
-    SysTask *pokeIconAnimTasks[4];
-    PartyBallAnimState partyBallAnimState[6];
+    ManagedSprite *playerPartyBallSprites[MAX_PARTY_SIZE];
+    ManagedSprite *opponentPartyBallSprites[MAX_PARTY_SIZE];
+    ManagedSprite *moveSelectSprites[LEARNED_MOVES_MAX];
+    ManagedSprite *categoryIconSprites[LEARNED_MOVES_MAX];
+    ManagedSprite *targetSelectPokeIconSprites[MAX_BATTLERS];
+    SysTask *pokeIconAnimTasks[MAX_BATTLERS];
+    PartyBallAnimState partyBallAnimState[MAX_PARTY_SIZE];
     SysTask *unused_664;
     u8 unused_668;
     u8 unused_669;

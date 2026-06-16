@@ -21,6 +21,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "coordinates.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -786,7 +787,7 @@ __attribute__((aligned(4))) static const SubscreenTilemapRect sStopButtonPressTi
     { 0x12, 0x17, 0x0, 0x1F }
 };
 
-static const ScreenPos screenPos[] = {
+static const CoordinatesS16 screenPos[] = {
     { 0x80, 0x4C },
     { 0x28, 0xA4 },
     { 0xD8, 0xA4 },
