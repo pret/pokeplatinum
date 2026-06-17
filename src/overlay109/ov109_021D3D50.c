@@ -16,6 +16,7 @@
 #include "appearance.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "comm_command_spin_trade.h"
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -54,7 +55,6 @@
 #include "unk_020363E8.h"
 #include "unk_02038ED4.h"
 #include "unk_0205B33C.h"
-#include "unk_0209BDF8.h"
 #include "vram_transfer.h"
 #include "wireless_manager.h"
 

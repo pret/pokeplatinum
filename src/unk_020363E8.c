@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/heap.h"
 
 #include "communication_system.h"
@@ -68,7 +69,7 @@ void CommCmd_16(int netId, int param1, void *_buff, void *param3)
     if (CommSys_CurNetId() == 0) {
         v2[0] = netId;
         v2[1] = syncNo;
-        CommSys_SendDataFixedSizeServer(18, &v2);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_18, &v2);
 
         sCommTool->syncNo[netId] = syncNo;
 
@@ -80,7 +81,7 @@ void CommCmd_16(int netId, int param1, void *_buff, void *param3)
             }
         }
 
-        CommSys_SendDataFixedSizeServer(17, &syncNo);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_17, &syncNo);
     }
 }
 
@@ -108,7 +109,7 @@ void sub_0203650C(void)
 {
     if (sCommTool) {
         if (sCommTool->sendTiming) {
-            if (CommSys_SendDataFixedSize(16, &sCommTool->syncNoPersonal)) {
+            if (CommSys_SendDataFixedSize(COMM_CMD_16, &sCommTool->syncNoPersonal)) {
                 sCommTool->sendTiming = 0;
             }
         }
@@ -133,7 +134,7 @@ int CommTool_GetSyncNo(int netId)
     return sCommTool->syncNo[netId];
 }
 
-void sub_02036574(int netId, int param1, void *param2, void *param3)
+void CommCmd_19(int netId, int param1, void *param2, void *param3)
 {
     UnkStruct_02036574 *v0 = param2;
 
@@ -153,7 +154,7 @@ void sub_02036594(u8 param0, u8 param1)
     v0.unk_00 = param0;
     v0.unk_01 = param1;
 
-    CommSys_SendDataFixedSize(19, &v0);
+    CommSys_SendDataFixedSize(COMM_CMD_19, &v0);
 }
 
 int CommList_Get(int param0, u8 param1)
@@ -189,7 +190,7 @@ BOOL sub_02036614(int param0, const void *param1)
 {
     if (sCommTool) {
         MI_CpuCopy8(param1, sCommTool->unk_18[param0], COMM_TOOL_TEMP_DATA_SIZE);
-        CommSys_SendDataFixedSize(20, sCommTool->unk_18[param0]);
+        CommSys_SendDataFixedSize(COMM_CMD_20, sCommTool->unk_18[param0]);
         return 1;
     }
 
@@ -205,7 +206,7 @@ const void *sub_0203664C(int netId)
     return NULL;
 }
 
-void sub_02036670(int netId, int param1, void *param2, void *param3)
+void CommCmd_20(int netId, int param1, void *param2, void *param3)
 {
     sCommTool->hasRecievedTempData[netId] = TRUE;
     MI_CpuCopy8(param2, sCommTool->unk_18[netId], COMM_TOOL_TEMP_DATA_SIZE);

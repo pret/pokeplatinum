@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
 #include "nintendo_wfc/main.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay114/struct_ov114_0225C76C.h"
@@ -206,7 +208,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
 
         if (IsScreenFadeDone()) {
             if (v0->unk_44 == 0) {
-                v2 = CommSys_SendData(22, NULL, 0);
+                v2 = CommSys_SendData(COMM_COMMAND_SWALOT_PLOP_22, NULL, 0);
 
                 if (v2) {
                     (*param1)++;
@@ -235,7 +237,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
             u32 v5;
 
             v5 = ov115_02261274(v0->unk_34);
-            v2 = CommSys_SendData(25, &v5, sizeof(u32));
+            v2 = CommSys_SendData(COMM_COMMAND_SWALOT_PLOP_25, &v5, sizeof(u32));
 
             if (v2) {
                 (*param1)++;
@@ -251,7 +253,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
                 BOOL v7;
 
                 v6 = ov115_02260C64(v0->unk_30);
-                v7 = ov115_02260BA0(v0, 27, &v6, sizeof(u32));
+                v7 = ov115_02260BA0(v0, COMM_COMMAND_SWALOT_PLOP_27, &v6, sizeof(u32));
 
                 if (v7 == 1) {
                     ov115_02260C5C(v0->unk_30);
@@ -259,7 +261,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
             }
 
             if (v2 == 0) {
-                ov115_02260BA0(v0, 23, NULL, 0);
+                ov115_02260BA0(v0, COMM_COMMAND_SWALOT_PLOP_23, NULL, 0);
             }
         }
 
@@ -277,7 +279,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
                 UnkStruct_ov115_02265AD4 v8;
 
                 ov115_02260CBC(v0->unk_30, &v8);
-                v2 = CommSys_SendData(26, &v8, sizeof(UnkStruct_ov115_02265AD4));
+                v2 = CommSys_SendData(COMM_COMMAND_SWALOT_PLOP_26, &v8, sizeof(UnkStruct_ov115_02265AD4));
 
                 if (v2) {
                     (*param1)++;
@@ -470,7 +472,7 @@ void ov115_022609E4(UnkStruct_ov115_0226095C *param0, u32 param1, u32 param2)
 
         if (v2 == 1) {
             param0->unk_7C++;
-            CommSys_SendData(29, NULL, 0);
+            CommSys_SendData(COMM_COMMAND_SWALOT_PLOP_29, NULL, 0);
         }
     }
 }
@@ -492,7 +494,7 @@ static void ov115_02260A5C(UnkStruct_ov115_0226095C *param0)
     UnkStruct_ov115_02265AD0 v0;
 
     while (ov115_02261224(param0->unk_34, &v0) == 1) {
-        ov115_02260BA0(param0, 24, &v0, sizeof(UnkStruct_ov115_02265AD0));
+        ov115_02260BA0(param0, COMM_COMMAND_SWALOT_PLOP_24, &v0, sizeof(UnkStruct_ov115_02265AD0));
     }
 }
 
@@ -511,7 +513,7 @@ static void ov115_02260A90(UnkStruct_ov115_0226095C *param0)
     if ((v0 % 30) == 0) {
         if (param0->unk_80 == 1) {
             v1 = ov115_02261274(param0->unk_34);
-            v2 = ov115_02260BA0(param0, 28, &v1, sizeof(u32));
+            v2 = ov115_02260BA0(param0, COMM_COMMAND_SWALOT_PLOP_28, &v1, sizeof(u32));
             GF_ASSERT(v2);
 
             param0->unk_80 = 0;

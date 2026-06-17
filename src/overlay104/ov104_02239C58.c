@@ -12,6 +12,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "comm_command_frontier.h"
 #include "dexmode_checker.h"
 #include "heap.h"
 #include "mail.h"
@@ -20,7 +21,6 @@
 #include "savedata.h"
 #include "unk_0202D778.h"
 #include "unk_0209B6F8.h"
-#include "unk_0209BA80.h"
 
 #include "constdata/const_020F410C.h"
 

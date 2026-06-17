@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
 #include "struct_decls/struct_02095EAC_decl.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_02095EAC_t.h"
@@ -13,6 +15,7 @@
 
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "comm_command_draw.h"
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -48,7 +51,6 @@
 #include "unk_020363E8.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_02095E98.h"
 #include "vram_transfer.h"
 #include "wireless_manager.h"
 #include "yes_no_touch_menu.h"
@@ -248,7 +250,7 @@ int ov58_021D0F08(ApplicationManager *appMan, int *param1)
         if (IsScreenFadeDone()) {
             if (CommSys_CurNetId() != 0) {
                 if (ov58_021D2A30() >= 2) {
-                    CommSys_SendData(128, NULL, 0);
+                    CommSys_SendData(COMM_CMD_FIELD_DRAWING_128, NULL, 0);
                     *param1 = 1;
                 }
                 break;
@@ -1036,7 +1038,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
 
             ov58_021D2CB0(param0, 7);
 
-            CommSys_SendData(126, &v1, sizeof(UnkStruct_02095FE4));
+            CommSys_SendData(COMM_CMD_FIELD_DRAWING_126, &v1, sizeof(UnkStruct_02095FE4));
             Window_EraseMessageBox(&param0->unk_33C, 1);
         }
 
@@ -1095,7 +1097,7 @@ static int ov58_021D1FD4(UnkStruct_02095EAC *param0, int param1)
         v0.unk_02 = 1;
         v0.unk_00 = CommSys_CurNetId();
 
-        CommSys_SendData(126, &v0, sizeof(UnkStruct_02095FE4));
+        CommSys_SendData(COMM_CMD_FIELD_DRAWING_126, &v0, sizeof(UnkStruct_02095FE4));
         param0->unk_941E = 0;
         ov58_021D2CB0(param0, 10);
     }
@@ -1186,7 +1188,7 @@ static int ov58_021D2180(UnkStruct_02095EAC *param0, int param1)
     switch (v0) {
     case YES_NO_TOUCH_MENU_YES:
         ov58_021D2CB0(param0, 15);
-        CommSys_SendDataServer(127, NULL, 0);
+        CommSys_SendDataServer(COMM_CMD_FIELD_DRAWING_127, NULL, 0);
         StringTemplate_SetPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
         param1 = 2;
         ov58_021D2D10(param0);
@@ -1653,11 +1655,11 @@ static void ov58_021D29C8(UnkStruct_02095EAC *param0)
         if (sub_02036284()) {
             param0->unk_43DC.unk_09 = param0->unk_9458;
             param0->unk_9421[0] = param0->unk_43DC;
-            CommSys_SendDataServer(120, param0->unk_9421, 10 * 5);
+            CommSys_SendDataServer(COMM_CMD_FIELD_DRAWING_120, param0->unk_9421, 10 * 5);
         }
     } else {
         if (sub_0203629C()) {
-            CommSys_SendData(119, &param0->unk_43DC, 10);
+            CommSys_SendData(COMM_CMD_FIELD_DRAWING_119, &param0->unk_43DC, 10);
         }
     }
 }

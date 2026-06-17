@@ -3,8 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
+#include "main_menu/comm_command_mystery_gift.h"
 #include "main_menu/mystery_gift_app.h"
-#include "main_menu/ov97_0222D2F8.h"
 
 #include "comm_manager.h"
 #include "communication_information.h"
@@ -172,7 +174,7 @@ void ov97_0222D1C4(MysteryGiftAppData *param0, SaveData *saveData, int param2)
 
 void ov97_0222D1F0(const void *param0, int param1)
 {
-    CommSys_SendDataHugeServer(22, param0, param1);
+    CommSys_SendDataHugeServer(COMM_CMD_MYSTERY_GIFT_22, param0, param1);
 }
 
 void ov97_0222D200(MysteryGiftAppData *param0, int param1)
@@ -215,7 +217,7 @@ int ov97_0222D250(MysteryGiftAppData *param0)
     return -1;
 }
 
-void ov97_0222D284(int param0, int param1, void *param2, void *param3)
+void CommCmd_MysteryGift_22(int param0, int param1, void *param2, void *param3)
 {
     if (Unk_ov97_0223F1A4->unk_27 != param0) {
         return;
@@ -239,7 +241,7 @@ u8 *ov97_0222D2B8(int param0, void *param1, int param2)
     return (u8 *)&Unk_ov97_0223F1A4->unk_68;
 }
 
-void ov97_0222D2C4(int param0, int param1, void *param2, void *param3)
+void CommCmd_MysteryGift_23(int param0, int param1, void *param2, void *param3)
 {
     Unk_ov97_0223F1A4->unk_3C1[param0] = 1;
 }

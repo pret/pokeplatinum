@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/map_object.h"
 #include "generated/trainer_score_events.h"
 #include "generated/traps.h"
@@ -1159,7 +1160,7 @@ static BuriedTrap *Traps_AddBuriedTrap(int x, int z, BuriedTrap *dest, enum Trap
 
 void Underground_SendPlacedTrap(u8 trapID)
 {
-    CommSys_SendDataFixedSize(32, &trapID);
+    CommSys_SendDataFixedSize(COMM_CMD_TRY_PLACE_TRAP, &trapID);
 }
 
 void Traps_SendTrapRadarResults(void)
@@ -1172,7 +1173,7 @@ void Traps_SendPlacedTraps(void)
     CommSys_WriteToQueue(35, &trapsEnv->playerPlacedTraps[0], sizeof(BuriedTrap) * MAX_PLACED_TRAPS);
 }
 
-void Traps_TryPlaceTrap(int netID, int unused1, void *data, void *unused3)
+void CommCmd_TryPlaceTrap(int netID, int unused1, void *data, void *unused3)
 {
     u8 *trapID = (u8 *)data;
 
@@ -1189,31 +1190,31 @@ void Traps_TryPlaceTrap(int netID, int unused1, void *data, void *unused3)
 
     if (CommPlayer_GetXServerIfActive(netID) == 0xFFFF && CommPlayer_GetZServerIfActive(netID) == 0xFFFF) {
         placeResult.result = PLACE_TRAP_FAIL;
-        CommSys_SendDataServer(34, &placeResult, sizeof(PlaceTrapResult));
+        CommSys_SendDataServer(COMM_CMD_PLACE_TRAP_RESULT, &placeResult, sizeof(PlaceTrapResult));
         return;
     }
 
     if (CommPlayerMan_GetLinkNetIDAtLocation(x, z) != NETID_NONE) {
         placeResult.result = PLACE_TRAP_PERSON_IN_WAY;
-        CommSys_SendDataServer(34, &placeResult, sizeof(PlaceTrapResult));
+        CommSys_SendDataServer(COMM_CMD_PLACE_TRAP_RESULT, &placeResult, sizeof(PlaceTrapResult));
         return;
     }
 
     if (CommPlayer_CheckNPCCollision(x, z)) {
         placeResult.result = PLACE_TRAP_PERSON_IN_WAY;
-        CommSys_SendDataServer(34, &placeResult, sizeof(PlaceTrapResult));
+        CommSys_SendDataServer(COMM_CMD_PLACE_TRAP_RESULT, &placeResult, sizeof(PlaceTrapResult));
         return;
     }
 
     if (UndergroundMan_AreCoordinatesInSecretBase(x, z)) {
         placeResult.result = PLACE_TRAP_NOT_IN_SECRET_BASE;
-        CommSys_SendDataServer(34, &placeResult, sizeof(PlaceTrapResult));
+        CommSys_SendDataServer(COMM_CMD_PLACE_TRAP_RESULT, &placeResult, sizeof(PlaceTrapResult));
         return;
     }
 
     if (TerrainCollisionManager_CheckCollision(trapsEnv->fieldSystem, x, z)) {
         placeResult.result = PLACE_TRAP_WALL_IN_WAY;
-        CommSys_SendDataServer(34, &placeResult, sizeof(PlaceTrapResult));
+        CommSys_SendDataServer(COMM_CMD_PLACE_TRAP_RESULT, &placeResult, sizeof(PlaceTrapResult));
         return;
     }
 
@@ -1227,7 +1228,7 @@ void Traps_TryPlaceTrap(int netID, int unused1, void *data, void *unused3)
         }
     }
 
-    CommSys_SendDataServer(34, &placeResult, sizeof(PlaceTrapResult));
+    CommSys_SendDataServer(COMM_CMD_PLACE_TRAP_RESULT, &placeResult, sizeof(PlaceTrapResult));
 }
 
 int CommPacketSizeOf_PlaceTrapResult(void)
@@ -1377,7 +1378,7 @@ static void Traps_RemovePlacedTrapCurrentPlayer(BuriedTrap *trap)
     trapsEnv->trapTextureManager[MAX_PLACED_TRAPS - 1] = NULL;
 }
 
-void Traps_ProcessPlaceTrapResult(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_PlaceTrapResult(int unused0, int unused1, void *data, void *unused3)
 {
     PlaceTrapResult *placeResult = (PlaceTrapResult *)data;
 
@@ -1404,7 +1405,7 @@ void Traps_ProcessPlaceTrapResult(int unused0, int unused1, void *data, void *un
     }
 }
 
-void Traps_RemoveBuriedTrapAtIndex_Unused(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RemoveBuriedTrapAtIndex_Unused(int unused0, int unused1, void *data, void *unused3)
 {
     u16 *buffer = data;
     int index = buffer[0];
@@ -1417,7 +1418,7 @@ int CommPacketSizeOf_2Bytes_Unused(void)
     return 2;
 }
 
-void Traps_LoadLinkPlacedTraps(int netID, int size, void *data, void *unused3)
+void CommCmd_LoadLinkPlacedTraps(int netID, int size, void *data, void *unused3)
 {
     BuriedTrap *trapPtr = &trapsEnv->buriedTraps[netID * MAX_PLACED_TRAPS];
 
@@ -1446,11 +1447,11 @@ void Traps_LoadLinkPlacedTraps(int netID, int size, void *data, void *unused3)
     result.netID = netID;
     result.success = TRUE;
 
-    CommSys_SendDataServer(36, &result, 2);
+    CommSys_SendDataServer(COMM_CMD_RECV_LOAD_TRAPS, &result, 2);
     Traps_SendTriggeredTrapBits();
 }
 
-void Traps_ReceiveLoadTrapsResult(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RecvLoadTraps(int unused0, int unused1, void *data, void *unused3)
 {
     LoadTrapsResult *result = data;
 
@@ -1512,7 +1513,7 @@ BOOL Traps_TryDisengageTrap(int netID, CoordinatesU16 *unused, u8 flags)
         }
 
         CommPlayerMan_SetMovementEnabled(netID, FALSE);
-        CommSys_SendDataServer(51, &retrievedTrap, sizeof(TriggeredTrap));
+        CommSys_SendDataServer(COMM_CMD_DISENGAGE_TRAP, &retrievedTrap, sizeof(TriggeredTrap));
 
         return TRUE;
     }
@@ -1525,7 +1526,7 @@ int CommPacketSizeOf_TriggeredTrap(void)
     return sizeof(TriggeredTrap);
 }
 
-void Traps_ProcessDisengagedTrap(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_DisengagedTrap(int unused0, int unused1, void *data, void *unused3)
 {
     TriggeredTrap *retrievedTrap = (TriggeredTrap *)data;
 
@@ -1651,7 +1652,7 @@ static BOOL CheckPlayerSteppedOnTrap(int netID)
         Underground_RemoveSpawnedTrapAtIndex(underground, triggeredTrap.trap.spawnedTrapIndex);
     }
 
-    CommSys_SendDataServer(37, &triggeredTrap, sizeof(TriggeredTrap));
+    CommSys_SendDataServer(COMM_CMD_TRIGGER_TRAP, &triggeredTrap, sizeof(TriggeredTrap));
     trapsEnv->triggeredTrapIDs[netID] = trap->trapID;
     Traps_RemoveBuriedTrap(trap);
 
@@ -1675,7 +1676,7 @@ void Traps_HandleTriggeredTool(int victimNetID, int setterNetID, enum Trap trapI
     trap.trap.z = z;
     trap.toolInitialDir = victimDir;
 
-    CommSys_SendDataServer(37, &trap, sizeof(TriggeredTrap));
+    CommSys_SendDataServer(COMM_CMD_TRIGGER_TRAP, &trap, sizeof(TriggeredTrap));
     trapsEnv->triggeredTrapIDs[victimNetID] = trapID;
 }
 
@@ -1695,7 +1696,7 @@ BOOL Traps_HasPlayerTriggeredTool(int netID)
     return trapsEnv->triggeredTraps[netID].isTool;
 }
 
-void Traps_HandleTriggeredTrap(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_TriggeredTraps(int unused0, int unused1, void *data, void *unused3)
 {
     TriggeredTrap *trap = (TriggeredTrap *)data;
 
@@ -1751,7 +1752,7 @@ void Traps_HandleTriggeredTrap(int unused0, int unused1, void *data, void *unuse
     }
 }
 
-void Traps_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, void *unused3)
+void CommCmd_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, void *unused3)
 {
     u8 *trapID = data;
     TrapServerFunc trapEffectFunc = sTrapEffectServerSecondFuncs[*trapID];
@@ -1766,7 +1767,7 @@ void Traps_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, vo
     }
 }
 
-void Traps_StartLinkSlideAnimation_Unused(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_StartSlideAnimation_Unused(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *buffer = data;
 
@@ -1786,11 +1787,11 @@ void Traps_SendTriggeredTrapBits(void)
             }
         }
 
-        CommSys_SendDataFixedSizeServer(45, &bits);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_TRIGGERD_TRAP_BITS, &bits);
     }
 }
 
-void Traps_ProcessTriggeredTrapBits(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_TriggeredTrapBits(int unused0, int unused1, void *data, void *unused3)
 {
     u8 bits = *(u8 *)data;
 
@@ -2177,7 +2178,7 @@ static void Traps_MoveTrapClientTask(SysTask *sysTask, void *data)
         if (ctx->timer == 28) {
             u8 trapID = trapsEnv->triggeredTrapIDClient;
 
-            CommSys_SendDataFixedSize(38, &trapID);
+            CommSys_SendDataFixedSize(COMM_CMD_CALL_SECOND_TRAP_EFFECT, &trapID);
         }
 
         if (ctx->timer > 30) {
@@ -2519,7 +2520,7 @@ static void Traps_SmokeTrapClientTask(SysTask *sysTask, void *data)
                 if (ctx->isTool) {
                     ctx->state = SMOKE_TRAP_STATE_TOOL_STEP_BACK;
                 } else {
-                    CommSys_SendMessage(41);
+                    CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
                     ctx->state = SMOKE_TRAP_STATE_WAIT_FOR_END;
                 }
             }
@@ -2552,7 +2553,7 @@ static void Traps_SmokeTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            CommSys_SendMessage(41);
+            CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
             ctx->state = SMOKE_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -2564,7 +2565,7 @@ int CommPacketSizeOf_EscapedTrap(void)
     return sizeof(EscapedTrap);
 }
 
-void Traps_EscapeTrapServer(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_EscapeTrapServer(int netID, int unused1, void *unused2, void *unused3)
 {
     if (UndergroundPlayer_IsAffectedByTrap(netID)) {
         UndergroundPlayer_RevertStatusToNormal(netID);
@@ -2576,13 +2577,13 @@ void Traps_EscapeTrapServer(int netID, int unused1, void *unused2, void *unused3
         trap.netID = netID;
         trap.showOKEmote = TRUE;
 
-        CommSys_SendDataFixedSizeServer(42, &trap);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_ESCAPED_TRAP, &trap);
     }
 
     trapsEnv->triggeredTrapIDs[netID] = TRAP_NONE;
 }
 
-void Traps_EndCurrentTrapEffectServer(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_EndCurrentTrapEffectServer(int netID, int unused1, void *unused2, void *unused3)
 {
     UndergroundPlayer_RevertStatusToNormal(netID);
 
@@ -2596,7 +2597,7 @@ void Traps_EndCurrentTrapEffectServer(int netID, int unused1, void *unused2, voi
     SecretBases_ClearToolEffectFlag(netID);
 }
 
-void Traps_ProcessEscapedTrap(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_EscapedTrap(int unused0, int unused1, void *data, void *unused3)
 {
     EscapedTrap *escapedTrap = data;
     enum Trap trapID = escapedTrap->trapID;
@@ -2636,7 +2637,7 @@ void Traps_ProcessEscapedTrap(int unused0, int unused1, void *data, void *unused
     }
 }
 
-void Traps_EscapeHole(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_EscapeHole(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *netID = data;
     enum Trap trapID = trapsEnv->triggeredTrapIDClient;
@@ -2656,12 +2657,12 @@ void Traps_HelpLink(int netID, int linkNetID)
     helpData.helperNetID = netID;
     helpData.trapID = trapsEnv->triggeredTrapIDs[linkNetID];
 
-    CommSys_SendDataFixedSizeServer(44, &helpData);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_TRAP_HELP, &helpData);
     trapsEnv->triggeredTrapIDs[linkNetID] = TRAP_NONE;
     CommPlayerMan_SetMovementEnabled(netID, FALSE);
 }
 
-void Traps_ProcessTrapHelp(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_TrapHelp(int unused0, int unused1, void *data, void *unused3)
 {
     TrapHelpData *helpdata = data;
     UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
@@ -2754,7 +2755,7 @@ void TrapRadar_Start(void)
 
     TrapRadarContext *ctx = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(TrapRadarContext));
     MI_CpuFill8(ctx, 0, sizeof(TrapRadarContext));
-    CommSys_SendMessage(46);
+    CommSys_SendMessage(COMM_CMD_QUEUE_SEND_TRAP_RADAR_RESULTS);
 
     trapsEnv->trapRadarContext = ctx;
     trapsEnv->trapRadarTask = SysTask_Start(TrapRadar_TimerTask, ctx, 100);
@@ -2773,7 +2774,7 @@ void TrapRadar_Exit(void)
     }
 }
 
-void Traps_QueueSendTrapRadarResults(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_QueueSendTrapRadarResults(int netID, int unused1, void *unused2, void *unused3)
 {
     trapsEnv->trapRadarIndex[netID] = 1;
 }
@@ -2796,7 +2797,7 @@ static void SendTrapRadarResults(void)
                         radarResult.x = trap->x;
                         radarResult.z = trap->z;
                         radarResult.netID = netID;
-                        CommSys_SendDataFixedSizeServer(47, &radarResult);
+                        CommSys_SendDataFixedSizeServer(COMM_CMD_RECV_TRAP_RADAR_RESULTS, &radarResult);
                         trapsEnv->trapRadarIndex[netID] = index + 2;
                         break;
                     }
@@ -2817,7 +2818,7 @@ static void SendTrapRadarResults(void)
     }
 }
 
-void Traps_ReceiveTrapRadarResults(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RecvTrapRadarResults(int unused0, int unused1, void *data, void *unused3)
 {
     TrapRadarResult *radarResult = data;
 
@@ -3090,7 +3091,7 @@ static void Traps_HoleTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (Traps_CheckPlayerPosRelativeToTrap(ctx->toolInitialDir, PLAYER_TILE_BACK_FROM_TRAP) || ctx->timer > 60) {
-            CommSys_SendMessage(41);
+            CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
             ctx->state = HOLE_TRAP_STATE_WAIT_FOR_FORCE_END;
         }
         break;
@@ -3108,7 +3109,7 @@ static void Traps_HoleTrapClientTask(SysTask *sysTask, void *data)
                 if (ctx->isTool) {
                     ctx->state = HOLE_TRAP_STATE_TOOL_STEP_BACK;
                 } else {
-                    CommSys_SendMessage(41);
+                    CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
                     ctx->state = HOLE_TRAP_STATE_END;
                 }
             }
@@ -3264,7 +3265,7 @@ static void Traps_LeafTrapClientTask(SysTask *sysTask, void *data)
             if (ctx->isTool) {
                 ctx->state = LEAF_TRAP_STATE_TOOL_STEP_BACK;
             } else {
-                CommSys_SendMessage(41);
+                CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
                 ctx->state = LEAF_TRAP_STATE_WAIT_FOR_END;
             }
         }
@@ -3295,7 +3296,7 @@ static void Traps_LeafTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            CommSys_SendMessage(41);
+            CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
             ctx->state = LEAF_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -3688,7 +3689,7 @@ static void Traps_BubbleTrapClientTask(SysTask *sysTask, void *data)
             if (ctx->isTool) {
                 ctx->state = BUBBLE_TRAP_STATE_TOOL_STEP_BACK;
             } else {
-                CommSys_SendMessage(41);
+                CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
                 ctx->state = BUBBLE_TRAP_STATE_WAIT_FOR_END;
             }
         }
@@ -3722,7 +3723,7 @@ static void Traps_BubbleTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            CommSys_SendMessage(41);
+            CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
             ctx->state = BUBBLE_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -4303,7 +4304,7 @@ static void Traps_RockTrapClientTask(SysTask *sysTask, void *data)
             if (ctx->isTool) {
                 ctx->state = ROCK_TRAP_STATE_TOOL_STEP_BACK;
             } else {
-                CommSys_SendMessage(41);
+                CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
                 ctx->state = ROCK_TRAP_STATE_WAIT_FOR_END;
             }
         }
@@ -4333,7 +4334,7 @@ static void Traps_RockTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            CommSys_SendMessage(41);
+            CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
             ctx->state = ROCK_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -4606,7 +4607,7 @@ static void Traps_FireTrapClientTask(SysTask *sysTask, void *data)
             if (ctx->isTool) {
                 ctx->state = FIRE_TRAP_STATE_TOOL_STEP_BACK;
             } else {
-                CommSys_SendMessage(41);
+                CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
                 ctx->state = FIRE_TRAP_STATE_WAIT_FOR_END;
             }
         }
@@ -4636,7 +4637,7 @@ static void Traps_FireTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            CommSys_SendMessage(41);
+            CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
             ctx->state = FIRE_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -4732,7 +4733,7 @@ static void Traps_AlertTrapClientTask(SysTask *sysTask, void *data)
         if (ctx->isTool) {
             ctx->state = ALERT_TRAP_STATE_TOOL_STEP_BACK;
         } else {
-            CommSys_SendMessage(41);
+            CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
             ctx->state = ALERT_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -4754,7 +4755,7 @@ static void Traps_AlertTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            CommSys_SendMessage(41);
+            CommSys_SendMessage(COMM_CMD_ESCAPE_TRAP);
             ctx->state = ALERT_TRAP_STATE_WAIT_FOR_END;
         }
         break;

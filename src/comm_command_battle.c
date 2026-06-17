@@ -1,0 +1,689 @@
+#include "comm_command_battle.h"
+
+#include <nitro.h>
+#include <string.h>
+
+#include "constants/battle.h"
+#include "constants/communication/comm_command.h"
+#include "constants/communication/comm_sync.h"
+
+#include "struct_decls/battle_system.h"
+#include "struct_defs/chatot_cry.h"
+#include "struct_defs/comm_cmd_table.h"
+#include "struct_defs/link_battle_comm_state.h"
+#include "struct_defs/struct_0207ACB4.h"
+#include "struct_defs/struct_0207AD40.h"
+#include "struct_defs/trainer.h"
+
+#include "battle/battle_controller.h"
+#include "battle/battle_system.h"
+#include "battle/message_defs.h"
+
+#include "charcode_util.h"
+#include "chatot_cry.h"
+#include "comm_command.h"
+#include "communication_system.h"
+#include "heap.h"
+#include "pal_pad.h"
+#include "party.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "trainer_info.h"
+#include "unk_0202F1D4.h"
+#include "unk_020363E8.h"
+
+void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4);
+BOOL sub_0207A8F4(LinkBattleCommState *linkBattleCommState, u32 param1);
+BOOL sub_0207A960(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207A988(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207A9CC(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207A9F8(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AA38(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AA5C(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AAA0(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AAC8(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AB9C(LinkBattleCommState *linkBattleCommState, int param1);
+BOOL sub_0207ABD0(LinkBattleCommState *linkBattleCommState, int param1, int param2);
+BOOL sub_0207AC28(LinkBattleCommState *linkBattleCommState, int param1);
+BOOL sub_0207AC54(LinkBattleCommState *linkBattleCommState, int param1, int param2);
+void sub_0207A744(void *param0);
+BOOL sub_0207AB58(LinkBattleCommState *linkBattleCommState);
+BOOL sub_0207AAFC(LinkBattleCommState *linkBattleCommState);
+static int sub_0207A758(void);
+static int sub_0207A75C(void);
+static int sub_0207A764(void);
+static int sub_0207A76C(void);
+static int sub_0207A774(void);
+static int sub_0207AE64(void);
+static u8 *sub_0207A778(int param0, void *param1, int param2);
+static u8 *sub_0207A798(int param0, void *param1, int param2);
+static u8 *sub_0207A7B8(int param0, void *param1, int param2);
+static u8 *sub_0207A7D4(int param0, void *param1, int param2);
+static u8 *sub_0207A7F4(int param0, void *param1, int param2);
+static u8 *sub_0207A7FC(int param0, void *param1, int param2);
+static u8 *sub_0207A804(int param0, void *param1, int param2);
+static u8 *sub_0207A80C(int param0, void *param1, int param2);
+static u8 *sub_0207A814(int param0, void *param1, int param2);
+static void CommCmd_Battle_23(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_24(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_25(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_26(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_27(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_28(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_29_30(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_31_32(int param0, int param1, void *param2, void *param3);
+static void CommCmd_Battle_22(int param0, int param1, void *param2, void *param3);
+static void sub_0207ACB4(SysTask *param0, void *param1);
+static void sub_0207AD40(SysTask *param0, void *param1);
+static void CommCmd_Battle_33(int param0, int param1, void *param2, void *param3);
+static void PalPad_CreateNetworkObject(TrainerInfo *param0, PalPad *param1, PalPad *param2);
+
+// clang-format off
+static const CommCmdTable Unk_020F099C[] = {
+    [COMM_CMD_BATTLE_22 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_22, CommPacketSizeOf_Variable, NULL },
+    [COMM_CMD_BATTLE_23 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_23, CommPacketSizeOf_Variable, NULL },
+    [COMM_CMD_BATTLE_24 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_24, sub_0207A758, NULL },
+    [COMM_CMD_BATTLE_25 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_25, sub_0207A75C, sub_0207A778 },
+    [COMM_CMD_BATTLE_26 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_26, sub_0207A774, sub_0207A798 },
+    [COMM_CMD_BATTLE_27 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_27, sub_0207A764, sub_0207A7B8 },
+    [COMM_CMD_BATTLE_28 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_28, sub_0207A76C, sub_0207A7D4 },
+    [COMM_CMD_BATTLE_29 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_29_30, sub_0207A774, sub_0207A7F4 },
+    [COMM_CMD_BATTLE_30 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_29_30, sub_0207A774, sub_0207A7FC },
+    [COMM_CMD_BATTLE_31 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_31_32, sub_0207A764, sub_0207A804 },
+    [COMM_CMD_BATTLE_32 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_31_32, sub_0207A764, sub_0207A80C },
+    [COMM_CMD_BATTLE_33 - COMM_CMD_MAX_COMMON] = { CommCmd_Battle_33, sub_0207AE64, sub_0207A814 }
+};
+// clang-format on
+
+void sub_0207A6DC(void *param0)
+{
+    int v0 = sizeof(Unk_020F099C) / sizeof(CommCmdTable);
+    BattleSystem *battleSys;
+    UnkStruct_0207ACB4 *v2;
+    UnkStruct_0207AD40 *v3;
+
+    battleSys = (BattleSystem *)param0;
+
+    if (BattleSystem_GetBattleStatusMask(battleSys) & 0x10) {
+        return;
+    }
+
+    v2 = (UnkStruct_0207ACB4 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_0207ACB4));
+    v3 = (UnkStruct_0207AD40 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_0207AD40));
+
+    CommCmdManager_Init(Unk_020F099C, v0, param0);
+
+    v2->battleSys = battleSys;
+    v2->unk_04 = 0;
+    v3->battleSys = battleSys;
+    v3->unk_04 = 0;
+
+    ov16_0223F320(battleSys, &v2->unk_04);
+    ov16_0223F32C(battleSys, &v3->unk_04);
+
+    SysTask_Start(sub_0207ACB4, v2, 0);
+    SysTask_Start(sub_0207AD40, v3, 0);
+}
+
+void sub_0207A744(void *param0)
+{
+    int v0 = sizeof(Unk_020F099C) / sizeof(CommCmdTable);
+    CommCmdManager_Init(Unk_020F099C, v0, param0);
+}
+
+static int sub_0207A758(void)
+{
+    return 4;
+}
+
+static int sub_0207A75C(void)
+{
+    return TrainerInfo_Size();
+}
+
+static int sub_0207A764(void)
+{
+    return Party_SaveSize();
+}
+
+static int sub_0207A76C(void)
+{
+    return 1000;
+}
+
+static int sub_0207A774(void)
+{
+    return sizeof(Trainer);
+}
+
+static u8 *sub_0207A778(int param0, void *commState, int param2)
+{
+    LinkBattleCommState *linkBattleCommState = commState;
+
+    if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
+        return (u8 *)linkBattleCommState->dto->trainerInfo[param0 * 2];
+    } else {
+        return (u8 *)linkBattleCommState->dto->trainerInfo[param0];
+    }
+}
+
+static u8 *sub_0207A798(int param0, void *commState, int param2)
+{
+    LinkBattleCommState *linkBattleCommState = commState;
+
+    if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
+        return (u8 *)&linkBattleCommState->dto->trainer[param0 * 2];
+    } else {
+        return (u8 *)&linkBattleCommState->dto->trainer[param0];
+    }
+}
+
+static u8 *sub_0207A7B8(int param0, void *commState, int param2)
+{
+    LinkBattleCommState *linkBattleCommState = commState;
+
+    if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
+        return (u8 *)linkBattleCommState->dto->parties[param0 * 2];
+    } else {
+        return (u8 *)linkBattleCommState->dto->parties[param0];
+    }
+}
+
+static u8 *sub_0207A7D4(int param0, void *commState, int param2)
+{
+    LinkBattleCommState *linkBattleCommState = commState;
+
+    if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
+        return (u8 *)linkBattleCommState->dto->chatotCries[param0 * 2];
+    } else {
+        return (u8 *)linkBattleCommState->dto->chatotCries[param0];
+    }
+}
+
+static u8 *sub_0207A7F4(int param0, void *commState, int param2)
+{
+    LinkBattleCommState *linkBattleCommState = commState;
+    return (u8 *)&linkBattleCommState->dto->trainer[1];
+}
+
+static u8 *sub_0207A7FC(int param0, void *commState, int param2)
+{
+    LinkBattleCommState *linkBattleCommState = commState;
+    return (u8 *)&linkBattleCommState->dto->trainer[3];
+}
+
+static u8 *sub_0207A804(int param0, void *commState, int param2)
+{
+    LinkBattleCommState *linkBattleCommState = commState;
+    return (u8 *)linkBattleCommState->dto->parties[1];
+}
+
+static u8 *sub_0207A80C(int param0, void *commState, int param2)
+{
+    LinkBattleCommState *linkBattleCommState = commState;
+    return (u8 *)linkBattleCommState->dto->parties[3];
+}
+
+static u8 *sub_0207A814(int param0, void *commState, int param2)
+{
+    LinkBattleCommState *linkBattleCommState = commState;
+    return (u8 *)linkBattleCommState->palPad[param0];
+}
+
+void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4)
+{
+    int v0;
+    BattleMessageInfo *info;
+    u8 *v2;
+    u8 *v3;
+    u16 *v4;
+    u16 *v5;
+
+    info = (BattleMessageInfo *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageInfo));
+    v3 = BattleSystem_GetServerMessage(battleSys);
+    v4 = BattleSystem_GetServerWriteIndex(battleSys);
+    v5 = BattleSystem_GetServerEndIndex(battleSys);
+
+    if (v4[0] + sizeof(BattleMessageInfo) + param4 + 1 > 0x1000) {
+        v5[0] = v4[0];
+        v4[0] = 0;
+    }
+
+    info->recipient = param1;
+    info->battler = param2;
+    info->size = param4;
+
+    v2 = (u8 *)info;
+
+    for (v0 = 0; v0 < sizeof(BattleMessageInfo); v0++) {
+        v3[v4[0]] = v2[v0];
+        v4[0]++;
+    }
+
+    v2 = (u8 *)param3;
+
+    for (v0 = 0; v0 < param4; v0++) {
+        v3[v4[0]] = v2[v0];
+        v4[0]++;
+    }
+
+    Heap_Free(info);
+}
+
+static void CommCmd_Battle_23(int param0, int param1, void *param2, void *param3)
+{
+    BattleSystem *battleSys = (BattleSystem *)param3;
+    int v1;
+    u8 *v2 = (u8 *)param2;
+    u8 *v3 = BattleSystem_GetClientMessage(battleSys);
+    u16 *v4 = BattleSystem_GetClientWriteIndex(battleSys);
+    u16 *v5 = BattleSystem_GetClientEndIndex(battleSys);
+
+    if (v4[0] + param1 + 1 > 0x1000) {
+        v5[0] = v4[0];
+        v4[0] = 0;
+    }
+
+    for (v1 = 0; v1 < param1; v1++) {
+        v3[v4[0]] = v2[v1];
+        v4[0]++;
+    }
+}
+
+BOOL sub_0207A8F4(LinkBattleCommState *linkBattleCommState, u32 param1)
+{
+    Party *v0;
+
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    if (CommTiming_IsSyncState(SYNC_51) == 0) {
+        return 0;
+    }
+
+    return CommSys_SendData(COMM_CMD_BATTLE_24, (void *)&param1, 4);
+}
+
+static void CommCmd_Battle_24(int param0, int param1, void *param2, void *param3)
+{
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)param3;
+
+    linkBattleCommState->dto->systemVersion[param0] = *((u32 *)param2);
+    sub_0202FAA8(param0, linkBattleCommState->dto->systemVersion[param0]);
+    linkBattleCommState->recvCount++;
+}
+
+BOOL sub_0207A960(LinkBattleCommState *linkBattleCommState)
+{
+    TrainerInfo *v0;
+
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    v0 = (TrainerInfo *)&linkBattleCommState->sendBuffer[0];
+    TrainerInfo_Copy(linkBattleCommState->dto->trainerInfo[0], v0);
+
+    return 1;
+}
+
+BOOL sub_0207A988(LinkBattleCommState *linkBattleCommState)
+{
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    if (CommTiming_IsSyncState(SYNC_52) == 0) {
+        return 0;
+    }
+
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_25, (void *)&linkBattleCommState->sendBuffer[0], TrainerInfo_Size());
+}
+
+static void CommCmd_Battle_25(int param0, int param1, void *param2, void *commState)
+{
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+    linkBattleCommState->recvCount++;
+}
+
+BOOL sub_0207A9CC(LinkBattleCommState *linkBattleCommState)
+{
+    Trainer *v0;
+
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    v0 = (Trainer *)&linkBattleCommState->sendBuffer[0];
+    *v0 = linkBattleCommState->dto->trainer[0];
+
+    return 1;
+}
+
+BOOL sub_0207A9F8(LinkBattleCommState *linkBattleCommState)
+{
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    if (CommTiming_IsSyncState(SYNC_53) == 0) {
+        return 0;
+    }
+
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_26, (void *)&linkBattleCommState->sendBuffer[0], sizeof(Trainer));
+}
+
+static void CommCmd_Battle_26(int param0, int param1, void *param2, void *commState)
+{
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+    linkBattleCommState->recvCount++;
+}
+
+BOOL sub_0207AA38(LinkBattleCommState *linkBattleCommState)
+{
+    Party *v0;
+
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    v0 = (Party *)&linkBattleCommState->sendBuffer[0];
+    Party_Copy(linkBattleCommState->dto->parties[0], v0);
+
+    return 1;
+}
+
+BOOL sub_0207AA5C(LinkBattleCommState *linkBattleCommState)
+{
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    if (CommTiming_IsSyncState(SYNC_54) == 0) {
+        return 0;
+    }
+
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_27, (void *)&linkBattleCommState->sendBuffer[0], Party_SaveSize());
+}
+
+static void CommCmd_Battle_27(int param0, int param1, void *param2, void *commState)
+{
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+
+    linkBattleCommState->recvCount++;
+}
+
+BOOL sub_0207AAA0(LinkBattleCommState *linkBattleCommState)
+{
+    ChatotCry *v0;
+
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    v0 = (ChatotCry *)&linkBattleCommState->sendBuffer[0];
+    ChatotCry_Copy(v0, linkBattleCommState->dto->chatotCries[0]);
+
+    return 1;
+}
+
+BOOL sub_0207AAC8(LinkBattleCommState *linkBattleCommState)
+{
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    if (CommTiming_IsSyncState(SYNC_55) == 0) {
+        return 0;
+    }
+
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_28, (void *)&linkBattleCommState->sendBuffer[0], 1000);
+}
+
+BOOL sub_0207AAFC(LinkBattleCommState *linkBattleCommState)
+{
+    PalPad *v0;
+    TrainerInfo *v1;
+
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    v0 = (PalPad *)&linkBattleCommState->sendBuffer[0];
+
+    if (linkBattleCommState->dto->battleType & BATTLE_TYPE_FRONTIER) {
+        v1 = linkBattleCommState->dto->trainerInfo[CommSys_CurNetId() * 2];
+    } else {
+        v1 = linkBattleCommState->dto->trainerInfo[CommSys_CurNetId()];
+    }
+
+    PalPad_CreateNetworkObject(v1, linkBattleCommState->dto->palPad, (PalPad *)linkBattleCommState->sendBuffer);
+
+    {
+        int v2;
+
+        for (v2 = 0; v2 < 4; v2++) { // 4 pal pads
+            linkBattleCommState->palPad[v2] = Heap_Alloc(HEAP_ID_BATTLE, 136);
+        }
+    }
+
+    return 1;
+}
+
+BOOL sub_0207AB58(LinkBattleCommState *linkBattleCommState) // SEND pal pad data?!
+{
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    if (CommTiming_IsSyncState(SYNC_56) == 0) {
+        return 0;
+    }
+
+    return CommSys_SendDataHuge(COMM_CMD_BATTLE_33, (void *)linkBattleCommState->sendBuffer, 1000);
+}
+
+static void CommCmd_Battle_28(int param0, int param1, void *param2, void *commState)
+{
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+    linkBattleCommState->recvCount++;
+}
+
+BOOL sub_0207AB9C(LinkBattleCommState *linkBattleCommState, int param1)
+{
+    Trainer *v0;
+
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    v0 = (Trainer *)&linkBattleCommState->sendBuffer[0];
+    *v0 = linkBattleCommState->dto->trainer[param1];
+
+    return 1;
+}
+
+BOOL sub_0207ABD0(LinkBattleCommState *linkBattleCommState, int param1, int param2)
+{
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    if (CommTiming_IsSyncState(param2) == 0) {
+        return 0;
+    }
+
+    if (param1 == 1) {
+
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_29, (void *)&linkBattleCommState->sendBuffer[0], sizeof(Trainer));
+    } else {
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_30, (void *)&linkBattleCommState->sendBuffer[0], sizeof(Trainer));
+    }
+}
+
+static void CommCmd_Battle_29_30(int param0, int param1, void *param2, void *commState)
+{
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+    linkBattleCommState->recvCount++;
+}
+
+BOOL sub_0207AC28(LinkBattleCommState *linkBattleCommState, int param1)
+{
+    Party *v0;
+
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    v0 = (Party *)&linkBattleCommState->sendBuffer[0];
+    Party_Copy(linkBattleCommState->dto->parties[param1], v0);
+
+    return 1;
+}
+
+BOOL sub_0207AC54(LinkBattleCommState *linkBattleCommState, int param1, int param2)
+{
+    if (CommSys_SendRingRemainingSize() != 264) {
+        return 0;
+    }
+
+    if (CommTiming_IsSyncState(param2) == 0) {
+        return 0;
+    }
+
+    if (param1 == 1) {
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_31, (void *)&linkBattleCommState->sendBuffer[0], Party_SaveSize());
+    } else {
+        return CommSys_SendDataHuge(COMM_CMD_BATTLE_32, (void *)&linkBattleCommState->sendBuffer[0], Party_SaveSize());
+    }
+}
+
+static void CommCmd_Battle_31_32(int param0, int param1, void *param2, void *commState)
+{
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+    linkBattleCommState->recvCount++;
+}
+
+void sub_0207ACB4(SysTask *param0, void *param1)
+{
+    UnkStruct_0207ACB4 *v0 = (UnkStruct_0207ACB4 *)param1;
+    u8 *v1;
+    u16 *v2;
+    u16 *v3;
+    u16 *v4;
+    int v5;
+
+    v1 = BattleSystem_GetServerMessage(v0->battleSys);
+    v2 = BattleSystem_GetServerReadIndex(v0->battleSys);
+    v3 = BattleSystem_GetServerWriteIndex(v0->battleSys);
+    v4 = BattleSystem_GetServerEndIndex(v0->battleSys);
+
+    switch (v0->unk_04) {
+    case 0:
+        if (CommSys_SendRingRemainingSize() != 264) {
+            break;
+        }
+
+        if (v2[0] == v3[0]) {
+            break;
+        }
+
+        if (v2[0] == v4[0]) {
+            v2[0] = 0;
+            v4[0] = 0;
+        }
+
+        v5 = sizeof(BattleMessageInfo) + (v1[v2[0] + 2] | (v1[v2[0] + 3] << 8));
+
+        if (CommSys_SendData(COMM_CMD_BATTLE_23, (void *)&v1[v2[0]], v5) == 1) {
+            v2[0] += v5;
+        }
+        break;
+    default:
+    case 255:
+        Heap_Free(param1);
+        SysTask_Done(param0);
+        break;
+    }
+}
+
+void sub_0207AD40(SysTask *param0, void *param1)
+{
+    UnkStruct_0207AD40 *v0 = (UnkStruct_0207AD40 *)param1;
+    u8 *v1;
+    u16 *v2;
+    u16 *v3;
+    u16 *v4;
+    int v5;
+
+    v1 = BattleSystem_GetClientMessage(v0->battleSys);
+    v2 = BattleSystem_GetClientReadIndex(v0->battleSys);
+    v3 = BattleSystem_GetClientWriteIndex(v0->battleSys);
+    v4 = BattleSystem_GetClientEndIndex(v0->battleSys);
+
+    switch (v0->unk_04) {
+    case 0:
+        if (v2[0] == v3[0]) {
+            break;
+        }
+
+        if (v2[0] == v4[0]) {
+            v2[0] = 0;
+            v4[0] = 0;
+        }
+
+        if (BattleController_RecvCommMessage(v0->battleSys, (void *)&v1[v2[0]]) == 1) {
+            v5 = sizeof(BattleMessageInfo) + (v1[v2[0] + 2] | (v1[v2[0] + 3] << 8));
+            v2[0] += v5;
+        }
+        break;
+    default:
+    case 255:
+        Heap_Free(param1);
+        SysTask_Done(param0);
+        break;
+    }
+}
+
+static void CommCmd_Battle_22(int param0, int param1, void *param2, void *param3)
+{
+    BattleSystem *battleSys = (BattleSystem *)param3;
+
+    ov16_0223F338(battleSys, 255);
+    ov16_0223F344(battleSys, 255);
+    BattleSystem_SetCommandIsEndWait(battleSys, 1);
+}
+
+static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source, PalPad *destination)
+{
+    CharCode_Copy(destination->trainerName, TrainerInfo_Name(trainerInfo));
+
+    destination->trainerId = TrainerInfo_ID(trainerInfo);
+    destination->language = TrainerInfo_Language(trainerInfo);
+    destination->gameCode = TrainerInfo_GameCode(trainerInfo);
+    destination->gender = TrainerInfo_Gender(trainerInfo);
+
+    for (int i = 0; i < PAL_PAD_ENTRIES; i++) {
+        destination->associatedTrainerIds[i] = source[i].trainerId;
+        destination->associatedTrainerGameCodes[i] = source[i].gameCode;
+        destination->associatedTrainerLanguages[i] = source[i].language;
+        destination->associatedTrainerGenders[i] = source[i].gender;
+    }
+}
+
+void CommCmd_Battle_33(int param0, int param1, void *param2, void *commState)
+{
+    LinkBattleCommState *linkBattleCommState = (LinkBattleCommState *)commState;
+
+    if (CommSys_CurNetId() != param0) {
+        PalPad_PushEntries(linkBattleCommState->dto->palPad, (PalPad *)param2, 1, HEAP_ID_BATTLE);
+    }
+
+    linkBattleCommState->recvCount++;
+}
+
+static int sub_0207AE64(void)
+{
+    return 136;
+}

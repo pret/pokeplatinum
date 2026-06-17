@@ -32,8 +32,8 @@ typedef struct BattleArcadeAppArgs {
 BOOL BattleArcadeApp_Init(ApplicationManager *appMan, int *state);
 BOOL BattleArcadeApp_Main(ApplicationManager *appMan, int *state);
 BOOL BattleArcadeApp_Exit(ApplicationManager *appMan, int *state);
-void BattleArcadeApp_HandleInitialLayoutCmd(int netID, int unused, void *data, void *context);
-void BattleArcadeApp_HandleResultCmd(int netID, int unused, void *data, void *context);
-void BattleArcadeApp_HandleUnusedCmd(int netID, int unused, void *data, void *context);
+void CommCmd_BattleArcadeHandleInitialLayout(int netID, int unused, void *data, void *context);
+void CommCmd_BattleArcadeHandleResult(int netID, int unused, void *data, void *context);
+void CommCmd_BattleArcadeUnused(int netID, int unused, void *data, void *context);
 
 #endif // POKEPLATINUM_APPLICATIONS_BATTLE_ARCADE_MAIN_H

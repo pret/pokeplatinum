@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/field_base_tiles.h"
 #include "constants/map_object.h"
 
@@ -200,12 +201,12 @@ BOOL UndergroundPC_TryUsePC(int netID, CoordinatesU16 *coordinates)
         } else {
             if (UndergroundPlayer_IsHoldingFlag(netID)) {
                 u8 flagEventType = FLAG_EVENT_REGISTER;
-                UndergroundPlayer_ProcessFlagEventType(netID, 1, &flagEventType, NULL);
+                CommCmd_UndergroundFlagEventType(netID, 1, &flagEventType, NULL);
                 return TRUE;
             }
         }
 
-        CommSys_SendDataFixedSizeServer(83, &pcInteraction);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_UNDERGROUND_PC_INTERACT, &pcInteraction);
         return TRUE;
     }
 
@@ -217,7 +218,7 @@ static void UndergroundPC_ResumeFieldSystem(int unused)
     CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_LINK_PC);
 }
 
-void UndergroundPC_ProcessPCInteraction(int unused0, int unused1, void *data, void *data2)
+void CommCmd_IntreactUndergroundPC(int unused0, int unused1, void *data, void *data2)
 {
     PCInteraction *pcInteraction = data;
     FieldSystem *fieldSystem = data2;
@@ -876,7 +877,7 @@ static void UndergroundPC_TakeFlagPromptTask(SysTask *sysTask, void *data)
         if (input == MENU_NOTHING_CHOSEN) {
             return;
         } else if (input == MENU_YES) {
-            CommSys_SendDataFixedSize(89, &ctx->pcInteraction);
+            CommSys_SendDataFixedSize(COMM_CMD_UNDERGROUND_TRY_TAKE_FLAG, &ctx->pcInteraction);
         } else {
             CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_LINK_PC);
             UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
@@ -925,16 +926,16 @@ static void UndergroundPC_StartTakeFlagPromptTask(FieldSystem *fieldSystem, PCIn
     UndergroundMan_SetCurrentSysTask(ctx, ctx->sysTask, UndergroundPC_EndFlagPromptTask);
 }
 
-void UndergroundPC_ProcessTakeFlagAttempt(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_AttemptUndergroundTakeFlag(int unused0, int unused1, void *data, void *unused3)
 {
     PCInteraction *pcInteraction = data;
 
     if (UndergroundPlayer_TryTakeFlagFromBase(pcInteraction->playerNetID, pcInteraction->pcNetID)) {
-        CommSys_SendDataFixedSizeServer(90, pcInteraction);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_UNDERGROUND_TAKEN_FLAG, pcInteraction);
     }
 }
 
-void UndergroundPC_ProcessTakenFlag(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundTakenFlag(int unused0, int unused1, void *data, void *unused3)
 {
     PCInteraction *pcInteraction = data;
 

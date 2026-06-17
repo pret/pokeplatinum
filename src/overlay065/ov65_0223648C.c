@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "generated/journal_online_events.h"
 
 #include "struct_defs/struct_0207DE04.h"
@@ -1279,7 +1280,7 @@ static void ov65_0223758C(UnkStruct_ov65_022367A8 *param0)
     for (v0 = 1; v0 < 4; v0++) {
         if (sub_02032DC4(v0) == 1) {
             v1.unk_00 = v0;
-            v2 = CommSys_SendData(22, &v1, sizeof(UnkStruct_ov65_022366E4));
+            v2 = CommSys_SendData(COMM_CMD_WAITING_ROOM_22, &v1, sizeof(UnkStruct_ov65_022366E4));
             GF_ASSERT(v2 == 1);
             CommInfo_InitPlayer(v0);
         }
@@ -1297,7 +1298,7 @@ static void ov65_022375CC(UnkStruct_ov65_022367A8 *param0)
     for (v0 = 1; v0 < 4; v0++) {
         if (sub_02032DE0(v0) == 1) {
             v1.unk_00 = v0;
-            v2 = CommSys_SendData(22, &v1, sizeof(UnkStruct_ov65_022366E4));
+            v2 = CommSys_SendData(COMM_CMD_WAITING_ROOM_22, &v1, sizeof(UnkStruct_ov65_022366E4));
             GF_ASSERT(v2 == 1);
             CommInfo_InitPlayer(v0);
         }
@@ -1438,7 +1439,7 @@ static void ov65_02237808(UnkStruct_ov65_022367A8 *param0, u32 param1)
 
     v0.unk_00 = param1;
     v0.unk_04 = 2;
-    v1 = CommSys_SendData(22, &v0, sizeof(UnkStruct_ov65_022366E4));
+    v1 = CommSys_SendData(COMM_CMD_WAITING_ROOM_22, &v0, sizeof(UnkStruct_ov65_022366E4));
 
     GF_ASSERT(v1 == 1);
 }
@@ -1571,7 +1572,7 @@ static void ov65_02237970(UnkStruct_ov65_022367A8 *param0)
         BOOL v6;
 
         memcpy(v5.unk_00, param0->unk_00.unk_20, sizeof(u8) * 4);
-        CommSys_SendData(24, &v5, sizeof(UnkStruct_ov65_02236760));
+        CommSys_SendData(COMM_CMD_WAITING_ROOM_24, &v5, sizeof(UnkStruct_ov65_02236760));
     }
 }
 
@@ -1662,7 +1663,7 @@ static BOOL ov65_02237AC0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
                     CommInfo_InitPlayer(v1);
 
-                    v3 = CommSys_SendData(22, &v2, sizeof(UnkStruct_ov65_022366E4));
+                    v3 = CommSys_SendData(COMM_CMD_WAITING_ROOM_22, &v2, sizeof(UnkStruct_ov65_022366E4));
                     GF_ASSERT(v3 == 1);
                 } else {
                     param0->unk_00.unk_06 = v1;
@@ -1769,7 +1770,7 @@ static BOOL ov65_02237BF8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
             param0->unk_00.unk_05 = 1;
         }
 
-        v2 = CommSys_SendData(22, &v1, sizeof(UnkStruct_ov65_022366E4));
+        v2 = CommSys_SendData(COMM_CMD_WAITING_ROOM_22, &v1, sizeof(UnkStruct_ov65_022366E4));
         GF_ASSERT(v2 == 1);
 
         param0->unk_00.unk_06 = 0xff;
@@ -1884,7 +1885,7 @@ static BOOL ov65_02237DD0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     BOOL v0;
 
     if (param0->unk_00.unk_08 == 0) {
-        v0 = CommSys_SendData(23, NULL, 0);
+        v0 = CommSys_SendData(COMM_CMD_WAITING_ROOM_23, NULL, 0);
 
         if (v0) {
             param0->unk_00.unk_05 = 14;

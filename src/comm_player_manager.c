@@ -5,6 +5,7 @@
 #include <nnsys/g3d/glbstate.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/communication/comm_packets.h"
 #include "constants/heap.h"
 #include "generated/movement_actions.h"
@@ -281,7 +282,7 @@ void CommPlayer_SendXZPos(BOOL param0, int x, int z)
         data[4] = data[4] | 0x80;
     }
 
-    CommSys_SendDataFixedSize(22, data);
+    CommSys_SendDataFixedSize(COMM_CMD_RECV_PLAYER_LOCATION, data);
     sCommPlayerManager->sendAllPos = TRUE;
 }
 
@@ -330,7 +331,7 @@ static void CommPlayer_SendPosNetId(int netId, const CommPlayerLocation *playerL
     data[0] += ((playerLocation->dir % 4) << 4);
     data[0] += (playerLocation->moveSpeed << 6);
 
-    CommSys_SendDataServer(23, data, 0);
+    CommSys_SendDataServer(COMM_CMD_RECV_PLAYER_LOCATION_AND_INIT, data, 0);
 }
 
 void CommPlayer_SendDataTask(void *data)
@@ -527,7 +528,7 @@ static void sub_02057EF8(void *unused)
             }
 
             u8 netId_u8 = netId;
-            CommPlayer_RecvDelete(0, 1, &netId_u8, sCommPlayerManager->fieldSystem);
+            CommCmd_DeletePlayer(0, 1, &netId_u8, sCommPlayerManager->fieldSystem);
         }
     }
 }
@@ -548,7 +549,7 @@ void sub_02057FC4(BOOL param0)
             sCommPlayerManager->isFieldSystemActive = param0;
         }
 
-        CommSys_SendDataFixedSize(62, &sCommPlayerManager->isFieldSystemActive);
+        CommSys_SendDataFixedSize(COMM_CMD_FIELD_62, &sCommPlayerManager->isFieldSystemActive);
     }
 }
 
@@ -557,12 +558,12 @@ static void sub_02057FF0(BOOL param0)
     if (sCommPlayerManager != NULL) {
         if (sCommPlayerManager->isFieldSystemActive != param0) {
             sCommPlayerManager->isFieldSystemActive = param0;
-            CommSys_SendDataFixedSize(62, &sCommPlayerManager->isFieldSystemActive);
+            CommSys_SendDataFixedSize(COMM_CMD_FIELD_62, &sCommPlayerManager->isFieldSystemActive);
         }
     }
 }
 
-void sub_02058018(int netId, int param1, void *param2, void *unused)
+void CommCmd_Field_62(int netId, int param1, void *param2, void *unused)
 {
     u8 *buffer = (u8 *)param2;
 
@@ -757,7 +758,7 @@ static void CommPlayer_Move(SysTask *unused0, void *unused1)
                 u8 data = netId;
 
                 sCommPlayerManager->holeMovementsLeft[netId] = 1;
-                CommSys_SendDataFixedSizeServer(40, &data);
+                CommSys_SendDataFixedSizeServer(COMM_CMD_ESCAPE_HOLE, &data);
                 continue;
             }
 
@@ -796,7 +797,7 @@ static void CommPlayer_Move(SysTask *unused0, void *unused1)
 
                         if (sCommPlayerManager->alteredMovementStepsLeft[netId] == 0) {
                             u8 v10 = 1;
-                            Traps_EscapeTrapServer(netId, 1, &v10, NULL);
+                            CommCmd_EscapeTrapServer(netId, 1, &v10, NULL);
                         }
                     }
                 }
@@ -805,7 +806,7 @@ static void CommPlayer_Move(SysTask *unused0, void *unused1)
     }
 }
 
-void CommPlayer_RecvLocation(int netId, int unused0, void *src, void *unused1)
+void CommCmd_RecvPlayerLocation(int netId, int unused0, void *src, void *unused1)
 {
     u8 *buffer = (u8 *)src;
     CommPlayerLocation *playerLocation;
@@ -845,7 +846,7 @@ void CommPlayer_RecvLocation(int netId, int unused0, void *src, void *unused1)
     }
 }
 
-void CommPlayer_RecvDelete(int unused0, int unused1, void *src, void *unused2)
+void CommCmd_DeletePlayer(int unused0, int unused1, void *src, void *unused2)
 {
     u8 *buffer = (u8 *)src;
     u8 netId = buffer[0];
@@ -875,7 +876,7 @@ int CommPacketSizeOf_RecvLocation(void)
     return COMM_PACKET_SIZE_LOCATION;
 }
 
-void CommPlayer_RecvLocationAndInit(int netId, int size, void *src, void *unused)
+void CommCmd_RecvPlayerLocationAndInit(int netId, int size, void *src, void *unused)
 {
     u8 *buffer = (u8 *)src;
     CommPlayerLocation *playerLocation;
@@ -1135,7 +1136,7 @@ static BOOL CommPlayer_MoveSlide(int netId, int speed)
     } else if (sCommPlayerManager->slideTilesLeft[netId] == 0) {
         u8 data = 1;
 
-        Traps_EscapeTrapServer(netId, 1, &data, NULL);
+        CommCmd_EscapeTrapServer(netId, 1, &data, NULL);
         return TRUE;
     }
 
@@ -1495,7 +1496,7 @@ BOOL sub_020590C4(void)
     return v8;
 }
 
-void sub_02059180(int netId, int unused0, void *src, void *unused3)
+void CommCmd_Field_94(int netId, int unused0, void *src, void *unused3)
 {
     u8 *buffer = src;
 
@@ -1539,7 +1540,7 @@ static void sub_020591A8(void)
         for (netJd = 0; netJd < connectedPlayers; netJd++) {
             if ((CommPlayer_GetXServerIfActive(netId) == v6[netJd].unk_00) && (CommPlayer_GetZServerIfActive(netId) == v6[netJd].unk_02)) {
                 sCommPlayerManager->unk_F2[netId] = 1;
-                CommSys_SendDataFixedSizeServer(95, &netId);
+                CommSys_SendDataFixedSizeServer(COMM_CMD_UPDATE_MOVEMENT_BATTLE_ROOM, &netId);
             }
         }
     }
@@ -1677,7 +1678,7 @@ void CommPlayerMan_ResumeFieldSystemWithContextBit(int contextBit)
 
     if (sCommPlayerManager->pauseBits == PAUSE_BIT_TRAPS) {
         u8 data = 1;
-        CommSys_SendDataFixedSize(62, &data);
+        CommSys_SendDataFixedSize(COMM_CMD_FIELD_62, &data);
     }
 
     if (sCommPlayerManager->pauseBits == 0) {

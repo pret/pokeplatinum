@@ -20,6 +20,7 @@
 #include "savedata/save_table.h"
 
 #include "battle_hall_save.h"
+#include "comm_command_frontier.h"
 #include "field_battle_data_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -28,7 +29,6 @@
 #include "sound.h"
 #include "tv_segment.h"
 #include "unk_0209B6F8.h"
-#include "unk_0209BA80.h"
 
 #include "constdata/const_020EA358.h"
 

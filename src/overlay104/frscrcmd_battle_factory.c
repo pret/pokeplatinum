@@ -17,6 +17,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "bg_window.h"
+#include "comm_command_frontier.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
 #include "party.h"
@@ -26,7 +27,6 @@
 #include "sys_task_manager.h"
 #include "unk_0202FF4C.h"
 #include "unk_0209B6F8.h"
-#include "unk_0209BA80.h"
 
 #include "constdata/const_020EA358.h"
 

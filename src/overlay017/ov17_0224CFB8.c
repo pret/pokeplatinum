@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
 #include "overlay017/ov17_0223DAD0.h"
 #include "overlay017/ov17_022492DC.h"
 #include "overlay017/ov17_0224A0FC.h"
@@ -543,7 +545,7 @@ static void ov17_0224D6CC(SysTask *param0, void *param1)
         ov17_0224B20C(v0->unk_04, &v0->unk_08);
         v0->unk_12 = 0;
     } else {
-        if (CommSys_SendDataFixedSize(25, &v0->unk_08) == 1) {
+        if (CommSys_SendDataFixedSize(COMM_CMD_CONTEST_25, &v0->unk_08) == 1) {
             v0->unk_12 = 0;
         }
     }

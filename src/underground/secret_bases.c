@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/field_base_tiles.h"
 #include "constants/heap.h"
 #include "constants/map_object.h"
@@ -653,7 +654,7 @@ static int SecretBases_GetEntranceOwnerNetIDFromCoords(int x, int z)
     return NETID_NONE;
 }
 
-void SecretBases_ProcessBaseTransitionPromptEvent(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_SecretBaseTransitionPrompt(int unused0, int unused1, void *data, void *unused3)
 {
     BaseTransitionPromptEvent *event = data;
 
@@ -672,7 +673,7 @@ void SecretBases_ProcessBaseTransitionPromptEvent(int unused0, int unused1, void
     }
 }
 
-void SecretBases_ProcessFailedBaseEnter(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_FailedSecretBaseEnter(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *netID = data;
 
@@ -689,7 +690,7 @@ int CommPacketSizeOf_BaseTransitionPromptEvent(void)
     return sizeof(BaseTransitionPromptEvent);
 }
 
-void SecretBases_ProcessBaseTransitionEvent(int netID, int unused1, void *data, void *unused3)
+void CommCmd_SecretBaseTransitionEvent(int netID, int unused1, void *data, void *unused3)
 {
     BaseTransitionEvent *event = data;
     u8 buffer = netID;
@@ -703,7 +704,7 @@ void SecretBases_ProcessBaseTransitionEvent(int netID, int unused1, void *data, 
         if (event->entering) {
             if (!SecretBases_TryEnterBase(event->baseOwnerNetID, netID)) {
                 secretBasesEnv->baseTransitioningOwnerNetIDs[netID] = NETID_NONE;
-                CommSys_SendDataFixedSizeServer(61, &buffer);
+                CommSys_SendDataFixedSizeServer(COMM_CMD_ENTER_BASE_FAILED, &buffer);
             }
         } else {
             SecretBases_ExitBase(event->baseOwnerNetID, netID, FALSE);
@@ -784,7 +785,7 @@ static void SecretBases_ExitBase(int baseOwnerNetID, int netID, BOOL forceExit)
     event.dir = dir;
     event.forceExit = forceExit;
 
-    CommSys_SendDataFixedSizeServer(57, &event);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_EXIT_BASE, &event);
     CommPlayerMan_SetMovementEnabled(netID, FALSE);
 }
 
@@ -822,7 +823,7 @@ BOOL SecretBases_CheckForEnterExit(int netID, int x, int z)
         promptEvent.netID = netID;
         promptEvent.baseOwnerNetID = baseOwnerNetID;
 
-        CommSys_SendDataFixedSizeServer(58, &promptEvent);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_BASE_TRANSMITION_PROMPT, &promptEvent);
         CommPlayerMan_SetMovementEnabled(netID, FALSE);
 
         return TRUE;
@@ -847,7 +848,7 @@ BOOL SecretBases_CheckForEnterExit(int netID, int x, int z)
             promptEvent.netID = netID;
             promptEvent.baseOwnerNetID = baseOwnerNetID;
 
-            CommSys_SendDataFixedSizeServer(58, &promptEvent);
+            CommSys_SendDataFixedSizeServer(COMM_CMD_BASE_TRANSMITION_PROMPT, &promptEvent);
             CommPlayerMan_SetMovementEnabled(netID, FALSE);
 
             return TRUE;
@@ -864,7 +865,7 @@ BOOL SecretBases_CheckForEnterExit(int netID, int x, int z)
         secretBasesEnv->baseTransitioningOwnerNetIDs[netID] = 0;
 
         UndergroundPlayer_MoveToFromSecretBaseServer(netID, exitEvent.x, exitEvent.z, exitEvent.dir);
-        CommSys_SendDataFixedSizeServer(57, &exitEvent);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_EXIT_BASE, &exitEvent);
         return TRUE;
     }
 
@@ -898,7 +899,7 @@ static void SecretBases_EndBaseTransitionPromptTaskFail(SysTask *sysTask, void *
     event.baseOwnerNetID = ctx->baseOwnerNetID;
     event.entering = FALSE;
 
-    CommSys_SendDataFixedSize(59, &event);
+    CommSys_SendDataFixedSize(COMM_CMD_BASE_TRANSITION_EVENT, &event);
     SysTask_Done(sysTask);
     Heap_Free(ctx);
 
@@ -987,7 +988,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
         event.baseOwnerNetID = ctx->baseOwnerNetID;
         event.entering = FALSE;
 
-        CommSys_SendDataFixedSize(59, &event);
+        CommSys_SendDataFixedSize(COMM_CMD_BASE_TRANSITION_EVENT, &event);
         SecretBases_EndBaseTransitionPromptTaskSuccess(sysTask, ctx);
         return;
     }
@@ -1202,7 +1203,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
     case ENTER_PROMPT_STATE_ENTER_CLOSE_DOOR_AND_END:
         if (CommServerClient_IsInClosedSecretBase() && CommSys_CurNetId() == 0) {
             u8 type = BASE_CREATE_REQ_CLOSE_BASE;
-            CommSys_SendDataFixedSize(86, &type);
+            CommSys_SendDataFixedSize(COMM_CMD_CREATE_SECRET_BASE_REQUEST, &type);
 
             SecretBases_EndBaseTransitionPromptTaskSuccess(sysTask, ctx);
 
@@ -1217,7 +1218,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
         event.baseOwnerNetID = ctx->baseOwnerNetID;
         event.entering = TRUE;
 
-        CommSys_SendDataFixedSize(59, &event);
+        CommSys_SendDataFixedSize(COMM_CMD_BASE_TRANSITION_EVENT, &event);
         SecretBases_EndBaseTransitionPromptTaskSuccess(sysTask, ctx);
 
         secretBasesEnv->moveStatus = MOVE_STATUS_ENTERING;
@@ -1265,7 +1266,7 @@ int CommPacketSizeOf_BaseExitEvent(void)
     return sizeof(BaseExitEvent);
 }
 
-void SecretBases_ProcessBaseExitEvent(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_SecretBaseExit(int unused0, int unused1, void *data, void *unused3)
 {
     BaseExitEvent *event = data;
 
@@ -1277,7 +1278,7 @@ void SecretBases_ProcessBaseExitEvent(int unused0, int unused1, void *data, void
         UndergroundMan_ForceEndCurrentSysTask();
         Traps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), FALSE);
 
-        CommSys_SendMessage(43);
+        CommSys_SendMessage(COMM_CMD_END_TRAP_EFFECT);
         secretBasesEnv->currentPlayerInBase = FALSE;
         sub_02059638(TRUE);
 
@@ -1291,10 +1292,10 @@ void SecretBases_ProcessBaseExitEvent(int unused0, int unused1, void *data, void
 
 void SecretBases_RequestClearTransitioningStatus(void)
 {
-    CommSys_SendMessage(56);
+    CommSys_SendMessage(COMM_CMD_CLEAR_TRANSITION_STATUS);
 }
 
-void SecretBases_ClearTransitioningStatus(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_ClearSecretBaseTransitioningStatus(int netID, int unused1, void *unused2, void *unused3)
 {
     secretBasesEnv->baseTransitioningOwnerNetIDs[netID] = NETID_NONE;
     secretBasesEnv->baseEnteringOwnerNetIDs[netID] = NETID_NONE;
@@ -1336,7 +1337,7 @@ void SecretBases_SendEnteredBase(int baseOwnerNetID)
     CommSys_WriteToQueueServer(54, &secretBasesEnv->baseInfo[baseOwnerNetID], sizeof(SecretBaseInfo));
 }
 
-void SecretBases_ProcessBaseEnter(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RecvSecretBaseEnter(int unused0, int unused1, void *data, void *unused3)
 {
     SecretBaseInfo *baseInfo = data;
 
@@ -1348,7 +1349,7 @@ void SecretBases_ProcessBaseEnter(int unused0, int unused1, void *data, void *un
         secretBasesEnv->moveStatus = MOVE_STATUS_NONE;
 
         CommPlayerMan_ResumeFieldSystem();
-        CommSys_SendMessage(56);
+        CommSys_SendMessage(COMM_CMD_CLEAR_TRANSITION_STATUS);
         CommPlayer_SendPos(FALSE);
 
         ov23_0224DC24();
@@ -1389,7 +1390,7 @@ void SecretBases_ProcessBaseEnter(int unused0, int unused1, void *data, void *un
     }
 }
 
-void SecretBases_ProcessBaseInfo(int netID, int unused1, void *data, void *unused3)
+void CommCmd_SecretBaseInfo(int netID, int unused1, void *data, void *unused3)
 {
     u8 *info = data;
     if (!secretBasesEnv) {
@@ -1448,7 +1449,7 @@ static void SecretBases_SendBaseEntrancesBuffer(void)
     CommSys_WriteToQueueServer(55, &secretBasesEnv->baseEntrancesBuffer, sizeof(secretBasesEnv->baseEntrancesBuffer));
 }
 
-void SecretBases_ProcessBaseEntrancesBuffer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_SecretBaseEntranceBuffer(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *baseEntrancesBuffer = (u8 *)data;
     BaseEntrance temp;
@@ -1886,7 +1887,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
 
             SecretBases_CreateBase();
 
-            CommSys_SendDataFixedSize(86, &type);
+            CommSys_SendDataFixedSize(COMM_CMD_CREATE_SECRET_BASE_REQUEST, &type);
             SysTask_Done(sysTask);
             Heap_Free(ctx);
 
@@ -1916,7 +1917,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
 void SecretBases_UseDiggerDrill(void)
 {
     u8 type = BASE_CREATE_REQ_USE_DIGGER_DRILL;
-    CommSys_SendDataFixedSize(86, &type);
+    CommSys_SendDataFixedSize(COMM_CMD_CREATE_SECRET_BASE_REQUEST, &type);
 }
 
 int CommPacketSizeOf_SecretBaseCreateEvent(void)
@@ -1924,7 +1925,7 @@ int CommPacketSizeOf_SecretBaseCreateEvent(void)
     return sizeof(SecretBaseCreateEvent);
 }
 
-void SecretBases_ProcessBaseCreateRequest(int netID, int unused1, void *data, void *unused3)
+void CommCmd_CreateSecretBaseRequest(int netID, int unused1, void *data, void *unused3)
 {
     u8 *type = data;
     int x = CommPlayer_GetXInFrontOfPlayerServer(netID);
@@ -1983,7 +1984,7 @@ void SecretBases_ProcessBaseCreateRequest(int netID, int unused1, void *data, vo
         }
     }
 
-    CommSys_SendDataFixedSizeServer(87, &event);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_CREATE_SECRET_BASE_EVENT, &event);
 }
 
 static void SecretBases_EndDiggerDrillTask(SysTask *sysTask, void *data)
@@ -2019,7 +2020,7 @@ static void SecretBases_StartDiggerDrillTask(void)
     UndergroundMan_SetCurrentSysTask(ctx, ctx->sysTask, SecretBases_EndDiggerDrillTask);
 }
 
-void SecretBases_ProcessBaseCreateEvent(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_CreateSecretBaseEvent(int unused0, int unused1, void *data, void *unused3)
 {
     SecretBaseCreateEvent *event = data;
     UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(secretBasesEnv->fieldSystem));
@@ -2321,7 +2322,7 @@ BOOL SecretBases_CheckForInteractableGood(int netID, CoordinatesU16 *coordinates
 
         if (event.bankEntry != 0) {
             CommPlayerMan_SetMovementEnabled(netID, FALSE);
-            CommSys_SendDataFixedSizeServer(60, &event);
+            CommSys_SendDataFixedSizeServer(COMM_CMD_SECRET_BASE_GOOD_INTERACTION, &event);
 
             return TRUE;
         }
@@ -2330,7 +2331,7 @@ BOOL SecretBases_CheckForInteractableGood(int netID, CoordinatesU16 *coordinates
     return FALSE;
 }
 
-void SecretBases_ProcessGoodInteractionEvent(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_SecretBaseGoodInteraction(int unused0, int unused1, void *data, void *unused3)
 {
     GoodInteractionEvent *event = data;
     SecretBase *secretBase = (SecretBase *)secretBasesEnv->currentOccupiedBaseInfo->secretBase;
@@ -2424,7 +2425,7 @@ static void SecretBases_FlagRankUpTask(SysTask *sysTask, void *data)
     }
 }
 
-void SecretBases_ProcessFlagRankUp(int netID, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundFlagRankUp(int netID, int unused1, void *data, void *unused3)
 {
     u8 *prevFlagRank = data;
 
@@ -2433,10 +2434,10 @@ void SecretBases_ProcessFlagRankUp(int netID, int unused1, void *data, void *unu
         .prevFlagRank = *prevFlagRank,
     };
 
-    CommSys_SendDataFixedSizeServer(97, &event);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_UNDERGROUND_FLAG_RANK_UP_EVENT, &event);
 }
 
-void SecretBases_ProcessFlagRankUpEvent(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundFlagRankUpEvent(int unused0, int unused1, void *data, void *unused3)
 {
     FlagRankUpEvent *event = data;
 

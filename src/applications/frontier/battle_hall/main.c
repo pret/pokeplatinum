@@ -13,6 +13,7 @@
 
 #include "battle_hall_save.h"
 #include "bg_window.h"
+#include "comm_command_frontier.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "font.h"
@@ -46,7 +47,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020363E8.h"
-#include "unk_0209BA80.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
@@ -1424,7 +1424,7 @@ static void DummyCreatePayload(BattleHallApp *app, u16 dummy)
     app->commPayload[0] = dummy;
 }
 
-void BattleHall_DummyCommCommand(int netID, int unused, void *unused2, void *unused3)
+void CommCmd_BattleHallDummy(int netID, int unused, void *unused2, void *unused3)
 {
     if (CommSys_CurNetId() == netID) {
         return;
@@ -1447,7 +1447,7 @@ static void CreateTypeSelectionPayload(BattleHallApp *app, u16 cmd, u16 cursorPo
     app->commPayload[3] = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 }
 
-void BattleHall_HandleTypeSelectionMsg(int netID, int unused, void *data, void *context)
+void CommCmd_BattleHallHandleTypeSelectionMsg(int netID, int unused, void *data, void *context)
 {
     BattleHallApp *app = context;
     const u16 *payload = data;
@@ -1479,7 +1479,7 @@ static void CreateDecisionPayload(BattleHallApp *app, u16 cmd, u16 decision)
     app->commPayload[1] = decision;
 }
 
-void BattleHall_HandlePartnerDecisionCmd(int netID, int unused, void *data, void *context)
+void CommCmd_BattleHallHandlePartnerDecision(int netID, int unused, void *data, void *context)
 {
     BattleHallApp *app = context;
     const u16 *payload = data;

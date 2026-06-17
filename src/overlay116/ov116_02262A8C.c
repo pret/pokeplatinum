@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
 #include "overlay116/ov116_02261870.h"
 #include "overlay116/ov116_0226432C.h"
 #include "overlay116/ov116_02266FEC.h"
@@ -896,7 +898,7 @@ static void ov116_022639BC(UnkStruct_ov116_02262A8C *param0)
             ov116_02263DB8(param0);
             param0->unk_2858[param0->unk_00].unk_00 = 1;
 
-            CommSys_SendData(24, &param0->unk_2858[param0->unk_00], sizeof(UnkStruct_ov116_02260490));
+            CommSys_SendData(COMM_CMD_MIME_TOP_24, &param0->unk_2858[param0->unk_00], sizeof(UnkStruct_ov116_02260490));
 
             param0->unk_279C.unk_38 = 0;
             param0->unk_279C.unk_1E = 0;
@@ -930,7 +932,7 @@ static void ov116_022639BC(UnkStruct_ov116_02262A8C *param0)
             }
 
             ov116_02262AE4(param0);
-            CommSys_SendData(24, &param0->unk_2858[param0->unk_00], sizeof(UnkStruct_ov116_02260490));
+            CommSys_SendData(COMM_CMD_MIME_TOP_24, &param0->unk_2858[param0->unk_00], sizeof(UnkStruct_ov116_02260490));
         } else {
             param0->unk_2858[param0->unk_00].unk_00 = 0;
         }

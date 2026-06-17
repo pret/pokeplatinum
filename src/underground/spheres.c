@@ -238,7 +238,7 @@ static BuriedSphere *Spheres_GetBuriedSphereAtCoordinates(int x, int z)
     return spheresEnv->buriedSpheresByCoordinates[index];
 }
 
-void Spheres_ProcessRetrieveBuriedSphereRequest(int unused, int unused2, void *data, void *unused3)
+void CommCmd_RetrieveBuriedSpheresRequest(int unused, int unused2, void *data, void *unused3)
 {
     u8 *netID = data;
     int curNetID = CommSys_CurNetId();

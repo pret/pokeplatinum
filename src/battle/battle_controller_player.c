@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/communication/comm_command.h"
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
@@ -4051,7 +4052,7 @@ static void BattleControllerPlayer_EndFight(BattleSystem *battleSys, BattleConte
     }
 
     if (battleType & BATTLE_TYPE_LINK) {
-        CommSys_SendMessage(22);
+        CommSys_SendMessage(COMM_CMD_BATTLE_22);
     }
 
     battleCtx->command = BATTLE_CONTROL_END_WAIT;

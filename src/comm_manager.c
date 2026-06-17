@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/communication/comm_available_connections.h"
+#include "constants/communication/comm_command.h"
 #include "constants/communication/comm_error.h"
 #include "constants/communication/comm_type.h"
 
@@ -14,6 +15,7 @@
 
 #include "battle_regulation.h"
 #include "bg_window.h"
+#include "comm_command.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
@@ -24,7 +26,6 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_0203266C.h"
-#include "unk_02032798.h"
 #include "unk_02033200.h"
 #include "unk_02039814.h"
 #include "wireless_manager.h"
@@ -175,7 +176,7 @@ static void CommManager_Initialize(SaveData *saveData, int commType)
     sCommMan->commType = commType;
 
     CommSys_Seed(&sCommMan->rand);
-    CommCmd_Init(NULL, 0, NULL);
+    CommCmdManager_Init(NULL, 0, NULL);
 
     if ((commType != COMM_TYPE_UNION) && (commType != COMM_TYPE_PARTY) && (commType != COMM_TYPE_MYSTERY_GIFT)) {
         NetworkIcon_Init();
@@ -191,7 +192,7 @@ static void CommManager_Free(void)
         return;
     }
 
-    sub_020327E0();
+    CommCmdManager_Free();
 
     if (sCommMan->unk_00) {
         Heap_Free(sCommMan->unk_00);
@@ -1480,7 +1481,7 @@ static void CommTask_ConnectUnionClient(void)
     }
 
     if (sCommMan->timer > (120 - 10)) {
-        CommSys_SendDataFixedSize(6, sFreakConfirmationMessage);
+        CommSys_SendDataFixedSize(COMM_CMD_VALIDATE_CONFIRMATION, sFreakConfirmationMessage);
     }
 
     if (sCommMan->timer != 0) {
@@ -1578,10 +1579,10 @@ void CommManager_StartDrawServer(void)
 
     if (CommSys_CurNetId() == 0) {
         u8 data = 0;
-        CommSys_SendDataFixedSize(10, &data);
+        CommSys_SendDataFixedSize(COMM_CMD_10, &data);
     } else {
         u8 data = 0;
-        CommSys_SendDataFixedSize(10, &data);
+        CommSys_SendDataFixedSize(COMM_CMD_10, &data);
     }
 }
 
@@ -1744,7 +1745,7 @@ static void CommTask_ConnectingDraw(void)
  * @param confirmationMessage
  * @param unused_3
  */
-void CommManager_ValidateConfirmationMessage(int netID, int unused_1, void *msg, void *unused_3)
+void CommCmd_ValidateConfirmationMessage(int netID, int unused_1, void *msg, void *unused_3)
 {
     int i;
     u8 *confirmation = msg;
@@ -1766,13 +1767,13 @@ void CommManager_ValidateConfirmationMessage(int netID, int unused_1, void *msg,
     if (success && (!sCommMan->pauseUnion)) {
         sGameConfirmationMessage[0] = netID;
         // "[netID]GAME" indicates a success
-        CommSys_SendDataFixedSizeServer(7, sGameConfirmationMessage);
+        CommSys_SendDataFixedSizeServer(COMM_CMD_VALIDATE_CONFIRMATION_RESPONSE, sGameConfirmationMessage);
         return;
     }
 
     // "[netID]FULL" indicates a failure
     sFullConfirmationMessage[0] = netID;
-    CommSys_SendDataFixedSizeServer(7, sFullConfirmationMessage);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_VALIDATE_CONFIRMATION_RESPONSE, sFullConfirmationMessage);
 }
 
 /**
@@ -1783,7 +1784,7 @@ void CommManager_ValidateConfirmationMessage(int netID, int unused_1, void *msg,
  * @param confirmationMessage
  * @param unused_3
  */
-void CommManager_ValidateConfirmationResponseMessage(int unused_0, int unused_1, void *msg, void *unused_3)
+void CommCmd_ValidateConfirmationResponseMessage(int unused_0, int unused_1, void *msg, void *unused_3)
 {
     u8 netID;
     int i;
@@ -2363,7 +2364,7 @@ static void CommTask_EndMatchmakingWifi(void)
 /**
  * @brief Ends wifi matchmaking and sets the disconnected from wifi flag. Params unused
  */
-void CommManager_DisconnectWifi(int unused_0, int unused_1, void *unused_2, void *unused_3)
+void CommCmd_DisconnectWifi(int unused_0, int unused_1, void *unused_2, void *unused_3)
 {
     if (CommSys_CurNetId() == 0) {
         sCommMan->unk_4C = 0;
@@ -2516,7 +2517,7 @@ void CommManager_EndBattleWifiMatch(void)
 {
     u8 netID = CommSys_CurNetId();
 
-    CommSys_SendDataFixedSize(21, &netID);
+    CommSys_SendDataFixedSize(COMM_CMD_DISCONNECT_WIFI, &netID);
 }
 
 /**

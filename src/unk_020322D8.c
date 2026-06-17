@@ -8,10 +8,10 @@
 #include "struct_defs/struct_02032318.h"
 #include "struct_defs/struct_0203233C.h"
 
+#include "comm_command.h"
 #include "comm_ring.h"
 #include "communication_system.h"
 #include "heap.h"
-#include "unk_02032798.h"
 
 static UnkStruct_020322D8 *sub_020322D8(CommQueueMan *param0)
 {
@@ -77,7 +77,7 @@ static BOOL sub_0203233C(UnkStruct_0203233C *param0, u8 param1)
 
 static BOOL sub_02032358(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1)
 {
-    int v0 = CommCmd_PacketSizeOf(param0->unk_0E);
+    int v0 = CommCmdManager_PacketSizeOf(param0->unk_0E);
 
     if (v0 == 0xffff) {
         if (param1->unk_04 < 3) {
@@ -108,7 +108,7 @@ static BOOL sub_020323D0(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1,
 {
     int v0;
     int v1;
-    int v2 = CommCmd_PacketSizeOf(param0->unk_0E);
+    int v2 = CommCmdManager_PacketSizeOf(param0->unk_0E);
 
     if (v2 == 0xffff) {
         v1 = 3;
@@ -168,7 +168,7 @@ BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *data, int size, BOOL par
     }
 
     GF_ASSERT(size < 65534);
-    v3 = CommCmd_PacketSizeOf(cmd);
+    v3 = CommCmdManager_PacketSizeOf(cmd);
 
     if (v3 == PACKET_SIZE_VARIABLE) {
         v3 = size;

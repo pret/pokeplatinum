@@ -155,7 +155,7 @@ Static main
 	Object main.nef.p/src_comm_ring.c.o
 	Object main.nef.p/src_unk_020322D8.c.o
 	Object main.nef.p/src_unk_0203266C.c.o
-	Object main.nef.p/src_unk_02032798.c.o
+	Object main.nef.p/src_comm_command.c.o
 	Object main.nef.p/src_communication_information.c.o
 	Object main.nef.p/src_unk_02033200.c.o
 	Object main.nef.p/src_communication_system.c.o
@@ -167,7 +167,7 @@ Static main
 	Object main.nef.p/src_unk_0203909C.c.o
 	Object main.nef.p/src_network_icon.c.o
 	Object main.nef.p/src_unk_02039814.c.o
-	Object main.nef.p/src_unk_02039A58.c.o
+	Object main.nef.p/src_comm_command_waiting_room.c.o
 	Object main.nef.p/src_unk_02039A64.c.o
 	Object main.nef.p/src_map_matrix.c.o
 	Object main.nef.p/src_map_header.c.o
@@ -295,7 +295,7 @@ Static main
 	Object main.nef.p/src_dexmode_checker.c.o
 	Object main.nef.p/src_height_weight_data.c.o
 	Object main.nef.p/src_battle_regulation_validation.c.o
-	Object main.nef.p/src_unk_0207A6DC.c.o
+	Object main.nef.p/src_comm_command_battle.c.o
 	Object main.nef.p/src_evolution.c.o
 	Object main.nef.p/src_unk_0207C63C.c.o
 	Object main.nef.p/src_type_icon.c.o
@@ -328,10 +328,10 @@ Static main
 	Object main.nef.p/src_unk_02092494.c.o
 	Object main.nef.p/src_contest.c.o
 	Object main.nef.p/src_unk_02094EDC.c.o
-	Object main.nef.p/src_unk_02095AF0.c.o
-	Object main.nef.p/src_unk_02095CD4.c.o
-	Object main.nef.p/src_unk_02095E98.c.o
-	Object main.nef.p/src_unk_020961E8.c.o
+	Object main.nef.p/src_comm_command_contest.c.o
+	Object main.nef.p/src_comm_command_trade.c.o
+	Object main.nef.p/src_comm_command_draw.c.o
+	Object main.nef.p/src_comm_command_record_corner.c.o
 	Object main.nef.p/src_item_use_pokemon.c.o
 	Object main.nef.p/src_unk_020972FC.c.o
 	Object main.nef.p/src_berry_data.c.o
@@ -346,7 +346,7 @@ Static main
 	Object main.nef.p/src_rowan_intro_app_template.c.o
 	Object main.nef.p/src_applications_poffin_case_main.c.o
 	Object main.nef.p/src_poffin_sprite.c.o
-	Object main.nef.p/src_unk_02099500.c.o
+	Object main.nef.p/src_comm_command_field.c.o
 	Object main.nef.p/src_wifi_overlays.c.o
 	Object main.nef.p/src_unk_02099604.c.o
 	Object main.nef.p/src_unk_020996D0.c.o
@@ -364,8 +364,8 @@ Static main
 	Object main.nef.p/src_error_message_reset.c.o
 	Object main.nef.p/src_unk_0209B6F8.c.o
 	Object main.nef.p/src_unk_0209BA18.c.o
-	Object main.nef.p/src_unk_0209BA80.c.o
-	Object main.nef.p/src_unk_0209BDF8.c.o
+	Object main.nef.p/src_comm_command_frontier.c.o
+	Object main.nef.p/src_comm_command_spin_trade.c.o
 	Object main.nef.p/src_unk_0209C194.c.o
 	Object main.nef.p/src_unk_0209C370.c.o
 	Object main.nef.p/src_unk_0209C390.c.o
@@ -1337,7 +1337,7 @@ Overlay overlay83
 	After overlay82
 	Object main.nef.p/src_overlay083_ov83_0223B5A0.c.o
 	Object main.nef.p/src_overlay083_ov83_0223C958.c.o
-	Object main.nef.p/src_overlay083_ov83_0223D144.c.o
+	Object main.nef.p/src_overlay083_comm_command_poffin_cooking.c.o
 	Object main.nef.p/src_overlay083_ov83_0223D150.c.o
 	Object main.nef.p/src_overlay083_ov83_0223D4CC.c.o
 	Object main.nef.p/src_overlay083_ov83_0223D6A8.c.o
@@ -1454,7 +1454,7 @@ Overlay main_menu
 	Object main.nef.p/src_main_menu_main_menu.c.o
 	Object main.nef.p/src_main_menu_ranger_link.c.o
 	Object main.nef.p/src_main_menu_ov97_0222D04C.c.o
-	Object main.nef.p/src_main_menu_ov97_0222D2F8.c.o
+	Object main.nef.p/src_main_menu_comm_command_mystery_gift.c.o
 	Object main.nef.p/src_main_menu_mystery_gift_app.c.o
 	Object main.nef.p/src_main_menu_wonder_cards_app.c.o
 	Object main.nef.p/src_main_menu_ov97_02232054.c.o
@@ -1653,7 +1653,7 @@ Overlay overlay114
 {
 	After overlay66
 	Object main.nef.p/src_overlay114_ov114_0225C700.c.o
-	Object main.nef.p/src_overlay114_ov114_02260038.c.o
+	Object main.nef.p/src_overlay114_comm_command_minigame.c.o
 	Object main.nef.p/src_overlay114_ov114_02260044.c.o
 }
 
@@ -1663,14 +1663,14 @@ Overlay overlay115
 	Object main.nef.p/src_overlay115_ov115_02260440.c.o
 	Object main.nef.p/src_overlay115_ov115_02260BBC.c.o
 	Object main.nef.p/src_overlay115_ov115_02260CEC.c.o
-	Object main.nef.p/src_overlay115_ov115_02265A18.c.o
+	Object main.nef.p/src_overlay115_comm_command_swalot_plop.c.o
 	Object main.nef.p/src_overlay115_ov115_02265A24.c.o
 }
 
 Overlay overlay116
 {
 	After overlay114
-	Object main.nef.p/src_overlay116_ov116_02260440.c.o
+	Object main.nef.p/src_overlay116_comm_command_mime_jr_top.c.o
 	Object main.nef.p/src_overlay116_ov116_022604C4.c.o
 	Object main.nef.p/src_overlay116_ov116_02261870.c.o
 	Object main.nef.p/src_overlay116_ov116_02262A44.c.o
@@ -1687,7 +1687,7 @@ Overlay overlay117
 	Object main.nef.p/src_overlay117_ov117_022626B0.c.o
 	Object main.nef.p/src_overlay117_ov117_02263AF0.c.o
 	Object main.nef.p/src_overlay117_ov117_02266498.c.o
-	Object main.nef.p/src_overlay117_ov117_022665FC.c.o
+	Object main.nef.p/src_overlay117_comm_command_wobbuffet_pop.c.o
 	Object main.nef.p/src_overlay117_ov117_022666C0.c.o
 }
 

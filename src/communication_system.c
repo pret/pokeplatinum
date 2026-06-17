@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/heap.h"
 
 #include "struct_defs/comm_queue_man.h"
@@ -12,6 +13,7 @@
 
 #include "nintendo_wfc/main.h"
 
+#include "comm_command.h"
 #include "comm_manager.h"
 #include "comm_ring.h"
 #include "communication_information.h"
@@ -22,7 +24,6 @@
 #include "system.h"
 #include "unk_020322D8.h"
 #include "unk_0203266C.h"
-#include "unk_02032798.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "wireless_manager.h"
@@ -1404,7 +1405,7 @@ int CommSys_SendRingRemainingSize(void)
 
 static void CommSys_EndCallback(int netId, int command, int param2, void *param3, CommRecvPackage *param4)
 {
-    CommCmd_Callback(netId, command, param2, param3);
+    CommCommCmdManager_Callback(netId, command, param2, param3);
     param4->unk_0A = 0xee;
     param4->unk_08 = 0xffff;
     param4->unk_04 = NULL;
@@ -1437,7 +1438,7 @@ static void CommSys_RecvDataSingle(CommRing *ring, int netId, u8 *buffer, CommRe
         if (param3->unk_08 != 0xffff) {
             size = param3->unk_08;
         } else {
-            size = CommCmd_PacketSizeOf(cmd);
+            size = CommCmdManager_PacketSizeOf(cmd);
 
             if (sCommunicationSystem->unk_6B1) {
                 return;
@@ -1457,9 +1458,9 @@ static void CommSys_RecvDataSingle(CommRing *ring, int netId, u8 *buffer, CommRe
             param3->unk_08 = size;
         }
 
-        if (sub_020328D0(cmd)) {
+        if (CommCmdManager_CheckCmdHasBuffer(cmd)) {
             if (param3->unk_04 == NULL) {
-                param3->unk_04 = sub_0203290C(cmd, netId, param3->unk_08);
+                param3->unk_04 = CommCmdManager_TryCreateRecvBuffer(cmd, netId, param3->unk_08);
             }
 
             v3 = CommRing_Read(ring, buffer, size - param3->unk_00);
@@ -1672,9 +1673,9 @@ static void CommSys_Transmission(void)
     switch (sCommunicationSystem->transmissionState) {
     case 1:
         if (CommSys_TransmissionType() == 1) {
-            v0 = CommSys_SendDataFixedSize(11, &sCommunicationSystem->unk_6A4);
+            v0 = CommSys_SendDataFixedSize(COMM_CMD_11, &sCommunicationSystem->unk_6A4);
         } else {
-            v0 = CommSys_SendDataServer(11, &sCommunicationSystem->unk_6A4, 1);
+            v0 = CommSys_SendDataServer(COMM_CMD_11, &sCommunicationSystem->unk_6A4, 1);
         }
 
         if (v0) {
@@ -1682,7 +1683,7 @@ static void CommSys_Transmission(void)
         }
         break;
     case 3:
-        if (CommSys_SendDataFixedSize(12, &sCommunicationSystem->unk_6A4)) {
+        if (CommSys_SendDataFixedSize(COMM_CMD_12, &sCommunicationSystem->unk_6A4)) {
             CommSys_SwitchTransitionType(sCommunicationSystem->unk_6A4);
             sCommunicationSystem->transmissionState = 0;
         }
@@ -1690,7 +1691,7 @@ static void CommSys_Transmission(void)
     }
 }
 
-void sub_02036008(int unused0, int unused1, void *param2, void *unused3)
+void CommCmd_10(int unused0, int unused1, void *param2, void *unused3)
 {
     u8 *v0 = param2;
 
@@ -1702,7 +1703,7 @@ void sub_02036008(int unused0, int unused1, void *param2, void *unused3)
     sCommunicationSystem->unk_6A4 = v0[0];
 }
 
-void sub_02036030(int unused0, int unused1, void *param2, void *unused3)
+void CommCmd_11(int unused0, int unused1, void *param2, void *unused3)
 {
     u8 *v0 = param2;
 
@@ -1714,7 +1715,7 @@ void sub_02036030(int unused0, int unused1, void *param2, void *unused3)
     sCommunicationSystem->transmissionState = 3;
 }
 
-void sub_02036058(int unused0, int unused1, void *param2, void *unused3)
+void CommCmd_12(int unused0, int unused1, void *param2, void *unused3)
 {
     u8 *v0 = param2;
 
@@ -1815,7 +1816,7 @@ BOOL CommSys_IsAlone(void)
     return FALSE;
 }
 
-void sub_0203619C(int param0, int param1, void *param2, void *param3)
+void CommCmd_2(int param0, int param1, void *param2, void *param3)
 {
     u8 v0;
 

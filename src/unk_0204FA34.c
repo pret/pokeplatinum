@@ -12,7 +12,7 @@
 #include "communication_system.h"
 #include "savedata.h"
 
-void BattleHall_ProcessSelectedSpeciesMsg(int netID, int unused, void *data, void *context)
+void CommCmd_BattleHallSelectedSpeciesMsg(int netID, int unused, void *data, void *context)
 {
     BattleHallSameSpeciesCheck *myData = context;
     const BattleHallSameSpeciesCheck *partnersData = data;

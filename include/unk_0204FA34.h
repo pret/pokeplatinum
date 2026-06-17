@@ -14,7 +14,7 @@ typedef struct BattleHallSameSpeciesCheck {
     u16 *speciesAreDifferent;
 } BattleHallSameSpeciesCheck;
 
-void BattleHall_ProcessSelectedSpeciesMsg(int netID, int unused, void *data, void *context);
+void CommCmd_BattleHallSelectedSpeciesMsg(int netID, int unused, void *data, void *context);
 void sub_0204FA50(SaveData *saveData, BattleHallStreakFlags *param1, u8 param2);
 
 #endif // POKEPLATINUM_UNK_0204FA34_H

@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/union_room_message_types.h"
 #include "constants/versions.h"
 
@@ -12,6 +13,8 @@
 #include "field/field_system.h"
 
 #include "appearance.h"
+#include "comm_command_draw.h"
+#include "comm_command_field.h"
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -32,8 +35,6 @@
 #include "trainer_case.h"
 #include "trainer_info.h"
 #include "unk_02033200.h"
-#include "unk_02095E98.h"
-#include "unk_02099500.h"
 
 #include "constdata/const_020ED570.h"
 #include "res/text/bank/country_names.h"
@@ -602,36 +603,36 @@ void sub_0205B930(UnkStruct_0205B43C *param0, int param1, u32 param2)
     case 0:
         if (param0->unk_44 == 0) {
             param0->unk_34 = v0;
-            CommSys_SendData(99, &v0, 1);
+            CommSys_SendData(COMM_CMD_FIELD_99, &v0, 1);
         }
         break;
     case 1:
         if (param2 == 0) {
             u8 v1 = param0->unk_30;
 
-            CommSys_SendDataServer(103, &v1, 1);
+            CommSys_SendDataServer(COMM_CMD_FIELD_103, &v1, 1);
             param0->unk_3C = param2;
         } else {
             u8 v2 = 7;
 
-            CommSys_SendDataServer(103, &v2, 1);
+            CommSys_SendDataServer(COMM_CMD_FIELD_103, &v2, 1);
             param0->unk_3C = param2;
         }
         break;
     }
 }
 
-void sub_0205B988(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_98(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_0205B98C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_100(int param0, int param1, void *param2, void *param3)
 {
     return;
 }
 
-void sub_0205B990(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_102(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
 
@@ -641,7 +642,7 @@ void sub_0205B990(int param0, int param1, void *param2, void *param3)
 
 static int Unk_021C0858;
 
-void sub_0205B9AC(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_99(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     u8 *v1 = (u8 *)param2;
@@ -652,7 +653,7 @@ void sub_0205B9AC(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_0205B9C4(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_103(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     u8 *v1 = (u8 *)param2;
@@ -665,7 +666,7 @@ void sub_0205B9C4(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_0205B9E0(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_104(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
 
@@ -680,14 +681,14 @@ int sub_0205B9E8(UnkStruct_0205B43C *param0)
 int sub_0205B9EC(UnkStruct_0205B43C *param0, int param1)
 {
     if (param0->unk_30 == 0) {
-        CommSys_SendData(104, NULL, 0);
+        CommSys_SendData(COMM_CMD_FIELD_104, NULL, 0);
         return param1;
     }
 
     return 0;
 }
 
-void sub_0205BA08(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_105(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     TrainerCase *trainerCase = (TrainerCase *)param2;
@@ -717,7 +718,7 @@ u8 *sub_0205BA5C(int param0, void *param1, int param2)
     return (u8 *)v1->unk_188[param0];
 }
 
-void sub_0205BA6C(int param0, int param1, void *param2, void *param3)
+void CommCmd_Field_101(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     UnkStruct_0205B43C *v1 = fieldSystem->unk_7C;
@@ -744,7 +745,7 @@ u16 sub_0205BA7C(UnkStruct_0205B43C *param0)
 void sub_0205BAAC(int param0)
 {
     u8 v0 = param0;
-    CommSys_SendData(101, &v0, 1);
+    CommSys_SendData(COMM_CMD_FIELD_101, &v0, 1);
 }
 
 static const int sMessagesShowingTrainerCase[][2] = {
@@ -1376,5 +1377,5 @@ void sub_0205C1F0(UnkStruct_0205B43C *param0)
 
 void UnionRoom_SendTrainerCase(UnkStruct_0205B43C *param0)
 {
-    CommSys_SendDataHuge(105, param0->unk_184, sizeof(TrainerCase));
+    CommSys_SendDataHuge(COMM_CMD_FIELD_105, param0->unk_184, sizeof(TrainerCase));
 }

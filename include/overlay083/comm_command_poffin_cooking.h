@@ -1,0 +1,9 @@
+#ifndef POKEPLATINUM_COMM_COMMAND_POFFIN_COOKING_H
+#define POKEPLATINUM_COMM_COMMAND_POFFIN_COOKING_H
+
+#include "struct_defs/comm_cmd_table.h"
+
+const CommCmdTable *ov83_0223D144(void);
+int ov83_0223D14C(void);
+
+#endif // POKEPLATINUM_COMM_COMMAND_POFFIN_COOKING_H

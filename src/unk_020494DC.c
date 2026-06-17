@@ -5,6 +5,7 @@
 
 #include "constants/battle_tower.h"
 #include "constants/battle_tower_functions.h"
+#include "constants/communication/comm_command.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
@@ -18,6 +19,7 @@
 
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
+#include "comm_command_frontier.h"
 #include "communication_system.h"
 #include "field_script_context.h"
 #include "field_system.h"
@@ -31,7 +33,6 @@
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
 #include "unk_0206B9D8.h"
-#include "unk_0209BA80.h"
 
 static u16 BattleTower_GetPartnerParam(BattleTower *battleTower, u8 param1);
 
@@ -253,15 +254,15 @@ BOOL ScrCmd_1E1(ScriptContext *ctx)
 
     switch (v3) {
     case 0:
-        cmd = 62;
+        cmd = COMM_CMD_F_62;
         sub_0204B060(ctx->fieldSystem->battleTower, ctx->fieldSystem->saveData);
         break;
     case 1:
-        cmd = 63;
+        cmd = COMM_CMD_F_63;
         sub_0204B0BC(ctx->fieldSystem->battleTower);
         break;
     case 2:
-        cmd = 64;
+        cmd = COMM_CMD_F_64;
         sub_0204B0D4(ctx->fieldSystem->battleTower, v4);
         break;
     }

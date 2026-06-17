@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/field_base_tiles.h"
 #include "generated/trainer_score_events.h"
 
@@ -261,7 +262,7 @@ static void UndergroundTalkResponse_RequestLinkTalkStateUpdate(ResponseMenu *men
         .newState = newState
     };
 
-    CommSys_SendDataFixedSize(74, &req);
+    CommSys_SendDataFixedSize(COMM_CMD_RESPONSE_TALK_UPDATE_SERVER, &req);
 }
 
 static void UndergroundTalk_RequestLinkTalkStateUpdate(TalkMenu *menu, int newState)
@@ -271,7 +272,7 @@ static void UndergroundTalk_RequestLinkTalkStateUpdate(TalkMenu *menu, int newSt
         .newState = newState
     };
 
-    CommSys_SendDataFixedSize(73, &req);
+    CommSys_SendDataFixedSize(COMM_CMD_REQUEST_TALK_UPDATE_SERVER, &req);
 }
 
 static void UndergroundTalk_PrintMessage(TalkMenu *menu, int bankEntry)
@@ -443,7 +444,7 @@ static BOOL UndergroundTalk_HandleQuestionsMenu(SysTask *sysTask, void *data)
         message.recipientNetID = menu->linkNetID;
         message.type = MESSAGE_TYPE_QUESTION;
 
-        CommSys_SendDataFixedSize(79, &message);
+        CommSys_SendDataFixedSize(COMM_CMD_SEND_TALK_MSG_SERVER, &message);
 
         menu->questionIndex = input;
         menu->state = TALK_MENU_STATE_PRINT_SELECTED_QUESTION;
@@ -506,7 +507,7 @@ static BOOL UndergroundTalk_HandleAnswersMenu(SysTask *sysTask, void *data)
         message.index = menu->questionIndex * ANSWERS_PER_QUESTION + input;
         message.recipientNetID = menu->linkNetID;
         message.type = MESSAGE_TYPE_TALK_ANSWER;
-        CommSys_SendDataFixedSize(79, &message);
+        CommSys_SendDataFixedSize(COMM_CMD_SEND_TALK_MSG_SERVER, &message);
         UndergroundTextPrinter_SetUndergroundAnswer(UndergroundMan_GetCommonTextPrinter(), message.index);
         UndergroundTextPrinter_SetUndergroundAnswerWithIndex(UndergroundMan_GetCommonTextPrinter(), 6, menu->linkAnswerIndex);
 
@@ -551,7 +552,7 @@ static void UndergroundTalk_HandleGiftConfirmMenu(SysTask *unused, TalkMenu *men
 
     if (input == MENU_YES) {
         menu->sentGift.recipientNetID = menu->linkNetID;
-        CommSys_SendDataFixedSize(77, &menu->sentGift);
+        CommSys_SendDataFixedSize(COMM_CMD_SEND_GIFT_SERVER, &menu->sentGift);
         menu->state = TALK_MENU_STATE_GIFT_OFFERED;
     } else {
         UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_NextTimeWillBeFine);
@@ -1102,7 +1103,7 @@ static BOOL UndergroundTalkResponse_HandleAnswersMenu(SysTask *sysTask, void *da
         message.recipientNetID = menu->linkNetID;
         message.type = MESSAGE_TYPE_RESPONSE_ANSWER;
 
-        CommSys_SendDataFixedSize(79, &message);
+        CommSys_SendDataFixedSize(COMM_CMD_SEND_TALK_MSG_SERVER, &message);
         UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_MENU_STATE_LINK_ANSWERED);
         break;
     }
@@ -1339,17 +1340,17 @@ void UndergroundTalkResponse_Start(int unused, int linkNetID, FieldSystem *field
     menu->sysTask = SysTask_Start(UndergroundTalkResponse_Main, menu, 10000);
 }
 
-void UndergroundTalk_RequestLinkTalkStateUpdateServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RequestUndergroundTalkStateAndUpdateServer(int unused0, int unused1, void *data, void *unused3)
 {
-    CommSys_SendDataFixedSizeServer(75, data);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_RESPONSE_REQUEST_TALK_UPDATE_SERVER, data);
 }
 
-void UndergroundTalkResponse_RequestLinkTalkStateUpdateServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RequestUndergroundTalkResponseStateAndUpdateServer(int unused0, int unused1, void *data, void *unused3)
 {
-    CommSys_SendDataFixedSizeServer(76, data);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_TALK_UPDATE_SERVER, data);
 }
 
-void UndergroundTalkResponse_HandleLinkTalkStateUpdateServer(int unused0, int size, void *data, void *unused3)
+void CommCmd_UndergroundTalkResponseStateUpdateServer(int unused0, int size, void *data, void *unused3)
 {
     TalkStateChangeRequest *req = data;
 
@@ -1359,7 +1360,7 @@ void UndergroundTalkResponse_HandleLinkTalkStateUpdateServer(int unused0, int si
     }
 }
 
-void UndergroundTalk_HandleLinkTalkStateUpdateServer(int unused0, int size, void *data, void *unused3)
+void CommCmd_UndergroundTalkStateUpdateServer(int unused0, int size, void *data, void *unused3)
 {
     TalkStateChangeRequest *req = data;
 
@@ -1376,12 +1377,12 @@ int CommPacketSizeOf_TalkStateChangeRequest(void)
     return sizeof(TalkStateChangeRequest);
 }
 
-void UndergroundTalk_SendGiftServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundSendGiftServer(int unused0, int unused1, void *data, void *unused3)
 {
-    CommSys_SendDataFixedSizeServer(78, data);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_RECV_GIFT_OFFER, data);
 }
 
-void UndergroundTalkResponse_ReceiveGiftOffer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_UndergroundRecvGiftOffer(int unused0, int unused1, void *data, void *unused3)
 {
     ResponseMenu *menu = sCurrentResponseMenu;
     Gift *gift = data;
@@ -1412,12 +1413,12 @@ int CommPacketSizeOf_Gift(void)
     return sizeof(Gift);
 }
 
-void UndergroundTalk_SendTalkMessageServer(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_SendUndergroundTalkMessageServer(int unused0, int unused1, void *data, void *unused3)
 {
-    CommSys_SendDataFixedSizeServer(80, data);
+    CommSys_SendDataFixedSizeServer(COMM_CMD_RECV_TALK_MSG_SERVER, data);
 }
 
-void UndergroundTalk_ReceiveTalkMessage(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RecvUndergroundTalkMessage(int unused0, int unused1, void *data, void *unused3)
 {
     ResponseMenu *responseMenu = sCurrentResponseMenu;
     TalkMenu *talkMenu = sCurrentTalkMenu;

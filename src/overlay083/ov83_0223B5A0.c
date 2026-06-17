@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
@@ -305,7 +306,7 @@ static int ov83_0223B920(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     BOOL v0;
 
     if (ov83_0223D570(param1->unk_148C) == 0) {
-        v0 = ov83_0223D508(22, NULL, 0, param1->unk_148C);
+        v0 = ov83_0223D508(COMM_CMD_POFFIN_22, NULL, 0, param1->unk_148C);
 
         if (v0 == 0) {
             return param1->unk_0C;
@@ -349,7 +350,7 @@ static int ov83_0223B964(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         break;
 
     case 2:
-        v0 = ov83_0223D508(25, &param1->unk_1494.unk_00, ov83_0223D4B8(), param1->unk_148C);
+        v0 = ov83_0223D508(COMM_CMD_POFFIN_25, &param1->unk_1494.unk_00, ov83_0223D4B8(), param1->unk_148C);
 
         if (v0 == 1) {
             return param1->unk_0C + 1;
@@ -447,7 +448,7 @@ static int ov83_0223BB40(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         v0 = ov83_0223FDD8(&param1->unk_34C, &param1->unk_1494, param1->unk_1488);
 
         if (v0 == 1) {
-            v0 = ov83_0223D508(23, NULL, 0, param1->unk_148C);
+            v0 = ov83_0223D508(COMM_CMD_POFFIN_23, NULL, 0, param1->unk_148C);
             return param1->unk_0C;
         } else {
             ov83_0223FFA0(&param1->unk_34C);
@@ -481,7 +482,7 @@ static int ov83_0223BB40(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
                     }
 
                     if (v1) {
-                        v0 = ov83_0223D508(26, &param1->unk_1494.unk_04, ov83_0223D4BC(), param1->unk_148C);
+                        v0 = ov83_0223D508(COMM_CMD_POFFIN_26, &param1->unk_1494.unk_04, ov83_0223D4BC(), param1->unk_148C);
                         param1->unk_15DC = 0;
 
                         for (v2 = 1; v2 < (7 + 1); v2++) {
@@ -493,13 +494,13 @@ static int ov83_0223BB40(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
                 }
             } else {
                 if (param1->unk_1666) {
-                    v0 = ov83_0223D508(32, &param1->unk_1494.unk_04.unk_00, ov83_0223D4C8(), param1->unk_148C);
+                    v0 = ov83_0223D508(COMM_CMD_POFFIN_32, &param1->unk_1494.unk_04.unk_00, ov83_0223D4C8(), param1->unk_148C);
                     param1->unk_1666--;
                 }
             }
         }
     } else {
-        v0 = ov83_0223D508(26, &param1->unk_1494.unk_04, ov83_0223D4BC(), param1->unk_148C);
+        v0 = ov83_0223D508(COMM_CMD_POFFIN_26, &param1->unk_1494.unk_04, ov83_0223D4BC(), param1->unk_148C);
         param1->unk_15DC = 0;
     }
 
@@ -599,7 +600,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         if (ov83_0223D570(param1->unk_148C) == 0) {
             v0 = Poffin_New(param1->heapID);
             ov83_0223FFD4(&param1->unk_34C, v0, &param1->unk_1494, param1->unk_1488, param1->heapID);
-            v1 = ov83_0223D508(28, v0, Poffin_SizeOf(), param1->unk_148C);
+            v1 = ov83_0223D508(COMM_CMD_POFFIN_28, v0, Poffin_SizeOf(), param1->unk_148C);
             Heap_Free(v0);
 
             if (v1 == 1) {
@@ -612,7 +613,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     case 5:
         if (ov83_0223D570(param1->unk_148C) == 0) {
             ov83_022401AC(&param1->unk_34C, &param1->unk_1494, param1->unk_1488);
-            v1 = ov83_0223D508(27, &param1->unk_1494.unk_20, ov83_0223D4C0(), param1->unk_148C);
+            v1 = ov83_0223D508(COMM_CMD_POFFIN_27, &param1->unk_1494.unk_20, ov83_0223D4C0(), param1->unk_148C);
 
             if (v1 == 1) {
                 (*param2)++;
@@ -739,7 +740,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         break;
     case 9:
         param1->unk_3B4 = 1;
-        v1 = ov83_0223D508(30, &param1->unk_3B4, ov83_0223D4B0(), param1->unk_148C);
+        v1 = ov83_0223D508(COMM_CMD_POFFIN_30, &param1->unk_3B4, ov83_0223D4B0(), param1->unk_148C);
 
         if (v1 == 1) {
             return param1->unk_0C + 1;
@@ -758,7 +759,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         break;
     case 11:
         param1->unk_3B4 = 0;
-        v1 = ov83_0223D508(30, &param1->unk_3B4, ov83_0223D4B0(), param1->unk_148C);
+        v1 = ov83_0223D508(COMM_CMD_POFFIN_30, &param1->unk_3B4, ov83_0223D4B0(), param1->unk_148C);
 
         if (v1 == 1) {
             return param1->unk_0C + 1;

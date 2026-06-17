@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle_frontier.h"
+#include "constants/communication/comm_command.h"
 #include "generated/game_records.h"
 
 #include "applications/party_menu/defs.h"
@@ -16,6 +17,7 @@
 #include "battle_frontier_stats.h"
 #include "battle_hall_save.h"
 #include "battle_hall_win_records.h"
+#include "comm_command_field.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_script_context.h"
@@ -35,7 +37,6 @@
 #include "unk_0202D778.h"
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
-#include "unk_02099500.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -216,7 +217,7 @@ static BOOL CheckPartnerUsesDifferentSpeciesTask(FieldTask *task)
 
     switch (data->taskState) {
     case 0:
-        if (CommSys_SendData(132, data, sizeof(BattleHallSameSpeciesCheck)) == TRUE) {
+        if (CommSys_SendData(COMM_CMD_BATTLE_HALL_SELECT_SPECIES_MESSAGE, data, sizeof(BattleHallSameSpeciesCheck)) == TRUE) {
             data->taskState++;
         }
         break;

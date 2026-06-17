@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "constants/graphics.h"
 
 #include "struct_decls/wi_fi_list.h"
@@ -1823,7 +1824,7 @@ static void ov114_0225D688(SysTask *param0, void *param1)
                 break;
             }
 
-            CommSys_SendData(26, &v8, sizeof(u32));
+            CommSys_SendData(COMM_CMD_MINIGAME_26, &v8, sizeof(u32));
         }
 
         v0->unk_00++;
@@ -3231,9 +3232,9 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
 
         if (v0 == YES_NO_TOUCH_MENU_YES || v0 == YES_NO_TOUCH_MENU_NO) {
             if (v0 == YES_NO_TOUCH_MENU_YES) {
-                CommSys_SendData(22, NULL, 0);
+                CommSys_SendData(COMM_CMD_MINIGAME_22, NULL, 0);
             } else if (v0 == YES_NO_TOUCH_MENU_NO) {
-                CommSys_SendData(23, NULL, 0);
+                CommSys_SendData(COMM_CMD_MINIGAME_23, NULL, 0);
             }
 
             ov114_0225D368(param1, param2, 15, 1);
@@ -3322,9 +3323,9 @@ static void ov114_0225F424(UnkStruct_ov114_0225F270 *param0, u32 param1, BOOL pa
 
         if (v1 == param3) {
             if (param0->unk_1D) {
-                CommSys_SendData(24, NULL, 0);
+                CommSys_SendData(COMM_CMD_MINIGAME_24, NULL, 0);
             } else {
-                CommSys_SendData(25, NULL, 0);
+                CommSys_SendData(COMM_CMD_MINIGAME_25, NULL, 0);
             }
         }
     }

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
 #include "generated/game_records.h"
 #include "generated/journal_online_events.h"
 #include "generated/text_banks.h"
@@ -18,6 +19,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
+#include "comm_command_spin_trade.h"
 #include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -53,7 +55,6 @@
 #include "unk_020363E8.h"
 #include "unk_02038ED4.h"
 #include "unk_02092494.h"
-#include "unk_0209BDF8.h"
 #include "vram_transfer.h"
 
 typedef struct {
@@ -724,7 +725,7 @@ static int ov109_021D11A0(UnkStruct_ov109_021D0F70 *param0)
 {
     int v0;
     u32 v1 = (u32)param0->unk_24;
-    v0 = CommSys_SendDataHuge(131, (void *)v1, 236 * 6 + 4 * 2);
+    v0 = CommSys_SendDataHuge(COMM_CMD_FIELD_SPIN_TRADE_131, (void *)v1, 236 * 6 + 4 * 2);
 
     if (v0) {
         param0->unk_00 = 14;

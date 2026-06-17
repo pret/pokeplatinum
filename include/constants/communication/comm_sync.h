@@ -8,6 +8,13 @@ enum CommSync {
 
     SYNC_BATTLE_ROOM_RETURN = 30,
 
+    SYNC_51 = 51,
+    SYNC_52,
+    SYNC_53,
+    SYNC_54,
+    SYNC_55,
+    SYNC_56,
+
     SYNC_BATTLE_END_CONNECTION = 91,
     SYNC_PAUSE_BATTLE,
 

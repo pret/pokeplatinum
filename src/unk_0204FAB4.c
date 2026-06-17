@@ -4,6 +4,8 @@
 #include <nitro/code16.h>
 #include <string.h>
 
+#include "constants/communication/comm_command.h"
+
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_tower.h"
@@ -17,6 +19,7 @@
 #include "bag.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
+#include "comm_command_field.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_script_context.h"
@@ -32,7 +35,7 @@
 #include "unk_0202D778.h"
 #include "unk_020302D0.h"
 #include "unk_02049D08.h"
-#include "unk_02099500.h"
+#include "unk_0205DFC4.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -165,7 +168,7 @@ static BOOL sub_0204FD38(FieldTask *param0)
 
     switch (v0->unk_00) {
     case 0:
-        if (CommSys_SendData(133, v0, sizeof(UnkStruct_0204FCF8)) == 1) {
+        if (CommSys_SendData(COMM_CMD_FIELD_133, v0, sizeof(UnkStruct_0204FCF8)) == 1) {
             v0->unk_00++;
         }
         break;

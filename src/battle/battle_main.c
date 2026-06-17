@@ -37,6 +37,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "cell_transfer.h"
+#include "comm_command_battle.h"
 #include "comm_manager.h"
 #include "communication_system.h"
 #include "evolution.h"
@@ -84,7 +85,6 @@
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_02038F8C.h"
-#include "unk_0207A6DC.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
