@@ -52,6 +52,12 @@ else
     ]
 endif
 
+if (build_target == 'win64')
+	c_args += [
+		'-w'
+	]
+endif
+
 if (build_target == 'arm')
 if get_option('gdb_debugging')
     c_args += [
@@ -286,7 +292,8 @@ main = executable('main',
     link_depends: main_lcf,
     native: false
 )
-else
+endif
+if (build_target == 'linux')
 main = executable('main',
     sources: [
         pokeplatinum_c,
@@ -313,6 +320,52 @@ main = executable('main',
         nitrowifi_dep,
         nitrodwc_dep,
         libvct_dep,
+    ],
+    link_with: [
+        libspl,
+        libcrypto_ov97,
+        libcrypto_static,
+        libgds
+    ],
+    link_args: [
+        link_args,
+    ],
+    link_depends: main_lcf,
+    native: true
+)
+endif
+if (build_target == 'win64')
+ws2_32_lib = meson.get_compiler('c').find_library('ws2_32')
+
+ws2_32_dep = declare_dependency(dependencies: [ws2_32_lib])
+
+main = executable('main',
+    sources: [
+        pokeplatinum_c,
+        c_consts_generators,
+        naix_headers,
+        h_headers,
+        embed_headers,
+    ],
+    objects: trainer_ai_o,
+    c_args: [
+        pokeplatinum_args,
+    ],
+    c_pch: 'include/pch/global_pch.h',
+    include_directories: [
+        public_includes,
+        libcrypto_public_includes,
+        libgds_public_includes,
+        libspl_public_includes,
+        ppw_public_includes,
+    ],
+    dependencies: [
+        nitrosdk_dep,
+        nitrosystem_dep,
+        nitrowifi_dep,
+        nitrodwc_dep,
+        libvct_dep,
+        ws2_32_dep,
     ],
     link_with: [
         libspl,

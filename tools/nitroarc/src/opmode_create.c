@@ -16,10 +16,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <assert.h>
+
+#ifdef _WIN32
+#include "dirent.h"
+#include "windows.h"
+#include "shlwapi.h"
+#else
 #include <dirent.h>
-#include <errno.h>
 #include <fnmatch.h>
+#endif
+
+#include <assert.h>
+#include <errno.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -246,7 +254,11 @@ errcleanup:
 
 static bool should_exclude(const char *name, const strvec_t *excls) {
     for (size_t i = 0; i < excls->size; i++) {
+        #ifdef _WIN32
+        if(PathMatchSpecA(name, excls->data[i]) == 0) return true;
+        #else
         if (fnmatch(excls->data[i], name, 0) == 0) return true;
+        #endif
     }
 
     return false;

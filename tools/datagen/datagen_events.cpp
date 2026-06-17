@@ -53,7 +53,11 @@ int main(int argc, char **argv)
         std::exit(EXIT_FAILURE);
     }
 
+    #ifdef _WIN32
+    std::string fileName = eventsSourceFile.filename().string();
+    #else
     std::string fileName = eventsSourceFile.filename();
+    #endif
 
     fileName = fileName.substr(0, fileName.size() - sizeof(".json")+1);
     std::transform(fileName.begin(), fileName.end(), fileName.begin(), ::toupper);

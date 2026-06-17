@@ -140,7 +140,13 @@ int set_logfile(bool verbose) {
 int ensure_mkdir(const char *path) {
     if (path == NULL || path[0] == 0) return PROGRAM_ENONE;
 
-    if (mkdir(path, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == -1) {
+    if (
+        #ifdef _WIN32
+        mkdir(path)
+        #else
+        mkdir(path, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)
+        #endif 
+        == -1) {
         if (errno != EEXIST) {
             progerr("could not create directory '%s': %s", path, strerror(errno));
             return PROGRAM_EGENERAL;

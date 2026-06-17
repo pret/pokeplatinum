@@ -1,14 +1,20 @@
 nitroarc_cflags = [
-    '-std=c99',
-    '-DNDEBUG',
-    '-O3',
-    '-Wall',
-    '-Wextra',
-    '-Wpedantic',
-    '-Wconversion',
-    '-Wno-sign-conversion',
-    '-Werror',
+	'-std=c99',
+	'-DNDEBUG',
+	'-O3',
+	'-Wall',
+	'-Wextra',
+	'-Wpedantic',
+	'-Wconversion',
+	'-Wno-sign-conversion',
+	'-Werror',
 ]
+
+if (build_target != 'win64')
+	nitroarc_cflags += [
+		'-Werror',
+	]
+endif
 
 nitroarc_incdir = include_directories('lib/include')
 
@@ -25,6 +31,30 @@ nitroarc_dep = declare_dependency(
     ),
 )
 
+if (build_target == 'win64')
+shlwapi_lib = meson.get_compiler('c').find_library('shlwapi')
+
+shlwapi_dep = declare_dependency(dependencies: [shlwapi_lib])
+
+nitroarc_exe = executable(
+    'nitroarc',
+    sources: files(
+        'src/common.c',
+        'src/extensions.c',
+        'src/main.c',
+        'src/opmode_create.c',
+        'src/opmode_extract.c',
+        'src/opmode_list.c',
+        'src/opmode_metadata.c',
+        'src/optparse.c',
+    ),
+
+    c_args: nitroarc_cflags,
+    dependencies: [nitroarc_dep, shlwapi_dep],
+    install: false,
+    native: true,
+)
+else
 nitroarc_exe = executable(
     'nitroarc',
     sources: files(
@@ -43,3 +73,4 @@ nitroarc_exe = executable(
     install: false,
     native: true,
 )
+endif

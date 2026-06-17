@@ -1,6 +1,10 @@
 # Build directory
 /build/
 /build_linux/
+/build_win64/
+
+# MSys2
+/msys2/
 
 # Metroskrew artifacts
 /metroskrew-*.tar.xz
