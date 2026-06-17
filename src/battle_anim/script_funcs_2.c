@@ -703,23 +703,65 @@ enum SwaggerState {
 #define SWAGGER_SCALE_DELAY  4
 #define SWAGGER_END_DELAY    16
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    int unk_10;
-    ManagedSprite *unk_14;
-    XYTransformContext unk_18;
-    AlphaFadeContext unk_3C;
-    int unk_64;
-    int unk_68;
-    int unk_6C;
-    int unk_70;
-    int unk_74;
-    int unk_78;
-    int unk_7C;
-} UnkStruct_ov12_02232084;
+// -------------------------------------------------------------------
+// Mean Look Sprite
+// -------------------------------------------------------------------
+typedef struct MeanLookSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    int timer;
+    ManagedSprite *sprite;
+    XYTransformContext scale;
+    AlphaFadeContext alpha;
+    int pulseState;
+    int pulseCount;
+    int repeatCount;
+    int scaleFrames;
+    int startScale;
+    int endScale;
+    int seqState;
+} MeanLookSpriteContext;
+
+enum MeanLookSpriteState {
+    MEAN_LOOK_SPRITE_STATE_PULSE = 0,
+    MEAN_LOOK_SPRITE_STATE_FLASH,
+    MEAN_LOOK_SPRITE_STATE_FADE,
+    MEAN_LOOK_SPRITE_STATE_WAIT_FADE,
+    MEAN_LOOK_SPRITE_STATE_CLEANUP,
+
+    MEAN_LOOK_SPRITE_PULSE_STATE_SHRINK = 0,
+    MEAN_LOOK_SPRITE_PULSE_STATE_GROW,
+    MEAN_LOOK_SPRITE_PULSE_STATE_WAIT_FADE,
+    MEAN_LOOK_SPRITE_PULSE_STATE_DONE,
+
+    MEAN_LOOK_SPRITE_PULSESEQ_STATE_INIT = 0,
+    MEAN_LOOK_SPRITE_PULSESEQ_STATE_RUN,
+    MEAN_LOOK_SPRITE_PULSESEQ_STATE_DONE,
+};
+
+#define MEAN_LOOK_SPRITE_REPEAT_COUNT      3
+#define MEAN_LOOK_SPRITE_PULSE_COUNT       2
+#define MEAN_LOOK_SPRITE_DECAY_DIVISOR     3
+#define MEAN_LOOK_SPRITE_SCALE_PRECISION   100
+#define MEAN_LOOK_SPRITE_START_SCALE       15
+#define MEAN_LOOK_SPRITE_REF_SCALE         10
+#define MEAN_LOOK_SPRITE_END_SCALE         10
+#define MEAN_LOOK_SPRITE_SCALE_FRAMES      4
+#define MEAN_LOOK_SPRITE_INIT_ANIM_FRAME   4
+#define MEAN_LOOK_SPRITE_BLEND_MIN         0
+#define MEAN_LOOK_SPRITE_BLEND_MAX         16
+#define MEAN_LOOK_SPRITE_PULSE_ALPHA_START 16
+#define MEAN_LOOK_SPRITE_PULSE_ALPHA_END   10
+#define MEAN_LOOK_SPRITE_PULSE_FADE_SCALE  2 // alpha fade spans twice the scale frames
+#define MEAN_LOOK_SPRITE_FLASH_DELAY       30
+#define MEAN_LOOK_SPRITE_FLASH_FADE_FRAMES 4
+#define MEAN_LOOK_SPRITE_FADE_OUT_FRAMES   8
+#define MEAN_LOOK_SPRITE_BRIGHTNESS_FRAMES 8
+#define MEAN_LOOK_SPRITE_BRIGHTNESS_MIN    0
+#define MEAN_LOOK_SPRITE_BRIGHTNESS_MAX    16
+#define MEAN_LOOK_SPRITE_BRIGHTNESS_PLANES (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3)
 
 // -------------------------------------------------------------------
 // Return
@@ -3336,172 +3378,217 @@ void BattleAnimScriptFunc_Swagger(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Swagger, ctx);
 }
 
-static void ov12_02232084(UnkStruct_ov12_02232084 *param0)
+static void MeanLookSprite_InitPulse(MeanLookSpriteContext *ctx)
 {
-    ScaleLerpContext_Init(&param0->unk_18, param0->unk_74 / 100, 10, param0->unk_78 / 100, param0->unk_70 / 100);
-    BattleAnimUtil_SetSpriteBgBlending(param0->unk_00, 16, 16 - 16);
-    AlphaFadeContext_Init(&param0->unk_3C, 16, 10, 16 - 16, 16 - 10, (param0->unk_70 / 100) * 2);
+    ScaleLerpContext_Init(
+        &ctx->scale,
+        ctx->startScale / MEAN_LOOK_SPRITE_SCALE_PRECISION,
+        MEAN_LOOK_SPRITE_REF_SCALE,
+        ctx->endScale / MEAN_LOOK_SPRITE_SCALE_PRECISION,
+        ctx->scaleFrames / MEAN_LOOK_SPRITE_SCALE_PRECISION);
 
-    param0->unk_64 = 0;
-    param0->unk_68 = 0;
+    BattleAnimUtil_SetSpriteBgBlending(
+        ctx->battleAnimSys,
+        MEAN_LOOK_SPRITE_BLEND_MAX,
+        MEAN_LOOK_SPRITE_BLEND_MIN);
+
+    AlphaFadeContext_Init(
+        &ctx->alpha,
+        MEAN_LOOK_SPRITE_PULSE_ALPHA_START,
+        MEAN_LOOK_SPRITE_PULSE_ALPHA_END,
+        MEAN_LOOK_SPRITE_BLEND_MAX - MEAN_LOOK_SPRITE_PULSE_ALPHA_START,
+        MEAN_LOOK_SPRITE_BLEND_MAX - MEAN_LOOK_SPRITE_PULSE_ALPHA_END,
+        (ctx->scaleFrames / MEAN_LOOK_SPRITE_SCALE_PRECISION) * MEAN_LOOK_SPRITE_PULSE_FADE_SCALE);
+
+    ctx->pulseState = MEAN_LOOK_SPRITE_PULSE_STATE_SHRINK;
+    ctx->pulseCount = 0;
 }
 
-static BOOL ov12_022320EC(UnkStruct_ov12_02232084 *param0)
+static BOOL MeanLookSprite_UpdatePulse(MeanLookSpriteContext *ctx)
 {
-    BOOL v0 = 0;
+    BOOL done = FALSE;
 
-    switch (param0->unk_64) {
-    case 0:
-        if (ScaleLerpContext_UpdateAndApplyToSprite(&param0->unk_18, param0->unk_14) == 0) {
-            ScaleLerpContext_Init(&param0->unk_18, param0->unk_78 / 100, 10, param0->unk_74 / 100, param0->unk_70 / 100);
-            param0->unk_64++;
+    switch (ctx->pulseState) {
+    case MEAN_LOOK_SPRITE_PULSE_STATE_SHRINK:
+        if (ScaleLerpContext_UpdateAndApplyToSprite(&ctx->scale, ctx->sprite) == FALSE) {
+            ScaleLerpContext_Init(
+                &ctx->scale,
+                ctx->endScale / MEAN_LOOK_SPRITE_SCALE_PRECISION,
+                MEAN_LOOK_SPRITE_REF_SCALE,
+                ctx->startScale / MEAN_LOOK_SPRITE_SCALE_PRECISION,
+                ctx->scaleFrames / MEAN_LOOK_SPRITE_SCALE_PRECISION);
+            ctx->pulseState++;
         }
         break;
-    case 1:
-        if (ScaleLerpContext_UpdateAndApplyToSprite(&param0->unk_18, param0->unk_14) == 0) {
-            param0->unk_68++;
+    case MEAN_LOOK_SPRITE_PULSE_STATE_GROW:
+        if (ScaleLerpContext_UpdateAndApplyToSprite(&ctx->scale, ctx->sprite) == FALSE) {
+            ctx->pulseCount++;
 
-            if (param0->unk_68 < 2) {
-                param0->unk_64 = 0;
-                ScaleLerpContext_Init(&param0->unk_18, param0->unk_74 / 100, 10, param0->unk_78 / 100, param0->unk_70 / 100);
+            if (ctx->pulseCount < MEAN_LOOK_SPRITE_PULSE_COUNT) {
+                ctx->pulseState = MEAN_LOOK_SPRITE_PULSE_STATE_SHRINK;
+                ScaleLerpContext_Init(
+                    &ctx->scale,
+                    ctx->startScale / MEAN_LOOK_SPRITE_SCALE_PRECISION,
+                    MEAN_LOOK_SPRITE_REF_SCALE,
+                    ctx->endScale / MEAN_LOOK_SPRITE_SCALE_PRECISION,
+                    ctx->scaleFrames / MEAN_LOOK_SPRITE_SCALE_PRECISION);
             } else {
-                param0->unk_64++;
+                ctx->pulseState++;
             }
         }
         break;
-    case 2:
-        if (AlphaFadeContext_IsDone(&param0->unk_3C)) {
-            param0->unk_64++;
-            v0 = 1;
+    case MEAN_LOOK_SPRITE_PULSE_STATE_WAIT_FADE:
+        if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+            ctx->pulseState++;
+            done = TRUE;
         }
         break;
-    case 3:
-        v0 = 1;
+    case MEAN_LOOK_SPRITE_PULSE_STATE_DONE:
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static BOOL ov12_022321C4(UnkStruct_ov12_02232084 *param0)
+static BOOL MeanLookSprite_UpdatePulses(MeanLookSpriteContext *ctx)
 {
-    BOOL v0 = 0;
+    BOOL done = FALSE;
 
-    switch (param0->unk_7C) {
-    case 0:
-        ov12_02232084(param0);
-        ov12_022320EC(param0);
-        param0->unk_7C++;
+    switch (ctx->seqState) {
+    case MEAN_LOOK_SPRITE_PULSESEQ_STATE_INIT:
+        MeanLookSprite_InitPulse(ctx);
+        MeanLookSprite_UpdatePulse(ctx);
+        ctx->seqState++;
         break;
-    case 1:
-        if (ov12_022320EC(param0)) {
-            param0->unk_6C--;
+    case MEAN_LOOK_SPRITE_PULSESEQ_STATE_RUN:
+        if (MeanLookSprite_UpdatePulse(ctx)) {
+            ctx->repeatCount--;
 
-            if (param0->unk_6C >= 0) {
-                param0->unk_70 -= param0->unk_70 / 3;
-                param0->unk_74 -= param0->unk_74 / 3;
-                param0->unk_78 -= param0->unk_78 / 3;
-                param0->unk_7C = 0;
+            if (ctx->repeatCount >= 0) {
+                ctx->scaleFrames -= ctx->scaleFrames / MEAN_LOOK_SPRITE_DECAY_DIVISOR;
+                ctx->startScale -= ctx->startScale / MEAN_LOOK_SPRITE_DECAY_DIVISOR;
+                ctx->endScale -= ctx->endScale / MEAN_LOOK_SPRITE_DECAY_DIVISOR;
+                ctx->seqState = MEAN_LOOK_SPRITE_PULSESEQ_STATE_INIT;
             } else {
-                param0->unk_7C++;
-                v0 = 1;
+                ctx->seqState++;
+                done = TRUE;
             }
         }
         break;
-    case 2:
-        v0 = 1;
+    case MEAN_LOOK_SPRITE_PULSESEQ_STATE_DONE:
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static void ov12_0223223C(SysTask *param0, void *param1)
+static void BattleAnimTask_MeanLookSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02232084 *v0 = param1;
-    BOOL v1, v2;
+    MeanLookSpriteContext *ctx = param;
 
-    switch (v0->unk_0C) {
-    case 0:
-        if (ov12_022321C4(v0)) {
-            v0->unk_0C++;
-            v0->unk_10 = 30;
+    switch (ctx->state) {
+    case MEAN_LOOK_SPRITE_STATE_PULSE:
+        if (MeanLookSprite_UpdatePulses(ctx)) {
+            ctx->state++;
+            ctx->timer = MEAN_LOOK_SPRITE_FLASH_DELAY;
 
-            ManagedSprite_SetAnim(v0->unk_14, 0);
-            ManagedSprite_SetAnimateFlag(v0->unk_14, 1);
-            ManagedSprite_SetAffineScale(v0->unk_14, 1, 1);
+            ManagedSprite_SetAnim(ctx->sprite, 0);
+            ManagedSprite_SetAnimateFlag(ctx->sprite, TRUE);
+            ManagedSprite_SetAffineScale(ctx->sprite, 1.0f, 1.0f);
 
-            AlphaFadeContext_Init(&v0->unk_3C, 0, 16, 16, 0, 4);
+            AlphaFadeContext_Init(
+                &ctx->alpha,
+                MEAN_LOOK_SPRITE_BLEND_MIN,
+                MEAN_LOOK_SPRITE_BLEND_MAX,
+                MEAN_LOOK_SPRITE_BLEND_MAX,
+                MEAN_LOOK_SPRITE_BLEND_MIN,
+                MEAN_LOOK_SPRITE_FLASH_FADE_FRAMES);
         }
         break;
-    case 1:
-        if (v0->unk_10 == 0) {
-            BrightnessController_StartTransition(8, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
-            v0->unk_10 = -1;
+    case MEAN_LOOK_SPRITE_STATE_FLASH:
+        // timer -1 means dimming, -2 means brightening
+        if (ctx->timer == 0) {
+            BrightnessController_StartTransition(
+                MEAN_LOOK_SPRITE_BRIGHTNESS_FRAMES,
+                MEAN_LOOK_SPRITE_BRIGHTNESS_MAX,
+                MEAN_LOOK_SPRITE_BRIGHTNESS_MIN,
+                MEAN_LOOK_SPRITE_BRIGHTNESS_PLANES,
+                BRIGHTNESS_MAIN_SCREEN);
+            ctx->timer = -1;
         } else {
-            if (v0->unk_10 > 0) {
-                v0->unk_10--;
+            if (ctx->timer > 0) {
+                ctx->timer--;
             }
         }
 
-        if (v0->unk_10 == -1) {
+        if (ctx->timer == -1) {
             if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
-                BrightnessController_StartTransition(8, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
-                v0->unk_10 = -2;
+                BrightnessController_StartTransition(
+                    MEAN_LOOK_SPRITE_BRIGHTNESS_FRAMES,
+                    MEAN_LOOK_SPRITE_BRIGHTNESS_MIN,
+                    MEAN_LOOK_SPRITE_BRIGHTNESS_MAX,
+                    MEAN_LOOK_SPRITE_BRIGHTNESS_PLANES,
+                    BRIGHTNESS_MAIN_SCREEN);
+                ctx->timer = -2;
             }
         }
 
-        if (ManagedSprite_IsAnimated(v0->unk_14) == 0) {
-            v0->unk_0C++;
+        if (ManagedSprite_IsAnimated(ctx->sprite) == FALSE) {
+            ctx->state++;
         }
         break;
-    case 2:
+    case MEAN_LOOK_SPRITE_STATE_FADE:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
-            v0->unk_0C++;
-            BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 16, 0);
-            AlphaFadeContext_Init(&v0->unk_3C, 16, 0, 0, 16, 8);
+            ctx->state++;
+            BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, MEAN_LOOK_SPRITE_BLEND_MAX, MEAN_LOOK_SPRITE_BLEND_MIN);
+            AlphaFadeContext_Init(
+                &ctx->alpha,
+                MEAN_LOOK_SPRITE_BLEND_MAX,
+                MEAN_LOOK_SPRITE_BLEND_MIN,
+                MEAN_LOOK_SPRITE_BLEND_MIN,
+                MEAN_LOOK_SPRITE_BLEND_MAX,
+                MEAN_LOOK_SPRITE_FADE_OUT_FRAMES);
         }
         break;
-    case 3:
-        if (AlphaFadeContext_IsDone(&v0->unk_3C)) {
-            ManagedSprite_SetDrawFlag(v0->unk_14, 0);
-            v0->unk_0C++;
+    case MEAN_LOOK_SPRITE_STATE_WAIT_FADE:
+        if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+            ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
+            ctx->state++;
         }
         break;
-    case 4:
-        Sprite_DeleteAndFreeResources(v0->unk_14);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case MEAN_LOOK_SPRITE_STATE_CLEANUP:
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02232378(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_MeanLook(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_02232084 *v0;
-    PokemonSprite *v1;
+    MeanLookSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MeanLookSpriteContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02232084));
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->sprite = sprite;
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_14 = param3;
+    ManagedSprite_SetPriority(ctx->sprite, 100);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, 1);
+    ManagedSprite_SetAffineOverwriteMode(ctx->sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_XLU);
+    ManagedSprite_SetAnimationFrame(ctx->sprite, MEAN_LOOK_SPRITE_INIT_ANIM_FRAME);
 
-    ManagedSprite_SetPriority(v0->unk_14, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_14, 1);
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_14, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetExplicitOamMode(v0->unk_14, GX_OAM_MODE_XLU);
-    ManagedSprite_SetAnimationFrame(v0->unk_14, 4);
+    ctx->repeatCount = MEAN_LOOK_SPRITE_REPEAT_COUNT;
+    ctx->scaleFrames = MEAN_LOOK_SPRITE_SCALE_FRAMES * MEAN_LOOK_SPRITE_SCALE_PRECISION;
+    ctx->startScale = MEAN_LOOK_SPRITE_START_SCALE * MEAN_LOOK_SPRITE_SCALE_PRECISION;
+    ctx->endScale = MEAN_LOOK_SPRITE_END_SCALE * MEAN_LOOK_SPRITE_SCALE_PRECISION;
 
-    v0->unk_6C = 3;
-    v0->unk_70 = (4 * 100);
-    v0->unk_74 = (15 * 100);
-    v0->unk_78 = (10 * 100);
-
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0223223C, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_MeanLookSprite, ctx);
 }
 
 static void ReturnContext_InitMovement(ReturnContext *ctx)

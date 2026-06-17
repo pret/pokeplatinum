@@ -22,7 +22,7 @@ void BattleAnimSpriteFunc_Foresight(BattleAnimSystem *system, SpriteSystem *spri
 void BattleAnimSpriteFunc_LockOn(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_PlayfulHops(BattleAnimSystem *system);
 void BattleAnimScriptFunc_Swagger(BattleAnimSystem *system);
-void ov12_02232378(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_MeanLook(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_Return(BattleAnimSystem *system);
 void BattleAnimScriptFunc_VitalThrow(BattleAnimSystem *system);
 void ov12_022329E0(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
