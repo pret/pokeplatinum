@@ -20,7 +20,7 @@ void Mining_SendRadarResults(void);
 void CommCmd_InteractMiningSpot(int unused0, int unused1, void *data, void *unused3);
 void CommCmd_ConfirmStartMiningResult(int netID, int unused1, void *data, void *unused3);
 void CommCmd_ConfirmStartMining(int unused0, int unused1, void *data, void *unused3);
-void CommCmd_EndMiningGame(int netID, int unused1, void *unused2, void *unused3);
+void CommCmd_RecvMiningGameEnd(int netID, int unused1, void *unused2, void *unused3);
 void CommCmd_MiningLinkInput(int netID, int unused1, void *data, void *unused3);
 int CommPacketSizeOf_MiningLinkInput(void);
 void CommCmd_MiningLinkInputServer(int unused0, int unused1, void *data, void *unused3);

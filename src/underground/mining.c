@@ -1187,7 +1187,7 @@ void CommCmd_ConfirmStartMining(int unused0, int unused1, void *data, void *unus
     sMiningEnv->miningMessagesQueued[*netID] = TRUE;
 }
 
-void CommCmd_EndMiningGame(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_RecvMiningGameEnd(int netID, int unused1, void *unused2, void *unused3)
 {
     sMiningEnv->isPlayerMining[netID] = FALSE;
     sMiningEnv->normalRadarTimer[netID] = 0;
@@ -1657,7 +1657,7 @@ static void Mining_GameTask(SysTask *sysTask, void *data)
             SecretBases_EnableBaseEntranceGraphics();
             Spheres_EnableBuriedSphereSparkles();
 
-            CommSys_SendDataFixedSize(COMM_CMD_END_MINING, &ctx->dugUpAllItems);
+            CommSys_SendDataFixedSize(COMM_CMD_RECV_MINING_END, &ctx->dugUpAllItems);
             CommPlayerMan_ResumeFieldSystem();
 
             sMiningEnv->miningGameTask = NULL;

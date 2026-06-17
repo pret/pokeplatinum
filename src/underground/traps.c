@@ -1405,7 +1405,7 @@ void CommCmd_PlaceTrapResult(int unused0, int unused1, void *data, void *unused3
     }
 }
 
-void CommCmd_RemoveBuriedTrapAtIndex(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RemoveBuriedTrapAtIndex_Unused(int unused0, int unused1, void *data, void *unused3)
 {
     u16 *buffer = data;
     int index = buffer[0];
@@ -1418,7 +1418,7 @@ int CommPacketSizeOf_2Bytes_Unused(void)
     return 2;
 }
 
-void CommCmd_LoadPlacedTraps(int netID, int size, void *data, void *unused3)
+void CommCmd_LoadLinkPlacedTraps(int netID, int size, void *data, void *unused3)
 {
     BuriedTrap *trapPtr = &trapsEnv->buriedTraps[netID * MAX_PLACED_TRAPS];
 
@@ -1767,7 +1767,7 @@ void CommCmd_CallSecondTrapEffectServerFunc(int netID, int unused1, void *data, 
     }
 }
 
-void CommCmd_StartSlideAnimation(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_StartSlideAnimation_Unused(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *buffer = data;
 
@@ -2755,7 +2755,7 @@ void TrapRadar_Start(void)
 
     TrapRadarContext *ctx = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(TrapRadarContext));
     MI_CpuFill8(ctx, 0, sizeof(TrapRadarContext));
-    CommSys_SendMessage(COMM_CMD_SEND_TRAP_RADAR_RESULTS);
+    CommSys_SendMessage(COMM_CMD_QUEUE_SEND_TRAP_RADAR_RESULTS);
 
     trapsEnv->trapRadarContext = ctx;
     trapsEnv->trapRadarTask = SysTask_Start(TrapRadar_TimerTask, ctx, 100);
@@ -2774,7 +2774,7 @@ void TrapRadar_Exit(void)
     }
 }
 
-void CommCmd_SendTrapRadarResults(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_QueueSendTrapRadarResults(int netID, int unused1, void *unused2, void *unused3)
 {
     trapsEnv->trapRadarIndex[netID] = 1;
 }

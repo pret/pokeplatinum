@@ -1295,7 +1295,7 @@ void SecretBases_RequestClearTransitioningStatus(void)
     CommSys_SendMessage(COMM_CMD_CLEAR_TRANSITION_STATUS);
 }
 
-void CommCmd_SecretBaseClearTransitioningStatus(int netID, int unused1, void *unused2, void *unused3)
+void CommCmd_ClearSecretBaseTransitioningStatus(int netID, int unused1, void *unused2, void *unused3)
 {
     secretBasesEnv->baseTransitioningOwnerNetIDs[netID] = NETID_NONE;
     secretBasesEnv->baseEnteringOwnerNetIDs[netID] = NETID_NONE;
@@ -1337,7 +1337,7 @@ void SecretBases_SendEnteredBase(int baseOwnerNetID)
     CommSys_WriteToQueueServer(54, &secretBasesEnv->baseInfo[baseOwnerNetID], sizeof(SecretBaseInfo));
 }
 
-void CommCmd_EnterSecretBase(int unused0, int unused1, void *data, void *unused3)
+void CommCmd_RecvSecretBaseEnter(int unused0, int unused1, void *data, void *unused3)
 {
     SecretBaseInfo *baseInfo = data;
 
