@@ -114,7 +114,7 @@ static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
     BattleAnimSpriteFunc_ScaryFace,
     BattleAnimSpriteFunc_Foresight,
     BattleAnimSpriteFunc_LockOn,
-    ov12_0222777C,
+    BattleAnimSpriteFunc_Swagger,
     ov12_02232378,
     ov12_022329E0,
     ov12_02232CA8,

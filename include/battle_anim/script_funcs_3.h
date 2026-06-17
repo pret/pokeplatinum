@@ -10,7 +10,7 @@ void BattleAnimScriptFunc_ScrollCustomBg(BattleAnimSystem *system);
 void BattleAnimScriptFunc_MuddyWater(BattleAnimSystem *system);
 void BattleAnimScriptFunc_RotateMon(BattleAnimSystem *system);
 void BattleAnimScriptFunc_Submission(BattleAnimSystem *system);
-void ov12_0222777C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
+void BattleAnimSpriteFunc_Swagger(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_FadeBg(BattleAnimSystem *system);
 void BattleAnimScriptFunc_FadeBattlerSprite(BattleAnimSystem *system);
 void BattleAnimScriptFunc_ScalePokemonSprite(BattleAnimSystem *system);

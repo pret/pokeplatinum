@@ -119,21 +119,47 @@ typedef struct SubmissionContext {
 #define SUBMISSION_VAR_FRAMES_PER_REV 1
 #define SUBMISSION_VAR_TARGET_BATTLER 2
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    int unk_10;
-    ManagedSprite *unk_14;
-    XYTransformContext unk_18;
-    int unk_3C;
-    int unk_40;
-    int unk_44;
-    int unk_48;
-    s16 unk_4C;
-    s16 unk_4E;
-} UnkStruct_ov12_02227620;
+// -------------------------------------------------------------------
+// Swagger Sprite
+// -------------------------------------------------------------------
+typedef struct SwaggerSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    int unused;
+    ManagedSprite *sprite;
+    XYTransformContext scale;
+    int dir;
+    int scaleStep;
+    int delay;
+    int popState;
+    s16 defenderX;
+    s16 defenderY;
+} SwaggerSpriteContext;
+
+enum SwaggerSpriteState {
+    SWAGGER_SPRITE_STATE_ANIMATE = 0,
+    SWAGGER_SPRITE_STATE_CLEANUP,
+
+    // Sub-state machine for the vein things
+    SWAGGER_SPRITE_POP_STATE_INIT_1 = 0,
+    SWAGGER_SPRITE_POP_STATE_SCALE_1,
+    SWAGGER_SPRITE_POP_STATE_DELAY,
+    SWAGGER_SPRITE_POP_STATE_SCALE_2,
+    SWAGGER_SPRITE_POP_STATE_DONE,
+};
+
+#define SWAGGER_SPRITE_ATTACKER_START_SCALE  10
+#define SWAGGER_SPRITE_ATTACKER_REF_SCALE    10
+#define SWAGGER_SPRITE_ATTACKER_END_SCALE    14
+#define SWAGGER_SPRITE_ATTACKER_SCALE_FRAMES 4
+#define SWAGGER_SPRITE_SETTLE_SCALE          12
+#define SWAGGER_SPRITE_SETTLE_FRAMES         2
+#define SWAGGER_SPRITE_POP_OFFSET_X          24
+#define SWAGGER_SPRITE_POP1_OFFSET_Y         (-16)
+#define SWAGGER_SPRITE_POP2_OFFSET_Y         (-24)
+#define SWAGGER_SPRITE_POP_DELAY             4
 
 // -------------------------------------------------------------------
 // Fade BG
@@ -1353,110 +1379,118 @@ void BattleAnimScriptFunc_Submission(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Submission, ctx);
 }
 
-static void ov12_02227620(UnkStruct_ov12_02227620 *param0, s16 param1, s16 param2)
+static void SwaggerSprite_StartPop(SwaggerSpriteContext *ctx, s16 x, s16 y)
 {
-    ManagedSprite_SetDrawFlag(param0->unk_14, 1);
-    ManagedSprite_SetPositionXY(param0->unk_14, param1, param2);
-    param0->unk_40 = 0;
-    ScaleLerpContext_Init(&param0->unk_18, 10, 10, 14, 4);
+    ManagedSprite_SetDrawFlag(ctx->sprite, TRUE);
+    ManagedSprite_SetPositionXY(ctx->sprite, x, y);
+    ctx->scaleStep = 0;
+    ScaleLerpContext_Init(
+        &ctx->scale,
+        SWAGGER_SPRITE_ATTACKER_START_SCALE,
+        SWAGGER_SPRITE_ATTACKER_REF_SCALE,
+        SWAGGER_SPRITE_ATTACKER_END_SCALE,
+        SWAGGER_SPRITE_ATTACKER_SCALE_FRAMES);
 }
 
-static BOOL ov12_02227658(UnkStruct_ov12_02227620 *param0)
+static BOOL SwaggerSprite_UpdatePop(SwaggerSpriteContext *ctx)
 {
-    if (ScaleLerpContext_UpdateAndApplyToSprite(&param0->unk_18, param0->unk_14) == 0) {
-        if (param0->unk_40) {
-            ManagedSprite_SetDrawFlag(param0->unk_14, 0);
-            return 1;
+    if (ScaleLerpContext_UpdateAndApplyToSprite(&ctx->scale, ctx->sprite) == FALSE) {
+        if (ctx->scaleStep) {
+            ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
+            return TRUE;
         } else {
-            param0->unk_40 = 1;
-            ScaleLerpContext_Init(&param0->unk_18, 14, 10, 12, 2);
+            ctx->scaleStep = 1;
+            ScaleLerpContext_Init(
+                &ctx->scale,
+                SWAGGER_SPRITE_ATTACKER_END_SCALE,
+                SWAGGER_SPRITE_ATTACKER_REF_SCALE,
+                SWAGGER_SPRITE_SETTLE_SCALE,
+                SWAGGER_SPRITE_SETTLE_FRAMES);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov12_0222769C(UnkStruct_ov12_02227620 *param0)
+// Controls the two "angry vein" thingies
+static BOOL SwaggerSprite_UpdatePops(SwaggerSpriteContext *ctx)
 {
-    BOOL v0 = 0;
+    BOOL done = FALSE;
 
-    switch (param0->unk_48) {
-    case 0:
-        ov12_02227620(param0, param0->unk_4C + (24 * param0->unk_3C), param0->unk_4E - 16);
-        param0->unk_48++;
+    switch (ctx->popState) {
+    case SWAGGER_SPRITE_POP_STATE_INIT_1:
+        SwaggerSprite_StartPop(ctx, ctx->defenderX + (SWAGGER_SPRITE_POP_OFFSET_X * ctx->dir), ctx->defenderY + SWAGGER_SPRITE_POP1_OFFSET_Y);
+        ctx->popState++;
         break;
-    case 1:
-        if (ov12_02227658(param0)) {
-            param0->unk_48++;
+    case SWAGGER_SPRITE_POP_STATE_SCALE_1:
+        if (SwaggerSprite_UpdatePop(ctx)) {
+            ctx->popState++;
         }
         break;
-    case 2:
-        param0->unk_44--;
+    case SWAGGER_SPRITE_POP_STATE_DELAY:
+        ctx->delay--;
 
-        if (param0->unk_44 < 0) {
-            param0->unk_48++;
-            ov12_02227620(param0, param0->unk_4C - (24 * param0->unk_3C), param0->unk_4E - 24);
+        if (ctx->delay < 0) {
+            ctx->popState++;
+            SwaggerSprite_StartPop(ctx, ctx->defenderX - (SWAGGER_SPRITE_POP_OFFSET_X * ctx->dir), ctx->defenderY + SWAGGER_SPRITE_POP2_OFFSET_Y);
         }
         break;
-    case 3:
-        if (ov12_02227658(param0)) {
-            param0->unk_48++;
+    case SWAGGER_SPRITE_POP_STATE_SCALE_2:
+        if (SwaggerSprite_UpdatePop(ctx)) {
+            ctx->popState++;
         }
         break;
-    case 4:
-        v0 = 1;
+    case SWAGGER_SPRITE_POP_STATE_DONE:
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static void ov12_02227738(SysTask *param0, void *param1)
+static void BattleAnimTask_SwaggerSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02227620 *v0 = param1;
+    SwaggerSpriteContext *ctx = param;
 
-    switch (v0->unk_0C) {
-    case 0:
-        if (ov12_0222769C(v0)) {
-            v0->unk_0C++;
+    switch (ctx->state) {
+    case SWAGGER_SPRITE_STATE_ANIMATE:
+        if (SwaggerSprite_UpdatePops(ctx)) {
+            ctx->state++;
         }
         break;
-    case 1:
-        Sprite_DeleteAndFreeResources(v0->unk_14);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case SWAGGER_SPRITE_STATE_CLEANUP:
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_0222777C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Swagger(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_02227620 *v0;
-    PokemonSprite *v1;
+    SwaggerSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SwaggerSpriteContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02227620));
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->sprite = sprite;
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_14 = param3;
+    ManagedSprite_SetPriority(ctx->sprite, 100);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, 1);
+    ManagedSprite_SetAffineOverwriteMode(ctx->sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
 
-    ManagedSprite_SetPriority(v0->unk_14, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_14, 1);
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_14, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetDrawFlag(v0->unk_14, FALSE);
+    ctx->delay = SWAGGER_SPRITE_POP_DELAY;
+    ctx->dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    v0->unk_44 = 4;
-    v0->unk_3C = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    PokemonSprite *monSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
 
-    v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
+    ctx->defenderX = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_X_CENTER);
+    ctx->defenderY = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_Y_CENTER);
 
-    v0->unk_4C = PokemonSprite_GetAttribute(v1, MON_SPRITE_X_CENTER);
-    v0->unk_4E = PokemonSprite_GetAttribute(v1, MON_SPRITE_Y_CENTER);
-
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02227738, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_SwaggerSprite, ctx);
 }
 
 static void BattleAnimTask_FadeBg(SysTask *task, void *param)
