@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV12_02235FE0_DECL_H
 #define POKEPLATINUM_STRUCT_OV12_02235FE0_DECL_H
 
-typedef struct UnkStruct_ov12_02235FE0_t UnkStruct_ov12_02235FE0;
+typedef struct BallCapsuleSealEffect_t BallCapsuleSealEffect;
 
 #endif // POKEPLATINUM_STRUCT_OV12_02235FE0_DECL_H

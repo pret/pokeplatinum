@@ -32,12 +32,11 @@
 #include "battle/battle_display.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_main.h"
-#include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "battle/battle_system.h"
 #include "battle/btlcmd.h"
 #include "battle/common.h"
-#include "battle/ov16_02268520.h"
+#include "battle/terrain.h"
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/struct_ov12_02237728.h"
 
@@ -1102,7 +1101,7 @@ static BOOL BtlCmd_BackgroundSlideIn(BattleSystem *battleSys, BattleContext *bat
     BattleScript_Iter(battleCtx, 1);
 
     for (i = 0; i < maxBattlers; i++) {
-        ov16_02266460(battleSys, i);
+        BattleController_EmitSlideInPanel(battleSys, i);
     }
 
     return FALSE;
@@ -10313,8 +10312,8 @@ enum CatchMonTaskState {
     SEQ_CATCH_MON_START = 0,
     SEQ_CATCH_MON_CHECK_BATTLE_TYPE,
     SEQ_CATCH_MON_CALC_SHAKES,
-    SEQ_CATCH_MON_UNK_03,
-    SEQ_CATCH_MON_UNK_04,
+    SEQ_CATCH_MON_WAIT_BALL_LAND,
+    SEQ_CATCH_MON_WAIT_BALL_OPEN,
     SEQ_CATCH_MON_DO_SHAKES,
     SEQ_CATCH_MON_DECREMENT_REMAINING_SHAKES,
     SEQ_CATCH_MON_WAIT_SHAKES_FINISH,
@@ -10325,8 +10324,8 @@ enum CatchMonTaskState {
     SEQ_CATCH_MON_SET_POKEDEX_DATA,
     SEQ_CATCH_MON_START_FADE_TO_BLACK_FOR_ASK_NICKNAME,
     SEQ_CATCH_MON_MOVE_FOR_ASK_NICKNAME,
-    SEQ_CATCH_MON_UNK_15,
-    SEQ_CATCH_MON_UNK_16,
+    SEQ_CATCH_MON_CLOSE_POKEDEX,
+    SEQ_CATCH_MON_SKIP_POKEDEX,
     SEQ_CATCH_MON_WAIT_FADE_FOR_ASK_NICKNAME,
     SEQ_CATCH_MON_PRINT_YES_NO_GIVE_NICKNAME,
     SEQ_CATCH_MON_PROCESS_INPUT_GIVE_NICKNAME,
@@ -10339,7 +10338,7 @@ enum CatchMonTaskState {
     SEQ_CATCH_MON_PRINT_DONT_BE_A_THIEF,
     SEQ_CATCH_MON_DONE_TRAINER_BLOCKED_BALL,
     SEQ_CATCH_MON_POKEMON_BREAK_FREE,
-    SEQ_CATCH_MON_UNK_29,
+    SEQ_CATCH_MON_WAIT_SHOW_POKEMON,
     SEQ_CATCH_MON_PRINT_POKEMON_BROKE_FREE,
     SEQ_CATCH_MON_DONE_POKEMON_BROKE_FREE,
     SEQ_CATCH_MON_DONE,
@@ -10373,7 +10372,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
         if (data->flag == 0) {
             BallThrow ballThrow;
 
-            ballThrow.mode = 3;
+            ballThrow.mode = BALL_THROW_MODE_THROW;
             ballThrow.heapID = HEAP_ID_BATTLE;
             ballThrow.target = battler + 20000;
             ballThrow.ballID = data->ball;
@@ -10441,16 +10440,16 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
                 data->tmpData[CATCH_MON_REMAINING_SHAKES] = 3;
             }
 
-            data->seqNum = SEQ_CATCH_MON_UNK_03;
+            data->seqNum = SEQ_CATCH_MON_WAIT_BALL_LAND;
         }
         break;
-    case SEQ_CATCH_MON_UNK_03:
+    case SEQ_CATCH_MON_WAIT_BALL_LAND:
         if (ov12_022368D0(data->ballRotation, 1) == FALSE && BattleIO_QueueIsEmpty(data->battleCtx)) {
             ov12_022368C8(data->ballRotation, 3);
-            data->seqNum = SEQ_CATCH_MON_UNK_04;
+            data->seqNum = SEQ_CATCH_MON_WAIT_BALL_OPEN;
         }
         break;
-    case SEQ_CATCH_MON_UNK_04:
+    case SEQ_CATCH_MON_WAIT_BALL_OPEN:
         if (ov12_022368D0(data->ballRotation, 3) == FALSE) {
             data->seqNum = SEQ_CATCH_MON_DO_SHAKES;
         }
@@ -10514,15 +10513,15 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
                 if (BattleSystem_GetBattleType(data->battleSys) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)) {
                     mon = BattleSystem_GetPartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
                     BattleSystem_SetPokemonCatchData(data->battleSys, data->battleCtx, mon);
-                    sub_02015738(ov16_0223E220(data->battleSys), 1);
+                    sub_02015738(BattleSystem_GetPaletteAnimator(data->battleSys), 1);
                     PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, 1, 0, 16, 0);
                     PokemonSpriteManager_StartFadeAll(monSpriteMan, 0, 16, 0, 0);
                     data->seqNum = SEQ_CATCH_MON_DONE;
                 } else if (BattleSystem_HasCaughtSpecies(data->battleSys, Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL))) {
-                    sub_02015738(ov16_0223E220(data->battleSys), 1);
+                    sub_02015738(BattleSystem_GetPaletteAnimator(data->battleSys), 1);
                     PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_MAIN_OBJ_F, 0xFFFF, 1, 0, 16, 0);
                     PokemonSpriteManager_StartFadeAll(monSpriteMan, 0, 16, 0, 0);
-                    data->seqNum = SEQ_CATCH_MON_UNK_16;
+                    data->seqNum = SEQ_CATCH_MON_SKIP_POKEDEX;
                 } else {
                     BattleMessage msg;
 
@@ -10544,29 +10543,29 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
                 data->seqNum = SEQ_CATCH_MON_SET_POKEDEX_DATA;
                 PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_MAIN_OBJ_F, 0xFFFF, 1, 0, 16, 0);
                 PokemonSpriteManager_StartFadeAll(monSpriteMan, 0, 16, 0, 0);
-                sub_02015738(ov16_0223E220(data->battleSys), 1);
+                sub_02015738(BattleSystem_GetPaletteAnimator(data->battleSys), 1);
             }
         }
         break;
     case SEQ_CATCH_MON_SET_POKEDEX_DATA:
         if (PaletteData_GetSelectedBuffersMask(paletteData) == 0) {
-            UnkStruct_ov21_021E8E0C v12;
+            PokedexEntryScreenParams dexEntryScreenParams;
 
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
             BattleSystem_HideBattleScreen(data->battleSys);
-            ov16_022686BC(BattlerSystem_GetTerrain(data->battleSys, 0), 0);
-            ov16_022686BC(BattlerSystem_GetTerrain(data->battleSys, 1), 0);
-            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
+            Terrain_SetVisibility(BattleSystem_GetTerrainForSide(data->battleSys, BATTLE_SIDE_PLAYER), FALSE);
+            Terrain_SetVisibility(BattleSystem_GetTerrainForSide(data->battleSys, BATTLE_SIDE_ENEMY), FALSE);
+            BattlerData_SetTrainerVisibility(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
 
-            v12.unk_00 = BattleSystem_GetBgConfig(data->battleSys);
-            v12.unk_04 = BattleSystem_GetPaletteData(data->battleSys);
-            v12.unk_08 = monSpriteMan;
-            v12.heapID = HEAP_ID_BATTLE;
-            v12.unk_10 = BattleSystem_GetPartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
-            v12.unk_14 = IsNationalDexObtained(BattleSystem_GetPokedex(data->battleSys));
+            dexEntryScreenParams.bgConfig = BattleSystem_GetBgConfig(data->battleSys);
+            dexEntryScreenParams.plttData = BattleSystem_GetPaletteData(data->battleSys);
+            dexEntryScreenParams.monSpriteMan = monSpriteMan;
+            dexEntryScreenParams.heapID = HEAP_ID_BATTLE;
+            dexEntryScreenParams.mon = BattleSystem_GetPartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
+            dexEntryScreenParams.hasNationalDex = IsNationalDexObtained(BattleSystem_GetPokedex(data->battleSys));
             data->tmpPtr[1] = CharTransfer_PopTaskManager();
-            data->tmpPtr[0] = ov21_021E8D48(&v12);
+            data->tmpPtr[0] = ov21_021E8D48(&dexEntryScreenParams);
             data->seqNum = SEQ_CATCH_MON_START_FADE_TO_BLACK_FOR_ASK_NICKNAME;
         }
         break;
@@ -10591,17 +10590,17 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
         if (PokemonSprite_GetAttribute(monSprite, MON_SPRITE_X_CENTER) >= 128) {
             PokemonSprite_SetAttribute(monSprite, MON_SPRITE_X_CENTER, 128);
-            data->seqNum = SEQ_CATCH_MON_UNK_15;
+            data->seqNum = SEQ_CATCH_MON_CLOSE_POKEDEX;
         }
         break;
-    case SEQ_CATCH_MON_UNK_15:
+    case SEQ_CATCH_MON_CLOSE_POKEDEX:
         ov21_021E8DD0(data->tmpPtr[0]);
         CharTransfer_PushTaskManager(data->tmpPtr[1]);
         BattleSystem_SetupBattleScreen(data->battleSys);
         PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_MAIN_OBJ_F, 0xFFFF, 1, 16, 0, 0);
         data->seqNum = SEQ_CATCH_MON_WAIT_FADE_FOR_ASK_NICKNAME;
         break;
-    case SEQ_CATCH_MON_UNK_16:
+    case SEQ_CATCH_MON_SKIP_POKEDEX:
         if (PaletteData_GetSelectedBuffersMask(paletteData) == 0) {
             PokemonSpriteTemplate monSpriteTemplate;
 
@@ -10609,7 +10608,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
-            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
+            BattlerData_SetTrainerVisibility(BattleSystem_GetBattlerData(data->battleSys, 0), FALSE);
             BattleSystem_HideBattleScreen(data->battleSys);
             BattleSystem_SetupBattleScreen(data->battleSys);
             Pokemon_BuildSpriteTemplate(&monSpriteTemplate, mon, 2);
@@ -10623,7 +10622,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
     case SEQ_CATCH_MON_WAIT_FADE_FOR_ASK_NICKNAME:
         if (PaletteData_GetSelectedBuffersMask(paletteData) == 0) {
             data->seqNum = SEQ_CATCH_MON_PRINT_YES_NO_GIVE_NICKNAME;
-            sub_02015738(ov16_0223E220(data->battleSys), 0);
+            sub_02015738(BattleSystem_GetPaletteAnimator(data->battleSys), 0);
             PaletteData_SetAutoTransparent(paletteData, 1);
         }
         break;
@@ -10637,7 +10636,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             if (BattleContext_IOBufferVal(data->battleCtx, 0) == PLAYER_INPUT_CANCEL) {
                 data->seqNum = SEQ_CATCH_MON_DIDNT_GIVE_NICKNAME;
             } else {
-                sub_02015738(ov16_0223E220(data->battleSys), 1);
+                sub_02015738(BattleSystem_GetPaletteAnimator(data->battleSys), 1);
                 PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, 1, 0, 16, 0);
                 PokemonSpriteManager_StartFadeAll(monSpriteMan, 0, 16, 0, 0);
                 data->seqNum = SEQ_CATCH_MON_START_NAMING_SCREEN;
@@ -10722,7 +10721,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
             if (Party_AddPokemon(party, mon) == TRUE) {
                 if (data->seqNum == SEQ_CATCH_MON_DIDNT_GIVE_NICKNAME) {
-                    sub_02015738(ov16_0223E220(data->battleSys), 1);
+                    sub_02015738(BattleSystem_GetPaletteAnimator(data->battleSys), 1);
                     PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, 1, 0, 16, 0);
                     PokemonSpriteManager_StartFadeAll(monSpriteMan, 0, 16, 0, 0);
                 }
@@ -10774,7 +10773,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
     case SEQ_CATCH_MON_WAIT_PRINT_TRANSFERRED_TO_BOX:
         if (Text_IsPrinterActive(data->tmpData[CATCH_MON_MSG_INDEX]) == FALSE) {
             if (--data->tmpData[CATCH_MON_DELAY] == 0) {
-                sub_02015738(ov16_0223E220(data->battleSys), 1);
+                sub_02015738(BattleSystem_GetPaletteAnimator(data->battleSys), 1);
                 PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, 1, 0, 16, 0);
                 PokemonSpriteManager_StartFadeAll(monSpriteMan, 0, 16, 0, 0);
 
@@ -10820,10 +10819,10 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
         break;
     case SEQ_CATCH_MON_POKEMON_BREAK_FREE:
         BattleController_EmitShowPokemon(data->battleSys, battler, data->ball, 1);
-        data->seqNum = SEQ_CATCH_MON_UNK_29;
+        data->seqNum = SEQ_CATCH_MON_WAIT_SHOW_POKEMON;
         data->tmpData[CATCH_MON_DELAY] = 2;
         break;
-    case SEQ_CATCH_MON_UNK_29:
+    case SEQ_CATCH_MON_WAIT_SHOW_POKEMON:
         if (--data->tmpData[CATCH_MON_DELAY] == 0) {
             ov12_0223783C(data->ballRotation);
             data->seqNum = SEQ_CATCH_MON_PRINT_POKEMON_BROKE_FREE;
@@ -11924,7 +11923,7 @@ static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *
     return BattleScript_Battler(battleSys, battleCtx, battlerIn);
 }
 
-static const SpriteTemplate sSpriteTemplate_Unk_ov16_0226E6C4 = {
+static const SpriteTemplate sSpriteTemplate_LevelUpStar = {
     .x = 128,
     .y = 0,
     .z = 0,
@@ -11937,7 +11936,7 @@ static const SpriteTemplate sSpriteTemplate_Unk_ov16_0226E6C4 = {
     .vramTransfer = 0
 };
 
-static const SpriteTemplate sSpriteTemplate_Unk_ov16_0226E6F8 = {
+static const SpriteTemplate sSpriteTemplate_LevelUpPokeIcon = {
     .x = 152,
     .y = 24,
     .z = 0,
@@ -11977,7 +11976,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     SpriteSystem_LoadCellResObj(spriteSys, spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 257, TRUE, 20013);
     SpriteSystem_LoadAnimResObj(spriteSys, spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 258, TRUE, 20013);
 
-    data->sprites[0] = SpriteSystem_NewSprite(spriteSys, spriteMan, &sSpriteTemplate_Unk_ov16_0226E6C4);
+    data->sprites[0] = SpriteSystem_NewSprite(spriteSys, spriteMan, &sSpriteTemplate_LevelUpStar);
 
     ManagedSprite_TickFrame(data->sprites[0]);
     SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(spriteSys, spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(mon), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
@@ -11985,7 +11984,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     SpriteSystem_LoadCellResObj(spriteSys, spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KCellsFileIndex(), FALSE, 20014);
     SpriteSystem_LoadAnimResObj(spriteSys, spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KAnimationFileIndex(), FALSE, 20014);
 
-    data->sprites[1] = SpriteSystem_NewSprite(spriteSys, spriteMan, &sSpriteTemplate_Unk_ov16_0226E6F8);
+    data->sprites[1] = SpriteSystem_NewSprite(spriteSys, spriteMan, &sSpriteTemplate_LevelUpPokeIcon);
 
     Sprite_SetExplicitPaletteOffsetAutoAdjust(data->sprites[1]->sprite, Pokemon_IconPaletteIndex(mon));
     ManagedSprite_TickFrame(data->sprites[1]);

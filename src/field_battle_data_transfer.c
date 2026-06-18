@@ -120,7 +120,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType)
 
     if (CommSys_IsInitialized() == TRUE) {
         for (i = 0; i < CommSys_ConnectedCount(); i++) {
-            dto->unk_178[i] = sub_020362F4(i);
+            dto->linkPlayerPositions[i] = sub_020362F4(i);
         }
         dto->networkID = CommSys_CurNetId();
     }

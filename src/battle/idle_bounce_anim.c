@@ -1,4 +1,4 @@
-#include "battle/ov16_02264798.h"
+#include "battle/idle_bounce_anim.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -13,9 +13,9 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-static void ov16_02264800(SysTask *param0, void *param1);
+static void SysTask_IdleBounceAnim(SysTask *sysTask, void *battlerDataPtr);
 
-void ov16_02264798(BattlerData *battlerData, BattleSystem *battleSys)
+void BattlerData_StartIdleBounceAnim(BattlerData *battlerData, BattleSystem *battleSys)
 {
     if (battlerData->sysTask != NULL) {
         return;
@@ -26,10 +26,10 @@ void ov16_02264798(BattlerData *battlerData, BattleSystem *battleSys)
     }
 
     battlerData->degrees = 180;
-    battlerData->sysTask = SysTask_Start(ov16_02264800, battlerData, 1010);
+    battlerData->sysTask = SysTask_Start(SysTask_IdleBounceAnim, battlerData, 1010);
 }
 
-void ov16_022647D8(BattlerData *battlerData)
+void BattlerData_StopIdleBounceAnim(BattlerData *battlerData)
 {
     if (battlerData->sysTask == NULL) {
         return;
@@ -43,10 +43,10 @@ void ov16_022647D8(BattlerData *battlerData)
     PokemonSprite_SetAttribute(battlerData->monSprite, MON_SPRITE_Y_OFFSET, 0);
 }
 
-static void ov16_02264800(SysTask *param0, void *param1)
+static void SysTask_IdleBounceAnim(SysTask *sysTask, void *battlerDataPtr)
 {
-    BattlerData *battlerData = param1;
-    int v1;
+    BattlerData *battlerData = battlerDataPtr;
+    int offsetValue;
 
     battlerData->degrees += 20;
 
@@ -54,6 +54,6 @@ static void ov16_02264800(SysTask *param0, void *param1)
         battlerData->degrees -= 360;
     }
 
-    v1 = FX_Mul(CalcSineDegrees(battlerData->degrees), 0x1800) / FX32_ONE;
-    PokemonSprite_SetAttribute(battlerData->monSprite, MON_SPRITE_Y_OFFSET, v1);
+    offsetValue = FX_Mul(CalcSineDegrees(battlerData->degrees), 0x1800) / FX32_ONE;
+    PokemonSprite_SetAttribute(battlerData->monSprite, MON_SPRITE_Y_OFFSET, offsetValue);
 }
