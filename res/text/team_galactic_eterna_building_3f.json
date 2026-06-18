@@ -2,7 +2,7 @@
   "key": 5139,
   "messages": [
     {
-      "id": "TeamGalacticEternaBuilding3F_Text_OrdinaryPeopleLikeYouCantUnderstandTeamGalacticGrandDesigns",
+      "id": "TeamGalacticEternaBuilding3F_Text_OrdinaryPeopleCantUnderstand",
       "en_US": [
         "Ordinary people like you can’t\n",
         "understand Team Galactic’s grand\f",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "TeamGalacticEternaBuilding3F_Text_QuestionNotAndFollowThisPathTheRoadToSuccess",
+      "id": "TeamGalacticEternaBuilding3F_Text_FollowThisPath",
       "en_US": [
         "Question not and follow this path!\n",
         "The road to success!"

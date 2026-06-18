@@ -2,7 +2,7 @@
   "key": 17426,
   "messages": [
     {
-      "id": "SolaceonRuinsRoom2_Text_HMDefogIsInTheseRuins",
+      "id": "SolaceonRuinsRoom2_Text_HMDefogInRuins",
       "en_US": [
         "I’d heard the Hidden Machine Defog was\n",
         "somewhere in these ruins.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "SolaceonRuinsRoom2_Text_HMDefogIsInTheseRuins2",
+      "id": "SolaceonRuinsRoom2_Text_HMDefogInRuins2",
       "en_US": [
         "I’d heard the Hidden Machine Defog was\n",
         "somewhere in these ruins.\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "SolaceonRuinsRoom2_Text_CanYouLoanHMDefogToMe",
+      "id": "SolaceonRuinsRoom2_Text_CanYouLoanHMDefog",
       "en_US": [
         "Hey!\n",
         "Now looky here!\r",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "SolaceonRuinsRoom2_Text_ItsNotLikeItsGoingToWearOut",
+      "id": "SolaceonRuinsRoom2_Text_ItsNotLikeItWearsOut",
       "en_US": [
         "It’s not like it’s going to wear out!\n",
         "It’s just for a minute! Cheapskate!"

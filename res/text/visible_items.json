@@ -13,7 +13,7 @@
       "en_US": "The Bag is full..."
     },
     {
-      "id": "VisibleItems_Text_PlayerPutTheItemInTheItemPocket1",
+      "id": "VisibleItems_Text_PlayerPutItemInItemPocket1",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the {STRVAR_1 8, 2, 0} Pocket."
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "VisibleItems_Text_ObtainedTheItemTooBadTheBagIsFull",
+      "id": "VisibleItems_Text_ObtainedItemBagIsFull",
       "en_US": [
         "Obtained the {STRVAR_1 8, 0, 0}!\r",
         "Too bad!\n",
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "VisibleItems_Text_PlayerPutTheItemInTheItemPocket2",
+      "id": "VisibleItems_Text_PlayerPutItemInItemPocket2",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the {COLOR 2}{STRVAR_1 31, 2, 0}{COLOR 0} Pocket."

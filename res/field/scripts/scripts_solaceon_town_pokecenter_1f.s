@@ -18,7 +18,7 @@ SolaceonTownPokecenter1F_OldMan:
     End
 
 SolaceonTownPokecenter1F_Lass:
-    NPCMessage SolaceonTownPokecenter1F_Text_ItsQuiteFarToVeilstoneCity
+    NPCMessage SolaceonTownPokecenter1F_Text_QuiteFarToVeilstoneCity
     End
 
 SolaceonTownPokecenter1F_RuinManiac:

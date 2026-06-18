@@ -2,7 +2,7 @@
   "key": 29742,
   "messages": [
     {
-      "id": "SolaceonTownNorthHouse_Text_EggsFoundAtPokemonDayCare",
+      "id": "SolaceonTownNorthHouse_Text_EggsFoundAtDayCare",
       "en_US": [
         "Every so often, an Egg will be found\n",
         "at the Pokémon Day Care.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "SolaceonTownNorthHouse_Text_ItHasntBeenProvenThatPokemonLayEggs",
+      "id": "SolaceonTownNorthHouse_Text_NotProvenPokemonLayEggs",
       "en_US": [
         "They say no one has ever seen\n",
         "a Pokémon actually lay an Egg.\r",

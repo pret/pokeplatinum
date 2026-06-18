@@ -37,17 +37,17 @@ VerityLakefront_CoordEvent_WereAtTheLake:
     Message VerityLakefront_Text_WereAtTheLake
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfInRange VAR_0x8004, 80, 85, VerityLakefront_WalkToLakeValor
+    GoToIfInRange VAR_0x8004, 80, 85, VerityLakefront_WalkToLakeVerity
     End
 
-VerityLakefront_WalkToLakeValor:
-    ApplyMovement LOCALID_PLAYER, VerityLakefront_Movement_PlayerEnterLakeValor
-    ApplyMovement LOCALID_FOLLOWER, VerityLakefront_Movement_RivalEnterLakeValor
+VerityLakefront_WalkToLakeVerity:
+    ApplyMovement LOCALID_PLAYER, VerityLakefront_Movement_PlayerEnterLakeVerity
+    ApplyMovement LOCALID_FOLLOWER, VerityLakefront_Movement_RivalEnterLakeVerity
     WaitMovement
-    GoTo VerityLakefront_WarpToLakeValor
+    GoTo VerityLakefront_WarpToLakeVerity
 
-VerityLakefront_WarpToLakeValor:
-    SetVar VAR_UNK_0x4082, 1
+VerityLakefront_WarpToLakeVerity:
+    SetVar VAR_VERITY_LAKEFRONT_STATE, 1
     ReleaseAll
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
@@ -63,13 +63,13 @@ VerityLakefront_Movement_RivalWalkOnSpotNorth:
     EndMovement
 
     .balign 4, 0
-VerityLakefront_Movement_RivalEnterLakeValor:
+VerityLakefront_Movement_RivalEnterLakeVerity:
     WalkNormalNorth 2
     SetInvisible
     EndMovement
 
     .balign 4, 0
-VerityLakefront_Movement_PlayerEnterLakeValor:
+VerityLakefront_Movement_PlayerEnterLakeVerity:
     WalkNormalNorth
     SetInvisible
     EndMovement
