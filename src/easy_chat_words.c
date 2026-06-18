@@ -3,6 +3,9 @@
 #include <nitro.h>
 
 #include "constants/versions.h"
+#include "generated/abilities.h"
+#include "generated/moves.h"
+#include "generated/pokemon_types.h"
 #include "generated/text_banks.h"
 
 #include "graphics.h"
@@ -53,65 +56,65 @@ static const u16 sTextBanks[] = {
 };
 
 static const u16 sDummy[] = {
-    0x441,
-    0x599
+    ABILITY_WORD(ABILITY_ANTICIPATION),
+    FEELINGS_WORD(Feelings_Text_Anticipation)
 };
 
 static const u16 sDummy2[] = {
-    0x4C0,
-    0x4F0
+    GREETING_WORD(Greetings_Text_Hey),
+    GREETING_WORD(Greetings_Text_Hey_Unused)
 };
 
 static const u16 sDummy3[] = {
-    0x4A7,
-    0x4E1
+    GREETING_WORD(Greetings_Text_Huh_Unused),
+    GREETING_WORD(Greetings_Text_Huh)
 };
 
 static const u16 sDummy4[] = {
-    0x479,
-    0x498,
-    0x49B,
-    0x49C
+    PEOPLE_WORD(PeopleWords_Text_I_Unused),
+    PEOPLE_WORD(PeopleWords_Text_I_Unused2),
+    PEOPLE_WORD(PeopleWords_Text_I_Unused3),
+    PEOPLE_WORD(PeopleWords_Text_I)
 };
 
 static const u16 sDummy5[] = {
-    0x48F,
-    0x497
+    PEOPLE_WORD(PeopleWords_Text_Kids),
+    PEOPLE_WORD(PeopleWords_Text_Kids_Unused)
 };
 
 static const u16 sDummy6[] = {
-    0x4FC,
-    0x596
+    GREETING_WORD(Greetings_Text_NoWay),
+    FEELINGS_WORD(Feelings_Text_NoWay)
 };
 
 static const u16 sDummy7[] = {
-    0x4BB,
-    0x500
+    GREETING_WORD(Greetings_Text_OK),
+    GREETING_WORD(Greetings_Text_OK_Unused)
 };
 
 static const u16 sDummy8[] = {
-    0x24E,
-    0x3D2
+    MOVE_WORD(MOVE_PSYCHIC),
+    TYPE_WORD(TYPE_PSYCHIC)
 };
 
 static const u16 sDummy9[] = {
-    0x42C,
-    0x59D
+    ABILITY_WORD(ABILITY_SIMPLE),
+    FEELINGS_WORD(Feelings_Text_Simple)
 };
 
 static const u16 sDummy10[] = {
-    0x4B0,
-    0x4FF
+    GREETING_WORD(Greetings_Text_Welcome_Unused),
+    GREETING_WORD(Greetings_Text_Welcome)
 };
 
 static const u16 sDummy11[] = {
-    0x4B6,
-    0x505
+    GREETING_WORD(Greetings_Text_Wow),
+    GREETING_WORD(Greetings_Text_Wow_Unused)
 };
 
 static const u16 sDummy12[] = {
-    0x47A,
-    0x48D
+    PEOPLE_WORD(PeopleWords_Text_You),
+    PEOPLE_WORD(PeopleWords_Text_You_Unused)
 };
 
 static const struct {

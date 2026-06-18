@@ -38,7 +38,7 @@
       "en_US": "AHAHA"
     },
     {
-      "id": "Greetings_Text_Huh",
+      "id": "Greetings_Text_Huh_Unused",
       "en_US": "HUH?"
     },
     {
@@ -74,7 +74,7 @@
       "en_US": "YEAH"
     },
     {
-      "id": "Greetings_Text_Welcome",
+      "id": "Greetings_Text_Welcome_Unused",
       "en_US": "WELCOME"
     },
     {
@@ -270,7 +270,7 @@
       "en_US": "WHAT’S UP?"
     },
     {
-      "id": "Greetings_Text_Huh2",
+      "id": "Greetings_Text_Huh",
       "en_US": "HUH?"
     },
     {
@@ -330,7 +330,7 @@
       "en_US": "HUMPH"
     },
     {
-      "id": "Greetings_Text_Hey2",
+      "id": "Greetings_Text_Hey_Unused",
       "en_US": "HEY"
     },
     {
@@ -390,11 +390,11 @@
       "en_US": "YO"
     },
     {
-      "id": "Greetings_Text_Welcome2",
+      "id": "Greetings_Text_Welcome",
       "en_US": "WELCOME"
     },
     {
-      "id": "Greetings_Text_OK2",
+      "id": "Greetings_Text_OK_Unused",
       "en_US": "OK"
     },
     {
@@ -414,7 +414,7 @@
       "en_US": "WAIL"
     },
     {
-      "id": "Greetings_Text_Wow2",
+      "id": "Greetings_Text_Wow_Unused",
       "en_US": "WOW"
     },
     {

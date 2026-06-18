@@ -6,10 +6,10 @@
 
 #include "easy_chat_args.h"
 #include "easy_chat_sentence.h"
+#include "easy_chat_word_list.h"
 #include "overlay_manager.h"
 #include "string_gf.h"
 #include "touch_screen_actions.h"
-#include "unk_020998EC.h"
 
 typedef struct EasyChatApp EasyChatApp;
 
@@ -42,7 +42,7 @@ typedef struct EasyChatApp {
     EasyChatSentence sentence;
     u16 words[MAX_EASY_CHAT_WORDS];
     UnkStruct_ov20_021D2128 *unk_14;
-    UnkStruct_020998EC *unk_18;
+    EasyChatWordList *unk_18;
     int state;
     EasyChatMainFunc mainFunc;
     EasyChatMainFunc nextMainFunc;
