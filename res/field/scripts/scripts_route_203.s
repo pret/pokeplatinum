@@ -12,23 +12,23 @@
     ScriptEntryEnd
 
 Route203_Lass:
-    NPCMessage Route203_Text_YourFavoritePokemonShouldBePlacedAtTheTop
+    NPCMessage Route203_Text_FavoritePokemonAtTheTop
     End
 
 Route203_ArrowSignpostJubilifeCity:
-    ShowArrowSign Route203_Text_Rt203JubilifeCity
+    ShowArrowSign Route203_Text_SignJubilifeCity
     End
 
 Route203_ArrowSignpostOreburghCity:
-    ShowArrowSign Route203_Text_Rt203OreburghCity
+    ShowArrowSign Route203_Text_SignOreburghCity
     End
 
 Route203_TrainerTipsSignpostEast:
-    ShowScrollingSign Route203_Text_TrainerTipsIfAPokemonIsAboutToEvolveItCanBeInstantlyStopped
+    ShowScrollingSign Route203_Text_TrainerTipsEvolveCanBeStopped
     End
 
 Route203_TrainerTipsSignpostWest:
-    ShowScrollingSign Route203_Text_TrainerTipsPokemonMovesUseEnergyCalledPowerPoints
+    ShowScrollingSign Route203_Text_TrainerTipsMovesUsePowerPoints
     End
 
 Route203_CoordEvent_Rival:
@@ -66,7 +66,7 @@ Route203_RivalWalkToPlayerZ760:
 Route203_RivalIntro:
     BufferRivalName 0
     BufferPlayerName 1
-    Message Route203_Text_OfCourseIGotTougherIllDemonstrateItToYou
+    Message Route203_Text_IGotTougher
     CloseMessage
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, Route203_StartRivalBattleTurtwig

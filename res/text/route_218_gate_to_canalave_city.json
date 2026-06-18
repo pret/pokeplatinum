@@ -13,7 +13,7 @@
       "garbage": 53
     },
     {
-      "id": "Route218GateToCanalaveCity_Text_UpgradeyourPokedexMale",
+      "id": "Route218GateToCanalaveCity_Text_UpgradeYourPokedexMale",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, long time, no see!\r",
         "Oh? You look puzzled.\n",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "Route218GateToCanalaveCity_Text_UpgradeyourPokedexFemale",
+      "id": "Route218GateToCanalaveCity_Text_UpgradeYourPokedexFemale",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, long time, no see!\r",
         "Oh? You look puzzled.\n",

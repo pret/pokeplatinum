@@ -17,7 +17,7 @@
     ScriptEntry Route201_Briefcase
     ScriptEntry Route201_CoordEvent_FollowingRivalStopPlayerEast
     ScriptEntry Route201_ProfRowan
-    ScriptEntry Route201_CoordEvent_LetsCatchThatLegendary
+    ScriptEntry Route201_CoordEvent_RivalStartFollowing
     ScriptEntryEnd
 
 Route201_OnTransition:
@@ -41,17 +41,17 @@ Route201_CoordEvent_ChooseStarterScene:
     Message Route201_Text_TooSlow
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 110, Route201_LetsGetMovingToProfRowansLabX110
-    GoToIfEq VAR_0x8004, 111, Route201_LetsGetMovingToProfRowansLabX111
-    GoToIfEq VAR_0x8004, 112, Route201_LetsGetMovingToProfRowansLabX112
-    GoToIfEq VAR_0x8004, 113, Route201_LetsGetMovingToProfRowansLabX113
+    GoToIfEq VAR_0x8004, 110, Route201_LetsGetMovingX110
+    GoToIfEq VAR_0x8004, 111, Route201_LetsGetMovingX111
+    GoToIfEq VAR_0x8004, 112, Route201_LetsGetMovingX112
+    GoToIfEq VAR_0x8004, 113, Route201_LetsGetMovingX113
     End
 
-Route201_LetsGetMovingToProfRowansLabX110:
+Route201_LetsGetMovingX110:
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX110
     WaitMovement
     BufferRivalName 0
-    Message Route201_Text_LetsGetMovingToProfRowansLab
+    Message Route201_Text_LetsGetMoving
     CloseMessage
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkToGrassX110
     ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkToGrassX110
@@ -59,11 +59,11 @@ Route201_LetsGetMovingToProfRowansLabX110:
     GoTo Route201_GoIntoTallGrass
     End
 
-Route201_LetsGetMovingToProfRowansLabX111:
+Route201_LetsGetMovingX111:
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX111
     WaitMovement
     BufferRivalName 0
-    Message Route201_Text_LetsGetMovingToProfRowansLab
+    Message Route201_Text_LetsGetMoving
     CloseMessage
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkToGrassX111
     ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkToGrassX111
@@ -71,11 +71,11 @@ Route201_LetsGetMovingToProfRowansLabX111:
     GoTo Route201_GoIntoTallGrass
     End
 
-Route201_LetsGetMovingToProfRowansLabX112:
+Route201_LetsGetMovingX112:
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX112
     WaitMovement
     BufferRivalName 0
-    Message Route201_Text_LetsGetMovingToProfRowansLab
+    Message Route201_Text_LetsGetMoving
     CloseMessage
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkToGrassX112
     ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkToGrassX112
@@ -83,11 +83,11 @@ Route201_LetsGetMovingToProfRowansLabX112:
     GoTo Route201_GoIntoTallGrass
     End
 
-Route201_LetsGetMovingToProfRowansLabX113:
+Route201_LetsGetMovingX113:
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX113
     WaitMovement
     BufferRivalName 0
-    Message Route201_Text_LetsGetMovingToProfRowansLab
+    Message Route201_Text_LetsGetMoving
     CloseMessage
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkToGrassX113
     ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkToGrassX113
@@ -97,12 +97,12 @@ Route201_LetsGetMovingToProfRowansLabX113:
 
 Route201_GoIntoTallGrass:
     BufferRivalName 0
-    Message Route201_Text_TrustMeIveGotAnIdea
+    Message Route201_Text_IveGotAnIdea
     CloseMessage
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkToPlayer
     ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWatchRivalWalkUp
     WaitMovement
-    Message Route201_Text_ScootOverBeforeWildPokemonCanAppear
+    Message Route201_Text_JustKeepDashing
     CloseMessage
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkBackToRun
     ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWatchRivalWalkBackToRun
@@ -124,7 +124,7 @@ Route201_GoIntoTallGrass:
     LockObject LOCALID_PROF_ROWAN
     ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanEnter
     WaitMovement
-    Message Route201_Text_YouTwoDontHaveAnyPokemon
+    Message Route201_Text_YouHaveNoPokemon
     BufferRivalName 0
     Message Route201_Text_RivalEllipsis
     Message Route201_Text_ProfessorEllipsis
@@ -132,7 +132,7 @@ Route201_GoIntoTallGrass:
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message Route201_Text_ThisIsProfRowanIsntIt
+    Message Route201_Text_ThisIsProfRowan
     CloseMessage
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFaceProfRowanThisIsProfRowan
     ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkAway
@@ -142,7 +142,7 @@ Route201_GoIntoTallGrass:
     WaitTime 20, VAR_RESULT
     ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkBack
     WaitMovement
-    Message Route201_Text_YouTrulyLovePokemonDoYou
+    Message Route201_Text_YouLovePokemonDoYou
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, Route201_WeLovePokemon
     GoToIfEq VAR_RESULT, MENU_NO, Route201_WeDontLovePokemon
@@ -152,11 +152,11 @@ Route201_WeDontLovePokemon:
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFacePlayerDontLovePokemon
     WaitMovement
     BufferRivalName 0
-    Message Route201_Text_YoureNotMakingAnySense
+    Message Route201_Text_YoureNotMakingSense
     CloseMessage
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkOnSpotNormalLeft
     WaitMovement
-    Message Route201_Text_IDidntQuiteCatchThat
+    Message Route201_Text_IDidntCatchThat
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, Route201_WeLovePokemon
     GoToIfEq VAR_RESULT, MENU_NO, Route201_WeDontLovePokemon
@@ -194,13 +194,13 @@ Route201_ThatJokesGettingOld:
     End
 
 Route201_WeStillLovePokemon:
-    Message Route201_Text_ItWorriesMeWhatPeopleWouldDo
+    Message Route201_Text_ItWorriesMe
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkOnSpotFastLeft
     ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerFaceProfRowanWest
     WaitMovement
     BufferRivalName 0
-    Message Route201_Text_GiveAPokemonToMyFriendHere
-    Message Route201_Text_IWillEntrustYouWithPokemon
+    Message Route201_Text_GiveAPokemonToMyFriend
+    Message Route201_Text_EntrustYouWithPokemon
     CloseMessage
     ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanLookAround
     WaitMovement
@@ -217,31 +217,31 @@ Route201_WeStillLovePokemon:
     End
 
 Route201_DawnBringBriefcase:
-    Message Route201_Text_DawnYouLeftYourBriefcaseAtTheLake
+    Message Route201_Text_DawnYouLeftYourBriefcase
     CloseMessage
     ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanFaceCounterpart
     WaitMovement
     ClearFlag FLAG_HIDE_ROUTE_201_BRIEFCASE
     AddObject LOCALID_BRIEFCASE
     WaitTime 15, VAR_RESULT
-    Message Route201_Text_OhIsSomethingWrongHere
-    Message Route201_Text_ThereItIsNiceWorkDawn
+    Message Route201_Text_OhIsSomethingWrong
+    Message Route201_Text_NiceWorkDawn
     ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartWalkOnSpotEast
     WaitMovement
-    Message Route201_Text_DawnThosePokemonAreHardToReplace
+    Message Route201_Text_DawnPokemonHardToReplace
     GoTo Route201_GoOnChoosePokemon
     End
 
 Route201_LucasBringBriefcase:
-    Message Route201_Text_LucasYouLeftYourBriefcaseAtTheLake
+    Message Route201_Text_LucasYouLeftYourBriefcase
     CloseMessage
     ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanFaceCounterpart
     WaitMovement
     ClearFlag FLAG_HIDE_ROUTE_201_BRIEFCASE
     AddObject LOCALID_BRIEFCASE
     WaitTime 15, VAR_RESULT
-    Message Route201_Text_IsSomethingWrongHere
-    Message Route201_Text_ThereItIsNiceWorkLucas
+    Message Route201_Text_IsSomethingWrong
+    Message Route201_Text_NiceWorkLucas
     ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartWalkOnSpotEast
     WaitMovement
     Message Route201_Text_LucasThosePokemonAreCrucial
@@ -291,7 +291,7 @@ Route201_Briefcase:
     BufferRivalName 0
     BufferRivalStarterSpeciesName 2
     Message Route201_Text_ImPickingThisStarter
-    Message Route201_Text_IHopeYoullDoWellTogether
+    Message Route201_Text_IHopeYoullDoWell
     Message Route201_Text_ComeSeeMeInSandgemTown
     CloseMessage
     ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanLeave
@@ -1133,7 +1133,7 @@ _0DDC:
     EndMovement
 
 Route201_BreederM:
-    NPCMessage Route201_Text_WildPokemonLurkInTallGrass
+    NPCMessage Route201_Text_PokemonLurkInGrass
     End
 
 Route201_SchoolKidM:
@@ -1144,8 +1144,8 @@ Route201_Lass:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_HAS_POKEDEX, Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter
-    Message Route201_Text_IfYourPokemonsHPIsLowGoHome
+    GoToIfSet FLAG_HAS_POKEDEX, Route201_IfHPIsLowGoToAPokemonCenter
+    Message Route201_Text_IfHPIsLowGoHome
     GoTo Route201_LassCloseMessage
 
 Route201_LassCloseMessage:
@@ -1154,16 +1154,16 @@ Route201_LassCloseMessage:
     ReleaseAll
     End
 
-Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter:
-    Message Route201_Text_IfYourPokemonsHPIsLowGoToAPokemonCenter
+Route201_IfHPIsLowGoToAPokemonCenter:
+    Message Route201_Text_IfHPIsLowGoToAPokemonCenter
     GoTo Route201_LassCloseMessage
 
 Route201_Cashier:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_GOT_POTION_FROM_ROUTE_201_CASHIER, Route201_YouCanFindMartsInCitiesAndMajorTowns
-    Message Route201_Text_HereAPotionAsAFreeSample
+    GoToIfSet FLAG_GOT_POTION_FROM_ROUTE_201_CASHIER, Route201_FindMartsInCitiesAndTowns
+    Message Route201_Text_PotionAsFreeSample
     SetVar VAR_0x8004, ITEM_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route201_BagIsFull
@@ -1173,8 +1173,8 @@ Route201_Cashier:
     ReleaseAll
     End
 
-Route201_YouCanFindMartsInCitiesAndMajorTowns:
-    Message Route201_Text_YouCanFindMartsInCitiesAndMajorTowns
+Route201_FindMartsInCitiesAndTowns:
+    Message Route201_Text_FindMartsInCitiesAndTowns
     WaitButton
     CloseMessage
     ReleaseAll
@@ -1190,7 +1190,7 @@ Route201_ProfRowan:
     NPCMessage Route201_Text_RowanGoOnChooseAPokemon
     End
 
-Route201_CoordEvent_LetsCatchThatLegendary:
+Route201_CoordEvent_RivalStartFollowing:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalNoticePlayer
     WaitMovement
@@ -1231,7 +1231,7 @@ Route201_RivalRunToPlayerX113:
 
 Route201_SetRivalPartner:
     BufferRivalName 0
-    Message Route201_Text_TogetherWeveGotNothingToFear
+    Message Route201_Text_NothingToFear
     WaitButton
     CloseMessage
     SetVar VAR_FOLLOWER_RIVAL_STATE, 3
@@ -1244,11 +1244,11 @@ Route201_SetRivalPartner:
     End
 
 Route201_ArrowSignpostTwinleafTown:
-    ShowArrowSign Route201_Text_Rt201TwinleafTown
+    ShowArrowSign Route201_Text_SignTwinleafTown
     End
 
 Route201_ArrowSignpostSandgemTown:
-    ShowArrowSign Route201_Text_Rt201SandgemTown
+    ShowArrowSign Route201_Text_SignSandgemTown
     End
 
 Route201_TrainerTipsSignpost:

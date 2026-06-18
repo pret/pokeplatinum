@@ -19,7 +19,7 @@ Route208House_OldMan:
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY, Route208House_FeedBerriesToPokemon
-    Message Route208House_Text_YoureDeservingOfABerry
+    Message Route208House_Text_YouDeserveABerry
     GetRandom VAR_0x8004, 26
     AddVar VAR_0x8004, ITEM_CHERI_BERRY /* Random berry from Cheri to Tamato */
     SetVar VAR_0x8005, 1
@@ -50,14 +50,14 @@ Route208House_Twin:
     GoToIfEq VAR_MAP_LOCAL_0, 1, Route208House_ExplainBerrySearcher
     CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, Route208House_CertainBerriesNeedLotsOfWater
-    Message Route208House_Text_DoYouForgetWhereBerriesArePlanted
+    Message Route208House_Text_DoYouForgetWherePlanted
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, Route208House_GiveBerrySearcherApp
-    GoToIfEq VAR_RESULT, MENU_NO, Route208House_ThenYoureOKWithoutThisNiceThing
+    GoToIfEq VAR_RESULT, MENU_NO, Route208House_OKWithoutThis
     End
 
 Route208House_GiveBerrySearcherApp:
-    Message Route208House_Text_YouCanHaveThisPoketchApp
+    Message Route208House_Text_HaveThisPoketchApp
     SetVar VAR_MAP_LOCAL_0, 1
     SetVar VAR_0x8004, POKETCH_APPID_BERRYSEARCHER
     Common_GivePoketchApp
@@ -66,8 +66,8 @@ Route208House_GiveBerrySearcherApp:
     ReleaseAll
     End
 
-Route208House_ThenYoureOKWithoutThisNiceThing:
-    Message Route208House_Text_ThenYoureOKWithoutThisNiceThing
+Route208House_OKWithoutThis:
+    Message Route208House_Text_OKWithoutThis
     WaitButton
     CloseMessage
     ReleaseAll
@@ -75,7 +75,7 @@ Route208House_ThenYoureOKWithoutThisNiceThing:
 
 Route208House_ExplainBerrySearcher:
     BufferPoketchAppName 0, POKETCH_APPID_BERRYSEARCHER
-    Message Route208House_Text_TheBerrySearcherShowsRipeBerryLocations
+    Message Route208House_Text_BerrySearcherShowsRipeLocations
     WaitButton
     CloseMessage
     ReleaseAll
@@ -126,7 +126,7 @@ Route208House_TryBuyMulch:
     AddItem VAR_0x8001, 1, VAR_RESULT
     BufferItemName 0, VAR_0x8001
     Message Route208House_Text_YouBoughtSomeMulch
-    Message Route208House_Text_ThatMulchWillPromoteBerryGrowth
+    Message Route208House_Text_MulchWillPromoteBerryGrowth
     GoTo Route208House_PokemonBreederFEnd
 
 Route208House_PokemonBreederFEnd:

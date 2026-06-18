@@ -59,11 +59,11 @@ Route222_Fisherman:
     End
 
 Route222_ArrowSignpostHotelGrandLake:
-    ShowArrowSign Route222_Text_SignRt222HotelGrandLake
+    ShowArrowSign Route222_Text_SignHotelGrandLake
     End
 
 Route222_ArrowSignpostSunyshoreCity:
-    ShowArrowSign Route222_Text_SignRt222SunyshoreCity
+    ShowArrowSign Route222_Text_SignSunyshoreCity
     End
 
 Route222_SignboardPikachuFanClub:

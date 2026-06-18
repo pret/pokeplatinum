@@ -171,7 +171,7 @@ Route227_Movement_Unused6:
     EndMovement
 
 Route227_ArrowSignpostStarkMountain:
-    ShowArrowSign Route227_Text_SignRt227StarkMountain
+    ShowArrowSign Route227_Text_SignStarkMountain
     End
 
 Route227_Buck:

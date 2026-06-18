@@ -4,7 +4,7 @@
 
 
     ScriptEntry PokemonLeagueLucianRoom_Lucian
-    ScriptEntry PokemonLeagueLucianRoom_OnFrame
+    ScriptEntry PokemonLeagueLucianRoom_OnFrame_EnterRoom
     ScriptEntryEnd
 
 PokemonLeagueLucianRoom_Lucian:
@@ -58,7 +58,7 @@ PokemonLeagueLucianRoom_LucianPostBattle:
     ReleaseAll
     End
 
-PokemonLeagueLucianRoom_OnFrame:
+PokemonLeagueLucianRoom_OnFrame_EnterRoom:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueLucianRoom_Movement_PlayerEnterRoom
     WaitMovement

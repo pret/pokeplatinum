@@ -4,14 +4,14 @@
 
 
     ScriptEntry PokemonLeagueChampionRoom_OnTransition
-    ScriptEntry PokemonLeagueChampionRoom_OnFrame
+    ScriptEntry PokemonLeagueChampionRoom_OnFrame_EnterRoom
     ScriptEntryEnd
 
 PokemonLeagueChampionRoom_OnTransition:
     InitPersistedMapFeaturesForPlatformLift
     End
 
-PokemonLeagueChampionRoom_OnFrame:
+PokemonLeagueChampionRoom_OnFrame_EnterRoom:
     ApplyMovement LOCALID_PLAYER, PokemonLeagueChampionRoom_Movement_PlayerApproachCynthia
     WaitMovement
     PlayTrainerEncounterBGM TRAINER_CHAMPION_CYNTHIA
@@ -29,18 +29,18 @@ PokemonLeagueChampionRoom_OnFrame:
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueChampionRoom_CreateJournalEventDefeatedRematchCynthia
     Message PokemonLeagueChampionRoom_Text_ComeWithMe
     CloseMessage
-    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueChampionRoom_CynthiaMoveAwayFromElevator
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueChampionRoom_Movement_CynthiaWalkAwayFromElevator
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, PokemonLeagueChampionRoom_PlayerEnterElevator
+    ApplyMovement LOCALID_PLAYER, PokemonLeagueChampionRoom_Movement_PlayerEnterElevator
     WaitMovement
-    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueChampionRoom_CynthiaFacePlayer
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueChampionRoom_Movement_CynthiaFacePlayer
     WaitMovement
     WaitTime 30, VAR_RESULT
     TriggerPlatformLift
     WaitTime 30, VAR_RESULT
     SetFlag FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA
     SetFlag FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN
-    ApplyMovement LOCALID_PLAYER, PokemonLeagueChampionRoom_EnterHallwayToHallOfFame
+    ApplyMovement LOCALID_PLAYER, PokemonLeagueChampionRoom_Movement_PlayerEnterHallwayToHallOfFame
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
@@ -87,22 +87,22 @@ PokemonLeagueChampionRoom_Movement_PlayerApproachCynthia:
     EndMovement
 
     .balign 4, 0
-PokemonLeagueChampionRoom_PlayerEnterElevator:
+PokemonLeagueChampionRoom_Movement_PlayerEnterElevator:
     WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
-PokemonLeagueChampionRoom_EnterHallwayToHallOfFame:
+PokemonLeagueChampionRoom_Movement_PlayerEnterHallwayToHallOfFame:
     WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
-PokemonLeagueChampionRoom_CynthiaMoveAwayFromElevator:
+PokemonLeagueChampionRoom_Movement_CynthiaWalkAwayFromElevator:
     WalkNormalWest
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-PokemonLeagueChampionRoom_CynthiaFacePlayer:
+PokemonLeagueChampionRoom_Movement_CynthiaFacePlayer:
     WalkOnSpotNormalNorth
     EndMovement

@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 Route209GateToHearthomeCity_BattleGirl:
-    NPCMessage Route209GateToHearthomeCity_Text_TheresAWreckedStonePillar
+    NPCMessage Route209GateToHearthomeCity_Text_WreckedStonePillar
     End
 
 Route209GateToHearthomeCity_CoordEvent_Rival:
@@ -52,7 +52,7 @@ Route209GateToHearthomeCity_PostRivalBattle:
     GoToIfEq VAR_RESULT, FALSE, Route209GateToHearthomeCity_BlackOut
     BufferRivalName 0
     BufferPlayerName 1
-    Message Route209GateToHearthomeCity_Text_MySurefireWinningStrategyDoesntWork
+    Message Route209GateToHearthomeCity_Text_MyStrategyDoesntWork
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 5, Route209GateToHearthomeCity_RivalLeaveZ5

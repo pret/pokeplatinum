@@ -6,14 +6,14 @@
       "en_US": "Too slow!\r"
     },
     {
-      "id": "Route201_Text_LetsGetMovingToProfRowansLab",
+      "id": "Route201_Text_LetsGetMoving",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: All right!\n",
         "Let’s get moving to Prof. Rowan’s lab.\r"
       ]
     },
     {
-      "id": "Route201_Text_TrustMeIveGotAnIdea",
+      "id": "Route201_Text_IveGotAnIdea",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...\n",
         "...\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "Route201_Text_ScootOverBeforeWildPokemonCanAppear",
+      "id": "Route201_Text_JustKeepDashing",
       "en_US": [
         "So, what you do is, you scoot over to\n",
         "the next patch of grass before any\f",
@@ -52,7 +52,7 @@
       "en_US": "{SIZE 200}Hold it!{SIZE 100}\r"
     },
     {
-      "id": "Route201_Text_YouTwoDontHaveAnyPokemon",
+      "id": "Route201_Text_YouHaveNoPokemon",
       "en_US": [
         "Professor: You two don’t seem to have\n",
         "any Pokémon between you?\r",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "Route201_Text_ThisIsProfRowanIsntIt",
+      "id": "Route201_Text_ThisIsProfRowan",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}.\n",
         "This old guy...\r",
@@ -103,21 +103,21 @@
       ]
     },
     {
-      "id": "Route201_Text_YouTrulyLovePokemonDoYou",
+      "id": "Route201_Text_YouLovePokemonDoYou",
       "en_US": [
         "You two.\n",
         "You truly love Pokémon, do you?"
       ]
     },
     {
-      "id": "Route201_Text_YoureNotMakingAnySense",
+      "id": "Route201_Text_YoureNotMakingSense",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Whoa, hold up!\n",
         "You’re not making any sense here!\r"
       ]
     },
     {
-      "id": "Route201_Text_IDidntQuiteCatchThat",
+      "id": "Route201_Text_IDidntCatchThat",
       "en_US": [
         "Professor: Er-hem!\r",
         "I didn’t quite catch that, so I will\n",
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "Route201_Text_ItWorriesMeWhatPeopleWouldDo",
+      "id": "Route201_Text_ItWorriesMe",
       "en_US": [
         "Professor: ...A pair of reckless kids\n",
         "who foolishly try to enter tall grass\f",
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "Route201_Text_GiveAPokemonToMyFriendHere",
+      "id": "Route201_Text_GiveAPokemonToMyFriend",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...Uh...\n",
         "Well, I, uh...\r",
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "Route201_Text_IWillEntrustYouWithPokemon",
+      "id": "Route201_Text_EntrustYouWithPokemon",
       "en_US": [
         "Professor: !\r",
         "How big of you...\r",
@@ -203,21 +203,21 @@
       ]
     },
     {
-      "id": "Route201_Text_DawnYouLeftYourBriefcaseAtTheLake",
+      "id": "Route201_Text_DawnYouLeftYourBriefcase",
       "en_US": [
         "Dawn: Professor Rowan.\r",
         "You left your briefcase at the lake!\r"
       ]
     },
     {
-      "id": "Route201_Text_OhIsSomethingWrongHere",
+      "id": "Route201_Text_OhIsSomethingWrong",
       "en_US": [
         "Oh?\n",
         "Is something wrong here?\r"
       ]
     },
     {
-      "id": "Route201_Text_LucasYouLeftYourBriefcaseAtTheLake",
+      "id": "Route201_Text_LucasYouLeftYourBriefcase",
       "en_US": [
         "Lucas: Professor Rowan!\r",
         "You left your briefcase behind at\n",
@@ -225,11 +225,11 @@
       ]
     },
     {
-      "id": "Route201_Text_IsSomethingWrongHere",
+      "id": "Route201_Text_IsSomethingWrong",
       "en_US": "Is something wrong here?\r"
     },
     {
-      "id": "Route201_Text_ThereItIsNiceWorkDawn",
+      "id": "Route201_Text_NiceWorkDawn",
       "en_US": [
         "Rowan: Ah! There it is!\n",
         "Dawn, nice work.\r",
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "Route201_Text_ThereItIsNiceWorkLucas",
+      "id": "Route201_Text_NiceWorkLucas",
       "en_US": [
         "Rowan: Ah! There it is!\n",
         "Lucas, nice work.\r",
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "Route201_Text_DawnThosePokemonAreHardToReplace",
+      "id": "Route201_Text_DawnPokemonHardToReplace",
       "en_US": [
         "Dawn: Pardon?!\r",
         "Those Pokémon are hard to replace.\n",
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "Route201_Text_IHopeYoullDoWellTogether",
+      "id": "Route201_Text_IHopeYoullDoWell",
       "en_US": [
         "Rowan: Very well! Both of you have\n",
         "chosen a good Pokémon, it seems.\r",
@@ -451,7 +451,7 @@
       ]
     },
     {
-      "id": "Route201_Text_TogetherWeveGotNothingToFear",
+      "id": "Route201_Text_NothingToFear",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Me and you together,\n",
         "we’ve got nothing to fear!"
@@ -472,7 +472,7 @@
       ]
     },
     {
-      "id": "Route201_Text_WildPokemonLurkInTallGrass",
+      "id": "Route201_Text_PokemonLurkInGrass",
       "en_US": [
         "Wild Pokémon lurk in tall grass. They\n",
         "can come bursting out at any time.\r",
@@ -483,7 +483,7 @@
       ]
     },
     {
-      "id": "Route201_Text_HereAPotionAsAFreeSample",
+      "id": "Route201_Text_PotionAsFreeSample",
       "en_US": [
         "Hi!\n",
         "I work at a Pokémon Mart.\r",
@@ -500,7 +500,7 @@
       ]
     },
     {
-      "id": "Route201_Text_YouCanFindMartsInCitiesAndMajorTowns",
+      "id": "Route201_Text_FindMartsInCitiesAndTowns",
       "en_US": [
         "You can find a Pokémon Mart in cities\n",
         "and most major towns."
@@ -514,7 +514,7 @@
       ]
     },
     {
-      "id": "Route201_Text_IfYourPokemonsHPIsLowGoHome",
+      "id": "Route201_Text_IfHPIsLowGoHome",
       "en_US": [
         "If your Pokémon’s health--that’s its\n",
         "HP--is getting low, you should go\f",
@@ -522,7 +522,7 @@
       ]
     },
     {
-      "id": "Route201_Text_IfYourPokemonsHPIsLowGoToAPokemonCenter",
+      "id": "Route201_Text_IfHPIsLowGoToAPokemonCenter",
       "en_US": [
         "If your Pokémon’s health--that’s its\n",
         "HP--is getting low, you should go\f",
@@ -530,14 +530,14 @@
       ]
     },
     {
-      "id": "Route201_Text_Rt201TwinleafTown",
+      "id": "Route201_Text_SignTwinleafTown",
       "en_US": [
         "Rt. 201\n",
         "Twinleaf Town"
       ]
     },
     {
-      "id": "Route201_Text_Rt201SandgemTown",
+      "id": "Route201_Text_SignSandgemTown",
       "en_US": [
         "Rt. 201\n",
         "Sandgem Town"

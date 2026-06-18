@@ -112,7 +112,7 @@ Battleground_Buck:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetFlag FLAG_CAUGHT_MESPRIT
+    SetFlag FLAG_TALKED_TO_BATTLEGROUND_BUCK
     Message Battleground_Text_OpenToToughestTrainers
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

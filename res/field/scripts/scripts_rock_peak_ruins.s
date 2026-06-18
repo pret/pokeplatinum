@@ -27,11 +27,11 @@ RockPeakRuins_Statue:
     FacePlayer
     GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, RockPeakRuins_CaughtRegirockStatueStoppedEmanatingPower
     GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, RockPeakRuins_DidNotCatchRegirockStatueStoppedEmanatingPower
-    GoToIfUnset FLAG_GAME_COMPLETED, RockPeakRuins_ItsAStatueOfAPokemonItSeemsToExudePower
+    GoToIfUnset FLAG_GAME_COMPLETED, RockPeakRuins_SeemsToExudePower
     CheckPartyHasFatefulEncounterRegigigas VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, RockPeakRuins_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut
+    GoToIfEq VAR_RESULT, 0, RockPeakRuins_FromSomewhereSomethingSpokeOut
     GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, RockPeakRuins_EncounterRegirock
-    GoToIfLt VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut
+    GoToIfLt VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_FromSomewhereSomethingSpokeOut
     WaitSE SEQ_SE_CONFIRM
     ScrCmd_29F 1
     SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
@@ -69,13 +69,13 @@ RockPeakRuins_BlackOut:
     ReleaseAll
     End
 
-RockPeakRuins_ItsAStatueOfAPokemonItSeemsToExudePower:
-    Message RockPeakRuins_Text_ItsAStatueOfAPokemonItSeemsToExudePower
+RockPeakRuins_SeemsToExudePower:
+    Message RockPeakRuins_Text_SeemsToExudePower
     GoTo RockPeakRuins_StatueEnd
     End
 
-RockPeakRuins_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut:
-    Message RockPeakRuins_Text_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut
+RockPeakRuins_FromSomewhereSomethingSpokeOut:
+    Message RockPeakRuins_Text_FromSomewhereSomethingSpokeOut
     GoTo RockPeakRuins_StatueEnd
     End
 

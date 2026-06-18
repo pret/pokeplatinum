@@ -2,21 +2,21 @@
   "key": 3442,
   "messages": [
     {
-      "id": "Route205North_Text_ToSitBackAndFishCasually",
+      "id": "Route205North_Text_FishCasually",
       "en_US": [
         "To sit back and fish casually...\n",
         "It’s a grown-up’s hobby."
       ]
     },
     {
-      "id": "Route205North_Text_Rt205EternaForest",
+      "id": "Route205North_Text_SignEternaForest",
       "en_US": [
         "Rt. 205\n",
         "Eterna Forest"
       ]
     },
     {
-      "id": "Route205North_Text_Rt205EternaCity",
+      "id": "Route205North_Text_SignEternaCity",
       "en_US": [
         "Rt. 205\n",
         "Eterna City"

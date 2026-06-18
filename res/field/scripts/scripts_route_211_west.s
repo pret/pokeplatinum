@@ -12,11 +12,11 @@ Route211West_Dummy1:
     End
 
 Route211West_ArrowSignpostMtCoronet:
-    ShowArrowSign Route211West_Text_Rt211MtCoronet
+    ShowArrowSign Route211West_Text_SignMtCoronet
     End
 
 Route211West_ArrowSignpostEternaCity:
-    ShowArrowSign Route211West_Text_Rt211EternaCity
+    ShowArrowSign Route211West_Text_SignEternaCity
     End
 
     .balign 4, 0

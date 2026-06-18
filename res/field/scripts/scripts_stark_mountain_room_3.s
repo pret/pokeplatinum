@@ -26,7 +26,7 @@ StarkMountainRoom3_TryHideHeatran:
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, StarkMountainRoom3_HideHeatran
     GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, StarkMountainRoom3_HideHeatran
-    GoToIfUnset FLAG_CAUGHT_MESPRIT, StarkMountainRoom3_HideHeatran
+    GoToIfUnset FLAG_TALKED_TO_BATTLEGROUND_BUCK, StarkMountainRoom3_HideHeatran
     GoToIfNe VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1, StarkMountainRoom3_HideHeatran
     ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     Return

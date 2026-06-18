@@ -2,7 +2,7 @@
   "key": 28362,
   "messages": [
     {
-      "id": "Route208House_Text_YoureDeservingOfABerry",
+      "id": "Route208House_Text_YouDeserveABerry",
       "en_US": [
         "Everyone seems to call me the Berry\n",
         "Master.\r",
@@ -26,14 +26,14 @@
       ]
     },
     {
-      "id": "Route208House_Text_DoYouForgetWhereBerriesArePlanted",
+      "id": "Route208House_Text_DoYouForgetWherePlanted",
       "en_US": [
         "Are you the forgetful type who\n",
         "forgets where Berries are planted?"
       ]
     },
     {
-      "id": "Route208House_Text_YouCanHaveThisPoketchApp",
+      "id": "Route208House_Text_HaveThisPoketchApp",
       "en_US": [
         "Yes, yes, I thought so!\n",
         "I’m the same way!\r",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "Route208House_Text_ThenYoureOKWithoutThisNiceThing",
+      "id": "Route208House_Text_OKWithoutThis",
       "en_US": [
         "Oh, is that so.\r",
         "Then you’re OK even if I don’t give\n",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "Route208House_Text_TheBerrySearcherShowsRipeBerryLocations",
+      "id": "Route208House_Text_BerrySearcherShowsRipeLocations",
       "en_US": [
         "The {STRVAR_1 24, 0, 0} shows you\n",
         "where there are ripe Berries\f",
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "Route208House_Text_ThatMulchWillPromoteBerryGrowth",
+      "id": "Route208House_Text_MulchWillPromoteBerryGrowth",
       "en_US": [
         "That {STRVAR_1 8, 0, 0}...\r",
         "I made it by mixing high-grade soil\n",

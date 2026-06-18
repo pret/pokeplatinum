@@ -25,7 +25,7 @@ Route206CyclingRoadSouthGate_ForceBikingInGateOnFrame:
     Return
 
 Route206CyclingRoadSouthGate_CashierM:
-    NPCMessage Route206CyclingRoadSouthGate_Text_LearnHowToShiftGearsAndYoullBeAbleToRideAnywhere
+    NPCMessage Route206CyclingRoadSouthGate_Text_LearnHowToShiftGears
     End
 
 Route206CyclingRoadSouthGate_CoordEvent_OnlyCyclists:
@@ -34,7 +34,7 @@ Route206CyclingRoadSouthGate_CoordEvent_OnlyCyclists:
     GoToIfEq VAR_RESULT, TRUE, Route206CyclingRoadSouthGate_ForceBikingInGateCoordEvent
     ApplyMovement LOCALID_CASHIER_M_WEST, Route206CyclingRoadSouthGate_Movement_CashierMExclamationMark
     WaitMovement
-    Message Route206CyclingRoadSouthGate_Text_CyclingRoadIsOpenOnlyToCyclists
+    Message Route206CyclingRoadSouthGate_Text_OpenOnlyToCyclists
     CloseMessage
     ApplyMovement LOCALID_PLAYER, Route206CyclingRoadSouthGate_Movement_PlayerWalkSouth
     WaitMovement
@@ -68,10 +68,10 @@ Route206CyclingRoadSouthGate_BattleGirl:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG, Route206CyclingRoadSouthGate_GoThroughMtCoronetFromHereAndYouCanGetToHearthomeCity
+    GoToIfSet FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG, Route206CyclingRoadSouthGate_GoThroughMtCoronet
     SetVar VAR_0x8004, ACCESSORY_FLAG
     BufferAccessoryName 0, VAR_0x8004
-    Message Route206CyclingRoadSouthGate_Text_WhatsABicycleWithoutThisYouveGotToHaveAFlag
+    Message Route206CyclingRoadSouthGate_Text_HaveAFlag
     SetVar VAR_0x8005, 1
     Common_GiveAccessoryWaitForConfirm
     SetFlag FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG
@@ -79,8 +79,8 @@ Route206CyclingRoadSouthGate_BattleGirl:
     ReleaseAll
     End
 
-Route206CyclingRoadSouthGate_GoThroughMtCoronetFromHereAndYouCanGetToHearthomeCity:
-    Message Route206CyclingRoadSouthGate_Text_GoThroughMtCoronetFromHereAndYouCanGetToHearthomeCity
+Route206CyclingRoadSouthGate_GoThroughMtCoronet:
+    Message Route206CyclingRoadSouthGate_Text_GoThroughMtCoronet
     WaitButton
     CloseMessage
     ReleaseAll

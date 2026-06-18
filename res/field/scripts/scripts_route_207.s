@@ -55,32 +55,32 @@ Route207_Counterpart:
 
 Route207_Dawn:
     BufferPlayerName 0
-    Message Route207_Text_DawnPlayerChooseWhichHandYouWant
+    Message Route207_Text_DawnChooseWhichHand
     InitGlobalTextListMenu 30, 13, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
     AddListMenuEntry MenuEntries_Text_CounterpartHand_Right, 0
     AddListMenuEntry MenuEntries_Text_CounterpartHand_Left, 1
     ShowListMenu
-    Message Route207_Text_DawnISeeYouWantTheVsSeeker
+    Message Route207_Text_DawnYouWantTheVsSeeker
     Call Route207_GiveVsSeeker
-    Message Route207_Text_DawnYouCanHaveThisTooThen
+    Message Route207_Text_DawnHaveThisTooThen
     Call Route207_GivePoketchAppDowsingMachine
-    Message Route207_Text_DawnTheDowsingMachineIsSomethingYouShouldTouchOften
+    Message Route207_Text_DawnUseDowsingMachineOften
     GoTo Route207_CounterpartLeave
 
 Route207_Lucas:
     BufferPlayerName 0
-    Message Route207_Text_LucasPlayerIllShareWithYouChooseAHand
+    Message Route207_Text_LucasChooseAHand
     InitGlobalTextListMenu 30, 13, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
     AddListMenuEntry MenuEntries_Text_CounterpartHand_Right, 0
     AddListMenuEntry MenuEntries_Text_CounterpartHand_Left, 1
     ShowListMenu
-    Message Route207_Text_LucasOhYeahYouWantTheVsSeeker
+    Message Route207_Text_LucasYouWantTheVsSeeker
     Call Route207_GiveVsSeeker
-    Message Route207_Text_LucasYouCanHaveThisTooThen
+    Message Route207_Text_LucasHaveThisTooThen
     Call Route207_GivePoketchAppDowsingMachine
-    Message Route207_Text_LucasTheDowsingMachineIsJustTryTouchingIt
+    Message Route207_Text_LucasTryTouchingDowsingMachine
     GoTo Route207_CounterpartLeave
 
 Route207_GiveVsSeeker:
@@ -145,30 +145,30 @@ Route207_CyclistM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_BICYCLE, Route207_ChangeToThe4thGearAndTakeARun
+    GoToIfSet FLAG_RECEIVED_BICYCLE, Route207_ChangeGearTakeARun
     Message Route207_Text_ThatSlopesTooSlippery
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-Route207_ChangeToThe4thGearAndTakeARun:
-    Message Route207_Text_ChangeToThe4thGearAndTakeARun
+Route207_ChangeGearTakeARun:
+    Message Route207_Text_ChangeGearTakeARun
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 Route207_ArrowSignpostMtCoronet:
-    ShowArrowSign Route207_Text_Rt207MtCoronet
+    ShowArrowSign Route207_Text_SignMtCoronet
     End
 
 Route207_ArrowSignpostOreburghCity:
-    ShowArrowSign Route207_Text_Rt207OreburghCity
+    ShowArrowSign Route207_Text_SignOreburghCity
     End
 
 Route207_TrainerTipsSignpost:
-    ShowScrollingSign Route207_Text_TrainerTipsPokemonMayBecomeImmobilizedIfTheyAreAsleepOrParalyzed
+    ShowScrollingSign Route207_Text_TrainerTipsImmobilizedIfAsleepOrParalyzed
     End
 
     .balign 4, 0

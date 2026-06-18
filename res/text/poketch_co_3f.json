@@ -2,7 +2,7 @@
   "key": 17419,
   "messages": [
     {
-      "id": "PoketchCo3F_Text_TheresAGirlsModelAndABoysModel",
+      "id": "PoketchCo3F_Text_TheresGenderedModels",
       "en_US": [
         "Do you have a Pokétch?\r",
         "There’s a girl’s model and a boy’s\n",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "PoketchCo3F_Text_PeopleEverywhereMakePoketchApps",
+      "id": "PoketchCo3F_Text_PeopleEverywhereMakeApps",
       "en_US": [
         "People everywhere make Pokétch apps.\r",
         "You’ll be able to get new apps from\n",
@@ -30,56 +30,56 @@
       ]
     },
     {
-      "id": "PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps1",
+      "id": "PoketchCo3F_Text_DescriptionsOfPoketchApps1",
       "en_US": [
         "There are descriptions of Pokétch\n",
         "apps.\r"
       ]
     },
     {
-      "id": "PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout1",
+      "id": "PoketchCo3F_Text_ReadAboutWhichPoketchApp1",
       "en_US": [
         "Which Pokétch app would\n",
         "you like to read about?"
       ]
     },
     {
-      "id": "PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps2",
+      "id": "PoketchCo3F_Text_DescriptionsOfPoketchApps2",
       "en_US": [
         "There are descriptions of Pokétch\n",
         "apps.\r"
       ]
     },
     {
-      "id": "PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout2",
+      "id": "PoketchCo3F_Text_ReadAboutWhichPoketchApp2",
       "en_US": [
         "Which Pokétch app would\n",
         "you like to read about?"
       ]
     },
     {
-      "id": "PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps3",
+      "id": "PoketchCo3F_Text_DescriptionsOfPoketchApps3",
       "en_US": [
         "There are descriptions of Pokétch\n",
         "apps.\r"
       ]
     },
     {
-      "id": "PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout3",
+      "id": "PoketchCo3F_Text_ReadAboutWhichPoketchApp3",
       "en_US": [
         "Which Pokétch app would you like\n",
         "to read about?"
       ]
     },
     {
-      "id": "PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps4",
+      "id": "PoketchCo3F_Text_DescriptionsOfPoketchApps4",
       "en_US": [
         "There are descriptions of Pokétch\n",
         "apps.\r"
       ]
     },
     {
-      "id": "PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout4",
+      "id": "PoketchCo3F_Text_ReadAboutWhichPoketchApp4",
       "en_US": [
         "Which Pokétch app would you like\n",
         "to read about?"

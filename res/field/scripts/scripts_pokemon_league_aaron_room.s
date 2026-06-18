@@ -4,7 +4,7 @@
 
 
     ScriptEntry PokemonLeagueAaronRoom_Aaron
-    ScriptEntry PokemonLeagueAaronRoom_OnFrame
+    ScriptEntry PokemonLeagueAaronRoom_OnFrame_EnterRoom
     ScriptEntryEnd
 
 PokemonLeagueAaronRoom_Aaron:
@@ -58,7 +58,7 @@ PokemonLeagueAaronRoom_AaronPostBattle:
     ReleaseAll
     End
 
-PokemonLeagueAaronRoom_OnFrame:
+PokemonLeagueAaronRoom_OnFrame_EnterRoom:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueAaronRoom_Movement_PlayerEnterRoom
     WaitMovement
