@@ -5,6 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/map_object.h"
+#include "constants/player_avatar.h"
 #include "generated/game_records.h"
 #include "generated/movement_actions.h"
 
@@ -687,7 +688,7 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
             int mountZPos = MapObject_GetZ(taskEnv->playerObject);
             enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(taskEnv->playerAvatar);
 
-            sub_02061674(taskEnv->playerAvatar, taskEnv->direction, &mountXPos, &mountYPos, &mountZPos);
+            PlayerAvatar_GetStepDistortionWorldPos(taskEnv->playerAvatar, taskEnv->direction, &mountXPos, &mountYPos, &mountZPos);
             taskEnv->unk_28 = DistWorldSurfMountRenderer_HandleSurfBegin(taskEnv->playerAvatar, mountXPos, mountYPos, mountZPos, taskEnv->direction, 0, distortionState);
         }
 
@@ -752,22 +753,22 @@ static int ov5_021E032C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     }
 
     {
-        u32 v0;
+        u32 collision;
         MapObject *v1 = PlayerAvatar_GetMapObject(playerAvatar);
 
         if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
-            v0 = sub_02060B7C(playerAvatar, v1, param2);
+            collision = PlayerAvatar_CheckCollision(playerAvatar, v1, param2);
         } else {
-            v0 = sub_020611FC(playerAvatar, v1, param2);
+            collision = PlayerAvatar_CheckDistortionCollision(playerAvatar, v1, param2);
         }
 
-        if (v0 == (1 << 5)) {
+        if (collision == PLAYER_COLLISION_WATER) {
             return 0;
         }
 
-        v0 &= ~(1 << 5);
+        collision &= ~PLAYER_COLLISION_WATER;
 
-        if (v0 != 0) {
+        if (collision != PLAYER_COLLISION_NONE) {
             return 0;
         }
     }
@@ -846,7 +847,7 @@ static int ov5_021E04A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     }
 
     {
-        u8 v0 = sub_0206156C(playerAvatar, param2);
+        u8 v0 = PlayerAvatar_GetTileBehaviorFromDir(playerAvatar, param2);
 
         if (TileBehavior_IsWaterfall(v0) == 0) {
             return 0;

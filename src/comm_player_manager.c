@@ -1075,7 +1075,7 @@ static void CommPlayer_MoveClient(int netId)
             animCode = sub_0206147C(playerAvatar, pad, pad, v10, 1, 0);
         }
 
-        if (sub_02061544(playerAvatar) == 0) {
+        if (PlayerAvatar_IsMapObjectAnimationSet(playerAvatar) == 0) {
             if (!PlayerAvatar_IsAnimationSetOrWalkOnSpotSlow(playerAvatar)) {
                 return;
             }

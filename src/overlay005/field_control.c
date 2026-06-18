@@ -189,7 +189,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             || (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE
                 && HearthomeGym_CheckIfPlayerSeesTrainer(fieldSystem) == TRUE)) {
 
-            sub_0205F56C(fieldSystem->playerAvatar);
+            PlayerAvatar_ClearMoveState(fieldSystem->playerAvatar);
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
             return TRUE;
         }
@@ -1066,7 +1066,7 @@ static BOOL Field_DistortionInteract(FieldSystem *fieldSystem, MapObject **objec
     int objectIndex = 0;
     int playerX, playerY, playerZ, objectX, objectY, objectZ;
 
-    sub_020617BC(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
+    PlayerAvatar_GetFacingDistortionWorldPos(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
 
     while (MapObjectMan_FindObjectWithStatus(fieldSystem->mapObjMan, object, &objectIndex, 1 << 0)) {
         objectX = MapObject_GetX(*object);

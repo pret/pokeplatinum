@@ -5,6 +5,8 @@
 
 #include "struct_decls/map_object.h"
 
+#include "constants/player_avatar.h"
+
 #include "field/field_system.h"
 
 #include "field_task.h"
@@ -92,7 +94,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
         v0->unk_08++;
         break;
     case 1:
-        if (sub_02061544(v0->playerAvatar)) {
+        if (PlayerAvatar_IsMapObjectAnimationSet(v0->playerAvatar)) {
             int v3 = 0xc;
 
             v3 = MovementAction_TurnActionTowardsDir(v0->unk_00, v3);
@@ -130,9 +132,9 @@ static BOOL ov5_021E120C(FieldTask *param0)
             }
 
             {
-                u32 v4 = sub_02060B7C(v0->playerAvatar, v1, v0->unk_00);
+                u32 collision = PlayerAvatar_CheckCollision(v0->playerAvatar, v1, v0->unk_00);
 
-                if (v4 == 0) {
+                if (collision == PLAYER_COLLISION_NONE) {
                     v0->unk_08 = 1;
                 } else {
                     MapObject_SetStatusFlagOff(v1, MAP_OBJ_STATUS_LOCK_DIR);
