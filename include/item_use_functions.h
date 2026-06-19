@@ -69,7 +69,11 @@ typedef struct UnkStruct_02068EFC {
     u16 unk_16;
 } UnkStruct_02068EFC;
 
+#ifdef SDK_BUILD_ARM
 u32 ItemUseFunction_Get(u16 funcType, u16 functionIdx);
+#else
+u64 ItemUseFunction_Get(u16 funcType, u16 functionIdx);
+#endif
 void ItemUseContext_Init(FieldSystem *fieldSystem, ItemUseContext *param1);
 BOOL BerryPatch_IsEmpty(const ItemUseContext *usageContext);
 BOOL sub_02069238(FieldSystem *fieldSystem);

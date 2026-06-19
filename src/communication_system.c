@@ -138,7 +138,11 @@ static BOOL sub_02035730(u8 *param0);
 static void CommSys_Transmission(void);
 static BOOL sub_0203594C(void);
 
+#ifdef SDK_BUILD_ARM
 static u32 Unk_021C07C8 = 0;
+#else
+static u64 Unk_021C07C8 = 0;
+#endif
 static CommunicationSystem *sCommunicationSystem = NULL;
 static volatile u8 Unk_021C07C5 = 0;
 static volatile u8 Unk_02100A1C = 4;
@@ -161,7 +165,11 @@ static BOOL CommSys_Init(BOOL shouldAlloc, int maxPacketSize)
 
         CommTool_Init(HEAP_ID_COMMUNICATION);
 
+        #ifdef SDK_BUILD_ARM
         Unk_021C07C8 = (u32)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationSystem) + 32);
+        #else
+        Unk_021C07C8 = (u64)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationSystem) + 32);
+        #endif
         sCommunicationSystem = (CommunicationSystem *)(32 - (Unk_021C07C8 % 32) + Unk_021C07C8);
 
         MI_CpuClear8(sCommunicationSystem, sizeof(CommunicationSystem));

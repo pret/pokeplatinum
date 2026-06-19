@@ -118,7 +118,30 @@ struct PoketchSystem {
 
 #ifdef SDK_PORT
 void PoketchAppStaticInit_DigitalWatch();
+void PoketchAppStaticInit_Stopwatch();
 void PoketchAppStaticInit_Calculator();
+void PoketchAppStaticInit_MemoPad();
+void PoketchAppStaticInit_AnalogWatch();
+void PoketchAppStaticInit_DotArtist();
+void PoketchAppStaticInit_PartyStatus();
+void PoketchAppStaticInit_FriendshipChecker();
+void PoketchAppStaticInit_DowsingMachine();
+void PoketchAppStaticInit_Counter();
+void PoketchAppStaticInit_Pedometer();
+void PoketchAppStaticInit_DaycareChecker();
+void PoketchAppStaticInit_Roulette();
+void PoketchAppStaticInit_CoinToss();
+void PoketchAppStaticInit_MoveTester();
+void PoketchAppStaticInit_MatchupChecker();
+void PoketchAppStaticInit_AlarmClock();
+void PoketchAppStaticInit_KitchenTimer();
+void PoketchAppStaticInit_MarkingMap();
+void PoketchAppStaticInit_BerrySearcher();
+void PoketchAppStaticInit_ColorChanger();
+void PoketchAppStaticInit_LinkSearcher();
+void PoketchAppStaticInit_TrainerCounter();
+void PoketchAppStaticInit_PokemonHistory();
+void PoketchAppStaticInit_Calendar();
 #endif
 
 void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BgConfig *bgl, NNSG2dOamManagerInstance *oamManager);

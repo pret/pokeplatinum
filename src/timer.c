@@ -56,7 +56,11 @@ static u64 CalculateCurrentTimestamp(void)
 
     OS_RestoreInterrupts(irqState);
 
+    #ifdef SDK_PORT
+    return OS_GetTick();
+    #else
     return (timerHigh << 16) | timerLow;
+    #endif
 }
 
 u64 Timer_GetCurrentTimestamp(void)

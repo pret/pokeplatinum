@@ -351,7 +351,11 @@ int sub_0209C16C(void)
 
 void *sub_0209C188(UnkStruct_0209BDF8 *param0, int param1)
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0 = (u32)(param0->unk_50);
+    #else
+    u64 v0 = (u64)(param0->unk_50);
+    #endif
     v0 += param1 * (236 * 6 + 4 * 2);
 
     return (void *)v0;

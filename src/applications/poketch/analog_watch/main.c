@@ -53,6 +53,13 @@ static void NitroStaticInit(void)
     PoketchSystem_SetAppFunctions(New, Exit);
 }
 
+#ifdef SDK_PORT
+void PoketchAppStaticInit_AnalogWatch()
+{
+    NitroStaticInit();
+}
+#endif
+
 static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
     PoketchAnalogWatch *analogWatch = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchAnalogWatch));

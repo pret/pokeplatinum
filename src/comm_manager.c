@@ -289,10 +289,17 @@ void CommManager_ResetUndergroundServer(void)
 BOOL CommManager_IsConnectingUnderground(void)
 {
     int i;
+    #ifdef SDK_BUILD_ARM
     u32 connectFunctions[] = {
         (u32)CommTask_ConnectUndergroundClient, (u32)CommTask_ConnectUndergroundServer, 0
     };
     u32 task = (u32)sCommMan->task;
+    #else
+    u64 connectFunctions[] = {
+        (u64)CommTask_ConnectUndergroundClient, (u64)CommTask_ConnectUndergroundServer, 0
+    };
+    u64 task = (u64)sCommMan->task;
+    #endif
 
     if (sCommMan == NULL) {
         return FALSE;

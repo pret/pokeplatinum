@@ -80,6 +80,13 @@ static void NitroStaticInit(void)
     PoketchSystem_SetAppFunctions(New, Exit);
 }
 
+#ifdef SDK_PORT
+void PoketchAppStaticInit_Stopwatch()
+{
+    NitroStaticInit();
+}
+#endif
+
 static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
     PoketchStopwatch *stopwatch = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchStopwatch));

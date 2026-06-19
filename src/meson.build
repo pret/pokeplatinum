@@ -1014,3 +1014,11 @@ pokeplatinum_c = files(
     'dw_warp/dw_warp.c',
     'debug.c'
 )
+
+if(build_target != 'arm')
+pokeplatinum_c += files(
+    'port/charcode_convert.c',
+    'port/sim_gui_prj.c',
+    'port/gui_createmon.c'
+)
+endif

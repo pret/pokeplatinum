@@ -760,10 +760,17 @@ static void CopyOrDecompressData(const void *src, void *dest, u32 size)
         return;
     }
 
+#ifdef SDK_BUILD_ARM
     if ((((u32)src % 4) == 0) && (((u32)dest % 4) == 0) && (((u16)size % 4) == 0)) {
         MI_CpuCopy32(src, dest, size);
         return;
     }
+#else
+    if ((((u64)src % 4) == 0) && (((u64)dest % 4) == 0) && (((u16)size % 4) == 0)) {
+        MI_CpuCopy32(src, dest, size);
+        return;
+    }
+#endif
 
     MI_CpuCopy16(src, dest, size);
 }
