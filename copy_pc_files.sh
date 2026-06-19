@@ -18,7 +18,9 @@ cp -u $BUILDDIR/../res/pc_port/dwc_nv.bin $OUTPUTDIR/firmware.bin
 cp $BUILDDIR/main $OUTPUTDIR/main
 
 if [[ "$(uname -s)" =~ ^MSYS_NT.* ]]; then
-    cp -u /ucrt64/bin/SDL2.dll $OUTPUTDIR/SDL2.dll
+  cp -u /ucrt64/bin/SDL2.dll $OUTPUTDIR/SDL2.dll
 	cp -u /ucrt64/bin/libwinpthread-1.dll $OUTPUTDIR/libwinpthread-1.dll
 	cp -u /ucrt64/bin/libenet-7.dll $OUTPUTDIR/libenet-7.dll
+	cp -u /ucrt64/bin/libgcc_s_seh-1.dll $OUTPUTDIR/libgcc_s_seh-1.dll
+	cp -u /ucrt64/bin/libstdc++-6.dll $OUTPUTDIR/libstdc++-6.dll
 fi
