@@ -353,7 +353,9 @@ static void CommManUnderground_ConnectTaskServer(void)
             CommPlayerMan_ResumeFieldSystem();
         }
 
+        #ifdef SDK_BUILD_ARM
         CommManUnderground_DebugPrintDummy("\u0090\u0065\u008B\u0040\u0090\u00DA\u0091\u00B1"); // 親機接続
+        #endif
 
         CommPlayer_SendPos(FALSE);
 
@@ -431,7 +433,9 @@ static void CommManUnderground_WaitForDataReadTaskClient(void)
     }
 
     if (CommInfo_IsDataFinishedReading()) {
+        #ifdef SDK_BUILD_ARM
         CommManUnderground_DebugPrintDummy("info\u0083\u0066\u0081\u005B\u0083\u005E\u008E\u00F3\u0090\u004D\u008A\u00AE\u0097\u00B9"); // データ受信完了
+        #endif
         UndergroundPlayer_SendHeldFlagOwnerInfo();
         CommManUnderground_SetFieldCommManTask(CommManUnderground_WaitForFlagDataReceiptTaskClient, 200);
         return;
@@ -461,7 +465,9 @@ static void CommManUnderground_WaitForFlagDataReceiptTaskClient(void)
 static void CommManUnderground_WaitForTrapDataReceiptTaskClient(void)
 {
     if (Traps_HaveLinksReceivedPlacedTraps()) {
+        #ifdef SDK_BUILD_ARM
         CommManUnderground_DebugPrintDummy("\u0090\u0065\u008B\u0040\u00E3\u00A9\u0083\u0066\u0081\u005B\u0083\u005E\u0093\u00CD\u0082\u00A2\u0082\u00BD\u0082\u00E7\u0082\u00B5\u0082\u00A2"); // 親機罠データ届いたらしい
+        #endif
         Traps_ClearLinksReceivedPlacedTraps();
         SecretBases_SendBaseInfo();
         CommManUnderground_SetFieldCommManTask(CommManUnderground_WaitForBaseDataReceiptTaskClient, 0);
@@ -474,7 +480,9 @@ static void CommManUnderground_WaitForTrapDataReceiptTaskClient(void)
 static void CommManUnderground_WaitForBaseDataReceiptTaskClient(void)
 {
     if (SecretBases_HaveLinksReceivedBaseData()) {
+        #ifdef SDK_BUILD_ARM
         CommManUnderground_DebugPrintDummy("\u0094\u00E9\u0096\u00A7\u008A\u00EE\u0092\u006E\u0082\u00CC\u0088\u00CA\u0092\u0075\u0082\u00AA\u0082\u00AB\u0082\u00BD"); // 秘密基地の位置がきた
+        #endif
         SecretBases_ClearLinksReceivedBaseData();
         CommPlayer_SendPos(TRUE);
         CommSys_SendMessage(31);

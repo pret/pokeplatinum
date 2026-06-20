@@ -5,11 +5,19 @@ This is a WIP PC port of Pokemon Platinum based on the [pret](https://github.com
 Currently it is possible to reach the first gym. It might be possible to get farther than that, however it has not been tested.
 
 ## Building on Linux
+### Dockerized build (Recommended)
+This only requires Docker to be installed and setup on your system. The drun.sh script is used to build the docker image and run build commands in it. Build with:
+* ./drun.sh make linux
+The container image will automatically be built the first time this script is run.
+
+### Non-container build
 Required Packages (arch linux):
 * nasm
 * enet
 * arm-none-eabi-gcc (required by the base pret project)
 * ninja
+* flex
+* bison
 
 To build: 
 * make linux
