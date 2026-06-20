@@ -17,7 +17,7 @@
 #include "particle_system.h"
 #include "spl.h"
 
-static s8 BattleParticleUtil_GetSignFromBattler(BattleAnimSystem *param0, int param1, int param2);
+static s8 BattleParticleUtil_GetSignFromBattler(BattleAnimSystem *system, int startBattler, int endBattler);
 
 static const VecFx32 sParticleCameraEye = {
     0x1700, // 1.4375
