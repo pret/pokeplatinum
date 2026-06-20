@@ -1,6 +1,6 @@
 #!/bin/bash
 BUILDDIR=$1
-OUTPUTDIR=$BUILDDIR/bin
+OUTPUTDIR=$BUILDDIR/$3
 mkdir -p $OUTPUTDIR
 
 cat $2 | while read line; do

@@ -30,7 +30,7 @@ To build, run "Launch_MSys2.ps1" and it will launch a MSys2 bash shell. From her
 
 ## Notes
 
-Target executable will be in ./build_(platform)/bin directory. win64 is also a supported build target, however it is untested.
+Target executable will be in ./build_(platform)/pokeplatinum.us directory. win64 is also a supported build target, however it is untested.
 ROM will be built in /build directory
 
 You can update your SDKs using "meson subprojects update"

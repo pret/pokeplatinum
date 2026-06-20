@@ -36,11 +36,11 @@
             "stopAtEntry": false
         },
         {
-            "name": "Debug (LLDB)",
+            "name": "Debug pokeplatinum.us (LLDB)",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/build_linux/bin/main",
-            "cwd": "${workspaceFolder}/build_linux/bin"
+            "program": "${workspaceFolder}/build_linux/pokeplatinum.us/main",
+            "cwd": "${workspaceFolder}/build_linux/pokeplatinum.us"
         },
     ]
 }

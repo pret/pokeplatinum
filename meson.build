@@ -420,10 +420,10 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
 )
 else
 # Copy files into 'pc' folder
-copy_files_script = files('copy_pc_files.sh')
+copy_files_script = files('tools/scripts/copy_pc_files.sh')
 
-pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
-    output: 'pokeplatinum.us.nds',
+pokeplatinum_nds = custom_target('pokeplatinum.us',
+    output: 'pokeplatinum.us',
     input: [
         main,
         rom_header_template,
@@ -436,6 +436,7 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         copy_files_script,
         meson.global_build_root(),
         filesys_csv,
+        'pokeplatinum.us'
     ],
     build_by_default: true
 )
