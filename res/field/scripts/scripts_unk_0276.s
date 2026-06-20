@@ -1,14 +1,14 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _000A
-    ScriptEntry _000C
+    ScriptEntry Unk276_Dummy1
+    ScriptEntry Unk276_Dummy2
     ScriptEntryEnd
 
-_000A:
+Unk276_Dummy1:
     End
 
-_000C:
+Unk276_Dummy2:
     ShowLandmarkSign 3
     End
 

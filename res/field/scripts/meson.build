@@ -430,7 +430,7 @@ scr_seq_files = files(
     'scripts_iceberg_ruins.s',
     'scripts_unk_0395.s',
     'scripts_rock_peak_ruins.s',
-    'scripts_unk_0397.s',
+    'scripts_unused_0397.s',
     'scripts_communication_club_colosseum_2p.s',
     'scripts_communication_club_colosseum_4p.s',
     'scripts_pokemon_center_daily_trainers.s',
