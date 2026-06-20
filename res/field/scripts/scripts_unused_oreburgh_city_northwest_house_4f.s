@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/oreburgh_city_northwest_house_4f.h"
+#include "res/text/bank/unused_oreburgh_city_northwest_house_4f.h"
 
 
     ScriptEntry OreburghCityNorthwestHouse4F_SchoolKidM
