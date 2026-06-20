@@ -12,6 +12,6 @@ static bool s_createMonOpen;
 
 void SIM_GUI_Prj_main(bool * p_open) {
     igBegin("pokeplatinum", p_open, 0);
-    SIM_GUI_AppButton("Create Pokemon", &s_createMonOpen, GUI_CreateMon_Main);
+    SIM_GUI_AppButton("Create Pokemon", &s_createMonOpen, GUI_CreateMon_Init, GUI_CreateMon_Main);
     igEnd();
 }
