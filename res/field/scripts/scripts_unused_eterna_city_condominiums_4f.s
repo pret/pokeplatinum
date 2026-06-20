@@ -9,12 +9,12 @@ EternaCityCondominiums4F_ExpertF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_4F_TM04, EternaCityCondominiums4F_LongHistory
+    GoToIfSet FLAG_RECEIVED_UNUSED_ETERNA_CITY_CONDOMINIUMS_4F_TM04, EternaCityCondominiums4F_LongHistory
     Message EternaCityCondominiums4F_Text_HadTMLongTimeNow
     SetVar VAR_0x8004, ITEM_TM04
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaCityCondominiums4F_BagIsFull
-    SetFlag FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_4F_TM04
+    SetFlag FLAG_RECEIVED_UNUSED_ETERNA_CITY_CONDOMINIUMS_4F_TM04
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
