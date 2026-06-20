@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_EASY_CHAT_WORDS_H
 #define POKEPLATINUM_EASY_CHAT_WORDS_H
 
+#include "constants/heap.h"
+
 #include "message.h"
 #include "savedata.h"
 #include "string_gf.h"
@@ -57,11 +59,6 @@ typedef struct EasyChatWordLoader {
     MessageLoader *loaders[EASY_CHAT_WORD_TEXT_BANK_COUNT];
 } EasyChatWordLoader;
 
-typedef struct UnkStruct_02014FB0 {
-    u32 unk_00;
-    u32 *unk_04;
-} UnkStruct_02014FB0;
-
 EasyChatWordLoader *EasyChatWordLoader_New(enum HeapID heapID);
 void EasyChatWordLoader_Free(EasyChatWordLoader *wordLoader);
 void EasyChatWordLoader_GetString(EasyChatWordLoader *wordLoader, u16 word, String *out);
@@ -77,10 +74,5 @@ BOOL EasyChatWords_AreAllToughWordsUnlocked(UnlockedEasyChatWords *unlockedWords
 u16 EasyChatWords_GetToughWordFromBankEntry(u32 bankEntry);
 BOOL EasyChatWords_IsGreetingUnlocked(const UnlockedEasyChatWords *unlockedWords, int bankEntry);
 void EasyChatWords_UnlockGreeting(UnlockedEasyChatWords *unlockedWords, int bankEntry);
-UnkStruct_02014FB0 *sub_02014FB0(enum HeapID heapID);
-void sub_02014FF0(UnkStruct_02014FB0 *param0);
-u32 sub_02015004(const UnkStruct_02014FB0 *param0);
-u16 sub_02015008(const UnkStruct_02014FB0 *param0, u32 param1);
-s16 sub_02015030(const UnkStruct_02014FB0 *param0, u16 param1);
 
 #endif // POKEPLATINUM_EASY_CHAT_WORDS_H

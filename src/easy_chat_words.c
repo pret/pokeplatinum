@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 
+#include "constants/heap.h"
 #include "constants/versions.h"
 #include "generated/abilities.h"
 #include "generated/moves.h"
@@ -329,55 +330,4 @@ void EasyChatWords_UnlockGreeting(UnlockedEasyChatWords *unlockedWords, int bank
     unlockedWords->unlockedGreetingBits |= (1 << bankEntry);
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_UNLOCKED_EASY_CHAT_WORDS);
-}
-
-UnkStruct_02014FB0 *sub_02014FB0(enum HeapID heapID)
-{
-    UnkStruct_02014FB0 *v0;
-    u32 fileSize;
-
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02014FB0));
-    memset(v0, 0, sizeof(UnkStruct_02014FB0));
-
-    v0->unk_04 = LoadMemberFromNARC_OutFileSize(NARC_INDEX_RESOURCE__ENG__PMS_AIKOTOBA__PMS_AIKOTOBA, 0, FALSE, heapID, FALSE, &fileSize);
-    v0->unk_00 = fileSize / sizeof(u32);
-
-    return v0;
-}
-
-void sub_02014FF0(UnkStruct_02014FB0 *param0)
-{
-    Heap_Free(param0->unk_04);
-    Heap_Free(param0);
-}
-
-u32 sub_02015004(const UnkStruct_02014FB0 *param0)
-{
-    return param0->unk_00;
-}
-
-u16 sub_02015008(const UnkStruct_02014FB0 *param0, u32 param1)
-{
-    GF_ASSERT(param0);
-
-    if (param0->unk_00 <= param1) {
-        return 0xffff;
-    }
-
-    return param0->unk_04[param1];
-}
-
-s16 sub_02015030(const UnkStruct_02014FB0 *param0, u16 param1)
-{
-    int v0;
-
-    GF_ASSERT(param0);
-
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        if (param0->unk_04[v0] == param1) {
-            return v0;
-        }
-    }
-
-    return -1;
 }

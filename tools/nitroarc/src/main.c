@@ -89,6 +89,7 @@ enum {
 
     exclude,
     exclude_from,
+    file_from,
     files_from,
     index,
     no_recurse,
@@ -114,6 +115,7 @@ static const option_cfg_t s_options[] = {
 
     [exclude]      = { "exclude",      NULL, 'E', 0, true  },
     [exclude_from] = { "exclude-from", NULL, 'X', 0, true  },
+    [file_from]    = { "file-from",    NULL, 't', 0, true  },
     [files_from]   = { "files-from",   NULL, 'T', 0, true  },
     [index]        = { "index",        NULL, 'I', 0, false },
     [no_recurse]   = { "no-recursion", NULL, 'R', 0, false },
@@ -164,6 +166,7 @@ int parse_opts(const char **argv, options_t *opts) {
         case directory:    target_optarg(opts->directory);
         case file:         target_optarg(opts->file);
         case format:       target_optarg(opts->format);
+        case file_from:    target_optarg(opts->file_from);
         case files_from:   target_optarg(opts->files_from);
         case exclude_from: target_optarg(opts->exclude_from);
         case exclude:      target_optarg(opts->exclude_pat);
