@@ -26,7 +26,7 @@ TwinleafTownPlayerHouse2F_SetVolumeForTV:
 TwinleafTownPlayerHouse2F_OnFrame_ConcludeSpecialProgram:
     LockAll
     SetVar VAR_PLAYER_HOUSE_SPECIAL_PROGRAM_STATE, 1
-    Message TwinleafTownPlayerHouse2F_Text_ThatConcludesOurSpecialProgram
+    Message TwinleafTownPlayerHouse2F_Text_ConcludesSpecialProgram
     PlayFanfare SEQ_TV_END
     Message TwinleafTownPlayerHouse2F_Text_SeeYouNextWeek
     WaitFanfare
@@ -50,11 +50,11 @@ TwinleafTownPlayerHouse2F_PC:
     End
 
 TwinleafTownPlayerHouse2F_ScrollingSignpost:
-    ShowScrollingSign TwinleafTownPlayerHouse2F_Text_TheXButtonOpensTheMenu
+    ShowScrollingSign TwinleafTownPlayerHouse2F_Text_XButtonOpensMenu
     End
 
 TwinleafTownPlayerHouse2F_TV:
-    EventMessage TwinleafTownPlayerHouse2F_Text_MomBoughThisTVAsAGift
+    EventMessage TwinleafTownPlayerHouse2F_Text_MomBoughtTVAsGift
     End
 
 TwinleafTownPlayerHouse2F_CoordEvent_RivalNorth:
@@ -92,7 +92,7 @@ TwinleafTownPlayerHouse2F_Rival:
     CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalApproachPlayerEast
     CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalApproachPlayerSouth
     BufferPlayerName 1
-    Message TwinleafTownPlayerHouse2F_Text_ProfRowanWouldGiveUsPokemon
+    Message TwinleafTownPlayerHouse2F_Text_ProfRowanWouldGivePokemon
     CloseMessage
     ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalExclamationMark
     WaitMovement
@@ -114,7 +114,7 @@ TwinleafTownPlayerHouse2F_Rival:
     CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerEast
     CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerSouth
     BufferPlayerName 1
-    Message TwinleafTownPlayerHouse2F_Text_WereGoingToSeeProfRowanAndGetPokemon
+    Message TwinleafTownPlayerHouse2F_Text_SeeProfRowanAndGetPokemon
     CloseMessage
     CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalLeaveNorth
     CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalLeaveWest

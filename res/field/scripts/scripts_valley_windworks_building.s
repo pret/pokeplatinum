@@ -15,10 +15,10 @@
 
 ValleyWindworksBuilding_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_VALLEY_WINDWORKS
-    GoToIfGe VAR_VALLEY_WINDWORKS_STATE, 2, ValleyWindworksBuilding_SetLittleGirlAndScientistPapaPositions
+    GoToIfGe VAR_VALLEY_WINDWORKS_STATE, 2, ValleyWindworksBuilding_SetGirlAndPapaPositions
     End
 
-ValleyWindworksBuilding_SetLittleGirlAndScientistPapaPositions:
+ValleyWindworksBuilding_SetGirlAndPapaPositions:
     SetObjectEventPos LOCALID_LITTLE_GIRL, 21, 5
     SetObjectEventDir LOCALID_LITTLE_GIRL, DIR_WEST
     SetObjectEventMovementType LOCALID_LITTLE_GIRL, MOVEMENT_TYPE_LOOK_WEST
@@ -31,7 +31,7 @@ ValleyWindworksBuilding_OnFrame_FirstEntry:
     LockAll
     ApplyMovement LOCALID_GALACTIC_GRUNT_1, ValleyWindworksBuilding_Movement_GalacticGrunt1NoticePlayer
     WaitMovement
-    Message ValleyWindworksBuilding_Text_YouHaveTheKeyIveGotToAlertTheCommander
+    Message ValleyWindworksBuilding_Text_GotToAlertCommander
     CloseMessage
     ApplyMovement LOCALID_GALACTIC_GRUNT_1, ValleyWindworksBuilding_Movement_GalacticGrunt1Leave
     ApplyMovement LOCALID_PLAYER, ValleyWindworksBuilding_Movement_PlayerWatchGalacticGrunt1Leave
@@ -58,7 +58,7 @@ ValleyWindworksBuilding_Movement_PlayerWatchGalacticGrunt1Leave:
     EndMovement
 
 ValleyWindworksBuilding_GruntM:
-    NPCMessage ValleyWindworksBuilding_Text_HumphJustYouWaitOurCommanderWillSmooshYou
+    NPCMessage ValleyWindworksBuilding_Text_CommanderWillSmooshYou
     End
 
 ValleyWindworksBuilding_CoordEvent_Mars:
@@ -81,23 +81,23 @@ ValleyWindworksBuilding_MarsNoticePlayer:
     End
 
 ValleyWindworksBuilding_Mars:
-    Message ValleyWindworksBuilding_Text_MyNameIsMarsLetsHaveABattleToDecideWhatWeShouldDoNext
+    Message ValleyWindworksBuilding_Text_LetsHaveABattle
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, ValleyWindworksBuilding_BlackOut
-    Message ValleyWindworksBuilding_Text_OopsIMessedThatOneUp
+    Message ValleyWindworksBuilding_Text_IMessedThatOneUp
     CloseMessage
     ApplyMovement LOCALID_CHARON, ValleyWindworksBuilding_Movement_CharonWalkOnSpotSouth
     WaitMovement
     WaitTime 15, VAR_RESULT
-    Message ValleyWindworksBuilding_Text_LoseToAChildWillYouNowMarsWeShouldBeGoing
+    Message ValleyWindworksBuilding_Text_LoseToAChild
     ApplyMovement LOCALID_MARS, ValleyWindworksBuilding_Movement_MarsWalkOnSpotNorth
     WaitMovement
     Message ValleyWindworksBuilding_Text_WillYouShutIt
     ApplyMovement LOCALID_MARS, ValleyWindworksBuilding_Movement_MarsWalkOnSpotWest
     WaitMovement
-    Message ValleyWindworksBuilding_Text_IGuessItsTimeToSayGoodbyeAndLeaveForTheTimeBeing
+    Message ValleyWindworksBuilding_Text_LeaveForTheTimeBeing
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -120,17 +120,17 @@ ValleyWindworksBuilding_Mars:
 ValleyWindworksBuilding_ScientistPapaWalkToPlayerZ6:
     ApplyMovement LOCALID_SCIENTIST_PAPA, ValleyWindworksBuilding_Movement_ScientistPapaWalkToPlayerZ6
     WaitMovement
-    GoTo ValleyWindworksBuilding_ICanFinallySeeMyLittleDaughterAgain
+    GoTo ValleyWindworksBuilding_FinallySeeMyDaughterAgain
     End
 
 ValleyWindworksBuilding_ScientistPapaWalkToPlayerZ7:
     ApplyMovement LOCALID_SCIENTIST_PAPA, ValleyWindworksBuilding_Movement_ScientistPapaWalkToPlayerZ7
     WaitMovement
-    GoTo ValleyWindworksBuilding_ICanFinallySeeMyLittleDaughterAgain
+    GoTo ValleyWindworksBuilding_FinallySeeMyDaughterAgain
     End
 
-ValleyWindworksBuilding_ICanFinallySeeMyLittleDaughterAgain:
-    Message ValleyWindworksBuilding_Text_ICanFinallySeeMyLittleDaughterAgain
+ValleyWindworksBuilding_FinallySeeMyDaughterAgain:
+    Message ValleyWindworksBuilding_Text_FinallySeeMyDaughterAgain
     CloseMessage
     SetFlag FLAG_HIDE_ROUTE_205_SOUTH_LITTLE_GIRL
     ClearFlag FLAG_HIDE_VALLEY_WINDWORKS_BUILDING_LITTLE_GIRL
@@ -146,18 +146,18 @@ ValleyWindworksBuilding_LittleGirlWalkToScientistPapaZ6:
     ApplyMovement LOCALID_LITTLE_GIRL, ValleyWindworksBuilding_Movement_LittleGirlWalkToScientistPapaZ6
     ApplyMovement LOCALID_SCIENTIST_PAPA, ValleyWindworksBuilding_Movement_ScientistPapaWalkOnSpotSouth
     WaitMovement
-    GoTo ValleyWindworksBuilding_YuckPapaYoureStinkyGoShowerNowStinky
+    GoTo ValleyWindworksBuilding_YuckPapaYoureStinky
     End
 
 ValleyWindworksBuilding_LittleGirlWalkToScientistPapaZ7:
     ApplyMovement LOCALID_LITTLE_GIRL, ValleyWindworksBuilding_Movement_LittleGirlWalkToScientistPapaZ7
     ApplyMovement LOCALID_SCIENTIST_PAPA, ValleyWindworksBuilding_Movement_ScientistPapaWalkOnSpotNorth
     WaitMovement
-    GoTo ValleyWindworksBuilding_YuckPapaYoureStinkyGoShowerNowStinky
+    GoTo ValleyWindworksBuilding_YuckPapaYoureStinky
     End
 
-ValleyWindworksBuilding_YuckPapaYoureStinkyGoShowerNowStinky:
-    Message ValleyWindworksBuilding_Text_YuckPapaYoureStinkyGoShowerNowStinky
+ValleyWindworksBuilding_YuckPapaYoureStinky:
+    Message ValleyWindworksBuilding_Text_YuckPapaYoureStinky
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 6, ValleyWindworksBuilding_ScientistPapaTurnInSpotFaceSouth
@@ -167,18 +167,18 @@ ValleyWindworksBuilding_YuckPapaYoureStinkyGoShowerNowStinky:
 ValleyWindworksBuilding_ScientistPapaTurnInSpotFaceSouth:
     ApplyMovement LOCALID_SCIENTIST_PAPA, ValleyWindworksBuilding_Movement_ScientistPapaTurnInSpotFaceSouth
     WaitMovement
-    GoTo ValleyWindworksBuilding_IThinkTheBalloonPokemonWillComeVisitingAgain
+    GoTo ValleyWindworksBuilding_BalloonPokemonWillVisitAgain
     End
 
 ValleyWindworksBuilding_ScientistPapaTurnInSpotFaceNorth:
     ApplyMovement LOCALID_SCIENTIST_PAPA, ValleyWindworksBuilding_Movement_ScientistPapaTurnInSpotFaceNorth
     WaitMovement
-    GoTo ValleyWindworksBuilding_IThinkTheBalloonPokemonWillComeVisitingAgain
+    GoTo ValleyWindworksBuilding_BalloonPokemonWillVisitAgain
     End
 
-ValleyWindworksBuilding_IThinkTheBalloonPokemonWillComeVisitingAgain:
-    Message ValleyWindworksBuilding_Text_OhSorryAhahaTheyHadMeWorkingNonstop
-    Message ValleyWindworksBuilding_Text_IThinkTheBalloonPokemonWillComeVisitingAgain
+ValleyWindworksBuilding_BalloonPokemonWillVisitAgain:
+    Message ValleyWindworksBuilding_Text_SorryWorkingNonstop
+    Message ValleyWindworksBuilding_Text_BalloonPokemonWillVisitAgain
     WaitButton
     CloseMessage
     SetVar VAR_VALLEY_WINDWORKS_LOOKER_STATE, 1
@@ -283,15 +283,15 @@ ValleyWindworksBuilding_ScientistPapa:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3, ValleyWindworksBuilding_TheValleyWindworksUsesTurbinesToCaptureEnergy
-    Message ValleyWindworksBuilding_Text_ABalloonPokemonAppearsInFrontOfTheWindworksItsAlwaysACertainDayOfTheWeek
+    GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3, ValleyWindworksBuilding_ValleyWindworksUsesTurbines
+    Message ValleyWindworksBuilding_Text_BalloonPokemonOnDayOfWeek
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-ValleyWindworksBuilding_TheValleyWindworksUsesTurbinesToCaptureEnergy:
-    Message ValleyWindworksBuilding_Text_TheValleyWindworksUsesTurbinesToCaptureEnergy
+ValleyWindworksBuilding_ValleyWindworksUsesTurbines:
+    Message ValleyWindworksBuilding_Text_ValleyWindworksUsesTurbines
     WaitButton
     CloseMessage
     ReleaseAll
@@ -301,15 +301,15 @@ ValleyWindworksBuilding_Twin:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3, ValleyWindworksBuilding_IfTheBalloonPokemonCameTheWindWouldBlowItAway
-    Message ValleyWindworksBuilding_Text_IThinkTheBalloonPokemonWillComeVisitingAgain
+    GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3, ValleyWindworksBuilding_BlowBalloonPokemonAway
+    Message ValleyWindworksBuilding_Text_BalloonPokemonWillVisitAgain
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-ValleyWindworksBuilding_IfTheBalloonPokemonCameTheWindWouldBlowItAway:
-    Message ValleyWindworksBuilding_Text_IfTheBalloonPokemonCameTheWindWouldBlowItAway
+ValleyWindworksBuilding_BlowBalloonPokemonAway:
+    Message ValleyWindworksBuilding_Text_BlowBalloonPokemonAway
     WaitButton
     CloseMessage
     ReleaseAll
@@ -326,13 +326,13 @@ ValleyWindworksBuilding_PCEast:
 ValleyWindworksBuilding_PC:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 2, ValleyWindworksBuilding_ThePCScreenIsFilledWithNumbersUponNumbers
+    GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 2, ValleyWindworksBuilding_PCScreenFilledWithNumbers
     Message ValleyWindworksBuilding_Text_BringersAndTargetsTeamGalactic
     GoTo ValleyWindworksBuilding_PCEnd
     End
 
-ValleyWindworksBuilding_ThePCScreenIsFilledWithNumbersUponNumbers:
-    Message ValleyWindworksBuilding_Text_ThePCScreenIsFilledWithNumbersUponNumbers
+ValleyWindworksBuilding_PCScreenFilledWithNumbers:
+    Message ValleyWindworksBuilding_Text_PCScreenFilledWithNumbers
     GoTo ValleyWindworksBuilding_PCEnd
     End
 

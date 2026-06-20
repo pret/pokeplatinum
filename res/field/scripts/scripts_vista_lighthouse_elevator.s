@@ -1,12 +1,12 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry VistaLighthouseElevator_Init
+    ScriptEntry VistaLighthouseElevator_OnFrame_Init
     ScriptEntryEnd
 
-VistaLighthouseElevator_Init:
+VistaLighthouseElevator_OnFrame_Init:
     LockAll
-    ApplyMovement LOCALID_PLAYER, VistaLighthouseElevator_WalkIn
+    ApplyMovement LOCALID_PLAYER, VistaLighthouseElevator_Movement_PlayerWalkIn
     WaitMovement
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
     SetVar VAR_0x8008, VAR_ELEVATOR_FLOORS_ABOVE
@@ -29,7 +29,7 @@ VistaLighthouseElevator_ElevatorDown:
     Call VistaLighthouseElevator_ElevatorAnimation
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_SUNYSHORE_CITY, 0x376, 0x317, DIR_SOUTH
+    Warp MAP_HEADER_SUNYSHORE_CITY, 886, 791, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -37,19 +37,19 @@ VistaLighthouseElevator_ElevatorDown:
 VistaLighthouseElevator_ElevatorAnimation:
     WaitSE SEQ_SE_CONFIRM
     PlayElevatorAnimation VAR_0x8004, 4
-    ApplyMovement LOCALID_PLAYER, VistaLighthouseElevator_WalkOut
+    ApplyMovement LOCALID_PLAYER, VistaLighthouseElevator_Movement_PlayerWalkOut
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     Return
 
     .balign 4, 0
-VistaLighthouseElevator_WalkIn:
+VistaLighthouseElevator_Movement_PlayerWalkIn:
     WalkNormalNorth 2
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-VistaLighthouseElevator_WalkOut:
+VistaLighthouseElevator_Movement_PlayerWalkOut:
     WalkNormalSouth 2
     WalkOnSpotNormalSouth
     EndMovement

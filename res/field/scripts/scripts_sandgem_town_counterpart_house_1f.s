@@ -11,15 +11,15 @@ SandgemTownCounterpartHouse1F_ExpertM:
     LockAll
     FacePlayer
     GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SandgemTownCounterpartHouse1F_OhMyYouveGotANationalPokedex
-    Message SandgemTownCounterpartHouse1F_Text_SoThatRowanFellowIsBack
+    GoToIfEq VAR_RESULT, TRUE, SandgemTownCounterpartHouse1F_YouveGotANationalPokedex
+    Message SandgemTownCounterpartHouse1F_Text_RowanIsBack
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-SandgemTownCounterpartHouse1F_OhMyYouveGotANationalPokedex:
-    Message SandgemTownCounterpartHouse1F_Text_OhMyYouveGotANationalPokedex
+SandgemTownCounterpartHouse1F_YouveGotANationalPokedex:
+    Message SandgemTownCounterpartHouse1F_Text_YouveGotANationalPokedex
     WaitButton
     CloseMessage
     ReleaseAll
@@ -31,37 +31,37 @@ SandgemTownCounterpartHouse1F_Twin:
     FacePlayer
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, SandgemTownCounterpartHouse1F_TwinNationalDex
-    GoTo SandgemTownCounterpartHouse1F_WowYoureDoingTheSameAsMyBigSibling
+    GoTo SandgemTownCounterpartHouse1F_SameAsMyBigSibling
 
-SandgemTownCounterpartHouse1F_WowYoureDoingTheSameAsMyBigSibling:
+SandgemTownCounterpartHouse1F_SameAsMyBigSibling:
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownCounterpartHouse1F_WowYoureDoingTheSameAsMyBigSister
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, SandgemTownCounterpartHouse1F_WowYoureDoingTheSameAsMyBigBrother
+    GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownCounterpartHouse1F_SameAsMyBigSister
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, SandgemTownCounterpartHouse1F_SameAsMyBigBrother
     End
 
-SandgemTownCounterpartHouse1F_WowYoureDoingTheSameAsMyBigSister:
+SandgemTownCounterpartHouse1F_SameAsMyBigSister:
     BufferPlayerName 0
-    Message SandgemTownCounterpartHouse1F_Text_WowYoureDoingTheSameAsMyBigSister
-    GoTo SandgemTownCounterpartHouse1F_CloseMessageWowYoureDoingTheSameAsMyBigSibling
+    Message SandgemTownCounterpartHouse1F_Text_SameAsMyBigSister
+    GoTo SandgemTownCounterpartHouse1F_CloseMessageSameAsMyBigSibling
 
-SandgemTownCounterpartHouse1F_WowYoureDoingTheSameAsMyBigBrother:
+SandgemTownCounterpartHouse1F_SameAsMyBigBrother:
     BufferPlayerName 0
-    Message SandgemTownCounterpartHouse1F_Text_WowYoureDoingTheSameAsMyBigBrother
-    GoTo SandgemTownCounterpartHouse1F_CloseMessageWowYoureDoingTheSameAsMyBigSibling
+    Message SandgemTownCounterpartHouse1F_Text_SameAsMyBigBrother
+    GoTo SandgemTownCounterpartHouse1F_CloseMessageSameAsMyBigSibling
 
-SandgemTownCounterpartHouse1F_CloseMessageWowYoureDoingTheSameAsMyBigSibling:
+SandgemTownCounterpartHouse1F_CloseMessageSameAsMyBigSibling:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SandgemTownCounterpartHouse1F_TwinNationalDex:
-    GoToIfUnset FLAG_GAME_COMPLETED, SandgemTownCounterpartHouse1F_WowYoureDoingTheSameAsMyBigSibling
+    GoToIfUnset FLAG_GAME_COMPLETED, SandgemTownCounterpartHouse1F_SameAsMyBigSibling
     GoToIfSet FLAG_TALKED_TO_COUNTERPART_SISTER_WITH_NATIONAL_DEX, SandgemTownCounterpartHouse1F_BufferSwarmMapAndSpecies
     SetFlag FLAG_TALKED_TO_COUNTERPART_SISTER_WITH_NATIONAL_DEX
     EnableSwarms
     BufferPlayerName 0
-    Message SandgemTownCounterpartHouse1F_Text_ThereWasNewsSayingThereIsAMassiveOutbreakOfPokemon
+    Message SandgemTownCounterpartHouse1F_Text_MassiveOutbreakOfPokemon
     WaitButton
     CloseMessage
     ReleaseAll
@@ -73,20 +73,20 @@ SandgemTownCounterpartHouse1F_BufferSwarmMapAndSpecies:
     BufferMapName 1, VAR_MAP_LOCAL_1
     BufferSpeciesNameFromVar 2, VAR_MAP_LOCAL_0, 0, 1
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownCounterpartHouse1F_MaleTheresABunchOfThisPokemonAtThatLocation
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, SandgemTownCounterpartHouse1F_FemaleTheresABunchOfThisPokemonAtThatLocation
+    GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownCounterpartHouse1F_BunchOfPokemonAtLocationMale
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, SandgemTownCounterpartHouse1F_BunchOfPokemonAtLocationFemale
     End
 
-SandgemTownCounterpartHouse1F_MaleTheresABunchOfThisPokemonAtThatLocation:
-    Message SandgemTownCounterpartHouse1F_Text_MaleTheresABunchOfThisPokemonAtThatLocation
-    GoTo SandgemTownCounterpartHouse1F_CloseMessageTheresABunchOfThisPokemonAtThatLocation
+SandgemTownCounterpartHouse1F_BunchOfPokemonAtLocationMale:
+    Message SandgemTownCounterpartHouse1F_Text_BunchOfPokemonAtLocationMale
+    GoTo SandgemTownCounterpartHouse1F_CloseMessageBunchOfPokemonAtLocation
 
-SandgemTownCounterpartHouse1F_FemaleTheresABunchOfThisPokemonAtThatLocation:
+SandgemTownCounterpartHouse1F_BunchOfPokemonAtLocationFemale:
     BufferPlayerName 0
-    Message SandgemTownCounterpartHouse1F_Text_FemaleTheresABunchOfThisPokemonAtThatLocation
-    GoTo SandgemTownCounterpartHouse1F_CloseMessageTheresABunchOfThisPokemonAtThatLocation
+    Message SandgemTownCounterpartHouse1F_Text_BunchOfPokemonAtLocationFemale
+    GoTo SandgemTownCounterpartHouse1F_CloseMessageBunchOfPokemonAtLocation
 
-SandgemTownCounterpartHouse1F_CloseMessageTheresABunchOfThisPokemonAtThatLocation:
+SandgemTownCounterpartHouse1F_CloseMessageBunchOfPokemonAtLocation:
     WaitButton
     CloseMessage
     ReleaseAll

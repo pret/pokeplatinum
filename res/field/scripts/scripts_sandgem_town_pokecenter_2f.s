@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 SandgemTownPokecenter2F_Lass:
-    NPCMessage SandgemTownPokecenter2F_Text_WhatKindOfTrainersSignWillGetPeopleLaughing
+    NPCMessage SandgemTownPokecenter2F_Text_WhatWillGetPeopleLaughing
     End
 
     .balign 4, 0
