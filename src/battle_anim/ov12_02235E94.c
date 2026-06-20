@@ -420,7 +420,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
-            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = ov12_0222384C(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
             if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
                 GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
@@ -454,7 +454,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
-            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = ov12_0222384C(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
             if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
                 GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
@@ -488,7 +488,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
-            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = ov12_0222384C(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
             if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
                 GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
@@ -522,7 +522,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
-            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = ov12_0222384C(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
             if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
                 GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
