@@ -2,7 +2,7 @@
   "key": 5135,
   "messages": [
     {
-      "id": "TeamGalacticEternaBuilding4F_Text_IJupiterWillDealWithYou",
+      "id": "TeamGalacticEternaBuilding4F_Text_IWillDealWithYou",
       "en_US": [
         "Eh? Did you want something?\r",
         "How silly of me to even ask.\n",
@@ -31,11 +31,11 @@
       ]
     },
     {
-      "id": "TeamGalacticEternaBuilding4F_Text_ClefairyPi",
+      "id": "TeamGalacticEternaBuilding4F_Text_ClefairyCry",
       "en_US": "CLEFAIRY: Pi..."
     },
     {
-      "id": "TeamGalacticEternaBuilding4F_Text_WhatIsItWithThisTeamGalactic",
+      "id": "TeamGalacticEternaBuilding4F_Text_WhatsWithTeamGalactic",
       "en_US": [
         "What is it with this Team Galactic?\r",
         "Why did they take our Pokémon?\n",
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": "TeamGalacticEternaBuilding4F_Text_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK",
+      "id": "TeamGalacticEternaBuilding4F_Text_ThankYouCruiseByCycleShop",
       "en_US": [
         "I got my CLEFAIRY back, and it’s all\n",
         "thanks to you!\r",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "TeamGalacticEternaBuilding4F_Text_BunearyMyun",
+      "id": "TeamGalacticEternaBuilding4F_Text_BunearyCry",
       "en_US": "BUNEARY: Myun..."
     },
     {

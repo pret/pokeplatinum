@@ -3,14 +3,14 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_0209B75C_decl.h"
+#include "struct_decls/battle_frontier_decl.h"
 
 #include "overlay104/defs.h"
 #include "overlay104/frontier_graphics.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
 
-FrontierScriptManager *FrontierScriptManager_New(UnkStruct_0209B75C *param0, enum HeapID heapID, int scene);
-BOOL ov104_0222E6A8(FrontierScriptManager *scriptMan);
+FrontierScriptManager *FrontierScriptManager_New(BattleFrontier *frontier, enum HeapID heapID, int scene);
+BOOL FrontierScriptManager_RunScript(FrontierScriptManager *scriptMan);
 void FrontierScriptManager_Free(FrontierScriptManager *scriptMan);
 void FrontierScriptManager_Load(FrontierScriptManager *scriptMan, int scene, int offsetID);
 void FrontierScriptManager_UpdateMessageLoader(FrontierScriptManager *scriptMan, int scene, enum HeapID heapID);

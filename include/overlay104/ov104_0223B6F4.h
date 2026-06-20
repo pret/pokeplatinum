@@ -14,7 +14,7 @@
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);
 u8 BattleCastle_GetPlayerPartySize(u8 challengeType, BOOL includePartnersMons);
 u8 BattleCastle_GetOpponentPartySize(u8 challengeType, BOOL param1);
-FieldBattleDTO *FieldBattleDTO_NewBattleCastle(BattleCastle *battleCastle, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *FieldBattleDTO_NewBattleCastle(BattleCastle *battleCastle, FieldFrontierDTO *fieldData);
 u8 BattleCastle_GetOpponentLevel(BattleCastle *battleCastle);
 BOOL BattleCastle_IsMultiPlayerChallenge(u8 challengeType);
 void ov104_0223BA24(Party *param0);

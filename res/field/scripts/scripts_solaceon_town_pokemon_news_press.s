@@ -13,12 +13,12 @@ SolaceonTownPokemonNewsPress_GymGuide:
     LockAll
     FacePlayer
     GoToIfSet FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD, SolaceonTownPokemonNewsPress_TryGiveReward
-    GoToIfSet FLAG_GOT_POKEMON_NEWS_PRESS_REWARD, SolaceonTownPokemonNewsPress_IllHaveAnotherAssignmentTomorrow
-    GoToIfUnset FLAG_TALKED_TO_POKEMON_NEWS_PRESS_GYM_GUIDE, SolaceonTownPokemonNewsPress_YoureTheExpertWeveBeenLookingFor
+    GoToIfSet FLAG_GOT_POKEMON_NEWS_PRESS_REWARD, SolaceonTownPokemonNewsPress_AnotherAssignmentTomorrow
+    GoToIfUnset FLAG_TALKED_TO_POKEMON_NEWS_PRESS_GYM_GUIDE, SolaceonTownPokemonNewsPress_ExpertWeveBeenLookingFor
     GoToIfEq VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0, SolaceonTownPokemonNewsPress_HeresYourAssignment
     GoTo SolaceonTownPokemonNewsPress_CheckBroughtRequestedPokemon
 
-SolaceonTownPokemonNewsPress_YoureTheExpertWeveBeenLookingFor:
+SolaceonTownPokemonNewsPress_ExpertWeveBeenLookingFor:
     SetFlag FLAG_TALKED_TO_POKEMON_NEWS_PRESS_GYM_GUIDE
     Message SolaceonTownPokemonNewsPress_Text_YoureTheExpert
     GoTo SolaceonTownPokemonNewsPress_SetNewsPressRequestedPokemon
@@ -39,9 +39,9 @@ SolaceonTownPokemonNewsPress_SetNewsPressRequestedPokemon:
     End
 
 SolaceonTownPokemonNewsPress_CheckBroughtRequestedPokemon:
-    Message SolaceonTownPokemonNewsPress_Text_DidYouBringUsThePokemon
+    Message SolaceonTownPokemonNewsPress_Text_DidYouBringThePokemon
     GetNewsPressDeadline VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, SolaceonTownPokemonNewsPress_FailedToBringPokemonWithinDeadline
+    GoToIfEq VAR_RESULT, 0, SolaceonTownPokemonNewsPress_FailedAssignment
     CheckPartyHasSpecies VAR_RESULT, VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON
     GoToIfEq VAR_RESULT, FALSE, SolaceonTownPokemonNewsPress_DidntBringPokemonYet
     GoTo SolaceonTownPokemonNewsPress_SetReward
@@ -64,7 +64,7 @@ SolaceonTownPokemonNewsPress_SetReward:
     CallIfEq VAR_RESULT, 11, SolaceonTownPokemonNewsPress_SetRewardQuickBall
     SetVar VAR_0x8005, 3
     CanFitItem ITEM_HEART_SCALE, 1, VAR_RESULT
-    GoToIfNe VAR_RESULT, FALSE, SolaceonTownPokemonNewsPress_GiveRewardIHopeYoullHelpAgainTomorrow
+    GoToIfNe VAR_RESULT, FALSE, SolaceonTownPokemonNewsPress_GiveRewardHelpAgainTomorrow
     SetFlag FLAG_GOT_POKEMON_NEWS_PRESS_REWARD
     GoToIfEq VAR_RESULT, FALSE, SolaceonTownPokemonNewsPress_CouldntGiveReward
     End
@@ -117,7 +117,7 @@ SolaceonTownPokemonNewsPress_SetRewardQuickBall:
     SetVar VAR_0x8004, ITEM_QUICK_BALL
     Return
 
-SolaceonTownPokemonNewsPress_GiveRewardIHopeYoullHelpAgainTomorrow:
+SolaceonTownPokemonNewsPress_GiveRewardHelpAgainTomorrow:
     Common_GiveItemQuantity
     SetVar VAR_0x8004, ITEM_HEART_SCALE
     SetVar VAR_0x8005, 1
@@ -125,14 +125,14 @@ SolaceonTownPokemonNewsPress_GiveRewardIHopeYoullHelpAgainTomorrow:
     ClearFlag FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD
     SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0
     SetFlag FLAG_GOT_POKEMON_NEWS_PRESS_REWARD
-    Message SolaceonTownPokemonNewsPress_Text_IHopeYoullHelpAgainTomorrow
+    Message SolaceonTownPokemonNewsPress_Text_HelpAgainTomorrow
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SolaceonTownPokemonNewsPress_TryGiveReward:
-    GoToIfCannotFitItem ITEM_HEART_SCALE, 1, VAR_RESULT, SolaceonTownPokemonNewsPress_YourBagIsStuffedFull
+    GoToIfCannotFitItem ITEM_HEART_SCALE, 1, VAR_RESULT, SolaceonTownPokemonNewsPress_BagIsFull
     SetVar VAR_0x8004, VAR_POKEMON_NEWS_PRESS_POKE_BALL_REWARD
     SetVar VAR_0x8005, 3
     GoTo SolaceonTownPokemonNewsPress_GiveReward
@@ -141,11 +141,11 @@ SolaceonTownPokemonNewsPress_TryGiveReward:
 SolaceonTownPokemonNewsPress_CouldntGiveReward:
     SetVar VAR_POKEMON_NEWS_PRESS_POKE_BALL_REWARD, VAR_0x8004
     SetFlag FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD
-    GoTo SolaceonTownPokemonNewsPress_YourBagIsStuffedFull
+    GoTo SolaceonTownPokemonNewsPress_BagIsFull
     End
 
-SolaceonTownPokemonNewsPress_YourBagIsStuffedFull:
-    Message SolaceonTownPokemonNewsPress_Text_YourBagIsStuffedFull
+SolaceonTownPokemonNewsPress_BagIsFull:
+    Message SolaceonTownPokemonNewsPress_Text_BagIsFull
     WaitButton
     CloseMessage
     ReleaseAll
@@ -167,22 +167,22 @@ SolaceonTownPokemonNewsPress_DidntBringPokemonYet:
     BufferSpeciesNameFromVar 0, VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0, 0
     GetNewsPressDeadline VAR_RESULT
     BufferNumber 1, VAR_RESULT
-    Message SolaceonTownPokemonNewsPress_Text_StillHaventCaughtThePokemon
+    Message SolaceonTownPokemonNewsPress_Text_StillHaventCaughtPokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-SolaceonTownPokemonNewsPress_FailedToBringPokemonWithinDeadline:
-    Message SolaceonTownPokemonNewsPress_Text_FailedToBringThePokemon
+SolaceonTownPokemonNewsPress_FailedAssignment:
+    Message SolaceonTownPokemonNewsPress_Text_FailedToBringPokemon
     SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-SolaceonTownPokemonNewsPress_IllHaveAnotherAssignmentTomorrow:
-    Message SolaceonTownPokemonNewsPress_Text_IllHaveAnotherAssignmentTomorrow
+SolaceonTownPokemonNewsPress_AnotherAssignmentTomorrow:
+    Message SolaceonTownPokemonNewsPress_Text_AnotherAssignmentTomorrow
     WaitButton
     CloseMessage
     ReleaseAll

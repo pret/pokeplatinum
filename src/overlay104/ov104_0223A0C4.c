@@ -630,7 +630,6 @@ static const UnkStruct_ov104_0223FCB4 Unk_ov104_0223FCB4[] = {
 
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto);
 void BattleTower_CreateWiFiTrainerParty(SaveData *saveData, FrontierDataDTO *dto, const u8 opponentID);
-FieldBattleDTO *FieldBattleDTO_NewBattleTower(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1);
 void ov104_0223A734(BattleTower *battleTower, u16 param1);
 u16 ov104_0223A750(BattleTower *battleTower, const u16 *param1);
 int BattleTower_GetPokemonDataNarcID(u8 challengeMode);
@@ -889,15 +888,15 @@ static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, Frontie
     return randomPersonality;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewBattleTower(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *FieldBattleDTO_NewBattleTower(BattleTower *battleTower, FieldFrontierDTO *fieldData)
 {
     int i;
 
     FieldBattleDTO *dto = FieldBattleDTO_New(battleTower->heapID, BattleTower_GetBattleTypeFromChallengeMode(battleTower->challengeMode));
-    SaveData *saveData = param1->saveData;
+    SaveData *saveData = fieldData->saveData;
     Party *party = SaveData_GetParty(saveData);
 
-    FieldBattleDTO_InitFromGameState(dto, NULL, param1->saveData, param1->mapHeaderID, param1->journalEntry, param1->bagCursor, param1->subscreenCursorOn);
+    FieldBattleDTO_InitFromGameState(dto, NULL, fieldData->saveData, fieldData->mapHeaderID, fieldData->journalEntry, fieldData->bagCursor, fieldData->subscreenCursorOn);
 
     dto->background = BACKGROUND_BATTLE_TOWER;
     dto->terrain = TERRAIN_BATTLE_TOWER;

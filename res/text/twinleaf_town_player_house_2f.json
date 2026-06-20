@@ -2,7 +2,7 @@
   "key": 9234,
   "messages": [
     {
-      "id": "TwinleafTownPlayerHouse2F_Text_ThatConcludesOurSpecialProgram",
+      "id": "TwinleafTownPlayerHouse2F_Text_ConcludesSpecialProgram",
       "en_US": [
         "That concludes our special program,\n",
         "“Let’s Ask Prof. Rowan!”\r",
@@ -18,11 +18,11 @@
       ]
     },
     {
-      "id": "TwinleafTownPlayerHouse2F_Text_MomBoughThisTVAsAGift",
+      "id": "TwinleafTownPlayerHouse2F_Text_MomBoughtTVAsGift",
       "en_US": "Mom bought this TV as a gift."
     },
     {
-      "id": "TwinleafTownPlayerHouse2F_Text_TheXButtonOpensTheMenu",
+      "id": "TwinleafTownPlayerHouse2F_Text_XButtonOpensMenu",
       "en_US": [
         "The X Button\n",
         "opens the menu!"
@@ -51,7 +51,7 @@
       "en_US": "{STRVAR_1 3, 0, 0}: There you are!\r"
     },
     {
-      "id": "TwinleafTownPlayerHouse2F_Text_ProfRowanWouldGiveUsPokemon",
+      "id": "TwinleafTownPlayerHouse2F_Text_ProfRowanWouldGivePokemon",
       "en_US": [
         "Hey, {STRVAR_1 3, 1, 0}!\n",
         "Did you just see the TV? Sure you did!\r",
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "TwinleafTownPlayerHouse2F_Text_WereGoingToSeeProfRowanAndGetPokemon",
+      "id": "TwinleafTownPlayerHouse2F_Text_SeeProfRowanAndGetPokemon",
       "en_US": [
         "Oh, right, right! We’re going to go see\n",
         "Prof. Rowan and get some Pokémon.\r",

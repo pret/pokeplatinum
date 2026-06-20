@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "constants/battle_frontier.h"
 #include "res/field/events/events_battle_tower_elevator.h"
 #include "generated/object_events_gfx.h"
 
@@ -45,7 +46,7 @@ BattleTowerElevator_BattleRoomCheckWiFi:
     GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_WIFI, BattleTowerElevator_WiFiBattleRoom
     GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_5, BattleTowerElevator_WiFiBattleRoom
     WaitForTransition
-    ScrCmd_2C4 5
+    LaunchBattleFrontierScene FRONTIER_SCENE_TOWER_CORRIDOR
     ReturnToField
     Warp MAP_HEADER_BATTLE_TOWER, 15, 6, DIR_NORTH
     End
@@ -54,7 +55,7 @@ BattleTowerElevator_MultiBattleRoom:
     FadeScreenOut
     WaitFadeScreen
     WaitForTransition
-    ScrCmd_2C4 6
+    LaunchBattleFrontierScene FRONTIER_SCENE_TOWER_MULTI_CORRIDOR
     ReturnToField
     Warp MAP_HEADER_BATTLE_TOWER, 11, 6, DIR_NORTH
     End
@@ -139,7 +140,7 @@ BattleTowerElevator_Movement_PlayerExit:
 
 BattleTowerElevator_WiFiBattleRoom:
     WaitForTransition
-    ScrCmd_2C4 5
+    LaunchBattleFrontierScene FRONTIER_SCENE_TOWER_CORRIDOR
     ReturnToField
     Warp MAP_HEADER_BATTLE_TOWER, 19, 6, DIR_NORTH
     End

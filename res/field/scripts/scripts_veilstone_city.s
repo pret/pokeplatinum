@@ -993,30 +993,30 @@ VeilstoneCity_BattleGirl2:
 
 VeilstoneCity_CoordEvent_GruntBlockWarehouse:
     LockAll
-    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_NORTH, VeilstoneCity_Grunt_FaceSouth
-    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Player_FaceNorth
+    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_NORTH, VeilstoneCity_Movement_GruntFaceSouth
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerFaceNorth
     WaitMovement
     Message VeilstoneCity_Text_ThisIsGalacticsWarehouse
     CloseMessage
-    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_NORTH, VeilstoneCity_Grunt_PushPlayerBack
-    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Player_GetPushed
+    ApplyMovement LOCALID_GRUNT_M_WAREHOUSE_NORTH, VeilstoneCity_Movement_GruntPushPlayerBack
+    ApplyMovement LOCALID_PLAYER, VeilstoneCity_Movement_PlayerGetPushed
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
-VeilstoneCity_Player_FaceNorth:
+VeilstoneCity_Movement_PlayerFaceNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-VeilstoneCity_Grunt_FaceSouth:
+VeilstoneCity_Movement_GruntFaceSouth:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-VeilstoneCity_Grunt_PushPlayerBack:
+VeilstoneCity_Movement_GruntPushPlayerBack:
     WalkFastSouth
     WalkOnSpotNormalWest
     Delay8 2
@@ -1025,7 +1025,7 @@ VeilstoneCity_Grunt_PushPlayerBack:
     EndMovement
 
     .balign 4, 0
-VeilstoneCity_Player_GetPushed:
+VeilstoneCity_Movement_PlayerGetPushed:
     WalkNormalWest
     EndMovement
 

@@ -28,14 +28,14 @@
     .short FRSCRCMD_02
     .endm
 
-    .macro FrontierScrCmd_03 arg0
+    .macro FrontierScrCmd_03 sceneID
     .short FRSCRCMD_03
-    .short \arg0
+    .short \sceneID
     .endm
 
-    .macro FrontierScrCmd_04 arg0, arg1
+    .macro FrontierScrCmd_04 sceneID, arg1
     .short FRSCRCMD_04
-    .short \arg0
+    .short \sceneID
     .short \arg1
     .endm
 

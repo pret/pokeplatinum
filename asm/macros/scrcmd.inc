@@ -4227,9 +4227,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_2C4 arg0
-    .short SCRCMD_2C4
-    .byte \arg0
+    .macro LaunchBattleFrontierScene sceneID
+    .short SCRCMD_LAUNCHBATTLEFRONTIERSCENE
+    .byte \sceneID
     .endm
 
     .macro ScrCmd_2C5 arg0, arg1

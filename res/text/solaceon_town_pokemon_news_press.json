@@ -35,7 +35,7 @@
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_DidYouBringUsThePokemon",
+      "id": "SolaceonTownPokemonNewsPress_Text_DidYouBringThePokemon",
       "en_US": [
         "What’s up? Did you bring us\n",
         "the Pokémon we needed?\r"
@@ -57,14 +57,14 @@
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_IHopeYoullHelpAgainTomorrow",
+      "id": "SolaceonTownPokemonNewsPress_Text_HelpAgainTomorrow",
       "en_US": [
         "You really came through for us!\n",
         "I hope you’ll help us again tomorrow!"
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_YourBagIsStuffedFull",
+      "id": "SolaceonTownPokemonNewsPress_Text_BagIsFull",
       "en_US": [
         "Whoops! What’s all this?\n",
         "Your Bag is stuffed full.\r",
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_StillHaventCaughtThePokemon",
+      "id": "SolaceonTownPokemonNewsPress_Text_StillHaventCaughtPokemon",
       "en_US": [
         "What’s wrong? You still haven’t\n",
         "caught the {STRVAR_1 0, 0, 0} we need?\r",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_FailedToBringThePokemon",
+      "id": "SolaceonTownPokemonNewsPress_Text_FailedToBringPokemon",
       "en_US": [
         "Now, now! You failed to bring me the\n",
         "Pokémon I asked for...\r",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "SolaceonTownPokemonNewsPress_Text_IllHaveAnotherAssignmentTomorrow",
+      "id": "SolaceonTownPokemonNewsPress_Text_AnotherAssignmentTomorrow",
       "en_US": [
         "OK! I’ll crank out a riveting story\n",
         "based on this!\r",

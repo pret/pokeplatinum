@@ -12,7 +12,7 @@
 
 BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierDataDTO *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param6, enum HeapID heapID);
 void BattleTower_CreateWiFiTrainerParty(SaveData *saveData, FrontierDataDTO *dto, const u8 opponentID);
-FieldBattleDTO *FieldBattleDTO_NewBattleTower(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *FieldBattleDTO_NewBattleTower(BattleTower *battleTower, FieldFrontierDTO *fieldData);
 void ov104_0223A734(BattleTower *battleTower, u16 param1);
 u16 ov104_0223A750(BattleTower *battleTower, const u16 *param1);
 int BattleTower_GetTrainerMessagesBankID(u8 challengeMode);

@@ -4,15 +4,15 @@
 #include "res/field/events/events_underground.h"
 
 
-    ScriptEntry Underground_SetVendorPositions
-    ScriptEntry Underground_SetRoarkPositionIfFirstEntry
+    ScriptEntry Underground_OnTransition
+    ScriptEntry Underground_OnResume
     ScriptEntry Underground_TrapsVendor_Unused
     ScriptEntry Underground_GoodsVendor_Unused
     ScriptEntry Underground_TreasuresVendor_Unused // see UndergroundVendors_StartShopMenuTask for the actual code that handles these
-    ScriptEntry Underground_RoarkIntro
+    ScriptEntry Underground_OnFrame_RoarkIntro
     ScriptEntryEnd
 
-Underground_SetVendorPositions:
+Underground_OnTransition:
     Dummy14F
     SetObjectEventPos LOCALID_GOODS_VENDOR_1, 72, 104
     SetObjectEventPos LOCALID_GOODS_VENDOR_2, 424, 87
@@ -36,7 +36,7 @@ Underground_SetVendorPositions:
     SetObjectEventPos LOCALID_TREASURES_VENDOR_4, 40, 72
     End
 
-Underground_SetRoarkPositionIfFirstEntry:
+Underground_OnResume:
     GoToIfEq VAR_HAS_SEEN_UNDERGROUND_ROARK_INTRO, 0, Underground_PutRoarkNextToPlayer
     End
 
@@ -170,7 +170,7 @@ Underground_TreasuresVendorNeedAnythingElse_Unused:
     GoTo Underground_TreasuresVendorShopMenu_Unused
     End
 
-Underground_RoarkIntro:
+Underground_OnFrame_RoarkIntro:
     ApplyMovement LOCALID_ROARK, Underground_Movement_RoarkNoticePlayer
     WaitMovement
     SetCommPlayerDir DIR_EAST

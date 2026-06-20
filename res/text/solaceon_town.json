@@ -39,14 +39,14 @@
       ]
     },
     {
-      "id": "SolaceonTown_Text_TakeItEasySlowAndCasual",
+      "id": "SolaceonTown_Text_TakeItEasy",
       "en_US": [
         "Howdy, traveling Trainer.\n",
         "Take it easy, slow, and casual."
       ]
     },
     {
-      "id": "SolaceonTown_Text_TakeATourThroughTheRuins",
+      "id": "SolaceonTown_Text_TakeATour",
       "en_US": [
         "Howdy, traveling Trainer.\n",
         "There’s nothing here.\r",
@@ -66,14 +66,14 @@
       ]
     },
     {
-      "id": "SolaceonTown_Text_EverySundayIVisitTheLostTower",
+      "id": "SolaceonTown_Text_IVisitTheLostTower",
       "en_US": [
         "Every Sunday, I visit the Lost\n",
         "Tower..."
       ]
     },
     {
-      "id": "SolaceonTown_Text_OverTimeTheTownCameToBe",
+      "id": "SolaceonTown_Text_UsedToBeNothing",
       "en_US": [
         "There used to be nothing here but\n",
         "a road that went straight through.\r",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "SolaceonTown_Text_IfYoureCompetentYoudHaveMetFiftyPokemon",
+      "id": "SolaceonTown_Text_IfCompetentMetFiftyPokemon",
       "en_US": [
         "A traveling Trainer, huh?\r",
         "Tell me, how many kinds of Pokémon\n",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "SolaceonTown_Text_ThisHeresAPoketchAppPokemonHistory",
+      "id": "SolaceonTown_Text_PoketchAppPokemonHistory",
       "en_US": [
         "Your encounters with Pokémon can\n",
         "be considered your shared history.\r",
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "SolaceonTown_Text_EachPokemonHasItsOwnHistory",
+      "id": "SolaceonTown_Text_EachPokemonOwnHistory",
       "en_US": [
         "You have your history, and each\n",
         "Pokémon has its own history.\r",

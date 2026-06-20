@@ -21,6 +21,7 @@
 #include "overlay104/struct_ov104_0223319C.h"
 #include "overlay104/struct_ov104_022331E8.h"
 
+#include "battle_frontier.h"
 #include "bg_window.h"
 #include "character_sprite.h"
 #include "easy_chat_sentence.h"
@@ -49,7 +50,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0209B6F8.h"
 
 #define LIST_MENU_ENTRY_NO_ALT_TEXT 0xFF
 #define LIST_MENU_BUILDER_HEADER    0xFA
@@ -95,9 +95,9 @@ void FrontierShowMessage(FrontierScriptManager *scriptMan, const MessageLoader *
 
     if (msgOptions == NULL) {
         FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(scriptMan);
-        UnkStruct_ov104_02230BE4 *v4 = sub_0209B970(graphics->unk_08);
+        FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(graphics->frontier);
 
-        renderDelay = Options_TextFrameDelay(v4->options);
+        renderDelay = Options_TextFrameDelay(fieldData->options);
         autoScroll = AUTO_SCROLL_DISABLED;
         font = FONT_MESSAGE;
     } else {
@@ -952,7 +952,7 @@ void ov104_022330FC(FrontierScriptContext *ctx, u16 *args)
 void ov104_0223310C(FrontierScriptContext *ctx, u16 *args, u32 bankID)
 {
     MessageLoader *msgLoader;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
     if (args[0] == 0xFFFF) {
         msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
@@ -960,7 +960,7 @@ void ov104_0223310C(FrontierScriptContext *ctx, u16 *args, u32 bankID)
         FrontierShowMessage(ctx->scriptMan, msgLoader, args[1], 1, NULL);
         MessageLoader_Free(msgLoader);
     } else {
-        u8 frameDelay = Options_TextFrameDelay(SaveData_GetOptions(v2->saveData));
+        u8 frameDelay = Options_TextFrameDelay(SaveData_GetOptions(fieldData->saveData));
         ShowSentence(ctx->scriptMan, frameDelay, args[0], args[1], args[2], args[3], TRUE);
     }
 
