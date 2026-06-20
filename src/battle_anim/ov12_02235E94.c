@@ -690,7 +690,7 @@ static void ov12_0223646C(BallCapsuleSealEffect *ballCapSealEff, SPLEmitterCallb
 
 static void ov12_02236520(int param0, VecFx32 *param1)
 {
-    ov12_02235758(param0, param1, 0, 1);
+    BattleAnimUtil_GetBattlerTypeWorldPos(param0, param1, 0, 1);
 
     {
         int v0;

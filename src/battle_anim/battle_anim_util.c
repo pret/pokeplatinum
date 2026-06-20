@@ -35,13 +35,12 @@ enum WorldPosType {
     WORLD_POS_TYPE_COUNT,
 };
 
-void ov17_022413D8(void);
-void include_unk_ov12_0223A218(VecFx32 *dummy);
+void include_sParticleCameraEye(VecFx32 *dummy);
 
-static const VecFx32 Unk_ov12_0223A218 = {
-    0x1700,
-    0x4D00,
-    -0x1000
+static const VecFx32 sParticleCameraEye = {
+    0x1700, // 1.4375
+    0x4D00, // 4.8125
+    -0x1000 // -1.0
 };
 
 static const VecFx32 sUnitDown = {
@@ -50,9 +49,9 @@ static const VecFx32 sUnitDown = {
     0x0
 };
 
-void include_unk_ov12_0223A218(VecFx32 *dummy)
+void include_sParticleCameraEye(VecFx32 *dummy)
 {
-    *dummy = Unk_ov12_0223A218;
+    *dummy = sParticleCameraEye;
 }
 
 int BattleAnimUtil_GetBattlerType(BattleAnimSystem *system, int battler)
@@ -566,9 +565,9 @@ void BattleAnimUtil_GetParticleViewportTopPosition(VecFx32 *pos)
     pos->z = 0;
 }
 
-void ov12_02235758(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos(int battlerType, VecFx32 *pos, int isContest, int projection)
 {
-    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(param0, param1, param2, param3);
+    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(battlerType, pos, isContest, projection);
 }
 
 // Gets the "up" vector for a given battler to apply to a particle system camera.
@@ -686,7 +685,7 @@ void BattleAnimSystem_GetCommonData(BattleAnimSystem *system, BattleAnimScriptFu
     common->state = 0;
     common->counter1 = 0;
     common->counter2 = 0;
-    common->unk_03 = 0;
+    common->unused_03 = 0;
     common->battleAnimSys = system;
     common->spriteSystem = BattleAnimSystem_GetSpriteSystem(system);
     common->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(system);

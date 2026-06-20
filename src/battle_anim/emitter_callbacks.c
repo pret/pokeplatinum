@@ -19,13 +19,13 @@
 
 static s8 BattleParticleUtil_GetSignFromBattler(BattleAnimSystem *param0, int param1, int param2);
 
-static const VecFx32 Unk_ov12_0223A218 = {
-    0x1700,
-    0x4D00,
-    -0x1000
+static const VecFx32 sParticleCameraEye = {
+    0x1700, // 1.4375
+    0x4D00, // 4.8125
+    -0x1000 // -1.0
 };
 
-static const VecFx32 Unk_ov12_0223A224 = {
+static const VecFx32 sParticleCameraUp = {
     0x0,
     -FX32_ONE,
     0x0
