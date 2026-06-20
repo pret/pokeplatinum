@@ -646,7 +646,7 @@ static void BattleAnimTask_Snatch(SysTask *task, void *param)
                 BattlerSpriteContext battlerSpriteCtx;
 
                 if (ctx->doRev == FALSE) {
-                    ov12_02220590(ctx->common.battleAnimSys, &battlerSpriteCtx, 3);
+                    BattlerSpriteContext_InitFromSystem(ctx->common.battleAnimSys, &battlerSpriteCtx, 3);
 
                     if (ctx->iteration == 2) {
                         ov12_022382BC(&battlerSpriteCtx, BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys));

@@ -77,7 +77,7 @@ enum BattleAnimAnchorType {
     BATTLE_ANIM_ANCHOR_TOP,
 };
 
-typedef struct AngleLerpContext {
+typedef struct ValueLerpContext {
     s32 value;
     s32 data[4];
 } ValueLerpContext;
@@ -118,7 +118,7 @@ typedef struct VBlankDMAController {
     BOOL swapBuffers;
     VBlankDMAFunc dmaFunc;
     VBlankDMAFunc swapBufferFunc;
-    void *param;
+    void *userData;
 } VBlankDMAController;
 
 struct CustomBgScrollContext {
@@ -165,7 +165,7 @@ u8 BattleAnimUtil_GetSpritePalette(ManagedSprite *sprite);
 int BattleAnimUtil_GetTransformDirectionX(BattleAnimSystem *system, int battler);
 int BattleAnimUtil_GetTransformDirectionY(BattleAnimSystem *system, int battler);
 fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps);
-u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2);
+u32 CalcStepCount(fx32 start, fx32 end, fx32 stepSize);
 void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *ctx, ManagedSprite *sprite, s16 cx, s16 cy);
 void ScaleLerpContext_ApplyToSprite(XYTransformContext *ctx, ManagedSprite *sprite);
 void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *ctx, PokemonSprite *sprite, s16 cx, s16 cy);
@@ -173,7 +173,7 @@ void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *ctx, PokemonSpri
 #define PosLerpContext_Apply    XYTransformContext_ApplyPosOffsetToMon
 void ScaleLerpContext_ApplyToMon(XYTransformContext *ctx, PokemonSprite *sprite);
 void RevolutionContext_Init(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, int steps);
-void ov12_02225A8C(XYTransformContext *ctx, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7);
+void RevolutionContext_InitByStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSize);
 BOOL RevolutionContext_Update(XYTransformContext *ctx);
 BOOL RevolutionContext_UpdateAndApplyToSprite(XYTransformContext *ctx, s16 cx, s16 cy, ManagedSprite *sprite);
 BOOL RevolutionContext_UpdateAndApplyToMon(XYTransformContext *ctx, s16 cx, s16 cy, PokemonSprite *sprite);
@@ -181,15 +181,15 @@ void PosLerpContext_Init(XYTransformContext *ctx, s16 sx, s16 ex, s16 sy, s16 ey
 BOOL PosLerpContext_Update(XYTransformContext *ctx);
 BOOL PosLerpContext_UpdateAndApplyToSprite(XYTransformContext *ctx, ManagedSprite *sprite);
 BOOL PosLerpContext_UpdateAndApplyToMon(XYTransformContext *ctx, PokemonSprite *sprite);
-void XYTransformContext_InitParabolic(XYTransformContext *linear, XYTransformContext *revs, s16 sx, s16 ex, s16 sy, s16 ey, u16 frames, fx32 r);
+void XYTransformContext_InitParabolic(XYTransformContext *linear, XYTransformContext *revs, s16 sx, s16 ex, s16 sy, s16 ey, u16 frames, fx32 arcRadius);
 BOOL XYTransformContext_UpdateParabolic(XYTransformContext *ctx, XYTransformContext *revs);
-BOOL ov12_02225D2C(XYTransformContext *ctx, XYTransformContext *revs, ManagedSprite *sprite);
+BOOL XYTransformContext_UpdateParabolicAndApplyToSprite(XYTransformContext *ctx, XYTransformContext *revs, ManagedSprite *sprite);
 void ValueLerpContext_Init(ValueLerpContext *ctx, s32 start, s32 end, u32 steps);
 void ValueLerpContext_InitFX32(ValueLerpContext *ctx, s16 start, s16 end, u32 steps); // Uses FX32 internally
 BOOL ValueLerpContext_Update(ValueLerpContext *ctx);
 BOOL ValueLerpContext_UpdateFX32(ValueLerpContext *ctx);
-void AngleLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 r, u32 steps);
-BOOL AngleLerpContext_UpdateCos(ValueLerpContext *ctx);
+void ValueLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps);
+BOOL ValueLerpContext_UpdateCos(ValueLerpContext *ctx);
 void ScaleLerpContext_Init(XYTransformContext *ctx, s16 startScale, s16 refScale, s16 endScale, u32 steps);
 BOOL ScaleLerpContext_Update(XYTransformContext *ctx);
 void ScaleLerpContext_InitXY(XYTransformContext *ctx, s16 sx, s16 ex, s16 sy, s16 ey, s16 ref, u32 steps);
@@ -207,7 +207,7 @@ BOOL ShakeContext_UpdateAndApplyToMon(XYTransformContext *ctx, s16 cx, s16 cy, P
 void Afterimage_Init(AfterimageContext *ctx, XYTransformContext *transformCtx, XYTransformFunc transformFunc, s16 x, s16 y, u16 delay, u8 count, u8 mode, ManagedSprite *sprite0, ManagedSprite *sprite1, ManagedSprite *sprite2, ManagedSprite *sprite3);
 BOOL Afterimage_Update(AfterimageContext *ctx);
 void RevolutionContext_InitOvalRevolutions(XYTransformContext *ctx, int revs, int stepsPerRev);
-void AlphaFadeContext_Init(AlphaFadeContext *ctx, s16 sev1, s16 eev1, s16 sev2, s16 eev2, int steps);
+void AlphaFadeContext_Init(AlphaFadeContext *ctx, s16 startEv1, s16 endEv1, s16 startEv2, s16 endEv2, int steps);
 BOOL AlphaFadeContext_IsDone(const AlphaFadeContext *ctx);
 CustomBgScrollContext *CustomBgScrollContext_New(u32 offsetReg, u32 initValue, enum HeapID heapID);
 void CustomBgScrollContext_Free(CustomBgScrollContext *ctx);
@@ -219,14 +219,14 @@ void *BgScrollContext_GetWriteBuffer(const BgScrollContext *ctx);
 void BgScrollContext_Stop(BgScrollContext *ctx);
 u32 BattleAnimUtil_MakeBgOffsetValue(u16 x, u16 y);
 u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID);
-void ov12_02226728(s16 param0, s16 param1, s16 param2, s16 param3, s16 *param4, s16 *param5);
-void ov12_02226744(s16 param0, s16 param1, s16 param2, s16 param3, fx32 *param4);
-void ov12_0222676C(s16 param0, s16 param1, s16 param2, s16 param3, u16 *param4);
-BOOL ov12_022267A8(int *param0, int param1, s32 param2);
+void CalcMidpoint(s16 x0, s16 y0, s16 x1, s16 y1, s16 *outMidX, s16 *outMidY);
+void CalcDistance(s16 x0, s16 y0, s16 x1, s16 y1, fx32 *outDist);
+void CalcAngle(s16 x0, s16 y0, s16 x1, s16 y1, u16 *outAngle);
+BOOL StepToward(int *value, int target, s32 step);
 BOOL PaletteFadeContext_IsActive(PaletteFadeContext *ctx);
 void PaletteFadeContext_Free(PaletteFadeContext *ctx);
 PaletteFadeContext *PaletteFadeContext_New(PaletteData *paletteData, enum HeapID heapID, enum PaletteBufferID bufferID, u16 index, u16 count, s8 stepFrames, s8 step, u8 startFrac, u8 endFrac, u16 color, int priority);
-void BattleAnimUtil_MakeBgPalsGrayscale(BattleAnimSystem *ctx);
-void BattleAnimUtil_ReturnBgPalsToNormal(BattleAnimSystem *ctx);
+void BattleAnimUtil_MakeBgPalsGrayscale(BattleAnimSystem *system);
+void BattleAnimUtil_ReturnBgPalsToNormal(BattleAnimSystem *system);
 
 #endif // POKEPLATINUM_BATTLE_ANIM_HELPERS_H
