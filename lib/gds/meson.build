@@ -35,7 +35,7 @@ libgds = static_library('gds',
     sources: libgds_srcs,
     include_directories: [public_includes, libgds_public_includes],
     dependencies: [nitrosdk_dep, nitrosystem_dep, nitrowifi_dep, nitrodwc_dep],
-    pic: false,
-    native: true
+    pic: true,
+    native: (build_target == 'linux' or build_target == 'win64')
 )
 endif

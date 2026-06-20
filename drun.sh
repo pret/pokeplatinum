@@ -40,6 +40,7 @@ mkdir -p ./.fontconfig_cache
 if [ $INTERACTIVE -eq 1 ]; then
 docker run -it --user $(id -u):$(id -g) \
            --env DISPLAY=$DISPLAY \
+           --env DEVKITPRO=/opt/devkitpro \
            -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
            --device /dev/fuse \
            --cap-add SYS_ADMIN \
@@ -51,6 +52,7 @@ fi
 # Run command in container
 docker run --user $(id -u):$(id -g) \
            --env DISPLAY=$DISPLAY \
+           --env DEVKITPRO=/opt/devkitpro \
            -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
            --device /dev/fuse \
            --cap-add SYS_ADMIN \

@@ -2,6 +2,7 @@
 /build/
 /build_linux/
 /build_win64/
+/build_nx/
 
 # MSys2
 /msys2/

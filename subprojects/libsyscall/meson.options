@@ -1,1 +1,1 @@
-option('build_target', type: 'combo', choices: ['arm', 'win64', 'linux'], value: 'arm', description: 'Target build platform', yield: true)
+option('build_target', type: 'combo', choices: ['arm', 'win64', 'linux', 'nx'], value: 'arm', description: 'Target build platform', yield: true)

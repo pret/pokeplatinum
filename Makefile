@@ -34,9 +34,11 @@ GIT ?= git
 BUILD ?= build
 BUILD_LINUX ?= $(BUILD)_linux
 BUILD_WIN64 ?= $(BUILD)_win64
+BUILD_NX ?= $(BUILD)_nx
 ROOT_INI := $(BUILD)/root.ini
 ROOT_INI_LINUX := $(BUILD_LINUX)/root.ini
 ROOT_INI_WIN64 := $(BUILD_WIN64)/root.ini
+ROOT_INI_NX := $(BUILD_NX)/root.ini
 
 UNAME_R := $(shell uname -r)
 UNAME_S := $(shell uname -s)
@@ -121,6 +123,9 @@ linux: $(BUILD_LINUX)/build.ninja
 win64: $(BUILD_WIN64)/build.ninja
 	$(MESON) compile -C $(BUILD_WIN64)
 
+nx: $(BUILD_NX)/build.ninja
+	$(MESON) compile -C $(BUILD_NX)
+
 clean: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) --clean
 	rm -rf $(BUILD)/res
@@ -179,6 +184,15 @@ $(BUILD_WIN64)/build.ninja: $(ROOT_INI_WIN64) | $(BUILD_WIN64) $(SKREW_EXE) meso
 		--cross-file=$(ROOT_INI_WIN64) \
 		-- $(BUILD_WIN64)
 
+$(BUILD_NX)/build.ninja: $(ROOT_INI_NX) | $(BUILD_NX) $(SKREW_EXE) meson
+	$(MESON) setup \
+		-Dbuild_target=nx \
+		--native-file=meson/$(NATIVE) \
+		--native-file=$(ROOT_INI_NX) \
+		--cross-file=meson/cross_nx.ini \
+		--cross-file=$(ROOT_INI_NX) \
+		-- $(BUILD_NX)
+
 $(ROOT_INI): | $(BUILD)
 	echo "[constants]" > $@
 	echo "root = '$$PWD'" >> $@
@@ -191,6 +205,10 @@ $(ROOT_INI_WIN64): | $(BUILD_WIN64)
 	echo "[constants]" > $@
 	echo "root = '$$PWD'" >> $@
 
+$(ROOT_INI_NX): | $(BUILD_NX)
+	echo "[constants]" > $@
+	echo "root = '$$PWD'" >> $@
+
 $(BUILD):
 	mkdir -p -- $(BUILD)
 
@@ -198,7 +216,10 @@ $(BUILD_LINUX):
 	mkdir -p -- $(BUILD_LINUX)
 
 $(BUILD_WIN64):
-	mkdir -p -- $(BUILD_WIN64) 
+	mkdir -p -- $(BUILD_WIN64)
+
+$(BUILD_NX):
+	mkdir -p -- $(BUILD_NX) 
 
 meson: ;
 ifeq ($(MESON),$(MESON_SUB))

@@ -69,17 +69,10 @@ else
 endif
 endif
 
-if (build_target == 'arm')
 add_global_arguments(c_args,
     language: 'c',
-    native: false
+    native: (build_target == 'linux' or build_target == 'win64')
 )
-else
-add_global_arguments(c_args,
-    language: 'c',
-    native: true
-)
-endif
 
 pokeplatinum_args = [
     '-DPM_KEEP_ASSERTS',
@@ -91,6 +84,10 @@ if(build_target != 'arm')
     pokeplatinum_args += [
         '-std=c99'
     ]
+endif
+
+if(build_target == 'nx')
+    pokeplatinum_args += '-fPIC'
 endif
 
 if get_option('gdb_debugging')
@@ -122,6 +119,16 @@ link_args = [
     '-m', '_start',
     '-force_active', 'DGTi_hash2_arm4_small',
     '-sym', 'on'
+]
+elif (build_target == 'nx')
+link_args = [
+    '-specs=/opt/devkitpro/libnx/switch.specs',
+    '-g',
+    '-march=armv8-a+crc+crypto',
+    '-mtune=cortex-a56',
+    '-mtp=soft',
+    '-fPIE',
+    '--verbose'
 ]
 else
 link_args = [
@@ -213,6 +220,38 @@ trainer_ai_o = custom_target(
         '@INPUT@',
     ],
     depfile: '@BASENAME@.d',
+)
+elif(build_target == 'nx')
+trainer_ai_ss = custom_target(
+    'trainer_ai_script.ss',
+    output: 'trainer_ai_script.ss',
+    input: files('src/battle/trainer_ai/script.s'),
+    command: [
+        'gcc',
+        '-D__ASSEMBLER__',
+        '-I', meson.global_source_root() / 'asm',
+        '-I', meson.global_build_root(),
+        '-I', meson.global_source_root() / 'include',
+        '-MD', '-MF', '@DEPFILE@',
+        '-E', '-nostdinc', '-'
+    ],
+    depfile: '@BASENAME@.d',
+    capture: true,
+    feed: true
+)
+
+trainer_ai_o = custom_target(
+    'trainer_ai_script.o',
+    output: 'trainer_ai_script.o',
+    input: trainer_ai_ss,
+    command: [
+        '/opt/devkitpro/devkitA64/bin/aarch64-none-elf-as',
+        '-I', meson.global_source_root() / 'asm',
+        '-I', meson.global_build_root(),
+        '-o', '@OUTPUT@',
+        '@INPUT@',
+    ],
+    depfile: '@BASENAME@.d'
 )
 else
 trainer_ai_ss = custom_target(
@@ -378,6 +417,47 @@ main = executable('main',
     ],
     link_depends: main_lcf,
     native: true
+)
+endif
+if (build_target == 'nx')
+main = executable('main',
+    sources: [
+        pokeplatinum_c,
+        c_consts_generators,
+        naix_headers,
+        h_headers,
+        embed_headers,
+    ],
+    objects: trainer_ai_o,
+    c_args: [
+        pokeplatinum_args,
+    ],
+    c_pch: 'include/pch/global_pch.h',
+    include_directories: [
+        public_includes,
+        libcrypto_public_includes,
+        libgds_public_includes,
+        libspl_public_includes,
+        ppw_public_includes,
+    ],
+    dependencies: [
+        nitrosdk_dep,
+        nitrosystem_dep,
+        nitrowifi_dep,
+        nitrodwc_dep,
+        libvct_dep,
+    ],
+    link_with: [
+        libspl,
+        libcrypto_ov97,
+        libcrypto_static,
+        libgds
+    ],
+    link_args: [
+        link_args,
+    ],
+    link_depends: main_lcf,
+    native: false
 )
 endif
 

@@ -46,7 +46,7 @@ libcrypto_ov97 = static_library('crypto_ov97',
     include_directories: libcrypto_public_includes,
     dependencies: nitrosdk_dep
 )
-else
+elif (build_target == 'linux' or build_target == 'win64')
 libcrypto_static = static_library('crypto_static',
     sources: libcrypto_static_srcs,
     pic: false,
@@ -61,5 +61,21 @@ libcrypto_ov97 = static_library('crypto_ov97',
     include_directories: libcrypto_public_includes,
     dependencies: nitrosdk_dep,
     native: true
+)
+else
+libcrypto_static = static_library('crypto_static',
+    sources: libcrypto_static_srcs,
+    pic: true,
+    include_directories: libcrypto_public_includes,
+    dependencies: nitrosdk_dep,
+    native: false
+)
+
+libcrypto_ov97 = static_library('crypto_ov97',
+    sources: libcrypto_ov97_srcs,
+    pic: true,
+    include_directories: libcrypto_public_includes,
+    dependencies: nitrosdk_dep,
+    native: false
 )
 endif

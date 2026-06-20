@@ -33,6 +33,7 @@ libspl_srcs = files(
     'src/spl_random.c'
 )
 
+if(build_target == 'arm')
 libspl = static_library('spl',
     sources: libspl_srcs,
     nasm_args: asm_args,
@@ -43,3 +44,14 @@ libspl = static_library('spl',
     pic: false,
     native: build_target != 'arm'
 )
+else
+libspl = static_library('spl',
+    sources: libspl_srcs,
+    c_args: libspl_c_args,
+    link_args: libspl_link_args,
+    include_directories: [public_includes, libspl_public_includes],
+    dependencies: [nitrosdk_dep, nitrosystem_dep],
+    pic: true,
+    native: (build_target == 'linux' or build_target == 'win64')
+)
+endif
