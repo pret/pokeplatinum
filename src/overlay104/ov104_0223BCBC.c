@@ -26,7 +26,6 @@
 #include "string_gf.h"
 #include "trainer_info.h"
 
-FieldBattleDTO *FieldBattleDTO_NewBattleArcade(BattleArcade *battleArcade, UnkStruct_ov104_02230BE4 *param1);
 static u32 BattleArcade_GetBattleType(u8 challengeType);
 u8 BattleArcade_GetPokemonLevel(BattleArcade *battleArcade);
 void ov104_0223C04C(BattleArcade *battleArcade);
@@ -157,7 +156,7 @@ u8 BattleArcade_GetOpponentPartySize(u8 challengeType, BOOL includeBothOpponents
     return ARCADE_PARTY_SIZE_SOLO;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewBattleArcade(BattleArcade *battleArcade, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *FieldBattleDTO_NewBattleArcade(BattleArcade *battleArcade, FieldFrontierDTO *fieldData)
 {
     int i;
     u8 baseSlotID;
@@ -167,7 +166,7 @@ FieldBattleDTO *FieldBattleDTO_NewBattleArcade(BattleArcade *battleArcade, UnkSt
     u8 opponentPartySize = BattleArcade_GetOpponentPartySize(battleArcade->challengeType, 0);
     FieldBattleDTO *battleDTO = FieldBattleDTO_New(HEAP_ID_FIELD2, BattleArcade_GetBattleType(battleArcade->challengeType));
 
-    FieldBattleDTO_InitFromGameState(battleDTO, NULL, param1->saveData, param1->mapHeaderID, param1->journalEntry, param1->bagCursor, param1->subscreenCursorOn);
+    FieldBattleDTO_InitFromGameState(battleDTO, NULL, fieldData->saveData, fieldData->mapHeaderID, fieldData->journalEntry, fieldData->bagCursor, fieldData->subscreenCursorOn);
 
     battleDTO->background = BACKGROUND_BATTLE_ARCADE;
     battleDTO->terrain = TERRAIN_BATTLE_ARCADE;

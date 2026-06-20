@@ -362,8 +362,7 @@ Static main
 	Object main.nef.p/src_unk_0209ACF4.c.o
 	Object main.nef.p/src_unk_0209B344.c.o
 	Object main.nef.p/src_error_message_reset.c.o
-	Object main.nef.p/src_unk_0209B6F8.c.o
-	Object main.nef.p/src_unk_0209BA18.c.o
+	Object main.nef.p/src_battle_frontier.c.o
 	Object main.nef.p/src_unk_0209BA80.c.o
 	Object main.nef.p/src_unk_0209BDF8.c.o
 	Object main.nef.p/src_unk_0209C194.c.o
@@ -1538,7 +1537,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_0222DCE0.c.o
 	Object main.nef.p/src_overlay104_frontier_script_manager.c.o
 	Object main.nef.p/src_overlay104_frontier_script_context.c.o
-	Object main.nef.p/src_overlay104_ov104_0222EA90.c.o
+	Object main.nef.p/src_overlay104_frontier_scenes.c.o
 	Object main.nef.p/src_overlay104_ov104_0222ECE8.c.o
 	Object main.nef.p/src_overlay104_frscrcmd.c.o
 	Object main.nef.p/src_overlay104_ov104_02231F74.c.o

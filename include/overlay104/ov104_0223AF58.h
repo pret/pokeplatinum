@@ -11,7 +11,7 @@
 void ov104_0223AF58(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[]);
 void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 param5[]);
 void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 param5[], u8 param6);
-FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, FieldFrontierDTO *fieldData);
 u8 BattleHall_GetPlayerPartySize(u8 challengeType);
 u8 BattleHall_GetOpponentPartySize(u8 challengeType);
 u8 BattleHall_CursorPosToType(u8 cursorPos);

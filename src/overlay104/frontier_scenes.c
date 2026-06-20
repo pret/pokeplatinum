@@ -1,7 +1,8 @@
-#include "overlay104/ov104_0222EA90.h"
+#include "overlay104/frontier_scenes.h"
 
 #include <nitro.h>
 
+#include "constants/battle_frontier.h"
 #include "generated/sdat.h"
 #include "generated/text_banks.h"
 
@@ -15,12 +16,12 @@
 
 #include "res/field/frontier_scripts/fr_script.naix"
 
-typedef void (*UnkFuncPtr_ov104_0223F394)(FrontierGraphics *, void **);
+typedef void (*FrontierSceneSetupDestroyFunc)(FrontierGraphics *, void **);
 
 typedef struct FrontierScene {
     GXBGMode bgMode;
-    UnkFuncPtr_ov104_0223F394 unk_04;
-    UnkFuncPtr_ov104_0223F394 unk_08;
+    FrontierSceneSetupDestroyFunc setupFunc;
+    FrontierSceneSetupDestroyFunc destroyFunc;
     u16 scriptID;
     u16 textBankID;
     u16 bgmID;
@@ -37,28 +38,28 @@ typedef struct FrontierScene {
     u16 unused;
 } FrontierScene;
 
-static void ov104_0222EBBC(FrontierGraphics *param0, void **param1);
-static void ov104_0222EBCC(FrontierGraphics *param0, void **param1);
-static void ov104_0222EBD8(FrontierGraphics *param0, void **param1);
-static void ov104_0222EC0C(FrontierGraphics *param0, void **param1);
-static void ov104_0222EC18(FrontierGraphics *param0, void **param1);
-static void ov104_0222EC1C(FrontierGraphics *param0, void **param1);
-static void ov104_0222EC20(FrontierGraphics *param0, void **param1);
-static void ov104_0222EC58(FrontierGraphics *param0, void **param1);
-static void ov104_0222EC5C(FrontierGraphics *param0, void **param1);
-static void ov104_0222EC70(FrontierGraphics *param0, void **param1);
-static void ov104_0222EC74(FrontierGraphics *param0, void **param1);
-static void ov104_0222EC8C(FrontierGraphics *param0, void **param1);
-static void ov104_0222EC90(FrontierGraphics *param0, void **param1);
-static void ov104_0222ECA0(FrontierGraphics *param0, void **param1);
-static void ov104_0222ECAC(FrontierGraphics *param0, void **param1);
-static void ov104_0222ECE4(FrontierGraphics *param0, void **param1);
+static void ov104_0222EBBC(FrontierGraphics *graphics, void **sceneData);
+static void ov104_0222EBCC(FrontierGraphics *graphics, void **sceneData);
+static void BattleHallBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData);
+static void BattleHallBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData);
+static void BattleArcadeCorridorSceneSetup(FrontierGraphics *graphics, void **sceneData);
+static void BattleArcadeCorridorSceneDestroy(FrontierGraphics *graphics, void **sceneData);
+static void BattleArcadeBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData);
+static void BattleArcadeBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData);
+static void BattleFactoryCorridorSceneSetup(FrontierGraphics *graphics, void **sceneData);
+static void BattleFactoryCorridorSceneDestroy(FrontierGraphics *graphics, void **sceneData);
+static void BattleFactoryBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData);
+static void BattleFactoryBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData);
+static void ov104_0222EC90(FrontierGraphics *graphics, void **sceneData);
+static void ov104_0222ECA0(FrontierGraphics *graphics, void **sceneData);
+static void BattleCastleBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData);
+static void BattleCastleBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData);
 
 static const FrontierScene sFrontierScenes[] = {
-    {
+    [FRONTIER_SCENE_0] = {
         .bgMode = GX_BGMODE_0,
-        ov104_0222EBBC,
-        ov104_0222EBCC,
+        .setupFunc = ov104_0222EBBC,
+        .destroyFunc = ov104_0222EBCC,
         0x4,
         .textBankID = 204,
         .bgmID = SEQ_BF_TOWWER,
@@ -73,10 +74,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 0,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_1] = {
         .bgMode = GX_BGMODE_0,
-        NULL,
-        NULL,
+        .setupFunc = NULL,
+        .destroyFunc = NULL,
         0x0,
         .textBankID = 0xCC,
         .bgmID = SEQ_BF_TOWWER,
@@ -91,10 +92,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 0,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_2] = {
         .bgMode = GX_BGMODE_0,
-        NULL,
-        NULL,
+        .setupFunc = NULL,
+        .destroyFunc = NULL,
         0x5,
         .textBankID = 206,
         .bgmID = SEQ_BF_TOWWER,
@@ -109,10 +110,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 0,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_FACTORY_CORRIDOR] = {
         .bgMode = GX_BGMODE_5,
-        ov104_0222EC5C,
-        ov104_0222EC70,
+        .setupFunc = BattleFactoryCorridorSceneSetup,
+        .destroyFunc = BattleFactoryCorridorSceneDestroy,
         .scriptID = frontier_scripts_battle_factory,
         .textBankID = TEXT_BANK_BATTLE_FACTORY_SCENE,
         .bgmID = SEQ_PL_BF_FACTORY,
@@ -127,10 +128,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 0,
     },
-    {
+    [FRONTIER_SCENE_FACTORY_BATTLE_ROOM] = {
         .bgMode = GX_BGMODE_5,
-        ov104_0222EC74,
-        ov104_0222EC8C,
+        .setupFunc = BattleFactoryBattleRoomSceneSetup,
+        .destroyFunc = BattleFactoryBattleRoomSceneDestroy,
         .scriptID = frontier_scripts_battle_factory,
         .textBankID = TEXT_BANK_BATTLE_FACTORY_SCENE,
         .bgmID = SEQ_PL_BF_FACTORY,
@@ -145,10 +146,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_TOWER_CORRIDOR] = {
         .bgMode = GX_BGMODE_5,
-        NULL,
-        NULL,
+        .setupFunc = NULL,
+        .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_tower_corridor,
         .textBankID = TEXT_BANK_BATTLE_TOWER,
         .bgmID = SEQ_BF_TOWWER,
@@ -163,10 +164,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_TOWER_MULTI_CORRIDOR] = {
         .bgMode = GX_BGMODE_5,
-        NULL,
-        NULL,
+        .setupFunc = NULL,
+        .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_tower_corridor_multi,
         .textBankID = TEXT_BANK_BATTLE_TOWER,
         .bgmID = SEQ_BF_TOWWER,
@@ -181,10 +182,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_TOWER_BATTLE_ROOM] = {
         .bgMode = GX_BGMODE_5,
-        NULL,
-        NULL,
+        .setupFunc = NULL,
+        .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_tower_battle_room,
         .textBankID = TEXT_BANK_BATTLE_TOWER_BATTLE_ROOM,
         .bgmID = SEQ_BF_TOWWER,
@@ -199,10 +200,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_TOWER_MULTI_BATTLE_ROOM] = {
         .bgMode = GX_BGMODE_5,
-        NULL,
-        NULL,
+        .setupFunc = NULL,
+        .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_tower_multi_battle_room,
         .textBankID = TEXT_BANK_BATTLE_TOWER_MULTI_BATTLE_ROOM,
         .bgmID = SEQ_BF_TOWWER,
@@ -217,10 +218,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_HALL_CORRIDOR] = {
         .bgMode = GX_BGMODE_5,
-        NULL,
-        NULL,
+        .setupFunc = NULL,
+        .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_hall,
         .textBankID = TEXT_BANK_BATTLE_HALL_SCENE,
         .bgmID = SEQ_PL_BF_STAGE,
@@ -235,10 +236,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_HALL_BATTLE_ROOM] = {
         .bgMode = GX_BGMODE_5,
-        ov104_0222EBD8,
-        ov104_0222EC0C,
+        .setupFunc = BattleHallBattleRoomSceneSetup,
+        .destroyFunc = BattleHallBattleRoomSceneDestroy,
         .scriptID = frontier_scripts_battle_hall,
         .textBankID = TEXT_BANK_BATTLE_HALL_SCENE,
         .bgmID = SEQ_PL_BF_STAGE,
@@ -253,10 +254,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_CASTLE_CORRIDOR] = {
         .bgMode = GX_BGMODE_5,
-        NULL,
-        NULL,
+        .setupFunc = NULL,
+        .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_castle,
         .textBankID = TEXT_BANK_BATTLE_CASTLE_SCENE,
         .bgmID = SEQ_PL_BF_CASTLE,
@@ -271,10 +272,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_CASTLE_BATTLE_ROOM] = {
         .bgMode = GX_BGMODE_5,
-        ov104_0222ECAC,
-        ov104_0222ECE4,
+        .setupFunc = BattleCastleBattleRoomSceneSetup,
+        .destroyFunc = BattleCastleBattleRoomSceneDestroy,
         .scriptID = frontier_scripts_battle_castle,
         .textBankID = TEXT_BANK_BATTLE_CASTLE_SCENE,
         .bgmID = SEQ_PL_BF_CASTLE,
@@ -289,10 +290,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_13] = {
         .bgMode = GX_BGMODE_5,
-        NULL,
-        NULL,
+        .setupFunc = NULL,
+        .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_castle,
         .textBankID = TEXT_BANK_BATTLE_CASTLE_SCENE,
         .bgmID = SEQ_PL_BF_CASTLE,
@@ -307,10 +308,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_14] = {
         .bgMode = GX_BGMODE_5,
-        ov104_0222EC90,
-        ov104_0222ECA0,
+        .setupFunc = ov104_0222EC90,
+        .destroyFunc = ov104_0222ECA0,
         .scriptID = frontier_scripts_unknown_10,
         .textBankID = TEXT_BANK_UNK_0015,
         .bgmID = SEQ_BF_TOWWER,
@@ -325,10 +326,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_ARCADE_CORRIDOR] = {
         .bgMode = GX_BGMODE_5,
-        ov104_0222EC18,
-        ov104_0222EC1C,
+        .setupFunc = BattleArcadeCorridorSceneSetup,
+        .destroyFunc = BattleArcadeCorridorSceneDestroy,
         .scriptID = frontier_scripts_battle_arcade,
         .textBankID = TEXT_BANK_BATTLE_ARCADE_SCENE,
         .bgmID = SEQ_PL_BF_ROULETTE,
@@ -343,10 +344,10 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    {
+    [FRONTIER_SCENE_ARCADE_BATTLE_ROOM] = {
         .bgMode = GX_BGMODE_5,
-        ov104_0222EC20,
-        ov104_0222EC58,
+        .setupFunc = BattleArcadeBattleRoomSceneSetup,
+        .destroyFunc = BattleArcadeBattleRoomSceneDestroy,
         .scriptID = frontier_scripts_battle_arcade,
         .textBankID = TEXT_BANK_BATTLE_ARCADE_SCENE,
         .bgmID = SEQ_PL_BF_ROULETTE,
@@ -363,148 +364,134 @@ static const FrontierScene sFrontierScenes[] = {
     },
 };
 
-int GetFrontierSceneValue(int scene, enum FrontierSceneParam sceneParam)
+int FrontierScene_GetParam(enum BattleFrontierScene sceneID, enum FrontierSceneParam sceneParam)
 {
     switch (sceneParam) {
     case FR_SCENE_BGMODE:
-        return sFrontierScenes[scene].bgMode;
+        return sFrontierScenes[sceneID].bgMode;
     case FR_SCENE_SCRIPT_ID:
-        return sFrontierScenes[scene].scriptID;
+        return sFrontierScenes[sceneID].scriptID;
     case FR_SCENE_BANK_ID:
-        return sFrontierScenes[scene].textBankID;
+        return sFrontierScenes[sceneID].textBankID;
     case FR_SCENE_BGM_ID:
-        return sFrontierScenes[scene].bgmID;
+        return sFrontierScenes[sceneID].bgmID;
     case FR_SCENE_SCREEN_SIZE:
-        return sFrontierScenes[scene].screenSize;
+        return sFrontierScenes[sceneID].screenSize;
     case FR_SCENE_NARC_ID:
-        return sFrontierScenes[scene].narcID;
+        return sFrontierScenes[sceneID].narcID;
     case FR_SCENE_TILEMAP_IDX:
-        return sFrontierScenes[scene].tilemapIdx;
+        return sFrontierScenes[sceneID].tilemapIdx;
     case FR_SCENE_TILES_IDX:
-        return sFrontierScenes[scene].tilesIdx;
+        return sFrontierScenes[sceneID].tilesIdx;
     case FR_SCENE_PLTT_IDX:
-        return sFrontierScenes[scene].plttIdx;
+        return sFrontierScenes[sceneID].plttIdx;
     case FR_SCENE_SUB_TILEMAP_IDX:
-        return sFrontierScenes[scene].subTilemapIdx;
+        return sFrontierScenes[sceneID].subTilemapIdx;
     case FR_SCENE_SUB_TILES_IDX:
-        return sFrontierScenes[scene].subTilesIdx;
+        return sFrontierScenes[sceneID].subTilesIdx;
     case FR_SCENE_SUB_PLTT_IDX:
-        return sFrontierScenes[scene].subPlttIdx;
+        return sFrontierScenes[sceneID].subPlttIdx;
     case FR_SCENE_FLAG_1:
-        return sFrontierScenes[scene].unk_22;
+        return sFrontierScenes[sceneID].unk_22;
     case FR_SCENE_FLAG_2:
-        return sFrontierScenes[scene].unk_23;
+        return sFrontierScenes[sceneID].unk_23;
     }
 
     GF_ASSERT(FALSE);
     return 0;
 }
 
-void ov104_0222EB8C(FrontierGraphics *param0, void **param1, int sceneID)
+void FrontierScene_CallSetupFunc(FrontierGraphics *graphics, void **sceneData, enum BattleFrontierScene sceneID)
 {
-    if (sFrontierScenes[sceneID].unk_04 != NULL) {
-        sFrontierScenes[sceneID].unk_04(param0, param1);
+    if (sFrontierScenes[sceneID].setupFunc != NULL) {
+        sFrontierScenes[sceneID].setupFunc(graphics, sceneData);
     }
 }
 
-void ov104_0222EBA4(FrontierGraphics *param0, void **param1, int param2)
+void FrontierScene_CallDestroyFunc(FrontierGraphics *graphics, void **sceneData, enum BattleFrontierScene sceneID)
 {
-    if (sFrontierScenes[param2].unk_08 != NULL) {
-        sFrontierScenes[param2].unk_08(param0, param1);
+    if (sFrontierScenes[sceneID].destroyFunc != NULL) {
+        sFrontierScenes[sceneID].destroyFunc(graphics, sceneData);
     }
 }
 
-static void ov104_0222EBBC(FrontierGraphics *param0, void **param1)
+static void ov104_0222EBBC(FrontierGraphics *graphics, void **sceneData)
 {
-    *param1 = Heap_Alloc(HEAP_ID_94, 32);
+    *sceneData = Heap_Alloc(HEAP_ID_94, 32);
 }
 
-static void ov104_0222EBCC(FrontierGraphics *param0, void **param1)
+static void ov104_0222EBCC(FrontierGraphics *graphics, void **sceneData)
 {
-    Heap_Free(*param1);
+    Heap_Free(*sceneData);
 }
 
-static void ov104_0222EBD8(FrontierGraphics *param0, void **param1)
+static void BattleHallBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData)
 {
-    *param1 = ov104_0223D9E4(param0->bgConfig, param0->plttData);
+    *sceneData = ov104_0223D9E4(graphics->bgConfig, graphics->plttData);
 
     Bg_SetPriority(BG_LAYER_MAIN_0, 1);
     Bg_SetPriority(BG_LAYER_MAIN_2, 2);
     Bg_SetPriority(BG_LAYER_MAIN_3, 3);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-
-    return;
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
 }
 
-static void ov104_0222EC0C(FrontierGraphics *param0, void **param1)
+static void BattleHallBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData)
 {
-    ov104_0223DA28(*param1);
-    return;
+    ov104_0223DA28(*sceneData);
 }
 
-static void ov104_0222EC18(FrontierGraphics *param0, void **param1)
+static void BattleArcadeCorridorSceneSetup(FrontierGraphics *graphics, void **sceneData)
 {
-    return;
 }
 
-static void ov104_0222EC1C(FrontierGraphics *param0, void **param1)
+static void BattleArcadeCorridorSceneDestroy(FrontierGraphics *graphics, void **sceneData)
 {
-    return;
 }
 
-static void ov104_0222EC20(FrontierGraphics *param0, void **param1)
+static void BattleArcadeBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData)
 {
     Bg_SetPriority(BG_LAYER_MAIN_0, 1);
     Bg_SetPriority(BG_LAYER_MAIN_2, 2);
     Bg_SetPriority(BG_LAYER_MAIN_3, 3);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 20, 20);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-
-    return;
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
 }
 
-static void ov104_0222EC58(FrontierGraphics *param0, void **param1)
+static void BattleArcadeBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData)
 {
-    return;
 }
 
-static void ov104_0222EC5C(FrontierGraphics *param0, void **param1)
+static void BattleFactoryCorridorSceneSetup(FrontierGraphics *graphics, void **sceneData)
 {
     Bg_SetPriority(BG_LAYER_MAIN_2, 3);
     Bg_SetPriority(BG_LAYER_MAIN_3, 2);
-    return;
 }
 
-static void ov104_0222EC70(FrontierGraphics *param0, void **param1)
+static void BattleFactoryCorridorSceneDestroy(FrontierGraphics *graphics, void **sceneData)
 {
-    return;
 }
 
-static void ov104_0222EC74(FrontierGraphics *param0, void **param1)
+static void BattleFactoryBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData)
 {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 20, 20);
-    return;
 }
 
-static void ov104_0222EC8C(FrontierGraphics *param0, void **param1)
+static void BattleFactoryBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData)
 {
-    return;
 }
 
-static void ov104_0222EC90(FrontierGraphics *param0, void **param1)
+static void ov104_0222EC90(FrontierGraphics *graphics, void **sceneData)
 {
-    *param1 = ov104_0223C164(param0->bgConfig);
-    return;
+    *sceneData = ov104_0223C164(graphics->bgConfig);
 }
 
-static void ov104_0222ECA0(FrontierGraphics *param0, void **param1)
+static void ov104_0222ECA0(FrontierGraphics *graphics, void **sceneData)
 {
-    ov104_0223C23C(*param1);
-    return;
+    ov104_0223C23C(*sceneData);
 }
 
-static void ov104_0222ECAC(FrontierGraphics *param0, void **param1)
+static void BattleCastleBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData)
 {
     Bg_SetPriority(BG_LAYER_MAIN_1, 0);
     Bg_SetPriority(BG_LAYER_MAIN_0, 2);
@@ -512,10 +499,8 @@ static void ov104_0222ECAC(FrontierGraphics *param0, void **param1)
     Bg_SetPriority(BG_LAYER_MAIN_3, 3);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 20, 20);
-    return;
 }
 
-static void ov104_0222ECE4(FrontierGraphics *param0, void **param1)
+static void BattleCastleBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData)
 {
-    return;
 }
