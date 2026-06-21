@@ -4,12 +4,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/wifi_battle_tower_data.h"
+
 #include "http/http.h"
 #include "overlay096/struct_wifi_player_profile.h"
 #include "overlay096/struct_world_exchange_trainer.h"
 #include "overlay096/struct_world_exchange_trainer_error.h"
-
-#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "enums.h"
 
