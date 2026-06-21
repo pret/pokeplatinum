@@ -5,11 +5,9 @@
 #include <string.h>
 
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_02049A68.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay090/struct_ov90_021D0D80.h"
-#include "overlay090/struct_ov90_021D1750.h"
 
 #include "battle_frontier_save.h"
 #include "bg_window.h"

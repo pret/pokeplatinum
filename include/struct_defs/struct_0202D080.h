@@ -3,7 +3,7 @@
 
 #include "easy_chat_sentence.h"
 
-typedef struct FrontierEasyChatMessages_t {
+typedef struct FrontierEasyChatMessages {
     EasyChatSentence sentences[4];
 } FrontierEasyChatMessages;
 

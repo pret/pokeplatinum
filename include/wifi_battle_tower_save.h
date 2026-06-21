@@ -3,11 +3,9 @@
 
 #include <nitro/rtc.h>
 
-#include "struct_decls/struct_0202D080_decl.h"
-#include "struct_defs/struct_02049A68.h"
+#include "struct_defs/struct_0202D080.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
-#include "overlay090/struct_ov90_021D1750.h"
 #include "overlay096/struct_wifi_player_profile.h"
 #include "overlay104/frontier_data_transfer.h"
 

@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_0202D63C_DECL_H
-#define POKEPLATINUM_STRUCT_0202D63C_DECL_H
-
-typedef struct WifiTrainerRecord_t WifiTrainerRecord;
-
-#endif // POKEPLATINUM_STRUCT_0202D63C_DECL_H

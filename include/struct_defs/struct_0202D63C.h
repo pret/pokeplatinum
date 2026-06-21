@@ -5,7 +5,7 @@
 
 #include "overlay104/frontier_data_transfer.h"
 
-typedef struct WifiTrainerRecord_t {
+typedef struct WifiTrainerRecord {
     FrontierPokemonDataDTO monDataDTO[3];
     u16 trainerName[TRAINER_NAME_LEN + 1];
     u8 unk_B8; // version?

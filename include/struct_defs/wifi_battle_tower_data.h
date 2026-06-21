@@ -5,8 +5,36 @@
 
 #include "struct_defs/struct_0202D63C.h"
 
-#include "overlay090/struct_ov90_021D1750.h"
+#include "overlay096/struct_wifi_player_profile.h"
 #include "overlay104/frontier_data_transfer.h"
+
+typedef struct WifiBattleTowerIndices {
+    u8 rank;
+    u8 opponentIdx;
+} WifiBattleTowerIndices;
+
+typedef struct WifiBattleTowerMatchCandidate {
+    u16 trainerName[8];
+    u8 padding_10[2];
+    u8 country;
+    u8 region;
+    u8 padding_14[4];
+    u16 trainerKey[4];
+    union {
+        struct {
+            u8 isAnonymous : 1;
+            u8 anonymousNameIdx : 1;
+            u8 : 6;
+        };
+        u8 unk_20_val2;
+    };
+    u8 padding_21;
+} WifiBattleTowerMatchCandidate;
+
+typedef struct WifiBattleTowerDownloadBuffer {
+    WifiPlayerProfile wifiPlayerProfile[7];
+    WifiBattleTowerMatchCandidate matchCandidates[30];
+} WifiBattleTowerDownloadBuffer;
 
 typedef struct WifiBattleTowerDownloadData {
     u32 lastDownloadDate;

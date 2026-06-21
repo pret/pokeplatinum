@@ -6,12 +6,11 @@
 
 #include "constants/net.h"
 
-#include "struct_defs/struct_02049A68.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "nintendo_wfc/main.h"
 #include "overlay096/ov96_0223B140.h"
 #include "overlay096/ov96_0223B6A0.h"
-#include "overlay096/struct_ov96_0223B450.h"
 #include "overlay096/struct_ov96_0223BF40_decl.h"
 #include "overlay096/struct_ov96_0223BF40_t.h"
 #include "overlay096/struct_wifi_player_profile.h"

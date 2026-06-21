@@ -11,7 +11,7 @@
 #include "generated/object_events_gfx.h"
 
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/struct_02049A68.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_menu.h"
