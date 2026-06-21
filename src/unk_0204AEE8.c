@@ -14,7 +14,7 @@
 #include "struct_defs/battle_frontier_pokemon_data.h"
 #include "struct_defs/battle_frontier_trainer_data.h"
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/wifi_Battle_tower_data.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "field/field_system.h"
 

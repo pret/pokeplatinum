@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0204AEE8_H
 
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/wifi_Battle_tower_data.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "field/field_system_decl.h"
 #include "overlay104/frontier_data_transfer.h"

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV104_0223A0C4_H
 
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/wifi_Battle_tower_data.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay104/frontier_data_transfer.h"
 #include "overlay104/struct_ov104_02230BE4.h"
