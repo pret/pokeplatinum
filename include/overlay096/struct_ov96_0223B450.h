@@ -5,7 +5,6 @@
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B450_sub2.h"
 
-
 typedef struct WifiBattleTowerDownloadBuffer {
     WifiPlayerProfile wifiPlayerProfile[7];
     WifiBattleTowerMatchCandidate matchCandidates[30];
