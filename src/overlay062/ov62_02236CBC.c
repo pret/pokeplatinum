@@ -606,9 +606,9 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 1:
         if (ov62_02231664(&v0->unk_00, 1)) {
-            UnkStruct_0202D750 *v2 = sub_0202D750(param0->saveData);
+            WifiBattleTowerRecord *record = SaveData_GetWifiBattleTowerRecord(param0->saveData);
 
-            v0->unk_90 = BattlePoints_ApplyFuncAndGet(v2, 0, BATTLE_POINTS_FUNC_NONE);
+            v0->unk_90 = WifiBattleTowerRecord_UpdateBattlePoints(record, 0, BATTLE_POINTS_FUNC_NONE);
             param0->unk_08++;
         }
 

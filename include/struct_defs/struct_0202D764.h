@@ -3,19 +3,21 @@
 
 #include "struct_defs/struct_0202D63C.h"
 
+#include "constants/battle_tower.h"
+
 #include "overlay090/struct_ov90_021D1750.h"
 
-typedef struct UnkStruct_0202D764_t {
-    u32 unk_00;
-    u8 unk_04[250];
-    u8 unk_FE;
-    u8 unk_FF;
-    u8 unk_100;
-    u8 unk_101;
-    u8 unk_102;
-    u8 unk_103;
-    UnkStruct_0202D63C unk_104[7];
-    UnkStruct_ov90_021D1750 unk_740[30];
-} UnkStruct_0202D764;
+typedef struct WifiBattleTowerDownloadData_t {
+    u32 lastDownloadDate;
+    u8 downloadedOpponents[250];
+    u8 hasOpponentData;
+    u8 hasMatchListData;
+    u8 storedOpponentIdx;
+    u8 storedRank;
+    u8 storedMatchOpponentIdx;
+    u8 storedMatchRank;
+    WifiTrainerRecord trainerRecords[BT_OPPONENTS_COUNT];
+    WifiBattleTowerMatchCandidate matchCandidates[30];
+} WifiBattleTowerDownloadData;
 
 #endif // POKEPLATINUM_STRUCT_0202D764_H

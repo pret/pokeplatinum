@@ -212,7 +212,7 @@ void sub_0204B060(BattleTower *battleTower, SaveData *saveData)
         battleTower->unk_83E[1 + v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v1, battleTower->unk_2A[v0]), MON_DATA_SPECIES, NULL);
     }
 
-    battleTower->unk_83E[3] = sub_0202D3B4(battleTower->unk_74, 3, 0);
+    battleTower->unk_83E[3] = WifiBattleTowerRecord_UpdateRoomNum(battleTower->unk_74, 3, 0);
 }
 
 void sub_0204B0BC(BattleTower *battleTower)

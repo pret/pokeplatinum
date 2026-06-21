@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0202D080_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
-#include "struct_defs/struct_0202D314.h"
 #include "struct_defs/struct_02049A68.h"
 
 #include "overlay090/struct_ov90_021D1750.h"
@@ -23,44 +22,44 @@
 #define BATTLE_POINTS_FUNC_ADD  5
 #define BATTLE_POINTS_FUNC_SUB  6
 
-int sub_0202D05C(void);
-void sub_0202D060(UnkStruct_0202D060 *param0);
-void sub_0202D06C(UnkStruct_0202D750 *param0);
-void sub_0202D080(UnkStruct_0202D080 *param0);
-void sub_0202D0AC(UnkStruct_0202D764 *param0);
-u32 sub_0202D0BC(UnkStruct_0202D060 *param0, int param1, void *param2);
-void sub_0202D140(UnkStruct_0202D060 *param0, int param1, const void *param2);
-void sub_0202D1E8(UnkStruct_0202D060 *param0, u8 param1, u16 param2, u16 param3);
-BOOL sub_0202D214(UnkStruct_0202D060 *param0);
-void sub_0202D21C(UnkStruct_0202D060 *param0, BOOL param1);
-u16 BattlePoints_ApplyFuncAndGet(UnkStruct_0202D750 *param0, u16 value, int func);
-u8 sub_0202D288(UnkStruct_0202D750 *param0, int param1);
-u8 sub_0202D2C0(UnkStruct_0202D750 *param0, int param1);
-void sub_0202D2F0(UnkStruct_0202D750 *param0, int param1, FrontierPokemonDataDTO *param2);
-void sub_0202D314(UnkStruct_0202D750 *param0, int param1, UnkStruct_0202D314 *param2);
-u16 sub_0202D334(UnkStruct_0202D750 *param0, UnkStruct_0202D060 *param1);
-u16 sub_0202D39C(UnkStruct_0202D750 *param0);
-u8 sub_0202D3A0(UnkStruct_0202D750 *param0);
-u16 sub_0202D3B4(UnkStruct_0202D750 *param0, u16 param1, int param2);
-u16 sub_0202D3FC(UnkStruct_0202D750 *param0, u16 param1, u16 param2);
-BOOL sub_0202D414(UnkStruct_0202D750 *param0, u16 param1, int param2);
-void sub_0202D470(UnkStruct_0202D750 *param0, u32 param1);
-u32 sub_0202D474(UnkStruct_0202D750 *param0);
-void sub_0202D478(SaveData *saveData, int param1, EasyChatSentence *param2);
-EasyChatSentence *sub_0202D498(SaveData *saveData, int param1);
-void sub_0202D4B0(UnkStruct_0202D764 *param0, u8 param1, u8 param2, RTCDate *param3);
-void sub_0202D514(UnkStruct_0202D764 *param0);
-BOOL sub_0202D558(UnkStruct_0202D764 *param0, u8 param1, u8 param2, RTCDate *param3);
-BOOL sub_0202D5E8(UnkStruct_0202D764 *param0);
-BOOL sub_0202D5F0(UnkStruct_0202D764 *param0);
-void sub_0202D5F8(UnkStruct_0202D764 *param0, UnkStruct_ov96_0223B450_sub1 *param1, u8 param2, u8 param3);
-void sub_0202D628(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1);
-void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *param1, const u8 param2);
-void sub_0202D6DC(UnkStruct_0202D764 *param0, UnkStruct_ov96_0223B450_sub2 *param1, u8 param2, u8 param3);
-void sub_0202D708(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1);
-UnkStruct_ov90_021D1750 *sub_0202D71C(UnkStruct_0202D764 *, enum HeapID heapID);
-UnkStruct_0202D060 *sub_0202D740(SaveData *saveData);
-UnkStruct_0202D750 *sub_0202D750(SaveData *saveData);
-UnkStruct_0202D764 *sub_0202D764(SaveData *saveData);
+int WifiPlayerProfile_Size(void);
+void WifiBattleTowerSave_Init(WifiBattleTowerSave *save);
+void WifiBattleTowerRecord_Init(WifiBattleTowerRecord *record);
+void FrontierEasyChatMessages_Init(FrontierEasyChatMessages *easyChatMsgs);
+void WifiBattleTowerDownloadData_Init(WifiBattleTowerDownloadData *downloadData);
+u32 WifiBattleTowerSave_GetField(WifiBattleTowerSave *save, int fieldId, void *outBuf);
+void WifiBattleTowerSave_SetField(WifiBattleTowerSave *save, int fieldId, const void *inBuf);
+void WifiBattleTowerSave_AddCounters(WifiBattleTowerSave *save, u8 param1, u16 param2, u16 param3);
+BOOL WifiBattleTowerSave_GetIsInProgress(WifiBattleTowerSave *save);
+void WifiBattleTowerSave_SetIsInProgress(WifiBattleTowerSave *save, BOOL isInProgress);
+u16 WifiBattleTowerRecord_UpdateBattlePoints(WifiBattleTowerRecord *record, u16 value, int func);
+u8 WifiBattleTowerRecord_UpdateLossStreak(WifiBattleTowerRecord *record, int op);
+u8 WifiBattleTowerRecord_UpdateRank(WifiBattleTowerRecord *record, int op);
+void WifiBattleTowerRecord_SetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemonDataDTO *monDataDTO);
+void WifiBattleTowerRecord_GetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemonDataDTO *outBuf);
+u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, WifiBattleTowerSave *save);
+u16 WifiBattleTowerRecord_GetRatingScore(WifiBattleTowerRecord *record);
+u8 WifiBattleTowerRecord_GetRatingTier(WifiBattleTowerRecord *record);
+u16 WifiBattleTowerRecord_UpdateRoomNum(WifiBattleTowerRecord *record, u16 challengeMode, int op);
+u16 WifiBattleTowerRecord_SetRoomNum(WifiBattleTowerRecord *record, u16 challengeMode, u16 roomNum);
+BOOL WifiBattleTowerRecord_UpdateBitFlag(WifiBattleTowerRecord *record, u16 bitIdx, int op);
+void WifiBattleTowerRecord_SetRngState(WifiBattleTowerRecord *record, u32 value);
+u32 WifiBattleTowerRecord_GetRngState(WifiBattleTowerRecord *record);
+void FrontierEasyChatMessages_SetSentence(SaveData *saveData, int sentenceIdx, EasyChatSentence *sentence);
+EasyChatSentence *FrontierEasyChatMessages_GetSentence(SaveData *saveData, int sentenceIdx);
+void WifiBattleTowerDownloadData_MarkOpponent(WifiBattleTowerDownloadData *downloadData, u8 rank, u8 opponentIdx, RTCDate *date);
+void WifiBattleTowerDownloadData_Reset(WifiBattleTowerDownloadData *downloadData);
+BOOL WifiBattleTowerDownloadData_IsOpponentMarked(WifiBattleTowerDownloadData *downloadData, u8 rank, u8 opponentIdx, RTCDate *date);
+BOOL WifiBattleTowerDownloadData_HasOpponentData(WifiBattleTowerDownloadData *downloadData);
+BOOL WifiBattleTowerDownloadData_HasMatchListData(WifiBattleTowerDownloadData *downloadData);
+void WifiBattleTowerDownloadData_StoreOpponentTeams(WifiBattleTowerDownloadData *downloadData, WifiPlayerProfile *opponentData, u8 rank, u8 opponentIdx);
+void WifiBattleTowerDownloadData_GetIndices(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerIndices *outIndices);
+void WifiBattleTowerDownloadData_BuildOpponentDTO(WifiBattleTowerDownloadData *downloadData, FrontierDataDTO *dto, const u8 opponentNum);
+void WifiBattleTowerDownloadData_StoreMatchList(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerMatchCandidate *matchCandidates, u8 rank, u8 opponentIdx);
+void WifiBattleTowerDownloadData_GetMatchIndices(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerIndices *outIndices);
+WifiBattleTowerMatchCandidate *WifiBattleTowerDownloadData_AllocMatchList(WifiBattleTowerDownloadData *, enum HeapID heapID);
+WifiBattleTowerSave *SaveData_GetWifiBattleTowerSave(SaveData *saveData);
+WifiBattleTowerRecord *SaveData_GetWifiBattleTowerRecord(SaveData *saveData);
+WifiBattleTowerDownloadData *SaveData_GetWifiBattleTowerDownloadData(SaveData *saveData);
 
 #endif // POKEPLATINUM_UNK_0202D05C_H

@@ -39,8 +39,8 @@ struct UnkStruct_ov96_0223BF40_t {
     int unk_90;
     int unk_94;
     int unk_98;
-    UnkStruct_ov96_0223B450 unk_9C;
-    UnkStruct_ov96_0223B450_sub1 unk_AD4;
+    WifiBattleTowerDownloadBuffer unk_9C;
+    WifiPlayerProfile wifiPlayerProfile;
     u16 unk_BB8;
     u16 unk_BBA;
     u16 unk_BBC;

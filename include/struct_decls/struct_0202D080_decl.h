@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0202D080_DECL_H
 #define POKEPLATINUM_STRUCT_0202D080_DECL_H
 
-typedef struct UnkStruct_0202D080_t UnkStruct_0202D080;
+typedef struct FrontierEasyChatMessages_t FrontierEasyChatMessages;
 
 #endif // POKEPLATINUM_STRUCT_0202D080_DECL_H

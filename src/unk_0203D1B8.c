@@ -1347,8 +1347,8 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
 
     UnkStruct_0206BC70 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206BC70));
 
-    v0->unk_00 = sub_0202D750(fieldSystem->saveData);
-    v0->unk_04 = sub_0202D764(fieldSystem->saveData);
+    v0->unk_00 = SaveData_GetWifiBattleTowerRecord(fieldSystem->saveData);
+    v0->unk_04 = SaveData_GetWifiBattleTowerDownloadData(fieldSystem->saveData);
     v0->systemData = SaveData_GetSystemData(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->userData = WiFiList_GetUserData(SaveData_GetWiFiList(fieldSystem->saveData));

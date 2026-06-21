@@ -8,7 +8,6 @@
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0202D060.h"
 #include "struct_defs/struct_0202D080.h"
-#include "struct_defs/struct_0202D314.h"
 #include "struct_defs/struct_0202D63C.h"
 #include "struct_defs/struct_0202D750.h"
 #include "struct_defs/struct_0202D764.h"
@@ -18,6 +17,7 @@
 #include "overlay090/struct_ov90_021D1750.h"
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B450_sub2.h"
+#include "overlay104/frontier_data_transfer.h"
 
 #include "easy_chat_sentence.h"
 #include "heap.h"
@@ -25,528 +25,528 @@
 #include "message.h"
 #include "savedata.h"
 
-int sub_0202D05C(void)
+int WifiPlayerProfile_Size(void)
 {
-    return sizeof(UnkStruct_ov96_0223B450_sub1);
+    return sizeof(WifiPlayerProfile);
 }
 
-void sub_0202D060(UnkStruct_0202D060 *param0)
+void WifiBattleTowerSave_Init(WifiBattleTowerSave *save)
 {
-    MI_CpuClear8(param0, sizeof(UnkStruct_0202D060));
+    MI_CpuClear8(save, sizeof(WifiBattleTowerSave));
 }
 
-void sub_0202D06C(UnkStruct_0202D750 *param0)
+void WifiBattleTowerRecord_Init(WifiBattleTowerRecord *record)
 {
-    MI_CpuClear8(param0, sizeof(UnkStruct_0202D750));
-    param0->unk_03 = 1;
+    MI_CpuClear8(record, sizeof(WifiBattleTowerRecord));
+    record->rank = 1;
 }
 
-void sub_0202D080(UnkStruct_0202D080 *param0)
+void FrontierEasyChatMessages_Init(FrontierEasyChatMessages *easyChatMsgs)
 {
-    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[0], EASY_CHAT_SENTENCE_TYPE_PRE_BATTLE);
-    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[1], EASY_CHAT_SENTENCE_TYPE_WIN);
-    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[2], EASY_CHAT_SENTENCE_TYPE_LOSS);
-    EasyChatSentence_SetDefaultFrontierFields(&param0->unk_00[3], FRONTIER_EASY_CHAT_SENTENCE_TYPE_NO_1);
+    EasyChatSentence_SetDefaultFrontierFields(&easyChatMsgs->sentences[0], EASY_CHAT_SENTENCE_TYPE_PRE_BATTLE);
+    EasyChatSentence_SetDefaultFrontierFields(&easyChatMsgs->sentences[1], EASY_CHAT_SENTENCE_TYPE_WIN);
+    EasyChatSentence_SetDefaultFrontierFields(&easyChatMsgs->sentences[2], EASY_CHAT_SENTENCE_TYPE_LOSS);
+    EasyChatSentence_SetDefaultFrontierFields(&easyChatMsgs->sentences[3], FRONTIER_EASY_CHAT_SENTENCE_TYPE_NO_1);
 }
 
-void sub_0202D0AC(UnkStruct_0202D764 *param0)
+void WifiBattleTowerDownloadData_Init(WifiBattleTowerDownloadData *downloadData)
 {
-    MI_CpuClear8(param0, sizeof(UnkStruct_0202D764));
+    MI_CpuClear8(downloadData, sizeof(WifiBattleTowerDownloadData));
 }
 
-u32 sub_0202D0BC(UnkStruct_0202D060 *param0, int param1, void *param2)
+u32 WifiBattleTowerSave_GetField(WifiBattleTowerSave *save, int fieldId, void *outBuf)
 {
-    switch (param1) {
-    case 0:
-        return (u32)param0->unk_00_2;
-    case 1:
-        return (u32)param0->unk_02;
-    case 2:
-        return (u32)param0->unk_03;
-    case 3:
-        return param0->unk_04;
-    case 4:
-        return param0->unk_06;
-    case 5:
-        MI_CpuCopy8(param0->unk_08, param2, 4);
+    switch (fieldId) {
+    case BT_WIFI_SAVE_FIELD_CHALLENGE_MODE:
+        return (u32)save->challengeMode;
+    case BT_WIFI_SAVE_FIELD_NEXT_OPPONENT_NUM:
+        return (u32)save->nextOpponentNum;
+    case BT_WIFI_SAVE_FIELD_UNK_03:
+        return (u32)save->unk_03;
+    case BT_WIFI_SAVE_FIELD_UNK_04:
+        return save->unk_04;
+    case BT_WIFI_SAVE_FIELD_UNK_06:
+        return save->unk_06;
+    case BT_WIFI_SAVE_FIELD_PARTY_SLOTS:
+        MI_CpuCopy8(save->partySlots, outBuf, 4);
         return 0;
-    case 6:
-        MI_CpuCopy8(&param0->unk_2C, param2, sizeof(UnkStruct_0204B404));
+    case BT_WIFI_SAVE_FIELD_PARTNER_DATA:
+        MI_CpuCopy8(&save->unk_2C, outBuf, sizeof(UnkStruct_0204B404));
         return 0;
-    case 7:
-        return param0->unk_00_0;
-    case 8:
-        MI_CpuCopy8(param0->unk_0C, param2, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
+    case BT_WIFI_SAVE_FIELD_UNK_00_0:
+        return save->unk_00_0;
+    case BT_WIFI_SAVE_FIELD_TRAINER_IDS:
+        MI_CpuCopy8(save->trainerIDs, outBuf, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
         return 0;
-    case 9:
-        return param0->unk_00_5;
-    case 10:
-        return param0->unk_28;
+    case BT_WIFI_SAVE_FIELD_PARTNER_ID:
+        return save->partnerID;
+    case BT_WIFI_SAVE_FIELD_RNG_SEED:
+        return save->rngSeed;
     }
 
     return 0;
 }
 
-void sub_0202D140(UnkStruct_0202D060 *param0, int param1, const void *param2)
+void WifiBattleTowerSave_SetField(WifiBattleTowerSave *save, int fieldId, const void *inBuf)
 {
-    u32 *v0 = (u32 *)param2;
-    u16 *v1 = (u16 *)param2;
-    u8 *v2 = (u8 *)param2;
+    u32 *inBuf32 = (u32 *)inBuf;
+    u16 *inBuf16 = (u16 *)inBuf;
+    u8 *inBuf8 = (u8 *)inBuf;
 
-    switch (param1) {
-    case 0:
-        param0->unk_00_2 = v2[0];
+    switch (fieldId) {
+    case BT_WIFI_SAVE_FIELD_CHALLENGE_MODE:
+        save->challengeMode = inBuf8[0];
         break;
-    case 1:
-        param0->unk_02 = v2[0];
+    case BT_WIFI_SAVE_FIELD_NEXT_OPPONENT_NUM:
+        save->nextOpponentNum = inBuf8[0];
         break;
-    case 2:
-        param0->unk_03 = v2[0];
+    case BT_WIFI_SAVE_FIELD_UNK_03:
+        save->unk_03 = inBuf8[0];
         break;
-    case 3:
-        param0->unk_04 = v1[0];
+    case BT_WIFI_SAVE_FIELD_UNK_04:
+        save->unk_04 = inBuf16[0];
         break;
-    case 4:
-        param0->unk_06 = v1[0];
+    case BT_WIFI_SAVE_FIELD_UNK_06:
+        save->unk_06 = inBuf16[0];
         break;
-    case 5:
-        MI_CpuCopy8(v2, param0->unk_08, 4);
+    case BT_WIFI_SAVE_FIELD_PARTY_SLOTS:
+        MI_CpuCopy8(inBuf8, save->partySlots, 4);
         break;
-    case 6:
-        MI_CpuCopy8(v1, &param0->unk_2C, sizeof(UnkStruct_0204B404));
+    case BT_WIFI_SAVE_FIELD_PARTNER_DATA:
+        MI_CpuCopy8(inBuf16, &save->unk_2C, sizeof(UnkStruct_0204B404));
         break;
-    case 7:
-        param0->unk_00_0 = v2[0];
+    case BT_WIFI_SAVE_FIELD_UNK_00_0:
+        save->unk_00_0 = inBuf8[0];
         break;
-    case 8:
-        MI_CpuCopy8(v1, param0->unk_0C, 2 * 14);
+    case BT_WIFI_SAVE_FIELD_TRAINER_IDS:
+        MI_CpuCopy8(inBuf16, save->trainerIDs, 2 * 14);
         break;
-    case 10:
-        param0->unk_28 = v0[0];
+    case BT_WIFI_SAVE_FIELD_RNG_SEED:
+        save->rngSeed = inBuf32[0];
         break;
-    case 9:
-        param0->unk_00_5 = v2[0];
+    case BT_WIFI_SAVE_FIELD_PARTNER_ID:
+        save->partnerID = inBuf8[0];
         break;
     }
 }
 
-void sub_0202D1E8(UnkStruct_0202D060 *param0, u8 param1, u16 param2, u16 param3)
+void WifiBattleTowerSave_AddCounters(WifiBattleTowerSave *save, u8 param1, u16 param2, u16 param3)
 {
-    if (param0->unk_03 + param1 < 255) {
-        param0->unk_03 += param1;
+    if (save->unk_03 + param1 < 255) {
+        save->unk_03 += param1;
     }
 
-    if (param0->unk_04 + param2 < 65535) {
-        param0->unk_04 += param2;
+    if (save->unk_04 + param2 < 65535) {
+        save->unk_04 += param2;
     }
 
-    if (param0->unk_06 + param3 < 65535) {
-        param0->unk_06 += param3;
+    if (save->unk_06 + param3 < 65535) {
+        save->unk_06 += param3;
     }
 }
 
-BOOL sub_0202D214(UnkStruct_0202D060 *param0)
+BOOL WifiBattleTowerSave_GetIsInProgress(WifiBattleTowerSave *save)
 {
-    return param0->unk_00_1;
+    return save->isInProgress;
 }
 
-void sub_0202D21C(UnkStruct_0202D060 *param0, BOOL param1)
+void WifiBattleTowerSave_SetIsInProgress(WifiBattleTowerSave *save, BOOL isInProgress)
 {
-    param0->unk_00_1 = param1;
+    save->isInProgress = isInProgress;
 }
 
-u16 BattlePoints_ApplyFuncAndGet(UnkStruct_0202D750 *param0, u16 value, int func)
+u16 WifiBattleTowerRecord_UpdateBattlePoints(WifiBattleTowerRecord *record, u16 value, int func)
 {
     switch (func) {
     case BATTLE_POINTS_FUNC_SET:
         if (value > 9999) {
-            param0->unk_00 = 9999;
+            record->battlePoints = 9999;
         } else {
-            param0->unk_00 = value;
+            record->battlePoints = value;
         }
         break;
     case BATTLE_POINTS_FUNC_ADD:
-        if (param0->unk_00 + value > 9999) {
-            param0->unk_00 = 9999;
+        if (record->battlePoints + value > 9999) {
+            record->battlePoints = 9999;
         } else {
-            param0->unk_00 += value;
+            record->battlePoints += value;
         }
         break;
     case BATTLE_POINTS_FUNC_SUB:
-        if (param0->unk_00 < value) {
-            param0->unk_00 = 0;
+        if (record->battlePoints < value) {
+            record->battlePoints = 0;
         } else {
-            param0->unk_00 -= value;
+            record->battlePoints -= value;
         }
     case BATTLE_POINTS_FUNC_NONE:
     default:
         break;
     }
 
-    return param0->unk_00;
+    return record->battlePoints;
 }
 
-u8 sub_0202D288(UnkStruct_0202D750 *param0, int param1)
+u8 WifiBattleTowerRecord_UpdateLossStreak(WifiBattleTowerRecord *record, int op)
 {
-    switch (param1) {
+    switch (op) {
     case 2:
-        param0->unk_02 = 0;
-        param0->unk_08_val1_unk_00_4 = 0;
+        record->lossStreak = 0;
+        record->lossStreakInitialized = 0;
         break;
     case 3:
-        if (param0->unk_08_val1_unk_00_4) {
-            param0->unk_02 += 1;
+        if (record->lossStreakInitialized) {
+            record->lossStreak += 1;
         } else {
-            param0->unk_02 = 1;
-            param0->unk_08_val1_unk_00_4 = 1;
+            record->lossStreak = 1;
+            record->lossStreakInitialized = 1;
         }
         break;
     }
 
-    return param0->unk_02;
+    return record->lossStreak;
 }
 
-u8 sub_0202D2C0(UnkStruct_0202D750 *param0, int param1)
+u8 WifiBattleTowerRecord_UpdateRank(WifiBattleTowerRecord *record, int op)
 {
-    switch (param1) {
+    switch (op) {
     case 2:
-        param0->unk_03 = 1;
+        record->rank = 1;
         break;
     case 3:
-        if (param0->unk_03 < 10) {
-            param0->unk_03 += 1;
+        if (record->rank < 10) {
+            record->rank += 1;
         }
         break;
     case 4:
-        if (param0->unk_03 > 1) {
-            param0->unk_03 -= 1;
+        if (record->rank > 1) {
+            record->rank -= 1;
         }
         break;
     }
 
-    return param0->unk_03;
+    return record->rank;
 }
 
-void sub_0202D2F0(UnkStruct_0202D750 *param0, int param1, FrontierPokemonDataDTO *param2)
+void WifiBattleTowerRecord_SetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemonDataDTO *monDataDTO)
 {
-    if (param1 == 0) {
-        MI_CpuCopy8(param2, param0->unk_C0, sizeof(FrontierPokemonDataDTO) * 3);
+    if (teamIdx == 0) {
+        MI_CpuCopy8(monDataDTO, record->team0, sizeof(FrontierPokemonDataDTO) * 3);
     } else {
-        MI_CpuCopy8(param2, param0->unk_18, sizeof(FrontierPokemonDataDTO) * 3);
+        MI_CpuCopy8(monDataDTO, record->team1, sizeof(FrontierPokemonDataDTO) * 3);
     }
 }
 
-void sub_0202D314(UnkStruct_0202D750 *param0, int param1, UnkStruct_0202D314 *param2)
+void WifiBattleTowerRecord_GetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemonDataDTO *outBuf)
 {
-    if (param1 == 0) {
-        MI_CpuCopy8(param0->unk_C0, param2, sizeof(FrontierPokemonDataDTO) * 3);
+    if (teamIdx == 0) {
+        MI_CpuCopy8(record->team0, outBuf, sizeof(FrontierPokemonDataDTO) * 3);
     } else {
-        MI_CpuCopy8(param0->unk_18, param2, sizeof(FrontierPokemonDataDTO) * 3);
+        MI_CpuCopy8(record->team1, outBuf, sizeof(FrontierPokemonDataDTO) * 3);
     }
 }
 
-u16 sub_0202D334(UnkStruct_0202D750 *param0, UnkStruct_0202D060 *param1)
+u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, WifiBattleTowerSave *save)
 {
-    u16 v0, v1, v2, v3, v4;
-    u16 v5 = 0;
+    u16 progressScore, penaltyA, penaltyB, efficiencyBonus, performanceScore;
+    u16 ratingScore = 0;
 
-    v0 = (param1->unk_02 - 1) * 1000;
-    v1 = param1->unk_04 * 10;
-    v2 = param1->unk_03 * 20;
+    progressScore = (save->nextOpponentNum - 1) * 1000;
+    penaltyA = save->unk_04 * 10;
+    penaltyB = save->unk_03 * 20;
 
-    if (v1 + v2 > 950) {
-        v4 = 0;
+    if (penaltyA + penaltyB > 950) {
+        performanceScore = 0;
     } else {
-        v4 = 950 - (v1 + v2);
+        performanceScore = 950 - (penaltyA + penaltyB);
     }
 
-    if (param1->unk_06 > (1000 - 30)) {
-        v3 = 0;
+    if (save->unk_06 > (1000 - 30)) {
+        efficiencyBonus = 0;
     } else {
-        v3 = (1000 - param1->unk_06) / 30;
+        efficiencyBonus = (1000 - save->unk_06) / 30;
     }
 
-    v5 = v0 + v4 + v3;
-    param0->unk_16 = v5;
+    ratingScore = progressScore + performanceScore + efficiencyBonus;
+    record->ratingScore = ratingScore;
 
-    return v5;
+    return ratingScore;
 }
 
-u16 sub_0202D39C(UnkStruct_0202D750 *param0)
+u16 WifiBattleTowerRecord_GetRatingScore(WifiBattleTowerRecord *record)
 {
-    return param0->unk_16;
+    return record->ratingScore;
 }
 
-u8 sub_0202D3A0(UnkStruct_0202D750 *param0)
+u8 WifiBattleTowerRecord_GetRatingTier(WifiBattleTowerRecord *record)
 {
-    u8 v0 = 0;
+    u8 ratingTier = 0;
 
-    v0 = (param0->unk_16) / 1000;
-    return v0;
+    ratingTier = (record->ratingScore) / 1000;
+    return ratingTier;
 }
 
-u16 sub_0202D3B4(UnkStruct_0202D750 *param0, u16 challengeMode, int param2)
+u16 WifiBattleTowerRecord_UpdateRoomNum(WifiBattleTowerRecord *record, u16 challengeMode, int op)
 {
-    u16 v0;
+    u16 modeIdx;
 
     if (challengeMode == 5) {
         return 0;
     }
 
     if (challengeMode == 6) {
-        v0 = 5;
+        modeIdx = 5;
     } else {
-        v0 = challengeMode;
+        modeIdx = challengeMode;
     }
 
-    switch (param2) {
+    switch (op) {
     case 2:
-        param0->unk_0A[v0] = 0;
+        record->roomNums[modeIdx] = 0;
         break;
     case 3:
-        if (param0->unk_0A[v0] < 65534) {
-            param0->unk_0A[v0] += 1;
+        if (record->roomNums[modeIdx] < 65534) {
+            record->roomNums[modeIdx] += 1;
         }
         break;
     }
 
-    return param0->unk_0A[v0];
+    return record->roomNums[modeIdx];
 }
 
-u16 sub_0202D3FC(UnkStruct_0202D750 *param0, u16 param1, u16 param2)
+u16 WifiBattleTowerRecord_SetRoomNum(WifiBattleTowerRecord *record, u16 challengeMode, u16 roomNum)
 {
-    u16 v0;
+    u16 modeIdx;
 
-    if (param1 == 5) {
+    if (challengeMode == 5) {
         return 0;
     }
 
-    if (param1 == 6) {
-        v0 = 5;
+    if (challengeMode == 6) {
+        modeIdx = 5;
     } else {
-        v0 = param1;
+        modeIdx = challengeMode;
     }
 
-    param0->unk_0A[v0] = param2;
-    return param0->unk_0A[v0];
+    record->roomNums[modeIdx] = roomNum;
+    return record->roomNums[modeIdx];
 }
 
-BOOL sub_0202D414(UnkStruct_0202D750 *param0, u16 param1, int param2)
+BOOL WifiBattleTowerRecord_UpdateBitFlag(WifiBattleTowerRecord *record, u16 bitIdx, int op)
 {
-    u16 v0;
-    u16 v1 = 1;
+    u16 i;
+    u16 mask = 1;
 
-    if (param1 >= 16) {
+    if (bitIdx >= 16) {
         GF_ASSERT(FALSE);
         return 0;
     }
 
-    for (v0 = 0; v0 < param1; v0++) {
-        v1 <<= 1;
+    for (i = 0; i < bitIdx; i++) {
+        mask <<= 1;
     }
 
-    switch (param2) {
+    switch (op) {
     case 2:
-        v1 = (v1 ^ 0xFFFF);
-        param0->unk_08_val2 &= v1;
+        mask = (mask ^ 0xFFFF);
+        record->flags &= mask;
         break;
     case 1:
-        param0->unk_08_val2 |= v1;
+        record->flags |= mask;
         break;
     case 0:
-        return (BOOL)((param0->unk_08_val2 >> param1) & 0x1);
+        return (BOOL)((record->flags >> bitIdx) & 0x1);
     }
 
     return 0;
 }
 
-void sub_0202D470(UnkStruct_0202D750 *param0, u32 param1)
+void WifiBattleTowerRecord_SetRngState(WifiBattleTowerRecord *record, u32 value)
 {
-    param0->unk_04 = param1;
+    record->rngState = value;
 }
 
-u32 sub_0202D474(UnkStruct_0202D750 *param0)
+u32 WifiBattleTowerRecord_GetRngState(WifiBattleTowerRecord *record)
 {
-    return param0->unk_04;
+    return record->rngState;
 }
 
-void sub_0202D478(SaveData *saveData, int param1, EasyChatSentence *param2)
+void FrontierEasyChatMessages_SetSentence(SaveData *saveData, int sentenceIdx, EasyChatSentence *sentence)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    EasyChatSentence_Copy(&(frontier->unk_950.unk_168.unk_00[param1]), param2);
+    EasyChatSentence_Copy(&(frontier->unk_950.easyChatMessages.sentences[sentenceIdx]), sentence);
 }
 
-EasyChatSentence *sub_0202D498(SaveData *saveData, int param1)
+EasyChatSentence *FrontierEasyChatMessages_GetSentence(SaveData *saveData, int sentenceIdx)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
 
-    return &(frontier->unk_950.unk_168.unk_00[param1]);
+    return &(frontier->unk_950.easyChatMessages.sentences[sentenceIdx]);
 }
 
-void sub_0202D4B0(UnkStruct_0202D764 *param0, u8 param1, u8 param2, RTCDate *param3)
+void WifiBattleTowerDownloadData_MarkOpponent(WifiBattleTowerDownloadData *downloadData, u8 rank, u8 opponentIdx, RTCDate *date)
 {
-    u8 v0, v1;
-    u8 v2 = 1;
-    u16 v3;
+    u8 byteIdx, bitIdx;
+    u8 mask = 1;
+    u16 flatIdx;
 
-    if ((param2 == 0) || (param2 > 200)) {
+    if ((opponentIdx == 0) || (opponentIdx > 200)) {
         return;
     }
 
-    if ((param1 == 0) || (param1 > 10)) {
+    if ((rank == 0) || (rank > 10)) {
         return;
     }
 
-    v3 = (param1 - 1) * 200 + (param2 - 1);
-    v0 = v3 / 8;
-    v1 = v3 % 8;
+    flatIdx = (rank - 1) * 200 + (opponentIdx - 1);
+    byteIdx = flatIdx / 8;
+    bitIdx = flatIdx % 8;
 
-    v2 <<= v1;
+    mask <<= bitIdx;
 
-    param0->unk_04[v0] |= v2;
-    param0->unk_00 = Date_Encode(param3);
+    downloadData->downloadedOpponents[byteIdx] |= mask;
+    downloadData->lastDownloadDate = Date_Encode(date);
 }
 
-void sub_0202D514(UnkStruct_0202D764 *param0)
+void WifiBattleTowerDownloadData_Reset(WifiBattleTowerDownloadData *downloadData)
 {
-    MI_CpuClear8(param0->unk_04, 250);
-    MI_CpuClear8(&param0->unk_00, sizeof(u32));
+    MI_CpuClear8(downloadData->downloadedOpponents, 250);
+    MI_CpuClear8(&downloadData->lastDownloadDate, sizeof(u32));
 }
 
-static BOOL sub_0202D530(RTCDate *param0, RTCDate *param1)
+static BOOL Date_IsAfter(RTCDate *dateA, RTCDate *dateB)
 {
-    if (param0->year > param1->year) {
+    if (dateA->year > dateB->year) {
         return 1;
     }
 
-    if (param0->month > param1->month) {
+    if (dateA->month > dateB->month) {
         return 1;
     }
 
-    if (param0->day > param1->day) {
-        return 1;
-    }
-
-    return 0;
-}
-
-BOOL sub_0202D558(UnkStruct_0202D764 *param0, u8 param1, u8 param2, RTCDate *param3)
-{
-    u8 v0, v1;
-    u8 v2 = 1;
-    u16 v3;
-    RTCDate v4;
-
-    if ((param2 > 200) || (param1 > 10)) {
-        return 0;
-    }
-
-    Date_Decode(param0->unk_00, &v4);
-
-    if (sub_0202D530(param3, &v4)) {
-        sub_0202D514(param0);
-        return 0;
-    }
-
-    v3 = (param1 - 1) * 200 + (param2 - 1);
-    v0 = v3 / 8;
-    v1 = v3 % 8;
-
-    v2 <<= v1;
-
-    if (param0->unk_04[v0] & v2) {
+    if (dateA->day > dateB->day) {
         return 1;
     }
 
     return 0;
 }
 
-BOOL sub_0202D5E8(UnkStruct_0202D764 *param0)
+BOOL WifiBattleTowerDownloadData_IsOpponentMarked(WifiBattleTowerDownloadData *downloadData, u8 rank, u8 opponentIdx, RTCDate *date)
 {
-    return (BOOL)param0->unk_FE;
+    u8 byteIdx, bitIdx;
+    u8 mask = 1;
+    u16 flatIdx;
+    RTCDate storedDate;
+
+    if ((opponentIdx > 200) || (rank > 10)) {
+        return 0;
+    }
+
+    Date_Decode(downloadData->lastDownloadDate, &storedDate);
+
+    if (Date_IsAfter(date, &storedDate)) {
+        WifiBattleTowerDownloadData_Reset(downloadData);
+        return 0;
+    }
+
+    flatIdx = (rank - 1) * 200 + (opponentIdx - 1);
+    byteIdx = flatIdx / 8;
+    bitIdx = flatIdx % 8;
+
+    mask <<= bitIdx;
+
+    if (downloadData->downloadedOpponents[byteIdx] & mask) {
+        return 1;
+    }
+
+    return 0;
 }
 
-BOOL sub_0202D5F0(UnkStruct_0202D764 *param0)
+BOOL WifiBattleTowerDownloadData_HasOpponentData(WifiBattleTowerDownloadData *downloadData)
 {
-    return (BOOL)param0->unk_FF;
+    return (BOOL)downloadData->hasOpponentData;
 }
 
-void sub_0202D5F8(UnkStruct_0202D764 *param0, UnkStruct_ov96_0223B450_sub1 *param1, u8 param2, u8 param3)
+BOOL WifiBattleTowerDownloadData_HasMatchListData(WifiBattleTowerDownloadData *downloadData)
 {
-    MI_CpuCopy8(param1, param0->unk_104, sizeof(UnkStruct_0202D63C) * 7);
-
-    param0->unk_101 = param2;
-    param0->unk_100 = param3;
-    param0->unk_FE = 1;
+    return (BOOL)downloadData->hasMatchListData;
 }
 
-void sub_0202D628(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1)
+void WifiBattleTowerDownloadData_StoreOpponentTeams(WifiBattleTowerDownloadData *downloadData, WifiPlayerProfile *opponentData, u8 rank, u8 opponentIdx)
 {
-    param1->unk_00 = param0->unk_101;
-    param1->unk_04 = param0->unk_100;
+    MI_CpuCopy8(opponentData, downloadData->trainerRecords, sizeof(WifiTrainerRecord) * 7);
+
+    downloadData->storedRank = rank;
+    downloadData->storedOpponentIdx = opponentIdx;
+    downloadData->hasOpponentData = 1;
 }
 
-void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *dto, const u8 opponentNum)
+void WifiBattleTowerDownloadData_GetIndices(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerIndices *outIndices)
+{
+    outIndices->rank = downloadData->storedRank;
+    outIndices->opponentIdx = downloadData->storedOpponentIdx;
+}
+
+void WifiBattleTowerDownloadData_BuildOpponentDTO(WifiBattleTowerDownloadData *downloadData, FrontierDataDTO *dto, const u8 opponentNum)
 {
     FrontierTrainerDataDTO *trDataDTO = &(dto->trDataDTO);
     FrontierPokemonDataDTO *monDataDTO = dto->monDataDTO;
-    UnkStruct_0202D63C *v2 = &(param0->unk_104[opponentNum]);
+    WifiTrainerRecord *record = &(downloadData->trainerRecords[opponentNum]);
 
     trDataDTO->trainerID = 10000;
-    trDataDTO->trainerType = v2->trainerType;
+    trDataDTO->trainerType = record->trainerType;
 
-    if (v2->unk_C8_val1_unk_00_0) {
+    if (record->isAnonymous) {
         MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELD2);
 
-        MessageLoader_Get(msgLoader, 22 + v2->unk_C8_val1_unk_00_1, trDataDTO->trainerName);
+        MessageLoader_Get(msgLoader, 22 + record->anonymousNameIdx, trDataDTO->trainerName);
         MessageLoader_Free(msgLoader);
     } else {
-        MI_CpuCopy8(v2->trainerName, trDataDTO->trainerName, 16);
+        MI_CpuCopy8(record->trainerName, trDataDTO->trainerName, 16);
     }
 
-    MI_CpuCopy8(v2->introMsg, trDataDTO->introMsg, 8);
-    MI_CpuCopy8(v2->winMsg, trDataDTO->winMsg, 8);
-    MI_CpuCopy8(v2->loseMsg, trDataDTO->loseMsg, 8);
-    MI_CpuCopy8(v2->monDataDTO, monDataDTO, sizeof(FrontierPokemonDataDTO) * 3);
+    MI_CpuCopy8(record->introMsg, trDataDTO->introMsg, 8);
+    MI_CpuCopy8(record->winMsg, trDataDTO->winMsg, 8);
+    MI_CpuCopy8(record->loseMsg, trDataDTO->loseMsg, 8);
+    MI_CpuCopy8(record->monDataDTO, monDataDTO, sizeof(FrontierPokemonDataDTO) * 3);
 }
 
-void sub_0202D6DC(UnkStruct_0202D764 *param0, UnkStruct_ov96_0223B450_sub2 *param1, u8 param2, u8 param3)
+void WifiBattleTowerDownloadData_StoreMatchList(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerMatchCandidate *matchCandidates, u8 rank, u8 opponentIdx)
 {
-    MI_CpuCopy8(param1, &param0->unk_740, sizeof(UnkStruct_ov90_021D1750) * 30);
+    MI_CpuCopy8(matchCandidates, &downloadData->matchCandidates, sizeof(WifiBattleTowerMatchCandidate) * 30);
 
-    param0->unk_103 = param2;
-    param0->unk_102 = param3;
-    param0->unk_FF = 1;
+    downloadData->storedMatchRank = rank;
+    downloadData->storedMatchOpponentIdx = opponentIdx;
+    downloadData->hasMatchListData = 1;
 }
 
-void sub_0202D708(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1)
+void WifiBattleTowerDownloadData_GetMatchIndices(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerIndices *outIndices)
 {
-    param1->unk_00 = param0->unk_103;
-    param1->unk_04 = param0->unk_102;
+    outIndices->rank = downloadData->storedMatchRank;
+    outIndices->opponentIdx = downloadData->storedMatchOpponentIdx;
 }
 
-UnkStruct_ov90_021D1750 *sub_0202D71C(UnkStruct_0202D764 *param0, enum HeapID heapID)
+WifiBattleTowerMatchCandidate *WifiBattleTowerDownloadData_AllocMatchList(WifiBattleTowerDownloadData *downloadData, enum HeapID heapID)
 {
-    UnkStruct_ov90_021D1750 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov90_021D1750) * 30);
-    MI_CpuCopy8(param0->unk_740, v0, sizeof(UnkStruct_ov90_021D1750) * 30);
+    WifiBattleTowerMatchCandidate *candidates = Heap_Alloc(heapID, sizeof(WifiBattleTowerMatchCandidate) * 30);
+    MI_CpuCopy8(downloadData->matchCandidates, candidates, sizeof(WifiBattleTowerMatchCandidate) * 30);
 
-    return v0;
+    return candidates;
 }
 
-UnkStruct_0202D060 *sub_0202D740(SaveData *saveData)
-{
-    BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &frontier->unk_8E0_val1;
-}
-
-UnkStruct_0202D750 *sub_0202D750(SaveData *saveData)
+WifiBattleTowerSave *SaveData_GetWifiBattleTowerSave(SaveData *saveData)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &frontier->unk_950.unk_00;
+    return &frontier->wifiBattleTowerSave;
 }
 
-UnkStruct_0202D764 *sub_0202D764(SaveData *saveData)
+WifiBattleTowerRecord *SaveData_GetWifiBattleTowerRecord(SaveData *saveData)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &frontier->unk_950.unk_188;
+    return &frontier->unk_950.wifiBattleTowerRecord;
+}
+
+WifiBattleTowerDownloadData *SaveData_GetWifiBattleTowerDownloadData(SaveData *saveData)
+{
+    BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    return &frontier->unk_950.wifiBattleTowerDownloadData;
 }

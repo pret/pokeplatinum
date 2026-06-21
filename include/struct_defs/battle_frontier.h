@@ -25,16 +25,16 @@ typedef struct BattleFrontierStats {
 typedef struct BattleFrontierSave {
     BattleFrontierStats stats;
     union {
-        UnkStruct_0202D060 unk_8E0_val1;
+        WifiBattleTowerSave wifiBattleTowerSave;
         UnkStruct_0202FF58 unk_8E0_val2;
         BattleHallSave hallSave;
         UnkStruct_020302DC unk_8E0_val4;
         UnkStruct_020304A0 unk_8E0_val5;
     };
     struct {
-        UnkStruct_0202D750 unk_00;
-        UnkStruct_0202D080 unk_168;
-        UnkStruct_0202D764 unk_188;
+        WifiBattleTowerRecord wifiBattleTowerRecord;
+        FrontierEasyChatMessages easyChatMessages;
+        WifiBattleTowerDownloadData wifiBattleTowerDownloadData;
     } unk_950;
     struct {
         UnkStruct_020300F4 unk_00;

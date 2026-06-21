@@ -1560,7 +1560,7 @@ static BOOL FrontierScrCmd_GetNumBattlePoints(FrontierScriptContext *ctx)
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    *destVar = BattlePoints_ApplyFuncAndGet(sub_0202D750(v0->saveData), 0, BATTLE_POINTS_FUNC_NONE);
+    *destVar = WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(v0->saveData), 0, BATTLE_POINTS_FUNC_NONE);
     return FALSE;
 }
 
@@ -1574,7 +1574,7 @@ static BOOL FrontierScrCmd_GiveBattlePoints(FrontierScriptContext *ctx)
 
     sub_0206D0C8(broadcast, battlePoints);
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(v1->saveData), RECORD_BATTLE_POINTS_RECEIVED, battlePoints);
-    BattlePoints_ApplyFuncAndGet(sub_0202D750(v1->saveData), battlePoints, BATTLE_POINTS_FUNC_ADD);
+    WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(v1->saveData), battlePoints, BATTLE_POINTS_FUNC_ADD);
 
     return FALSE;
 }
@@ -1585,7 +1585,7 @@ static BOOL FrontierScrCmd_RemoteBattlePoints(FrontierScriptContext *ctx)
     u16 battlePoints = FrontierScriptContext_GetVar(ctx);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(v0->saveData), RECORD_BATTLE_POINTS_SPENT, battlePoints);
-    BattlePoints_ApplyFuncAndGet(sub_0202D750(v0->saveData), battlePoints, BATTLE_POINTS_FUNC_SUB);
+    WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(v0->saveData), battlePoints, BATTLE_POINTS_FUNC_SUB);
 
     return FALSE;
 }

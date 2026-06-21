@@ -88,7 +88,7 @@ void ov96_0223B15C(void)
         case 7:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
 
-            if (HTTP_GetResponseLength() == sizeof(UnkStruct_ov96_0223B450)) {
+            if (HTTP_GetResponseLength() == sizeof(WifiBattleTowerDownloadBuffer)) {
                 Unk_ov96_0223DDE0.unk_04 = 0;
             } else {
                 switch (Unk_ov96_0223DDE0.unk_108[0]) {
@@ -265,9 +265,9 @@ void ov96_0223B400(s32 param0)
     }
 }
 
-void ov96_0223B450(s32 param0, s32 param1, UnkStruct_ov96_0223B450 *param2)
+void ov96_0223B450(s32 param0, s32 param1, WifiBattleTowerDownloadBuffer *buffer)
 {
-    Unk_ov96_0223DDE0.unk_108 = (u8 *)param2;
+    Unk_ov96_0223DDE0.unk_108 = (u8 *)buffer;
 
     HTTP_Init();
 
@@ -278,8 +278,8 @@ void ov96_0223B450(s32 param0, s32 param1, UnkStruct_ov96_0223B450 *param2)
                                                           "battletower/download.asp"),
             Unk_ov96_0223DDE0.unk_14,
             2,
-            param2,
-            sizeof(UnkStruct_ov96_0223B450))) {
+            buffer,
+            sizeof(WifiBattleTowerDownloadBuffer))) {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_04;
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
@@ -288,22 +288,22 @@ void ov96_0223B450(s32 param0, s32 param1, UnkStruct_ov96_0223B450 *param2)
     }
 }
 
-void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_0223B450_sub1 *param3)
+void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const WifiPlayerProfile *profile)
 {
     HTTP_Init();
 
-    memcpy(&Unk_ov96_0223DDE0.unk_14[0], param3, sizeof(UnkStruct_ov96_0223B450_sub1));
+    memcpy(&Unk_ov96_0223DDE0.unk_14[0], profile, sizeof(WifiPlayerProfile));
 
-    Unk_ov96_0223DDE0.unk_14[sizeof(UnkStruct_ov96_0223B450_sub1)] = (u8)(param0 - 1);
-    Unk_ov96_0223DDE0.unk_14[sizeof(UnkStruct_ov96_0223B450_sub1) + 1] = (u8)(param1 - 1);
-    Unk_ov96_0223DDE0.unk_14[sizeof(UnkStruct_ov96_0223B450_sub1) + 2] = (u8)param2;
+    Unk_ov96_0223DDE0.unk_14[sizeof(WifiPlayerProfile)] = (u8)(param0 - 1);
+    Unk_ov96_0223DDE0.unk_14[sizeof(WifiPlayerProfile) + 1] = (u8)(param1 - 1);
+    Unk_ov96_0223DDE0.unk_14[sizeof(WifiPlayerProfile) + 2] = (u8)param2;
 
-    memcpy(&Unk_ov96_0223DDE0.unk_14[sizeof(UnkStruct_ov96_0223B450_sub1) + 3], &Unk_ov96_0223DDE0.unk_0C, 8);
+    memcpy(&Unk_ov96_0223DDE0.unk_14[sizeof(WifiPlayerProfile) + 3], &Unk_ov96_0223DDE0.unk_0C, 8);
 
     if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
                                                           "battletower/upload.asp"),
             Unk_ov96_0223DDE0.unk_14,
-            sizeof(UnkStruct_ov96_0223B450_sub1) + 11,
+            sizeof(WifiPlayerProfile) + 11,
             Unk_ov96_0223DDE0.unk_103,
             2)) {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_06;

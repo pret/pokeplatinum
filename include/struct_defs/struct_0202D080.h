@@ -3,8 +3,8 @@
 
 #include "easy_chat_sentence.h"
 
-typedef struct UnkStruct_0202D080_t {
-    EasyChatSentence unk_00[4];
-} UnkStruct_0202D080;
+typedef struct FrontierEasyChatMessages_t {
+    EasyChatSentence sentences[4];
+} FrontierEasyChatMessages;
 
 #endif // POKEPLATINUM_STRUCT_0202D080_H

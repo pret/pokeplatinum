@@ -11,8 +11,8 @@
 #include "system_data.h"
 
 typedef struct {
-    UnkStruct_0202D750 *unk_00;
-    UnkStruct_0202D764 *unk_04;
+    WifiBattleTowerRecord *unk_00;
+    WifiBattleTowerDownloadData *unk_04;
     SystemData *systemData;
     SaveData *saveData;
     Options *options;

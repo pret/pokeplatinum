@@ -328,13 +328,13 @@ u16 sub_0206BDBC(SaveData *saveData)
         return 0;
     }
 
-    UnkStruct_0202D750 *v1 = sub_0202D750(saveData);
-    u8 v4 = sub_0202D414(v1, 13, 0);
-    u8 v5 = sub_0202D414(v1, 0, 0);
-    u8 v6 = sub_0202D414(v1, 1, 0);
-    u8 v7 = sub_0202D414(v1, 14, 0);
-    u8 v8 = sub_0202D414(v1, 2, 0);
-    u8 v9 = sub_0202D414(v1, 3, 0);
+    WifiBattleTowerRecord *record = SaveData_GetWifiBattleTowerRecord(saveData);
+    u8 v4 = WifiBattleTowerRecord_UpdateBitFlag(record, 13, 0);
+    u8 v5 = WifiBattleTowerRecord_UpdateBitFlag(record, 0, 0);
+    u8 v6 = WifiBattleTowerRecord_UpdateBitFlag(record, 1, 0);
+    u8 v7 = WifiBattleTowerRecord_UpdateBitFlag(record, 14, 0);
+    u8 v8 = WifiBattleTowerRecord_UpdateBitFlag(record, 2, 0);
+    u8 v9 = WifiBattleTowerRecord_UpdateBitFlag(record, 3, 0);
 
     if (v4 && v5 && v6) {
         return 0;
@@ -344,12 +344,12 @@ u16 sub_0206BDBC(SaveData *saveData)
 
     if (!v4) {
         if (Underground_IsRoomForGoodsInPC(v2, 85)) {
-            sub_0202D414(v1, 13, 1);
+            WifiBattleTowerRecord_UpdateBitFlag(record, 13, 1);
             return 1;
         }
 
         if (!v7) {
-            sub_0202D414(v1, 14, 1);
+            WifiBattleTowerRecord_UpdateBitFlag(record, 14, 1);
         }
 
         return 4;
@@ -361,12 +361,12 @@ u16 sub_0206BDBC(SaveData *saveData)
 
     if (!v5) {
         if (Underground_IsRoomForGoodsInPC(v2, 86)) {
-            sub_0202D414(v1, 0, 1);
+            WifiBattleTowerRecord_UpdateBitFlag(record, 0, 1);
             return 2;
         }
 
         if (!v8) {
-            sub_0202D414(v1, 2, 1);
+            WifiBattleTowerRecord_UpdateBitFlag(record, 2, 1);
         }
 
         return 4;
@@ -377,12 +377,12 @@ u16 sub_0206BDBC(SaveData *saveData)
     }
 
     if (Underground_IsRoomForGoodsInPC(v2, 87)) {
-        sub_0202D414(v1, 1, 1);
+        WifiBattleTowerRecord_UpdateBitFlag(record, 1, 1);
         return 3;
     }
 
     if (!v9) {
-        sub_0202D414(v1, 3, 1);
+        WifiBattleTowerRecord_UpdateBitFlag(record, 3, 1);
     }
 
     return 4;
@@ -397,13 +397,13 @@ u16 sub_0206BF04(SaveData *saveData)
         return 0;
     }
 
-    UnkStruct_0202D750 *v1 = sub_0202D750(saveData);
-    u8 v3 = sub_0202D414(v1, 13, 0);
-    u8 v4 = sub_0202D414(v1, 0, 0);
-    u8 v5 = sub_0202D414(v1, 1, 0);
-    u8 v6 = sub_0202D414(v1, 14, 0);
-    u8 v7 = sub_0202D414(v1, 2, 0);
-    u8 v8 = sub_0202D414(v1, 3, 0);
+    WifiBattleTowerRecord *record = SaveData_GetWifiBattleTowerRecord(saveData);
+    u8 v3 = WifiBattleTowerRecord_UpdateBitFlag(record, 13, 0);
+    u8 v4 = WifiBattleTowerRecord_UpdateBitFlag(record, 0, 0);
+    u8 v5 = WifiBattleTowerRecord_UpdateBitFlag(record, 1, 0);
+    u8 v6 = WifiBattleTowerRecord_UpdateBitFlag(record, 14, 0);
+    u8 v7 = WifiBattleTowerRecord_UpdateBitFlag(record, 2, 0);
+    u8 v8 = WifiBattleTowerRecord_UpdateBitFlag(record, 3, 0);
 
     if (v3 && v4 && v5) {
         return 0;
@@ -459,41 +459,41 @@ u32 sub_0206C008(SaveData *saveData)
     u32 v0 = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(saveData));
     v0 = sub_0206BFFC(v0);
 
-    sub_0202D470(sub_0202D750(saveData), v0);
+    WifiBattleTowerRecord_SetRngState(SaveData_GetWifiBattleTowerRecord(saveData), v0);
 
     return v0;
 }
 
 u32 sub_0206C02C(SaveData *saveData)
 {
-    UnkStruct_0202D750 *v2 = sub_0202D750(saveData);
+    WifiBattleTowerRecord *record = SaveData_GetWifiBattleTowerRecord(saveData);
 
-    u32 v1 = sub_0202D474(v2);
+    u32 v1 = WifiBattleTowerRecord_GetRngState(record);
     v1 = sub_0206BFFC(v1);
 
-    sub_0202D470(v2, v1);
+    WifiBattleTowerRecord_SetRngState(record, v1);
     u32 v0 = sub_0206BFF0(v1);
-    sub_0202D140(sub_0202D740(saveData), 10, &v0);
+    WifiBattleTowerSave_SetField(SaveData_GetWifiBattleTowerSave(saveData), 10, &v0);
 
     return v0;
 }
 
 u32 sub_0206C068(SaveData *saveData)
 {
-    UnkStruct_0202D750 *v4 = sub_0202D750(saveData);
-    UnkStruct_0202D060 *v5 = sub_0202D740(saveData);
+    WifiBattleTowerRecord *record = SaveData_GetWifiBattleTowerRecord(saveData);
+    WifiBattleTowerSave *save = SaveData_GetWifiBattleTowerSave(saveData);
 
     int v0;
-    u32 v3 = sub_0202D474(v4);
+    u32 v3 = WifiBattleTowerRecord_GetRngState(record);
     u32 v2 = sub_0206BFF0(v3);
-    int v1 = sub_0202D3B4(v4, sub_0202D0BC(v5, 0, NULL), 0);
+    int v1 = WifiBattleTowerRecord_UpdateRoomNum(record, WifiBattleTowerSave_GetField(save, 0, NULL), 0);
     v1 *= 24;
 
     for (v0 = 0; v0 < v1; v0++) {
         v2 = sub_0206BFF0(v2);
     }
 
-    sub_0202D140(sub_0202D740(saveData), 10, &v2);
+    WifiBattleTowerSave_SetField(SaveData_GetWifiBattleTowerSave(saveData), 10, &v2);
 
     return v2;
 }

@@ -40,8 +40,8 @@ typedef struct BattleTower {
     u16 unk_36[4];
     u16 trainerIDs[BT_OPPONENTS_COUNT * 2];
     Location unk_5C;
-    UnkStruct_0202D060 *unk_70;
-    UnkStruct_0202D750 *unk_74;
+    WifiBattleTowerSave *wifiBattleTowerSave;
+    WifiBattleTowerRecord *unk_74;
     FrontierDataDTO opponentsDataDTO[2];
     FrontierDataDTO partnersDataDTO[BT_PARTNERS_COUNT];
     UnkStruct_0204B404 unk_7E8[BT_PARTNERS_COUNT];

@@ -802,7 +802,7 @@ static void DisplayBattleTowerMultiRecord(FrontierRecordsApp *app)
 
 static u32 GetBattleTowerLatestStreakEntryID(FrontierRecordsApp *app, u8 towerMode)
 {
-    UnkStruct_0202D750 *v2 = sub_0202D750(app->saveData);
+    WifiBattleTowerRecord *record = SaveData_GetWifiBattleTowerRecord(app->saveData);
 
     u16 v0;
     switch (towerMode) {
@@ -829,7 +829,7 @@ static u32 GetBattleTowerLatestStreakEntryID(FrontierRecordsApp *app, u8 towerMo
         break;
     }
 
-    int isActive = sub_0202D414(v2, v0, 0);
+    int isActive = WifiBattleTowerRecord_UpdateBitFlag(record, v0, 0);
 
     if (isActive == TRUE) {
         return BattleFrontierRecords_Text_Current;

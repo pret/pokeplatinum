@@ -502,8 +502,8 @@ BOOL ScrCmd_GetBattleHallRecordKeeperStats(ScriptContext *ctx)
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_RECEIVED, earnedBP);
 
     if (earnedBP != 0) {
-        BattlePoints_ApplyFuncAndGet(
-            sub_0202D750(ctx->fieldSystem->saveData), earnedBP, BATTLE_POINTS_FUNC_ADD);
+        WifiBattleTowerRecord_UpdateBattlePoints(
+            SaveData_GetWifiBattleTowerRecord(ctx->fieldSystem->saveData), earnedBP, BATTLE_POINTS_FUNC_ADD);
     }
 
     if (totalWinRecord == 0) {

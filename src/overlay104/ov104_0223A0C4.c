@@ -765,14 +765,14 @@ void BattleTower_CreateWiFiTrainerParty(SaveData *saveData, FrontierDataDTO *dto
 {
     MI_CpuClear8(dto, sizeof(FrontierDataDTO));
 
-    UnkStruct_0202D764 *v1 = sub_0202D764(saveData);
+    WifiBattleTowerDownloadData *v1 = SaveData_GetWifiBattleTowerDownloadData(saveData);
 
-    if (!sub_0202D5E8(v1)) {
+    if (!WifiBattleTowerDownloadData_HasOpponentData(v1)) {
         BattleTower_CreateDummyWiFiTrainer(dto, opponentID);
         return;
     }
 
-    sub_0202D63C(v1, dto, opponentID);
+    WifiBattleTowerDownloadData_BuildOpponentDTO(v1, dto, opponentID);
 }
 
 static void BattleTower_CreateDummyWiFiTrainer(FrontierDataDTO *dto, const u8 opponentID)

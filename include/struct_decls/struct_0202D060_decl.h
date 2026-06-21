@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0202D060_DECL_H
 #define POKEPLATINUM_STRUCT_0202D060_DECL_H
 
-typedef struct UnkStruct_0202D060_t UnkStruct_0202D060;
+typedef struct WifiBattleTowerSave_t WifiBattleTowerSave;
 
 #endif // POKEPLATINUM_STRUCT_0202D060_DECL_H
