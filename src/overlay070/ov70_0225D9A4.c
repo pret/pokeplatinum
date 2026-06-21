@@ -2489,7 +2489,7 @@ static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
 
     ov70_0225F338(param4);
 
-    if (ov66_0222E7C8(param8) == 0) {
+    if (GetGender(param8) == 0) {
         v0 = TEXT_COLOR(7, 8, 0);
 
         if (param10 == 0) {
@@ -2567,13 +2567,13 @@ static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
         u32 v3;
 
         if (param5 == 1) {
-            if (ov66_0222E7C8(param8) == 1) {
+            if (GetGender(param8) == 1) {
                 v3 = 0x61;
             } else {
                 v3 = 0x0;
             }
         } else {
-            v3 = ov66_0222E858(param8);
+            v3 = GetTrainerAppearance(param8);
         }
 
         ov70_02260080(param2, param3, param6, heapID, v3);
@@ -2902,7 +2902,7 @@ static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__UNIONOBJ2D_ONLYFRONT, heapID);
     v6 = ov66_0222E798(param5);
-    v7 = ov66_0222E7C8(param5);
+    v7 = GetGender(param5);
 
     for (v0 = 0; v0 < 4; v0++) {
         if (v0 == 2) {

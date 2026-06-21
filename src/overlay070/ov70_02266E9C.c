@@ -2104,8 +2104,8 @@ static void ov70_02268BF4(UnkStruct_ov70_02268BA0 *param0, UnkStruct_ov66_0222DF
     ov70_02268C44(param2, 0, param3, param4);
     ov70_02268C44(param2, 1, param3, param5);
 
-    v1 = ov66_0222E80C(param4);
-    v2 = ov66_0222E80C(param5);
+    v1 = GetNormalizedLanguage(param4);
+    v2 = GetNormalizedLanguage(param5);
     v0 = v3[v1][v2];
 
     ov70_0225DF8C(param2, ov70_0225E20C(param2, 3, v0));
@@ -2113,7 +2113,7 @@ static void ov70_02268BF4(UnkStruct_ov70_02268BA0 *param0, UnkStruct_ov66_0222DF
 
 static void ov70_02268C44(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2, const UnkStruct_ov66_0222E71C *param3)
 {
-    switch (ov66_0222E80C(param3)) {
+    switch (GetNormalizedLanguage(param3)) {
     case 1:
         ov70_0225E2AC(param0, param1, param2);
         break;

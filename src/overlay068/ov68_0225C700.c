@@ -1508,7 +1508,7 @@ static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_
         v0 = ov66_0222E374(param1, v2);
 
         if (v0 != NULL) {
-            language = ov66_0222E850(v0);
+            language = GetLanguage(v0);
             ov66_0222E908(v0, &v1);
             v4 = ov66_022335C0(UnkEnum_ov66_022335C0_00, language);
 

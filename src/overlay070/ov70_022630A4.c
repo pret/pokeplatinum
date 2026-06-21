@@ -2728,7 +2728,7 @@ static BOOL ov70_0226545C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
 
         if (ov66_0222E8D8(v7) == 1) {
-            v1 = ov70_0225CBB8(v3, param2, ov66_0222E858(v7));
+            v1 = ov70_0225CBB8(v3, param2, GetTrainerAppearance(v7));
 
             if (v1) {
                 ov70_0225D0C0(v1, 0);

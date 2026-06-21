@@ -63,27 +63,27 @@
 
 typedef struct UnkStruct_ov66_0222E71C_t {
     s32 unk_00;
-    u32 unk_04;
-    u16 unk_08[8];
-    UnkStruct_ov66_02231428 unk_18;
-    UnkStruct_ov66_02231428 unk_1C;
-    u16 unk_20[6];
-    u8 unk_2C[6];
-    u8 unk_32[6];
-    u8 unk_38;
+    u32 trainerID;
+    u16 trainerName[8];
+    UnkStruct_ov66_02231428 unk_18; // some time value
+    UnkStruct_ov66_02231428 unk_1C; // some time value
+    u16 partySpecies[MAX_PARTY_SIZE];
+    u8 partyForms[MAX_PARTY_SIZE];
+    u8 partyIsEgg[MAX_PARTY_SIZE];
+    u8 trainerGender;
     u8 language;
-    u16 unk_3A;
-    u16 unk_3C;
-    u8 unk_3E;
-    u8 unk_3F;
-    u8 unk_40;
+    u16 trainerAppearanceIdx;
+    u16 country;
+    u8 region;
+    u8 isNationalDexObtained;
+    u8 isMainStoryCleared;
     u8 unk_41;
-    u8 unk_42;
+    u8 gameVersion;
     u8 unk_43;
     s64 unk_44;
     u8 unk_4C[12];
     s32 unk_58[12];
-    u16 unk_88[2];
+    u16 types[2];
     UnkStruct_ov66_0222E908 unk_8C;
 } UnkStruct_ov66_0222E71C;
 
@@ -152,7 +152,7 @@ typedef struct {
     UnkStruct_ov66_02231428 unk_D0;
     s64 unk_D4;
     s64 unk_DC;
-    TrainerInfo *unk_E4[4];
+    TrainerInfo *trainerInfos[4];
 } UnkStruct_ov66_0222DFF8_sub1;
 
 typedef struct {
@@ -212,7 +212,7 @@ typedef struct {
 } UnkStruct_ov66_02230A6C;
 
 typedef struct {
-    TrainerInfo *unk_00;
+    TrainerInfo *trainerInfo;
     BOOL unk_04;
 } UnkStruct_ov66_0222FBF0;
 
@@ -246,9 +246,9 @@ typedef struct UnkStruct_ov66_0222DFF8_t {
 } UnkStruct_ov66_0222DFF8;
 
 typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-} UnkStruct_ov66_02258974;
+    u16 trainerAppearance;
+    u16 trainerGender;
+} TrainerAppearanceAndGender;
 
 typedef struct {
     u16 unk_00;
@@ -356,7 +356,7 @@ static void ov66_02230BCC(UnkStruct_ov66_02230A6C *param0);
 static void ov66_02230BE0(UnkStruct_ov66_02230A6C *param0);
 static BOOL ov66_02230C04(const UnkStruct_ov66_02230A6C *param0);
 static u32 ov66_02230C0C(u32 param0);
-static u32 ov66_02230C2C(u32 param0);
+static u32 GetAppearanceFromIdx(u32 trainerAppearanceIdx);
 
 static const s32 Unk_ov66_0225892C[9] = {
     0x0,
@@ -370,23 +370,23 @@ static const s32 Unk_ov66_0225892C[9] = {
     0xC30
 };
 
-static const UnkStruct_ov66_02258974 Unk_ov66_02258974[16] = {
-    { 0x3, 0x0 },
-    { 0x5, 0x0 },
-    { 0xB, 0x0 },
-    { 0x1F, 0x0 },
-    { 0x32, 0x0 },
-    { 0x33, 0x0 },
-    { 0x3E, 0x0 },
-    { 0x46, 0x0 },
-    { 0x6, 0x1 },
-    { 0x7, 0x1 },
-    { 0xD, 0x1 },
-    { 0xE, 0x1 },
-    { 0x23, 0x1 },
-    { 0x25, 0x1 },
-    { 0x2A, 0x1 },
-    { 0x3F, 0x1 }
+static const TrainerAppearanceAndGender AppearanceGenderCombinations[16] = {
+    { 0x3, GENDER_MALE },
+    { 0x5, GENDER_MALE },
+    { 0xB, GENDER_MALE },
+    { 0x1F, GENDER_MALE },
+    { 0x32, GENDER_MALE },
+    { 0x33, GENDER_MALE },
+    { 0x3E, GENDER_MALE },
+    { 0x46, GENDER_MALE },
+    { 0x6, GENDER_FEMALE },
+    { 0x7, GENDER_FEMALE },
+    { 0xD, GENDER_FEMALE },
+    { 0xE, GENDER_FEMALE },
+    { 0x23, GENDER_FEMALE },
+    { 0x25, GENDER_FEMALE },
+    { 0x2A, GENDER_FEMALE },
+    { 0x3F, GENDER_FEMALE }
 };
 
 static const UnkStruct_ov66_02258918 Unk_ov66_02258918[] = {
@@ -434,7 +434,7 @@ UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, enum HeapID heapID)
         v0->unk_04.unk_00 = ov66_0223177C(heapID);
 
         for (v2 = 0; v2 < 4; v2++) {
-            v0->unk_04.unk_E4[v2] = TrainerInfo_New(heapID);
+            v0->unk_04.trainerInfos[v2] = TrainerInfo_New(heapID);
         }
     }
 
@@ -479,7 +479,7 @@ void ov66_0222DEEC(UnkStruct_ov66_0222DFF8 *param0)
         ov66_022317AC(param0->unk_04.unk_00);
 
         for (v2 = 0; v2 < 4; v2++) {
-            Heap_Free(param0->unk_04.unk_E4[v2]);
+            Heap_Free(param0->unk_04.trainerInfos[v2]);
         }
     }
 
@@ -924,30 +924,30 @@ void ov66_0222E528(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
     ov66_0222F964(param0);
 }
 
-void ov66_0222E56C(UnkStruct_ov66_0222DFF8 *param0, int param1, int param2)
+void ov66_0222E56C(UnkStruct_ov66_0222DFF8 *param0, int type1, int type2)
 {
-    GF_ASSERT(param1 < 18);
-    GF_ASSERT(param2 < 18);
+    GF_ASSERT(type1 < NUM_POKEMON_TYPES);
+    GF_ASSERT(type2 < NUM_POKEMON_TYPES);
 
     if (ov66_0222FA04(&param0->unk_108, param0->saveData) == 0) {
         param0->unk_52C = 1;
         return;
     }
 
-    if (param1 >= 18) {
+    if (type1 >= NUM_POKEMON_TYPES) {
         return;
     }
 
-    if (param2 >= 18) {
+    if (type2 >= NUM_POKEMON_TYPES) {
         return;
     }
 
-    if (param1 == 0) {
-        param0->unk_108.unk_20.unk_88[0] = param2;
-        param0->unk_108.unk_20.unk_88[1] = 0;
+    if (type1 == TYPE_NORMAL) {
+        param0->unk_108.unk_20.types[0] = type2;
+        param0->unk_108.unk_20.types[1] = TYPE_NORMAL;
     } else {
-        param0->unk_108.unk_20.unk_88[0] = param1;
-        param0->unk_108.unk_20.unk_88[1] = param2;
+        param0->unk_108.unk_20.types[0] = type1;
+        param0->unk_108.unk_20.types[1] = type2;
     }
 
     ov66_0222F9EC(&param0->unk_108, param0->saveData);
@@ -976,54 +976,54 @@ void ov66_0222E5D8(UnkStruct_ov66_0222DFF8 *param0, u32 param1, u32 param2)
     ov66_0222F964(param0);
 }
 
-void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, enum HeapID heapID)
+void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *trainerInfo, enum HeapID heapID)
 {
-    BOOL v0;
-    BOOL v1;
+    BOOL isTrainerNameValid;
+    BOOL isTrainerNameInvalid;
 
-    v0 = ov66_0222F1B4(param0->unk_08, 7 + 1);
-    v1 = 0;
+    isTrainerNameValid = ov66_0222F1B4(param0->trainerName, TRAINER_NAME_LEN + 1);
+    isTrainerNameInvalid = FALSE;
 
-    if (v0 == 1) {
-        TrainerInfo_SetName(param1, param0->unk_08);
+    if (isTrainerNameValid == TRUE) {
+        TrainerInfo_SetName(trainerInfo, param0->trainerName);
 
         {
-            String *v2;
-            String *v3;
+            String *trainerName;
+            String *tmpbuf;
 
-            v3 = String_Init((7 + 1) * 4, heapID);
-            v2 = String_Init((7 + 1) * 4, heapID);
-            TrainerInfo_NameString(param1, v2);
-            v0 = Font_AreAllCharsValid(FONT_SYSTEM, v2, v3);
+            tmpbuf = String_Init((TRAINER_NAME_LEN + 1) * 4, heapID);
+            trainerName = String_Init((TRAINER_NAME_LEN + 1) * 4, heapID);
+            TrainerInfo_NameString(trainerInfo, trainerName);
+            isTrainerNameValid = Font_AreAllCharsValid(FONT_SYSTEM, trainerName, tmpbuf);
 
-            if (v0 == 0) {
-                v1 = 1;
+            if (isTrainerNameValid == FALSE) {
+                isTrainerNameInvalid = TRUE;
             }
 
-            String_Free(v3);
-            String_Free(v2);
+            String_Free(tmpbuf);
+            String_Free(trainerName);
         }
     } else {
-        v1 = 1;
+        isTrainerNameInvalid = TRUE;
     }
 
-    if (v1) {
-        MessageLoader *v4;
-        String *v5;
+    if (isTrainerNameInvalid) {
+        MessageLoader *messageLoader;
+        String *fallbackName;
 
-        v4 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0673, heapID);
-        v5 = MessageLoader_GetNewString(v4, 64);
+        messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0673, heapID);
+        fallbackName = MessageLoader_GetNewString(messageLoader, 64);
 
-        TrainerInfo_SetNameFromString(param1, v5);
-        String_Free(v5);
-        MessageLoader_Free(v4);
+        TrainerInfo_SetNameFromString(trainerInfo, fallbackName);
+        String_Free(fallbackName);
+        MessageLoader_Free(messageLoader);
     }
 
-    TrainerInfo_SetID(param1, ov66_0222E79C(param0));
-    TrainerInfo_SetGender(param1, ov66_0222E7C8(param0));
-    TrainerInfo_SetAppearance(param1, ov66_0222E858(param0));
-    TrainerInfo_SetLanguage(param1, ov66_0222E80C(param0));
-    TrainerInfo_SetMainStoryCleared(param1);
+    TrainerInfo_SetID(trainerInfo, GetTrainerID(param0));
+    TrainerInfo_SetGender(trainerInfo, GetGender(param0));
+    TrainerInfo_SetAppearance(trainerInfo, GetTrainerAppearance(param0));
+    TrainerInfo_SetLanguage(trainerInfo, GetNormalizedLanguage(param0));
+    TrainerInfo_SetMainStoryCleared(trainerInfo);
 }
 
 u32 ov66_0222E71C(const UnkStruct_ov66_0222E71C *param0)
@@ -1037,20 +1037,20 @@ u32 ov66_0222E71C(const UnkStruct_ov66_0222E71C *param0)
 
 int ov66_0222E728(const UnkStruct_ov66_0222E71C *param0, u32 param1)
 {
-    int v0;
+    int idx;
     int v1;
 
     GF_ASSERT(param1 < 12);
 
     v1 = 0;
 
-    for (v0 = 0; v0 < 12; v0++) {
-        if (param0->unk_4C[v0] < 24) {
+    for (idx = 0; idx < 12; idx++) {
+        if (param0->unk_4C[idx] < 24) {
             v1++;
         }
 
         if ((v1 - 1) == param1) {
-            return param0->unk_4C[v0];
+            return param0->unk_4C[idx];
         }
     }
 
@@ -1059,20 +1059,20 @@ int ov66_0222E728(const UnkStruct_ov66_0222E71C *param0, u32 param1)
 
 s32 ov66_0222E760(const UnkStruct_ov66_0222E71C *param0, u32 param1)
 {
-    int v0;
+    int idx;
     int v1;
 
     GF_ASSERT(param1 < 12);
 
     v1 = 0;
 
-    for (v0 = 0; v0 < 12; v0++) {
-        if (param0->unk_4C[v0] < 24) {
+    for (idx = 0; idx < 12; idx++) {
+        if (param0->unk_4C[idx] < 24) {
             v1++;
         }
 
         if ((v1 - 1) == param1) {
-            return param0->unk_58[v0];
+            return param0->unk_58[idx];
         }
     }
 
@@ -1084,21 +1084,21 @@ s32 ov66_0222E798(const UnkStruct_ov66_0222E71C *param0)
     return param0->unk_00;
 }
 
-u32 ov66_0222E79C(const UnkStruct_ov66_0222E71C *param0)
+u32 GetTrainerID(const UnkStruct_ov66_0222E71C *param0)
 {
-    return param0->unk_04;
+    return param0->trainerID;
 }
 
 int ov66_0222E7A0(const UnkStruct_ov66_0222E71C *param0)
 {
-    u32 v0;
-    int v1;
+    u32 trainerAppearance;
+    int idx;
 
-    v0 = ov66_0222E858(param0);
+    trainerAppearance = GetTrainerAppearance(param0);
 
-    for (v1 = 0; v1 < 16; v1++) {
-        if (Unk_ov66_02258974[v1].unk_00 == v0) {
-            return v1;
+    for (idx = 0; idx < 16; idx++) {
+        if (AppearanceGenderCombinations[idx].trainerAppearance == trainerAppearance) {
+            return idx;
         }
     }
 
@@ -1110,32 +1110,32 @@ UnkStruct_ov66_02231428 ov66_0222E7C4(const UnkStruct_ov66_0222E71C *param0)
     return param0->unk_1C;
 }
 
-u32 ov66_0222E7C8(const UnkStruct_ov66_0222E71C *param0)
+u32 GetGender(const UnkStruct_ov66_0222E71C *param0)
 {
-    u32 v0;
-    int v1;
-    u32 v2;
+    u32 gender;
+    int idx;
+    u32 trainerAppearance;
 
-    if (param0->unk_38 >= 2) {
-        v2 = ov66_02230C2C(param0->unk_3A);
+    if (param0->trainerGender >= GENDER_NONE) {
+        trainerAppearance = GetAppearanceFromIdx(param0->trainerAppearanceIdx);
 
-        if (v2 != 0xffff) {
-            for (v1 = 0; v1 < NELEMS(Unk_ov66_02258974); v1++) {
-                if (Unk_ov66_02258974[v1].unk_00 == param0->unk_3A) {
-                    v0 = Unk_ov66_02258974[v1].unk_00;
+        if (trainerAppearance != 0xffff) {
+            for (idx = 0; idx < NELEMS(AppearanceGenderCombinations); idx++) {
+                if (AppearanceGenderCombinations[idx].trainerAppearance == param0->trainerAppearanceIdx) {
+                    gender = AppearanceGenderCombinations[idx].trainerAppearance;
                 }
             }
         } else {
-            v0 = 1;
+            gender = GENDER_FEMALE;
         }
     } else {
-        v0 = param0->unk_38;
+        gender = param0->trainerGender;
     }
 
-    return v0;
+    return gender;
 }
 
-u32 ov66_0222E80C(const UnkStruct_ov66_0222E71C *param0)
+u32 GetNormalizedLanguage(const UnkStruct_ov66_0222E71C *param0)
 {
     u32 language;
 
@@ -1148,7 +1148,7 @@ u32 ov66_0222E80C(const UnkStruct_ov66_0222E71C *param0)
     return language;
 }
 
-// Probably checking if language is valid
+// Probably checking if language is valid for something (or not Korean)
 BOOL ov66_0222E824(const UnkStruct_ov66_0222E71C *param0)
 {
     switch (param0->language) {
@@ -1166,20 +1166,20 @@ BOOL ov66_0222E824(const UnkStruct_ov66_0222E71C *param0)
     return FALSE;
 }
 
-u32 ov66_0222E850(const UnkStruct_ov66_0222E71C *param0)
+u32 GetLanguage(const UnkStruct_ov66_0222E71C *param0)
 {
     return param0->language;
 }
 
-u32 ov66_0222E858(const UnkStruct_ov66_0222E71C *param0)
+u32 GetTrainerAppearance(const UnkStruct_ov66_0222E71C *param0)
 {
-    u32 v0 = ov66_02230C2C(param0->unk_3A);
+    u32 trainerAppearance = GetAppearanceFromIdx(param0->trainerAppearanceIdx);
 
-    if (v0 != 0xffff) {
-        return v0;
+    if (trainerAppearance != 0xffff) {
+        return trainerAppearance;
     }
 
-    if (ov66_0222E7C8(param0) == 0) {
+    if (GetGender(param0) == GENDER_MALE) {
         return 0x3;
     }
 
@@ -1188,32 +1188,32 @@ u32 ov66_0222E858(const UnkStruct_ov66_0222E71C *param0)
 
 u32 ov66_0222E880(const UnkStruct_ov66_0222E71C *param0)
 {
-    u32 v0;
+    u32 country;
 
-    if (param0->unk_3C >= 234) {
-        v0 = 0;
+    if (param0->country >= 234) {
+        country = 0;
     } else {
-        if (ov66_022316C4(param0->unk_3C, param0->unk_3E) == 0) {
+        if (ov66_022316C4(param0->country, param0->region) == 0) {
             return 0;
         }
 
-        v0 = param0->unk_3C;
+        country = param0->country;
     }
 
-    return v0;
+    return country;
 }
 
 u32 ov66_0222E8A4(const UnkStruct_ov66_0222E71C *param0)
 {
-    u32 v0;
+    u32 region;
 
-    if (ov66_022316C4(param0->unk_3C, param0->unk_3E) == 0) {
-        v0 = 0;
+    if (ov66_022316C4(param0->country, param0->region) == 0) {
+        region = 0;
     } else {
-        v0 = param0->unk_3E;
+        region = param0->region;
     }
 
-    return v0;
+    return region;
 }
 
 u32 ov66_0222E8C4(const UnkStruct_ov66_0222E71C *param0)
@@ -1242,15 +1242,15 @@ BOOL ov66_0222E8D8(const UnkStruct_ov66_0222E71C *param0)
     return 1;
 }
 
-int ov66_0222E8E8(const UnkStruct_ov66_0222E71C *param0, u32 param1)
+int ov66_0222E8E8(const UnkStruct_ov66_0222E71C *param0, u32 index)
 {
-    GF_ASSERT(param1 < 2);
+    GF_ASSERT(index < 2);
 
-    if (param0->unk_88[param1] >= 18) {
-        return 0;
+    if (param0->types[index] >= NUM_POKEMON_TYPES) {
+        return TYPE_NORMAL;
     }
 
-    return param0->unk_88[param1];
+    return param0->types[index];
 }
 
 void ov66_0222E908(const UnkStruct_ov66_0222E71C *param0, UnkStruct_ov66_0222E908 *param1)
@@ -1260,7 +1260,7 @@ void ov66_0222E908(const UnkStruct_ov66_0222E71C *param0, UnkStruct_ov66_0222E90
 
 TrainerInfo *ov66_0222E918(const UnkStruct_ov66_0222DFF8 *param0)
 {
-    return param0->unk_508.unk_00;
+    return param0->unk_508.trainerInfo;
 }
 
 BOOL ov66_0222E924(const UnkStruct_ov66_0222DFF8 *param0, u32 param1)
@@ -1544,22 +1544,22 @@ BOOL ov66_0222EC70(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 
 void ov66_0222ECD4(UnkStruct_ov66_0222DFF8 *param0, u16 param1)
 {
-    BOOL v0 = 0;
+    BOOL isTrainerNameValid = 0;
     s32 v1;
 
     if (param0->unk_1C0.unk_0A == 1) {
         if (param0->unk_1C0.unk_06 != 2) {
-            v0 = 1;
+            isTrainerNameValid = 1;
         }
     } else {
         if (param0->unk_1C0.unk_0A == 2) {
             if (param0->unk_1C0.unk_06 != 3) {
-                v0 = 1;
+                isTrainerNameValid = 1;
             }
         }
     }
 
-    if (v0) {
+    if (isTrainerNameValid) {
         v1 = ov66_02232BA0(param0->unk_1C0.unk_04);
         ov66_0222FD50(param0, v1);
         return;
@@ -1724,7 +1724,7 @@ void ov66_0222EEF4(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
     if (v0 != NULL) {
         trainerInfo = TrainerInfo_New(HEAP_ID_112);
         ov66_0222E640(v0, trainerInfo, HEAP_ID_112);
-        journalEntryOnlineEvent = JournalEntry_CreateEventInteraction(TrainerInfo_Name(trainerInfo), v0->unk_38, HEAP_ID_112, ONLINE_EVENT_CHATTED_IN_PLAZA);
+        journalEntryOnlineEvent = JournalEntry_CreateEventInteraction(TrainerInfo_Name(trainerInfo), v0->trainerGender, HEAP_ID_112, ONLINE_EVENT_CHATTED_IN_PLAZA);
 
         JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
         Heap_Free(trainerInfo);
@@ -1742,7 +1742,7 @@ void ov66_0222EF44(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
     if (v0 != NULL) {
         trainerInfo = TrainerInfo_New(HEAP_ID_112);
         ov66_0222E640(v0, trainerInfo, HEAP_ID_112);
-        journalEntryOnlineEvent = JournalEntry_CreateEventInteraction(TrainerInfo_Name(trainerInfo), v0->unk_38, HEAP_ID_112, ONLINE_EVENT_GOT_TAP_TOY);
+        journalEntryOnlineEvent = JournalEntry_CreateEventInteraction(TrainerInfo_Name(trainerInfo), v0->trainerGender, HEAP_ID_112, ONLINE_EVENT_GOT_TAP_TOY);
 
         JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
         Heap_Free(trainerInfo);
@@ -1909,17 +1909,17 @@ void ov66_0222F198(UnkStruct_ov66_0222DFF8 *param0)
     }
 }
 
-static BOOL ov66_0222F1B4(const u16 *param0, u32 param1)
+static BOOL ov66_0222F1B4(const u16 *trainerName, u32 param1)
 {
-    int v0;
+    int idx;
 
-    for (v0 = 0; v0 < param1; v0++) {
-        if (param0[v0] == 0xffff) {
-            return 1;
+    for (idx = 0; idx < param1; idx++) {
+        if (trainerName[idx] == 0xffff) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void ov66_0222F1DC(s32 param0, const void *param1, void *param2, BOOL param3)
@@ -1940,7 +1940,7 @@ static void ov66_0222F1DC(s32 param0, const void *param1, void *param2, BOOL par
         }
 
         v1 = ov66_02232B78(param0);
-        ov66_022317E4(v0->unk_04.unk_00, v1, v0->unk_108.unk_20.unk_38, UnkEnum_ov66_02231E54_01 | UnkEnum_ov66_02231E54_02);
+        ov66_022317E4(v0->unk_04.unk_00, v1, v0->unk_108.unk_20.trainerGender, UnkEnum_ov66_02231E54_01 | UnkEnum_ov66_02231E54_02);
         v0->unk_108.unk_20.unk_00 = param0;
 
         {
@@ -1974,7 +1974,7 @@ static void ov66_0222F1DC(s32 param0, const void *param1, void *param2, BOOL par
         v3 = ov66_02232988();
         v1 = ov66_02232B78(param0);
 
-        ov66_022317E4(v0->unk_04.unk_00, v1, ov66_0222E7C8(v2), UnkEnum_ov66_02231E54_00);
+        ov66_022317E4(v0->unk_04.unk_00, v1, GetGender(v2), UnkEnum_ov66_02231E54_00);
 
         if (v3 == param0) {
             ov66_0223180C(v0->unk_04.unk_00, v1);
@@ -2273,63 +2273,63 @@ static void ov66_0222F768(UnkStruct_ov66_0222DFF8 *param0)
 
 static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, enum HeapID heapID)
 {
-    TrainerInfo *v0;
-    Party *v1;
+    TrainerInfo *trainerInfo;
+    Party *party;
     WiFiHistory *wiFiHistory;
-    Pokedex *v3;
+    Pokedex *pokedex;
     GameTime *v4;
 
     {
-        v0 = SaveData_GetTrainerInfo(saveData);
-        v1 = SaveData_GetParty(saveData);
-        v3 = SaveData_GetPokedex(saveData);
+        trainerInfo = SaveData_GetTrainerInfo(saveData);
+        party = SaveData_GetParty(saveData);
+        pokedex = SaveData_GetPokedex(saveData);
         wiFiHistory = SaveData_WiFiHistory(saveData);
         v4 = SaveData_GetGameTime(saveData);
     }
 
     {
-        String *v5;
+        String *trainerName;
 
-        v5 = TrainerInfo_NameNewString(v0, heapID);
+        trainerName = TrainerInfo_NameNewString(trainerInfo, heapID);
 
-        String_ToChars(v5, param0->unk_20.unk_08, 7 + 1);
-        String_ToChars(v5, param0->unk_00, 7 + 1);
-        String_Free(v5);
+        String_ToChars(trainerName, param0->unk_20.trainerName, TRAINER_NAME_LEN + 1);
+        String_ToChars(trainerName, param0->unk_00, TRAINER_NAME_LEN + 1);
+        String_Free(trainerName);
     }
 
     param0->unk_20.unk_00 = DWC_LOBBY_INVALID_USER_ID;
-    param0->unk_20.unk_04 = TrainerInfo_ID(v0);
+    param0->unk_20.trainerID = TrainerInfo_ID(trainerInfo);
 
     {
-        Pokemon *v6;
-        int v7;
-        int v8;
+        Pokemon *pokemon;
+        int partyCount;
+        int partyIdx;
 
-        v7 = Party_GetCurrentCount(v1);
+        partyCount = Party_GetCurrentCount(party);
 
-        for (v8 = 0; v8 < 6; v8++) {
-            if (v8 < v7) {
-                v6 = Party_GetPokemonBySlotIndex(v1, v8);
-                param0->unk_20.unk_20[v8] = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
-                param0->unk_20.unk_2C[v8] = Pokemon_GetValue(v6, MON_DATA_FORM, NULL);
-                param0->unk_20.unk_32[v8] = Pokemon_GetValue(v6, MON_DATA_IS_EGG, NULL);
+        for (partyIdx = 0; partyIdx < MAX_PARTY_SIZE; partyIdx++) {
+            if (partyIdx < partyCount) {
+                pokemon = Party_GetPokemonBySlotIndex(party, partyIdx);
+                param0->unk_20.partySpecies[partyIdx] = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+                param0->unk_20.partyForms[partyIdx] = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+                param0->unk_20.partyIsEgg[partyIdx] = Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL);
             } else {
-                param0->unk_20.unk_20[v8] = SPECIES_BAD_EGG;
+                param0->unk_20.partySpecies[partyIdx] = SPECIES_BAD_EGG;
             }
         }
     }
 
-    param0->unk_20.unk_38 = TrainerInfo_Gender(v0);
-    param0->unk_20.language = TrainerInfo_Language(v0);
-    param0->unk_20.unk_3A = TrainerInfo_Appearance(v0);
-    param0->unk_20.unk_3A = ov66_02230C0C(param0->unk_20.unk_3A);
-    param0->unk_20.unk_3C = WiFiHistory_GetCountry(wiFiHistory);
-    param0->unk_20.unk_3E = WiFiHistory_GetRegion(wiFiHistory);
-    param0->unk_20.unk_3F = Pokedex_IsNationalDexObtained(v3);
-    param0->unk_20.unk_40 = TrainerInfo_IsMainStoryCleared(v0);
+    param0->unk_20.trainerGender = TrainerInfo_Gender(trainerInfo);
+    param0->unk_20.language = TrainerInfo_Language(trainerInfo);
+    param0->unk_20.trainerAppearanceIdx = TrainerInfo_Appearance(trainerInfo);
+    param0->unk_20.trainerAppearanceIdx = ov66_02230C0C(param0->unk_20.trainerAppearanceIdx);
+    param0->unk_20.country = WiFiHistory_GetCountry(wiFiHistory);
+    param0->unk_20.region = WiFiHistory_GetRegion(wiFiHistory);
+    param0->unk_20.isNationalDexObtained = Pokedex_IsNationalDexObtained(pokedex);
+    param0->unk_20.isMainStoryCleared = TrainerInfo_IsMainStoryCleared(trainerInfo);
     param0->unk_20.unk_41 = 0xff;
     param0->unk_20.unk_43 = 0;
-    param0->unk_20.unk_42 = GAME_VERSION;
+    param0->unk_20.gameVersion = GAME_VERSION;
     param0->unk_20.unk_44 = v4->startTimestamp;
 
     {
@@ -2341,10 +2341,10 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, e
         }
     }
     {
-        int v10;
+        int idx;
 
-        for (v10 = 0; v10 < 2; v10++) {
-            param0->unk_20.unk_88[v10] = 0;
+        for (idx = 0; idx < 2; idx++) {
+            param0->unk_20.types[idx] = TYPE_NORMAL;
         }
     }
 
@@ -2369,10 +2369,10 @@ static void ov66_0222F964(UnkStruct_ov66_0222DFF8 *param0)
         param0->unk_108.unk_20.unk_58[v0] = ov66_02230BA4(&param0->unk_4BC, v0);
     }
 
-    MI_CpuCopy8(param0->unk_108.unk_10, param0->unk_108.unk_20.unk_08, sizeof(u16) * (7 + 1));
+    MI_CpuCopy8(param0->unk_108.unk_10, param0->unk_108.unk_20.trainerName, sizeof(u16) * (7 + 1));
     ov66_02232908(&param0->unk_108.unk_20);
 
-    MI_CpuCopy8(param0->unk_108.unk_00, param0->unk_108.unk_20.unk_08, sizeof(u16) * (7 + 1));
+    MI_CpuCopy8(param0->unk_108.unk_00, param0->unk_108.unk_20.trainerName, sizeof(u16) * (7 + 1));
     ov66_0222F9EC(&param0->unk_108, param0->saveData);
 }
 
@@ -2403,8 +2403,8 @@ static void ov66_0222FA28(UnkStruct_ov66_0222F6C4 *param0, const UnkStruct_ov66_
         MI_CpuCopy8(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
     }
 
-    MI_CpuCopy8(param1->unk_08, param0->unk_10, sizeof(u16) * (7 + 1));
-    MI_CpuCopy8(param0->unk_00, param0->unk_20.unk_08, sizeof(u16) * (7 + 1));
+    MI_CpuCopy8(param1->trainerName, param0->unk_10, sizeof(u16) * (7 + 1));
+    MI_CpuCopy8(param0->unk_00, param0->unk_20.trainerName, sizeof(u16) * (7 + 1));
 }
 
 static void ov66_0222FA80(UnkStruct_ov66_0222FA80 *param0)
@@ -2509,12 +2509,12 @@ static void ov66_0222FBE0(UnkStruct_ov66_0222FBC8 *param0)
 
 static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, enum HeapID heapID)
 {
-    param0->unk_00 = TrainerInfo_New(heapID);
+    param0->trainerInfo = TrainerInfo_New(heapID);
 }
 
 static void ov66_0222FC00(UnkStruct_ov66_0222FBF0 *param0)
 {
-    Heap_Free(param0->unk_00);
+    Heap_Free(param0->trainerInfo);
 }
 
 static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, enum HeapID heapID)
@@ -2522,9 +2522,9 @@ static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_
     UnkStruct_ov66_0222E71C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_0222E71C));
 
     MI_CpuCopyFast(&param1->unk_20, v0, sizeof(UnkStruct_ov66_0222E71C));
-    MI_CpuCopy8(param1->unk_10, v0->unk_08, sizeof(u16) * (7 + 1));
+    MI_CpuCopy8(param1->unk_10, v0->trainerName, sizeof(u16) * (7 + 1));
 
-    ov66_0222E640(v0, param0->unk_00, heapID);
+    ov66_0222E640(v0, param0->trainerInfo, heapID);
     Heap_Free(v0);
 }
 
@@ -2682,14 +2682,14 @@ static void ov66_0222FDC4(UnkStruct_ov66_0222DFF8 *param0, const UnkStruct_ov66_
 
         if (v2 != 0xffffffff) {
             v0 = ov66_0222E374(param0, v2);
-            ov66_0222E640(v0, param0->unk_04.unk_E4[v1], param0->heapID);
+            ov66_0222E640(v0, param0->unk_04.trainerInfos[v1], param0->heapID);
         } else {
             return;
         }
     }
 
-    v3.unk_00 = param0->unk_04.unk_E4[0];
-    v3.unk_04 = param0->unk_04.unk_E4[1];
+    v3.unk_00 = param0->unk_04.trainerInfos[0];
+    v3.unk_04 = param0->unk_04.trainerInfos[1];
     v3.unk_08 = ov66_02232B78(param1->unk_00[0]);
     v3.unk_0A = ov66_02232B78(param1->unk_00[1]);
 
@@ -2712,14 +2712,14 @@ static void ov66_0222FE40(UnkStruct_ov66_0222DFF8 *param0, const UnkStruct_ov66_
 
         if (v2 != 0xffffffff) {
             v0 = ov66_0222E374(param0, v2);
-            ov66_0222E640(v0, param0->unk_04.unk_E4[v1], param0->heapID);
+            ov66_0222E640(v0, param0->unk_04.trainerInfos[v1], param0->heapID);
         } else {
             return;
         }
     }
 
-    v3.unk_00 = param0->unk_04.unk_E4[0];
-    v3.unk_04 = param0->unk_04.unk_E4[1];
+    v3.unk_00 = param0->unk_04.trainerInfos[0];
+    v3.unk_04 = param0->unk_04.trainerInfos[1];
     v3.unk_08 = ov66_02232B78(param1->unk_00[0]);
     v3.unk_0A = ov66_02232B78(param1->unk_00[1]);
     v3.unk_0C = param1->unk_12;
@@ -2746,8 +2746,8 @@ static void ov66_0222FEC0(UnkStruct_ov66_0222DFF8 *param0, const UnkStruct_ov66_
 
                 if (v3 != 0xffffffff) {
                     v0 = ov66_0222E374(param0, v3);
-                    ov66_0222E640(v0, param0->unk_04.unk_E4[v1], param0->heapID);
-                    v2[v1] = param0->unk_04.unk_E4[v1];
+                    ov66_0222E640(v0, param0->unk_04.trainerInfos[v1], param0->heapID);
+                    v2[v1] = param0->unk_04.trainerInfos[v1];
                 } else {
                     return;
                 }
@@ -2762,8 +2762,8 @@ static void ov66_0222FEC0(UnkStruct_ov66_0222DFF8 *param0, const UnkStruct_ov66_
 
                 if (v5 != 0xffffffff) {
                     v0 = ov66_0222E374(param0, v5);
-                    ov66_0222E640(v0, param0->unk_04.unk_E4[v1], param0->heapID);
-                    v2[v1] = param0->unk_04.unk_E4[v1];
+                    ov66_0222E640(v0, param0->unk_04.trainerInfos[v1], param0->heapID);
+                    v2[v1] = param0->unk_04.trainerInfos[v1];
                 } else {
                     return;
                 }
@@ -2803,14 +2803,14 @@ static void ov66_0222FFF4(UnkStruct_ov66_0222DFF8 *param0, const UnkStruct_ov66_
 
     if (v2 != 0xffffffff) {
         v0 = ov66_0222E374(param0, v2);
-        ov66_0222E640(v0, param0->unk_04.unk_E4[0], param0->heapID);
+        ov66_0222E640(v0, param0->unk_04.trainerInfos[0], param0->heapID);
     } else {
         return;
     }
 
     v3.unk_00 = param1->unk_13_0;
     v3.unk_04 = param1->unk_10;
-    v3.unk_08 = param0->unk_04.unk_E4[0];
+    v3.unk_08 = param0->unk_04.trainerInfos[0];
     v3.unk_0C = ov66_02232B78(param1->unk_00[0]);
 
     ov66_0223199C(param0->unk_04.unk_00, &v3);
@@ -2834,8 +2834,8 @@ static void ov66_02230058(UnkStruct_ov66_0222DFF8 *param0, const UnkStruct_ov66_
 
             if (v3 != 0xffffffff) {
                 v0 = ov66_0222E374(param0, v3);
-                ov66_0222E640(v0, param0->unk_04.unk_E4[v1], param0->heapID);
-                v2[v1] = param0->unk_04.unk_E4[v1];
+                ov66_0222E640(v0, param0->unk_04.trainerInfos[v1], param0->heapID);
+                v2[v1] = param0->unk_04.trainerInfos[v1];
             } else {
                 return;
             }
@@ -2875,8 +2875,8 @@ static void ov66_02230114(UnkStruct_ov66_0222DFF8 *param0, const UnkStruct_ov66_
 
             if (v3 != 0xffffffff) {
                 v0 = ov66_0222E374(param0, v3);
-                ov66_0222E640(v0, param0->unk_04.unk_E4[v1], param0->heapID);
-                v2[v1] = param0->unk_04.unk_E4[v1];
+                ov66_0222E640(v0, param0->unk_04.trainerInfos[v1], param0->heapID);
+                v2[v1] = param0->unk_04.trainerInfos[v1];
             } else {
                 return;
             }
@@ -2916,8 +2916,8 @@ static void ov66_022301D0(UnkStruct_ov66_0222DFF8 *param0, const UnkStruct_ov66_
 
             if (v3 != 0xffffffff) {
                 v0 = ov66_0222E374(param0, v3);
-                ov66_0222E640(v0, param0->unk_04.unk_E4[v1], param0->heapID);
-                v2[v1] = param0->unk_04.unk_E4[v1];
+                ov66_0222E640(v0, param0->unk_04.trainerInfos[v1], param0->heapID);
+                v2[v1] = param0->unk_04.trainerInfos[v1];
             } else {
                 return;
             }
@@ -3684,21 +3684,21 @@ static BOOL ov66_02230C04(const UnkStruct_ov66_02230A6C *param0)
 
 static u32 ov66_02230C0C(u32 param0)
 {
-    int v0;
+    int idx;
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (Unk_ov66_02258974[v0].unk_00 == param0) {
-            return v0;
+    for (idx = 0; idx < 16; idx++) {
+        if (AppearanceGenderCombinations[idx].trainerAppearance == param0) {
+            return idx;
         }
     }
 
     return 16;
 }
 
-static u32 ov66_02230C2C(u32 param0)
+static u32 GetAppearanceFromIdx(u32 trainerAppearanceIdx)
 {
-    if (param0 < 16) {
-        return Unk_ov66_02258974[param0].unk_00;
+    if (trainerAppearanceIdx < 16) {
+        return AppearanceGenderCombinations[trainerAppearanceIdx].trainerAppearance;
     }
 
     return 0xffff;
