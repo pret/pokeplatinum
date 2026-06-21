@@ -9,11 +9,9 @@
 #include "struct_defs/struct_0202D080.h"
 #include "struct_defs/struct_0202D63C.h"
 #include "struct_defs/struct_02049A68.h"
-#include "struct_defs/struct_0204B404.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay090/struct_ov90_021D1750.h"
-#include "overlay096/struct_ov96_0223B450_sub2.h"
 #include "overlay096/struct_wifi_player_profile.h"
 #include "overlay104/frontier_data_transfer.h"
 
@@ -69,7 +67,7 @@ u32 WifiBattleTowerSave_GetField(WifiBattleTowerSave *save, int fieldId, void *o
         MI_CpuCopy8(save->partySlots, outBuf, 4);
         return 0;
     case BT_WIFI_SAVE_FIELD_PARTNER_DATA:
-        MI_CpuCopy8(&save->unk_2C, outBuf, sizeof(UnkStruct_0204B404));
+        MI_CpuCopy8(&save->unk_2C, outBuf, sizeof(BattleTowerPartnerData));
         return 0;
     case BT_WIFI_SAVE_FIELD_UNK_00_0:
         return save->unk_00_0;
@@ -111,7 +109,7 @@ void WifiBattleTowerSave_SetField(WifiBattleTowerSave *save, int fieldId, const 
         MI_CpuCopy8(inBuf8, save->partySlots, 4);
         break;
     case BT_WIFI_SAVE_FIELD_PARTNER_DATA:
-        MI_CpuCopy8(inBuf16, &save->unk_2C, sizeof(UnkStruct_0204B404));
+        MI_CpuCopy8(inBuf16, &save->unk_2C, sizeof(BattleTowerPartnerData));
         break;
     case BT_WIFI_SAVE_FIELD_UNK_00_0:
         save->unk_00_0 = inBuf8[0];

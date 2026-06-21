@@ -12,7 +12,6 @@
 #include "overlay096/ov96_0223B140.h"
 #include "overlay096/ov96_0223B6A0.h"
 #include "overlay096/struct_ov96_0223B450.h"
-#include "overlay096/struct_ov96_0223B450_sub2.h"
 #include "overlay096/struct_ov96_0223BF40_decl.h"
 #include "overlay096/struct_ov96_0223BF40_t.h"
 #include "overlay096/struct_wifi_player_profile.h"

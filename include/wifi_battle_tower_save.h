@@ -8,7 +8,6 @@
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay090/struct_ov90_021D1750.h"
-#include "overlay096/struct_ov96_0223B450_sub2.h"
 #include "overlay096/struct_wifi_player_profile.h"
 #include "overlay104/frontier_data_transfer.h"
 

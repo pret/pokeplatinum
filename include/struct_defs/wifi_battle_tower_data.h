@@ -4,7 +4,7 @@
 #include "constants/battle_tower.h"
 
 #include "struct_defs/struct_0202D63C.h"
-#include "struct_defs/struct_0204B404.h"
+#include "struct_defs/wifi_Battle_tower_data.h"
 
 #include "overlay090/struct_ov90_021D1750.h"
 #include "overlay104/frontier_data_transfer.h"
@@ -53,6 +53,12 @@ typedef struct WifiBattleTowerRecord {
     FrontierPokemonDataDTO team0[3];
 } WifiBattleTowerRecord;
 
+typedef struct BattleTowerPartnerData{
+    u32 otID;
+    u16 monSetIDs[2];
+    u32 personalities[2];
+} BattleTowerPartnerData;
+
 typedef struct WifiBattleTowerSave {
     u8 unk_00_0 : 1;
     u8 isInProgress : 1;
@@ -66,7 +72,7 @@ typedef struct WifiBattleTowerSave {
     u8 partySlots[4];
     u16 trainerIDs[BT_OPPONENTS_COUNT * 2];
     u32 rngSeed;
-    UnkStruct_0204B404 unk_2C;
+    BattleTowerPartnerData unk_2C;
 } WifiBattleTowerSave;
 
 #endif // POKEPLATINUM_STRUCT_WIFI_BATTLE_TOWER_DATA_H
