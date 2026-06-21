@@ -17,6 +17,7 @@ static ImVec2 s_btnSize = {100, 20};
 
 static int s_speciesNum = 1;
 static const char * s_speciesNames[SPECIES_BAD_EGG+1] = {0};
+static u8 s_level = 1;
 
 void GUI_CreateMon_Init() {
     s_speciesNames[0] = "None";
@@ -39,15 +40,30 @@ void GUI_CreateMon_Main(bool * p_open) {
 
     // TODO: Add level, EVs, IVs, etc
 
-    if(igButton("Create Pokemon", s_btnSize)) {
-        Pokemon * myPoke = malloc(sizeof(Pokemon));
+    // Level
+    igInputScalar("Level", ImGuiDataType_U8, &s_level, NULL, NULL, NULL, ImGuiInputTextFlags_CharsDecimal);
+    if(s_level < 1) {
+        s_level = 1;
+    } else if (s_level > 100) {
+        s_level = 100;
+    }
 
-        Pokemon_InitWith(myPoke, s_speciesNum, 50, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SHINY, 0);
+
+    if(igButton("Create Pokemon", s_btnSize)) {
+        Pokemon myPoke;
+
+        Pokemon_InitWith(&myPoke, 
+                         s_speciesNum, 
+                         s_level, 
+                         INIT_IVS_RANDOM, 
+                         FALSE, 
+                         0, 
+                         OTID_NOT_SHINY, 
+                         0);
 
         SaveData * mySaveData = SaveData_Ptr();
         Party * myParty = SaveData_GetParty(mySaveData);
-        Party_AddPokemon(myParty, myPoke);
-        free(myPoke);
+        Party_AddPokemon(myParty, &myPoke);
     }
     igEnd();
 }

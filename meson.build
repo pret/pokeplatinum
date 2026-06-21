@@ -128,7 +128,8 @@ link_args = [
     '-mtune=cortex-a56',
     '-mtp=soft',
     '-fPIE',
-    '--verbose'
+    '--verbose',
+    '-Wl,-Map=main.map'
 ]
 else
 link_args = [
@@ -495,6 +496,28 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         '--output=@OUTPUT0@',         # pokeplatinum.us.nds
         rom_ini,
         filesys_csv,
+    ],
+    build_by_default: true
+)
+elif (build_target == 'nx')
+copy_files_script = files('tools/scripts/copy_pc_files.sh')
+
+pokeplatinum_nds = custom_target('pokeplatinum.us',
+    output: 'pokeplatinum.us',
+    input: [
+        main,
+        rom_header_template,
+        icon_png,
+        ichneumon_sub,
+        ichneumon_sub_defs,
+        nitrofs_files,
+    ],
+    command : [
+        copy_files_script,
+        meson.global_build_root(),
+        filesys_csv,
+        'pokeplatinum.us',
+        '-nx'
     ],
     build_by_default: true
 )

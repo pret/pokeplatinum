@@ -24,3 +24,7 @@ if [[ "$(uname -s)" =~ ^MSYS_NT.* ]]; then
 	cp -u /ucrt64/bin/libgcc_s_seh-1.dll $OUTPUTDIR/libgcc_s_seh-1.dll
 	cp -u /ucrt64/bin/libstdc++-6.dll $OUTPUTDIR/libstdc++-6.dll
 fi
+
+if [[ "$4" == "-nx" ]]; then
+  /opt/devkitpro/tools/bin/elf2nro $OUTPUTDIR/main $OUTPUTDIR/pokeplatinum.nro
+fi
