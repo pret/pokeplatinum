@@ -2,8 +2,8 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "LOCALID_PSYDUCK",
-            "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
+            "id": "LOCALID_LASS",
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
@@ -12,22 +12,22 @@
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
-            "x": 4,
-            "z": 11,
+            "x": 6,
+            "z": 12,
             "y": 1
         },
         {
-            "id": "LOCALID_LASS",
-            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "id": "LOCALID_COLLECTOR",
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 1,
-            "initial_dir": 2,
+            "initial_dir": 1,
             "data": [],
             "movement_range_x": 1,
             "movement_range_z": 1,
-            "x": 4,
+            "x": 8,
             "z": 12,
             "y": 1
         }
@@ -36,13 +36,13 @@
         {
             "x": 8,
             "z": 3,
-            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_2F",
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_2F",
             "dest_warp_id": 1
         },
         {
             "x": 15,
             "z": 3,
-            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_4F",
+            "dest_header_id": "MAP_HEADER_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_4F",
             "dest_warp_id": 0
         }
     ],

@@ -6,7 +6,7 @@
     ScriptEntry Route201_CoordEvent_ChooseStarterScene
     ScriptEntry Route201_CoordEvent_FollowingRivalStopPlayerSouth
     ScriptEntry Route201_CoordEvent_PickAPokemon
-    ScriptEntry _0B24
+    ScriptEntry Route201_DPProfRowanScene_Unused
     ScriptEntry Route201_ArrowSignpostTwinleafTown
     ScriptEntry Route201_ArrowSignpostSandgemTown
     ScriptEntry Route201_TrainerTipsSignpost
@@ -932,115 +932,114 @@ Route201_Movement_Unused7:
     WalkNormalWest
     EndMovement
 
-_0B24:
+#define LOCALID_DP_FOLLOWER 254
+
+Route201_DPProfRowanScene_Unused:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x355, _0B55
-    GoToIfEq VAR_0x8005, 0x356, _0B89
-    GoToIfEq VAR_0x8005, 0x357, _0BBB
+    GoToIfEq VAR_0x8005, 853, Route201_DPNoticeProfRowanZ853_Unused
+    GoToIfEq VAR_0x8005, 854, Route201_DPNoticeProfRowanZ854_Unused
+    GoToIfEq VAR_0x8005, 855, Route201_DPNoticeProfRowanZ855_Unused
     End
 
-_0B55:
-    ApplyMovement 254, _0DBC
-    ApplyMovement LOCALID_PROF_ROWAN, _0D48
+Route201_DPNoticeProfRowanZ853_Unused:
+    ApplyMovement LOCALID_DP_FOLLOWER, Route201_Movement_RivalNoticeProfRowan_Unused
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkOnSpotWest_Unused
     WaitMovement
     BufferRivalName 0
     Message Route201_Text_ISaidTheLakesNotThatWay
     CloseMessage
-    ApplyMovement LOCALID_PROF_ROWAN, _0D50
-    ApplyMovement LOCALID_COUNTERPART, _0D80
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkToPlayerZ853_Unused
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartFacePlayer_Unused
     WaitMovement
-    GoTo _0BF5
+    GoTo Route201_ProfRowanWalkOnSpotEast_Unused
     End
 
-_0B89:
-    ApplyMovement 254, _0DBC
-    ApplyMovement LOCALID_PROF_ROWAN, _0D48
+Route201_DPNoticeProfRowanZ854_Unused:
+    ApplyMovement LOCALID_DP_FOLLOWER, Route201_Movement_RivalNoticeProfRowan_Unused
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkOnSpotWest_Unused
     WaitMovement
     BufferRivalName 0
     Message Route201_Text_ISaidTheLakesNotThatWay
     CloseMessage
-    ApplyMovement LOCALID_PROF_ROWAN, _0D5C
-    ApplyMovement LOCALID_COUNTERPART, _0D80
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkToPlayer_Unused
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartFacePlayer_Unused
     WaitMovement
-    GoTo _0BF5
+    GoTo Route201_ProfRowanWalkOnSpotEast_Unused
 
-_0BBB:
-    ApplyMovement LOCALID_PLAYER, _0DDC
-    ApplyMovement 254, _0DCC
-    ApplyMovement LOCALID_PROF_ROWAN, _0D48
+Route201_DPNoticeProfRowanZ855_Unused:
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerMoveAwayForRival_Unused
+    ApplyMovement LOCALID_DP_FOLLOWER, Route201_Movement_RivalNoticeProfRowanZ855_Unused
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkOnSpotWest_Unused
     WaitMovement
     BufferRivalName 0
     Message Route201_Text_ISaidTheLakesNotThatWay
     CloseMessage
-    ApplyMovement LOCALID_PROF_ROWAN, _0D5C
-    ApplyMovement LOCALID_COUNTERPART, _0D80
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkToPlayer_Unused
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartFacePlayer_Unused
     WaitMovement
-    GoTo _0BF5
+    GoTo Route201_ProfRowanWalkOnSpotEast_Unused
 
-_0BF5:
+Route201_ProfRowanWalkOnSpotEast_Unused:
     BufferCounterpartName 0
     BufferPlayerStarterSpeciesName 1
     BufferRivalStarterSpeciesName 2
-    ApplyMovement LOCALID_PROF_ROWAN, _0D70
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkOnSpotEast_Unused
     WaitMovement
-    GoToIfEq VAR_0x8005, 0x355, _0C3E
-    GoToIfEq VAR_0x8005, 0x356, _0C56
-    GoToIfEq VAR_0x8005, 0x357, _0C6E
-    GoToIfEq VAR_0x8005, 0x358, _0C6E
+    GoToIfEq VAR_0x8005, 853, Route201_ProfRowanLeaveZ853_Unused
+    GoToIfEq VAR_0x8005, 854, Route201_ProfRowanLeaveZ854_Unused
+    GoToIfEq VAR_0x8005, 855, Route201_ProfRowanLeaveZ855_Unused
+    GoToIfEq VAR_0x8005, 856, Route201_ProfRowanLeaveZ855_Unused
     End
 
-_0C3E:
-    ApplyMovement LOCALID_PROF_ROWAN, _0D78
-    ApplyMovement LOCALID_COUNTERPART, _0D94
+Route201_ProfRowanLeaveZ853_Unused:
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanLeave_Unused
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartWatchProfRowanLeaveZ853_Unused
     WaitMovement
-    GoTo _0C86
+    GoTo Route201_CheckGender_Unused
 
-_0C56:
-    ApplyMovement LOCALID_PROF_ROWAN, _0D78
-    ApplyMovement LOCALID_COUNTERPART, _0DA0
+Route201_ProfRowanLeaveZ854_Unused:
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanLeave_Unused
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartWatchProfRowanLeave_Unused
     WaitMovement
-    GoTo _0C86
+    GoTo Route201_CheckGender_Unused
 
-_0C6E:
-    ApplyMovement LOCALID_PROF_ROWAN, _0D78
-    ApplyMovement LOCALID_COUNTERPART, _0DA0
+Route201_ProfRowanLeaveZ855_Unused:
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanLeave_Unused
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartWatchProfRowanLeave_Unused
     WaitMovement
-    GoTo _0C86
+    GoTo Route201_CheckGender_Unused
 
-_0C86:
+Route201_CheckGender_Unused:
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _0C9D
-    GoTo _0CA3
+    GoToIfEq VAR_RESULT, GENDER_MALE, Route201_DummyMale_Unused
+    GoTo Route201_DummyFemale_Unused
 
-_0C9D:
-    GoTo _0CA9
+Route201_DummyMale_Unused:
+    GoTo Route201_GoToCounterpartLeave_Unused
 
-_0CA3:
-    GoTo _0CA9
+Route201_DummyFemale_Unused:
+    GoTo Route201_GoToCounterpartLeave_Unused
 
-_0CA9:
+Route201_GoToCounterpartLeave_Unused:
     CloseMessage
-    GoToIfEq VAR_0x8005, 0x355, _0CE1
-    GoToIfEq VAR_0x8005, 0x356, _0CE1
-    GoToIfEq VAR_0x8005, 0x357, _0CE1
-    GoToIfEq VAR_0x8005, 0x358, _0CE1
+    GoToIfInRange VAR_0x8005, 853, 856, Route201_CounterpartLeave_Unused
     End
 
-_0CE1:
-    ApplyMovement LOCALID_COUNTERPART, _0DB4
+Route201_CounterpartLeave_Unused:
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartLeave_Unused
     WaitMovement
-    GoTo _0CF1
+    GoTo Route201_EndDPProfRowanScene_Unused
 
-_0CF1:
+Route201_EndDPProfRowanScene_Unused:
     RemoveObject LOCALID_COUNTERPART
     RemoveObject LOCALID_PROF_ROWAN
     SetVar VAR_FOLLOWER_RIVAL_STATE, 3
-    SetObjectFlagIsPersistent 254, FALSE
+    SetObjectFlagIsPersistent LOCALID_DP_FOLLOWER, FALSE
     ClearHasPartner
     SetFlag FLAG_HIDE_ROUTE_201_RIVAL
     SetFlag FLAG_UNK_0x0195
-    SetVar VAR_UNK_0x4082, 4
+    SetVar VAR_VERITY_LAKEFRONT_STATE, 4
     SetFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_RIVAL
     WaitTime 30, VAR_RESULT
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
@@ -1052,18 +1051,18 @@ _0CF1:
     End
 
     .balign 4, 0
-_0D48:
+Route201_Movement_ProfRowanWalkOnSpotWest_Unused:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0D50:
+Route201_Movement_ProfRowanWalkToPlayerZ853_Unused:
     Delay8 4
     WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
-_0D5C:
+Route201_Movement_ProfRowanWalkToPlayer_Unused:
     Delay8 4
     WalkNormalWest
     WalkNormalSouth
@@ -1071,17 +1070,17 @@ _0D5C:
     EndMovement
 
     .balign 4, 0
-_0D70:
+Route201_Movement_ProfRowanWalkOnSpotEast_Unused:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0D78:
+Route201_Movement_ProfRowanLeave_Unused:
     WalkNormalEast 8
     EndMovement
 
     .balign 4, 0
-_0D80:
+Route201_Movement_CounterpartFacePlayer_Unused:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
@@ -1091,13 +1090,13 @@ Route201_Movement_Unused8:
     EndMovement
 
     .balign 4, 0
-_0D94:
+Route201_Movement_CounterpartWatchProfRowanLeaveZ853_Unused:
     Delay8 3
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0DA0:
+Route201_Movement_CounterpartWatchProfRowanLeave_Unused:
     Delay4
     WalkNormalNorth
     WalkOnSpotNormalSouth
@@ -1105,26 +1104,26 @@ _0DA0:
     EndMovement
 
     .balign 4, 0
-_0DB4:
+Route201_Movement_CounterpartLeave_Unused:
     WalkFastEast 8
     EndMovement
 
     .balign 4, 0
-_0DBC:
+Route201_Movement_RivalNoticeProfRowan_Unused:
     WalkOnSpotNormalEast
     EmoteExclamationMark
     Delay16
     EndMovement
 
     .balign 4, 0
-_0DCC:
+Route201_Movement_RivalNoticeProfRowanZ855_Unused:
     WalkNormalNorth
     WalkOnSpotNormalEast
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_0DDC:
+Route201_Movement_PlayerMoveAwayForRival_Unused:
     Delay8
     WalkOnSpotNormalWest
     Delay8

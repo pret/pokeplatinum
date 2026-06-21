@@ -288,7 +288,7 @@ BattleCastle_StartChallenge:
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
     CreateJournalEvent LOCATION_EVENT_BATTLE_CASTLE
     WaitForTransition
-    ScrCmd_2C4 11
+    LaunchBattleFrontierScene FRONTIER_SCENE_CASTLE_CORRIDOR
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleCastle_EndCommunication
     ReturnToField
     FadeScreenIn

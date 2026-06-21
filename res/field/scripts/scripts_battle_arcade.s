@@ -291,7 +291,7 @@ BattleArcade_StartChallenge:
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
     CreateJournalEvent LOCATION_EVENT_BATTLE_ARCADE
     WaitForTransition
-    ScrCmd_2C4 15
+    LaunchBattleFrontierScene FRONTIER_SCENE_ARCADE_CORRIDOR
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_EndCommunication
     ReturnToField
     FadeScreenIn

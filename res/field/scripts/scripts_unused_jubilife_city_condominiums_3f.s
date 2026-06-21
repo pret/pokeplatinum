@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/jubilife_city_condominiums_3f.h"
+#include "res/text/bank/unused_jubilife_city_condominiums_3f.h"
 
 
     ScriptEntry JubilifeCityCondominiums3F_Collector

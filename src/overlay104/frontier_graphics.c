@@ -5,8 +5,9 @@
 #include "constants/field_base_tiles.h"
 #include "constants/graphics.h"
 
-#include "struct_decls/struct_0209B75C_decl.h"
+#include "struct_decls/battle_frontier_decl.h"
 
+#include "global/utility.h"
 #include "overlay063/ov63_0222BCE8.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CA88.h"
@@ -22,8 +23,8 @@
 #include "overlay065/struct_ov65_0223582C.h"
 #include "overlay065/struct_ov65_022376D0.h"
 #include "overlay104/frontier_particle_system.h"
+#include "overlay104/frontier_scenes.h"
 #include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0222EA90.h"
 #include "overlay104/ov104_0223D768.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223C634.h"
@@ -32,6 +33,7 @@
 #include "overlay104/struct_ov104_0223D3B0_1.h"
 #include "overlay104/struct_ov104_0223D570.h"
 
+#include "battle_frontier.h"
 #include "bg_window.h"
 #include "g3d_pipeline.h"
 #include "game_options.h"
@@ -54,7 +56,6 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0202419C.h"
-#include "unk_0209B6F8.h"
 #include "vram_transfer.h"
 
 #include "res/fonts/pl_font.naix"
@@ -70,8 +71,6 @@ static void ov104_0223CEEC(FrontierGraphics *param0);
 static void LoadMessageBoxAndWindowGraphics(FrontierGraphics *graphics);
 static void InitSpriteSystem(FrontierGraphics *graphics);
 static void FreeSpriteSystem(FrontierGraphics *graphics);
-FrontierGraphics *FrontierGraphics_New(UnkStruct_0209B75C *param0);
-void FrontierGraphics_Free(FrontierGraphics *param0);
 static void ov104_0223C8E8(FrontierGraphics *param0);
 static void LoadSubScreenBackground(FrontierGraphics *graphics);
 static G3DPipelineBuffers *InitG3DPipeline(enum HeapID heapID);
@@ -80,7 +79,7 @@ static void FreeG3DPipeline(G3DPipelineBuffers *g3dPipeline);
 static void ov104_0223D3B0(FrontierGraphics *param0);
 static void ov104_0223D498(FrontierGraphics *param0);
 static void ov104_0223D570(UnkStruct_ov104_0223C634 *param0, UnkStruct_ov104_0223D570 *param1);
-static void ov104_0223D584(UnkStruct_0209B75C *param0, int param1, UnkStruct_ov63_0222BEC0 *param2, UnkStruct_ov63_0222CE44 *param3, const UnkStruct_ov104_0223D570 *param4);
+static void ov104_0223D584(BattleFrontier *param0, int param1, UnkStruct_ov63_0222BEC0 *param2, UnkStruct_ov63_0222CE44 *param3, const UnkStruct_ov104_0223D570 *param4);
 static void ov104_0223C798(FrontierGraphics *param0);
 static void ov104_0223C7EC(FrontierGraphics *param0);
 
@@ -116,12 +115,12 @@ static const SpriteResourceCapacities sCapacities = {
 
 static const UnkUnion_ov63_0222BDAC Unk_ov104_022413D8[256] = { 0 };
 
-FrontierGraphics *FrontierGraphics_New(UnkStruct_0209B75C *param0)
+FrontierGraphics *FrontierGraphics_New(BattleFrontier *frontier)
 {
     FrontierGraphics *graphics;
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0);
-    const TrainerInfo *playerInfo = SaveData_GetTrainerInfo(v3->saveData);
-    int sceneID = v3->sceneID;
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(frontier);
+    const TrainerInfo *playerInfo = SaveData_GetTrainerInfo(fieldData->saveData);
+    int sceneID = fieldData->sceneID;
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -140,7 +139,7 @@ FrontierGraphics *FrontierGraphics_New(UnkStruct_0209B75C *param0)
     graphics = Heap_Alloc(HEAP_ID_94, sizeof(FrontierGraphics));
     MI_CpuClear8(graphics, sizeof(FrontierGraphics));
 
-    graphics->unk_08 = param0;
+    graphics->frontier = frontier;
     graphics->sceneID = sceneID;
 
     for (int i = 0; i < 8; i++) {
@@ -181,7 +180,7 @@ FrontierGraphics *FrontierGraphics_New(UnkStruct_0209B75C *param0)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, GetFrontierSceneValue(sceneID, FR_SCENE_BGM_ID), 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, FrontierScene_GetParam(sceneID, FR_SCENE_BGM_ID), 1);
 
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_ENABLED);
     RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
@@ -189,7 +188,7 @@ FrontierGraphics *FrontierGraphics_New(UnkStruct_0209B75C *param0)
 
     SetVBlankCallback(VBlankCallback, graphics);
     graphics->dummyExecuteOnVBlank = SysTask_ExecuteOnVBlank(DummyExecuteOnVBlank, graphics, 10);
-    ov104_0222EB8C(graphics, &graphics->unk_90, graphics->sceneID);
+    FrontierScene_CallSetupFunc(graphics, &graphics->unk_90, graphics->sceneID);
     NetworkIcon_Init();
 
     return graphics;
@@ -197,8 +196,8 @@ FrontierGraphics *FrontierGraphics_New(UnkStruct_0209B75C *param0)
 
 void FrontierGraphics_Free(FrontierGraphics *graphics)
 {
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(graphics->unk_08);
-    ov104_0222EBA4(graphics, &graphics->unk_90, graphics->sceneID);
+    UNUSED(BattleFrontier_GetFieldData(graphics->frontier));
+    FrontierScene_CallDestroyFunc(graphics, &graphics->unk_90, graphics->sceneID);
 
     ov104_0223CEEC(graphics);
 
@@ -262,7 +261,7 @@ void ov104_0223C634(FrontierGraphics *param0)
         UnkStruct_ov104_0223C634 *v1;
 
         for (v0 = 0; v0 < 32; v0++) {
-            v1 = sub_0209B9D4(param0->unk_08, v0);
+            v1 = sub_0209B9D4(param0->frontier, v0);
 
             if (v1->unk_00 != NULL) {
                 v1->unk_08.unk_0A = ov63_0222BF90(v1->unk_00, 6);
@@ -284,7 +283,7 @@ void ov104_0223C688(FrontierGraphics *param0)
     {
         UnkStruct_ov104_0223C688 *v1;
 
-        v1 = sub_0209B9CC(param0->unk_08);
+        v1 = sub_0209B9CC(param0->frontier);
 
         for (v0 = 0; v0 < 24; v0++) {
             if (v1[v0].unk_00 != 0xffff) {
@@ -298,7 +297,7 @@ void ov104_0223C688(FrontierGraphics *param0)
         UnkStruct_ov104_0223D570 v3;
 
         for (v0 = 0; v0 < 32; v0++) {
-            v2 = sub_0209B9D4(param0->unk_08, v0);
+            v2 = sub_0209B9D4(param0->frontier, v0);
 
             if (v2->unk_08.unk_04 != 0xffff) {
                 ov104_0223D570(v2, &v3);
@@ -345,7 +344,7 @@ static void ov104_0223C738(SysTask *param0, void *param1)
     {
         UnkStruct_ov104_0223C634 *v1;
 
-        v1 = sub_0209B9D4(v0->unk_08, 32 - 1);
+        v1 = sub_0209B9D4(v0->frontier, 32 - 1);
 
         if (v1->unk_00 != NULL) {
             ov63_0222D160(&v0->unk_1C, v1->unk_00);
@@ -379,9 +378,9 @@ static void ov104_0223C738(SysTask *param0, void *param1)
 static void ov104_0223C798(FrontierGraphics *param0)
 {
     int v0;
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_08);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->frontier);
 
-    v0 = GetFrontierSceneValue(v1->sceneID, FR_SCENE_FLAG_1);
+    v0 = FrontierScene_GetParam(fieldData->sceneID, FR_SCENE_FLAG_1);
 
     switch (v0) {
     case 0:
@@ -390,7 +389,7 @@ static void ov104_0223C798(FrontierGraphics *param0)
             ov63_0222D228(param0->unk_24, &param0->unk_1C);
         }
 
-        if ((param0->unk_28 != NULL) && (GetFrontierSceneValue(v1->sceneID, FR_SCENE_FLAG_2) == 1)) {
+        if ((param0->unk_28 != NULL) && (FrontierScene_GetParam(fieldData->sceneID, FR_SCENE_FLAG_2) == 1)) {
             ov63_0222D228(param0->unk_28, &param0->unk_1C);
         }
         break;
@@ -404,7 +403,7 @@ static void ov104_0223C7EC(FrontierGraphics *param0)
 {
     s16 v0;
     s16 v1;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_08);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->frontier);
 
     v1 = ov63_0222D1B0(&param0->unk_1C) + param0->unk_A4.unk_06;
     v0 = ov63_0222D1B8(&param0->unk_1C) + param0->unk_A4.unk_04;
@@ -413,7 +412,7 @@ static void ov104_0223C7EC(FrontierGraphics *param0)
     Bg_ScheduleScroll(param0->bgConfig, 3, 0, v0);
     Bg_ScheduleScroll(param0->bgConfig, 3, 3, v1);
 
-    if ((GetFrontierSceneValue(v2->sceneID, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) && (GetFrontierSceneValue(v2->sceneID, FR_SCENE_FLAG_2) == 1)) {
+    if ((FrontierScene_GetParam(fieldData->sceneID, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) && (FrontierScene_GetParam(fieldData->sceneID, FR_SCENE_FLAG_2) == 1)) {
         Bg_ScheduleScroll(param0->bgConfig, 2, 0, v0);
         Bg_ScheduleScroll(param0->bgConfig, 2, 3, v1);
     }
@@ -440,7 +439,7 @@ static void ov104_0223C8E8(FrontierGraphics *param0)
 
 static void InitBackgrounds(BgConfig *bgConfig, int sceneID)
 {
-    GXBGMode bgMode = GetFrontierSceneValue(sceneID, FR_SCENE_BGMODE);
+    GXBGMode bgMode = FrontierScene_GetParam(sceneID, FR_SCENE_BGMODE);
     GXLayers_DisableEngineALayers();
 
     GXBanks banks = {
@@ -525,10 +524,10 @@ static void InitBackgrounds(BgConfig *bgConfig, int sceneID)
         bgTemplates[2].bgExtPltt = GX_BG_EXTPLTT_01;
     }
 
-    u16 screenSize = GetFrontierSceneValue(sceneID, FR_SCENE_SCREEN_SIZE);
+    u16 screenSize = FrontierScene_GetParam(sceneID, FR_SCENE_SCREEN_SIZE);
     bgTemplates[2].screenSize = screenSize;
 
-    if (GetFrontierSceneValue(sceneID, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
+    if (FrontierScene_GetParam(sceneID, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
         bgTemplates[1].screenSize = screenSize;
     }
 
@@ -591,9 +590,9 @@ static void LoadMessageBoxAndWindowGraphics(FrontierGraphics *graphics)
     PaletteData_LoadBufferFromFileStart(graphics->plttData, NARC_INDEX_GRAPHIC__PL_FONT, font_NCLR, HEAP_ID_94, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
     PaletteData_LoadBufferFromFileStart(graphics->plttData, NARC_INDEX_GRAPHIC__PL_FONT, screen_indicators_NCLR, HEAP_ID_94, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
 
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(graphics->unk_08);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(graphics->frontier);
 
-    LoadMessageBoxGraphics(graphics->bgConfig, BG_LAYER_MAIN_1, BASE_TILE_SCROLLING_MESSAGE_BOX, 11, Options_Frame(v0->options), HEAP_ID_94);
+    LoadMessageBoxGraphics(graphics->bgConfig, BG_LAYER_MAIN_1, BASE_TILE_SCROLLING_MESSAGE_BOX, 11, Options_Frame(fieldData->options), HEAP_ID_94);
     PaletteData_LoadBufferFromHardware(graphics->plttData, PLTTBUF_MAIN_BG, 11 * SLOTS_PER_PALETTE, PALETTE_SIZE_BYTES);
 
     LoadStandardWindowGraphics(graphics->bgConfig, BG_LAYER_MAIN_1, BASE_TILE_STANDARD_WINDOW_FRAME, 12, STANDARD_WINDOW_SYSTEM, HEAP_ID_94);
@@ -635,16 +634,16 @@ static void ov104_0223CC74(FrontierGraphics *param0, int sceneID, const TrainerI
         };
         int v1;
 
-        v0.narcID = GetFrontierSceneValue(sceneID, FR_SCENE_NARC_ID);
-        v0.unk_09 = GetFrontierSceneValue(sceneID, FR_SCENE_TILEMAP_IDX);
-        v1 = GetFrontierSceneValue(sceneID, FR_SCENE_FLAG_1);
+        v0.narcID = FrontierScene_GetParam(sceneID, FR_SCENE_NARC_ID);
+        v0.unk_09 = FrontierScene_GetParam(sceneID, FR_SCENE_TILEMAP_IDX);
+        v1 = FrontierScene_GetParam(sceneID, FR_SCENE_FLAG_1);
 
         if (v1 == 0) {
             param0->unk_24 = ov63_0222D1C0(SpriteSystem_GetRenderer(param0->spriteSystem), param0->bgConfig, &v0, HEAP_ID_94);
         }
 
-        if (GetFrontierSceneValue(sceneID, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
-            v0.unk_09 = GetFrontierSceneValue(sceneID, FR_SCENE_SUB_TILEMAP_IDX);
+        if (FrontierScene_GetParam(sceneID, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
+            v0.unk_09 = FrontierScene_GetParam(sceneID, FR_SCENE_SUB_TILEMAP_IDX);
             v0.unk_01 = 2;
             v0.unk_03 = (GX_BG_SCRBASE_0x0800);
             v0.unk_04 = (GX_BG_CHARBASE_0x20000);
@@ -662,19 +661,19 @@ static void ov104_0223CC74(FrontierGraphics *param0, int sceneID, const TrainerI
     ov63_0222BD50(param0->unk_18, Unk_ov104_022413D8);
 
     {
-        GXBGMode bgMode = GetFrontierSceneValue(sceneID, FR_SCENE_BGMODE);
+        GXBGMode bgMode = FrontierScene_GetParam(sceneID, FR_SCENE_BGMODE);
 
-        u32 narcID = GetFrontierSceneValue(sceneID, FR_SCENE_NARC_ID);
+        u32 narcID = FrontierScene_GetParam(sceneID, FR_SCENE_NARC_ID);
         NARC *narc = NARC_ctor(narcID, HEAP_ID_94);
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(narc, GetFrontierSceneValue(sceneID, FR_SCENE_TILES_IDX), param0->bgConfig, 3, 0, 0, 1, HEAP_ID_94);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(narc, FrontierScene_GetParam(sceneID, FR_SCENE_TILES_IDX), param0->bgConfig, 3, 0, 0, 1, HEAP_ID_94);
 
         if (bgMode == GX_BGMODE_0) {
-            PaletteData_LoadBufferFromFileStart(param0->plttData, narcID, GetFrontierSceneValue(sceneID, FR_SCENE_PLTT_IDX), 94, 0, (10 - 0 + 1) * 0x20, 0 * 16);
+            PaletteData_LoadBufferFromFileStart(param0->plttData, narcID, FrontierScene_GetParam(sceneID, FR_SCENE_PLTT_IDX), 94, 0, (10 - 0 + 1) * 0x20, 0 * 16);
         } else {
             NNSG2dPaletteData *plttData;
 
-            void *pltt = Graphics_GetPlttDataFromOpenNARC(narc, GetFrontierSceneValue(sceneID, FR_SCENE_PLTT_IDX), &plttData, HEAP_ID_94);
+            void *pltt = Graphics_GetPlttDataFromOpenNARC(narc, FrontierScene_GetParam(sceneID, FR_SCENE_PLTT_IDX), &plttData, HEAP_ID_94);
             DC_FlushRange(plttData->pRawData, plttData->szByte);
 
             GX_BeginLoadBGExtPltt();
@@ -685,16 +684,16 @@ static void ov104_0223CC74(FrontierGraphics *param0, int sceneID, const TrainerI
         }
 
         PaletteData_FillBufferRange(param0->plttData, 0, 2, 0x0, 0, 1);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, GetFrontierSceneValue(sceneID, FR_SCENE_TILEMAP_IDX), param0->bgConfig, 3, 0, 0, 1, HEAP_ID_94);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, FrontierScene_GetParam(sceneID, FR_SCENE_TILEMAP_IDX), param0->bgConfig, 3, 0, 0, 1, HEAP_ID_94);
 
-        if (GetFrontierSceneValue(sceneID, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
-            Graphics_LoadTilesToBgLayerFromOpenNARC(narc, GetFrontierSceneValue(sceneID, FR_SCENE_SUB_TILES_IDX), param0->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
-            Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, GetFrontierSceneValue(sceneID, FR_SCENE_SUB_TILEMAP_IDX), param0->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
+        if (FrontierScene_GetParam(sceneID, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
+            Graphics_LoadTilesToBgLayerFromOpenNARC(narc, FrontierScene_GetParam(sceneID, FR_SCENE_SUB_TILES_IDX), param0->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, FrontierScene_GetParam(sceneID, FR_SCENE_SUB_TILEMAP_IDX), param0->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
 
             if (bgMode != GX_BGMODE_0) {
                 NNSG2dPaletteData *plttData;
 
-                void *pltt = Graphics_GetPlttDataFromOpenNARC(narc, GetFrontierSceneValue(sceneID, FR_SCENE_SUB_PLTT_IDX), &plttData, HEAP_ID_94);
+                void *pltt = Graphics_GetPlttDataFromOpenNARC(narc, FrontierScene_GetParam(sceneID, FR_SCENE_SUB_PLTT_IDX), &plttData, HEAP_ID_94);
                 DC_FlushRange(plttData->pRawData, plttData->szByte);
 
                 GX_BeginLoadBGExtPltt();
@@ -717,7 +716,7 @@ static void ov104_0223CEEC(FrontierGraphics *param0)
     {
         UnkStruct_ov104_0223C634 *v1;
 
-        v1 = sub_0209B9D0(param0->unk_08);
+        v1 = sub_0209B9D0(param0->frontier);
 
         for (v0 = 0; v0 < 32; v0++) {
             if (v1[v0].unk_00 != NULL) {
@@ -817,7 +816,7 @@ void ov104_0223D0EC(FrontierGraphics *param0, const UnkStruct_ov104_0223C688 *pa
     UnkStruct_ov104_0223C688 *v0;
     int v1, v2;
 
-    v0 = sub_0209B9CC(param0->unk_08);
+    v0 = sub_0209B9CC(param0->frontier);
 
     for (v1 = 0; v1 < 24; v1++) {
         if (v0[v1].unk_00 == param1->unk_00) {
@@ -842,7 +841,7 @@ void ov104_0223D0EC(FrontierGraphics *param0, const UnkStruct_ov104_0223C688 *pa
 void ov104_0223D148(FrontierGraphics *param0, int param1)
 {
     int v0;
-    UnkStruct_ov104_0223C688 *v1 = sub_0209B9CC(param0->unk_08);
+    UnkStruct_ov104_0223C688 *v1 = sub_0209B9CC(param0->frontier);
 
     for (v0 = 0; v0 < 24; v0++) {
         if (v1[v0].unk_00 == param1) {
@@ -861,7 +860,7 @@ UnkStruct_ov63_0222BEC0 *ov104_0223D180(FrontierGraphics *param0, const UnkStruc
     UnkStruct_ov63_0222BEC0 *v4;
     UnkStruct_ov63_0222CE44 *v5;
 
-    v0 = sub_0209B9D0(param0->unk_08);
+    v0 = sub_0209B9D0(param0->frontier);
 
     if (param2 == -1) {
         for (v1 = 0; v1 < 32; v1++) {
@@ -887,7 +886,7 @@ UnkStruct_ov63_0222BEC0 *ov104_0223D180(FrontierGraphics *param0, const UnkStruc
     v5 = ov63_0222CE44(param0->unk_20, v4, 0, HEAP_ID_94);
 
     ov63_0222D008(v5, param1->unk_0B);
-    ov104_0223D584(param0->unk_08, v2, v4, v5, param1);
+    ov104_0223D584(param0->frontier, v2, v4, v5, param1);
 
     return v4;
 }
@@ -895,7 +894,7 @@ UnkStruct_ov63_0222BEC0 *ov104_0223D180(FrontierGraphics *param0, const UnkStruc
 void ov104_0223D200(FrontierGraphics *param0, UnkStruct_ov63_0222BEC0 *param1)
 {
     int v0;
-    UnkStruct_ov104_0223C634 *v1 = sub_0209B9D0(param0->unk_08);
+    UnkStruct_ov104_0223C634 *v1 = sub_0209B9D0(param0->frontier);
 
     for (v0 = 0; v0 < 32; v0++) {
         if (v1[v0].unk_00 == param1) {
@@ -914,7 +913,7 @@ void ov104_0223D200(FrontierGraphics *param0, UnkStruct_ov63_0222BEC0 *param1)
 void ov104_0223D258(FrontierGraphics *param0, u16 param1, UnkStruct_ov63_0222BEC0 **param2, UnkStruct_ov63_0222CE44 **param3)
 {
     int v0;
-    UnkStruct_ov104_0223C634 *v1 = sub_0209B9D0(param0->unk_08);
+    UnkStruct_ov104_0223C634 *v1 = sub_0209B9D0(param0->frontier);
 
     for (v0 = 0; v0 < 32; v0++) {
         if (v1[v0].unk_08.unk_04 == param1) {
@@ -1006,7 +1005,7 @@ u32 ov104_0223D3A4(FrontierGraphics *param0, u16 param1)
 static void ov104_0223D3B0(FrontierGraphics *param0)
 {
     int v0;
-    UnkStruct_ov104_0223D3B0 *v1 = sub_0209B9E0(param0->unk_08);
+    UnkStruct_ov104_0223D3B0 *v1 = sub_0209B9E0(param0->frontier);
     UnkStruct_ov104_0223D3B0_1 *v2 = &param0->unk_3C;
 
     for (v0 = 0; v0 < 8; v0++) {
@@ -1038,7 +1037,7 @@ static void ov104_0223D498(FrontierGraphics *param0)
     UnkStruct_ov104_0223D3B0 *v2;
     ManagedSprite *v3;
 
-    v2 = sub_0209B9E0(param0->unk_08);
+    v2 = sub_0209B9E0(param0->frontier);
     v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, HEAP_ID_94);
 
     for (v0 = 0; v0 < 8; v0++) {
@@ -1062,7 +1061,7 @@ static void ov104_0223D498(FrontierGraphics *param0)
     }
 
     NARC_dtor(v1);
-    sub_0209B9EC(param0->unk_08);
+    sub_0209B9EC(param0->frontier);
 }
 
 void ov104_0223D554(FrontierGraphics *param0, s16 *param1, s16 *param2)
@@ -1076,7 +1075,7 @@ static void ov104_0223D570(UnkStruct_ov104_0223C634 *param0, UnkStruct_ov104_022
     *param1 = param0->unk_08;
 }
 
-static void ov104_0223D584(UnkStruct_0209B75C *param0, int param1, UnkStruct_ov63_0222BEC0 *param2, UnkStruct_ov63_0222CE44 *param3, const UnkStruct_ov104_0223D570 *param4)
+static void ov104_0223D584(BattleFrontier *param0, int param1, UnkStruct_ov63_0222BEC0 *param2, UnkStruct_ov63_0222CE44 *param3, const UnkStruct_ov104_0223D570 *param4)
 {
     UnkStruct_ov104_0223C634 *v0 = sub_0209B9D4(param0, param1);
 
@@ -1085,7 +1084,7 @@ static void ov104_0223D584(UnkStruct_0209B75C *param0, int param1, UnkStruct_ov6
     v0->unk_08 = *param4;
 }
 
-UnkStruct_ov104_0223C634 *ov104_0223D5A8(UnkStruct_0209B75C *param0, int param1)
+UnkStruct_ov104_0223C634 *ov104_0223D5A8(BattleFrontier *param0, int param1)
 {
     int v0;
     UnkStruct_ov104_0223C634 *v1 = sub_0209B9D0(param0);

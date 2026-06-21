@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/oreburgh_city_east_house_3f.h"
+#include "res/text/bank/unused_oreburgh_city_east_house_3f.h"
 
 
     ScriptEntry OreburghCityEastHouse3F_ScientistM

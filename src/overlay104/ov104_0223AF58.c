@@ -38,7 +38,6 @@ void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 
 void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 param5[], u8 param6);
 u8 BattleHall_GetPlayerPartySize(u8 challengeType);
 u8 BattleHall_GetOpponentPartySize(u8 challengeType);
-FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, UnkStruct_ov104_02230BE4 *param1);
 static u32 BattleHall_GetBattleType(u8 challengeType);
 static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6);
 static u32 BattleHall_GetOpponentLevel(BattleHall *battleHall, u8 param1);
@@ -1563,7 +1562,7 @@ void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 
     return;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, FieldFrontierDTO *fieldData)
 {
     int i;
     u8 rank;
@@ -1578,7 +1577,7 @@ FieldBattleDTO *FieldBattleDTO_NewBattleHall(BattleHall *battleHall, UnkStruct_o
     Party_HealAllMembers(party);
 
     FieldBattleDTO *battleDTO = FieldBattleDTO_New(HEAP_ID_FIELD2, BattleHall_GetBattleType(battleHall->challengeType));
-    FieldBattleDTO_InitFromGameState(battleDTO, NULL, param1->saveData, param1->mapHeaderID, param1->journalEntry, param1->bagCursor, param1->subscreenCursorOn);
+    FieldBattleDTO_InitFromGameState(battleDTO, NULL, fieldData->saveData, fieldData->mapHeaderID, fieldData->journalEntry, fieldData->bagCursor, fieldData->subscreenCursorOn);
 
     battleDTO->background = BACKGROUND_BATTLE_HALL;
     battleDTO->terrain = TERRAIN_BATTLE_HALL;

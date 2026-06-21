@@ -468,35 +468,35 @@ _0858:
     GoToIfEq VAR_0x8008, 0, _0858
     FrontierScrCmd_B5
     Call _08C9
-    FrontierScrCmd_04 6, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_TOWER_MULTI_CORRIDOR, 0
     End
 
 _0879:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_FACTORY
     Call _08C9
-    FrontierScrCmd_04 3, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_FACTORY_CORRIDOR, 0
     End
 
 _088D:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_STAGE
     Call _08C9
-    FrontierScrCmd_04 9, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_HALL_CORRIDOR, 0
     End
 
 _08A1:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_CASTLE02
     Call _08C9
-    FrontierScrCmd_04 11, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_CASTLE_CORRIDOR, 0
     End
 
 _08B5:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_ROULETTE
     Call _08C9
-    FrontierScrCmd_04 15, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_ARCADE_CORRIDOR, 0
     End
 
 _08C9:

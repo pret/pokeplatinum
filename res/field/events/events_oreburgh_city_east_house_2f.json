@@ -57,7 +57,7 @@
         {
             "x": 1,
             "z": 1,
-            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_3F",
+            "dest_header_id": "MAP_HEADER_UNUSED_OREBURGH_CITY_EAST_HOUSE_3F",
             "dest_warp_id": 0
         }
     ],

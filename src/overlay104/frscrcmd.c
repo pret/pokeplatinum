@@ -49,6 +49,7 @@
 #include "overlay104/struct_ov104_0223F1B4.h"
 #include "savedata/save_table.h"
 
+#include "battle_frontier.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -87,7 +88,6 @@
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_0209B6F8.h"
 #include "vars_flags.h"
 #include "wifi_list.h"
 
@@ -364,7 +364,7 @@ static BOOL FrontierScrCmd_End(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_02(FrontierScriptContext *ctx)
 {
     FrontierScriptContext_Stop(ctx);
-    sub_0209B9B4(ctx->scriptMan->unk_00);
+    sub_0209B9B4(ctx->scriptMan->frontier);
 
     return FALSE;
 }
@@ -372,9 +372,9 @@ static BOOL FrontierScrCmd_02(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_03(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    u16 v1 = FrontierScriptContext_GetVar(ctx);
+    u16 sceneID = FrontierScriptContext_GetVar(ctx);
 
-    sub_0209B9BC(v0->unk_00, v1, 0xFFFF);
+    sub_0209B9BC(v0->frontier, sceneID, 0xFFFF);
     FrontierScriptContext_Pause(ctx, Resume);
 
     return TRUE;
@@ -388,10 +388,10 @@ static BOOL Resume(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_04(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    u16 v1 = FrontierScriptContext_GetVar(ctx);
+    u16 sceneID = FrontierScriptContext_GetVar(ctx);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
 
-    sub_0209B9BC(v0->unk_00, v1, v2);
+    sub_0209B9BC(v0->frontier, sceneID, v2);
     FrontierScriptContext_Stop(ctx);
 
     return FALSE;
@@ -754,7 +754,7 @@ static BOOL WaitForYesNoResult(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_22(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     const u8 *currScriptPtr;
     UnkStruct_ov104_0223C688 v3;
     s32 offset = FrontierScriptContext_ReadWord(ctx);
@@ -772,8 +772,8 @@ static BOOL FrontierScrCmd_22(FrontierScriptContext *ctx)
         v3.unk_02 = FrontierScriptContext_ReadByte(ctx);
 
         if (v3.unk_00 == 0xEEEE) {
-            UnkStruct_ov104_02230BE4 *v6 = sub_0209B970(v0->unk_00);
-            const TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(v6->saveData);
+            FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(v0->frontier);
+            const TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldData->saveData);
             v3.unk_00 = BattleFrontier_GetPlayerObjEventGfx(trainerInfo);
 
             ov104_0223D0EC(v1, &v3);
@@ -802,7 +802,7 @@ static BOOL FrontierScrCmd_22(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_23(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
     ov104_0223D148(v1, v2);
 
@@ -812,7 +812,7 @@ static BOOL FrontierScrCmd_23(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_24(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     const u8 *currScriptPtr;
     s32 offset = FrontierScriptContext_ReadWord(ctx);
     UnkStruct_ov104_0223D570 v4;
@@ -840,10 +840,10 @@ static BOOL FrontierScrCmd_24(FrontierScriptContext *ctx)
 
         if (v4.unk_00 == 0xEEEE) {
             const TrainerInfo *trainerInfo;
-            UnkStruct_ov104_02230BE4 *v7;
+            FieldFrontierDTO *fieldData;
 
-            v7 = sub_0209B970(v0->unk_00);
-            trainerInfo = SaveData_GetTrainerInfo(v7->saveData);
+            fieldData = BattleFrontier_GetFieldData(v0->frontier);
+            trainerInfo = SaveData_GetTrainerInfo(fieldData->saveData);
             v4.unk_00 = BattleFrontier_GetPlayerObjEventGfx(trainerInfo);
             v5 = (32 - 1);
         } else if (v4.unk_00 == 0xEEEF) {
@@ -864,7 +864,7 @@ static BOOL FrontierScrCmd_24(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_25(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     UnkStruct_ov63_0222BEC0 *v2;
     u16 v3 = FrontierScriptContext_GetVar(ctx);
     v2 = ov63_0222BF18(v1->unk_14, v3);
@@ -877,7 +877,7 @@ static BOOL FrontierScrCmd_25(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_26(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
     u8 v3 = FrontierScriptContext_ReadByte(ctx);
     UnkStruct_ov63_0222CE44 *v4 = NULL;
@@ -897,10 +897,10 @@ static BOOL FrontierScrCmd_Dummy27(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_ApplyMovement(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *scriptMan = ctx->scriptMan;
-    FrontierGraphics *graphics = sub_0209B974(scriptMan->unk_00);
+    FrontierGraphics *graphics = BattleFrontier_GetGraphics(scriptMan->frontier);
     u16 localID = FrontierScriptContext_GetVar(ctx);
     u32 offset = FrontierScriptContext_ReadWord(ctx);
-    UnkStruct_ov104_0223C634 *object = ov104_0223D5A8(scriptMan->unk_00, localID);
+    UnkStruct_ov104_0223C634 *object = ov104_0223D5A8(scriptMan->frontier, localID);
 
     if (object == NULL) {
         GF_ASSERT(FALSE);
@@ -944,7 +944,7 @@ static BOOL WaitForMovement(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_2A(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     const u8 *currScriptPtr;
     s32 offset = FrontierScriptContext_ReadWord(ctx);
     u16 v4;
@@ -974,7 +974,7 @@ static BOOL FrontierScrCmd_2A(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_2B(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
 
     ov104_0223D7EC(v1->spriteMan, v2);
@@ -986,7 +986,7 @@ static BOOL FrontierScrCmd_2B(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_2C(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     const u8 *currScriptPtr;
     s32 offset = FrontierScriptContext_ReadWord(ctx);
     u16 v4, x, y, draw, v8, v9;
@@ -1023,7 +1023,7 @@ static BOOL FrontierScrCmd_2D(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
     u16 v1;
-    FrontierGraphics *v2 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v2 = BattleFrontier_GetGraphics(v0->frontier);
 
     v1 = FrontierScriptContext_GetVar(ctx);
     ov104_0223D348(v2, v1);
@@ -1034,7 +1034,7 @@ static BOOL FrontierScrCmd_2D(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_2E(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
     u8 draw = FrontierScriptContext_ReadByte(ctx);
     ManagedSprite *managedSprite = ov104_0223D370(v1, v2);
@@ -1048,7 +1048,7 @@ static BOOL FrontierScrCmd_2E(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_2F(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     u16 v2 = FrontierScriptContext_GetVar(ctx);
     ManagedSprite *managedSprite = ov104_0223D370(v1, v2);
 
@@ -1062,7 +1062,7 @@ static BOOL FrontierScrCmd_30(FrontierScriptContext *ctx)
 {
     ManagedSprite *managedSprite;
     FrontierScriptManager *v1 = ctx->scriptMan;
-    FrontierGraphics *v2 = sub_0209B974(v1->unk_00);
+    FrontierGraphics *v2 = BattleFrontier_GetGraphics(v1->frontier);
     u16 v3 = FrontierScriptContext_GetVar(ctx);
     u16 v4 = FrontierScriptContext_GetVar(ctx);
 
@@ -1083,7 +1083,7 @@ static BOOL FrontierScrCmd_31(FrontierScriptContext *ctx)
     u16 v0 = FrontierScriptContext_GetVar(ctx);
     u16 animID = FrontierScriptContext_GetVar(ctx);
     ManagedSprite *managedSprite;
-    FrontierGraphics *v3 = sub_0209B974(ctx->scriptMan->unk_00);
+    FrontierGraphics *v3 = BattleFrontier_GetGraphics(ctx->scriptMan->frontier);
 
     managedSprite = ov104_0223D370(v3, v0);
 
@@ -1096,7 +1096,7 @@ static BOOL FrontierScrCmd_31(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_32(FrontierScriptContext *ctx)
 {
     u16 v0 = FrontierScriptContext_GetVar(ctx);
-    FrontierGraphics *v1 = sub_0209B974(ctx->scriptMan->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(ctx->scriptMan->frontier);
 
     ov104_0223D378(v1, v0, 0);
     return FALSE;
@@ -1115,7 +1115,7 @@ static BOOL FrontierScrCmd_33(FrontierScriptContext *ctx)
 static BOOL ov104_02230850(FrontierScriptContext *ctx)
 {
     ManagedSprite *managedSprite;
-    FrontierGraphics *v1 = sub_0209B974(ctx->scriptMan->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(ctx->scriptMan->frontier);
 
     managedSprite = ov104_0223D370(v1, ctx->data[0]);
 
@@ -1142,14 +1142,14 @@ static void ov104_0223088C(FrontierScriptContext *ctx, int param1, int param2)
         v1[v3] = FrontierScriptContext_GetVar(ctx);
     }
 
-    ov104_0223D860(v0->unk_00, v2, 1, v1, 3);
+    ov104_0223D860(v0->frontier, v2, 1, v1, 3);
     Heap_Free(v1);
 }
 
 static BOOL FrontierScrCmd_53(FrontierScriptContext *ctx)
 {
     u16 v0 = FrontierScriptContext_GetVar(ctx);
-    ov104_0223D860(ctx->scriptMan->unk_00, v0, 0, NULL, 0);
+    ov104_0223D860(ctx->scriptMan->frontier, v0, 0, NULL, 0);
 
     return FALSE;
 }
@@ -1162,10 +1162,10 @@ static BOOL FrontierScrCmd_54(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_34(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(ctx->scriptMan->unk_00);
-    void *namingScreenArgs = NamingScreenArgs_Init(HEAP_ID_FIELD2, NAMING_SCREEN_TYPE_PLAYER, 0, 8, (void *)v1->options);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    void *namingScreenArgs = NamingScreenArgs_Init(HEAP_ID_FIELD2, NAMING_SCREEN_TYPE_PLAYER, 0, 8, (void *)fieldData->options);
 
-    sub_0209B988(ctx->scriptMan->unk_00, &gNamingScreenAppTemplate, namingScreenArgs, 0, ov104_02230950);
+    sub_0209B988(ctx->scriptMan->frontier, &gNamingScreenAppTemplate, namingScreenArgs, 0, ov104_02230950);
 
     return TRUE;
 }
@@ -1178,9 +1178,9 @@ static void ov104_02230950(void *namingScreenArgs)
 static BOOL FrontierScrCmd_InitNewBattleRecording(FrontierScriptContext *ctx)
 {
     int resultCode;
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
-    BattleRecording_New(v1->saveData, HEAP_ID_FIELD2, &resultCode);
+    BattleRecording_New(fieldData->saveData, HEAP_ID_FIELD2, &resultCode);
     return FALSE;
 }
 
@@ -1209,8 +1209,8 @@ static BOOL FrontierScrCmd_6D(FrontierScriptContext *ctx)
 static BOOL ov104_022309DC(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(ctx->scriptMan->unk_00);
-    int v2 = sub_0202F41C(v1->saveData, v0->unk_B4, v0->unk_B6, 0, &v0->unk_B0, &v0->unk_B2);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    int v2 = sub_0202F41C(fieldData->saveData, v0->unk_B4, v0->unk_B6, 0, &v0->unk_B0, &v0->unk_B2);
 
     if ((v2 == 2) || (v2 == 3)) {
         if (v2 == 2) {
@@ -1346,14 +1346,14 @@ static BOOL FrontierScrCmd_6E(FrontierScriptContext *ctx)
 {
     int v0;
     FieldBattleDTO *dto;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
     dto = Heap_Alloc(HEAP_ID_FIELD2, sizeof(FieldBattleDTO));
     MI_CpuClear8(dto, sizeof(FieldBattleDTO));
 
-    sub_0202F298(v2->saveData, 11, &v0, dto, 0);
+    sub_0202F298(fieldData->saveData, 11, &v0, dto, 0);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(ctx->scriptMan->unk_00, &gBattleApplicationTemplate, dto, 1, NULL);
+    sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 1, NULL);
 
     return TRUE;
 }
@@ -1367,30 +1367,30 @@ static BOOL FrontierScrCmd_FreeBattleRecording(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_70(FrontierScriptContext *ctx)
 {
     int v0;
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u16 *v2 = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    *v2 = sub_0202F330(v1->saveData, 11, &v0, 0);
+    *v2 = sub_0202F330(fieldData->saveData, 11, &v0, 0);
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_72(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u16 *unused = FrontierScriptContext_TryGetVarPointer(ctx);
-    SaveData_Save(v0->saveData);
+    SaveData_Save(fieldData->saveData);
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_73(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u16 *v2 = FrontierScriptContext_TryGetVarPointer(ctx);
 
     ResetLock(RESET_LOCK_SOFT_RESET);
     InitHeapCanary(v0->heapID);
-    SaveData_SaveStateInit(v1->saveData, 2);
+    SaveData_SaveStateInit(fieldData->saveData, 2);
 
     FrontierScriptContext_Pause(ctx, WaitForSaveStateFinish);
     return TRUE;
@@ -1398,8 +1398,8 @@ static BOOL FrontierScrCmd_73(FrontierScriptContext *ctx)
 
 static BOOL WaitForSaveStateFinish(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(ctx->scriptMan->unk_00);
-    int saveResult = SaveData_SaveStateMain(v1->saveData);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    int saveResult = SaveData_SaveStateMain(fieldData->saveData);
 
     if (saveResult == SAVE_RESULT_OK) {
         FreeHeapCanary();
@@ -1418,18 +1418,18 @@ static BOOL WaitForSaveStateFinish(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_SaveDataExtraInit(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
-    SaveDataExtra_Init(v0->saveData);
+    SaveDataExtra_Init(fieldData->saveData);
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_GetMiscSaveBlockInitFlag(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    *destVar = SaveData_MiscSaveBlock_InitFlag(v0->saveData);
+    *destVar = SaveData_MiscSaveBlock_InitFlag(fieldData->saveData);
     return FALSE;
 }
 
@@ -1490,16 +1490,16 @@ static u16 GetNumberDigitCount(u32 number)
 
 static BOOL FrontierScrCmd_BufferPlayerName(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u8 templateArg = FrontierScriptContext_ReadByte(ctx);
 
-    StringTemplate_SetPlayerName(ctx->scriptMan->strTemplate, templateArg, SaveData_GetTrainerInfo(v0->saveData));
+    StringTemplate_SetPlayerName(ctx->scriptMan->strTemplate, templateArg, SaveData_GetTrainerInfo(fieldData->saveData));
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_BufferPartnerName(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u8 templateArg = FrontierScriptContext_ReadByte(ctx);
 
     StringTemplate_SetPlayerName(ctx->scriptMan->strTemplate, templateArg, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
@@ -1548,44 +1548,44 @@ static BOOL FrontierScrCmd_BufferTypeName(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_BufferRivalName(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u8 templateArg = FrontierScriptContext_ReadByte(ctx);
 
-    StringTemplate_SetRivalName(ctx->scriptMan->strTemplate, templateArg, v0->saveData);
+    StringTemplate_SetRivalName(ctx->scriptMan->strTemplate, templateArg, fieldData->saveData);
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_GetNumBattlePoints(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    *destVar = WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(v0->saveData), 0, BATTLE_POINTS_FUNC_NONE);
+    *destVar = WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(fieldData->saveData), 0, BATTLE_POINTS_FUNC_NONE);
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_GiveBattlePoints(FrontierScriptContext *ctx)
 {
     TVBroadcast *broadcast;
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u16 battlePoints = FrontierScriptContext_GetVar(ctx);
 
-    broadcast = SaveData_GetTVBroadcast(v1->saveData);
+    broadcast = SaveData_GetTVBroadcast(fieldData->saveData);
 
     sub_0206D0C8(broadcast, battlePoints);
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(v1->saveData), RECORD_BATTLE_POINTS_RECEIVED, battlePoints);
-    WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(v1->saveData), battlePoints, BATTLE_POINTS_FUNC_ADD);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(fieldData->saveData), RECORD_BATTLE_POINTS_RECEIVED, battlePoints);
+    WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(fieldData->saveData), battlePoints, BATTLE_POINTS_FUNC_ADD);
 
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_RemoteBattlePoints(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     u16 battlePoints = FrontierScriptContext_GetVar(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(v0->saveData), RECORD_BATTLE_POINTS_SPENT, battlePoints);
-    WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(v0->saveData), battlePoints, BATTLE_POINTS_FUNC_SUB);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(fieldData->saveData), RECORD_BATTLE_POINTS_SPENT, battlePoints);
+    WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(fieldData->saveData), battlePoints, BATTLE_POINTS_FUNC_SUB);
 
     return FALSE;
 }
@@ -1645,8 +1645,8 @@ static BOOL FrontierScrCmd_GetRandom(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_HealParty(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->scriptMan->unk_00);
-    Party_HealAllMembers(SaveData_GetParty(v0->saveData));
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    Party_HealAllMembers(SaveData_GetParty(fieldData->saveData));
     return FALSE;
 }
 
@@ -1690,9 +1690,9 @@ BOOL FrontierScrCmd_SetSystemVar(FrontierScriptContext *ctx)
 {
     u16 destVarID = FrontierScriptContext_ReadHalfWord(ctx);
     u16 value = FrontierScriptContext_GetVar(ctx);
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
-    u16 *destVar = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->saveData), destVarID);
+    u16 *destVar = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(fieldData->saveData), destVarID);
     *destVar = value;
 
     return FALSE;
@@ -1702,9 +1702,9 @@ BOOL FrontierScrCmd_GetSystemVar(FrontierScriptContext *ctx)
 {
     u16 srcVarID = FrontierScriptContext_ReadHalfWord(ctx);
     u16 *dest = FrontierScriptContext_TryGetVarPointer(ctx);
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
-    u16 *srcVar = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->saveData), srcVarID);
+    u16 *srcVar = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(fieldData->saveData), srcVarID);
     *dest = *srcVar;
 
     return FALSE;
@@ -2146,21 +2146,21 @@ static BOOL ov104_022319CC(UnkStruct_ov104_02231148 *param0)
 
 static BOOL FrontierScrCmd_3F(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0;
+    FieldFrontierDTO *fieldData;
     UnkStruct_ov104_02231148 *v1;
 
-    v0 = sub_0209B970(ctx->scriptMan->unk_00);
+    fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     ctx->data[0] = FrontierScriptContext_GetVar(ctx);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
 
     v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_02231148));
-    v1->unk_14 = sub_0209B978(ctx->scriptMan->unk_00);
+    v1->unk_14 = sub_0209B978(ctx->scriptMan->frontier);
     v1->unk_04 = 0;
     v1->unk_08 = ctx->data[0];
     v1->unk_00 = FrontierScriptManager_GetGraphics(ctx->scriptMan);
 
-    sub_0209B980(ctx->scriptMan->unk_00, v1);
+    sub_0209B980(ctx->scriptMan->frontier, v1);
     FrontierScriptContext_Pause(ctx, ov104_02231AA8);
     PaletteData_FillBufferRange(v1->unk_00->plttData, 0, 2, 0x0, 0, 1);
 
@@ -2170,14 +2170,14 @@ static BOOL FrontierScrCmd_3F(FrontierScriptContext *ctx)
 static BOOL ov104_02231AA8(FrontierScriptContext *ctx)
 {
     BOOL v0;
-    UnkStruct_ov104_02231148 *v1 = sub_0209B978(ctx->scriptMan->unk_00);
+    UnkStruct_ov104_02231148 *v1 = sub_0209B978(ctx->scriptMan->frontier);
 
     v0 = Unk_ov104_0223F65C[v1->unk_08](v1);
 
     if (v0 == 0) {
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
         SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
-        sub_0209B980(ctx->scriptMan->unk_00, v1->unk_14);
+        sub_0209B980(ctx->scriptMan->frontier, v1->unk_14);
         Heap_Free(v1);
     }
 
@@ -2187,12 +2187,12 @@ static BOOL ov104_02231AA8(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_GetPlayerObjEventGfx(FrontierScriptContext *ctx)
 {
     u16 objEventGfx;
-    UnkStruct_ov104_02230BE4 *v1;
+    FieldFrontierDTO *fieldData;
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v1 = sub_0209B970(ctx->scriptMan->unk_00);
+    fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
-    if (TrainerInfo_Gender(SaveData_GetTrainerInfo(v1->saveData)) == GENDER_MALE) {
+    if (TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldData->saveData)) == GENDER_MALE) {
         objEventGfx = OBJ_EVENT_GFX_PLAYER_M;
     } else {
         objEventGfx = OBJ_EVENT_GFX_PLAYER_F;
@@ -2205,7 +2205,7 @@ static BOOL FrontierScrCmd_GetPlayerObjEventGfx(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_InitParticleSystem(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *scriptMan = ctx->scriptMan;
-    FrontierGraphics *graphics = sub_0209B974(scriptMan->unk_00);
+    FrontierGraphics *graphics = BattleFrontier_GetGraphics(scriptMan->frontier);
     u16 index = FrontierScriptContext_GetVar(ctx);
     u16 narcIdx = FrontierScriptContext_GetVar(ctx);
     u16 projection = FrontierScriptContext_GetVar(ctx);
@@ -2218,7 +2218,7 @@ static BOOL FrontierScrCmd_InitParticleSystem(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_FreeParticleSystem(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *scriptMan = ctx->scriptMan;
-    FrontierGraphics *graphics = sub_0209B974(scriptMan->unk_00);
+    FrontierGraphics *graphics = BattleFrontier_GetGraphics(scriptMan->frontier);
     u16 index = FrontierScriptContext_GetVar(ctx);
     FrontierParticleSystem_FreeParticleSystem(graphics->particleSys, index);
 
@@ -2228,7 +2228,7 @@ static BOOL FrontierScrCmd_FreeParticleSystem(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_CreateParticleSystemEmitter(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *scriptMan = ctx->scriptMan;
-    FrontierGraphics *graphics = sub_0209B974(scriptMan->unk_00);
+    FrontierGraphics *graphics = BattleFrontier_GetGraphics(scriptMan->frontier);
     u16 index = FrontierScriptContext_GetVar(ctx);
     u16 resourceID = FrontierScriptContext_GetVar(ctx);
     ParticleSystem *particleSystem = FrontierParticleSystem_GetParticleSystem(graphics->particleSys, index);
@@ -2247,7 +2247,7 @@ static BOOL FrontierScrCmd_WaitForParticleSystemEmitters(FrontierScriptContext *
 static BOOL WaitForEmitters(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *scriptMan = ctx->scriptMan;
-    FrontierGraphics *graphics = sub_0209B974(scriptMan->unk_00);
+    FrontierGraphics *graphics = BattleFrontier_GetGraphics(scriptMan->frontier);
 
     return FrontierParticleSystem_NoActiveEmitters(graphics->particleSys) == TRUE;
 }
@@ -2255,7 +2255,7 @@ static BOOL WaitForEmitters(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_4C(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     u16 v2, v3, v4, v5;
     UnkStruct_ov104_0223319C *v6 = &v1->unk_A4;
 
@@ -2289,7 +2289,7 @@ static BOOL FrontierScrCmd_4D(FrontierScriptContext *ctx)
 static BOOL ov104_02231C54(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
 
     if (v1->unk_A4.unk_00 == NULL) {
         return TRUE;
@@ -2301,7 +2301,7 @@ static BOOL ov104_02231C54(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_4E(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
     u16 v2, v3, v4, v5;
     UnkStruct_ov104_022331E8 *v6 = &v1->unk_B0;
 
@@ -2332,7 +2332,7 @@ static BOOL FrontierScrCmd_4F(FrontierScriptContext *ctx)
 static BOOL ov104_02231CF4(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
 
     if (v1->unk_B0.unk_00 == NULL) {
         return TRUE;
@@ -2352,7 +2352,7 @@ static BOOL FrontierScrCmd_45(FrontierScriptContext *ctx)
 {
     Party *party;
     Pokemon *mon;
-    UnkStruct_ov104_02230BE4 *v2;
+    FieldFrontierDTO *fieldData;
     FrontierGraphics *v3 = FrontierScriptManager_GetGraphics(ctx->scriptMan);
     u16 slot = FrontierScriptContext_GetVar(ctx);
     u16 x = FrontierScriptContext_GetVar(ctx);
@@ -2361,8 +2361,8 @@ static BOOL FrontierScrCmd_45(FrontierScriptContext *ctx)
     u16 blendFraction = FrontierScriptContext_ReadHalfWord(ctx);
     u16 blendTarget = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v2 = sub_0209B970(ctx->scriptMan->unk_00);
-    party = SaveData_GetParty(v2->saveData);
+    fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    party = SaveData_GetParty(fieldData->saveData);
     mon = Party_GetPokemonBySlotIndex(party, slot);
     blendFraction = 8;
     blendTarget = GX_RGB(0, 0, 0);
@@ -2397,7 +2397,7 @@ static BOOL FrontierScrCmd_47(FrontierScriptContext *ctx)
 static BOOL ov104_02231E14(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *v0 = ctx->scriptMan;
-    FrontierGraphics *v1 = sub_0209B974(v0->unk_00);
+    FrontierGraphics *v1 = BattleFrontier_GetGraphics(v0->frontier);
 
     if (ctx->data[0] == 1) {
         return TRUE;
@@ -2408,45 +2408,45 @@ static BOOL ov104_02231E14(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_IncrementRecordValue(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0;
+    FieldFrontierDTO *fieldData;
     u16 recordID = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v0 = sub_0209B970(ctx->scriptMan->unk_00);
-    GameRecords_IncrementRecordValue(SaveData_GetGameRecords(v0->saveData), recordID);
+    fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldData->saveData), recordID);
 
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_AddToRecordValue(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0;
+    FieldFrontierDTO *fieldData;
     u16 recordID = FrontierScriptContext_ReadHalfWord(ctx);
     u16 value = FrontierScriptContext_GetVar(ctx);
 
-    v0 = sub_0209B970(ctx->scriptMan->unk_00);
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(v0->saveData), recordID, value);
+    fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(fieldData->saveData), recordID, value);
 
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_IncrementTrainerScore(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0;
+    FieldFrontierDTO *fieldData;
     u16 scoreID = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v0 = sub_0209B970(ctx->scriptMan->unk_00);
-    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->saveData), scoreID);
+    fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(fieldData->saveData), scoreID);
 
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_4B(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0;
+    FieldFrontierDTO *fieldData;
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v0 = sub_0209B970(ctx->scriptMan->unk_00);
-    *destVar = sub_0205E6D8(v0->saveData);
+    fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    *destVar = sub_0205E6D8(fieldData->saveData);
 
     return FALSE;
 }
@@ -2461,8 +2461,8 @@ static BOOL FrontierScrCmd_71(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_SetWiFiListHostFriendCurrentDate(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(ctx->scriptMan->unk_00);
-    WiFiList *wiFiList = SaveData_GetWiFiList(v1->saveData);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    WiFiList *wiFiList = SaveData_GetWiFiList(fieldData->saveData);
 
     WiFiList_SetHostFriendCurrentDate(wiFiList, NintendoWFC_GetHostFriendIdx());
     return FALSE;
@@ -2473,8 +2473,8 @@ static BOOL FrontierScrCmd_C8(FrontierScriptContext *ctx)
     u16 v0;
     TVBroadcast *broadcast;
     TrainerInfo *trainerInfo;
-    UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(ctx->scriptMan->unk_00);
-    broadcast = SaveData_GetTVBroadcast(v3->saveData);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    broadcast = SaveData_GetTVBroadcast(fieldData->saveData);
     v0 = FrontierScriptContext_GetVar(ctx);
     trainerInfo = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
 
