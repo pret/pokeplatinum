@@ -205,7 +205,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_OBTAINED_VALOR_LAKEFRONT_IRN",
+            "hidden_flag": "FLAG_OBTAINED_VALOR_LAKEFRONT_IRON",
             "script": 7315,
             "initial_dir": 0,
             "data": [],
