@@ -292,7 +292,7 @@ pokeplatinum_c = files(
     'applications/party_menu/windows.c',
     'applications/party_menu/sprites.c',
     'applications/party_menu/unk_02083370.c',
-    'applications/party_menu/unk_02084B70.c',
+    'applications/party_menu/callbacks.c',
     'applications/naming_screen.c',
     'unk_020890F4.c',
     'unk_02089604.c',
