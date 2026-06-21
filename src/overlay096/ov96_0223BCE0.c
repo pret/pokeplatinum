@@ -12,10 +12,10 @@
 #include "overlay096/ov96_0223B140.h"
 #include "overlay096/ov96_0223B6A0.h"
 #include "overlay096/struct_ov96_0223B450.h"
-#include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B450_sub2.h"
 #include "overlay096/struct_ov96_0223BF40_decl.h"
 #include "overlay096/struct_ov96_0223BF40_t.h"
+#include "overlay096/struct_wifi_player_profile.h"
 
 #include "bg_window.h"
 #include "comm_manager.h"
@@ -38,9 +38,9 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_0202D05C.h"
 #include "unk_02030CE8.h"
 #include "unk_02073700.h"
+#include "wifi_battle_tower_save.h"
 
 static void ov96_0223BE38(BgConfig *param0);
 static void ov96_0223BF1C(BgConfig *param0);

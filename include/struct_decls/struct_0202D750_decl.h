@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_0202D750_DECL_H
-#define POKEPLATINUM_STRUCT_0202D750_DECL_H
-
-typedef struct WifiBattleTowerRecord_t WifiBattleTowerRecord;
-
-#endif // POKEPLATINUM_STRUCT_0202D750_DECL_H

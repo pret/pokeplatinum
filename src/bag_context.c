@@ -20,7 +20,7 @@
 #include "trainer_info.h"
 #include "unk_020298BC.h"
 #include "unk_0202C9F4.h"
-#include "unk_0202D05C.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/text/bank/bag.h"
 #include "res/text/bank/common_strings.h"

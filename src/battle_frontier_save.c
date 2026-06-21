@@ -6,10 +6,10 @@
 
 #include "battle_hall_save.h"
 #include "savedata.h"
-#include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
+#include "wifi_battle_tower_save.h"
 #include "wifi_list.h"
 
 int BattleFrontierSave_Size(void)

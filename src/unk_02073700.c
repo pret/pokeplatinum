@@ -1,17 +1,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/wi_fi_history.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
-#include "overlay096/struct_ov96_0223B450_sub1.h"
+#include "overlay096/struct_wifi_player_profile.h"
 #include "overlay104/frontier_data_transfer.h"
 
 #include "appearance.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0202D05C.h"
+#include "wifi_battle_tower_save.h"
 #include "wifi_history_save_data.h"
 
 void sub_02073700(SaveData *saveData, int param1, WifiPlayerProfile *profile)

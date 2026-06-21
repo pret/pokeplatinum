@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_UNK_02049D08_H
 #define POKEPLATINUM_UNK_02049D08_H
 
-#include "struct_decls/struct_0202D060_decl.h"
 #include "struct_defs/battle_tower.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "field/field_system_decl.h"
 

@@ -5,9 +5,9 @@
 #include "constants/battle_tower.h"
 #include "generated/battle_tower_modes.h"
 
-#include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/struct_0209BBA4.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay104/defs.h"
 #include "overlay104/frontier_script_context.h"
@@ -25,10 +25,10 @@
 #include "heap.h"
 #include "item_use_pokemon.h"
 #include "party.h"
-#include "unk_0202D05C.h"
 #include "unk_02049D08.h"
 #include "unk_0204FA34.h"
 #include "unk_0209BA80.h"
+#include "wifi_battle_tower_save.h"
 
 static BOOL ov104_02239680(FrontierScriptContext *param0);
 static BOOL ov104_02239C20(FrontierScriptContext *param0);

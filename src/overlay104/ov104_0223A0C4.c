@@ -13,8 +13,8 @@
 
 #include "struct_defs/battle_frontier_pokemon_data.h"
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/struct_0202D764.h"
 #include "struct_defs/struct_0204B404.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_ov104_02230BE4.h"
@@ -27,8 +27,8 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0202D05C.h"
 #include "unk_02049D08.h"
+#include "wifi_battle_tower_save.h"
 
 const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
     {

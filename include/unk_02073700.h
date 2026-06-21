@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02073700_H
 #define POKEPLATINUM_UNK_02073700_H
 
-#include "overlay096/struct_ov96_0223B450_sub1.h"
+#include "overlay096/struct_wifi_player_profile.h"
 
 #include "savedata.h"
 

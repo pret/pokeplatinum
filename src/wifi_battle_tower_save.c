@@ -1,4 +1,4 @@
-#include "unk_0202D05C.h"
+#include "wifi_battle_tower_save.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -6,17 +6,15 @@
 #include "constants/battle_tower.h"
 
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_0202D060.h"
 #include "struct_defs/struct_0202D080.h"
 #include "struct_defs/struct_0202D63C.h"
-#include "struct_defs/struct_0202D750.h"
-#include "struct_defs/struct_0202D764.h"
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_0204B404.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay090/struct_ov90_021D1750.h"
-#include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B450_sub2.h"
+#include "overlay096/struct_wifi_player_profile.h"
 #include "overlay104/frontier_data_transfer.h"
 
 #include "easy_chat_sentence.h"

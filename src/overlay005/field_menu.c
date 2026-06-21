@@ -28,7 +28,7 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0202D05C.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/text/bank/menu_entries.h"
 #include "res/text/bank/unk_0543.h"

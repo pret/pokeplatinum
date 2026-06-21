@@ -4,10 +4,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202D750_decl.h"
-#include "struct_decls/struct_0202D764_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_02049A68.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D1750.h"
@@ -33,9 +32,9 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202D05C.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/graphics/sprite_templates/tower_records.h"
 

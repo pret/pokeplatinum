@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV96_0223B140_H
 
 #include "overlay096/struct_ov96_0223B450.h"
-#include "overlay096/struct_ov96_0223B450_sub1.h"
+#include "overlay096/struct_wifi_player_profile.h"
 #include "overlay096/struct_world_exchange_trainer.h"
 #include "overlay096/struct_world_exchange_trainer_error.h"
 

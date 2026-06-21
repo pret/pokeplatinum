@@ -3,8 +3,8 @@
 
 #include "constants/narc.h"
 
-#include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/struct_0208C06C.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay062/ov62_0222F2C0.h"
 #include "overlay062/ov62_022300D8.h"
@@ -25,10 +25,10 @@
 #include "system_vars.h"
 #include "touch_screen.h"
 #include "unk_02012744.h"
-#include "unk_0202D05C.h"
 #include "unk_02030A80.h"
 #include "unk_0208B284.h"
 #include "vars_flags.h"
+#include "wifi_battle_tower_save.h"
 
 typedef struct {
     int unk_00;

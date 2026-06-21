@@ -3,16 +3,14 @@
 
 #include "constants/battle_frontier_stats.h"
 
-#include "struct_defs/struct_0202D060.h"
 #include "struct_defs/struct_0202D080.h"
-#include "struct_defs/struct_0202D750.h"
-#include "struct_defs/struct_0202D764.h"
 #include "struct_defs/struct_0202FF58.h"
 #include "struct_defs/struct_020300F4.h"
 #include "struct_defs/struct_020302DC.h"
 #include "struct_defs/struct_0203041C.h"
 #include "struct_defs/struct_020304A0.h"
 #include "struct_defs/struct_020305B8.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "battle_hall_save.h"
 #include "wifi_list.h"

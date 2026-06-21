@@ -9,11 +9,9 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202D060_decl.h"
-#include "struct_decls/struct_0202D750_decl.h"
-#include "struct_decls/struct_0202D764_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/battle_tower.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "applications/party_menu/defs.h"
 #include "field/field_system.h"
@@ -40,10 +38,10 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_0202D05C.h"
 #include "unk_0204AEE8.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
+#include "wifi_battle_tower_save.h"
 
 typedef struct {
     u16 unk_00;

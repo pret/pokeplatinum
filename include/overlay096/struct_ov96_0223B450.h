@@ -2,8 +2,8 @@
 #define POKEPLATINUM_STRUCT_OV96_0223B450_H
 
 #include "overlay090/struct_ov90_021D1750.h"
-#include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B450_sub2.h"
+#include "overlay096/struct_wifi_player_profile.h"
 
 typedef struct WifiBattleTowerDownloadBuffer {
     WifiPlayerProfile wifiPlayerProfile[7];

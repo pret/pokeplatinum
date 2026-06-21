@@ -3,8 +3,7 @@
 
 #include <dwc.h>
 
-#include "struct_decls/struct_0202D750_decl.h"
-#include "struct_decls/struct_0202D764_decl.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "game_options.h"
 #include "savedata.h"

@@ -3,9 +3,8 @@
 
 #include "constants/battle_tower.h"
 
-#include "struct_decls/struct_0202D060_decl.h"
-#include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/struct_0204B404.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay104/frontier_data_transfer.h"
 

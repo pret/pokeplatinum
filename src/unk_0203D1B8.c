@@ -120,12 +120,12 @@
 #include "tv_segment.h"
 #include "unk_02017498.h"
 #include "unk_020298BC.h"
-#include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_02038FFC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "vars_flags.h"
+#include "wifi_battle_tower_save.h"
 #include "wifi_history_save_data.h"
 
 #include "constdata/const_020EA328.h"
