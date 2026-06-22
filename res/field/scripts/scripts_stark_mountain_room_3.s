@@ -36,13 +36,13 @@ StarkMountainRoom3_HideHeatran:
     Return
 
 StarkMountainRoom3_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, StarkMountainRoom3_RemoveHeatran
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, StarkMountainRoom3_RemoveHeatran
     End
 
 StarkMountainRoom3_RemoveHeatran:
     SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     RemoveObject LOCALID_HEATRAN
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 StarkMountainRoom3_Movement_Unused:
@@ -79,9 +79,9 @@ StarkMountainRoom3_Heatran:
     PlayCry SPECIES_HEATRAN
     Message StarkMountainRoom3_Text_HeatranCry
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartLegendaryBattle SPECIES_HEATRAN, 50
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, StarkMountainRoom3_LostBattle
     CheckLostBattle VAR_RESULT

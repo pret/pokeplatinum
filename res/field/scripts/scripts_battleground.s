@@ -2,11 +2,14 @@
 #include "res/text/bank/battleground.h"
 #include "res/field/events/events_battleground.h"
 
-#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_1 FLAG_UNK_0x0001
-#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_2 FLAG_UNK_0x0002
-#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_3 FLAG_UNK_0x0003
-#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_4 FLAG_UNK_0x0004
-
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_1 FLAG_MAP_LOCAL_0x0001
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_2 FLAG_MAP_LOCAL_0x0002
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_3 FLAG_MAP_LOCAL_0x0003
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_4 FLAG_MAP_LOCAL_0x0004
+#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_1 FLAG_MAP_LOCAL_0x0005
+#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_2 FLAG_MAP_LOCAL_0x0006
+#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_3 FLAG_MAP_LOCAL_0x0007
+#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_4 FLAG_MAP_LOCAL_0x0008
 
     ScriptEntry Battleground_ExpertM
     ScriptEntry Battleground_Buck
@@ -20,12 +23,12 @@
 
 Battleground_OnTransition:
     SetFlag FLAG_VISITED_BATTLEGROUND
-    GoToIfUnset FLAG_SET_BATTLEGROUND_TRAINERS, Battleground_SetTrainers
+    GoToIfUnset FLAG_DAILY_SET_BATTLEGROUND_TRAINERS, Battleground_SetTrainers
     Call Battleground_SetTrainersGraphics
     End
 
 Battleground_SetTrainers:
-    SetFlag FLAG_SET_BATTLEGROUND_TRAINERS
+    SetFlag FLAG_DAILY_SET_BATTLEGROUND_TRAINERS
     GetRandomBattlegroundTrainers VAR_BATTLEGROUND_TRAINER_1, VAR_BATTLEGROUND_TRAINER_2, VAR_BATTLEGROUND_TRAINER_3, VAR_BATTLEGROUND_TRAINER_4
     Call Battleground_SetTrainersGraphics
     ClearFlag FLAG_HIDE_BATTLEGROUND_TRAINER_1
@@ -1155,55 +1158,55 @@ Battleground_SetFlagDefeatedTrainer:
     Return
 
 Battleground_SetFlagDefeatedRoark:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_ROARK
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_ROARK
     Return
 
 Battleground_SetFlagDefeatedGardenia:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_GARDENIA
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_GARDENIA
     Return
 
 Battleground_SetFlagDefeatedWake:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_CRASHER_WAKE
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_CRASHER_WAKE
     Return
 
 Battleground_SetFlagDefeatedMaylene:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_MAYLENE
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_MAYLENE
     Return
 
 Battleground_SetFlagDefeatedFantina:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_FANTINA
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_FANTINA
     Return
 
 Battleground_SetFlagDefeatedCandice:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_CANDICE
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_CANDICE
     Return
 
 Battleground_SetFlagDefeatedByron:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_BYRON
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_BYRON
     Return
 
 Battleground_SetFlagDefeatedVolkner:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_VOLKNER
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_VOLKNER
     Return
 
 Battleground_SetFlagDefeatedCheryl:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_CHERYL
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_CHERYL
     Return
 
 Battleground_SetFlagDefeatedRiley:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_RILEY
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_RILEY
     Return
 
 Battleground_SetFlagDefeatedMarley:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_MARLEY
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_MARLEY
     Return
 
 Battleground_SetFlagDefeatedBuck:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_BUCK
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_BUCK
     Return
 
 Battleground_SetFlagDefeatedMira:
-    SetFlag FLAG_DEFEATED_BATTLEGROUND_MIRA
+    SetFlag FLAG_DAILY_DEFEATED_BATTLEGROUND_MIRA
     Return
 
 Battleground_CheckDefeatedTrainer:
@@ -1224,55 +1227,55 @@ Battleground_CheckDefeatedTrainer:
     Return
 
 Battleground_CheckDefeatedRoark:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_ROARK, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_ROARK, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedGardenia:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_GARDENIA, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_GARDENIA, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedWake:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_CRASHER_WAKE, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_CRASHER_WAKE, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedMaylene:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_MAYLENE, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_MAYLENE, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedFantina:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_FANTINA, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_FANTINA, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedCandice:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_CANDICE, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_CANDICE, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedByron:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_BYRON, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_BYRON, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedVolkner:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_VOLKNER, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_VOLKNER, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedCheryl:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_CHERYL, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_CHERYL, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedRiley:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_RILEY, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_RILEY, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedMarley:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_MARLEY, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_MARLEY, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedBuck:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_BUCK, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_BUCK, Battleground_SetResultTrue
     Return
 
 Battleground_CheckDefeatedMira:
-    GoToIfSet FLAG_DEFEATED_BATTLEGROUND_MIRA, Battleground_SetResultTrue
+    GoToIfSet FLAG_DAILY_DEFEATED_BATTLEGROUND_MIRA, Battleground_SetResultTrue
     Return
 
 Battleground_SetResultTrue:

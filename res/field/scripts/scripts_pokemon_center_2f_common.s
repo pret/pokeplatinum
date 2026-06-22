@@ -472,7 +472,7 @@ PokemonCenter2FCommon_AttendantSignTrainerCard:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetFlag FLAG_UNK_0x00AA
+    SetFlag FLAG_DUMMY_0x00AA
     Message PokemonCenter2FCommon_Text_YouMaySignTrainerCard
     GoTo PokemonCenter2FCommon_SignTrainerCardMenu
     End

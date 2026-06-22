@@ -63,7 +63,7 @@ Route209GateToHearthomeCity_PostRivalBattle:
     PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL
     WaitSE SEQ_SE_DP_KAIDAN2
-    SetVar VAR_HEARTHOME_STATE, 2
+    SetVar VAR_ROUTE_209_GATE_TO_HEARTHOME_CITY_STATE, 2
     ReleaseAll
     End
 

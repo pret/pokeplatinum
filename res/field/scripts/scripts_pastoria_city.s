@@ -31,9 +31,9 @@
 PastoriaCity_OnTransition:
     SetVar VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE, 0
     SetFlag FLAG_HIDE_ROUTE_212_BLOCKADE
-    CallIfEq VAR_PASTORIA_STATE, 5, PastoriaCity_SetRivalPositionAfterExplosion
-    CallIfEq VAR_PASTORIA_STATE, 4, PastoriaCity_SetRivalPositionAfterGym
-    CallIfEq VAR_PASTORIA_STATE, 4, PastoriaCity_SetCrasherWakePositionAfterGym
+    CallIfEq VAR_PASTORIA_CITY_STATE, 5, PastoriaCity_SetRivalPositionAfterExplosion
+    CallIfEq VAR_PASTORIA_CITY_STATE, 4, PastoriaCity_SetRivalPositionAfterGym
+    CallIfEq VAR_PASTORIA_CITY_STATE, 4, PastoriaCity_SetCrasherWakePositionAfterGym
     GoToIfSet FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST, PastoriaCity_SetGruntMEastPosition
     End
 
@@ -323,8 +323,8 @@ PastoriaCity_Rival:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_PASTORIA_STATE, 5, PastoriaCity_WhyArentYouGone
-    GoToIfGe VAR_PASTORIA_STATE, 4, PastoriaCity_RivalCroagunk
+    GoToIfGe VAR_PASTORIA_CITY_STATE, 5, PastoriaCity_WhyArentYouGone
+    GoToIfGe VAR_PASTORIA_CITY_STATE, 4, PastoriaCity_RivalCroagunk
     BufferRivalName 0
     BufferPlayerName 1
     Message PastoriaCity_Text_MrWakeWentToVeilstone
@@ -414,7 +414,7 @@ PastoriaCity_RivalPostBattle:
     ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalLeaveAfterBattle
     WaitMovement
     RemoveObject LOCALID_RIVAL
-    SetVar VAR_PASTORIA_STATE, 2
+    SetVar VAR_PASTORIA_CITY_STATE, 2
     ReleaseAll
     End
 
@@ -521,7 +521,7 @@ PastoriaCity_OnFrame_ExitGym:
     Call PastoriaCity_SetRivalPositionAfterGym
     ClearFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     SetPosition LOCALID_RIVAL, 608, 0, 814, DIR_SOUTH
-    SetVar VAR_PASTORIA_STATE, 4
+    SetVar VAR_PASTORIA_CITY_STATE, 4
     ReleaseAll
     End
 
@@ -697,7 +697,7 @@ PastoriaCity_GoAfterThatGoon:
     CallIfEq VAR_0x8004, 611, PastoriaCity_RivalWalkToGreatMarshX611
     CallIfEq VAR_0x8004, 612, PastoriaCity_RivalWalkToGreatMarsh
     SetFlag FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER
-    SetVar VAR_PASTORIA_STATE, 5
+    SetVar VAR_PASTORIA_CITY_STATE, 5
     SetFlag FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST
     BufferRivalName 0
     BufferPlayerName 1

@@ -32,7 +32,7 @@ Restaurant_OnTransition:
     GetHour VAR_MAP_LOCAL_0
     GoToIfLt VAR_MAP_LOCAL_0, 9, Restaurant_SetClosed
     GoToIfGe VAR_MAP_LOCAL_0, 23, Restaurant_SetClosed
-    GoToIfUnset FLAG_SET_RESTAURANT_TRAINERS, Restaurant_ResetTrainers
+    GoToIfUnset FLAG_DAILY_SET_RESTAURANT_TRAINERS, Restaurant_ResetTrainers
     End
 
 Restaurant_SetClosed:
@@ -95,7 +95,7 @@ Restaurant_InitTrainers:
     GoToIfEq VAR_MAP_LOCAL_A, 0, Restaurant_FinishedInitTrainers
     GoToIfNe VAR_MAP_LOCAL_0, 0, Restaurant_InitTrainers
 Restaurant_FinishedInitTrainers:
-    SetFlag FLAG_SET_RESTAURANT_TRAINERS
+    SetFlag FLAG_DAILY_SET_RESTAURANT_TRAINERS
     End
 
 Restaurant_InitTrainersIsmaelHarley:

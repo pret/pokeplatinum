@@ -125,7 +125,7 @@ TwinleafTownPlayerHouse2F_Rival:
     Common_FadeToDefaultMusic2
     WaitSE SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
-    SetVar VAR_PLAYER_HOUSE_RIVAL_TRIGGER_STATE, 1
+    SetVar VAR_PLAYER_HOUSE_RIVAL_STATE, 1
     ReleaseAll
     End
 

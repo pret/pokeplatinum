@@ -65,7 +65,7 @@ Route205South_CoordEvent_Grunts:
     End
 
 _00B6:
-    SetFlag FLAG_UNK_0x007F
+    SetFlag FLAG_DUMMY_0x007F
     Return
 
     .balign 4, 0

@@ -8,13 +8,13 @@
     ScriptEntryEnd
 
 SnowpointTempleB5F_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, SnowpointTempleB5F_RemoveRegigigas
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, SnowpointTempleB5F_RemoveRegigigas
     End
 
 SnowpointTempleB5F_RemoveRegigigas:
     SetFlag FLAG_HIDE_SNOWPOINT_TEMPLE_B5F_REGIGIGAS
     RemoveObject LOCALID_REGIGIGAS
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 SnowpointTempleB5F_Regigigas:
@@ -47,9 +47,9 @@ SnowpointTempleB5F_EncounterRegigigas:
     CloseMessage
     PlayCry SPECIES_REGIGIGAS
     WaitCry
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartLegendaryBattle SPECIES_REGIGIGAS, 1
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, SnowpointTempleB5F_BlackOut
     CheckDidNotCapture VAR_RESULT

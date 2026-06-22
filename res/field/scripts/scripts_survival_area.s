@@ -139,7 +139,7 @@ SurvivalArea_RivalEnd:
     End
 
 SurvivalArea_RivalBattle:
-    GoToIfSet FLAG_DEFEATED_SURVIVAL_AREA_RIVAL, SurvivalArea_PostRivalBattle
+    GoToIfSet FLAG_DAILY_DEFEATED_SURVIVAL_AREA_RIVAL, SurvivalArea_PostRivalBattle
     BufferRivalName 0
     BufferPlayerName 1
     Message SurvivalArea_Text_IllProveImTougher
@@ -201,7 +201,7 @@ SurvivalArea_SetRivalTeamChimchar2:
 SurvivalArea_CheckWonRivalBattle:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, SurvivalArea_LostRivalBattle
-    SetFlag FLAG_DEFEATED_SURVIVAL_AREA_RIVAL
+    SetFlag FLAG_DAILY_DEFEATED_SURVIVAL_AREA_RIVAL
     GoTo SurvivalArea_PostRivalBattle
     End
 

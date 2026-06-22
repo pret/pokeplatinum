@@ -52,8 +52,8 @@ PalParkLobby_Worker:
     GoTo PalParkLobby_Worker_PlayerFemale
 
 PalParkLobby_Worker_PlayerMale:
-    GoToIfSet FLAG_PAL_PARK_TALKED_TO_RECEPTIONIST, PalParkLobby_Worker_Greeting_PlayerMale
-    SetFlag FLAG_PAL_PARK_TALKED_TO_RECEPTIONIST
+    GoToIfSet FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, PalParkLobby_Worker_Greeting_PlayerMale
+    SetFlag FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST
     BufferPlayerName 0
     Message PalParkLobby_Text_WelcomeToPalPark_PlayerMale
     ShowYesNoMenu VAR_RESULT
@@ -62,8 +62,8 @@ PalParkLobby_Worker_PlayerMale:
     End
 
 PalParkLobby_Worker_PlayerFemale:
-    GoToIfSet FLAG_PAL_PARK_TALKED_TO_RECEPTIONIST, PalParkLobby_Worker_Greeting_PlayerFemale
-    SetFlag FLAG_PAL_PARK_TALKED_TO_RECEPTIONIST
+    GoToIfSet FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, PalParkLobby_Worker_Greeting_PlayerFemale
+    SetFlag FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST
     BufferPlayerName 0
     Message PalParkLobby_Text_WelcomeToPalPark_PlayerFemale
     ShowYesNoMenu VAR_RESULT
@@ -344,7 +344,7 @@ PalParkLobby_RecordGuy:
 
 PalParkLobby_OnFrame_ProfOak:
     LockAll
-    ClearFlag FLAG_ETERNA_CITY_SOUTH_HOUSE_HIDE_PROF_OAK
+    ClearFlag FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK
     SetVar VAR_CATCHING_SHOW_RECORD, 2000
     ApplyMovement LOCALID_PROF_OAK, PalParkLobby_Movement_ProfOakNoticePlayer
     WaitMovement

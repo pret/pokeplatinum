@@ -13,7 +13,7 @@ ResortAreaRibbonSyndicate2F_Receptionist3:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_GOT_SPA_TREATMENT_RESORT_AREA_RIBBON_SYNDICATE_2F, ResortAreaRibbonSyndicate2F_OneSessionADay
+    GoToIfSet FLAG_DAILY_GOT_SPA_TREATMENT_RESORT_AREA_RIBBON_SYNDICATE_2F, ResortAreaRibbonSyndicate2F_OneSessionADay
     GoToIfEq VAR_MAP_LOCAL_A, 1, ResortAreaRibbonSyndicate2F_OneSessionADay
     GetFirstNonEggInParty VAR_MAP_LOCAL_0
     BufferPlayerName 0
@@ -102,7 +102,7 @@ ResortAreaRibbonSyndicate2F_LittleMoreFriendly:
 
 ResortAreaRibbonSyndicate2F_FinishTreatment:
     WaitSE SEQ_SE_DP_FW367
-    SetFlag FLAG_GOT_SPA_TREATMENT_RESORT_AREA_RIBBON_SYNDICATE_2F
+    SetFlag FLAG_DAILY_GOT_SPA_TREATMENT_RESORT_AREA_RIBBON_SYNDICATE_2F
     SetVar VAR_MAP_LOCAL_A, 1
     ApplyMovement LOCALID_RECEPTIONIST_2, ResortAreaRibbonSyndicate2F_Movement_Receptionist2MoveAside
     WaitMovement

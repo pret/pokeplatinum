@@ -25,13 +25,13 @@ NewmoonIslandForest_HideDarkrai:
     End
 
 NewmoonIslandForest_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, NewmoonIslandForest_RemoveDarkrai
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, NewmoonIslandForest_RemoveDarkrai
     End
 
 NewmoonIslandForest_RemoveDarkrai:
     SetFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
     RemoveObject LOCALID_DARKRAI
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 NewmoonIslandForest_Darkrai:
@@ -40,9 +40,9 @@ NewmoonIslandForest_Darkrai:
     WaitSE SEQ_SE_CONFIRM
     Message NewmoonIslandForest_Text_Ellipses
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartLegendaryBattle SPECIES_DARKRAI, 50
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, NewmoonIslandForest_BlackOut
     CheckDidNotCapture VAR_RESULT

@@ -33,7 +33,7 @@ PokemonMansionOffice_MrBacklot:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereAreCutePokemon
+    GoToIfSet FLAG_DAILY_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereAreCutePokemon
     GoToIfEq VAR_MAP_LOCAL_B, 1, PokemonMansionOffice_ThereAreCutePokemon
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, PokemonMansionOffice_YouAreEnviousYes
@@ -86,7 +86,7 @@ PokemonMansionOffice_AddThrophyGardenMon:
     RemoveObject LOCALID_OLD_MAN
     SetVar VAR_MAP_LOCAL_B, 1
     Call PokemonMansionOffice_MrBacklotFacePlayer
-    SetFlag FLAG_ADDED_TROPHY_GARDEN_MON
+    SetFlag FLAG_DAILY_ADDED_TROPHY_GARDEN_MON
     GoTo PokemonMansionOffice_ThereAreCutePokemon
 
 PokemonMansionOffice_ThereAreCutePokemon:
@@ -194,7 +194,7 @@ PokemonMansionOffice_HowWasTrophyGarden:
     End
 
 PokemonMansionOffice_OldManMessage:
-    GoToIfSet FLAG_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereWereSomePokemon
+    GoToIfSet FLAG_DAILY_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereWereSomePokemon
     CheckGameCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, PokemonMansionOffice_MessageGameCompleted
     GetRandom VAR_RESULT, 2

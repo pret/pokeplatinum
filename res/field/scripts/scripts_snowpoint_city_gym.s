@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 SnowpointGym_Init:
-    GoToIfSet FLAG_UNK_0x00EB, SnowpointCityGym_HideSnowpointCityCandice
+    GoToIfSet FLAG_DUMMY_0x00EB, SnowpointCityGym_HideSnowpointCityCandice
     End
 
 SnowpointCityGym_HideSnowpointCityCandice:
@@ -50,7 +50,7 @@ SnowpointGym_CandiceTryGiveTM72:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, SnowpointGym_CandiceCannotGiveTM72
     Common_GiveItemQuantity
-    SetFlag FLAG_OBTAINED_CANDICE_TM72
+    SetFlag FLAG_RECEIVED_CANDICE_TM72
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message SnowpointGym_Text_CandiceExplainTM72
@@ -66,7 +66,7 @@ SnowpointGym_CandiceCannotGiveTM72:
     End
 
 SnowpointGym_CandiceAfterBadge:
-    GoToIfUnset FLAG_OBTAINED_CANDICE_TM72, SnowpointGym_CandiceTryGiveTM72
+    GoToIfUnset FLAG_RECEIVED_CANDICE_TM72, SnowpointGym_CandiceTryGiveTM72
     Message SnowpointGym_Text_CandiceAfterBadge
     WaitButton
     CloseMessage

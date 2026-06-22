@@ -47,7 +47,7 @@ TeamGalacticEternaBuilding1F_OnFrame_Looker:
     SetObjectEventDir LOCALID_LOOKER, DIR_WEST
     AddObject LOCALID_LOOKER
     RemoveObject LOCALID_GRUNT_M_LOOKER
-    SetFlag FLAG_UNK_0x0071
+    SetFlag FLAG_DUMMY_0x0071
     SetVar VAR_TEAM_GALACTIC_ETERNA_BUILDING_1F_STATE, 1
     WaitTime 30, VAR_RESULT
     Message TeamGalacticEternaBuilding1F_Text_FirstRateTrainer

@@ -31,7 +31,7 @@ OreburghMineB1F_Hiker:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_COULDNT_RECEIVE_OREBURGH_MINE_B1F_FLAME_PLATE, OreburghMineB1F_TryGiveFlamePlateAgain
+    GoToIfSet FLAG_COULD_NOT_RECEIVE_OREBURGH_MINE_B1F_FLAME_PLATE, OreburghMineB1F_TryGiveFlamePlateAgain
     Message OreburghMineB1F_Text_IFoundSomethingInteresting
     GoTo OreburghMineB1F_TryGiveFlamePlate
     End
@@ -75,7 +75,7 @@ OreburghMineB1F_RemoveHiker:
     End
 
 OreburghMineB1F_YouHaveAnOveradundance:
-    SetFlag FLAG_COULDNT_RECEIVE_OREBURGH_MINE_B1F_FLAME_PLATE
+    SetFlag FLAG_COULD_NOT_RECEIVE_OREBURGH_MINE_B1F_FLAME_PLATE
     Message OreburghMineB1F_Text_YouHaveAnOveradundance
     GoTo OreburghMineB1F_HikerEnd
     End

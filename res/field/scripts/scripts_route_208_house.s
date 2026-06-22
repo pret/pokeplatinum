@@ -18,13 +18,13 @@ Route208House_OldMan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY, Route208House_FeedBerriesToPokemon
+    GoToIfSet FLAG_DAILY_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY, Route208House_FeedBerriesToPokemon
     Message Route208House_Text_YouDeserveABerry
     GetRandom VAR_0x8004, 26
     AddVar VAR_0x8004, ITEM_CHERI_BERRY /* Random berry from Cheri to Tamato */
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route208House_BagIsFull
-    SetFlag FLAG_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY
+    SetFlag FLAG_DAILY_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll

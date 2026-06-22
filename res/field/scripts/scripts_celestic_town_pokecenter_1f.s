@@ -25,7 +25,7 @@ CelesticTownPokecenter1F_PokefanM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_CELESTIC_TOWN_POKECENTER_1F_GREAT_BALL, CelesticTownPokecenter1F_ItsAboutTrust
+    GoToIfSet FLAG_DAILY_RECEIVED_CELESTIC_TOWN_POKECENTER_1F_GREAT_BALL, CelesticTownPokecenter1F_ItsAboutTrust
     Message CelesticTownPokecenter1F_Text_InterestingPokemon
     GetFirstNonEggInParty VAR_0x8000
     GetPartyMonFriendship VAR_RESULT, VAR_0x8000
@@ -39,7 +39,7 @@ CelesticTownPokecenter1F_GiveGreatBall:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CelesticTownPokecenter1F_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_RECEIVED_CELESTIC_TOWN_POKECENTER_1F_GREAT_BALL
+    SetFlag FLAG_DAILY_RECEIVED_CELESTIC_TOWN_POKECENTER_1F_GREAT_BALL
     GoTo CelesticTownPokecenter1F_ItsAboutTrust
 
 CelesticTownPokecenter1F_BagIsFull:

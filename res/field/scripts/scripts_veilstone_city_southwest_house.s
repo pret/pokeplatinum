@@ -11,7 +11,7 @@ VeilstoneCitySouthwestHouse_Beauty:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_GOT_MASSAGE, VeilstoneCitySouthwestHouse_ComeBackTomorrow
+    GoToIfSet FLAG_DAILY_GOT_MASSAGE_VEILSTONE_CITY_SOUTHWEST_HOUSE, VeilstoneCitySouthwestHouse_ComeBackTomorrow
     Message VeilstoneCitySouthwestHouse_Text_ICanMassagePokemon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, VeilstoneCitySouthwestHouse_ImNotShady
@@ -37,7 +37,7 @@ VeilstoneCitySouthwestHouse_Beauty:
     WaitFadeScreen
     BufferPartyMonNickname 0, VAR_MAP_LOCAL_0
     Message VeilstoneCitySouthwestHouse_Text_PokemonLooksContent
-    SetFlag FLAG_GOT_MASSAGE
+    SetFlag FLAG_DAILY_GOT_MASSAGE_VEILSTONE_CITY_SOUTHWEST_HOUSE
     IncreasePartyMonFriendship 3, VAR_MAP_LOCAL_0
     TryGetRandomMassageGirlAccessory VAR_0x8004
     GoToIfEq VAR_0x8004, -1, VeilstoneCitySouthwestHouse_DropByAgainTomorrow

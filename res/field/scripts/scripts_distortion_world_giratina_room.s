@@ -22,7 +22,7 @@ DistortionWorldGiratinaRoom_OnTransition:
     End
 
 DistortionWorldGiratinaRoom_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, DistortionWorldGiratinaRoom_RemoveGiratina
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, DistortionWorldGiratinaRoom_RemoveGiratina
     End
 
 DistortionWorldGiratinaRoom_RemoveGiratina:
@@ -70,9 +70,9 @@ DistortionWorldGiratinaRoom_Giratina:
     Message DistortionWorldGiratinaRoom_Text_GiratinaCryGiygogagohgwooh
     WaitCry
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartGiratinaOriginBattle SPECIES_GIRATINA, 47
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GetBattleResult VAR_RESULT
     GoToIfEq VAR_RESULT, BATTLE_RESULT_LOSE, DistortionWorldGiratinaRoom_BlackOut

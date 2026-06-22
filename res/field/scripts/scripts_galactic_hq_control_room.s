@@ -44,7 +44,7 @@ GalacticHQControlRoom_Saturn:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, GalacticHQControlRoom_BlackOut
     SetFlag FLAG_DEFEATED_GALACTIC_HQ_CONTROL_ROOM_SATURN
-    SetVar FLAG_GALACTIC_HQ_CONTROL_ROOM_STATE, 1
+    SetVar VAR_GALACTIC_HQ_CONTROL_ROOM_STATE, 1
     Message GalacticHQControlRoom_Text_WhatMakesYouSoTough
     CloseMessage
     GetPlayerDir VAR_0x8004
@@ -181,7 +181,7 @@ GalacticHQControlRoom_Button:
     End
 
 GalacticHQControlRoom_FreePokemon:
-    SetVar FLAG_GALACTIC_HQ_CONTROL_ROOM_STATE, 0
+    SetVar VAR_GALACTIC_HQ_CONTROL_ROOM_STATE, 0
     PlaySE SEQ_SE_DP_BUTTON3
     BufferPlayerName 0
     Message GalacticHQControlRoom_Text_PlayerPressedButton

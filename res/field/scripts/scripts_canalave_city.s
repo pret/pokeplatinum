@@ -39,10 +39,10 @@ CanalaveCity_OnTransition:
     Call CanalaveCity_CheckDoDarkraiEvent
     CallIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCity_SetHarborInnDoorClosed
     CallIfEq VAR_MAP_LOCAL_0, TRUE, CanalaveCity_ShowNewmoonIslandForestDarkrai
-    CallIfEq VAR_CANALAVE_STATE, 1, CanalaveCity_SetRivalPositionOutsideGym
-    CallIfEq VAR_CANALAVE_STATE, 2, CanalaveCity_SetRivalPositionOutsideGym
-    CallIfEq VAR_CANALAVE_STATE, 4, CanalaveCity_SetRivalPositionOutsideLibrary
-    CallIfEq VAR_CANALAVE_STATE, 5, CanalaveCity_HideProfRowanAndCounterpart
+    CallIfEq VAR_CANALAVE_CITY_STATE, 1, CanalaveCity_SetRivalPositionOutsideGym
+    CallIfEq VAR_CANALAVE_CITY_STATE, 2, CanalaveCity_SetRivalPositionOutsideGym
+    CallIfEq VAR_CANALAVE_CITY_STATE, 4, CanalaveCity_SetRivalPositionOutsideLibrary
+    CallIfEq VAR_CANALAVE_CITY_STATE, 5, CanalaveCity_HideProfRowanAndCounterpart
     GetPlayerGender VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, CanalaveCity_SetCounterpartGraphicsDawn
     GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, CanalaveCity_SetCounterpartGraphicsLucas
@@ -85,7 +85,7 @@ CanalaveCity_SetCounterpartGraphicsLucas:
 CanalaveCity_HideProfRowanAndCounterpart:
     SetFlag FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN
     SetFlag FLAG_HIDE_CANALAVE_CITY_COUNTERPART
-    SetVar VAR_CANALAVE_STATE, 6
+    SetVar VAR_CANALAVE_CITY_STATE, 6
     Return
 
 CanalaveCity_CheckDoDarkraiEvent:
@@ -184,7 +184,7 @@ CanalaveCity_PostRivalBattle:
     ApplyMovement LOCALID_RIVAL_BRIDGE, CanalaveCity_Movement_RivalBridgeLeave
     WaitMovement
     RemoveObject LOCALID_RIVAL_BRIDGE
-    SetVar VAR_CANALAVE_STATE, 1
+    SetVar VAR_CANALAVE_CITY_STATE, 1
     ReleaseAll
     End
 
@@ -226,7 +226,7 @@ CanalaveCity_OnFrame_RivalOutsideGym:
     ApplyMovement LOCALID_PLAYER, CanalaveCity_Movement_PlayerWatchRivalWalkToLibrary
     WaitMovement
     RemoveObject LOCALID_RIVAL_BRIDGE
-    SetVar VAR_CANALAVE_STATE, 3
+    SetVar VAR_CANALAVE_CITY_STATE, 3
     SetVar VAR_CANALAVE_LIBRARY_STATE, 1
     ReleaseAll
     End
@@ -293,7 +293,7 @@ CanalaveCity_LucasIWonderWhatHappened:
 CanalaveCity_ExplosionSceneEnd:
     WaitButton
     CloseMessage
-    SetVar VAR_CANALAVE_STATE, 5
+    SetVar VAR_CANALAVE_CITY_STATE, 5
     ClearFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART
     ClearFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN
     ClearFlag FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL
@@ -402,7 +402,7 @@ CanalaveCity_WhatWasThatTremor:
     End
 
 CanalaveCity_ImpatientBoyAtLibrary:
-    GoToIfGe VAR_CANALAVE_STATE, 5, CanalaveCity_WelcomeToCanalCity
+    GoToIfGe VAR_CANALAVE_CITY_STATE, 5, CanalaveCity_WelcomeToCanalCity
     Message CanalaveCity_Text_ImpatientBoyAtLibrary
     GoTo CanalaveCity_NPCEnd
     End

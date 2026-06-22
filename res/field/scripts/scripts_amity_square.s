@@ -918,7 +918,7 @@ AmitySquare_GiftMan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, AmitySquare_GiftMan_ReceivedGift
+    GoToIfSet FLAG_DAILY_RECEIVED_AMITY_SQUARE_MAN_GIFT, AmitySquare_GiftMan_ReceivedGift
     Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
     GetAmitySquareBerryOrAccessoryIDFromMan VAR_AMITY_SQUARE_GIFT_ID, LOCAL_VAR_ITEM_OR_ACCESSORY_ID
     GoToIfAmitySquareManGiftIsNotAccessory VAR_AMITY_SQUARE_GIFT_ID, AmitySquare_GiftMan_ItemGift
@@ -970,7 +970,7 @@ AmitySquare_GiftMan_CannotFitItem:
     End
 
 AmitySquare_GiftMan_ReceivedGift:
-    SetFlag FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED
+    SetFlag FLAG_DAILY_RECEIVED_AMITY_SQUARE_MAN_GIFT
     Message AmitySquare_Text_HahahahPerhapsIllSeeYouAgainTomorrow
     WaitButton
     CloseMessage

@@ -347,7 +347,7 @@ CommonScript_PoisonWhiteout:
     End
 
 CommonScript_SaveAndStoreResult:
-    ClearFlag FLAG_SAVE_EXTRA_BLOCK
+    ClearFlag FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK
     Call CommonScript_TrySaveGame
     StoreSaveResult VAR_RESULT
     CloseMessage
@@ -360,7 +360,7 @@ CommonScript_ImpossibleToSave:
     End
 
 CommonScript_SaveGame:
-    SetFlag FLAG_SAVE_EXTRA_BLOCK
+    SetFlag FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK
     Call CommonScript_TrySaveGame
     SetVar VAR_MAP_LOCAL_0, VAR_RESULT
     ReturnCommonScript
@@ -397,8 +397,8 @@ CommonScript_QuickSaveAskOverwrite:
     Message CommonStrings_Text_OKToOverwriteSavedFile
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, CommonScript_CancelSave
-    GoToIfUnset FLAG_SAVE_EXTRA_BLOCK, CommonScript_StartQuickSave
-    GoToIfSet FLAG_SAVE_EXTRA_BLOCK, CommonScript_QuickSaveCheckMiscFlag
+    GoToIfUnset FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK, CommonScript_StartQuickSave
+    GoToIfSet FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK, CommonScript_QuickSaveCheckMiscFlag
     End
 
 CommonScript_StartSave:
@@ -410,7 +410,7 @@ CommonScript_StartSave:
 
 CommonScript_DoSave:
     ShowSavingIcon
-    CallIfSet FLAG_SAVE_EXTRA_BLOCK, CommonScript_SaveExtraBlock
+    CallIfSet FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK, CommonScript_SaveExtraBlock
     TrySaveGame VAR_RESULT
     HideSavingIcon
     Return
@@ -443,7 +443,7 @@ CommonScript_QuickSaveStartFullStave:
 
 CommonScript_SaveExtraBlock:
     SaveExtraData
-    ClearFlag FLAG_SAVE_EXTRA_BLOCK
+    ClearFlag FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK
     Return
 
 CommonScript_StartQuickSave:

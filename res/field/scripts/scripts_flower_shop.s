@@ -11,13 +11,13 @@ FlowerShop_PokemonBreederF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_OBTAINED_FLOWER_SHOP_BERRY, FlowerShop_PlantBerryInSoil
+    GoToIfSet FLAG_DAILY_RECEIVED_FLOWER_SHOP_BERRY, FlowerShop_PlantBerryInSoil
     Message FlowerShop_Text_BerryWillGrowIntoPlant
     GetRandom VAR_0x8004, 5
     AddVar VAR_0x8004, ITEM_CHERI_BERRY /* Cheri, Chesto, Pecha, Rawst or Aspear */
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FlowerShop_BagIsFull
-    SetFlag FLAG_OBTAINED_FLOWER_SHOP_BERRY
+    SetFlag FLAG_DAILY_RECEIVED_FLOWER_SHOP_BERRY
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll

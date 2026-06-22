@@ -21,12 +21,12 @@ EternaCityUndergroundManHouse_UndergroundMan:
     FacePlayer
     GoToIfGe VAR_CURRENT_UNDERGROUND_MISSION, 9, EternaCityUndergroundManHouse_YouAreSpelunkingMaster
     GoToIfSet FLAG_ACCEPTED_UNDERGROUND_MAN_AS_MENTOR, EternaCityUndergroundManHouse_GoToCurrentMission
-    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, EternaCityUndergroundManHouse_LetMeMentorYou
+    GoToIfSet FLAG_RECEIVED_EXPLORER_KIT, EternaCityUndergroundManHouse_LetMeMentorYou
     Message EternaCityUndergroundManHouse_Text_CallMeUndergroundMan
     SetVar VAR_0x8004, ITEM_EXPLORER_KIT
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    SetFlag FLAG_EXPLORER_KIT_RECEIVED
+    SetFlag FLAG_RECEIVED_EXPLORER_KIT
     ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
     Message EternaCityUndergroundManHouse_Text_MentorYouBecomingSpelunker
     ShowYesNoMenu VAR_RESULT
@@ -253,7 +253,7 @@ EternaCityUndergroundManHouse_MissionDecorateYourSecretBase:
     GoToIfUnset FLAG_DECORATED_SECRET_BASE, EternaCityUndergroundManHouse_DidNotYetCompleteMissionDecorateYourSecretBase
     SetVar VAR_CURRENT_UNDERGROUND_MISSION, 5
     ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
-    ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
+    ClearFlag FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD
     Message EternaCityUndergroundManHouse_Text_YouveDecoratedSecretBase
     Call EternaCityUndergroundManHouse_SendStarterDollToUndergroundPC
     Message EternaCityUndergroundManHouse_Text_WaysOfCollectingMoreGoods
@@ -289,8 +289,8 @@ EternaCityUndergroundManHouse_SendPiplupDollToUndergroundPC:
 EternaCityUndergroundManHouse_MissionStealAFlag:
     GoToIfUnset FLAG_HAS_ACTIVE_UNDERGROUND_MISSION, EternaCityUndergroundManHouse_StartMissionStealAFlag
     GoToIfUnset FLAG_DELIVERED_STOLEN_FLAG, EternaCityUndergroundManHouse_DidNotYetCompleteMissionStealAFlag
-    CallIfSet FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
-    CallIfUnset FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_CapturedAFlagReward
+    CallIfSet FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
+    CallIfUnset FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD, EternaCityUndergroundManHouse_CapturedAFlagReward
     SetVar VAR_0x8004, UG_GOOD_PRETTY_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
@@ -298,7 +298,7 @@ EternaCityUndergroundManHouse_MissionStealAFlag:
     Common_SendToUndergroundPCWithLinefeed
     SetVar VAR_CURRENT_UNDERGROUND_MISSION, 6
     ClearFlag FLAG_HAS_ACTIVE_UNDERGROUND_MISSION
-    ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
+    ClearFlag FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD
     Message EternaCityUndergroundManHouse_Text_NothingElseICanTeachYou
     WaitButton
     CloseMessage
@@ -312,15 +312,15 @@ EternaCityUndergroundManHouse_CapturedAFlagReward:
 EternaCityUndergroundManHouse_MissionStealThreeFlags:
     GetCapturedFlagCount VAR_RESULT
     GoToIfLt VAR_RESULT, 3, EternaCityUndergroundManHouse_AreYouGoingUnderground
-    CallIfSet FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
-    CallIfUnset FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_CapturedThreeFlagsReward
+    CallIfSet FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
+    CallIfUnset FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD, EternaCityUndergroundManHouse_CapturedThreeFlagsReward
     SetVar VAR_0x8004, UG_GOOD_SHINY_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
     Common_SendToUndergroundPC
     SetVar VAR_CURRENT_UNDERGROUND_MISSION, 7
-    ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
+    ClearFlag FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD
     CloseMessage
     ReleaseAll
     End
@@ -332,15 +332,15 @@ EternaCityUndergroundManHouse_CapturedThreeFlagsReward:
 EternaCityUndergroundManHouse_MissionStealTenFlags:
     GetCapturedFlagCount VAR_RESULT
     GoToIfLt VAR_RESULT, 10, EternaCityUndergroundManHouse_AreYouGoingUnderground
-    CallIfSet FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
-    CallIfUnset FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_CapturedTenFlagsReward
+    CallIfSet FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
+    CallIfUnset FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD, EternaCityUndergroundManHouse_CapturedTenFlagsReward
     SetVar VAR_0x8004, UG_GOOD_MYSTIC_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
     Common_SendToUndergroundPC
     SetVar VAR_CURRENT_UNDERGROUND_MISSION, 8
-    ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
+    ClearFlag FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD
     CloseMessage
     ReleaseAll
     End
@@ -352,15 +352,15 @@ EternaCityUndergroundManHouse_CapturedTenFlagsReward:
 EternaCityUndergroundManHouse_MissionStealFiftyFlags:
     GetCapturedFlagCount VAR_RESULT
     GoToIfLt VAR_RESULT, 50, EternaCityUndergroundManHouse_AreYouGoingUnderground
-    CallIfSet FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
-    CallIfUnset FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD, EternaCityUndergroundManHouse_CapturedFiftyFlagsReward
+    CallIfSet FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD, EternaCityUndergroundManHouse_HmThisBelongsToYou
+    CallIfUnset FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD, EternaCityUndergroundManHouse_CapturedFiftyFlagsReward
     SetVar VAR_0x8004, UG_GOOD_GLITTER_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, EternaCityUndergroundManHouse_UndergroundPCIsFull
     Common_SendToUndergroundPC
     SetVar VAR_CURRENT_UNDERGROUND_MISSION, 9
-    ClearFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
+    ClearFlag FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD
     CloseMessage
     ReleaseAll
     End
@@ -370,7 +370,7 @@ EternaCityUndergroundManHouse_CapturedFiftyFlagsReward:
     Return
 
 EternaCityUndergroundManHouse_UndergroundPCIsFull:
-    SetFlag FLAG_UNDERGROUND_MAN_COULDNT_GIVE_REWARD
+    SetFlag FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD
     Message EternaCityUndergroundManHouse_Text_UndergroundPCAppearsFull
     WaitButton
     CloseMessage

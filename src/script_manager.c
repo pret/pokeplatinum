@@ -476,15 +476,15 @@ void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    memset(VarsFlags_GetFlagChunk(varsFlags, 1), 0, 64 / 8);
-    memset(VarsFlags_GetVarAddress(varsFlags, VARS_START), 0, 2 * 32);
+    memset(VarsFlags_GetFlagChunk(varsFlags, MAP_LOCAL_FLAGS_START), 0, (MAP_LOCAL_FLAGS_END - MAP_LOCAL_FLAGS_START + 1) / 8);
+    memset(VarsFlags_GetVarAddress(varsFlags, MAP_LOCAL_VARS_START), 0, (MAP_LOCAL_VARS_END - MAP_LOCAL_VARS_START + 1) * sizeof(u16));
 }
 
-void sub_0203F1FC(FieldSystem *fieldSystem)
+void FieldSystem_ClearDailyFlags(FieldSystem *fieldSystem)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    memset(VarsFlags_GetFlagChunk(varsFlags, 2400 + 320), 0, 192 / 8);
+    memset(VarsFlags_GetFlagChunk(varsFlags, DAILY_FLAGS_START), 0, (DAILY_FLAGS_END - DAILY_FLAGS_START + 1) / 8);
 }
 
 void FieldSystem_SetScriptParameters(FieldSystem *fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3)

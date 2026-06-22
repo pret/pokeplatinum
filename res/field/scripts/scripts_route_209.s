@@ -136,7 +136,7 @@ Route209_Fisherman:
     SetVar VAR_0x8004, ITEM_GOOD_ROD
     BufferItemNameWithArticle 0, VAR_0x8004
     CapitalizeFirstLetter 0
-    GoToIfSet FLAG_GOOD_ROD_OBTAINED, Route209_AskExplainHowToFish
+    GoToIfSet FLAG_RECEIVED_GOOD_ROD, Route209_AskExplainHowToFish
     Message Route209_Text_GoodRodIsReallyGood
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, Route209_AcceptGoodRod
@@ -177,7 +177,7 @@ Route209_AcceptGoodRod:
     Message Route209_Text_TakeThisGoodRod
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    SetFlag FLAG_GOOD_ROD_OBTAINED
+    SetFlag FLAG_RECEIVED_GOOD_ROD
     GoTo Route209_AskExplainHowToFish
 
 Route209_ArrowSignpostHearthomeCity:

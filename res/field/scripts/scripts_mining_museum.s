@@ -29,9 +29,9 @@ MiningMuseum_FossilResearcher:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0001, MiningMuseum_ExtractingPokemon
+    GoToIfSet FLAG_MAP_LOCAL_0x0001, MiningMuseum_ExtractingPokemon
     Message MiningMuseum_Text_FossilResearcherGreeting
-    GoToIfUnset FLAG_EXPLORER_KIT_RECEIVED, MiningMuseum_NotYetReady
+    GoToIfUnset FLAG_RECEIVED_EXPLORER_KIT, MiningMuseum_NotYetReady
     GoToIfNe VAR_REVIVED_POKEMON_SPECIES, 0, MiningMuseum_PokemonRevival
     GetFossilCount VAR_0x8000
     GoToIfEq VAR_0x8000, 0, MiningMuseum_NoFossils
@@ -201,7 +201,7 @@ MiningMuseum_SingleFossilRevival:
     GoTo MiningMuseum_ExtractingPokemon
 
 MiningMuseum_ExtractingPokemon:
-    SetFlag FLAG_UNK_0x0001
+    SetFlag FLAG_MAP_LOCAL_0x0001
     Message MiningMuseum_Text_ExtractingPokemonLeave
     WaitButton
     CloseMessage

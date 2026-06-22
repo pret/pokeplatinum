@@ -81,7 +81,7 @@ HearthomeCity_Fisherman:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0001, HearthomeCity_ItMakesMeHappy
+    GoToIfSet FLAG_MAP_LOCAL_0x0001, HearthomeCity_ItMakesMeHappy
     Message HearthomeCity_Text_ShowYouToContestHall
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, HearthomeCity_IDoApologize
@@ -138,7 +138,7 @@ HearthomeCity_WalkToContestHallEast:
     End
 
 HearthomeCity_ThisIsTheContestHall:
-    SetFlag FLAG_UNK_0x0001
+    SetFlag FLAG_MAP_LOCAL_0x0001
     Message HearthomeCity_Text_ThisIsTheContestHall
     WaitButton
     CloseMessage

@@ -10,9 +10,9 @@ CanalaveCityEastHouse_MoveDeleter:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0001, CanalaveCityEastHouse_AskForgetSomeMoves
+    GoToIfSet FLAG_MAP_LOCAL_0x0001, CanalaveCityEastHouse_AskForgetSomeMoves
     Message CanalaveCityEastHouse_Text_ImTheMoveDeleter
-    SetFlag FLAG_UNK_0x0001
+    SetFlag FLAG_MAP_LOCAL_0x0001
     GoTo CanalaveCityEastHouse_AskForgetSomeMoves
 
 CanalaveCityEastHouse_AskForgetSomeMoves:

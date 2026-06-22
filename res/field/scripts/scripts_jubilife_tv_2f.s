@@ -26,23 +26,23 @@ JubilifeTV2F_GymGuide:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet VAR_OBTAINED_ACCESSORY_STARTER_MASK, JubilifeTV2F_IHopeYouCollectAccessories
+    GoToIfSet FLAG_RECEIVED_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK, JubilifeTV2F_IHopeYouCollectAccessories
     GetPlayerStarterSpecies VAR_RESULT
     CallIfEq VAR_RESULT, SPECIES_TURTWIG, JubilifeTV2F_SetAccessoryTurtwigMask
     CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, JubilifeTV2F_SetAccessoryChimcharMask
     CallIfEq VAR_RESULT, SPECIES_PIPLUP, JubilifeTV2F_SetAccessoryPiplupMask
-    SetVar VAR_ACCESSORY_STARTER_MASK, VAR_0x8004
+    SetVar VAR_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK, VAR_0x8004
     BufferAccessoryNameWithArticle 0, VAR_0x8004
     Message JubilifeTV2F_Text_GiftForFutureStar
     SetVar VAR_0x8005, 1
     Common_GiveAccessoryWaitForConfirm
-    SetFlag VAR_OBTAINED_ACCESSORY_STARTER_MASK
+    SetFlag FLAG_RECEIVED_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK
     CloseMessage
     ReleaseAll
     End
 
 JubilifeTV2F_IHopeYouCollectAccessories:
-    BufferAccessoryName 0, VAR_ACCESSORY_STARTER_MASK
+    BufferAccessoryName 0, VAR_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK
     Message JubilifeTV2F_Text_IHopeYouCollectAccessories
     WaitButton
     CloseMessage

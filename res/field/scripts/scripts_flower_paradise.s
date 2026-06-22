@@ -26,13 +26,13 @@ FlowerParadise_HideShaymin:
     End
 
 FlowerParadise_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, FlowerParadise_RemoveShaymin
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, FlowerParadise_RemoveShaymin
     End
 
 FlowerParadise_RemoveShaymin:
     SetFlag FLAG_HIDE_FLOWER_PARADISE_SHAYMIN
     RemoveObject LOCALID_SHAYMIN
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 FlowerParadise_Shaymin:
@@ -42,9 +42,9 @@ FlowerParadise_Shaymin:
     PlayCry SPECIES_SHAYMIN
     Message FlowerParadise_Text_KyuuUuhn
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartFatefulEncounter SPECIES_SHAYMIN, 30
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, FlowerParadise_BlackOut
     CheckDidNotCapture VAR_RESULT

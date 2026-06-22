@@ -610,7 +610,7 @@ JubilifeCity_LookerBlockPlayer:
 
 JubilifeCity_LookerBlockPlayerMessage:
     GoToIfUnset FLAG_TALKED_TO_TRAINERS_SCHOOL_RIVAL, JubilifeCity_HelloHaveYouVisitedTrainersSchool
-    GoToIfUnset FLAG_OBTAINED_POKETCH, JubilifeCity_TellMeHaveYouNotObtainedAPoketch
+    GoToIfUnset FLAG_RECEIVED_POKETCH, JubilifeCity_TellMeHaveYouNotObtainedAPoketch
     Message JubilifeCity_Text_HaveYouNotObtainedAGymBadge
     Return
 
@@ -624,7 +624,7 @@ JubilifeCity_TellMeHaveYouNotObtainedAPoketch:
 
 JubilifeCity_LookerMessageDidntObtainPoketch:
     GoToIfUnset FLAG_TALKED_TO_TRAINERS_SCHOOL_RIVAL, JubilifeCity_ItIsYouHaveYouVisitedTrainersSchool
-    GoToIfUnset FLAG_OBTAINED_POKETCH, JubilifeCity_ItIsYouHaveYouNotObtainedAPoketch
+    GoToIfUnset FLAG_RECEIVED_POKETCH, JubilifeCity_ItIsYouHaveYouNotObtainedAPoketch
     Message JubilifeCity_Text_HaveYouNotObtainedAGymBadge
     Return
 
@@ -752,7 +752,7 @@ JubilifeCity_Looker:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_OBTAINED_POKETCH, JubilifeCity_HaveYouNotObtainedAGymBadge
+    GoToIfSet FLAG_RECEIVED_POKETCH, JubilifeCity_HaveYouNotObtainedAGymBadge
     Call JubilifeCity_LookerMessageDidntObtainPoketch
     WaitABPress
     CloseMessage
@@ -956,7 +956,7 @@ JubilifeCity_CollectorJubilifeTV:
     ClearFlag FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN
     SetVar VAR_JUBILIFE_CITY_STATE, 4
     SetVar VAR_JUBILIFE_LOOKER_PAL_PAD_STATE, 2
-    SetVar VAR_OREBURGH_STATE, 3
+    SetVar VAR_OREBURGH_CITY_STATE, 3
     RemoveObject LOCALID_CLOWN_1
     RemoveObject LOCALID_CLOWN_2
     RemoveObject LOCALID_CLOWN_3
@@ -982,7 +982,7 @@ JubilifeCity_GiveFashionCaseAndAccessories:
     SetVar VAR_0x8004, ITEM_FASHION_CASE
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    SetFlag FLAG_OBTAINED_FASHION_CASE
+    SetFlag FLAG_RECEIVED_FASHION_CASE
     Call JubilifeCity_GiveRandomAccessoryFluff
     Call JubilifeCity_GiveRandomAccessoryFluff
     Call JubilifeCity_GiveRandomAccessoryFluff
@@ -1413,9 +1413,9 @@ JubilifeCity_PoketchCoPresident:
     End
 
 JubilifeCity_SetObtainedCouponsCount:
-    CallIfSet FLAG_OBTAINED_COUPON_1, JubilifeCity_IncreaseObtainedCouponsCount
-    CallIfSet FLAG_OBTAINED_COUPON_2, JubilifeCity_IncreaseObtainedCouponsCount
-    CallIfSet FLAG_OBTAINED_COUPON_3, JubilifeCity_IncreaseObtainedCouponsCount
+    CallIfSet FLAG_RECEIVED_COUPON_1, JubilifeCity_IncreaseObtainedCouponsCount
+    CallIfSet FLAG_RECEIVED_COUPON_2, JubilifeCity_IncreaseObtainedCouponsCount
+    CallIfSet FLAG_RECEIVED_COUPON_3, JubilifeCity_IncreaseObtainedCouponsCount
     Return
 
 JubilifeCity_IncreaseObtainedCouponsCount:
@@ -1462,7 +1462,7 @@ JubilifeCity_PoketchCoPresidentLeaveSouth:
 
 JubilifeCity_RemovePoketchCoPresident:
     RemoveObject LOCALID_POKETCH_CO_PRESIDENT
-    SetFlag FLAG_OBTAINED_POKETCH
+    SetFlag FLAG_RECEIVED_POKETCH
     ClearFlag FLAG_HIDE_POKETCH_CO_1F_POKETCH_CO_PRESIDENT
     RemoveObject LOCALID_LOOKER
     SetFlag FLAG_HIDE_JUBILIFE_CITY_LOOKER
@@ -1497,7 +1497,7 @@ JubilifeCity_Clown1:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_OBTAINED_COUPON_1, JubilifeCity_Clown1ObtainedCoupon
+    GoToIfSet FLAG_RECEIVED_COUPON_1, JubilifeCity_Clown1ObtainedCoupon
     Message JubilifeCity_Text_DoPokemonGrowByDefeatingOthers
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, JubilifeCity_Clown1CorrectAnswer
@@ -1511,7 +1511,7 @@ JubilifeCity_Clown1CorrectAnswer:
     Message JubilifeCity_Text_HeresPoketchCoupon1
     SetVar VAR_0x8004, ITEM_COUPON_1
     SetVar VAR_0x8005, 1
-    SetFlag FLAG_OBTAINED_COUPON_1
+    SetFlag FLAG_RECEIVED_COUPON_1
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
@@ -1536,7 +1536,7 @@ JubilifeCity_Clown2:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_OBTAINED_COUPON_2, JubilifeCity_Clown2ObtainedCoupon
+    GoToIfSet FLAG_RECEIVED_COUPON_2, JubilifeCity_Clown2ObtainedCoupon
     Message JubilifeCity_Text_DoMovesHaveTypes
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, JubilifeCity_Clown2CorrectAnswer
@@ -1550,7 +1550,7 @@ JubilifeCity_Clown2CorrectAnswer:
     Message JubilifeCity_Text_HeresPoketchCoupon2
     SetVar VAR_0x8004, ITEM_COUPON_2
     SetVar VAR_0x8005, 1
-    SetFlag FLAG_OBTAINED_COUPON_2
+    SetFlag FLAG_RECEIVED_COUPON_2
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
@@ -1576,7 +1576,7 @@ JubilifeCity_Clown3:
     LockAll
     FacePlayer
     GoToIfLt VAR_POKETCH_CAMPAIGN_STATE, 2, JubilifeCity_YouShouldStickAround
-    GoToIfSet FLAG_OBTAINED_COUPON_3, JubilifeCity_Clown3ObtainedCoupon
+    GoToIfSet FLAG_RECEIVED_COUPON_3, JubilifeCity_Clown3ObtainedCoupon
     Message JubilifeCity_Text_CanAPokemonHoldAnItem
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, JubilifeCity_Clown3CorrectAnswer
@@ -1591,7 +1591,7 @@ JubilifeCity_Clown3CorrectAnswer:
     SetPosition LOCALID_POKETCH_CO_PRESIDENT, 174, 1, 771, DIR_SOUTH
     SetVar VAR_0x8004, ITEM_COUPON_3
     SetVar VAR_0x8005, 1
-    SetFlag FLAG_OBTAINED_COUPON_3
+    SetFlag FLAG_RECEIVED_COUPON_3
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll

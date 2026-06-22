@@ -62,11 +62,11 @@ BattleHall_HideMajorNPC:
     Return
 
 BattleHall_TryPickMajorNPC:
-    GoToIfUnset FLAG_SET_BATTLE_HALL_MAJOR_NPC, BattleHall_PickMajorNPC
+    GoToIfUnset FLAG_DAILY_SET_BATTLE_HALL_MAJOR_NPC, BattleHall_PickMajorNPC
     End
 
 BattleHall_PickMajorNPC:
-    SetFlag FLAG_SET_BATTLE_HALL_MAJOR_NPC
+    SetFlag FLAG_DAILY_SET_BATTLE_HALL_MAJOR_NPC
     GetBattleHallTotalSinglesRecord VAR_MAP_LOCAL_8
     GoToIfGe VAR_MAP_LOCAL_8, 10000, BattleHall_PickMajorNPCAfter10000Record
     GoToIfGe VAR_MAP_LOCAL_8, 1000, BattleHall_PickMajorNPCAfter1000Record
