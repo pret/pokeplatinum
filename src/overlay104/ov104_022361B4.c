@@ -3,19 +3,18 @@
 #include <nitro.h>
 
 #include "constants/heap.h"
+#include "constants/moves.h"
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_020302DC_decl.h"
-#include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_frontier.h"
 
 #include "applications/frontier/battle_castle/args.h"
+#include "global/utility.h"
 #include "overlay104/defs.h"
 #include "overlay104/frontier_script_manager.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223B6F4.h"
-#include "overlay104/struct_battle_castle.h"
 
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
@@ -38,261 +37,226 @@
 #include "unk_020302D0.h"
 #include "vars_flags.h"
 
-void ov104_02236514(BattleCastle *param0, u16 param1);
-static void ov104_02236528(BattleCastle *param0);
-static void ov104_022365F8(BattleCastle *param0);
-static void ov104_022366A4(BattleCastle *param0);
-void ov104_022367AC(BattleCastle *param0);
+#include "res/text/bank/battle_castle_self_app.h"
+
+static void SelectTrainersAndFirstBattlesMons(BattleCastle *castle);
+static void LoadTrainersAndMonsFromSave(BattleCastle *castle);
+static void LoadPlayersPartyFromSave(BattleCastle *castle);
 static u16 GetBattleCastleAppSelectedSlot(BattleCastleAppArgs *args, u8 i);
-void ov104_02236BF0(BattleCastle *param0);
-void ov104_02236BF8(BattleCastle *param0);
-void ov104_02236C50(BattleCastle *param0);
-int ov104_02236D10(BattleCastle *param0);
-BOOL ov104_02236F70(BattleCastle *param0, u16 param1, u16 param2);
-void ov104_02236FC0(FrontierScriptManager *param0, BattleCastle *param1);
-void ov104_022370E0(FrontierScriptManager *param0, BattleCastle *param1);
-void ov104_02237180(FrontierScriptManager *param0, BattleCastle *param1);
-static void ov104_022370C0(BgConfig *param0, Window *param1);
-static void ov104_02237284(FrontierScriptManager *param0, Window *param1, TrainerInfo *param2, u16 param3);
-u16 ov104_02237338(BattleCastle *param0);
+static void DrawPlayerInfoWindow(BgConfig *bgConfig, Window *window);
+static void PrintPlayerNameandCP(FrontierScriptManager *scriptMan, Window *window, TrainerInfo *trainer, u16 castlePoints);
 
-BattleCastle *ov104_022361B4(SaveData *saveData, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6)
+BattleCastle *BattleCastle_Init(SaveData *saveData, u16 resumingFromSave, u8 challengeType, u16 partySlot1, u16 partySlot2, u16 partySlot3, u16 *param6)
 {
-    u32 v0, v1;
-    Party *v2;
-    Pokemon *v3;
-    UnkStruct_020302DC *v4;
-    u8 v5, v6;
-    u16 v7, v8;
-    static BattleCastle *v9;
-    UnkStruct_0203041C *v10;
+    static BattleCastle *castle;
+    castle = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleCastle));
 
-    v9 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleCastle));
-    MI_CpuClear8(v9, sizeof(BattleCastle));
+    MI_CpuClear8(castle, sizeof(BattleCastle));
 
-    v9->unk_08 = sub_020302DC(saveData);
-    v9->saveData = saveData;
-    v9->unk_00 = 11;
-    v9->playersParty = Party_New(HEAP_ID_FIELD2);
-    v9->opponentsParty = Party_New(HEAP_ID_FIELD2);
-    v9->unk_A20 = param6;
+    castle->castleSave = BattleCastleSave_Get(saveData);
+    castle->saveData = saveData;
+    castle->unused = 11;
+    castle->playersParty = Party_New(HEAP_ID_FIELD2);
+    castle->opponentsParty = Party_New(HEAP_ID_FIELD2);
+    castle->unk_A20 = param6;
 
-    v4 = v9->unk_08;
-    v10 = sub_0203041C(saveData);
+    BattleCastleSave *castleSave = castle->castleSave;
+    BattleCastlePersistentSave *persistentSave = BattleCastlePersistentSave_Get(saveData);
 
-    if (param1 == 0) {
-        v9->challengeType = param2;
-        v9->unk_11 = 0;
+    if (!resumingFromSave) {
+        castle->challengeType = challengeType;
+        castle->currentBattle = 0;
 
-        sub_020302D0(v4);
+        BattleCastleSave_Init(castleSave);
 
-        if (v9->challengeType == 3) {
-            v5 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(v9->saveData));
+        u8 streakActive;
+        if (castle->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
+            streakActive = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(castle->saveData));
         } else {
-            v5 = (u8)sub_02030470(v10, 9, v9->challengeType, 0, NULL);
+            streakActive = BattleCastlePersistentSave_GetFlag(persistentSave, CASTLE_SAVE_STREAK_FLAGS, castle->challengeType, 0, NULL);
         }
 
-        if (v5 == 1) {
-            v9->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestStreakIndex(v9->challengeType));
+        if (streakActive == TRUE) {
+            castle->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleLatestStreakIndex(castle->challengeType));
         } else {
-            v9->currentStreak = 0;
+            castle->currentStreak = 0;
 
-            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType), 0);
-            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleSpentCPIndex(param2), 0);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleLatestCPIndex(castle->challengeType), 0);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleSpentCPIndex(challengeType), 0);
 
-            for (v7 = 0; v7 < 3; v7++) {
-                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleRankIndex(v9->challengeType, v7), 1);
+            for (u16 rank = 0; rank < BATTLE_CASTLE_NUM_RANK_TYPES; rank++) {
+                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleRankIndex(castle->challengeType, rank), 1);
             }
         }
 
-        v9->unk_16 = (u16)(v9->currentStreak / 7);
-        v9->unk_18 = 0;
-        v9->unk_24[0] = param3;
-        v9->unk_24[1] = param4;
-        v9->unk_24[2] = param5;
-        v9->unk_20 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType));
+        castle->currentRound = castle->currentStreak / CASTLE_BATTLES_PER_ROUND;
+        castle->unused2 = 0;
+        castle->partySlots[0] = partySlot1;
+        castle->partySlots[1] = partySlot2;
+        castle->partySlots[2] = partySlot3;
+        castle->initialCP = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleLatestCPIndex(castle->challengeType));
 
-        BattleFrontierSave_AddToStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType)), 10);
+        BattleFrontierSave_AddToStat(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleLatestCPIndex(castle->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(castle->challengeType)), 10);
     } else {
-        v9->challengeType = (u8)sub_02030398(v4, 0, 0, 0, NULL);
-        v9->unk_11 = (u8)sub_02030398(v4, 1, 0, 0, NULL);
-        v9->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestStreakIndex(v9->challengeType));
-        v9->unk_16 = (u16)(v9->currentStreak / 7);
+        castle->challengeType = BattleCastleSave_GetMember(castleSave, CASTLE_SAVE_CHALLENGE_TYPE, 0, 0, NULL);
+        castle->currentBattle = BattleCastleSave_GetMember(castleSave, CASTLE_SAVE_CURRENT_BATTLE, 0, 0, NULL);
+        castle->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleLatestStreakIndex(castle->challengeType));
+        castle->currentRound = castle->currentStreak / CASTLE_BATTLES_PER_ROUND;
 
-        for (v7 = 0; v7 < 3; v7++) {
-            v9->unk_24[v7] = (u8)sub_02030398(v4, 7, v7, 0, NULL);
+        for (u16 i = 0; i < 3; i++) {
+            castle->partySlots[i] = BattleCastleSave_GetMember(castleSave, CASTLE_SAVE_PARTY_SLOTS, i, 0, NULL);
         }
     }
 
-    for (v7 = 0; v7 < 3; v7++) {
-        v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(v9->saveData), v9->unk_24[v7]);
-        v9->unk_36A[v7] = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
+    for (u16 i = 0; i < 3; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(castle->saveData), castle->partySlots[i]);
+        castle->savedHeldItems[i] = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     }
 
-    v2 = SaveData_GetParty(v9->saveData);
-    v6 = BattleCastle_GetPlayerPartySize(v9->challengeType, 0);
+    Party *fieldParty = SaveData_GetParty(castle->saveData);
+    u8 partySize = BattleCastle_GetPlayerPartySize(castle->challengeType, 0);
 
-    for (v7 = 0; v7 < v6; v7++) {
-        Party_AddPokemon(v9->playersParty, Party_GetPokemonBySlotIndex(v2, v9->unk_24[v7]));
+    for (u16 i = 0; i < partySize; i++) {
+        Party_AddPokemon(castle->playersParty, Party_GetPokemonBySlotIndex(fieldParty, castle->partySlots[i]));
 
-        v3 = Party_GetPokemonBySlotIndex(v9->playersParty, v7);
-        v0 = 0;
+        Pokemon *mon = Party_GetPokemonBySlotIndex(castle->playersParty, i);
 
-        Pokemon_SetValue(v3, MON_DATA_HELD_ITEM, &v0);
+        u32 noItem = ITEM_NONE;
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &noItem);
 
-        if (Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL) > 50) {
-            v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 50);
-            Pokemon_SetValue(v3, MON_DATA_EXPERIENCE, &v1);
-            Pokemon_CalcLevelAndStats(v3);
+        if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) > CASTLE_MAX_LEVEL) {
+            u32 exp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), CASTLE_MAX_LEVEL);
+            Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &exp);
+            Pokemon_CalcLevelAndStats(mon);
         }
     }
 
-    if (BattleCastle_IsMultiPlayerChallenge(v9->challengeType) == 1) {
-        BattleFrontier_FlagGeonetLinkInfo(v9->saveData);
+    if (BattleCastle_IsMultiPlayerChallenge(castle->challengeType) == TRUE) {
+        BattleFrontier_FlagGeonetLinkInfo(castle->saveData);
     }
 
-    return v9;
+    return castle;
 }
 
-void ov104_02236514(BattleCastle *param0, u16 param1)
+void BattleCastle_LoadTrainersForRound(BattleCastle *castle, u16 resumingFromSave)
 {
-    if (param1 == 0) {
-        ov104_02236528(param0);
+    if (!resumingFromSave) {
+        SelectTrainersAndFirstBattlesMons(castle);
     } else {
-        ov104_022365F8(param0);
+        LoadTrainersAndMonsFromSave(castle);
     }
-
-    return;
 }
 
-static void ov104_02236528(BattleCastle *param0)
+static void SelectTrainersAndFirstBattlesMons(BattleCastle *castle)
 {
-    u8 v0 = Party_GetCurrentCount(param0->playersParty);
+    u8 partySize = Party_GetCurrentCount(castle->playersParty);
 
-    for (int i = 0; i < v0; i++) {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(param0->playersParty, i);
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(castle->playersParty, i);
 
-        param0->unk_394[i][0] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP, NULL);
-        param0->unk_394[i][1] = Pokemon_GetValue(mon, MON_DATA_MOVE2_PP, NULL);
-        param0->unk_394[i][2] = Pokemon_GetValue(mon, MON_DATA_MOVE3_PP, NULL);
-        param0->unk_394[i][3] = Pokemon_GetValue(mon, MON_DATA_MOVE4_PP, NULL);
+        castle->startingPP[i][0] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP, NULL);
+        castle->startingPP[i][1] = Pokemon_GetValue(mon, MON_DATA_MOVE2_PP, NULL);
+        castle->startingPP[i][2] = Pokemon_GetValue(mon, MON_DATA_MOVE3_PP, NULL);
+        castle->startingPP[i][3] = Pokemon_GetValue(mon, MON_DATA_MOVE4_PP, NULL);
     }
 
-    ov104_0223B760(param0->challengeType, ov104_0223BB60(param0), param0->trainerIDs, 7 * 2);
+    BattleCastle_PickOpponentTrainers(castle->challengeType, BattleCastle_GetCurrentRound(castle), castle->trainerIDs, CASTLE_BATTLES_PER_ROUND * 2);
 
-    ov104_0222E4BC(BattleCastle_GetOpponentPartySize(param0->challengeType, 1), param0->trainerIDs[param0->unk_11], param0->trainerIDs[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, BattleCastle_IsMultiPlayerChallenge(param0->challengeType));
-
-    return;
+    ov104_0222E4BC(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE), castle->trainerIDs[castle->currentBattle], castle->trainerIDs[castle->currentBattle + CASTLE_BATTLES_PER_ROUND], castle->monSetIDs, castle->opponentMons, castle->opponentMonIVs, castle->opponentMonPersonalities, BattleCastle_IsMultiPlayerChallenge(castle->challengeType));
 }
 
-static void ov104_022365F8(BattleCastle *param0)
+static void LoadTrainersAndMonsFromSave(BattleCastle *castle)
 {
-    u16 v0;
-    int v1;
-    Pokemon *v2;
-    u8 v3;
-    FrontierPokemonDataDTO v4[6];
-    u8 v5[6];
-    u16 v6[6];
-    u32 v7[6];
+    FrontierPokemonDataDTO mons[6];
+    u8 ivs[6];
+    u16 setIDs[6];
+    u32 personalities[6];
 
-    ov104_022366A4(param0);
+    LoadPlayersPartyFromSave(castle);
 
-    for (v1 = 0; v1 < (7 * 2); v1++) {
-        param0->trainerIDs[v1] = (u16)sub_02030398(param0->unk_08, 6, v1, 0, NULL);
+    for (int i = 0; i < CASTLE_BATTLES_PER_ROUND * 2; i++) {
+        castle->trainerIDs[i] = BattleCastleSave_GetMember(castle->castleSave, CASTLE_SAVE_TRAINER_IDS, i, 0, NULL);
     }
 
-    for (v1 = 0; v1 < 4; v1++) {
-        v6[v1] = (u16)sub_02030398(param0->unk_08, 8, v1, 0, NULL);
-        param0->unk_26C[v1] = v6[v1];
+    for (int i = 0; i < 4; i++) {
+        setIDs[i] = BattleCastleSave_GetMember(castle->castleSave, CASTLE_SAVE_MON_SET_IDS, i, 0, NULL);
+        castle->monSetIDs[i] = setIDs[i];
     }
 
-    ov104_0222E330(v4, v6, v5, NULL, v7, 4, 11, 179);
+    ov104_0222E330(mons, setIDs, ivs, NULL, personalities, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
-    v2 = Pokemon_New(HEAP_ID_FIELD2);
-
-    for (v1 = 0; v1 < 4; v1++) {
-        FrontierPokemonDataDTO_InitPokemon(&v4[v1], v2, BattleCastle_GetOpponentLevel(param0));
-        ov104_0223BAA0(param0, param0->opponentsParty, v2);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
+    for (int i = 0; i < 4; i++) {
+        FrontierPokemonDataDTO_InitPokemon(&mons[i], mon, BattleCastle_GetOpponentLevel(castle));
+        BattleCastle_AddMonToParty(castle, castle->opponentsParty, mon);
     }
 
-    Heap_Free(v2);
-
-    return;
+    Heap_Free(mon);
 }
 
-static void ov104_022366A4(BattleCastle *param0)
+static void LoadPlayersPartyFromSave(BattleCastle *castle)
 {
-    u8 v0;
-    u32 v1;
-    u16 v2;
-    u8 v3;
-    int v4;
-    Pokemon *v5;
+    u32 u32Ptr;
+    u16 u16Ptr;
+    u8 u8Ptr;
 
-    v0 = Party_GetCurrentCount(param0->playersParty);
+    u8 partySize = Party_GetCurrentCount(castle->playersParty);
 
-    for (v4 = 0; v4 < v0; v4++) {
-        v5 = Party_GetPokemonBySlotIndex(param0->playersParty, v4);
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(castle->playersParty, i);
 
-        v2 = (u16)sub_02030398(param0->unk_08, 2, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_HP, &v2);
+        u16Ptr = BattleCastleSave_GetMember(castle->castleSave, CASTLE_SAVE_MON_HP, i, 0, NULL);
+        Pokemon_SetValue(mon, MON_DATA_HP, &u16Ptr);
 
-        v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE1_PP, &v3);
+        u8Ptr = BattleCastleSave_GetMember(castle->castleSave, CASTLE_SAVE_MON_PP, i, 0, NULL);
+        Pokemon_SetValue(mon, MON_DATA_MOVE1_PP, &u8Ptr);
 
-        v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 1, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE2_PP, &v3);
+        u8Ptr = BattleCastleSave_GetMember(castle->castleSave, CASTLE_SAVE_MON_PP, i, 1, NULL);
+        Pokemon_SetValue(mon, MON_DATA_MOVE2_PP, &u8Ptr);
 
-        v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 2, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE3_PP, &v3);
+        u8Ptr = BattleCastleSave_GetMember(castle->castleSave, CASTLE_SAVE_MON_PP, i, 2, NULL);
+        Pokemon_SetValue(mon, MON_DATA_MOVE3_PP, &u8Ptr);
 
-        v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 3, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE4_PP, &v3);
+        u8Ptr = BattleCastleSave_GetMember(castle->castleSave, CASTLE_SAVE_MON_PP, i, 3, NULL);
+        Pokemon_SetValue(mon, MON_DATA_MOVE4_PP, &u8Ptr);
 
-        v1 = (u32)sub_02030398(param0->unk_08, 4, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_STATUS, &v1);
+        u32Ptr = BattleCastleSave_GetMember(castle->castleSave, CASTLE_SAVE_MON_STATUS, i, 0, NULL);
+        Pokemon_SetValue(mon, MON_DATA_STATUS, &u32Ptr);
 
-        v2 = (u16)sub_02030398(param0->unk_08, 5, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_HELD_ITEM, &v2);
+        u16Ptr = BattleCastleSave_GetMember(castle->castleSave, CASTLE_SAVE_HELD_ITEMS, i, 0, NULL);
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &u16Ptr);
     }
-
-    return;
 }
 
-void ov104_022367AC(BattleCastle *param0)
+void BattleCastle_Free(BattleCastle *castle)
 {
-    int v0;
-
-    if (param0 == NULL) {
+    if (castle == NULL) {
         return;
     }
 
-    if (param0->playersParty != NULL) {
-        Heap_Free(param0->playersParty);
+    if (castle->playersParty != NULL) {
+        Heap_Free(castle->playersParty);
     }
 
-    if (param0->opponentsParty != NULL) {
-        Heap_Free(param0->opponentsParty);
+    if (castle->opponentsParty != NULL) {
+        Heap_Free(castle->opponentsParty);
     }
 
-    MI_CpuClear8(param0, sizeof(BattleCastle));
-    Heap_Free(param0);
+    MI_CpuClear8(castle, sizeof(BattleCastle));
+    Heap_Free(castle);
 
-    param0 = NULL;
-
-    return;
+    castle = NULL;
 }
 
 void BattleCastle_StoreAppResults(BattleCastle *battleCastle, BattleCastleAppArgs *args)
 {
     for (int i = 0; i < 6; i++) {
-        battleCastle->unk_380[i] = GetBattleCastleAppSelectedSlot(args, i);
+        battleCastle->selectedAppSlots[i] = GetBattleCastleAppSelectedSlot(args, i);
     }
 
     for (int i = 0; i < 4; i++) {
         battleCastle->appIdentityUnlocked[i] = args->identityUnlocked[i];
-        battleCastle->appLevelAdjustmentsUnlocked[i] = args->levelAdjustmentUnlocked[i];
+        battleCastle->levelAdjustments[i] = args->levelAdjustments[i];
         battleCastle->appStatsUnlocked[i] = args->statsUnlocked[i];
         battleCastle->appMovesUnlocked[i] = args->movesUnlocked[i];
     }
@@ -310,506 +274,462 @@ static u16 GetBattleCastleAppSelectedSlot(BattleCastleAppArgs *args, u8 i)
     return args->selectedMonSlot;
 }
 
-void ov104_02236848(BattleCastle *param0, u8 param1)
+void BattleCastle_Save(BattleCastle *castle, u8 saveType)
 {
-    u16 v0, v1, v2;
-    u8 v3;
-    u8 v4[4];
-    u16 v5[4];
-    u32 v6[4];
-    u32 v7, v8, v9;
-    BattleFrontierSave *frontier;
-    Pokemon *v11;
-    UnkStruct_020302DC *v12 = param0->unk_08;
-    UnkStruct_0203041C *v13 = sub_0203041C(param0->saveData);
+    u8 u8Ptr[4];
+    u16 u16Ptr[4];
+    u32 u32Ptr[4];
+    u32 partySize;
+    BattleCastleSave *castleSave = castle->castleSave;
+    BattleCastlePersistentSave *persistentSave = BattleCastlePersistentSave_Get(castle->saveData);
 
-    frontier = SaveData_GetBattleFrontier(param0->saveData);
-    v3 = BattleCastle_GetOpponentPartySize(param0->challengeType, 1);
-    v4[0] = param0->challengeType;
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(castle->saveData);
+    UNUSED(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE));
 
-    sub_02030308(param0->unk_08, 0, 0, 0, v4);
-    sub_020302F4(param0->unk_08, 1);
+    *u8Ptr = castle->challengeType;
+    BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_CHALLENGE_TYPE, 0, 0, u8Ptr);
+    BattleCastleSave_RecordSave(castle->castleSave, TRUE);
 
-    v4[0] = param0->unk_11;
+    *u8Ptr = castle->currentBattle;
 
-    sub_02030308(param0->unk_08, 1, 0, 0, v4);
-    BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleLatestStreakIndex(param0->challengeType), param0->currentStreak);
+    BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_CURRENT_BATTLE, 0, 0, u8Ptr);
+    BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleLatestStreakIndex(castle->challengeType), castle->currentStreak);
 
-    if (param1 != 2) {
-        v1 = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType));
-        v7 = BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType), param0->currentStreak);
-        v2 = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType));
-        v9 = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType));
+    if (saveType != 2) {
+        u16 recordStreak = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(castle->challengeType));
+        BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(castle->challengeType), castle->currentStreak);
+        u16 newRecord = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(castle->challengeType));
+        u32 latestStreak = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleLatestCPIndex(castle->challengeType));
 
-        if (param0->currentStreak == v1) {
-            BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordCPIndex(param0->challengeType), v9);
-        } else if (v1 < v2) {
-            BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordCPIndex(param0->challengeType), v9);
+        if (castle->currentStreak == recordStreak) {
+            BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordCPIndex(castle->challengeType), latestStreak);
+        } else if (recordStreak < newRecord) {
+            BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordCPIndex(castle->challengeType), latestStreak);
         }
 
-        v4[0] = param0->unk_27;
-        sub_02030430(v13, 9, param0->challengeType, 0, v4);
+        *u8Ptr = castle->saveStreak;
+        BattleCastlePersistentSave_SetFlag(persistentSave, CASTLE_SAVE_STREAK_FLAGS, castle->challengeType, 0, u8Ptr);
 
-        if (param0->challengeType == 3) {
-            BattleFrontierSave_SetStatAutoHostIdx(frontier, STAT_CASTLE_WFC_STREAK_ACTIVE, param0->unk_27);
+        if (castle->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
+            BattleFrontierSave_SetStatAutoHostIdx(frontier, STAT_CASTLE_WFC_STREAK_ACTIVE, castle->saveStreak);
         }
     }
 
-    for (v0 = 0; v0 < (7 * 2); v0++) {
-        v5[0] = param0->trainerIDs[v0];
-        sub_02030308(param0->unk_08, 6, v0, 0, v5);
+    for (u16 i = 0; i < CASTLE_BATTLES_PER_ROUND * 2; i++) {
+        *u16Ptr = castle->trainerIDs[i];
+        BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_TRAINER_IDS, i, 0, u16Ptr);
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        v4[0] = param0->unk_24[v0];
-        sub_02030308(param0->unk_08, 7, v0, 0, v4);
+    for (u16 i = 0; i < 3; i++) {
+        *u8Ptr = castle->partySlots[i];
+        BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_PARTY_SLOTS, i, 0, u8Ptr);
     }
 
-    v8 = Party_GetCurrentCount(param0->playersParty);
+    partySize = Party_GetCurrentCount(castle->playersParty);
 
-    for (v0 = 0; v0 < v8; v0++) {
-        v11 = Party_GetPokemonBySlotIndex(param0->playersParty, v0);
+    for (u16 i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(castle->playersParty, i);
 
-        v5[0] = Pokemon_GetValue(v11, MON_DATA_HP, NULL);
-        sub_02030308(param0->unk_08, 2, v0, 0, v5);
+        *u16Ptr = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
+        BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_MON_HP, i, 0, u16Ptr);
 
-        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE1_PP, NULL);
-        sub_02030308(param0->unk_08, 3, v0, 0, v4);
+        *u8Ptr = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP, NULL);
+        BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_MON_PP, i, 0, u8Ptr);
 
-        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE2_PP, NULL);
-        sub_02030308(param0->unk_08, 3, v0, 1, v4);
+        *u8Ptr = Pokemon_GetValue(mon, MON_DATA_MOVE2_PP, NULL);
+        BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_MON_PP, i, 1, u8Ptr);
 
-        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE3_PP, NULL);
-        sub_02030308(param0->unk_08, 3, v0, 2, v4);
+        *u8Ptr = Pokemon_GetValue(mon, MON_DATA_MOVE3_PP, NULL);
+        BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_MON_PP, i, 2, u8Ptr);
 
-        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE4_PP, NULL);
-        sub_02030308(param0->unk_08, 3, v0, 3, v4);
+        *u8Ptr = Pokemon_GetValue(mon, MON_DATA_MOVE4_PP, NULL);
+        BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_MON_PP, i, 3, u8Ptr);
 
-        v6[0] = Pokemon_GetValue(v11, MON_DATA_STATUS, NULL);
-        sub_02030308(param0->unk_08, 4, v0, 0, v6);
+        *u32Ptr = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
+        BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_MON_STATUS, i, 0, u32Ptr);
 
-        v5[0] = Pokemon_GetValue(v11, MON_DATA_HELD_ITEM, NULL);
-        sub_02030308(param0->unk_08, 5, v0, 0, v5);
+        *u16Ptr = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+        BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_HELD_ITEMS, i, 0, u16Ptr);
     }
 
-    v8 = Party_GetCurrentCount(param0->opponentsParty);
+    partySize = Party_GetCurrentCount(castle->opponentsParty);
 
-    for (v0 = 0; v0 < v8; v0++) {
-        v11 = Party_GetPokemonBySlotIndex(param0->opponentsParty, v0);
-        v5[0] = param0->unk_26C[v0];
+    for (u16 i = 0; i < partySize; i++) {
+        UNUSED(Party_GetPokemonBySlotIndex(castle->opponentsParty, i));
+        *u16Ptr = castle->monSetIDs[i];
 
-        sub_02030308(param0->unk_08, 8, v0, 0, v5);
+        BattleCastleSave_SetMember(castle->castleSave, CASTLE_SAVE_MON_SET_IDS, i, 0, u16Ptr);
+    }
+}
+
+u16 BattleCastle_IncrementCurrentBattle(BattleCastle *castle)
+{
+    castle->currentBattle++;
+    return castle->currentBattle;
+}
+
+u16 BattleCastle_GetCurrentBattle(BattleCastle *castle)
+{
+    return castle->currentBattle;
+}
+
+u16 BattleCastle_GetNextOpponentObjectID(BattleCastle *castle, u8 trainerSlot)
+{
+    FrontierTrainerDataDTO trainer;
+    u8 offset = castle->currentBattle + (trainerSlot * CASTLE_BATTLES_PER_ROUND);
+
+    Heap_Free(BattleFrontier_GetTrainerData(&trainer, castle->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+
+    return BattleTower_GetObjectIDFromTrainerClass(trainer.trainerType);
+}
+
+void BattleCastle_SaveOnLoss(BattleCastle *castle)
+{
+    for (int i = 0; i < BATTLE_CASTLE_NUM_RANK_TYPES; i++) {
+        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleRankIndex(castle->challengeType, i), 1);
     }
 
-    return;
+    BattleCastle_Save(castle, 1);
 }
 
-u16 ov104_02236B48(BattleCastle *param0)
+void BattleCastle_SaveOnCompletingRound(BattleCastle *castle)
 {
-    param0->unk_11++;
-    return param0->unk_11;
-}
+    castle->saveStreak = TRUE;
 
-u16 ov104_02236B54(BattleCastle *param0)
-{
-    return param0->unk_11;
-}
-
-u16 ov104_02236B58(BattleCastle *param0, u8 param1)
-{
-    FrontierTrainerDataDTO v0;
-    u8 v2 = param0->unk_11 + (param1 * 7);
-
-    Heap_Free(BattleFrontier_GetTrainerData(&v0, param0->trainerIDs[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
-
-    return BattleTower_GetObjectIDFromTrainerClass(v0.trainerType);
-}
-
-void ov104_02236B8C(BattleCastle *param0)
-{
-    u16 v0[4];
-    int v1;
-
-    v0[0] = 1;
-
-    for (v1 = 0; v1 < 3; v1++) {
-        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetCastleRankIndex(param0->challengeType, v1), 1);
+    if (castle->currentRound < CASTLE_MAX_DISTINCT_ROUNDS) {
+        castle->currentRound++;
     }
 
-    ov104_02236848(param0, 1);
-
-    return;
+    castle->currentBattle = 0;
+    BattleCastle_Save(castle, 0);
 }
 
-void ov104_02236BD0(BattleCastle *param0)
+void BattleCastle_SetupFirstOpponentsParty(BattleCastle *castle)
 {
-    param0->unk_27 = 1;
-
-    if (param0->unk_16 < 8) {
-        param0->unk_16++;
-    }
-
-    param0->unk_11 = 0;
-    ov104_02236848(param0, 0);
-
-    return;
+    BattleCastle_SetupOpponentsParty(castle);
 }
 
-void ov104_02236BF0(BattleCastle *param0)
+void BattleCastle_SetupNextOpponentsParty(BattleCastle *castle)
 {
-    ov104_0223BAB8(param0);
-    return;
+    ov104_0222E4BC(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE), castle->trainerIDs[castle->currentBattle], castle->trainerIDs[castle->currentBattle + CASTLE_BATTLES_PER_ROUND], castle->monSetIDs, castle->opponentMons, castle->opponentMonIVs, castle->opponentMonPersonalities, BattleCastle_IsMultiPlayerChallenge(castle->challengeType));
+
+    BattleCastle_SetupOpponentsParty(castle);
 }
 
-void ov104_02236BF8(BattleCastle *param0)
+void BattleCastle_PrepForNextBattle(BattleCastle *castle)
 {
-    int v0, v1, v2;
-
-    ov104_0222E4BC(BattleCastle_GetOpponentPartySize(param0->challengeType, 1), param0->trainerIDs[param0->unk_11], param0->trainerIDs[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, BattleCastle_IsMultiPlayerChallenge(param0->challengeType));
-
-    for (v0 = 0; v0 < 4; v0++) {
-        (void)0;
-    }
-
-    ov104_0223BAB8(param0);
-    return;
-}
-
-void ov104_02236C50(BattleCastle *param0)
-{
-    u8 v0, v1;
-    int v2, v3;
-    Pokemon *v4;
+    u8 partyOffset, playerPartySize;
 
     if (CommSys_CurNetId() == 0) {
-        v0 = 0;
+        partyOffset = 0;
     } else {
-        v0 = 2;
+        partyOffset = 2;
     }
 
-    v1 = BattleCastle_GetPlayerPartySize(param0->challengeType, 0);
-    v3 = Party_GetCurrentCount(param0->playersParty);
+    playerPartySize = BattleCastle_GetPlayerPartySize(castle->challengeType, FALSE);
+    UNUSED(Party_GetCurrentCount(castle->playersParty));
 
-    for (v2 = v0; v2 < (v1 + v0); v2++) {
-        v4 = Party_GetPokemonBySlotIndex(param0->playersParty, v2);
+    for (int i = partyOffset; i < (playerPartySize + partyOffset); i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(castle->playersParty, i);
 
-        param0->unk_394[v2 - v0][0] = Pokemon_GetValue(v4, MON_DATA_MOVE1_PP, NULL);
-        param0->unk_394[v2 - v0][1] = Pokemon_GetValue(v4, MON_DATA_MOVE2_PP, NULL);
-        param0->unk_394[v2 - v0][2] = Pokemon_GetValue(v4, MON_DATA_MOVE3_PP, NULL);
-        param0->unk_394[v2 - v0][3] = Pokemon_GetValue(v4, MON_DATA_MOVE4_PP, NULL);
+        castle->startingPP[i - partyOffset][0] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP, NULL);
+        castle->startingPP[i - partyOffset][1] = Pokemon_GetValue(mon, MON_DATA_MOVE2_PP, NULL);
+        castle->startingPP[i - partyOffset][2] = Pokemon_GetValue(mon, MON_DATA_MOVE3_PP, NULL);
+        castle->startingPP[i - partyOffset][3] = Pokemon_GetValue(mon, MON_DATA_MOVE4_PP, NULL);
     }
 
-    ov104_0223BA24(param0->playersParty);
+    BattleCastle_RevivePokemon(castle->playersParty);
 
-    for (v2 = 0; v2 < 4; v2++) {
-        param0->appIdentityUnlocked[v2] = 0;
-        param0->appLevelAdjustmentsUnlocked[v2] = 0;
-        param0->appStatsUnlocked[v2] = 0;
-        param0->appMovesUnlocked[v2] = 0;
+    for (int i = 0; i < 4; i++) {
+        castle->appIdentityUnlocked[i] = 0;
+        castle->levelAdjustments[i] = LEVEL_ADJUSTMENT_NONE;
+        castle->appStatsUnlocked[i] = 0;
+        castle->appMovesUnlocked[i] = 0;
     }
-
-    return;
 }
 
-int ov104_02236D10(BattleCastle *param0)
+int BattleCastle_CalcCPEarnedFromBattle(BattleCastle *castle)
 {
-    u8 v0, v1, v2;
-    u32 v3, v4;
-    int v5, v6, v7, v8;
-    Pokemon *v9;
-    u8 v10[20];
-    int v11 = 0;
+    int i, j;
+    u8 cpFactors[20];
+    int earnedCP = 0;
 
-    for (v5 = 0; v5 < 20; v5++) {
-        v10[v5] = 0;
+    for (i = 0; i < 20; i++) {
+        cpFactors[i] = 0;
     }
 
-    param0->unk_12 = 0;
-    v8 = 0;
+    castle->monFainted = FALSE;
+    int remainingPP = 0;
 
+    u8 partyOffset;
     if (CommSys_CurNetId() == 0) {
-        v2 = 0;
+        partyOffset = 0;
     } else {
-        v2 = 2;
+        partyOffset = 2;
     }
 
-    v0 = BattleCastle_GetPlayerPartySize(param0->challengeType, 0);
-    v1 = BattleCastle_GetOpponentPartySize(param0->challengeType, 1);
+    u8 playerPartySize = BattleCastle_GetPlayerPartySize(castle->challengeType, FALSE);
+    u8 opponentPartySize = BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE);
 
-    for (v5 = v2; v5 < (v0 + v2); v5++) {
-        v9 = Party_GetPokemonBySlotIndex(param0->playersParty, v5);
+    for (i = partyOffset; i < playerPartySize + partyOffset; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(castle->playersParty, i);
 
-        if (Pokemon_GetValue(v9, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
         }
 
-        v3 = Pokemon_GetValue(v9, MON_DATA_HP, NULL);
-        v4 = Pokemon_GetValue(v9, MON_DATA_MAX_HP, NULL);
+        u32 currentHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
+        u32 maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
 
-        if (v3 > 0) {
-            v10[0]++;
+        if (currentHP > 0) {
+            cpFactors[0]++;
 
-            if (v3 == v4) {
-                v10[1]++;
+            if (currentHP == maxHP) {
+                cpFactors[1]++;
             } else {
-                if (v3 >= (v4 / 2)) {
-                    v10[2]++;
+                if (currentHP >= maxHP / 2) {
+                    cpFactors[2]++;
                 } else {
-                    v10[3]++;
+                    cpFactors[3]++;
                 }
             }
 
-            if (Pokemon_GetValue(v9, MON_DATA_STATUS, NULL) == 0) {
-                v10[4]++;
+            if (Pokemon_GetValue(mon, MON_DATA_STATUS, NULL) == 0) {
+                cpFactors[4]++;
             }
         } else {
-            param0->unk_12 = 1;
+            castle->monFainted = TRUE;
         }
 
-        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE1_PP, NULL);
-        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE2_PP, NULL);
-        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE3_PP, NULL);
-        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE4_PP, NULL);
+        remainingPP += Pokemon_GetValue(mon, MON_DATA_MOVE1_PP, NULL);
+        remainingPP += Pokemon_GetValue(mon, MON_DATA_MOVE2_PP, NULL);
+        remainingPP += Pokemon_GetValue(mon, MON_DATA_MOVE3_PP, NULL);
+        remainingPP += Pokemon_GetValue(mon, MON_DATA_MOVE4_PP, NULL);
     }
 
-    for (v5 = 0; v5 < v1; v5++) {
-        if (param0->appLevelAdjustmentsUnlocked[v5] == 1) {
-            v10[8]++;
-        } else if (param0->appLevelAdjustmentsUnlocked[v5] == 2) {
-            (void)0;
+    for (i = 0; i < opponentPartySize; i++) {
+        if (castle->levelAdjustments[i] == LEVEL_ADJUSTMENT_UP_5) {
+            cpFactors[8]++;
         }
     }
 
-    v7 = 0;
+    int startingPP = 0;
 
-    for (v5 = 0; v5 < v0; v5++) {
-        for (v6 = 0; v6 < 4; v6++) {
-            v7 += param0->unk_394[v5][v6];
+    for (i = 0; i < playerPartySize; i++) {
+        for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+            startingPP += castle->startingPP[i][j];
         }
     }
 
-    if ((v7 - v8) <= 5) {
-        v10[5]++;
-    } else if ((v7 - v8) <= 10) {
-        v10[6]++;
-    } else if ((v7 - v8) <= 15) {
-        v10[7]++;
+    if (startingPP - remainingPP <= 5) {
+        cpFactors[5]++;
+    } else if (startingPP - remainingPP <= 10) {
+        cpFactors[6]++;
+    } else if (startingPP - remainingPP <= 15) {
+        cpFactors[7]++;
     }
 
-    v11 += v10[0] * 3;
-    v11 += v10[1] * 3;
-    v11 += v10[2] * 2;
-    v11 += v10[3] * 1;
-    v11 += v10[4] * 1;
-    v11 += v10[5] * 8;
-    v11 += v10[6] * 6;
-    v11 += v10[7] * 4;
-    v11 += v10[8] * 7;
+    earnedCP += cpFactors[0] * 3;
+    earnedCP += cpFactors[1] * 3;
+    earnedCP += cpFactors[2] * 2;
+    earnedCP += cpFactors[3] * 1;
+    earnedCP += cpFactors[4] * 1;
+    earnedCP += cpFactors[5] * 8;
+    earnedCP += cpFactors[6] * 6;
+    earnedCP += cpFactors[7] * 4;
+    earnedCP += cpFactors[8] * 7;
 
-    if (v11 <= 0) {
-        v11 = 1;
+    if (earnedCP <= 0) {
+        earnedCP = 1;
     }
 
-    return v11;
+    return earnedCP;
 }
 
-void ov104_02236ED8(SaveData *saveData, u8 param1, int param2)
+void BattleCastle_ReceiveCastlePoints(SaveData *saveData, u8 challengeType, int newCP)
 {
-    u16 v0 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1));
+    u16 currentCP = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(challengeType));
 
-    if (v0 + param2 > 9999) {
-        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1), 9999);
+    if (currentCP + newCP > 9999) {
+        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(challengeType), 9999);
     } else {
-        BattleFrontierSave_AddToStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param1)), param2);
+        BattleFrontierSave_AddToStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(challengeType)), newCP);
     }
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(saveData), RECORD_UNK_065, param2);
-    return;
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(saveData), RECORD_CASTLE_POINTS_RECEIVED, newCP);
 }
 
-BOOL ov104_02236F70(BattleCastle *param0, u16 param1, u16 param2)
+BOOL BattleCastle_SendCommMessage(BattleCastle *castle, u16 command, u16 arg)
 {
-    int v0;
+    int success;
 
-    switch (param1) {
+    switch (command) {
     case 0:
-        v0 = ov104_0222F3B8(param0);
+        success = ov104_0222F3B8(castle);
         break;
     case 1:
-        v0 = ov104_0222F44C(param0);
+        success = ov104_0222F44C(castle);
         break;
     case 2:
-        v0 = ov104_0222F4B8(param0);
+        success = ov104_0222F4B8(castle);
         break;
     case 3:
-        v0 = ov104_0222F5D4(param0);
+        success = ov104_0222F5D4(castle);
         break;
     case 4:
-        v0 = ov104_0222F6C8(param0, param2);
+        success = ov104_0222F6C8(castle, arg);
         break;
     case 5:
-        v0 = ov104_0222F710(param0, param2);
+        success = ov104_0222F710(castle, arg);
         break;
     case 6:
-        v0 = ov104_0222F758(param0);
+        success = ov104_0222F758(castle);
         break;
     }
 
-    return v0;
+    return success;
 }
 
-void ov104_02236FC0(FrontierScriptManager *param0, BattleCastle *param1)
+void BattleCastle_ShowPlayerInfoWindows(FrontierScriptManager *scriptMan, BattleCastle *castle)
 {
-    FrontierGraphics *v0 = FrontierScriptManager_GetGraphics(param0);
+    FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(scriptMan);
 
-    GF_ASSERT(param0->unk_A8 == NULL);
-    GF_ASSERT(param0->unk_AC == NULL);
+    GF_ASSERT(scriptMan->castleHostInfoWin == NULL);
+    GF_ASSERT(scriptMan->castlePlayer2InfoWin == NULL);
 
-    if (BattleCastle_IsMultiPlayerChallenge(param1->challengeType) == 0) {
-        param0->unk_A8 = Window_New(HEAP_ID_FIELD2, 1);
-        Window_Add(v0->bgConfig, param0->unk_A8, 1, 1, 1, 10, 4, 14, ((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4));
-        ov104_022370C0(v0->bgConfig, param0->unk_A8);
+    if (!BattleCastle_IsMultiPlayerChallenge(castle->challengeType)) {
+        scriptMan->castleHostInfoWin = Window_New(HEAP_ID_FIELD2, 1);
+        Window_Add(graphics->bgConfig, scriptMan->castleHostInfoWin, 1, 1, 1, 10, 4, 14, ((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4));
+        DrawPlayerInfoWindow(graphics->bgConfig, scriptMan->castleHostInfoWin);
     } else {
-        param0->unk_A8 = Window_New(HEAP_ID_FIELD2, 1);
-        param0->unk_AC = Window_New(HEAP_ID_FIELD2, 1);
+        scriptMan->castleHostInfoWin = Window_New(HEAP_ID_FIELD2, 1);
+        scriptMan->castlePlayer2InfoWin = Window_New(HEAP_ID_FIELD2, 1);
 
-        Window_Add(v0->bgConfig, param0->unk_A8, 1, 1, 1, 10, 4, 14, ((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4));
-        Window_Add(v0->bgConfig, param0->unk_AC, 1, 21, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4));
+        Window_Add(graphics->bgConfig, scriptMan->castleHostInfoWin, 1, 1, 1, 10, 4, 14, ((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4));
+        Window_Add(graphics->bgConfig, scriptMan->castlePlayer2InfoWin, 1, 21, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4));
 
-        ov104_022370C0(v0->bgConfig, param0->unk_A8);
-        ov104_022370C0(v0->bgConfig, param0->unk_AC);
+        DrawPlayerInfoWindow(graphics->bgConfig, scriptMan->castleHostInfoWin);
+        DrawPlayerInfoWindow(graphics->bgConfig, scriptMan->castlePlayer2InfoWin);
     }
 
-    ov104_02237180(param0, param1);
-    return;
+    BattleCastle_PrintPlayersInfo(scriptMan, castle);
 }
 
-static void ov104_022370C0(BgConfig *param0, Window *param1)
+static void DrawPlayerInfoWindow(BgConfig *bgConfig, Window *window)
 {
-    Window_DrawStandardFrame(param1, 1, (1024 - (18 + 12)) - 9, 12);
-    Window_FillTilemap(param1, 15);
-
-    return;
+    Window_DrawStandardFrame(window, TRUE, (1024 - (18 + 12)) - 9, 12);
+    Window_FillTilemap(window, 15);
 }
 
-void ov104_022370E0(FrontierScriptManager *param0, BattleCastle *param1)
+void BattleCastle_ClearPlayerInfoWindows(FrontierScriptManager *scriptMan, BattleCastle *castle)
 {
-    Window *v0;
-    Window *v1;
+    Window *window1, *window2;
 
-    if (BattleCastle_IsMultiPlayerChallenge(param1->challengeType) == 0) {
-        GF_ASSERT(param0->unk_A8 != NULL);
-        v0 = param0->unk_A8;
-        Window_EraseStandardFrame(v0, 0);
-        Windows_Delete(v0, 1);
+    if (!BattleCastle_IsMultiPlayerChallenge(castle->challengeType)) {
+        GF_ASSERT(scriptMan->castleHostInfoWin != NULL);
+        window1 = scriptMan->castleHostInfoWin;
+        Window_EraseStandardFrame(window1, FALSE);
+        Windows_Delete(window1, 1);
     } else {
-        GF_ASSERT(param0->unk_A8 != NULL);
-        GF_ASSERT(param0->unk_AC != NULL);
+        GF_ASSERT(scriptMan->castleHostInfoWin != NULL);
+        GF_ASSERT(scriptMan->castlePlayer2InfoWin != NULL);
 
         if (CommSys_CurNetId() == 0) {
-            v0 = param0->unk_A8;
-            v1 = param0->unk_AC;
+            window1 = scriptMan->castleHostInfoWin;
+            window2 = scriptMan->castlePlayer2InfoWin;
         } else {
-            v0 = param0->unk_AC;
-            v1 = param0->unk_A8;
+            window1 = scriptMan->castlePlayer2InfoWin;
+            window2 = scriptMan->castleHostInfoWin;
         }
 
-        Window_EraseStandardFrame(v0, 0);
-        Windows_Delete(v0, 1);
-        Window_EraseStandardFrame(v1, 0);
-        Windows_Delete(v1, 1);
+        Window_EraseStandardFrame(window1, FALSE);
+        Windows_Delete(window1, 1);
+        Window_EraseStandardFrame(window2, FALSE);
+        Windows_Delete(window2, 1);
     }
 
-    param0->unk_A8 = NULL;
-    param0->unk_AC = NULL;
-
-    return;
+    scriptMan->castleHostInfoWin = NULL;
+    scriptMan->castlePlayer2InfoWin = NULL;
 }
 
-void ov104_02237180(FrontierScriptManager *param0, BattleCastle *param1)
+void BattleCastle_PrintPlayersInfo(FrontierScriptManager *scriptMan, BattleCastle *castle)
 {
-    u16 v0, v1;
+    u16 hostsCP, player2CP;
 
-    if (BattleCastle_IsMultiPlayerChallenge(param1->challengeType) == 0) {
-        GF_ASSERT(param0->unk_A8 != NULL);
-        v0 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(param1->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType));
-        ov104_02237284(param0, param0->unk_A8, SaveData_GetTrainerInfo(param1->saveData), v0);
+    if (!BattleCastle_IsMultiPlayerChallenge(castle->challengeType)) {
+        GF_ASSERT(scriptMan->castleHostInfoWin != NULL);
+        hostsCP = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleLatestCPIndex(castle->challengeType));
+        PrintPlayerNameandCP(scriptMan, scriptMan->castleHostInfoWin, SaveData_GetTrainerInfo(castle->saveData), hostsCP);
     } else {
-        GF_ASSERT(param0->unk_A8 != NULL);
-        GF_ASSERT(param0->unk_AC != NULL);
+        GF_ASSERT(scriptMan->castleHostInfoWin != NULL);
+        GF_ASSERT(scriptMan->castlePlayer2InfoWin != NULL);
 
         if (CommSys_CurNetId() == 0) {
-            v0 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(param1->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType));
-            v1 = param1->partnersCP;
+            hostsCP = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleLatestCPIndex(castle->challengeType));
+            player2CP = castle->partnersCP;
         } else {
-            v0 = param1->partnersCP;
-            v1 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(param1->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType));
+            hostsCP = castle->partnersCP;
+            player2CP = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(castle->saveData), BattleFrontierStats_GetCastleLatestCPIndex(castle->challengeType));
         }
 
-        ov104_02237284(param0, param0->unk_A8, CommInfo_TrainerInfo(0), v0);
-        ov104_02237284(param0, param0->unk_AC, CommInfo_TrainerInfo(1), v1);
+        PrintPlayerNameandCP(scriptMan, scriptMan->castleHostInfoWin, CommInfo_TrainerInfo(0), hostsCP);
+        PrintPlayerNameandCP(scriptMan, scriptMan->castlePlayer2InfoWin, CommInfo_TrainerInfo(1), player2CP);
     }
-
-    return;
 }
 
-static void ov104_02237284(FrontierScriptManager *param0, Window *param1, TrainerInfo *param2, u16 param3)
+static void PrintPlayerNameandCP(FrontierScriptManager *scriptMan, Window *window, TrainerInfo *trainer, u16 castlePoints)
 {
-    MessageLoader *v0;
-    String *v1 = String_Init(10 * 2, param0->heapID);
-    String *v2 = String_Init(10 * 2, param0->heapID);
+    String *formatStr = String_Init(10 * 2, scriptMan->heapID);
+    String *displayStr = String_Init(10 * 2, scriptMan->heapID);
 
-    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_CASTLE_SELF_APP, HEAP_ID_FIELD2);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_CASTLE_SELF_APP, HEAP_ID_FIELD2);
 
-    StringTemplate_SetNumber(param0->strTemplate, 0, param3, 4, 1, 1);
-    MessageLoader_GetString(v0, 2, v1);
+    StringTemplate_SetNumber(scriptMan->strTemplate, 0, castlePoints, 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    MessageLoader_GetString(msgLoader, BattleCastleSelfApp_Text_CastlePoints, formatStr);
 
-    StringTemplate_Format(param0->strTemplate, v2, v1);
-    Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 16, 2 * 8, TEXT_SPEED_NO_TRANSFER, NULL);
-    StringTemplate_SetPlayerName(param0->strTemplate, 0, param2);
+    StringTemplate_Format(scriptMan->strTemplate, displayStr, formatStr);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, displayStr, 16, 16, TEXT_SPEED_NO_TRANSFER, NULL);
+    StringTemplate_SetPlayerName(scriptMan->strTemplate, 0, trainer);
 
-    MessageLoader_GetString(v0, 0, v1);
+    MessageLoader_GetString(msgLoader, BattleCastleSelfApp_Text_PlayerName, formatStr);
 
-    StringTemplate_Format(param0->strTemplate, v2, v1);
-    Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_INSTANT, NULL);
+    StringTemplate_Format(scriptMan->strTemplate, displayStr, formatStr);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, displayStr, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
-    String_Free(v1);
-    String_Free(v2);
-    MessageLoader_Free(v0);
+    String_Free(formatStr);
+    String_Free(displayStr);
+    MessageLoader_Free(msgLoader);
 
-    Window_CopyToVRAM(param1);
-
-    return;
+    Window_CopyToVRAM(window);
 }
 
-u16 ov104_02237338(BattleCastle *param0)
+u16 BattleCastle_GetEarnedBP(BattleCastle *castle)
 {
-    u8 v0;
-    u16 v1;
-    static const u8 v2[8 + 1] = { 0, 3, 3, 4, 4, 5, 5, 7, 7 };
-    static const u8 v3[8 + 1] = { 0, 8, 9, 11, 12, 14, 15, 18, 18 };
+    u8 bp;
+    static const u8 sBPPerRoundSolo[CASTLE_MAX_DISTINCT_ROUNDS + 1] = { 0, 3, 3, 4, 4, 5, 5, 7, 7 };
+    static const u8 sBPPerRoundWifi[CASTLE_MAX_DISTINCT_ROUNDS + 1] = { 0, 8, 9, 11, 12, 14, 15, 18, 18 };
 
-    v1 = param0->unk_16;
+    u16 currentRound = castle->currentRound;
 
-    if ((param0->challengeType == 0) || (param0->challengeType == 1)) {
-        if (v1 >= 8) {
-            v0 = v2[8];
+    if (castle->challengeType == FRONTIER_CHALLENGE_SINGLE || castle->challengeType == FRONTIER_CHALLENGE_DOUBLE) {
+        if (currentRound >= CASTLE_MAX_DISTINCT_ROUNDS) {
+            bp = sBPPerRoundSolo[CASTLE_MAX_DISTINCT_ROUNDS];
         } else {
-            v0 = v2[v1];
+            bp = sBPPerRoundSolo[currentRound];
         }
     } else {
-        if (v1 >= 8) {
-            v0 = v3[8];
+        if (currentRound >= CASTLE_MAX_DISTINCT_ROUNDS) {
+            bp = sBPPerRoundWifi[CASTLE_MAX_DISTINCT_ROUNDS];
         } else {
-            v0 = v3[v1];
+            bp = sBPPerRoundWifi[currentRound];
         }
     }
 
-    if (param0->challengeType == 0) {
-        if ((param0->currentStreak == 21) || (param0->currentStreak == 49)) {
-            v0 = 20;
+    if (castle->challengeType == FRONTIER_CHALLENGE_SINGLE) {
+        if (castle->currentStreak == CASTLE_STREAK_SILVER_BATTLE || castle->currentStreak == CASTLE_STREAK_GOLD_BATTLE) {
+            bp = 20;
         }
     }
 
-    return v0;
+    return bp;
 }

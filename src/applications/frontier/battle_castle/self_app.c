@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020302DC_decl.h"
-#include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_frontier.h"
 
 #include "applications/frontier/battle_castle/args.h"
@@ -302,8 +300,8 @@ typedef struct BattleCastleSelfApp {
     FontSpecialCharsContext *specialChars;
     Options *options;
     SaveData *saveData;
-    UnkStruct_020302DC *unk_1D0;
-    UnkStruct_0203041C *unk_1D4;
+    BattleCastleSave *castleSave;
+    BattleCastlePersistentSave *persistentSave;
     BattleCastleAppSpriteManager spriteMan;
     BattleCastleAppSprite *upArrowSprite;
     BattleCastleAppSprite *downArrowSprite;
@@ -508,8 +506,8 @@ BOOL BattleCastleSelfApp_Init(ApplicationManager *appMan, int *state)
     BattleCastleAppArgs *args = ApplicationManager_Args(appMan);
 
     app->saveData = args->saveData;
-    app->unk_1D0 = sub_020302DC(app->saveData);
-    app->unk_1D4 = sub_0203041C(app->saveData);
+    app->castleSave = BattleCastleSave_Get(app->saveData);
+    app->persistentSave = BattleCastlePersistentSave_Get(app->saveData);
     app->challengeType = args->challengeType;
     app->selectedMonSlotPtr = &args->selectedMonSlot;
     app->options = SaveData_GetOptions(app->saveData);
@@ -911,7 +909,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
             CloseMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
 
             if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
-                ov104_0223BC2C(app->frontier, app->challengeType, sHealingCosts[app->selectedMenuEntry - 1]);
+                BattleCastle_SpendCastlePoints(app->frontier, app->challengeType, sHealingCosts[app->selectedMenuEntry - 1]);
                 PrintPlayersAndPartnersCastlePoints(app, &app->windows[SELF_APP_WINDOW_HEADER]);
                 HealPokemon(app, app->selectedMonSlot, app->selectedMenuEntry);
                 app->subState = MAIN_SUBSTATE_UPDATE_AFTER_PURCHASE;
@@ -1098,7 +1096,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
                 if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
                     FreeItemSelect(app);
                     BattleCastleApp_DrawMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
-                    ov104_0223BC2C(app->frontier, app->challengeType, GetItemPriceFromListPos(app, app->menuPos, app->selectedMenuEntry));
+                    BattleCastle_SpendCastlePoints(app->frontier, app->challengeType, GetItemPriceFromListPos(app, app->menuPos, app->selectedMenuEntry));
                     PrintPlayersAndPartnersCastlePoints(app, &app->windows[SELF_APP_WINDOW_HEADER]);
                     RentItem(app, app->selectedMonSlot, GetItemIDFromListPos(app, app->menuPos, app->selectedMenuEntry));
                     app->subState = MAIN_SUBSTATE_UPDATE_AFTER_PURCHASE;
@@ -1211,7 +1209,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
             if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
                 FreeItemSelect(app);
                 BattleCastleApp_DrawMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
-                ov104_0223BC2C(app->frontier, app->challengeType, GetItemPriceFromListPos(app, app->menuPos, app->selectedMenuEntry));
+                BattleCastle_SpendCastlePoints(app->frontier, app->challengeType, GetItemPriceFromListPos(app, app->menuPos, app->selectedMenuEntry));
                 PrintPlayersAndPartnersCastlePoints(app, &app->windows[SELF_APP_WINDOW_HEADER]);
                 RentItem(app, app->selectedMonSlot, GetItemIDFromListPos(app, app->menuPos, app->selectedMenuEntry));
                 app->subState = MAIN_SUBSTATE_UPDATE_AFTER_PURCHASE;
@@ -3369,7 +3367,7 @@ static void SpendCastlePointsInSync(BattleCastleSelfApp *app, u8 slotID, u8 menu
     if (CommSys_CurNetId() == 0) {
         if (slotID < exitSlot) {
             SetStringTemplatePlayerName(app, 5);
-            ov104_0223BC2C(app->frontier, app->challengeType, cost);
+            BattleCastle_SpendCastlePoints(app->frontier, app->challengeType, cost);
         } else {
             BattleCastleApp_SetPartnerName(app->strTemplate, 5);
             app->partnersCP -= cost;
@@ -3380,7 +3378,7 @@ static void SpendCastlePointsInSync(BattleCastleSelfApp *app, u8 slotID, u8 menu
             app->partnersCP -= cost;
         } else {
             SetStringTemplatePlayerName(app, 5);
-            ov104_0223BC2C(app->frontier, app->challengeType, cost);
+            BattleCastle_SpendCastlePoints(app->frontier, app->challengeType, cost);
         }
     }
 
@@ -3487,7 +3485,7 @@ static void IncreaseRank(BattleCastleSelfApp *app, u8 slot, u8 menuOption)
             SetStringTemplatePlayerName(app, 5);
 
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, rankType);
-            ov104_0223BC2C(app->frontier, app->challengeType, sRankUpCosts[rankType][rank]);
+            BattleCastle_SpendCastlePoints(app->frontier, app->challengeType, sRankUpCosts[rankType][rank]);
 
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, rankType);
             BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(app->saveData), BattleFrontierStats_GetCastleRankIndex(app->challengeType, rankType), rank + 1);
@@ -3515,7 +3513,7 @@ static void IncreaseRank(BattleCastleSelfApp *app, u8 slot, u8 menuOption)
             SetStringTemplatePlayerName(app, 5);
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, rankType);
 
-            ov104_0223BC2C(app->frontier, app->challengeType, sRankUpCosts[rankType][rank]);
+            BattleCastle_SpendCastlePoints(app->frontier, app->challengeType, sRankUpCosts[rankType][rank]);
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, rankType);
 
             BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(app->saveData), BattleFrontierStats_GetCastleRankIndex(app->challengeType, rankType), rank + 1);

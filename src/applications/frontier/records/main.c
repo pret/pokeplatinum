@@ -679,7 +679,7 @@ static u32 GetBattleCastleLatestStreakEntryID(FrontierRecordsApp *app)
     if (app->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
         isActive = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(app->saveData), STAT_CASTLE_WFC_STREAK_ACTIVE);
     } else {
-        isActive = sub_02030470(sub_0203041C(app->saveData), 9, app->challengeType, 0, NULL);
+        isActive = BattleCastlePersistentSave_GetFlag(BattleCastlePersistentSave_Get(app->saveData), 9, app->challengeType, 0, NULL);
     }
 
     if (isActive == 1) {

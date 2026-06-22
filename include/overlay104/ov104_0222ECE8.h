@@ -2,8 +2,8 @@
 #define POKEPLATINUM_OV104_0222ECE8_H
 
 #include "overlay104/battle_hall.h"
+#include "overlay104/ov104_022361B4.h"
 #include "overlay104/struct_battle_arcade.h"
-#include "overlay104/struct_battle_castle.h"
 #include "overlay104/struct_battle_factory.h"
 
 void ov104_0222ECE8(int param0, int param1, void *param2, void *param3);

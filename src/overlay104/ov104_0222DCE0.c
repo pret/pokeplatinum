@@ -140,95 +140,93 @@ static const u16 Unk_ov104_0223F290[] = {
     ITEM_QUICK_CLAW
 };
 
-u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 narcIdx, u32 otID, u32 param3, u8 ivs, u8 param5, BOOL param6, int heapID, enum NarcID narcID)
+static u32 ov104_0222DD6C(FrontierPokemonDataDTO *mon, u16 narcIdx, u32 otID, u32 personality, u8 ivs, u8 itemIdx, BOOL alwaysFalse, int heapID, enum NarcID narcID)
 {
-    MI_CpuClear8(param0, sizeof(FrontierPokemonDataDTO));
+    MI_CpuClear8(mon, sizeof(FrontierPokemonDataDTO));
     BattleFrontierPokemonData v4;
     BattleTower_GetMonDataFromSetIDAndNarcID(&v4, narcIdx, narcID);
 
-    param0->species = v4.species;
-    param0->form = v4.form;
+    mon->species = v4.species;
+    mon->form = v4.form;
 
-    if (param6) {
-        if (param5 >= NELEMS(Unk_ov104_0223F290)) {
-            param5 %= NELEMS(Unk_ov104_0223F290);
+    if (alwaysFalse) {
+        if (itemIdx >= NELEMS(Unk_ov104_0223F290)) {
+            itemIdx %= NELEMS(Unk_ov104_0223F290);
         }
 
-        param0->item = Unk_ov104_0223F290[param5];
+        mon->item = Unk_ov104_0223F290[itemIdx];
     } else {
-        param0->item = v4.item;
+        mon->item = v4.item;
     }
 
     u8 friendship = MAX_FRIENDSHIP_VALUE;
 
-    for (int v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        param0->moves[v0] = v4.moves[v0];
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        mon->moves[i] = v4.moves[i];
 
-        if (v4.moves[v0] == MOVE_FRUSTRATION) {
+        if (v4.moves[i] == MOVE_FRUSTRATION) {
             friendship = 0;
         }
     }
 
-    param0->otID = otID;
+    mon->otID = otID;
 
-    u32 v2;
-    if (param3 == 0) {
+    if (personality == 0) {
         do {
-            v2 = (LCRNG_Next() | LCRNG_Next() << 16);
-        } while ((v4.nature != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(otID, v2) == TRUE));
+            personality = LCRNG_Next() | LCRNG_Next() << 16;
+        } while (v4.nature != Pokemon_GetNatureOf(personality) || Pokemon_IsPersonalityShiny(otID, personality) == TRUE);
 
-        param0->personality = v2;
+        mon->personality = personality;
     } else {
-        param0->personality = param3;
-        v2 = param3;
+        mon->personality = personality;
     }
 
-    param0->hpIV = ivs;
-    param0->atkIV = ivs;
-    param0->defIV = ivs;
-    param0->speedIV = ivs;
-    param0->spAtkIV = ivs;
-    param0->spDefIV = ivs;
+    mon->hpIV = ivs;
+    mon->atkIV = ivs;
+    mon->defIV = ivs;
+    mon->speedIV = ivs;
+    mon->spAtkIV = ivs;
+    mon->spDefIV = ivs;
 
     int v1 = 0;
 
-    for (int v0 = 0; v0 < 6; v0++) {
-        if (v4.evFlags & FlagIndex(v0)) {
+    for (int i = 0; i < STAT_MAX; i++) {
+        if (v4.evFlags & FlagIndex(i)) {
             v1++;
         }
     }
 
-    if ((510 / v1) > 255) {
+    if (510 / v1 > 255) {
         v1 = 255;
     } else {
         v1 = 510 / v1;
     }
 
-    for (int v0 = 0; v0 < 6; v0++) {
+    for (int v0 = 0; v0 < STAT_MAX; v0++) {
         if (v4.evFlags & FlagIndex(v0)) {
-            param0->evList[v0] = v1;
+            mon->evList[v0] = v1;
         }
     }
 
-    param0->combinedPPUps = 0;
-    param0->language = gGameLanguage;
+    mon->combinedPPUps = 0;
+    mon->language = gGameLanguage;
 
-    int v0 = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_2);
+    int ability2 = SpeciesData_GetSpeciesValue(mon->species, SPECIES_DATA_ABILITY_2);
 
-    if (v0) {
-        if (param0->personality & 1) {
-            param0->ability = v0;
+    if (ability2) {
+        if (mon->personality & 1) {
+            mon->ability = ability2;
         } else {
-            param0->ability = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_1);
+            mon->ability = SpeciesData_GetSpeciesValue(mon->species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        param0->ability = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_1);
+        mon->ability = SpeciesData_GetSpeciesValue(mon->species, SPECIES_DATA_ABILITY_1);
     }
 
-    param0->friendship = friendship;
-    MessageLoader_GetSpeciesName(param0->species, heapID, &(param0->nickname[0]));
+    mon->friendship = friendship;
+    MessageLoader_GetSpeciesName(mon->species, heapID, &mon->nickname[0]);
 
-    return v2;
+    return personality;
 }
 
 void FrontierPokemonDataDTO_InitPokemon(const FrontierPokemonDataDTO *pokemonDTO, Pokemon *mon, u8 param2)
@@ -424,58 +422,48 @@ void FieldBattleDTO_InitFrontierTrainer(FieldBattleDTO *battleDTO, FrontierTrain
     return;
 }
 
-u32 BattleFrontier_LoadOpponentMonData(FrontierPokemonDataDTO *frontierMon, u16 narcIdx, int item, u8 ivs, u32 personality, int heapID, int narcID)
+u32 BattleFrontier_LoadOpponentMonData(FrontierPokemonDataDTO *frontierMon, u16 narcIdx, int unused, u8 ivs, u32 personality, int heapID, int narcID)
 {
     u32 otID = LCRNG_Next() | (LCRNG_Next() << 16);
-    return ov104_0222DD6C(frontierMon, narcIdx, otID, personality, ivs, item, FALSE, heapID, narcID);
+    return ov104_0222DD6C(frontierMon, narcIdx, otID, personality, ivs, unused, FALSE, heapID, narcID);
 }
 
-void ov104_0222E330(FrontierPokemonDataDTO *param0, u16 param1[], u8 param2[], u32 param3[], u32 param4[], int param5, int param6, int param7)
+void ov104_0222E330(FrontierPokemonDataDTO *mons, u16 narcIdx[], u8 ivList[], u32 personalities[], u32 resultPersonalities[], int numMons, int heapID, int narcID)
 {
-    int v0;
-    u32 v1;
-    u8 v2;
+    for (int i = 0; i < numMons; i++) {
+        u8 ivs = ivList == NULL ? 0 : ivList[i];
+        u32 personality = (personalities == NULL) ? 0 : personalities[i];
+        personality = BattleFrontier_LoadOpponentMonData(&mons[i], narcIdx[i], i, ivs, personality, heapID, narcID);
 
-    if (param3 == NULL) {
-        v1 = 0;
-    }
-
-    for (v0 = 0; v0 < param5; v0++) {
-        v2 = (param2 == NULL) ? 0 : param2[v0];
-        v1 = (param3 == NULL) ? 0 : param3[v0];
-        v1 = BattleFrontier_LoadOpponentMonData(&param0[v0], param1[v0], v0, v2, v1, param6, param7);
-
-        if (param4 != NULL) {
-            param4[v0] = v1;
+        if (resultPersonalities != NULL) {
+            resultPersonalities[i] = personality;
         }
     }
-
-    return;
 }
 
-u8 ov104_0222E3A8(u16 param0)
+static u8 GetIVsForTrainer(u16 trainerID)
 {
-    u8 v0;
+    u8 ivs;
 
-    if (param0 < 100) {
-        v0 = (0x1f / 8) * 1;
-    } else if (param0 < 120) {
-        v0 = (0x1f / 8) * 2;
-    } else if (param0 < 140) {
-        v0 = (0x1f / 8) * 3;
-    } else if (param0 < 160) {
-        v0 = (0x1f / 8) * 4;
-    } else if (param0 < 180) {
-        v0 = (0x1f / 8) * 5;
-    } else if (param0 < 200) {
-        v0 = (0x1f / 8) * 6;
-    } else if (param0 < 220) {
-        v0 = (0x1f / 8) * 7;
+    if (trainerID < 100) {
+        ivs = (MAX_IVS_SINGLE_STAT / 8) * 1;
+    } else if (trainerID < 120) {
+        ivs = (MAX_IVS_SINGLE_STAT / 8) * 2;
+    } else if (trainerID < 140) {
+        ivs = (MAX_IVS_SINGLE_STAT / 8) * 3;
+    } else if (trainerID < 160) {
+        ivs = (MAX_IVS_SINGLE_STAT / 8) * 4;
+    } else if (trainerID < 180) {
+        ivs = (MAX_IVS_SINGLE_STAT / 8) * 5;
+    } else if (trainerID < 200) {
+        ivs = (MAX_IVS_SINGLE_STAT / 8) * 6;
+    } else if (trainerID < 220) {
+        ivs = (MAX_IVS_SINGLE_STAT / 8) * 7;
     } else {
-        v0 = 0x1f;
+        ivs = MAX_IVS_SINGLE_STAT;
     }
 
-    return v0;
+    return ivs;
 }
 
 BOOL ov104_0222E3E4(BattleFrontierTrainerData *param0, const u16 param1[], const u16 param2[], int param3, int param4, u16 param5[], int param6)
@@ -529,50 +517,47 @@ BOOL ov104_0222E3E4(BattleFrontierTrainerData *param0, const u16 param1[], const
     return 0;
 }
 
-void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPokemonDataDTO *param4, u8 *param5, u32 *param6, u8 param7)
+void ov104_0222E4BC(u8 numMons, u16 trainerID, u16 trainerID2, u16 *monSetIDs, FrontierPokemonDataDTO *param4, u8 *ivs, u32 *personalities, u8 isMultiplayerChallenge)
 {
-    int v0;
+    int i;
     u16 v2[4];
     u16 v3[4];
-    FrontierTrainerDataDTO v4;
-    BattleFrontierPokemonData v6;
 
-    BattleFrontierTrainerData *v5 = BattleFrontier_GetTrainerData(&v4, param1, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+    FrontierTrainerDataDTO trainer;
+    BattleFrontierTrainerData *trainerSpec = BattleFrontier_GetTrainerData(&trainer, trainerID, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
 
-    for (v0 = 0; v0 < param0; v0++) {
-        param5[v0] = ov104_0222E3A8(param1);
+    for (i = 0; i < numMons; i++) {
+        ivs[i] = GetIVsForTrainer(trainerID);
     }
 
-    if (param7 == 0) {
-        ov104_0222E3E4(v5, v2, v3, 0, param0, param3, 11);
+    if (!isMultiplayerChallenge) {
+        ov104_0222E3E4(trainerSpec, v2, v3, 0, numMons, monSetIDs, 11);
     } else {
-        ov104_0222E3E4(v5, v2, v3, 0, (param0 / 2), param3, 11);
+        ov104_0222E3E4(trainerSpec, v2, v3, 0, (numMons / 2), monSetIDs, 11);
 
-        for (v0 = 0; v0 < (param0 / 2); v0++) {
-            BattleTower_GetMonDataFromSetIDAndNarcID(&v6, param3[v0], NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
-            v2[v0] = v6.species;
-            v3[v0] = v6.item;
+        for (i = 0; i < (numMons / 2); i++) {
+            BattleFrontierPokemonData v6;
+            BattleTower_GetMonDataFromSetIDAndNarcID(&v6, monSetIDs[i], NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+            v2[i] = v6.species;
+            v3[i] = v6.item;
         }
 
-        Heap_Free(v5);
-        v5 = BattleFrontier_GetTrainerData(&v4, param2, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
-        ov104_0222E3E4(v5, v2, v3, (param0 / 2), (param0 / 2), &param3[param0 / 2], 11);
+        Heap_Free(trainerSpec);
+        trainerSpec = BattleFrontier_GetTrainerData(&trainer, trainerID2, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+        ov104_0222E3E4(trainerSpec, v2, v3, (numMons / 2), (numMons / 2), &monSetIDs[numMons / 2], 11);
 
-        for (v0 = 0; v0 < (param0 / 2); v0++) {
-            param5[v0 + (param0 / 2)] = ov104_0222E3A8(param2);
+        for (i = 0; i < (numMons / 2); i++) {
+            ivs[i + (numMons / 2)] = GetIVsForTrainer(trainerID2);
         }
     }
 
-    Heap_Free(v5);
-    ov104_0222E330(param4, param3, param5, NULL, param6, param0, 11, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
-
-    return;
+    Heap_Free(trainerSpec);
+    ov104_0222E330(param4, monSetIDs, ivs, NULL, personalities, numMons, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 }
 
 void BattleFrontier_SetPartnerInStrTemplate(StringTemplate *template, u32 idx)
 {
     StringTemplate_SetPlayerName(template, idx, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
-    return;
 }
 
 enum ObjectEventGfx BattleFrontier_GetPlayerObjEventGfx(const TrainerInfo *playerInfo)

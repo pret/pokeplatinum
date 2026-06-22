@@ -1,109 +1,89 @@
 #include "unk_020302D0.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_020302DC.h"
-#include "struct_defs/struct_0203041C.h"
 
 #include "savedata.h"
 
-void sub_020302D0(UnkStruct_020302DC *param0);
-BOOL sub_020302EC(UnkStruct_020302DC *param0);
-void sub_020302F4(UnkStruct_020302DC *param0, BOOL param1);
-void sub_02030308(UnkStruct_020302DC *param0, u8 param1, u8 param2, u8 param3, const void *param4);
-u32 sub_02030398(UnkStruct_020302DC *param0, u8 param1, u8 param2, u8 param3, void *param4);
-void sub_02030410(UnkStruct_0203041C *param0);
-void sub_02030430(UnkStruct_0203041C *param0, u8 param1, u8 param2, u8 param3, const void *param4);
-u32 sub_02030470(UnkStruct_0203041C *param0, u8 param1, u8 param2, u8 param3, void *param4);
-
-void sub_020302D0(UnkStruct_020302DC *param0)
+void BattleCastleSave_Init(BattleCastleSave *castleSave)
 {
-    MI_CpuClear8(param0, sizeof(UnkStruct_020302DC));
-    return;
+    MI_CpuClear8(castleSave, sizeof(BattleCastleSave));
 }
 
-UnkStruct_020302DC *sub_020302DC(SaveData *saveData)
+BattleCastleSave *BattleCastleSave_Get(SaveData *saveData)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &frontier->unk_8E0_val4;
+    return &frontier->castleSave;
 }
 
-BOOL sub_020302EC(UnkStruct_020302DC *param0)
+BOOL BattleCastleSave_HasSaved(BattleCastleSave *save)
 {
-    return param0->unk_00_3;
+    return save->didSave;
 }
 
-void sub_020302F4(UnkStruct_020302DC *param0, BOOL param1)
+void BattleCastleSave_RecordSave(BattleCastleSave *save, BOOL didSave)
 {
-    param0->unk_00_3 = param1;
-    return;
+    save->didSave = didSave;
 }
 
-void sub_02030308(UnkStruct_020302DC *param0, u8 param1, u8 param2, u8 param3, const void *param4)
+void BattleCastleSave_SetMember(BattleCastleSave *save, u8 field, u8 index, u8 index2, void *value)
 {
-    u32 *v0 = (u32 *)param4;
-    u16 *v1 = (u16 *)param4;
-    u8 *v2 = (u8 *)param4;
-
-    switch (param1) {
-    case 0:
-        param0->unk_00_0 = v2[0];
+    switch (field) {
+    case CASTLE_SAVE_CHALLENGE_TYPE:
+        save->challengeType = *(u8 *)value;
         break;
-    case 1:
-        param0->unk_01 = v2[0];
+    case CASTLE_SAVE_CURRENT_BATTLE:
+        save->currentBattleNum = *(u8 *)value;
         break;
-    case 2:
-        param0->unk_22[param2] = v1[0];
+    case CASTLE_SAVE_MON_HP:
+        save->monHP[index] = *(u16 *)value;
         break;
-    case 3:
-        param0->unk_2A[param2][param3] = v2[0];
+    case CASTLE_SAVE_MON_PP:
+        save->monPP[index][index2] = *(u8 *)value;
         break;
-    case 4:
-        param0->unk_3C[param2] = v0[0];
+    case CASTLE_SAVE_MON_STATUS:
+        save->monStatus[index] = *(u32 *)value;
         break;
-    case 5:
-        param0->unk_4C[param2] = v1[0];
+    case CASTLE_SAVE_HELD_ITEMS:
+        save->heldItems[index] = *(u16 *)value;
         break;
-    case 6:
-        param0->unk_06[param2] = v1[0];
+    case CASTLE_SAVE_TRAINER_IDS:
+        save->trainerIDs[index] = *(u16 *)value;
         break;
-    case 7:
-        param0->unk_03[param2] = v2[0];
+    case CASTLE_SAVE_PARTY_SLOTS:
+        save->partySlots[index] = *(u8 *)value;
         break;
-    case 8:
-        param0->unk_54[param2] = v1[0];
+    case CASTLE_SAVE_MON_SET_IDS:
+        save->monSetIDs[index] = *(u16 *)value;
         break;
     default:
         GF_ASSERT(FALSE);
         break;
     }
-
-    return;
 }
 
-u32 sub_02030398(UnkStruct_020302DC *param0, u8 param1, u8 param2, u8 param3, void *param4)
+u32 BattleCastleSave_GetMember(BattleCastleSave *svae, u8 field, u8 index, u8 unused, void *unused2)
 {
-    switch (param1) {
-    case 0:
-        return (u32)param0->unk_00_0;
-    case 1:
-        return (u32)param0->unk_01;
-    case 2:
-        return (u32)param0->unk_22[param2];
-    case 3:
-        return (u32)param0->unk_2A[param2][param3];
-    case 4:
-        return (u32)param0->unk_3C[param2];
-    case 5:
-        return (u32)param0->unk_4C[param2];
-    case 6:
-        return (u32)param0->unk_06[param2];
-    case 7:
-        return param0->unk_03[param2];
-    case 8:
-        return param0->unk_54[param2];
+    switch (field) {
+    case CASTLE_SAVE_CHALLENGE_TYPE:
+        return svae->challengeType;
+    case CASTLE_SAVE_CURRENT_BATTLE:
+        return svae->currentBattleNum;
+    case CASTLE_SAVE_MON_HP:
+        return svae->monHP[index];
+    case CASTLE_SAVE_MON_PP:
+        return svae->monPP[index][unused];
+    case CASTLE_SAVE_MON_STATUS:
+        return svae->monStatus[index];
+    case CASTLE_SAVE_HELD_ITEMS:
+        return svae->heldItems[index];
+    case CASTLE_SAVE_TRAINER_IDS:
+        return svae->trainerIDs[index];
+    case CASTLE_SAVE_PARTY_SLOTS:
+        return svae->partySlots[index];
+    case CASTLE_SAVE_MON_SET_IDS:
+        return svae->monSetIDs[index];
     default:
         GF_ASSERT(FALSE);
         break;
@@ -112,53 +92,44 @@ u32 sub_02030398(UnkStruct_020302DC *param0, u8 param1, u8 param2, u8 param3, vo
     return 0;
 }
 
-void sub_02030410(UnkStruct_0203041C *param0)
+void BattleCastlePersistentSave_Init(BattleCastlePersistentSave *save)
 {
-    int v0, v1;
-
-    MI_CpuClear8(param0, sizeof(UnkStruct_0203041C));
-
-    return;
+    MI_CpuClear8(save, sizeof(BattleCastlePersistentSave));
 }
 
-UnkStruct_0203041C *sub_0203041C(SaveData *saveData)
+BattleCastlePersistentSave *BattleCastlePersistentSave_Get(SaveData *saveData)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &frontier->unk_161C.unk_00;
+    return &frontier->castle.persistentSave;
 }
 
-void sub_02030430(UnkStruct_0203041C *param0, u8 param1, u8 param2, u8 param3, const void *param4)
+void BattleCastlePersistentSave_SetFlag(BattleCastlePersistentSave *save, u8 field, u8 challengeType, u8 unused, u8 *value)
 {
-    u32 *v0 = (u32 *)param4;
-    u16 *v1 = (u16 *)param4;
-    u8 *v2 = (u8 *)param4;
-
-    switch (param1) {
-    case 9:
-        if (v2[0] >= 1) {
-            param0->unk_00 |= (1 << param2);
+    u8 *value_dupe = (u8 *)value;
+    switch (field) {
+    case CASTLE_SAVE_STREAK_FLAGS:
+        if (*value_dupe >= 1) {
+            save->streakActiveFlags |= 1 << challengeType;
         } else {
-            param0->unk_00 &= (0xff ^ (1 << param2));
+            save->streakActiveFlags &= 0xff ^ (1 << challengeType);
         }
         break;
-    case 10:
-        param0->unk_01 = 1;
+    case CASTLE_SAVE_HAVE_HEARD_INTRO:
+        save->haveHeardIntro = TRUE;
         break;
     default:
         GF_ASSERT(FALSE);
         break;
     }
-
-    return;
 }
 
-u32 sub_02030470(UnkStruct_0203041C *param0, u8 param1, u8 param2, u8 param3, void *param4)
+u32 BattleCastlePersistentSave_GetFlag(BattleCastlePersistentSave *save, u8 field, u8 challengeType, u8 unused, void *unused2)
 {
-    switch (param1) {
-    case 9:
-        return (u32)((param0->unk_00 >> param2) & 0x1);
-    case 10:
-        return (u32)param0->unk_01;
+    switch (field) {
+    case CASTLE_SAVE_STREAK_FLAGS:
+        return (save->streakActiveFlags >> challengeType) & 0x1;
+    case CASTLE_SAVE_HAVE_HEARD_INTRO:
+        return save->haveHeardIntro;
     default:
         GF_ASSERT(FALSE);
         break;

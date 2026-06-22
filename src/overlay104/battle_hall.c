@@ -128,7 +128,7 @@ void BattleHall_SetupNextOpponent(BattleHall *battleHall, u16 unused)
 
 static void SetupNextOpponent(BattleHall *battleHall)
 {
-    u8 battleType = HALL_NEXT_BATTLE_NORMAL;
+    u8 battleType = FRONTIER_NEXT_BATTLE_NORMAL;
 
     u8 numOppTrainers = 1;
     if (battleHall->challengeType != FRONTIER_CHALLENGE_SINGLE) {
@@ -148,11 +148,11 @@ static void SetupNextOpponent(BattleHall *battleHall)
     }
 
     if (battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER) {
-        battleType = HALL_NEXT_BATTLE_SILVER;
+        battleType = FRONTIER_NEXT_BATTLE_SILVER;
     }
 
     if (battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
-        battleType = HALL_NEXT_BATTLE_GOLD;
+        battleType = FRONTIER_NEXT_BATTLE_GOLD;
     }
 
     Pokemon *playersMon = Party_GetPokemonBySlotIndex(battleHall->party, 0);

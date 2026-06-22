@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 
 #include "overlay104/battle_hall.h"
@@ -11,7 +10,6 @@
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_battle_arcade.h"
-#include "overlay104/struct_battle_castle.h"
 #include "overlay104/struct_battle_factory.h"
 
 #include "battle_frontier_save.h"
@@ -725,12 +723,12 @@ void ov104_0222F31C(int param0, int param1, void *param2, void *param3)
 BOOL ov104_0222F3B8(BattleCastle *param0)
 {
     int v0, v1, v2, v3;
-    UnkStruct_0203041C *v4 = sub_0203041C(param0->saveData);
+    BattleCastlePersistentSave *v4 = BattleCastlePersistentSave_Get(param0->saveData);
     v3 = 40;
     v1 = 0;
 
     param0->unk_3C0[1] = param0->currentStreak;
-    param0->unk_3C0[2] = param0->unk_16;
+    param0->unk_3C0[2] = param0->currentRound;
 
     v1 += 3;
     v1 += (7 + 1);
@@ -754,7 +752,7 @@ void ov104_0222F418(int param0, int param1, void *param2, void *param3)
     const u16 *v3 = param2;
 
     v1 = 0;
-    v2->unk_A1A++;
+    v2->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -801,7 +799,7 @@ void ov104_0222F480(int param0, int param1, void *param2, void *param3)
     const u16 *v3 = param2;
 
     v1 = 0;
-    v2->unk_A1A++;
+    v2->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -867,7 +865,7 @@ void ov104_0222F530(int param0, int param1, void *param2, void *param3)
     const u16 *v4 = param2;
 
     v2 = 0;
-    v3->unk_A1A++;
+    v3->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -917,20 +915,20 @@ BOOL ov104_0222F5D4(BattleCastle *param0)
     v3 = 40;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_3C0[v0] = param0->unk_26C[v0];
+        param0->unk_3C0[v0] = param0->monSetIDs[v0];
     }
 
     v1 += 4;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_3C0[v0 + v1] = param0->unk_274[v0];
+        param0->unk_3C0[v0 + v1] = param0->opponentMonIVs[v0];
     }
 
     v1 += 4;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_3C0[v0 + v1] = (param0->unk_278[v0] & 0xffff);
-        param0->unk_3C0[v0 + v1 + 4] = ((param0->unk_278[v0] >> 16) & 0xffff);
+        param0->unk_3C0[v0 + v1] = (param0->opponentMonPersonalities[v0] & 0xffff);
+        param0->unk_3C0[v0 + v1 + 4] = ((param0->opponentMonPersonalities[v0] >> 16) & 0xffff);
     }
 
     v1 += (4 * 2);
@@ -951,7 +949,7 @@ void ov104_0222F650(int param0, int param1, void *param2, void *param3)
     const u16 *v3 = param2;
 
     v1 = 0;
-    v2->unk_A1A++;
+    v2->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -962,20 +960,20 @@ void ov104_0222F650(int param0, int param1, void *param2, void *param3)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        v2->unk_26C[v0] = v3[v0];
+        v2->monSetIDs[v0] = v3[v0];
     }
 
     v1 += 4;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v2->unk_274[v0] = v3[v0 + v1];
+        v2->opponentMonIVs[v0] = v3[v0 + v1];
     }
 
     v1 += 4;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v2->unk_278[v0] = v3[v0 + v1];
-        v2->unk_278[v0] |= (v3[v0 + v1 + 4] << 16);
+        v2->opponentMonPersonalities[v0] = v3[v0 + v1];
+        v2->opponentMonPersonalities[v0] |= (v3[v0 + v1 + 4] << 16);
     }
 
     v1 += (4 * 2);
@@ -1004,7 +1002,7 @@ void ov104_0222F6E8(int param0, int param1, void *param2, void *param3)
     const u16 *v2 = param2;
 
     v0 = 0;
-    v1->unk_A1A++;
+    v1->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1035,7 +1033,7 @@ void ov104_0222F730(int param0, int param1, void *param2, void *param3)
     const u16 *v2 = param2;
 
     v0 = 0;
-    v1->unk_A1A++;
+    v1->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1079,7 +1077,7 @@ void ov104_0222F7BC(int param0, int param1, void *param2, void *param3)
     const u8 *v6 = param2;
 
     v2 = 0;
-    v5->unk_A1A++;
+    v5->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;

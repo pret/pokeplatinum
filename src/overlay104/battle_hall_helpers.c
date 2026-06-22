@@ -1258,7 +1258,7 @@ void BattleHall_PickNextOpponentPokemon(u8 numOpponentsToPick, u8 selectedType, 
     // For the Silver print battle, the opponent is selected from the group in
     // which the player's species is
     // For the Gold print battle, the opponent is from Group 4
-    if (battleType != HALL_NEXT_BATTLE_NORMAL) {
+    if (battleType != FRONTIER_NEXT_BATTLE_NORMAL) {
         u16 i, playersMonIndex;
         for (i = 0; i < NELEMS(sBattleHallPotentialOpponents); i++) {
             if (playersSpecies == sBattleHallPotentialOpponents[i]) {
@@ -1282,7 +1282,7 @@ void BattleHall_PickNextOpponentPokemon(u8 numOpponentsToPick, u8 selectedType, 
             playersMonsGroup = NELEMS(sMatchupGroupRanges) - 1;
         }
 
-        if (battleType == HALL_NEXT_BATTLE_GOLD) {
+        if (battleType == FRONTIER_NEXT_BATTLE_GOLD) {
             matchupRange = &sMatchupGroupRanges[NELEMS(sMatchupGroupRanges) - 1];
         } else {
             matchupRange = &sMatchupGroupRanges[playersMonsGroup];
