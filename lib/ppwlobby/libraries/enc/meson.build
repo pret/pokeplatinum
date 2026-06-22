@@ -12,6 +12,4 @@ libdwcenc_dep = declare_dependency(
     link_with: libdwcenc
 )
 
-meson.override_dependency('libdwcenc', libdwcenc_dep)
-
 ppwlobby_libs += libdwcenc

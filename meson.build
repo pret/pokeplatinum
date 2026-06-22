@@ -19,25 +19,7 @@ toplevel_includes = include_directories('.')
 ############################################################
 ###                    COMPILER FLAGS                    ###
 ############################################################
-c_args = [
-    '-proc', 'arm946e',
-    '-enum', 'int',
-    '-lang', 'c99',
-    '-Cpp_exceptions', 'off',
-    '-gccext,on',
-    '-msgstyle', 'gcc',
-    '-ipa', 'file',
-    '-interworking',
-    '-inline', 'on,noauto',
-    '-char', 'signed',
-    '-nosyspath',
-    '-stdinc',
-    '-sym', 'on',
-    '-DPOKEPLATINUM_GENERATED_ENUM',
-    '-D_MSL_RESTRICT=',
-]
-
-cpp_args = [
+shared_args = [
     '-proc', 'arm946e',
     '-enum', 'int',
     '-Cpp_exceptions', 'off',
@@ -52,28 +34,29 @@ cpp_args = [
     '-sym', 'on',
     '-DPOKEPLATINUM_GENERATED_ENUM',
     '-D_MSL_RESTRICT=',
-    '-O4,p',
-    '-RTTI', 'off',
 ]
 
 if get_option('revision') == '0'
-    c_args += [
+    shared_args += [
         '-DPOKEPLATINUM_REVISION=0'
     ]
 else
-    c_args += [
+    shared_args += [
         '-DPOKEPLATINUM_REVISION=1'
     ]
 endif
 
 if get_option('gdb_debugging')
-    c_args += [
+    shared_args += [
         '-O1,p',
 #        '-inline', 'off' todo: figure out why this makes the rom crash after the copyright screen
     ]
 else
-    c_args += '-O4,p'
+    shared_args += '-O4,p'
 endif
+
+c_args = shared_args + ['-lang', 'c99']
+cpp_args = shared_args + ['-RTTI', 'off']
 
 add_global_arguments(c_args,
     language: 'c',
