@@ -89,7 +89,7 @@ extern int tool_create(const options_t *opts) {
 
     strvec_t  excls  = { 0 };
     char     *ogcwd  = getcwd(NULL, 0);
-    char     *f_incl = (char *)opts->file_from;
+    char     *f_incl = (char *)opts->single_file;
     char     *f_excl = NULL;
     char     *data   = NULL;
     size_t    size   = 0;
