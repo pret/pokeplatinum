@@ -24,6 +24,9 @@
 /subprojects/yyjson-*/
 /subprojects/.wraplock
 
+# Metroskrew
+/tools/metroskrew/
+
 # Legacy mwrap compiler
 /tools/cw/mwrap
 

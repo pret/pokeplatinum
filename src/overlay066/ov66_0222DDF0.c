@@ -18,6 +18,7 @@
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/ov66_02234EA8.h"
 #include "overlay066/struct_ov66_0222E294.h"
+#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_0222E908.h"
 #include "overlay066/struct_ov66_0222E990.h"
 #include "overlay066/struct_ov66_02230914.h"
@@ -60,32 +61,6 @@
 #include "unk_02030EA4.h"
 #include "unk_0207E060.h"
 #include "wifi_history_save_data.h"
-
-typedef struct UnkStruct_ov66_0222E71C_t {
-    s32 unk_00;
-    u32 unk_04;
-    u16 unk_08[8];
-    UnkStruct_ov66_02231428 unk_18;
-    UnkStruct_ov66_02231428 unk_1C;
-    u16 unk_20[6];
-    u8 unk_2C[6];
-    u8 unk_32[6];
-    u8 unk_38;
-    u8 language;
-    u16 unk_3A;
-    u16 unk_3C;
-    u8 unk_3E;
-    u8 unk_3F;
-    u8 unk_40;
-    u8 unk_41;
-    u8 unk_42;
-    u8 unk_43;
-    s64 unk_44;
-    u8 unk_4C[12];
-    s32 unk_58[12];
-    u16 unk_88[2];
-    UnkStruct_ov66_0222E908 unk_8C;
-} UnkStruct_ov66_0222E71C;
 
 typedef struct {
     u16 unk_00[8];

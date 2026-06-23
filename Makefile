@@ -32,7 +32,6 @@ NINJA ?= ninja
 GIT ?= git
 
 BUILD ?= build
-ROOT_INI := $(BUILD)/root.ini
 
 UNAME_R := $(shell uname -r)
 UNAME_S := $(shell uname -s)
@@ -52,7 +51,7 @@ endif
 # Set up the compiler toolchain dependency
 SKREW_GET := tools/devtools/get_metroskrew.sh
 SKREW_VER := 0.1.3
-SKREW_DIR := $(SUBPROJ_DIR)/metroskrew
+SKREW_DIR := tools/metroskrew
 
 ifneq (,$(findstring Linux,$(UNAME_S)))
   ifeq (0,$(WSL_ACCESSING_WINDOWS))
@@ -138,19 +137,13 @@ setup_debug: $(BUILD)/build.ninja
 
 configure: $(BUILD)/build.ninja
 
-$(BUILD)/build.ninja: $(ROOT_INI) | $(BUILD) $(SKREW_EXE) meson
+$(BUILD)/build.ninja: | $(BUILD) $(SKREW_EXE) meson
 	$(MESON) setup \
 		-Drevision=$(ROM_REVISION) \
 		--wrap-mode=nopromote \
 		--native-file=meson/$(NATIVE) \
-		--native-file=$(ROOT_INI) \
 		--cross-file=meson/$(CROSS) \
-		--cross-file=$(ROOT_INI) \
 		-- $(BUILD)
-
-$(ROOT_INI): | $(BUILD)
-	echo "[constants]" > $@
-	echo "root = '$$PWD'" >> $@
 
 $(BUILD):
 	mkdir -p -- $(BUILD)
