@@ -94,6 +94,23 @@ enum {
     ITEMEFFECT_INVALID,
 };
 
+enum {
+    STATUSSHIFT_SLEEP = 0,
+    STATUSSHIFT_POISON,
+    STATUSSHIFT_BURN,
+    STATUSSHIFT_FREEZE,
+    STATUSSHIFT_PARALYSIS,
+    STATUSSHIFT_CONFUSION,
+};
+
+#define STATUSMASK_SLEEP     (1 << STATUSSHIFT_SLEEP)
+#define STATUSMASK_POISON    (1 << STATUSSHIFT_POISON)
+#define STATUSMASK_BURN      (1 << STATUSSHIFT_BURN)
+#define STATUSMASK_FREEZE    (1 << STATUSSHIFT_FREEZE)
+#define STATUSMASK_PARALYSIS (1 << STATUSSHIFT_PARALYSIS)
+#define STATUSMASK_CONFUSION (1 << STATUSSHIFT_CONFUSION)
+#define STATUSMASK_ALL       (STATUSMASK_SLEEP | STATUSMASK_POISON | STATUSMASK_BURN | STATUSMASK_FREEZE | STATUSMASK_PARALYSIS | STATUSMASK_CONFUSION)
+
 static u8 NormalizeItemEffect(u16 itemID)
 {
     ItemData *itemData = Item_Load(itemID, 0, HEAP_ID_PARTY_MENU);
@@ -114,44 +131,44 @@ static u8 NormalizeItemEffect(u16 itemID)
         return ITEMEFFECT_NONE;
     }
 
-    if (Item_Get(itemData, ITEM_PARAM_REVIVE_ALL) != 0) {
+    if (Item_Get(itemData, ITEM_PARAM_REVIVE_ALL) != FALSE) {
         Heap_Free(itemData);
         return ITEMEFFECT_SACRED_ASH;
     }
 
-    if (Item_Get(itemData, ITEM_PARAM_LEVEL_UP) != 0) {
+    if (Item_Get(itemData, ITEM_PARAM_LEVEL_UP) != FALSE) {
         Heap_Free(itemData);
         return ITEMEFFECT_RARE_CANDY;
     }
 
-    s32 itemParam = Item_Get(itemData, ITEM_PARAM_HEAL_SLEEP);
-    itemParam += (Item_Get(itemData, ITEM_PARAM_HEAL_POISON) << 1);
-    itemParam += (Item_Get(itemData, ITEM_PARAM_HEAL_BURN) << 2);
-    itemParam += (Item_Get(itemData, ITEM_PARAM_HEAL_FREEZE) << 3);
-    itemParam += (Item_Get(itemData, ITEM_PARAM_HEAL_PARALYSIS) << 4);
-    itemParam += (Item_Get(itemData, ITEM_PARAM_HEAL_CONFUSION) << 5);
+    s32 itemParam = Item_Get(itemData, ITEM_PARAM_HEAL_SLEEP) << STATUSSHIFT_SLEEP;
+    itemParam += (Item_Get(itemData, ITEM_PARAM_HEAL_POISON) << STATUSSHIFT_POISON);
+    itemParam += (Item_Get(itemData, ITEM_PARAM_HEAL_BURN) << STATUSSHIFT_BURN);
+    itemParam += (Item_Get(itemData, ITEM_PARAM_HEAL_FREEZE) << STATUSSHIFT_FREEZE);
+    itemParam += (Item_Get(itemData, ITEM_PARAM_HEAL_PARALYSIS) << STATUSSHIFT_PARALYSIS);
+    itemParam += (Item_Get(itemData, ITEM_PARAM_HEAL_CONFUSION) << STATUSSHIFT_CONFUSION);
 
     switch (itemParam) {
-    case 0x01:
+    case STATUSMASK_SLEEP:
         Heap_Free(itemData);
         return ITEMEFFECT_CURE_SLEEP;
-    case 0x02:
+    case STATUSMASK_POISON:
         Heap_Free(itemData);
         return ITEMEFFECT_CURE_POISON;
-    case 0x04:
+    case STATUSMASK_BURN:
         Heap_Free(itemData);
         return ITEMEFFECT_CURE_BURN;
-    case 0x08:
+    case STATUSMASK_FREEZE:
         Heap_Free(itemData);
         return ITEMEFFECT_CURE_FREEZE;
-    case 0x10:
+    case STATUSMASK_PARALYSIS:
         Heap_Free(itemData);
         return ITEMEFFECT_CURE_PARALYSIS;
-    case 0x20:
+    case STATUSMASK_CONFUSION:
         Heap_Free(itemData);
         return ITEMEFFECT_CURE_CONFUSION;
 
-    case 0x3F:
+    case STATUSMASK_ALL:
         if (Item_Get(itemData, ITEM_PARAM_HP_RESTORE) != FALSE) {
             Heap_Free(itemData);
             return ITEMEFFECT_RESTORE_HP; // Full Restore
@@ -161,12 +178,12 @@ static u8 NormalizeItemEffect(u16 itemID)
         }
     }
 
-    if (Item_Get(itemData, ITEM_PARAM_HEAL_ATTRACT) != 0) {
+    if (Item_Get(itemData, ITEM_PARAM_HEAL_ATTRACT) != FALSE) {
         Heap_Free(itemData);
         return ITEMEFFECT_CURE_INFATUATION;
     }
 
-    if (Item_Get(itemData, ITEM_PARAM_HP_RESTORE) != 0) {
+    if (Item_Get(itemData, ITEM_PARAM_HP_RESTORE) != FALSE) {
         Heap_Free(itemData);
         return ITEMEFFECT_RESTORE_HP;
     }
@@ -377,7 +394,7 @@ void PartyMenu_SetItemUseCallback(PartyMenuApplication *application)
 
 enum PartyMenuState PartyMenuCB_PrintThenWaitABPress(PartyMenuApplication *application)
 {
-    if (Text_IsPrinterActive(application->textPrinterID) != FALSE) {
+    if (Text_IsPrinterActive(application->textPrinterID)) {
         return PARTY_MENU_STATE_EXEC_CALLBACK;
     }
 
@@ -525,11 +542,7 @@ static enum PartyMenuState PartyMenuCB_UpdateHPBar(PartyMenuApplication *applica
 
 BOOL CheckItemSacredAsh(u16 itemID)
 {
-    if (Item_LoadParam(itemID, ITEM_PARAM_REVIVE_ALL, HEAP_ID_PARTY_MENU) != FALSE) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return !!Item_LoadParam(itemID, ITEM_PARAM_REVIVE_ALL, HEAP_ID_PARTY_MENU);
 }
 
 static u8 FindNextFaintedMember(PartyMenuApplication *application, u8 startIndex)
@@ -539,7 +552,7 @@ static u8 FindNextFaintedMember(PartyMenuApplication *application, u8 startIndex
     }
 
     for (u8 partySlot = startIndex; partySlot < MAX_PARTY_SIZE; partySlot++) {
-        if (application->partyMembers[partySlot].isPresent != FALSE && application->partyMembers[partySlot].curHP == FALSE) {
+        if (application->partyMembers[partySlot].isPresent && application->partyMembers[partySlot].curHP == 0) {
             return partySlot;
         }
     }
@@ -559,7 +572,6 @@ enum PartyMenuState PartyMenuCB_HandleSacredAsh(PartyMenuApplication *applicatio
     Pokemon *mon;
     String *string;
     u32 curHP;
-    u8 prevSlot;
 
     switch (application->sacredAshState) {
     case SACREDASH_STATE_START:
@@ -623,13 +635,13 @@ enum PartyMenuState PartyMenuCB_HandleSacredAsh(PartyMenuApplication *applicatio
         break;
 
     case SACREDASH_STATE_CHECK_LOOP:
-        if (Text_IsPrinterActive(application->textPrinterID) != FALSE) {
+        if (Text_IsPrinterActive(application->textPrinterID)) {
             break;
         }
 
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            prevSlot = application->currPartySlot;
+            u8 prevSlot = application->currPartySlot;
             application->currPartySlot = FindNextFaintedMember(application, application->currPartySlot + 1);
 
             if (application->currPartySlot != 0xFF) {
@@ -912,7 +924,7 @@ u8 PartyMenu_TeachMove_Check(PartyMenuApplication *application, Pokemon *mon)
         u16 moveID = Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
         if (moveID == application->partyMenu->learnedMove) {
-            return MON_MOVE_RESULT_ALREADY_LEARNED;
+            return TEACH_MOVE_RESULT_ALREADY_LEARNED;
         }
 
         if (moveID == MOVE_NONE) {
@@ -921,11 +933,11 @@ u8 PartyMenu_TeachMove_Check(PartyMenuApplication *application, Pokemon *mon)
     }
 
     if (Pokemon_CanLearnTM(mon, Item_TMHMNumber(application->partyMenu->usedItemID)) == FALSE) {
-        return MON_MOVE_RESULT_CANNOT_LEARN;
+        return TEACH_MOVE_RESULT_CANNOT_LEARN;
     }
 
     if (moveSlot == LEARNED_MOVES_MAX) {
-        return MON_MOVE_RESULT_MUST_FORGET_FIRST;
+        return TEACH_MOVE_RESULT_MUST_FORGET_FIRST;
     }
 
     return moveSlot;
@@ -955,7 +967,7 @@ enum PartyMenuState PartyMenuCB_TeachMove(PartyMenuApplication *application)
         application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
         break;
 
-    case MON_MOVE_RESULT_ALREADY_LEARNED:
+    case TEACH_MOVE_RESULT_ALREADY_LEARNED:
         string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_MonAlreadyKnowsMove);
         StringTemplate_Format(application->template, application->tmpString, string);
         String_Free(string);
@@ -965,7 +977,7 @@ enum PartyMenuState PartyMenuCB_TeachMove(PartyMenuApplication *application)
         application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
         break;
 
-    case MON_MOVE_RESULT_MUST_FORGET_FIRST:
+    case TEACH_MOVE_RESULT_MUST_FORGET_FIRST:
         string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_MonWantsToLearnMove);
         StringTemplate_Format(application->template, application->tmpString, string);
         String_Free(string);
@@ -976,7 +988,7 @@ enum PartyMenuState PartyMenuCB_TeachMove(PartyMenuApplication *application)
         application->stateAfterMessage = PARTY_MENU_STATE_DRAW_YES_NO_CHOICE;
         break;
 
-    case MON_MOVE_RESULT_CANNOT_LEARN:
+    case TEACH_MOVE_RESULT_CANNOT_LEARN:
         string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_MonAndMoveAreNotCompatible);
         StringTemplate_Format(application->template, application->tmpString, string);
         String_Free(string);
@@ -1112,13 +1124,9 @@ static void TeachMove(PartyMenuApplication *application, Pokemon *mon, u32 moveS
 
 static u8 BufferLearnedMoveInSlot(PartyMenuApplication *application, u8 moveSlot)
 {
-    Pokemon *mon;
-    String *string;
-    u16 moveID;
-
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-    moveID = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
-    string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_MoveSlot0 + moveSlot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    u16 moveID = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
+    String *string = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_MoveSlot0 + moveSlot);
 
     StringTemplate_SetMoveName(application->template, 0, moveID);
     StringTemplate_Format(application->template, application->tmpFormat, string);
@@ -1230,5 +1238,5 @@ void PartyMenu_GiveMail(PartyMenuApplication *application)
 static u16 GetCurrentMapLabel(PartyMenuApplication *application)
 {
     FieldSystem *fieldSystem = application->partyMenu->fieldSystem;
-    return (u16)MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
+    return MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 }

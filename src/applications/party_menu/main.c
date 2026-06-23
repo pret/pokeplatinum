@@ -5,6 +5,7 @@
 
 #include "constants/graphics.h"
 #include "constants/heap.h"
+#include "constants/menu.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
@@ -129,7 +130,7 @@ static int UpdatePokemonWithItem(PartyMenuApplication *application, Pokemon *par
 static int PartyMenu_ConfirmItemUpdate(PartyMenuApplication *application);
 static int PartyMenu_ShowItemSwapConfirmation(PartyMenuApplication *application);
 static int ProcessPokemonItemSwap(PartyMenuApplication *application);
-static int sub_0207E634(PartyMenuApplication *application);
+static int HandleContextMenuInput(PartyMenuApplication *application);
 static int ResetWindowOnInput(PartyMenuApplication *application);
 static int UpdatePokemonFormWithItem(PartyMenuApplication *application);
 static void CheckContestEligibility(PartyMenuApplication *application, Pokemon *mon, u8 slot);
@@ -394,8 +395,8 @@ static BOOL PartyMenu_Main(ApplicationManager *appMan, int *state)
     case PARTY_MENU_STATE_14:
         *state = UpdatePokemonFormWithItem(partyMenu);
         break;
-    case PARTY_MENU_STATE_15:
-        *state = sub_0207E634(partyMenu);
+    case PARTY_MENU_STATE_HANDLE_CONTEXT_MENU_INPUT:
+        *state = HandleContextMenuInput(partyMenu);
         break;
     case PARTY_MENU_STATE_16:
         *state = ProcessItemApplication(partyMenu);
@@ -572,14 +573,14 @@ static int sub_0207E5F4(PartyMenuApplication *application)
     return PARTY_MENU_STATE_GIVE_ITEM;
 }
 
-static int sub_0207E634(PartyMenuApplication *application)
+static int HandleContextMenuInput(PartyMenuApplication *application)
 {
-    u32 v0 = Menu_ProcessInput(application->contextMenu);
-
-    switch (v0) {
-    case 0xffffffff:
+    u32 input = Menu_ProcessInput(application->contextMenu);
+    switch (input) {
+    case MENU_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+
+    case MENU_CANCEL:
         Window_EraseMessageBox(&application->windows[33], 1);
         Window_EraseStandardFrame(&application->windows[35], 1);
         Window_ClearAndScheduleCopyToVRAM(&application->windows[35]);
@@ -587,19 +588,18 @@ static int sub_0207E634(PartyMenuApplication *application)
         StringList_Free(application->contextMenuChoices);
         PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
-        return 1;
-    default: {
-        PartyMenuAction v1;
-        int partyMenuState;
+        return PARTY_MENU_STATE_DEFAULT;
 
-        v1 = (PartyMenuAction)v0;
-        v1(application, &partyMenuState);
+    default: {
+        int partyMenuState;
+        PartyMenuAction action = (PartyMenuAction)input;
+        action(application, &partyMenuState);
 
         return partyMenuState;
     }
     }
 
-    return PARTY_MENU_STATE_15;
+    return PARTY_MENU_STATE_HANDLE_CONTEXT_MENU_INPUT;
 }
 
 static int WaitForPrinter(PartyMenuApplication *application)
@@ -2639,11 +2639,11 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
 {
     if (JOY_NEW(PAD_BUTTON_A)) {
         if (application->currPartySlot == PARTY_MENU_SLOT_CANCEL) {
-            if (application->hideCancel == FALSE) {
+            if (!application->hideCancel) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return PARTY_MENU_INPUT_CANCEL;
             }
-        } else if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
+        } else if (!application->partyMembers[application->currPartySlot].isEgg) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             return PARTY_MENU_INPUT_CONFIRM;
         } else {
@@ -2654,7 +2654,7 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
     }
 
     if (JOY_NEW(PAD_BUTTON_B)) {
-        if (application->hideCancel == FALSE) {
+        if (!application->hideCancel) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             application->currPartySlot = PARTY_MENU_SLOT_CANCEL;
             return PARTY_MENU_INPUT_CANCEL;
@@ -2666,7 +2666,7 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
     u8 menuInput = PartyMenu_HandleNavigationAndTouchScreen(application);
 
     if (menuInput == PARTY_MENU_INPUT_TOUCH_SCREEN) {
-        if (application->partyMembers[application->currPartySlot].isEgg != FALSE) {
+        if (application->partyMembers[application->currPartySlot].isEgg) {
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return PARTY_MENU_INPUT_NONE;
         }

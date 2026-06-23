@@ -1065,9 +1065,9 @@ void PartyMenu_PrintMemberComment_CanLearnMove(PartyMenuApplication *application
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
     u8 result = PartyMenu_TeachMove_Check(application, v0);
-    if (result == MON_MOVE_RESULT_CANNOT_LEARN) {
+    if (result == TEACH_MOVE_RESULT_CANNOT_LEARN) {
         PrintMemberMoveComment(application, slot, MOVE_COMMENT_UNABLE);
-    } else if (result == MON_MOVE_RESULT_ALREADY_LEARNED) {
+    } else if (result == TEACH_MOVE_RESULT_ALREADY_LEARNED) {
         PrintMemberMoveComment(application, slot, MOVE_COMMENT_LEARNED);
     } else {
         PrintMemberMoveComment(application, slot, MOVE_COMMENT_ABLE);

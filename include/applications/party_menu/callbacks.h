@@ -6,9 +6,9 @@
 #include "applications/party_menu/defs.h"
 
 // clang-format off
-#define MON_MOVE_RESULT_CANNOT_LEARN      ((u8)-1)
-#define MON_MOVE_RESULT_MUST_FORGET_FIRST ((u8)-2)
-#define MON_MOVE_RESULT_ALREADY_LEARNED   ((u8)-3)
+#define TEACH_MOVE_RESULT_CANNOT_LEARN      ((u8)-1)
+#define TEACH_MOVE_RESULT_MUST_FORGET_FIRST ((u8)-2)
+#define TEACH_MOVE_RESULT_ALREADY_LEARNED   ((u8)-3)
 // clang-format on
 
 void PartyMenu_SetItemUseCallback(PartyMenuApplication *application);
@@ -18,7 +18,7 @@ enum PartyMenuState PartyMenuCB_PrintThenWaitABPress(PartyMenuApplication *appli
 enum PartyMenuState PartyMenuCB_HandleSacredAsh(PartyMenuApplication *application);
 enum PartyMenuState PartyMenuCB_LevelMove_Exit(PartyMenuApplication *application);
 
-// Returns either a result code (prefix: `MON_MOVE_RESULT_`) or the first open move slot in which to learn the move.
+// Returns either a result code (prefix: `TEACH_MOVE_RESULT_`) or the first open move slot in which to learn the move.
 u8 PartyMenu_TeachMove_Check(PartyMenuApplication *application, Pokemon *mon);
 enum PartyMenuState PartyMenuCB_TeachMove(PartyMenuApplication *application);
 enum PartyMenuState PartyMenuCB_TeachMove_Exit(PartyMenuApplication *application);
