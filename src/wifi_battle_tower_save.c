@@ -125,15 +125,15 @@ void WifiBattleTowerSave_SetField(WifiBattleTowerSave *save, int fieldId, const 
 
 void WifiBattleTowerSave_AddCounters(WifiBattleTowerSave *save, u8 param1, u16 param2, u16 param3)
 {
-    if (save->unk_03 + param1 < 255) {
+    if (save->unk_03 + param1 < (u8)(-1)) {
         save->unk_03 += param1;
     }
 
-    if (save->unk_04 + param2 < 65535) {
+    if (save->unk_04 + param2 < (u16)(-1)) {
         save->unk_04 += param2;
     }
 
-    if (save->unk_06 + param3 < 65535) {
+    if (save->unk_06 + param3 < (u16)(-1)) {
         save->unk_06 += param3;
     }
 }
@@ -331,7 +331,7 @@ BOOL WifiBattleTowerRecord_UpdateBitFlag(WifiBattleTowerRecord *record, u16 bitI
 
     if (bitIdx >= 16) {
         GF_ASSERT(FALSE);
-        return 0;
+        return FALSE;
     }
 
     for (i = 0; i < bitIdx; i++) {
@@ -350,7 +350,7 @@ BOOL WifiBattleTowerRecord_UpdateBitFlag(WifiBattleTowerRecord *record, u16 bitI
         return (BOOL)((record->flags >> bitIdx) & 0x1);
     }
 
-    return 0;
+    return FALSE;
 }
 
 void WifiBattleTowerRecord_SetRngState(WifiBattleTowerRecord *record, u32 value)
@@ -366,14 +366,14 @@ u32 WifiBattleTowerRecord_GetRngState(WifiBattleTowerRecord *record)
 void FrontierEasyChatMessages_SetSentence(SaveData *saveData, int sentenceIdx, EasyChatSentence *sentence)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    EasyChatSentence_Copy(&(frontier->unk_950.easyChatMessages.sentences[sentenceIdx]), sentence);
+    EasyChatSentence_Copy(&frontier->unk_950.easyChatMessages.sentences[sentenceIdx], sentence);
 }
 
 EasyChatSentence *FrontierEasyChatMessages_GetSentence(SaveData *saveData, int sentenceIdx)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
 
-    return &(frontier->unk_950.easyChatMessages.sentences[sentenceIdx]);
+    return &frontier->unk_950.easyChatMessages.sentences[sentenceIdx];
 }
 
 void WifiBattleTowerDownloadData_MarkOpponent(WifiBattleTowerDownloadData *downloadData, u8 rank, u8 opponentIdx, RTCDate *date)
@@ -382,11 +382,11 @@ void WifiBattleTowerDownloadData_MarkOpponent(WifiBattleTowerDownloadData *downl
     u8 mask = 1;
     u16 flatIdx;
 
-    if ((opponentIdx == 0) || (opponentIdx > 200)) {
+    if (opponentIdx == 0 || opponentIdx > 200) {
         return;
     }
 
-    if ((rank == 0) || (rank > 10)) {
+    if (rank == 0 || rank > 10) {
         return;
     }
 
@@ -409,18 +409,18 @@ void WifiBattleTowerDownloadData_Reset(WifiBattleTowerDownloadData *downloadData
 static BOOL Date_IsAfter(RTCDate *dateA, RTCDate *dateB)
 {
     if (dateA->year > dateB->year) {
-        return 1;
+        return TRUE;
     }
 
     if (dateA->month > dateB->month) {
-        return 1;
+        return TRUE;
     }
 
     if (dateA->day > dateB->day) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL WifiBattleTowerDownloadData_IsOpponentMarked(WifiBattleTowerDownloadData *downloadData, u8 rank, u8 opponentIdx, RTCDate *date)
@@ -431,14 +431,14 @@ BOOL WifiBattleTowerDownloadData_IsOpponentMarked(WifiBattleTowerDownloadData *d
     RTCDate storedDate;
 
     if ((opponentIdx > 200) || (rank > 10)) {
-        return 0;
+        return FALSE;
     }
 
     Date_Decode(downloadData->lastDownloadDate, &storedDate);
 
     if (Date_IsAfter(date, &storedDate)) {
         WifiBattleTowerDownloadData_Reset(downloadData);
-        return 0;
+        return FALSE;
     }
 
     flatIdx = (rank - 1) * 200 + (opponentIdx - 1);
@@ -448,10 +448,10 @@ BOOL WifiBattleTowerDownloadData_IsOpponentMarked(WifiBattleTowerDownloadData *d
     mask <<= bitIdx;
 
     if (downloadData->downloadedOpponents[byteIdx] & mask) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL WifiBattleTowerDownloadData_HasOpponentData(WifiBattleTowerDownloadData *downloadData)
