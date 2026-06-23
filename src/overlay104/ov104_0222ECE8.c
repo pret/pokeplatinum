@@ -6,13 +6,13 @@
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 
+#include "overlay104/battle_hall.h"
 #include "overlay104/ov104_0223A7F4.h"
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_battle_castle.h"
 #include "overlay104/struct_battle_factory.h"
-#include "overlay104/struct_battle_hall.h"
 
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"

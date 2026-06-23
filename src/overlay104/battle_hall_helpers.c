@@ -1,4 +1,4 @@
-#include "overlay104/ov104_0223AF58.h"
+#include "overlay104/battle_hall_helpers.h"
 
 #include <nitro.h>
 
@@ -7,8 +7,8 @@
 #include "generated/frontier_trainers.h"
 #include "generated/trainer_classes.h"
 
+#include "overlay104/battle_hall.h"
 #include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/struct_battle_hall.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "battle_hall_save.h"

@@ -1,4 +1,4 @@
-#include "overlay104/ov104_02234DB4.h"
+#include "overlay104/battle_hall.h"
 
 #include <nitro.h>
 
@@ -7,10 +7,10 @@
 #include "struct_defs/battle_frontier.h"
 
 #include "applications/frontier/battle_hall/main.h"
+#include "overlay104/battle_hall.h"
+#include "overlay104/battle_hall_helpers.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
-#include "overlay104/ov104_0223AF58.h"
-#include "overlay104/struct_battle_hall.h"
 
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"

@@ -1,7 +1,7 @@
-#ifndef POKEPLATINUM_OV104_0223AF58_H
-#define POKEPLATINUM_OV104_0223AF58_H
+#ifndef POKEPLATINUM_BATTLE_HALL_HELPERS_H
+#define POKEPLATINUM_BATTLE_HALL_HELPERS_H
 
-#include "overlay104/struct_battle_hall.h"
+#include "overlay104/battle_hall.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "field_battle_data_transfer.h"
@@ -20,4 +20,4 @@ u8 BattleHall_GetHallMatronTypeRank(BattleHall *battleHall);
 u16 BattleHall_GetHighestLevelInParty(BattleHall *battleHall);
 fx32 BattleHall_GetLevelSquareRoot(u32 level);
 
-#endif // POKEPLATINUM_OV104_0223AF58_H
+#endif // POKEPLATINUM_BATTLE_HALL_HELPERS_H

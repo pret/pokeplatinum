@@ -9,14 +9,13 @@
 
 #include "applications/frontier/battle_hall/main.h"
 #include "global/utility.h"
+#include "overlay104/battle_hall.h"
+#include "overlay104/battle_hall_helpers.h"
 #include "overlay104/defs.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02231F74.h"
-#include "overlay104/ov104_02234DB4.h"
-#include "overlay104/ov104_0223AF58.h"
-#include "overlay104/struct_battle_hall.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
 

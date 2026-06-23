@@ -8,8 +8,8 @@
 #include "applications/frontier/battle_hall/sprites.h"
 #include "applications/frontier/battle_hall/windows.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "overlay104/battle_hall_helpers.h"
 #include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0223AF58.h"
 
 #include "battle_hall_save.h"
 #include "bg_window.h"
