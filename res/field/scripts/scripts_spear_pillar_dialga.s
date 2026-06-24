@@ -12,14 +12,14 @@ SpearPillarDialga_OnTransition:
     End
 
 SpearPillarDialga_TryEnableHallOfOrigin:
-    CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
-    CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
+    CheckGameCompleted VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
+    CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
     GoToIfSet FLAG_CAUGHT_ARCEUS, SpearPillarDialga_TryEnableHallOfOriginEnd
     SetVar VAR_HALL_OF_ORIGIN_STATE, 1
     GoTo SpearPillarDialga_TryEnableHallOfOriginEnd

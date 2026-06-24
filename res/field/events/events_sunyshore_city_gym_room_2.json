@@ -75,7 +75,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0",
+            "var": "VAR_MAP_LOCAL_0x0",
             "value": 0
         },
         {
@@ -85,7 +85,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0",
+            "var": "VAR_MAP_LOCAL_0x0",
             "value": 0
         },
         {
@@ -95,7 +95,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0",
+            "var": "VAR_MAP_LOCAL_0x0",
             "value": 0
         }
     ]

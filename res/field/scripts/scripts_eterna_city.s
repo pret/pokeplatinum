@@ -36,13 +36,13 @@
 
 EternaCity_OnTransition:
     CallIfEq VAR_ETERNA_CITY_STATE, 4, EternaCity_SetCynthiaPositionForGiveEgg
-    CheckItem ITEM_BICYCLE, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TRUE, EternaCity_CheckShouldBlockExits
+    CheckItem ITEM_BICYCLE, 1, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, TRUE, EternaCity_CheckShouldBlockExits
     End
 
 EternaCity_CheckShouldBlockExits:
-    CheckItem ITEM_EXPLORER_KIT, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TRUE, EternaCity_SetVarDontBlockExits
+    CheckItem ITEM_EXPLORER_KIT, 1, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, TRUE, EternaCity_SetVarDontBlockExits
     End
 
 EternaCity_SetVarDontBlockExits:

@@ -18,18 +18,18 @@ CanalaveCityHarborInn_CheckGameCompleted:
     End
 
 CanalaveCityHarborInn_CheckNationalDexEnabled:
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TRUE, CanalaveCityHarborInn_CheckMemberCard
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, TRUE, CanalaveCityHarborInn_CheckMemberCard
     End
 
 CanalaveCityHarborInn_CheckMemberCard:
-    CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TRUE, CanalaveCityHarborInn_CheckDistributionEventDarkrai
+    CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, TRUE, CanalaveCityHarborInn_CheckDistributionEventDarkrai
     End
 
 CanalaveCityHarborInn_CheckDistributionEventDarkrai:
-    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TRUE, CanalaveCityWestHouse_CheckWokeUpLittleBoy
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, TRUE, CanalaveCityWestHouse_CheckWokeUpLittleBoy
     End
 
 CanalaveCityWestHouse_CheckWokeUpLittleBoy:

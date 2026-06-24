@@ -47,7 +47,7 @@ Route208House_Twin:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_MAP_LOCAL_0, 1, Route208House_ExplainBerrySearcher
+    GoToIfEq VAR_MAP_LOCAL_0x0, 1, Route208House_ExplainBerrySearcher
     CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, Route208House_CertainBerriesNeedLotsOfWater
     Message Route208House_Text_DoYouForgetWherePlanted
@@ -58,7 +58,7 @@ Route208House_Twin:
 
 Route208House_GiveBerrySearcherApp:
     Message Route208House_Text_HaveThisPoketchApp
-    SetVar VAR_MAP_LOCAL_0, 1
+    SetVar VAR_MAP_LOCAL_0x0, 1
     SetVar VAR_0x8004, POKETCH_APPID_BERRYSEARCHER
     Common_GivePoketchApp
     WaitButton

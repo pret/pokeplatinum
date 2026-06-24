@@ -9,8 +9,8 @@
     ScriptEntryEnd
 
 Route221_OnTransition:
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, Route221_OnTransitionEnd
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, Route221_OnTransitionEnd
     SetFlag FLAG_HIDE_ROUTE_221_WORKER_WEST
     SetFlag FLAG_HIDE_ROUTE_221_WORKER_EAST
 Route221_OnTransitionEnd:

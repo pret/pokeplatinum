@@ -11,8 +11,8 @@
     ScriptEntryEnd
 
 HearthomeCityPokemonFanClub_OnTransition:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_YOUR_POKEMON_CORNER, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, HearthomeCityPokemonFanClub_HideReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_YOUR_POKEMON_CORNER, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, HearthomeCityPokemonFanClub_HideReporter
     ClearFlag FLAG_HIDE_HEARTHOME_CITY_POKEMON_FAN_CLUB_REPORTER
     End
 

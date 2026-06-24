@@ -13,9 +13,9 @@
     ScriptEntryEnd
 
 Route210South_OnTransition:
-    GetTimeOfDay VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TIMEOFDAY_MORNING, Route210South_SetJoggerBattle
-    GoToIfInRange VAR_MAP_LOCAL_0, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route210South_SetJoggerNoBattle
+    GetTimeOfDay VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, TIMEOFDAY_MORNING, Route210South_SetJoggerBattle
+    GoToIfInRange VAR_MAP_LOCAL_0x0, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route210South_SetJoggerNoBattle
     End
 
 Route210South_SetJoggerBattle:

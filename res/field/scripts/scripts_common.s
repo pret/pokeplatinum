@@ -362,7 +362,7 @@ CommonScript_ImpossibleToSave:
 CommonScript_SaveGame:
     SetFlag FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK
     Call CommonScript_TrySaveGame
-    SetVar VAR_MAP_LOCAL_0, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x0, VAR_RESULT
     ReturnCommonScript
     End
 
@@ -1531,12 +1531,12 @@ CommonScript_AskUseAzureFlute:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfNe VAR_0x8004, 31, CommonScript_CantUseAzureFlute
     GoToIfNe VAR_0x8005, 52, CommonScript_CantUseAzureFlute
-    CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CommonScript_CantUseAzureFlute
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CommonScript_CantUseAzureFlute
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CommonScript_CantUseAzureFlute
+    CheckGameCompleted VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, CommonScript_CantUseAzureFlute
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, CommonScript_CantUseAzureFlute
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, CommonScript_CantUseAzureFlute
     GoToIfSet FLAG_CAUGHT_ARCEUS, CommonScript_CantUseAzureFlute
     BufferPlayerName 0
     Message CommonStrings_Text_AskBlowIntoAzureFlute

@@ -9,8 +9,8 @@
     ScriptEntryEnd
 
 JubilifeTV2F_OnTransition:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, JubilifeTV2F_SetFlagHideReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, 0, JubilifeTV2F_SetFlagHideReporter
     ClearFlag FLAG_HIDE_JUBILIFE_TV_2F_REPORTER
     End
 

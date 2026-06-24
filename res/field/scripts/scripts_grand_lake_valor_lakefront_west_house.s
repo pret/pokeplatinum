@@ -9,7 +9,7 @@ GrandLakeValorLakefrontWestHouse_GameDirector:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_MAP_LOCAL_0x0001, GrandLakeValorLakefrontWestHouse_StoriesAreUnique
+    GoToIfSet FLAG_MAP_LOCAL_0x1, GrandLakeValorLakefrontWestHouse_StoriesAreUnique
     CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, GrandLakeValorLakefrontWestHouse_ImTheGameDirector
     GoToIfUnset FLAG_RECEIVED_LOCAL_DEX_DIPLOMA, GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma
@@ -27,7 +27,7 @@ GrandLakeValorLakefrontWestHouse_ImTheGameDirector:
 GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma:
     CallIfUnset FLAG_RECEIVED_LOCAL_DEX_DIPLOMA, GrandLakeValorLakefrontWestHouse_IncrementScoreLocalDexDiplomaReceived
     SetFlag FLAG_RECEIVED_LOCAL_DEX_DIPLOMA
-    SetFlag FLAG_MAP_LOCAL_0x0001
+    SetFlag FLAG_MAP_LOCAL_0x1
     Message GrandLakeValorLakefrontWestHouse_Text_SeenEverySinnohPokemon
     PlayFanfare SEQ_FANFA4
     WaitFanfare
@@ -44,7 +44,7 @@ GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma:
 GrandLakeValorLakefrontWestHouse_ShowNationalDexDiploma:
     CallIfUnset FLAG_RECEIVED_NATIONAL_DEX_DIPLOMA, GrandLakeValorLakefrontWestHouse_IncrementScoreNationalDexDiplomaReceived
     SetFlag FLAG_RECEIVED_NATIONAL_DEX_DIPLOMA
-    SetFlag FLAG_MAP_LOCAL_0x0001
+    SetFlag FLAG_MAP_LOCAL_0x1
     Message GrandLakeValorLakefrontWestHouse_Text_ObtainedEveryPokemon
     PlayFanfare SEQ_FANFA4
     WaitFanfare

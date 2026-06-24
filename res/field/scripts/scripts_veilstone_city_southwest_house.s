@@ -20,12 +20,12 @@ VeilstoneCitySouthwestHouse_Beauty:
     FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
-    GetSelectedPartySlot VAR_MAP_LOCAL_0
+    GetSelectedPartySlot VAR_MAP_LOCAL_0x0
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_0, PARTY_SLOT_NONE, VeilstoneCitySouthwestHouse_ImNotShady
-    GetPartyMonSpecies VAR_MAP_LOCAL_0, VAR_RESULT
+    GoToIfEq VAR_MAP_LOCAL_0x0, PARTY_SLOT_NONE, VeilstoneCitySouthwestHouse_ImNotShady
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x0, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, VeilstoneCitySouthwestHouse_IdBreakThatEgg
     Message VeilstoneCitySouthwestHouse_Text_LetsGetStarted
     CloseMessage
@@ -35,10 +35,10 @@ VeilstoneCitySouthwestHouse_Beauty:
     WaitSE SEQ_SE_DP_FW367
     FadeScreenIn
     WaitFadeScreen
-    BufferPartyMonNickname 0, VAR_MAP_LOCAL_0
+    BufferPartyMonNickname 0, VAR_MAP_LOCAL_0x0
     Message VeilstoneCitySouthwestHouse_Text_PokemonLooksContent
     SetFlag FLAG_DAILY_GOT_MASSAGE_VEILSTONE_CITY_SOUTHWEST_HOUSE
-    IncreasePartyMonFriendship 3, VAR_MAP_LOCAL_0
+    IncreasePartyMonFriendship 3, VAR_MAP_LOCAL_0x0
     TryGetRandomMassageGirlAccessory VAR_0x8004
     GoToIfEq VAR_0x8004, -1, VeilstoneCitySouthwestHouse_DropByAgainTomorrow
     Message VeilstoneCitySouthwestHouse_Text_IFoundThis

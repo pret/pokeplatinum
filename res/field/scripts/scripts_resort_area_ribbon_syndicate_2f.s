@@ -14,10 +14,10 @@ ResortAreaRibbonSyndicate2F_Receptionist3:
     LockAll
     FacePlayer
     GoToIfSet FLAG_DAILY_GOT_SPA_TREATMENT_RESORT_AREA_RIBBON_SYNDICATE_2F, ResortAreaRibbonSyndicate2F_OneSessionADay
-    GoToIfEq VAR_MAP_LOCAL_A, 1, ResortAreaRibbonSyndicate2F_OneSessionADay
-    GetFirstNonEggInParty VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0xA, 1, ResortAreaRibbonSyndicate2F_OneSessionADay
+    GetFirstNonEggInParty VAR_MAP_LOCAL_0x0
     BufferPlayerName 0
-    BufferPartyMonNickname 1, VAR_MAP_LOCAL_0
+    BufferPartyMonNickname 1, VAR_MAP_LOCAL_0x0
     Message ResortAreaRibbonSyndicate2F_Text_CareToHaveSpaTreatment
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, ResortAreaRibbonSyndicate2F_SeeYouAgain
@@ -83,19 +83,19 @@ ResortAreaRibbonSyndicate2F_IncreaseFriendship:
     GoTo ResortAreaRibbonSyndicate2F_LittleMoreFriendly
 
 ResortAreaRibbonSyndicate2F_MuchMoreFriendly:
-    IncreasePartyMonFriendship 30, VAR_MAP_LOCAL_0
+    IncreasePartyMonFriendship 30, VAR_MAP_LOCAL_0x0
     Call ResortAreaRibbonSyndicate2F_FinishTreatment
     Message ResortAreaRibbonSyndicate2F_Text_MuchMoreFriendly
     Return
 
 ResortAreaRibbonSyndicate2F_MoreFriendly:
-    IncreasePartyMonFriendship 10, VAR_MAP_LOCAL_0
+    IncreasePartyMonFriendship 10, VAR_MAP_LOCAL_0x0
     Call ResortAreaRibbonSyndicate2F_FinishTreatment
     Message ResortAreaRibbonSyndicate2F_Text_MoreFriendly
     Return
 
 ResortAreaRibbonSyndicate2F_LittleMoreFriendly:
-    IncreasePartyMonFriendship 5, VAR_MAP_LOCAL_0
+    IncreasePartyMonFriendship 5, VAR_MAP_LOCAL_0x0
     Call ResortAreaRibbonSyndicate2F_FinishTreatment
     Message ResortAreaRibbonSyndicate2F_Text_LittleMoreFriendly
     Return
@@ -103,7 +103,7 @@ ResortAreaRibbonSyndicate2F_LittleMoreFriendly:
 ResortAreaRibbonSyndicate2F_FinishTreatment:
     WaitSE SEQ_SE_DP_FW367
     SetFlag FLAG_DAILY_GOT_SPA_TREATMENT_RESORT_AREA_RIBBON_SYNDICATE_2F
-    SetVar VAR_MAP_LOCAL_A, 1
+    SetVar VAR_MAP_LOCAL_0xA, 1
     ApplyMovement LOCALID_RECEPTIONIST_2, ResortAreaRibbonSyndicate2F_Movement_Receptionist2MoveAside
     WaitMovement
     Return

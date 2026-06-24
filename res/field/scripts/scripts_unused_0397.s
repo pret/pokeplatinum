@@ -134,9 +134,9 @@ Unused397_Unused9:
     End
 
 Unused397_Unused10:
-    SetVar VAR_MAP_LOCAL_0, 0
+    SetVar VAR_MAP_LOCAL_0x0, 0
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x0
     GoToIfEq VAR_RESULT, 0, Unused397_Unused4
     GoTo Unused397_Unused11
     End

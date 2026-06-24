@@ -46,11 +46,11 @@ VeilstoneCityNortheastHouse_AcceptPorygon:
 
 VeilstoneCityNortheastHouse_NicknamePorygon:
     CloseMessage
-    GetPartyCount VAR_MAP_LOCAL_0
-    SubVar VAR_MAP_LOCAL_0, 1
+    GetPartyCount VAR_MAP_LOCAL_0x0
+    SubVar VAR_MAP_LOCAL_0x0, 1
     FadeScreenOut
     WaitFadeScreen
-    OpenPokemonNamingScreen VAR_MAP_LOCAL_0, VAR_RESULT
+    OpenPokemonNamingScreen VAR_MAP_LOCAL_0x0, VAR_RESULT
     CallIfNe VAR_RESULT, 1, VeilstoneCityNortheastHouse_IncrementRecordPokemonNicknamed
     FadeScreenIn
     WaitFadeScreen

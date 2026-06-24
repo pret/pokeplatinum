@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 StarkMountainRoom3_OnTransition:
-    SetVar VAR_MAP_LOCAL_0, VAR_STARK_MOUNTAIN_ROOM_3_STATE
+    SetVar VAR_MAP_LOCAL_0x0, VAR_STARK_MOUNTAIN_ROOM_3_STATE
     CallIfGe VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1, StarkMountainRoom3_HideBuck
     Call StarkMountainRoom3_TryHideHeatran
     End
@@ -22,10 +22,10 @@ StarkMountainRoom3_HideBuck:
 
 StarkMountainRoom3_TryHideHeatran:
     GoToIfSet FLAG_CAUGHT_HEATRAN, StarkMountainRoom3_HideHeatran
-    CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, StarkMountainRoom3_HideHeatran
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, StarkMountainRoom3_HideHeatran
+    CheckGameCompleted VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, StarkMountainRoom3_HideHeatran
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, StarkMountainRoom3_HideHeatran
     GoToIfUnset FLAG_TALKED_TO_BATTLEGROUND_BUCK, StarkMountainRoom3_HideHeatran
     GoToIfNe VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1, StarkMountainRoom3_HideHeatran
     ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN

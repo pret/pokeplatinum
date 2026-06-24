@@ -12,15 +12,15 @@
 
 BattleTowerElevator_OnTransition:
     CallIfNe VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 0, BattleTowerElevator_HidePoketch
-    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_MAP_LOCAL_A
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_MAP_LOCAL_0xA
     Call BattleTowerElevator_SetSingleAttendantGraphics
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_LINK_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_SINGLE, BattleTowerElevator_SetSingleAttendantGraphics
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_DOUBLE, BattleTowerElevator_SetSingleAttendantGraphics
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_WIFI, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_5, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
-    CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_6, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0xA, BATTLE_TOWER_MODE_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0xA, BATTLE_TOWER_MODE_LINK_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0xA, BATTLE_TOWER_MODE_SINGLE, BattleTowerElevator_SetSingleAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0xA, BATTLE_TOWER_MODE_DOUBLE, BattleTowerElevator_SetSingleAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0xA, BATTLE_TOWER_MODE_WIFI, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0xA, BATTLE_TOWER_MODE_5, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
+    CallIfEq VAR_MAP_LOCAL_0xA, BATTLE_TOWER_MODE_6, BattleTowerElevator_SetWiFiPlazaAttendantGraphics
     End
 
 BattleTowerElevator_HidePoketch:
@@ -71,27 +71,27 @@ BattleTowerElevator_BattleSalon:
 
 BattleTowerElevator_ElevatorAnimation:
     Call BattleTowerElevator_PlayerEnter
-    PlayElevatorAnimation VAR_MAP_LOCAL_0, 3
+    PlayElevatorAnimation VAR_MAP_LOCAL_0x0, 3
     Call BattleTowerElevator_Exit
     Return
 
 BattleTowerElevator_OnFrame_EnterBattleRoom:
     LockAll
-    SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_UP
+    SetVar VAR_MAP_LOCAL_0x0, ELEVATOR_DIR_UP
     Call BattleTowerElevator_ElevatorAnimation
     GoTo BattleTowerElevator_BattleRoomCheckWiFi
     End
 
 BattleTowerElevator_OnFrame_EnterMultiBattleRoom:
     LockAll
-    SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_UP
+    SetVar VAR_MAP_LOCAL_0x0, ELEVATOR_DIR_UP
     Call BattleTowerElevator_ElevatorAnimation
     GoTo BattleTowerElevator_MultiBattleRoom
     End
 
 BattleTowerElevator_OnFrame_EnterBattleSalon:
     LockAll
-    SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_DOWN
+    SetVar VAR_MAP_LOCAL_0x0, ELEVATOR_DIR_DOWN
     Call BattleTowerElevator_ElevatorAnimation
     GoTo BattleTowerElevator_BattleSalon
     End

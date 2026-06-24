@@ -44,7 +44,7 @@ EternaCityPokecenter1F_PokemonBreederF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_MAP_LOCAL_2, 1, EternaCityPokecenter1F_PokemonWillOpenUp
+    GoToIfEq VAR_MAP_LOCAL_0x2, 1, EternaCityPokecenter1F_PokemonWillOpenUp
     CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, EternaCityPokecenter1F_GivePoketchAppFriendshipChecker
     GetFirstNonEggInParty VAR_0x8000
@@ -58,7 +58,7 @@ EternaCityPokecenter1F_PokemonBreederF:
 
 EternaCityPokecenter1F_GivePoketchAppFriendshipChecker:
     Message EternaCityPokecenter1F_Text_ShowHowClosePokemonFeel
-    SetVar VAR_MAP_LOCAL_2, 1
+    SetVar VAR_MAP_LOCAL_0x2, 1
     SetVar VAR_0x8004, POKETCH_APPID_FRIENDSHIPCHECKER
     Common_GivePoketchApp
     WaitButton

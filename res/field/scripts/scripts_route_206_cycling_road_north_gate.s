@@ -12,9 +12,9 @@
     ScriptEntryEnd
 
 Route206CyclingRoadNorthGate_OnFrame_TryForceBiking:
-    GetPlayerMapPos VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_5
-    CallIfGe VAR_MAP_LOCAL_5, 12, Route206CyclingRoadNorthGate_ForceBikingInGateOnFrame
-    SetVar VAR_MAP_LOCAL_3, 1
+    GetPlayerMapPos VAR_MAP_LOCAL_0x4, VAR_MAP_LOCAL_0x5
+    CallIfGe VAR_MAP_LOCAL_0x5, 12, Route206CyclingRoadNorthGate_ForceBikingInGateOnFrame
+    SetVar VAR_MAP_LOCAL_0x3, 1
     End
 
 Route206CyclingRoadNorthGate_ForceBikingInGateOnFrame:
@@ -48,7 +48,7 @@ Route206CyclingRoadNorthGate_CoordEvent_OnlyBicycles:
 
 Route206CyclingRoadNorthGate_ForceBikingInGateCoordEvent:
     SetFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar VAR_MAP_LOCAL_2, 1
+    SetVar VAR_MAP_LOCAL_0x2, 1
     ReleaseAll
     End
 
@@ -65,7 +65,7 @@ Route206CyclingRoadNorthGate_Movement_PlayerWalkNorth:
 Route206CyclingRoadNorthGate_CoordEvent_ClearFlagForceBikingInGate:
     LockAll
     ClearFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar VAR_MAP_LOCAL_2, 0
+    SetVar VAR_MAP_LOCAL_0x2, 0
     ReleaseAll
     End
 
@@ -76,8 +76,8 @@ Route206CyclingRoadNorthGate_ScientistM:
     GoToIfSet FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_NORTH_GATE_EXP_SHARE, Route206CyclingRoadNorthGate_HoldingExpShareGetExpPoints
     BufferPlayerName 0
     BufferCounterpartName 1
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Route206CyclingRoadNorthGate_MetHowManyPokemonMale
+    GetPlayerGender VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_MALE, Route206CyclingRoadNorthGate_MetHowManyPokemonMale
     GoTo Route206CyclingRoadNorthGate_MetHowManyPokemonFemale
 
 Route206CyclingRoadNorthGate_MetHowManyPokemonMale:

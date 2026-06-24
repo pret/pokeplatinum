@@ -17,10 +17,10 @@ CanalaveCitySailorEldritchHouse_OnTransitionEnd:
 
 CanalaveCitySailorEldritchHouse_TryInitLunarWingEvent:
     GoToIfSet FLAG_WOKE_UP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, CanalaveCitySailorEldritchHouse_OnTransitionEnd
-    CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCitySailorEldritchHouse_OnTransitionEnd
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CanalaveCitySailorEldritchHouse_OnTransitionEnd
+    CheckGameCompleted VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, CanalaveCitySailorEldritchHouse_OnTransitionEnd
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, CanalaveCitySailorEldritchHouse_OnTransitionEnd
     SetVar VAR_LUNAR_WING_EVENT_STATE, 1
     Call CanalaveCitySailorEldritchHouse_SetLittleBoyPokefanFPositionsAtBed
     End

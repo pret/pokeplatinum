@@ -19,9 +19,9 @@
     ScriptEntryEnd
 
 CanalaveLibrary3F_OnTransition:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, CanalaveLibrary3F_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, CanalaveLibrary3F_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_MALE, CanalaveLibrary3F_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_FEMALE, CanalaveLibrary3F_SetCounterpartGraphicsLucas
     End
 
 CanalaveLibrary3F_SetCounterpartGraphicsDawn:

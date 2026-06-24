@@ -72,21 +72,21 @@ Route210GrandmaWilmaHouse_DoesntFullyTrustYou:
     End
 
 Route210GrandmaWilmaHouse_CheckCanAnyMonLearn:
-    GetPartyCount VAR_MAP_LOCAL_0
+    GetPartyCount VAR_MAP_LOCAL_0x0
 Route210GrandmaWilmaHouse_CheckMonDragonType:
-    SubVar VAR_MAP_LOCAL_0, 1
-    GetPartyMonSpecies VAR_MAP_LOCAL_0, VAR_RESULT
+    SubVar VAR_MAP_LOCAL_0x0, 1
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x0, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, Route210GrandmaWilmaHouse_TryCheckNextMon
-    GetPartyMonType VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_0
+    GetPartyMonType VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_0x0
     GoToIfEq VAR_0x8004, TYPE_DRAGON, Route210GrandmaWilmaHouse_CheckHasDracoMeteor
     GoToIfEq VAR_0x8005, TYPE_DRAGON, Route210GrandmaWilmaHouse_CheckHasDracoMeteor
     GoTo Route210GrandmaWilmaHouse_TryCheckNextMon
 
 Route210GrandmaWilmaHouse_CheckHasDracoMeteor:
-    CheckPartyMonHasMove VAR_RESULT, MOVE_DRACO_METEOR, VAR_MAP_LOCAL_0
+    CheckPartyMonHasMove VAR_RESULT, MOVE_DRACO_METEOR, VAR_MAP_LOCAL_0x0
     GoToIfEq VAR_RESULT, FALSE, Route210GrandmaWilmaHouse_PickPokemonToTeach
 Route210GrandmaWilmaHouse_TryCheckNextMon:
-    GoToIfNe VAR_MAP_LOCAL_0, 0, Route210GrandmaWilmaHouse_CheckMonDragonType
+    GoToIfNe VAR_MAP_LOCAL_0x0, 0, Route210GrandmaWilmaHouse_CheckMonDragonType
     GoTo Route210GrandmaWilmaHouse_NoPokemonCanLearn
 
 Route210GrandmaWilmaHouse_PickPokemonToTeach:

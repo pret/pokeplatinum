@@ -29,7 +29,7 @@ MiningMuseum_FossilResearcher:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_MAP_LOCAL_0x0001, MiningMuseum_ExtractingPokemon
+    GoToIfSet FLAG_MAP_LOCAL_0x1, MiningMuseum_ExtractingPokemon
     Message MiningMuseum_Text_FossilResearcherGreeting
     GoToIfUnset FLAG_RECEIVED_EXPLORER_KIT, MiningMuseum_NotYetReady
     GoToIfNe VAR_REVIVED_POKEMON_SPECIES, 0, MiningMuseum_PokemonRevival
@@ -90,7 +90,7 @@ MiningMuseum_FossilMenuContinue:
     AddMenuEntry MenuEntries_Text_Fossil_Cancel, VAR_0x8004
     ShowMenu
     GoToIfEq VAR_0x8003, 0xFF, MiningMuseum_DeclinedRevival
-    GoToIfEq VAR_0x8003, VAR_MAP_LOCAL_0, MiningMuseum_DeclinedRevival
+    GoToIfEq VAR_0x8003, VAR_MAP_LOCAL_0x0, MiningMuseum_DeclinedRevival
     CallIfEq VAR_0x8003, 0, MiningMuseum_GetOldAmberVar
     CallIfEq VAR_0x8003, 1, MiningMuseum_GetHelixFossilVar
     CallIfEq VAR_0x8003, 2, MiningMuseum_GetDomeFossilVar
@@ -104,94 +104,94 @@ MiningMuseum_FossilMenuContinue:
     GoTo MiningMuseum_ExtractingPokemon
 
 MiningMuseum_CheckHasOldAmber:
-    SetVar VAR_MAP_LOCAL_0, ITEM_OLD_AMBER
-    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x0, ITEM_OLD_AMBER
+    CheckItem VAR_MAP_LOCAL_0x0, 1, VAR_RESULT
     Return
 
 MiningMuseum_CheckHasHelixFossil:
-    SetVar VAR_MAP_LOCAL_0, ITEM_HELIX_FOSSIL
-    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x0, ITEM_HELIX_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0x0, 1, VAR_RESULT
     Return
 
 MiningMuseum_CheckHasDomeFossil:
-    SetVar VAR_MAP_LOCAL_0, ITEM_DOME_FOSSIL
-    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x0, ITEM_DOME_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0x0, 1, VAR_RESULT
     Return
 
 MiningMuseum_CheckHasRootFossil:
-    SetVar VAR_MAP_LOCAL_0, ITEM_ROOT_FOSSIL
-    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x0, ITEM_ROOT_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0x0, 1, VAR_RESULT
     Return
 
 MiningMuseum_CheckHasClawFossil:
-    SetVar VAR_MAP_LOCAL_0, ITEM_CLAW_FOSSIL
-    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x0, ITEM_CLAW_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0x0, 1, VAR_RESULT
     Return
 
 MiningMuseum_CheckHasArmorFossil:
-    SetVar VAR_MAP_LOCAL_0, ITEM_ARMOR_FOSSIL
-    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x0, ITEM_ARMOR_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0x0, 1, VAR_RESULT
     Return
 
 MiningMuseum_CheckHasSkullFossil:
-    SetVar VAR_MAP_LOCAL_0, ITEM_SKULL_FOSSIL
-    CheckItem VAR_MAP_LOCAL_0, 1, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x0, ITEM_SKULL_FOSSIL
+    CheckItem VAR_MAP_LOCAL_0x0, 1, VAR_RESULT
     Return
 
 MiningMuseum_SetOldAmberVar:
-    SetVar VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_0
+    SetVar VAR_MAP_LOCAL_0x1, VAR_MAP_LOCAL_0x0
     Return
 
 MiningMuseum_SetHelixFossilVar:
-    SetVar VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_0
+    SetVar VAR_MAP_LOCAL_0x2, VAR_MAP_LOCAL_0x0
     Return
 
 MiningMuseum_SetDomeFossilVar:
-    SetVar VAR_MAP_LOCAL_3, VAR_MAP_LOCAL_0
+    SetVar VAR_MAP_LOCAL_0x3, VAR_MAP_LOCAL_0x0
     Return
 
 MiningMuseum_SetRootFossilVar:
-    SetVar VAR_MAP_LOCAL_4, VAR_MAP_LOCAL_0
+    SetVar VAR_MAP_LOCAL_0x4, VAR_MAP_LOCAL_0x0
     Return
 
 MiningMuseum_SetClawFossilVar:
-    SetVar VAR_MAP_LOCAL_5, VAR_MAP_LOCAL_0
+    SetVar VAR_MAP_LOCAL_0x5, VAR_MAP_LOCAL_0x0
     Return
 
 MiningMuseum_SetArmorFossilVar:
-    SetVar VAR_MAP_LOCAL_6, VAR_MAP_LOCAL_0
+    SetVar VAR_MAP_LOCAL_0x6, VAR_MAP_LOCAL_0x0
     Return
 
 MiningMuseum_SetSkullFossilVar:
-    SetVar VAR_MAP_LOCAL_7, VAR_MAP_LOCAL_0
+    SetVar VAR_MAP_LOCAL_0x7, VAR_MAP_LOCAL_0x0
     Return
 
 MiningMuseum_GetOldAmberVar:
-    SetVar VAR_0x8002, VAR_MAP_LOCAL_1
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_0x1
     Return
 
 MiningMuseum_GetHelixFossilVar:
-    SetVar VAR_0x8002, VAR_MAP_LOCAL_2
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_0x2
     Return
 
 MiningMuseum_GetDomeFossilVar:
-    SetVar VAR_0x8002, VAR_MAP_LOCAL_3
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_0x3
     Return
 
 MiningMuseum_GetRootFossilVar:
-    SetVar VAR_0x8002, VAR_MAP_LOCAL_4
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_0x4
     Return
 
 MiningMuseum_GetClawFossilVar:
-    SetVar VAR_0x8002, VAR_MAP_LOCAL_5
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_0x5
     Return
 
 MiningMuseum_GetArmorFossilVar:
-    SetVar VAR_0x8002, VAR_MAP_LOCAL_6
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_0x6
     Return
 
 MiningMuseum_GetSkullFossilVar:
-    SetVar VAR_0x8002, VAR_MAP_LOCAL_7
+    SetVar VAR_0x8002, VAR_MAP_LOCAL_0x7
     Return
 
 MiningMuseum_SingleFossilRevival:
@@ -201,7 +201,7 @@ MiningMuseum_SingleFossilRevival:
     GoTo MiningMuseum_ExtractingPokemon
 
 MiningMuseum_ExtractingPokemon:
-    SetFlag FLAG_MAP_LOCAL_0x0001
+    SetFlag FLAG_MAP_LOCAL_0x1
     Message MiningMuseum_Text_ExtractingPokemonLeave
     WaitButton
     CloseMessage
@@ -236,11 +236,11 @@ MiningMuseum_PokemonRevival:
 
 MiningMuseum_NicknamePrompt:
     CloseMessage
-    GetPartyCount VAR_MAP_LOCAL_0
-    SubVar VAR_MAP_LOCAL_0, 1
+    GetPartyCount VAR_MAP_LOCAL_0x0
+    SubVar VAR_MAP_LOCAL_0x0, 1
     FadeScreenOut
     WaitFadeScreen
-    OpenPokemonNamingScreen VAR_MAP_LOCAL_0, VAR_RESULT
+    OpenPokemonNamingScreen VAR_MAP_LOCAL_0x0, VAR_RESULT
     CallIfNe VAR_RESULT, 1, MiningMuseum_RecordNickname
     FadeScreenIn
     WaitFadeScreen

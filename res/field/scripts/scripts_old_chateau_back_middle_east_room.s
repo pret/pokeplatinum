@@ -7,8 +7,8 @@
     ScriptEntryEnd
 
 OldChateauBackMiddleEastRoom_OnTransition:
-    CheckShouldShowGhost 25, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, OldChateauBackMiddleEastRoom_ShowTwin
+    CheckShouldShowGhost 25, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, 1, OldChateauBackMiddleEastRoom_ShowTwin
     SetFlag FLAG_HIDE_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN
     End
 

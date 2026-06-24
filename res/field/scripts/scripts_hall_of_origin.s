@@ -11,8 +11,8 @@
     ScriptEntryEnd
 
 HallOfOrigin_OnTransition:
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, HallOfOrigin_HideArceus
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, HallOfOrigin_HideArceus
     GoToIfSet FLAG_CAUGHT_ARCEUS, HallOfOrigin_HideArceus
     ClearFlag FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS
     End

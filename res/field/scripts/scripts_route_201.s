@@ -21,9 +21,9 @@
     ScriptEntryEnd
 
 Route201_OnTransition:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Route201_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Route201_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_MALE, Route201_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_FEMALE, Route201_SetCounterpartGraphicsLucas
     End
 
 Route201_SetCounterpartGraphicsDawn:

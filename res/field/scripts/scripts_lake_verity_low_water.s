@@ -13,9 +13,9 @@
     ScriptEntryEnd
 
 LakeVerityLowWater_OnTransition:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, LakeVerityLowWater_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, LakeVerityLowWater_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_MALE, LakeVerityLowWater_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_FEMALE, LakeVerityLowWater_SetCounterpartGraphicsLucas
     End
 
 LakeVerityLowWater_SetCounterpartGraphicsDawn:

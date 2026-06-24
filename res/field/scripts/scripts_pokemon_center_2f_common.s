@@ -32,22 +32,22 @@ PokemonCenter2FCommon_HidePlayer:
     Return
 
 PokemonCenter2FCommon_OnFrame_ExitColosseum:
-    SetVar VAR_MAP_LOCAL_0, 13
-    SetVar VAR_MAP_LOCAL_1, 5
-    SetVar VAR_MAP_LOCAL_2, 2
+    SetVar VAR_MAP_LOCAL_0x0, 13
+    SetVar VAR_MAP_LOCAL_0x1, 5
+    SetVar VAR_MAP_LOCAL_0x2, 2
     GoTo PokemonCenter2FCommon_PlayerEnter
     End
 
 PokemonCenter2FCommon_OnFrame_ExitUnionRoom:
-    SetVar VAR_MAP_LOCAL_0, 8
-    SetVar VAR_MAP_LOCAL_1, 5
-    SetVar VAR_MAP_LOCAL_2, 2
+    SetVar VAR_MAP_LOCAL_0x0, 8
+    SetVar VAR_MAP_LOCAL_0x1, 5
+    SetVar VAR_MAP_LOCAL_0x2, 2
     GoTo PokemonCenter2FCommon_PlayerEnter
     End
 
 PokemonCenter2FCommon_PlayerEnter:
     LockAll
-    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, ANIMATION_TAG_DOOR_1
+    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0x0, VAR_MAP_LOCAL_0x2, ANIMATION_TAG_DOOR_1
     Call PokemonCenter2FCommon_DoorOpenAnimation
     ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, PokemonCenter2FCommon_Movement_PlayerEnter
@@ -55,7 +55,7 @@ PokemonCenter2FCommon_PlayerEnter:
     Call PokemonCenter2FCommon_DoorCloseAnimation
     ApplyMovement LOCALID_PLAYER, PokemonCenter2FCommon_Movement_PlayerWalkToGate
     WaitMovement
-    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, ANIMATION_TAG_DOOR_1
+    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0x0, VAR_MAP_LOCAL_0x1, ANIMATION_TAG_DOOR_1
     Call PokemonCenter2FCommon_DoorOpenAnimation
     ApplyMovement LOCALID_PLAYER, PokemonCenter2FCommon_Movement_PlayerExitThroughGate
     WaitMovement
@@ -210,7 +210,7 @@ PokemonCenter2FCommon_Unused6:
 PokemonCenter2FCommon_HealPartySaveBeforeBattle:
     HealParty
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x0
     GoToIfEq VAR_RESULT, 1, PokemonCenter2FCommon_DecideLeader
     GoTo PokemonCenter2FCommon_Exit
     End
@@ -411,7 +411,7 @@ PokemonCenter2FCommon_TryEnterUnionRoom:
     SetVar VAR_COMMUNICATION_LOAD_ACTION, 2
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x0
     GoToIfEq VAR_RESULT, 1, PokemonCenter2FCommon_EnterUnionRoom
     SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE

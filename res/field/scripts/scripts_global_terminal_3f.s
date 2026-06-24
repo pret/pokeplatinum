@@ -92,7 +92,7 @@ GlobalTerminal3F_BattleVideosMachineEnd:
 
 GlobalTerminal3F_UseBattleVideosMachine:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x0
     GoToIfEq VAR_RESULT, 0, GlobalTerminal3F_BattleVideosMachineEnd
     CloseMessage
     CallCommonScript 0x802

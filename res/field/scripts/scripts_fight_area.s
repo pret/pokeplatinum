@@ -46,9 +46,9 @@ FightArea_HideRival:
     End
 
 FightArea_CheckForWeekend_Unused:
-    GetDayOfWeek VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, FightArea_ActivateRivalFight_Unused
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, FightArea_ActivateRivalFight_Unused
+    GetDayOfWeek VAR_MAP_LOCAL_0x0
+    GoToIfEq VAR_MAP_LOCAL_0x0, DAY_OF_WEEK_SUNDAY, FightArea_ActivateRivalFight_Unused
+    GoToIfEq VAR_MAP_LOCAL_0x0, DAY_OF_WEEK_SATURDAY, FightArea_ActivateRivalFight_Unused
     End
 
 FightArea_ActivateRivalFight_Unused:

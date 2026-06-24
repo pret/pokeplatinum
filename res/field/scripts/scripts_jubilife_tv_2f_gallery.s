@@ -25,8 +25,8 @@ JubilifeTV2FGallery_Hiker:
     FacePlayer
     SetVar VAR_0x8007, 0
     CallIfUnset FLAG_ENTERED_DRESSING_ROOM, _006F
-    GoToIfEq VAR_MAP_LOCAL_1, 0, JubilifeTV2FGallery_AskDressUpPokemon
-    GoToIfEq VAR_MAP_LOCAL_1, 1, JubilifeTV2FGallery_AskDressUpPokemonChangePhoto
+    GoToIfEq VAR_MAP_LOCAL_0x1, 0, JubilifeTV2FGallery_AskDressUpPokemon
+    GoToIfEq VAR_MAP_LOCAL_0x1, 1, JubilifeTV2FGallery_AskDressUpPokemonChangePhoto
     End
 
 _006F:
@@ -71,7 +71,7 @@ JubilifeTV2FGallery_SetPokemonForDressUp:
     End
 
 JubilifeTV2FGallery_SetOnlyPokemonForDressUp:
-    SetVar VAR_MAP_LOCAL_2, 0
+    SetVar VAR_MAP_LOCAL_0x2, 0
     GoTo JubilifeTV2FGallery_DressItUpAdorably
 
 JubilifeTV2FGallery_ChoosePokemonForDressUp:
@@ -80,12 +80,12 @@ JubilifeTV2FGallery_ChoosePokemonForDressUp:
     FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
-    GetSelectedPartySlot VAR_MAP_LOCAL_2
+    GetSelectedPartySlot VAR_MAP_LOCAL_0x2
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_2, 0xFF, JubilifeTV2FGallery_WheresYourSenseOfAdventure
-    GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_RESULT
+    GoToIfEq VAR_MAP_LOCAL_0x2, 0xFF, JubilifeTV2FGallery_WheresYourSenseOfAdventure
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x2, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, JubilifeTV2FGallery_ThatsAnEgg
     GoTo JubilifeTV2FGallery_DressItUpAdorably
 
@@ -123,7 +123,7 @@ JubilifeTV2FGallery_EnterDressingRoom:
     SetFlag FLAG_ENTERED_DRESSING_ROOM
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A6 VAR_MAP_LOCAL_2, VAR_0x8005, VAR_0x8007
+    ScrCmd_0A6 VAR_MAP_LOCAL_0x2, VAR_0x8005, VAR_0x8007
     ReturnToField
     ApplyMovement LOCALID_PLAYER, JubilifeTV2FGallery_Movement_PlayerFaceSouth
     WaitMovement
@@ -157,7 +157,7 @@ JubilifeTV2FGallery_ExitDressingRoomEast:
 
 JubilifeTV2FGallery_CheckDressUpPokemonResult:
     GoToIfEq VAR_0x8005, 0, JubilifeTV2FGallery_CameOutWithoutDoingAnything
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x1, 1
     Message JubilifeTV2FGallery_Text_ItNeedsATitle
     WaitButton
     CloseMessage
