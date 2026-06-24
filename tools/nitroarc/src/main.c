@@ -115,7 +115,7 @@ static const option_cfg_t s_options[] = {
 
     [exclude]      = { "exclude",      NULL, 'E', 0, true  },
     [exclude_from] = { "exclude-from", NULL, 'X', 0, true  },
-    [single_file]  = { "single-file",  NULL, 'S', 0, true  },
+    [single_file]  = { "single-file",  NULL, 'O', 0, true  },
     [files_from]   = { "files-from",   NULL, 'T', 0, true  },
     [index]        = { "index",        NULL, 'I', 0, false },
     [no_recurse]   = { "no-recursion", NULL, 'R', 0, false },
@@ -218,11 +218,11 @@ static void exit_help(const char *name, int exit_status) {
     puts("Archive creation options:");
     puts("  -E, --exclude=PATTERN    exclude filenames matching PATTERN");
     puts("  -X, --exclude-from=FILE  read exclusion patterns from FILE");
-    puts("  -S, --single-file=FILE   specify FILE as the only member file");
     puts("  -T, --files-from=FILE    read ordered filenames from FILE");
     puts("  -I, --index              create a C-header index of member files");
     puts("  -N, --named              retain filenames in the archive");
     puts("  -R, --no-recursion       do not discover files in subdirectories");
+    puts("  -O, --single-file=FILE   specify FILE as the only member file");
     puts("  -S, --stripped           do not write the signed file-type header");
     puts("");
     puts("Tabulated data options:");
