@@ -9,7 +9,8 @@ word_bank_object = custom_target(
         '-I', meson.global_source_root() / 'subprojects' / 'NitroSDK-4.2.30001' / 'include',
         '-c', '-o', '@OUTPUT@',
         '@INPUT@',
-    ]
+    ],
+    depends: text_banks,
 )
 
 word_bank = custom_target(
@@ -24,7 +25,7 @@ word_bank = custom_target(
     ],
     build_subdir: 'word_bank.narc.p'
 )
- 
+
 word_bank_narc = custom_target('word_bank.narc',
     output: [
         'word_bank.narc',
