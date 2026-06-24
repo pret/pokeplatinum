@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_APPLICATIONS_BATTLE_HALL_MAIN_H
 #define POKEPLATINUM_APPLICATIONS_BATTLE_HALL_MAIN_H
 
-#include "overlay104/struct_battle_hall.h"
+#include "overlay104/battle_hall.h"
 
 #include "overlay_manager.h"
 #include "party.h"

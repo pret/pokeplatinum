@@ -6580,9 +6580,9 @@ static BOOL ScrCmd_LaunchBattleFrontierScene(ScriptContext *ctx)
     *dataPtr = fieldData;
 
     if (sceneID == FRONTIER_SCENE_TOWER_CORRIDOR || sceneID == FRONTIER_SCENE_TOWER_MULTI_CORRIDOR) {
-        fieldData->unk_00 = ctx->fieldSystem->battleTower;
+        fieldData->facilityData = ctx->fieldSystem->battleTower;
     } else {
-        fieldData->unk_00 = NULL;
+        fieldData->facilityData = NULL;
     }
 
     fieldData->options = SaveData_GetOptions(ctx->fieldSystem->saveData);

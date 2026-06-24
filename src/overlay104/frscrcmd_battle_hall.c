@@ -8,14 +8,14 @@
 #include "struct_decls/tv_broadcast.h"
 
 #include "applications/frontier/battle_hall/main.h"
+#include "global/utility.h"
+#include "overlay104/battle_hall.h"
+#include "overlay104/battle_hall_helpers.h"
 #include "overlay104/defs.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02231F74.h"
-#include "overlay104/ov104_02234DB4.h"
-#include "overlay104/ov104_0223AF58.h"
-#include "overlay104/struct_battle_hall.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
 
@@ -49,25 +49,24 @@ BOOL FrontierScrCmd_InitBattleHall(FrontierScriptContext *ctx)
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     BattleHall *battleHall = BattleHall_Init(fieldData->saveData, resumingFromSave, challengeType, partySlot1, partySlot2);
 
-    sub_0209B980(ctx->scriptMan->frontier, battleHall);
+    BattleFrontier_SetFacilityStruct(ctx->scriptMan->frontier, battleHall);
 
     return FALSE;
 }
 
-BOOL FrontierScrCmd_8C(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleHall_SetupNextOpponent(FrontierScriptContext *ctx)
 {
-    BattleHall *v0;
-    u16 v1 = FrontierScriptContext_GetVar(param0);
+    u16 unused = FrontierScriptContext_GetVar(ctx);
 
-    v0 = sub_0209B978(param0->scriptMan->frontier);
-    ov104_022350B0(v0, v1);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleHall_SetupNextOpponent(battleHall, unused);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_FreeBattleHall(FrontierScriptContext *ctx)
 {
-    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->frontier);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     BattleHall_Free(battleHall);
 
     return FALSE;
@@ -86,7 +85,7 @@ BOOL FrontierScrCmd_OpenBattleHallApp(FrontierScriptContext *ctx)
         FS_OVERLAY_ID(battle_hall_app)
     };
 
-    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->frontier);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     BattleHallAppArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleHallAppArgs));
 
     MI_CpuClear8(args, sizeof(BattleHallAppArgs));
@@ -120,7 +119,7 @@ BOOL FrontierScrCmd_OpenBattleHallApp(FrontierScriptContext *ctx)
 
 BOOL FrontierScrCmd_BattleHall_CleanupBattle(FrontierScriptContext *ctx)
 {
-    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->frontier);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     FieldBattleDTO *dto = battleHall->dto;
 
     battleHall->wonBattle = CheckPlayerWonBattle(dto->resultMask);
@@ -132,9 +131,9 @@ BOOL FrontierScrCmd_BattleHall_CleanupBattle(FrontierScriptContext *ctx)
 BOOL FrontierScrCmd_BattleHall_StartBattle(FrontierScriptContext *ctx)
 {
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
-    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->frontier);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    FieldBattleDTO *dto = FieldBattleDTO_NewBattleHall(battleHall, fieldData);
+    FieldBattleDTO *dto = BattleHall_SetupBattle(battleHall, fieldData);
     battleHall->dto = dto;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
@@ -152,15 +151,14 @@ static void StoreBattleHallAppResult(void *data)
 
 BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
 {
-    u8 v4, partySize;
-    u32 v6;
+    u8 rank, partySize;
     u8 command = FrontierScriptContext_ReadByte(ctx);
     u8 arg1 = FrontierScriptContext_ReadByte(ctx);
     u8 arg2 = FrontierScriptContext_ReadByte(ctx);
     u16 *returnVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
-    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->frontier);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
     switch (command) {
     case BH_FUNC_SET_CHALLENGE_TYPE:
@@ -180,33 +178,33 @@ BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
     case BH_FUNC_RESET_SYSTEM:
         OS_ResetSystem(0);
         break;
-    case BH_FUNC_UNK_9:
+    case BH_FUNC_CHECK_HAS_SAVED:
         *returnVar = BattleHallSave_HasSaved(battleHall->hallSave);
         break;
     case BH_FUNC_QUICKSAVE:
         BattleHall_Save(battleHall, 2);
         break;
-    case BH_FUNC_UNK_14:
-        *returnVar = ov104_022354B0(battleHall);
+    case BH_FUNC_INCREMENT_CURRENT_BATTLE:
+        *returnVar = BattleHall_IncrementCurrentBattle(battleHall);
         break;
-    case BH_FUNC_UNK_19:
-        if (battleHall->challengeType == 2) {
+    case BH_FUNC_GET_CURRENT_ROUND:
+        if (battleHall->challengeType == FRONTIER_CHALLENGE_MULTI) {
             *returnVar = 10;
         } else {
             *returnVar = battleHall->currentRound;
         }
         break;
-    case BH_FUNC_UNK_20:
-        *returnVar = ov104_022354C0(battleHall, arg1);
+    case BH_FUNC_GET_OPPONENT_OBJECT_ID:
+        *returnVar = BattleHall_GetNextOpponentObjectID(battleHall, arg1);
         break;
-    case BH_FUNC_UNK_21:
-        ov104_022354F4(battleHall);
+    case BH_FUNC_SAVE_ON_LOSS:
+        BattleHall_SaveOnLoss(battleHall);
         break;
-    case BH_FUNC_UNK_22:
-        ov104_02235518(battleHall);
+    case BH_FUNC_SAVE_ON_COMPLETING_ROUND:
+        BattleHall_SaveOnCompletingRound(battleHall);
         break;
-    case BH_FUNC_UNK_23:
-        *returnVar = ov104_022354BC(battleHall);
+    case BH_FUNC_GET_CURRENT_BATTLE:
+        *returnVar = BattleHall_GetCurrentBattle(battleHall);
         break;
     case BH_FUNC_UNK_24:
         *returnVar = battleHall->unk_D88;
@@ -220,11 +218,11 @@ BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
             Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &battleHall->heldItems[i]);
         }
     } break;
-    case BH_FUNC_UNK_28:
-        v4 = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->typeRanks[battleHall->challengeType][0]);
+    case BH_FUNC_INCREMENT_RANK_OF_BEATEN_TYPE:
+        rank = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->typeRanks[battleHall->challengeType][0]);
 
-        if (v4 < 10) {
-            BattleHall_SetRankOfType(battleHall->selectedTypeIdx, &battleHall->typeRanks[battleHall->challengeType][0], v4 + 1);
+        if (rank < HALL_MAX_TYPE_RANK) {
+            BattleHall_SetRankOfType(battleHall->selectedTypeIdx, &battleHall->typeRanks[battleHall->challengeType][0], rank + 1);
         }
         break;
     case BH_FUNC_UNK_29:
@@ -243,35 +241,35 @@ BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
         }
         break;
-    case BH_FUNC_UNK_32:
-        ov104_0222E278(&(battleHall->unk_40[0]), battleHall->trainerIDs[battleHall->unk_05 * 2], HEAP_ID_FIELD2, 178);
-        ov104_0222E278(&(battleHall->unk_40[1]), battleHall->trainerIDs[battleHall->unk_05 * 2 + 1], HEAP_ID_FIELD2, 178);
+    case BH_FUNC_LOAD_TRAINERS:
+        BattleFrontier_LoadTrainer(&battleHall->opponents[0], battleHall->trainerIDs[battleHall->currentBattle * 2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+        BattleFrontier_LoadTrainer(&battleHall->opponents[1], battleHall->trainerIDs[battleHall->currentBattle * 2 + 1], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         break;
-    case BH_FUNC_UNK_33:
+    case BH_FUNC_GET_RANK_OF_BEATEN_TYPE:
         *returnVar = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->typeRanks[battleHall->challengeType][0]);
         break;
-    case BH_FUNC_UNK_34:
-        *returnVar = ov104_02235578(battleHall);
+    case BH_FUNC_GET_EARNED_BP:
+        *returnVar = BattleHall_GetEarnedBP(battleHall);
         break;
-    case BH_FUNC_UNK_15: {
-        Party *v2 = SaveData_GetParty(fieldData->saveData);
-        Pokemon *v1 = Party_GetPokemonBySlotIndex(v2, battleHall->partySlots[0]);
-        *returnVar = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+    case BH_FUNC_GET_PLAYERS_MONS_SPECIES: {
+        Party *party = SaveData_GetParty(fieldData->saveData);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleHall->partySlots[0]);
+        *returnVar = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     } break;
-    case BH_FUNC_UNK_35:
-        ov104_022356A0(battleHall);
+    case BH_FUNC_CAP_TYPE_RANKS:
+        BattleHall_CapTypeRanks(battleHall);
         break;
     case BH_FUNC_SET_BASE_LEVEL:
         BattleHall_CalcPlayerLevelSqrt(battleHall);
         break;
-    case BH_FUNC_UNK_37:
-        *returnVar = 0;
+    case BH_FUNC_GET_NEXT_BATTLE_TYPE:
+        *returnVar = HALL_NEXT_BATTLE_NORMAL;
 
-        if (battleHall->challengeType == 0) {
-            if ((battleHall->currentStreak + 1) == 50) {
-                *returnVar = 1;
-            } else if ((battleHall->currentStreak + 1) == 170) {
-                *returnVar = 2;
+        if (battleHall->challengeType == FRONTIER_CHALLENGE_SINGLE) {
+            if (battleHall->currentStreak + 1 == HALL_STREAK_SILVER_BATTLE) {
+                *returnVar = HALL_NEXT_BATTLE_SILVER;
+            } else if (battleHall->currentStreak + 1 == HALL_STREAK_GOLD_BATTLE) {
+                *returnVar = HALL_NEXT_BATTLE_GOLD;
             }
         }
         break;
@@ -286,96 +284,87 @@ BOOL FrontierScrCmd_BattleHall_CheckWonBattle(FrontierScriptContext *ctx)
 {
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->frontier);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     *destVar = battleHall->wonBattle;
 
     return FALSE;
 }
 
-BOOL FrontierScrCmd_93(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleHall_SendCommMessage(FrontierScriptContext *ctx)
 {
-    BattleHall *v0;
-    u16 v1 = FrontierScriptContext_GetVar(param0);
-    u16 v2 = FrontierScriptContext_GetVar(param0);
-    u16 *v3 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 command = FrontierScriptContext_GetVar(ctx);
+    u16 arg = FrontierScriptContext_GetVar(ctx);
+    u16 *success = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v0 = sub_0209B978(param0->scriptMan->frontier);
-    *v3 = ov104_02235534(v0, v1, v2);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    *success = BattleHall_SendCommMessage(battleHall, command, arg);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_94(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_94(FrontierScriptContext *ctx)
 {
-    u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
+    u16 v0 = FrontierScriptContext_ReadHalfWord(ctx);
 
-    param0->data[0] = v0;
-    FrontierScriptContext_Pause(param0, ov104_02234CEC);
+    ctx->data[0] = v0;
+    FrontierScriptContext_Pause(ctx, ov104_02234CEC);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov104_02234CEC(FrontierScriptContext *param0)
+static BOOL ov104_02234CEC(FrontierScriptContext *ctx)
 {
-    BattleHall *v0;
-    u16 v1 = FrontierScriptContext_TryGetVar(param0, param0->data[0]);
+    u16 v1 = FrontierScriptContext_TryGetVar(ctx, ctx->data[0]);
 
-    v0 = sub_0209B978(param0->scriptMan->frontier);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (v0->unk_D90 >= 2) {
-        v0->unk_D90 = 0;
-        return 1;
+    if (battleHall->unk_D90 >= 2) {
+        battleHall->unk_D90 = 0;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_95(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleHall_PrintTrainerIntro(FrontierScriptContext *ctx)
 {
-    u16 *v0;
-    BattleHall *v1;
-    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
-    u16 v3 = FrontierScriptContext_ReadByte(param0);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    u16 index = FrontierScriptContext_ReadByte(ctx);
 
-    v1 = sub_0209B978(param0->scriptMan->frontier);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (v1 == NULL) {
+    if (battleHall == NULL) {
         return 0;
     }
 
-    v0 = v1->unk_40[v3].trDataDTO.introMsg;
+    u16 *introMsg = battleHall->opponents[index].trDataDTO.introMsg;
 
-    ov104_022330FC(param0, v0);
-    return 1;
+    BattleFrontier_PrintNormalTrainerMessage(ctx, introMsg);
+    return TRUE;
 }
 
 BOOL FrontierScrCmd_BattleHall_UpdateWinRecord(FrontierScriptContext *ctx)
 {
     u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
-    BattleHall *battleHall = sub_0209B978(ctx->scriptMan->frontier);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     BattleHall_UpdateWinRecordForCurrentMon(battleHall, destVar);
 
     return TRUE;
 }
 
-BOOL FrontierScrCmd_C7(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_C7(FrontierScriptContext *ctx)
 {
-    TVBroadcast *broadcast;
-    u16 v1;
-    Party *v2;
-    Pokemon *v3;
-    BattleHall *v4;
-    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
-    v4 = sub_0209B978(param0->scriptMan->frontier);
-    v2 = SaveData_GetParty(fieldData->saveData);
-    v3 = Party_GetPokemonBySlotIndex(v2, v4->partySlots[0]);
-    v1 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
+    BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    Party *party = SaveData_GetParty(fieldData->saveData);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleHall->partySlots[0]);
+    UNUSED(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL));
 
-    if (v4->challengeType == 0) {
-        broadcast = SaveData_GetTVBroadcast(fieldData->saveData);
-        sub_0206D048(broadcast, v3);
+    if (battleHall->challengeType == 0) {
+        TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldData->saveData);
+        sub_0206D048(broadcast, mon);
     }
 
-    return 0;
+    return FALSE;
 }
