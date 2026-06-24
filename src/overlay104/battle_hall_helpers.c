@@ -1322,13 +1322,11 @@ void BattleHall_PickNextOpponentPokemon(u8 numOpponentsToPick, u8 selectedType, 
                     opponentIndices[currentBattleIndex + opponentsFound] = opponentIndex + 1;
                     opponentsFound++;
                 }
-            } else {
-                if (selectedType == sBattleHallPotentialOpponentTypes[opponentIndex][0] || selectedType == sBattleHallPotentialOpponentTypes[opponentIndex][1]) {
-                    if (playersSpecies != sBattleHallPotentialOpponents[opponentIndex]) {
-                        opponentIndices[currentBattleIndex + opponentsFound] = opponentIndex + 1;
+            } else if (selectedType == sBattleHallPotentialOpponentTypes[opponentIndex][0] || selectedType == sBattleHallPotentialOpponentTypes[opponentIndex][1]) {
+                if (playersSpecies != sBattleHallPotentialOpponents[opponentIndex]) {
+                    opponentIndices[currentBattleIndex + opponentsFound] = opponentIndex + 1;
 
-                        opponentsFound++;
-                    }
+                    opponentsFound++;
                 }
             }
         }
@@ -1463,21 +1461,17 @@ static u32 BattleHall_GetBattleType(u8 challengeType)
 
 u8 BattleHall_GetPlayerPartySize(u8 challengeType)
 {
-    switch (challengeType) {
-    case FRONTIER_CHALLENGE_DOUBLE:
+    if (challengeType == FRONTIER_CHALLENGE_DOUBLE) {
         return 2;
     }
-
     return 1;
 }
 
 u8 BattleHall_GetOpponentPartySize(u8 challengeType)
 {
-    switch (challengeType) {
-    case FRONTIER_CHALLENGE_DOUBLE:
+    if (challengeType == FRONTIER_CHALLENGE_DOUBLE) {
         return 2;
     }
-
     return 1;
 }
 

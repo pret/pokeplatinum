@@ -766,7 +766,7 @@
     .short \partySlot2
     .endm
 
-    .macro BattleHall_SetupNextOpponent unused
+    .macro BattleHall_SetupNextOpponent unused=VAR_0x8003
     .short FRSCRCMD_BATTLEHALL_SETUP_NEXT_OPPONENT
     .short \unused
     .endm

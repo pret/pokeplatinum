@@ -627,7 +627,7 @@ _0611:
     CallBattleHallFunction BH_FUNC_TOGGLE_ENGINE_LAYER, 0, 0, VAR_0x8008
     CallBattleHallFunction BH_FUNC_SET_BASE_LEVEL, 0, 0, VAR_0x8008
     FadeScreenIn
-    BattleHall_SetupNextOpponent VAR_0x8003
+    BattleHall_SetupNextOpponent
     GoTo _0665
     End
 

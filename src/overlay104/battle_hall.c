@@ -303,7 +303,7 @@ void BattleHall_SaveOnCompletingRound(BattleHall *battleHall)
 {
     battleHall->saveStreak = TRUE;
 
-    if (battleHall->currentRound < 18) {
+    if (battleHall->currentRound < HALL_MAX_DISTINCT_ROUNDS) {
         battleHall->currentRound++;
     }
 
@@ -339,18 +339,18 @@ BOOL BattleHall_SendCommMessage(BattleHall *battleHall, u16 command, u16 arg)
 u16 BattleHall_GetEarnedBP(BattleHall *battleHall)
 {
     u8 bp;
-    static const u8 sBPPerRoundSolo[18 + 1] = { 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 6, 6, 8, 8, 10, 10, 12 };
-    static const u8 sBPPerRoundWiFi[18 + 1] = { 0, 6, 6, 6, 8, 8, 8, 10, 10, 10, 12, 12, 14, 15, 17, 17, 20, 20, 23 };
+    static const u8 sBPPerRoundSolo[HALL_MAX_DISTINCT_ROUNDS + 1] = { 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 6, 6, 8, 8, 10, 10, 12 };
+    static const u8 sBPPerRoundWiFi[HALL_MAX_DISTINCT_ROUNDS + 1] = { 0, 6, 6, 6, 8, 8, 8, 10, 10, 10, 12, 12, 14, 15, 17, 17, 20, 20, 23 };
 
     if (battleHall->challengeType == FRONTIER_CHALLENGE_SINGLE || battleHall->challengeType == FRONTIER_CHALLENGE_DOUBLE) {
-        if (battleHall->currentRound >= 18) {
-            bp = sBPPerRoundSolo[18];
+        if (battleHall->currentRound >= HALL_MAX_DISTINCT_ROUNDS) {
+            bp = sBPPerRoundSolo[HALL_MAX_DISTINCT_ROUNDS];
         } else {
             bp = sBPPerRoundSolo[battleHall->currentRound];
         }
     } else {
-        if (battleHall->currentRound >= 18) {
-            bp = sBPPerRoundWiFi[18];
+        if (battleHall->currentRound >= HALL_MAX_DISTINCT_ROUNDS) {
+            bp = sBPPerRoundWiFi[HALL_MAX_DISTINCT_ROUNDS];
         } else {
             bp = sBPPerRoundWiFi[battleHall->currentRound];
         }
@@ -445,11 +445,10 @@ static u16 BattleHall_CalcOpponentsLevel(BattleHall *battleHall)
     float rankFactor = FX_FX32_TO_F32(battleHall->playerLevelSqrt) * 5.0;
 
     if (playersLevel / rankFactor < 1.0) {
-        rankFactor = 1.0;
         rankFactor = typeRank + 1 - 1;
     } else {
-        fx32 v1 = FX32_CONST(typeRank * playersLevel);
-        rankFactor = (FX_FX32_TO_F32(v1) / rankFactor);
+        fx32 product = FX32_CONST(typeRank * playersLevel);
+        rankFactor = FX_FX32_TO_F32(product) / rankFactor;
     }
 
     float numBattledTypesFactor = 0.0;
