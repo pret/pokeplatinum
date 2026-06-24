@@ -134,7 +134,7 @@ void FieldBGM_ClearOverride(FieldSystem *fieldSystem)
     *bgm = SEQ_NONE;
 }
 
-u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeader mapID)
+u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapID)
 {
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int playerState = PlayerAvatar_GetPlayerState(playerAvatar);

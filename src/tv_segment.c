@@ -2448,7 +2448,7 @@ static int TVSegment_LoadMessage_BerryLookout(FieldSystem *fieldSystem, StringTe
 {
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
     int patchID = BerryLookout_GetVisitedPatch(fieldSystem);
-    enum MapHeader headerID = sBerryLookoutPatchInfo[patchID * 2 + 1];
+    enum MapHeaderID headerID = sBerryLookoutPatchInfo[patchID * 2 + 1];
     StringTemplate_SetLocationName(template, 0, MapHeader_GetMapLabelTextID(headerID));
 
     switch (BerryPatches_GetPatchGrowthStage(berryPatches, patchID)) {

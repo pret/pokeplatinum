@@ -64,7 +64,7 @@ metang_generators = {
     'items': { 'type': 'enum', 'tag': 'Item' },
     'journal_location_events': { 'type': 'enum', 'tag': 'JournalLocationEventType' },
     'journal_online_events': { 'type': 'enum', 'tag': 'JournalOnlineEventType' },
-    'map_headers': { 'type': 'enum', 'tag': 'MapHeader' },
+    'map_headers': { 'type': 'enum', 'tag': 'MapHeaderID' },
     'maps': { 'type': 'enum', 'tag': 'MapID' },
     'move_attributes': { 'type': 'enum', 'tag': 'MoveAttribute' },
     'move_battle_effects': { 'type': 'enum', 'tag': 'MoveBattleEffect' },
