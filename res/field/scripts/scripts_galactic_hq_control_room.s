@@ -48,7 +48,7 @@ GalacticHQControlRoom_Saturn:
     Message GalacticHQControlRoom_Text_WhatMakesYouSoTough
     CloseMessage
     GetPlayerDir VAR_0x8004
-    SetVar VAR_MAP_LOCAL_0x2, VAR_0x8004
+    SetVar VAR_MAP_LOCAL_0x02, VAR_0x8004
     GoToIfEq VAR_0x8004, DIR_NORTH, GalacticHQControlRoom_SaturnMoveAsideNorth
     GoToIfEq VAR_0x8004, DIR_WEST, GalacticHQControlRoom_SaturnMoveAsideWest
     GoToIfEq VAR_0x8004, DIR_EAST, GalacticHQControlRoom_SaturnMoveAsideEast
@@ -203,9 +203,9 @@ GalacticHQControlRoom_FreePokemon:
     RemoveObject LOCALID_MESPRIT
     RemoveObject LOCALID_AZELF
     RemoveObject LOCALID_UXIE
-    GoToIfEq VAR_MAP_LOCAL_0x2, DIR_NORTH, GalacticHQControlRoom_SaturnPlayerFaceEachOtherNorth
-    GoToIfEq VAR_MAP_LOCAL_0x2, DIR_WEST, GalacticHQControlRoom_SaturnPlayerFaceEachOtherWest
-    GoToIfEq VAR_MAP_LOCAL_0x2, DIR_EAST, GalacticHQControlRoom_SaturnPlayerFaceEachOtherEast
+    GoToIfEq VAR_MAP_LOCAL_0x02, DIR_NORTH, GalacticHQControlRoom_SaturnPlayerFaceEachOtherNorth
+    GoToIfEq VAR_MAP_LOCAL_0x02, DIR_WEST, GalacticHQControlRoom_SaturnPlayerFaceEachOtherWest
+    GoToIfEq VAR_MAP_LOCAL_0x02, DIR_EAST, GalacticHQControlRoom_SaturnPlayerFaceEachOtherEast
     End
 
 GalacticHQControlRoom_FlickerLakeGuardians:

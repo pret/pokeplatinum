@@ -37,9 +37,9 @@
 JubilifeCity_OnTransition:
     CallIfEq VAR_JUBILIFE_CITY_STATE, 0, JubilifeCity_SetLookerPositionFirstArrival
     CallIfGe VAR_JUBILIFE_CITY_STATE, 3, JubilifeCity_SetCounterpartPositionTeamGalactic
-    GetPlayerGender VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_MALE, JubilifeCity_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_FEMALE, JubilifeCity_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, JubilifeCity_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, JubilifeCity_SetCounterpartGraphicsLucas
     End
 
 JubilifeCity_SetLookerPositionFirstArrival:
@@ -994,7 +994,7 @@ JubilifeCity_GiveFashionCaseAndAccessories:
     Call JubilifeCity_GiveRandomAccessoryFeatherOrMustache
     Call JubilifeCity_GiveRandomAccessoryFeatherOrMustache
     AddContestBackdrop 0
-    SetVar VAR_MAP_LOCAL_0x1, 9999
+    SetVar VAR_MAP_LOCAL_0x01, 9999
     Call JubilifeCity_GiveRandomContestBackdrop
     Call JubilifeCity_GiveRandomContestBackdrop
     Return
@@ -1015,8 +1015,8 @@ JubilifeCity_GiveRandomAccessoryFeatherOrMustache:
 
 JubilifeCity_GiveRandomContestBackdrop:
     GetRandom VAR_RESULT, 8
-    GoToIfEq VAR_MAP_LOCAL_0x1, VAR_RESULT, JubilifeCity_GiveRandomContestBackdrop
-    SetVar VAR_MAP_LOCAL_0x1, VAR_RESULT
+    GoToIfEq VAR_MAP_LOCAL_0x01, VAR_RESULT, JubilifeCity_GiveRandomContestBackdrop
+    SetVar VAR_MAP_LOCAL_0x01, VAR_RESULT
     SetVar VAR_0x8004, 1
     AddVar VAR_0x8004, VAR_RESULT
     AddContestBackdrop VAR_0x8004

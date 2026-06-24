@@ -37,15 +37,15 @@ CanalaveCity_OnTransition:
     CallIfEq VAR_DARKRAI_EVENT_STATE, 2, CanalaveCity_ResetDarkraiEventState
     CallIfEq VAR_DARKRAI_EVENT_STATE, 3, CanalaveCity_SetSailorEldritchPositionAfterDarkrai
     Call CanalaveCity_CheckDoDarkraiEvent
-    CallIfEq VAR_MAP_LOCAL_0x0, FALSE, CanalaveCity_SetHarborInnDoorClosed
-    CallIfEq VAR_MAP_LOCAL_0x0, TRUE, CanalaveCity_ShowNewmoonIslandForestDarkrai
+    CallIfEq VAR_MAP_LOCAL_0x00, FALSE, CanalaveCity_SetHarborInnDoorClosed
+    CallIfEq VAR_MAP_LOCAL_0x00, TRUE, CanalaveCity_ShowNewmoonIslandForestDarkrai
     CallIfEq VAR_CANALAVE_CITY_STATE, 1, CanalaveCity_SetRivalPositionOutsideGym
     CallIfEq VAR_CANALAVE_CITY_STATE, 2, CanalaveCity_SetRivalPositionOutsideGym
     CallIfEq VAR_CANALAVE_CITY_STATE, 4, CanalaveCity_SetRivalPositionOutsideLibrary
     CallIfEq VAR_CANALAVE_CITY_STATE, 5, CanalaveCity_HideProfRowanAndCounterpart
-    GetPlayerGender VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_MALE, CanalaveCity_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_FEMALE, CanalaveCity_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, CanalaveCity_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, CanalaveCity_SetCounterpartGraphicsLucas
     End
 
 CanalaveCity_ResetDarkraiEventState:
@@ -91,23 +91,23 @@ CanalaveCity_HideProfRowanAndCounterpart:
 CanalaveCity_CheckDoDarkraiEvent:
     GoToIfSet FLAG_CAUGHT_DARKRAI, CanalaveCity_SetMapLocalFalse
     GoToIfUnset FLAG_GAME_COMPLETED, CanalaveCity_SetMapLocalFalse
-    GetNationalDexEnabled VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, CanalaveCity_SetMapLocalFalse
-    CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, CanalaveCity_SetMapLocalFalse
-    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, CanalaveCity_SetMapLocalFalse
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, CanalaveCity_SetMapLocalFalse
+    CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, CanalaveCity_SetMapLocalFalse
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, CanalaveCity_SetMapLocalFalse
     GoToIfUnset FLAG_WOKE_UP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, CanalaveCity_SetMapLocalFalse
-    SetVar VAR_MAP_LOCAL_0x0, TRUE
+    SetVar VAR_MAP_LOCAL_0x00, TRUE
     Return
 
 CanalaveCity_SetMapLocalFalse:
-    SetVar VAR_MAP_LOCAL_0x0, FALSE
+    SetVar VAR_MAP_LOCAL_0x00, FALSE
     Return
 
 CanalaveCity_OnLoad:
     Call CanalaveCity_CheckDoDarkraiEvent
-    CallIfEq VAR_MAP_LOCAL_0x0, FALSE, CanalaveCity_SetHarborInnDoorClosed
+    CallIfEq VAR_MAP_LOCAL_0x00, FALSE, CanalaveCity_SetHarborInnDoorClosed
     End
 
 CanalaveCity_SetHarborInnDoorClosed:
@@ -479,7 +479,7 @@ CanalaveCity_SignboardCanalaveDock:
 
 CanalaveCity_SignboardHarborInn:
     Call CanalaveCity_CheckDoDarkraiEvent
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, CanalaveCity_SignboardHarborInnFaded
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, CanalaveCity_SignboardHarborInnFaded
     ShowScrollingSign CanalaveCity_Text_SignHarborInn
     End
 

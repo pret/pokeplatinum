@@ -86,43 +86,43 @@ RockPeakRuins_StatueEnd:
     End
 
 RockPeakRuins_DotNorthWest:
-    SetVar VAR_MAP_LOCAL_0x1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotNorthEast:
-    SetVar VAR_MAP_LOCAL_0x2, 1
+    SetVar VAR_MAP_LOCAL_0x02, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotWest:
-    SetVar VAR_MAP_LOCAL_0x3, 1
+    SetVar VAR_MAP_LOCAL_0x03, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotMiddle:
-    SetVar VAR_MAP_LOCAL_0x4, 1
+    SetVar VAR_MAP_LOCAL_0x04, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotEast:
-    SetVar VAR_MAP_LOCAL_0x5, 1
+    SetVar VAR_MAP_LOCAL_0x05, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotSouthWest:
-    SetVar VAR_MAP_LOCAL_0x6, 1
+    SetVar VAR_MAP_LOCAL_0x06, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotSouthEast:
-    SetVar VAR_MAP_LOCAL_0x7, 1
+    SetVar VAR_MAP_LOCAL_0x07, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End

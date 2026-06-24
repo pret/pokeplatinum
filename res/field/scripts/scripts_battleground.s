@@ -2,14 +2,14 @@
 #include "res/text/bank/battleground.h"
 #include "res/field/events/events_battleground.h"
 
-#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_1 FLAG_MAP_LOCAL_0x1
-#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_2 FLAG_MAP_LOCAL_0x2
-#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_3 FLAG_MAP_LOCAL_0x3
-#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_4 FLAG_MAP_LOCAL_0x4
-#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_1 FLAG_MAP_LOCAL_0x5
-#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_2 FLAG_MAP_LOCAL_0x6
-#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_3 FLAG_MAP_LOCAL_0x7
-#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_4 FLAG_MAP_LOCAL_0x8
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_1 FLAG_MAP_LOCAL_0x01
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_2 FLAG_MAP_LOCAL_0x02
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_3 FLAG_MAP_LOCAL_0x03
+#define LOCAL_FLAG_DECLINED_BATTLE_TRAINER_4 FLAG_MAP_LOCAL_0x04
+#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_1 FLAG_MAP_LOCAL_0x05
+#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_2 FLAG_MAP_LOCAL_0x06
+#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_3 FLAG_MAP_LOCAL_0x07
+#define FLAG_DEFEATED_BATTLEGROUND_TRAINER_4 FLAG_MAP_LOCAL_0x08
 
     ScriptEntry Battleground_ExpertM
     ScriptEntry Battleground_Buck
@@ -219,7 +219,7 @@ Battleground_Trainer1:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_MAP_LOCAL_0x1, VAR_OBJ_GFX_ID_1
+    SetVar VAR_MAP_LOCAL_0x01, VAR_OBJ_GFX_ID_1
     GoToIfSet FLAG_DEFEATED_BATTLEGROUND_TRAINER_1, Battleground_PostBattle
     Call Battleground_CheckDefeatedTrainer
     GoToIfEq VAR_RESULT, TRUE, Battleground_PostBattle
@@ -239,7 +239,7 @@ Battleground_DoBattle:
     CloseMessage
     IncrementGameRecord RECORD_TIMES_BATTLED_AT_BATTLEGROUND
     Call Battleground_SetTrainer
-    StartTrainerBattle VAR_MAP_LOCAL_0x5
+    StartTrainerBattle VAR_MAP_LOCAL_0x05
     CheckWonBattle VAR_0x8000
     Return
 
@@ -276,8 +276,8 @@ Battleground_LostBattle:
     End
 
 Battleground_MessageBothRoarkAndByron:
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDefeatByronPresent
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronDefeatRoarkPresent
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDefeatByronPresent
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronDefeatRoarkPresent
     GoTo Battleground_TrainerEnd
     End
 
@@ -294,7 +294,7 @@ Battleground_Trainer2:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_MAP_LOCAL_0x1, VAR_OBJ_GFX_ID_2
+    SetVar VAR_MAP_LOCAL_0x01, VAR_OBJ_GFX_ID_2
     GoToIfSet FLAG_DEFEATED_BATTLEGROUND_TRAINER_2, Battleground_PostBattle
     Call Battleground_CheckDefeatedTrainer
     GoToIfEq VAR_RESULT, TRUE, Battleground_PostBattle
@@ -320,7 +320,7 @@ Battleground_Trainer3:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_MAP_LOCAL_0x1, VAR_OBJ_GFX_ID_3
+    SetVar VAR_MAP_LOCAL_0x01, VAR_OBJ_GFX_ID_3
     GoToIfSet FLAG_DEFEATED_BATTLEGROUND_TRAINER_3, Battleground_PostBattle
     Call Battleground_CheckDefeatedTrainer
     GoToIfEq VAR_RESULT, TRUE, Battleground_PostBattle
@@ -346,7 +346,7 @@ Battleground_Trainer4:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_MAP_LOCAL_0x1, VAR_OBJ_GFX_ID_4
+    SetVar VAR_MAP_LOCAL_0x01, VAR_OBJ_GFX_ID_4
     GoToIfSet FLAG_DEFEATED_BATTLEGROUND_TRAINER_4, Battleground_PostBattle
     Call Battleground_CheckDefeatedTrainer
     GoToIfEq VAR_RESULT, TRUE, Battleground_PostBattle
@@ -369,8 +369,8 @@ Battleground_DeclinedBattleTrainer4:
 
 Battleground_CheckBothRoarkAndByron:
     SetVar VAR_0x8001, 0
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_IncreaseVarIfRoarkOrByron
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_IncreaseVarIfRoarkOrByron
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_IncreaseVarIfRoarkOrByron
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_IncreaseVarIfRoarkOrByron
     Return
 
 Battleground_IncreaseVarIfRoarkOrByron:
@@ -389,88 +389,88 @@ Battleground_IncreaseVar:
     Return
 
 Battleground_SetTrainer:
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_SetTrainerRoark
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_SetTrainerGardenia
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_SetTrainerWake
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_SetTrainerMaylene
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_SetTrainerFantina
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_SetTrainerCandice
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_SetTrainerByron
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_SetTrainerVolkner
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_SetTrainerCheryl
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_SetTrainerRiley
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_SetTrainerMarley
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_SetTrainerBuck
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_SetTrainerMira
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_SetTrainerRoark
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_SetTrainerGardenia
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_SetTrainerWake
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_SetTrainerMaylene
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_SetTrainerFantina
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_SetTrainerCandice
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_SetTrainerByron
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_SetTrainerVolkner
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_SetTrainerCheryl
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_SetTrainerRiley
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_SetTrainerMarley
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_SetTrainerBuck
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_SetTrainerMira
     Return
 
 Battleground_SetTrainerRoark:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_LEADER_ROARK_REMATCH
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_LEADER_ROARK_REMATCH
     Return
 
 Battleground_SetTrainerGardenia:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_LEADER_GARDENIA_REMATCH
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_LEADER_GARDENIA_REMATCH
     Return
 
 Battleground_SetTrainerWake:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_LEADER_WAKE_REMATCH
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_LEADER_WAKE_REMATCH
     Return
 
 Battleground_SetTrainerMaylene:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_LEADER_MAYLENE_REMATCH
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_LEADER_MAYLENE_REMATCH
     Return
 
 Battleground_SetTrainerFantina:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_LEADER_FANTINA_REMATCH
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_LEADER_FANTINA_REMATCH
     Return
 
 Battleground_SetTrainerCandice:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_LEADER_CANDICE_REMATCH
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_LEADER_CANDICE_REMATCH
     Return
 
 Battleground_SetTrainerByron:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_LEADER_BYRON_REMATCH
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_LEADER_BYRON_REMATCH
     Return
 
 Battleground_SetTrainerVolkner:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_LEADER_VOLKNER_REMATCH
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_LEADER_VOLKNER_REMATCH
     Return
 
 Battleground_SetTrainerCheryl:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_CHERYL_BATTLEGROUND
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_CHERYL_BATTLEGROUND
     Return
 
 Battleground_SetTrainerRiley:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_RILEY_BATTLEGROUND
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_RILEY_BATTLEGROUND
     Return
 
 Battleground_SetTrainerMarley:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_MARLEY_BATTLEGROUND
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_MARLEY_BATTLEGROUND
     Return
 
 Battleground_SetTrainerBuck:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_BUCK_BATTLEGROUND
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_BUCK_BATTLEGROUND
     Return
 
 Battleground_SetTrainerMira:
-    SetVar VAR_MAP_LOCAL_0x5, TRAINER_MIRA_BATTLEGROUND
+    SetVar VAR_MAP_LOCAL_0x05, TRAINER_MIRA_BATTLEGROUND
     Return
 
 Battleground_MessageAskBattle:
     GoToIfEq VAR_RANDOM_BATTLEGROUND_MESSAGE, 1, Battleground_MessageAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattle
     Return
 
 Battleground_RoarkAskBattle:
@@ -527,19 +527,19 @@ Battleground_MiraAskBattle:
 
 Battleground_MessageIntro:
     GoToIfEq VAR_RANDOM_BATTLEGROUND_MESSAGE, 1, Battleground_MessageIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_RileyIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_BuckIntro
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_MiraIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CherylIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_RileyIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_BuckIntro
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_MiraIntro
     Return
 
 Battleground_RoarkIntro:
@@ -596,19 +596,19 @@ Battleground_MiraIntro:
 
 Battleground_MessageDeclinedBattle:
     GoToIfEq VAR_RANDOM_BATTLEGROUND_MESSAGE, 1, Battleground_MessageDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_RileyDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_BuckDeclinedBattle
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_MiraDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_RileyDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_BuckDeclinedBattle
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_MiraDeclinedBattle
     Return
 
 Battleground_RoarkDeclinedBattle:
@@ -665,19 +665,19 @@ Battleground_MiraDeclinedBattle:
 
 Battleground_MessageAskBattleAgain:
     GoToIfEq VAR_RANDOM_BATTLEGROUND_MESSAGE, 1, Battleground_MessageAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattleAgain
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattleAgain
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattleAgain
     Return
 
 Battleground_RoarkAskBattleAgain:
@@ -734,19 +734,19 @@ Battleground_MiraAskBattleAgain:
 
 Battleground_MessageDefeat:
     GoToIfEq VAR_RANDOM_BATTLEGROUND_MESSAGE, 1, Battleground_MessageDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_RileyDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_BuckDefeat
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_MiraDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_RileyDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_BuckDefeat
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_MiraDefeat
     Return
 
 Battleground_RoarkDefeat:
@@ -802,19 +802,19 @@ Battleground_MiraDefeat:
     Return
 
 Battleground_MessageAskBattle2:
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattle2
     Return
 
 Battleground_RoarkAskBattle2:
@@ -870,19 +870,19 @@ Battleground_MiraAskBattle2:
     Return
 
 Battleground_MessageIntro2:
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_RileyIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_BuckIntro2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_MiraIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CherylIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_RileyIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_BuckIntro2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_MiraIntro2
     Return
 
 Battleground_RoarkIntro2:
@@ -938,19 +938,19 @@ Battleground_MiraIntro2:
     Return
 
 Battleground_MessageDeclinedBattle2:
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_RileyDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_BuckDeclinedBattle2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_MiraDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_RileyDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_BuckDeclinedBattle2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_MiraDeclinedBattle2
     Return
 
 Battleground_RoarkDeclinedBattle2:
@@ -1006,19 +1006,19 @@ Battleground_MiraDeclinedBattle2:
     Return
 
 Battleground_MessageAskBattleAgain2:
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattleAgain2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CherylAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_RileyAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_BuckAskBattleAgain2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_MiraAskBattleAgain2
     Return
 
 Battleground_RoarkAskBattleAgain2:
@@ -1074,19 +1074,19 @@ Battleground_MiraAskBattleAgain2:
     Return
 
 Battleground_MessageDefeat2:
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_ByronDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_RileyDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_BuckDefeat2
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_MiraDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_RoarkDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_GardeniaDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_WakeDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_MayleneDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_FantinaDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CandiceDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_ByronDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_VolknerDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CherylDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_RileyDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_MarleyDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_BuckDefeat2
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_MiraDefeat2
     Return
 
 Battleground_RoarkDefeat2:
@@ -1142,19 +1142,19 @@ Battleground_MiraDefeat2:
     Return
 
 Battleground_SetFlagDefeatedTrainer:
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_SetFlagDefeatedRoark
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_SetFlagDefeatedGardenia
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_SetFlagDefeatedWake
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_SetFlagDefeatedMaylene
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_SetFlagDefeatedFantina
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_SetFlagDefeatedCandice
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_SetFlagDefeatedByron
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_SetFlagDefeatedVolkner
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_SetFlagDefeatedCheryl
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_SetFlagDefeatedRiley
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_SetFlagDefeatedMarley
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_SetFlagDefeatedBuck
-    CallIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_SetFlagDefeatedMira
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_SetFlagDefeatedRoark
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_SetFlagDefeatedGardenia
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_SetFlagDefeatedWake
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_SetFlagDefeatedMaylene
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_SetFlagDefeatedFantina
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_SetFlagDefeatedCandice
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_SetFlagDefeatedByron
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_SetFlagDefeatedVolkner
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_SetFlagDefeatedCheryl
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_SetFlagDefeatedRiley
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_SetFlagDefeatedMarley
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_SetFlagDefeatedBuck
+    CallIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_SetFlagDefeatedMira
     Return
 
 Battleground_SetFlagDefeatedRoark:
@@ -1211,19 +1211,19 @@ Battleground_SetFlagDefeatedMira:
 
 Battleground_CheckDefeatedTrainer:
     SetVar VAR_RESULT, FALSE
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_ROARK, Battleground_CheckDefeatedRoark
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_GARDENIA, Battleground_CheckDefeatedGardenia
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_CheckDefeatedWake
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MAYLENE, Battleground_CheckDefeatedMaylene
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_FANTINA, Battleground_CheckDefeatedFantina
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CANDICE, Battleground_CheckDefeatedCandice
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BYRON, Battleground_CheckDefeatedByron
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_VOLKNER, Battleground_CheckDefeatedVolkner
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_CHERYL, Battleground_CheckDefeatedCheryl
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_RILEY, Battleground_CheckDefeatedRiley
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MARLEY, Battleground_CheckDefeatedMarley
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_BUCK, Battleground_CheckDefeatedBuck
-    GoToIfEq VAR_MAP_LOCAL_0x1, OBJ_EVENT_GFX_MIRA, Battleground_CheckDefeatedMira
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_ROARK, Battleground_CheckDefeatedRoark
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_GARDENIA, Battleground_CheckDefeatedGardenia
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CRASHER_WAKE, Battleground_CheckDefeatedWake
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MAYLENE, Battleground_CheckDefeatedMaylene
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_FANTINA, Battleground_CheckDefeatedFantina
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CANDICE, Battleground_CheckDefeatedCandice
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BYRON, Battleground_CheckDefeatedByron
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_VOLKNER, Battleground_CheckDefeatedVolkner
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_CHERYL, Battleground_CheckDefeatedCheryl
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_RILEY, Battleground_CheckDefeatedRiley
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MARLEY, Battleground_CheckDefeatedMarley
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_BUCK, Battleground_CheckDefeatedBuck
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MIRA, Battleground_CheckDefeatedMira
     Return
 
 Battleground_CheckDefeatedRoark:

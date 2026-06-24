@@ -93,7 +93,7 @@
             "y": 0,
             "width": 4,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x2",
+            "var": "VAR_MAP_LOCAL_0x02",
             "value": 0
         },
         {
@@ -103,7 +103,7 @@
             "y": 0,
             "width": 4,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x2",
+            "var": "VAR_MAP_LOCAL_0x02",
             "value": 1
         }
     ]

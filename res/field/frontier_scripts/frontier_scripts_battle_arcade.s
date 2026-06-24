@@ -886,10 +886,10 @@ _065C:
 
 _0662:
     GetSystemVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, VAR_0x8001
-    GetSystemVar VAR_MAP_LOCAL_0x3, VAR_0x8003
-    GetSystemVar VAR_MAP_LOCAL_0x2, VAR_0x8004
-    GetSystemVar VAR_MAP_LOCAL_0x5, VAR_0x8005
-    GetSystemVar VAR_MAP_LOCAL_0x6, VAR_0x8006
+    GetSystemVar VAR_MAP_LOCAL_0x03, VAR_0x8003
+    GetSystemVar VAR_MAP_LOCAL_0x02, VAR_0x8004
+    GetSystemVar VAR_MAP_LOCAL_0x05, VAR_0x8005
+    GetSystemVar VAR_MAP_LOCAL_0x06, VAR_0x8006
     InitNewBattleRecording
     FrontierScrCmd_B8 VAR_0x8003, VAR_0x8001, VAR_0x8004, VAR_0x8005, VAR_0x8006, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007

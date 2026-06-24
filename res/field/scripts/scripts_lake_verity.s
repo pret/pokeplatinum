@@ -16,9 +16,9 @@ LakeVerity_OnTransition:
     CallIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_SetPositionsAfterTeamGalactic
     CallIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_SetPositionsDuringTeamGalactic
     CallIfEq VAR_LAKE_VERITY_PROF_ROWAN_STATE, 0, LakeVerity_SetProfRowanStartPosition
-    GetPlayerGender VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_MALE, LakeVerity_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_FEMALE, LakeVerity_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, LakeVerity_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, LakeVerity_SetCounterpartGraphicsLucas
     End
 
 LakeVerity_SetCounterpartGraphicsDawn:

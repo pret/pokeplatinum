@@ -163,7 +163,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x1",
+            "var": "VAR_MAP_LOCAL_0x01",
             "value": 0
         },
         {
@@ -173,7 +173,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x2",
+            "var": "VAR_MAP_LOCAL_0x02",
             "value": 0
         },
         {
@@ -183,7 +183,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x1",
+            "var": "VAR_MAP_LOCAL_0x01",
             "value": 0
         },
         {
@@ -193,7 +193,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x2",
+            "var": "VAR_MAP_LOCAL_0x02",
             "value": 0
         },
         {
@@ -203,7 +203,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x2",
+            "var": "VAR_MAP_LOCAL_0x02",
             "value": 0
         },
         {
@@ -213,7 +213,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x2",
+            "var": "VAR_MAP_LOCAL_0x02",
             "value": 0
         },
         {
@@ -223,7 +223,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x3",
+            "var": "VAR_MAP_LOCAL_0x03",
             "value": 0
         },
         {
@@ -233,7 +233,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x3",
+            "var": "VAR_MAP_LOCAL_0x03",
             "value": 0
         },
         {
@@ -243,7 +243,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x3",
+            "var": "VAR_MAP_LOCAL_0x03",
             "value": 0
         },
         {
@@ -253,7 +253,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_0x3",
+            "var": "VAR_MAP_LOCAL_0x03",
             "value": 0
         }
     ]

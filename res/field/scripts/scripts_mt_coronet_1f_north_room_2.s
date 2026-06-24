@@ -8,9 +8,9 @@
 
 MtCoronet1FNorthRoom2_OnTransition:
     CallIfNe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, MtCoronet1FNorthRoom2_ResetIcebergRuinsState
-    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x1
-    GoToIfEq VAR_MAP_LOCAL_0x1, FALSE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice
-    GoToIfEq VAR_MAP_LOCAL_0x1, TRUE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice
+    GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice
     End
 
 MtCoronet1FNorthRoom2_ResetIcebergRuinsState:
@@ -18,9 +18,9 @@ MtCoronet1FNorthRoom2_ResetIcebergRuinsState:
     Return
 
 MtCoronet1FNorthRoom2_OnLoad:
-    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x1
-    GoToIfEq VAR_MAP_LOCAL_0x1, FALSE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice
-    GoToIfEq VAR_MAP_LOCAL_0x1, TRUE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice
+    GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithoutRegice
     End
 
 MtCoronet1FNorthRoom2_RemoveWarpIcebergRuinsWithRegice:

@@ -19,9 +19,9 @@ SpearPillar_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_SPEAR_PILLAR
     Call SpearPillar_TryHideRival
     Call SpearPillar_TryEnableHallOfOrigin
-    GetPlayerGender VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_MALE, SpearPillar_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_FEMALE, SpearPillar_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, SpearPillar_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, SpearPillar_SetCounterpartGraphicsLucas
     End
 
 SpearPillar_SetCounterpartGraphicsDawn:
@@ -33,14 +33,14 @@ SpearPillar_SetCounterpartGraphicsLucas:
     End
 
 SpearPillar_TryEnableHallOfOrigin:
-    CheckGameCompleted VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
-    GetNationalDexEnabled VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
-    CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
+    CheckGameCompleted VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillar_TryEnableHallOfOriginEnd
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillar_TryEnableHallOfOriginEnd
+    CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillar_TryEnableHallOfOriginEnd
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillar_TryEnableHallOfOriginEnd
     GoToIfSet FLAG_CAUGHT_ARCEUS, SpearPillar_TryEnableHallOfOriginEnd
     SetVar VAR_HALL_OF_ORIGIN_STATE, 1
     GoTo SpearPillar_TryEnableHallOfOriginEnd

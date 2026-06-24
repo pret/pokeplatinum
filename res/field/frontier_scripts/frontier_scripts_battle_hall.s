@@ -466,9 +466,9 @@ _0320:
 
 _0326:
     GetSystemVar VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_0x8001
-    GetSystemVar VAR_MAP_LOCAL_0x3, VAR_0x8003
-    GetSystemVar VAR_MAP_LOCAL_0x2, VAR_0x8002
-    GetSystemVar VAR_MAP_LOCAL_0x5, VAR_0x8000
+    GetSystemVar VAR_MAP_LOCAL_0x03, VAR_0x8003
+    GetSystemVar VAR_MAP_LOCAL_0x02, VAR_0x8002
+    GetSystemVar VAR_MAP_LOCAL_0x05, VAR_0x8000
     GetPlayerObjEventGfx VAR_0x800A
     SetVar FR_VAR_0x800E, 0
     InitNewBattleRecording

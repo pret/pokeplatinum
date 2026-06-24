@@ -14,9 +14,9 @@
 
 Route202_OnTransition:
     CallIfGe VAR_ROUTE_202_STATE, 2, Route202_SetCounterpartPokeRadarPosition
-    GetPlayerGender VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_MALE, Route202_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0x0, GENDER_FEMALE, Route202_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, Route202_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, Route202_SetCounterpartGraphicsLucas
     End
 
 Route202_SetCounterpartGraphicsDawn:

@@ -9,8 +9,8 @@
 VictoryRoad_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_VICTORY_ROAD
     GoToIfUnset FLAG_GAME_COMPLETED, VictoryRoad_DontHideCollector
-    GetNationalDexEnabled VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, VictoryRoad_DontHideCollector
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, VictoryRoad_DontHideCollector
     SetFlag FLAG_HIDE_VICTORY_ROAD_1F_COLLECTOR
 VictoryRoad_DontHideCollector:
     End

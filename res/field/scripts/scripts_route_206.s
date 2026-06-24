@@ -15,22 +15,22 @@ Route206_OnTransition:
 
 Route206_OnResume:
     CallIfSet FLAG_ON_CYCLING_ROAD, Route206_ForceBicycling
-    GetPreviousMapID VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE, Route206_TrySetFlagsCyclingRoad
-    GoToIfEq VAR_MAP_LOCAL_0x0, MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE, Route206_TrySetFlagsCyclingRoad
+    GetPreviousMapID VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE, Route206_TrySetFlagsCyclingRoad
+    GoToIfEq VAR_MAP_LOCAL_0x00, MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE, Route206_TrySetFlagsCyclingRoad
     End
 
 Route206_TrySetFlagsCyclingRoad:
-    GoToIfSet FLAG_MAP_LOCAL_0x3, Route206_OnResumeEnd
-    GetPlayerMapPos VAR_MAP_LOCAL_0x0, VAR_MAP_LOCAL_0x1
-    GoToIfLt VAR_MAP_LOCAL_0x0, 299, Route206_OnResumeEnd
-    GoToIfGt VAR_MAP_LOCAL_0x0, 306, Route206_OnResumeEnd
-    GoToIfEq VAR_MAP_LOCAL_0x1, 576, Route206_SetFlagsCyclingRoad
-    GoToIfEq VAR_MAP_LOCAL_0x1, 681, Route206_SetFlagsCyclingRoad
+    GoToIfSet FLAG_MAP_LOCAL_0x03, Route206_OnResumeEnd
+    GetPlayerMapPos VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01
+    GoToIfLt VAR_MAP_LOCAL_0x00, 299, Route206_OnResumeEnd
+    GoToIfGt VAR_MAP_LOCAL_0x00, 306, Route206_OnResumeEnd
+    GoToIfEq VAR_MAP_LOCAL_0x01, 576, Route206_SetFlagsCyclingRoad
+    GoToIfEq VAR_MAP_LOCAL_0x01, 681, Route206_SetFlagsCyclingRoad
     End
 
 Route206_SetFlagsCyclingRoad:
-    SetFlag FLAG_MAP_LOCAL_0x3
+    SetFlag FLAG_MAP_LOCAL_0x03
     SetFlag FLAG_ON_CYCLING_ROAD
     SetCyclingBGM
     ForceBicycling TRUE

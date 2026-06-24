@@ -21,8 +21,8 @@
     ScriptEntryEnd
 
 BattleFactory_OnTransition:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, BattleFactory_HideBattleFrontierReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, BattleFactory_HideBattleFrontierReporter
     ClearFlag FLAG_HIDE_BATTLE_FRONTIER_REPORTER
     End
 
@@ -34,8 +34,8 @@ BattleFactory_SingleAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_0x3, 0
-    SetVar VAR_MAP_LOCAL_0x4, 0
+    SetVar VAR_MAP_LOCAL_0x03, 0
+    SetVar VAR_MAP_LOCAL_0x04, 0
     GoTo BattleFactory_Attendant
     End
 
@@ -43,21 +43,21 @@ BattleFactory_MultiAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_0x3, 0
-    SetVar VAR_MAP_LOCAL_0x4, 1
+    SetVar VAR_MAP_LOCAL_0x03, 0
+    SetVar VAR_MAP_LOCAL_0x04, 1
     GoTo BattleFactory_Attendant
     End
 
 BattleFactory_Attendant:
     RecordHeapMemory
-    CallIfEq VAR_MAP_LOCAL_0x4, 0, BattleFactory_WelcomeToSingleDoubleChallenge
-    CallIfEq VAR_MAP_LOCAL_0x4, 1, BattleFactory_WelcomeToMultiChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 0, BattleFactory_WelcomeToSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 1, BattleFactory_WelcomeToMultiChallenge
     GoTo BattleFactory_SelectChallenge
     End
 
 BattleFactory_SelectChallenge:
-    CallIfEq VAR_MAP_LOCAL_0x4, 0, BattleFactory_InitMenuSingleDoubleChallenge
-    CallIfEq VAR_MAP_LOCAL_0x4, 1, BattleFactory_InitMenuMultiChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 0, BattleFactory_InitMenuSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 1, BattleFactory_InitMenuMultiChallenge
     AddMenuEntryImm BattleFactory_Text_Info, 2
     AddMenuEntryImm BattleFactory_Text_CancelChallenge, 3
     ShowMenu
@@ -69,8 +69,8 @@ BattleFactory_SelectChallenge:
     End
 
 BattleFactory_ExplainChallenge:
-    CallIfEq VAR_MAP_LOCAL_0x4, 0, BattleFactory_ExplainSingleDoubleChallenge
-    CallIfEq VAR_MAP_LOCAL_0x4, 1, BattleFactory_ExplainMultiChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 0, BattleFactory_ExplainSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 1, BattleFactory_ExplainMultiChallenge
     GoTo BattleFactory_SelectChallenge
     End
 
@@ -131,10 +131,10 @@ BattleFactory_TryStartChallenge:
 BattleFactory_HealAndSaveBeforeChallenge:
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleFactory_SetChallengeInProgress
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleFactory_SetChallengeInProgress
-    SetVar VAR_MAP_LOCAL_0x0, 0
+    SetVar VAR_MAP_LOCAL_0x00, 0
     HealParty
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, BattleFactory_EndChallenge
     GoToIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_BecomeLeaderOrJoinGroup
     GoTo BattleFactory_WalkIntoCorridor
@@ -398,7 +398,7 @@ BattleFactory_ExplainMultiChallenge:
 
 BattleFactory_OnFrame_ResumeChallenge:
     RecordHeapMemory
-    SetVar VAR_MAP_LOCAL_0x3, 1
+    SetVar VAR_MAP_LOCAL_0x03, 1
     SetVar VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 0
     Message BattleFactory_Text_MustSaveBeforeResuming
     Call BattleFactory_SetChallengeInProgress

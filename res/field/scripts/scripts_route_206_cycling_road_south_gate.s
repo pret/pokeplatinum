@@ -15,9 +15,9 @@ Route206CyclingRoadSouthGate_OnTransition:
     End
 
 Route206CyclingRoadSouthGate_OnFrame_TryForceBiking:
-    GetPlayerMapPos VAR_MAP_LOCAL_0x4, VAR_MAP_LOCAL_0x5
-    CallIfLe VAR_MAP_LOCAL_0x5, 3, Route206CyclingRoadSouthGate_ForceBikingInGateOnFrame
-    SetVar VAR_MAP_LOCAL_0x3, 1
+    GetPlayerMapPos VAR_MAP_LOCAL_0x04, VAR_MAP_LOCAL_0x05
+    CallIfLe VAR_MAP_LOCAL_0x05, 3, Route206CyclingRoadSouthGate_ForceBikingInGateOnFrame
+    SetVar VAR_MAP_LOCAL_0x03, 1
     End
 
 Route206CyclingRoadSouthGate_ForceBikingInGateOnFrame:
@@ -43,7 +43,7 @@ Route206CyclingRoadSouthGate_CoordEvent_OnlyCyclists:
 
 Route206CyclingRoadSouthGate_ForceBikingInGateCoordEvent:
     SetFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar VAR_MAP_LOCAL_0x2, 1
+    SetVar VAR_MAP_LOCAL_0x02, 1
     ReleaseAll
     End
 
@@ -60,7 +60,7 @@ Route206CyclingRoadSouthGate_Movement_PlayerWalkSouth:
 Route206CyclingRoadSouthGate_CoordEvent_ClearFlagForceBikingInGate:
     LockAll
     ClearFlag FLAG_FORCE_BIKING_IN_GATE
-    SetVar VAR_MAP_LOCAL_0x2, 0
+    SetVar VAR_MAP_LOCAL_0x02, 0
     ReleaseAll
     End
 

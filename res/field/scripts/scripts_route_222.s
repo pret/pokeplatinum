@@ -13,9 +13,9 @@
     ScriptEntryEnd
 
 Route222_OnTransition:
-    GetTimeOfDay VAR_MAP_LOCAL_0x0
-    GoToIfInRange VAR_MAP_LOCAL_0x0, TIMEOFDAY_MORNING, TIMEOFDAY_TWILIGHT, Route222_SetPolicemanThomasNoBattle
-    GoToIfInRange VAR_MAP_LOCAL_0x0, TIMEOFDAY_NIGHT, TIMEOFDAY_LATE_NIGHT, Route222_SetPolicemanThomasBattle
+    GetTimeOfDay VAR_MAP_LOCAL_0x00
+    GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_MORNING, TIMEOFDAY_TWILIGHT, Route222_SetPolicemanThomasNoBattle
+    GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_NIGHT, TIMEOFDAY_LATE_NIGHT, Route222_SetPolicemanThomasBattle
     End
 
 Route222_SetPolicemanThomasNoBattle:

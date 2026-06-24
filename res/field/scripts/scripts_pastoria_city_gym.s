@@ -12,31 +12,31 @@
     ScriptEntryEnd
 
 PastoriaGym_Init:
-    SetVar VAR_MAP_LOCAL_0x1, 0
-    SetVar VAR_MAP_LOCAL_0x2, 1
-    SetVar VAR_MAP_LOCAL_0x3, 0
+    SetVar VAR_MAP_LOCAL_0x01, 0
+    SetVar VAR_MAP_LOCAL_0x02, 1
+    SetVar VAR_MAP_LOCAL_0x03, 0
     InitPersistedMapFeaturesForPastoriaGym
     End
 
 PastoriaGym_BlueButton:
     PressPastoriaGymButton
-    SetVar VAR_MAP_LOCAL_0x1, 1
-    SetVar VAR_MAP_LOCAL_0x2, 0
-    SetVar VAR_MAP_LOCAL_0x3, 0
+    SetVar VAR_MAP_LOCAL_0x01, 1
+    SetVar VAR_MAP_LOCAL_0x02, 0
+    SetVar VAR_MAP_LOCAL_0x03, 0
     End
 
 PastoriaGym_GreenButton:
     PressPastoriaGymButton
-    SetVar VAR_MAP_LOCAL_0x1, 0
-    SetVar VAR_MAP_LOCAL_0x2, 1
-    SetVar VAR_MAP_LOCAL_0x3, 0
+    SetVar VAR_MAP_LOCAL_0x01, 0
+    SetVar VAR_MAP_LOCAL_0x02, 1
+    SetVar VAR_MAP_LOCAL_0x03, 0
     End
 
 PastoriaGym_YellowButton:
     PressPastoriaGymButton
-    SetVar VAR_MAP_LOCAL_0x1, 0
-    SetVar VAR_MAP_LOCAL_0x2, 0
-    SetVar VAR_MAP_LOCAL_0x3, 1
+    SetVar VAR_MAP_LOCAL_0x01, 0
+    SetVar VAR_MAP_LOCAL_0x02, 0
+    SetVar VAR_MAP_LOCAL_0x03, 1
     End
 
 PastoriaGym_Wake:

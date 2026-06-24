@@ -69,9 +69,9 @@ SandgemTownCounterpartHouse1F_TwinNationalDex:
 
 SandgemTownCounterpartHouse1F_BufferSwarmMapAndSpecies:
     BufferPlayerName 0
-    GetSwarmMapAndSpecies VAR_MAP_LOCAL_0x1, VAR_MAP_LOCAL_0x0
-    BufferMapName 1, VAR_MAP_LOCAL_0x1
-    BufferSpeciesNameFromVar 2, VAR_MAP_LOCAL_0x0, 0, 1
+    GetSwarmMapAndSpecies VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x00
+    BufferMapName 1, VAR_MAP_LOCAL_0x01
+    BufferSpeciesNameFromVar 2, VAR_MAP_LOCAL_0x00, 0, 1
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownCounterpartHouse1F_BunchOfPokemonAtLocationMale
     GoToIfEq VAR_RESULT, GENDER_FEMALE, SandgemTownCounterpartHouse1F_BunchOfPokemonAtLocationFemale

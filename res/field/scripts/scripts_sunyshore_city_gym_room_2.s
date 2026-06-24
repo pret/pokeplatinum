@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 SunyshoreGymRoom2_Init:
-    SetVar VAR_MAP_LOCAL_0x0, 0
+    SetVar VAR_MAP_LOCAL_0x00, 0
     InitPersistedMapFeaturesForSunyshoreGym 1
     End
 

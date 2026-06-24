@@ -160,7 +160,7 @@ GlobalTerminal1F_MustHaveTwoPokemon:
 
 GlobalTerminal1F_BeginTrade:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_ReceptionistGTSEnd
     HealParty
     SetVar VAR_COMMUNICATION_LOAD_ACTION, 6
@@ -323,7 +323,7 @@ GlobalTerminal1F_BattleVideoRankingsMachineEnd:
 
 GlobalTerminal1F_UseBattleVideoRankingsMachine:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_BattleVideoRankingsMachineEnd
     CloseMessage
     CallCommonScript 0x802
@@ -363,7 +363,7 @@ GlobalTerminal1F_TrainerRankingsMachineEnd:
 
 GlobalTerminal1F_UseTrainerRankingsMachine:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_TrainerRankingsMachineEnd
     CloseMessage
     CallCommonScript 0x802

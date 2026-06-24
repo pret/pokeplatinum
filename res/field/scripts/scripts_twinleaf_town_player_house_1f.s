@@ -168,7 +168,7 @@ TwinleafTownPlayerHouse1F_Mom:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_MAP_LOCAL_0x2, TwinleafTownPlayerHouse1F_DoMomMessage
+    GoToIfSet FLAG_MAP_LOCAL_0x02, TwinleafTownPlayerHouse1F_DoMomMessage
     GoToIfGe VAR_PLAYER_HOUSE_STATE, 7, TwinleafTownPlayerHouse1F_CallTakeAQuickRest2
     GoToIfEq VAR_PLAYER_HOUSE_STATE, 6, TwinleafTownPlayerHouse1F_EnjoyYourAdventure
     GoToIfSet FLAG_HAS_POKEDEX, TwinleafTownPlayerHouse1F_MomGiveJournal
@@ -466,7 +466,7 @@ TwinleafTownPlayerHouse1F_TakeAQuickRest:
     HealParty
     FadeScreenIn
     WaitFadeScreen
-    SetFlag FLAG_MAP_LOCAL_0x2
+    SetFlag FLAG_MAP_LOCAL_0x02
     Return
 
 TwinleafTownPlayerHouse1F_MorningTakeAQuickRest:

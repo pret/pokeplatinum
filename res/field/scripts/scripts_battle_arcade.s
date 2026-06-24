@@ -24,8 +24,8 @@
     ScriptEntryEnd
 
 BattleArcade_OnTransition:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, FALSE, BattleArcade_HideBattleFrontierReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, BattleArcade_HideBattleFrontierReporter
     ClearFlag FLAG_HIDE_BATTLE_FRONTIER_REPORTER
     End
 
@@ -37,8 +37,8 @@ BattleArcade_SingleAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_0x3, 0
-    SetVar VAR_MAP_LOCAL_0x4, 0
+    SetVar VAR_MAP_LOCAL_0x03, 0
+    SetVar VAR_MAP_LOCAL_0x04, 0
     GoTo BattleArcade_Attendant
     End
 
@@ -46,21 +46,21 @@ BattleArcade_MultiAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_0x3, 0
-    SetVar VAR_MAP_LOCAL_0x4, 1
+    SetVar VAR_MAP_LOCAL_0x03, 0
+    SetVar VAR_MAP_LOCAL_0x04, 1
     GoTo BattleArcade_Attendant
     End
 
 BattleArcade_Attendant:
     RecordHeapMemory
-    CallIfEq VAR_MAP_LOCAL_0x4, 0, BattleArcade_WelcomeToSingleDoubleChallenge
-    CallIfEq VAR_MAP_LOCAL_0x4, 1, BattleArcade_WelcomeToMultiChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 0, BattleArcade_WelcomeToSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 1, BattleArcade_WelcomeToMultiChallenge
     GoTo BattleArcade_SelectChallenge
     End
 
 BattleArcade_SelectChallenge:
-    CallIfEq VAR_MAP_LOCAL_0x4, 0, BattleArcade_InitMenuSingleDoubleChallenge
-    CallIfEq VAR_MAP_LOCAL_0x4, 1, BattleArcade_InitMenuMultiChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 0, BattleArcade_InitMenuSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 1, BattleArcade_InitMenuMultiChallenge
     AddMenuEntryImm BattleArcade_Text_Info, 2
     AddMenuEntryImm BattleArcade_Text_Cancel, 3
     ShowMenu
@@ -72,8 +72,8 @@ BattleArcade_SelectChallenge:
     End
 
 BattleArcade_ExplainChallenge:
-    CallIfEq VAR_MAP_LOCAL_0x4, 0, BattleArcade_ExplainSingleDoubleChallenge
-    CallIfEq VAR_MAP_LOCAL_0x4, 1, BattleArcade_ExplainMultiChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 0, BattleArcade_ExplainSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 1, BattleArcade_ExplainMultiChallenge
     GoTo BattleArcade_SelectChallenge
     End
 
@@ -134,19 +134,19 @@ BattleArcade_SelectPokemon:
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_2D9 4, VAR_BATTLE_ARCADE_CHALLENGE_TYPE, VAR_RESULT
-    ScrCmd_2DB VAR_MAP_LOCAL_0x2, VAR_MAP_LOCAL_0x5, VAR_MAP_LOCAL_0x6
+    ScrCmd_2DB VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x05, VAR_MAP_LOCAL_0x06
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_0x2, 0xFF, BattleArcade_EndChallenge
-    TryRevertPokemonForm VAR_MAP_LOCAL_0x2, VAR_RESULT
+    GoToIfEq VAR_MAP_LOCAL_0x02, 0xFF, BattleArcade_EndChallenge
+    TryRevertPokemonForm VAR_MAP_LOCAL_0x02, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, BattleArcade_GriseousOrbCouldNotBeRemoved
-    TryRevertPokemonForm VAR_MAP_LOCAL_0x5, VAR_RESULT
+    TryRevertPokemonForm VAR_MAP_LOCAL_0x05, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, BattleArcade_GriseousOrbCouldNotBeRemoved
-    TryRevertPokemonForm VAR_MAP_LOCAL_0x6, VAR_RESULT
+    TryRevertPokemonForm VAR_MAP_LOCAL_0x06, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, BattleArcade_GriseousOrbCouldNotBeRemoved
-    GetPartyMonSpecies VAR_MAP_LOCAL_0x2, VAR_MAP_LOCAL_0x1
-    GoToIfEq VAR_MAP_LOCAL_0x1, 0, BattleArcade_EndChallenge
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, 0, BattleArcade_EndChallenge
     GoTo BattleArcade_TryStartChallenge
     End
 
@@ -157,10 +157,10 @@ BattleArcade_TryStartChallenge:
 BattleArcade_HealAndSaveBeforeChallenge:
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleArcade_SetChallengeInProgress
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleArcade_SetChallengeInProgress
-    SetVar VAR_MAP_LOCAL_0x0, 0
+    SetVar VAR_MAP_LOCAL_0x00, 0
     HealParty
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, BattleArcade_EndChallenge
     GoToIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_BecomeLeaderOrJoinGroup
     GoTo BattleArcade_WalkIntoCorridor
@@ -223,8 +223,8 @@ BattleArcade_ErrorBecomingLeader:
 BattleArcade_StartMultiChallenge:
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 154
-    GetPartyMonSpecies VAR_MAP_LOCAL_0x2, VAR_0x8000
-    GetPartyMonSpecies VAR_MAP_LOCAL_0x5, VAR_0x8001
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x02, VAR_0x8000
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x05, VAR_0x8001
     ScrCmd_2DA VAR_0x8000, VAR_0x8001, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 1, BattleArcade_BothTrainerChosePokemon1
@@ -244,22 +244,22 @@ BattleArcade_SetChallengeInProgress:
 
 BattleArcade_BothTrainerChosePokemon1:
     Call BattleArcade_EndCommunicationSamePokemon
-    BufferPartyMonSpecies 0, VAR_MAP_LOCAL_0x2
+    BufferPartyMonSpecies 0, VAR_MAP_LOCAL_0x02
     Message BattleArcade_Text_BothTrainersChoseThisPokemon
     GoTo BattleArcade_ChoseSamePokemonCancel
     End
 
 BattleArcade_BothTrainerChosePokemon2:
     Call BattleArcade_EndCommunicationSamePokemon
-    BufferPartyMonSpecies 0, VAR_MAP_LOCAL_0x5
+    BufferPartyMonSpecies 0, VAR_MAP_LOCAL_0x05
     Message BattleArcade_Text_BothTrainersChoseThisPokemon
     GoTo BattleArcade_ChoseSamePokemonCancel
     End
 
 BattleArcade_BothTrainerChosePokemon1And2:
     Call BattleArcade_EndCommunicationSamePokemon
-    BufferPartyMonSpecies 0, VAR_MAP_LOCAL_0x2
-    BufferPartyMonSpecies 1, VAR_MAP_LOCAL_0x5
+    BufferPartyMonSpecies 0, VAR_MAP_LOCAL_0x02
+    BufferPartyMonSpecies 1, VAR_MAP_LOCAL_0x05
     Message BattleArcade_Text_BothTrainersChoseThesePokemon
     GoTo BattleArcade_ChoseSamePokemonCancel
     End
@@ -446,7 +446,7 @@ BattleArcade_ExplainMultiChallenge:
 
 BattleArcade_OnFrame_ResumeChallenge:
     RecordHeapMemory
-    SetVar VAR_MAP_LOCAL_0x3, 1
+    SetVar VAR_MAP_LOCAL_0x03, 1
     SetVar VAR_BATTLE_ARCADE_LOBBY_LOAD_ACTION, 0
     Message BattleArcade_Text_MustSaveBeforeResuming
     Call BattleArcade_SetChallengeInProgress

@@ -86,13 +86,13 @@ _010E:
     FrontierScrCmd_B2 7, 1, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 1
-    SetSystemVar VAR_MAP_LOCAL_0x3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
 _012F:
     SetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    SetSystemVar VAR_MAP_LOCAL_0x3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0143
     End
 
@@ -130,7 +130,7 @@ _01CA:
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 4
     SetSystemVar VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    SetSystemVar VAR_MAP_LOCAL_0x3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
@@ -139,7 +139,7 @@ _01F1:
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 5
     SetSystemVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    SetSystemVar VAR_MAP_LOCAL_0x3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
@@ -148,7 +148,7 @@ _0218:
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 6
     SetSystemVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    SetSystemVar VAR_MAP_LOCAL_0x3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
@@ -223,8 +223,8 @@ _037E:
     FrontierScrCmd_AF VAR_0x8009, 1, VAR_0x8008
     GoToIfEq VAR_0x8008, 2, _0366
     FrontierScrCmd_B0 VAR_0x8002, VAR_0x8005
-    SetSystemVar VAR_MAP_LOCAL_0x2, VAR_0x8002
-    SetSystemVar VAR_MAP_LOCAL_0x5, VAR_0x8005
+    SetSystemVar VAR_MAP_LOCAL_0x02, VAR_0x8002
+    SetSystemVar VAR_MAP_LOCAL_0x05, VAR_0x8005
     FadeScreenIn
     GoTo _03C1
     End

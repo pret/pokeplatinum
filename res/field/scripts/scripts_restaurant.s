@@ -29,9 +29,9 @@
 
 Restaurant_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_VALOR_LAKEFRONT_RESTAURANT
-    GetHour VAR_MAP_LOCAL_0x0
-    GoToIfLt VAR_MAP_LOCAL_0x0, 9, Restaurant_SetClosed
-    GoToIfGe VAR_MAP_LOCAL_0x0, 23, Restaurant_SetClosed
+    GetHour VAR_MAP_LOCAL_0x00
+    GoToIfLt VAR_MAP_LOCAL_0x00, 9, Restaurant_SetClosed
+    GoToIfGe VAR_MAP_LOCAL_0x00, 23, Restaurant_SetClosed
     GoToIfUnset FLAG_DAILY_SET_RESTAURANT_TRAINERS, Restaurant_ResetTrainers
     End
 
@@ -77,23 +77,23 @@ Restaurant_ResetTrainers:
     ClearTrainerFlag TRAINER_SCIENTIST_EMILIO
     ClearTrainerFlag TRAINER_BREEDER_KAYLEE
     SetVar VAR_RESTAURANT_STATE, 0
-    GetRandom VAR_MAP_LOCAL_0x1, 1
-    SetVar VAR_MAP_LOCAL_0x0, 5
-    SetVar VAR_MAP_LOCAL_0xA, 10000
+    GetRandom VAR_MAP_LOCAL_0x01, 1
+    SetVar VAR_MAP_LOCAL_0x00, 5
+    SetVar VAR_MAP_LOCAL_0x0A, 10000
 Restaurant_InitTrainers:
-    GetRandom2 VAR_MAP_LOCAL_0x1, 9
-    CallIfEq VAR_MAP_LOCAL_0x1, 0, Restaurant_InitTrainersIsmaelHarley
-    CallIfEq VAR_MAP_LOCAL_0x1, 1, Restaurant_InitTrainersRomanKylie
-    CallIfEq VAR_MAP_LOCAL_0x1, 2, Restaurant_InitTrainersLeonardoRebecca
-    CallIfEq VAR_MAP_LOCAL_0x1, 3, Restaurant_InitTrainersEugeneAlison
-    CallIfEq VAR_MAP_LOCAL_0x1, 4, Restaurant_InitTrainersEstebanMeredith
-    CallIfEq VAR_MAP_LOCAL_0x1, 5, Restaurant_InitTrainersEmanuelBlythe
-    CallIfEq VAR_MAP_LOCAL_0x1, 6, Restaurant_InitTrainersDarrylValerie
-    CallIfEq VAR_MAP_LOCAL_0x1, 7, Restaurant_InitTrainersKendrickGabriella
-    CallIfEq VAR_MAP_LOCAL_0x1, 8, Restaurant_InitTrainersEmilioKaylee
-    SubVar VAR_MAP_LOCAL_0xA, 1
-    GoToIfEq VAR_MAP_LOCAL_0xA, 0, Restaurant_FinishedInitTrainers
-    GoToIfNe VAR_MAP_LOCAL_0x0, 0, Restaurant_InitTrainers
+    GetRandom2 VAR_MAP_LOCAL_0x01, 9
+    CallIfEq VAR_MAP_LOCAL_0x01, 0, Restaurant_InitTrainersIsmaelHarley
+    CallIfEq VAR_MAP_LOCAL_0x01, 1, Restaurant_InitTrainersRomanKylie
+    CallIfEq VAR_MAP_LOCAL_0x01, 2, Restaurant_InitTrainersLeonardoRebecca
+    CallIfEq VAR_MAP_LOCAL_0x01, 3, Restaurant_InitTrainersEugeneAlison
+    CallIfEq VAR_MAP_LOCAL_0x01, 4, Restaurant_InitTrainersEstebanMeredith
+    CallIfEq VAR_MAP_LOCAL_0x01, 5, Restaurant_InitTrainersEmanuelBlythe
+    CallIfEq VAR_MAP_LOCAL_0x01, 6, Restaurant_InitTrainersDarrylValerie
+    CallIfEq VAR_MAP_LOCAL_0x01, 7, Restaurant_InitTrainersKendrickGabriella
+    CallIfEq VAR_MAP_LOCAL_0x01, 8, Restaurant_InitTrainersEmilioKaylee
+    SubVar VAR_MAP_LOCAL_0x0A, 1
+    GoToIfEq VAR_MAP_LOCAL_0x0A, 0, Restaurant_FinishedInitTrainers
+    GoToIfNe VAR_MAP_LOCAL_0x00, 0, Restaurant_InitTrainers
 Restaurant_FinishedInitTrainers:
     SetFlag FLAG_DAILY_SET_RESTAURANT_TRAINERS
     End
@@ -102,63 +102,63 @@ Restaurant_InitTrainersIsmaelHarley:
     GoToIfUnset FLAG_HIDE_RESTAURANT_ISMAEL_HARLEY, Restaurant_InitTrainersReturn
     ClearFlag FLAG_HIDE_RESTAURANT_ISMAEL_HARLEY
     GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_ISMAEL_HARLEY, 3
-    SubVar VAR_MAP_LOCAL_0x0, 1
+    SubVar VAR_MAP_LOCAL_0x00, 1
     Return
 
 Restaurant_InitTrainersRomanKylie:
     GoToIfUnset FLAG_HIDE_RESTAURANT_ROMAN_KYLIE, Restaurant_InitTrainersReturn
     ClearFlag FLAG_HIDE_RESTAURANT_ROMAN_KYLIE
     GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_ROMAN_KYLIE, 3
-    SubVar VAR_MAP_LOCAL_0x0, 1
+    SubVar VAR_MAP_LOCAL_0x00, 1
     Return
 
 Restaurant_InitTrainersLeonardoRebecca:
     GoToIfUnset FLAG_HIDE_RESTAURANT_LEONARDO_REBECCA, Restaurant_InitTrainersReturn
     ClearFlag FLAG_HIDE_RESTAURANT_LEONARDO_REBECCA
     GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_LEONARDO_REBECCA, 3
-    SubVar VAR_MAP_LOCAL_0x0, 1
+    SubVar VAR_MAP_LOCAL_0x00, 1
     Return
 
 Restaurant_InitTrainersEugeneAlison:
     GoToIfUnset FLAG_HIDE_RESTAURANT_EUGENE_ALISON, Restaurant_InitTrainersReturn
     ClearFlag FLAG_HIDE_RESTAURANT_EUGENE_ALISON
     GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_EUGENE_ALISON, 3
-    SubVar VAR_MAP_LOCAL_0x0, 1
+    SubVar VAR_MAP_LOCAL_0x00, 1
     Return
 
 Restaurant_InitTrainersEstebanMeredith:
     GoToIfUnset FLAG_HIDE_RESTAURANT_ESTEBAN_MEREDITH, Restaurant_InitTrainersReturn
     ClearFlag FLAG_HIDE_RESTAURANT_ESTEBAN_MEREDITH
     GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_ESTEBAN_MEREDITH, 3
-    SubVar VAR_MAP_LOCAL_0x0, 1
+    SubVar VAR_MAP_LOCAL_0x00, 1
     Return
 
 Restaurant_InitTrainersEmanuelBlythe:
     GoToIfUnset FLAG_HIDE_RESTAURANT_EMANUEL_BLYTHE, Restaurant_InitTrainersReturn
     ClearFlag FLAG_HIDE_RESTAURANT_EMANUEL_BLYTHE
     GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_EMANUEL_BLYTHE, 3
-    SubVar VAR_MAP_LOCAL_0x0, 1
+    SubVar VAR_MAP_LOCAL_0x00, 1
     Return
 
 Restaurant_InitTrainersDarrylValerie:
     GoToIfUnset FLAG_HIDE_RESTAURANT_DARRYL_VALERIE, Restaurant_InitTrainersReturn
     ClearFlag FLAG_HIDE_RESTAURANT_DARRYL_VALERIE
     GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_DARRYL_VALERIE, 3
-    SubVar VAR_MAP_LOCAL_0x0, 1
+    SubVar VAR_MAP_LOCAL_0x00, 1
     Return
 
 Restaurant_InitTrainersKendrickGabriella:
     GoToIfUnset FLAG_HIDE_RESTAURANT_KENDRICK_GABRIELLA, Restaurant_InitTrainersReturn
     ClearFlag FLAG_HIDE_RESTAURANT_KENDRICK_GABRIELLA
     GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_KENDRICK_GABRIELLA, 3
-    SubVar VAR_MAP_LOCAL_0x0, 1
+    SubVar VAR_MAP_LOCAL_0x00, 1
     Return
 
 Restaurant_InitTrainersEmilioKaylee:
     GoToIfUnset FLAG_HIDE_RESTAURANT_EMILIO_KAYLEE, Restaurant_InitTrainersReturn
     ClearFlag FLAG_HIDE_RESTAURANT_EMILIO_KAYLEE
     GetRandom2 VAR_RESTAURANT_RANDOM_MESSAGE_EMILIO_KAYLEE, 3
-    SubVar VAR_MAP_LOCAL_0x0, 1
+    SubVar VAR_MAP_LOCAL_0x00, 1
     Return
 
 Restaurant_InitTrainersReturn:

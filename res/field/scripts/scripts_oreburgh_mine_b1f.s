@@ -39,7 +39,7 @@ OreburghMineB1F_Hiker:
 OreburghMineB1F_TryGiveFlamePlate:
     SetVar VAR_0x8004, ITEM_FLAME_PLATE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghMineB1F_YouHaveAnOveradundance
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghMineB1F_YouHaveAnOverabundance
     Common_GiveItemQuantity
     Message OreburghMineB1F_Text_CreatedAtSameTimeAsSinnoh
     CloseMessage
@@ -74,9 +74,9 @@ OreburghMineB1F_RemoveHiker:
     ReleaseAll
     End
 
-OreburghMineB1F_YouHaveAnOveradundance:
+OreburghMineB1F_YouHaveAnOverabundance:
     SetFlag FLAG_COULD_NOT_RECEIVE_OREBURGH_MINE_B1F_FLAME_PLATE
-    Message OreburghMineB1F_Text_YouHaveAnOveradundance
+    Message OreburghMineB1F_Text_YouHaveAnOverabundance
     GoTo OreburghMineB1F_HikerEnd
     End
 

@@ -22,8 +22,8 @@ ValleyWindworksOutside_OnTransition:
     CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveWarpValleyWindworksBuilding
     GoToIfLt VAR_VALLEY_WINDWORKS_STATE, 2, ValleyWindworksOutside_HideDrifloon
     GoToIfSet FLAG_DAILY_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON, ValleyWindworksOutside_HideDrifloon
-    GetDayOfWeek VAR_MAP_LOCAL_0x0
-    GoToIfNe VAR_MAP_LOCAL_0x0, DAY_OF_WEEK_FRIDAY, ValleyWindworksOutside_HideDrifloon
+    GetDayOfWeek VAR_MAP_LOCAL_0x00
+    GoToIfNe VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_FRIDAY, ValleyWindworksOutside_HideDrifloon
     GoTo ValleyWindworksOutside_ShowDrifloon
 
 ValleyWindworksOutside_ShowDrifloon:

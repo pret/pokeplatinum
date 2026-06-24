@@ -11,8 +11,8 @@
     ScriptEntryEnd
 
 PoketchCo1F_OnTransition:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THE_POKETCH_WATCH, VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, 0, PoketchCo1F_HideReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THE_POKETCH_WATCH, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, 0, PoketchCo1F_HideReporter
     GoToIfLt VAR_JUBILIFE_CITY_STATE, 2, PoketchCo1F_HideReporter
     ClearFlag FLAG_HIDE_POKETCH_CO_1F_REPORTER
     End

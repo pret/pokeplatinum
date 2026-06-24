@@ -13,9 +13,9 @@
     ScriptEntryEnd
 
 Route212South_OnTransition:
-    GetTimeOfDay VAR_MAP_LOCAL_0x0
-    GoToIfInRange VAR_MAP_LOCAL_0x0, TIMEOFDAY_MORNING, TIMEOFDAY_TWILIGHT, Route212South_SetPolicemanNoBattle
-    GoToIfInRange VAR_MAP_LOCAL_0x0, TIMEOFDAY_NIGHT, TIMEOFDAY_LATE_NIGHT, Route212South_SetPolicemanBattle
+    GetTimeOfDay VAR_MAP_LOCAL_0x00
+    GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_MORNING, TIMEOFDAY_TWILIGHT, Route212South_SetPolicemanNoBattle
+    GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_NIGHT, TIMEOFDAY_LATE_NIGHT, Route212South_SetPolicemanBattle
     End
 
 Route212South_SetPolicemanNoBattle:

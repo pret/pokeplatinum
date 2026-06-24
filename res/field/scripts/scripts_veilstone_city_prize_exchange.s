@@ -12,7 +12,7 @@ VeilstoneCityPrizeExchange_Receptionist:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_0x1, 19
+    SetVar VAR_MAP_LOCAL_0x01, 19
     Message VeilstoneCityPrizeExchange_Text_ExchangeCoinsForPrizes
     ShowCoins 21, 1
     SetVar VAR_0x8005, 0
@@ -24,7 +24,7 @@ VeilstoneCityPrizeExchange_TryBuyPrize:
     Message VeilstoneCityPrizeExchange_Text_WhichPrize
     Call VeilstoneCityPrizeExchange_InitPrizeMenu
     GoToIfEq VAR_RESULT, MENU_CANCEL, VeilstoneCityPrizeExchange_DontBuyAPrize
-    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_0x1, VeilstoneCityPrizeExchange_DontBuyAPrize
+    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_0x01, VeilstoneCityPrizeExchange_DontBuyAPrize
     GetGameCornerPrizeData VAR_RESULT, VAR_0x8000, VAR_0x8001
     CallIfLt VAR_0x8000, ITEM_TM01, VeilstoneCityPrizeExchange_IsYourChoiceThisItem
     CallIfGe VAR_0x8000, ITEM_TM01, VeilstoneCityPrizeExchange_IsYourChoiceThisTM
@@ -85,7 +85,7 @@ VeilstoneCityPrizeExchange_AddPrizeToMenu:
     BufferVarPaddingDigits 1, VAR_0x8001, PADDING_MODE_SPACES, 5
     AddListMenuEntry MenuEntries_Text_PrizeExchange_Prize, VAR_0x8008
     AddVar VAR_0x8008, 1
-    GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_0x1, VeilstoneCityPrizeExchange_AddPrizeToMenu
+    GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_0x01, VeilstoneCityPrizeExchange_AddPrizeToMenu
     GoTo VeilstoneCityPrizeExchange_FinishMenu
     End
 

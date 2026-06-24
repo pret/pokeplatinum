@@ -9,8 +9,8 @@
     ScriptEntryEnd
 
 HearthomeCityEastGateToAmitySquare_OnTransition:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_AMITY_SQUARE_WATCH, VAR_MAP_LOCAL_0x0
-    GoToIfEq VAR_MAP_LOCAL_0x0, 0, HearthomeCityEastGateToAmitySquare_HideReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_AMITY_SQUARE_WATCH, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, 0, HearthomeCityEastGateToAmitySquare_HideReporter
     ClearFlag FLAG_HIDE_HEARTHOME_CITY_GATE_TO_AMITY_SQUARE_REPORTER
     End
 

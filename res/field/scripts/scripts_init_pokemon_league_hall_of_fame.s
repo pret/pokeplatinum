@@ -5,7 +5,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_MAP_LOCAL_0x3, 0, 1
+    InitScriptGoToIfEqual VAR_MAP_LOCAL_0x03, 0, 1
     InitScriptFrameTableEnd
 
     InitScriptEnd
