@@ -75,11 +75,11 @@
 #include "overlay006/npc_trade.h"
 #include "overlay006/ov6_0223E140.h"
 #include "overlay006/ov6_02243004.h"
-#include "overlay006/ov6_02247830.h"
 #include "overlay006/ov6_02248948.h"
 #include "overlay006/pc_animation.h"
 #include "overlay006/swarm.h"
 #include "overlay006/trophy_garden_daily_encounters.h"
+#include "overlay006/wallpaper_passwords.h"
 #include "overlay007/battle_regulation_menu.h"
 #include "overlay007/communication_club.h"
 #include "overlay007/shop_menu.h"
@@ -5581,13 +5581,13 @@ static BOOL ScrCmd_GetWallpaperFromCustomMessageWords(ScriptContext *ctx)
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
-    u16 customMessageWord1 = ScriptContext_GetVar(ctx);
-    u16 customMessageWord2 = ScriptContext_GetVar(ctx);
-    u16 customMessageWord3 = ScriptContext_GetVar(ctx);
-    u16 customMessageWord4 = ScriptContext_GetVar(ctx);
-    int wallpaper = ov6_022479D0(trainerInfo, customMessageWord1, customMessageWord2, customMessageWord3, customMessageWord4, HEAP_ID_FIELD1);
+    u16 word1 = ScriptContext_GetVar(ctx);
+    u16 word2 = ScriptContext_GetVar(ctx);
+    u16 word3 = ScriptContext_GetVar(ctx);
+    u16 word4 = ScriptContext_GetVar(ctx);
+    int wallpaper = WallpaperPasswords_CheckPassword(trainerInfo, word1, word2, word3, word4, HEAP_ID_FIELD1);
 
-    if (wallpaper == -1 || wallpaper > 7) {
+    if (wallpaper == -1 || wallpaper > MAX_UNLOCKABLE_WALLPAPERS - 1) {
         *destVar = 0xFF;
         return FALSE;
     }

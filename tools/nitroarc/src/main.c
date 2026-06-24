@@ -89,6 +89,7 @@ enum {
 
     exclude,
     exclude_from,
+    single_file,
     files_from,
     index,
     no_recurse,
@@ -114,6 +115,7 @@ static const option_cfg_t s_options[] = {
 
     [exclude]      = { "exclude",      NULL, 'E', 0, true  },
     [exclude_from] = { "exclude-from", NULL, 'X', 0, true  },
+    [single_file]  = { "single-file",  NULL, 'S', 0, true  },
     [files_from]   = { "files-from",   NULL, 'T', 0, true  },
     [index]        = { "index",        NULL, 'I', 0, false },
     [no_recurse]   = { "no-recursion", NULL, 'R', 0, false },
@@ -164,6 +166,7 @@ int parse_opts(const char **argv, options_t *opts) {
         case directory:    target_optarg(opts->directory);
         case file:         target_optarg(opts->file);
         case format:       target_optarg(opts->format);
+        case single_file:  target_optarg(opts->single_file);
         case files_from:   target_optarg(opts->files_from);
         case exclude_from: target_optarg(opts->exclude_from);
         case exclude:      target_optarg(opts->exclude_pat);
@@ -215,6 +218,7 @@ static void exit_help(const char *name, int exit_status) {
     puts("Archive creation options:");
     puts("  -E, --exclude=PATTERN    exclude filenames matching PATTERN");
     puts("  -X, --exclude-from=FILE  read exclusion patterns from FILE");
+    puts("  -S, --single-file=FILE   specify FILE as the only member file");
     puts("  -T, --files-from=FILE    read ordered filenames from FILE");
     puts("  -I, --index              create a C-header index of member files");
     puts("  -N, --named              retain filenames in the archive");

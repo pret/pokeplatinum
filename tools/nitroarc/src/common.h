@@ -60,6 +60,7 @@ struct options {
     const char *directory;    // -C, --directory=DIR
     const char *file;         // -f, --file=ARCHIVE
     const char *format;       // -F, --format=FORMAT
+    const char *single_file;  // -t  --file=FILE
     const char *files_from;   // -T, --files-from=FILE
     const char *exclude_from; // -X, --exclude-from=FILE
     const char *exclude_pat;  //     --exclude=PATTERN

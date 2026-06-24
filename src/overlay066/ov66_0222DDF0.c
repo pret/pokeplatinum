@@ -40,7 +40,6 @@
 #include "overlay066/struct_ov66_022589B4.h"
 #include "overlay068/struct_ov68_0225DC74.h"
 
-#include "easy_chat_words.h"
 #include "enums.h"
 #include "font.h"
 #include "game_records.h"
@@ -49,6 +48,7 @@
 #include "math_util.h"
 #include "message.h"
 #include "party.h"
+#include "password_word_bank.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "save_player.h"
@@ -167,7 +167,7 @@ typedef struct {
 typedef struct {
     u8 unk_00[20];
     UnkStruct_ov66_02230914 unk_14[20];
-    UnkStruct_02014FB0 *unk_B4;
+    PasswordWordBank *unk_B4;
 } UnkStruct_ov66_022308A0;
 
 typedef union {
@@ -315,7 +315,7 @@ static void ov66_022308BC(UnkStruct_ov66_022308A0 *param0);
 static void ov66_022308C8(UnkStruct_ov66_022308A0 *param0, u32 param1, BOOL param2, u32 param3);
 static BOOL ov66_022308F8(const UnkStruct_ov66_022308A0 *param0, u32 param1);
 static const UnkStruct_ov66_02230914 *ov66_02230914(const UnkStruct_ov66_022308A0 *param0, u32 param1);
-static void ov66_02230938(UnkStruct_02014FB0 *param0, u32 param1, UnkStruct_ov66_02230914 *param2);
+static void ov66_02230938(PasswordWordBank *param0, u32 param1, UnkStruct_ov66_02230914 *param2);
 static void ov66_022309A4(UnkStruct_ov66_022309A4 *param0, u32 param1, u32 param2);
 static void ov66_022309B4(UnkStruct_ov66_022309A4 *param0);
 static void ov66_022309C8(UnkStruct_ov66_022309A4 *param0);
@@ -3384,12 +3384,12 @@ static BOOL ov66_02230884(const UnkStruct_ov66_02232068 *param0, u32 param1)
 static void ov66_022308A0(UnkStruct_ov66_022308A0 *param0, u32 param1)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov66_022308A0));
-    param0->unk_B4 = sub_02014FB0(param1);
+    param0->unk_B4 = PasswordWordBank_New(param1);
 }
 
 static void ov66_022308BC(UnkStruct_ov66_022308A0 *param0)
 {
-    sub_02014FF0(param0->unk_B4);
+    PasswordWordBank_Free(param0->unk_B4);
 }
 
 static void ov66_022308C8(UnkStruct_ov66_022308A0 *param0, u32 param1, BOOL param2, u32 param3)
@@ -3429,27 +3429,27 @@ static const UnkStruct_ov66_02230914 *ov66_02230914(const UnkStruct_ov66_022308A
     return NULL;
 }
 
-static void ov66_02230938(UnkStruct_02014FB0 *param0, u32 param1, UnkStruct_ov66_02230914 *param2)
+static void ov66_02230938(PasswordWordBank *param0, u32 param1, UnkStruct_ov66_02230914 *param2)
 {
     UnkStruct_ov66_02230938 v0;
     u32 v1;
     u32 v2;
 
-    v1 = sub_02015004(param0);
+    v1 = PasswordWordBank_GetLength(param0);
 
     v0.val1 = param1;
 
     v2 = (v0.val2[3] + v0.val2[0]) % v1;
-    param2->unk_00[0] = sub_02015008(param0, v2);
+    param2->unk_00[0] = PasswordWordBank_GetWordAtIndex(param0, v2);
 
     v2 = (v0.val2[0] + v0.val2[1]) % v1;
-    param2->unk_00[1] = sub_02015008(param0, v2);
+    param2->unk_00[1] = PasswordWordBank_GetWordAtIndex(param0, v2);
 
     v2 = (v0.val2[1] + v0.val2[2]) % v1;
-    param2->unk_00[2] = sub_02015008(param0, v2);
+    param2->unk_00[2] = PasswordWordBank_GetWordAtIndex(param0, v2);
 
     v2 = (v0.val2[2] + v0.val2[3]) % v1;
-    param2->unk_00[3] = sub_02015008(param0, v2);
+    param2->unk_00[3] = PasswordWordBank_GetWordAtIndex(param0, v2);
 }
 
 static void ov66_022309A4(UnkStruct_ov66_022309A4 *param0, u32 param1, u32 param2)

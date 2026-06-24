@@ -58,6 +58,7 @@ Static main
 	Object main.nef.p/src_colored_arrow.c.o
 	Object main.nef.p/src_easy_chat_sentence.c.o
 	Object main.nef.p/src_easy_chat_words.c.o
+	Object main.nef.p/src_password_word_bank.c.o
 	Object main.nef.p/src_software_sprite.c.o
 	Object main.nef.p/src_unk_0201567C.c.o
 	Object main.nef.p/src_poffin_types.c.o
@@ -583,7 +584,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_trophy_garden_daily_encounters.c.o
 	Object main.nef.p/src_overlay006_feebas_fishing.c.o
 	Object main.nef.p/src_overlay006_dual_slot_encounters.c.o
-	Object main.nef.p/src_overlay006_ov6_02247830.c.o
+	Object main.nef.p/src_overlay006_wallpaper_passwords.c.o
 	Object main.nef.p/src_overlay006_link_contest_record_display.c.o
 	Object main.nef.p/src_overlay006_healing_machine_animation_hall_of_fame.c.o
 	Object main.nef.p/src_overlay006_lake_guardian_containment_units.c.o
