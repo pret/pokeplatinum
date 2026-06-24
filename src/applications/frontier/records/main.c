@@ -5,9 +5,9 @@
 
 #include "constants/battle_frontier.h"
 
-#include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/frontier_records_app_args.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "applications/frontier/records/windows.h"
 
@@ -33,10 +33,10 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/graphics/poketch/poketch.naix"
 #include "res/text/bank/battle_frontier_records.h"
@@ -802,7 +802,7 @@ static void DisplayBattleTowerMultiRecord(FrontierRecordsApp *app)
 
 static u32 GetBattleTowerLatestStreakEntryID(FrontierRecordsApp *app, u8 towerMode)
 {
-    UnkStruct_0202D750 *v2 = sub_0202D750(app->saveData);
+    WifiBattleTowerRecord *record = SaveData_GetWifiBattleTowerRecord(app->saveData);
 
     u16 v0;
     switch (towerMode) {
@@ -829,7 +829,7 @@ static u32 GetBattleTowerLatestStreakEntryID(FrontierRecordsApp *app, u8 towerMo
         break;
     }
 
-    int isActive = sub_0202D414(v2, v0, 0);
+    int isActive = WifiBattleTowerRecord_UpdateBitFlag(record, v0, 0);
 
     if (isActive == TRUE) {
         return BattleFrontierRecords_Text_Current;

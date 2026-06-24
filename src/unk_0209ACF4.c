@@ -22,8 +22,8 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/text/bank/easy_chat.h"
 
@@ -135,19 +135,19 @@ static BOOL sub_0209AE14(FieldTask *param0)
 
             switch (v0->unk_64) {
             case 0:
-                EasyChatSentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 0));
+                EasyChatSentence_Copy(&(v0->unk_48), FrontierEasyChatMessages_GetSentence(v0->fieldSystem->saveData, 0));
                 v0->unk_54 = 3;
                 break;
             case 1:
-                EasyChatSentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 1));
+                EasyChatSentence_Copy(&(v0->unk_48), FrontierEasyChatMessages_GetSentence(v0->fieldSystem->saveData, 1));
                 v0->unk_54 = 3;
                 break;
             case 2:
-                EasyChatSentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 2));
+                EasyChatSentence_Copy(&(v0->unk_48), FrontierEasyChatMessages_GetSentence(v0->fieldSystem->saveData, 2));
                 v0->unk_54 = 3;
                 break;
             case 3:
-                EasyChatSentence_Copy(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 3));
+                EasyChatSentence_Copy(&(v0->unk_48), FrontierEasyChatMessages_GetSentence(v0->fieldSystem->saveData, 3));
                 v0->unk_54 = 3;
                 break;
             case 4:
@@ -193,7 +193,7 @@ static BOOL sub_0209AE14(FieldTask *param0)
                 v0->unk_54 = 11;
             } else {
                 EasyChatArgs_CopySentenceTo(v0->unk_50, &(v0->unk_48));
-                sub_0202D478(v0->fieldSystem->saveData, v0->unk_64, &(v0->unk_48));
+                FrontierEasyChatMessages_SetSentence(v0->fieldSystem->saveData, v0->unk_64, &(v0->unk_48));
                 sub_0209B084(v0, 6, 0);
                 v0->unk_54 = 9;
             }

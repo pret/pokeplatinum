@@ -31,11 +31,11 @@
 #include "savedata.h"
 #include "script_manager.h"
 #include "string_template.h"
-#include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
 #include "unk_02099500.h"
+#include "wifi_battle_tower_save.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -502,8 +502,8 @@ BOOL ScrCmd_GetBattleHallRecordKeeperStats(ScriptContext *ctx)
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_RECEIVED, earnedBP);
 
     if (earnedBP != 0) {
-        BattlePoints_ApplyFuncAndGet(
-            sub_0202D750(ctx->fieldSystem->saveData), earnedBP, BATTLE_POINTS_FUNC_ADD);
+        WifiBattleTowerRecord_UpdateBattlePoints(
+            SaveData_GetWifiBattleTowerRecord(ctx->fieldSystem->saveData), earnedBP, BATTLE_POINTS_FUNC_ADD);
     }
 
     if (totalWinRecord == 0) {

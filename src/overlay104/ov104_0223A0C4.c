@@ -13,8 +13,7 @@
 
 #include "struct_defs/battle_frontier_pokemon_data.h"
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/struct_0202D764.h"
-#include "struct_defs/struct_0204B404.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_ov104_02230BE4.h"
@@ -27,8 +26,8 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0202D05C.h"
 #include "unk_02049D08.h"
+#include "wifi_battle_tower_save.h"
 
 const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
     {
@@ -635,14 +634,14 @@ u16 ov104_0223A750(BattleTower *battleTower, const u16 *param1);
 int BattleTower_GetPokemonDataNarcID(u8 challengeMode);
 int BattleFrontier_GetTrainerDataNarcID(u8 challengeMode);
 int BattleTower_GetTrainerMessagesBankID(u8 challengeMode);
-static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, BattleFrontierTrainerData *trData, u16 battleTowerTrainerID, FrontierPokemonDataDTO *monDataDTO, u8 partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param7, enum HeapID heapID);
+static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, BattleFrontierTrainerData *trData, u16 battleTowerTrainerID, FrontierPokemonDataDTO *monDataDTO, u8 partySize, u16 *species, u16 *items, BattleTowerPartnerData *param7, enum HeapID heapID);
 static void BattleTower_CreateDummyWiFiTrainer(FrontierDataDTO *dto, const u8 opponentID);
 static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, FrontierPokemonDataDTO *monDataDTO, u16 setID, u32 otID, u32 givenPersonality, u8 ivs, u8 partyIndex, BOOL giveReservedItem, enum HeapID heapID);
 static u32 BattleTower_GetBattleTypeFromChallengeMode(u8 challengeMode);
 static void FieldBattleDTO_InitBattleTowerTrainer(FieldBattleDTO *battleDTO, FrontierDataDTO *frontierDTO, int partySize, int battlerId, enum HeapID heapID);
 static int BattleTower_AreAllConnectedGamesPlatinum(u8 challengeMode);
 
-BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierDataDTO *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param6, enum HeapID heapID)
+BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierDataDTO *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, BattleTowerPartnerData *param6, enum HeapID heapID)
 {
     BOOL v0 = 0;
     BattleFrontierTrainerData *trData = BattleFrontier_GetTrainerData(&opponentDataDTO->trDataDTO, battleTowerTrainerID, heapID, BattleFrontier_GetTrainerDataNarcID(battleTower->challengeMode));
@@ -653,7 +652,7 @@ BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierDataDTO *o
     return v0;
 }
 
-static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, BattleFrontierTrainerData *trData, u16 battleTowerTrainerID, FrontierPokemonDataDTO *monDataDTO, u8 partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param7, enum HeapID heapID)
+static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, BattleFrontierTrainerData *trData, u16 battleTowerTrainerID, FrontierPokemonDataDTO *monDataDTO, u8 partySize, u16 *species, u16 *items, BattleTowerPartnerData *param7, enum HeapID heapID)
 {
     int i;
     u8 ivs;
@@ -750,11 +749,11 @@ static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, Battl
         return giveReservedItem;
     }
 
-    param7->unk_00 = v4;
+    param7->otID = v4;
 
     for (i = 0; i < 2; i++) {
-        param7->unk_04[i] = setIDs[i];
-        param7->unk_08[i] = personalities[i];
+        param7->monSetIDs[i] = setIDs[i];
+        param7->personalities[i] = personalities[i];
     }
 
     return giveReservedItem;
@@ -764,14 +763,14 @@ void BattleTower_CreateWiFiTrainerParty(SaveData *saveData, FrontierDataDTO *dto
 {
     MI_CpuClear8(dto, sizeof(FrontierDataDTO));
 
-    UnkStruct_0202D764 *v1 = sub_0202D764(saveData);
+    WifiBattleTowerDownloadData *v1 = SaveData_GetWifiBattleTowerDownloadData(saveData);
 
-    if (!sub_0202D5E8(v1)) {
+    if (!WifiBattleTowerDownloadData_HasOpponentData(v1)) {
         BattleTower_CreateDummyWiFiTrainer(dto, opponentID);
         return;
     }
 
-    sub_0202D63C(v1, dto, opponentID);
+    WifiBattleTowerDownloadData_BuildOpponentDTO(v1, dto, opponentID);
 }
 
 static void BattleTower_CreateDummyWiFiTrainer(FrontierDataDTO *dto, const u8 opponentID)

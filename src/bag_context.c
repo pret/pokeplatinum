@@ -20,7 +20,7 @@
 #include "trainer_info.h"
 #include "unk_020298BC.h"
 #include "unk_0202C9F4.h"
-#include "unk_0202D05C.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/text/bank/bag.h"
 #include "res/text/bank/common_strings.h"
@@ -136,7 +136,7 @@ static u32 GetNumBackdrops(SaveData *saveData)
 
 static u32 GetNumBattlePoints(SaveData *saveData)
 {
-    return BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
+    return WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(saveData), 0, BATTLE_POINTS_FUNC_NONE);
 }
 
 BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 item, enum HeapID heapID)
