@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_BATTLE_SCRIPT_H
-#define POKEPLATINUM_BATTLE_SCRIPT_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_SCRIPT_H
+#define POKEPLATINUM_BATTLE_BATTLE_SCRIPT_H
 
 #include "struct_decls/battle_system.h"
 
@@ -24,4 +24,4 @@
  */
 BOOL BattleScript_Exec(BattleSystem *battleSys, BattleContext *battleCtx);
 
-#endif // POKEPLATINUM_BATTLE_SCRIPT_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_SCRIPT_H

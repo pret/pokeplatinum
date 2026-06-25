@@ -8,16 +8,16 @@
 
     ScriptEntry PalParkLobby_OnTransition
     ScriptEntry PalParkLobby_Worker
-    ScriptEntry PalParkLobby_OnFrameTallyScore
-    ScriptEntry PalParkLobby_RecordUnused
+    ScriptEntry PalParkLobby_OnFrame_TallyScore
+    ScriptEntry PalParkLobby_Record_Unused
     ScriptEntry PalParkLobby_Daughter
     ScriptEntry PalParkLobby_Dad
     ScriptEntry PalParkLobby_ShowWatcherBoy
     ScriptEntry PalParkLobby_ComplaintsLady
     ScriptEntry PalParkLobby_RecordGuy
-    ScriptEntry PalParkLobby_OnFrameProfOak
+    ScriptEntry PalParkLobby_OnFrame_ProfOak
     ScriptEntry PalParkLobby_PoketchAppLady
-    ScriptEntry PalParkLobby_OnFrameExitPalPark
+    ScriptEntry PalParkLobby_OnFrame_ExitPalPark
     ScriptEntry PalParkLobby_GBASlotGiftLady
     ScriptEntryEnd
 
@@ -163,7 +163,7 @@ PalParkLobby_WalkInAndWarp:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_PAL_PARK, 0, 24, 47, DIR_NORTH
+    Warp MAP_HEADER_PAL_PARK, 24, 47, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -201,7 +201,7 @@ PalParkLobby_Movement_PlayerEnterPalPark:
     SetInvisible
     EndMovement
 
-PalParkLobby_OnFrameExitPalPark:
+PalParkLobby_OnFrame_ExitPalPark:
     LockAll
     SetVar VAR_PAL_PARK_STATE, 0
     ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_PlayerExitPalPark
@@ -211,7 +211,7 @@ PalParkLobby_OnFrameExitPalPark:
     ReleaseAll
     End
 
-PalParkLobby_OnFrameTallyScore:
+PalParkLobby_OnFrame_TallyScore:
     LockAll
     SetVar VAR_PAL_PARK_STATE, 0
     ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_PlayerWalkToWorker
@@ -290,7 +290,7 @@ PalParkLobby_Movement_PlayerLeaveCounter:
     WalkNormalSouth 4
     EndMovement
 
-PalParkLobby_RecordUnused:
+PalParkLobby_Record_Unused:
     NPCMessage PalParkLobby_Text_CurrentRecordHolder
     End
 
@@ -342,7 +342,7 @@ PalParkLobby_RecordGuy:
     NPCMessage PalParkLobby_Text_CurrentRecordHolder
     End
 
-PalParkLobby_OnFrameProfOak:
+PalParkLobby_OnFrame_ProfOak:
     LockAll
     ClearFlag FLAG_ETERNA_CITY_SOUTH_HOUSE_HIDE_PROF_OAK
     SetVar VAR_CATCHING_SHOW_RECORD, 2000

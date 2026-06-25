@@ -7,9 +7,9 @@
 
     ScriptEntry SpearPillar_OnTransition
     ScriptEntry SpearPillar_OnLoad
-    ScriptEntry SpearPillar_TriggerGrunts
+    ScriptEntry SpearPillar_CoordEvent_Grunts
     ScriptEntry SpearPillar_Cyrus
-    ScriptEntry SpearPillar_TriggerMarsJupiter
+    ScriptEntry SpearPillar_CoordEvent_MarsJupiter
     ScriptEntry SpearPillar_Grunts
     ScriptEntry SpearPillar_Jupiter
     ScriptEntry SpearPillar_Mars
@@ -78,7 +78,7 @@ SpearPillar_Unused:
 SpearPillar_Unused2:
     Return
 
-SpearPillar_TriggerGrunts:
+SpearPillar_CoordEvent_Grunts:
     LockAll
     ApplyMovement LOCALID_GRUNT_F, SpearPillar_Movement_GruntFWalkOnSpotEast
     ApplyMovement LOCALID_GRUNT_M, SpearPillar_Movement_GruntMWalkOnSpotWest
@@ -159,7 +159,7 @@ SpearPillar_Mars:
     NPCMessage SpearPillar_Text_SurprisedYouMadeIt
     End
 
-SpearPillar_TriggerMarsJupiter:
+SpearPillar_CoordEvent_MarsJupiter:
     LockAll
     Call SpearPillar_MarsJupiterWalkToPlayer
     Message SpearPillar_Text_GoThroughMeFirst
@@ -326,20 +326,20 @@ SpearPillar_PlayerRivalFaceEachOtherX32:
     Return
 
 SpearPillar_Unused3:
-    ApplyMovement LOCALID_JUPITER, SpearPillar_UnusedMovement
-    ApplyMovement LOCALID_MARS, SpearPillar_UnusedMovement2
+    ApplyMovement LOCALID_JUPITER, SpearPillar_Movement_Unused
+    ApplyMovement LOCALID_MARS, SpearPillar_Movement_Unused2
     WaitMovement
     Return
 
     .balign 4, 0
-SpearPillar_UnusedMovement:
+SpearPillar_Movement_Unused:
     FaceEast
     LockDir
     WalkSlowWest
     UnlockDir
     EndMovement
 
-SpearPillar_UnusedMovement2:
+SpearPillar_Movement_Unused2:
     FaceWest
     LockDir
     WalkSlowEast
@@ -394,7 +394,7 @@ SpearPillar_WaitThenWarpToSpearPillarDistorted:
     SetSpeciesSeen SPECIES_DIALGA
     SetSpeciesSeen SPECIES_PALKIA
     RestoreCamera
-    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, DIR_NORTH
+    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 30, 30, DIR_NORTH
     End
 
     .balign 4, 0

@@ -26,7 +26,6 @@
 #include "generated/sdat.h"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
-#include "generated/string_padding_mode.h"
 #include "generated/time_of_day.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
@@ -55,6 +54,7 @@
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
 #include "constants/sound_volume.h"
+#include "constants/string.h"
 #include "constants/tv_broadcast.h"
 #include "constants/union_room_message_types.h"
 #include "constants/villa_visitors.h"
@@ -595,9 +595,9 @@
     .short \seqID
     .endm
 
-    .macro StopMusic dummy
+    .macro StopMusic
     .short SCRCMD_STOPMUSIC
-    .short \dummy
+    .short 0 // unused
     .endm
 
     // Plays the default music track based on the player's current location
@@ -1207,10 +1207,10 @@
     .short SCRCMD_WAITFADESCREEN
     .endm
 
-    .macro Warp mapID, dummy, x, z, direction
+    .macro Warp mapID, x, z, direction
     .short SCRCMD_WARP
     .short \mapID
-    .short \dummy
+    .short 0 // unused
     .short \x
     .short \z
     .short \direction
@@ -1246,9 +1246,9 @@
     .short SCRCMD_0C4
     .endm
 
-    .macro ScrCmd_0C5 arg0
-    .short SCRCMD_0C5
-    .short \arg0
+    .macro PlayHMCutIn slot
+    .short SCRCMD_PLAYHMCUTIN
+    .short \slot
     .endm
 
     .macro ChangeIntoContestAttire
@@ -2484,9 +2484,9 @@
     .short \daycareSlot
     .endm
 
-    .macro BufferPartyMonNicknameReturnSpecies unused, partySlot, destVar
+    .macro BufferPartyMonNicknameReturnSpecies partySlot, destVar
     .short SCRCMD_BUFFERPARTYMONNICKNAMERETURNSPECIES
-    .short \unused
+    .short 0 // unused
     .short \partySlot
     .short \destVar
     .endm
@@ -2661,7 +2661,7 @@
     .short SCRCMD_GIVEJOURNAL
     .endm
 
-    .macro CreateJournalEvent eventType, eventParam, unused1, unused2, unused3
+    .macro CreateJournalEvent eventType, eventParam=0, unused1=0, unused2=0, unused3=0
     .short SCRCMD_CREATEJOURNALEVENT
     .short \eventType
     .short \eventParam
@@ -2674,26 +2674,26 @@
     .short SCRCMD_UNUSED_1CE
     .endm
 
-    .macro Strength mode, checkDestVarID=0
-    .short SCRCMD_STRENGTH
-    .byte \mode
-    .if \mode == 2
+    .macro DoStrengthFunc func, checkDestVarID=0
+    .short SCRCMD_DOSTRENGTHFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
 
-    .macro Flash mode, checkDestVarID=0
-    .short SCRCMD_FLASH
-    .byte \mode
-    .if \mode == 2
+    .macro DoFlashFunc func, checkDestVarID=0
+    .short SCRCMD_DOFLASHFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
 
-    .macro Defog mode, checkDestVarID=0
-    .short SCRCMD_DEFOG
-    .byte \mode
-    .if \mode == 2
+    .macro DoDefogFunc func, checkDestVarID=0
+    .short SCRCMD_DODEFOGFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
@@ -3476,16 +3476,16 @@
     .short SCRCMD_DUMMY242
     .endm
 
-    .macro ChooseCustomMessageWord unused, resultVar, destVar
+    .macro ChooseCustomMessageWord resultVar, destVar
     .short SCRCMD_CHOOSECUSTOMMESSAGEWORD
-    .short \unused
+    .short 0 // unused
     .short \resultVar
     .short \destVar
     .endm
 
-    .macro ChooseTwoCustomMessageWords unused, resultVar, destVar1, destVar2
+    .macro ChooseTwoCustomMessageWords resultVar, destVar1, destVar2
     .short SCRCMD_CHOOSETWOCUSTOMMESSAGEWORDS
-    .short \unused
+    .short 0 // unused
     .short \resultVar
     .short \destVar1
     .short \destVar2
@@ -3817,10 +3817,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_27D arg0, arg1
-    .short SCRCMD_27D
-    .short \arg0
-    .short \arg1
+    .macro TryBufferAndUnlockRandomToughWord destVar, index
+    .short SCRCMD_TRYBUFFERANDUNLOCKRANDOMTOUGHWORD
+    .short \destVar
+    .short \index
     .endm
 
     /* Returns TRUE in destVarID if the player has bought at least 5 items at the Veilstone Department Store */
@@ -3829,9 +3829,9 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_27F arg0
-    .short SCRCMD_27F
-    .short \arg0
+    .macro CheckAllToughWordsUnlocked destVar
+    .short SCRCMD_CHECKALLTOUGHWORDSUNLOCKED
+    .short \destVar
     .endm
 
     .macro BufferVarPaddingDigits templateArg, varID, paddingMode, maxDigits
@@ -4005,10 +4005,10 @@
     .short \entryIndex
     .endm
 
-    .macro ScrCmd_29E arg0, arg1
-    .short SCRCMD_29E
-    .short \arg0
-    .short \arg1
+    .macro StartDestroyObstacleAnimation obstacle, destVar
+    .short SCRCMD_STARTDESTROYOBSTACLEANIMATION
+    .short \obstacle
+    .short \destVar
     .endm
 
     .macro ScrCmd_29F arg0
@@ -4227,9 +4227,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_2C4 arg0
-    .short SCRCMD_2C4
-    .byte \arg0
+    .macro LaunchBattleFrontierScene sceneID
+    .short SCRCMD_LAUNCHBATTLEFRONTIERSCENE
+    .byte \sceneID
     .endm
 
     .macro ScrCmd_2C5 arg0, arg1

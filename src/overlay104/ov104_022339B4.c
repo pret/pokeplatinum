@@ -14,6 +14,7 @@
 #include "overlay104/struct_battle_factory.h"
 #include "overlay104/struct_ov104_0224028C.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "game_records.h"
 #include "heap.h"
@@ -23,7 +24,6 @@
 #include "savedata.h"
 #include "system_vars.h"
 #include "unk_0202FF4C.h"
-#include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
 void ov104_02233B98(BattleFactory *param0, u16 param1);
@@ -88,8 +88,8 @@ BattleFactory *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 para
         }
 
         if (v3 == 1) {
-            v7->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->challengeType)));
-            v7->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->challengeType)));
+            v7->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->challengeType));
+            v7->unk_08 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->challengeType));
         } else {
             v7->currentStreak = 0;
             v7->unk_08 = 0;
@@ -100,14 +100,14 @@ BattleFactory *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 para
         v7->challengeType = (u8)sub_02030030(v0, 1, 0, NULL);
         v7->unk_05 = (u8)sub_02030030(v0, 0, 0, NULL);
         v7->unk_06 = (u8)sub_02030030(v0, 2, 0, NULL);
-        v7->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->challengeType)));
-        v7->unk_08 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->challengeType)));
+        v7->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->unk_05, v7->challengeType));
+        v7->unk_08 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->unk_05, v7->challengeType));
     }
 
     v7->unk_0E = (u16)(v7->currentStreak / 7);
 
     if (BattleFactory_IsMultiplayerChallenge(v7->challengeType) == 1) {
-        ov104_0222E630(v7->saveData);
+        BattleFrontier_FlagGeonetLinkInfo(v7->saveData);
     }
 
     return v7;
@@ -328,7 +328,7 @@ void ov104_02234148(BattleFactory *param0, u8 param1)
     u16 v6[4];
     u32 v7[4];
     u32 v8, v9, v10;
-    BattleFrontier *frontier;
+    BattleFrontierSave *frontier;
     Pokemon *v12;
     UnkStruct_0202FF58 *v13 = param0->unk_4F4;
     UnkStruct_020300F4 *v14 = sub_020300F4(param0->saveData);
@@ -346,18 +346,18 @@ void ov104_02234148(BattleFactory *param0, u8 param1)
 
     v5[0] = param0->unk_06;
     sub_0202FF84(param0->unk_4F4, 2, 0, v5);
-    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryLatestTradeCountIndex(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestTradeCountIndex(param0->unk_05, param0->challengeType)), param0->unk_08);
-    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryLatestStreakIdx(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryLatestStreakIdx(param0->unk_05, param0->challengeType)), param0->currentStreak);
+    BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetFactoryLatestTradeCountIndex(param0->unk_05, param0->challengeType), param0->unk_08);
+    BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetFactoryLatestStreakIdx(param0->unk_05, param0->challengeType), param0->currentStreak);
 
     if (param1 != 2) {
-        v1 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType)));
-        v8 = BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType)), param0->currentStreak);
-        v2 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType)));
+        v1 = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType));
+        v8 = BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType), param0->currentStreak);
+        v2 = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetFactoryRecordStreakIdx(param0->unk_05, param0->challengeType));
 
         if (param0->currentStreak == v1) {
-            BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->challengeType)), param0->unk_08);
+            BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->challengeType), param0->unk_08);
         } else if (v1 < v2) {
-            BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->challengeType)), param0->unk_08);
+            BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetFactoryRecordTradeCountIndex(param0->unk_05, param0->challengeType), param0->unk_08);
         }
 
         v5[0] = param0->unk_0A;
@@ -370,7 +370,7 @@ void ov104_02234148(BattleFactory *param0, u8 param1)
                 v10 = 104;
             }
 
-            BattleFrontierStats_SetStat(frontier, v10, BattleFrontierStats_GetHostFriendIdx(v10), param0->unk_0A);
+            BattleFrontierSave_SetStatAutoHostIdx(frontier, v10, param0->unk_0A);
         }
     }
 

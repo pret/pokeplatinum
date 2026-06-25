@@ -5,8 +5,8 @@
 
     ScriptEntry WaywardCave1F_OnTransition
     ScriptEntry WaywardCave1F_Mira
-    ScriptEntry WaywardCave1F_Unused
-    ScriptEntry WaywardCave1F_TriggerExit
+    ScriptEntry WaywardCave1F_Dummy3
+    ScriptEntry WaywardCave1F_CoordEvent_Exit
     ScriptEntryEnd
 
 WaywardCave1F_OnTransition:
@@ -25,15 +25,15 @@ WaywardCave1F_Mira:
     SetPlayerBike FALSE
     GoToIfGe VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE, 1, WaywardCave1F_MiraMessage
     BufferPlayerName 0
-    CallIfUnset FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA, WaywardCave1F_ImMiraPleaseTakeMeToTheExit
-    CallIfSet FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA, WaywardCave1F_MyNameIsMiraILikeYourName
+    CallIfUnset FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA, WaywardCave1F_PleaseTakeMeToTheExit
+    CallIfSet FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA, WaywardCave1F_ILikeYourName
     BufferPlayerName 0
     PlayFanfare SEQ_GONIN
     Message WaywardCave1F_Text_PlayerDecidedToGoWithMira
     WaitFanfare
     SetFlag FLAG_TALKED_TO_WAYWARD_CAVE_1F_MIRA
     SetVar VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE, 1
-    Message WaywardCave1F_Text_IllKeepYourPokemonHealthyAllTheTime
+    Message WaywardCave1F_Text_IllKeepYourPokemonHealthy
     WaitButton
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MIRA_WAYWARD_CAVE
@@ -42,28 +42,28 @@ WaywardCave1F_Mira:
     ReleaseAll
     End
 
-WaywardCave1F_ImMiraPleaseTakeMeToTheExit:
-    Message WaywardCave1F_Text_ImMiraPleaseTakeMeToTheExit
+WaywardCave1F_PleaseTakeMeToTheExit:
+    Message WaywardCave1F_Text_PleaseTakeMeToTheExit
     Return
 
-WaywardCave1F_MyNameIsMiraILikeYourName:
-    Message WaywardCave1F_Text_MyNameIsMiraILikeYourName
+WaywardCave1F_ILikeYourName:
+    Message WaywardCave1F_Text_ILikeYourName
     Return
 
 WaywardCave1F_MiraMessage:
-    GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, WaywardCave1F_PlayerDidYouGetToBeSoGoodBecauseYoureAlwaysWithPokemon
-    GoToIfEq VAR_FOLLOWER_MIRA_TIMES_TALKED, 1, WaywardCave1F_ThisCaveItsSoEasyToGetConfused
+    GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, WaywardCave1F_MiraWillTryLikeYou
+    GoToIfEq VAR_FOLLOWER_MIRA_TIMES_TALKED, 1, WaywardCave1F_EasyToGetConfused
     BufferPlayerName 0
-    Message WaywardCave1F_Text_ILikeHelpfulPokemonMovesLikeGrowlAndMinimize
+    Message WaywardCave1F_Text_ILikeHelpfulMoves
     GoTo WaywardCave1F_IncreaseFollowerMiraTimesTalked
 
-WaywardCave1F_ThisCaveItsSoEasyToGetConfused:
-    Message WaywardCave1F_Text_ThisCaveItsSoEasyToGetConfused
+WaywardCave1F_EasyToGetConfused:
+    Message WaywardCave1F_Text_EasyToGetConfused
     GoTo WaywardCave1F_IncreaseFollowerMiraTimesTalked
 
-WaywardCave1F_PlayerDidYouGetToBeSoGoodBecauseYoureAlwaysWithPokemon:
+WaywardCave1F_MiraWillTryLikeYou:
     BufferPlayerName 0
-    Message WaywardCave1F_Text_PlayerDidYouGetToBeSoGoodBecauseYoureAlwaysWithPokemon
+    Message WaywardCave1F_Text_MiraWillTryLikeYou
     WaitButton
     CloseMessage
     ReleaseAll
@@ -76,10 +76,10 @@ WaywardCave1F_IncreaseFollowerMiraTimesTalked:
     ReleaseAll
     End
 
-WaywardCave1F_Unused:
+WaywardCave1F_Dummy3:
     End
 
-WaywardCave1F_TriggerExit:
+WaywardCave1F_CoordEvent_Exit:
     LockAll
     ClearHasPartner
     SetMovementType LOCALID_MIRA, MOVEMENT_TYPE_LOOK_WEST
@@ -101,7 +101,7 @@ WaywardCave1F_NoticeExitSouth:
 
 WaywardCave1F_OhTheresTheExitThankYou:
     BufferPlayerName 0
-    Message WaywardCave1F_Text_OhTheresTheExitThankYou
+    Message WaywardCave1F_Text_TheresTheExit
     CloseMessage
     GetPlayerDir VAR_RESULT
     GoToIfEq VAR_RESULT, DIR_EAST, WaywardCave1F_MiraWalkWestLeave
@@ -148,12 +148,12 @@ WaywardCave1F_Movement_PlayerWalkEastOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
-WaywardCave1F_UnusedMovement:
+WaywardCave1F_Movement_Unused:
     Delay8 5
     WalkNormalWest
     EndMovement
 
-WaywardCave1F_UnusedMovement2:
+WaywardCave1F_Movement_Unused2:
     Delay8 5
     WalkNormalNorth
     WalkOnSpotNormalWest

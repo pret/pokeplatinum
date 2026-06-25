@@ -9,7 +9,7 @@
     ScriptEntry GalacticHQ1F_GruntF2
     ScriptEntry GalacticHQ1F_ScientistM1
     ScriptEntry GalacticHQ1F_Door
-    ScriptEntry GalacticHQ1F_Sign
+    ScriptEntry GalacticHQ1F_BgSign
     ScriptEntry GalacticHQ1F_Saturn
     ScriptEntryEnd
 
@@ -143,7 +143,7 @@ GalacticHQ1F_Movement_DoorEastMoveEast:
     WalkFastEast
     EndMovement
 
-GalacticHQ1F_Sign:
+GalacticHQ1F_BgSign:
     EventMessage GalacticHQ1F_Text_TeamGalacticCredo
     End
 

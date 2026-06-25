@@ -34,11 +34,11 @@ Route228_RemoveWarpRockPeakRuinsWithoutRegirock:
     End
 
 Route228_ArrowSignpostRt226:
-    ShowArrowSign Route228_Text_SignRt228Rt226
+    ShowArrowSign Route228_Text_SignRt226
     End
 
 Route228_ArrowSignpostRt229:
-    ShowArrowSign Route228_Text_SignRt228Rt229
+    ShowArrowSign Route228_Text_SignRt229
     End
 
     .balign 4, 0

@@ -10,7 +10,7 @@
     ScriptEntry Route209_JoggerRichard
     ScriptEntry Route209_JoggerRaul
     ScriptEntry Route209_OnTransition
-    ScriptEntry Route209_TrainerTips
+    ScriptEntry Route209_TrainerTipsSignpost
     ScriptEntryEnd
 
 Route209_OnTransition:
@@ -43,7 +43,7 @@ Route209_HallowedTower:
     GoToIfEq VAR_HALLOWED_TOWER_STATE, 1, Route209_CheckSpiritombCounter
     CheckItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, Route209_ThereIsABrokenTower
-    Message Route209_Text_WouldYouLikeToUseTheOddKeystone
+    Message Route209_Text_UseTheOddKeystone
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, Route209_UseOddKeystone
     CloseMessage
@@ -63,11 +63,11 @@ Route209_UseOddKeystone:
 Route209_CheckSpiritombCounter:
     GetSpiritombCounter VAR_RESULT
     GoToIfGe VAR_RESULT, 32, Route209_EncounterSpiritomb
-    GoToIfGe VAR_RESULT, 29, Route209_ThereIsSomeSortOfPresence
+    GoToIfGe VAR_RESULT, 29, Route209_SomeSortOfPresence
     GoToIfGe VAR_RESULT, 22, Route209_IsThatTowerShaking
-    GoToIfGe VAR_RESULT, 15, Route209_IsThatCryingComingFromInside
-    GoToIfGe VAR_RESULT, 8, Route209_ItsStonesAppearToHaveShifted
-    GoTo Route209_ItWasBuiltManyYearsAgo
+    GoToIfGe VAR_RESULT, 15, Route209_CryingComingFromInside
+    GoToIfGe VAR_RESULT, 8, Route209_StonesAppearToHaveShifted
+    GoTo Route209_BuiltManyYearsAgo
 
 Route209_EncounterSpiritomb:
     WaitSE SEQ_SE_CONFIRM
@@ -87,22 +87,22 @@ Route209_BlackOut:
     ReleaseAll
     End
 
-Route209_ItWasBuiltManyYearsAgo:
-    Message Route209_Text_ItWasBuiltManyYearsAgo
+Route209_BuiltManyYearsAgo:
+    Message Route209_Text_BuiltManyYearsAgo
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-Route209_ItsStonesAppearToHaveShifted:
-    Message Route209_Text_ItsStonesAppearToHaveShifted
+Route209_StonesAppearToHaveShifted:
+    Message Route209_Text_StonesAppearToHaveShifted
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-Route209_IsThatCryingComingFromInside:
-    Message Route209_Text_IsThatCryingComingFromInside
+Route209_CryingComingFromInside:
+    Message Route209_Text_CryingComingFromInside
     WaitButton
     CloseMessage
     ReleaseAll
@@ -115,8 +115,8 @@ Route209_IsThatTowerShaking:
     ReleaseAll
     End
 
-Route209_ThereIsSomeSortOfPresence:
-    Message Route209_Text_ThereIsSomeSortOfPresence
+Route209_SomeSortOfPresence:
+    Message Route209_Text_SomeSortOfPresence
     WaitButton
     CloseMessage
     ReleaseAll
@@ -137,7 +137,7 @@ Route209_Fisherman:
     BufferItemNameWithArticle 0, VAR_0x8004
     CapitalizeFirstLetter 0
     GoToIfSet FLAG_GOOD_ROD_OBTAINED, Route209_AskExplainHowToFish
-    Message Route209_Text_GoodRodIsReallyGoodWouldntYouAgree
+    Message Route209_Text_GoodRodIsReallyGood
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, Route209_AcceptGoodRod
     GoToIfEq VAR_RESULT, MENU_NO, Route209_RefuseGoodRod
@@ -145,10 +145,10 @@ Route209_Fisherman:
 
 Route209_AskExplainHowToFish:
     BufferItemName 0, VAR_0x8004
-    Message Route209_Text_DoINeedToExplainHowToFish
+    Message Route209_Text_DoINeedToExplain
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, Route209_ExplainHowToFish
-    GoToIfEq VAR_RESULT, MENU_NO, Route209_WhenYouReelPokemonYouBattleIt
+    GoToIfEq VAR_RESULT, MENU_NO, Route209_WhenYouReelYouBattle
     End
 
 Route209_ExplainHowToFish:
@@ -158,8 +158,8 @@ Route209_ExplainHowToFish:
     ReleaseAll
     End
 
-Route209_WhenYouReelPokemonYouBattleIt:
-    Message Route209_Text_WhenYouReelPokemonYouBattleIt
+Route209_WhenYouReelYouBattle:
+    Message Route209_Text_WhenYouReelYouBattle
     WaitButton
     CloseMessage
     ReleaseAll
@@ -181,14 +181,14 @@ Route209_AcceptGoodRod:
     GoTo Route209_AskExplainHowToFish
 
 Route209_ArrowSignpostHearthomeCity:
-    ShowArrowSign Route209_Text_SignRt209HearthomeCity
+    ShowArrowSign Route209_Text_SignHearthomeCity
     End
 
 Route209_ArrowSignpostSolaceonTown:
-    ShowArrowSign Route209_Text_Rt209SolaceonTown
+    ShowArrowSign Route209_Text_SignSolaceonTown
     End
 
-Route209_TrainerTips:
+Route209_TrainerTipsSignpost:
     ShowScrollingSign Route209_Text_TrainerTipsRegisterKeyItems
     End
 
@@ -197,7 +197,7 @@ Route209_JoggerRichard:
     End
 
 Route209_JoggerRaul:
-    NPCMessage Route209_Text_AWildPokemonChasedAfterMe
+    NPCMessage Route209_Text_PokemonChasedAfterMe
     End
 
     .balign 4, 0

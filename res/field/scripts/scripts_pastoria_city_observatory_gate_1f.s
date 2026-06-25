@@ -4,9 +4,9 @@
 
 
     ScriptEntry PastoriaCityObservatoryGate1F_CashierM
-    ScriptEntry PastoriaCityObservatoryGate1F_TriggerTryStartSafariGame
-    ScriptEntry PastoriaCityObservatoryGate1F_OnFrameTryExitEarly
-    ScriptEntry PastoriaCityObservatoryGate1F_OnFrameGameEnded
+    ScriptEntry PastoriaCityObservatoryGate1F_CoordEvent_TryStartSafariGame
+    ScriptEntry PastoriaCityObservatoryGate1F_OnFrame_TryExitEarly
+    ScriptEntry PastoriaCityObservatoryGate1F_OnFrame_GameEnded
     ScriptEntry PastoriaCityObservatoryGate1F_CashierF
     ScriptEntry PastoriaCityObservatoryGate1F_Cowgirl
     ScriptEntry PastoriaCityObservatoryGate1F_OnTransition
@@ -18,7 +18,7 @@ PastoriaCityObservatoryGate1F_OnTransition:
 PastoriaCityObservatoryGate1F_CashierM:
     End
 
-PastoriaCityObservatoryGate1F_TriggerTryStartSafariGame:
+PastoriaCityObservatoryGate1F_CoordEvent_TryStartSafariGame:
     LockAll
     ApplyMovement LOCALID_PLAYER, PastoriaCityObservatoryGate1F_Movement_PlayerWalkOnSpotWest
     WaitMovement
@@ -70,7 +70,7 @@ PastoriaCityObservatoryGate1F_StartSafariGame:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, DIR_NORTH
+    Warp MAP_HEADER_GREAT_MARSH_6, 68, 116, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -137,7 +137,7 @@ PastoriaCityObservatoryGate1F_Movement_PlayerWalkSouth:
     WalkNormalSouth
     EndMovement
 
-PastoriaCityObservatoryGate1F_OnFrameTryExitEarly:
+PastoriaCityObservatoryGate1F_OnFrame_TryExitEarly:
     LockAll
     Message PastoriaCityObservatoryGate1F_Text_AskExitGreatMarsh
     ShowYesNoMenu VAR_RESULT
@@ -179,7 +179,7 @@ PastoriaCityObservatoryGate1F_ReturnToGreatMarsh:
     WaitMovement
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, DIR_NORTH
+    Warp MAP_HEADER_GREAT_MARSH_6, 68, 116, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -196,7 +196,7 @@ PastoriaCityObservatoryGate1F_Movement_PlayerReturnToGreatMarsh:
     SetInvisible
     EndMovement
 
-PastoriaCityObservatoryGate1F_OnFrameGameEnded:
+PastoriaCityObservatoryGate1F_OnFrame_GameEnded:
     LockAll
     ApplyMovement LOCALID_PLAYER, PastoriaCityObservatoryGate1F_Movement_PlayerExitGreatMarsh
     WaitMovement
@@ -256,12 +256,12 @@ PastoriaCityObservatoryGate1F_Movement_CowgirlWalkToPlayer:
     WalkOnSpotNormalNorth
     EndMovement
 
-PastoriaCityObservatoryGate1F_UnusedMovement:
+PastoriaCityObservatoryGate1F_Movement_Unused:
     WalkNormalWest
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCityObservatoryGate1F_UnusedMovement2:
+PastoriaCityObservatoryGate1F_Movement_Unused2:
     WalkNormalEast
     WalkOnSpotNormalWest
     EndMovement

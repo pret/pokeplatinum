@@ -6,7 +6,7 @@
     ScriptEntry Route217_IceRock
     ScriptEntry Route217_ArrowSignpostLakeAcuity
     ScriptEntry Route217_SnowpointNPCF
-    ScriptEntry Route217_TriggerMaylene
+    ScriptEntry Route217_CoordEvent_Maylene
     ScriptEntryEnd
 
 Route217_IceRock:
@@ -14,14 +14,14 @@ Route217_IceRock:
     End
 
 Route217_ArrowSignpostLakeAcuity:
-    ShowArrowSign Route217_Text_SignRt217LakeAcuity
+    ShowArrowSign Route217_Text_SignLakeAcuity
     End
 
 Route217_SnowpointNPCF:
     NPCMessage Route217_Text_ImUsingDowsingMachine
     End
 
-Route217_TriggerMaylene:
+Route217_CoordEvent_Maylene:
     LockAll
     ClearFlag FLAG_HIDE_ROUTE_217_MAYLENE
     AddObject LOCALID_MAYLENE

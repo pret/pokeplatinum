@@ -4,7 +4,7 @@
 
 
     ScriptEntry PokemonLeagueAaronRoom_Aaron
-    ScriptEntry PokemonLeagueAaronRoom_OnFrame
+    ScriptEntry PokemonLeagueAaronRoom_OnFrame_EnterRoom
     ScriptEntryEnd
 
 PokemonLeagueAaronRoom_Aaron:
@@ -39,11 +39,11 @@ PokemonLeagueAaronRoom_StartAaronRematchBattle:
     Return
 
 PokemonLeagueAaronRoom_CreateJournalEventDefeatedAaron:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON
     Return
 
 PokemonLeagueAaronRoom_CreateJournalEventDefeatedRematchAaron:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON_REMATCH, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON_REMATCH
     Return
 
 PokemonLeagueAaronRoom_BlackOut:
@@ -58,7 +58,7 @@ PokemonLeagueAaronRoom_AaronPostBattle:
     ReleaseAll
     End
 
-PokemonLeagueAaronRoom_OnFrame:
+PokemonLeagueAaronRoom_OnFrame_EnterRoom:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueAaronRoom_Movement_PlayerEnterRoom
     WaitMovement

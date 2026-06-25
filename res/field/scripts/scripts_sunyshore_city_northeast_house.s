@@ -116,7 +116,7 @@ SunyshoreCityNortheastHouse_AskSundayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -134,7 +134,7 @@ SunyshoreCityNortheastHouse_AskMondayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -152,7 +152,7 @@ SunyshoreCityNortheastHouse_AskTuesdayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -170,7 +170,7 @@ SunyshoreCityNortheastHouse_AskWednesdayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -188,7 +188,7 @@ SunyshoreCityNortheastHouse_AskThursdayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -206,7 +206,7 @@ SunyshoreCityNortheastHouse_AskFridayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -224,7 +224,7 @@ SunyshoreCityNortheastHouse_AskSaturdayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

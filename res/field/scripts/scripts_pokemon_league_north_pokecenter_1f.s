@@ -6,7 +6,7 @@
     ScriptEntry PokemonLeagueNorthPokecenter1F_DoorGuard
     ScriptEntry PokemonLeagueNorthPokecenter1F_VendorCommon
     ScriptEntry PokemonLeagueNorthPokecenter1F_VendorSpecial
-    ScriptEntry PokemonLeagueNorthPokecenter1F_RivalTrigger
+    ScriptEntry PokemonLeagueNorthPokecenter1F_CoordEvent_Rival
     ScriptEntry PokemonLeagueNorthPokecenter1F_OnTransition
     ScriptEntry PokemonLeagueNorthPokecenter1F_AceTrainerF
     ScriptEntry PokemonLeagueNorthPokecenter1F_Guitarist
@@ -27,11 +27,11 @@ PokemonLeagueNorthPokecenter1F_OnTransition:
     ClearFlag FLAG_DEFEATED_BERTHA
     ClearFlag FLAG_DEFEATED_FLINT
     ClearFlag FLAG_DEFEATED_LUCIAN
-    GoToIfSet FLAG_POKEMON_LEAGUE_DOOR_GUARD_MOVED_AWAY, PokemonLeagueNorthPokecenter1F_MoveDoorGuardAwayFromDoor
+    GoToIfSet FLAG_POKEMON_LEAGUE_DOOR_GUARD_MOVED_AWAY, PokemonLeagueNorthPokecenter1F_SetPositionDoorGuardAwayFromDoor
     End
 
-PokemonLeagueNorthPokecenter1F_MoveDoorGuardAwayFromDoor:
-    SetObjectEventPos 0, 12, 3
+PokemonLeagueNorthPokecenter1F_SetPositionDoorGuardAwayFromDoor:
+    SetObjectEventPos LOCALID_LEAGUE_NORTH_DOOR_GUARD, 12, 3
     End
 
 PokemonLeagueNorthPokecenter1F_DoorGuard:
@@ -39,7 +39,7 @@ PokemonLeagueNorthPokecenter1F_DoorGuard:
     LockAll
     FacePlayer
     GoToIfSet FLAG_POKEMON_LEAGUE_DOOR_GUARD_MOVED_AWAY, PokemonLeagueNorthPokecenter1F_DoorGuardAfterMovingAway
-    Message PokemonLeagueNorthPokecenter1F_Text_LetUsExamineYourGymBadges
+    Message PokemonLeagueNorthPokecenter1F_Text_ExamineGymBadges
     CloseMessage
     PlayFanfare SEQ_BADGE
     WaitFanfare
@@ -50,30 +50,30 @@ PokemonLeagueNorthPokecenter1F_DoorGuard:
     End
 
 PokemonLeagueNorthPokecenter1F_DoorGuardMoveAwayEastSouth:
-    ApplyMovement LOCALID_LEAGUE_NORTH_ACE_TRAINER_M, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayEastSouth
+    ApplyMovement LOCALID_LEAGUE_NORTH_DOOR_GUARD, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayEastSouth
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_DoorGuardMovedAway
 
 PokemonLeagueNorthPokecenter1F_DoorGuardMoveAwayWest:
-    ApplyMovement LOCALID_LEAGUE_NORTH_ACE_TRAINER_M, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayWest
+    ApplyMovement LOCALID_LEAGUE_NORTH_DOOR_GUARD, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayWest
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_DoorGuardMovedAway
 
 PokemonLeagueNorthPokecenter1F_DoorGuardMoveAwayEastWest:
-    ApplyMovement LOCALID_LEAGUE_NORTH_ACE_TRAINER_M, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayEastWest
+    ApplyMovement LOCALID_LEAGUE_NORTH_DOOR_GUARD, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayEastWest
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_DoorGuardMovedAway
 
 PokemonLeagueNorthPokecenter1F_DoorGuardMovedAway:
     SetFlag FLAG_POKEMON_LEAGUE_DOOR_GUARD_MOVED_AWAY
-    Message PokemonLeagueNorthPokecenter1F_Text_YouveCollectedAllGymBadges
+    Message PokemonLeagueNorthPokecenter1F_Text_CollectedAllGymBadges
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 PokemonLeagueNorthPokecenter1F_DoorGuardAfterMovingAway:
-    Message PokemonLeagueNorthPokecenter1F_Text_YouWillBeFacingTheEliteFour
+    Message PokemonLeagueNorthPokecenter1F_Text_YouWillFaceTheEliteFour
     WaitButton
     CloseMessage
     ReleaseAll
@@ -105,7 +105,7 @@ PokemonLeagueNorthPokecenter1F_VendorSpecial:
     PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_POKEMON_LEAGUE
     End
 
-PokemonLeagueNorthPokecenter1F_RivalTrigger:
+PokemonLeagueNorthPokecenter1F_CoordEvent_Rival:
     LockAll
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_RIVAL
     AddObject LOCALID_LEAGUE_NORTH_RIVAL

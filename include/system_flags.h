@@ -38,7 +38,7 @@ void SystemFlag_SetDeliveredStolenFlag(VarsFlags *varsFlags);
 void SystemFlag_SetContestMaster(VarsFlags *varsFlags, enum PokemonContestType contestType);
 BOOL SystemFlag_CheckContestMaster(VarsFlags *varsFlags, enum PokemonContestType contestType);
 BOOL SystemFlag_CheckUnlockedVsSeekerLevel(VarsFlags *varsFlags, int level);
-u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeader mapHeader);
+u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeaderID mapHeader);
 void SystemFlag_SetCommunicationClubAccessible(VarsFlags *varsFlags);
 void SystemFlag_ClearCommunicationClubAccessible(VarsFlags *varsFlags);
 BOOL SystemFlag_CheckCommunicationClubAccessible(VarsFlags *varsFlags);

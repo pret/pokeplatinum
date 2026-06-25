@@ -4,15 +4,15 @@
 #include "res/field/events/events_underground.h"
 
 
-    ScriptEntry Underground_SetVendorPositions
-    ScriptEntry Underground_SetRoarkPositionIfFirstEntry
+    ScriptEntry Underground_OnTransition
+    ScriptEntry Underground_OnResume
     ScriptEntry Underground_TrapsVendor_Unused
     ScriptEntry Underground_GoodsVendor_Unused
     ScriptEntry Underground_TreasuresVendor_Unused // see UndergroundVendors_StartShopMenuTask for the actual code that handles these
-    ScriptEntry Underground_RoarkIntro
+    ScriptEntry Underground_OnFrame_RoarkIntro
     ScriptEntryEnd
 
-Underground_SetVendorPositions:
+Underground_OnTransition:
     Dummy14F
     SetObjectEventPos LOCALID_GOODS_VENDOR_1, 72, 104
     SetObjectEventPos LOCALID_GOODS_VENDOR_2, 424, 87
@@ -36,7 +36,7 @@ Underground_SetVendorPositions:
     SetObjectEventPos LOCALID_TREASURES_VENDOR_4, 40, 72
     End
 
-Underground_SetRoarkPositionIfFirstEntry:
+Underground_OnResume:
     GoToIfEq VAR_HAS_SEEN_UNDERGROUND_ROARK_INTRO, 0, Underground_PutRoarkNextToPlayer
     End
 
@@ -48,10 +48,10 @@ Underground_PutRoarkNextToPlayer:
 
 Underground_TrapsVendor_Unused:
     UndergroundNPCMessage UndergroundNPCs_Text_IllTradeYouSomething
-    GoTo Underground_TrapsVendorShopMenu_Dummy
+    GoTo Underground_TrapsVendorShopMenu_Unused
     End
 
-Underground_TrapsVendorShopMenu_Dummy:
+Underground_TrapsVendorShopMenu_Unused:
     Dummy19E 1, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
@@ -85,7 +85,7 @@ Underground_VendorSeeYou_Unused:
 Underground_TrapsVendorNeedAnythingElse_Unused:
     WaitABPress
     UndergroundNPCMessage UndergroundNPCs_Text_DoYouNeedAnythingElse
-    GoTo Underground_TrapsVendorShopMenu_Dummy
+    GoTo Underground_TrapsVendorShopMenu_Unused
     End
 
 Underground_TrapsVendorWaitABPress_Unused:
@@ -100,10 +100,10 @@ Underground_VendorClose_Unused:
 
 Underground_GoodsVendor_Unused:
     UndergroundNPCMessage UndergroundNPCs_Text_IllTradeYouSomething
-    GoTo Underground_GoodsVendorShopMenu_Dummy
+    GoTo Underground_GoodsVendorShopMenu_Unused
     End
 
-Underground_GoodsVendorShopMenu_Dummy:
+Underground_GoodsVendorShopMenu_Unused:
     Dummy19E 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
@@ -137,40 +137,40 @@ Underground_GoodsVendorWaitABPress_Unused:
 Underground_GoodsVendorNeedAnythingElse_Unused:
     WaitABPress
     UndergroundNPCMessage UndergroundNPCs_Text_DoYouNeedAnythingElse
-    GoTo Underground_GoodsVendorShopMenu_Dummy
+    GoTo Underground_GoodsVendorShopMenu_Unused
     End
 
 Underground_TreasuresVendor_Unused:
     UndergroundNPCMessage UndergroundNPCs_Text_IllTradeSpheresForTreasures
-    GoTo _0231
+    GoTo Underground_TreasuresVendorShopMenu_Unused
     End
 
-_0231:
+Underground_TreasuresVendorShopMenu_Unused:
     Dummy19E 2, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, -4, _0265
+    GoToIfEq VAR_0x8008, -4, Underground_TreasuresVendorNoRoom_Unused
     GoToIfEq VAR_0x8008, -1, Underground_VendorSeeYou_Unused
-    GoTo _0271
+    GoTo Underground_TreasuresVendorWaitABPress_Unused
     End
 
-_0265:
+Underground_TreasuresVendorNoRoom_Unused:
     UndergroundNPCMessage UndergroundNPCs_Text_YouDontHaveRoom
-    GoTo _027B
+    GoTo Underground_TreasuresVendorNeedAnythingElse_Unused
     End
 
-_0271:
+Underground_TreasuresVendorWaitABPress_Unused:
     WaitABPress
-    GoTo _027B
+    GoTo Underground_TreasuresVendorNeedAnythingElse_Unused
     End
 
-_027B:
+Underground_TreasuresVendorNeedAnythingElse_Unused:
     WaitABPress
     UndergroundNPCMessage UndergroundNPCs_Text_DoYouNeedAnythingElse
-    GoTo _0231
+    GoTo Underground_TreasuresVendorShopMenu_Unused
     End
 
-Underground_RoarkIntro:
+Underground_OnFrame_RoarkIntro:
     ApplyMovement LOCALID_ROARK, Underground_Movement_RoarkNoticePlayer
     WaitMovement
     SetCommPlayerDir DIR_EAST
@@ -188,7 +188,7 @@ Underground_RoarkIntro:
     End
 
     .balign 4, 0
-Underground_UnusedMovement:
+Underground_Movement_Unused:
     Delay8
     WalkOnSpotNormalEast
     EndMovement

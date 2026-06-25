@@ -4,8 +4,8 @@
 #include "constants/map_object.h"
 
 
-    ScriptEntry GlobalTerminal1F_Unused1
-    ScriptEntry GlobalTerminal1F_Unused2
+    ScriptEntry GlobalTerminal1F_Dummy1
+    ScriptEntry GlobalTerminal1F_Dummy2
     ScriptEntry GlobalTerminal1F_ReceptionistGTS
     ScriptEntry GlobalTerminal1F_Collector
     ScriptEntry GlobalTerminal1F_BugCatcher
@@ -15,7 +15,7 @@
     ScriptEntry GlobalTerminal1F_Beauty1
     ScriptEntry GlobalTerminal1F_Picnicker
     ScriptEntry GlobalTerminal1F_Youngster
-    ScriptEntry GlobalTerminal1F_OnFrameExitGTSRoom
+    ScriptEntry GlobalTerminal1F_OnFrame_ExitGTSRoom
     ScriptEntry GlobalTerminal1F_OnResume
     ScriptEntry GlobalTerminal1F_BattleVideoRankingsMachine
     ScriptEntry GlobalTerminal1F_TrainerRankingsMachine
@@ -24,7 +24,7 @@
     ScriptEntry GlobalTerminal1F_PokemonBreederF
     ScriptEntry GlobalTerminal1F_PokemonBreederM
     ScriptEntry GlobalTerminal1F_Beauty2
-    ScriptEntry GlobalTerminal1F_Sign
+    ScriptEntry GlobalTerminal1F_BgSign
     ScriptEntryEnd
 
 GlobalTerminal1F_OnResume:
@@ -35,7 +35,7 @@ GlobalTerminal1F_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-GlobalTerminal1F_OnFrameExitGTSRoom:
+GlobalTerminal1F_OnFrame_ExitGTSRoom:
     LockAll
     Call GlobalTerminal1F_ExitGTSRoom
     ReleaseAll
@@ -72,7 +72,7 @@ GlobalTerminal1F_Movement_PlayerExitGTSRoom:
     WalkNormalSouth
     EndMovement
 
-GlobalTerminal1F_UnusedMovement:
+GlobalTerminal1F_Movement_Unused:
     WalkNormalSouth
     EndMovement
 
@@ -81,10 +81,10 @@ GlobalTerminal1F_Movement_PlayerWalkSouth:
     WalkNormalSouth 2
     EndMovement
 
-GlobalTerminal1F_Unused1:
+GlobalTerminal1F_Dummy1:
     End
 
-GlobalTerminal1F_Unused2:
+GlobalTerminal1F_Dummy2:
     End
 
 GlobalTerminal1F_ReceptionistGTS:
@@ -529,7 +529,7 @@ GlobalTerminal1F_CheckReceivedBackdrop:
 GlobalTerminal1F_DidntReceivAllBackdrops:
     Return
 
-GlobalTerminal1F_Sign:
+GlobalTerminal1F_BgSign:
     EventMessage GlobalTerminal1F_Text_PanelsLeadTo2F3F
     End
 

@@ -5,14 +5,14 @@
 
     ScriptEntry CelesticTown_OnTransition
     ScriptEntry CelesticTown_Elder
-    ScriptEntry CelesticTown_TriggerElder
+    ScriptEntry CelesticTown_CoordEvent_Elder
     ScriptEntry CelesticTown_GruntM
-    ScriptEntry CelesticTown_OnFrameCynthia
+    ScriptEntry CelesticTown_OnFrame_Cynthia
     ScriptEntry CelesticTown_Cynthia
     ScriptEntry CelesticTown_ExpertM
     ScriptEntry CelesticTown_AceTrainerF
     ScriptEntry CelesticTown_NinjaBoy
-    ScriptEntry CelesticTown_MapSign
+    ScriptEntry CelesticTown_MapSignpost
     ScriptEntry CelesticTown_EtchingDialga
     ScriptEntry CelesticTown_EtchingPalkia
     ScriptEntryEnd
@@ -169,17 +169,17 @@ CelesticTown_Movement_PlayerWatchElderEnterNorth:
     WalkOnSpotNormalEast
     EndMovement
 
-CelesticTown_UnusedMovement:
+CelesticTown_Movement_Unused:
     Delay8 8
     WalkOnSpotNormalSouth
     EndMovement
 
-CelesticTown_UnusedMovement2:
+CelesticTown_Movement_Unused2:
     Delay8 9
     WalkOnSpotNormalSouth
     EndMovement
 
-CelesticTown_TriggerElder:
+CelesticTown_CoordEvent_Elder:
     LockAll
     ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerFaceWest
     ApplyMovement LOCALID_ELDER, CelesticTown_Movement_ElderWalkOnSpotEast
@@ -221,7 +221,7 @@ CelesticTown_ExamineRuins:
     ReleaseAll
     End
 
-CelesticTown_OnFrameCynthia:
+CelesticTown_OnFrame_Cynthia:
     LockAll
     ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_PlayerWalkOnSpotEast
     ApplyMovement LOCALID_CYNTHIA, CelesticTown_Movement_CynthiaNoticePlayer
@@ -279,7 +279,7 @@ CelesticTown_NinjaBoy:
     NPCMessage CelesticTown_Text_APokemonCreatedSinnoh
     End
 
-CelesticTown_MapSign:
+CelesticTown_MapSignpost:
     ShowMapSign CelesticTown_Text_MapSign
     End
 

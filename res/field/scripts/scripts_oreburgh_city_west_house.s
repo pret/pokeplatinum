@@ -8,15 +8,15 @@
     ScriptEntryEnd
 
 OreburghCityWestHouse_Youngster:
-    NPCMessage OreburghCityWestHouse_Text_HaveYouEverSeenOrHeardAboutDifferentlyColoredPokemon
+    NPCMessage OreburghCityWestHouse_Text_HaveYouSeenDifferentlyColoredPokemon
     End
 
 OreburghCityWestHouse_PokefanF:
-    NPCMessage OreburghCityWestHouse_Text_YouKnowHowPokemonHaveDifferentNaturesLikeWeHavePersonalities
+    NPCMessage OreburghCityWestHouse_Text_PokemonHaveDifferentNatures
     End
 
 OreburghCityWestHouse_Pikachu:
-    PokemonCryAndMessage SPECIES_PIKACHU, OreburghCityWestHouse_Text_PikachuPikaaah
+    PokemonCryAndMessage SPECIES_PIKACHU, OreburghCityWestHouse_Text_PikachuCry
     End
 
     .balign 4, 0

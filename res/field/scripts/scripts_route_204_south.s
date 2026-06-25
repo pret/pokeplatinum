@@ -4,19 +4,19 @@
 
     ScriptEntry Route204South_Youngster
     ScriptEntry Route204South_ArrowSignpostJubilifeCity
-    ScriptEntry Route204South_LandmarkSignRavagedPath
+    ScriptEntry Route204South_SignboardRavagedPath
     ScriptEntryEnd
 
 Route204South_Youngster:
-    NPCMessage Route204South_Text_ThereAreBouldersBlockingTheWayInsideTheCavern
+    NPCMessage Route204South_Text_BouldersBlockingInsideCavern
     End
 
 Route204South_ArrowSignpostJubilifeCity:
-    ShowArrowSign Route204South_Text_Rt204JubilifeCity
+    ShowArrowSign Route204South_Text_SignJubilifeCity
     End
 
-Route204South_LandmarkSignRavagedPath:
-    ShowLandmarkSign Route204South_Text_RavagedPath
+Route204South_SignboardRavagedPath:
+    ShowLandmarkSign Route204South_Text_SignRavagedPath
     End
 
     .balign 4, 0

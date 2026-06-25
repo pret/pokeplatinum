@@ -82,7 +82,7 @@ HearthomeCityNorthwestHouse_DeclineEevee:
 HearthomeCityNorthwestHouse_AlreadyReceivedEevee:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, HearthomeCityNorthwestHouse_NowThatsANationalDex
-    Message HearthomeCityNorthwestHouse_Text_BillDevelopedTheBasicStorageSystem
+    Message HearthomeCityNorthwestHouse_Text_BillDevelopedStorageSystem
     WaitButton
     CloseMessage
     ReleaseAll

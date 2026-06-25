@@ -2,7 +2,7 @@
   "key": 40576,
   "messages": [
     {
-      "id": "Route206_Text_IHeardThereWereTwoCavesOnRoute206",
+      "id": "Route206_Text_TwoCavesOnRoute206",
       "en_US": [
         "This is odd... I heard there were two\n",
         "caves on Route 206.\r",
@@ -10,14 +10,14 @@
       ]
     },
     {
-      "id": "Route206_Text_Rt206EternaCity",
+      "id": "Route206_Text_SignEternaCity",
       "en_US": [
         "Rt. 206\n",
         "Eterna City"
       ]
     },
     {
-      "id": "Route206_Text_Rt206OreburghCity",
+      "id": "Route206_Text_SignOreburghCity",
       "en_US": [
         "Rt. 206\n",
         "Oreburgh City"

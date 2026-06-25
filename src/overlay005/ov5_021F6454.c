@@ -21,6 +21,7 @@
 #include "overlay005/ov5_021ECE40.h"
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
 #include "battle_hall_win_records.h"
 #include "berry_patch_graphics.h"
 #include "bg_window.h"
@@ -54,7 +55,6 @@
 #include "sys_task_manager.h"
 #include "system_vars.h"
 #include "unk_02038F8C.h"
-#include "unk_0205DFC4.h"
 #include "vars_flags.h"
 #include "wifi_history_save_data.h"
 
@@ -919,7 +919,7 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
     int v3 = 0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
-    MapObject *v6 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v6 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     MapObject *v7;
 
     MapObject_GetPosPtr(v6, &v1);
@@ -960,7 +960,7 @@ BOOL ScrCmd_32E(ScriptContext *ctx)
     int v0 = 0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
-    MapObject *v3 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v3 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     MapObject *v4;
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v4, &v0, MAP_OBJ_STATUS_0) == 1) {

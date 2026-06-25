@@ -12,8 +12,8 @@
     ScriptEntry BattleTowerBattleSalon_Buck
     ScriptEntry BattleTowerBattleSalon_OnTransition
     ScriptEntry BattleTowerBattleSalon_OnResume
-    ScriptEntry BattleTowerBattleSalon_OnFrameEnterBattleSalon
-    ScriptEntry BattleTowerBattleSalon_OnFrameEnterBattleRoom
+    ScriptEntry BattleTowerBattleSalon_OnFrame_EnterBattleSalon
+    ScriptEntry BattleTowerBattleSalon_OnFrame_EnterBattleRoom
     ScriptEntryEnd
 
 BattleTowerBattleSalon_OnTransition:
@@ -92,7 +92,7 @@ BattleTowerBattleSalon_SetAttendantPositionAtDoor:
     SetPosition LOCALID_TEALA, 8, 0, 3, DIR_SOUTH
     End
 
-BattleTowerBattleSalon_OnFrameEnterBattleSalon:
+BattleTowerBattleSalon_OnFrame_EnterBattleSalon:
     LockAll
     SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 0
     Call BattleTowerBattleSalon_EnterBattleSalon
@@ -121,12 +121,12 @@ BattleTowerBattleSalon_Quit:
     SetVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 3
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 11, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
 
-BattleTowerBattleSalon_OnFrameEnterBattleRoom:
+BattleTowerBattleSalon_OnFrame_EnterBattleRoom:
     LockAll
     SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 0
     Message BattleTowerBattleSalon_Text_ShowYouToMultiBattleRoom
@@ -135,7 +135,7 @@ BattleTowerBattleSalon_OnFrameEnterBattleRoom:
     SetVar VAR_BATTLE_TOWER_ELEVATOR_LOAD_ACTION, 2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 3, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -339,7 +339,7 @@ BattleTowerBattleSalon_PartnerEnterBattleRoom:
     WaitMovement
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 4, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 8, 4, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

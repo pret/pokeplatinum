@@ -473,8 +473,8 @@ BOOL ov5_021F0488(FieldTask *param0)
                     u8 v3;
                     int v4, v5;
 
-                    v4 = Player_GetXPos(fieldSystem->playerAvatar);
-                    v5 = Player_GetZPos(fieldSystem->playerAvatar);
+                    v4 = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+                    v5 = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
                     v3 = (u8)TerrainCollisionManager_GetTileBehavior(fieldSystem, v4, v5);
 
                     if (WildEncounters_TileHasEncounterRate(fieldSystem, v3)) {

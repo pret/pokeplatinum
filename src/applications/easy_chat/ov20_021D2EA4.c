@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020998EC_decl.h"
-
 #include "applications/easy_chat/main.h"
 #include "applications/easy_chat/ov20_021D2098.h"
 #include "applications/easy_chat/struct_ov20_021D2128_decl.h"
@@ -12,6 +10,8 @@
 #include "bg_window.h"
 #include "charcode.h"
 #include "colored_arrow.h"
+#include "easy_chat_word_list.h"
+#include "easy_chat_words.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
@@ -22,7 +22,6 @@
 #include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02014D38.h"
 
 typedef struct {
     s16 unk_00;
@@ -38,7 +37,7 @@ typedef struct {
 typedef struct UnkStruct_ov20_021D30F8_t {
     UnkStruct_ov20_021D2128 *unk_00;
     const EasyChatApp *unk_04;
-    const UnkStruct_020998EC *unk_08;
+    const EasyChatWordList *unk_08;
     Window unk_0C;
     Window unk_1C;
     Window unk_2C;
@@ -69,7 +68,7 @@ static void ov20_021D34F4(Window *param0, const UnkStruct_ov20_021D34CC *param1)
 static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const UnkStruct_ov20_021D34CC *param2, u16 param3);
 static void ov20_021D375C(UnkStruct_ov20_021D30F8 *param0, BOOL param1);
 
-UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const UnkStruct_020998EC *param2)
+UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const EasyChatWordList *param2)
 {
     UnkStruct_ov20_021D30F8 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D30F8));
 
@@ -406,7 +405,7 @@ static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const
         u32 v1;
 
         ov20_021D34CC(param2, &v0);
-        sub_02014DB8(param3, param0->unk_4C);
+        EasyChatWord_ToString(param3, param0->unk_4C);
 
         v1 = (v0.unk_00 + (96 / 2)) - (Font_CalcStringWidth(FONT_MESSAGE, param0->unk_4C, 0) / 2);
 

@@ -4,10 +4,10 @@
 
 
     ScriptEntry PalPark_OnTransition
-    ScriptEntry PalPark_OnFrameCountdown
-    ScriptEntry PalPark_Trigger_CaughtAllPokemon
+    ScriptEntry PalPark_OnFrame_Countdown
+    ScriptEntry PalPark_CoordEvent_CaughtAllPokemon
     ScriptEntry PalPark_RetireFromMenu
-    ScriptEntry PalPark_Trigger_RetireFromGate
+    ScriptEntry PalPark_CoordEvent_RetireFromGate
     ScriptEntry PalPark_Worker
     ScriptEntryEnd
 
@@ -15,7 +15,7 @@ PalPark_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_PAL_PARK
     End
 
-PalPark_OnFrameCountdown:
+PalPark_OnFrame_Countdown:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     MessageInstant PalPark_Text_LetTheCountdownBegin
@@ -48,7 +48,7 @@ PalPark_Unused:
     ReleaseAll
     End
 
-PalPark_Trigger_CaughtAllPokemon:
+PalPark_CoordEvent_CaughtAllPokemon:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     PlaySE SEQ_SE_DP_PINPON
@@ -79,7 +79,7 @@ PalPark_RetireFromMenu_WarpOut:
     Call PalPark_ClearFlagAndWarpOut
     End
 
-PalPark_Trigger_RetireFromGate:
+PalPark_CoordEvent_RetireFromGate:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     Call PalPark_AskPlayerRetireFromCatchingShow
@@ -152,7 +152,7 @@ PalPark_ClearFlagAndWarpOut:
     ClearInCatchingShowFlag
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_PAL_PARK_LOBBY, 0, 7, 7, DIR_SOUTH
+    Warp MAP_HEADER_PAL_PARK_LOBBY, 7, 7, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     Return

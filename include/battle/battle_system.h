@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_BATTLE_SYSTEM_H
-#define POKEPLATINUM_BATTLE_SYSTEM_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_SYSTEM_H
+#define POKEPLATINUM_BATTLE_BATTLE_SYSTEM_H
 
 #include "constants/rtc.h"
 #include "generated/trainer_message_types.h"
@@ -10,12 +10,10 @@
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
-#include "battle/battle_message.h"
+#include "battle/battle_subscreen.h"
 #include "battle/party_gauge.h"
 #include "battle/pokemon_sprite_data.h"
-#include "battle/struct_ov16_02268520.h"
-#include "battle/struct_ov16_02268A14_decl.h"
-#include "battle/struct_ov16_0226D160_decl.h"
+#include "battle/terrain.h"
 #include "battle_anim/battle_anim_system.h"
 
 #include "bag.h"
@@ -89,8 +87,8 @@ PokemonSpriteManager *BattleSystem_GetPokemonSpriteManager(BattleSystem *battleS
 BattleAnimSystem *BattleSystem_GetBattleAnimSystem(BattleSystem *battleSys);
 SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSys);
 SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys);
-Terrain *BattlerSystem_GetTerrain(BattleSystem *battleSys, int index);
-BattleSubscreen *ov16_0223E02C(BattleSystem *battleSys);
+Terrain *BattleSystem_GetTerrainForSide(BattleSystem *battleSys, int side);
+BattleSubscreen *BattleSystem_GetBattleSubscreen(BattleSystem *battleSys);
 PartyGauge *BattleSystem_GetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide partyGaugeSide);
 void BattleSystem_SetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide partyGaugeSide, PartyGauge *partyGauge);
 FontSpecialCharsContext *BattleSystem_GetSpecialCharsHP(BattleSystem *battleSys);
@@ -143,7 +141,7 @@ u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int battler);
 int BattleSystem_GetBattlerOfType(BattleSystem *battleSys, int battlerType);
 u8 BattleSystem_GetBattlerType(BattleSystem *battleSys, int battler);
 u8 BattleSystem_GetBattlerSide(BattleSystem *battleSys, int battler);
-UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSys);
+PaletteAnimator *BattleSystem_GetPaletteAnimator(BattleSystem *battleSys);
 PCBoxes *BattleSystem_GetPCBoxes(BattleSystem *battleSys);
 
 /**
@@ -229,7 +227,7 @@ int BattleSystem_GetMetBebe(BattleSystem *battleSys);
 void BattleSystem_TryIncrementRecordValue(BattleSystem *battleSys, int id);
 void BattleSystem_TryIncrementTrainerScoreCaughtSpecies(BattleSystem *battleSys);
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
-void ov16_0223F290(BattleSystem *battleSys, int param1);
+void BattleSystem_SetUnread_2440(BattleSystem *battleSys, int param1);
 WaitDial *BattleSystem_GetWaitDial(BattleSystem *battleSys);
 void BattleSystem_SetWaitDial(BattleSystem *battleSys, WaitDial *waitDial);
 PokemonSpriteData *BattleSystem_GetPokemonSpriteDataByIndex(BattleSystem *battleSys, int battler);
@@ -238,10 +236,10 @@ void PokemonSpriteData_SetNarcID(PokemonSpriteData *pokemonSpriteData, int idx, 
 void PokemonSpriteData_SetPalette(PokemonSpriteData *pokemonSpriteData, int idx, int value);
 void PokemonSpriteData_SetYOffset(PokemonSpriteData *pokemonSpriteData, int idx, int value);
 void BattleSystem_SetRenderMode(BattleSystem *battleSys, int renderMode);
-void ov16_0223F320(BattleSystem *battleSys, u8 *param1);
-void ov16_0223F32C(BattleSystem *battleSys, u8 *param1);
-void ov16_0223F338(BattleSystem *battleSys, u8 param1);
-void ov16_0223F344(BattleSystem *battleSys, u8 param1);
+void BattleSystem_SetLinkServerSenderStates(BattleSystem *battleSys, u8 *lssState);
+void BattleSystem_SetLinkClientReceiverStates(BattleSystem *battleSys, u8 *lcrState);
+void BattleSystem_SetLinkServerSenderState(BattleSystem *battleSys, u8 lssState);
+void BattleSystem_SetLinkClientReceiverState(BattleSystem *battleSys, u8 lcrState);
 void BattleSystem_SetCommandIsEndWait(BattleSystem *battleSys, u8 value);
 void *BattleSystem_GetHealthBox(BattleSystem *battleSys, int battler);
 void BattleSystem_CreateHealthboxes(BattleSystem *battleSys);
@@ -263,7 +261,7 @@ BOOL BattleSystem_ReadNextRecordedInput(BattleSystem *battleSys, int param1, u8 
 u8 BattleSystem_CollectNewRecordedInputs(BattleSystem *battleSys, u8 *param1);
 void BattleSystem_ReceiveRecordedInputs(BattleSystem *battleSys, u16 param1, u8 *param2);
 u16 BattleSystem_GetNetworkID(BattleSystem *battleSys);
-int ov16_0223F6F0(BattleSystem *battleSys, u16 battler);
+int BattleSystem_GetLinkPlayerPositionForBattler(BattleSystem *battleSys, u16 battler);
 u16 BattleSystem_GetTrainerItem(BattleSystem *battleSys, int battler, int param2);
 u32 BattleSystem_GetRecordingStopped(BattleSystem *battleSys);
 void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag);
@@ -312,4 +310,4 @@ u8 BattleMessage_PrintTrainerMessage(BattleSystem *battleSys, int trainerID, int
 u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg, int renderDelay);
 u8 BattleMessage_PrintToWindow(BattleSystem *battleSys, Window *window, MessageLoader *msgLoader, BattleMessage *battleMsg, int xOffset, int yOffset, int param6, int param7, int renderDelay);
 
-#endif // POKEPLATINUM_BATTLE_SYSTEM_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_SYSTEM_H

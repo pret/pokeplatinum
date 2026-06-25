@@ -2,7 +2,7 @@
   "key": 33815,
   "messages": [
     {
-      "id": "FloaromaTownMiddleHouse_Text_FloaromaTownWasABarrenDesolateHillLongAgo",
+      "id": "FloaromaTownMiddleHouse_Text_FloaromaTownWasBarren",
       "en_US": [
         "Floaroma Town was a barren, desolate\n",
         "hill long ago, avoided even by Pokémon.\r",
@@ -16,28 +16,28 @@
       ]
     },
     {
-      "id": "FloaromaTownMiddleHouse_Text_DoYouThinkItsCuteHowPokemonPluckBerries",
+      "id": "FloaromaTownMiddleHouse_Text_CuteHowPokemonPluckBerries",
       "en_US": [
         "Do you think it’s cute how\n",
         "Pokémon pluck Berries?"
       ]
     },
     {
-      "id": "FloaromaTownMiddleHouse_Text_HeresTheTMForTheMovePluck",
+      "id": "FloaromaTownMiddleHouse_Text_HeresTMForPluck",
       "en_US": [
         "Yes! You agreed!\n",
         "Here’s the TM for the move Pluck!\r"
       ]
     },
     {
-      "id": "FloaromaTownMiddleHouse_Text_OhIGuessIJustLikeWeirdThings",
+      "id": "FloaromaTownMiddleHouse_Text_IJustLikeWeirdThings",
       "en_US": [
         "Oh...\n",
         "I guess I just like weird things..."
       ]
     },
     {
-      "id": "FloaromaTownMiddleHouse_Text_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe",
+      "id": "FloaromaTownMiddleHouse_Text_UsingPluckEatsBerry",
       "en_US": [
         "When a Pokémon uses Pluck, it eats\n",
         "a Berry held by its foe in battle.\r",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "FloaromaTownMiddleHouse_Text_ClefairyRii",
+      "id": "FloaromaTownMiddleHouse_Text_ClefairyCry",
       "en_US": "CLEFAIRY: Rii?"
     }
   ]

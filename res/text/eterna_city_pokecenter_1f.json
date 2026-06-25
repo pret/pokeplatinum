@@ -2,7 +2,7 @@
   "key": 11027,
   "messages": [
     {
-      "id": "EternaCityPokecenter1F_Text_WhenAPokemonFaintsItJustMeansItDoesntHaveThePowerToBattle",
+      "id": "EternaCityPokecenter1F_Text_FaintMeansNoPowerToBattle",
       "en_US": [
         "When a Pokémon faints, it just means\n",
         "it doesn’t have the power to battle.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_TeamGalacticTookMyPokemonAway",
+      "id": "EternaCityPokecenter1F_Text_TeamGalacticTookMyPokemon",
       "en_US": [
         "Team Galactic took my Pokémon away.\n",
         "They took other people’s, too.\r",
@@ -33,7 +33,7 @@
       "en_US": "BUNEARY: Bunbun!"
     },
     {
-      "id": "EternaCityPokecenter1F_Text_ThisPoketchAppWillShowHowCloseYourPokemonFeelToYou",
+      "id": "EternaCityPokecenter1F_Text_ShowHowClosePokemonFeel",
       "en_US": [
         "Hi, you cute little Trainer!\n",
         "What kinds of Pokémon are with you?\r",
@@ -42,14 +42,14 @@
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_IfYouSpendEnoughTimeWithThemAllPokemonWillOpenUpToYou",
+      "id": "EternaCityPokecenter1F_Text_PokemonWillOpenUp",
       "en_US": [
         "If you spend enough time with them,\n",
         "all Pokémon will open up to you."
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_WhatKindsOfPokemonAreWithYouOhYourPokemon",
+      "id": "EternaCityPokecenter1F_Text_OhYourPokemon",
       "en_US": [
         "Hi, you cute little Trainer!\n",
         "What kinds of Pokémon are with you?\r",
@@ -64,21 +64,21 @@
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_ItsBecomingComfortableAroundYouIThink",
+      "id": "EternaCityPokecenter1F_Text_ItsBecomingComfortable",
       "en_US": [
         "It’s becoming comfortable around\n",
         "you, I think."
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_HmmItNeedsToGetUsedToYouMore",
+      "id": "EternaCityPokecenter1F_Text_NeedsToGetUsedToYou",
       "en_US": [
         "Hmm...\n",
         "It needs to get used to you more."
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_WereLookingForATrainerWhosTravelingWithAtLeastTwoPokemon",
+      "id": "EternaCityPokecenter1F_Text_OliNotEnoughPokemon_Unused",
       "en_US": [
         "Two Pokémon!\n",
         "That’s what we need.\r",
@@ -87,28 +87,28 @@
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_OhWouldYouLikeToBattleAgainstTheBothOfUs",
+      "id": "EternaCityPokecenter1F_Text_OliIntro_Unused",
       "en_US": [
         "Oh! Would you like to battle against the\n",
         "both of us?"
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_YoureLiveOnCameraButTryToActNaturalOK",
+      "id": "EternaCityPokecenter1F_Text_OliBattleAccepted_Unused",
       "en_US": [
         "You’re live on camera, but try to act\n",
         "natural, OK?\r"
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_OKThatsHowItIsHuh",
+      "id": "EternaCityPokecenter1F_Text_OliBattleDeclined_Unused",
       "en_US": [
         "OK, that’s how it is, huh.\n",
         "Can’t do anything about that."
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_WheeWasntThatBattleSmokingHot",
+      "id": "EternaCityPokecenter1F_Text_OliPostBattle_Unused",
       "en_US": [
         "Whee!\n",
         "Wasn’t that battle smoking hot?\r",
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_OhDearYouOnlyHaveOnePokemonWithYou",
+      "id": "EternaCityPokecenter1F_Text_RoxyNotEnoughPokemon_Unused",
       "en_US": [
         "Oh, dear!\n",
         "You only have one Pokémon with you?\r",
@@ -126,28 +126,28 @@
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_GiggleCouldYouWinAgainstBothOfUs",
+      "id": "EternaCityPokecenter1F_Text_RoxyIntro_Unused",
       "en_US": [
         "Giggle!\n",
         "Could you win against both of us?\n"
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_WellThoroughlyCheckOutYourAbilitiesAsATrainer",
+      "id": "EternaCityPokecenter1F_Text_RoxyBattleAccepted_Unused",
       "en_US": [
         "We’ll thoroughly check out your\n",
         "abilities as a Trainer!\r"
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_OhYouHaventHealedYourPokemonMaybe",
+      "id": "EternaCityPokecenter1F_Text_RoxyBattleDeclined_Unused",
       "en_US": [
         "Oh? You haven’t healed your Pokémon,\n",
         "maybe?"
       ]
     },
     {
-      "id": "EternaCityPokecenter1F_Text_ThatWasAGoodMatch",
+      "id": "EternaCityPokecenter1F_Text_RoxyPostBattle_Unused",
       "en_US": [
         "That was a good match.\r",
         "It adds flair and drama when many\n",

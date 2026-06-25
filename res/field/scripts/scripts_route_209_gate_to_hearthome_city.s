@@ -4,14 +4,14 @@
 
 
     ScriptEntry Route209GateToHearthomeCity_BattleGirl
-    ScriptEntry Route209GateToHearthomeCity_TriggerRival
+    ScriptEntry Route209GateToHearthomeCity_CoordEvent_Rival
     ScriptEntryEnd
 
 Route209GateToHearthomeCity_BattleGirl:
-    NPCMessage Route209GateToHearthomeCity_Text_TheresAWreckedStonePillar
+    NPCMessage Route209GateToHearthomeCity_Text_WreckedStonePillar
     End
 
-Route209GateToHearthomeCity_TriggerRival:
+Route209GateToHearthomeCity_CoordEvent_Rival:
     LockAll
     ApplyMovement LOCALID_RIVAL, Route209GateToHearthomeCity_Movement_RivalNoticePlayer
     WaitMovement
@@ -52,7 +52,7 @@ Route209GateToHearthomeCity_PostRivalBattle:
     GoToIfEq VAR_RESULT, FALSE, Route209GateToHearthomeCity_BlackOut
     BufferRivalName 0
     BufferPlayerName 1
-    Message Route209GateToHearthomeCity_Text_MySurefireWinningStrategyDoesntWork
+    Message Route209GateToHearthomeCity_Text_MyStrategyDoesntWork
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 5, Route209GateToHearthomeCity_RivalLeaveZ5
@@ -123,7 +123,7 @@ Route209GateToHearthomeCity_RivalLeaveZ9:
     Return
 
     .balign 4, 0
-Route209GateToHearthomeCity_UnusedMovement:
+Route209GateToHearthomeCity_Movement_Unused:
     WalkFastWest 4
     EmoteExclamationMark
     EndMovement

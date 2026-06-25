@@ -89,7 +89,7 @@ extern int tool_create(const options_t *opts) {
 
     strvec_t  excls  = { 0 };
     char     *ogcwd  = getcwd(NULL, 0);
-    char     *f_incl = NULL;
+    char     *f_incl = (char *)opts->single_file;
     char     *f_excl = NULL;
     char     *data   = NULL;
     size_t    size   = 0;
@@ -112,7 +112,8 @@ extern int tool_create(const options_t *opts) {
     free(cfg.files.data);
     free(excls.data); // none are internally-owned
     free(ogcwd);
-    free(f_incl);
+    if (opts->files_from)
+        free(f_incl);
     free(f_excl);
     free(data);
     return errc;

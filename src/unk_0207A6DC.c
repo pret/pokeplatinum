@@ -114,8 +114,8 @@ void sub_0207A6DC(void *param0)
     v3->battleSys = battleSys;
     v3->unk_04 = 0;
 
-    ov16_0223F320(battleSys, &v2->unk_04);
-    ov16_0223F32C(battleSys, &v3->unk_04);
+    BattleSystem_SetLinkServerSenderStates(battleSys, &v2->unk_04);
+    BattleSystem_SetLinkClientReceiverStates(battleSys, &v3->unk_04);
 
     SysTask_Start(sub_0207ACB4, v2, 0);
     SysTask_Start(sub_0207AD40, v3, 0);
@@ -645,8 +645,8 @@ static void sub_0207ADB4(int param0, int param1, void *param2, void *param3)
 {
     BattleSystem *battleSys = (BattleSystem *)param3;
 
-    ov16_0223F338(battleSys, 255);
-    ov16_0223F344(battleSys, 255);
+    BattleSystem_SetLinkServerSenderState(battleSys, 255);
+    BattleSystem_SetLinkClientReceiverState(battleSys, 255);
     BattleSystem_SetCommandIsEndWait(battleSys, 1);
 }
 

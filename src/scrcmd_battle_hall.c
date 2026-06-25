@@ -6,16 +6,15 @@
 #include "constants/battle_frontier.h"
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_02030114_decl.h"
-#include "struct_decls/struct_0203026C_decl.h"
-
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
+#include "battle_hall_save.h"
 #include "battle_hall_win_records.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
@@ -32,12 +31,11 @@
 #include "savedata.h"
 #include "script_manager.h"
 #include "string_template.h"
-#include "unk_0202D05C.h"
 #include "unk_0202D778.h"
-#include "unk_02030108.h"
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
 #include "unk_02099500.h"
+#include "wifi_battle_tower_save.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -77,8 +75,8 @@ BOOL ScrCmd_2CC(ScriptContext *ctx)
     u16 arg = ScriptContext_GetVar(ctx);
     u16 *result = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    UnkStruct_02030114 *v10 = sub_02030114(ctx->fieldSystem->saveData);
-    UnkStruct_0203026C *v11 = sub_0203026C(ctx->fieldSystem->saveData);
+    BattleHallSave *v10 = BattleHallSave_Get(ctx->fieldSystem->saveData);
+    BattleHallStreakFlags *v11 = BattleHallStreakFlags_Get(ctx->fieldSystem->saveData);
     void **partySelect = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
     switch (action) {
@@ -87,17 +85,14 @@ BOOL ScrCmd_2CC(ScriptContext *ctx)
         break;
     case 1:
         if (arg == 3) {
-            *result = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
-                106,
-                BattleFrontierStats_GetHostFriendIdx(106));
+            *result = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData), 106);
         } else {
-            *result = sub_020302B4(v11, 5, arg, 0, NULL);
+            *result = BattleHallStreakFlags_GetFlag(v11, 5, arg, 0, NULL);
         }
         break;
     case 2:
-        *result = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
-            BattleFrontierStats_GetHallLatestSpeciesIndex(arg),
-            BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetHallLatestSpeciesIndex(arg)));
+        *result = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+            BattleFrontierStats_GetHallLatestSpeciesIndex(arg));
         break;
     case 3:
         sub_0204FA50(ctx->fieldSystem->saveData, v11, arg);
@@ -186,7 +181,7 @@ static BOOL CheckPartyIsBattleHallEligible(u16 numPokemonNeeded, SaveData *saveD
 BOOL ScrCmd_2D1(ScriptContext *ctx)
 {
     u16 challengeType = ScriptContext_GetVar(ctx);
-    UnkStruct_0203026C *v0 = sub_0203026C(ctx->fieldSystem->saveData);
+    BattleHallStreakFlags *v0 = BattleHallStreakFlags_Get(ctx->fieldSystem->saveData);
 
     sub_0204FA50(ctx->fieldSystem->saveData, v0, challengeType);
     return FALSE;
@@ -507,8 +502,8 @@ BOOL ScrCmd_GetBattleHallRecordKeeperStats(ScriptContext *ctx)
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_RECEIVED, earnedBP);
 
     if (earnedBP != 0) {
-        BattlePoints_ApplyFuncAndGet(
-            sub_0202D750(ctx->fieldSystem->saveData), earnedBP, BATTLE_POINTS_FUNC_ADD);
+        WifiBattleTowerRecord_UpdateBattlePoints(
+            SaveData_GetWifiBattleTowerRecord(ctx->fieldSystem->saveData), earnedBP, BATTLE_POINTS_FUNC_ADD);
     }
 
     if (totalWinRecord == 0) {
@@ -614,11 +609,11 @@ BOOL ScrCmd_32A(ScriptContext *ctx)
 {
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    u16 v0 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+    u16 v0 = BattleFrontierSave_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
         BattleFrontierStats_GetHallLatestSpeciesIndex(0),
         0xff);
 
-    u16 v1 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+    u16 v1 = BattleFrontierSave_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
         BattleFrontierStats_GetHallLatestStreakIndex(0),
         0xff);
 

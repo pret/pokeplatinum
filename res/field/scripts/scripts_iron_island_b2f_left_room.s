@@ -5,14 +5,14 @@
 
 
     ScriptEntry IronIslandB2FLeftRoom_OnTransition
-    ScriptEntry IronIslandB2FLeftRoom_TriggerPlatformLift
-    ScriptEntry IronIslandB2FLeftRoom_TriggerStartFollowingRiley
-    ScriptEntry IronIslandB2FLeftRoom_TriggerPlayerLeaveRiley
-    ScriptEntry IronIslandB2FLeftRoom_Unused5
-    ScriptEntry IronIslandB2FLeftRoom_Unused6
-    ScriptEntry IronIslandB2FLeftRoom_Unused7
+    ScriptEntry IronIslandB2FLeftRoom_CoordEvent_PlatformLift
+    ScriptEntry IronIslandB2FLeftRoom_CoordEvent_RileyStartFollowing
+    ScriptEntry IronIslandB2FLeftRoom_CoordEvent_PlayerLeaveRiley
+    ScriptEntry IronIslandB2FLeftRoom_Dummy5
+    ScriptEntry IronIslandB2FLeftRoom_Dummy6
+    ScriptEntry IronIslandB2FLeftRoom_Dummy7
     ScriptEntry IronIslandB2FLeftRoom_Riley
-    ScriptEntry IronIslandB2FLeftRoom_TriggerGrunts
+    ScriptEntry IronIslandB2FLeftRoom_CoordEvent_Grunts
     ScriptEntryEnd
 
 IronIslandB2FLeftRoom_OnTransition:
@@ -31,11 +31,11 @@ IronIslandB2FLeftRoom_SetRileyPositionAtExit:
     SetObjectEventDir LOCALID_RILEY, DIR_EAST
     End
 
-IronIslandB2FLeftRoom_TriggerPlatformLift:
+IronIslandB2FLeftRoom_CoordEvent_PlatformLift:
     TriggerPlatformLift
     End
 
-IronIslandB2FLeftRoom_TriggerStartFollowingRiley:
+IronIslandB2FLeftRoom_CoordEvent_RileyStartFollowing:
     LockAll
     SetPlayerBike FALSE
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -77,7 +77,7 @@ IronIslandB2FLeftRoom_HiLetsTeamUp:
     Message IronIslandB2FLeftRoom_Text_HiLetsTeamUp
     Return
 
-IronIslandB2FLeftRoom_TriggerPlayerLeaveRiley:
+IronIslandB2FLeftRoom_CoordEvent_PlayerLeaveRiley:
     LockAll
     ApplyMovement LOCALID_PLAYER, IronIslandB2FLeftRoom_Movement_PlayerWalkOnSpotWest
     ApplyMovement LOCALID_RILEY, IronIslandB2FLeftRoom_Movement_RileyFaceEast
@@ -143,10 +143,10 @@ IronIslandB2FLeftRoom_Movement_RileyWalkBackZ3:
     WalkNormalWest
     EndMovement
 
-IronIslandB2FLeftRoom_Unused5:
+IronIslandB2FLeftRoom_Dummy5:
     End
 
-IronIslandB2FLeftRoom_TriggerGrunts:
+IronIslandB2FLeftRoom_CoordEvent_Grunts:
     LockAll
     ClearHasPartner
     SetMovementType LOCALID_RILEY, MOVEMENT_TYPE_LOOK_WEST
@@ -207,12 +207,12 @@ IronIslandB2FLeftRoom_PlayerRileyWalkToGruntsZ41:
     WaitMovement
     Return
 
-IronIslandB2FLeftRoom_UnusedMovement6:
+IronIslandB2FLeftRoom_Unused:
     ApplyMovement LOCALID_RILEY, IronIslandB2FLeftRoom_Movement_Unused6
     WaitMovement
     Return
 
-IronIslandB2FLeftRoom_UnusedMovement7:
+IronIslandB2FLeftRoom_Unused2:
     ApplyMovement LOCALID_RILEY, IronIslandB2FLeftRoom_Movement_Unused7
     WaitMovement
     Return
@@ -381,10 +381,10 @@ IronIslandB2FLeftRoom_Movement_PlayerWalkToGruntMSouth:
     WalkNormalWest
     EndMovement
 
-IronIslandB2FLeftRoom_Unused6:
+IronIslandB2FLeftRoom_Dummy6:
     End
 
-IronIslandB2FLeftRoom_Unused7:
+IronIslandB2FLeftRoom_Dummy7:
     End
 
 IronIslandB2FLeftRoom_Riley:

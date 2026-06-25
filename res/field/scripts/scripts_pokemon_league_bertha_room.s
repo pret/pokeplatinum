@@ -4,7 +4,7 @@
 
 
     ScriptEntry PokemonLeagueBerthaRoom_Bertha
-    ScriptEntry PokemonLeagueBerthaRoom_OnFrame
+    ScriptEntry PokemonLeagueBerthaRoom_OnFrame_EnterRoom
     ScriptEntryEnd
 
 PokemonLeagueBerthaRoom_Bertha:
@@ -39,11 +39,11 @@ PokemonLeagueBerthaRoom_StartBerthaRematchBattle:
     Return
 
 PokemonLeagueBerthaRoom_CreateJournalEventDefeatedBertha:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_BERTHA, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_BERTHA
     Return
 
 PokemonLeagueBerthaRoom_CreateJournalEventDefeatedRematchBertha:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_BERTHA_REMATCH, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_BERTHA_REMATCH
     Return
 
 PokemonLeagueBerthaRoom_BlackOut:
@@ -58,7 +58,7 @@ PokemonLeagueBerthaRoom_BerthaPostBattle:
     ReleaseAll
     End
 
-PokemonLeagueBerthaRoom_OnFrame:
+PokemonLeagueBerthaRoom_OnFrame_EnterRoom:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueBerthaRoom_Movement_PlayerEnterRoom
     WaitMovement

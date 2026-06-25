@@ -4,33 +4,33 @@
 #include "res/field/events/events_eterna_city.h"
 
 
-    ScriptEntry EternaCity_TriggerCynthiaGiveCut
+    ScriptEntry EternaCity_CoordEvent_CynthiaGiveCut
     ScriptEntry EternaCity_GruntM1
     ScriptEntry EternaCity_GruntM2
     ScriptEntry EternaCity_GruntM3
     ScriptEntry EternaCity_PokemonBreederM
     ScriptEntry EternaCity_PokemonBreederF1
-    ScriptEntry EternaCity_Unused7
+    ScriptEntry EternaCity_RatherFetching_Unused
     ScriptEntry EternaCity_BugCatcher1
     ScriptEntry EternaCity_AceTrainerF
     ScriptEntry EternaCity_ExpertM
     ScriptEntry EternaCity_NinjaBoy
-    ScriptEntry EternaCity_MapSign
+    ScriptEntry EternaCity_MapSignpost
     ScriptEntry EternaCity_GymSignpost
-    ScriptEntry EternaCity_LandmarkSignRadRickshawsCycleShop
-    ScriptEntry EternaCity_LandmarkSignTeamGalacticEternaBuilding
-    ScriptEntry EternaCity_LandmarkSignUndergroundMansHouse
-    ScriptEntry EternaCity_LandmarkSignEternaCondominiums
+    ScriptEntry EternaCity_SignboardRadRickshawsCycleShop
+    ScriptEntry EternaCity_SignboardTeamGalacticEternaBuilding
+    ScriptEntry EternaCity_SignboardUndergroundMansHouse
+    ScriptEntry EternaCity_SignboardEternaCondominiums
     ScriptEntry EternaCity_Statue
     ScriptEntry EternaCity_PokemonBreederF2
-    ScriptEntry EternaCity_TriggerBlockExitSouth
+    ScriptEntry EternaCity_CoordEvent_BlockExitSouth
     ScriptEntry EternaCity_OnTransition
     ScriptEntry EternaCity_BugCatcher2
-    ScriptEntry EternaCity_TriggerBlockExitWest
+    ScriptEntry EternaCity_CoordEvent_BlockExitWest
     ScriptEntry EternaCity_Gardenia
-    ScriptEntry EternaCity_TriggerRival
-    ScriptEntry EternaCity_TriggerCynthiaTryGiveEgg
-    ScriptEntry EternaCity_TriggerCynthiaBlockBikeShop
+    ScriptEntry EternaCity_CoordEvent_Rival
+    ScriptEntry EternaCity_CoordEvent_CynthiaTryGiveEgg
+    ScriptEntry EternaCity_CoordEvent_CynthiaBlockBikeShop
     ScriptEntry EternaCity_Cynthia
     ScriptEntryEnd
 
@@ -54,26 +54,26 @@ EternaCity_SetCynthiaPositionForGiveEgg:
     Return
 
 EternaCity_PokemonBreederM:
-    NPCMessage EternaCity_Text_IfYoureVisitingEternaYouNeedToGetYourselfABicycle
+    NPCMessage EternaCity_Text_GetYourselfABicycle
     End
 
-EternaCity_Unused7:
-    NPCMessage EternaCity_Text_OhYourPokemonAreRatherFetching
+EternaCity_RatherFetching_Unused:
+    NPCMessage EternaCity_Text_PokemonAreRatherFetching
     End
 
 EternaCity_PokemonBreederF1:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCity_WithTeamGalacticGoneWhatsGoingToHappenToTheirBuilding
-    Message EternaCity_Text_SinceThatTeamGalacticBuildingWentUp
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCity_WhatWillHappenToGalacticBuilding
+    Message EternaCity_Text_AtmosphereHasGottenCreepy
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-EternaCity_WithTeamGalacticGoneWhatsGoingToHappenToTheirBuilding:
-    Message EternaCity_Text_WithTeamGalacticGoneWhatsGoingToHappenToTheirBuilding
+EternaCity_WhatWillHappenToGalacticBuilding:
+    Message EternaCity_Text_WhatWillHappenToGalacticBuilding
     WaitButton
     CloseMessage
     ReleaseAll
@@ -83,45 +83,45 @@ EternaCity_BugCatcher1:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCity_DoYouUseYourBikesKickstand
-    Message EternaCity_Text_MyFriendSaidTeamGalacticTookHisFavoritePokemonAway
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCity_DoYouUseKickstand
+    Message EternaCity_Text_GalacticTookFavoritePokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-EternaCity_DoYouUseYourBikesKickstand:
-    Message EternaCity_Text_DoYouUseYourBikesKickstand
+EternaCity_DoYouUseKickstand:
+    Message EternaCity_Text_DoYouUseKickstand
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-EternaCity_MapSign:
+EternaCity_MapSignpost:
     ShowMapSign EternaCity_Text_EternaCityHistoryLiving
     End
 
 EternaCity_GymSignpost:
-    ShowScrollingSign EternaCity_Text_EternaCityPokemonGymLeaderGardeniaMasterOfVividPlantPokemon
+    ShowScrollingSign EternaCity_Text_SignPokemonGym
     End
 
-EternaCity_LandmarkSignRadRickshawsCycleShop:
-    ShowLandmarkSign EternaCity_Text_RadRickshawsCycleShopGetOnAndRide
+EternaCity_SignboardRadRickshawsCycleShop:
+    ShowLandmarkSign EternaCity_Text_SignRadRickshawsCycleShop
     End
 
-EternaCity_LandmarkSignTeamGalacticEternaBuilding:
-    ShowLandmarkSign EternaCity_Text_TeamGalacticEternaBuildingWeWantYourPokemon
+EternaCity_SignboardTeamGalacticEternaBuilding:
+    ShowLandmarkSign EternaCity_Text_SignTeamGalacticEternaBuilding
     End
 
-EternaCity_LandmarkSignUndergroundMansHouse:
-    ShowLandmarkSign EternaCity_Text_UndergroundMansHouseGoinDownForAdventure
+EternaCity_SignboardUndergroundMansHouse:
+    ShowLandmarkSign EternaCity_Text_SignUndergroundMansHouse
     End
 
-EternaCity_LandmarkSignEternaCondominiums:
-    ShowLandmarkSign EternaCity_Text_EternaCondominiumsNameRatingServicesAvailable
+EternaCity_SignboardEternaCondominiums:
+    ShowLandmarkSign EternaCity_Text_SignEternaCondominiums
     End
 
-EternaCity_TriggerCynthiaGiveCut:
+EternaCity_CoordEvent_CynthiaGiveCut:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 522, EternaCity_SetCynthiaPositionForGiveCutZ522
@@ -173,15 +173,15 @@ EternaCity_CynthiaGiveCut:
     CallIfEq VAR_0x8005, 522, EternaCity_EnterCynthiaForGiveCutZ522
     CallIfNe VAR_0x8005, 522, EternaCity_EnterCynthiaForGiveCutNotZ522
     BufferPlayerName 0
-    Message EternaCity_Text_OhThatDeviceYouHaveItIsAPokedex
+    Message EternaCity_Text_OhYouHaveAPokedex
     CloseMessage
     CallIfEq VAR_0x8005, 522, EternaCity_CynthiaWalkOnSpotEastNorth
     CallIfNe VAR_0x8005, 522, EternaCity_CynthiaWalkOnSpotEastWest
-    Message EternaCity_Text_TryUsingThisItShouldBeHelpful
+    Message EternaCity_Text_TryUsingThis
     SetVar VAR_0x8004, ITEM_HM01
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    Message EternaCity_Text_RememberTheHiddenMoveCutCanBeUsedInTheField
+    Message EternaCity_Text_CutCanBeUsedInField
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 522, EternaCity_CynthiaLeaveAfterCutZ522
@@ -359,11 +359,11 @@ EternaCity_Movement_PlayerWatchCynthiaLeaveAfterCutNotZ522:
     EndMovement
 
 EternaCity_GruntM1:
-    NPCMessage EternaCity_Text_HeyYouThereKidStayAwayFromThatPokemonStatue
+    NPCMessage EternaCity_Text_StayAwayFromStatue
     End
 
 EternaCity_GruntM2:
-    NPCMessage EternaCity_Text_HeyYouYeahYouTrainer
+    NPCMessage EternaCity_Text_IllLetYouKeepPokemon
     End
 
 EternaCity_GruntM3:
@@ -375,11 +375,11 @@ EternaCity_AceTrainerF:
     End
 
 EternaCity_ExpertM:
-    NPCMessage EternaCity_Text_EternaCitysNotAnythingLikeItWasBefore
+    NPCMessage EternaCity_Text_EternaCitysNotLikeBefore
     End
 
 EternaCity_NinjaBoy:
-    NPCMessage EternaCity_Text_TheySayThisIsAnAwesomePokemonThatPeopleSawLongAgo
+    NPCMessage EternaCity_Text_AwesomePokemonFromLongAgo
     End
 
 EternaCity_Statue:
@@ -387,15 +387,15 @@ EternaCity_Statue:
     End
 
 EternaCity_PokemonBreederF2:
-    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, EternaCity_GoingUndergroundWithTheExplorerKitIsABlastIsntIt
-    NPCMessage EternaCity_Text_OhDontTellMeYouDontHaveAnExplorerKit2
+    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, EternaCity_GoingUndergroundIsABlast
+    NPCMessage EternaCity_Text_YouDontHaveExplorerKit
     End
 
-EternaCity_GoingUndergroundWithTheExplorerKitIsABlastIsntIt:
-    NPCMessage EternaCity_Text_GoingUndergroundWithTheExplorerKitIsABlastIsntIt
+EternaCity_GoingUndergroundIsABlast:
+    NPCMessage EternaCity_Text_GoingUndergroundIsABlast
     End
 
-EternaCity_TriggerBlockExitSouth:
+EternaCity_CoordEvent_BlockExitSouth:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 303, EternaCity_PokemonBreederFBlockExitSouthX303
@@ -405,7 +405,7 @@ EternaCity_TriggerBlockExitSouth:
     CallIfEq VAR_0x8004, 307, EternaCity_PokemonBreederFBlockExitSouthX307
     ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkOnSpotWestToFacePokemonBreederF
     WaitMovement
-    Message EternaCity_Text_OhDontTellMeYouDontHaveAnExplorerKit
+    Message EternaCity_Text_YouDontHaveExplorerKit_ArrowPrompt
     CloseMessage
     CallIfEq VAR_0x8004, 303, EternaCity_PokemonBreederFMoveBackX303
     CallIfEq VAR_0x8004, 304, EternaCity_PokemonBreederFMoveBackX304
@@ -504,7 +504,7 @@ EternaCity_Movement_PokemonBreederFBlockExitSouthX307:
     WalkNormalEast 4
     EndMovement
 
-EternaCity_UnusedMovement:
+EternaCity_Movement_Unused:
     WalkOnSpotFastEast
     EndMovement
 
@@ -546,9 +546,9 @@ EternaCity_BugCatcher2:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfUnset FLAG_RECEIVED_BICYCLE, EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
-    GoToIfGe VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, 1, EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
-    Message EternaCity_Text_OhWowYouGotABicycle2
+    GoToIfUnset FLAG_RECEIVED_BICYCLE, EternaCity_FeelsGreatRidingABike
+    GoToIfGe VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, 1, EternaCity_FeelsGreatRidingABike
+    Message EternaCity_Text_YouGotABicycle
     WaitButton
     CloseMessage
     ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2FaceSouth
@@ -556,8 +556,8 @@ EternaCity_BugCatcher2:
     ReleaseAll
     End
 
-EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt:
-    Message EternaCity_Text_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt
+EternaCity_FeelsGreatRidingABike:
+    Message EternaCity_Text_FeelsGreatRidingABike
     WaitButton
     CloseMessage
     ApplyMovement LOCALID_BUG_CATCHER_2, EternaCity_Movement_BugCatcher2FaceSouth
@@ -565,7 +565,7 @@ EternaCity_ItFeelsGreatRidingABikeWithTheWindInYourFaceDoesntIt:
     ReleaseAll
     End
 
-EternaCity_TriggerBlockExitWest:
+EternaCity_CoordEvent_BlockExitWest:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 532, EternaCity_BugCatcher2BlockExitWestZ532
@@ -573,7 +573,7 @@ EternaCity_TriggerBlockExitWest:
     CallIfEq VAR_0x8005, 534, EternaCity_BugCatcher2BlockExitWestZ534
     ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerFaceNorth
     WaitMovement
-    Message EternaCity_Text_OhWowYouGotABicycle
+    Message EternaCity_Text_YouGotABicycle_ArrowPrompt
     CloseMessage
     CallIfEq VAR_0x8005, 532, EternaCity_PushBackPlayerZ532
     CallIfEq VAR_0x8005, 533, EternaCity_PushBackPlayerZ533
@@ -676,7 +676,7 @@ EternaCity_Gardenia:
     LockAll
     FacePlayer
     BufferRivalName 0
-    Message EternaCity_Text_HiImGardeniaImThisTownsGymLeader
+    Message EternaCity_Text_ImThisTownsGymLeader
     CloseMessage
     ApplyMovement LOCALID_GARDENIA, EternaCity_Movement_GardeniaWalkOnSpotNorth
     WaitMovement
@@ -702,7 +702,7 @@ EternaCity_Movement_GardeniaEnterGym:
     WalkNormalNorth
     EndMovement
 
-EternaCity_TriggerRival:
+EternaCity_CoordEvent_Rival:
     LockAll
     ScrCmd_32D
     ScrCmd_331
@@ -720,31 +720,31 @@ EternaCity_RivalRunIntoPlayerZ523:
     ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalRunIntoPlayerZ523
     ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerGetPushedByRivalZ523
     WaitMovement
-    GoTo EternaCity_YouCameToSeeThePokemonStatueRight
+    GoTo EternaCity_YouCameToSeeStatue
     End
 
 EternaCity_RivalRunIntoPlayerZ524:
     ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalRunIntoPlayerZ524
     ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerGetPushedByRivalZ524
     WaitMovement
-    GoTo EternaCity_YouCameToSeeThePokemonStatueRight
+    GoTo EternaCity_YouCameToSeeStatue
     End
 
 EternaCity_RivalRunIntoPlayerZ525:
     ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalRunIntoPlayerZ525
     ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerGetPushedByRivalZ525
     WaitMovement
-    GoTo EternaCity_YouCameToSeeThePokemonStatueRight
+    GoTo EternaCity_YouCameToSeeStatue
     End
 
-EternaCity_YouCameToSeeThePokemonStatueRight:
+EternaCity_YouCameToSeeStatue:
     PlaySE SEQ_SE_DP_WALL_HIT2
     Message EternaCity_Text_BigThud
     CloseMessage
     Common_SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
-    Message EternaCity_Text_YouCameToSeeThePokemonStatueRight
+    Message EternaCity_Text_YouCameToSeeStatue
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 523, EternaCity_WalkToStatueZ523
@@ -792,7 +792,7 @@ EternaCity_Cyrus:
     AddFreeCamera 323, 524
     ApplyFreeCameraMovement EternaCity_Movement_CameraPanEast
     WaitMovement
-    Message EternaCity_Text_SoThisIsEternasPokemonStatue
+    Message EternaCity_Text_SoThisIsEternasStatue
     CloseMessage
     WaitTime 15, VAR_RESULT
     ApplyMovement LOCALID_CYRUS, EternaCity_Movement_CyrusWalkToPlayer
@@ -811,7 +811,7 @@ EternaCity_Cyrus:
     ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerFaceRival
     WaitMovement
     BufferRivalName 0
-    Message EternaCity_Text_GoCheckOutThePokemonStatueSeeYouAround
+    Message EternaCity_Text_GoCheckOutStatueSeeYou
     CloseMessage
     ApplyMovement LOCALID_RIVAL, EternaCity_Movement_RivalLeave
     ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWatchRivalLeave
@@ -1008,7 +1008,7 @@ EternaCity_Movement_CyrusLeave:
     WalkNormalWest 14
     EndMovement
 
-EternaCity_TriggerCynthiaTryGiveEgg:
+EternaCity_CoordEvent_CynthiaTryGiveEgg:
     LockAll
     SetObjectEventDir LOCALID_CYNTHIA, DIR_EAST
     SetObjectEventMovementType LOCALID_CYNTHIA, MOVEMENT_TYPE_LOOK_EAST
@@ -1068,7 +1068,7 @@ EternaCity_CynthiaTryGiveEgg:
     WaitMovement
     ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkOnSpotWestToFaceCynthia
     WaitMovement
-    Message EternaCity_Text_IWantedYouToHaveThisPokemonEggWillYouAcceptIt
+    Message EternaCity_Text_WillYouAcceptEgg
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, EternaCity_RefusedEgg
     GetPartyCount VAR_RESULT
@@ -1083,20 +1083,20 @@ EternaCity_CynthiaTryGiveEgg:
 EternaCity_GiveTogepiEgg:
     PlayFanfare SEQ_FANFA4
     WaitFanfare
-    Message EternaCity_Text_ThatsWonderfulThePokemonInsideTheEggIsHappyToo
-    Message EternaCity_Text_KeepThatEggWithYouInYourPartyOfPokemon
+    Message EternaCity_Text_ThatsWonderful
+    Message EternaCity_Text_KeepEggInYourParty
     CloseMessage
     GiveEgg SPECIES_TOGEPI, SPECIAL_METLOC_NAME_CYNTHIA
     SetVar VAR_ETERNA_CITY_STATE, 5
     Return
 
 EternaCity_PartyIsFull:
-    Call EternaCity_OhYouDontHaveRoomForThisEgg
+    Call EternaCity_NoRoomForEgg
     GoTo EternaCity_CynthiaTryGiveEggEnd
     End
 
 EternaCity_RefusedEgg:
-    Call EternaCity_OhYouDontNeedToFeelObligated
+    Call EternaCity_DontFeelObligated
     GoTo EternaCity_CynthiaTryGiveEggEnd
     End
 
@@ -1133,7 +1133,7 @@ EternaCity_Cynthia:
     End
 
 EternaCity_CynthiaTryAgainGiveEgg:
-    Message EternaCity_Text_WillYouAcceptThisPokemonEgg
+    Message EternaCity_Text_WillYouAcceptThisEgg
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, EternaCity_RefusedEggAgain
     GetPartyCount VAR_RESULT
@@ -1179,12 +1179,12 @@ EternaCity_RemoveCynthia:
     End
 
 EternaCity_PartyIsFullAgain:
-    Call EternaCity_OhYouDontHaveRoomForThisEgg
+    Call EternaCity_NoRoomForEgg
     GoTo EternaCity_CynthiaTryAgainGiveEggEnd
     End
 
 EternaCity_RefusedEggAgain:
-    Call EternaCity_OhYouDontNeedToFeelObligated
+    Call EternaCity_DontFeelObligated
     GoTo EternaCity_CynthiaTryAgainGiveEggEnd
     End
 
@@ -1192,21 +1192,21 @@ EternaCity_CynthiaTryAgainGiveEggEnd:
     ReleaseAll
     End
 
-EternaCity_OhYouDontHaveRoomForThisEgg:
+EternaCity_NoRoomForEgg:
     SetVar VAR_ETERNA_CITY_STATE, 4
-    Message EternaCity_Text_OhYouDontHaveRoomForThisEgg
+    Message EternaCity_Text_NoRoomForEgg
     WaitButton
     CloseMessage
     Return
 
-EternaCity_OhYouDontNeedToFeelObligated:
-    Message EternaCity_Text_OhYouDontNeedToFeelObligated
+EternaCity_DontFeelObligated:
+    Message EternaCity_Text_DontFeelObligated
     WaitButton
     CloseMessage
     SetVar VAR_ETERNA_CITY_STATE, 4
     Return
 
-EternaCity_TriggerCynthiaBlockBikeShop:
+EternaCity_CoordEvent_CynthiaBlockBikeShop:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 540, EternaCity_CynthiaWalkOnSpotEastZ540
@@ -1220,41 +1220,41 @@ EternaCity_TriggerCynthiaBlockBikeShop:
 EternaCity_CynthiaWalkOnSpotEastZ540:
     ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
+    GoTo EternaCity_DontLeaveWithoutEgg
     End
 
 EternaCity_CynthiaWalkOnSpotEastZ541:
     ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
+    GoTo EternaCity_DontLeaveWithoutEgg
     End
 
 EternaCity_CynthiaWalkOnSpotEastZ542:
     ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
+    GoTo EternaCity_DontLeaveWithoutEgg
     End
 
 EternaCity_CynthiaWalkOnSpotEastZ543:
     ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
+    GoTo EternaCity_DontLeaveWithoutEgg
     End
 
 EternaCity_CynthiaWalkOnSpotEastZ544:
     ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
+    GoTo EternaCity_DontLeaveWithoutEgg
     End
 
 EternaCity_CynthiaWalkOnSpotEastZ545:
     ApplyMovement LOCALID_CYNTHIA, EternaCity_Movement_CynthiaWalkOnSpotEast
     WaitMovement
-    GoTo EternaCity_DontLeaveWithoutThisPokemonEgg
+    GoTo EternaCity_DontLeaveWithoutEgg
     End
 
-EternaCity_DontLeaveWithoutThisPokemonEgg:
-    Message EternaCity_Text_DontLeaveWithoutThisPokemonEgg
+EternaCity_DontLeaveWithoutEgg:
+    Message EternaCity_Text_DontLeaveWithoutEgg
     CloseMessage
     ApplyMovement LOCALID_PLAYER, EternaCity_Movement_PlayerWalkNormalWest
     WaitMovement

@@ -107,7 +107,7 @@ Route210GrandmaWilmaHouse_PickPokemonToTeach:
     CheckPartyMonHasMove VAR_RESULT, MOVE_DRACO_METEOR, VAR_0x8000
     GoToIfEq VAR_RESULT, TRUE, Route210GrandmaWilmaHouse_AlreadyKnowsDracoMeteor
     GetPartyMonFriendship VAR_RESULT, VAR_0x8000
-    GoToIfLt VAR_RESULT, 255, Route210GrandmaWilmaHouse_DoesntFullyTrustYou
+    GoToIfLt VAR_RESULT, MAX_FRIENDSHIP_VALUE, Route210GrandmaWilmaHouse_DoesntFullyTrustYou
     SetVar VAR_0x8003, MOVE_DRACO_METEOR
     GoTo Route210GrandmaWilmaHouse_TryTeachDracoMeteor
 

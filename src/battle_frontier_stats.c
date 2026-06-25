@@ -1,177 +1,482 @@
 #include "battle_frontier_stats.h"
 
-#include <nitro.h>
+#include "constants/battle_frontier.h"
+#include "constants/battle_frontier_stats.h"
+#include "constants/versions.h"
 
-#include "struct_defs/battle_frontier.h"
+#include "nintendo_wfc/main.h"
 
-#include "savedata.h"
-#include "unk_0202D05C.h"
-#include "unk_0202FF4C.h"
-#include "unk_02030108.h"
-#include "unk_020302D0.h"
-#include "unk_02030494.h"
-#include "wifi_list.h"
+#include "battle_tower_modes.h"
+#include "communication_information.h"
+#include "communication_system.h"
+#include "save_player.h"
+#include "trainer_info.h"
 
-int BattleFrontier_SaveSize(void)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryLatestStreakIdx(u8 isOpenLevel, u8 challengeType)
 {
-    return sizeof(BattleFrontier);
-}
+    enum BattleFrontierStatsIndex index;
 
-void BattleFrontier_Init(BattleFrontier *frontier)
-{
-    MI_CpuClear8(frontier, sizeof(BattleFrontier));
-
-    sub_0202D06C(&frontier->unk_950.unk_00);
-    sub_0202D080(&frontier->unk_950.unk_168);
-    sub_0202D0AC(&frontier->unk_950.unk_188);
-    sub_020300A4(&frontier->unk_1614.unk_00);
-    sub_02030260(&frontier->unk_1618.unk_00);
-    sub_02030410(&frontier->unk_161C.unk_00);
-    sub_020305AC(&frontier->unk_1620.unk_00);
-}
-
-BattleFrontier *SaveData_GetBattleFrontier(SaveData *saveData)
-{
-    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-}
-
-u16 BattleFrontierStats_GetStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID)
-{
-    BattleFrontierStats *stats = &frontier->stats;
-
-    if (statIndex < STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS) {
-        if (statIndex >= STATS_NUM_SOLO_STATS) {
-            int flagGroup, bit;
-
-            if (hostFriendID < 16) {
-                flagGroup = statIndex;
-                bit = hostFriendID;
-            } else {
-                flagGroup = statIndex + 1;
-                bit = hostFriendID - 16;
-            }
-
-            return (stats->soloStats[flagGroup] >> bit) & 1;
-        }
-
-        return stats->soloStats[statIndex];
-    } else {
-        if (hostFriendID == -1) {
-            GF_ASSERT(FALSE);
-            return 0;
-        }
-
-        return stats->wfcStats[hostFriendID][statIndex - STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS];
-    }
-}
-
-u16 BattleFrontierStats_SetStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, u16 newValue)
-{
-    BattleFrontierStats *stats = &frontier->stats;
-
-    if (newValue > 9999) {
-        newValue = 9999;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_FACTORY_LATEST_STREAK_50_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_FACTORY_LATEST_STREAK_50_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_FACTORY_LATEST_STREAK_50_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_FACTORY_LATEST_STREAK_50_MULTI_WFC;
+        break;
     }
 
-    if (statIndex < STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS) {
-        if (statIndex >= STATS_NUM_SOLO_STATS) {
-            int flagGroup, bit;
-
-            GF_ASSERT(hostFriendID != 0xff);
-
-            if (hostFriendID < 16) {
-                flagGroup = statIndex;
-                bit = hostFriendID;
-            } else {
-                flagGroup = statIndex + 1;
-                bit = hostFriendID - 16;
-            }
-
-            if (newValue == 0) {
-                stats->soloStats[flagGroup] &= 0xffff ^ (1 << bit);
-            } else {
-                stats->soloStats[flagGroup] |= 1 << bit;
-            }
-        } else {
-            GF_ASSERT(hostFriendID == 0xff);
-            stats->soloStats[statIndex] = newValue;
-        }
-    } else {
-        GF_ASSERT(hostFriendID != 0xff);
-        stats->wfcStats[hostFriendID][statIndex - STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS] = newValue;
-    }
-
-    return newValue;
+    return index + (isOpenLevel * 4);
 }
 
-void BattleFrontierStats_ClearAllWFCStats(BattleFrontier *frontier)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordStreakIdx(u8 isOpenLevel, u8 challengeType)
 {
-    BattleFrontierStats *stats = &frontier->stats;
+    enum BattleFrontierStatsIndex index;
 
-    MI_CpuClear8(stats->wfcStats, sizeof(u16) * STATS_NUM_WFC_STATS * MAX_FRIENDS);
-
-    for (int i = STATS_NUM_SOLO_STATS; i <= STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS - 1; i++) {
-        stats->soloStats[i] = 0;
-    }
-}
-
-void BattleFrontierStats_ClearFriendStatsAndShift(BattleFrontier *frontier, int friendIdx)
-{
-    GF_ASSERT(friendIdx != 0xff);
-
-    BattleFrontierStats *stats = &frontier->stats;
-    int i;
-    for (i = friendIdx; i < MAX_FRIENDS - 1; i++) {
-        MI_CpuCopy8(stats->wfcStats[i + 1], stats->wfcStats[i], sizeof(u16) * STATS_NUM_WFC_STATS);
-
-        for (int statIndex = STATS_NUM_SOLO_STATS; statIndex < STATS_NUM_SOLO_STATS_AND_ACTIVE_FLAGS - 1; statIndex += 2) {
-            u16 activeFlag = BattleFrontierStats_GetStat(frontier, statIndex, i + 1);
-            BattleFrontierStats_SetStat(frontier, statIndex, i, activeFlag);
-        }
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_FACTORY_RECORD_STREAK_50_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_FACTORY_RECORD_STREAK_50_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_FACTORY_RECORD_STREAK_50_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_FACTORY_RECORD_STREAK_50_MULTI_WFC;
+        break;
     }
 
-    i = MAX_FRIENDS - 1;
-    MI_CpuClear8(stats->wfcStats[i], sizeof(u16) * STATS_NUM_WFC_STATS);
+    return index + (isOpenLevel * 4);
 }
 
-void BattleFrontierStats_ClearFriendStats(BattleFrontier *frontier, int friendIndex, int unused)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryLatestTradeCountIndex(u8 isOpenLevel, u8 challengeType)
 {
-    BattleFrontierStats *stats = &frontier->stats;
-    MI_CpuClear8(stats->wfcStats[friendIndex], sizeof(u16) * STATS_NUM_WFC_STATS);
-}
+    enum BattleFrontierStatsIndex index;
 
-u16 BattleFrontierStats_AddToStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, int addValue)
-{
-    BattleFrontierStats *stats = &frontier->stats;
-    u16 value = BattleFrontierStats_GetStat(frontier, statIndex, hostFriendID);
-    value += addValue;
-
-    return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, value);
-}
-
-u16 BattleFrontierStats_SubtractFromStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, int subtractValue)
-{
-    BattleFrontierStats *stats = &frontier->stats;
-    int value = BattleFrontierStats_GetStat(frontier, statIndex, hostFriendID) - subtractValue;
-
-    if (value < 0) {
-        value = 0;
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_FACTORY_LATEST_TRADE_COUNT_50_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_FACTORY_LATEST_TRADE_COUNT_50_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_FACTORY_LATEST_TRADE_COUNT_50_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_FACTORY_LATEST_TRADE_COUNT_50_MULTI_WFC;
+        break;
     }
 
-    return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, value);
+    return index + (isOpenLevel * 4);
 }
 
-u16 BattleFrontierStats_SetIfBetter(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, u16 newValue)
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordTradeCountIndex(u8 isOpenLevel, u8 challengeType)
 {
-    u16 currentValue = BattleFrontierStats_GetStat(frontier, statIndex, hostFriendID);
+    enum BattleFrontierStatsIndex index;
 
-    if (currentValue < newValue) {
-        return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, newValue);
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_FACTORY_RECORD_TRADE_COUNT_50_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_FACTORY_RECORD_TRADE_COUNT_50_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_FACTORY_RECORD_TRADE_COUNT_50_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_FACTORY_RECORD_TRADE_COUNT_50_MULTI_WFC;
+        break;
     }
 
-    if (currentValue > 9999) {
-        return BattleFrontierStats_SetStat(frontier, statIndex, hostFriendID, 9999);
+    return index + (isOpenLevel * 4);
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallCurrentTypeRanksIndex(u8 challengeType, u8 pokemonType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_HALL_CURRENT_RANKS_NORMAL_FIGHTING_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_HALL_CURRENT_RANKS_NORMAL_FIGHTING_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_HALL_CURRENT_RANKS_NORMAL_FIGHTING_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_HALL_CURRENT_RANKS_NORMAL_FIGHTING_MULTI_WFC;
+        break;
     }
 
-    return currentValue;
+    index += pokemonType / 2;
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestStreakIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_HALL_LATEST_STREAK_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_HALL_LATEST_STREAK_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_HALL_LATEST_STREAK_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_HALL_LATEST_STREAK_MULTI_WFC;
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallCurrentStreakIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_HALL_CURRENT_STREAK_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_HALL_CURRENT_STREAK_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_HALL_CURRENT_STREAK_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_HALL_CURRENT_STREAK_MULTI_WFC;
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestSpeciesIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_HALL_LATEST_SPECIES_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_HALL_LATEST_SPECIES_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_HALL_LATEST_SPECIES_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_HALL_LATEST_SPECIES_MULTI_WFC;
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallRecordStreakIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = FRONTIER_CHALLENGE_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = FRONTIER_CHALLENGE_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = FRONTIER_CHALLENGE_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = 2;
+        GF_ASSERT(FALSE);
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRankIndex(u8 challengeType, u8 rankType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_RANK_HEALING_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_RANK_HEALING_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_RANK_HEALING_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_RANK_HEALING_MULTI_WFC;
+        break;
+    }
+
+    index += rankType;
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleLatestStreakIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_LATEST_STREAK_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_LATEST_STREAK_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_LATEST_STREAK_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_LATEST_STREAK_MULTI_WFC;
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRecordStreakIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_RECORD_STREAK_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_RECORD_STREAK_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_RECORD_STREAK_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_RECORD_STREAK_MULTI_WFC;
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleLatestCPIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_LATEST_CP_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_LATEST_CP_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_LATEST_CP_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_LATEST_CP_MULTI_WFC;
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleSpentCPIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_SPENT_CP_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_SPENT_CP_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_SPENT_CP_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_SPENT_CP_MULTI_WFC;
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRecordCPIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_CASTLE_RECORD_CP_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_CASTLE_RECORD_CP_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_CASTLE_RECORD_CP_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_CASTLE_RECORD_CP_MULTI_WFC;
+        break;
+    }
+
+    return index;
+}
+
+int BattleFrontierStats_GetHostFriendIdx(u32 statIndex)
+{
+    if (statIndex < 100) {
+        return 0xff;
+    }
+
+    return NintendoWFC_GetHostFriendIdx();
+}
+
+static u8 GetPartnerGameCode(void)
+{
+    TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    GF_ASSERT(trainerInfo != NULL);
+
+    return TrainerInfo_GameCode(trainerInfo);
+}
+
+u8 sub_0205E6D8(SaveData *saveData)
+{
+    if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(saveData)) == VERSION_NONE) {
+        return 1;
+    }
+
+    if (GetPartnerGameCode() == VERSION_NONE) {
+        return 1;
+    }
+
+    return 0;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetArcadeLatestStreakIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_ARCADE_LATEST_STREAK_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_ARCADE_LATEST_STREAK_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_ARCADE_LATEST_STREAK_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_ARCADE_LATEST_STREAK_MULTI_WFC;
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetArcadeCurrentStreakIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case FRONTIER_CHALLENGE_SINGLE:
+        index = STAT_ARCADE_RECORD_STREAK_SINGLE;
+        break;
+    case FRONTIER_CHALLENGE_DOUBLE:
+        index = STAT_ARCADE_RECORD_STREAK_DOUBLE;
+        break;
+    case FRONTIER_CHALLENGE_MULTI:
+        index = STAT_ARCADE_RECORD_STREAK_MULTI;
+        break;
+    case FRONTIER_CHALLENGE_MULTI_WFC:
+        index = STAT_ARCADE_RECORD_STREAK_MULTI_WFC;
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetTowerLatestStreakIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case BATTLE_TOWER_MODE_SINGLE:
+        index = STAT_TOWER_LATEST_STREAK_SINGLE;
+        break;
+    case BATTLE_TOWER_MODE_DOUBLE:
+        index = STAT_TOWER_LATEST_STREAK_DOUBLE;
+        break;
+    case BATTLE_TOWER_MODE_MULTI:
+        index = STAT_TOWER_LATEST_STREAK_MULTI;
+        break;
+    case BATTLE_TOWER_MODE_LINK_MULTI:
+        index = STAT_TOWER_LATEST_STREAK_LINK_MULTI;
+        break;
+    case BATTLE_TOWER_MODE_WIFI:
+        index = STAT_TOWER_LATEST_STREAK_WIFI;
+        break;
+    case BATTLE_TOWER_MODE_6:
+        index = STAT_TOWER_LATEST_STREAK_MODE_6;
+        break;
+    default:
+        GF_ASSERT(FALSE);
+        break;
+    }
+
+    return index;
+}
+
+enum BattleFrontierStatsIndex BattleFrontierStats_GetTowerRecordStreakIndex(u8 challengeType)
+{
+    enum BattleFrontierStatsIndex index;
+
+    switch (challengeType) {
+    case BATTLE_TOWER_MODE_SINGLE:
+        index = STAT_TOWER_RECORD_STREAK_SINGLE;
+        break;
+    case BATTLE_TOWER_MODE_DOUBLE:
+        index = STAT_TOWER_RECORD_STREAK_DOUBLE;
+        break;
+    case BATTLE_TOWER_MODE_MULTI:
+        index = STAT_TOWER_RECORD_STREAK_MULTI;
+        break;
+    case BATTLE_TOWER_MODE_LINK_MULTI:
+        index = STAT_TOWER_RECORD_STREAK_LINK_MULTI;
+        break;
+    case BATTLE_TOWER_MODE_WIFI:
+        index = STAT_TOWER_RECORD_STREAK_WIFI;
+        break;
+    case BATTLE_TOWER_MODE_6:
+        index = STAT_TOWER_RECORD_STREAK_MODE_6;
+        break;
+    default:
+        GF_ASSERT(FALSE);
+        break;
+    }
+
+    return index;
 }

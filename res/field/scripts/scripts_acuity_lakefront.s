@@ -6,7 +6,7 @@
     ScriptEntry AcuityLakefront_OnTransition
     ScriptEntry AcuityLakefront_OnLoad
     ScriptEntry AcuityLakefront_ArrowSignpostLakeAcuity
-    ScriptEntry AcuityLakefront_TriggerRival
+    ScriptEntry AcuityLakefront_CoordEvent_Rival
     ScriptEntryEnd
 
 AcuityLakefront_OnLoad:
@@ -40,7 +40,7 @@ AcuityLakefront_ArrowSignpostLakeAcuity:
     ShowArrowSign AcuityLakefront_Text_SignLakeAcuityAhead
     End
 
-AcuityLakefront_TriggerRival:
+AcuityLakefront_CoordEvent_Rival:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     AddFreeCamera VAR_0x8004, VAR_0x8005

@@ -3,7 +3,7 @@
 #include "res/field/events/events_fight_area.h"
 
 
-    ScriptEntry FightArea_OnFrameRival
+    ScriptEntry FightArea_OnFrame_Rival
     ScriptEntry FightArea_AceTrainerM1
     ScriptEntry FightArea_AceTrainerF1
     ScriptEntry FightArea_PokemonBreederM
@@ -11,7 +11,7 @@
     ScriptEntry FightArea_BattleGirl1
     ScriptEntry FightArea_Sailor1
     ScriptEntry FightArea_Fisherman
-    ScriptEntry FightArea_MapSign
+    ScriptEntry FightArea_MapSignpost
     ScriptEntry FightArea_ArrowSignpostBattleFrontier
     ScriptEntry FightArea_ArrowSignpostRt225
     ScriptEntry FightArea_Sailor2
@@ -58,7 +58,7 @@ FightArea_ActivateRivalFight_Unused:
     ClearFlag FLAG_HIDE_FIGHT_AREA_RIVAL
     End
 
-FightArea_OnFrameRival:
+FightArea_OnFrame_Rival:
     LockAll
     ScrCmd_32D
     ApplyMovement LOCALID_RIVAL, FightArea_Movement_RivalNoticePlayer
@@ -219,7 +219,7 @@ FightArea_Movement_RivalNoticePlayer:
     EmoteExclamationMark
     EndMovement
 
-FightArea_UnusedMovement:
+FightArea_Movement_Unused:
     WalkNormalWest
     EndMovement
 
@@ -251,7 +251,7 @@ FightArea_Movement_RivalGetPushedBack:
     UnlockDir
     EndMovement
 
-FightArea_UnusedMovement2:
+FightArea_Movement_Unused2:
     EmoteExclamationMark
     EndMovement
 
@@ -331,7 +331,7 @@ FightArea_Movement_PlayerWatchRivalLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-FightArea_UnusedMovement3:
+FightArea_Movement_Unused3:
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
@@ -383,11 +383,11 @@ FightArea_Movement_BuckLeave:
     WalkNormalSouth 8
     EndMovement
 
-FightArea_UnusedMovement4:
+FightArea_Movement_Unused4:
     WalkOnSpotNormalWest
     EndMovement
 
-FightArea_UnusedMovement5:
+FightArea_Movement_Unused5:
     WalkNormalEast 10
     EndMovement
 
@@ -453,7 +453,7 @@ FightArea_AdviceForFishing:
     ReleaseAll
     End
 
-FightArea_MapSign:
+FightArea_MapSignpost:
     ShowMapSign FightArea_Text_MapSign
     End
 

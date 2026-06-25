@@ -5,7 +5,7 @@
 
     ScriptEntry Restaurant_Waiter
     ScriptEntry Restaurant_OnTransition
-    ScriptEntry Restaurant_OnFrameClosed
+    ScriptEntry Restaurant_OnFrame_Closed
     ScriptEntry Restaurant_ArtistIsmael
     ScriptEntry Restaurant_BeautyHarley
     ScriptEntry Restaurant_RichBoyRoman
@@ -164,7 +164,7 @@ Restaurant_InitTrainersEmilioKaylee:
 Restaurant_InitTrainersReturn:
     Return
 
-Restaurant_OnFrameClosed:
+Restaurant_OnFrame_Closed:
     LockAll
     ApplyMovement LOCALID_PLAYER, Restaurant_Movement_FaceEast
     WaitMovement
@@ -174,7 +174,7 @@ Restaurant_OnFrameClosed:
     ReleaseAll
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VALOR_LAKEFRONT, 0, 706, 791, DIR_SOUTH
+    Warp MAP_HEADER_VALOR_LAKEFRONT, 706, 791, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End

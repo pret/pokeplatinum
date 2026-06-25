@@ -28,14 +28,14 @@
     .short FRSCRCMD_02
     .endm
 
-    .macro FrontierScrCmd_03 arg0
+    .macro FrontierScrCmd_03 sceneID
     .short FRSCRCMD_03
-    .short \arg0
+    .short \sceneID
     .endm
 
-    .macro FrontierScrCmd_04 arg0, arg1
+    .macro FrontierScrCmd_04 sceneID, arg1
     .short FRSCRCMD_04
-    .short \arg0
+    .short \sceneID
     .short \arg1
     .endm
 
@@ -758,21 +758,21 @@
     .short \arg1
     .endm
 
-    .macro FrontierScrCmd_8B arg0, arg1, arg2, arg3
-    .short FRSCRCMD_8B
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .macro InitBattleHall resumingFromSave, challengeType, partySlot1, partySlot2
+    .short FRSCRCMD_INITBATTLEHALL
+    .short \resumingFromSave
+    .short \challengeType
+    .short \partySlot1
+    .short \partySlot2
     .endm
 
-    .macro FrontierScrCmd_8C arg0
-    .short FRSCRCMD_8C
-    .short \arg0
+    .macro BattleHall_SetupNextOpponent unused=VAR_0x8003
+    .short FRSCRCMD_BATTLEHALL_SETUP_NEXT_OPPONENT
+    .short \unused
     .endm
 
-    .macro FrontierScrCmd_8D
-    .short FRSCRCMD_8D
+    .macro FreeBattleHall
+    .short FRSCRCMD_FREEBATTLEHALL
     .endm
 
     .macro OpenBattleHallApp
@@ -800,11 +800,11 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_93 arg0, arg1, arg2
-    .short FRSCRCMD_93
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro BattleHall_SendCommMessage command, arg, returnVar
+    .short FRSCRCMD_BATTLEHALL_SENDCOMMMESSAGE
+    .short \command
+    .short \arg
+    .short \returnVar
     .endm
 
     .macro FrontierScrCmd_94 arg0
@@ -812,9 +812,9 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_95 arg0
-    .short FRSCRCMD_95
-    .byte \arg0
+    .macro BattleHall_PrintTrainerIntro index
+    .short FRSCRCMD_BATTLEHALL_PRINTTRAINERINTRO
+    .byte \index
     .endm
 
     .macro FrontierScrCmd_Dummy96 arg0

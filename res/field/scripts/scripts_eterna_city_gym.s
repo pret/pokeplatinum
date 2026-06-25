@@ -62,7 +62,7 @@ EternaGym_Gardenia:
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_Gardenia_AlreadyHaveForestbadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 67, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_ETERNA_CITY_GYM
     Message EternaGym_Text_GardeniaIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_GARDENIA
@@ -79,8 +79,8 @@ EternaGym_Gardenia:
     SetTrainerFlag TRAINER_AROMA_LADY_ANGELA
     SetTrainerFlag TRAINER_LASS_CAROLINE
     SetTrainerFlag TRAINER_BEAUTY_LINDSAY
-    ClearFlag FLAG_UNK_0x01FC
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 67, TRAINER_LEADER_GARDENIA, 0, 0
+    ClearFlag FLAG_HIDE_ETERNA_FOREST_GARDENIA
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_ETERNA_CITY_GYM, TRAINER_LEADER_GARDENIA
     Message EternaGym_Text_GardeniaExplainForestBadge
     GoTo EternaGym_GardeniaGiveTM86
     End

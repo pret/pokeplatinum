@@ -15,21 +15,21 @@
     ScriptEntry PastoriaCity_ParasolLady
     ScriptEntry PastoriaCity_Collector2
     ScriptEntry PastoriaCity_AceTrainerM2
-    ScriptEntry PastoriaCity_MapSign
-    ScriptEntry PastoriaCity_GymSign
-    ScriptEntry PastoriaCity_SignGreatMarsh
-    ScriptEntry PastoriaCity_SignSafariGame
+    ScriptEntry PastoriaCity_MapSignpost
+    ScriptEntry PastoriaCity_GymSignpost
+    ScriptEntry PastoriaCity_SignboardGreatMarsh
+    ScriptEntry PastoriaCity_SignboardSafariGame
     ScriptEntry PastoriaCity_Rival
-    ScriptEntry PastoriaCity_TriggerRivalBattle
-    ScriptEntry PastoriaCity_OnFrameExitGym
+    ScriptEntry PastoriaCity_CoordEvent_RivalBattle
+    ScriptEntry PastoriaCity_OnFrame_ExitGym
     ScriptEntry PastoriaCity_CrasherWake
-    ScriptEntry PastoriaCity_TriggerBomb
-    ScriptEntry PastoriaCity_TriggerBlockGreatMarsh
-    ScriptEntry PastoriaCity_TriggerFaceBoard
+    ScriptEntry PastoriaCity_CoordEvent_Bomb
+    ScriptEntry PastoriaCity_CoordEvent_BlockGreatMarsh
+    ScriptEntry PastoriaCity_CoordEvent_FaceBoard
     ScriptEntryEnd
 
 PastoriaCity_OnTransition:
-    SetVar VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE, 0
+    SetVar VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE, 0
     SetFlag FLAG_HIDE_ROUTE_212_BLOCKADE
     CallIfEq VAR_PASTORIA_STATE, 5, PastoriaCity_SetRivalPositionAfterExplosion
     CallIfEq VAR_PASTORIA_STATE, 4, PastoriaCity_SetRivalPositionAfterGym
@@ -190,7 +190,7 @@ PastoriaCity_RemoveGruntM:
     End
 
     .balign 4, 0
-PastoriaCity_UnusedMovement:
+PastoriaCity_Movement_Unused:
     WalkOnSpotNormalWest
     EndMovement
 
@@ -200,7 +200,7 @@ PastoriaCity_Movement_PlayerWatchGruntMLeaveWest:
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement2:
+PastoriaCity_Movement_Unused2:
     WalkOnSpotNormalNorth
     WalkOnSpotNormalEast
     EndMovement
@@ -215,54 +215,54 @@ PastoriaCity_Movement_PlayerWatchGruntMLeaveNorth:
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement3:
+PastoriaCity_Movement_Unused3:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement4:
+PastoriaCity_Movement_Unused4:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement5:
+PastoriaCity_Movement_Unused5:
     WalkOnSpotNormalNorth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement6:
+PastoriaCity_Movement_Unused6:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement7:
+PastoriaCity_Movement_Unused7:
     WalkFastEast 9
     EndMovement
 
-PastoriaCity_UnusedMovement8:
+PastoriaCity_Movement_Unused8:
     WalkFastEast 7
     EndMovement
 
-PastoriaCity_UnusedMovement9:
+PastoriaCity_Movement_Unused9:
     WalkFastSouth
     WalkFastEast 8
     EndMovement
 
-PastoriaCity_UnusedMovement10:
+PastoriaCity_Movement_Unused10:
     WalkFastNorth
     WalkFastEast 8
     EndMovement
 
-PastoriaCity_UnusedMovement11:
+PastoriaCity_Movement_Unused11:
     EmoteExclamationMark
     EndMovement
 
-PastoriaCity_UnusedMovement12:
+PastoriaCity_Movement_Unused12:
     WalkFastSouth
     WalkFastEast 10
     EndMovement
 
-PastoriaCity_UnusedMovement13:
+PastoriaCity_Movement_Unused13:
     WalkFastEast 10
     EndMovement
 
@@ -279,43 +279,43 @@ PastoriaCity_Movement_GruntMLeaveNorthSouthEast:
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement14:
+PastoriaCity_Movement_Unused14:
     WalkFastSouth
     WalkFastEast 2
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement15:
+PastoriaCity_Movement_Unused15:
     WalkFastSouth
     WalkFastEast 4
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement16:
+PastoriaCity_Movement_Unused16:
     WalkFastNorth
     WalkFastEast 3
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement17:
+PastoriaCity_Movement_Unused17:
     WalkFastSouth
     WalkFastEast 3
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_MapSign:
+PastoriaCity_MapSignpost:
     ShowMapSign PastoriaCity_Text_MapSign
     End
 
-PastoriaCity_GymSign:
+PastoriaCity_GymSignpost:
     ShowScrollingSign PastoriaCity_Text_SignPokemonGym
     End
 
-PastoriaCity_SignGreatMarsh:
+PastoriaCity_SignboardGreatMarsh:
     ShowLandmarkSign PastoriaCity_Text_SignGreatMarsh
     End
 
-PastoriaCity_SignSafariGame:
+PastoriaCity_SignboardSafariGame:
     ShowLandmarkSign PastoriaCity_Text_SignSafariGame
     End
 
@@ -368,7 +368,7 @@ PastoriaCity_Movement_RivalWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-PastoriaCity_TriggerRivalBattle:
+PastoriaCity_CoordEvent_RivalBattle:
     LockAll
     ClearFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     SetObjectEventPos LOCALID_RIVAL, 595, 819
@@ -454,7 +454,7 @@ PastoriaCity_Movement_RivalLeaveAfterBattle:
     WalkFastNorth 9
     EndMovement
 
-PastoriaCity_OnFrameExitGym:
+PastoriaCity_OnFrame_ExitGym:
     LockAll
     ClearFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     SetObjectEventPos LOCALID_RIVAL, 595, 819
@@ -616,7 +616,7 @@ PastoriaCity_Movement_PlayerWatchCrasherWakeLeave:
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_TriggerBomb:
+PastoriaCity_CoordEvent_Bomb:
     LockAll
     Call PastoriaCity_Explosion
     ApplyMovement LOCALID_CRASHER_WAKE, PastoriaCity_Movement_CrasherWakeWatchGruntMExitGreatMarsh
@@ -818,11 +818,11 @@ PastoriaCity_Movement_RivalWalkOnSpotNorth:
     WalkOnSpotFastNorth
     EndMovement
 
-PastoriaCity_UnusedMovement18:
+PastoriaCity_Movement_Unused18:
     WalkFastSouth 3
     EndMovement
 
-PastoriaCity_UnusedMovement19:
+PastoriaCity_Movement_Unused19:
     WalkOnSpotFastNorth
     EndMovement
 
@@ -876,7 +876,7 @@ PastoriaCity_Movement_CrasherWakeWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
-PastoriaCity_UnusedMovement20:
+PastoriaCity_Movement_Unused20:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -901,7 +901,7 @@ PastoriaCity_Movement_CrasherWakeEnterGreatMarsh:
     WalkNormalNorth 2
     EndMovement
 
-PastoriaCity_TriggerBlockGreatMarsh:
+PastoriaCity_CoordEvent_BlockGreatMarsh:
     LockAll
     ApplyMovement LOCALID_PLAYER, PastoriaCity_Movement_PlayerWalkOnSpotEast
     ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkOnSpotWest
@@ -938,10 +938,10 @@ PastoriaCity_Movement_RivalPushBackPlayer:
     WalkOnSpotNormalNorth
     EndMovement
 
-PastoriaCity_TriggerFaceBoard:
+PastoriaCity_CoordEvent_FaceBoard:
     LockAll
     GoToIfSet FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT, PastoriaCity_FaceBoardEnd
-    SetVar VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE, 1
+    SetVar VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE, 1
     GetRandom VAR_RESULT, 100
     GoToIfGe VAR_RESULT, 90, PastoriaCity_CroagunkScene
     GoTo PastoriaCity_FaceBoardEnd

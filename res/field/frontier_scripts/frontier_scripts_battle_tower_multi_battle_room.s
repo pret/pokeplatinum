@@ -1,6 +1,7 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/battle_tower_multi_battle_room.h"
 # include "res/text/bank/menu_entries.h"
+# include "constants/battle_frontier.h"
 
     .data
 
@@ -393,7 +394,7 @@ _04D1:
 
 _04D5:
     ClearTowerStruct
-    FrontierScrCmd_04 14, 1
+    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
     End
 
 _04DF:

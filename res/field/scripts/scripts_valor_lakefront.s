@@ -9,9 +9,9 @@
     ScriptEntry ValorLakefront_CameramanSouth
     ScriptEntry ValorLakefront_Beauty
     ScriptEntry ValorLakefront_CameramanNorth
-    ScriptEntry ValorLakefront_SignSevenStarsRestaurant
+    ScriptEntry ValorLakefront_SignboardSevenStarsRestaurant
     ScriptEntry ValorLakefront_Collector
-    ScriptEntry ValorLakefront_TriggerBlockSunyshore
+    ScriptEntry ValorLakefront_CoordEvent_BlockSunyshore
     ScriptEntryEnd
 
 ValorLakefront_OnTransition:
@@ -421,7 +421,7 @@ ValorLakefront_Movement_CynthiaLeave:
     WalkNormalNorth 9
     EndMovement
 
-ValorLakefront_UnusedMovement:
+ValorLakefront_Movement_Unused:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
@@ -444,7 +444,7 @@ ValorLakefront_Movement_PlayerWatchRivalLeave:
     WalkOnSpotNormalNorth
     EndMovement
 
-ValorLakefront_UnusedMovement2:
+ValorLakefront_Movement_Unused2:
     Delay8 3
     WalkOnSpotNormalNorth
     EndMovement
@@ -505,7 +505,7 @@ ValorLakefront_Movement_WalkNorth:
     WalkNormalNorth
     EndMovement
 
-ValorLakefront_SignSevenStarsRestaurant:
+ValorLakefront_SignboardSevenStarsRestaurant:
     ShowLandmarkSign ValorLakefront_Text_SignSevenStarsRestaurant
     End
 
@@ -513,7 +513,7 @@ ValorLakefront_Collector:
     NPCMessage ValorLakefront_Text_SunyshoreHadBlackout2
     End
 
-ValorLakefront_TriggerBlockSunyshore:
+ValorLakefront_CoordEvent_BlockSunyshore:
     LockAll
     ApplyMovement LOCALID_COLLECTOR, ValorLakefront_Movement_CollectorExclamationMark
     WaitMovement

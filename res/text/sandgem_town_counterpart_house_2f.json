@@ -2,7 +2,7 @@
   "key": 5138,
   "messages": [
     {
-      "id": "SandgemTownCounterpartHouse2F_Text_PlayerCheckedThePCScreen",
+      "id": "SandgemTownCounterpartHouse2F_Text_PlayerCheckedPCScreen",
       "en_US": [
         "{STRVAR_1 3, 0, 0} checked the PC screen.\r",
         "Adventure Rule No. 1\n",

@@ -39,8 +39,8 @@ static void ov5_021EE768(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     u8 v3;
     UnkStruct_ov5_021EE75C *v4 = (UnkStruct_ov5_021EE75C *)param2;
 
-    v1 = Player_GetXPos(fieldSystem->playerAvatar);
-    v2 = Player_GetZPos(fieldSystem->playerAvatar);
+    v1 = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    v2 = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     if ((v4->unk_00 == v1) && (v4->unk_04 == v2)) {
         return;

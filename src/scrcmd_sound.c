@@ -34,7 +34,7 @@ BOOL ScrCmd_PlayMusic(ScriptContext *ctx)
 
 BOOL ScrCmd_StopMusic(ScriptContext *ctx)
 {
-    u16 dummy = ScriptContext_ReadHalfWord(ctx);
+    u16 unused = ScriptContext_ReadHalfWord(ctx);
 
     Sound_StopBGM(Sound_GetCurrentBGM(), 0);
     return FALSE;

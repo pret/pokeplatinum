@@ -10,7 +10,7 @@
     ScriptEntry ResortAreaRibbonSyndicate1F_Lady
     ScriptEntry ResortAreaRibbonSyndicate1F_Skitty
     ScriptEntry ResortAreaRibbonSyndicate1F_Psyduck
-    ScriptEntry ResortAreaRibbonSyndicate1F_OnFrameCheckEntry
+    ScriptEntry ResortAreaRibbonSyndicate1F_OnFrame_CheckEntry
     ScriptEntry ResortAreaRibbonSyndicate1F_OnTransition
     ScriptEntryEnd
 
@@ -23,7 +23,7 @@ ResortAreaRibbonSyndicate1F_SetBeautyPositionAwayFromDoor:
     SetObjectEventDir LOCALID_BEAUTY, DIR_SOUTH
     End
 
-ResortAreaRibbonSyndicate1F_OnFrameCheckEntry:
+ResortAreaRibbonSyndicate1F_OnFrame_CheckEntry:
     LockAll
     WaitTime 20, VAR_RESULT
     CountPartyRibbons VAR_0x8004
@@ -44,7 +44,7 @@ ResortAreaRibbonSyndicate1F_DenyEntry:
     WaitTime 20, VAR_RESULT
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_RESORT_AREA, 0, 824, 454, DIR_SOUTH
+    Warp MAP_HEADER_RESORT_AREA, 824, 454, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

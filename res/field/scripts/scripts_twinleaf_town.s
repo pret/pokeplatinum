@@ -4,14 +4,14 @@
 
 
     ScriptEntry TwinleafTown_OnTransition
-    ScriptEntry TwinleafTown_RivalThudTrigger
+    ScriptEntry TwinleafTown_CoordEvent_RivalThud
     ScriptEntry TwinleafTown_Guitarist
-    ScriptEntry TwinleafTown_RivalWasLookingForYouTrigger
+    ScriptEntry TwinleafTown_CoordEvent_RivalWasLookingForYou
     ScriptEntry TwinleafTown_Collector
     ScriptEntry TwinleafTown_BreederF
-    ScriptEntry TwinleafTown_MapSign
-    ScriptEntry TwinleafTown_LandmarkSignPlayerMailbox
-    ScriptEntry TwinleafTown_LandmarkSignRivalMailbox
+    ScriptEntry TwinleafTown_MapSignpost
+    ScriptEntry TwinleafTown_MailboxPlayer
+    ScriptEntry TwinleafTown_MailboxRival
     ScriptEntryEnd
 
 TwinleafTown_OnTransition:
@@ -71,7 +71,7 @@ TwinleafTown_RivalWentTearingOff:
     ReleaseAll
     End
 
-TwinleafTown_RivalWasLookingForYouTrigger:
+TwinleafTown_CoordEvent_RivalWasLookingForYou:
     LockAll
     ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristNoticePlayer
     WaitMovement
@@ -386,7 +386,7 @@ TwinleafTown_Movement_GuitaristWalkBackX115:
     WalkNormalSouth 2
     EndMovement
 
-TwinleafTown_RivalThudTrigger:
+TwinleafTown_CoordEvent_RivalThud:
     LockAll
     LoadDoorAnimation 3, 27, 9, 11, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
@@ -477,7 +477,7 @@ TwinleafTown_BreederF:
     LockAll
     FacePlayer
     GoToIfSet FLAG_HAS_POKEDEX, TwinleafTown_HelpingPutTogetherPokedex
-    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTown_PokemonYouLookGoodTogether
+    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTown_YouLookGoodTogether
     Message TwinleafTown_Text_WildPokemonAttack
     WaitButton
     CloseMessage
@@ -491,25 +491,25 @@ TwinleafTown_HelpingPutTogetherPokedex:
     ReleaseAll
     End
 
-TwinleafTown_PokemonYouLookGoodTogether:
-    Message TwinleafTown_Text_PokemonYouLookGoodTogether
+TwinleafTown_YouLookGoodTogether:
+    Message TwinleafTown_Text_YouLookGoodTogether
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-TwinleafTown_MapSign:
+TwinleafTown_MapSignpost:
     ShowMapSign TwinleafTown_Text_MapSign
     End
 
-TwinleafTown_LandmarkSignPlayerMailbox:
+TwinleafTown_MailboxPlayer:
     BufferPlayerName 0
-    ShowLandmarkSign TwinleafTown_Text_PlayerMailbox
+    ShowLandmarkSign TwinleafTown_Text_PlayersHouse
     End
 
-TwinleafTown_LandmarkSignRivalMailbox:
+TwinleafTown_MailboxRival:
     BufferRivalName 0
-    ShowLandmarkSign TwinleafTown_Text_RivalMailbox
+    ShowLandmarkSign TwinleafTown_Text_RivalsHouse
     End
 
     .balign 4, 0

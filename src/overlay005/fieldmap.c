@@ -37,7 +37,6 @@
 #include "overlay005/ov5_021F10E8.h"
 #include "overlay005/secret_base_props.h"
 #include "overlay005/signpost.h"
-#include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay005/texture_resource_manager.h"
 #include "overlay009/ov9_02249960.h"
@@ -91,11 +90,6 @@ FS_EXTERN_OVERLAY(overlay7);
 FS_EXTERN_OVERLAY(gym_features);
 FS_EXTERN_OVERLAY(overlay9);
 
-struct UnkStruct_ov5_021D1A68_t {
-    u16 unk_00;
-    int unk_02[24];
-};
-
 enum FieldExtensionOverlay {
     FIELD_EXTENSION_OVERLAY_GYM = 0,
     FIELD_EXTENSION_OVERLAY_GENERIC,
@@ -112,7 +106,7 @@ static void ov5_021D173C(FieldSystem *fieldSystem);
 static void ov5_021D1414(void);
 static void ov5_021D15B4(void);
 static void ov5_021D15E8(void);
-static void ov5_021D1790(FieldSystem *fieldSystem);
+static void InitGraphicsAndManagers(FieldSystem *fieldSystem);
 static void FieldSystem_InitLandManager(FieldSystem *fieldSystem);
 static void ov5_021D1878(FieldSystem *fieldSystem);
 static void ov5_021D1968(FieldSystem *fieldSystem);
@@ -126,10 +120,10 @@ static void fieldmap(void *param0);
 static void ov5_021D13B4(FieldSystem *fieldSystem);
 static enum FieldExtensionOverlay FieldMap_GetExtOverlayForActiveDynMapFeatures(FieldSystem *fieldSystem);
 static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem);
-static UnkStruct_ov5_021D1A68 *ov5_021D1A14(enum HeapID heapID, int param1);
-static const int *ov5_021D1A68(const UnkStruct_ov5_021D1A68 *param0);
-static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0);
-static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0);
+static MapObjectsToPreload *FetchMapObjectsToPreload(enum HeapID heapID, int memberID);
+static const int *MapObjectsToPreload_GetIDs(const MapObjectsToPreload *mapObjectsToPreload);
+static int MapObjectsToPreload_GetCount(const MapObjectsToPreload *mapObjectsToPreload);
+static void MapObjectsToPreload_Free(MapObjectsToPreload *mapObjectsToPreload);
 
 static inline void inline_fieldmap(FieldSystem *fieldSystem)
 {
@@ -211,7 +205,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
         FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_LOAD);
         break;
     case FIELD_MAP_INIT_STATE_LOAD:
-        ov5_021D1790(fieldSystem);
+        InitGraphicsAndManagers(fieldSystem);
         AreaDataManager_Load(fieldSystem->areaDataManager);
 
         fieldSystem->mapPropManager = MapPropManager_New(HEAP_ID_FIELD1);
@@ -279,9 +273,9 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
         DynamicMapFeatures_Free(fieldSystem);
         LandDataManager_ForgetTrackedTarget(fieldSystem->landDataMan);
 
-        fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
-        fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
-        fieldSystem->location->faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        fieldSystem->location->x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+        fieldSystem->location->z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
+        fieldSystem->location->faceDirection = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
         DynamicTerrainHeightManager_Free(fieldSystem->dynamicTerrainHeightMan);
 
@@ -304,8 +298,8 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
         MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
         FieldEffectManager_Free(fieldSystem->fieldEffMan);
 
-        ov5_021D1A70(fieldSystem->unk_34);
-        fieldSystem->unk_34 = NULL;
+        MapObjectsToPreload_Free(fieldSystem->mapObjectsToPreload);
+        fieldSystem->mapObjectsToPreload = NULL;
         MapPropManager_Free(fieldSystem->mapPropManager);
 
         (*param1)++;
@@ -388,8 +382,8 @@ static enum FieldExtensionOverlay FieldMap_GetExtOverlayForActiveDynMapFeatures(
 
 static BOOL FieldSystem_UpdateLocationToPlayerPosition(FieldSystem *fieldSystem)
 {
-    int x = Player_GetXPos(fieldSystem->playerAvatar);
-    int z = Player_GetZPos(fieldSystem->playerAvatar);
+    int x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     if ((x != fieldSystem->location->x) || (z != fieldSystem->location->z)) {
         fieldSystem->location->x = x;
@@ -406,8 +400,8 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    int x = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    int y = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
+    int x = (PlayerAvatar_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
+    int y = (PlayerAvatar_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
 
     u32 newMapID = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x, y);
     u32 oldMapID = fieldSystem->location->mapId;
@@ -511,9 +505,9 @@ static void ov5_021D13B4(FieldSystem *fieldSystem)
     }
 
     OverworldMapHistory *mapHistory = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    int mapX = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    int mapZ = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
-    int faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int mapX = (PlayerAvatar_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
+    int mapZ = (PlayerAvatar_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
+    int faceDirection = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     OverworldMapHistory_Push(mapHistory, mapX, mapZ, faceDirection);
 }
@@ -765,7 +759,7 @@ void FieldMap_FadeScreen(const u8 fadeInOrOut)
     }
 }
 
-static void ov5_021D1790(FieldSystem *fieldSystem)
+static void InitGraphicsAndManagers(FieldSystem *fieldSystem)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     G3_SwapBuffers(GX_SORTMODE_AUTO, gBufferMode);
@@ -773,17 +767,12 @@ static void ov5_021D1790(FieldSystem *fieldSystem)
     fieldSystem->mapPropAnimMan = MapPropAnimationManager_New();
     fieldSystem->mapPropOneShotAnimMan = MapPropOneShotAnimationManager_New();
 
-    {
-        u16 areaDataArchiveID, v1;
+    u16 areaDataArchiveID = MapHeader_GetAreaDataArchiveID(fieldSystem->location->mapId);
+    fieldSystem->areaDataManager = AreaDataManager_Alloc(areaDataArchiveID, fieldSystem->mapPropAnimMan);
+    u16 preloadedMapObjectsArchiveID = MapHeader_GetPreloadedMapObjectsArchiveID(fieldSystem->location->mapId);
 
-        areaDataArchiveID = MapHeader_GetAreaDataArchiveID(fieldSystem->location->mapId);
-        fieldSystem->areaDataManager = AreaDataManager_Alloc(areaDataArchiveID, fieldSystem->mapPropAnimMan);
-
-        v1 = sub_0203A04C(fieldSystem->location->mapId);
-        GF_ASSERT(fieldSystem->unk_34 == NULL);
-
-        fieldSystem->unk_34 = ov5_021D1A14(HEAP_ID_FIELD1, v1);
-    }
+    GF_ASSERT(fieldSystem->mapObjectsToPreload == NULL);
+    fieldSystem->mapObjectsToPreload = FetchMapObjectsToPreload(HEAP_ID_FIELD1, preloadedMapObjectsArchiveID);
 }
 
 static void FieldSystem_InitLandManager(FieldSystem *fieldSystem)
@@ -852,7 +841,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
             v2 = 5;
         }
 
-        ov5_021ECC20(fieldSystem->mapObjMan, 32, ov5_021D1A6C(fieldSystem->unk_34) + 3, ov5_021D1A68(fieldSystem->unk_34), v2);
+        ov5_021ECC20(fieldSystem->mapObjMan, 32, MapObjectsToPreload_GetCount(fieldSystem->mapObjectsToPreload) + 3, MapObjectsToPreload_GetIDs(fieldSystem->mapObjectsToPreload), v2);
     }
 
     FieldEffect_InitRenderObject(fieldSystem->fieldEffMan);
@@ -861,13 +850,13 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
         PersistedMapFeatures *v3 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
         int v4 = PersistedMapFeatures_GetID(v3);
 
-        PlayerAvatar_InitDraw(fieldSystem->playerAvatar, v4);
+        PlayerAvatar_InitMapFeatures(fieldSystem->playerAvatar, v4);
     }
 
     sub_02061C48(fieldSystem->mapObjMan);
     CommPlayerMan_ForcePos();
     sub_02062C3C(fieldSystem->mapObjMan);
-    LandDataManager_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->landDataMan);
+    LandDataManager_TrackTarget(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem->landDataMan);
 
     fieldSystem->unk_04->berryPatchManager = BerryPatchManager_New(fieldSystem, HEAP_ID_FIELD1);
 }
@@ -882,7 +871,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
 
     {
         int v0 = FieldOverworldState_GetCameraType(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-        FieldCamera_Create(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
+        FieldCamera_Create(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 
     fieldSystem->areaLightMan = AreaLightManager_New(fieldSystem->areaModelAttrs, AreaDataManager_GetAreaLightArchiveID(fieldSystem->areaDataManager));
@@ -903,43 +892,42 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     SetVBlankCallback(fieldmap, fieldSystem);
 }
 
-static UnkStruct_ov5_021D1A68 *ov5_021D1A14(enum HeapID heapID, int param1)
+static MapObjectsToPreload *FetchMapObjectsToPreload(enum HeapID heapID, int memberID)
 {
-    int v0;
-    u16 *v1;
-    UnkStruct_ov5_021D1A68 *v2 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021D1A68));
-    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, param1, heapID);
+    int i;
+    MapObjectsToPreload *result = Heap_Alloc(heapID, sizeof(*result));
+    u16 *mapObjectsToPreload = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, memberID, heapID);
 
-    for (v0 = 0; v0 < 24; v0++) {
-        v2->unk_02[v0] = 0xffff;
+    for (i = 0; i < MAX_MAP_OBJECTS_TO_PRELOAD; i++) {
+        result->ids[i] = MAP_OBJECT_PRELOAD_SENTINEL;
     }
 
-    for (v0 = 0; v0 < 24; v0++) {
-        v2->unk_02[v0] = v1[v0];
+    for (i = 0; i < MAX_MAP_OBJECTS_TO_PRELOAD; i++) {
+        result->ids[i] = mapObjectsToPreload[i];
 
-        if (v1[v0] == 0xffff) {
+        if (mapObjectsToPreload[i] == MAP_OBJECT_PRELOAD_SENTINEL) {
             break;
         }
     }
 
-    v2->unk_00 = v0;
-    Heap_Free(v1);
-    return v2;
+    result->count = i;
+    Heap_Free(mapObjectsToPreload);
+    return result;
 }
 
-static const int *ov5_021D1A68(const UnkStruct_ov5_021D1A68 *param0)
+static const int *MapObjectsToPreload_GetIDs(const MapObjectsToPreload *mapObjectsToPreload)
 {
-    return param0->unk_02;
+    return mapObjectsToPreload->ids;
 }
 
-static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0)
+static int MapObjectsToPreload_GetCount(const MapObjectsToPreload *mapObjectsToPreload)
 {
-    return param0->unk_00;
+    return mapObjectsToPreload->count;
 }
 
-static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0)
+static void MapObjectsToPreload_Free(MapObjectsToPreload *mapObjectsToPreload)
 {
-    Heap_Free(param0);
+    Heap_Free(mapObjectsToPreload);
 }
 
 static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem)

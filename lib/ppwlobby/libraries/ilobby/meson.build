@@ -1,14 +1,17 @@
 libdwcilobby_srcs = files(
-    'asm/dwci_lobbybase.s',
-    'asm/dwci_lobbynewhandler.s',
-    'asm/dwci_lobbycallback.s',
-    'asm/dwci_lobbydata.s'
+    'src/dwci_lobby.cpp',
+    'src/dwci_lobbybase.cpp',
+    'src/dwci_lobbynewhandler.cpp',
+    'src/dwci_lobbycallback.cpp',
+    'src/dwci_lobbydata.cpp'
 )
 
 libdwcilobby = static_library('dwcilobby',
     sources: libdwcilobby_srcs,
-    nasm_args: asm_args,
-    include_directories: ppw_public_includes,
+    c_args: ppwlobby_c_args,
+    cpp_args: cpp_args + ppwlobby_c_args,
+    include_directories: [public_includes, ppwlobby_public_includes],
+    dependencies: [nitrosdk_dep, nitrodwc_dep, nitrowifi_dep],
     pic: false
 )
 

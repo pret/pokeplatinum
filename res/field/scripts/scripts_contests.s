@@ -13,11 +13,11 @@
 
 
     ScriptEntry Contests_LobbyOnFrameExitContestHall @ 0x2648
-    ScriptEntry Contests_EmptyScript9801 @ 0x2649
+    ScriptEntry Contests_Dummy9801 @ 0x2649
     ScriptEntry Contests_OngoingContestOnTransition @ 0x264A
     ScriptEntry Contests_LobbyOnTransition @ 0x264B
     ScriptEntry Contests_OngoingContestOnResume @ 0x264C
-    ScriptEntry Contests_UnusedEntry9805 @ 0x264D
+    ScriptEntry Contests_Dummy9805 @ 0x264D
     ScriptEntry Contests_ReceptionistOfficialContest @ 0x264E
     ScriptEntry Contests_ReceptionistLinkContest @ 0x264F
     ScriptEntry Contests_ReceptionistPracticeContest @ 0x2650
@@ -121,7 +121,7 @@ Contests_Movement_PlayerWalkToOfficialReceptionist:
     WalkOnSpotFastNorth
     EndMovement
 
-Contests_EmptyScript9801:
+Contests_Dummy9801:
     End
 
 Contests_OngoingContestOnTransition:
@@ -171,7 +171,7 @@ Contests_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-Contests_UnusedEntry9805:
+Contests_Dummy9805:
     NPCMessage ContestCommon_Text_Dummy0
     End
 
@@ -650,7 +650,7 @@ Contests_StartPracticeContest:
     RunContestApplication
     GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     SetVar VAR_ONGOING_CONTEST, FALSE
-    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 28, 3, DIR_SOUTH
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 28, 3, DIR_SOUTH
     LockAll
     FadeScreenIn
     WaitFadeScreen
@@ -680,7 +680,7 @@ Contest_DoContest:
     ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT4
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, DIR_NORTH
+    Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 29, 7, DIR_NORTH
     LockAutoScrollForLinkContests
     GetContestMode VAR_MAP_LOCAL_3
     StopHBlank
@@ -810,7 +810,7 @@ Contests_EndContest:
     EndContest VAR_MAP_LOCAL_2
     SetVar VAR_ONGOING_CONTEST, FALSE
     GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, Contests_OfficialContestReturnToReceptionist
-    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, DIR_SOUTH
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 7, 3, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, 7
@@ -820,7 +820,7 @@ Contests_EndContest:
     GoTo Contests_End
 
 Contests_OfficialContestReturnToReceptionist:
-    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 18, 3, DIR_SOUTH
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 18, 3, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, 19
@@ -948,7 +948,7 @@ Contests_Movement_PlayerWalkToPracticeContestDoor:
     WalkNormalNorth 3
     EndMovement
 
-Contests_UnusedMovement:
+Contests_Movement_Unused:
     Delay4
     FaceEast
     Delay4

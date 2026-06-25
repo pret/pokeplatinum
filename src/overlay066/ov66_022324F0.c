@@ -283,8 +283,8 @@ BOOL ov66_02232720(const void *param0, u32 param1)
         v0.lobbyJoinChannelCallback = ov66_02233B54;
         v0.lobbyPlayerConnectedCallback = ov66_02233BF0;
         v0.lobbyPlayerDisconnectedCallback = ov66_02233C60;
-        v0.lobbyStringMassageReceivedCallback = ov66_02233CE4;
-        v0.lobbyBinaryMassageReceivedCallback = ov66_02233CE8;
+        v0.lobbyStringMessageReceivedCallback = ov66_02233CE4;
+        v0.lobbyBinaryMessageReceivedCallback = ov66_02233CE8;
         v0.lobbyGetChannelDataCallback = ov66_02233D94;
         v0.lobbySystemProfileUpdatedCallback = ov66_02233DD4;
         v0.lobbyUserProfileUpdatedCallback = ov66_02233E50;

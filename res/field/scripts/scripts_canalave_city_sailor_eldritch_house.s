@@ -70,7 +70,7 @@ CanalaveCitySailorEldritchHouse_ScaryDreamDarkPokemon:
 
 CanalaveCitySailorEldritchHouse_BoyThrashingInSleep:
     GoToIfUnset FLAG_TALKED_TO_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, CanalaveCitySailorEldritchHouse_FirstTimeBoyThrashingInSleep
-    GoToIfUnset FLAG_OBTAINED_LUNAR_WING, CanalaveCitySailorEldritchHouse_ThrashingInSleep
+    GoToIfUnset FLAG_MET_CRESSELIA, CanalaveCitySailorEldritchHouse_ThrashingInSleep
     CheckItem ITEM_LUNAR_WING, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, CanalaveCitySailorEldritchHouse_ThrashingInSleep
     PlaySE SEQ_SE_CONFIRM

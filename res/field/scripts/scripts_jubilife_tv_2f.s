@@ -10,30 +10,30 @@
 
 JubilifeTV2F_OnTransition:
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, JubilifeTV2F_SetFlagHideJubilifeTV2FReporter
+    GoToIfEq VAR_MAP_LOCAL_0, 0, JubilifeTV2F_SetFlagHideReporter
     ClearFlag FLAG_HIDE_JUBILIFE_TV_2F_REPORTER
     End
 
-JubilifeTV2F_SetFlagHideJubilifeTV2FReporter:
+JubilifeTV2F_SetFlagHideReporter:
     SetFlag FLAG_HIDE_JUBILIFE_TV_2F_REPORTER
     End
 
 JubilifeTV2F_Idol:
-    NPCMessage JubilifeTV2F_Text_WhatAccessoriesWillGoWellWithMyDressToday
+    NPCMessage JubilifeTV2F_Text_WhatAccessoriesWillGoWell
     End
 
 JubilifeTV2F_GymGuide:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet VAR_OBTAINED_ACCESSORY_STARTER_MASK, JubilifeTV2F_IHopeYouGetIntoCollectingAccessoriesForYourPokemon
+    GoToIfSet VAR_OBTAINED_ACCESSORY_STARTER_MASK, JubilifeTV2F_IHopeYouCollectAccessories
     GetPlayerStarterSpecies VAR_RESULT
     CallIfEq VAR_RESULT, SPECIES_TURTWIG, JubilifeTV2F_SetAccessoryTurtwigMask
     CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, JubilifeTV2F_SetAccessoryChimcharMask
     CallIfEq VAR_RESULT, SPECIES_PIPLUP, JubilifeTV2F_SetAccessoryPiplupMask
     SetVar VAR_ACCESSORY_STARTER_MASK, VAR_0x8004
     BufferAccessoryNameWithArticle 0, VAR_0x8004
-    Message JubilifeTV2F_Text_SoAGiftForOurFutureStar
+    Message JubilifeTV2F_Text_GiftForFutureStar
     SetVar VAR_0x8005, 1
     Common_GiveAccessoryWaitForConfirm
     SetFlag VAR_OBTAINED_ACCESSORY_STARTER_MASK
@@ -41,9 +41,9 @@ JubilifeTV2F_GymGuide:
     ReleaseAll
     End
 
-JubilifeTV2F_IHopeYouGetIntoCollectingAccessoriesForYourPokemon:
+JubilifeTV2F_IHopeYouCollectAccessories:
     BufferAccessoryName 0, VAR_ACCESSORY_STARTER_MASK
-    Message JubilifeTV2F_Text_IHopeYouGetIntoCollectingAccessoriesForYourPokemon
+    Message JubilifeTV2F_Text_IHopeYouCollectAccessories
     WaitButton
     CloseMessage
     ReleaseAll
@@ -62,7 +62,7 @@ JubilifeTV2F_SetAccessoryPiplupMask:
     Return
 
 JubilifeTV2F_Roughneck:
-    NPCMessage JubilifeTV2F_Text_TheRoomAtTheBackIsOurDreamyFittingRoom
+    NPCMessage JubilifeTV2F_Text_FittingRoomAtTheBack
     End
 
     .balign 4, 0

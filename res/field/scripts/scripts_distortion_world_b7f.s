@@ -6,9 +6,9 @@
 #define LOCALID_CYRUS   129
 
     ScriptEntry DistortionWorldB7F_OnTransition
-    ScriptEntry DistortionWorldB7F_TriggerWarpToGiratinaRoom
-    ScriptEntry DistortionWorldB7F_OnFrameFirstEntry
-    ScriptEntry DistortionWorldB7F_TriggerCynthiaCyrus
+    ScriptEntry DistortionWorldB7F_CoordEvent_WarpToGiratinaRoom
+    ScriptEntry DistortionWorldB7F_OnFrame_FirstEntry
+    ScriptEntry DistortionWorldB7F_CoordEvent_CynthiaCyrus
     ScriptEntry DistortionWorldB7F_Cyrus
     ScriptEntry DistortionWorldB7F_Cynthia
     ScriptEntryEnd
@@ -17,15 +17,15 @@ DistortionWorldB7F_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-DistortionWorldB7F_TriggerWarpToGiratinaRoom:
+DistortionWorldB7F_CoordEvent_WarpToGiratinaRoom:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, 0, 15, 25, DIR_NORTH
+    Warp MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, 15, 25, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
 
-DistortionWorldB7F_OnFrameFirstEntry:
+DistortionWorldB7F_OnFrame_FirstEntry:
     LockAll
     ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkOnSpotNorth
     ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerWalkOnSpotNorth
@@ -37,7 +37,7 @@ DistortionWorldB7F_OnFrameFirstEntry:
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 8
     End
 
-DistortionWorldB7F_TriggerCynthiaCyrus:
+DistortionWorldB7F_CoordEvent_CynthiaCyrus:
     LockAll
     Message DistortionWorldB7F_Text_YouWereAlreadyHere
     CloseMessage

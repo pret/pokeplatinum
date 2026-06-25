@@ -1,7 +1,6 @@
 #include "battle/battle_subscreen.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/moves.h"
 #include "generated/genders.h"
@@ -10,32 +9,23 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02012B20_decl.h"
+#include "struct_defs/battler_data.h"
 #include "struct_defs/struct_020127E8.h"
 
-#include "battle/action_select_data.h"
 #include "battle/battle_display.h"
 #include "battle/battle_system.h"
-#include "battle/give_up_move_data.h"
-#include "battle/move_display_info.h"
-#include "battle/move_select_data.h"
-#include "battle/ov16_0226DB7C.h"
-#include "battle/ov16_0226DE44.h"
-#include "battle/struct_ov16_0226C378.h"
-#include "battle/struct_ov16_0226DC24_decl.h"
-#include "battle/struct_ov16_0226DEEC_decl.h"
-#include "battle/target_select_data.h"
+#include "battle/cursor_renderer.h"
+#include "battle/indicator.h"
 #include "overlay011/move_palettes.h"
 
 #include "assert.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "coordinates.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
-#include "inlines.h"
 #include "math_util.h"
 #include "message.h"
 #include "message_util.h"
@@ -61,200 +51,6 @@
 #include "unk_0208C098.h"
 
 #include "res/text/bank/battle_strings.h"
-
-typedef struct SlideInPanelState {
-    BattleSubscreen *btlSubscreen;
-    SysTask *task;
-    s16 xShift;
-    s16 yShift;
-    s16 bgXOffset;
-    s16 bgYOffset;
-    s16 prevBgYOffset;
-    u8 direction;
-    u8 phase;
-} SlideInPanelState;
-
-typedef struct ScreenPos {
-    s16 x;
-    s16 y;
-} ScreenPos;
-
-typedef struct SubscreenTilemapRect {
-    u8 top;
-    u8 bottom;
-    u8 left;
-    u8 right;
-} SubscreenTilemapRect;
-
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    u16 unk_08;
-} UnusedStruct_ov16_0226A3F4;
-
-typedef struct {
-    SysTask *unk_00;
-    u8 *unk_04;
-    void *unk_08;
-    u8 *unk_0C;
-    UnusedStruct_ov16_0226A3F4 unk_10;
-    u16 unk_1C;
-} UnusedStruct_ov16_02268A14_sub3_sub1;
-
-typedef struct MenuButtonPressAnimState {
-    s16 phase;
-    s16 waitTimer;
-    union {
-        struct {
-            const s16 *keyframes;
-            const SubscreenTilemapRect *subscreenTilemapRect;
-            int selectedButton;
-            u8 srcBufIndex;
-            u8 fontOAMIdx;
-            u8 spriteIndex;
-            u8 unread;
-            u8 freeSprites;
-            ScreenPos screenPos;
-        } ButtonPressAnimationState;
-        struct {
-            UnusedStruct_ov16_02268A14_sub3_sub1 *unused_00[4];
-            UnusedStruct_ov16_02268A14_sub3_sub1 *unused_10;
-            NNSG2dCharacterData *unused_14;
-            void *unused_18;
-            int selectedTarget;
-        } TargetSelectAnimationState;
-    };
-} MenuButtonPressAnimState;
-
-typedef struct {
-    int unk_00;
-    s16 unk_04;
-    s16 unk_06;
-    u8 unk_08;
-    u8 unk_09;
-} UnusedStruct_ov16_02268A14_sub4;
-
-typedef struct {
-    const SubscreenTilemapRect *unk_00;
-    u8 unk_04;
-    s8 unk_05;
-} UnusedStruct_ov16_02268A14_sub1;
-
-typedef struct FontOAMEntry {
-    FontOAM *fontOAM;
-    CharTransferAllocation allocation;
-    u16 textWidth;
-} FontOAMEntry;
-
-typedef struct PartyBallAnimState {
-    s16 xOffset;
-    u8 expPercent;
-    u8 phase;
-    u8 unused_04;
-    u8 delay;
-    u8 frameCount;
-    u8 duration;
-    u8 bounceCount;
-} PartyBallAnimState;
-
-typedef struct MenuCursor {
-    u8 isActive;
-    s8 y;
-    s8 x;
-    u8 unused_03;
-} MenuCursor;
-
-typedef union {
-    ActionSelectData actionData;
-    MoveSelectData moveData;
-    TargetSelectData targetSelectData;
-    GiveUpMoveData giveUpMoveData;
-} ActiveMenuData;
-
-typedef struct TextWindowLayout {
-    Window window;
-    u16 width;
-    u16 height;
-} TextWindowLayout;
-
-typedef struct {
-    MoveDisplayInfo moveDisplayInfo;
-    u16 *moveIcons[4];
-    TextWindowLayout moveNameWindows[4];
-    TextWindowLayout ppCountWindows[4];
-    TextWindowLayout ppLabelWindows[4];
-} MoveDisplayData;
-
-typedef struct BattleSubscreen_t {
-    BattleSystem *battleSys;
-    u8 *suppressActivationSfxPtr;
-    SysTask *animatePartyBallsTask;
-    SysTask *menuTransitionTask;
-    SysTask *unused_10;
-    UnusedStruct_ov16_02268A14_sub1 unused_14;
-    ActiveMenuData activeMenuData;
-    u16 *tilemapBuffers[7];
-    u16 *subscreenPaletteBuf;
-    u16 *normalMovePalBuf;
-    u16 *speedUpMovePalBuf;
-    SysTask *speedUpPaletteTask;
-    MoveDisplayData moveDisplayData[4];
-    UnkStruct_02012744 *fontOAMManager;
-    FontOAMEntry fontOAMEntry[13];
-    UnkStruct_02012B20 *unused_5B8;
-    ManagedSprite *playerPartyBallSprites[6];
-    ManagedSprite *opponentPartyBallSprites[6];
-    ManagedSprite *moveSelectSprites[4];
-    ManagedSprite *categoryIconSprites[4];
-    ManagedSprite *targetSelectPokeIconSprites[4];
-    SysTask *pokeIconAnimTasks[4];
-    PartyBallAnimState partyBallAnimState[6];
-    SysTask *unused_664;
-    u8 unused_668;
-    u8 unused_669;
-    u8 battlerType;
-    s8 activeMenuConfigIndex;
-    u8 targetingLayout;
-    u8 trainerGender;
-    u8 isPanelSliding;
-    u8 hasCancelButton;
-    u8 unused_670;
-    s16 unused_672;
-    u8 pulseCursorDirection;
-    s16 pulseCursorBlendValue;
-    SysTask *pulseCursorTask;
-    MenuButtonPressAnimState menuButtonPressAnimState;
-    UnusedStruct_ov16_02268A14_sub4 unused_6A0;
-    s32 panelScrollPos;
-    s32 slideSpeed;
-    s32 targetOffset;
-    UnkStruct_ov16_0226DC24 *cursorRenderer;
-    MenuCursor cursor;
-    u8 suppressActivationSfx;
-    u8 isWaitingForPartner;
-    struct {
-        UnkStruct_ov16_0226DEEC *indicator;
-        u8 step;
-        u8 phase;
-        u8 delay;
-    } catchTutorialState;
-} BattleSubscreen_t;
-
-typedef struct BattleMenuConfig {
-    u16 unused_00;
-    u16 unused_02;
-    u16 bgTilemapBufIndices[4];
-    u16 bgPriorities[4];
-    const TouchScreenRect *touchScreenRects;
-    const int *buttonResults;
-    const u8 *buttonSlots;
-    int (*handleCursorInput)(BattleSubscreen *btlSubscreen, int param1);
-    void (*saveCursorPos)(BattleSubscreen *btlSubscreen, int param1);
-    void (*drawMenu)(BattleSubscreen *btlSubscreen, int param1, int param2);
-    int (*processInput)(BattleSubscreen *btlSubscreen, int param1, int param2);
-} BattleMenuConfig;
 
 static void *BattleSubscreen_Alloc(void);
 static void BattleSubscreen_OpenActionMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2);
@@ -991,7 +787,7 @@ __attribute__((aligned(4))) static const SubscreenTilemapRect sStopButtonPressTi
     { 0x12, 0x17, 0x0, 0x1F }
 };
 
-static const ScreenPos screenPos[] = {
+static const CoordinatesS16 screenPos[] = {
     { 0x80, 0x4C },
     { 0x28, 0xA4 },
     { 0xD8, 0xA4 },
@@ -1211,8 +1007,8 @@ void BattleSubscreen_LoadGraphics(BattleSubscreen *btlSubscreen)
     }
 
     if (BattleSystem_GetBattleType(btlSubscreen->battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) {
-        ov16_0226DE44(spriteSys, spriteMan, 5, paletteData, 20412, 20036, 20406, 20395);
-        btlSubscreen->catchTutorialState.indicator = ov16_0226DEEC(spriteSys, spriteMan, HEAP_ID_BATTLE, 20412, 20036, 20406, 20395, 10, 0);
+        Indicator_LoadResources(spriteSys, spriteMan, 5, paletteData, 20412, 20036, 20406, 20395);
+        btlSubscreen->catchTutorialState.indicator = Indicator_New(spriteSys, spriteMan, HEAP_ID_BATTLE, 20412, 20036, 20406, 20395, 10, 0);
     }
 }
 
@@ -1230,8 +1026,8 @@ void BattleSubscreen_FreeGraphics(BattleSubscreen *btlSubscreen)
     TypeIcon_UnloadAnim(spriteMan, 20017, 20017);
 
     if (BattleSystem_GetBattleType(btlSubscreen->battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) {
-        ov16_0226DF68(btlSubscreen->catchTutorialState.indicator);
-        ov16_0226DEC4(spriteMan, 20412, 20036, 20406, 20395);
+        Indicator_Delete(btlSubscreen->catchTutorialState.indicator);
+        Indicator_UnloadResources(spriteMan, 20412, 20036, 20406, 20395);
     }
 }
 
@@ -1311,8 +1107,8 @@ void BattleSubscreen_LoadSprites(NARC *spriteNarc, BattleSubscreen *btlSubscreen
     btlSubscreen->animatePartyBallsTask = SysTask_Start(SysTask_AnimatePartyBalls, btlSubscreen, 1300);
 
     PaletteData *pltData = BattleSystem_GetPaletteData(btlSubscreen->battleSys);
-    ov16_0226DB7C(spriteSys, spriteMan, pltData, 5, 20411, 20035, 20405, 20394);
-    btlSubscreen->cursorRenderer = ov16_0226DC24(spriteSys, spriteMan, HEAP_ID_BATTLE, 20411, 20035, 20405, 20394, 5, 0);
+    CursorRenderer_LoadResources(spriteSys, spriteMan, pltData, 5, 20411, 20035, 20405, 20394);
+    btlSubscreen->cursorRenderer = CursorRenderer_New(spriteSys, spriteMan, HEAP_ID_BATTLE, 20411, 20035, 20405, 20394, 5, 0);
 }
 
 static void BattleSubscreen_FreeSprites(BattleSubscreen *btlSubscreen)
@@ -1341,8 +1137,8 @@ static void BattleSubscreen_FreeSprites(BattleSubscreen *btlSubscreen)
     SysTask_Done(btlSubscreen->animatePartyBallsTask);
     btlSubscreen->animatePartyBallsTask = NULL;
 
-    ov16_0226DBFC(spriteMan, 20411, 20035, 20405, 20394);
-    ov16_0226DCA8(btlSubscreen->cursorRenderer);
+    CursorRenderer_UnloadResources(spriteMan, 20411, 20035, 20405, 20394);
+    CursorRenderer_Delete(btlSubscreen->cursorRenderer);
 }
 
 static void SysTask_AnimatePartyBalls(SysTask *unused, void *subscreen)
@@ -1519,7 +1315,7 @@ int BattleSystem_MenuInput(BattleSubscreen *btlSubscreen)
             }
 
             MI_CpuClear8(&btlSubscreen->cursor, sizeof(MenuCursor));
-            ov16_0226DDE8(btlSubscreen->cursorRenderer);
+            CursorRenderer_HideAllSprites(btlSubscreen->cursorRenderer);
 
             if (isKeyInput > 0) {
                 btlSubscreen->suppressActivationSfx = 1;
@@ -1980,7 +1776,7 @@ static void BattleSubscreen_DrawTargetSelectMenu(BattleSubscreen *btlSubscreen, 
     for (int i = 0; i < SNELEMS(targetSelectData->targetMonData); i++) {
         int battlerIndex = battlersByType[2 + i];
 
-        if (targetSelectData->targetMonData[battlerIndex].unk_01_2 == TRUE && targetSlotFlags[i] == TRUE) {
+        if (targetSelectData->targetMonData[battlerIndex].isPresent == TRUE && targetSlotFlags[i] == TRUE) {
             if (targetSelectData->targetMonData[battlerIndex].gender == GENDER_MALE) {
                 formatMsg = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_00962);
             } else if (targetSelectData->targetMonData[battlerIndex].gender == GENDER_FEMALE) {
@@ -2002,10 +1798,10 @@ static void BattleSubscreen_DrawTargetSelectMenu(BattleSubscreen *btlSubscreen, 
 
             switch (i) {
             case 1:
-                BattleSubscreen_NewPokeIconSprite(btlSubscreen, partyMon, 3, targetSelectData->targetMonData[battlerIndex].curHP, targetSelectData->targetMonData[battlerIndex].maxHP, targetSelectData->targetMonData[battlerIndex].unk_02);
+                BattleSubscreen_NewPokeIconSprite(btlSubscreen, partyMon, 3, targetSelectData->targetMonData[battlerIndex].curHP, targetSelectData->targetMonData[battlerIndex].maxHP, targetSelectData->targetMonData[battlerIndex].stockStatus);
                 break;
             case 3:
-                BattleSubscreen_NewPokeIconSprite(btlSubscreen, partyMon, 5, targetSelectData->targetMonData[battlerIndex].curHP, targetSelectData->targetMonData[battlerIndex].maxHP, targetSelectData->targetMonData[battlerIndex].unk_02);
+                BattleSubscreen_NewPokeIconSprite(btlSubscreen, partyMon, 5, targetSelectData->targetMonData[battlerIndex].curHP, targetSelectData->targetMonData[battlerIndex].maxHP, targetSelectData->targetMonData[battlerIndex].stockStatus);
                 break;
             }
         } else {
@@ -2778,7 +2574,7 @@ static void GetTargetSlotFlags(BattleSubscreen *btlSubscreen, u8 *outFlags, BOOL
     for (int i = 0; i < SNELEMS(outFlags); i++) {
         int battlerIdx = battlersByType[2 + i];
 
-        if (checkPresence == TRUE && !targetSelectData->targetMonData[battlerIdx].unk_01_2) {
+        if (checkPresence == TRUE && !targetSelectData->targetMonData[battlerIdx].isPresent) {
             outFlags[i] = 0;
         } else {
             outFlags[i] = sMoveTargetSlotFlags[btlSubscreen->targetingLayout][i];
@@ -3395,11 +3191,11 @@ static int BattleSystem_Cursor_Menu(BattleSubscreen *btlSubscreen, BOOL cursorHi
     cursor = &btlSubscreen->cursor;
     const BattleMenuConfig *battleMenuConfig = &sBattleMenuConfigs[btlSubscreen->activeMenuConfigIndex];
     int battler = BattleSystem_GetBattlerOfType(btlSubscreen->battleSys, btlSubscreen->battlerType);
-    UnkStruct_ov16_0226C378 *savedCursorPos = ov16_02263B0C(BattleSystem_GetBattlerData(btlSubscreen->battleSys, battler));
+    SavedCursorPosition *savedCursorPos = BattlerData_GetSavedCursorPosition(BattleSystem_GetBattlerData(btlSubscreen->battleSys, battler));
 
     if (cursorHidden == TRUE) {
-        cursor->x = savedCursorPos->unk_00;
-        cursor->y = savedCursorPos->unk_01;
+        cursor->x = savedCursorPos->actionMenuX;
+        cursor->y = savedCursorPos->actionMenuY;
         buttonId = sBattleMenuButtonLayout[cursor->y][cursor->x];
         BattleSystem_DrawCursor(btlSubscreen->cursorRenderer, battleMenuConfig->touchScreenRects[buttonId].rect.left + 8, battleMenuConfig->touchScreenRects[buttonId].rect.right - 8, battleMenuConfig->touchScreenRects[buttonId].rect.top + 8, battleMenuConfig->touchScreenRects[buttonId].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
@@ -3463,13 +3259,13 @@ static void SaveActionMenuCursorPos(BattleSubscreen *btlSubscreen, int selectedA
     int battlerType = BattleSystem_GetBattlerOfType(btlSubscreen->battleSys, btlSubscreen->battlerType);
 
     if (selectedAction != 3 || btlSubscreen->isWaitingForPartner == FALSE) {
-        UnkStruct_ov16_0226C378 *savedCursorPos = ov16_02263B0C(BattleSystem_GetBattlerData(btlSubscreen->battleSys, battlerType));
+        SavedCursorPosition *savedCursorPos = BattlerData_GetSavedCursorPosition(BattleSystem_GetBattlerData(btlSubscreen->battleSys, battlerType));
 
         for (int i = 0; i < SNELEMS(sBattleMenuButtonLayout); i++) {
             for (j = 0; j < SNELEMS(sBattleMenuButtonLayout[0]); j++) {
                 if (selectedAction == sBattleMenuButtonLayout[i][j]) {
-                    savedCursorPos->unk_00 = j;
-                    savedCursorPos->unk_01 = i;
+                    savedCursorPos->actionMenuX = j;
+                    savedCursorPos->actionMenuY = i;
 
                     return;
                 }
@@ -3518,19 +3314,19 @@ static int BattleSystem_Cursor_Moves(BattleSubscreen *btlSubscreen, BOOL cursorH
     u32 button;
     int buttonIndex, i;
     u8 buttonLayout[3][2];
-    UnkStruct_ov16_0226C378 *savedCursorPos = ov16_02263B0C(BattleSystem_GetBattlerData(btlSubscreen->battleSys, BattleSystem_GetBattlerOfType(btlSubscreen->battleSys, btlSubscreen->battlerType)));
+    SavedCursorPosition *savedCursorPos = BattlerData_GetSavedCursorPosition(BattleSystem_GetBattlerData(btlSubscreen->battleSys, BattleSystem_GetBattlerOfType(btlSubscreen->battleSys, btlSubscreen->battlerType)));
     MenuCursor *cursor = &btlSubscreen->cursor;
     const BattleMenuConfig *battleMenuConfig = &sBattleMenuConfigs[btlSubscreen->activeMenuConfigIndex];
     MoveSelectData *moveData = &btlSubscreen->activeMenuData.moveData;
 
     if (cursorHidden == TRUE) {
-        cursor->x = savedCursorPos->unk_02;
-        cursor->y = savedCursorPos->unk_03;
+        cursor->x = savedCursorPos->moveMenuX;
+        cursor->y = savedCursorPos->moveMenuY;
         buttonIndex = sMoveMenuButtonLayout[cursor->y][cursor->x];
 
         if (buttonIndex && !moveData->moveIDs[buttonIndex - 1]) {
-            savedCursorPos->unk_02 = 0;
-            savedCursorPos->unk_03 = 0;
+            savedCursorPos->moveMenuX = 0;
+            savedCursorPos->moveMenuY = 0;
             cursor->x = 0;
             cursor->y = 0;
             buttonIndex = sMoveMenuButtonLayout[cursor->y][cursor->x];
@@ -3573,14 +3369,14 @@ static void SaveMoveSelectMenuCursorPos(BattleSubscreen *btlSubscreen, int selec
     }
 
     int battlerType = BattleSystem_GetBattlerOfType(btlSubscreen->battleSys, btlSubscreen->battlerType);
-    UnkStruct_ov16_0226C378 *savedCursorPos = ov16_02263B0C(BattleSystem_GetBattlerData(btlSubscreen->battleSys, battlerType));
+    SavedCursorPosition *savedCursorPos = BattlerData_GetSavedCursorPosition(BattleSystem_GetBattlerData(btlSubscreen->battleSys, battlerType));
     int j;
 
     for (int i = 0; i < SNELEMS(sMoveMenuButtonLayout); i++) {
         for (j = 0; j < SNELEMS(sMoveMenuButtonLayout[0]); j++) {
             if (selectedMove == sMoveMenuButtonLayout[i][j]) {
-                savedCursorPos->unk_02 = j;
-                savedCursorPos->unk_03 = i;
+                savedCursorPos->moveMenuX = j;
+                savedCursorPos->moveMenuY = i;
                 return;
             }
         }
@@ -3599,7 +3395,7 @@ static int BattleSystem_Cursor_Battler(BattleSubscreen *btlSubscreen, BOOL isCur
     int splitCursorBottom, topRowTop, topRowBottom, topRowLeft;
     int topRowRight, bottomRowTop, bottomRowBottom, bottomRowLeft;
     int bottomRowRight, topBotVal1, topBotVal2, splitAnchor;
-    UnkStruct_ov16_0226C378 *savedCursorPos = ov16_02263B0C(BattleSystem_GetBattlerData(btlSubscreen->battleSys, BattleSystem_GetBattlerOfType(btlSubscreen->battleSys, btlSubscreen->battlerType)));
+    SavedCursorPosition *savedCursorPos = BattlerData_GetSavedCursorPosition(BattleSystem_GetBattlerData(btlSubscreen->battleSys, BattleSystem_GetBattlerOfType(btlSubscreen->battleSys, btlSubscreen->battlerType)));
     cursor = &btlSubscreen->cursor;
     battleMenuConfig = &sBattleMenuConfigs[btlSubscreen->activeMenuConfigIndex];
 
@@ -3739,9 +3535,9 @@ static int BattleSystem_Cursor_Battler(BattleSubscreen *btlSubscreen, BOOL isCur
 
     if (isCursorHidden == TRUE) {
         if (isSingleTarget == 0) {
-            if (savedCursorPos->unk_06 == btlSubscreen->targetingLayout) {
-                cursor->x = savedCursorPos->unk_04;
-                cursor->y = savedCursorPos->unk_05;
+            if (savedCursorPos->targetingLayout == btlSubscreen->targetingLayout) {
+                cursor->x = savedCursorPos->targetSelectX;
+                cursor->y = savedCursorPos->targetSelectY;
             } else if (targetSlotFlagsPresent[5 - 2] == 1) {
                 cursor->x = 0;
                 cursor->y = 0;
@@ -3771,7 +3567,7 @@ static int BattleSystem_Cursor_Battler(BattleSubscreen *btlSubscreen, BOOL isCur
             }
 
             if (splitCursorLeft != -1) {
-                ov16_0226DDC0(btlSubscreen->cursorRenderer, splitCursorLeft, splitCursorBottom, splitAnchor, (192 + 80) << FX32_SHIFT);
+                CursorRenderer_DrawSplitAnchor(btlSubscreen->cursorRenderer, splitCursorLeft, splitCursorBottom, splitAnchor, (192 + 80) << FX32_SHIFT);
             }
         }
 
@@ -3803,13 +3599,13 @@ static int BattleSystem_Cursor_Battler(BattleSubscreen *btlSubscreen, BOOL isCur
                 }
 
                 if (splitCursorLeft != -1) {
-                    ov16_0226DDC0(btlSubscreen->cursorRenderer, splitCursorLeft, splitCursorBottom, splitAnchor, (192 + 80) << FX32_SHIFT);
+                    CursorRenderer_DrawSplitAnchor(btlSubscreen->cursorRenderer, splitCursorLeft, splitCursorBottom, splitAnchor, (192 + 80) << FX32_SHIFT);
                 } else {
-                    ov16_0226DE04(btlSubscreen->cursorRenderer);
+                    CursorRenderer_HideSplitAnchor(btlSubscreen->cursorRenderer);
                 }
             } else {
                 BattleSystem_DrawCursor(btlSubscreen->cursorRenderer, battleMenuConfig->touchScreenRects[4].rect.left + 8, battleMenuConfig->touchScreenRects[4].rect.right - 8, battleMenuConfig->touchScreenRects[4].rect.top + 8, battleMenuConfig->touchScreenRects[4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
-                ov16_0226DE04(btlSubscreen->cursorRenderer);
+                CursorRenderer_HideSplitAnchor(btlSubscreen->cursorRenderer);
             }
         }
         break;
@@ -3846,17 +3642,17 @@ static void SaveTargetSelectMenuCursorPos(BattleSubscreen *btlSubscreen, int sel
     }
 
     int battlerType = BattleSystem_GetBattlerOfType(btlSubscreen->battleSys, btlSubscreen->battlerType);
-    UnkStruct_ov16_0226C378 *savedCursorPos = ov16_02263B0C(BattleSystem_GetBattlerData(btlSubscreen->battleSys, battlerType));
+    SavedCursorPosition *savedCursorPos = BattlerData_GetSavedCursorPosition(BattleSystem_GetBattlerData(btlSubscreen->battleSys, battlerType));
 
-    savedCursorPos->unk_06 = btlSubscreen->targetingLayout;
+    savedCursorPos->targetingLayout = btlSubscreen->targetingLayout;
 
     int j;
 
     for (int i = 0; i < SNELEMS(sSelectTargetMenuButtonLayout); i++) {
         for (j = 0; j < SNELEMS(sSelectTargetMenuButtonLayout[0]); j++) {
             if (selectedTarget == sSelectTargetMenuButtonLayout[i][j]) {
-                savedCursorPos->unk_04 = j;
-                savedCursorPos->unk_05 = i;
+                savedCursorPos->targetSelectX = j;
+                savedCursorPos->targetSelectY = i;
 
                 return;
             }
@@ -4059,12 +3855,12 @@ static int GetCatchTutorialInputStep0(BattleSubscreen *btlSubscreen)
 {
     switch (btlSubscreen->catchTutorialState.phase) {
     case 0:
-        ov16_0226DF80(btlSubscreen->catchTutorialState.indicator, 128, 84 - 24, (192 + 80) << FX32_SHIFT);
-        ov16_0226DFD0(btlSubscreen->catchTutorialState.indicator, 60);
+        Indicator_Show(btlSubscreen->catchTutorialState.indicator, 128, 84 - 24, (192 + 80) << FX32_SHIFT);
+        Indicator_SetExitTimer(btlSubscreen->catchTutorialState.indicator, 60);
         btlSubscreen->catchTutorialState.phase++;
         break;
     default:
-        if (ov16_0226DFD4(btlSubscreen->catchTutorialState.indicator) == TRUE) {
+        if (Indicator_GetHasDropped(btlSubscreen->catchTutorialState.indicator) == TRUE) {
             btlSubscreen->catchTutorialState.phase++;
             return FALSE;
         }
@@ -4077,10 +3873,10 @@ static int GetCatchTutorialInputStep0(BattleSubscreen *btlSubscreen)
 static int GetCatchTutorialInputStep1(BattleSubscreen *btlSubscreen)
 {
     if (btlSubscreen->catchTutorialState.phase == 0) {
-        ov16_0226DF80(btlSubscreen->catchTutorialState.indicator, 64, 46 - 24, (192 + 80) << FX32_SHIFT);
-        ov16_0226DFD0(btlSubscreen->catchTutorialState.indicator, 60);
+        Indicator_Show(btlSubscreen->catchTutorialState.indicator, 64, 46 - 24, (192 + 80) << FX32_SHIFT);
+        Indicator_SetExitTimer(btlSubscreen->catchTutorialState.indicator, 60);
         btlSubscreen->catchTutorialState.phase++;
-    } else if (ov16_0226DFD4(btlSubscreen->catchTutorialState.indicator) == TRUE) {
+    } else if (Indicator_GetHasDropped(btlSubscreen->catchTutorialState.indicator) == TRUE) {
         btlSubscreen->catchTutorialState.phase++;
         return TRUE;
     }
@@ -4100,12 +3896,12 @@ static int GetCatchTutorialLowHPInput(BattleSubscreen *btlSubscreen)
         }
         break;
     case 1:
-        ov16_0226DF80(btlSubscreen->catchTutorialState.indicator, 40, 170 - 24, (192 + 80) << FX32_SHIFT);
-        ov16_0226DFD0(btlSubscreen->catchTutorialState.indicator, 60);
+        Indicator_Show(btlSubscreen->catchTutorialState.indicator, 40, 170 - 24, (192 + 80) << FX32_SHIFT);
+        Indicator_SetExitTimer(btlSubscreen->catchTutorialState.indicator, 60);
         btlSubscreen->catchTutorialState.phase++;
         break;
     default:
-        if (ov16_0226DFD4(btlSubscreen->catchTutorialState.indicator) == TRUE) {
+        if (Indicator_GetHasDropped(btlSubscreen->catchTutorialState.indicator) == TRUE) {
             btlSubscreen->catchTutorialState.phase++;
             return 1;
         }

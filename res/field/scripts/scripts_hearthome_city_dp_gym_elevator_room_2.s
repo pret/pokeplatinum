@@ -3,20 +3,20 @@
 
 
     ScriptEntry HearthomeCityDPGymElevatorRoom2_OnTransition
-    ScriptEntry HearthomeCityDPGymElevatorRoom2_TriggerMoveLift
-    ScriptEntry HearthomeCityDPGymElevatorRoom2_SignCorrect
-    ScriptEntry HearthomeCityDPGymElevatorRoom2_SignQuestion
+    ScriptEntry HearthomeCityDPGymElevatorRoom2_CoordEvent_MoveLift
+    ScriptEntry HearthomeCityDPGymElevatorRoom2_BgSignCorrect
+    ScriptEntry HearthomeCityDPGymElevatorRoom2_BgSignQuestion
     ScriptEntryEnd
 
 HearthomeCityDPGymElevatorRoom2_OnTransition:
     InitPersistedMapFeaturesForHearthomeGym
     End
 
-HearthomeCityDPGymElevatorRoom2_TriggerMoveLift:
+HearthomeCityDPGymElevatorRoom2_CoordEvent_MoveLift:
     MoveHearthomeGymDPLift
     End
 
-HearthomeCityDPGymElevatorRoom2_SignCorrect:
+HearthomeCityDPGymElevatorRoom2_BgSignCorrect:
     LockAll
     PlaySE SEQ_SE_DP_UG_020
     Message HearthomeCityDPGymElevatorRoom2_Text_Correct
@@ -25,7 +25,7 @@ HearthomeCityDPGymElevatorRoom2_SignCorrect:
     ReleaseAll
     End
 
-HearthomeCityDPGymElevatorRoom2_SignQuestion:
+HearthomeCityDPGymElevatorRoom2_BgSignQuestion:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     Message HearthomeCityDPGymElevatorRoom2_Text_WhatsFirstRoomsAnswer

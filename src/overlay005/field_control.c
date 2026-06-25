@@ -117,9 +117,9 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 {
     FieldInput_Clear(input);
 
-    int moveState = Player_MoveState(fieldSystem->playerAvatar);
-    int avatarState = PlayerAvatar_MoveState(fieldSystem->playerAvatar);
-    int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int moveState = PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar);
+    int avatarState = PlayerAvatar_GetMoveState(fieldSystem->playerAvatar);
+    int playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     input->pressedKeys = pressedKeys;
     input->heldKeys = heldKeys;
@@ -237,7 +237,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             int direction = (s8)input->playerDir;
 
             if (direction == DIR_NONE) {
-                direction = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+                direction = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
             }
 
             if (DistWorld_HandlePlayerMovementEnd(fieldSystem, direction) == TRUE) {
@@ -247,7 +247,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->sign
-        && PlayerAvatar_GetDir(fieldSystem->playerAvatar) == input->playerDir
+        && PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar) == input->playerDir
         && Field_CheckSign(fieldSystem) == TRUE) {
         return TRUE;
     }
@@ -264,7 +264,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
         if (validInteraction == TRUE) {
             if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             if (MapObject_GetTrainerType(object) != 0x9) {
@@ -306,7 +306,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         }
 
         int playerX, playerZ;
-        int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        int playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
         Field_Step(fieldSystem, &playerX, &playerZ);
 
@@ -404,7 +404,7 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE && MapObject_GetMovementType(object) != 0x1) {
             if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
@@ -459,7 +459,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE) {
             if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             CommManager_PauseUnionClient();
@@ -496,7 +496,7 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE) {
             if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             if (MapObject_GetTrainerType(object) != 0x9) {
@@ -649,7 +649,7 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
 
 u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
 {
-    int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     if (TileBehavior_IsPC(behavior) && playerDir == DIR_NORTH) {
         return SCRIPT_ID(COMMON_SCRIPTS, 18);
@@ -683,7 +683,7 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
         return SCRIPT_ID(FIELD_MOVES, 3);
     }
 
-    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) != PLAYER_STATE_SURFING) {
+    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) != PLAYER_AVATAR_SURFING) {
         TrainerInfo *info = SaveData_GetTrainerInfo(fieldSystem->saveData);
         u32 distortionBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
@@ -707,14 +707,14 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     if (ov5_021E1154(fieldSystem, fieldSystem->playerAvatar, playerDir) == TRUE) {
         return TRUE;
     }
 
-    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerZ);
 
     if (Field_CheckCoordEvent(fieldSystem) == TRUE) {
@@ -726,7 +726,7 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    if (sub_0205EF58(fieldSystem->playerAvatar)) {
+    if (PlayerAvatar_CheckForcedMovement(fieldSystem->playerAvatar)) {
         return FALSE;
     }
 
@@ -785,7 +785,7 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
     }
 
     if (TileBehavior_IsEscalatorFlipFace(curTileBehavior) == TRUE) {
-        int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        int playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
         if (playerDir == DIR_WEST) {
             playerDir = DIR_EAST;
@@ -799,7 +799,7 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
         sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, playerDir, 2);
         return TRUE;
     } else if (TileBehavior_IsEscalator(curTileBehavior) == TRUE) {
-        int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        int playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
         if (playerDir != DIR_WEST && playerDir != DIR_EAST) {
             GF_ASSERT(FALSE);
@@ -946,13 +946,13 @@ static BOOL Field_UpdateSafari(FieldSystem *fieldSystem)
 
 static void Field_GetPlayerPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ)
 {
-    *playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    *playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    *playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    *playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 }
 
 static void Field_Step(const FieldSystem *fieldSystem, int *playerX, int *playerZ)
 {
-    int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
     Field_StepInDirection(fieldSystem, playerDir, playerX, playerZ);
 }
 
@@ -1015,7 +1015,7 @@ static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int
     }
 
     Location *v2 = FieldOverworldState_GetEntranceLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    Location_Set(v2, fieldSystem->location->mapId, v1, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    Location_Set(v2, fieldSystem->location->mapId, v1, playerX, playerZ, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
 
     return TRUE;
 }
@@ -1047,7 +1047,7 @@ static void Field_TrySetMapConnection(FieldSystem *fieldSystem)
 
     if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap)) {
         if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == TRUE && MapHeader_IsOnMainMatrix(nextMap.mapId) == FALSE) {
-            Field_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+            Field_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
         }
     } else {
         Field_Step(fieldSystem, &playerX, &playerZ);
@@ -1056,7 +1056,7 @@ static void Field_TrySetMapConnection(FieldSystem *fieldSystem)
             && MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == TRUE
             && MapHeader_IsOnMainMatrix(nextMap.mapId) == FALSE) {
 
-            Field_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+            Field_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
         }
     }
 }

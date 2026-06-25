@@ -3,7 +3,7 @@
 
 
     ScriptEntry OldChateauBackMiddleEastRoom_OnTransition
-    ScriptEntry OldChateauBackMiddleEastRoom_OnFrameTwinLeave
+    ScriptEntry OldChateauBackMiddleEastRoom_OnFrame_TwinLeave
     ScriptEntryEnd
 
 OldChateauBackMiddleEastRoom_OnTransition:
@@ -17,7 +17,7 @@ OldChateauBackMiddleEastRoom_ShowTwin:
     SetVar VAR_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN_STATE, 1
     End
 
-OldChateauBackMiddleEastRoom_OnFrameTwinLeave:
+OldChateauBackMiddleEastRoom_OnFrame_TwinLeave:
     LockAll
     ApplyMovement LOCALID_TWIN, OldChateauBackMiddleEastRoom_Movement_TwinLeave
     WaitMovement

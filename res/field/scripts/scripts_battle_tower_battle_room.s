@@ -6,9 +6,9 @@
 
 
     ScriptEntry BattleTowerBattleRoom_OnTransition
-    ScriptEntry BattleTowerBattleRoom_OnFrameStartChallenge
-    ScriptEntry BattleTowerBattleRoom_OnFrameResumeChallenge
-    ScriptEntry BattleTowerBattleRoom_Unused4
+    ScriptEntry BattleTowerBattleRoom_OnFrame_StartChallenge
+    ScriptEntry BattleTowerBattleRoom_OnFrame_ResumeChallenge
+    ScriptEntry BattleTowerBattleRoom_OpponentEnterAndBattle_Unused
     ScriptEntry BattleTowerBattleRoom_OnResume
     ScriptEntryEnd
 
@@ -29,7 +29,7 @@ BattleTowerBattleRoom_SetPlayerPositionForBattle:
     SetPosition LOCALID_BT_PLAYER, 5, 0, 6, DIR_EAST
     End
 
-BattleTowerBattleRoom_Unused4:
+BattleTowerBattleRoom_OpponentEnterAndBattle_Unused:
     SetVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 0
     PlaySE SEQ_SE_CONFIRM
     LockAll
@@ -54,7 +54,7 @@ BattleTowerBattleRoom_WarpToLobbby:
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_5, BattleTowerBattleRoom_WarpToLobbbyWiFiAttendant
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 11, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -63,13 +63,13 @@ BattleTowerBattleRoom_WarpToLobbby:
 BattleTowerBattleRoom_WarpToLobbbyWiFiAttendant:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 15, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-BattleTowerBattleRoom_OnFrameStartChallenge:
+BattleTowerBattleRoom_OnFrame_StartChallenge:
     LockAll
     SetVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 3
     CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_RESULT
@@ -78,7 +78,7 @@ BattleTowerBattleRoom_OnFrameStartChallenge:
     GoTo BattleTowerBattleRoom_Opponent
     End
 
-BattleTowerBattleRoom_OnFrameResumeChallenge:
+BattleTowerBattleRoom_OnFrame_ResumeChallenge:
     LockAll
     SetVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 3
     CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_RESULT
@@ -300,7 +300,7 @@ BattleTowerBattleRoom_PalmerEnter:
     WaitMovement
     Return
 
-BattleTowerBattleRoom_UnusedMovement:
+BattleTowerBattleRoom_Movement_Unused:
     Delay4
     FaceWest
     WalkNormalWest 5

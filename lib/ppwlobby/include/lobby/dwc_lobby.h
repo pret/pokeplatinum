@@ -1,5 +1,5 @@
-#ifndef DWC_LOBBY_H_
-#define DWC_LOBBY_H_
+#ifndef DWC_LOBBY_H
+#define DWC_LOBBY_H
 
 #include <dwc.h>
 
@@ -7,17 +7,11 @@
 extern "C" {
 #endif
 
-#ifdef WIN32
-#pragma pack(push, 4)
-#endif
-
-#define DWC_LOBBY_INVALID_USER_ID           -1
-#define DWC_LOBBY_INVALID_TIME              0
-#define DWC_LOBBY_MAX_STRING_SIZE           400
-#define DWC_LOBBY_MAX_CHANNEL_NAME_SIZE     20
-#define DWC_LOBBY_MAX_CHANNEL_TOPIC_SIZE    DWC_LOBBY_MAX_STRING_SIZE
-#define DWC_LOBBY_MAX_CHANNEL_KEY_SIZE      20
-#define DWC_LOBBY_MAX_CHANNEL_PASSWORD_SIZE 20
+#define DWC_LOBBY_INVALID_USER_ID       -1
+#define DWC_LOBBY_INVALID_TIME          0
+#define DWC_LOBBY_MAX_STRING_SIZE       400
+#define DWC_LOBBY_MAX_CHANNEL_NAME_SIZE 20
+#define DWC_LOBBY_MAX_CHANNEL_KEY_SIZE  20
 
 typedef enum DWC_LOBBY_CHANNEL_PREFIX {
     DWC_LOBBY_CHANNEL_PREFIX_RELEASE,
@@ -34,12 +28,8 @@ typedef enum DWC_LOBBY_CHANNEL_PREFIX {
     DWC_LOBBY_CHANNEL_PREFIX_TEST
 } DWC_LOBBY_CHANNEL_PREFIX;
 
-#ifdef WIN32
-#pragma pack(pop)
-#endif
-
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif // DWC_LOBBY_H

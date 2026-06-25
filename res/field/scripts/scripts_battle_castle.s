@@ -5,10 +5,10 @@
 
 
     ScriptEntry BattleCastle_SingleAttendant
-    ScriptEntry BattleCastle_OnFrameResumeChallenge
-    ScriptEntry BattleCastle_OnFrameDidntSaveBeforeQuit
-    ScriptEntry BattleCastle_OnFrameChallengeEndedCompletedRound
-    ScriptEntry BattleCastle_OnFrameChallengeEnded
+    ScriptEntry BattleCastle_OnFrame_ResumeChallenge
+    ScriptEntry BattleCastle_OnFrame_DidntSaveBeforeQuit
+    ScriptEntry BattleCastle_OnFrame_ChallengeEndedCompletedRound
+    ScriptEntry BattleCastle_OnFrame_ChallengeEnded
     ScriptEntry BattleCastle_MultiAttendant
     ScriptEntry BattleCastle_Artist
     ScriptEntry BattleCastle_Socialite
@@ -286,9 +286,9 @@ BattleCastle_StartChallenge:
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleCastle_WalkBackInvisiblyDoubleChallenge
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleCastle_WalkBackInvisiblyMultiChallenge
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
-    CreateJournalEvent LOCATION_EVENT_BATTLE_CASTLE, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_CASTLE
     WaitForTransition
-    ScrCmd_2C4 11
+    LaunchBattleFrontierScene FRONTIER_SCENE_CASTLE_CORRIDOR
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleCastle_EndCommunication
     ReturnToField
     FadeScreenIn
@@ -439,7 +439,7 @@ BattleCastle_ExplainMultiChallenge:
     Message BattleCastle_Text_ExplainMultiChallenge
     Return
 
-BattleCastle_OnFrameResumeChallenge:
+BattleCastle_OnFrame_ResumeChallenge:
     RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_BATTLE_CASTLE_LOBBY_LOAD_ACTION, 0
@@ -457,13 +457,13 @@ BattleCastle_SaveGame:
     WaitSE SEQ_SE_DP_SAVE
     Return
 
-BattleCastle_OnFrameDidntSaveBeforeQuit:
+BattleCastle_OnFrame_DidntSaveBeforeQuit:
     Message BattleCastle_Text_DidntSaveBeforeQuit
     ScrCmd_2D5 VAR_BATTLE_CASTLE_CHALLENGE_TYPE
     GoTo BattleCastle_EndChallenge
     End
 
-BattleCastle_OnFrameChallengeEndedCompletedRound:
+BattleCastle_OnFrame_ChallengeEndedCompletedRound:
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleCastle_IncrementTrainerScoreRoundCompleted
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleCastle_IncrementTrainerScoreRoundCompleted
     CallIfEq VAR_BATTLE_CASTLE_PRINT_STATE, 1, BattleCastle_EarnedSilverPrint
@@ -494,17 +494,17 @@ BattleCastle_EarnedGoldPrint:
     Common_CheckAllFrontierGoldPrintsObtained
     Return
 
-BattleCastle_OnFrameChallengeEnded:
+BattleCastle_OnFrame_ChallengeEnded:
     GoTo BattleCastle_EndChallenge
     End
 
-BattleCastle_UnusedMovement:
+BattleCastle_Movement_Unused:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth
     EndMovement
 
-BattleCastle_UnusedMovement2:
+BattleCastle_Movement_Unused2:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth

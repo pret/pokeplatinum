@@ -6,7 +6,7 @@
 #include "constants/graphics.h"
 #include "constants/narc.h"
 #include "constants/savedata/savedata.h"
-#include "generated/string_padding_mode.h"
+#include "constants/string.h"
 #include "generated/text_banks.h"
 
 #include "game_opening/const_ov77_021D742C.h"

@@ -4,20 +4,20 @@
 
 
     ScriptEntry MtCoronet2F_CavePainting
-    ScriptEntry MtCoronet2F_TriggerLooker
+    ScriptEntry MtCoronet2F_CoordEvent_Looker
     ScriptEntry MtCoronet2F_Looker
     ScriptEntry MtCoronet2F_CavePaintingShards
     ScriptEntryEnd
 
 MtCoronet2F_CavePainting:
-    EventMessage MtCoronet2F_Text_ThereAppearsToBeACavePaintingFromAnAncientTime
+    EventMessage MtCoronet2F_Text_CavePaintingFromAncientTime
     End
 
 MtCoronet2F_CavePaintingShards:
-    NPCMessage MtCoronet2F_Text_ShardsAreAllThatRemainOfTheAncientCavePainting
+    NPCMessage MtCoronet2F_Text_ShardsAreAllThatRemain
     End
 
-MtCoronet2F_TriggerLooker:
+MtCoronet2F_CoordEvent_Looker:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetVar VAR_MT_CORONET_2F_STATE, 2
@@ -32,25 +32,25 @@ MtCoronet2F_TriggerLooker:
     CallIfEq VAR_0x8005, 24, MtCoronet2F_LookerWalkToPlayerZ24
     CallIfEq VAR_0x8005, 25, MtCoronet2F_LookerWalkToPlayerZ25
     CallIfEq VAR_0x8005, 26, MtCoronet2F_LookerWalkToPlayerZ26
-    Message MtCoronet2F_Text_ObserveIfYouWillThatHole
+    Message MtCoronet2F_Text_ObserveThatHole
     ApplyMovement LOCALID_LOOKER, MtCoronet2F_Movement_LookerWalkOnSpotSouth
     WaitMovement
-    Message MtCoronet2F_Text_AreYouTrainerEnoughToAdvanceShowMeIfYouWill
+    Message MtCoronet2F_Text_AreYouEnoughToAdvance
     ApplyMovement LOCALID_LOOKER, MtCoronet2F_Movement_LookerWalkOnSpotWest
     WaitMovement
-    Message MtCoronet2F_Text_YouAreFarSuperiorToMeAllICanDoNowIsGiveYouThis
+    Message MtCoronet2F_Text_YouAreFarSuperiorToMe
     SetVar VAR_0x8004, ITEM_BLACK_FLUTE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, MtCoronet2F_BagIsFull
     Common_GiveItemQuantity
-    Call MtCoronet2F_PleaseYouMustStopTeamGalactic
+    Call MtCoronet2F_YouMustStopTeamGalactic
     Common_FadeToDefaultMusic4
     ReleaseAll
     End
 
-MtCoronet2F_PleaseYouMustStopTeamGalactic:
+MtCoronet2F_YouMustStopTeamGalactic:
     SetFlag FLAG_RECEIVED_MT_CORONET_2F_BLACK_FLUTE
-    Message MtCoronet2F_Text_PleaseYouMustStopTeamGalactic
+    Message MtCoronet2F_Text_YouMustStopTeamGalactic
     WaitButton
     CloseMessage
     Return
@@ -133,19 +133,19 @@ MtCoronet2F_Looker:
     LockAll
     FacePlayer
     GoToIfUnset FLAG_RECEIVED_MT_CORONET_2F_BLACK_FLUTE, MtCoronet2F_TryAgainGiveBlackFlute
-    Message MtCoronet2F_Text_PleaseYouMustStopTeamGalactic
+    Message MtCoronet2F_Text_YouMustStopTeamGalactic
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 MtCoronet2F_TryAgainGiveBlackFlute:
-    Message MtCoronet2F_Text_PleaseStopTeamGalacticAllICanDoNowIsGiveYouThis
+    Message MtCoronet2F_Text_AllICanDoIsGiveThis
     SetVar VAR_0x8004, ITEM_BLACK_FLUTE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, MtCoronet2F_BagIsFullAgain
     Common_GiveItemQuantity
-    Call MtCoronet2F_PleaseYouMustStopTeamGalactic
+    Call MtCoronet2F_YouMustStopTeamGalactic
     ReleaseAll
     End
 

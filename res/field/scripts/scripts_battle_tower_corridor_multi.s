@@ -5,7 +5,7 @@
 
     ScriptEntry BattleTowerCorridorMulti_OnTransition
     ScriptEntry BattleTowerCorridorMulti_OnResume
-    ScriptEntry BattleTowerCorridorMulti_OnFrameEnterBattleRoom
+    ScriptEntry BattleTowerCorridorMulti_OnFrame_EnterBattleRoom
     ScriptEntryEnd
 
 BattleTowerCorridorMulti_OnTransition:
@@ -37,14 +37,14 @@ BattleTowerCorridorMulti_HidePlayerMoveCamera:
     MoveCamera 8, 0, 0
     Return
 
-BattleTowerCorridorMulti_OnFrameEnterBattleRoom:
+BattleTowerCorridorMulti_OnFrame_EnterBattleRoom:
     LockAll
     Call BattleTowerCorridorMulti_EnterCorridor
     Call BattleTowerCorridorMulti_WalkToBattleRoom
     Call BattleTowerCorridorMulti_EnterBattleRoom
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM, 0, 7, 5, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM, 7, 5, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

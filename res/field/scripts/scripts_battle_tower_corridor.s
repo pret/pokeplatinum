@@ -5,7 +5,7 @@
 
     ScriptEntry BattleTowerCorridorMulti_OnTransition
     ScriptEntry BattleTowerCorridorMulti_OnResume
-    ScriptEntry BattleTowerCorridorMulti_OnFrameEnterBattleRoom
+    ScriptEntry BattleTowerCorridorMulti_OnFrame_EnterBattleRoom
     ScriptEntryEnd
 
 BattleTowerCorridorMulti_OnTransition:
@@ -19,7 +19,7 @@ BattleTowerCorridorMulti_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-BattleTowerCorridorMulti_OnFrameEnterBattleRoom:
+BattleTowerCorridorMulti_OnFrame_EnterBattleRoom:
     LockAll
     Call BattleTowerCorridorMulti_EnterCorridor
     GetRandom VAR_RESULT, 4
@@ -32,7 +32,7 @@ BattleTowerCorridorMulti_OnFrameEnterBattleRoom:
 BattleTowerCorridor_WarpToBattleRoom:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM, 0, 7, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM, 7, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

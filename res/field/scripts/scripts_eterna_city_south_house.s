@@ -16,17 +16,17 @@ EternaCitySouthHouse_ProfOak:
     GoToIfSet FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS, EternaCitySouthHouse_TryReactivateRoamingLegendaryBirds
     GoToIfSet FLAG_RECEIVED_ETERNA_CITY_SOUTH_HOUSE_UPGRADE, EternaCitySouthHouse_PokedexRatingsCheckOak
     BufferPlayerName 0
-    Message EternaCitySouthHouse_Text_HowIsYourPokedexComingAlong
+    Message EternaCitySouthHouse_Text_HowIsYourPokedex
     CloseMessage
     ApplyMovement LOCALID_PROF_OAK, EternaCitySouthHouse_Movement_EmoteExclamationMark
     WaitMovement
-    Message EternaCitySouthHouse_Text_AnAcquaintanceFromKantoHasSentSomethingQuiteInteresting
+    Message EternaCitySouthHouse_Text_AcquaintanceSentSomething
     SetVar VAR_0x8004, ITEM_UPGRADE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaCitySouthHouse_BagIsFull
     Common_GiveItemQuantity
     SetFlag FLAG_RECEIVED_ETERNA_CITY_SOUTH_HOUSE_UPGRADE
-    Message EternaCitySouthHouse_Text_IUnderstandThereIsAPokemonThatEvolvesWhenItIsTradedWhileHoldingThatUpGrade
+    Message EternaCitySouthHouse_Text_PokemonThatEvolvesTradingWithUpgrade
     GoTo EternaCitySouthHouse_ActivateRoamingLegendaryBirds
     End
 
@@ -45,7 +45,7 @@ EternaCitySouthHouse_ActivateRoamingLegendaryBirds:
     ActivateRoamingPokemon ROAMING_SLOT_ZAPDOS
     ActivateRoamingPokemon ROAMING_SLOT_ARTICUNO
     SetFlag FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS
-    Message EternaCitySouthHouse_Text_IveHeardThatThereHaveBeenSightingsOfArticunoZapdosAndMoltres
+    Message EternaCitySouthHouse_Text_SightingsOfLegendaryBirds
     GoTo EternaCitySouthHouse_ProfOakEnd
     End
 
@@ -53,7 +53,7 @@ EternaCitySouthHouse_TryReactivateRoamingLegendaryBirds:
     CallIfEq VAR_ROAMING_MOLTRES_STATE, ROAMER_STATE_RESET, EternaCitySouthHouse_ReactivateRoamingMoltres
     CallIfEq VAR_ROAMING_ZAPDOS_STATE, ROAMER_STATE_RESET, EternaCitySouthHouse_ReactivateRoamingZapdos
     CallIfEq VAR_ROAMING_ARTICUNO_STATE, ROAMER_STATE_RESET, EternaCitySouthHouse_ReactivateRoamingArticuno
-    Message EternaCitySouthHouse_Text_ArticunoZapdosAndMoltresAreExtremelyRareEvenInKanto
+    Message EternaCitySouthHouse_Text_LegendaryBirdsExtremelyRare
     GoTo EternaCitySouthHouse_ProfOakEnd
     End
 
@@ -73,7 +73,7 @@ EternaCitySouthHouse_ReactivateRoamingArticuno:
     Return
 
 EternaCitySouthHouse_CaughtAllRoamingLegendaryBirds:
-    Message EternaCitySouthHouse_Text_YouveCaughtArticunoZapdosAndMoltresAllowMeToExamineYourPokedex
+    Message EternaCitySouthHouse_Text_YouveCaughtLegendaryBirds
     SetFlag FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS
     CallCommonScript 0x26E1
     End

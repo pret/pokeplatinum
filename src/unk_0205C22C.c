@@ -21,6 +21,7 @@
 #include "overlay005/ov5_021F600C.h"
 
 #include "comm_manager.h"
+#include "easy_chat_sentence.h"
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
@@ -33,7 +34,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
 #include "unk_0205B33C.h"
 #include "unk_020655F4.h"
 
@@ -249,8 +249,8 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
 
     GF_ASSERT(param0->playerAvatar != NULL);
 
-    v2 = Player_GetXPos(param0->playerAvatar);
-    v3 = Player_GetZPos(param0->playerAvatar);
+    v2 = PlayerAvatar_GetXPos(param0->playerAvatar);
+    v3 = PlayerAvatar_GetZPos(param0->playerAvatar);
 
     for (v1 = 0; v1 < 50; v1++) {
         v0 = MapObjMan_LocalMapObjByIndex(param1, v1 + 1);
@@ -321,7 +321,7 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
         }
     }
 
-    sub_0205C7BC(&param0->unk_0C[50], Player_MapObject(param0->playerAvatar));
+    sub_0205C7BC(&param0->unk_0C[50], PlayerAvatar_GetMapObject(param0->playerAvatar));
     sub_0205C6BC(&param0->unk_0C[50]);
 }
 
@@ -492,7 +492,7 @@ static void sub_0205C8DC(UnkStruct_0205C924 *param0)
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
 
-    Sentence_InitWithType(&param0->unk_14, 0);
+    EasyChatSentence_InitWithType(&param0->unk_14, EASY_CHAT_SENTENCE_TYPE_PRE_BATTLE);
 
     param0->unk_10 = 0;
     param0->unk_0C = 0;

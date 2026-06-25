@@ -6,9 +6,9 @@
 
     ScriptEntry TeamGalacticEternaBuilding1F_GruntM1
     ScriptEntry TeamGalacticEternaBuilding1F_GruntM2
-    ScriptEntry TeamGalacticEternaBuilding1F_Sign
+    ScriptEntry TeamGalacticEternaBuilding1F_BgSign
     ScriptEntry TeamGalacticEternaBuilding1F_Looker
-    ScriptEntry TeamGalacticEternaBuilding1F_OnFrameLooker
+    ScriptEntry TeamGalacticEternaBuilding1F_OnFrame_Looker
     ScriptEntry TeamGalacticEternaBuilding1F_WallBlockingRotomsRoom
     ScriptEntry TeamGalacticEternaBuilding1F_OnTransition
     ScriptEntryEnd
@@ -17,22 +17,22 @@ TeamGalacticEternaBuilding1F_OnTransition:
     End
 
 TeamGalacticEternaBuilding1F_GruntM1:
-    NPCMessage TeamGalacticEternaBuilding1F_Text_WelcomeToTeamGalacticAreYouHereToDonateYourPokemon
+    NPCMessage TeamGalacticEternaBuilding1F_Text_WelcomeToTeamGalactic
     End
 
 TeamGalacticEternaBuilding1F_GruntM2:
-    NPCMessage TeamGalacticEternaBuilding1F_Text_AsAGroupTeamGalacticHasItsSightsSetOnTheStarsNotOnThisWorld
+    NPCMessage TeamGalacticEternaBuilding1F_Text_SightsSetOnTheStars
     End
 
-TeamGalacticEternaBuilding1F_Sign:
-    EventMessage TeamGalacticEternaBuilding1F_Text_ThePathYouChoseLeadsToGlory
+TeamGalacticEternaBuilding1F_BgSign:
+    EventMessage TeamGalacticEternaBuilding1F_Text_PathLeadsToGlory
     End
 
 TeamGalacticEternaBuilding1F_Looker:
-    NPCMessage TeamGalacticEternaBuilding1F_Text_NowIHaveBeenConductingMyInvestigationIntoTeamGalactic
+    NPCMessage TeamGalacticEternaBuilding1F_Text_InvestigationIntoTeamGalactic
     End
 
-TeamGalacticEternaBuilding1F_OnFrameLooker:
+TeamGalacticEternaBuilding1F_OnFrame_Looker:
     LockAll
     ApplyMovement LOCALID_GRUNT_M_LOOKER, TeamGalacticEternaBuilding1F_Movement_LookerNoticeAndWalkToPlayer
     ApplyMovement LOCALID_PLAYER, TeamGalacticEternaBuilding1F_Movement_PlayerFaceLooker
@@ -50,7 +50,7 @@ TeamGalacticEternaBuilding1F_OnFrameLooker:
     SetFlag FLAG_UNK_0x0071
     SetVar VAR_TEAM_GALACTIC_ETERNA_BUILDING_1F_STATE, 1
     WaitTime 30, VAR_RESULT
-    Message TeamGalacticEternaBuilding1F_Text_IncidentallyYouAreAFirstRateTrainer
+    Message TeamGalacticEternaBuilding1F_Text_FirstRateTrainer
     ApplyMovement LOCALID_LOOKER, TeamGalacticEternaBuilding1F_Movement_LookerSpin
     WaitMovement
     ClearFlag FLAG_HIDE_TEAM_GALACTIC_ETERNA_BUILDING_1F_GRUNT_M_LOOKER
@@ -109,7 +109,7 @@ TeamGalacticEternaBuilding1F_WallBlockingRotomsRoom:
     WaitSE SEQ_SE_DP_W062
     FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
     WaitFadeScreen
-    Message TeamGalacticEternaBuilding1F_Text_ItsTheEntranceToASecretRoom
+    Message TeamGalacticEternaBuilding1F_Text_EntranceToASecretRoom
     WaitButton
     CloseMessage
     ReleaseAll

@@ -19,10 +19,9 @@ toplevel_includes = include_directories('.')
 ############################################################
 ###                    COMPILER FLAGS                    ###
 ############################################################
-c_args = [
+shared_args = [
     '-proc', 'arm946e',
     '-enum', 'int',
-    '-lang', 'c99',
     '-Cpp_exceptions', 'off',
     '-gccext,on',
     '-msgstyle', 'gcc',
@@ -38,26 +37,34 @@ c_args = [
 ]
 
 if get_option('revision') == '0'
-    c_args += [
+    shared_args += [
         '-DPOKEPLATINUM_REVISION=0'
     ]
 else
-    c_args += [
+    shared_args += [
         '-DPOKEPLATINUM_REVISION=1'
     ]
 endif
 
 if get_option('gdb_debugging')
-    c_args += [
+    shared_args += [
         '-O1,p',
 #        '-inline', 'off' todo: figure out why this makes the rom crash after the copyright screen
     ]
 else
-    c_args += '-O4,p'
+    shared_args += '-O4,p'
 endif
+
+c_args = shared_args + ['-lang', 'c99']
+cpp_args = shared_args + ['-RTTI', 'off']
 
 add_global_arguments(c_args,
     language: 'c',
+    native: false
+)
+
+add_global_arguments(cpp_args,
+    language: 'cpp',
     native: false
 )
 
@@ -181,6 +188,9 @@ trainer_ai_o = custom_target(
     depfile: '@BASENAME@.d',
 )
 
+libmslc = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a')
+libmslcpp = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C++/MSL_ARM/Lib/MSL_CPP_NITRO_Ai_LE.a')
+
 main = executable('main',
     sources: [
         pokeplatinum_c,
@@ -200,7 +210,7 @@ main = executable('main',
         libcrypto_public_includes,
         libgds_public_includes,
         libspl_public_includes,
-        ppw_public_includes,
+        ppwlobby_public_includes,
     ],
     dependencies: [
         nitrosdk_dep,
@@ -215,7 +225,11 @@ main = executable('main',
         libcrypto_static,
         libgds,
         libspl,
-        ppwlobby_libs
+        libmslc,
+        libmslcpp,
+        libdwcenc,
+        libdwcppwlobby,
+        libdwcilobby
     ],
     link_args: [
         link_args,

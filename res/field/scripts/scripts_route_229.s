@@ -39,7 +39,7 @@ Route229_BagIsFull:
     End
 
 Route229_ArrowSignpostResortArea:
-    ShowArrowSign Route229_Text_SignRt229ResortArea
+    ShowArrowSign Route229_Text_SignResortArea
     End
 
     .balign 4, 0

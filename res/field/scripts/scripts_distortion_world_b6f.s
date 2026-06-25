@@ -11,9 +11,9 @@
     ScriptEntry DistortionWorldB6F_Cynthia
     ScriptEntry DistortionWorldB6F_CynthiaPuzzleFinished
     ScriptEntry DistortionWorldB6F_WereGettingClose
-    ScriptEntry DistortionWorldB6F_TriggerMespritBoulderInPit
-    ScriptEntry DistortionWorldB6F_TriggerUxieBoulderInPit
-    ScriptEntry DistortionWorldB6F_TriggerAzelfBoulderInPit
+    ScriptEntry DistortionWorldB6F_CoordEvent_MespritBoulderInPit
+    ScriptEntry DistortionWorldB6F_CoordEvent_UxieBoulderInPit
+    ScriptEntry DistortionWorldB6F_CoordEvent_AzelfBoulderInPit
     ScriptEntry DistortionWorldB6F_BoulderPit
     ScriptEntryEnd
 
@@ -46,7 +46,7 @@ DistortionWorldB6F_WereGettingClose:
     NPCMessage DistortionWorldB6F_Text_WereGettingClose
     End
 
-DistortionWorldB6F_TriggerMespritBoulderInPit:
+DistortionWorldB6F_CoordEvent_MespritBoulderInPit:
     LockAll
     PlayCry SPECIES_MESPRIT
     Message DistortionWorldB6F_Text_MespritCry
@@ -58,7 +58,7 @@ DistortionWorldB6F_TriggerMespritBoulderInPit:
     ReleaseAll
     End
 
-DistortionWorldB6F_TriggerUxieBoulderInPit:
+DistortionWorldB6F_CoordEvent_UxieBoulderInPit:
     LockAll
     PlayCry SPECIES_UXIE
     Message DistortionWorldB6F_Text_UxieCry
@@ -70,7 +70,7 @@ DistortionWorldB6F_TriggerUxieBoulderInPit:
     ReleaseAll
     End
 
-DistortionWorldB6F_TriggerAzelfBoulderInPit:
+DistortionWorldB6F_CoordEvent_AzelfBoulderInPit:
     LockAll
     PlayCry SPECIES_AZELF
     Message DistortionWorldB6F_Text_AzelfCry

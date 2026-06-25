@@ -24,16 +24,16 @@
     ScriptEntry HearthomeCity_BabyInPram2
     ScriptEntry HearthomeCity_BlackBelt1
     ScriptEntry HearthomeCity_PokemonBreederF2
-    ScriptEntry HearthomeCity_TriggerBunearyAndKeira
+    ScriptEntry HearthomeCity_CoordEvent_BunearyAndKeira
     ScriptEntry HearthomeCity_MapSignpost
     ScriptEntry HearthomeCity_GymSignpost
-    ScriptEntry HearthomeCity_SignPokemonContestHall
-    ScriptEntry HearthomeCity_SignPokemonFanClub
+    ScriptEntry HearthomeCity_SignboardPokemonContestHall
+    ScriptEntry HearthomeCity_SignboardPokemonFanClub
     ScriptEntry HearthomeCity_ArrowSignpostWest
     ScriptEntry HearthomeCity_ArrowSignpostEast
-    ScriptEntry HearthomeCity_SignAmitySquareWestGate
-    ScriptEntry HearthomeCity_SignAmitySquareEastGate
-    ScriptEntry HearthomeCity_SignPoffinHouse
+    ScriptEntry HearthomeCity_SignboardAmitySquareWestGate
+    ScriptEntry HearthomeCity_SignboardAmitySquareEastGate
+    ScriptEntry HearthomeCity_SignboardPoffinHouse
     ScriptEntry HearthomeCity_GymGuide
     ScriptEntry HearthomeCity_BlackBelt2
     ScriptEntryEnd
@@ -42,15 +42,15 @@ HearthomeCity_OnTransition:
     End
 
 HearthomeCity_PokefanM2:
-    NPCMessage HearthomeCity_Text_TheyFoundAnEggAtTheDayCare
+    NPCMessage HearthomeCity_Text_FoundAnEggAtDayCare
     End
 
 HearthomeCity_Hiker2:
-    NPCMessage HearthomeCity_Text_TheyFindEggsInJohtoToo
+    NPCMessage HearthomeCity_Text_EggsInJohtoToo
     End
 
 HearthomeCity_Hiker3:
-    NPCMessage HearthomeCity_Text_SometimesEggsAreFoundAtTheDayCare
+    NPCMessage HearthomeCity_Text_SometimesEggsAtDayCare
     End
 
 HearthomeCity_PokefanM1:
@@ -58,7 +58,7 @@ HearthomeCity_PokefanM1:
     End
 
 HearthomeCity_PokemonBreederM1:
-    NPCMessage HearthomeCity_Text_AtTheLostTowerPeopleUnburdenThemselves
+    NPCMessage HearthomeCity_Text_PeopleUnburdenThemselves
     End
 
 HearthomeCity_BattleGirl1:
@@ -66,11 +66,11 @@ HearthomeCity_BattleGirl1:
     End
 
 HearthomeCity_BattleGirl2:
-    NPCMessage HearthomeCity_Text_IUsedAFireStoneToEvolve
+    NPCMessage HearthomeCity_Text_UsedFireStoneToEvolve
     End
 
 HearthomeCity_Hiker1:
-    NPCMessage HearthomeCity_Text_IWentForAStrollWithPachirisu
+    NPCMessage HearthomeCity_Text_StrollWithPachirisu
     End
 
 HearthomeCity_Pachirisu:
@@ -82,7 +82,7 @@ HearthomeCity_Fisherman:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0001, HearthomeCity_ItMakesMeHappy
-    Message HearthomeCity_Text_MayIShowYouToTheContestHall
+    Message HearthomeCity_Text_ShowYouToContestHall
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, HearthomeCity_IDoApologize
     Message HearthomeCity_Text_PleaseFollowMe
@@ -145,7 +145,7 @@ HearthomeCity_ThisIsTheContestHall:
     ReleaseAll
     End
 
-HearthomeCity_UnusedMovement:
+HearthomeCity_Movement_Unused:
     EmoteExclamationMark
     Delay16
     EndMovement
@@ -425,7 +425,7 @@ HearthomeCity_TalkToMeSomeOtherTime2:
     End
 
 HearthomeCity_PokemonBreederM2:
-    NPCMessage HearthomeCity_Text_WhatPokemonWillMyChildBefriend
+    NPCMessage HearthomeCity_Text_WhatWillMyChildBefriend
     End
 
 HearthomeCity_BabyInPram2:
@@ -440,7 +440,7 @@ HearthomeCity_PokemonBreederF2:
     NPCMessage HearthomeCity_Text_IdLikeToLiveInHearthome
     End
 
-HearthomeCity_TriggerBunearyAndKeira:
+HearthomeCity_CoordEvent_BunearyAndKeira:
     LockAll
     ApplyMovement LOCALID_PLAYER, HearthomeCity_Movement_PlayerExclamationMark
     WaitMovement
@@ -517,7 +517,7 @@ HearthomeCity_Movement_BunearyEnter:
     WalkFastWest 9
     EndMovement
 
-HearthomeCity_UnusedMovement2:
+HearthomeCity_Movement_Unused2:
     WalkFastEast 8
     EndMovement
 
@@ -536,14 +536,14 @@ HearthomeCity_MapSignpost:
     End
 
 HearthomeCity_GymSignpost:
-    ShowScrollingSign HearthomeCity_Text_SignHearthomeCityPokemonGym
+    ShowScrollingSign HearthomeCity_Text_SignPokemonGym
     End
 
-HearthomeCity_SignPokemonContestHall:
+HearthomeCity_SignboardPokemonContestHall:
     ShowLandmarkSign HearthomeCity_Text_SignPokemonContestHall
     End
 
-HearthomeCity_SignPokemonFanClub:
+HearthomeCity_SignboardPokemonFanClub:
     ShowLandmarkSign HearthomeCity_Text_SignPokemonFanClub
     End
 
@@ -555,16 +555,16 @@ HearthomeCity_ArrowSignpostEast:
     ShowArrowSign HearthomeCity_Text_SignRt209SolaceonTown
     End
 
-HearthomeCity_SignAmitySquareWestGate:
+HearthomeCity_SignboardAmitySquareWestGate:
     ShowLandmarkSign HearthomeCity_Text_SignAmitySquareWestGate
     End
 
-HearthomeCity_SignAmitySquareEastGate:
+HearthomeCity_SignboardAmitySquareEastGate:
     ShowLandmarkSign HearthomeCity_Text_SignAmitySquareEastGate
     End
 
-HearthomeCity_SignPoffinHouse:
-    ShowLandmarkSign HearthomeCity_Text_SignThePoffinHouse
+HearthomeCity_SignboardPoffinHouse:
+    ShowLandmarkSign HearthomeCity_Text_SignPoffinHouse
     End
 
 HearthomeCity_GymGuide:
@@ -576,7 +576,7 @@ HearthomeCity_Artist:
     End
 
 HearthomeCity_BlackBelt2:
-    NPCMessage HearthomeCity_Text_IPutMyVsSeekerThroughALot
+    NPCMessage HearthomeCity_Text_UsedVsSeekerALot
     End
 
     .balign 4, 0

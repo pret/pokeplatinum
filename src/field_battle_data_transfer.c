@@ -120,7 +120,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType)
 
     if (CommSys_IsInitialized() == TRUE) {
         for (i = 0; i < CommSys_ConnectedCount(); i++) {
-            dto->unk_178[i] = sub_020362F4(i);
+            dto->linkPlayerPositions[i] = sub_020362F4(i);
         }
         dto->networkID = CommSys_CurNetId();
     }
@@ -231,7 +231,7 @@ void FieldBattleDTO_CopyChatotCryToBattler(FieldBattleDTO *dto, const ChatotCry 
     ChatotCry_Copy(dto->chatotCries[battler], src);
 }
 
-void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *saveData, enum MapHeader mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn)
+void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *saveData, enum MapHeaderID mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
     Party *party = SaveData_GetParty(saveData);
@@ -497,7 +497,7 @@ static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fiel
 {
     PlayerData *player = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     dto->background = MapHeader_GetBattleBG(fieldSystem->location->mapId);
-    if (player->form == PLAYER_AVATAR_SURFING) {
+    if (player->playerState == PLAYER_AVATAR_SURFING) {
         dto->background = BACKGROUND_WATER;
     }
 

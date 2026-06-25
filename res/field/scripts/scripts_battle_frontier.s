@@ -3,7 +3,7 @@
 #include "res/field/events/events_battle_frontier.h"
 
 
-    ScriptEntry BattleFrontier_Unused1
+    ScriptEntry BattleFrontier_Dummy1
     ScriptEntry BattleFrontier_NinjaBoy
     ScriptEntry BattleFrontier_BlackBelt
     ScriptEntry BattleFrontier_Idol
@@ -26,20 +26,20 @@
     ScriptEntry BattleFrontier_Fisherman
     ScriptEntry BattleFrontier_TuberM
     ScriptEntry BattleFrontier_AttendantSouthwest
-    ScriptEntry BattleFrontier_Unused24
+    ScriptEntry BattleFrontier_ScratchOffCards_Unused
     ScriptEntry BattleFrontier_AttendantSoutheast
-    ScriptEntry BattleFrontier_SignBattleTower
-    ScriptEntry BattleFrontier_SignBattleHall
-    ScriptEntry BattleFrontier_SignBattleCastle
-    ScriptEntry BattleFrontier_SignBattleArcade
-    ScriptEntry BattleFrontier_SignBattleFactory
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleTower
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleHall
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleCastle
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleArcade
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleFactory
     ScriptEntry BattleFrontier_StatueWest
     ScriptEntry BattleFrontier_StatueEast
     ScriptEntry BattleFrontier_ScaleModel
-    ScriptEntry BattleFrontier_TriggerEnterBattleHall
-    ScriptEntry BattleFrontier_TriggerEnterBattleCastle
-    ScriptEntry BattleFrontier_TriggerEnterBattleArcade
-    ScriptEntry BattleFrontier_TriggerEnterBattleFactory
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleHall
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleCastle
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleArcade
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleFactory
     ScriptEntry BattleFrontier_OnTransition
     ScriptEntryEnd
 
@@ -152,7 +152,7 @@ BattleFrontier_AttendantSouthwest:
     ReleaseAll
     End
 
-BattleFrontier_Unused24:
+BattleFrontier_ScratchOffCards_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -175,23 +175,23 @@ BattleFrontier_AttendantSoutheast:
     ReleaseAll
     End
 
-BattleFrontier_SignBattleTower:
+BattleFrontier_TrainerTipsSignpostBattleTower:
     ShowLandmarkSign BattleFrontier_Text_SignBattleTower
     End
 
-BattleFrontier_SignBattleHall:
+BattleFrontier_TrainerTipsSignpostBattleHall:
     ShowLandmarkSign BattleFrontier_Text_SignBattleHall
     End
 
-BattleFrontier_SignBattleCastle:
+BattleFrontier_TrainerTipsSignpostBattleCastle:
     ShowLandmarkSign BattleFrontier_Text_SignBattleCastle
     End
 
-BattleFrontier_SignBattleArcade:
+BattleFrontier_TrainerTipsSignpostBattleArcade:
     ShowLandmarkSign BattleFrontier_Text_SignBattleArcade
     End
 
-BattleFrontier_SignBattleFactory:
+BattleFrontier_TrainerTipsSignpostBattleFactory:
     ShowLandmarkSign BattleFrontier_Text_SignBattleFactory
     End
 
@@ -207,14 +207,14 @@ BattleFrontier_ScaleModel:
     EventMessage BattleFrontier_Text_ScaleModelBattleFrontier
     End
 
-BattleFrontier_TriggerEnterBattleHall:
+BattleFrontier_CoordEvent_EnterBattleHall:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleHall
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_HALL, 0, 25, 9, DIR_WEST
+    Warp MAP_HEADER_BATTLE_HALL, 25, 9, DIR_WEST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -224,14 +224,14 @@ BattleFrontier_Movement_PlayerEnterBattleHall:
     WalkFastWest 5
     EndMovement
 
-BattleFrontier_TriggerEnterBattleCastle:
+BattleFrontier_CoordEvent_EnterBattleCastle:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleCastle
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_CASTLE, 0, 21, 9, DIR_WEST
+    Warp MAP_HEADER_BATTLE_CASTLE, 21, 9, DIR_WEST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -241,14 +241,14 @@ BattleFrontier_Movement_PlayerEnterBattleCastle:
     WalkFastWest 6
     EndMovement
 
-BattleFrontier_TriggerEnterBattleArcade:
+BattleFrontier_CoordEvent_EnterBattleArcade:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleArcade
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_ARCADE, 0, 1, 6, DIR_EAST
+    Warp MAP_HEADER_BATTLE_ARCADE, 1, 6, DIR_EAST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -258,14 +258,14 @@ BattleFrontier_Movement_PlayerEnterBattleArcade:
     WalkFastEast 5
     EndMovement
 
-BattleFrontier_TriggerEnterBattleFactory:
+BattleFrontier_CoordEvent_EnterBattleFactory:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleFactory
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_FACTORY, 0, 1, 7, DIR_EAST
+    Warp MAP_HEADER_BATTLE_FACTORY, 1, 7, DIR_EAST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -275,7 +275,7 @@ BattleFrontier_Movement_PlayerEnterBattleFactory:
     WalkFastEast 6
     EndMovement
 
-BattleFrontier_Unused1:
+BattleFrontier_Dummy1:
     End
 
     .balign 4, 0

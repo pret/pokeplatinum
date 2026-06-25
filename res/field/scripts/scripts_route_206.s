@@ -44,15 +44,15 @@ Route206_ForceBicycling:
     Return
 
 Route206_Hiker:
-    NPCMessage Route206_Text_IHeardThereWereTwoCavesOnRoute206
+    NPCMessage Route206_Text_TwoCavesOnRoute206
     End
 
 Route206_ArrowSignpostEternaCity:
-    ShowArrowSign Route206_Text_Rt206EternaCity
+    ShowArrowSign Route206_Text_SignEternaCity
     End
 
 Route206_ArrowSignpostOreburghCity:
-    ShowArrowSign Route206_Text_Rt206OreburghCity
+    ShowArrowSign Route206_Text_SignOreburghCity
     End
 
     .balign 4, 0

@@ -14,21 +14,21 @@ SolaceonRuinsRoom2_Hiker:
     GoToIfSet FLAG_DID_NOT_LOAN_HM_DEFOG, SolaceonRuinsRoom2_AskLoanHMDefog
     CheckItem ITEM_HM05, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, SolaceonRuinsRoom2_PlayerHasHMDefog
-    Message SolaceonRuinsRoom2_Text_HMDefogIsInTheseRuins
+    Message SolaceonRuinsRoom2_Text_HMDefogInRuins
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 SolaceonRuinsRoom2_PlayerHasHMDefog:
-    Message SolaceonRuinsRoom2_Text_HMDefogIsInTheseRuins2
+    Message SolaceonRuinsRoom2_Text_HMDefogInRuins2
     GoTo SolaceonRuinsRoom2_AskLoanHMDefog
     End
 
 SolaceonRuinsRoom2_AskLoanHMDefog:
     ApplyMovement LOCALID_HIKER, SolaceonRuinsRoom2_Movement_HikerExclamationMark
     WaitMovement
-    Message SolaceonRuinsRoom2_Text_CanYouLoanHMDefogToMe
+    Message SolaceonRuinsRoom2_Text_CanYouLoanHMDefog
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, SolaceonRuinsRoom2_LoanHMDefog
     GoToIfEq VAR_RESULT, MENU_NO, SolaceonRuinsRoom2_DontLoanHMDefog
@@ -53,7 +53,7 @@ SolaceonRuinsRoom2_BagIsFull:
 
 SolaceonRuinsRoom2_DontLoanHMDefog:
     SetFlag FLAG_DID_NOT_LOAN_HM_DEFOG
-    Message SolaceonRuinsRoom2_Text_ItsNotLikeItsGoingToWearOut
+    Message SolaceonRuinsRoom2_Text_ItsNotLikeItWearsOut
     WaitButton
     CloseMessage
     ReleaseAll

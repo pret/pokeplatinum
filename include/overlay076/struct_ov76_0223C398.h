@@ -38,7 +38,7 @@ typedef struct {
     TouchScreenActions *unk_F8;
     TouchScreenRect unk_FC[21];
     YesNoTouchMenu *unk_150;
-    UnkStruct_ov12_02235FE0 *unk_154;
+    BallCapsuleSealEffect *unk_154;
     BallRotation *unk_158;
     G3DPipelineBuffers *unk_15C;
     UnkStruct_02012744 *unk_160;

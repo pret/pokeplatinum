@@ -4,10 +4,10 @@
 #include "res/field/events/events_resort_area_ribbon_syndicate_elevator.h"
 
 
-    ScriptEntry ResortAreaRibbonSyndicateElevator_TalkElevatorOperator
+    ScriptEntry ResortAreaRibbonSyndicateElevator_Receptionist
     ScriptEntryEnd
 
-ResortAreaRibbonSyndicateElevator_TalkElevatorOperator:
+ResortAreaRibbonSyndicateElevator_Receptionist:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer

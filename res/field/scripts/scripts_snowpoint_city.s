@@ -5,15 +5,15 @@
 
     ScriptEntry SnowpointCity_OnTransition
     ScriptEntry SnowpointCity_TempleGuard
-    ScriptEntry SnowpointCity_TriggerTempleGuard
+    ScriptEntry SnowpointCity_CoordEvent_TempleGuard
     ScriptEntry SnowpointCity_Candice
     ScriptEntry SnowpointCity_AceTrainerSnowF
     ScriptEntry SnowpointCity_SnowpointNPCF1
     ScriptEntry SnowpointCity_SnowpointNPCF2
     ScriptEntry SnowpointCity_SnowpointNPCM
     ScriptEntry SnowpointCity_Sailor
-    ScriptEntry SnowpointCity_MapSign
-    ScriptEntry SnowpointCity_GymSign
+    ScriptEntry SnowpointCity_MapSignpost
+    ScriptEntry SnowpointCity_GymSignpost
     ScriptEntry SnowpointCity_SailorSSSpiral
     ScriptEntryEnd
 
@@ -25,7 +25,7 @@ SnowpointCity_HideCandice:
     SetFlag FLAG_HIDE_SNOWPOINT_CITY_CANDICE
     End
 
-SnowpointCity_TriggerTempleGuard:
+SnowpointCity_CoordEvent_TempleGuard:
     LockAll
     ApplyMovement LOCALID_TEMPLE_GUARD, SnowpointCity_Movement_TempleGuardWalkOnSpotWest
     WaitMovement
@@ -168,11 +168,11 @@ SnowpointCity_Sailor:
     NPCMessage SnowpointCity_Text_NothingExceptionalHere
     End
 
-SnowpointCity_MapSign:
+SnowpointCity_MapSignpost:
     ShowMapSign SnowpointCity_Text_MapSign
     End
 
-SnowpointCity_GymSign:
+SnowpointCity_GymSignpost:
     ShowScrollingSign SnowpointCity_Text_SignPokemonGym
     End
 

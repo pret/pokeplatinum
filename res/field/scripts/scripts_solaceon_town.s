@@ -9,12 +9,12 @@
     ScriptEntry SolaceonTown_Cowgirl2
     ScriptEntry SolaceonTown_Rancher2
     ScriptEntry SolaceonTown_RuinManiac
-    ScriptEntry SolaceonTown_MapSign
-    ScriptEntry SolaceonTown_SignPokemonDayCare
-    ScriptEntry SolaceonTown_SignPokemonNewsPress
+    ScriptEntry SolaceonTown_MapSignpost
+    ScriptEntry SolaceonTown_SignboardPokemonDayCare
+    ScriptEntry SolaceonTown_SignboardPokemonNewsPress
     ScriptEntry SolaceonTown_OnTransition
     ScriptEntry SolaceonTown_OnResume
-    ScriptEntry SolaceonTown_TriggerRival
+    ScriptEntry SolaceonTown_CoordEvent_Rival
     ScriptEntryEnd
 
 SolaceonTown_OnResume:
@@ -37,15 +37,15 @@ SolaceonTown_Cowgirl1:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfBadgeAcquired BADGE_ID_RELIC, SolaceonTown_TakeATourThroughTheRuins
-    Message SolaceonTown_Text_TakeItEasySlowAndCasual
+    GoToIfBadgeAcquired BADGE_ID_RELIC, SolaceonTown_TakeATour
+    Message SolaceonTown_Text_TakeItEasy
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-SolaceonTown_TakeATourThroughTheRuins:
-    Message SolaceonTown_Text_TakeATourThroughTheRuins
+SolaceonTown_TakeATour:
+    Message SolaceonTown_Text_TakeATour
     WaitButton
     CloseMessage
     ReleaseAll
@@ -56,11 +56,11 @@ SolaceonTown_Twin:
     End
 
 SolaceonTown_Cowgirl2:
-    NPCMessage SolaceonTown_Text_EverySundayIVisitTheLostTower
+    NPCMessage SolaceonTown_Text_IVisitTheLostTower
     End
 
 SolaceonTown_Rancher2:
-    NPCMessage SolaceonTown_Text_OverTimeTheTownCameToBe
+    NPCMessage SolaceonTown_Text_UsedToBeNothing
     End
 
 SolaceonTown_RuinManiac:
@@ -68,10 +68,10 @@ SolaceonTown_RuinManiac:
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SolaceonTown_EachPokemonHasItsOwnHistory
+    GoToIfEq VAR_RESULT, TRUE, SolaceonTown_EachPokemonOwnHistory
     GetLocalDexSeenCount VAR_RESULT
-    GoToIfLt VAR_RESULT, 50, SolaceonTown_IfYoureCompetentYoudHaveMetFiftyPokemon
-    Message SolaceonTown_Text_ThisHeresAPoketchAppPokemonHistory
+    GoToIfLt VAR_RESULT, 50, SolaceonTown_IfCompetentMetFiftyPokemon
+    Message SolaceonTown_Text_PoketchAppPokemonHistory
     SetVar VAR_0x8004, POKETCH_APPID_POKEMONHISTORY
     Common_GivePoketchApp
     WaitButton
@@ -79,39 +79,39 @@ SolaceonTown_RuinManiac:
     ReleaseAll
     End
 
-SolaceonTown_IfYoureCompetentYoudHaveMetFiftyPokemon:
-    Message SolaceonTown_Text_IfYoureCompetentYoudHaveMetFiftyPokemon
+SolaceonTown_IfCompetentMetFiftyPokemon:
+    Message SolaceonTown_Text_IfCompetentMetFiftyPokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-SolaceonTown_EachPokemonHasItsOwnHistory:
-    Message SolaceonTown_Text_EachPokemonHasItsOwnHistory
+SolaceonTown_EachPokemonOwnHistory:
+    Message SolaceonTown_Text_EachPokemonOwnHistory
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-SolaceonTown_MapSign:
+SolaceonTown_MapSignpost:
     ShowMapSign SolaceonTown_Text_MapSign
     End
 
-SolaceonTown_SignPokemonDayCare:
+SolaceonTown_SignboardPokemonDayCare:
     ShowLandmarkSign SolaceonTown_Text_SignPokemonDayCare
     End
 
-SolaceonTown_SignPokemonNewsPress:
+SolaceonTown_SignboardPokemonNewsPress:
     ShowLandmarkSign SolaceonTown_Text_SignPokemonNewsPress
     End
 
-SolaceonTown_TriggerRival:
+SolaceonTown_CoordEvent_Rival:
     LockAll
     ApplyMovement LOCALID_PLAYER, SolaceonTown_Movement_PlayerNoticeRival
     WaitMovement
     Common_SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    SetObjectEventPos LOCALID_RIVAL, VAR_0x8004, 0x295
+    SetObjectEventPos LOCALID_RIVAL, VAR_0x8004, 661
     ClearFlag FLAG_HIDE_SOLACEON_TOWN_RIVAL
     AddObject LOCALID_RIVAL
     LockObject LOCALID_RIVAL

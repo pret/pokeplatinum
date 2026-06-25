@@ -4,26 +4,26 @@
 
 
     ScriptEntry Route218GateToCanalaveCity_Policeman
-    ScriptEntry Route218GateToCanalaveCity_TriggerScientistM
+    ScriptEntry Route218GateToCanalaveCity_CoordEvent_ScientistM
     ScriptEntryEnd
 
-Route218GateToCanalaveCity_TriggerScientistM:
+Route218GateToCanalaveCity_CoordEvent_ScientistM:
     LockAll
     Call Route218GateToCanalaveCity_ScientistMWalkToPlayer
     BufferPlayerName 0
     BufferCounterpartName 1
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, Route218GateToCanalaveCity_UpgradeyourPokedexMale
-    GoTo Route218GateToCanalaveCity_UpgradeyourPokedexFemale
+    GoToIfEq VAR_RESULT, GENDER_MALE, Route218GateToCanalaveCity_UpgradeYourPokedexMale
+    GoTo Route218GateToCanalaveCity_UpgradeYourPokedexFemale
     End
 
-Route218GateToCanalaveCity_UpgradeyourPokedexMale:
-    Message Route218GateToCanalaveCity_Text_UpgradeyourPokedexMale
+Route218GateToCanalaveCity_UpgradeYourPokedexMale:
+    Message Route218GateToCanalaveCity_Text_UpgradeYourPokedexMale
     GoTo Route218GateToCanalaveCity_UpgradePokdex
     End
 
-Route218GateToCanalaveCity_UpgradeyourPokedexFemale:
-    Message Route218GateToCanalaveCity_Text_UpgradeyourPokedexFemale
+Route218GateToCanalaveCity_UpgradeYourPokedexFemale:
+    Message Route218GateToCanalaveCity_Text_UpgradeYourPokedexFemale
     GoTo Route218GateToCanalaveCity_UpgradePokdex
     End
 

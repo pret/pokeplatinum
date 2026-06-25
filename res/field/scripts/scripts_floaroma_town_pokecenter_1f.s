@@ -14,26 +14,26 @@ FloaromaTownPokecenter1F_Nurse:
     End
 
 FloaromaTownPokecenter1F_PokefanM:
-    NPCMessage FloaromaTownPokecenter1F_Text_IfYouveGotPokemonWithYouItsSafeToGoOffTravelingAlone
+    NPCMessage FloaromaTownPokecenter1F_Text_WithPokemonSafeToTravelAlone
     End
 
 FloaromaTownPokecenter1F_BattleGirl:
-    NPCMessage FloaromaTownPokecenter1F_Text_IHadABattleTheOtherDayAndMyPokemonsHPGotLow
+    NPCMessage FloaromaTownPokecenter1F_Text_MyPokemonsHPGotLow
     End
 
 FloaromaTownPokecenter1F_AceTrainerF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, FloaromaTownPokecenter1F_ItsALongWayFromHereToEternaCity
-    Message FloaromaTownPokecenter1F_Text_ThereveBeenProblemsWithTheElectricPowerLately
+    GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, FloaromaTownPokecenter1F_LongWayToEternaCity
+    Message FloaromaTownPokecenter1F_Text_ProblemsWithElectricPower
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-FloaromaTownPokecenter1F_ItsALongWayFromHereToEternaCity:
-    Message FloaromaTownPokecenter1F_Text_ItsALongWayFromHereToEternaCity
+FloaromaTownPokecenter1F_LongWayToEternaCity:
+    Message FloaromaTownPokecenter1F_Text_LongWayToEternaCity
     WaitButton
     CloseMessage
     ReleaseAll

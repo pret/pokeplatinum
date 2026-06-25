@@ -3,13 +3,13 @@
 #include "res/field/events/events_route_227.h"
 
 
-    ScriptEntry Route227_TriggerWakeRival
+    ScriptEntry Route227_CoordEvent_WakeRival
     ScriptEntry Route227_ArrowSignpostStarkMountain
-    ScriptEntry Route227_TriggerBuck
+    ScriptEntry Route227_CoordEvent_Buck
     ScriptEntry Route227_Buck
     ScriptEntryEnd
 
-Route227_TriggerWakeRival:
+Route227_CoordEvent_WakeRival:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 739, Route227_PlayerWalkWestOnSpotNorth
@@ -86,7 +86,7 @@ Route227_Movement_PlayerWatchRivalLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-Route227_UnusedMovement:
+Route227_Movement_Unused:
     WalkOnSpotNormalNorth
     EndMovement
 
@@ -98,7 +98,7 @@ Route227_Movement_PlayerWalkWestWatchWakeLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-Route227_UnusedMovement2:
+Route227_Movement_Unused2:
     Delay8
     WalkOnSpotNormalWest
     Delay4
@@ -131,7 +131,7 @@ Route227_Movement_RivalLeave:
     WalkFastSouth 9
     EndMovement
 
-Route227_UnusedMovement3:
+Route227_Movement_Unused3:
     WalkFastSouth 9
     EndMovement
 
@@ -151,12 +151,12 @@ Route227_Movement_WakeWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-Route227_UnusedMovement4:
+Route227_Movement_Unused4:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
-Route227_UnusedMovement5:
+Route227_Movement_Unused5:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -166,19 +166,19 @@ Route227_Movement_WakeLeave:
     WalkNormalSouth 9
     EndMovement
 
-Route227_UnusedMovement6:
+Route227_Movement_Unused6:
     WalkNormalSouth 9
     EndMovement
 
 Route227_ArrowSignpostStarkMountain:
-    ShowArrowSign Route227_Text_SignRt227StarkMountain
+    ShowArrowSign Route227_Text_SignStarkMountain
     End
 
 Route227_Buck:
     NPCMessage Route227_Text_YoureInCharge
     End
 
-Route227_TriggerBuck:
+Route227_CoordEvent_Buck:
     LockAll
     ApplyMovement LOCALID_BUCK, Route227_Movement_BuckNoticePlayer
     ApplyMovement LOCALID_PLAYER, Route227_Movement_PlayerFaceBuck
@@ -216,7 +216,7 @@ Route227_Movement_PlayerFaceBuck:
     FaceNorth
     EndMovement
 
-Route227_UnusedMovement7:
+Route227_Movement_Unused7:
     Delay8
     WalkOnSpotNormalEast
     EndMovement

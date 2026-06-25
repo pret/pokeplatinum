@@ -55,11 +55,11 @@
 #include "tv_segment.h"
 #include "underground.h"
 #include "unk_0202C9F4.h"
-#include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"
 #include "vars_flags.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/graphics/shop_menu/shop_gra.naix"
 #include "res/graphics/sprite_templates/shop_menu.h"
@@ -271,7 +271,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
 
 static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem)
 {
-    int dir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int dir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     if ((dir == DIR_NORTH) || (dir == DIR_SOUTH) || (dir == DIR_EAST)) {
         return 10;
@@ -1393,7 +1393,7 @@ static u16 Shop_GetItemBPPrice(ShopMenu *shopMenu, u16 itemId)
 static u32 Shop_GetCurrentMoney(ShopMenu *shopMenu)
 {
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
-        return BattlePoints_ApplyFuncAndGet(sub_0202D750(shopMenu->saveData), 0, BATTLE_POINTS_FUNC_NONE);
+        return WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(shopMenu->saveData), 0, BATTLE_POINTS_FUNC_NONE);
     } else {
         return TrainerInfo_Money(shopMenu->trainerInfo);
     }
@@ -1402,7 +1402,7 @@ static u32 Shop_GetCurrentMoney(ShopMenu *shopMenu)
 static void Shop_TakeMoney(ShopMenu *shopMenu, u32 amount)
 {
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
-        BattlePoints_ApplyFuncAndGet(sub_0202D750(shopMenu->saveData), amount, BATTLE_POINTS_FUNC_SUB);
+        WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(shopMenu->saveData), amount, BATTLE_POINTS_FUNC_SUB);
     } else {
         TrainerInfo_TakeMoney(shopMenu->trainerInfo, amount);
     }

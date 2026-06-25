@@ -134,12 +134,12 @@ void FieldBGM_ClearOverride(FieldSystem *fieldSystem)
     *bgm = SEQ_NONE;
 }
 
-u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeader mapID)
+u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapID)
 {
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
 
-    if (playerState == PLAYER_STATE_SURFING) {
+    if (playerState == PLAYER_AVATAR_SURFING) {
         switch (mapID) {
         case MAP_HEADER_DISTORTION_WORLD_1F:
         case MAP_HEADER_DISTORTION_WORLD_B1F:
@@ -201,8 +201,8 @@ static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int head
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location *location = FieldOverworldState_GetPrevLocation(fieldState);
 
-    x = Player_GetXPos(fieldSystem->playerAvatar);
-    y = Player_GetZPos(fieldSystem->playerAvatar);
+    x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    y = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     if (headerID != MAP_HEADER_ROUTE_206) {
         return SEQ_NONE;
@@ -245,7 +245,7 @@ BOOL FieldBGM_TryFadeOut(FieldSystem *fieldSystem, u16 bgmID, int mode)
     FieldBGM_GetFadeOutAndWaitFrames(fieldSystem, mode, &fadeOutFrames, &waitFrames);
 
     // Yes, it's checking bike twice. Maybe there was a point were Acro and Mach Bikes were still a thing?
-    if ((playerState == PLAYER_STATE_CYCLING) || (playerState == PLAYER_STATE_CYCLING)) {
+    if ((playerState == PLAYER_AVATAR_CYCLING) || (playerState == PLAYER_AVATAR_CYCLING)) {
         Sound_FadeToBGM(4, bgmID, fadeOutFrames, waitFrames, 30, 0, NULL);
     } else {
         Sound_FadeOutAndPlayBGM(4, bgmID, fadeOutFrames, waitFrames, 0, NULL);

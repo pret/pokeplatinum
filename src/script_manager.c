@@ -39,7 +39,7 @@
     Entry(SCRIPT_ID_OFFSET_TV_BROADCAST,                   scripts_tv_broadcast,                   TEXT_BANK_TV_PROGRAMS) \
     Entry(SCRIPT_ID_OFFSET_FIELD_MOVES,                    scripts_field_moves,                    TEXT_BANK_FIELD_MOVES) \
     Entry(SCRIPT_ID_OFFSET_POKEDEX_RATINGS,                scripts_pokedex_ratings,                TEXT_BANK_POKEDEX_RATINGS) \
-    Entry(9900,                                            scripts_unk_0397,                       TEXT_BANK_COMMON_STRINGS) \
+    Entry(SCRIPT_ID_OFFSET_UNUSED_0397,                    scripts_unused_0397,                    TEXT_BANK_COMMON_STRINGS) \
     Entry(SCRIPT_ID_OFFSET_CONTESTS,                       scripts_contests,                       TEXT_BANK_CONTEST_COMMON) \
     Entry(SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS,              scripts_follower_partners,              TEXT_BANK_FOLLOWER_PARTNERS) \
     Entry(SCRIPT_ID_OFFSET_INIT_NEW_GAME,                  scripts_init_new_game,                  TEXT_BANK_COMMON_STRINGS) \
@@ -189,7 +189,7 @@ static void ScriptManager_Init(FieldSystem *fieldSystem, ScriptManager *scriptMa
 {
     u16 *targetID = ScriptManager_GetMemberPtr(scriptManager, SCRIPT_DATA_TARGET_OBJECT_ID);
 
-    scriptManager->playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    scriptManager->playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
     scriptManager->targetObject = object;
     scriptManager->scriptID = scriptID;
     scriptManager->saveType = saveType;
@@ -653,8 +653,8 @@ HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSyste
         return hiddenItems;
     }
 
-    playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     playerMinX = playerX - 7;
     playerMaxX = playerX + 7;
     playerMinZ = playerZ - 7;

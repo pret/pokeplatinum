@@ -4,8 +4,8 @@
 #include "res/field/events/events_canalave_city_harbor_inn.h"
 
     ScriptEntry CanalaveCityHarborInn_OnTransition
-    ScriptEntry CanalaveCityHarborInn_OnFrameSleep
-    ScriptEntry CanalaveCityHarborInn_OnFrameAwaken
+    ScriptEntry CanalaveCityHarborInn_OnFrame_Sleep
+    ScriptEntry CanalaveCityHarborInn_OnFrame_Awaken
     ScriptEntryEnd
 
 CanalaveCityHarborInn_OnTransition:
@@ -45,7 +45,7 @@ CanalaveCityWestHouse_TryStartDarkraiEvent:
 CanalaveCityHarborInn_OnTransitionEnd:
     End
 
-CanalaveCityHarborInn_OnFrameSleep:
+CanalaveCityHarborInn_OnFrame_Sleep:
     LockAll
     WaitTime 30, VAR_RESULT
     Message CanalaveCityHarborInn_Text_ReservationForYou
@@ -72,7 +72,7 @@ CanalaveCityHarborInn_OnFrameSleep:
     FadeScreenOut FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     WaitTime 120, VAR_RESULT
-    Warp MAP_HEADER_NEWMOON_ISLAND, 0, 152, 277, DIR_SOUTH
+    Warp MAP_HEADER_NEWMOON_ISLAND, 152, 277, DIR_SOUTH
     FadeScreenIn FADE_SCREEN_SPEED_SLOW
     WaitFadeScreen
     ReleaseAll
@@ -96,7 +96,7 @@ CanalaveCityHarborInn_Movement_GymGuideWalkToBed:
     WalkOnSpotNormalEast
     EndMovement
 
-CanalaveCityHarborInn_OnFrameAwaken:
+CanalaveCityHarborInn_OnFrame_Awaken:
     LockAll
     Call CanalaveCityHarborInn_ResetOrFinishDarkraiEvent
     ScrCmd_2B5 MAP_HEADER_CANALAVE_CITY, 58, 714

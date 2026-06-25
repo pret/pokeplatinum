@@ -7,7 +7,7 @@
     ScriptEntry PokemonMansionOffice_MrBacklot
     ScriptEntry PokemonMansionOffice_OldMan
     ScriptEntry PokemonMansionOffice_Policeman
-    ScriptEntry PokemonMansionOffice_TriggerBlockStatue
+    ScriptEntry PokemonMansionOffice_CoordEvent_BlockStatue
     ScriptEntry PokemonMansionOffice_Statue
     ScriptEntry PokemonMansionOffice_Book
     ScriptEntryEnd
@@ -267,7 +267,7 @@ PokemonMansionOffice_Movement_PolicemanFaceWest:
     FaceWest
     EndMovement
 
-PokemonMansionOffice_TriggerBlockStatue:
+PokemonMansionOffice_CoordEvent_BlockStatue:
     LockAll
     ApplyMovement LOCALID_POLICEMAN, PokemonMansionOffice_Movement_PolicemanFaceWest
     WaitMovement

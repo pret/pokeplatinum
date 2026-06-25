@@ -50,7 +50,7 @@
       "en_US": "PSYDUCK: Gaga guwawa!"
     },
     {
-      "id": "SnowpointCityPokecenter1F_Text_BattleAsThankYou",
+      "id": "SnowpointCityPokecenter1F_Text_GraceIntro_Unused",
       "en_US": [
         "Thank you for coming to Grace’s live\n",
         "show in Snowpoint!\r",
@@ -59,21 +59,21 @@
       ]
     },
     {
-      "id": "SnowpointCityPokecenter1F_Text_JoinMyFanClub",
+      "id": "SnowpointCityPokecenter1F_Text_GraceBattleAccepted_Unused",
       "en_US": [
         "I’ll let you join my fan club if you can\n",
         "beat me!\r"
       ]
     },
     {
-      "id": "SnowpointCityPokecenter1F_Text_MySongIsNicer",
+      "id": "SnowpointCityPokecenter1F_Text_GraceBattleDeclined_Unused",
       "en_US": [
         "But my song!\n",
         "It’s nicer than that Crasher Wake’s!"
       ]
     },
     {
-      "id": "SnowpointCityPokecenter1F_Text_MyDreamIsTopIdol",
+      "id": "SnowpointCityPokecenter1F_Text_GracePostBattle_Unused",
       "en_US": [
         "My dream is to be the top Idol!\r",
         "To win everyone’s heart, I’ll sing my\n",

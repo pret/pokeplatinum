@@ -2,7 +2,7 @@
   "key": 5150,
   "messages": [
     {
-      "id": "SandgemTownCounterpartHouse1F_Text_SoThatRowanFellowIsBack",
+      "id": "SandgemTownCounterpartHouse1F_Text_RowanIsBack",
       "en_US": [
         "Ah, so that Rowan fellow is back?\n",
         "He’s quite the remarkable man.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "SandgemTownCounterpartHouse1F_Text_OhMyYouveGotANationalPokedex",
+      "id": "SandgemTownCounterpartHouse1F_Text_YouveGotANationalPokedex",
       "en_US": [
         "Oh, my!\n",
         "You’ve got a National Pokédex?\f",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "SandgemTownCounterpartHouse1F_Text_WowYoureDoingTheSameAsMyBigSister",
+      "id": "SandgemTownCounterpartHouse1F_Text_SameAsMyBigSister",
       "en_US": [
         "Who are you?\r",
         "...\r",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "SandgemTownCounterpartHouse1F_Text_WowYoureDoingTheSameAsMyBigBrother",
+      "id": "SandgemTownCounterpartHouse1F_Text_SameAsMyBigBrother",
       "en_US": [
         "Who are you?\r",
         "...\r",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "SandgemTownCounterpartHouse1F_Text_ThereWasNewsSayingThereIsAMassiveOutbreakOfPokemon",
+      "id": "SandgemTownCounterpartHouse1F_Text_MassiveOutbreakOfPokemon",
       "en_US": [
         "Oh, hi, {STRVAR_1 3, 0, 0}!\r",
         "There was news on TV saying there\n",
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "SandgemTownCounterpartHouse1F_Text_MaleTheresABunchOfThisPokemonAtThatLocation",
+      "id": "SandgemTownCounterpartHouse1F_Text_BunchOfPokemonAtLocationMale",
       "en_US": [
         "Let me see...\n",
         "What did that news say now...?\r",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "SandgemTownCounterpartHouse1F_Text_FemaleTheresABunchOfThisPokemonAtThatLocation",
+      "id": "SandgemTownCounterpartHouse1F_Text_BunchOfPokemonAtLocationFemale",
       "en_US": [
         "Let me see...\n",
         "What did that news say now...?\r",

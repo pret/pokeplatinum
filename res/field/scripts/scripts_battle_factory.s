@@ -5,10 +5,10 @@
 
 
     ScriptEntry BattleFactory_SingleAttendant
-    ScriptEntry BattleFactory_OnFrameResumeChallenge
-    ScriptEntry BattleFactory_OnFrameDidntSaveBeforeQuit
-    ScriptEntry BattleFactory_OnFrameChallengeEndedCompletedRound
-    ScriptEntry BattleFactory_OnFrameChallengeEnded
+    ScriptEntry BattleFactory_OnFrame_ResumeChallenge
+    ScriptEntry BattleFactory_OnFrame_DidntSaveBeforeQuit
+    ScriptEntry BattleFactory_OnFrame_ChallengeEndedCompletedRound
+    ScriptEntry BattleFactory_OnFrame_ChallengeEnded
     ScriptEntry BattleFactory_MultiAttendant
     ScriptEntry BattleFactory_PokemonBreederF
     ScriptEntry BattleFactory_Sailor
@@ -238,9 +238,9 @@ BattleFactory_StartChallenge:
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleFactory_WalkBackInvisiblyDoubleChallenge
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_WalkBackInvisiblyMultiChallenge
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
-    CreateJournalEvent LOCATION_EVENT_BATTLE_FACTORY, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_FACTORY
     WaitForTransition
-    ScrCmd_2C4 3
+    LaunchBattleFrontierScene FRONTIER_SCENE_FACTORY_CORRIDOR
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_EndCommunication
     ReturnToField
     FadeScreenIn
@@ -396,7 +396,7 @@ BattleFactory_ExplainMultiChallenge:
     Message BattleFactory_Text_ExplainMultiChallenge
     Return
 
-BattleFactory_OnFrameResumeChallenge:
+BattleFactory_OnFrame_ResumeChallenge:
     RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_BATTLE_FACTORY_LOBBY_LOAD_ACTION, 0
@@ -414,13 +414,13 @@ BattleFactory_SaveGame:
     WaitSE SEQ_SE_DP_SAVE
     Return
 
-BattleFactory_OnFrameDidntSaveBeforeQuit:
+BattleFactory_OnFrame_DidntSaveBeforeQuit:
     Message BattleFactory_Text_DidntSaveBeforeQuit
     ScrCmd_2C5 VAR_BATTLE_FACTORY_CHALLENGE_TYPE, VAR_BATTLE_FACTORY_CHALLENGE_LEVEL
     GoTo BattleFactory_EndChallenge
     End
 
-BattleFactory_OnFrameChallengeEndedCompletedRound:
+BattleFactory_OnFrame_ChallengeEndedCompletedRound:
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleFactory_IncrementTrainerScoreRoundCompleted
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleFactory_IncrementTrainerScoreRoundCompleted
     CallIfEq VAR_BATTLE_FACTORY_PRINT_STATE, 1, BattleFactory_EarnedSilverPrint
@@ -451,18 +451,18 @@ BattleFactory_EarnedGoldPrint:
     Common_CheckAllFrontierGoldPrintsObtained
     Return
 
-BattleFactory_OnFrameChallengeEnded:
+BattleFactory_OnFrame_ChallengeEnded:
     GoTo BattleFactory_EndChallenge
     End
 
     .balign 4, 0
-BattleFactory_UnusedMovement:
+BattleFactory_Movement_Unused:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth
     EndMovement
 
-BattleFactory_UnusedMovement2:
+BattleFactory_Movement_Unused2:
     WalkNormalNorth 2
     Delay8
     WalkNormalNorth

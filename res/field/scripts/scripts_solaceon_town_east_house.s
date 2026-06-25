@@ -24,16 +24,16 @@ SolaceonTownEastHouse_NinjaBoy:
 SolaceonTownEastHouse_CheckUnownForm:
     FindPartySlotWithSpecies VAR_0x8004, SPECIES_UNOWN
     GetPartyMonForm VAR_0x8004, VAR_0x8006
-    GoToIfEq VAR_MAP_LOCAL_0, VAR_0x8006, SolaceonTownEastHouse_IfYouGivePokemonLikeLettersIllGiveSeals
+    GoToIfEq VAR_MAP_LOCAL_0, VAR_0x8006, SolaceonTownEastHouse_IllGiveSealsForUnown
     GoTo SolaceonTownEastHouse_TryGiveSealsForUnownForm
 
 SolaceonTownEastHouse_TryGiveSealsForUnownForm:
     SetVar VAR_0x8007, 50
     AddVar VAR_0x8007, VAR_0x8006
     CountSealOccurence VAR_0x8007, VAR_RESULT
-    GoToIfEq VAR_RESULT, 99, SolaceonTownEastHouse_IfYouGivePokemonLikeLettersIllGiveSeals
+    GoToIfEq VAR_RESULT, 99, SolaceonTownEastHouse_IllGiveSealsForUnown
     BufferPartyMonSpecies 0, VAR_0x8004
-    Message SolaceonTownEastHouse_Text_ThatPokemonLooksJustLikeMySeals
+    Message SolaceonTownEastHouse_Text_PokemonLooksLikeMySeals
     SetVar VAR_0x8000, 10
     CountSealOccurence VAR_0x8007, VAR_RESULT
     GoToIfLe VAR_RESULT, 89, SolaceonTownEastHouse_GiveSealsForUnownForm
@@ -56,7 +56,7 @@ SolaceonTownEastHouse_TheSealsWerePutAway:
     ReleaseAll
     End
 
-SolaceonTownEastHouse_IfYouGivePokemonLikeLettersIllGiveSeals:
+SolaceonTownEastHouse_IllGiveSealsForUnown:
     Message SolaceonTownEastHouse_Text_GiveUnownForSeals
     WaitButton
     CloseMessage

@@ -2,20 +2,20 @@
 #include "res/text/bank/route_216.h"
 
 
-    ScriptEntry Route216_Unused
+    ScriptEntry Route216_CantRideBike_Unused
     ScriptEntry Route216_ArrowSignpostMtCoronet
-    ScriptEntry Route216_SignSnowboundLodge
+    ScriptEntry Route216_SignboardSnowboundLodge
     ScriptEntryEnd
 
-Route216_Unused:
+Route216_CantRideBike_Unused:
     NPCMessage Route216_Text_CantRideBikeOnSnow
     End
 
 Route216_ArrowSignpostMtCoronet:
-    ShowArrowSign Route216_Text_SignRt216MtCoronet
+    ShowArrowSign Route216_Text_SignMtCoronet
     End
 
-Route216_SignSnowboundLodge:
+Route216_SignboardSnowboundLodge:
     ShowLandmarkSign Route216_Text_SignSnowboundLodge
     End
 

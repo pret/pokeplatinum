@@ -52,8 +52,8 @@ static BOOL Task_UseVistaLighthouseBinoculars(FieldTask *taskMan)
 
     switch (binoculars->state) {
     case 0:
-        binoculars->xPos = Player_GetXPos(fieldSystem->playerAvatar);
-        binoculars->zPos = Player_GetZPos(fieldSystem->playerAvatar);
+        binoculars->xPos = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+        binoculars->zPos = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
         sub_02070428(fieldSystem, 1);
         FieldTransition_FadeOut(taskMan);
         binoculars->state++;
@@ -125,7 +125,7 @@ static BOOL Task_UseVistaLighthouseBinoculars(FieldTask *taskMan)
 
 static void VistaLighthouseBinoculars_SetPlayerHidden(PlayerAvatar *playerAvatar, BOOL hidden)
 {
-    MapObject *mapObj = Player_MapObject(playerAvatar);
+    MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
     MapObject_SetHidden(mapObj, hidden);
 }
 

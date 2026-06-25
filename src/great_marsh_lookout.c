@@ -82,7 +82,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
         lookout->state = 4;
         break;
     case 4: {
-        MapObject *playerAvatar = Player_MapObject(fieldSystem->playerAvatar);
+        MapObject *playerAvatar = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         lookout->numCycles++;
 

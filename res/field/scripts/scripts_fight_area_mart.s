@@ -3,7 +3,7 @@
 
 
     ScriptEntry FightAreaMart_CommonVendor
-    ScriptEntry FightAreaMart_Unused
+    ScriptEntry FightAreaMart_Dummy2
     ScriptEntry FightAreaMart_Socialite
     ScriptEntry FightAreaMart_Clown
     ScriptEntryEnd
@@ -12,7 +12,7 @@ FightAreaMart_CommonVendor:
     PokeMartCommonWithGreeting
     End
 
-FightAreaMart_Unused:
+FightAreaMart_Dummy2:
     End
 
 FightAreaMart_Socialite:

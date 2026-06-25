@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/string.h"
 #include "generated/size_contest_results.h"
-#include "generated/string_padding_mode.h"
 
 #include "field/field_system.h"
 

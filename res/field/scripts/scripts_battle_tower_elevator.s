@@ -1,12 +1,13 @@
 #include "macros/scrcmd.inc"
+#include "constants/battle_frontier.h"
 #include "res/field/events/events_battle_tower_elevator.h"
 #include "generated/object_events_gfx.h"
 
 
     ScriptEntry BattleTowerElevator_OnTransition
-    ScriptEntry BattleTowerElevator_OnFrameEnterBattleRoom
-    ScriptEntry BattleTowerElevator_OnFrameEnterMultiBattleRoom
-    ScriptEntry BattleTowerElevator_OnFrameEnterBattleSalon
+    ScriptEntry BattleTowerElevator_OnFrame_EnterBattleRoom
+    ScriptEntry BattleTowerElevator_OnFrame_EnterMultiBattleRoom
+    ScriptEntry BattleTowerElevator_OnFrame_EnterBattleSalon
     ScriptEntryEnd
 
 BattleTowerElevator_OnTransition:
@@ -45,24 +46,24 @@ BattleTowerElevator_BattleRoomCheckWiFi:
     GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_WIFI, BattleTowerElevator_WiFiBattleRoom
     GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_5, BattleTowerElevator_WiFiBattleRoom
     WaitForTransition
-    ScrCmd_2C4 5
+    LaunchBattleFrontierScene FRONTIER_SCENE_TOWER_CORRIDOR
     ReturnToField
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 15, 6, DIR_NORTH
     End
 
 BattleTowerElevator_MultiBattleRoom:
     FadeScreenOut
     WaitFadeScreen
     WaitForTransition
-    ScrCmd_2C4 6
+    LaunchBattleFrontierScene FRONTIER_SCENE_TOWER_MULTI_CORRIDOR
     ReturnToField
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 11, 6, DIR_NORTH
     End
 
 BattleTowerElevator_BattleSalon:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 2, DIR_SOUTH
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 8, 2, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -74,21 +75,21 @@ BattleTowerElevator_ElevatorAnimation:
     Call BattleTowerElevator_Exit
     Return
 
-BattleTowerElevator_OnFrameEnterBattleRoom:
+BattleTowerElevator_OnFrame_EnterBattleRoom:
     LockAll
     SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_UP
     Call BattleTowerElevator_ElevatorAnimation
     GoTo BattleTowerElevator_BattleRoomCheckWiFi
     End
 
-BattleTowerElevator_OnFrameEnterMultiBattleRoom:
+BattleTowerElevator_OnFrame_EnterMultiBattleRoom:
     LockAll
     SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_UP
     Call BattleTowerElevator_ElevatorAnimation
     GoTo BattleTowerElevator_MultiBattleRoom
     End
 
-BattleTowerElevator_OnFrameEnterBattleSalon:
+BattleTowerElevator_OnFrame_EnterBattleSalon:
     LockAll
     SetVar VAR_MAP_LOCAL_0, ELEVATOR_DIR_DOWN
     Call BattleTowerElevator_ElevatorAnimation
@@ -106,7 +107,7 @@ BattleTowerElevator_Exit:
     WaitMovement
     Return
 
-BattleTowerElevator_UnusedMovement:
+BattleTowerElevator_Movement_Unused:
     WalkNormalNorth 2
     FaceEast
     WalkNormalEast
@@ -139,9 +140,9 @@ BattleTowerElevator_Movement_PlayerExit:
 
 BattleTowerElevator_WiFiBattleRoom:
     WaitForTransition
-    ScrCmd_2C4 5
+    LaunchBattleFrontierScene FRONTIER_SCENE_TOWER_CORRIDOR
     ReturnToField
-    Warp MAP_HEADER_BATTLE_TOWER, 0, 19, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER, 19, 6, DIR_NORTH
     End
 
     .balign 4, 0

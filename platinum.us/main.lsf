@@ -56,8 +56,9 @@ Static main
 	Object main.nef.p/src_screen_scroll_manager.c.o
 	Object main.nef.p/src_particle_system.c.o
 	Object main.nef.p/src_colored_arrow.c.o
-	Object main.nef.p/src_unk_02014A84.c.o
-	Object main.nef.p/src_unk_02014D38.c.o
+	Object main.nef.p/src_easy_chat_sentence.c.o
+	Object main.nef.p/src_easy_chat_words.c.o
+	Object main.nef.p/src_password_word_bank.c.o
 	Object main.nef.p/src_software_sprite.c.o
 	Object main.nef.p/src_unk_0201567C.c.o
 	Object main.nef.p/src_poffin_types.c.o
@@ -130,7 +131,7 @@ Static main
 	Object main.nef.p/src_play_time.c.o
 	Object main.nef.p/src_chatot_cry.c.o
 	Object main.nef.p/src_game_records.c.o
-	Object main.nef.p/src_unk_0202D05C.c.o
+	Object main.nef.p/src_wifi_battle_tower_save.c.o
 	Object main.nef.p/src_unk_0202D778.c.o
 	Object main.nef.p/src_special_encounter.c.o
 	Object main.nef.p/src_global_trade.c.o
@@ -143,10 +144,10 @@ Static main
 	Object main.nef.p/src_save_catchrecords.c.o
 	Object main.nef.p/src_unk_0202F1D4.c.o
 	Object main.nef.p/src_unk_0202FF4C.c.o
-	Object main.nef.p/src_unk_02030108.c.o
+	Object main.nef.p/src_battle_hall_save.c.o
 	Object main.nef.p/src_unk_020302D0.c.o
 	Object main.nef.p/src_unk_02030494.c.o
-	Object main.nef.p/src_battle_frontier_stats.c.o
+	Object main.nef.p/src_battle_frontier_save.c.o
 	Object main.nef.p/src_battle_hall_win_records.c.o
 	Object main.nef.p/src_unk_02030A80.c.o
 	Object main.nef.p/src_unk_02030CE8.c.o
@@ -248,6 +249,7 @@ Static main
 	Object main.nef.p/src_field_message.c.o
 	Object main.nef.p/src_map_tile_behavior.c.o
 	Object main.nef.p/src_unk_0205DFC4.c.o
+	Object main.nef.p/src_battle_frontier_stats.c.o
 	Object main.nef.p/src_player_avatar.c.o
 	Object main.nef.p/src_unk_0205F180.c.o
 	Object main.nef.p/src_map_object.c.o
@@ -350,7 +352,7 @@ Static main
 	Object main.nef.p/src_unk_02099604.c.o
 	Object main.nef.p/src_unk_020996D0.c.o
 	Object main.nef.p/src_move_reminder_data.c.o
-	Object main.nef.p/src_unk_020998EC.c.o
+	Object main.nef.p/src_easy_chat_word_list.c.o
 	Object main.nef.p/src_poketch_memory.c.o
 	Object main.nef.p/src_unk_02099DFC.c.o
 	Object main.nef.p/src_unk_0209A2C4.c.o
@@ -361,8 +363,7 @@ Static main
 	Object main.nef.p/src_unk_0209ACF4.c.o
 	Object main.nef.p/src_unk_0209B344.c.o
 	Object main.nef.p/src_error_message_reset.c.o
-	Object main.nef.p/src_unk_0209B6F8.c.o
-	Object main.nef.p/src_unk_0209BA18.c.o
+	Object main.nef.p/src_battle_frontier.c.o
 	Object main.nef.p/src_unk_0209BA80.c.o
 	Object main.nef.p/src_unk_0209BDF8.c.o
 	Object main.nef.p/src_unk_0209C194.c.o
@@ -583,7 +584,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_trophy_garden_daily_encounters.c.o
 	Object main.nef.p/src_overlay006_feebas_fishing.c.o
 	Object main.nef.p/src_overlay006_dual_slot_encounters.c.o
-	Object main.nef.p/src_overlay006_ov6_02247830.c.o
+	Object main.nef.p/src_overlay006_wallpaper_passwords.c.o
 	Object main.nef.p/src_overlay006_link_contest_record_display.c.o
 	Object main.nef.p/src_overlay006_healing_machine_animation_hall_of_fame.c.o
 	Object main.nef.p/src_overlay006_lake_guardian_containment_units.c.o
@@ -691,15 +692,15 @@ Overlay battle
 	Object main.nef.p/src_battle_battle_lib.c.o
 	Object main.nef.p/src_battle_battle_io_command.c.o
 	Object main.nef.p/src_battle_battle_display.c.o
-	Object main.nef.p/src_battle_ov16_02264798.c.o
+	Object main.nef.p/src_battle_idle_bounce_anim.c.o
 	Object main.nef.p/src_battle_battle_controller.c.o
 	Object main.nef.p/src_battle_healthbox.c.o
-	Object main.nef.p/src_battle_ov16_02268520.c.o
+	Object main.nef.p/src_battle_terrain.c.o
 	Object main.nef.p/src_battle_battle_subscreen.c.o
 	Object main.nef.p/src_battle_party_gauge.c.o
-	Object main.nef.p/src_battle_ov16_0226DB7C.c.o
-	Object main.nef.p/src_battle_ov16_0226DE44.c.o
-	Object main.nef.p/src_battle_ov16_0226E148.c.o
+	Object main.nef.p/src_battle_cursor_renderer.c.o
+	Object main.nef.p/src_battle_indicator.c.o
+	Object main.nef.p/src_battle_stop_recording_task_data.c.o
 }
 
 Overlay overlay17
@@ -1537,14 +1538,14 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_0222DCE0.c.o
 	Object main.nef.p/src_overlay104_frontier_script_manager.c.o
 	Object main.nef.p/src_overlay104_frontier_script_context.c.o
-	Object main.nef.p/src_overlay104_ov104_0222EA90.c.o
+	Object main.nef.p/src_overlay104_frontier_scenes.c.o
 	Object main.nef.p/src_overlay104_ov104_0222ECE8.c.o
 	Object main.nef.p/src_overlay104_frscrcmd.c.o
 	Object main.nef.p/src_overlay104_ov104_02231F74.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_factory.c.o
 	Object main.nef.p/src_overlay104_ov104_022339B4.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_hall.c.o
-	Object main.nef.p/src_overlay104_ov104_02234DB4.c.o
+	Object main.nef.p/src_overlay104_battle_hall.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_castle.c.o
 	Object main.nef.p/src_overlay104_ov104_022361B4.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_arcade.c.o
@@ -1556,7 +1557,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_02239C58.c.o
 	Object main.nef.p/src_overlay104_ov104_0223A0C4.c.o
 	Object main.nef.p/src_overlay104_ov104_0223A7F4.c.o
-	Object main.nef.p/src_overlay104_ov104_0223AF58.c.o
+	Object main.nef.p/src_overlay104_battle_hall_helpers.c.o
 	Object main.nef.p/src_overlay104_ov104_0223B6F4.c.o
 	Object main.nef.p/src_overlay104_ov104_0223BCBC.c.o
 	Object main.nef.p/src_overlay104_ov104_0223C164.c.o
