@@ -41,9 +41,9 @@ Underground_OnResume:
     End
 
 Underground_PutRoarkNextToPlayer:
-    GetPlayerMapPos VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1
-    AddVar VAR_MAP_LOCAL_0, 1
-    SetPosition LOCALID_ROARK, VAR_MAP_LOCAL_0, 1, VAR_MAP_LOCAL_1, DIR_SOUTH
+    GetPlayerMapPos VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01
+    AddVar VAR_MAP_LOCAL_0x00, 1
+    SetPosition LOCALID_ROARK, VAR_MAP_LOCAL_0x00, 1, VAR_MAP_LOCAL_0x01, DIR_SOUTH
     End
 
 Underground_TrapsVendor_Unused:

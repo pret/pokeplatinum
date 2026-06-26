@@ -122,11 +122,11 @@ SunyshoreMarket_PokefanM:
     LockAll
     FacePlayer
     Message SunyshoreMarket_Text_SeeTheSealMerchant
-    GetDayOfWeek VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_MONDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_TUESDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_WEDNESDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GetDayOfWeek VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_SUNDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoToIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_MONDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoToIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_TUESDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoToIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_WEDNESDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
     GoTo SunyshoreMarket_PokefanM_SecondWeekHalfMessage
 
 SunyshoreMarket_PokefanM_FirstWeekHalfMessage:

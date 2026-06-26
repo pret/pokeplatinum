@@ -18,13 +18,13 @@ Route208House_OldMan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY, Route208House_FeedBerriesToPokemon
+    GoToIfSet FLAG_DAILY_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY, Route208House_FeedBerriesToPokemon
     Message Route208House_Text_YouDeserveABerry
     GetRandom VAR_0x8004, 26
     AddVar VAR_0x8004, ITEM_CHERI_BERRY /* Random berry from Cheri to Tamato */
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route208House_BagIsFull
-    SetFlag FLAG_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY
+    SetFlag FLAG_DAILY_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
@@ -47,7 +47,7 @@ Route208House_Twin:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_MAP_LOCAL_0, 1, Route208House_ExplainBerrySearcher
+    GoToIfEq VAR_MAP_LOCAL_0x00, 1, Route208House_ExplainBerrySearcher
     CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, Route208House_CertainBerriesNeedLotsOfWater
     Message Route208House_Text_DoYouForgetWherePlanted
@@ -58,7 +58,7 @@ Route208House_Twin:
 
 Route208House_GiveBerrySearcherApp:
     Message Route208House_Text_HaveThisPoketchApp
-    SetVar VAR_MAP_LOCAL_0, 1
+    SetVar VAR_MAP_LOCAL_0x00, 1
     SetVar VAR_0x8004, POKETCH_APPID_BERRYSEARCHER
     Common_GivePoketchApp
     WaitButton

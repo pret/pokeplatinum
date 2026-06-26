@@ -13,9 +13,9 @@
     ScriptEntryEnd
 
 LakeVerityLowWater_OnTransition:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, LakeVerityLowWater_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, LakeVerityLowWater_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, LakeVerityLowWater_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, LakeVerityLowWater_SetCounterpartGraphicsLucas
     End
 
 LakeVerityLowWater_SetCounterpartGraphicsDawn:
@@ -27,14 +27,14 @@ LakeVerityLowWater_SetCounterpartGraphicsLucas:
     End
 
 LakeVerityLowWater_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, LakeVerityLowWater_HideStarly
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, LakeVerityLowWater_RemoveStarly
     End
 
-LakeVerityLowWater_HideStarly:
+LakeVerityLowWater_RemoveStarly:
     SetFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_STARLY
     RemoveObject LOCALID_STARLY_SOUTH
     RemoveObject LOCALID_STARLY_EAST
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
     End
 

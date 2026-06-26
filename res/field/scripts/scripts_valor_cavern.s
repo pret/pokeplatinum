@@ -25,7 +25,7 @@ ValorCavern_RemoveWarpLakeValorDrained:
 
 ValorCavern_OnLoad:
     SetFlag FLAG_FIRST_ARRIVAL_VALOR_CAVERN
-    CallIfSet FLAG_MAP_LOCAL, ValorCavern_RemoveAzelf
+    CallIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, ValorCavern_RemoveAzelf
     GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_RemoveWarpLakeValorNormal
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_RemoveWarpLakeValorDrained
     End
@@ -33,7 +33,7 @@ ValorCavern_OnLoad:
 ValorCavern_RemoveAzelf:
     SetFlag FLAG_HIDE_VALOR_CAVERN_AZELF
     RemoveObject LOCALID_AZELF
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     Return
 
 ValorCavern_Azelf:
@@ -43,9 +43,9 @@ ValorCavern_Azelf:
     PlayCry SPECIES_AZELF
     Message ValorCavern_Text_AzelfCry
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartLegendaryBattle SPECIES_AZELF, 50
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, ValorCavern_LostBattleAzelf
     CheckDidNotCapture VAR_RESULT

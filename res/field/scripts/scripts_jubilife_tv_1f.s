@@ -31,8 +31,8 @@ JubilifeTV1F_AceTrainerSnowF:
     LockAll
     FacePlayer
     GoToIfNe VAR_LOTTERY_PRIZE_ITEM, 0, JubilifeTV1F_GiveStoredLotteryPrize
-    GoToIfSet FLAG_OBTAINED_LOTTERY_PRIZE, JubilifeTV1F_AlreadyDrawnTicketToday
-    GoToIfSet FLAG_CHECKED_LUCKY_NUMBER, JubilifeTV1F_AskCheckLuckyNumberAgain
+    GoToIfSet FLAG_DAILY_RECEIVED_LOTTERY_PRIZE, JubilifeTV1F_AlreadyDrawnTicketToday
+    GoToIfSet FLAG_DAILY_CHECKED_LUCKY_NUMBER, JubilifeTV1F_AskCheckLuckyNumberAgain
     Message JubilifeTV1F_Text_ThisIsLotteryCorner
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, JubilifeTV1F_CheckTodaysLuckyNumber
@@ -60,7 +60,7 @@ JubilifeTV1F_PleaseVisitAgain:
     End
 
 JubilifeTV1F_CheckTodaysLuckyNumber:
-    SetFlag FLAG_CHECKED_LUCKY_NUMBER
+    SetFlag FLAG_DAILY_CHECKED_LUCKY_NUMBER
     Message JubilifeTV1F_Text_LookUpTodaysLuckyNumber
     GetJubilifeLotteryTrainerID VAR_0x8000
     BufferVarPaddingDigits 0, VAR_0x8000, PADDING_MODE_ZEROES, 5
@@ -170,7 +170,7 @@ JubilifeTV1F_GiveStoredLotteryPrize:
 
 JubilifeTV1F_PleaseDoVisitAgain:
     SetVar VAR_LOTTERY_PRIZE_ITEM, 0
-    SetFlag FLAG_OBTAINED_LOTTERY_PRIZE
+    SetFlag FLAG_DAILY_RECEIVED_LOTTERY_PRIZE
     Message JubilifeTV1F_Text_PleaseDoVisitAgain
     WaitButton
     CloseMessage

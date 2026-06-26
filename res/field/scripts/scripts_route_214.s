@@ -9,10 +9,10 @@
     ScriptEntryEnd
 
 Route214_OnLoad:
-    GetUnownFormsSeenCount VAR_MAP_LOCAL_0
-    GoToIfGe VAR_MAP_LOCAL_0, 26, Route214_RemoveWarpsManiacCaveShortAndLong
-    GoToIfGe VAR_MAP_LOCAL_0, 10, Route214_RemoveWarpsManiacCaveShortAndTunnel
-    GoToIfLt VAR_MAP_LOCAL_0, 10, Route214_RemoveWarpsManiacCaveLongAndTunnel
+    GetUnownFormsSeenCount VAR_MAP_LOCAL_0x00
+    GoToIfGe VAR_MAP_LOCAL_0x00, 26, Route214_RemoveWarpsManiacCaveShortAndLong
+    GoToIfGe VAR_MAP_LOCAL_0x00, 10, Route214_RemoveWarpsManiacCaveShortAndTunnel
+    GoToIfLt VAR_MAP_LOCAL_0x00, 10, Route214_RemoveWarpsManiacCaveLongAndTunnel
     End
 
 Route214_RemoveWarpsManiacCaveShortAndLong:
@@ -31,10 +31,10 @@ Route214_RemoveWarpsManiacCaveLongAndTunnel:
     End
 
 Route214_OnTransition:
-    GetUnownFormsSeenCount VAR_MAP_LOCAL_0
-    GoToIfGe VAR_MAP_LOCAL_0, 26, Route214_RemoveWarpsManiacCaveShortAndLong
-    GoToIfGe VAR_MAP_LOCAL_0, 10, Route214_RemoveWarpsManiacCaveShortAndTunnel
-    GoToIfLt VAR_MAP_LOCAL_0, 10, Route214_RemoveWarpsManiacCaveLongAndTunnel
+    GetUnownFormsSeenCount VAR_MAP_LOCAL_0x00
+    GoToIfGe VAR_MAP_LOCAL_0x00, 26, Route214_RemoveWarpsManiacCaveShortAndLong
+    GoToIfGe VAR_MAP_LOCAL_0x00, 10, Route214_RemoveWarpsManiacCaveShortAndTunnel
+    GoToIfLt VAR_MAP_LOCAL_0x00, 10, Route214_RemoveWarpsManiacCaveLongAndTunnel
     End
 
 Route214_ArrowSignpostVeilstoneCity:

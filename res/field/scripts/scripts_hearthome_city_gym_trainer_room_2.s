@@ -5,6 +5,6 @@
     ScriptEntryEnd
 
 HearthomeGym_TrainerRoom2_Init:
-    SetVar VAR_MAP_LOCAL_0, 0
+    SetVar VAR_MAP_LOCAL_0x00, 0
     InitPersistedMapFeaturesForHearthomeGym
     End

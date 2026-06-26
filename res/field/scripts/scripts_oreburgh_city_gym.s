@@ -29,10 +29,10 @@ OreburghGym_Roark:
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_YOUNGSTER_JONATHON
     SetTrainerFlag TRAINER_YOUNGSTER_DARIUS
-    SetFlag FLAG_HIDE_BLOCK_POKECENTER_BASEMENT
+    SetFlag FLAG_HIDE_POKECENTER_BASEMENT_BLOCKADE
     SetVar VAR_GTS_ACCESS_STATE, 1
     SetVar VAR_JUBILIFE_LOOKER_PAL_PAD_STATE, 1
-    SetVar VAR_OREBURGH_STATE, 2
+    SetVar VAR_OREBURGH_CITY_STATE, 2
     CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_OREBURGH_CITY_GYM, TRAINER_LEADER_ROARK
     SetVar VAR_JUBILIFE_CITY_STATE, 3
     ClearFlag FLAG_HIDE_JUBILIFE_CITY_COUNTERPART
@@ -48,7 +48,7 @@ OreburghGym_RoarkGiveTM76:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghGym_RoarkGiveTM76BagFull
     Common_GiveItemQuantity
-    SetFlag FLAG_OBTAINED_ROARK_TM76
+    SetFlag FLAG_RECEIVED_ROARK_TM76
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message OreburghGym_Text_RoarkExplainStealthRock
@@ -64,7 +64,7 @@ OreburghGym_RoarkGiveTM76BagFull:
     End
 
 OreburghGym_AlreadyHaveCoalBadge:
-    GoToIfUnset FLAG_OBTAINED_ROARK_TM76, OreburghGym_RoarkGiveTM76
+    GoToIfUnset FLAG_RECEIVED_ROARK_TM76, OreburghGym_RoarkGiveTM76
     Message OreburghGym_Text_RoarkGymBeaten
     WaitButton
     CloseMessage

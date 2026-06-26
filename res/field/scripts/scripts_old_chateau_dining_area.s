@@ -7,8 +7,8 @@
     ScriptEntryEnd
 
 OldChateauDiningArea_OnTransition:
-    CheckShouldShowGhost 10, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, OldChateauDiningArea_ShowOldMan
+    CheckShouldShowGhost 10, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, 1, OldChateauDiningArea_ShowOldMan
     SetFlag FLAG_HIDE_OLD_CHATEAU_DINING_AREA_OLD_MAN
     End
 

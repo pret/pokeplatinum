@@ -30,9 +30,9 @@
     ScriptEntryEnd
 
 BattleHall_OnResume:
-    GetNumSpeciesWithBattleHallRecords VAR_MAP_LOCAL_0
-    CallIfGe VAR_MAP_LOCAL_0, 11, BattleHall_SerenaWinstonMoveCloser
-    CallIfGe VAR_MAP_LOCAL_0, 101, BattleHall_SerenaWinstonMoveEvenCloser
+    GetNumSpeciesWithBattleHallRecords VAR_MAP_LOCAL_0x00
+    CallIfGe VAR_MAP_LOCAL_0x00, 11, BattleHall_SerenaWinstonMoveCloser
+    CallIfGe VAR_MAP_LOCAL_0x00, 101, BattleHall_SerenaWinstonMoveEvenCloser
     End
 
 BattleHall_SerenaWinstonMoveEvenCloser:
@@ -51,9 +51,9 @@ BattleHall_OnLoad:
 
 BattleHall_UpdateConditionalNPCs:
     Call BattleHall_UpdateReporter
-    GetRandom VAR_MAP_LOCAL_7, 100
+    GetRandom VAR_MAP_LOCAL_0x07, 100
     CallIfUnset FLAG_HIDE_BATTLE_HALL_MAJOR_NPC, BattleHall_HideMajorNPC
-    GoToIfLt VAR_MAP_LOCAL_7, 30, BattleHall_TryPickMajorNPC
+    GoToIfLt VAR_MAP_LOCAL_0x07, 30, BattleHall_TryPickMajorNPC
     End
 
 BattleHall_HideMajorNPC:
@@ -62,15 +62,15 @@ BattleHall_HideMajorNPC:
     Return
 
 BattleHall_TryPickMajorNPC:
-    GoToIfUnset FLAG_SET_BATTLE_HALL_MAJOR_NPC, BattleHall_PickMajorNPC
+    GoToIfUnset FLAG_DAILY_SET_BATTLE_HALL_MAJOR_NPC, BattleHall_PickMajorNPC
     End
 
 BattleHall_PickMajorNPC:
-    SetFlag FLAG_SET_BATTLE_HALL_MAJOR_NPC
-    GetBattleHallTotalSinglesRecord VAR_MAP_LOCAL_8
-    GoToIfGe VAR_MAP_LOCAL_8, 10000, BattleHall_PickMajorNPCAfter10000Record
-    GoToIfGe VAR_MAP_LOCAL_8, 1000, BattleHall_PickMajorNPCAfter1000Record
-    GoToIfGe VAR_MAP_LOCAL_8, 500, BattleHall_PickMajorNPCAfter500Record
+    SetFlag FLAG_DAILY_SET_BATTLE_HALL_MAJOR_NPC
+    GetBattleHallTotalSinglesRecord VAR_MAP_LOCAL_0x08
+    GoToIfGe VAR_MAP_LOCAL_0x08, 10000, BattleHall_PickMajorNPCAfter10000Record
+    GoToIfGe VAR_MAP_LOCAL_0x08, 1000, BattleHall_PickMajorNPCAfter1000Record
+    GoToIfGe VAR_MAP_LOCAL_0x08, 500, BattleHall_PickMajorNPCAfter500Record
     End
 
 BattleHall_PickMajorNPCAfter10000Record:
@@ -96,10 +96,10 @@ BattleHall_ShowMajorNPC:
 
 BattleHall_UpdateReporter:
     CallIfUnset FLAG_HIDE_BATTLE_HALL_REPORTER, BattleHall_RemoveReporter
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_SINGLE, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, BattleHall_HideReporter
-    ScrCmd_32A VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, BattleHall_HideReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_SINGLE, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, BattleHall_HideReporter
+    ScrCmd_32A VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, 0, BattleHall_HideReporter
     ClearFlag FLAG_HIDE_BATTLE_HALL_REPORTER
     AddObject LOCALID_REPORTER
     Return
@@ -114,12 +114,12 @@ BattleHall_RemoveReporter:
     Return
 
 BattleHall_OnTransition:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, BattleHall_SetSerenaAsFan
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, BattleHall_SetWinstonAsFan
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, BattleHall_SetSerenaAsFan
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, BattleHall_SetWinstonAsFan
     Call BattleHall_UpdateMajorNPC_GFX
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_SINGLE, VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, 0, BattleHall_HideReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_SINGLE, VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, 0, BattleHall_HideReporter
     End
 
 BattleHall_UpdateMajorNPC_GFX:
@@ -130,9 +130,9 @@ BattleHall_UpdateMajorNPC_GFX:
     Return
 
 BattleHall_SetCounterpartAsMajorNPC:
-    GetPlayerGender VAR_MAP_LOCAL_9
-    GoToIfEq VAR_MAP_LOCAL_9, GENDER_MALE, BattleHall_SetDawnAsMajorNPC
-    GoToIfEq VAR_MAP_LOCAL_9, GENDER_FEMALE, BattleHall_SetLucasAsMajorNPC
+    GetPlayerGender VAR_MAP_LOCAL_0x09
+    GoToIfEq VAR_MAP_LOCAL_0x09, GENDER_MALE, BattleHall_SetDawnAsMajorNPC
+    GoToIfEq VAR_MAP_LOCAL_0x09, GENDER_FEMALE, BattleHall_SetLucasAsMajorNPC
     Return
 
 BattleHall_SetDawnAsMajorNPC:
@@ -167,8 +167,8 @@ BattleHall_SingleAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_3, 0
-    SetVar VAR_MAP_LOCAL_4, 0
+    SetVar VAR_MAP_LOCAL_0x03, 0
+    SetVar VAR_MAP_LOCAL_0x04, 0
     GoTo BattleHall_WelcomeToChallenge
     End
 
@@ -176,21 +176,21 @@ BattleHall_MultiAttendant:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_3, 0
-    SetVar VAR_MAP_LOCAL_4, 1
+    SetVar VAR_MAP_LOCAL_0x03, 0
+    SetVar VAR_MAP_LOCAL_0x04, 1
     GoTo BattleHall_WelcomeToChallenge
     End
 
 BattleHall_WelcomeToChallenge:
     RecordHeapMemory
-    CallIfEq VAR_MAP_LOCAL_4, 0, BattleHall_WelcomeToSingleDoubleChallenge
-    CallIfEq VAR_MAP_LOCAL_4, 1, BattleHall_WelcomeToMultiChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 0, BattleHall_WelcomeToSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 1, BattleHall_WelcomeToMultiChallenge
     GoTo BattleHall_SelectChallenge
     End
 
 BattleHall_SelectChallenge:
-    CallIfEq VAR_MAP_LOCAL_4, 0, BattleHall_InitMenuSingleDoubleChallenge
-    CallIfEq VAR_MAP_LOCAL_4, 1, BattleHall_InitMenuMultiChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 0, BattleHall_InitMenuSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 1, BattleHall_InitMenuMultiChallenge
     AddMenuEntryImm BattleHall_Text_Info, 2
     AddMenuEntryImm BattleHall_Text_Cancel, 3
     ShowMenu
@@ -202,8 +202,8 @@ BattleHall_SelectChallenge:
     End
 
 BattleHall_ExplainChallenge:
-    CallIfEq VAR_MAP_LOCAL_4, 0, BattleHall_ExplainSingleDoubleChallenge
-    CallIfEq VAR_MAP_LOCAL_4, 1, BattleHall_ExplainMultiChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 0, BattleHall_ExplainSingleDoubleChallenge
+    CallIfEq VAR_MAP_LOCAL_0x04, 1, BattleHall_ExplainMultiChallenge
     GoTo BattleHall_SelectChallenge
     End
 
@@ -258,27 +258,27 @@ BattleHall_SelectPokemon:
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_2CC 4, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
-    GetBattleHallSelectedSlots VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_5
+    GetBattleHallSelectedSlots VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x05
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_2, 0xFF, BattleHall_EndChallenge
-    TryRevertPokemonForm VAR_MAP_LOCAL_2, VAR_RESULT
+    GoToIfEq VAR_MAP_LOCAL_0x02, 0xFF, BattleHall_EndChallenge
+    TryRevertPokemonForm VAR_MAP_LOCAL_0x02, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, BattleHall_ShowGriseousOrbErrorAndExit
-    TryRevertPokemonForm VAR_MAP_LOCAL_5, VAR_RESULT
+    TryRevertPokemonForm VAR_MAP_LOCAL_0x05, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, BattleHall_ShowGriseousOrbErrorAndExit
-    GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, 0, BattleHall_EndChallenge
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, 0, BattleHall_EndChallenge
     ScrCmd_2CC 1, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_TryStartSingleDoubleChallenge
     ScrCmd_2CC 2, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
     BufferSpeciesNameFromVar 0, VAR_RESULT, 0, 0
-    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_1, BattleHall_TryStartSingleDoubleChallenge
+    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_0x01, BattleHall_TryStartSingleDoubleChallenge
     GoTo BattleHall_AskDeleteOngoingStreak
     End
 
 BattleHall_AskDeleteOngoingStreak:
-    BufferSpeciesNameFromVar 1, VAR_MAP_LOCAL_1, 0, 0
+    BufferSpeciesNameFromVar 1, VAR_MAP_LOCAL_0x01, 0, 0
     Message BattleHall_Text_DeleteOngoingStreak
     InitGlobalTextListMenu 25, 13, 1, VAR_RESULT
     AddListMenuEntry MenuEntries_Text_Yes, 0
@@ -301,10 +301,10 @@ BattleHall_TryStartSingleDoubleChallenge:
 BattleHall_HealAndSaveBeforeChallenge:
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_SetChallengeInProgress
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_SetChallengeInProgress
-    SetVar VAR_MAP_LOCAL_0, 0
+    SetVar VAR_MAP_LOCAL_0x00, 0
     HealParty
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, BattleHall_EndChallenge
     GoToIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_BecomeLeaderOrJoinGroup
     GoTo BattleHall_WalkIntoCorridor
@@ -367,7 +367,7 @@ BattleHall_ErrorBecomingLeader:
 BattleHall_StartMultiChallenge:
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 108
-    CheckBattleHallPartnerUsesDifferentSpecies VAR_MAP_LOCAL_1, VAR_RESULT
+    CheckBattleHallPartnerUsesDifferentSpecies VAR_MAP_LOCAL_0x01, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, BattleHall_MultiChallengeMustUseSamePokemon
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 110
@@ -569,7 +569,7 @@ BattleHall_ExplainMultiChallenge:
 
 BattleHall_OnFrame_ResumeChallenge:
     RecordHeapMemory
-    SetVar VAR_MAP_LOCAL_3, 1
+    SetVar VAR_MAP_LOCAL_0x03, 1
     SetVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 0
     Message BattleHall_Text_MustSaveBeforeResuming
     Call BattleHall_SetChallengeInProgress
@@ -879,12 +879,12 @@ BattleHall_MajorNPC:
     LockAll
     FacePlayer
     BufferPlayerName 0
-    SetVar VAR_MAP_LOCAL_1, VAR_OBJ_GFX_ID_1
-    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_PLAYER_M, BattleHall_Lucas
-    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_PLAYER_F, BattleHall_Dawn
-    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_MOM, BattleHall_Mom
-    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_PROF_OAK, BattleHall_Oak
-    GoToIfEq VAR_MAP_LOCAL_1, OBJ_EVENT_GFX_JASMINE, BattleHall_Jasmine
+    SetVar VAR_MAP_LOCAL_0x01, VAR_OBJ_GFX_ID_1
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_PLAYER_M, BattleHall_Lucas
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_PLAYER_F, BattleHall_Dawn
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_MOM, BattleHall_Mom
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_PROF_OAK, BattleHall_Oak
+    GoToIfEq VAR_MAP_LOCAL_0x01, OBJ_EVENT_GFX_JASMINE, BattleHall_Jasmine
     End
 
 BattleHall_Lucas:

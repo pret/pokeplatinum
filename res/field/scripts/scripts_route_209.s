@@ -14,9 +14,9 @@
     ScriptEntryEnd
 
 Route209_OnTransition:
-    GetTimeOfDay VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TIMEOFDAY_MORNING, Route209_SetJoggersBattle
-    GoToIfInRange VAR_MAP_LOCAL_0, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route209_SetJoggersNoBattle
+    GetTimeOfDay VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, TIMEOFDAY_MORNING, Route209_SetJoggersBattle
+    GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route209_SetJoggersNoBattle
     End
 
 Route209_SetJoggersBattle:
@@ -136,7 +136,7 @@ Route209_Fisherman:
     SetVar VAR_0x8004, ITEM_GOOD_ROD
     BufferItemNameWithArticle 0, VAR_0x8004
     CapitalizeFirstLetter 0
-    GoToIfSet FLAG_GOOD_ROD_OBTAINED, Route209_AskExplainHowToFish
+    GoToIfSet FLAG_RECEIVED_GOOD_ROD, Route209_AskExplainHowToFish
     Message Route209_Text_GoodRodIsReallyGood
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, Route209_AcceptGoodRod
@@ -177,7 +177,7 @@ Route209_AcceptGoodRod:
     Message Route209_Text_TakeThisGoodRod
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    SetFlag FLAG_GOOD_ROD_OBTAINED
+    SetFlag FLAG_RECEIVED_GOOD_ROD
     GoTo Route209_AskExplainHowToFish
 
 Route209_ArrowSignpostHearthomeCity:

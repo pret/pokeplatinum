@@ -160,7 +160,7 @@ GlobalTerminal1F_MustHaveTwoPokemon:
 
 GlobalTerminal1F_BeginTrade:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_ReceptionistGTSEnd
     HealParty
     SetVar VAR_COMMUNICATION_LOAD_ACTION, 6
@@ -323,7 +323,7 @@ GlobalTerminal1F_BattleVideoRankingsMachineEnd:
 
 GlobalTerminal1F_UseBattleVideoRankingsMachine:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_BattleVideoRankingsMachineEnd
     CloseMessage
     CallCommonScript 0x802
@@ -363,7 +363,7 @@ GlobalTerminal1F_TrainerRankingsMachineEnd:
 
 GlobalTerminal1F_UseTrainerRankingsMachine:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1F_TrainerRankingsMachineEnd
     CloseMessage
     CallCommonScript 0x802
@@ -467,7 +467,7 @@ GlobalTerminal1F_Beauty2:
     FacePlayer
     CheckItem ITEM_FASHION_CASE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, GlobalTerminal1F_GiveSomethingIfFashionCase
-    GoToIfSet FLAG_RECEIVED_DAILY_GLOBAL_TERMINAL_1F_BACKDROP, GlobalTerminal1F_GoToFittingRoom
+    GoToIfSet FLAG_DAILY_RECEIVED_GLOBAL_TERMINAL_1F_BACKDROP, GlobalTerminal1F_GoToFittingRoom
     GoToIfSet FLAG_RECEIVED_ALL_GLOBAL_TERMINAL_1F_BACKDROPS, GlobalTerminal1F_ShareDressUpData
     Message GlobalTerminal1F_Text_IHaveBackdropForYou
     SetVar VAR_0x8004, BACKDROP_RANCH
@@ -493,7 +493,7 @@ GlobalTerminal1F_GiveBackdrop:
     Common_ObtainContestBackdrop
     Message GlobalTerminal1F_Text_ObtainedBackdrop
     Call GlobalTerminal1F_CheckReceivedAllBackdrops
-    SetFlag FLAG_RECEIVED_DAILY_GLOBAL_TERMINAL_1F_BACKDROP
+    SetFlag FLAG_DAILY_RECEIVED_GLOBAL_TERMINAL_1F_BACKDROP
     GoTo GlobalTerminal1F_Beauty2End
     End
 

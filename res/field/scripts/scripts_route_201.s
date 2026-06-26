@@ -21,9 +21,9 @@
     ScriptEntryEnd
 
 Route201_OnTransition:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Route201_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Route201_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, Route201_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, Route201_SetCounterpartGraphicsLucas
     End
 
 Route201_SetCounterpartGraphicsDawn:
@@ -1038,7 +1038,7 @@ Route201_EndDPProfRowanScene_Unused:
     SetObjectFlagIsPersistent LOCALID_DP_FOLLOWER, FALSE
     ClearHasPartner
     SetFlag FLAG_HIDE_ROUTE_201_RIVAL
-    SetFlag FLAG_UNK_0x0195
+    SetFlag FLAG_DUMMY_0x0193
     SetVar VAR_VERITY_LAKEFRONT_STATE, 4
     SetFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_RIVAL
     WaitTime 30, VAR_RESULT
@@ -1161,12 +1161,12 @@ Route201_Cashier:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_GOT_POTION_FROM_ROUTE_201_CASHIER, Route201_FindMartsInCitiesAndTowns
+    GoToIfSet FLAG_RECEIVED_ROUTE_201_POTION, Route201_FindMartsInCitiesAndTowns
     Message Route201_Text_PotionAsFreeSample
     SetVar VAR_0x8004, ITEM_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route201_BagIsFull
-    SetFlag FLAG_GOT_POTION_FROM_ROUTE_201_CASHIER
+    SetFlag FLAG_RECEIVED_ROUTE_201_POTION
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll

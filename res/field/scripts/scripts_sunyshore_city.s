@@ -27,7 +27,7 @@
 SunyshoreCity_OnTransition:
     CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 2, SunyshoreCity_HideSandgemTownLabCounterpart
     CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 3, SunyshoreCity_HideSandgemTownLabCounterpart
-    GoToIfEq VAR_SUNYSHORE_STATE, 0, SunyshoreCity_SetFlintPositionAtGate
+    GoToIfEq VAR_SUNYSHORE_CITY_STATE, 0, SunyshoreCity_SetFlintPositionAtGate
     End
 
 SunyshoreCity_HideSandgemTownLabCounterpart:
@@ -126,7 +126,7 @@ SunyshoreCity_RivalAndJasmine:
     CallIfEq VAR_0x8004, 855, SunyshoreCity_JasmineLeaveX855
     CallIfEq VAR_0x8004, 856, SunyshoreCity_JasmineLeaveX856
     CallIfEq VAR_0x8004, 857, SunyshoreCity_JasmineLeaveX857
-    SetVar VAR_SUNYSHORE_STATE, 3
+    SetVar VAR_SUNYSHORE_CITY_STATE, 3
     ReleaseAll
     End
 
@@ -483,7 +483,7 @@ SunyshoreCity_GiveVolknerHotBattle:
     SetObjectEventDir LOCALID_FLINT, DIR_SOUTH
     ClearFlag FLAG_HIDE_SUNYSHORE_CITY_FLINT
     AddObject LOCALID_FLINT
-    SetVar VAR_SUNYSHORE_STATE, 1
+    SetVar VAR_SUNYSHORE_CITY_STATE, 1
     ReleaseAll
     End
 

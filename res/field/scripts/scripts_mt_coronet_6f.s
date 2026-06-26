@@ -33,20 +33,20 @@ MtCoronet6F_TrySetWarpSpearPillarDialga:
     GoToIfUnset FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR, MtCoronet6F_SetWarpSpearPillarNormal
     GoToIfSet FLAG_CAUGHT_DIALGA, MtCoronet6F_TrySetWarpSpearPillarPalkia
     GoToIfGe VAR_SPEAR_PILLAR_DIALGA_STATE, 1, MtCoronet6F_TrySetWarpSpearPillarPalkia
-    CheckItem ITEM_ADAMANT_ORB, 1, VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, TRUE, MtCoronet6F_SetWarpSpearPillarDialga
-    CheckPartyHasHeldItem ITEM_ADAMANT_ORB, VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, TRUE, MtCoronet6F_SetWarpSpearPillarDialga
+    CheckItem ITEM_ADAMANT_ORB, 1, VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, MtCoronet6F_SetWarpSpearPillarDialga
+    CheckPartyHasHeldItem ITEM_ADAMANT_ORB, VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, MtCoronet6F_SetWarpSpearPillarDialga
     GoTo MtCoronet6F_TrySetWarpSpearPillarPalkia
     End
 
 MtCoronet6F_TrySetWarpSpearPillarPalkia:
     GoToIfSet FLAG_CAUGHT_PALKIA, MtCoronet6F_SetWarpSpearPillarNormal
     GoToIfGe VAR_SPEAR_PILLAR_PALKIA_STATE, 1, MtCoronet6F_SetWarpSpearPillarNormal
-    CheckItem ITEM_LUSTROUS_ORB, 1, VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, TRUE, MtCoronet6F_SetWarpSpearPillarPalkia
-    CheckPartyHasHeldItem ITEM_LUSTROUS_ORB, VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, TRUE, MtCoronet6F_SetWarpSpearPillarPalkia
+    CheckItem ITEM_LUSTROUS_ORB, 1, VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, MtCoronet6F_SetWarpSpearPillarPalkia
+    CheckPartyHasHeldItem ITEM_LUSTROUS_ORB, VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, MtCoronet6F_SetWarpSpearPillarPalkia
     GoTo MtCoronet6F_SetWarpSpearPillarNormal
     End
 

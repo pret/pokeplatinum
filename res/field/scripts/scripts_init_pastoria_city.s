@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_PASTORIA_STATE, 3, 19
+    InitScriptGoToIfEqual VAR_PASTORIA_CITY_STATE, 3, 19
     InitScriptFrameTableEnd
 
     InitScriptEnd

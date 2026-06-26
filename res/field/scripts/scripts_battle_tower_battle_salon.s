@@ -19,36 +19,36 @@
 BattleTowerBattleSalon_OnTransition:
     GoToIfUnset FLAG_TRAVELED_WITH_CHERYL, BattleTowerBattleSalon_HideCheryl
     GoToIfNe VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_ShowCheryl
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
-    GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_CHERYL, BattleTowerBattleSalon_HideCheryl
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_0x09
+    GoToIfEq VAR_MAP_LOCAL_0x09, BT_PARTNER_CHERYL, BattleTowerBattleSalon_HideCheryl
 BattleTowerBattleSalon_ShowCheryl:
     ClearFlag FLAG_HIDE_BATTLE_SALON_CHERYL
 BattleTowerBattleSalon_CheckShowMira:
     GoToIfUnset FLAG_TRAVELED_WITH_MIRA, BattleTowerBattleSalon_HideMira
     GoToIfNe VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_ShowMira
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
-    GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_MIRA, BattleTowerBattleSalon_HideMira
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_0x09
+    GoToIfEq VAR_MAP_LOCAL_0x09, BT_PARTNER_MIRA, BattleTowerBattleSalon_HideMira
 BattleTowerBattleSalon_ShowMira:
     ClearFlag FLAG_HIDE_BATTLE_SALON_MIRA
 BattleTowerBattleSalon_CheckShowRiley:
     GoToIfUnset FLAG_RECEIVED_RIOLU_EGG_FROM_RILEY, BattleTowerBattleSalon_HideRiley
     GoToIfNe VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_ShowRiley
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
-    GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_RILEY, BattleTowerBattleSalon_HideRiley
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_0x09
+    GoToIfEq VAR_MAP_LOCAL_0x09, BT_PARTNER_RILEY, BattleTowerBattleSalon_HideRiley
 BattleTowerBattleSalon_ShowRiley:
     ClearFlag FLAG_HIDE_BATTLE_SALON_RILEY
 BattleTowerBattleSalon_CheckShowMarley:
     GoToIfUnset FLAG_TRAVELED_WITH_MARLEY, BattleTowerBattleSalon_HideMarley
     GoToIfNe VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_ShowMarley
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
-    GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_MARLEY, BattleTowerBattleSalon_HideMarley
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_0x09
+    GoToIfEq VAR_MAP_LOCAL_0x09, BT_PARTNER_MARLEY, BattleTowerBattleSalon_HideMarley
 BattleTowerBattleSalon_ShowMarley:
     ClearFlag FLAG_HIDE_BATTLE_SALON_MARLEY
 BattleTowerBattleSalon_CheckShowBuck:
     GoToIfUnset FLAG_BUCK_LEFT_BATTLEGROUND, BattleTowerBattleSalon_HideBuck
     GoToIfNe VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_ShowBuck
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
-    GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_BUCK, BattleTowerBattleSalon_HideBuck
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_0x09
+    GoToIfEq VAR_MAP_LOCAL_0x09, BT_PARTNER_BUCK, BattleTowerBattleSalon_HideBuck
 BattleTowerBattleSalon_ShowBuck:
     ClearFlag FLAG_HIDE_BATTLE_SALON_BUCK
 BattleTowerBattleSalon_EndCheckShowPartners:
@@ -142,10 +142,10 @@ BattleTowerBattleSalon_OnFrame_EnterBattleRoom:
     End
 
 BattleTowerBattleSalon_BufferSpeciesAndMoveNames:
-    GetBattleTowerPartnerSpeciesAndMove VAR_MAP_LOCAL_9, 0, VAR_0x8004, VAR_0x8005
+    GetBattleTowerPartnerSpeciesAndMove VAR_MAP_LOCAL_0x09, 0, VAR_0x8004, VAR_0x8005
     BufferSpeciesNameFromVar 0, VAR_0x8004, 0, 0
     BufferMoveName 1, VAR_0x8005
-    GetBattleTowerPartnerSpeciesAndMove VAR_MAP_LOCAL_9, 1, VAR_0x8004, VAR_0x8005
+    GetBattleTowerPartnerSpeciesAndMove VAR_MAP_LOCAL_0x09, 1, VAR_0x8004, VAR_0x8005
     BufferSpeciesNameFromVar 2, VAR_0x8004, 0, 0
     BufferMoveName 3, VAR_0x8005
     Return
@@ -155,11 +155,11 @@ BattleTowerBattleSalon_Cheryl:
     LockAll
     FacePlayer
     GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_CherylDontTeamUp
-    SetVar VAR_MAP_LOCAL_9, BT_PARTNER_CHERYL
-    GetBattleTowerPartnerSpeciesAndMove VAR_MAP_LOCAL_9, 0, VAR_0x8004, VAR_0x8005
+    SetVar VAR_MAP_LOCAL_0x09, BT_PARTNER_CHERYL
+    GetBattleTowerPartnerSpeciesAndMove VAR_MAP_LOCAL_0x09, 0, VAR_0x8004, VAR_0x8005
     BufferSpeciesNameWithArticle 0, VAR_0x8004
     BufferMoveName 1, VAR_0x8005
-    GetBattleTowerPartnerSpeciesAndMove VAR_MAP_LOCAL_9, 1, VAR_0x8004, VAR_0x8005
+    GetBattleTowerPartnerSpeciesAndMove VAR_MAP_LOCAL_0x09, 1, VAR_0x8004, VAR_0x8005
     BufferSpeciesNameWithArticle 2, VAR_0x8004
     BufferMoveName 3, VAR_0x8005
     Message BattleTowerBattleSalon_Text_CherylAskTeamUp
@@ -173,7 +173,7 @@ BattleTowerBattleSalon_CherylDontTeamUp:
     End
 
 BattleTowerBattleSalon_CherylTeamUp:
-    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
+    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_0x09, 0
     SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2
     Message BattleTowerBattleSalon_Text_CherylTeamUp
     CloseMessage
@@ -187,7 +187,7 @@ BattleTowerBattleSalon_Mira:
     LockAll
     FacePlayer
     GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_MiraDontTeamUp
-    SetVar VAR_MAP_LOCAL_9, BT_PARTNER_MIRA
+    SetVar VAR_MAP_LOCAL_0x09, BT_PARTNER_MIRA
     Call BattleTowerBattleSalon_BufferSpeciesAndMoveNames
     BufferPlayerName 4
     Message BattleTowerBattleSalon_Text_MiraAskTeamUp
@@ -201,7 +201,7 @@ BattleTowerBattleSalon_MiraDontTeamUp:
     End
 
 BattleTowerBattleSalon_MiraTeamUp:
-    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
+    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_0x09, 0
     SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2
     BufferPlayerName 0
     Message BattleTowerBattleSalon_Text_MiraTeamUp
@@ -216,7 +216,7 @@ BattleTowerBattleSalon_Riley:
     LockAll
     FacePlayer
     GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_RileyDontTeamUp
-    SetVar VAR_MAP_LOCAL_9, BT_PARTNER_RILEY
+    SetVar VAR_MAP_LOCAL_0x09, BT_PARTNER_RILEY
     Call BattleTowerBattleSalon_BufferSpeciesAndMoveNames
     Message BattleTowerBattleSalon_Text_RileyAskTeamUp
     ShowYesNoMenu VAR_RESULT
@@ -229,7 +229,7 @@ BattleTowerBattleSalon_RileyDontTeamUp:
     End
 
 BattleTowerBattleSalon_RileyTeamUp:
-    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
+    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_0x09, 0
     SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2
     Message BattleTowerBattleSalon_Text_RileyTeamUp
     CloseMessage
@@ -243,7 +243,7 @@ BattleTowerBattleSalon_Marley:
     LockAll
     FacePlayer
     GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_MarleyDontTeamUp
-    SetVar VAR_MAP_LOCAL_9, BT_PARTNER_MARLEY
+    SetVar VAR_MAP_LOCAL_0x09, BT_PARTNER_MARLEY
     Call BattleTowerBattleSalon_BufferSpeciesAndMoveNames
     Message BattleTowerBattleSalon_Text_MarleyAskTeamUp
     ShowYesNoMenu VAR_RESULT
@@ -256,7 +256,7 @@ BattleTowerBattleSalon_MarleyDontTeamUp:
     End
 
 BattleTowerBattleSalon_MarleyTeamUp:
-    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
+    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_0x09, 0
     SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2
     Message BattleTowerBattleSalon_Text_MarleyTeamUp
     CloseMessage
@@ -270,7 +270,7 @@ BattleTowerBattleSalon_Buck:
     LockAll
     FacePlayer
     GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_BuckDontTeamUp
-    SetVar VAR_MAP_LOCAL_9, BT_PARTNER_BUCK
+    SetVar VAR_MAP_LOCAL_0x09, BT_PARTNER_BUCK
     Call BattleTowerBattleSalon_BufferSpeciesAndMoveNames
     Message BattleTowerBattleSalon_Text_BuckAskTeamUp
     ShowYesNoMenu VAR_RESULT
@@ -283,7 +283,7 @@ BattleTowerBattleSalon_BuckDontTeamUp:
     End
 
 BattleTowerBattleSalon_BuckTeamUp:
-    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
+    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_0x09, 0
     SetVar VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2
     Message BattleTowerBattleSalon_Text_BuckTeamUp
     CloseMessage
@@ -327,12 +327,12 @@ BattleTowerBattleSalon_EnterBattleRoom:
     Return
 
 BattleTowerBattleSalon_PartnerEnterBattleRoom:
-    ApplyMovement VAR_MAP_LOCAL_0, BattleTowerBattleSalon_Movement_PartnerFaceNorth
+    ApplyMovement VAR_MAP_LOCAL_0x00, BattleTowerBattleSalon_Movement_PartnerFaceNorth
     WaitMovement
     ApplyMovement LOCALID_TEALA, BattleTowerBattleSalon_Movement_AttendantMoveAway
     WaitMovement
     Call BattleTowerBattleSalon_PlayOpenDoorAnimation
-    ApplyMovement VAR_MAP_LOCAL_0, BattleTowerBattleSalon_Movement_PartnerEnterBattleRoom
+    ApplyMovement VAR_MAP_LOCAL_0x00, BattleTowerBattleSalon_Movement_PartnerEnterBattleRoom
     WaitMovement
     Call BattleTowerBattleSalon_PlayCloseDoorAnimation
     ApplyMovement LOCALID_TEALA, BattleTowerBattleSalon_Movement_AttendantMoveBack
@@ -346,7 +346,7 @@ BattleTowerBattleSalon_PartnerEnterBattleRoom:
     End
 
 BattleTowerBattleSalon_CherylWalkToAttendant:
-    SetVar VAR_MAP_LOCAL_0, LOCALID_CHERYL
+    SetVar VAR_MAP_LOCAL_0x00, LOCALID_CHERYL
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8000, 12, BattleTowerBattleSalon_CherylWalkWestToAttendant
     GoTo BattleTowerBattleSalon_CherylWalkSouthToAttendant
@@ -365,7 +365,7 @@ BattleTowerBattleSalon_CherylWalkSouthToAttendant:
     End
 
 BattleTowerBattleSalon_MiraWalkToAttendant:
-    SetVar VAR_MAP_LOCAL_0, LOCALID_MIRA
+    SetVar VAR_MAP_LOCAL_0x00, LOCALID_MIRA
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8000, 4, BattleTowerBattleSalon_MiraWalkEastToAttendant
     GoTo BattleTowerBattleSalon_MiraWalkNorthToAttendant
@@ -384,7 +384,7 @@ BattleTowerBattleSalon_MiraWalkNorthToAttendant:
     End
 
 BattleTowerBattleSalon_RileyWalkToAttendant:
-    SetVar VAR_MAP_LOCAL_0, LOCALID_RILEY
+    SetVar VAR_MAP_LOCAL_0x00, LOCALID_RILEY
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8001, 7, BattleTowerBattleSalon_RileyWalkWestToAttendant
     GoTo BattleTowerBattleSalon_RileyWalkNorthToAttendant
@@ -403,7 +403,7 @@ BattleTowerBattleSalon_RileyWalkNorthToAttendant:
     End
 
 BattleTowerBattleSalon_MarleyWalkToAttendant:
-    SetVar VAR_MAP_LOCAL_0, LOCALID_MARLEY
+    SetVar VAR_MAP_LOCAL_0x00, LOCALID_MARLEY
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8001, 9, BattleTowerBattleSalon_MarleyWalkSouthToAttendant
     GoTo BattleTowerBattleSalon_MarleyWalkNorthToAttendant
@@ -422,7 +422,7 @@ BattleTowerBattleSalon_MarleyWalkNorthToAttendant:
     End
 
 BattleTowerBattleSalon_BuckWalkToAttendant:
-    SetVar VAR_MAP_LOCAL_0, LOCALID_BUCK
+    SetVar VAR_MAP_LOCAL_0x00, LOCALID_BUCK
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8000, 8, BattleTowerBattleSalon_BuckWalkWestToAttendant
     GoTo BattleTowerBattleSalon_BuckWalkEastToAttendant

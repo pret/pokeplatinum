@@ -190,7 +190,7 @@ BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID);
 void FieldSystem_SetFlag(FieldSystem *fieldSystem, u16 flagID);
 void FieldSystem_ClearFlag(FieldSystem *fieldSystem, u16 flagID);
 void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem);
-void sub_0203F1FC(FieldSystem *fieldSystem);
+void FieldSystem_ClearDailyFlags(FieldSystem *fieldSystem);
 void FieldSystem_SetScriptParameters(FieldSystem *fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3);
 u16 Script_GetTrainerID(u16 scriptID);
 BOOL Script_GetTrainerBattlerIndex(u16 scriptID);

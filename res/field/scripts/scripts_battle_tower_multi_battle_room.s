@@ -15,20 +15,20 @@ BattleTowerMultiBattleRoom_OnTransition:
     GoToIfEq VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 0, BattleTowerMultiBattleRoom_DontSetPlayerGraphics
     SetFlag FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_1
     SetFlag FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_2
-    GetCurNetID VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, BattleTowerMultiBattleRoom_SetPlayer2Graphics
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0
-    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_MAP_LOCAL_0
-    SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0
+    GetCurNetID VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, 1, BattleTowerMultiBattleRoom_SetPlayer2Graphics
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0x00
+    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0x00
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_MAP_LOCAL_0x00
+    SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0x00
 BattleTowerMultiBattleRoom_DontSetPlayerGraphics:
     End
 
 BattleTowerMultiBattleRoom_SetPlayer2Graphics:
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0
-    SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_MAP_LOCAL_0
-    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0x00
+    SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0x00
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_MAP_LOCAL_0x00
+    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0x00
     End
 
 BattleTowerMultiBattleRoom_OnResume:
@@ -139,13 +139,13 @@ BattleTowerMultiBattleRoom_DoNextLinkMultiBattle:
 
 BattleTowerMultiBattleRoom_EndChallenge:
     CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS, 0, 0
-    SetVar VAR_MAP_LOCAL_0, 0
+    SetVar VAR_MAP_LOCAL_0x00, 0
     GoTo BattleTowerMultiBattleRoom_WarpToLobby
     End
 
 BattleTowerMultiBattleRoom_EndChallengeWonRound:
     CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS_AND_JOURNAL, 0, 0
-    SetVar VAR_MAP_LOCAL_0, 1
+    SetVar VAR_MAP_LOCAL_0x00, 1
     GoTo BattleTowerMultiBattleRoom_WarpToLobby
     End
 
@@ -239,16 +239,16 @@ BattleTowerMultiBattleRoom_NextLinkOpponentsMenu:
     AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Retire, 1
     ShowListMenu
     CloseMessage
-    SetVar VAR_MAP_LOCAL_0, 0
+    SetVar VAR_MAP_LOCAL_0x00, 0
     GoToIfEq VAR_RESULT, 1, BattleTowerMultiBattleRoom_AskCancelLinkChallenge
 BattleTowerMultiBattleRoom_HandleLinkMultiDecision:
     Message BattleTowerMultiBattleRoom_Text_AwaitingResponseFromFriend
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 5
-    ScrCmd_1E1 2, VAR_MAP_LOCAL_0, VAR_RESULT
-    ScrCmd_1E2 2, VAR_MAP_LOCAL_0
+    ScrCmd_1E1 2, VAR_MAP_LOCAL_0x00, VAR_RESULT
+    ScrCmd_1E2 2, VAR_MAP_LOCAL_0x00
     CloseMessage
-    SetVar VAR_0x8008, VAR_MAP_LOCAL_0
+    SetVar VAR_0x8008, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_0x8008, 1, BattleTowerMultiBattleRoom_LinkMultiRetire
     Call BattleTowerMultiBattleRoom_FaceNextOpponents
     GoTo BattleTowerMultiBattleRoom_DoLinkMultiBattle
@@ -258,7 +258,7 @@ BattleTowerMultiBattleRoom_AskCancelLinkChallenge:
     Message BattleTowerMultiBattleRoom_Text_AskCancelChallenge
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, BattleTowerMultiBattleRoom_NextLinkOpponentsMenu
-    SetVar VAR_MAP_LOCAL_0, 1
+    SetVar VAR_MAP_LOCAL_0x00, 1
     GoTo BattleTowerMultiBattleRoom_HandleLinkMultiDecision
     End
 

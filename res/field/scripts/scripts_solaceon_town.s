@@ -21,8 +21,8 @@ SolaceonTown_OnResume:
     End
 
 SolaceonTown_OnTransition:
-    CheckDaycareHasEgg VAR_MAP_LOCAL_0
-    GoToIfNe VAR_MAP_LOCAL_0, FALSE, SolaceonTown_SetDayCareManDirEast
+    CheckDaycareHasEgg VAR_MAP_LOCAL_0x00
+    GoToIfNe VAR_MAP_LOCAL_0x00, FALSE, SolaceonTown_SetDayCareManDirEast
     End
 
 SolaceonTown_SetDayCareManDirEast:

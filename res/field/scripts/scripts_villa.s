@@ -51,9 +51,9 @@
 
 Villa_OnTransition:
     InitPersistedMapFeaturesForVilla
-    GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_SetCounterpartGraphicsDawn
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, Villa_SetCounterpartGraphicsDawn
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, Villa_SetCounterpartGraphicsLucas
     GoToIfSet FLAG_VILLA_VISITOR_OUTSIDE, Villa_OnTransitionEnd
     SetFlag FLAG_HIDE_VILLA_RIVAL
     SetFlag FLAG_HIDE_VILLA_COUNTERPART
@@ -70,7 +70,7 @@ Villa_OnTransition:
     SetFlag FLAG_HIDE_VILLA_CYNTHIA
     SetFlag FLAG_HIDE_VILLA_FLINT
     GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_NONE, Villa_DontShowVisitor
-    SetVar VAR_MAP_LOCAL_F, VAR_RESORT_VILLA_VISITOR
+    SetVar VAR_MAP_LOCAL_0x0F, VAR_RESORT_VILLA_VISITOR
     CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_RIVAL, Villa_ShowRival
     CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_COUNTERPART, Villa_ShowCounterpart
     CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_PROF_ROWAN, Villa_TryShowProfRowan
@@ -218,33 +218,33 @@ Villa_Counterpart:
     End
 
 Villa_CounterpartMessage0:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_DawnMessage0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_LucasMessage0
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, Villa_DawnMessage0
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, Villa_LucasMessage0
     Return
 
 Villa_CounterpartMessage1:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_DawnMessage1
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_LucasMessage1
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, Villa_DawnMessage1
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, Villa_LucasMessage1
     Return
 
 Villa_CounterpartMessage2:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_DawnMessage2
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_LucasMessage2
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, Villa_DawnMessage2
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, Villa_LucasMessage2
     Return
 
 Villa_CounterpartMessage3:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_DawnMessage3
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_LucasMessage3
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, Villa_DawnMessage3
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, Villa_LucasMessage3
     Return
 
 Villa_CounterpartMessage4:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Villa_DawnMessage4
-    CallIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Villa_LucasMessage4
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, Villa_DawnMessage4
+    CallIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, Villa_LucasMessage4
     Return
 
 Villa_DawnMessage0:
@@ -808,7 +808,7 @@ Villa_CoordEvent_Fantina:
     ApplyMovement LOCALID_FANTINA, Villa_Movement_FantinaEnter
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar VAR_MAP_LOCAL_F, 0
+    SetVar VAR_MAP_LOCAL_0x0F, 0
     ReleaseAll
     End
 
@@ -839,7 +839,7 @@ Villa_CoordEvent_CrasherWake:
     ApplyMovement LOCALID_CRASHER_WAKE, Villa_Movement_WakeEnter
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar VAR_MAP_LOCAL_F, 0
+    SetVar VAR_MAP_LOCAL_0x0F, 0
     ReleaseAll
     End
 
@@ -868,7 +868,7 @@ Villa_CoordEvent_Candice:
     ApplyMovement LOCALID_CANDICE, Villa_Movement_CandiceEnter
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar VAR_MAP_LOCAL_F, 0
+    SetVar VAR_MAP_LOCAL_0x0F, 0
     ReleaseAll
     End
 
@@ -899,7 +899,7 @@ Villa_CoordEvent_Cynthia:
     ApplyMovement LOCALID_CYNTHIA, Villa_Movement_CynthiaEnter
     WaitMovement
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
-    SetVar VAR_MAP_LOCAL_F, 0
+    SetVar VAR_MAP_LOCAL_0x0F, 0
     ReleaseAll
     End
 
@@ -1407,7 +1407,7 @@ Villa_EnterPianoCynthia:
     CallIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CYNTHIA, Villa_TryCynthiaEnter
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_CYNTHIA
-    SetVar VAR_MAP_LOCAL_F, 0
+    SetVar VAR_MAP_LOCAL_0x0F, 0
     SetFlag FLAG_VILLA_VISITOR_OUTSIDE
     BufferRivalName 0
     BufferPlayerName 1

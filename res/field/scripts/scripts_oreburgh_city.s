@@ -177,7 +177,7 @@ OreburghCity_RemoveRival:
     PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL
     Common_FadeToDefaultMusic2
-    SetVar VAR_OREBURGH_STATE, 3
+    SetVar VAR_OREBURGH_CITY_STATE, 3
     ReleaseAll
     End
 
@@ -385,7 +385,7 @@ OreburghCity_HuhTheresSomeoneThere:
     WaitButton
     CloseMessage
     Common_FadeToDefaultMusic3
-    SetVar VAR_OREBURGH_STATE, 1
+    SetVar VAR_OREBURGH_CITY_STATE, 1
     ReleaseAll
     End
 

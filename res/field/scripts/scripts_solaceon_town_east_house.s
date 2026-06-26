@@ -12,7 +12,7 @@ SolaceonTownEastHouse_NinjaBoy:
     LockAll
     FacePlayer
     GoToIfUnset FLAG_RECEIVED_SOLACEON_TOWN_EAST_HOUSE_SEAL_CASE, SolaceonTownEastHouse_YouDontHaveASealCase
-    CallIfUnset FLAG_UNK_0x0001, SolaceonTownEastHouse_SetVarFormNone
+    CallIfUnset FLAG_MAP_LOCAL_0x01, SolaceonTownEastHouse_SetVarFormNone
     CheckPartyHasSpecies VAR_RESULT, SPECIES_UNOWN
     GoToIfEq VAR_RESULT, TRUE, SolaceonTownEastHouse_CheckUnownForm
     Message SolaceonTownEastHouse_Text_GiveUnownForSeals
@@ -24,7 +24,7 @@ SolaceonTownEastHouse_NinjaBoy:
 SolaceonTownEastHouse_CheckUnownForm:
     FindPartySlotWithSpecies VAR_0x8004, SPECIES_UNOWN
     GetPartyMonForm VAR_0x8004, VAR_0x8006
-    GoToIfEq VAR_MAP_LOCAL_0, VAR_0x8006, SolaceonTownEastHouse_IllGiveSealsForUnown
+    GoToIfEq VAR_MAP_LOCAL_0x00, VAR_0x8006, SolaceonTownEastHouse_IllGiveSealsForUnown
     GoTo SolaceonTownEastHouse_TryGiveSealsForUnownForm
 
 SolaceonTownEastHouse_TryGiveSealsForUnownForm:
@@ -41,8 +41,8 @@ SolaceonTownEastHouse_TryGiveSealsForUnownForm:
     SubVar VAR_0x8000, VAR_RESULT
 SolaceonTownEastHouse_GiveSealsForUnownForm:
     GiveOrTakeSeal VAR_0x8007, VAR_0x8000
-    SetVar VAR_MAP_LOCAL_0, VAR_0x8006
-    SetFlag FLAG_UNK_0x0001
+    SetVar VAR_MAP_LOCAL_0x00, VAR_0x8006
+    SetFlag FLAG_MAP_LOCAL_0x01
     GoToIfEq VAR_0x8000, 1, SolaceonTownEastHouse_BufferSealNameSingular
     BufferBallSealNamePlural 0, VAR_0x8007
     GoTo SolaceonTownEastHouse_TheSealsWerePutAway
@@ -64,7 +64,7 @@ SolaceonTownEastHouse_IllGiveSealsForUnown:
     End
 
 SolaceonTownEastHouse_SetVarFormNone:
-    SetVar VAR_MAP_LOCAL_0, -1
+    SetVar VAR_MAP_LOCAL_0x00, -1
     Return
 
 SolaceonTownEastHouse_YouDontHaveASealCase:

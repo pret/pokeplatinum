@@ -12,13 +12,13 @@
     ScriptEntryEnd
 
 PoffinHouse_OnTransition:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER, VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, FALSE, PoffinHouse_HideReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER, VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, FALSE, PoffinHouse_HideReporter
     End
 
 PoffinHouse_OnResume:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER, VAR_MAP_LOCAL_0
-    GoToIfNe VAR_MAP_LOCAL_0, FALSE, PoffinHouse_ShowReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER, VAR_MAP_LOCAL_0x00
+    GoToIfNe VAR_MAP_LOCAL_0x00, FALSE, PoffinHouse_ShowReporter
     CallIfUnset FLAG_HIDE_POFFIN_HOUSE_REPORTER, PoffinHouse_HideReporter
     End
 

@@ -10,12 +10,12 @@
     ScriptEntryEnd
 
 NewmoonIslandForest_OnTransition:
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, NewmoonIslandForest_HideDarkrai
-    CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, NewmoonIslandForest_HideDarkrai
-    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, NewmoonIslandForest_HideDarkrai
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, NewmoonIslandForest_HideDarkrai
+    CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, NewmoonIslandForest_HideDarkrai
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, NewmoonIslandForest_HideDarkrai
     GoToIfSet FLAG_CAUGHT_DARKRAI, NewmoonIslandForest_HideDarkrai
     ClearFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
     End
@@ -25,13 +25,13 @@ NewmoonIslandForest_HideDarkrai:
     End
 
 NewmoonIslandForest_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, NewmoonIslandForest_RemoveDarkrai
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, NewmoonIslandForest_RemoveDarkrai
     End
 
 NewmoonIslandForest_RemoveDarkrai:
     SetFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
     RemoveObject LOCALID_DARKRAI
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 NewmoonIslandForest_Darkrai:
@@ -40,9 +40,9 @@ NewmoonIslandForest_Darkrai:
     WaitSE SEQ_SE_CONFIRM
     Message NewmoonIslandForest_Text_Ellipses
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartLegendaryBattle SPECIES_DARKRAI, 50
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, NewmoonIslandForest_BlackOut
     CheckDidNotCapture VAR_RESULT

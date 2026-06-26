@@ -46,9 +46,9 @@ FightArea_HideRival:
     End
 
 FightArea_CheckForWeekend_Unused:
-    GetDayOfWeek VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, FightArea_ActivateRivalFight_Unused
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, FightArea_ActivateRivalFight_Unused
+    GetDayOfWeek VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_SUNDAY, FightArea_ActivateRivalFight_Unused
+    GoToIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_SATURDAY, FightArea_ActivateRivalFight_Unused
     End
 
 FightArea_ActivateRivalFight_Unused:
@@ -424,7 +424,7 @@ FightArea_Fisherman:
     LockAll
     FacePlayer
     BufferItemName 0, ITEM_SUPER_ROD
-    GoToIfSet FLAG_SUPER_ROD_OBTAINED, FightArea_AdviceForFishing
+    GoToIfSet FLAG_RECEIVED_SUPER_ROD, FightArea_AdviceForFishing
     Message FightArea_Text_SuperRoodReallyGood
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, FightArea_DontYouLikeToFish
@@ -432,7 +432,7 @@ FightArea_Fisherman:
     SetVar VAR_0x8004, ITEM_SUPER_ROD
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    SetFlag FLAG_SUPER_ROD_OBTAINED
+    SetFlag FLAG_RECEIVED_SUPER_ROD
     Message FightArea_Text_TryLuckAtFishing
     WaitButton
     CloseMessage

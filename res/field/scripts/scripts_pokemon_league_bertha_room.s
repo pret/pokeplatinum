@@ -65,7 +65,7 @@ PokemonLeagueBerthaRoom_OnFrame_EnterRoom:
     PlaySE SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_BERTHA_ROOM_ENTRANCE_DOOR
     AddObject LOCALID_ENTRANCE_DOOR
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     ReleaseAll
     End
 

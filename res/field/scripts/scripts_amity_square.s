@@ -3,7 +3,7 @@
 #include "res/field/events/events_amity_square.h"
 #include "generated/object_events_gfx.h"
 
-#define LOCAL_VAR_HAS_NATIONAL_DEX        VAR_MAP_LOCAL_0
+#define LOCAL_VAR_HAS_NATIONAL_DEX        VAR_MAP_LOCAL_0x00
 #define LOCAL_VAR_FOLLOWER_MON_ID         VAR_0x8002
 #define LOCAL_VAR_ITEM_OR_ACCESSORY_ID    VAR_0x8004
 #define LOCAL_VAR_ITEM_OR_ACCESSORY_COUNT VAR_0x8005
@@ -62,11 +62,11 @@ AmitySquare_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_AMITY_SQUARE
     SetFlag FLAG_HIDE_AMITY_SQUARE_FOLLOWER_MON
     CalcAmitySquareBerryAndAccessoryManOptionID VAR_AMITY_SQUARE_GIFT_ID
-    GetRandom VAR_MAP_LOCAL_2, 5
-    GoToIfEq VAR_MAP_LOCAL_2, 0, AmitySquare_SetGiftManPosition0
-    GoToIfEq VAR_MAP_LOCAL_2, 1, AmitySquare_SetGiftManPosition1
-    GoToIfEq VAR_MAP_LOCAL_2, 2, AmitySquare_SetGiftManPosition2
-    GoToIfEq VAR_MAP_LOCAL_2, 3, AmitySquare_SetGiftManPosition3
+    GetRandom VAR_MAP_LOCAL_0x02, 5
+    GoToIfEq VAR_MAP_LOCAL_0x02, 0, AmitySquare_SetGiftManPosition0
+    GoToIfEq VAR_MAP_LOCAL_0x02, 1, AmitySquare_SetGiftManPosition1
+    GoToIfEq VAR_MAP_LOCAL_0x02, 2, AmitySquare_SetGiftManPosition2
+    GoToIfEq VAR_MAP_LOCAL_0x02, 3, AmitySquare_SetGiftManPosition3
     End
 
 AmitySquare_SetGiftManPosition0:
@@ -134,25 +134,25 @@ AmitySquare_ListPermittedSpecies_NationalDex:
     End
 
 AmitySquare_InitCheckAllowedMonVars:
-    SetVar VAR_MAP_LOCAL_A, 0
-    GetPartyCount VAR_MAP_LOCAL_B
-    SetVar VAR_MAP_LOCAL_C, 0
+    SetVar VAR_MAP_LOCAL_0x0A, 0
+    GetPartyCount VAR_MAP_LOCAL_0x0B
+    SetVar VAR_MAP_LOCAL_0x0C, 0
     GoTo AmitySquare_CheckCurrentSlotAllowedMon
     End
 
 AmitySquare_CheckCurrentSlotAllowedMon:
-    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x0A, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, AmitySquare_TryCheckNextSlotAllowedMon
     CallIfEq LOCAL_VAR_HAS_NATIONAL_DEX, FALSE, AmitySquare_CheckAllowedMon
     CallIfEq LOCAL_VAR_HAS_NATIONAL_DEX, TRUE, AmitySquare_CheckAllowedMon_NationalDex
     GoToIfEq VAR_RESULT, FALSE, AmitySquare_TryCheckNextSlotAllowedMon
-    BufferPartyMonNickname 0, VAR_MAP_LOCAL_A
-    GoToIfEq VAR_MAP_LOCAL_C, 0, AmitySquare_AskGoWithFirstAllowedMon
-    GoToIfNe VAR_MAP_LOCAL_C, 0, AmitySquare_AskGoWithOtherAllowedMon
+    BufferPartyMonNickname 0, VAR_MAP_LOCAL_0x0A
+    GoToIfEq VAR_MAP_LOCAL_0x0C, 0, AmitySquare_AskGoWithFirstAllowedMon
+    GoToIfNe VAR_MAP_LOCAL_0x0C, 0, AmitySquare_AskGoWithOtherAllowedMon
     End
 
 AmitySquare_AskGoWithFirstAllowedMon:
-    AddVar VAR_MAP_LOCAL_C, 1
+    AddVar VAR_MAP_LOCAL_0x0C, 1
     Message AmitySquare_Text_OkWouldYouLikeToGoForAStrollWithYourPokemon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, AmitySquare_SetFollowerMon
@@ -160,7 +160,7 @@ AmitySquare_AskGoWithFirstAllowedMon:
     End
 
 AmitySquare_AskGoWithOtherAllowedMon:
-    AddVar VAR_MAP_LOCAL_C, 1
+    AddVar VAR_MAP_LOCAL_0x0C, 1
     Message AmitySquare_Text_OhOkThenYouWouldRatherGoForAStrollWithYourPokemon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, AmitySquare_SetFollowerMon
@@ -168,9 +168,9 @@ AmitySquare_AskGoWithOtherAllowedMon:
     End
 
 AmitySquare_TryCheckNextSlotAllowedMon:
-    AddVar VAR_MAP_LOCAL_A, 1
-    SubVar VAR_MAP_LOCAL_B, 1
-    GoToIfNe VAR_MAP_LOCAL_B, 0, AmitySquare_CheckCurrentSlotAllowedMon
+    AddVar VAR_MAP_LOCAL_0x0A, 1
+    SubVar VAR_MAP_LOCAL_0x0B, 1
+    GoToIfNe VAR_MAP_LOCAL_0x0B, 0, AmitySquare_CheckCurrentSlotAllowedMon
     Message AmitySquare_Text_ISeePleaseComeBack
     CloseMessage
     ApplyMovement LOCALID_PLAYER, AmitySquare_Movement_PlayerWalkSouth
@@ -182,8 +182,8 @@ AmitySquare_SetFollowerMon:
     HealParty
     FadeScreenOut
     WaitFadeScreen
-    SetVar VAR_FOLLOWER_MON_PARTY_ID, VAR_MAP_LOCAL_A
-    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_FOLLOWER_MON_SPECIES
+    SetVar VAR_FOLLOWER_MON_PARTY_ID, VAR_MAP_LOCAL_0x0A
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x0A, VAR_FOLLOWER_MON_SPECIES
     GoTo AmitySquare_SetFollowerGfx
     End
 
@@ -536,12 +536,12 @@ AmitySquare_FollowerMon_SeemsToBeEnjoyingTheWalk2:
     End
 
 AmitySquare_WestReceptionist:
-    SetVar VAR_MAP_LOCAL_A, 0
+    SetVar VAR_MAP_LOCAL_0x0A, 0
     GoTo AmitySquare_Receptionist
     End
 
 AmitySquare_EastReceptionist:
-    SetVar VAR_MAP_LOCAL_A, 1
+    SetVar VAR_MAP_LOCAL_0x0A, 1
     GoTo AmitySquare_Receptionist
     End
 
@@ -557,7 +557,7 @@ AmitySquare_Receptionist:
     CallIfEq VAR_RESULT, 3, AmitySquare_AreYouEnjoyingYourStroll
     CallIfEq VAR_RESULT, 4, AmitySquare_ItMakesMeHappySeeingAllTheCutePokemon
     CallIfEq VAR_RESULT, 5, AmitySquare_YouMaySpendAllTheTimeYouLikeInAmitySquare
-    GoToIfEq VAR_MAP_LOCAL_A, 0, AmitySquare_WestReceptionist_End
+    GoToIfEq VAR_MAP_LOCAL_0x0A, 0, AmitySquare_WestReceptionist_End
     GoTo AmitySquare_EastReceptionist_End
     End
 
@@ -724,7 +724,7 @@ AmitySquare_CheckPartyHasSpecies_NationalDex:
     End
 
 AmitySquare_CheckAllowedMon:
-    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x0A, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_PIKACHU, AmitySquare_SetMonAllowedFlag
     GoToIfEq VAR_RESULT, SPECIES_CLEFAIRY, AmitySquare_SetMonAllowedFlag
     GoToIfEq VAR_RESULT, SPECIES_PSYDUCK, AmitySquare_SetMonAllowedFlag
@@ -749,7 +749,7 @@ AmitySquare_SetMonAllowedFlag:
     Return
 
 AmitySquare_CheckAllowedMon_NationalDex:
-    GetPartyMonSpecies VAR_MAP_LOCAL_A, VAR_RESULT
+    GetPartyMonSpecies VAR_MAP_LOCAL_0x0A, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_PIKACHU, AmitySquare_SetMonAllowedFlag
     GoToIfEq VAR_RESULT, SPECIES_CLEFAIRY, AmitySquare_SetMonAllowedFlag
     GoToIfEq VAR_RESULT, SPECIES_PSYDUCK, AmitySquare_SetMonAllowedFlag
@@ -918,7 +918,7 @@ AmitySquare_GiftMan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, AmitySquare_GiftMan_ReceivedGift
+    GoToIfSet FLAG_DAILY_RECEIVED_AMITY_SQUARE_MAN_GIFT, AmitySquare_GiftMan_ReceivedGift
     Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
     GetAmitySquareBerryOrAccessoryIDFromMan VAR_AMITY_SQUARE_GIFT_ID, LOCAL_VAR_ITEM_OR_ACCESSORY_ID
     GoToIfAmitySquareManGiftIsNotAccessory VAR_AMITY_SQUARE_GIFT_ID, AmitySquare_GiftMan_ItemGift
@@ -970,7 +970,7 @@ AmitySquare_GiftMan_CannotFitItem:
     End
 
 AmitySquare_GiftMan_ReceivedGift:
-    SetFlag FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED
+    SetFlag FLAG_DAILY_RECEIVED_AMITY_SQUARE_MAN_GIFT
     Message AmitySquare_Text_HahahahPerhapsIllSeeYouAgainTomorrow
     WaitButton
     CloseMessage

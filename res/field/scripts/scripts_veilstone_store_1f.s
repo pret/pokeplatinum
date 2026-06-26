@@ -46,23 +46,23 @@ VeilstoneStore1F_Socialite:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_VEILSTONE_STORE_1F_RECEIVED_MASK, VeilstoneStore1F_Socialite_AfterMaskGiven
+    GoToIfSet FLAG_RECEIVED_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK, VeilstoneStore1F_Socialite_AfterMaskGiven
     GetPlayerStarterSpecies VAR_RESULT
     CallIfEq VAR_RESULT, SPECIES_TURTWIG, VeilstoneStore1F_Socialite_Turtwig
     CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, VeilstoneStore1F_Socialite_Chimchar
     CallIfEq VAR_RESULT, SPECIES_PIPLUP, VeilstoneStore1F_Socialite_Piplup
-    SetVar VAR_VEILSTONE_STORE_MASK, LOCAL_VAR_ACCESSORY_ID
+    SetVar VAR_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK, LOCAL_VAR_ACCESSORY_ID
     BufferAccessoryNameWithArticle 0, LOCAL_VAR_ACCESSORY_ID
     Message VeilstoneStore1F_Text_IMadeAnAccessory
     SetVar LOCAL_VAR_COUNT, 1
     Common_GiveAccessoryWaitForConfirm
-    SetFlag FLAG_VEILSTONE_STORE_1F_RECEIVED_MASK
+    SetFlag FLAG_RECEIVED_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK
     CloseMessage
     ReleaseAll
     End
 
 VeilstoneStore1F_Socialite_AfterMaskGiven:
-    BufferAccessoryName 0, VAR_VEILSTONE_STORE_MASK
+    BufferAccessoryName 0, VAR_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK
     Message VeilstoneStore1F_Text_DifferentLookForContests
     WaitButton
     CloseMessage

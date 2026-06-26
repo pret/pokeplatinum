@@ -50,8 +50,8 @@ VeilstoneStoreB1F_RageCandyBarVendor:
 VeilstoneStoreB1F_ProfRowan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN, VeilstoneStoreB1F_ProfRowanAfterSpokenTo
-    SetFlag FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN
+    GoToIfSet FLAG_TALKED_TO_VEILSTONE_STORE_B1F_PROF_ROWAN, VeilstoneStoreB1F_ProfRowanAfterSpokenTo
+    SetFlag FLAG_TALKED_TO_VEILSTONE_STORE_B1F_PROF_ROWAN
     SetFlag FLAG_HIDE_VEILSTONE_STORE_B1F_PROF_ROWAN
     Message VeilstoneStoreB1F_Text_RageCandyBarsAreTooPopular
     FacePlayer

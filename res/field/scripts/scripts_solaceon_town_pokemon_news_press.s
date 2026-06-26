@@ -13,7 +13,7 @@ SolaceonTownPokemonNewsPress_GymGuide:
     LockAll
     FacePlayer
     GoToIfSet FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD, SolaceonTownPokemonNewsPress_TryGiveReward
-    GoToIfSet FLAG_GOT_POKEMON_NEWS_PRESS_REWARD, SolaceonTownPokemonNewsPress_AnotherAssignmentTomorrow
+    GoToIfSet FLAG_DAILY_RECEIVED_POKEMON_NEWS_PRESS_REWARD, SolaceonTownPokemonNewsPress_AnotherAssignmentTomorrow
     GoToIfUnset FLAG_TALKED_TO_POKEMON_NEWS_PRESS_GYM_GUIDE, SolaceonTownPokemonNewsPress_ExpertWeveBeenLookingFor
     GoToIfEq VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0, SolaceonTownPokemonNewsPress_HeresYourAssignment
     GoTo SolaceonTownPokemonNewsPress_CheckBroughtRequestedPokemon
@@ -65,7 +65,7 @@ SolaceonTownPokemonNewsPress_SetReward:
     SetVar VAR_0x8005, 3
     CanFitItem ITEM_HEART_SCALE, 1, VAR_RESULT
     GoToIfNe VAR_RESULT, FALSE, SolaceonTownPokemonNewsPress_GiveRewardHelpAgainTomorrow
-    SetFlag FLAG_GOT_POKEMON_NEWS_PRESS_REWARD
+    SetFlag FLAG_DAILY_RECEIVED_POKEMON_NEWS_PRESS_REWARD
     GoToIfEq VAR_RESULT, FALSE, SolaceonTownPokemonNewsPress_CouldntGiveReward
     End
 
@@ -124,7 +124,7 @@ SolaceonTownPokemonNewsPress_GiveRewardHelpAgainTomorrow:
     Common_GiveItemQuantity
     ClearFlag FLAG_COULD_NOT_RECEIVE_POKEMON_NEWS_PRESS_REWARD
     SetVar VAR_POKEMON_NEWS_PRESS_REQUESTED_POKEMON, 0
-    SetFlag FLAG_GOT_POKEMON_NEWS_PRESS_REWARD
+    SetFlag FLAG_DAILY_RECEIVED_POKEMON_NEWS_PRESS_REWARD
     Message SolaceonTownPokemonNewsPress_Text_HelpAgainTomorrow
     WaitButton
     CloseMessage
