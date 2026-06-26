@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "generated/items.h"
 
 #include "applications/mail.h"
@@ -63,54 +64,98 @@ static void PartyMenu_SelectItemTake(PartyMenuApplication *application, int *par
 static void PartyMenu_SelectMail(PartyMenuApplication *application, int *partyMenuState);
 static void PartyMenu_SelectMailRead(PartyMenuApplication *application, int *partyMenuState);
 static void PartyMenu_SelectMailTake(PartyMenuApplication *application, int *partyMenuState);
-static int sub_0208384C(void *applicationPtr);
-static int sub_020838C4(void *applicationPtr);
-static int sub_020838F4(void *applicationPtr);
-static int sub_02083990(void *applicationPtr);
+static enum PartyMenuState sub_0208384C(PartyMenuApplication *application);
+static enum PartyMenuState sub_020838C4(PartyMenuApplication *application);
+static enum PartyMenuState sub_020838F4(PartyMenuApplication *application);
+static enum PartyMenuState sub_02083990(PartyMenuApplication *application);
 static void sub_020846CC(PartyMenuApplication *application, int *partyMenuState);
-static void sub_020844B0(PartyMenuApplication *application, int *partyMenuState);
+static void PartyMenu_SelectChooseWithLimit(PartyMenuApplication *application, int *partyMenuState);
 static void sub_020845E8(PartyMenuApplication *application, int *partyMenuState);
 static void sub_020846FC(PartyMenuApplication *application, int *partyMenuState);
 static void PartyMenu_SelectBallSeal(PartyMenuApplication *application, int *partyMenuState);
 
-static const PartyMenuAction sPartyMenuActions[32] = {
-    PartyMenu_SelectSwitch,
-    PartyMenu_SelectSummary,
-    PartyMenu_SelectItem,
-    PartyMenu_SelectItemGive,
-    PartyMenu_SelectItemTake,
-    PartyMenu_SelectMail,
-    PartyMenu_SelectMailRead,
-    PartyMenu_SelectMailTake,
-    PartyMenu_SelectBallSeal,
-    0xFFFFFFFE,
-    0xFFFFFFFE,
-    sub_020844B0, // select pokemon?
-    sub_020845E8, // select pokemon?
-    sub_020846CC, // cancel?
-    sub_02084760, // clear screen?
-    sub_020846FC, // cancel2
-    PartyMenu_SelectCut,
-    PartyMenu_SelectFly,
-    PartyMenu_SelectSurf,
-    PartyMenu_SelectStrength,
-    PartyMenu_SelectDefog,
-    PartyMenu_SelectRockSmash,
-    PartyMenu_SelectWaterfall,
-    PartyMenu_SelectRockClimb,
-    PartyMenu_SelectFlash,
-    PartyMenu_SelectTeleport,
-    PartyMenu_SelectDig,
-    PartyMenu_SelectSweetScent,
-    PartyMenu_SelectChatter,
-    PartyMenu_SelectMilkDrink,
-    PartyMenu_SelectSoftboiled,
-    0xFFFFFFFE
+union PartyMenuActionFunc {
+    PartyMenuAction func;
+    u32 raw;
 };
 
-u32 PartyMenu_GetAction(u8 action) // table
+enum {
+    ACTION_SWITCH = 0,
+    ACTION_SUMMARY,
+    ACTION_ITEM,
+    ACTION_ITEM_GIVE,
+    ACTION_ITEM_TAKE,
+    ACTION_MAIL,
+    ACTION_MAIL_READ,
+    ACTION_MAIL_TAKE,
+    ACTION_BALL_SEAL,
+    ACTION_CANCEL,
+    ACTION_UNK_10,
+    ACTION_CHOOSE,
+    ACTION_UNK_12,
+    ACTION_UNK_13,
+    ACTION_UNK_14,
+    ACTION_UNK_15,
+    ACTION_CUT,
+    ACTION_FLY,
+    ACTION_SURF,
+    ACTION_STRENGTH,
+    ACTION_DEFOG,
+    ACTION_ROCK_SMASH,
+    ACTION_WATERFALL,
+    ACTION_ROCK_CLIMB,
+    ACTION_FLASH,
+    ACTION_TELEPORT,
+    ACTION_DIG,
+    ACTION_SWEET_SCENT,
+    ACTION_CHATTER,
+    ACTION_MILK_DRINK,
+    ACTION_SOFTBOILED,
+    ACTION_UNK_31,
+
+    ACTION_MAX,
+};
+
+// clang-format off
+static const union PartyMenuActionFunc sPartyMenuActions[ACTION_MAX] = {
+    [ACTION_SWITCH] =      PartyMenu_SelectSwitch,
+    [ACTION_SUMMARY] =     PartyMenu_SelectSummary,
+    [ACTION_ITEM] =        PartyMenu_SelectItem,
+    [ACTION_ITEM_GIVE] =   PartyMenu_SelectItemGive,
+    [ACTION_ITEM_TAKE] =   PartyMenu_SelectItemTake,
+    [ACTION_MAIL] =        PartyMenu_SelectMail,
+    [ACTION_MAIL_READ] =   PartyMenu_SelectMailRead,
+    [ACTION_MAIL_TAKE] =   PartyMenu_SelectMailTake,
+    [ACTION_BALL_SEAL] =   PartyMenu_SelectBallSeal,
+    [ACTION_CANCEL] =      { .raw = MENU_CANCEL },
+    [ACTION_UNK_10] =      { .raw = MENU_CANCEL },
+    [ACTION_CHOOSE] =      PartyMenu_SelectChooseWithLimit,
+    [ACTION_UNK_12] =      sub_020845E8, // select pokemon?
+    [ACTION_UNK_13] =      sub_020846CC, // cancel?
+    [ACTION_UNK_14] =      sub_02084760, // clear screen?
+    [ACTION_UNK_15] =      sub_020846FC, // cancel2
+    [ACTION_CUT] =         PartyMenu_SelectCut,
+    [ACTION_FLY] =         PartyMenu_SelectFly,
+    [ACTION_SURF] =        PartyMenu_SelectSurf,
+    [ACTION_STRENGTH] =    PartyMenu_SelectStrength,
+    [ACTION_DEFOG] =       PartyMenu_SelectDefog,
+    [ACTION_ROCK_SMASH] =  PartyMenu_SelectRockSmash,
+    [ACTION_WATERFALL] =   PartyMenu_SelectWaterfall,
+    [ACTION_ROCK_CLIMB] =  PartyMenu_SelectRockClimb,
+    [ACTION_FLASH] =       PartyMenu_SelectFlash,
+    [ACTION_TELEPORT] =    PartyMenu_SelectTeleport,
+    [ACTION_DIG] =         PartyMenu_SelectDig,
+    [ACTION_SWEET_SCENT] = PartyMenu_SelectSweetScent,
+    [ACTION_CHATTER] =     PartyMenu_SelectChatter,
+    [ACTION_MILK_DRINK] =  PartyMenu_SelectMilkDrink,
+    [ACTION_SOFTBOILED] =  PartyMenu_SelectSoftboiled,
+    [ACTION_UNK_31] =      { .raw = MENU_CANCEL },
+};
+// clang-format on
+
+u32 PartyMenu_GetAction(u8 action)
 {
-    return sPartyMenuActions[action];
+    return sPartyMenuActions[action].raw;
 }
 
 void PartyMenu_ClearContextWindow(PartyMenuApplication *application)
@@ -124,30 +169,28 @@ void PartyMenu_ClearContextWindow(PartyMenuApplication *application)
 
 static void PartyMenu_SelectItem(PartyMenuApplication *application, int *partyMenuState)
 {
-    MenuTemplate v0;
-
     PartyMenu_ClearContextWindow(application);
     PartyMenu_PrintMediumMessage(application, PartyMenu_Text_DoWhatWithAnItem, FALSE);
 
     application->contextMenuChoices = StringList_New(3, HEAP_ID_PARTY_MENU);
+    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_ITEM_GIVE], PartyMenu_GetAction(ACTION_ITEM_GIVE));
+    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_ITEM_TAKE], PartyMenu_GetAction(ACTION_ITEM_TAKE));
+    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_CANCEL], PartyMenu_GetAction(ACTION_CANCEL));
 
-    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_ITEM_GIVE], PartyMenu_GetAction(3));
-    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_ITEM_TAKE], PartyMenu_GetAction(4));
-    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_CANCEL], PartyMenu_GetAction(9));
+    MenuTemplate template;
+    template.choices = application->contextMenuChoices;
+    template.window = &application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL];
+    template.fontID = FONT_SYSTEM;
+    template.xSize = 1;
+    template.ySize = 3;
+    template.lineSpacing = 0;
+    template.suppressCursor = FALSE;
+    template.loopAround = FALSE;
 
-    v0.choices = application->contextMenuChoices;
-    v0.window = &application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL];
-    v0.fontID = FONT_SYSTEM;
-    v0.xSize = 1;
-    v0.ySize = 3;
-    v0.lineSpacing = 0;
-    v0.suppressCursor = FALSE;
-    v0.loopAround = FALSE;
+    Window_DrawStandardFrame(&application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL], TRUE, 1, 14);
 
-    Window_DrawStandardFrame(&application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL], 1, 1, 14);
-
-    application->contextMenu = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
-    *partyMenuState = PARTY_MENU_STATE_15;
+    application->contextMenu = Menu_NewAndCopyToVRAM(&template, 8, 0, 0, HEAP_ID_PARTY_MENU, PAD_BUTTON_B);
+    *partyMenuState = PARTY_MENU_STATE_HANDLE_CONTEXT_MENU_INPUT;
 }
 
 static void PartyMenu_SelectItemGive(PartyMenuApplication *application, int *partyMenuState)
@@ -156,7 +199,7 @@ static void PartyMenu_SelectItemGive(PartyMenuApplication *application, int *par
     StringList_Free(application->contextMenuChoices);
 
     application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_GIVE_ITEM;
-    *partyMenuState = PARTY_MENU_STATE_32;
+    *partyMenuState = PARTY_MENU_STATE_FADE_OUT;
 }
 
 static void PartyMenu_SelectItemTake(PartyMenuApplication *application, int *partyMenuState)
@@ -277,7 +320,7 @@ static void PartyMenu_SelectMail(PartyMenuApplication *application, int *partyMe
     Window_DrawStandardFrame(&application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL], 1, 1, 14);
 
     application->contextMenu = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
-    *partyMenuState = PARTY_MENU_STATE_15;
+    *partyMenuState = PARTY_MENU_STATE_HANDLE_CONTEXT_MENU_INPUT;
 }
 
 static void PartyMenu_SelectMailRead(PartyMenuApplication *application, int *partyMenuState)
@@ -286,7 +329,7 @@ static void PartyMenu_SelectMailRead(PartyMenuApplication *application, int *par
     StringList_Free(application->contextMenuChoices);
 
     application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_READ_MAIL;
-    *partyMenuState = PARTY_MENU_STATE_32;
+    *partyMenuState = PARTY_MENU_STATE_FADE_OUT;
 }
 
 static void PartyMenu_SelectMailTake(PartyMenuApplication *application, int *partyMenuState)
@@ -296,18 +339,16 @@ static void PartyMenu_SelectMailTake(PartyMenuApplication *application, int *par
     StringList_Free(application->contextMenuChoices);
     PartyMenu_PrintLongMessage(application, PartyMenu_Text_SendMailToPC, TRUE);
 
-    application->unk_B04.unk_00 = sub_0208384C;
-    application->unk_B04.unk_04 = sub_020838C4;
-    application->stateAfterMessage = PARTY_MENU_STATE_26;
+    application->yesnoCallbacks.onYes = sub_0208384C;
+    application->yesnoCallbacks.onNo = sub_020838C4;
+    application->stateAfterMessage = PARTY_MENU_STATE_DRAW_YES_NO_CHOICE;
     *partyMenuState = PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
 }
 
-static int sub_0208384C(void *applicationPtr)
+static enum PartyMenuState sub_0208384C(PartyMenuApplication *application)
 {
-    PartyMenuApplication *application = applicationPtr;
     Pokemon *v1;
 
-    application = applicationPtr;
     v1 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
 
     if (Mail_TransferFromMonToMailbox(application->partyMenu->mailbox, v1, HEAP_ID_PARTY_MENU) != 0xFFFFFFFF) {
@@ -323,23 +364,19 @@ static int sub_0208384C(void *applicationPtr)
     return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
 }
 
-static int sub_020838C4(void *applicationPtr)
+static enum PartyMenuState sub_020838C4(PartyMenuApplication *application)
 {
-    PartyMenuApplication *application = applicationPtr;
-
     PartyMenu_PrintLongMessage(application, PartyMenu_Text_IfmailIsRemovedMessageWillBeLostConfirm, FALSE);
 
-    application->unk_B04.unk_00 = sub_020838F4;
-    application->unk_B04.unk_04 = sub_02083990;
-    application->stateAfterMessage = PARTY_MENU_STATE_26;
+    application->yesnoCallbacks.onYes = sub_020838F4;
+    application->yesnoCallbacks.onNo = sub_02083990;
+    application->stateAfterMessage = PARTY_MENU_STATE_DRAW_YES_NO_CHOICE;
 
     return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
 }
 
-static int sub_020838F4(void *applicationPtr)
+static enum PartyMenuState sub_020838F4(PartyMenuApplication *application)
 {
-    PartyMenuApplication *application = applicationPtr;
-
     if (Bag_TryAddItem(application->partyMenu->bag, application->partyMembers[application->currPartySlot].heldItem, 1, HEAP_ID_PARTY_MENU) == TRUE) {
         Pokemon *mon;
         u32 item;
@@ -364,10 +401,8 @@ static int sub_020838F4(void *applicationPtr)
     return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
 }
 
-static int sub_02083990(void *applicationPtr)
+static enum PartyMenuState sub_02083990(PartyMenuApplication *application)
 {
-    PartyMenuApplication *application = applicationPtr;
-
     Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 1);
     PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
     Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
@@ -393,22 +428,21 @@ static void PartyMenu_SelectBallSeal(PartyMenuApplication *application, int *par
         Menu_Free(application->contextMenu, NULL);
         StringList_Free(application->contextMenuChoices);
         application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
-        *partyMenuState = PARTY_MENU_STATE_32;
+        *partyMenuState = PARTY_MENU_STATE_FADE_OUT;
         return;
     }
 
     PartyMenu_ClearContextWindow(application);
     PartyMenu_PrintLongMessage(application, PartyMenu_Text_BallCapsuleWillBeDetached, TRUE);
 
-    application->unk_B04.unk_00 = sub_02083A78;
-    application->unk_B04.unk_04 = sub_02083AA4;
-    application->stateAfterMessage = PARTY_MENU_STATE_26;
+    application->yesnoCallbacks.onYes = sub_02083A78;
+    application->yesnoCallbacks.onNo = sub_02083AA4;
+    application->stateAfterMessage = PARTY_MENU_STATE_DRAW_YES_NO_CHOICE;
     *partyMenuState = PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
 }
 
-int sub_02083A78(void *applicationPtr)
+enum PartyMenuState sub_02083A78(PartyMenuApplication *application)
 {
-    PartyMenuApplication *application = applicationPtr;
     Pokemon *v1 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
 
     Pokemon_ClearBallCapsuleData(v1);
@@ -417,10 +451,8 @@ int sub_02083A78(void *applicationPtr)
     return 32;
 }
 
-int sub_02083AA4(void *applicationPtr)
+enum PartyMenuState sub_02083AA4(PartyMenuApplication *application)
 {
-    PartyMenuApplication *application = applicationPtr;
-
     Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 1);
     PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
     Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
@@ -708,25 +740,23 @@ static void sub_02084420(PartyMenuApplication *application, u8 param1)
     }
 }
 
-static void sub_020844B0(PartyMenuApplication *application, int *partyMenuState)
+static void PartyMenu_SelectChooseWithLimit(PartyMenuApplication *application, int *partyMenuState)
 {
-    u8 v0;
-
     Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_MEDIUM_MESSAGE], 1);
     PartyMenu_ClearContextWindow(application);
 
-    for (v0 = 0; v0 < application->partyMenu->maxSelectionSlots; v0++) {
-        if (application->partyMenu->selectionOrder[v0] != 0) {
+    for (u8 i = 0; i < application->partyMenu->maxSelectionSlots; i++) {
+        if (application->partyMenu->selectionOrder[i] != 0) {
             continue;
         }
 
-        application->partyMenu->selectionOrder[v0] = application->currPartySlot + 1;
+        application->partyMenu->selectionOrder[i] = application->currPartySlot + 1;
 
         PartyMenu_PrintSelectionEligibility(application, application->currPartySlot);
         PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseMonAndConfirm, TRUE);
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
 
-        if (v0 == application->partyMenu->maxSelectionSlots - 1) {
+        if (i == application->partyMenu->maxSelectionSlots - 1) {
             sub_0207FD68(application, 6);
         }
 
@@ -807,7 +837,7 @@ static void sub_020846CC(PartyMenuApplication *application, int *partyMenuState)
     Menu_Free(application->contextMenu, NULL);
     StringList_Free(application->contextMenuChoices);
 
-    *partyMenuState = PARTY_MENU_STATE_32;
+    *partyMenuState = PARTY_MENU_STATE_FADE_OUT;
 }
 
 static void sub_020846FC(PartyMenuApplication *application, int *partyMenuState)
@@ -817,7 +847,7 @@ static void sub_020846FC(PartyMenuApplication *application, int *partyMenuState)
     Menu_Free(application->contextMenu, NULL);
     StringList_Free(application->contextMenuChoices);
 
-    *partyMenuState = PARTY_MENU_STATE_32;
+    *partyMenuState = PARTY_MENU_STATE_FADE_OUT;
 }
 
 static void PartyMenu_SelectSummary(PartyMenuApplication *application, int *partyMenuState)
@@ -827,7 +857,7 @@ static void PartyMenu_SelectSummary(PartyMenuApplication *application, int *part
     Menu_Free(application->contextMenu, NULL);
     StringList_Free(application->contextMenuChoices);
 
-    *partyMenuState = PARTY_MENU_STATE_32;
+    *partyMenuState = PARTY_MENU_STATE_FADE_OUT;
 }
 
 static void sub_02084760(PartyMenuApplication *application, int *partyMenuState)
@@ -853,7 +883,7 @@ int sub_02084780(PartyMenuApplication *application)
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
 
     application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
-    application->stateAfterMessage = PARTY_MENU_STATE_25;
+    application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
 
     return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
 }
@@ -876,7 +906,7 @@ static void PartyMenu_SelectFieldMove(PartyMenuApplication *windowLayout, int *p
     case 0:
         Menu_Free(windowLayout->contextMenu, NULL);
         StringList_Free(windowLayout->contextMenuChoices);
-        *partyMenuState = PARTY_MENU_STATE_32;
+        *partyMenuState = PARTY_MENU_STATE_FADE_OUT;
         return;
     case 1:
         msgID = PartyMenu_Text_CantUseThatHere;
