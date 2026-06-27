@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV96_0223BF40_T_H
-#define POKEPLATINUM_STRUCT_OV96_0223BF40_T_H
+#ifndef POKEPLATINUM_WIFI_BATTLE_TOWER_APP_STATE_H
+#define POKEPLATINUM_WIFI_BATTLE_TOWER_APP_STATE_H
 
 #include <dwc.h>
 #include <nnsys.h>
@@ -88,4 +88,4 @@ typedef struct WifiBattleTowerAppState {
     UnkStruct_ov61_0222C3B0 unk_FF8;
 } WifiBattleTowerAppState;
 
-#endif // POKEPLATINUM_STRUCT_OV96_0223BF40_T_H
+#endif // POKEPLATINUM_WIFI_BATTLE_TOWER_APP_STATE_H

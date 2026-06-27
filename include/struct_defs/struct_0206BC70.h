@@ -16,7 +16,7 @@ typedef struct {
     SaveData *saveData;
     Options *options;
     DWCUserData *userData;
-    int mode; // TODO: make/find constants. 0=download, 1=upload, 2=rank selection.
+    int mode;
     int profileId;
     int unk_20;
     int unk_24;
