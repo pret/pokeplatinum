@@ -44,6 +44,22 @@ enum AvatarMoveState {
     AVATAR_MOVE_STATE_TURNING,
 };
 
+enum AvatarBikeState {
+    AVATAR_BIKE_STATE_NONE = 0,
+    AVATAR_BIKE_STATE_MOVING,
+    AVATAR_BIKE_STATE_TURNING,
+    AVATAR_BIKE_STATE_BRAKE,
+};
+
+enum AvatarMoveSpeed {
+    AVATAR_MOVE_SPEED_0 = 0,
+    AVATAR_MOVE_SPEED_1,
+    AVATAR_MOVE_SPEED_2,
+    AVATAR_MOVE_SPEED_3,
+    
+    AVATAR_MOVE_SPEED_BIKE_BRAKE = AVATAR_MOVE_SPEED_2,
+};
+
 enum AvatarDistortionState {
     AVATAR_DISTORTION_STATE_NONE = 0,
     AVATAR_DISTORTION_STATE_ACTIVE,
@@ -73,6 +89,13 @@ enum PlayerTileMovement {
     TILE_MOVE_BIKE_RAMP_WEST,
     TILE_MOVE_CYCLING_ROAD_DOWN,
     TILE_MOVE_MAX,
+};
+
+// Height Change Constants
+enum PlayerHeightChange {
+    PLAYER_HEIGHT_CHANGE_NONE = 0,
+    PLAYER_HEIGHT_CHANGE_INCREASE,
+    PLAYER_HEIGHT_CHANGE_DECREASE,
 };
 
 // Player Avatar collision flags

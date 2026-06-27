@@ -291,8 +291,8 @@ void StartMenu_Open(FieldSystem *fieldSystem)
 
     menu->inUnionRoom = FALSE;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, StartMenu_Main, menu);
@@ -305,8 +305,8 @@ void StartMenu_OpenUnionRoom(FieldSystem *fieldSystem)
     menu->hideOptionFlags = StartMenu_GetUnionRoomHiddenOptions(fieldSystem);
     menu->inUnionRoom = TRUE;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, StartMenu_Main, menu);
@@ -319,8 +319,8 @@ void StartMenu_OpenColosseum(FieldSystem *fieldSystem)
     menu->hideOptionFlags = StartMenu_GetColosseumHiddenOptions(fieldSystem);
     menu->inUnionRoom = FALSE;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, StartMenu_Main, menu);

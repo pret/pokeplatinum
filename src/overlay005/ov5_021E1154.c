@@ -98,7 +98,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
             int v3 = 0xc;
 
             v3 = MovementAction_TurnActionTowardsDir(v0->unk_00, v3);
-            PlayerAvatar_SetAnimationCode(v0->playerAvatar, v3, 1);
+            PlayerAvatar_SetMapObjMovement(v0->playerAvatar, v3, 1);
             PlayerAvatar_TryFace(v0->playerAvatar, v0->unk_00);
             v0->unk_08++;
             v0->unk_04 = 7;

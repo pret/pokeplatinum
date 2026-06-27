@@ -1280,7 +1280,7 @@ static int sub_0206537C(MapObject *mapObj)
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
 
-        if (sub_0206140C(playerAvatar) == 0) {
+        if (PlayerAvatar_IsRunning(playerAvatar) == 0) {
             return -1;
         }
 

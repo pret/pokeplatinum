@@ -454,7 +454,7 @@ int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, enum Face
 
 static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
 {
-    int v0 = sub_02061434(playerAvatar, param2);
+    int v0 = PlayerAvatar_GetMoveStateFromPlayerAvatarState(playerAvatar, param2);
 
     if (param3 & 1 << 2) {
         if (DistWorld_HandlePlayerMoved(fieldSystem, param2) == 1) {
@@ -487,7 +487,7 @@ static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
 
 static int ov5_021DFEF4(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
 {
-    int v0 = sub_02061434(playerAvatar, param2);
+    int v0 = PlayerAvatar_GetMoveStateFromPlayerAvatarState(playerAvatar, param2);
 
     if (FieldSystem_TryGetStuckInDeepMud(fieldSystem, playerAvatar, param2, v0) == TRUE) {
         return 1;
@@ -946,7 +946,7 @@ static BOOL FieldTask_StuckInDeepMud(FieldTask *fieldTaskEnv)
         }
 
         movementAction = MovementAction_TurnActionTowardsDir(playerNewDirection, movementAction);
-        PlayerAvatar_SetAnimationCode(stuckInDeepMudTaskEnv->playerAvatar, movementAction, 1);
+        PlayerAvatar_SetMapObjMovement(stuckInDeepMudTaskEnv->playerAvatar, movementAction, 1);
     } break;
     }
 

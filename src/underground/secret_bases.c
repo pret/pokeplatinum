@@ -1716,7 +1716,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         break;
     case MOVE_STATE_BLOCK_ENTRANCE:
         CommPlayerMan_ForceDir();
-        PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(DIR_SOUTH, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH), 1);
+        PlayerAvatar_SetMapObjMovement(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(DIR_SOUTH, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH), 1);
         CommPlayer_SetDir(DIR_SOUTH);
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_BlockedEntranceToDecorate, FALSE, NULL);
         Sound_PlayEffect(SEQ_SE_DP_DOOR);

@@ -2564,7 +2564,7 @@ BOOL DistWorld_HandlePlayerMoved(FieldSystem *fieldSystem, enum FaceDirection pl
 
     if (PersistedMapFeatures_GetID(persistedMapFeatures) == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
-        int v4 = sub_02061434(fieldSystem->playerAvatar, playerDir);
+        int v4 = PlayerAvatar_GetMoveStateFromPlayerAvatarState(fieldSystem->playerAvatar, playerDir);
 
         int playerX, playerY, playerZ;
         GetPlayerPos(dwSystem, &playerX, &playerY, &playerZ);
