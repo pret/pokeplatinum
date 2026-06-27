@@ -10,13 +10,13 @@
 #include "system_data.h"
 
 typedef struct {
-    WifiBattleTowerRecord *unk_00;
-    WifiBattleTowerDownloadData *unk_04;
+    WifiBattleTowerRecord *record;
+    WifiBattleTowerDownloadData *downloadData;
     SystemData *systemData;
     SaveData *saveData;
     Options *options;
     DWCUserData *userData;
-    int unk_18;
+    int mode; // TODO: make/find constants. 0=download, 1=upload, 2=rank selection.
     int profileId;
     int unk_20;
     int unk_24;

@@ -35,32 +35,32 @@
 #include "vram_transfer.h"
 #include "wifi_overlays.h"
 
-static void ov96_0223B940(void *param0);
-static void ov96_0223B960(void);
-static void ov96_0223B980(UnkStruct_ov96_0223BF40 *param0, ApplicationManager *appMan);
-static void ov96_0223B99C(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223B9A0(void);
-static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223BC2C(DWCAllocType param0, void *param1, u32 param2);
-static void *ov96_0223BC04(DWCAllocType param0, u32 param1, int param2);
-static void ov96_0223BC64(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223BC8C(UnkStruct_ov96_0223BF40 *param0);
+static void WifiBattleTower_OnVBlank(void *appStatePtr);
+static void WifiBattleTower_SetupVramBanks(void);
+static void WifiBattleTower_InitAppState(WifiBattleTowerAppState *appState, ApplicationManager *appMan);
+static void Dummy_0223B99C(WifiBattleTowerAppState *unused);
+static void WifiBattleTower_InitTransferSystems(void);
+static void WifiBattleTower_InitSpriteResources(WifiBattleTowerAppState *appState);
+static void WifiBattleTower_CreateSelectionArrows(WifiBattleTowerAppState *appState);
+static void WifiBattleTower_DwcFree(DWCAllocType unused1, void *ptr, u32 unused2);
+static void *WifiBattleTower_DwcAlloc(DWCAllocType unused, u32 size, int alignment);
+static void WifiBattleTower_InitGraphics(WifiBattleTowerAppState *appState);
+static void WifiBattleTower_FreeGraphics(WifiBattleTowerAppState *appState);
 
-static NNSFndHeapHandle Unk_ov96_0223DEF0;
+static NNSFndHeapHandle sDwcHeap;
 
-static int (*Unk_ov96_0223DCD4[][3])(UnkStruct_ov96_0223BF40 *, int) = {
-    { ov96_0223BCE0, ov96_0223BDBC, ov96_0223BDEC }
+static int (*sScreenFunctions[][3])(WifiBattleTowerAppState *, int) = {
+    { WifiBattleTower_ScreenInit, WifiBattleTower_ScreenMain, WifiBattleTower_ScreenExit }
 };
 
-UnkStruct_ov96_0223BF40 *Unk_ov96_0223DEEC;
+WifiBattleTowerAppState *wifiBattleTowerAppState;
 
-int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
+int WifiBattleTower_AppInit(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_ov96_0223BF40 *v0;
+    WifiBattleTowerAppState *appState;
 
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case BT_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER:
         SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
@@ -71,44 +71,44 @@ int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_68, 0x50000);
 
-        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov96_0223BF40), HEAP_ID_68);
-        memset(v0, 0, sizeof(UnkStruct_ov96_0223BF40));
-        v0->unk_04 = BgConfig_New(HEAP_ID_68);
-        Unk_ov96_0223DEEC = v0;
+        appState = ApplicationManager_NewData(appMan, sizeof(WifiBattleTowerAppState), HEAP_ID_68);
+        memset(appState, 0, sizeof(WifiBattleTowerAppState));
+        appState->bgConfig = BgConfig_New(HEAP_ID_68);
+        wifiBattleTowerAppState = appState;
 
         {
-            GraphicsModes v1 = {
+            GraphicsModes graphicsModes = {
                 GX_DISPMODE_GRAPHICS,
                 GX_BGMODE_0,
                 GX_BGMODE_0,
                 GX_BG0_AS_2D,
             };
 
-            SetAllGraphicsModes(&v1);
+            SetAllGraphicsModes(&graphicsModes);
         }
 
-        v0->unk_BCC = StringTemplate_New(11, 32, HEAP_ID_68);
-        v0->unk_BD0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0670, HEAP_ID_68);
-        v0->unk_BD4 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_68);
-        v0->unk_BD8 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_68);
+        appState->stringTemplate = StringTemplate_New(11, 32, HEAP_ID_68);
+        appState->msgLoader1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0670, HEAP_ID_68);
+        appState->msgLoader2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_68);
+        appState->msgLoader3 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_68);
 
         SetAutorepeat(4, 8);
-        ov96_0223B980(v0, appMan);
-        ov96_0223BC64(v0);
+        WifiBattleTower_InitAppState(appState, appMan);
+        WifiBattleTower_InitGraphics(appState);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
 
-        v0->unk_24 = Heap_Alloc(HEAP_ID_68, 0x20000 + 32);
-        v0->unk_28 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_24 + 31) / 32 * 32), 0x20000);
+        appState->dwcHeapBuffer = Heap_Alloc(HEAP_ID_68, 0x20000 + 32);
+        appState->dwcHeap = NNS_FndCreateExpHeap((void *)(((u32)appState->dwcHeapBuffer + 31) / 32 * 32), 0x20000);
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
 
-        *param1 = 1;
+        *state = BT_LOOP_STATE_INIT;
         break;
-    case 1:
+    case BT_LOOP_STATE_INIT:
         Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
-        (*param1) = 0;
+        (*state) = BT_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER;
         return 1;
         break;
     }
@@ -116,71 +116,69 @@ int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov96_0223B7F8(ApplicationManager *appMan, int *param1)
+int WifiBattleTower_AppMain(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_ov96_0223BF40 *v0 = ApplicationManager_Data(appMan);
-    int v1;
+    WifiBattleTowerAppState *appState = ApplicationManager_Data(appMan);
 
     DWC_UpdateConnection();
-    ov96_0223B15C();
+    BattleTowerHttp_Update();
     DWC_UpdateConnection();
 
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case BT_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER:
         if (WirelessDriver_IsReady()) {
-            Unk_ov96_0223DEF0 = v0->unk_28;
-            DWC_SetMemFunc(ov96_0223BC04, ov96_0223BC2C);
-            *param1 = 1;
+            sDwcHeap = appState->dwcHeap;
+            DWC_SetMemFunc(WifiBattleTower_DwcAlloc, WifiBattleTower_DwcFree);
+            *state = BT_LOOP_STATE_INIT;
         }
         break;
-    case 1:
-        *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][0])(v0, *param1);
+    case BT_LOOP_STATE_INIT:
+        *state = (*sScreenFunctions[appState->screenMode][0])(appState, *state);
         break;
-    case 2:
+    case BT_LOOP_STATE_WAIT_FADE:
         if (IsScreenFadeDone()) {
-            *param1 = 3;
+            *state = BT_LOOP_STATE_MAIN;
         }
         break;
-    case 3:
-        *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][1])(v0, *param1);
+    case BT_LOOP_STATE_MAIN:
+        *state = (*sScreenFunctions[appState->screenMode][1])(appState, *state);
         break;
-    case 4:
+    case BT_LOOP_STATE_FINISH:
         if (IsScreenFadeDone()) {
-            *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][2])(v0, *param1);
+            *state = (*sScreenFunctions[appState->screenMode][2])(appState, *state);
         }
         break;
-    case 5:
+    case BT_LOOP_STATE_EXIT:
         return 1;
         break;
     }
 
-    if (v0->unk_BF4 != NULL) {
-        SpriteList_Update(v0->unk_BF4);
+    if (appState->spriteList != NULL) {
+        SpriteList_Update(appState->spriteList);
     }
 
     return 0;
 }
 
-int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
+int WifiBattleTower_AppExit(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_ov96_0223BF40 *v0 = ApplicationManager_Data(appMan);
-    int v1;
+    WifiBattleTowerAppState *appState = ApplicationManager_Data(appMan);
 
-    Heap_Free(v0->unk_24);
+    Heap_Free(appState->dwcHeapBuffer);
     Overlay_UnloadHttpOverlay();
     Overlay_UnloadWFCOverlay();
 
-    ov96_0223BC8C(v0);
+    WifiBattleTower_FreeGraphics(appState);
 
-    MessageLoader_Free(v0->unk_BD8);
-    MessageLoader_Free(v0->unk_BD4);
-    MessageLoader_Free(v0->unk_BD0);
-    StringTemplate_Free(v0->unk_BCC);
+    MessageLoader_Free(appState->msgLoader3);
+    MessageLoader_Free(appState->msgLoader2);
+    MessageLoader_Free(appState->msgLoader1);
+    StringTemplate_Free(appState->stringTemplate);
 
-    ov96_0223B99C(v0);
+    Dummy_0223B99C(appState);
 
     WirelessDriver_Shutdown();
-    Heap_Free(v0->unk_04);
+    Heap_Free(appState->bgConfig);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_68);
@@ -188,21 +186,21 @@ int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov96_0223B940(void *param0)
+static void WifiBattleTower_OnVBlank(void *appStatePtr)
 {
-    UnkStruct_ov96_0223BF40 *v0 = param0;
+    WifiBattleTowerAppState *appState = appStatePtr;
 
     VramTransfer_Process();
     RenderOam_Transfer();
 
-    inline_ov61_0222C1FC(&v0->unk_FF8);
+    inline_ov61_0222C1FC(&appState->unk_FF8);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov96_0223B960(void)
+static void WifiBattleTower_SetupVramBanks(void)
 {
-    GXBanks v0 = {
+    GXBanks vramBanks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -215,30 +213,30 @@ static void ov96_0223B960(void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&vramBanks);
 }
 
-static void ov96_0223B980(UnkStruct_ov96_0223BF40 *param0, ApplicationManager *appMan)
+static void WifiBattleTower_InitAppState(WifiBattleTowerAppState *appState, ApplicationManager *appMan)
 {
-    param0->unk_00 = (UnkStruct_0206BC70 *)ApplicationManager_Args(appMan);
-    param0->unk_10 = 0;
+    appState->args = (UnkStruct_0206BC70 *)ApplicationManager_Args(appMan);
+    appState->screenMode = 0;
 
-    ov96_0223BC5C(param0, 0, 0);
+    WifiBattleTower_SetExitMode(appState, 0, 0);
 }
 
-static void ov96_0223B99C(UnkStruct_ov96_0223BF40 *param0)
+static void Dummy_0223B99C(WifiBattleTowerAppState *unused)
 {
     return;
 }
 
-static void ov96_0223B9A0(void)
+static void WifiBattleTower_InitTransferSystems(void)
 {
     {
-        CharTransferTemplate v0 = {
+        CharTransferTemplate ctTemplate = {
             20, 2048, 2048, HEAP_ID_68
         };
 
-        CharTransfer_Init(&v0);
+        CharTransfer_Init(&ctTemplate);
     }
 
     PlttTransfer_Init(20, HEAP_ID_68);
@@ -246,69 +244,66 @@ static void ov96_0223B9A0(void)
     PlttTransfer_Clear();
 }
 
-static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_InitSpriteResources(WifiBattleTowerAppState *appState)
 {
-    int v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_68);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_68);
 
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 68);
 
-    param0->unk_BF4 = SpriteList_InitRendering(10, &param0->unk_BF8, HEAP_ID_68);
+    appState->spriteList = SpriteList_InitRendering(10, &appState->renderer, HEAP_ID_68);
 
-    SetSubScreenViewRect(&param0->unk_BF8, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&appState->renderer, 0, 256 * FX32_ONE );
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_D84[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_68);
+    for (int i = 0; i < 4; i++) {
+        appState->resourceCollection[i] = SpriteResourceCollection_New(2, i, HEAP_ID_68);
     }
 
-    param0->unk_D94[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_D84[0], v1, 35, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_68);
-    param0->unk_D94[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_D84[1], v1, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_68);
-    param0->unk_D94[0][2] = SpriteResourceCollection_AddFrom(param0->unk_D84[2], v1, 36, 1, 0, 2, HEAP_ID_68);
-    param0->unk_D94[0][3] = SpriteResourceCollection_AddFrom(param0->unk_D84[3], v1, 37, 1, 0, 3, HEAP_ID_68);
+    appState->spriteResource[0][0] = SpriteResourceCollection_AddTilesFrom(appState->resourceCollection[0], narc, 35, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_68);
+    appState->spriteResource[0][1] = SpriteResourceCollection_AddPaletteFrom(appState->resourceCollection[1], narc, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_68);
+    appState->spriteResource[0][2] = SpriteResourceCollection_AddFrom(appState->resourceCollection[2], narc, 36, 1, 0, 2, HEAP_ID_68);
+    appState->spriteResource[0][3] = SpriteResourceCollection_AddFrom(appState->resourceCollection[3], narc, 37, 1, 0, 3, HEAP_ID_68);
 
-    SpriteTransfer_RequestChar(param0->unk_D94[0][0]);
-    SpriteTransfer_RequestPlttWholeRange(param0->unk_D94[0][1]);
-    NARC_dtor(v1);
+    SpriteTransfer_RequestChar(appState->spriteResource[0][0]);
+    SpriteTransfer_RequestPlttWholeRange(appState->spriteResource[0][1]);
+    NARC_dtor(narc);
 }
 
-static const u16 Unk_ov96_0223DA80[][2] = {
+static const u16 sSelectionArrowPositions[][2] = {
     { 0xE0, 0x6F },
     { 0xE0, 0x81 }
 };
 
-void ov96_0223BAE0(AffineSpriteListTemplate *param0, UnkStruct_ov96_0223BF40 *param1, SpriteResourcesHeader *param2, int param3)
+void WifiBattleTower_BuildAffineSpriteTemplate(AffineSpriteListTemplate *template, WifiBattleTowerAppState *appState, SpriteResourcesHeader *spriteResourceHeader, int vramType)
 {
-    param0->list = param1->unk_BF4;
-    param0->resourceData = param2;
-    param0->position.z = 0;
-    param0->affineScale.x = FX32_ONE;
-    param0->affineScale.y = FX32_ONE;
-    param0->affineScale.z = FX32_ONE;
-    param0->affineZRotation = 0;
-    param0->priority = 1;
-    param0->vramType = param3;
-    param0->heapID = HEAP_ID_68;
+    template->list = appState->spriteList;
+    template->resourceData = spriteResourceHeader;
+    template->position.z = 0;
+    template->affineScale.x = FX32_ONE;
+    template->affineScale.y = FX32_ONE;
+    template->affineScale.z = FX32_ONE;
+    template->affineZRotation = 0;
+    template->priority = 1;
+    template->vramType = vramType;
+    template->heapID = HEAP_ID_68;
 }
 
-static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_CreateSelectionArrows(WifiBattleTowerAppState *appState)
 {
-    int v0;
-
-    SpriteResourcesHeader_Init(&param0->unk_DC4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D84[0], param0->unk_D84[1], param0->unk_D84[2], param0->unk_D84[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&appState->arrowSpriteHeader, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, appState->resourceCollection[0], appState->resourceCollection[1], appState->resourceCollection[2], appState->resourceCollection[3], NULL, NULL);
 
     {
-        AffineSpriteListTemplate v1;
+        AffineSpriteListTemplate template;
 
-        ov96_0223BAE0(&v1, param0, &param0->unk_DC4, NNS_G2D_VRAM_TYPE_2DMAIN);
+        WifiBattleTower_BuildAffineSpriteTemplate(&template, appState, &appState->arrowSpriteHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        for (v0 = 0; v0 < 2; v0++) {
-            v1.position.x = FX32_ONE * Unk_ov96_0223DA80[v0][0];
-            v1.position.y = FX32_ONE * Unk_ov96_0223DA80[v0][1];
-            param0->unk_E30[v0] = SpriteList_AddAffine(&v1);
-            Sprite_SetAnimateFlag(param0->unk_E30[v0], 1);
-            Sprite_SetAnim(param0->unk_E30[v0], v0);
-            Sprite_SetDrawFlag(param0->unk_E30[v0], FALSE);
+        for (int i = 0; i < 2; i++) {
+            template.position.x = FX32_ONE * sSelectionArrowPositions[i][0];
+            template.position.y = FX32_ONE * sSelectionArrowPositions[i][1];
+            appState->selectionArrows[i] = SpriteList_AddAffine(&template);
+            Sprite_SetAnimateFlag(appState->selectionArrows[i], 1);
+            Sprite_SetAnim(appState->selectionArrows[i], i);
+            Sprite_SetDrawFlag(appState->selectionArrows[i], FALSE);
         }
     }
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -316,101 +311,93 @@ static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0)
     NetworkIcon_Init();
 }
 
-static const WindowTemplate Unk_ov96_0223DA78 = {
-    0x0,
-    0x17,
-    0xD,
-    0x7,
-    0x4,
-    0xD,
-    0x0
+static const WindowTemplate sYesNoWindowTemplate = {
+    0,
+    23,
+    13,
+    7,
+    4,
+    13,
+    0
 };
 
-Menu *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
+Menu *WifiBattleTower_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int baseTile)
 {
-    WindowTemplate v0;
+    WindowTemplate template;
 
-    v0 = Unk_ov96_0223DA78;
-    v0.tilemapTop = param1;
-    v0.baseTile = param2;
+    template = sYesNoWindowTemplate;
+    template.tilemapTop = tilemapTop;
+    template.baseTile = baseTile;
 
-    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 68);
+    return Menu_MakeYesNoChoice(bgConfig, &template, WINDOW_BORDER_TILE_START, WINDOW_BORDER_PLTT_SLOT, HEAP_ID_68);
 }
 
-void ov96_0223BBFC(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)
+void WifiBattleTower_SetState(WifiBattleTowerAppState *appState, int state, int nextState)
 {
-    param0->unk_1C = param1;
-    param0->unk_20 = param2;
+    appState->state = state;
+    appState->nextState = nextState;
 }
 
-static void *ov96_0223BC04(DWCAllocType param0, u32 param1, int param2)
+static void *WifiBattleTower_DwcAlloc(DWCAllocType unused, u32 size, int alignment)
 {
-#pragma unused(param0)
-    void *v0;
-    OSIntrMode v1;
+    void *ptr;
+    OSIntrMode state;
 
-    v1 = OS_DisableInterrupts();
-    v0 = NNS_FndAllocFromExpHeapEx(Unk_ov96_0223DEF0, param1, param2);
+    state = OS_DisableInterrupts();
+    ptr = NNS_FndAllocFromExpHeapEx(sDwcHeap, size, alignment);
 
-    OS_RestoreInterrupts(v1);
+    OS_RestoreInterrupts(state);
 
-    if (v0 == NULL) {
-        (void)0;
-    }
-
-    return v0;
+    return ptr;
 }
 
-static void ov96_0223BC2C(DWCAllocType param0, void *param1, u32 param2)
+static void WifiBattleTower_DwcFree(DWCAllocType unused1, void *ptr, u32 unused2)
 {
-#pragma unused(param0, param2)
-    OSIntrMode v0;
+    OSIntrMode state;
 
-    if (!param1) {
+    if (!ptr) {
         return;
     }
 
-    v0 = OS_DisableInterrupts();
+    state = OS_DisableInterrupts();
 
-    NNS_FndFreeToExpHeap(Unk_ov96_0223DEF0, param1);
-    OS_RestoreInterrupts(v0);
+    NNS_FndFreeToExpHeap(sDwcHeap, ptr);
+    OS_RestoreInterrupts(state);
 }
 
-int ov96_0223BC50(void)
+int WifiBattleTower_GetSignalStrength(void)
 {
     return WM_LINK_LEVEL_3 - DWC_GetLinkLevel();
 }
 
-void ov96_0223BC5C(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)
+void WifiBattleTower_SetExitMode(WifiBattleTowerAppState *appState, int exitMode, int unused)
 {
-    param0->unk_14 = param1;
-    param0->unk_18 = param2;
+    appState->exitMode = exitMode;
+    appState->unused_18 = unused;
 }
 
-static void ov96_0223BC64(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_InitGraphics(WifiBattleTowerAppState *appState)
 {
-    ov96_0223B960();
-    ov96_0223B9A0();
-    ov96_0223B9D0(param0);
-    ov96_0223BB0C(param0);
+    WifiBattleTower_SetupVramBanks();
+    WifiBattleTower_InitTransferSystems();
+    WifiBattleTower_InitSpriteResources(appState);
+    WifiBattleTower_CreateSelectionArrows(appState);
 
-    SetVBlankCallback(ov96_0223B940, param0);
+    SetVBlankCallback(WifiBattleTower_OnVBlank, appState);
 }
 
-static void ov96_0223BC8C(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_FreeGraphics(WifiBattleTowerAppState *appState)
 {
-    int v0;
+    SpriteTransfer_ResetCharTransfer(appState->spriteResource[0][0]);
+    SpriteTransfer_ResetPlttTransfer(appState->spriteResource[0][1]);
 
-    SpriteTransfer_ResetCharTransfer(param0->unk_D94[0][0]);
-    SpriteTransfer_ResetPlttTransfer(param0->unk_D94[0][1]);
-
-    for (v0 = 0; v0 < 4; v0++) {
-        SpriteResourceCollection_Delete(param0->unk_D84[v0]);
+    for (int i = 0; i < 4; i++) {
+        SpriteResourceCollection_Delete(appState->resourceCollection[i]);
     }
 
-    SpriteList_Delete(param0->unk_BF4);
+    SpriteList_Delete(appState->spriteList);
 
-    param0->unk_BF4 = NULL;
+    appState->spriteList = NULL;
 
     RenderOam_Free();
     CharTransfer_Free();

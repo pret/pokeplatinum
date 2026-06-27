@@ -1339,22 +1339,22 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
     FS_EXTERN_OVERLAY(overlay96);
 
     const ApplicationManagerTemplate appTemplate = {
-        ov96_0223B6A0,
-        ov96_0223B7F8,
-        ov96_0223B8CC,
+        WifiBattleTower_AppInit,
+        WifiBattleTower_AppMain,
+        WifiBattleTower_AppExit,
         FS_OVERLAY_ID(overlay96)
     };
 
     UnkStruct_0206BC70 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206BC70));
 
-    v0->unk_00 = SaveData_GetWifiBattleTowerRecord(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetWifiBattleTowerDownloadData(fieldSystem->saveData);
+    v0->record = SaveData_GetWifiBattleTowerRecord(fieldSystem->saveData);
+    v0->downloadData = SaveData_GetWifiBattleTowerDownloadData(fieldSystem->saveData);
     v0->systemData = SaveData_GetSystemData(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->userData = WiFiList_GetUserData(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->saveData = fieldSystem->saveData;
     v0->profileId = WiFiList_GetUserGsProfileId(SaveData_GetWiFiList(fieldSystem->saveData));
-    v0->unk_18 = param1;
+    v0->mode = param1;
     v0->unk_24 = param2;
     v0->unk_20 = 1;
 

@@ -8,13 +8,22 @@
 #include "overlay_manager.h"
 #include "sprite.h"
 
-int ov96_0223B6A0(ApplicationManager *appMan, int *param1);
-int ov96_0223B7F8(ApplicationManager *appMan, int *param1);
-int ov96_0223B8CC(ApplicationManager *appMan, int *param1);
-void ov96_0223BAE0(AffineSpriteListTemplate *param0, UnkStruct_ov96_0223BF40 *param1, SpriteResourcesHeader *param2, int param3);
-Menu *ov96_0223BBC8(BgConfig *param0, int param1, int param2);
-void ov96_0223BBFC(UnkStruct_ov96_0223BF40 *param0, int param1, int param2);
-int ov96_0223BC50(void);
-void ov96_0223BC5C(UnkStruct_ov96_0223BF40 *param0, int param1, int param2);
+int WifiBattleTower_AppInit(ApplicationManager *appMan, int *state);
+int WifiBattleTower_AppMain(ApplicationManager *appMan, int *state);
+int WifiBattleTower_AppExit(ApplicationManager *appMan, int *unused);
+void WifiBattleTower_BuildAffineSpriteTemplate(AffineSpriteListTemplate *template, WifiBattleTowerAppState *appState, SpriteResourcesHeader *spriteResourceHeader, int vramType);
+Menu *WifiBattleTower_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int baseTile);
+void WifiBattleTower_SetState(WifiBattleTowerAppState *appState, int state, int nextState);
+int WifiBattleTower_GetSignalStrength(void);
+void WifiBattleTower_SetExitMode(WifiBattleTowerAppState *appState, int exitMode, int unused);
+
+enum WifiBattleTowerLoopState {
+    BT_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER,
+    BT_LOOP_STATE_INIT,
+    BT_LOOP_STATE_WAIT_FADE,
+    BT_LOOP_STATE_MAIN,
+    BT_LOOP_STATE_FINISH,
+    BT_LOOP_STATE_EXIT,
+};
 
 #endif // POKEPLATINUM_OV96_0223B6A0_H

@@ -7,6 +7,7 @@
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "http/http.h"
+#include "overlay096/ov96_0223BCE0.h"
 #include "overlay096/struct_wifi_player_profile.h"
 #include "overlay096/struct_world_exchange_trainer.h"
 #include "overlay096/struct_world_exchange_trainer_error.h"
@@ -14,94 +15,93 @@
 #include "enums.h"
 
 typedef enum {
-    UnkEnum_ov96_0223B15C_00,
-    UnkEnum_ov96_0223B15C_01,
-    UnkEnum_ov96_0223B15C_02,
-    UnkEnum_ov96_0223B15C_03,
-    UnkEnum_ov96_0223B15C_04,
-    UnkEnum_ov96_0223B15C_05,
-    UnkEnum_ov96_0223B15C_06,
-    UnkEnum_ov96_0223B15C_07,
-    UnkEnum_ov96_0223B15C_08,
-    UnkEnum_ov96_0223B15C_09,
-    UnkEnum_ov96_0223B15C_10,
-    UnkEnum_ov96_0223B15C_11,
-    UnkEnum_ov96_0223B15C_12
-} UnkEnum_ov96_0223B15C;
+    HTTP_STATE_INACTIVE,
+    HTTP_STATE_IDLE,
+    HTTP_STATE_AWAITING_ROOMNUM,
+    HTTP_STATE_ERROR_ROOMNUM,
+    HTTP_STATE_AWAITING_DOWNLOAD,
+    HTTP_STATE_ERROR_DOWNLOAD,
+    HTTP_STATE_AWAITING_UPLOAD,
+    HTTP_STATE_ERROR_UPLOAD,
+    HTTP_STATE_AWAITING_INFO,
+    HTTP_STATE_ERROR_INFO,
+    HTTP_STATE_AWAITING_SET_PROFILE,
+    HTTP_STATE_ERROR_SET_PROFILE,
+    HTTP_STATE_COMPLETE
+} BattleTowerHttpRequestState;
 
 typedef struct {
-    UnkEnum_ov96_0223B15C unk_00;
-    s32 unk_04;
-    s32 unk_08;
-    u64 unk_0C;
-    u8 unk_14[239];
-    u8 unk_103[2];
-    u8 *unk_108;
-} UnkStruct_ov96_0223DDE0;
+    BattleTowerHttpRequestState requestState;
+    s32 result;
+    s32 profileId;
+    u64 friendKey;
+    u8 requestBody[239];
+    u8 responseBuffer[2];
+    u8 *responsePtr;
+} BattleTowerHttpState;
 
-static BOOL BattleTowerNetworking_PrepareRequest(const u8 *param0, const void *param1, int param2, void *param3, int param4);
-static int ov96_0223B608(int param0);
+static BOOL BattleTowerNetworking_PrepareRequest(const u8 *url, const void *data, int dataSize, void *response, int maxResponseLength);
+static int BattleTowerHttp_GetPublicErrorCode(int errorCode);
 
-static UnkStruct_ov96_0223DDE0 Unk_ov96_0223DDE0;
+static BattleTowerHttpState httpState;
 
-void ov96_0223B140(s32 param0, u64 param1)
+void BattleTowerHttp_Init(s32 profileId, u64 friendKey)
 {
-    Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_01;
-    Unk_ov96_0223DDE0.unk_04 = 0;
-    Unk_ov96_0223DDE0.unk_08 = param0;
-    Unk_ov96_0223DDE0.unk_0C = param1;
+    httpState.requestState = HTTP_STATE_IDLE;
+    httpState.result = BT_CODE_SUCCESS;
+    httpState.profileId = profileId;
+    httpState.friendKey = friendKey;
 }
 
-void ov96_0223B15C(void)
+void BattleTowerHttp_Update(void)
 {
-    switch (Unk_ov96_0223DDE0.unk_00) {
-    case UnkEnum_ov96_0223B15C_00:
+    switch (httpState.requestState) {
+    case HTTP_STATE_INACTIVE:
         break;
-    case UnkEnum_ov96_0223B15C_01:
+    case HTTP_STATE_IDLE:
         break;
-    case UnkEnum_ov96_0223B15C_02:
+    case HTTP_STATE_AWAITING_ROOMNUM:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
-            Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(HTTP_GetErrorCode());
+        case HTTP_STATUS_IDLE:
+            httpState.requestState = HTTP_STATE_COMPLETE;
+            httpState.result = BattleTowerHttp_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
-            Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
+        case HTTP_STATUS_COMPLETE:
+            httpState.requestState = HTTP_STATE_COMPLETE;
 
             if (HTTP_GetResponseLength() > 0) {
-                Unk_ov96_0223DDE0.unk_04 = Unk_ov96_0223DDE0.unk_103[0];
+                httpState.result = httpState.responseBuffer[0];
             } else {
-                Unk_ov96_0223DDE0.unk_04 = -2;
+                httpState.result = BT_CODE_SERVER_MAINTENANCE;
             }
 
             HTTP_Shutdown();
             break;
         }
         break;
-    case UnkEnum_ov96_0223B15C_04:
+    case HTTP_STATE_AWAITING_DOWNLOAD:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
-            Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(HTTP_GetErrorCode());
+        case HTTP_STATUS_IDLE:
+            httpState.requestState = HTTP_STATE_COMPLETE;
+            httpState.result = BattleTowerHttp_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
-            Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
+        case HTTP_STATUS_COMPLETE:
+            httpState.requestState = HTTP_STATE_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(WifiBattleTowerDownloadBuffer)) {
-                Unk_ov96_0223DDE0.unk_04 = 0;
+                httpState.result = BT_CODE_SUCCESS;
             } else {
-                switch (Unk_ov96_0223DDE0.unk_108[0]) {
-                case 2:
-                    Unk_ov96_0223DDE0.unk_04 = -3;
+                switch (httpState.responsePtr[0]) {
+                case BT_DOWNLOAD_RESPONSE_ALREADY_CHALLENGED:
+                    httpState.result = BT_CODE_ALREADY_CHALLENGED;
                     break;
-                case 5:
-                    Unk_ov96_0223DDE0.unk_04 = -2;
+                case BT_DOWNLOAD_RESPONSE_MAINTENANCE:
+                    httpState.result = BT_CODE_SERVER_MAINTENANCE;
                     break;
                 default:
-
-                    Unk_ov96_0223DDE0.unk_04 = -5;
+                    httpState.result = BT_CODE_NETWORK_FAILURE;
                     break;
                 }
             }
@@ -111,31 +111,31 @@ void ov96_0223B15C(void)
         }
 
         break;
-    case UnkEnum_ov96_0223B15C_06:
+    case HTTP_STATE_AWAITING_UPLOAD:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
-            Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(HTTP_GetErrorCode());
+        case HTTP_STATUS_IDLE:
+            httpState.requestState = HTTP_STATE_COMPLETE;
+            httpState.result = BattleTowerHttp_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
-            Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
+        case HTTP_STATUS_COMPLETE:
+            httpState.requestState = HTTP_STATE_COMPLETE;
 
-            switch (Unk_ov96_0223DDE0.unk_103[0]) {
-            case 1:
-                Unk_ov96_0223DDE0.unk_04 = 0;
+            switch (httpState.responseBuffer[0]) {
+            case BT_UPLOAD_RESPONSE_SUCCESS:
+                httpState.result = BT_CODE_SUCCESS;
                 break;
-            case 2:
-                Unk_ov96_0223DDE0.unk_04 = -3;
+            case BT_UPLOAD_RESPONSE_ALREADY_CHALLENGED:
+                httpState.result = BT_CODE_ALREADY_CHALLENGED;
                 break;
-            case 4:
-                Unk_ov96_0223DDE0.unk_04 = -1;
+            case BT_UPLOAD_RESPONSE_INVALID:
+                httpState.result = BT_CODE_UPLOAD_REJECTED;
                 break;
-            case 5:
-                Unk_ov96_0223DDE0.unk_04 = -2;
+            case BT_UPLOAD_RESPONSE_MAINTENANCE:
+                httpState.result = BT_CODE_SERVER_MAINTENANCE;
                 break;
             default:
-                Unk_ov96_0223DDE0.unk_04 = -5;
+                httpState.result = BT_CODE_NETWORK_FAILURE;
                 break;
             }
 
@@ -143,31 +143,31 @@ void ov96_0223B15C(void)
             break;
         }
         break;
-    case UnkEnum_ov96_0223B15C_08:
+    case HTTP_STATE_AWAITING_INFO:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
-            Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(HTTP_GetErrorCode());
+        case HTTP_STATUS_IDLE:
+            httpState.requestState = HTTP_STATE_COMPLETE;
+            httpState.result = BattleTowerHttp_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
-            Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
+        case HTTP_STATUS_COMPLETE:
+            httpState.requestState = HTTP_STATE_COMPLETE;
 
-            switch (Unk_ov96_0223DDE0.unk_103[0]) {
-            case 1:
-                Unk_ov96_0223DDE0.unk_04 = 0;
+            switch (httpState.responseBuffer[0]) {
+            case BT_INFO_RESPONSE_OK:
+                httpState.result = BT_CODE_SUCCESS;
                 break;
-            case 3:
-                Unk_ov96_0223DDE0.unk_04 = 1;
+            case BT_INFO_RESPONSE_UPLOAD_NEEDED:
+                httpState.result = BT_CODE_UPLOAD_NEEDED;
                 break;
-            case 4:
-                Unk_ov96_0223DDE0.unk_04 = 2;
+            case BT_INFO_RESPONSE_RANK_SELECT:
+                httpState.result = BT_CODE_RANK_SELECT_NEEDED;
                 break;
-            case 5:
-                Unk_ov96_0223DDE0.unk_04 = -2;
+            case BT_INFO_RESPONSE_MAINTENANCE:
+                httpState.result = BT_CODE_SERVER_MAINTENANCE;
                 break;
             default:
-                Unk_ov96_0223DDE0.unk_04 = -5;
+                httpState.result = BT_CODE_NETWORK_FAILURE;
                 break;
             }
 
@@ -175,35 +175,34 @@ void ov96_0223B15C(void)
             break;
         }
         break;
-    case UnkEnum_ov96_0223B15C_10:
+    case HTTP_STATE_AWAITING_SET_PROFILE:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
-            Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(HTTP_GetErrorCode());
+        case HTTP_STATUS_IDLE:
+            httpState.requestState = HTTP_STATE_COMPLETE;
+            httpState.result = BattleTowerHttp_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
-            Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
+        case HTTP_STATUS_COMPLETE:
+            httpState.requestState = HTTP_STATE_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(WorldExchangeTrainerError)) {
-                Unk_ov96_0223DDE0.unk_04 = 0;
+                httpState.result = BT_CODE_SUCCESS;
             } else {
-                switch (Unk_ov96_0223DDE0.unk_103[0]) {
-                case 1:
-                    Unk_ov96_0223DDE0.unk_04 = 0;
+                switch (httpState.responseBuffer[0]) {
+                case BT_INFO_RESPONSE_OK:
+                    httpState.result = BT_CODE_SUCCESS;
                     break;
-                case 3:
-                    Unk_ov96_0223DDE0.unk_04 = 1;
+                case BT_INFO_RESPONSE_UPLOAD_NEEDED:
+                    httpState.result = BT_CODE_UPLOAD_NEEDED;
                     break;
-                case 4:
-                    Unk_ov96_0223DDE0.unk_04 = 2;
+                case BT_INFO_RESPONSE_RANK_SELECT:
+                    httpState.result = BT_CODE_RANK_SELECT_NEEDED;
                     break;
-                case 5:
-                    Unk_ov96_0223DDE0.unk_04 = -2;
+                case BT_INFO_RESPONSE_MAINTENANCE:
+                    httpState.result = BT_CODE_SERVER_MAINTENANCE;
                     break;
                 default:
-
-                    Unk_ov96_0223DDE0.unk_04 = -5;
+                    httpState.result = BT_CODE_NETWORK_FAILURE;
                     break;
                 }
             }
@@ -212,155 +211,150 @@ void ov96_0223B15C(void)
             break;
         }
         break;
-    case UnkEnum_ov96_0223B15C_03:
-    case UnkEnum_ov96_0223B15C_05:
-    case UnkEnum_ov96_0223B15C_07:
-    case UnkEnum_ov96_0223B15C_09:
-    case UnkEnum_ov96_0223B15C_11:
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-        Unk_ov96_0223DDE0.unk_04 = -4;
+    case HTTP_STATE_ERROR_ROOMNUM:
+    case HTTP_STATE_ERROR_DOWNLOAD:
+    case HTTP_STATE_ERROR_UPLOAD:
+    case HTTP_STATE_ERROR_INFO:
+    case HTTP_STATE_ERROR_SET_PROFILE:
+        httpState.requestState = HTTP_STATE_COMPLETE;
+        httpState.result = BT_CODE_HTTP_ERROR;
         HTTP_Shutdown();
         break;
-    case UnkEnum_ov96_0223B15C_12:
+    case HTTP_STATE_COMPLETE:
         break;
     }
 }
 
-BOOL ov96_0223B3D4(void)
+BOOL BattleTowerHttp_IsDone(void)
 {
-    switch (Unk_ov96_0223DDE0.unk_00) {
-    case UnkEnum_ov96_0223B15C_01:
-        return 1;
+    switch (httpState.requestState) {
+    case HTTP_STATE_IDLE:
+        return TRUE;
         break;
-    case UnkEnum_ov96_0223B15C_12:
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_01;
-        return 1;
+    case HTTP_STATE_COMPLETE:
+        httpState.requestState = HTTP_STATE_IDLE;
+        return TRUE;
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-s32 ov96_0223B3F4(void)
+s32 BattleTowerHttp_GetResult(void)
 {
-    return Unk_ov96_0223DDE0.unk_04;
+    return httpState.result;
 }
 
-void ov96_0223B400(s32 param0)
+void BattleTowerHttp_RequestRoomCount(s32 rank)
 {
     HTTP_Init();
 
-    Unk_ov96_0223DDE0.unk_14[0] = (u8)(param0 - 1);
+    httpState.requestBody[0] = (u8)(rank - 1);
 
-    if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                          "battletower/roomnum.asp"),
-            Unk_ov96_0223DDE0.unk_14,
+    if (BattleTowerNetworking_PrepareRequest((const u8 *)(BT_URL_ROOMNUM),
+            httpState.requestBody,
             1,
-            Unk_ov96_0223DDE0.unk_103,
+            httpState.responseBuffer,
             2)) {
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_02;
+        httpState.requestState = HTTP_STATE_AWAITING_ROOMNUM;
     } else {
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-        Unk_ov96_0223DDE0.unk_04 = -5;
+        httpState.requestState = HTTP_STATE_COMPLETE;
+        httpState.result = BT_CODE_NETWORK_FAILURE;
         HTTP_Shutdown();
     }
 }
 
-void ov96_0223B450(s32 param0, s32 param1, WifiBattleTowerDownloadBuffer *buffer)
+void BattleTowerHttp_RequestDownload(s32 rank, s32 opponentIdx, WifiBattleTowerDownloadBuffer *buffer)
 {
-    Unk_ov96_0223DDE0.unk_108 = (u8 *)buffer;
+    httpState.responsePtr = (u8 *)buffer;
 
     HTTP_Init();
 
-    Unk_ov96_0223DDE0.unk_14[0] = (u8)(param0 - 1);
-    Unk_ov96_0223DDE0.unk_14[1] = (u8)(param1 - 1);
+    httpState.requestBody[0] = (u8)(rank - 1);
+    httpState.requestBody[1] = (u8)(opponentIdx - 1);
 
-    if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                          "battletower/download.asp"),
-            Unk_ov96_0223DDE0.unk_14,
+    if (BattleTowerNetworking_PrepareRequest((const u8 *)(BT_URL_DOWNLOAD),
+            httpState.requestBody,
             2,
             buffer,
             sizeof(WifiBattleTowerDownloadBuffer))) {
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_04;
+        httpState.requestState = HTTP_STATE_AWAITING_DOWNLOAD;
     } else {
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-        Unk_ov96_0223DDE0.unk_04 = -5;
+        httpState.requestState = HTTP_STATE_COMPLETE;
+        httpState.result = BT_CODE_NETWORK_FAILURE;
         HTTP_Shutdown();
     }
 }
 
-void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const WifiPlayerProfile *profile)
+void BattleTowerHttp_RequestUpload(s32 rank, s32 opponentIdx, s32 ratingTier, const WifiPlayerProfile *profile)
 {
     HTTP_Init();
 
-    memcpy(&Unk_ov96_0223DDE0.unk_14[0], profile, sizeof(WifiPlayerProfile));
+    memcpy(&httpState.requestBody[0], profile, sizeof(WifiPlayerProfile));
 
-    Unk_ov96_0223DDE0.unk_14[sizeof(WifiPlayerProfile)] = (u8)(param0 - 1);
-    Unk_ov96_0223DDE0.unk_14[sizeof(WifiPlayerProfile) + 1] = (u8)(param1 - 1);
-    Unk_ov96_0223DDE0.unk_14[sizeof(WifiPlayerProfile) + 2] = (u8)param2;
+    httpState.requestBody[sizeof(WifiPlayerProfile)] = (u8)(rank - 1);
+    httpState.requestBody[sizeof(WifiPlayerProfile) + 1] = (u8)(opponentIdx - 1);
+    httpState.requestBody[sizeof(WifiPlayerProfile) + 2] = (u8)ratingTier;
 
-    memcpy(&Unk_ov96_0223DDE0.unk_14[sizeof(WifiPlayerProfile) + 3], &Unk_ov96_0223DDE0.unk_0C, 8);
+    memcpy(&httpState.requestBody[sizeof(WifiPlayerProfile) + 3], &httpState.friendKey, sizeof(httpState.friendKey));
 
-    if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                          "battletower/upload.asp"),
-            Unk_ov96_0223DDE0.unk_14,
-            sizeof(WifiPlayerProfile) + 11,
-            Unk_ov96_0223DDE0.unk_103,
+    if (BattleTowerNetworking_PrepareRequest((const u8 *)(BT_URL_UPLOAD),
+            httpState.requestBody,
+            sizeof(WifiPlayerProfile) + 3 + sizeof(httpState.friendKey),
+            httpState.responseBuffer,
             2)) {
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_06;
+        httpState.requestState = HTTP_STATE_AWAITING_UPLOAD;
     } else {
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-        Unk_ov96_0223DDE0.unk_04 = -5;
+        httpState.requestState = HTTP_STATE_COMPLETE;
+        httpState.result = BT_CODE_NETWORK_FAILURE;
         HTTP_Shutdown();
     }
 }
 
-void ov96_0223B530(void)
+void BattleTowerHttp_RequestInfo(void)
 {
     HTTP_Init();
 
-    if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                          "battletower/info.asp"),
-            Unk_ov96_0223DDE0.unk_14,
+    if (BattleTowerNetworking_PrepareRequest((const u8 *)(BT_URL_INFO),
+            httpState.requestBody,
             0,
-            Unk_ov96_0223DDE0.unk_103,
+            httpState.responseBuffer,
             2)) {
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_08;
+        httpState.requestState = HTTP_STATE_AWAITING_INFO;
     } else {
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-        Unk_ov96_0223DDE0.unk_04 = -5;
+        httpState.requestState = HTTP_STATE_COMPLETE;
+        httpState.result = BT_CODE_NETWORK_FAILURE;
         HTTP_Shutdown();
     }
 }
 
-void WorldExchange_SetProfile(const WorldExchangeTrainer *param0, WorldExchangeTrainerError *param1)
+void WorldExchange_SetProfile(const WorldExchangeTrainer *weTrainer, WorldExchangeTrainerError *errPtr)
 {
-    OS_GetMacAddress((u8 *)param0->macAddress);
+    OS_GetMacAddress((u8 *)weTrainer->macAddress);
 
-    memcpy(Unk_ov96_0223DDE0.unk_14, param0, sizeof(WorldExchangeTrainer));
-    Unk_ov96_0223DDE0.unk_108 = (u8 *)param1;
+    memcpy(httpState.requestBody, weTrainer, sizeof(WorldExchangeTrainer));
+    httpState.responsePtr = (u8 *)errPtr;
 
     HTTP_Init();
 
-    if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                          "common/setProfile.asp"),
-            Unk_ov96_0223DDE0.unk_14,
+    if (BattleTowerNetworking_PrepareRequest((const u8 *)(COMMON_URL_SET_PROFILE),
+            httpState.requestBody,
             sizeof(WorldExchangeTrainer),
-            Unk_ov96_0223DDE0.unk_108,
+            httpState.responsePtr,
             sizeof(WorldExchangeTrainerError))) {
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_10;
+        httpState.requestState = HTTP_STATE_AWAITING_SET_PROFILE;
     } else {
-        Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-        Unk_ov96_0223DDE0.unk_04 = -5;
+        httpState.requestState = HTTP_STATE_COMPLETE;
+        httpState.result = BT_CODE_NETWORK_FAILURE;
         HTTP_Shutdown();
     }
 }
 
-static BOOL BattleTowerNetworking_PrepareRequest(const u8 *param0, const void *param1, int param2, void *param3, int param4)
+static BOOL BattleTowerNetworking_PrepareRequest(const u8 *url, const void *data, int dataSize, void *response, int maxResponseLength)
 {
-    switch (HTTP_PrepareRequest(param0, Unk_ov96_0223DDE0.unk_08, param1, param2, (u8 *)param3, param4)) {
+    switch (HTTP_PrepareRequest(url, httpState.profileId, data, dataSize, (u8 *)response, maxResponseLength)) {
     case 0:
-        return 1;
+        return TRUE;
         break;
     case 1:
         break;
@@ -368,68 +362,68 @@ static BOOL BattleTowerNetworking_PrepareRequest(const u8 *param0, const void *p
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static int ov96_0223B608(int param0)
+static int BattleTowerHttp_GetPublicErrorCode(int errorCode)
 {
-    int v0;
+    int result;
 
-    switch (param0) {
-    case 0:
-    case 1:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 9:
-    case 10:
-    case 23:
-    case 22:
-    case 20:
-    case 21:
-    case 14:
-    case 32:
-        v0 = -5;
+    switch (errorCode) {
+    case DWC_ERROR_GHTTP_IN_ERROR:
+    case DWC_ERROR_GHTTP_INVALID_POST:
+    case DWC_ERROR_GHTTP_INVALID_FILE_NAME:
+    case DWC_ERROR_GHTTP_INVALID_BUFFER_SIZE:
+    case DWC_ERROR_GHTTP_INVALID_URL:
+    case DWC_ERROR_GHTTP_UNSPECIFIED_ERROR:
+    case DWC_ERROR_GHTTP_BUFFER_OVERFLOW:
+    case DWC_ERROR_GHTTP_PARSE_URL_FAILED:
+    case DWC_ERROR_GHTTP_FILE_TOO_BIG:
+    case DWC_ERROR_GHTTP_FILE_INCOMPLETE:
+    case DWC_ERROR_GHTTP_20:
+    case DWC_ERROR_GHTTP_21:
+    case DWC_ERROR_GHTTP_BAD_RESPONSE:
+    case DWC_ERROR_GHTTP_32:
+        result = BT_CODE_NETWORK_FAILURE;
         break;
-    case 2:
-    case 8:
-    case 25:
-        v0 = -5;
+    case DWC_ERROR_GHTTP_INSUFFICIENT_MEMORY:
+    case DWC_ERROR_GHTTP_OUT_OF_MEMORY:
+    case DWC_ERROR_GHTTP_MEMORY_ERROR:
+        result = BT_CODE_NETWORK_FAILURE;
         break;
-    case 11:
-        v0 = -7;
+    case DWC_ERROR_GHTTP_HOST_LOOKUP_FAILED:
+        result = BT_CODE_CONNECTION_FAILED;
         break;
-    case 12:
-    case 13:
-        v0 = -7;
+    case DWC_ERROR_GHTTP_SOCKET_FAILED:
+    case DWC_ERROR_GHTTP_CONNECT_FAILED:
+        result = BT_CODE_CONNECTION_FAILED;
         break;
-    case 16:
-    case 17:
-    case 18:
-    case 19:
-    case 26:
-    case 27:
-    case 28:
-    case 29:
-    case 31:
-        v0 = -2;
+    case DWC_ERROR_GHTTP_UNAUTHORIZED:
+    case DWC_ERROR_GHTTP_FORBIDDEN:
+    case DWC_ERROR_GHTTP_FILE_NOT_FOUND:
+    case DWC_ERROR_GHTTP_SERVER_ERROR:
+    case DWC_ERROR_GHTTP_26:
+    case DWC_ERROR_GHTTP_27:
+    case DWC_ERROR_GHTTP_28:
+    case DWC_ERROR_GHTTP_29:
+    case DWC_ERROR_GHTTP_31:
+        result = BT_CODE_SERVER_MAINTENANCE;
         break;
-    case 15:
-    case 30:
-        v0 = -2;
+    case DWC_ERROR_GHTTP_REQUEST_REJECTED:
+    case DWC_ERROR_GHTTP_30:
+        result = BT_CODE_SERVER_MAINTENANCE;
         break;
     default:
-        v0 = -5;
+        result = BT_CODE_NETWORK_FAILURE;
         break;
     }
 
-    if (v0 != -5) {
+    if (result != BT_CODE_NETWORK_FAILURE) {
         if (WCM_GetPhase() != WCM_PHASE_DCF) {
-            v0 = -6;
+            result = BT_CODE_NOT_IN_DCF_PHASE;
         }
         DWC_ClearError();
     }
 
-    return v0;
+    return result;
 }

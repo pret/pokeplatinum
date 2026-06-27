@@ -40,216 +40,218 @@
 #include "unk_02073700.h"
 #include "wifi_battle_tower_save.h"
 
-static void ov96_0223BE38(BgConfig *param0);
-static void ov96_0223BF1C(BgConfig *param0);
-static void ov96_0223BF40(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223C1FC(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223C314(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223C358(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223C3B0(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C3F0(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C420(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C4B8(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C510(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C530(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C5BC(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C5CC(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C680(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C6C0(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D524(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D528(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D558(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D6C8(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D71C(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D6E8(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D588(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D5FC(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C6DC(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C488(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D7B8(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D7E4(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C7B4(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C7E8(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223D814(UnkStruct_ov96_0223BF40 *param0, MessageLoader *param1, int param2, int param3, u16 param4);
-static void ov96_0223D750(UnkStruct_ov96_0223BF40 *param0, MessageLoader *param1, int param2, int param3, u16 param4);
-static void ov96_0223D90C(Window *param0, String *param1, int param2, int param3);
-static void ov96_0223D9B8(UnkStruct_ov96_0223BF40 *param0, int param1);
-static void ov96_0223DA34(UnkStruct_ov96_0223BF40 *param0, int param1, int param2);
-static int ov96_0223C924(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C948(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223C9F8(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CA28(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CA70(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D3D8(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D408(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223D950(UnkStruct_ov96_0223BF40 *param0, int param1, int param2);
-static int ov96_0223CB7C(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CC20(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CC50(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CD60(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CD9C(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CDD0(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CE1C(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CEF0(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CF2C(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CF5C(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CFAC(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D43C(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D46C(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223CBF0(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D1D8(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D080(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D0B0(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D100(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D240(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D270(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D35C(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D398(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D3A0(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D3B8(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D4EC(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D4D0(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D4A0(UnkStruct_ov96_0223BF40 *param0);
-static int ov96_0223D86C(Window *param0, String *param1, int param2, int param3, u32 param4, int param5);
-static void ov96_0223D978(UnkStruct_ov96_0223BF40 *param0);
-static void ov96_0223D99C(UnkStruct_ov96_0223BF40 *param0);
+static void WifiBattleTower_SetupBgLayers(BgConfig *bgConfig);
+static void WifiBattleTower_FreeBgLayers(BgConfig *bgConfig);
+static void WifiBattleTower_LoadGraphics(WifiBattleTowerAppState *appState);
+static void WifiBattleTower_CreateWindows(WifiBattleTowerAppState *appState);
+static void WifiBattleTower_RemoveWindows(WifiBattleTowerAppState *appState);
+static void WifiBattleTower_InitStrings(WifiBattleTowerAppState *appState);
+static void WifiBattleTower_FreeStrings(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_InitialPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_InitialYesNoMenu(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_ConnectedYesNoMenu(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_InitInet(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitInetConnect(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_InitNasLogin(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitNasLogin(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_InitHttp(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_RequestInfo(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_Return3(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_EndSession(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_DisconnectYesNo(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitText(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitTextYesNo(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitTextTimed(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_ShowError(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_ErrorCleanup(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitInfo(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_ConnectedPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_ShowDwcError(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_DwcErrorAck(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_SetProfile(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitSetProfile(WifiBattleTowerAppState *appState);
+static void WifiBattleTower_DisplayMessage(WifiBattleTowerAppState *appState, MessageLoader *msgLoader, int msgIndex, int textSpeed, u16 unused);
+static void WifiBattleTower_DisplayFormattedMessage(WifiBattleTowerAppState *appState, MessageLoader *msgLoader, int msgIndex, int textSpeed, u16 unused);
+static void Window_DrawNumber(Window *window, String *string, int num, int maxDigits);
+static void WifiBattleTower_ShowPopupMessage(WifiBattleTowerAppState *appState, int msgIndex);
+static void WifiBattleTower_ShowDwcErrorPopup(WifiBattleTowerAppState *appState, int errCode, int rawErrorCode);
+static int WifiBattleTower_State_RequestRoomCount(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitRoomCount(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_SelectOpponentPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_DrawOpponentSelect(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_SelectOpponent(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_ExitPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_ExitYesNo(WifiBattleTowerAppState *appState);
+static void WifiBattleTower_SetSelectionArrowsVisible(WifiBattleTowerAppState *appState, int selectionMode, int visible);
+static int WifiBattleTower_State_DownloadPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_RequestDownload(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitDownload(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_DownloadCompletePrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_UploadPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_RequestUpload(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitUpload(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_UploadCompletePrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_SelectRankPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_DrawRankSelect(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_SelectRank(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_ExitMatchListPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_ExitMatchListYesNo(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_AlreadyChallengedPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_DownloadMatchListPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_MatchListSelectPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_DrawMatchListSelect(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_SelectMatchList(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_RequestMatchList(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitMatchList(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_MatchListCompletePrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_DisconnectEntry(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_InitSave(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_WaitSave(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_DisconnectingPrompt(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_CleanupInet(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_GoodbyePrompt(WifiBattleTowerAppState *appState);
+static int Window_CalcAlignedTextX(Window *window, String *string, int xOffset, int alignment, u32 unused, int font);
+static void WifiBattleTower_ShowWaitDial(WifiBattleTowerAppState *appState);
+static void WifiBattleTower_HideWaitDial(WifiBattleTowerAppState *appState);
 
-static int (*Unk_ov96_0223DCE0[])(UnkStruct_ov96_0223BF40 *) = {
-    ov96_0223C3F0,
-    ov96_0223C420,
-    ov96_0223C510,
-    ov96_0223C530,
-    ov96_0223C5BC,
-    ov96_0223C5CC,
-    ov96_0223C680,
-    ov96_0223C6C0,
-    ov96_0223C6DC,
-    ov96_0223C7B4,
-    ov96_0223C7E8,
-    ov96_0223C924,
-    ov96_0223C948,
-    ov96_0223C9F8,
-    ov96_0223CA28,
-    ov96_0223CA70,
-    ov96_0223CB7C,
-    ov96_0223CC20,
-    ov96_0223CC50,
-    ov96_0223CD60,
-    ov96_0223CBF0,
-    ov96_0223D3D8,
-    ov96_0223D408,
-    ov96_0223D43C,
-    ov96_0223D46C,
-    ov96_0223CD9C,
-    ov96_0223CDD0,
-    ov96_0223CE1C,
-    ov96_0223CEF0,
-    ov96_0223CF2C,
-    ov96_0223CF5C,
-    ov96_0223CFAC,
-    ov96_0223D080,
-    ov96_0223D0B0,
-    ov96_0223D100,
-    ov96_0223D1D8,
-    ov96_0223D240,
-    ov96_0223D270,
-    ov96_0223D35C,
-    ov96_0223D3A0,
-    ov96_0223D3B8,
-    ov96_0223D4A0,
-    ov96_0223D4D0,
-    ov96_0223D4EC,
-    ov96_0223D524,
-    ov96_0223D398,
-    ov96_0223D528,
-    ov96_0223D6C8,
-    ov96_0223D71C,
-    ov96_0223D6E8,
-    ov96_0223D558,
-    ov96_0223C488,
-    ov96_0223C4B8,
-    ov96_0223D588,
-    ov96_0223D5FC,
-    ov96_0223D7B8,
-    ov96_0223D7E4
+// clang-format off
+static int (*sStateFunctions[])(WifiBattleTowerAppState *) = {
+    WifiBattleTower_State_InitialPrompt,           // 0
+    WifiBattleTower_State_InitialYesNoMenu,        // 1
+    WifiBattleTower_State_InitInet,                // 2
+    WifiBattleTower_State_WaitInetConnect,         // 3
+    WifiBattleTower_State_InitNasLogin,            // 4
+    WifiBattleTower_State_WaitNasLogin,            // 5
+    WifiBattleTower_State_InitHttp,                // 6
+    WifiBattleTower_State_RequestInfo,             // 7
+    WifiBattleTower_State_WaitInfo,                // 8
+    WifiBattleTower_State_SetProfile,              // 9
+    WifiBattleTower_State_WaitSetProfile,          // 10
+    WifiBattleTower_State_RequestRoomCount,        // 11
+    WifiBattleTower_State_WaitRoomCount,           // 12
+    WifiBattleTower_State_SelectOpponentPrompt,    // 13
+    WifiBattleTower_State_DrawOpponentSelect,      // 14
+    WifiBattleTower_State_SelectOpponent,          // 15
+    WifiBattleTower_State_DownloadPrompt,          // 16
+    WifiBattleTower_State_RequestDownload,         // 17
+    WifiBattleTower_State_WaitDownload,            // 18
+    WifiBattleTower_State_DownloadCompletePrompt,  // 19
+    WifiBattleTower_State_AlreadyChallengedPrompt, // 20
+    WifiBattleTower_State_ExitPrompt,              // 21
+    WifiBattleTower_State_ExitYesNo,               // 22
+    WifiBattleTower_State_ExitMatchListPrompt,     // 23
+    WifiBattleTower_State_ExitMatchListYesNo,      // 24
+    WifiBattleTower_State_UploadPrompt,            // 25
+    WifiBattleTower_State_RequestUpload,           // 26
+    WifiBattleTower_State_WaitUpload,              // 27
+    WifiBattleTower_State_UploadCompletePrompt,    // 28
+    WifiBattleTower_State_SelectRankPrompt,        // 29
+    WifiBattleTower_State_DrawRankSelect,          // 30
+    WifiBattleTower_State_SelectRank,              // 31
+    WifiBattleTower_State_MatchListSelectPrompt,   // 32
+    WifiBattleTower_State_DrawMatchListSelect,     // 33
+    WifiBattleTower_State_SelectMatchList,         // 34
+    WifiBattleTower_State_DownloadMatchListPrompt, // 35
+    WifiBattleTower_State_RequestMatchList,        // 36
+    WifiBattleTower_State_WaitMatchList,           // 37
+    WifiBattleTower_State_MatchListCompletePrompt, // 38
+    WifiBattleTower_State_InitSave,                // 39
+    WifiBattleTower_State_WaitSave,                // 40
+    WifiBattleTower_State_GoodbyePrompt,           // 41
+    WifiBattleTower_State_CleanupInet,             // 42
+    WifiBattleTower_State_DisconnectingPrompt,     // 43
+    WifiBattleTower_State_Return3,                 // 44
+    WifiBattleTower_State_DisconnectEntry,         // 45
+    WifiBattleTower_State_EndSession,              // 46
+    WifiBattleTower_State_WaitText,                // 47
+    WifiBattleTower_State_WaitTextYesNo,           // 48
+    WifiBattleTower_State_WaitTextTimed,           // 49
+    WifiBattleTower_State_DisconnectYesNo,         // 50
+    WifiBattleTower_State_ConnectedPrompt,         // 51
+    WifiBattleTower_State_ConnectedYesNoMenu,      // 52
+    WifiBattleTower_State_ShowError,               // 53
+    WifiBattleTower_State_ErrorCleanup,            // 54
+    WifiBattleTower_State_ShowDwcError,            // 55
+    WifiBattleTower_State_DwcErrorAck              // 56
 };
+// clang-format on
 
-int ov96_0223BCE0(UnkStruct_ov96_0223BF40 *param0, int param1)
+int WifiBattleTower_ScreenInit(WifiBattleTowerAppState *appState, int unused)
 {
-    ov96_0223C358(param0);
+    WifiBattleTower_InitStrings(appState);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_68);
-    ov96_0223BE38(param0->unk_04);
-    ov96_0223BF40(param0);
-    ov96_0223C1FC(param0);
+    WifiBattleTower_SetupBgLayers(appState->bgConfig);
+    WifiBattleTower_LoadGraphics(appState);
+    WifiBattleTower_CreateWindows(appState);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-    CommManager_InitializeGlobalWifi(param0->unk_00->saveData);
-    ov96_0223D948(param0);
+    CommManager_InitializeGlobalWifi(appState->args->saveData);
+    WifiBattleTower_InitNetworkIcon(appState);
 
-    param0->unk_8C = WifiBattleTowerRecord_UpdateRank(param0->unk_00->unk_00, 0);
-    param0->unk_90 = param0->unk_8C;
-    param0->unk_98 = 1;
-    param0->unk_F6C = NULL;
+    appState->playerRank = WifiBattleTowerRecord_UpdateRank(appState->args->record, 0);
+    appState->selectedRank = appState->playerRank;
+    appState->selectedOpponentIdx = 1;
+    appState->waitDial = NULL;
 
     if (!DWC_CheckInet()) {
-        if (param0->unk_00->unk_24) {
-            ov96_0223D814(param0, param0->unk_BD4, 1, TEXT_SPEED_FAST, 0xf0f);
-            ov96_0223BBFC(param0, 47, 2);
-            ov96_0223D978(param0);
+        if (appState->args->unk_24) {
+            WifiBattleTower_DisplayMessage(appState, appState->msgLoader2, 1, TEXT_SPEED_FAST, 0xf0f);
+            WifiBattleTower_SetState(appState, 47, 2);
+            WifiBattleTower_ShowWaitDial(appState);
         } else {
-            param0->unk_1C = 0;
+            appState->state = 0;
         }
     } else {
-        param0->unk_1C = 51;
+        appState->state = 51;
     }
 
     return 2;
 }
 
-int ov96_0223BDBC(UnkStruct_ov96_0223BF40 *param0, int param1)
+int WifiBattleTower_ScreenMain(WifiBattleTowerAppState *appState, int unused)
 {
-    int v0, v1;
+    int result, prevState;
 
-    NetworkIcon_SetStrength(ov96_0223BC50());
+    NetworkIcon_SetStrength(WifiBattleTower_GetSignalStrength());
 
-    v1 = param0->unk_1C;
-    v0 = (*Unk_ov96_0223DCE0[param0->unk_1C])(param0);
+    prevState = appState->state;
+    result = (*sStateFunctions[appState->state])(appState);
 
-    if (v1 != param0->unk_1C) {
-        param0->unk_FF0 = 0;
-        param0->unk_FF2 = 0;
+    if (prevState != appState->state) {
+        appState->subStep = ERROR_CLEANUP_SUBSTEP_DISPLAY_ERROR;
+        appState->subTimer = 0;
     }
 
-    inline_ov61_0222C0F8(&param0->unk_FF8);
+    inline_ov61_0222C0F8(&appState->unk_FF8);
 
-    return v0;
+    return result;
 }
 
-int ov96_0223BDEC(UnkStruct_ov96_0223BF40 *param0, int param1)
+int WifiBattleTower_ScreenExit(WifiBattleTowerAppState *appState, int unused)
 {
-    inline_ov61_0222C160(&param0->unk_FF8);
+    inline_ov61_0222C160(&appState->unk_FF8);
 
-    ov96_0223C3B0(param0);
-    ov96_0223C314(param0);
-    ov96_0223BF1C(param0->unk_04);
+    WifiBattleTower_FreeStrings(appState);
+    WifiBattleTower_RemoveWindows(appState);
+    WifiBattleTower_FreeBgLayers(appState->bgConfig);
 
-    inline_ov96_0223BDEC(&param0->unk_FF8, 0);
+    inline_ov96_0223BDEC(&appState->unk_FF8, 0);
 
-    param0->unk_10 = param0->unk_14;
+    appState->screenMode = appState->exitMode;
 
-    if (param0->unk_10 == 0) {
+    if (appState->screenMode == 0) {
         return 5;
     }
 
     return 1;
 }
 
-static void ov96_0223BE38(BgConfig *param0)
+static void WifiBattleTower_SetupBgLayers(BgConfig *bgConfig)
 {
     {
-        BgTemplate v0 = {
+        BgTemplate mainBg0 = {
             .x = 0,
             .y = 0,
             .bufferSize = 0x800,
@@ -264,13 +266,13 @@ static void ov96_0223BE38(BgConfig *param0)
             .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v0, 0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &mainBg0, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
     }
 
     {
-        BgTemplate v1 = {
+        BgTemplate mainBg1 = {
             .x = 0,
             .y = 0,
             .bufferSize = 0x800,
@@ -285,12 +287,12 @@ static void ov96_0223BE38(BgConfig *param0)
             .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &mainBg1, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
     {
-        BgTemplate v2 = {
+        BgTemplate subBg0 = {
             .x = 0,
             .y = 0,
             .bufferSize = 0x800,
@@ -305,13 +307,13 @@ static void ov96_0223BE38(BgConfig *param0)
             .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v2, 0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &subBg0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
     }
 
     {
-        BgTemplate v3 = {
+        BgTemplate subBg1 = {
             .x = 0,
             .y = 0,
             .bufferSize = 0x800,
@@ -326,181 +328,181 @@ static void ov96_0223BE38(BgConfig *param0)
             .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v3, 0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &subBg1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_68);
-    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_68);
+    Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, HEAP_ID_68);
 }
 
-static void ov96_0223BF1C(BgConfig *param0)
+static void WifiBattleTower_FreeBgLayers(BgConfig *bgConfig)
 {
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void ov96_0223BF40(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_LoadGraphics(WifiBattleTowerAppState *appState)
 {
-    BgConfig *v0 = param0->unk_04;
-    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_68);
+    BgConfig *bgConfig = appState->bgConfig;
+    NARC *narc = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_68);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, HEAP_ID_68);
-    Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_68);
+    Graphics_LoadPaletteFromOpenNARC(narc, 3, 0, 0, 0, HEAP_ID_68);
+    Graphics_LoadPaletteFromOpenNARC(narc, 3, 4, 0, 0, HEAP_ID_68);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_68);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_68);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 14, Options_Frame(param0->unk_00->options), HEAP_ID_68);
-    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_68);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_68);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_68);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, HEAP_ID_68);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0f, HEAP_ID_68);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 14, Options_Frame(appState->args->options), HEAP_ID_68);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, WINDOW_BORDER_TILE_START, WINDOW_BORDER_PLTT_SLOT, 0, HEAP_ID_68);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 2, bgConfig, 1, 0, 0, FALSE, HEAP_ID_68);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 5, bgConfig, 1, 0, 32 * 24 * 2, FALSE, HEAP_ID_68);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 10, bgConfig, 5, 0, 0, FALSE, HEAP_ID_68);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 11, bgConfig, 5, 0, 32 * 24 * 2, FALSE, HEAP_ID_68);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 
-    inline_ov61_0222C3B0(&param0->unk_FF8, v1, 4, 68);
+    inline_ov61_0222C3B0(&appState->unk_FF8, narc, 4, HEAP_ID_68);
 
-    NARC_dtor(v1);
+    NARC_dtor(narc);
 }
 
-static void ov96_0223C1FC(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_CreateWindows(WifiBattleTowerAppState *appState)
 {
-    Window_Add(param0->unk_04, &param0->unk_E78, 0, 4, 4, 23, 16, 13, ((((1 + (18 + 12)) + 9) + 27 * 4) + 4 * 2) + 4 * 2);
-    Window_FillTilemap(&param0->unk_E78, 0x0);
-    Window_Add(param0->unk_04, &param0->unk_E58, 0, 26, 14, 4, 2, 13, ((1 + (18 + 12)) + 9) + 27 * 4);
-    Window_FillTilemap(&param0->unk_E58, 0xf0f);
-    Window_Add(param0->unk_04, &param0->unk_E48, 0, 26, 14, 4, 2, 13, (((1 + (18 + 12)) + 9) + 27 * 4) + 4 * 2);
-    Window_FillTilemap(&param0->unk_E48, 0xf0f);
-    Window_Add(param0->unk_04, &param0->unk_E68, 0, 4, 1, 24, 2, 13, (((((1 + (18 + 12)) + 9) + 27 * 4) + 4 * 2) + 4 * 2) + 23 * 16);
-    Window_FillTilemap(&param0->unk_E68, 0x0);
-    ov96_0223D8A4(&param0->unk_E68, param0->unk_BE0, 0, 1, 1, TEXT_COLOR(15, 14, 0));
-    Window_Add(param0->unk_04, &param0->unk_E38, 0, 2, 19, 27, 4, 13, (1 + (18 + 12)) + 9);
-    Window_FillTilemap(&param0->unk_E38, 0xf0f);
+    Window_Add(appState->bgConfig, &appState->popupWindow, 0, 4, 4, 23, 16, 13, ((((WINDOW_BORDER_TILE_START) + 9) + 27 * 4) + 4 * 2) + 4 * 2);
+    Window_FillTilemap(&appState->popupWindow, 0x0);
+    Window_Add(appState->bgConfig, &appState->opponentWindow, 0, 26, 14, 4, 2, 13, ((WINDOW_BORDER_TILE_START) + 9) + 27 * 4);
+    Window_FillTilemap(&appState->opponentWindow, 0xf0f);
+    Window_Add(appState->bgConfig, &appState->rankWindow, 0, 26, 14, 4, 2, 13, (((WINDOW_BORDER_TILE_START) + 9) + 27 * 4) + 4 * 2);
+    Window_FillTilemap(&appState->rankWindow, 0xf0f);
+    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 4, 1, 24, 2, 13, (((((WINDOW_BORDER_TILE_START) + 9) + 27 * 4) + 4 * 2) + 4 * 2) + 23 * 16);
+    Window_FillTilemap(&appState->titleWindow, 0x0);
+    Window_DrawTextAligned(&appState->titleWindow, appState->titleString, 0, 1, 1, TEXT_COLOR(15, 14, 0));
+    Window_Add(appState->bgConfig, &appState->msgWindow, 0, 2, 19, 27, 4, 13, (WINDOW_BORDER_TILE_START) + 9);
+    Window_FillTilemap(&appState->msgWindow, 0xf0f);
 }
 
-static void ov96_0223C314(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_RemoveWindows(WifiBattleTowerAppState *appState)
 {
-    Window_Remove(&param0->unk_E38);
-    Window_Remove(&param0->unk_E68);
-    Window_Remove(&param0->unk_E48);
-    Window_Remove(&param0->unk_E58);
-    Window_Remove(&param0->unk_E78);
+    Window_Remove(&appState->msgWindow);
+    Window_Remove(&appState->titleWindow);
+    Window_Remove(&appState->rankWindow);
+    Window_Remove(&appState->opponentWindow);
+    Window_Remove(&appState->popupWindow);
 }
 
-static void ov96_0223C358(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_InitStrings(WifiBattleTowerAppState *appState)
 {
-    param0->unk_BDC = String_Init(90 * 2, HEAP_ID_68);
-    param0->unk_BE4 = String_Init(4, HEAP_ID_68);
-    param0->unk_BE8 = String_Init(3, HEAP_ID_68);
-    param0->unk_BE0 = MessageLoader_GetNewString(param0->unk_BD0, 10);
-    param0->unk_BEC = String_Init(16 * 8 * 2, HEAP_ID_68);
+    appState->msgString = String_Init(90 * 2, HEAP_ID_68);
+    appState->opponentIdxString = String_Init(4, HEAP_ID_68);
+    appState->rankString = String_Init(3, HEAP_ID_68);
+    appState->titleString = MessageLoader_GetNewString(appState->msgLoader1, 10);
+    appState->errorString = String_Init(16 * 8 * 2, HEAP_ID_68);
 }
 
-static void ov96_0223C3B0(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_FreeStrings(WifiBattleTowerAppState *appState)
 {
-    String_Free(param0->unk_BEC);
-    String_Free(param0->unk_BE0);
-    String_Free(param0->unk_BE8);
-    String_Free(param0->unk_BE4);
-    String_Free(param0->unk_BDC);
+    String_Free(appState->errorString);
+    String_Free(appState->titleString);
+    String_Free(appState->rankString);
+    String_Free(appState->opponentIdxString);
+    String_Free(appState->msgString);
 }
 
-static int ov96_0223C3F0(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_InitialPrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD8, 17, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 48, 1);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader3, 17, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 48, 1);
 
     return 3;
 }
 
-static int ov96_0223C420(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_InitialYesNoMenu(WifiBattleTowerAppState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    int menuSelection = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_68);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (menuSelection != 0xffffffff) {
+        if (menuSelection == 0xfffffffe) {
             CommManager_EndGlobalWifi();
-            ov96_0223BC5C(param0, 0, 0);
-            param0->unk_1C = 46;
+            WifiBattleTower_SetExitMode(appState, 0, 0);
+            appState->state = 46;
         } else {
-            ov96_0223D814(param0, param0->unk_BD4, 1, TEXT_SPEED_FAST, 0xf0f);
-            ov96_0223BBFC(param0, 47, 2);
-            ov96_0223D978(param0);
+            WifiBattleTower_DisplayMessage(appState, appState->msgLoader2, 1, TEXT_SPEED_FAST, 0xf0f);
+            WifiBattleTower_SetState(appState, 47, 2);
+            WifiBattleTower_ShowWaitDial(appState);
         }
     }
 
     return 3;
 }
 
-static int ov96_0223C488(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_ConnectedPrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD4, 12, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 48, 52);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader2, 12, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 48, 52);
 
     return 3;
 }
 
-static int ov96_0223C4B8(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_ConnectedYesNoMenu(WifiBattleTowerAppState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    int menuSelection = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_68);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (menuSelection != 0xffffffff) {
+        if (menuSelection == 0xfffffffe) {
             if (!DWC_CheckInet()) {
-                param0->unk_1C = 0;
+                appState->state = 0;
             } else {
-                param0->unk_1C = 41;
+                appState->state = 41;
             }
         } else {
             if (!DWC_CheckInet()) {
-                ov96_0223BC5C(param0, 0, 0);
-                param0->unk_1C = 46;
+                WifiBattleTower_SetExitMode(appState, 0, 0);
+                appState->state = 46;
             } else {
-                param0->unk_1C = 41;
+                appState->state = 41;
             }
 
-            param0->unk_00->unk_20 = 1;
+            appState->args->unk_20 = 1;
         }
     }
 
     return 3;
 }
 
-static int ov96_0223C510(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_InitInet(WifiBattleTowerAppState *appState)
 {
-    DWC_InitInetEx(&param0->unk_2C, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
+    DWC_InitInetEx(&appState->inetControl, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
     DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
     DWC_ConnectInetAsync();
 
-    param0->unk_1C = 3;
+    appState->state = 3;
 
     return 3;
 }
 
-static int ov96_0223C530(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitInetConnect(WifiBattleTowerAppState *appState)
 {
     DWC_ProcessInet();
 
     if (DWC_CheckInet()) {
-        int v0 = DWC_GetInetStatus();
+        int status = DWC_GetInetStatus();
 
-        switch (v0) {
+        switch (status) {
         case DWC_CONNECTINET_STATE_ERROR: {
-            DWCError v1;
-            int v2;
+            DWCError err;
+            int errDetail;
 
-            v1 = DWC_GetLastError(&v2);
+            err = DWC_GetLastError(&errDetail);
 
-            param0->unk_F70 = v1;
-            param0->unk_F74 = v2;
+            appState->dwcError = err;
+            appState->dwcErrorDetail = errDetail;
         }
             DWC_ClearError();
             DWC_CleanupInet();
 
-            ov96_0223D99C(param0);
-            param0->unk_1C = 55;
+            WifiBattleTower_HideWaitDial(appState);
+            appState->state = 55;
             break;
         case DWC_CONNECTINET_STATE_NOT_INITIALIZED:
         case DWC_CONNECTINET_STATE_IDLE:
@@ -510,26 +512,21 @@ static int ov96_0223C530(UnkStruct_ov96_0223BF40 *param0)
         case DWC_CONNECTINET_STATE_DISCONNECTED:
         default:
         case DWC_CONNECTINET_STATE_FATAL_ERROR: {
-            DWCError v3;
-            int v4;
+            DWCError err2;
+            int errCode;
 
-            v3 = DWC_GetLastError(&v4);
+            err2 = DWC_GetLastError(&errCode);
 
-            ov96_0223D99C(param0);
-            param0->unk_1C = 53;
-            param0->unk_F7C = -2;
+            WifiBattleTower_HideWaitDial(appState);
+            appState->state = 53;
+            appState->asyncResult = -2;
         } break;
-
         case DWC_CONNECTINET_STATE_CONNECTED: {
-            DWCApInfo v5;
+            DWCApInfo unused;
 
-            DWC_GetApInfo(&v5);
-
-            if (v5.aptype == DWC_APINFO_TYPE_SHOP) {
-                (void)0;
-            }
+            DWC_GetApInfo(&unused);
         }
-            param0->unk_1C = 4;
+            appState->state = 4;
             break;
         }
     }
@@ -537,53 +534,53 @@ static int ov96_0223C530(UnkStruct_ov96_0223BF40 *param0)
     return 3;
 }
 
-static int ov96_0223C5BC(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_InitNasLogin(WifiBattleTowerAppState *appState)
 {
     DWC_NASLoginAsync();
-    param0->unk_1C = 5;
+    appState->state = 5;
 
     return 3;
 }
 
-static int ov96_0223C5CC(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitNasLogin(WifiBattleTowerAppState *appState)
 {
     switch (DWC_NASLoginProcess()) {
     case DWC_NASLOGIN_STATE_SUCCESS:
-        param0->unk_1C = 6;
+        appState->state = 6;
         break;
     case DWC_NASLOGIN_STATE_ERROR:
     case DWC_NASLOGIN_STATE_CANCELED:
     case DWC_NASLOGIN_STATE_DIRTY:
-        ov96_0223D99C(param0);
+        WifiBattleTower_HideWaitDial(appState);
         {
-            int v0;
-            DWCErrorType v1;
-            DWCError v2;
+            int errCode;
+            DWCErrorType errType;
+            DWCError err;
 
-            v2 = DWC_GetLastErrorEx(&v0, &v1);
-            param0->unk_F70 = v2;
-            param0->unk_F74 = v0;
+            err = DWC_GetLastErrorEx(&errCode, &errType);
+            appState->dwcError = err;
+            appState->dwcErrorDetail = errCode;
 
             DWC_ClearError();
             DWC_CleanupInet();
 
-            param0->unk_1C = 55;
+            appState->state = 55;
 
-            switch (v1) {
+            switch (errType) {
             case DWC_ETYPE_LIGHT:
             case DWC_ETYPE_SHOW_ERROR:
-                param0->unk_1C = 55;
+                appState->state = 55;
                 break;
             case DWC_ETYPE_SHUTDOWN_GHTTP:
                 DWC_ShutdownGHTTP();
-                param0->unk_1C = 55;
+                appState->state = 55;
                 break;
             case DWC_ETYPE_DISCONNECT:
-                param0->unk_1C = 55;
+                appState->state = 55;
                 break;
             case DWC_ETYPE_SHUTDOWN_FM:
                 DWC_ShutdownFriendsMatch();
-                param0->unk_1C = 55;
+                appState->state = 55;
                 break;
             case DWC_ETYPE_SHUTDOWN_ND:
             case DWC_ETYPE_FATAL:
@@ -591,8 +588,8 @@ static int ov96_0223C5CC(UnkStruct_ov96_0223BF40 *param0)
                 break;
             }
 
-            if ((v0 < -20000) && (v0 >= -29999)) {
-                param0->unk_1C = 55;
+            if ((errCode < -20000) && (errCode >= -29999)) {
+                appState->state = 55;
             }
         }
         break;
@@ -601,89 +598,89 @@ static int ov96_0223C5CC(UnkStruct_ov96_0223BF40 *param0)
     return 3;
 }
 
-static int ov96_0223C680(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_InitHttp(WifiBattleTowerAppState *appState)
 {
-    s32 profileId = SystemData_GetDWCProfileId(param0->unk_00->systemData);
+    s32 profileId = SystemData_GetDWCProfileId(appState->args->systemData);
 
     if (profileId == 0) {
-        SystemData_SetDWCProfileId(param0->unk_00->systemData, param0->unk_00->profileId);
+        SystemData_SetDWCProfileId(appState->args->systemData, appState->args->profileId);
     }
 
-    profileId = SystemData_GetDWCProfileId(param0->unk_00->systemData);
-    ov96_0223B140(profileId, DWC_CreateFriendKey(param0->unk_00->userData));
+    profileId = SystemData_GetDWCProfileId(appState->args->systemData);
+    BattleTowerHttp_Init(profileId, DWC_CreateFriendKey(appState->args->userData));
 
-    param0->unk_1C = 7;
-
-    return 3;
-}
-
-static int ov96_0223C6C0(UnkStruct_ov96_0223BF40 *param0)
-{
-    ov96_0223B530();
-
-    param0->unk_1C = 8;
-    param0->unk_FF4 = 0;
+    appState->state = 7;
 
     return 3;
 }
 
-static int ov96_0223C6DC(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_RequestInfo(WifiBattleTowerAppState *appState)
 {
-    if (ov96_0223B3D4()) {
-        s32 v0 = ov96_0223B3F4();
+    BattleTowerHttp_RequestInfo();
 
-        param0->unk_FF4 = 0;
+    appState->state = 8;
+    appState->timeoutCounter = 0;
 
-        switch (v0) {
-        case 0:
-            ov96_0223D99C(param0);
+    return 3;
+}
 
-            switch (param0->unk_00->unk_18) {
+static int WifiBattleTower_State_WaitInfo(WifiBattleTowerAppState *appState)
+{
+    if (BattleTowerHttp_IsDone()) {
+        s32 result = BattleTowerHttp_GetResult();
+
+        appState->timeoutCounter = 0;
+
+        switch (result) {
+        case BT_CODE_SUCCESS:
+            WifiBattleTower_HideWaitDial(appState);
+
+            switch (appState->args->mode) {
             case 0:
-                ov96_0223BBFC(param0, 11, 13);
+                WifiBattleTower_SetState(appState, 11, 13);
                 break;
             case 1:
-                param0->unk_1C = 25;
+                appState->state = 25;
                 break;
             case 2:
-                param0->unk_1C = 29;
+                appState->state = 29;
                 break;
             }
 
             break;
-        case 1:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_UPLOAD_NEEDED:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case 2:
-        case -1:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_RANK_SELECT_NEEDED:
+        case BT_CODE_UPLOAD_REJECTED:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -7:
-        case -4:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_CONNECTION_FAILED:
+        case BT_CODE_HTTP_ERROR:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -2:
-        case -6:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_SERVER_MAINTENANCE:
+        case BT_CODE_NOT_IN_DCF_PHASE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -5:
+        case BT_CODE_NETWORK_FAILURE:
         default:
-            ov96_0223D99C(param0);
+            WifiBattleTower_HideWaitDial(appState);
             NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
-        param0->unk_FF4++;
+        appState->timeoutCounter++;
 
-        if (param0->unk_FF4 == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == (30 * 60 * 2)) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -691,98 +688,98 @@ static int ov96_0223C6DC(UnkStruct_ov96_0223BF40 *param0)
     return 3;
 }
 
-static int ov96_0223C7B4(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_SetProfile(WifiBattleTowerAppState *appState)
 {
-    WorldExchange_GetTrainerObject(param0->unk_00->saveData, &param0->unk_F84);
-    WorldExchange_SetProfile(&param0->unk_F84, &param0->unk_FE8);
+    WorldExchange_GetTrainerObject(appState->args->saveData, &appState->weTrainer);
+    WorldExchange_SetProfile(&appState->weTrainer, &appState->weTrainerErr);
 
-    param0->unk_1C = 10;
-    param0->unk_FF4 = 0;
+    appState->state = 10;
+    appState->timeoutCounter = 0;
 
     return 3;
 }
 
-static int ov96_0223C7E8(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitSetProfile(WifiBattleTowerAppState *appState)
 {
-    if (ov96_0223B3D4()) {
-        s32 v0 = ov96_0223B3F4();
+    if (BattleTowerHttp_IsDone()) {
+        s32 result = BattleTowerHttp_GetResult();
 
-        param0->unk_FF4 = 0;
+        appState->timeoutCounter = 0;
 
-        switch (v0) {
-        case 0:
-            ov96_0223D99C(param0);
+        switch (result) {
+        case BT_CODE_SUCCESS:
+            WifiBattleTower_HideWaitDial(appState);
 
-            switch (param0->unk_FE8.validationError) {
+            switch (appState->weTrainerErr.validationError) {
             case 0:
-                switch (param0->unk_FE8.systemError) {
+                switch (appState->weTrainerErr.systemError) {
                 case 0:
-                    switch (param0->unk_00->unk_18) {
+                    switch (appState->args->mode) {
                     case 0:
-                        ov96_0223BBFC(param0, 11, 13);
+                        WifiBattleTower_SetState(appState, 11, 13);
                         break;
                     case 1:
-                        param0->unk_1C = 25;
+                        appState->state = 25;
                         break;
                     case 2:
-                        param0->unk_1C = 29;
+                        appState->state = 29;
                         break;
                     }
                     break;
                 case 1:
                 case 2:
                 case 3:
-                    param0->unk_F7C = v0;
-                    param0->unk_1C = 53;
-                    ov96_0223D99C(param0);
+                    appState->asyncResult = result;
+                    appState->state = 53;
+                    WifiBattleTower_HideWaitDial(appState);
                     break;
                 }
                 break;
             case 1:
             case 2:
-                param0->unk_F7C = v0;
-                param0->unk_1C = 53;
-                ov96_0223D99C(param0);
+                appState->asyncResult = result;
+                appState->state = 53;
+                WifiBattleTower_HideWaitDial(appState);
                 break;
             default:
-                ov96_0223D99C(param0);
+                WifiBattleTower_HideWaitDial(appState);
                 NetworkError_DisplayGTSCriticalError();
                 break;
             }
             break;
-        case 1:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_UPLOAD_NEEDED:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case 2:
-        case -1:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_RANK_SELECT_NEEDED:
+        case BT_CODE_UPLOAD_REJECTED:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -7:
-        case -4:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_CONNECTION_FAILED:
+        case BT_CODE_HTTP_ERROR:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -2:
-        case -6:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_SERVER_MAINTENANCE:
+        case BT_CODE_NOT_IN_DCF_PHASE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -5:
+        case BT_CODE_NETWORK_FAILURE:
         default:
-            ov96_0223D99C(param0);
+            WifiBattleTower_HideWaitDial(appState);
             NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
-        param0->unk_FF4++;
+        appState->timeoutCounter++;
 
-        if (param0->unk_FF4 == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == (30 * 60 * 2)) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -790,62 +787,62 @@ static int ov96_0223C7E8(UnkStruct_ov96_0223BF40 *param0)
     return 3;
 }
 
-static int ov96_0223C924(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_RequestRoomCount(WifiBattleTowerAppState *appState)
 {
-    ov96_0223B400(param0->unk_90);
-    param0->unk_1C = 12;
-    param0->unk_FF4 = 0;
-    ov96_0223D978(param0);
+    BattleTowerHttp_RequestRoomCount(appState->selectedRank);
+    appState->state = 12;
+    appState->timeoutCounter = 0;
+    WifiBattleTower_ShowWaitDial(appState);
 
     return 3;
 }
 
-static int ov96_0223C948(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitRoomCount(WifiBattleTowerAppState *appState)
 {
-    if (ov96_0223B3D4()) {
-        s32 v0 = ov96_0223B3F4();
-        param0->unk_FF4 = 0;
+    if (BattleTowerHttp_IsDone()) {
+        s32 result = BattleTowerHttp_GetResult();
+        appState->timeoutCounter = 0;
 
-        switch (v0) {
-        case -1:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
+        switch (result) {
+        case BT_CODE_UPLOAD_REJECTED:
+            appState->asyncResult = result;
+            appState->state = 53;
             break;
-        case -2:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
+        case BT_CODE_SERVER_MAINTENANCE:
+            appState->asyncResult = result;
+            appState->state = 53;
             break;
-        case -3:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
+        case BT_CODE_ALREADY_CHALLENGED:
+            appState->asyncResult = result;
+            appState->state = 53;
             break;
-        case -6:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
+        case BT_CODE_NOT_IN_DCF_PHASE:
+            appState->asyncResult = result;
+            appState->state = 53;
             break;
-        case -4:
-        case -7:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
+        case BT_CODE_HTTP_ERROR:
+        case BT_CODE_CONNECTION_FAILED:
+            appState->asyncResult = result;
+            appState->state = 53;
             break;
-        case -5:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_NETWORK_FAILURE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             NetworkError_DisplayGTSCriticalError();
             break;
         default:
-            if (v0 > 0) {
-                param0->unk_94 = v0;
-                param0->unk_1C = param0->unk_20;
+            if (result > BT_CODE_SUCCESS) {
+                appState->matchCount = result;
+                appState->state = appState->nextState;
             }
         }
 
-        ov96_0223D99C(param0);
+        WifiBattleTower_HideWaitDial(appState);
     } else {
-        param0->unk_FF4++;
+        appState->timeoutCounter++;
 
-        if (param0->unk_FF4 == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == (30 * 60 * 2)) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -853,160 +850,160 @@ static int ov96_0223C948(UnkStruct_ov96_0223BF40 *param0)
     return 3;
 }
 
-static int ov96_0223C9F8(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_SelectOpponentPrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD0, 0, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 14);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 0, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 14);
 
     return 3;
 }
 
-static int ov96_0223CA28(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_DrawOpponentSelect(WifiBattleTowerAppState *appState)
 {
-    Window_DrawStandardFrame(&param0->unk_E58, 0, 1 + (18 + 12), 14);
-    ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
-    ov96_0223D950(param0, 0, 1);
-    Window_CopyToVRAM(&param0->unk_E58);
+    Window_DrawStandardFrame(&appState->opponentWindow, 0, WINDOW_BORDER_TILE_START, 14);
+    Window_DrawNumber(&appState->opponentWindow, appState->opponentIdxString, appState->selectedOpponentIdx, 3);
+    WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 1);
+    Window_CopyToVRAM(&appState->opponentWindow);
 
-    param0->unk_1C = 15;
+    appState->state = 15;
 
     return 3;
 }
 
-static int ov96_0223CA70(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_SelectOpponent(WifiBattleTowerAppState *appState)
 {
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
-        param0->unk_98++;
+        appState->selectedOpponentIdx++;
 
-        if (param0->unk_98 > param0->unk_94) {
-            param0->unk_98 = 1;
+        if (appState->selectedOpponentIdx > appState->matchCount) {
+            appState->selectedOpponentIdx = 1;
         }
 
-        ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
+        Window_DrawNumber(&appState->opponentWindow, appState->opponentIdxString, appState->selectedOpponentIdx, 3);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
-        param0->unk_98--;
+        appState->selectedOpponentIdx--;
 
-        if (param0->unk_98 < 1) {
-            param0->unk_98 = param0->unk_94;
+        if (appState->selectedOpponentIdx < 1) {
+            appState->selectedOpponentIdx = appState->matchCount;
         }
 
-        ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
+        Window_DrawNumber(&appState->opponentWindow, appState->opponentIdxString, appState->selectedOpponentIdx, 3);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         {
-            RTCTime v0;
-            RTCDate v1;
+            RTCTime time;
+            RTCDate date;
 
-            DWC_GetDateTime(&v1, &v0);
+            DWC_GetDateTime(&date, &time);
 
-            if (WifiBattleTowerDownloadData_IsOpponentMarked(param0->unk_00->unk_04, param0->unk_90, param0->unk_98, &v1)) {
-                param0->unk_1C = 20;
+            if (WifiBattleTowerDownloadData_IsOpponentMarked(appState->args->downloadData, appState->selectedRank, appState->selectedOpponentIdx, &date)) {
+                appState->state = 20;
             } else {
-                param0->unk_1C = 16;
+                appState->state = 16;
             }
         }
 
-        ov96_0223D950(param0, 0, 0);
+        WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        ov96_0223D950(param0, 0, 0);
-        param0->unk_1C = 21;
+        WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
+        appState->state = 21;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return 3;
 }
 
-static int ov96_0223CB7C(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_DownloadPrompt(WifiBattleTowerAppState *appState)
 {
-    StringTemplate_SetNumber(param0->unk_BCC, 0, param0->unk_98, 3, 2, 1);
-    StringTemplate_SetNumber(param0->unk_BCC, 1, param0->unk_90, 2, 2, 1);
+    StringTemplate_SetNumber(appState->stringTemplate, 0, appState->selectedOpponentIdx, 3, 2, 1);
+    StringTemplate_SetNumber(appState->stringTemplate, 1, appState->selectedRank, 2, 2, 1);
 
-    ov96_0223D750(param0, param0->unk_BD0, 1, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 17);
+    WifiBattleTower_DisplayFormattedMessage(appState, appState->msgLoader1, 1, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 17);
 
-    MI_CpuClearFast(&param0->unk_9C, sizeof(WifiBattleTowerDownloadBuffer));
+    MI_CpuClearFast(&appState->downloadBuffer, sizeof(WifiBattleTowerDownloadBuffer));
 
     return 3;
 }
 
-static int ov96_0223CBF0(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_AlreadyChallengedPrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D750(param0, param0->unk_BD0, 2, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 13);
+    WifiBattleTower_DisplayFormattedMessage(appState, appState->msgLoader1, 2, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 13);
 
     return 3;
 }
 
-static int ov96_0223CC20(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_RequestDownload(WifiBattleTowerAppState *appState)
 {
-    ov96_0223B450(param0->unk_8C, param0->unk_98, &param0->unk_9C);
-    ov96_0223D978(param0);
+    BattleTowerHttp_RequestDownload(appState->playerRank, appState->selectedOpponentIdx, &appState->downloadBuffer);
+    WifiBattleTower_ShowWaitDial(appState);
 
-    param0->unk_1C = 18;
-    param0->unk_FF4 = 0;
+    appState->state = 18;
+    appState->timeoutCounter = 0;
 
     return 3;
 }
 
-static int ov96_0223CC50(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitDownload(WifiBattleTowerAppState *appState)
 {
-    if (ov96_0223B3D4()) {
-        s32 v0 = ov96_0223B3F4();
+    if (BattleTowerHttp_IsDone()) {
+        s32 result = BattleTowerHttp_GetResult();
 
-        param0->unk_FF4 = 0;
+        appState->timeoutCounter = 0;
 
-        switch (v0) {
-        case 0:
-            WifiBattleTowerDownloadData_StoreOpponentTeams(param0->unk_00->unk_04, (WifiPlayerProfile *)param0->unk_9C.wifiPlayerProfile, param0->unk_8C, param0->unk_98);
-            ov96_0223BBFC(param0, 39, 19);
+        switch (result) {
+        case BT_CODE_SUCCESS:
+            WifiBattleTowerDownloadData_StoreOpponentTeams(appState->args->downloadData, (WifiPlayerProfile *)appState->downloadBuffer.wifiPlayerProfile, appState->playerRank, appState->selectedOpponentIdx);
+            WifiBattleTower_SetState(appState, 39, 19);
 
             {
-                RTCTime v1;
-                RTCDate v2;
+                RTCTime time;
+                RTCDate date;
 
-                DWC_GetDateTime(&v2, &v1);
-                WifiBattleTowerDownloadData_MarkOpponent(param0->unk_00->unk_04, param0->unk_90, param0->unk_98, &v2);
+                DWC_GetDateTime(&date, &time);
+                WifiBattleTowerDownloadData_MarkOpponent(appState->args->downloadData, appState->selectedRank, appState->selectedOpponentIdx, &date);
             }
             break;
-        case -1:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_UPLOAD_REJECTED:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -2:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_SERVER_MAINTENANCE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -3:
-        case -4:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 11;
-            ov96_0223D99C(param0);
+        case BT_CODE_ALREADY_CHALLENGED:
+        case BT_CODE_HTTP_ERROR:
+            appState->asyncResult = result;
+            appState->state = 11;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -6:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_NOT_IN_DCF_PHASE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -7:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_CONNECTION_FAILED:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -5:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_NETWORK_FAILURE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
-        param0->unk_FF4++;
+        appState->timeoutCounter++;
 
-        if (param0->unk_FF4 == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == (30 * 60 * 2)) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -1014,90 +1011,90 @@ static int ov96_0223CC50(UnkStruct_ov96_0223BF40 *param0)
     return 3;
 }
 
-static int ov96_0223CD60(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_DownloadCompletePrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD0, 3, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 45);
-    ov96_0223D99C(param0);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 3, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 45);
+    WifiBattleTower_HideWaitDial(appState);
 
-    param0->unk_00->unk_20 = 0;
+    appState->args->unk_20 = 0;
 
     return 3;
 }
 
-static int ov96_0223CD9C(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_UploadPrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD0, 7, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 26);
-    ov96_0223D978(param0);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 7, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 26);
+    WifiBattleTower_ShowWaitDial(appState);
 
     return 3;
 }
 
-static int ov96_0223CDD0(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_RequestUpload(WifiBattleTowerAppState *appState)
 {
     WifiBattleTowerIndices indices;
-    int v1 = WifiBattleTowerRecord_GetRatingTier(param0->unk_00->unk_00);
+    int ratingTier = WifiBattleTowerRecord_GetRatingTier(appState->args->record);
 
-    WifiBattleTowerDownloadData_GetIndices(param0->unk_00->unk_04, &indices);
-    sub_02073700(param0->unk_00->saveData, 1, (WifiPlayerProfile *)&param0->wifiPlayerProfile);
-    ov96_0223B4B0(indices.rank, indices.opponentIdx, v1, &param0->wifiPlayerProfile);
+    WifiBattleTowerDownloadData_GetIndices(appState->args->downloadData, &indices);
+    sub_02073700(appState->args->saveData, 1, (WifiPlayerProfile *)&appState->wifiPlayerProfile);
+    BattleTowerHttp_RequestUpload(indices.rank, indices.opponentIdx, ratingTier, &appState->wifiPlayerProfile);
 
-    param0->unk_1C = 27;
-    param0->unk_FF4 = 0;
+    appState->state = 27;
+    appState->timeoutCounter = 0;
 
     return 3;
 }
 
-static int ov96_0223CE1C(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitUpload(WifiBattleTowerAppState *appState)
 {
-    if (ov96_0223B3D4()) {
-        s32 v0 = ov96_0223B3F4();
+    if (BattleTowerHttp_IsDone()) {
+        s32 result = BattleTowerHttp_GetResult();
 
-        param0->unk_FF4 = 0;
+        appState->timeoutCounter = 0;
 
-        switch (v0) {
-        case 0:
-            WifiBattleTowerRecord_UpdateBitFlag(param0->unk_00->unk_00, 5, 2);
-            ov96_0223BBFC(param0, 39, 28);
+        switch (result) {
+        case BT_CODE_SUCCESS:
+            WifiBattleTowerRecord_UpdateBitFlag(appState->args->record, 5, 2);
+            WifiBattleTower_SetState(appState, 39, 28);
             break;
-        case -1:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_UPLOAD_REJECTED:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -2:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_SERVER_MAINTENANCE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -3:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_ALREADY_CHALLENGED:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -6:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_NOT_IN_DCF_PHASE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -4:
-        case -7:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_HTTP_ERROR:
+        case BT_CODE_CONNECTION_FAILED:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -5:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_NETWORK_FAILURE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
-        param0->unk_FF4++;
+        appState->timeoutCounter++;
 
-        if (param0->unk_FF4 == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == (30 * 60 * 2)) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -1105,201 +1102,201 @@ static int ov96_0223CE1C(UnkStruct_ov96_0223BF40 *param0)
     return 3;
 }
 
-static int ov96_0223CEF0(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_UploadCompletePrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD0, 8, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 45);
-    ov96_0223D99C(param0);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 8, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 45);
+    WifiBattleTower_HideWaitDial(appState);
 
-    param0->unk_00->unk_20 = 0;
+    appState->args->unk_20 = 0;
 
     return 3;
 }
 
-static int ov96_0223CF2C(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_SelectRankPrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD0, 5, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 30);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 5, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 30);
 
     return 3;
 }
 
-static int ov96_0223CF5C(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_DrawRankSelect(WifiBattleTowerAppState *appState)
 {
-    param0->unk_90 = 1;
+    appState->selectedRank = 1;
 
-    Window_DrawStandardFrame(&param0->unk_E48, 0, 1 + (18 + 12), 14);
-    ov96_0223D90C(&param0->unk_E48, param0->unk_BE8, param0->unk_90, 2);
-    ov96_0223D950(param0, 1, 1);
-    Window_CopyToVRAM(&param0->unk_E48);
+    Window_DrawStandardFrame(&appState->rankWindow, 0, WINDOW_BORDER_TILE_START, 14);
+    Window_DrawNumber(&appState->rankWindow, appState->rankString, appState->selectedRank, 2);
+    WifiBattleTower_SetSelectionArrowsVisible(appState, 1, 1);
+    Window_CopyToVRAM(&appState->rankWindow);
 
-    param0->unk_1C = 31;
+    appState->state = 31;
 
     return 3;
 }
 
-static int ov96_0223CFAC(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_SelectRank(WifiBattleTowerAppState *appState)
 {
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
-        param0->unk_90++;
+        appState->selectedRank++;
 
-        if (param0->unk_90 > 10) {
-            param0->unk_90 = 1;
+        if (appState->selectedRank > 10) {
+            appState->selectedRank = 1;
         }
 
-        ov96_0223D90C(&param0->unk_E48, param0->unk_BE8, param0->unk_90, 2);
+        Window_DrawNumber(&appState->rankWindow, appState->rankString, appState->selectedRank, 2);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
-        param0->unk_90--;
+        appState->selectedRank--;
 
-        if (param0->unk_90 < 1) {
-            param0->unk_90 = 10;
+        if (appState->selectedRank < 1) {
+            appState->selectedRank = 10;
         }
 
-        ov96_0223D90C(&param0->unk_E48, param0->unk_BE8, param0->unk_90, 2);
+        Window_DrawNumber(&appState->rankWindow, appState->rankString, appState->selectedRank, 2);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        ov96_0223D950(param0, 0, 0);
-        ov96_0223BBFC(param0, 11, 32);
+        WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
+        WifiBattleTower_SetState(appState, 11, 32);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        ov96_0223D950(param0, 0, 0);
-        param0->unk_1C = 23;
+        WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
+        appState->state = 23;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return 3;
 }
 
-static int ov96_0223D080(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_MatchListSelectPrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD0, 6, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 33);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 6, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 33);
 
     return 3;
 }
 
-static int ov96_0223D0B0(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_DrawMatchListSelect(WifiBattleTowerAppState *appState)
 {
-    param0->unk_98 = 1;
+    appState->selectedOpponentIdx = 1;
 
-    Window_DrawStandardFrame(&param0->unk_E58, 0, 1 + (18 + 12), 14);
-    ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
-    ov96_0223D950(param0, 0, 1);
-    Window_CopyToVRAM(&param0->unk_E58);
+    Window_DrawStandardFrame(&appState->opponentWindow, 0, WINDOW_BORDER_TILE_START, 14);
+    Window_DrawNumber(&appState->opponentWindow, appState->opponentIdxString, appState->selectedOpponentIdx, 3);
+    WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 1);
+    Window_CopyToVRAM(&appState->opponentWindow);
 
-    param0->unk_1C = 34;
+    appState->state = 34;
 
     return 3;
 }
 
-static int ov96_0223D100(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_SelectMatchList(WifiBattleTowerAppState *appState)
 {
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
-        param0->unk_98++;
+        appState->selectedOpponentIdx++;
 
-        if (param0->unk_98 == param0->unk_94 + 1) {
-            param0->unk_98 = 1;
+        if (appState->selectedOpponentIdx == appState->matchCount + 1) {
+            appState->selectedOpponentIdx = 1;
         }
 
-        ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
+        Window_DrawNumber(&appState->opponentWindow, appState->opponentIdxString, appState->selectedOpponentIdx, 3);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
-        param0->unk_98--;
+        appState->selectedOpponentIdx--;
 
-        if (param0->unk_98 < 1) {
-            param0->unk_98 = param0->unk_94;
+        if (appState->selectedOpponentIdx < 1) {
+            appState->selectedOpponentIdx = appState->matchCount;
         }
 
-        ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
+        Window_DrawNumber(&appState->opponentWindow, appState->opponentIdxString, appState->selectedOpponentIdx, 3);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        ov96_0223D950(param0, 0, 0);
-        param0->unk_1C = 35;
+        WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
+        appState->state = 35;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        ov96_0223D950(param0, 0, 0);
-        param0->unk_1C = 29;
+        WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
+        appState->state = 29;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return 3;
 }
 
-static int ov96_0223D1D8(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_DownloadMatchListPrompt(WifiBattleTowerAppState *appState)
 {
-    StringTemplate_SetNumber(param0->unk_BCC, 0, param0->unk_98, 3, 2, 1);
-    StringTemplate_SetNumber(param0->unk_BCC, 1, param0->unk_90, 2, 2, 1);
+    StringTemplate_SetNumber(appState->stringTemplate, 0, appState->selectedOpponentIdx, 3, 2, 1);
+    StringTemplate_SetNumber(appState->stringTemplate, 1, appState->selectedRank, 2, 2, 1);
 
-    ov96_0223D750(param0, param0->unk_BD0, 1, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 36);
+    WifiBattleTower_DisplayFormattedMessage(appState, appState->msgLoader1, 1, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 36);
 
-    param0->unk_1C = 36;
+    appState->state = 36;
 
     return 3;
 }
 
-static int ov96_0223D240(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_RequestMatchList(WifiBattleTowerAppState *appState)
 {
-    ov96_0223B450(param0->unk_90, param0->unk_98, &param0->unk_9C);
+    BattleTowerHttp_RequestDownload(appState->selectedRank, appState->selectedOpponentIdx, &appState->downloadBuffer);
 
-    param0->unk_1C = 37;
-    param0->unk_FF4 = 0;
+    appState->state = 37;
+    appState->timeoutCounter = 0;
 
-    ov96_0223D978(param0);
+    WifiBattleTower_ShowWaitDial(appState);
 
     return 3;
 }
 
-static int ov96_0223D270(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitMatchList(WifiBattleTowerAppState *appState)
 {
-    if (ov96_0223B3D4()) {
-        s32 v0 = ov96_0223B3F4();
+    if (BattleTowerHttp_IsDone()) {
+        s32 result = BattleTowerHttp_GetResult();
 
-        param0->unk_FF4 = 0;
+        appState->timeoutCounter = 0;
 
-        switch (v0) {
-        case 0:
-            WifiBattleTowerDownloadData_StoreMatchList(param0->unk_00->unk_04, (WifiBattleTowerMatchCandidate *)param0->unk_9C.matchCandidates, param0->unk_90, param0->unk_98);
-            ov96_0223BBFC(param0, 39, 38);
+        switch (result) {
+        case BT_CODE_SUCCESS:
+            WifiBattleTowerDownloadData_StoreMatchList(appState->args->downloadData, (WifiBattleTowerMatchCandidate *)appState->downloadBuffer.matchCandidates, appState->selectedRank, appState->selectedOpponentIdx);
+            WifiBattleTower_SetState(appState, 39, 38);
             break;
-        case -1:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_UPLOAD_REJECTED:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -2:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_SERVER_MAINTENANCE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -3:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 11;
-            ov96_0223D99C(param0);
+        case BT_CODE_ALREADY_CHALLENGED:
+            appState->asyncResult = result;
+            appState->state = 11;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -6:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_NOT_IN_DCF_PHASE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -7:
-        case -4:
-            param0->unk_1C = 11;
-            param0->unk_F7C = v0;
-            ov96_0223D99C(param0);
+        case BT_CODE_CONNECTION_FAILED:
+        case BT_CODE_HTTP_ERROR:
+            appState->state = 11;
+            appState->asyncResult = result;
+            WifiBattleTower_HideWaitDial(appState);
             break;
-        case -5:
-            param0->unk_F7C = v0;
-            param0->unk_1C = 53;
-            ov96_0223D99C(param0);
+        case BT_CODE_NETWORK_FAILURE:
+            appState->asyncResult = result;
+            appState->state = 53;
+            WifiBattleTower_HideWaitDial(appState);
             NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
-        param0->unk_FF4++;
+        appState->timeoutCounter++;
 
-        if (param0->unk_FF4 == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == (30 * 60 * 2)) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -1307,207 +1304,207 @@ static int ov96_0223D270(UnkStruct_ov96_0223BF40 *param0)
     return 3;
 }
 
-static int ov96_0223D35C(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_MatchListCompletePrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD0, 3, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 45);
-    ov96_0223D99C(param0);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 3, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 45);
+    WifiBattleTower_HideWaitDial(appState);
 
-    param0->unk_00->unk_20 = 0;
+    appState->args->unk_20 = 0;
 
     return 3;
 }
 
-static int ov96_0223D398(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_DisconnectEntry(WifiBattleTowerAppState *appState)
 {
-    param0->unk_1C = 41;
+    appState->state = 41;
     return 3;
 }
 
-static int ov96_0223D3A0(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_InitSave(WifiBattleTowerAppState *appState)
 {
-    SaveData_SaveStateInit(param0->unk_00->saveData, 2);
-    param0->unk_1C = 40;
+    SaveData_SaveStateInit(appState->args->saveData, 2);
+    appState->state = 40;
 
     return 3;
 }
 
-static int ov96_0223D3B8(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitSave(WifiBattleTowerAppState *appState)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
-        param0->unk_1C = param0->unk_20;
-        ov96_0223D99C(param0);
+    if (SaveData_SaveStateMain(appState->args->saveData) == 2) {
+        appState->state = appState->nextState;
+        WifiBattleTower_HideWaitDial(appState);
     }
 
     return 3;
 }
 
-static int ov96_0223D3D8(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_ExitPrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD0, 4, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 48, 22);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 4, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 48, 22);
 
     return 3;
 }
 
-static int ov96_0223D408(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_ExitYesNo(WifiBattleTowerAppState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    int menuSelection = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_68);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
-            param0->unk_1C = 13;
+    if (menuSelection != 0xffffffff) {
+        if (menuSelection == 0xfffffffe) {
+            appState->state = 13;
         } else {
-            param0->unk_1C = 41;
-            param0->unk_00->unk_20 = 1;
+            appState->state = 41;
+            appState->args->unk_20 = 1;
         }
     }
 
     return 3;
 }
 
-static int ov96_0223D43C(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_ExitMatchListPrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD0, 9, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 48, 24);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 9, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 48, 24);
 
     return 3;
 }
 
-static int ov96_0223D46C(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_ExitMatchListYesNo(WifiBattleTowerAppState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    int menuSelection = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_68);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
-            param0->unk_1C = 29;
+    if (menuSelection != 0xffffffff) {
+        if (menuSelection == 0xfffffffe) {
+            appState->state = 29;
         } else {
-            param0->unk_1C = 41;
-            param0->unk_00->unk_20 = 1;
+            appState->state = 41;
+            appState->args->unk_20 = 1;
         }
     }
 
     return 3;
 }
 
-static int ov96_0223D4A0(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_GoodbyePrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD8, 26, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 42);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader3, 26, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 42);
 
     return 3;
 }
 
-static int ov96_0223D4D0(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_CleanupInet(WifiBattleTowerAppState *appState)
 {
     DWC_CleanupInet();
-    ov96_0223BC5C(param0, 0, 0);
-    param0->unk_1C = 43;
+    WifiBattleTower_SetExitMode(appState, 0, 0);
+    appState->state = 43;
 
     return 3;
 }
 
-static int ov96_0223D4EC(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_DisconnectingPrompt(WifiBattleTowerAppState *appState)
 {
-    ov96_0223D814(param0, param0->unk_BD8, 27, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 49, 46);
-    param0->unk_F80 = 0;
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader3, 27, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 49, 46);
+    appState->waitTimer = 0;
 
     return 3;
 }
 
-static int ov96_0223D524(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_Return3(WifiBattleTowerAppState *appState)
 {
     return 3;
 }
 
-static int ov96_0223D528(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_EndSession(WifiBattleTowerAppState *appState)
 {
     NetworkIcon_Destroy();
     CommManager_EndGlobalWifi();
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_68);
 
-    param0->unk_1C = 0;
+    appState->state = 0;
 
     return 4;
 }
 
-static int ov96_0223D558(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_DisconnectYesNo(WifiBattleTowerAppState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    int menuSelection = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_68);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
-            param0->unk_1C = 0;
+    if (menuSelection != 0xffffffff) {
+        if (menuSelection == 0xfffffffe) {
+            appState->state = 0;
         } else {
-            param0->unk_1C = 41;
+            appState->state = 41;
         }
     }
 
     return 3;
 }
 
-static int ov96_0223D588(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_ShowError(WifiBattleTowerAppState *appState)
 {
-    int v0 = 0;
+    int errMsgIndex = 0;
 
-    switch (param0->unk_F7C) {
-    case -2:
-    case -6:
-        v0 = 13;
+    switch (appState->asyncResult) {
+    case BT_CODE_SERVER_MAINTENANCE:
+    case BT_CODE_NOT_IN_DCF_PHASE:
+        errMsgIndex = 13;
         break;
-    case 1:
-        v0 = 11;
+    case BT_CODE_UPLOAD_NEEDED:
+        errMsgIndex = 11;
         break;
-    case 2:
-    case -1:
-        v0 = 12;
+    case BT_CODE_RANK_SELECT_NEEDED:
+    case BT_CODE_UPLOAD_REJECTED:
+        errMsgIndex = 12;
         break;
-    case -7:
-    case -4:
-        v0 = 14;
+    case BT_CODE_CONNECTION_FAILED:
+    case BT_CODE_HTTP_ERROR:
+        errMsgIndex = 14;
         break;
-    case -3:
-        v0 = 15;
+    case BT_CODE_ALREADY_CHALLENGED:
+        errMsgIndex = 15;
         break;
     }
 
-    ov96_0223D99C(param0);
-    ov96_0223D814(param0, param0->unk_BD0, v0, TEXT_SPEED_FAST, 0xf0f);
-    ov96_0223BBFC(param0, 47, 54);
+    WifiBattleTower_HideWaitDial(appState);
+    WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, errMsgIndex, TEXT_SPEED_FAST, 0xf0f);
+    WifiBattleTower_SetState(appState, 47, 54);
 
     return 3;
 }
 
-static int ov96_0223D5FC(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_ErrorCleanup(WifiBattleTowerAppState *appState)
 {
-    switch (param0->unk_FF0) {
-    case 0:
-        ov96_0223D814(param0, param0->unk_BD0, 16, TEXT_SPEED_FAST, 0xf0f);
-        param0->unk_FF0++;
+    switch (appState->subStep) {
+    case ERROR_CLEANUP_SUBSTEP_DISPLAY_ERROR:
+        WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 16, TEXT_SPEED_FAST, 0xf0f);
+        appState->subStep++;
         break;
-    case 1:
-        if (Text_IsPrinterActive(param0->unk_BF0) == 0) {
+    case ERROR_CLEANUP_SUBSTEP_DISCONNECT:
+        if (Text_IsPrinterActive(appState->textPrinterID) == 0) {
             CommManager_EndGlobalWifi();
             DWC_CleanupInet();
-            param0->unk_FF0++;
+            appState->subStep++;
         }
         break;
-    case 2:
-        ov96_0223D814(param0, param0->unk_BD0, 17, TEXT_SPEED_FAST, 0xf0f);
-        param0->unk_FF0++;
+    case ERROR_CLEANUP_SUBSTEP_DISPLAY_RETURN:
+        WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 17, TEXT_SPEED_FAST, 0xf0f);
+        appState->subStep++;
         break;
-    case 3:
-        if (Text_IsPrinterActive(param0->unk_BF0) == 0) {
-            param0->unk_FF0++;
+    case ERROR_CLEANUP_SUBSTEP_WAIT_RETURN:
+        if (Text_IsPrinterActive(appState->textPrinterID) == 0) {
+            appState->subStep++;
         }
         break;
     default:
-        param0->unk_FF2++;
+        appState->subTimer++;
 
-        if (param0->unk_FF2 > 30) {
-            ov96_0223BC5C(param0, 0, 0);
-            param0->unk_1C = 46;
+        if (appState->subTimer > 30) {
+            WifiBattleTower_SetExitMode(appState, 0, 0);
+            appState->state = 46;
         }
         break;
     }
@@ -1515,170 +1512,170 @@ static int ov96_0223D5FC(UnkStruct_ov96_0223BF40 *param0)
     return 3;
 }
 
-static int ov96_0223D6C8(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitText(WifiBattleTowerAppState *appState)
 {
-    if (Text_IsPrinterActive(param0->unk_BF0) == 0) {
-        param0->unk_1C = param0->unk_20;
+    if (Text_IsPrinterActive(appState->textPrinterID) == 0) {
+        appState->state = appState->nextState;
     }
 
     return 3;
 }
 
-static int ov96_0223D6E8(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitTextTimed(WifiBattleTowerAppState *appState)
 {
-    if (Text_IsPrinterActive(param0->unk_BF0) == 0) {
-        if (param0->unk_F80 > 30) {
-            param0->unk_1C = param0->unk_20;
+    if (Text_IsPrinterActive(appState->textPrinterID) == 0) {
+        if (appState->waitTimer > 30) {
+            appState->state = appState->nextState;
         }
 
-        param0->unk_F80++;
+        appState->waitTimer++;
     }
 
     return 3;
 }
 
-static int ov96_0223D71C(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_WaitTextYesNo(WifiBattleTowerAppState *appState)
 {
-    if (Text_IsPrinterActive(param0->unk_BF0) == 0) {
-        param0->unk_F68 = ov96_0223BBC8(param0->unk_04, 13, ((((((1 + (18 + 12)) + 9) + 27 * 4) + 4 * 2) + 4 * 2) + 23 * 16) + 24 * 2);
-        param0->unk_1C = param0->unk_20;
+    if (Text_IsPrinterActive(appState->textPrinterID) == 0) {
+        appState->yesNoMenu = WifiBattleTower_CreateYesNoMenu(appState->bgConfig, POPUP_TILEMAP_TOP, (((((WINDOW_BORDER_TILE_START + 9) + 27 * 4) + 4 * 2) + 4 * 2) + 23 * 16) + 24 * 2);
+        appState->state = appState->nextState;
     }
 
     return 3;
 }
 
-static void ov96_0223D750(UnkStruct_ov96_0223BF40 *param0, MessageLoader *param1, int param2, int param3, u16 param4)
+static void WifiBattleTower_DisplayFormattedMessage(WifiBattleTowerAppState *appState, MessageLoader *msgLoader, int msgIndex, int textSpeed, u16 unused)
 {
-    String *v0 = MessageLoader_GetNewString(param1, param2);
+    String *newStr = MessageLoader_GetNewString(msgLoader, msgIndex);
 
-    StringTemplate_Format(param0->unk_BCC, param0->unk_BDC, v0);
-    Window_FillTilemap(&param0->unk_E38, 0xf0f);
-    Window_DrawMessageBoxWithScrollCursor(&param0->unk_E38, 0, 1, 14);
+    StringTemplate_Format(appState->stringTemplate, appState->msgString, newStr);
+    Window_FillTilemap(&appState->msgWindow, 0xf0f);
+    Window_DrawMessageBoxWithScrollCursor(&appState->msgWindow, 0, 1, 14);
 
-    param0->unk_BF0 = Text_AddPrinterWithParams(&param0->unk_E38, FONT_MESSAGE, param0->unk_BDC, 0, 0, param3, NULL);
+    appState->textPrinterID = Text_AddPrinterWithParams(&appState->msgWindow, FONT_MESSAGE, appState->msgString, 0, 0, textSpeed, NULL);
 
-    String_Free(v0);
+    String_Free(newStr);
 }
 
-static int ov96_0223D7B8(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_ShowDwcError(WifiBattleTowerAppState *appState)
 {
-    int v0 = NintendoWFC_GetErrorCode(-param0->unk_F74, param0->unk_F78);
+    int errCode = NintendoWFC_GetErrorCode(-appState->dwcErrorDetail, appState->dwcErrorType);
 
-    ov96_0223DA34(param0, v0, -param0->unk_F74);
-    param0->unk_1C = 56;
+    WifiBattleTower_ShowDwcErrorPopup(appState, errCode, -appState->dwcErrorDetail);
+    appState->state = 56;
 
     return 3;
 }
 
-static int ov96_0223D7E4(UnkStruct_ov96_0223BF40 *param0)
+static int WifiBattleTower_State_DwcErrorAck(WifiBattleTowerAppState *appState)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A || gSystem.pressedKeys & PAD_BUTTON_B) {
-        Window_EraseStandardFrame(&param0->unk_E78, 0);
-        param0->unk_1C = 0;
+        Window_EraseStandardFrame(&appState->popupWindow, 0);
+        appState->state = 0;
     }
 
     return 3;
 }
 
-static void ov96_0223D814(UnkStruct_ov96_0223BF40 *param0, MessageLoader *param1, int param2, int param3, u16 param4)
+static void WifiBattleTower_DisplayMessage(WifiBattleTowerAppState *appState, MessageLoader *msgLoader, int msgIndex, int textSpeed, u16 unused)
 {
-    MessageLoader_GetString(param1, param2, param0->unk_BDC);
-    Window_FillTilemap(&param0->unk_E38, 0xf0f);
-    Window_DrawMessageBoxWithScrollCursor(&param0->unk_E38, 0, 1, 14);
+    MessageLoader_GetString(msgLoader, msgIndex, appState->msgString);
+    Window_FillTilemap(&appState->msgWindow, 0xf0f);
+    Window_DrawMessageBoxWithScrollCursor(&appState->msgWindow, 0, 1, 14);
 
-    param0->unk_BF0 = Text_AddPrinterWithParams(&param0->unk_E38, FONT_MESSAGE, param0->unk_BDC, 0, 0, param3, NULL);
+    appState->textPrinterID = Text_AddPrinterWithParams(&appState->msgWindow, FONT_MESSAGE, appState->msgString, 0, 0, textSpeed, NULL);
 }
 
-static int ov96_0223D86C(Window *param0, String *param1, int param2, int param3, u32 param4, int param5)
+static int Window_CalcAlignedTextX(Window *window, String *string, int xOffset, int alignment, u32 unused, int font)
 {
-    int v0 = 0, v1;
+    int strWidth = 0;
 
-    switch (param3) {
-    case 1:
-        v0 = Font_CalcStringWidth(param5, param1, 0);
-        param2 = ((param0->width * 8) - v0) / 2;
+    switch (alignment) {
+    case TEXT_ALIGN_CENTER:
+        strWidth = Font_CalcStringWidth(font, string, 0);
+        xOffset = ((window->width * 8) - strWidth) / 2;
         break;
-    case 2:
-        v0 = Font_CalcStringWidth(param5, param1, 0);
-        param2 = (param0->width * 8) - v0;
+    case TEXT_ALIGN_RIGHT:
+        strWidth = Font_CalcStringWidth(font, string, 0);
+        xOffset = (window->width * 8) - strWidth;
         break;
     }
 
-    return param2;
+    return xOffset;
 }
 
-void ov96_0223D8A4(Window *param0, String *param1, int param2, int param3, int param4, TextColor param5)
+void Window_DrawTextAligned(Window *window, String *string, int xOffset, int yOffset, int alignment, TextColor textColor)
 {
-    param2 = ov96_0223D86C(param0, param1, param2, param4, param5, 1);
-    Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
+    xOffset = Window_CalcAlignedTextX(window, string, xOffset, alignment, textColor, 1);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, xOffset, yOffset, TEXT_SPEED_INSTANT, textColor, NULL);
 }
 
-void ov96_0223D8D8(Window *param0, String *param1, int param2, int param3, int param4, TextColor param5)
+void Window_DrawSystemTextAligned(Window *window, String *string, int xOffset, int yOffset, int alignment, TextColor textColor)
 {
-    param2 = ov96_0223D86C(param0, param1, param2, param4, param5, 0);
-    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
+    xOffset = Window_CalcAlignedTextX(window, string, xOffset, alignment, textColor, 0);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, yOffset, TEXT_SPEED_INSTANT, textColor, NULL);
 }
 
-static void ov96_0223D90C(Window *param0, String *param1, int param2, int param3)
+static void Window_DrawNumber(Window *window, String *string, int num, int maxDigits)
 {
-    Window_FillTilemap(param0, 0xf0f);
-    String_FormatInt(param1, param2, param3, 2, 1);
-    ov96_0223D8D8(param0, param1, 0, 1, 1, TEXT_COLOR(1, 2, 0));
+    Window_FillTilemap(window, 0xf0f);
+    String_FormatInt(string, num, maxDigits, 2, 1);
+    Window_DrawSystemTextAligned(window, string, 0, 1, 1, TEXT_COLOR(1, 2, 0));
 }
 
-void ov96_0223D948(UnkStruct_ov96_0223BF40 *param0)
+void WifiBattleTower_InitNetworkIcon(WifiBattleTowerAppState *unused)
 {
     NetworkIcon_Init();
 }
 
-static void ov96_0223D950(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)
+static void WifiBattleTower_SetSelectionArrowsVisible(WifiBattleTowerAppState *appState, int selectionMode, int visible)
 {
-    if ((param1 == 0) || (param1 == 1)) {
-        Sprite_SetDrawFlag(param0->unk_E30[0], param2);
-        Sprite_SetDrawFlag(param0->unk_E30[1], param2);
+    if ((selectionMode == 0) || (selectionMode == 1)) {
+        Sprite_SetDrawFlag(appState->selectionArrows[0], visible);
+        Sprite_SetDrawFlag(appState->selectionArrows[1], visible);
     }
 }
 
-static void ov96_0223D978(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_ShowWaitDial(WifiBattleTowerAppState *appState)
 {
-    if (param0->unk_F6C == NULL) {
-        param0->unk_F6C = Window_AddWaitDial(&param0->unk_E38, 1);
+    if (appState->waitDial == NULL) {
+        appState->waitDial = Window_AddWaitDial(&appState->msgWindow, 1);
     }
 }
 
-static void ov96_0223D99C(UnkStruct_ov96_0223BF40 *param0)
+static void WifiBattleTower_HideWaitDial(WifiBattleTowerAppState *appState)
 {
-    if (param0->unk_F6C != NULL) {
-        DestroyWaitDial(param0->unk_F6C);
-        param0->unk_F6C = NULL;
+    if (appState->waitDial != NULL) {
+        DestroyWaitDial(appState->waitDial);
+        appState->waitDial = NULL;
     }
 }
 
-static void ov96_0223D9B8(UnkStruct_ov96_0223BF40 *param0, int param1)
+static void WifiBattleTower_ShowPopupMessage(WifiBattleTowerAppState *appState, int msgIndex)
 {
-    String *v0 = String_Init(16 * 8 * 2, HEAP_ID_68);
+    String *msgStr = String_Init(16 * 8 * 2, HEAP_ID_68);
 
-    MessageLoader_GetString(param0->unk_BD8, param1, v0);
-    StringTemplate_Format(param0->unk_BCC, param0->unk_BEC, v0);
-    Window_FillTilemap(&param0->unk_E78, 15);
-    Window_DrawStandardFrame(&param0->unk_E78, 1, 1 + (18 + 12), 11);
+    MessageLoader_GetString(appState->msgLoader3, msgIndex, msgStr);
+    StringTemplate_Format(appState->stringTemplate, appState->errorString, msgStr);
+    Window_FillTilemap(&appState->popupWindow, 15);
+    Window_DrawStandardFrame(&appState->popupWindow, 1, WINDOW_BORDER_TILE_START, WINDOW_BORDER_PLTT_SLOT);
 
-    param0->unk_BF0 = Text_AddPrinterWithParams(&param0->unk_E78, FONT_MESSAGE, param0->unk_BEC, 0, 0, TEXT_SPEED_INSTANT, NULL);
+    appState->textPrinterID = Text_AddPrinterWithParams(&appState->popupWindow, FONT_MESSAGE, appState->errorString, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
-    String_Free(v0);
+    String_Free(msgStr);
 }
 
-static void ov96_0223DA34(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)
+static void WifiBattleTower_ShowDwcErrorPopup(WifiBattleTowerAppState *appState, int errCode, int rawErrorCode)
 {
-    int v0;
+    int msgIndex;
 
-    if (param1 != -1) {
-        v0 = 0 + param1;
+    if (errCode != -1) {
+        msgIndex = errCode;
     } else {
-        v0 = 11;
+        msgIndex = 11;
     }
 
-    StringTemplate_SetNumber(param0->unk_BCC, 0, param2, 5, 2, 1);
-    Window_EraseMessageBox(&param0->unk_E38, 1);
-    ov96_0223D9B8(param0, v0);
+    StringTemplate_SetNumber(appState->stringTemplate, 0, rawErrorCode, 5, 2, 1);
+    Window_EraseMessageBox(&appState->msgWindow, 1);
+    WifiBattleTower_ShowPopupMessage(appState, msgIndex);
 }
