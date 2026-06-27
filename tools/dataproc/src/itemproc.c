@@ -17,6 +17,7 @@
 
 #include "constants/items.h"
 #include "data/field/hidden_items.h"
+#include "generated/vars_flags.h"
 #include "berry_data.h"
 #include "item.h"
 
@@ -78,7 +79,7 @@ static void proc_item(datafile_t *df, const char *member);
 static void proc_text(const char *stem, const char *name, const char *plural, datanode_t *article, datanode_t *desc);
 static void add_idmap(datafile_t *df, size_t i, size_t data_id);
 static int  pack_berries(void);
-static void emit_hidden_scripts(void);
+static void emit_hidden_scripts(size_t max_script_id);
 
 static char *filename     = NULL;
 static char *base_dir     = NULL;
@@ -105,6 +106,22 @@ int main(int argc, char **argv) {
         .textbanks   = textbanks,
         .filter      = has_data,
     );
+
+    size_t item_flags_count = HIDDEN_ITEM_FLAGS_END - HIDDEN_ITEM_FLAGS_START + 1;
+    size_t max_script_id = 0; 
+
+    for (size_t i = 0; i < countof(gHiddenItems); i++) {
+        if (gHiddenItems[i].script > max_script_id) {
+            max_script_id = gHiddenItems[i].script;
+        }
+    }
+
+    if (max_script_id + 1 > item_flags_count) {
+        fprintf(stderr, "fatal: more hidden items defined (%zu) than there are hidden item flags (%zu)\n", max_script_id + 1, item_flags_count);
+        return EXIT_FAILURE;
+    }
+
+    emit_hidden_scripts(max_script_id);
 
     for (size_t i = 0; i < items.size; i++) {
         const char *stem = items.members[i].name + lengthof("ITEM_");
@@ -135,8 +152,6 @@ int main(int argc, char **argv) {
             add_idmap(NULL, i, 0);
         }
     }
-
-    emit_hidden_scripts();
 
     return common_done(errc, pack_berries);
 }
@@ -363,16 +378,8 @@ static void add_idmap(datafile_t *df, size_t i, size_t data_id) {
             i, data_id, icon, palette, gba_id);
 }
 
-static void emit_hidden_scripts(void) {
-    size_t maxScriptID = 0; 
-
-    for (size_t i = 0; i < countof(gHiddenItems); i++) {
-        if (gHiddenItems[i].script > maxScriptID) {
-            maxScriptID = gHiddenItems[i].script;
-        }
-    }
-
-    for (size_t i = 0; i <= maxScriptID; i++) {
+static void emit_hidden_scripts(size_t max_script_id) {
+    for (size_t i = 0; i <= max_script_id; i++) {
         fputs("    ScriptEntry HiddenItems_Item\n", headers[H_HIDDEN_ITEM_SCRIPTS].out_file);
     }
     fputs("    ScriptEntryEnd\n", headers[H_HIDDEN_ITEM_SCRIPTS].out_file);

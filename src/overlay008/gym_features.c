@@ -12,6 +12,7 @@
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 #include "generated/object_events_gfx.h"
+#include "generated/trainers.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
@@ -3973,7 +3974,7 @@ BOOL HearthomeGym_CheckIfPlayerSeesTrainer(FieldSystem *fieldSystem)
             if (trainerDistance != DISTANCE_INVALID) {
                 int scriptID = MapObject_GetScript(trainerObj);
 
-                ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), trainerObj);
+                ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, MAX_TRAINERS), trainerObj);
                 ScriptManager_SetApproachingTrainer(fieldSystem, trainerObj, trainerDistance, playerDirOpposite, scriptID, Script_GetTrainerID(scriptID), APPROACH_TYPE_SINGLES, 0);
                 return TRUE;
             }
