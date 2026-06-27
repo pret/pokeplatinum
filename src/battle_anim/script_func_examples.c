@@ -44,9 +44,9 @@ void BattleAnimScriptFunc_Nop(BattleAnimSystem *system)
     return;
 }
 
-static void BattleAnimTask_AnimExample(SysTask *task, void *ctxPtr)
+static void BattleAnimTask_AnimExample(SysTask *task, void *param)
 {
-    AnimExampleContext *ctx = ctxPtr;
+    AnimExampleContext *ctx = param;
 
     switch (ctx->state) {
     case TASK_STATE_RUNNING:
@@ -69,9 +69,9 @@ void BattleAnimScriptFunc_AnimExample(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTaskEx(ctx->system, BattleAnimTask_AnimExample, ctx, 0x1000);
 }
 
-static void BattleAnimTask_SoundExample(SysTask *task, void *ctxPtr)
+static void BattleAnimTask_SoundExample(SysTask *task, void *param)
 {
-    SoundExampleContext *ctx = ctxPtr;
+    SoundExampleContext *ctx = param;
 
     switch (ctx->state) {
     case TASK_STATE_RUNNING:
@@ -94,9 +94,9 @@ void BattleAnimScriptFunc_SoundExample(BattleAnimSystem *system)
     BattleAnimSystem_StartSoundTask(ctx->system, BattleAnimTask_SoundExample, ctx, 0x1000);
 }
 
-static void BattleAnimTask_GenericExample(SysTask *task, void *ctxPtr)
+static void BattleAnimTask_GenericExample(SysTask *task, void *param)
 {
-    GenericExampleContext *ctx = ctxPtr;
+    GenericExampleContext *ctx = param;
 
     switch (ctx->state) {
     case TASK_STATE_RUNNING:
@@ -119,9 +119,9 @@ void BattleAnimScriptFunc_GenericExample(BattleAnimSystem *system)
     SysTask_Start(BattleAnimTask_GenericExample, ctx, 0x1000);
 }
 
-static void BattleAnimTask_SpriteExample(SysTask *task, void *ctxPtr)
+static void BattleAnimTask_SpriteExample(SysTask *task, void *param)
 {
-    SpriteExampleContext *ctx = (SpriteExampleContext *)ctxPtr;
+    SpriteExampleContext *ctx = param;
 
     switch (ctx->state) {
     case TASK_STATE_RUNNING:
@@ -147,10 +147,8 @@ static void BattleAnimTask_SpriteExample(SysTask *task, void *ctxPtr)
 
 void BattleAnimScriptFunc_SpriteExample(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteManager, ManagedSprite *managedSprite)
 {
-    SpriteExampleContext *ctx;
+    SpriteExampleContext *ctx = Heap_Alloc(HEAP_ID_BATTLE, sizeof(SpriteExampleContext));
     SpriteTemplate spriteTemplate;
-
-    ctx = Heap_Alloc(HEAP_ID_BATTLE, sizeof(SpriteExampleContext));
 
     GF_ASSERT(ctx != NULL);
 
@@ -163,12 +161,8 @@ void BattleAnimScriptFunc_SpriteExample(BattleAnimSystem *system, SpriteSystem *
     spriteTemplate = BattleAnimSystem_GetLastSpriteTemplate(system);
     ctx->managedSprites[0] = managedSprite;
 
-    {
-        int i;
-
-        for (i = 1; i < 3; i++) {
-            ctx->managedSprites[i] = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteManager, &spriteTemplate);
-        }
+    for (int i = 1; i < 3; i++) {
+        ctx->managedSprites[i] = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteManager, &spriteTemplate);
     }
 
     BattleAnimSystem_StartAnimTaskEx(system, BattleAnimTask_SpriteExample, ctx, 0x1000);

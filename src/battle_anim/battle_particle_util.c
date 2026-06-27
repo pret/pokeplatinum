@@ -67,19 +67,16 @@ void *BattleParticleUtil_ReadMemberFromNARC(NARC *narc, int memberIdx, enum Heap
     return NARC_AllocAndReadWholeMember(narc, memberIdx, heapID);
 }
 
-ParticleSystem *BattleParticleUtil_CreateParticleSystemFromOpenNarc(NARC *narc, enum HeapID heapID, int memberIdx, int uploadImmediately)
+ParticleSystem *BattleParticleUtil_CreateParticleSystemFromOpenNarc(NARC *narc, enum HeapID heapID, int memberIdx, BOOL uploadImmediately)
 {
-    ParticleSystem *particleSys;
-    void *resource;
-
-    particleSys = ov11_0221F888(heapID);
+    ParticleSystem *particleSys = ov11_0221F888(heapID);
 
     if (particleSys == NULL) {
         return NULL;
     }
 
-    resource = BattleParticleUtil_ReadMemberFromNARC(narc, memberIdx, heapID);
-    ParticleSystem_SetResource(particleSys, resource, (1 << 1) | (1 << 3), uploadImmediately);
+    void *resource = BattleParticleUtil_ReadMemberFromNARC(narc, memberIdx, heapID);
+    ParticleSystem_SetResource(particleSys, resource, VRAM_AUTO_RELEASE_TEXTURE_LNK | VRAM_AUTO_RELEASE_PALETTE_LNK, uploadImmediately);
 
     return particleSys;
 }

@@ -121,9 +121,9 @@ static void StatChangeContext_LoadBg(StatChangeContext *ctx, enum BgLayer bgLaye
         heapID);
 }
 
-static void BattleAnimTask_StatChange(SysTask *task, void *ctxPtr)
+static void BattleAnimTask_StatChange(SysTask *task, void *param)
 {
-    StatChangeContext *ctx = ctxPtr;
+    StatChangeContext *ctx = param;
 
     switch (ctx->common.state) {
     case STAT_CHANGE_STATE_LOAD_BG:

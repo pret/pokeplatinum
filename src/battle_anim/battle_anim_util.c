@@ -37,11 +37,11 @@ enum WorldPosType {
 
 void include_sParticleCameraEye(VecFx32 *dummy);
 
-static const VecFx32 sParticleCameraEye = {
-    0x1700, // 1.4375
-    0x4D00, // 4.8125
-    -0x1000 // -1.0
-};
+static const VecFx32 sParticleCameraEye = VEC_FX32(
+    1.4375, 
+    4.8125, 
+    -1.0
+);
 
 static const VecFx32 sUnitDown = {
     0x0,
@@ -565,7 +565,7 @@ void BattleAnimUtil_GetParticleViewportTopPosition(VecFx32 *pos)
     pos->z = 0;
 }
 
-void BattleAnimUtil_GetBattlerTypeWorldPos(int battlerType, VecFx32 *pos, int isContest, int projection)
+void BattleAnimUtil_GetBattlerTypeWorldPos(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
     BattleAnimUtil_GetBattlerTypeWorldPos_Normal(battlerType, pos, isContest, projection);
 }

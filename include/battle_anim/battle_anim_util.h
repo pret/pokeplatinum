@@ -73,7 +73,7 @@ void BattleAnimUtil_GetBattlerWorldPos_DragonPulse(BattleAnimSystem *system, int
 void BattleAnimUtil_GetBattlerWorldPos_CameraLookAt(BattleAnimSystem *system, int battler, VecFx32 *pos);
 void BattleAnimUtil_GetBattlerWorldPos_HydroPump(BattleAnimSystem *system, int battler, VecFx32 *pos);
 void BattleAnimUtil_GetParticleViewportTopPosition(VecFx32 *pos);
-void BattleAnimUtil_GetBattlerTypeWorldPos(int battlerType, VecFx32 *pos, int isContest, int projection);
+void BattleAnimUtil_GetBattlerTypeWorldPos(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection);
 void BattleAnimUtil_GetUpVectorForBattler(int param0, VecFx32 *param1);
 void BattleAnimUtil_SetSpriteBgBlending(BattleAnimSystem *system, int spriteAlpha, int bgAlpha);
 void BattleAnimUtil_SetSpriteBlending(BattleAnimSystem *system, int planes, int spriteAlpha, int otherAlpha);

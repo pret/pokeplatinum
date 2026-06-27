@@ -83,16 +83,22 @@
     .long \value
     .endm
 
-    .macro BtlAnimCmd_013 arg0:req, arg1:req
+    // Jumps to one of two addresses based on the parity of the secondary effect chance roll
+    // addrEven: Address to jump to if the secondary effect chance roll is even
+    // addrOdd: Address to jump to if the secondary effect chance roll is odd
+    .macro JumpIfEffectChanceOdd addrEven:req, addrOdd:req
     .long BTLANIMCMD_JUMPIFEFFECTCHANCEODD
-    .long (\arg0 - .) / 4
-    .long (\arg1 - .) / 4
+    .long (\addrEven - .) / 4
+    .long (\addrOdd - .) / 4
     .endm
 
-    .macro BtlAnimCmd_014 arg0:req, arg1:req
+    // Jumps by the specified word offset if the secondary effect chance equals the specified value
+    // effectChance: Effect chance value to compare against the move's effect chance
+    // offset: Number of words to advance the script pointer by if the effect chance matches
+    .macro JumpIfEffectChance effectChance:req, offset:req
     .long BTLANIMCMD_JUMPIFEFFECTCHANCE
-    .long \arg0
-    .long \arg1
+    .long \effectChance
+    .long \offset
     .endm
 
     // Jumps to the specified address

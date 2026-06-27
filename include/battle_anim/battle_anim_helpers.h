@@ -118,7 +118,7 @@ typedef struct VBlankDMAController {
     BOOL swapBuffers;
     VBlankDMAFunc dmaFunc;
     VBlankDMAFunc swapBufferFunc;
-    void *userData;
+    void *param;
 } VBlankDMAController;
 
 struct CustomBgScrollContext {
@@ -165,7 +165,7 @@ u8 BattleAnimUtil_GetSpritePalette(ManagedSprite *sprite);
 int BattleAnimUtil_GetTransformDirectionX(BattleAnimSystem *system, int battler);
 int BattleAnimUtil_GetTransformDirectionY(BattleAnimSystem *system, int battler);
 fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps);
-u32 CalcStepCount(fx32 start, fx32 end, fx32 stepSize);
+u32 BattleAnimMath_CalcStepCount(fx32 start, fx32 end, fx32 stepSize);
 void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *ctx, ManagedSprite *sprite, s16 cx, s16 cy);
 void ScaleLerpContext_ApplyToSprite(XYTransformContext *ctx, ManagedSprite *sprite);
 void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *ctx, PokemonSprite *sprite, s16 cx, s16 cy);
@@ -173,7 +173,7 @@ void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *ctx, PokemonSpri
 #define PosLerpContext_Apply    XYTransformContext_ApplyPosOffsetToMon
 void ScaleLerpContext_ApplyToMon(XYTransformContext *ctx, PokemonSprite *sprite);
 void RevolutionContext_Init(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, int steps);
-void RevolutionContext_InitByStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSize);
+void RevolutionContext_InitWithStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSize);
 BOOL RevolutionContext_Update(XYTransformContext *ctx);
 BOOL RevolutionContext_UpdateAndApplyToSprite(XYTransformContext *ctx, s16 cx, s16 cy, ManagedSprite *sprite);
 BOOL RevolutionContext_UpdateAndApplyToMon(XYTransformContext *ctx, s16 cx, s16 cy, PokemonSprite *sprite);
@@ -219,10 +219,10 @@ void *BgScrollContext_GetWriteBuffer(const BgScrollContext *ctx);
 void BgScrollContext_Stop(BgScrollContext *ctx);
 u32 BattleAnimUtil_MakeBgOffsetValue(u16 x, u16 y);
 u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID);
-void CalcMidpoint(s16 x0, s16 y0, s16 x1, s16 y1, s16 *outMidX, s16 *outMidY);
-void CalcDistance(s16 x0, s16 y0, s16 x1, s16 y1, fx32 *outDist);
-void CalcAngle(s16 x0, s16 y0, s16 x1, s16 y1, u16 *outAngle);
-BOOL StepToward(int *value, int target, s32 step);
+void BattleAnimMath_CalcMidpoint(s16 x0, s16 y0, s16 x1, s16 y1, s16 *outMidX, s16 *outMidY);
+void BattleAnimMath_CalcDistance(s16 x0, s16 y0, s16 x1, s16 y1, fx32 *outDist);
+void BattleAnimMath_CalcAngle(s16 x0, s16 y0, s16 x1, s16 y1, u16 *outAngle);
+BOOL BattleAnimMath_StepToward(int *value, int target, s32 step);
 BOOL PaletteFadeContext_IsActive(PaletteFadeContext *ctx);
 void PaletteFadeContext_Free(PaletteFadeContext *ctx);
 PaletteFadeContext *PaletteFadeContext_New(PaletteData *paletteData, enum HeapID heapID, enum PaletteBufferID bufferID, u16 index, u16 count, s8 stepFrames, s8 step, u8 startFrac, u8 endFrac, u16 color, int priority);

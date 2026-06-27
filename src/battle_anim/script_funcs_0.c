@@ -2619,8 +2619,8 @@ static void ov12_0222D128(SysTask *param0, void *param1)
     }
         v1->unk_01++;
 
-        StepToward(&v1->unk_04, 16, +16);
-        StepToward(&v1->unk_08, 0, -16);
+        BattleAnimMath_StepToward(&v1->unk_04, 16, +16);
+        BattleAnimMath_StepToward(&v1->unk_08, 0, -16);
 
         G2_ChangeBlendAlpha(v1->unk_04, v1->unk_08);
 
@@ -2645,9 +2645,9 @@ static void ov12_0222D128(SysTask *param0, void *param1)
             ManagedSprite_GetPositionXY(v1->unk_30[0].unk_00, &v7, &v8);
             ManagedSprite_GetPositionXY(v1->unk_30[1].unk_00, &v9, &v10);
 
-            CalcMidpoint(v7, v8, v9, v10, &v1->unk_C8, &v1->unk_CA);
-            CalcDistance(v7, v8, v1->unk_C8, v1->unk_CA, &v1->unk_2C);
-            CalcAngle(v7, v8, v1->unk_C8, v1->unk_CA, &v1->unk_28);
+            BattleAnimMath_CalcMidpoint(v7, v8, v9, v10, &v1->unk_C8, &v1->unk_CA);
+            BattleAnimMath_CalcDistance(v7, v8, v1->unk_C8, v1->unk_CA, &v1->unk_2C);
+            BattleAnimMath_CalcAngle(v7, v8, v1->unk_C8, v1->unk_CA, &v1->unk_28);
 
             v1->unk_2C = (40 * FX32_ONE);
         }
@@ -2695,11 +2695,11 @@ static void ov12_0222D128(SysTask *param0, void *param1)
     case 8: {
         int v17 = 0;
 
-        if (StepToward(&v1->unk_04, 0, -2) == 1) {
+        if (BattleAnimMath_StepToward(&v1->unk_04, 0, -2) == 1) {
             v17++;
         }
 
-        if (StepToward(&v1->unk_08, 16, +2) == 1) {
+        if (BattleAnimMath_StepToward(&v1->unk_08, 16, +2) == 1) {
             v17++;
         }
 

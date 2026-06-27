@@ -13,17 +13,18 @@
 
 #include "battle_script_battlers.h"
 #include "camera.h"
+#include "fx_util.h"
 #include "math_util.h"
 #include "particle_system.h"
 #include "spl.h"
 
 static s8 BattleParticleUtil_GetSignFromBattler(BattleAnimSystem *system, int startBattler, int endBattler);
 
-static const VecFx32 sParticleCameraEye = {
-    0x1700, // 1.4375
-    0x4D00, // 4.8125
-    -0x1000 // -1.0
-};
+static const VecFx32 sParticleCameraEye = VEC_FX32(
+    1.4375, 
+    4.8125, 
+    -1.0
+);
 
 static const VecFx32 sParticleCameraUp = {
     0x0,

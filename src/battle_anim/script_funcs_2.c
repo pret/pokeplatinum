@@ -1121,7 +1121,7 @@ static BOOL ov12_0222FB84(UnkStruct_ov12_0222FAFC *param0)
         } else {
             if (param0->unk_44 < 1) {
                 if (param0->unk_44 == 0) {
-                    RevolutionContext_InitByStepSize(&param0->unk_04, param0->unk_04.data[1], (180 * 0xffff) / 360, param0->unk_04.data[1], (180 * 0xffff) / 360, param0->unk_04.data[2], param0->unk_04.data[4], (10 * 0xffff) / 360);
+                    RevolutionContext_InitWithStepSize(&param0->unk_04, param0->unk_04.data[1], (180 * 0xffff) / 360, param0->unk_04.data[1], (180 * 0xffff) / 360, param0->unk_04.data[2], param0->unk_04.data[4], (10 * 0xffff) / 360);
                 }
 
                 ValueLerpContext_InitCos(&param0->unk_28, (0 * 0xffff) / 360, (360 * 0xffff) / 360, -1 * FX32_ONE, param0->unk_04.data[0]);
@@ -1246,7 +1246,7 @@ void ov12_0222FE30(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0->unk_0C.unk_00 = param3;
     v0->unk_0C.unk_44 = 0;
 
-    RevolutionContext_InitByStepSize(&v0->unk_0C.unk_04, (90 * 0xffff) / 360, (270 * 0xffff) / 360, (90 * 0xffff) / 360, (270 * 0xffff) / 360, v4, -8 * FX32_ONE, (10 * 0xffff) / 360);
+    RevolutionContext_InitWithStepSize(&v0->unk_0C.unk_04, (90 * 0xffff) / 360, (270 * 0xffff) / 360, (90 * 0xffff) / 360, (270 * 0xffff) / 360, v4, -8 * FX32_ONE, (10 * 0xffff) / 360);
     ValueLerpContext_InitCos(&v0->unk_0C.unk_28, (0 * 0xffff) / 360, (360 * 0xffff) / 360, -1 * FX32_ONE, v0->unk_0C.unk_04.data[0]);
 
     v0->unk_0C.unk_3C = v0->unk_0C.unk_04.data[5];

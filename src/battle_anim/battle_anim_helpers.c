@@ -146,13 +146,10 @@ fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps)
     return FX_Div(end - start, steps << FX32_SHIFT);
 }
 
-u32 CalcStepCount(fx32 start, fx32 end, fx32 stepSize)
+u32 BattleAnimMath_CalcStepCount(fx32 start, fx32 end, fx32 stepSize)
 {
-    fx32 div;
-    fx32 modf;
-
-    div = FX_Div(end - start, stepSize);
-    modf = FX_Modf(div, &div);
+    fx32 div = FX_Div(end - start, stepSize);
+    fx32 modf = FX_Modf(div, &div);
 
     if (modf) {
         div += FX32_ONE;
@@ -198,25 +195,23 @@ void RevolutionContext_Init(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16
     ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / steps;
 }
 
-void RevolutionContext_InitByStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSize)
+void RevolutionContext_InitWithStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSize)
 {
-    s16 stepSizeSigned;
-
     GF_ASSERT(ctx);
 
     if (sx > ex) {
         stepSize = -stepSize;
     }
 
-    stepSizeSigned = stepSize;
+    s16 stepSizeSigned = stepSize;
 
-    ctx->data[0] = CalcStepCount(sx * FX32_ONE, ex * FX32_ONE, stepSizeSigned * FX32_ONE);
-    ctx->data[1] = sx;
-    ctx->data[2] = rx;
-    ctx->data[3] = sy;
-    ctx->data[4] = ry;
-    ctx->data[5] = stepSizeSigned;
-    ctx->data[6] = (ey - sy) / ctx->data[0];
+    ctx->data[XY_PARAM_REV_STEPS] = BattleAnimMath_CalcStepCount(sx * FX32_ONE, ex * FX32_ONE, stepSizeSigned * FX32_ONE);
+    ctx->data[XY_PARAM_REV_CUR_X] = sx;
+    ctx->data[XY_PARAM_REV_RADIUS_X] = rx;
+    ctx->data[XY_PARAM_REV_CUR_Y] = sy;
+    ctx->data[XY_PARAM_REV_RADIUS_Y] = ry;
+    ctx->data[XY_PARAM_REV_STEP_SIZE_X] = stepSizeSigned;
+    ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / ctx->data[0];
 }
 
 BOOL RevolutionContext_Update(XYTransformContext *ctx)
@@ -743,9 +738,9 @@ void RevolutionContext_InitOvalRevolutions(XYTransformContext *ctx, int revs, in
     ctx->data[0] *= revs;
 }
 
-static void AlphaFadeContext_Update(SysTask *task, void *ctxPtr)
+static void AlphaFadeContext_Update(SysTask *task, void *param)
 {
-    AlphaFadeContext *ctx = ctxPtr;
+    AlphaFadeContext *ctx = param;
 
     if (PosLerpContext_Update(&ctx->lerp) == FALSE) {
         ctx->done = TRUE;
@@ -776,35 +771,35 @@ BOOL AlphaFadeContext_IsDone(const AlphaFadeContext *ctx)
     return ctx->done;
 }
 
-static void VBlankDMAController_PostVBlank(SysTask *task, void *dmaControllerPtr)
+static void VBlankDMAController_PostVBlank(SysTask *task, void *param)
 {
-    VBlankDMAController *dmaController = dmaControllerPtr;
+    VBlankDMAController *dmaController = param;
 
     if (dmaController->doDMA) {
         dmaController->swapBuffers = TRUE;
-        dmaController->dmaFunc(dmaController->userData);
+        dmaController->dmaFunc(dmaController->param);
     } else {
         BufferManager_StopDMA();
     }
 }
 
-static void VBlankDMAController_OnVBlank(SysTask *task, void *dmaControllerPtr)
+static void VBlankDMAController_OnVBlank(SysTask *task, void *param)
 {
-    VBlankDMAController *dmaController = dmaControllerPtr;
+    VBlankDMAController *dmaController = param;
 
     if (dmaController->doDMA && dmaController->swapBuffers) {
-        dmaController->swapBufferFunc(dmaController->userData);
+        dmaController->swapBufferFunc(dmaController->param);
         dmaController->swapBuffers = FALSE;
     }
 }
 
-static void VBlankDMAController_Init(VBlankDMAController *dmaController, void *bgCtxPtr, VBlankDMAFunc dmaFunc, VBlankDMAFunc swapBuffersFunc)
+static void VBlankDMAController_Init(VBlankDMAController *dmaController, void *param, VBlankDMAFunc dmaFunc, VBlankDMAFunc swapBuffersFunc)
 {
     GF_ASSERT(dmaController);
 
     dmaController->doDMA = TRUE;
     dmaController->swapBuffers = FALSE;
-    dmaController->userData = bgCtxPtr;
+    dmaController->param = param;
     dmaController->dmaFunc = dmaFunc;
     dmaController->swapBufferFunc = swapBuffersFunc;
     dmaController->postVBlankTask = SysTask_ExecuteAfterVBlank(VBlankDMAController_PostVBlank, dmaController, 0);
@@ -840,17 +835,17 @@ static void CustomBgScrollContext_DoDMAImpl(CustomBgScrollContext *ctx)
     BufferManager_StartDMA(buffer, (void *)ctx->offsetReg, sizeof(u32), BUFFER_MANAGER_DMA_TYPE_32BIT);
 }
 
-static void CustomBgScrollContext_SwapBuffers(void *ctxPtr)
+static void CustomBgScrollContext_SwapBuffers(void *param)
 {
-    CustomBgScrollContext *ctx = ctxPtr;
+    CustomBgScrollContext *ctx = param;
 
     BufferManager_SwapBuffers(ctx->bufferManager);
     CustomBgScrollContext_DoDMAImpl(ctx);
 }
 
-static void CustomBgScrollContext_DoDMA(void *ctxPtr)
+static void CustomBgScrollContext_DoDMA(void *param)
 {
-    CustomBgScrollContext *ctx = ctxPtr;
+    CustomBgScrollContext *ctx = param;
     CustomBgScrollContext_DoDMAImpl(ctx);
 }
 
@@ -898,17 +893,17 @@ void CustomBgScrollContext_Stop(CustomBgScrollContext *ctx)
     VBlankDMAController_DisableDMA(&ctx->dmaController);
 }
 
-static void BgScrollContext_SwapBuffers(void *ctxPtr)
+static void BgScrollContext_SwapBuffers(void *param)
 {
-    BgScrollContext *ctx = ctxPtr;
+    BgScrollContext *ctx = param;
 
     ScreenScrollManager_SwapBuffers(ctx->screenScrollMgr);
     ScreenScrollManager_RestartDMA(ctx->screenScrollMgr);
 }
 
-static void BgScrollContext_DoDMA(void *ctxPtr)
+static void BgScrollContext_DoDMA(void *param)
 {
-    BgScrollContext *ctx = ctxPtr;
+    BgScrollContext *ctx = param;
     ScreenScrollManager_RestartDMA(ctx->screenScrollMgr);
 }
 
@@ -972,13 +967,13 @@ u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
     }
 }
 
-void CalcMidpoint(s16 x0, s16 y0, s16 x1, s16 y1, s16 *outMidX, s16 *outMidY)
+void BattleAnimMath_CalcMidpoint(s16 x0, s16 y0, s16 x1, s16 y1, s16 *outMidX, s16 *outMidY)
 {
     *outMidX = (x0 + x1) / 2;
     *outMidY = (y0 + y1) / 2;
 }
 
-void CalcDistance(s16 x0, s16 y0, s16 x1, s16 y1, fx32 *outDist)
+void BattleAnimMath_CalcDistance(s16 x0, s16 y0, s16 x1, s16 y1, fx32 *outDist)
 {
     s16 distX = (x0 - x1);
     s16 distY = (y0 - y1) * -1;
@@ -986,7 +981,7 @@ void CalcDistance(s16 x0, s16 y0, s16 x1, s16 y1, fx32 *outDist)
     *outDist = FX_Sqrt(((distY * distY) + (distX * distX)) * FX32_ONE);
 }
 
-void CalcAngle(s16 x0, s16 y0, s16 x1, s16 y1, u16 *outAngle)
+void BattleAnimMath_CalcAngle(s16 x0, s16 y0, s16 x1, s16 y1, u16 *outAngle)
 {
     s16 distX = (x0 - x1);
     s16 distY = (y0 - y1) * -1;
@@ -1000,7 +995,7 @@ void CalcAngle(s16 x0, s16 y0, s16 x1, s16 y1, u16 *outAngle)
     }
 }
 
-BOOL StepToward(int *value, int target, s32 step)
+BOOL BattleAnimMath_StepToward(int *value, int target, s32 step)
 {
     if (step < 0) {
         if (*value + step > target) {
@@ -1023,9 +1018,9 @@ BOOL StepToward(int *value, int target, s32 step)
     return 1;
 }
 
-static void PaletteFadeContext_FadeTask(SysTask *task, void *ctxPtr)
+static void PaletteFadeContext_FadeTask(SysTask *task, void *param)
 {
-    PaletteFadeContext *ctx = ctxPtr;
+    PaletteFadeContext *ctx = param;
 
     if (ctx->active == FALSE) {
         return;

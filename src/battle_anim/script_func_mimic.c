@@ -31,9 +31,9 @@ typedef struct MimicContext {
 #define MIMIC_SCALE_Y      20
 #define MIMIC_SCALE_FRAMES 10
 
-static void BattleAnimTask_Mimic(SysTask *task, void *ctxPtr)
+static void BattleAnimTask_Mimic(SysTask *task, void *param)
 {
-    MimicContext *ctx = ctxPtr;
+    MimicContext *ctx = param;
 
     switch (ctx->common.state) {
     case 0: {
