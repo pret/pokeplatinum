@@ -55,7 +55,7 @@ static int WifiBattleTower_State_InitNasLogin(WifiBattleTowerAppState *appState)
 static int WifiBattleTower_State_WaitNasLogin(WifiBattleTowerAppState *appState);
 static int WifiBattleTower_State_InitHttp(WifiBattleTowerAppState *appState);
 static int WifiBattleTower_State_RequestInfo(WifiBattleTowerAppState *appState);
-static int WifiBattleTower_State_Return3(WifiBattleTowerAppState *appState);
+static int WifiBattleTower_State_Idle(WifiBattleTowerAppState *appState);
 static int WifiBattleTower_State_EndSession(WifiBattleTowerAppState *appState);
 static int WifiBattleTower_State_DisconnectYesNo(WifiBattleTowerAppState *appState);
 static int WifiBattleTower_State_WaitText(WifiBattleTowerAppState *appState);
@@ -159,7 +159,7 @@ static int (*sStateFunctions[])(WifiBattleTowerAppState *) = {
     WifiBattleTower_State_GoodbyePrompt,           // 41
     WifiBattleTower_State_CleanupInet,             // 42
     WifiBattleTower_State_DisconnectingPrompt,     // 43
-    WifiBattleTower_State_Return3,                 // 44
+    WifiBattleTower_State_Idle,                    // 44
     WifiBattleTower_State_DisconnectEntry,         // 45
     WifiBattleTower_State_EndSession,              // 46
     WifiBattleTower_State_WaitText,                // 47
@@ -206,17 +206,15 @@ int WifiBattleTower_ScreenInit(WifiBattleTowerAppState *appState, int unused)
         appState->state = 51;
     }
 
-    return 2;
+    return BT_LOOP_STATE_WAIT_FADE;
 }
 
 int WifiBattleTower_ScreenMain(WifiBattleTowerAppState *appState, int unused)
 {
-    int result, prevState;
-
     NetworkIcon_SetStrength(WifiBattleTower_GetSignalStrength());
 
-    prevState = appState->state;
-    result = (*sStateFunctions[appState->state])(appState);
+    int prevState = appState->state;
+    int result = (*sStateFunctions[appState->state])(appState);
 
     if (prevState != appState->state) {
         appState->subStep = ERROR_CLEANUP_SUBSTEP_DISPLAY_ERROR;
@@ -241,95 +239,83 @@ int WifiBattleTower_ScreenExit(WifiBattleTowerAppState *appState, int unused)
     appState->screenMode = appState->exitMode;
 
     if (appState->screenMode == 0) {
-        return 5;
+        return BT_LOOP_STATE_EXIT;
     }
 
-    return 1;
+    return BT_LOOP_STATE_INIT;
 }
 
 static void WifiBattleTower_SetupBgLayers(BgConfig *bgConfig)
 {
-    {
-        BgTemplate mainBg0 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf800,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBg0 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &mainBg0, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &mainBg0, 0);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
-    }
+    BgTemplate mainBg1 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &mainBg1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
 
-    {
-        BgTemplate mainBg1 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate subBg0 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &subBg0, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &mainBg1, 0);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    }
-
-    {
-        BgTemplate subBg0 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
-
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &subBg0, 0);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
-    }
-
-    {
-        BgTemplate subBg1 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xd800,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
-
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &subBg1, 0);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
-    }
+    BgTemplate subBg1 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd800,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &subBg1, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_68);
     Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, HEAP_ID_68);
@@ -413,7 +399,7 @@ static int WifiBattleTower_State_InitialPrompt(WifiBattleTowerAppState *appState
     WifiBattleTower_DisplayMessage(appState, appState->msgLoader3, 17, TEXT_SPEED_FAST, 0xf0f);
     WifiBattleTower_SetState(appState, 48, 1);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_InitialYesNoMenu(WifiBattleTowerAppState *appState)
@@ -432,7 +418,7 @@ static int WifiBattleTower_State_InitialYesNoMenu(WifiBattleTowerAppState *appSt
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_ConnectedPrompt(WifiBattleTowerAppState *appState)
@@ -440,7 +426,7 @@ static int WifiBattleTower_State_ConnectedPrompt(WifiBattleTowerAppState *appSta
     WifiBattleTower_DisplayMessage(appState, appState->msgLoader2, 12, TEXT_SPEED_FAST, 0xf0f);
     WifiBattleTower_SetState(appState, 48, 52);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_ConnectedYesNoMenu(WifiBattleTowerAppState *appState)
@@ -466,7 +452,7 @@ static int WifiBattleTower_State_ConnectedYesNoMenu(WifiBattleTowerAppState *app
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_InitInet(WifiBattleTowerAppState *appState)
@@ -477,7 +463,7 @@ static int WifiBattleTower_State_InitInet(WifiBattleTowerAppState *appState)
 
     appState->state = 3;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitInetConnect(WifiBattleTowerAppState *appState)
@@ -530,7 +516,7 @@ static int WifiBattleTower_State_WaitInetConnect(WifiBattleTowerAppState *appSta
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_InitNasLogin(WifiBattleTowerAppState *appState)
@@ -538,7 +524,7 @@ static int WifiBattleTower_State_InitNasLogin(WifiBattleTowerAppState *appState)
     DWC_NASLoginAsync();
     appState->state = 5;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitNasLogin(WifiBattleTowerAppState *appState)
@@ -594,7 +580,7 @@ static int WifiBattleTower_State_WaitNasLogin(WifiBattleTowerAppState *appState)
         break;
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_InitHttp(WifiBattleTowerAppState *appState)
@@ -610,7 +596,7 @@ static int WifiBattleTower_State_InitHttp(WifiBattleTowerAppState *appState)
 
     appState->state = 7;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_RequestInfo(WifiBattleTowerAppState *appState)
@@ -620,7 +606,7 @@ static int WifiBattleTower_State_RequestInfo(WifiBattleTowerAppState *appState)
     appState->state = 8;
     appState->timeoutCounter = 0;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitInfo(WifiBattleTowerAppState *appState)
@@ -635,13 +621,13 @@ static int WifiBattleTower_State_WaitInfo(WifiBattleTowerAppState *appState)
             WifiBattleTower_HideWaitDial(appState);
 
             switch (appState->args->mode) {
-            case 0:
+            case WIFI_BT_MODE_BROWSE:
                 WifiBattleTower_SetState(appState, 11, 13);
                 break;
-            case 1:
+            case WIFI_BT_MODE_UPLOAD:
                 appState->state = 25;
                 break;
-            case 2:
+            case WIFI_BT_MODE_SELECT_RANK:
                 appState->state = 29;
                 break;
             }
@@ -684,7 +670,7 @@ static int WifiBattleTower_State_WaitInfo(WifiBattleTowerAppState *appState)
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_SetProfile(WifiBattleTowerAppState *appState)
@@ -695,7 +681,7 @@ static int WifiBattleTower_State_SetProfile(WifiBattleTowerAppState *appState)
     appState->state = 10;
     appState->timeoutCounter = 0;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitSetProfile(WifiBattleTowerAppState *appState)
@@ -714,13 +700,13 @@ static int WifiBattleTower_State_WaitSetProfile(WifiBattleTowerAppState *appStat
                 switch (appState->weTrainerErr.systemError) {
                 case 0:
                     switch (appState->args->mode) {
-                    case 0:
+                    case WIFI_BT_MODE_BROWSE:
                         WifiBattleTower_SetState(appState, 11, 13);
                         break;
-                    case 1:
+                    case WIFI_BT_MODE_UPLOAD:
                         appState->state = 25;
                         break;
-                    case 2:
+                    case WIFI_BT_MODE_SELECT_RANK:
                         appState->state = 29;
                         break;
                     }
@@ -783,7 +769,7 @@ static int WifiBattleTower_State_WaitSetProfile(WifiBattleTowerAppState *appStat
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_RequestRoomCount(WifiBattleTowerAppState *appState)
@@ -793,7 +779,7 @@ static int WifiBattleTower_State_RequestRoomCount(WifiBattleTowerAppState *appSt
     appState->timeoutCounter = 0;
     WifiBattleTower_ShowWaitDial(appState);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitRoomCount(WifiBattleTowerAppState *appState)
@@ -846,7 +832,7 @@ static int WifiBattleTower_State_WaitRoomCount(WifiBattleTowerAppState *appState
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_SelectOpponentPrompt(WifiBattleTowerAppState *appState)
@@ -854,7 +840,7 @@ static int WifiBattleTower_State_SelectOpponentPrompt(WifiBattleTowerAppState *a
     WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 0, TEXT_SPEED_FAST, 0xf0f);
     WifiBattleTower_SetState(appState, 47, 14);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_DrawOpponentSelect(WifiBattleTowerAppState *appState)
@@ -866,7 +852,7 @@ static int WifiBattleTower_State_DrawOpponentSelect(WifiBattleTowerAppState *app
 
     appState->state = 15;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_SelectOpponent(WifiBattleTowerAppState *appState)
@@ -911,7 +897,7 @@ static int WifiBattleTower_State_SelectOpponent(WifiBattleTowerAppState *appStat
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_DownloadPrompt(WifiBattleTowerAppState *appState)
@@ -924,7 +910,7 @@ static int WifiBattleTower_State_DownloadPrompt(WifiBattleTowerAppState *appStat
 
     MI_CpuClearFast(&appState->downloadBuffer, sizeof(WifiBattleTowerDownloadBuffer));
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_AlreadyChallengedPrompt(WifiBattleTowerAppState *appState)
@@ -932,7 +918,7 @@ static int WifiBattleTower_State_AlreadyChallengedPrompt(WifiBattleTowerAppState
     WifiBattleTower_DisplayFormattedMessage(appState, appState->msgLoader1, 2, TEXT_SPEED_FAST, 0xf0f);
     WifiBattleTower_SetState(appState, 47, 13);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_RequestDownload(WifiBattleTowerAppState *appState)
@@ -943,7 +929,7 @@ static int WifiBattleTower_State_RequestDownload(WifiBattleTowerAppState *appSta
     appState->state = 18;
     appState->timeoutCounter = 0;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitDownload(WifiBattleTowerAppState *appState)
@@ -1007,7 +993,7 @@ static int WifiBattleTower_State_WaitDownload(WifiBattleTowerAppState *appState)
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_DownloadCompletePrompt(WifiBattleTowerAppState *appState)
@@ -1018,7 +1004,7 @@ static int WifiBattleTower_State_DownloadCompletePrompt(WifiBattleTowerAppState 
 
     appState->args->unk_20 = 0;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_UploadPrompt(WifiBattleTowerAppState *appState)
@@ -1027,7 +1013,7 @@ static int WifiBattleTower_State_UploadPrompt(WifiBattleTowerAppState *appState)
     WifiBattleTower_SetState(appState, 47, 26);
     WifiBattleTower_ShowWaitDial(appState);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_RequestUpload(WifiBattleTowerAppState *appState)
@@ -1042,7 +1028,7 @@ static int WifiBattleTower_State_RequestUpload(WifiBattleTowerAppState *appState
     appState->state = 27;
     appState->timeoutCounter = 0;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitUpload(WifiBattleTowerAppState *appState)
@@ -1098,7 +1084,7 @@ static int WifiBattleTower_State_WaitUpload(WifiBattleTowerAppState *appState)
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_UploadCompletePrompt(WifiBattleTowerAppState *appState)
@@ -1109,7 +1095,7 @@ static int WifiBattleTower_State_UploadCompletePrompt(WifiBattleTowerAppState *a
 
     appState->args->unk_20 = 0;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_SelectRankPrompt(WifiBattleTowerAppState *appState)
@@ -1117,7 +1103,7 @@ static int WifiBattleTower_State_SelectRankPrompt(WifiBattleTowerAppState *appSt
     WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 5, TEXT_SPEED_FAST, 0xf0f);
     WifiBattleTower_SetState(appState, 47, 30);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_DrawRankSelect(WifiBattleTowerAppState *appState)
@@ -1131,7 +1117,7 @@ static int WifiBattleTower_State_DrawRankSelect(WifiBattleTowerAppState *appStat
 
     appState->state = 31;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_SelectRank(WifiBattleTowerAppState *appState)
@@ -1164,7 +1150,7 @@ static int WifiBattleTower_State_SelectRank(WifiBattleTowerAppState *appState)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_MatchListSelectPrompt(WifiBattleTowerAppState *appState)
@@ -1172,7 +1158,7 @@ static int WifiBattleTower_State_MatchListSelectPrompt(WifiBattleTowerAppState *
     WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 6, TEXT_SPEED_FAST, 0xf0f);
     WifiBattleTower_SetState(appState, 47, 33);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_DrawMatchListSelect(WifiBattleTowerAppState *appState)
@@ -1186,7 +1172,7 @@ static int WifiBattleTower_State_DrawMatchListSelect(WifiBattleTowerAppState *ap
 
     appState->state = 34;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_SelectMatchList(WifiBattleTowerAppState *appState)
@@ -1219,7 +1205,7 @@ static int WifiBattleTower_State_SelectMatchList(WifiBattleTowerAppState *appSta
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_DownloadMatchListPrompt(WifiBattleTowerAppState *appState)
@@ -1232,7 +1218,7 @@ static int WifiBattleTower_State_DownloadMatchListPrompt(WifiBattleTowerAppState
 
     appState->state = 36;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_RequestMatchList(WifiBattleTowerAppState *appState)
@@ -1244,7 +1230,7 @@ static int WifiBattleTower_State_RequestMatchList(WifiBattleTowerAppState *appSt
 
     WifiBattleTower_ShowWaitDial(appState);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitMatchList(WifiBattleTowerAppState *appState)
@@ -1300,7 +1286,7 @@ static int WifiBattleTower_State_WaitMatchList(WifiBattleTowerAppState *appState
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_MatchListCompletePrompt(WifiBattleTowerAppState *appState)
@@ -1311,13 +1297,13 @@ static int WifiBattleTower_State_MatchListCompletePrompt(WifiBattleTowerAppState
 
     appState->args->unk_20 = 0;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_DisconnectEntry(WifiBattleTowerAppState *appState)
 {
     appState->state = 41;
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_InitSave(WifiBattleTowerAppState *appState)
@@ -1325,7 +1311,7 @@ static int WifiBattleTower_State_InitSave(WifiBattleTowerAppState *appState)
     SaveData_SaveStateInit(appState->args->saveData, 2);
     appState->state = 40;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitSave(WifiBattleTowerAppState *appState)
@@ -1335,7 +1321,7 @@ static int WifiBattleTower_State_WaitSave(WifiBattleTowerAppState *appState)
         WifiBattleTower_HideWaitDial(appState);
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_ExitPrompt(WifiBattleTowerAppState *appState)
@@ -1343,7 +1329,7 @@ static int WifiBattleTower_State_ExitPrompt(WifiBattleTowerAppState *appState)
     WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 4, TEXT_SPEED_FAST, 0xf0f);
     WifiBattleTower_SetState(appState, 48, 22);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_ExitYesNo(WifiBattleTowerAppState *appState)
@@ -1359,7 +1345,7 @@ static int WifiBattleTower_State_ExitYesNo(WifiBattleTowerAppState *appState)
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_ExitMatchListPrompt(WifiBattleTowerAppState *appState)
@@ -1367,7 +1353,7 @@ static int WifiBattleTower_State_ExitMatchListPrompt(WifiBattleTowerAppState *ap
     WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, 9, TEXT_SPEED_FAST, 0xf0f);
     WifiBattleTower_SetState(appState, 48, 24);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_ExitMatchListYesNo(WifiBattleTowerAppState *appState)
@@ -1383,7 +1369,7 @@ static int WifiBattleTower_State_ExitMatchListYesNo(WifiBattleTowerAppState *app
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_GoodbyePrompt(WifiBattleTowerAppState *appState)
@@ -1391,7 +1377,7 @@ static int WifiBattleTower_State_GoodbyePrompt(WifiBattleTowerAppState *appState
     WifiBattleTower_DisplayMessage(appState, appState->msgLoader3, 26, TEXT_SPEED_FAST, 0xf0f);
     WifiBattleTower_SetState(appState, 47, 42);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_CleanupInet(WifiBattleTowerAppState *appState)
@@ -1400,7 +1386,7 @@ static int WifiBattleTower_State_CleanupInet(WifiBattleTowerAppState *appState)
     WifiBattleTower_SetExitMode(appState, 0, 0);
     appState->state = 43;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_DisconnectingPrompt(WifiBattleTowerAppState *appState)
@@ -1409,12 +1395,12 @@ static int WifiBattleTower_State_DisconnectingPrompt(WifiBattleTowerAppState *ap
     WifiBattleTower_SetState(appState, 49, 46);
     appState->waitTimer = 0;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
-static int WifiBattleTower_State_Return3(WifiBattleTowerAppState *appState)
+static int WifiBattleTower_State_Idle(WifiBattleTowerAppState *appState)
 {
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_EndSession(WifiBattleTowerAppState *appState)
@@ -1425,7 +1411,7 @@ static int WifiBattleTower_State_EndSession(WifiBattleTowerAppState *appState)
 
     appState->state = 0;
 
-    return 4;
+    return BT_LOOP_STATE_FINISH;
 }
 
 static int WifiBattleTower_State_DisconnectYesNo(WifiBattleTowerAppState *appState)
@@ -1440,7 +1426,7 @@ static int WifiBattleTower_State_DisconnectYesNo(WifiBattleTowerAppState *appSta
         }
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_ShowError(WifiBattleTowerAppState *appState)
@@ -1472,7 +1458,7 @@ static int WifiBattleTower_State_ShowError(WifiBattleTowerAppState *appState)
     WifiBattleTower_DisplayMessage(appState, appState->msgLoader1, errMsgIndex, TEXT_SPEED_FAST, 0xf0f);
     WifiBattleTower_SetState(appState, 47, 54);
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_ErrorCleanup(WifiBattleTowerAppState *appState)
@@ -1508,7 +1494,7 @@ static int WifiBattleTower_State_ErrorCleanup(WifiBattleTowerAppState *appState)
         break;
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitText(WifiBattleTowerAppState *appState)
@@ -1517,7 +1503,7 @@ static int WifiBattleTower_State_WaitText(WifiBattleTowerAppState *appState)
         appState->state = appState->nextState;
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitTextTimed(WifiBattleTowerAppState *appState)
@@ -1530,7 +1516,7 @@ static int WifiBattleTower_State_WaitTextTimed(WifiBattleTowerAppState *appState
         appState->waitTimer++;
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_WaitTextYesNo(WifiBattleTowerAppState *appState)
@@ -1540,7 +1526,7 @@ static int WifiBattleTower_State_WaitTextYesNo(WifiBattleTowerAppState *appState
         appState->state = appState->nextState;
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static void WifiBattleTower_DisplayFormattedMessage(WifiBattleTowerAppState *appState, MessageLoader *msgLoader, int msgIndex, int textSpeed, u16 unused)
@@ -1563,7 +1549,7 @@ static int WifiBattleTower_State_ShowDwcError(WifiBattleTowerAppState *appState)
     WifiBattleTower_ShowDwcErrorPopup(appState, errCode, -appState->dwcErrorDetail);
     appState->state = 56;
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static int WifiBattleTower_State_DwcErrorAck(WifiBattleTowerAppState *appState)
@@ -1573,7 +1559,7 @@ static int WifiBattleTower_State_DwcErrorAck(WifiBattleTowerAppState *appState)
         appState->state = 0;
     }
 
-    return 3;
+    return BT_LOOP_STATE_MAIN;
 }
 
 static void WifiBattleTower_DisplayMessage(WifiBattleTowerAppState *appState, MessageLoader *msgLoader, int msgIndex, int textSpeed, u16 unused)

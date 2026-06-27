@@ -56,8 +56,6 @@ WifiBattleTowerAppState *wifiBattleTowerAppState;
 
 int WifiBattleTower_AppInit(ApplicationManager *appMan, int *state)
 {
-    WifiBattleTowerAppState *appState;
-
     switch (*state) {
     case BT_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER:
         SetVBlankCallback(NULL, NULL);
@@ -70,7 +68,7 @@ int WifiBattleTower_AppInit(ApplicationManager *appMan, int *state)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_68, 0x50000);
 
-        appState = ApplicationManager_NewData(appMan, sizeof(WifiBattleTowerAppState), HEAP_ID_68);
+        WifiBattleTowerAppState *appState = ApplicationManager_NewData(appMan, sizeof(WifiBattleTowerAppState), HEAP_ID_68);
         memset(appState, 0, sizeof(WifiBattleTowerAppState));
         appState->bgConfig = BgConfig_New(HEAP_ID_68);
         wifiBattleTowerAppState = appState;
@@ -230,13 +228,11 @@ static void Dummy_0223B99C(WifiBattleTowerAppState *unused)
 
 static void WifiBattleTower_InitTransferSystems(void)
 {
-    {
-        CharTransferTemplate ctTemplate = {
-            20, 2048, 2048, HEAP_ID_68
-        };
+    CharTransferTemplate ctTemplate = {
+        20, 2048, 2048, HEAP_ID_68
+    };
 
-        CharTransfer_Init(&ctTemplate);
-    }
+    CharTransfer_Init(&ctTemplate);
 
     PlttTransfer_Init(20, HEAP_ID_68);
     CharTransfer_ClearBuffers();
@@ -290,20 +286,16 @@ void WifiBattleTower_BuildAffineSpriteTemplate(AffineSpriteListTemplate *templat
 static void WifiBattleTower_CreateSelectionArrows(WifiBattleTowerAppState *appState)
 {
     SpriteResourcesHeader_Init(&appState->arrowSpriteHeader, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, appState->resourceCollection[0], appState->resourceCollection[1], appState->resourceCollection[2], appState->resourceCollection[3], NULL, NULL);
+    AffineSpriteListTemplate template;
+    WifiBattleTower_BuildAffineSpriteTemplate(&template, appState, &appState->arrowSpriteHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    {
-        AffineSpriteListTemplate template;
-
-        WifiBattleTower_BuildAffineSpriteTemplate(&template, appState, &appState->arrowSpriteHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
-
-        for (int i = 0; i < 2; i++) {
-            template.position.x = FX32_ONE * sSelectionArrowPositions[i][0];
-            template.position.y = FX32_ONE * sSelectionArrowPositions[i][1];
-            appState->selectionArrows[i] = SpriteList_AddAffine(&template);
-            Sprite_SetAnimateFlag(appState->selectionArrows[i], 1);
-            Sprite_SetAnim(appState->selectionArrows[i], i);
-            Sprite_SetDrawFlag(appState->selectionArrows[i], FALSE);
-        }
+    for (int i = 0; i < 2; i++) {
+        template.position.x = FX32_ONE * sSelectionArrowPositions[i][0];
+        template.position.y = FX32_ONE * sSelectionArrowPositions[i][1];
+        appState->selectionArrows[i] = SpriteList_AddAffine(&template);
+        Sprite_SetAnimateFlag(appState->selectionArrows[i], 1);
+        Sprite_SetAnim(appState->selectionArrows[i], i);
+        Sprite_SetDrawFlag(appState->selectionArrows[i], FALSE);
     }
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -322,9 +314,7 @@ static const WindowTemplate sYesNoWindowTemplate = {
 
 Menu *WifiBattleTower_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int baseTile)
 {
-    WindowTemplate template;
-
-    template = sYesNoWindowTemplate;
+    WindowTemplate template = sYesNoWindowTemplate;
     template.tilemapTop = tilemapTop;
     template.baseTile = baseTile;
 
@@ -339,11 +329,8 @@ void WifiBattleTower_SetState(WifiBattleTowerAppState *appState, int state, int 
 
 static void *WifiBattleTower_DwcAlloc(DWCAllocType unused, u32 size, int alignment)
 {
-    void *ptr;
-    OSIntrMode state;
-
-    state = OS_DisableInterrupts();
-    ptr = NNS_FndAllocFromExpHeapEx(sDwcHeap, size, alignment);
+    OSIntrMode state = OS_DisableInterrupts();
+    void *ptr = NNS_FndAllocFromExpHeapEx(sDwcHeap, size, alignment);
 
     OS_RestoreInterrupts(state);
 
@@ -352,13 +339,11 @@ static void *WifiBattleTower_DwcAlloc(DWCAllocType unused, u32 size, int alignme
 
 static void WifiBattleTower_DwcFree(DWCAllocType unused1, void *ptr, u32 unused2)
 {
-    OSIntrMode state;
-
     if (!ptr) {
         return;
     }
 
-    state = OS_DisableInterrupts();
+    OSIntrMode state = OS_DisableInterrupts();
 
     NNS_FndFreeToExpHeap(sDwcHeap, ptr);
     OS_RestoreInterrupts(state);

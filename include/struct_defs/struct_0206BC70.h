@@ -22,4 +22,10 @@ typedef struct {
     int unk_24;
 } UnkStruct_0206BC70;
 
+enum WifiBattleTowerMode {
+    WIFI_BT_MODE_BROWSE,
+    WIFI_BT_MODE_UPLOAD,
+    WIFI_BT_MODE_SELECT_RANK,
+};
+
 #endif // POKEPLATINUM_STRUCT_0206BC70_H
