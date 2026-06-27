@@ -37,11 +37,7 @@ enum WorldPosType {
 
 void include_sParticleCameraEye(VecFx32 *dummy);
 
-static const VecFx32 sParticleCameraEye = VEC_FX32(
-    1.4375, 
-    4.8125, 
-    -1.0
-);
+static const VecFx32 sParticleCameraEye = VEC_FX32(1.4375, 4.8125, -1.0);
 
 static const VecFx32 sUnitDown = {
     0x0,

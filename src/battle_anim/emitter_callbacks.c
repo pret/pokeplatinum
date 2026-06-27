@@ -20,11 +20,7 @@
 
 static s8 BattleParticleUtil_GetSignFromBattler(BattleAnimSystem *system, int startBattler, int endBattler);
 
-static const VecFx32 sParticleCameraEye = VEC_FX32(
-    1.4375, 
-    4.8125, 
-    -1.0
-);
+static const VecFx32 sParticleCameraEye = VEC_FX32(1.4375, 4.8125, -1.0);
 
 static const VecFx32 sParticleCameraUp = {
     0x0,
