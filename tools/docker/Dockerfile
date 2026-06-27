@@ -15,7 +15,7 @@ RUN dpkg --add-architecture i386
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential libsdl2-2.0-0 libsdl2-dev libenet7 libenet-dev xvfb \
     python3 gcc-arm-none-eabi wine wine32 wine64 libnss-unknown fuse file \
-    ninja-build nasm flex bison wget ca-certificates
+    ninja-build nasm flex bison wget ca-certificates git
 
 # Install DevkitPro
 RUN wget --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0" \

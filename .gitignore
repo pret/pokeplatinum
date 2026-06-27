@@ -28,6 +28,7 @@
 /subprojects/nitrorom/
 /subprojects/metroskrew/
 /subprojects/yyjson-*/
+/subprojects/tracy/
 /subprojects/.wraplock
 
 # Legacy mwrap compiler

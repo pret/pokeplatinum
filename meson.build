@@ -69,6 +69,22 @@ else
 endif
 endif
 
+if (build_target != 'arm')
+    c_args += '-DTRACY_ENABLE'
+endif
+
+if (build_target == 'nx')
+    c_args += [ '-D__SWITCH__' ]
+
+    add_global_arguments(['-D__SWITCH__', 
+                          '-DTRACY_ENABLE',        
+                          '-I/opt/devkitpro/portlibs/switch/include',
+                          '-I/opt/devkitpro/libnx/include'],
+        language: 'cpp',
+        native: false
+    )
+endif
+
 add_global_arguments(c_args,
     language: 'c',
     native: (build_target == 'linux' or build_target == 'win64')

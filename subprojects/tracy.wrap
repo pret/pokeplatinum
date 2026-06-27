@@ -1,0 +1,10 @@
+[wrap-git]
+url = https://github.com/wolfpld/tracy.git
+revision = v0.13.1
+depth = 1
+directory = tracy
+patch_directory = tracy_patch
+
+[provide]
+dependency_names = tracy, tracy_native
+
