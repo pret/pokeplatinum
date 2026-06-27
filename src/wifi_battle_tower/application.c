@@ -1,4 +1,4 @@
-#include "overlay096/ov96_0223B6A0.h"
+#include "wifi_battle_tower/application.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -6,10 +6,9 @@
 
 #include "struct_defs/struct_0206BC70.h"
 
-#include "overlay096/ov96_0223B140.h"
-#include "overlay096/ov96_0223BCE0.h"
-#include "overlay096/struct_ov96_0223BF40_decl.h"
-#include "overlay096/struct_ov96_0223BF40_t.h"
+#include "wifi_battle_tower/app_state.h"
+#include "wifi_battle_tower/http.h"
+#include "wifi_battle_tower/screen.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"

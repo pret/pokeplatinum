@@ -8,6 +8,7 @@
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay090/struct_ov90_021D0D80.h"
+#include "wifi_battle_tower/save.h"
 
 #include "battle_frontier_save.h"
 #include "bg_window.h"
@@ -32,7 +33,6 @@
 #include "text.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
-#include "wifi_battle_tower_save.h"
 
 #include "res/graphics/sprite_templates/tower_records.h"
 

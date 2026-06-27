@@ -1440,12 +1440,12 @@ Overlay overlay95
 	Object main.nef.p/src_overlay095_ov95_0224B3D8.c.o
 }
 
-Overlay overlay96
+Overlay wifi_battle_tower
 {
 	After battle_anim
-	Object main.nef.p/src_overlay096_ov96_0223B140.c.o
-	Object main.nef.p/src_overlay096_ov96_0223B6A0.c.o
-	Object main.nef.p/src_overlay096_ov96_0223BCE0.c.o
+	Object main.nef.p/src_wifi_battle_tower_http.c.o
+	Object main.nef.p/src_wifi_battle_tower_application.c.o
+	Object main.nef.p/src_wifi_battle_tower_screen.c.o
 }
 
 Overlay main_menu

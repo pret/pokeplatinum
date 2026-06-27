@@ -1,7 +1,7 @@
-#ifndef POKEPLATINUM_OV96_0223BCE0_H
-#define POKEPLATINUM_OV96_0223BCE0_H
+#ifndef POKEPLATINUM_WIFI_BATTLE_TOWER_SCREEN_H
+#define POKEPLATINUM_WIFI_BATTLE_TOWER_SCREEN_H
 
-#include "overlay096/struct_ov96_0223BF40_decl.h"
+#include "wifi_battle_tower/app_state.h"
 
 #include "bg_window.h"
 #include "string_gf.h"
@@ -39,4 +39,4 @@ enum ErrorCleanupSubStep {
     ERROR_CLEANUP_SUBSTEP_WAIT_RETURN,
 };
 
-#endif // POKEPLATINUM_OV96_0223BCE0_H
+#endif // POKEPLATINUM_WIFI_BATTLE_TOWER_SCREEN_H

@@ -1,4 +1,4 @@
-#include "wifi_battle_tower_save.h"
+#include "wifi_battle_tower/save.h"
 
 #include <nitro.h>
 

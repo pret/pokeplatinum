@@ -11,6 +11,7 @@
 #include "overlay062/ov62_02231690.h"
 #include "overlay062/ov62_const_funcptr_tables.h"
 #include "overlay062/struct_ov62_022312B0.h"
+#include "wifi_battle_tower/save.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -28,7 +29,6 @@
 #include "unk_02030A80.h"
 #include "unk_0208B284.h"
 #include "vars_flags.h"
-#include "wifi_battle_tower_save.h"
 
 typedef struct {
     int unk_00;

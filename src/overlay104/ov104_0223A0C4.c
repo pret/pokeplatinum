@@ -17,6 +17,7 @@
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_ov104_02230BE4.h"
+#include "wifi_battle_tower/save.h"
 
 #include "communication_information.h"
 #include "field_battle_data_transfer.h"
@@ -27,7 +28,6 @@
 #include "savedata.h"
 #include "trainer_info.h"
 #include "unk_02049D08.h"
-#include "wifi_battle_tower_save.h"
 
 const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
     {

@@ -1,7 +1,7 @@
-#ifndef POKEPLATINUM_OV96_0223B6A0_H
-#define POKEPLATINUM_OV96_0223B6A0_H
+#ifndef POKEPLATINUM_WIFI_BATTLE_TOWER_APPLICATION_H
+#define POKEPLATINUM_WIFI_BATTLE_TOWER_APPLICATION_H
 
-#include "overlay096/struct_ov96_0223BF40_decl.h"
+#include "wifi_battle_tower/app_state.h"
 
 #include "bg_window.h"
 #include "menu.h"
@@ -26,4 +26,4 @@ enum WifiBattleTowerLoopState {
     BT_LOOP_STATE_EXIT,
 };
 
-#endif // POKEPLATINUM_OV96_0223B6A0_H
+#endif // POKEPLATINUM_WIFI_BATTLE_TOWER_APPLICATION_H

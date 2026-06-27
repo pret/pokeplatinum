@@ -22,7 +22,7 @@
 #include "string_gf.h"
 #include "string_template.h"
 
-struct UnkStruct_ov96_0223BF40_t {
+typedef struct WifiBattleTowerAppState {
     UnkStruct_0206BC70 *args;
     BgConfig *bgConfig;
     int unk_08;
@@ -86,6 +86,6 @@ struct UnkStruct_ov96_0223BF40_t {
     s16 subTimer;
     int timeoutCounter;
     UnkStruct_ov61_0222C3B0 unk_FF8;
-};
+} WifiBattleTowerAppState;
 
 #endif // POKEPLATINUM_STRUCT_OV96_0223BF40_T_H

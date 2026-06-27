@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV96_0223B140_H
-#define POKEPLATINUM_OV96_0223B140_H
+#ifndef POKEPLATINUM_WIFI_BATTLE_TOWER_HTTP_H
+#define POKEPLATINUM_WIFI_BATTLE_TOWER_HTTP_H
 
 #include "struct_defs/wifi_battle_tower_data.h"
 
@@ -44,4 +44,4 @@ enum BattleTowerDownloadResponse {
     BT_DOWNLOAD_RESPONSE_MAINTENANCE = 5,
 };
 
-#endif // POKEPLATINUM_OV96_0223B140_H
+#endif // POKEPLATINUM_WIFI_BATTLE_TOWER_HTTP_H

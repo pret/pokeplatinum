@@ -1,4 +1,4 @@
-#include "overlay096/ov96_0223BCE0.h"
+#include "wifi_battle_tower/screen.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -9,11 +9,11 @@
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "nintendo_wfc/main.h"
-#include "overlay096/ov96_0223B140.h"
-#include "overlay096/ov96_0223B6A0.h"
-#include "overlay096/struct_ov96_0223BF40_decl.h"
-#include "overlay096/struct_ov96_0223BF40_t.h"
 #include "overlay096/struct_wifi_player_profile.h"
+#include "wifi_battle_tower/app_state.h"
+#include "wifi_battle_tower/application.h"
+#include "wifi_battle_tower/http.h"
+#include "wifi_battle_tower/save.h"
 
 #include "bg_window.h"
 #include "comm_manager.h"
@@ -38,7 +38,6 @@
 #include "text.h"
 #include "unk_02030CE8.h"
 #include "unk_02073700.h"
-#include "wifi_battle_tower_save.h"
 
 static void WifiBattleTower_SetupBgLayers(BgConfig *bgConfig);
 static void WifiBattleTower_FreeBgLayers(BgConfig *bgConfig);
