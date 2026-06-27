@@ -239,13 +239,13 @@ int HTTP_GetRequestStatus(void)
     BOOL v0;
 
     switch (sHttpData.readyState) {
-    case 0:
+    case HTTP_STATUS_NONE:
         break;
-    case 1:
+    case HTTP_STATUS_IDLE:
         break;
-    case 2:
+    case HTTP_STATUS_INITIALIZED:
         break;
-    case 3:
+    case HTTP_STATUS_TOKEN_READY:
         sHttpData.requestHandle = DWC_GetGHTTPData(sHttpData.url, HTTP_RequestCompletedCallback, &sHttpData);
         HTTP_SetErrorCode(sHttpData.requestHandle);
 
@@ -255,7 +255,7 @@ int HTTP_GetRequestStatus(void)
             sHttpData.readyState = 1;
         }
         break;
-    case 4:
+    case HTTP_STATUS_TOKEN_PENDING:
         v0 = DWC_ProcessGHTTP();
 
         if (!v0) {
@@ -263,7 +263,7 @@ int HTTP_GetRequestStatus(void)
             break;
         }
         break;
-    case 5:
+    case HTTP_STATUS_REQUEST_READY:
         sHttpData.requestHandle = DWC_GetGHTTPData(sHttpData.url, HTTP_RequestCompletedCallback, &sHttpData);
         HTTP_SetErrorCode(sHttpData.requestHandle);
 
@@ -273,7 +273,7 @@ int HTTP_GetRequestStatus(void)
             sHttpData.readyState = 1;
         }
         break;
-    case 6:
+    case HTTP_STATUS_REQUEST_PENDING:
         v0 = DWC_ProcessGHTTP();
 
         if (!v0) {
@@ -281,7 +281,7 @@ int HTTP_GetRequestStatus(void)
             break;
         }
         break;
-    case 7:
+    case HTTP_STATUS_COMPLETE:
         break;
     }
 

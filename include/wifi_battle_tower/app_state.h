@@ -1,0 +1,91 @@
+#ifndef POKEPLATINUM_WIFI_BATTLE_TOWER_APP_STATE_H
+#define POKEPLATINUM_WIFI_BATTLE_TOWER_APP_STATE_H
+
+#include <dwc.h>
+#include <nnsys.h>
+
+#include "struct_defs/struct_0206BC70.h"
+#include "struct_defs/wifi_battle_tower_data.h"
+
+#include "overlay061/struct_ov61_0222C3B0.h"
+#include "overlay096/struct_wifi_player_profile.h"
+#include "overlay096/struct_world_exchange_trainer.h"
+#include "overlay096/struct_world_exchange_trainer_error.h"
+
+#include "bg_window.h"
+#include "menu.h"
+#include "message.h"
+#include "pokemon.h"
+#include "sprite.h"
+#include "sprite_resource.h"
+#include "sprite_util.h"
+#include "string_gf.h"
+#include "string_template.h"
+
+typedef struct WifiBattleTowerAppState {
+    UnkStruct_0206BC70 *args;
+    BgConfig *bgConfig;
+    int unk_08;
+    int unk_0C;
+    int screenMode;
+    int exitMode;
+    int unused_18;
+    int state;
+    int nextState;
+    void *dwcHeapBuffer;
+    NNSFndHeapHandle dwcHeap;
+    DWCInetControl inetControl;
+    int playerRank;
+    int selectedRank;
+    int matchCount;
+    int selectedOpponentIdx;
+    WifiBattleTowerDownloadBuffer downloadBuffer;
+    WifiPlayerProfile wifiPlayerProfile;
+    u16 unk_BB8;
+    u16 unk_BBA;
+    u16 unk_BBC;
+    u16 unk_BBE;
+    BoxPokemon *unk_BC0;
+    int unk_BC4;
+    int unk_BC8;
+    StringTemplate *stringTemplate;
+    MessageLoader *msgLoader1;
+    MessageLoader *msgLoader2;
+    MessageLoader *msgLoader3;
+    String *msgString;
+    String *titleString;
+    String *opponentIdxString;
+    String *rankString;
+    String *errorString;
+    int textPrinterID;
+    SpriteList *spriteList;
+    G2dRenderer renderer;
+    SpriteResourceCollection *resourceCollection[4];
+    SpriteResource *spriteResource[3][4];
+    SpriteResourcesHeader arrowSpriteHeader;
+    SpriteResourcesHeader unk_DE8;
+    SpriteResourcesHeader unk_E0C;
+    Sprite *selectionArrows[2];
+    Window msgWindow;
+    Window rankWindow;
+    Window opponentWindow;
+    Window titleWindow;
+    Window popupWindow;
+    Window unk_E88[3];
+    Window unk_EB8[11];
+    Menu *yesNoMenu;
+    void *waitDial;
+    int dwcError;
+    int dwcErrorDetail;
+    int dwcErrorType;
+    int asyncResult;
+    int waitTimer;
+    WorldExchangeTrainer weTrainer;
+    WorldExchangeTrainerError weTrainerErr;
+    s16 subStep;
+    s16 subTimer;
+    int timeoutCounter;
+    UnkStruct_ov61_0222C3B0 unk_FF8;
+} WifiBattleTowerAppState;
+
+#endif // POKEPLATINUM_WIFI_BATTLE_TOWER_APP_STATE_H

@@ -17,6 +17,7 @@
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "field/field_system.h"
+#include "wifi_battle_tower/save.h"
 
 #include "assert.h"
 #include "communication_system.h"
@@ -33,7 +34,6 @@
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_02049D08.h"
-#include "wifi_battle_tower_save.h"
 
 static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *trainerData, u16 partnerBattleTowerID, FrontierPokemonDataDTO *param3, u8 partySize, u16 *param5, u16 *param6, BattleTowerPartnerData *param7, enum HeapID heapID);
 static void *sub_0204B630(u16 param0, int param1);

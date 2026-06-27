@@ -10,16 +10,22 @@
 #include "system_data.h"
 
 typedef struct {
-    WifiBattleTowerRecord *unk_00;
-    WifiBattleTowerDownloadData *unk_04;
+    WifiBattleTowerRecord *record;
+    WifiBattleTowerDownloadData *downloadData;
     SystemData *systemData;
     SaveData *saveData;
     Options *options;
     DWCUserData *userData;
-    int unk_18;
+    int mode;
     int profileId;
     int unk_20;
     int unk_24;
 } UnkStruct_0206BC70;
+
+enum WifiBattleTowerMode {
+    WIFI_BT_MODE_BROWSE,
+    WIFI_BT_MODE_UPLOAD,
+    WIFI_BT_MODE_SELECT_RANK,
+};
 
 #endif // POKEPLATINUM_STRUCT_0206BC70_H

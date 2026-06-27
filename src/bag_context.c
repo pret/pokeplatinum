@@ -9,6 +9,8 @@
 #include "struct_defs/image_clips.h"
 #include "struct_defs/seal_case.h"
 
+#include "wifi_battle_tower/save.h"
+
 #include "bag.h"
 #include "coins.h"
 #include "heap.h"
@@ -20,7 +22,6 @@
 #include "trainer_info.h"
 #include "unk_020298BC.h"
 #include "unk_0202C9F4.h"
-#include "wifi_battle_tower_save.h"
 
 #include "res/text/bank/bag.h"
 #include "res/text/bank/common_strings.h"

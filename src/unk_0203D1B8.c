@@ -67,11 +67,12 @@
 #include "overlay092/ov92_021D0D80.h"
 #include "overlay094/application.h"
 #include "overlay095/ov95_02246C20.h"
-#include "overlay096/ov96_0223B6A0.h"
 #include "overlay099/ov99_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
+#include "wifi_battle_tower/application.h"
+#include "wifi_battle_tower/save.h"
 
 #include "bag.h"
 #include "bag_context.h"
@@ -125,7 +126,6 @@
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "vars_flags.h"
-#include "wifi_battle_tower_save.h"
 #include "wifi_history_save_data.h"
 
 #include "constdata/const_020EA328.h"
@@ -160,7 +160,7 @@ FS_EXTERN_OVERLAY(overlay92);
 FS_EXTERN_OVERLAY(cutscenes);
 FS_EXTERN_OVERLAY(overlay94);
 FS_EXTERN_OVERLAY(overlay95);
-FS_EXTERN_OVERLAY(overlay96);
+FS_EXTERN_OVERLAY(wifi_battle_tower);
 FS_EXTERN_OVERLAY(overlay99);
 FS_EXTERN_OVERLAY(overlay101);
 FS_EXTERN_OVERLAY(frontier_records_app);
@@ -1336,25 +1336,25 @@ void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi)
 
 void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
 {
-    FS_EXTERN_OVERLAY(overlay96);
+    FS_EXTERN_OVERLAY(wifi_battle_tower);
 
     const ApplicationManagerTemplate appTemplate = {
-        ov96_0223B6A0,
-        ov96_0223B7F8,
-        ov96_0223B8CC,
-        FS_OVERLAY_ID(overlay96)
+        WifiBattleTower_AppInit,
+        WifiBattleTower_AppMain,
+        WifiBattleTower_AppExit,
+        FS_OVERLAY_ID(wifi_battle_tower)
     };
 
     UnkStruct_0206BC70 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206BC70));
 
-    v0->unk_00 = SaveData_GetWifiBattleTowerRecord(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetWifiBattleTowerDownloadData(fieldSystem->saveData);
+    v0->record = SaveData_GetWifiBattleTowerRecord(fieldSystem->saveData);
+    v0->downloadData = SaveData_GetWifiBattleTowerDownloadData(fieldSystem->saveData);
     v0->systemData = SaveData_GetSystemData(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->userData = WiFiList_GetUserData(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->saveData = fieldSystem->saveData;
     v0->profileId = WiFiList_GetUserGsProfileId(SaveData_GetWiFiList(fieldSystem->saveData));
-    v0->unk_18 = param1;
+    v0->mode = param1;
     v0->unk_24 = param2;
     v0->unk_20 = 1;
 

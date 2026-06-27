@@ -16,6 +16,7 @@
 #include "applications/party_menu/defs.h"
 #include "field/field_system.h"
 #include "savedata/save_table.h"
+#include "wifi_battle_tower/save.h"
 
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
@@ -41,7 +42,6 @@
 #include "unk_0204AEE8.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
-#include "wifi_battle_tower_save.h"
 
 typedef struct {
     u16 unk_00;

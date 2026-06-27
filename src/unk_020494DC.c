@@ -15,6 +15,7 @@
 
 #include "field/field_system.h"
 #include "overlay005/field_menu.h"
+#include "wifi_battle_tower/save.h"
 
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
@@ -31,7 +32,6 @@
 #include "unk_0204AEE8.h"
 #include "unk_0206B9D8.h"
 #include "unk_0209BA80.h"
-#include "wifi_battle_tower_save.h"
 
 static u16 BattleTower_GetPartnerParam(BattleTower *battleTower, u8 param1);
 
