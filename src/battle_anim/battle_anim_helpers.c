@@ -28,7 +28,7 @@
 
 #define MAX_CYCLES_PER_SHAKE 4
 
-static void BattleAnimUtil_ConvertColorsToGrayscale(u16 *param0, u16 param1);
+static void BattleAnimUtil_ConvertColorsToGrayscale(u16 *colors, u16 colorCount);
 
 static const Point2D sBattleAnimBattlerPositions[][6] = {
     // Single Battle
@@ -146,22 +146,18 @@ fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps)
     return FX_Div(end - start, steps << FX32_SHIFT);
 }
 
-u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
+u32 BattleAnimMath_CalcStepCount(fx32 start, fx32 end, fx32 stepSize)
 {
-    fx32 v0;
-    fx32 v1;
+    fx32 div = FX_Div(end - start, stepSize);
+    fx32 modf = FX_Modf(div, &div);
 
-    v0 = FX_Div(param1 - param0, param2);
-
-    v1 = FX_Modf(v0, &v0);
-
-    if (v1) {
-        v0 += FX32_ONE;
+    if (modf) {
+        div += FX32_ONE;
     }
 
-    v0 = MATH_ABS(v0);
+    div = MATH_ABS(div);
 
-    return v0 >> FX32_SHIFT;
+    return div >> FX32_SHIFT;
 }
 
 void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *ctx, ManagedSprite *sprite, s16 cx, s16 cy)
@@ -199,25 +195,23 @@ void RevolutionContext_Init(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16
     ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / steps;
 }
 
-void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7)
+void RevolutionContext_InitWithStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSize)
 {
-    s16 v0;
+    GF_ASSERT(ctx);
 
-    GF_ASSERT(param0);
-
-    if (param1 > param2) {
-        param7 = -param7;
+    if (sx > ex) {
+        stepSize = -stepSize;
     }
 
-    v0 = param7;
+    s16 stepSizeSigned = stepSize;
 
-    param0->data[0] = ov12_022259AC(param1 * FX32_ONE, param2 * FX32_ONE, v0 * FX32_ONE);
-    param0->data[1] = param1;
-    param0->data[2] = param5;
-    param0->data[3] = param3;
-    param0->data[4] = param6;
-    param0->data[5] = v0;
-    param0->data[6] = (param4 - param3) / param0->data[0];
+    ctx->data[XY_PARAM_REV_STEPS] = BattleAnimMath_CalcStepCount(sx * FX32_ONE, ex * FX32_ONE, stepSizeSigned * FX32_ONE);
+    ctx->data[XY_PARAM_REV_CUR_X] = sx;
+    ctx->data[XY_PARAM_REV_RADIUS_X] = rx;
+    ctx->data[XY_PARAM_REV_CUR_Y] = sy;
+    ctx->data[XY_PARAM_REV_RADIUS_Y] = ry;
+    ctx->data[XY_PARAM_REV_STEP_SIZE_X] = stepSizeSigned;
+    ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / ctx->data[0];
 }
 
 BOOL RevolutionContext_Update(XYTransformContext *ctx)
@@ -312,12 +306,12 @@ BOOL PosLerpContext_UpdateAndApplyToMon(XYTransformContext *ctx, PokemonSprite *
     return FALSE;
 }
 
-void XYTransformContext_InitParabolic(XYTransformContext *linear, XYTransformContext *revs, s16 sx, s16 ex, s16 sy, s16 ey, u16 frames, fx32 r)
+void XYTransformContext_InitParabolic(XYTransformContext *linear, XYTransformContext *revs, s16 sx, s16 ex, s16 sy, s16 ey, u16 frames, fx32 arcRadius)
 {
     PosLerpContext_Init(linear, sx, ex, sy, ey, frames);
     revs->x = 0;
     revs->y = 0;
-    RevolutionContext_Init(revs, 0, 0, DEG_TO_IDX(90), DEG_TO_IDX(270), 0, r, frames);
+    RevolutionContext_Init(revs, 0, 0, DEG_TO_IDX(90), DEG_TO_IDX(270), 0, arcRadius, frames);
 }
 
 BOOL XYTransformContext_UpdateParabolic(XYTransformContext *linear, XYTransformContext *revs)
@@ -338,10 +332,10 @@ BOOL XYTransformContext_UpdateParabolic(XYTransformContext *linear, XYTransformC
     return TRUE;
 }
 
-BOOL ov12_02225D2C(XYTransformContext *param0, XYTransformContext *param1, ManagedSprite *param2)
+BOOL XYTransformContext_UpdateParabolicAndApplyToSprite(XYTransformContext *linear, XYTransformContext *revs, ManagedSprite *managedSprite)
 {
-    if (XYTransformContext_UpdateParabolic(param0, param1)) {
-        XYTransformContext_ApplyPosOffsetToSprite(param0, param2, 0, 0);
+    if (XYTransformContext_UpdateParabolic(linear, revs)) {
+        XYTransformContext_ApplyPosOffsetToSprite(linear, managedSprite, 0, 0);
         return 1;
     }
 
@@ -396,7 +390,7 @@ BOOL ValueLerpContext_UpdateFX32(ValueLerpContext *ctx)
     return FALSE;
 }
 
-void AngleLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
+void ValueLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
 {
     ctx->data[VALUE_PARAM_COS_STEPS] = steps;
     ctx->data[VALUE_PARAM_COS_CUR_ANGLE] = start;
@@ -404,7 +398,7 @@ void AngleLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 am
     ctx->data[VALUE_PARAM_COS_STEP_SIZE] = (end - start) / steps;
 }
 
-BOOL AngleLerpContext_UpdateCos(ValueLerpContext *ctx)
+BOOL ValueLerpContext_UpdateCos(ValueLerpContext *ctx)
 {
     GF_ASSERT(ctx);
 
@@ -764,9 +758,9 @@ static void AlphaFadeContext_Update(SysTask *task, void *param)
     }
 }
 
-void AlphaFadeContext_Init(AlphaFadeContext *ctx, s16 sev1, s16 eev1, s16 sev2, s16 eev2, int steps)
+void AlphaFadeContext_Init(AlphaFadeContext *ctx, s16 startEv1, s16 endEv1, s16 startEv2, s16 endEv2, int steps)
 {
-    PosLerpContext_Init(&ctx->lerp, sev1, eev1, sev2, eev2, steps);
+    PosLerpContext_Init(&ctx->lerp, startEv1, endEv1, startEv2, endEv2, steps);
 
     ctx->done = FALSE;
     SysTask_Start(AlphaFadeContext_Update, ctx, 0);
@@ -973,51 +967,50 @@ u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
     }
 }
 
-void ov12_02226728(s16 param0, s16 param1, s16 param2, s16 param3, s16 *param4, s16 *param5)
+void BattleAnimMath_CalcMidpoint(s16 x0, s16 y0, s16 x1, s16 y1, s16 *outMidX, s16 *outMidY)
 {
-    *param4 = (param0 + param2) / 2;
-    *param5 = (param1 + param3) / 2;
+    *outMidX = (x0 + x1) / 2;
+    *outMidY = (y0 + y1) / 2;
 }
 
-void ov12_02226744(s16 param0, s16 param1, s16 param2, s16 param3, fx32 *param4)
+void BattleAnimMath_CalcDistance(s16 x0, s16 y0, s16 x1, s16 y1, fx32 *outDist)
 {
-    s16 v0 = (param0 - param2);
-    s16 v1 = (param1 - param3) * -1;
+    s16 distX = (x0 - x1);
+    s16 distY = (y0 - y1) * -1;
 
-    *param4 = FX_Sqrt(((v1 * v1) + (v0 * v0)) * FX32_ONE);
+    *outDist = FX_Sqrt(((distY * distY) + (distX * distX)) * FX32_ONE);
 }
 
-void ov12_0222676C(s16 param0, s16 param1, s16 param2, s16 param3, u16 *param4)
+void BattleAnimMath_CalcAngle(s16 x0, s16 y0, s16 x1, s16 y1, u16 *outAngle)
 {
-    s16 v0 = (param0 - param2);
-    s16 v1 = (param1 - param3) * -1;
-    s16 v2;
+    s16 distX = (x0 - x1);
+    s16 distY = (y0 - y1) * -1;
 
-    *param4 = FX_Atan2Idx(v1 * FX32_ONE, v0 * FX32_ONE);
+    *outAngle = FX_Atan2Idx(distY * FX32_ONE, distX * FX32_ONE);
 
-    if ((*param4 > 0) && (v1 < 0)) {
-        *param4 = (*param4 - ((180 * 0xffff) / 360)) * 0xffff;
-    } else if ((*param4 < 0) && (v1 > 0)) {
-        *param4 += +((180 * 0xffff) / 360);
+    if ((*outAngle > 0) && (distY < 0)) {
+        *outAngle = (*outAngle - ((180 * 0xffff) / 360)) * 0xffff;
+    } else if ((*outAngle < 0) && (distY > 0)) {
+        *outAngle += ((180 * 0xffff) / 360);
     }
 }
 
-BOOL ov12_022267A8(int *param0, int param1, s32 param2)
+BOOL BattleAnimMath_StepToward(int *value, int target, s32 step)
 {
-    if (param2 < 0) {
-        if (*param0 + param2 > param1) {
-            *param0 += param2;
+    if (step < 0) {
+        if (*value + step > target) {
+            *value += step;
             return 0;
         } else {
-            *param0 = param1;
+            *value = target;
             return 1;
         }
     } else {
-        if (*param0 + param2 < param1) {
-            *param0 += param2;
+        if (*value + step < target) {
+            *value += step;
             return 0;
         } else {
-            *param0 = param1;
+            *value = target;
             return 1;
         }
     }
@@ -1101,9 +1094,9 @@ PaletteFadeContext *PaletteFadeContext_New(PaletteData *paletteData, enum HeapID
     return ctx;
 }
 
-static void BattleAnimUtil_ConvertColorsToGrayscale(u16 *colors, u16 param1)
+static void BattleAnimUtil_ConvertColorsToGrayscale(u16 *colors, u16 colorCount)
 {
-    for (int i = 0; i < param1; i++) {
+    for (int i = 0; i < colorCount; i++) {
         int r = GX_RGB_R(*colors);
         int g = GX_RGB_G(*colors);
         int b = GX_RGB_B(*colors);

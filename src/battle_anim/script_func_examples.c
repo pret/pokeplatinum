@@ -14,30 +14,30 @@
 #define TASK_STATE_RUNNING 0
 #define TASK_STATE_DONE    1
 
-typedef struct {
+typedef struct AnimExampleContext {
     u8 state;
     BattleAnimSystem *system;
 } AnimExampleContext;
 
-typedef struct {
+typedef struct SoundExampleContext {
     u8 state;
     BattleAnimSystem *system;
 } SoundExampleContext;
 
-typedef struct {
+typedef struct GenericExampleContext {
     u8 state;
     BattleAnimSystem *system;
 } GenericExampleContext;
 
-typedef struct {
-    u8 unk_00;
-    BattleAnimSystem *unk_04;
-    SpriteSystem *unk_08;
-    SpriteManager *unk_0C;
-    ManagedSprite *unk_10;
-    ManagedSprite *unk_14[100];
-    Sprite *unk_1A4[10];
-} UnkStruct_ov12_02226AAC;
+typedef struct SpriteExampleContext {
+    u8 state;
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteManager;
+    ManagedSprite *managedSprite;
+    ManagedSprite *managedSprites[100];
+    Sprite *sprites[10];
+} SpriteExampleContext;
 
 void BattleAnimScriptFunc_Nop(BattleAnimSystem *system)
 {
@@ -94,7 +94,7 @@ void BattleAnimScriptFunc_SoundExample(BattleAnimSystem *system)
     BattleAnimSystem_StartSoundTask(ctx->system, BattleAnimTask_SoundExample, ctx, 0x1000);
 }
 
-static void BattleAnimtTask_GenericExample(SysTask *task, void *param)
+static void BattleAnimTask_GenericExample(SysTask *task, void *param)
 {
     GenericExampleContext *ctx = param;
 
@@ -116,60 +116,54 @@ void BattleAnimScriptFunc_GenericExample(BattleAnimSystem *system)
     ctx->state = TASK_STATE_RUNNING;
     ctx->system = system;
 
-    SysTask_Start(BattleAnimtTask_GenericExample, ctx, 0x1000);
+    SysTask_Start(BattleAnimTask_GenericExample, ctx, 0x1000);
 }
 
-static void ov12_02226AAC(SysTask *param0, void *param1)
+static void BattleAnimTask_SpriteExample(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02226AAC *v0 = (UnkStruct_ov12_02226AAC *)param1;
+    SpriteExampleContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        Sprite_TickFrame(v0->unk_14[0]->sprite);
-        Sprite_TickFrame(v0->unk_14[1]->sprite);
-        Sprite_TickFrame(v0->unk_14[2]->sprite);
+    switch (ctx->state) {
+    case TASK_STATE_RUNNING:
+        Sprite_TickFrame(ctx->managedSprites[0]->sprite);
+        Sprite_TickFrame(ctx->managedSprites[1]->sprite);
+        Sprite_TickFrame(ctx->managedSprites[2]->sprite);
 
-        Sprite_OffsetPositionXY(v0->unk_14[0]->sprite, 1, 0);
-        Sprite_OffsetPositionXY(v0->unk_14[1]->sprite, -1, 0);
-        Sprite_OffsetPositionXY(v0->unk_14[2]->sprite, 1, 1);
+        Sprite_OffsetPositionXY(ctx->managedSprites[0]->sprite, 1, 0);
+        Sprite_OffsetPositionXY(ctx->managedSprites[1]->sprite, -1, 0);
+        Sprite_OffsetPositionXY(ctx->managedSprites[2]->sprite, 1, 1);
 
-        SpriteSystem_DrawSprites(v0->unk_0C);
+        SpriteSystem_DrawSprites(ctx->spriteManager);
         break;
-    case 1: {
-        BattleAnimSystem *v1 = v0->unk_04;
+    case TASK_STATE_DONE:
+        BattleAnimSystem *battleAnimSys = ctx->battleAnimSys;
 
-        Sprite_DeleteAndFreeResources(v0->unk_10);
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v1, param0);
-    } break;
+        Sprite_DeleteAndFreeResources(ctx->managedSprite);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(battleAnimSys, task);
+        break;
     }
 }
 
-void ov12_02226B1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimScriptFunc_SpriteExample(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteManager, ManagedSprite *managedSprite)
 {
-    UnkStruct_ov12_02226AAC *v0;
-    SpriteTemplate v1;
+    SpriteExampleContext *ctx = Heap_Alloc(HEAP_ID_BATTLE, sizeof(SpriteExampleContext));
+    SpriteTemplate spriteTemplate;
 
-    v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226AAC));
+    GF_ASSERT(ctx != NULL);
 
-    GF_ASSERT(v0 != NULL);
+    ctx->state = 0;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteManager = spriteManager;
+    ctx->managedSprite = managedSprite;
+    ctx->battleAnimSys = system;
 
-    v0->unk_00 = 0;
-    v0->unk_08 = param1;
-    v0->unk_0C = param2;
-    v0->unk_10 = param3;
-    v0->unk_04 = param0;
+    spriteTemplate = BattleAnimSystem_GetLastSpriteTemplate(system);
+    ctx->managedSprites[0] = managedSprite;
 
-    v1 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    v0->unk_14[0] = param3;
-
-    {
-        int v2;
-
-        for (v2 = 1; v2 < 3; v2++) {
-            v0->unk_14[v2] = SpriteSystem_NewSprite(v0->unk_08, v0->unk_0C, &v1);
-        }
+    for (int i = 1; i < 3; i++) {
+        ctx->managedSprites[i] = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteManager, &spriteTemplate);
     }
 
-    BattleAnimSystem_StartAnimTaskEx(param0, ov12_02226AAC, v0, 0x1000);
+    BattleAnimSystem_StartAnimTaskEx(system, BattleAnimTask_SpriteExample, ctx, 0x1000);
 }

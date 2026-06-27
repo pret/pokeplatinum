@@ -1984,13 +1984,13 @@ static void Task_ShowEncounter(SysTask *task, void *data)
         if (BattleSystem_GetBattleType(monShowData->battleSys) & BATTLE_TYPE_2vs2) {
             if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE
                 && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                monShowData->btlMonObjData = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
+                monShowData->btlMonObjData = BattleMonOBJData_NewAll(monShowData->battleSys, HEAP_ID_BATTLE);
             }
         } else if ((BattleSystem_GetBattleStatusMask(monShowData->battleSys) & BATTLE_STATUS_RECORDED) == FALSE) {
             if (BattleSystem_IsInitialized(monShowData->battleSys) == TRUE && monShowData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                monShowData->btlMonObjData = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
+                monShowData->btlMonObjData = BattleMonOBJData_NewAll(monShowData->battleSys, HEAP_ID_BATTLE);
             } else if (monShowData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
-                monShowData->btlMonObjData = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
+                monShowData->btlMonObjData = BattleMonOBJData_NewAll(monShowData->battleSys, HEAP_ID_BATTLE);
             }
         }
 
@@ -2061,7 +2061,7 @@ static void Task_ShowEncounter(SysTask *task, void *data)
             }
 
             if (monShowData->btlMonObjData) {
-                ov12_02223770(monShowData->btlMonObjData);
+                BattleMonOBJData_Free(monShowData->btlMonObjData);
                 monShowData->btlMonObjData = NULL;
             }
 
@@ -2269,7 +2269,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
         PokemonSprite_SetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, FALSE);
         PokemonSprite_SetAttribute(monShowData->battlerData->monSprite, MON_SPRITE_HIDE, TRUE);
         monShowData->btlMonObjData = NULL;
-        monShowData->btlMonObjData = ov12_02223764(monShowData->battleSys, HEAP_ID_BATTLE);
+        monShowData->btlMonObjData = BattleMonOBJData_NewAll(monShowData->battleSys, HEAP_ID_BATTLE);
         monShowData->state++;
         break;
     case 1:
@@ -2294,7 +2294,7 @@ static void Task_ShowPokemon(SysTask *task, void *data)
 
         if (ov12_02237810(monShowData->ballRotation) == 1) {
             if (monShowData->btlMonObjData) {
-                ov12_02223770(monShowData->btlMonObjData);
+                BattleMonOBJData_Free(monShowData->btlMonObjData);
             }
 
             PokemonSprite_StartFade(monShowData->battlerData->monSprite, 16, 16, 0, sFadeColors[monShowData->capturedBall]);
@@ -5595,7 +5595,7 @@ static void Task_SpriteToOAM(SysTask *task, void *data)
     switch (spriteToOAMData->state) {
     case 0:
         GF_ASSERT(spriteToOAMData->battlerData->btlMonObjData == NULL);
-        spriteToOAMData->battlerData->btlMonObjData = ov12_022234F8(spriteToOAMData->battleSys, HEAP_ID_BATTLE, spriteToOAMData->battler);
+        spriteToOAMData->battlerData->btlMonObjData = BattleMonOBJData_New(spriteToOAMData->battleSys, HEAP_ID_BATTLE, spriteToOAMData->battler);
         spriteToOAMData->state++;
         break;
     default:
@@ -5612,14 +5612,14 @@ static void Task_OAMToSprite(SysTask *task, void *data)
 
     GF_ASSERT(oamToSpriteData->battlerData->btlMonObjData != NULL);
 
-    if (ov12_022237D8(oamToSpriteData->battlerData->btlMonObjData) == 3) {
+    if (BattleMonOBJData_GetBattlerType(oamToSpriteData->battlerData->btlMonObjData) == 3) {
         if (oamToSpriteData->delay < 5) {
             oamToSpriteData->delay++;
             return;
         }
     }
 
-    ov12_022237A4(oamToSpriteData->battlerData->btlMonObjData, oamToSpriteData->battler);
+    BattleMonOBJData_FreeForBattler(oamToSpriteData->battlerData->btlMonObjData, oamToSpriteData->battler);
     oamToSpriteData->battlerData->btlMonObjData = NULL;
     BattleController_EmitClearCommand(oamToSpriteData->battleSys, oamToSpriteData->battler, oamToSpriteData->command);
 
