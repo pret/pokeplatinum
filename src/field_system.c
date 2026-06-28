@@ -36,7 +36,7 @@
 #include "pokeradar.h"
 #include "savedata.h"
 #include "system.h"
-#include "unk_0205F180.h"
+#include "player_move.h"
 #include "unk_0209C370.h"
 
 FS_EXTERN_OVERLAY(overlay5);

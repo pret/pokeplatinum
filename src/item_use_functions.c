@@ -58,7 +58,7 @@
 #include "terrain_collision_manager.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
-#include "unk_0205F180.h"
+#include "player_move.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
 

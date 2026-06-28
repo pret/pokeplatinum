@@ -66,7 +66,7 @@
 #include "unk_02056B30.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
-#include "unk_0205F180.h"
+#include "player_move.h"
 #include "vars_flags.h"
 #include "wireless_manager.h"
 

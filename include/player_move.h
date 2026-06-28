@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0205F180_H
-#define POKEPLATINUM_UNK_0205F180_H
+#ifndef POKEPLATINUM_PLAYER_MOVE_H
+#define POKEPLATINUM_PLAYER_MOVE_H
 
 #include "generated/movement_actions.h"
 
@@ -34,4 +34,4 @@ u32 PlayerAvatar_GetDistortionFacingTileBehaviour(PlayerAvatar *playerAvatar, in
 u32 PlayerAvatar_GetDistortionCurrTileBehaviour(PlayerAvatar *playerAvatar);
 void PlayerAvatar_GetFacingDistortionWorldPos(PlayerAvatar *const playerAvatar, int *param1, int *param2, int *param3);
 
-#endif // POKEPLATINUM_UNK_0205F180_H
+#endif // POKEPLATINUM_PLAYER_MOVE_H

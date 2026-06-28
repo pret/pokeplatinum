@@ -42,7 +42,7 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_0205F180.h"
+#include "player_move.h"
 #include "unk_020655F4.h"
 
 static int CommPlayerMan_GetSlideMovementSpeed(int param0, int param1);
