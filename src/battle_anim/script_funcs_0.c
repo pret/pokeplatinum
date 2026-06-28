@@ -2327,7 +2327,7 @@ static void ov12_0222CBFC(SysTask *param0, void *param1)
     int v0;
     UnkStruct_ov12_0222CBFC *v1 = (UnkStruct_ov12_0222CBFC *)param1;
 
-    if (ov12_02225D2C(&v1->unk_8C[0], &v1->unk_8C[1], v1->unk_38) == 0) {
+    if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v1->unk_8C[0], &v1->unk_8C[1], v1->unk_38) == 0) {
         Sprite_DeleteAndFreeResources(v1->unk_38);
         BattleAnimSystem_EndAnimTask(v1->unk_10.battleAnimSys, param0);
         BattleAnimUtil_Free(v1);
@@ -2382,7 +2382,7 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     }
 
     ManagedSprite_SetAffineZRotation(v2->unk_38, v2->unk_D4.value);
-    ov12_02225D2C(&v2->unk_8C[0], &v2->unk_8C[1], v2->unk_38);
+    XYTransformContext_UpdateParabolicAndApplyToSprite(&v2->unk_8C[0], &v2->unk_8C[1], v2->unk_38);
 
     ManagedSprite_TickFrame(v2->unk_38);
     BattleAnimSystem_StartAnimTask(v2->unk_10.battleAnimSys, ov12_0222CBFC, v2);
@@ -2619,8 +2619,8 @@ static void ov12_0222D128(SysTask *param0, void *param1)
     }
         v1->unk_01++;
 
-        ov12_022267A8(&v1->unk_04, 16, +16);
-        ov12_022267A8(&v1->unk_08, 0, -16);
+        BattleAnimMath_StepToward(&v1->unk_04, 16, +16);
+        BattleAnimMath_StepToward(&v1->unk_08, 0, -16);
 
         G2_ChangeBlendAlpha(v1->unk_04, v1->unk_08);
 
@@ -2645,9 +2645,9 @@ static void ov12_0222D128(SysTask *param0, void *param1)
             ManagedSprite_GetPositionXY(v1->unk_30[0].unk_00, &v7, &v8);
             ManagedSprite_GetPositionXY(v1->unk_30[1].unk_00, &v9, &v10);
 
-            ov12_02226728(v7, v8, v9, v10, &v1->unk_C8, &v1->unk_CA);
-            ov12_02226744(v7, v8, v1->unk_C8, v1->unk_CA, &v1->unk_2C);
-            ov12_0222676C(v7, v8, v1->unk_C8, v1->unk_CA, &v1->unk_28);
+            BattleAnimMath_CalcMidpoint(v7, v8, v9, v10, &v1->unk_C8, &v1->unk_CA);
+            BattleAnimMath_CalcDistance(v7, v8, v1->unk_C8, v1->unk_CA, &v1->unk_2C);
+            BattleAnimMath_CalcAngle(v7, v8, v1->unk_C8, v1->unk_CA, &v1->unk_28);
 
             v1->unk_2C = (40 * FX32_ONE);
         }
@@ -2676,11 +2676,11 @@ static void ov12_0222D128(SysTask *param0, void *param1)
     case 7: {
         u8 v16 = 0;
 
-        if (ov12_02225D2C(&v1->unk_30[0].unk_04[0], &v1->unk_30[0].unk_04[1], v1->unk_30[0].unk_00) == 0) {
+        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v1->unk_30[0].unk_04[0], &v1->unk_30[0].unk_04[1], v1->unk_30[0].unk_00) == 0) {
             v16++;
         }
 
-        if (ov12_02225D2C(&v1->unk_30[1].unk_04[0], &v1->unk_30[1].unk_04[1], v1->unk_30[1].unk_00) == 0) {
+        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v1->unk_30[1].unk_04[0], &v1->unk_30[1].unk_04[1], v1->unk_30[1].unk_00) == 0) {
             v16++;
         }
 
@@ -2695,11 +2695,11 @@ static void ov12_0222D128(SysTask *param0, void *param1)
     case 8: {
         int v17 = 0;
 
-        if (ov12_022267A8(&v1->unk_04, 0, -2) == 1) {
+        if (BattleAnimMath_StepToward(&v1->unk_04, 0, -2) == 1) {
             v17++;
         }
 
-        if (ov12_022267A8(&v1->unk_08, 16, +2) == 1) {
+        if (BattleAnimMath_StepToward(&v1->unk_08, 16, +2) == 1) {
             v17++;
         }
 

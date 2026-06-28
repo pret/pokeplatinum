@@ -357,11 +357,11 @@ ValorLakefront_CynthiaLeave:
 
 ValorLakefront_RemoveCynthia:
     RemoveObject LOCALID_CYNTHIA
-    SetVar VAR_UNK_0x4083, 2
+    SetVar VAR_DUMMY_0x4083, 2
     SetFlag FLAG_DUMMY_0x00B7
     SetFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     ClearFlag FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE
-    SetVar VAR_PASTORIA_STATE, 6
+    SetVar VAR_PASTORIA_CITY_STATE, 6
     ReleaseAll
     End
 

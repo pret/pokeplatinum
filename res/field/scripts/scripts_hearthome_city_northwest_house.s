@@ -45,11 +45,11 @@ HearthomeCityNorthwestHouse_AcceptEevee:
 
 HearthomeCityNorthwestHouse_GiveNickname:
     CloseMessage
-    GetPartyCount VAR_MAP_LOCAL_0
-    SubVar VAR_MAP_LOCAL_0, 1
+    GetPartyCount VAR_MAP_LOCAL_0x00
+    SubVar VAR_MAP_LOCAL_0x00, 1
     FadeScreenOut
     WaitFadeScreen
-    OpenPokemonNamingScreen VAR_MAP_LOCAL_0, VAR_RESULT
+    OpenPokemonNamingScreen VAR_MAP_LOCAL_0x00, VAR_RESULT
     CallIfNe VAR_RESULT, 1, HearthomeCityNorthwestHouse_IncrementRecordPokemonNicknamed
     FadeScreenIn
     WaitFadeScreen

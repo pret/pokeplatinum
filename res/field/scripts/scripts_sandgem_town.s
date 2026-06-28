@@ -19,9 +19,9 @@
 
 SandgemTown_OnTransition:
     CallIfEq VAR_SANDGEM_TOWN_STATE, 1, SandgemTown_SetCounterpartPositionExitLab
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, SandgemTown_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, SandgemTown_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, SandgemTown_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, SandgemTown_SetCounterpartGraphicsLucas
     End
 
 SandgemTown_SetCounterpartPositionExitLab:

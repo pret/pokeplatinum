@@ -13975,7 +13975,7 @@ static const DistWorldObjectEvent sMapObjectEventTurnbackCaveRoom_GriseousOrbIte
         .graphicsID = OBJ_EVENT_GFX_POKEBALL,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
-        .hiddenFlag = 0x538,
+        .hiddenFlag = FLAG_OBTAINED_DISTORTION_WORLD_TURNBACK_CAVE_ROOM_GRISEOUS_ORB,
         .script = SCRIPT_ID(VISIBLE_ITEMS, 321),
         .dir = FACE_UP,
         .data = { 0x0, 0x0, 0x0 },

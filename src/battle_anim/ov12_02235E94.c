@@ -420,7 +420,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
-            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = ov12_0222384C(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
             if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
                 GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
@@ -454,7 +454,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
-            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = ov12_0222384C(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
             if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
                 GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
@@ -488,7 +488,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
-            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = ov12_0222384C(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
             if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
                 GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
@@ -522,7 +522,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
-            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = ov12_0222384C(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
             if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
                 GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
@@ -690,7 +690,7 @@ static void ov12_0223646C(BallCapsuleSealEffect *ballCapSealEff, SPLEmitterCallb
 
 static void ov12_02236520(int param0, VecFx32 *param1)
 {
-    ov12_02235758(param0, param1, 0, 1);
+    BattleAnimUtil_GetBattlerTypeWorldPos(param0, param1, 0, 1);
 
     {
         int v0;
@@ -1107,7 +1107,7 @@ static BOOL ov12_02236918(BallRotation *param0)
 
             ManagedSprite_GetPositionXY(param0->unk_30, &v0.unk_00, &v0.unk_02);
 
-            param0->unk_D8 = ov12_02223764(param0->unk_90.battleSys, param0->unk_90.heapID);
+            param0->unk_D8 = BattleMonOBJData_NewAll(param0->unk_90.battleSys, param0->unk_90.heapID);
             param0->unk_D0 = ov12_02236690(&v0);
         }
         param0->unk_08++;
@@ -1122,7 +1122,7 @@ static BOOL ov12_02236918(BallRotation *param0)
     } break;
     case 2:
         ov12_022366F0(param0->unk_D0);
-        ov12_02223770(param0->unk_D8);
+        BattleMonOBJData_Free(param0->unk_D8);
         param0->unk_08++;
         break;
     case 3: {
@@ -1636,7 +1636,7 @@ static BOOL ov12_02236F24(BallRotation *param0)
             }
         }
 
-        if (ov12_02225D2C(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
+        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
             ov12_02237E24(param0, 0);
             param0->unk_08++;
         }
@@ -1747,7 +1747,7 @@ static BOOL ov12_022371E4(BallRotation *param0)
             }
         }
 
-        if (ov12_02225D2C(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
+        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
             ov12_02237E24(param0, 0);
             param0->unk_08++;
         }

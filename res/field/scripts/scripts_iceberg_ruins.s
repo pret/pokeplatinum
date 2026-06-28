@@ -86,43 +86,43 @@ IcebergRuins_StatueEnd:
     End
 
 IcebergRuins_DotNorth:
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotFarWest:
-    SetVar VAR_MAP_LOCAL_2, 1
+    SetVar VAR_MAP_LOCAL_0x02, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotMiddleWest:
-    SetVar VAR_MAP_LOCAL_3, 1
+    SetVar VAR_MAP_LOCAL_0x03, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotMiddle:
-    SetVar VAR_MAP_LOCAL_4, 1
+    SetVar VAR_MAP_LOCAL_0x04, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotMiddleEast:
-    SetVar VAR_MAP_LOCAL_5, 1
+    SetVar VAR_MAP_LOCAL_0x05, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotFarEast:
-    SetVar VAR_MAP_LOCAL_6, 1
+    SetVar VAR_MAP_LOCAL_0x06, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotSouth:
-    SetVar VAR_MAP_LOCAL_7, 1
+    SetVar VAR_MAP_LOCAL_0x07, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End

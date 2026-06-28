@@ -65,7 +65,7 @@ WifiPlazaEntrance_TakeWarpPanel:
     WaitMovement
     FadeScreenOut
     WaitFadeScreen
-    SetVar VAR_MAP_LOCAL_3, 1
+    SetVar VAR_MAP_LOCAL_0x03, 1
     Warp VAR_WIFI_PLAZA_RETURN_WARP_ID, 5, 2, DIR_SOUTH
     WaitForTransition
     ScrCmd_0B3 VAR_RESULT

@@ -40,9 +40,9 @@
 VeilstoneCity_OnTransition:
     CallIfSet FLAG_VEILSTONE_CITY_GRUNT_DROPPED_STORAGE_KEY, VeilstoneCity_SetLookerPositionAtGalacticBuilding
     CallIfGe VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE, 2, VeilstoneCity_SetCounterpartPositionAtWarehouse
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, VeilstoneCity_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, VeilstoneCity_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, VeilstoneCity_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, VeilstoneCity_SetCounterpartGraphicsLucas
     End
 
 VeilstoneCity_SetCounterpartPositionAtWarehouse:

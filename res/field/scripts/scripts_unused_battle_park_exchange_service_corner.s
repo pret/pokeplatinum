@@ -49,11 +49,11 @@ BattleParkExchangeServiceCorner_WhichPrize_Unused:
     Message BattleParkExchangeServiceCorner_Text_ExchangeBPForWhichPrize
     Call BattleParkExchangeServiceCorner_InitPrizeMenu_Unused
     GoToIfEq VAR_RESULT, -2, BattleParkExchangeServiceCorner_ThanksForVisiting_Unused
-    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_1, BattleParkExchangeServiceCorner_ThanksForVisiting_Unused
-    SetVar VAR_MAP_LOCAL_3, VAR_RESULT
-    GetExchangeServiceCornerItemAndCost VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_3, VAR_0x8000, VAR_0x8001
-    CallIfEq VAR_MAP_LOCAL_0, 0, BattleParkExchangeServiceCorner_YouveChosenThisItem_Unused
-    CallIfEq VAR_MAP_LOCAL_0, 1, BattleParkExchangeServiceCorner_YouveChosenThisTM_Unused
+    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_0x01, BattleParkExchangeServiceCorner_ThanksForVisiting_Unused
+    SetVar VAR_MAP_LOCAL_0x03, VAR_RESULT
+    GetExchangeServiceCornerItemAndCost VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x03, VAR_0x8000, VAR_0x8001
+    CallIfEq VAR_MAP_LOCAL_0x00, 0, BattleParkExchangeServiceCorner_YouveChosenThisItem_Unused
+    CallIfEq VAR_MAP_LOCAL_0x00, 1, BattleParkExchangeServiceCorner_YouveChosenThisTM_Unused
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, BattleParkExchangeServiceCorner_WhichPrize_Unused
     CheckBattlePoints VAR_0x8001, VAR_RESULT
@@ -99,12 +99,12 @@ BattleParkExchangeServiceCorner_InitPrizeMenu_Unused:
     SetVar VAR_0x8009, 0
     InitGlobalTextListMenu 1, 1, 0, VAR_RESULT
 BattleParkExchangeServiceCorner_AddPrizeMenuEntries_Unused:
-    GetExchangeServiceCornerItemAndCost VAR_MAP_LOCAL_0, VAR_0x8008, VAR_0x8000, VAR_0x8001
+    GetExchangeServiceCornerItemAndCost VAR_MAP_LOCAL_0x00, VAR_0x8008, VAR_0x8000, VAR_0x8001
     BufferItemName 0, VAR_0x8000
     BufferVarPaddingDigits 1, VAR_0x8001, PADDING_MODE_SPACES, 3
     AddListMenuEntry MenuEntries_Text_UnusedPrizeExchange_Prize, VAR_0x8008
     AddVar VAR_0x8008, 1
-    GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_1, BattleParkExchangeServiceCorner_AddPrizeMenuEntries_Unused
+    GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_0x01, BattleParkExchangeServiceCorner_AddPrizeMenuEntries_Unused
     AddListMenuEntry MenuEntries_Text_UnusedPrizeExchange_NoThanks, VAR_0x8008
     ShowListMenu
     Return

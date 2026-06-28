@@ -36,13 +36,13 @@
 
 EternaCity_OnTransition:
     CallIfEq VAR_ETERNA_CITY_STATE, 4, EternaCity_SetCynthiaPositionForGiveEgg
-    CheckItem ITEM_BICYCLE, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TRUE, EternaCity_CheckShouldBlockExits
+    CheckItem ITEM_BICYCLE, 1, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, TRUE, EternaCity_CheckShouldBlockExits
     End
 
 EternaCity_CheckShouldBlockExits:
-    CheckItem ITEM_EXPLORER_KIT, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TRUE, EternaCity_SetVarDontBlockExits
+    CheckItem ITEM_EXPLORER_KIT, 1, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, TRUE, EternaCity_SetVarDontBlockExits
     End
 
 EternaCity_SetVarDontBlockExits:
@@ -387,7 +387,7 @@ EternaCity_Statue:
     End
 
 EternaCity_PokemonBreederF2:
-    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, EternaCity_GoingUndergroundIsABlast
+    GoToIfSet FLAG_RECEIVED_EXPLORER_KIT, EternaCity_GoingUndergroundIsABlast
     NPCMessage EternaCity_Text_YouDontHaveExplorerKit
     End
 

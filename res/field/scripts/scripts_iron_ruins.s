@@ -86,43 +86,43 @@ IronRuins_StatueEnd:
     End
 
 IronRuins_DotNorthWest:
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotNorthEast:
-    SetVar VAR_MAP_LOCAL_2, 1
+    SetVar VAR_MAP_LOCAL_0x02, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotWest:
-    SetVar VAR_MAP_LOCAL_3, 1
+    SetVar VAR_MAP_LOCAL_0x03, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotMiddle:
-    SetVar VAR_MAP_LOCAL_4, 1
+    SetVar VAR_MAP_LOCAL_0x04, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotEast:
-    SetVar VAR_MAP_LOCAL_5, 1
+    SetVar VAR_MAP_LOCAL_0x05, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotSouthWest:
-    SetVar VAR_MAP_LOCAL_6, 1
+    SetVar VAR_MAP_LOCAL_0x06, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotSouthEast:
-    SetVar VAR_MAP_LOCAL_7, 1
+    SetVar VAR_MAP_LOCAL_0x07, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End

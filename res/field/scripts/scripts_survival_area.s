@@ -106,9 +106,9 @@ SurvivalArea_Rival:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetDayOfWeek VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, SurvivalArea_RivalBattle
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, SurvivalArea_RivalBattle
+    GetDayOfWeek VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_SUNDAY, SurvivalArea_RivalBattle
+    GoToIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_SATURDAY, SurvivalArea_RivalBattle
     BufferRivalName 0
     BufferPlayerName 1
     SetVar VAR_0x8008, VAR_RANDOM_SURVIVAL_AREA_RIVAL_MESSAGE
@@ -139,7 +139,7 @@ SurvivalArea_RivalEnd:
     End
 
 SurvivalArea_RivalBattle:
-    GoToIfSet FLAG_DEFEATED_SURVIVAL_AREA_RIVAL, SurvivalArea_PostRivalBattle
+    GoToIfSet FLAG_DAILY_DEFEATED_SURVIVAL_AREA_RIVAL, SurvivalArea_PostRivalBattle
     BufferRivalName 0
     BufferPlayerName 1
     Message SurvivalArea_Text_IllProveImTougher
@@ -201,7 +201,7 @@ SurvivalArea_SetRivalTeamChimchar2:
 SurvivalArea_CheckWonRivalBattle:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, SurvivalArea_LostRivalBattle
-    SetFlag FLAG_DEFEATED_SURVIVAL_AREA_RIVAL
+    SetFlag FLAG_DAILY_DEFEATED_SURVIVAL_AREA_RIVAL
     GoTo SurvivalArea_PostRivalBattle
     End
 

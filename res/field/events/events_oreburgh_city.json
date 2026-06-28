@@ -565,7 +565,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": "VAR_OREBURGH_STATE",
+            "var": "VAR_OREBURGH_CITY_STATE",
             "value": 0
         },
         {
@@ -575,7 +575,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": "VAR_OREBURGH_STATE",
+            "var": "VAR_OREBURGH_CITY_STATE",
             "value": 2
         }
     ]
