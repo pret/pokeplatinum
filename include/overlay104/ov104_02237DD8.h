@@ -21,7 +21,7 @@ void ov104_022384A8(BattleArcade *param0);
 void ov104_022384B4(BattleArcade *param0);
 void ov104_022384D4(BattleArcade *param0);
 void ov104_022384DC(BattleArcade *param0);
-int ov104_02238538(BattleArcade *param0, Party *param1, Party *param2, int param3);
+int BattleArcade_FitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, int totalTurnsElapsed);
 void ov104_02238658(void *param0, FrontierGraphics *param1);
 void ov104_02238728(void *param0, FrontierGraphics *param1);
 void ov104_02238764(BattleArcade *param0, FrontierGraphics *param1, u16 param2);

@@ -119,7 +119,7 @@ BOOL FrontierScrCmd_BattleArcade_CleanupBattle(FrontierScriptContext *ctx)
     BattleArcade *battleArcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     FieldBattleDTO *dto = battleArcade->dto;
 
-    battleArcade->unk_1D = ov104_02238538(battleArcade, dto->parties[0], dto->parties[2], dto->totalTurnsElapsed);
+    battleArcade->fitnessScore = BattleArcade_FitnessScore(battleArcade, dto->parties[0], dto->parties[2], dto->totalTurnsElapsed);
     battleArcade->wonBattle = CheckPlayerWonBattle(dto->resultMask);
 
     if (battleArcade->activeEffect == ARCADE_EFFECT_SWAP_MONS) {
@@ -200,7 +200,7 @@ static void SetupBattleArcadeAppArgs(BattleArcadeAppArgs *args, BattleArcade *ba
     args->round = ov104_0223C124(battleArcade);
     args->unk_14 = &battleArcade->unk_20;
     args->selectedEffect = &battleArcade->activeEffect;
-    args->unk_07 = battleArcade->unk_1D;
+    args->fitnessScore = battleArcade->fitnessScore;
     args->currentStreak = battleArcade->currentStreak;
     args->partnersStreak = battleArcade->unk_A78;
     args->rouletteSpeed = &battleArcade->unk_1C;

@@ -48,8 +48,8 @@ void ov104_02238210(BattleArcade *param0);
 static u16 ov104_02238264(BattleArcadeAppArgs *param0, u8 param1);
 void ov104_022384D4(BattleArcade *param0);
 void ov104_022384DC(BattleArcade *param0);
-int ov104_02238538(BattleArcade *param0, Party *param1, Party *param2, int param3);
-static int ov104_02238584(BattleArcade *param0, Party *param1, Party *param2, u8 param3);
+int BattleArcade_FitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, int totalTurnsElapsed);
+static int BattleArcade_BaseFitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, u8 partySize);
 void ov104_02238658(void *param0, FrontierGraphics *param1);
 void ov104_02238728(void *param0, FrontierGraphics *param1);
 void ov104_02238764(BattleArcade *param0, FrontierGraphics *param1, u16 param2);
@@ -489,104 +489,101 @@ void ov104_022384DC(BattleArcade *param0)
     return;
 }
 
-static const u8 Unk_ov104_0223FAF0[5] = {
-    0x8,
-    0x6,
-    0x4,
-    0x0,
-    0x0
+static const u8 sStatusConditionFitness[5] = {
+    8,
+    6,
+    4,
+    0,
+    0
 };
 
-static const u8 Unk_ov104_0223FAE8[5] = {
-    0x6,
-    0x4,
-    0x2,
-    0x0,
-    0x0
+static const u8 sFaintedMonsFitness[5] = {
+    6,
+    4,
+    2,
+    0,
+    0
 };
 
-static const u8 Unk_ov104_0223FAFE[5][2] = {
-    { 0x3, 0xA },
-    { 0x5, 0x6 },
-    { 0x7, 0x4 },
-    { 0x9, 0x2 },
-    { 0xA, 0x0 }
+static const struct {
+    u8 turns;
+    u8 score;
+} sTurnsElapsedFitness[5] = {
+    { 3, 10 },
+    { 5, 6 },
+    { 7, 4 },
+    { 9, 2 },
+    { 10, 0 }
 };
 
-int ov104_02238538(BattleArcade *param0, Party *param1, Party *param2, int param3)
+int BattleArcade_FitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, int totalTurnsElapsed)
 {
-    u8 v0;
-    int v1;
-    Pokemon *v2;
-    int v3 = 0;
-    v0 = BattleArcade_GetPlayerPartySize(param0->challengeType, 0);
+    u8 partySize;
+    int i;
+    int fitness = 0;
+    partySize = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, FALSE);
 
-    v3 += ov104_02238584(param0, param1, param2, v0);
+    fitness += BattleArcade_BaseFitnessScore(battleArcade, party1, party2, partySize);
 
-    for (v1 = 0; v1 < 5; v1++) {
-        if (param3 < Unk_ov104_0223FAFE[v1][0]) {
-            v3 += Unk_ov104_0223FAFE[v1][1];
+    for (i = 0; i < 5; i++) {
+        if (totalTurnsElapsed < sTurnsElapsedFitness[i].turns) {
+            fitness += sTurnsElapsedFitness[i].score;
             break;
         }
     }
 
-    return v3;
+    return fitness;
 }
 
-static int ov104_02238584(BattleArcade *param0, Party *param1, Party *param2, u8 param3)
+static int BattleArcade_BaseFitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, u8 partySize)
 {
-    u32 v0;
-    u8 v1;
-    u8 v2;
-    int v3, v4;
-    Pokemon *v5;
+    u8 faintedMons;
+    u8 monsWithStatusCondition;
+    int i, fitness;
+    Pokemon *mon;
 
-    v4 = 0;
-    v1 = 0;
-    v2 = 0;
+    fitness = 0;
+    faintedMons = 0;
+    monsWithStatusCondition = 0;
 
-    for (v3 = 0; v3 < param3; v3++) {
-        v5 = Party_GetPokemonBySlotIndex(param1, v3);
+    for (i = 0; i < partySize; i++) {
+        mon = Party_GetPokemonBySlotIndex(party1, i);
 
-        if (Pokemon_GetValue(v5, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
         }
 
-        v0 = Pokemon_GetValue(v5, MON_DATA_HP, NULL);
-
-        if (v0 == 0) {
-            v1++;
+        if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+            faintedMons++;
         }
 
-        if (Pokemon_GetValue(v5, MON_DATA_STATUS, NULL) != 0) {
-            v2++;
+        if (Pokemon_GetValue(mon, MON_DATA_STATUS, NULL) != 0) {
+            monsWithStatusCondition++;
         }
     }
 
-    if (BattleArcade_IsMultiPlayerChallenge(param0->challengeType) == 1) {
-        for (v3 = 0; v3 < param3; v3++) {
-            v5 = Party_GetPokemonBySlotIndex(param2, v3);
+    if (BattleArcade_IsMultiPlayerChallenge(battleArcade->challengeType) == TRUE) {
+        for (i = 0; i < partySize; i++) {
+            mon = Party_GetPokemonBySlotIndex(party2, i);
 
-            if (Pokemon_GetValue(v5, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
                 continue;
             }
 
-            v0 = Pokemon_GetValue(v5, MON_DATA_HP, NULL);
-
-            if (v0 == 0) {
-                v1++;
+            if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+                faintedMons++;
             }
 
-            if (Pokemon_GetValue(v5, MON_DATA_STATUS, NULL) != 0) {
-                v2++;
+            if (Pokemon_GetValue(mon, MON_DATA_STATUS, NULL) != 0) {
+                monsWithStatusCondition++;
             }
         }
     }
 
-    v4 += Unk_ov104_0223FAF0[v2];
-    v4 += Unk_ov104_0223FAE8[v1];
+    fitness += sStatusConditionFitness[monsWithStatusCondition];
+    fitness += sFaintedMonsFitness[faintedMons];
 
-    return v4;
+    return fitness;
 }
 
 void ov104_02238658(void *param0, FrontierGraphics *param1)
