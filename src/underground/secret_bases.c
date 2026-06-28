@@ -46,6 +46,7 @@
 #include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "render_window.h"
 #include "savedata.h"
 #include "screen_fade.h"
@@ -60,7 +61,6 @@
 #include "trainer_info.h"
 #include "underground.h"
 #include "unk_02033200.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 #include "wireless_manager.h"
@@ -1716,7 +1716,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         break;
     case MOVE_STATE_BLOCK_ENTRANCE:
         CommPlayerMan_ForceDir();
-        PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(DIR_SOUTH, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH), 1);
+        PlayerAvatar_SetMapObjMovement(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(DIR_SOUTH, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH), 1);
         CommPlayer_SetDir(DIR_SOUTH);
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_BlockedEntranceToDecorate, FALSE, NULL);
         Sound_PlayEffect(SEQ_SE_DP_DOOR);

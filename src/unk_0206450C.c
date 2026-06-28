@@ -13,8 +13,8 @@
 #include "map_object_move.h"
 #include "math_util.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "trainer_encounter.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 
 typedef struct {
@@ -1280,7 +1280,7 @@ static int sub_0206537C(MapObject *mapObj)
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
 
-        if (sub_0206140C(playerAvatar) == 0) {
+        if (PlayerAvatar_IsRunning(playerAvatar) == 0) {
             return -1;
         }
 
