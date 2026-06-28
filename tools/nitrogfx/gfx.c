@@ -1340,6 +1340,7 @@ void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIn
 {
     int fileSize;
     bool inverted = false;
+    palette->extendedLength = 0;
     unsigned char *data = ReadWholeFile(path, &fileSize);
 
     if (memcmp(data, "RLCN", 4) != 0 && memcmp(data, "RPCN", 4) != 0) //NCLR / NCPR
@@ -1371,11 +1372,15 @@ void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIn
         inverted = true;
     }
 
-    if (palIndex == 0) {
+    if (palIndex == 0 || convertTo8Bpp) {
         palette->numColors = paletteSize / 2;
     } else {
-        palette->numColors = bitdepth == 4 && !convertTo8Bpp ? 16 : 256; //remove header and divide by 2
+        palette->numColors = bitdepth == 4 ? 16 : 256; //remove header and divide by 2
         --palIndex;
+    }
+
+    if (paletteHeader[0xC] == 1) {
+        palette->extendedLength = palette->numColors / 256;
     }
 
     unsigned char *paletteData = paletteHeader + PLTT_HEADER_SIZE;
@@ -1394,6 +1399,25 @@ void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIn
             palette->colors[i].red = 0;
             palette->colors[i].green = 0;
             palette->colors[i].blue = 0;
+        }
+    }
+
+    if (convertTo8Bpp)
+    {
+        palette->numColors = 256;
+    }
+
+    if (palette->extendedLength)
+    {
+        for (int i = 1; i < palette->extendedLength; i++)
+        {
+            for (int j = 0; j < 256; j++)
+            {
+                uint16_t paletteEntry = (paletteData[(32 * (convertTo8Bpp ? 0 : palIndex)) + i * 512 + j * 2 + 1] << 8) | paletteData[(32 * (convertTo8Bpp ? 0 : palIndex)) + i * 512 + j * 2];
+                palette->extendedColors[i - 1][j].red = UPCONVERT_BIT_DEPTH(GET_GBA_PAL_RED(paletteEntry));
+                palette->extendedColors[i - 1][j].green = UPCONVERT_BIT_DEPTH(GET_GBA_PAL_GREEN(paletteEntry));
+                palette->extendedColors[i - 1][j].blue = UPCONVERT_BIT_DEPTH(GET_GBA_PAL_BLUE(paletteEntry));
+            }
         }
     }
 
@@ -1421,6 +1445,10 @@ void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIn
         uint16_t sectionCount = (data[0x0F] << 8) | data[0x0E];
         if (sectionCount == 2) {
             printf("-pcmp ");
+        }
+
+        if (palette->extendedLength) {
+            printf("-extended %d ", palette->extendedLength);
         }
 
         printf("-bitdepth %d ", bitdepth);
@@ -1451,14 +1479,14 @@ void WriteGbaPalette(char *path, struct Palette *palette)
     fclose(fp);
 }
 
-void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, int bitdepth, bool pad, int compNum, bool pcmp, int pcmpStartIndex, bool inverted, bool convertTo4Bpp)
+void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, int bitdepth, bool pad, int compNum, bool pcmp, int pcmpStartIndex, bool inverted, bool convertTo4Bpp, int extendedLength)
 {
     FILE *fp = fopen(path, "wb");
 
     if (fp == NULL)
         FATAL_ERROR("Failed to open \"%s\" for writing.\n", path);
 
-    int colourNum = pad ? 256 : palette->numColors;
+    int colourNum = pad && !extendedLength ? 256 : palette->numColors;
 
     uint32_t size = colourNum * 2; //todo check if there's a better way to detect :/
     uint32_t extSize = size + (ncpr ? 0x10 : 0x18);
@@ -1504,6 +1532,11 @@ void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, in
         palHeader[10] = compNum; //assuming this is an indicator of compression, literally no docs for it though
     }
 
+    if (extendedLength)
+    {
+        palHeader[12] = 1;
+    }
+
     //size
     int colorSize = inverted ? 0x200 - size : size;
     palHeader[16] = colorSize & 0xFF;
@@ -1519,10 +1552,19 @@ void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, in
     {
         if (i < palette->numColors)
         {
-            unsigned char red = DOWNCONVERT_BIT_DEPTH(palette->colors[i].red);
-            unsigned char green = DOWNCONVERT_BIT_DEPTH(palette->colors[i].green);
-            unsigned char blue = DOWNCONVERT_BIT_DEPTH(palette->colors[i].blue);
-
+            unsigned char red, green, blue;
+            if (i < 256)
+            {
+                red = DOWNCONVERT_BIT_DEPTH(palette->colors[i].red);
+                green = DOWNCONVERT_BIT_DEPTH(palette->colors[i].green);
+                blue = DOWNCONVERT_BIT_DEPTH(palette->colors[i].blue);
+            }
+            else
+            {
+                red = DOWNCONVERT_BIT_DEPTH(palette->extendedColors[i / 256 - 1][i % 256].red);
+                green = DOWNCONVERT_BIT_DEPTH(palette->extendedColors[i / 256 - 1][i % 256].green);
+                blue = DOWNCONVERT_BIT_DEPTH(palette->extendedColors[i / 256 - 1][i % 256].blue);
+            }
             uint16_t paletteEntry = SET_GBA_PAL(red, green, blue);
 
             colours[i * 2] = paletteEntry & 0xFF;
