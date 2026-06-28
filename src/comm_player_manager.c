@@ -35,6 +35,7 @@
 #include "map_object.h"
 #include "map_object_move.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -42,7 +43,6 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "player_move.h"
 #include "unk_020655F4.h"
 
 static int CommPlayerMan_GetSlideMovementSpeed(int param0, int param1);

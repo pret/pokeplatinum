@@ -32,11 +32,11 @@
 #include "map_header_data.h"
 #include "map_matrix.h"
 #include "overlay_manager.h"
+#include "player_move.h"
 #include "pokedex_memory.h"
 #include "pokeradar.h"
 #include "savedata.h"
 #include "system.h"
-#include "player_move.h"
 #include "unk_0209C370.h"
 
 FS_EXTERN_OVERLAY(overlay5);

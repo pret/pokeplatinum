@@ -9,8 +9,8 @@
 #include "inlines.h"
 #include "map_matrix.h"
 #include "narc.h"
-#include "record_mixed_rng.h"
 #include "player_move.h"
+#include "record_mixed_rng.h"
 
 // Calculates if the player is facing a Feebas tile, but exits early 50% of the time
 // to simulate Feebas having a 50% encounter rate.

@@ -49,6 +49,7 @@
 #include "party.h"
 #include "persisted_map_features_init.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "pokemon.h"
 #include "pokeradar.h"
 #include "save_player.h"
@@ -66,7 +67,6 @@
 #include "unk_02056B30.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
-#include "player_move.h"
 #include "vars_flags.h"
 #include "wireless_manager.h"
 

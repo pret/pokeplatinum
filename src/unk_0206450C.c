@@ -13,8 +13,8 @@
 #include "map_object_move.h"
 #include "math_util.h"
 #include "player_avatar.h"
-#include "trainer_encounter.h"
 #include "player_move.h"
+#include "trainer_encounter.h"
 #include "unk_020655F4.h"
 
 typedef struct {

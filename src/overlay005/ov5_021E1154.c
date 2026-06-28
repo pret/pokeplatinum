@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/map_object.h"
-
 #include "constants/player_avatar.h"
+
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 
@@ -14,8 +14,8 @@
 #include "map_object.h"
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
-#include "sound_playback.h"
 #include "player_move.h"
+#include "sound_playback.h"
 #include "unk_020655F4.h"
 
 typedef struct {

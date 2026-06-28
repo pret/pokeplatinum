@@ -56,7 +56,7 @@ enum AvatarMoveSpeed {
     AVATAR_MOVE_SPEED_1,
     AVATAR_MOVE_SPEED_2,
     AVATAR_MOVE_SPEED_3,
-    
+
     AVATAR_MOVE_SPEED_BIKE_BRAKE = AVATAR_MOVE_SPEED_2,
 };
 
@@ -99,14 +99,14 @@ enum PlayerHeightChange {
 };
 
 // Player Avatar collision flags
-#define PLAYER_COLLISION_NONE       0
-#define PLAYER_COLLISION_WILL_COLLIDE   (1 << 0)
-#define PLAYER_COLLISION_1   (1 << 1)
-#define PLAYER_COLLISION_JUMP   (1 << 2)
-#define PLAYER_COLLISION_WARP   (1 << 3)
-#define PLAYER_COLLISION_BIKE_RAMP   (1 << 4)
-#define PLAYER_COLLISION_WATER   (1 << 5)
-#define PLAYER_COLLISION_BIKE_BRIDGE   (1 << 6)
+#define PLAYER_COLLISION_NONE         0
+#define PLAYER_COLLISION_WILL_COLLIDE (1 << 0)
+#define PLAYER_COLLISION_1            (1 << 1)
+#define PLAYER_COLLISION_JUMP         (1 << 2)
+#define PLAYER_COLLISION_WARP         (1 << 3)
+#define PLAYER_COLLISION_BIKE_RAMP    (1 << 4)
+#define PLAYER_COLLISION_WATER        (1 << 5)
+#define PLAYER_COLLISION_BIKE_BRIDGE  (1 << 6)
 #define PLAYER_COLLISION_JUMP_TWICE   (1 << 7)
 
 #endif // POKEPLATINUM_CONSTANTS_PLAYER_AVATAR_H

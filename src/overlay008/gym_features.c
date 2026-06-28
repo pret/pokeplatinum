@@ -46,6 +46,7 @@
 #include "overworld_anim_manager.h"
 #include "persisted_map_features.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata_misc.h"
@@ -60,7 +61,6 @@
 #include "trainer_encounter.h"
 #include "trainer_info.h"
 #include "trainer_types.h"
-#include "player_move.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 
