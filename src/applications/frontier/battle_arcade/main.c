@@ -153,15 +153,17 @@ static const struct {
     { 0, 1, 0, 1, 0, 1, 0 }, // ARCADE_EFFECT_GET_3_BP
 };
 
+// Columns: Foe, Ally, Env, Bonus effect weights.
+// Rows: categoryTier, derived from fitness
 static const u8 sCategoryWeights[][NUM_ARCADE_EFFECT_CATEGORIES] = {
-    { 15, 15, 40, 30 },
-    { 35, 20, 30, 15 },
-    { 30, 30, 35, 5 },
-    { 25, 40, 30, 5 },
-    { 10, 75, 10, 5 }
+    { 15, 15, 40, 30 }, // tier 0
+    { 35, 20, 30, 15 }, // tier 1
+    { 30, 30, 35, 5 }, // tier 2
+    { 25, 40, 30, 5 }, // tier 3
+    { 10, 75, 10, 5 }, // tier 4
 };
 
-static const u8 Unk_ov108_0224367C[] = {
+static const u8 sCategoryTierFitnessThresholds[] = {
     21,
     16,
     10,
@@ -180,8 +182,13 @@ typedef struct BattleArcadeApp {
     u8 cursorPosID;
     u8 numReceivedMsgs;
     u8 cursorUpdateTimer;
-    u8 categoryWeightTier;
-    u8 unk_12;
+    u8 categoryTier;
+    // How well you did in the previous battle, based on mons fainted, status conditions, and turns
+    // elapsed.
+    //
+    // Higher fitness scores are more likely to yield environmental and bonus effects. Lower
+    // fitness scores are more likely to yield ally effects.
+    u8 fitnessScore;
     u8 unusedFlag : 1;
     u8 pointlessTimer : 7;
     u8 resultCursorPos;
@@ -303,7 +310,7 @@ BOOL BattleArcadeApp_Init(ApplicationManager *appMan, int *state)
     app->round = args->round;
     app->battleStreak = args->currentStreak;
     app->partnerBattleStreak = args->partnersStreak;
-    app->unk_12 = args->unk_07;
+    app->fitnessScore = args->fitnessScore;
     app->cursorPosPtr = &args->cursorPos;
     app->options = SaveData_GetOptions(app->saveData);
     app->party = args->party;
@@ -1326,13 +1333,13 @@ static void GetAvailableEffects(BattleArcadeApp *app)
 static void GetEffectCategoryCounts(BattleArcadeApp *app)
 {
     int i;
-    for (i = 0; i < NELEMS(Unk_ov108_0224367C); i++) {
-        if (app->unk_12 >= Unk_ov108_0224367C[i]) {
+    for (i = 0; i < NELEMS(sCategoryTierFitnessThresholds); i++) {
+        if (app->fitnessScore >= sCategoryTierFitnessThresholds[i]) {
             break;
         }
     }
 
-    app->categoryWeightTier = i;
+    app->categoryTier = i;
 
     for (i = 0; i < app->numAvailableEffects; i++) {
         if (BattleArcade_GetCategoryFromEffect(app->availableEffects[i]) == ARCADE_EFFECT_CATEGORY_FOE) {
@@ -1352,7 +1359,7 @@ static void AssignEffectsToGrid(BattleArcadeApp *app)
     u8 effectsIndex = 0;
 
     for (int i = 0; i < GRID_SIZE; i++) {
-        u8 category = GetRandomCategory(app, app->categoryWeightTier);
+        u8 category = GetRandomCategory(app, app->categoryTier);
         int numEffectsInCategory = app->availableEffectsPerCategory[category];
 
         int startOffset = 0;
@@ -1406,14 +1413,14 @@ static void AssignEffectsToGrid(BattleArcadeApp *app)
     }
 }
 
-static u8 GetRandomCategory(BattleArcadeApp *app, u8 weightsIndex)
+static u8 GetRandomCategory(BattleArcadeApp *app, u8 categoryTier)
 {
     u8 category;
     u8 sum = 0;
     u16 rand = LCRNG_Next() % 100;
 
     for (category = ARCADE_EFFECT_CATEGORY_FOE; category < NUM_ARCADE_EFFECT_CATEGORIES; category++) {
-        sum += sCategoryWeights[weightsIndex][category];
+        sum += sCategoryWeights[categoryTier][category];
 
         if (rand < sum) {
             break;
