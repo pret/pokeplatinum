@@ -4,7 +4,7 @@
 
 
     ScriptEntry SunyshoreCity_OnFrame_Flint
-    ScriptEntry SunyshoreCity_Unused2
+    ScriptEntry SunyshoreCity_Dummy2
     ScriptEntry SunyshoreCity_Sailor2
     ScriptEntry SunyshoreCity_Sailor1
     ScriptEntry SunyshoreCity_Worker
@@ -19,7 +19,7 @@
     ScriptEntry SunyshoreCity_SignboardJuliasHouse
     ScriptEntry SunyshoreCity_SignboardBlank
     ScriptEntry SunyshoreCity_SignboardPokemonRock
-    ScriptEntry SunyshoreCity_UnusedSealMerchant
+    ScriptEntry SunyshoreCity_SealMerchant_Unused
     ScriptEntry SunyshoreCity_Flint
     ScriptEntry SunyshoreCity_OnTransition
     ScriptEntryEnd
@@ -27,7 +27,7 @@
 SunyshoreCity_OnTransition:
     CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 2, SunyshoreCity_HideSandgemTownLabCounterpart
     CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 3, SunyshoreCity_HideSandgemTownLabCounterpart
-    GoToIfEq VAR_SUNYSHORE_STATE, 0, SunyshoreCity_SetFlintPositionAtGate
+    GoToIfEq VAR_SUNYSHORE_CITY_STATE, 0, SunyshoreCity_SetFlintPositionAtGate
     End
 
 SunyshoreCity_HideSandgemTownLabCounterpart:
@@ -126,7 +126,7 @@ SunyshoreCity_RivalAndJasmine:
     CallIfEq VAR_0x8004, 855, SunyshoreCity_JasmineLeaveX855
     CallIfEq VAR_0x8004, 856, SunyshoreCity_JasmineLeaveX856
     CallIfEq VAR_0x8004, 857, SunyshoreCity_JasmineLeaveX857
-    SetVar VAR_SUNYSHORE_STATE, 3
+    SetVar VAR_SUNYSHORE_CITY_STATE, 3
     ReleaseAll
     End
 
@@ -483,7 +483,7 @@ SunyshoreCity_GiveVolknerHotBattle:
     SetObjectEventDir LOCALID_FLINT, DIR_SOUTH
     ClearFlag FLAG_HIDE_SUNYSHORE_CITY_FLINT
     AddObject LOCALID_FLINT
-    SetVar VAR_SUNYSHORE_STATE, 1
+    SetVar VAR_SUNYSHORE_CITY_STATE, 1
     ReleaseAll
     End
 
@@ -519,7 +519,7 @@ SunyshoreCity_Movement_FlintLeave:
     WalkNormalEast 9
     EndMovement
 
-SunyshoreCity_Unused2:
+SunyshoreCity_Dummy2:
     NPCMessage SunyshoreCity_Text_Dummy14
     End
 
@@ -571,7 +571,7 @@ SunyshoreCity_SignboardPokemonRock:
     ShowLandmarkSign SunyshoreCity_Text_SignPokemonRock
     End
 
-SunyshoreCity_UnusedSealMerchant:
+SunyshoreCity_SealMerchant_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -579,44 +579,44 @@ SunyshoreCity_UnusedSealMerchant:
     CloseMessageWithoutErasing
     GetDayOfWeek VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, SunyshoreCity_UnusedSealMerchantSunday
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_MONDAY, SunyshoreCity_UnusedSealMerchantMonday
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_TUESDAY, SunyshoreCity_UnusedSealMerchantTuesday
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_WEDNESDAY, SunyshoreCity_UnusedSealMerchantWednesday
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_THURSDAY, SunyshoreCity_UnusedSealMerchantThursday
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_FRIDAY, SunyshoreCity_UnusedSealMerchantFriday
-    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SATURDAY, SunyshoreCity_UnusedSealMerchantSaturday
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, SunyshoreCity_SealMerchantSunday_Unused
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_MONDAY, SunyshoreCity_SealMerchantMonday_Unused
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_TUESDAY, SunyshoreCity_SealMerchantTuesday_Unused
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_WEDNESDAY, SunyshoreCity_SealMerchantWednesday_Unused
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_THURSDAY, SunyshoreCity_SealMerchantThursday_Unused
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_FRIDAY, SunyshoreCity_SealMerchantFriday_Unused
+    GoToIfEq VAR_0x8008, DAY_OF_WEEK_SATURDAY, SunyshoreCity_SealMerchantSaturday_Unused
     End
 
-SunyshoreCity_UnusedSealMerchantSunday:
+SunyshoreCity_SealMerchantSunday_Unused:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_MONDAY
-    GoTo SunyshoreCity_UnusedSealMerchantEnd
+    GoTo SunyshoreCity_SealMerchantEnd_Unused
 
-SunyshoreCity_UnusedSealMerchantMonday:
+SunyshoreCity_SealMerchantMonday_Unused:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_TUESDAY
-    GoTo SunyshoreCity_UnusedSealMerchantEnd
+    GoTo SunyshoreCity_SealMerchantEnd_Unused
 
-SunyshoreCity_UnusedSealMerchantTuesday:
+SunyshoreCity_SealMerchantTuesday_Unused:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_WEDNESDAY
-    GoTo SunyshoreCity_UnusedSealMerchantEnd
+    GoTo SunyshoreCity_SealMerchantEnd_Unused
 
-SunyshoreCity_UnusedSealMerchantWednesday:
+SunyshoreCity_SealMerchantWednesday_Unused:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_THURSDAY
-    GoTo SunyshoreCity_UnusedSealMerchantEnd
+    GoTo SunyshoreCity_SealMerchantEnd_Unused
 
-SunyshoreCity_UnusedSealMerchantThursday:
+SunyshoreCity_SealMerchantThursday_Unused:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_FRIDAY
-    GoTo SunyshoreCity_UnusedSealMerchantEnd
+    GoTo SunyshoreCity_SealMerchantEnd_Unused
 
-SunyshoreCity_UnusedSealMerchantFriday:
+SunyshoreCity_SealMerchantFriday_Unused:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_SATURDAY
-    GoTo SunyshoreCity_UnusedSealMerchantEnd
+    GoTo SunyshoreCity_SealMerchantEnd_Unused
 
-SunyshoreCity_UnusedSealMerchantSaturday:
+SunyshoreCity_SealMerchantSaturday_Unused:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_SUNDAY
-    GoTo SunyshoreCity_UnusedSealMerchantEnd
+    GoTo SunyshoreCity_SealMerchantEnd_Unused
 
-SunyshoreCity_UnusedSealMerchantEnd:
+SunyshoreCity_SealMerchantEnd_Unused:
     ReleaseAll
     End
 

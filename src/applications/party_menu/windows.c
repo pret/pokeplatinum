@@ -3,14 +3,14 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
+#include "constants/string.h"
 #include "generated/genders.h"
 #include "generated/species.h"
-#include "generated/string_padding_mode.h"
 
+#include "applications/party_menu/callbacks.h"
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/party_menu/unk_02083370.h"
-#include "applications/party_menu/unk_02084B70.h"
 #include "applications/pokemon_summary_screen/main.h"
 
 #include "bg_window.h"
@@ -709,7 +709,7 @@ void PartyMenu_AddWindows(PartyMenuApplication *application)
     Window_AddFromTemplate(appBgConfig, &appWindows[PARTY_MENU_WIN_MEDIUM_MESSAGE], &sTextWindows[WIN_TEMPLATE_MEDIUM_MESSAGE]);
     Window_AddFromTemplate(appBgConfig, &appWindows[PARTY_MENU_WIN_LONG_MESSAGE], &sTextWindows[WIN_TEMPLATE_LONG_MESSAGE]);
     Window_AddFromTemplate(appBgConfig, &appWindows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL], &sTextWindows[WIN_TEMPLATE_GIVE_ITEM_OR_MAIL]);
-    Window_AddFromTemplate(appBgConfig, &appWindows[PARTY_MENU_WIN_TEACH_MOVE], &sTextWindows[WIN_TEMPLATE_TEACH_MOVE]);
+    Window_AddFromTemplate(appBgConfig, &appWindows[PARTY_MENU_WIN_MOVE_LIST], &sTextWindows[WIN_TEMPLATE_TEACH_MOVE]);
 
 #undef appBgConfig
 #undef appWindows
@@ -1064,10 +1064,10 @@ void PartyMenu_PrintMemberComment_CanLearnMove(PartyMenuApplication *application
     PartyMenu_PrintMemberLevel(application, slot);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
-    u8 result = PartyMenu_CanMonLearnMove(application, v0);
-    if (result == MON_MOVE_RESULT_CANNOT_LEARN) {
+    u8 result = PartyMenu_TeachMove_Check(application, v0);
+    if (result == TEACH_MOVE_RESULT_CANNOT_LEARN) {
         PrintMemberMoveComment(application, slot, MOVE_COMMENT_UNABLE);
-    } else if (result == MON_MOVE_RESULT_ALREADY_LEARNED) {
+    } else if (result == TEACH_MOVE_RESULT_ALREADY_LEARNED) {
         PrintMemberMoveComment(application, slot, MOVE_COMMENT_LEARNED);
     } else {
         PrintMemberMoveComment(application, slot, MOVE_COMMENT_ABLE);

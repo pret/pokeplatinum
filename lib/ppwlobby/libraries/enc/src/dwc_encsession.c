@@ -125,7 +125,6 @@ static BOOL DWCi_EncSessionValidateResponse(char *param0, int param1)
 
     v0[40] = '\0';
     if (strncmp(param0 + (param1 - 40), v0, 40) != 0) {
-        DWC_Printf(DWC_REPORTFLAG_WARNING, "invalid HMAC\n");
         return FALSE;
     }
 
@@ -251,7 +250,7 @@ static int DWCi_EncSessionEncrypt(u8 *param0, u8 *param1, int param2, u8 *param3
     return 0;
 }
 
-void DWCi_EncSessionInitialize(int param0, char *param1)
+void DWCi_EncSessionInitialize(enum UnkEnum_ov66_02258338 param0, const char *param1)
 {
     char v0[21];
     char v1[9];
@@ -297,7 +296,7 @@ static void DWCi_EncSessionTrySetError(void)
     Unk_ov66_0225B52C.unk_00 = 1;
 }
 
-u32 DWCi_EncSessionProcess(void)
+int DWCi_EncSessionProcess(void)
 {
     switch (Unk_ov66_0225B52C.unk_00) {
     case 0:
@@ -360,13 +359,13 @@ void DWCi_EncSessionShutdown(void)
     Unk_ov66_0225B52C.unk_04 = 0;
 }
 
-char *DWCi_EncSessionGetResponse(int *param0)
+char *DWCi_EncSessionGetResponse(u32 *param0)
 {
     *param0 = Unk_ov66_0225B52C.unk_6C;
     return Unk_ov66_0225B52C.unk_68;
 }
 
-static int DWCi_EncSessionGetPrivateAsync(char *param0, int param1, int param2, int param3, UnkCallback param4, BOOL param5)
+static int DWCi_EncSessionGetPrivateAsync(char *param0, int param1, void *param2, int param3, UnkCallback param4, BOOL param5)
 {
     char v0[16];
 
@@ -417,12 +416,12 @@ static int DWCi_EncSessionGetPrivateAsync(char *param0, int param1, int param2, 
     return 0;
 }
 
-void DWCi_EncSessionGetAsync(char *param0, int param1, int param2, int param3, UnkCallback param4)
+int DWCi_EncSessionGetAsync(const char *param0, int param1, void *param2, u32 param3, UnkCallback param4)
 {
-    DWCi_EncSessionGetPrivateAsync(param0, param1, param2, param3, param4, FALSE);
+    return DWCi_EncSessionGetPrivateAsync(param0, param1, param2, param3, param4, FALSE);
 }
 
-void DWCi_EncSessionGetReuseHashAsync(char *param0, int param1, int param2, int param3, UnkCallback param4)
+int DWCi_EncSessionGetReuseHashAsync(const char *param0, int param1, void *param2, u32 param3, UnkCallback param4)
 {
-    DWCi_EncSessionGetPrivateAsync(param0, param1, param2, param3, param4, TRUE);
+    return DWCi_EncSessionGetPrivateAsync(param0, param1, param2, param3, param4, TRUE);
 }

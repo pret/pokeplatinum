@@ -7,9 +7,9 @@
     ScriptEntryEnd
 
 SandgemTownHouse_BreederM:
-    NPCMessage SandgemTownHouse_Text_PokemonGrowStrongerFromBattlingOtherPokemon
+    NPCMessage SandgemTownHouse_Text_GrowStrongerFromBattling
     End
 
 SandgemTownHouse_BreederF:
-    NPCMessage SandgemTownHouse_Text_AGoodTrainerTakesCareToNotLetTheirPokemonFaint
+    NPCMessage SandgemTownHouse_Text_GoodTrainerTakesCare
     End

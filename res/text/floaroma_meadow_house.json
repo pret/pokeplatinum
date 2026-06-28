@@ -2,7 +2,7 @@
   "key": 33839,
   "messages": [
     {
-      "id": "FloaromaMeadowHouse_Text_TheFlowersThatGrowInTheFieldsHereAreSpecial",
+      "id": "FloaromaMeadowHouse_Text_FlowersInTheFieldsAreSpecial",
       "en_US": [
         "The flowers that grow in the fields\n",
         "here are special.\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "FloaromaMeadowHouse_Text_IfYouPutHoneyOnATreeCheckBackLaterToSeeIfItsRustlings",
+      "id": "FloaromaMeadowHouse_Text_RustlingTreeOftenRarePokemon",
       "en_US": [
         "If you put Honey on a tree, check\n",
         "back later to see if it’s rustling.\r",

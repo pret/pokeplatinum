@@ -11,11 +11,12 @@
 #include "generated/object_events_gfx.h"
 
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/struct_02049A68.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_menu.h"
 
+#include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "communication_system.h"
 #include "field_script_context.h"
@@ -25,13 +26,12 @@
 #include "savedata.h"
 #include "script_manager.h"
 #include "trainer_info.h"
-#include "unk_0202D05C.h"
 #include "unk_020363E8.h"
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
-#include "unk_0205DFC4.h"
 #include "unk_0206B9D8.h"
 #include "unk_0209BA80.h"
+#include "wifi_battle_tower_save.h"
 
 static u16 BattleTower_GetPartnerParam(BattleTower *battleTower, u8 param1);
 
@@ -80,10 +80,10 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
         BattleTower_ResetSystem();
         break;
     case BT_FUNC_UNK_03:
-        sub_02049F98(sub_0202D740(ctx->fieldSystem->saveData));
+        sub_02049F98(SaveData_GetWifiBattleTowerSave(ctx->fieldSystem->saveData));
         break;
     case BT_FUNC_UNK_04:
-        *destVar = sub_02049FA0(sub_0202D740(ctx->fieldSystem->saveData));
+        *destVar = sub_02049FA0(SaveData_GetWifiBattleTowerSave(ctx->fieldSystem->saveData));
         break;
     case BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE:
         BattleTower_SetCommunicationClubAccessible(ctx->fieldSystem);
@@ -332,14 +332,14 @@ static BOOL sub_02049A20(ScriptContext *ctx)
 
 BOOL ScrCmd_1E3(ScriptContext *ctx)
 {
-    UnkStruct_02049A68 v0;
+    WifiBattleTowerIndices indices;
     u16 *v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
     u16 *v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    sub_0202D708(sub_0202D764(ctx->fieldSystem->saveData), &v0);
+    WifiBattleTowerDownloadData_GetMatchIndices(SaveData_GetWifiBattleTowerDownloadData(ctx->fieldSystem->saveData), &indices);
 
-    *v1 = v0.unk_00;
-    *v2 = v0.unk_04;
+    *v1 = indices.rank;
+    *v2 = indices.opponentIdx;
 
     return FALSE;
 }
@@ -348,7 +348,7 @@ BOOL ScrCmd_1E4(ScriptContext *ctx)
 {
     u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    *destVar = sub_0202D5F0(sub_0202D764(ctx->fieldSystem->saveData));
+    *destVar = WifiBattleTowerDownloadData_HasMatchListData(SaveData_GetWifiBattleTowerDownloadData(ctx->fieldSystem->saveData));
     return FALSE;
 }
 
@@ -420,7 +420,7 @@ BOOL ScrCmd_GetBattlePoints(ScriptContext *ctx)
     SaveData *saveData = fieldSystem->saveData;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
+    *destVar = WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(saveData), 0, BATTLE_POINTS_FUNC_NONE);
     return FALSE;
 }
 
@@ -431,7 +431,7 @@ BOOL ScrCmd_GiveBattlePoints(ScriptContext *ctx)
     u16 value = ScriptContext_GetVar(ctx);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_RECEIVED, value);
-    BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), value, BATTLE_POINTS_FUNC_ADD);
+    WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(saveData), value, BATTLE_POINTS_FUNC_ADD);
 
     return FALSE;
 }
@@ -443,7 +443,7 @@ BOOL ScrCmd_RemoveBattlePoints(ScriptContext *ctx)
     u16 value = ScriptContext_GetVar(ctx);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_SPENT, value);
-    BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), value, BATTLE_POINTS_FUNC_SUB);
+    WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(saveData), value, BATTLE_POINTS_FUNC_SUB);
 
     return FALSE;
 }
@@ -456,7 +456,7 @@ BOOL ScrCmd_CheckBattlePoints(ScriptContext *ctx)
     u16 value = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    battlePoints = BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
+    battlePoints = WifiBattleTowerRecord_UpdateBattlePoints(SaveData_GetWifiBattleTowerRecord(saveData), 0, BATTLE_POINTS_FUNC_NONE);
 
     if (battlePoints < value) {
         *destVar = FALSE;

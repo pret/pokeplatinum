@@ -1,16 +1,22 @@
-#ifndef POKEPLATINUM_STRUCT_BATTLE_MESSAGE_DEFS_H
-#define POKEPLATINUM_STRUCT_BATTLE_MESSAGE_DEFS_H
+#ifndef POKEPLATINUM_BATTLE_MESSAGE_DEFS_H
+#define POKEPLATINUM_BATTLE_MESSAGE_DEFS_H
 
 #include "constants/battle.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
 
-#include "battle/battle_message.h"
+#include "battle/battle_context.h"
+#include "battle/battle_subscreen.h"
 #include "battle/party_gauge.h"
-#include "battle/struct_ov16_0225C29C_sub1.h"
 
 #include "pokemon.h"
+
+typedef struct BattleItemUse {
+    u16 item;
+    u8 category;
+    u8 target;
+} BattleItemUse;
 
 typedef struct PartyGaugeData {
     u8 command;
@@ -72,7 +78,7 @@ typedef struct MonShowMessage {
     enum PokemonCryMod cryModulation;
     int selectedPartySlot;
     int capturedBall;
-    int unk_14;
+    int isQuickSendOut;
     u16 moves[LEARNED_MOVES_MAX];
     u16 curPP[LEARNED_MOVES_MAX];
     u16 maxPP[LEARNED_MOVES_MAX];
@@ -107,7 +113,7 @@ typedef struct OpenCaptureBallMessage {
 
 typedef struct TrainerEncounterMessage {
     u8 command;
-    u8 unk_01;
+    u8 unread;
     u16 trainerType;
 } TrainerEncounterMessage;
 
@@ -119,7 +125,7 @@ typedef struct TrainerThrowBallMessage {
 
 typedef struct TrainerSlideInMessage {
     u8 command;
-    u8 unk_01;
+    u8 unread;
     u16 trainerType;
     int posIn;
 } TrainerSlideInMessage;
@@ -150,9 +156,9 @@ typedef struct MoveSelectMenuMessage {
 
 typedef struct TargetSelectMenuMessage {
     u8 command;
-    u8 unk_01;
+    u8 shouldHidePanel;
     u16 range;
-    UnkStruct_ov16_0225C29C_sub1 targetMon[MAX_BATTLERS];
+    TargetMonData targetMon[MAX_BATTLERS];
 } TargetSelectMenuMessage;
 
 typedef struct BagMenuMessage {
@@ -352,22 +358,22 @@ typedef struct RecordIncrementMessage {
 typedef struct LinkWaitMsgMessage {
     u8 command;
     u8 padding_01;
-    u16 unk_02;
-    u8 unk_04[28];
+    u16 recordedInputCount;
+    u8 recordedInputs[28];
 } LinkWaitMsgMessage;
 
 typedef struct EscapeMsgMessage {
     u8 command;
-    u8 unk_01;
-    u16 unk_02;
-    u8 unk_04[28];
+    u8 escaperBitmask;
+    u16 recordedInputCount;
+    u8 recordedInputs[28];
 } EscapeMsgMessage;
 
 typedef struct ForfeitMsgMessage {
     u8 command;
     u8 padding_01;
-    u16 unk_02;
-    u8 unk_04[28];
+    u16 recordedInputCount;
+    u8 recordedInputs[28];
 } ForfeitMsgMessage;
 
 typedef struct MoveHitSoundMessage {
@@ -385,9 +391,9 @@ typedef struct MusicPlayMessage {
 typedef struct ResultSubmitMessage {
     u8 command;
     u8 padding_01;
-    u16 unk_02;
+    u16 recordedInputCount;
     u32 resultMask;
-    u8 unk_08[28];
+    u8 recordedInputs[28];
 } ResultSubmitMessage;
 
 typedef struct CommandClearMsg {
@@ -396,4 +402,4 @@ typedef struct CommandClearMsg {
     u16 padding_02;
 } CommandClearMsg;
 
-#endif // POKEPLATINUM_STRUCT_BATTLE_MESSAGE_DEFS_H
+#endif // POKEPLATINUM_BATTLE_MESSAGE_DEFS_H

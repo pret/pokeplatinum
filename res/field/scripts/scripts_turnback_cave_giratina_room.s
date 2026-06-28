@@ -15,13 +15,13 @@ TurnbackCaveGiratinaRoom_OnTransition:
     End
 
 TurnbackCaveGiratinaRoom_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, TurnbackCaveGiratinaRoom_RemoveGiratina
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, TurnbackCaveGiratinaRoom_RemoveGiratina
     End
 
 TurnbackCaveGiratinaRoom_RemoveGiratina:
     SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     RemoveObject LOCALID_GIRATINA
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 TurnbackCaveGiratinaRoom_Giratina:
@@ -31,9 +31,9 @@ TurnbackCaveGiratinaRoom_Giratina:
     PlayCry SPECIES_GIRATINA
     Message TurnbackCaveGiratinaRoom_Text_GiratinaCry
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartLegendaryBattle SPECIES_GIRATINA, 47
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, TurnbackCaveGiratinaRoom_BlackOut
     CheckDidNotCapture VAR_RESULT
@@ -110,7 +110,7 @@ TurnbackCaveGiratinaRoom_GoToDistortionWorld:
     SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM, 0, 116, 75, DIR_SOUTH
+    Warp MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM, 116, 75, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     End

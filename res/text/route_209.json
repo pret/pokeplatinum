@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "Route209_Text_WouldYouLikeToUseTheOddKeystone",
+      "id": "Route209_Text_UseTheOddKeystone",
       "en_US": [
         "There is a broken, crumbling tower\n",
         "made of stone...\r",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "Route209_Text_ItWasBuiltManyYearsAgo",
+      "id": "Route209_Text_BuiltManyYearsAgo",
       "en_US": [
         "It’s the Hallowed Tower.\r",
         "It appears to have been built\n",
@@ -44,14 +44,14 @@
       ]
     },
     {
-      "id": "Route209_Text_ItsStonesAppearToHaveShifted",
+      "id": "Route209_Text_StonesAppearToHaveShifted",
       "en_US": [
         "It’s the Hallowed Tower.\r",
         "Its stones appear to have shifted..."
       ]
     },
     {
-      "id": "Route209_Text_IsThatCryingComingFromInside",
+      "id": "Route209_Text_CryingComingFromInside",
       "en_US": [
         "It’s the Hallowed Tower.\r",
         "...Is that crying coming from inside\n",
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "Route209_Text_ThereIsSomeSortOfPresence",
+      "id": "Route209_Text_SomeSortOfPresence",
       "en_US": [
         "It’s the Hallowed Tower.\r",
         "There is some sort of presence...\n",
@@ -79,7 +79,7 @@
       "en_US": "Yulaaah!\r"
     },
     {
-      "id": "Route209_Text_GoodRodIsReallyGoodWouldntYouAgree",
+      "id": "Route209_Text_GoodRodIsReallyGood",
       "en_US": [
         "Hmm!\n",
         "{STRVAR_1 8, 0, 0} is really good!\r",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "Route209_Text_DoINeedToExplainHowToFish",
+      "id": "Route209_Text_DoINeedToExplain",
       "en_US": [
         "Try fishing wherever there is\n",
         "a body of water.\r",
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "Route209_Text_WhenYouReelPokemonYouBattleIt",
+      "id": "Route209_Text_WhenYouReelYouBattle",
       "en_US": [
         "When you’re fishing for Pokémon,\n",
         "the first hurdle is getting a bite.\r",
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "Route209_Text_AWildPokemonChasedAfterMe",
+      "id": "Route209_Text_PokemonChasedAfterMe",
       "en_US": [
         "When I was jogging the other day,\n",
         "a wild Pokémon chased after me.\r",
@@ -145,14 +145,14 @@
       ]
     },
     {
-      "id": "Route209_Text_SignRt209HearthomeCity",
+      "id": "Route209_Text_SignHearthomeCity",
       "en_US": [
         "Rt. 209\n",
         "Hearthome City"
       ]
     },
     {
-      "id": "Route209_Text_Rt209SolaceonTown",
+      "id": "Route209_Text_SignSolaceonTown",
       "en_US": [
         "Rt. 209\n",
         "Solaceon Town"

@@ -8,8 +8,8 @@
 #include "applications/frontier/battle_hall/sprites.h"
 #include "applications/frontier/battle_hall/windows.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "overlay104/battle_hall_helpers.h"
 #include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0223AF58.h"
 
 #include "battle_hall_save.h"
 #include "bg_window.h"
@@ -89,8 +89,6 @@ enum BattleHallAppMultiConfirmSubState {
 #define PARTNER_DECISION_PENDING 0
 #define PARTNER_DECISION_CONFIRM 1
 #define PARTNER_DECISION_CANCEL  2
-
-#define MAX_RANK 10
 
 #define WINDOW_MSG_BOX     0
 #define WINDOW_YES_NO_MENU 1
@@ -444,7 +442,7 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
                         return FALSE;
                     }
                 } else {
-                    if (BattleHall_GetRankOfType(GetCursorPos(app->cursorPos), app->typeRanks) >= MAX_RANK) {
+                    if (BattleHall_GetRankOfType(GetCursorPos(app->cursorPos), app->typeRanks) >= HALL_MAX_TYPE_RANK) {
                         Sound_PlayEffect(SEQ_SE_DP_BOX03);
 
                         return FALSE;
@@ -1138,8 +1136,8 @@ static void PrintTypesRanks(BattleHallApp *app, Window *window)
                 u8 v3 = r * GRID_WIDTH + c;
                 u8 rank = BattleHall_GetRankOfType(GetCursorPos(v3), app->typeRanks) + 1;
 
-                if (rank > MAX_RANK) {
-                    rank = MAX_RANK;
+                if (rank > HALL_MAX_TYPE_RANK) {
+                    rank = HALL_MAX_TYPE_RANK;
                 }
 
                 PrintRank(app, window, rank, 18 + (COL_WIDTH * c), 4 + (ROW_HEIGHT * r));
@@ -1513,8 +1511,8 @@ static void DrawMessageWithYesNoMenu(BattleHallApp *app)
 
     u8 rank = BattleHall_GetRankOfType(GetCursorPos(app->cursorPos), app->typeRanks) + 1;
 
-    if (rank > MAX_RANK) {
-        rank = MAX_RANK;
+    if (rank > HALL_MAX_TYPE_RANK) {
+        rank = HALL_MAX_TYPE_RANK;
     }
 
     SetStringTemplateNumber(app, 1, rank);

@@ -10,7 +10,7 @@
 #define LEE            43
 #define ARIEL          71
 
-#define VAR_MAP_ID     VAR_MAP_LOCAL_1
+#define VAR_MAP_ID     VAR_MAP_LOCAL_0x01
 #define VAR_NPC_1      VAR_OBJ_GFX_ID_A
 #define VAR_NPC_2      VAR_OBJ_GFX_ID_B
 
@@ -36,14 +36,14 @@ PokemonCenterDailyTrainers_End:
     End
 
 PokemonCenterDailyTrainers_SetNPCs:
-    GetDayOfWeek VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
-    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
-    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
-    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
-    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
-    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
-    CallIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
+    GetDayOfWeek VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
+    CallIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
+    CallIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
+    CallIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
+    CallIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
+    CallIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
+    CallIfEq VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
     Return
 
 PokemonCenterDailyTrainers_SetNPCsSunday:
@@ -340,7 +340,7 @@ PokemonCenterDailyTrainers_GraceIntroMessageOreburgh:
     Return
 
 PokemonCenterDailyTrainers_GraceIntroMessagePastoria:
-    Message PokemonCenterDailyTrainers_Text_GracePastiora_Intro
+    Message PokemonCenterDailyTrainers_Text_GracePastoria_Intro
     Return
 
 PokemonCenterDailyTrainers_GraceIntroMessageSnowpoint:
@@ -485,7 +485,7 @@ PokemonCenterDailyTrainers_GraceBattleAcceptedMessageOreburgh:
     Return
 
 PokemonCenterDailyTrainers_GraceBattleAcceptedMessagePastoria:
-    Message PokemonCenterDailyTrainers_Text_GracePastiora_BattleAccepted
+    Message PokemonCenterDailyTrainers_Text_GracePastoria_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_GraceBattleAcceptedMessageSnowpoint:
@@ -551,7 +551,7 @@ PokemonCenterDailyTrainers_LeeBattleAcceptedHearthome:
     Return
 
 PokemonCenterDailyTrainers_LeeBattleAcceptedPastoria:
-    Message PokemonCenterDailyTrainers_Text_LeePastiora_BattleAccepted
+    Message PokemonCenterDailyTrainers_Text_LeePastoria_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_LeeBattleAcceptedCelestic:
@@ -623,7 +623,7 @@ PokemonCenterDailyTrainers_ArturoBattleAcceptedCanalave:
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleAcceptedPastoria:
-    Message PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleAccepted
+    Message PokemonCenterDailyTrainers_Text_ArturoPastoria_BattleAccepted
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleAcceptedSunyshore:
@@ -642,7 +642,7 @@ PokemonCenterDailyTrainers_GraceBattleDeclinedOreburgh:
     Return
 
 PokemonCenterDailyTrainers_GraceBattleDeclinedPastoria:
-    Message PokemonCenterDailyTrainers_Text_GracePastiora_BattleDeclined
+    Message PokemonCenterDailyTrainers_Text_GracePastoria_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_GraceBattleDeclinedSnowpoint:
@@ -701,7 +701,7 @@ PokemonCenterDailyTrainers_LeeBattleDeclinedHearthome:
     Return
 
 PokemonCenterDailyTrainers_LeeBattleDeclinedPastoria:
-    Message PokemonCenterDailyTrainers_Text_LeePastiora_BattleDeclined
+    Message PokemonCenterDailyTrainers_Text_LeePastoria_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_LeeBattleDeclinedCelestic:
@@ -767,7 +767,7 @@ PokemonCenterDailyTrainers_ArturoBattleDeclinedCanalave:
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleDeclinedPastoria:
-    Message PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleDeclined
+    Message PokemonCenterDailyTrainers_Text_ArturoPastoria_BattleDeclined
     Return
 
 PokemonCenterDailyTrainers_ArturoBattleDeclinedSunyshore:
@@ -775,7 +775,7 @@ PokemonCenterDailyTrainers_ArturoBattleDeclinedSunyshore:
     Return
 
 PokemonCenterDailyTrainers_GracePostBattle:
-    SetFlag FLAG_DEFEATED_IDOL_GRACE
+    SetFlag FLAG_DAILY_DEFEATED_IDOL_GRACE
     GetCurrentMapID VAR_MAP_ID
     CallIfEq VAR_MAP_ID, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GracePostBattleMessageOreburgh
     CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GracePostBattleMessagePastoria
@@ -787,7 +787,7 @@ PokemonCenterDailyTrainers_GracePostBattleMessageOreburgh:
     Return
 
 PokemonCenterDailyTrainers_GracePostBattleMessagePastoria:
-    Message PokemonCenterDailyTrainers_Text_GracePastiora_PostBattle
+    Message PokemonCenterDailyTrainers_Text_GracePastoria_PostBattle
     Return
 
 PokemonCenterDailyTrainers_GracePostBattleMessageSnowpoint:
@@ -802,17 +802,17 @@ PokemonCenterDailyTrainers_KinseyPostBattle:
     Return
 
 PokemonCenterDailyTrainers_KinseyPostBattleJubilife:
-    SetFlag FLAG_DEFEATED_REPORTER_KINSEY
+    SetFlag FLAG_DAILY_DEFEATED_REPORTER_KINSEY
     Message PokemonCenterDailyTrainers_Text_KinseyJubilife_PostBattle
     Return
 
 PokemonCenterDailyTrainers_KinseyPostBattleHearthome:
-    SetFlag FLAG_DEFEATED_REPORTER_KINSEY
+    SetFlag FLAG_DAILY_DEFEATED_REPORTER_KINSEY
     Message PokemonCenterDailyTrainers_Text_KinseyHearthome_PostBattle
     Return
 
 PokemonCenterDailyTrainers_KinseyPostBattleFightArea:
-    SetFlag FLAG_DEFEATED_REPORTER_KINSEY
+    SetFlag FLAG_DAILY_DEFEATED_REPORTER_KINSEY
     Message PokemonCenterDailyTrainers_Text_KinseyFightArea_PostBattle
     Return
 
@@ -826,22 +826,22 @@ PokemonCenterDailyTrainers_TevinOrOliPostBattle:
     Return
 
 PokemonCenterDailyTrainers_TevinPostBattleJubilife:
-    SetFlag FLAG_DEFEATED_CAMERAMAN_TEVIN
+    SetFlag FLAG_DAILY_DEFEATED_CAMERAMAN_TEVIN
     Message PokemonCenterDailyTrainers_Text_TevinJubilife_PostBattle
     Return
 
 PokemonCenterDailyTrainers_TevinPostBattleHearthome:
-    SetFlag FLAG_DEFEATED_CAMERAMAN_TEVIN
+    SetFlag FLAG_DAILY_DEFEATED_CAMERAMAN_TEVIN
     Message PokemonCenterDailyTrainers_Text_TevinHearthome_PostBattle
     Return
 
 PokemonCenterDailyTrainers_TevinPostBattleFightArea:
-    SetFlag FLAG_DEFEATED_CAMERAMAN_TEVIN
+    SetFlag FLAG_DAILY_DEFEATED_CAMERAMAN_TEVIN
     Message PokemonCenterDailyTrainers_Text_TevinFightArea_PostBattle
     Return
 
 PokemonCenterDailyTrainers_LeePostBattle:
-    SetFlag FLAG_DEFEATED_CLOWN_LEE
+    SetFlag FLAG_DAILY_DEFEATED_CLOWN_LEE
     GetCurrentMapID VAR_MAP_ID
     CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_LeePostBattleMessageHearthome
     CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_LeePostBattleMessagePastoria
@@ -853,7 +853,7 @@ PokemonCenterDailyTrainers_LeePostBattleMessageHearthome:
     Return
 
 PokemonCenterDailyTrainers_LeePostBattleMessagePastoria:
-    Message PokemonCenterDailyTrainers_Text_LeePastiora_PostBattle
+    Message PokemonCenterDailyTrainers_Text_LeePastoria_PostBattle
     Return
 
 PokemonCenterDailyTrainers_LeePostBattleMessageCelestic:
@@ -867,12 +867,12 @@ PokemonCenterDailyTrainers_RoxyPostBattle:
     Return
 
 PokemonCenterDailyTrainers_RoxyPostBattleEterna:
-    SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
+    SetFlag FLAG_DAILY_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
     Message PokemonCenterDailyTrainers_Text_RoxyEterna_PostBattle
     Return
 
 PokemonCenterDailyTrainers_RoxyPostBattleVeilstone:
-    SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
+    SetFlag FLAG_DAILY_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
     Message PokemonCenterDailyTrainers_Text_RoxyVeilstone_PostBattle
     Return
 
@@ -883,17 +883,17 @@ PokemonCenterDailyTrainers_OliPostBattle:
     Return
 
 PokemonCenterDailyTrainers_OliPostBattleEterna:
-    SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
+    SetFlag FLAG_DAILY_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
     Message PokemonCenterDailyTrainers_Text_OliEterna_PostBattle
     Return
 
 PokemonCenterDailyTrainers_OliPostBattleVeilstone:
-    SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
+    SetFlag FLAG_DAILY_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
     Message PokemonCenterDailyTrainers_Text_OliVeilstone_PostBattle
     Return
 
 PokemonCenterDailyTrainers_ArielPostBattle:
-    SetFlag FLAG_DEFEATED_POKE_KID_ARIEL
+    SetFlag FLAG_DAILY_DEFEATED_POKE_KID_ARIEL
     GetCurrentMapID VAR_MAP_ID
     CallIfEq VAR_MAP_ID, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_ArielPostBattleMessageFloaroma
     CallIfEq VAR_MAP_ID, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_ArielPostBattleMessageSolaceon
@@ -913,7 +913,7 @@ PokemonCenterDailyTrainers_ArielPostBattleMessageResortArea:
     Return
 
 PokemonCenterDailyTrainers_ArturoPostBattle:
-    SetFlag FLAG_DEFEATED_GUITARIST_ARTURO
+    SetFlag FLAG_DAILY_DEFEATED_GUITARIST_ARTURO
     GetCurrentMapID VAR_MAP_ID
     CallIfEq VAR_MAP_ID, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoPostBattleMessageCanalave
     CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoPostBattleMessagePastoria
@@ -925,7 +925,7 @@ PokemonCenterDailyTrainers_ArturoPostBattleMessageCanalave:
     Return
 
 PokemonCenterDailyTrainers_ArturoPostBattleMessagePastoria:
-    Message PokemonCenterDailyTrainers_Text_ArturoPastiora_PostBattle
+    Message PokemonCenterDailyTrainers_Text_ArturoPastoria_PostBattle
     Return
 
 PokemonCenterDailyTrainers_ArturoPostBattleMessageSunyshore:
@@ -1164,7 +1164,7 @@ PokemonCenterDailyTrainers_SetArturoRematch4:
     Return
 
 PokemonCenterDailyTrainers_CheckGraceDefeated:
-    GoToIfSet FLAG_DEFEATED_IDOL_GRACE, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
+    GoToIfSet FLAG_DAILY_DEFEATED_IDOL_GRACE, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
 PokemonCenterDailyTrainers_CheckKinseyInPokemonCenter:
@@ -1175,18 +1175,18 @@ PokemonCenterDailyTrainers_CheckKinseyInPokemonCenter:
     Return
 
 PokemonCenterDailyTrainers_CheckKinseyDefeated:
-    GoToIfSet FLAG_DEFEATED_REPORTER_KINSEY, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
+    GoToIfSet FLAG_DAILY_DEFEATED_REPORTER_KINSEY, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
 PokemonCenterDailyTrainers_CheckTevinOrRoxyAndOliDefeated:
     GetCurrentMapID VAR_MAP_ID
     GoToIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_CheckRoxyAndOliInPokemonCenter
     GoToIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_CheckRoxyAndOliInPokemonCenter
-    GoToIfSet FLAG_DEFEATED_CAMERAMAN_TEVIN, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
+    GoToIfSet FLAG_DAILY_DEFEATED_CAMERAMAN_TEVIN, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
 PokemonCenterDailyTrainers_CheckLeeDefeated:
-    GoToIfSet FLAG_DEFEATED_CLOWN_LEE, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
+    GoToIfSet FLAG_DAILY_DEFEATED_CLOWN_LEE, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
 PokemonCenterDailyTrainers_CheckRoxyAndOliInPokemonCenter:
@@ -1196,15 +1196,15 @@ PokemonCenterDailyTrainers_CheckRoxyAndOliInPokemonCenter:
     Return
 
 PokemonCenterDailyTrainers_CheckRoxyAndOliDefeated:
-    GoToIfSet FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
+    GoToIfSet FLAG_DAILY_DEFEATED_INTERVIEWERS_ROXY_AND_OLI, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
 PokemonCenterDailyTrainers_CheckArielDefeated:
-    GoToIfSet FLAG_DEFEATED_POKE_KID_ARIEL, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
+    GoToIfSet FLAG_DAILY_DEFEATED_POKE_KID_ARIEL, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
 PokemonCenterDailyTrainers_CheckArturoDefeated:
-    GoToIfSet FLAG_DEFEATED_GUITARIST_ARTURO, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
+    GoToIfSet FLAG_DAILY_DEFEATED_GUITARIST_ARTURO, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
 PokemonCenterDailyTrainers_TrainerAlreadyDefeated:

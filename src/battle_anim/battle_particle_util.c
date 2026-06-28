@@ -67,26 +67,23 @@ void *BattleParticleUtil_ReadMemberFromNARC(NARC *narc, int memberIdx, enum Heap
     return NARC_AllocAndReadWholeMember(narc, memberIdx, heapID);
 }
 
-ParticleSystem *ov12_0222384C(NARC *param0, enum HeapID heapID, int param2, int param3)
+ParticleSystem *BattleParticleUtil_CreateParticleSystemFromOpenNarc(NARC *narc, enum HeapID heapID, int memberIdx, BOOL uploadImmediately)
 {
-    ParticleSystem *v0;
-    void *v1;
+    ParticleSystem *particleSys = ov11_0221F888(heapID);
 
-    v0 = ov11_0221F888(heapID);
-
-    if (v0 == NULL) {
+    if (particleSys == NULL) {
         return NULL;
     }
 
-    v1 = BattleParticleUtil_ReadMemberFromNARC(param0, param2, heapID);
-    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), param3);
+    void *resource = BattleParticleUtil_ReadMemberFromNARC(narc, memberIdx, heapID);
+    ParticleSystem_SetResource(particleSys, resource, VRAM_AUTO_RELEASE_TEXTURE_LNK | VRAM_AUTO_RELEASE_PALETTE_LNK, uploadImmediately);
 
-    return v0;
+    return particleSys;
 }
 
-SPLEmitter *BattleParticleUtil_CreateEmitter(ParticleSystem *ps, int resourceID, int callbackID, void *param)
+SPLEmitter *BattleParticleUtil_CreateEmitter(ParticleSystem *ps, int resourceID, int callbackID, void *battleAnimSystemPtr)
 {
-    return ParticleSystem_CreateEmitterWithCallback(ps, resourceID, sEmitterCallbackTable[callbackID], param);
+    return ParticleSystem_CreateEmitterWithCallback(ps, resourceID, sEmitterCallbackTable[callbackID], battleAnimSystemPtr);
 }
 
 void BattleParticleUtil_FreeParticleSystem(ParticleSystem *ps)

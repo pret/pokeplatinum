@@ -19,9 +19,9 @@ SpearPillar_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_SPEAR_PILLAR
     Call SpearPillar_TryHideRival
     Call SpearPillar_TryEnableHallOfOrigin
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, SpearPillar_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, SpearPillar_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, SpearPillar_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, SpearPillar_SetCounterpartGraphicsLucas
     End
 
 SpearPillar_SetCounterpartGraphicsDawn:
@@ -33,14 +33,14 @@ SpearPillar_SetCounterpartGraphicsLucas:
     End
 
 SpearPillar_TryEnableHallOfOrigin:
-    CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
-    CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, SpearPillar_TryEnableHallOfOriginEnd
+    CheckGameCompleted VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillar_TryEnableHallOfOriginEnd
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillar_TryEnableHallOfOriginEnd
+    CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillar_TryEnableHallOfOriginEnd
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillar_TryEnableHallOfOriginEnd
     GoToIfSet FLAG_CAUGHT_ARCEUS, SpearPillar_TryEnableHallOfOriginEnd
     SetVar VAR_HALL_OF_ORIGIN_STATE, 1
     GoTo SpearPillar_TryEnableHallOfOriginEnd
@@ -326,20 +326,20 @@ SpearPillar_PlayerRivalFaceEachOtherX32:
     Return
 
 SpearPillar_Unused3:
-    ApplyMovement LOCALID_JUPITER, SpearPillar_UnusedMovement
-    ApplyMovement LOCALID_MARS, SpearPillar_UnusedMovement2
+    ApplyMovement LOCALID_JUPITER, SpearPillar_Movement_Unused
+    ApplyMovement LOCALID_MARS, SpearPillar_Movement_Unused2
     WaitMovement
     Return
 
     .balign 4, 0
-SpearPillar_UnusedMovement:
+SpearPillar_Movement_Unused:
     FaceEast
     LockDir
     WalkSlowWest
     UnlockDir
     EndMovement
 
-SpearPillar_UnusedMovement2:
+SpearPillar_Movement_Unused2:
     FaceWest
     LockDir
     WalkSlowEast
@@ -394,7 +394,7 @@ SpearPillar_WaitThenWarpToSpearPillarDistorted:
     SetSpeciesSeen SPECIES_DIALGA
     SetSpeciesSeen SPECIES_PALKIA
     RestoreCamera
-    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, DIR_NORTH
+    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 30, 30, DIR_NORTH
     End
 
     .balign 4, 0

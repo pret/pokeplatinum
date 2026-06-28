@@ -1,54 +1,54 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0032
-    ScriptEntry _0034
-    ScriptEntry _0036
-    ScriptEntry _0038
-    ScriptEntry _003A
-    ScriptEntry _003C
-    ScriptEntry _003E
-    ScriptEntry _0040
-    ScriptEntry _0042
-    ScriptEntry _0044
-    ScriptEntry _0046
-    ScriptEntry _0048
+    ScriptEntry Unk242_Dummy1
+    ScriptEntry Unk242_Dummy2
+    ScriptEntry Unk242_Dummy3
+    ScriptEntry Unk242_Dummy4
+    ScriptEntry Unk242_Dummy5
+    ScriptEntry Unk242_Dummy6
+    ScriptEntry Unk242_Dummy7
+    ScriptEntry Unk242_Dummy8
+    ScriptEntry Unk242_Dummy9
+    ScriptEntry Unk242_Dummy10
+    ScriptEntry Unk242_Dummy11
+    ScriptEntry Unk242_Dummy12
     ScriptEntryEnd
 
-_0032:
+Unk242_Dummy1:
     End
 
-_0034:
+Unk242_Dummy2:
     End
 
-_0036:
+Unk242_Dummy3:
     End
 
-_0038:
+Unk242_Dummy4:
     End
 
-_003A:
+Unk242_Dummy5:
     End
 
-_003C:
+Unk242_Dummy6:
     End
 
-_003E:
+Unk242_Dummy7:
     End
 
-_0040:
+Unk242_Dummy8:
     End
 
-_0042:
+Unk242_Dummy9:
     End
 
-_0044:
+Unk242_Dummy10:
     End
 
-_0046:
+Unk242_Dummy11:
     End
 
-_0048:
+Unk242_Dummy12:
     End
 
     .balign 4, 0

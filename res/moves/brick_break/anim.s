@@ -8,7 +8,7 @@ L_0:
     End
 
 L_1:
-    BtlAnimCmd_013 L_3, L_4
+    JumpIfEffectChanceOdd L_3, L_4
     End
 
 L_3:
@@ -35,7 +35,7 @@ L_4:
     End
 
 L_2:
-    BtlAnimCmd_013 L_5, L_6
+    JumpIfEffectChanceOdd L_5, L_6
     End
 
 L_5:

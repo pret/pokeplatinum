@@ -15,7 +15,7 @@ EternaCityPokecenter1F_Nurse:
     End
 
 EternaCityPokecenter1F_BattleGirl:
-    NPCMessage EternaCityPokecenter1F_Text_WhenAPokemonFaintsItJustMeansItDoesntHaveThePowerToBattle
+    NPCMessage EternaCityPokecenter1F_Text_FaintMeansNoPowerToBattle
     End
 
 EternaCityPokecenter1F_SchoolKidM:
@@ -23,7 +23,7 @@ EternaCityPokecenter1F_SchoolKidM:
     LockAll
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCityPokecenter1F_IGotMyPokemonBack
-    Message EternaCityPokecenter1F_Text_TeamGalacticTookMyPokemonAway
+    Message EternaCityPokecenter1F_Text_TeamGalacticTookMyPokemon
     WaitButton
     CloseMessage
     ReleaseAll
@@ -44,21 +44,21 @@ EternaCityPokecenter1F_PokemonBreederF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_MAP_LOCAL_2, 1, EternaCityPokecenter1F_IfYouSpendEnoughTimeWithThemAllPokemonWillOpenUpToYou
+    GoToIfEq VAR_MAP_LOCAL_0x02, 1, EternaCityPokecenter1F_PokemonWillOpenUp
     CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, EternaCityPokecenter1F_GivePoketchAppFriendshipChecker
     GetFirstNonEggInParty VAR_0x8000
     BufferPartyMonSpecies 0, VAR_0x8000
-    Message EternaCityPokecenter1F_Text_WhatKindsOfPokemonAreWithYouOhYourPokemon
+    Message EternaCityPokecenter1F_Text_OhYourPokemon
     GetPartyMonFriendship VAR_RESULT, VAR_0x8000
     GoToIfGe VAR_RESULT, 120, EternaCityPokecenter1F_ItSeemsToLikeYou
-    GoToIfGe VAR_RESULT, 70, EternaCityPokecenter1F_ItsBecomingComfortableAroundYouIThink
-    GoTo EternaCityPokecenter1F_HmmItNeedsToGetUsedToYouMore
+    GoToIfGe VAR_RESULT, 70, EternaCityPokecenter1F_ItsBecomingComfortable
+    GoTo EternaCityPokecenter1F_NeedsToGetUsedToYou
     End
 
 EternaCityPokecenter1F_GivePoketchAppFriendshipChecker:
-    Message EternaCityPokecenter1F_Text_ThisPoketchAppWillShowHowCloseYourPokemonFeelToYou
-    SetVar VAR_MAP_LOCAL_2, 1
+    Message EternaCityPokecenter1F_Text_ShowHowClosePokemonFeel
+    SetVar VAR_MAP_LOCAL_0x02, 1
     SetVar VAR_0x8004, POKETCH_APPID_FRIENDSHIPCHECKER
     Common_GivePoketchApp
     WaitButton
@@ -66,8 +66,8 @@ EternaCityPokecenter1F_GivePoketchAppFriendshipChecker:
     ReleaseAll
     End
 
-EternaCityPokecenter1F_IfYouSpendEnoughTimeWithThemAllPokemonWillOpenUpToYou:
-    Message EternaCityPokecenter1F_Text_IfYouSpendEnoughTimeWithThemAllPokemonWillOpenUpToYou
+EternaCityPokecenter1F_PokemonWillOpenUp:
+    Message EternaCityPokecenter1F_Text_PokemonWillOpenUp
     WaitButton
     CloseMessage
     ReleaseAll
@@ -80,15 +80,15 @@ EternaCityPokecenter1F_ItSeemsToLikeYou:
     ReleaseAll
     End
 
-EternaCityPokecenter1F_ItsBecomingComfortableAroundYouIThink:
-    Message EternaCityPokecenter1F_Text_ItsBecomingComfortableAroundYouIThink
+EternaCityPokecenter1F_ItsBecomingComfortable:
+    Message EternaCityPokecenter1F_Text_ItsBecomingComfortable
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-EternaCityPokecenter1F_HmmItNeedsToGetUsedToYouMore:
-    Message EternaCityPokecenter1F_Text_HmmItNeedsToGetUsedToYouMore
+EternaCityPokecenter1F_NeedsToGetUsedToYou:
+    Message EternaCityPokecenter1F_Text_NeedsToGetUsedToYou
     WaitButton
     CloseMessage
     ReleaseAll

@@ -6,16 +6,16 @@
     ScriptEntry SandgemTownLab_OnTransition
     ScriptEntry SandgemTownLab_OnFrame_GetPokedex
     ScriptEntry SandgemTownLab_ProfRowan
-    ScriptEntry SandgemTownLab_UnusedEntry4
+    ScriptEntry SandgemTownLab_Dummy4
     ScriptEntry SandgemTownLab_ScientistM
     ScriptEntry SandgemTownLab_ScientistF
-    ScriptEntry SandgemTownLab_UnusedEntry7
+    ScriptEntry SandgemTownLab_Dummy7
     ScriptEntry SandgemTownLab_BookshelfAdventureRuleNo1
     ScriptEntry SandgemTownLab_BookshelfAdventureRuleNo2
     ScriptEntry SandgemTownLab_BookshelfBooks
     ScriptEntry SandgemTownLab_BookshelfReferenceMaterial
     ScriptEntry SandgemTownLab_PC
-    ScriptEntry SandgemTownLab_UnusedEntry13
+    ScriptEntry SandgemTownLab_ResearchMaterials_Unused
     ScriptEntry SandgemTownLab_Refrigerator
     ScriptEntry SandgemTownLab_OnFrame_ReturnedFromDistortionWorld
     ScriptEntryEnd
@@ -41,7 +41,7 @@ SandgemTownLab_ProfRowan:
     LockAll
     FacePlayer
     Call SandgemTownLab_SetVarIfArrivedInSunyshoreCity
-    GoToIfEq VAR_0x8006, TRUE, SandgemTownLab_IfYouSeeCynthiaGiveHerMyBestRegards
+    GoToIfEq VAR_0x8006, TRUE, SandgemTownLab_GiveCynthiaMyBestRegards
     GoTo SandgemTownLab_ProfRowanReactToPokedex
     End
 
@@ -51,14 +51,14 @@ SandgemTownLab_IncreaseExitedDistortionWorldState:
 
 SandgemTownLab_ProfRowanReactToPokedex:
     GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_ThereAreManyMorePokemon
+    GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_ManyMorePokemon
     GoToIfUnset FLAG_FIRST_ARRIVAL_ETERNA_CITY, SandgemTownLab_CheckShouldRatePokedex
     CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_ShowCompleteLocalDex
 SandgemTownLab_CheckShouldRatePokedex:
     GoToIfGe VAR_SANDGEM_TOWN_STATE, 2, SandgemTownLab_CheckPokedexRatings
     BufferPlayerName 0
-    Message SandgemTownLab_Text_GoOnYourGrandAdventureAwaitsYou
+    Message SandgemTownLab_Text_GrandAdventureAwaitsYou
     WaitButton
     CloseMessage
     ReleaseAll
@@ -68,9 +68,9 @@ SandgemTownLab_CheckPokedexRatings:
     CallCommonScript 0x26DE
     End
 
-SandgemTownLab_IfYouSeeCynthiaGiveHerMyBestRegards:
+SandgemTownLab_GiveCynthiaMyBestRegards:
     BufferPlayerName 0
-    Message SandgemTownLab_Text_IfYouSeeCynthiaGiveHerMyBestRegards
+    Message SandgemTownLab_Text_GiveCynthiaMyBestRegards
     WaitButton
     CloseMessage
     ReleaseAll
@@ -85,30 +85,30 @@ SandgemTownLab_OnFrame_ReturnedFromDistortionWorld:
     ApplyMovement LOCALID_COUNTERPART, SandgemTownLab_Movement_CounterpartTurnOnSpot
     WaitMovement
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownLab_DawnImGladToSeeYouSafe
-    GoTo SandgemTownLab_LucasImGladToSeeYouBackSafe
+    GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownLab_DawnGladToSeeYouSafe
+    GoTo SandgemTownLab_LucasGladToSeeYouSafe
     End
 
-SandgemTownLab_DawnImGladToSeeYouSafe:
+SandgemTownLab_DawnGladToSeeYouSafe:
     BufferPlayerName 1
-    Message SandgemTownLab_Text_DawnImGladToSeeYouSafe
-    GoTo SandgemTownLab_WhyNotObtainSunyshoresBadge
+    Message SandgemTownLab_Text_DawnGladToSeeYouSafe
+    GoTo SandgemTownLab_ObtainSunyshoresBadge
     End
 
-SandgemTownLab_LucasImGladToSeeYouBackSafe:
+SandgemTownLab_LucasGladToSeeYouSafe:
     BufferPlayerName 1
-    Message SandgemTownLab_Text_LucasImGladToSeeYouBackSafe
-    GoTo SandgemTownLab_WhyNotObtainSunyshoresBadge
+    Message SandgemTownLab_Text_LucasGladToSeeYouSafe
+    GoTo SandgemTownLab_ObtainSunyshoresBadge
     End
 
-SandgemTownLab_WhyNotObtainSunyshoresBadge:
+SandgemTownLab_ObtainSunyshoresBadge:
     GetLocalDexSeenCount VAR_RESULT
     BufferNumber 1, VAR_RESULT
-    Message SandgemTownLab_Text_WhyNotObtainSunyshoresBadge
+    Message SandgemTownLab_Text_ObtainSunyshoresBadge
     WaitButton
     CloseMessage
     SetFlag FLAG_HIDE_VALOR_LAKEFRONT_COLLECTOR
-    SetVar VAR_UNK_0x4112, 1
+    SetVar VAR_VALOR_LAKEFRONT_BLOCK_SUNYSHORE_STATE, 1
     ClearFlag FLAG_HIDE_VERITY_CAVERN_MESPRIT
     ClearFlag FLAG_HIDE_VALOR_CAVERN_AZELF
     ClearFlag FLAG_HIDE_ACUITY_CAVERN_UXIE
@@ -123,7 +123,7 @@ SandgemTownLab_Movement_CounterpartTurnOnSpot:
     WalkOnSpotNormalSouth
     EndMovement
 
-SandgemTownLab_UnusedEntry4:
+SandgemTownLab_Dummy4:
     End
 
 SandgemTownLab_OnFrame_GetPokedex:
@@ -132,7 +132,7 @@ SandgemTownLab_OnFrame_GetPokedex:
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerWalkToProfRowan
     WaitMovement
     BufferPlayerName 0
-    Message SandgemTownLab_Text_LetsHaveALookAtYourPokemon
+    Message SandgemTownLab_Text_LookAtYourPokemon
     CloseMessage
     SetPlayerState PLAYER_TRANSITION_HEALING
     ChangePlayerState
@@ -141,30 +141,30 @@ SandgemTownLab_OnFrame_GetPokedex:
     SetVar VAR_0x8004, 0
     GetPartyMonSpecies VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, SPECIES_TURTWIG, SandgemTownLab_ThisPokemonSeemstoBeRatherHappy
-    GoToIfEq VAR_0x8008, SPECIES_CHIMCHAR, SandgemTownLab_ThisPokemonSeemstoBeRatherHappy
-    GoToIfEq VAR_0x8008, SPECIES_PIPLUP, SandgemTownLab_ThisPokemonSeemstoBeRatherHappy
-    GoTo SandgemTownLab_YouveMadeYourPokemonEvolveAlready
+    GoToIfEq VAR_0x8008, SPECIES_TURTWIG, SandgemTownLab_PokemonSeemsRatherHappy
+    GoToIfEq VAR_0x8008, SPECIES_CHIMCHAR, SandgemTownLab_PokemonSeemsRatherHappy
+    GoToIfEq VAR_0x8008, SPECIES_PIPLUP, SandgemTownLab_PokemonSeemsRatherHappy
+    GoTo SandgemTownLab_PokemonEvolvedAlready
 
-SandgemTownLab_ThisPokemonSeemstoBeRatherHappy:
-    Message SandgemTownLab_Text_ThisPokemonSeemstoBeRatherHappy
-    GoTo SandgemTownLab_WouldYouLikeToGiveItANickname
+SandgemTownLab_PokemonSeemsRatherHappy:
+    Message SandgemTownLab_Text_PokemonSeemsRatherHappy
+    GoTo SandgemTownLab_GiveItANickname
 
-SandgemTownLab_YouveMadeYourPokemonEvolveAlready:
-    Message SandgemTownLab_Text_YouveMadeYourPokemonEvolveAlready
-    GoTo SandgemTownLab_WouldYouLikeToGiveItANickname
+SandgemTownLab_PokemonEvolvedAlready:
+    Message SandgemTownLab_Text_PokemonEvolvedAlready
+    GoTo SandgemTownLab_GiveItANickname
 
-SandgemTownLab_WouldYouLikeToGiveItANickname:
+SandgemTownLab_GiveItANickname:
     CloseMessage
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerReceive
     WaitMovement
     SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
     BufferPartyMonSpecies 0, 0
-    Message SandgemTownLab_Text_EntrustingYouWithThatStarterWasNoMistake
-    Message SandgemTownLab_Text_WouldYouLikeToGiveItANickname
+    Message SandgemTownLab_Text_EntrustingWasNoMistake
+    Message SandgemTownLab_Text_GiveItANickname
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, SandgemTownLab_CherishThatStarterOfYours
+    GoToIfEq VAR_RESULT, MENU_NO, SandgemTownLab_CherishThatStarter
     GoTo SandgemTownLab_NicknameStarter
     End
 
@@ -177,21 +177,21 @@ SandgemTownLab_NicknameStarter:
     SetVar VAR_0x8002, VAR_RESULT
     FadeScreenIn
     WaitFadeScreen
-    Message SandgemTownLab_Text_AskAndYoureHappyWithThatNickName
+    Message SandgemTownLab_Text_YoureHappyWithNickname
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, SandgemTownLab_NicknameStarter
     CallIfNe VAR_0x8002, 1, SandgemTownLab_IncrementRecordPokemonNicknamed
-    GoTo SandgemTownLab_CherishThatStarterOfYours
+    GoTo SandgemTownLab_CherishThatStarter
     End
 
 SandgemTownLab_IncrementRecordPokemonNicknamed:
     IncrementGameRecord RECORD_POKEMON_NICKNAMED
     Return
 
-SandgemTownLab_CherishThatStarterOfYours:
+SandgemTownLab_CherishThatStarter:
     BufferPartyMonSpecies 0, 0
     BufferRivalName 1
-    Message SandgemTownLab_Text_CherishThatStarterOfYours
+    Message SandgemTownLab_Text_CherishThatStarter
     CloseMessage
     ApplyMovement LOCALID_COUNTERPART, SandgemTownLab_Movement_CounterpartWalkOnSpotWest
     WaitMovement
@@ -199,29 +199,29 @@ SandgemTownLab_CherishThatStarterOfYours:
     WaitMovement
     WaitTime 15, VAR_RESULT
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownLab_DawnImSoGladThatYourKindTowardPokemon
-    GoTo SandgemTownLab_LucasBoyAmIGladYoureKindTowardPokemon
+    GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownLab_DawnImGladYourKind
+    GoTo SandgemTownLab_LucasImGladYourKind
     End
 
-SandgemTownLab_DawnImSoGladThatYourKindTowardPokemon:
+SandgemTownLab_DawnImGladYourKind:
     BufferCounterpartName 0
-    Message SandgemTownLab_Text_DawnImSoGladThatYourKindTowardPokemon
+    Message SandgemTownLab_Text_DawnImGladYourKind
     CloseMessage
     ApplyMovement LOCALID_COUNTERPART, SandgemTownLab_Movement_CounterpartWalkOnSpotWest2
     WaitMovement
-    GoTo SandgemTownLab_WillYouRecordDataOnAllPokemonInSinnoh
+    GoTo SandgemTownLab_RecordDataOnAllPokemon
     End
 
-SandgemTownLab_LucasBoyAmIGladYoureKindTowardPokemon:
+SandgemTownLab_LucasImGladYourKind:
     BufferCounterpartName 0
-    Message SandgemTownLab_Text_LucasBoyAmIGladYoureKindTowardPokemon
+    Message SandgemTownLab_Text_LucasImGladYourKind
     CloseMessage
     ApplyMovement LOCALID_COUNTERPART, SandgemTownLab_Movement_CounterpartWalkOnSpotWest2
     WaitMovement
-    GoTo SandgemTownLab_WillYouRecordDataOnAllPokemonInSinnoh
+    GoTo SandgemTownLab_RecordDataOnAllPokemon
     End
 
-SandgemTownLab_WillYouRecordDataOnAllPokemonInSinnoh:
+SandgemTownLab_RecordDataOnAllPokemon:
     FadeOutBGM 0, 40
     ApplyMovement LOCALID_PROF_ROWAN, SandgemTownLab_Movement_ProfRowanWalkOnSpotSouth
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerFaceProfRowan
@@ -229,8 +229,8 @@ SandgemTownLab_WillYouRecordDataOnAllPokemonInSinnoh:
     WaitTime 35, VAR_RESULT
     SetFlag FLAG_ALT_MUSIC_ROWANS_LAB
     PlayMusic SEQ_OPENING2
-    Message SandgemTownLab_Text_ThereIsSomethingIWantYouToDo
-    Message SandgemTownLab_Text_WillYouRecordDataOnAllPokemonInSinnoh
+    Message SandgemTownLab_Text_SomethingIWantYouToDo
+    Message SandgemTownLab_Text_RecordDataOnAllPokemon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, SandgemTownLab_LetMeAskYouAgain
     GoTo SandgemTownLab_ObtainPokedex
@@ -253,52 +253,52 @@ SandgemTownLab_ObtainPokedex:
     PlayFanfare SEQ_FANFA4
     WaitFanfare
     BufferPlayerName 0
-    Message SandgemTownLab_Text_MeetEveryKindOfPokemonInThisRegion
+    Message SandgemTownLab_Text_MeetEveryKindOfPokemon
     CloseMessage
     ApplyMovement LOCALID_COUNTERPART, SandgemTownLab_Movement_CounterpartWalkOnSpotWest3
     WaitMovement
     WaitTime 15, VAR_RESULT
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownLab_DawnIveGotOneToo
-    GoTo SandgemTownLab_LucasIveGotTheSameKindOfPokedex
+    GoTo SandgemTownLab_LucasIveGotTheSamePokedex
     End
 
 SandgemTownLab_DawnIveGotOneToo:
     BufferCounterpartName 0
     Message SandgemTownLab_Text_DawnIveGotOneToo
-    GoTo SandgemTownLab_YourGrandAdventureBeginsRightNow
+    GoTo SandgemTownLab_GrandAdventureBeginsNow
     End
 
-SandgemTownLab_LucasIveGotTheSameKindOfPokedex:
+SandgemTownLab_LucasIveGotTheSamePokedex:
     BufferCounterpartName 0
-    Message SandgemTownLab_Text_LucasIveGotTheSameKindOfPokedex
-    GoTo SandgemTownLab_YourGrandAdventureBeginsRightNow
+    Message SandgemTownLab_Text_LucasIveGotTheSamePokedex
+    GoTo SandgemTownLab_GrandAdventureBeginsNow
     End
 
-SandgemTownLab_YourGrandAdventureBeginsRightNow:
+SandgemTownLab_GrandAdventureBeginsNow:
     BufferPlayerName 0
-    Message SandgemTownLab_Text_YourGrandAdventureBeginsRightNow
+    Message SandgemTownLab_Text_GrandAdventureBeginsNow
     CloseMessage
     ApplyMovement LOCALID_COUNTERPART, SandgemTownLab_Movement_CounterpartWalkOnSpotWest3
     WaitMovement
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerFaceCounterpart
     WaitMovement
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownLab_DawnIllBeHappyToTeachYouThings
-    GoTo SandgemTownLab_LucasIllTeachYouStuffLater
+    GoToIfEq VAR_RESULT, GENDER_MALE, SandgemTownLab_DawnHappyToTeachYou
+    GoTo SandgemTownLab_LucasIllTeachYouStuff
     End
 
-SandgemTownLab_DawnIllBeHappyToTeachYouThings:
+SandgemTownLab_DawnHappyToTeachYou:
     BufferPlayerName 0
     BufferPlayerCounterpartStarterSpeciesNameWithArticle 1
-    Message SandgemTownLab_Text_DawnIllBeHappyToTeachYouThings
+    Message SandgemTownLab_Text_DawnHappyToTeachYou
     GoTo SandgemTownLab_CounterpartLeave
     End
 
-SandgemTownLab_LucasIllTeachYouStuffLater:
+SandgemTownLab_LucasIllTeachYouStuff:
     BufferPlayerName 0
     BufferRivalStarterSpeciesName 1
-    Message SandgemTownLab_Text_LucasIllTeachYouStuffLater
+    Message SandgemTownLab_Text_LucasIllTeachYouStuff
     GoTo SandgemTownLab_CounterpartLeave
     End
 
@@ -314,7 +314,7 @@ SandgemTownLab_CounterpartLeave:
     End
 
     .balign 4, 0
-SandgemTownPokemonResearchLab_UnusedMovement:
+SandgemTownLab_Movement_Unused:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -388,9 +388,9 @@ SandgemTownLab_ScientistM:
     LockAll
     FacePlayer
     Call SandgemTownLab_SetVarIfArrivedInSunyshoreCity
-    GoToIfEq VAR_0x8006, TRUE, SandgemTownLab_ImStunnedByYourGreatness
+    GoToIfEq VAR_0x8006, TRUE, SandgemTownLab_StunnedByGreatness
     GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_YouveBeenGreatForTheProfsResearch
+    GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_YouveBeenGreatForResearch
     BufferCounterpartName 0
     Message SandgemTownLab_Text_ImCounterpartsFather
     WaitButton
@@ -398,16 +398,16 @@ SandgemTownLab_ScientistM:
     ReleaseAll
     End
 
-SandgemTownLab_YouveBeenGreatForTheProfsResearch:
+SandgemTownLab_YouveBeenGreatForResearch:
     BufferCounterpartName 0
-    Message SandgemTownLab_Text_YouveBeenGreatForTheProfsResearch
+    Message SandgemTownLab_Text_YouveBeenGreatForResearch
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-SandgemTownLab_ImStunnedByYourGreatness:
-    Message SandgemTownLab_Text_ImStunnedByYourGreatness
+SandgemTownLab_StunnedByGreatness:
+    Message SandgemTownLab_Text_StunnedByGreatness
     WaitButton
     CloseMessage
     ReleaseAll
@@ -418,30 +418,30 @@ SandgemTownLab_ScientistF:
     LockAll
     FacePlayer
     Call SandgemTownLab_SetVarIfArrivedInSunyshoreCity
-    GoToIfEq VAR_0x8006, TRUE, SandgemTownLab_HearingWhatWasHappeningGaveMeShivers
+    GoToIfEq VAR_0x8006, TRUE, SandgemTownLab_GaveMeShivers
     GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_ProfessorRowanHasBeenStudyingPokedexSystems
-    Message SandgemTownLab_Text_ItsAnHonorToBeAnAssistant
+    GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_StudyingPokedexSystems
+    Message SandgemTownLab_Text_HonorToBeAnAssistant
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-SandgemTownLab_ProfessorRowanHasBeenStudyingPokedexSystems:
-    Message SandgemTownLab_Text_ProfessorRowanHasBeenStudyingPokedexSystems
+SandgemTownLab_StudyingPokedexSystems:
+    Message SandgemTownLab_Text_StudyingPokedexSystems
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-SandgemTownLab_HearingWhatWasHappeningGaveMeShivers:
-    Message SandgemTownLab_Text_HearingWhatWasHappeningGaveMeShivers
+SandgemTownLab_GaveMeShivers:
+    Message SandgemTownLab_Text_GaveMeShivers
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-SandgemTownLab_UnusedEntry7:
+SandgemTownLab_Dummy7:
     End
 
 SandgemTownLab_BookshelfAdventureRuleNo1:
@@ -453,11 +453,11 @@ SandgemTownLab_BookshelfAdventureRuleNo2:
     End
 
 SandgemTownLab_BookshelfBooks:
-    EventMessage SandgemTownLab_Text_ItsCrammedFullOfBooks
+    EventMessage SandgemTownLab_Text_CrammedFullOfBooks
     End
 
 SandgemTownLab_BookshelfReferenceMaterial:
-    EventMessage SandgemTownLab_Text_ThereALotOfReferenceMaterial
+    EventMessage SandgemTownLab_Text_ReferenceMaterial
     End
 
 SandgemTownLab_PC:
@@ -465,29 +465,29 @@ SandgemTownLab_PC:
     EventMessage SandgemTownLab_Text_PlayerCheckedThePC
     End
 
-SandgemTownLab_UnusedEntry13:
-    EventMessage SandgemTownLab_Text_ResearchMaterialsAreCarefullyTuckedAway
+SandgemTownLab_ResearchMaterials_Unused:
+    EventMessage SandgemTownLab_Text_ResearchMaterialsTuckedAway
     End
 
 SandgemTownLab_Refrigerator:
-    EventMessage SandgemTownLab_Text_TheRefrigeratorIsFilledWithTastySweets
+    EventMessage SandgemTownLab_Text_FilledWithTastySweets
     End
 
 SandgemTownLab_ShowCompleteLocalDex:
-    GoToIfSet FLAG_SHOWN_COMPLETE_LOCAL_DEX, SandgemTownLab_YouveMetEveryKindOfPokemonInTheSinnohRegion
-    GoTo SandgemTownLab_AskYouveComeToShowMeYourProgressOnThePokedex
+    GoToIfSet FLAG_SHOWN_COMPLETE_LOCAL_DEX, SandgemTownLab_MetEverySinnohPokemon
+    GoTo SandgemTownLab_YouveComeToShowProgress
     End
 
-SandgemTownLab_YouveMetEveryKindOfPokemonInTheSinnohRegion:
+SandgemTownLab_MetEverySinnohPokemon:
     BufferPlayerName 0
-    Message SandgemTownLab_Text_YouveMetEveryKindOfPokemonInTheSinnohRegion
+    Message SandgemTownLab_Text_MetEverySinnohPokemon
     CloseMessage
     GoTo SandgemTownLab_EnableNationalDex
     End
 
-SandgemTownLab_AskYouveComeToShowMeYourProgressOnThePokedex:
+SandgemTownLab_YouveComeToShowProgress:
     BufferPlayerName 0
-    Message SandgemTownLab_Text_AskYouveComeToShowMeYourProgressOnThePokedex
+    Message SandgemTownLab_Text_YouveComeToShowProgress
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, SandgemTownLab_WhatsWrong
     GoTo SandgemTownLab_SoYouveSeenAllPokemon
@@ -505,7 +505,7 @@ SandgemTownLab_SoYouveSeenAllPokemon:
     BufferNumber 0, VAR_RESULT
     Message SandgemTownLab_Text_SoYouveSeenXPokemon
     BufferPlayerName 0
-    Message SandgemTownLab_Text_ThePokemonOfTheSInnohRegionAreBeingAdded
+    Message SandgemTownLab_Text_ExcellentWork
     CloseMessage
     GoTo SandgemTownLab_EnableNationalDex
     End
@@ -523,42 +523,42 @@ SandgemTownLab_EnableNationalDex:
     ApplyMovement LOCALID_PROF_ROWAN, SandgemTownLab_Movement_ProfRowanNoticeProfOak
     WaitMovement
     Message SandgemTownLab_Text_GreetingsProfessorRowan
-    Message SandgemTownLab_Text_IfItIsntMyOldColleagueProfessorOak
+    Message SandgemTownLab_Text_OldColleagueProfessorOak
     CloseMessage
     ApplyMovement LOCALID_PROF_ROWAN, SandgemTownLab_Movement_ProfRowanTurnOnSpot
     WaitMovement
     WaitTime 15, VAR_RESULT
-    Message SandgemTownLab_Text_LetMeIntroduceYouToMyYoungAssistant
+    Message SandgemTownLab_Text_IntroduceYouToMyAssistant
     CloseMessage
     ApplyMovement LOCALID_PROF_OAK, SandgemTownLab_Movement_ProfOakWalkToPlayer
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerFaceProfOak
     WaitMovement
     Message SandgemTownLab_Text_LetMeUpgradeYourPokedex
     CallIfSet FLAG_GAME_COMPLETED, SandgemTownLab_GameCompletedReturn
-    CallIfGe VAR_FIGHT_AREA_STATE, 2, _079C
+    CallIfGe VAR_FIGHT_AREA_STATE, 2, SandgemTownLab_HideFightAreaBlockade
     SetNationalDexEnabled
     BufferPlayerName 0
     PlayFanfare SEQ_FANFA4
-    Message SandgemTownLab_Text_PlayersPokedexWasUpgradedWithTheNationalMode
+    Message SandgemTownLab_Text_PokedexUpgradedWithNationalMode
     WaitFanfare
-    Message SandgemTownLab_Text_ItWontBeEasyToCompleteTheNationalPokedex
+    Message SandgemTownLab_Text_WontBeEasyToComplete
     Message SandgemTownLab_Text_PlayerWillGetTheJobDone
-    Message SandgemTownLab_Text_IveHeardThatThePalParkIsNowOpen
+    Message SandgemTownLab_Text_PalParkIsNowOpen
     BufferPlayerName 0
     GetPlayerGender VAR_0x8004
-    CallIfEq VAR_0x8004, GENDER_MALE, SandgemTownLab_MaleYouShouldVisitThePalParkToo
-    CallIfEq VAR_0x8004, GENDER_FEMALE, SandgemTownLab_FemaleYouShouldVisitThePalParkToo
+    CallIfEq VAR_0x8004, GENDER_MALE, SandgemTownLab_VisitThePalParkMale
+    CallIfEq VAR_0x8004, GENDER_FEMALE, SandgemTownLab_VisitThePalParkFemale
     CloseMessage
     ApplyMovement LOCALID_PROF_OAK, SandgemTownLab_Movement_ProfOakLeave
     WaitMovement
-    RemoveObject 4
-    Message SandgemTownLab_Text_OffHeGoesAsBusyAsEver
+    RemoveObject LOCALID_PROF_OAK
+    Message SandgemTownLab_Text_OffHeGoes
     CloseMessage
     WaitTime 15, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerWalkBackToProfRowan
     WaitMovement
     BufferPlayerName 0
-    Message SandgemTownLab_Text_IHaveAGiftForCompletingTheSinnohPokedex
+    Message SandgemTownLab_Text_GiftForCompletingSinnohPokedex
     SetVar VAR_0x8004, ITEM_POKE_RADAR
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
@@ -568,23 +568,23 @@ SandgemTownLab_EnableNationalDex:
     ReleaseAll
     End
 
-_079C:
+SandgemTownLab_HideFightAreaBlockade:
     SetFlag FLAG_HIDE_FIGHT_AREA_BLOCKADE
     Return
 
 SandgemTownLab_GameCompletedReturn:
     Return
 
-SandgemTownLab_MaleYouShouldVisitThePalParkToo:
-    Message SandgemTownLab_Text_MaleYouShouldVisitThePalParkToo
+SandgemTownLab_VisitThePalParkMale:
+    Message SandgemTownLab_Text_VisitThePalParkMale
     Return
 
-SandgemTownLab_FemaleYouShouldVisitThePalParkToo:
-    Message SandgemTownLab_Text_FemaleYouShouldVisitThePalParkToo
+SandgemTownLab_VisitThePalParkFemale:
+    Message SandgemTownLab_Text_VisitThePalParkFemale
     Return
 
-SandgemTownLab_ThereAreManyMorePokemon:
-    Message SandgemTownLab_Text_ThereAreManyMorePokemon
+SandgemTownLab_ManyMorePokemon:
+    Message SandgemTownLab_Text_ManyMorePokemon
     WaitButton
     CloseMessage
     ReleaseAll
@@ -629,7 +629,7 @@ SandgemTownLab_Movement_ProfRowanTurnOnSpot:
     WalkOnSpotNormalSouth
     EndMovement
 
-SandgemTownPokemonResearchLab_UnusedMovement2:
+SandgemTownLab_Movement_Unused2:
     WalkOnSpotNormalWest
     EndMovement
 

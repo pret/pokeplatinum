@@ -2,14 +2,14 @@
   "key": 38540,
   "messages": [
     {
-      "id": "Route225_Text_SignRt225FightArea",
+      "id": "Route225_Text_SignFightArea",
       "en_US": [
         "Rt. 225\n",
         "Fight Area"
       ]
     },
     {
-      "id": "Route225_Text_SignRt225SurvivalArea",
+      "id": "Route225_Text_SignSurvivalArea",
       "en_US": [
         "Rt. 225\n",
         "Survival Area"

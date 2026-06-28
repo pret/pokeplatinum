@@ -13,9 +13,9 @@
     ScriptEntry BattleTower_OnFrame_DidntSaveBeforeQuit
     ScriptEntry BattleTower_Teala
     ScriptEntry BattleTower_OnFrame_QuitBattleSalon
-    ScriptEntry BattleTower_Unused9
-    ScriptEntry BattleTower_Unused10
-    ScriptEntry BattleTower_Unused11
+    ScriptEntry BattleTower_Dummy9
+    ScriptEntry BattleTower_ResultsMachine0_Unused
+    ScriptEntry BattleTower_ResultsMachine1_Unused
     ScriptEntry BattleTower_MachineWiFiResults
     ScriptEntry BattleTower_MachineWiFiLeaders
     ScriptEntry BattleTower_ParasolLady
@@ -35,18 +35,18 @@ BattleTower_OnTransition:
     CallIfEq VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1, BattleTower_ShowPoketch
     CallIfEq VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 3, BattleTower_ShowPoketch
     CallIfEq VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 0xFF, BattleTower_ShowPoketch
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, FALSE, BattleTower_HideBattleFrontierReporter
-    CallIfNe VAR_MAP_LOCAL_0, FALSE, BattleTower_ShowBattleFrontierReporter
-    ScrCmd_1E0 VAR_MAP_LOCAL_0
-    GoToIfNe VAR_MAP_LOCAL_0, 0, BattleTower_ShowTealaTryShowReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, FALSE, BattleTower_HideBattleFrontierReporter
+    CallIfNe VAR_MAP_LOCAL_0x00, FALSE, BattleTower_ShowBattleFrontierReporter
+    ScrCmd_1E0 VAR_MAP_LOCAL_0x00
+    GoToIfNe VAR_MAP_LOCAL_0x00, 0, BattleTower_ShowTealaTryShowReporter
     SetFlag FLAG_HIDE_BATTLE_TOWER_TEALA
     GoTo BattleTower_TryShowBattleTowerReporter
     End
 
 BattleTower_TryShowBattleTowerReporter:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_TOWER_CORNER, VAR_MAP_LOCAL_0
-    GoToIfNe VAR_MAP_LOCAL_0, FALSE, BattleTower_ShowReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_TOWER_CORNER, VAR_MAP_LOCAL_0x00
+    GoToIfNe VAR_MAP_LOCAL_0x00, FALSE, BattleTower_ShowReporter
     SetFlag FLAG_HIDE_BATTLE_TOWER_REPORTER
     End
 
@@ -65,11 +65,11 @@ BattleTower_ShowPoketch:
 
 BattleTower_OnResume:
     GoToIfNe VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1, BattleTower_OnResumeEnd
-    ScrCmd_1E0 VAR_MAP_LOCAL_0
-    GoToIfNe VAR_MAP_LOCAL_0, 0, BattleTower_SetTealaDirectionWest
-    GoToIfEq VAR_MAP_LOCAL_0, 1, BattleTower_SetTealaDirectionWest
-    GoToIfEq VAR_MAP_LOCAL_0, 2, BattleTower_SetTealaDirectionWest
-    GoToIfEq VAR_MAP_LOCAL_0, 3, BattleTower_SetTealaDirectionWest
+    ScrCmd_1E0 VAR_MAP_LOCAL_0x00
+    GoToIfNe VAR_MAP_LOCAL_0x00, 0, BattleTower_SetTealaDirectionWest
+    GoToIfEq VAR_MAP_LOCAL_0x00, 1, BattleTower_SetTealaDirectionWest
+    GoToIfEq VAR_MAP_LOCAL_0x00, 2, BattleTower_SetTealaDirectionWest
+    GoToIfEq VAR_MAP_LOCAL_0x00, 3, BattleTower_SetTealaDirectionWest
 BattleTower_OnResumeEnd:
     End
 
@@ -115,13 +115,13 @@ BattleTower_Teala:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_1, 0
-    ScrCmd_1DF VAR_MAP_LOCAL_2
+    SetVar VAR_MAP_LOCAL_0x01, 0
+    ScrCmd_1DF VAR_MAP_LOCAL_0x02
     GoTo BattleTower_TryGiveTrophy
     End
 
 BattleTower_TryGiveTrophy:
-    SetVar VAR_0x8008, VAR_MAP_LOCAL_2
+    SetVar VAR_0x8008, VAR_MAP_LOCAL_0x02
     GoToIfEq VAR_0x8008, 1, BattleTower_GiveBronzeTrophy
     GoToIfEq VAR_0x8008, 2, BattleTower_GiveSilverTrophy
     GoToIfEq VAR_0x8008, 3, BattleTower_GiveGoldTrophy
@@ -132,7 +132,7 @@ BattleTower_TryGiveTrophy:
 
 BattleTower_TealaEnd:
     WaitABPress
-    GoToIfEq VAR_MAP_LOCAL_1, 1, BattleTower_TealaClearCommunication
+    GoToIfEq VAR_MAP_LOCAL_0x01, 1, BattleTower_TealaClearCommunication
     CloseMessage
     ReleaseAll
     End
@@ -277,7 +277,7 @@ BattleTower_HealAndSaveBeforeEnteringBattleRoom:
 
 BattleTower_SaveGame:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     Return
 
 BattleTower_SelectedTwoIdenticalSpecies:
@@ -323,7 +323,7 @@ BattleTower_HealAndSaveBeforeEnteringMultiBattleRoom:
     CallBattleTowerFunction BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     Call BattleTower_TrySaveGame
     CallBattleTowerFunction BT_FUNC_GET_PARTNER_ID, 0, VAR_RESULT
-    SetVar VAR_MAP_LOCAL_9, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x09, VAR_RESULT
     Message BattleTower_Text_DirectToMultiBattleRoom
     WaitABPress
     GoTo BattleTower_EnterBattleRoom
@@ -367,29 +367,29 @@ BattleTower_EnterBattleRoom:
     End
 
 BattleTower_EnterSingleDoubleBattleRoom:
-    SetVar VAR_MAP_LOCAL_2, 0
-    SetVar VAR_MAP_LOCAL_3, 15
+    SetVar VAR_MAP_LOCAL_0x02, 0
+    SetVar VAR_MAP_LOCAL_0x03, 15
     Call BattleTower_EnterBattleRoomAnimation
     GoTo BattleTower_WarpToElevator
     End
 
 BattleTower_EnterWiFiBattleRoom:
-    SetVar VAR_MAP_LOCAL_2, 2
-    SetVar VAR_MAP_LOCAL_3, 19
+    SetVar VAR_MAP_LOCAL_0x02, 2
+    SetVar VAR_MAP_LOCAL_0x03, 19
     Call BattleTower_EnterBattleRoomAnimation
     GoTo BattleTower_WarpToElevator
     End
 
 BattleTower_EnterMultiBattleRoom:
-    SetVar VAR_MAP_LOCAL_2, 1
-    SetVar VAR_MAP_LOCAL_3, 11
+    SetVar VAR_MAP_LOCAL_0x02, 1
+    SetVar VAR_MAP_LOCAL_0x03, 11
     Call BattleTower_EnterBattleRoomAnimation
     GoTo BattleTower_GoToWarpToElevator
     End
 
 BattleTower_EnterLinkMultiBattleRoom:
-    SetVar VAR_MAP_LOCAL_2, 1
-    SetVar VAR_MAP_LOCAL_3, 11
+    SetVar VAR_MAP_LOCAL_0x02, 1
+    SetVar VAR_MAP_LOCAL_0x03, 11
     Call BattleTower_EnterBattleRoomAnimation
     GoTo _06A0
     End
@@ -400,13 +400,13 @@ _06A0:
     End
 
 BattleTower_EnterBattleRoomAnimation:
-    ApplyMovement VAR_MAP_LOCAL_2, BattleTower_Movement_AttendantWalkToDoor
+    ApplyMovement VAR_MAP_LOCAL_0x02, BattleTower_Movement_AttendantWalkToDoor
     ApplyMovement LOCALID_PLAYER, BattleTower_Movement_PlayerWalkToDoor
     WaitMovement
-    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_3, 2, ANIMATION_TAG_DOOR_1
+    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0x03, 2, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ApplyMovement VAR_MAP_LOCAL_2, BattleTower_Movement_AttendantEnterBattleRoom
+    ApplyMovement VAR_MAP_LOCAL_0x02, BattleTower_Movement_AttendantEnterBattleRoom
     ApplyMovement LOCALID_PLAYER, BattleTower_Movement_PlayerEnterBattleRoom
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
@@ -443,10 +443,10 @@ BattleTower_TrySaveGame:
 
 BattleTower_WarpToElevator:
     IncrementGameRecord RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
-    CreateJournalEvent LOCATION_EVENT_BATTLE_TOWER, 0, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BATTLE_TOWER
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 3, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -575,20 +575,20 @@ BattleTower_DontSendPreviousResults:
 
 BattleTower_CallTrySendPreviousResults:
     CloseMessage
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     Call BattleTower_TrySendPreviousResults
     Return
 
 BattleTower_TrySendPreviousResults:
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0B3 VAR_MAP_LOCAL_0
-    CallBattleTowerFunction BT_FUNC_UNK_16, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_0
-    SetVar VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_0
+    ScrCmd_0B3 VAR_MAP_LOCAL_0x00
+    CallBattleTowerFunction BT_FUNC_UNK_16, VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x00
+    SetVar VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x00
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_1
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x01
     Return
 
 BattleTower_HealAndSaveBeforeWiFiChallenge:
@@ -599,7 +599,7 @@ BattleTower_HealAndSaveBeforeWiFiChallenge:
     CallBattleTowerFunction BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     HealParty
     CloseMessage
-    SetVar VAR_MAP_LOCAL_1, 0
+    SetVar VAR_MAP_LOCAL_0x01, 0
     Call BattleTower_TrySendPreviousResults
     GoToIfNe VAR_RESULT, 0, BattleTower_ClearCommunicationAndEnd
     GoTo _09FB
@@ -629,7 +629,7 @@ BattleTower_CheckLeaders:
     Call BattleTower_SaveGame
     GoToIfEq VAR_RESULT, 0, BattleTower_HopeToSeeYouAgain
     CloseMessage
-    SetVar VAR_MAP_LOCAL_1, 2
+    SetVar VAR_MAP_LOCAL_0x01, 2
     Call BattleTower_TrySendPreviousResults
     GoToIfNe VAR_RESULT, 0, BattleTower_HopeToSeeYouAgain
     ScrCmd_1E3 VAR_0x8004, VAR_0x8005
@@ -694,13 +694,13 @@ BattleTower_AskCommunicateWithFriend:
 
 BattleTower_InitMultiChallengeMode:
     InitBattleTower 0, BATTLE_TOWER_MODE_MULTI
-    SetVar VAR_MAP_LOCAL_1, 0
+    SetVar VAR_MAP_LOCAL_0x01, 0
     GoTo BattleTower_SelectAndValidatePokemonMultiChallenge
     End
 
 BattleTower_InitLinkMultiChallengeMode:
     InitBattleTower 0, BATTLE_TOWER_MODE_LINK_MULTI
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     GoTo BattleTower_SelectAndValidatePokemonMultiChallenge
     End
 
@@ -718,7 +718,7 @@ BattleTower_SelectAndValidatePokemonMultiChallenge:
     CallBattleTowerFunction BT_FUNC_GET_SLOT_INDEX, 1, VAR_RESULT
     TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, BattleTower_GriseousOrbCouldNotBeRemoved
-    GoToIfEq VAR_MAP_LOCAL_1, 1, BattleTower_HealAndSaveBeforeCommunicating
+    GoToIfEq VAR_MAP_LOCAL_0x01, 1, BattleTower_HealAndSaveBeforeCommunicating
     Call BattleTower_SetVarsStartMultiChallenge
     CallBattleTowerFunction BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     HealParty
@@ -801,8 +801,8 @@ _0D5C:
 _0D72:
     ScrCmd_1E1 0, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0D72
-    ScrCmd_1E2 0, VAR_MAP_LOCAL_0
-    SetVar VAR_0x8008, VAR_MAP_LOCAL_0
+    ScrCmd_1E2 0, VAR_MAP_LOCAL_0x00
+    SetVar VAR_0x8008, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_0x8008, 1, BattleTower_BothTrainerChosePokemon1
     GoToIfEq VAR_0x8008, 2, BattleTower_BothTrainerChosePokemon2
     GoToIfEq VAR_0x8008, 3, BattleTower_BothTrainerChosePokemon1And2
@@ -811,7 +811,7 @@ _0D72:
     CallBattleTowerFunction BT_FUNC_UNK_57, 0, VAR_0x8004
     GetCurNetID VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0E8A
-    ScrCmd_1E2 1, VAR_MAP_LOCAL_0
+    ScrCmd_1E2 1, VAR_MAP_LOCAL_0x00
     GoTo _0E58
     End
 
@@ -888,8 +888,8 @@ BattleTower_OnFrame_ChallengeEnded:
 BattleTower_ThanksForPlaying:
     Message BattleTower_Text_ThanksForPlaying
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
-    SetVar VAR_MAP_LOCAL_0, VAR_RESULT
-    SetVar VAR_0x8008, VAR_MAP_LOCAL_0
+    SetVar VAR_MAP_LOCAL_0x00, VAR_RESULT
+    SetVar VAR_0x8008, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_5, BattleTower_SaveAndEnd
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_WIFI, _11BA
     CallBattleTowerFunction BT_FUNC_UNK_49, 0, VAR_RESULT
@@ -901,7 +901,7 @@ BattleTower_SaveAndEnd:
     Message BattleTower_Text_SavingDontTurnOffPower2
     Call BattleTower_TrySaveGame
     CloseMessage
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _118A
+    GoToIfEq VAR_MAP_LOCAL_0x00, 0, _118A
     GoTo BattleTower_ClearCommunicationAndEnd
     End
 
@@ -913,10 +913,10 @@ BattleTower_RibbonsFor50WinStreak:
 
 _0F7E:
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
-    SetVar VAR_MAP_LOCAL_0, VAR_RESULT
-    GoToIfEq VAR_MAP_LOCAL_0, BATTLE_TOWER_MODE_5, BattleTower_BeatenAllSevenTrainersSave
-    GoToIfEq VAR_MAP_LOCAL_0, BATTLE_TOWER_MODE_SINGLE, _1091
-    GoToIfEq VAR_MAP_LOCAL_0, BATTLE_TOWER_MODE_WIFI, _0FEA
+    SetVar VAR_MAP_LOCAL_0x00, VAR_RESULT
+    GoToIfEq VAR_MAP_LOCAL_0x00, BATTLE_TOWER_MODE_5, BattleTower_BeatenAllSevenTrainersSave
+    GoToIfEq VAR_MAP_LOCAL_0x00, BATTLE_TOWER_MODE_SINGLE, _1091
+    GoToIfEq VAR_MAP_LOCAL_0x00, BATTLE_TOWER_MODE_WIFI, _0FEA
     CallBattleTowerFunction BT_FUNC_UNK_49, 0, VAR_RESULT
     GoToIfNe VAR_RESULT, 0, _0FD6
     Call BattleTower_BeatenAllSevenTrainers
@@ -940,9 +940,9 @@ _0FEA:
 
 _100A:
     CallBattleTowerFunction BT_FUNC_UNK_10, 0, VAR_RESULT
-    SetVar VAR_MAP_LOCAL_0, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x00, VAR_RESULT
     BufferPlayerName 0
-    BufferNumber 1, VAR_MAP_LOCAL_0
+    BufferNumber 1, VAR_MAP_LOCAL_0x00
     Message BattleTower_Text_PromotedToRank
     GoTo _102B
     End
@@ -954,7 +954,7 @@ _102B:
     End
 
 _1048:
-    BufferNumber 0, VAR_MAP_LOCAL_0
+    BufferNumber 0, VAR_MAP_LOCAL_0x00
     Message BattleTower_Text_RibbonsForAchievingRank
     PlayFanfare SEQ_FANFA1
     WaitFanfare
@@ -968,7 +968,7 @@ _105E:
     End
 
 _107B:
-    BufferNumber 0, VAR_MAP_LOCAL_0
+    BufferNumber 0, VAR_MAP_LOCAL_0x00
     Message BattleTower_Text_AwardRibbonToParticipatingPokemon
     PlayFanfare SEQ_FANFA1
     WaitFanfare
@@ -993,8 +993,8 @@ _10BC:
     GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndEnd
     Message BattleTower_Text_LookForwardToNextVisit
     CloseMessage
-    SetVar VAR_MAP_LOCAL_2, VAR_RESULT
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x02, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x01, 1
     Call BattleTower_PlayerFaceEast
     GoTo BattleTower_TryGiveTrophy
     End
@@ -1050,8 +1050,8 @@ _118A:
     GoToIfEq VAR_RESULT, 0, BattleTower_ClearCommunicationAndEnd
     Message BattleTower_Text_LookForwardToNextVisit
     CloseMessage
-    SetVar VAR_MAP_LOCAL_2, VAR_RESULT
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x02, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x01, 1
     Call BattleTower_PlayerFaceEast
     GoTo BattleTower_TryGiveTrophy
     End
@@ -1117,7 +1117,7 @@ BattleTower_Movement_PlayerFaceEast:
     FaceEast
     EndMovement
 
-BattleTower_Unused10:
+BattleTower_ResultsMachine0_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8000, 0
@@ -1125,7 +1125,7 @@ BattleTower_Unused10:
     Call BattleTower_ResultsMachine
     End
 
-BattleTower_Unused11:
+BattleTower_ResultsMachine1_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8000, 0
@@ -1196,7 +1196,7 @@ BattleTower_SchoolKidM1:
     NPCMessage BattleTower_Text_ManyToughTrainers
     End
 
-BattleTower_Unused9:
+BattleTower_Dummy9:
     End
 
 BattleTower_Pikachu2:

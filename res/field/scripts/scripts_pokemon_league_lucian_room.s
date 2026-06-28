@@ -4,7 +4,7 @@
 
 
     ScriptEntry PokemonLeagueLucianRoom_Lucian
-    ScriptEntry PokemonLeagueLucianRoom_OnFrame
+    ScriptEntry PokemonLeagueLucianRoom_OnFrame_EnterRoom
     ScriptEntryEnd
 
 PokemonLeagueLucianRoom_Lucian:
@@ -39,11 +39,11 @@ PokemonLeagueLucianRoom_StartLucianRematchBattle:
     Return
 
 PokemonLeagueLucianRoom_CreateJournalEventDefeatedLucian:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN
     Return
 
 PokemonLeagueLucianRoom_CreateJournalEventDefeatedRematchLucian:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN_REMATCH, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN_REMATCH
     Return
 
 PokemonLeagueLucianRoom_BlackOut:
@@ -58,14 +58,14 @@ PokemonLeagueLucianRoom_LucianPostBattle:
     ReleaseAll
     End
 
-PokemonLeagueLucianRoom_OnFrame:
+PokemonLeagueLucianRoom_OnFrame_EnterRoom:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueLucianRoom_Movement_PlayerEnterRoom
     WaitMovement
     PlaySE SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_LUCIAN_ROOM_ENTRANCE_DOOR
     AddObject LOCALID_ENTRANCE_DOOR
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     ReleaseAll
     End
 

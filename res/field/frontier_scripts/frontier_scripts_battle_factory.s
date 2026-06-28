@@ -429,7 +429,7 @@ _02A8:
 _02D6:
     GetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_TYPE, VAR_0x8001
     GetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, VAR_0x8002
-    GetSystemVar VAR_MAP_LOCAL_3, VAR_0x8003
+    GetSystemVar VAR_MAP_LOCAL_0x03, VAR_0x8003
     GetPlayerObjEventGfx VAR_0x8007
     GoToIfEq VAR_0x8001, FRONTIER_CHALLENGE_MULTI, _0320
     GoToIfEq VAR_0x8001, FRONTIER_CHALLENGE_MULTI_WFC, _0320
@@ -744,7 +744,7 @@ _084E:
     FrontierScrCmd_25 4
     FrontierScrCmd_23 30
     CallBattleFactoryFunction BF_FUNC_UNK_32, 0, 0, VAR_0x8008
-    FrontierScrCmd_03 4
+    FrontierScrCmd_03 FRONTIER_SCENE_FACTORY_BATTLE_ROOM
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _00F8
     FrontierScrCmd_24 _0108
@@ -781,7 +781,7 @@ _0927:
     FrontierScrCmd_25 4
     FrontierScrCmd_23 30
     CallBattleFactoryFunction BF_FUNC_UNK_32, 0, 0, VAR_0x8008
-    FrontierScrCmd_03 4
+    FrontierScrCmd_03 FRONTIER_SCENE_FACTORY_BATTLE_ROOM
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _0100
     FrontierScrCmd_24 _0120
@@ -1412,7 +1412,7 @@ _1368:
     CallBattleFactoryFunction BF_FUNC_UNK_32, 0, 0, VAR_0x8008
     FreeBattleRecording
     FrontierScrCmd_5E
-    FrontierScrCmd_04 14, 1
+    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
     End
 
 _137B:
@@ -1432,7 +1432,7 @@ _1391:
     GoToIfEq VAR_0x8008, 1, _13EA
     FrontierScrCmd_25 0
     FrontierScrCmd_25 4
-    FrontierScrCmd_03 3
+    FrontierScrCmd_03 FRONTIER_SCENE_FACTORY_CORRIDOR
     CallBattleFactoryFunction BF_FUNC_UNK_31, 0, 0, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _0008
@@ -1444,7 +1444,7 @@ _13EA:
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
     FrontierScrCmd_25 4
-    FrontierScrCmd_03 3
+    FrontierScrCmd_03 FRONTIER_SCENE_FACTORY_CORRIDOR
     CallBattleFactoryFunction BF_FUNC_UNK_31, 0, 0, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _0014

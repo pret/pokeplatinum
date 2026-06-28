@@ -15,7 +15,7 @@ void BattleHallSave_Init(BattleHallSave *challenge)
 
 BattleHallSave *BattleHallSave_Get(SaveData *saveData)
 {
-    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &frontier->hallSave;
 }
 
@@ -35,8 +35,8 @@ void BattleHallSave_SetMember(BattleHallSave *save, u8 field, u8 index, u8 unuse
     case HALL_SAVE_CHALLENGE_TYPE:
         save->challengeType = *(u8 *)value;
         break;
-    case HALL_SAVE_UNK_1:
-        save->unk_01 = *(u8 *)value;
+    case HALL_SAVE_CURRENT_BATTLE:
+        save->currentBattleNum = *(u8 *)value;
         break;
     case HALL_SAVE_TRAINER_IDS:
         save->trainerIDs[index] = *(u16 *)value;
@@ -44,8 +44,8 @@ void BattleHallSave_SetMember(BattleHallSave *save, u8 field, u8 index, u8 unuse
     case HALL_SAVE_PARTY_SLOTS:
         save->partySlots[index] = *(u8 *)value;
         break;
-    case HALL_SAVE_UNK_4:
-        save->unk_2C[index] = *(u16 *)value;
+    case HALL_SAVE_POKEMON_INDICES:
+        save->monIndices[index] = *(u16 *)value;
         break;
     default:
         GF_ASSERT(FALSE);
@@ -58,14 +58,14 @@ u32 BattleHallSave_GetMember(BattleHallSave *save, u8 field, u8 index, u8 unused
     switch (field) {
     case HALL_SAVE_CHALLENGE_TYPE:
         return save->challengeType;
-    case HALL_SAVE_UNK_1:
-        return save->unk_01;
+    case HALL_SAVE_CURRENT_BATTLE:
+        return save->currentBattleNum;
     case HALL_SAVE_TRAINER_IDS:
         return save->trainerIDs[index];
     case HALL_SAVE_PARTY_SLOTS:
         return save->partySlots[index];
-    case HALL_SAVE_UNK_4:
-        return save->unk_2C[index];
+    case HALL_SAVE_POKEMON_INDICES:
+        return save->monIndices[index];
     default:
         GF_ASSERT(FALSE);
         break;
@@ -112,7 +112,7 @@ void BattleHallStreakFlags_Init(BattleHallStreakFlags *flags)
 
 BattleHallStreakFlags *BattleHallStreakFlags_Get(SaveData *saveData)
 {
-    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &frontier->hall.streakFlags;
 }
 

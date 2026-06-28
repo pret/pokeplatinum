@@ -86,13 +86,13 @@ _010E:
     FrontierScrCmd_B2 7, 1, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 1
-    SetSystemVar VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
 _012F:
     SetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    SetSystemVar VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0143
     End
 
@@ -130,7 +130,7 @@ _01CA:
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 4
     SetSystemVar VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    SetSystemVar VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
@@ -139,7 +139,7 @@ _01F1:
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 5
     SetSystemVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    SetSystemVar VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
@@ -148,7 +148,7 @@ _0218:
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 6
     SetSystemVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    SetSystemVar VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
@@ -223,8 +223,8 @@ _037E:
     FrontierScrCmd_AF VAR_0x8009, 1, VAR_0x8008
     GoToIfEq VAR_0x8008, 2, _0366
     FrontierScrCmd_B0 VAR_0x8002, VAR_0x8005
-    SetSystemVar VAR_MAP_LOCAL_2, VAR_0x8002
-    SetSystemVar VAR_MAP_LOCAL_5, VAR_0x8005
+    SetSystemVar VAR_MAP_LOCAL_0x02, VAR_0x8002
+    SetSystemVar VAR_MAP_LOCAL_0x05, VAR_0x8005
     FadeScreenIn
     GoTo _03C1
     End
@@ -468,35 +468,35 @@ _0858:
     GoToIfEq VAR_0x8008, 0, _0858
     FrontierScrCmd_B5
     Call _08C9
-    FrontierScrCmd_04 6, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_TOWER_MULTI_CORRIDOR, 0
     End
 
 _0879:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_FACTORY
     Call _08C9
-    FrontierScrCmd_04 3, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_FACTORY_CORRIDOR, 0
     End
 
 _088D:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_STAGE
     Call _08C9
-    FrontierScrCmd_04 9, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_HALL_CORRIDOR, 0
     End
 
 _08A1:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_CASTLE02
     Call _08C9
-    FrontierScrCmd_04 11, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_CASTLE_CORRIDOR, 0
     End
 
 _08B5:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_ROULETTE
     Call _08C9
-    FrontierScrCmd_04 15, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_ARCADE_CORRIDOR, 0
     End
 
 _08C9:

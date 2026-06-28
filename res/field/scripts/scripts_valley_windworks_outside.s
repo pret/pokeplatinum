@@ -21,9 +21,9 @@ ValleyWindworksOutside_OnTransition:
     CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveBgEventDoor
     CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveWarpValleyWindworksBuilding
     GoToIfLt VAR_VALLEY_WINDWORKS_STATE, 2, ValleyWindworksOutside_HideDrifloon
-    GoToIfSet FLAG_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON, ValleyWindworksOutside_HideDrifloon
-    GetDayOfWeek VAR_MAP_LOCAL_0
-    GoToIfNe VAR_MAP_LOCAL_0, 5, ValleyWindworksOutside_HideDrifloon
+    GoToIfSet FLAG_DAILY_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON, ValleyWindworksOutside_HideDrifloon
+    GetDayOfWeek VAR_MAP_LOCAL_0x00
+    GoToIfNe VAR_MAP_LOCAL_0x00, DAY_OF_WEEK_FRIDAY, ValleyWindworksOutside_HideDrifloon
     GoTo ValleyWindworksOutside_ShowDrifloon
 
 ValleyWindworksOutside_ShowDrifloon:
@@ -41,13 +41,13 @@ ValleyWindworksOutside_IncreaseTeamGalacticValleyWindworksState:
 ValleyWindworksOutside_OnLoad:
     CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveBgEventDoor
     CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveWarpValleyWindworksBuilding
-    GoToIfSet FLAG_MAP_LOCAL, ValleyWindworksOutside_RemoveDrifloon
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, ValleyWindworksOutside_RemoveDrifloon
     End
 
 ValleyWindworksOutside_RemoveDrifloon:
     SetFlag FLAG_HIDE_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON
     RemoveObject LOCALID_DRIFLOON
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 ValleyWindworksOutside_RemoveBgEventDoor:
@@ -62,12 +62,12 @@ ValleyWindworksOutside_GruntM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message ValleyWindworksOutside_Text_DontYouDareGoIntoTheValleyWindworksYoullHaveToBattleMeForIt
+    Message ValleyWindworksOutside_Text_BattleMeForIt
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_1
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, ValleyWindworksOutside_BlackOutGrunt
-    Message ValleyWindworksOutside_Text_IsntThatJustGreatGettingOwnedBySomeKid
+    Message ValleyWindworksOutside_Text_GettingOwnedBySomeKid
     CloseMessage
     ApplyMovement LOCALID_GRUNT_M, ValleyWindworksOutside_Movement_GruntMWalkOnSpotNorth
     WaitMovement
@@ -113,13 +113,13 @@ ValleyWindworksOutside_Door:
 
 ValleyWindworksOutside_AskOpenDoor:
     BufferItemName 0, ITEM_WORKS_KEY
-    Message ValleyWindworksOutside_Text_ItsLockedFromInsideUseTheWorksKey
+    Message ValleyWindworksOutside_Text_UseTheWorksKey
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, ValleyWindworksOutside_AskOpenDoorEnd
     SetFlag FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR
     Call ValleyWindworksOutside_RemoveBgEventDoor
     SetWarpEventPos 0, 243, 654
-    Message ValleyWindworksOutside_Text_KerchunkTheDoorToValleyWindworksOpened
+    Message ValleyWindworksOutside_Text_KerchunkTheDoorOpened
     WaitButton
     CloseMessage
     ReleaseAll
@@ -131,7 +131,7 @@ ValleyWindworksOutside_AskOpenDoorEnd:
     End
 
 ValleyWindworksOutside_SignboardValleyWindworks:
-    ShowLandmarkSign ValleyWindworksOutside_Text_ValleyWindworksEcologicalWindDrivenEnergy
+    ShowLandmarkSign ValleyWindworksOutside_Text_SignValleyWindworks
     End
 
 ValleyWindworksOutside_Drifloon:
@@ -139,15 +139,15 @@ ValleyWindworksOutside_Drifloon:
     LockAll
     FacePlayer
     PlayCry SPECIES_DRIFLOON
-    Message ValleyWindworksOutside_Text_Floooooon
+    Message ValleyWindworksOutside_Text_DrifloonCry
     CloseMessage
     WaitCry
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartLegendaryBattle SPECIES_DRIFLOON, 15
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, ValleyWindworksOutside_BlackOutDrifloon
-    SetFlag FLAG_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON
+    SetFlag FLAG_DAILY_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON
     ReleaseAll
     End
 
@@ -185,7 +185,7 @@ ValleyWindworksOutside_OnFrame_Looker:
     UnloadAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement LOCALID_LOOKER, ValleyWindworksOutside_Movement_LookerWalkOnSpotSouth
     WaitMovement
-    Message ValleyWindworksOutside_Text_IHaveReceivedTipsThatTheTeamGalacticHideoutIsInEternaCity
+    Message ValleyWindworksOutside_Text_HideoutIsInEternaCity
     CloseMessage
     ApplyMovement LOCALID_PLAYER, ValleyWindworksOutside_Movement_PlayerWatchLookerLeave
     ApplyMovement LOCALID_LOOKER, ValleyWindworksOutside_Movement_LookerLeave

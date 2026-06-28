@@ -567,10 +567,10 @@ _03BC:
 
 _03C2:
     GetSystemVar VAR_BATTLE_CASTLE_CHALLENGE_TYPE, VAR_0x8001
-    GetSystemVar VAR_MAP_LOCAL_3, VAR_0x8003
-    GetSystemVar VAR_MAP_LOCAL_2, VAR_0x8004
-    GetSystemVar VAR_MAP_LOCAL_5, VAR_0x8005
-    GetSystemVar VAR_MAP_LOCAL_6, VAR_0x8006
+    GetSystemVar VAR_MAP_LOCAL_0x03, VAR_0x8003
+    GetSystemVar VAR_MAP_LOCAL_0x02, VAR_0x8004
+    GetSystemVar VAR_MAP_LOCAL_0x05, VAR_0x8005
+    GetSystemVar VAR_MAP_LOCAL_0x06, VAR_0x8006
     GetPlayerObjEventGfx VAR_0x8007
     SetVar FR_VAR_0x800E, 0
     GoToIfEq VAR_0x8001, FRONTIER_CHALLENGE_MULTI, _041E
@@ -1017,7 +1017,7 @@ _0B36:
     FrontierScrCmd_25 3
     FrontierScrCmd_25 4
     FrontierScrCmd_23 217
-    FrontierScrCmd_03 13
+    FrontierScrCmd_03 FRONTIER_SCENE_13
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _019C
     FrontierScrCmd_24 _01B0
@@ -1036,7 +1036,7 @@ _0BBA:
     FrontierScrCmd_25 2
     FrontierScrCmd_25 3
     FrontierScrCmd_23 217
-    FrontierScrCmd_03 13
+    FrontierScrCmd_03 FRONTIER_SCENE_13
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _01A4
     FrontierScrCmd_24 _01C8
@@ -1094,7 +1094,7 @@ _0CAD:
     FrontierScrCmd_25 3
     FrontierScrCmd_25 4
     FrontierScrCmd_23 217
-    FrontierScrCmd_03 12
+    FrontierScrCmd_03 FRONTIER_SCENE_CASTLE_BATTLE_ROOM
     Call _0E74
     FrontierScrCmd_22 _00DC
     FrontierScrCmd_24 _0100
@@ -1131,7 +1131,7 @@ _0DA3:
     FrontierScrCmd_25 2
     FrontierScrCmd_25 3
     FrontierScrCmd_23 217
-    FrontierScrCmd_03 12
+    FrontierScrCmd_03 FRONTIER_SCENE_CASTLE_BATTLE_ROOM
     Call _0E74
     FrontierScrCmd_22 _00E8
     FrontierScrCmd_24 _0124
@@ -1829,7 +1829,7 @@ _1948:
 _1952:
     FreeBattleRecording
     FrontierScrCmd_99
-    FrontierScrCmd_04 14, 1
+    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
     End
 
 _195E:
@@ -1868,7 +1868,7 @@ _19E8:
     GoToIfEq VAR_0x8008, 1, _1A30
     FrontierScrCmd_25 0
     FrontierScrCmd_25 4
-    FrontierScrCmd_03 11
+    FrontierScrCmd_03 FRONTIER_SCENE_CASTLE_CORRIDOR
     GetPlayerObjEventGfx VAR_0x8007
     SetVar FR_VAR_0x800F, 231
     FrontierScrCmd_22 _0008
@@ -1879,7 +1879,7 @@ _19E8:
 _1A30:
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
-    FrontierScrCmd_03 11
+    FrontierScrCmd_03 FRONTIER_SCENE_CASTLE_CORRIDOR
     GetPlayerObjEventGfx VAR_0x8007
     SetVar FR_VAR_0x800F, 232
     FrontierScrCmd_22 _0010

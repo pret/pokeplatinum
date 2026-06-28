@@ -12,13 +12,13 @@
     ScriptEntryEnd
 
 PoffinHouse_OnTransition:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER, VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, FALSE, PoffinHouse_HideReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER, VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, FALSE, PoffinHouse_HideReporter
     End
 
 PoffinHouse_OnResume:
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER, VAR_MAP_LOCAL_0
-    GoToIfNe VAR_MAP_LOCAL_0, FALSE, PoffinHouse_ShowReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THREE_CHEERS_FOR_POFFIN_CORNER, VAR_MAP_LOCAL_0x00
+    GoToIfNe VAR_MAP_LOCAL_0x00, FALSE, PoffinHouse_ShowReporter
     CallIfUnset FLAG_HIDE_POFFIN_HOUSE_REPORTER, PoffinHouse_HideReporter
     End
 
@@ -37,7 +37,7 @@ PoffinHouse_AddReporter:
     End
 
 PoffinHouse_Idol:
-    NPCMessage PoffinHouse_Text_HeresMyAdviceOnCookingPoffins
+    NPCMessage PoffinHouse_Text_AdviceOnCookingPoffins
     End
 
 PoffinHouse_OldMan:
@@ -45,9 +45,9 @@ PoffinHouse_OldMan:
     End
 
 PoffinHouse_OldWoman:
-    NPCMessage PoffinHouse_Text_EatingMakesPeopleAndPokemonHappy
+    NPCMessage PoffinHouse_Text_EatingMakesPeopleHappy
     End
 
 PoffinHouse_SchoolKidF:
-    NPCMessage PoffinHouse_Text_AtTheWiFiClubICanCookWithFriends
+    NPCMessage PoffinHouse_Text_ICanCookWithFriends
     End

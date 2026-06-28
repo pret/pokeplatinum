@@ -2,7 +2,7 @@
   "key": 50255,
   "messages": [
     {
-      "id": "LakeVerity_Text_WhatTimingYouveGotToHelpDawn",
+      "id": "LakeVerity_Text_YouveGotToHelpDawn",
       "en_US": [
         "Rowan: Ah, {STRVAR_1 3, 0, 0}!\n",
         "What timing!\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "LakeVerity_Text_WhatTimingYouveGotToHelpLucas",
+      "id": "LakeVerity_Text_YouveGotToHelpLucas",
       "en_US": [
         "Rowan: Ah, {STRVAR_1 3, 0, 0}!\n",
         "What timing!\r",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "id": "LakeVerity_Text_HowDareYouMisguidedThugs",
+      "id": "LakeVerity_Text_HowDareYou",
       "en_US": [
         "Rowan: How dare you!\n",
         "You misguided thugs!\r"
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "id": "LakeVerity_Text_HowDareYouMisguidedThugsUnused",
+      "id": "LakeVerity_Text_HowDareYou_Unused",
       "en_US": [
         "Rowan: How dare you!\n",
         "You misguided thugs!\r"
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "id": "LakeVerity_Text_OuchWhatsWithThisOldTimer",
+      "id": "LakeVerity_Text_WhatsWithThisOldTimer",
       "en_US": [
         "Ow! Ouch!\n",
         "What’s with this old-timer?"
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "LakeVerity_Text_INeedYouToGoToLakeAcuity",
+      "id": "LakeVerity_Text_GoToLakeAcuity",
       "en_US": [
         "Rowan: {STRVAR_1 3, 0, 0}, I need you to\n",
         "go to Lake Acuity right away.\r",
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "LakeVerity_Text_LucasWhatsTeamGalacticUpTo",
+      "id": "LakeVerity_Text_LucasWhatsGalacticUpTo",
       "en_US": [
         "Lucas: {STRVAR_1 3, 0, 0}, what’s Team\n",
         "Galactic up to?\r",

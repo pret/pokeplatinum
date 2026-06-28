@@ -1,7 +1,7 @@
 #include "macros/btlanimcmd.inc"
 
 L_0:
-    BtlAnimCmd_013 L_1, L_2
+    JumpIfEffectChanceOdd L_1, L_2
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

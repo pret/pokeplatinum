@@ -2,7 +2,7 @@
   "key": 37906,
   "messages": [
     {
-      "id": "EternaCityCondominiums1F_Text_WantMeToRateTheNicknamesOfYourPokemon",
+      "id": "EternaCityCondominiums1F_Text_WantMeToRateNicknames",
       "en_US": [
         "Hello, hello!\n",
         "I am the official Name Rater!\r",
@@ -11,14 +11,14 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_WhichPokemonsNicknameShouldICritique",
+      "id": "EternaCityCondominiums1F_Text_CritiqueWhichNickname",
       "en_US": [
         "Which Pokémon’s nickname should\n",
         "I critique?"
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_WouldYouLikeToGiveItAnEvenBetterName",
+      "id": "EternaCityCondominiums1F_Text_GiveItABetterName",
       "en_US": [
         "{STRVAR_1 1, 0, 0}, is it?\n",
         "That’s a decent nickname!\r",
@@ -28,14 +28,14 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_AhGoodThenWhatShallTheNewNicknameBe",
+      "id": "EternaCityCondominiums1F_Text_WhatShallNewNicknameBe",
       "en_US": [
         "Ah, good. Then, what shall the new\n",
         "nickname be?"
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_ThisPokemonShallBeKnownAsNicknameItIsABetterNameThanBefore",
+      "id": "EternaCityCondominiums1F_Text_BetterNameThanBefore",
       "en_US": [
         "Done! From now on, this Pokémon\n",
         "shall be known as {STRVAR_1 1, 0, 0}!\r",
@@ -44,14 +44,14 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_ISeePleaseComeVisitAgain",
+      "id": "EternaCityCondominiums1F_Text_PleaseComeVisitAgain",
       "en_US": [
         "I see.\n",
         "Please come visit again."
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_ThisPokemonShallBeKnownAsNicknameItLooksNoDifferentFromBefore",
+      "id": "EternaCityCondominiums1F_Text_NoDifferentFromBefore",
       "en_US": [
         "Done! From now on, this Pokémon\n",
         "shall be known as {STRVAR_1 1, 0, 0}!\r",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_NicknameIsItThatIsATrulyImpeccableName",
+      "id": "EternaCityCondominiums1F_Text_TrulyImpeccableName",
       "en_US": [
         "{STRVAR_1 1, 0, 0}, is it?\n",
         "That is a truly impeccable name!\r",
@@ -69,14 +69,14 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_AnEggCanGoByNoOtherName",
+      "id": "EternaCityCondominiums1F_Text_CantNicknameEgg",
       "en_US": [
         "Now, now. That is merely an Egg!\n",
         "An Egg can go by no other name!\n"
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_DoYouGotThatPokemonNamedBuizelWannTradeItForMyChatot",
+      "id": "EternaCityCondominiums1F_Text_AskTradeBuizelForChatot",
       "en_US": [
         "Excuse me, but do you got that\n",
         "Pokémon named BUIZEL?\r",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_WhatITotallyWantIsABuizel",
+      "id": "EternaCityCondominiums1F_Text_IWantBuizel",
       "en_US": "What I totally want is a BUIZEL..."
     },
     {
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_DidThatChatotITradedYouTotallyLearnThatChatterMove",
+      "id": "EternaCityCondominiums1F_Text_DidChatotLearnChatter",
       "en_US": [
         "Did that CHATOT I traded you totally\n",
         "learn that Chatter move?\r",
@@ -119,14 +119,14 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_HiImTheBuildingSuperintented",
+      "id": "EternaCityCondominiums1F_Text_ImBuildingSuperintented",
       "en_US": [
         "Hi! I’m the building superintendent.\n",
         "I maintain a vigilant 24-hour watch!"
       ]
     },
     {
-      "id": "EternaCityCondominiums1F_Text_ImBuildingSuperintendentMantain24HourWatchZZZ",
+      "id": "EternaCityCondominiums1F_Text_Mantain24HourWatchZzz",
       "en_US": [
         "I’m...building...superintendent...\n",
         "...maintain...24-hour watch... Zzz..."

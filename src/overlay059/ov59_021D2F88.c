@@ -10,7 +10,7 @@
 #include "overlay059/ov59_021D2A2C.h"
 #include "overlay059/ov59_021D2B44.h"
 #include "overlay059/struct_ov59_021D30E0.h"
-#include "overlay096/struct_ov96_0223B450_sub1.h"
+#include "overlay096/struct_wifi_player_profile.h"
 #include "savedata/save_table.h"
 
 #include "communication_information.h"
@@ -20,9 +20,9 @@
 #include "record_mixed_rng.h"
 #include "savedata.h"
 #include "unk_020298BC.h"
-#include "unk_0202D05C.h"
 #include "unk_0202E2CC.h"
 #include "unk_02073700.h"
+#include "wifi_battle_tower_save.h"
 
 typedef struct {
     enum HeapID heapID;
@@ -121,11 +121,11 @@ static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)
 
 static void *ov59_021D30B4(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
-    UnkStruct_ov96_0223B450_sub1 *v0 = Heap_AllocAtEnd(heapID, param2);
-    MI_CpuClear8(v0, param2);
-    sub_02073700(saveData, 0, v0);
+    WifiPlayerProfile *profile = Heap_AllocAtEnd(heapID, param2);
+    MI_CpuClear8(profile, param2);
+    sub_02073700(saveData, 0, profile);
 
-    return v0;
+    return profile;
 }
 
 static void ov59_021D30DC(const UnkStruct_ov59_021D2FBC *param0)
@@ -140,7 +140,7 @@ static const UnkStruct_ov59_021D33FC Unk_ov59_021D33FC[] = {
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B54, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2CB4, NULL },
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B44, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2C28, NULL },
     { (UnkFuncPtr_ov59_021D33FC)RankingsEntries_Size, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D3088, ov59_021D3090 },
-    { (UnkFuncPtr_ov59_021D33FC)sub_0202D05C, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D30B4, ov59_021D30DC },
+    { (UnkFuncPtr_ov59_021D33FC)WifiPlayerProfile_Size, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D30B4, ov59_021D30DC },
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B4C, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2D3C, ov59_021D3028 },
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B54, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2D80, ov59_021D3048 },
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B44, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2CF8, ov59_021D3068 }

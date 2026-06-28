@@ -86,7 +86,7 @@ VeilstoneCityGalacticWarehouse_OnFrame_EnterWithLooker:
     ApplyMovement LOCALID_PLAYER, VeilstoneCityGalacticWarehouse_Movement_PlayerFaceLookerNorth
     ApplyMovement LOCALID_LOOKER, VeilstoneCityGalacticWarehouse_Movement_LookerWalkToPlayer
     WaitMovement
-    SetVar VAR_PASTORIA_STATE, 1
+    SetVar VAR_PASTORIA_CITY_STATE, 1
     SetVar VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE, 2
     Message VeilstoneCityGalacticWarehouse_Text_WeDidntLearnMuch
     WaitButton

@@ -154,7 +154,7 @@ struct TownMapAppData {
     MessageLoader *townMapStrings;
     String *hoveredMapName;
     BOOL locationChanged;
-    enum MapHeader hoveredMapHeader;
+    enum MapHeaderID hoveredMapHeader;
     TownMapBlock *hoveredMapBlock;
     void *topScreenMapFile;
     void *topScreenBGFile;

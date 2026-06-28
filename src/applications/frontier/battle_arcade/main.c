@@ -16,7 +16,7 @@
 #include "applications/frontier/battle_arcade/windows.h"
 #include "overlay104/ov104_0223BCBC.h"
 
-#include "battle_frontier_stats.h"
+#include "battle_frontier_save.h"
 #include "bg_window.h"
 #include "communication_system.h"
 #include "font.h"
@@ -170,7 +170,7 @@ static const u8 Unk_ov108_0224367C[] = {
 
 typedef struct BattleArcadeApp {
     ApplicationManager *appMan;
-    BattleFrontier *frontier;
+    BattleFrontierSave *frontier;
     u8 subState;
     u8 challengeType;
     u8 unused;

@@ -3,7 +3,7 @@
 #include "res/field/events/events_battle_frontier.h"
 
 
-    ScriptEntry BattleFrontier_Unused1
+    ScriptEntry BattleFrontier_Dummy1
     ScriptEntry BattleFrontier_NinjaBoy
     ScriptEntry BattleFrontier_BlackBelt
     ScriptEntry BattleFrontier_Idol
@@ -26,7 +26,7 @@
     ScriptEntry BattleFrontier_Fisherman
     ScriptEntry BattleFrontier_TuberM
     ScriptEntry BattleFrontier_AttendantSouthwest
-    ScriptEntry BattleFrontier_Unused24
+    ScriptEntry BattleFrontier_ScratchOffCards_Unused
     ScriptEntry BattleFrontier_AttendantSoutheast
     ScriptEntry BattleFrontier_TrainerTipsSignpostBattleTower
     ScriptEntry BattleFrontier_TrainerTipsSignpostBattleHall
@@ -45,12 +45,12 @@
 
 BattleFrontier_OnTransition:
     SetFlag FLAG_HIDE_BATTLE_HALL_MAJOR_NPC
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, BattleFrontier_HideReporter
-    GetBattleFrontierReporterPosition VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_MAP_LOCAL_4
-    SetObjectEventPos LOCALID_REPORTER, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2
-    SetObjectEventDir LOCALID_REPORTER, VAR_MAP_LOCAL_3
-    SetObjectEventMovementType LOCALID_REPORTER, VAR_MAP_LOCAL_4
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, BattleFrontier_HideReporter
+    GetBattleFrontierReporterPosition VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x03, VAR_MAP_LOCAL_0x04
+    SetObjectEventPos LOCALID_REPORTER, VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x02
+    SetObjectEventDir LOCALID_REPORTER, VAR_MAP_LOCAL_0x03
+    SetObjectEventMovementType LOCALID_REPORTER, VAR_MAP_LOCAL_0x04
     ClearFlag FLAG_HIDE_BATTLE_FRONTIER_REPORTER
     End
 
@@ -152,7 +152,7 @@ BattleFrontier_AttendantSouthwest:
     ReleaseAll
     End
 
-BattleFrontier_Unused24:
+BattleFrontier_ScratchOffCards_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -214,7 +214,7 @@ BattleFrontier_CoordEvent_EnterBattleHall:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_HALL, 0, 25, 9, DIR_WEST
+    Warp MAP_HEADER_BATTLE_HALL, 25, 9, DIR_WEST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -231,7 +231,7 @@ BattleFrontier_CoordEvent_EnterBattleCastle:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_CASTLE, 0, 21, 9, DIR_WEST
+    Warp MAP_HEADER_BATTLE_CASTLE, 21, 9, DIR_WEST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -248,7 +248,7 @@ BattleFrontier_CoordEvent_EnterBattleArcade:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_ARCADE, 0, 1, 6, DIR_EAST
+    Warp MAP_HEADER_BATTLE_ARCADE, 1, 6, DIR_EAST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -265,7 +265,7 @@ BattleFrontier_CoordEvent_EnterBattleFactory:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_FACTORY, 0, 1, 7, DIR_EAST
+    Warp MAP_HEADER_BATTLE_FACTORY, 1, 7, DIR_EAST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -275,7 +275,7 @@ BattleFrontier_Movement_PlayerEnterBattleFactory:
     WalkFastEast 6
     EndMovement
 
-BattleFrontier_Unused1:
+BattleFrontier_Dummy1:
     End
 
     .balign 4, 0

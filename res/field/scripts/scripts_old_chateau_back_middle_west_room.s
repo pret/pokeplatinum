@@ -8,11 +8,11 @@
 OldChateauBackMiddleWestRoom_TV:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_CAUGHT_OLD_CHATEAU_ROTOM, OldChateauBackMiddleWestRoom_TheTVHasAnOddlyMalevolentFeel
-    GoToIfSet FLAG_BATTLED_OLD_CHATEAU_ROTOM, OldChateauBackMiddleWestRoom_TheTVHasAnOddlyMalevolentFeel
+    GoToIfSet FLAG_CAUGHT_OLD_CHATEAU_ROTOM, OldChateauBackMiddleWestRoom_TVHasMalevolentFeel
+    GoToIfSet FLAG_DAILY_BATTLED_OLD_CHATEAU_ROTOM, OldChateauBackMiddleWestRoom_TVHasMalevolentFeel
     GetTimeOfDay VAR_RESULT
-    GoToIfLt VAR_RESULT, TIMEOFDAY_NIGHT, OldChateauBackMiddleWestRoom_TheTVHasAnOddlyMalevolentFeel
-    Message OldChateauBackMiddleWestRoom_Text_ThereAppearsToBeAPokemonWantToThumpTheTV
+    GoToIfLt VAR_RESULT, TIMEOFDAY_NIGHT, OldChateauBackMiddleWestRoom_TVHasMalevolentFeel
+    Message OldChateauBackMiddleWestRoom_Text_WantToThumpTheTV
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, OldChateauBackMiddleWestRoom_End
     BufferPlayerName 0
@@ -20,18 +20,18 @@ OldChateauBackMiddleWestRoom_TV:
     CloseMessage
     PlayCry SPECIES_ROTOM
     WaitCry
-    SetFlag FLAG_BATTLED_OLD_CHATEAU_ROTOM
+    SetFlag FLAG_DAILY_BATTLED_OLD_CHATEAU_ROTOM
     StartWildBattle SPECIES_ROTOM, 20
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, OldChateauBackMiddleWestRoom_BlackOut
     CheckDidNotCapture VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, OldChateauBackMiddleWestRoom_RotomDisappearedIntoTheTVSet
+    GoToIfEq VAR_RESULT, TRUE, OldChateauBackMiddleWestRoom_RotomDisappearedIntoTV
     SetFlag FLAG_CAUGHT_OLD_CHATEAU_ROTOM
     ReleaseAll
     End
 
-OldChateauBackMiddleWestRoom_RotomDisappearedIntoTheTVSet:
-    Message OldChateauBackMiddleWestRoom_Text_RotomDisappearedIntoTheTVSet
+OldChateauBackMiddleWestRoom_RotomDisappearedIntoTV:
+    Message OldChateauBackMiddleWestRoom_Text_RotomDisappearedIntoTV
     WaitButton
     CloseMessage
     ReleaseAll
@@ -42,8 +42,8 @@ OldChateauBackMiddleWestRoom_End:
     ReleaseAll
     End
 
-OldChateauBackMiddleWestRoom_TheTVHasAnOddlyMalevolentFeel:
-    Message OldChateauBackMiddleWestRoom_Text_TheTVHasAnOddlyMalevolentFeel
+OldChateauBackMiddleWestRoom_TVHasMalevolentFeel:
+    Message OldChateauBackMiddleWestRoom_Text_TVHasMalevolentFeel
     WaitButton
     CloseMessage
     ReleaseAll

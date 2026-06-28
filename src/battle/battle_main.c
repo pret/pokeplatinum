@@ -23,13 +23,13 @@
 #include "battle/battle_display.h"
 #include "battle/battle_io_command.h"
 #include "battle/battle_lib.h"
+#include "battle/battle_main.h"
 #include "battle/battle_subscreen.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
 #include "battle/healthbox.h"
-#include "battle/ov16_02268520.h"
-#include "battle/ov16_0226E148.h"
-#include "battle/trainer_intro_data.h"
+#include "battle/stop_recording_task_data.h"
+#include "battle/terrain.h"
 #include "battle_anim/battle_anim_system.h"
 #include "overlay010/ov10_0221F800.h"
 #include "overlay011/particle_helper.h"
@@ -280,14 +280,14 @@ BOOL Battle_Main(ApplicationManager *appMan, int *state)
         if (targetSpecies) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_EVOLUTION, HEAP_SIZE_EVOLUTION);
             mon = Party_GetPokemonBySlotIndex(dto->parties[0], slot);
-            dto->unk_170 = Evolution_Begin(dto->parties[0], mon, targetSpecies, dto->options, dto->visitedContestHall, dto->pokedex, dto->bag, dto->records, dto->poketch, evoType, 0x1 | 0x2, HEAP_ID_EVOLUTION);
+            dto->postBattleData = Evolution_Begin(dto->parties[0], mon, targetSpecies, dto->options, dto->visitedContestHall, dto->pokedex, dto->bag, dto->records, dto->poketch, evoType, 0x1 | 0x2, HEAP_ID_EVOLUTION);
             *state = BATTLE_STATE_WAIT_FOR_EVOLUTION;
         } else {
             *state = BATTLE_STATE_FINISH;
         }
     } break;
     case BATTLE_STATE_WAIT_FOR_EVOLUTION: {
-        EvolutionData *evolutionData = (EvolutionData *)dto->unk_170;
+        EvolutionData *evolutionData = (EvolutionData *)dto->postBattleData;
 
         if (Evolution_IsDone(evolutionData) == TRUE) {
             Evolution_Free(evolutionData);
@@ -614,8 +614,8 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     PaletteData_FillBufferRange(battleSys->paletteData, 1, 0, 0, 0, 255);
     PaletteData_FillBufferRange(battleSys->paletteData, 3, 0, 0xFFFF, 0, 255);
 
-    battleSys->unk_1AC = sub_0201567C(battleSys->paletteData, 0, 11, HEAP_ID_BATTLE);
-    sub_02015738(battleSys->unk_1AC, 1);
+    battleSys->paletteAnimator = sub_0201567C(battleSys->paletteData, 0, 11, HEAP_ID_BATTLE);
+    sub_02015738(battleSys->paletteAnimator, 1);
 
     battleSys->taskDrawSprites = SysTask_Start(SysTask_DrawSprites, battleSys, 60000);
     battleSys->taskUpdateRedHPSound = SysTask_Start(SysTask_UpdateRedHPSound, battleSys, 50000);
@@ -630,7 +630,7 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
 
     if (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) {
         for (idx = 0; idx < 4; idx++) {
-            battleSys->recordedChatter[idx] = dto->unk_194[idx];
+            battleSys->recordedChatter[idx] = dto->recordedChatter[idx];
         }
     }
 }
@@ -707,7 +707,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
         Heap_Free(battleSys->trainerInfo[battlerId]);
     }
 
-    sub_02015760(battleSys->unk_1AC);
+    sub_02015760(battleSys->paletteAnimator);
     Bag_Copy(battleSys->bag, dto->bag);
     Heap_Free(battleSys->bag);
     Pokedex_Copy(battleSys->pokedex, dto->pokedex);
@@ -725,7 +725,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     dto->battleRecords.totalFainted += BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_FAINTED_FOR, BATTLER_PLAYER_1) + BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_FAINTED_FOR, BATTLER_PLAYER_2);
     dto->battleRecords.totalDamage += BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_DAMAGE_FOR, BATTLER_PLAYER_1) + BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_DAMAGE_FOR, BATTLER_PLAYER_2);
     dto->totalTurnsElapsed = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_TOTAL_TURNS, NULL);
-    dto->unk_19C = battleSys->recordingStopped;
+    dto->recordingStopped = battleSys->recordingStopped;
 
     for (battlerId = 0; battlerId < MAX_BATTLERS; battlerId++) {
         Heap_Free(battleSys->pokemonSpriteDataArray[battlerId].tiles);
@@ -747,7 +747,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     BattleContext_Free(battleSys->battleCtx);
 
     for (battlerId = 0; battlerId < battleSys->maxBattlers; battlerId++) {
-        ov16_0225C104(battleSys, battleSys->battlers[battlerId], battleSys->renderMode);
+        BattlerData_Delete(battleSys, battleSys->battlers[battlerId], battleSys->renderMode);
     }
 
     PokemonSpriteManager_Free(battleSys->monSpriteMan);
@@ -784,7 +784,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     }
 
     if (battleSys->playbackStopButton) {
-        ov16_0226E174(battleSys->playbackStopButton);
+        BattleSystem_EndStopRecordingTask(battleSys->playbackStopButton);
     }
 
     Heap_Free(battleSys);
@@ -916,15 +916,15 @@ static void BattleMain_InitTerrains(BattleSystem *battleSys)
     int selectedPartySlot;
     Pokemon *mon;
 
-    ov16_022686CC(&battleSys->terrains[0], battleSys, 0, terrain);
-    ov16_022686CC(&battleSys->terrains[1], battleSys, 1, terrain);
+    Terrain_Init(&battleSys->terrains[0], battleSys, 0, terrain);
+    Terrain_Init(&battleSys->terrains[1], battleSys, 1, terrain);
 
     BattleContext *battleCtx = BattleSystem_GetBattleContext(battleSys);
 
     for (int battler = 0; battler < battleSys->maxBattlers; battler++) {
         selectedPartySlot = BattleContext_Get(battleSys, battleCtx, BATTLECTX_SELECTED_PARTY_SLOT, battler);
         mon = BattleSystem_GetPartyPokemon(battleSys, battler, selectedPartySlot);
-        ov16_0225C038(battleSys, battleSys->battlers[battler], Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL), selectedPartySlot);
+        BattlerData_InitSendOutBallThrow(battleSys, battleSys->battlers[battler], Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL), selectedPartySlot);
     }
 
     BattleMain_SetNetworkIconStrength();
@@ -1027,7 +1027,7 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->networkID = dto->networkID;
 
     for (i = 0; i < MAX_BATTLERS; i++) {
-        battleSys->unk_2464[i] = dto->unk_178[i];
+        battleSys->linkPlayerPositions[i] = dto->linkPlayerPositions[i];
     }
 
     battleSys->seedLCRNG = LCRNG_GetSeed();
@@ -1120,7 +1120,7 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
         } else if (battleSys->battleType & BATTLE_TYPE_2vs2) {
             for (i = 0; i < MAX_BATTLERS; i++) {
                 battlerInitData.battler = i;
-                battlerInitData.battlerType = sLink2vs2BattleBattlerTypes[ov16_0223F6F0(battleSys, networkID)][ov16_0223F6F0(battleSys, i)];
+                battlerInitData.battlerType = sLink2vs2BattleBattlerTypes[BattleSystem_GetLinkPlayerPositionForBattler(battleSys, networkID)][BattleSystem_GetLinkPlayerPositionForBattler(battleSys, i)];
                 battleSys->battlers[i] = BattlerData_New(battleSys, &battlerInitData);
             }
 
@@ -2090,7 +2090,7 @@ static BOOL BattleMain_HandleLinkBattleResult(ApplicationManager *appMan)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay10), OVERLAY_LOAD_ASYNC);
     TrainerIntroData *trainerIntroData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(TrainerIntroData));
 
-    dto->unk_170 = trainerIntroData;
+    dto->postBattleData = trainerIntroData;
     MI_CpuClearFast(trainerIntroData, sizeof(TrainerIntroData));
     trainerIntroData->dto = dto;
 
@@ -2150,7 +2150,7 @@ static BOOL BattleMain_HandleLinkBattleResult(ApplicationManager *appMan)
         }
     }
 
-    trainerIntroData->recordingType = dto->unk_18A;
+    trainerIntroData->recordingType = dto->recordingType;
 
     ov10_0221F800(trainerIntroData);
 
@@ -2160,7 +2160,7 @@ static BOOL BattleMain_HandleLinkBattleResult(ApplicationManager *appMan)
 static BOOL BattleMain_WaitLinkBattleEnd(ApplicationManager *appMan)
 {
     FieldBattleDTO *dto = ApplicationManager_Args(appMan);
-    TrainerIntroData *trainerIntroData = dto->unk_170;
+    TrainerIntroData *trainerIntroData = dto->postBattleData;
 
     if (trainerIntroData->isDone) {
         for (int i = 0; i < 4; i++) {

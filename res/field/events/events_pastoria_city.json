@@ -542,7 +542,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_PASTORIA_STATE",
+            "var": "VAR_PASTORIA_CITY_STATE",
             "value": 5
         },
         {
@@ -552,7 +552,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_PASTORIA_STATE",
+            "var": "VAR_PASTORIA_CITY_STATE",
             "value": 1
         },
         {
@@ -562,7 +562,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_PASTORIA_STATE",
+            "var": "VAR_PASTORIA_CITY_STATE",
             "value": 4
         },
         {
@@ -572,7 +572,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE",
+            "var": "VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE",
             "value": 0
         }
     ]

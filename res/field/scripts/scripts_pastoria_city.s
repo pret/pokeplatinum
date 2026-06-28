@@ -29,11 +29,11 @@
     ScriptEntryEnd
 
 PastoriaCity_OnTransition:
-    SetVar VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE, 0
+    SetVar VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE, 0
     SetFlag FLAG_HIDE_ROUTE_212_BLOCKADE
-    CallIfEq VAR_PASTORIA_STATE, 5, PastoriaCity_SetRivalPositionAfterExplosion
-    CallIfEq VAR_PASTORIA_STATE, 4, PastoriaCity_SetRivalPositionAfterGym
-    CallIfEq VAR_PASTORIA_STATE, 4, PastoriaCity_SetCrasherWakePositionAfterGym
+    CallIfEq VAR_PASTORIA_CITY_STATE, 5, PastoriaCity_SetRivalPositionAfterExplosion
+    CallIfEq VAR_PASTORIA_CITY_STATE, 4, PastoriaCity_SetRivalPositionAfterGym
+    CallIfEq VAR_PASTORIA_CITY_STATE, 4, PastoriaCity_SetCrasherWakePositionAfterGym
     GoToIfSet FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST, PastoriaCity_SetGruntMEastPosition
     End
 
@@ -190,7 +190,7 @@ PastoriaCity_RemoveGruntM:
     End
 
     .balign 4, 0
-PastoriaCity_UnusedMovement:
+PastoriaCity_Movement_Unused:
     WalkOnSpotNormalWest
     EndMovement
 
@@ -200,7 +200,7 @@ PastoriaCity_Movement_PlayerWatchGruntMLeaveWest:
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement2:
+PastoriaCity_Movement_Unused2:
     WalkOnSpotNormalNorth
     WalkOnSpotNormalEast
     EndMovement
@@ -215,54 +215,54 @@ PastoriaCity_Movement_PlayerWatchGruntMLeaveNorth:
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement3:
+PastoriaCity_Movement_Unused3:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement4:
+PastoriaCity_Movement_Unused4:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement5:
+PastoriaCity_Movement_Unused5:
     WalkOnSpotNormalNorth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement6:
+PastoriaCity_Movement_Unused6:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCity_UnusedMovement7:
+PastoriaCity_Movement_Unused7:
     WalkFastEast 9
     EndMovement
 
-PastoriaCity_UnusedMovement8:
+PastoriaCity_Movement_Unused8:
     WalkFastEast 7
     EndMovement
 
-PastoriaCity_UnusedMovement9:
+PastoriaCity_Movement_Unused9:
     WalkFastSouth
     WalkFastEast 8
     EndMovement
 
-PastoriaCity_UnusedMovement10:
+PastoriaCity_Movement_Unused10:
     WalkFastNorth
     WalkFastEast 8
     EndMovement
 
-PastoriaCity_UnusedMovement11:
+PastoriaCity_Movement_Unused11:
     EmoteExclamationMark
     EndMovement
 
-PastoriaCity_UnusedMovement12:
+PastoriaCity_Movement_Unused12:
     WalkFastSouth
     WalkFastEast 10
     EndMovement
 
-PastoriaCity_UnusedMovement13:
+PastoriaCity_Movement_Unused13:
     WalkFastEast 10
     EndMovement
 
@@ -279,25 +279,25 @@ PastoriaCity_Movement_GruntMLeaveNorthSouthEast:
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement14:
+PastoriaCity_Movement_Unused14:
     WalkFastSouth
     WalkFastEast 2
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement15:
+PastoriaCity_Movement_Unused15:
     WalkFastSouth
     WalkFastEast 4
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement16:
+PastoriaCity_Movement_Unused16:
     WalkFastNorth
     WalkFastEast 3
     WalkOnSpotFastEast
     EndMovement
 
-PastoriaCity_UnusedMovement17:
+PastoriaCity_Movement_Unused17:
     WalkFastSouth
     WalkFastEast 3
     WalkOnSpotFastEast
@@ -323,8 +323,8 @@ PastoriaCity_Rival:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_PASTORIA_STATE, 5, PastoriaCity_WhyArentYouGone
-    GoToIfGe VAR_PASTORIA_STATE, 4, PastoriaCity_RivalCroagunk
+    GoToIfGe VAR_PASTORIA_CITY_STATE, 5, PastoriaCity_WhyArentYouGone
+    GoToIfGe VAR_PASTORIA_CITY_STATE, 4, PastoriaCity_RivalCroagunk
     BufferRivalName 0
     BufferPlayerName 1
     Message PastoriaCity_Text_MrWakeWentToVeilstone
@@ -414,7 +414,7 @@ PastoriaCity_RivalPostBattle:
     ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalLeaveAfterBattle
     WaitMovement
     RemoveObject LOCALID_RIVAL
-    SetVar VAR_PASTORIA_STATE, 2
+    SetVar VAR_PASTORIA_CITY_STATE, 2
     ReleaseAll
     End
 
@@ -521,7 +521,7 @@ PastoriaCity_OnFrame_ExitGym:
     Call PastoriaCity_SetRivalPositionAfterGym
     ClearFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     SetPosition LOCALID_RIVAL, 608, 0, 814, DIR_SOUTH
-    SetVar VAR_PASTORIA_STATE, 4
+    SetVar VAR_PASTORIA_CITY_STATE, 4
     ReleaseAll
     End
 
@@ -697,7 +697,7 @@ PastoriaCity_GoAfterThatGoon:
     CallIfEq VAR_0x8004, 611, PastoriaCity_RivalWalkToGreatMarshX611
     CallIfEq VAR_0x8004, 612, PastoriaCity_RivalWalkToGreatMarsh
     SetFlag FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER
-    SetVar VAR_PASTORIA_STATE, 5
+    SetVar VAR_PASTORIA_CITY_STATE, 5
     SetFlag FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST
     BufferRivalName 0
     BufferPlayerName 1
@@ -818,11 +818,11 @@ PastoriaCity_Movement_RivalWalkOnSpotNorth:
     WalkOnSpotFastNorth
     EndMovement
 
-PastoriaCity_UnusedMovement18:
+PastoriaCity_Movement_Unused18:
     WalkFastSouth 3
     EndMovement
 
-PastoriaCity_UnusedMovement19:
+PastoriaCity_Movement_Unused19:
     WalkOnSpotFastNorth
     EndMovement
 
@@ -876,7 +876,7 @@ PastoriaCity_Movement_CrasherWakeWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
-PastoriaCity_UnusedMovement20:
+PastoriaCity_Movement_Unused20:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -941,7 +941,7 @@ PastoriaCity_Movement_RivalPushBackPlayer:
 PastoriaCity_CoordEvent_FaceBoard:
     LockAll
     GoToIfSet FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT, PastoriaCity_FaceBoardEnd
-    SetVar VAR_PASTORIA_CITY_TRY_CROAGUNK_SCENE_STATE, 1
+    SetVar VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE, 1
     GetRandom VAR_RESULT, 100
     GoToIfGe VAR_RESULT, 90, PastoriaCity_CroagunkScene
     GoTo PastoriaCity_FaceBoardEnd

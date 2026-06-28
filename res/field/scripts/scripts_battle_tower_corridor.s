@@ -32,7 +32,7 @@ BattleTowerCorridorMulti_OnFrame_EnterBattleRoom:
 BattleTowerCorridor_WarpToBattleRoom:
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM, 0, 7, 6, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM, 7, 6, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

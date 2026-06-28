@@ -18,8 +18,8 @@ Route213_OnTransition:
     End
 
 Route213_CheckBadge:
-    CheckBadgeAcquired BADGE_ID_FEN, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TRUE, Route213_CheckShowGruntM
+    CheckBadgeAcquired BADGE_ID_FEN, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, TRUE, Route213_CheckShowGruntM
     End
 
 Route213_CheckShowGruntM:
@@ -327,7 +327,7 @@ Route213_Fisherman:
     End
 
 Route213_ArrowSignpostPastoriaCity:
-    ShowArrowSign Route213_Text_SignRt213PastoriaCity
+    ShowArrowSign Route213_Text_SignPastoriaCity
     End
 
 Route213_SignboardHotelGrandLake:

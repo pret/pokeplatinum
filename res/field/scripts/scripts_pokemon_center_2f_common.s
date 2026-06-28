@@ -8,12 +8,12 @@
     ScriptEntry PokemonCenter2FCommon_AttendantColosseum
     ScriptEntry _051E
     ScriptEntry PokemonCenter2FCommon_AttendantUnionRoom
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9004
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9005
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9006
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9007
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9008
-    ScriptEntry PokemonCenter2FCommon_UnusedScript9009
+    ScriptEntry PokemonCenter2FCommon_Dummy9004
+    ScriptEntry PokemonCenter2FCommon_Dummy9005
+    ScriptEntry PokemonCenter2FCommon_Dummy9006
+    ScriptEntry PokemonCenter2FCommon_Dummy9007
+    ScriptEntry PokemonCenter2FCommon_Dummy9008
+    ScriptEntry PokemonCenter2FCommon_Dummy9009
     ScriptEntry _06A0
     ScriptEntry PokemonCenter2FCommon_AttendantSignTrainerCard
     ScriptEntry PokemonCenter2FCommon_OnFrame_ExitColosseum
@@ -32,22 +32,22 @@ PokemonCenter2FCommon_HidePlayer:
     Return
 
 PokemonCenter2FCommon_OnFrame_ExitColosseum:
-    SetVar VAR_MAP_LOCAL_0, 13
-    SetVar VAR_MAP_LOCAL_1, 5
-    SetVar VAR_MAP_LOCAL_2, 2
+    SetVar VAR_MAP_LOCAL_0x00, 13
+    SetVar VAR_MAP_LOCAL_0x01, 5
+    SetVar VAR_MAP_LOCAL_0x02, 2
     GoTo PokemonCenter2FCommon_PlayerEnter
     End
 
 PokemonCenter2FCommon_OnFrame_ExitUnionRoom:
-    SetVar VAR_MAP_LOCAL_0, 8
-    SetVar VAR_MAP_LOCAL_1, 5
-    SetVar VAR_MAP_LOCAL_2, 2
+    SetVar VAR_MAP_LOCAL_0x00, 8
+    SetVar VAR_MAP_LOCAL_0x01, 5
+    SetVar VAR_MAP_LOCAL_0x02, 2
     GoTo PokemonCenter2FCommon_PlayerEnter
     End
 
 PokemonCenter2FCommon_PlayerEnter:
     LockAll
-    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, ANIMATION_TAG_DOOR_1
+    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x02, ANIMATION_TAG_DOOR_1
     Call PokemonCenter2FCommon_DoorOpenAnimation
     ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, PokemonCenter2FCommon_Movement_PlayerEnter
@@ -55,7 +55,7 @@ PokemonCenter2FCommon_PlayerEnter:
     Call PokemonCenter2FCommon_DoorCloseAnimation
     ApplyMovement LOCALID_PLAYER, PokemonCenter2FCommon_Movement_PlayerWalkToGate
     WaitMovement
-    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1, ANIMATION_TAG_DOOR_1
+    LoadDoorAnimation 0, 0, VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01, ANIMATION_TAG_DOOR_1
     Call PokemonCenter2FCommon_DoorOpenAnimation
     ApplyMovement LOCALID_PLAYER, PokemonCenter2FCommon_Movement_PlayerExitThroughGate
     WaitMovement
@@ -210,7 +210,7 @@ PokemonCenter2FCommon_Unused6:
 PokemonCenter2FCommon_HealPartySaveBeforeBattle:
     HealParty
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 1, PokemonCenter2FCommon_DecideLeader
     GoTo PokemonCenter2FCommon_Exit
     End
@@ -411,7 +411,7 @@ PokemonCenter2FCommon_TryEnterUnionRoom:
     SetVar VAR_COMMUNICATION_LOAD_ACTION, 2
     SetFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 1, PokemonCenter2FCommon_EnterUnionRoom
     SetVar VAR_COMMUNICATION_LOAD_ACTION, 0
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
@@ -442,22 +442,22 @@ PokemonCenter2FCommon_GriseousOrbCouldNotBeRemoved:
     Common_GriseousOrbCouldNotBeRemoved
     End
 
-PokemonCenter2FCommon_UnusedScript9004:
+PokemonCenter2FCommon_Dummy9004:
     End
 
-PokemonCenter2FCommon_UnusedScript9005:
+PokemonCenter2FCommon_Dummy9005:
     End
 
-PokemonCenter2FCommon_UnusedScript9006:
+PokemonCenter2FCommon_Dummy9006:
     End
 
-PokemonCenter2FCommon_UnusedScript9007:
+PokemonCenter2FCommon_Dummy9007:
     End
 
-PokemonCenter2FCommon_UnusedScript9008:
+PokemonCenter2FCommon_Dummy9008:
     End
 
-PokemonCenter2FCommon_UnusedScript9009:
+PokemonCenter2FCommon_Dummy9009:
     End
 
 _06A0:
@@ -472,7 +472,7 @@ PokemonCenter2FCommon_AttendantSignTrainerCard:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetFlag FLAG_UNK_0x00AA
+    SetFlag FLAG_DUMMY_0x00AA
     Message PokemonCenter2FCommon_Text_YouMaySignTrainerCard
     GoTo PokemonCenter2FCommon_SignTrainerCardMenu
     End

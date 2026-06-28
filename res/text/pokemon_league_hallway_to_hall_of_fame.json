@@ -2,7 +2,7 @@
   "key": 53294,
   "messages": [
     {
-      "id": "PokemonLeagueHallwayToHallOfFame_Text_TheRoomAheadIsTheHallOfFame",
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_RoomAheadIsHallOfFame",
       "en_US": [
         "Cynthia: The room ahead is the Hall\n",
         "of Fame...\r"
@@ -20,7 +20,7 @@
       "en_US": "Cynthia: Oh, hello, Professor Rowan.\r"
     },
     {
-      "id": "PokemonLeagueHallwayToHallOfFame_Text_YouveGrownIntoARealChampion",
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_GrownIntoRealChampion",
       "en_US": [
         "Rowan: Hm!\r",
         "A child I enlisted for my Pokédex\n",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "PokemonLeagueHallwayToHallOfFame_Text_ProfessorYouStillEnjoyEnthusiasm",
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_YouStillEnjoyEnthusiasm",
       "en_US": [
         "Cynthia: Professor, you still enjoy\n",
         "the enthusiasm kids bring to your\f",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "PokemonLeagueHallwayToHallOfFame_Text_ProfessorRowanPleaseJoinUs",
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_ProfessorPleaseJoinUs",
       "en_US": "Professor Rowan, please join us.\r"
     },
     {

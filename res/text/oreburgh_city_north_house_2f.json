@@ -2,14 +2,14 @@
   "key": 25623,
   "messages": [
     {
-      "id": "OreburghCityNorthHouse2F_Text_AllPokemonHaveASpecialPowerCalledAnAbility",
+      "id": "OreburghCityNorthHouse2F_Text_SpecialPowerCalledAbility",
       "en_US": [
         "All Pokémon have a special power\n",
         "called an ability."
       ]
     },
     {
-      "id": "OreburghCityNorthHouse2F_Text_MyFavoritePokemonAbilityIsMyPachirisusPickup",
+      "id": "OreburghCityNorthHouse2F_Text_FavoriteAbilityIsPickup",
       "en_US": [
         "My favorite Pokémon ability is my\n",
         "PACHIRISU’s Pickup.\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "OreburghCityNorthHouse2F_Text_HowAboutShowingMeAPokemonCalledGeodude",
+      "id": "OreburghCityNorthHouse2F_Text_ShowMeGeodude",
       "en_US": [
         "The view is good from the second floor,\n",
         "but it’s a pain going outside.\r",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "OreburghCityNorthHouse2F_Text_ThatsAGeodudeThisIsATokenOfMyThanks",
+      "id": "OreburghCityNorthHouse2F_Text_TokenOfMyThanks",
       "en_US": [
         "The view is good from the second floor,\n",
         "but it’s a pain going outside.\r",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "OreburghCityNorthHouse2F_Text_YeahThereAreSoManyKindsOfPokemonOutInTheWorld",
+      "id": "OreburghCityNorthHouse2F_Text_SoManyKindsOfPokemon",
       "en_US": [
         "Yeah, there are so many kinds of\n",
         "Pokémon out in the world.\r",

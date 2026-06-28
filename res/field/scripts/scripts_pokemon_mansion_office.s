@@ -13,10 +13,10 @@
     ScriptEntryEnd
 
 PokemonMansionOffice_OnTransition:
-    GetHour VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, PokemonMansionOffice_SetBlockStatue
-    GoToIfEq VAR_MAP_LOCAL_0, 1, PokemonMansionOffice_SetBlockStatue
-    GoToIfLe VAR_MAP_LOCAL_0, 5, PokemonMansionOffice_SetDontBlockStatue
+    GetHour VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, 0, PokemonMansionOffice_SetBlockStatue
+    GoToIfEq VAR_MAP_LOCAL_0x00, 1, PokemonMansionOffice_SetBlockStatue
+    GoToIfLe VAR_MAP_LOCAL_0x00, 5, PokemonMansionOffice_SetDontBlockStatue
     GoTo PokemonMansionOffice_SetBlockStatue
 
 PokemonMansionOffice_SetBlockStatue:
@@ -33,8 +33,8 @@ PokemonMansionOffice_MrBacklot:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereAreCutePokemon
-    GoToIfEq VAR_MAP_LOCAL_B, 1, PokemonMansionOffice_ThereAreCutePokemon
+    GoToIfSet FLAG_DAILY_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereAreCutePokemon
+    GoToIfEq VAR_MAP_LOCAL_0x0B, 1, PokemonMansionOffice_ThereAreCutePokemon
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, PokemonMansionOffice_YouAreEnviousYes
     GoTo PokemonMansionOffice_WelcomeToMansion
@@ -84,9 +84,9 @@ PokemonMansionOffice_AddThrophyGardenMon:
     ApplyMovement LOCALID_OLD_MAN, PokemonMansionOffice_Movement_OldManLeave
     WaitMovement
     RemoveObject LOCALID_OLD_MAN
-    SetVar VAR_MAP_LOCAL_B, 1
+    SetVar VAR_MAP_LOCAL_0x0B, 1
     Call PokemonMansionOffice_MrBacklotFacePlayer
-    SetFlag FLAG_ADDED_TROPHY_GARDEN_MON
+    SetFlag FLAG_DAILY_ADDED_TROPHY_GARDEN_MON
     GoTo PokemonMansionOffice_ThereAreCutePokemon
 
 PokemonMansionOffice_ThereAreCutePokemon:
@@ -194,7 +194,7 @@ PokemonMansionOffice_HowWasTrophyGarden:
     End
 
 PokemonMansionOffice_OldManMessage:
-    GoToIfSet FLAG_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereWereSomePokemon
+    GoToIfSet FLAG_DAILY_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereWereSomePokemon
     CheckGameCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, PokemonMansionOffice_MessageGameCompleted
     GetRandom VAR_RESULT, 2

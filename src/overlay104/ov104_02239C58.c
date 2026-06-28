@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0209B75C_decl.h"
+#include "struct_decls/battle_frontier_decl.h"
 #include "struct_defs/struct_0209BBA4.h"
 
 #include "applications/party_menu/defs.h"
@@ -12,6 +12,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier.h"
 #include "dexmode_checker.h"
 #include "heap.h"
 #include "mail.h"
@@ -19,18 +20,17 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "unk_0202D778.h"
-#include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 
 #include "constdata/const_020F410C.h"
 
 void ov104_02239C7C(UnkStruct_0209BBA4 *param0);
 BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 param3);
-void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 param2);
-static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
-static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
-static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID);
-static void ov104_0223A090(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
+void ov104_02239CD0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, u16 param2);
+static void ov104_02239D1C(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
+static void ov104_02239F38(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
+static void ov104_02239FB0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID);
+static void ov104_0223A090(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
 
 UnkStruct_0209BBA4 *ov104_02239C58(SaveData *saveData)
 {
@@ -78,7 +78,7 @@ BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 para
     return v0;
 }
 
-void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 param2)
+void ov104_02239CD0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, u16 param2)
 {
     FieldSystem *fieldSystem = param1->fieldSystem;
 
@@ -100,7 +100,7 @@ void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 
     }
 }
 
-static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void ov104_02239D1C(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
 {
     u8 v0;
 
@@ -155,7 +155,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     sub_0209B988(param0, &gPokemonPartyAppTemplate, param1->partyMenu, 0, NULL);
 }
 
-static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void ov104_02239F38(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
 {
     switch (param1->partyMenu->selectedMonSlot) {
     case 7:
@@ -179,7 +179,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_9D = 2;
 }
 
-static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID)
+static void ov104_02239FB0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID)
 {
     static const u8 visiblePages[] = {
         SUMMARY_PAGE_INFO,
@@ -212,7 +212,7 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     sub_0209B988(param0, &gPokemonSummaryScreenApp, param1->unk_AC, 0, NULL);
 }
 
-static void ov104_0223A090(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void ov104_0223A090(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
 {
     param1->unk_9F = param1->unk_AC->monIndex;
     Heap_Free(param1->unk_AC);

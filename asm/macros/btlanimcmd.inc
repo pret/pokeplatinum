@@ -83,16 +83,22 @@
     .long \value
     .endm
 
-    .macro BtlAnimCmd_013 arg0:req, arg1:req
-    .long BTLANIMCMD_013
-    .long (\arg0 - .) / 4
-    .long (\arg1 - .) / 4
+    // Jumps to one of two addresses based on the parity of the secondary effect chance roll
+    // addrEven: Address to jump to if the secondary effect chance roll is even
+    // addrOdd: Address to jump to if the secondary effect chance roll is odd
+    .macro JumpIfEffectChanceOdd addrEven:req, addrOdd:req
+    .long BTLANIMCMD_JUMPIFEFFECTCHANCEODD
+    .long (\addrEven - .) / 4
+    .long (\addrOdd - .) / 4
     .endm
 
-    .macro BtlAnimCmd_014 arg0:req, arg1:req
-    .long BTLANIMCMD_014
-    .long \arg0
-    .long \arg1
+    // Jumps by the specified word offset if the secondary effect chance equals the specified value
+    // effectChance: Effect chance value to compare against the move's effect chance
+    // offset: Number of words to advance the script pointer by if the effect chance matches
+    .macro JumpIfEffectChance effectChance:req, offset:req
+    .long BTLANIMCMD_JUMPIFEFFECTCHANCE
+    .long \effectChance
+    .long \offset
     .endm
 
     // Jumps to the specified address
@@ -288,7 +294,7 @@
     .endm
 
     .macro BtlAnimCmd_033 addr:req
-    .long BTLANIMCMD_033
+    .long BTLANIMCMD_JUMPIFUNK_01
     .long \addr
     .endm
 
@@ -550,12 +556,12 @@
     .endm
 
     .macro BtlAnimCmd_068 arg0:req
-    .long BTLANIMCMD_068
+    .long BTLANIMCMD_STARTBATTLERSLIDEIN
     .long \arg0
     .endm
 
     .macro BtlAnimCmd_069 arg0:req
-    .long BTLANIMCMD_069
+    .long BTLANIMCMD_STARTBATTLERSLIDEOUT
     .long \arg0
     .endm
 
@@ -711,14 +717,14 @@
     .endm
 
     .macro BtlAnimCmd_082 arg0:req, arg1:req, arg2:req
-    .long BTLANIMCMD_082
+    .long BTLANIMCMD_STARTPOKEMONSPRITEDRAWTASK
     .long \arg0
     .long \arg1
     .long \arg2
     .endm
 
     .macro BtlAnimCmd_083 arg0:req
-    .long BTLANIMCMD_083
+    .long BTLANIMCMD_STOPPOKEMONSPRITEDRAWTASK
     .long \arg0
     .endm
 

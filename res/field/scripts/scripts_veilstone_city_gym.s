@@ -20,7 +20,7 @@ VeilstoneGym_Maylene:
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneGym_MayleneAfterBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 133, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_VEILSTONE_CITY_GYM
     Message VeilstoneGym_Text_MayleneIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_MAYLENE
@@ -37,7 +37,7 @@ VeilstoneGym_Maylene:
     SetTrainerFlag TRAINER_BLACK_BELT_DARREN
     SetTrainerFlag TRAINER_BLACK_BELT_RAFAEL
     SetTrainerFlag TRAINER_BLACK_BELT_JEFFERY
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 133, TRAINER_LEADER_MAYLENE, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_VEILSTONE_CITY_GYM, TRAINER_LEADER_MAYLENE
     SetFlag FLAG_HIDE_GAME_CORNER_LOOKER
     ClearFlag FLAG_HIDE_VEILSTONE_COUNTERPART
     SetVar VAR_VEILSTONE_WAREHOUSE_GUARDS_FIGHTABLE, TRUE
@@ -51,7 +51,7 @@ VeilstoneGym_MayleneTryGiveTM60:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, VeilstoneGym_MayleneCannotGiveTM60
     Common_GiveItemQuantity
-    SetFlag FLAG_OBTAINED_MAYLENE_TM60
+    SetFlag FLAG_RECEIVED_MAYLENE_TM60
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message VeilstoneGym_Text_MayleneExplainTM60
@@ -67,7 +67,7 @@ VeilstoneGym_MayleneCannotGiveTM60:
     End
 
 VeilstoneGym_MayleneAfterBadge:
-    GoToIfUnset FLAG_OBTAINED_MAYLENE_TM60, VeilstoneGym_MayleneTryGiveTM60
+    GoToIfUnset FLAG_RECEIVED_MAYLENE_TM60, VeilstoneGym_MayleneTryGiveTM60
     BufferPlayerName 0
     Message VeilstoneGym_Text_MayleneAfterBadge
     WaitButton

@@ -9,7 +9,7 @@
 
 #include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
-#include "battle/trainer_intro_data.h"
+#include "battle/battle_main.h"
 
 #include "bag.h"
 #include "bg_window.h"

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_BATTLE_AI_CONTEXT_H
-#define POKEPLATINUM_BATTLE_AI_CONTEXT_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_AI_CONTEXT_H
+#define POKEPLATINUM_BATTLE_BATTLE_AI_CONTEXT_H
 
 #include "constants/battle.h"
 #include "constants/moves.h"
@@ -49,4 +49,4 @@ typedef struct AIContext {
     u16 padding1DD8[4]; // unused
 } AIContext;
 
-#endif // POKEPLATINUM_BATTLE_AI_CONTEXT_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_AI_CONTEXT_H

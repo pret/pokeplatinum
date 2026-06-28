@@ -17,6 +17,7 @@
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/struct_battle_castle.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "communication_information.h"
@@ -35,7 +36,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020302D0.h"
-#include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
 void ov104_02236514(BattleCastle *param0, u16 param1);
@@ -93,15 +93,15 @@ BattleCastle *ov104_022361B4(SaveData *saveData, u16 param1, u8 param2, u16 para
         }
 
         if (v5 == 1) {
-            v9->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestStreakIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestStreakIndex(v9->challengeType)));
+            v9->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestStreakIndex(v9->challengeType));
         } else {
             v9->currentStreak = 0;
 
-            BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType)), 0);
-            BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleSpentCPIndex(param2), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(param2)), 0);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType), 0);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleSpentCPIndex(param2), 0);
 
             for (v7 = 0; v7 < 3; v7++) {
-                BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleRankIndex(v9->challengeType, v7), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRankIndex(v9->challengeType, v7)), 1);
+                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleRankIndex(v9->challengeType, v7), 1);
             }
         }
 
@@ -110,13 +110,13 @@ BattleCastle *ov104_022361B4(SaveData *saveData, u16 param1, u8 param2, u16 para
         v9->unk_24[0] = param3;
         v9->unk_24[1] = param4;
         v9->unk_24[2] = param5;
-        v9->unk_20 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType)));
+        v9->unk_20 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType));
 
-        BattleFrontierStats_AddToStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType)), 10);
+        BattleFrontierSave_AddToStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(v9->challengeType)), 10);
     } else {
         v9->challengeType = (u8)sub_02030398(v4, 0, 0, 0, NULL);
         v9->unk_11 = (u8)sub_02030398(v4, 1, 0, 0, NULL);
-        v9->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestStreakIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestStreakIndex(v9->challengeType)));
+        v9->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetCastleLatestStreakIndex(v9->challengeType));
         v9->unk_16 = (u16)(v9->currentStreak / 7);
 
         for (v7 = 0; v7 < 3; v7++) {
@@ -318,7 +318,7 @@ void ov104_02236848(BattleCastle *param0, u8 param1)
     u16 v5[4];
     u32 v6[4];
     u32 v7, v8, v9;
-    BattleFrontier *frontier;
+    BattleFrontierSave *frontier;
     Pokemon *v11;
     UnkStruct_020302DC *v12 = param0->unk_08;
     UnkStruct_0203041C *v13 = sub_0203041C(param0->saveData);
@@ -333,25 +333,25 @@ void ov104_02236848(BattleCastle *param0, u8 param1)
     v4[0] = param0->unk_11;
 
     sub_02030308(param0->unk_08, 1, 0, 0, v4);
-    BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetCastleLatestStreakIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestStreakIndex(param0->challengeType)), param0->currentStreak);
+    BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleLatestStreakIndex(param0->challengeType), param0->currentStreak);
 
     if (param1 != 2) {
-        v1 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType)));
-        v7 = BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType)), param0->currentStreak);
-        v2 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType)));
-        v9 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType)));
+        v1 = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType));
+        v7 = BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType), param0->currentStreak);
+        v2 = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordStreakIndex(param0->challengeType));
+        v9 = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType));
 
         if (param0->currentStreak == v1) {
-            BattleFrontierStats_SetIfBetter(frontier, BattleFrontierStats_GetCastleRecordCPIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRecordCPIndex(param0->challengeType)), v9);
+            BattleFrontierSave_SetIfBetterAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordCPIndex(param0->challengeType), v9);
         } else if (v1 < v2) {
-            BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetCastleRecordCPIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRecordCPIndex(param0->challengeType)), v9);
+            BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleRecordCPIndex(param0->challengeType), v9);
         }
 
         v4[0] = param0->unk_27;
         sub_02030430(v13, 9, param0->challengeType, 0, v4);
 
         if (param0->challengeType == 3) {
-            BattleFrontierStats_SetStat(frontier, STAT_CASTLE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_CASTLE_WFC_STREAK_ACTIVE), param0->unk_27);
+            BattleFrontierSave_SetStatAutoHostIdx(frontier, STAT_CASTLE_WFC_STREAK_ACTIVE, param0->unk_27);
         }
     }
 
@@ -433,7 +433,7 @@ void ov104_02236B8C(BattleCastle *param0)
     v0[0] = 1;
 
     for (v1 = 0; v1 < 3; v1++) {
-        BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetCastleRankIndex(param0->challengeType, v1), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleRankIndex(param0->challengeType, v1)), 1);
+        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetCastleRankIndex(param0->challengeType, v1), 1);
     }
 
     ov104_02236848(param0, 1);
@@ -615,12 +615,12 @@ int ov104_02236D10(BattleCastle *param0)
 
 void ov104_02236ED8(SaveData *saveData, u8 param1, int param2)
 {
-    u16 v0 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param1)));
+    u16 v0 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1));
 
     if (v0 + param2 > 9999) {
-        BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param1)), 9999);
+        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1), 9999);
     } else {
-        BattleFrontierStats_AddToStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param1)), param2);
+        BattleFrontierSave_AddToStat(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param1)), param2);
     }
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(saveData), RECORD_UNK_065, param2);
@@ -732,18 +732,18 @@ void ov104_02237180(FrontierScriptManager *param0, BattleCastle *param1)
 
     if (BattleCastle_IsMultiPlayerChallenge(param1->challengeType) == 0) {
         GF_ASSERT(param0->unk_A8 != NULL);
-        v0 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param1->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType)));
+        v0 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(param1->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType));
         ov104_02237284(param0, param0->unk_A8, SaveData_GetTrainerInfo(param1->saveData), v0);
     } else {
         GF_ASSERT(param0->unk_A8 != NULL);
         GF_ASSERT(param0->unk_AC != NULL);
 
         if (CommSys_CurNetId() == 0) {
-            v0 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param1->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType)));
+            v0 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(param1->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType));
             v1 = param1->partnersCP;
         } else {
             v0 = param1->partnersCP;
-            v1 = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param1->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType)));
+            v1 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(param1->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param1->challengeType));
         }
 
         ov104_02237284(param0, param0->unk_A8, CommInfo_TrainerInfo(0), v0);

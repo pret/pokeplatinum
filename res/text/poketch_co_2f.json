@@ -2,14 +2,14 @@
   "key": 17423,
   "messages": [
     {
-      "id": "PoketchCo2F_Text_WellTryToThinkLikeATrainerAndFindWhatPoketchAppsWouldBeGood",
+      "id": "PoketchCo2F_Text_WellThinkLikeATrainer",
       "en_US": [
         "We’ll try to think like a Trainer and find\n",
         "what Pokétch apps would be good."
       ]
     },
     {
-      "id": "PoketchCo2F_Text_PokemonWatchThatsPoketchForShort",
+      "id": "PoketchCo2F_Text_PoketchForShort",
       "en_US": [
         "Pokémon Watch!\n",
         "That’s Pokétch for short.\r",
@@ -20,11 +20,11 @@
       ]
     },
     {
-      "id": "PoketchCo2F_Text_ClefairyCleffy",
+      "id": "PoketchCo2F_Text_ClefairyCry",
       "en_US": "CLEFAIRY: Cleffy?"
     },
     {
-      "id": "PoketchCo2F_Text_PachirisuPatchii",
+      "id": "PoketchCo2F_Text_PachirisuCry",
       "en_US": "PACHIRISU: Patchii?"
     }
   ]

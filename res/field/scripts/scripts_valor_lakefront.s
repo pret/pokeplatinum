@@ -357,11 +357,11 @@ ValorLakefront_CynthiaLeave:
 
 ValorLakefront_RemoveCynthia:
     RemoveObject LOCALID_CYNTHIA
-    SetVar VAR_UNK_0x4083, 2
+    SetVar VAR_DUMMY_0x4083, 2
     SetFlag FLAG_DUMMY_0x00B7
     SetFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     ClearFlag FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE
-    SetVar VAR_PASTORIA_STATE, 6
+    SetVar VAR_PASTORIA_CITY_STATE, 6
     ReleaseAll
     End
 
@@ -421,7 +421,7 @@ ValorLakefront_Movement_CynthiaLeave:
     WalkNormalNorth 9
     EndMovement
 
-ValorLakefront_UnusedMovement:
+ValorLakefront_Movement_Unused:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
@@ -444,7 +444,7 @@ ValorLakefront_Movement_PlayerWatchRivalLeave:
     WalkOnSpotNormalNorth
     EndMovement
 
-ValorLakefront_UnusedMovement2:
+ValorLakefront_Movement_Unused2:
     Delay8 3
     WalkOnSpotNormalNorth
     EndMovement

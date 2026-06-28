@@ -9,9 +9,9 @@
     ScriptEntry GalacticHQControlRoom_MachineUxie
     ScriptEntry GalacticHQControlRoom_MachineMesprit
     ScriptEntry GalacticHQControlRoom_MachineAzelf
-    ScriptEntry GalacticHQControlRoom_Unused7
-    ScriptEntry GalacticHQControlRoom_Unused8
-    ScriptEntry GalacticHQControlRoom_Unused9
+    ScriptEntry GalacticHQControlRoom_Dummy7
+    ScriptEntry GalacticHQControlRoom_Dummy8
+    ScriptEntry GalacticHQControlRoom_Dummy9
     ScriptEntry GalacticHQControlRoom_Button
     ScriptEntry GalacticHQControlRoom_Uxie
     ScriptEntry GalacticHQControlRoom_Mesprit
@@ -44,11 +44,11 @@ GalacticHQControlRoom_Saturn:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, GalacticHQControlRoom_BlackOut
     SetFlag FLAG_DEFEATED_GALACTIC_HQ_CONTROL_ROOM_SATURN
-    SetVar FLAG_GALACTIC_HQ_CONTROL_ROOM_STATE, 1
+    SetVar VAR_GALACTIC_HQ_CONTROL_ROOM_STATE, 1
     Message GalacticHQControlRoom_Text_WhatMakesYouSoTough
     CloseMessage
     GetPlayerDir VAR_0x8004
-    SetVar VAR_MAP_LOCAL_2, VAR_0x8004
+    SetVar VAR_MAP_LOCAL_0x02, VAR_0x8004
     GoToIfEq VAR_0x8004, DIR_NORTH, GalacticHQControlRoom_SaturnMoveAsideNorth
     GoToIfEq VAR_0x8004, DIR_WEST, GalacticHQControlRoom_SaturnMoveAsideWest
     GoToIfEq VAR_0x8004, DIR_EAST, GalacticHQControlRoom_SaturnMoveAsideEast
@@ -161,13 +161,13 @@ GalacticHQControlRoom_AzelfWasSealedInside:
     ReleaseAll
     End
 
-GalacticHQControlRoom_Unused7:
+GalacticHQControlRoom_Dummy7:
     End
 
-GalacticHQControlRoom_Unused8:
+GalacticHQControlRoom_Dummy8:
     End
 
-GalacticHQControlRoom_Unused9:
+GalacticHQControlRoom_Dummy9:
     End
 
 GalacticHQControlRoom_Button:
@@ -181,7 +181,7 @@ GalacticHQControlRoom_Button:
     End
 
 GalacticHQControlRoom_FreePokemon:
-    SetVar FLAG_GALACTIC_HQ_CONTROL_ROOM_STATE, 0
+    SetVar VAR_GALACTIC_HQ_CONTROL_ROOM_STATE, 0
     PlaySE SEQ_SE_DP_BUTTON3
     BufferPlayerName 0
     Message GalacticHQControlRoom_Text_PlayerPressedButton
@@ -203,9 +203,9 @@ GalacticHQControlRoom_FreePokemon:
     RemoveObject LOCALID_MESPRIT
     RemoveObject LOCALID_AZELF
     RemoveObject LOCALID_UXIE
-    GoToIfEq VAR_MAP_LOCAL_2, DIR_NORTH, GalacticHQControlRoom_SaturnPlayerFaceEachOtherNorth
-    GoToIfEq VAR_MAP_LOCAL_2, DIR_WEST, GalacticHQControlRoom_SaturnPlayerFaceEachOtherWest
-    GoToIfEq VAR_MAP_LOCAL_2, DIR_EAST, GalacticHQControlRoom_SaturnPlayerFaceEachOtherEast
+    GoToIfEq VAR_MAP_LOCAL_0x02, DIR_NORTH, GalacticHQControlRoom_SaturnPlayerFaceEachOtherNorth
+    GoToIfEq VAR_MAP_LOCAL_0x02, DIR_WEST, GalacticHQControlRoom_SaturnPlayerFaceEachOtherWest
+    GoToIfEq VAR_MAP_LOCAL_0x02, DIR_EAST, GalacticHQControlRoom_SaturnPlayerFaceEachOtherEast
     End
 
 GalacticHQControlRoom_FlickerLakeGuardians:

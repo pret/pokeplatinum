@@ -22,8 +22,8 @@ PastoriaCityObservatoryGate1F_CoordEvent_TryStartSafariGame:
     LockAll
     ApplyMovement LOCALID_PLAYER, PastoriaCityObservatoryGate1F_Movement_PlayerWalkOnSpotWest
     WaitMovement
-    GetPlayerMapPos VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1
-    CallIfEq VAR_MAP_LOCAL_0, 5, PastoriaCityObservatoryGate1F_PlayerWalkWest
+    GetPlayerMapPos VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01
+    CallIfEq VAR_MAP_LOCAL_0x00, 5, PastoriaCityObservatoryGate1F_PlayerWalkWest
     ShowMoney 20, 2
     Message PastoriaCityObservatoryGate1F_Text_AskPlaySafariGame
     ShowYesNoMenu VAR_RESULT
@@ -70,7 +70,7 @@ PastoriaCityObservatoryGate1F_StartSafariGame:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, DIR_NORTH
+    Warp MAP_HEADER_GREAT_MARSH_6, 68, 116, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -152,8 +152,8 @@ PastoriaCityObservatoryGate1F_ExitGreatMarsh:
     WaitMovement
     SetVar VAR_SAFARI_GAME_STATE, 0
     EndSafariGame
-    GetCurrentSafariGameCaughtNum VAR_MAP_LOCAL_2
-    GoToIfGe VAR_MAP_LOCAL_2, 5, PastoriaCityObservatoryGate1F_TryGiveMatchupchecker
+    GetCurrentSafariGameCaughtNum VAR_MAP_LOCAL_0x02
+    GoToIfGe VAR_MAP_LOCAL_0x02, 5, PastoriaCityObservatoryGate1F_TryGiveMatchupchecker
     ReleaseAll
     End
 
@@ -179,7 +179,7 @@ PastoriaCityObservatoryGate1F_ReturnToGreatMarsh:
     WaitMovement
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, DIR_NORTH
+    Warp MAP_HEADER_GREAT_MARSH_6, 68, 116, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -201,8 +201,8 @@ PastoriaCityObservatoryGate1F_OnFrame_GameEnded:
     ApplyMovement LOCALID_PLAYER, PastoriaCityObservatoryGate1F_Movement_PlayerExitGreatMarsh
     WaitMovement
     SetVar VAR_SAFARI_GAME_STATE, 0
-    GetCurrentSafariGameCaughtNum VAR_MAP_LOCAL_2
-    GoToIfGe VAR_MAP_LOCAL_2, 5, PastoriaCityObservatoryGate1F_TryGiveMatchupchecker
+    GetCurrentSafariGameCaughtNum VAR_MAP_LOCAL_0x02
+    GoToIfGe VAR_MAP_LOCAL_0x02, 5, PastoriaCityObservatoryGate1F_TryGiveMatchupchecker
     ReleaseAll
     End
 
@@ -256,12 +256,12 @@ PastoriaCityObservatoryGate1F_Movement_CowgirlWalkToPlayer:
     WalkOnSpotNormalNorth
     EndMovement
 
-PastoriaCityObservatoryGate1F_UnusedMovement:
+PastoriaCityObservatoryGate1F_Movement_Unused:
     WalkNormalWest
     WalkOnSpotNormalEast
     EndMovement
 
-PastoriaCityObservatoryGate1F_UnusedMovement2:
+PastoriaCityObservatoryGate1F_Movement_Unused2:
     WalkNormalEast
     WalkOnSpotNormalWest
     EndMovement

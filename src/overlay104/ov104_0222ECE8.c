@@ -6,14 +6,15 @@
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 
+#include "overlay104/battle_hall.h"
 #include "overlay104/ov104_0223A7F4.h"
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_battle_castle.h"
 #include "overlay104/struct_battle_factory.h"
-#include "overlay104/struct_battle_hall.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "communication_system.h"
 #include "heap.h"
@@ -23,7 +24,6 @@
 #include "trainer_info.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
-#include "unk_0205DFC4.h"
 
 BOOL ov104_0222EEF8(BattleFactory *param0);
 void ov104_0222EF30(int param0, int param1, void *param2, void *param3);
@@ -195,7 +195,7 @@ BOOL ov104_0222EDA8(BattleHall *param0)
     v1 = 0;
 
     for (v0 = 0; v0 < (10 * 2); v0++) {
-        v2[v0] = param0->unk_268[v0];
+        v2[v0] = param0->monIndices[v0];
     }
 
     v1 += (10 * 2);
@@ -227,7 +227,7 @@ void ov104_0222EDDC(int param0, int param1, void *param2, void *param3)
     }
 
     for (v0 = 0; v0 < (10 * 2); v0++) {
-        v2->unk_268[v0] = v3[v0];
+        v2->monIndices[v0] = v3[v0];
     }
 
     v1 += (10 * 2);
@@ -735,7 +735,7 @@ BOOL ov104_0222F3B8(BattleCastle *param0)
     v1 += 3;
     v1 += (7 + 1);
 
-    param0->unk_3C0[v1] = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType)));
+    param0->unk_3C0[v1] = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetCastleLatestCPIndex(param0->challengeType));
     v1 += 1;
 
     if (CommSys_SendData(42, param0->unk_3C0, v3) == 1) {

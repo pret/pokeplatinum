@@ -6,11 +6,11 @@
 
     ScriptEntry IronIslandB2FLeftRoom_OnTransition
     ScriptEntry IronIslandB2FLeftRoom_CoordEvent_PlatformLift
-    ScriptEntry IronIslandB2FLeftRoom_CoordEvent_StartFollowingRiley
+    ScriptEntry IronIslandB2FLeftRoom_CoordEvent_RileyStartFollowing
     ScriptEntry IronIslandB2FLeftRoom_CoordEvent_PlayerLeaveRiley
-    ScriptEntry IronIslandB2FLeftRoom_Unused5
-    ScriptEntry IronIslandB2FLeftRoom_Unused6
-    ScriptEntry IronIslandB2FLeftRoom_Unused7
+    ScriptEntry IronIslandB2FLeftRoom_Dummy5
+    ScriptEntry IronIslandB2FLeftRoom_Dummy6
+    ScriptEntry IronIslandB2FLeftRoom_Dummy7
     ScriptEntry IronIslandB2FLeftRoom_Riley
     ScriptEntry IronIslandB2FLeftRoom_CoordEvent_Grunts
     ScriptEntryEnd
@@ -35,7 +35,7 @@ IronIslandB2FLeftRoom_CoordEvent_PlatformLift:
     TriggerPlatformLift
     End
 
-IronIslandB2FLeftRoom_CoordEvent_StartFollowingRiley:
+IronIslandB2FLeftRoom_CoordEvent_RileyStartFollowing:
     LockAll
     SetPlayerBike FALSE
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -143,7 +143,7 @@ IronIslandB2FLeftRoom_Movement_RileyWalkBackZ3:
     WalkNormalWest
     EndMovement
 
-IronIslandB2FLeftRoom_Unused5:
+IronIslandB2FLeftRoom_Dummy5:
     End
 
 IronIslandB2FLeftRoom_CoordEvent_Grunts:
@@ -207,12 +207,12 @@ IronIslandB2FLeftRoom_PlayerRileyWalkToGruntsZ41:
     WaitMovement
     Return
 
-IronIslandB2FLeftRoom_UnusedMovement6:
+IronIslandB2FLeftRoom_Unused:
     ApplyMovement LOCALID_RILEY, IronIslandB2FLeftRoom_Movement_Unused6
     WaitMovement
     Return
 
-IronIslandB2FLeftRoom_UnusedMovement7:
+IronIslandB2FLeftRoom_Unused2:
     ApplyMovement LOCALID_RILEY, IronIslandB2FLeftRoom_Movement_Unused7
     WaitMovement
     Return
@@ -381,10 +381,10 @@ IronIslandB2FLeftRoom_Movement_PlayerWalkToGruntMSouth:
     WalkNormalWest
     EndMovement
 
-IronIslandB2FLeftRoom_Unused6:
+IronIslandB2FLeftRoom_Dummy6:
     End
 
-IronIslandB2FLeftRoom_Unused7:
+IronIslandB2FLeftRoom_Dummy7:
     End
 
 IronIslandB2FLeftRoom_Riley:

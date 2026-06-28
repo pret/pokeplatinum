@@ -9,7 +9,7 @@
     ScriptEntry FieldMoves_Water
     ScriptEntry FieldMoves_Fog_Unused
     ScriptEntry FieldMoves_Waterfall
-    ScriptEntry FieldMoves_Dummy
+    ScriptEntry FieldMoves_Dummy8
     ScriptEntry FieldMoves_UseCutFromMenu
     ScriptEntry FieldMoves_UseRockSmashFromMenu
     ScriptEntry FieldMoves_UseStrengthFromMenu
@@ -55,7 +55,7 @@ FieldMoves_UseCutFromField:
     WaitTime 7, VAR_RESULT
     RemoveObject VAR_LAST_TALKED
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_CUT, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_CUT, VAR_0x8004
 FieldMoves_WaitForCutAnimFromField:
     WaitTime 1, VAR_RESULT
     GoToIfEq VAR_0x8005, 0, FieldMoves_WaitForCutAnimFromField
@@ -72,7 +72,7 @@ FieldMoves_UseCutFromMenu:
     WaitTime 7, VAR_RESULT
     RemoveObject VAR_LAST_TALKED
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_CUT, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_CUT, VAR_0x8004
 FieldMoves_WaitForCutAnimFromMenu:
     WaitTime 1, VAR_RESULT
     GoToIfEq VAR_0x8005, 0, FieldMoves_WaitForCutAnimFromMenu
@@ -156,7 +156,7 @@ FieldMoves_UseRockSmashFromField:
     WaitTime 10, VAR_RESULT
     RemoveObject VAR_LAST_TALKED
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, VAR_0x8004
 FieldMoves_WaitForRockSmashAnimFromField:
     WaitTime 1, VAR_RESULT
     GoToIfEq VAR_0x8005, 0, FieldMoves_WaitForRockSmashAnimFromField
@@ -173,7 +173,7 @@ FieldMoves_UseRockSmashFromMenu:
     WaitTime 10, VAR_RESULT
     RemoveObject VAR_LAST_TALKED
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, VAR_0x8004
 FieldMoves_WaitForRockSmashAnimFromMenu:
     WaitTime 1, VAR_RESULT
     GoToIfEq VAR_0x8005, 0, FieldMoves_WaitForRockSmashAnimFromMenu
@@ -216,7 +216,7 @@ FieldMoves_UseStrengthFromField:
     WaitButton
     CloseMessage
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, VAR_0x8004
     GoTo FieldMoves_End
     End
 
@@ -240,7 +240,7 @@ FieldMoves_UseStrengthFromMenu:
     WaitButton
     CloseMessage
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, VAR_0x8004
     GoTo FieldMoves_End3
 
 FieldMoves_RockyWall:
@@ -281,7 +281,7 @@ FieldMoves_UseRockClimbFromField:
     CloseMessage
     UseRockClimb VAR_0x8004
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_ROCK_CLIMB, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_ROCK_CLIMB, VAR_0x8004
     GoTo FieldMoves_End2
     End
 
@@ -292,7 +292,7 @@ FieldMoves_UseRockClimbFromMenu:
     CloseMessage
     UseRockClimb VAR_0x8000
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_ROCK_CLIMB, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_ROCK_CLIMB, VAR_0x8004
     ReleaseAll
     End
 
@@ -322,7 +322,7 @@ FieldMoves_UseSurfFromField:
     CloseMessage
     UseSurf VAR_0x8004
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_SURF, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_SURF, VAR_0x8004
     GoTo FieldMoves_End2
     End
 
@@ -335,7 +335,7 @@ FieldMoves_UseSurfFromMenu:
     UseSurf VAR_0x8000
     LockObject LOCALID_PLAYER
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_SURF, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_SURF, VAR_0x8004
     ReleaseAll
     End
 
@@ -366,7 +366,7 @@ FieldMoves_UseDefogFromField_Unused:
     CloseMessage
     PlayHMCutIn VAR_0x8004
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_DEFOG, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_DEFOG, VAR_0x8004
     GetCurrentMapID VAR_0x8004
     CallIfEq VAR_0x8004, MAP_HEADER_ROUTE_209_LOST_TOWER_5F, FieldMoves_SetFlagUsedDefog_Unused
     GoTo FieldMoves_End2
@@ -386,7 +386,7 @@ FieldMoves_UseDefogFromMenu:
     PlaySE SEQ_SE_DP_FBRADE
     ScrCmd_0C4
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_DEFOG, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_DEFOG, VAR_0x8004
     GetCurrentMapID VAR_0x8004
     CallIfEq VAR_0x8004, MAP_HEADER_ROUTE_209_LOST_TOWER_5F, FieldMoves_SetFlagUsedDefog_Unused
     GoTo FieldMoves_End3
@@ -443,7 +443,7 @@ FieldMoves_UseWaterfallFromField:
     CloseMessage
     UseWaterfall VAR_0x8004
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_WATERFALL, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_WATERFALL, VAR_0x8004
     GoTo FieldMoves_End2
     End
 
@@ -456,11 +456,11 @@ FieldMoves_UseWaterfallFromMenu:
     UseWaterfall VAR_0x8000
     LockObject LOCALID_PLAYER
     GetCurrentMapID VAR_0x8004
-    CreateJournalEvent LOCATION_EVENT_USED_WATERFALL, VAR_0x8004, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_USED_WATERFALL, VAR_0x8004
     ReleaseAll
     End
 
-FieldMoves_Dummy:
+FieldMoves_Dummy8:
     End
 
     .balign 4, 0

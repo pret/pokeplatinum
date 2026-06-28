@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_STRING_H
 #define POKEPLATINUM_STRING_H
 
+#include "constants/string.h"
+
 #include "charcode.h"
 
 /**
@@ -23,8 +25,6 @@ typedef struct String {
     /// definition method would be as `data[]`.
     charcode_t data[1];
 } String;
-
-#include "generated/string_padding_mode.h"
 
 /**
  * Control codes for which charset to use when formatting a string.

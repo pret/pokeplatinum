@@ -643,15 +643,15 @@ static void BattleAnimTask_Snatch(SysTask *task, void *param)
             if (ctx->iteration > (SNATCH_MAX_ITERATIONS - 1)) {
                 ctx->common.state++;
             } else {
-                UnkStruct_ov12_022380DC v1;
+                BattlerSpriteContext battlerSpriteCtx;
 
                 if (ctx->doRev == FALSE) {
-                    ov12_02220590(ctx->common.battleAnimSys, &v1, 3);
+                    BattlerSpriteContext_InitFromSystem(ctx->common.battleAnimSys, &battlerSpriteCtx, 3);
 
                     if (ctx->iteration == 2) {
-                        ov12_022382BC(&v1, BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys));
+                        ov12_022382BC(&battlerSpriteCtx, BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys));
                     } else {
-                        ov12_022380CC(&v1, BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys));
+                        ov12_022380CC(&battlerSpriteCtx, BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys));
                     }
                 }
 

@@ -20,28 +20,28 @@ OreburghMineB1F_ShowHiker:
     Return
 
 OreburghMineB1F_Worker:
-    NPCMessage OreburghMineB1F_Text_EveryoneThatWorksInTheCoalMineKeepsTheirOwnPokemonWithThem
+    NPCMessage OreburghMineB1F_Text_EveryoneKeepsTheirOwnPokemon
     End
 
 OreburghMineB1F_Twin:
-    NPCMessage OreburghMineB1F_Text_IFoundWhatIThoughtWereSomeRocksThenTheyStartedMoving
+    NPCMessage OreburghMineB1F_Text_SomeRocksStartedMoving
     End
 
 OreburghMineB1F_Hiker:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_COULDNT_RECEIVE_OREBURGH_MINE_B1F_FLAME_PLATE, OreburghMineB1F_TryGiveFlamePlateAgain
-    Message OreburghMineB1F_Text_IFoundSomethingVeryInterestingSoonAfterArrivalYouMayHaveItIfYoudLike
+    GoToIfSet FLAG_COULD_NOT_RECEIVE_OREBURGH_MINE_B1F_FLAME_PLATE, OreburghMineB1F_TryGiveFlamePlateAgain
+    Message OreburghMineB1F_Text_IFoundSomethingInteresting
     GoTo OreburghMineB1F_TryGiveFlamePlate
     End
 
 OreburghMineB1F_TryGiveFlamePlate:
     SetVar VAR_0x8004, ITEM_FLAME_PLATE
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghMineB1F_OhYouHaveAnOveradundanceOfThings
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghMineB1F_YouHaveAnOverabundance
     Common_GiveItemQuantity
-    Message OreburghMineB1F_Text_ImToldThatPlateWasCreatedAtTheSameTimeAsSinnoh
+    Message OreburghMineB1F_Text_CreatedAtSameTimeAsSinnoh
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 3, OreburghMineB1F_HikerLeaveZ3
@@ -74,9 +74,9 @@ OreburghMineB1F_RemoveHiker:
     ReleaseAll
     End
 
-OreburghMineB1F_OhYouHaveAnOveradundanceOfThings:
-    SetFlag FLAG_COULDNT_RECEIVE_OREBURGH_MINE_B1F_FLAME_PLATE
-    Message OreburghMineB1F_Text_OhYouHaveAnOveradundanceOfThings
+OreburghMineB1F_YouHaveAnOverabundance:
+    SetFlag FLAG_COULD_NOT_RECEIVE_OREBURGH_MINE_B1F_FLAME_PLATE
+    Message OreburghMineB1F_Text_YouHaveAnOverabundance
     GoTo OreburghMineB1F_HikerEnd
     End
 
@@ -87,7 +87,7 @@ OreburghMineB1F_HikerEnd:
     End
 
 OreburghMineB1F_TryGiveFlamePlateAgain:
-    Message OreburghMineB1F_Text_AboutThatVeryInterestingThingIFoundYouMayHaveItIfYoudLike
+    Message OreburghMineB1F_Text_YouMayHaveItIfYoudLike
     GoTo OreburghMineB1F_TryGiveFlamePlate
     End
 

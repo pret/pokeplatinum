@@ -355,7 +355,7 @@
       "en_US": "PP was restored."
     },
     {
-      "id": "pl_msg_00000453_00070",
+      "id": "PartyMenu_Text_MonRegainedHealth",
       "en_US": [
         "{STRVAR_1 1, 0, 0}\n",
         "regained health."
@@ -566,14 +566,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000453_00111",
+      "id": "PartyMenu_Text_MonHasMaxFriendship",
       "en_US": [
         "{STRVAR_1 1, 0, 0} adores you!\r",
         "Its base {STRVAR_1 13, 1, 0} fell!"
       ]
     },
     {
-      "id": "pl_msg_00000453_00112",
+      "id": "PartyMenu_Text_MonEVsCannotGoLower",
       "en_US": [
         "{STRVAR_1 1, 0, 0} became more friendly.\r",
         "Its base {STRVAR_1 13, 1, 0} can’t go lower."
@@ -936,14 +936,14 @@
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000453_00193",
+      "id": "PartyMenu_Text_LevelUp",
       "en_US": [
         "{STRVAR_1 1, 0, 0} was elevated to\n",
         "Lv. {STRVAR_1 52, 1, 0}.{WAIT 4}{WAIT 2}"
       ]
     },
     {
-      "id": "pl_msg_00000453_00194",
+      "id": "PartyMenu_Text_MonLearnedMove2",
       "en_US": [
         "{STRVAR_1 1, 0, 0} learned\n",
         "{STRVAR_1 6, 1, 0}!{WAIT 4}{WAIT 2}"

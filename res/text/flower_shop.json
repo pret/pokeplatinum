@@ -2,7 +2,7 @@
   "key": 1030,
   "messages": [
     {
-      "id": "FlowerShop_Text_ASingleBerryWillGrowIntoAPlantThatMakesSeveralBerries",
+      "id": "FlowerShop_Text_BerryWillGrowIntoPlant",
       "en_US": [
         "A single Berry will grow into a plant\n",
         "that makes several Berries.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "FlowerShop_Text_PleasePlantThatBerryInSoftEarthySoil",
+      "id": "FlowerShop_Text_PlantBerryInSoil",
       "en_US": [
         "Please plant that Berry in soft,\n",
         "earthy soil.\r",
@@ -22,14 +22,14 @@
       ]
     },
     {
-      "id": "FlowerShop_Text_TrainerPleaseWaterBerriesUsingThisSprayduckWateringCan",
+      "id": "FlowerShop_Text_WaterBerriesUsingSprayduck",
       "en_US": [
         "Trainer, please water Berries using\n",
         "this Sprayduck watering can.\r"
       ]
     },
     {
-      "id": "FlowerShop_Text_UseThatSprayduckToWaterTheSoilWhereYouvePlantedBerries",
+      "id": "FlowerShop_Text_UseSprayduckToWaterSoil",
       "en_US": [
         "Use that Sprayduck to water the soil\n",
         "where you’ve planted Berries.\r",

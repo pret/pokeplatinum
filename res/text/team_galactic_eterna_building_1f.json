@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "TeamGalacticEternaBuilding1F_Text_IncidentallyYouAreAFirstRateTrainer",
+      "id": "TeamGalacticEternaBuilding1F_Text_FirstRateTrainer",
       "en_US": [
         "...Incidentally, you are a first-rate\n",
         "Trainer. Of that, I am very aware.\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "TeamGalacticEternaBuilding1F_Text_NowIHaveBeenConductingMyInvestigationIntoTeamGalactic",
+      "id": "TeamGalacticEternaBuilding1F_Text_InvestigationIntoTeamGalactic",
       "en_US": [
         "Looker: Now, I have been conducting\n",
         "my investigation into Team Galactic.\r",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "TeamGalacticEternaBuilding1F_Text_WelcomeToTeamGalacticAreYouHereToDonateYourPokemon",
+      "id": "TeamGalacticEternaBuilding1F_Text_WelcomeToTeamGalactic",
       "en_US": [
         "Welcome to Team Galactic. Are you\n",
         "here to donate your Pokémon?\r",
@@ -58,14 +58,14 @@
       ]
     },
     {
-      "id": "TeamGalacticEternaBuilding1F_Text_AsAGroupTeamGalacticHasItsSightsSetOnTheStarsNotOnThisWorld",
+      "id": "TeamGalacticEternaBuilding1F_Text_SightsSetOnTheStars",
       "en_US": [
         "As a group, Team Galactic has its sights\n",
         "set on the stars, not on this world!"
       ]
     },
     {
-      "id": "TeamGalacticEternaBuilding1F_Text_ThePathYouChoseLeadsToGlory",
+      "id": "TeamGalacticEternaBuilding1F_Text_PathLeadsToGlory",
       "en_US": "The path you chose leads to glory."
     },
     {
@@ -73,7 +73,7 @@
       "en_US": "{STRVAR_1 3, 0, 0} used the {STRVAR_1 8, 1, 0}!\r"
     },
     {
-      "id": "TeamGalacticEternaBuilding1F_Text_ItsTheEntranceToASecretRoom",
+      "id": "TeamGalacticEternaBuilding1F_Text_EntranceToASecretRoom",
       "en_US": "It’s the entrance to a secret room!"
     }
   ]

@@ -848,17 +848,17 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
         case 2: {
             int v1;
             BallCapsule v2;
-            UnkStruct_ov12_02236030 v3 = { 0 };
+            BallCapsuleConfig ballCapCfg = { 0 };
 
-            v3.unk_00 = 1;
-            v3.unk_08 = param0->unk_428;
+            ballCapCfg.battlerType = 1;
+            ballCapCfg.mon = param0->unk_428;
             v1 = param0->unk_3C4[0] + 1;
 
             ov76_0223B848(&v2, param0);
             Pokemon_SetValue(param0->unk_428, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v1);
             Pokemon_SetValue(param0->unk_428, MON_DATA_BALL_CAPSULE, &v2);
 
-            param0->unk_D4.unk_154 = ov12_02236004(HEAP_ID_53, &v3);
+            param0->unk_D4.unk_154 = ov12_02236004(HEAP_ID_53, &ballCapCfg);
             ov12_02236320(param0->unk_D4.unk_154);
         }
             param0->unk_3DC++;

@@ -574,7 +574,7 @@ static void UseBerryFromMenu(ItemMenuUseContext *usageContext, const ItemUseCont
     v1 = FieldTask_GetEnv(usageContext->fieldTask);
 
     if (additionalContext->berryPatchFlags & BERRY_PATCH_FLAG_EMPTY) {
-        sub_02068540(usageContext, additionalContext, 2801);
+        sub_02068540(usageContext, additionalContext, SCRIPT_ID(BERRY_TREE_INTERACTIONS, 1));
     } else {
         UseHealingItemFromMenu(usageContext, additionalContext);
     }
@@ -675,12 +675,12 @@ static enum ItemUseCheckResult CanUsePokeRadar(const ItemUseContext *usageContex
 
 static void UseSprayDuckFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    sub_02068540(usageContext, additionalContext, 2802);
+    sub_02068540(usageContext, additionalContext, SCRIPT_ID(BERRY_TREE_INTERACTIONS, 2));
 }
 
 static BOOL UseSprayDuckInField(ItemFieldUseContext *usageContext)
 {
-    sub_02068584(usageContext, 2802);
+    sub_02068584(usageContext, SCRIPT_ID(BERRY_TREE_INTERACTIONS, 2));
     return FALSE;
 }
 
@@ -699,7 +699,7 @@ static enum ItemUseCheckResult CanUseSprayDuck(const ItemUseContext *usageContex
 
 static void UseMulchFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    sub_02068540(usageContext, additionalContext, 2803);
+    sub_02068540(usageContext, additionalContext, SCRIPT_ID(BERRY_TREE_INTERACTIONS, 3));
 }
 
 static enum ItemUseCheckResult CanUseMulch(const ItemUseContext *usageContext)

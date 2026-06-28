@@ -8,11 +8,11 @@
     ScriptEntryEnd
 
 Route208GateToHearthomeCity_PokemonBreederM:
-    NPCMessage Route208GateToHearthomeCity_Text_HearthomeCityIsAGreatPlace
+    NPCMessage Route208GateToHearthomeCity_Text_HearthomeCityGreatPlace
     End
 
 Route208GateToHearthomeCity_MiddleAgedWoman:
-    NPCMessage Route208GateToHearthomeCity_Text_IfYouSayHearthomeISayContests
+    NPCMessage Route208GateToHearthomeCity_Text_YouSayHearthomeISayContests
     End
 
 Route208GateToHearthomeCity_Clefairy:

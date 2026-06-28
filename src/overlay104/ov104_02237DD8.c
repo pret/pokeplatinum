@@ -15,6 +15,7 @@
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_battle_arcade.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "graphics.h"
@@ -29,7 +30,6 @@
 #include "sprite.h"
 #include "system_vars.h"
 #include "unk_02030494.h"
-#include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -174,7 +174,7 @@ BattleArcade *ov104_02237DD8(SaveData *saveData, u16 param1, u8 param2, u16 para
         }
 
         if (v5 == 1) {
-            v9->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType)));
+            v9->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType));
         } else {
             v9->currentStreak = 0;
         }
@@ -190,7 +190,7 @@ BattleArcade *ov104_02237DD8(SaveData *saveData, u16 param1, u8 param2, u16 para
         v9->unk_11 = (u8)sub_0203054C(v4, 2, 0, 0, NULL);
         v9->unk_1C = (u8)sub_0203054C(v4, 3, 0, 0, NULL);
         v9->unk_12 = (u8)sub_0203054C(v4, 1, 0, 0, NULL);
-        v9->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType)));
+        v9->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType));
         v9->unk_1A = (u16)(v9->currentStreak / 7);
 
         for (v7 = 0; v7 < 3; v7++) {
@@ -376,16 +376,16 @@ void ov104_02238278(BattleArcade *param0, u8 param1)
 
     v2[0] = param0->unk_12;
     sub_020304CC(param0->unk_08, 1, 0, 0, v2);
-    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeLatestStreakIndex(param0->challengeType)), param0->currentStreak);
+    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(param0->challengeType), param0->currentStreak);
 
     if (param1 != 2) {
-        v5 = BattleFrontierStats_SetIfBetter(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetArcadeCurrentStreakIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeCurrentStreakIndex(param0->challengeType)), param0->currentStreak);
+        v5 = BattleFrontierSave_SetIfBetterAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetArcadeCurrentStreakIndex(param0->challengeType), param0->currentStreak);
 
         v2[0] = param0->unk_2F;
         sub_020305CC(v9, 8, param0->challengeType, 0, v2);
 
         if (param0->challengeType == 3) {
-            BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(param0->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_ARCADE_WFC_STREAK_ACTIVE), param0->unk_2F);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, param0->unk_2F);
         }
     }
 

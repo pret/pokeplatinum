@@ -58,8 +58,8 @@ enum BattleAnimMoveInfoType {
     BATTLE_ANIM_MOVE_INFO_POWER,
     BATTLE_ANIM_MOVE_INFO_FRIENDSHIP,
     BATTLE_ANIM_MOVE_INFO_FIELD_CONDITIONS,
-    // BATTLE_ANIM_MOVE_INFO_??? = 4,
-    BATTLE_ANIM_MOVE_INFO_TERRAIN = 5,
+    BATTLE_ANIM_MOVE_INFO_EFFECT_CHANCE,
+    BATTLE_ANIM_MOVE_INFO_TERRAIN,
 
     BATTLE_ANIM_MOVE_INFO_COUNT
 };
@@ -86,7 +86,7 @@ enum BattleAnimTrackingTask {
 
 // Holds context information for the current move animation
 typedef struct BattleAnimContext {
-    u8 unk_00;
+    u8 command;
     u8 unk_01;
 
     // Current Move info
@@ -95,7 +95,7 @@ typedef struct BattleAnimContext {
     u16 power;
     u16 friendship; // Friendship of the attacker
     u32 fieldConditions; // Field conditions at the time of the move
-    u16 unk_10;
+    u16 effectChance;
     u16 terrain; // Terrain at the time of the move
 
     u16 attacker;
@@ -131,25 +131,25 @@ typedef struct BattleAnimScriptLoop {
     BOOL isActive;
 } BattleAnimScriptLoop;
 
-typedef struct {
+typedef struct PokemonSpriteDrawContext {
     struct BattleAnimSystem *battleAnimSys;
     SpriteManager *spriteManager;
     ManagedSprite *sprite;
     BOOL active;
-} UnkStruct_ov12_02221810;
+} PokemonSpriteDrawContext;
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-    s16 unk_04;
-    s16 unk_06;
-    int unk_08;
-} UnkStruct_ov12_022224F8_sub1;
+typedef struct BgWaveStrip {
+    s16 startScanline;
+    s16 endScanline;
+    s16 scrollSpeed;
+    s16 scrollAccum;
+    int baseOffset;
+} BgWaveStrip;
 
-typedef struct {
-    UnkStruct_ov12_022224F8_sub1 unk_00[16];
-    struct CustomBgScrollContext *unk_C0;
-} UnkStruct_ov12_022224F8;
+typedef struct WaveAnimContext {
+    BgWaveStrip strips[16];
+    struct CustomBgScrollContext *bgScrollCtx;
+} WaveAnimContext;
 
 typedef struct BattleBgAnim {
     BgConfig *bgConfig;
@@ -161,7 +161,7 @@ typedef struct BattleBgAnim {
     int unusedBg;
     BOOL unused;
     BOOL cancel;
-    UnkStruct_ov12_022224F8 *unk_1C;
+    WaveAnimContext *waveAnimCtx;
 } BattleBgAnim;
 
 typedef struct PokemonSpriteTrackingTask {
@@ -192,10 +192,10 @@ typedef struct BattleAnimSystem {
     u32 *scriptPtr;
     u32 *callStack[BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH];
     BattleAnimScriptLoop loopStack[BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS];
-    UnkStruct_ov12_02221810 unk_48[2];
+    PokemonSpriteDrawContext pokemonSpriteDrawContexts[2];
     u8 cameraProjections[MAX_PARTICLE_SYSTEMS]; // Projection setting for each particle system. See enum CameraProjection
     u8 particleSystemCameraFlip[MAX_PARTICLE_SYSTEMS]; // Whether to flip the camera (Y axis) for each particle system
-    s8 unk_88;
+    s8 unused_88;
     u8 scriptDelay;
     u16 activeAnimTasks;
     u16 activeSoundTasks;
@@ -214,8 +214,8 @@ typedef struct BattleAnimSystem {
     BgTrackingTask *bgTrackingTask;
     u8 bgSwitchState;
     u8 soundEffectWaitTimer;
-    u8 unk_17A;
-    u8 unk_17B;
+    u8 endDelayFrames;
+    u8 unused_17B;
     BattleBgAnim *bgAnim;
     BattleBackgroundReference battleBgRefs;
     int baseBgPalettes;
@@ -230,7 +230,7 @@ void BattleAnimSystem_SetIsContest(BattleAnimSystem *system, BOOL isContest);
 BOOL BattleAnimSystem_IsContest(BattleAnimSystem *system);
 enum HeapID BattleAnimSystem_GetHeapID(BattleAnimSystem *system);
 BOOL BattleAnimSystem_Delete(BattleAnimSystem *system);
-BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, MoveAnimation *param1, u16 move, BattleAnimBattlerContext *param3);
+BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, MoveAnimation *moveAnim, u16 move, BattleAnimBattlerContext *battlerContext);
 BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *system);
 BOOL BattleAnimSystem_IsMoveActive(BattleAnimSystem *system);
 BOOL BattleAnimSystem_FreeScriptData(BattleAnimSystem *system);
@@ -254,14 +254,14 @@ SpriteManager *BattleAnimSystem_GetPrimarySpriteManager(BattleAnimSystem *system
 SpriteSystem *BattleAnimSystem_GetSpriteSystem(BattleAnimSystem *system);
 void BattleAnimSystem_SetDefaultAlphaBlending(void);
 int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *system, enum BattleAnimMoveInfoType type);
-void ov12_02220590(BattleAnimSystem *system, UnkStruct_ov12_022380DC *param1, int param2);
+void BattlerSpriteContext_InitFromSystem(BattleAnimSystem *system, BattlerSpriteContext *battlerSpriteCtx, int animParticipantMode);
 void BattleAnimSystem_CancelTrackingTask(BattleAnimSystem *system, enum BattleAnimTrackingTask task);
 void BattleAnimSystem_CancelBgAnim(BattleAnimSystem *system);
 int BattleAnimSystem_GetBaseBgPalettes(BattleAnimSystem *system);
 void BattleAnimSystem_LoadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer);
 void BattleAnimSystem_UnloadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer);
 BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 id);
-int ov12_02223178(BattleAnimContext *param0);
+int BattleAnimContext_GetUnk_01(BattleAnimContext *param0);
 s8 BattleAnimSound_CorrectPanDirection(BattleAnimSystem *system, s8 pan);
 s8 BattleAnimSound_CorrectStepDirection(s8 start, s8 end, s8 step);
 BOOL BattleAnimSystem_GetExtraParams(BattleAnimSystem *system, int params[], int count);
@@ -286,10 +286,10 @@ void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *system, enum BgLayer l
 void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *system);
 BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, int battlerRole);
 int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type);
-UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heapID, int param2);
-UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, enum HeapID heapID);
-void ov12_02223770(UnkStruct_ov12_02223764 *param0);
-void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1);
-int ov12_022237D8(UnkStruct_ov12_02223764 *param0);
+BattleMonOBJData *BattleMonOBJData_New(BattleSystem *battleSys, enum HeapID heapID, int battlerIdx);
+BattleMonOBJData *BattleMonOBJData_NewAll(BattleSystem *battleSys, enum HeapID heapID);
+void BattleMonOBJData_Free(BattleMonOBJData *btlMonObjData);
+void BattleMonOBJData_FreeForBattler(BattleMonOBJData *btlMonObjData, int unused);
+int BattleMonOBJData_GetBattlerType(BattleMonOBJData *btlMonObjData);
 
 #endif // POKEPLATINUM_BATTLE_ANIM_SYSTEM_H

@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "Route202_Text_DawnYouShouldGoTellYourFamily",
+      "id": "Route202_Text_DawnGoTellYourFamily",
       "en_US": [
         "Dawn: You should go tell your family\n",
         "that you’re helping the professor.\r",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "id": "Route202_Text_DawnIHaventShownYouHowToCatchAPokemon",
+      "id": "Route202_Text_DawnIllDemonstrateHowToCatch",
       "en_US": [
         "Dawn: Oh, that’s right!\r",
         "{STRVAR_1 3, 1, 0}, I haven’t shown you\n",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "Route202_Text_DawnToGetYouStartedIllGiveYouFivePokeBalls",
+      "id": "Route202_Text_DawnIllGiveYouFivePokeBalls",
       "en_US": [
         "Dawn: Giggle...\n",
         "See? Isn’t it neat?\r",
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "Route202_Text_LucasWhyDontYouGoTellYourFamily",
+      "id": "Route202_Text_LucasGoTellYourFamily",
       "en_US": [
         "Lucas: Why don’t you go tell your\n",
         "family that the professor asked for\f",
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "Route202_Text_LucasDoYouKnowHowToCatchAPokemon",
+      "id": "Route202_Text_LucasIllDemonstrateHowToCatch",
       "en_US": [
         "Lucas: {STRVAR_1 3, 1, 0}, do you know\n",
         "how to catch a Pokémon?\r",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "Route202_Text_LucasHereIllGiveYouFivePokeballsToGetYouStarted",
+      "id": "Route202_Text_LucasIllGiveYouFivePokeBalls",
       "en_US": [
         "Lucas: And that’s how it’s done.\r",
         "Actually, I should have lowered the\n",
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "Route202_Text_SomePokemonOnlyAppearInTheMorning",
+      "id": "Route202_Text_SomePokemonOnlyInTheMorning",
       "en_US": [
         "Some Pokémon only appear in the\n",
         "morning.\r",
@@ -131,21 +131,21 @@
       ]
     },
     {
-      "id": "Route202_Text_Rt202SandgemTown",
+      "id": "Route202_Text_SignSandgemTown",
       "en_US": [
         "Rt. 202\n",
         "Sandgem Town"
       ]
     },
     {
-      "id": "Route202_Text_Rt202JubilifeCity",
+      "id": "Route202_Text_SignJubilifeCity",
       "en_US": [
         "Rt. 202\n",
         "Jubilife City"
       ]
     },
     {
-      "id": "Route202_Text_TrainerTipsPokemonInvolvedInBattleEarnExpPoints",
+      "id": "Route202_Text_TrainerTipsEarnExpPoints",
       "en_US": [
         "Trainer Tips!\r",
         "All Pokémon that are involved in\n",
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "Route202_Text_DawnLetMeShowYouHowThePokeRadarWorks",
+      "id": "Route202_Text_DawnLetMeShowPokeRadar",
       "en_US": [
         "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
         "I was waiting for you.\r",
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "Route202_Text_DawnTheresAPokemonInThatPatchOfTallGrass",
+      "id": "Route202_Text_DawnPokemonInPatchOfGrass",
       "en_US": [
         "Dawn: See?\n",
         "Did you notice the tall grass rustling?\r",
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "Route202_Text_DawnNowThisIsWhereItGetsInteresting",
+      "id": "Route202_Text_DawnItGetsInteresting",
       "en_US": [
         "Now, this is where it gets interesting.\r",
         "If you see another patch of rustling\n",
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "Route202_Text_LucasLetMeExplainHowThePokeRadarWorks",
+      "id": "Route202_Text_LucasLetMeExplainPokeRadar",
       "en_US": [
         "Lucas: {STRVAR_1 3, 0, 0}.\r",
         "Let me explain how the Poké Radar\n",
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "Route202_Text_LucasTheresAPokemonInThatPatchOfTallGrass",
+      "id": "Route202_Text_LucasPokemonInPatchOfGrass",
       "en_US": [
         "Lucas: There!\n",
         "Did you see the tall grass rustling?\r",
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "Route202_Text_LucasNowHeresTheStrangePart",
+      "id": "Route202_Text_LucasHeresTheStrangePart",
       "en_US": [
         "Now, here’s the strange part.\r",
         "If you see another patch of rustling\n",

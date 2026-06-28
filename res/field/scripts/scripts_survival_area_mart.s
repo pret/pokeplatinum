@@ -3,7 +3,7 @@
 
 
     ScriptEntry SurvivalAreaMart_CommonVendor
-    ScriptEntry SurvivalAreaMart_Unused
+    ScriptEntry SurvivalAreaMart_Dummy2
     ScriptEntry SurvivalAreaMart_Hiker
     ScriptEntry SurvivalAreaMart_AceTrainerF
     ScriptEntryEnd
@@ -12,7 +12,7 @@ SurvivalAreaMart_CommonVendor:
     PokeMartCommonWithGreeting
     End
 
-SurvivalAreaMart_Unused:
+SurvivalAreaMart_Dummy2:
     End
 
 SurvivalAreaMart_Hiker:

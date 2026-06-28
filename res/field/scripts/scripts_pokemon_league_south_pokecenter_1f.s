@@ -4,8 +4,8 @@
 
 
     ScriptEntry PokemonLeagueSouthPokecenter1F_Nurse
-    ScriptEntry PokemonLeagueSouthPokecenter1F_UnusedVendor2
-    ScriptEntry PokemonLeagueSouthPokecenter1F_UnusedVendor3
+    ScriptEntry PokemonLeagueSouthPokecenter1F_VendorCommon_Unused
+    ScriptEntry PokemonLeagueSouthPokecenter1F_VendorSpecial_Unused
     ScriptEntry PokemonLeagueSouthPokecenter1F_OnTransition
     ScriptEntry PokemonLeagueSouthPokecenter1F_Pokefan
     ScriptEntry PokemonLeagueSouthPokecenter1F_AceTrainer
@@ -19,16 +19,16 @@ PokemonLeagueSouthPokecenter1F_Nurse:
     Common_CallPokecenterNurse LOCALID_LEAGUE_SOUTH_NURSE
     End
 
-PokemonLeagueSouthPokecenter1F_UnusedVendor2:
+PokemonLeagueSouthPokecenter1F_VendorCommon_Unused:
     PokeMartCommonWithGreeting
     End
 
-PokemonLeagueSouthPokecenter1F_UnusedVendor3:
+PokemonLeagueSouthPokecenter1F_VendorSpecial_Unused:
     PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_POKEMON_LEAGUE
     End
 
 PokemonLeagueSouthPokecenter1F_Pokefan:
-    NPCMessage PokemonLeagueSouthPokecenter1F_Text_TheObjectiveIsToReachThePokemonLeague
+    NPCMessage PokemonLeagueSouthPokecenter1F_Text_ReachThePokemonLeague
     End
 
 PokemonLeagueSouthPokecenter1F_AceTrainer:

@@ -4,7 +4,7 @@
 
 
     ScriptEntry Route210South_Psyduck
-    ScriptEntry Route210South_Unused
+    ScriptEntry Route210South_Dummy2
     ScriptEntry Route210South_AceTrainerF
     ScriptEntry Route210South_SignboardCafeCabin
     ScriptEntry Route210South_ArrowSignpostSolaceonTown
@@ -13,9 +13,9 @@
     ScriptEntryEnd
 
 Route210South_OnTransition:
-    GetTimeOfDay VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TIMEOFDAY_MORNING, Route210South_SetJoggerBattle
-    GoToIfInRange VAR_MAP_LOCAL_0, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route210South_SetJoggerNoBattle
+    GetTimeOfDay VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, TIMEOFDAY_MORNING, Route210South_SetJoggerBattle
+    GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route210South_SetJoggerNoBattle
     End
 
 Route210South_SetJoggerBattle:
@@ -202,21 +202,21 @@ Route210South_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-Route210South_UnusedMovement:
+Route210South_Movement_Unused:
     Delay8
     WalkOnSpotNormalEast
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
 
-Route210South_UnusedMovement2:
+Route210South_Movement_Unused2:
     Delay8
     WalkOnSpotNormalWest
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
 
-Route210South_Unused:
+Route210South_Dummy2:
     NPCMessage Route210South_Text_Dummy6
     End
 
@@ -251,7 +251,7 @@ Route210South_SignboardCafeCabin:
     End
 
 Route210South_ArrowSignpostSolaceonTown:
-    ShowArrowSign Route210South_Text_SignRt210SolaceonTown
+    ShowArrowSign Route210South_Text_SignSolaceonTown
     End
 
 Route210South_JoggerWyatt:
