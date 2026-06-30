@@ -56,6 +56,7 @@ docker run --user $(id -u):$(id -g) \
            -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
            --device /dev/fuse \
            --cap-add SYS_ADMIN \
+           -i \
            --mount type=bind,src=./,target=/repo \
            $IMAGENAME sh -c "cd /repo && $COMMAND"
 

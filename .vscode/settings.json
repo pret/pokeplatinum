@@ -1,0 +1,8 @@
+{
+    "mesonbuild.configureOnOpen": true,
+    "clangd.arguments": [
+        "--path-mappings=${workspaceFolder}=/repo"
+    ],
+    "clangd.path": "${workspaceFolder}/clangd_wrap.sh",
+    "clangd.useScriptAsExecutable": true
+}
