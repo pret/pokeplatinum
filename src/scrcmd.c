@@ -3988,7 +3988,7 @@ static BOOL ScrCmd_LoadPokedexRating(ScriptContext *ctx)
     u16 pokemonCount;
 
     if (nationalDex == FALSE) {
-        pokemonCount = Pokedex_NumCaught_Local(pokedex);
+        pokemonCount = Pokedex_NumSeen_Local(pokedex);
         *destVar = Pokedex_GetRatingMessageID_Local(pokemonCount, SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY));
     } else {
         pokemonCount = Pokedex_NumCaught_National(pokedex);

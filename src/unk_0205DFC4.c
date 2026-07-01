@@ -11,6 +11,7 @@
 #include "map_object.h"
 #include "math_util.h"
 #include "party.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "savedata.h"
 
@@ -114,7 +115,7 @@ u16 Pokedex_GetRatingMessageID_Local(u16 pokemonSeen, u16 reachedEternaCity)
         return PokedexRatings_Text_RowanPokemonSeenOver180;
     }
 
-    if (pokemonSeen <= 209) {
+    if (pokemonSeen <= LOCAL_DEX_GOAL_SUB_1) {
         return PokedexRatings_Text_RowanPokemonSeenOver200;
     }
 
