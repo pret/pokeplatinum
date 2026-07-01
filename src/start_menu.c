@@ -28,6 +28,7 @@
 #include "appearance.h"
 #include "bag.h"
 #include "bag_context.h"
+#include "berry_tag_data.h"
 #include "bg_window.h"
 #include "catching_show.h"
 #include "comm_manager.h"
@@ -83,7 +84,6 @@
 #include "unk_0205C22C.h"
 #include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
-#include "unk_020972FC.h"
 #include "vars_flags.h"
 
 #include "res/graphics/start_menu/start_menu.naix"
@@ -1519,23 +1519,23 @@ static void StartMenu_ShowBerryTag(FieldTask *fieldTask, u16 berryItemID)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
-    menu->taskData = sub_020972FC(HEAP_ID_FIELD2);
+    menu->taskData = BerryTagData_Alloc(HEAP_ID_FIELD2);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    sub_02097320(menu->taskData, berryItemID, 1);
+    BerryTagData_Add(menu->taskData, berryItemID, TRUE);
     u8 berryTypeCount = 0;
 
     for (berry = 0; berry < NUM_BERRIES; berry++) {
         berryItemID = Item_ForBerryNumber(berry);
 
         if (Bag_CanRemoveItem(bag, berryItemID, 1, HEAP_ID_FIELD2) == TRUE) {
-            sub_02097320(menu->taskData, berryItemID, 0);
+            BerryTagData_Add(menu->taskData, berryItemID, FALSE);
             berryTypeCount++;
         }
     }
 
     u8 scroll, index;
     BagCursor_GetFieldPocketPosition(fieldSystem->bagCursor, POCKET_BERRIES, &index, &scroll);
-    sub_0209733C(menu->taskData, scroll, index, berryTypeCount + 3);
+    BerryTagData_SetScroll(menu->taskData, scroll, index, berryTypeCount + 3);
 
     sub_0203D2E4(fieldSystem, menu->taskData);
     StartMenu_SetCallback(menu, StartMenu_ExitBerryTag);
@@ -1547,7 +1547,7 @@ static BOOL StartMenu_ExitBerryTag(FieldTask *fieldTask)
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
     u8 scroll, index;
-    sub_02097390(menu->taskData, &scroll, &index);
+    BerryTagData_GetScroll(menu->taskData, &scroll, &index);
     BagCursor_SetFieldPocketPosition(fieldSystem->bagCursor, POCKET_BERRIES, index, scroll);
     Heap_FreeExplicit(HEAP_ID_FIELD2, menu->taskData);
 

@@ -334,7 +334,7 @@ Static main
 	Object main.nef.p/src_unk_02095E98.c.o
 	Object main.nef.p/src_unk_020961E8.c.o
 	Object main.nef.p/src_item_use_pokemon.c.o
-	Object main.nef.p/src_unk_020972FC.c.o
+	Object main.nef.p/src_berry_tag_data.c.o
 	Object main.nef.p/src_berry_data.c.o
 	Object main.nef.p/src_easy_chat_args.c.o
 	Object main.nef.p/src_applications_mail.c.o
@@ -1352,10 +1352,10 @@ Overlay bag
 	Object main.nef.p/src_applications_bag_sprites.c.o
 }
 
-Overlay overlay85
+Overlay berry_tag
 {
 	After bag
-	Object main.nef.p/src_overlay085_ov85_02241440.c.o
+	Object main.nef.p/src_applications_berry_tag.c.o
 }
 
 Overlay hall_of_fame
