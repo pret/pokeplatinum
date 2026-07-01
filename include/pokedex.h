@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_POKEDEX_H
 #define POKEPLATINUM_POKEDEX_H
 
+#include "constants/species.h"
+
 #include "heap.h"
 #include "pokemon.h"
 #include "savedata.h"
-
-#include "constants/species.h"
 
 #include "res/pokemon/regional_pokedex_size.h"
 
