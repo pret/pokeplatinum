@@ -966,33 +966,64 @@ enum MementoState {
 #define MEMENTO_DEFENDER_SCALE_DELAY   6
 #define MEMENTO_DEFENDER_DELAY         2
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    PokemonSprite *unk_10;
-    XYTransformContext unk_14;
-    s16 unk_38;
-    s16 unk_3A;
-    ManagedSprite *unk_3C[3];
-    AfterimageContext unk_48;
-    XYTransformContext unk_F8;
-} UnkStruct_ov12_022332E8;
+// -------------------------------------------------------------------
+// Unused
+// -------------------------------------------------------------------
+#define UNUSED_SPRITE_COUNT 3
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    ManagedSprite *unk_18[6];
-    XYTransformContext unk_30[6];
-    AlphaFadeContext unk_108;
-    s16 unk_130;
-    s16 unk_132;
-} UnkStruct_ov12_0223351C;
+typedef struct UnusedSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    PokemonSprite *defenderSprite;
+    XYTransformContext shake;
+    s16 defenderX;
+    s16 defenderY;
+    ManagedSprite *sprites[UNUSED_SPRITE_COUNT];
+    AfterimageContext afterImage;
+    XYTransformContext scale;
+} UnusedSpriteContext;
+
+// -------------------------------------------------------------------
+// Grudge Sprite
+// -------------------------------------------------------------------
+#define GRUDGE_SPRITE_COUNT 6
+
+typedef struct GrudgeSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    int delay;
+    int dir;
+    ManagedSprite *flameSprites[GRUDGE_SPRITE_COUNT];
+    XYTransformContext revs[GRUDGE_SPRITE_COUNT];
+    AlphaFadeContext alpha;
+    s16 attackerX;
+    s16 attackerY;
+} GrudgeSpriteContext;
+
+enum GrudgeSpriteState {
+    GRUDGE_SPRITE_STATE_INIT = 0,
+    GRUDGE_SPRITE_STATE_REVOLVE_AND_FADE_IN,
+    GRUDGE_SPRITE_STATE_REVOLVE,
+    GRUDGE_SPRITE_STATE_FADE_OUT,
+    GIUDGE_SPRITE_STATE_CLEANUP,
+};
+
+#define GRUDGE_SPRITE_START_ANGLE          DEG_TO_IDX(0)
+#define GRUDGE_SPRITE_END_ANGLE            DEG_TO_IDX(180)
+#define GRUDGE_SPRITE_REV_RADIUS           FX32_CONST(50)
+#define GRUDGE_SPRITE_REV_FRAMES           48
+#define GURDGE_SPRITE_START_ALPHA          1
+#define GRUDGE_SPRITE_END_ALPHA            16
+#define GRUDGE_SPRITE_MAX_ALPHA            16
+#define GRUDGE_SPRITE_ALPHA_FADE_FRAMES    10
+#define GRUDGE_SPRITE_REV_X_SCALE          5
+#define GRUDGE_SPRITE_REV_Y_SCALE          FX32_CONST(10)
+#define GRUDGE_SPRITE_REV_BEHIND_MIN_ANGLE DEG_TO_IDX(90) // Angle range at which the flame is considered to be "behind" the pokemon
+#define GRUDGE_SPRITE_REV_BEHIND_MAX_ANGLE DEG_TO_IDX(269)
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -4464,215 +4495,251 @@ void BattleAnimScriptFunc_Memento(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Memento, ctx);
 }
 
-static void ov12_022332E8(UnkStruct_ov12_022332E8 *param0)
+static void UnusedSprite_InitScaleAndAfterImage(UnusedSpriteContext *ctx)
 {
-    ScaleLerpContext_Init(&param0->unk_F8, 25, 10, 10, 10);
-    Afterimage_Init(&param0->unk_48, &param0->unk_F8, ScaleLerpContext_Update, param0->unk_38, param0->unk_3A, 9, 3, 1, param0->unk_3C[2], param0->unk_3C[1], param0->unk_3C[0], NULL);
+    ScaleLerpContext_Init(&ctx->scale, 25, 10, 10, 10);
+    Afterimage_Init(
+        &ctx->afterImage,
+        &ctx->scale,
+        ScaleLerpContext_Update,
+        ctx->defenderX,
+        ctx->defenderY,
+        9,
+        3,
+        1,
+        ctx->sprites[2],
+        ctx->sprites[1],
+        ctx->sprites[0],
+        NULL);
 }
 
-static void ov12_02233338(UnkStruct_ov12_022332E8 *param0)
+static void UnusedSprite_InitScaleAndAfterImage2(UnusedSpriteContext *ctx)
 {
-    ScaleLerpContext_Init(&param0->unk_F8, 10, 10, 25, 6);
-    Afterimage_Init(&param0->unk_48, &param0->unk_F8, ScaleLerpContext_Update, param0->unk_38, param0->unk_3A, 5, 3, 1, param0->unk_3C[0], param0->unk_3C[1], param0->unk_3C[2], NULL);
-    ManagedSprite_SetDrawFlag(param0->unk_3C[0], 1);
+    ScaleLerpContext_Init(&ctx->scale, 10, 10, 25, 6);
+    Afterimage_Init(
+        &ctx->afterImage,
+        &ctx->scale,
+        ScaleLerpContext_Update,
+        ctx->defenderX,
+        ctx->defenderY,
+        5,
+        3,
+        1,
+        ctx->sprites[0],
+        ctx->sprites[1],
+        ctx->sprites[2],
+        NULL);
+    ManagedSprite_SetDrawFlag(ctx->sprites[0], TRUE);
 }
 
-static void ov12_02233394(SysTask *param0, void *param1)
+static void BattleAnimTask_UnusedSprite(SysTask *param0, void *param)
 {
-    UnkStruct_ov12_022332E8 *v0 = param1;
-    int v1;
+    UnusedSpriteContext *ctx = param;
 
-    switch (v0->unk_0C) {
+    switch (ctx->state) {
     case 0:
-        ov12_022332E8(v0);
-        v0->unk_0C++;
+        UnusedSprite_InitScaleAndAfterImage(ctx);
+        ctx->state++;
         break;
     case 1:
-        if (Afterimage_Update(&v0->unk_48) == 0) {
-            ManagedSprite_SetDrawFlag(v0->unk_3C[0], 1);
-            v0->unk_0C++;
-            ShakeContext_Init(&v0->unk_14, 4, 0, 1, 6);
+        if (Afterimage_Update(&ctx->afterImage) == FALSE) {
+            ManagedSprite_SetDrawFlag(ctx->sprites[0], TRUE);
+            ctx->state++;
+            ShakeContext_Init(&ctx->shake, 4, 0, 1, 6);
         }
         break;
     case 2:
-        if (ShakeContext_UpdateAndApplyToMon(&v0->unk_14, v0->unk_38, v0->unk_3A, v0->unk_10) == 0) {
-            v0->unk_0C++;
-            ov12_02233338(v0);
+        if (ShakeContext_UpdateAndApplyToMon(&ctx->shake, ctx->defenderX, ctx->defenderY, ctx->defenderSprite) == FALSE) {
+            ctx->state++;
+            UnusedSprite_InitScaleAndAfterImage2(ctx);
         }
         break;
     case 3:
-        if (Afterimage_Update(&v0->unk_48) == 0) {
-            v0->unk_0C++;
+        if (Afterimage_Update(&ctx->afterImage) == FALSE) {
+            ctx->state++;
         }
         break;
     case 4:
-        for (v1 = 0; v1 < 3; v1++) {
-            Sprite_DeleteAndFreeResources(v0->unk_3C[v1]);
+        for (int i = 0; i < UNUSED_SPRITE_COUNT; i++) {
+            Sprite_DeleteAndFreeResources(ctx->sprites[i]);
         }
 
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, param0);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02233454(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Unused(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_022332E8 *v0;
-    int v1;
-    SpriteTemplate v2;
+    SpriteTemplate template;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022332E8));
+    UnusedSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(UnusedSpriteContext));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
-    v0->unk_38 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
-    v0->unk_3A = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
-    v0->unk_3A -= PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_SHADOW_HEIGHT);
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
+    ctx->defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
+    ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
+    ctx->defenderY -= PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
+    template = BattleAnimSystem_GetLastSpriteTemplate(system);
 
-    for (v1 = 0; v1 < 3; v1++) {
-        if (v1 == 0) {
-            v0->unk_3C[v1] = param3;
-            ManagedSprite_SetAnim(v0->unk_3C[v1], 1);
+    for (int i = 0; i < UNUSED_SPRITE_COUNT; i++) {
+        if (i == 0) {
+            ctx->sprites[i] = sprite;
+            ManagedSprite_SetAnim(ctx->sprites[i], 1);
         } else {
-            v0->unk_3C[v1] = SpriteSystem_NewSprite(v0->unk_04, v0->unk_08, &v2);
-            ManagedSprite_SetExplicitOamMode(v0->unk_3C[v1], GX_OAM_MODE_XLU);
+            ctx->sprites[i] = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteMan, &template);
+            ManagedSprite_SetExplicitOamMode(ctx->sprites[i], GX_OAM_MODE_XLU);
         }
 
-        ManagedSprite_SetPriority(v0->unk_3C[v1], 100);
-        ManagedSprite_SetExplicitPriority(v0->unk_3C[v1], 1);
-        ManagedSprite_SetPositionXY(v0->unk_3C[v1], v0->unk_38, v0->unk_3A);
-        ManagedSprite_SetDrawFlag(v0->unk_3C[v1], FALSE);
-        ManagedSprite_SetAffineOverwriteMode(v0->unk_3C[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetPriority(ctx->sprites[i], 100);
+        ManagedSprite_SetExplicitPriority(ctx->sprites[i], 1);
+        ManagedSprite_SetPositionXY(ctx->sprites[i], ctx->defenderX, ctx->defenderY);
+        ManagedSprite_SetDrawFlag(ctx->sprites[i], FALSE);
+        ManagedSprite_SetAffineOverwriteMode(ctx->sprites[i], AFFINE_OVERWRITE_MODE_DOUBLE);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233394, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_UnusedSprite, ctx);
 }
 
-static void ov12_0223351C(UnkStruct_ov12_0223351C *param0, int param1)
+static void GrudgeSprite_InitRevolutions(GrudgeSpriteContext *ctx, int dir)
 {
-    int v0;
-    int v1 = ((360 * 0xffff) / 360) / 6;
+    int angleStep = DEG_TO_IDX(360) / GRUDGE_SPRITE_COUNT;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        RevolutionContext_Init(&param0->unk_30[v0], (0 * 0xffff) / 360, (180 * 0xffff) / 360, 0, 0, FX32_ONE * 50, 0, 48);
-        param0->unk_30[v0].data[1] += (v1 * v0);
-        param0->unk_30[v0].data[5] *= param1;
+    for (int i = 0; i < GRUDGE_SPRITE_COUNT; i++) {
+        RevolutionContext_Init(
+            &ctx->revs[i],
+            GRUDGE_SPRITE_START_ANGLE,
+            GRUDGE_SPRITE_END_ANGLE,
+            0,
+            0,
+            GRUDGE_SPRITE_REV_RADIUS,
+            0,
+            GRUDGE_SPRITE_REV_FRAMES);
+        ctx->revs[i].data[XY_PARAM_REV_CUR_X] += angleStep * i;
+        ctx->revs[i].data[XY_PARAM_REV_STEP_SIZE_X] *= dir;
     }
 }
 
-static void ov12_02233574(UnkStruct_ov12_0223351C *param0)
+static void GrudgeSprite_UpdateRevolutions(GrudgeSpriteContext *ctx)
 {
-    int v0;
-    s16 v1;
-    u16 v2;
+    for (int i = 0; i < GRUDGE_SPRITE_COUNT; i++) {
+        RevolutionContext_Update(&ctx->revs[i]);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        RevolutionContext_Update(&param0->unk_30[v0]);
+        u16 angle = ctx->revs[i].data[XY_PARAM_REV_CUR_X] * GRUDGE_SPRITE_REV_X_SCALE;
+        s16 offsetY = FX_Mul(FX_SinIdx(angle), GRUDGE_SPRITE_REV_Y_SCALE * ctx->dir) >> FX32_SHIFT;
 
-        v2 = param0->unk_30[v0].data[1] * 5;
-        v1 = FX_Mul(FX_SinIdx(v2), (FX32_ONE * 10) * param0->unk_14) >> FX32_SHIFT;
+        ManagedSprite_SetPositionXY(ctx->flameSprites[i], ctx->attackerX + ctx->revs[i].x, ctx->attackerY + offsetY);
 
-        ManagedSprite_SetPositionXY(param0->unk_18[v0], param0->unk_130 + param0->unk_30[v0].x, param0->unk_132 + v1);
-
-        if ((param0->unk_30[v0].data[1] >= ((90 * 0xffff) / 360)) && (param0->unk_30[v0].data[1] <= ((269 * 0xffff) / 360))) {
-            ManagedSprite_SetExplicitPriority(param0->unk_18[v0], 1);
+        if (ctx->revs[i].data[XY_PARAM_REV_CUR_X] >= GRUDGE_SPRITE_REV_BEHIND_MIN_ANGLE
+            && ctx->revs[i].data[XY_PARAM_REV_CUR_X] <= GRUDGE_SPRITE_REV_BEHIND_MAX_ANGLE) {
+            ManagedSprite_SetExplicitPriority(ctx->flameSprites[i], 1);
         } else {
-            ManagedSprite_SetExplicitPriority(param0->unk_18[v0], BattleAnimSystem_GetPokemonSpritePriority(param0->unk_00) + 1);
+            ManagedSprite_SetExplicitPriority(ctx->flameSprites[i], BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys) + 1);
         }
     }
 }
 
-static void ov12_02233644(SysTask *param0, void *param1)
+static void BattleAnimTask_GrudgeSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0223351C *v0 = param1;
-    int v1;
+    GrudgeSpriteContext *ctx = param;
 
-    switch (v0->unk_0C) {
-    case 0:
-        BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 1, 16 - 1);
-        AlphaFadeContext_Init(&v0->unk_108, 1, 16, 16 - 1, 16 - 16, 10);
-        ov12_0223351C(v0, v0->unk_14);
-        ov12_02233574(v0);
-        v0->unk_0C++;
+    switch (ctx->state) {
+    case GRUDGE_SPRITE_STATE_INIT:
+        BattleAnimUtil_SetSpriteBgBlending(
+            ctx->battleAnimSys,
+            GURDGE_SPRITE_START_ALPHA,
+            GRUDGE_SPRITE_MAX_ALPHA - GURDGE_SPRITE_START_ALPHA);
+        AlphaFadeContext_Init(
+            &ctx->alpha,
+            GURDGE_SPRITE_START_ALPHA,
+            GRUDGE_SPRITE_END_ALPHA,
+            GRUDGE_SPRITE_MAX_ALPHA - GURDGE_SPRITE_START_ALPHA,
+            GRUDGE_SPRITE_MAX_ALPHA - GRUDGE_SPRITE_END_ALPHA,
+            GRUDGE_SPRITE_ALPHA_FADE_FRAMES);
+        GrudgeSprite_InitRevolutions(ctx, ctx->dir);
+        GrudgeSprite_UpdateRevolutions(ctx);
+        ctx->state++;
         break;
-    case 1:
-        ov12_02233574(v0);
+    case GRUDGE_SPRITE_STATE_REVOLVE_AND_FADE_IN:
+        GrudgeSprite_UpdateRevolutions(ctx);
 
-        if (AlphaFadeContext_IsDone(&v0->unk_108)) {
-            v0->unk_0C++;
-            v0->unk_10 = (48 - (10 * 2));
+        if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+            ctx->state++;
+            ctx->delay = GRUDGE_SPRITE_REV_FRAMES - (2 * GRUDGE_SPRITE_ALPHA_FADE_FRAMES);
         }
         break;
-    case 2:
-        ov12_02233574(v0);
-        v0->unk_10--;
+    case GRUDGE_SPRITE_STATE_REVOLVE:
+        GrudgeSprite_UpdateRevolutions(ctx);
+        ctx->delay--;
 
-        if (v0->unk_10 < 0) {
-            v0->unk_0C++;
-            AlphaFadeContext_Init(&v0->unk_108, 16, 1, 16 - 16, 16 - 1, 10);
+        if (ctx->delay < 0) {
+            ctx->state++;
+            AlphaFadeContext_Init(
+                &ctx->alpha,
+                GRUDGE_SPRITE_END_ALPHA,
+                GURDGE_SPRITE_START_ALPHA,
+                GRUDGE_SPRITE_MAX_ALPHA - GRUDGE_SPRITE_END_ALPHA,
+                GRUDGE_SPRITE_MAX_ALPHA - GURDGE_SPRITE_START_ALPHA,
+                GRUDGE_SPRITE_ALPHA_FADE_FRAMES);
         }
         break;
-    case 3:
-        ov12_02233574(v0);
+    case GRUDGE_SPRITE_STATE_FADE_OUT:
+        GrudgeSprite_UpdateRevolutions(ctx);
 
-        if (AlphaFadeContext_IsDone(&v0->unk_108)) {
-            v0->unk_0C++;
+        if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+            ctx->state++;
         }
         break;
-    case 4:
-        for (v1 = 0; v1 < 6; v1++) {
-            Sprite_DeleteAndFreeResources(v0->unk_18[v1]);
+    case GIUDGE_SPRITE_STATE_CLEANUP:
+        for (int i = 0; i < GRUDGE_SPRITE_COUNT; i++) {
+            Sprite_DeleteAndFreeResources(ctx->flameSprites[i]);
         }
 
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02233734(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Grudge(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_0223351C *v0;
-    int v1;
-    PokemonSprite *v2;
-    SpriteTemplate v3;
+    SpriteTemplate template;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0223351C));
+    GrudgeSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(GrudgeSpriteContext));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
 
-    v2 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
+    PokemonSprite *attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
 
-    v0->unk_130 = PokemonSprite_GetAttribute(v2, MON_SPRITE_X_CENTER);
-    v0->unk_132 = PokemonSprite_GetAttribute(v2, MON_SPRITE_Y_CENTER);
+    ctx->attackerX = PokemonSprite_GetAttribute(attackerSprite, MON_SPRITE_X_CENTER);
+    ctx->attackerY = PokemonSprite_GetAttribute(attackerSprite, MON_SPRITE_Y_CENTER);
 
-    v3 = BattleAnimSystem_GetLastSpriteTemplate(param0);
+    template = BattleAnimSystem_GetLastSpriteTemplate(system);
 
-    for (v1 = 0; v1 < 6; v1++) {
-        if (v1 == 0) {
-            v0->unk_18[v1] = param3;
+    for (int i = 0; i < GRUDGE_SPRITE_COUNT; i++) {
+        if (i == 0) {
+            ctx->flameSprites[i] = sprite;
         } else {
-            v0->unk_18[v1] = SpriteSystem_NewSprite(v0->unk_04, v0->unk_08, &v3);
+            ctx->flameSprites[i] = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteMan, &template);
         }
 
-        ManagedSprite_SetPriority(v0->unk_18[v1], 100);
-        ManagedSprite_SetExplicitOamMode(v0->unk_18[v1], GX_OAM_MODE_XLU);
-        ManagedSprite_SetAnimateFlag(v0->unk_18[v1], 1);
+        ManagedSprite_SetPriority(ctx->flameSprites[i], 100);
+        ManagedSprite_SetExplicitOamMode(ctx->flameSprites[i], GX_OAM_MODE_XLU);
+        ManagedSprite_SetAnimateFlag(ctx->flameSprites[i], TRUE);
     }
 
-    v0->unk_14 = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233644, v0);
+    ctx->dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_GrudgeSprite, ctx);
 }
 
 static void ov12_022337E0(ManagedSprite *param0, XYTransformContext *param1, int param2, int param3)
