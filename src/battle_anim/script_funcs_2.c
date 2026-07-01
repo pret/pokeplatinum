@@ -870,20 +870,36 @@ enum TormentSpriteState {
     TORMENT_SPRITE_SPEECH_BUBBLE_STATE_DONE,
 };
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    PokemonSprite *unk_10;
-    XYTransformContext unk_14;
-    XYTransformContext unk_38;
-    ManagedSprite *unk_5C;
-    XYTransformContext unk_60;
-    int unk_84;
-    s16 unk_88;
-    s16 unk_8A;
-} UnkStruct_ov12_02232B40;
+// -------------------------------------------------------------------
+// Baton Pass Sprite
+// -------------------------------------------------------------------
+typedef struct BatonPassSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    PokemonSprite *attackerSprite;
+    XYTransformContext attackerScale;
+    XYTransformContext attackerPos;
+    ManagedSprite *ballSprite;
+    XYTransformContext ballPos;
+    int unused;
+    s16 attackerX;
+    s16 attackerY;
+} BatonPassSpriteContext;
+
+enum BatonPassSpriteState {
+    BATON_PASS_SPRITE_STATE_INIT = 0,
+    BATON_PASS_SPRITE_STATE_ANIMATE_BALL,
+    BATON_PASS_SPRITE_STATE_ANIMATE_ATTACKER,
+    BATON_PASS_SPRITE_STATE_WAIT_BALL_ANIM,
+    BATON_PASS_SPRITE_STATE_MOVE_BALL_OFF_SCREEN,
+    BATON_PASS_SPRITE_STATE_CLEANUP,
+};
+
+#define BATON_PASS_SPRITE_ANIM_FRAMES         8
+#define BATON_PASS_SPRITE_ATTACKER_BASE_SCALE 10
+#define BATON_PASS_SPRITE_ATTACKER_END_SCALE  0
 
 // -------------------------------------------------------------------
 // Memento
@@ -4033,84 +4049,99 @@ void BattleAnimSpriteFunc_Torment(BattleAnimSystem *system, SpriteSystem *sprite
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_TormentSprite, ctx);
 }
 
-static void ov12_02232B40(SysTask *param0, void *param1)
+static void BattleAnimTask_BatonPassSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02232B40 *v0 = param1;
-    int v1, v2;
+    BatonPassSpriteContext *ctx = param;
 
-    switch (v0->unk_0C) {
-    case 0:
-        ManagedSprite_SetAnimateFlag(v0->unk_5C, 1);
-        v0->unk_0C++;
+    switch (ctx->state) {
+    case BATON_PASS_SPRITE_STATE_INIT:
+        ManagedSprite_SetAnimateFlag(ctx->ballSprite, TRUE);
+        ctx->state++;
         break;
-    case 1:
-        if (ManagedSprite_IsAnimated(v0->unk_5C) == 0) {
-            ManagedSprite_SetAnimateFlag(v0->unk_5C, 0);
-            v0->unk_0C++;
-            ScaleLerpContext_Init(&v0->unk_14, 10, 10, 0, 8);
-            v1 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
-            v2 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
-            PosLerpContext_Init(&v0->unk_38, v1, v0->unk_88, v2, v0->unk_8A, 8);
+    case BATON_PASS_SPRITE_STATE_ANIMATE_BALL:
+        if (ManagedSprite_IsAnimated(ctx->ballSprite) == FALSE) {
+            ManagedSprite_SetAnimateFlag(ctx->ballSprite, FALSE);
+            ctx->state++;
+            ScaleLerpContext_Init(
+                &ctx->attackerScale,
+                BATON_PASS_SPRITE_ATTACKER_BASE_SCALE,
+                BATON_PASS_SPRITE_ATTACKER_BASE_SCALE,
+                BATON_PASS_SPRITE_ATTACKER_END_SCALE,
+                BATON_PASS_SPRITE_ANIM_FRAMES);
+            int cx = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
+            int cy = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+            PosLerpContext_Init(
+                &ctx->attackerPos,
+                cx,
+                ctx->attackerX,
+                cy,
+                ctx->attackerY,
+                BATON_PASS_SPRITE_ANIM_FRAMES);
         }
         break;
-    case 2:
-        PosLerpContext_UpdateAndApplyToMon(&v0->unk_38, v0->unk_10);
+    case BATON_PASS_SPRITE_STATE_ANIMATE_ATTACKER:
+        PosLerpContext_UpdateAndApplyToMon(&ctx->attackerPos, ctx->attackerSprite);
 
-        if (ScaleLerpContext_UpdateAndApplyToMon(&v0->unk_14, v0->unk_10) == 0) {
-            PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 1);
-            PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_SCALE_X, 0x100);
-            PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_SCALE_Y, 0x100);
-            ManagedSprite_SetAnim(v0->unk_5C, 1);
-            ManagedSprite_SetAnimationSpeed(v0->unk_5C, FX32_ONE);
-            ManagedSprite_SetAnimateFlag(v0->unk_5C, 1);
-            v0->unk_0C++;
+        if (ScaleLerpContext_UpdateAndApplyToMon(&ctx->attackerScale, ctx->attackerSprite) == FALSE) {
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_HIDE, TRUE);
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
+            ManagedSprite_SetAnim(ctx->ballSprite, 1);
+            ManagedSprite_SetAnimationSpeed(ctx->ballSprite, FX32_ONE);
+            ManagedSprite_SetAnimateFlag(ctx->ballSprite, TRUE);
+            ctx->state++;
         }
         break;
-    case 3:
-        if (ManagedSprite_IsAnimated(v0->unk_5C) == 0) {
-            ManagedSprite_SetAnimateFlag(v0->unk_5C, 0);
-            v0->unk_0C++;
-            PosLerpContext_Init(&v0->unk_60, 0, 0, v0->unk_8A, 0, 8);
+    case BATON_PASS_SPRITE_STATE_WAIT_BALL_ANIM:
+        if (ManagedSprite_IsAnimated(ctx->ballSprite) == FALSE) {
+            ManagedSprite_SetAnimateFlag(ctx->ballSprite, FALSE);
+            ctx->state++;
+
+            // Move Pokeball off-screen
+            PosLerpContext_Init(
+                &ctx->ballPos,
+                0,
+                0,
+                ctx->attackerY,
+                0,
+                BATON_PASS_SPRITE_ANIM_FRAMES);
         }
         break;
-    case 4:
-        if (PosLerpContext_Update(&v0->unk_60)) {
-            ManagedSprite_SetPositionXY(v0->unk_5C, v0->unk_88, v0->unk_60.y);
+    case BATON_PASS_SPRITE_STATE_MOVE_BALL_OFF_SCREEN:
+        if (PosLerpContext_Update(&ctx->ballPos)) {
+            ManagedSprite_SetPositionXY(ctx->ballSprite, ctx->attackerX, ctx->ballPos.y);
         } else {
-            v0->unk_0C++;
+            ctx->state++;
         }
         break;
-    case 5:
-        Sprite_DeleteAndFreeResources(v0->unk_5C);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case BATON_PASS_SPRITE_STATE_CLEANUP:
+        Sprite_DeleteAndFreeResources(ctx->ballSprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02232CA8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_BatonPass(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_02232B40 *v0;
-    s16 v1, v2;
+    BatonPassSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(BatonPassSpriteContext));
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02232B40));
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
+    PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_HIDE, FALSE);
 
-    PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 0);
+    ctx->attackerX = BattleAnimUtil_GetBattlerPos(system, BattleAnimSystem_GetAttacker(system), BATTLE_ANIM_POSITION_MON_X);
+    ctx->attackerY = BattleAnimUtil_GetBattlerPos(system, BattleAnimSystem_GetAttacker(system), BATTLE_ANIM_POSITION_MON_Y);
+    ctx->ballSprite = sprite;
 
-    v0->unk_88 = BattleAnimUtil_GetBattlerPos(param0, BattleAnimSystem_GetAttacker(param0), 0);
-    v0->unk_8A = BattleAnimUtil_GetBattlerPos(param0, BattleAnimSystem_GetAttacker(param0), 1);
-    v0->unk_5C = param3;
-
-    ManagedSprite_SetPriority(v0->unk_5C, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_5C, 1);
-    ManagedSprite_SetPositionXY(v0->unk_5C, v0->unk_88, v0->unk_8A);
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02232B40, v0);
+    ManagedSprite_SetPriority(ctx->ballSprite, 100);
+    ManagedSprite_SetExplicitPriority(ctx->ballSprite, 1);
+    ManagedSprite_SetPositionXY(ctx->ballSprite, ctx->attackerX, ctx->attackerY);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_BatonPassSprite, ctx);
 }
 
 static const u16 sMementoPartnerVisibilities[] = {

@@ -117,7 +117,7 @@ static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
     BattleAnimSpriteFunc_Swagger,
     BattleAnimSpriteFunc_MeanLook,
     BattleAnimSpriteFunc_Torment,
-    ov12_02232CA8,
+    BattleAnimSpriteFunc_BatonPass,
     ov12_02233454,
     ov12_02233734,
     ov12_022339C4,

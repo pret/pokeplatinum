@@ -26,7 +26,7 @@ void BattleAnimSpriteFunc_MeanLook(BattleAnimSystem *system, SpriteSystem *sprit
 void BattleAnimScriptFunc_Return(BattleAnimSystem *system);
 void BattleAnimScriptFunc_VitalThrow(BattleAnimSystem *system);
 void BattleAnimSpriteFunc_Torment(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
-void ov12_02232CA8(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_BatonPass(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_Memento(BattleAnimSystem *system);
 void ov12_02233454(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void ov12_02233734(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
