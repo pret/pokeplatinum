@@ -25,6 +25,7 @@
 #include "struct_defs/struct_0206BC70.h"
 
 #include "applications/bag/application.h"
+#include "applications/berry_tag.h"
 #include "applications/diploma.h"
 #include "applications/easy_chat/main.h"
 #include "applications/frontier/records/main.h"
@@ -59,7 +60,6 @@
 #include "overlay058/ov58_021D0D80.h"
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay064/ov64_0222DCE0.h"
-#include "overlay085/ov85_02241440.h"
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay090/ov90_021D0D80.h"
@@ -151,7 +151,7 @@ FS_EXTERN_OVERLAY(choose_starter);
 FS_EXTERN_OVERLAY(town_map);
 FS_EXTERN_OVERLAY(journal_display);
 FS_EXTERN_OVERLAY(bag);
-FS_EXTERN_OVERLAY(overlay85);
+FS_EXTERN_OVERLAY(berry_tag);
 FS_EXTERN_OVERLAY(hall_of_fame);
 FS_EXTERN_OVERLAY(pc_hall_of_fame);
 FS_EXTERN_OVERLAY(overlay88);
@@ -328,13 +328,13 @@ u16 BagContext_GetSelectedItem(void *bagContext)
 
 void sub_0203D2E4(FieldSystem *fieldSystem, void *appArgs)
 {
-    FS_EXTERN_OVERLAY(overlay85);
+    FS_EXTERN_OVERLAY(berry_tag);
 
     const ApplicationManagerTemplate appTemplate = {
-        ov85_02241440,
-        ov85_0224154C,
-        ov85_022415A0,
-        FS_OVERLAY_ID(overlay85)
+        BerryTag_Init,
+        BerryTag_Main,
+        BerryTag_Exit,
+        FS_OVERLAY_ID(berry_tag)
     };
 
     FieldSystem_StartChildProcess(fieldSystem, &appTemplate, appArgs);

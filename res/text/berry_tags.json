@@ -2,67 +2,67 @@
   "key": 4362,
   "messages": [
     {
-      "id": "pl_msg_00000398_00000",
+      "id": "BerryTag_Text_BerryTag",
       "en_US": "BERRY TAG"
     },
     {
-      "id": "pl_msg_00000398_00001",
+      "id": "BerryTag_Text_Spicy",
       "en_US": "SPICY"
     },
     {
-      "id": "pl_msg_00000398_00002",
+      "id": "BerryTag_Text_Dry",
       "en_US": "DRY"
     },
     {
-      "id": "pl_msg_00000398_00003",
+      "id": "BerryTag_Text_Sweet",
       "en_US": "SWEET"
     },
     {
-      "id": "pl_msg_00000398_00004",
+      "id": "BerryTag_Text_Bitter",
       "en_US": "BITTER"
     },
     {
-      "id": "pl_msg_00000398_00005",
+      "id": "BerryTag_Text_Sour",
       "en_US": "SOUR"
     },
     {
-      "id": "pl_msg_00000398_00006",
+      "id": "BerryTag_Text_BerryID",
       "en_US": "{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000398_00007",
+      "id": "BerryTag_Text_Unused",
       "en_US": "{STRVAR_1 8, 0, 0}"
     },
     {
-      "id": "pl_msg_00000398_00008",
+      "id": "BerryTag_Text_LabelSize",
       "en_US": "SIZE /"
     },
     {
-      "id": "pl_msg_00000398_00009",
+      "id": "BerryTag_Text_Size",
       "en_US": "{STRVAR_1 51, 0, 0}.{STRVAR_1 50, 1, 0}”"
     },
     {
-      "id": "pl_msg_00000398_00010",
+      "id": "BerryTag_Text_LabelFirm",
       "en_US": "FIRM /"
     },
     {
-      "id": "pl_msg_00000398_00011",
+      "id": "BerryTag_Text_VerySoft",
       "en_US": "Very soft"
     },
     {
-      "id": "pl_msg_00000398_00012",
+      "id": "BerryTag_Text_Soft",
       "en_US": "Soft"
     },
     {
-      "id": "pl_msg_00000398_00013",
+      "id": "BerryTag_Text_Hard",
       "en_US": "Hard"
     },
     {
-      "id": "pl_msg_00000398_00014",
+      "id": "BerryTag_Text_VeryHard",
       "en_US": "Very hard"
     },
     {
-      "id": "pl_msg_00000398_00015",
+      "id": "BerryTag_Text_SuperHard",
       "en_US": "Super hard"
     }
   ]
