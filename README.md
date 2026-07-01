@@ -37,14 +37,16 @@ From a freshly cloned repo, run the "Install_MSys2.ps1" script in powershell. Th
 
 To build, run "Launch_MSys2.ps1" and it will launch a MSys2 bash shell. From here, run "make win64" to build.
 
-## NX Build Target (EXPERIMENTAL)
-This build target requires DevKitA64.
+## NX Build Target (working, but poor performance)
+This build target requires DevKitA64, this is already installed in the build container.
 * ./drun.sh make nx
 
 ## Notes
-
 Target executable will be in ./build_(platform)/pokeplatinum.us directory. win64 is also a supported build target, however it is untested.
 ROM will be built in /build directory
 
 You can update your SDKs using "meson subprojects update"
+
+### Tracy Profiling
+To enable, run ./meson.sh configure -Dtracy_enable=true {build_folder} from the repo root. This works on Win64, Linux, and NX build targets.
 

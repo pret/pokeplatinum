@@ -105,12 +105,24 @@ static const PartyMenuAction sPartyMenuActions[32] = {
     PartyMenu_SelectChatter,
     PartyMenu_SelectMilkDrink,
     PartyMenu_SelectSoftboiled,
+#ifdef SDK_BUILD_ARM
     (void*)0xFFFFFFFE
+#else
+    (void*)0xFFFFFFFFFFFFFFFE
+#endif
 };
 
+#ifdef SDK_BUILD_ARM
 u32 PartyMenu_GetAction(u8 action) // table
+#else
+u64 PartyMenu_GetAction(u8 action)
+#endif
 {
+    #ifdef SDK_BUILD_ARM
     return (u32)sPartyMenuActions[action];
+    #else
+    return (u64)sPartyMenuActions[action];
+    #endif
 }
 
 void PartyMenu_ClearContextWindow(PartyMenuApplication *application)

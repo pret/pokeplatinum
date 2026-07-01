@@ -130,8 +130,13 @@ static ParticleSystem *sub_0207C7CC(enum HeapID heapID)
     void *v1;
     Camera *camera;
 
+    #ifdef SDK_BUILD_ARM
     v1 = Heap_Alloc(heapID, 0x4800);
     v0 = ParticleSystem_New(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, heapID);
+    #else
+    v1 = Heap_Alloc(heapID, 0x4800*2);
+    v0 = ParticleSystem_New(sub_0207C794, sub_0207C7B0, v1, 0x4800*2, 1, heapID);
+    #endif
     camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {

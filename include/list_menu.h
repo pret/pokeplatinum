@@ -95,7 +95,11 @@ struct ListMenu {
 };
 
 ListMenu *ListMenu_New(const ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID);
+#ifdef SDK_BUILD_ARM
 u32 ListMenu_ProcessInput(ListMenu *menu);
+#else
+u64 ListMenu_ProcessInput(ListMenu *menu);
+#endif
 void ListMenu_Free(ListMenu *menu, u16 *outListPos, u16 *outCursorPos);
 void ListMenu_Draw(ListMenu *menu);
 void ListMenu_SetTextColors(ListMenu *menu, u8 fg, u8 bg, u8 shadow);

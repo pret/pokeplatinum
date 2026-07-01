@@ -3,7 +3,11 @@
 
 #include "applications/party_menu/defs.h"
 
+#ifdef SDK_BUILD_ARM
 u32 PartyMenu_GetAction(u8 action);
+#else
+u64 PartyMenu_GetAction(u8 action);
+#endif
 void PartyMenu_ClearContextWindow(PartyMenuApplication *application);
 int sub_02083658(PartyMenuApplication *application);
 int sub_020836A8(PartyMenuApplication *application);

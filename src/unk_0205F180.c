@@ -27,6 +27,10 @@
 #include "terrain_collision_manager.h"
 #include "unk_020655F4.h"
 
+#ifdef SDK_PORT
+#include "port/sim_config_prj.h"
+#endif
+
 typedef BOOL (*UnkFuncPtr_020EDB84)(u8);
 
 typedef struct {
@@ -1676,6 +1680,13 @@ static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, enum Mov
 
 u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction)
 {
+    #ifdef SDK_PORT
+    SIM_Config_prj_type * myConfig = SIM_Config_prj_GetConfig();
+
+    if(myConfig->walkThroughWalls) {
+        return 0;
+    }
+    #endif
     u32 v0 = 0, v1;
     v1 = sub_02060C24(playerAvatar, mapObj, direction);
 

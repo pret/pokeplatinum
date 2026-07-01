@@ -56,7 +56,11 @@ ListMenu *ListMenu_New(const ListMenuTemplate *template, u16 startListPos, u16 s
     return menu;
 }
 
+#ifdef SDK_BUILD_ARM
 u32 ListMenu_ProcessInput(ListMenu *menu)
+#else
+u64 ListMenu_ProcessInput(ListMenu *menu)
+#endif
 {
     menu->lastAction = LIST_MENU_ACTION_NONE;
 

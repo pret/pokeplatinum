@@ -191,7 +191,11 @@ static void ov98_02246E08(UnkStruct_ov98_02246E88 *param0)
         Overlay_LoadByID(FS_OVERLAY_ID(overlay94), 2);
 
         param0->unk_0C = Heap_Alloc(HEAP_ID_108, 0x20000 + 32);
+        #ifdef SDK_BUILD_ARM
         param0->unk_10 = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_0C + 31) / 32 * 32), 0x20000);
+        #else
+        param0->unk_10 = NNS_FndCreateExpHeap((void *)(((u64)param0->unk_0C + 31) / 32 * 32), 0x20000);
+        #endif
 
         Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();

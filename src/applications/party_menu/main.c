@@ -577,12 +577,24 @@ static int sub_0207E5F4(PartyMenuApplication *application)
 
 static int sub_0207E634(PartyMenuApplication *application)
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0 = Menu_ProcessInput(application->contextMenu);
+    #else
+    u64 v0 = Menu_ProcessInput(application->contextMenu);
+    #endif
 
     switch (v0) {
+    #ifdef SDK_BUILD_ARM
     case 0xffffffff:
+    #else
+    case 0xffffffffffffffff:
+    #endif
         break;
+    #ifdef SDK_BUILD_ARM
     case 0xfffffffe:
+    #else
+    case 0xfffffffffffffffe:
+    #endif
         Window_EraseMessageBox(&application->windows[33], 1);
         Window_EraseStandardFrame(&application->windows[35], 1);
         Window_ClearAndScheduleCopyToVRAM(&application->windows[35]);

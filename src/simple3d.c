@@ -11,6 +11,10 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
+#ifdef SDK_PORT
+#include "port/sim_config_prj.h"
+#endif
+
 enum Simple3DAnimationFlags {
     ANIM_OWNS_SET = 1 << 0,
     ANIM_REACHED_END = 1 << 1,
@@ -217,7 +221,16 @@ BOOL Simple3D_UpdateAnim(Simple3DAnimation *anim, fx32 frameDelta, BOOL loop)
     u32 reachedEnd = FALSE;
     fx32 animLength = NNS_G3dAnmObjGetNumFrame(anim->animObj);
 
+    #ifdef SDK_PORT
+    SIM_Config_prj_type * myConfig = SIM_Config_prj_GetConfig();
+    if(myConfig->enable60fps && myConfig->enable60fpsSpeedFix) {
+        anim->currFrame += (frameDelta >> 1);
+    } else {
+        anim->currFrame += frameDelta;
+    }
+    #else
     anim->currFrame += frameDelta;
+    #endif
 
     if (frameDelta > 0) {
         if (anim->currFrame >= animLength) {

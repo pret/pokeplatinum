@@ -2029,7 +2029,11 @@ static int ProcessMenuInput_SelectAction(BagController *controller)
         return BAG_APP_STATE_WAIT_SELECT_ITEM_ACTION;
     }
 
+    #ifdef SDK_BUILD_ARM
     u32 selectedOption = Menu_ProcessInput(controller->menu);
+    #else
+    u64 selectedOption = Menu_ProcessInput(controller->menu);
+    #endif
 
     if (selectedOption == MENU_NOTHING_CHOSEN) {
         if (CheckDialButtonPressed(controller) == TRUE) {
@@ -2079,7 +2083,11 @@ static void ToggleHideItemSprite(BagController *controller, u8 hide)
     Bg_ScheduleTilemapTransfer(controller->bgConfig, BG_LAYER_MAIN_1);
 }
 
+#ifdef SDK_BUILD_ARM
 const u32 BagApplication_GetItemActionFunc(enum ItemAction action)
+#else
+const u64 BagApplication_GetItemActionFunc(enum ItemAction action)
+#endif
 {
     return sItemActionFuncs[action];
 }

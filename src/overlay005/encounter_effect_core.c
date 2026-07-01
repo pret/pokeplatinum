@@ -105,7 +105,11 @@ static SysTask *ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect *scree
 static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param);
 static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, enum HeapID heapID);
 static void ScreenShakeEffect_Finish(ScreenShakeEffect *screenShake);
+#ifdef SDK_BUILD_ARM
 static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority);
+#else
+static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u64 bg, u32 defaultValue, u32 priority);
+#endif
 static void ScreenShakeEffect_InvertBuffer(ScreenShakeEffect *screenShake, u32 interval);
 
 void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param)
@@ -377,7 +381,11 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
         if (waterEffect->counter < 0) {
             encEffect->state++;
             waterEffect->counter = 12;
+            #ifdef SDK_BUILD_ARM
             ScreenShakeEffect_Start(&waterEffect->screenShakeEfx, 0, 191, (0xffff / 192) * 3, FX32_CONST(15), 800, (u32)REG_BG0HOFS_ADDR, 0, 5 - 1);
+            #else
+            ScreenShakeEffect_Start(&waterEffect->screenShakeEfx, 0, 191, (0xffff / 192) * 3, FX32_CONST(15), 800, (u64)REG_BG0HOFS_ADDR, 0, 5 - 1);
+            #endif
         }
         break;
     case 3:
@@ -442,7 +450,11 @@ static void ScreenShakeEffect_Finish(ScreenShakeEffect *screenShake)
     ScreenScrollManager_Delete(screenShake->screenScrollMgr);
 }
 
+#ifdef SDK_BUILD_ARM
 static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority)
+#else
+static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u64 bg, u32 defaultValue, u32 priority)
+#endif
 {
     ScreenScrollManager_ScrollX(screenShake->screenScrollMgr, startX, endX, angleIncrement, amplitude, shakeSpeed, bg, defaultValue, priority);
 }

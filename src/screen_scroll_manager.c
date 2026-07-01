@@ -89,7 +89,11 @@ ScreenScrollManager *ScreenScrollManager_New(enum HeapID heapID)
     return screenScrollMgr;
 }
 
+#ifdef SDK_BUILD_ARM
 void ScreenScrollManager_ScrollX(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bg, u32 initValue, u32 priority)
+#else
+void ScreenScrollManager_ScrollX(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u64 bg, u32 initValue, u32 priority)
+#endif
 {
     GF_ASSERT(screenScrollMgr);
     GF_ASSERT(screenScrollMgr->scrollTask == NULL);
@@ -109,7 +113,11 @@ void ScreenScrollManager_ScrollX(ScreenScrollManager *screenScrollMgr, u8 start,
     MI_CpuFill32(screenScrollMgr->buffer2, screenScrollMgr->initValue, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
 }
 
+#ifdef SDK_BUILD_ARM
 void ScreenScrollManager_ScrollY(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bg, u32 initValue, u32 priority)
+#else
+void ScreenScrollManager_ScrollY(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u64 bg, u32 initValue, u32 priority)
+#endif
 {
     GF_ASSERT(screenScrollMgr);
     GF_ASSERT(screenScrollMgr->scrollTask == NULL);

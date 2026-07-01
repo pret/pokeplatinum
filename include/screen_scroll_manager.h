@@ -21,15 +21,24 @@ typedef struct ScreenScrollManager {
     s16 sineTable[SCREEN_SCROLL_MANAGER_BUFFER_SIZE];
     u8 start;
     u8 end;
+    #ifdef SDK_BUILD_ARM
     u32 offsetRegisterAddr;
+    #else
+    u64 offsetRegisterAddr;
+    #endif
     u32 initValue;
     s16 scrollPos;
     s16 scrollSpeed;
 } ScreenScrollManager;
 
 ScreenScrollManager *ScreenScrollManager_New(enum HeapID heapID);
+#ifdef SDK_BUILD_ARM
 void ScreenScrollManager_ScrollX(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bg, u32 initValue, u32 priority);
 void ScreenScrollManager_ScrollY(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bg, u32 initValue, u32 priority);
+#else
+void ScreenScrollManager_ScrollX(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u64 bg, u32 initValue, u32 priority);
+void ScreenScrollManager_ScrollY(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u64 bg, u32 initValue, u32 priority);
+#endif
 void ScreenScrollManager_Stop(ScreenScrollManager *screenScrollMgr);
 void ScreenScrollManager_Delete(ScreenScrollManager *screenScrollMgr);
 void *ScreenScrollManager_GetWriteBuffer(ScreenScrollManager *screenScrollMgr);
