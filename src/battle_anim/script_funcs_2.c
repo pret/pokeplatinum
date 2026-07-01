@@ -1107,14 +1107,30 @@ enum FakeOutCurtainState {
 #define FAKE_OUT_CURTAIN_COLOR       GX_RGBA(31, 31, 31, 1)
 #define FAKE_OUT_CURTAIN_COLOR_ALPHA 16
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    ManagedSprite *unk_10;
-    AlphaFadeContext unk_14;
-} UnkStruct_ov12_02233F4C;
+// -------------------------------------------------------------------
+// Fake Out Sprite
+// -------------------------------------------------------------------
+typedef struct FakeOutSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    ManagedSprite *sprite;
+    AlphaFadeContext alpha;
+} FakeOutSpriteContext;
+
+enum FakeOutSpriteState {
+    FAKE_OUT_SPRITE_STATE_INIT = 0,
+    FAKE_OUT_SPRITE_STATE_FADE_IN,
+    FAKE_OUT_SPRITE_STATE_WAIT_ANIM,
+    FAKE_OUT_SPRITE_STATE_FADE_OUT,
+    FAKE_OUT_SPRITE_STATE_CLEANUP,
+};
+
+#define FAKE_OUT_SPRITE_START_ALPHA       0
+#define FAKE_OUT_SPRITE_END_ALPHA         16
+#define FAKE_OUT_SPRITE_MAX_ALPHA         16
+#define FAKE_OUT_SPRITE_ALPHA_FADE_FRAMES 8
 
 // -------------------------------------------------------------------
 // Fake Out
@@ -5099,55 +5115,70 @@ void BattleAnimScriptFunc_FakeOutCurtain(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FakeOutCurtain, ctx);
 }
 
-static void ov12_02233F4C(SysTask *param0, void *param1)
+static void BattleAnimTask_FakeOutSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02233F4C *v0 = param1;
+    FakeOutSpriteContext *ctx = param;
 
-    switch (v0->unk_0C) {
-    case 0:
-        BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 0, 16 - 0);
-        AlphaFadeContext_Init(&v0->unk_14, 0, 16, 16 - 0, 16 - 16, 8);
-        v0->unk_0C++;
+    switch (ctx->state) {
+    case FAKE_OUT_SPRITE_STATE_INIT:
+        BattleAnimUtil_SetSpriteBgBlending(
+            ctx->battleAnimSys,
+            FAKE_OUT_SPRITE_START_ALPHA,
+            FAKE_OUT_SPRITE_MAX_ALPHA - FAKE_OUT_SPRITE_START_ALPHA);
+        AlphaFadeContext_Init(
+            &ctx->alpha,
+            FAKE_OUT_SPRITE_START_ALPHA,
+            FAKE_OUT_SPRITE_END_ALPHA,
+            FAKE_OUT_SPRITE_MAX_ALPHA - FAKE_OUT_SPRITE_START_ALPHA,
+            FAKE_OUT_SPRITE_MAX_ALPHA - FAKE_OUT_SPRITE_END_ALPHA,
+            FAKE_OUT_SPRITE_ALPHA_FADE_FRAMES);
+        ctx->state++;
         break;
-    case 1:
-        if (AlphaFadeContext_IsDone(&v0->unk_14)) {
-            v0->unk_0C++;
+    case FAKE_OUT_SPRITE_STATE_FADE_IN:
+        if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+            ctx->state++;
         }
         break;
-    case 2:
-        if (ManagedSprite_IsAnimated(v0->unk_10) == 0) {
-            v0->unk_0C++;
-            AlphaFadeContext_Init(&v0->unk_14, 16, 0, 16 - 16, 16 - 0, 8);
+    case FAKE_OUT_SPRITE_STATE_WAIT_ANIM:
+        if (ManagedSprite_IsAnimated(ctx->sprite) == FALSE) {
+            ctx->state++;
+            AlphaFadeContext_Init(
+                &ctx->alpha,
+                FAKE_OUT_SPRITE_END_ALPHA,
+                FAKE_OUT_SPRITE_START_ALPHA,
+                FAKE_OUT_SPRITE_MAX_ALPHA - FAKE_OUT_SPRITE_END_ALPHA,
+                FAKE_OUT_SPRITE_MAX_ALPHA - FAKE_OUT_SPRITE_START_ALPHA,
+                FAKE_OUT_SPRITE_ALPHA_FADE_FRAMES);
         }
         break;
-    case 3:
-        if (AlphaFadeContext_IsDone(&v0->unk_14)) {
-            v0->unk_0C++;
+    case FAKE_OUT_SPRITE_STATE_FADE_OUT:
+        if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+            ctx->state++;
         }
         break;
-    case 4:
-        Sprite_DeleteAndFreeResources(v0->unk_10);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case FAKE_OUT_SPRITE_STATE_CLEANUP:
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02234008(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_FakeOut(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_02233F4C *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02233F4C));
+    FakeOutSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FakeOutSpriteContext));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_10 = param3;
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->sprite = sprite;
 
-    ManagedSprite_SetAnimateFlag(v0->unk_10, 1);
-    ManagedSprite_SetExplicitOamMode(v0->unk_10, GX_OAM_MODE_XLU);
+    ManagedSprite_SetAnimateFlag(ctx->sprite, TRUE);
+    ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_XLU);
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233F4C, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FakeOutSprite, ctx);
 }
 
 static void BattleAnimTask_FakeOut(SysTask *task, void *param)

@@ -33,7 +33,7 @@ void BattleAnimSpriteFunc_Grudge(BattleAnimSystem *system, SpriteSystem *spriteS
 void ov12_022339C4(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_Extrasensory(BattleAnimSystem *system);
 void BattleAnimScriptFunc_FakeOutCurtain(BattleAnimSystem *system);
-void ov12_02234008(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_FakeOut(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_FakeOut(BattleAnimSystem *system);
 void BattleAnimScriptFunc_Megahorn(BattleAnimSystem *system);
 void BattleAnimScriptFunc_MegahornAttacker(BattleAnimSystem *system);
