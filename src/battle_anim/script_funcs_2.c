@@ -822,22 +822,53 @@ enum VitalThrowState {
 #define VITAL_THROW_MOVE_FRAMES       2
 #define VITAL_THROW_MOVE_BACK_FRAMES  8
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    int unk_10;
+// -------------------------------------------------------------------
+// Torment Sprite
+// -------------------------------------------------------------------
+#define TORMENT_SPEECH_BUBBLE_COUNT 6
+
+typedef struct TormentSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    int curSpeechBubble;
     int unk_14;
-    PokemonSprite *unk_18;
-    XYTransformContext unk_1C;
-    int unk_40;
-    s16 unk_44;
-    s16 unk_46;
-    ManagedSprite *unk_48[6];
-    int unk_60[6];
-    int unk_78[6];
-} UnkStruct_ov12_02232720;
+    PokemonSprite *attackerSprite;
+    XYTransformContext scale;
+    int attackerScaleState;
+    s16 attackerY;
+    s16 attackerOffset;
+    ManagedSprite *speechBubbleSprites[TORMENT_SPEECH_BUBBLE_COUNT];
+    int speechBubbleStates[TORMENT_SPEECH_BUBBLE_COUNT];
+    int speechBubbleEndDelays[TORMENT_SPEECH_BUBBLE_COUNT];
+} TormentSpriteContext;
+
+#define TORMENT_SPRITE_SCALE_STEPS     2
+#define TORMENT_SPRITE_BASE_SCALE      10
+#define TORMENT_SPRITE_SCALE_SMALL_X   9
+#define TORMENT_SPRITE_SCALE_SMALL_Y   8
+#define TORMENT_SPRITE_SCALE_LARGE_X   11
+#define TORMENT_SPRITE_SCALE_LARGE_Y   15
+#define TORMENT_SPRITE_ANIM_SPEED      FX32_CONST(2)
+#define TORMENT_SPRITE_INBETWEEN_DELAY 8
+
+enum TormentSpriteState {
+    TORMENT_SPRITE_STATE_INIT = 0,
+    TORMENT_SPRITE_STATE_ANIMATE,
+    TORMENT_SPRITE_STATE_DELAY,
+    TORMENT_SPRITE_STATE_REINIT,
+    TORMENT_SPRITE_STATE_ANIMATE2,
+    TORMENT_SPRITE_STATE_CLEANUP,
+
+    TORMENT_SPRITE_ATTACKER_SCALE_STATE_SHRINK = 0,
+    TORMENT_SPRITE_ATTACKER_SCALE_STATE_GROW,
+    TORMENT_SPRITE_ATTACKER_SCALE_STATE_RESET,
+    TORMENT_SPRITE_ATTACKER_SCALE_STATE_DONE,
+
+    TORMENT_SPRITE_SPEECH_BUBBLE_STATE_ANIMATING = 0,
+    TORMENT_SPRITE_SPEECH_BUBBLE_STATE_DONE,
+};
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -3761,205 +3792,245 @@ void BattleAnimScriptFunc_VitalThrow(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_VitalThrow, ctx);
 }
 
-static void ov12_02232720(UnkStruct_ov12_02232720 *param0)
+static void TormentSprite_InitAttackerScale(TormentSpriteContext *ctx)
 {
-    param0->unk_40 = 0;
-    ScaleLerpContext_InitXY(&param0->unk_1C, 10, 9, 10, 8, 10, 2);
+    ctx->attackerScaleState = TORMENT_SPRITE_ATTACKER_SCALE_STATE_SHRINK;
+    ScaleLerpContext_InitXY(
+        &ctx->scale,
+        TORMENT_SPRITE_BASE_SCALE,
+        TORMENT_SPRITE_SCALE_SMALL_X,
+        TORMENT_SPRITE_BASE_SCALE,
+        TORMENT_SPRITE_SCALE_SMALL_Y,
+        TORMENT_SPRITE_BASE_SCALE,
+        TORMENT_SPRITE_SCALE_STEPS);
 }
 
-static BOOL ov12_02232744(UnkStruct_ov12_02232720 *param0)
+static BOOL TormentSprite_UpdateAttackerScale(TormentSpriteContext *ctx)
 {
-    BOOL v0 = 0;
+    BOOL done = FALSE;
 
-    switch (param0->unk_40) {
-    case 0:
-        if (ScaleLerpContext_UpdateXYAndApplyToMon(&param0->unk_1C, param0->unk_18)) {
-            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
+    switch (ctx->attackerScaleState) {
+    case TORMENT_SPRITE_ATTACKER_SCALE_STATE_SHRINK:
+        if (ScaleLerpContext_UpdateXYAndApplyToMon(&ctx->scale, ctx->attackerSprite)) {
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+                ctx->attackerSprite,
+                ctx->attackerY,
+                ctx->attackerOffset,
+                ctx->scale.data[XY_PARAM_CUR_Y],
+                BATTLE_ANIM_ANCHOR_BOTTOM);
         } else {
-            param0->unk_40++;
-            ScaleLerpContext_InitXY(&param0->unk_1C, 9, 11, 8, 15, 10, 2);
+            ctx->attackerScaleState++;
+            ScaleLerpContext_InitXY(
+                &ctx->scale,
+                TORMENT_SPRITE_SCALE_SMALL_X,
+                TORMENT_SPRITE_SCALE_LARGE_X,
+                TORMENT_SPRITE_SCALE_SMALL_Y,
+                TORMENT_SPRITE_SCALE_LARGE_Y,
+                TORMENT_SPRITE_BASE_SCALE,
+                TORMENT_SPRITE_SCALE_STEPS);
         }
         break;
-    case 1:
-        if (ScaleLerpContext_UpdateXYAndApplyToMon(&param0->unk_1C, param0->unk_18)) {
-            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
+    case TORMENT_SPRITE_ATTACKER_SCALE_STATE_GROW:
+        if (ScaleLerpContext_UpdateXYAndApplyToMon(&ctx->scale, ctx->attackerSprite)) {
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+                ctx->attackerSprite,
+                ctx->attackerY,
+                ctx->attackerOffset,
+                ctx->scale.data[XY_PARAM_CUR_Y],
+                BATTLE_ANIM_ANCHOR_BOTTOM);
         } else {
-            param0->unk_40++;
-            ScaleLerpContext_InitXY(&param0->unk_1C, 11, 10, 15, 10, 10, 2);
+            ctx->attackerScaleState++;
+            ScaleLerpContext_InitXY(
+                &ctx->scale,
+                TORMENT_SPRITE_SCALE_LARGE_X,
+                TORMENT_SPRITE_BASE_SCALE,
+                TORMENT_SPRITE_SCALE_LARGE_Y,
+                TORMENT_SPRITE_BASE_SCALE,
+                TORMENT_SPRITE_BASE_SCALE,
+                TORMENT_SPRITE_SCALE_STEPS);
         }
         break;
-    case 2:
-        if (ScaleLerpContext_UpdateXYAndApplyToMon(&param0->unk_1C, param0->unk_18)) {
-            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
+    case TORMENT_SPRITE_ATTACKER_SCALE_STATE_RESET:
+        if (ScaleLerpContext_UpdateXYAndApplyToMon(&ctx->scale, ctx->attackerSprite)) {
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+                ctx->attackerSprite,
+                ctx->attackerY,
+                ctx->attackerOffset,
+                ctx->scale.data[XY_PARAM_CUR_Y],
+                BATTLE_ANIM_ANCHOR_BOTTOM);
         } else {
-            PokemonSprite_SetAttribute(param0->unk_18, MON_SPRITE_SCALE_X, 0x100);
-            PokemonSprite_SetAttribute(param0->unk_18, MON_SPRITE_SCALE_Y, 0x100);
-            param0->unk_40++;
-            v0 = 1;
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
+            ctx->attackerScaleState++;
+            done = TRUE;
         }
         break;
-    case 3:
-        v0 = 1;
+    case TORMENT_SPRITE_ATTACKER_SCALE_STATE_DONE:
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static void ov12_0223283C(ManagedSprite *param0, int *param1, fx32 param2)
+static void TormentSprite_InitSpeechBubble(ManagedSprite *sprite, int *outState, fx32 animSpeed)
 {
-    *param1 = 0;
+    *outState = TORMENT_SPRITE_SPEECH_BUBBLE_STATE_ANIMATING;
 
-    ManagedSprite_SetPriority(param0, 100);
-    ManagedSprite_SetExplicitPriority(param0, 1);
-    ManagedSprite_SetDrawFlag(param0, 1);
-    ManagedSprite_SetAnimateFlag(param0, 1);
-    ManagedSprite_SetAnimationSpeed(param0, param2);
-    ManagedSprite_SetAnim(param0, 0);
-    ManagedSprite_SetAnimationFrame(param0, 0);
-    ManagedSprite_TickNFrames(param0, 55 * FX32_ONE);
+    ManagedSprite_SetPriority(sprite, 100);
+    ManagedSprite_SetExplicitPriority(sprite, 1);
+    ManagedSprite_SetDrawFlag(sprite, TRUE);
+    ManagedSprite_SetAnimateFlag(sprite, TRUE);
+    ManagedSprite_SetAnimationSpeed(sprite, animSpeed);
+    ManagedSprite_SetAnim(sprite, 0);
+    ManagedSprite_SetAnimationFrame(sprite, 0);
+    ManagedSprite_TickNFrames(sprite, FX32_CONST(55));
 }
 
-static BOOL ov12_02232888(ManagedSprite *param0, int *param1)
+static BOOL TormentSprite_UpdateSpeechBubble(ManagedSprite *speechBubble, int *state)
 {
-    BOOL v0 = 0;
+    BOOL done = FALSE;
 
-    switch (*param1) {
-    case 0:
-        if (ManagedSprite_IsAnimated(param0) == 0) {
-            (*param1)++;
-            v0 = 1;
+    switch (*state) {
+    case TORMENT_SPRITE_SPEECH_BUBBLE_STATE_ANIMATING:
+        if (ManagedSprite_IsAnimated(speechBubble) == FALSE) {
+            (*state)++;
+            done = TRUE;
         }
         break;
-    case 1:
-        v0 = 1;
+    case TORMENT_SPRITE_SPEECH_BUBBLE_STATE_DONE:
+        done = TRUE;
         break;
     default:
-        v0 = 1;
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static void ov12_022328B8(SysTask *param0, void *param1)
+static void BattleAnimTask_TormentSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02232720 *v0 = param1;
-    BOOL v1, v2;
-    int v3;
+    TormentSpriteContext *ctx = param;
+    BOOL attackerScaleDone, speechBubbleDone;
+    int i;
 
-    switch (v0->unk_0C) {
-    case 0:
-        ov12_02232720(v0);
-        ov12_0223283C(v0->unk_48[v0->unk_10], &v0->unk_60[v0->unk_10], FX32_ONE * 2);
-        v0->unk_0C++;
+    switch (ctx->state) {
+    case TORMENT_SPRITE_STATE_INIT:
+        TormentSprite_InitAttackerScale(ctx);
+        TormentSprite_InitSpeechBubble(
+            ctx->speechBubbleSprites[ctx->curSpeechBubble],
+            &ctx->speechBubbleStates[ctx->curSpeechBubble],
+            TORMENT_SPRITE_ANIM_SPEED);
+        ctx->state++;
         break;
-    case 1:
-        v1 = ov12_02232744(v0);
-        v2 = ov12_02232888(v0->unk_48[v0->unk_10], &v0->unk_60[v0->unk_10]);
+    case TORMENT_SPRITE_STATE_ANIMATE:
+        attackerScaleDone = TormentSprite_UpdateAttackerScale(ctx);
+        speechBubbleDone = TormentSprite_UpdateSpeechBubble(
+            ctx->speechBubbleSprites[ctx->curSpeechBubble],
+            &ctx->speechBubbleStates[ctx->curSpeechBubble]);
 
-        if ((v1 == v2) && (v1 == 1)) {
-            ManagedSprite_SetAnim(v0->unk_48[v0->unk_10], 1);
-            v0->unk_0C++;
+        if (attackerScaleDone == speechBubbleDone && attackerScaleDone == TRUE) {
+            ManagedSprite_SetAnim(ctx->speechBubbleSprites[ctx->curSpeechBubble], 1);
+            ctx->state++;
         }
         break;
-    case 2:
-        v0->unk_78[v0->unk_10]--;
+    case TORMENT_SPRITE_STATE_DELAY:
+        ctx->speechBubbleEndDelays[ctx->curSpeechBubble]--;
 
-        if (v0->unk_78[v0->unk_10] < 0) {
-            v0->unk_10++;
+        if (ctx->speechBubbleEndDelays[ctx->curSpeechBubble] < 0) {
+            ctx->curSpeechBubble++;
 
-            if (v0->unk_10 < 6) {
-                v0->unk_0C = 0;
+            if (ctx->curSpeechBubble < TORMENT_SPEECH_BUBBLE_COUNT) {
+                ctx->state = 0;
             } else {
-                v0->unk_0C++;
+                ctx->state++;
             }
         }
         break;
-    case 3:
-        for (v3 = 0; v3 < 6; v3++) {
-            ov12_0223283C(v0->unk_48[v3], &v0->unk_60[v3], FX32_ONE * 2);
+    case TORMENT_SPRITE_STATE_REINIT:
+        for (i = 0; i < TORMENT_SPEECH_BUBBLE_COUNT; i++) {
+            TormentSprite_InitSpeechBubble(
+                ctx->speechBubbleSprites[i],
+                &ctx->speechBubbleStates[i],
+                TORMENT_SPRITE_ANIM_SPEED);
         }
 
-        v0->unk_0C++;
+        ctx->state++;
         break;
-    case 4:
-        for (v3 = 0; v3 < 6; v3++) {
-            v1 = ov12_02232888(v0->unk_48[v3], &v0->unk_60[v3]);
+    case TORMENT_SPRITE_STATE_ANIMATE2:
+        for (i = 0; i < TORMENT_SPEECH_BUBBLE_COUNT; i++) {
+            attackerScaleDone = TormentSprite_UpdateSpeechBubble(
+                ctx->speechBubbleSprites[i],
+                &ctx->speechBubbleStates[i]);
         }
 
-        if (v1 == 1) {
-            v0->unk_0C++;
+        if (attackerScaleDone == TRUE) {
+            ctx->state++;
         }
         break;
-    case 5:
-        for (v3 = 0; v3 < 6; v3++) {
-            Sprite_DeleteAndFreeResources(v0->unk_48[v3]);
+    case TORMENT_SPRITE_STATE_CLEANUP:
+        for (i = 0; i < TORMENT_SPEECH_BUBBLE_COUNT; i++) {
+            Sprite_DeleteAndFreeResources(ctx->speechBubbleSprites[i]);
         }
 
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_022329E0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Torment(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_02232720 *v0;
-    SpriteTemplate v1;
-    int v2;
-    s16 v3;
-    s16 v4;
-    s16 v5;
-    s16 v6;
+    SpriteTemplate template;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02232720));
+    TormentSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(TormentSpriteContext));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_18 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    v3 = PokemonSprite_GetAttribute(v0->unk_18, MON_SPRITE_X_CENTER);
-    v4 = PokemonSprite_GetAttribute(v0->unk_18, MON_SPRITE_Y_CENTER);
+    s16 attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
+    s16 attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
 
-    v0->unk_44 = v4;
-    v0->unk_46 = BattleAnimSystem_GetBattlerSpriteOffset(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    ctx->attackerY = attackerY;
+    ctx->attackerOffset = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    v1 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00);
+    template = BattleAnimSystem_GetLastSpriteTemplate(ctx->battleAnimSys);
 
-    for (v2 = 0; v2 < 6; v2++) {
-        if (v2 == 0) {
-            v0->unk_48[v2] = param3;
+    for (int i = 0; i < TORMENT_SPEECH_BUBBLE_COUNT; i++) {
+        if (i == 0) {
+            ctx->speechBubbleSprites[i] = sprite;
         } else {
-            v0->unk_48[v2] = SpriteSystem_NewSprite(param1, param2, &v1);
+            ctx->speechBubbleSprites[i] = SpriteSystem_NewSprite(spriteSys, spriteMan, &template);
         }
 
-        ManagedSprite_SetDrawFlag(v0->unk_48[v2], 0);
+        ManagedSprite_SetDrawFlag(ctx->speechBubbleSprites[i], FALSE);
 
-        v5 = FX_Mul(FX_CosIdx((((90 * 0xffff) / 360) / (6 / 2)) * (v2 / 2)), 48 * FX32_ONE) >> FX32_SHIFT;
-        v6 = FX_Mul(FX_SinIdx((((90 * 0xffff) / 360) / (6 / 2)) * (v2 / 2)), 48 * FX32_ONE) >> FX32_SHIFT;
+        s16 offsetX = FX_Mul(FX_CosIdx((DEG_TO_IDX(90) / (TORMENT_SPEECH_BUBBLE_COUNT / 2)) * (i / 2)), FX32_CONST(48)) >> FX32_SHIFT;
+        s16 offsetY = FX_Mul(FX_SinIdx((DEG_TO_IDX(90) / (TORMENT_SPEECH_BUBBLE_COUNT / 2)) * (i / 2)), FX32_CONST(48)) >> FX32_SHIFT;
 
-        if ((v2 % 2) == 0) {
-            v5 = v3 + v5;
-            ManagedSprite_SetFlipMode(v0->unk_48[v2], 1);
+        if ((i % 2) == 0) {
+            offsetX = attackerX + offsetX;
+            ManagedSprite_SetFlipMode(ctx->speechBubbleSprites[i], TRUE);
         } else {
-            v5 = v3 - v5;
+            offsetX = attackerX - offsetX;
         }
 
-        v6 = v4 - v6;
-        ManagedSprite_SetPositionXY(v0->unk_48[v2], v5, v6);
+        offsetY = attackerY - offsetY;
+        ManagedSprite_SetPositionXY(ctx->speechBubbleSprites[i], offsetX, offsetY);
 
-        if (v2 < 2) {
-            v0->unk_78[v2] = 8;
+        if (i < 2) {
+            ctx->speechBubbleEndDelays[i] = TORMENT_SPRITE_INBETWEEN_DELAY;
         } else {
-            v0->unk_78[v2] = 0;
+            ctx->speechBubbleEndDelays[i] = 0;
         }
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_022328B8, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_TormentSprite, ctx);
 }
 
 static void ov12_02232B40(SysTask *param0, void *param1)
