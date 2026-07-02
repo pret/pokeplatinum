@@ -23,7 +23,7 @@ typedef struct BattleArcade {
     u16 currentStreak;
     u16 unk_1A;
     u8 unk_1C;
-    u8 unk_1D;
+    u8 fitnessScore;
     u8 unk_1E;
     u8 unk_1F;
     u16 unk_20;
