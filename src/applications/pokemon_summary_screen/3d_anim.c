@@ -13,38 +13,17 @@
 #include "pokemon.h"
 #include "pokemon_anim.h"
 #include "pokemon_sprite.h"
+#include "spider_graph.h"
 #include "unk_0202419C.h"
 
-typedef struct {
-    VecFx16 max;
-    VecFx16 min;
-    VecFx16 valueLength;
-} ConditionVtxBounds;
-
-enum ConditionState {
-    CONDITION_STATE_INITIAL = 0,
-    // the states inbetween are never referred to directly, but involve drawing the rectangles
-    CONDITION_STATE_FINISH_DRAW = 3,
-    CONDITION_STATE_FLASH,
-};
-
-enum ConditionRectVertices {
-    VTX_TOP_LEFT = 0,
-    VTX_TOP_RIGHT,
-    VTX_BOTTOM_LEFT,
-    VTX_BOTTOM_RIGHT,
-
-    MAX_CONDITION_RECT_VTX
-};
-
-static void DrawConditionRects(ConditionRectangle *rect);
+static void DrawConditionRects(SpiderGraphRectangle *rect);
 static void UpdateConditionVec(VecFx16 *currVec, VecFx16 *deltaVec);
 static void UpdateConditionRectsOrFlash(PokemonSummaryScreen *summaryScreen);
-static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *outVec, u8 statValue);
+static void SetConditionVecFromStat(const SpiderGraphVtxBounds *bounds, VecFx16 *outVec, u8 statValue);
 static void SetConditionVecDifference(VecFx16 *startVec, VecFx16 *endVec, VecFx16 *outVec);
 
-static const ConditionVtxBounds sConditionRectBounds[][MAX_CONDITION_RECT_VTX] = {
-    [CONDITION_RECT_Q1] = {
+static const SpiderGraphVtxBounds sConditionRectBounds[][MAX_SPIDER_GRAPH_RECT_VTX] = {
+    [RECT_Q1] = {
         [VTX_TOP_LEFT] = {
             .max = { 5138, 3784, 0 },
             .min = { 5138, 735, 0 },
@@ -66,7 +45,7 @@ static const ConditionVtxBounds sConditionRectBounds[][MAX_CONDITION_RECT_VTX] =
             .valueLength = { 0, 0, 0 },
         },
     },
-    [CONDITION_RECT_Q2] = {
+    [RECT_Q2] = {
         [VTX_TOP_LEFT] = {
             .max = { 1843, 965, 0 },
             .min = { 4645, 383, 0 },
@@ -88,7 +67,7 @@ static const ConditionVtxBounds sConditionRectBounds[][MAX_CONDITION_RECT_VTX] =
             .valueLength = { -7, -11, 0 },
         },
     },
-    [CONDITION_RECT_Q3] = {
+    [RECT_Q3] = {
         [VTX_TOP_LEFT] = {
             .max = { 1843, 965, 0 },
             .min = { 4645, 383, 0 },
@@ -110,7 +89,7 @@ static const ConditionVtxBounds sConditionRectBounds[][MAX_CONDITION_RECT_VTX] =
             .valueLength = { -7, -11, 0 },
         },
     },
-    [CONDITION_RECT_Q4] = {
+    [RECT_Q4] = {
         [VTX_TOP_LEFT] = {
             .max = { 5138, 300, 0 },
             .min = { 5138, 300, 0 },
@@ -167,7 +146,7 @@ void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
         G3_Identity();
 
         NNS_G3dGlbFlush();
-        DrawConditionRects(summaryScreen->currRects);
+        DrawConditionRects(summaryScreen->graph.currRects);
         NNS_G3dGlbFlush();
         UpdateConditionRectsOrFlash(summaryScreen);
     }
@@ -201,12 +180,12 @@ void PokemonSummaryScreen_SetupCamera(PokemonSummaryScreen *summaryScreen)
     Camera_SetAsActive(summaryScreen->monSprite.camera);
 }
 
-static void DrawConditionRects(ConditionRectangle *rects)
+static void DrawConditionRects(SpiderGraphRectangle *rects)
 {
     G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, 18, 20, 0);
     G3_Begin(GX_BEGIN_QUADS);
 
-    for (u32 i = 0; i < MAX_CONDITION_RECT; i++) {
+    for (u32 i = 0; i < MAX_SPIDER_GRAPH_RECT; i++) {
         G3_Color(GX_RGB(8, 31, 15));
         G3_Vtx(rects[i].topLeft.x, rects[i].topLeft.y, rects[i].topLeft.z);
         G3_Color(GX_RGB(8, 31, 15));
@@ -229,29 +208,29 @@ static void UpdateConditionVec(VecFx16 *currVec, VecFx16 *deltaVec)
 
 static void UpdateConditionRectsOrFlash(PokemonSummaryScreen *summaryScreen)
 {
-    if (summaryScreen->conditionState == CONDITION_STATE_FLASH) {
+    if (summaryScreen->graph.state == SPIDER_GRAPH_STATE_END) {
         PokemonSummaryScreen_UpdateConditionFlashAnim(summaryScreen);
         return;
     }
 
     u32 i;
 
-    if (summaryScreen->conditionState == CONDITION_STATE_FINISH_DRAW) {
-        for (i = 0; i < MAX_CONDITION_RECT; i++) {
-            summaryScreen->currRects[i] = summaryScreen->maxRects[i];
+    if (summaryScreen->graph.state == SPIDER_GRAPH_STATE_FINISH_DRAW) {
+        for (i = 0; i < MAX_SPIDER_GRAPH_RECT; i++) {
+            summaryScreen->graph.currRects[i] = summaryScreen->graph.maxRects[i];
         }
     } else {
-        for (i = 0; i < MAX_CONDITION_RECT; i++) {
-            UpdateConditionVec(&summaryScreen->currRects[i].topLeft, &summaryScreen->deltaRects[i].topLeft);
-            UpdateConditionVec(&summaryScreen->currRects[i].topRight, &summaryScreen->deltaRects[i].topRight);
-            UpdateConditionVec(&summaryScreen->currRects[i].bottomLeft, &summaryScreen->deltaRects[i].bottomLeft);
-            UpdateConditionVec(&summaryScreen->currRects[i].bottomRight, &summaryScreen->deltaRects[i].bottomRight);
+        for (i = 0; i < MAX_SPIDER_GRAPH_RECT; i++) {
+            UpdateConditionVec(&summaryScreen->graph.currRects[i].topLeft, &summaryScreen->graph.deltaRects[i].topLeft);
+            UpdateConditionVec(&summaryScreen->graph.currRects[i].topRight, &summaryScreen->graph.deltaRects[i].topRight);
+            UpdateConditionVec(&summaryScreen->graph.currRects[i].bottomLeft, &summaryScreen->graph.deltaRects[i].bottomLeft);
+            UpdateConditionVec(&summaryScreen->graph.currRects[i].bottomRight, &summaryScreen->graph.deltaRects[i].bottomRight);
         }
     }
 
-    summaryScreen->conditionState++;
+    summaryScreen->graph.state++;
 
-    if (summaryScreen->conditionState == CONDITION_STATE_FLASH) {
+    if (summaryScreen->graph.state == SPIDER_GRAPH_STATE_END) {
         PokemonSummaryScreen_UpdateConditionFlashSprites(summaryScreen, TRUE);
     } else {
         PokemonSummaryScreen_UpdateConditionFlashSprites(summaryScreen, FALSE);
@@ -264,30 +243,30 @@ void PokemonSummaryScreen_InitConditionRects(PokemonSummaryScreen *summaryScreen
         return;
     }
 
-    summaryScreen->currRects[CONDITION_RECT_Q1].topLeft = sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_RIGHT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q1].topRight = sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_RIGHT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q1].bottomLeft = sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_RIGHT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q1].bottomRight = sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_RIGHT].min;
+    summaryScreen->graph.currRects[RECT_Q1].topLeft = sConditionRectBounds[RECT_Q1][VTX_BOTTOM_RIGHT].min;
+    summaryScreen->graph.currRects[RECT_Q1].topRight = sConditionRectBounds[RECT_Q1][VTX_BOTTOM_RIGHT].min;
+    summaryScreen->graph.currRects[RECT_Q1].bottomLeft = sConditionRectBounds[RECT_Q1][VTX_BOTTOM_RIGHT].min;
+    summaryScreen->graph.currRects[RECT_Q1].bottomRight = sConditionRectBounds[RECT_Q1][VTX_BOTTOM_RIGHT].min;
 
-    summaryScreen->currRects[CONDITION_RECT_Q2].topLeft = sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_LEFT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q2].topRight = sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_LEFT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q2].bottomLeft = sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_LEFT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q2].bottomRight = sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_LEFT].min;
+    summaryScreen->graph.currRects[RECT_Q2].topLeft = sConditionRectBounds[RECT_Q2][VTX_BOTTOM_LEFT].min;
+    summaryScreen->graph.currRects[RECT_Q2].topRight = sConditionRectBounds[RECT_Q2][VTX_BOTTOM_LEFT].min;
+    summaryScreen->graph.currRects[RECT_Q2].bottomLeft = sConditionRectBounds[RECT_Q2][VTX_BOTTOM_LEFT].min;
+    summaryScreen->graph.currRects[RECT_Q2].bottomRight = sConditionRectBounds[RECT_Q2][VTX_BOTTOM_LEFT].min;
 
-    summaryScreen->currRects[CONDITION_RECT_Q3].topLeft = sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_RIGHT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q3].topRight = sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_RIGHT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q3].bottomLeft = sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_RIGHT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q3].bottomRight = sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_RIGHT].min;
+    summaryScreen->graph.currRects[RECT_Q3].topLeft = sConditionRectBounds[RECT_Q3][VTX_TOP_RIGHT].min;
+    summaryScreen->graph.currRects[RECT_Q3].topRight = sConditionRectBounds[RECT_Q3][VTX_TOP_RIGHT].min;
+    summaryScreen->graph.currRects[RECT_Q3].bottomLeft = sConditionRectBounds[RECT_Q3][VTX_TOP_RIGHT].min;
+    summaryScreen->graph.currRects[RECT_Q3].bottomRight = sConditionRectBounds[RECT_Q3][VTX_TOP_RIGHT].min;
 
-    summaryScreen->currRects[CONDITION_RECT_Q4].topLeft = sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_LEFT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q4].topRight = sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_LEFT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q4].bottomLeft = sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_LEFT].min;
-    summaryScreen->currRects[CONDITION_RECT_Q4].bottomRight = sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_LEFT].min;
+    summaryScreen->graph.currRects[RECT_Q4].topLeft = sConditionRectBounds[RECT_Q4][VTX_TOP_LEFT].min;
+    summaryScreen->graph.currRects[RECT_Q4].topRight = sConditionRectBounds[RECT_Q4][VTX_TOP_LEFT].min;
+    summaryScreen->graph.currRects[RECT_Q4].bottomLeft = sConditionRectBounds[RECT_Q4][VTX_TOP_LEFT].min;
+    summaryScreen->graph.currRects[RECT_Q4].bottomRight = sConditionRectBounds[RECT_Q4][VTX_TOP_LEFT].min;
 
     PokemonSummaryScreen_InitMaxAndDeltaConditionRects(summaryScreen);
 }
 
-static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *outVec, u8 statValue)
+static void SetConditionVecFromStat(const SpiderGraphVtxBounds *bounds, VecFx16 *outVec, u8 statValue)
 {
     if (statValue == MAX_CONTEST_STAT) {
         *outVec = bounds->max;
@@ -309,34 +288,34 @@ static void SetConditionVecDifference(VecFx16 *startVec, VecFx16 *endVec, VecFx1
 
 void PokemonSummaryScreen_InitMaxAndDeltaConditionRects(PokemonSummaryScreen *summaryScreen)
 {
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_TOP_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q1].topLeft, summaryScreen->monData.cool);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_TOP_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q1].topRight, summaryScreen->monData.beauty);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q1].bottomRight, summaryScreen->monData.cute);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q1].bottomLeft, 0);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q1][VTX_TOP_LEFT], &summaryScreen->graph.maxRects[RECT_Q1].topLeft, summaryScreen->monData.cool);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q1][VTX_TOP_RIGHT], &summaryScreen->graph.maxRects[RECT_Q1].topRight, summaryScreen->monData.beauty);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q1][VTX_BOTTOM_LEFT], &summaryScreen->graph.maxRects[RECT_Q1].bottomRight, summaryScreen->monData.cute);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q1][VTX_BOTTOM_RIGHT], &summaryScreen->graph.maxRects[RECT_Q1].bottomLeft, 0);
 
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q2][VTX_TOP_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q2].topLeft, summaryScreen->monData.tough);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q2][VTX_TOP_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q2].topRight, summaryScreen->monData.cool);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q2].bottomRight, 0);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q2][VTX_BOTTOM_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q2].bottomLeft, summaryScreen->monData.smart);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q2][VTX_TOP_LEFT], &summaryScreen->graph.maxRects[RECT_Q2].topLeft, summaryScreen->monData.tough);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q2][VTX_TOP_RIGHT], &summaryScreen->graph.maxRects[RECT_Q2].topRight, summaryScreen->monData.cool);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q2][VTX_BOTTOM_LEFT], &summaryScreen->graph.maxRects[RECT_Q2].bottomRight, 0);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q2][VTX_BOTTOM_RIGHT], &summaryScreen->graph.maxRects[RECT_Q2].bottomLeft, summaryScreen->monData.smart);
 
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q3].topLeft, summaryScreen->monData.tough);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q3][VTX_TOP_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q3].topRight, 0);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q3][VTX_BOTTOM_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q3].bottomRight, summaryScreen->monData.cute);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q3][VTX_BOTTOM_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q3].bottomLeft, summaryScreen->monData.smart);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q3][VTX_TOP_LEFT], &summaryScreen->graph.maxRects[RECT_Q3].topLeft, summaryScreen->monData.tough);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q3][VTX_TOP_RIGHT], &summaryScreen->graph.maxRects[RECT_Q3].topRight, 0);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q3][VTX_BOTTOM_LEFT], &summaryScreen->graph.maxRects[RECT_Q3].bottomRight, summaryScreen->monData.cute);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q3][VTX_BOTTOM_RIGHT], &summaryScreen->graph.maxRects[RECT_Q3].bottomLeft, summaryScreen->monData.smart);
 
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q4].topLeft, 0);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q4][VTX_TOP_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q4].topRight, summaryScreen->monData.beauty);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q4][VTX_BOTTOM_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q4].bottomRight, summaryScreen->monData.cute);
-    SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q4][VTX_BOTTOM_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q4].bottomLeft, summaryScreen->monData.smart);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q4][VTX_TOP_LEFT], &summaryScreen->graph.maxRects[RECT_Q4].topLeft, 0);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q4][VTX_TOP_RIGHT], &summaryScreen->graph.maxRects[RECT_Q4].topRight, summaryScreen->monData.beauty);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q4][VTX_BOTTOM_LEFT], &summaryScreen->graph.maxRects[RECT_Q4].bottomRight, summaryScreen->monData.cute);
+    SetConditionVecFromStat(&sConditionRectBounds[RECT_Q4][VTX_BOTTOM_RIGHT], &summaryScreen->graph.maxRects[RECT_Q4].bottomLeft, summaryScreen->monData.smart);
 
-    for (u32 i = 0; i < MAX_CONDITION_RECT; i++) {
-        SetConditionVecDifference(&summaryScreen->currRects[i].topLeft, &summaryScreen->maxRects[i].topLeft, &summaryScreen->deltaRects[i].topLeft);
-        SetConditionVecDifference(&summaryScreen->currRects[i].topRight, &summaryScreen->maxRects[i].topRight, &summaryScreen->deltaRects[i].topRight);
-        SetConditionVecDifference(&summaryScreen->currRects[i].bottomLeft, &summaryScreen->maxRects[i].bottomLeft, &summaryScreen->deltaRects[i].bottomLeft);
-        SetConditionVecDifference(&summaryScreen->currRects[i].bottomRight, &summaryScreen->maxRects[i].bottomRight, &summaryScreen->deltaRects[i].bottomRight);
+    for (u32 i = 0; i < MAX_SPIDER_GRAPH_RECT; i++) {
+        SetConditionVecDifference(&summaryScreen->graph.currRects[i].topLeft, &summaryScreen->graph.maxRects[i].topLeft, &summaryScreen->graph.deltaRects[i].topLeft);
+        SetConditionVecDifference(&summaryScreen->graph.currRects[i].topRight, &summaryScreen->graph.maxRects[i].topRight, &summaryScreen->graph.deltaRects[i].topRight);
+        SetConditionVecDifference(&summaryScreen->graph.currRects[i].bottomLeft, &summaryScreen->graph.maxRects[i].bottomLeft, &summaryScreen->graph.deltaRects[i].bottomLeft);
+        SetConditionVecDifference(&summaryScreen->graph.currRects[i].bottomRight, &summaryScreen->graph.maxRects[i].bottomRight, &summaryScreen->graph.deltaRects[i].bottomRight);
     }
 
-    summaryScreen->conditionState = CONDITION_STATE_INITIAL;
+    summaryScreen->graph.state = SPIDER_GRAPH_STATE_INITIAL;
 }
 
 void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)

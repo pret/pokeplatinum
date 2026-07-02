@@ -19,6 +19,7 @@
 #include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "savedata.h"
+#include "spider_graph.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "string_gf.h"
@@ -302,15 +303,6 @@ enum SummaryPokerusState {
     SUMMARY_POKERUS_CURED,
 };
 
-enum ConditionRect {
-    CONDITION_RECT_Q1 = 0,
-    CONDITION_RECT_Q2,
-    CONDITION_RECT_Q3,
-    CONDITION_RECT_Q4,
-
-    MAX_CONDITION_RECT
-};
-
 #define SUMMARY_SUBSCREEN_BUTTON_NONE 0xFF
 
 #define RIBBONS_PER_ROW  4
@@ -426,10 +418,7 @@ typedef struct PokemonSummaryScreen {
     PokemonSummaryMonData monData;
     PokemonSummaryMonSpriteData monSprite;
 
-    ConditionRectangle currRects[MAX_CONDITION_RECT];
-    ConditionRectangle deltaRects[MAX_CONDITION_RECT];
-    ConditionRectangle maxRects[MAX_CONDITION_RECT];
-    u32 conditionState;
+    SpiderGraph graph;
 
     SpriteSystem *spriteSys;
     SpriteManager *spriteMan;
