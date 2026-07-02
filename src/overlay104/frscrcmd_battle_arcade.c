@@ -6,6 +6,7 @@
 #include "constants/battle_frontier.h"
 
 #include "applications/frontier/battle_arcade/main.h"
+#include "global/utility.h"
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay104/battle_castle_helpers.h"
 #include "overlay104/defs.h"
@@ -44,47 +45,44 @@ FS_EXTERN_OVERLAY(battle_arcade_app);
 
 #include <nitro/code16.h>
 
-static BOOL ov104_02237D18(FrontierScriptContext *param0);
+static BOOL WaitForCommResponses(FrontierScriptContext *ctx);
 static void SetupBattleArcadeAppArgs(BattleArcadeAppArgs *args, BattleArcade *battleArcade);
-static void ov104_02237C30(SPLEmitter *param0);
-static void ov104_02237C0C(FrontierScriptContext *param0, BattleArcade *param1, u16 param2);
+static void EmitterCallback(SPLEmitter *emitter);
+static void CreateEmitter(FrontierScriptContext *ctx, BattleArcade *arcade, u16 resourceID);
 static void StoreBattleArcadeAppResults(void *data);
 
-BOOL FrontierScrCmd_B8(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_InitBattleArcade(FrontierScriptContext *ctx)
 {
-    BattleArcade *v0;
-    FieldFrontierDTO *fieldData;
-    u16 v2 = FrontierScriptContext_GetVar(param0);
-    u16 v3 = FrontierScriptContext_GetVar(param0);
-    u16 v4 = FrontierScriptContext_GetVar(param0);
-    u16 v5 = FrontierScriptContext_GetVar(param0);
-    u16 v6 = FrontierScriptContext_GetVar(param0);
-    u16 *v7 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 resumingFromSave = FrontierScriptContext_GetVar(ctx);
+    u16 challengeType = FrontierScriptContext_GetVar(ctx);
+    u16 partySlot1 = FrontierScriptContext_GetVar(ctx);
+    u16 partySlot2 = FrontierScriptContext_GetVar(ctx);
+    u16 partySlot3 = FrontierScriptContext_GetVar(ctx);
+    u16 *v7 = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
-    v0 = ov104_02237DD8(fieldData->saveData, v2, v3, v4, v5, v6, v7);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    BattleArcade *arcade = BattleArcade_Init(fieldData->saveData, resumingFromSave, challengeType, partySlot1, partySlot2, partySlot3, v7);
 
-    BattleFrontier_SetFacilityStruct(param0->scriptMan->frontier, v0);
-    return 0;
+    BattleFrontier_SetFacilityStruct(ctx->scriptMan->frontier, arcade);
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_B9(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleArcade_LoadTrainersForRound(FrontierScriptContext *ctx)
 {
-    BattleArcade *v0;
-    u16 v1 = FrontierScriptContext_GetVar(param0);
+    u16 resumingFromSave = FrontierScriptContext_GetVar(ctx);
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_0223806C(v0, v1);
+    BattleArcade *arcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleArcade_LoadTrainersForRound(arcade, resumingFromSave);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_BA(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_FreeBattleArcade(FrontierScriptContext *ctx)
 {
-    BattleArcade *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_02238210(v0);
+    BattleArcade *arcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleArcade_Free(arcade);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_OpenBattleArcadeApp(FrontierScriptContext *ctx)
@@ -119,7 +117,7 @@ BOOL FrontierScrCmd_BattleArcade_CleanupBattle(FrontierScriptContext *ctx)
     BattleArcade *battleArcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     FieldBattleDTO *dto = battleArcade->dto;
 
-    battleArcade->fitnessScore = BattleArcade_FitnessScore(battleArcade, dto->parties[0], dto->parties[2], dto->totalTurnsElapsed);
+    battleArcade->performance = BattleArcade_GetPerformance(battleArcade, dto->parties[0], dto->parties[2], dto->totalTurnsElapsed);
     battleArcade->wonBattle = CheckPlayerWonBattle(dto->resultMask);
 
     if (battleArcade->activeEffect == ARCADE_EFFECT_SWAP_MONS) {
@@ -130,14 +128,14 @@ BOOL FrontierScrCmd_BattleArcade_CleanupBattle(FrontierScriptContext *ctx)
         partyIdx2 = BATTLER_PLAYER_2;
     }
 
-    ov104_02239054(dto->parties[partyIdx1], battleArcade->playersParty, 0, 0);
-    ov104_02239054(dto->parties[partyIdx1], battleArcade->playersParty, 1, 1);
+    BattleArcade_SaveItemsAfterBattle(dto->parties[partyIdx1], battleArcade->playersParty, 0, 0);
+    BattleArcade_SaveItemsAfterBattle(dto->parties[partyIdx1], battleArcade->playersParty, 1, 1);
 
     if (!BattleCastle_IsMultiPlayerChallenge(battleArcade->challengeType)) {
-        ov104_02239054(dto->parties[partyIdx1], battleArcade->playersParty, 2, 2);
+        BattleArcade_SaveItemsAfterBattle(dto->parties[partyIdx1], battleArcade->playersParty, 2, 2);
     } else {
-        ov104_02239054(dto->parties[partyIdx2], battleArcade->playersParty, 0, 2);
-        ov104_02239054(dto->parties[partyIdx2], battleArcade->playersParty, 1, 3);
+        BattleArcade_SaveItemsAfterBattle(dto->parties[partyIdx2], battleArcade->playersParty, 0, 2);
+        BattleArcade_SaveItemsAfterBattle(dto->parties[partyIdx2], battleArcade->playersParty, 1, 3);
     }
 
     if (battleArcade->activeEffect == ARCADE_EFFECT_ALLY_LEVEL_UP) {
@@ -187,7 +185,7 @@ BOOL FrontierScrCmd_BattleArcade_StartBattle(FrontierScriptContext *ctx)
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     BattleArcade *battleArcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    FieldBattleDTO *dto = FieldBattleDTO_NewBattleArcade(battleArcade, fieldData);
+    FieldBattleDTO *dto = BattleArcade_SetupBattle(battleArcade, fieldData);
     battleArcade->dto = dto;
 
     sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
@@ -197,21 +195,21 @@ BOOL FrontierScrCmd_BattleArcade_StartBattle(FrontierScriptContext *ctx)
 static void SetupBattleArcadeAppArgs(BattleArcadeAppArgs *args, BattleArcade *battleArcade)
 {
     args->challengeType = battleArcade->challengeType;
-    args->round = ov104_0223C124(battleArcade);
-    args->unk_14 = &battleArcade->unk_20;
+    args->round = BattleArcade_GetCurrentRound(battleArcade);
+    args->randomIndex = &battleArcade->randomIndex;
     args->selectedEffect = &battleArcade->activeEffect;
-    args->fitnessScore = battleArcade->fitnessScore;
+    args->performance = battleArcade->performance;
     args->currentStreak = battleArcade->currentStreak;
     args->partnersStreak = battleArcade->unk_A78;
-    args->rouletteSpeed = &battleArcade->unk_1C;
+    args->rouletteSpeed = &battleArcade->rouletteSpeed;
     args->party = battleArcade->playersParty;
     args->opponentsParty = battleArcade->opponentsParty;
     args->battleArcade = battleArcade;
-    battleArcade->weather = 0;
-    args->unk_08 = &battleArcade->weather;
-    args->randomizeCursorMovement = battleArcade->unk_12;
-    battleArcade->unk_12 = 0;
-    battleArcade->unk_1F = 0;
+    battleArcade->weather = OVERWORLD_WEATHER_CLEAR;
+    args->weather = &battleArcade->weather;
+    args->randomizeCursorMovement = battleArcade->cursorRandomized;
+    battleArcade->cursorRandomized = FALSE;
+    battleArcade->immuneToEffect = FALSE;
 
     int numMons = Party_GetCurrentCount(battleArcade->playersParty);
     for (int i = 0; i < numMons; i++) {
@@ -234,26 +232,26 @@ static void StoreBattleArcadeAppResults(void *data)
     Heap_Free(data);
 }
 
-BOOL FrontierScrCmd_BD(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleArcade_SetupFirstOpponent(FrontierScriptContext *ctx)
 {
-    BattleArcade *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_022384D4(v0);
+    BattleArcade *arcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleArcade_SetupFirstOpponentsParty(arcade);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_BE(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleArcade_SetupNextOpponent(FrontierScriptContext *ctx)
 {
-    BattleArcade *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_022384DC(v0);
+    BattleArcade *arcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleArcade_SetupNextOpponentsParty(arcade);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
 {
-    Pokemon *v1;
-    int v11;
+    Pokemon *mon;
+    int i;
     u8 command = FrontierScriptContext_ReadByte(ctx);
     u8 arg1 = FrontierScriptContext_GetVar(ctx);
     u8 arg2 = FrontierScriptContext_GetVar(ctx);
@@ -267,10 +265,10 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
     case BA_FUNC_SET_CHALLENGE_TYPE:
         battleArcade->challengeType = arg1;
         break;
-    case BA_FUNC_UNK_3:
+    case BA_FUNC_GET_APP_CURSOR_POS:
         *destVar = battleArcade->appCursorPos[arg1];
         break;
-    case BA_FUNC_UNK_4:
+    case BA_FUNC_GET_CURRENT_STREAK:
         *destVar = battleArcade->currentStreak;
         break;
     case BA_FUNC_INCREMENT_CURRENT_STREAK:
@@ -281,90 +279,83 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
     case BA_FUNC_RESET_SYSTEM:
         OS_ResetSystem(0);
         break;
-    case BA_FUNC_UNK_9:
-        *destVar = sub_020304B0(battleArcade->unk_08);
+    case BA_FUNC_HAS_SAVED:
+        *destVar = BattleArcadeSave_HasSaved(battleArcade->arcadeSave);
         break;
-    case BA_FUNC_UNK_10:
-        ov104_02238278(battleArcade, 2);
+    case BA_FUNC_QUICKSAVE:
+        BattleArcade_Save(battleArcade, 2);
         break;
-    case BA_FUNC_UNK_12:
-        *destVar = ov104_0223C0BC(battleArcade, battleArcade->activeEffect);
+    case BA_FUNC_GET_FREE_BP:
+        *destVar = BattleArcade_GetFreeBPFromEvent(battleArcade, battleArcade->activeEffect);
         break;
-    case BA_FUNC_UNK_14:
-        *destVar = ov104_02238454(battleArcade);
+    case BA_FUNC_INCREMENT_CURRENT_BATTLE:
+        *destVar = BattleArcade_IncrementCurrentBattle(battleArcade);
         break;
-    case BA_FUNC_UNK_15:
+    case BA_FUNC_GET_HELD_ITEM:
         if (arg1 == 0) {
-            v1 = Party_GetPokemonBySlotIndex(battleArcade->playersParty, 0);
+            mon = Party_GetPokemonBySlotIndex(battleArcade->playersParty, 0);
         } else {
-            v1 = Party_GetPokemonBySlotIndex(battleArcade->opponentsParty, 0);
+            mon = Party_GetPokemonBySlotIndex(battleArcade->opponentsParty, 0);
         }
 
-        *destVar = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
+        *destVar = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
         break;
-    case BA_FUNC_UNK_16:
+    case BA_FUNC_GET_ACTIVE_EFFECT:
         *destVar = battleArcade->activeEffect;
         break;
-    case BA_FUNC_UNK_18: {
-        Party *v2 = SaveData_GetParty(fieldData->saveData);
+    case BA_FUNC_RESTORE_HELD_ITEMS: {
+        Party *party = SaveData_GetParty(fieldData->saveData);
 
-        for (v11 = 0; v11 < 3; v11++) {
-            v1 = Party_GetPokemonBySlotIndex(v2, battleArcade->unk_2C[v11]);
-            Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &battleArcade->unk_412[v11]);
+        for (i = 0; i < ARCADE_PARTY_SIZE_SOLO; i++) {
+            mon = Party_GetPokemonBySlotIndex(party, battleArcade->partySlots[i]);
+            Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &battleArcade->savedHeldItems[i]);
         }
     } break;
-    case BA_FUNC_UNK_19:
-        *destVar = ov104_0223C124(battleArcade);
+    case BA_FUNC_GET_CURRENT_ROUND:
+        *destVar = BattleArcade_GetCurrentRound(battleArcade);
         break;
-    case BA_FUNC_UNK_20:
-        *destVar = ov104_02238464(battleArcade, arg1);
+    case BA_FUNC_GET_OPPONENT_OBJECT_ID:
+        *destVar = BattleArcade_GetNextOpponentObjectID(battleArcade, arg1);
         break;
-    case BA_FUNC_UNK_21:
-        ov104_022384A8(battleArcade);
+    case BA_FUNC_SAVE_ON_LOSS:
+        BattleArcade_SaveOnLoss(battleArcade);
         break;
-    case BA_FUNC_UNK_22:
-        ov104_022384B4(battleArcade);
+    case BA_FUNC_SAVE_ON_COMPLETING_ROUND:
+        BattleArcade_SaveOnCompletingRound(battleArcade);
         break;
-    case BA_FUNC_UNK_23:
-        *destVar = ov104_02238460(battleArcade);
+    case BA_FUNC_GET_CURRENT_BATTLE:
+        *destVar = BattleArcade_GetCurrentBattle(battleArcade);
         break;
     case BA_FUNC_UNK_24:
         *destVar = battleArcade->unk_A74;
         break;
-    case BA_FUNC_UNK_25:
-        if (battleArcade->activeEffect == 27) {
-            u8 v4 = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, 1);
-            u8 v5 = BattleArcade_GetOpponentPartySize(battleArcade->challengeType, 1);
+    case BA_FUNC_SWAP_MON_SPRITES:
+        if (battleArcade->activeEffect == ARCADE_EFFECT_SWAP_MONS) {
+            u8 playerPartySize = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, TRUE);
+            u8 opponentPartySize = BattleArcade_GetOpponentPartySize(battleArcade->challengeType, TRUE);
 
-            {
-                VecFx32 v21;
-                VecFx32 v22;
-                Sprite *v23;
-                Sprite *v24;
+            for (i = 0; i < playerPartySize; i++) {
+                Sprite *sprite1 = battleArcade->playerMonSprites[i]->sprite;
+                VecFx32 position1 = *Sprite_GetPosition(sprite1);
 
-                for (v11 = 0; v11 < v4; v11++) {
-                    v23 = battleArcade->unk_30[v11]->sprite;
-                    v21 = *(Sprite_GetPosition((const Sprite *)v23));
+                Sprite *sprite2 = battleArcade->opponentMonSprites[i]->sprite;
+                VecFx32 position2 = *Sprite_GetPosition(sprite2);
 
-                    v24 = battleArcade->unk_40[v11]->sprite;
-                    v22 = *(Sprite_GetPosition((const Sprite *)v24));
+                Sprite_SetPosition(sprite1, &position2);
+                Sprite_SetPosition(sprite2, &position1);
 
-                    Sprite_SetPosition(v23, &v22);
-                    Sprite_SetPosition(v24, &v21);
+                sprite1 = battleArcade->playerItemSprites[i]->sprite;
+                position1 = *Sprite_GetPosition(sprite1);
 
-                    v23 = battleArcade->unk_50[v11]->sprite;
-                    v21 = *(Sprite_GetPosition((const Sprite *)v23));
+                sprite2 = battleArcade->opponentItemSprites[i]->sprite;
+                position2 = *Sprite_GetPosition(sprite2);
 
-                    v24 = battleArcade->unk_60[v11]->sprite;
-                    v22 = *(Sprite_GetPosition((const Sprite *)v24));
-
-                    Sprite_SetPosition(v23, &v22);
-                    Sprite_SetPosition(v24, &v21);
-                }
+                Sprite_SetPosition(sprite1, &position2);
+                Sprite_SetPosition(sprite2, &position1);
             }
         }
         break;
-    case BA_FUNC_UNK_6:
+    case BA_FUNC_INIT_COMM_MANAGER:
         sub_0209BA80(battleArcade);
         break;
     case BA_FUNC_IS_MULTIPLAYER_CHALLENGE:
@@ -373,164 +364,152 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
     case BA_FUNC_GET_CHALLENGE_TYPE:
         *destVar = battleArcade->challengeType;
         break;
-    case BA_FUNC_UNK_29:
-        ov104_02232EC0(graphics);
+    case BA_FUNC_LOAD_MON_SPRITE_DATA:
+        BattleFrontier_LoadMonSpriteData(graphics);
         break;
-    case BA_FUNC_UNK_30:
-        ov104_02232F28(graphics);
+    case BA_FUNC_UNLOAD_MON_SPRITE_DATA:
+        BattleFrontier_UnloadMonSpriteData(graphics);
         break;
-    case BA_FUNC_UNK_31:
-        ov104_02238764(battleArcade, graphics, arg1);
+    case BA_FUNC_CREATE_MON_SPRITES:
+        BattleArcade_CreateMonSprites(battleArcade, graphics, arg1);
 
-        u8 v4 = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, 1);
-        u8 v5 = BattleArcade_GetOpponentPartySize(battleArcade->challengeType, 1);
+        u8 playerPartySize = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, TRUE);
+        u8 opponentPartySize = BattleArcade_GetOpponentPartySize(battleArcade->challengeType, TRUE);
 
         if (arg1 == 0) {
-            for (v11 = 0; v11 < v4; v11++) {
-                Sprite_SetExplicitPriority(battleArcade->unk_30[v11]->sprite, 2);
+            for (i = 0; i < playerPartySize; i++) {
+                Sprite_SetExplicitPriority(battleArcade->playerMonSprites[i]->sprite, 2);
             }
         } else {
-            for (v11 = 0; v11 < v5; v11++) {
-                Sprite_SetExplicitPriority(battleArcade->unk_40[v11]->sprite, 2);
+            for (i = 0; i < opponentPartySize; i++) {
+                Sprite_SetExplicitPriority(battleArcade->opponentMonSprites[i]->sprite, 2);
             }
         }
         break;
-    case BA_FUNC_UNK_32:
-        ov104_02238814(battleArcade, graphics, arg1);
+    case BA_FUNC_DELETE_MON_SPRITES:
+        BattleArcade_DeleteMonSprites(battleArcade, graphics, arg1);
         break;
-    case BA_FUNC_UNK_33:
-        ov104_02232FEC(graphics);
+    case BA_FUNC_LOAD_ITEM_SPRITE_DATA:
+        BattleFrontier_LoadItemSpriteData(graphics);
         break;
-    case BA_FUNC_UNK_34:
-        ov104_0223307C(graphics);
+    case BA_FUNC_UNLOAD_ITEM_SPRITE_DATA:
+        BattleFrontier_UnloadItemSpriteData(graphics);
         break;
-    case BA_FUNC_UNK_35:
-        ov104_022388DC(battleArcade, graphics, arg1);
+    case BA_FUNC_CREATE_ITEM_SPRITES:
+        BattleArcade_CreateItemSprites(battleArcade, graphics, arg1);
         break;
-    case BA_FUNC_UNK_36:
-        ov104_022389A0(battleArcade, graphics, arg1);
+    case BA_FUNC_DELETE_ITEM_SPRITES:
+        BattleArcade_DeleteItemSprites(battleArcade, graphics, arg1);
         break;
-    case BA_FUNC_UNK_11:
-        ov104_02238658(battleArcade, graphics);
+    case BA_FUNC_SET_EFFECT_BACKGROUND:
+        BattleArcade_UpdateBackgroundForEffect(battleArcade, graphics);
         break;
-    case BA_FUNC_UNK_37:
-        if (BattleArcade_IsMultiPlayerChallenge(battleArcade->challengeType) == 1) {
-            ov104_02238728(battleArcade, graphics);
+    case BA_FUNC_LOAD_NORMAL_BACKGROUND:
+        if (BattleArcade_IsMultiPlayerChallenge(battleArcade->challengeType) == TRUE) {
+            BattleArcade_LoadNormalBackground(battleArcade, graphics);
         }
         break;
-    case BA_FUNC_UNK_38: {
-        u8 v6 = BattleArcade_GetCategoryFromEffect(battleArcade->activeEffect);
+    case BA_FUNC_SET_NAME_OF_AFFECTED_TRAINER: {
+        u8 effectCategory = BattleArcade_GetCategoryFromEffect(battleArcade->activeEffect);
 
-        TrainerInfo *v16;
-        if (v6 == 0) {
-            StringTemplate_SetFrontierTrainerName(ctx->scriptMan->strTemplate, arg1, battleArcade->trainerIDs[ov104_02238498(battleArcade, arg2)]);
+        TrainerInfo *trainerInfo;
+        if (effectCategory == ARCADE_EFFECT_CATEGORY_FOE) {
+            StringTemplate_SetFrontierTrainerName(ctx->scriptMan->strTemplate, arg1, battleArcade->trainerIDs[BattleArcade_GetTrainerOffset(battleArcade, arg2)]);
         } else {
-            if (BattleArcade_IsMultiPlayerChallenge(battleArcade->challengeType) == 0) {
-                v16 = SaveData_GetTrainerInfo(fieldData->saveData);
+            if (BattleArcade_IsMultiPlayerChallenge(battleArcade->challengeType) == FALSE) {
+                trainerInfo = SaveData_GetTrainerInfo(fieldData->saveData);
             } else {
-                v16 = CommInfo_TrainerInfo(arg2);
+                trainerInfo = CommInfo_TrainerInfo(arg2);
             }
 
-            StringTemplate_SetPlayerName(ctx->scriptMan->strTemplate, arg1, v16);
+            StringTemplate_SetPlayerName(ctx->scriptMan->strTemplate, arg1, trainerInfo);
         }
     } break;
-    case BA_FUNC_UNK_39:
+    case BA_FUNC_CREATE_EMITTER:
         battleArcade->unk_A7A = arg2;
-        ov104_02237C0C(ctx, battleArcade, arg1);
+        CreateEmitter(ctx, battleArcade, arg1);
         break;
-    case BA_FUNC_UNK_40:
-        BattleFrontier_LoadTrainer(&(battleArcade->unk_F4[0]), battleArcade->trainerIDs[battleArcade->unk_11], HEAP_ID_FIELD2, 178);
-        BattleFrontier_LoadTrainer(&(battleArcade->unk_F4[1]), battleArcade->trainerIDs[battleArcade->unk_11 + 7], HEAP_ID_FIELD2, 178);
+    case BA_FUNC_LOAD_TRAINERS:
+        BattleFrontier_LoadTrainer(&(battleArcade->opponents[0]), battleArcade->trainerIDs[battleArcade->currentBattle], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+        BattleFrontier_LoadTrainer(&(battleArcade->opponents[1]), battleArcade->trainerIDs[battleArcade->currentBattle + ARCADE_BATTLES_PER_ROUND], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         break;
-    case BA_FUNC_UNK_41:
-        ov104_0223886C(battleArcade, graphics, arg1, arg2);
+    case BA_FUNC_SET_DRAW_FLAG_PLAYER_MON:
+        BattleArcade_SetPlayerMonSpriteDrawFlag(battleArcade, graphics, arg1, arg2);
         break;
-    case BA_FUNC_UNK_42:
-        ov104_022388A4(battleArcade, graphics, arg1, arg2);
+    case BA_FUNC_SET_DRAW_FLAG_OPPONENT_MON:
+        BattleArcade_SetOpponentMonSpriteDrawFlag(battleArcade, graphics, arg1, arg2);
         break;
-    case BA_FUNC_UNK_43:
-        ov104_02238AB4(arg1, arg2);
+    case BA_FUNC_SET_PALETTE:
+        BattleArcade_SetPalette(arg1, arg2);
         break;
     case BA_FUNC_UNK_44:
         if (arg1 == 0) {
-            PaletteData_Blend(graphics->plttData, PLTTBUF_MAIN_OBJ, 0, 16 * 16, arg1, 0x0);
+            PaletteData_Blend(graphics->plttData, PLTTBUF_MAIN_OBJ, 0, 16 * 16, arg1, 0);
         } else {
-            {
-                u32 v25;
-                UnkStruct_ov104_0223C634 *v26;
-                Sprite *v27;
+            UnkStruct_ov104_0223C634 *v26 = ov104_0223D5A8(ctx->scriptMan->frontier, arg2);
+            u32 v25 = ov63_0222D050(v26->sprite);
 
-                v26 = ov104_0223D5A8(ctx->scriptMan->frontier, arg2);
-                v25 = ov63_0222D050(v26->sprite);
-
-                PaletteData_Blend(graphics->plttData, PLTTBUF_MAIN_OBJ, v25 * 16, 16, arg1, 0x0);
-            }
+            PaletteData_Blend(graphics->plttData, PLTTBUF_MAIN_OBJ, v25 * 16, 16, arg1, 0);
         }
         break;
-    case BA_FUNC_UNK_45:
-        *destVar = ov104_02239014(battleArcade);
+    case BA_FUNC_GET_EARNED_BP:
+        *destVar = BattleArcade_GetEarnedBP(battleArcade);
         break;
-    case BA_FUNC_UNK_46:
+    case BA_FUNC_DISABLE_BG2_LAYER:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
         break;
-    case BA_FUNC_UNK_47:
-        *destVar = battleArcade->unk_1F;
+    case BA_FUNC_CHECK_IMMUNE_TO_EFFECT:
+        *destVar = battleArcade->immuneToEffect;
         break;
-    case BA_FUNC_UNK_48:
-        *destVar = 0;
+    case BA_FUNC_GET_NEXT_BATTLE_TYPE:
+        *destVar = FRONTIER_NEXT_BATTLE_NORMAL;
 
-        if (battleArcade->challengeType == 0) {
-            if ((battleArcade->currentStreak + 1) == 21) {
-                *destVar = 1;
-            } else if ((battleArcade->currentStreak + 1) == 49) {
-                *destVar = 2;
+        if (battleArcade->challengeType == FRONTIER_CHALLENGE_SINGLE) {
+            if (battleArcade->currentStreak + 1 == ARCADE_STREAK_SILVER_BATTLE) {
+                *destVar = FRONTIER_NEXT_BATTLE_SILVER;
+            } else if (battleArcade->currentStreak + 1 == ARCADE_STREAK_GOLD_BATTLE) {
+                *destVar = FRONTIER_NEXT_BATTLE_GOLD;
             }
         }
         break;
-    case BA_FUNC_UNK_49:
-        BattleFrontier_LoadFrontierPokemon(battleArcade->unk_330, battleArcade->unk_314, battleArcade->unk_31C, battleArcade->unk_320, NULL, 4, 11, 179);
+    case BA_FUNC_CREATE_OPPONENT_MONS:
+        BattleFrontier_LoadFrontierPokemon(battleArcade->opponentMons, battleArcade->monSetIDs, battleArcade->opponentMonIVs, battleArcade->opponentMonPersonalities, NULL, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
         break;
-    case BA_FUNC_UNK_50:
-        ov104_0223C04C(battleArcade);
+    case BA_FUNC_SETUP_OPPONENTS_PARTY:
+        BattleArcade_SetupOpponentsParty(battleArcade);
         break;
-    case BA_FUNC_UNK_51:
-        *destVar = battleArcade->unk_1E;
-        battleArcade->unk_1E = 1;
+    case BA_FUNC_CHECK_SEEN_STAR_INTRO:
+        *destVar = battleArcade->seenArcadeStarIntro;
+        battleArcade->seenArcadeStarIntro = TRUE;
         break;
-    case BA_FUNC_UNK_52:
-        battleArcade->unk_A7C = 0;
+    case BA_FUNC_CLEAR_MSGS_RECEIVED:
+        battleArcade->msgsReceived = 0;
         break;
     }
 
     return FALSE;
 }
 
-static void ov104_02237C0C(FrontierScriptContext *param0, BattleArcade *param1, u16 param2)
+static void CreateEmitter(FrontierScriptContext *ctx, BattleArcade *arcade, u16 resourceID)
 {
-    FrontierScriptManager *v0 = param0->scriptMan;
-    FrontierGraphics *v1 = FrontierScriptManager_GetGraphics(param0->scriptMan);
-    ParticleSystem *v2 = FrontierParticleSystem_GetParticleSystem(v1->particleSys, 0);
-    ParticleSystem_CreateEmitterWithCallback(v2, param2, ov104_02237C30, param1);
-
-    return;
+    FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(ctx->scriptMan);
+    ParticleSystem *ps = FrontierParticleSystem_GetParticleSystem(graphics->particleSys, 0);
+    ParticleSystem_CreateEmitterWithCallback(ps, resourceID, EmitterCallback, arcade);
 }
 
-static void ov104_02237C30(SPLEmitter *param0)
+static void EmitterCallback(SPLEmitter *emitter)
 {
-    VecFx32 v0;
-    VecFx16 v1;
-    BattleArcade *v2 = ParticleSystem_GetEmitterCallbackParam();
-    const VecFx32 v3[] = { FX32_ONE * -1, 0, 0 };
+    VecFx16 axis;
+    BattleArcade *arcade = ParticleSystem_GetEmitterCallbackParam();
+    const VecFx32 pos[] = { FX32_CONST(-1), 0, 0 };
 
-    if (v2->unk_A7A == 1) {
-        ParticleSystem_GetEmitterAxis(param0, &v1);
-        v1.x *= -1;
+    if (arcade->unk_A7A == 1) {
+        ParticleSystem_GetEmitterAxis(emitter, &axis);
+        axis.x *= -1;
 
-        SPLEmitter_SetAxis(param0, &v1);
-        SPLEmitter_SetPos(param0, v3);
+        SPLEmitter_SetAxis(emitter, &axis);
+        SPLEmitter_SetPos(emitter, pos);
     }
-
-    return;
 }
 
 BOOL FrontierScrCmd_BattleArcade_CheckWonBattle(FrontierScriptContext *ctx)
@@ -543,81 +522,74 @@ BOOL FrontierScrCmd_BattleArcade_CheckWonBattle(FrontierScriptContext *ctx)
     return FALSE;
 }
 
-BOOL FrontierScrCmd_C1(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleArcade_SendCommMessage(FrontierScriptContext *ctx)
 {
-    BattleArcade *v0;
-    u16 v1 = FrontierScriptContext_GetVar(param0);
-    u16 v2 = FrontierScriptContext_GetVar(param0);
-    u16 *v3 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 command = FrontierScriptContext_GetVar(ctx);
+    u16 arg = FrontierScriptContext_GetVar(ctx);
+    u16 *success = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    *v3 = ov104_02238B40(v0, v1, v2);
+    BattleArcade *arcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    *success = BattleArcade_SendCommMessage(arcade, command, arg);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_C2(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleArcade_WaitForCommResponses(FrontierScriptContext *ctx)
 {
-    u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
+    ctx->data[0] = FrontierScriptContext_ReadHalfWord(ctx);
+    FrontierScriptContext_Pause(ctx, WaitForCommResponses);
 
-    param0->data[0] = v0;
-    FrontierScriptContext_Pause(param0, ov104_02237D18);
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov104_02237D18(FrontierScriptContext *param0)
+static BOOL WaitForCommResponses(FrontierScriptContext *ctx)
 {
-    BattleArcade *v0;
-    u16 v1 = FrontierScriptContext_TryGetVar(param0, param0->data[0]);
+    UNUSED(FrontierScriptContext_TryGetVar(ctx, ctx->data[0]));
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
+    BattleArcade *arcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (v0->unk_A7C >= 2) {
-        v0->unk_A7C = 0;
-        return 1;
+    if (arcade->msgsReceived >= 2) {
+        arcade->msgsReceived = 0;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_C4(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleArcade_PrintTrainerIntro(FrontierScriptContext *ctx)
 {
-    u16 *v0;
-    BattleArcade *v1;
-    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
-    u16 v3 = FrontierScriptContext_ReadByte(param0);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    u16 index = FrontierScriptContext_ReadByte(ctx);
 
-    v1 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
+    BattleArcade *arcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (v1 == NULL) {
-        return 0;
+    if (arcade == NULL) {
+        return FALSE;
     }
 
-    v0 = v1->unk_F4[v3].trainer.introMsg;
-    BattleFrontier_PrintNormalTrainerMessage(param0, v0);
+    u16 *introMsg = arcade->opponents[index].trainer.introMsg;
 
-    return 1;
+    BattleFrontier_PrintNormalTrainerMessage(ctx, introMsg);
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_C5(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_ApplyArcadeEffect(FrontierScriptContext *ctx)
 {
-    BattleArcade *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_02238B88(v0, v0->activeEffect);
+    BattleArcade *arcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleArcade_ApplyEffect(arcade, arcade->activeEffect);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_C6(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_SetItemDrawFlag(FrontierScriptContext *ctx)
 {
-    BattleArcade *v0;
-    FrontierGraphics *v1 = FrontierScriptManager_GetGraphics(param0->scriptMan);
-    u16 v2 = FrontierScriptContext_GetVar(param0);
-    u16 v3 = FrontierScriptContext_GetVar(param0);
-    u16 v4 = FrontierScriptContext_GetVar(param0);
+    FrontierGraphics *graphics = FrontierScriptManager_GetGraphics(ctx->scriptMan);
+    u16 isOpponent = FrontierScriptContext_GetVar(ctx);
+    u16 slot = FrontierScriptContext_GetVar(ctx);
+    u16 draw = FrontierScriptContext_GetVar(ctx);
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_022389F4(v0, v1, v2, v3, v4);
+    BattleArcade *arcade = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleArcade_SetItemDrawFlag(arcade, graphics, isOpponent, slot, draw);
 
-    return 0;
+    return FALSE;
 }

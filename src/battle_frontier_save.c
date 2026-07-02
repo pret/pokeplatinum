@@ -27,7 +27,7 @@ void BattleFrontier_Init(BattleFrontierSave *frontier)
     BattleFactoryStreakFlags_Init(&frontier->factory.streakFlags);
     BattleHallStreakFlags_Init(&frontier->hall.streakFlags);
     BattleCastlePersistentSave_Init(&frontier->castle.persistentSave);
-    sub_020305AC(&frontier->unk_1620.unk_00);
+    BattleArcadeStreakFlags_Init(&frontier->arcade.streakFlags);
 }
 
 BattleFrontierSave *SaveData_GetBattleFrontier(SaveData *saveData)

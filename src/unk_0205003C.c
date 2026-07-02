@@ -4,8 +4,6 @@
 #include <nitro/code16.h>
 #include <string.h>
 
-#include "struct_decls/struct_020304A0_decl.h"
-#include "struct_decls/struct_020305B8_decl.h"
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/struct_02050224.h"
 
@@ -46,7 +44,7 @@ typedef struct {
 
 BOOL ScrCmd_2D9(ScriptContext *param0);
 BOOL ScrCmd_2DC(ScriptContext *param0);
-static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 param2);
+static void sub_02050174(SaveData *saveData, BattleArcadeStreakFlags *param1, u8 param2);
 void sub_020502E0(FieldTask *param0, void **param1, u8 param2);
 static BOOL sub_02050314(FieldTask *param0);
 static int sub_0205037C(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, int param2);
@@ -64,8 +62,8 @@ BOOL ScrCmd_2D9(ScriptContext *param0)
     u16 v4 = ScriptContext_GetVar(param0);
     u16 v5 = ScriptContext_ReadHalfWord(param0);
     u16 *v6 = FieldSystem_GetVarPointer(param0->fieldSystem, v5);
-    UnkStruct_020304A0 *v10 = sub_020304A0(param0->fieldSystem->saveData);
-    UnkStruct_020305B8 *v11 = sub_020305B8(param0->fieldSystem->saveData);
+    BattleArcadeSave *v10 = BattleArcadeSave_Get(param0->fieldSystem->saveData);
+    BattleArcadeStreakFlags *v11 = BattleArcadeStreakFlags_Get(param0->fieldSystem->saveData);
     void **v8 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
 
     switch (v3) {
@@ -76,7 +74,7 @@ BOOL ScrCmd_2D9(ScriptContext *param0)
         if (v4 == 3) {
             *v6 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->fieldSystem->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE);
         } else {
-            *v6 = (u16)sub_02030600(v11, 8, v4, 0, NULL);
+            *v6 = (u16)BattleArcadeStreakFlags_GetFlag(v11, 8, v4, 0, NULL);
         }
         break;
     case 3:
@@ -108,18 +106,18 @@ BOOL ScrCmd_2DC(ScriptContext *param0)
 {
     u16 v1 = ScriptContext_GetVar(param0);
 
-    UnkStruct_020305B8 *v0 = sub_020305B8(param0->fieldSystem->saveData);
+    BattleArcadeStreakFlags *v0 = BattleArcadeStreakFlags_Get(param0->fieldSystem->saveData);
     sub_02050174(param0->fieldSystem->saveData, v0, v1);
 
     return 0;
 }
 
-static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 param2)
+static void sub_02050174(SaveData *saveData, BattleArcadeStreakFlags *param1, u8 param2)
 {
     u8 v2[4];
 
     v2[0] = 0;
-    sub_020305CC(param1, 8, param2, 0, v2);
+    BattleArcadeStreakFlags_SetFlag(param1, 8, param2, 0, v2);
 
     if (param2 == 3) {
         BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, 0);

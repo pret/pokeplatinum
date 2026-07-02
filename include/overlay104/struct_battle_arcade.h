@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLE_ARCADE_H
 #define POKEPLATINUM_STRUCT_BATTLE_ARCADE_H
 
-#include "struct_decls/struct_020304A0_decl.h"
+#include "constants/battle_frontier.h"
 
 #include "overlay104/frontier_opponents.h"
 
@@ -9,49 +9,49 @@
 #include "party.h"
 #include "savedata.h"
 #include "sprite.h"
+#include "unk_02030494.h"
 
 typedef struct BattleArcade {
-    int unk_00;
+    int unused;
     SaveData *saveData;
-    UnkStruct_020304A0 *unk_08;
+    BattleArcadeSave *arcadeSave;
     FieldBattleDTO *dto;
     u8 challengeType;
-    u8 unk_11;
-    u8 unk_12;
+    u8 currentBattle;
+    u8 cursorRandomized;
     u8 activeEffect;
     int weather;
     u16 currentStreak;
-    u16 unk_1A;
-    u8 unk_1C;
-    u8 fitnessScore;
-    u8 unk_1E;
-    u8 unk_1F;
-    u16 unk_20;
-    u16 unk_22;
-    u32 unk_24;
+    u16 currentRound;
+    u8 rouletteSpeed;
+    u8 performance;
+    u8 seenArcadeStarIntro;
+    u8 immuneToEffect;
+    u16 randomIndex;
+    u32 unused2;
     int wonBattle;
-    u8 unk_2C[3];
-    u8 unk_2F;
-    ManagedSprite *unk_30[4];
-    ManagedSprite *unk_40[4];
-    ManagedSprite *unk_50[4];
-    ManagedSprite *unk_60[4];
+    u8 partySlots[MATH_MAX(ARCADE_PARTY_SIZE_SOLO, ARCADE_PARTY_SIZE_MULTI)];
+    u8 saveStreak;
+    ManagedSprite *playerMonSprites[ARCADE_MAX_PARTY_SIZE];
+    ManagedSprite *opponentMonSprites[ARCADE_MAX_PARTY_SIZE];
+    ManagedSprite *playerItemSprites[ARCADE_MAX_PARTY_SIZE];
+    ManagedSprite *opponentItemSprites[ARCADE_MAX_PARTY_SIZE];
     Party *playersParty;
     Party *opponentsParty;
-    u16 trainerIDs[14];
-    u32 monHP[4];
-    u32 monAtk[4];
-    u32 monDef[4];
-    u32 monSpeed[4];
-    u32 monSpAtk[4];
-    u32 monSpDef[4];
-    FrontierOpponent unk_F4[2];
-    u16 unk_314[4];
-    u8 unk_31C[4];
-    u32 unk_320[4];
-    FrontierPokemon unk_330[4];
-    u16 unk_410;
-    u16 unk_412[3];
+    u16 trainerIDs[ARCADE_BATTLES_PER_ROUND * 2];
+    u32 monHP[ARCADE_MAX_PARTY_SIZE];
+    u32 monAtk[ARCADE_MAX_PARTY_SIZE];
+    u32 monDef[ARCADE_MAX_PARTY_SIZE];
+    u32 monSpeed[ARCADE_MAX_PARTY_SIZE];
+    u32 monSpAtk[ARCADE_MAX_PARTY_SIZE];
+    u32 monSpDef[ARCADE_MAX_PARTY_SIZE];
+    FrontierOpponent opponents[2];
+    u16 monSetIDs[ARCADE_MAX_PARTY_SIZE];
+    u8 opponentMonIVs[ARCADE_MAX_PARTY_SIZE];
+    u32 opponentMonPersonalities[ARCADE_MAX_PARTY_SIZE];
+    FrontierPokemon opponentMons[ARCADE_MAX_PARTY_SIZE];
+    u16 unused3;
+    u16 savedHeldItems[MATH_MAX(ARCADE_PARTY_SIZE_SOLO, ARCADE_PARTY_SIZE_MULTI)];
     u16 appCursorPos[6];
     u16 unk_424[40];
     u8 unk_474[512];
@@ -62,7 +62,7 @@ typedef struct BattleArcade {
     u16 unk_A78;
     u8 unk_A7A;
     u8 unk_A7B;
-    u8 unk_A7C;
+    u8 msgsReceived;
     u8 unk_A7D;
     u16 *unk_A80;
     u32 unk_A84;

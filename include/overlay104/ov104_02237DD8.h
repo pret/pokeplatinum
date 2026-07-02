@@ -8,33 +8,33 @@
 #include "party.h"
 #include "savedata.h"
 
-BattleArcade *ov104_02237DD8(SaveData *saveData, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6);
-void ov104_0223806C(BattleArcade *param0, u16 param1);
-void ov104_02238210(BattleArcade *param0);
+BattleArcade *BattleArcade_Init(SaveData *saveData, u16 resumingFromSave, u8 challengeType, u16 partySlot1, u16 partySlot2, u16 partySlot3, u16 *param6);
+void BattleArcade_LoadTrainersForRound(BattleArcade *arcade, u16 resumingFromSave);
+void BattleArcade_Free(BattleArcade *arcade);
 void BattleArcade_StoreAppResults(BattleArcade *battleArcade, BattleArcadeAppArgs *args);
-void ov104_02238278(BattleArcade *param0, u8 param1);
-u16 ov104_02238454(BattleArcade *param0);
-u16 ov104_02238460(BattleArcade *param0);
-u16 ov104_02238464(BattleArcade *param0, u8 param1);
-u16 ov104_02238498(BattleArcade *param0, u8 param1);
-void ov104_022384A8(BattleArcade *param0);
-void ov104_022384B4(BattleArcade *param0);
-void ov104_022384D4(BattleArcade *param0);
-void ov104_022384DC(BattleArcade *param0);
-int BattleArcade_FitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, int totalTurnsElapsed);
-void ov104_02238658(void *param0, FrontierGraphics *param1);
-void ov104_02238728(void *param0, FrontierGraphics *param1);
-void ov104_02238764(BattleArcade *param0, FrontierGraphics *param1, u16 param2);
-void ov104_02238814(BattleArcade *param0, FrontierGraphics *param1, u16 param2);
-void ov104_0223886C(BattleArcade *param0, FrontierGraphics *param1, u16 param2, u16 param3);
-void ov104_022388A4(BattleArcade *param0, FrontierGraphics *param1, u16 param2, u16 param3);
-void ov104_022388DC(BattleArcade *param0, FrontierGraphics *param1, u16 param2);
-void ov104_022389A0(BattleArcade *param0, FrontierGraphics *param1, u16 param2);
-void ov104_022389F4(BattleArcade *param0, FrontierGraphics *param1, u16 param2, u16 slot, u16 param4);
-void ov104_02238AB4(u8 param0, u8 param1);
-BOOL ov104_02238B40(BattleArcade *param0, u16 param1, u16 param2);
-void ov104_02238B88(BattleArcade *param0, u8 param1);
-u16 ov104_02239014(BattleArcade *param0);
-void ov104_02239054(Party *param0, Party *param1, int param2, int param3);
+void BattleArcade_Save(BattleArcade *arcade, u8 saveType);
+u16 BattleArcade_IncrementCurrentBattle(BattleArcade *arcade);
+u16 BattleArcade_GetCurrentBattle(BattleArcade *arcade);
+u16 BattleArcade_GetNextOpponentObjectID(BattleArcade *arcade, u8 trainerSlot);
+u16 BattleArcade_GetTrainerOffset(BattleArcade *arcade, u8 trainerSlot);
+void BattleArcade_SaveOnLoss(BattleArcade *arcade);
+void BattleArcade_SaveOnCompletingRound(BattleArcade *arcade);
+void BattleArcade_SetupFirstOpponentsParty(BattleArcade *arcade);
+void BattleArcade_SetupNextOpponentsParty(BattleArcade *arcade);
+int BattleArcade_GetPerformance(BattleArcade *battleArcade, Party *playersParty, Party *partnersParty, int totalTurnsElapsed);
+void BattleArcade_UpdateBackgroundForEffect(BattleArcade *arcade, FrontierGraphics *graphics);
+void BattleArcade_LoadNormalBackground(void *arcade, FrontierGraphics *graphics);
+void BattleArcade_CreateMonSprites(BattleArcade *arcade, FrontierGraphics *graphics, u16 isOpponent);
+void BattleArcade_DeleteMonSprites(BattleArcade *arcade, FrontierGraphics *graphics, u16 isOpponent);
+void BattleArcade_SetPlayerMonSpriteDrawFlag(BattleArcade *arcade, FrontierGraphics *graphics, u16 draw, u16 index);
+void BattleArcade_SetOpponentMonSpriteDrawFlag(BattleArcade *arcade, FrontierGraphics *graphics, u16 draw, u16 index);
+void BattleArcade_CreateItemSprites(BattleArcade *arcade, FrontierGraphics *graphics, u16 isOpponent);
+void BattleArcade_DeleteItemSprites(BattleArcade *arcade, FrontierGraphics *graphics, u16 isOpponent);
+void BattleArcade_SetItemDrawFlag(BattleArcade *arcade, FrontierGraphics *graphics, u16 isOpponent, u16 slot, u16 drawItem);
+void BattleArcade_SetPalette(u8 fraction, u8 source);
+BOOL BattleArcade_SendCommMessage(BattleArcade *arcade, u16 command, u16 arg);
+void BattleArcade_ApplyEffect(BattleArcade *arcade, u8 effect);
+u16 BattleArcade_GetEarnedBP(BattleArcade *arcade);
+void BattleArcade_SaveItemsAfterBattle(Party *battleParty, Party *arcadeParty, int battleSlot, int arcadeSlot);
 
 #endif // POKEPLATINUM_OV104_02237DD8_H

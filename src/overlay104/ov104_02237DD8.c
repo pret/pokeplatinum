@@ -7,9 +7,7 @@
 #include "constants/battle_frontier.h"
 #include "generated/items.h"
 
-#include "struct_decls/struct_020304A0_decl.h"
-#include "struct_decls/struct_020305B8_decl.h"
-
+#include "global/utility.h"
 #include "overlay104/frontier_opponents.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_02231F74.h"
@@ -19,6 +17,7 @@
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
+#include "coordinates.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -35,72 +34,41 @@
 
 #include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-} UnkStruct_ov104_0223FB18;
+typedef void (*BattleArcadeEffectFunc)(BattleArcade *, Party *, u8);
 
-typedef void (*UnkFuncPtr_ov104_02238B88)(BattleArcade *, Party *, u8);
-
-BattleArcade *ov104_02237DD8(SaveData *saveData, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6);
-void ov104_0223806C(BattleArcade *param0, u16 param1);
-static void ov104_02238080(BattleArcade *param0);
-static void ov104_02238114(BattleArcade *param0);
-static void ov104_022381C4(BattleArcade *param0);
-void ov104_02238210(BattleArcade *param0);
-static u16 ov104_02238264(BattleArcadeAppArgs *param0, u8 param1);
-void ov104_022384D4(BattleArcade *param0);
-void ov104_022384DC(BattleArcade *param0);
-int BattleArcade_FitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, int totalTurnsElapsed);
-static int BattleArcade_BaseFitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, u8 partySize);
-void ov104_02238658(void *param0, FrontierGraphics *param1);
-void ov104_02238728(void *param0, FrontierGraphics *param1);
-void ov104_02238764(BattleArcade *param0, FrontierGraphics *param1, u16 param2);
-void ov104_02238814(BattleArcade *param0, FrontierGraphics *param1, u16 param2);
-void ov104_0223886C(BattleArcade *param0, FrontierGraphics *param1, u16 param2, u16 param3);
-void ov104_022388A4(BattleArcade *param0, FrontierGraphics *param1, u16 param2, u16 param3);
-void ov104_022388DC(BattleArcade *param0, FrontierGraphics *param1, u16 param2);
-void ov104_022389A0(BattleArcade *param0, FrontierGraphics *param1, u16 param2);
-void ov104_022389F4(BattleArcade *param0, FrontierGraphics *param1, u16 param2, u16 param3, u16 param4);
-void ov104_02238AB4(u8 param0, u8 param1);
-BOOL ov104_02238B40(BattleArcade *param0, u16 param1, u16 param2);
-void ov104_02238278(BattleArcade *param0, u8 param1);
-u16 ov104_02238454(BattleArcade *param0);
-u16 ov104_02238460(BattleArcade *param0);
-u16 ov104_02238464(BattleArcade *param0, u8 param1);
-u16 ov104_02238498(BattleArcade *param0, u8 param1);
-void ov104_022384A8(BattleArcade *param0);
-void ov104_022384B4(BattleArcade *param0);
-static void ov104_02238BBC(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238C18(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238C9C(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238D14(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238D8C(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238E08(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238E9C(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238EF8(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238F54(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238FAC(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238FB8(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238FC0(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238FC8(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238FD0(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238FD8(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238FE4(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238FF0(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02238FFC(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02239004(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02239008(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_0223900C(BattleArcade *param0, Party *param1, u8 param2);
-static void ov104_02239010(BattleArcade *param0, Party *param1, u8 param2);
-u16 ov104_02239014(BattleArcade *param0);
-void ov104_02239054(Party *param0, Party *param1, int param2, int param3);
+static void SelectTrainersAndFirstBattlesMons(BattleArcade *arcade);
+static void LoadTrainersAndMonsFromSave(BattleArcade *arcade);
+static void LoadPlayersPartyFromSave(BattleArcade *arcade);
+static u16 GetBattleArcadeAppCursorPos(BattleArcadeAppArgs *args, u8 i);
+static int CalcBasePerformance(BattleArcade *battleArcade, Party *playersParty, Party *partnersParty, u8 partySize);
+static void ArcadeEffect_LowerHP(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_Poison(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_Paralyze(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_Burn(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_Sleep(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_Freeze(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_GetBerry(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_GetItem(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_LevelUp(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_Sunny(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_Rainy(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_Sandy(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_Hail(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_Foggy(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_TrickRoom(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_SpeedUp(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_SlowDown(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_RandomizeCursor(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_SwapMons(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_GetFreeBP(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_NoBattle(BattleArcade *arcade, Party *party, u8 partySize);
+static void ArcadeEffect_NoEvent(BattleArcade *arcade, Party *party, u8 partySize);
 
 static const struct {
     u16 tiles;
     u16 tilemap;
     u16 palette;
-} Unk_ov104_0223FBBA[32] = {
+} sBattleArcadeScreenAssets[NUM_ARCADE_EFFECTS] = {
     [ARCADE_EFFECT_LOWER_FOE_HP] = {
         battle_arcade_screen_lower_hp_NCGR_lz,
         battle_arcade_screen_lower_foe_hp_NSCR_lz,
@@ -263,219 +231,200 @@ static const struct {
     }
 };
 
-static const u8 Unk_ov104_0223FAF8[][2] = {
-    { 0x7, 0x5 },
-    { 0x4, 0x4 },
-    { 0x0, 0x3 }
+static const struct {
+    u8 round;
+    u8 speed;
+} sRouletteSpeedByRound[] = {
+    { 7, 5 },
+    { 4, 4 },
+    { 0, 3 }
 };
 
-BattleArcade *ov104_02237DD8(SaveData *saveData, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6)
+BattleArcade *BattleArcade_Init(SaveData *saveData, u16 resumingFromSave, u8 challengeType, u16 partySlot1, u16 partySlot2, u16 partySlot3, u16 *param6)
 {
-    u32 v0, v1;
-    Party *v2;
-    Pokemon *v3;
-    UnkStruct_020304A0 *v4;
-    u8 v5, v6;
-    u16 v7, v8;
-    static BattleArcade *v9;
-    UnkStruct_020305B8 *v10;
+    u16 i;
 
-    v9 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleArcade));
-    MI_CpuClear8(v9, sizeof(BattleArcade));
+    static BattleArcade *arcade;
+    arcade = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleArcade));
 
-    v9->unk_08 = sub_020304A0(saveData);
-    v9->saveData = saveData;
-    v9->unk_00 = 11;
-    v9->playersParty = Party_New(HEAP_ID_FIELD2);
-    v9->opponentsParty = Party_New(HEAP_ID_FIELD2);
-    v9->unk_A80 = param6;
-    v9->activeEffect = 32;
+    MI_CpuClear8(arcade, sizeof(BattleArcade));
 
-    v4 = v9->unk_08;
-    v10 = sub_020305B8(saveData);
+    arcade->arcadeSave = BattleArcadeSave_Get(saveData);
+    arcade->saveData = saveData;
+    arcade->unused = 11;
+    arcade->playersParty = Party_New(HEAP_ID_FIELD2);
+    arcade->opponentsParty = Party_New(HEAP_ID_FIELD2);
+    arcade->unk_A80 = param6;
+    arcade->activeEffect = NUM_ARCADE_EFFECTS;
 
-    if (param1 == 0) {
-        v9->challengeType = param2;
-        v9->unk_11 = 0;
-        v9->unk_1C = 3;
-        v9->unk_12 = 0;
+    BattleArcadeSave *arcadeSave = arcade->arcadeSave;
+    BattleArcadeStreakFlags *persistentSave = BattleArcadeStreakFlags_Get(saveData);
 
-        sub_02030494(v4);
+    if (!resumingFromSave) {
+        arcade->challengeType = challengeType;
+        arcade->currentBattle = 0;
+        arcade->rouletteSpeed = 3;
+        arcade->cursorRandomized = 0;
 
-        if (v9->challengeType == 3) {
-            v5 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(v9->saveData));
+        BattleArcadeSave_Init(arcadeSave);
+
+        u8 streakActive;
+        if (arcade->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
+            streakActive = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(arcade->saveData));
         } else {
-            v5 = (u8)sub_02030600(v10, 8, v9->challengeType, 0, NULL);
+            streakActive = BattleArcadeStreakFlags_GetFlag(persistentSave, ARCADE_SAVE_STREAK_FLAGS, arcade->challengeType, 0, NULL);
         }
 
-        if (v5 == 1) {
-            v9->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType));
+        if (streakActive == TRUE) {
+            arcade->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(arcade->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(arcade->challengeType));
         } else {
-            v9->currentStreak = 0;
+            arcade->currentStreak = 0;
         }
 
-        v9->unk_1A = (u16)(v9->currentStreak / 7);
-        v9->unk_24 = 0;
+        arcade->currentRound = arcade->currentStreak / ARCADE_BATTLES_PER_ROUND;
+        arcade->unused2 = 0;
 
-        v9->unk_2C[0] = param3;
-        v9->unk_2C[1] = param4;
-        v9->unk_2C[2] = param5;
+        arcade->partySlots[0] = partySlot1;
+        arcade->partySlots[1] = partySlot2;
+        arcade->partySlots[2] = partySlot3;
     } else {
-        v9->challengeType = (u8)sub_0203054C(v4, 0, 0, 0, NULL);
-        v9->unk_11 = (u8)sub_0203054C(v4, 2, 0, 0, NULL);
-        v9->unk_1C = (u8)sub_0203054C(v4, 3, 0, 0, NULL);
-        v9->unk_12 = (u8)sub_0203054C(v4, 1, 0, 0, NULL);
-        v9->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType));
-        v9->unk_1A = (u16)(v9->currentStreak / 7);
+        arcade->challengeType = BattleArcadeSave_GetMember(arcadeSave, ARCADE_SAVE_CHALLENGE_TYPE, 0, 0, NULL);
+        arcade->currentBattle = BattleArcadeSave_GetMember(arcadeSave, ARCADE_SAVE_CURRENT_BATTLE, 0, 0, NULL);
+        arcade->rouletteSpeed = BattleArcadeSave_GetMember(arcadeSave, ARCADE_SAVE_ROULETTE_SPEED, 0, 0, NULL);
+        arcade->cursorRandomized = BattleArcadeSave_GetMember(arcadeSave, ARCADE_SAVE_CURSOR_RANDOMIZED, 0, 0, NULL);
+        arcade->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(arcade->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(arcade->challengeType));
+        arcade->currentRound = arcade->currentStreak / ARCADE_BATTLES_PER_ROUND;
 
-        for (v7 = 0; v7 < 3; v7++) {
-            v9->unk_2C[v7] = (u8)sub_0203054C(v4, 6, v7, 0, NULL);
+        for (i = 0; i < ARCADE_PARTY_SIZE_SOLO; i++) {
+            arcade->partySlots[i] = BattleArcadeSave_GetMember(arcadeSave, ARCADE_SAVE_PARTY_SLOTS, i, 0, NULL);
         }
     }
 
-    for (v7 = 0; v7 < 3; v7++) {
-        v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(v9->saveData), v9->unk_2C[v7]);
-        v9->unk_412[v7] = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
+    for (i = 0; i < ARCADE_PARTY_SIZE_SOLO; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(arcade->saveData), arcade->partySlots[i]);
+        arcade->savedHeldItems[i] = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     }
 
-    v2 = SaveData_GetParty(v9->saveData);
-    v6 = BattleArcade_GetPlayerPartySize(v9->challengeType, 0);
+    Party *fieldParty = SaveData_GetParty(arcade->saveData);
+    u8 partySize = BattleArcade_GetPlayerPartySize(arcade->challengeType, FALSE);
 
-    for (v7 = 0; v7 < v6; v7++) {
-        Party_AddPokemon(v9->playersParty, Party_GetPokemonBySlotIndex(v2, v9->unk_2C[v7]));
+    for (i = 0; i < partySize; i++) {
+        Party_AddPokemon(arcade->playersParty, Party_GetPokemonBySlotIndex(fieldParty, arcade->partySlots[i]));
 
-        v3 = Party_GetPokemonBySlotIndex(v9->playersParty, v7);
-        v0 = 0;
+        Pokemon *mon = Party_GetPokemonBySlotIndex(arcade->playersParty, i);
 
-        Pokemon_SetValue(v3, MON_DATA_HELD_ITEM, &v0);
+        u32 noItem = ITEM_NONE;
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &noItem);
 
-        if (Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL) > 50) {
-            v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 50);
-            Pokemon_SetValue(v3, MON_DATA_EXPERIENCE, &v1);
-            Pokemon_CalcLevelAndStats(v3);
+        if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) > ARCADE_MAX_LEVEL) {
+            u32 exp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), ARCADE_MAX_LEVEL);
+            Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &exp);
+            Pokemon_CalcLevelAndStats(mon);
         }
     }
 
-    if (BattleArcade_IsMultiPlayerChallenge(v9->challengeType) == 1) {
-        BattleFrontier_FlagGeonetLinkInfo(v9->saveData);
+    if (BattleArcade_IsMultiPlayerChallenge(arcade->challengeType) == TRUE) {
+        BattleFrontier_FlagGeonetLinkInfo(arcade->saveData);
     }
 
-    return v9;
+    return arcade;
 }
 
-void ov104_0223806C(BattleArcade *param0, u16 param1)
+void BattleArcade_LoadTrainersForRound(BattleArcade *arcade, u16 resumingFromSave)
 {
-    if (param1 == 0) {
-        ov104_02238080(param0);
+    if (!resumingFromSave) {
+        SelectTrainersAndFirstBattlesMons(arcade);
     } else {
-        ov104_02238114(param0);
+        LoadTrainersAndMonsFromSave(arcade);
     }
-
-    return;
 }
 
-static void ov104_02238080(BattleArcade *param0)
+static void SelectTrainersAndFirstBattlesMons(BattleArcade *arcade)
 {
-    ov104_0223BD28(param0->challengeType, ov104_0223C124(param0), param0->trainerIDs, 7 * 2);
+    BattleArcade_PickOpponentTrainers(arcade->challengeType, BattleArcade_GetCurrentRound(arcade), arcade->trainerIDs, ARCADE_BATTLES_PER_ROUND * 2);
 
-    BattleFrontier_GetPokemonForTrainers(BattleArcade_GetOpponentPartySize(param0->challengeType, 1), param0->trainerIDs[param0->unk_11], param0->trainerIDs[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->challengeType));
+    BattleFrontier_GetPokemonForTrainers(BattleArcade_GetOpponentPartySize(arcade->challengeType, TRUE), arcade->trainerIDs[arcade->currentBattle], arcade->trainerIDs[arcade->currentBattle + ARCADE_BATTLES_PER_ROUND], arcade->monSetIDs, arcade->opponentMons, arcade->opponentMonIVs, arcade->opponentMonPersonalities, BattleArcade_IsMultiPlayerChallenge(arcade->challengeType));
 
-    u16 v0 = ov104_0223C124(param0);
+    u16 currentRound = BattleArcade_GetCurrentRound(arcade);
 
-    for (int i = 0; i < (NELEMS(Unk_ov104_0223FAF8)); i++) {
-        if (v0 >= Unk_ov104_0223FAF8[i][0]) {
-            param0->unk_1C = Unk_ov104_0223FAF8[i][1];
+    for (int i = 0; i < NELEMS(sRouletteSpeedByRound); i++) {
+        if (currentRound >= sRouletteSpeedByRound[i].round) {
+            arcade->rouletteSpeed = sRouletteSpeedByRound[i].speed;
             break;
         }
     }
-
-    return;
 }
 
-static void ov104_02238114(BattleArcade *param0)
+static void LoadTrainersAndMonsFromSave(BattleArcade *arcade)
 {
-    int v1;
-    FrontierPokemon v4[6];
-    u8 v5[6];
-    u16 v6[6];
-    u32 v7[6];
+    FrontierPokemon mons[MAX_PARTY_SIZE];
+    u8 ivs[MAX_PARTY_SIZE];
+    u16 setIDs[MAX_PARTY_SIZE];
+    u32 personalities[MAX_PARTY_SIZE];
 
-    ov104_022381C4(param0);
+    LoadPlayersPartyFromSave(arcade);
 
-    for (v1 = 0; v1 < (7 * 2); v1++) {
-        param0->trainerIDs[v1] = (u16)sub_0203054C(param0->unk_08, 5, v1, 0, NULL);
+    for (int i = 0; i < ARCADE_BATTLES_PER_ROUND * 2; i++) {
+        arcade->trainerIDs[i] = BattleArcadeSave_GetMember(arcade->arcadeSave, ARCADE_SAVE_TRAINER_IDS, i, 0, NULL);
     }
 
-    for (v1 = 0; v1 < 4; v1++) {
-        v6[v1] = (u16)sub_0203054C(param0->unk_08, 7, v1, 0, NULL);
-        param0->unk_314[v1] = v6[v1];
+    for (int i = 0; i < ARCADE_MAX_PARTY_SIZE; i++) {
+        setIDs[i] = BattleArcadeSave_GetMember(arcade->arcadeSave, ARCADE_SAVE_MON_SET_IDS, i, 0, NULL);
+        arcade->monSetIDs[i] = setIDs[i];
     }
 
-    BattleFrontier_LoadFrontierPokemon(v4, v6, v5, NULL, v7, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+    BattleFrontier_LoadFrontierPokemon(mons, setIDs, ivs, NULL, personalities, ARCADE_MAX_PARTY_SIZE, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
-    Pokemon *v2 = Pokemon_New(HEAP_ID_FIELD2);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
 
-    for (v1 = 0; v1 < 4; v1++) {
-        FrontierPokemon_InitPokemon(&v4[v1], v2, BattleArcade_GetPokemonLevel(param0));
-        ov104_0223C034(param0, param0->opponentsParty, v2);
+    for (int i = 0; i < ARCADE_MAX_PARTY_SIZE; i++) {
+        FrontierPokemon_InitPokemon(&mons[i], mon, BattleArcade_GetPokemonLevel(arcade));
+        BattleArcade_AddMonToParty(arcade, arcade->opponentsParty, mon);
     }
 
-    Heap_Free(v2);
-
-    return;
+    Heap_Free(mon);
 }
 
-static void ov104_022381C4(BattleArcade *param0)
+static void LoadPlayersPartyFromSave(BattleArcade *arcade)
 {
-    u8 v0;
-    u16 v1;
-    int v2;
-    Pokemon *v3;
+    u8 partySize = Party_GetCurrentCount(arcade->playersParty);
 
-    v0 = Party_GetCurrentCount(param0->playersParty);
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(arcade->playersParty, i);
 
-    for (v2 = 0; v2 < v0; v2++) {
-        v3 = Party_GetPokemonBySlotIndex(param0->playersParty, v2);
-        v1 = (u16)sub_0203054C(param0->unk_08, 4, v2, 0, NULL);
-
-        Pokemon_SetValue(v3, MON_DATA_HELD_ITEM, &v1);
+        u16 item = BattleArcadeSave_GetMember(arcade->arcadeSave, ARCADE_SAVE_HELD_ITEMS, i, 0, NULL);
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
     }
-
-    return;
 }
 
-void ov104_02238210(BattleArcade *param0)
+void BattleArcade_Free(BattleArcade *arcade)
 {
-    int v0;
-
-    if (param0 == NULL) {
+    if (arcade == NULL) {
         return;
     }
 
-    if (param0->playersParty != NULL) {
-        Heap_Free(param0->playersParty);
+    if (arcade->playersParty != NULL) {
+        Heap_Free(arcade->playersParty);
     }
 
-    if (param0->opponentsParty != NULL) {
-        Heap_Free(param0->opponentsParty);
+    if (arcade->opponentsParty != NULL) {
+        Heap_Free(arcade->opponentsParty);
     }
 
-    MI_CpuClear8(param0, sizeof(BattleArcade));
-    Heap_Free(param0);
+    MI_CpuClear8(arcade, sizeof(BattleArcade));
+    Heap_Free(arcade);
 
-    param0 = NULL;
-
-    return;
+    arcade = NULL;
 }
 
 void BattleArcade_StoreAppResults(BattleArcade *battleArcade, BattleArcadeAppArgs *args)
 {
     for (int i = 0; i < 6; i++) {
-        battleArcade->appCursorPos[i] = ov104_02238264(args, i);
+        battleArcade->appCursorPos[i] = GetBattleArcadeAppCursorPos(args, i);
     }
 }
 
-static u16 ov104_02238264(BattleArcadeAppArgs *args, u8 i)
+static u16 GetBattleArcadeAppCursorPos(BattleArcadeAppArgs *args, u8 i)
 {
     if (i >= 6) {
         GF_ASSERT(FALSE);
@@ -485,165 +434,130 @@ static u16 ov104_02238264(BattleArcadeAppArgs *args, u8 i)
     return args->cursorPos;
 }
 
-void ov104_02238278(BattleArcade *param0, u8 param1)
+void BattleArcade_Save(BattleArcade *arcade, u8 saveType)
 {
-    u16 v0;
-    u8 v1;
-    u8 v2[4];
-    u16 v3[4];
-    u32 v4[4];
-    u32 v5, v6;
-    Pokemon *v7;
-    UnkStruct_020304A0 *v8 = param0->unk_08;
-    UnkStruct_020305B8 *v9 = sub_020305B8(param0->saveData);
+    u8 u8Ptr[4];
+    u16 u16Ptr[4];
+    BattleArcadeSave *arcadeSave = arcade->arcadeSave;
+    BattleArcadeStreakFlags *persistentSave = BattleArcadeStreakFlags_Get(arcade->saveData);
 
-    v1 = BattleArcade_GetOpponentPartySize(param0->challengeType, 1);
+    UNUSED(BattleArcade_GetOpponentPartySize(arcade->challengeType, TRUE));
 
-    v2[0] = param0->challengeType;
-    sub_020304CC(param0->unk_08, 0, 0, 0, v2);
-    sub_020304B8(param0->unk_08, 1);
+    u8Ptr[0] = arcade->challengeType;
+    BattleArcadeSave_SetMember(arcade->arcadeSave, ARCADE_SAVE_CHALLENGE_TYPE, 0, 0, u8Ptr);
+    BattleArcadeSave_RecordSave(arcade->arcadeSave, TRUE);
 
-    v2[0] = param0->unk_11;
-    sub_020304CC(param0->unk_08, 2, 0, 0, v2);
+    u8Ptr[0] = arcade->currentBattle;
+    BattleArcadeSave_SetMember(arcade->arcadeSave, ARCADE_SAVE_CURRENT_BATTLE, 0, 0, u8Ptr);
 
-    v2[0] = param0->unk_1C;
-    sub_020304CC(param0->unk_08, 3, 0, 0, v2);
+    u8Ptr[0] = arcade->rouletteSpeed;
+    BattleArcadeSave_SetMember(arcade->arcadeSave, ARCADE_SAVE_ROULETTE_SPEED, 0, 0, u8Ptr);
 
-    v2[0] = param0->unk_12;
-    sub_020304CC(param0->unk_08, 1, 0, 0, v2);
-    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(param0->challengeType), param0->currentStreak);
+    u8Ptr[0] = arcade->cursorRandomized;
+    BattleArcadeSave_SetMember(arcade->arcadeSave, ARCADE_SAVE_CURSOR_RANDOMIZED, 0, 0, u8Ptr);
+    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(arcade->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(arcade->challengeType), arcade->currentStreak);
 
-    if (param1 != 2) {
-        v5 = BattleFrontierSave_SetIfBetterAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetArcadeCurrentStreakIndex(param0->challengeType), param0->currentStreak);
+    if (saveType != 2) {
+        BattleFrontierSave_SetIfBetterAutoHostIdx(SaveData_GetBattleFrontier(arcade->saveData), BattleFrontierStats_GetArcadeCurrentStreakIndex(arcade->challengeType), arcade->currentStreak);
 
-        v2[0] = param0->unk_2F;
-        sub_020305CC(v9, 8, param0->challengeType, 0, v2);
+        u8Ptr[0] = arcade->saveStreak;
+        BattleArcadeStreakFlags_SetFlag(persistentSave, ARCADE_SAVE_STREAK_FLAGS, arcade->challengeType, 0, u8Ptr);
 
-        if (param0->challengeType == 3) {
-            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, param0->unk_2F);
+        if (arcade->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(arcade->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, arcade->saveStreak);
         }
     }
 
-    for (v0 = 0; v0 < (7 * 2); v0++) {
-        v3[0] = param0->trainerIDs[v0];
-        sub_020304CC(param0->unk_08, 5, v0, 0, v3);
+    for (u16 i = 0; i < ARCADE_BATTLES_PER_ROUND * 2; i++) {
+        u16Ptr[0] = arcade->trainerIDs[i];
+        BattleArcadeSave_SetMember(arcade->arcadeSave, ARCADE_SAVE_TRAINER_IDS, i, 0, u16Ptr);
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        v2[0] = param0->unk_2C[v0];
-        sub_020304CC(param0->unk_08, 6, v0, 0, v2);
+    for (u16 i = 0; i < ARCADE_PARTY_SIZE_SOLO; i++) {
+        u8Ptr[0] = arcade->partySlots[i];
+        BattleArcadeSave_SetMember(arcade->arcadeSave, ARCADE_SAVE_PARTY_SLOTS, i, 0, u8Ptr);
     }
 
-    v6 = Party_GetCurrentCount(param0->playersParty);
+    u32 partySize = Party_GetCurrentCount(arcade->playersParty);
 
-    for (v0 = 0; v0 < v6; v0++) {
-        v7 = Party_GetPokemonBySlotIndex(param0->playersParty, v0);
-        v3[0] = Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL);
-        sub_020304CC(param0->unk_08, 4, v0, 0, v3);
+    for (u16 i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(arcade->playersParty, i);
+        u16Ptr[0] = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+        BattleArcadeSave_SetMember(arcade->arcadeSave, ARCADE_SAVE_HELD_ITEMS, i, 0, u16Ptr);
     }
 
-    v6 = Party_GetCurrentCount(param0->opponentsParty);
+    partySize = Party_GetCurrentCount(arcade->opponentsParty);
 
-    for (v0 = 0; v0 < v6; v0++) {
-        v7 = Party_GetPokemonBySlotIndex(param0->opponentsParty, v0);
-        v3[0] = param0->unk_314[v0];
-        sub_020304CC(param0->unk_08, 7, v0, 0, v3);
+    for (u16 i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(arcade->opponentsParty, i);
+        u16Ptr[0] = arcade->monSetIDs[i];
+        BattleArcadeSave_SetMember(arcade->arcadeSave, ARCADE_SAVE_MON_SET_IDS, i, 0, u16Ptr);
+    }
+}
+
+u16 BattleArcade_IncrementCurrentBattle(BattleArcade *arcade)
+{
+    arcade->currentBattle++;
+    return arcade->currentBattle;
+}
+
+u16 BattleArcade_GetCurrentBattle(BattleArcade *arcade)
+{
+    return arcade->currentBattle;
+}
+
+u16 BattleArcade_GetNextOpponentObjectID(BattleArcade *arcade, u8 trainerSlot)
+{
+    FrontierTrainer trainer;
+    u8 offset = BattleArcade_GetTrainerOffset(arcade, trainerSlot);
+
+    Heap_Free(BattleFrontier_GetTrainer(&trainer, arcade->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+
+    return BattleFrontier_GetObjectIDFromTrainerClass(trainer.trainerType);
+}
+
+u16 BattleArcade_GetTrainerOffset(BattleArcade *arcade, u8 trainerSlot)
+{
+    return arcade->currentBattle + (trainerSlot * ARCADE_BATTLES_PER_ROUND);
+}
+
+void BattleArcade_SaveOnLoss(BattleArcade *arcade)
+{
+    BattleArcade_Save(arcade, 1);
+}
+
+void BattleArcade_SaveOnCompletingRound(BattleArcade *arcade)
+{
+    arcade->saveStreak = TRUE;
+
+    if (arcade->currentRound < ARCADE_MAX_DISTINCT_ROUNDS) {
+        arcade->currentRound++;
     }
 
-    return;
+    arcade->currentBattle = 0;
+    BattleArcade_Save(arcade, 0);
 }
 
-u16 ov104_02238454(BattleArcade *param0)
+void BattleArcade_SetupFirstOpponentsParty(BattleArcade *arcade)
 {
-    param0->unk_11++;
-    return param0->unk_11;
+    BattleArcade_SetupOpponentsParty(arcade);
 }
 
-u16 ov104_02238460(BattleArcade *param0)
+void BattleArcade_SetupNextOpponentsParty(BattleArcade *arcade)
 {
-    return param0->unk_11;
+    BattleFrontier_GetPokemonForTrainers(BattleArcade_GetOpponentPartySize(arcade->challengeType, TRUE), arcade->trainerIDs[arcade->currentBattle], arcade->trainerIDs[arcade->currentBattle + ARCADE_BATTLES_PER_ROUND], arcade->monSetIDs, arcade->opponentMons, arcade->opponentMonIVs, arcade->opponentMonPersonalities, BattleArcade_IsMultiPlayerChallenge(arcade->challengeType));
+
+    BattleArcade_SetupOpponentsParty(arcade);
 }
 
-u16 ov104_02238464(BattleArcade *param0, u8 param1)
-{
-    FrontierTrainer v0;
-    u8 v2 = ov104_02238498(param0, param1);
+static const u8 sPerformanceByNumWithStatus[ARCADE_MAX_PARTY_SIZE + 1] = { 8, 6, 4, 0, 0 };
 
-    Heap_Free(BattleFrontier_GetTrainer(&v0, param0->trainerIDs[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
-
-    return BattleFrontier_GetObjectIDFromTrainerClass(v0.trainerType);
-}
-
-u16 ov104_02238498(BattleArcade *param0, u8 param1)
-{
-    return param0->unk_11 + (param1 * 7);
-}
-
-void ov104_022384A8(BattleArcade *param0)
-{
-    u16 v0[4];
-    int v1;
-
-    ov104_02238278(param0, 1);
-    return;
-}
-
-void ov104_022384B4(BattleArcade *param0)
-{
-    param0->unk_2F = 1;
-
-    if (param0->unk_1A < 8) {
-        param0->unk_1A++;
-    }
-
-    param0->unk_11 = 0;
-    ov104_02238278(param0, 0);
-
-    return;
-}
-
-void ov104_022384D4(BattleArcade *param0)
-{
-    ov104_0223C04C(param0);
-    return;
-}
-
-void ov104_022384DC(BattleArcade *param0)
-{
-    int v0, v1, v2;
-    u8 v3;
-
-    BattleFrontier_GetPokemonForTrainers(BattleArcade_GetOpponentPartySize(param0->challengeType, 1), param0->trainerIDs[param0->unk_11], param0->trainerIDs[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->challengeType));
-
-    for (v0 = 0; v0 < 4; v0++) {
-        (void)0;
-    }
-
-    ov104_0223C04C(param0);
-
-    return;
-}
-
-static const u8 sStatusConditionFitness[5] = {
-    8,
-    6,
-    4,
-    0,
-    0
-};
-
-static const u8 sFaintedMonsFitness[5] = {
-    6,
-    4,
-    2,
-    0,
-    0
-};
+static const u8 sPerformanceByNumFainted[ARCADE_MAX_PARTY_SIZE + 1] = { 6, 4, 2, 0, 0 };
 
 static const struct {
     u8 turns;
     u8 score;
-} sTurnsElapsedFitness[5] = {
+} sPerformanceByTurnsElapsed[] = {
     { 3, 10 },
     { 5, 6 },
     { 7, 4 },
@@ -651,38 +565,31 @@ static const struct {
     { 10, 0 }
 };
 
-int BattleArcade_FitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, int totalTurnsElapsed)
+int BattleArcade_GetPerformance(BattleArcade *battleArcade, Party *playersParty, Party *partnersParty, int totalTurnsElapsed)
 {
-    u8 partySize;
-    int i;
-    int fitness = 0;
-    partySize = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, FALSE);
+    int performance = 0;
+    u8 partySize = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, FALSE);
 
-    fitness += BattleArcade_BaseFitnessScore(battleArcade, party1, party2, partySize);
+    performance += CalcBasePerformance(battleArcade, playersParty, partnersParty, partySize);
 
-    for (i = 0; i < 5; i++) {
-        if (totalTurnsElapsed < sTurnsElapsedFitness[i].turns) {
-            fitness += sTurnsElapsedFitness[i].score;
+    for (int i = 0; i < SNELEMS(sPerformanceByTurnsElapsed); i++) {
+        if (totalTurnsElapsed < sPerformanceByTurnsElapsed[i].turns) {
+            performance += sPerformanceByTurnsElapsed[i].score;
             break;
         }
     }
 
-    return fitness;
+    return performance;
 }
 
-static int BattleArcade_BaseFitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, u8 partySize)
+static int CalcBasePerformance(BattleArcade *battleArcade, Party *playersParty, Party *partnersParty, u8 partySize)
 {
-    u8 faintedMons;
-    u8 monsWithStatusCondition;
-    int i, fitness;
-    Pokemon *mon;
+    int performance = 0;
+    u8 faintedMons = 0;
+    u8 monsWithStatusCondition = 0;
 
-    fitness = 0;
-    faintedMons = 0;
-    monsWithStatusCondition = 0;
-
-    for (i = 0; i < partySize; i++) {
-        mon = Party_GetPokemonBySlotIndex(party1, i);
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(playersParty, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
@@ -698,8 +605,8 @@ static int BattleArcade_BaseFitnessScore(BattleArcade *battleArcade, Party *part
     }
 
     if (BattleArcade_IsMultiPlayerChallenge(battleArcade->challengeType) == TRUE) {
-        for (i = 0; i < partySize; i++) {
-            mon = Party_GetPokemonBySlotIndex(party2, i);
+        for (int i = 0; i < partySize; i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(partnersParty, i);
 
             if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
                 continue;
@@ -715,322 +622,272 @@ static int BattleArcade_BaseFitnessScore(BattleArcade *battleArcade, Party *part
         }
     }
 
-    fitness += sStatusConditionFitness[monsWithStatusCondition];
-    fitness += sFaintedMonsFitness[faintedMons];
+    performance += sPerformanceByNumWithStatus[monsWithStatusCondition];
+    performance += sPerformanceByNumFainted[faintedMons];
 
-    return fitness;
+    return performance;
 }
 
-void ov104_02238658(void *param0, FrontierGraphics *param1)
+void BattleArcade_UpdateBackgroundForEffect(BattleArcade *arcade, FrontierGraphics *graphics)
 {
-    NARC *v0;
-    BattleArcade *v1 = (BattleArcade *)param0;
+    if (arcade->activeEffect != NUM_ARCADE_EFFECTS) {
+        NARC *narc = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
 
-    if (v1->activeEffect != 32) {
-        v0 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(narc, sBattleArcadeScreenAssets[arcade->activeEffect].tiles, graphics->bgConfig, BG_LAYER_MAIN_2, 0, 0, TRUE, HEAP_ID_94);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, sBattleArcadeScreenAssets[arcade->activeEffect].tilemap, graphics->bgConfig, BG_LAYER_MAIN_2, 0, 0, TRUE, HEAP_ID_94);
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect].tiles, param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect].tilemap, param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
+        NNSG2dPaletteData *plttData;
+        void *pltt = Graphics_GetPlttDataFromOpenNARC(narc, sBattleArcadeScreenAssets[arcade->activeEffect].palette, &plttData, HEAP_ID_94);
+        DC_FlushRange(plttData->pRawData, plttData->szByte);
 
-        {
-            NNSG2dPaletteData *v2;
-            void *v3;
+        GX_BeginLoadBGExtPltt();
+        GX_LoadBGExtPltt(plttData->pRawData, 0x4000, 0x2000);
+        GX_EndLoadBGExtPltt();
 
-            v3 = Graphics_GetPlttDataFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect].palette, &v2, HEAP_ID_94);
-            DC_FlushRange(v2->pRawData, v2->szByte);
+        Heap_Free(pltt);
 
-            GX_BeginLoadBGExtPltt();
-            GX_LoadBGExtPltt(v2->pRawData, 0x4000, 0x2000);
-            GX_EndLoadBGExtPltt();
-
-            Heap_Free(v3);
-        }
-
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        Bg_ScheduleTilemapTransfer(param1->bgConfig, 2);
-        NARC_dtor(v0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, TRUE);
+        Bg_ScheduleTilemapTransfer(graphics->bgConfig, BG_LAYER_MAIN_2);
+        NARC_dtor(narc);
     } else {
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
     }
-
-    return;
 }
 
-void ov104_02238728(void *param0, FrontierGraphics *param1)
+void BattleArcade_LoadNormalBackground(void *arcade, FrontierGraphics *graphics)
 {
-    BattleArcade *v1 = (BattleArcade *)param0;
-    NARC *v0 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
+    NARC *narc = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
 
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 53, param1->bgConfig, 3, 0, 0, 1, HEAP_ID_94);
-    Bg_ScheduleTilemapTransfer(param1->bgConfig, 3);
-    NARC_dtor(v0);
-
-    return;
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, battle_arcade_battle_room_dupe_NSCR_lz, graphics->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_94);
+    Bg_ScheduleTilemapTransfer(graphics->bgConfig, BG_LAYER_MAIN_3);
+    NARC_dtor(narc);
 }
 
-static const UnkStruct_ov104_0223FB18 Unk_ov104_0223FB18[] = {
-    { 0x21, 0x14 },
-    { 0x27, 0x2B },
-    { 0x2B, 0x42 },
-    { 0x2E, 0x59 }
+static const CoordinatesS16 sPlayerMonSpritePositions[] = {
+    { .x = 33, .y = 20 },
+    { .x = 39, .y = 43 },
+    { .x = 43, .y = 66 },
+    { .x = 46, .y = 89 }
 };
 
-static const UnkStruct_ov104_0223FB18 Unk_ov104_0223FB28[] = {
-    { 0xDE, 0x14 },
-    { 0xD8, 0x2B },
-    { 0xD5, 0x42 },
-    { 0xD2, 0x59 }
+static const CoordinatesS16 sOpponentMonSpritePositions[] = {
+    { .x = 222, .y = 20 },
+    { .x = 216, .y = 43 },
+    { .x = 213, .y = 66 },
+    { .x = 210, .y = 89 }
 };
 
-void ov104_02238764(BattleArcade *param0, FrontierGraphics *param1, u16 param2)
+void BattleArcade_CreateMonSprites(BattleArcade *arcade, FrontierGraphics *graphics, u16 isOpponent)
 {
-    u8 v0, v1;
-    int v2;
-    Pokemon *v3;
+    u8 playerPartySize = BattleArcade_GetPlayerPartySize(arcade->challengeType, TRUE);
+    u8 opponentPartySize = BattleArcade_GetOpponentPartySize(arcade->challengeType, TRUE);
 
-    v0 = BattleArcade_GetPlayerPartySize(param0->challengeType, 1);
-    v1 = BattleArcade_GetOpponentPartySize(param0->challengeType, 1);
-
-    if (param2 == 0) {
-        for (v2 = 0; v2 < v0; v2++) {
-            v3 = Party_GetPokemonBySlotIndex(param0->playersParty, v2);
-            param0->unk_30[v2] = ov104_02232F4C(param1, v3, v2, Unk_ov104_0223FB18[v2].unk_00, Unk_ov104_0223FB18[v2].unk_02);
-            Sprite_SetAnimateFlag(param0->unk_30[v2]->sprite, 0);
+    if (!isOpponent) {
+        for (int i = 0; i < playerPartySize; i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(arcade->playersParty, i);
+            arcade->playerMonSprites[i] = BattleFrontier_CreateMonSprite(graphics, mon, i, sPlayerMonSpritePositions[i].x, sPlayerMonSpritePositions[i].y);
+            Sprite_SetAnimateFlag(arcade->playerMonSprites[i]->sprite, FALSE);
         }
     } else {
-        for (v2 = 0; v2 < v1; v2++) {
-            v3 = Party_GetPokemonBySlotIndex(param0->opponentsParty, v2);
-            param0->unk_40[v2] = ov104_02232F4C(param1, v3, v2 + v0, Unk_ov104_0223FB28[v2].unk_00, Unk_ov104_0223FB28[v2].unk_02);
-            Sprite_SetAnimateFlag(param0->unk_40[v2]->sprite, 0);
+        for (int i = 0; i < opponentPartySize; i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(arcade->opponentsParty, i);
+            arcade->opponentMonSprites[i] = BattleFrontier_CreateMonSprite(graphics, mon, i + playerPartySize, sOpponentMonSpritePositions[i].x, sOpponentMonSpritePositions[i].y);
+            Sprite_SetAnimateFlag(arcade->opponentMonSprites[i]->sprite, FALSE);
         }
     }
-
-    return;
 }
 
-void ov104_02238814(BattleArcade *param0, FrontierGraphics *param1, u16 param2)
+void BattleArcade_DeleteMonSprites(BattleArcade *arcade, FrontierGraphics *graphics, u16 isOpponent)
 {
-    u8 v0, v1;
-    int v2;
+    u8 playerPartySize = BattleArcade_GetPlayerPartySize(arcade->challengeType, TRUE);
+    u8 opponentPartySize = BattleArcade_GetOpponentPartySize(arcade->challengeType, TRUE);
 
-    v0 = BattleArcade_GetPlayerPartySize(param0->challengeType, 1);
-    v1 = BattleArcade_GetOpponentPartySize(param0->challengeType, 1);
-
-    if (param2 == 0) {
-        for (v2 = 0; v2 < v0; v2++) {
-            ov104_02232FD4(param1, param0->unk_30[v2], v2);
+    if (!isOpponent) {
+        for (int i = 0; i < playerPartySize; i++) {
+            BattleFrontier_DeleteMonSprite(graphics, arcade->playerMonSprites[i], i);
         }
     } else {
-        for (v2 = 0; v2 < v1; v2++) {
-            ov104_02232FD4(param1, param0->unk_40[v2], v2 + v0);
+        for (int i = 0; i < opponentPartySize; i++) {
+            BattleFrontier_DeleteMonSprite(graphics, arcade->opponentMonSprites[i], i + playerPartySize);
         }
     }
-
-    return;
 }
 
-void ov104_0223886C(BattleArcade *param0, FrontierGraphics *param1, u16 param2, u16 param3)
+void BattleArcade_SetPlayerMonSpriteDrawFlag(BattleArcade *arcade, FrontierGraphics *graphics, u16 draw, u16 index)
 {
-    u8 v0 = BattleArcade_GetPlayerPartySize(param0->challengeType, 1);
+    u8 partySize = BattleArcade_GetPlayerPartySize(arcade->challengeType, TRUE);
 
-    if (param3 >= v0) {
+    if (index >= partySize) {
         return;
     }
 
-    if (param2 == 1) {
-        Sprite_SetDrawFlag(param0->unk_30[param3]->sprite, TRUE);
+    if (draw == TRUE) {
+        Sprite_SetDrawFlag(arcade->playerMonSprites[index]->sprite, TRUE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_30[param3]->sprite, FALSE);
+        Sprite_SetDrawFlag(arcade->playerMonSprites[index]->sprite, FALSE);
     }
-
-    return;
 }
 
-void ov104_022388A4(BattleArcade *param0, FrontierGraphics *param1, u16 param2, u16 param3)
+void BattleArcade_SetOpponentMonSpriteDrawFlag(BattleArcade *arcade, FrontierGraphics *graphics, u16 draw, u16 index)
 {
-    u8 v0 = BattleArcade_GetOpponentPartySize(param0->challengeType, 1);
+    u8 partySize = BattleArcade_GetOpponentPartySize(arcade->challengeType, TRUE);
 
-    if (param3 >= v0) {
+    if (index >= partySize) {
         return;
     }
 
-    if (param2 == 1) {
-        Sprite_SetDrawFlag(param0->unk_40[param3]->sprite, TRUE);
+    if (draw == TRUE) {
+        Sprite_SetDrawFlag(arcade->opponentMonSprites[index]->sprite, TRUE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_40[param3]->sprite, FALSE);
+        Sprite_SetDrawFlag(arcade->opponentMonSprites[index]->sprite, FALSE);
     }
-
-    return;
 }
 
-void ov104_022388DC(BattleArcade *param0, FrontierGraphics *param1, u16 param2)
+void BattleArcade_CreateItemSprites(BattleArcade *arcade, FrontierGraphics *graphics, u16 isOpponent)
 {
-    u8 v0, v1;
-    int v2;
-    Pokemon *v3;
+    u8 playerPartySize = BattleArcade_GetPlayerPartySize(arcade->challengeType, TRUE);
+    u8 opponentPartySize = BattleArcade_GetOpponentPartySize(arcade->challengeType, TRUE);
 
-    v0 = BattleArcade_GetPlayerPartySize(param0->challengeType, 1);
-    v1 = BattleArcade_GetOpponentPartySize(param0->challengeType, 1);
+    if (!isOpponent) {
+        for (int i = 0; i < playerPartySize; i++) {
+            arcade->playerItemSprites[i] = BattleFrontier_CreateItemSprite(graphics, sPlayerMonSpritePositions[i].x + 8, sPlayerMonSpritePositions[i].y + 4);
 
-    if (param2 == 0) {
-        for (v2 = 0; v2 < v0; v2++) {
-            param0->unk_50[v2] = ov104_022330AC(param1, Unk_ov104_0223FB18[v2].unk_00 + 8, Unk_ov104_0223FB18[v2].unk_02 + 4);
+            Pokemon *mon = Party_GetPokemonBySlotIndex(arcade->playersParty, i);
 
-            v3 = Party_GetPokemonBySlotIndex(param0->playersParty, v2);
-
-            if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
-                Sprite_SetDrawFlag(param0->unk_50[v2]->sprite, FALSE);
+            if (Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL) == ITEM_NONE) {
+                Sprite_SetDrawFlag(arcade->playerItemSprites[i]->sprite, FALSE);
             }
         }
     } else {
-        for (v2 = 0; v2 < v1; v2++) {
-            param0->unk_60[v2] = ov104_022330AC(param1, Unk_ov104_0223FB28[v2].unk_00 + 8, Unk_ov104_0223FB28[v2].unk_02 + 4);
+        for (int i = 0; i < opponentPartySize; i++) {
+            arcade->opponentItemSprites[i] = BattleFrontier_CreateItemSprite(graphics, sOpponentMonSpritePositions[i].x + 8, sOpponentMonSpritePositions[i].y + 4);
 
-            v3 = Party_GetPokemonBySlotIndex(param0->opponentsParty, v2);
+            Pokemon *mon = Party_GetPokemonBySlotIndex(arcade->opponentsParty, i);
 
-            if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
-                Sprite_SetDrawFlag(param0->unk_60[v2]->sprite, FALSE);
+            if (Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL) == ITEM_NONE) {
+                Sprite_SetDrawFlag(arcade->opponentItemSprites[i]->sprite, FALSE);
             }
         }
     }
-
-    return;
 }
 
-void ov104_022389A0(BattleArcade *param0, FrontierGraphics *param1, u16 param2)
+void BattleArcade_DeleteItemSprites(BattleArcade *arcade, FrontierGraphics *graphics, u16 isOpponent)
 {
-    u8 v0, v1;
-    int v2;
+    u8 playerPartySize = BattleArcade_GetPlayerPartySize(arcade->challengeType, TRUE);
+    u8 opponentPartySize = BattleArcade_GetOpponentPartySize(arcade->challengeType, TRUE);
 
-    v0 = BattleArcade_GetPlayerPartySize(param0->challengeType, 1);
-    v1 = BattleArcade_GetOpponentPartySize(param0->challengeType, 1);
-
-    if (param2 == 0) {
-        for (v2 = 0; v2 < v0; v2++) {
-            ov104_022330F0(param1, param0->unk_50[v2]);
+    if (!isOpponent) {
+        for (int i = 0; i < playerPartySize; i++) {
+            BattleFrontier_DeleteItemSprite(graphics, arcade->playerItemSprites[i]);
         }
     } else {
-        for (v2 = 0; v2 < v1; v2++) {
-            ov104_022330F0(param1, param0->unk_60[v2]);
+        for (int i = 0; i < opponentPartySize; i++) {
+            BattleFrontier_DeleteItemSprite(graphics, arcade->opponentItemSprites[i]);
         }
     }
-
-    return;
 }
 
-void ov104_022389F4(BattleArcade *param0, FrontierGraphics *param1, u16 param2, u16 slot, u16 param4)
+void BattleArcade_SetItemDrawFlag(BattleArcade *arcade, FrontierGraphics *graphics, u16 isOpponent, u16 slot, u16 drawItem)
 {
-    u32 item;
-    u8 v1, v2;
-    Pokemon *mon;
+    u8 playerPartySize = BattleArcade_GetPlayerPartySize(arcade->challengeType, TRUE);
+    u8 opponentPartySize = BattleArcade_GetOpponentPartySize(arcade->challengeType, TRUE);
 
-    v1 = BattleArcade_GetPlayerPartySize(param0->challengeType, 1);
-    v2 = BattleArcade_GetOpponentPartySize(param0->challengeType, 1);
-
-    if (param2 == 0) {
-        if (slot >= v1) {
+    if (!isOpponent) {
+        if (slot >= playerPartySize) {
             return;
         }
 
-        mon = Party_GetPokemonBySlotIndex(param0->playersParty, slot);
-        item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(arcade->playersParty, slot);
+        u32 item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
-        if (param4 == 1) {
+        if (drawItem == TRUE) {
             if (item == ITEM_NONE) {
-                Sprite_SetDrawFlag(param0->unk_50[slot]->sprite, FALSE);
+                Sprite_SetDrawFlag(arcade->playerItemSprites[slot]->sprite, FALSE);
             } else {
-                Sprite_SetDrawFlag(param0->unk_50[slot]->sprite, TRUE);
+                Sprite_SetDrawFlag(arcade->playerItemSprites[slot]->sprite, TRUE);
             }
         } else {
-            Sprite_SetDrawFlag(param0->unk_50[slot]->sprite, FALSE);
+            Sprite_SetDrawFlag(arcade->playerItemSprites[slot]->sprite, FALSE);
         }
     } else {
-        if (slot >= v2) {
+        if (slot >= opponentPartySize) {
             return;
         }
 
-        mon = Party_GetPokemonBySlotIndex(param0->opponentsParty, slot);
-        item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(arcade->opponentsParty, slot);
+        u32 item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
-        if (param4 == 1) {
-            if (item == 0) {
-                Sprite_SetDrawFlag(param0->unk_60[slot]->sprite, FALSE);
+        if (drawItem == TRUE) {
+            if (item == ITEM_NONE) {
+                Sprite_SetDrawFlag(arcade->opponentItemSprites[slot]->sprite, FALSE);
             } else {
-                Sprite_SetDrawFlag(param0->unk_60[slot]->sprite, TRUE);
+                Sprite_SetDrawFlag(arcade->opponentItemSprites[slot]->sprite, TRUE);
             }
         } else {
-            Sprite_SetDrawFlag(param0->unk_60[slot]->sprite, FALSE);
+            Sprite_SetDrawFlag(arcade->opponentItemSprites[slot]->sprite, FALSE);
         }
     }
-
-    return;
 }
 
-void ov104_02238AB4(u8 param0, u8 param1)
+void BattleArcade_SetPalette(u8 fraction, u8 source)
 {
-    u32 v0, v1;
-    NNSG2dPaletteData *v2;
-    void *v3;
-    NARC *v4;
-    u16 *v5;
-
-    if (param1 == 0) {
-        v0 = 143;
-        v1 = (15 * 16) * 2;
+    u32 narcIdx, size;
+    if (source == 0) {
+        narcIdx = battle_arcade_corridor_NCLR;
+        size = (15 * 16) * 2;
     } else {
-        v0 = 142;
-        v1 = (9 * 16) * 2;
+        narcIdx = battle_arcade_battle_room_NCLR;
+        size = (9 * 16) * 2;
     }
 
-    v5 = Heap_Alloc(HEAP_ID_94, 0x1000 * 2);
-    memset(v5, 0, 0x1000 * 2);
+    u16 *blendResult = Heap_Alloc(HEAP_ID_94, 0x1000 * 2);
+    memset(blendResult, 0, 0x1000 * 2);
 
-    v4 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
-    v3 = Graphics_GetPlttDataFromOpenNARC(v4, v0, &v2, HEAP_ID_94);
+    NNSG2dPaletteData *plttData;
+    NARC *narc = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
+    void *pltt = Graphics_GetPlttDataFromOpenNARC(narc, narcIdx, &plttData, HEAP_ID_94);
 
-    BlendPalette(v2->pRawData, v5, 0x1000, param0, 0x0);
-    DC_FlushRange(v5, 0x1000 * 2);
+    BlendPalette(plttData->pRawData, blendResult, 0x1000, fraction, 0x0);
+    DC_FlushRange(blendResult, 0x1000 * 2);
 
     GX_BeginLoadBGExtPltt();
-    GX_LoadBGExtPltt(v5, 0x6000, v1);
+    GX_LoadBGExtPltt(blendResult, 0x6000, size);
     GX_EndLoadBGExtPltt();
 
-    NARC_dtor(v4);
-    Heap_Free(v5);
-    Heap_Free(v3);
-
-    return;
+    NARC_dtor(narc);
+    Heap_Free(blendResult);
+    Heap_Free(pltt);
 }
 
-BOOL ov104_02238B40(BattleArcade *param0, u16 param1, u16 param2)
+BOOL BattleArcade_SendCommMessage(BattleArcade *arcade, u16 command, u16 arg)
 {
-    int v0;
+    int success;
 
-    switch (param1) {
+    switch (command) {
     case 0:
-        v0 = ov104_0222F86C(param0);
+        success = ov104_0222F86C(arcade);
         break;
     case 1:
-        v0 = ov104_0222F8D0(param0);
+        success = ov104_0222F8D0(arcade);
         break;
     case 2:
-        v0 = ov104_0222F944(param0);
+        success = ov104_0222F944(arcade);
         break;
     case 3:
-        v0 = ov104_0222FA38(param0, param2);
+        success = ov104_0222FA38(arcade, arg);
         break;
     case 4:
-        v0 = ov104_0222FA84(param0, param2);
+        success = ov104_0222FA84(arcade, arg);
         break;
     case 5:
-        v0 = ov104_0222FAD0(param0);
+        success = ov104_0222FAD0(arcade);
         break;
     }
 
-    return v0;
+    return success;
 }
 
-static const u16 Unk_ov104_0223FB4C[] = {
+static const u16 sItemPoolTier1[] = {
     ITEM_KINGS_ROCK,
     ITEM_QUICK_CLAW,
     ITEM_BRIGHTPOWDER,
@@ -1044,7 +901,7 @@ static const u16 Unk_ov104_0223FB4C[] = {
     ITEM_BLACK_SLUDGE
 };
 
-static const u16 Unk_ov104_0223FB78[] = {
+static const u16 sItemPoolTier2[] = {
     ITEM_WHITE_HERB,
     ITEM_POWER_HERB,
     ITEM_MUSCLE_BAND,
@@ -1060,7 +917,7 @@ static const u16 Unk_ov104_0223FB78[] = {
     ITEM_BLACK_SLUDGE
 };
 
-static const u16 Unk_ov104_0223FB62[] = {
+static const u16 sItemPoolTier3[] = {
     ITEM_FOCUS_BAND,
     ITEM_FOCUS_SASH,
     ITEM_LEFTOVERS,
@@ -1074,13 +931,13 @@ static const u16 Unk_ov104_0223FB62[] = {
     ITEM_CHOICE_SCARF
 };
 
-static const u16 *Unk_ov104_02241A2C[] = {
-    Unk_ov104_0223FB4C,
-    Unk_ov104_0223FB78,
-    Unk_ov104_0223FB62
+static const u16 *sItemPools[] = {
+    sItemPoolTier1,
+    sItemPoolTier2,
+    sItemPoolTier3
 };
 
-static const u16 Unk_ov104_0223FB08[] = {
+static const u16 sBerryPoolTier1[] = {
     ITEM_CHERI_BERRY,
     ITEM_CHESTO_BERRY,
     ITEM_PECHA_BERRY,
@@ -1091,7 +948,7 @@ static const u16 Unk_ov104_0223FB08[] = {
     ITEM_LUM_BERRY
 };
 
-static const u16 Unk_ov104_0223FB92[] = {
+static const u16 sBerryPoolTier2[] = {
     ITEM_OCCA_BERRY,
     ITEM_PASSHO_BERRY,
     ITEM_WACAN_BERRY,
@@ -1114,7 +971,7 @@ static const u16 Unk_ov104_0223FB92[] = {
     ITEM_LUM_BERRY
 };
 
-static const u16 Unk_ov104_0223FB38[] = {
+static const u16 sBerryPoolTier3[] = {
     ITEM_PERSIM_BERRY,
     ITEM_SITRUS_BERRY,
     ITEM_LUM_BERRY,
@@ -1127,476 +984,373 @@ static const u16 Unk_ov104_0223FB38[] = {
     ITEM_STARF_BERRY
 };
 
-static const u16 *Unk_ov104_02241A20[] = {
-    Unk_ov104_0223FB08,
-    Unk_ov104_0223FB92,
-    Unk_ov104_0223FB38
+static const u16 *sBerryPools[] = {
+    sBerryPoolTier1,
+    sBerryPoolTier2,
+    sBerryPoolTier3
 };
 
-static void *Unk_ov104_02241A38[] = {
-    ov104_02238BBC,
-    ov104_02238C18,
-    ov104_02238C9C,
-    ov104_02238D14,
-    ov104_02238D8C,
-    ov104_02238E08,
-    ov104_02238E9C,
-    ov104_02238EF8,
-    ov104_02238F54,
-    ov104_02238BBC,
-    ov104_02238C18,
-    ov104_02238C9C,
-    ov104_02238D14,
-    ov104_02238D8C,
-    ov104_02238E08,
-    ov104_02238E9C,
-    ov104_02238EF8,
-    ov104_02238F54,
-    ov104_02238FAC,
-    ov104_02238FB8,
-    ov104_02238FC0,
-    ov104_02238FC8,
-    ov104_02238FD0,
-    ov104_02238FD8,
-    ov104_02238FE4,
-    ov104_02238FF0,
-    ov104_02238FFC,
-    ov104_02239004,
-    ov104_02239008,
-    ov104_0223900C,
-    ov104_02239010,
-    ov104_02239008
+static BattleArcadeEffectFunc sBattleArcadeEffectFunctions[NUM_ARCADE_EFFECTS] = {
+    [ARCADE_EFFECT_LOWER_FOE_HP] = ArcadeEffect_LowerHP,
+    [ARCADE_EFFECT_POISON_FOE] = ArcadeEffect_Poison,
+    [ARCADE_EFFECT_PARALYZE_FOE] = ArcadeEffect_Paralyze,
+    [ARCADE_EFFECT_BURN_FOE] = ArcadeEffect_Burn,
+    [ARCADE_EFFECT_SLEEP_FOE] = ArcadeEffect_Sleep,
+    [ARCADE_EFFECT_FREEZE_FOE] = ArcadeEffect_Freeze,
+    [ARCADE_EFFECT_FOE_GET_BERRY] = ArcadeEffect_GetBerry,
+    [ARCADE_EFFECT_FOE_GET_ITEM] = ArcadeEffect_GetItem,
+    [ARCADE_EFFECT_FOE_LEVEL_UP] = ArcadeEffect_LevelUp,
+    [ARCADE_EFFECT_LOWER_ALLY_HP] = ArcadeEffect_LowerHP,
+    [ARCADE_EFFECT_POISON_ALLY] = ArcadeEffect_Poison,
+    [ARCADE_EFFECT_PARALYZE_ALLY] = ArcadeEffect_Paralyze,
+    [ARCADE_EFFECT_BURN_ALLY] = ArcadeEffect_Burn,
+    [ARCADE_EFFECT_SLEEP_ALLY] = ArcadeEffect_Sleep,
+    [ARCADE_EFFECT_FREEZE_ALLY] = ArcadeEffect_Freeze,
+    [ARCADE_EFFECT_ALLY_GET_BERRY] = ArcadeEffect_GetBerry,
+    [ARCADE_EFFECT_ALLY_GET_ITEM] = ArcadeEffect_GetItem,
+    [ARCADE_EFFECT_ALLY_LEVEL_UP] = ArcadeEffect_LevelUp,
+    [ARCADE_EFFECT_SUNNY_BATTLE] = ArcadeEffect_Sunny,
+    [ARCADE_EFFECT_RAINY_BATTLE] = ArcadeEffect_Rainy,
+    [ARCADE_EFFECT_SANDY_BATTLE] = ArcadeEffect_Sandy,
+    [ARCADE_EFFECT_HAIL_BATTLE] = ArcadeEffect_Hail,
+    [ARCADE_EFFECT_FOGGY_BATTLE] = ArcadeEffect_Foggy,
+    [ARCADE_EFFECT_TRICK_ROOM] = ArcadeEffect_TrickRoom,
+    [ARCADE_EFFECT_SPEED_UP] = ArcadeEffect_SpeedUp,
+    [ARCADE_EFFECT_SLOW_DOWN] = ArcadeEffect_SlowDown,
+    [ARCADE_EFFECT_RANDOMIZE_CURSOR] = ArcadeEffect_RandomizeCursor,
+    [ARCADE_EFFECT_SWAP_MONS] = ArcadeEffect_SwapMons,
+    [ARCADE_EFFECT_GET_1_BP] = ArcadeEffect_GetFreeBP,
+    [ARCADE_EFFECT_NO_BATTLE] = ArcadeEffect_NoBattle,
+    [ARCADE_EFFECT_NO_EVENT] = ArcadeEffect_NoEvent,
+    [ARCADE_EFFECT_GET_3_BP] = ArcadeEffect_GetFreeBP
 };
 
-void ov104_02238B88(BattleArcade *param0, u8 param1)
+void BattleArcade_ApplyEffect(BattleArcade *arcade, u8 effect)
 {
-    u8 v0;
-    Party *v1;
-    UnkFuncPtr_ov104_02238B88 v2;
-
-    if (param1 < 9) {
-        v1 = param0->opponentsParty;
-        v0 = BattleArcade_GetOpponentPartySize(param0->challengeType, 1);
+    u8 partySize;
+    Party *party;
+    if (effect < ARCADE_EFFECT_LOWER_ALLY_HP) {
+        party = arcade->opponentsParty;
+        partySize = BattleArcade_GetOpponentPartySize(arcade->challengeType, TRUE);
     } else {
-        v1 = param0->playersParty;
-        v0 = BattleArcade_GetPlayerPartySize(param0->challengeType, 1);
+        party = arcade->playersParty;
+        partySize = BattleArcade_GetPlayerPartySize(arcade->challengeType, TRUE);
     }
 
-    v2 = Unk_ov104_02241A38[param1];
-    v2(param0, v1, v0);
-
-    return;
+    BattleArcadeEffectFunc func = sBattleArcadeEffectFunctions[effect];
+    func(arcade, party, partySize);
 }
 
-static void ov104_02238BBC(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_LowerHP(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    int v0;
-    u32 v1, v2;
-    Pokemon *v3;
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        u32 maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+        u32 hp = maxHP * 1.2;
+        hp -= maxHP;
+        hp = maxHP - hp;
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v3 = Party_GetPokemonBySlotIndex(param1, v0);
-        v1 = Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL);
-        v2 = (v1 * 1.2);
-        v2 -= v1;
-        v2 = (v1 - v2);
-
-        Pokemon_SetValue(v3, MON_DATA_HP, &v2);
+        Pokemon_SetValue(mon, MON_DATA_HP, &hp);
     }
-
-    return;
 }
 
-static void ov104_02238C18(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_Poison(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    int v0, v1;
-    u32 v2, v3, v4, v5;
-    Pokemon *v6;
+    int numImmune = 0;
 
-    v1 = 0;
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        u32 type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
+        u32 type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+        u32 ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v6 = Party_GetPokemonBySlotIndex(param1, v0);
-        v3 = Pokemon_GetValue(v6, MON_DATA_TYPE_1, NULL);
-        v4 = Pokemon_GetValue(v6, MON_DATA_TYPE_2, NULL);
-        v5 = Pokemon_GetValue(v6, MON_DATA_ABILITY, NULL);
-
-        if ((v3 == TYPE_POISON) || (v4 == TYPE_POISON) || (v3 == TYPE_STEEL) || (v4 == TYPE_STEEL) || (v5 == ABILITY_IMMUNITY)) {
-            v1++;
+        if (type1 == TYPE_POISON || type2 == TYPE_POISON || type1 == TYPE_STEEL || type2 == TYPE_STEEL || ability == ABILITY_IMMUNITY) {
+            numImmune++;
         } else {
-            v2 = MON_CONDITION_POISON;
-            Pokemon_SetValue(v6, MON_DATA_STATUS, &v2);
+            u32 newStatus = MON_CONDITION_POISON;
+            Pokemon_SetValue(mon, MON_DATA_STATUS, &newStatus);
         }
     }
 
-    if (v1 >= param2) {
-        param0->unk_1F = 1;
+    if (numImmune >= partySize) {
+        arcade->immuneToEffect = TRUE;
     }
-
-    return;
 }
 
-static void ov104_02238C9C(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_Paralyze(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    int v0, v1;
-    u32 v2, v3, v4, v5;
-    Pokemon *v6;
+    int numImmune = 0;
 
-    v1 = 0;
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        u32 type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
+        u32 type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+        u32 ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v6 = Party_GetPokemonBySlotIndex(param1, v0);
-        v3 = Pokemon_GetValue(v6, MON_DATA_TYPE_1, NULL);
-        v4 = Pokemon_GetValue(v6, MON_DATA_TYPE_2, NULL);
-        v5 = Pokemon_GetValue(v6, MON_DATA_ABILITY, NULL);
-
-        if ((v3 == TYPE_GROUND) || (v4 == TYPE_GROUND) || (v5 == ABILITY_LIMBER)) {
-            v1++;
+        if (type1 == TYPE_GROUND || type2 == TYPE_GROUND || ability == ABILITY_LIMBER) {
+            numImmune++;
         } else {
-            v2 = MON_CONDITION_PARALYSIS;
-            Pokemon_SetValue(v6, MON_DATA_STATUS, &v2);
+            u32 newStatus = MON_CONDITION_PARALYSIS;
+            Pokemon_SetValue(mon, MON_DATA_STATUS, &newStatus);
         }
     }
 
-    if (v1 >= param2) {
-        param0->unk_1F = 1;
+    if (numImmune >= partySize) {
+        arcade->immuneToEffect = TRUE;
     }
-
-    return;
 }
 
-static void ov104_02238D14(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_Burn(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    int v0, v1;
-    u32 v2, v3, v4, v5;
-    Pokemon *v6;
+    int numImmune = 0;
 
-    v1 = 0;
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        u32 type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
+        u32 type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+        u32 ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v6 = Party_GetPokemonBySlotIndex(param1, v0);
-        v3 = Pokemon_GetValue(v6, MON_DATA_TYPE_1, NULL);
-        v4 = Pokemon_GetValue(v6, MON_DATA_TYPE_2, NULL);
-        v5 = Pokemon_GetValue(v6, MON_DATA_ABILITY, NULL);
-
-        if ((v3 == TYPE_FIRE) || (v4 == TYPE_FIRE) || (v5 == ABILITY_WATER_VEIL)) {
-            v1++;
+        if (type1 == TYPE_FIRE || type2 == TYPE_FIRE || ability == ABILITY_WATER_VEIL) {
+            numImmune++;
         } else {
-            v2 = MON_CONDITION_BURN;
-            Pokemon_SetValue(v6, MON_DATA_STATUS, &v2);
+            u32 newStatus = MON_CONDITION_BURN;
+            Pokemon_SetValue(mon, MON_DATA_STATUS, &newStatus);
         }
     }
 
-    if (v1 >= param2) {
-        param0->unk_1F = 1;
+    if (numImmune >= partySize) {
+        arcade->immuneToEffect = TRUE;
     }
-
-    return;
 }
 
-static void ov104_02238D8C(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_Sleep(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    u8 v0;
-    int v1, v2;
-    u32 v3, v4;
-    Pokemon *v5;
+    int numImmune = 0;
+    u8 slot = arcade->randomIndex % partySize;
 
-    v2 = 0;
-    v0 = (param0->unk_20 % param2);
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
+        u32 ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
 
-    for (v1 = 0; v1 < param2; v1++) {
-        v5 = Party_GetPokemonBySlotIndex(param1, v0);
-        v4 = Pokemon_GetValue(v5, MON_DATA_ABILITY, NULL);
+        if (ability == ABILITY_INSOMNIA || ability == ABILITY_VITAL_SPIRIT) {
+            numImmune++;
+            slot++;
 
-        if ((v4 == ABILITY_INSOMNIA) || (v4 == ABILITY_VITAL_SPIRIT)) {
-            v2++;
-            v0++;
-
-            if (v0 >= param2) {
-                v0 = 0;
+            if (slot >= partySize) {
+                slot = 0;
             }
         } else {
-            v3 = (LCRNG_Next() % 4 + 2);
-            Pokemon_SetValue(v5, MON_DATA_STATUS, &v3);
+            u32 newStatus = LCRNG_Next() % 4 + 2;
+            Pokemon_SetValue(mon, MON_DATA_STATUS, &newStatus);
             break;
         }
     }
 
-    if (v2 >= param2) {
-        param0->unk_1F = 1;
+    if (numImmune >= partySize) {
+        arcade->immuneToEffect = TRUE;
     }
-
-    return;
 }
 
-static void ov104_02238E08(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_Freeze(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    u8 v0;
-    int v1, v2;
-    u32 v3, v4, v5, v6;
-    Pokemon *v7;
+    int numImmune = 0;
+    u8 slot = arcade->randomIndex % partySize;
 
-    v2 = 0;
-    v0 = (param0->unk_20 % param2);
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
+        u32 type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
+        u32 type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+        u32 ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
 
-    for (v1 = 0; v1 < param2; v1++) {
-        v7 = Party_GetPokemonBySlotIndex(param1, v0);
-        v4 = Pokemon_GetValue(v7, MON_DATA_TYPE_1, NULL);
-        v5 = Pokemon_GetValue(v7, MON_DATA_TYPE_2, NULL);
-        v6 = Pokemon_GetValue(v7, MON_DATA_ABILITY, NULL);
+        if (type1 == TYPE_ICE || type2 == TYPE_ICE || ability == ABILITY_MAGMA_ARMOR) {
+            numImmune++;
+            slot++;
 
-        if ((v4 == TYPE_ICE) || (v5 == TYPE_ICE) || (v6 == ABILITY_MAGMA_ARMOR)) {
-            v2++;
-            v0++;
-
-            if (v0 >= param2) {
-                v0 = 0;
+            if (slot >= partySize) {
+                slot = 0;
             }
         } else {
-            v3 = MON_CONDITION_FREEZE;
-            Pokemon_SetValue(v7, MON_DATA_STATUS, &v3);
-
+            u32 newStatus = MON_CONDITION_FREEZE;
+            Pokemon_SetValue(mon, MON_DATA_STATUS, &newStatus);
             break;
         }
     }
 
-    if (v2 >= param2) {
-        param0->unk_1F = 1;
+    if (numImmune >= partySize) {
+        arcade->immuneToEffect = TRUE;
     }
-
-    return;
 }
 
-static void ov104_02238E9C(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_GetBerry(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    int v0, v1;
-    const u16 *v2;
-    u16 v3, v4;
-    Pokemon *v5;
+    u16 currentRound = BattleArcade_GetCurrentRound(arcade);
 
-    v4 = ov104_0223C124(param0);
-
-    if (v4 < 3) {
-        v2 = Unk_ov104_02241A20[0];
-        v1 = (NELEMS(Unk_ov104_0223FB08));
-    } else if (v4 < 6) {
-        v2 = Unk_ov104_02241A20[1];
-        v1 = (NELEMS(Unk_ov104_0223FB92));
+    int poolSize;
+    const u16 *itemPool;
+    if (currentRound < 3) {
+        itemPool = sBerryPools[0];
+        poolSize = NELEMS(sBerryPoolTier1);
+    } else if (currentRound < 6) {
+        itemPool = sBerryPools[1];
+        poolSize = NELEMS(sBerryPoolTier2);
     } else {
-        v2 = Unk_ov104_02241A20[2];
-        v1 = (NELEMS(Unk_ov104_0223FB38));
+        itemPool = sBerryPools[2];
+        poolSize = NELEMS(sBerryPoolTier3);
     }
 
-    v3 = v2[(param0->unk_20 % v1)];
+    u16 newItem = itemPool[arcade->randomIndex % poolSize];
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v5 = Party_GetPokemonBySlotIndex(param1, v0);
-        Pokemon_SetValue(v5, MON_DATA_HELD_ITEM, &v3);
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &newItem);
     }
-
-    return;
 }
 
-static void ov104_02238EF8(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_GetItem(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    int v0, v1;
-    const u16 *v2;
-    u16 v3, v4;
-    Pokemon *v5;
+    u16 currentRound = BattleArcade_GetCurrentRound(arcade);
 
-    v4 = ov104_0223C124(param0);
-
-    if (v4 < 3) {
-        v2 = Unk_ov104_02241A2C[0];
-        v1 = (NELEMS(Unk_ov104_0223FB4C));
-    } else if (v4 < 6) {
-        v2 = Unk_ov104_02241A2C[1];
-        v1 = (NELEMS(Unk_ov104_0223FB78));
+    int poolSize;
+    const u16 *itemPool;
+    if (currentRound < 3) {
+        itemPool = sItemPools[0];
+        poolSize = NELEMS(sItemPoolTier1);
+    } else if (currentRound < 6) {
+        itemPool = sItemPools[1];
+        poolSize = NELEMS(sItemPoolTier2);
     } else {
-        v2 = Unk_ov104_02241A2C[2];
-        v1 = (NELEMS(Unk_ov104_0223FB62));
+        itemPool = sItemPools[2];
+        poolSize = NELEMS(sItemPoolTier3);
     }
 
-    v3 = v2[(param0->unk_20 % v1)];
+    u16 newItem = itemPool[arcade->randomIndex % poolSize];
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v5 = Party_GetPokemonBySlotIndex(param1, v0);
-        Pokemon_SetValue(v5, MON_DATA_HELD_ITEM, &v3);
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &newItem);
     }
-
-    return;
 }
 
-static void ov104_02238F54(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_LevelUp(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    int v0;
-    u32 v1, v2;
-    Pokemon *v3;
+    for (int i = 0; i < partySize; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        u32 level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v3 = Party_GetPokemonBySlotIndex(param1, v0);
-        v2 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
-        v2 += 3;
-
-        if (v2 > 100) {
+        level += 3;
+        if (level > 100) {
             GF_ASSERT(FALSE);
-            v2 = 100;
+            level = 100;
         }
 
-        v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), v2);
+        u32 exp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
 
-        Pokemon_SetValue(v3, MON_DATA_EXPERIENCE, &v1);
-        Pokemon_CalcLevelAndStats(v3);
+        Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &exp);
+        Pokemon_CalcLevelAndStats(mon);
     }
-
-    return;
 }
 
-static void ov104_02238FAC(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_Sunny(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-
-    param0->weather = 1001;
-    return;
+    arcade->weather = OVERWORLD_WEATHER_HARSH_SUN;
 }
 
-static void ov104_02238FB8(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_Rainy(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-
-    param0->weather = 2;
-    return;
+    arcade->weather = OVERWORLD_WEATHER_RAINING;
 }
 
-static void ov104_02238FC0(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_Sandy(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-
-    param0->weather = 10;
-    return;
+    arcade->weather = OVERWORLD_WEATHER_SANDSTORM;
 }
 
-static void ov104_02238FC8(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_Hail(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-
-    param0->weather = 5;
-    return;
+    arcade->weather = OVERWORLD_WEATHER_SNOWING;
 }
 
-static void ov104_02238FD0(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_Foggy(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-
-    param0->weather = 14;
-    return;
+    arcade->weather = OVERWORLD_WEATHER_FOG;
 }
 
-static void ov104_02238FD8(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_TrickRoom(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-
-    param0->weather = 1002;
-    return;
+    arcade->weather = OVERWORLD_WEATHER_TRICK_ROOM;
 }
 
-static void ov104_02238FE4(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_SpeedUp(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-
-    if (param0->unk_1C < (8 - 1)) {
-        param0->unk_1C++;
+    if (arcade->rouletteSpeed < 7) {
+        arcade->rouletteSpeed++;
     }
-
-    return;
 }
 
-static void ov104_02238FF0(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_SlowDown(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-
-    if (param0->unk_1C > 0) {
-        param0->unk_1C--;
+    if (arcade->rouletteSpeed > 0) {
+        arcade->rouletteSpeed--;
     }
-
-    return;
 }
 
-static void ov104_02238FFC(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_RandomizeCursor(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-
-    param0->unk_12 = 1;
-    return;
+    arcade->cursorRandomized = TRUE;
 }
 
-static void ov104_02239004(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_SwapMons(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-    return;
 }
 
-static void ov104_02239008(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_GetFreeBP(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    u16 v0;
-    Pokemon *v1;
-
-    return;
 }
 
-static void ov104_0223900C(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_NoBattle(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-    return;
 }
 
-static void ov104_02239010(BattleArcade *param0, Party *param1, u8 param2)
+static void ArcadeEffect_NoEvent(BattleArcade *arcade, Party *party, u8 partySize)
 {
-    Pokemon *v0;
-    return;
 }
 
-u16 ov104_02239014(BattleArcade *param0)
+u16 BattleArcade_GetEarnedBP(BattleArcade *arcade)
 {
-    u8 v0;
-    u16 v1;
-    static const u8 v2[8 + 1] = { 0, 2, 2, 2, 2, 4, 4, 5, 6 };
-    static const u8 v3[8 + 1] = { 0, 7, 8, 9, 10, 13, 14, 16, 17 };
+    u8 bp;
+    static const u8 sBPPerRoundSolo[ARCADE_MAX_DISTINCT_ROUNDS + 1] = { 0, 2, 2, 2, 2, 4, 4, 5, 6 };
+    static const u8 sBPPerRoundWifi[ARCADE_MAX_DISTINCT_ROUNDS + 1] = { 0, 7, 8, 9, 10, 13, 14, 16, 17 };
 
-    v1 = param0->unk_1A;
+    u16 currentRound = arcade->currentRound;
 
-    if ((param0->challengeType == 0) || (param0->challengeType == 1)) {
-        if (v1 >= 8) {
-            v0 = v2[8];
+    if (arcade->challengeType == FRONTIER_CHALLENGE_SINGLE || arcade->challengeType == FRONTIER_CHALLENGE_DOUBLE) {
+        if (currentRound >= ARCADE_MAX_DISTINCT_ROUNDS) {
+            bp = sBPPerRoundSolo[ARCADE_MAX_DISTINCT_ROUNDS];
         } else {
-            v0 = v2[v1];
+            bp = sBPPerRoundSolo[currentRound];
         }
     } else {
-        if (v1 >= 8) {
-            v0 = v3[8];
+        if (currentRound >= ARCADE_MAX_DISTINCT_ROUNDS) {
+            bp = sBPPerRoundWifi[ARCADE_MAX_DISTINCT_ROUNDS];
         } else {
-            v0 = v3[v1];
+            bp = sBPPerRoundWifi[currentRound];
         }
     }
 
-    if (param0->challengeType == 0) {
-        if ((param0->currentStreak == 21) || (param0->currentStreak == 49)) {
-            v0 = 20;
+    if (arcade->challengeType == FRONTIER_CHALLENGE_SINGLE) {
+        if (arcade->currentStreak == ARCADE_STREAK_SILVER_BATTLE || arcade->currentStreak == ARCADE_STREAK_GOLD_BATTLE) {
+            bp = 20;
         }
     }
 
-    return v0;
+    return bp;
 }
 
-void ov104_02239054(Party *param0, Party *param1, int param2, int param3)
+void BattleArcade_SaveItemsAfterBattle(Party *battleParty, Party *arcadeParty, int battleSlot, int arcadeSlot)
 {
-    u16 v0;
-    Pokemon *v1;
-    Pokemon *v2 = Party_GetPokemonBySlotIndex(param0, param2);
-    v0 = Pokemon_GetValue(v2, MON_DATA_HELD_ITEM, NULL);
-    v1 = Party_GetPokemonBySlotIndex(param1, param3);
+    Pokemon *battleMon = Party_GetPokemonBySlotIndex(battleParty, battleSlot);
+    u16 item = Pokemon_GetValue(battleMon, MON_DATA_HELD_ITEM, NULL);
 
-    Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v0);
-
-    return;
+    Pokemon *mon = Party_GetPokemonBySlotIndex(arcadeParty, arcadeSlot);
+    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
 }

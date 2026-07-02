@@ -1,104 +1,84 @@
 #include "unk_02030494.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_020304A0.h"
-#include "struct_defs/struct_020305B8.h"
 
 #include "savedata.h"
 
-void sub_02030494(UnkStruct_020304A0 *param0);
-BOOL sub_020304B0(UnkStruct_020304A0 *param0);
-void sub_020304B8(UnkStruct_020304A0 *param0, BOOL param1);
-void sub_020304CC(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, const void *param4);
-u32 sub_0203054C(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, void *param4);
-void sub_020305AC(UnkStruct_020305B8 *param0);
-void sub_020305CC(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, const void *param4);
-u32 sub_02030600(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, void *param4);
-
-void sub_02030494(UnkStruct_020304A0 *param0)
+void BattleArcadeSave_Init(BattleArcadeSave *arcadeSave)
 {
-    MI_CpuClear8(param0, sizeof(UnkStruct_020304A0));
-    return;
+    MI_CpuClear8(arcadeSave, sizeof(BattleArcadeSave));
 }
 
-UnkStruct_020304A0 *sub_020304A0(SaveData *saveData)
+BattleArcadeSave *BattleArcadeSave_Get(SaveData *saveData)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &frontier->unk_8E0_val5;
+    return &frontier->arcadeSave;
 }
 
-BOOL sub_020304B0(UnkStruct_020304A0 *param0)
+BOOL BattleArcadeSave_HasSaved(BattleArcadeSave *save)
 {
-    return param0->unk_00_3;
+    return save->didSave;
 }
 
-void sub_020304B8(UnkStruct_020304A0 *param0, BOOL param1)
+void BattleArcadeSave_RecordSave(BattleArcadeSave *save, BOOL didSave)
 {
-    param0->unk_00_3 = param1;
-    return;
+    save->didSave = didSave;
 }
 
-void sub_020304CC(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, const void *param4)
+void BattleArcadeSave_SetMember(BattleArcadeSave *save, u8 field, u8 index, u8 unused, const void *value)
 {
-    u32 *v0 = (u32 *)param4;
-    u16 *v1 = (u16 *)param4;
-    u8 *v2 = (u8 *)param4;
-
-    switch (param1) {
-    case 0:
-        param0->unk_00_0 = v2[0];
+    switch (field) {
+    case ARCADE_SAVE_CHALLENGE_TYPE:
+        save->challengeType = *(u8 *)value;
         break;
-    case 1:
-        param0->unk_00_4 = v2[0];
+    case ARCADE_SAVE_CURSOR_RANDOMIZED:
+        save->cursorRandomized = *(u8 *)value;
         break;
-    case 2:
-        param0->unk_01 = v2[0];
+    case ARCADE_SAVE_CURRENT_BATTLE:
+        save->currentBattle = *(u8 *)value;
         break;
-    case 3:
-        param0->unk_02 = v2[0];
+    case ARCADE_SAVE_ROULETTE_SPEED:
+        save->rouletteSpeed = *(u8 *)value;
         break;
-    case 4:
-        param0->unk_06[param2] = v1[0];
+    case ARCADE_SAVE_HELD_ITEMS:
+        save->heldItems[index] = *(u16 *)value;
         break;
-    case 5:
-        param0->unk_0E[param2] = v1[0];
+    case ARCADE_SAVE_TRAINER_IDS:
+        save->trainerIDs[index] = *(u16 *)value;
         break;
-    case 6:
-        param0->unk_03[param2] = v2[0];
+    case ARCADE_SAVE_PARTY_SLOTS:
+        save->partySlots[index] = *(u8 *)value;
         break;
-    case 7:
-        param0->unk_2A[param2] = v1[0];
+    case ARCADE_SAVE_MON_SET_IDS:
+        save->monSetIDs[index] = *(u16 *)value;
         break;
     default:
         GF_ASSERT(FALSE);
         break;
     }
-
-    return;
 }
 
-u32 sub_0203054C(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, void *param4)
+u32 BattleArcadeSave_GetMember(BattleArcadeSave *save, u8 field, u8 index, u8 unused, void *unused2)
 {
-    switch (param1) {
-    case 0:
-        return (u32)param0->unk_00_0;
-    case 1:
-        return (u32)param0->unk_00_4;
-    case 2:
-        return (u32)param0->unk_01;
-    case 3:
-        return (u32)param0->unk_02;
-    case 4:
-        return (u32)param0->unk_06[param2];
-    case 5:
-        return (u32)param0->unk_0E[param2];
-    case 6:
-        return param0->unk_03[param2];
-    case 7:
-        return param0->unk_2A[param2];
+    switch (field) {
+    case ARCADE_SAVE_CHALLENGE_TYPE:
+        return save->challengeType;
+    case ARCADE_SAVE_CURSOR_RANDOMIZED:
+        return save->cursorRandomized;
+    case ARCADE_SAVE_CURRENT_BATTLE:
+        return save->currentBattle;
+    case ARCADE_SAVE_ROULETTE_SPEED:
+        return save->rouletteSpeed;
+    case ARCADE_SAVE_HELD_ITEMS:
+        return save->heldItems[index];
+    case ARCADE_SAVE_TRAINER_IDS:
+        return save->trainerIDs[index];
+    case ARCADE_SAVE_PARTY_SLOTS:
+        return save->partySlots[index];
+    case ARCADE_SAVE_MON_SET_IDS:
+        return save->monSetIDs[index];
     default:
         GF_ASSERT(FALSE);
         break;
@@ -107,45 +87,39 @@ u32 sub_0203054C(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, vo
     return 0;
 }
 
-void sub_020305AC(UnkStruct_020305B8 *param0)
+void BattleArcadeStreakFlags_Init(BattleArcadeStreakFlags *flags)
 {
-    MI_CpuClear8(param0, sizeof(UnkStruct_020305B8));
-    return;
+    MI_CpuClear8(flags, sizeof(BattleArcadeStreakFlags));
 }
 
-UnkStruct_020305B8 *sub_020305B8(SaveData *saveData)
+BattleArcadeStreakFlags *BattleArcadeStreakFlags_Get(SaveData *saveData)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &frontier->unk_1620.unk_00;
+    return &frontier->arcade.streakFlags;
 }
 
-void sub_020305CC(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, const void *param4)
+void BattleArcadeStreakFlags_SetFlag(BattleArcadeStreakFlags *flags, u8 field, u8 challengeType, u8 unused, const void *value)
 {
-    u32 *v0 = (u32 *)param4;
-    u16 *v1 = (u16 *)param4;
-    u8 *v2 = (u8 *)param4;
-
-    switch (param1) {
-    case 8:
-        if (v2[0] >= 1) {
-            param0->unk_00 |= (1 << param2);
+    u8 *value_dupe = (u8 *)value;
+    switch (field) {
+    case ARCADE_SAVE_STREAK_FLAGS:
+        if (*value_dupe >= 1) {
+            flags->streakActiveFlags |= 1 << challengeType;
         } else {
-            param0->unk_00 &= (0xff ^ (1 << param2));
+            flags->streakActiveFlags &= 0xff ^ (1 << challengeType);
         }
         break;
     default:
         GF_ASSERT(FALSE);
         break;
     }
-
-    return;
 }
 
-u32 sub_02030600(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, void *param4)
+u32 BattleArcadeStreakFlags_GetFlag(BattleArcadeStreakFlags *flags, u8 field, u8 challengeType, u8 unused, void *unused2)
 {
-    switch (param1) {
-    case 8:
-        return (u32)((param0->unk_00 >> param2) & 0x1);
+    switch (field) {
+    case ARCADE_SAVE_STREAK_FLAGS:
+        return (flags->streakActiveFlags >> challengeType) & 0x1;
     default:
         GF_ASSERT(FALSE);
         break;

@@ -1,20 +1,45 @@
 #ifndef POKEPLATINUM_UNK_02030494_H
 #define POKEPLATINUM_UNK_02030494_H
 
-#include "struct_decls/struct_020304A0_decl.h"
-#include "struct_decls/struct_020305B8_decl.h"
-
 #include "savedata.h"
 
-void sub_02030494(UnkStruct_020304A0 *param0);
-UnkStruct_020304A0 *sub_020304A0(SaveData *saveData);
-BOOL sub_020304B0(UnkStruct_020304A0 *param0);
-void sub_020304B8(UnkStruct_020304A0 *param0, BOOL param1);
-void sub_020304CC(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, const void *param4);
-u32 sub_0203054C(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, void *param4);
-void sub_020305AC(UnkStruct_020305B8 *param0);
-UnkStruct_020305B8 *sub_020305B8(SaveData *saveData);
-void sub_020305CC(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, const void *param4);
-u32 sub_02030600(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, void *param4);
+#define ARCADE_SAVE_CHALLENGE_TYPE    0
+#define ARCADE_SAVE_CURSOR_RANDOMIZED 1
+#define ARCADE_SAVE_CURRENT_BATTLE    2
+#define ARCADE_SAVE_ROULETTE_SPEED    3
+#define ARCADE_SAVE_HELD_ITEMS        4
+#define ARCADE_SAVE_TRAINER_IDS       5
+#define ARCADE_SAVE_PARTY_SLOTS       6
+#define ARCADE_SAVE_MON_SET_IDS       7
+#define ARCADE_SAVE_STREAK_FLAGS      8
+
+typedef struct BattleArcadeSave {
+    u8 challengeType : 3;
+    u8 didSave : 1;
+    u8 cursorRandomized : 1;
+    u8 currentBattle;
+    u8 rouletteSpeed;
+    u8 partySlots[3];
+    u16 heldItems[4];
+    u16 trainerIDs[14];
+    u16 monSetIDs[14];
+    u16 unused;
+} BattleArcadeSave;
+
+typedef struct BattleArcadeStreakFlags {
+    u8 streakActiveFlags;
+    u8 unused[3];
+} BattleArcadeStreakFlags;
+
+void BattleArcadeSave_Init(BattleArcadeSave *arcadeSave);
+BattleArcadeSave *BattleArcadeSave_Get(SaveData *saveData);
+BOOL BattleArcadeSave_HasSaved(BattleArcadeSave *save);
+void BattleArcadeSave_RecordSave(BattleArcadeSave *save, BOOL didSave);
+void BattleArcadeSave_SetMember(BattleArcadeSave *save, u8 field, u8 index, u8 unused, const void *value);
+u32 BattleArcadeSave_GetMember(BattleArcadeSave *save, u8 field, u8 index, u8 unused, void *unused2);
+void BattleArcadeStreakFlags_Init(BattleArcadeStreakFlags *flags);
+BattleArcadeStreakFlags *BattleArcadeStreakFlags_Get(SaveData *saveData);
+void BattleArcadeStreakFlags_SetFlag(BattleArcadeStreakFlags *flags, u8 field, u8 challengeType, u8 unused, const void *value);
+u32 BattleArcadeStreakFlags_GetFlag(BattleArcadeStreakFlags *flags, u8 field, u8 challengeType, u8 unused, void *unused2);
 
 #endif // POKEPLATINUM_UNK_02030494_H
