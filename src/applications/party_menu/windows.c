@@ -8,9 +8,9 @@
 #include "generated/species.h"
 
 #include "applications/party_menu/callbacks.h"
+#include "applications/party_menu/context_menu.h"
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
-#include "applications/party_menu/unk_02083370.h"
 #include "applications/pokemon_summary_screen/main.h"
 
 #include "bg_window.h"
