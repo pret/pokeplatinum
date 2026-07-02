@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020302D0_H
-#define POKEPLATINUM_UNK_020302D0_H
+#ifndef POKEPLATINUM_BATTLE_CASTLE_SAVE_H
+#define POKEPLATINUM_BATTLE_CASTLE_SAVE_H
 
 #include "savedata.h"
 
@@ -48,4 +48,4 @@ BattleCastlePersistentSave *BattleCastlePersistentSave_Get(SaveData *saveData);
 void BattleCastlePersistentSave_SetFlag(BattleCastlePersistentSave *save, u8 field, u8 challengeType, u8 unused, u8 *value);
 u32 BattleCastlePersistentSave_GetFlag(BattleCastlePersistentSave *save, u8 field, u8 challengeType, u8 unused, void *unused2);
 
-#endif // POKEPLATINUM_UNK_020302D0_H
+#endif // POKEPLATINUM_BATTLE_CASTLE_SAVE_H

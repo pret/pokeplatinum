@@ -10,8 +10,8 @@
 #include "struct_defs/struct_020305B8.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
+#include "battle_castle_save.h"
 #include "battle_hall_save.h"
-#include "unk_020302D0.h"
 #include "wifi_list.h"
 
 typedef struct BattleFrontierStats {

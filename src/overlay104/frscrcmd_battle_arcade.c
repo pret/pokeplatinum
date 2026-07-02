@@ -7,6 +7,7 @@
 
 #include "applications/frontier/battle_arcade/main.h"
 #include "overlay063/ov63_0222CCE4.h"
+#include "overlay104/battle_castle_helpers.h"
 #include "overlay104/defs.h"
 #include "overlay104/frontier_graphics.h"
 #include "overlay104/frontier_particle_system.h"
@@ -16,7 +17,6 @@
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_02237DD8.h"
-#include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_ov104_02230BE4.h"

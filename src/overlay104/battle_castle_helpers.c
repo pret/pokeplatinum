@@ -1,4 +1,4 @@
-#include "overlay104/ov104_0223B6F4.h"
+#include "overlay104/battle_castle_helpers.h"
 
 #include <nitro.h>
 

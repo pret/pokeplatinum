@@ -1,4 +1,4 @@
-#include "overlay104/ov104_022361B4.h"
+#include "overlay104/battle_castle.h"
 
 #include <nitro.h>
 
@@ -10,12 +10,13 @@
 
 #include "applications/frontier/battle_castle/args.h"
 #include "global/utility.h"
+#include "overlay104/battle_castle_helpers.h"
 #include "overlay104/defs.h"
 #include "overlay104/frontier_script_manager.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
-#include "overlay104/ov104_0223B6F4.h"
 
+#include "battle_castle_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
@@ -34,7 +35,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020302D0.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/battle_castle_self_app.h"

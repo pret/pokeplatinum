@@ -1,9 +1,9 @@
-#ifndef POKEPLATINUM_OV104_0223B6F4_H
-#define POKEPLATINUM_OV104_0223B6F4_H
+#ifndef POKEPLATINUM_BATTLE_CASTLE_HELPERS_H
+#define POKEPLATINUM_BATTLE_CASTLE_HELPERS_H
 
 #include "struct_defs/battle_frontier.h"
 
-#include "overlay104/ov104_022361B4.h"
+#include "overlay104/battle_castle.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "bg_window.h"
@@ -27,4 +27,4 @@ u16 BattleCastle_GetCurrentRound(BattleCastle *battleCastle);
 void BattleCastle_UpdateEmblemFrame(BgConfig *bgConfig, BattleCastle *battleCastle, u32 bgLayer);
 void BattleCastle_SpendCastlePoints(BattleFrontierSave *frontier, u8 challengeType, int castlePoints);
 
-#endif // POKEPLATINUM_OV104_0223B6F4_H
+#endif // POKEPLATINUM_BATTLE_CASTLE_HELPERS_H

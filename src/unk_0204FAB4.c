@@ -13,6 +13,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_castle_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "communication_system.h"
@@ -28,7 +29,6 @@
 #include "savedata.h"
 #include "script_manager.h"
 #include "unk_0202D778.h"
-#include "unk_020302D0.h"
 #include "unk_02049D08.h"
 #include "unk_02099500.h"
 

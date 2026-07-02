@@ -1,14 +1,14 @@
-#ifndef POKEPLATINUM_OV104_022361B4_H
-#define POKEPLATINUM_OV104_022361B4_H
+#ifndef POKEPLATINUM_BATTLE_CASTLE_H
+#define POKEPLATINUM_BATTLE_CASTLE_H
 
 #include "applications/frontier/battle_castle/args.h"
 #include "overlay104/defs.h"
 #include "overlay104/frontier_data_transfer.h"
 
+#include "battle_castle_save.h"
 #include "field_battle_data_transfer.h"
 #include "party.h"
 #include "savedata.h"
-#include "unk_020302D0.h"
 
 typedef struct BattleCastle {
     int unused;
@@ -83,4 +83,4 @@ void BattleCastle_ClearPlayerInfoWindows(FrontierScriptManager *scriptMan, Battl
 void BattleCastle_PrintPlayersInfo(FrontierScriptManager *scriptMan, BattleCastle *castle);
 u16 BattleCastle_GetEarnedBP(BattleCastle *castle);
 
-#endif // POKEPLATINUM_OV104_022361B4_H
+#endif // POKEPLATINUM_BATTLE_CASTLE_H

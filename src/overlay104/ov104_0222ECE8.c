@@ -5,13 +5,14 @@
 
 #include "struct_decls/struct_020305B8_decl.h"
 
+#include "overlay104/battle_castle_helpers.h"
 #include "overlay104/battle_hall.h"
 #include "overlay104/ov104_0223A7F4.h"
-#include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_battle_factory.h"
 
+#include "battle_castle_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "communication_system.h"
@@ -20,7 +21,6 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "trainer_info.h"
-#include "unk_020302D0.h"
 #include "unk_02030494.h"
 
 BOOL ov104_0222EEF8(BattleFactory *param0);
