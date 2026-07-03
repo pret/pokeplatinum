@@ -45,14 +45,31 @@ enum SleepSpriteState {
 #define SLEEP_SPRITE_END_SCALE      10
 #define SLEEP_SPRITE_SECOND_Z_DELAY 8 // Delay in frames until the second 'Z' appears
 
-typedef struct {
+// -------------------------------------------------------------------
+// Freeze Sprite
+// -------------------------------------------------------------------
+typedef struct FreezeSpriteContext {
     BattleAnimSystem *battleAnimSys;
     int state;
-    int explicitOffset;
+    int paletteOffset;
     SpriteManager *spriteMan;
-    ManagedSprite *managedSprite;
-    AlphaFadeContext alphaFadeCtx;
-} UnkStruct_ov12_022348C8;
+    ManagedSprite *sprite;
+    AlphaFadeContext alphaFade;
+} FreezeSpriteContext;
+
+enum FreezeSpriteState {
+    FREEZE_SPRITE_STATE_INIT = 0,
+    FREEZE_SPRITE_STATE_FADEIN,
+    FREEZE_SPRITE_STATE_ROTATE_PALS,
+    FREEZE_SPRITE_STATE_FADEOUT,
+    FREEZE_SPRITE_STATE_CLEANUP,
+};
+
+#define FREEZE_SPRITE_DEFAULT_ALPHA        20
+#define FREEZE_SPRITE_START_ALPHA          0
+#define FREEZE_SPRITE_END_ALPHA            16
+#define FREEZE_SPRITE_ALPHA_FADEIN_FRAMES  10
+#define FREEZE_SPRITE_ALPHA_FADEOUT_FRAMES 8
 
 // -------------------------------------------------------------------
 // Burn Sprite
@@ -96,7 +113,7 @@ typedef struct {
 static void BattleAnimTask_SleepSprite(SysTask *task, void *param);
 static void SleepSprite_Init(ManagedSprite *managedSprite, XYTransformContext *pos, XYTransformContext *scale, int dir);
 static BOOL SleepSprite_Update(ManagedSprite *managedSprite, XYTransformContext *pos, XYTransformContext *scale);
-static void ov12_02234918(SysTask *task, void *param1);
+static void BattleAnimTask_Freeze(SysTask *task, void *param1);
 static void BattleAnimTask_BurnSprite(SysTask *task, void *param1);
 static BOOL BurnSprite_Update(ManagedSprite *managedSprite, int *param1, int *param2);
 static void BurnSprite_Init(ManagedSprite *managedSprite, int *param1, int *param2, int param3, int param4);
@@ -213,69 +230,83 @@ static BOOL SleepSprite_Update(ManagedSprite *sprite, XYTransformContext *pos, X
     return TRUE;
 }
 
-void ov12_022348C8(BattleAnimSystem *battleAnimSys, SpriteSystem *unused, SpriteManager *spriteMan, ManagedSprite *managedSprite)
+void BattleAnimSpriteFunc_Freeze(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_022348C8 *battleAnimUtil = BattleAnimUtil_Alloc(battleAnimSys, sizeof(UnkStruct_ov12_022348C8));
+    FreezeSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FreezeSpriteContext));
 
-    battleAnimUtil->battleAnimSys = battleAnimSys;
-    battleAnimUtil->spriteMan = spriteMan;
-    battleAnimUtil->managedSprite = managedSprite;
+    ctx->battleAnimSys = system;
+    ctx->spriteMan = spriteMan;
+    ctx->sprite = sprite;
 
-    ManagedSprite_SetDrawFlag(battleAnimUtil->managedSprite, FALSE);
-    ManagedSprite_SetExplicitOamMode(battleAnimUtil->managedSprite, GX_OAM_MODE_XLU);
-    ManagedSprite_SetPriority(battleAnimUtil->managedSprite, 100);
-    ManagedSprite_SetExplicitPriority(battleAnimUtil->managedSprite, 1);
+    ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
+    ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_XLU);
+    ManagedSprite_SetPriority(ctx->sprite, 100);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, 1);
 
-    battleAnimUtil->explicitOffset = ManagedSprite_GetExplicitPaletteOffset(battleAnimUtil->managedSprite);
+    ctx->paletteOffset = ManagedSprite_GetExplicitPaletteOffset(ctx->sprite);
 
-    BattleAnimSystem_StartAnimTask(battleAnimUtil->battleAnimSys, ov12_02234918, battleAnimUtil);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Freeze, ctx);
 }
 
-static void ov12_02234918(SysTask *task, void *param1)
+static void BattleAnimTask_Freeze(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022348C8 *v0 = param1;
-    int v1;
+    FreezeSpriteContext *ctx = param;
 
-    switch (v0->state) {
-    case 0:
-        AlphaFadeContext_Init(&v0->alphaFadeCtx, 0, 16, 20 - 0, 20 - 16, 10);
-        ManagedSprite_SetDrawFlag(v0->managedSprite, TRUE);
-        BattleAnimUtil_SetSpriteBgBlending(v0->battleAnimSys, 0, 20 - 0);
-        v0->state++;
+    switch (ctx->state) {
+    case FREEZE_SPRITE_STATE_INIT:
+        AlphaFadeContext_Init(
+            &ctx->alphaFade,
+            FREEZE_SPRITE_START_ALPHA,
+            FREEZE_SPRITE_END_ALPHA,
+            FREEZE_SPRITE_DEFAULT_ALPHA - FREEZE_SPRITE_START_ALPHA,
+            FREEZE_SPRITE_DEFAULT_ALPHA - FREEZE_SPRITE_END_ALPHA,
+            FREEZE_SPRITE_ALPHA_FADEIN_FRAMES);
+        ManagedSprite_SetDrawFlag(ctx->sprite, TRUE);
+        BattleAnimUtil_SetSpriteBgBlending(
+            ctx->battleAnimSys,
+            FREEZE_SPRITE_START_ALPHA,
+            FREEZE_SPRITE_DEFAULT_ALPHA - FREEZE_SPRITE_START_ALPHA);
+        ctx->state++;
         break;
-    case 1:
-        if (AlphaFadeContext_IsDone(&v0->alphaFadeCtx)) {
-            v0->state++;
+    case FREEZE_SPRITE_STATE_FADEIN:
+        if (AlphaFadeContext_IsDone(&ctx->alphaFade)) {
+            ctx->state++;
 
-            ManagedSprite_SetAnimateFlag(v0->managedSprite, TRUE);
-            ManagedSprite_SetAnimationSpeed(v0->managedSprite, FX32_ONE);
+            ManagedSprite_SetAnimateFlag(ctx->sprite, TRUE);
+            ManagedSprite_SetAnimationSpeed(ctx->sprite, FX32_ONE);
         }
         break;
-    case 2:
-        v1 = ManagedSprite_GetAnimationFrame(v0->managedSprite);
-        v1 %= 3;
+    case FREEZE_SPRITE_STATE_ROTATE_PALS: {
+        int animFrame = ManagedSprite_GetAnimationFrame(ctx->sprite);
+        animFrame %= 3;
 
-        ManagedSprite_SetExplicitPaletteOffset(v0->managedSprite, v0->explicitOffset + v1);
+        ManagedSprite_SetExplicitPaletteOffset(ctx->sprite, ctx->paletteOffset + animFrame);
 
-        if (!ManagedSprite_IsAnimated(v0->managedSprite)) {
-            v0->state++;
-            AlphaFadeContext_Init(&v0->alphaFadeCtx, 16, 0, 20 - 16, 20 - 0, 8);
+        if (!ManagedSprite_IsAnimated(ctx->sprite)) {
+            ctx->state++;
+            AlphaFadeContext_Init(
+                &ctx->alphaFade,
+                FREEZE_SPRITE_END_ALPHA,
+                FREEZE_SPRITE_START_ALPHA,
+                FREEZE_SPRITE_DEFAULT_ALPHA - FREEZE_SPRITE_END_ALPHA,
+                FREEZE_SPRITE_DEFAULT_ALPHA - FREEZE_SPRITE_START_ALPHA,
+                FREEZE_SPRITE_ALPHA_FADEOUT_FRAMES);
+        }
+    } break;
+    case FREEZE_SPRITE_STATE_FADEOUT:
+        if (AlphaFadeContext_IsDone(&ctx->alphaFade)) {
+            ctx->state++;
+            ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
         }
         break;
-    case 3:
-        if (AlphaFadeContext_IsDone(&v0->alphaFadeCtx)) {
-            v0->state++;
-            ManagedSprite_SetDrawFlag(v0->managedSprite, FALSE);
-        }
-        break;
-    case 4:
-        Sprite_DeleteAndFreeResources(v0->managedSprite);
-        BattleAnimSystem_EndAnimTask(v0->battleAnimSys, task);
-        Heap_Free(v0);
+    case FREEZE_SPRITE_STATE_CLEANUP:
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->spriteMan);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
 void BattleAnimSpriteFunc_Burn(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
