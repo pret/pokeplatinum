@@ -39,7 +39,7 @@ enum SleepSpriteState {
 };
 
 #define SLEEP_SPRITE_MOVE_X         16
-#define SLEEP_SPRITE_MOVE_Y         -32
+#define SLEEP_SPRITE_MOVE_Y         (-32)
 #define SLEEP_SPRITE_ANIM_FRAMES    32
 #define SLEEP_SPRITE_BASE_SCALE     10
 #define SLEEP_SPRITE_START_SCALE    2
@@ -91,7 +91,7 @@ enum BurnSpriteState {
     BURN_SPRITE_STATE_CLEANUP,
 };
 
-#define BURN_SPRITE_OFFSET_X_STEP  -12
+#define BURN_SPRITE_OFFSET_X_STEP  (-12)
 #define BURN_SPRITE_BASE_OFFSET_X  40
 #define BURN_SPRITE_BASE_OFFSET_Y  40
 #define BURN_SPRITE_DELAY_STEP     2 // Frames between flames

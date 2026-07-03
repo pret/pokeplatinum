@@ -5,9 +5,9 @@
 
 #include "sprite_system.h"
 
-void BattleAnimSpriteFunc_Sleep(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
-void BattleAnimSpriteFunc_Freeze(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
-void BattleAnimSpriteFunc_Burn(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
-void BattleAnimSpriteFunc_ConfusionStatus(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
+void BattleAnimSpriteFunc_Sleep(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_Freeze(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_Burn(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_ConfusionStatus(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 
 #endif // POKEPLATINUM_OV12_022346A4_H

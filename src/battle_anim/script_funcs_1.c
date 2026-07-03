@@ -150,7 +150,7 @@ enum SnatchState {
 };
 
 #define SNATCH_IN_FRONT_ZPOS 10
-#define SNATCH_BEHIND_ZPOS   -650
+#define SNATCH_BEHIND_ZPOS   (-650)
 #define SNATCH_MOVE_FRAMES   15
 #define SNATCH_VAR_TARGET    0
 

@@ -247,7 +247,7 @@ typedef struct IngrainSpriteContext {
 #define INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_4 80 // To Normal
 #define INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_5 90 // To White
 #define INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_6 100 // To Normal
-#define INGRAIN_SPRITE_PAL_FADE_INTERVAL     -2 // Essentially same as 0
+#define INGRAIN_SPRITE_PAL_FADE_INTERVAL     (-2) // Essentially same as 0
 #define INGRAIN_SPRITE_PAL_FADE_STEP         2
 #define INGRAIN_SPRITE_PAL_FADE_START_FRAC   0
 #define INGRAIN_SPRITE_PAL_FADE_END_FRAC     14
