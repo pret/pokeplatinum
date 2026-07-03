@@ -31,7 +31,12 @@ done
 if [ "$(docker images -q $IMAGENAME)" == "" ]
 then
     echo "Building container image $IMAGENAME"
-    docker build -t $IMAGENAME -f $DOCKERFILENAME .
+    if [ -z "${GITHUB_ACTIONS}" ]; then
+        docker build -t $IMAGENAME -f $DOCKERFILENAME .
+    else
+        # DevkitPro does not install in GitHub actions
+        docker build -t $IMAGENAME -f $DOCKERFILENAME --build-arg USE_DEVKITPRO=0 .
+    fi
 fi
 
 mkdir -p ./.fontconfig_cache
