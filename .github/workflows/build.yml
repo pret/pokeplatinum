@@ -2,12 +2,13 @@ name: build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ pc_port ]
     paths-ignore:
       - '**.md'
   pull_request:
     paths-ignore:
       - '**.md'
+  workflow_dispatch:
 
 env:
   LM_LICENSE_FILE: "${{ github.workspace }}/tools/cw/license.dat"
