@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV12_022346A4_H
-#define POKEPLATINUM_OV12_022346A4_H
+#ifndef POKEPLATINUM_SCRIPT_FUNCS_STATUS_H
+#define POKEPLATINUM_SCRIPT_FUNCS_STATUS_H
 
 #include "battle_anim/battle_anim_system.h"
 
@@ -10,4 +10,4 @@ void BattleAnimSpriteFunc_Freeze(BattleAnimSystem *system, SpriteSystem *spriteS
 void BattleAnimSpriteFunc_Burn(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimSpriteFunc_ConfusionStatus(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 
-#endif // POKEPLATINUM_OV12_022346A4_H
+#endif // POKEPLATINUM_SCRIPT_FUNCS_STATUS_H

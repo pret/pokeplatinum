@@ -2,7 +2,6 @@
 
 #include "nitro/hw/common/lcd.h"
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"
@@ -17,13 +16,11 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
-#include "inlines.h"
 #include "math_util.h"
 #include "palette.h"
 #include "particle_system.h"
 #include "pltt_transfer.h"
 #include "pokemon_sprite.h"
-#include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"

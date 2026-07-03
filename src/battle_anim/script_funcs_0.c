@@ -1,8 +1,6 @@
 #include "battle_anim/script_funcs_0.h"
 
-#include "nitro/pad/common/pad.h"
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"

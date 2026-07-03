@@ -1,10 +1,7 @@
 #include "battle_anim/script_func_tables.h"
 
 #include <nitro.h>
-#include <string.h>
 
-#include "battle_anim/battle_anim_system.h"
-#include "battle_anim/ov12_022346A4.h"
 #include "battle_anim/script_func_examples.h"
 #include "battle_anim/script_func_mimic.h"
 #include "battle_anim/script_func_tables.h"
@@ -14,6 +11,7 @@
 #include "battle_anim/script_funcs_3.h"
 #include "battle_anim/script_funcs_4.h"
 #include "battle_anim/script_funcs_stat_change.h"
+#include "battle_anim/script_funcs_status.h"
 #include "global/utility.h"
 
 static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {

@@ -2,7 +2,6 @@
 
 #include "nitro/hw/common/lcd.h"
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle/battle_anim.h"
 #include "constants/graphics.h"

@@ -1,7 +1,6 @@
-#include "battle_anim/ov12_022346A4.h"
+#include "battle_anim/script_funcs_status.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "battle_anim/battle_anim_helpers.h"
 #include "battle_anim/battle_anim_system.h"
