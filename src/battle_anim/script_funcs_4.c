@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "constants/battle/battle_anim.h"
+#include "constants/colors.h"
+#include "constants/graphics.h"
 
 #include "battle_anim/battle_anim_helpers.h"
 #include "battle_anim/battle_anim_system.h"
@@ -206,16 +208,51 @@ typedef struct MetalClawSpriteContext {
 #define METAL_CLAW_SPRITE_RIGHT_CLAW_DELAY    10 // Delay in frames before the second claw appears
 #define METAL_CLAW_SPRITE_CLAW_VISIBLE_FRAMES 40
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    int unk_1C;
-    s16 unk_20;
-    s16 unk_22[4];
-    ManagedSprite *unk_2C[4];
-    PaletteFadeContext *unk_3C[6];
-    int unk_54;
-    int unk_58;
-} UnkStruct_ov12_0222E390;
+// -------------------------------------------------------------------
+// Ingrain Sprite
+// -------------------------------------------------------------------
+#define INGRAIN_SPRITE_VINE_COUNT         4
+#define INGRAIN_SPRITE_PALETTE_FADE_COUNT 6
+
+typedef struct IngrainSpriteContext {
+    BattleAnimScriptFuncCommon common;
+    int paletteOffset;
+    s16 unused0;
+    s16 delayCounters[INGRAIN_SPRITE_VINE_COUNT];
+    ManagedSprite *vineSprites[INGRAIN_SPRITE_VINE_COUNT];
+    PaletteFadeContext *paletteFades[INGRAIN_SPRITE_PALETTE_FADE_COUNT];
+    int bgAlpha;
+    int spriteAlpha;
+} IngrainSpriteContext;
+
+#define INGRAIN_SPRITE_VINE_LL               0 // Lower Left
+#define INGRAIN_SPRITE_VINE_UR               1 // Upper Right
+#define INGRAIN_SPRITE_VINE_LR               2 // Lower Right
+#define INGRAIN_SPRITE_VINE_UL               3 // Upper Left
+#define INGRAIN_SPRITE_UPPER_VINE_OFFSET_X   40
+#define INGRAIN_SPRITE_UPPER_VINE_OFFSET_Y   4
+#define INGRAIN_SPRITE_LOWER_VINE_OFFSET_X   32
+#define INGRAIN_SPRITE_LOWER_VINE_OFFSET_Y   0
+#define INGRAIN_SPRITE_PRIORITY_BEHIND       10
+#define INGRAIN_SPRITE_PRIORITY_INFRONT      18
+#define INGRAIN_SPRITE_VINE_Y_PLAYER         140
+#define INGRAIN_SPRITE_VINE_Y_ENEMY          84
+#define INGRAIN_SPRITE_VINE_MAX_DELAY        20
+#define INGRAIN_SPRITE_VINE_MIN_ALPHA        0
+#define INGRAIN_SPRITE_VINE_MAX_ALPHA        15
+#define INGRAIN_SPRITE_VINE_ALPHA_FADE_DELAY 110
+#define INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_1 50 // To White
+#define INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_2 60 // To Normal
+#define INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_3 70 // To White
+#define INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_4 80 // To Normal
+#define INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_5 90 // To White
+#define INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_6 100 // To Normal
+#define INGRAIN_SPRITE_PAL_FADE_INTERVAL     -2 // Essentially same as 0
+#define INGRAIN_SPRITE_PAL_FADE_STEP         2
+#define INGRAIN_SPRITE_PAL_FADE_START_FRAC   0
+#define INGRAIN_SPRITE_PAL_FADE_END_FRAC     14
+#define INGRAIN_SPRITE_PAL_FADE_COLOR        RGBA_WHITE
+#define INGRAIN_SPRITE_PAL_FADE_TASK_PRIO    1002
 
 // Unused, was maybe used for some position manipulation but got removed from the looks of it.
 static const u8 sTauntSpriteFadeInFrames[][2] = {
@@ -961,183 +998,227 @@ void BattleAnimSpriteFunc_MetalClaw(BattleAnimSystem *system, SpriteSystem *spri
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MetalClawSprite, ctx);
 }
 
-static void ov12_0222E390(SysTask *param0, void *param1)
+static void BattleAnimTask_IngrainSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222E390 *v0 = (UnkStruct_ov12_0222E390 *)param1;
+    IngrainSpriteContext *ctx = param;
+    int doneCount = 0;
 
-    {
-        int v1;
-        int v2 = 0;
+    int i;
+    for (i = 0; i < INGRAIN_SPRITE_VINE_COUNT; i++) {
+        ctx->delayCounters[i]++;
 
-        for (v1 = 0; v1 < 4; v1++) {
-            v0->unk_22[v1]++;
-
-            if (v0->unk_22[v1] < 20) {
-                continue;
-            }
-
-            BattleAnimUtil_TickSpriteIfVisible(v0->unk_2C[v1]);
-
-            if (v0->unk_22[0] == 110) {
-                BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSys, 0xffffffff, 0xffffffff);
-
-                ManagedSprite_SetExplicitOamMode(v0->unk_2C[0], GX_OAM_MODE_XLU);
-                ManagedSprite_SetExplicitOamMode(v0->unk_2C[1], GX_OAM_MODE_XLU);
-                ManagedSprite_SetExplicitOamMode(v0->unk_2C[2], GX_OAM_MODE_XLU);
-                ManagedSprite_SetExplicitOamMode(v0->unk_2C[3], GX_OAM_MODE_XLU);
-
-                v0->unk_54 = 15;
-                v0->unk_58 = 0;
-            }
+        if (ctx->delayCounters[i] < INGRAIN_SPRITE_VINE_MAX_DELAY) {
+            continue;
         }
 
-        if (v0->unk_22[0] == 40 + 10) {
-            v0->unk_3C[0] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
-        }
+        BattleAnimUtil_TickSpriteIfVisible(ctx->vineSprites[i]);
 
-        if (v0->unk_22[0] == 50 + 10) {
-            v0->unk_3C[1] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
-        }
+        if (ctx->delayCounters[0] == INGRAIN_SPRITE_VINE_ALPHA_FADE_DELAY) {
+            BattleAnimUtil_SetSpriteBgBlending(ctx->common.battleAnimSys, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
 
-        if (v0->unk_22[0] == 60 + 10) {
-            v0->unk_3C[2] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
-        }
+            ManagedSprite_SetExplicitOamMode(ctx->vineSprites[INGRAIN_SPRITE_VINE_LL], GX_OAM_MODE_XLU);
+            ManagedSprite_SetExplicitOamMode(ctx->vineSprites[INGRAIN_SPRITE_VINE_UR], GX_OAM_MODE_XLU);
+            ManagedSprite_SetExplicitOamMode(ctx->vineSprites[INGRAIN_SPRITE_VINE_LR], GX_OAM_MODE_XLU);
+            ManagedSprite_SetExplicitOamMode(ctx->vineSprites[INGRAIN_SPRITE_VINE_UL], GX_OAM_MODE_XLU);
 
-        if (v0->unk_22[0] == 70 + 10) {
-            v0->unk_3C[3] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
-        }
-
-        if (v0->unk_22[0] == 80 + 10) {
-            v0->unk_3C[4] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
-        }
-
-        if (v0->unk_22[0] == 90 + 10) {
-            v0->unk_3C[5] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
-        }
-
-        if (v0->unk_22[0] == 110) {
-            BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSys, 0xffffffff, 0xffffffff);
-
-            ManagedSprite_SetExplicitOamMode(v0->unk_2C[0], GX_OAM_MODE_XLU);
-            ManagedSprite_SetExplicitOamMode(v0->unk_2C[1], GX_OAM_MODE_XLU);
-            ManagedSprite_SetExplicitOamMode(v0->unk_2C[2], GX_OAM_MODE_XLU);
-            ManagedSprite_SetExplicitOamMode(v0->unk_2C[3], GX_OAM_MODE_XLU);
-
-            v0->unk_54 = 15;
-            v0->unk_58 = 0;
-        }
-
-        if (v0->unk_22[0] >= 110) {
-            if (v0->unk_54 > 0) {
-                v0->unk_54--;
-            }
-
-            if (v0->unk_58 < 15) {
-                v0->unk_58++;
-            }
-
-            G2_ChangeBlendAlpha(v0->unk_54, v0->unk_58);
-
-            if ((v0->unk_54 == 0) && (v0->unk_58 == 15)) {
-                v2 = 4;
-            }
-        }
-
-        if (v2 == 4) {
-            for (v1 = 0; v1 < 4; v1++) {
-                Sprite_DeleteAndFreeResources(v0->unk_2C[v1]);
-            }
-
-            for (v1 = 0; v1 < 6; v1++) {
-                PaletteFadeContext_Free(v0->unk_3C[v1]);
-            }
-
-            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
-            Heap_Free(v0);
-            return;
+            ctx->bgAlpha = INGRAIN_SPRITE_VINE_MAX_ALPHA;
+            ctx->spriteAlpha = INGRAIN_SPRITE_VINE_MIN_ALPHA;
         }
     }
 
-    SpriteSystem_DrawSprites(v0->unk_00.primarySpriteManager);
+    if (ctx->delayCounters[0] == INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_1) {
+        ctx->paletteFades[0] = PaletteFadeContext_New(
+            ctx->common.paletteData,
+            BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys),
+            PLTTBUF_MAIN_OBJ,
+            PLTT_DEST(ctx->paletteOffset),
+            PALETTE_SIZE,
+            INGRAIN_SPRITE_PAL_FADE_INTERVAL,
+            INGRAIN_SPRITE_PAL_FADE_STEP,
+            INGRAIN_SPRITE_PAL_FADE_START_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_END_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_COLOR,
+            INGRAIN_SPRITE_PAL_FADE_TASK_PRIO);
+    }
+
+    if (ctx->delayCounters[0] == INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_2) {
+        ctx->paletteFades[1] = PaletteFadeContext_New(
+            ctx->common.paletteData,
+            BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys),
+            PLTTBUF_MAIN_OBJ,
+            PLTT_DEST(ctx->paletteOffset),
+            PALETTE_SIZE,
+            INGRAIN_SPRITE_PAL_FADE_INTERVAL,
+            INGRAIN_SPRITE_PAL_FADE_STEP,
+            INGRAIN_SPRITE_PAL_FADE_END_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_START_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_COLOR,
+            INGRAIN_SPRITE_PAL_FADE_TASK_PRIO);
+    }
+
+    if (ctx->delayCounters[0] == INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_3) {
+        ctx->paletteFades[2] = PaletteFadeContext_New(
+            ctx->common.paletteData,
+            BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys),
+            PLTTBUF_MAIN_OBJ,
+            PLTT_DEST(ctx->paletteOffset),
+            PALETTE_SIZE,
+            INGRAIN_SPRITE_PAL_FADE_INTERVAL,
+            INGRAIN_SPRITE_PAL_FADE_STEP,
+            INGRAIN_SPRITE_PAL_FADE_START_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_END_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_COLOR,
+            INGRAIN_SPRITE_PAL_FADE_TASK_PRIO);
+    }
+
+    if (ctx->delayCounters[0] == INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_4) {
+        ctx->paletteFades[3] = PaletteFadeContext_New(
+            ctx->common.paletteData,
+            BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys),
+            PLTTBUF_MAIN_OBJ,
+            PLTT_DEST(ctx->paletteOffset),
+            PALETTE_SIZE,
+            INGRAIN_SPRITE_PAL_FADE_INTERVAL,
+            INGRAIN_SPRITE_PAL_FADE_STEP,
+            INGRAIN_SPRITE_PAL_FADE_END_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_START_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_COLOR,
+            INGRAIN_SPRITE_PAL_FADE_TASK_PRIO);
+    }
+
+    if (ctx->delayCounters[0] == INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_5) {
+        ctx->paletteFades[4] = PaletteFadeContext_New(
+            ctx->common.paletteData,
+            BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys),
+            PLTTBUF_MAIN_OBJ,
+            PLTT_DEST(ctx->paletteOffset),
+            PALETTE_SIZE,
+            INGRAIN_SPRITE_PAL_FADE_INTERVAL,
+            INGRAIN_SPRITE_PAL_FADE_STEP,
+            INGRAIN_SPRITE_PAL_FADE_START_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_END_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_COLOR,
+            INGRAIN_SPRITE_PAL_FADE_TASK_PRIO);
+    }
+
+    if (ctx->delayCounters[0] == INGRAIN_SPRITE_VINE_PAL_FADE_DELAY_6) {
+        ctx->paletteFades[5] = PaletteFadeContext_New(
+            ctx->common.paletteData,
+            BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys),
+            PLTTBUF_MAIN_OBJ,
+            PLTT_DEST(ctx->paletteOffset),
+            PALETTE_SIZE,
+            INGRAIN_SPRITE_PAL_FADE_INTERVAL,
+            INGRAIN_SPRITE_PAL_FADE_STEP,
+            INGRAIN_SPRITE_PAL_FADE_END_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_START_FRAC,
+            INGRAIN_SPRITE_PAL_FADE_COLOR,
+            INGRAIN_SPRITE_PAL_FADE_TASK_PRIO);
+    }
+
+    if (ctx->delayCounters[0] == INGRAIN_SPRITE_VINE_ALPHA_FADE_DELAY) {
+        BattleAnimUtil_SetSpriteBgBlending(ctx->common.battleAnimSys, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
+
+        ManagedSprite_SetExplicitOamMode(ctx->vineSprites[INGRAIN_SPRITE_VINE_LL], GX_OAM_MODE_XLU);
+        ManagedSprite_SetExplicitOamMode(ctx->vineSprites[INGRAIN_SPRITE_VINE_UR], GX_OAM_MODE_XLU);
+        ManagedSprite_SetExplicitOamMode(ctx->vineSprites[INGRAIN_SPRITE_VINE_LR], GX_OAM_MODE_XLU);
+        ManagedSprite_SetExplicitOamMode(ctx->vineSprites[INGRAIN_SPRITE_VINE_UL], GX_OAM_MODE_XLU);
+
+        ctx->bgAlpha = INGRAIN_SPRITE_VINE_MAX_ALPHA;
+        ctx->spriteAlpha = INGRAIN_SPRITE_VINE_MIN_ALPHA;
+    }
+
+    if (ctx->delayCounters[0] >= INGRAIN_SPRITE_VINE_ALPHA_FADE_DELAY) {
+        if (ctx->bgAlpha > INGRAIN_SPRITE_VINE_MIN_ALPHA) {
+            ctx->bgAlpha--;
+        }
+
+        if (ctx->spriteAlpha < INGRAIN_SPRITE_VINE_MAX_ALPHA) {
+            ctx->spriteAlpha++;
+        }
+
+        G2_ChangeBlendAlpha(ctx->bgAlpha, ctx->spriteAlpha);
+
+        if (ctx->bgAlpha == INGRAIN_SPRITE_VINE_MIN_ALPHA && ctx->spriteAlpha == INGRAIN_SPRITE_VINE_MAX_ALPHA) {
+            doneCount = INGRAIN_SPRITE_VINE_COUNT;
+        }
+    }
+
+    if (doneCount == INGRAIN_SPRITE_VINE_COUNT) {
+        for (i = 0; i < INGRAIN_SPRITE_VINE_COUNT; i++) {
+            Sprite_DeleteAndFreeResources(ctx->vineSprites[i]);
+        }
+
+        for (i = 0; i < INGRAIN_SPRITE_PALETTE_FADE_COUNT; i++) {
+            PaletteFadeContext_Free(ctx->paletteFades[i]);
+        }
+
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
+        return;
+    }
+
+    SpriteSystem_DrawSprites(ctx->common.primarySpriteManager);
 }
 
-void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Ingrain(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_0222E390 *v0 = NULL;
+    IngrainSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(IngrainSpriteContext));
+    ctx->unused0 = 10;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E390));
-    v0->unk_20 = 10;
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    SpriteTemplate template; // Required to match
+    template = BattleAnimSystem_GetLastSpriteTemplate(ctx->common.battleAnimSys);
 
-    {
-        int v1;
-        s16 v2, v3;
-        SpriteTemplate v4;
+    ctx->vineSprites[0] = sprite;
+    ctx->delayCounters[0] = 0;
 
-        v4 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.battleAnimSys);
-
-        v0->unk_2C[0] = param3;
-        v0->unk_22[0] = 0;
-
-        for (v1 = 1; v1 < 4; v1++) {
-            v0->unk_22[v1] = (LCRNG_Next() % 4) + (v1 * 5);
-            v0->unk_2C[v1] = SpriteSystem_NewSprite(v0->unk_00.spriteSystem, v0->unk_00.primarySpriteManager, &v4);
-        }
-
-        ManagedSprite_SetFlipMode(v0->unk_2C[1], 1);
-        ManagedSprite_SetFlipMode(v0->unk_2C[2], 1);
-
-        {
-            s16 v5;
-            s16 v6;
-            int v7;
-            PokemonSprite *v8;
-
-            v7 = BattleAnimSystem_GetAttacker(param0);
-            v8 = BattleAnimSystem_GetBattlerSprite(param0, v7);
-            v5 = PokemonSprite_GetAttribute(v8, MON_SPRITE_X_CENTER);
-            v6 = PokemonSprite_GetAttribute(v8, MON_SPRITE_Y_CENTER);
-            v6 += PokemonSprite_GetAttribute(v8, MON_SPRITE_SHADOW_HEIGHT);
-
-            if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x3) {
-                v6 = 140;
-            } else {
-                v6 = 84;
-            }
-
-            for (v1 = 0; v1 < 4; v1++) {
-                ManagedSprite_SetPositionXY(v0->unk_2C[v1], v5, v6);
-            }
-        }
-
-        if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x3) {
-            v3 = 24;
-            v2 = 16;
-
-            ManagedSprite_SetPriority(v0->unk_2C[0], 10);
-            ManagedSprite_SetPriority(v0->unk_2C[2], 10);
-            ManagedSprite_SetPriority(v0->unk_2C[1], 18);
-            ManagedSprite_SetPriority(v0->unk_2C[3], 18);
-        } else {
-            v3 = 0;
-            v2 = 8;
-
-            ManagedSprite_SetPriority(v0->unk_2C[0], 18);
-            ManagedSprite_SetPriority(v0->unk_2C[2], 18);
-            ManagedSprite_SetPriority(v0->unk_2C[1], 10);
-            ManagedSprite_SetPriority(v0->unk_2C[3], 10);
-        }
-
-        v2 = 4;
-        v3 = 0;
-
-        ManagedSprite_OffsetPositionXY(v0->unk_2C[0], -32, +v3);
-        ManagedSprite_OffsetPositionXY(v0->unk_2C[3], -40, +v2);
-        ManagedSprite_OffsetPositionXY(v0->unk_2C[2], +32, +v3);
-        ManagedSprite_OffsetPositionXY(v0->unk_2C[1], +40, +v2);
+    int i;
+    for (i = 1; i < INGRAIN_SPRITE_VINE_COUNT; i++) {
+        ctx->delayCounters[i] = (LCRNG_Next() % INGRAIN_SPRITE_VINE_COUNT) + i * (INGRAIN_SPRITE_VINE_MAX_DELAY / INGRAIN_SPRITE_VINE_COUNT);
+        ctx->vineSprites[i] = SpriteSystem_NewSprite(ctx->common.spriteSystem, ctx->common.primarySpriteManager, &template);
     }
 
-    v0->unk_1C = ManagedSprite_GetExplicitPaletteOffset(v0->unk_2C[0]);
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222E390, v0);
+    ManagedSprite_SetFlipMode(ctx->vineSprites[1], TRUE);
+    ManagedSprite_SetFlipMode(ctx->vineSprites[2], TRUE);
+
+    int attacker = BattleAnimSystem_GetAttacker(system);
+    PokemonSprite *attackerSprite = BattleAnimSystem_GetBattlerSprite(system, attacker);
+    s16 vineX = PokemonSprite_GetAttribute(attackerSprite, MON_SPRITE_X_CENTER);
+    s16 vineY = PokemonSprite_GetAttribute(attackerSprite, MON_SPRITE_Y_CENTER);
+    vineY += PokemonSprite_GetAttribute(attackerSprite, MON_SPRITE_SHADOW_HEIGHT);
+
+    if (BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system)) == BTLSCR_PLAYER) {
+        vineY = INGRAIN_SPRITE_VINE_Y_PLAYER;
+    } else {
+        vineY = INGRAIN_SPRITE_VINE_Y_ENEMY;
+    }
+
+    for (i = 0; i < INGRAIN_SPRITE_VINE_COUNT; i++) {
+        ManagedSprite_SetPositionXY(ctx->vineSprites[i], vineX, vineY);
+    }
+
+    if (BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system)) == BTLSCR_PLAYER) {
+        ManagedSprite_SetPriority(ctx->vineSprites[INGRAIN_SPRITE_VINE_LL], INGRAIN_SPRITE_PRIORITY_BEHIND);
+        ManagedSprite_SetPriority(ctx->vineSprites[INGRAIN_SPRITE_VINE_LR], INGRAIN_SPRITE_PRIORITY_BEHIND);
+        ManagedSprite_SetPriority(ctx->vineSprites[INGRAIN_SPRITE_VINE_UR], INGRAIN_SPRITE_PRIORITY_INFRONT);
+        ManagedSprite_SetPriority(ctx->vineSprites[INGRAIN_SPRITE_VINE_UL], INGRAIN_SPRITE_PRIORITY_INFRONT);
+    } else {
+        ManagedSprite_SetPriority(ctx->vineSprites[INGRAIN_SPRITE_VINE_LL], INGRAIN_SPRITE_PRIORITY_INFRONT);
+        ManagedSprite_SetPriority(ctx->vineSprites[INGRAIN_SPRITE_VINE_LR], INGRAIN_SPRITE_PRIORITY_INFRONT);
+        ManagedSprite_SetPriority(ctx->vineSprites[INGRAIN_SPRITE_VINE_UR], INGRAIN_SPRITE_PRIORITY_BEHIND);
+        ManagedSprite_SetPriority(ctx->vineSprites[INGRAIN_SPRITE_VINE_UL], INGRAIN_SPRITE_PRIORITY_BEHIND);
+    }
+
+    s16 upper = INGRAIN_SPRITE_UPPER_VINE_OFFSET_Y;
+    s16 lower = INGRAIN_SPRITE_LOWER_VINE_OFFSET_Y;
+
+    ManagedSprite_OffsetPositionXY(ctx->vineSprites[INGRAIN_SPRITE_VINE_LL], -INGRAIN_SPRITE_LOWER_VINE_OFFSET_X, lower);
+    ManagedSprite_OffsetPositionXY(ctx->vineSprites[INGRAIN_SPRITE_VINE_UL], -INGRAIN_SPRITE_UPPER_VINE_OFFSET_X, upper);
+    ManagedSprite_OffsetPositionXY(ctx->vineSprites[INGRAIN_SPRITE_VINE_LR], +INGRAIN_SPRITE_LOWER_VINE_OFFSET_X, lower);
+    ManagedSprite_OffsetPositionXY(ctx->vineSprites[INGRAIN_SPRITE_VINE_UR], +INGRAIN_SPRITE_UPPER_VINE_OFFSET_X, upper);
+
+    ctx->paletteOffset = ManagedSprite_GetExplicitPaletteOffset(ctx->vineSprites[0]);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_IngrainSprite, ctx);
 }

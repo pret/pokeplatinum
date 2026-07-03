@@ -127,7 +127,7 @@ static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
     BattleAnimSpriteFunc_HelpingHand,
     BattleAnimSpriteFunc_Assist,
     BattleAnimSpriteFunc_MetalClaw,
-    ov12_0222E61C,
+    BattleAnimSpriteFunc_Ingrain,
     BattleAnimSpriteFunc_FrenzyPlant,
     ov12_0222A1AC,
     ov12_0222A34C,
