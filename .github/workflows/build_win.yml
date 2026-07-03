@@ -24,7 +24,7 @@ jobs:
         shell: powershell
 
       - name: Build (win64)
-        run: .\Launch_Msys2.ps1 make win64
+        run: .\Launch_Msys2.ps1 "make win64"
         shell: powershell
 
       - name: Package release artifact (win64)

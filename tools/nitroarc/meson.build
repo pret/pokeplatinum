@@ -2,17 +2,18 @@ nitroarc_cflags = [
 	'-std=c99',
 	'-DNDEBUG',
 	'-O3',
-	'-Wall',
-	'-Wextra',
-	'-Wpedantic',
-	'-Wconversion',
-	'-Wno-sign-conversion',
-	'-Werror',
 ]
+
+build_target = get_option('build_target')
 
 if (build_target != 'win64')
 	nitroarc_cflags += [
+	    '-Wall',
+	    '-Wextra',
+	    '-Wpedantic',
+	    '-Wno-sign-conversion',
 		'-Werror',
+        '-Wconversion',
 	]
 endif
 
