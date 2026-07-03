@@ -19,10 +19,22 @@ cp $BUILDDIR/main $OUTPUTDIR/main
 
 if [[ "$(uname -s)" =~ ^MSYS_NT.* ]]; then
   cp -u /ucrt64/bin/SDL2.dll $OUTPUTDIR/SDL2.dll
-	cp -u /ucrt64/bin/libwinpthread-1.dll $OUTPUTDIR/libwinpthread-1.dll
-	cp -u /ucrt64/bin/libenet-7.dll $OUTPUTDIR/libenet-7.dll
-	cp -u /ucrt64/bin/libgcc_s_seh-1.dll $OUTPUTDIR/libgcc_s_seh-1.dll
-	cp -u /ucrt64/bin/libstdc++-6.dll $OUTPUTDIR/libstdc++-6.dll
+  cp -u /ucrt64/bin/libwinpthread-1.dll $OUTPUTDIR/libwinpthread-1.dll
+  cp -u /ucrt64/bin/libenet-7.dll $OUTPUTDIR/libenet-7.dll
+  cp -u /ucrt64/bin/libgcc_s_seh-1.dll $OUTPUTDIR/libgcc_s_seh-1.dll
+  cp -u /ucrt64/bin/libstdc++-6.dll $OUTPUTDIR/libstdc++-6.dll
+else
+  mkdir -p $OUTPUTDIR/$3.AppDir
+  mkdir -p $OUTPUTDIR/$3.AppDir/usr/bin
+  mkdir -p $OUTPUTDIR/$3.AppDir/usr/lib
+  cp $BUILDDIR/main $OUTPUTDIR/$3.AppDir/usr/bin/app
+  if [ ! -f $BUILDDIR/../tools/linuxdeploy/linuxdeploy-x86_64.AppImage ]; then
+    echo "Downloading linuxdeploy..."
+    wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -O $BUILDDIR/../tools/linuxdeploy/linuxdeploy-x86_64.AppImage
+    chmod +x $BUILDDIR/../tools/linuxdeploy/linuxdeploy-x86_64.AppImage
+  fi
+  $BUILDDIR/../tools/linuxdeploy/linuxdeploy-x86_64.AppImage --appdir $OUTPUTDIR/$3.AppDir --executable=$OUTPUTDIR/main --desktop-file=$BUILDDIR/../tools/linuxdeploy/App.desktop --icon-file=$BUILDDIR/../tools/linuxdeploy/app.png --output appimage
+  mv $BUILDDIR/pokeplatinum-x86_64.AppImage $OUTPUTDIR/pokeplatinum.AppImage
 fi
 
 if [[ "$4" == "-nx" ]]; then

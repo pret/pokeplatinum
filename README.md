@@ -42,7 +42,7 @@ This build target requires DevKitA64, this is already installed in the build con
 * ./drun.sh make nx
 
 ## Notes
-Target executable will be in ./build_(platform)/pokeplatinum.us directory. win64 is also a supported build target, however it is untested.
+Target executable will be in ./build_(platform)/pokeplatinum directory.
 ROM will be built in /build directory
 
 You can update your SDKs using "meson subprojects update"

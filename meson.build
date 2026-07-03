@@ -542,7 +542,7 @@ pokeplatinum_nds = custom_target('pokeplatinum.us',
         copy_files_script,
         meson.global_build_root(),
         filesys_csv,
-        'pokeplatinum.us',
+        'pokeplatinum',
         '-nx'
     ],
     build_by_default: true
@@ -565,7 +565,7 @@ pokeplatinum_nds = custom_target('pokeplatinum.us',
         copy_files_script,
         meson.global_build_root(),
         filesys_csv,
-        'pokeplatinum.us'
+        'pokeplatinum'
     ],
     build_by_default: true
 )

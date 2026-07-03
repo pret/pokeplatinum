@@ -39,8 +39,8 @@
             "name": "Debug pokeplatinum.us (LLDB)",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/build_linux/pokeplatinum.us/main",
-            "cwd": "${workspaceFolder}/build_linux/pokeplatinum.us",
+            "program": "${workspaceFolder}/build_linux/pokeplatinum/main",
+            "cwd": "${workspaceFolder}/build_linux/pokeplatinum",
             "initCommands": [
                 "settings set target.source-map /repo ${workspaceRoot}"
             ]
