@@ -1,4 +1,4 @@
-name: build
+name: build_win
 
 on:
   push:
@@ -23,6 +23,16 @@ jobs:
         run: .\Install_MSys2.ps1
         shell: powershell
 
-      - name: Build (Win64)
+      - name: Build (win64)
         run: .\Launch_Msys2.ps1 make win64
         shell: powershell
+
+      - name: Package release artifact (win64)
+        run: .\Launch_Msys2.ps1 ./tools/scripts/package_artifacts_win64.sh
+        shell: powershell
+
+      - name: Upload release artifact (win64)
+        uses: actions/upload-artifact@v2
+        with:
+          name: release_win64
+          path: build_win64/pokeplatinum/release_win64.zip
