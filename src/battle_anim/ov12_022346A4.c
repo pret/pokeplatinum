@@ -13,16 +13,37 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-typedef struct {
+// -------------------------------------------------------------------
+// Sleep Sprite
+// -------------------------------------------------------------------
+#define SLEEP_SPRITE_Z_COUNT 2 // Number of 'Z's
+
+typedef struct SleepSpriteContext {
     BattleAnimSystem *battleAnimSys;
     int state;
-    int unk_08;
+    int delay;
     SpriteManager *spriteMan;
-    int unk_10;
-    ManagedSprite *managedSprite[2];
-    XYTransformContext posCtx[2];
-    XYTransformContext scaleCtx[2];
-} UnkStruct_ov12_022346A4;
+    int dir;
+    ManagedSprite *sprites[SLEEP_SPRITE_Z_COUNT];
+    XYTransformContext pos[SLEEP_SPRITE_Z_COUNT];
+    XYTransformContext scale[SLEEP_SPRITE_Z_COUNT];
+} SleepSpriteContext;
+
+enum SleepSpriteState {
+    SLEEP_SPRITE_STATE_INIT_FIRST = 0,
+    SLEEP_SPRITE_STATE_DELAY,
+    SLEEP_SPRITE_STATE_INIT_SECOND,
+    SLEEP_SPRITE_STATE_ANIMATE,
+    SLEEP_SPRITE_STATE_CLEANUP,
+};
+
+#define SLEEP_SPRITE_MOVE_X         16
+#define SLEEP_SPRITE_MOVE_Y         -32
+#define SLEEP_SPRITE_ANIM_FRAMES    32
+#define SLEEP_SPRITE_BASE_SCALE     10
+#define SLEEP_SPRITE_START_SCALE    2
+#define SLEEP_SPRITE_END_SCALE      10
+#define SLEEP_SPRITE_SECOND_Z_DELAY 8 // Delay in frames until the second 'Z' appears
 
 typedef struct {
     BattleAnimSystem *battleAnimSys;
@@ -56,115 +77,124 @@ typedef struct {
     s16 posY;
 } UnkStruct_ov12_02234BD8;
 
-static void ov12_02234750(SysTask *task, void *param1);
-static void ov12_0223483C(ManagedSprite *managedSprite, XYTransformContext *posCtx, XYTransformContext *scaleCtx, int param3);
-static BOOL ov12_0223489C(ManagedSprite *managedSprite, XYTransformContext *posCtx, XYTransformContext *scaleCtx);
+static void BattleAnimTask_SleepSprite(SysTask *task, void *param);
+static void SleepSprite_Init(ManagedSprite *managedSprite, XYTransformContext *pos, XYTransformContext *scale, int dir);
+static BOOL SleepSprite_Update(ManagedSprite *managedSprite, XYTransformContext *pos, XYTransformContext *scale);
 static void ov12_02234918(SysTask *task, void *param1);
 static void ov12_02234B64(SysTask *task, void *param1);
 static BOOL ov12_02234B34(ManagedSprite *managedSprite, int *param1, int *param2);
 static void ov12_02234AE0(ManagedSprite *managedSprite, int *param1, int *param2, int param3, int param4);
 static void ov12_02234CA8(SysTask *task, void *param1);
 
-void ov12_022346A4(BattleAnimSystem *battleAnimSys, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *managedSprite)
+void BattleAnimSpriteFunc_Sleep(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    SpriteTemplate spriteTemplate;
+    SleepSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SleepSpriteContext));
 
-    UnkStruct_ov12_022346A4 *v1 = BattleAnimUtil_Alloc(battleAnimSys, sizeof(UnkStruct_ov12_022346A4));
+    ctx->battleAnimSys = system;
+    ctx->spriteMan = spriteMan;
 
-    v1->battleAnimSys = battleAnimSys;
-    v1->spriteMan = spriteMan;
+    int attacker = BattleAnimSystem_GetAttacker(system);
+    ctx->dir = BattleAnimUtil_GetTransformDirectionX(system, attacker);
 
-    int attacker = BattleAnimSystem_GetAttacker(battleAnimSys);
-    v1->unk_10 = BattleAnimUtil_GetTransformDirectionX(battleAnimSys, attacker);
+    SpriteTemplate template;
+    template = BattleAnimSystem_GetLastSpriteTemplate(ctx->battleAnimSys);
+    template.x = BattleAnimUtil_GetBattlerPos(system, attacker, BATTLE_ANIM_POSITION_MON_X);
+    template.y = BattleAnimUtil_GetBattlerPos(system, attacker, BATTLE_ANIM_POSITION_MON_Y);
 
-    spriteTemplate = BattleAnimSystem_GetLastSpriteTemplate(v1->battleAnimSys);
-    spriteTemplate.x = BattleAnimUtil_GetBattlerPos(battleAnimSys, attacker, BATTLE_ANIM_POSITION_MON_X);
-    spriteTemplate.y = BattleAnimUtil_GetBattlerPos(battleAnimSys, attacker, BATTLE_ANIM_POSITION_MON_Y);
-
-    for (int i = 0; i < SNELEMS(v1->managedSprite); i++) {
+    for (int i = 0; i < SLEEP_SPRITE_Z_COUNT; i++) {
         if (i == 0) {
-            v1->managedSprite[i] = managedSprite;
-            ManagedSprite_SetPositionXY(v1->managedSprite[i], spriteTemplate.x, spriteTemplate.y);
+            ctx->sprites[i] = sprite;
+            ManagedSprite_SetPositionXY(ctx->sprites[i], template.x, template.y);
         } else {
-            v1->managedSprite[i] = SpriteSystem_NewSprite(spriteSys, spriteMan, &spriteTemplate);
+            ctx->sprites[i] = SpriteSystem_NewSprite(spriteSys, spriteMan, &template);
         }
 
-        ManagedSprite_SetDrawFlag(v1->managedSprite[i], FALSE);
-        ManagedSprite_SetPriority(v1->managedSprite[i], 100);
-        ManagedSprite_SetExplicitPriority(v1->managedSprite[i], 1);
+        ManagedSprite_SetDrawFlag(ctx->sprites[i], FALSE);
+        ManagedSprite_SetPriority(ctx->sprites[i], 100);
+        ManagedSprite_SetExplicitPriority(ctx->sprites[i], 1);
     }
 
-    BattleAnimSystem_StartAnimTask(v1->battleAnimSys, ov12_02234750, v1);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_SleepSprite, ctx);
 }
 
-static void ov12_02234750(SysTask *task, void *param1)
+static void BattleAnimTask_SleepSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022346A4 *v0 = param1;
+    SleepSpriteContext *ctx = param;
 
-    switch (v0->state) {
-    case 0:
-        ov12_0223483C(v0->managedSprite[0], &v0->posCtx[0], &v0->scaleCtx[0], v0->unk_10);
-        ov12_0223489C(v0->managedSprite[0], &v0->posCtx[0], &v0->scaleCtx[0]);
-        v0->state++;
-        v0->unk_08 = 8;
+    switch (ctx->state) {
+    case SLEEP_SPRITE_STATE_INIT_FIRST:
+        SleepSprite_Init(ctx->sprites[0], &ctx->pos[0], &ctx->scale[0], ctx->dir);
+        SleepSprite_Update(ctx->sprites[0], &ctx->pos[0], &ctx->scale[0]);
+        ctx->state++;
+        ctx->delay = SLEEP_SPRITE_SECOND_Z_DELAY;
         break;
-    case 1:
-        v0->unk_08--;
-        ov12_0223489C(v0->managedSprite[0], &v0->posCtx[0], &v0->scaleCtx[0]);
+    case SLEEP_SPRITE_STATE_DELAY:
+        ctx->delay--;
+        SleepSprite_Update(ctx->sprites[0], &ctx->pos[0], &ctx->scale[0]);
 
-        if (v0->unk_08 < 0) {
-            v0->state++;
+        if (ctx->delay < 0) {
+            ctx->state++;
         }
         break;
-    case 2:
-        ov12_0223483C(v0->managedSprite[1], &v0->posCtx[1], &v0->scaleCtx[1], v0->unk_10);
-        ov12_0223489C(v0->managedSprite[1], &v0->posCtx[1], &v0->scaleCtx[1]);
-        ov12_0223489C(v0->managedSprite[0], &v0->posCtx[0], &v0->scaleCtx[0]);
-        v0->state++;
+    case SLEEP_SPRITE_STATE_INIT_SECOND:
+        SleepSprite_Init(ctx->sprites[1], &ctx->pos[1], &ctx->scale[1], ctx->dir);
+        SleepSprite_Update(ctx->sprites[1], &ctx->pos[1], &ctx->scale[1]);
+        SleepSprite_Update(ctx->sprites[0], &ctx->pos[0], &ctx->scale[0]);
+        ctx->state++;
         break;
-    case 3:
-        ov12_0223489C(v0->managedSprite[0], &v0->posCtx[0], &v0->scaleCtx[0]);
-
-        if (ov12_0223489C(v0->managedSprite[1], &v0->posCtx[1], &v0->scaleCtx[1])) {
-            v0->state++;
+    case SLEEP_SPRITE_STATE_ANIMATE:
+        SleepSprite_Update(ctx->sprites[0], &ctx->pos[0], &ctx->scale[0]);
+        if (SleepSprite_Update(ctx->sprites[1], &ctx->pos[1], &ctx->scale[1])) {
+            ctx->state++;
         }
         break;
-    case 4:
-        for (int i = 0; i < SNELEMS(v0->managedSprite); i++) {
-            Sprite_DeleteAndFreeResources(v0->managedSprite[i]);
+    case SLEEP_SPRITE_STATE_CLEANUP:
+        for (int i = 0; i < SLEEP_SPRITE_Z_COUNT; i++) {
+            Sprite_DeleteAndFreeResources(ctx->sprites[i]);
         }
 
-        BattleAnimSystem_EndAnimTask(v0->battleAnimSys, task);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->spriteMan);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-static void ov12_0223483C(ManagedSprite *managedSprite, XYTransformContext *posCtx, XYTransformContext *scaleCtx, int param3)
+static void SleepSprite_Init(ManagedSprite *sprite, XYTransformContext *pos, XYTransformContext *scale, int dir)
 {
-    s16 outX, outY;
+    ManagedSprite_SetAffineOverwriteMode(sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetDrawFlag(sprite, TRUE);
 
-    ManagedSprite_SetAffineOverwriteMode(managedSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetDrawFlag(managedSprite, TRUE);
-    ManagedSprite_GetPositionXY(managedSprite, &outX, &outY);
+    s16 startX, startY;
+    ManagedSprite_GetPositionXY(sprite, &startX, &startY);
 
-    PosLerpContext_Init(posCtx, outX, outX + 16 * param3, outY, outY + -32, 32);
-    ScaleLerpContext_Init(scaleCtx, 2, 10, 10, 32);
+    PosLerpContext_Init(
+        pos,
+        startX,
+        startX + SLEEP_SPRITE_MOVE_X * dir,
+        startY,
+        startY + SLEEP_SPRITE_MOVE_Y,
+        SLEEP_SPRITE_ANIM_FRAMES);
+
+    ScaleLerpContext_Init(
+        scale,
+        SLEEP_SPRITE_START_SCALE,
+        SLEEP_SPRITE_BASE_SCALE,
+        SLEEP_SPRITE_END_SCALE,
+        SLEEP_SPRITE_ANIM_FRAMES);
 }
 
-static BOOL ov12_0223489C(ManagedSprite *managedSprite, XYTransformContext *posCtx, XYTransformContext *scaleCtx)
+static BOOL SleepSprite_Update(ManagedSprite *sprite, XYTransformContext *pos, XYTransformContext *scale)
 {
-    PosLerpContext_UpdateAndApplyToSprite(posCtx, managedSprite);
-    BOOL isUpdated = ScaleLerpContext_UpdateAndApplyToSprite(scaleCtx, managedSprite);
-
-    if (isUpdated) {
-        return 0;
+    PosLerpContext_UpdateAndApplyToSprite(pos, sprite);
+    BOOL active = ScaleLerpContext_UpdateAndApplyToSprite(scale, sprite);
+    if (active) {
+        return FALSE;
     }
 
-    ManagedSprite_SetDrawFlag(managedSprite, FALSE);
-    return 1;
+    ManagedSprite_SetDrawFlag(sprite, FALSE);
+    return TRUE;
 }
 
 void ov12_022348C8(BattleAnimSystem *battleAnimSys, SpriteSystem *unused, SpriteManager *spriteMan, ManagedSprite *managedSprite)
