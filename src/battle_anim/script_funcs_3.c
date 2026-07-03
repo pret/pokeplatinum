@@ -732,10 +732,16 @@ typedef struct EmitterRevolutionContext {
 #define EMITTER_REVOLUTION_VAR_MODE            8
 #define EMITTER_REVOLUTION_VAR_PARTICLE_SYSTEM 9
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    ManagedSprite *unk_1C;
-} UnkStruct_ov12_0222A178;
+// -------------------------------------------------------------------
+// Offset and Animate Sprite
+// -------------------------------------------------------------------
+typedef struct OffsetAndAnimateSpriteContext {
+    BattleAnimScriptFuncCommon common;
+    ManagedSprite *sprite;
+} OffsetAndAnimateSpriteContext;
+
+#define OFFSET_AND_ANIMATE_SPRITE_VAR_OFFSET_X 0
+#define OFFSET_AND_ANIMATE_SPRITE_VAR_OFFSET_Y 1
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -3586,45 +3592,33 @@ void BattleAnimScriptFunc_RevolveEmitter(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_RevolveEmitter, ctx);
 }
 
-static void ov12_0222A178(SysTask *param0, void *param1)
+static void BattleAnimTask_OffsetAndAnimateSprite(SysTask *task, void *param)
 {
-    BOOL v0;
-    UnkStruct_ov12_0222A178 *v1 = (UnkStruct_ov12_0222A178 *)param1;
+    OffsetAndAnimateSpriteContext *ctx = param;
 
-    v0 = 1;
-    v0 = ManagedSprite_IsAnimated(v1->unk_1C);
-
-    if (v0 == 0) {
-        Sprite_DeleteAndFreeResources(v1->unk_1C);
-        BattleAnimSystem_EndAnimTask(v1->unk_00.battleAnimSys, param0);
-        Heap_Free(v1);
+    if (!ManagedSprite_IsAnimated(ctx->sprite)) {
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    ManagedSprite_TickFrame(v1->unk_1C);
-    SpriteSystem_DrawSprites(v1->unk_00.primarySpriteManager);
+    ManagedSprite_TickFrame(ctx->sprite);
+    SpriteSystem_DrawSprites(ctx->common.primarySpriteManager);
 }
 
-void ov12_0222A1AC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_OffsetAndAnimate(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_0222A178 *v0 = NULL;
+    OffsetAndAnimateSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(OffsetAndAnimateSpriteContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222A178));
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    ctx->sprite = sprite;
 
-    v0->unk_1C = param3;
+    s16 x = BattleAnimSystem_GetScriptVar(system, OFFSET_AND_ANIMATE_SPRITE_VAR_OFFSET_X);
+    s16 y = BattleAnimSystem_GetScriptVar(system, OFFSET_AND_ANIMATE_SPRITE_VAR_OFFSET_Y);
+    ManagedSprite_OffsetPositionXY(sprite, x, y);
 
-    {
-        s16 v1;
-        s16 v2;
-
-        v1 = BattleAnimSystem_GetScriptVar(param0, 0);
-        v2 = BattleAnimSystem_GetScriptVar(param0, 1);
-
-        ManagedSprite_OffsetPositionXY(param3, v1, v2);
-    }
-
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A178, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_OffsetAndAnimateSprite, ctx);
 }
 
 static const s16 Unk_ov12_0223A03C[] = {
