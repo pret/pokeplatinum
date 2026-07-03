@@ -2,4 +2,8 @@
 BUILDDIR=build_linux/pokeplatinum
 
 cd $BUILDDIR
-zip release_linux.zip firmware.bin header.bin main pokeplatinum.AppImage
+mkdir release_linux
+cp firmware.bin release_linux/firmware.bin
+cp header.bin release_linux/header.bin
+cp main release_linux/main
+cp pokeplatinum.AppImage release_linux/pokeplatinum.AppImage

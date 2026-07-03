@@ -36,6 +36,8 @@ shlwapi_lib = meson.get_compiler('c').find_library('shlwapi')
 
 shlwapi_dep = declare_dependency(dependencies: [shlwapi_lib])
 
+nitroarc_cflags += [ '-w' ]
+
 nitroarc_exe = executable(
     'nitroarc',
     sources: files(
