@@ -23,7 +23,7 @@ jobs:
       - name: Install Software
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y --no-install-recommends git python3 wget
+          sudo apt-get install -y --no-install-recommends fuse git python3 wget
 
       - name: Checkout Repo
         uses: actions/checkout@v6
