@@ -185,12 +185,26 @@ enum CamouflageState {
 #define CAMOUFLAGE_BG_SCROLL_SPEED      200
 #define CAMOUFLAGE_BG_SCROLL_FRAMES     120
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    s16 unk_1C;
-    s16 unk_1E[4];
-    ManagedSprite *unk_28[4];
-} UnkStruct_ov12_0222E25C;
+// -------------------------------------------------------------------
+// Metal Claw Sprite
+// -------------------------------------------------------------------
+#define METAL_CLAW_SPRITE_CLAW_COUNT 4
+
+typedef struct MetalClawSpriteContext {
+    BattleAnimScriptFuncCommon common;
+    s16 rightClawDelay;
+    s16 counters[METAL_CLAW_SPRITE_CLAW_COUNT];
+    ManagedSprite *sprites[METAL_CLAW_SPRITE_CLAW_COUNT];
+} MetalClawSpriteContext;
+
+#define METAL_CLAW_SPRITE_CLAW_L1             0
+#define METAL_CLAW_SPRITE_CLAW_L2             1
+#define METAL_CLAW_SPRITE_CLAW_R1             2
+#define METAL_CLAW_SPRITE_CLAW_R2             3
+#define METAL_CLAW_SPRITE_CLAW_OFFSET_X       32
+#define METAL_CLAW_SPRITE_CLAW_OFFSET_Y       32
+#define METAL_CLAW_SPRITE_RIGHT_CLAW_DELAY    10 // Delay in frames before the second claw appears
+#define METAL_CLAW_SPRITE_CLAW_VISIBLE_FRAMES 40
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -879,84 +893,72 @@ void BattleAnimUtil_TickSpriteIfVisible(ManagedSprite *sprite)
     }
 }
 
-static void ov12_0222E25C(SysTask *param0, void *param1)
+static void BattleAnimTask_MetalClawSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222E25C *v0 = (UnkStruct_ov12_0222E25C *)param1;
+    MetalClawSpriteContext *ctx = param;
 
-    if (v0->unk_1C <= 0) {
-        BattleAnimUtil_TickSpriteIfVisible(v0->unk_28[2]);
-        BattleAnimUtil_TickSpriteIfVisible(v0->unk_28[3]);
+    if (ctx->rightClawDelay <= 0) {
+        BattleAnimUtil_TickSpriteIfVisible(ctx->sprites[METAL_CLAW_SPRITE_CLAW_R1]);
+        BattleAnimUtil_TickSpriteIfVisible(ctx->sprites[METAL_CLAW_SPRITE_CLAW_R2]);
     } else {
-        v0->unk_1C--;
+        ctx->rightClawDelay--;
     }
 
-    BattleAnimUtil_TickSpriteIfVisible(v0->unk_28[0]);
-    BattleAnimUtil_TickSpriteIfVisible(v0->unk_28[1]);
+    BattleAnimUtil_TickSpriteIfVisible(ctx->sprites[METAL_CLAW_SPRITE_CLAW_L1]);
+    BattleAnimUtil_TickSpriteIfVisible(ctx->sprites[METAL_CLAW_SPRITE_CLAW_L2]);
 
-    {
-        int v1;
-        int v2 = 0;
+    int doneCount = 0;
+    int i;
 
-        for (v1 = 0; v1 < 4; v1++) {
-            v0->unk_1E[v1]++;
+    for (i = 0; i < METAL_CLAW_SPRITE_CLAW_COUNT; i++) {
+        ctx->counters[i]++;
 
-            if (v0->unk_1E[v1] >= 40) {
-                ManagedSprite_SetDrawFlag(v0->unk_28[v1], 0);
-                v2++;
-            }
-        }
-
-        if (v2 == 4) {
-            for (v1 = 0; v1 < 4; v1++) {
-                Sprite_DeleteAndFreeResources(v0->unk_28[v1]);
-            }
-
-            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
-            Heap_Free(v0);
-            return;
+        if (ctx->counters[i] >= METAL_CLAW_SPRITE_CLAW_VISIBLE_FRAMES) {
+            ManagedSprite_SetDrawFlag(ctx->sprites[i], FALSE);
+            doneCount++;
         }
     }
 
-    SpriteSystem_DrawSprites(v0->unk_00.primarySpriteManager);
+    if (doneCount == METAL_CLAW_SPRITE_CLAW_COUNT) {
+        for (i = 0; i < METAL_CLAW_SPRITE_CLAW_COUNT; i++) {
+            Sprite_DeleteAndFreeResources(ctx->sprites[i]);
+        }
+
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
+        return;
+    }
+
+    SpriteSystem_DrawSprites(ctx->common.primarySpriteManager);
 }
 
-void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_MetalClaw(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_0222E25C *v0 = NULL;
+    MetalClawSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MetalClawSpriteContext));
+    ctx->rightClawDelay = METAL_CLAW_SPRITE_RIGHT_CLAW_DELAY;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E25C));
-    v0->unk_1C = 10;
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    SpriteTemplate template; // Required to match
+    template = BattleAnimSystem_GetLastSpriteTemplate(ctx->common.battleAnimSys);
 
-    {
-        int v1;
-        SpriteTemplate v2;
+    ctx->sprites[0] = sprite;
+    ctx->counters[0] = 0;
 
-        v2 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.battleAnimSys);
-
-        v0->unk_28[0] = param3;
-        v0->unk_1E[0] = 0;
-
-        for (v1 = 1; v1 < 4; v1++) {
-            v0->unk_1E[v1] = 0;
-            v0->unk_28[v1] = SpriteSystem_NewSprite(v0->unk_00.spriteSystem, v0->unk_00.primarySpriteManager, &v2);
-        }
-
-        ManagedSprite_SetFlipMode(v0->unk_28[0], 1);
-        ManagedSprite_SetFlipMode(v0->unk_28[1], 1);
-
-        {
-            Point2D v3;
-        }
-
-        ManagedSprite_OffsetPositionXY(v0->unk_28[0], -32, 0);
-        ManagedSprite_OffsetPositionXY(v0->unk_28[1], -32, +32);
-        ManagedSprite_OffsetPositionXY(v0->unk_28[2], +32, 0);
-        ManagedSprite_OffsetPositionXY(v0->unk_28[3], +32, +32);
+    for (int i = 1; i < METAL_CLAW_SPRITE_CLAW_COUNT; i++) {
+        ctx->counters[i] = 0;
+        ctx->sprites[i] = SpriteSystem_NewSprite(ctx->common.spriteSystem, ctx->common.primarySpriteManager, &template);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222E25C, v0);
+    ManagedSprite_SetFlipMode(ctx->sprites[METAL_CLAW_SPRITE_CLAW_L1], TRUE);
+    ManagedSprite_SetFlipMode(ctx->sprites[METAL_CLAW_SPRITE_CLAW_L2], TRUE);
+
+    ManagedSprite_OffsetPositionXY(ctx->sprites[METAL_CLAW_SPRITE_CLAW_L1], -METAL_CLAW_SPRITE_CLAW_OFFSET_X, 0);
+    ManagedSprite_OffsetPositionXY(ctx->sprites[METAL_CLAW_SPRITE_CLAW_L2], -METAL_CLAW_SPRITE_CLAW_OFFSET_X, +METAL_CLAW_SPRITE_CLAW_OFFSET_Y);
+    ManagedSprite_OffsetPositionXY(ctx->sprites[METAL_CLAW_SPRITE_CLAW_R1], +METAL_CLAW_SPRITE_CLAW_OFFSET_X, 0);
+    ManagedSprite_OffsetPositionXY(ctx->sprites[METAL_CLAW_SPRITE_CLAW_R2], +METAL_CLAW_SPRITE_CLAW_OFFSET_X, +METAL_CLAW_SPRITE_CLAW_OFFSET_Y);
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MetalClawSprite, ctx);
 }
 
 static void ov12_0222E390(SysTask *param0, void *param1)
