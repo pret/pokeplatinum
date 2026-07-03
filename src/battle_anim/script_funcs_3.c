@@ -763,11 +763,19 @@ enum FollowMeSpriteState {
 #define FOLLOW_ME_SPRITE_TILT_ANGLE         DEG_TO_IDX(20)
 #define FOLLOW_ME_SPRITE_TILT_FRAMES        4
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    ManagedSprite *unk_1C;
-    ValueLerpContext unk_20;
-} UnkStruct_ov12_0222A3DC;
+// -------------------------------------------------------------------
+// Fissure Sprite
+// -------------------------------------------------------------------
+typedef struct FissureSpriteContext {
+    BattleAnimScriptFuncCommon common;
+    ManagedSprite *sprite;
+    ValueLerpContext unused;
+} FissureSpriteContext;
+
+#define FISSURE_SPRITE_CONTEST_X       72
+#define FISSURE_SPRITE_CONTEST_Y       32
+#define FISSURE_SPRITE_BATTLE_PLAYER_Y 126
+#define FISSURE_SPRITE_BATTLE_ENEMY_Y  32
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -3780,54 +3788,52 @@ void BattleAnimSpriteFunc_FollowMe(BattleAnimSystem *system, SpriteSystem *sprit
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_FollowMeSprite, ctx);
 }
 
-static void ov12_0222A3DC(SysTask *param0, void *param1)
+static void BattleAnimTask_FissureSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222A3DC *v0 = param1;
-    BOOL v1 = ManagedSprite_IsAnimated(v0->unk_1C);
+    FissureSpriteContext *ctx = param;
 
-    if (v1 == 0) {
-        Sprite_DeleteAndFreeResources(v0->unk_1C);
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
-        Heap_Free(v0);
+    if (!ManagedSprite_IsAnimated(ctx->sprite)) {
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    ManagedSprite_TickFrame(v0->unk_1C);
-    SpriteSystem_DrawSprites(v0->unk_00.primarySpriteManager);
+    ManagedSprite_TickFrame(ctx->sprite);
+    SpriteSystem_DrawSprites(ctx->common.primarySpriteManager);
 }
 
-void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Fissure(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_0222A3DC *v0 = BattleAnimUtil_Alloc(param0, sizeof(FollowMeSpriteContext));
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
-    v0->unk_1C = param3;
+    // BUG: Should be sizeof(FissureSpriteContext)
+    FissureSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FollowMeSpriteContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
+    ctx->sprite = sprite;
 
-    {
-        int v1 = 0;
-        int v2 = BattleAnimSystem_GetDefender(param0);
-        s16 v3 = BattleAnimUtil_GetBattlerPos(param0, v2, 0);
-        s16 v4 = BattleAnimUtil_GetBattlerPos(param0, v2, 1);
+    int anim = 0;
+    int defender = BattleAnimSystem_GetDefender(system);
+    s16 spriteX = BattleAnimUtil_GetBattlerPos(system, defender, BATTLE_ANIM_POSITION_MON_X);
+    s16 spriteY = BattleAnimUtil_GetBattlerPos(system, defender, BATTLE_ANIM_POSITION_MON_Y);
 
-        if (BattleAnimSystem_IsContest(param0) == 1) {
-            v3 = 72;
-            v4 = 32;
-            v1 = 0;
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        spriteX = FISSURE_SPRITE_CONTEST_X;
+        spriteY = FISSURE_SPRITE_CONTEST_Y;
+        anim = 0;
+    } else {
+        if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, defender) == BTLSCR_PLAYER) {
+            spriteY = FISSURE_SPRITE_BATTLE_PLAYER_Y;
+            anim = 1;
         } else {
-            if (BattleAnimUtil_GetBattlerSide(v0->unk_00.battleAnimSys, v2) == 0x3) {
-                v4 = 190 - 32 - 32;
-                v1 = 1;
-            } else {
-                v4 = 0 + 32;
-                v1 = 0;
-            }
+            spriteY = FISSURE_SPRITE_BATTLE_ENEMY_Y;
+            anim = 0;
         }
-
-        ManagedSprite_SetPositionXY(v0->unk_1C, v3, v4);
-        ManagedSprite_SetAnim(v0->unk_1C, v1);
     }
 
-    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSys, 2));
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A3DC, v0);
+    ManagedSprite_SetPositionXY(ctx->sprite, spriteX, spriteY);
+    ManagedSprite_SetAnim(ctx->sprite, anim);
+
+    ManagedSprite_SetExplicitPriority(ctx->sprite, BattleAnimSystem_GetBgPriority(ctx->common.battleAnimSys, BATTLE_ANIM_BG_EFFECT));
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_FissureSprite, ctx);
 }
 
 static void ov12_0222A4A0(SysTask *param0, void *param1)
