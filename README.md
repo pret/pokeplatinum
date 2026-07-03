@@ -4,6 +4,9 @@ This is a WIP PC port of Pokemon Platinum based on the [pret](https://github.com
 
 Currently it is possible to reach the first gym. It might be possible to get farther than that, however it has not been tested.
 
+## Running pre-built binaries
+You MUST dump and extract your own ROM to use pre-built binaries. The ROM filesystem must be extracted to the same directory as the executable file.
+
 ## Building on Linux
 ### Dockerized build (Recommended)
 This only requires Docker to be installed and setup on your system. The drun.sh script is used to build the docker image and run build commands in it. Build with:

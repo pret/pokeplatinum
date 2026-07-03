@@ -22,51 +22,16 @@ jobs:
       - name: Install Software
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y --no-install-recommends bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3 wget xz-utils
+          sudo apt-get install -y --no-install-recommends docker git python3 wget
 
       - name: Checkout Repo
         uses: actions/checkout@v6
 
       - name: Install Metroskrew
-        run: sudo make skrew
+        run: ./drun.sh make skrew
 
-      - name: Configure Repo
-        run: make configure
+      - name: Build (ARM)
+        run: ./drun.sh make
 
-      - name: Build Repo
-        run: make check
-
-      - name: Checkout xMAP
-        if: ${{ github.event_name == 'push' }}
-        uses: actions/checkout@v6
-        with:
-          path: 'xmap'
-          ref: 'xmap'
-
-      - name: Move xMAP
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          mkdir -p xmap
-          cp "$BUILD"/*.xMAP xmap/platinumus.xMAP
-          echo "XMAP_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
-
-      - name: Update xMAP
-        if: ${{ github.event_name == 'push' }}
-        uses: EndBug/add-and-commit@v10
-        with:
-          cwd: "./xmap"
-          add: "*.xMAP"
-          message: ${{ env.XMAP_COMMIT_MSG }}
-
-      - name: Post error archive
-        if: failure()
-        continue-on-error: true
-        run: tar czf failure.tar.gz "$BUILD"
-
-      - name: Post error upload
-        if: failure()
-        uses: actions/upload-artifact@v7
-        with:
-          name: pokeplatinum-failure-${{ github.run_id }}
-          path: failure.tar.gz
-          retention-days: 1
+      - name: Build (Linux)
+        run: ./drun.sh make linux
