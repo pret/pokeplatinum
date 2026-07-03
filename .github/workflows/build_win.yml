@@ -32,7 +32,7 @@ jobs:
         shell: powershell
 
       - name: Upload release artifact (win64)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v6
         with:
           name: release_win64
           path: build_win64/pokeplatinum/release_win64.zip
