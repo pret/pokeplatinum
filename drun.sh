@@ -47,6 +47,7 @@ docker run -it --user $(id -u):$(id -g) \
            --env DISPLAY=$DISPLAY \
            --env DEVKITPRO=/opt/devkitpro \
            -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+           --privileged \
            --device /dev/fuse \
            --cap-add SYS_ADMIN \
            --mount type=bind,src=./,target=/repo \
@@ -59,6 +60,7 @@ docker run --user $(id -u):$(id -g) \
            --env DISPLAY=$DISPLAY \
            --env DEVKITPRO=/opt/devkitpro \
            -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+           --privileged \
            --device /dev/fuse \
            --cap-add SYS_ADMIN \
            -i \

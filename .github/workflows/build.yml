@@ -31,8 +31,8 @@ jobs:
       - name: Install Metroskrew
         run: ./drun.sh make skrew
 
-      - name: Build (ARM)
-        run: ./drun.sh make
-
       - name: Build (Linux)
         run: ./drun.sh make linux
+
+      - name: Build (ARM)
+        run: ./drun.sh make

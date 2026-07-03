@@ -1,0 +1,28 @@
+name: build
+
+on:
+  push:
+    branches: [ pc_port ]
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: Install MSys2
+        run: .\Install_MSys2.ps1
+        shell: powershell
+
+      - name: Build (Win64)
+        run: .\Launch_Msys2.ps1 make win64
+        shell: powershell
