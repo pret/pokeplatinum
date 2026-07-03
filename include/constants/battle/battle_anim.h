@@ -449,5 +449,39 @@
 #define EMITTER_PRIORITY_MODE_BACK  2 //< Send to back
 #define EMITTER_PRIORITY_MODE_UB    3 //< Invokes undefined behavior 😀
 
+#define SPRITE_FUNC_EXAMPLE            0
+#define SPRITE_FUNC_STRING_SHOT        1
+#define SPRITE_FUNC_KINESIS            2
+#define SPRITE_FUNC_TRICK              3
+#define SPRITE_FUNC_METRONOME          4
+#define SPRITE_FUNC_CONSTRICT          5
+#define SPRITE_FUNC_BONEMERANG         6
+#define SPRITE_FUNC_SCARY_FACE         7
+#define SPRITE_FUNC_FORESIGHT          8
+#define SPRITE_FUNC_LOCK_ON            9
+#define SPRITE_FUNC_SWAGGER            10
+#define SPRITE_FUNC_MEAN_LOOK          11
+#define SPRITE_FUNC_TORMENT            12
+#define SPRITE_FUNC_BATON_PASS         13
+#define SPRITE_FUNC_UNUSED             14
+#define SPRITE_FUNC_GRUDGE             15
+#define SPRITE_FUNC_GRASS_WHISTLE      16
+#define SPRITE_FUNC_ICICLE_SPEAR       17
+#define SPRITE_FUNC_FAKE_OUT           18
+#define SPRITE_FUNC_TAUNT              19
+#define SPRITE_FUNC_HELPING_HAND       20
+#define SPRITE_FUNC_ASSIST             21
+#define SPRITE_FUNC_METAL_CLAW         22
+#define SPRITE_FUNC_INGRAIN            23
+#define SPRITE_FUNC_FRENZY_PLANT       24
+#define SPRITE_FUNC_OFFSET_AND_ANIMATE 25
+#define SPRITE_FUNC_FOLLOW_ME          26
+#define SPRITE_FUNC_FISSURE            27
+#define SPRITE_FUNC_ESCAPE_ITEM        28
+#define SPRITE_FUNC_SLEEP              29
+#define SPRITE_FUNC_BURN               30
+#define SPRITE_FUNC_FREEZE             31
+#define SPRITE_FUNC_CONFUSION_STATUS   32
+
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
