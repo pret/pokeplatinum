@@ -14,7 +14,7 @@
 
 #include "enums.h"
 
-typedef enum {
+enum BattleTowerHttpRequestState {
     HTTP_STATE_INACTIVE,
     HTTP_STATE_IDLE,
     HTTP_STATE_AWAITING_ROOMNUM,
@@ -27,23 +27,23 @@ typedef enum {
     HTTP_STATE_ERROR_INFO,
     HTTP_STATE_AWAITING_SET_PROFILE,
     HTTP_STATE_ERROR_SET_PROFILE,
-    HTTP_STATE_COMPLETE
-} BattleTowerHttpRequestState;
+    HTTP_STATE_COMPLETE,
+};
 
-typedef struct {
-    BattleTowerHttpRequestState requestState;
+struct BattleTowerHttpState {
+    enum BattleTowerHttpRequestState requestState;
     s32 result;
     s32 profileId;
     u64 friendKey;
     u8 requestBody[239];
     u8 responseBuffer[2];
     u8 *responsePtr;
-} BattleTowerHttpState;
+};
 
 static BOOL BattleTowerNetworking_PrepareRequest(const u8 *url, const void *data, int dataSize, void *response, int maxResponseLength);
 static int BattleTowerHttp_GetPublicErrorCode(int errorCode);
 
-static BattleTowerHttpState httpState;
+static struct BattleTowerHttpState httpState;
 
 void BattleTowerHttp_Init(s32 profileId, u64 friendKey)
 {

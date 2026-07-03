@@ -1,8 +1,18 @@
 #ifndef POKEPLATINUM_STRUCT_WORLD_EXCHANGE_TRAINER_ERROR_H
 #define POKEPLATINUM_STRUCT_WORLD_EXCHANGE_TRAINER_ERROR_H
 
-// validationError and systemError values come from Nintendo's closed API;
-// the exact semantics are not documented.
+enum WorldExchangeValidationError {
+    WE_VALIDATION_ERROR_VALID,
+    WE_VALIDATION_ERROR_FAILED_1,
+    WE_VALIDATION_ERROR_FAILED_2,
+};
+
+enum WorldExchangeSystemError {
+    WE_SYSTEM_ERROR_NONE,
+    WE_SYSTEM_ERROR_DWC_1,
+    WE_SYSTEM_ERROR_DWC_2,
+    WE_SYSTEM_ERROR_DWC_3,
+};
 
 typedef struct WorldExchangeTrainerError {
     u32 validationError;

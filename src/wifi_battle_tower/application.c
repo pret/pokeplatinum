@@ -12,6 +12,7 @@
 
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "coordinates.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -54,7 +55,7 @@ static int (*sScreenFunctions[][3])(WifiBattleTowerAppState *, int) = {
 
 WifiBattleTowerAppState *wifiBattleTowerAppState;
 
-int WifiBattleTower_AppInit(ApplicationManager *appMan, int *state)
+BOOL WifiBattleTower_AppInit(ApplicationManager *appMan, int *state)
 {
     switch (*state) {
     case BT_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER:
@@ -106,14 +107,14 @@ int WifiBattleTower_AppInit(ApplicationManager *appMan, int *state)
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
         (*state) = BT_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER;
-        return 1;
+        return TRUE;
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-int WifiBattleTower_AppMain(ApplicationManager *appMan, int *state)
+BOOL WifiBattleTower_AppMain(ApplicationManager *appMan, int *state)
 {
     WifiBattleTowerAppState *appState = ApplicationManager_Data(appMan);
 
@@ -146,7 +147,7 @@ int WifiBattleTower_AppMain(ApplicationManager *appMan, int *state)
         }
         break;
     case BT_LOOP_STATE_EXIT:
-        return 1;
+        return TRUE;
         break;
     }
 
@@ -154,10 +155,10 @@ int WifiBattleTower_AppMain(ApplicationManager *appMan, int *state)
         SpriteList_Update(appState->spriteList);
     }
 
-    return 0;
+    return FALSE;
 }
 
-int WifiBattleTower_AppExit(ApplicationManager *appMan, int *unused)
+BOOL WifiBattleTower_AppExit(ApplicationManager *appMan, int *state)
 {
     WifiBattleTowerAppState *appState = ApplicationManager_Data(appMan);
 
@@ -180,7 +181,7 @@ int WifiBattleTower_AppExit(ApplicationManager *appMan, int *unused)
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_68);
 
-    return 1;
+    return TRUE;
 }
 
 static void WifiBattleTower_OnVBlank(void *appStatePtr)
@@ -264,9 +265,9 @@ static void WifiBattleTower_InitSpriteResources(WifiBattleTowerAppState *appStat
     NARC_dtor(narc);
 }
 
-static const u16 sSelectionArrowPositions[][2] = {
-    { 0xE0, 0x6F },
-    { 0xE0, 0x81 }
+static const CoordinatesU16 sSelectionArrowPositions[] = {
+    { .x = 0xE0, .y = 0x6F },
+    { .x = 0xE0, .y = 0x81 },
 };
 
 void WifiBattleTower_BuildAffineSpriteTemplate(AffineSpriteListTemplate *template, WifiBattleTowerAppState *appState, SpriteResourcesHeader *spriteResourceHeader, int vramType)
@@ -289,9 +290,9 @@ static void WifiBattleTower_CreateSelectionArrows(WifiBattleTowerAppState *appSt
     AffineSpriteListTemplate template;
     WifiBattleTower_BuildAffineSpriteTemplate(&template, appState, &appState->arrowSpriteHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    for (int i = 0; i < 2; i++) {
-        template.position.x = FX32_ONE * sSelectionArrowPositions[i][0];
-        template.position.y = FX32_ONE * sSelectionArrowPositions[i][1];
+    for (int i = 0; i < SNELEMS(sSelectionArrowPositions); i++) {
+        template.position.x = FX32_ONE * sSelectionArrowPositions[i].x;
+        template.position.y = FX32_ONE * sSelectionArrowPositions[i].y;
         appState->selectionArrows[i] = SpriteList_AddAffine(&template);
         Sprite_SetAnimateFlag(appState->selectionArrows[i], 1);
         Sprite_SetAnim(appState->selectionArrows[i], i);
@@ -318,7 +319,7 @@ Menu *WifiBattleTower_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int ba
     template.tilemapTop = tilemapTop;
     template.baseTile = baseTile;
 
-    return Menu_MakeYesNoChoice(bgConfig, &template, WINDOW_BORDER_TILE_START, WINDOW_BORDER_PLTT_SLOT, HEAP_ID_68);
+    return Menu_MakeYesNoChoice(bgConfig, &template, SCROLLING_MESSAGE_BOX_TILE_COUNT + 1, WINDOW_BORDER_PLTT_SLOT, HEAP_ID_68);
 }
 
 void WifiBattleTower_SetState(WifiBattleTowerAppState *appState, int state, int nextState)

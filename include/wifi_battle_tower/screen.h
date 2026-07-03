@@ -4,6 +4,7 @@
 #include "wifi_battle_tower/app_state.h"
 
 #include "bg_window.h"
+#include "render_window.h"
 #include "string_gf.h"
 #include "text.h"
 
@@ -14,9 +15,7 @@ void Window_DrawTextAligned(Window *window, String *string, int xOffset, int yOf
 void Window_DrawSystemTextAligned(Window *window, String *string, int xOffset, int yOffset, int alignment, TextColor textColor);
 void WifiBattleTower_InitNetworkIcon(WifiBattleTowerAppState *appState);
 
-#define POPUP_TILEMAP_TOP        13
-#define WINDOW_BORDER_PLTT_SLOT  11
-#define WINDOW_BORDER_TILE_START 31 // (1 + (18 + 12))
+#define WINDOW_BORDER_PLTT_SLOT 11
 
 enum ErrorCleanupSubStep {
     ERROR_CLEANUP_SUBSTEP_DISPLAY_ERROR,

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field_base_tiles.h"
 #include "constants/narc.h"
 #include "constants/scrcmd.h"
 #include "generated/map_headers.h"
@@ -160,8 +161,8 @@ void FieldMenuManager_ShowSingleColumnMenu(FieldMenuManager *menuManager)
     }
 
     Window_Add(menuManager->fieldSystem->bgConfig, &menuManager->menuWindow, BG_LAYER_MAIN_3, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionsCount * GLYPH_ROW_TILES_HEIGHT, PLTT_13, (1 + (10 * 4)) + (10 * 2));
-    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
+    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
 
     FieldMenuManager_SetupSingleColumnMenu(menuManager);
 
@@ -313,8 +314,8 @@ static void _FieldMenuManager_ShowListMenuWithWidth(FieldMenuManager *menuManage
         Window_Add(menuManager->fieldSystem->bgConfig, &menuManager->menuWindow, BG_LAYER_MAIN_3, menuManager->anchorX, menuManager->anchorY, windowWidth, menuManager->optionsCount * GLYPH_ROW_TILES_HEIGHT, PLTT_13, (1 + (10 * 4)) + (10 * 2));
     }
 
-    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
+    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
 
     FieldMenuManager_InitListMenuTemplate(menuManager);
     menuManager->listMenu = ListMenu_New((const ListMenuTemplate *)&menuManager->listMenuTemplate, 0, menuManager->initialCursorPos, HEAP_ID_FIELD1);
@@ -335,8 +336,8 @@ void FieldMenuManager_ShowListMenuWithCursorPosition(FieldMenuManager *menuManag
         Window_Add(menuManager->fieldSystem->bgConfig, &menuManager->menuWindow, BG_LAYER_MAIN_3, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionsCount * GLYPH_ROW_TILES_HEIGHT, PLTT_13, (1 + (10 * 4)) + (10 * 2));
     }
 
-    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
+    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
 
     FieldMenuManager_InitListMenuTemplate(menuManager);
 
@@ -534,8 +535,8 @@ void FieldMenu_ShowCurrentFloorWindow(FieldSystem *fieldSystem, u8 tilemapLeft, 
     }
 
     Window_Add(menuManager->fieldSystem->bgConfig, &menuManager->menuWindow, BG_LAYER_MAIN_3, menuManager->anchorX, menuManager->anchorY, width, CURRENT_FLOOR_WINDOW_HEIGHT, PLTT_13, ((1 + (10 * 4)) + (10 * 2)) + (16 * 10));
-    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
+    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
     Window_FillRectWithColor(&menuManager->menuWindow, 15, 0, 0, width * TILE_WIDTH_PIXELS, MONEY_WINDOW_HEIGHT * TILE_WIDTH_PIXELS);
 
     FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00015, 0, 0);
@@ -658,8 +659,8 @@ void FieldMenuManager_ShowMultiColumnMenu(FieldMenuManager *menuManager, u8 colu
     }
 
     Window_Add(menuManager->fieldSystem->bgConfig, &menuManager->menuWindow, BG_LAYER_MAIN_3, menuManager->anchorX, menuManager->anchorY, menuWidth * columnsCount, rowsCount * GLYPH_ROW_TILES_HEIGHT, PLTT_13, (1 + (10 * 4)) + (10 * 2));
-    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
+    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
 
     FieldMenuManager_SetupMultiColumnMenu(menuManager, columnsCount, rowsCount);
 
@@ -683,8 +684,8 @@ Window *FieldMenu_CreateMoneyWindow(FieldSystem *fieldSystem, u8 tilemapTop, u8 
     Window *window = Window_New(HEAP_ID_FIELD1, 1);
 
     Window_Add(fieldSystem->bgConfig, window, BG_LAYER_MAIN_3, tilemapTop, tilemapLeft, MONEY_WINDOW_WIDTH, MONEY_WINDOW_HEIGHT, PLTT_13, 1);
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(window, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
     Window_FillTilemap(window, 15);
 
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELD1);
@@ -733,8 +734,8 @@ Window *FieldMenu_DrawCoinWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 ti
     Window *window = Window_New(HEAP_ID_FIELD1, 1);
 
     Window_Add(fieldSystem->bgConfig, window, BG_LAYER_MAIN_3, tilemapLeft, tilemapTop, COIN_BP_WINDOW_WIDTH, COIN_BP_WINDOW_HEIGHT, PLTT_13, 1 + (10 * 4));
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(window, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
 
     FieldMenu_PrintCoinsToWindow(fieldSystem, window);
 
@@ -775,8 +776,8 @@ Window *FieldMenu_DrawBPWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tile
     Window *window = Window_New(HEAP_ID_FIELD1, 1);
 
     Window_Add(fieldSystem->bgConfig, window, BG_LAYER_MAIN_3, tilemapLeft, tilemapTop, COIN_BP_WINDOW_WIDTH, COIN_BP_WINDOW_HEIGHT, PLTT_13, 1 + (10 * 4));
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(window, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
 
     FieldMenu_PrintBPToWindow(fieldSystem, window);
 
@@ -811,8 +812,8 @@ FieldMenuManager *FieldMenuManager_NewMoveTutorCostWindow(FieldSystem *fieldSyst
     FieldMenuManager *menuManager = FieldMenuManager_New(fieldSystem, anchorX, anchorY, 0, FALSE, selectedOptionPtr, stringTemplate, NULL, NULL);
 
     Window_Add(menuManager->fieldSystem->bgConfig, &menuManager->menuWindow, BG_LAYER_MAIN_3, menuManager->anchorX, menuManager->anchorY, SHARD_COST_WINDOW_WIDTH, SHARD_COST_WINDOW_HEIGHT, PLTT_13, (1 + (10 * 4)) + (10 * 2));
-    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, PLTT_11);
+    LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
     Window_FillRectWithColor(&menuManager->menuWindow, 15, 0, 0, SHARD_COST_WINDOW_WIDTH * TILE_WIDTH_PIXELS, SHARD_COST_WINDOW_HEIGHT * TILE_WIDTH_PIXELS);
 
     FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00273, 0, 0);
