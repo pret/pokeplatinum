@@ -54,14 +54,30 @@ typedef struct {
     AlphaFadeContext alphaFadeCtx;
 } UnkStruct_ov12_022348C8;
 
-typedef struct {
+// -------------------------------------------------------------------
+// Burn Sprite
+// -------------------------------------------------------------------
+#define BURN_SPRITE_FLAME_COUNT 6
+
+typedef struct BurnSpriteContext {
     BattleAnimSystem *battleAnimSys;
     int state;
     SpriteManager *spriteMan;
-    ManagedSprite *managedSprite[6];
-    int unk_24[6];
-    int unk_3C[6];
-} UnkStruct_ov12_02234A10;
+    ManagedSprite *sprites[BURN_SPRITE_FLAME_COUNT];
+    int visibleFrames[BURN_SPRITE_FLAME_COUNT];
+    int delays[BURN_SPRITE_FLAME_COUNT];
+} BurnSpriteContext;
+
+enum BurnSpriteState {
+    BURN_SPRITE_STATE_ANIMATE = 0,
+    BURN_SPRITE_STATE_CLEANUP,
+};
+
+#define BURN_SPRITE_OFFSET_X_STEP  -12
+#define BURN_SPRITE_BASE_OFFSET_X  40
+#define BURN_SPRITE_BASE_OFFSET_Y  40
+#define BURN_SPRITE_DELAY_STEP     2 // Frames between flames
+#define BURN_SPRITE_VISIBLE_FRAMES 16 // Number of frames each flame is visible for
 
 typedef struct {
     BattleAnimSystem *battleAnimSys;
@@ -81,9 +97,9 @@ static void BattleAnimTask_SleepSprite(SysTask *task, void *param);
 static void SleepSprite_Init(ManagedSprite *managedSprite, XYTransformContext *pos, XYTransformContext *scale, int dir);
 static BOOL SleepSprite_Update(ManagedSprite *managedSprite, XYTransformContext *pos, XYTransformContext *scale);
 static void ov12_02234918(SysTask *task, void *param1);
-static void ov12_02234B64(SysTask *task, void *param1);
-static BOOL ov12_02234B34(ManagedSprite *managedSprite, int *param1, int *param2);
-static void ov12_02234AE0(ManagedSprite *managedSprite, int *param1, int *param2, int param3, int param4);
+static void BattleAnimTask_BurnSprite(SysTask *task, void *param1);
+static BOOL BurnSprite_Update(ManagedSprite *managedSprite, int *param1, int *param2);
+static void BurnSprite_Init(ManagedSprite *managedSprite, int *param1, int *param2, int param3, int param4);
 static void ov12_02234CA8(SysTask *task, void *param1);
 
 void BattleAnimSpriteFunc_Sleep(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
@@ -262,69 +278,68 @@ static void ov12_02234918(SysTask *task, void *param1)
     SpriteSystem_DrawSprites(v0->spriteMan);
 }
 
-void ov12_02234A10(BattleAnimSystem *battleAnimSys, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *managedSprite)
+void BattleAnimSpriteFunc_Burn(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    SpriteTemplate spriteTemplate;
-    UnkStruct_ov12_02234A10 *battleAnimUtil = BattleAnimUtil_Alloc(battleAnimSys, sizeof(UnkStruct_ov12_02234A10));
+    BurnSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(BurnSpriteContext));
 
-    battleAnimUtil->battleAnimSys = battleAnimSys;
-    battleAnimUtil->spriteMan = spriteMan;
+    ctx->battleAnimSys = system;
+    ctx->spriteMan = spriteMan;
 
-    int attacker = BattleAnimSystem_GetAttacker(battleAnimUtil->battleAnimSys);
-    int direction = BattleAnimUtil_GetTransformDirectionX(battleAnimSys, attacker);
-    spriteTemplate = BattleAnimSystem_GetLastSpriteTemplate(battleAnimUtil->battleAnimSys);
+    int attacker = BattleAnimSystem_GetAttacker(ctx->battleAnimSys);
+    int dir = BattleAnimUtil_GetTransformDirectionX(system, attacker);
 
-    spriteTemplate.x = BattleAnimUtil_GetBattlerPos(battleAnimSys, attacker, 0);
-    spriteTemplate.y = BattleAnimUtil_GetBattlerPos(battleAnimSys, attacker, 1);
+    SpriteTemplate template;
+    template = BattleAnimSystem_GetLastSpriteTemplate(ctx->battleAnimSys);
+    template.x = BattleAnimUtil_GetBattlerPos(system, attacker, BATTLE_ANIM_POSITION_MON_X);
+    template.y = BattleAnimUtil_GetBattlerPos(system, attacker, BATTLE_ANIM_POSITION_MON_Y);
 
-    for (int i = NELEMS(battleAnimUtil->managedSprite) - 1; i >= 0; i--) {
-        if (i == NELEMS(battleAnimUtil->managedSprite) - 1) {
-            battleAnimUtil->managedSprite[i] = managedSprite;
-            ManagedSprite_SetPositionXY(managedSprite, spriteTemplate.x, spriteTemplate.y);
+    for (int i = BURN_SPRITE_FLAME_COUNT - 1; i >= 0; i--) {
+        if (i == BURN_SPRITE_FLAME_COUNT - 1) {
+            ctx->sprites[i] = sprite;
+            ManagedSprite_SetPositionXY(sprite, template.x, template.y);
         } else {
-            battleAnimUtil->managedSprite[i] = SpriteSystem_NewSprite(spriteSys, spriteMan, &spriteTemplate);
+            ctx->sprites[i] = SpriteSystem_NewSprite(spriteSys, spriteMan, &template);
         }
 
-        ManagedSprite_SetPriority(battleAnimUtil->managedSprite[i], 100);
-        ManagedSprite_SetExplicitPriority(battleAnimUtil->managedSprite[i], 1);
-        ManagedSprite_SetDrawFlag(battleAnimUtil->managedSprite[i], FALSE);
+        ManagedSprite_SetPriority(ctx->sprites[i], 100);
+        ManagedSprite_SetExplicitPriority(ctx->sprites[i], 1);
+        ManagedSprite_SetDrawFlag(ctx->sprites[i], FALSE);
 
-        ov12_02234AE0(battleAnimUtil->managedSprite[i], &battleAnimUtil->unk_24[i], &battleAnimUtil->unk_3C[i], i, direction);
+        BurnSprite_Init(ctx->sprites[i], &ctx->visibleFrames[i], &ctx->delays[i], i, dir);
     }
 
-    BattleAnimSystem_StartAnimTask(battleAnimUtil->battleAnimSys, ov12_02234B64, battleAnimUtil);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_BurnSprite, ctx);
 }
 
-static void ov12_02234AE0(ManagedSprite *managedSprite, int *param1, int *param2, int param3, int param4)
+static void BurnSprite_Init(ManagedSprite *sprite, int *outVisibleFrames, int *outDelay, int idx, int dir)
 {
-    s16 outX, outY;
+    ManagedSprite_SetAnim(sprite, idx / 2);
 
-    ManagedSprite_SetAnim(managedSprite, param3 / 2);
+    *outDelay = idx * BURN_SPRITE_DELAY_STEP;
+    *outVisibleFrames = BURN_SPRITE_VISIBLE_FRAMES;
 
-    *param2 = param3 * 2;
-    *param1 = 16;
+    s16 spriteX, spriteY;
+    ManagedSprite_GetPositionXY(sprite, &spriteX, &spriteY);
 
-    ManagedSprite_GetPositionXY(managedSprite, &outX, &outY);
+    spriteX += (BURN_SPRITE_BASE_OFFSET_X + BURN_SPRITE_OFFSET_X_STEP * idx) * dir;
+    spriteY += BURN_SPRITE_BASE_OFFSET_Y;
 
-    outX += (40 + -12 * param3) * param4;
-    outY += 40;
-
-    ManagedSprite_SetPositionXY(managedSprite, outX, outY);
+    ManagedSprite_SetPositionXY(sprite, spriteX, spriteY);
 }
 
-static BOOL ov12_02234B34(ManagedSprite *managedSprite, int *param1, int *param2)
+static BOOL BurnSprite_Update(ManagedSprite *sprite, int *visibleFrames, int *delay)
 {
-    if (*param2 > 0) {
-        (*param2)--;
+    if (*delay > 0) {
+        (*delay)--;
 
-        if (*param2 == 0) {
-            ManagedSprite_SetDrawFlag(managedSprite, TRUE);
+        if (*delay == 0) {
+            ManagedSprite_SetDrawFlag(sprite, TRUE);
         }
     } else {
-        if (*param1 > 0) {
-            (*param1)--;
+        if (*visibleFrames > 0) {
+            (*visibleFrames)--;
         } else {
-            ManagedSprite_SetDrawFlag(managedSprite, FALSE);
+            ManagedSprite_SetDrawFlag(sprite, FALSE);
             return TRUE;
         }
     }
@@ -332,34 +347,33 @@ static BOOL ov12_02234B34(ManagedSprite *managedSprite, int *param1, int *param2
     return FALSE;
 }
 
-static void ov12_02234B64(SysTask *task, void *param1)
+static void BattleAnimTask_BurnSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02234A10 *v0 = param1;
+    BurnSpriteContext *ctx = param;
     int i;
 
-    switch (v0->state) {
-    case 0:
-        BOOL isUpdated;
-
-        for (i = 0; i < SNELEMS(v0->managedSprite); i++) {
-            isUpdated = ov12_02234B34(v0->managedSprite[i], &v0->unk_24[i], &v0->unk_3C[i]);
+    switch (ctx->state) {
+    case BURN_SPRITE_STATE_ANIMATE: {
+        BOOL done;
+        for (i = 0; i < BURN_SPRITE_FLAME_COUNT; i++) {
+            done = BurnSprite_Update(ctx->sprites[i], &ctx->visibleFrames[i], &ctx->delays[i]);
         }
 
-        if (isUpdated) {
-            v0->state++;
+        if (done) {
+            ctx->state++;
         }
-        break;
-    case 1:
-        for (i = 0; i < SNELEMS(v0->managedSprite); i++) {
-            Sprite_DeleteAndFreeResources(v0->managedSprite[i]);
+    } break;
+    case BURN_SPRITE_STATE_CLEANUP:
+        for (i = 0; i < BURN_SPRITE_FLAME_COUNT; i++) {
+            Sprite_DeleteAndFreeResources(ctx->sprites[i]);
         }
 
-        BattleAnimSystem_EndAnimTask(v0->battleAnimSys, task);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->spriteMan);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
 static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1)

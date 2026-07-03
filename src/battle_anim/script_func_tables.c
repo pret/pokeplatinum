@@ -134,7 +134,7 @@ static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
     BattleAnimSpriteFunc_Fissure,
     BattleAnimSpriteFunc_EscapeItem,
     BattleAnimSpriteFunc_Sleep,
-    ov12_02234A10,
+    BattleAnimSpriteFunc_Burn,
     ov12_022348C8,
     ov12_02234D98
 };
