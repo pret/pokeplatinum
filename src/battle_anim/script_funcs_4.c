@@ -9,6 +9,7 @@
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
 
+#include "battle_script_battlers.h"
 #include "bg_window.h"
 #include "heap.h"
 #include "math_util.h"
@@ -16,19 +17,34 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01[3];
-    u8 unk_04;
-    u8 unk_05;
-    u8 unk_06;
-    u8 unk_07;
-    BattleAnimSystem *unk_08;
-    SpriteSystem *unk_0C;
-    SpriteManager *unk_10;
-    ManagedSprite *unk_14[3];
-    XYTransformContext unk_20;
-} UnkStruct_ov12_0222D6B0;
+// -------------------------------------------------------------------
+// Taunt Sprite
+// -------------------------------------------------------------------
+typedef struct TauntSpriteContext {
+    u8 state;
+    u8 fadeInCycles[3];
+    u8 fadeInFrames;
+    u8 handCount;
+    u8 spriteAlpha;
+    u8 bgAlpha;
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    ManagedSprite *handSprites[3];
+    XYTransformContext unused;
+} TauntSpriteContext;
+
+enum TauntSpriteState {
+    TAUNT_SPRITE_STATE_FADE_IN = 0,
+    TAUNT_SPRITE_STATE_FADE_OUT,
+};
+
+#define TAUNT_SPRITE_VAR_HAND_COUNT 0
+#define TAUNT_SPRITE_HAND_0_POS_X   128
+#define TAUNT_SPRITE_HAND_0_POS_Y   80
+#define TAUNT_SPRITE_MIN_ALPHA      0
+#define TAUNT_SPRITE_MAX_ALPHA      15
+#define TAUNT_SPRITE_FADE_IN_FRAMES 45
 
 typedef struct {
     u8 unk_00;
@@ -75,6 +91,9 @@ typedef struct {
     int unk_514[20];
 } UnkStruct_ov12_0222DE24;
 
+// -------------------------------------------------------------------
+// Camouflage
+// -------------------------------------------------------------------
 typedef struct CamouflageContext {
     int timer;
     BattleAnimScriptFuncCommon common;
@@ -121,143 +140,141 @@ typedef struct {
     int unk_58;
 } UnkStruct_ov12_0222E390;
 
-static const u8 Unk_ov12_0223A144[][2] = {
-    { 0x14, 0x2 },
-    { 0xD, 0x1 },
-    { 0x12, 0x3 }
+// Unused, was maybe used for some position manipulation but got removed from the looks of it.
+static const u8 sTauntSpriteFadeInFrames[][2] = {
+    [0] = { 20, 2 },
+    [1] = { 13, 1 },
+    [2] = { 18, 3 }
 };
 
-static void ov12_0222D6B0(SysTask *param0, void *param1)
+static void BattleAnimTask_TauntSprite(SysTask *task, void *param)
 {
-    int v0;
-    UnkStruct_ov12_0222D6B0 *v1 = (UnkStruct_ov12_0222D6B0 *)param1;
+    int i;
+    TauntSpriteContext *ctx = param;
 
-    switch (v1->unk_00) {
-    case 0:
-        if (v1->unk_06 < 15) {
-            v1->unk_06++;
+    switch (ctx->state) {
+    case TAUNT_SPRITE_STATE_FADE_IN:
+        if (ctx->spriteAlpha < TAUNT_SPRITE_MAX_ALPHA) {
+            ctx->spriteAlpha++;
         }
 
-        if (v1->unk_07 > 0) {
-            v1->unk_07--;
+        if (ctx->bgAlpha > TAUNT_SPRITE_MIN_ALPHA) {
+            ctx->bgAlpha--;
         }
 
-        G2_ChangeBlendAlpha(v1->unk_06, v1->unk_07);
-        v1->unk_04++;
+        G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
+        ctx->fadeInFrames++;
 
-        for (v0 = 0; v0 < v1->unk_05; v0++) {
-            {
-                s16 v2, v3;
-                ManagedSprite_GetPositionXY(v1->unk_14[v0], &v2, &v3);
-            }
+        for (i = 0; i < ctx->handCount; i++) {
+            s16 x, y;
+            ManagedSprite_GetPositionXY(ctx->handSprites[i], &x, &y);
 
-            if (v1->unk_04 >= Unk_ov12_0223A144[v0][0]) {
-                v1->unk_01[v0]++;
+            if (ctx->fadeInFrames >= sTauntSpriteFadeInFrames[i][0]) {
+                ctx->fadeInCycles[i]++;
 
-                if (v1->unk_01[v0] >= Unk_ov12_0223A144[v0][1]) {
-                    v1->unk_01[v0] = 0;
+                if (ctx->fadeInCycles[i] >= sTauntSpriteFadeInFrames[i][1]) {
+                    ctx->fadeInCycles[i] = 0;
                 }
             }
         }
 
-        if (v1->unk_04 >= 45) {
-            v1->unk_00++;
+        if (ctx->fadeInFrames >= TAUNT_SPRITE_FADE_IN_FRAMES) {
+            ctx->state++;
         }
         break;
-    case 1:
-        if (v1->unk_06 > 0) {
-            v1->unk_06--;
+    case TAUNT_SPRITE_STATE_FADE_OUT:
+        if (ctx->spriteAlpha > TAUNT_SPRITE_MIN_ALPHA) {
+            ctx->spriteAlpha--;
         }
 
-        if (v1->unk_07 < 15) {
-            v1->unk_07++;
+        if (ctx->bgAlpha < TAUNT_SPRITE_MAX_ALPHA) {
+            ctx->bgAlpha++;
         }
 
-        if ((v1->unk_06 == 0) && (v1->unk_07 == 15)) {
-            v1->unk_00++;
+        if (ctx->spriteAlpha == TAUNT_SPRITE_MIN_ALPHA && ctx->bgAlpha == TAUNT_SPRITE_MAX_ALPHA) {
+            ctx->state++;
         }
 
-        G2_ChangeBlendAlpha(v1->unk_06, v1->unk_07);
+        G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
         break;
     default:
-        for (v0 = 0; v0 < v1->unk_05; v0++) {
-            Sprite_DeleteAndFreeResources(v1->unk_14[v0]);
+        for (i = 0; i < ctx->handCount; i++) {
+            Sprite_DeleteAndFreeResources(ctx->handSprites[i]);
         }
 
-        BattleAnimSystem_EndAnimTask(v1->unk_08, param0);
-        Heap_Free(v1);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
 
         return;
     }
 
-    for (v0 = 0; v0 < v1->unk_05; v0++) {
-        Sprite_TickFrame(v1->unk_14[v0]->sprite);
+    for (i = 0; i < ctx->handCount; i++) {
+        Sprite_TickFrame(ctx->handSprites[i]->sprite);
     }
 
-    SpriteSystem_DrawSprites(v1->unk_10);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Taunt(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    int v0;
-    UnkStruct_ov12_0222D6B0 *v1;
-    SpriteTemplate v2;
+    int i;
+    SpriteTemplate template;
 
-    v1 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222D6B0));
+    TauntSpriteContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(TauntSpriteContext));
 
-    GF_ASSERT(v1 != NULL);
+    GF_ASSERT(ctx != NULL);
 
-    v1->unk_04 = 0;
-    v1->unk_00 = 0;
-    v1->unk_0C = param1;
-    v1->unk_10 = param2;
-    v1->unk_08 = param0;
+    ctx->fadeInFrames = 0;
+    ctx->state = TAUNT_SPRITE_STATE_FADE_IN;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->battleAnimSys = system;
 
-    v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    BattleAnimUtil_SetSpriteBgBlending(v1->unk_08, 0xffffffff, 0xffffffff);
+    template = BattleAnimSystem_GetLastSpriteTemplate(system);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
 
-    v1->unk_05 = BattleAnimSystem_GetScriptVar(v1->unk_08, 0);
-    v1->unk_06 = 0;
-    v1->unk_07 = 15;
+    ctx->handCount = BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, TAUNT_SPRITE_VAR_HAND_COUNT);
+    ctx->spriteAlpha = TAUNT_SPRITE_MIN_ALPHA;
+    ctx->bgAlpha = TAUNT_SPRITE_MAX_ALPHA;
 
-    G2_ChangeBlendAlpha(v1->unk_06, v1->unk_07);
-    v1->unk_14[0] = param3;
+    G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
+    ctx->handSprites[0] = sprite;
 
-    {
-        for (v0 = 1; v0 < v1->unk_05; v0++) {
-            v1->unk_14[v0] = SpriteSystem_NewSprite(v1->unk_0C, v1->unk_10, &v2);
-        }
+    for (i = 1; i < ctx->handCount; i++) {
+        ctx->handSprites[i] = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteMan, &template);
     }
 
-    if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetDefender(param0)) == 0x3) {
-        if ((BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetDefender(param0)) == 0x3) && (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x3)) {
-            ManagedSprite_SetAnim(v1->unk_14[0], 0);
+    if (BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetDefender(system)) == BTLSCR_PLAYER) {
+        if (BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetDefender(system)) == BTLSCR_PLAYER
+            && BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system)) == BTLSCR_PLAYER) {
+            ManagedSprite_SetAnim(ctx->handSprites[0], 0);
         } else {
-            ManagedSprite_SetAnim(v1->unk_14[0], 1);
+            ManagedSprite_SetAnim(ctx->handSprites[0], 1);
         }
 
-        ManagedSprite_SetPositionXY(v1->unk_14[0], 128, 80);
+        ManagedSprite_SetPositionXY(ctx->handSprites[0], TAUNT_SPRITE_HAND_0_POS_X, TAUNT_SPRITE_HAND_0_POS_Y);
     } else {
-        if ((BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetDefender(param0)) == 0x4) && (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4)) {
-            ManagedSprite_SetAnim(v1->unk_14[0], 1);
+        if (BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetDefender(system)) == BTLSCR_ENEMY
+            && BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system)) == BTLSCR_ENEMY) {
+            ManagedSprite_SetAnim(ctx->handSprites[0], 1);
         } else {
-            ManagedSprite_SetAnim(v1->unk_14[0], 0);
+            ManagedSprite_SetAnim(ctx->handSprites[0], 0);
         }
 
-        ManagedSprite_SetPositionXY(v1->unk_14[0], 128, 80);
+        ManagedSprite_SetPositionXY(ctx->handSprites[0], TAUNT_SPRITE_HAND_0_POS_X, TAUNT_SPRITE_HAND_0_POS_Y);
     }
 
-    for (v0 = 0; v0 < v1->unk_05; v0++) {
-        v1->unk_01[v0] = 0;
-        ManagedSprite_SetAffineOverwriteMode(v1->unk_14[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
-        ManagedSprite_SetExplicitOamMode(v1->unk_14[v0], GX_OAM_MODE_XLU);
+    for (i = 0; i < ctx->handCount; i++) {
+        ctx->fadeInCycles[i] = 0;
+        ManagedSprite_SetAffineOverwriteMode(ctx->handSprites[i], AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetExplicitOamMode(ctx->handSprites[i], GX_OAM_MODE_XLU);
 
-        if (BattleAnimSystem_IsContest(v1->unk_08) == 1) {
-            ManagedSprite_SetAffineScale(v1->unk_14[v0], -1.0f, 1.0f);
+        if (BattleAnimSystem_IsContest(ctx->battleAnimSys) == TRUE) {
+            ManagedSprite_SetAffineScale(ctx->handSprites[i], -1.0f, 1.0f);
         }
     }
 
-    BattleAnimSystem_StartAnimTaskEx(param0, ov12_0222D6B0, v1, 1100);
+    BattleAnimSystem_StartAnimTaskEx(system, BattleAnimTask_TauntSprite, ctx, 1100);
 }
 
 static const Point2D Unk_ov12_0223A162[] = {
