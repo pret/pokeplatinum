@@ -120,7 +120,7 @@ static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
     BattleAnimSpriteFunc_BatonPass,
     BattleAnimSpriteFunc_Unused,
     BattleAnimSpriteFunc_Grudge,
-    ov12_022339C4,
+    BattleAnimSpriteFunc_GrassWhistle,
     BattleAnimSpriteFunc_IcicleSpear,
     BattleAnimSpriteFunc_FakeOut,
     BattleAnimSpriteFunc_Taunt,

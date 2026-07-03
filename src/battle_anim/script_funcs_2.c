@@ -833,7 +833,7 @@ typedef struct TormentSpriteContext {
     SpriteManager *spriteMan;
     int state;
     int curSpeechBubble;
-    int unk_14;
+    int unused;
     PokemonSprite *attackerSprite;
     XYTransformContext scale;
     int attackerScaleState;
@@ -1025,18 +1025,30 @@ enum GrudgeSpriteState {
 #define GRUDGE_SPRITE_REV_BEHIND_MIN_ANGLE DEG_TO_IDX(90) // Angle range at which the flame is considered to be "behind" the pokemon
 #define GRUDGE_SPRITE_REV_BEHIND_MAX_ANGLE DEG_TO_IDX(269)
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    ManagedSprite *unk_18[15];
-    XYTransformContext unk_54[15];
-    int unk_270;
-    int unk_274;
-} UnkStruct_ov12_02233900;
+// -------------------------------------------------------------------
+// Grass Whistle Sprite
+// -------------------------------------------------------------------
+#define GRASS_WHISTLE_SPRITE_NOTE_COUNT 15
+
+typedef struct GrassWhistleSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int unused;
+    int dirX;
+    int dirY;
+    ManagedSprite *sprites[GRASS_WHISTLE_SPRITE_NOTE_COUNT];
+    XYTransformContext notePos[GRASS_WHISTLE_SPRITE_NOTE_COUNT];
+    int noteDelay;
+    int noteIndex;
+} GrassWhistleSpriteContext;
+
+#define GRASS_WHISTLE_SPRITE_NOTE_DELAY           6 // Delay in frames between notes
+#define GRASS_WHISTLE_SPRITE_NOTE_MOVE_X          256
+#define GRASS_WHISTLE_SPRITE_NOTE_MOVE_Y          (-128)
+#define GRASS_WHISTLE_SPRITE_NOTE_MOVE_FRAMES     59
+#define GRASS_WHISTLE_SPRITE_NOTE_CURVE_AMPLITUDE FX32_CONST(14)
+#define GRASS_WHISTLE_SPRITE_NOTE_SCALE_AMPLITUDE FX32_CONST(0.17f)
 
 // -------------------------------------------------------------------
 // Extrasensory
@@ -4758,126 +4770,122 @@ void BattleAnimSpriteFunc_Grudge(BattleAnimSystem *system, SpriteSystem *spriteS
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_GrudgeSprite, ctx);
 }
 
-static void ov12_022337E0(ManagedSprite *param0, XYTransformContext *param1, int param2, int param3)
+static void GrassWhistleSprite_InitNote(ManagedSprite *sprite, XYTransformContext *pos, int dirX, int dirY)
 {
-    s16 v0, v1;
+    s16 startX, startY;
+    ManagedSprite_GetPositionXY(sprite, &startX, &startY);
 
-    ManagedSprite_GetPositionXY(param0, &v0, &v1);
-    PosLerpContext_Init(param1, v0 + (0 * param2), v0 + (256 * param2), v1 + (0 * param3), v1 + (-128 * param3), 59);
-    ManagedSprite_SetDrawFlag(param0, 1);
+    PosLerpContext_Init(
+        pos,
+        startX + 0 * dirX, // Required to match
+        startX + GRASS_WHISTLE_SPRITE_NOTE_MOVE_X * dirX,
+        startY + 0 * dirY,
+        startY + GRASS_WHISTLE_SPRITE_NOTE_MOVE_Y * dirY,
+        GRASS_WHISTLE_SPRITE_NOTE_MOVE_FRAMES);
+
+    ManagedSprite_SetDrawFlag(sprite, TRUE);
 }
 
-static BOOL ov12_02233834(ManagedSprite *param0, XYTransformContext *param1)
+static BOOL GrassWhistleSprite_UpdateNote(ManagedSprite *sprite, XYTransformContext *pos)
 {
-    s16 v0, v1;
-    s16 v2;
-    fx32 v3;
-    f32 v4;
-    u16 v5;
+    if (PosLerpContext_UpdateAndApplyToSprite(pos, sprite)) {
+        s16 x, y;
+        ManagedSprite_GetPositionXY(sprite, &x, &y);
 
-    if (PosLerpContext_UpdateAndApplyToSprite(param1, param0)) {
-        ManagedSprite_GetPositionXY(param0, &v0, &v1);
+        u16 degX = x * DEG_TO_IDX(2);
+        s16 offsetY = FX_Mul(FX_SinIdx(degX), GRASS_WHISTLE_SPRITE_NOTE_CURVE_AMPLITUDE) >> FX32_SHIFT;
 
-        v5 = v0 * ((2 * 0xffff) / 360);
-        v2 = FX_Mul(FX_SinIdx(v5), FX32_ONE * 14) >> FX32_SHIFT;
+        ManagedSprite_SetPositionXY(sprite, x, y + offsetY);
 
-        ManagedSprite_SetPositionXY(param0, v0, v1 + v2);
+        fx32 deltaScale = FX_Mul(FX_SinIdx(degX), GRASS_WHISTLE_SPRITE_NOTE_SCALE_AMPLITUDE);
+        deltaScale *= -1;
 
-        v3 = FX_Mul(FX_SinIdx(v5), FX32_CONST(0.17f));
-        v3 *= -1;
-        v4 = (1.0f) + FX_FX32_TO_F32(v3);
-
-        ManagedSprite_SetAffineScale(param0, v4, v4);
-        return 0;
+        f32 affineScale = 1.0f + FX_FX32_TO_F32(deltaScale);
+        ManagedSprite_SetAffineScale(sprite, affineScale, affineScale);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02233900(UnkStruct_ov12_02233900 *param0)
+static BOOL GrassWhistleSprite_Update(GrassWhistleSpriteContext *ctx)
 {
-    int v0;
-    BOOL v1;
 
-    if (param0->unk_274 < 15) {
-        param0->unk_270++;
+    if (ctx->noteIndex < GRASS_WHISTLE_SPRITE_NOTE_COUNT) {
+        ctx->noteDelay++;
 
-        if (param0->unk_270 > 6) {
-            param0->unk_270 = 0;
+        if (ctx->noteDelay > GRASS_WHISTLE_SPRITE_NOTE_DELAY) {
+            ctx->noteDelay = 0;
 
-            ov12_022337E0(param0->unk_18[param0->unk_274], &param0->unk_54[param0->unk_274], param0->unk_10, param0->unk_14);
-            param0->unk_274++;
+            GrassWhistleSprite_InitNote(ctx->sprites[ctx->noteIndex], &ctx->notePos[ctx->noteIndex], ctx->dirX, ctx->dirY);
+            ctx->noteIndex++;
         }
     }
 
-    for (v0 = 0; v0 < param0->unk_274; v0++) {
-        v1 = ov12_02233834(param0->unk_18[v0], &param0->unk_54[v0]);
+    BOOL done;
+    for (int i = 0; i < ctx->noteIndex; i++) {
+        done = GrassWhistleSprite_UpdateNote(ctx->sprites[i], &ctx->notePos[i]);
     }
 
-    if (param0->unk_274 >= 15) {
-        if (v1 == 1) {
-            return 1;
+    if (ctx->noteIndex >= GRASS_WHISTLE_SPRITE_NOTE_COUNT) {
+        if (done == TRUE) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov12_02233988(SysTask *param0, void *param1)
+static void BattleAnimTask_GrassWhistleSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02233900 *v0 = param1;
-    int v1;
+    GrassWhistleSpriteContext *ctx = param;
 
-    if (ov12_02233900(v0)) {
-        for (v1 = 0; v1 < 15; v1++) {
-            Sprite_DeleteAndFreeResources(v0->unk_18[v1]);
+    if (GrassWhistleSprite_Update(ctx)) {
+        for (int i = 0; i < GRASS_WHISTLE_SPRITE_NOTE_COUNT; i++) {
+            Sprite_DeleteAndFreeResources(ctx->sprites[i]);
         }
 
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
     } else {
-        SpriteSystem_DrawSprites(v0->unk_08);
+        SpriteSystem_DrawSprites(ctx->spriteMan);
     }
 }
 
-void ov12_022339C4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_GrassWhistle(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_02233900 *v0;
-    int v1;
-    s16 v2, v3;
-    PokemonSprite *v4;
-    SpriteTemplate v5;
+    GrassWhistleSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(GrassWhistleSpriteContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02233900));
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
+    PokemonSprite *attacker = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+    s16 attackerX = PokemonSprite_GetAttribute(attacker, MON_SPRITE_X_CENTER);
+    s16 attackerY = PokemonSprite_GetAttribute(attacker, MON_SPRITE_Y_CENTER);
 
-    v4 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
-    v2 = PokemonSprite_GetAttribute(v4, MON_SPRITE_X_CENTER);
-    v3 = PokemonSprite_GetAttribute(v4, MON_SPRITE_Y_CENTER);
-    v5 = BattleAnimSystem_GetLastSpriteTemplate(param0);
+    SpriteTemplate template;
+    template = BattleAnimSystem_GetLastSpriteTemplate(system);
 
-    for (v1 = 0; v1 < 15; v1++) {
-        if (v1 == 0) {
-            v0->unk_18[v1] = param3;
+    for (int i = 0; i < GRASS_WHISTLE_SPRITE_NOTE_COUNT; i++) {
+        if (i == 0) {
+            ctx->sprites[i] = sprite;
         } else {
-            v0->unk_18[v1] = SpriteSystem_NewSprite(v0->unk_04, v0->unk_08, &v5);
+            ctx->sprites[i] = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteMan, &template);
         }
 
-        ManagedSprite_SetPriority(v0->unk_18[v1], 100);
-        ManagedSprite_SetExplicitPriority(v0->unk_18[v1], 1);
-        ManagedSprite_SetAffineOverwriteMode(v0->unk_18[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
-        ManagedSprite_SetDrawFlag(v0->unk_18[v1], FALSE);
-        ManagedSprite_SetPositionXY(v0->unk_18[v1], v2, v3);
-        ManagedSprite_SetAnim(v0->unk_18[v1], v1 % 3);
+        ManagedSprite_SetPriority(ctx->sprites[i], 100);
+        ManagedSprite_SetExplicitPriority(ctx->sprites[i], 1);
+        ManagedSprite_SetAffineOverwriteMode(ctx->sprites[i], AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetDrawFlag(ctx->sprites[i], FALSE);
+        ManagedSprite_SetPositionXY(ctx->sprites[i], attackerX, attackerY);
+        ManagedSprite_SetAnim(ctx->sprites[i], i % 3);
     }
 
-    v0->unk_10 = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v0->unk_14 = BattleAnimUtil_GetTransformDirectionY(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    ctx->dirX = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->dirY = BattleAnimUtil_GetTransformDirectionY(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233988, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_GrassWhistleSprite, ctx);
 }
 
 static void ExtrasensoryContext_SetParameters(ExtrasensoryContext *ctx)

@@ -30,7 +30,7 @@ void BattleAnimSpriteFunc_BatonPass(BattleAnimSystem *system, SpriteSystem *spri
 void BattleAnimScriptFunc_Memento(BattleAnimSystem *system);
 void BattleAnimSpriteFunc_Unused(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimSpriteFunc_Grudge(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
-void ov12_022339C4(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_GrassWhistle(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_Extrasensory(BattleAnimSystem *system);
 void BattleAnimScriptFunc_FakeOutCurtain(BattleAnimSystem *system);
 void BattleAnimSpriteFunc_FakeOut(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
