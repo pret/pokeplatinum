@@ -46,23 +46,41 @@ enum TauntSpriteState {
 #define TAUNT_SPRITE_MAX_ALPHA      15
 #define TAUNT_SPRITE_FADE_IN_FRAMES 45
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01[6];
-    u8 unk_07;
-    u8 unk_08;
-    u8 unk_09;
-    u8 unk_0A;
-    BattleAnimSystem *unk_0C;
-    SpriteSystem *unk_10;
-    SpriteManager *unk_14;
-    ManagedSprite *unk_18[6];
-    int unk_30;
-    ManagedSprite *unk_34;
-    ManagedSprite *unk_38;
-    XYTransformContext unk_3C;
-    XYTransformContext unk_60;
-} UnkStruct_ov12_0222D934;
+// -------------------------------------------------------------------
+// Taunt Sprite
+// -------------------------------------------------------------------
+typedef struct HelpingHandSpriteContext {
+    u8 state;
+    u8 unused0[6];
+    u8 unused1;
+    u8 handCount;
+    u8 spriteAlpha;
+    u8 bgAlpha;
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    ManagedSprite *handSprites[6];
+    int currentPair;
+    ManagedSprite *hand1;
+    ManagedSprite *hand2;
+    XYTransformContext hand1Pos;
+    XYTransformContext hand2Pos;
+} HelpingHandSpriteContext;
+
+enum HelpingHandSpriteState {
+    HELPING_HAND_SPRITE_STATE_FADE_IN = 0,
+    HELPING_HAND_SPRITE_STATE_SETUP_MOVE,
+    HELPING_HAND_SPRITE_STATE_MOVE,
+    HELPING_HAND_SPRITE_STATE_FADE_OUT,
+};
+
+#define HELPING_HAND_SPRITE_VAR_HAND_COUNT 0
+#define HELPING_HAND_SPRITE_MIN_ALPHA      0
+#define HELPING_HAND_SPRITE_MAX_ALPHA      15
+#define HELPING_HAND_SPRITE_PAIR_0         0
+#define HELPING_HAND_SPRITE_PAIR_1         1
+#define HELPING_HAND_SPRITE_PAIR_2         2
+#define HELPING_HAND_SPRITE_PAIR_3         3
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -277,217 +295,220 @@ void BattleAnimSpriteFunc_Taunt(BattleAnimSystem *system, SpriteSystem *spriteSy
     BattleAnimSystem_StartAnimTaskEx(system, BattleAnimTask_TauntSprite, ctx, 1100);
 }
 
-static const Point2D Unk_ov12_0223A162[] = {
-    { 0x50, 0x32 },
-    { 0xB4, 0x32 },
-    { 0x50, 0x64 },
-    { 0xB4, 0x64 },
-    { 0x50, 0x4B },
-    { 0xB4, 0x4B }
+static const Point2D sHelpingHandSpritePositions[] = {
+    [0] = { 80, 50 },
+    [1] = { 180, 50 },
+    [2] = { 80, 100 },
+    [3] = { 180, 100 },
+    [4] = { 80, 75 },
+    [5] = { 180, 75 }
 };
 
-static const Point2D Unk_ov12_0223A17A[][2] = {
-    {
-        { 0x78, 0x50 },
-        { 0x88, 0x50 },
+static const Point2D sHelpingHandPairMovementDests[][2] = {
+    [HELPING_HAND_SPRITE_PAIR_0] = {
+        [0] = { 0x78, 0x50 },
+        [1] = { 0x88, 0x50 },
     },
-    {
-        { 0x78, 0x50 },
-        { 0x88, 0x50 },
+    [HELPING_HAND_SPRITE_PAIR_1] = {
+        [0] = { 0x78, 0x50 },
+        [1] = { 0x88, 0x50 },
     },
-    {
-        { 0x78, 0x50 },
-        { 0x88, 0x50 },
+    [HELPING_HAND_SPRITE_PAIR_2] = {
+        [0] = { 0x78, 0x50 },
+        [1] = { 0x88, 0x50 },
     },
-    {
-        { 0x58, 0x50 },
-        { 0xA8, 0x50 },
+    [HELPING_HAND_SPRITE_PAIR_3] = {
+        [0] = { 0x58, 0x50 },
+        [1] = { 0xA8, 0x50 },
     },
 };
 
-static const u8 Unk_ov12_0223A140[] = {
-    0x5,
-    0x5,
-    0x5,
-    0x3
+static const u8 sHelpingHandPairMovementFrames[] = {
+    [HELPING_HAND_SPRITE_PAIR_0] = 5,
+    [HELPING_HAND_SPRITE_PAIR_1] = 5,
+    [HELPING_HAND_SPRITE_PAIR_2] = 5,
+    [HELPING_HAND_SPRITE_PAIR_3] = 3
 };
 
-static void ov12_0222D934(SysTask *param0, void *param1)
+static void BattleAnimTask_HelpingHandSprite(SysTask *task, void *param)
 {
-    int v0;
-    int v1 = 0;
-    UnkStruct_ov12_0222D934 *v2 = (UnkStruct_ov12_0222D934 *)param1;
+    int i;
+    BOOL spriteAnimsDone = FALSE;
+    HelpingHandSpriteContext *ctx = param;
 
-    switch (v2->unk_00) {
-    case 0:
-        if (v2->unk_09 < 15) {
-            v2->unk_09++;
+    switch (ctx->state) {
+    case HELPING_HAND_SPRITE_STATE_FADE_IN:
+        if (ctx->spriteAlpha < HELPING_HAND_SPRITE_MAX_ALPHA) {
+            ctx->spriteAlpha++;
         }
 
-        if (v2->unk_0A > 0) {
-            v2->unk_0A--;
+        if (ctx->bgAlpha > HELPING_HAND_SPRITE_MIN_ALPHA) {
+            ctx->bgAlpha--;
         }
 
-        if ((v2->unk_09 == 15) && (v2->unk_0A == 0)) {
-            v2->unk_00++;
+        if (ctx->spriteAlpha == HELPING_HAND_SPRITE_MAX_ALPHA && ctx->bgAlpha == HELPING_HAND_SPRITE_MIN_ALPHA) {
+            ctx->state++;
         }
 
-        G2_ChangeBlendAlpha(v2->unk_09, v2->unk_0A);
+        G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
         break;
-    case 1:
-        switch (v2->unk_30) {
-        case 0:
-            v2->unk_34 = v2->unk_18[0];
-            v2->unk_38 = v2->unk_18[3];
-            ManagedSprite_SetDrawFlag(v2->unk_34, 1);
-            ManagedSprite_SetDrawFlag(v2->unk_38, 1);
+    case HELPING_HAND_SPRITE_STATE_SETUP_MOVE: {
+        switch (ctx->currentPair) {
+        case HELPING_HAND_SPRITE_PAIR_0:
+            ctx->hand1 = ctx->handSprites[0];
+            ctx->hand2 = ctx->handSprites[3];
+            ManagedSprite_SetDrawFlag(ctx->hand1, TRUE);
+            ManagedSprite_SetDrawFlag(ctx->hand2, TRUE);
             break;
-        case 1:
-            v2->unk_34 = v2->unk_18[1];
-            v2->unk_38 = v2->unk_18[2];
-            ManagedSprite_SetDrawFlag(v2->unk_34, 1);
-            ManagedSprite_SetDrawFlag(v2->unk_38, 1);
+        case HELPING_HAND_SPRITE_PAIR_1:
+            ctx->hand1 = ctx->handSprites[1];
+            ctx->hand2 = ctx->handSprites[2];
+            ManagedSprite_SetDrawFlag(ctx->hand1, TRUE);
+            ManagedSprite_SetDrawFlag(ctx->hand2, TRUE);
             break;
-        case 2:
-        case 3:
-            v2->unk_34 = v2->unk_18[4];
-            v2->unk_38 = v2->unk_18[5];
-            ManagedSprite_SetDrawFlag(v2->unk_34, 1);
-            ManagedSprite_SetDrawFlag(v2->unk_38, 1);
+        case HELPING_HAND_SPRITE_PAIR_2:
+        case HELPING_HAND_SPRITE_PAIR_3:
+            ctx->hand1 = ctx->handSprites[4];
+            ctx->hand2 = ctx->handSprites[5];
+            ManagedSprite_SetDrawFlag(ctx->hand1, TRUE);
+            ManagedSprite_SetDrawFlag(ctx->hand2, TRUE);
             break;
         }
 
-        {
-            s16 v3, v4;
+        s16 x, y;
+        ManagedSprite_GetPositionXY(ctx->hand1, &x, &y);
+        PosLerpContext_Init(
+            &ctx->hand1Pos,
+            x,
+            sHelpingHandPairMovementDests[ctx->currentPair][0].x,
+            y,
+            sHelpingHandPairMovementDests[ctx->currentPair][0].y,
+            sHelpingHandPairMovementFrames[ctx->currentPair]);
 
-            ManagedSprite_GetPositionXY(v2->unk_34, &v3, &v4);
-            PosLerpContext_Init(&v2->unk_3C, v3, Unk_ov12_0223A17A[v2->unk_30][0].x, v4, Unk_ov12_0223A17A[v2->unk_30][0].y, Unk_ov12_0223A140[v2->unk_30]);
+        ManagedSprite_GetPositionXY(ctx->hand2, &x, &y);
+        PosLerpContext_Init(
+            &ctx->hand2Pos,
+            x,
+            sHelpingHandPairMovementDests[ctx->currentPair][1].x,
+            y,
+            sHelpingHandPairMovementDests[ctx->currentPair][1].y,
+            sHelpingHandPairMovementFrames[ctx->currentPair]);
 
-            ManagedSprite_GetPositionXY(v2->unk_38, &v3, &v4);
-            PosLerpContext_Init(&v2->unk_60, v3, Unk_ov12_0223A17A[v2->unk_30][1].x, v4, Unk_ov12_0223A17A[v2->unk_30][1].y, Unk_ov12_0223A140[v2->unk_30]);
+        ctx->currentPair++;
+        ctx->state++;
+    } break;
+    case HELPING_HAND_SPRITE_STATE_MOVE: {
+        int doneCount = 0;
+        BOOL active = PosLerpContext_UpdateAndApplyToSprite(&ctx->hand1Pos, ctx->hand1);
+        if (active == FALSE) {
+            doneCount++;
         }
-        v2->unk_30++;
-        v2->unk_00++;
-        break;
-    case 2: {
-        int v5 = 0;
-        BOOL v6;
 
-        v6 = PosLerpContext_UpdateAndApplyToSprite(&v2->unk_3C, v2->unk_34);
-
-        if (v6 == 0) {
-            v5++;
+        active = PosLerpContext_UpdateAndApplyToSprite(&ctx->hand2Pos, ctx->hand2);
+        if (active == FALSE) {
+            doneCount++;
         }
 
-        v6 = PosLerpContext_UpdateAndApplyToSprite(&v2->unk_60, v2->unk_38);
-
-        if (v6 == 0) {
-            v5++;
-        }
-
-        if (v5 >= 2) {
-            if (v2->unk_30 <= 3) {
-                ManagedSprite_SetDrawFlag(v2->unk_34, 0);
-                ManagedSprite_SetDrawFlag(v2->unk_38, 0);
-                v2->unk_00--;
+        if (doneCount >= 2) {
+            if (ctx->currentPair <= HELPING_HAND_SPRITE_PAIR_3) {
+                ManagedSprite_SetDrawFlag(ctx->hand1, FALSE);
+                ManagedSprite_SetDrawFlag(ctx->hand2, FALSE);
+                ctx->state--;
             } else {
-                v2->unk_00++;
+                ctx->state++;
             }
         }
     } break;
-    case 3:
-        if (v2->unk_09 > 0) {
-            v2->unk_09--;
+    case HELPING_HAND_SPRITE_STATE_FADE_OUT:
+        if (ctx->spriteAlpha > HELPING_HAND_SPRITE_MIN_ALPHA) {
+            ctx->spriteAlpha--;
         }
 
-        if (v2->unk_0A < 15) {
-            v2->unk_0A++;
+        if (ctx->bgAlpha < HELPING_HAND_SPRITE_MAX_ALPHA) {
+            ctx->bgAlpha++;
         }
 
-        if (v2->unk_0A >= (15 / 2)) {
-            v1 = 1;
+        if (ctx->bgAlpha >= HELPING_HAND_SPRITE_MAX_ALPHA / 2) {
+            spriteAnimsDone = TRUE;
         }
 
-        if ((v2->unk_09 == 0) && (v2->unk_0A == 15)) {
-            v2->unk_00++;
+        if (ctx->spriteAlpha == HELPING_HAND_SPRITE_MIN_ALPHA && ctx->bgAlpha == HELPING_HAND_SPRITE_MAX_ALPHA) {
+            ctx->state++;
         }
 
-        G2_ChangeBlendAlpha(v2->unk_09, v2->unk_0A);
+        G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
         break;
     default:
-        for (v0 = 0; v0 < v2->unk_08; v0++) {
-            Sprite_DeleteAndFreeResources(v2->unk_18[v0]);
+        for (i = 0; i < ctx->handCount; i++) {
+            Sprite_DeleteAndFreeResources(ctx->handSprites[i]);
         }
 
-        BattleAnimSystem_EndAnimTask(v2->unk_0C, param0);
-        Heap_Free(v2);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    if ((v2->unk_00 < 3) && (v1 == 0)) {
-        for (v0 = 0; v0 < v2->unk_08; v0++) {
-            Sprite_TickFrame(v2->unk_18[v0]->sprite);
+    if (ctx->state < HELPING_HAND_SPRITE_STATE_FADE_OUT && spriteAnimsDone == FALSE) {
+        for (i = 0; i < ctx->handCount; i++) {
+            Sprite_TickFrame(ctx->handSprites[i]->sprite);
         }
     }
 
-    SpriteSystem_DrawSprites(v2->unk_14);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_0222DB60(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_HelpingHand(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    int v0;
-    UnkStruct_ov12_0222D934 *v1;
-    SpriteTemplate v2;
+    int i;
+    SpriteTemplate template;
 
-    v1 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222D934));
+    HelpingHandSpriteContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(HelpingHandSpriteContext));
 
-    GF_ASSERT(v1 != NULL);
+    GF_ASSERT(ctx != NULL);
 
-    v1->unk_07 = 0;
-    v1->unk_00 = 0;
-    v1->unk_10 = param1;
-    v1->unk_14 = param2;
-    v1->unk_30 = 0;
-    v1->unk_0C = param0;
+    ctx->unused1 = 0;
+    ctx->state = HELPING_HAND_SPRITE_STATE_FADE_IN;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->currentPair = HELPING_HAND_SPRITE_PAIR_0;
+    ctx->battleAnimSys = system;
 
-    v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    BattleAnimUtil_SetSpriteBgBlending(v1->unk_0C, 0xffffffff, 0xffffffff);
+    template = BattleAnimSystem_GetLastSpriteTemplate(system);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
 
-    v1->unk_09 = 0;
-    v1->unk_0A = 15;
+    ctx->spriteAlpha = HELPING_HAND_SPRITE_MIN_ALPHA;
+    ctx->bgAlpha = HELPING_HAND_SPRITE_MAX_ALPHA;
 
-    G2_ChangeBlendAlpha(v1->unk_09, v1->unk_0A);
+    G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
 
-    v1->unk_08 = BattleAnimSystem_GetScriptVar(v1->unk_0C, 0);
-    v1->unk_18[0] = param3;
+    ctx->handCount = BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, HELPING_HAND_SPRITE_VAR_HAND_COUNT);
+    ctx->handSprites[0] = sprite;
 
-    {
-        for (v0 = 1; v0 < v1->unk_08; v0++) {
-            v1->unk_18[v0] = SpriteSystem_NewSprite(v1->unk_10, v1->unk_14, &v2);
-        }
+    for (i = 1; i < ctx->handCount; i++) {
+        ctx->handSprites[i] = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteMan, &template);
     }
 
-    ManagedSprite_SetAnim(v1->unk_18[0], 0);
-    ManagedSprite_SetAnim(v1->unk_18[1], 0);
-    ManagedSprite_SetAnim(v1->unk_18[2], 1);
-    ManagedSprite_SetAnim(v1->unk_18[3], 1);
-    ManagedSprite_SetAnim(v1->unk_18[4], 2);
-    ManagedSprite_SetAnim(v1->unk_18[5], 3);
-    ManagedSprite_SetFlipMode(v1->unk_18[0], 1);
-    ManagedSprite_SetFlipMode(v1->unk_18[3], 1);
+    ManagedSprite_SetAnim(ctx->handSprites[0], 0);
+    ManagedSprite_SetAnim(ctx->handSprites[1], 0);
+    ManagedSprite_SetAnim(ctx->handSprites[2], 1);
+    ManagedSprite_SetAnim(ctx->handSprites[3], 1);
+    ManagedSprite_SetAnim(ctx->handSprites[4], 2);
+    ManagedSprite_SetAnim(ctx->handSprites[5], 3);
+    ManagedSprite_SetFlipMode(ctx->handSprites[0], TRUE);
+    ManagedSprite_SetFlipMode(ctx->handSprites[3], TRUE);
 
-    for (v0 = 0; v0 < v1->unk_08; v0++) {
-        ManagedSprite_SetAnimateFlag(v1->unk_18[v0], 1);
-        ManagedSprite_SetPositionXY(v1->unk_18[v0], Unk_ov12_0223A162[v0].x, Unk_ov12_0223A162[v0].y);
-        ManagedSprite_SetExplicitOamMode(v1->unk_18[v0], GX_OAM_MODE_XLU);
+    for (i = 0; i < ctx->handCount; i++) {
+        ManagedSprite_SetAnimateFlag(ctx->handSprites[i], TRUE);
+        ManagedSprite_SetPositionXY(ctx->handSprites[i], sHelpingHandSpritePositions[i].x, sHelpingHandSpritePositions[i].y);
+        ManagedSprite_SetExplicitOamMode(ctx->handSprites[i], GX_OAM_MODE_XLU);
     }
 
-    ManagedSprite_SetDrawFlag(v1->unk_18[1], 0);
-    ManagedSprite_SetDrawFlag(v1->unk_18[2], 0);
-    ManagedSprite_SetDrawFlag(v1->unk_18[4], 0);
-    ManagedSprite_SetDrawFlag(v1->unk_18[5], 0);
+    ManagedSprite_SetDrawFlag(ctx->handSprites[1], FALSE);
+    ManagedSprite_SetDrawFlag(ctx->handSprites[2], FALSE);
+    ManagedSprite_SetDrawFlag(ctx->handSprites[4], FALSE);
+    ManagedSprite_SetDrawFlag(ctx->handSprites[5], FALSE);
 
-    BattleAnimSystem_StartAnimTaskEx(param0, ov12_0222D934, v1, 1100);
+    BattleAnimSystem_StartAnimTaskEx(system, BattleAnimTask_HelpingHandSprite, ctx, 1100);
 }
 
 static const Point2D Unk_ov12_0223A14A[] = {
