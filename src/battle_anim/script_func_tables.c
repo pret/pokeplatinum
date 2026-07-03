@@ -136,7 +136,7 @@ static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
     BattleAnimSpriteFunc_Sleep,
     BattleAnimSpriteFunc_Burn,
     BattleAnimSpriteFunc_Freeze,
-    ov12_02234D98
+    BattleAnimSpriteFunc_ConfusionStatus
 };
 
 static const BattleAnimScriptSpriteFunc sUnusedSpriteFuncs[] = {

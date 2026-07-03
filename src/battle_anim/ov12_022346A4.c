@@ -8,6 +8,7 @@
 #include "battle_anim/battle_anim_util.h"
 
 #include "heap.h"
+#include "math_util.h"
 #include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -96,28 +97,52 @@ enum BurnSpriteState {
 #define BURN_SPRITE_DELAY_STEP     2 // Frames between flames
 #define BURN_SPRITE_VISIBLE_FRAMES 16 // Number of frames each flame is visible for
 
-typedef struct {
+// -------------------------------------------------------------------
+// Confusion (Status) Sprite
+// -------------------------------------------------------------------
+#define CONFUSION_STATUS_SPRITE_ORB_COUNT 6
+
+typedef struct ConfusionStatusSpriteContext {
     BattleAnimSystem *battleAnimSys;
     SpriteSystem *spriteSys;
     SpriteManager *spriteMan;
     int state;
-    int unk_10;
-    int unk_14;
-    ManagedSprite *managedSprite[6];
-    XYTransformContext transformCtx[6];
-    AlphaFadeContext alphaFadeCtx;
-    s16 posX;
-    s16 posY;
-} UnkStruct_ov12_02234BD8;
+    int delay;
+    int dir;
+    ManagedSprite *sprites[CONFUSION_STATUS_SPRITE_ORB_COUNT];
+    XYTransformContext revs[CONFUSION_STATUS_SPRITE_ORB_COUNT];
+    AlphaFadeContext alphaFade;
+    s16 monX;
+    s16 monY;
+} ConfusionStatusSpriteContext;
+
+enum ConfusionStatusSpriteState {
+    CONFUSION_STATUS_SPRITE_STATE_INIT = 0,
+    CONFUSION_STATUS_SPRITE_STATE_FADEIN,
+    CONFUSION_STATUS_SPRITE_STATE_ROTATE,
+    CONFUSION_STATUS_SPRITE_STATE_FADEOUT,
+    CONFUSION_STATUS_SPRITE_STATE_CLEANUP,
+};
+
+#define CONFUSION_STATUS_SPRITE_ORB_DEFAULT_ALPHA        16
+#define CONFUSION_STATUS_SPRITE_ORB_START_ALPHA          1
+#define CONFUSION_STATUS_SPRITE_ORB_END_ALPHA            16
+#define CONFUSION_STATUS_SPRITE_ORB_ALPHA_FADE_FRAMES    10
+#define CONFUSION_STATUS_SPRITE_ORB_REV_START_ANGLE      DEG_TO_IDX(0)
+#define CONFUSION_STATUS_SPRITE_ORB_REV_END_ANGLE        DEG_TO_IDX(180)
+#define CONFUSION_STATUS_SPRITE_ORB_REV_RADIUS           FX32_CONST(50)
+#define CONFUSION_STATUS_SPRITE_ORB_REV_FRAMES           48
+#define CONFUSION_STATUS_SPRITE_ORB_REV_BEHIND_MIN_ANGLE DEG_TO_IDX(90) // Angle range at which the orb is considered to be "behind" the pokemon
+#define CONFUSION_STATUS_SPRITE_ORB_REV_BEHIND_MAX_ANGLE DEG_TO_IDX(269)
 
 static void BattleAnimTask_SleepSprite(SysTask *task, void *param);
 static void SleepSprite_Init(ManagedSprite *managedSprite, XYTransformContext *pos, XYTransformContext *scale, int dir);
 static BOOL SleepSprite_Update(ManagedSprite *managedSprite, XYTransformContext *pos, XYTransformContext *scale);
-static void BattleAnimTask_Freeze(SysTask *task, void *param1);
-static void BattleAnimTask_BurnSprite(SysTask *task, void *param1);
-static BOOL BurnSprite_Update(ManagedSprite *managedSprite, int *param1, int *param2);
-static void BurnSprite_Init(ManagedSprite *managedSprite, int *param1, int *param2, int param3, int param4);
-static void ov12_02234CA8(SysTask *task, void *param1);
+static void BattleAnimTask_Freeze(SysTask *task, void *param);
+static void BattleAnimTask_BurnSprite(SysTask *task, void *param);
+static BOOL BurnSprite_Update(ManagedSprite *sprite, int *visibleFrames, int *delay);
+static void BurnSprite_Init(ManagedSprite *sprite, int *outVisibleFrames, int *outDelay, int idx, int dir);
+static void BattleAnimTask_ConfusionStatus(SysTask *task, void *param);
 
 void BattleAnimSpriteFunc_Sleep(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
@@ -407,110 +432,132 @@ static void BattleAnimTask_BurnSprite(SysTask *task, void *param)
     SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1)
+static void ConfusionStatusSprite_Init(ConfusionStatusSpriteContext *ctx, int dir)
 {
-    int v1 = 360 * 0xffff / 360 / 6;
+    int startAngleStep = DEG_TO_IDX(360) / CONFUSION_STATUS_SPRITE_ORB_COUNT;
 
-    for (int i = 0; i < SNELEMS(param0->managedSprite); i++) {
-        RevolutionContext_Init(&param0->transformCtx[i], DEG_TO_IDX(0), DEG_TO_IDX(180), 0, 0, FX32_ONE * 50, 0, 48);
-        param0->transformCtx[i].data[1] += v1 * i;
-        param0->transformCtx[i].data[5] *= param1;
+    for (int i = 0; i < CONFUSION_STATUS_SPRITE_ORB_COUNT; i++) {
+        RevolutionContext_Init(
+            &ctx->revs[i],
+            CONFUSION_STATUS_SPRITE_ORB_REV_START_ANGLE,
+            CONFUSION_STATUS_SPRITE_ORB_REV_END_ANGLE,
+            0,
+            0,
+            CONFUSION_STATUS_SPRITE_ORB_REV_RADIUS,
+            0,
+            CONFUSION_STATUS_SPRITE_ORB_REV_FRAMES);
+
+        ctx->revs[i].data[XY_PARAM_REV_CUR_X] += startAngleStep * i;
+        ctx->revs[i].data[XY_PARAM_REV_STEP_SIZE_X] *= dir;
     }
 }
 
-static void ov12_02234C30(UnkStruct_ov12_02234BD8 *param0)
+static void ConfusionStatusSprite_Update(ConfusionStatusSpriteContext *ctx)
 {
-    for (int i = 0; i < SNELEMS(param0->managedSprite); i++) {
-        RevolutionContext_Update(&param0->transformCtx[i]);
+    for (int i = 0; i < CONFUSION_STATUS_SPRITE_ORB_COUNT; i++) {
+        RevolutionContext_Update(&ctx->revs[i]);
+        ManagedSprite_SetPositionXY(ctx->sprites[i], ctx->monX + ctx->revs[i].x, ctx->monY);
 
-        ManagedSprite_SetPositionXY(param0->managedSprite[i], param0->posX + param0->transformCtx[i].x, param0->posY);
-
-        if (param0->transformCtx[i].data[1] >= DEG_TO_IDX(90) && param0->transformCtx[i].data[1] <= DEG_TO_IDX(269)) {
-            ManagedSprite_SetExplicitPriority(param0->managedSprite[i], 1);
+        if (ctx->revs[i].data[XY_PARAM_REV_CUR_X] >= CONFUSION_STATUS_SPRITE_ORB_REV_BEHIND_MIN_ANGLE
+            && ctx->revs[i].data[XY_PARAM_REV_CUR_X] <= CONFUSION_STATUS_SPRITE_ORB_REV_BEHIND_MAX_ANGLE) {
+            ManagedSprite_SetExplicitPriority(ctx->sprites[i], 1);
         } else {
-            ManagedSprite_SetExplicitPriority(param0->managedSprite[i], BattleAnimSystem_GetPokemonSpritePriority(param0->battleAnimSys) + 1);
+            ManagedSprite_SetExplicitPriority(ctx->sprites[i], BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys) + 1);
         }
     }
 }
 
-static void ov12_02234CA8(SysTask *task, void *param1)
+static void BattleAnimTask_ConfusionStatus(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02234BD8 *v0 = param1;
+    ConfusionStatusSpriteContext *ctx = param;
 
-    switch (v0->state) {
-    case 0:
-        BattleAnimUtil_SetSpriteBgBlending(v0->battleAnimSys, 1, 16 - 1);
-        AlphaFadeContext_Init(&v0->alphaFadeCtx, 1, 16, 16 - 1, 16 - 16, 10);
-        ov12_02234BD8(v0, v0->unk_14);
-        ov12_02234C30(v0);
-        v0->state++;
+    switch (ctx->state) {
+    case CONFUSION_STATUS_SPRITE_STATE_INIT:
+        BattleAnimUtil_SetSpriteBgBlending(
+            ctx->battleAnimSys,
+            CONFUSION_STATUS_SPRITE_ORB_START_ALPHA,
+            CONFUSION_STATUS_SPRITE_ORB_DEFAULT_ALPHA - CONFUSION_STATUS_SPRITE_ORB_START_ALPHA);
+        AlphaFadeContext_Init(
+            &ctx->alphaFade,
+            CONFUSION_STATUS_SPRITE_ORB_START_ALPHA,
+            CONFUSION_STATUS_SPRITE_ORB_END_ALPHA,
+            CONFUSION_STATUS_SPRITE_ORB_DEFAULT_ALPHA - CONFUSION_STATUS_SPRITE_ORB_START_ALPHA,
+            CONFUSION_STATUS_SPRITE_ORB_DEFAULT_ALPHA - CONFUSION_STATUS_SPRITE_ORB_END_ALPHA,
+            CONFUSION_STATUS_SPRITE_ORB_ALPHA_FADE_FRAMES);
+        ConfusionStatusSprite_Init(ctx, ctx->dir);
+        ConfusionStatusSprite_Update(ctx);
+        ctx->state++;
         break;
-    case 1:
-        ov12_02234C30(v0);
+    case CONFUSION_STATUS_SPRITE_STATE_FADEIN:
+        ConfusionStatusSprite_Update(ctx);
 
-        if (AlphaFadeContext_IsDone(&v0->alphaFadeCtx)) {
-            v0->state++;
-            v0->unk_10 = 48 - 10 * 2;
+        if (AlphaFadeContext_IsDone(&ctx->alphaFade)) {
+            ctx->state++;
+            ctx->delay = CONFUSION_STATUS_SPRITE_ORB_REV_FRAMES - CONFUSION_STATUS_SPRITE_ORB_ALPHA_FADE_FRAMES * 2;
         }
         break;
-    case 2:
-        ov12_02234C30(v0);
-        v0->unk_10--;
+    case CONFUSION_STATUS_SPRITE_STATE_ROTATE:
+        ConfusionStatusSprite_Update(ctx);
 
-        if (v0->unk_10 < 0) {
-            v0->state++;
-            AlphaFadeContext_Init(&v0->alphaFadeCtx, 16, 1, 16 - 16, 16 - 1, 10);
+        ctx->delay--;
+        if (ctx->delay < 0) {
+            ctx->state++;
+            AlphaFadeContext_Init(
+                &ctx->alphaFade,
+                CONFUSION_STATUS_SPRITE_ORB_END_ALPHA,
+                CONFUSION_STATUS_SPRITE_ORB_START_ALPHA,
+                CONFUSION_STATUS_SPRITE_ORB_DEFAULT_ALPHA - CONFUSION_STATUS_SPRITE_ORB_END_ALPHA,
+                CONFUSION_STATUS_SPRITE_ORB_DEFAULT_ALPHA - CONFUSION_STATUS_SPRITE_ORB_START_ALPHA,
+                CONFUSION_STATUS_SPRITE_ORB_ALPHA_FADE_FRAMES);
         }
         break;
-    case 3:
-        ov12_02234C30(v0);
+    case CONFUSION_STATUS_SPRITE_STATE_FADEOUT:
+        ConfusionStatusSprite_Update(ctx);
 
-        if (AlphaFadeContext_IsDone(&v0->alphaFadeCtx)) {
-            v0->state++;
+        if (AlphaFadeContext_IsDone(&ctx->alphaFade)) {
+            ctx->state++;
         }
         break;
-    case 4:
-        for (int i = 0; i < SNELEMS(v0->managedSprite); i++) {
-            Sprite_DeleteAndFreeResources(v0->managedSprite[i]);
+    case CONFUSION_STATUS_SPRITE_STATE_CLEANUP:
+        for (int i = 0; i < CONFUSION_STATUS_SPRITE_ORB_COUNT; i++) {
+            Sprite_DeleteAndFreeResources(ctx->sprites[i]);
         }
 
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->battleAnimSys, task);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->spriteMan);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02234D98(BattleAnimSystem *battleAnimSystem, SpriteSystem *spriteSystem, SpriteManager *spriteMan, ManagedSprite *managedSprite)
+void BattleAnimSpriteFunc_ConfusionStatus(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    SpriteTemplate spriteTemplate;
+    ConfusionStatusSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ConfusionStatusSpriteContext));
 
-    UnkStruct_ov12_02234BD8 *battleAnimUtil = BattleAnimUtil_Alloc(battleAnimSystem, sizeof(UnkStruct_ov12_02234BD8));
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
 
-    battleAnimUtil->battleAnimSys = battleAnimSystem;
-    battleAnimUtil->spriteSys = spriteSystem;
-    battleAnimUtil->spriteMan = spriteMan;
+    PokemonSprite *affectedMon = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+    ctx->monX = PokemonSprite_GetAttribute(affectedMon, MON_SPRITE_X_CENTER);
+    ctx->monY = PokemonSprite_GetAttribute(affectedMon, MON_SPRITE_Y_CENTER);
 
-    PokemonSprite *monSprite = BattleAnimSystem_GetBattlerSprite(battleAnimUtil->battleAnimSys, BattleAnimSystem_GetAttacker(battleAnimSystem));
+    SpriteTemplate template;
+    template = BattleAnimSystem_GetLastSpriteTemplate(system);
 
-    battleAnimUtil->posX = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_X_CENTER);
-    battleAnimUtil->posY = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_Y_CENTER);
-
-    spriteTemplate = BattleAnimSystem_GetLastSpriteTemplate(battleAnimSystem);
-
-    for (int i = 0; i < SNELEMS(battleAnimUtil->managedSprite); i++) {
+    for (int i = 0; i < CONFUSION_STATUS_SPRITE_ORB_COUNT; i++) {
         if (i == 0) {
-            battleAnimUtil->managedSprite[i] = managedSprite;
+            ctx->sprites[i] = sprite;
         } else {
-            battleAnimUtil->managedSprite[i] = SpriteSystem_NewSprite(battleAnimUtil->spriteSys, battleAnimUtil->spriteMan, &spriteTemplate);
+            ctx->sprites[i] = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteMan, &template);
         }
 
-        ManagedSprite_SetPriority(battleAnimUtil->managedSprite[i], 100);
-        ManagedSprite_SetExplicitOamMode(battleAnimUtil->managedSprite[i], GX_OAM_MODE_XLU);
-        ManagedSprite_SetAnimateFlag(battleAnimUtil->managedSprite[i], TRUE);
+        ManagedSprite_SetPriority(ctx->sprites[i], 100);
+        ManagedSprite_SetExplicitOamMode(ctx->sprites[i], GX_OAM_MODE_XLU);
+        ManagedSprite_SetAnimateFlag(ctx->sprites[i], TRUE);
     }
 
-    battleAnimUtil->unk_14 = BattleAnimUtil_GetTransformDirectionX(battleAnimUtil->battleAnimSys, BattleAnimSystem_GetAttacker(battleAnimUtil->battleAnimSys));
-    BattleAnimSystem_StartAnimTask(battleAnimUtil->battleAnimSys, ov12_02234CA8, battleAnimUtil);
+    ctx->dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ConfusionStatus, ctx);
 }
