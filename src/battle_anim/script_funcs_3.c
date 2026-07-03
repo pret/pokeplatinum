@@ -743,12 +743,25 @@ typedef struct OffsetAndAnimateSpriteContext {
 #define OFFSET_AND_ANIMATE_SPRITE_VAR_OFFSET_X 0
 #define OFFSET_AND_ANIMATE_SPRITE_VAR_OFFSET_Y 1
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    ManagedSprite *unk_1C;
-    ValueLerpContext unk_20;
-    int unk_34;
-} UnkStruct_ov12_0222A1F478;
+// -------------------------------------------------------------------
+// Follow Me Sprite
+// -------------------------------------------------------------------
+typedef struct FollowMeSpriteContext {
+    BattleAnimScriptFuncCommon common;
+    ManagedSprite *sprite;
+    ValueLerpContext tilt;
+    int state;
+} FollowMeSpriteContext;
+
+enum FollowMeSpriteState {
+    FOLLOW_ME_SPRITE_STATE_OSCILLATE = 0,
+    FOLLOW_ME_SPRITE_STATE_TILT,
+};
+
+#define FOLLOW_ME_SPRITE_OFFSET_SWITCH_PRIO 0
+#define FOLLOW_ME_SPRITE_OFFSET_END         255
+#define FOLLOW_ME_SPRITE_TILT_ANGLE         DEG_TO_IDX(20)
+#define FOLLOW_ME_SPRITE_TILT_FRAMES        4
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -3621,18 +3634,20 @@ void BattleAnimSpriteFunc_OffsetAndAnimate(BattleAnimSystem *system, SpriteSyste
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_OffsetAndAnimateSprite, ctx);
 }
 
-static const s16 Unk_ov12_0223A03C[] = {
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x4,
-    0x4,
-    0x4,
-    0x3,
-    0x3,
-    0x3,
-    0x0,
+// Me when I'm too lazy to use sin/cos functions for oscillating movements
+// even though there are literally various helper functions to do so.
+static const s16 sFollowMeSpriteOffsets[] = {
+    5,
+    5,
+    5,
+    5,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    FOLLOW_ME_SPRITE_OFFSET_SWITCH_PRIO,
     -3,
     -3,
     -3,
@@ -3653,124 +3668,116 @@ static const s16 Unk_ov12_0223A03C[] = {
     -3,
     -3,
     -3,
-    0x0,
-    0x3,
-    0x3,
-    0x3,
-    0x4,
-    0x4,
-    0x4,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0xFF
+    FOLLOW_ME_SPRITE_OFFSET_SWITCH_PRIO,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    FOLLOW_ME_SPRITE_OFFSET_END
 };
 
-static void ov12_0222A1F4(SysTask *param0, void *param1)
+static void BattleAnimTask_FollowMeSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222A1F478 *v0 = param1;
+    FollowMeSpriteContext *ctx = param;
 
-    switch (v0->unk_00.state) {
-    case 0: {
-        s16 v1 = Unk_ov12_0223A03C[v0->unk_34];
+    switch (ctx->common.state) {
+    case FOLLOW_ME_SPRITE_STATE_OSCILLATE: {
+        s16 offsetX = sFollowMeSpriteOffsets[ctx->state];
 
-        v0->unk_34++;
+        ctx->state++;
 
-        if (v1 != 0xFF) {
-            int v2;
-            int v3;
-
-            if (v1 == 0) {
-                v2 = ManagedSprite_GetExplicitPriority(v0->unk_1C);
-
-                if (v2 == BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSys)) {
-                    v3 = BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSys, 2);
-                    ManagedSprite_SetExplicitPriority(v0->unk_1C, v3);
+        if (offsetX != 255) {
+            if (offsetX == 0) {
+                int explicitPrio = ManagedSprite_GetExplicitPriority(ctx->sprite);
+                if (explicitPrio == BattleAnimSystem_GetPokemonSpritePriority(ctx->common.battleAnimSys)) {
+                    int bgPrio = BattleAnimSystem_GetBgPriority(ctx->common.battleAnimSys, BATTLE_ANIM_BG_EFFECT);
+                    ManagedSprite_SetExplicitPriority(ctx->sprite, bgPrio);
                 } else {
-                    v3 = BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSys);
-                    ManagedSprite_SetExplicitPriority(v0->unk_1C, v3);
+                    int monPrio = BattleAnimSystem_GetPokemonSpritePriority(ctx->common.battleAnimSys);
+                    ManagedSprite_SetExplicitPriority(ctx->sprite, monPrio);
                 }
             }
 
-            ManagedSprite_OffsetPositionXY(v0->unk_1C, v1, 0);
+            ManagedSprite_OffsetPositionXY(ctx->sprite, offsetX, 0);
         } else {
-            ManagedSprite_SetAffineOverwriteMode(v0->unk_1C, AFFINE_OVERWRITE_MODE_DOUBLE);
-            ValueLerpContext_Init(&v0->unk_20, 0, +((20 * 0xffff) / 360), 4);
-            ManagedSprite_SetAffineTranslation(v0->unk_1C, -8, 16);
-            v0->unk_34 = 0;
-            v0->unk_00.state++;
+            ManagedSprite_SetAffineOverwriteMode(ctx->sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+            ValueLerpContext_Init(&ctx->tilt, DEG_TO_IDX(0), +FOLLOW_ME_SPRITE_TILT_ANGLE, FOLLOW_ME_SPRITE_TILT_FRAMES);
+            ManagedSprite_SetAffineTranslation(ctx->sprite, -8, 16);
+            ctx->state = 0;
+            ctx->common.state++;
         }
     } break;
-    case 1: {
-        if (ValueLerpContext_Update(&v0->unk_20) == 1) {
-            ManagedSprite_SetAffineZRotation(v0->unk_1C, v0->unk_20.value);
+    case FOLLOW_ME_SPRITE_STATE_TILT: {
+        if (ValueLerpContext_Update(&ctx->tilt) == TRUE) {
+            ManagedSprite_SetAffineZRotation(ctx->sprite, ctx->tilt.value);
         } else {
-            if (v0->unk_34 > 5) {
-                v0->unk_00.state++;
+            if (ctx->state > 5) {
+                ctx->common.state++;
             } else {
-                v0->unk_34++;
+                ctx->state++;
 
-                switch (v0->unk_34) {
+                switch (ctx->state) {
                 case 1:
-                    ValueLerpContext_Init(&v0->unk_20, +((20 * 0xffff) / 360), -((20 * 0xffff) / 360), 4);
+                    ValueLerpContext_Init(&ctx->tilt, +FOLLOW_ME_SPRITE_TILT_ANGLE, -FOLLOW_ME_SPRITE_TILT_ANGLE, FOLLOW_ME_SPRITE_TILT_FRAMES);
                     break;
                 case 2:
-                    ValueLerpContext_Init(&v0->unk_20, -((20 * 0xffff) / 360), +((20 * 0xffff) / 360), 4);
+                    ValueLerpContext_Init(&ctx->tilt, -FOLLOW_ME_SPRITE_TILT_ANGLE, +FOLLOW_ME_SPRITE_TILT_ANGLE, FOLLOW_ME_SPRITE_TILT_FRAMES);
                     break;
                 case 3:
-                    ValueLerpContext_Init(&v0->unk_20, +((20 * 0xffff) / 360), -((20 * 0xffff) / 360), 4);
+                    ValueLerpContext_Init(&ctx->tilt, +FOLLOW_ME_SPRITE_TILT_ANGLE, -FOLLOW_ME_SPRITE_TILT_ANGLE, FOLLOW_ME_SPRITE_TILT_FRAMES);
                     break;
                 case 4:
-                    ValueLerpContext_Init(&v0->unk_20, -((20 * 0xffff) / 360), +((20 * 0xffff) / 360), 4);
+                    ValueLerpContext_Init(&ctx->tilt, -FOLLOW_ME_SPRITE_TILT_ANGLE, +FOLLOW_ME_SPRITE_TILT_ANGLE, FOLLOW_ME_SPRITE_TILT_FRAMES);
                     break;
                 case 5:
-                    ValueLerpContext_Init(&v0->unk_20, +((20 * 0xffff) / 360), 0, 4 / 2);
+                    ValueLerpContext_Init(&ctx->tilt, +FOLLOW_ME_SPRITE_TILT_ANGLE, DEG_TO_IDX(0), FOLLOW_ME_SPRITE_TILT_FRAMES / 2);
                     break;
                 }
             }
         }
     } break;
     default:
-        Sprite_DeleteAndFreeResources(v0->unk_1C);
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
-        Heap_Free(v0);
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    ManagedSprite_TickFrame(v0->unk_1C);
-    SpriteSystem_DrawSprites(v0->unk_00.primarySpriteManager);
+    ManagedSprite_TickFrame(ctx->sprite);
+    SpriteSystem_DrawSprites(ctx->common.primarySpriteManager);
 }
 
-void ov12_0222A34C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_FollowMe(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_0222A1F478 *v0 = NULL;
+    FollowMeSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FollowMeSpriteContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222A1F478));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    ctx->sprite = sprite;
+    ctx->state = 0;
 
-    v0->unk_1C = param3;
-    v0->unk_34 = 0;
+    int defender = BattleAnimSystem_GetDefender(system);
+    s16 defenderX = BattleAnimUtil_GetBattlerPos(system, defender, BATTLE_ANIM_POSITION_MON_X);
+    s16 defenderY = BattleAnimUtil_GetBattlerPos(system, defender, BATTLE_ANIM_POSITION_MON_Y);
 
-    {
-        int v1 = BattleAnimSystem_GetDefender(param0);
-        s16 v2 = BattleAnimUtil_GetBattlerPos(param0, v1, 0);
-        s16 v3 = BattleAnimUtil_GetBattlerPos(param0, v1, 1);
+    ManagedSprite_SetPositionXY(ctx->sprite, defenderX, defenderY);
 
-        ManagedSprite_SetPositionXY(v0->unk_1C, v2, v3);
-    }
-
-    if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
-        ManagedSprite_SetAnim(v0->unk_1C, 1);
+    if (BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system)) == BTLSCR_ENEMY) {
+        ManagedSprite_SetAnim(ctx->sprite, 1);
     } else {
-        ManagedSprite_SetAnim(v0->unk_1C, 0);
+        ManagedSprite_SetAnim(ctx->sprite, 0);
     }
 
-    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSys));
-    ManagedSprite_OffsetPositionXY(v0->unk_1C, 0, +12);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, BattleAnimSystem_GetPokemonSpritePriority(ctx->common.battleAnimSys));
+    ManagedSprite_OffsetPositionXY(ctx->sprite, 0, +12);
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A1F4, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_FollowMeSprite, ctx);
 }
 
 static void ov12_0222A3DC(SysTask *param0, void *param1)
@@ -3791,7 +3798,7 @@ static void ov12_0222A3DC(SysTask *param0, void *param1)
 
 void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
-    UnkStruct_ov12_0222A3DC *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222A1F478));
+    UnkStruct_ov12_0222A3DC *v0 = BattleAnimUtil_Alloc(param0, sizeof(FollowMeSpriteContext));
     BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
     v0->unk_1C = param3;
 
