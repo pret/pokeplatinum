@@ -92,5 +92,5 @@ for script_file in "${SCRIPT_FILES[@]}" ; do
         | $AS -x assembler-with-cpp -o "$script_obj" -c -
     $OBJCOPY -O binary --file-alignment 4 "$script_obj" "$script_bin"
     $LD "$script_obj" -o "$script_obj.dummy"
-    rm "$script_obj" "$script_obj.dummy"
+    rm "$script_obj" "$script_obj.dummy" || true
 done
