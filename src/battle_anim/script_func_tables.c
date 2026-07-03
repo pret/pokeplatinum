@@ -132,7 +132,7 @@ static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
     BattleAnimSpriteFunc_OffsetAndAnimate,
     BattleAnimSpriteFunc_FollowMe,
     BattleAnimSpriteFunc_Fissure,
-    ov12_0222A5C0,
+    BattleAnimSpriteFunc_EscapeItem,
     ov12_022346A4,
     ov12_02234A10,
     ov12_022348C8,

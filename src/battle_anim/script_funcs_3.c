@@ -777,13 +777,32 @@ typedef struct FissureSpriteContext {
 #define FISSURE_SPRITE_BATTLE_PLAYER_Y 126
 #define FISSURE_SPRITE_BATTLE_ENEMY_Y  32
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    ManagedSprite *unk_1C;
-    u8 unk_20;
-    u8 unk_21;
-    XYTransformContext unk_24[2];
-} UnkStruct_ov12_0222A4A0;
+// -------------------------------------------------------------------
+// Escape Item Sprite
+// -------------------------------------------------------------------
+typedef struct EscapeItemSpriteContext {
+    BattleAnimScriptFuncCommon common;
+    ManagedSprite *sprite;
+    u8 spriteAlpha;
+    u8 bgAlpha;
+    XYTransformContext pos[2]; // linear, revs
+} EscapeItemSpriteContext;
+
+enum EscapeItemSpriteState {
+    ESCAPE_ITEM_SPRITE_STATE_INIT = 0,
+    ESCAPE_ITEM_SPRITE_STATE_MOVE,
+    ESCAPE_ITEM_SPRITE_STATE_WAIT_FOR_ANIM,
+    ESCAPE_ITEM_SPRITE_STATE_FADEOUT,
+};
+
+#define ESCAPE_ITEM_SPRITE_OFFSET_X    -30
+#define ESCAPE_ITEM_SPRITE_OFFSET_Y    160
+#define ESCAPE_ITEM_SPRITE_DEST_X      112
+#define ESCAPE_ITEM_SPRITE_DEST_Y      112
+#define ESCAPE_ITEM_SPRITE_MOVE_FRAMES 21
+#define ESCAPE_ITEM_SPRITE_MOVE_RADIUS FX32_CONST(64)
+#define ESCAPE_ITEM_SPRITE_MIN_ALPHA   0
+#define ESCAPE_ITEM_SPRITE_MAX_ALPHA   16
 
 // -------------------------------------------------------------------
 // Set Pokemon Sprite Priority
@@ -3836,68 +3855,73 @@ void BattleAnimSpriteFunc_Fissure(BattleAnimSystem *system, SpriteSystem *sprite
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_FissureSprite, ctx);
 }
 
-static void ov12_0222A4A0(SysTask *param0, void *param1)
+static void BattleAnimTask_EscapeItemSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222A4A0 *v0 = param1;
-    BOOL v1;
+    EscapeItemSpriteContext *ctx = param;
 
-    switch (v0->unk_00.state) {
-    case 0:
-        XYTransformContext_InitParabolic(&v0->unk_24[0], &v0->unk_24[1], -30, 128 - 16, 160, 80 + 32, 21, 64 * FX32_ONE);
-        v0->unk_00.state++;
+    switch (ctx->common.state) {
+    case ESCAPE_ITEM_SPRITE_STATE_INIT:
+        XYTransformContext_InitParabolic(
+            &ctx->pos[0],
+            &ctx->pos[1],
+            ESCAPE_ITEM_SPRITE_OFFSET_X,
+            ESCAPE_ITEM_SPRITE_DEST_X,
+            ESCAPE_ITEM_SPRITE_OFFSET_Y,
+            ESCAPE_ITEM_SPRITE_DEST_Y,
+            ESCAPE_ITEM_SPRITE_MOVE_FRAMES,
+            ESCAPE_ITEM_SPRITE_MOVE_RADIUS);
+        ctx->common.state++;
         break;
-    case 1:
-        if (XYTransformContext_UpdateAndApplyParabolic(&v0->unk_24[0], &v0->unk_24[1], v0->unk_1C) == 0) {
-            v0->unk_00.state++;
+    case ESCAPE_ITEM_SPRITE_STATE_MOVE:
+        if (XYTransformContext_UpdateAndApplyParabolic(&ctx->pos[0], &ctx->pos[1], ctx->sprite) == FALSE) {
+            ctx->common.state++;
         }
         break;
-    case 2: {
-        BOOL v2 = ManagedSprite_IsAnimated(v0->unk_1C);
-
-        if (v2 == 0) {
-            ManagedSprite_SetExplicitOamMode(v0->unk_1C, GX_OAM_MODE_XLU);
-            v0->unk_20 = 16;
-            v0->unk_21 = 0;
-            BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSys, v0->unk_20, v0->unk_21);
-            v0->unk_00.state++;
+    case ESCAPE_ITEM_SPRITE_STATE_WAIT_FOR_ANIM: {
+        if (!ManagedSprite_IsAnimated(ctx->sprite)) {
+            ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_XLU);
+            ctx->spriteAlpha = ESCAPE_ITEM_SPRITE_MAX_ALPHA;
+            ctx->bgAlpha = ESCAPE_ITEM_SPRITE_MIN_ALPHA;
+            BattleAnimUtil_SetSpriteBgBlending(ctx->common.battleAnimSys, ctx->spriteAlpha, ctx->bgAlpha);
+            ctx->common.state++;
         }
     } break;
-    case 3:
-        if (v0->unk_20 > 0) {
-            v0->unk_20--;
+    case ESCAPE_ITEM_SPRITE_STATE_FADEOUT:
+        if (ctx->spriteAlpha > ESCAPE_ITEM_SPRITE_MIN_ALPHA) {
+            ctx->spriteAlpha--;
         }
 
-        if (v0->unk_21 < 16) {
-            v0->unk_21++;
+        if (ctx->bgAlpha < ESCAPE_ITEM_SPRITE_MAX_ALPHA) {
+            ctx->bgAlpha++;
         }
 
-        G2_ChangeBlendAlpha(v0->unk_20, v0->unk_21);
+        G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
 
-        if (v0->unk_20 == 0) {
-            v0->unk_00.state++;
+        if (ctx->spriteAlpha == ESCAPE_ITEM_SPRITE_MIN_ALPHA) {
+            ctx->common.state++;
         }
         break;
     default:
-        Sprite_DeleteAndFreeResources(v0->unk_1C);
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
-        Heap_Free(v0);
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    ManagedSprite_TickFrame(v0->unk_1C);
-    SpriteSystem_DrawSprites(v0->unk_00.primarySpriteManager);
+    ManagedSprite_TickFrame(ctx->sprite);
+    SpriteSystem_DrawSprites(ctx->common.primarySpriteManager);
 }
 
-void ov12_0222A5C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_EscapeItem(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_0222A4A0 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222A4A0));
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
-    v0->unk_1C = param3;
+    EscapeItemSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(EscapeItemSpriteContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
+    ctx->sprite = sprite;
 
-    ManagedSprite_SetPositionXY(v0->unk_1C, -30, 160);
-    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSys, 2));
+    ManagedSprite_SetPositionXY(ctx->sprite, ESCAPE_ITEM_SPRITE_OFFSET_X, ESCAPE_ITEM_SPRITE_OFFSET_Y);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, BattleAnimSystem_GetBgPriority(ctx->common.battleAnimSys, BATTLE_ANIM_BG_EFFECT));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A4A0, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_EscapeItemSprite, ctx);
 }
 
 void BattleAnimScriptFunc_SetBgGrayscale(BattleAnimSystem *system)
