@@ -82,32 +82,77 @@ enum HelpingHandSpriteState {
 #define HELPING_HAND_SPRITE_PAIR_2         2
 #define HELPING_HAND_SPRITE_PAIR_3         3
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    u8 unk_0C;
-    u8 unk_0D;
-    u8 unk_0E;
-    u8 unk_0F;
-    ManagedSprite *unk_10;
-    XYTransformContext unk_14;
-    f32 unk_38;
-    int *unk_3C;
-} UnkStruct_ov12_0222DC98;
+// -------------------------------------------------------------------
+// Assist Sprite
+// -------------------------------------------------------------------
+#define ASSIST_SPRITE_MAX_PAWS 20
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    u8 unk_04;
-    BattleAnimSystem *unk_08;
-    SpriteSystem *unk_0C;
-    SpriteManager *unk_10;
-    UnkStruct_ov12_0222DC98 unk_14[20];
-    int unk_514[20];
-} UnkStruct_ov12_0222DE24;
+typedef struct AssistPawSprite {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    u8 state;
+    u8 step;
+    u8 delay;
+    u8 destIndex;
+    ManagedSprite *sprite;
+    XYTransformContext pos;
+    f32 scale;
+    int *outerState;
+} AssistPawSprite;
+
+enum AssistPawSpriteState {
+    ASSIST_PAW_SPRITE_STATE_DELAY_1 = 0,
+    ASSIST_PAW_SPRITE_STATE_ENABLE_DRAW,
+    ASSIST_PAW_SPRITE_STATE_GROW,
+    ASSIST_PAW_SPRITE_STATE_SHRINK,
+    ASSIST_PAW_SPRITE_STATE_ADVANCE_OUTER_1,
+    ASSIST_PAW_SPRITE_STATE_DELAY_2,
+    ASSIST_PAW_SPRITE_STATE_SETUP_MOVE,
+    ASSIST_PAW_SPRITE_STATE_MOVE,
+
+    ASSIST_PAW_SPRITE_OUTER_STATE_INIT = 0,
+    ASSIST_PAW_SPRITE_OUTER_STATE_SCALE_DONE,
+    ASSIST_PAW_SPRITE_OUTER_STATE_MOVE,
+    ASSIST_PAW_SPRITE_OUTER_STATE_DONE,
+};
+
+typedef struct AssistSpriteContext {
+    u8 state;
+    u8 unused0;
+    u8 pawCount;
+    u8 unused1;
+    u8 unused2;
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    AssistPawSprite paws[ASSIST_SPRITE_MAX_PAWS];
+    int pawStates[ASSIST_SPRITE_MAX_PAWS];
+} AssistSpriteContext;
+
+enum AssistSpriteState {
+    ASSIST_SPRITE_STATE_WAIT_FOR_SCALE = 0,
+    ASSIST_SPRITE_STATE_BEGIN_MOVE,
+    ASSIST_SPRITE_STATE_WAIT_FOR_DONE,
+    ASSIST_SPRITE_STATE_CLEANUP,
+};
+
+#define ASSIST_SPRITE_VAR_PAW_COUNT          0 // Is overwritten anyway
+#define ASSIST_SPRITE_DEFAULT_PAW_COUNT      12
+#define ASSIST_SPRITE_CONFIG_COUNT           6
+#define ASSIST_SPRITE_PAW_OFFSET_Y           0
+#define ASSIST_SPRITE_PAW_OFFSET_X           1
+#define ASSIST_SPRITE_PAW_RANDOM_Y           2
+#define ASSIST_SPRITE_PAW_RANDOM_X           3
+#define ASSIST_SPRITE_PAW_SCALE              1.0f
+#define ASSIST_SPRITE_PAW_SCALE_STEP         0.1f
+#define ASSIST_SPRITE_PAW_SCALE_STEPS        3
+#define ASSIST_SPRITE_TASK_BASE_PRIORITY     1100
+#define ASSIST_SPRITE_PAW_BASE_DELAY         10
+#define ASSIST_SPRITE_PAW_RANDOM_DELAY       10
+#define ASSIST_SPRITE_PAW_MOVE_DELAY         30
+#define ASSIST_SPRITE_PAW_MOVE_BASE_FRAMES   10
+#define ASSIST_SPRITE_PAW_MOVE_RANDOM_FRAMES 10
 
 // -------------------------------------------------------------------
 // Camouflage
@@ -511,227 +556,220 @@ void BattleAnimSpriteFunc_HelpingHand(BattleAnimSystem *system, SpriteSystem *sp
     BattleAnimSystem_StartAnimTaskEx(system, BattleAnimTask_HelpingHandSprite, ctx, 1100);
 }
 
-static const Point2D Unk_ov12_0223A14A[] = {
-    { 0x0, 0x0 },
-    { 0x80, 0x0 },
-    { 0x100, 0x0 },
-    { 0x0, 0xAA },
-    { 0x80, 0xAA },
-    { 0x100, 0xAA }
+static const Point2D sAssistPawSpriteDestinations[ASSIST_SPRITE_CONFIG_COUNT] = {
+    { 0, 0 },
+    { 128, 0 },
+    { 256, 0 },
+    { 0, 170 },
+    { 128, 170 },
+    { 256, 170 }
 };
 
-static void ov12_0222DC98(SysTask *param0, void *param1)
+static void BattleAnimTask_AssistPaw(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222DC98 *v0 = (UnkStruct_ov12_0222DC98 *)param1;
+    AssistPawSprite *paw = param;
 
-    switch (v0->unk_0C) {
-    case 0:
-        if ((--v0->unk_0E) <= 10) {
-            v0->unk_0C++;
+    switch (paw->state) {
+    case ASSIST_PAW_SPRITE_STATE_DELAY_1:
+        if (--paw->delay <= ASSIST_SPRITE_PAW_BASE_DELAY) {
+            paw->state++;
         }
         break;
-    case 1:
-        if ((++v0->unk_0D) >= 3) {
-            ManagedSprite_SetDrawFlag(v0->unk_10, 1);
-            v0->unk_0D = 0;
-            v0->unk_0C++;
+    case ASSIST_PAW_SPRITE_STATE_ENABLE_DRAW:
+        if (++paw->step >= 3) {
+            ManagedSprite_SetDrawFlag(paw->sprite, TRUE);
+            paw->step = 0;
+            paw->state++;
         }
         break;
-    case 2:
-        if ((++v0->unk_0D) <= 3) {
-            v0->unk_38 += 0.1f;
-            ManagedSprite_SetAffineScale(v0->unk_10, v0->unk_38, v0->unk_38);
+    case ASSIST_PAW_SPRITE_STATE_GROW:
+        if (++paw->step <= ASSIST_SPRITE_PAW_SCALE_STEPS) {
+            paw->scale += ASSIST_SPRITE_PAW_SCALE_STEP;
+            ManagedSprite_SetAffineScale(paw->sprite, paw->scale, paw->scale);
         } else {
-            v0->unk_0D = 0;
-            v0->unk_0C++;
+            paw->step = 0;
+            paw->state++;
         }
         break;
-    case 3:
-        if ((++v0->unk_0D) <= 3) {
-            v0->unk_38 -= 0.1f;
-            ManagedSprite_SetAffineScale(v0->unk_10, v0->unk_38, v0->unk_38);
+    case ASSIST_PAW_SPRITE_STATE_SHRINK:
+        if (++paw->step <= ASSIST_SPRITE_PAW_SCALE_STEPS) {
+            paw->scale -= ASSIST_SPRITE_PAW_SCALE_STEP;
+            ManagedSprite_SetAffineScale(paw->sprite, paw->scale, paw->scale);
         } else {
-            v0->unk_0D = 0;
-            v0->unk_0C++;
+            paw->step = 0;
+            paw->state++;
         }
         break;
-    case 4:
-        if ((--v0->unk_0E) <= 10) {
-            *(v0->unk_3C) = 1;
-            v0->unk_0D = 0;
-            v0->unk_0C++;
+    case ASSIST_PAW_SPRITE_STATE_ADVANCE_OUTER_1:
+        if (--paw->delay <= ASSIST_SPRITE_PAW_BASE_DELAY) {
+            *paw->outerState = ASSIST_PAW_SPRITE_OUTER_STATE_SCALE_DONE;
+            paw->step = 0;
+            paw->state++;
         }
         break;
-    case 5:
-        if ((++v0->unk_0D) > 30) {
-            v0->unk_0D = 0;
-            v0->unk_0C++;
+    case ASSIST_PAW_SPRITE_STATE_DELAY_2:
+        if (++paw->step > ASSIST_SPRITE_PAW_MOVE_DELAY) {
+            paw->step = 0;
+            paw->state++;
             break;
         }
 
-        if ((*v0->unk_3C) == 2) {
-            v0->unk_0C++;
+        if (*paw->outerState == ASSIST_PAW_SPRITE_OUTER_STATE_MOVE) {
+            paw->state++;
         }
         break;
-    case 6: {
-        Point2D v1;
-        int v2;
+    case ASSIST_PAW_SPRITE_STATE_SETUP_MOVE: {
+        Point2D pos;
+        int frames = ASSIST_SPRITE_PAW_MOVE_BASE_FRAMES + (LCRNG_Next() % ASSIST_SPRITE_PAW_MOVE_RANDOM_FRAMES);
 
-        v2 = 10 + (LCRNG_Next() % 10);
-
-        ManagedSprite_GetPositionXY(v0->unk_10, &v1.x, &v1.y);
-        PosLerpContext_Init(&v0->unk_14, v1.x, Unk_ov12_0223A14A[v0->unk_0F].x, v1.y, Unk_ov12_0223A14A[v0->unk_0F].y, v2);
-        v0->unk_0C++;
+        ManagedSprite_GetPositionXY(paw->sprite, &pos.x, &pos.y);
+        PosLerpContext_Init(
+            &paw->pos,
+            pos.x,
+            sAssistPawSpriteDestinations[paw->destIndex].x,
+            pos.y,
+            sAssistPawSpriteDestinations[paw->destIndex].y,
+            frames);
+        paw->state++;
     } break;
-    case 7: {
-        BOOL v3;
-
-        v3 = PosLerpContext_UpdateAndApplyToSprite(&v0->unk_14, v0->unk_10);
-
-        if (v3 == 0) {
-            ManagedSprite_SetDrawFlag(v0->unk_10, 0);
-            v0->unk_0C++;
+    case ASSIST_PAW_SPRITE_STATE_MOVE: {
+        BOOL active = PosLerpContext_UpdateAndApplyToSprite(&paw->pos, paw->sprite);
+        if (active == FALSE) {
+            ManagedSprite_SetDrawFlag(paw->sprite, FALSE);
+            paw->state++;
         } else {
             break;
         }
     }
     default:
-        *(v0->unk_3C) = 3;
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+        *(paw->outerState) = ASSIST_PAW_SPRITE_OUTER_STATE_DONE;
+        BattleAnimSystem_EndAnimTask(paw->battleAnimSys, task);
         break;
     }
 
-    ManagedSprite_TickFrame(v0->unk_10);
+    ManagedSprite_TickFrame(paw->sprite);
 }
 
-static void ov12_0222DE24(SysTask *param0, void *param1)
+static void BattleAnimTask_AssistSprite(SysTask *task, void *param)
 {
-    int v0;
-    UnkStruct_ov12_0222DE24 *v1 = (UnkStruct_ov12_0222DE24 *)param1;
+    int i;
+    AssistSpriteContext *ctx = param;
 
-    switch (v1->unk_00) {
-    case 0: {
-        BOOL v2 = 1;
+    switch (ctx->state) {
+    case ASSIST_SPRITE_STATE_WAIT_FOR_SCALE: {
+        BOOL scaleDone = TRUE;
 
-        for (v0 = 0; v0 < v1->unk_02; v0++) {
-            if (v1->unk_514[v0] != 1) {
-                v2 = 0;
+        for (i = 0; i < ctx->pawCount; i++) {
+            if (ctx->pawStates[i] != ASSIST_PAW_SPRITE_OUTER_STATE_SCALE_DONE) {
+                scaleDone = FALSE;
                 break;
             }
         }
 
-        if (v2 == 1) {
-            v1->unk_00++;
+        if (scaleDone == TRUE) {
+            ctx->state++;
         }
     } break;
-    case 1:
-        for (v0 = 0; v0 < v1->unk_02; v0++) {
-            v1->unk_514[v0] = 2;
+    case ASSIST_SPRITE_STATE_BEGIN_MOVE:
+        for (i = 0; i < ctx->pawCount; i++) {
+            ctx->pawStates[i] = ASSIST_PAW_SPRITE_OUTER_STATE_MOVE;
         }
 
-        v1->unk_00++;
+        ctx->state++;
         break;
-    case 2: {
-        BOOL v3 = 1;
+    case ASSIST_SPRITE_STATE_WAIT_FOR_DONE: {
+        BOOL done = TRUE;
 
-        for (v0 = 0; v0 < v1->unk_02; v0++) {
-            if (v1->unk_514[v0] != 3) {
-                v3 = 0;
+        for (i = 0; i < ctx->pawCount; i++) {
+            if (ctx->pawStates[i] != ASSIST_PAW_SPRITE_OUTER_STATE_DONE) {
+                done = FALSE;
                 break;
             }
         }
 
-        if (v3 == 1) {
-            v1->unk_00++;
+        if (done == TRUE) {
+            ctx->state++;
         }
     } break;
-    case 3:
-        for (v0 = 0; v0 < v1->unk_02; v0++) {
-            Sprite_DeleteAndFreeResources(v1->unk_14[v0].unk_10);
+    case ASSIST_SPRITE_STATE_CLEANUP:
+        for (i = 0; i < ctx->pawCount; i++) {
+            Sprite_DeleteAndFreeResources(ctx->paws[i].sprite);
         }
 
-        v1->unk_00++;
+        ctx->state++;
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v1->unk_08, param0);
-        Heap_Free(v1);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v1->unk_10);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-static const s16 Unk_ov12_0223A19A[][4] = {
-    { 0x1E, 0x28, 0x32, 0x35 },
-    { 0x1E, 0x5D, 0x32, 0x35 },
-    { 0x1E, 0x92, 0x32, 0x35 },
-    { 0x50, 0x28, 0x32, 0x35 },
-    { 0x50, 0x5D, 0x32, 0x35 },
-    { 0x50, 0x92, 0x32, 0x35 }
+static const s16 sAssistPawOffsets[ASSIST_SPRITE_CONFIG_COUNT][4] = {
+    [0] = { [ASSIST_SPRITE_PAW_OFFSET_X] = 40, [ASSIST_SPRITE_PAW_OFFSET_Y] = 30, [ASSIST_SPRITE_PAW_RANDOM_X] = 53, [ASSIST_SPRITE_PAW_RANDOM_Y] = 50 },
+    [1] = { [ASSIST_SPRITE_PAW_OFFSET_X] = 93, [ASSIST_SPRITE_PAW_OFFSET_Y] = 30, [ASSIST_SPRITE_PAW_RANDOM_X] = 53, [ASSIST_SPRITE_PAW_RANDOM_Y] = 50 },
+    [2] = { [ASSIST_SPRITE_PAW_OFFSET_X] = 146, [ASSIST_SPRITE_PAW_OFFSET_Y] = 30, [ASSIST_SPRITE_PAW_RANDOM_X] = 53, [ASSIST_SPRITE_PAW_RANDOM_Y] = 50 },
+    [3] = { [ASSIST_SPRITE_PAW_OFFSET_X] = 40, [ASSIST_SPRITE_PAW_OFFSET_Y] = 80, [ASSIST_SPRITE_PAW_RANDOM_X] = 53, [ASSIST_SPRITE_PAW_RANDOM_Y] = 50 },
+    [4] = { [ASSIST_SPRITE_PAW_OFFSET_X] = 93, [ASSIST_SPRITE_PAW_OFFSET_Y] = 80, [ASSIST_SPRITE_PAW_RANDOM_X] = 53, [ASSIST_SPRITE_PAW_RANDOM_Y] = 50 },
+    [5] = { [ASSIST_SPRITE_PAW_OFFSET_X] = 146, [ASSIST_SPRITE_PAW_OFFSET_Y] = 80, [ASSIST_SPRITE_PAW_RANDOM_X] = 53, [ASSIST_SPRITE_PAW_RANDOM_Y] = 50 }
 };
 
-void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Assist(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    int v0;
-    int v1;
-    UnkStruct_ov12_0222DE24 *v2;
-    SpriteTemplate v3;
+    SpriteTemplate template;
 
-    v2 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222DE24));
-    GF_ASSERT(v2 != NULL);
+    AssistSpriteContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(AssistSpriteContext));
+    GF_ASSERT(ctx != NULL);
 
-    v2->unk_01 = 0;
-    v2->unk_00 = 0;
-    v2->unk_0C = param1;
-    v2->unk_10 = param2;
-    v2->unk_08 = param0;
+    ctx->unused0 = 0;
+    ctx->state = ASSIST_SPRITE_STATE_WAIT_FOR_SCALE;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->battleAnimSys = system;
 
-    v3 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    BattleAnimUtil_SetSpriteBgBlending(v2->unk_08, 0xffffffff, 0xffffffff);
+    template = BattleAnimSystem_GetLastSpriteTemplate(system);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
 
-    v2->unk_02 = BattleAnimSystem_GetScriptVar(v2->unk_08, 0);
-    v2->unk_02 = 12;
+    ctx->pawCount = BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, ASSIST_SPRITE_VAR_PAW_COUNT);
+    ctx->pawCount = ASSIST_SPRITE_DEFAULT_PAW_COUNT;
 
-    {
-        s16 v4, v5;
-        ManagedSprite *v6;
+    ctx->paws[0].sprite = sprite;
+    int posOffsetIdx = 0;
 
-        v2->unk_14[0].unk_10 = param3;
-        v0 = 0;
-
-        for (v1 = 0; v1 < v2->unk_02; v1++) {
-            if (v1 != 0) {
-                v2->unk_14[v1].unk_10 = SpriteSystem_NewSprite(v2->unk_0C, v2->unk_10, &v3);
-            }
-
-            v6 = v2->unk_14[v1].unk_10;
-
-            v2->unk_14[v1].unk_0C = 0;
-            v2->unk_14[v1].unk_0D = 0;
-            v2->unk_14[v1].unk_0E = 10 + (LCRNG_Next() % 10) + v1;
-            v2->unk_14[v1].unk_0F = (LCRNG_Next() % 6);
-            v2->unk_14[v1].unk_38 = 1.0f;
-            v2->unk_14[v1].unk_00 = v2->unk_08;
-            v2->unk_14[v1].unk_04 = v2->unk_0C;
-            v2->unk_14[v1].unk_08 = v2->unk_10;
-            v2->unk_14[v1].unk_3C = &v2->unk_514[v1];
-
-            v4 = Unk_ov12_0223A19A[v0][1] + (LCRNG_Next() % Unk_ov12_0223A19A[v0][3]);
-            v5 = Unk_ov12_0223A19A[v0][0] + (LCRNG_Next() % Unk_ov12_0223A19A[v0][2]);
-
-            ManagedSprite_SetPositionXY(v6, v4, v5);
-            ManagedSprite_SetAffineOverwriteMode(v6, AFFINE_OVERWRITE_MODE_DOUBLE);
-            ManagedSprite_SetAffineScale(v6, v2->unk_14[v1].unk_38, v2->unk_14[v1].unk_38);
-            ManagedSprite_SetDrawFlag(v6, FALSE);
-
-            BattleAnimSystem_StartAnimTaskEx(param0, ov12_0222DC98, &v2->unk_14[v1], 1100 - 1);
-
-            v0++;
-            v0 %= 6;
+    for (int i = 0; i < ctx->pawCount; i++) {
+        if (i != 0) {
+            ctx->paws[i].sprite = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteMan, &template);
         }
+
+        ManagedSprite *pawSprite = ctx->paws[i].sprite;
+
+        ctx->paws[i].state = 0;
+        ctx->paws[i].step = 0;
+        ctx->paws[i].delay = ASSIST_SPRITE_PAW_BASE_DELAY + (LCRNG_Next() % ASSIST_SPRITE_PAW_RANDOM_DELAY) + i;
+        ctx->paws[i].destIndex = LCRNG_Next() % ASSIST_SPRITE_CONFIG_COUNT;
+        ctx->paws[i].scale = ASSIST_SPRITE_PAW_SCALE;
+        ctx->paws[i].battleAnimSys = ctx->battleAnimSys;
+        ctx->paws[i].spriteSys = ctx->spriteSys;
+        ctx->paws[i].spriteMan = ctx->spriteMan;
+        ctx->paws[i].outerState = &ctx->pawStates[i];
+
+        s16 x = sAssistPawOffsets[posOffsetIdx][ASSIST_SPRITE_PAW_OFFSET_X] + (LCRNG_Next() % sAssistPawOffsets[posOffsetIdx][ASSIST_SPRITE_PAW_RANDOM_X]);
+        s16 y = sAssistPawOffsets[posOffsetIdx][ASSIST_SPRITE_PAW_OFFSET_Y] + (LCRNG_Next() % sAssistPawOffsets[posOffsetIdx][ASSIST_SPRITE_PAW_RANDOM_Y]);
+
+        ManagedSprite_SetPositionXY(pawSprite, x, y);
+        ManagedSprite_SetAffineOverwriteMode(pawSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetAffineScale(pawSprite, ctx->paws[i].scale, ctx->paws[i].scale);
+        ManagedSprite_SetDrawFlag(pawSprite, FALSE);
+
+        BattleAnimSystem_StartAnimTaskEx(system, BattleAnimTask_AssistPaw, &ctx->paws[i], ASSIST_SPRITE_TASK_BASE_PRIORITY - 1);
+
+        posOffsetIdx++;
+        posOffsetIdx %= ASSIST_SPRITE_CONFIG_COUNT;
     }
 
-    BattleAnimSystem_StartAnimTaskEx(param0, ov12_0222DE24, v2, 1100 + 1);
+    BattleAnimSystem_StartAnimTaskEx(system, BattleAnimTask_AssistSprite, ctx, ASSIST_SPRITE_TASK_BASE_PRIORITY + 1);
 }
 
 static void BattleAnimTask_Camouflage(SysTask *task, void *param)

@@ -7,7 +7,7 @@
 
 void BattleAnimSpriteFunc_Taunt(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void BattleAnimSpriteFunc_HelpingHand(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
-void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
+void BattleAnimSpriteFunc_Assist(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void BattleAnimScriptFunc_Camouflage(BattleAnimSystem *system);
 void BattleAnimUtil_TickSpriteIfVisible(ManagedSprite *param0);
 void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
