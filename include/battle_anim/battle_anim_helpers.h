@@ -218,7 +218,11 @@ void BgScrollContext_Free(BgScrollContext *ctx);
 void *BgScrollContext_GetWriteBuffer(const BgScrollContext *ctx);
 void BgScrollContext_Stop(BgScrollContext *ctx);
 u32 BattleAnimUtil_MakeBgOffsetValue(u16 x, u16 y);
+#ifdef SDK_BUILD_ARM
 u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID);
+#else
+u64 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID);
+#endif
 void ov12_02226728(s16 param0, s16 param1, s16 param2, s16 param3, s16 *param4, s16 *param5);
 void ov12_02226744(s16 param0, s16 param1, s16 param2, s16 param3, fx32 *param4);
 void ov12_0222676C(s16 param0, s16 param1, s16 param2, s16 param3, u16 *param4);

@@ -920,7 +920,11 @@ BgScrollContext *BgScrollContext_New(u8 startY, u8 endY, u16 angleIncrement, fx3
 
     memset(ctx, 0, sizeof(BgScrollContext));
 
+    #ifdef SDK_BUILD_ARM
     u32 offsetReg = BattleAnimUtil_GetHOffsetRegisterForBg(bgID);
+    #else
+    u64 offsetReg = BattleAnimUtil_GetHOffsetRegisterForBg(bgID);
+    #endif
     ctx->screenScrollMgr = ScreenScrollManager_New(heapID);
 
     ScreenScrollManager_ScrollX(ctx->screenScrollMgr, startY, endY, angleIncrement, amplitude, speed, offsetReg, initValue, priority);
@@ -959,17 +963,37 @@ u32 BattleAnimUtil_MakeBgOffsetValue(u16 x, u16 y)
     return (y << BG_OFFSET_Y_SHIFT) | x;
 }
 
+#ifdef SDK_BUILD_ARM
 u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
+#else
+u64 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
+#endif
 {
     switch (bgID) {
     case BATTLE_BG_INTERNAL_ID_UNUSED:
+        #ifdef SDK_BUILD_ARM
         return (u32)REG_BG0HOFS_ADDR;
+        #else
+        return (u64)REG_BG0HOFS_ADDR;
+        #endif
     case BATTLE_BG_INTERNAL_ID_WINDOW:
+        #ifdef SDK_BUILD_ARM
         return (u32)REG_BG1HOFS_ADDR;
+        #else
+        return (u64)REG_BG1HOFS_ADDR;
+        #endif
     case BATTLE_BG_INTERNAL_ID_BASE:
+        #ifdef SDK_BUILD_ARM
         return (u32)REG_BG2HOFS_ADDR;
+        #else
+        return (u64)REG_BG2HOFS_ADDR;
+        #endif
     case BATTLE_BG_INTERNAL_ID_EFFECT:
+        #ifdef SDK_BUILD_ARM
         return (u32)REG_BG3HOFS_ADDR;
+        #else
+        return (u64)REG_BG3HOFS_ADDR;
+        #endif
     }
 }
 
