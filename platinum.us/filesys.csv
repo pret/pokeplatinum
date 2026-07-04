@@ -334,7 +334,7 @@ res/npc_trades.narc,/fielddata/pokemon_trade/fld_trade.narc
 res/graphics/pokedex/zukan.narc,/resource/eng/zukan/zukan.narc
 res/prebuilt/resource/eng/batt_rec/batt_rec_gra.narc,/resource/eng/batt_rec/batt_rec_gra.narc
 res/prebuilt/resource/eng/wifi_lobby_minigame/wlmngm_tool.narc,/resource/eng/wifi_lobby_minigame/wlmngm_tool.narc
-res/prebuilt/resource/eng/frontier_graphic/frontier_bg.narc,/resource/eng/frontier_graphic/frontier_bg.narc
+res/graphics/frontier/backgrounds/frontier_backgrounds.narc,/resource/eng/frontier_graphic/frontier_bg.narc
 res/prebuilt/resource/eng/frontier_graphic/frontier_obj.narc,/resource/eng/frontier_graphic/frontier_obj.narc
 res/prebuilt/resource/eng/scratch/scratch.narc,/resource/eng/scratch/scratch.narc
 res/words/word_bank.narc,/resource/eng/pms_aikotoba/pms_aikotoba.narc

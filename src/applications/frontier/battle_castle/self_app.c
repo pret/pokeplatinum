@@ -33,7 +33,6 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
-#include "narc_frontier_bg.h"
 #include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
@@ -60,6 +59,7 @@
 #include "unk_0209BA80.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 #include "res/text/bank/battle_castle_self_app.h"
 
 FS_EXTERN_OVERLAY(overlay104);
@@ -1453,7 +1453,7 @@ static void InitGraphicsPlane(void)
 static void LoadAssets(BattleCastleSelfApp *app)
 {
 
-    app->narc = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_BATTLE_CASTLE_APP);
+    app->narc = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_BATTLE_CASTLE_APP);
 
     LoadBackgrounds(app);
     InitSpriteManager(app);
@@ -1728,19 +1728,19 @@ static void InitBackgrounds(BgConfig *bgConfig)
 
 static void LoadMainBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_castle_self_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
 
     if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_SOLO_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_castle_self_app_solo_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_MULTI_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_castle_self_app_multi_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
     }
 }
 
 static void LoadPalette(void)
 {
     NNSG2dPaletteData *plttData;
-    void *pltt = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, BATTLE_CASTLE_SELF_APP_PLTT, &plttData, HEAP_ID_BATTLE_CASTLE_APP);
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_FRONTIER_BACKGROUNDS, battle_castle_self_app_NCLR, &plttData, HEAP_ID_BATTLE_CASTLE_APP);
 
     DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 4);
     GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 4);
@@ -1749,14 +1749,14 @@ static void LoadPalette(void)
 
 static void LoadSummaryBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_SUMMARY_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_castle_self_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_castle_self_app_summary_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
 }
 
 static void LoadPalette2(void)
 {
     NNSG2dPaletteData *plttData;
-    void *pltt = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, BATTLE_CASTLE_SELF_APP_PLTT, &plttData, HEAP_ID_BATTLE_CASTLE_APP);
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_FRONTIER_BACKGROUNDS, battle_castle_self_app_NCLR, &plttData, HEAP_ID_BATTLE_CASTLE_APP);
 
     DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 4);
     GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 4);
@@ -1766,21 +1766,21 @@ static void LoadPalette2(void)
 
 static void LoadMovesListBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_MOVES_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_castle_self_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_castle_self_app_moves_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
 }
 
 static void LoadItemSelectBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_ITEMS_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_castle_self_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_castle_self_app_items_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
 }
 
 static void LoadSubScreenBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
-    Graphics_LoadPaletteFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_PLTT, PAL_LOAD_SUB_BG, 0, PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_frontier_app_sub_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_frontier_app_sub_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadPaletteFromOpenNARC(app->narc, battle_frontier_app_sub_NCLR, PAL_LOAD_SUB_BG, 0, PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_CASTLE_APP);
 }
 
 static u8 PrintLeftAlignedMessageWithBg(BattleCastleSelfApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font)

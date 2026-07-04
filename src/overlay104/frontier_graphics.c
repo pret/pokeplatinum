@@ -41,7 +41,6 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
-#include "narc_frontier_bg.h"
 #include "network_icon.h"
 #include "palette.h"
 #include "render_text.h"
@@ -59,6 +58,7 @@
 #include "vram_transfer.h"
 
 #include "res/fonts/pl_font.naix"
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 
 static void VBlankCallback(void *data);
 static void DummyExecuteOnVBlank(SysTask *task, void *data);
@@ -601,11 +601,11 @@ static void LoadMessageBoxAndWindowGraphics(FrontierGraphics *graphics)
 
 static void LoadSubScreenBackground(FrontierGraphics *graphics)
 {
-    NARC *narc = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
+    NARC *narc = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILES, graphics->bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_94);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILEMAP, graphics->bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_94);
-    PaletteData_LoadBufferFromFileStart(graphics->plttData, NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, BATTLE_FRONTIER_APP_SUB_SCREEN_PLTT, HEAP_ID_94, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, battle_frontier_app_sub_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_94);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, battle_frontier_app_sub_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_94);
+    PaletteData_LoadBufferFromFileStart(graphics->plttData, NARC_INDEX_FRONTIER_BACKGROUNDS, battle_frontier_app_sub_NCLR, HEAP_ID_94, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 0);
     NARC_dtor(narc);
 }
 

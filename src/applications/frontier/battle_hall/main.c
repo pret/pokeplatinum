@@ -25,7 +25,6 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
-#include "narc_frontier_bg.h"
 #include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
@@ -50,6 +49,7 @@
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 #include "res/text/bank/battle_hall_scene.h"
 
 // States of the overall app
@@ -800,7 +800,7 @@ static void InitGraphicsPlane(void)
 
 static void LoadAssets(BattleHallApp *app)
 {
-    app->narc = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_BATTLE_HALL_APP);
+    app->narc = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_BATTLE_HALL_APP);
 
     LoadBackgrounds(app);
     InitSpriteManager(app);
@@ -1000,15 +1000,15 @@ static void InitBackgrounds(BgConfig *bgConfig)
 
 static void LoadMainScreenBackground(BattleHallApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_HALL_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_HALL_APP_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_hall_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_hall_app_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
 }
 
 static void LoadPalette(void)
 {
     NNSG2dPaletteData *plttData;
 
-    void *pltt = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, BATTLE_HALL_APP_PLTT, &plttData, HEAP_ID_BATTLE_HALL_APP);
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_FRONTIER_BACKGROUNDS, battle_hall_app_NCLR, &plttData, HEAP_ID_BATTLE_HALL_APP);
 
     DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 6);
     GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 6);
@@ -1017,9 +1017,9 @@ static void LoadPalette(void)
 
 static void LoadSubScreenBackground(BattleHallApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
-    Graphics_LoadPaletteFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_PLTT, PAL_LOAD_SUB_BG, 0, 0x20, HEAP_ID_BATTLE_HALL_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_frontier_app_sub_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_frontier_app_sub_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
+    Graphics_LoadPaletteFromOpenNARC(app->narc, battle_frontier_app_sub_NCLR, PAL_LOAD_SUB_BG, 0, 0x20, HEAP_ID_BATTLE_HALL_APP);
 }
 
 static u8 PrintMessage(BattleHallApp *app, Window *window, int messageID, u32 x, u32 y, u32 renderDelay, u8 textColor, u8 shadowColor, u8 bgColor, u8 fontID)

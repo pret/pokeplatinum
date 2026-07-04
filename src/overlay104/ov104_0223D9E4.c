@@ -12,6 +12,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
+
 typedef struct {
     SysTask *unk_00;
     BgConfig *unk_04;
@@ -55,8 +57,8 @@ static void ov104_0223DC04(UnkStruct_ov104_0223DC04 *param0);
 static void ov104_0223DC18(SysTask *param0, void *param1);
 
 static const u16 Unk_ov104_022418B0[] = {
-    0x14,
-    0x15
+    battle_hall_battle_room_NSCR_lz,
+    battle_hall_battle_room_dupe_NSCR_lz
 };
 
 UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BgConfig *param0, PaletteData *param1)
@@ -67,7 +69,7 @@ UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BgConfig *param0, PaletteData *param1)
     v0->unk_00 = ov104_0223DA40(param0);
     v0->unk_04 = ov104_0223DBB8(param1);
 
-    G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG2), (GX_BLEND_BGALL | GX_BLEND_PLANEMASK_OBJ), 8, 9);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_BGALL | GX_BLEND_PLANEMASK_OBJ, 8, 9);
 
     return v0;
 }
@@ -95,7 +97,7 @@ static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0)
         NNSG2dScreenData *v3;
         int v4;
 
-        v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
+        v1 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
 
         for (v4 = 0; v4 < 2; v4++) {
             v2 = Graphics_GetScrnDataFromOpenNARC(v1, Unk_ov104_022418B0[v4], 1, &v3, HEAP_ID_94);
@@ -111,21 +113,21 @@ static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0)
         void *v6;
         NNSG2dCharacterData *v7;
 
-        v5 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
+        v5 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
 
-        v6 = Graphics_GetCharDataFromOpenNARC(v5, 14, 1, &v7, HEAP_ID_94);
+        v6 = Graphics_GetCharDataFromOpenNARC(v5, battle_hall_battle_room_NCGR_lz, 1, &v7, HEAP_ID_94);
         MI_CpuCopy32(v7->pRawData, v0->unk_2008[0], v7->szByte);
 
         Heap_Free(v6);
 
-        v6 = Graphics_GetCharDataFromOpenNARC(v5, 15, 1, &v7, HEAP_ID_94);
+        v6 = Graphics_GetCharDataFromOpenNARC(v5, battle_hall_battle_room_2_NCGR_lz, 1, &v7, HEAP_ID_94);
         MI_CpuCopy32(v7->pRawData, v0->unk_2008[1], v7->szByte);
 
         Heap_Free(v6);
         NARC_dtor(v5);
     }
 
-    v0->unk_00 = SysTask_Start(ov104_0223DB48, v0, (80000 - 500));
+    v0->unk_00 = SysTask_Start(ov104_0223DB48, v0, 80000 - 500);
 
     return v0;
 }
@@ -173,7 +175,7 @@ static UnkStruct_ov104_0223DC04 *ov104_0223DBB8(PaletteData *param0)
         MI_CpuCopy16(&v1[16 * 5], v0->unk_08, 3 * 16 * sizeof(u16));
     }
 
-    v0->unk_00 = SysTask_Start(ov104_0223DC18, v0, ((80000 - 500) + 1));
+    v0->unk_00 = SysTask_Start(ov104_0223DC18, v0, (80000 - 500) + 1);
 
     return v0;
 }
