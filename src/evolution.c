@@ -106,11 +106,11 @@ EvolutionData *Evolution_Begin(Party *party, Pokemon *mon, int targetSpecies, Op
 
     evolutionData->paletteData = PaletteData_New(heapID);
 
-    PaletteData_SetAutoTransparent(evolutionData->paletteData, 1);
-    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_MAIN_BG, 0x200, heapID);
-    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_SUB_BG, 0x200, heapID);
-    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_MAIN_OBJ, ((16 - 2) * 16) * sizeof(u16), heapID);
-    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_SUB_OBJ, 0x200, heapID);
+    PaletteData_SetAutoTransparent(evolutionData->paletteData, TRUE);
+    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, heapID);
+    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, heapID);
+    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 14, heapID);
+    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, heapID);
 
     evolutionData->bgConfig = BgConfig_New(heapID);
     evolutionData->window = Window_New(heapID, 1);
@@ -901,15 +901,15 @@ static void Evolution_InitGraphics(EvolutionData *evolutionData, BgConfig *bgCon
     ReplaceTransparentTiles(bgConfig, BG_LAYER_MAIN_1, 1, 10, frame, evolutionData->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, sinnoh_document_NCGR, bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, evolutionData->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, national_dex_document_NCGR, bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, evolutionData->heapID);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, sinnoh_document_NSCR, evolutionData->heapID, PLTTBUF_MAIN_BG, 0x20 * 2, 0);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), evolutionData->heapID, PLTTBUF_MAIN_BG, 0x20, 10 * 0x10);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, national_dex_blank_NCLR, evolutionData->heapID, PLTTBUF_MAIN_BG, 0x20, 0xb * 0x10);
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, sinnoh_document_NSCR, evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_10));
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, national_dex_blank_NCLR, evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_11));
     LoadStandardWindowTiles(evolutionData->bgConfig, BG_LAYER_MAIN_2, 1, 0, evolutionData->heapID);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), evolutionData->heapID, PLTTBUF_MAIN_BG, 0x20, 8 * 0x10);
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_8));
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, sinnoh_blank_NSCR, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, evolutionData->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, national_dex_blank_NSCR, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, evolutionData->heapID);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__POKETCH, 12, evolutionData->heapID, PLTTBUF_SUB_BG, 0x20 * 1, 0);
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__POKETCH, 12, evolutionData->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_0));
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);

@@ -935,7 +935,7 @@ static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
     Bg_LoadPalette(BG_LAYER_MAIN_3, plttData->pRawData, plttData->szByte, 0);
 
     u16 *palette = plttData->pRawData;
-    memcpy(application->colors, &palette[PLTT_DEST(3)], NUM_MENU_COLORS * sizeof(u16));
+    memcpy(application->colors, &palette[PLTT_DEST(PLTT_3)], NUM_MENU_COLORS * sizeof(u16));
     Heap_FreeExplicit(HEAP_ID_PARTY_MENU, nclr);
 
     Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_PARTY_MENU);

@@ -254,7 +254,7 @@ static void ov95_02247AF0(UnkStruct_ov95_0224773C *param0, fx32 param1, fx32 par
     CameraAngle v0;
     VecFx32 v1;
 
-    param0->camera = Camera_Alloc(58);
+    param0->camera = Camera_Alloc(HEAP_ID_58);
     param0->unk_04.x = param1;
     param0->unk_04.y = param2;
     param0->unk_04.z = param3;

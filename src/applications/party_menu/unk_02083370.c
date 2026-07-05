@@ -319,7 +319,7 @@ static void PartyMenu_SelectMail(PartyMenuApplication *application, int *partyMe
 
     Window_DrawStandardFrame(&application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL], 1, 1, 14);
 
-    application->contextMenu = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
+    application->contextMenu = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_PARTY_MENU, PAD_BUTTON_B);
     *partyMenuState = PARTY_MENU_STATE_HANDLE_CONTEXT_MENU_INPUT;
 }
 

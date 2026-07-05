@@ -633,9 +633,9 @@ static void InitWindows(PoffinManager *app)
 
     LoadStandardWindowGraphics(app->bgConfig, BG_LAYER_MAIN_1, 31, 15, STANDARD_WINDOW_SYSTEM, app->heapID);
     LoadMessageBoxGraphics(app->bgConfig, BG_LAYER_MAIN_1, 1, 14, Options_Frame(app->data->options), app->heapID);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), app->heapID);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), app->heapID);
-    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(13), app->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), app->heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), app->heapID);
+    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_13), app->heapID);
 
     for (int i = 0; i < NUM_WINDOWS; i++) {
         Window_Add(app->bgConfig, &app->windows[i], windowParams[i].bgLayer, windowParams[i].left, windowParams[i].top, windowParams[i].width, windowParams[i].height, windowParams[i].palette, windowParams[i].baseTile);

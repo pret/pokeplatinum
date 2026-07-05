@@ -9904,7 +9904,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         BattleSystem_SetHealthboxPriority(data->battleSys, 0 + 2); // gauge's default is 0
 
         LoadStandardWindowTiles(bgl, 2, 1, 0, HEAP_ID_BATTLE);
-        PaletteData_LoadBufferFromFileStart(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_BATTLE, 0, 0x20, 8 * 0x10);
+        PaletteData_LoadBufferFromFileStart(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_8));
         Window_Add(bgl, window, 2, 17, 7, 14, 12, 11, 9 + 1);
         Window_FillTilemap(window, 0xFF);
         Window_DrawStandardFrame(window, 0, 1, 8);
@@ -10623,7 +10623,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
         if (PaletteData_GetSelectedBuffersMask(paletteData) == 0) {
             data->seqNum = SEQ_CATCH_MON_PRINT_YES_NO_GIVE_NICKNAME;
             sub_02015738(BattleSystem_GetPaletteAnimator(data->battleSys), 0);
-            PaletteData_SetAutoTransparent(paletteData, 1);
+            PaletteData_SetAutoTransparent(paletteData, TRUE);
         }
         break;
     case SEQ_CATCH_MON_PRINT_YES_NO_GIVE_NICKNAME:

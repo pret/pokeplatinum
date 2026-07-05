@@ -377,7 +377,7 @@ static void ov101_021D121C(UnkStruct_ov101_021D13C8 *param0)
     void *v0 = ov101_021D19E4(param0, 3, 0);
 
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_448);
-    Bg_LoadPalette(1, param0->unk_448->pRawData, 32 * 13, 32 * 0);
+    Bg_LoadPalette(BG_LAYER_MAIN_1, param0->unk_448->pRawData, PALETTE_SIZE_BYTES * 13, 32 * 0);
     Heap_Free(v0);
 
     v0 = ov101_021D19E4(param0, 0, 0);
@@ -404,7 +404,7 @@ static void ov101_021D121C(UnkStruct_ov101_021D13C8 *param0)
 
     v0 = ov101_021D19E4(param0, 3, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_448);
-    Bg_LoadPalette(7, param0->unk_448->pRawData, 32 * 13, 32 * 0);
+    Bg_LoadPalette(BG_LAYER_SUB_3, param0->unk_448->pRawData, PALETTE_SIZE_BYTES * 13, 32 * 0);
     Heap_Free(v0);
 
     v0 = ov101_021D19E4(param0, 2, 0);
@@ -426,7 +426,7 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
 
     LoadStandardWindowGraphics(param0->unk_43C, BG_LAYER_MAIN_0, 1, 15, 0, HEAP_ID_79);
     LoadMessageBoxGraphics(param0->unk_43C, BG_LAYER_MAIN_0, 1 + (18 + 12), 14, param0->msgBoxFrame, HEAP_ID_79);
-    Font_LoadScreenIndicatorsPalette(0, 15 * 32, HEAP_ID_79);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_15), HEAP_ID_79);
 
     v1->unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0544, HEAP_ID_79);
     v1->unk_04 = StringTemplate_Default(HEAP_ID_79);

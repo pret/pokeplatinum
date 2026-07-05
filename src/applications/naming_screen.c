@@ -1841,7 +1841,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         32 * 14 * 2,
         TRUE,
         HEAP_ID_NAMING_SCREEN_APP);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, 12 * 32, HEAP_ID_NAMING_SCREEN_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_NAMING_SCREEN_APP);
     LoadMessageBoxGraphics(
         namingScreen->bgConfig,
         BG_LAYER_SUB_0,
@@ -1849,7 +1849,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         10,
         Options_Frame(namingScreen->options),
         HEAP_ID_NAMING_SCREEN_APP);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, 12 * 32, HEAP_ID_NAMING_SCREEN_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_NAMING_SCREEN_APP);
 
     namingScreen->charDataAlloc = Graphics_GetCharDataFromOpenNARC(
         narc,

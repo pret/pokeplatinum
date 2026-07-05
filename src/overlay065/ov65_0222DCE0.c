@@ -1440,8 +1440,8 @@ static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     Graphics_LoadPaletteFromOpenNARC(param1, 3, 0, 0, 0, HEAP_ID_54);
     Graphics_LoadPaletteFromOpenNARC(param1, 3, 4, 0, 0, HEAP_ID_54);
 
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_54);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, HEAP_ID_54);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_54);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_54);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 0, 0, 0, 0, HEAP_ID_54);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 0, 0, 0, 0, HEAP_ID_54);
@@ -5079,7 +5079,7 @@ static void ov65_022332FC(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, enum He
     param0->unk_BE0.unk_44 = Graphics_GetScrnDataFromOpenNARC(param1, 28, 0, &param0->unk_BE0.unk_48, heapID);
 
     ov65_022335F8(param0->unk_BE0.unk_48, 0 + 48);
-    Font_LoadScreenIndicatorsPalette(4, 15 * 32, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_15), heapID);
 
     for (v0 = 0; v0 < 8; v0++) {
         v2 = v0 / 4;

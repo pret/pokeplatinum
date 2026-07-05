@@ -77,8 +77,8 @@ static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 18, v1, 5, 0, 0, 0, HEAP_ID_111);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 20, v1, 5, 0, 0, 0, HEAP_ID_111);
-    PaletteData_LoadBufferFromFileStart(v4, 172, 19, 111, 1, 0x20 * 2, 0);
-    PaletteData_LoadBufferFromFileStart(v4, 172, 19, 111, 0, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_ARC__DEMO_TENGAN_GRA, 19, HEAP_ID_111, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 2, 0);
+    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_ARC__DEMO_TENGAN_GRA, 19, HEAP_ID_111, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, 0);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, PLTTBUF_SUB_OBJ, v2, v3, v0, 50, FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
     SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, FALSE, v5);

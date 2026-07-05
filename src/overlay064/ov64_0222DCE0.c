@@ -1023,7 +1023,7 @@ static void ov64_0222E620(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_
 {
     int v0 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
-    Font_LoadScreenIndicatorsPalette(0, 7 * 0x20, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_7), heapID);
     LoadMessageBoxGraphics(param0->unk_00, Unk_ov64_02232258[1], 1 + 9, 8, v0, heapID);
     LoadStandardWindowGraphics(param0->unk_00, Unk_ov64_02232258[1], 1, 9, 0, heapID);
     Window_Init(&param0->unk_220);

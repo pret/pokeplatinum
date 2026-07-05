@@ -809,8 +809,8 @@ static void LoadAssets(BattleArcadeApp *app)
         app->unusedStrs[i] = String_Init(32, HEAP_ID_BATTLE_ARCADE_APP);
     }
 
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 13 * PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_ARCADE_APP);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, 12 * PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_ARCADE_APP);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_BATTLE_ARCADE_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_BATTLE_ARCADE_APP);
 
     BattleArcadeApp_InitWindows(app->bgConfig, app->windows);
     app->cursorSprite = BattleArcadeAppSprite_New(&app->spriteMan, RESOURCE_ID_MAIN_SPRITES, RESOURCE_ID_MAIN_SPRITES, RESOURCE_ID_MAIN_SPRITES, ANIM_ID_CURSOR, 68, 36, 0, 2, FALSE);

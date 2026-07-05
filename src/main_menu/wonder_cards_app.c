@@ -1425,7 +1425,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
     case WC_APP_STATE_LOAD_GRAPHICS:
         Text_ResetAllPrinters();
         LoadWondercardGraphics(appData, WC_SCREEN_WONDERCARD_FRONT);
-        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_WONDER_CARDS_APP);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_15), HEAP_ID_WONDER_CARDS_APP);
         LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_SYSTEM_WINDOW_FRAME, PLTT_13, STANDARD_WINDOW_SYSTEM, HEAP_ID_WONDER_CARDS_APP);
         LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_FIELD_WINDOW_FRAME, PLTT_14, STANDARD_WINDOW_FIELD, HEAP_ID_WONDER_CARDS_APP);
         LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10, appData->msgBoxFrame, HEAP_ID_WONDER_CARDS_APP);
@@ -1574,7 +1574,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         EraseMessageBoxIfInUse(&appData->messageBox, FALSE);
         EraseStandardWindowIfInUse(&appData->standardWindow, FALSE);
         ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
-        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_WONDER_CARDS_APP);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_15), HEAP_ID_WONDER_CARDS_APP);
         DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_IN, WC_APP_STATE_SHOW_WONDERCARD_ACTIONS, state);
         break;
     case WC_APP_STATE_WAIT_FOR_COMM_MAN_EXIT:
@@ -1860,7 +1860,7 @@ void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, e
     appData->bgConfig = bgConfig;
     appData->heapID = heapID;
 
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), appData->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_15), appData->heapID);
 
     appData->wonderCards[0] = wonderCard;
     appData->selectedWondercardSlot = 0;

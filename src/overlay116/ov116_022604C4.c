@@ -65,36 +65,30 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
     NetworkIcon_Init();
 
-    {
-        NNSG2dPaletteData *v0;
-        void *v1 = NetworkIcon_GetPalette(HEAP_ID_106);
+    NNSG2dPaletteData *v0;
+    void *v1 = NetworkIcon_GetPalette(HEAP_ID_106);
 
-        NNS_G2dGetUnpackedPaletteData(v1, &v0);
-        PaletteData_LoadBuffer(param0->unk_48.unk_14, v0->pRawData, 2, 14 * 16, 32);
-        Heap_Free(v1);
+    NNS_G2dGetUnpackedPaletteData(v1, &v0);
+    PaletteData_LoadBuffer(param0->unk_48.unk_14, v0->pRawData, PLTTBUF_MAIN_OBJ, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES);
+    Heap_Free(v1);
+
+    int v2 = CommInfo_CountReceived();
+
+    param0->unk_44 = CommSys_CurNetId();
+    ov116_022604A8(param0);
+
+    if (ov116_022617C4(param0) == 1) {
+        param0->unk_00 = ov116_02262A44(v2, &param0->unk_48);
     }
 
-    {
-        int v2 = CommInfo_CountReceived();
+    param0->unk_04 = ov116_02262A8C(v2, param0->unk_44, &param0->unk_48);
+    param0->unk_04->unk_2870 = param0->unk_14.unk_00;
+    param0->unk_04->unk_286C = param0->unk_78;
 
-        param0->unk_44 = CommSys_CurNetId();
-        ov116_022604A8(param0);
+    u32 v3;
 
-        if (ov116_022617C4(param0) == 1) {
-            param0->unk_00 = ov116_02262A44(v2, &param0->unk_48);
-        }
-
-        param0->unk_04 = ov116_02262A8C(v2, param0->unk_44, &param0->unk_48);
-        param0->unk_04->unk_2870 = param0->unk_14.unk_00;
-        param0->unk_04->unk_286C = param0->unk_78;
-    }
-
-    {
-        u32 v3;
-
-        EnableTouchPad();
-        v3 = InitializeTouchPad(4);
-    }
+    EnableTouchPad();
+    v3 = InitializeTouchPad(4);
 
     ov116_022628B8(param0);
     ov116_022622C8(param0);
@@ -223,7 +217,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     }
 
     param0->unk_7C = ov114_0225CAD4(SpriteManager_GetSpriteList(param0->unk_48.unk_0C), HEAP_ID_106);
-    PaletteData_LoadBufferFromHardware(param0->unk_48.unk_14, 2, 0 * 16, 16 * 0x20);
+    PaletteData_LoadBufferFromHardware(param0->unk_48.unk_14, PLTTBUF_MAIN_OBJ, PLTT_DEST(PLTT_0), 16 * PALETTE_SIZE_BYTES);
 
     if (param0->unk_80->unk_3C) {
         NintendoWFC_StartVoiceChat(HEAP_ID_106);
@@ -763,11 +757,11 @@ static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
 
     ov116_02261C88(param0);
 
-    PaletteData_SetAutoTransparent(param0->unk_48.unk_14, 1);
-    PaletteData_AllocBuffer(param0->unk_48.unk_14, 0, 0x200, HEAP_ID_106);
-    PaletteData_AllocBuffer(param0->unk_48.unk_14, 1, 0x200, HEAP_ID_106);
-    PaletteData_AllocBuffer(param0->unk_48.unk_14, 2, 0x200, HEAP_ID_106);
-    PaletteData_AllocBuffer(param0->unk_48.unk_14, 3, 0x200, HEAP_ID_106);
+    PaletteData_SetAutoTransparent(param0->unk_48.unk_14, TRUE);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_106);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_106);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_106);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_106);
 
     ov116_02261494(param0->unk_48.unk_10);
     ov116_022616CC(param0);
@@ -812,10 +806,10 @@ void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
     Bg_FreeTilemapBuffer(param0->unk_48.unk_10, 6);
     Bg_FreeTilemapBuffer(param0->unk_48.unk_10, 7);
     Heap_Free(param0->unk_48.unk_10);
-    PaletteData_FreeBuffer(param0->unk_48.unk_14, 0);
-    PaletteData_FreeBuffer(param0->unk_48.unk_14, 1);
-    PaletteData_FreeBuffer(param0->unk_48.unk_14, 2);
-    PaletteData_FreeBuffer(param0->unk_48.unk_14, 3);
+    PaletteData_FreeBuffer(param0->unk_48.unk_14, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(param0->unk_48.unk_14, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(param0->unk_48.unk_14, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(param0->unk_48.unk_14, PLTTBUF_SUB_OBJ);
     PaletteData_Free(param0->unk_48.unk_14);
     NARC_dtor(param0->unk_48.unk_00);
     NARC_dtor(param0->unk_48.unk_04);
@@ -1031,7 +1025,7 @@ static void ov116_02261494(BgConfig *param0)
 
 static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
 {
-    param0->unk_48.unk_08 = SpriteSystem_Alloc(106);
+    param0->unk_48.unk_08 = SpriteSystem_Alloc(HEAP_ID_106);
     {
         const RenderOamTemplate v0 = {
             0,

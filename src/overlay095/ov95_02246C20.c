@@ -575,7 +575,7 @@ void ov95_022474D4(TradeSequenceData *param0, int param1, u32 param2, u32 param3
         v2 = (param0->unk_1AC) ? 263 : 262;
     }
 
-    v0 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v2, 0, &v1, 57);
+    v0 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v2, FALSE, &v1, HEAP_ID_57);
 
     if (v0) {
         Bg_CopyToTilemapRect(param0->unk_08, param2, param4, param5, 10, 10, v1->rawData, 0, 0, 32, 32);

@@ -2205,7 +2205,7 @@ static void BattleBgSwitch_SetBg(BattleBgSwitch *bgSwitch, BattleAnimSystem *sys
         NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
         BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCLR),
         system->heapID,
-        0,
+        PLTTBUF_MAIN_BG,
         PALETTE_SIZE_BYTES,
         PLTT_DEST(BATTLE_BG_PALETTE_EFFECT));
 
@@ -2450,7 +2450,7 @@ static BOOL BattleBgRestore_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
             BattleAnimSystem_LoadBattleBgPaletteBuffer(bgSwitch->battleAnimSystem);
         } else {
             Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilesNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
-            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.paletteNarcMemberIdx, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->battleBgRefs.paletteSrcSize * 0x20, bgSwitch->battleAnimSystem->battleBgRefs.paletteDestStart);
+            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.paletteNarcMemberIdx, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->battleBgRefs.paletteSrcSize * PALETTE_SIZE_BYTES, bgSwitch->battleAnimSystem->battleBgRefs.paletteDestStart);
         }
 
         Graphics_LoadTilemapToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilemapNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
@@ -2573,7 +2573,7 @@ static BOOL BattleBgRestore_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
             BattleAnimSystem_LoadBattleBgPaletteBuffer(bgSwitch->battleAnimSystem);
         } else {
             Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilesNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
-            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.paletteNarcMemberIdx, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->battleBgRefs.paletteSrcSize * 0x20, bgSwitch->battleAnimSystem->battleBgRefs.paletteDestStart);
+            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.paletteNarcMemberIdx, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->battleBgRefs.paletteSrcSize * PALETTE_SIZE_BYTES, bgSwitch->battleAnimSystem->battleBgRefs.paletteDestStart);
         }
 
         Graphics_LoadTilemapToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilemapNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
@@ -3737,7 +3737,7 @@ void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *system, enum BgLayer l
 
 void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *system)
 {
-    PaletteData_LoadBuffer(system->paletteData, system->context->bgPaletteBuffer, PLTTBUF_MAIN_BG, 0, 0x200);
+    PaletteData_LoadBuffer(system->paletteData, system->context->bgPaletteBuffer, PLTTBUF_MAIN_BG, 0, PALETTE_SIZE_BYTES * 16);
 }
 
 BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, int battlerRole)
@@ -3957,7 +3957,7 @@ BattleMonOBJData *BattleMonOBJData_New(BattleSystem *battleSys, enum HeapID heap
                     paletteProxy = Sprite_GetPaletteProxy(managedSprite->sprite);
                     paletteOffset = PlttTransfer_GetPlttOffset(paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                    PaletteData_LoadBufferFromFileStart(btlMonObjData->spriteContext.plttData, narcID, paletteIdx, btlMonObjData->heapID, 2, 0x20, paletteOffset * 16);
+                    PaletteData_LoadBufferFromFileStart(btlMonObjData->spriteContext.plttData, narcID, paletteIdx, btlMonObjData->heapID, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES, PLTT_DEST(paletteOffset));
                 }
             }
         }

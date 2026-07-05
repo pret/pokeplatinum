@@ -43,7 +43,7 @@ static void ov100_021D2F0C(BgConfig *param0, PaletteData *param1)
 {
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, param0, 4, 0, 0, 1, HEAP_ID_111);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, param0, 4, 0, 0, 1, HEAP_ID_111);
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__POKETCH, 12, HEAP_ID_111, 1, 0x20 * 1, 0);
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__POKETCH, 12, HEAP_ID_111, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 0);
 }
 
 static void ov100_021D2F64(UnkStruct_ov100_021D3084 *param0)

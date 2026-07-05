@@ -732,16 +732,16 @@ static void MailViewer_DrawMail(MailViewerApp *mailViewerApp)
     PaletteData_LoadBuffer(mailViewerApp->paletteData, plttData->pRawData, PLTTBUF_MAIN_BG, 0, PALETTE_SIZE_BYTES * 3);
 
     if (mailViewerApp->mode == MAIL_VIEWER_MODE_WRITE) {
-        PaletteData_LoadBuffer(mailViewerApp->paletteData, &((u16 *)plttData->pRawData)[PLTT_OFFSET(3) / sizeof(u16)], PLTTBUF_MAIN_BG, PLTT_OFFSET(1) / sizeof(u16), PALETTE_SIZE_BYTES);
+        PaletteData_LoadBuffer(mailViewerApp->paletteData, &((u16 *)plttData->pRawData)[PLTT_DEST(PLTT_3)], PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_1), PALETTE_SIZE_BYTES);
     }
 
-    PaletteData_LoadBufferFromFileStart(mailViewerApp->paletteData, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, shared_pals_NCLR, mailViewerApp->heapID, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 3, 0);
-    PaletteData_LoadBufferFromFileStart(mailViewerApp->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, font_NCLR, mailViewerApp->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, (PALETTE_SIZE_BYTES / sizeof(u16)) * 3);
-    PaletteData_LoadBufferFromFileStart(mailViewerApp->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, screen_indicators_NCLR, mailViewerApp->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, (PALETTE_SIZE_BYTES / sizeof(u16)) * 4);
-    PaletteData_LoadBufferFromFileStart(mailViewerApp->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, standard_system_NCLR, mailViewerApp->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, (PALETTE_SIZE_BYTES / sizeof(u16)) * 5);
-    PaletteData_LoadBufferFromFileStart(mailViewerApp->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, message_box_00_NCLR + mailViewerApp->frame, mailViewerApp->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, (PALETTE_SIZE_BYTES / sizeof(u16)) * 6);
-    PaletteData_Blend(mailViewerApp->paletteData, PLTTBUF_MAIN_BG, 0, (PALETTE_SIZE_BYTES / sizeof(u16)) * 7, 16, COLOR_BLACK);
-    PaletteData_Blend(mailViewerApp->paletteData, PLTTBUF_MAIN_OBJ, 0, (PALETTE_SIZE_BYTES / sizeof(u16)) * 3, 16, COLOR_BLACK);
+    PaletteData_LoadBufferFromFileStart(mailViewerApp->paletteData, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, shared_pals_NCLR, mailViewerApp->heapID, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 3, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(mailViewerApp->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, font_NCLR, mailViewerApp->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_3));
+    PaletteData_LoadBufferFromFileStart(mailViewerApp->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, screen_indicators_NCLR, mailViewerApp->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_4));
+    PaletteData_LoadBufferFromFileStart(mailViewerApp->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, standard_system_NCLR, mailViewerApp->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_5));
+    PaletteData_LoadBufferFromFileStart(mailViewerApp->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, message_box_00_NCLR + mailViewerApp->frame, mailViewerApp->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_6));
+    PaletteData_Blend(mailViewerApp->paletteData, PLTTBUF_MAIN_BG, 0, PALETTE_SIZE * 7, 16, COLOR_BLACK);
+    PaletteData_Blend(mailViewerApp->paletteData, PLTTBUF_MAIN_OBJ, 0, PALETTE_SIZE * 3, 16, COLOR_BLACK);
     PaletteData_SetAutoTransparent(mailViewerApp->paletteData, TRUE);
     PaletteData_CommitFadedBuffers(mailViewerApp->paletteData);
     Heap_Free(narcMemberBuffer);

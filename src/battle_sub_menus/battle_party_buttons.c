@@ -737,9 +737,9 @@ void BattlePartyButtons_InitializeButtons(BattleParty *battleParty, enum BattleP
 void BattlePartyButtons_LoadScreenPaletteData(BattleParty *battleParty, enum BattlePartyScreen screen)
 {
     if (screen == BATTLE_PARTY_SCREEN_POKEMON_MOVES) {
-        PaletteData_LoadBuffer(battleParty->palette, &battleParty->screenPaletteData[PALETTE_SIZE], PLTTBUF_SUB_BG, 192, PALETTE_SIZE_BYTES);
+        PaletteData_LoadBuffer(battleParty->palette, &battleParty->screenPaletteData[PALETTE_SIZE], PLTTBUF_SUB_BG, PLTT_DEST(PLTT_12), PALETTE_SIZE_BYTES);
     } else {
-        PaletteData_LoadBuffer(battleParty->palette, &battleParty->screenPaletteData[0], PLTTBUF_SUB_BG, 192, PALETTE_SIZE_BYTES);
+        PaletteData_LoadBuffer(battleParty->palette, &battleParty->screenPaletteData[0], PLTTBUF_SUB_BG, PLTT_DEST(PLTT_12), PALETTE_SIZE_BYTES);
     }
 }
 

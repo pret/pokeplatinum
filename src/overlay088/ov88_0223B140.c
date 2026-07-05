@@ -1188,19 +1188,19 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 9 * 2, HEAP_ID_26);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_26);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_26);
 
     ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_26);
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, HEAP_ID_26);
-    Font_LoadScreenIndicatorsPalette(0, 2 * 32, HEAP_ID_26);
-    Font_LoadTextPalette(0, 3 * 32, HEAP_ID_26);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_2), HEAP_ID_26);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_3), HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 5, 0, 16 * 4 * 0x20, 1, HEAP_ID_26);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_26);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, HEAP_ID_26);
-    Font_LoadScreenIndicatorsPalette(4, 2 * 32, HEAP_ID_26);
-    Font_LoadTextPalette(4, 3 * 32, HEAP_ID_26);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_2), HEAP_ID_26);
+    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_3), HEAP_ID_26);
     Bg_ClearTilemap(v0, BG_LAYER_SUB_0);
 }
 
@@ -2072,7 +2072,7 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
 
     ov88_0223ED80(&param0->unk_49C[24]);
 
-    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
+    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_26, PAD_BUTTON_B);
     param0->unk_226C = ov88_0223DB48;
 
     return 0;
@@ -2420,7 +2420,7 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
 
     ov88_0223ED80(&param0->unk_49C[25]);
 
-    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
+    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_26, PAD_BUTTON_B);
     param0->unk_226C = ov88_0223E5B8;
 
     return 0;
