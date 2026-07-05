@@ -1,10 +1,9 @@
 #include "overlay005/script_message.h"
 
-#include "struct_defs/sentence.h"
-
 #include "field/field_system.h"
 
 #include "bg_window.h"
+#include "easy_chat_sentence.h"
 #include "field_message.h"
 #include "field_script_context.h"
 #include "font.h"
@@ -15,7 +14,6 @@
 #include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02014A84.h"
 
 typedef struct ScriptMessage {
     String *msgBuf;
@@ -79,7 +77,6 @@ void ScriptMessage_ShowInstant(ScriptContext *ctx, const MessageLoader *msgLoade
 void ScriptMessage_ShowSentence(ScriptContext *ctx, u16 sentenceType, u16 sentenceID, u16 word1, s16 word2, u8 canSkipDelay)
 {
     ScriptMessage msgData;
-    Sentence unused;
 
     InitScriptMessage(ctx->fieldSystem, &msgData);
     OpenMessageBox(ctx->fieldSystem, &msgData);
@@ -146,15 +143,15 @@ static void LoadAndFormatMessage(ScriptMessage *msgData, const MessageLoader *ms
 
 static void GetStringFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2)
 {
-    Sentence sentence;
+    EasyChatSentence sentence;
     String *string;
 
-    Sentence_Init(&sentence);
-    sub_02014CE0(&sentence, sentenceType, sentenceID);
-    Sentence_SetWord(&sentence, 0, word1);
-    Sentence_SetWord(&sentence, 1, word2);
+    EasyChatSentence_Init(&sentence);
+    EasyChatSentence_SetTypeAndID(&sentence, sentenceType, sentenceID);
+    EasyChatSentence_SetWord(&sentence, 0, word1);
+    EasyChatSentence_SetWord(&sentence, 1, word2);
 
-    string = Sentence_AsString(&sentence, HEAP_ID_FIELD3);
+    string = EasyChatSentence_ToString(&sentence, HEAP_ID_FIELD3);
 
     String_Copy(msgData->msgBuf, string);
     String_Free(string);

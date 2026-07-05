@@ -10,11 +10,11 @@
     ScriptEntryEnd
 
 Route208_ArrowSignpostMtCoronet:
-    ShowArrowSign Route208_Text_SignRt208MtCoronet
+    ShowArrowSign Route208_Text_SignMtCoronet
     End
 
 Route208_ArrowSignpostHearthomeCity:
-    ShowArrowSign Route208_Text_SignRt208HearthomeCity
+    ShowArrowSign Route208_Text_SignHearthomeCity
     End
 
 Route208_SignboardBerryMastersHouse:

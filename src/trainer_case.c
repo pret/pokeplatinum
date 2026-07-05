@@ -10,7 +10,7 @@
 #include "field/field_system.h"
 
 #include "badges.h"
-#include "battle_frontier_stats.h"
+#include "battle_frontier_save.h"
 #include "charcode_util.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -109,7 +109,7 @@ u8 TrainerCase_CalculateTrainerCardLevel(FieldSystem *fieldSystem)
     GameRecords *gameRecords = SaveData_GetGameRecords(saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(saveData);
     UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(saveData);
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(saveData);
     trainerCardLevel = 0;
 
     if (SystemFlag_CheckGameCompleted(varsFlags)) {
@@ -120,7 +120,7 @@ u8 TrainerCase_CalculateTrainerCardLevel(FieldSystem *fieldSystem)
         trainerCardLevel++;
     }
 
-    if ((BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_DOUBLE, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_MULTI, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_LINK_MULTI, 0xff) >= 100) || (BattleFrontierStats_GetStat(frontier, STAT_TOWER_RECORD_STREAK_WIFI, 0xff) >= 100)) {
+    if ((BattleFrontierSave_GetStat(frontier, STAT_TOWER_RECORD_STREAK_SINGLE, 0xff) >= 100) || (BattleFrontierSave_GetStat(frontier, STAT_TOWER_RECORD_STREAK_DOUBLE, 0xff) >= 100) || (BattleFrontierSave_GetStat(frontier, STAT_TOWER_RECORD_STREAK_MULTI, 0xff) >= 100) || (BattleFrontierSave_GetStat(frontier, STAT_TOWER_RECORD_STREAK_LINK_MULTI, 0xff) >= 100) || (BattleFrontierSave_GetStat(frontier, STAT_TOWER_RECORD_STREAK_WIFI, 0xff) >= 100)) {
         trainerCardLevel++;
     }
 

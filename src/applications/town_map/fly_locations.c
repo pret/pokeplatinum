@@ -288,7 +288,7 @@ void TownMap_FreeFlyLocations(TownMapAppFlyLocationsManager *flyLocations)
     Heap_Free(flyLocations);
 }
 
-TownMapAppFlyLocation *TownMap_GetFlyLocationAtPos(TownMapAppFlyLocationsManager *flyLocations, enum MapHeader mapHeader, int x, int z)
+TownMapAppFlyLocation *TownMap_GetFlyLocationAtPos(TownMapAppFlyLocationsManager *flyLocations, enum MapHeaderID mapHeader, int x, int z)
 {
     for (short i = 0; i < flyLocations->count; i++) {
         TownMapAppFlyLocation *flyLocation = &(flyLocations->flyLocationsList[i]);
@@ -323,7 +323,7 @@ TownMapAppFlyLocation *TownMap_GetFlyLocationAtPos(TownMapAppFlyLocationsManager
     return NULL;
 }
 
-BOOL TownMap_UpdateHoveredFlyLocation(TownMapAppFlyLocationsManager *flyLocations, enum MapHeader mapHeader, int x, int y)
+BOOL TownMap_UpdateHoveredFlyLocation(TownMapAppFlyLocationsManager *flyLocations, enum MapHeaderID mapHeader, int x, int y)
 {
     if (flyLocations == NULL) {
         return FALSE;

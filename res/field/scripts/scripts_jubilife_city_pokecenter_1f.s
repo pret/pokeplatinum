@@ -14,15 +14,15 @@ JubilifeCityPokecenter1F_Nurse:
     End
 
 JubilifeCityPokecenter1F_Twin:
-    NPCMessage JubilifeCityPokecenter1F_Text_AllTypesHaveStrengthsAndWeaknesses
+    NPCMessage JubilifeCityPokecenter1F_Text_StrengthsAndWeaknesses
     End
 
 JubilifeCityPokecenter1F_SchoolKidM:
-    NPCMessage JubilifeCityPokecenter1F_Text_InTheUnionRoomUpstairsYouCanChatAndTradeWithOtherPeople
+    NPCMessage JubilifeCityPokecenter1F_Text_ChatAndTradeInUnionRoom
     End
 
 JubilifeCityPokecenter1F_TrainerF:
-    NPCMessage JubilifeCityPokecenter1F_Text_YouCanStillCatchAPokemonIfYouAlreadyHaveSixTravelingWithYou
+    NPCMessage JubilifeCityPokecenter1F_Text_CanStillCatchWithSixPokemon
     End
 
     .balign 4, 0

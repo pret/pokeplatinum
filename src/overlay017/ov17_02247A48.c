@@ -944,8 +944,8 @@ static void ov17_022489C8(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->unk_00.unk_00 = 0;
-        v0->unk_00.unk_08 = v0->mon;
+        v0->unk_00.battlerType = 0;
+        v0->unk_00.mon = v0->mon;
         v0->unk_0C = ov12_02236004(HEAP_ID_22, &v0->unk_00);
         ov12_02236320(v0->unk_0C);
         ov12_02236384(v0->unk_0C, Contest_SetEmitterPos);

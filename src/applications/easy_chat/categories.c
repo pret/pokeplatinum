@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "struct_decls/struct_020998EC_decl.h"
-
 #include "applications/easy_chat/abc_mode.h"
 #include "applications/easy_chat/defs.h"
 #include "applications/easy_chat/main.h"
@@ -14,6 +12,7 @@
 #include "applications/easy_chat/struct_ov20_021D4FF0.h"
 
 #include "bg_window.h"
+#include "easy_chat_word_list.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -24,7 +23,6 @@
 #include "string_gf.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_020998EC.h"
 
 #include "res/text/bank/easy_chat_groups.h"
 
@@ -45,7 +43,7 @@ static u32 EasyChatCategories_PrintABCModeSelection(EasyChatCategoriesContext *c
 static u32 EasyChatCategories_PrintCancelText(EasyChatCategoriesContext *ctx, BgConfig *bgConfig, u32 baseTile);
 static void ov20_021D3E0C(EasyChatCategoriesContext *ctx);
 
-EasyChatCategoriesContext *EasyChatCategoriesContext_New(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *easyChatApp, const UnkStruct_020998EC *param2)
+EasyChatCategoriesContext *EasyChatCategoriesContext_New(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *easyChatApp, const EasyChatWordList *param2)
 {
     EasyChatCategoriesContext *ctx = Heap_Alloc(HEAP_ID_35, sizeof(EasyChatCategoriesContext));
 
@@ -112,7 +110,7 @@ static u32 EasyChatCategories_PrintGroups(EasyChatCategoriesContext *ctx, BgConf
         String *string;
         TextColor color;
 
-        if (sub_02099CA0(ctx->unk_08, i)) {
+        if (EasyChatWordList_GetGroupWordCount(ctx->unk_08, i)) {
             string = MessageLoader_GetNewString(loader, i);
             color = TEXT_COLOR(1, 2, 15);
         } else {
@@ -164,7 +162,7 @@ static u32 EasyChatCategories_PrintABCModeSelection(EasyChatCategoriesContext *c
         EasyChatABCMode_GetCharPos(i, &x, &y);
 
         TextColor color;
-        if (sub_02099CDC(ctx->unk_08, i)) {
+        if (EasyChatWordList_GetLetterWordCount(ctx->unk_08, i)) {
             color = TEXT_COLOR(1, 2, 15);
         } else {
             color = TEXT_COLOR(3, 4, 15);

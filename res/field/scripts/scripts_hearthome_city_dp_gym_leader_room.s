@@ -42,7 +42,7 @@ HearthomeCityDPGymLeaderRoom_FantinaSpinEast:
 
 HearthomeCityDPGymLeaderRoom_FantinaBattle:
     GoToIfBadgeAcquired BADGE_ID_RELIC, HearthomeCityDPGymLeaderRoom_FantinaPostBattle
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 100, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_HEARTHOME_CITY_DP_GYM_LEADER_ROOM
     Message HearthomeCityDPGymLeaderRoom_Text_Dummy0
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_FANTINA
@@ -63,10 +63,10 @@ HearthomeCityDPGymLeaderRoom_FantinaBattle:
     SetTrainerFlag TRAINER_SCHOOL_KID_CHANCE
     SetTrainerFlag TRAINER_SCHOOL_KID_MACKENZIE
     SetTrainerFlag TRAINER_YOUNGSTER_DONNY
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 100, TRAINER_LEADER_FANTINA, 0, 0
-    SetVar VAR_HEARTHOME_STATE, 1
-    SetFlag FLAG_HIDE_HEARTHOME_ROUTE_209_ROADBLOCK
-    ClearFlag FLAG_HIDE_HEARTHOME_ROUTE_209_GATE_RIVAL
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_HEARTHOME_CITY_DP_GYM_LEADER_ROOM, TRAINER_LEADER_FANTINA
+    SetVar VAR_ROUTE_209_GATE_TO_HEARTHOME_CITY_STATE, 1
+    SetFlag FLAG_HIDE_HEARTHOME_CITY_ROUTE_209_BLOCKADE
+    ClearFlag FLAG_HIDE_HEARTHOME_CITY_ROUTE_209_GATE_RIVAL
     Message HearthomeCityDPGymLeaderRoom_Text_Dummy3
     GoTo HearthomeCityDPGymLeaderRoom_TryGiveTM65
 
@@ -75,7 +75,7 @@ HearthomeCityDPGymLeaderRoom_TryGiveTM65:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, HearthomeCityDPGymLeaderRoom_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_OBTAINED_FANTINA_TM65
+    SetFlag FLAG_RECEIVED_FANTINA_TM65
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message HearthomeCityDPGymLeaderRoom_Text_Dummy4
@@ -91,7 +91,7 @@ HearthomeCityDPGymLeaderRoom_BagIsFull:
     End
 
 HearthomeCityDPGymLeaderRoom_FantinaPostBattle:
-    GoToIfUnset FLAG_OBTAINED_FANTINA_TM65, HearthomeCityDPGymLeaderRoom_TryGiveTM65
+    GoToIfUnset FLAG_RECEIVED_FANTINA_TM65, HearthomeCityDPGymLeaderRoom_TryGiveTM65
     Message HearthomeCityDPGymLeaderRoom_Text_Dummy5
     WaitButton
     CloseMessage

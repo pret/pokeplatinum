@@ -10,8 +10,8 @@ typedef struct BattlerInitData {
 } BattlerInitData;
 
 BattlerData *BattlerData_New(BattleSystem *battleSys, BattlerInitData *battlerInitData);
-void ov16_0225C038(BattleSystem *battleSys, BattlerData *battlerData, int ballID, int param3);
+void BattlerData_InitSendOutBallThrow(BattleSystem *battleSys, BattlerData *battlerData, int ballID, int unused);
 void BattleSystem_ExecuteBattlerCommand(BattleSystem *battleSys, BattlerData *battlerData);
-void ov16_0225C104(BattleSystem *battleSys, BattlerData *battlerData, int param2);
+void BattlerData_Delete(BattleSystem *battleSys, BattlerData *battlerData, int renderMode);
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_IO_COMMAND_H

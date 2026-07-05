@@ -13,13 +13,13 @@ AcuityCavern_OnTransition:
     End
 
 AcuityCavern_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, AcuityCavern_RemoveUxie
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, AcuityCavern_RemoveUxie
     End
 
 AcuityCavern_RemoveUxie:
     SetFlag FLAG_HIDE_ACUITY_CAVERN_UXIE
     RemoveObject LOCALID_UXIE
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 AcuityCavern_Uxie:
@@ -29,9 +29,9 @@ AcuityCavern_Uxie:
     PlayCry SPECIES_UXIE
     Message AcuityCavern_Text_UxieCry
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartLegendaryBattle SPECIES_UXIE, 50
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, AcuityCavern_LostBattle
     CheckDidNotCapture VAR_RESULT

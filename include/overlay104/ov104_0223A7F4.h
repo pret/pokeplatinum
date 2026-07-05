@@ -15,7 +15,7 @@ u8 BattleFactory_GetPlayerPartySize(u8 challengeType);
 u8 BattleFactory_GetOpponentPartySize(u8 challengeType, BOOL param1);
 void ov104_0223AAA0(u16 param0, u8 param1, u16 *param2, FrontierPokemonDataDTO *param3, u8 *param4, u32 *param5, u16 param6, u16 *param7, u16 *param8);
 void ov104_0223AB0C(u8 param0, u16 param1, u8 param2, FrontierPokemonDataDTO *param3, u16 *param4, FrontierPokemonDataDTO *param5, u8 *param6, u32 *param7, int param8);
-FieldBattleDTO *FieldBattleDTO_NewBattleFactory(BattleFactory *battleFactory, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *FieldBattleDTO_NewBattleFactory(BattleFactory *battleFactory, FieldFrontierDTO *fieldData);
 u8 BattleFactory_GetPokemonLevel(BattleFactory *battleFactory);
 void ov104_0223ADB0(BattleFactory *battleFactory);
 void ov104_0223AE30(BattleFactory *battleFactory);

@@ -2,7 +2,7 @@
   "key": 17415,
   "messages": [
     {
-      "id": "JubilifeTV3FGlobalRankingRoom_Text_SomeoneBrokeMyPokemonCatchingRecord",
+      "id": "JubilifeTV3FGlobalRankingRoom_Text_SomeoneBrokeMyCatchingRecord",
       "en_US": [
         "Someone broke my Pokémon-catching\n",
         "record!\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "JubilifeTV3FGlobalRankingRoom_Text_IBetItdFeelGreatIfICouldBeNumberOneHere",
+      "id": "JubilifeTV3FGlobalRankingRoom_Text_NumberOneWouldFeelGreat",
       "en_US": [
         "I bet it’d feel great if I could be\n",
         "number one here!\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "JubilifeTV3FGlobalRankingRoom_Text_ImTryingForTheWorldRecordAtPokemonFishing",
+      "id": "JubilifeTV3FGlobalRankingRoom_Text_ImTryingForRecordAtFishing",
       "en_US": [
         "I really don’t win many battles...\n",
         "But it doesn’t get me down.\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "JubilifeTV3FGlobalRankingRoom_Text_SorryImStillFineTuningThisThingyHere",
+      "id": "JubilifeTV3FGlobalRankingRoom_Text_ImStillFineTuningThisThingy",
       "en_US": [
         "Sorry, I’m still fine-tuning this\n",
         "thingy here."

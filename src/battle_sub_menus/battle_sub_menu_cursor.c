@@ -1,7 +1,6 @@
 #include "battle_sub_menus/battle_sub_menu_cursor.h"
 
-#include "battle/ov16_0226DB7C.h"
-#include "battle/struct_ov16_0226DC24_decl.h"
+#include "battle/cursor_renderer.h"
 
 #include "heap.h"
 #include "sound_playback.h"
@@ -23,7 +22,7 @@ void DeleteBattleSubMenuCursor(BattleSubMenuCursor *cursor)
     Heap_Free(cursor);
 }
 
-UnkStruct_ov16_0226DC24 *GetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor)
+CursorRenderer *GetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor)
 {
     return cursor->sprites;
 }
@@ -38,7 +37,7 @@ void SetBattleSubMenuCursorVisibility(BattleSubMenuCursor *cursor, BOOL isVisibl
     cursor->isVisible = isVisible;
 }
 
-void SetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor, UnkStruct_ov16_0226DC24 *sprites)
+void SetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor, CursorRenderer *sprites)
 {
     cursor->sprites = sprites;
 }
@@ -48,7 +47,7 @@ void SetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor, u8 posit
     cursor->currentPositionIndex = positionIndex;
 
     if (cursor->isVisible == TRUE) {
-        ov16_0226DD7C(cursor->sprites, cursor->positions[cursor->currentPositionIndex].xCoord1, cursor->positions[cursor->currentPositionIndex].xCoord2, cursor->positions[cursor->currentPositionIndex].yCoord1, cursor->positions[cursor->currentPositionIndex].yCoord2);
+        CursorRenderer_DrawOnSubscreen(cursor->sprites, cursor->positions[cursor->currentPositionIndex].xCoord1, cursor->positions[cursor->currentPositionIndex].xCoord2, cursor->positions[cursor->currentPositionIndex].yCoord1, cursor->positions[cursor->currentPositionIndex].yCoord2);
     }
 }
 
@@ -66,7 +65,7 @@ void SetBattleSubMenuCursorPositions(BattleSubMenuCursor *cursor, const GridMenu
     cursor->enabledPositionsMask = ALL_POSITIONS_ENABLED_MASK;
 
     if (cursor->isVisible == TRUE) {
-        ov16_0226DD7C(cursor->sprites, cursor->positions[CURSOR_STARTING_INDEX].xCoord1, cursor->positions[CURSOR_STARTING_INDEX].xCoord2, cursor->positions[CURSOR_STARTING_INDEX].yCoord1, cursor->positions[CURSOR_STARTING_INDEX].yCoord2);
+        CursorRenderer_DrawOnSubscreen(cursor->sprites, cursor->positions[CURSOR_STARTING_INDEX].xCoord1, cursor->positions[CURSOR_STARTING_INDEX].xCoord2, cursor->positions[CURSOR_STARTING_INDEX].yCoord1, cursor->positions[CURSOR_STARTING_INDEX].yCoord2);
     }
 }
 
@@ -84,7 +83,7 @@ static u8 IsCursorVisible(BattleSubMenuCursor *cursor)
     if (JOY_NEW(PAD_KEY | PAD_BUTTON_B | PAD_BUTTON_A)) {
         cursor->isVisible = TRUE;
 
-        ov16_0226DD7C(cursor->sprites, cursor->positions[cursor->currentPositionIndex].xCoord1, cursor->positions[cursor->currentPositionIndex].xCoord2, cursor->positions[cursor->currentPositionIndex].yCoord1, cursor->positions[cursor->currentPositionIndex].yCoord2);
+        CursorRenderer_DrawOnSubscreen(cursor->sprites, cursor->positions[cursor->currentPositionIndex].xCoord1, cursor->positions[cursor->currentPositionIndex].xCoord2, cursor->positions[cursor->currentPositionIndex].yCoord1, cursor->positions[cursor->currentPositionIndex].yCoord2);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
@@ -187,7 +186,7 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
 
             cursor->currentPositionIndex = nextPositionIndex;
 
-            ov16_0226DD7C(cursor->sprites, x1, x2, y1, y2);
+            CursorRenderer_DrawOnSubscreen(cursor->sprites, x1, x2, y1, y2);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
 

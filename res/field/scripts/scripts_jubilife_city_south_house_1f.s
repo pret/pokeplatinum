@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 JubilifeCitySouthHouse1F_AceTrainerM:
-    NPCMessage JubilifeCitySouthHouse1F_PokemonAreWonderfulDeeplyMysteriousCreatures
+    NPCMessage JubilifeCitySouthHouse1F_DeeplyMysteriousCreatures
     End
 
 JubilifeCitySouthHouse1F_Lass:
@@ -16,7 +16,7 @@ JubilifeCitySouthHouse1F_Lass:
     End
 
 JubilifeCitySouthHouse1F_Pachirisu:
-    PokemonCryAndMessage SPECIES_PACHIRISU, JubilifeCitySouthHouse1F_PachirisuKukkuuh
+    PokemonCryAndMessage SPECIES_PACHIRISU, JubilifeCitySouthHouse1F_PachirisuCry
     End
 
     .balign 4, 0

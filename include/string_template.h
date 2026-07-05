@@ -86,7 +86,7 @@ void StringTemplate_SetGymName(StringTemplate *template, u32 idx, u32 gym);
 void StringTemplate_SetTimeOfDay(StringTemplate *template, u32 idx, u32 timeOfDay);
 void StringTemplate_SetCountryName(StringTemplate *template, u32 idx, u32 country);
 void StringTemplate_SetCityName(StringTemplate *template, u32 idx, u32 country, u32 city);
-void StringTemplate_SetCustomMessageWord(StringTemplate *template, u32 idx, u16 customMessageWord);
+void StringTemplate_SetEasyChatWord(StringTemplate *template, u32 idx, u16 word);
 void StringTemplate_SetBallSealName(StringTemplate *template, u32 idx, u32 ballSeal);
 void StringTemplate_SetBallSealNamePlural(StringTemplate *template, u32 idx, u32 ballSeal);
 void StringTemplate_SetMetLocationName(StringTemplate *template, u32 idx, u32 location);

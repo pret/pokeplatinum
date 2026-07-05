@@ -9,25 +9,25 @@ TwinleafTownRivalHouse1F_RivalsMom:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_HAS_POKEDEX, TwinleafTownRivalHouse1F_RivalTookOffLikeARocketAsUsual
-    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTownRivalHouse1F_YouveBecomeFriendsWithAPokemonToo
-    GoToIfSet FLAG_UNK_0x006E, TwinleafTownRivalHouse1F_HeShouldBeOutOnRoute201ByNow
-    GoToIfSet FLAG_RIVAL_LEFT_HOME, TwinleafTownRivalHouse1F_ThatKidRocketedOffAgainLikeUsual
+    GoToIfSet FLAG_HAS_POKEDEX, TwinleafTownRivalHouse1F_TookOffLikeUsual
+    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTownRivalHouse1F_FriendsWithPokemonToo
+    GoToIfSet FLAG_TALKED_TO_RIVAL_HOUSE_RIVAL_MOM_RIVAL_LEFT, TwinleafTownRivalHouse1F_HeShouldBeOnRoute201
+    GoToIfSet FLAG_RIVAL_LEFT_HOME, TwinleafTownRivalHouse1F_RocketedOffLikeUsual
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, TwinleafTownRivalHouse1F_AreYouLookingForRival
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, TwinleafTownRivalHouse1F_DidYouComeCallingOnRival
+    GoToIfEq VAR_RESULT, GENDER_MALE, TwinleafTownRivalHouse1F_LookingForRival
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, TwinleafTownRivalHouse1F_ComeCallingOnRival
     End
 
-TwinleafTownRivalHouse1F_AreYouLookingForRival:
+TwinleafTownRivalHouse1F_LookingForRival:
     BufferPlayerName 0
     BufferRivalName 1
-    Message TwinleafTownRivalHouse1F_Text_AreYouLookingForRival
+    Message TwinleafTownRivalHouse1F_Text_LookingForRival
     GoTo TwinleafTownRivalHouse1F_Release
 
-TwinleafTownRivalHouse1F_DidYouComeCallingOnRival:
+TwinleafTownRivalHouse1F_ComeCallingOnRival:
     BufferPlayerName 0
     BufferRivalName 1
-    Message TwinleafTownRivalHouse1F_Text_DidYouComeCallingOnRival
+    Message TwinleafTownRivalHouse1F_Text_ComeCallingOnRival
     GoTo TwinleafTownRivalHouse1F_Release
 
 TwinleafTownRivalHouse1F_Release:
@@ -36,34 +36,34 @@ TwinleafTownRivalHouse1F_Release:
     ReleaseAll
     End
 
-TwinleafTownRivalHouse1F_YouveBecomeFriendsWithAPokemonToo:
+TwinleafTownRivalHouse1F_FriendsWithPokemonToo:
     BufferRivalName 1
-    Message TwinleafTownRivalHouse1F_Text_YouveBecomeFriendsWithAPokemonToo
+    Message TwinleafTownRivalHouse1F_Text_FriendsWithPokemonToo
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-TwinleafTownRivalHouse1F_HeShouldBeOutOnRoute201ByNow:
+TwinleafTownRivalHouse1F_HeShouldBeOnRoute201:
     BufferRivalName 1
-    Message TwinleafTownRivalHouse1F_Text_HeShouldBeOutOnRoute201ByNow
+    Message TwinleafTownRivalHouse1F_Text_HeShouldBeOnRoute201
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-TwinleafTownRivalHouse1F_ThatKidRocketedOffAgainLikeUsual:
-    SetFlag FLAG_UNK_0x006E
+TwinleafTownRivalHouse1F_RocketedOffLikeUsual:
+    SetFlag FLAG_TALKED_TO_RIVAL_HOUSE_RIVAL_MOM_RIVAL_LEFT
     BufferRivalName 1
-    Message TwinleafTownRivalHouse1F_Text_ThatKidRocketedOffAgainLikeUsual
+    Message TwinleafTownRivalHouse1F_Text_RocketedOffLikeUsual
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-TwinleafTownRivalHouse1F_RivalTookOffLikeARocketAsUsual:
+TwinleafTownRivalHouse1F_TookOffLikeUsual:
     BufferRivalName 1
-    Message TwinleafTownRivalHouse1F_Text_RivalTookOffLikeARocketAsUsual
+    Message TwinleafTownRivalHouse1F_Text_TookOffLikeUsual
     WaitButton
     CloseMessage
     ReleaseAll

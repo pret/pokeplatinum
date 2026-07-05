@@ -25,8 +25,8 @@ AcuityLakefront_RemoveWarpsLakeAcuityLowWater:
     End
 
 AcuityLakefront_OnTransition:
-    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, TRUE, AcuityLakefront_SetVeilstoneGymMaylene
+    CheckBadgeAcquired BADGE_ID_ICICLE, VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, TRUE, AcuityLakefront_SetVeilstoneGymMaylene
     GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_RemoveWarpsLakeAcuityNormal
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_RemoveWarpsLakeAcuityLowWater
     End

@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry SolaceonTownPokecenterB1F_UnusedEntry1
+    ScriptEntry SolaceonTownPokecenterB1F_Dummy1
     ScriptEntryEnd
 
-SolaceonTownPokecenterB1F_UnusedEntry1:
+SolaceonTownPokecenterB1F_Dummy1:
     End

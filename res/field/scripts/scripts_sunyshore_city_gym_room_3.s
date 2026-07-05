@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 SunyshoreGymRoom3_Init:
-    SetVar VAR_MAP_LOCAL_0, 0
+    SetVar VAR_MAP_LOCAL_0x00, 0
     InitPersistedMapFeaturesForSunyshoreGym 2
     End
 
@@ -27,7 +27,7 @@ SunyshoreGymRoom3_Volkner:
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom3_VolknerAlreadyHaveBeaconBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 156, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_3
     Message SunyshoreGymRoom3_Text_VolknerIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_VOLKNER
@@ -48,9 +48,9 @@ SunyshoreGymRoom3_Volkner:
     SetTrainerFlag TRAINER_POKE_KID_MEGHAN
     SetTrainerFlag TRAINER_SCHOOL_KID_FORREST
     SetTrainerFlag TRAINER_SCHOOL_KID_TIERA
-    SetVar VAR_SUNYSHORE_STATE, 2
+    SetVar VAR_SUNYSHORE_CITY_STATE, 2
     // BUG: TRAINER_LEADER_ROARK should be TRAINER_LEADER_VOLKNER
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 156, TRAINER_LEADER_ROARK, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_3, TRAINER_LEADER_ROARK
     Message SunyshoreGymRoom3_Text_VolknerExplainBeaconBadge
     GoTo SunyshoreGymRoom3_VolknerTryGiveTM57
 
@@ -59,7 +59,7 @@ SunyshoreGymRoom3_VolknerTryGiveTM57:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, SunyshoreGymRoom3_VolknerCannotGiveTM57
     Common_GiveItemQuantity
-    SetFlag FLAG_OBTAINED_VOLKNER_TM57
+    SetFlag FLAG_RECEIVED_VOLKNER_TM57
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message SunyshoreGymRoom3_Text_VolknerExplainTM57
@@ -75,7 +75,7 @@ SunyshoreGymRoom3_VolknerCannotGiveTM57:
     End
 
 SunyshoreGymRoom3_VolknerAlreadyHaveBeaconBadge:
-    GoToIfUnset FLAG_OBTAINED_VOLKNER_TM57, SunyshoreGymRoom3_VolknerTryGiveTM57
+    GoToIfUnset FLAG_RECEIVED_VOLKNER_TM57, SunyshoreGymRoom3_VolknerTryGiveTM57
     Message SunyshoreGymRoom3_Text_Afterbadge
     WaitButton
     CloseMessage

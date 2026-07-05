@@ -2,7 +2,7 @@
 #include "res/text/bank/global_terminal_3f.h"
 
 
-    ScriptEntry GlobalTerminal3F_Unused1
+    ScriptEntry GlobalTerminal3F_Dummy1
     ScriptEntry GlobalTerminal3F_Youngster
     ScriptEntry GlobalTerminal3F_SchoolKidF
     ScriptEntry GlobalTerminal3F_AceTrainerM
@@ -61,7 +61,7 @@ GlobalTerminal3F_BgSignWarp2F:
     EventMessage GlobalTerminal3F_Text_WarpsTo2F
     End
 
-GlobalTerminal3F_Unused1:
+GlobalTerminal3F_Dummy1:
     End
 
 GlobalTerminal3F_BattleVideosMachine:
@@ -92,7 +92,7 @@ GlobalTerminal3F_BattleVideosMachineEnd:
 
 GlobalTerminal3F_UseBattleVideosMachine:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal3F_BattleVideosMachineEnd
     CloseMessage
     CallCommonScript 0x802

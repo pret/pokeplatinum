@@ -4,17 +4,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202D750_decl.h"
-#include "struct_decls/struct_0202D764_decl.h"
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/sentence.h"
-#include "struct_defs/struct_02049A68.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay090/struct_ov90_021D0D80.h"
-#include "overlay090/struct_ov90_021D1750.h"
 
-#include "battle_frontier_stats.h"
+#include "battle_frontier_save.h"
 #include "bg_window.h"
+#include "easy_chat_sentence.h"
 #include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
@@ -33,10 +30,9 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02014A84.h"
-#include "unk_0202D05C.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/graphics/sprite_templates/tower_records.h"
 
@@ -60,7 +56,7 @@ typedef struct {
     u8 unk_05;
     u8 unk_06;
     u8 unk_07;
-    Sentence unk_08;
+    EasyChatSentence unk_08;
 } UnkStruct_ov90_021D17F8;
 
 typedef struct {
@@ -76,9 +72,9 @@ typedef struct {
     BgConfig *unk_10;
     UnkStruct_ov90_021D0D80 *unk_14;
     Options *options;
-    BattleFrontier *frontier;
-    UnkStruct_0202D750 *unk_20;
-    UnkStruct_0202D764 *unk_24;
+    BattleFrontierSave *frontier;
+    WifiBattleTowerRecord *unk_20;
+    WifiBattleTowerDownloadData *unk_24;
     UnkStruct_ov90_021D0ECC_sub1 unk_28;
     Window unk_6C[5];
     UnkStruct_ov90_021D17F8 unk_BC[30];
@@ -130,8 +126,8 @@ int ov90_021D0D80(ApplicationManager *appMan, int *param1)
     v0->unk_0A = v1->unk_06;
     v0->options = SaveData_GetOptions(v1->saveData);
     v0->frontier = SaveData_GetBattleFrontier(v1->saveData);
-    v0->unk_20 = sub_0202D750(v1->saveData);
-    v0->unk_24 = sub_0202D764(v1->saveData);
+    v0->unk_20 = SaveData_GetWifiBattleTowerRecord(v1->saveData);
+    v0->unk_24 = SaveData_GetWifiBattleTowerDownloadData(v1->saveData);
     v0->heapID = HEAP_ID_74;
 
     SetAutorepeat(4, 8);
@@ -642,9 +638,9 @@ static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 pa
     u16 v0, v1, v2;
     int v3;
 
-    v1 = BattleFrontierStats_GetStat(param0->frontier, param3, 0xff);
-    v2 = BattleFrontierStats_GetStat(param0->frontier, param3 + 1, 0xff);
-    v0 = sub_0202D414(param0->unk_20, 8 + param2, 0);
+    v1 = BattleFrontierSave_GetStat(param0->frontier, param3, 0xff);
+    v2 = BattleFrontierSave_GetStat(param0->frontier, param3 + 1, 0xff);
+    v0 = WifiBattleTowerRecord_UpdateBitFlag(param0->unk_20, 8 + param2, 0);
 
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_28.unk_24[v0], 4, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
     StringTemplate_SetNumber(param0->unk_28.unk_04, 0, v2, 4, 1, 1);
@@ -691,7 +687,7 @@ static void ov90_021D15D0(UnkStruct_ov90_021D0ECC *param0)
     case 2:
         MessageLoader_GetString(param0->unk_28.unk_00, 12, param0->unk_28.unk_08);
         Text_AddPrinterWithParamsAndColor(&param0->unk_6C[3], FONT_SYSTEM, param0->unk_28.unk_08, 4, 10, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
-        StringTemplate_SetNumber(param0->unk_28.unk_04, 0, sub_0202D2C0(param0->unk_20, 0), 2, 0, 1);
+        StringTemplate_SetNumber(param0->unk_28.unk_04, 0, WifiBattleTowerRecord_UpdateRank(param0->unk_20, 0), 2, 0, 1);
         StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[5]);
 
         v0 = 64 - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
@@ -706,30 +702,30 @@ static void ov90_021D15D0(UnkStruct_ov90_021D0ECC *param0)
 static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0;
-    UnkStruct_ov90_021D1750 *v1;
+    WifiBattleTowerMatchCandidate *candidates;
     UnkStruct_ov90_021D17F8 *v2;
 
-    v1 = sub_0202D71C(param0->unk_24, param0->heapID);
+    candidates = WifiBattleTowerDownloadData_AllocMatchList(param0->unk_24, param0->heapID);
 
     for (v0 = 0; v0 < 30; v0++) {
         v2 = &param0->unk_BC[v0];
-        v2->unk_04 = v1[v0].unk_20_val1_1;
-        v2->unk_05 = v1[v0].unk_12;
-        v2->unk_06 = v1[v0].unk_13;
-        v2->unk_07 = v1[v0].unk_20_val1_0;
+        v2->unk_04 = candidates[v0].anonymousNameIdx;
+        v2->unk_05 = candidates[v0].country;
+        v2->unk_06 = candidates[v0].region;
+        v2->unk_07 = candidates[v0].isAnonymous;
 
-        MI_CpuCopy8(v1[v0].unk_18, &v2->unk_08, 8);
+        MI_CpuCopy8(candidates[v0].trainerKey, &v2->unk_08, 8);
 
         v2->unk_00 = String_Init(8, param0->heapID);
 
         if (v2->unk_07) {
             String_Copy(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);
         } else {
-            String_CopyChars(v2->unk_00, v1[v0].unk_00);
+            String_CopyChars(v2->unk_00, candidates[v0].trainerName);
         }
     }
 
-    Heap_Free(v1);
+    Heap_Free(candidates);
 }
 
 static void ov90_021D17DC(UnkStruct_ov90_021D0ECC *param0)
@@ -778,13 +774,13 @@ static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, Strin
 
 static void ov90_021D18BC(UnkStruct_ov90_021D0ECC *param0)
 {
-    UnkStruct_02049A68 v0;
+    WifiBattleTowerIndices indices;
     int v1;
 
-    sub_0202D708(param0->unk_24, &v0);
+    WifiBattleTowerDownloadData_GetMatchIndices(param0->unk_24, &indices);
     String_Clear(param0->unk_28.unk_08);
-    StringTemplate_SetNumber(param0->unk_28.unk_04, 0, v0.unk_00, 2, 0, 1);
-    StringTemplate_SetNumber(param0->unk_28.unk_04, 1, v0.unk_04, 3, 2, 1);
+    StringTemplate_SetNumber(param0->unk_28.unk_04, 0, indices.rank, 2, 0, 1);
+    StringTemplate_SetNumber(param0->unk_28.unk_04, 1, indices.opponentIdx, 3, 2, 1);
     StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_10);
 
     v1 = 24 * 8 - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
@@ -824,7 +820,7 @@ static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0)
     String *v0;
     UnkStruct_ov90_021D17F8 *v1 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
-    v0 = Sentence_AsString(&v1->unk_08, param0->heapID);
+    v0 = EasyChatSentence_ToString(&v1->unk_08, param0->heapID);
 
     Window_FillTilemap(&param0->unk_6C[2], (0 << 4) | 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[2], FONT_SYSTEM, v0, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);

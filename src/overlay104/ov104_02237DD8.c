@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle/condition.h"
+#include "constants/battle_frontier.h"
 #include "generated/items.h"
 
 #include "struct_decls/struct_020304A0_decl.h"
@@ -15,6 +16,7 @@
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_battle_arcade.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "graphics.h"
@@ -29,8 +31,9 @@
 #include "sprite.h"
 #include "system_vars.h"
 #include "unk_02030494.h"
-#include "unk_0205DFC4.h"
 #include "vars_flags.h"
+
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 
 typedef struct {
     s16 unk_00;
@@ -48,8 +51,8 @@ void ov104_02238210(BattleArcade *param0);
 static u16 ov104_02238264(BattleArcadeAppArgs *param0, u8 param1);
 void ov104_022384D4(BattleArcade *param0);
 void ov104_022384DC(BattleArcade *param0);
-int ov104_02238538(BattleArcade *param0, Party *param1, Party *param2, int param3);
-static int ov104_02238584(BattleArcade *param0, Party *param1, Party *param2, u8 param3);
+int BattleArcade_FitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, int totalTurnsElapsed);
+static int BattleArcade_BaseFitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, u8 partySize);
 void ov104_02238658(void *param0, FrontierGraphics *param1);
 void ov104_02238728(void *param0, FrontierGraphics *param1);
 void ov104_02238764(BattleArcade *param0, FrontierGraphics *param1, u16 param2);
@@ -93,39 +96,171 @@ static void ov104_02239010(BattleArcade *param0, Party *param1, u8 param2);
 u16 ov104_02239014(BattleArcade *param0);
 void ov104_02239054(Party *param0, Party *param1, int param2, int param3);
 
-static const u16 Unk_ov104_0223FBBA[32][3] = {
-    { 0x59, 0x3A, 0x90 },
-    { 0x5A, 0x3C, 0x91 },
-    { 0x5B, 0x3E, 0x92 },
-    { 0x5C, 0x40, 0x93 },
-    { 0x5D, 0x42, 0x94 },
-    { 0x5E, 0x44, 0x95 },
-    { 0x5F, 0x46, 0x96 },
-    { 0x60, 0x48, 0x97 },
-    { 0x61, 0x4A, 0x98 },
-    { 0x59, 0x39, 0x90 },
-    { 0x5A, 0x3B, 0x91 },
-    { 0x5B, 0x3D, 0x92 },
-    { 0x5C, 0x3F, 0x93 },
-    { 0x5D, 0x41, 0x94 },
-    { 0x5E, 0x43, 0x95 },
-    { 0x5F, 0x45, 0x96 },
-    { 0x60, 0x47, 0x97 },
-    { 0x61, 0x49, 0x98 },
-    { 0x62, 0x4B, 0x99 },
-    { 0x63, 0x4C, 0x9A },
-    { 0x64, 0x4D, 0x9B },
-    { 0x65, 0x4E, 0x9C },
-    { 0x66, 0x4F, 0x9D },
-    { 0x67, 0x50, 0x9E },
-    { 0x69, 0x52, 0xA0 },
-    { 0x6A, 0x53, 0xA1 },
-    { 0x6B, 0x54, 0xA2 },
-    { 0x68, 0x51, 0x9F },
-    { 0x6D, 0x56, 0xA4 },
-    { 0x6C, 0x55, 0xA3 },
-    { 0x6E, 0x57, 0xA5 },
-    { 0x6F, 0x58, 0xA6 }
+static const struct {
+    u16 tiles;
+    u16 tilemap;
+    u16 palette;
+} Unk_ov104_0223FBBA[32] = {
+    [ARCADE_EFFECT_LOWER_FOE_HP] = {
+        battle_arcade_screen_lower_hp_NCGR_lz,
+        battle_arcade_screen_lower_foe_hp_NSCR_lz,
+        battle_arcade_screen_lower_hp_NCLR,
+    },
+    [ARCADE_EFFECT_POISON_FOE] = {
+        battle_arcade_screen_poison_NCGR_lz,
+        battle_arcade_screen_poison_foe_NSCR_lz,
+        battle_arcade_screen_poison_NCLR,
+    },
+    [ARCADE_EFFECT_PARALYZE_FOE] = {
+        battle_arcade_screen_paralyze_NCGR_lz,
+        battle_arcade_screen_paralyze_foe_NSCR_lz,
+        battle_arcade_screen_paralyze_NCLR,
+    },
+    [ARCADE_EFFECT_BURN_FOE] = {
+        battle_arcade_screen_burn_NCGR_lz,
+        battle_arcade_screen_burn_foe_NSCR_lz,
+        battle_arcade_screen_burn_NCLR,
+    },
+    [ARCADE_EFFECT_SLEEP_FOE] = {
+        battle_arcade_screen_sleep_NCGR_lz,
+        battle_arcade_screen_sleep_foe_NSCR_lz,
+        battle_arcade_screen_sleep_NCLR,
+    },
+    [ARCADE_EFFECT_FREEZE_FOE] = {
+        battle_arcade_screen_freeze_NCGR_lz,
+        battle_arcade_screen_freeze_foe_NSCR_lz,
+        battle_arcade_screen_freeze_NCLR,
+    },
+    [ARCADE_EFFECT_FOE_GET_BERRY] = {
+        battle_arcade_screen_get_berry_NCGR_lz,
+        battle_arcade_screen_foe_get_berry_NSCR_lz,
+        battle_arcade_screen_get_berry_NCLR,
+    },
+    [ARCADE_EFFECT_FOE_GET_ITEM] = {
+        battle_arcade_screen_get_item_NCGR_lz,
+        battle_arcade_screen_foe_get_item_NSCR_lz,
+        battle_arcade_screen_get_item_NCLR,
+    },
+    [ARCADE_EFFECT_FOE_LEVEL_UP] = {
+        battle_arcade_screen_level_up_NCGR_lz,
+        battle_arcade_screen_foe_level_up_NSCR_lz,
+        battle_arcade_screen_level_up_NCLR,
+    },
+    [ARCADE_EFFECT_LOWER_ALLY_HP] = {
+        battle_arcade_screen_lower_hp_NCGR_lz,
+        battle_arcade_screen_lower_ally_hp_NSCR_lz,
+        battle_arcade_screen_lower_hp_NCLR,
+    },
+    [ARCADE_EFFECT_POISON_ALLY] = {
+        battle_arcade_screen_poison_NCGR_lz,
+        battle_arcade_screen_poison_ally_NSCR_lz,
+        battle_arcade_screen_poison_NCLR,
+    },
+    [ARCADE_EFFECT_PARALYZE_ALLY] = {
+        battle_arcade_screen_paralyze_NCGR_lz,
+        battle_arcade_screen_paralyze_ally_NSCR_lz,
+        battle_arcade_screen_paralyze_NCLR,
+    },
+    [ARCADE_EFFECT_BURN_ALLY] = {
+        battle_arcade_screen_burn_NCGR_lz,
+        battle_arcade_screen_burn_ally_NSCR_lz,
+        battle_arcade_screen_burn_NCLR,
+    },
+    [ARCADE_EFFECT_SLEEP_ALLY] = {
+        battle_arcade_screen_sleep_NCGR_lz,
+        battle_arcade_screen_sleep_ally_NSCR_lz,
+        battle_arcade_screen_sleep_NCLR,
+    },
+    [ARCADE_EFFECT_FREEZE_ALLY] = {
+        battle_arcade_screen_freeze_NCGR_lz,
+        battle_arcade_screen_freeze_ally_NSCR_lz,
+        battle_arcade_screen_freeze_NCLR,
+    },
+    [ARCADE_EFFECT_ALLY_GET_BERRY] = {
+        battle_arcade_screen_get_berry_NCGR_lz,
+        battle_arcade_screen_ally_get_berry_NSCR_lz,
+        battle_arcade_screen_get_berry_NCLR,
+    },
+    [ARCADE_EFFECT_ALLY_GET_ITEM] = {
+        battle_arcade_screen_get_item_NCGR_lz,
+        battle_arcade_screen_ally_get_item_NSCR_lz,
+        battle_arcade_screen_get_item_NCLR,
+    },
+    [ARCADE_EFFECT_ALLY_LEVEL_UP] = {
+        battle_arcade_screen_level_up_NCGR_lz,
+        battle_arcade_screen_ally_level_up_NSCR_lz,
+        battle_arcade_screen_level_up_NCLR,
+    },
+    [ARCADE_EFFECT_SUNNY_BATTLE] = {
+        battle_arcade_screen_sunny_battle_NCGR_lz,
+        battle_arcade_screen_sunny_battle_NSCR_lz,
+        battle_arcade_screen_sunny_battle_NCLR,
+    },
+    [ARCADE_EFFECT_RAINY_BATTLE] = {
+        battle_arcade_screen_rainy_battle_NCGR_lz,
+        battle_arcade_screen_rainy_battle_NSCR_lz,
+        battle_arcade_screen_rainy_battle_NCLR,
+    },
+    [ARCADE_EFFECT_SANDY_BATTLE] = {
+        battle_arcade_screen_sandy_battle_NCGR_lz,
+        battle_arcade_screen_sandy_battle_NSCR_lz,
+        battle_arcade_screen_sandy_battle_NCLR,
+    },
+    [ARCADE_EFFECT_HAIL_BATTLE] = {
+        battle_arcade_screen_hail_battle_NCGR_lz,
+        battle_arcade_screen_hail_battle_NSCR_lz,
+        battle_arcade_screen_hail_battle_NCLR,
+    },
+    [ARCADE_EFFECT_FOGGY_BATTLE] = {
+        battle_arcade_screen_foggy_battle_NCGR_lz,
+        battle_arcade_screen_foggy_battle_NSCR_lz,
+        battle_arcade_screen_foggy_battle_NCLR,
+    },
+    [ARCADE_EFFECT_TRICK_ROOM] = {
+        battle_arcade_screen_trick_room_NCGR_lz,
+        battle_arcade_screen_trick_room_NSCR_lz,
+        battle_arcade_screen_trick_room_NCLR,
+    },
+    [ARCADE_EFFECT_SPEED_UP] = {
+        battle_arcade_screen_speed_up_NCGR_lz,
+        battle_arcade_screen_speed_up_NSCR_lz,
+        battle_arcade_screen_speed_up_NCLR,
+    },
+    [ARCADE_EFFECT_SLOW_DOWN] = {
+        battle_arcade_screen_slow_down_NCGR_lz,
+        battle_arcade_screen_slow_down_NSCR_lz,
+        battle_arcade_screen_slow_down_NCLR,
+    },
+    [ARCADE_EFFECT_RANDOMIZE_CURSOR] = {
+        battle_arcade_screen_randomize_cursor_NCGR_lz,
+        battle_arcade_screen_randomize_cursor_NSCR_lz,
+        battle_arcade_screen_randomize_cursor_NCLR,
+    },
+    [ARCADE_EFFECT_SWAP_MONS] = {
+        battle_arcade_screen_swap_mons_NCGR_lz,
+        battle_arcade_screen_swap_mons_NSCR_lz,
+        battle_arcade_screen_swap_mons_NCLR,
+    },
+    [ARCADE_EFFECT_GET_1_BP] = {
+        battle_arcade_screen_get_1_bp_NCGR_lz,
+        battle_arcade_screen_get_1_bp_NSCR_lz,
+        battle_arcade_screen_get_1_bp_NCLR,
+    },
+    [ARCADE_EFFECT_NO_BATTLE] = {
+        battle_arcade_screen_no_battle_NCGR_lz,
+        battle_arcade_screen_no_battle_NSCR_lz,
+        battle_arcade_screen_no_battle_NCLR,
+    },
+    [ARCADE_EFFECT_NO_EVENT] = {
+        battle_arcade_screen_no_event_NCGR_lz,
+        battle_arcade_screen_no_event_NSCR_lz,
+        battle_arcade_screen_no_event_NCLR,
+    },
+    [ARCADE_EFFECT_GET_3_BP] = {
+        battle_arcade_screen_get_3_bp_NCGR_lz,
+        battle_arcade_screen_get_3_bp_NSCR_lz,
+        battle_arcade_screen_get_3_bp_NCLR,
+    }
 };
 
 static const u8 Unk_ov104_0223FAF8[][2] = {
@@ -174,7 +309,7 @@ BattleArcade *ov104_02237DD8(SaveData *saveData, u16 param1, u8 param2, u16 para
         }
 
         if (v5 == 1) {
-            v9->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType)));
+            v9->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType));
         } else {
             v9->currentStreak = 0;
         }
@@ -190,7 +325,7 @@ BattleArcade *ov104_02237DD8(SaveData *saveData, u16 param1, u8 param2, u16 para
         v9->unk_11 = (u8)sub_0203054C(v4, 2, 0, 0, NULL);
         v9->unk_1C = (u8)sub_0203054C(v4, 3, 0, 0, NULL);
         v9->unk_12 = (u8)sub_0203054C(v4, 1, 0, 0, NULL);
-        v9->currentStreak = BattleFrontierStats_GetStat(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType)));
+        v9->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v9->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(v9->challengeType));
         v9->unk_1A = (u16)(v9->currentStreak / 7);
 
         for (v7 = 0; v7 < 3; v7++) {
@@ -376,16 +511,16 @@ void ov104_02238278(BattleArcade *param0, u8 param1)
 
     v2[0] = param0->unk_12;
     sub_020304CC(param0->unk_08, 1, 0, 0, v2);
-    BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeLatestStreakIndex(param0->challengeType)), param0->currentStreak);
+    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(param0->challengeType), param0->currentStreak);
 
     if (param1 != 2) {
-        v5 = BattleFrontierStats_SetIfBetter(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetArcadeCurrentStreakIndex(param0->challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetArcadeCurrentStreakIndex(param0->challengeType)), param0->currentStreak);
+        v5 = BattleFrontierSave_SetIfBetterAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), BattleFrontierStats_GetArcadeCurrentStreakIndex(param0->challengeType), param0->currentStreak);
 
         v2[0] = param0->unk_2F;
         sub_020305CC(v9, 8, param0->challengeType, 0, v2);
 
         if (param0->challengeType == 3) {
-            BattleFrontierStats_SetStat(SaveData_GetBattleFrontier(param0->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, BattleFrontierStats_GetHostFriendIdx(STAT_ARCADE_WFC_STREAK_ACTIVE), param0->unk_2F);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, param0->unk_2F);
         }
     }
 
@@ -489,104 +624,101 @@ void ov104_022384DC(BattleArcade *param0)
     return;
 }
 
-static const u8 Unk_ov104_0223FAF0[5] = {
-    0x8,
-    0x6,
-    0x4,
-    0x0,
-    0x0
+static const u8 sStatusConditionFitness[5] = {
+    8,
+    6,
+    4,
+    0,
+    0
 };
 
-static const u8 Unk_ov104_0223FAE8[5] = {
-    0x6,
-    0x4,
-    0x2,
-    0x0,
-    0x0
+static const u8 sFaintedMonsFitness[5] = {
+    6,
+    4,
+    2,
+    0,
+    0
 };
 
-static const u8 Unk_ov104_0223FAFE[5][2] = {
-    { 0x3, 0xA },
-    { 0x5, 0x6 },
-    { 0x7, 0x4 },
-    { 0x9, 0x2 },
-    { 0xA, 0x0 }
+static const struct {
+    u8 turns;
+    u8 score;
+} sTurnsElapsedFitness[5] = {
+    { 3, 10 },
+    { 5, 6 },
+    { 7, 4 },
+    { 9, 2 },
+    { 10, 0 }
 };
 
-int ov104_02238538(BattleArcade *param0, Party *param1, Party *param2, int param3)
+int BattleArcade_FitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, int totalTurnsElapsed)
 {
-    u8 v0;
-    int v1;
-    Pokemon *v2;
-    int v3 = 0;
-    v0 = BattleArcade_GetPlayerPartySize(param0->challengeType, 0);
+    u8 partySize;
+    int i;
+    int fitness = 0;
+    partySize = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, FALSE);
 
-    v3 += ov104_02238584(param0, param1, param2, v0);
+    fitness += BattleArcade_BaseFitnessScore(battleArcade, party1, party2, partySize);
 
-    for (v1 = 0; v1 < 5; v1++) {
-        if (param3 < Unk_ov104_0223FAFE[v1][0]) {
-            v3 += Unk_ov104_0223FAFE[v1][1];
+    for (i = 0; i < 5; i++) {
+        if (totalTurnsElapsed < sTurnsElapsedFitness[i].turns) {
+            fitness += sTurnsElapsedFitness[i].score;
             break;
         }
     }
 
-    return v3;
+    return fitness;
 }
 
-static int ov104_02238584(BattleArcade *param0, Party *param1, Party *param2, u8 param3)
+static int BattleArcade_BaseFitnessScore(BattleArcade *battleArcade, Party *party1, Party *party2, u8 partySize)
 {
-    u32 v0;
-    u8 v1;
-    u8 v2;
-    int v3, v4;
-    Pokemon *v5;
+    u8 faintedMons;
+    u8 monsWithStatusCondition;
+    int i, fitness;
+    Pokemon *mon;
 
-    v4 = 0;
-    v1 = 0;
-    v2 = 0;
+    fitness = 0;
+    faintedMons = 0;
+    monsWithStatusCondition = 0;
 
-    for (v3 = 0; v3 < param3; v3++) {
-        v5 = Party_GetPokemonBySlotIndex(param1, v3);
+    for (i = 0; i < partySize; i++) {
+        mon = Party_GetPokemonBySlotIndex(party1, i);
 
-        if (Pokemon_GetValue(v5, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
         }
 
-        v0 = Pokemon_GetValue(v5, MON_DATA_HP, NULL);
-
-        if (v0 == 0) {
-            v1++;
+        if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+            faintedMons++;
         }
 
-        if (Pokemon_GetValue(v5, MON_DATA_STATUS, NULL) != 0) {
-            v2++;
+        if (Pokemon_GetValue(mon, MON_DATA_STATUS, NULL) != 0) {
+            monsWithStatusCondition++;
         }
     }
 
-    if (BattleArcade_IsMultiPlayerChallenge(param0->challengeType) == 1) {
-        for (v3 = 0; v3 < param3; v3++) {
-            v5 = Party_GetPokemonBySlotIndex(param2, v3);
+    if (BattleArcade_IsMultiPlayerChallenge(battleArcade->challengeType) == TRUE) {
+        for (i = 0; i < partySize; i++) {
+            mon = Party_GetPokemonBySlotIndex(party2, i);
 
-            if (Pokemon_GetValue(v5, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
                 continue;
             }
 
-            v0 = Pokemon_GetValue(v5, MON_DATA_HP, NULL);
-
-            if (v0 == 0) {
-                v1++;
+            if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+                faintedMons++;
             }
 
-            if (Pokemon_GetValue(v5, MON_DATA_STATUS, NULL) != 0) {
-                v2++;
+            if (Pokemon_GetValue(mon, MON_DATA_STATUS, NULL) != 0) {
+                monsWithStatusCondition++;
             }
         }
     }
 
-    v4 += Unk_ov104_0223FAF0[v2];
-    v4 += Unk_ov104_0223FAE8[v1];
+    fitness += sStatusConditionFitness[monsWithStatusCondition];
+    fitness += sFaintedMonsFitness[faintedMons];
 
-    return v4;
+    return fitness;
 }
 
 void ov104_02238658(void *param0, FrontierGraphics *param1)
@@ -595,16 +727,16 @@ void ov104_02238658(void *param0, FrontierGraphics *param1)
     BattleArcade *v1 = (BattleArcade *)param0;
 
     if (v1->activeEffect != 32) {
-        v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
+        v0 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect][0], param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect][1], param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect].tiles, param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect].tilemap, param1->bgConfig, 2, 0, 0, 1, HEAP_ID_94);
 
         {
             NNSG2dPaletteData *v2;
             void *v3;
 
-            v3 = Graphics_GetPlttDataFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect][2], &v2, HEAP_ID_94);
+            v3 = Graphics_GetPlttDataFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->activeEffect].palette, &v2, HEAP_ID_94);
             DC_FlushRange(v2->pRawData, v2->szByte);
 
             GX_BeginLoadBGExtPltt();
@@ -627,7 +759,7 @@ void ov104_02238658(void *param0, FrontierGraphics *param1)
 void ov104_02238728(void *param0, FrontierGraphics *param1)
 {
     BattleArcade *v1 = (BattleArcade *)param0;
-    NARC *v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
+    NARC *v0 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 53, param1->bgConfig, 3, 0, 0, 1, HEAP_ID_94);
     Bg_ScheduleTilemapTransfer(param1->bgConfig, 3);
@@ -853,7 +985,7 @@ void ov104_02238AB4(u8 param0, u8 param1)
     v5 = Heap_Alloc(HEAP_ID_94, 0x1000 * 2);
     memset(v5, 0, 0x1000 * 2);
 
-    v4 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
+    v4 = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_94);
     v3 = Graphics_GetPlttDataFromOpenNARC(v4, v0, &v2, HEAP_ID_94);
 
     BlendPalette(v2->pRawData, v5, 0x1000, param0, 0x0);

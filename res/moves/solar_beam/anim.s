@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, solar_beam_spa
-    BtlAnimCmd_013 L_1, L_2
+    JumpIfEffectChanceOdd L_1, L_2
     End
 
 L_1:

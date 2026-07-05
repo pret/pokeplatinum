@@ -8,14 +8,14 @@
     ScriptEntry LakeVerityLowWater_OnFrame_Cyrus
     ScriptEntry LakeVerityLowWater_ProfRowan
     ScriptEntry LakeVerityLowWater_Counterpart
-    ScriptEntry LakeVerityLowWater_UnusedEntry6
-    ScriptEntry LakeVerityLowWater_UnusedEntry7
+    ScriptEntry LakeVerityLowWater_Dummy6
+    ScriptEntry LakeVerityLowWater_Dummy7
     ScriptEntryEnd
 
 LakeVerityLowWater_OnTransition:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, LakeVerityLowWater_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, LakeVerityLowWater_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, LakeVerityLowWater_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, LakeVerityLowWater_SetCounterpartGraphicsLucas
     End
 
 LakeVerityLowWater_SetCounterpartGraphicsDawn:
@@ -27,14 +27,14 @@ LakeVerityLowWater_SetCounterpartGraphicsLucas:
     End
 
 LakeVerityLowWater_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, LakeVerityLowWater_HideStarly
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, LakeVerityLowWater_RemoveStarly
     End
 
-LakeVerityLowWater_HideStarly:
+LakeVerityLowWater_RemoveStarly:
     SetFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_STARLY
     RemoveObject LOCALID_STARLY_SOUTH
     RemoveObject LOCALID_STARLY_EAST
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
     End
 
@@ -51,7 +51,7 @@ LakeVerityLowWater_OnFrame_Cyrus:
     ApplyFreeCameraMovement LakeVerityLowWater_Movement_PanToCyrus
     WaitMovement
     WaitTime 15, VAR_RESULT
-    Message LakeVerityLowWater_Text_IWillMakeTimeAndSpaceMine
+    Message LakeVerityLowWater_Text_MakeTimeAndSpaceMine
     CloseMessage
     WaitTime 30, VAR_RESULT
     ApplyMovement LOCALID_CYRUS, LakeVerityLowWater_Movement_CyrusWalkToPlayer
@@ -79,7 +79,7 @@ LakeVerityLowWater_OnFrame_Cyrus:
     WaitMovement
     WaitTime 30, VAR_RESULT
     BufferPlayerName 1
-    Message LakeVerityLowWater_Text_LetsCatchThatLegendaryPokemon
+    Message LakeVerityLowWater_Text_LetsCatchThatLegendary
     PlayCry SPECIES_MESPRIT
     Message LakeVerityLowWater_Text_LegendaryCry
     WaitCry
@@ -92,7 +92,7 @@ LakeVerityLowWater_OnFrame_Cyrus:
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message LakeVerityLowWater_Text_ThatWasTheLegendaryPokemonCrying
+    Message LakeVerityLowWater_Text_ThatWasTheLegendaryCrying
     CloseMessage
     ApplyMovement LOCALID_RIVAL, LakeVerityLowWater_Movement_RivalExclamationMark
     WaitMovement
@@ -126,11 +126,11 @@ LakeVerityLowWater_Movement_PanBackToPlayer:
     WalkNormalSouth 9
     EndMovement
 
-LakeVerityLowWater_UnusedMovement:
+LakeVerityLowWater_Movement_Unused:
     WalkOnSpotNormalEast
     EndMovement
 
-LakeVerityLowWater_UnusedMovement2:
+LakeVerityLowWater_Movement_Unused2:
     WalkOnSpotNormalSouth
     Delay8 2
     WalkOnSpotNormalEast
@@ -149,29 +149,29 @@ LakeVerityLowWater_Movement_CyrusLeave:
     SetInvisible
     EndMovement
 
-LakeVerityLowWater_UnusedMovement3:
+LakeVerityLowWater_Movement_Unused3:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
-LakeVerityLowWater_UnusedMovement4:
+LakeVerityLowWater_Movement_Unused4:
     WalkOnSpotNormalWest
     EndMovement
 
-LakeVerityLowWater_UnusedMovement5:
+LakeVerityLowWater_Movement_Unused5:
     WalkNormalSouth 4
     WalkNormalWest 2
     WalkNormalSouth 5
     EndMovement
 
-LakeVerityLowWater_UnusedMovement6:
+LakeVerityLowWater_Movement_Unused6:
     WalkNormalWest
     WalkNormalSouth 5
     WalkNormalWest
     WalkNormalSouth 3
     EndMovement
 
-LakeVerityLowWater_UnusedMovement7:
+LakeVerityLowWater_Movement_Unused7:
     WalkNormalSouth
     WalkOnSpotNormalWest
     Delay4
@@ -183,19 +183,19 @@ LakeVerityLowWater_UnusedMovement7:
     Delay8
     EndMovement
 
-LakeVerityLowWater_UnusedMovement8:
+LakeVerityLowWater_Movement_Unused8:
     WalkNormalSouth 3
     SetInvisible
     EndMovement
 
-LakeVerityLowWater_UnusedMovement9:
+LakeVerityLowWater_Movement_Unused9:
     WalkNormalNorth 4
     WalkNormalEast 2
     WalkNormalNorth 4
     WalkOnSpotNormalWest
     EndMovement
 
-LakeVerityLowWater_UnusedMovement10:
+LakeVerityLowWater_Movement_Unused10:
     WalkOnSpotNormalSouth
     Delay8
     WalkOnSpotFastEast
@@ -254,40 +254,40 @@ LakeVerityLowWater_Movement_RivalLeave:
     WalkFastSouth 2
     EndMovement
 
-LakeVerityLowWater_UnusedMovement11:
+LakeVerityLowWater_Movement_Unused11:
     WalkOnSpotNormalEast
     EndMovement
 
-LakeVerityLowWater_UnusedMovement12:
+LakeVerityLowWater_Movement_Unused12:
     WalkOnSpotFastEast
     EndMovement
 
-LakeVerityLowWater_UnusedMovement13:
+LakeVerityLowWater_Movement_Unused13:
     WalkOnSpotNormalSouth
     EndMovement
 
-LakeVerityLowWater_UnusedMovement14:
+LakeVerityLowWater_Movement_Unused14:
     Delay8 7
     WalkNormalEast
     WalkOnSpotNormalWest
     EndMovement
 
-LakeVerityLowWater_UnusedMovement15:
+LakeVerityLowWater_Movement_Unused15:
     Delay4
     WalkOnSpotNormalSouth
     EndMovement
 
-LakeVerityLowWater_UnusedMovement16:
+LakeVerityLowWater_Movement_Unused16:
     WalkNormalWest
     WalkNormalSouth
     WalkOnSpotNormalWest
     EndMovement
 
-LakeVerityLowWater_UnusedMovement17:
+LakeVerityLowWater_Movement_Unused17:
     WalkOnSpotFastSouth
     EndMovement
 
-LakeVerityLowWater_UnusedMovement18:
+LakeVerityLowWater_Movement_Unused18:
     WalkNormalSouth
     WalkNormalWest
     WalkNormalSouth 3
@@ -329,11 +329,11 @@ LakeVerityLowWater_Movement_PlayerWatchRivalLeave:
     WalkOnSpotNormalSouth
     EndMovement
 
-LakeVerityLowWater_UnusedMovement19:
+LakeVerityLowWater_Movement_Unused19:
     WalkOnSpotNormalSouth
     EndMovement
 
-LakeVerityLowWater_UnusedMovement20:
+LakeVerityLowWater_Movement_Unused20:
     Delay8 5
     WalkOnSpotNormalSouth
     Delay8 2
@@ -341,25 +341,25 @@ LakeVerityLowWater_UnusedMovement20:
     WalkOnSpotNormalNorth
     EndMovement
 
-LakeVerityLowWater_UnusedMovement21:
+LakeVerityLowWater_Movement_Unused21:
     WalkOnSpotNormalSouth
     EndMovement
 
-LakeVerityLowWater_UnusedMovement22:
+LakeVerityLowWater_Movement_Unused22:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
 
-LakeVerityLowWater_UnusedMovement23:
+LakeVerityLowWater_Movement_Unused23:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
-LakeVerityLowWater_UnusedMovement24:
+LakeVerityLowWater_Movement_Unused24:
     WalkOnSpotNormalNorth
     EndMovement
 
-LakeVerityLowWater_UnusedMovement25:
+LakeVerityLowWater_Movement_Unused25:
     Delay8
     WalkOnSpotNormalSouth
     WalkNormalSouth 4
@@ -368,11 +368,11 @@ LakeVerityLowWater_UnusedMovement25:
     SetInvisible
     EndMovement
 
-LakeVerityLowWater_UnusedMovement26:
+LakeVerityLowWater_Movement_Unused26:
     WalkFastNorth 6
     EndMovement
 
-LakeVerityLowWater_UnusedMovement27:
+LakeVerityLowWater_Movement_Unused27:
     WalkFastWest 7
     EndMovement
 
@@ -383,7 +383,7 @@ LakeVerityLowWater_ProfRowan:
     GoToIfSet FLAG_TALKED_TO_LAKE_VERITY_LOW_WATER_PROF_ROWAN, LakeVerityLowWater_RowanHowWasLakeValor
     SetFlag FLAG_TALKED_TO_LAKE_VERITY_LOW_WATER_PROF_ROWAN
     BufferPlayerName 0
-    Message LakeVerityLowWater_Text_RowanNoLegendaryPokemonHowWasLakeValor
+    Message LakeVerityLowWater_Text_RowanNoLegendaryHowWasLakeValor
     WaitButton
     CloseMessage
     ReleaseAll
@@ -421,10 +421,10 @@ LakeVerityLowWater_CloseMessage:
     ReleaseAll
     End
 
-LakeVerityLowWater_UnusedEntry6:
+LakeVerityLowWater_Dummy6:
     End
 
-LakeVerityLowWater_UnusedEntry7:
+LakeVerityLowWater_Dummy7:
     End
 
     .balign 4, 0

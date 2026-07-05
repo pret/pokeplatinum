@@ -11,7 +11,7 @@ Route221House_ExpertM:
     LockAll
     FacePlayer
     GoToIfSet FLAG_COULD_NOT_RECEIVE_ROUTE_221_HOUSE_REWARD, Route221House_TryGiveReward
-    GoToIfSet FLAG_RECEIVED_ROUTE_221_HOUSE_REWARD, Route221House_ComeAgainTomorrow
+    GoToIfSet FLAG_DAILY_RECEIVED_ROUTE_221_HOUSE_REWARD, Route221House_ComeAgainTomorrow
     GetDailyRandomLevel VAR_0x8000
     BufferNumber 0, VAR_0x8000
     GetPartyCount VAR_0x8002
@@ -38,7 +38,7 @@ Route221House_CorrectPartyMonLevel:
 Route221House_GiveReward:
     Common_GiveItemQuantityNoLineFeed
     ClearFlag FLAG_COULD_NOT_RECEIVE_ROUTE_221_HOUSE_REWARD
-    SetFlag FLAG_RECEIVED_ROUTE_221_HOUSE_REWARD
+    SetFlag FLAG_DAILY_RECEIVED_ROUTE_221_HOUSE_REWARD
     AddVar VAR_ROUTE_221_HOUSE_REWARD_INDEX, 1
     GoToIfLt VAR_ROUTE_221_HOUSE_REWARD_INDEX, 3, Route221House_ExpertMEnd
     SetVar VAR_ROUTE_221_HOUSE_REWARD_INDEX, 0

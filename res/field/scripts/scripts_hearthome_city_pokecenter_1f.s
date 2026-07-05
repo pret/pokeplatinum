@@ -14,7 +14,7 @@ HearthomeCityPokecenter1F_Nurse:
     End
 
 HearthomeCityPokecenter1F_Youngster:
-    NPCMessage HearthomeCityPokecenter1F_Text_HaveYouCheckedTheGlobalTerminal
+    NPCMessage HearthomeCityPokecenter1F_Text_HaveYouCheckedGlobalTerminal
     End
 
 HearthomeCityPokecenter1F_Socialite:

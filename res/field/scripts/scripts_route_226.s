@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 Route226_ArrowSignpostSurvivalArea:
-    ShowArrowSign Route226_Text_SignRt226SurvivalArea
+    ShowArrowSign Route226_Text_SignSurvivalArea
     End
 
 Route226_ArrowSignpostRt227Rt228:

@@ -6,8 +6,8 @@
     ScriptEntry StarkMountainRoom2_CoordEvent_BuckStartFollowing
     ScriptEntry StarkMountainRoom2_CoordEvent_PlayerLeaveBuck
     ScriptEntry StarkMountainRoom2_CoordEvent_BuckLeavePlayer
-    ScriptEntry StarkMountainRoom2_Unused4
-    ScriptEntry StarkMountainRoom2_Unused5
+    ScriptEntry StarkMountainRoom2_Dummy4
+    ScriptEntry StarkMountainRoom2_Dummy5
     ScriptEntry StarkMountainRoom2_OnTransition
     ScriptEntryEnd
 
@@ -71,7 +71,7 @@ StarkMountainRoom2_Movement_BuckEnter:
     WalkNormalNorth 8
     EndMovement
 
-StarkMountainRoom2_UnusedMovement:
+StarkMountainRoom2_Movement_Unused:
     WalkNormalNorth
     EndMovement
 
@@ -80,7 +80,7 @@ StarkMountainRoom2_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
-StarkMountainRoom2_UnusedMovement2:
+StarkMountainRoom2_Movement_Unused2:
     WalkNormalNorth
     EndMovement
 
@@ -187,11 +187,11 @@ StarkMountainRoom2_Movement_BuckEnterRoom3:
     WalkNormalNorth
     EndMovement
 
-StarkMountainRoom2_Unused4:
+StarkMountainRoom2_Dummy4:
     NPCMessage StarkMountainRoom2_Text_Dummy6
     End
 
-StarkMountainRoom2_Unused5:
+StarkMountainRoom2_Dummy5:
     NPCMessage StarkMountainRoom2_Text_Dummy7
     End
 

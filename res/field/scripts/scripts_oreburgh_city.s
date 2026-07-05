@@ -18,8 +18,8 @@
     ScriptEntry OreburghCity_Camper
     ScriptEntry OreburghCity_MapSignpost
     ScriptEntry OreburghCity_GymSignpost
-    ScriptEntry OreburghCity_ScrollingSignpostOreburghMiningMuseum
-    ScriptEntry OreburghCity_ScrollingSignpostOreburghMine
+    ScriptEntry OreburghCity_SignboardOreburghMiningMuseum
+    ScriptEntry OreburghCity_SignboardOreburghMine
     ScriptEntry OreburghCity_Machop1
     ScriptEntry OreburghCity_BattleGirl2
     ScriptEntry OreburghCity_Machop3
@@ -30,19 +30,19 @@ OreburghCity_Rival:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TALKED_TO_OREBURGH_CITY_RIVAL, OreburghCity_IToldYouTheGymLeaderWentDownToTheOreburghMine
+    GoToIfSet FLAG_TALKED_TO_OREBURGH_CITY_RIVAL, OreburghCity_GymLeaderWentDownToTheMine
     BufferRivalName 0
     BufferPlayerName 1
-    Message OreburghCity_Text_TheGymLeadersGoneOffToTheCoalMine
+    Message OreburghCity_Text_GymLeadersGoneOffToTheMine
     WaitButton
     SetFlag FLAG_TALKED_TO_OREBURGH_CITY_RIVAL
     CloseMessage
     ReleaseAll
     End
 
-OreburghCity_IToldYouTheGymLeaderWentDownToTheOreburghMine:
+OreburghCity_GymLeaderWentDownToTheMine:
     BufferRivalName 0
-    Message OreburghCity_Text_IToldYouTheGymLeaderWentDownToTheOreburghMine
+    Message OreburghCity_Text_GymLeaderWentDownToTheMine
     WaitButton
     CloseMessage
     ReleaseAll
@@ -54,7 +54,7 @@ OreburghCity_Youngster:
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COAL, OreburghCity_CanISeeYourTrainerCase
     GoToIfSet FLAG_ROARK_RETURNED_TO_OREBURGH_GYM, OreburghCity_TheGymLeadersWaitingForYou
-    Message OreburghCity_Text_IsThatGuyInFrontOfTheGymYourFriend
+    Message OreburghCity_Text_IsThatGuyYourFriend
     WaitButton
     CloseMessage
     ReleaseAll
@@ -129,11 +129,11 @@ OreburghCity_NextStopTheEternaGymBadge:
     Common_SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
-    Message OreburghCity_Text_EternaCityIsTheNextPlaceWithAGymThatGivesAwayBadgesRight
+    Message OreburghCity_Text_EternaCityNextPlaceWithAGym
     CloseMessage
     ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalWalkOnSpotEast
     WaitMovement
-    Message OreburghCity_Text_IWentToRoute207ButYouCantGoThereWithoutABicycle
+    Message OreburghCity_Text_CantGoToRoute207WithoutBicycle
     ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalWalkOnSpotWest
     WaitMovement
     Message OreburghCity_Text_NextStopTheEternaGymBadge
@@ -177,7 +177,7 @@ OreburghCity_RemoveRival:
     PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL
     Common_FadeToDefaultMusic2
-    SetVar VAR_OREBURGH_STATE, 3
+    SetVar VAR_OREBURGH_CITY_STATE, 3
     ReleaseAll
     End
 
@@ -262,29 +262,29 @@ OreburghCity_Movement_RivalWalkOnSpotWest:
     EndMovement
 
 OreburghCity_Hiker:
-    NPCMessage OreburghCity_Text_UpAheadTheresAHugeMountainThatTowersAboveEverything
+    NPCMessage OreburghCity_Text_UpAheadTheresAHugeMountain
     End
 
 OreburghCity_Worker1:
-    NPCMessage OreburghCity_Text_TheseVentsExchangeTheHotAirDownBelowWithTheFreshAirOutside
+    NPCMessage OreburghCity_Text_TheseVentsExchangeAirDownBelow
     End
 
 OreburghCity_Worker2:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_SUPER_POTION, OreburghCity_FeelingHaleAndHeartyPutsASmileOnMyFace
+    GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_SUPER_POTION, OreburghCity_PutsASmileOnMyFace
     Message OreburghCity_Text_HereTakeOneOfThese
     SetVar VAR_0x8004, ITEM_SUPER_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghCity_BagIsFull
     Common_GiveItemQuantity
     SetFlag FLAG_RECEIVED_OREBURGH_CITY_SUPER_POTION
-    GoTo OreburghCity_FeelingHaleAndHeartyPutsASmileOnMyFace
+    GoTo OreburghCity_PutsASmileOnMyFace
     End
 
-OreburghCity_FeelingHaleAndHeartyPutsASmileOnMyFace:
-    Message OreburghCity_Text_FeelingHaleAndHeartyPutsASmileOnMyFace
+OreburghCity_PutsASmileOnMyFace:
+    Message OreburghCity_Text_PutsASmileOnMyFace
     WaitButton
     CloseMessage
     ReleaseAll
@@ -297,11 +297,11 @@ OreburghCity_BagIsFull:
     End
 
 OreburghCity_Worker3:
-    NPCMessage OreburghCity_Text_ThisPileOfDirtySandIsCalledASlagHeap
+    NPCMessage OreburghCity_Text_ThisPileIsCalledASlagHeap
     End
 
 OreburghCity_Worker4:
-    NPCMessage OreburghCity_Text_ChopChopMachopChopChopAwayOnRocks
+    NPCMessage OreburghCity_Text_ChopChopAwayOnRocks
     End
 
 OreburghCity_CoordEvent_Youngster:
@@ -317,32 +317,32 @@ OreburghCity_YoungsterWalkToPlayerZ748:
     ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkOnSpotSouth
     ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToPlayerZ748
     WaitMovement
-    GoTo OreburghCity_IllTakeYouToThePokemonGym
+    GoTo OreburghCity_IllTakeYouToTheGym
     End
 
 OreburghCity_YoungsterWalkToPlayerZ749:
     ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkOnSpotSouth
     ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToPlayerZ749
     WaitMovement
-    GoTo OreburghCity_IllTakeYouToThePokemonGym
+    GoTo OreburghCity_IllTakeYouToTheGym
     End
 
 OreburghCity_YoungsterWalkToPlayerZ750:
     ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkOnSpotSouth
     ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToPlayerZ750
     WaitMovement
-    GoTo OreburghCity_IllTakeYouToThePokemonGym
+    GoTo OreburghCity_IllTakeYouToTheGym
     End
 
 OreburghCity_YoungsterWalkToPlayerZ751:
     ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkOnSpotSouth
     ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToPlayerZ751
     WaitMovement
-    GoTo OreburghCity_IllTakeYouToThePokemonGym
+    GoTo OreburghCity_IllTakeYouToTheGym
     End
 
-OreburghCity_IllTakeYouToThePokemonGym:
-    Message OreburghCity_Text_IllTakeYouToThePokemonGym
+OreburghCity_IllTakeYouToTheGym:
+    Message OreburghCity_Text_IllTakeYouToTheGym
     CloseMessage
     Common_SetFollowMeBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -385,7 +385,7 @@ OreburghCity_HuhTheresSomeoneThere:
     WaitButton
     CloseMessage
     Common_FadeToDefaultMusic3
-    SetVar VAR_OREBURGH_STATE, 1
+    SetVar VAR_OREBURGH_CITY_STATE, 1
     ReleaseAll
     End
 
@@ -483,22 +483,22 @@ OreburghCity_Movement_YoungsterWalkToPlayerZ751:
     EndMovement
 
 OreburghCity_BattleGirl1:
-    NPCMessage OreburghCity_Text_TMsAreSingleUseOnlyButHMsCanBeUsedOverAndOver
+    NPCMessage OreburghCity_Text_TMsSingleUseHMsOverAndOver
     End
 
 OreburghCity_SchoolKidF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_ROARK_RETURNED_TO_OREBURGH_GYM, OreburghCity_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor
-    Message OreburghCity_Text_TheGymLeaderWentOffToWorkInTheMine
+    GoToIfSet FLAG_ROARK_RETURNED_TO_OREBURGH_GYM, OreburghCity_GymLeaderIsSafetySupervisor
+    Message OreburghCity_Text_GymLeaderWentOffToWork
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-OreburghCity_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor:
-    Message OreburghCity_Text_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor
+OreburghCity_GymLeaderIsSafetySupervisor:
+    Message OreburghCity_Text_GymLeaderIsSafetySupervisor
     WaitButton
     CloseMessage
     ReleaseAll
@@ -513,7 +513,7 @@ OreburghCity_PokefanF:
     End
 
 OreburghCity_Camper:
-    NPCMessage OreburghCity_Text_WhenIRunAroundWithMyRunningShoesOnImTheCenterOfAttention
+    NPCMessage OreburghCity_Text_ImTheCenterOfAttention
     End
 
 OreburghCity_MapSignpost:
@@ -521,19 +521,19 @@ OreburghCity_MapSignpost:
     End
 
 OreburghCity_GymSignpost:
-    ShowScrollingSign OreburghCity_Text_OreburgCityPokemonGymCallMeRoarkTheRock
+    ShowScrollingSign OreburghCity_Text_SignPokemonGym
     End
 
-OreburghCity_ScrollingSignpostOreburghMiningMuseum:
-    ShowLandmarkSign OreburghCity_Text_OreburghMiningMuseumCoalMiningAndYou
+OreburghCity_SignboardOreburghMiningMuseum:
+    ShowLandmarkSign OreburghCity_Text_SignOreburghMiningMuseum
     End
 
-OreburghCity_ScrollingSignpostOreburghMine:
-    ShowLandmarkSign OreburghCity_Text_OreburghMineBewareOfBusyPokemon
+OreburghCity_SignboardOreburghMine:
+    ShowLandmarkSign OreburghCity_Text_SignOreburghMine
     End
 
 OreburghCity_Machop1:
-    PokemonCryAndMessage SPECIES_MACHOP, OreburghCity_Text_MachopMachoChopo
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghCity_Text_MachopCryMachoChopo
     End
 
 OreburghCity_BattleGirl2:
@@ -541,11 +541,11 @@ OreburghCity_BattleGirl2:
     End
 
 OreburghCity_Machop3:
-    PokemonCryAndMessage SPECIES_MACHOP, OreburghCity_Text_MachopPigyooh
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghCity_Text_MachopCryPigyooh
     End
 
 OreburghCity_Machop2:
-    PokemonCryAndMessage SPECIES_MACHOP, OreburghCity_Text_MachopGwoohGogogooh
+    PokemonCryAndMessage SPECIES_MACHOP, OreburghCity_Text_MachopCryGwoohGogogooh
     End
 
     .balign 4, 0

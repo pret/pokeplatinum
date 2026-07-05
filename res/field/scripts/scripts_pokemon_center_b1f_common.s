@@ -177,7 +177,7 @@ PokemonCenterB1FCommon_TryEnterWiFiClub:
     GoToIfEq VAR_RESULT, 0xFF, PokemonCenterB1FCommon_GriseousOrbCouldNotBeRemoved
     HealParty
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 1, PokemonCenterB1FCommon_EnterWiFiClub
     GoTo PokemonCenterB1FCommon_PleaseComeAgain
     End
@@ -387,7 +387,7 @@ PokemonCenterB1FCommon_WiFiPlazaInfo:
 PokemonCenterB1FCommon_GoToWiFiPlaza:
     HealParty
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, PokemonCenterB1FCommon_WiFiPlazaExit
     Message PokemonCenterB1FCommon_Text_PleaseEnterThisWay
     CloseMessage
@@ -407,10 +407,10 @@ PokemonCenterB1FCommon_GoToWiFiPlaza:
     ApplyMovement VAR_LAST_TALKED, PokemonCenterB1FCommon_Movement_AttendantEnterWiFiPlaza
     WaitMovement
     Call PokemonCenterB1FCommon_DoorCloseAnimation
-    SetVar VAR_MAP_LOCAL_3, 0
+    SetVar VAR_MAP_LOCAL_0x03, 0
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_WIFI_PLAZA_ENTRANCE, 0, 20, 11, DIR_NORTH
+    Warp MAP_HEADER_WIFI_PLAZA_ENTRANCE, 20, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

@@ -9,7 +9,7 @@
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C_decl.h"
+#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay113/footprint_data.h"
 #include "overlay113/struct_ov113_02260818.h"
 

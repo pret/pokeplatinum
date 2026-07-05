@@ -1,9 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_GIVE_UP_MOVE_DATA_H
-#define POKEPLATINUM_STRUCT_GIVE_UP_MOVE_DATA_H
-
-typedef struct {
-    u16 move;
-    u16 unused_02;
-} GiveUpMoveData;
-
-#endif // POKEPLATINUM_STRUCT_GIVE_UP_MOVE_DATA_H

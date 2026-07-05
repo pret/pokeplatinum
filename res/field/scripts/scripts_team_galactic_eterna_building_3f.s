@@ -7,11 +7,11 @@
     ScriptEntryEnd
 
 TeamGalacticEternaBuilding3F_GruntM:
-    NPCMessage TeamGalacticEternaBuilding3F_Text_OrdinaryPeopleLikeYouCantUnderstandTeamGalacticGrandDesigns
+    NPCMessage TeamGalacticEternaBuilding3F_Text_OrdinaryPeopleCantUnderstand
     End
 
 TeamGalacticEternaBuilding3F_BgSign:
-    EventMessage TeamGalacticEternaBuilding3F_Text_QuestionNotAndFollowThisPathTheRoadToSuccess
+    EventMessage TeamGalacticEternaBuilding3F_Text_FollowThisPath
     End
 
     .balign 4, 0

@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 Route209GateToHearthomeCity_BattleGirl:
-    NPCMessage Route209GateToHearthomeCity_Text_TheresAWreckedStonePillar
+    NPCMessage Route209GateToHearthomeCity_Text_WreckedStonePillar
     End
 
 Route209GateToHearthomeCity_CoordEvent_Rival:
@@ -52,7 +52,7 @@ Route209GateToHearthomeCity_PostRivalBattle:
     GoToIfEq VAR_RESULT, FALSE, Route209GateToHearthomeCity_BlackOut
     BufferRivalName 0
     BufferPlayerName 1
-    Message Route209GateToHearthomeCity_Text_MySurefireWinningStrategyDoesntWork
+    Message Route209GateToHearthomeCity_Text_MyStrategyDoesntWork
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 5, Route209GateToHearthomeCity_RivalLeaveZ5
@@ -63,7 +63,7 @@ Route209GateToHearthomeCity_PostRivalBattle:
     PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL
     WaitSE SEQ_SE_DP_KAIDAN2
-    SetVar VAR_HEARTHOME_STATE, 2
+    SetVar VAR_ROUTE_209_GATE_TO_HEARTHOME_CITY_STATE, 2
     ReleaseAll
     End
 
@@ -123,7 +123,7 @@ Route209GateToHearthomeCity_RivalLeaveZ9:
     Return
 
     .balign 4, 0
-Route209GateToHearthomeCity_UnusedMovement:
+Route209GateToHearthomeCity_Movement_Unused:
     WalkFastWest 4
     EmoteExclamationMark
     EndMovement

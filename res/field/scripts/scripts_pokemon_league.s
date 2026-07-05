@@ -16,7 +16,7 @@ PokemonLeague_SignboardVictoryRoad:
     End
 
 PokemonLeague_Statue:
-    EventMessage PokemonLeague_Text_PokemonLeagueThePinnacleOfTrainerdom
+    EventMessage PokemonLeague_Text_PinnacleOfTrainerdom
     End
 
     .balign 4, 0

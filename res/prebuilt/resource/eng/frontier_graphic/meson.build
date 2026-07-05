@@ -1,5 +1,4 @@
 prebuilt_files = [
-    'frontier_bg.narc',
     'frontier_obj.narc'
 ]
 

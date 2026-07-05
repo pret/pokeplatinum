@@ -24,14 +24,14 @@
       "en_US": "Jakiih!\r"
     },
     {
-      "id": "IcebergRuins_Text_ThePokemonStatueHasStoppedEmanatingPower",
+      "id": "IcebergRuins_Text_StatueStoppedEmanatingPower",
       "en_US": [
         "The Pokémon statue has stopped\n",
         "emanating power."
       ]
     },
     {
-      "id": "IcebergRuins_Text_ItsAStatueOfAPokemonBecomeStrongerYouMust",
+      "id": "IcebergRuins_Text_BecomeStrongerYouMust",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power...\r",

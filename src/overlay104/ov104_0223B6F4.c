@@ -13,6 +13,7 @@
 #include "overlay104/struct_battle_castle.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
+#include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
 #include "communication_information.h"
@@ -26,12 +27,10 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "string_gf.h"
-#include "unk_0205DFC4.h"
 
 static int ov104_0223B6F4(u8 param0, int param1, int param2);
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);
 u8 BattleCastle_GetOpponentPartySize(u8 challengeType, BOOL param1);
-FieldBattleDTO *FieldBattleDTO_NewBattleCastle(BattleCastle *battleCastle, UnkStruct_ov104_02230BE4 *param1);
 static u32 BattleCastle_GetBattleType(u8 challengeType);
 u8 BattleCastle_GetOpponentLevel(BattleCastle *battleCastle);
 void ov104_0223BA24(Party *param0);
@@ -153,7 +152,7 @@ u8 BattleCastle_GetOpponentPartySize(u8 challengeType, BOOL param1)
     return 3;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewBattleCastle(BattleCastle *battleCastle, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *FieldBattleDTO_NewBattleCastle(BattleCastle *battleCastle, FieldFrontierDTO *fieldData)
 {
     int i;
     u8 baseSlotID;
@@ -165,7 +164,7 @@ FieldBattleDTO *FieldBattleDTO_NewBattleCastle(BattleCastle *battleCastle, UnkSt
 
     Party_HealAllMembers(battleCastle->opponentsParty);
     FieldBattleDTO *battleDTO = FieldBattleDTO_New(HEAP_ID_FIELD2, BattleCastle_GetBattleType(battleCastle->challengeType));
-    FieldBattleDTO_InitFromGameState(battleDTO, NULL, param1->saveData, param1->mapHeaderID, param1->journalEntry, param1->bagCursor, param1->subscreenCursorOn);
+    FieldBattleDTO_InitFromGameState(battleDTO, NULL, fieldData->saveData, fieldData->mapHeaderID, fieldData->journalEntry, fieldData->bagCursor, fieldData->subscreenCursorOn);
 
     battleDTO->background = BACKGROUND_BATTLE_CASTLE;
     battleDTO->terrain = TERRAIN_BATTLE_CASTLE;
@@ -411,17 +410,17 @@ u16 ov104_0223BC24(u16 param0)
     return param0;
 }
 
-void ov104_0223BC2C(BattleFrontier *frontier, u8 challengeType, int castlePoints)
+void ov104_0223BC2C(BattleFrontierSave *frontier, u8 challengeType, int castlePoints)
 {
     u16 v0;
 
-    BattleFrontierStats_SubtractFromStat(frontier, BattleFrontierStats_GetCastleLatestCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(challengeType)), castlePoints);
-    v0 = BattleFrontierStats_GetStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)));
+    BattleFrontierSave_SubtractFromStat(frontier, BattleFrontierStats_GetCastleLatestCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleLatestCPIndex(challengeType)), castlePoints);
+    v0 = BattleFrontierSave_GetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType));
 
     if (v0 + castlePoints > 9999) {
-        BattleFrontierStats_SetStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)), 9999);
+        BattleFrontierSave_SetStatAutoHostIdx(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), 9999);
     } else {
-        BattleFrontierStats_AddToStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)), castlePoints);
+        BattleFrontierSave_AddToStat(frontier, BattleFrontierStats_GetCastleSpentCPIndex(challengeType), BattleFrontierStats_GetHostFriendIdx(BattleFrontierStats_GetCastleSpentCPIndex(challengeType)), castlePoints);
     }
 
     return;

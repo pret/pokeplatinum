@@ -13,9 +13,9 @@
     ScriptEntryEnd
 
 Route222_OnTransition:
-    GetTimeOfDay VAR_MAP_LOCAL_0
-    GoToIfInRange VAR_MAP_LOCAL_0, TIMEOFDAY_MORNING, TIMEOFDAY_TWILIGHT, Route222_SetPolicemanThomasNoBattle
-    GoToIfInRange VAR_MAP_LOCAL_0, TIMEOFDAY_NIGHT, TIMEOFDAY_LATE_NIGHT, Route222_SetPolicemanThomasBattle
+    GetTimeOfDay VAR_MAP_LOCAL_0x00
+    GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_MORNING, TIMEOFDAY_TWILIGHT, Route222_SetPolicemanThomasNoBattle
+    GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_NIGHT, TIMEOFDAY_LATE_NIGHT, Route222_SetPolicemanThomasBattle
     End
 
 Route222_SetPolicemanThomasNoBattle:
@@ -59,11 +59,11 @@ Route222_Fisherman:
     End
 
 Route222_ArrowSignpostHotelGrandLake:
-    ShowArrowSign Route222_Text_SignRt222HotelGrandLake
+    ShowArrowSign Route222_Text_SignHotelGrandLake
     End
 
 Route222_ArrowSignpostSunyshoreCity:
-    ShowArrowSign Route222_Text_SignRt222SunyshoreCity
+    ShowArrowSign Route222_Text_SignSunyshoreCity
     End
 
 Route222_SignboardPikachuFanClub:

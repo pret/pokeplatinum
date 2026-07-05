@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "ContestHallLobby_Text_IveNeverSpokenToPlayerAboutContests",
+      "id": "ContestHallLobby_Text_NeverSpokenAboutContests",
       "en_US": [
         "Mom: Oh, I don’t know about that.\r",
         "I’ve never spoken to {STRVAR_1 3, 0, 0}\n",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "ContestHallLobby_Text_INeedToThankYouForEarlier",
+      "id": "ContestHallLobby_Text_ThankYouForEarlier",
       "en_US": [
         "Keira: Oh, yes, that’s right!\r",
         "I need to thank you for earlier.\n",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "ContestHallLobby_Text_PutThatAccessoryOnYourPokemon",
+      "id": "ContestHallLobby_Text_PutAccessoryOnPokemon",
       "en_US": [
         "Keira: Put that Accessory on your\n",
         "Pokémon before a Contest.\r",
@@ -53,7 +53,7 @@
       "en_US": "OK, Johanna, I’ll see you!\r"
     },
     {
-      "id": "ContestHallLobby_Text_WereYouSurprisedToSeeMe",
+      "id": "ContestHallLobby_Text_WereYouSurprised",
       "en_US": [
         "Mom: Were you surprised to see me,\n",
         "{STRVAR_1 3, 0, 0}?\r",
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "ContestHallLobby_Text_TheMildPoffinWasPutAway",
+      "id": "ContestHallLobby_Text_MildPoffinWasPutAway",
       "en_US": [
         "The Mild Poffin was put away\n",
         "in the Poffin Case.\r"
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "ContestHallLobby_Text_ItTakesPracticeToWinContests",
+      "id": "ContestHallLobby_Text_TakesPracticeToWin",
       "en_US": [
         "Like everything else, the basics are\n",
         "important.\r",
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "ContestHallLobby_Text_IllGiveItToYouAnotherTime",
+      "id": "ContestHallLobby_Text_IllGiveItAnotherTime",
       "en_US": [
         "Oh, no.\n",
         "Your Poffin Case is full.\f",
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "ContestHallLobby_Text_AContestHasVisualDanceAndActingParts",
+      "id": "ContestHallLobby_Text_ContestHasParts",
       "en_US": [
         "A Contest has three parts: Visual!\n",
         "Dance! And Acting!\r",
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "ContestHallLobby_Text_TheyPutUpPhotosOfTheWinners",
+      "id": "ContestHallLobby_Text_PhotosOfWinners",
       "en_US": "They put up photos of the winners!"
     },
     {

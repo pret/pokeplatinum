@@ -17,7 +17,7 @@ CanalaveGym_Byron:
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_MINE, CanalaveGym_ByronAfterBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 35, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_CANALAVE_CITY_GYM
     Message CanalaveGym_Text_ByronIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_BYRON
@@ -37,13 +37,13 @@ CanalaveGym_Byron:
     SetTrainerFlag TRAINER_ACE_TRAINER_BREANNA
     SetTrainerFlag TRAINER_BLACK_BELT_RICKY
     SetTrainerFlag TRAINER_WORKER_GERARDO
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 35, TRAINER_LEADER_BYRON, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_CANALAVE_CITY_GYM, TRAINER_LEADER_BYRON
     ClearFlag FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE
     ClearFlag FLAG_HIDE_CANALAVE_CITY_RIVAL_LIBRARY
     ClearFlag FLAG_HIDE_CANALAVE_LIBRARY_RIVAL
     ClearFlag FLAG_HIDE_CANALAVE_LIBRARY_COUNTERPART
     ClearFlag FLAG_HIDE_CANALAVE_LIBRARY_ROWAN
-    SetVar VAR_CANALAVE_STATE, 2
+    SetVar VAR_CANALAVE_CITY_STATE, 2
     SetFlag FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN
     Message CanalaveGym_Text_ByronExplainMineBadge
     GoTo CanalaveGym_ByronTryGiveTM91
@@ -53,7 +53,7 @@ CanalaveGym_ByronTryGiveTM91:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CanalaveGym_ByronCannotGiveTM91
     Common_GiveItemQuantity
-    SetFlag FLAG_OBTAINED_BYRON_TM91
+    SetFlag FLAG_RECEIVED_BYRON_TM91
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message CanalaveGym_Text_ByronExplainTM91
@@ -69,7 +69,7 @@ CanalaveGym_ByronCannotGiveTM91:
     End
 
 CanalaveGym_ByronAfterBadge:
-    GoToIfUnset FLAG_OBTAINED_BYRON_TM91, CanalaveGym_ByronTryGiveTM91
+    GoToIfUnset FLAG_RECEIVED_BYRON_TM91, CanalaveGym_ByronTryGiveTM91
     BufferRivalName 1
     Message CanalaveGym_Text_ByronAfterBadge
     WaitButton

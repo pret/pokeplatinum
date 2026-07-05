@@ -11,8 +11,8 @@
     ScriptEntryEnd
 
 HallOfOrigin_OnTransition:
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, HallOfOrigin_HideArceus
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, HallOfOrigin_HideArceus
     GoToIfSet FLAG_CAUGHT_ARCEUS, HallOfOrigin_HideArceus
     ClearFlag FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS
     End
@@ -22,13 +22,13 @@ HallOfOrigin_HideArceus:
     End
 
 HallOfOrigin_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, HallOfOrigin_RemoveArceus
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, HallOfOrigin_RemoveArceus
     End
 
 HallOfOrigin_RemoveArceus:
     SetFlag FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS
     RemoveObject LOCALID_ARCEUS
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 HallOfOrigin_CoordEvent_Arceus:
@@ -42,9 +42,9 @@ HallOfOrigin_CoordEvent_Arceus:
     PlayCry SPECIES_ARCEUS
     Message HallOfOrigin_Text_ArceusCry
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartLegendaryBattle SPECIES_ARCEUS, 80
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HallOfOrigin_BlackOut
     CheckDidNotCapture VAR_RESULT

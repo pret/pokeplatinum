@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry FightAreaPokecenter2F_UnusedEntry1
+    ScriptEntry FightAreaPokecenter2F_Dummy1
     ScriptEntryEnd
 
-FightAreaPokecenter2F_UnusedEntry1:
+FightAreaPokecenter2F_Dummy1:
     End

@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 EternaCityCondominiums3F_BugCatcher:
-    NPCMessage EternaCityCondominiums3F_Text_IGatheredUpALotOfBerriesSoImTradingThemInForAccessories
+    NPCMessage EternaCityCondominiums3F_Text_GatheredUpBerries
     End
 
 EternaCityCondominiums3F_PokefanM:
@@ -17,11 +17,11 @@ EternaCityCondominiums3F_PokefanM:
     End
 
 EternaCityCondominiums3F_SchoolKidM:
-    NPCMessage EternaCityCondominiums3F_Text_HahahaIveGotYouNowImGonnaTakeYourFlag
+    NPCMessage EternaCityCondominiums3F_Text_ImGonnaTakeYourFlag
     End
 
 EternaCityCondominiums3F_NinjaBoy:
-    NPCMessage EternaCityCondominiums3F_Text_YouCantCatchMeISetSomeTraps
+    NPCMessage EternaCityCondominiums3F_Text_ISetSomeTraps
     End
 
     .balign 4, 0

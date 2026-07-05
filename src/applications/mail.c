@@ -10,6 +10,7 @@
 #include "applications/mail_viewer.h"
 
 #include "easy_chat_args.h"
+#include "easy_chat_sentence.h"
 #include "game_records.h"
 #include "heap.h"
 #include "item.h"
@@ -19,7 +20,6 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "string_gf.h"
-#include "unk_02014A84.h"
 
 #include "res/text/bank/easy_chat.h"
 
@@ -32,7 +32,7 @@ typedef struct MailApp {
     EasyChatArgs *easyChatArgs;
     ApplicationManager *appMan;
     MailViewerAppArgs *viewerArgs;
-    Sentence selectedSentence;
+    EasyChatSentence selectedSentence;
 } MailApp;
 
 enum MailAppState {
@@ -214,7 +214,7 @@ static MailViewerAppArgs *MailViewerAppArgs_New(Mail *mail, enum HeapID heapID)
     }
 
     for (u16 i = 0; i < MAIL_MAX_SENTENCES; i++) {
-        Sentence_Copy(&args->sentences[i], Mail_GetSentence(mail, i));
+        EasyChatSentence_Copy(&args->sentences[i], Mail_GetSentence(mail, i));
     }
 
     return args;
@@ -337,10 +337,10 @@ static BOOL MailApp_Main(ApplicationManager *appMan, int *state)
     case MAIL_STATE_EDIT_SENTENCE_START:
         mailApp->easyChatArgs = EasyChatArgs_New(EASY_CHAT_TYPE_SENTENCE, EasyChat_Text_ChooseWordOrPhrase, args->saveData, mailApp->heapID);
 
-        if (Sentence_IsValid(&mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex])) {
-            Sentence_Copy(&mailApp->selectedSentence, &mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex]);
+        if (EasyChatSentence_IsValid(&mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex])) {
+            EasyChatSentence_Copy(&mailApp->selectedSentence, &mailApp->viewerArgs->sentences[mailApp->viewerArgs->sentenceIndex]);
         } else {
-            Sentence_InitWithType(&mailApp->selectedSentence, 3);
+            EasyChatSentence_InitWithType(&mailApp->selectedSentence, EASY_CHAT_SENTENCE_TYPE_GENERAL);
         }
 
         EasyChatArgs_SetSentence(mailApp->easyChatArgs, &mailApp->selectedSentence);

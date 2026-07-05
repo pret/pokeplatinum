@@ -6,7 +6,7 @@ L_0:
     Func_MoveEmitterA2BParabolic 0, 0, 0, 0, 19, 64
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 20
-    BtlAnimCmd_013 L_1, L_2
+    JumpIfEffectChanceOdd L_1, L_2
     End
 
 L_1:

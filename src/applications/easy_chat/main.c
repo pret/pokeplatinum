@@ -2,15 +2,15 @@
 
 #include <nitro.h>
 
-#include "struct_decls/struct_020998EC_decl.h"
-#include "struct_defs/sentence.h"
-
 #include "applications/easy_chat/abc_mode.h"
 #include "applications/easy_chat/defs.h"
 #include "applications/easy_chat/ov20_021D2098.h"
 #include "applications/easy_chat/struct_ov20_021D2128_decl.h"
 
 #include "easy_chat_args.h"
+#include "easy_chat_sentence.h"
+#include "easy_chat_word_list.h"
+#include "easy_chat_words.h"
 #include "heap.h"
 #include "overlay_manager.h"
 #include "sound.h"
@@ -19,8 +19,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "unk_02014A84.h"
-#include "unk_020998EC.h"
 
 enum EasyChatTouchButton {
     TOUCH_BUTTON_GROUP_MODE = 0,
@@ -34,7 +32,7 @@ enum EasyChatTouchButton {
 #define EC_JOY_REPEAT(buttons) (easyChatApp->pressedKeysRepeatable & (buttons))
 
 static EasyChatApp *EasyChatApp_New(ApplicationManager *appMan);
-static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, Sentence *param1);
+static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, EasyChatSentence *param1);
 static void EasyChat_FreeAppData(EasyChatApp *easyChatApp, ApplicationManager *appMan);
 static int EasyChat_Main_Initial(EasyChatApp *easyChatApp, int *param1);
 static int EasyChat_Main_OneWord(EasyChatApp *easyChatApp, int *param1);
@@ -184,7 +182,7 @@ static EasyChatApp *EasyChatApp_New(ApplicationManager *appMan)
         ov20_021D0F64(&easyChatApp->unk_60, &easyChatApp->sentence);
     }
 
-    easyChatApp->unk_18 = sub_020998EC(HEAP_ID_34, easyChatApp->args);
+    easyChatApp->unk_18 = EasyChatWordList_New(HEAP_ID_34, easyChatApp->args);
     easyChatApp->unk_14 = ov20_021D2098(easyChatApp, easyChatApp->unk_18);
     easyChatApp->buttonAction = TouchScreenActions_RegisterHandler(rects, NELEMS(rects), EasyChat_TouchButtonCallback, easyChatApp, HEAP_ID_34);
     easyChatApp->unk_44 = 0;
@@ -201,14 +199,14 @@ static EasyChatApp *EasyChatApp_New(ApplicationManager *appMan)
     return easyChatApp;
 }
 
-static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
+static void ov20_021D0F64(UnkStruct_ov20_021D0F64 *param0, EasyChatSentence *param1)
 {
-    param0->unk_00 = Sentence_GetType(param1);
-    param0->unk_03 = sub_02014CD4(param0->unk_00);
-    param0->unk_02 = Sentence_GetID(param1);
+    param0->unk_00 = EasyChatSentence_GetType(param1);
+    param0->unk_03 = EasyChatSentence_GetBankEntryCountForType(param0->unk_00);
+    param0->unk_02 = EasyChatSentence_GetID(param1);
 }
 
-static void ov20_021D0F88(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
+static void ov20_021D0F88(UnkStruct_ov20_021D0F64 *param0, EasyChatSentence *param1)
 {
     param0->unk_02++;
 
@@ -220,13 +218,13 @@ static void ov20_021D0F88(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
             param0->unk_00 = 0;
         }
 
-        param0->unk_03 = sub_02014CD4(param0->unk_00);
+        param0->unk_03 = EasyChatSentence_GetBankEntryCountForType(param0->unk_00);
     }
 
-    sub_02014CE0(param1, param0->unk_00, param0->unk_02);
+    EasyChatSentence_SetTypeAndID(param1, param0->unk_00, param0->unk_02);
 }
 
-static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
+static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 *param0, EasyChatSentence *param1)
 {
     param0->unk_02--;
 
@@ -237,18 +235,18 @@ static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 *param0, Sentence *param1)
             param0->unk_00 = (5 - 1);
         }
 
-        param0->unk_03 = sub_02014CD4(param0->unk_00);
+        param0->unk_03 = EasyChatSentence_GetBankEntryCountForType(param0->unk_00);
         param0->unk_02 = (param0->unk_03 - 1);
     }
 
-    sub_02014CE0(param1, param0->unk_00, param0->unk_02);
+    EasyChatSentence_SetTypeAndID(param1, param0->unk_00, param0->unk_02);
 }
 
 static void EasyChat_FreeAppData(EasyChatApp *easyChatApp, ApplicationManager *appMan)
 {
     TouchScreenActions_Free(easyChatApp->buttonAction);
     ov20_021D2128(easyChatApp->unk_14);
-    sub_0209992C(easyChatApp->unk_18);
+    EasyChatWordList_Free(easyChatApp->unk_18);
     ApplicationManager_FreeData(appMan);
 }
 
@@ -623,9 +621,9 @@ static int EasyChat_Main_SelectCategory(EasyChatApp *easyChatApp, int *param1)
 static BOOL ov20_021D16E8(EasyChatApp *easyChatApp)
 {
     if (easyChatApp->mode == GROUP_MODE) {
-        return sub_02099CA0(easyChatApp->unk_18, easyChatApp->categoryCursorPos) != 0;
+        return EasyChatWordList_GetGroupWordCount(easyChatApp->unk_18, easyChatApp->categoryCursorPos) != 0;
     } else {
-        return sub_02099CDC(easyChatApp->unk_18, easyChatApp->categoryCursorPos) != 0;
+        return EasyChatWordList_GetLetterWordCount(easyChatApp->unk_18, easyChatApp->categoryCursorPos) != 0;
     }
 }
 
@@ -977,9 +975,9 @@ static BOOL ov20_021D1BB0(EasyChatApp *easyChatApp)
     u16 v1;
 
     if (easyChatApp->mode == GROUP_MODE) {
-        v1 = sub_02099CC8(easyChatApp->unk_18, easyChatApp->categoryCursorPos, v0);
+        v1 = EasyChatWordList_GetWordByGroupIndex(easyChatApp->unk_18, easyChatApp->categoryCursorPos, v0);
     } else {
-        v1 = sub_02099D14(easyChatApp->unk_18, easyChatApp->categoryCursorPos, v0);
+        v1 = EasyChatWordList_GetWordByLetterIndex(easyChatApp->unk_18, easyChatApp->categoryCursorPos, v0);
     }
 
     switch (easyChatApp->type) {
@@ -990,7 +988,7 @@ static BOOL ov20_021D1BB0(EasyChatApp *easyChatApp)
         easyChatApp->words[easyChatApp->currentWordSlot] = v1;
         break;
     case EASY_CHAT_TYPE_SENTENCE:
-        Sentence_SetWord(&easyChatApp->sentence, easyChatApp->currentWordSlot, v1);
+        EasyChatSentence_SetWord(&easyChatApp->sentence, easyChatApp->currentWordSlot, v1);
         break;
     }
 
@@ -1074,7 +1072,7 @@ static void ov20_021D1C90(EasyChatApp *easyChatApp, int *param1)
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (easyChatApp->type == EASY_CHAT_TYPE_SENTENCE) {
-                    Sentence_ClearUnusedWords(&easyChatApp->sentence);
+                    EasyChatSentence_ClearUnusedWords(&easyChatApp->sentence);
                 }
 
                 EasyChatArgs_UpdateContent(easyChatApp->args, easyChatApp->words, &easyChatApp->sentence);
@@ -1148,7 +1146,7 @@ static BOOL EasyChat_IsEntryComplete(EasyChatApp *easyChatApp)
     case EASY_CHAT_TYPE_TWO_WORDS:
         return easyChatApp->words[0] != WORD_NONE && easyChatApp->words[1] != WORD_NONE;
     case EASY_CHAT_TYPE_SENTENCE:
-        return Sentence_IsComplete(&easyChatApp->sentence);
+        return EasyChatSentence_IsComplete(&easyChatApp->sentence);
     }
 
     return FALSE;
@@ -1231,13 +1229,13 @@ u32 EasyChat_GetMode(const EasyChatApp *easyChatApp)
 
 u32 ov20_021D1F9C(const EasyChatApp *easyChatApp)
 {
-    return Sentence_GetType(&easyChatApp->sentence);
+    return EasyChatSentence_GetType(&easyChatApp->sentence);
 }
 
 u16 EasyChat_GetWordAtSlot(const EasyChatApp *easyChatApp, int slot)
 {
     if (easyChatApp->type == EASY_CHAT_TYPE_SENTENCE) {
-        return Sentence_GetWord(&easyChatApp->sentence, slot);
+        return EasyChatSentence_GetWord(&easyChatApp->sentence, slot);
     } else {
         return easyChatApp->words[slot];
     }
@@ -1245,7 +1243,7 @@ u16 EasyChat_GetWordAtSlot(const EasyChatApp *easyChatApp, int slot)
 
 String *ov20_021D1FC0(const EasyChatApp *easyChatApp, u32 param1)
 {
-    return Sentence_GetTemplateString(&easyChatApp->sentence, param1);
+    return EasyChatSentence_GetTemplateString(&easyChatApp->sentence, param1);
 }
 
 u32 EasyChat_GetCurrentWordSlot(const EasyChatApp *easyChatApp)
@@ -1266,18 +1264,18 @@ u32 EasyChat_GetCategoryCursorPos(const EasyChatApp *easyChatApp)
 u32 ov20_021D1FE4(const EasyChatApp *easyChatApp)
 {
     if (easyChatApp->mode == GROUP_MODE) {
-        return sub_02099CA0(easyChatApp->unk_18, easyChatApp->categoryCursorPos);
+        return EasyChatWordList_GetGroupWordCount(easyChatApp->unk_18, easyChatApp->categoryCursorPos);
     } else {
-        return sub_02099CDC(easyChatApp->unk_18, easyChatApp->categoryCursorPos);
+        return EasyChatWordList_GetLetterWordCount(easyChatApp->unk_18, easyChatApp->categoryCursorPos);
     }
 }
 
 void ov20_021D2008(const EasyChatApp *easyChatApp, u32 param1, String *param2)
 {
     if (easyChatApp->mode == GROUP_MODE) {
-        sub_02099CA8(easyChatApp->unk_18, easyChatApp->categoryCursorPos, param1, param2);
+        EasyChatWordList_GetStringByGroupIndex(easyChatApp->unk_18, easyChatApp->categoryCursorPos, param1, param2);
     } else {
-        sub_02099CEC(easyChatApp->unk_18, easyChatApp->categoryCursorPos, param1, param2);
+        EasyChatWordList_GetStringByLetterIndex(easyChatApp->unk_18, easyChatApp->categoryCursorPos, param1, param2);
     }
 }
 

@@ -5,7 +5,7 @@
 
 #include "constants/heap.h"
 #include "constants/narc.h"
-#include "generated/string_padding_mode.h"
+#include "constants/string.h"
 
 #include "main_menu/main_menu_util.h"
 #include "main_menu/mystery_gift_app.h"

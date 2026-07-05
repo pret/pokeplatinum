@@ -2,19 +2,16 @@
 
 #include <nitro.h>
 
-#include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_defs/sentence.h"
-
 #include "applications/easy_chat/defs.h"
 
+#include "easy_chat_sentence.h"
+#include "easy_chat_words.h"
 #include "game_options.h"
 #include "heap.h"
 #include "pokedex.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "system_flags.h"
-#include "unk_02014A84.h"
-#include "unk_02014D38.h"
 #include "vars_flags.h"
 
 EasyChatArgs *EasyChatArgs_New(u32 type, u32 instructionBankEntry, SaveData *saveData, enum HeapID heapID)
@@ -24,7 +21,7 @@ EasyChatArgs *EasyChatArgs_New(u32 type, u32 instructionBankEntry, SaveData *sav
     args->type = type;
     args->instructionBankEntry = instructionBankEntry;
     args->pokedex = SaveData_GetPokedex(saveData);
-    args->unk_10 = sub_02014EC4(saveData);
+    args->unlockedWords = SaveData_GetUnlockedEasyChatWords(saveData);
     args->isGameCompleted = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(saveData));
     args->unk_05 = FALSE;
     args->isUnmodified = TRUE;
@@ -32,10 +29,10 @@ EasyChatArgs *EasyChatArgs_New(u32 type, u32 instructionBankEntry, SaveData *sav
     args->frame = Options_Frame(SaveData_GetOptions(saveData));
 
     if (type == EASY_CHAT_TYPE_SENTENCE) {
-        Sentence_InitWithType(&args->sentence, 3);
+        EasyChatSentence_InitWithType(&args->sentence, EASY_CHAT_SENTENCE_TYPE_GENERAL);
     } else {
-        for (int v1 = 0; v1 < MAX_EASY_CHAT_WORDS; v1++) {
-            args->words[v1] = WORD_NONE;
+        for (int i = 0; i < MAX_EASY_CHAT_WORDS; i++) {
+            args->words[i] = WORD_NONE;
         }
     }
 
@@ -58,7 +55,7 @@ void EasyChatArgs_SetTwoWords(EasyChatArgs *args, u16 word1, u16 word2)
     args->words[1] = word2;
 }
 
-void EasyChatArgs_SetSentence(EasyChatArgs *args, const Sentence *sentence)
+void EasyChatArgs_SetSentence(EasyChatArgs *args, const EasyChatSentence *sentence)
 {
     args->sentence = *sentence;
 }
@@ -95,9 +92,9 @@ void EasyChatArgs_CopyTwoWordsTo(const EasyChatArgs *args, u16 *dest)
     dest[1] = args->words[1];
 }
 
-void EasyChatArgs_CopySentenceTo(const EasyChatArgs *args, Sentence *dest)
+void EasyChatArgs_CopySentenceTo(const EasyChatArgs *args, EasyChatSentence *dest)
 {
-    Sentence_Copy(dest, &args->sentence);
+    EasyChatSentence_Copy(dest, &args->sentence);
 }
 
 u32 EasyChatArgs_GetType(const EasyChatArgs *args)
@@ -120,9 +117,9 @@ const Pokedex *EasyChatArgs_GetPokedex(const EasyChatArgs *args)
     return args->pokedex;
 }
 
-const UnkStruct_02014EC4 *sub_02097560(const EasyChatArgs *args)
+const UnlockedEasyChatWords *EasyChatArgs_GetUnlockedWords(const EasyChatArgs *args)
 {
-    return args->unk_10;
+    return args->unlockedWords;
 }
 
 BOOL EasyChatArgs_IsGameCompleted(const EasyChatArgs *args)
@@ -135,7 +132,7 @@ BOOL sub_02097568(const EasyChatArgs *args)
     return args->unk_05;
 }
 
-void EasyChatArgs_GetContent(const EasyChatArgs *args, u16 *outWords, Sentence *outSentence)
+void EasyChatArgs_GetContent(const EasyChatArgs *args, u16 *outWords, EasyChatSentence *outSentence)
 {
     switch (args->type) {
     case EASY_CHAT_TYPE_ONE_WORD:
@@ -151,7 +148,7 @@ void EasyChatArgs_GetContent(const EasyChatArgs *args, u16 *outWords, Sentence *
     }
 }
 
-BOOL EasyChatArgs_Compare(const EasyChatArgs *args, const u16 *words, const Sentence *sentence)
+BOOL EasyChatArgs_Compare(const EasyChatArgs *args, const u16 *words, const EasyChatSentence *sentence)
 {
     switch (args->type) {
     case EASY_CHAT_TYPE_ONE_WORD:
@@ -160,11 +157,11 @@ BOOL EasyChatArgs_Compare(const EasyChatArgs *args, const u16 *words, const Sent
         return words[0] == args->words[0] && words[1] == args->words[1];
     case EASY_CHAT_TYPE_SENTENCE:
     default:
-        return sub_02014C88(&args->sentence, sentence);
+        return EasyChatSentence_Compare(&args->sentence, sentence);
     }
 }
 
-void EasyChatArgs_UpdateContent(EasyChatArgs *args, const u16 *words, const Sentence *sentence)
+void EasyChatArgs_UpdateContent(EasyChatArgs *args, const u16 *words, const EasyChatSentence *sentence)
 {
     args->wasUpdated = !EasyChatArgs_Compare(args, words, sentence);
     args->isUnmodified = FALSE;

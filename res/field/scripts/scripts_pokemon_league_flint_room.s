@@ -4,7 +4,7 @@
 
 
     ScriptEntry PokemonLeagueFlintRoom_Flint
-    ScriptEntry PokemonLeagueFlintRoom_OnFrame
+    ScriptEntry PokemonLeagueFlintRoom_OnFrame_EnterRoom
     ScriptEntryEnd
 
 PokemonLeagueFlintRoom_Flint:
@@ -41,11 +41,11 @@ PokemonLeagueFlintRoom_StartFlintRematchBattle:
     Return
 
 PokemonLeagueFlintRoom_CreateJournalEventDefeatedFlint:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT
     Return
 
 PokemonLeagueFlintRoom_CreateJournalEventDefeatedRematchFlint:
-    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT_REMATCH, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_FLINT_REMATCH
     Return
 
 PokemonLeagueFlintRoom_BlackOut:
@@ -98,14 +98,14 @@ PokemonLeagueFlintRoom_Movement_WalkFastInPlace:
     UnlockDir
     EndMovement
 
-PokemonLeagueFlintRoom_OnFrame:
+PokemonLeagueFlintRoom_OnFrame_EnterRoom:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueFlintRoom_Movement_PlayerEnterRoom
     WaitMovement
     PlaySE SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_FLINT_ROOM_ENTRANCE_DOOR
     AddObject LOCALID_ENTRANCE_DOOR
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     ReleaseAll
     End
 

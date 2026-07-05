@@ -9,19 +9,19 @@ TwinleafTownNortheastHouse_Guitarist:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTownNortheastHouse_IWentOnAnAdventureALongTimeAgo
-    GoTo TwinleafTownNortheastHouse_YoureOffToHangWithRivalAgainRight
+    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTownNortheastHouse_AdventureLongTimeAgo
+    GoTo TwinleafTownNortheastHouse_YoureOffToHangWithRival
 
-TwinleafTownNortheastHouse_YoureOffToHangWithRivalAgainRight:
+TwinleafTownNortheastHouse_YoureOffToHangWithRival:
     BufferRivalName 0
-    Message TwinleafTownNortheastHouse_Text_YoureOffToHangWithRivalAgainRight
+    Message TwinleafTownNortheastHouse_Text_YoureOffToHangWithRival
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-TwinleafTownNortheastHouse_IWentOnAnAdventureALongTimeAgo:
-    Message TwinleafTownNortheastHouse_Text_IWentOnAnAdventureALongTimeAgo
+TwinleafTownNortheastHouse_AdventureLongTimeAgo:
+    Message TwinleafTownNortheastHouse_Text_AdventureLongTimeAgo
     WaitButton
     CloseMessage
     ReleaseAll

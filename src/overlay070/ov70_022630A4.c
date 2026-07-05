@@ -10,7 +10,7 @@
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C_decl.h"
+#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay070/ov70_0225C700.h"
 #include "overlay070/ov70_0225C858.h"
 #include "overlay070/ov70_0225C9B4.h"

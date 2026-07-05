@@ -216,7 +216,7 @@ typedef struct NamingScreen {
     void *monIconRawPlttData;
     NNSG2dPaletteData *plttData;
     u8 pixelBuf[256];
-    UnkStruct_020157E4 *touchscreenIconBlinker;
+    PaletteAnimator *touchscreenIconBlinker;
     BOOL isTouchInput;
     int delayUpdateCounter;
 } NamingScreen;

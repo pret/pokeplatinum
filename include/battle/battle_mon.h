@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_BATTLE_MON_H
-#define POKEPLATINUM_BATTLE_MON_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_MON_H
+#define POKEPLATINUM_BATTLE_BATTLE_MON_H
 
 #include "constants/moves.h"
 #include "constants/pokemon.h"
@@ -129,4 +129,4 @@ typedef struct BattleMon {
     MoveEffectsData moveEffectsData;
 } BattleMon;
 
-#endif // POKEPLATINUM_BATTLE_MON_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_MON_H

@@ -27,7 +27,7 @@ IcebergRuins_Statue:
     FacePlayer
     GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, IcebergRuins_CaughtRegiceStatueStoppedEmanatingPower
     GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, IcebergRuins_DidNotCatchRegiceStatueStoppedEmanatingPower
-    GoToIfUnset FLAG_GAME_COMPLETED, IcebergRuins_ItsAStatueOfAPokemonBecomeStrongerYouMust
+    GoToIfUnset FLAG_GAME_COMPLETED, IcebergRuins_BecomeStrongerYouMust
     CheckPartyHasFatefulEncounterRegigigas VAR_RESULT
     GoToIfEq VAR_RESULT, 0, IcebergRuins_ItsAStatueOfAPokemon
     GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, IcebergRuins_EncounterRegice
@@ -54,13 +54,13 @@ IcebergRuins_EncounterRegice:
     End
 
 IcebergRuins_CaughtRegiceStatueStoppedEmanatingPower:
-    Message IcebergRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    Message IcebergRuins_Text_StatueStoppedEmanatingPower
     GoTo IcebergRuins_StatueEnd
     End
 
 IcebergRuins_DidNotCatchRegiceStatueStoppedEmanatingPower:
     SetVar VAR_ICEBERG_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI
-    Message IcebergRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    Message IcebergRuins_Text_StatueStoppedEmanatingPower
     GoTo IcebergRuins_StatueEnd
     End
 
@@ -69,8 +69,8 @@ IcebergRuins_BlackOut:
     ReleaseAll
     End
 
-IcebergRuins_ItsAStatueOfAPokemonBecomeStrongerYouMust:
-    Message IcebergRuins_Text_ItsAStatueOfAPokemonBecomeStrongerYouMust
+IcebergRuins_BecomeStrongerYouMust:
+    Message IcebergRuins_Text_BecomeStrongerYouMust
     GoTo IcebergRuins_StatueEnd
     End
 
@@ -86,43 +86,43 @@ IcebergRuins_StatueEnd:
     End
 
 IcebergRuins_DotNorth:
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotFarWest:
-    SetVar VAR_MAP_LOCAL_2, 1
+    SetVar VAR_MAP_LOCAL_0x02, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotMiddleWest:
-    SetVar VAR_MAP_LOCAL_3, 1
+    SetVar VAR_MAP_LOCAL_0x03, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotMiddle:
-    SetVar VAR_MAP_LOCAL_4, 1
+    SetVar VAR_MAP_LOCAL_0x04, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotMiddleEast:
-    SetVar VAR_MAP_LOCAL_5, 1
+    SetVar VAR_MAP_LOCAL_0x05, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotFarEast:
-    SetVar VAR_MAP_LOCAL_6, 1
+    SetVar VAR_MAP_LOCAL_0x06, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End
 
 IcebergRuins_DotSouth:
-    SetVar VAR_MAP_LOCAL_7, 1
+    SetVar VAR_MAP_LOCAL_0x07, 1
     GoToIfGe VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_DotEnd
     GoTo IcebergRuins_ActivateDot
     End

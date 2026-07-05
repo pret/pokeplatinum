@@ -2,7 +2,7 @@
 #include "res/text/bank/global_terminal_2f.h"
 
 
-    ScriptEntry GlobalTerminal2F_Unused1
+    ScriptEntry GlobalTerminal2F_Dummy1
     ScriptEntry GlobalTerminal2F_Artist
     ScriptEntry GlobalTerminal2F_Hiker
     ScriptEntry GlobalTerminal2F_BattleGirl
@@ -62,7 +62,7 @@ GlobalTerminal2F_BgSignWarp3F:
     EventMessage GlobalTerminal2F_Text_WarpsTo3F
     End
 
-GlobalTerminal2F_Unused1:
+GlobalTerminal2F_Dummy1:
     End
 
 GlobalTerminal2F_BoxDataMachine:
@@ -93,7 +93,7 @@ GlobalTerminal2F_BoxDataMachineEnd:
 
 GlobalTerminal2F_UseBoxDataMachine:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal2F_BoxDataMachineEnd
     CloseMessage
     CallCommonScript 0x802
@@ -133,7 +133,7 @@ GlobalTerminal2F_DressUpDataMachineEnd:
 
 GlobalTerminal2F_UseDressUpDataMachine:
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 0, GlobalTerminal2F_DressUpDataMachineEnd
     CloseMessage
     CallCommonScript 0x802

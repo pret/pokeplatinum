@@ -3,18 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/sentence.h"
-
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 
 #include "easy_chat_args.h"
+#include "easy_chat_sentence.h"
 #include "field_task.h"
 #include "heap.h"
 #include "savedata_misc.h"
 #include "screen_fade.h"
 #include "string_template.h"
-#include "unk_02014A84.h"
 #include "unk_0203D1B8.h"
 
 #include "res/text/bank/easy_chat.h"
@@ -22,7 +20,7 @@
 typedef struct {
     FieldSystem *fieldSystem;
     StringTemplate *unk_04;
-    Sentence unk_08;
+    EasyChatSentence unk_08;
     EasyChatArgs *unk_10;
     MiscSaveBlock *unk_14;
     int unk_18;
@@ -44,7 +42,7 @@ void sub_0209B344(FieldTask *param0, u16 *param1)
     v1->unk_14 = SaveData_MiscSaveBlock(fieldSystem->saveData);
     v1->unk_20 = param1;
 
-    Sentence_InitWithType(&v1->unk_08, 4);
+    EasyChatSentence_InitWithType(&v1->unk_08, EASY_CHAT_SENTENCE_TYPE_UNION_ROOM);
     MiscSaveBlock_IntroMsg(v1->unk_14, &v1->unk_08);
     sub_02097520(v1->unk_10);
 

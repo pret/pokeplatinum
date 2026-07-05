@@ -1,0 +1,121 @@
+{
+  "key": 25225,
+  "messages": [
+    {
+      "id": "UnionRoomSentences_Text_BlankHello",
+      "en_US": [
+        "{STRVAR_1 28, 0, 0}!\n",
+        "Hello!"
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_GladToMeetYouILoveBlank",
+      "en_US": [
+        "Glad to meet you!\n",
+        "I love {STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_ImBlankPleaseBattleMe",
+      "en_US": [
+        "I’m a {STRVAR_1 28, 0, 0} Trainer!\n",
+        "Please battle me!"
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_PleaseTradeImOfferingBlank",
+      "en_US": [
+        "Please trade!\n",
+        "I’m offering {STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_PleaseTradeIWantBlank",
+      "en_US": [
+        "Please trade!\n",
+        "I want a {STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_IveEnteredUnionRoom",
+      "en_US": "I’ve entered the Union Room."
+    },
+    {
+      "id": "UnionRoomSentences_Text_IWantToDrawBlank",
+      "en_US": [
+        "Let’s draw! I want to draw\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_IveGotToGoBlank",
+      "en_US": [
+        "I’ve got to go!\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_PleaseLeaveMeAlone",
+      "en_US": "Please leave me alone..."
+    },
+    {
+      "id": "UnionRoomSentences_Text_AnyoneWantToBlank",
+      "en_US": [
+        "Anyone want to\n",
+        "{STRVAR_1 28, 0, 0}?"
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_LetsBlank",
+      "en_US": "Let’s {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "UnionRoomSentences_Text_WantToBlank",
+      "en_US": "Want to {STRVAR_1 28, 0, 0}?"
+    },
+    {
+      "id": "UnionRoomSentences_Text_IWantToBlank",
+      "en_US": "I want to {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "UnionRoomSentences_Text_OK",
+      "en_US": "OK!"
+    },
+    {
+      "id": "UnionRoomSentences_Text_IDontWantToBlank",
+      "en_US": [
+        "I don’t want to\n",
+        "{STRVAR_1 28, 0, 0}."
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_IllWaitAtColosseum",
+      "en_US": [
+        "I’ll go wait at the Colosseum\n",
+        "now."
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_PleaseTalkToMe",
+      "en_US": "Please talk to me!"
+    },
+    {
+      "id": "UnionRoomSentences_Text_DoYouKnowWhereIAm",
+      "en_US": "Do you know where I am?"
+    },
+    {
+      "id": "UnionRoomSentences_Text_IWantToTradeMyBlank",
+      "en_US": [
+        "I want to trade my {STRVAR_1 28, 0, 0}.\n",
+        "Please talk to me."
+      ]
+    },
+    {
+      "id": "UnionRoomSentences_Text_IWantABlankBattle",
+      "en_US": [
+        "I want a {STRVAR_1 28, 0, 0} battle!\n",
+        "Please talk to me!"
+      ]
+    }
+  ]
+}

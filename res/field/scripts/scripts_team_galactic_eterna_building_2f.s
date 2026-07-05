@@ -8,15 +8,15 @@
     ScriptEntryEnd
 
 TeamGalacticEternaBuilding2F_GruntM:
-    NPCMessage TeamGalacticEternaBuilding2F_Text_TeamGalacticIsWorkingHardToFindNewEnergySourcesForTheFuture
+    NPCMessage TeamGalacticEternaBuilding2F_Text_WorkingToFindEnergySources
     End
 
 TeamGalacticEternaBuilding2F_GruntF:
-    NPCMessage TeamGalacticEternaBuilding2F_Text_WeAreConductingResearchOnNewFormsOfEnergy
+    NPCMessage TeamGalacticEternaBuilding2F_Text_ResearchOnFormsOfEnergy
     End
 
 TeamGalacticEternaBuilding2F_BgSign:
-    EventMessage TeamGalacticEternaBuilding2F_Text_LetUsMakeProgressTogether
+    EventMessage TeamGalacticEternaBuilding2F_Text_MakeProgressTogether
     End
 
     .balign 4, 0

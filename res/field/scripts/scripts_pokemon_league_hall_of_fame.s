@@ -4,10 +4,10 @@
 #include "res/field/events/events_pokemon_league_hall_of_fame.h"
 
 
-    ScriptEntry PokemonLeagueHallOfFame_OnFrame
+    ScriptEntry PokemonLeagueHallOfFame_OnFrame_EnterHallOfFame
     ScriptEntryEnd
 
-PokemonLeagueHallOfFame_OnFrame:
+PokemonLeagueHallOfFame_OnFrame_EnterHallOfFame:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeague_HallOfFame_Movement_WalkUp
     WaitMovement
@@ -42,12 +42,12 @@ PokemonLeagueHallOfFame_EnterHallOfFame:
     ApplyMovement LOCALID_PROF_ROWAN, PokemonLeagueHallOfFame_Movement_RowanFaceMachine
     ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallOfFame_Movement_CynthiaFaceMachine
     WaitMovement
-    Message PokemonLeagueHallOfFame_Text_TimeToRecordYourNameAndYourPokemon
+    Message PokemonLeagueHallOfFame_Text_RecordYourNameAndPokemon
     CloseMessage
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_4
     GetNationalDexEnabled VAR_RESULT
     CallIfEq VAR_RESULT, TRUE, PokemonLeagueHallOfFame_EnableHiddenLocationSpringPath
-    CallIfEq VAR_UNK_0x40F4, 0, _0102
+    CallIfEq VAR_DUMMY_0x40F4, 0, PokemonLeagueHallOfFame_IncreaseDummyVar
     GetPartyCount VAR_RESULT
     PlayHallOfFameHealingAnimation VAR_RESULT
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
@@ -61,8 +61,8 @@ PokemonLeagueHallOfFame_EnterHallOfFame:
     ReleaseAll
     End
 
-_0102:
-    SetVar VAR_UNK_0x40F4, 1
+PokemonLeagueHallOfFame_IncreaseDummyVar:
+    SetVar VAR_DUMMY_0x40F4, 1
     Return
 
 PokemonLeagueHallOfFame_EnableHiddenLocationSpringPath:
@@ -76,7 +76,7 @@ PokemonLeagueHallOfFame_FirstVictoryMessages:
 
 PokemonLeagueHallOfFame_RepeatVictoryMessages:
     Message PokemonLeagueHallOfFame_Text_AlwaysStraighterThanUsual
-    Message PokemonLeagueHallOfFame_Text_ThisRoomIsALegacyToPokemonAndTrainers
+    Message PokemonLeagueHallOfFame_Text_LegacyToPokemonAndTrainers
     Return
 
     .balign 4, 0
@@ -137,7 +137,7 @@ PokemonLeagueHallOfFame_SetHallOfFameVictoryFlagsAndVars:
     CallIfEq VAR_ROAMING_ARTICUNO_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingArticuno
     CallIfEq VAR_PLAYER_HOUSE_POSTGAME_STATE, 0, PokemonLeagueHallOfFame_IncreasePlayerHousePostgameState
     ClearFlag FLAG_HIDE_SANDGEM_TOWN_COUNTERPART
-    CallIfUnset FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN, PokemonLeagueHallOfFame_ShowVeilstoneStoreB1FProfRowan
+    CallIfUnset FLAG_TALKED_TO_VEILSTONE_STORE_B1F_PROF_ROWAN, PokemonLeagueHallOfFame_ShowVeilstoneStoreB1FProfRowan
     ClearFlag FLAG_HIDE_CANALAVE_LIBRARY_1F_LUCIAN
     ClearFlag FLAG_TALKED_TO_CELESTIC_TOWN_CAVE_CYNTHIA
     SetFlag FLAG_HIDE_SENDOFF_SPRING_CYNTHIA
@@ -156,7 +156,7 @@ PokemonLeagueHallOfFame_ResetSpearPillarPalkiaState:
     Return
 
 PokemonLeagueHallOfFame_TryShowStarkMountainHeatran:
-    GoToIfUnset FLAG_CAUGHT_MESPRIT, PokemonLeagueHallOfFame_DontShowStarkMountainHeatran
+    GoToIfUnset FLAG_TALKED_TO_BATTLEGROUND_BUCK, PokemonLeagueHallOfFame_DontShowStarkMountainHeatran
     ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     SetVar VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1
 PokemonLeagueHallOfFame_DontShowStarkMountainHeatran:

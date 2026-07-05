@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry FloaromaPokecenterB1F_UnusedEntry1
+    ScriptEntry FloaromaPokecenterB1F_Dummy1
     ScriptEntryEnd
 
-FloaromaPokecenterB1F_UnusedEntry1:
+FloaromaPokecenterB1F_Dummy1:
     End

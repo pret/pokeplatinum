@@ -6,16 +6,14 @@
 
 #include "constants/net.h"
 
-#include "struct_defs/struct_02049A68.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "nintendo_wfc/main.h"
 #include "overlay096/ov96_0223B140.h"
 #include "overlay096/ov96_0223B6A0.h"
-#include "overlay096/struct_ov96_0223B450.h"
-#include "overlay096/struct_ov96_0223B450_sub1.h"
-#include "overlay096/struct_ov96_0223B450_sub2.h"
 #include "overlay096/struct_ov96_0223BF40_decl.h"
 #include "overlay096/struct_ov96_0223BF40_t.h"
+#include "overlay096/struct_wifi_player_profile.h"
 
 #include "bg_window.h"
 #include "comm_manager.h"
@@ -38,9 +36,9 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_0202D05C.h"
 #include "unk_02030CE8.h"
 #include "unk_02073700.h"
+#include "wifi_battle_tower_save.h"
 
 static void ov96_0223BE38(BgConfig *param0);
 static void ov96_0223BF1C(BgConfig *param0);
@@ -190,7 +188,7 @@ int ov96_0223BCE0(UnkStruct_ov96_0223BF40 *param0, int param1)
     CommManager_InitializeGlobalWifi(param0->unk_00->saveData);
     ov96_0223D948(param0);
 
-    param0->unk_8C = sub_0202D2C0(param0->unk_00->unk_00, 0);
+    param0->unk_8C = WifiBattleTowerRecord_UpdateRank(param0->unk_00->unk_00, 0);
     param0->unk_90 = param0->unk_8C;
     param0->unk_98 = 1;
     param0->unk_F6C = NULL;
@@ -902,7 +900,7 @@ static int ov96_0223CA70(UnkStruct_ov96_0223BF40 *param0)
 
             DWC_GetDateTime(&v1, &v0);
 
-            if (sub_0202D558(param0->unk_00->unk_04, param0->unk_90, param0->unk_98, &v1)) {
+            if (WifiBattleTowerDownloadData_IsOpponentMarked(param0->unk_00->unk_04, param0->unk_90, param0->unk_98, &v1)) {
                 param0->unk_1C = 20;
             } else {
                 param0->unk_1C = 16;
@@ -928,7 +926,7 @@ static int ov96_0223CB7C(UnkStruct_ov96_0223BF40 *param0)
     ov96_0223D750(param0, param0->unk_BD0, 1, TEXT_SPEED_FAST, 0xf0f);
     ov96_0223BBFC(param0, 47, 17);
 
-    MI_CpuClearFast(&param0->unk_9C, sizeof(UnkStruct_ov96_0223B450));
+    MI_CpuClearFast(&param0->unk_9C, sizeof(WifiBattleTowerDownloadBuffer));
 
     return 3;
 }
@@ -961,7 +959,7 @@ static int ov96_0223CC50(UnkStruct_ov96_0223BF40 *param0)
 
         switch (v0) {
         case 0:
-            sub_0202D5F8(param0->unk_00->unk_04, (UnkStruct_ov96_0223B450_sub1 *)param0->unk_9C.unk_00, param0->unk_8C, param0->unk_98);
+            WifiBattleTowerDownloadData_StoreOpponentTeams(param0->unk_00->unk_04, (WifiPlayerProfile *)param0->unk_9C.wifiPlayerProfile, param0->unk_8C, param0->unk_98);
             ov96_0223BBFC(param0, 39, 19);
 
             {
@@ -969,7 +967,7 @@ static int ov96_0223CC50(UnkStruct_ov96_0223BF40 *param0)
                 RTCDate v2;
 
                 DWC_GetDateTime(&v2, &v1);
-                sub_0202D4B0(param0->unk_00->unk_04, param0->unk_90, param0->unk_98, &v2);
+                WifiBattleTowerDownloadData_MarkOpponent(param0->unk_00->unk_04, param0->unk_90, param0->unk_98, &v2);
             }
             break;
         case -1:
@@ -1038,12 +1036,12 @@ static int ov96_0223CD9C(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223CDD0(UnkStruct_ov96_0223BF40 *param0)
 {
-    UnkStruct_02049A68 v0;
-    int v1 = sub_0202D3A0(param0->unk_00->unk_00);
+    WifiBattleTowerIndices indices;
+    int v1 = WifiBattleTowerRecord_GetRatingTier(param0->unk_00->unk_00);
 
-    sub_0202D628(param0->unk_00->unk_04, &v0);
-    sub_02073700(param0->unk_00->saveData, 1, (UnkStruct_ov96_0223B450_sub1 *)&param0->unk_AD4);
-    ov96_0223B4B0(v0.unk_00, v0.unk_04, v1, &param0->unk_AD4);
+    WifiBattleTowerDownloadData_GetIndices(param0->unk_00->unk_04, &indices);
+    sub_02073700(param0->unk_00->saveData, 1, (WifiPlayerProfile *)&param0->wifiPlayerProfile);
+    ov96_0223B4B0(indices.rank, indices.opponentIdx, v1, &param0->wifiPlayerProfile);
 
     param0->unk_1C = 27;
     param0->unk_FF4 = 0;
@@ -1060,7 +1058,7 @@ static int ov96_0223CE1C(UnkStruct_ov96_0223BF40 *param0)
 
         switch (v0) {
         case 0:
-            sub_0202D414(param0->unk_00->unk_00, 5, 2);
+            WifiBattleTowerRecord_UpdateBitFlag(param0->unk_00->unk_00, 5, 2);
             ov96_0223BBFC(param0, 39, 28);
             break;
         case -1:
@@ -1262,7 +1260,7 @@ static int ov96_0223D270(UnkStruct_ov96_0223BF40 *param0)
 
         switch (v0) {
         case 0:
-            sub_0202D6DC(param0->unk_00->unk_04, (UnkStruct_ov96_0223B450_sub2 *)param0->unk_9C.unk_63C, param0->unk_90, param0->unk_98);
+            WifiBattleTowerDownloadData_StoreMatchList(param0->unk_00->unk_04, (WifiBattleTowerMatchCandidate *)param0->unk_9C.matchCandidates, param0->unk_90, param0->unk_98);
             ov96_0223BBFC(param0, 39, 38);
             break;
         case -1:

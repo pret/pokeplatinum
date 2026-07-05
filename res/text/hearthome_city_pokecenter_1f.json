@@ -2,7 +2,7 @@
   "key": 43826,
   "messages": [
     {
-      "id": "HearthomeCityPokecenter1F_Text_HaveYouCheckedTheGlobalTerminal",
+      "id": "HearthomeCityPokecenter1F_Text_HaveYouCheckedGlobalTerminal",
       "en_US": [
         "Have you checked out the Global\n",
         "Terminal in Jubilife City?\r",
@@ -45,25 +45,25 @@
       ]
     },
     {
-      "id": "HearthomeCityPokecenter1F_Text_CanYouParticipateInAPieceOnTrainers",
+      "id": "HearthomeCityPokecenter1F_Text_KinseyIntro_Unused",
       "en_US": [
         "We’re doing a news piece on Trainers.\n",
         "Can we get you to participate?"
       ]
     },
     {
-      "id": "HearthomeCityPokecenter1F_Text_ReporterKinseysLiveInterview",
+      "id": "HearthomeCityPokecenter1F_Text_KinseyBattleAccepted_Unused",
       "en_US": "Reporter Kinsey’s live interview!\r"
     },
     {
-      "id": "HearthomeCityPokecenter1F_Text_DoYouReplyNoFirstThing",
+      "id": "HearthomeCityPokecenter1F_Text_KinseyBattleDeclined_Unused",
       "en_US": [
         "...Are you one of those contrary\n",
         "people who reply “No” first thing?"
       ]
     },
     {
-      "id": "HearthomeCityPokecenter1F_Text_WereInvestigatingWhyTrainersChoosePokemon",
+      "id": "HearthomeCityPokecenter1F_Text_KinseyPostBattle_Unused",
       "en_US": [
         "Why Trainers choose certain kinds of\n",
         "Pokémon and their feelings about it...\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "HearthomeCityPokecenter1F_Text_IFeltAFlashOfInspiration",
+      "id": "HearthomeCityPokecenter1F_Text_TevinIntro_Unused",
       "en_US": [
         "I felt a flash of inspiration when I laid\n",
         "eyes on you.\r",
@@ -80,14 +80,14 @@
       ]
     },
     {
-      "id": "HearthomeCityPokecenter1F_Text_INeedToGetInTightYouDontMindDoYou",
+      "id": "HearthomeCityPokecenter1F_Text_TevinBattleAccepted_Unused",
       "en_US": [
         "For close-ups, I need to get in tight.\n",
         "You don’t mind, do you?\r"
       ]
     },
     {
-      "id": "HearthomeCityPokecenter1F_Text_ThatsADowner",
+      "id": "HearthomeCityPokecenter1F_Text_TevinBattleDEclined_Unused",
       "en_US": [
         "That’s a downer...\r",
         "I thought I’d found a Trainer and\n",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "HearthomeCityPokecenter1F_Text_DidYouComeToCompeteInContests",
+      "id": "HearthomeCityPokecenter1F_Text_TevinPostBattle_Unused",
       "en_US": [
         "So, did you come to Hearthome to\n",
         "compete in Contests?"

@@ -13,7 +13,7 @@
 #include "global/assert.h"
 #include "nintendo_wfc/voice_chat.h"
 
-#include "battle_frontier_stats.h"
+#include "battle_frontier_save.h"
 #include "comm_manager.h"
 #include "communication_system.h"
 #include "dwc_error.h"
@@ -566,7 +566,7 @@ static void DeleteDuplicateFriendCallback(int deletedFriendIdx, int duplicateFri
     MI_CpuCopy8(sNintendoWFCManager->friends, sub_0202AED8(SaveData_GetWiFiList(sNintendoWFCManager->saveData), 0), MAX_FRIENDS * sizeof(DWCFriendData));
 
     sub_0202B270(SaveData_GetWiFiList(sNintendoWFCManager->saveData), deletedFriendIdx, duplicateFriendIdx);
-    BattleFrontierStats_ClearFriendStats(SaveData_GetBattleFrontier(sNintendoWFCManager->saveData), deletedFriendIdx, duplicateFriendIdx);
+    BattleFrontierSave_ClearFriendStats(SaveData_GetBattleFrontier(sNintendoWFCManager->saveData), deletedFriendIdx, duplicateFriendIdx);
 }
 
 static void DummyWFCBuddyFriendCB(int friendIdx, void *userParam)

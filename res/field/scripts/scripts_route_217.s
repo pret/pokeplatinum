@@ -14,7 +14,7 @@ Route217_IceRock:
     End
 
 Route217_ArrowSignpostLakeAcuity:
-    ShowArrowSign Route217_Text_SignRt217LakeAcuity
+    ShowArrowSign Route217_Text_SignLakeAcuity
     End
 
 Route217_SnowpointNPCF:

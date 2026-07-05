@@ -7,7 +7,7 @@
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C_decl.h"
+#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_02231428.h"
 #include "overlay070/ov70_0225C9B4.h"
 #include "overlay070/ov70_0225D9A4.h"

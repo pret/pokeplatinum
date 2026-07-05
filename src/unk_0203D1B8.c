@@ -25,6 +25,7 @@
 #include "struct_defs/struct_0206BC70.h"
 
 #include "applications/bag/application.h"
+#include "applications/berry_tag.h"
 #include "applications/diploma.h"
 #include "applications/easy_chat/main.h"
 #include "applications/frontier/records/main.h"
@@ -59,7 +60,6 @@
 #include "overlay058/ov58_021D0D80.h"
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay064/ov64_0222DCE0.h"
-#include "overlay085/ov85_02241440.h"
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay090/ov90_021D0D80.h"
@@ -120,12 +120,12 @@
 #include "tv_segment.h"
 #include "unk_02017498.h"
 #include "unk_020298BC.h"
-#include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_02038FFC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "vars_flags.h"
+#include "wifi_battle_tower_save.h"
 #include "wifi_history_save_data.h"
 #ifndef SDK_BUILD_ARM
 #include "wifi_list.h"
@@ -154,7 +154,7 @@ FS_EXTERN_OVERLAY(choose_starter);
 FS_EXTERN_OVERLAY(town_map);
 FS_EXTERN_OVERLAY(journal_display);
 FS_EXTERN_OVERLAY(bag);
-FS_EXTERN_OVERLAY(overlay85);
+FS_EXTERN_OVERLAY(berry_tag);
 FS_EXTERN_OVERLAY(hall_of_fame);
 FS_EXTERN_OVERLAY(pc_hall_of_fame);
 FS_EXTERN_OVERLAY(overlay88);
@@ -331,13 +331,13 @@ u16 BagContext_GetSelectedItem(void *bagContext)
 
 void sub_0203D2E4(FieldSystem *fieldSystem, void *appArgs)
 {
-    FS_EXTERN_OVERLAY(overlay85);
+    FS_EXTERN_OVERLAY(berry_tag);
 
     const ApplicationManagerTemplate appTemplate = {
-        ov85_02241440,
-        ov85_0224154C,
-        ov85_022415A0,
-        FS_OVERLAY_ID(overlay85)
+        BerryTag_Init,
+        BerryTag_Main,
+        BerryTag_Exit,
+        FS_OVERLAY_ID(berry_tag)
     };
 
     FieldSystem_StartChildProcess(fieldSystem, &appTemplate, appArgs);
@@ -1350,8 +1350,8 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
 
     UnkStruct_0206BC70 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206BC70));
 
-    v0->unk_00 = sub_0202D750(fieldSystem->saveData);
-    v0->unk_04 = sub_0202D764(fieldSystem->saveData);
+    v0->unk_00 = SaveData_GetWifiBattleTowerRecord(fieldSystem->saveData);
+    v0->unk_04 = SaveData_GetWifiBattleTowerDownloadData(fieldSystem->saveData);
     v0->systemData = SaveData_GetSystemData(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->userData = WiFiList_GetUserData(SaveData_GetWiFiList(fieldSystem->saveData));

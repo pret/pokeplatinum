@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 PoketchCo3F_NinjaBoy:
-    NPCMessage PoketchCo3F_Text_TheresAGirlsModelAndABoysModel
+    NPCMessage PoketchCo3F_Text_TheresGenderedModels
     End
 
 PoketchCo3F_PokefanF:
@@ -21,16 +21,16 @@ PoketchCo3F_PokefanF:
     End
 
 PoketchCo3F_ExpertF:
-    NPCMessage PoketchCo3F_Text_PeopleEverywhereMakePoketchApps
+    NPCMessage PoketchCo3F_Text_PeopleEverywhereMakeApps
     End
 
 PoketchCo3F_PCSouthWest:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps1
+    Message PoketchCo3F_Text_DescriptionsOfPoketchApps1
 PoketchCo3F_PCSouthWestAddMenuEntries:
-    Message PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout1
+    Message PoketchCo3F_Text_ReadAboutWhichPoketchApp1
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
     CheckPoketchEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 0, PoketchCo3F_PCSouthWestShowMenu
@@ -120,9 +120,9 @@ PoketchCo3F_PCSouthMiddle:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps2
+    Message PoketchCo3F_Text_DescriptionsOfPoketchApps2
 PoketchCo3F_PCSouthMiddleAddMenuEntries:
-    Message PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout2
+    Message PoketchCo3F_Text_ReadAboutWhichPoketchApp2
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
     CheckPoketchEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 0, PoketchCo3F_PCSouthMiddleShowMenu
@@ -224,9 +224,9 @@ PoketchCo3F_PCSouthEast:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps3
+    Message PoketchCo3F_Text_DescriptionsOfPoketchApps3
 PoketchCo3F_PCSouthEastAddMenuEntries:
-    Message PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout3
+    Message PoketchCo3F_Text_ReadAboutWhichPoketchApp3
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
     CheckPoketchEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 0, PoketchCo3F_PCSouthEastShowMenu
@@ -316,9 +316,9 @@ PoketchCo3F_PCNorthWest:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps4
+    Message PoketchCo3F_Text_DescriptionsOfPoketchApps4
 PoketchCo3F_PCNorthWestAddMenuEntries:
-    Message PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout4
+    Message PoketchCo3F_Text_ReadAboutWhichPoketchApp4
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
     CheckPoketchEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 0, PoketchCo3F_PCNorthWestShowMenu

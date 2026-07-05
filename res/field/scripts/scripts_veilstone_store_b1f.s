@@ -18,7 +18,7 @@
     ScriptEntry VeilstoneStoreB1F_ProfRowan
     ScriptEntry VeilstoneStoreB1F_LavaCookieVendor
     ScriptEntry VeilstoneStoreB1F_PoffinVendor
-    ScriptEntry VeilstoneStoreB1F_Dummy
+    ScriptEntry VeilstoneStoreB1F_Dummy10
     ScriptEntry VeilstoneStoreB1F_BerryVendor
     ScriptEntry VeilstoneStoreB1F_Directory
     ScriptEntryEnd
@@ -50,8 +50,8 @@ VeilstoneStoreB1F_RageCandyBarVendor:
 VeilstoneStoreB1F_ProfRowan:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN, VeilstoneStoreB1F_ProfRowanAfterSpokenTo
-    SetFlag FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN
+    GoToIfSet FLAG_TALKED_TO_VEILSTONE_STORE_B1F_PROF_ROWAN, VeilstoneStoreB1F_ProfRowanAfterSpokenTo
+    SetFlag FLAG_TALKED_TO_VEILSTONE_STORE_B1F_PROF_ROWAN
     SetFlag FLAG_HIDE_VEILSTONE_STORE_B1F_PROF_ROWAN
     Message VeilstoneStoreB1F_Text_RageCandyBarsAreTooPopular
     FacePlayer
@@ -406,7 +406,7 @@ VeilstoneStoreB1F_PoffinVendorMenu:
     ShowListMenu
     Return
 
-VeilstoneStoreB1F_Dummy:
+VeilstoneStoreB1F_Dummy10:
     End
 
 VeilstoneStoreB1F_IncrementDepartmentStoreRegularCounter:

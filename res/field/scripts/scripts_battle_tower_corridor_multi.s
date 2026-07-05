@@ -10,20 +10,20 @@
 
 BattleTowerCorridorMulti_OnTransition:
     GoToIfEq VAR_BATTLE_TOWER_CORRIDOR_MULTI_LOAD_ACTION, 0, BattleTowerCorridorMulti_OnTransitionEnd
-    GetCurNetID VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, BattleTowerCorridorMulti_SetPlayer2Graphics
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0
-    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_MAP_LOCAL_0
-    SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0
+    GetCurNetID VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, 1, BattleTowerCorridorMulti_SetPlayer2Graphics
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0x00
+    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0x00
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_MAP_LOCAL_0x00
+    SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0x00
 BattleTowerCorridorMulti_OnTransitionEnd:
     End
 
 BattleTowerCorridorMulti_SetPlayer2Graphics:
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0
-    SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0
-    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_MAP_LOCAL_0
-    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0x00
+    SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0x00
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_MAP_LOCAL_0x00
+    SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0x00
     End
 
 BattleTowerCorridorMulti_OnResume:
@@ -44,7 +44,7 @@ BattleTowerCorridorMulti_OnFrame_EnterBattleRoom:
     Call BattleTowerCorridorMulti_EnterBattleRoom
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM, 0, 7, 5, DIR_NORTH
+    Warp MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM, 7, 5, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll

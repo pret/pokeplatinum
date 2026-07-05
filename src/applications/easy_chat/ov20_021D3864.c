@@ -3,13 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020998EC_decl.h"
-
 #include "applications/easy_chat/main.h"
 #include "applications/easy_chat/ov20_021D2098.h"
 #include "applications/easy_chat/struct_ov20_021D2128_decl.h"
 
 #include "bg_window.h"
+#include "easy_chat_word_list.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
@@ -22,14 +21,14 @@
 typedef struct UnkStruct_ov20_021D3980_t {
     UnkStruct_ov20_021D2128 *unk_00;
     const EasyChatApp *unk_04;
-    const UnkStruct_020998EC *unk_08;
+    const EasyChatWordList *unk_08;
     Sprite *unk_0C;
 } UnkStruct_ov20_021D3980;
 
 static void ov20_021D390C(BgConfig *param0, const WindowTemplate *param1, u32 param2);
 static void ov20_021D3980(UnkStruct_ov20_021D3980 *param0);
 
-UnkStruct_ov20_021D3980 *ov20_021D3864(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const UnkStruct_020998EC *param2)
+UnkStruct_ov20_021D3980 *ov20_021D3864(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *param1, const EasyChatWordList *param2)
 {
     UnkStruct_ov20_021D3980 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D3980));
 

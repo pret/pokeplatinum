@@ -5,10 +5,10 @@
 #include <nnsys.h>
 
 #include "struct_defs/struct_0206BC70.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay096/struct_ov96_0223B450.h"
-#include "overlay096/struct_ov96_0223B450_sub1.h"
+#include "overlay096/struct_wifi_player_profile.h"
 #include "overlay096/struct_world_exchange_trainer.h"
 #include "overlay096/struct_world_exchange_trainer_error.h"
 
@@ -39,8 +39,8 @@ struct UnkStruct_ov96_0223BF40_t {
     int unk_90;
     int unk_94;
     int unk_98;
-    UnkStruct_ov96_0223B450 unk_9C;
-    UnkStruct_ov96_0223B450_sub1 unk_AD4;
+    WifiBattleTowerDownloadBuffer unk_9C;
+    WifiPlayerProfile wifiPlayerProfile;
     u16 unk_BB8;
     u16 unk_BBA;
     u16 unk_BBC;

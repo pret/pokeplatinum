@@ -2,13 +2,13 @@
 #include "res/text/bank/celestic_town_northwest_house.h"
 
 
-    ScriptEntry CelesticTownNorthwestHouse_Unused
+    ScriptEntry CelesticTownNorthwestHouse_Vendor_Unused
     ScriptEntry CelesticTownNorthwestHouse_ExpertF
     ScriptEntry CelesticTownNorthwestHouse_ExpertM
     ScriptEntry CelesticTownNorthwestHouse_GymGuide
     ScriptEntryEnd
 
-CelesticTownNorthwestHouse_Unused:
+CelesticTownNorthwestHouse_Vendor_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer

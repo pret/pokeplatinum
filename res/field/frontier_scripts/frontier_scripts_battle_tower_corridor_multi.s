@@ -1,4 +1,5 @@
 # include "macros/frscrcmd.inc"
+# include "constants/battle_frontier.h"
 
     .data
 
@@ -248,7 +249,7 @@ _0250:
     End
 
 _0270:
-    FrontierScrCmd_04 8, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_TOWER_MULTI_BATTLE_ROOM, 0
     End
 
 _0278:

@@ -11,8 +11,8 @@ EternaCityCondominiums2F_ExpertF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_2F_TM67, EternaCityCondominiums2F_FolksLikeMeHaveALongHistoryWeCanLookBackOn
-    Message EternaCityCondominiums2F_Text_IveHadThisTMRecycleForSuchALongTimeNow
+    GoToIfSet FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_2F_TM67, EternaCityCondominiums2F_LongHistory
+    Message EternaCityCondominiums2F_Text_HadTMLongTimeNow
     SetVar VAR_0x8004, ITEM_TM67
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaCityCondominiums2F_BagIsFull
@@ -28,19 +28,19 @@ EternaCityCondominiums2F_BagIsFull:
     ReleaseAll
     End
 
-EternaCityCondominiums2F_FolksLikeMeHaveALongHistoryWeCanLookBackOn:
-    Message EternaCityCondominiums2F_Text_FolksLikeMeHaveALongHistoryWeCanLookBackOn
+EternaCityCondominiums2F_LongHistory:
+    Message EternaCityCondominiums2F_Text_LongHistory
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityCondominiums2F_Twin:
-    NPCMessage EternaCityCondominiums2F_Text_GardeniaOurGymLeaderGoesOutToEternaForestEverySoOften
+    NPCMessage EternaCityCondominiums2F_Text_GardeniaGoesToEternaForest
     End
 
 EternaCityCondominiums2F_ExpertM:
-    NPCMessage EternaCityCondominiums2F_Text_TheMoveRecycleIsToBeUsedDuringBattle
+    NPCMessage EternaCityCondominiums2F_Text_RecycleUsedDuringBattle
     End
 
     .balign 4, 0

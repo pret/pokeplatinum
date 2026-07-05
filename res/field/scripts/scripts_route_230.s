@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 Route230_ArrowSignpostFightArea:
-    ShowArrowSign Route230_Text_SignRt230FightArea
+    ShowArrowSign Route230_Text_SignFightArea
     End
 
 Route230_Fisherman:

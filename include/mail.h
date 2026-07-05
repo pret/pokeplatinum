@@ -3,9 +3,8 @@
 
 #include "constants/string.h"
 
-#include "struct_defs/sentence.h"
-
 #include "charcode.h"
+#include "easy_chat_sentence.h"
 #include "savedata.h"
 
 #define MAIL_TYPE_NONE 0xFFFF
@@ -47,7 +46,7 @@ typedef struct Mail {
     charcode_t trainerName[TRAINER_NAME_LEN + 1];
     MailIconData iconData[MAIL_MAX_ICONS];
     u16 platExclusiveFormIcons;
-    Sentence sentences[MAIL_MAX_SENTENCES];
+    EasyChatSentence sentences[MAIL_MAX_SENTENCES];
 } Mail;
 
 typedef struct Mailbox {
@@ -68,8 +67,8 @@ u8 Mail_GetLanguage(const Mail *mail);
 u8 Mail_GetGameVersion(const Mail *mail);
 u16 Mail_GetIconData(const Mail *mail, u8 index, enum MailIconDataType type, u16 platExclusiveFormIcons);
 u16 Mail_GetPlatExclusiveFormIcons(const Mail *mail);
-Sentence *Mail_GetSentence(Mail *mail, u8 index);
-void Mail_SetSentence(Mail *mail, Sentence *sentence, u8 index);
+EasyChatSentence *Mail_GetSentence(Mail *mail, u8 index);
+void Mail_SetSentence(Mail *mail, EasyChatSentence *sentence, u8 index);
 Mailbox *SaveData_GetMailbox(SaveData *saveData);
 int Mailbox_SaveSize(void);
 void Mailbox_Init(Mailbox *mailbox);

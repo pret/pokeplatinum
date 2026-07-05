@@ -12,14 +12,14 @@ EternaCityCondominiums1F_ExpertM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message EternaCityCondominiums1F_Text_WantMeToRateTheNicknamesOfYourPokemon
+    Message EternaCityCondominiums1F_Text_WantMeToRateNicknames
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, EternaCityCondominiums1F_TryGiveNickname
-    GoTo EternaCityCondominiums1F_ISeePleaseComeVisitAgain
+    GoTo EternaCityCondominiums1F_PleaseComeVisitAgain
     End
 
 EternaCityCondominiums1F_TryGiveNickname:
-    Message EternaCityCondominiums1F_Text_WhichPokemonsNicknameShouldICritique
+    Message EternaCityCondominiums1F_Text_CritiqueWhichNickname
     WaitABPress
     CloseMessage
     FadeScreenOut
@@ -29,28 +29,28 @@ EternaCityCondominiums1F_TryGiveNickname:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_RESULT, 0xFF, EternaCityCondominiums1F_ISeePleaseComeVisitAgain
+    GoToIfEq VAR_RESULT, 0xFF, EternaCityCondominiums1F_PleaseComeVisitAgain
     SetVar VAR_0x8005, VAR_RESULT
     GetPartyMonSpecies VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, EternaCityCondominiums1F_SelectedEgg
     CheckIsPartyMonOutsider VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, EternaCityCondominiums1F_SelectedOutsiderPokemon
     BufferPartyMonNickname 0, VAR_0x8005
-    Message EternaCityCondominiums1F_Text_WouldYouLikeToGiveItAnEvenBetterName
+    Message EternaCityCondominiums1F_Text_GiveItABetterName
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, EternaCityCondominiums1F_GiveNewNickname
-    GoTo EternaCityCondominiums1F_ISeePleaseComeVisitAgain
+    GoTo EternaCityCondominiums1F_PleaseComeVisitAgain
     End
 
-EternaCityCondominiums1F_ISeePleaseComeVisitAgain:
-    Message EternaCityCondominiums1F_Text_ISeePleaseComeVisitAgain
+EternaCityCondominiums1F_PleaseComeVisitAgain:
+    Message EternaCityCondominiums1F_Text_PleaseComeVisitAgain
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityCondominiums1F_SelectedEgg:
-    Message EternaCityCondominiums1F_Text_AnEggCanGoByNoOtherName
+    Message EternaCityCondominiums1F_Text_CantNicknameEgg
     WaitButton
     CloseMessage
     ReleaseAll
@@ -58,14 +58,14 @@ EternaCityCondominiums1F_SelectedEgg:
 
 EternaCityCondominiums1F_SelectedOutsiderPokemon:
     BufferPartyMonNickname 0, VAR_0x8005
-    Message EternaCityCondominiums1F_Text_NicknameIsItThatIsATrulyImpeccableName
+    Message EternaCityCondominiums1F_Text_TrulyImpeccableName
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 EternaCityCondominiums1F_GiveNewNickname:
-    Message EternaCityCondominiums1F_Text_AhGoodThenWhatShallTheNewNicknameBe
+    Message EternaCityCondominiums1F_Text_WhatShallNewNicknameBe
     WaitABPress
     CloseMessage
     SetVar VAR_RESULT, 0
@@ -78,7 +78,7 @@ EternaCityCondominiums1F_GiveNewNickname:
     ScrCmd_2B8 VAR_0x8005
     IncrementGameRecord RECORD_POKEMON_NICKNAMED
     BufferPartyMonNickname 0, VAR_0x8005
-    Message EternaCityCondominiums1F_Text_ThisPokemonShallBeKnownAsNicknameItIsABetterNameThanBefore
+    Message EternaCityCondominiums1F_Text_BetterNameThanBefore
     WaitButton
     CloseMessage
     ReleaseAll
@@ -86,7 +86,7 @@ EternaCityCondominiums1F_GiveNewNickname:
 
 EternaCityCondominiums1F_GaveSameNickname:
     BufferPartyMonNickname 0, VAR_0x8005
-    Message EternaCityCondominiums1F_Text_ThisPokemonShallBeKnownAsNicknameItLooksNoDifferentFromBefore
+    Message EternaCityCondominiums1F_Text_NoDifferentFromBefore
     WaitButton
     CloseMessage
     ReleaseAll
@@ -96,8 +96,8 @@ EternaCityCondominiums1F_NinjaBoy:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TRADED_FOR_CHARAP_CHATOT, EternaCityCondominiums1F_DidThatChatotITradedYouTotallyLearnThatChatterMove
-    Message EternaCityCondominiums1F_Text_DoYouGotThatPokemonNamedBuizelWannTradeItForMyChatot
+    GoToIfSet FLAG_TRADED_FOR_CHARAP_CHATOT, EternaCityCondominiums1F_DidChatotLearnChatter
+    Message EternaCityCondominiums1F_Text_AskTradeBuizelForChatot
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, EternaCityCondominiums1F_TryTrade
     GoTo EternaCityCondominiums1F_OhOKTotallyGotIt
@@ -115,7 +115,7 @@ EternaCityCondominiums1F_TryTrade:
     SetVar VAR_0x8004, VAR_RESULT
     GetPartyMonSpecies VAR_0x8004, VAR_0x8005
     GetNPCTradeRequestedSpecies VAR_RESULT
-    GoToIfNe VAR_0x8005, VAR_RESULT, EternaCityCondominiums1F_WhatITotallyWantIsABuizel
+    GoToIfNe VAR_0x8005, VAR_RESULT, EternaCityCondominiums1F_IWantBuizel
     StartNPCTrade VAR_0x8004
     FinishNPCTrade
     SetFlag FLAG_TRADED_FOR_CHARAP_CHATOT
@@ -125,9 +125,9 @@ EternaCityCondominiums1F_TryTrade:
     ReleaseAll
     End
 
-EternaCityCondominiums1F_WhatITotallyWantIsABuizel:
+EternaCityCondominiums1F_IWantBuizel:
     FinishNPCTrade
-    Message EternaCityCondominiums1F_Text_WhatITotallyWantIsABuizel
+    Message EternaCityCondominiums1F_Text_IWantBuizel
     WaitButton
     CloseMessage
     ReleaseAll
@@ -140,8 +140,8 @@ EternaCityCondominiums1F_OhOKTotallyGotIt:
     ReleaseAll
     End
 
-EternaCityCondominiums1F_DidThatChatotITradedYouTotallyLearnThatChatterMove:
-    Message EternaCityCondominiums1F_Text_DidThatChatotITradedYouTotallyLearnThatChatterMove
+EternaCityCondominiums1F_DidChatotLearnChatter:
+    Message EternaCityCondominiums1F_Text_DidChatotLearnChatter
     WaitButton
     CloseMessage
     ReleaseAll
@@ -152,19 +152,19 @@ EternaCityCondominiums1F_PokefanM:
     LockAll
     FacePlayer
     GetTimeOfDay VAR_RESULT
-    GoToIfEq VAR_RESULT, TIMEOFDAY_LATE_NIGHT, EternaCityCondominiums1F_ImBuildingSuperintendentMantain24HourWatchZZZ
-    GoTo EternaCityCondominiums1F_HiImTheBuildingSuperintented
+    GoToIfEq VAR_RESULT, TIMEOFDAY_LATE_NIGHT, EternaCityCondominiums1F_Mantain24HourWatchZzz
+    GoTo EternaCityCondominiums1F_ImBuildingSuperintented
     End
 
-EternaCityCondominiums1F_HiImTheBuildingSuperintented:
-    Message EternaCityCondominiums1F_Text_HiImTheBuildingSuperintented
+EternaCityCondominiums1F_ImBuildingSuperintented:
+    Message EternaCityCondominiums1F_Text_ImBuildingSuperintented
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-EternaCityCondominiums1F_ImBuildingSuperintendentMantain24HourWatchZZZ:
-    Message EternaCityCondominiums1F_Text_ImBuildingSuperintendentMantain24HourWatchZZZ
+EternaCityCondominiums1F_Mantain24HourWatchZzz:
+    Message EternaCityCondominiums1F_Text_Mantain24HourWatchZzz
     WaitButton
     CloseMessage
     ReleaseAll

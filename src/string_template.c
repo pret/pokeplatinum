@@ -16,6 +16,7 @@
 #include "global/utility.h"
 
 #include "charcode.h"
+#include "easy_chat_words.h"
 #include "enums.h"
 #include "heap.h"
 #include "message.h"
@@ -27,7 +28,6 @@
 #include "savedata_misc.h"
 #include "string_gf.h"
 #include "trainer_info.h"
-#include "unk_02014D38.h"
 #include "unk_02017038.h"
 #include "unk_020996D0.h"
 
@@ -451,9 +451,9 @@ void StringTemplate_SetCityName(StringTemplate *template, u32 idx, u32 country, 
     }
 }
 
-void StringTemplate_SetCustomMessageWord(StringTemplate *template, u32 idx, u16 customMessageWord)
+void StringTemplate_SetEasyChatWord(StringTemplate *template, u32 idx, u16 word)
 {
-    sub_02014DB8(customMessageWord, template->templateBuf);
+    EasyChatWord_ToString(word, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 

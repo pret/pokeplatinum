@@ -1,0 +1,28 @@
+{
+  "key": 25619,
+  "messages": [
+    {
+      "id": "OreburghCityNorthHouse3F_Text_EveryoneGoesToTheMine",
+      "en_US": [
+        "During the daytime, everyone goes off\n",
+        "to the mine.\r",
+        "At night, everyone’s at home\n",
+        "getting some well-deserved rest."
+      ]
+    },
+    {
+      "id": "OreburghCityNorthHouse3F_Text_WellKeepDiggingCoal",
+      "en_US": [
+        "We’ll keep digging coal.\n",
+        "The world needs energy!"
+      ]
+    },
+    {
+      "id": "OreburghCityNorthHouse3F_Text_EveryoneDugUndergroundMaze",
+      "en_US": [
+        "Everyone, including lots of Pokémon,\n",
+        "dug the big underground maze!"
+      ]
+    }
+  ]
+}

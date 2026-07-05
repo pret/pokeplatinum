@@ -62,7 +62,7 @@
 typedef struct TownMapCoordsToHeader {
     u16 x;
     u16 z;
-    enum MapHeader header;
+    enum MapHeaderID header;
 } TownMapCoordsToHeader;
 
 typedef struct TilemapRectCopyParams {
@@ -74,7 +74,7 @@ typedef struct TilemapRectCopyParams {
     u8 height;
 } TilemapRectCopyParams;
 
-static void SetHoveredLocation(TownMapAppData *appData, TownMapBlock *mapBlock, enum MapHeader mapHeader);
+static void SetHoveredLocation(TownMapAppData *appData, TownMapBlock *mapBlock, enum MapHeaderID mapHeader);
 static void EraseSignpost(TownMapAppData *appData);
 static void PrintBottomScreenHeader(TownMapAppData *appData, Window *window);
 static void MakeAppWindows(TownMapAppData *appData);
@@ -87,8 +87,8 @@ static void LoadLocationHistory(TownMapAppData *appData);
 static void Task_UpdateShownLocationHistoryIdx(SysTask *sysTask, void *appData);
 static void DeleteLocationHistorySprites(TownMapAppData *appData);
 static void HandleInput(TownMapAppData *appData, int heldKeys);
-static void LoadMapName(TownMapAppData *appData, enum MapHeader header, int x, int z);
-static void PrintLocationName(TownMapAppData *appData, Window *window, enum MapHeader header, int x, int z);
+static void LoadMapName(TownMapAppData *appData, enum MapHeaderID header, int x, int z);
+static void PrintLocationName(TownMapAppData *appData, Window *window, enum MapHeaderID header, int x, int z);
 static void PrintLocationDescription(TownMapAppData *appData, Window *window, TownMapBlock *mapBlock);
 static void UpdateBottomScreenText(TownMapAppData *appData);
 static void UpdateHoveredLocation(TownMapAppData *appData);
@@ -288,7 +288,7 @@ BOOL TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
     TownMapBlock *mapBlock = appData->hoveredMapBlock;
-    enum MapHeader header = appData->hoveredMapHeader;
+    enum MapHeaderID header = appData->hoveredMapHeader;
 
     if (!appData->locationChanged) {
         return FALSE;
@@ -462,7 +462,7 @@ static void UpdateHoveredLocation(TownMapAppData *appData)
     graphicsMan->hoveredBlock = TownMap_GetMapBlockAtPosition(appData->mapBlockList, graphicsMan->cursorX, graphicsMan->cursorZ, appData->unlockedHiddenLocations);
 }
 
-static void LoadMapName(TownMapAppData *appData, enum MapHeader header, int x, int z)
+static void LoadMapName(TownMapAppData *appData, enum MapHeaderID header, int x, int z)
 {
     static const TownMapCoordsToHeader notOnMainMatrix[] = {
         { .x = 11, .z = 19, .header = MAP_HEADER_MT_CORONET_1F_SOUTH },
@@ -496,7 +496,7 @@ static void LoadMapName(TownMapAppData *appData, enum MapHeader header, int x, i
     return;
 }
 
-static void PrintLocationName(TownMapAppData *appData, Window *window, enum MapHeader header, int x, int z)
+static void PrintLocationName(TownMapAppData *appData, Window *window, enum MapHeaderID header, int x, int z)
 {
     u32 xOffset;
     TextColor textColor;
@@ -605,7 +605,7 @@ static void DoZoomedMapMvt(TownMapAppData *appData)
     }
 }
 
-static void SetHoveredLocation(TownMapAppData *appData, TownMapBlock *block, enum MapHeader header)
+static void SetHoveredLocation(TownMapAppData *appData, TownMapBlock *block, enum MapHeaderID header)
 {
     appData->hoveredMapHeader = header;
     appData->hoveredMapBlock = block;

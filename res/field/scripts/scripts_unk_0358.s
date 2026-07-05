@@ -1,10 +1,10 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry Unk358_Dummy1
     ScriptEntryEnd
 
-_0006:
+Unk358_Dummy1:
     SetFlag FLAG_FIRST_ARRIVAL_LAKE_ACUITY_UNUSED
     End
 

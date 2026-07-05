@@ -2,7 +2,7 @@
   "key": 50194,
   "messages": [
     {
-      "id": "JubilifeCitySouthHouse1F_PokemonAreWonderfulDeeplyMysteriousCreatures",
+      "id": "JubilifeCitySouthHouse1F_DeeplyMysteriousCreatures",
       "en_US": [
         "Pokémon are wonderful, deeply\n",
         "mysterious creatures.\r",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "JubilifeCitySouthHouse1F_PachirisuKukkuuh",
+      "id": "JubilifeCitySouthHouse1F_PachirisuCry",
       "en_US": "PACHIRISU: Kukkuuh!"
     }
   ]

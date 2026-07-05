@@ -27,7 +27,7 @@ IronRuins_Statue:
     FacePlayer
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, IronRuins_CaughtRegisteelStatueStoppedEmanatingPower
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, IronRuins_DidNotCatchRegisteelStatueStoppedEmanatingPower
-    GoToIfUnset FLAG_GAME_COMPLETED, IronRuins_ItsAStatueOfAPokemonBecomeStrongerYouMust
+    GoToIfUnset FLAG_GAME_COMPLETED, IronRuins_BecomeStrongerYouMust
     CheckPartyHasFatefulEncounterRegigigas VAR_RESULT
     GoToIfEq VAR_RESULT, 0, IronRuins_ItsAStatueOfAPokemon
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, IronRuins_EncounterRegisteel
@@ -54,13 +54,13 @@ IronRuins_EncounterRegisteel:
     End
 
 IronRuins_CaughtRegisteelStatueStoppedEmanatingPower:
-    Message IronRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    Message IronRuins_Text_StatueStoppedEmanatingPower
     GoTo IronRuins_StatueEnd
     End
 
 IronRuins_DidNotCatchRegisteelStatueStoppedEmanatingPower:
     SetVar VAR_IRON_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI
-    Message IronRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    Message IronRuins_Text_StatueStoppedEmanatingPower
     GoTo IronRuins_StatueEnd
     End
 
@@ -69,8 +69,8 @@ IronRuins_BlackOut:
     ReleaseAll
     End
 
-IronRuins_ItsAStatueOfAPokemonBecomeStrongerYouMust:
-    Message IronRuins_Text_ItsAStatueOfAPokemonBecomeStrongerYouMust
+IronRuins_BecomeStrongerYouMust:
+    Message IronRuins_Text_BecomeStrongerYouMust
     GoTo IronRuins_StatueEnd
     End
 
@@ -86,43 +86,43 @@ IronRuins_StatueEnd:
     End
 
 IronRuins_DotNorthWest:
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotNorthEast:
-    SetVar VAR_MAP_LOCAL_2, 1
+    SetVar VAR_MAP_LOCAL_0x02, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotWest:
-    SetVar VAR_MAP_LOCAL_3, 1
+    SetVar VAR_MAP_LOCAL_0x03, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotMiddle:
-    SetVar VAR_MAP_LOCAL_4, 1
+    SetVar VAR_MAP_LOCAL_0x04, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotEast:
-    SetVar VAR_MAP_LOCAL_5, 1
+    SetVar VAR_MAP_LOCAL_0x05, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotSouthWest:
-    SetVar VAR_MAP_LOCAL_6, 1
+    SetVar VAR_MAP_LOCAL_0x06, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End
 
 IronRuins_DotSouthEast:
-    SetVar VAR_MAP_LOCAL_7, 1
+    SetVar VAR_MAP_LOCAL_0x07, 1
     GoToIfGe VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IronRuins_DotEnd
     GoTo IronRuins_ActivateDot
     End

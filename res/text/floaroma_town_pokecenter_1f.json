@@ -2,7 +2,7 @@
   "key": 44594,
   "messages": [
     {
-      "id": "FloaromaTownPokecenter1F_Text_IfYouveGotPokemonWithYouItsSafeToGoOffTravelingAlone",
+      "id": "FloaromaTownPokecenter1F_Text_WithPokemonSafeToTravelAlone",
       "en_US": [
         "If you’ve got Pokémon with you,\n",
         "it’s safe for even a kid like you\f",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_IHadABattleTheOtherDayAndMyPokemonsHPGotLow",
+      "id": "FloaromaTownPokecenter1F_Text_MyPokemonsHPGotLow",
       "en_US": [
         "I had a battle the other day, and my\n",
         "Pokémon’s HP got low.\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_ThereveBeenProblemsWithTheElectricPowerLately",
+      "id": "FloaromaTownPokecenter1F_Text_ProblemsWithElectricPower",
       "en_US": [
         "There’ve been problems with the\n",
         "electric power lately.\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_ItsALongWayFromHereToEternaCity",
+      "id": "FloaromaTownPokecenter1F_Text_LongWayToEternaCity",
       "en_US": [
         "It’s a long way from here to Eterna\n",
         "City.\r",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_PoPoPokemonIWantToBecomeMoreLikeAPikachu",
+      "id": "FloaromaTownPokecenter1F_Text_ArielIntro_Unused",
       "en_US": [
         "Po-Po-Pokémon!\r",
         "I want to become more like a PIKACHU!\n",
@@ -46,15 +46,15 @@
       ]
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_PiPikachu",
+      "id": "FloaromaTownPokecenter1F_Text_ArielBattleAccepted_Unused",
       "en_US": "Pi-Pikachu!\r"
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_PiPikachu2",
+      "id": "FloaromaTownPokecenter1F_Text_ArielBattleDeclined_Unused",
       "en_US": "Pi-Pikachu!"
     },
     {
-      "id": "FloaromaTownPokecenter1F_Text_ICanMakeStaticElectricityButImNotVeryMuchLikeAPokemonYet",
+      "id": "FloaromaTownPokecenter1F_Text_ArielPostBattle_Unused",
       "en_US": [
         "I can make static electricity, but I’m\n",
         "not very much like a Pokémon yet.\r",

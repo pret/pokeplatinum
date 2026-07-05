@@ -2,7 +2,7 @@
   "key": 25614,
   "messages": [
     {
-      "id": "MtCoronet2F_Text_ObserveIfYouWillThatHole",
+      "id": "MtCoronet2F_Text_ObserveThatHole",
       "en_US": [
         "Looker: Observe, if you will, that hole.\r",
         "There was once a cave painting that had\n",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "MtCoronet2F_Text_AreYouTrainerEnoughToAdvanceShowMeIfYouWill",
+      "id": "MtCoronet2F_Text_AreYouEnoughToAdvance",
       "en_US": [
         "There is but one cause!\n",
         "Team Galactic’s Cyrus!\r",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "MtCoronet2F_Text_YouAreFarSuperiorToMeAllICanDoNowIsGiveYouThis",
+      "id": "MtCoronet2F_Text_YouAreFarSuperiorToMe",
       "en_US": [
         "...\n",
         "...\r",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "MtCoronet2F_Text_PleaseYouMustStopTeamGalactic",
+      "id": "MtCoronet2F_Text_YouMustStopTeamGalactic",
       "en_US": [
         "Looker: Please!\n",
         "You must stop Team Galactic!"
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "MtCoronet2F_Text_PleaseStopTeamGalacticAllICanDoNowIsGiveYouThis",
+      "id": "MtCoronet2F_Text_AllICanDoIsGiveThis",
       "en_US": [
         "Looker: Please, stop Team Galactic!\n",
         "For only you are able!\r",
@@ -70,14 +70,14 @@
       ]
     },
     {
-      "id": "MtCoronet2F_Text_ThereAppearsToBeACavePaintingFromAnAncientTime",
+      "id": "MtCoronet2F_Text_CavePaintingFromAncientTime",
       "en_US": [
         "There appears to be a cave painting\n",
         "from an ancient time..."
       ]
     },
     {
-      "id": "MtCoronet2F_Text_ShardsAreAllThatRemainOfTheAncientCavePainting",
+      "id": "MtCoronet2F_Text_ShardsAreAllThatRemain",
       "en_US": [
         "Shards are all that remain of the\n",
         "ancient cave painting..."

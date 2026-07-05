@@ -23,11 +23,11 @@ FloaromaTown_Grunts:
     LockAll
     ApplyMovement LOCALID_GRUNT_M_WEST, FloaromaTown_Movement_WalkOnSpotEast
     WaitMovement
-    Message FloaromaTown_Text_ThisDoesntSeemAllThatCool
+    Message FloaromaTown_Text_ThisDoesntSeemCool
     CloseMessage
     ApplyMovement LOCALID_GRUNT_M_EAST, FloaromaTown_Movement_WalkOnSpotWest
     WaitMovement
-    Message FloaromaTown_Text_DontComplainThisIsAPrettyDecentAssignment
+    Message FloaromaTown_Text_DontComplain
     WaitButton
     CloseMessage
     ReleaseAll
@@ -47,18 +47,18 @@ FloaromaTown_SchoolKidM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, FloaromaTown_BeingSurroundedByFlowersPutsMeInAnOddlyPleasantMood
-    Message FloaromaTown_Text_IWantedToGetSomeFlowersFromTheFloaromaMeadow
+    GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, FloaromaTown_OddlyPleasantMood
+    Message FloaromaTown_Text_IWantedToGetFlowers
     ApplyMovement LOCALID_SCHOOL_KID_M, FloaromaTown_Movement_SchoolKidMFaceNorth
     WaitMovement
-    Message FloaromaTown_Text_ThoseGalacticGuysWentToTheMeadowPastTheseFlowersHere
+    Message FloaromaTown_Text_GalacticGuysWentToMeadow
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-FloaromaTown_BeingSurroundedByFlowersPutsMeInAnOddlyPleasantMood:
-    Message FloaromaTown_Text_BeingSurroundedByFlowersPutsMeInAnOddlyPleasantMood
+FloaromaTown_OddlyPleasantMood:
+    Message FloaromaTown_Text_OddlyPleasantMood
     WaitButton
     CloseMessage
     ReleaseAll
@@ -75,15 +75,15 @@ FloaromaTown_LassWest:
     End
 
 FloaromaTown_PokemonBreederF:
-    NPCMessage FloaromaTown_Text_WelcomeToFloaromaTheTownOfFlowersFlowersAndMoreFlowers
+    NPCMessage FloaromaTown_Text_WelcomeToFloaroma
     End
 
 FloaromaTown_LassEast:
-    NPCMessage FloaromaTown_Text_TheBerriesYouPickCanBeUsedAsFoodForPokemon
+    NPCMessage FloaromaTown_Text_BerriesCanBeFoodForPokemon
     End
 
 FloaromaTown_Camper:
-    NPCMessage FloaromaTown_Text_IGotDrawnHereByTheSweetScentOfHoney
+    NPCMessage FloaromaTown_Text_DrawnHereByHoney
     End
 
 FloaromaTown_MapSignpost:
@@ -91,11 +91,11 @@ FloaromaTown_MapSignpost:
     End
 
 FloaromaTown_SignboardFlowerShop:
-    ShowLandmarkSign FloaromaTown_Text_PickAPeckOfColorsFlowerShopFreeBerriesAvailable
+    ShowLandmarkSign FloaromaTown_Text_SignFlowerShop
     End
 
 FloaromaTown_SignboardFloaromaMeadow:
-    ShowLandmarkSign FloaromaTown_Text_FloaromaMeadowAheadHoneyAvailable
+    ShowLandmarkSign FloaromaTown_Text_SignFlowerMeadow
     End
 
 FloaromaTown_Beauty:
@@ -103,12 +103,12 @@ FloaromaTown_Beauty:
     LockAll
     FacePlayer
     FindPartySlotWithFatefulEncounterSpecies VAR_RESULT, SPECIES_SHAYMIN
-    GoToIfEq VAR_RESULT, 0xFF, FloaromaTown_DoYouKnowAboutGracideaFlowers
+    GoToIfEq VAR_RESULT, 0xFF, FloaromaTown_DoYouKnowGracideaFlowers
     CheckPartyHasSpecies VAR_RESULT, SPECIES_SHAYMIN
-    GoToIfEq VAR_RESULT, FALSE, FloaromaTown_DoYouKnowAboutGracideaFlowers
+    GoToIfEq VAR_RESULT, FALSE, FloaromaTown_DoYouKnowGracideaFlowers
     CheckItem ITEM_GRACIDEA, 1, VAR_RESULT
-    GoToIfNe VAR_RESULT, FALSE, FloaromaTown_GracideaFlowersHaveBeenAroundALongTimeInThisRegion
-    Message FloaromaTown_Text_IfYouHaveAShayminThenYouAlsoShouldHaveSomeGracideaFlowers
+    GoToIfNe VAR_RESULT, FALSE, FloaromaTown_GracideaFlowersBeenAroundLongTime
+    Message FloaromaTown_Text_HaveGracideaFlowers
     SetVar VAR_0x8004, ITEM_GRACIDEA
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantityNoLineFeed
@@ -116,13 +116,13 @@ FloaromaTown_Beauty:
     ReleaseAll
     End
 
-FloaromaTown_DoYouKnowAboutGracideaFlowers:
-    Message FloaromaTown_Text_DoYouKnowAboutGracideaFlowers
+FloaromaTown_DoYouKnowGracideaFlowers:
+    Message FloaromaTown_Text_DoYouKnowGracideaFlowers
     GoTo FloaromaTown_BeautyEnd
     End
 
-FloaromaTown_GracideaFlowersHaveBeenAroundALongTimeInThisRegion:
-    Message FloaromaTown_Text_GracideaFlowersHaveBeenAroundALongTimeInThisRegion
+FloaromaTown_GracideaFlowersBeenAroundLongTime:
+    Message FloaromaTown_Text_GracideaFlowersBeenAroundLongTime
     GoTo FloaromaTown_BeautyEnd
     End
 

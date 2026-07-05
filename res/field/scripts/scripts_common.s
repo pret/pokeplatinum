@@ -33,11 +33,11 @@
     ScriptEntry CommonScript_2004 @ 0x7D4
     ScriptEntry CommonScript_SaveAndStoreResult @ 0x7D5
     ScriptEntry CommonScript_SaveGame  @ 0x7D6
-    ScriptEntry CommonScript_EmptyScript2007 @ 0x7D7
+    ScriptEntry CommonScript_Dummy2007 @ 0x7D7
     ScriptEntry CommonScript_HoneyTree @ 0x7D8
     ScriptEntry CommonScript_ObtainPoketchApp @ 0x7D9
-    ScriptEntry CommonScript_EmptyScript2010 @ 0x7DA
-    ScriptEntry CommonScript_EmptyScript2011 @ 0x7DB
+    ScriptEntry CommonScript_Dummy2010 @ 0x7DA
+    ScriptEntry CommonScript_Dummy2011 @ 0x7DB
     ScriptEntry CommonScript_SendToUndergroundPC @ 0x7DC
     ScriptEntry CommonScript_ObtainUndergroundTrap @ 0x7DD
     ScriptEntry CommonScript_ObtainUndergroundSphere @ 0x7DE
@@ -48,9 +48,9 @@
     ScriptEntry CommonScript_VendorGreetingGeneric @ 0x7E3
     ScriptEntry CommonScript_PlayerHouseBlackOutRecover @ 0x7E4
     ScriptEntry CommonScript_PokecenterBlackOutRecover @ 0x7E5
-    ScriptEntry CommonScript_EmptyScript2022 @ 0x7E6
+    ScriptEntry CommonScript_Dummy2022 @ 0x7E6
     ScriptEntry CommonScript_2023 @ 0x7E7
-    ScriptEntry CommonScript_EmptyScript2024 @ 0x7E8
+    ScriptEntry CommonScript_Dummy2024 @ 0x7E8
     ScriptEntry CommonScript_Geonet @ 0x7E9
     ScriptEntry CommonScript_2026 @ 0x7EA
     ScriptEntry CommonScript_Vent @ 0x7EB
@@ -63,7 +63,7 @@
     ScriptEntry CommonScript_ImpossibleToSave @ 0x7F2
     ScriptEntry CommonScript_BlockPokecenterBasement @ 0x7F3
     ScriptEntry CommonScript_ObtainContestBackdropWaitForConfirm @ 0x7F4
-    ScriptEntry CommonScript_EmptyScript2037 @ 0x7F5
+    ScriptEntry CommonScript_Dummy2037 @ 0x7F5
     ScriptEntry CommonScript_PlateObtainedEngraving @ 0x7F6
     ScriptEntry CommonScript_TryUseAzureFlute @ 0x7F7
     ScriptEntry CommonScript_SetCounterpartBGM @ 0x7F8
@@ -86,10 +86,10 @@
     ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved @ 0x809
     ScriptEntryEnd
 
-CommonScript_EmptyScript2010:
+CommonScript_Dummy2010:
     End
 
-CommonScript_EmptyScript2007:
+CommonScript_Dummy2007:
     End
 
 CommonScript_PokecenterNurse:
@@ -193,7 +193,7 @@ CommonScript_NurseIdentifiedPokerus:
     WaitMovement
     SetPlayerState PLAYER_TRANSITION_WALKING
     ChangePlayerState
-    Message CommonStrings_Text_PokecenterYourPokemonMayBeInfected
+    Message CommonStrings_Text_PokecenterPokemonMayBeInfected
     WaitButton
     CloseMessage
     ReleaseAll
@@ -347,7 +347,7 @@ CommonScript_PoisonWhiteout:
     End
 
 CommonScript_SaveAndStoreResult:
-    ClearFlag FLAG_SAVE_EXTRA_BLOCK
+    ClearFlag FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK
     Call CommonScript_TrySaveGame
     StoreSaveResult VAR_RESULT
     CloseMessage
@@ -360,9 +360,9 @@ CommonScript_ImpossibleToSave:
     End
 
 CommonScript_SaveGame:
-    SetFlag FLAG_SAVE_EXTRA_BLOCK
+    SetFlag FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK
     Call CommonScript_TrySaveGame
-    SetVar VAR_MAP_LOCAL_0, VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x00, VAR_RESULT
     ReturnCommonScript
     End
 
@@ -397,8 +397,8 @@ CommonScript_QuickSaveAskOverwrite:
     Message CommonStrings_Text_OKToOverwriteSavedFile
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, CommonScript_CancelSave
-    GoToIfUnset FLAG_SAVE_EXTRA_BLOCK, CommonScript_StartQuickSave
-    GoToIfSet FLAG_SAVE_EXTRA_BLOCK, CommonScript_QuickSaveCheckMiscFlag
+    GoToIfUnset FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK, CommonScript_StartQuickSave
+    GoToIfSet FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK, CommonScript_QuickSaveCheckMiscFlag
     End
 
 CommonScript_StartSave:
@@ -410,7 +410,7 @@ CommonScript_StartSave:
 
 CommonScript_DoSave:
     ShowSavingIcon
-    CallIfSet FLAG_SAVE_EXTRA_BLOCK, CommonScript_SaveExtraBlock
+    CallIfSet FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK, CommonScript_SaveExtraBlock
     TrySaveGame VAR_RESULT
     HideSavingIcon
     Return
@@ -443,7 +443,7 @@ CommonScript_QuickSaveStartFullStave:
 
 CommonScript_SaveExtraBlock:
     SaveExtraData
-    ClearFlag FLAG_SAVE_EXTRA_BLOCK
+    ClearFlag FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK
     Return
 
 CommonScript_StartQuickSave:
@@ -682,7 +682,7 @@ CommonScript_ObtainedPoketchAlarmClock:
     Message CommonStrings_Text_ObtainedPoketchAlarmClock
     Return
 
-CommonScript_EmptyScript2011:
+CommonScript_Dummy2011:
     End
 
 CommonScript_SendToUndergroundPC:
@@ -736,14 +736,14 @@ CommonScript_InternalObtainUndergroundSphere:
 
 CommonScript_ObtainAccessoryWaitForConfirm:
     Call CommonScript_InternalObtainAccessory
-    Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
+    Message CommonStrings_Text_PutItemInFashionCase
     WaitButton
     ReturnCommonScript
     End
 
 CommonScript_ObtainAccessory:
     Call CommonScript_InternalObtainAccessory
-    Message CommonStrings_Text_PutAwayItemInTheFashionCase
+    Message CommonStrings_Text_PutItemInFashionCase_ArrowPrompt
     ReturnCommonScript
     End
 
@@ -759,14 +759,14 @@ CommonScript_InternalObtainAccessory:
 
 CommonScript_ObtainContestBackdropWaitForConfirm:
     Call CommonScript_InternalObtainContestBackdrop
-    Message CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed
+    Message CommonStrings_Text_PutItemInFashionCase
     WaitButton
     ReturnCommonScript
     End
 
 CommonScript_ObtainContestBackdrop:
     Call CommonScript_InternalObtainContestBackdrop
-    Message CommonStrings_Text_PutAwayItemInTheFashionCase
+    Message CommonStrings_Text_PutItemInFashionCase_ArrowPrompt
     ReturnCommonScript
     End
 
@@ -791,7 +791,7 @@ CommonScript_InternalAddItemQuantityNoLineFeed:
     GetItemPocket VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_ObtainedKeyItem
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
-    Message CommonStrings_Text_PutItemInThePocketNoLineFeed
+    Message CommonStrings_Text_PutItemInPocket
     WaitButton
     Return
 
@@ -806,7 +806,7 @@ CommonScript_InternalAddItemQuantity:
     GetItemPocket VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_ObtainedKeyItem
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, CommonScript_PrepareMessageObtainedItem
-    Message CommonStrings_Text_PutItemInThePocket
+    Message CommonStrings_Text_PutItemInPocket_ArrowPrompt
     Return
 
 CommonScript_ObtainedKeyItem:
@@ -1148,7 +1148,7 @@ CommonScript_PCFadeOut:
     UnloadAnimation ANIMATION_TAG_PC
     Return
 
-CommonScript_EmptyScript2022:
+CommonScript_Dummy2022:
     End
 
 CommonScript_2023:
@@ -1204,7 +1204,7 @@ CommonScript_PokecenterBlackOutRecover:
     ChangePlayerState
     ApplyMovement LOCALID_PLAYER, CommonScript_Movement_PlayerGivePokemon
     WaitMovement
-    Message CommonStrings_Text_PokecenterFirstLetsRestoreYourPokemon
+    Message CommonStrings_Text_PokecenterFirstRestorePokemon
     Call CommonScript_GetNurseID
     Call CommonScript_NurseHealPokemon
     GoToIfBadgeAcquired BADGE_ID_COAL, CommonScript_PokecenterBlackOutRecoverHasCoalBadge
@@ -1344,11 +1344,11 @@ CommonScript_Movement_NurseTurnToMachine:
     FaceWest
     EndMovement
 
-CommonScript_UnusedMovement:
+CommonScript_Movement_Unused:
     FaceNorth
     EndMovement
 
-CommonScript_UnusedMovement2:
+CommonScript_Movement_Unused2:
     FaceEast
     EndMovement
 
@@ -1357,7 +1357,7 @@ CommonScript_Movement_NurseTurnToPlayer:
     FaceSouth
     EndMovement
 
-CommonScript_EmptyScript2024:
+CommonScript_Dummy2024:
     End
 
 CommonScript_Geonet:
@@ -1515,7 +1515,7 @@ CommonScript_Engraving8PlatesObtained:
     Message CommonStrings_Text_Engraving8PlatesObtained
     Return
 
-CommonScript_EmptyScript2037:
+CommonScript_Dummy2037:
     End
 
 CommonScript_TryUseAzureFlute:
@@ -1531,12 +1531,12 @@ CommonScript_AskUseAzureFlute:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfNe VAR_0x8004, 31, CommonScript_CantUseAzureFlute
     GoToIfNe VAR_0x8005, 52, CommonScript_CantUseAzureFlute
-    CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CommonScript_CantUseAzureFlute
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CommonScript_CantUseAzureFlute
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, CommonScript_CantUseAzureFlute
+    CheckGameCompleted VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, CommonScript_CantUseAzureFlute
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, CommonScript_CantUseAzureFlute
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, CommonScript_CantUseAzureFlute
     GoToIfSet FLAG_CAUGHT_ARCEUS, CommonScript_CantUseAzureFlute
     BufferPlayerName 0
     Message CommonStrings_Text_AskBlowIntoAzureFlute
@@ -1551,7 +1551,7 @@ CommonScript_AskUseAzureFlute:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     FadeScreenOut FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
-    Warp MAP_HEADER_HALL_OF_ORIGIN, 0, VAR_0x8004, VAR_0x8005, DIR_NORTH
+    Warp MAP_HEADER_HALL_OF_ORIGIN, VAR_0x8004, VAR_0x8005, DIR_NORTH
     FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
     Message CommonStrings_Text_GlowingStairwayAppeared
@@ -1573,7 +1573,7 @@ CommonScript_DontUseAzureFlute:
     End
 
 CommonScript_SetCounterpartBGM:
-    StopMusic 0
+    StopMusic
     GetPlayerGender VAR_RESULT
     CallIfEq VAR_RESULT, GENDER_MALE, CommonScript_SetTheGirlBGM
     CallIfEq VAR_RESULT, GENDER_FEMALE, CommonScript_SetTheBoyBGM
@@ -1589,26 +1589,26 @@ CommonScript_SetTheBoyBGM:
     Return
 
 CommonScript_SetRivalBGM:
-    StopMusic 0
+    StopMusic
     SetBGM SEQ_THE_RIV
     ReturnCommonScript
     End
 
 CommonScript_SetFollowMeBGM:
-    StopMusic 0
+    StopMusic
     SetBGM SEQ_TSURETEKE
     ReturnCommonScript
     End
 
 CommonScript_SetLookerBGM:
-    StopMusic 0
+    StopMusic
     SetBGM SEQ_PL_HANDSOME
     ReturnCommonScript
     End
 
 CommonScript_FadeToDefaultMusic:
     FadeOutBGM 0, 30
-    StopMusic 0
+    StopMusic
     PlayDefaultMusic
     ReturnCommonScript
     End

@@ -21,10 +21,9 @@ toplevel_includes = include_directories('.')
 ###                    COMPILER FLAGS                    ###
 ############################################################
 if (build_target == 'arm')
-c_args = [
+shared_args = [
     '-proc', 'arm946e',
     '-enum', 'int',
-    '-lang', 'c99',
     '-Cpp_exceptions', 'off',
     '-gccext,on',
     '-msgstyle', 'gcc',
@@ -39,42 +38,42 @@ c_args = [
     '-D_MSL_RESTRICT=',
 ]
 else
-c_args = ['-DPOKEPLATINUM_GENERATED_ENUM', '-g']
+shared_args = ['-DPOKEPLATINUM_GENERATED_ENUM', '-g']
 endif
 
 if get_option('revision') == '0'
-    c_args += [
+    shared_args += [
         '-DPOKEPLATINUM_REVISION=0'
     ]
 else
-    c_args += [
+    shared_args += [
         '-DPOKEPLATINUM_REVISION=1'
     ]
 endif
 
 if (build_target == 'win64')
-	c_args += [
+	shared_args += [
 		'-w'
 	]
 endif
 
 if (build_target == 'arm')
 if get_option('gdb_debugging')
-    c_args += [
+    shared_args += [
         '-O1,p',
 #        '-inline', 'off' todo: figure out why this makes the rom crash after the copyright screen
     ]
 else
-    c_args += '-O4,p'
+    shared_args += '-O4,p'
 endif
 endif
 
 if get_option('tracy_enable')
-    c_args += '-DTRACY_ENABLE'
+    shared_args += '-DTRACY_ENABLE'
 endif
 
 if (build_target == 'nx')
-    c_args += [ '-D__SWITCH__' ]
+    shared_args += [ '-D__SWITCH__' ]
 
     if(get_option('tracy_enable'))
     add_global_arguments(['-D__SWITCH__', 
@@ -95,8 +94,24 @@ if (build_target == 'nx')
 
 endif
 
+
+c_args = []
+cpp_args = []
+if (build_target == 'arm')
+    c_args = shared_args + ['-lang', 'c99']
+    cpp_args = shared_args + ['-RTTI', 'off']
+else
+    c_args = shared_args
+    cpp_args = shared_args
+endif
+
 add_global_arguments(c_args,
     language: 'c',
+    native: (build_target == 'linux' or build_target == 'win64')
+)
+
+add_global_arguments(cpp_args,
+    language: 'cpp',
     native: (build_target == 'linux' or build_target == 'win64')
 )
 
@@ -315,6 +330,9 @@ trainer_ai_o = custom_target(
 endif
 
 if (build_target == 'arm')
+libmslc = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a')
+libmslcpp = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C++/MSL_ARM/Lib/MSL_CPP_NITRO_Ai_LE.a')
+
 main = executable('main',
     sources: [
         pokeplatinum_c,
@@ -334,7 +352,7 @@ main = executable('main',
         libcrypto_public_includes,
         libgds_public_includes,
         libspl_public_includes,
-        ppw_public_includes,
+        ppwlobby_public_includes,
     ],
     dependencies: [
         nitrosdk_dep,
@@ -349,7 +367,11 @@ main = executable('main',
         libcrypto_static,
         libgds,
         libspl,
-        ppwlobby_libs
+        libmslc,
+        libmslcpp,
+        libdwcenc,
+        libdwcppwlobby,
+        libdwcilobby
     ],
     link_args: [
         link_args,
@@ -378,7 +400,7 @@ main = executable('main',
         libcrypto_public_includes,
         libgds_public_includes,
         libspl_public_includes,
-        ppw_public_includes,
+        ppwlobby_public_includes,
     ],
     dependencies: [
         nitrosdk_dep,
@@ -423,7 +445,7 @@ main = executable('main',
         libcrypto_public_includes,
         libgds_public_includes,
         libspl_public_includes,
-        ppw_public_includes,
+        ppwlobby_public_includes,
     ],
     dependencies: [
         nitrosdk_dep,
@@ -465,7 +487,7 @@ main = executable('main',
         libcrypto_public_includes,
         libgds_public_includes,
         libspl_public_includes,
-        ppw_public_includes,
+        ppwlobby_public_includes,
     ],
     dependencies: [
         nitrosdk_dep,

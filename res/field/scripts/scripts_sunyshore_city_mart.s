@@ -21,5 +21,5 @@ SunyshoreCityMart_RuinManiac:
     End
 
 SunyshoreCityMart_Sailor:
-    NPCMessage SunyshoreCityMart_Text_BuyBallSealsAtSunyshoreMarket
+    NPCMessage SunyshoreCityMart_Text_BuySealsAtMarket
     End

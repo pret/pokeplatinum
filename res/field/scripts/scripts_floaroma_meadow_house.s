@@ -7,9 +7,9 @@
     ScriptEntryEnd
 
 FloaromaMeadowHouse_Hiker:
-    NPCMessage FloaromaMeadowHouse_Text_TheFlowersThatGrowInTheFieldsHereAreSpecial
+    NPCMessage FloaromaMeadowHouse_Text_FlowersInTheFieldsAreSpecial
     End
 
 FloaromaMeadowHouse_NinjaBoy:
-    NPCMessage FloaromaMeadowHouse_Text_IfYouPutHoneyOnATreeCheckBackLaterToSeeIfItsRustlings
+    NPCMessage FloaromaMeadowHouse_Text_RustlingTreeOftenRarePokemon
     End

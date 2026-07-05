@@ -15,8 +15,10 @@ struct Color {
 
 struct Palette {
 	struct Color colors[256];
+    struct Color extendedColors[15][256];
 	int numColors;
 	int bitDepth;
+    int extendedLength;
 };
 
 struct Image {
@@ -61,7 +63,7 @@ void FreeImage(struct Image *image);
 void ReadGbaPalette(char *path, struct Palette *palette);
 void ReadNtrPalette(char *path, struct Palette *palette, int bitdepth, int palIndex, bool convertTo8Bpp, bool verbose);
 void WriteGbaPalette(char *path, struct Palette *palette);
-void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, int bitdepth, bool pad, int compNum, bool pcmp, int pcmpStartIndex, bool inverted, bool convertTo4Bpp);
+void WriteNtrPalette(char *path, struct Palette *palette, bool ncpr, bool ir, int bitdepth, bool pad, int compNum, bool pcmp, int pcmpStartIndex, bool inverted, bool convertTo4Bpp, int extendedLength);
 void ReadNtrCell(char *path, struct JsonToCellOptions *options);
 void WriteNtrCell(char *path, struct JsonToCellOptions *options);
 void WriteNtrScreen(char *path, struct JsonToScreenOptions *options);

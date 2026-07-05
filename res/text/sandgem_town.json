@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_DawnThisIsItOurPokemonResearchLab",
+      "id": "SandgemTown_Text_DawnThisIsItOurLab",
       "en_US": [
         "This is it!\n",
         "Our Pokémon Research Lab!\r",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_LucasSeeThisIsIsOurPokemonResearchLab",
+      "id": "SandgemTown_Text_LucasThisIsItOurLab",
       "en_US": [
         "See? This is our Pokémon Research\n",
         "Lab.\r",
@@ -73,14 +73,14 @@
       "en_US": "{SIZE 200}{STRVAR_1 3, 0, 0}!{SIZE 100}\r"
     },
     {
-      "id": "SandgemTown_Text_YouShouldTakeThisAsWell",
+      "id": "SandgemTown_Text_TakeThisAsWell",
       "en_US": [
         "Rowan: I have something good here.\n",
         "You should take this as well.\r"
       ]
     },
     {
-      "id": "SandgemTown_Text_ThatContainsTheMoveReturn",
+      "id": "SandgemTown_Text_ContainsTheMoveReturn",
       "en_US": [
         "Rowan: That is a Technical Machine.\n",
         "That one contains the move Return.\r",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_DawnIDidntKnowTheProfessorHadTMs",
+      "id": "SandgemTown_Text_DawnIDidntKnowProfessorHadTMs",
       "en_US": [
         "Dawn: Oh, wow.\n",
         "I didn’t know the professor had TMs.\r",
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_LucasWellIllBeTheProfessorHadTMs",
+      "id": "SandgemTown_Text_LucasWellIllBeProfessorHadTMs",
       "en_US": [
         "Lucas: Well, I’ll be...\n",
         "The professor had TMs...?\r",
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_DawnLetYourFamilyKnowYoureHelpingProfRowan",
+      "id": "SandgemTown_Text_DawnLetYourFamilyKnow",
       "en_US": [
         "Oh, that’s right!\n",
         "{STRVAR_1 3, 0, 0}...\r",
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_LucasIWantToShowYouAFewThings",
+      "id": "SandgemTown_Text_LucasShowYouAFewThings",
       "en_US": [
         "Hey, {STRVAR_1 3, 1, 0}!\n",
         "I want to show you a few things.\f",
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_LucasLetYourFamilyKnowYoureHelpingProfRowan",
+      "id": "SandgemTown_Text_LucasLetYourFamilyKnow",
       "en_US": [
         "Oh, yeah, right!\n",
         "{STRVAR_1 3, 0, 0}...\r",
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_TheThingYouHaveItsAPokedexIsntIt",
+      "id": "SandgemTown_Text_ItsAPokedexIsntIt",
       "en_US": [
         "That thing you have!\r",
         "It’s a Pokédex, isn’t it?!\r",
@@ -244,7 +244,7 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_ProfessorRowansComeBackToTown",
+      "id": "SandgemTown_Text_RowansComeBack",
       "en_US": [
         "Professor Rowan’s come back to town!\r",
         "It must be, like, four years since\n",
@@ -261,22 +261,22 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_PokemonResearchLabSign",
+      "id": "SandgemTown_Text_SignPokemonResearchLab",
       "en_US": "Pokémon Research Lab"
     },
     {
-      "id": "SandgemTown_Text_CounterpartMailbox",
+      "id": "SandgemTown_Text_SignCounterpartsHouse",
       "en_US": "{STRVAR_1 3, 0, 0}’s House"
     },
     {
-      "id": "SandgemTown_Text_PokeMartSign",
+      "id": "SandgemTown_Text_SignPokeMart",
       "en_US": [
         "All Your Item Needs Fulfilled!\n",
         "Pokémon Mart"
       ]
     },
     {
-      "id": "SandgemTown_Text_PokemonCenterSign",
+      "id": "SandgemTown_Text_SignPokemonCenter",
       "en_US": [
         "Heal Your Pokémon!\n",
         "Pokémon Center"

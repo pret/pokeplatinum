@@ -25,7 +25,7 @@ TeamGalacticEternaBuilding4F_Jupiter:
     FacePlayer
     ApplyMovement LOCALID_POKEFAN_M, TeamGalacticEternaBuilding4F_Movement_PokefanMWalkOnSpotNorth
     WaitMovement
-    Message TeamGalacticEternaBuilding4F_Text_IJupiterWillDealWithYou
+    Message TeamGalacticEternaBuilding4F_Text_IWillDealWithYou
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING
     CheckWonBattle VAR_RESULT
@@ -64,7 +64,7 @@ TeamGalacticEternaBuilding4F_PokefanMWalkToPlayerEast:
     End
 
 TeamGalacticEternaBuilding4F_HandleTeamGalacticLeftEternaBuilding:
-    Message TeamGalacticEternaBuilding4F_Text_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK
+    Message TeamGalacticEternaBuilding4F_Text_ThankYouCruiseByCycleShop
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -100,7 +100,7 @@ TeamGalacticEternaBuilding4F_Movement_PokefanMWalkToPlayerNorth:
     WalkNormalNorth
     EndMovement
 
-TeamGalacticEternaBuilding4F_UnusedMovement:
+TeamGalacticEternaBuilding4F_Movement_Unused:
     Delay8
     WalkNormalEast 2
     WalkOnSpotNormalNorth
@@ -124,37 +124,37 @@ TeamGalacticEternaBuilding4F_Movement_PlayerFacePokefanM:
     WalkOnSpotNormalSouth
     EndMovement
 
-TeamGalacticEternaBuilding4F_UnusedMovement2:
+TeamGalacticEternaBuilding4F_Movement_Unused2:
     WalkOnSpotNormalWest
     Delay4
     WalkOnSpotNormalSouth
     EndMovement
 
-TeamGalacticEternaBuilding4F_UnusedMovement3:
+TeamGalacticEternaBuilding4F_Movement_Unused3:
     WalkOnSpotNormalWest
     EndMovement
 
 TeamGalacticEternaBuilding4F_Clefairy:
-    PokemonCryAndMessage SPECIES_CLEFAIRY, TeamGalacticEternaBuilding4F_Text_ClefairyPi
+    PokemonCryAndMessage SPECIES_CLEFAIRY, TeamGalacticEternaBuilding4F_Text_ClefairyCry
     End
 
 TeamGalacticEternaBuilding4F_Buneary:
-    PokemonCryAndMessage SPECIES_BUNEARY, TeamGalacticEternaBuilding4F_Text_BunearyMyun
+    PokemonCryAndMessage SPECIES_BUNEARY, TeamGalacticEternaBuilding4F_Text_BunearyCry
     End
 
 TeamGalacticEternaBuilding4F_PokefanM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, TeamGalacticEternaBuilding4F_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK
-    Message TeamGalacticEternaBuilding4F_Text_WhatIsItWithThisTeamGalactic
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, TeamGalacticEternaBuilding4F_ThankYouCruiseByCycleShop
+    Message TeamGalacticEternaBuilding4F_Text_WhatsWithTeamGalactic
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-TeamGalacticEternaBuilding4F_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK:
-    Message TeamGalacticEternaBuilding4F_Text_ICantThankYouEnoughRightNowButCruiseByMyCycleShopOK
+TeamGalacticEternaBuilding4F_ThankYouCruiseByCycleShop:
+    Message TeamGalacticEternaBuilding4F_Text_ThankYouCruiseByCycleShop
     WaitButton
     CloseMessage
     ReleaseAll

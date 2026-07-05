@@ -3,9 +3,7 @@
 
 #include "constants/battle_tower.h"
 
-#include "struct_decls/struct_0202D060_decl.h"
-#include "struct_decls/struct_0202D750_decl.h"
-#include "struct_defs/struct_0204B404.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay104/frontier_data_transfer.h"
 
@@ -40,11 +38,11 @@ typedef struct BattleTower {
     u16 unk_36[4];
     u16 trainerIDs[BT_OPPONENTS_COUNT * 2];
     Location unk_5C;
-    UnkStruct_0202D060 *unk_70;
-    UnkStruct_0202D750 *unk_74;
+    WifiBattleTowerSave *wifiBattleTowerSave;
+    WifiBattleTowerRecord *unk_74;
     FrontierDataDTO opponentsDataDTO[2];
     FrontierDataDTO partnersDataDTO[BT_PARTNERS_COUNT];
-    UnkStruct_0204B404 unk_7E8[BT_PARTNERS_COUNT];
+    BattleTowerPartnerData unk_7E8[BT_PARTNERS_COUNT];
     u8 unk_838[BT_PARTNERS_COUNT];
     u16 unk_83E[35];
     u16 unk_884[35];

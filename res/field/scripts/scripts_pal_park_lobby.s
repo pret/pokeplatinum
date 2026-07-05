@@ -9,7 +9,7 @@
     ScriptEntry PalParkLobby_OnTransition
     ScriptEntry PalParkLobby_Worker
     ScriptEntry PalParkLobby_OnFrame_TallyScore
-    ScriptEntry PalParkLobby_RecordUnused
+    ScriptEntry PalParkLobby_Record_Unused
     ScriptEntry PalParkLobby_Daughter
     ScriptEntry PalParkLobby_Dad
     ScriptEntry PalParkLobby_ShowWatcherBoy
@@ -52,8 +52,8 @@ PalParkLobby_Worker:
     GoTo PalParkLobby_Worker_PlayerFemale
 
 PalParkLobby_Worker_PlayerMale:
-    GoToIfSet FLAG_PAL_PARK_TALKED_TO_RECEPTIONIST, PalParkLobby_Worker_Greeting_PlayerMale
-    SetFlag FLAG_PAL_PARK_TALKED_TO_RECEPTIONIST
+    GoToIfSet FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, PalParkLobby_Worker_Greeting_PlayerMale
+    SetFlag FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST
     BufferPlayerName 0
     Message PalParkLobby_Text_WelcomeToPalPark_PlayerMale
     ShowYesNoMenu VAR_RESULT
@@ -62,8 +62,8 @@ PalParkLobby_Worker_PlayerMale:
     End
 
 PalParkLobby_Worker_PlayerFemale:
-    GoToIfSet FLAG_PAL_PARK_TALKED_TO_RECEPTIONIST, PalParkLobby_Worker_Greeting_PlayerFemale
-    SetFlag FLAG_PAL_PARK_TALKED_TO_RECEPTIONIST
+    GoToIfSet FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, PalParkLobby_Worker_Greeting_PlayerFemale
+    SetFlag FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST
     BufferPlayerName 0
     Message PalParkLobby_Text_WelcomeToPalPark_PlayerFemale
     ShowYesNoMenu VAR_RESULT
@@ -163,7 +163,7 @@ PalParkLobby_WalkInAndWarp:
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_PAL_PARK, 0, 24, 47, DIR_NORTH
+    Warp MAP_HEADER_PAL_PARK, 24, 47, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
@@ -290,7 +290,7 @@ PalParkLobby_Movement_PlayerLeaveCounter:
     WalkNormalSouth 4
     EndMovement
 
-PalParkLobby_RecordUnused:
+PalParkLobby_Record_Unused:
     NPCMessage PalParkLobby_Text_CurrentRecordHolder
     End
 
@@ -344,13 +344,13 @@ PalParkLobby_RecordGuy:
 
 PalParkLobby_OnFrame_ProfOak:
     LockAll
-    ClearFlag FLAG_ETERNA_CITY_SOUTH_HOUSE_HIDE_PROF_OAK
+    ClearFlag FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK
     SetVar VAR_CATCHING_SHOW_RECORD, 2000
     ApplyMovement LOCALID_PROF_OAK, PalParkLobby_Movement_ProfOakNoticePlayer
     WaitMovement
-    GetPlayerGender VAR_MAP_LOCAL_0
+    GetPlayerGender VAR_MAP_LOCAL_0x00
     BufferPlayerName 0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, PalParkLobby_ThisIsPalPark_PlayerMale
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, PalParkLobby_ThisIsPalPark_PlayerMale
     GoTo PalParkLobby_ThisIsPalPark_PlayerFemale
 
 PalParkLobby_ThisIsPalPark_PlayerMale:
@@ -412,8 +412,8 @@ PalParkLobby_PoketchAppLady:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_MAP_LOCAL_A, 1, PalParkLobby_PoketchAppLady_JustReceivedKitchenTimer
-    GoToIfEq VAR_MAP_LOCAL_A, 2, PalParkLobby_PoketchAppLady_JustReceivedColorChanger
+    GoToIfEq VAR_MAP_LOCAL_0x0A, 1, PalParkLobby_PoketchAppLady_JustReceivedKitchenTimer
+    GoToIfEq VAR_MAP_LOCAL_0x0A, 2, PalParkLobby_PoketchAppLady_JustReceivedColorChanger
     CheckPoketchAppRegistered POKETCH_APPID_COLORCHANGER, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, PalParkLobby_PoketchAppLady_ReceivedAllPoketchApps
     Message PalParkLobby_Text_PalParkIsScintillating
@@ -427,7 +427,7 @@ PalParkLobby_PoketchAppLady:
     SetVar VAR_0x8004, POKETCH_APPID_KITCHENTIMER
     Common_GivePoketchApp
     WaitButton
-    SetVar VAR_MAP_LOCAL_A, 1
+    SetVar VAR_MAP_LOCAL_0x0A, 1
     CloseMessage
     ReleaseAll
     End
@@ -440,7 +440,7 @@ PalParkLobby_PoketchAppLady_CheckKecleon:
     SetVar VAR_0x8004, POKETCH_APPID_COLORCHANGER
     Common_GivePoketchApp
     WaitButton
-    SetVar VAR_MAP_LOCAL_A, 2
+    SetVar VAR_MAP_LOCAL_0x0A, 2
     CloseMessage
     ReleaseAll
     End
@@ -479,7 +479,7 @@ PalParkLobby_GBASlotGiftLady:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfEq VAR_MAP_LOCAL_9, 1, PalParkLobby_GBASlotGiftLady_JustReceivedGift
+    GoToIfEq VAR_MAP_LOCAL_0x09, 1, PalParkLobby_GBASlotGiftLady_JustReceivedGift
     GetGBACartridgeVersion VAR_RESULT
     GoToIfEq VAR_RESULT, VERSION_FIRERED, PalParkLobby_GBASlotGiftLady_FireRed
     GoToIfEq VAR_RESULT, VERSION_LEAFGREEN, PalParkLobby_GBASlotGiftLady_LeafGreen
@@ -547,14 +547,14 @@ PalParkLobby_GBASlotGiftLady_Emerald:
 
 PalParkLobby_GBASlotGiftLady_GiveAccessory:
     Common_GiveAccessoryWaitForConfirm
-    SetVar VAR_MAP_LOCAL_9, 1
+    SetVar VAR_MAP_LOCAL_0x09, 1
     CloseMessage
     ReleaseAll
     End
 
 PalParkLobby_GBASlotGiftLady_GiveBackdrop:
     Common_ObtainContestBackdropWaitForConfirm
-    SetVar VAR_MAP_LOCAL_9, 1
+    SetVar VAR_MAP_LOCAL_0x09, 1
     CloseMessage
     ReleaseAll
     End

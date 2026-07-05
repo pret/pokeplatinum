@@ -10,17 +10,16 @@
 #include "struct_defs/battler_data.h"
 #include "struct_defs/move_animation.h"
 
+#include "battle/battle_context.h"
 #include "battle/battle_controller.h"
 #include "battle/battle_display.h"
-#include "battle/battle_message.h"
 #include "battle/battle_subscreen.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
 #include "battle/healthbox.h"
+#include "battle/idle_bounce_anim.h"
 #include "battle/message_defs.h"
-#include "battle/ov16_02264798.h"
 #include "battle/party_gauge.h"
-#include "battle/struct_ov16_02268A14_decl.h"
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/ov12_022380BC.h"
 #include "battle_anim/struct_ov12_02237728.h"
@@ -40,8 +39,8 @@ typedef void (*BattleCommandPtr)(BattleSystem *, BattlerData *);
 
 BattlerData *BattlerData_New(BattleSystem *battleSys, BattlerInitData *battlerInitData);
 void BattleSystem_ExecuteBattlerCommand(BattleSystem *battleSys, BattlerData *battlerData);
-void ov16_0225C104(BattleSystem *battleSys, BattlerData *battlerData, int param2);
-void ov16_0225C038(BattleSystem *battleSys, BattlerData *battlerData, int ballID, int unused);
+void BattlerData_Delete(BattleSystem *battleSys, BattlerData *battlerData, int renderMode);
+void BattlerData_InitSendOutBallThrow(BattleSystem *battleSys, BattlerData *battlerData, int ballID, int unused);
 static void BtlIOCmd_None(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_SetupUI(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_SetEncounter(BattleSystem *battleSys, BattlerData *battlerData);
@@ -82,7 +81,7 @@ static void BtlIOCmd_PlayLevelUpAnimation(BattleSystem *battleSys, BattlerData *
 static void BtlIOCmd_SetAlertMessage(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_RefreshHPGauge(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_UpdatePartyMon(BattleSystem *battleSys, BattlerData *battlerData);
-static void ov16_0225C558(BattleSystem *battleSys, BattlerData *battlerData);
+static void BtlIOCmd_SlideInPanel(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_StopGaugeAnimation(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_RefreshPartyStatus(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_ForgetMove(BattleSystem *battleSys, BattlerData *battlerData);
@@ -127,7 +126,7 @@ BattlerData *BattlerData_New(BattleSystem *battleSys, BattlerInitData *battlerIn
     return battlerData;
 }
 
-void ov16_0225C038(BattleSystem *battleSys, BattlerData *battlerData, int ballID, int unused)
+void BattlerData_InitSendOutBallThrow(BattleSystem *battleSys, BattlerData *battlerData, int ballID, int unused)
 {
     BallThrow ballThrow;
 
@@ -141,7 +140,7 @@ void ov16_0225C038(BattleSystem *battleSys, BattlerData *battlerData, int ballID
 
     ballThrow.type = sBallThrowTypes[battlerData->battlerType];
     ballThrow.heapID = HEAP_ID_BATTLE;
-    ballThrow.mode = 4;
+    ballThrow.mode = BALL_THROW_MODE_TRAINER_SEND_OUT;
     ballThrow.target = battlerData->battler;
     ballThrow.ballID = ballID;
     ballThrow.cellActorSys = BattleSystem_GetSpriteSystem(battleSys);
@@ -198,7 +197,7 @@ static const BattleCommandPtr sBattleCommands[] = {
     [BATTLE_COMMAND_SET_ALERT_MESSAGE] = BtlIOCmd_SetAlertMessage,
     [BATTLE_COMMAND_REFRESH_HP_GAUGE] = BtlIOCmd_RefreshHPGauge,
     [BATTLE_COMMAND_UPDATE_PARTY_MON] = BtlIOCmd_UpdatePartyMon,
-    [BATTLE_COMMAND_40] = ov16_0225C558,
+    [BATTLE_COMMAND_SLIDE_IN_PANEL] = BtlIOCmd_SlideInPanel,
     [BATTLE_COMMAND_STOP_GAUGE_ANIMATION] = BtlIOCmd_StopGaugeAnimation,
     [BATTLE_COMMAND_REFRESH_PARTY_STATUS] = BtlIOCmd_RefreshPartyStatus,
     [BATTLE_COMMAND_FORGET_MOVE] = BtlIOCmd_ForgetMove,
@@ -230,14 +229,14 @@ static const BattleCommandPtr sBattleCommands[] = {
 void BattleSystem_ExecuteBattlerCommand(BattleSystem *battleSys, BattlerData *battlerData)
 {
     if (battlerData->data[0]) {
-        battlerData->unk_1A4 = 0;
+        battlerData->msgPending = 0;
         sBattleCommands[battlerData->data[0]](battleSys, battlerData);
     }
 }
 
-void ov16_0225C104(BattleSystem *battleSys, BattlerData *battlerData, int param2)
+void BattlerData_Delete(BattleSystem *battleSys, BattlerData *battlerData, int renderMode)
 {
-    if (param2 != 2) {
+    if (renderMode != 2) {
         Healthbox_DestroySprites(&battlerData->healthbox);
     }
 
@@ -245,7 +244,7 @@ void ov16_0225C104(BattleSystem *battleSys, BattlerData *battlerData, int param2
         Sprite_DeleteAndFreeResources(battlerData->managedSprite);
     }
 
-    ov16_022647D8(battlerData);
+    BattlerData_StopIdleBounceAnim(battlerData);
 
     NARC_dtor(battlerData->narc);
     Heap_Free(battlerData);
@@ -261,7 +260,7 @@ static void BtlIOCmd_SetupUI(BattleSystem *battleSys, BattlerData *battlerData)
     UISetupMessage *message = (UISetupMessage *)&battlerData->data[0];
 
     BattleSystem_SetSeedDTO(battleSys, message->seed);
-    ov16_0225CBB8(battleSys, battlerData);
+    BattleDisplay_InitTaskSetupUI(battleSys, battlerData);
     BattleController_EmitClearCommand(battleSys, battlerData->battler, BATTLE_COMMAND_SETUP_UI);
     ZeroDataBuffer(battlerData);
 }
@@ -373,7 +372,7 @@ static void BtlIOCmd_SetCommandSelection(BattleSystem *battleSys, BattlerData *b
 {
     CommandSetMessage *message = (CommandSetMessage *)&battlerData->data[0];
 
-    ov16_0223F290(battleSys, message->switchingOrCanPickCommandMask);
+    BattleSystem_SetUnread_2440(battleSys, message->switchingOrCanPickCommandMask);
     BattleDisplay_InitTaskSetCommandSelection(battleSys, battlerData, message);
     ZeroDataBuffer(battlerData);
 }
@@ -608,15 +607,15 @@ static void BtlIOCmd_UpdatePartyMon(BattleSystem *battleSys, BattlerData *battle
     ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C558(BattleSystem *battleSys, BattlerData *battlerData)
+static void BtlIOCmd_SlideInPanel(BattleSystem *battleSys, BattlerData *battlerData)
 {
     u32 battleType = BattleSystem_GetBattleType(battleSys);
-    BattleSubscreen *v1 = ov16_0223E02C(battleSys);
+    BattleSubscreen *btlSubscreen = BattleSystem_GetBattleSubscreen(battleSys);
 
     if (battlerData->bootState == BATTLER_BOOT_STATE_NORMAL) {
         if ((battleType & BATTLE_TYPE_2vs2)
             || ((battleType & BATTLE_TYPE_2vs2) == FALSE && battlerData->battlerType != BATTLER_TYPE_PLAYER_SIDE_SLOT_2)) {
-            BattleSubscreen_StartPanelSlide(v1, -0xd00, 0);
+            BattleSubscreen_StartPanelSlide(btlSubscreen, -0xd00, 0);
         }
     }
 
@@ -627,7 +626,7 @@ static void ov16_0225C558(BattleSystem *battleSys, BattlerData *battlerData)
 static void BtlIOCmd_StopGaugeAnimation(BattleSystem *battleSys, BattlerData *battlerData)
 {
     Healthbox_Deactivate(&battlerData->healthbox);
-    ov16_022647D8(battlerData);
+    BattlerData_StopIdleBounceAnim(battlerData);
     BattleController_EmitClearCommand(battleSys, battlerData->battler, battlerData->data[0]);
     ZeroDataBuffer(battlerData);
 }
@@ -637,7 +636,7 @@ static void BtlIOCmd_RefreshPartyStatus(BattleSystem *battleSys, BattlerData *ba
     RefreshPartyStatusMessage *message = (RefreshPartyStatusMessage *)&battlerData->data[0];
     Pokemon *mon;
     int i, partyCount, ability;
-    u32 v5 = 0;
+    u32 clearedStatus = 0;
     partyCount = BattleSystem_GetPartyCount(battleSys, battlerData->battler);
 
     for (i = 0; i < partyCount; i++) {
@@ -650,7 +649,7 @@ static void BtlIOCmd_RefreshPartyStatus(BattleSystem *battleSys, BattlerData *ba
         }
 
         if (message->move != MOVE_HEAL_BELL || (message->move == MOVE_HEAL_BELL && ability != ABILITY_SOUNDPROOF)) {
-            Pokemon_SetValue(mon, MON_DATA_STATUS, (u8 *)&v5);
+            Pokemon_SetValue(mon, MON_DATA_STATUS, (u8 *)&clearedStatus);
         }
     }
 
@@ -719,29 +718,29 @@ static void BtlIOCmd_UpdateBg(BattleSystem *battleSys, BattlerData *battlerData)
 static void BtlIOCmd_ClearTouchScreen(BattleSystem *battleSys, BattlerData *battlerData)
 {
     if (battlerData->bootState == BATTLER_BOOT_STATE_NORMAL) {
-        BattleSubscreen *v0;
+        BattleSubscreen *btlSubscreen;
         int partner;
         HealthBox *healthbox;
-        NARC *v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
-        NARC *v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
-        v0 = ov16_0223E02C(battleSys);
+        NARC *bgNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+        NARC *objNarc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
+        btlSubscreen = BattleSystem_GetBattleSubscreen(battleSys);
 
-        BattleSubscreen_SetupBackground(v3, v4, v0, 0, 0, NULL);
-        ov16_Dummy3(v0, 0);
+        BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 0, 0, NULL);
+        ov16_Dummy3(btlSubscreen, 0);
 
-        NARC_dtor(v3);
-        NARC_dtor(v4);
+        NARC_dtor(bgNarc);
+        NARC_dtor(objNarc);
 
         partner = BattleSystem_GetPartner(battleSys, battlerData->battler);
 
         if (partner != battlerData->battler) {
             healthbox = BattleSystem_GetHealthBox(battleSys, partner);
-            ov16_0226846C(healthbox);
+            dummy_0226846C(healthbox);
         }
 
         Healthbox_Deactivate(&battlerData->healthbox);
-        BattleSubscreen_HideBallSprites(v0);
-        ov16_022647D8(battlerData);
+        BattleSubscreen_HideBallSprites(btlSubscreen);
+        BattlerData_StopIdleBounceAnim(battlerData);
     }
 
     BattleController_EmitClearCommand(battleSys, battlerData->battler, BATTLE_COMMAND_CLEAR_TOUCH_SCREEN);
@@ -832,7 +831,7 @@ static void BtlIOCmd_PrintLinkWaitMessage(BattleSystem *battleSys, BattlerData *
 {
     LinkWaitMsgMessage *message = (LinkWaitMsgMessage *)&battlerData->data[0];
 
-    BattleSystem_ReceiveRecordedInputs(battleSys, message->unk_02, message->unk_04);
+    BattleSystem_ReceiveRecordedInputs(battleSys, message->recordedInputCount, message->recordedInputs);
     BattleDisplay_PrintLinkWaitMessage(battleSys, battlerData);
     ZeroDataBuffer(battlerData);
 }
@@ -867,7 +866,7 @@ static void BtlIOCmd_PrintEscapeMessage(BattleSystem *battleSys, BattlerData *ba
 {
     EscapeMsgMessage *message = (EscapeMsgMessage *)&battlerData->data[0];
 
-    BattleSystem_ReceiveRecordedInputs(battleSys, message->unk_02, message->unk_04);
+    BattleSystem_ReceiveRecordedInputs(battleSys, message->recordedInputCount, message->recordedInputs);
     BattleDisplay_PrintEscapeMessage(battleSys, battlerData, message);
     ZeroDataBuffer(battlerData);
 }
@@ -876,7 +875,7 @@ static void BtlIOCmd_PrintForfeitMessage(BattleSystem *battleSys, BattlerData *b
 {
     ForfeitMsgMessage *message = (ForfeitMsgMessage *)&battlerData->data[0];
 
-    BattleSystem_ReceiveRecordedInputs(battleSys, message->unk_02, message->unk_04);
+    BattleSystem_ReceiveRecordedInputs(battleSys, message->recordedInputCount, message->recordedInputs);
     BattleDisplay_PrintForfeitMessage(battleSys, battlerData);
     ZeroDataBuffer(battlerData);
 }
@@ -915,7 +914,7 @@ static void BtlIOCmd_SubmitResult(BattleSystem *battleSys, BattlerData *battlerD
     int playerHP = 0;
     int enemyHP = 0;
 
-    BattleSystem_ReceiveRecordedInputs(battleSys, message->unk_02, message->unk_08);
+    BattleSystem_ReceiveRecordedInputs(battleSys, message->recordedInputCount, message->recordedInputs);
 
     if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_FRONTIER) {
         BattleSystem_SetResultMask(battleSys, message->resultMask);

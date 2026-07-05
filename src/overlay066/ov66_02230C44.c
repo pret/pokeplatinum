@@ -6,7 +6,7 @@
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C_decl.h"
+#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_02230DBC.h"
 #include "overlay066/struct_ov66_02230E68.h"
 #include "overlay066/struct_ov66_02230F50.h"

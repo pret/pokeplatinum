@@ -7,7 +7,6 @@
 #include "struct_decls/battle_system.h"
 
 #include "battle/battle_context.h"
-#include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "battle/btlcmd.h"
 

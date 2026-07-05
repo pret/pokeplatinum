@@ -13,11 +13,11 @@
 
 
     ScriptEntry Contests_LobbyOnFrameExitContestHall @ 0x2648
-    ScriptEntry Contests_EmptyScript9801 @ 0x2649
+    ScriptEntry Contests_Dummy9801 @ 0x2649
     ScriptEntry Contests_OngoingContestOnTransition @ 0x264A
     ScriptEntry Contests_LobbyOnTransition @ 0x264B
     ScriptEntry Contests_OngoingContestOnResume @ 0x264C
-    ScriptEntry Contests_UnusedEntry9805 @ 0x264D
+    ScriptEntry Contests_Dummy9805 @ 0x264D
     ScriptEntry Contests_ReceptionistOfficialContest @ 0x264E
     ScriptEntry Contests_ReceptionistLinkContest @ 0x264F
     ScriptEntry Contests_ReceptionistPracticeContest @ 0x2650
@@ -121,7 +121,7 @@ Contests_Movement_PlayerWalkToOfficialReceptionist:
     WalkOnSpotFastNorth
     EndMovement
 
-Contests_EmptyScript9801:
+Contests_Dummy9801:
     End
 
 Contests_OngoingContestOnTransition:
@@ -133,10 +133,10 @@ Contests_OngoingContestOnTransitionEnd:
 
 Contests_HideOngoingContestContestants:
     SetVar VAR_ONGOING_CONTEST, FALSE
-    SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT1
-    SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT2
-    SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT3
-    SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT4
+    SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_1
+    SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_2
+    SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_3
+    SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_4
     SetFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_WINNER
     Return
 
@@ -144,8 +144,8 @@ Contests_LobbyOnTransition:
     ShowPoketch
     Call Contests_TryMoveRichBoyAwayFromReceptionist
     Call Contests_HideOngoingContestContestants
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_CONTEST_HALL, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, ContestHallLobby_HideReporter
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_CONTEST_HALL, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, ContestHallLobby_HideReporter
     ClearFlag FLAG_HIDE_CONTEST_HALL_LOBBY_REPORTER
     End
 
@@ -171,7 +171,7 @@ Contests_HidePlayer:
     HideObject LOCALID_PLAYER
     Return
 
-Contests_UnusedEntry9805:
+Contests_Dummy9805:
     NPCMessage ContestCommon_Text_Dummy0
     End
 
@@ -179,7 +179,7 @@ Contests_ReceptionistOfficialContest:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL
+    SetVar VAR_MAP_LOCAL_0x03, CONTEST_MODE_OFFICIAL
     SetVar VAR_0x8007, CONTEST_COMPETITION_LINK_OR_OFFICIAL
     Message ContestCommon_Text_Welcome
     GoTo Contests_AskEnterContest
@@ -189,14 +189,14 @@ Contests_ReceptionistLinkContest:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_3, CONTEST_MODE_LINK
+    SetVar VAR_MAP_LOCAL_0x03, CONTEST_MODE_LINK
     SetVar VAR_0x8007, CONTEST_COMPETITION_LINK_OR_OFFICIAL
     Message ContestCommon_Text_WelcomeLinkContest
     GoTo Contests_AskEnterContest
     End
 
 Contests_AskEnterContest:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_AskEnterLinkContest
+    GoToIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_LINK, Contests_AskEnterLinkContest
     Message ContestCommon_Text_EnterPokemonInAContest
     GoTo Contests_ContestMenu
 
@@ -230,7 +230,7 @@ Contests_ContestMenuExit:
     End
 
 Contests_EnterContest:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_EnterLinkContest
+    GoToIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_LINK, Contests_EnterLinkContest
     GoTo Contests_ContestRankMenu
     End
 
@@ -238,7 +238,7 @@ Contests_EnterLinkContest:
     HealParty
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0  @ VAR_MAP_LOCAL_0 is set in CommonScript_SaveGame
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00  @ VAR_MAP_LOCAL_0x00 is set in CommonScript_SaveGame
     GoToIfEq VAR_RESULT, TRUE, Contests_SetLinkContestSavedGame
     GoTo Contests_ContestMenuExit
     End
@@ -249,7 +249,7 @@ Contests_SetLinkContestSavedGame:
     End
 
 Contests_ContestInfo:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_LinkContestInfo
+    GoToIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_LINK, Contests_LinkContestInfo
     GoTo Contests_OfficialContestInfo
     End
 
@@ -439,14 +439,14 @@ Contests_OfficialContestRegisterMon:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, Contests_UseSelectedContestRank
-    CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_UseDefaultContestRank
+    CallIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_OFFICIAL, Contests_UseSelectedContestRank
+    CallIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_LINK, Contests_UseDefaultContestRank
     SetVar VAR_RESULT, 0
 Contests_OfficialContestTryRegisterMon:
-    OpenPartyMenuForContest VAR_RESULT, VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_4
-    GetContestPartyMenuResult VAR_MAP_LOCAL_2, VAR_RESULT
+    OpenPartyMenuForContest VAR_RESULT, VAR_0x8004, VAR_0x8005, VAR_MAP_LOCAL_0x04
+    GetContestPartyMenuResult VAR_MAP_LOCAL_0x02, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, Contests_OfficialContestRegisterMonDone
-    SetMonSummary VAR_MAP_LOCAL_2
+    SetMonSummary VAR_MAP_LOCAL_0x02
     GetMonPartySlot VAR_RESULT
     GoTo Contests_OfficialContestTryRegisterMon
 
@@ -454,7 +454,7 @@ Contests_OfficialContestRegisterMonDone:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_2, PARTY_SLOT_NONE, Contests_OfficialContestAskCancel
+    GoToIfEq VAR_MAP_LOCAL_0x02, PARTY_SLOT_NONE, Contests_OfficialContestAskCancel
     GoTo Contests_OfficialContestStart
     End
 
@@ -466,15 +466,15 @@ Contests_OfficialContestAskCancel:
     End
 
 Contests_UseSelectedContestRank:
-    SetVar VAR_MAP_LOCAL_4, FALSE
+    SetVar VAR_MAP_LOCAL_0x04, FALSE
     Return
 
 Contests_UseDefaultContestRank:
-    SetVar VAR_MAP_LOCAL_4, TRUE
+    SetVar VAR_MAP_LOCAL_0x04, TRUE
     Return
 
 Contests_OfficialContestStart:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_LinkContestEstablishGroup
+    GoToIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_LINK, Contests_LinkContestEstablishGroup
     GoTo Contests_StartContest
     End
 
@@ -538,9 +538,9 @@ Contests_LinkContestBecomeLeaderError:
     End
 
 Contests_StartContest:
-    NewContest VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
-    CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_SetupLinkContest
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, Contests_RegisteredForPractice
+    NewContest VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_0x02
+    CallIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_LINK, Contests_SetupLinkContest
+    GoToIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_PRACTICE, Contests_RegisteredForPractice
     GetContestRegistrationEntryNum VAR_RESULT
     AddVar VAR_RESULT, 1
     BufferContestRegistrationEntryNumber VAR_RESULT, 0
@@ -553,9 +553,9 @@ Contests_StartContest:
     WaitForCommSyncState 25
     CloseMessage
 Contests_SelectContestDoor:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, Contests_OfficialContestDoor
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, Contests_LinkContestDoor
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, Contests_PracticeContestDoor
+    GoToIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_OFFICIAL, Contests_OfficialContestDoor
+    GoToIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_LINK, Contests_LinkContestDoor
+    GoToIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_PRACTICE, Contests_PracticeContestDoor
     End
 
 Contests_RegisteredForPractice:
@@ -615,7 +615,7 @@ Contests_PracticeContestDoor:
     End
 
 Contests_ChangeIntoContestAttire:
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, Contests_StartPracticeContest
+    GoToIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_PRACTICE, Contests_StartPracticeContest
     ChangeIntoContestAttire
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, Contests_PlayerChangedIntoTuxedo
@@ -648,17 +648,17 @@ Contests_StartPracticeContest:
     FadeScreenOut
     WaitFadeScreen
     RunContestApplication
-    GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
+    GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_0x02
     SetVar VAR_ONGOING_CONTEST, FALSE
-    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 28, 3, DIR_SOUTH
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 28, 3, DIR_SOUTH
     LockAll
     FadeScreenIn
     WaitFadeScreen
-    GetContestMode VAR_MAP_LOCAL_3
-    GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
+    GetContestMode VAR_MAP_LOCAL_0x03
+    GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_0x02
     GetPlayerContestPlacement VAR_0x8004
     LockTextSpeed
-    EndContest VAR_MAP_LOCAL_2
+    EndContest VAR_MAP_LOCAL_0x02
     SetVar VAR_RESULT, 28
     Call Contests_ExitContestHall
     Call Contests_AssessPracticeResults
@@ -670,19 +670,19 @@ Contests_StartPracticeContest:
     End
 
 Contest_DoContest:
-    ClearFlag FLAG_HIDE_HEARTHOME_HIKER_3
+    ClearFlag FLAG_HIDE_HEARTHOME_CITY_HIKER_3
     SetVar VAR_ONGOING_CONTEST, TRUE
     Call Contests_GetContestantsGFX
     PlaySE SEQ_SE_DP_KAIDAN2
-    ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT1
-    ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT2
-    ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT3
-    ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT4
+    ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_1
+    ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_2
+    ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_3
+    ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_4
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, DIR_NORTH
+    Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 29, 7, DIR_NORTH
     LockAutoScrollForLinkContests
-    GetContestMode VAR_MAP_LOCAL_3
+    GetContestMode VAR_MAP_LOCAL_0x03
     StopHBlank
     FadeScreenIn
     WaitFadeScreen
@@ -751,8 +751,8 @@ Contest_DoContest:
     DestroyNetworkIcon
     RunContestApplication
     LockAutoScrollForLinkContests
-    GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
-    GetContestMode VAR_MAP_LOCAL_3
+    GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_0x02
+    GetContestMode VAR_MAP_LOCAL_0x03
     Call Contests_PresentWinner
     ScrCmd_2B0
     FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
@@ -804,13 +804,13 @@ Contests_EndContest:
     FadeScreen FADE_SCREEN_CMD_STEPS, FADE_SCREEN_SPEED_FAST, FADE_TYPE_UNK_20, COLOR_BLACK
     WaitFadeScreen
     StartHBlank
-    GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
+    GetContestInfo VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_0x02
     GetFirstTimeVictoryAccessory VAR_0x8004
     LockTextSpeed
-    EndContest VAR_MAP_LOCAL_2
+    EndContest VAR_MAP_LOCAL_0x02
     SetVar VAR_ONGOING_CONTEST, FALSE
-    GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_OFFICIAL, Contests_OfficialContestReturnToReceptionist
-    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, DIR_SOUTH
+    GoToIfEq VAR_MAP_LOCAL_0x03, CONTEST_MODE_OFFICIAL, Contests_OfficialContestReturnToReceptionist
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 7, 3, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, 7
@@ -820,7 +820,7 @@ Contests_EndContest:
     GoTo Contests_End
 
 Contests_OfficialContestReturnToReceptionist:
-    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 18, 3, DIR_SOUTH
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 18, 3, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_RESULT, 19
@@ -905,11 +905,11 @@ Contests_PresentWinner:
     GetContestantObjEventGFX VAR_RESULT, VAR_OBJ_GFX_ID_4
     ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_WINNER
     AddObject LOCALID_ONGOING_CONTEST_CONTESTANT_WINNER
-    GetWinningContestantEntryNum VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, Contests_HideContestant1
-    GoToIfEq VAR_MAP_LOCAL_0, 1, Contests_HideContestant2
-    GoToIfEq VAR_MAP_LOCAL_0, 2, Contests_HideContestant3
-    GoToIfEq VAR_MAP_LOCAL_0, 3, Contests_HideContestant4
+    GetWinningContestantEntryNum VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, 0, Contests_HideContestant1
+    GoToIfEq VAR_MAP_LOCAL_0x00, 1, Contests_HideContestant2
+    GoToIfEq VAR_MAP_LOCAL_0x00, 2, Contests_HideContestant3
+    GoToIfEq VAR_MAP_LOCAL_0x00, 3, Contests_HideContestant4
     Return
 
 Contests_HideContestant1:
@@ -948,7 +948,7 @@ Contests_Movement_PlayerWalkToPracticeContestDoor:
     WalkNormalNorth 3
     EndMovement
 
-Contests_UnusedMovement:
+Contests_Movement_Unused:
     Delay4
     FaceEast
     Delay4
@@ -1023,7 +1023,7 @@ Contests_ReceptionistPracticeContest:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE
+    SetVar VAR_MAP_LOCAL_0x03, CONTEST_MODE_PRACTICE
     SetVar VAR_0x8004, CONTEST_RANK_NORMAL
     Message ContestCommon_Text_IntroductionPracticeContest
     GoTo Contests_PracticeContestMenu
@@ -1069,20 +1069,20 @@ Contests_PracticeContestCategoryMenu:
     End
 
 Contests_PracticeContestVisual:
-    SetVar VAR_MAP_LOCAL_4, FALSE
+    SetVar VAR_MAP_LOCAL_0x04, FALSE
     SetVar VAR_0x8007, CONTEST_COMPETITION_PRACTICE_VISUAL
     GoTo Contests_PracticeContestCategorySelected
     End
 
 Contests_PracticeContestDance:
-    SetVar VAR_MAP_LOCAL_4, TRUE
+    SetVar VAR_MAP_LOCAL_0x04, TRUE
     SetVar VAR_0x8005, CONTEST_TYPE_COOL
     SetVar VAR_0x8007, CONTEST_COMPETITION_PRACTICE_DANCE
     GoTo Contests_PracticeContestCategorySelected
     End
 
 Contests_PracticeContestActing:
-    SetVar VAR_MAP_LOCAL_4, FALSE
+    SetVar VAR_MAP_LOCAL_0x04, FALSE
     SetVar VAR_0x8007, CONTEST_COMPETITION_PRACTICE_ACTING
     GoTo Contests_PracticeContestCategorySelected
     End
@@ -1137,7 +1137,7 @@ Contests_Unused6:
     End
 
 Contests_PracticeContestCategorySelected:
-    GoToIfEq VAR_MAP_LOCAL_4, TRUE, Contests_PracticeContestRegisterMon
+    GoToIfEq VAR_MAP_LOCAL_0x04, TRUE, Contests_PracticeContestRegisterMon
     GoTo Contests_PracticeContestTypeMenu
 
 Contests_PracticeContestTypeMenu:
@@ -1199,9 +1199,9 @@ Contests_PracticeContestRegisterMon:
     SetVar VAR_RESULT, 0
 Contests_PracticeContestTryRegisterMon:
     OpenPartyMenuForContest VAR_RESULT, VAR_0x8004, VAR_0x8005, 0
-    GetContestPartyMenuResult VAR_MAP_LOCAL_2, VAR_RESULT
+    GetContestPartyMenuResult VAR_MAP_LOCAL_0x02, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, Contests_PracticeContestRegisterMonDone
-    SetMonSummary VAR_MAP_LOCAL_2
+    SetMonSummary VAR_MAP_LOCAL_0x02
     GetMonPartySlot VAR_RESULT
     GoTo Contests_PracticeContestTryRegisterMon
 
@@ -1209,7 +1209,7 @@ Contests_PracticeContestRegisterMonDone:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_2, PARTY_SLOT_NONE, Contests_PracticeContestTypeOrRegisterExit
+    GoToIfEq VAR_MAP_LOCAL_0x02, PARTY_SLOT_NONE, Contests_PracticeContestTypeOrRegisterExit
     GoTo Contests_StartContest
     End
 

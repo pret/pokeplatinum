@@ -9,8 +9,8 @@
 
 IronIslandHouse_OnTransition:
     GoToIfSet FLAG_RECEIVED_IRON_ISLAND_HOUSE_METAL_COAT, IronIslandHouse_HideByron
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    CallIfEq VAR_MAP_LOCAL_0, TRUE, IronIslandHouse_ShowByron
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_MAP_LOCAL_0x00, TRUE, IronIslandHouse_ShowByron
     End
 
 IronIslandHouse_HideByron:

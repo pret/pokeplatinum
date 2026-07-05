@@ -2,7 +2,7 @@
 #include "res/text/bank/route_215.h"
 
 
-    ScriptEntry Route215_Unused
+    ScriptEntry Route215_Dummy1
     ScriptEntry Route215_BlackBelt
     ScriptEntry Route215_ArrowSignpostWest
     ScriptEntry Route215_ArrowSignpostVeilstoneCity
@@ -13,9 +13,9 @@
     ScriptEntryEnd
 
 Route215_OnTransition:
-    GetTimeOfDay VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TIMEOFDAY_MORNING, Route215_SetJoggersBattle
-    GoToIfInRange VAR_MAP_LOCAL_0, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route215_SetJoggersNoBattle
+    GetTimeOfDay VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, TIMEOFDAY_MORNING, Route215_SetJoggersBattle
+    GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route215_SetJoggersNoBattle
     End
 
 Route215_SetJoggersBattle:
@@ -32,7 +32,7 @@ Route215_SetJoggersNoBattle:
     SetFlag FLAG_HIDE_ROUTE_215_JOGGER_CRAIG
     End
 
-Route215_Unused:
+Route215_Dummy1:
     NPCMessage Route215_Text_Dummy0
     End
 
@@ -67,7 +67,7 @@ Route215_ArrowSignpostWest:
     End
 
 Route215_ArrowSignpostVeilstoneCity:
-    ShowArrowSign Route215_Text_SignRt215VeilstoneCity
+    ShowArrowSign Route215_Text_SignVeilstoneCity
     End
 
 Route215_TrainerTipsSignpost:

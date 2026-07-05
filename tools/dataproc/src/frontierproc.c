@@ -10,6 +10,7 @@
 #include "nitroarc.h"
 
 #include "constants/moves.h"
+#include "generated/frontier_trainers.h"
 
 #include "struct_defs/battle_frontier_pokemon_data.h"
 
@@ -31,6 +32,11 @@ enum {
 static archive_template_t archives[] = {
     [A_FRONTIER_TRAINERS] = { .out_filename = "pl_btdtr.narc" },
     [A_FRONTIER_POKEMON]  = { .out_filename = "pl_btdpm.narc" },
+    { .out_filename = NULL },
+};
+
+static header_template_t headers[] = {
+    { .out_filename = "frontier_trainer_classes.h" },
     { .out_filename = NULL },
 };
 
@@ -61,6 +67,7 @@ static void pack_pokemon_set(datafile_t *df);
 static void pack_trainer(datafile_t *df);
 static void emit_trainer_name(datafile_t *df, const char *stem);
 static void emit_trainer_messages(datafile_t *df, const char *stem);
+static void emit_trainer_classes(datafile_t *df, size_t trainer_idx);
 
 typedef struct dynlookup dynlookup_t;
 struct dynlookup {
@@ -77,7 +84,7 @@ int main(int argc, char *argv[]) {
     archives[A_FRONTIER_TRAINERS].num_files = (u16)len_tr_registry;
     archives[A_FRONTIER_POKEMON].num_files  = (u16)len_pk_registry;
 
-    common_init(DATAPROC_F_JSON, enums, archives, NULL, textbanks, __FILE__, depfile_fpath, output_dir, NULL, NULL);
+    common_init(DATAPROC_F_JSON, enums, archives, headers, textbanks, __FILE__, depfile_fpath, output_dir, NULL, NULL);
 
     char       buf[BUFSIZE];
     datafile_t df   = { 0 };
@@ -108,6 +115,7 @@ int main(int argc, char *argv[]) {
             pack_trainer(&df);
             emit_trainer_name(&df, tr_registry[i]);
             emit_trainer_messages(&df, tr_registry[i]);
+            emit_trainer_classes(&df, i);
         }
 
         if (dp_report(&df) == DIAG_ERROR) errc = EXIT_FAILURE;
@@ -202,6 +210,16 @@ static void emit_trainer_messages(datafile_t *df, const char *stem) {
         else {
             dp_warn(&message, "expected exactly one of either 'en_US' or 'garbage'; preferring 'en_US'");
         }
+    }
+}
+
+static FILE **f_trainer_classes = &headers[0].out_file;
+
+static void emit_trainer_classes(datafile_t *df, size_t trainer_idx) {
+    const char *trainer_class = string(".class");
+
+    if (trainer_idx < FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL) {
+        fprintf(*f_trainer_classes, "    %s,\n", trainer_class);
     }
 }
 

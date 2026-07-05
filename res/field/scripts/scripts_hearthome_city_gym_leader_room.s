@@ -12,14 +12,14 @@
     ScriptEntryEnd
 
 HearthomeGym_TryRemoveBollards:
-    GoToIfSet FLAG_MAP_LOCAL, HearthomeGym_RemoveBollards
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, HearthomeGym_RemoveBollards
     End
 
 HearthomeGym_RemoveBollards:
-    SetFlag FLAG_HIDE_HEARTHOME_GYM_BOLLARDS
+    SetFlag FLAG_HIDE_HEARTHOME_CITY_GYM_BOLLARDS
     RemoveObject LOCALID_BOLLARD_2
     RemoveObject LOCALID_BOLLARD_1
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 HearthomeGym_Fantina:
@@ -34,33 +34,33 @@ HearthomeGym_Fantina:
     End
 
 HearthomeGym_FantinaPrepareSpinFaceSouth:
-    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceSouth
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_Movement_FantinaSpinFaceSouth
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaPrepareSpinFaceNorth:
-    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceNorth
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_Movement_FantinaSpinFaceNorth
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaPrepareSpinFaceEast:
-    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceEast
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_Movement_FantinaSpinFaceEast
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaPrepareSpinFaceWest:
-    ApplyMovement LOCALID_FANTINA, HearthomeGym_FantinaSpinFaceWest
+    ApplyMovement LOCALID_FANTINA, HearthomeGym_Movement_FantinaSpinFaceWest
     WaitMovement
     GoTo HearthomeGym_FantinaMain
 
 HearthomeGym_FantinaMain:
     GoToIfBadgeAcquired BADGE_ID_RELIC, HearthomeGym_FantinaAfterBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 91, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM
     Message HearthomeGym_Text_FantinaIntro
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartTrainerBattle TRAINER_LEADER_FANTINA
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, HearthomeGym_LostBattle
     Message HearthomeGym_Text_BeatFantina
@@ -78,10 +78,10 @@ HearthomeGym_FantinaMain:
     SetTrainerFlag TRAINER_SCHOOL_KID_CHANCE
     SetTrainerFlag TRAINER_SCHOOL_KID_MACKENZIE
     SetTrainerFlag TRAINER_YOUNGSTER_DONNY
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 91, TRAINER_LEADER_FANTINA, 0, 0
-    SetVar VAR_HEARTHOME_STATE, 1
-    SetFlag FLAG_HIDE_HEARTHOME_ROUTE_209_ROADBLOCK
-    ClearFlag FLAG_HIDE_HEARTHOME_ROUTE_209_GATE_RIVAL
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM, TRAINER_LEADER_FANTINA
+    SetVar VAR_ROUTE_209_GATE_TO_HEARTHOME_CITY_STATE, 1
+    SetFlag FLAG_HIDE_HEARTHOME_CITY_ROUTE_209_BLOCKADE
+    ClearFlag FLAG_HIDE_HEARTHOME_CITY_ROUTE_209_GATE_RIVAL
     Message HearthomeGym_Text_FantinaExplainRelicBadge
     GoTo HearthomeGym_FantinaTryGiveTM65
 
@@ -90,7 +90,7 @@ HearthomeGym_FantinaTryGiveTM65:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, HearthomeGym_FantinaCannotGiveTM65
     Common_GiveItemQuantity
-    SetFlag FLAG_OBTAINED_FANTINA_TM65
+    SetFlag FLAG_RECEIVED_FANTINA_TM65
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message HearthomeGym_FantinaExplainTM65
@@ -106,7 +106,7 @@ HearthomeGym_FantinaCannotGiveTM65:
     End
 
 HearthomeGym_FantinaAfterBadge:
-    GoToIfUnset FLAG_OBTAINED_FANTINA_TM65, HearthomeGym_FantinaTryGiveTM65
+    GoToIfUnset FLAG_RECEIVED_FANTINA_TM65, HearthomeGym_FantinaTryGiveTM65
     Message HearthomeGym_Text_FantinaAfterBadge
     WaitButton
     CloseMessage
@@ -114,7 +114,7 @@ HearthomeGym_FantinaAfterBadge:
     End
 
     .balign 4, 0
-HearthomeGym_FantinaSpinFaceSouth:
+HearthomeGym_Movement_FantinaSpinFaceSouth:
     FaceWest 4
     FaceNorth 4
     FaceEast 4
@@ -126,7 +126,7 @@ HearthomeGym_FantinaSpinFaceSouth:
     EndMovement
 
     .balign 4, 0
-HearthomeGym_FantinaSpinFaceNorth:
+HearthomeGym_Movement_FantinaSpinFaceNorth:
     FaceEast 4
     FaceSouth 4
     FaceWest 4
@@ -138,7 +138,7 @@ HearthomeGym_FantinaSpinFaceNorth:
     EndMovement
 
     .balign 4, 0
-HearthomeGym_FantinaSpinFaceEast:
+HearthomeGym_Movement_FantinaSpinFaceEast:
     FaceNorth 4
     FaceWest 4
     FaceSouth 4
@@ -150,7 +150,7 @@ HearthomeGym_FantinaSpinFaceEast:
     EndMovement
 
     .balign 4, 0
-HearthomeGym_FantinaSpinFaceWest:
+HearthomeGym_Movement_FantinaSpinFaceWest:
     FaceNorth 4
     FaceEast 4
     FaceSouth 4
@@ -162,7 +162,7 @@ HearthomeGym_FantinaSpinFaceWest:
     EndMovement
 
 HearthomeGym_LostBattle:
-    ClearFlag FLAG_HIDE_HEARTHOME_GYM_BOLLARDS
+    ClearFlag FLAG_HIDE_HEARTHOME_CITY_GYM_BOLLARDS
     BlackOutFromBattle
     ReleaseAll
     End

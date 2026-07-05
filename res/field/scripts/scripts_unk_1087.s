@@ -1,15 +1,15 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0020
+    ScriptEntry Unk1087_Unused1
+    ScriptEntry Unk1087_Unused2
     ScriptEntryEnd
 
-_000A:
+Unk1087_Unused1:
     PokeMartCommonWithGreeting
     End
 
-_0020:
+Unk1087_Unused2:
     PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_CELESTIC
     End
 

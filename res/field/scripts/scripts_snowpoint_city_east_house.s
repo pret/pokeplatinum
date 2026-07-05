@@ -11,15 +11,15 @@ SnowpointCityEastHouse_ExpertM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_HEARD_DAILY_TRENDY_SAYING, SnowpointCityEastHouse_UseTrendySayings
-    ScrCmd_27F VAR_RESULT
+    GoToIfSet FLAG_DAILY_HEARD_TRENDY_SAYING_SNOWPOINT_CITY_EAST_HOUSE, SnowpointCityEastHouse_UseTrendySayings
+    CheckAllToughWordsUnlocked VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, SnowpointCityEastHouse_AreYouUsingTrendySayings
     Message SnowpointCityEastHouse_Text_HearTrendySaying
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, SnowpointCityEastHouse_ComeOnNow
-    ScrCmd_27D VAR_RESULT, 0
+    TryBufferAndUnlockRandomToughWord VAR_RESULT, 0
     GoToIfEq VAR_RESULT, -1, SnowpointCityEastHouse_AreYouUsingTrendySayings
-    SetFlag FLAG_HEARD_DAILY_TRENDY_SAYING
+    SetFlag FLAG_DAILY_HEARD_TRENDY_SAYING_SNOWPOINT_CITY_EAST_HOUSE
     Message SnowpointCityEastHouse_Text_TrendyThingIsThis
     WaitButton
     CloseMessage

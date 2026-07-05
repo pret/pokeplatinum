@@ -1,12 +1,13 @@
 #include "macros/scrcmd.inc"
+#include "res/field/events/events_jubilife_tv_elevator.h"
 #include "res/text/bank/jubilife_tv_elevator.h"
 #include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry JubilifeTVElevator_TalkElevatorOperator
+    ScriptEntry JubilifeTVElevator_Receptionist
     ScriptEntryEnd
 
-JubilifeTVElevator_TalkElevatorOperator:
+JubilifeTVElevator_Receptionist:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -117,7 +118,7 @@ JubilifeTVElevator_GoingDownMessage:
 JubilifeTVElevator_ElevatorAnimation:
     SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     CloseMessage
-    ApplyMovement 0, JubilifeTVElevator_LookDown
+    ApplyMovement LOCALID_RECEPTIONIST, JubilifeTVElevator_Movement_ReceptionistLookDown
     WaitMovement
     WaitSE SEQ_SE_CONFIRM
     PlayElevatorAnimation VAR_0x8004, 4
@@ -149,6 +150,6 @@ JubilifeTVElevator_SelectNoFloor:
     End
 
     .balign 4, 0
-JubilifeTVElevator_LookDown:
+JubilifeTVElevator_Movement_ReceptionistLookDown:
     WalkOnSpotNormalSouth
     EndMovement

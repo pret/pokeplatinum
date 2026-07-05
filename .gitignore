@@ -31,6 +31,9 @@
 /subprojects/tracy/
 /subprojects/.wraplock
 
+# Metroskrew
+/tools/metroskrew/
+
 # Legacy mwrap compiler
 /tools/cw/mwrap
 
@@ -66,8 +69,7 @@ asmdiff.sh
 # Symbols CSV
 symbols.csv
 
-# NARCs
-res/**/*.c
+# Object Files
 *.o
 
 # SDAT Files

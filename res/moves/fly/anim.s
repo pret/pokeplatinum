@@ -3,7 +3,7 @@
 L_0:
     LoadParticleResource 0, fly_spa
     LoadParticleResource 1, bounce_spa
-    BtlAnimCmd_013 L_1, L_2
+    JumpIfEffectChanceOdd L_1, L_2
     End
 
 L_1:

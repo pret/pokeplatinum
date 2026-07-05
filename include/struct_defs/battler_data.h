@@ -1,16 +1,30 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLER_DATA_H
 #define POKEPLATINUM_STRUCT_BATTLER_DATA_H
 
+#include "struct_defs/battler_data.h"
+
 #include "battle/healthbox.h"
-#include "battle/struct_ov16_0226C378.h"
 #include "battle_anim/struct_ball_rotation_decl.h"
 #include "battle_anim/struct_ov12_02223764.h"
+#include "battle_anim/struct_ov12_02237F98_decl.h"
+#include "battle_anim/struct_ov12_02238004_decl.h"
 
 #include "bg_window.h"
 #include "narc.h"
 #include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sys_task_manager.h"
+
+typedef struct SavedCursorPosition {
+    s8 actionMenuX;
+    s8 actionMenuY;
+    s8 moveMenuX;
+    s8 moveMenuY;
+    s8 targetSelectX;
+    s8 targetSelectY;
+    s8 targetingLayout;
+    u8 padding;
+} SavedCursorPosition;
 
 typedef struct BattlerDataSysTaskFuncs {
     SysTaskFunc setCommandSelection;
@@ -30,20 +44,20 @@ typedef struct BattlerData {
     PokemonSprite *monSprite;
     Window *unused_24;
     HealthBox healthbox;
-    UnkStruct_ov16_0226C378 unk_7B;
+    SavedCursorPosition savedCursorPos;
     BallRotation *ballRotation;
-    UnkStruct_ov12_02223764 *unk_88;
+    BattleMonOBJData *btlMonObjData;
     void *unused_8C;
     u8 data[DATA_BUF_SIZE];
     u8 battler;
     u8 battlerType;
     u8 bootState;
-    u8 unk_193;
+    u8 commandUIReady;
     SysTask *sysTask;
     u16 degrees;
-    int unk_19C;
+    int isAlternateSprite;
     NARC *narc;
-    u8 unk_1A4;
+    u8 msgPending;
     u8 unused_1A5[3];
 } BattlerData;
 

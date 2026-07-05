@@ -302,7 +302,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, enum HeapID heapID)
             break;
         }
 
-        param0->unk_14->unk_874 = param0->unk_10->unk_19C;
+        param0->unk_14->unk_874 = param0->unk_10->recordingStopped;
 
         if (param0->unk_14->unk_00 != 0) {
             if (param0->unk_14->unk_874 == 0) {

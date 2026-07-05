@@ -3,20 +3,28 @@
 
 #include "constants/battle_frontier_stats.h"
 
-#include "struct_defs/battle_frontier.h"
-
 #include "savedata.h"
 
-int BattleFrontier_SaveSize(void);
-void BattleFrontier_Init(BattleFrontier *frontier);
-BattleFrontier *SaveData_GetBattleFrontier(SaveData *saveData);
-u16 BattleFrontierStats_GetStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID);
-u16 BattleFrontierStats_SetStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, u16 newValue);
-void BattleFrontierStats_ClearAllWFCStats(BattleFrontier *frontier);
-void BattleFrontierStats_ClearFriendStatsAndShift(BattleFrontier *frontier, int friendIdx);
-void BattleFrontierStats_ClearFriendStats(BattleFrontier *frontier, int friendIndex, int unused);
-u16 BattleFrontierStats_AddToStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, int addValue);
-u16 BattleFrontierStats_SubtractFromStat(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, int subtractValue);
-u16 BattleFrontierStats_SetIfBetter(BattleFrontier *frontier, enum BattleFrontierStatsIndex statIndex, int hostFriendID, u16 newValue);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryLatestStreakIdx(u8 isOpenLevel, u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordStreakIdx(u8 isOpenLevel, u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryLatestTradeCountIndex(u8 isOpenLevel, u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetFactoryRecordTradeCountIndex(u8 isOpenLevel, u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallCurrentTypeRanksIndex(u8 challengeType, u8 pokemonType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallCurrentStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallLatestSpeciesIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetHallRecordStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRankIndex(u8 challengeType, u8 rankType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleLatestStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRecordStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleLatestCPIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleSpentCPIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetCastleRecordCPIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetArcadeLatestStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetArcadeCurrentStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetTowerLatestStreakIndex(u8 challengeType);
+enum BattleFrontierStatsIndex BattleFrontierStats_GetTowerRecordStreakIndex(u8 challengeType);
+int BattleFrontierStats_GetHostFriendIdx(u32 statIndex);
+u8 sub_0205E6D8(SaveData *saveData);
 
 #endif // POKEPLATINUM_BATTLE_FRONTIER_STATS_H

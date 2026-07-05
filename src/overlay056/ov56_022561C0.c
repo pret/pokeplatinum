@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0205B43C_decl.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C924.h"
@@ -14,6 +13,7 @@
 #include "overlay056/struct_ov56_02256468_decl.h"
 
 #include "bg_window.h"
+#include "easy_chat_sentence.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "font.h"
@@ -37,7 +37,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
 #include "unk_02033200.h"
 #include "unk_0205B33C.h"
 
@@ -107,14 +106,14 @@ static void ov56_02256D04(UnkStruct_ov56_02256468 *param0);
 static void ov56_022569E0(UnkStruct_ov56_02256468 *param0);
 static void ov56_02256994(Sprite *param0, int param1);
 static void ov56_02257098(UnkStruct_ov56_02256468 *param0);
-static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence *param2, TrainerInfo *param3);
-static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, Sentence *param1, int param2);
+static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, EasyChatSentence *param2, TrainerInfo *param3);
+static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, EasyChatSentence *param1, int param2);
 static int ov56_022567E4(UnkStruct_0205C95C *param0, int param1);
 static int ov56_022567F0(int param0, int param1);
 static int ov56_02256A68(UnkStruct_ov56_02256468 *param0);
 static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 *param0);
-static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, Sentence *param2, u32 param3);
+static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, EasyChatSentence *param2, u32 param3);
 static String *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4);
 static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 *param0);
@@ -776,7 +775,7 @@ static String *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
     return v0;
 }
 
-static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence *param2, TrainerInfo *param3)
+static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, EasyChatSentence *param2, TrainerInfo *param3)
 {
     UnkStruct_0205C95C *v0 = param0->unk_2D4;
     PalPad *v1 = param0->unk_04->unk_474;
@@ -801,7 +800,7 @@ static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence 
     v0->unk_00[*v2].unk_14 = *param2;
     v0->unk_00[*v2].unk_0C = param1;
     v0->unk_00[*v2].unk_10 = TrainerInfo_Gender(param3);
-    v0->unk_00[*v2].unk_04 = Sentence_AsString(param2, HEAP_ID_89);
+    v0->unk_00[*v2].unk_04 = EasyChatSentence_ToString(param2, HEAP_ID_89);
     v0->unk_00[*v2].unk_08 = ov56_02256E5C(v1, param1, param0->unk_18, param0->unk_1C, param0->unk_10);
 
     (*v2)++;
@@ -811,17 +810,17 @@ static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence 
     }
 }
 
-static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, Sentence *param1, int param2)
+static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, EasyChatSentence *param1, int param2)
 {
     int v0, v1;
 
-    if (!Sentence_IsValid(param1)) {
+    if (!EasyChatSentence_IsValid(param1)) {
         return 0;
     }
 
     for (v0 = 0; v0 < param0->unk_2D4->unk_348; v0++) {
         if (param2 == param0->unk_2D4->unk_00[v0].unk_0C) {
-            if (sub_02014C88(param1, &param0->unk_2D4->unk_00[v0].unk_14)) {
+            if (EasyChatSentence_Compare(param1, &param0->unk_2D4->unk_00[v0].unk_14)) {
                 break;
             }
         }
@@ -833,14 +832,14 @@ static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, Sentence *param1, int 
 
     if (param2 == param0->unk_2D4->unk_00[v0].unk_0C) {
         (void)0;
-    } else if (sub_02014C88(param1, &param0->unk_2D4->unk_00[v0].unk_14)) {
+    } else if (EasyChatSentence_Compare(param1, &param0->unk_2D4->unk_00[v0].unk_14)) {
         (void)0;
     }
 
     return 1;
 }
 
-static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, Sentence *param2, u32 param3)
+static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, EasyChatSentence *param2, u32 param3)
 {
     int v0 = 0;
 
@@ -864,9 +863,9 @@ static void ov56_02257098(UnkStruct_ov56_02256468 *param0)
     int v0, v1;
     WMBssDesc *v2;
     UnkStruct_0203330C *v3;
-    Sentence *v4;
+    EasyChatSentence *v4;
     TrainerInfo *v5;
-    Sentence v6;
+    EasyChatSentence v6;
 
     if (FieldSystem_IsRunningTask(param0->fieldSystem)) {
         return;
@@ -877,7 +876,7 @@ static void ov56_02257098(UnkStruct_ov56_02256468 *param0)
 
         if (v2 != NULL) {
             v3 = (UnkStruct_0203330C *)&v2->gameInfo.userGameInfo;
-            v4 = (Sentence *)&v3->unk_08;
+            v4 = (EasyChatSentence *)&v3->unk_08;
 
             if (ov56_02256FC8(param0, v4, v3->unk_00)) {
                 ov56_02257048(param0, sub_02033FB0(v0), v4, v3->unk_00);

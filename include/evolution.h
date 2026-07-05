@@ -41,7 +41,7 @@ typedef struct EvolutionData {
     Bag *bag;
     GameRecords *records;
     Poketch *poketch;
-    UnkStruct_020157E4 *unk_58;
+    PaletteAnimator *unk_58;
     enum HeapID heapID;
     u16 currentSpecies;
     u16 targetSpecies;

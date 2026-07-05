@@ -9,7 +9,7 @@ typedef struct BattleArcadeAppArgs {
     SaveData *saveData;
     u8 challengeType;
     u8 padding_05[2];
-    u8 unk_07;
+    u8 fitnessScore;
     int *unk_08;
     u8 *rouletteSpeed;
     u8 *selectedEffect;

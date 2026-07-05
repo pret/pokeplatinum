@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry SunyshoreCityPokecenterB1F_UnusedEntry1
+    ScriptEntry SunyshoreCityPokecenterB1F_Dummy1
     ScriptEntryEnd
 
-SunyshoreCityPokecenterB1F_UnusedEntry1:
+SunyshoreCityPokecenterB1F_Dummy1:
     End

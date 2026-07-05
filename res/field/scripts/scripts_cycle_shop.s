@@ -13,19 +13,19 @@ CycleShop_PokefanM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_BICYCLE, CycleShop_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou
-    Message CycleShop_Text_ThanksForRescuingMeThisIsSomethingToShowMyThanks
+    GoToIfSet FLAG_RECEIVED_BICYCLE, CycleShop_IllReadOperatingManual
+    Message CycleShop_Text_ThanksForRescuingMe
     SetVar VAR_0x8004, ITEM_BICYCLE
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetFlag FLAG_RECEIVED_BICYCLE
     SetVar VAR_ETERNA_CITY_BLOCK_EXITS_STATE, 1
     SetBlackOutWarpId 9
-    GoTo CycleShop_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou
+    GoTo CycleShop_IllReadOperatingManual
     End
 
-CycleShop_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou:
-    Message CycleShop_Text_ThisIsTheLatestModelSoIllReadTheOperatingManualToYou
+CycleShop_IllReadOperatingManual:
+    Message CycleShop_Text_IllReadOperatingManual
     WaitButton
     CloseMessage
     ReleaseAll
@@ -39,26 +39,26 @@ CycleShop_Youngster:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, CycleShop_WhatWasTeamGalacticTryingToDoWithOtherPeoplesPokemon
-    Message CycleShop_Text_TheManagersGoneOffToTheTeamGalacticBuildingAndHasntReturned
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, CycleShop_WhatWasTeamGalacticTrying
+    Message CycleShop_Text_ManagersGoneOff
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-CycleShop_WhatWasTeamGalacticTryingToDoWithOtherPeoplesPokemon:
-    Message CycleShop_Text_WhatWasTeamGalacticTryingToDoWithOtherPeoplesPokemon
+CycleShop_WhatWasTeamGalacticTrying:
+    Message CycleShop_Text_WhatWasTeamGalacticTrying
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 CycleShop_Manual:
-    EventMessage CycleShop_Text_ThereIsAManualOnTheLatestModelBicycle
+    EventMessage CycleShop_Text_ManualOnLatestBicycle
     End
 
 CycleShop_Catalog:
-    EventMessage CycleShop_Text_TheresACatalogFromTheHoennRegionOnItsPopularBikes
+    EventMessage CycleShop_Text_CatalogFromHoenn
     End
 
     .balign 4, 0

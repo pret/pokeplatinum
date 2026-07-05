@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_OV20_021D2098_H
 #define POKEPLATINUM_OV20_021D2098_H
 
-#include "struct_decls/struct_020998EC_decl.h"
-
 #include "applications/easy_chat/main.h"
 #include "applications/easy_chat/struct_ov20_021D2128_decl.h"
 
 #include "bg_window.h"
+#include "easy_chat_word_list.h"
 #include "sprite.h"
 #include "sys_task_manager.h"
 
@@ -42,7 +41,7 @@ enum EasyChatTask {
     EASY_CHAT_SYSTASK_28,
 };
 
-UnkStruct_ov20_021D2128 *ov20_021D2098(const EasyChatApp *param0, const UnkStruct_020998EC *param1);
+UnkStruct_ov20_021D2128 *ov20_021D2098(const EasyChatApp *param0, const EasyChatWordList *param1);
 void ov20_021D2128(UnkStruct_ov20_021D2128 *param0);
 SysTask *ov20_021D2170(SysTaskFunc param0, void *param1, int param2);
 void ov20_021D21A0(UnkStruct_ov20_021D2128 *param0, int param1);

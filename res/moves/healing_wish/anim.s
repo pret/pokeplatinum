@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, healing_wish_spa
-    BtlAnimCmd_013 L_1, L_2
+    JumpIfEffectChanceOdd L_1, L_2
     End
 
 L_1:

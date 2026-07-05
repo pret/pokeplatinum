@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV61_0222BED8_SUB2_SUB1_SUB1_H
 #define POKEPLATINUM_STRUCT_OV61_0222BED8_SUB2_SUB1_SUB1_H
 
-#include "struct_defs/sentence.h"
+#include "easy_chat_sentence.h"
 
 typedef struct {
     u8 unk_00;
@@ -12,8 +12,8 @@ typedef struct {
     u32 unk_0C;
     u32 unk_10;
     u16 unk_14[8];
-    Sentence unk_24;
-    Sentence unk_2C;
+    EasyChatSentence unk_24;
+    EasyChatSentence unk_2C;
 } UnkStruct_ov61_0222BED8_sub2_sub1_sub1;
 
 #endif // POKEPLATINUM_STRUCT_OV61_0222BED8_SUB2_SUB1_SUB1_H

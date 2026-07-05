@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry Unk227_Dummy1
     ScriptEntryEnd
 
-_0006:
+Unk227_Dummy1:
     End

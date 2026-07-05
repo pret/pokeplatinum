@@ -21,7 +21,7 @@ void BattleTower_CreateOpponentParties(BattleTower *battleTower, SaveData *saveD
     switch (battleTower->challengeMode) {
     case BATTLE_TOWER_MODE_WIFI:
     case BATTLE_TOWER_MODE_5:
-        ov104_0223A30C(saveData, battleTower->opponentsDataDTO, battleTower->nextOpponentNum - 1);
+        BattleTower_CreateWiFiTrainerParty(saveData, battleTower->opponentsDataDTO, battleTower->nextOpponentNum - 1);
         break;
     case BATTLE_TOWER_MODE_MULTI:
     case BATTLE_TOWER_MODE_LINK_MULTI:

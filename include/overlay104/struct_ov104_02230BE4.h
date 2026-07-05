@@ -8,8 +8,8 @@
 #include "journal.h"
 #include "savedata.h"
 
-typedef struct {
-    void *unk_00;
+typedef struct FieldFrontierDTO {
+    void *facilityData;
     const Options *options;
     SaveData *saveData;
     JournalEntry *journalEntry;
@@ -20,6 +20,6 @@ typedef struct {
     u8 *subscreenCursorOn;
     u8 sceneID;
     FieldSystem *fieldSystem;
-} UnkStruct_ov104_02230BE4;
+} FieldFrontierDTO;
 
 #endif // POKEPLATINUM_STRUCT_OV104_02230BE4_H

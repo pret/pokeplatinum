@@ -2,14 +2,14 @@
   "key": 51106,
   "messages": [
     {
-      "id": "EternaForestOutside_Text_OhAreYouCollectingAccessoriesIveGotSomethingForYou",
+      "id": "EternaForestOutside_Text_AreYouCollectingAccessories",
       "en_US": [
         "Oh, are you collecting Accessories?\n",
         "I’ve got something for you.\r"
       ]
     },
     {
-      "id": "EternaForestOutside_Text_ICollectBerriesAndTradeThemForAccessoriesInFloaromaTown",
+      "id": "EternaForestOutside_Text_ITradeBerriesForAccessories",
       "en_US": [
         "I collect Berries and trade them for\n",
         "Accessories in Floaroma Town.\r",

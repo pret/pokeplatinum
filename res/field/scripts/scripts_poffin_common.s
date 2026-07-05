@@ -96,7 +96,7 @@ PoffinCommon_CookInAGroup:
     GoToIfEq VAR_RESULT, 1, PoffinCommon_NoBerryToCook
     GoToIfEq VAR_RESULT, 2, PoffinCommon_PoffinCaseIsFull
     Common_SaveGame
-    SetVar VAR_RESULT, VAR_MAP_LOCAL_0
+    SetVar VAR_RESULT, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_RESULT, 1, PoffinCommon_BecomeLeaderOrJoinGroup
     GoTo PoffinCommon_PleaseVisitAgain
     End

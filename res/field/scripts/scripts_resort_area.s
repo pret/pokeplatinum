@@ -135,7 +135,7 @@ ResortArea_CoordEvent_SchoolKidM:
     SetVar VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_NONE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 10, 6, DIR_WEST
+    Warp MAP_HEADER_VILLA, 10, 6, DIR_WEST
     FadeScreenIn
     WaitFadeScreen
     End
@@ -297,7 +297,7 @@ ResortArea_ProfRowan:
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 11, 11, DIR_NORTH
+    Warp MAP_HEADER_VILLA, 11, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -327,7 +327,7 @@ ResortArea_Roark:
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 11, 11, DIR_NORTH
+    Warp MAP_HEADER_VILLA, 11, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -351,7 +351,7 @@ ResortArea_Gardenia:
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 11, 11, DIR_NORTH
+    Warp MAP_HEADER_VILLA, 11, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -375,7 +375,7 @@ ResortArea_Maylene:
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 11, 11, DIR_NORTH
+    Warp MAP_HEADER_VILLA, 11, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End
@@ -399,7 +399,7 @@ ResortArea_Byron:
     SetFlag FLAG_VILLA_VISITOR_INSIDE
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_VILLA, 0, 11, 11, DIR_NORTH
+    Warp MAP_HEADER_VILLA, 11, 11, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
     End

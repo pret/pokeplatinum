@@ -6,21 +6,21 @@
       "garbage": 46
     },
     {
-      "id": "Route206CyclingRoadNorthGate_Text_CyclingRoadIsOnlyForBicycles",
+      "id": "Route206CyclingRoadNorthGate_Text_OnlyForBicycles",
       "en_US": [
         "Cycling Road is only for Bicycles!\r",
         "Please get on your Bicycle!\r"
       ]
     },
     {
-      "id": "Route206CyclingRoadNorthGate_Text_LearnHowToShiftGearsAndYoullBeAbleToRideAnywhere",
+      "id": "Route206CyclingRoadNorthGate_Text_LearnHowToShiftGears",
       "en_US": [
         "Learn how to shift gears, and you’ll\n",
         "be able to ride anywhere."
       ]
     },
     {
-      "id": "Route206CyclingRoadNorthGate_Text_PlayerLetMeAskYouHowManyPokemonHaveYouMet",
+      "id": "Route206CyclingRoadNorthGate_Text_PlayerMetHowManyPokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, long time, no see!\r",
         "Oh? You look puzzled.\n",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "id": "Route206CyclingRoadNorthGate_Text_PlayerLetMeAskYouHowManyPokemonHaveYouMet2",
+      "id": "Route206CyclingRoadNorthGate_Text_PlayerMetHowManyPokemon2",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, long time, no see!\r",
         "Oh? You look puzzled.\n",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "Route206CyclingRoadNorthGate_Text_ProfessorRowanShouldBeDelightedHereIsSomethingForYou",
+      "id": "Route206CyclingRoadNorthGate_Text_SomethingForYou",
       "en_US": [
         "Oh, my!\n",
         "You’ve met {STRVAR_1 52, 1, 0} Pokémon!\r",
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "Route206CyclingRoadNorthGate_Text_APokemonHoldingAnExpShareWillGetSomeOfTheExpPointsFromBattle",
+      "id": "Route206CyclingRoadNorthGate_Text_HoldingExpShareGetExpPoints",
       "en_US": [
         "A Pokémon holding an Exp. Share will get\n",
         "some of the Exp. Points from battle.\r",
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "Route206CyclingRoadNorthGate_Text_YouveGotToFindAtLeast35",
+      "id": "Route206CyclingRoadNorthGate_Text_FindAtLeast35",
       "en_US": [
         "You’ve met only {STRVAR_1 52, 1, 0} Pokémon?\r",
         "Hmm...\n",

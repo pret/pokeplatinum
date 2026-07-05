@@ -1115,16 +1115,16 @@ static BOOL ov12_0222FB84(UnkStruct_ov12_0222FAFC *param0)
     case 0:
     case 1:
         if (RevolutionContext_Update(&param0->unk_04)) {
-            AngleLerpContext_UpdateCos(&param0->unk_28);
+            ValueLerpContext_UpdateCos(&param0->unk_28);
             param0->unk_04.data[5] = param0->unk_3C + param0->unk_28.value;
             ManagedSprite_SetPositionXY(param0->unk_00, param0->unk_3E + param0->unk_04.x, param0->unk_40 + param0->unk_04.y);
         } else {
             if (param0->unk_44 < 1) {
                 if (param0->unk_44 == 0) {
-                    ov12_02225A8C(&param0->unk_04, param0->unk_04.data[1], (180 * 0xffff) / 360, param0->unk_04.data[1], (180 * 0xffff) / 360, param0->unk_04.data[2], param0->unk_04.data[4], (10 * 0xffff) / 360);
+                    RevolutionContext_InitWithStepSize(&param0->unk_04, param0->unk_04.data[1], (180 * 0xffff) / 360, param0->unk_04.data[1], (180 * 0xffff) / 360, param0->unk_04.data[2], param0->unk_04.data[4], (10 * 0xffff) / 360);
                 }
 
-                AngleLerpContext_InitCos(&param0->unk_28, (0 * 0xffff) / 360, (360 * 0xffff) / 360, -1 * FX32_ONE, param0->unk_04.data[0]);
+                ValueLerpContext_InitCos(&param0->unk_28, (0 * 0xffff) / 360, (360 * 0xffff) / 360, -1 * FX32_ONE, param0->unk_04.data[0]);
             }
 
             param0->unk_44++;
@@ -1246,8 +1246,8 @@ void ov12_0222FE30(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0->unk_0C.unk_00 = param3;
     v0->unk_0C.unk_44 = 0;
 
-    ov12_02225A8C(&v0->unk_0C.unk_04, (90 * 0xffff) / 360, (270 * 0xffff) / 360, (90 * 0xffff) / 360, (270 * 0xffff) / 360, v4, -8 * FX32_ONE, (10 * 0xffff) / 360);
-    AngleLerpContext_InitCos(&v0->unk_0C.unk_28, (0 * 0xffff) / 360, (360 * 0xffff) / 360, -1 * FX32_ONE, v0->unk_0C.unk_04.data[0]);
+    RevolutionContext_InitWithStepSize(&v0->unk_0C.unk_04, (90 * 0xffff) / 360, (270 * 0xffff) / 360, (90 * 0xffff) / 360, (270 * 0xffff) / 360, v4, -8 * FX32_ONE, (10 * 0xffff) / 360);
+    ValueLerpContext_InitCos(&v0->unk_0C.unk_28, (0 * 0xffff) / 360, (360 * 0xffff) / 360, -1 * FX32_ONE, v0->unk_0C.unk_04.data[0]);
 
     v0->unk_0C.unk_3C = v0->unk_0C.unk_04.data[5];
     v0->unk_0C.unk_48 = 1;
@@ -2207,13 +2207,13 @@ static void ov12_022310D4(SysTask *param0, void *param1)
 
         return;
     case 2:
-        if (ov12_02225D2C(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
+        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
             XYTransformContext_InitParabolic(&v0->unk_4C, &v0->unk_70, v0->unk_44, v0->unk_14, v0->unk_46, v0->unk_16, 10, -(32 * FX32_ONE));
             v0->unk_0C++;
         }
         break;
     case 3:
-        if (ov12_02225D2C(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
+        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
             ManagedSprite_SetDrawFlag(v0->unk_48, 0);
             v0->unk_0C++;
         }

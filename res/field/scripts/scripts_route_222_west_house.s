@@ -4,10 +4,10 @@
 
     ScriptEntry Route222WestHouse_OnTransition
     ScriptEntry Route222WestHouse_Pikachu
-    ScriptEntry Route222WestHouse_Unused3
-    ScriptEntry Route222WestHouse_Unused4
-    ScriptEntry Route222WestHouse_Unused5
-    ScriptEntry Route222WestHouse_Unused6
+    ScriptEntry Route222WestHouse_Pikachu3_Unused
+    ScriptEntry Route222WestHouse_Pikachu4_Unused
+    ScriptEntry Route222WestHouse_Pikachu5_Unused
+    ScriptEntry Route222WestHouse_Pikachu6_Unused
     ScriptEntry Route222WestHouse_PokefanM
     ScriptEntryEnd
 
@@ -19,19 +19,19 @@ Route222WestHouse_Pikachu:
     PokemonCryAndMessage SPECIES_PIKACHU, Route222WestHouse_Text_PikachuCryPikachuu
     End
 
-Route222WestHouse_Unused3:
+Route222WestHouse_Pikachu3_Unused:
     PokemonCryAndMessage SPECIES_PIKACHU, Route222WestHouse_Text_PikachuCryPikaah
     End
 
-Route222WestHouse_Unused4:
+Route222WestHouse_Pikachu4_Unused:
     PokemonCryAndMessage SPECIES_PIKACHU, Route222WestHouse_Text_PikachuCryPikaPika
     End
 
-Route222WestHouse_Unused5:
+Route222WestHouse_Pikachu5_Unused:
     PokemonCryAndMessage SPECIES_PIKACHU, Route222WestHouse_Text_PikachuCryPiPikachu
     End
 
-Route222WestHouse_Unused6:
+Route222WestHouse_Pikachu6_Unused:
     PokemonCryAndMessage SPECIES_PIKACHU, Route222WestHouse_Text_PikachuCryPiiKaahchu
     End
 

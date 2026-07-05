@@ -238,7 +238,7 @@ typedef struct RowanIntro {
     enum DisplayTextBlockState displayTextBlockState;
     int textPrinterID;
     String *string;
-    UnkStruct_020157E4 *unk_60;
+    PaletteAnimator *unk_60;
     StringTemplate *strFormatter;
     YesNoTouchMenu *yesNoTouchMenu;
     SysTask *unused;

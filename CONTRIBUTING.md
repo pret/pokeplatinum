@@ -26,11 +26,9 @@ Thanks again, and we look forward to hearing from you! 🎉
 
 ## What work is there to be done?
 
-At this stage of its life-cycle, the repository is almost 100% C code, although
-much of it is obfuscated. Some straggler-routines still linger in ARM assembly,
-and some small utility libraries also need to be decompiled. As a result, much
-of the work for this repository at present comes down to **documentation** and
-**tooling**.
+At this stage of its life-cycle, the repository is 100% C code, although much of
+it is obfuscated. As a result, much of the work for this repository at present
+comes down to **documentation** and **tooling**.
 
 If you are looking for a bite-sized work-item to pick out for your first
 contribution, we maintain [a living issue][first-efforts] to document files or

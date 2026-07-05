@@ -8,29 +8,29 @@
     ScriptEntryEnd
 
 FloaromaTownMiddleHouse_PokemonBreederF:
-    NPCMessage FloaromaTownMiddleHouse_Text_FloaromaTownWasABarrenDesolateHillLongAgo
+    NPCMessage FloaromaTownMiddleHouse_Text_FloaromaTownWasBarren
     End
 
 FloaromaTownMiddleHouse_Twin:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_TM88, FloaromaTownMiddleHouse_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe
-    Message FloaromaTownMiddleHouse_Text_DoYouThinkItsCuteHowPokemonPluckBerries
+    GoToIfSet FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_TM88, FloaromaTownMiddleHouse_UsingPluckEatsBerry
+    Message FloaromaTownMiddleHouse_Text_CuteHowPokemonPluckBerries
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, FloaromaTownMiddleHouse_HeresTheTMForTheMovePluck
-    GoToIfEq VAR_RESULT, MENU_NO, FloaromaTownMiddleHouse_OhIGuessIJustLikeWeirdThings
+    GoToIfEq VAR_RESULT, MENU_YES, FloaromaTownMiddleHouse_HeresTMForPluck
+    GoToIfEq VAR_RESULT, MENU_NO, FloaromaTownMiddleHouse_IJustLikeWeirdThings
     End
 
-FloaromaTownMiddleHouse_OhIGuessIJustLikeWeirdThings:
-    Message FloaromaTownMiddleHouse_Text_OhIGuessIJustLikeWeirdThings
+FloaromaTownMiddleHouse_IJustLikeWeirdThings:
+    Message FloaromaTownMiddleHouse_Text_IJustLikeWeirdThings
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-FloaromaTownMiddleHouse_HeresTheTMForTheMovePluck:
-    Message FloaromaTownMiddleHouse_Text_HeresTheTMForTheMovePluck
+FloaromaTownMiddleHouse_HeresTMForPluck:
+    Message FloaromaTownMiddleHouse_Text_HeresTMForPluck
     SetVar VAR_0x8004, ITEM_TM88
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FloaromaTownMiddleHouse_BagIsFull
@@ -40,8 +40,8 @@ FloaromaTownMiddleHouse_HeresTheTMForTheMovePluck:
     ReleaseAll
     End
 
-FloaromaTownMiddleHouse_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe:
-    Message FloaromaTownMiddleHouse_Text_WhenAPokemonUsesPluckItEatsABerryHeldByItsFoe
+FloaromaTownMiddleHouse_UsingPluckEatsBerry:
+    Message FloaromaTownMiddleHouse_Text_UsingPluckEatsBerry
     WaitButton
     CloseMessage
     ReleaseAll
@@ -54,5 +54,5 @@ FloaromaTownMiddleHouse_BagIsFull:
     End
 
 FloaromaTownMiddleHouse_Clefairy:
-    PokemonCryAndMessage SPECIES_CLEFAIRY, FloaromaTownMiddleHouse_Text_ClefairyRii
+    PokemonCryAndMessage SPECIES_CLEFAIRY, FloaromaTownMiddleHouse_Text_ClefairyCry
     End

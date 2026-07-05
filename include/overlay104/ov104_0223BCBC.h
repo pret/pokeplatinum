@@ -11,7 +11,7 @@
 void ov104_0223BD28(u8 param0, int param1, u16 param2[], u8 param3);
 u8 BattleArcade_GetPlayerPartySize(u8 challengeType, BOOL includePartnerMons);
 u8 BattleArcade_GetOpponentPartySize(u8 challengeType, BOOL includeBothOpponents);
-FieldBattleDTO *FieldBattleDTO_NewBattleArcade(BattleArcade *battleArcade, UnkStruct_ov104_02230BE4 *param1);
+FieldBattleDTO *FieldBattleDTO_NewBattleArcade(BattleArcade *battleArcade, FieldFrontierDTO *fieldData);
 u8 BattleArcade_GetPokemonLevel(BattleArcade *battleArcade);
 BOOL BattleArcade_IsMultiPlayerChallenge(u8 challengeType);
 void ov104_0223C010(BattleArcade *battleArcade, Pokemon *param1);

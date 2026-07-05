@@ -18,28 +18,28 @@ OreburghCityPokecenter1F_Nurse:
     End
 
 OreburghCityPokecenter1F_NinjaBoy:
-    NPCMessage OreburghCityPokecenter1F_Text_YayIGotAPalPadAtThePokemonWiFiClubDownstairs
+    NPCMessage OreburghCityPokecenter1F_Text_IGotAPalPadDownstairs
     End
 
 OreburghCityPokecenter1F_AceTrainerF:
-    NPCMessage OreburghCityPokecenter1F_Text_SwitchOnThePCAtAnyPokemonCenter
+    NPCMessage OreburghCityPokecenter1F_Text_SwitchOnThePC
     End
 
 OreburghCityPokecenter1F_Psychic:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_CHOSE_UNION_ROOM_APPEARANCE, OreburghCityPokecenter1F_HowAboutTellingMeWhatKindOfTrainerYouLike
-    Message OreburghCityPokecenter1F_Text_WhatIsYourFavoriteKindOfTrainerCanYouTellMe
-    GoTo OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe
+    GoToIfSet FLAG_CHOSE_UNION_ROOM_APPEARANCE, OreburghCityPokecenter1F_WhatKindOfTrainerDoYouLike
+    Message OreburghCityPokecenter1F_Text_TellMeFavoriteKindOfTrainer
+    GoTo OreburghCityPokecenter1F_BeWhichKindOfTrainer
 
-OreburghCityPokecenter1F_HowAboutTellingMeWhatKindOfTrainerYouLike:
+OreburghCityPokecenter1F_WhatKindOfTrainerDoYouLike:
     BufferTrainerClassFromAppearance 0
-    Message OreburghCityPokecenter1F_Text_HowAboutTellingMeWhatKindOfTrainerYouLike
-    GoTo OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe
+    Message OreburghCityPokecenter1F_Text_WhatKindOfTrainerDoYouLike
+    GoTo OreburghCityPokecenter1F_BeWhichKindOfTrainer
 
-OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe:
-    Message OreburghCityPokecenter1F_Text_WhichKindOfTrainerWouldYouLikeToBe
+OreburghCityPokecenter1F_BeWhichKindOfTrainer:
+    Message OreburghCityPokecenter1F_Text_BeWhichKindOfTrainer
     LoadTrainerAppearances
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm MenuEntries_Text_TrainerAppearanceVariant1, 0
@@ -50,18 +50,18 @@ OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe:
     ShowMenu
     SetVar VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 4, OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
-    GoToIfEq VAR_0x8008, -2, OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
+    GoToIfEq VAR_0x8008, 4, OreburghCityPokecenter1F_IllJustTalkToYouLater
+    GoToIfEq VAR_0x8008, -2, OreburghCityPokecenter1F_IllJustTalkToYouLater
     GetTrainerInfoTrainerClass VAR_0x8004, VAR_0x8005
     BufferTrainerClassNameWithArticle 0, VAR_0x8005
     CapitalizeFirstLetter 0
-    Message OreburghCityPokecenter1F_Text_AskThisIsTheKindOfTrainerYouWantToBe
+    Message OreburghCityPokecenter1F_Text_IsThisWhatYouWantToBe
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, OreburghCityPokecenter1F_SetTrainerClass
-    GoTo OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe
+    GoTo OreburghCityPokecenter1F_BeWhichKindOfTrainer
 
-OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater:
-    Message OreburghCityPokecenter1F_Text_OKThenIllJustTalkToYouLater
+OreburghCityPokecenter1F_IllJustTalkToYouLater:
+    Message OreburghCityPokecenter1F_Text_IllJustTalkToYouLater
     WaitButton
     CloseMessage
     ReleaseAll
@@ -69,32 +69,32 @@ OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater:
 
 OreburghCityPokecenter1F_SetTrainerClass:
     BufferTrainerClassNameWithArticle 0, VAR_0x8005
-    Message OreburghCityPokecenter1F_Text_ISeeSoThisIsTheKindOfTrainerYouLike
+    Message OreburghCityPokecenter1F_Text_SoThisIsWhatYouLike
     SetFlag FLAG_CHOSE_UNION_ROOM_APPEARANCE
     CalculateTrainerInfoAppearance VAR_0x8004, VAR_0x8005
     SetTrainerInfoAppearance VAR_0x8005
-    GoTo OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
+    GoTo OreburghCityPokecenter1F_IllJustTalkToYouLater
 
 OreburghCityPokecenter1F_Gentleman:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_GAME_COMPLETED, OreburghCityPokecenter1F_WhatOrWhoIsThisTeamGalactic
-    Message OreburghCityPokecenter1F_Text_WhatOrWhoIsThisTeamGalacticItsAMystery
+    GoToIfSet FLAG_GAME_COMPLETED, OreburghCityPokecenter1F_WhatOrWhoIsTeamGalactic
+    Message OreburghCityPokecenter1F_Text_TeamGalacticIsAMystery
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-OreburghCityPokecenter1F_WhatOrWhoIsThisTeamGalactic:
-    Message OreburghCityPokecenter1F_Text_WhatOrWhoIsThisTeamGalactic
+OreburghCityPokecenter1F_WhatOrWhoIsTeamGalactic:
+    Message OreburghCityPokecenter1F_Text_WhatOrWhoIsTeamGalactic
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghCityPokecenter1F_KidWithNDSWest:
-    NPCMessage OreburghCityPokecenter1F_Text_NowYouCanCaptureItAsABattleVideoUsingAVsRecorder
+    NPCMessage OreburghCityPokecenter1F_Text_CaptureBattleVideoUsingVsRecorder
     End
 
 OreburghCityPokecenter1F_KidWithNDSEast:

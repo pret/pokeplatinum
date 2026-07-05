@@ -1521,15 +1521,15 @@ static void DistWorldMapInfoFile_Load(NARC *mainNARC, DistWorldMapInfoFile *mapI
 static void DistWorldMapInfoFile_LoadSafe(DistWorldSystem *system);
 static void DistWorldMapInfoFile_Free(DistWorldMapInfoFile *mapInfoFile);
 static void FreeMapInfoFile(DistWorldSystem *system);
-static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMapInfoFile *mapInfoFile, enum MapHeader mapHeaderID);
-static const DistWorldMapInfo *FindMapInfo(DistWorldSystem *system, enum MapHeader mapHeaderID);
-static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeader mapHeaderID);
+static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMapInfoFile *mapInfoFile, enum MapHeaderID mapHeaderID);
+static const DistWorldMapInfo *FindMapInfo(DistWorldSystem *system, enum MapHeaderID mapHeaderID);
+static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeaderID mapHeaderID);
 static void DistWorldMapInfoFile_FindMapOffsets(const DistWorldMapInfoFile *mapInfoFile, int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ);
 static void FindMapOffsets(DistWorldSystem *system, int mapHeaderID, int *offsetTileX, int *offsetAltitude, int *offsetTileZ);
-static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *file, enum MapHeader mapHeaderID);
-static void LoadMapFiles(DistWorldSystem *system, enum MapHeader mapHeaderID, int nextMapHeaderID);
-static void LoadActiveMapFile(DistWorldSystem *system, enum MapHeader mapHeaderID);
-static void LoadInactiveMapFile(DistWorldSystem *system, enum MapHeader mapHeaderID);
+static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *file, enum MapHeaderID mapHeaderID);
+static void LoadMapFiles(DistWorldSystem *system, enum MapHeaderID mapHeaderID, int nextMapHeaderID);
+static void LoadActiveMapFile(DistWorldSystem *system, enum MapHeaderID mapHeaderID);
+static void LoadInactiveMapFile(DistWorldSystem *system, enum MapHeaderID mapHeaderID);
 static void DistWorldMapFile_Free(DistWorldMapFile *file);
 static void FreeMapFiles(DistWorldSystem *system);
 static void FreeActiveMapFile(DistWorldSystem *system);
@@ -2034,7 +2034,7 @@ static u32 GetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system)
 BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
 {
     DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
-    enum MapHeader mapHeaderID = DistWorldSystem_GetMapHeaderID(dwSystem);
+    enum MapHeaderID mapHeaderID = DistWorldSystem_GetMapHeaderID(dwSystem);
 
     if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM) {
         if (tileX == GIRATINA_ROOM_TELEPORT_TILE_X && tileZ == GIRATINA_ROOM_TELEPORT_TILE_Z + 1) {
@@ -3429,7 +3429,7 @@ static void InitActiveGhostPropManager(DistWorldSystem *system, BOOL useDefaultV
 
 static void InitInactiveGhostPropManager(DistWorldSystem *system)
 {
-    enum MapHeader mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    enum MapHeaderID mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
     const DistWorldMapConnections *mapConnections = GetConnectionsForMap(mapHeaderID);
     mapHeaderID = mapConnections->nextID;
 
@@ -3990,7 +3990,7 @@ static void DistWorldObstacleProp_AnimRender(OverworldAnimManager *animMan, void
 
 static void InitMapElements(DistWorldSystem *system)
 {
-    enum MapHeader mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    enum MapHeaderID mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
     const DistWorldMapConnections *mapConnections = GetConnectionsForMap(mapHeaderID);
 
     DistWorldMapInfoFile_LoadSafe(system);
@@ -4096,7 +4096,7 @@ static void FreeMapInfoFile(DistWorldSystem *system)
     DistWorldMapInfoFile_Free(&system->mainArchive.mapInfoFile);
 }
 
-static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMapInfoFile *mapInfoFile, enum MapHeader mapHeaderID)
+static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMapInfoFile *mapInfoFile, enum MapHeaderID mapHeaderID)
 {
     int i = 0;
     const DistWorldMapInfo *iter = mapInfoFile->infos;
@@ -4114,12 +4114,12 @@ static const DistWorldMapInfo *DistWorldMapInfoFile_FindForMap(const DistWorldMa
     return NULL;
 }
 
-static const DistWorldMapInfo *FindMapInfo(DistWorldSystem *system, enum MapHeader mapHeaderID)
+static const DistWorldMapInfo *FindMapInfo(DistWorldSystem *system, enum MapHeaderID mapHeaderID)
 {
     return DistWorldMapInfoFile_FindForMap(&system->mainArchive.mapInfoFile, mapHeaderID);
 }
 
-static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeader mapHeaderID)
+static u32 FindMapFileIndex(DistWorldSystem *system, enum MapHeaderID mapHeaderID)
 {
     const DistWorldMapInfo *mapInfo = FindMapInfo(system, mapHeaderID);
     return mapInfo->mapFileIndex + 1;
@@ -4139,7 +4139,7 @@ static void FindMapOffsets(DistWorldSystem *system, int mapHeaderID, int *offset
     DistWorldMapInfoFile_FindMapOffsets(&system->mainArchive.mapInfoFile, mapHeaderID, offsetTileX, offsetAltitude, offsetTileZ);
 }
 
-static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *file, enum MapHeader mapHeaderID)
+static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *file, enum MapHeaderID mapHeaderID)
 {
     GF_ASSERT(file->buffer == NULL);
 
@@ -4170,18 +4170,18 @@ static void DistWorldMapFile_Load(DistWorldSystem *system, DistWorldMapFile *fil
     }
 }
 
-static void LoadMapFiles(DistWorldSystem *system, enum MapHeader mapHeaderID, int nextMapHeaderID)
+static void LoadMapFiles(DistWorldSystem *system, enum MapHeaderID mapHeaderID, int nextMapHeaderID)
 {
     LoadActiveMapFile(system, mapHeaderID);
     LoadInactiveMapFile(system, nextMapHeaderID);
 }
 
-static void LoadActiveMapFile(DistWorldSystem *system, enum MapHeader mapHeaderID)
+static void LoadActiveMapFile(DistWorldSystem *system, enum MapHeaderID mapHeaderID)
 {
     DistWorldMapFile_Load(system, &system->mainArchive.mapFile, mapHeaderID);
 }
 
-static void LoadInactiveMapFile(DistWorldSystem *system, enum MapHeader mapHeaderID)
+static void LoadInactiveMapFile(DistWorldSystem *system, enum MapHeaderID mapHeaderID)
 {
     DistWorldMapFile_Load(system, &system->mainArchive.inactiveMapFile, mapHeaderID);
 }
@@ -4740,9 +4740,9 @@ static void InitialLoadInactiveFloor(DistWorldSystem *system)
     DistWorldInactiveFloor *inactiveFloor = &system->inactiveFloor;
     FieldSystem *fieldSystem = system->fieldSystem;
 
-    enum MapHeader mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    enum MapHeaderID mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
     const DistWorldMapConnections *mapConnections = GetConnectionsForMap(mapHeaderID);
-    enum MapHeader nextMapHeaderID = mapConnections->nextID;
+    enum MapHeaderID nextMapHeaderID = mapConnections->nextID;
 
     if (nextMapHeaderID == MAP_HEADER_INVALID) {
         return;
@@ -13975,7 +13975,7 @@ static const DistWorldObjectEvent sMapObjectEventTurnbackCaveRoom_GriseousOrbIte
         .graphicsID = OBJ_EVENT_GFX_POKEBALL,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
-        .hiddenFlag = 0x538,
+        .hiddenFlag = FLAG_OBTAINED_DISTORTION_WORLD_TURNBACK_CAVE_ROOM_GRISEOUS_ORB,
         .script = SCRIPT_ID(VISIBLE_ITEMS, 321),
         .dir = FACE_UP,
         .data = { 0x0, 0x0, 0x0 },

@@ -43,23 +43,23 @@ typedef struct {
     SPLEmitterCallback unk_18;
 } UnkStruct_02236430;
 
-typedef struct UnkStruct_ov12_02235FE0_t {
+typedef struct BallCapsuleSealEffect_t {
     enum HeapID heapID;
-    UnkStruct_ov12_02236030 unk_04;
-    int unk_10;
-    ParticleSystem *unk_14[9];
-    BallSeal *unk_38[9];
-    BOOL unk_5C[9];
-    SPLEmitter *unk_80;
-    SysTask *unk_84;
-    BOOL unk_88;
-    NARC *unk_8C;
-    int unk_90;
-    int unk_94;
-    int unk_98;
-    int unk_9C;
-    BallCapsule unk_A0;
-} UnkStruct_ov12_02235FE0;
+    BallCapsuleConfig ballCapCfg;
+    int sealCount;
+    ParticleSystem *sealParticleSystems[9];
+    BallSeal *seals[9];
+    BOOL sealActiveFlags[9];
+    SPLEmitter *emitter;
+    SysTask *task;
+    BOOL isActive;
+    NARC *particleNarc;
+    int state;
+    int hasCapsule;
+    int ballType;
+    int capsuleID;
+    BallCapsule capsule;
+} BallCapsuleSealEffect;
 
 typedef struct UnkStruct_ov12_02236648_t {
     UnkStruct_ov12_02236690 unk_00;
@@ -102,12 +102,12 @@ typedef struct BallRotation {
     SysTask *unk_CC;
     UnkStruct_ov12_02236648 *unk_D0;
     PaletteFadeContext *unk_D4;
-    UnkStruct_ov12_02223764 *unk_D8;
+    BattleMonOBJData *unk_D8;
     int unk_DC;
 } BallRotation;
 
 static void ov12_022363CC(SysTask *param0, void *param1);
-static void ov12_0223646C(UnkStruct_ov12_02235FE0 *param0, SPLEmitterCallback param1);
+static void ov12_0223646C(BallCapsuleSealEffect *ballCapSealEff, SPLEmitterCallback param1);
 static void ov12_02236598(SPLEmitter *param0);
 static void ov12_022365D4(SPLEmitter *param0);
 static void ov12_02237C54(BallRotation *param0);
@@ -326,81 +326,81 @@ static int ov12_02235FC8(int param0, int param1)
     return sBallThrowGraphics[v0][param1];
 }
 
-UnkStruct_ov12_02235FE0 *ov12_02235FE0(enum HeapID heapID)
+BallCapsuleSealEffect *ov12_02235FE0(enum HeapID heapID)
 {
-    UnkStruct_ov12_02235FE0 *v0 = NULL;
+    BallCapsuleSealEffect *ballCapSealEff = NULL;
 
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02235FE0));
+    ballCapSealEff = Heap_Alloc(heapID, sizeof(BallCapsuleSealEffect));
 
-    if (v0 == NULL) {
+    if (ballCapSealEff == NULL) {
         GF_ASSERT(FALSE);
         return NULL;
     }
 
-    v0->heapID = heapID;
-    v0->unk_88 = 0;
+    ballCapSealEff->heapID = heapID;
+    ballCapSealEff->isActive = 0;
 
-    return v0;
+    return ballCapSealEff;
 }
 
-UnkStruct_ov12_02235FE0 *ov12_02236004(enum HeapID heapID, const UnkStruct_ov12_02236030 *param1)
+BallCapsuleSealEffect *ov12_02236004(enum HeapID heapID, const BallCapsuleConfig *ballCapCfg)
 {
-    UnkStruct_ov12_02235FE0 *v0 = NULL;
+    BallCapsuleSealEffect *ballCapSealEff = NULL;
 
-    v0 = ov12_02235FE0(heapID);
-    ov12_02236030(v0, param1);
+    ballCapSealEff = ov12_02235FE0(heapID);
+    ov12_02236030(ballCapSealEff, ballCapCfg);
 
     {
         int v1;
 
-        v0->unk_10 = 0;
+        ballCapSealEff->sealCount = 0;
 
         for (v1 = 0; v1 < 9; v1++) {
-            v0->unk_14[v1] = NULL;
-            v0->unk_38[v1] = NULL;
-            v0->unk_5C[v1] = 0;
+            ballCapSealEff->sealParticleSystems[v1] = NULL;
+            ballCapSealEff->seals[v1] = NULL;
+            ballCapSealEff->sealActiveFlags[v1] = 0;
         }
     }
 
-    return v0;
+    return ballCapSealEff;
 }
 
-void ov12_02236030(UnkStruct_ov12_02235FE0 *param0, const UnkStruct_ov12_02236030 *param1)
+void ov12_02236030(BallCapsuleSealEffect *ballCapSealEff, const BallCapsuleConfig *ballCapCfgPtr)
 {
-    param0->unk_04 = *param1;
-    param0->unk_9C = Pokemon_GetValue(param0->unk_04.unk_08, MON_DATA_BALL_CAPSULE_ID, NULL);
+    ballCapSealEff->ballCapCfg = *ballCapCfgPtr;
+    ballCapSealEff->capsuleID = Pokemon_GetValue(ballCapSealEff->ballCapCfg.mon, MON_DATA_BALL_CAPSULE_ID, NULL);
 
-    GF_ASSERT(param0->unk_9C < 12 + 1);
+    GF_ASSERT(ballCapSealEff->capsuleID < 12 + 1);
 
-    if (param0->unk_9C == 0) {
-        param0->unk_94 = 0;
+    if (ballCapSealEff->capsuleID == 0) {
+        ballCapSealEff->hasCapsule = 0;
 
-        if (param0->unk_04.unk_04 != 0) {
-            param0->unk_98 = param0->unk_04.unk_04;
+        if (ballCapSealEff->ballCapCfg.ballTypeOverride != 0) {
+            ballCapSealEff->ballType = ballCapSealEff->ballCapCfg.ballTypeOverride;
         } else {
-            param0->unk_98 = Pokemon_GetValue(param0->unk_04.unk_08, MON_DATA_POKEBALL, NULL);
+            ballCapSealEff->ballType = Pokemon_GetValue(ballCapSealEff->ballCapCfg.mon, MON_DATA_POKEBALL, NULL);
         }
     } else {
-        param0->unk_94 = 1;
-        Pokemon_GetValue(param0->unk_04.unk_08, MON_DATA_BALL_CAPSULE, &param0->unk_A0);
+        ballCapSealEff->hasCapsule = 1;
+        Pokemon_GetValue(ballCapSealEff->ballCapCfg.mon, MON_DATA_BALL_CAPSULE, &ballCapSealEff->capsule);
     }
 }
 
-static void ov12_022360A0(SysTask *param0, void *param1)
+static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
 {
-    UnkStruct_ov12_02235FE0 *v0 = param1;
+    BallCapsuleSealEffect *ballCapSealEff = ballCapSealEffPtr;
     int i;
     int v2;
     int v3;
     int v4;
     BallSeal *v5;
 
-    switch (v0->unk_90) {
+    switch (ballCapSealEff->state) {
     case 0:
-        v0->unk_8C = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTDATA__BALL_PARTICLE, v0->heapID);
+        ballCapSealEff->particleNarc = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTDATA__BALL_PARTICLE, ballCapSealEff->heapID);
 
         for (i = 0; i < 2; i++) {
-            v5 = BallCapsule_GetBallSeals(&v0->unk_A0, i);
+            v5 = BallCapsule_GetBallSeals(&ballCapSealEff->capsule, i);
 
             if (v5 == NULL) {
                 continue;
@@ -418,23 +418,23 @@ static void ov12_022360A0(SysTask *param0, void *param1)
 
             v3 = sub_02098188(v2);
 
-            v0->unk_38[v0->unk_10] = v5;
-            GF_ASSERT(v0->unk_14[v0->unk_10] == NULL);
-            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->heapID, v3, 0);
+            ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
+            GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
-            if (v0->unk_14[v0->unk_10] == NULL) {
-                GF_ASSERT(v0->unk_14[v0->unk_10] != NULL);
+            if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
+                GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
                 continue;
             }
 
-            v0->unk_10++;
+            ballCapSealEff->sealCount++;
         }
 
-        v0->unk_90++;
+        ballCapSealEff->state++;
         break;
     case 1:
         for (i = 2; i < 4; i++) {
-            v5 = BallCapsule_GetBallSeals(&v0->unk_A0, i);
+            v5 = BallCapsule_GetBallSeals(&ballCapSealEff->capsule, i);
 
             if (v5 == NULL) {
                 continue;
@@ -452,23 +452,23 @@ static void ov12_022360A0(SysTask *param0, void *param1)
 
             v3 = sub_02098188(v2);
 
-            v0->unk_38[v0->unk_10] = v5;
-            GF_ASSERT(v0->unk_14[v0->unk_10] == NULL);
-            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->heapID, v3, 0);
+            ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
+            GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
-            if (v0->unk_14[v0->unk_10] == NULL) {
-                GF_ASSERT(v0->unk_14[v0->unk_10] != NULL);
+            if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
+                GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
                 continue;
             }
 
-            v0->unk_10++;
+            ballCapSealEff->sealCount++;
         }
 
-        v0->unk_90++;
+        ballCapSealEff->state++;
         break;
     case 2:
         for (i = 4; i < 6; i++) {
-            v5 = BallCapsule_GetBallSeals(&v0->unk_A0, i);
+            v5 = BallCapsule_GetBallSeals(&ballCapSealEff->capsule, i);
 
             if (v5 == NULL) {
                 continue;
@@ -486,23 +486,23 @@ static void ov12_022360A0(SysTask *param0, void *param1)
 
             v3 = sub_02098188(v2);
 
-            v0->unk_38[v0->unk_10] = v5;
-            GF_ASSERT(v0->unk_14[v0->unk_10] == NULL);
-            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->heapID, v3, 0);
+            ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
+            GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
-            if (v0->unk_14[v0->unk_10] == NULL) {
-                GF_ASSERT(v0->unk_14[v0->unk_10] != NULL);
+            if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
+                GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
                 continue;
             }
 
-            v0->unk_10++;
+            ballCapSealEff->sealCount++;
         }
 
-        v0->unk_90++;
+        ballCapSealEff->state++;
         break;
     case 3:
         for (i = 6; i < 8; i++) {
-            v5 = BallCapsule_GetBallSeals(&v0->unk_A0, i);
+            v5 = BallCapsule_GetBallSeals(&ballCapSealEff->capsule, i);
 
             if (v5 == NULL) {
                 continue;
@@ -520,21 +520,21 @@ static void ov12_022360A0(SysTask *param0, void *param1)
 
             v3 = sub_02098188(v2);
 
-            v0->unk_38[v0->unk_10] = v5;
-            GF_ASSERT(v0->unk_14[v0->unk_10] == NULL);
-            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->heapID, v3, 0);
+            ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
+            GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
+            ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] = BattleParticleUtil_CreateParticleSystemFromOpenNarc(ballCapSealEff->particleNarc, ballCapSealEff->heapID, v3, 0);
 
-            if (v0->unk_14[v0->unk_10] == NULL) {
-                GF_ASSERT(v0->unk_14[v0->unk_10] != NULL);
+            if (ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL) {
+                GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] != NULL);
                 continue;
             }
 
-            v0->unk_10++;
+            ballCapSealEff->sealCount++;
         }
 
-        v0->unk_90 = 0xFF;
+        ballCapSealEff->state = 0xFF;
 
-        NARC_dtor(v0->unk_8C);
+        NARC_dtor(ballCapSealEff->particleNarc);
         SysTask_Done(param0);
         break;
     default:
@@ -542,7 +542,7 @@ static void ov12_022360A0(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02236320(UnkStruct_ov12_02235FE0 *param0)
+void ov12_02236320(BallCapsuleSealEffect *ballCapSealEff)
 {
     int v0;
     int v1;
@@ -550,73 +550,73 @@ void ov12_02236320(UnkStruct_ov12_02235FE0 *param0)
     int v3;
     BallSeal *v4;
 
-    if (param0->unk_94 == 0) {
-        v3 = ov12_02235F64(param0->unk_98);
+    if (ballCapSealEff->hasCapsule == 0) {
+        v3 = ov12_02235F64(ballCapSealEff->ballType);
 
-        param0->unk_10 = 1;
-        param0->unk_14[0] = BattleParticleUtil_CreateParticleSystemEx(param0->heapID, 99, v3, 0);
-        param0->unk_90 = 0xFF;
+        ballCapSealEff->sealCount = 1;
+        ballCapSealEff->sealParticleSystems[0] = BattleParticleUtil_CreateParticleSystemEx(ballCapSealEff->heapID, 99, v3, 0);
+        ballCapSealEff->state = 0xFF;
     } else {
-        param0->unk_10 = 0;
-        param0->unk_90 = 0;
+        ballCapSealEff->sealCount = 0;
+        ballCapSealEff->state = 0;
 
         {
             SysTask *v5;
 
-            v5 = SysTask_Start(ov12_022360A0, param0, 1000);
-            ov12_022360A0(v5, param0);
+            v5 = SysTask_Start(ov12_022360A0, ballCapSealEff, 1000);
+            ov12_022360A0(v5, ballCapSealEff);
         }
     }
 }
 
-BOOL ov12_02236374(UnkStruct_ov12_02235FE0 *param0)
+BOOL ov12_02236374(BallCapsuleSealEffect *ballCapSealEff)
 {
-    if (param0->unk_90 == 0xFF) {
+    if (ballCapSealEff->state == 0xFF) {
         return 1;
     }
 
     return 0;
 }
 
-void ov12_02236384(UnkStruct_ov12_02235FE0 *param0, SPLEmitterCallback param1)
+void ov12_02236384(BallCapsuleSealEffect *ballCapSealEff, SPLEmitterCallback param1)
 {
-    param0->unk_88 = 1;
+    ballCapSealEff->isActive = 1;
 
     BattleAnimSystem_SetDefaultAlphaBlending();
-    ov12_0223646C(param0, param1);
+    ov12_0223646C(ballCapSealEff, param1);
 
-    param0->unk_84 = SysTask_Start(ov12_022363CC, param0, 1000);
+    ballCapSealEff->task = SysTask_Start(ov12_022363CC, ballCapSealEff, 1000);
 }
 
-void ov12_022363B4(UnkStruct_ov12_02235FE0 *param0)
+void ov12_022363B4(BallCapsuleSealEffect *ballCapSealEff)
 {
-    ov12_02236384(param0, ov12_02236598);
+    ov12_02236384(ballCapSealEff, ov12_02236598);
 }
 
-BOOL ov12_022363C4(UnkStruct_ov12_02235FE0 *param0)
+BOOL ov12_022363C4(BallCapsuleSealEffect *ballCapSealEff)
 {
-    return param0->unk_88;
+    return ballCapSealEff->isActive;
 }
 
-static void ov12_022363CC(SysTask *param0, void *param1)
+static void ov12_022363CC(SysTask *param0, void *ballCapSealEffPtr)
 {
     int v0;
     BOOL v1;
-    UnkStruct_ov12_02235FE0 *v2 = (UnkStruct_ov12_02235FE0 *)param1;
+    BallCapsuleSealEffect *ballCapSealEff = (BallCapsuleSealEffect *)ballCapSealEffPtr;
 
     v1 = 0;
 
-    GF_ASSERT(v2->unk_10 <= 9);
+    GF_ASSERT(ballCapSealEff->sealCount <= 9);
 
-    for (v0 = 0; v0 < v2->unk_10; v0++) {
-        if (v2->unk_14[v0] == NULL) {
+    for (v0 = 0; v0 < ballCapSealEff->sealCount; v0++) {
+        if (ballCapSealEff->sealParticleSystems[v0] == NULL) {
             continue;
         }
 
-        if ((ParticleSystem_GetActiveEmitterCount(v2->unk_14[v0]) == 0) && (v2->unk_5C[v0] != 0)) {
-            BattleParticleUtil_FreeParticleSystem(v2->unk_14[v0]);
-            v2->unk_14[v0] = NULL;
-            v2->unk_5C[v0] = 0;
+        if ((ParticleSystem_GetActiveEmitterCount(ballCapSealEff->sealParticleSystems[v0]) == 0) && (ballCapSealEff->sealActiveFlags[v0] != 0)) {
+            BattleParticleUtil_FreeParticleSystem(ballCapSealEff->sealParticleSystems[v0]);
+            ballCapSealEff->sealParticleSystems[v0] = NULL;
+            ballCapSealEff->sealActiveFlags[v0] = 0;
             continue;
         }
 
@@ -624,14 +624,14 @@ static void ov12_022363CC(SysTask *param0, void *param1)
     }
 
     if (v1 == 0) {
-        v2->unk_88 = 0;
+        ballCapSealEff->isActive = 0;
         SysTask_Done(param0);
     }
 }
 
-void ov12_02236428(UnkStruct_ov12_02235FE0 *param0)
+void ov12_02236428(BallCapsuleSealEffect *ballCapSealEff)
 {
-    Heap_Free(param0);
+    Heap_Free(ballCapSealEff);
 }
 
 static void ov12_02236430(SysTask *param0, void *param1)
@@ -649,36 +649,36 @@ static void ov12_02236430(SysTask *param0, void *param1)
     }
 }
 
-static void ov12_0223646C(UnkStruct_ov12_02235FE0 *param0, SPLEmitterCallback param1)
+static void ov12_0223646C(BallCapsuleSealEffect *ballCapSealEff, SPLEmitterCallback param1)
 {
     int v0, v1;
     int v2;
     int v3;
 
-    if (param0->unk_94 == 0) {
-        v3 = ov12_02235F78(param0->unk_98);
+    if (ballCapSealEff->hasCapsule == 0) {
+        v3 = ov12_02235F78(ballCapSealEff->ballType);
 
         for (v0 = 0; v0 < v3; v0++) {
-            ParticleSystem_CreateEmitterWithCallback(param0->unk_14[0], v0, param1, param0);
+            ParticleSystem_CreateEmitterWithCallback(ballCapSealEff->sealParticleSystems[0], v0, param1, ballCapSealEff);
         }
 
-        param0->unk_5C[0] = 1;
-        ParticleSystem_SetCameraProjection(param0->unk_14[0], 1);
+        ballCapSealEff->sealActiveFlags[0] = 1;
+        ParticleSystem_SetCameraProjection(ballCapSealEff->sealParticleSystems[0], 1);
     } else {
-        for (v0 = 0; v0 < param0->unk_10; v0++) {
-            UnkStruct_02236430 *v4 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02236430));
+        for (v0 = 0; v0 < ballCapSealEff->sealCount; v0++) {
+            UnkStruct_02236430 *v4 = Heap_Alloc(ballCapSealEff->heapID, sizeof(UnkStruct_02236430));
 
             GF_ASSERT(v4 != NULL);
 
             v4->unk_00 = v0;
-            v4->unk_08 = param0->unk_04.unk_00;
+            v4->unk_08 = ballCapSealEff->ballCapCfg.battlerType;
             v4->unk_18 = ov12_022365D4;
 
-            param0->unk_5C[v0] = 0;
+            ballCapSealEff->sealActiveFlags[v0] = 0;
 
-            v4->unk_0C = &param0->unk_5C[v0];
-            v4->unk_10 = param0->unk_14[v0];
-            v4->unk_14 = param0->unk_38[v0];
+            v4->unk_0C = &ballCapSealEff->sealActiveFlags[v0];
+            v4->unk_10 = ballCapSealEff->sealParticleSystems[v0];
+            v4->unk_14 = ballCapSealEff->seals[v0];
 
             GF_ASSERT(v4->unk_14 != NULL);
             v4->unk_04 = ov12_02237EA0(v4->unk_14);
@@ -690,7 +690,7 @@ static void ov12_0223646C(UnkStruct_ov12_02235FE0 *param0, SPLEmitterCallback pa
 
 static void ov12_02236520(int param0, VecFx32 *param1)
 {
-    ov12_02235758(param0, param1, 0, 1);
+    BattleAnimUtil_GetBattlerTypeWorldPos(param0, param1, 0, 1);
 
     {
         int v0;
@@ -740,8 +740,8 @@ static void ov12_02236520(int param0, VecFx32 *param1)
 static void ov12_02236598(SPLEmitter *param0)
 {
     int v0;
-    UnkStruct_ov12_02235FE0 *v1 = ParticleSystem_GetEmitterCallbackParam();
-    v0 = v1->unk_04.unk_00;
+    BallCapsuleSealEffect *ballCapSealEff = ParticleSystem_GetEmitterCallbackParam();
+    v0 = ballCapSealEff->ballCapCfg.battlerType;
 
     {
         VecFx32 v2;
@@ -755,7 +755,7 @@ static void ov12_022365D4(SPLEmitter *param0)
 {
     VecFx32 v0;
     int v1;
-    UnkStruct_ov12_02235FE0 *v2;
+    BallCapsuleSealEffect *unused;
     UnkStruct_02236430 *v3 = ParticleSystem_GetEmitterCallbackParam();
     v1 = v3->unk_08;
 
@@ -1107,7 +1107,7 @@ static BOOL ov12_02236918(BallRotation *param0)
 
             ManagedSprite_GetPositionXY(param0->unk_30, &v0.unk_00, &v0.unk_02);
 
-            param0->unk_D8 = ov12_02223764(param0->unk_90.battleSys, param0->unk_90.heapID);
+            param0->unk_D8 = BattleMonOBJData_NewAll(param0->unk_90.battleSys, param0->unk_90.heapID);
             param0->unk_D0 = ov12_02236690(&v0);
         }
         param0->unk_08++;
@@ -1122,7 +1122,7 @@ static BOOL ov12_02236918(BallRotation *param0)
     } break;
     case 2:
         ov12_022366F0(param0->unk_D0);
-        ov12_02223770(param0->unk_D8);
+        BattleMonOBJData_Free(param0->unk_D8);
         param0->unk_08++;
         break;
     case 3: {
@@ -1636,7 +1636,7 @@ static BOOL ov12_02236F24(BallRotation *param0)
             }
         }
 
-        if (ov12_02225D2C(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
+        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
             ov12_02237E24(param0, 0);
             param0->unk_08++;
         }
@@ -1747,7 +1747,7 @@ static BOOL ov12_022371E4(BallRotation *param0)
             }
         }
 
-        if (ov12_02225D2C(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
+        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
             ov12_02237E24(param0, 0);
             param0->unk_08++;
         }

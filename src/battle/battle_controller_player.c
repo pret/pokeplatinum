@@ -26,11 +26,10 @@
 #include "battle/battle_display.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_main.h"
-#include "battle/battle_message.h"
 #include "battle/battle_script.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
-#include "battle/struct_ov16_0224DDA8.h"
+#include "battle/message_defs.h"
 
 #include "bag.h"
 #include "communication_system.h"
@@ -426,7 +425,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                 }
 
                 if (BattleContext_IOBufferVal(battleCtx, i) != PLAYER_INPUT_CANCEL) {
-                    battleCtx->recordedCommandFlags[i] |= 0x1; // TODO: Constant
+                    battleCtx->recordedCommandFlags[i] |= RECORDED_CMD_FLAG_ACTION;
                 }
 
                 switch (BattleContext_IOBufferVal(battleCtx, i)) {
@@ -527,7 +526,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                     battleCtx->moveSlot[i] = battleCtx->ioBuffer[i][0] - 1;
                     battleCtx->moveSelected[i] = battleCtx->battleMons[i].moves[battleCtx->moveSlot[i]];
                     battleCtx->curCommandState[i] = COMMAND_SELECTION_TARGET_SELECT_INIT;
-                    battleCtx->recordedCommandFlags[i] |= 0x2;
+                    battleCtx->recordedCommandFlags[i] |= RECORDED_CMD_FLAG_TARGET;
                 }
             }
             break;
@@ -549,7 +548,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                 battleCtx->battlerActions[i][1] = battleCtx->ioBuffer[i][0] - 1;
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
 
-                battleCtx->recordedCommandFlags[i] |= 0x4;
+                battleCtx->recordedCommandFlags[i] |= RECORDED_CMD_FLAG_MOVE_SLOT;
             }
             break;
 
@@ -2044,13 +2043,12 @@ static void BattleControllerPlayer_SafariBaitCommand(BattleSystem *battleSys, Ba
     battleCtx->commandNext = BATTLE_CONTROL_MOVE_END;
     battleCtx->scriptTemp = BattleSystem_RandNext(battleSys) % 10;
 
-    // TODO: This 12 could use with a constant
-    if (battleCtx->safariCatchStage < 12) {
+    if (battleCtx->safariCatchStage < SAFARI_STAGE_MAX) {
         battleCtx->safariCatchStage++;
     }
 
     if (battleCtx->scriptTemp != 0) {
-        if (battleCtx->safariEscapeCount < 12) {
+        if (battleCtx->safariEscapeCount < SAFARI_STAGE_MAX) {
             battleCtx->safariEscapeCount++;
         }
     }
@@ -4826,19 +4824,19 @@ static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *b
 
     for (battler = 0; battler < maxBattlers; battler++) {
         if (battleCtx->battlerActions[battler][0] != BATTLE_CONTROL_MOVE_END) {
-            if (battleCtx->recordedCommandFlags[battler] & 0x1) {
+            if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_ACTION) {
                 recordedAction = (battleCtx->battlerActions[battler][0] - BATTLE_CONTROL_FIGHT) + 1;
                 BattleSystem_Record(battleSys, battler, recordedAction);
             }
 
             switch (battleCtx->battlerActions[battler][0]) {
             case BATTLE_CONTROL_FIGHT:
-                if (battleCtx->recordedCommandFlags[battler] & 0x2) {
+                if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_TARGET) {
                     recordedAction = battleCtx->battlerActions[battler][2];
                     BattleSystem_Record(battleSys, battler, recordedAction);
                 }
 
-                if (battleCtx->recordedCommandFlags[battler] & 0x4) {
+                if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_MOVE_SLOT) {
                     recordedAction = battleCtx->battlerActions[battler][1] + 1;
                     BattleSystem_Record(battleSys, battler, recordedAction);
                 }

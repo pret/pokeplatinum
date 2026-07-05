@@ -12,11 +12,11 @@ JubilifeTV4F_MiddleAgedMan:
     End
 
 JubilifeTV4F_Receptionist:
-    NPCMessage JubilifeTV4F_Text_ParticipationForAllIsOurTVNetworksMotto
+    NPCMessage JubilifeTV4F_Text_TVNetworksMotto
     End
 
 JubilifeTV4F_PokemonBreederF:
-    NPCMessage JubilifeTV4F_Text_WerePromotingTheThemeSmilesAreDreamy
+    NPCMessage JubilifeTV4F_Text_ThemeSmilesAreDreamy
     End
 
     .balign 4, 0

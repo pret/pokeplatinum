@@ -4,10 +4,10 @@
 #include "res/field/events/events_veilstone_store_elevator.h"
 
 
-    ScriptEntry VeilstoneStoreElevator_TalkElevatorOperator
+    ScriptEntry VeilstoneStoreElevator_Receptionist
     ScriptEntryEnd
 
-VeilstoneStoreElevator_TalkElevatorOperator:
+VeilstoneStoreElevator_Receptionist:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer

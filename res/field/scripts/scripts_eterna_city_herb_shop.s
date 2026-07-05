@@ -22,7 +22,7 @@ EternaCityHerbShop_ExpertF:
     End
 
 EternaCityHerbShop_ExpertM:
-    NPCMessage EternaCityHerbShop_Text_NonBitterWouldBeMedicalBreakthrough
+    NPCMessage EternaCityHerbShop_Text_InventNonBitterMedicine
     End
 
     .balign 4, 0

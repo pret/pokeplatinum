@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_SUNYSHORE_STATE, 0, 1
+    InitScriptGoToIfEqual VAR_SUNYSHORE_CITY_STATE, 0, 1
     InitScriptFrameTableEnd
 
     InitScriptEnd

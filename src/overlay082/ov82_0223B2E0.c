@@ -4,20 +4,20 @@
 #include <string.h>
 
 #include "applications/bag/application.h"
+#include "applications/berry_tag.h"
 #include "overlay082/ov82_0223B140.h"
 #include "overlay083/struct_ov83_0223C344.h"
-#include "overlay085/ov85_02241440.h"
 
 #include "bag.h"
 #include "bag_context.h"
+#include "berry_tag_data.h"
 #include "heap.h"
 #include "item.h"
 #include "overlay_manager.h"
-#include "unk_020972FC.h"
 
 FS_EXTERN_OVERLAY(overlay83);
 FS_EXTERN_OVERLAY(bag);
-FS_EXTERN_OVERLAY(overlay85);
+FS_EXTERN_OVERLAY(berry_tag);
 
 static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0);
 static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0);
@@ -160,14 +160,14 @@ static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
     u8 v1, v2, v3, item;
     Bag *bag = param0->unk_10->bag;
 
-    FS_EXTERN_OVERLAY(overlay85);
+    FS_EXTERN_OVERLAY(berry_tag);
 
     const ApplicationManagerTemplate v6 = {
-        ov85_02241440, ov85_0224154C, ov85_022415A0, FS_OVERLAY_ID(overlay85)
+        BerryTag_Init, BerryTag_Main, BerryTag_Exit, FS_OVERLAY_ID(berry_tag)
     };
 
-    param0->unk_18 = sub_020972FC(param0->heapID);
-    sub_02097320(param0->unk_18, param0->unk_08, 1);
+    param0->unk_18 = BerryTagData_Alloc(param0->heapID);
+    BerryTagData_Add(param0->unk_18, param0->unk_08, TRUE);
 
     v3 = 0;
 
@@ -175,13 +175,13 @@ static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
         item = Item_ForBerryNumber(i);
 
         if (Bag_CanRemoveItem(bag, item, 1, param0->heapID) == TRUE) {
-            sub_02097320(param0->unk_18, item, 0);
+            BerryTagData_Add(param0->unk_18, item, FALSE);
             v3++;
         }
     }
 
     BagCursor_GetFieldPocketPosition(param0->unk_0C, 4, &v2, &v1);
-    sub_0209733C(param0->unk_18, v1, v2, v3 + 2);
+    BerryTagData_SetScroll(param0->unk_18, v1, v2, v3 + 2);
 
     param0->appMan = ApplicationManager_New(&v6, param0->unk_18, param0->heapID);
     return 3;
@@ -195,7 +195,7 @@ static int ov82_0223B510(UnkStruct_ov83_0223C344 *param0)
         return 3;
     }
 
-    sub_02097390(param0->unk_18, &v0, &v1);
+    BerryTagData_GetScroll(param0->unk_18, &v0, &v1);
     BagCursor_SetFieldPocketPosition(param0->unk_0C, 4, v1, v0);
 
     Heap_Free(param0->unk_18);

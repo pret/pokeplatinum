@@ -1,10 +1,10 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry Unk241_Dummy1
     ScriptEntryEnd
 
-_0006:
+Unk241_Dummy1:
     SetFlag FLAG_FIRST_ARRIVAL_MYSTERY_ZONE_D06
     End
 

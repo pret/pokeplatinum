@@ -149,7 +149,7 @@ DayCareCommon_TryRaiseSelectedSlot:
     GoToIfEq VAR_RESULT, SPECIES_NONE, DayCareCommon_CantRaiseEgg
     CountAliveMonsExcept VAR_RESULT, VAR_0x8000
     GoToIfEq VAR_RESULT, 0, DayCareCommon_SelectedOnlyAlivePokemon
-    BufferPartyMonNicknameReturnSpecies 0, VAR_0x8000, VAR_0x8001
+    BufferPartyMonNicknameReturnSpecies VAR_0x8000, VAR_0x8001
     StorePartyMonIntoDaycare VAR_0x8000
     SetFlag FLAG_STORED_POKEMON_AT_DAY_CARE
     GetDaycareState VAR_RESULT

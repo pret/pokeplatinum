@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_HEALTHBOX_H
-#define POKEPLATINUM_HEALTHBOX_H
+#ifndef POKEPLATINUM_BATTLE_HEALTHBOX_H
+#define POKEPLATINUM_BATTLE_HEALTHBOX_H
 
 #include "struct_decls/battle_system.h"
 
@@ -78,7 +78,7 @@ typedef struct HealthBox {
     u8 caughtSpecies;
     u8 command;
     u8 delay;
-    u8 unk_4E;
+    u8 expSoundTimer;
     u8 scrollDirection : 1;
     u8 doneScrolling : 1;
     u8 unused_4F_2 : 1;
@@ -173,9 +173,9 @@ void HealthBox_Scroll(HealthBox *healthbox, enum HealthBoxScrollDirection direct
  */
 u8 HealthBox_Type(int battlerType, u32 battleType);
 void Healthbox_StartLevelUpFlash(HealthBox *healthbox, u8 *param1);
-void ov16_02268468(HealthBox *healthbox);
-void ov16_0226846C(HealthBox *healthbox);
+void dummy_02268468(HealthBox *healthbox);
+void dummy_0226846C(HealthBox *healthbox);
 void Healthbox_StartBobAnimation(HealthBox *healthbox);
 void Healthbox_StopBobAnimation(HealthBox *healthbox);
 
-#endif // POKEPLATINUM_HEALTHBOX_H
+#endif // POKEPLATINUM_BATTLE_HEALTHBOX_H

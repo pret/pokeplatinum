@@ -15,13 +15,13 @@
     ScriptEntryEnd
 
 TwinleafTown_OnTransition:
-    CallIfEq VAR_UNK_0x40F4, 1, _004F
+    CallIfEq VAR_DUMMY_0x40F4, 1, TwinleafTown_IncreaseDummyVar
     CallIfEq VAR_PLAYER_HOUSE_STATE, 4, TwinleafTown_SetPlayerHouseState5
     CallIfEq VAR_PLAYER_HOUSE_STATE, 6, TwinleafTown_SetPlayerHouseState7
     End
 
-_004F:
-    SetVar VAR_UNK_0x40F4, 2
+TwinleafTown_IncreaseDummyVar:
+    SetVar VAR_DUMMY_0x40F4, 2
     Return
 
 TwinleafTown_SetPlayerHouseState7:
@@ -477,7 +477,7 @@ TwinleafTown_BreederF:
     LockAll
     FacePlayer
     GoToIfSet FLAG_HAS_POKEDEX, TwinleafTown_HelpingPutTogetherPokedex
-    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTown_PokemonYouLookGoodTogether
+    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTown_YouLookGoodTogether
     Message TwinleafTown_Text_WildPokemonAttack
     WaitButton
     CloseMessage
@@ -491,8 +491,8 @@ TwinleafTown_HelpingPutTogetherPokedex:
     ReleaseAll
     End
 
-TwinleafTown_PokemonYouLookGoodTogether:
-    Message TwinleafTown_Text_PokemonYouLookGoodTogether
+TwinleafTown_YouLookGoodTogether:
+    Message TwinleafTown_Text_YouLookGoodTogether
     WaitButton
     CloseMessage
     ReleaseAll
@@ -504,12 +504,12 @@ TwinleafTown_MapSignpost:
 
 TwinleafTown_MailboxPlayer:
     BufferPlayerName 0
-    ShowLandmarkSign TwinleafTown_Text_PlayerMailbox
+    ShowLandmarkSign TwinleafTown_Text_PlayersHouse
     End
 
 TwinleafTown_MailboxRival:
     BufferRivalName 0
-    ShowLandmarkSign TwinleafTown_Text_RivalMailbox
+    ShowLandmarkSign TwinleafTown_Text_RivalsHouse
     End
 
     .balign 4, 0

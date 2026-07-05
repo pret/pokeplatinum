@@ -8,15 +8,15 @@
     ScriptEntryEnd
 
 Route205North_Fisherman:
-    NPCMessage Route205North_Text_ToSitBackAndFishCasually
+    NPCMessage Route205North_Text_FishCasually
     End
 
 Route205North_ArrowSignpostEternaForest:
-    ShowArrowSign Route205North_Text_Rt205EternaForest
+    ShowArrowSign Route205North_Text_SignEternaForest
     End
 
 Route205North_ArrowSignpostEternaCity:
-    ShowArrowSign Route205North_Text_Rt205EternaCity
+    ShowArrowSign Route205North_Text_SignEternaCity
     End
 
     .balign 4, 0

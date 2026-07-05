@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_0209B75C_decl.h"
+#include "struct_decls/battle_frontier_decl.h"
 
 #include "overlay104/struct_ov104_0222E8C8.h"
 
@@ -74,7 +74,7 @@ typedef struct FrontierMenuManager {
 } FrontierMenuManager;
 
 struct FrontierScriptManager {
-    UnkStruct_0209B75C *unk_00;
+    BattleFrontier *frontier;
     FrontierScriptContext *ctx[8];
     UnkStruct_ov104_0222E8C8 unk_24;
     enum HeapID heapID;

@@ -17,7 +17,7 @@ SnowpointCityMart_SpecialtyVendor:
     End
 
 SnowpointCityMart_Youngster:
-    NPCMessage SnowpointCityMart_Text_UsingTmsForEliteFour
+    NPCMessage SnowpointCityMart_Text_UsingTMsForEliteFour
     End
 
 SnowpointCityMart_SnowpointLady:

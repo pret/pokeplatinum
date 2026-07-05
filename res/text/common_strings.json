@@ -77,7 +77,7 @@
       "en_US": "We hope to see you again!"
     },
     {
-      "id": "CommonStrings_Text_PokecenterYourPokemonMayBeInfected",
+      "id": "CommonStrings_Text_PokecenterPokemonMayBeInfected",
       "en_US": [
         "Your Pokémon may be infected with\n",
         "the Pokérus.\r",
@@ -215,14 +215,14 @@
       ]
     },
     {
-      "id": "CommonStrings_Text_PutItemInThePocketNoLineFeed",
+      "id": "CommonStrings_Text_PutItemInPocket",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the {COLOR 2}{STRVAR_1 31, 2, 0}{COLOR 0} Pocket."
       ]
     },
     {
-      "id": "CommonStrings_Text_PutAwayItemInTheFashionCaseNoLineFeed",
+      "id": "CommonStrings_Text_PutItemInFashionCase",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put away the\n",
         "{STRVAR_1 31, 1, 0} in the Fashion Case."
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "CommonStrings_Text_PokecenterFirstLetsRestoreYourPokemon",
+      "id": "CommonStrings_Text_PokecenterFirstRestorePokemon",
       "en_US": [
         "First, let’s restore your Pokémon\n",
         "to full health."
@@ -831,14 +831,14 @@
       ]
     },
     {
-      "id": "CommonStrings_Text_PutItemInThePocket",
+      "id": "CommonStrings_Text_PutItemInPocket_ArrowPrompt",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
         "in the {COLOR 2}{STRVAR_1 27, 2, 0}{COLOR 0} Pocket.\r"
       ]
     },
     {
-      "id": "CommonStrings_Text_PutAwayItemInTheFashionCase",
+      "id": "CommonStrings_Text_PutItemInFashionCase_ArrowPrompt",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put away the\n",
         "{STRVAR_1 31, 1, 0} in the Fashion Case.\r"

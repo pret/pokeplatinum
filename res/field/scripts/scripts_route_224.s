@@ -16,14 +16,14 @@
 Route224_OnTransition:
     CallIfEq VAR_SHAYMIN_EVENT_STATE, 1, Route224_IncreaseVars
     GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_DontHideProfOak
-    CheckGameCompleted VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, Route224_DontHideProfOak
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, Route224_DontHideProfOak
-    CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, Route224_DontHideProfOak
-    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, Route224_DontHideProfOak
+    CheckGameCompleted VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, Route224_DontHideProfOak
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, Route224_DontHideProfOak
+    CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, Route224_DontHideProfOak
+    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, Route224_DontHideProfOak
     ClearFlag FLAG_HIDE_ROUTE_224_PROF_OAK
 Route224_DontHideProfOak:
     End
@@ -102,7 +102,7 @@ Route224_ExpressThanks:
     WaitFadeScreen
     EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
     SetPlayerVolume SOUND_VOLUME_MIN
-    Warp MAP_HEADER_ROUTE_224, 0, 908, 492, DIR_NORTH
+    Warp MAP_HEADER_ROUTE_224, 908, 492, DIR_NORTH
     WaitTime 15, VAR_RESULT
     FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
     WaitFadeScreen
@@ -303,7 +303,7 @@ Route224_Movement_ProfOakLookAround:
     Delay16
     EndMovement
 
-Route224_UnusedMovement:
+Route224_Movement_Unused:
     WalkOnSpotNormalSouth
     EndMovement
 

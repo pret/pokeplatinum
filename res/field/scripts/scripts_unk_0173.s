@@ -1,10 +1,10 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry Unk173_Dummy1
     ScriptEntryEnd
 
-_0006:
+Unk173_Dummy1:
     NPCMessage 0
     End
 

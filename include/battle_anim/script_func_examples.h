@@ -9,6 +9,6 @@ void BattleAnimScriptFunc_Nop(BattleAnimSystem *system);
 void BattleAnimScriptFunc_AnimExample(BattleAnimSystem *system);
 void BattleAnimScriptFunc_SoundExample(BattleAnimSystem *system);
 void BattleAnimScriptFunc_GenericExample(BattleAnimSystem *system);
-void ov12_02226B1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
+void BattleAnimScriptFunc_SpriteExample(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteManager, ManagedSprite *managedSprite);
 
 #endif // POKEPLATINUM_SCRIPT_FUNC_EXAMPLES_H

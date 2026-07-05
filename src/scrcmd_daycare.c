@@ -124,7 +124,7 @@ BOOL ScrCmd_BufferPartyMonNicknameReturnSpecies(ScriptContext *ctx)
     party = SaveData_GetParty(fieldSystem->saveData);
     *destVar = Party_StringTemplateSetNicknameReturnSpecies(party, partySlot, *strTemplate);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_StorePartyMonIntoDaycare(ScriptContext *ctx)

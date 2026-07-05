@@ -7,9 +7,9 @@
     ScriptEntryEnd
 
 JubilifeCityCondominiums2F_BugCatcher:
-    NPCMessage JubilifeCityCondominiums2F_Text_ILikeHowPokemonCanUseAttacks
+    NPCMessage JubilifeCityCondominiums2F_Text_ILikeHowPokemonAttack
     End
 
 JubilifeCityCondominiums2F_PokemonBreederM:
-    NPCMessage JubilifeCityCondominiums2F_Text_DidYouBuySomeHealBallsAtThePokeMart
+    NPCMessage JubilifeCityCondominiums2F_Text_DidYouBuyHealBalls
     End

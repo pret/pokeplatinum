@@ -12,31 +12,31 @@
     ScriptEntryEnd
 
 PastoriaGym_Init:
-    SetVar VAR_MAP_LOCAL_1, 0
-    SetVar VAR_MAP_LOCAL_2, 1
-    SetVar VAR_MAP_LOCAL_3, 0
+    SetVar VAR_MAP_LOCAL_0x01, 0
+    SetVar VAR_MAP_LOCAL_0x02, 1
+    SetVar VAR_MAP_LOCAL_0x03, 0
     InitPersistedMapFeaturesForPastoriaGym
     End
 
 PastoriaGym_BlueButton:
     PressPastoriaGymButton
-    SetVar VAR_MAP_LOCAL_1, 1
-    SetVar VAR_MAP_LOCAL_2, 0
-    SetVar VAR_MAP_LOCAL_3, 0
+    SetVar VAR_MAP_LOCAL_0x01, 1
+    SetVar VAR_MAP_LOCAL_0x02, 0
+    SetVar VAR_MAP_LOCAL_0x03, 0
     End
 
 PastoriaGym_GreenButton:
     PressPastoriaGymButton
-    SetVar VAR_MAP_LOCAL_1, 0
-    SetVar VAR_MAP_LOCAL_2, 1
-    SetVar VAR_MAP_LOCAL_3, 0
+    SetVar VAR_MAP_LOCAL_0x01, 0
+    SetVar VAR_MAP_LOCAL_0x02, 1
+    SetVar VAR_MAP_LOCAL_0x03, 0
     End
 
 PastoriaGym_YellowButton:
     PressPastoriaGymButton
-    SetVar VAR_MAP_LOCAL_1, 0
-    SetVar VAR_MAP_LOCAL_2, 0
-    SetVar VAR_MAP_LOCAL_3, 1
+    SetVar VAR_MAP_LOCAL_0x01, 0
+    SetVar VAR_MAP_LOCAL_0x02, 0
+    SetVar VAR_MAP_LOCAL_0x03, 1
     End
 
 PastoriaGym_Wake:
@@ -44,7 +44,7 @@ PastoriaGym_Wake:
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_WakeAlreadyHaveFenBadge
-    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 122, 0, 0, 0
+    CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, MAP_HEADER_PASTORIA_CITY_GYM
     Message PastoriaGym_Text_WakeIntro
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_WAKE
@@ -63,20 +63,20 @@ PastoriaGym_Wake:
     SetTrainerFlag TRAINER_SAILOR_SAMSON
     SetTrainerFlag TRAINER_TUBER_JACKY
     SetTrainerFlag TRAINER_TUBER_CAITLYN
-    SetVar VAR_PASTORIA_STATE, 3
+    SetVar VAR_PASTORIA_CITY_STATE, 3
     SetFlag FLAG_HIDE_PASTORIA_CITY_GRUNT_M
     SetFlag FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT
-    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, 122, TRAINER_LEADER_WAKE, 0, 0
+    CreateJournalEvent LOCATION_EVENT_BEAT_GYM_LEADER, MAP_HEADER_PASTORIA_CITY_GYM, TRAINER_LEADER_WAKE
     Message PastoriaGym_Text_WakeExplainFenBadge
-    GoTo PastoriaGym_WakeTryGiveTm55
+    GoTo PastoriaGym_WakeTryGiveTM55
     End
 
-PastoriaGym_WakeTryGiveTm55:
+PastoriaGym_WakeTryGiveTM55:
     SetVar VAR_0x8004, ITEM_TM55
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaGym_WakeCannotGiveTm55
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaGym_WakeCannotGiveTM55
     Common_GiveItemQuantity
-    SetFlag FLAG_OBTAINED_WAKE_TM55
+    SetFlag FLAG_RECEIVED_WAKE_TM55
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
     Message PastoriaGym_Text_WakeExplainTM55
@@ -85,14 +85,14 @@ PastoriaGym_WakeTryGiveTm55:
     ReleaseAll
     End
 
-PastoriaGym_WakeCannotGiveTm55:
+PastoriaGym_WakeCannotGiveTM55:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
 PastoriaGym_WakeAlreadyHaveFenBadge:
-    GoToIfUnset FLAG_OBTAINED_WAKE_TM55, PastoriaGym_WakeTryGiveTm55
+    GoToIfUnset FLAG_RECEIVED_WAKE_TM55, PastoriaGym_WakeTryGiveTM55
     Message PastoriaGym_Text_WakeAfterbadge
     WaitButton
     CloseMessage

@@ -3,42 +3,42 @@
 #include "res/field/events/events_hearthome_city_gym_entrance_room.h"
 
 
-    ScriptEntry EternaGym_GymGuide
+    ScriptEntry HearthomeGym_GymGuide
     ScriptEntry HearthomeGym_GymStatue
-    ScriptEntry HearthomeGym_GymGuide_InitialVisit
+    ScriptEntry HearthomeGym_OnFrame_FirstVisit
     ScriptEntryEnd
 
-EternaGym_GymGuide:
+HearthomeGym_GymGuide:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfBadgeAcquired BADGE_ID_RELIC, EternaGym_GymGuideAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_RELIC, HearthomeGym_GymGuideAfterBadge
     Message HearthomeGym_Text_GymGuideHearLongSpielAgain
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, EternaGym_GymGuideExplanation
-    GoToIfEq VAR_RESULT, MENU_NO, EternaGym_GymGuideEncouragement
+    GoToIfEq VAR_RESULT, MENU_YES, HearthomeGym_GymGuideExplanation
+    GoToIfEq VAR_RESULT, MENU_NO, HearthomeGym_GymGuideEncouragement
     End
 
-EternaGym_GymGuideExplanation:
+HearthomeGym_GymGuideExplanation:
     Message HearthomeGym_Text_GymGuideExplanation
-    GoTo EternaGym_GymGuideEnd
+    GoTo HearthomeGym_GymGuideEnd
     End
 
-EternaGym_GymGuideEncouragement:
+HearthomeGym_GymGuideEncouragement:
     Message HearthomeGym_Text_GymGuideGoGetEm
-    GoTo EternaGym_GymGuideEnd
+    GoTo HearthomeGym_GymGuideEnd
     End
 
-EternaGym_GymGuideEnd:
+HearthomeGym_GymGuideEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-EternaGym_GymGuideAfterBadge:
+HearthomeGym_GymGuideAfterBadge:
     BufferPlayerName 0
     Message HearthomeGym_Text_GymGuideAfterBadge
-    GoTo EternaGym_GymGuideEnd
+    GoTo HearthomeGym_GymGuideEnd
     End
 
 HearthomeGym_GymStatue:
@@ -63,20 +63,20 @@ HearthomeGym_GymStatueAfterBadge:
     ReleaseAll
     End
 
-HearthomeGym_GymGuide_InitialVisit:
+HearthomeGym_OnFrame_FirstVisit:
     LockAll
-    ApplyMovement LOCALID_GYM_GUIDE, HearthomeGym_GymGuideMoveToPlayer
+    ApplyMovement LOCALID_GYM_GUIDE, HearthomeGym_Movement_GymGuideMoveToPlayer
     WaitMovement
     Message HearthomeGym_Text_GymGuideInitialVisit
     CloseMessage
-    ApplyMovement LOCALID_GYM_GUIDE, HearthomeGym_GymGuideReturnToPosition
+    ApplyMovement LOCALID_GYM_GUIDE, HearthomeGym_Movement_GymGuideReturnToPosition
     WaitMovement
     SetVar VAR_HAS_ENTERED_HEARTHOME_GYM_BEFORE, TRUE
     ReleaseAll
     End
 
     .balign 4, 0
-HearthomeGym_GymGuideMoveToPlayer:
+HearthomeGym_Movement_GymGuideMoveToPlayer:
     EmoteExclamationMark
     Delay8
     WalkNormalWest
@@ -84,7 +84,7 @@ HearthomeGym_GymGuideMoveToPlayer:
     EndMovement
 
     .balign 4, 0
-HearthomeGym_GymGuideReturnToPosition:
+HearthomeGym_Movement_GymGuideReturnToPosition:
     WalkNormalNorth
     WalkNormalEast
     WalkOnSpotNormalSouth

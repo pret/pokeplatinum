@@ -331,7 +331,7 @@ void ov104_0223AB0C(u8 param0, u16 param1, u8 param2, FrontierPokemonDataDTO *pa
     return;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewBattleFactory(BattleFactory *battleFactory, UnkStruct_ov104_02230BE4 *param1)
+FieldBattleDTO *FieldBattleDTO_NewBattleFactory(BattleFactory *battleFactory, FieldFrontierDTO *fieldData)
 {
     int i;
     FrontierTrainerDataDTO trDataDTO;
@@ -343,7 +343,7 @@ FieldBattleDTO *FieldBattleDTO_NewBattleFactory(BattleFactory *battleFactory, Un
     Party_HealAllMembers(battleFactory->opponentsParty);
 
     FieldBattleDTO *battleDTO = FieldBattleDTO_New(HEAP_ID_FIELD2, BattleFactory_GetBattleType(battleFactory->challengeType));
-    FieldBattleDTO_InitFromGameState(battleDTO, NULL, param1->saveData, param1->mapHeaderID, param1->journalEntry, param1->bagCursor, param1->subscreenCursorOn);
+    FieldBattleDTO_InitFromGameState(battleDTO, NULL, fieldData->saveData, fieldData->mapHeaderID, fieldData->journalEntry, fieldData->bagCursor, fieldData->subscreenCursorOn);
 
     battleDTO->background = BACKGROUND_BATTLE_FACTORY;
     battleDTO->terrain = TERRAIN_BATTLE_FACTORY;

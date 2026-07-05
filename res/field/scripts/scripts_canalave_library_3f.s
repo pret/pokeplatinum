@@ -19,9 +19,9 @@
     ScriptEntryEnd
 
 CanalaveLibrary3F_OnTransition:
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, CanalaveLibrary3F_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, CanalaveLibrary3F_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, CanalaveLibrary3F_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, CanalaveLibrary3F_SetCounterpartGraphicsLucas
     End
 
 CanalaveLibrary3F_SetCounterpartGraphicsDawn:
@@ -181,7 +181,7 @@ CanalaveLibrary3F_Explosion:
     PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_PROF_ROWAN
     StopSE SEQ_SE_DP_KAIDAN2
-    SetVar VAR_CANALAVE_STATE, 4
+    SetVar VAR_CANALAVE_CITY_STATE, 4
     SetVar VAR_CANALAVE_LIBRARY_STATE, 2
     SetFlag FLAG_LAKE_VALOR_EXPLODED
     SetFlag FLAG_HIDE_VALOR_LAKEFRONT_CAMERAMEN

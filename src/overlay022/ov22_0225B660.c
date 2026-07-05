@@ -297,7 +297,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     String_Free(v7);
 
     word = DressUpPhoto_GetTitleWord(param0->photo);
-    StringTemplate_SetCustomMessageWord(v5, 0, word);
+    StringTemplate_SetEasyChatWord(v5, 0, word);
 
     v7 = String_Init(200, HEAP_ID_13);
     v6 = MessageLoader_GetNewString(v8, 45);

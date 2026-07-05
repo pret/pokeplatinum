@@ -1,20 +1,19 @@
 #ifndef POKEPLATINUM_APPLICATIONS_EASY_CHAT_CATEGORIES_H
 #define POKEPLATINUM_APPLICATIONS_EASY_CHAT_CATEGORIES_H
 
-#include "struct_decls/struct_020998EC_decl.h"
-
 #include "applications/easy_chat/main.h"
 #include "applications/easy_chat/struct_ov20_021D2128_decl.h"
 #include "applications/easy_chat/struct_ov20_021D4E8C.h"
 #include "applications/easy_chat/struct_ov20_021D4FF0.h"
 
+#include "easy_chat_word_list.h"
 #include "narc.h"
 #include "sprite.h"
 
 typedef struct {
     UnkStruct_ov20_021D2128 *unk_00;
     const EasyChatApp *easyChatApp;
-    const UnkStruct_020998EC *unk_08;
+    const EasyChatWordList *unk_08;
     BgConfig *bgConfig;
     u32 unk_10;
     u32 unk_14;
@@ -24,7 +23,7 @@ typedef struct {
     Sprite *cursorSprite;
 } EasyChatCategoriesContext;
 
-EasyChatCategoriesContext *EasyChatCategoriesContext_New(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *easyChatApp, const UnkStruct_020998EC *param2);
+EasyChatCategoriesContext *EasyChatCategoriesContext_New(UnkStruct_ov20_021D2128 *param0, const EasyChatApp *easyChatApp, const EasyChatWordList *param2);
 void EasyChatCategoriesContext_Free(EasyChatCategoriesContext *ctx);
 void EasyChatCategories_DrawInterface(EasyChatCategoriesContext *ctx, NARC *narc);
 void ov20_021D3E48(EasyChatCategoriesContext *ctx, BOOL param1);

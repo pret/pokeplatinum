@@ -107,6 +107,7 @@ enum ScriptContextType {
 #define SCRIPT_ID_OFFSET_INIT_NEW_GAME                 9600
 #define SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS             9700
 #define SCRIPT_ID_OFFSET_CONTESTS                      9800
+#define SCRIPT_ID_OFFSET_UNUSED_0397                   9900
 #define SCRIPT_ID_OFFSET_POKEDEX_RATINGS               9950
 #define SCRIPT_ID_OFFSET_FIELD_MOVES                   10000
 #define SCRIPT_ID_OFFSET_TV_BROADCAST                  10100
@@ -189,7 +190,7 @@ BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID);
 void FieldSystem_SetFlag(FieldSystem *fieldSystem, u16 flagID);
 void FieldSystem_ClearFlag(FieldSystem *fieldSystem, u16 flagID);
 void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem);
-void sub_0203F1FC(FieldSystem *fieldSystem);
+void FieldSystem_ClearDailyFlags(FieldSystem *fieldSystem);
 void FieldSystem_SetScriptParameters(FieldSystem *fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3);
 u16 Script_GetTrainerID(u16 scriptID);
 BOOL Script_GetTrainerBattlerIndex(u16 scriptID);

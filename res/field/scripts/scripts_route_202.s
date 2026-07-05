@@ -14,9 +14,9 @@
 
 Route202_OnTransition:
     CallIfGe VAR_ROUTE_202_STATE, 2, Route202_SetCounterpartPokeRadarPosition
-    GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Route202_SetCounterpartGraphicsDawn
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Route202_SetCounterpartGraphicsLucas
+    GetPlayerGender VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_MALE, Route202_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0x00, GENDER_FEMALE, Route202_SetCounterpartGraphicsLucas
     End
 
 Route202_SetCounterpartGraphicsDawn:
@@ -34,19 +34,19 @@ Route202_SetCounterpartPokeRadarPosition:
     Return
 
 Route202_Youngster:
-    NPCMessage Route202_Text_SomePokemonOnlyAppearInTheMorning
+    NPCMessage Route202_Text_SomePokemonOnlyInTheMorning
     End
 
 Route202_ArrowSignpostSandgemTown:
-    ShowArrowSign Route202_Text_Rt202SandgemTown
+    ShowArrowSign Route202_Text_SignSandgemTown
     End
 
 Route202_ArrowSignpostJubilifeCity:
-    ShowArrowSign Route202_Text_Rt202JubilifeCity
+    ShowArrowSign Route202_Text_SignJubilifeCity
     End
 
 Route202_TrainerTipsSignpost:
-    ShowScrollingSign Route202_Text_TrainerTipsPokemonInvolvedInBattleEarnExpPoints
+    ShowScrollingSign Route202_Text_TrainerTipsEarnExpPoints
     End
 
 Route202_CoordEvent_CatchingTutorial:
@@ -90,22 +90,22 @@ Route202_CounterpartWalkToPlayerZ829:
 Route202_CheckStartCatchingTutorial:
     GoToIfUnset FLAG_RECEIVED_PARCEL, Route202_TellYourFamily
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnIHaventShownYouHowToCatchAPokemon
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasDoYouKnowHowToCatchAPokemon
+    GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnIllDemonstrateHowToCatch
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasIllDemonstrateHowToCatch
     End
 
-Route202_DawnIHaventShownYouHowToCatchAPokemon:
+Route202_DawnIllDemonstrateHowToCatch:
     Common_SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
-    Message Route202_Text_DawnIHaventShownYouHowToCatchAPokemon
+    Message Route202_Text_DawnIllDemonstrateHowToCatch
     GoTo Route202_DoCatchingTutorial
 
-Route202_LucasDoYouKnowHowToCatchAPokemon:
+Route202_LucasIllDemonstrateHowToCatch:
     Common_SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
-    Message Route202_Text_LucasDoYouKnowHowToCatchAPokemon
+    Message Route202_Text_LucasIllDemonstrateHowToCatch
     GoTo Route202_DoCatchingTutorial
 
 Route202_DoCatchingTutorial:
@@ -117,18 +117,18 @@ Route202_DoCatchingTutorial:
     ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartWalkOnSpotEastAfterCatchingTutorial
     WaitMovement
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnToGetYouStartedIllGiveYouFivePokeBalls
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasHereIllGiveYouFivePokeballsToGetYouStarted
+    GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnIllGiveYouFivePokeBalls
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasIllGiveYouFivePokeBalls
     End
 
-Route202_DawnToGetYouStartedIllGiveYouFivePokeBalls:
+Route202_DawnIllGiveYouFivePokeBalls:
     BufferPlayerName 0
-    Message Route202_Text_DawnToGetYouStartedIllGiveYouFivePokeBalls
+    Message Route202_Text_DawnIllGiveYouFivePokeBalls
     GoTo Route202_GivePokeballs
 
-Route202_LucasHereIllGiveYouFivePokeballsToGetYouStarted:
+Route202_LucasIllGiveYouFivePokeBalls:
     BufferPlayerName 0
-    Message Route202_Text_LucasHereIllGiveYouFivePokeballsToGetYouStarted
+    Message Route202_Text_LucasIllGiveYouFivePokeBalls
     GoTo Route202_GivePokeballs
 
 Route202_GivePokeballs:
@@ -168,30 +168,30 @@ Route202_DawnTellYourFamily:
     BufferCounterpartName 0
     BufferPlayerName 1
     CallIfUnset FLAG_TALKED_TO_ROUTE_202_COUNTERPART, Route202_DawnDidYouTellYourFamily
-    CallIfSet FLAG_TALKED_TO_ROUTE_202_COUNTERPART, Route202_DawnYouShouldGoTellYourFamily
+    CallIfSet FLAG_TALKED_TO_ROUTE_202_COUNTERPART, Route202_DawnGoTellYourFamily
     GoTo Route202_CloseMessageTellYourFamily
 
 Route202_DawnDidYouTellYourFamily:
     Message Route202_Text_DawnDidYouTellYourFamily
     Return
 
-Route202_DawnYouShouldGoTellYourFamily:
-    Message Route202_Text_DawnYouShouldGoTellYourFamily
+Route202_DawnGoTellYourFamily:
+    Message Route202_Text_DawnGoTellYourFamily
     Return
 
 Route202_LucasTellYourFamily:
     BufferCounterpartName 0
     BufferPlayerName 1
     CallIfUnset FLAG_TALKED_TO_ROUTE_202_COUNTERPART, Route202_LucasDidYouTellYourFamily
-    CallIfSet FLAG_TALKED_TO_ROUTE_202_COUNTERPART, Route202_LucasWhyDontYouGoTellYourFamily
+    CallIfSet FLAG_TALKED_TO_ROUTE_202_COUNTERPART, Route202_LucasGoTellYourFamily
     GoTo Route202_CloseMessageTellYourFamily
 
 Route202_LucasDidYouTellYourFamily:
     Message Route202_Text_LucasDidYouTellYourFamily
     Return
 
-Route202_LucasWhyDontYouGoTellYourFamily:
-    Message Route202_Text_LucasWhyDontYouGoTellYourFamily
+Route202_LucasGoTellYourFamily:
+    Message Route202_Text_LucasGoTellYourFamily
     Return
 
 Route202_CloseMessageTellYourFamily:
@@ -365,8 +365,8 @@ Route202_Counterpart:
     BufferPlayerName 0
     GetPlayerDir VAR_0x8002
     GetPlayerGender VAR_0x8000
-    CallIfEq VAR_0x8000, GENDER_MALE, Route202_DawnLetMeShowYouHowThePokeRadarWorks
-    CallIfEq VAR_0x8000, GENDER_FEMALE, Route202_LucasLetMeExplainHowThePokeRadarWorks
+    CallIfEq VAR_0x8000, GENDER_MALE, Route202_DawnLetMeShowPokeRadar
+    CallIfEq VAR_0x8000, GENDER_FEMALE, Route202_LucasLetMeExplainPokeRadar
     CloseMessage
     PlayMusic SEQ_POKERADAR
     AddCameraOverrideObject 189, 818
@@ -377,8 +377,8 @@ Route202_Counterpart:
     ApplyMovement LOCALID_PLAYER, Route202_Movement_PlayerFaceGrassPatchEast
     WaitMovement
     WaitTime 15, VAR_RESULT
-    CallIfEq VAR_0x8000, 0, Route202_DawnTheresAPokemonInThatPatchOfTallGrass
-    CallIfEq VAR_0x8000, 1, Route202_LucasTheresAPokemonInThatPatchOfTallGrass
+    CallIfEq VAR_0x8000, 0, Route202_DawnPokemonInPatchOfGrass
+    CallIfEq VAR_0x8000, 1, Route202_LucasPokemonInPatchOfGrass
     CloseMessage
     WaitTime 15, VAR_RESULT
     PlayDefaultMusic
@@ -386,8 +386,8 @@ Route202_Counterpart:
     CallIfEq VAR_0x8002, DIR_SOUTH, Route202_PlayerCounterpartFaceEachOtherSouth
     CallIfEq VAR_0x8002, DIR_WEST, Route202_PlayerCounterpartFaceEachOtherWest
     CallIfEq VAR_0x8002, DIR_EAST, Route202_PlayerCounterpartFaceEachOtherEast
-    CallIfEq VAR_0x8000, GENDER_MALE, Route202_DawnNowThisIsWhereItGetsInteresting
-    CallIfEq VAR_0x8000, GENDER_FEMALE, Route202_LucasNowHeresTheStrangePart
+    CallIfEq VAR_0x8000, GENDER_MALE, Route202_DawnItGetsInteresting
+    CallIfEq VAR_0x8000, GENDER_FEMALE, Route202_LucasHeresTheStrangePart
     CloseMessage
     CallIfEq VAR_0x8002, DIR_NORTH, Route202_CounterpartLeavePokeRadarNorth
     CallIfEq VAR_0x8002, DIR_SOUTH, Route202_CounterpartLeavePokeRadarSouth
@@ -397,24 +397,24 @@ Route202_Counterpart:
     End
 
 Route202_PlayerCounterpartFaceEachOtherNorth:
-    ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartWalkOnSpotSouthToFacePlayer
-    ApplyMovement LOCALID_PLAYER, Route202_Movement_PlayerWalkOnSpotNorthToFaceCounterpart
+    ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartWalkOnSpotSouth
+    ApplyMovement LOCALID_PLAYER, Route202_Movement_PlayerWalkOnSpotNorth
     WaitMovement
     Return
 
 Route202_PlayerCounterpartFaceEachOtherSouth:
-    ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartWalkOnSpotNorthToFacePlayer
-    ApplyMovement LOCALID_PLAYER, Route202_Movement_PlayerWalkOnSpotSouthToFaceCounterpart
+    ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartWalkOnSpotNorth
+    ApplyMovement LOCALID_PLAYER, Route202_Movement_PlayerWalkOnSpotSouth
     WaitMovement
     Return
 
 Route202_PlayerCounterpartFaceEachOtherWest:
-    ApplyMovement LOCALID_PLAYER, Route202_Movement_PlayerWalkOnSpotWestToFaceCounterpart
+    ApplyMovement LOCALID_PLAYER, Route202_Movement_PlayerWalkOnSpotWest
     WaitMovement
     Return
 
 Route202_PlayerCounterpartFaceEachOtherEast:
-    ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartWalkOnSpotWestToFacePlayer
+    ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartWalkOnSpotWest
     WaitMovement
     Return
 
@@ -445,28 +445,28 @@ Route202_CounterpartPokeRadarEnd:
     ReleaseAll
     End
 
-Route202_DawnLetMeShowYouHowThePokeRadarWorks:
-    Message Route202_Text_DawnLetMeShowYouHowThePokeRadarWorks
+Route202_DawnLetMeShowPokeRadar:
+    Message Route202_Text_DawnLetMeShowPokeRadar
     Return
 
-Route202_LucasLetMeExplainHowThePokeRadarWorks:
-    Message Route202_Text_LucasLetMeExplainHowThePokeRadarWorks
+Route202_LucasLetMeExplainPokeRadar:
+    Message Route202_Text_LucasLetMeExplainPokeRadar
     Return
 
-Route202_DawnTheresAPokemonInThatPatchOfTallGrass:
-    Message Route202_Text_DawnTheresAPokemonInThatPatchOfTallGrass
+Route202_DawnPokemonInPatchOfGrass:
+    Message Route202_Text_DawnPokemonInPatchOfGrass
     Return
 
-Route202_LucasTheresAPokemonInThatPatchOfTallGrass:
-    Message Route202_Text_LucasTheresAPokemonInThatPatchOfTallGrass
+Route202_LucasPokemonInPatchOfGrass:
+    Message Route202_Text_LucasPokemonInPatchOfGrass
     Return
 
-Route202_DawnNowThisIsWhereItGetsInteresting:
-    Message Route202_Text_DawnNowThisIsWhereItGetsInteresting
+Route202_DawnItGetsInteresting:
+    Message Route202_Text_DawnItGetsInteresting
     Return
 
-Route202_LucasNowHeresTheStrangePart:
-    Message Route202_Text_LucasNowHeresTheStrangePart
+Route202_LucasHeresTheStrangePart:
+    Message Route202_Text_LucasHeresTheStrangePart
     Return
 
     .balign 4, 0
@@ -488,30 +488,30 @@ Route202_Movement_CounterpartFaceGrassPatchEast:
     EndMovement
 
     .balign 4, 0
-Route202_Movement_CounterpartWalkOnSpotSouthToFacePlayer:
+Route202_Movement_CounterpartWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-Route202_Movement_CounterpartWalkOnSpotNorthToFacePlayer:
+Route202_Movement_CounterpartWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
-Route202_UnusedMovement:
+Route202_Movement_Unused:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-Route202_Movement_CounterpartWalkOnSpotWestToFacePlayer:
+Route202_Movement_CounterpartWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
-Route202_UnusedMovement2:
+Route202_Movement_Unused2:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
-Route202_UnusedMovement3:
+Route202_Movement_Unused3:
     Delay8
     WalkOnSpotNormalSouth
     EndMovement
@@ -522,21 +522,21 @@ Route202_Movement_PlayerFaceGrassPatchEast:
     EndMovement
 
     .balign 4, 0
-Route202_Movement_PlayerWalkOnSpotNorthToFaceCounterpart:
+Route202_Movement_PlayerWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-Route202_Movement_PlayerWalkOnSpotSouthToFaceCounterpart:
+Route202_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-Route202_Movement_PlayerWalkOnSpotWestToFaceCounterpart:
+Route202_Movement_PlayerWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
-Route202_UnusedMovement4:
+Route202_Movement_Unused4:
     WalkOnSpotNormalEast
     EndMovement
 

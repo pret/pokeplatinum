@@ -39,34 +39,34 @@ BattleParkExchangeServiceCorner_PokeMartFrontierLeft:
     ReleaseAll
     End
 
-BattleParkExchangeServiceCorner_Unused:
+BattleParkExchangeServiceCorner_PrizeExchange_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ShowBattlePoints 21, 1
     Message BattleParkExchangeServiceCorner_Text_ExchangeBPForItems
-BattleParkExchangeServiceCorner_UnusedWhichPrize:
+BattleParkExchangeServiceCorner_WhichPrize_Unused:
     Message BattleParkExchangeServiceCorner_Text_ExchangeBPForWhichPrize
-    Call BattleParkExchangeServiceCorner_UnusedInitPrizeMenu
-    GoToIfEq VAR_RESULT, -2, BattleParkExchangeServiceCorner_UnusedThanksForVisiting
-    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_1, BattleParkExchangeServiceCorner_UnusedThanksForVisiting
-    SetVar VAR_MAP_LOCAL_3, VAR_RESULT
-    GetExchangeServiceCornerItemAndCost VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_3, VAR_0x8000, VAR_0x8001
-    CallIfEq VAR_MAP_LOCAL_0, 0, BattleParkExchangeServiceCorner_UnusedYouveChosenThisItem
-    CallIfEq VAR_MAP_LOCAL_0, 1, BattleParkExchangeServiceCorner_UnusedYouveChosenThisTM
+    Call BattleParkExchangeServiceCorner_InitPrizeMenu_Unused
+    GoToIfEq VAR_RESULT, -2, BattleParkExchangeServiceCorner_ThanksForVisiting_Unused
+    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_0x01, BattleParkExchangeServiceCorner_ThanksForVisiting_Unused
+    SetVar VAR_MAP_LOCAL_0x03, VAR_RESULT
+    GetExchangeServiceCornerItemAndCost VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x03, VAR_0x8000, VAR_0x8001
+    CallIfEq VAR_MAP_LOCAL_0x00, 0, BattleParkExchangeServiceCorner_YouveChosenThisItem_Unused
+    CallIfEq VAR_MAP_LOCAL_0x00, 1, BattleParkExchangeServiceCorner_YouveChosenThisTM_Unused
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, BattleParkExchangeServiceCorner_UnusedWhichPrize
+    GoToIfEq VAR_RESULT, MENU_NO, BattleParkExchangeServiceCorner_WhichPrize_Unused
     CheckBattlePoints VAR_0x8001, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, BattleParkExchangeServiceCorner_UnusedNotEnoughBP
+    GoToIfEq VAR_RESULT, FALSE, BattleParkExchangeServiceCorner_NotEnoughBP_Unused
     CanFitItem VAR_0x8000, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, BattleParkExchangeServiceCorner_UnusedNoRoomForItem
+    GoToIfEq VAR_RESULT, FALSE, BattleParkExchangeServiceCorner_NoRoomForItem_Unused
     Message BattleParkExchangeServiceCorner_Text_HereIsYourPrize
     AddItem VAR_0x8000, 1, VAR_RESULT
     RemoveBattlePoints VAR_0x8001
     UpdateBPDisplay
-    GoTo BattleParkExchangeServiceCorner_UnusedWhichPrize
+    GoTo BattleParkExchangeServiceCorner_WhichPrize_Unused
 
-BattleParkExchangeServiceCorner_UnusedThanksForVisiting:
+BattleParkExchangeServiceCorner_ThanksForVisiting_Unused:
     Message BattleParkExchangeServiceCorner_Text_ThanksForVisiting
     WaitButton
     CloseMessage
@@ -74,37 +74,37 @@ BattleParkExchangeServiceCorner_UnusedThanksForVisiting:
     ReleaseAll
     End
 
-BattleParkExchangeServiceCorner_UnusedYouveChosenThisItem:
+BattleParkExchangeServiceCorner_YouveChosenThisItem_Unused:
     BufferItemName 0, VAR_0x8000
     Message BattleParkExchangeServiceCorner_Text_YouveChosenThisItem
     Return
 
-BattleParkExchangeServiceCorner_UnusedYouveChosenThisTM:
+BattleParkExchangeServiceCorner_YouveChosenThisTM_Unused:
     BufferItemName 0, VAR_0x8000
     BufferTMHMMoveName 1, VAR_0x8000
     Message BattleParkExchangeServiceCorner_Text_YouveChosenThisTM
     Return
 
-BattleParkExchangeServiceCorner_UnusedNotEnoughBP:
+BattleParkExchangeServiceCorner_NotEnoughBP_Unused:
     Message BattleParkExchangeServiceCorner_Text_NotEnoughBP
-    GoTo BattleParkExchangeServiceCorner_UnusedWhichPrize
+    GoTo BattleParkExchangeServiceCorner_WhichPrize_Unused
 
-BattleParkExchangeServiceCorner_UnusedNoRoomForItem:
+BattleParkExchangeServiceCorner_NoRoomForItem_Unused:
     BufferItemName 0, VAR_0x8000
     Message BattleParkExchangeServiceCorner_Text_NoRoomForItem
-    GoTo BattleParkExchangeServiceCorner_UnusedWhichPrize
+    GoTo BattleParkExchangeServiceCorner_WhichPrize_Unused
 
-BattleParkExchangeServiceCorner_UnusedInitPrizeMenu:
+BattleParkExchangeServiceCorner_InitPrizeMenu_Unused:
     SetVar VAR_0x8008, 0
     SetVar VAR_0x8009, 0
     InitGlobalTextListMenu 1, 1, 0, VAR_RESULT
-BattleParkExchangeServiceCorner_UnusedAddPrizeMenuEntries:
-    GetExchangeServiceCornerItemAndCost VAR_MAP_LOCAL_0, VAR_0x8008, VAR_0x8000, VAR_0x8001
+BattleParkExchangeServiceCorner_AddPrizeMenuEntries_Unused:
+    GetExchangeServiceCornerItemAndCost VAR_MAP_LOCAL_0x00, VAR_0x8008, VAR_0x8000, VAR_0x8001
     BufferItemName 0, VAR_0x8000
     BufferVarPaddingDigits 1, VAR_0x8001, PADDING_MODE_SPACES, 3
     AddListMenuEntry MenuEntries_Text_UnusedPrizeExchange_Prize, VAR_0x8008
     AddVar VAR_0x8008, 1
-    GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_1, BattleParkExchangeServiceCorner_UnusedAddPrizeMenuEntries
+    GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_0x01, BattleParkExchangeServiceCorner_AddPrizeMenuEntries_Unused
     AddListMenuEntry MenuEntries_Text_UnusedPrizeExchange_NoThanks, VAR_0x8008
     ShowListMenu
     Return

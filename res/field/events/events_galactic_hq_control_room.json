@@ -126,7 +126,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "FLAG_GALACTIC_HQ_CONTROL_ROOM_STATE",
+            "var": "VAR_GALACTIC_HQ_CONTROL_ROOM_STATE",
             "value": 1
         }
     ]

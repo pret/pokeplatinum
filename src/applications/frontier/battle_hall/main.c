@@ -8,8 +8,8 @@
 #include "applications/frontier/battle_hall/sprites.h"
 #include "applications/frontier/battle_hall/windows.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "overlay104/battle_hall_helpers.h"
 #include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0223AF58.h"
 
 #include "battle_hall_save.h"
 #include "bg_window.h"
@@ -25,7 +25,6 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
-#include "narc_frontier_bg.h"
 #include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
@@ -50,6 +49,7 @@
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 #include "res/text/bank/battle_hall_scene.h"
 
 // States of the overall app
@@ -89,8 +89,6 @@ enum BattleHallAppMultiConfirmSubState {
 #define PARTNER_DECISION_PENDING 0
 #define PARTNER_DECISION_CONFIRM 1
 #define PARTNER_DECISION_CANCEL  2
-
-#define MAX_RANK 10
 
 #define WINDOW_MSG_BOX     0
 #define WINDOW_YES_NO_MENU 1
@@ -444,7 +442,7 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
                         return FALSE;
                     }
                 } else {
-                    if (BattleHall_GetRankOfType(GetCursorPos(app->cursorPos), app->typeRanks) >= MAX_RANK) {
+                    if (BattleHall_GetRankOfType(GetCursorPos(app->cursorPos), app->typeRanks) >= HALL_MAX_TYPE_RANK) {
                         Sound_PlayEffect(SEQ_SE_DP_BOX03);
 
                         return FALSE;
@@ -802,7 +800,7 @@ static void InitGraphicsPlane(void)
 
 static void LoadAssets(BattleHallApp *app)
 {
-    app->narc = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_BATTLE_HALL_APP);
+    app->narc = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_BATTLE_HALL_APP);
 
     LoadBackgrounds(app);
     InitSpriteManager(app);
@@ -1002,15 +1000,15 @@ static void InitBackgrounds(BgConfig *bgConfig)
 
 static void LoadMainScreenBackground(BattleHallApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_HALL_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_HALL_APP_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_hall_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_hall_app_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
 }
 
 static void LoadPalette(void)
 {
     NNSG2dPaletteData *plttData;
 
-    void *pltt = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, BATTLE_HALL_APP_PLTT, &plttData, HEAP_ID_BATTLE_HALL_APP);
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_FRONTIER_BACKGROUNDS, battle_hall_app_NCLR, &plttData, HEAP_ID_BATTLE_HALL_APP);
 
     DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 6);
     GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 6);
@@ -1019,9 +1017,9 @@ static void LoadPalette(void)
 
 static void LoadSubScreenBackground(BattleHallApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
-    Graphics_LoadPaletteFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_PLTT, PAL_LOAD_SUB_BG, 0, 0x20, HEAP_ID_BATTLE_HALL_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_frontier_app_sub_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_frontier_app_sub_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_HALL_APP);
+    Graphics_LoadPaletteFromOpenNARC(app->narc, battle_frontier_app_sub_NCLR, PAL_LOAD_SUB_BG, 0, 0x20, HEAP_ID_BATTLE_HALL_APP);
 }
 
 static u8 PrintMessage(BattleHallApp *app, Window *window, int messageID, u32 x, u32 y, u32 renderDelay, u8 textColor, u8 shadowColor, u8 bgColor, u8 fontID)
@@ -1138,8 +1136,8 @@ static void PrintTypesRanks(BattleHallApp *app, Window *window)
                 u8 v3 = r * GRID_WIDTH + c;
                 u8 rank = BattleHall_GetRankOfType(GetCursorPos(v3), app->typeRanks) + 1;
 
-                if (rank > MAX_RANK) {
-                    rank = MAX_RANK;
+                if (rank > HALL_MAX_TYPE_RANK) {
+                    rank = HALL_MAX_TYPE_RANK;
                 }
 
                 PrintRank(app, window, rank, 18 + (COL_WIDTH * c), 4 + (ROW_HEIGHT * r));
@@ -1513,8 +1511,8 @@ static void DrawMessageWithYesNoMenu(BattleHallApp *app)
 
     u8 rank = BattleHall_GetRankOfType(GetCursorPos(app->cursorPos), app->typeRanks) + 1;
 
-    if (rank > MAX_RANK) {
-        rank = MAX_RANK;
+    if (rank > HALL_MAX_TYPE_RANK) {
+        rank = HALL_MAX_TYPE_RANK;
     }
 
     SetStringTemplateNumber(app, 1, rank);

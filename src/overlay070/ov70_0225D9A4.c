@@ -11,7 +11,7 @@
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C_decl.h"
+#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_02230914.h"
 #include "overlay066/struct_ov66_02230E68.h"
 #include "overlay070/ov70_0225C858.h"
@@ -2006,7 +2006,7 @@ static void ov70_0225F318(UnkStruct_ov70_0225F208 *param0, u32 param1, u32 param
 
 static void ov70_0225F32C(UnkStruct_ov70_0225F208 *param0, u32 param1, u16 param2)
 {
-    StringTemplate_SetCustomMessageWord(param0->unk_00, param1, param2);
+    StringTemplate_SetEasyChatWord(param0->unk_00, param1, param2);
 }
 
 static void ov70_0225F338(UnkStruct_ov70_0225F208 *param0)

@@ -483,8 +483,8 @@ void sub_0202F8AC(FieldBattleDTO *param0)
             v2->unk_114[v0] = param0->systemVersion[v0];
         }
 
-        v2->unk_134[v0] = param0->unk_178[v0];
-        v2->unk_14C[v0] = param0->unk_194[v0];
+        v2->unk_134[v0] = param0->linkPlayerPositions[v0];
+        v2->unk_14C[v0] = param0->recordedChatter[v0];
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -564,12 +564,12 @@ void sub_0202FAFC(FieldBattleDTO *dto, SaveData *saveData)
         dto->trainerIDs[i] = v1->unk_00.unk_08[i];
         dto->trainer[i] = v1->unk_00.unk_18[i];
         dto->systemVersion[i] = v1->unk_00.unk_114[i];
-        dto->unk_178[i] = v1->unk_00.unk_134[i];
+        dto->linkPlayerPositions[i] = v1->unk_00.unk_134[i];
 
         sub_0202FD30(&v1->unk_1150[i], dto->parties[i]);
         TrainerInfo_Copy(&v1->unk_1B68[i], dto->trainerInfo[i]);
 
-        dto->unk_194[i] = v1->unk_00.unk_14C[i];
+        dto->recordedChatter[i] = v1->unk_00.unk_14C[i];
     }
 
     Options_Copy(SaveData_GetOptions(saveData), dto->options);

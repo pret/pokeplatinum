@@ -10,8 +10,8 @@ SunyshoreCityEastHouse_Julia:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TOLD_DAILY_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE, SunyshoreCityNortheastHouse_GoToTellAnotherStoryTomorrow
-    GoToIfSet FLAG_VISIT_TOMORROW_SUNYSHORE_CITY_NORTHEAST_HOUSE, SunyshoreCityNortheastHouse_PleaseVisitTomorrow
+    GoToIfSet FLAG_DAILY_TOLD_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE, SunyshoreCityNortheastHouse_GoToTellAnotherStoryTomorrow
+    GoToIfSet FLAG_DAILY_VISIT_TOMORROW_SUNYSHORE_CITY_NORTHEAST_HOUSE, SunyshoreCityNortheastHouse_PleaseVisitTomorrow
     GoToIfUnset FLAG_TALKED_TO_JULIA_SUNYSHORE_CITY_NORTHEAST_HOUSE, SunyshoreCityNortheastHouse_TellMeStories
     GetFirstNonEggInParty VAR_0x8002
     Call SunyshoreCityNortheastHouse_CheckHasTodaysRibbon
@@ -20,7 +20,7 @@ SunyshoreCityEastHouse_Julia:
 
 SunyshoreCityNortheastHouse_TellMeStories:
     SetFlag FLAG_TALKED_TO_JULIA_SUNYSHORE_CITY_NORTHEAST_HOUSE
-    SetFlag FLAG_VISIT_TOMORROW_SUNYSHORE_CITY_NORTHEAST_HOUSE
+    SetFlag FLAG_DAILY_VISIT_TOMORROW_SUNYSHORE_CITY_NORTHEAST_HOUSE
     Message SunyshoreCityNortheastHouse_Text_TellMeStories
     WaitButton
     CloseMessage
@@ -116,14 +116,14 @@ SunyshoreCityNortheastHouse_AskSundayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, SunyshoreCityNortheastHouse_CouldntThinkUpAnything
     BufferCustomMessageWord 0, VAR_0x8000
     Message SunyshoreCityNortheastHouse_Text_TellSundayStory
-    SetFlag FLAG_TOLD_DAILY_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
+    SetFlag FLAG_DAILY_TOLD_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
     SetPartyMonRibbon VAR_0x8002, RIBBON_SMILE
     BufferRibbonName 3, RIBBON_SMILE
     GoTo SunyshoreCityNortheastHouse_GiveRibbon
@@ -134,14 +134,14 @@ SunyshoreCityNortheastHouse_AskMondayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, SunyshoreCityNortheastHouse_CouldntThinkUpAnything
     BufferCustomMessageWord 0, VAR_0x8000
     Message SunyshoreCityNortheastHouse_Text_TellMondayStory
-    SetFlag FLAG_TOLD_DAILY_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
+    SetFlag FLAG_DAILY_TOLD_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
     SetPartyMonRibbon VAR_0x8002, RIBBON_ALERT
     BufferRibbonName 3, RIBBON_ALERT
     GoTo SunyshoreCityNortheastHouse_GiveRibbon
@@ -152,14 +152,14 @@ SunyshoreCityNortheastHouse_AskTuesdayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, SunyshoreCityNortheastHouse_CouldntThinkUpAnything
     BufferCustomMessageWord 0, VAR_0x8000
     Message SunyshoreCityNortheastHouse_Text_TellTuesdayStory
-    SetFlag FLAG_TOLD_DAILY_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
+    SetFlag FLAG_DAILY_TOLD_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
     SetPartyMonRibbon VAR_0x8002, RIBBON_SHOCK
     BufferRibbonName 3, RIBBON_SHOCK
     GoTo SunyshoreCityNortheastHouse_GiveRibbon
@@ -170,14 +170,14 @@ SunyshoreCityNortheastHouse_AskWednesdayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, SunyshoreCityNortheastHouse_CouldntThinkUpAnything
     BufferCustomMessageWord 0, VAR_0x8000
     Message SunyshoreCityNortheastHouse_Text_TellWednesdayStory
-    SetFlag FLAG_TOLD_DAILY_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
+    SetFlag FLAG_DAILY_TOLD_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
     SetPartyMonRibbon VAR_0x8002, RIBBON_DOWNCAST
     BufferRibbonName 3, RIBBON_DOWNCAST
     GoTo SunyshoreCityNortheastHouse_GiveRibbon
@@ -188,14 +188,14 @@ SunyshoreCityNortheastHouse_AskThursdayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, SunyshoreCityNortheastHouse_CouldntThinkUpAnything
     BufferCustomMessageWord 0, VAR_0x8000
     Message SunyshoreCityNortheastHouse_Text_TellThursdayStory
-    SetFlag FLAG_TOLD_DAILY_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
+    SetFlag FLAG_DAILY_TOLD_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
     SetPartyMonRibbon VAR_0x8002, RIBBON_CARELESS
     BufferRibbonName 3, RIBBON_CARELESS
     GoTo SunyshoreCityNortheastHouse_GiveRibbon
@@ -206,14 +206,14 @@ SunyshoreCityNortheastHouse_AskFridayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, SunyshoreCityNortheastHouse_CouldntThinkUpAnything
     BufferCustomMessageWord 0, VAR_0x8000
     Message SunyshoreCityNortheastHouse_Text_TellFridayStory
-    SetFlag FLAG_TOLD_DAILY_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
+    SetFlag FLAG_DAILY_TOLD_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
     SetPartyMonRibbon VAR_0x8002, RIBBON_RELAX
     BufferRibbonName 3, RIBBON_RELAX
     GoTo SunyshoreCityNortheastHouse_GiveRibbon
@@ -224,14 +224,14 @@ SunyshoreCityNortheastHouse_AskSaturdayStory:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, SunyshoreCityNortheastHouse_CouldntThinkUpAnything
     BufferCustomMessageWord 0, VAR_0x8000
     Message SunyshoreCityNortheastHouse_Text_TellSaturdayStory
-    SetFlag FLAG_TOLD_DAILY_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
+    SetFlag FLAG_DAILY_TOLD_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE
     SetPartyMonRibbon VAR_0x8002, RIBBON_SNOOZE
     BufferRibbonName 3, RIBBON_SNOOZE
     GoTo SunyshoreCityNortheastHouse_GiveRibbon

@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_APPLICATIONS_MAIL_H
 #define POKEPLATINUM_APPLICATIONS_MAIL_H
 
-#include "struct_defs/sentence.h"
-
+#include "easy_chat_sentence.h"
 #include "game_options.h"
 #include "mail.h"
 #include "pokemon.h"
@@ -37,7 +36,7 @@ typedef struct MailViewerAppArgs {
     u8 mailType;
     String *trainerName;
     MailIconData iconData[MAIL_MAX_ICONS];
-    Sentence sentences[MAIL_MAX_SENTENCES];
+    EasyChatSentence sentences[MAIL_MAX_SENTENCES];
 } MailViewerAppArgs;
 
 MailAppArgs *MailAppArgs_New_Write(SaveData *saveData, enum MailContext context, u8 partySlot, u8 mailType, enum HeapID heapID);

@@ -42,7 +42,7 @@ Route228NorthHouse_TryTeachUltimateMove:
     Call Route228NorthHouse_CheckHasUltimateMove
     GoToIfEq VAR_RESULT, TRUE, Route228NorthHouse_AlreadyKnowsMove
     GetPartyMonFriendship VAR_RESULT, VAR_0x8000
-    GoToIfLt VAR_RESULT, 255, Route228NorthHouse_NotBondedEnough
+    GoToIfLt VAR_RESULT, MAX_FRIENDSHIP_VALUE, Route228NorthHouse_NotBondedEnough
     BufferPartyMonSpecies 0, VAR_0x8000
     GoToIfEq VAR_0x8002, 1, Route228NorthHouse_AskTeachBlastBurn
     GoToIfEq VAR_0x8002, 2, Route228NorthHouse_AskTeachHydroCannon
