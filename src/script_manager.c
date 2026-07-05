@@ -516,22 +516,22 @@ BOOL Script_IsTrainerDoubleBattle(u16 trainerID)
 
 BOOL Script_IsTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
 {
-    return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_OFFSET_TRAINER_DEFEATED + trainerID);
+    return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAGS_START + trainerID);
 }
 
 void Script_SetTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
 {
-    VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_OFFSET_TRAINER_DEFEATED + trainerID);
+    VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAGS_START + trainerID);
 }
 
 void Script_ClearTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
 {
-    VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_OFFSET_TRAINER_DEFEATED + trainerID);
+    VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAGS_START + trainerID);
 }
 
 u16 Script_GetHiddenItemFlag(u16 scriptID)
 {
-    return scriptID - SCRIPT_ID_OFFSET_HIDDEN_ITEMS + FLAG_OFFSET_HIDDEN_ITEMS;
+    return scriptID - SCRIPT_ID_OFFSET_HIDDEN_ITEMS + HIDDEN_ITEM_FLAGS_START;
 }
 
 u16 Script_GetHiddenItemScript(u16 scriptID)
@@ -540,19 +540,19 @@ u16 Script_GetHiddenItemScript(u16 scriptID)
 }
 
 static u16 sIronIslandHiddenItemFlags[][2] = {
-    { MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM, 0x34 },
-    { MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM, 0x35 },
-    { MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM, 0x36 },
-    { MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM, 0x37 }
+    { MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM, FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B1F_RIGHT_ROOM_STAR_PIECE - HIDDEN_ITEM_FLAGS_START },
+    { MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM, FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B2F_RIGHT_ROOM_STAR_PIECE - HIDDEN_ITEM_FLAGS_START },
+    { MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM, FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B2F_LEFT_ROOM_STAR_PIECE_1 - HIDDEN_ITEM_FLAGS_START },
+    { MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM, FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B2F_LEFT_ROOM_STAR_PIECE_2 - HIDDEN_ITEM_FLAGS_START }
 };
 
 static u16 sFloaromaMeadowHiddenItemFlags[] = {
-    0x3A,
-    0x3B,
-    0xDB,
-    0xDC,
-    0xDD,
-    0xDE
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_1 - HIDDEN_ITEM_FLAGS_START,
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_2 - HIDDEN_ITEM_FLAGS_START,
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_3 - HIDDEN_ITEM_FLAGS_START,
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_4 - HIDDEN_ITEM_FLAGS_START,
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_5 - HIDDEN_ITEM_FLAGS_START,
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_6 - HIDDEN_ITEM_FLAGS_START
 };
 
 void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem)
@@ -560,21 +560,21 @@ void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem)
     u8 rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
     if (fieldSystem->location->mapId != sIronIslandHiddenItemFlags[rand][0]) {
-        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]);
+        FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sIronIslandHiddenItemFlags[rand][1]);
     }
 
     rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
     if (fieldSystem->location->mapId != sIronIslandHiddenItemFlags[rand][0]) {
-        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]);
+        FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sIronIslandHiddenItemFlags[rand][1]);
     }
 
     if (fieldSystem->location->mapId != MAP_HEADER_FLOAROMA_MEADOW) {
         rand = LCRNG_Next() % NELEMS(sFloaromaMeadowHiddenItemFlags);
-        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sFloaromaMeadowHiddenItemFlags[rand]);
+        FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sFloaromaMeadowHiddenItemFlags[rand]);
 
         rand = LCRNG_Next() % NELEMS(sFloaromaMeadowHiddenItemFlags);
-        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sFloaromaMeadowHiddenItemFlags[rand]);
+        FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sFloaromaMeadowHiddenItemFlags[rand]);
     }
 }
 
