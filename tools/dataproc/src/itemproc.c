@@ -116,8 +116,9 @@ int main(int argc, char **argv) {
         }
     }
 
-    if (max_script_id + 1 > item_flags_count) {
-        fprintf(stderr, "fatal: more hidden items defined (%zu) than there are hidden item flags (%zu)\n", max_script_id + 1, item_flags_count);
+    max_script_id++;
+    if (max_script_id > item_flags_count) {
+        fprintf(stderr, "fatal: more hidden items defined (%zu) than there are hidden item flags (%zu)\n", max_script_id, item_flags_count);
         return EXIT_FAILURE;
     }
 
@@ -379,7 +380,7 @@ static void add_idmap(datafile_t *df, size_t i, size_t data_id) {
 }
 
 static void emit_hidden_scripts(size_t max_script_id) {
-    for (size_t i = 0; i <= max_script_id; i++) {
+    for (size_t i = 0; i < max_script_id; i++) {
         fputs("    ScriptEntry HiddenItems_Item\n", headers[H_HIDDEN_ITEM_SCRIPTS].out_file);
     }
     fputs("    ScriptEntryEnd\n", headers[H_HIDDEN_ITEM_SCRIPTS].out_file);
