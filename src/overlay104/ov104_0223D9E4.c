@@ -196,7 +196,7 @@ static void ov104_0223DC18(SysTask *param0, void *param1)
     }
 
     v0->unk_69 = 0;
-    PaletteData_LoadBuffer(v0->unk_04, v0->unk_08[v0->unk_68], 0, 6 * 16, 0x20);
+    PaletteData_LoadBuffer(v0->unk_04, v0->unk_08[v0->unk_68], 0, PLTT_DEST(PLTT_6), PALETTE_SIZE_BYTES);
     v0->unk_68++;
 
     if (v0->unk_68 >= 3) {

@@ -657,8 +657,8 @@ static void RankingsMachine_InitBg(RankingsMachineManager *machineMan)
     LoadMessageBoxGraphics(machineMan->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_SCROLLING_MESSAGE_BOX, 10, machineMan->frame, machineMan->heapID);
     LoadStandardWindowGraphics(machineMan->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, 11, 0, machineMan->heapID);
     LoadStandardWindowGraphics(machineMan->bgConfig, BG_LAYER_MAIN_1, BASE_TILE_STANDARD_WINDOW_FRAME, 11, 0, machineMan->heapID);
-    Font_LoadTextPalette(0, 13 * PALETTE_SIZE_BYTES, machineMan->heapID);
-    Font_LoadScreenIndicatorsPalette(0, 12 * PALETTE_SIZE_BYTES, machineMan->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), machineMan->heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), machineMan->heapID);
     Window_Add(machineMan->bgConfig, &machineMan->msgBoxWindow, BG_LAYER_MAIN_3, 2, 19, 27, 4, 12, BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT);
     Window_FillTilemap(&machineMan->msgBoxWindow, PIXEL_FILL(15));
 }

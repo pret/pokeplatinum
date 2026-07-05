@@ -505,7 +505,7 @@ static void ov112_0225CA34(UnkStruct_ov112_0225C9BC *param0, enum HeapID heapID)
 
     {
         Graphics_LoadPaletteFromOpenNARC(param0->unk_1A4, 0, 0, 0, 0, heapID);
-        Font_LoadScreenIndicatorsPalette(0, 10 * 32, heapID);
+        Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_10), heapID);
         Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_1A4, 1, param0->unk_00, 1, 0, 0, 0, heapID);
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A4, 3, param0->unk_00, 1, 0, 0, 0, heapID);
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A4, 4, param0->unk_00, 2, 0, 0, 0, heapID);
@@ -950,9 +950,9 @@ static void ov112_0225D1EC(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov112_022
     param0->unk_90 = String_Init(256, heapID);
     param0->unk_94 = Graphics_GetPlttDataFromOpenNARC(param1->unk_1A4, 0, &param0->unk_98, heapID);
 
-    Bg_LoadPalette(0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (7 * 0x20) + (13 * 2));
-    Bg_LoadPalette(0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (8 * 0x20) + (13 * 2));
-    Bg_LoadPalette(0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (9 * 0x20) + (13 * 2));
+    Bg_LoadPalette(BG_LAYER_MAIN_0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (7 * 0x20) + (13 * 2));
+    Bg_LoadPalette(BG_LAYER_MAIN_0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (8 * 0x20) + (13 * 2));
+    Bg_LoadPalette(BG_LAYER_MAIN_0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (9 * 0x20) + (13 * 2));
 }
 
 static void ov112_0225D2D0(UnkStruct_ov112_0225D2D0 *param0)

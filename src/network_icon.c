@@ -7,6 +7,7 @@
 #include "comm_manager.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -35,7 +36,7 @@ static void InitGlobalNetworkIcon(int x, int y, BOOL isWifi, enum NNS_G2D_VRAM_T
 
 static NetworkIcon *CreateNetworkIcon(u32 unused0, u32 heapID, int x, int y, BOOL isWifi, void *unused, enum NNS_G2D_VRAM_TYPE vramType)
 {
-    LoadIconPalette(vramType, isWifi, PLTT_OFFSET(14), heapID);
+    LoadIconPalette(vramType, isWifi, PLTT_OFFSET(PLTT_14), heapID);
     LoadIconGraphic(vramType, isWifi, heapID);
 
     NetworkIcon *icon = Heap_AllocAtEnd(heapID, sizeof(NetworkIcon));
@@ -130,7 +131,7 @@ static void DestroyNetworkIcon(NetworkIcon *icon)
 
 static void CreateIconOnSubScreen(NetworkIcon *icon, BOOL isUpperScreen, enum HeapID heapID)
 {
-    LoadIconPalette(NNS_G2D_VRAM_TYPE_2DSUB, icon->isWifi, PLTT_OFFSET(14), heapID);
+    LoadIconPalette(NNS_G2D_VRAM_TYPE_2DSUB, icon->isWifi, PLTT_OFFSET(PLTT_14), heapID);
     LoadIconGraphic(NNS_G2D_VRAM_TYPE_2DSUB, icon->isWifi, heapID);
 
     icon->screenId = isUpperScreen ? UPPER_SCREEN : LOWER_SCREEN;

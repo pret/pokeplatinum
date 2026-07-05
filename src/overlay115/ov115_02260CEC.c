@@ -427,7 +427,7 @@ static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263A3C(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263C04(UnkStruct_ov115_02261ADC *param0);
-static void ov115_02263C24(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 param3);
+static void ov115_02263C24(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 heapID);
 static void ov115_02263CC0(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263CD0(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263CD8(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2, u32 param3);
@@ -3121,7 +3121,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    Font_LoadScreenIndicatorsPalette(0, 5 * 0x20, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_5), heapID);
     LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 4, 0, heapID);
 }
 
@@ -3234,13 +3234,13 @@ static void ov115_02263C04(UnkStruct_ov115_02261ADC *param0)
     StringTemplate_Free(param0->unk_04);
 }
 
-static void ov115_02263C24(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 param3)
+static void ov115_02263C24(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 heapID)
 {
     CameraAngle v0;
     VecFx32 v1;
     MtxFx33 v2;
 
-    param0->camera = Camera_Alloc(param3);
+    param0->camera = Camera_Alloc(heapID);
     param0->unk_1F8.x = 0;
     param0->unk_1F8.y = 0;
     param0->unk_1F8.z = 0;

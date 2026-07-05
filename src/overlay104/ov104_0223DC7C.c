@@ -360,8 +360,8 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const F
         break;
     case 12:
         if (IsScreenFadeDone()) {
-            PaletteData_BlendMulti(param0->unk_1C, 2, param0->unk_164 ^ 0x3fff, 14, 0x0);
-            PaletteData_Blend(param0->unk_1C, 2, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
+            PaletteData_BlendMulti(param0->unk_1C, PLTTBUF_MAIN_OBJ, param0->unk_164 ^ 0x3fff, 14, 0x0);
+            PaletteData_Blend(param0->unk_1C, PLTTBUF_MAIN_OBJ, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
             BrightnessController_SetScreenBrightness(-14, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_MAIN_SCREEN);
             sub_020129D0(v0->unk_7C.unk_00, 1);
             param0->unk_00++;
@@ -611,7 +611,7 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const FrontierBrain
     G2_SetWnd0Position(0, 0, 0, 0);
     G2_SetWnd1Position(0, 0, 0, 0);
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_1C, 112, param1->bannerPalette, 94, 0, 0x20, 12 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_1C, NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, param1->bannerPalette, HEAP_ID_94, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_12));
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_24, param1->bannerTiles, param0->unk_10, 1, 0, 0, 0, HEAP_ID_94);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_24, param1->bannerTilemap, param0->unk_10, 1, 0, 0, 0, HEAP_ID_94);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 32, 12);
@@ -647,7 +647,7 @@ static void ov104_0223E6BC(SysTask *param0, void *param1)
         v0->unk_3C = 0;
     }
 
-    PaletteData_LoadBuffer(v0->unk_1C, &v0->unk_40[v0->unk_3C * 16], 0, 12 * 16, 0x20);
+    PaletteData_LoadBuffer(v0->unk_1C, &v0->unk_40[v0->unk_3C * 16], PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_12), PALETTE_SIZE_BYTES);
 }
 
 static void ov104_0223E6F0(UnkStruct_ov104_0223DD30 *param0, int param1)

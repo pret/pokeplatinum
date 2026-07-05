@@ -2670,8 +2670,8 @@ static void LoadAssets(BattleFactoryApp *app)
         app->menuStr[i] = String_Init(64, HEAP_ID_BATTLE_FACTORY_APP);
     }
 
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_BATTLE_FACTORY_APP);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_BATTLE_FACTORY_APP);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_BATTLE_FACTORY_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_BATTLE_FACTORY_APP);
 
     app->monSpriteMan = PokemonSpriteManager_New(HEAP_ID_BATTLE_FACTORY_APP);
 

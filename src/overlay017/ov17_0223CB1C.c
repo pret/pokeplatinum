@@ -145,11 +145,11 @@ int VisualCompetitonScoring_Init(ApplicationManager *appMan, int *param1)
     ov17_0223D390(v0);
     v0->unk_0C.unk_44 = PaletteData_New(HEAP_ID_22);
 
-    PaletteData_SetAutoTransparent(v0->unk_0C.unk_44, 1);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 0, 0x200, HEAP_ID_22);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 1, 0x200, HEAP_ID_22);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_22);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 3, 0x200, HEAP_ID_22);
+    PaletteData_SetAutoTransparent(v0->unk_0C.unk_44, TRUE);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_44, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_22);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_44, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_22);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_44, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 14, HEAP_ID_22);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_44, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_22);
 
     v0->unk_0C.unk_24 = BgConfig_New(HEAP_ID_22);
 
@@ -162,7 +162,7 @@ int VisualCompetitonScoring_Init(ApplicationManager *appMan, int *param1)
     InitializeTouchPad(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_22);
 
-    v0->unk_0C.unk_1C = SpriteSystem_Alloc(22);
+    v0->unk_0C.unk_1C = SpriteSystem_Alloc(HEAP_ID_22);
 
     SpriteSystem_Init(v0->unk_0C.unk_1C, &Unk_ov17_02252EFC, &Unk_ov17_02252EB4, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
@@ -198,10 +198,10 @@ int VisualCompetitonScoring_Init(ApplicationManager *appMan, int *param1)
         NARC_dtor(v2);
     }
 
-    PaletteData_FillBufferRange(v0->unk_0C.unk_44, 0, 0, 0x7fff, 1, 16 * 16);
-    PaletteData_FillBufferRange(v0->unk_0C.unk_44, 1, 0, 0x7fff, 1, 16 * 16);
-    PaletteData_FillBufferRange(v0->unk_0C.unk_44, 2, 0, 0x7fff, 0, (16 - 2) * 16);
-    PaletteData_FillBufferRange(v0->unk_0C.unk_44, 3, 0, 0x7fff, 0, 16 * 16);
+    PaletteData_FillBufferRange(v0->unk_0C.unk_44, PLTTBUF_MAIN_BG, PLTTSEL_FADED, 0x7fff, 1, 16 * 16);
+    PaletteData_FillBufferRange(v0->unk_0C.unk_44, PLTTBUF_SUB_BG, PLTTSEL_FADED, 0x7fff, 1, 16 * 16);
+    PaletteData_FillBufferRange(v0->unk_0C.unk_44, PLTTBUF_MAIN_OBJ, PLTTSEL_FADED, 0x7fff, 0, (16 - 2) * 16);
+    PaletteData_FillBufferRange(v0->unk_0C.unk_44, PLTTBUF_SUB_OBJ, PLTTSEL_FADED, 0x7fff, 0, 16 * 16);
     NetworkIcon_Init();
     StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, COLOR_BLACK, 6, 1, HEAP_ID_22);
 
@@ -317,10 +317,10 @@ int VisualCompetitionScoring_Exit(ApplicationManager *appMan, int *param1)
 
     PokemonSpriteManager_Free(v0->unk_0C.unk_04);
     Font_Free(FONT_SUBSCREEN);
-    PaletteData_FreeBuffer(v0->unk_0C.unk_44, 0);
-    PaletteData_FreeBuffer(v0->unk_0C.unk_44, 1);
-    PaletteData_FreeBuffer(v0->unk_0C.unk_44, 2);
-    PaletteData_FreeBuffer(v0->unk_0C.unk_44, 3);
+    PaletteData_FreeBuffer(v0->unk_0C.unk_44, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(v0->unk_0C.unk_44, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(v0->unk_0C.unk_44, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(v0->unk_0C.unk_44, PLTTBUF_SUB_OBJ);
     PaletteData_Free(v0->unk_0C.unk_44);
     StringTemplate_Free(v0->unk_0C.unk_3C);
     String_Free(v0->unk_0C.unk_40);
@@ -593,19 +593,19 @@ static void ov17_0223D4A8(UnkStruct_ov17_02247A48 *param0, NARC *param1)
 {
     int v0;
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 23, param0->unk_0C.unk_24, 3, 0, 0, 1, HEAP_ID_22);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 22, param0->unk_0C.unk_24, 3, 0, 0, 1, HEAP_ID_22);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 23, param0->unk_0C.unk_24, 3, 0, 0, TRUE, HEAP_ID_22);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 22, param0->unk_0C.unk_24, 3, 0, 0, TRUE, HEAP_ID_22);
     Bg_ClearTilemap(param0->unk_0C.unk_24, 1);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, 45, 35, 22, 0, 0, 0);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, 45, 36, 22, 0, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 35, HEAP_ID_22, PLTTBUF_MAIN_BG, 0, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 36, HEAP_ID_22, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
 
     v0 = Options_Frame(param0->unk_00->options);
 
     LoadMessageBoxGraphics(param0->unk_0C.unk_24, 1, 1, 15, v0, HEAP_ID_22);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, 38, GetMessageBoxPaletteNARCMember(v0), 22, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v0), HEAP_ID_22, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 24, param0->unk_0C.unk_24, 2, 0, 0, 1, HEAP_ID_22);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 21, param0->unk_0C.unk_24, 2, 0, 0, 1, HEAP_ID_22);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, 45, 37, 22, 0, 0x20, 0xc * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 37, HEAP_ID_22, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_12));
 }
 
 static void ov17_0223D5AC(UnkStruct_ov17_02247A48 *param0)
@@ -617,7 +617,7 @@ static void ov17_0223D5B0(UnkStruct_ov17_02247A48 *param0, NARC *param1)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 19, param0->unk_0C.unk_24, 4, 0, 0, 1, HEAP_ID_22);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 20, param0->unk_0C.unk_24, 4, 0, 0, 1, HEAP_ID_22);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, 45, 34, 22, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 34, HEAP_ID_22, PLTTBUF_SUB_BG, 0, PLTT_DEST(PLTT_0));
 }
 
 static void ov17_0223D608(UnkStruct_ov17_02247A48 *param0)

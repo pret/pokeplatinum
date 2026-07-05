@@ -1974,7 +1974,7 @@ static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData *
 
     NNS_G2dGetUnpackedPaletteData(nclrFile, paletteData);
 
-    Bg_LoadPalette(BG_LAYER_MAIN_3, (*paletteData)->pRawData, 32 * 1, 32 * 12);
+    Bg_LoadPalette(BG_LAYER_MAIN_3, (*paletteData)->pRawData, PALETTE_SIZE_BYTES, 32 * 12);
     Heap_Free(nclrFile);
 }
 

@@ -267,8 +267,8 @@ static void GTSApplication_WFCInit_InitGraphics(GTSApplicationState *appState)
 
     Graphics_LoadPaletteFromOpenNARC(narc, 3, PAL_LOAD_MAIN_BG, 0, 0, HEAP_ID_62);
     Graphics_LoadPaletteFromOpenNARC(narc, 3, PAL_LOAD_SUB_BG, 0, 0, HEAP_ID_62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_62);
     LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 2, bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_62);

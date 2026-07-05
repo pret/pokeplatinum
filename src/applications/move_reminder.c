@@ -797,7 +797,7 @@ static void MoveReminder_LoadBgResources(MoveReminderController *controller, NAR
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 10, controller->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_MOVE_REMINDER);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 11, controller->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_MOVE_REMINDER);
     Graphics_LoadPaletteFromOpenNARC(narc, 12, 0, 0, 0, HEAP_ID_MOVE_REMINDER);
-    Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_MOVE_REMINDER);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_14), HEAP_ID_MOVE_REMINDER);
     LoadStandardWindowGraphics(controller->bgConfig, BG_LAYER_MAIN_0, 1, PLTT_12, 0, HEAP_ID_MOVE_REMINDER);
     LoadMessageBoxGraphics(controller->bgConfig, BG_LAYER_MAIN_0, 1 + 9, PLTT_13, Options_Frame(controller->data->options), HEAP_ID_MOVE_REMINDER);
 }

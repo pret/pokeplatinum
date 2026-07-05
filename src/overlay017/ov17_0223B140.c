@@ -165,11 +165,11 @@ int ActingCompetition_Init(ApplicationManager *appMan, int *param1)
 
     v0->unk_0C.unk_50 = PaletteData_New(HEAP_ID_21);
 
-    PaletteData_SetAutoTransparent(v0->unk_0C.unk_50, 1);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 0, 0x200, HEAP_ID_21);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 1, 0x200, HEAP_ID_21);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_21);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 3, 0x200, HEAP_ID_21);
+    PaletteData_SetAutoTransparent(v0->unk_0C.unk_50, TRUE);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_50, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_21);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_50, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_21);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_50, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 14, HEAP_ID_21);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_50, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_21);
 
     v0->unk_0C.unk_24 = BgConfig_New(HEAP_ID_21);
 
@@ -184,7 +184,7 @@ int ActingCompetition_Init(ApplicationManager *appMan, int *param1)
     InitializeTouchPad(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_21);
 
-    v0->unk_0C.unk_18 = SpriteSystem_Alloc(21);
+    v0->unk_0C.unk_18 = SpriteSystem_Alloc(HEAP_ID_21);
     SpriteSystem_Init(v0->unk_0C.unk_18, &Unk_ov17_02252DC8, &Unk_ov17_02252D9C, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -346,10 +346,10 @@ int ActingCompetition_Exit(ApplicationManager *appMan, int *param1)
     Font_Free(FONT_SUBSCREEN);
     sub_020127BC(v0->unk_0C.unk_54);
 
-    PaletteData_FreeBuffer(v0->unk_0C.unk_50, 0);
-    PaletteData_FreeBuffer(v0->unk_0C.unk_50, 1);
-    PaletteData_FreeBuffer(v0->unk_0C.unk_50, 2);
-    PaletteData_FreeBuffer(v0->unk_0C.unk_50, 3);
+    PaletteData_FreeBuffer(v0->unk_0C.unk_50, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(v0->unk_0C.unk_50, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(v0->unk_0C.unk_50, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(v0->unk_0C.unk_50, PLTTBUF_SUB_OBJ);
     PaletteData_Free(v0->unk_0C.unk_50);
 
     String_Free(v0->unk_0C.unk_4C);
@@ -655,26 +655,24 @@ static void ov17_0223BBA8(UnkStruct_ov17_02246F24 *param0, NARC *param1)
 
     ov17_0223BB14(param0, 0, 0);
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_50, 45, 30, 21, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_50, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 30, HEAP_ID_21, PLTTBUF_MAIN_BG, 0, PLTT_DEST(PLTT_0));
 
-    {
-        u16 *v0, *v1, *v2, *v3;
+    u16 *v0, *v1, *v2, *v3;
 
-        v0 = Heap_Alloc(HEAP_ID_21, 0x20);
-        v1 = Heap_Alloc(HEAP_ID_21, 0x20);
-        v2 = PaletteData_GetUnfadedBuffer(param0->unk_0C.unk_50, 0);
-        v3 = PaletteData_GetFadedBuffer(param0->unk_0C.unk_50, 0);
+    v0 = Heap_Alloc(HEAP_ID_21, PALETTE_SIZE_BYTES);
+    v1 = Heap_Alloc(HEAP_ID_21, PALETTE_SIZE_BYTES);
+    v2 = PaletteData_GetUnfadedBuffer(param0->unk_0C.unk_50, PLTTBUF_MAIN_BG);
+    v3 = PaletteData_GetFadedBuffer(param0->unk_0C.unk_50, PLTTBUF_MAIN_BG);
 
-        MI_CpuCopy16(&v2[Unk_ov17_022536B4[0] * 16], v0, 0x20);
-        MI_CpuCopy16(&v2[Unk_ov17_022536B4[param0->unk_00->unk_00.playerContestantID] * 16], v1, 0x20);
-        MI_CpuCopy16(v0, &v2[Unk_ov17_022536B4[param0->unk_00->unk_00.playerContestantID] * 16], 0x20);
-        MI_CpuCopy16(v1, &v2[Unk_ov17_022536B4[0] * 16], 0x20);
-        MI_CpuCopy16(v0, &v3[Unk_ov17_022536B4[param0->unk_00->unk_00.playerContestantID] * 16], 0x20);
-        MI_CpuCopy16(v1, &v3[Unk_ov17_022536B4[0] * 16], 0x20);
+    MI_CpuCopy16(&v2[Unk_ov17_022536B4[0] * 16], v0, PALETTE_SIZE_BYTES);
+    MI_CpuCopy16(&v2[Unk_ov17_022536B4[param0->unk_00->unk_00.playerContestantID] * 16], v1, PALETTE_SIZE_BYTES);
+    MI_CpuCopy16(v0, &v2[Unk_ov17_022536B4[param0->unk_00->unk_00.playerContestantID] * 16], PALETTE_SIZE_BYTES);
+    MI_CpuCopy16(v1, &v2[Unk_ov17_022536B4[0] * 16], PALETTE_SIZE_BYTES);
+    MI_CpuCopy16(v0, &v3[Unk_ov17_022536B4[param0->unk_00->unk_00.playerContestantID] * 16], PALETTE_SIZE_BYTES);
+    MI_CpuCopy16(v1, &v3[Unk_ov17_022536B4[0] * 16], PALETTE_SIZE_BYTES);
 
-        Heap_Free(v0);
-        Heap_Free(v1);
-    }
+    Heap_Free(v0);
+    Heap_Free(v1);
 }
 
 static void ov17_0223BCDC(UnkStruct_ov17_02246F24 *param0)

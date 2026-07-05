@@ -570,7 +570,7 @@ static void ov90_021D1340(UnkStruct_ov90_021D0ECC *param0)
         }
     }
 
-    Font_LoadTextPalette(0, 2 * 32, param0->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_2), param0->heapID);
 }
 
 static void ov90_021D13A8(UnkStruct_ov90_021D0ECC *param0)

@@ -587,8 +587,8 @@ static void InitBackgrounds(BgConfig *bgConfig, int sceneID)
 
 static void LoadMessageBoxAndWindowGraphics(FrontierGraphics *graphics)
 {
-    PaletteData_LoadBufferFromFileStart(graphics->plttData, NARC_INDEX_GRAPHIC__PL_FONT, font_NCLR, HEAP_ID_94, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
-    PaletteData_LoadBufferFromFileStart(graphics->plttData, NARC_INDEX_GRAPHIC__PL_FONT, screen_indicators_NCLR, HEAP_ID_94, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
+    PaletteData_LoadBufferFromFileStart(graphics->plttData, NARC_INDEX_GRAPHIC__PL_FONT, font_NCLR, HEAP_ID_94, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
+    PaletteData_LoadBufferFromFileStart(graphics->plttData, NARC_INDEX_GRAPHIC__PL_FONT, screen_indicators_NCLR, HEAP_ID_94, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
 
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(graphics->frontier);
 
@@ -669,7 +669,7 @@ static void ov104_0223CC74(FrontierGraphics *param0, int sceneID, const TrainerI
         Graphics_LoadTilesToBgLayerFromOpenNARC(narc, FrontierScene_GetParam(sceneID, FR_SCENE_TILES_IDX), param0->bgConfig, 3, 0, 0, 1, HEAP_ID_94);
 
         if (bgMode == GX_BGMODE_0) {
-            PaletteData_LoadBufferFromFileStart(param0->plttData, narcID, FrontierScene_GetParam(sceneID, FR_SCENE_PLTT_IDX), 94, 0, (10 - 0 + 1) * 0x20, 0 * 16);
+            PaletteData_LoadBufferFromFileStart(param0->plttData, narcID, FrontierScene_GetParam(sceneID, FR_SCENE_PLTT_IDX), HEAP_ID_94, 0, (10 - 0 + 1) * PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_0));
         } else {
             NNSG2dPaletteData *plttData;
 
@@ -683,7 +683,7 @@ static void ov104_0223CC74(FrontierGraphics *param0, int sceneID, const TrainerI
             Heap_Free(pltt);
         }
 
-        PaletteData_FillBufferRange(param0->plttData, 0, 2, 0x0, 0, 1);
+        PaletteData_FillBufferRange(param0->plttData, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, 0x0, 0, 1);
         Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, FrontierScene_GetParam(sceneID, FR_SCENE_TILEMAP_IDX), param0->bgConfig, 3, 0, 0, 1, HEAP_ID_94);
 
         if (FrontierScene_GetParam(sceneID, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {

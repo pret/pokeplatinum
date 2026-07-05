@@ -560,8 +560,8 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, enum HeapID heapID)
         Options *options = SaveData_GetOptions(param0->saveData);
         u8 v2 = Options_Frame(options);
 
-        Font_LoadTextPalette(0, 12 * 32, heapID);
-        Font_LoadScreenIndicatorsPalette(0, 11 * 32, heapID);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), heapID);
+        Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_11), heapID);
         LoadStandardWindowGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], 1 + (18 + 12), 14, 0, heapID);
         LoadMessageBoxGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, heapID);
     }

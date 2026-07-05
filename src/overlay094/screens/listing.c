@@ -227,7 +227,7 @@ static void ov94_0223D2E8(GTSApplicationState *param0)
 
     Graphics_LoadPaletteFromOpenNARC(v1, 7, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, HEAP_ID_62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_62);
     LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 17, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
@@ -409,7 +409,7 @@ static int ov94_0223D6B8(GTSApplicationState *param0)
 
     Window_DrawStandardFrame(&param0->unk_F9C[0], 0, 1 + (18 + 12), 11);
 
-    param0->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
+    param0->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, HEAP_ID_62, PAD_BUTTON_B);
     param0->currentScreenInstruction = 8;
 
     return 3;

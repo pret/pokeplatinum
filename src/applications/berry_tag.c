@@ -839,7 +839,7 @@ static int BerryTag_WaitFade(BerryTag *berryTag)
 static void BerryTag_LoadBerryGraphics(BerryTag *berryTag, NARC *narc)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, BerryTag_GetTiles(berryTag->outsideData->currentBerryID), berryTag->bgConfig, BG_LAYER_MAIN_1, 1, 0, FALSE, HEAP_ID_BERRY_TAG);
-    Graphics_LoadPaletteFromOpenNARC(narc, BerryTag_GetPalette(berryTag->outsideData->currentBerryID), PAL_LOAD_MAIN_BG, PLTT_OFFSET(3), PALETTE_SIZE_BYTES, HEAP_ID_BERRY_TAG);
+    Graphics_LoadPaletteFromOpenNARC(narc, BerryTag_GetPalette(berryTag->outsideData->currentBerryID), PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_3), PALETTE_SIZE_BYTES, HEAP_ID_BERRY_TAG);
 }
 
 static u32 BerryTag_GetTiles(u32 berryID)

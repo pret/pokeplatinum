@@ -478,7 +478,7 @@ static void InitWindow(PoffinCutscene *app)
     Window_AddFromTemplate(app->bgConfig, &app->window, &winTemplate);
     Window_FillTilemap(&app->window, 0);
     LoadMessageBoxGraphics(app->bgConfig, BG_LAYER_MAIN_1, 1, 14, app->data->frame, app->heapID);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, 15 * 32, app->heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_15), app->heapID);
 }
 
 static void FreeWindow(PoffinCutscene *app)

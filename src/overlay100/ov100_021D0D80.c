@@ -72,8 +72,8 @@ int ov100_021D0D80(ApplicationManager *appMan, int *param1)
         Window_CopyToVRAM(v1);
 
         LoadMessageBoxGraphics(v0->unk_0C.unk_0C, 1, 500, 15, v2, HEAP_ID_111);
-        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, 38, GetMessageBoxPaletteNARCMember(v2), 111, 0, 0x20, 15 * 16);
-        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, 14, 7, 111, 0, 0x20, 14 * 16);
+        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v2), HEAP_ID_111, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_15));
+        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_111, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
         Window_DrawMessageBoxWithScrollCursor(v1, 0, 500, 15);
 
         ov100_021D4788(&v0->unk_0C);
@@ -155,7 +155,7 @@ int ov100_021D0F44(ApplicationManager *appMan, int *param1)
 
 static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
 {
-    param0->unk_04 = SpriteSystem_Alloc(111);
+    param0->unk_04 = SpriteSystem_Alloc(HEAP_ID_111);
 
     {
         const RenderOamTemplate v0 = {
@@ -217,11 +217,11 @@ static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
     param0->camera = Camera_Alloc(HEAP_ID_111);
     param0->unk_2C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPEAR_PILLAR, HEAP_ID_111);
 
-    PaletteData_SetAutoTransparent(param0->unk_10, 1);
-    PaletteData_AllocBuffer(param0->unk_10, 0, 0x200, HEAP_ID_111);
-    PaletteData_AllocBuffer(param0->unk_10, 1, 0x200, HEAP_ID_111);
-    PaletteData_AllocBuffer(param0->unk_10, 2, 0x200, HEAP_ID_111);
-    PaletteData_AllocBuffer(param0->unk_10, 3, 0x200, HEAP_ID_111);
+    PaletteData_SetAutoTransparent(param0->unk_10, TRUE);
+    PaletteData_AllocBuffer(param0->unk_10, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_111);
+    PaletteData_AllocBuffer(param0->unk_10, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_111);
+    PaletteData_AllocBuffer(param0->unk_10, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_111);
+    PaletteData_AllocBuffer(param0->unk_10, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_111);
 
     ov100_021D1208(param0->unk_0C);
     ov100_021D0FA0(param0);
@@ -250,10 +250,10 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
     Heap_Free(param0->unk_0C);
 
-    PaletteData_FreeBuffer(param0->unk_10, 0);
-    PaletteData_FreeBuffer(param0->unk_10, 1);
-    PaletteData_FreeBuffer(param0->unk_10, 2);
-    PaletteData_FreeBuffer(param0->unk_10, 3);
+    PaletteData_FreeBuffer(param0->unk_10, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(param0->unk_10, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(param0->unk_10, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(param0->unk_10, PLTTBUF_SUB_OBJ);
     PaletteData_Free(param0->unk_10);
 
     NARC_dtor(param0->unk_00);

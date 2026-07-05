@@ -59,11 +59,11 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
 
     NNS_G2dSetupSoftwareSpriteCamera();
 
-    PaletteData_SetAutoTransparent(param0->unk_14.unk_14, 1);
-    PaletteData_AllocBuffer(param0->unk_14.unk_14, 0, 0x200, HEAP_ID_102);
-    PaletteData_AllocBuffer(param0->unk_14.unk_14, 1, 0x200, HEAP_ID_102);
-    PaletteData_AllocBuffer(param0->unk_14.unk_14, 2, 0x200, HEAP_ID_102);
-    PaletteData_AllocBuffer(param0->unk_14.unk_14, 3, 0x200, HEAP_ID_102);
+    PaletteData_SetAutoTransparent(param0->unk_14.unk_14, TRUE);
+    PaletteData_AllocBuffer(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_102);
+    PaletteData_AllocBuffer(param0->unk_14.unk_14, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_102);
+    PaletteData_AllocBuffer(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_102);
+    PaletteData_AllocBuffer(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_102);
     ov62_0222F670(param0->unk_14.unk_10);
     ov62_0222F848(param0);
 
@@ -93,8 +93,8 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
             void *v1 = NetworkIcon_GetPalette(HEAP_ID_102);
 
             NNS_G2dGetUnpackedPaletteData(v1, &v0);
-            PaletteData_LoadBuffer(param0->unk_14.unk_14, v0->pRawData, 2, 14 * 16, 32);
-            PaletteData_LoadBuffer(param0->unk_14.unk_14, v0->pRawData, 3, 14 * 16, 32);
+            PaletteData_LoadBuffer(param0->unk_14.unk_14, v0->pRawData, PLTTBUF_MAIN_OBJ, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES);
+            PaletteData_LoadBuffer(param0->unk_14.unk_14, v0->pRawData, PLTTBUF_SUB_OBJ, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES);
             Heap_Free(v1);
         }
     }
@@ -153,10 +153,10 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
     Bg_FreeTilemapBuffer(param0->unk_14.unk_10, 6);
     Bg_FreeTilemapBuffer(param0->unk_14.unk_10, 7);
     Heap_Free(param0->unk_14.unk_10);
-    PaletteData_FreeBuffer(param0->unk_14.unk_14, 0);
-    PaletteData_FreeBuffer(param0->unk_14.unk_14, 1);
-    PaletteData_FreeBuffer(param0->unk_14.unk_14, 2);
-    PaletteData_FreeBuffer(param0->unk_14.unk_14, 3);
+    PaletteData_FreeBuffer(param0->unk_14.unk_14, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(param0->unk_14.unk_14, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ);
     PaletteData_Free(param0->unk_14.unk_14);
 
     if (param0->unk_00 == 0) {
@@ -414,7 +414,7 @@ void ov62_0222F834(UnkStruct_0208C06C *param0)
 
 static void ov62_0222F848(UnkStruct_0208C06C *param0)
 {
-    param0->unk_14.unk_04 = SpriteSystem_Alloc(102);
+    param0->unk_14.unk_04 = SpriteSystem_Alloc(HEAP_ID_102);
     {
         const RenderOamTemplate v0 = {
             0,

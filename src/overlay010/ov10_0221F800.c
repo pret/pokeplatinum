@@ -544,7 +544,7 @@ static u8 ov10_0221FB28(UnkStruct_ov10_0221FB28 *param0)
     param0->unk_0C = BgConfig_New(param0->trainerIntroData->heapID);
     param0->unk_08 = PaletteData_New(param0->trainerIntroData->heapID);
 
-    PaletteData_AllocBuffer(param0->unk_08, 0, 32 * 16, param0->trainerIntroData->heapID);
+    PaletteData_AllocBuffer(param0->unk_08, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, param0->trainerIntroData->heapID);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 
     param0->unk_B76 = 0;
@@ -1149,7 +1149,7 @@ static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
     ov10_02220BE8(param1);
 
     VramTransfer_Free();
-    PaletteData_FreeBuffer(param1->unk_08, 0);
+    PaletteData_FreeBuffer(param1->unk_08, PLTTBUF_MAIN_BG);
     PaletteData_Free(param1->unk_08);
 
     param1->trainerIntroData->isDone = 1;
@@ -1415,7 +1415,7 @@ static void ov10_02220E70(UnkStruct_ov10_0221FB28 *param0)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_0C, 2, 0, 0, 0, param0->trainerIntroData->heapID);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_0C, 3, 0, 0, 0, param0->trainerIntroData->heapID);
     Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 0, param0->trainerIntroData->heapID);
-    PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 0, 0x20 * 5);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, PLTTBUF_MAIN_BG, 0, PALETTE_SIZE_BYTES * 5);
     Bg_MaskPalette(BG_LAYER_MAIN_1, 0x18c6);
     NARC_dtor(v0);
 }
@@ -1428,11 +1428,11 @@ static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0)
     v0 = Options_Frame(param0->trainerIntroData->dto->options);
 
     LoadMessageBoxGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1, 15, v0, param0->trainerIntroData->heapID);
-    PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 15 * 16, 0x20 * 1);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_15), PALETTE_SIZE_BYTES * 1);
     LoadStandardWindowGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1 + (18 + 12), 14, 0, param0->trainerIntroData->heapID);
-    PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 14 * 16, 0x20 * 1);
-    Font_LoadTextPalette(0, 13 * 0x20, param0->trainerIntroData->heapID);
-    PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 13 * 16, 0x20 * 1);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES * 1);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), param0->trainerIntroData->heapID);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_13), PALETTE_SIZE_BYTES * 1);
     Window_Add(param0->unk_0C, &param0->unk_B7C, 0, 0x2, 0x13, 27, 4, 13, (1 + (18 + 12)) + 9);
     Window_Add(param0->unk_0C, &param0->unk_B8C, 0, 0x2, 0x13, 27, 4, 13, (1 + (18 + 12)) + 9);
 }
@@ -1731,7 +1731,7 @@ static void ov10_022217CC(UnkStruct_ov10_0221FB28 *param0)
     camera = ParticleSystem_GetCamera(param0->unk_B50);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
 
-    v1 = ParticleSystem_LoadResourceFromNARC(61, 2, param0->trainerIntroData->heapID);
+    v1 = ParticleSystem_LoadResourceFromNARC(NARC_INDEX_PARTICLEDATA__PARTICLEDATA, 2, param0->trainerIntroData->heapID);
     ParticleSystem_SetResource(param0->unk_B50, v1, (1 << 1) | (1 << 3), 1);
 
     ParticleSystem_CreateEmitterWithCallback(param0->unk_B50, 0, NULL, NULL);
@@ -1900,7 +1900,7 @@ static void ov10_02221A3C(UnkStruct_ov10_0221FB28 *param0)
 
         v2 = NARC_AllocAndReadWholeMember(v0, 16, param0->trainerIntroData->heapID);
         NNS_G2dGetUnpackedPaletteData(v2, &v1);
-        Bg_LoadPalette(3, (void *)v1->pRawData, v1->szByte, 0);
+        Bg_LoadPalette(BG_LAYER_MAIN_3, (void *)v1->pRawData, v1->szByte, 0);
 
         v3 = (u16 *)v1->pRawData;
         memcpy(param0->unk_4D8, &v3[3 * 16], 32 * 3);
@@ -1932,11 +1932,9 @@ static void ov10_02221AE4(UnkStruct_ov10_0221FB28 *param0)
                 param0->unk_0C, 2, Unk_ov10_02222A70[v1][0], Unk_ov10_02222A70[v1][1], 16, 6, 3 + v1);
 
             if (((v1 < 3) && (param0->trainerIntroData->playerSide == 1)) || ((v1 >= 3) && (param0->trainerIntroData->playerSide == 0))) {
-                Bg_LoadPalette(
-                    2, (void *)&param0->unk_4D8[16 * 1], 16 * 2, (3 + v1) * 16 * 2);
+                Bg_LoadPalette(BG_LAYER_MAIN_2, (void *)&param0->unk_4D8[16 * 1], PALETTE_SIZE_BYTES, PLTT_OFFSET(3 + v1));
             } else {
-                Bg_LoadPalette(
-                    2, (void *)&param0->unk_4D8[0], 16 * 2, (3 + v1) * 16 * 2);
+                Bg_LoadPalette(BG_LAYER_MAIN_2, (void *)&param0->unk_4D8[0], PALETTE_SIZE_BYTES, PLTT_OFFSET(3 + v1));
             }
         }
     }
@@ -2275,16 +2273,13 @@ static void ov10_02222594(UnkStruct_ov10_0221FB28 *param0, u32 param1)
         break;
     case 4:
     case 3:
-        Bg_LoadPalette(
-            1, &param0->unk_4D8[9], 2 * 2, (v0->palette * 16 + 9) * 2);
+        Bg_LoadPalette(BG_LAYER_MAIN_1, &param0->unk_4D8[9], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     case 2:
-        Bg_LoadPalette(
-            1, &param0->unk_4D8[(9 + 16)], 2 * 2, (v0->palette * 16 + 9) * 2);
+        Bg_LoadPalette(BG_LAYER_MAIN_1, &param0->unk_4D8[(9 + 16)], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     case 1:
-        Bg_LoadPalette(
-            1, &param0->unk_4D8[(9 + 32)], 2 * 2, (v0->palette * 16 + 9) * 2);
+        Bg_LoadPalette(BG_LAYER_MAIN_1, &param0->unk_4D8[(9 + 32)], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     }
 

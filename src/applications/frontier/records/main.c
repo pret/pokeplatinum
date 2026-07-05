@@ -125,8 +125,8 @@ int BattleFrontierRecordsApp_Init(ApplicationManager *appMan, int *state)
     app->displayStr = String_Init(800, HEAP_ID_FRONTIER_RECORD_APP);
     app->fmtStr = String_Init(800, HEAP_ID_FRONTIER_RECORD_APP);
 
-    Font_LoadTextPalette(0, 13 * PALETTE_SIZE_BYTES, HEAP_ID_FRONTIER_RECORD_APP);
-    Font_LoadScreenIndicatorsPalette(0, 12 * PALETTE_SIZE_BYTES, HEAP_ID_FRONTIER_RECORD_APP);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_FRONTIER_RECORD_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_FRONTIER_RECORD_APP);
     FrontierRecordsApp_InitWindows(app->bgConfig, app->windows, GetWindowGroup(app->facility));
     SetVBlankCallback(VBlankCallback, app);
     *state = 0;

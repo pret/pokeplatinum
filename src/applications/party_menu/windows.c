@@ -971,15 +971,15 @@ void PartyMenu_DrawMemberHealthbar(PartyMenuApplication *application, u8 slot)
 
     case BARCOLOR_MAX:
     case BARCOLOR_GREEN:
-        Bg_LoadPalette(BG_LAYER_MAIN_1, &application->colors[PLTT_DEST(0) + 9], 2 * sizeof(u16), (PLTT_DEST(window->palette) + 9) * sizeof(u16));
+        Bg_LoadPalette(BG_LAYER_MAIN_1, &application->colors[PLTT_DEST(PLTT_0) + 9], 2 * sizeof(u16), (PLTT_DEST(window->palette) + 9) * sizeof(u16));
         break;
 
     case BARCOLOR_YELLOW:
-        Bg_LoadPalette(BG_LAYER_MAIN_1, &application->colors[PLTT_DEST(1) + 9], 2 * sizeof(u16), (PLTT_DEST(window->palette) + 9) * sizeof(u16));
+        Bg_LoadPalette(BG_LAYER_MAIN_1, &application->colors[PLTT_DEST(PLTT_1) + 9], 2 * sizeof(u16), (PLTT_DEST(window->palette) + 9) * sizeof(u16));
         break;
 
     case BARCOLOR_RED:
-        Bg_LoadPalette(BG_LAYER_MAIN_1, &application->colors[PLTT_DEST(2) + 9], 2 * sizeof(u16), (PLTT_DEST(window->palette) + 9) * sizeof(u16));
+        Bg_LoadPalette(BG_LAYER_MAIN_1, &application->colors[PLTT_DEST(PLTT_2) + 9], 2 * sizeof(u16), (PLTT_DEST(window->palette) + 9) * sizeof(u16));
         break;
     }
 

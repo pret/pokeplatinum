@@ -292,7 +292,7 @@ static void JournalController_LoadGraphics(JournalManager *journalManager)
     MI_CpuCopy16(tilemapBuffer, journalManager->tilemapBuffer_5C, 0x800);
     Bg_LoadTilemapBuffer(journalManager->bgConfig, 3, journalManager->tilemapBuffer_5C, 0x800);
 
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 15 * 32, HEAP_ID_JOURNAL);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_15), HEAP_ID_JOURNAL);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 }
 

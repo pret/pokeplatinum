@@ -1007,8 +1007,8 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Mys
 static BOOL ShowAppMainMenu(ApplicationManager *appMan, MysteryGiftAppData *appData)
 {
     Text_ResetAllPrinters();
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), HEAP_ID_MYSTERY_GIFT_APP);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(1), HEAP_ID_MYSTERY_GIFT_APP);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_0), HEAP_ID_MYSTERY_GIFT_APP);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_1), HEAP_ID_MYSTERY_GIFT_APP);
 
     int frameType = Options_Frame(appData->options);
 

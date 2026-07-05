@@ -549,7 +549,7 @@ static void InitAndLoadGraphics(RangerLinkManager *param0)
     MainMenuUtil_InitBGLayer(param0->bgConfig, BG_LAYER_SUB_1, BG_SCREEN_SIZE_256x256, GX_BG_SCRBASE_0x7000 * 0x800, GX_BG_CHARBASE_0x04000 * 0x4000);
 
     Text_ResetAllPrinters();
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_0, param0->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_0), param0->heapID);
     LoadStandardWindowGraphics(param0->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_1, STANDARD_WINDOW_SYSTEM, param0->heapID);
 
     int frameType = Options_Frame(param0->options);

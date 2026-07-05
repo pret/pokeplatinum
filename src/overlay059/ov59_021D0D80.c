@@ -547,8 +547,8 @@ static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
 
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 16 * 2, HEAP_ID_51);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, 4, 0, 16 * 2, HEAP_ID_51);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_51);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_51);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_51);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_51);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, bgConfig, 6, 0, 0, 1, HEAP_ID_51);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, bgConfig, 6, 0, 0, 1, HEAP_ID_51);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, bgConfig, 1, 0, 32 * 8 * 0x20, 1, HEAP_ID_51);

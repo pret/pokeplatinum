@@ -444,9 +444,9 @@ void BattleSystem_SetupBattleScreen(BattleSystem *battleSys)
 
     ReplaceTransparentTiles(battleSys->bgConfig, 1, 1, 10, frame, HEAP_ID_BATTLE);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 3 + battleSys->background, battleSys->bgConfig, BG_LAYER_MAIN_3, 0, 0, 1, HEAP_ID_BATTLE);
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, 7, 172 + battleSys->background * 3 + BattleSystem_GetBackgroundTimeOffset(battleSys), HEAP_ID_BATTLE, 0, 0, 0);
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, 38, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, 0, PALETTE_SIZE_BYTES, 10 * 16);
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, 14, 7, HEAP_ID_BATTLE, 0, PALETTE_SIZE_BYTES, 11 * 16);
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 172 + battleSys->background * 3 + BattleSystem_GetBackgroundTimeOffset(battleSys), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, 0, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_10));
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_11));
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 2, battleSys->bgConfig, 3, 0, 0, 1, HEAP_ID_BATTLE);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -531,11 +531,11 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     battleSys->specialCharsLevel = battleSys->specialCharsHP;
     battleSys->paletteData = PaletteData_New(HEAP_ID_BATTLE);
 
-    PaletteData_SetAutoTransparent(battleSys->paletteData, 1);
-    PaletteData_AllocBuffer(battleSys->paletteData, 0, 0x200, HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->paletteData, 1, 0x200, HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->paletteData, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->paletteData, 3, 0x200, HEAP_ID_BATTLE);
+    PaletteData_SetAutoTransparent(battleSys->paletteData, TRUE);
+    PaletteData_AllocBuffer(battleSys->paletteData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteData, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 14, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteData, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_BATTLE);
 
     battleSys->bgConfig = BgConfig_New(HEAP_ID_BATTLE);
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
@@ -606,13 +606,13 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
 
     int offset = BattleSystem_GetBackgroundTimeOffset(battleSys);
 
-    PaletteData_FillBufferRange(battleSys->paletteData, 0, 2, sBackgroundColors[battleSys->background][offset], 0, 112);
-    PaletteData_FillBufferRange(battleSys->paletteData, 0, 2, sBackgroundColors[battleSys->background][offset], 0xC * 16, 0xC * 16 + 4 * 16);
-    PaletteData_FillBufferRange(battleSys->paletteData, 2, 2, sBackgroundColors[battleSys->background][offset], 0, ((16 - 2) * 16) - 1);
+    PaletteData_FillBufferRange(battleSys->paletteData, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, sBackgroundColors[battleSys->background][offset], 0, 112);
+    PaletteData_FillBufferRange(battleSys->paletteData, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, sBackgroundColors[battleSys->background][offset], 0xC * 16, 0xC * 16 + 4 * 16);
+    PaletteData_FillBufferRange(battleSys->paletteData, PLTTBUF_MAIN_OBJ, PLTTSEL_BOTH, sBackgroundColors[battleSys->background][offset], 0, ((16 - 2) * 16) - 1);
 
-    PaletteData_FillBufferRange(battleSys->paletteData, 0, 0, 0, 10 * 16, 10 * 16 + 2 * 16);
-    PaletteData_FillBufferRange(battleSys->paletteData, 1, 0, 0, 0, 255);
-    PaletteData_FillBufferRange(battleSys->paletteData, 3, 0, 0xFFFF, 0, 255);
+    PaletteData_FillBufferRange(battleSys->paletteData, PLTTBUF_MAIN_BG, PLTTSEL_FADED, 0, 10 * 16, 10 * 16 + 2 * 16);
+    PaletteData_FillBufferRange(battleSys->paletteData, PLTTBUF_SUB_BG, PLTTSEL_FADED, 0, 0, 255);
+    PaletteData_FillBufferRange(battleSys->paletteData, PLTTBUF_SUB_OBJ, PLTTSEL_FADED, 0xFFFF, 0, 255);
 
     battleSys->paletteAnimator = sub_0201567C(battleSys->paletteData, 0, 11, HEAP_ID_BATTLE);
     sub_02015738(battleSys->paletteAnimator, 1);
@@ -894,9 +894,9 @@ static void BattleMain_InitBattleGraphics(BattleSystem *battleSys, BgConfig *bgC
 
     ReplaceTransparentTiles(bgConfig, 1, 1, 10, frame, HEAP_ID_BATTLE);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 3 + battleSys->background, bgConfig, BG_LAYER_MAIN_3, 0, 0, 1, HEAP_ID_BATTLE);
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 172 + battleSys->background * 3 + BattleSystem_GetBackgroundTimeOffset(battleSys), HEAP_ID_BATTLE, 0, 0, 0);
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, 0, PALETTE_SIZE_BYTES, 10 * 16);
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_BATTLE, 0, PALETTE_SIZE_BYTES, 11 * 16);
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 172 + battleSys->background * 3 + BattleSystem_GetBackgroundTimeOffset(battleSys), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, 0, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_10));
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_11));
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 2, bgConfig, 3, 0, 0, 1, HEAP_ID_BATTLE);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -1612,9 +1612,9 @@ static void BattleMain_InitLinkCommScreen(ApplicationManager *appMan, FieldBattl
     linkBattleCommState->syncTimer = 0;
     linkBattleCommState->paletteData = PaletteData_New(HEAP_ID_BATTLE);
 
-    PaletteData_SetAutoTransparent(linkBattleCommState->paletteData, 1);
-    PaletteData_AllocBuffer(linkBattleCommState->paletteData, 0, 0x200, HEAP_ID_BATTLE);
-    PaletteData_FillBufferRange(linkBattleCommState->paletteData, 0, 2, 0, 0, 256);
+    PaletteData_SetAutoTransparent(linkBattleCommState->paletteData, TRUE);
+    PaletteData_AllocBuffer(linkBattleCommState->paletteData, PLTTBUF_MAIN_BG, 0x200, HEAP_ID_BATTLE);
+    PaletteData_FillBufferRange(linkBattleCommState->paletteData, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, 0, 0, 256);
 
     linkBattleCommState->bgConfig = BgConfig_New(HEAP_ID_BATTLE);
     linkBattleCommState->window = Window_New(HEAP_ID_BATTLE, 1);
@@ -1673,9 +1673,9 @@ static void BattleMain_InitLinkCommScreen(ApplicationManager *appMan, FieldBattl
     int frame = Options_Frame(dto->options);
 
     ReplaceTransparentTiles(linkBattleCommState->bgConfig, 1, 1, 10, frame, HEAP_ID_BATTLE);
-    PaletteData_LoadBufferFromFileStart(linkBattleCommState->paletteData, 14, 7, HEAP_ID_BATTLE, 0, PALETTE_SIZE_BYTES, 0xB * 0x10);
-    PaletteData_LoadBufferFromFileStart(linkBattleCommState->paletteData, 38, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, 0, PALETTE_SIZE_BYTES, 10 * 0x10);
-    PaletteData_FillBufferRange(linkBattleCommState->paletteData, 0, 0, 0, 0, 256);
+    PaletteData_LoadBufferFromFileStart(linkBattleCommState->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_11));
+    PaletteData_LoadBufferFromFileStart(linkBattleCommState->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_10));
+    PaletteData_FillBufferRange(linkBattleCommState->paletteData, PLTTBUF_MAIN_BG, PLTTSEL_FADED, 0, 0, 256);
 
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
@@ -1932,7 +1932,7 @@ static void BattleMain_FreeeLinkCommScreen(ApplicationManager *appMan)
 
     SetVBlankCallback(NULL, NULL);
     SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
-    PaletteData_FreeBuffer(linkBattleCommState->paletteData, 0);
+    PaletteData_FreeBuffer(linkBattleCommState->paletteData, PLTTBUF_MAIN_BG);
     PaletteData_Free(linkBattleCommState->paletteData);
     Windows_Delete(linkBattleCommState->window, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);

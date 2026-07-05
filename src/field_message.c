@@ -21,7 +21,7 @@ void FieldMessage_LoadTextPalettes(enum PaletteLoadLocation palLocation, u32 res
     }
 
     Font_LoadTextPalette(palLocation, PLTT_OFFSET(FIELD_MESSAGE_PALETTE_INDEX), HEAP_ID_FIELD1);
-    Font_LoadScreenIndicatorsPalette(palLocation, PLTT_OFFSET(12), HEAP_ID_FIELD1);
+    Font_LoadScreenIndicatorsPalette(palLocation, PLTT_OFFSET(PLTT_12), HEAP_ID_FIELD1);
 }
 
 void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 bgLayer)

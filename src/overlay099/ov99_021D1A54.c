@@ -334,12 +334,12 @@ static void ov99_021D1A54(UnkStruct_ov99_021D2CB0 *param0)
 
     switch (param0->unk_1101) {
     case 0:
-        PaletteData_Blend(param0->unk_0C, 2, v0 * 16, 16, 4, GX_RGB(28, 12, 6));
+        PaletteData_Blend(param0->unk_0C, PLTTBUF_MAIN_OBJ, v0 * 16, 16, 4, GX_RGB(28, 12, 6));
         break;
     case 2:
         break;
     case 4:
-        PaletteData_Blend(param0->unk_0C, 2, v0 * 16, 16, 4, GX_RGB(11, 11, 16));
+        PaletteData_Blend(param0->unk_0C, PLTTBUF_MAIN_OBJ, v0 * 16, 16, 4, GX_RGB(11, 11, 16));
         break;
     }
 }
@@ -447,11 +447,11 @@ static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0)
 {
     BgConfig *v0 = param0->unk_08;
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 18, 75, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 18, HEAP_ID_75, PLTTBUF_MAIN_BG, 0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 9, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 3, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 21, 75, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 21, HEAP_ID_75, PLTTBUF_SUB_BG, 0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 12, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 6, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
 
@@ -656,11 +656,11 @@ static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
 {
     BgConfig *v0 = param0->unk_08;
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 19, 75, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 19, HEAP_ID_75, PLTTBUF_MAIN_BG, 0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 10, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 4, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 22, 75, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 22, HEAP_ID_75, PLTTBUF_SUB_BG, 0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 13, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 7, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
 
@@ -796,11 +796,11 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
 {
     BgConfig *v0 = param0->unk_08;
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 20, 75, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 20, HEAP_ID_75, PLTTBUF_MAIN_BG, 0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 11, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 5, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 23, 75, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 23, HEAP_ID_75, PLTTBUF_SUB_BG, 0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 14, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 8, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
 
@@ -809,11 +809,11 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
         void *v2;
 
         v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 17, &v1, HEAP_ID_75);
-        MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val3.unk_08, 0x20 * 8);
+        MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val3.unk_08, PALETTE_SIZE_BYTES * 8);
         Heap_Free(v2);
 
-        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 0, 16 * 1, 0x20);
-        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 1, 16 * 1, 0x20);
+        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_1), PALETTE_SIZE_BYTES);
+        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, PLTTBUF_SUB_BG, PLTT_DEST(PLTT_1), PALETTE_SIZE_BYTES);
     }
 
     Bg_SetOffset(v0, BG_LAYER_MAIN_2, 0, 0);
@@ -1058,7 +1058,7 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
-    PaletteData_FillBufferRange(param0->unk_0C, 0, 2, 0x0, 0, 1);
+    PaletteData_FillBufferRange(param0->unk_0C, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, 0x0, 0, 1);
 
     {
         String *v1;

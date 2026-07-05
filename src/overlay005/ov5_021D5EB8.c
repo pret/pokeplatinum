@@ -1486,7 +1486,7 @@ static void ov5_021D6D84(UnkStruct_ov5_021D6594 *param0, int param1)
 
         NNS_G2dGetUnpackedPaletteData(v0.unk_00, &v0.unk_14);
 
-        Bg_LoadPalette(2, v0.unk_14->pRawData, 32, 32 * 6);
+        Bg_LoadPalette(BG_LAYER_MAIN_2, v0.unk_14->pRawData, PALETTE_SIZE_BYTES, PLTT_OFFSET(PLTT_6));
         Heap_Free(v0.unk_00);
 
         v0.unk_00 = NULL;

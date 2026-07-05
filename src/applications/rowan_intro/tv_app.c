@@ -379,7 +379,7 @@ static void RowanIntroTv_InitGraphics(RowanIntroTv *tv)
         0x20 * 2,
         0x20 * 14,
         tv->heapID);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), tv->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_1), tv->heapID);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 

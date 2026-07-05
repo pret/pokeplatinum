@@ -97,7 +97,7 @@ void sub_0209A74C(enum HeapID heapID)
     Bg_InitFromTemplate(v0, BG_LAYER_MAIN_0, &Unk_020F8ADC, 0);
     Bg_ClearTilemap(v0, BG_LAYER_MAIN_0);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 512 - 9, 2, 0, heapID);
-    Font_LoadTextPalette(0, 1 * (2 * 16), heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_1), heapID);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, heapID);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 27681);
     Bg_MaskPalette(BG_LAYER_SUB_0, 27681);
@@ -171,7 +171,7 @@ void sub_0209A8E0(enum HeapID heapID)
     Bg_InitFromTemplate(v0, BG_LAYER_MAIN_0, &Unk_020F8ADC, 0);
     Bg_ClearTilemap(v0, BG_LAYER_MAIN_0);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 512 - 9, 2, 0, heapID);
-    Font_LoadTextPalette(0, 1 * (2 * 16), heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_1), heapID);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, heapID);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);

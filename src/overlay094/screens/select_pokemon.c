@@ -289,7 +289,7 @@ static void ov94_0223FD4C(GTSApplicationState *param0)
 
     Graphics_LoadPaletteFromOpenNARC(v1, 2, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, HEAP_ID_62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_62);
     LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 12, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
@@ -687,7 +687,7 @@ static int ov94_022405DC(GTSApplicationState *appState)
 
     Window_DrawStandardFrame(&appState->unk_F9C[0], 1, 1 + (18 + 12), 11);
 
-    appState->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
+    appState->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, HEAP_ID_62, PAD_BUTTON_B);
     appState->currentScreenInstruction = 8;
 
     return 3;
@@ -779,7 +779,7 @@ static int ov94_02240830(GTSApplicationState *appState)
     Window_FillTilemap(v0.window, 0xf0f);
     Window_DrawStandardFrame(&appState->unk_F9C[0], 1, 1 + (18 + 12), 11);
 
-    appState->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
+    appState->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, HEAP_ID_62, PAD_BUTTON_B);
     appState->currentScreenInstruction = 10;
 
     return 3;
