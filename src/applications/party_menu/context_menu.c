@@ -96,7 +96,7 @@ enum {
     ACTION_CANCEL,
     ACTION_CANCEL_2,
     ACTION_CHOOSE,
-    ACTION_ELGIBILITY,
+    ACTION_ELIGIBILITY,
     ACTION_CLEANUP,
     ACTION_SET_CAPSULE,
     ACTION_CLEANUP_2,
@@ -134,7 +134,7 @@ static const union PartyMenuActionFunc sPartyMenuActions[ACTION_MAX] = {
     [ACTION_CANCEL] =      { .raw = MENU_CANCEL },
     [ACTION_CANCEL_2] =    { .raw = MENU_CANCEL },
     [ACTION_CHOOSE] =      PartyMenu_SelectChooseWithLimit,
-    [ACTION_ELGIBILITY] =  PartyMenu_PrintAllEligibilities,
+    [ACTION_ELIGIBILITY] =  PartyMenu_PrintAllEligibilities,
     [ACTION_CLEANUP] =     PartyMenu_CleanupContextMenu,
     [ACTION_SET_CAPSULE] = PartyMenu_SetBallCapsuleAction,
     [ACTION_CLEANUP_2] =   PartyMenu_CleanupContextMenu2,
@@ -258,7 +258,7 @@ static void PartyMenu_SelectItemTake(PartyMenuApplication *application, int *par
 
 enum PartyMenuState PartyMenu_WaitForPrinter(PartyMenuApplication *application)
 {
-    if (Text_IsPrinterActive(application->textPrinterID) == FALSE) {
+    if (!Text_IsPrinterActive(application->textPrinterID)) {
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], TRUE);
             PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
@@ -272,7 +272,7 @@ enum PartyMenuState PartyMenu_WaitForPrinter(PartyMenuApplication *application)
 
 enum PartyMenuState PartyMenu_WaitForPrinterThenFormChange(PartyMenuApplication *application)
 {
-    if (Text_IsPrinterActive(application->textPrinterID) == FALSE) {
+    if (!Text_IsPrinterActive(application->textPrinterID)) {
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], TRUE);
             PartyMenu_SetupFormChangeAnim(application);
@@ -789,16 +789,16 @@ static void PartyMenu_PrintAllEligibilities(PartyMenuApplication *application, i
         if (application->partyMenu->selectionOrder[i] == application->currPartySlot + 1) {
             application->partyMenu->selectionOrder[i] = 0;
 
-            for (i = i; i < application->partyMenu->maxSelectionSlots - 1; i++) {
-                application->partyMenu->selectionOrder[i] = application->partyMenu->selectionOrder[i + 1];
-                application->partyMenu->selectionOrder[i + 1] = 0;
+            for (u8 j = i; j < application->partyMenu->maxSelectionSlots - 1; j++) {
+                application->partyMenu->selectionOrder[j] = application->partyMenu->selectionOrder[j + 1];
+                application->partyMenu->selectionOrder[j + 1] = 0;
             }
             break;
         }
     }
 
     for (u8 i = 0; i < MAX_PARTY_SIZE; i++) {
-        if (application->partyMembers[i].isPresent == FALSE) {
+        if (!application->partyMembers[i].isPresent) {
             continue;
         }
 

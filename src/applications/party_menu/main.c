@@ -1195,7 +1195,7 @@ static u32 CountEarnedRibbonsForContestType(Pokemon *mon, u8 contestType)
 
 const u16 *PartyMenu_GetHealthbarTilemap(PartyMenuApplication *application)
 {
-    return &application->backMemberPanel[MEMBER_HEALTHBAR_YPOS * 16 + MEMBER_HEALTHBAR_XPOS];
+    return &application->backMemberPanel[MEMBER_HEALTHBAR_YPOS * MEMBER_PANEL_WIDTH + MEMBER_HEALTHBAR_XPOS];
 }
 
 static void DrawMemberPanel(PartyMenuApplication *application, u8 slot, u8 panelXPos, u8 panelYPos, u8 showHPBar)
