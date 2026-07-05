@@ -22,7 +22,11 @@
  */
 typedef struct WirelessManager {
     WMpparam parentParam ATTRIBUTE_ALIGN(32);
+    #ifdef SDK_BUILD_ARM
     u8 nitroManagerBuffer[3840] ATTRIBUTE_ALIGN(32);
+    #else
+    u8 nitroManagerBuffer[WM_SYSTEM_BUF_SIZE] ATTRIBUTE_ALIGN(32);
+    #endif
     u8 sendBuffer[224] ATTRIBUTE_ALIGN(32);
     u8 recvBuffer[512] ATTRIBUTE_ALIGN(32);
     WMbssDesc bssDesc ATTRIBUTE_ALIGN(32);
@@ -1227,7 +1231,11 @@ static s16 WirelessManager_GetRandomChannel(u16 bitmap)
  */
 BOOL WirelessManager_Initialize(void *heap, BOOL isNotListening)
 {
+    #ifdef SDK_BUILD_ARM
     u32 heapAddress = (u32)heap;
+    #else
+    u64 heapAddress = (u64)heap;
+    #endif
 
     if (heapAddress % 32) {
         heapAddress += 32 - (heapAddress % 32);

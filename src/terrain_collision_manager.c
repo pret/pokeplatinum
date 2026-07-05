@@ -179,7 +179,11 @@ static BOOL GetTileAttributes(const FieldSystem *fieldSystem, const int tileX, c
         return FALSE;
     }
 
+    #ifdef SDK_BUILD_ARM
     u32 fixedTileIndex = (fixedTileZ % MAP_TILES_COUNT_Z) * MAP_TILES_COUNT_X + (fixedTileX % MAP_TILES_COUNT_X);
+    #else
+    s32 fixedTileIndex = (fixedTileZ % MAP_TILES_COUNT_Z) * MAP_TILES_COUNT_X + (fixedTileX % MAP_TILES_COUNT_X);
+    #endif
     u16 const *terrainAttributes = LandDataManager_GetLoadedMapTerrainAttributes(landDataMan, loadedMapIndex);
     *attributes = terrainAttributes[fixedTileIndex];
 

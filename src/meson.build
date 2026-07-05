@@ -1018,10 +1018,12 @@ pokeplatinum_c = files(
 if(build_target != 'arm')
 pokeplatinum_c += files(
     'port/charcode_convert.c',
+    'port/debug_field.c',
     'port/sim_config_prj.c',
     'port/sim_gui_prj.c',
     'port/gui_cheats.c',
     'port/gui_configprj.c',
-    'port/gui_createmon.c'
+    'port/gui_createmon.c',
+    'port/gui_mapjump.c'
 )
 endif

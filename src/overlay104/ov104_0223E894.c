@@ -70,7 +70,11 @@ typedef struct UnkStruct_ov104_0223F174_t {
     BufferManager *bufferManager;
     UnkStruct_ov104_0223F1B4 unk_20[192];
     UnkStruct_ov104_0223F1B4 unk_1820[192];
+    #ifdef SDK_BUILD_ARM
     u32 unk_3020;
+    #else
+    u64 unk_3020;
+    #endif
 } UnkStruct_ov104_0223F174;
 
 static void ov104_0223EA14(SysTask *param0, void *param1);
@@ -592,7 +596,11 @@ static void ov104_0223F1AC(void *param0)
     ov104_0223F174(v0);
 }
 
+#ifdef SDK_BUILD_ARM
 UnkStruct_ov104_0223F174 *ov104_0223F1B4(u32 param0, UnkStruct_ov104_0223F1B4 *param1, enum HeapID heapID)
+#else
+UnkStruct_ov104_0223F174 *ov104_0223F1B4(u64 param0, UnkStruct_ov104_0223F1B4 *param1, enum HeapID heapID)
+#endif
 {
     UnkStruct_ov104_0223F174 *v0;
     int v1;

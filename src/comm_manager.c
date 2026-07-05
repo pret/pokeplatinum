@@ -2003,7 +2003,11 @@ void CommManager_InitializeSearchParty(SaveData *saveData)
         return;
     }
 
+    #ifdef SDK_BUILD_ARM
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7000);
+    #else
+    Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7000 << 1);
+    #endif
     CommManager_Initialize(saveData, COMM_TYPE_PARTY);
     sCommMan->contestRegulation = 0;
     CommManager_SetTask(CommTask_InitSearchPartyClient, 0);
@@ -2591,7 +2595,11 @@ void CommManager_EndGlobalWifi(void)
 void CommManager_StartMysteryGiftWifi(SaveData *saveData)
 {
     if (!sCommMan) {
+        #ifdef SDK_BUILD_ARM
         Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100);
+        #else
+        Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100 << 1);
+        #endif
         sCommMan = (CommunicationManager *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationManager));
         MI_CpuFill8(sCommMan, 0, sizeof(CommunicationManager));
         sCommMan->commType = COMM_TYPE_25;

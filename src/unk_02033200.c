@@ -34,7 +34,11 @@ typedef struct {
     TrainerInfo *personalTrainerInfo;
     BattleRegulation *unk_1500;
     u32 unk_1504;
+#ifdef SDK_BUILD_ARM
     u32 unk_1508;
+#else
+    u64 unk_1508;
+#endif
     u16 *unk_150C;
     u16 unk_1510;
     u16 unk_1512;
@@ -82,7 +86,11 @@ void CommServerClient_Init(TrainerInfo *trainerInfo, BOOL param1)
     sCommServerClient->unk_1500 = Heap_Alloc(HEAP_ID_COMMUNICATION, BattleRegulation_Size());
     MI_CpuClear8(sCommServerClient->unk_1500, BattleRegulation_Size());
 
+    #ifdef SDK_BUILD_ARM
     sCommServerClient->unk_1508 = (u32)Heap_Alloc(HEAP_ID_COMMUNICATION, WM_SIZE_USER_GAMEINFO + 32);
+    #else
+    sCommServerClient->unk_1508 = (u64)Heap_Alloc(HEAP_ID_COMMUNICATION, WM_SIZE_USER_GAMEINFO + 32);
+    #endif
     sCommServerClient->unk_150C = (u16 *)(32 - (sCommServerClient->unk_1508 % 32) + sCommServerClient->unk_1508);
 
     sCommServerClient->unk_1504 = 0x333;
@@ -230,7 +238,11 @@ void WirelessDriver_Shutdown(void)
 static void sub_020334DC(BOOL param0)
 {
     sCommServerClient->unk_14F4 = 0;
+    #ifdef SDK_BUILD_ARM
     u32 v0 = (u32)sCommServerClient->unk_14E8;
+    #else
+    u64 v0 = (u64)sCommServerClient->unk_14E8;
+    #endif
 
     v0 = 32 - (v0 % 32) + v0;
     (void)WirelessManager_Initialize((void *)v0, param0);

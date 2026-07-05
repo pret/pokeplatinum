@@ -28,7 +28,11 @@ BOOL ov104_0223EC34(UnkStruct_ov104_0223EBD0 *param0);
 BOOL ov104_0223EE44(UnkStruct_ov104_0223EBD0 *param0);
 void ov104_0223F094(UnkStruct_ov104_0223F094 *param0, enum HeapID heapID);
 void ov104_0223F0B0(UnkStruct_ov104_0223F094 *param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8);
+#ifdef SDK_BUILD_ARM
 UnkStruct_ov104_0223F174 *ov104_0223F1B4(u32 param0, UnkStruct_ov104_0223F1B4 *param1, enum HeapID heapID);
+#else
+UnkStruct_ov104_0223F174 *ov104_0223F1B4(u64 param0, UnkStruct_ov104_0223F1B4 *param1, enum HeapID heapID);
+#endif
 void ov104_0223F258(UnkStruct_ov104_0223F174 *param0);
 void *ov104_0223F27C(const UnkStruct_ov104_0223F174 *param0);
 

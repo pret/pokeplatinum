@@ -39,6 +39,10 @@
 #include "unk_0205F180.h"
 #include "unk_0209C370.h"
 
+#ifdef SDK_PORT
+#include "port/debug_field.h"
+#endif
+
 FS_EXTERN_OVERLAY(overlay5);
 FS_EXTERN_OVERLAY(game_opening);
 
@@ -151,6 +155,9 @@ static FieldSystem *InitFieldSystem(ApplicationManager *appMan)
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_NETWORK_ICON, HEAP_SIZE_NETWORK_ICON);
 
     FieldSystem *fieldSystem = ApplicationManager_NewData(appMan, sizeof(FieldSystem), HEAP_ID_FIELD2);
+#ifdef SDK_PORT
+    DEBUG_SetFieldSystem(fieldSystem);
+#endif
     MI_CpuClear8(fieldSystem, sizeof(FieldSystem));
 
     fieldSystem->processManager = Heap_Alloc(HEAP_ID_FIELD2, sizeof(FieldProcessManager));

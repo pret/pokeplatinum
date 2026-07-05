@@ -11,6 +11,8 @@ void GUI_ConfigPrj_Main(bool * p_open);
 void GUI_CreateMon_Init();
 void GUI_CreateMon_Main(bool * p_open);
 
+void GUI_MapJump_Init();
+void GUI_MapJump_Main(bool * p_open);
 
 
 #endif
