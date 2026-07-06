@@ -166,11 +166,10 @@ $(BUILD)/build.ninja: | $(BUILD) $(SKREW_EXE) meson
 		--cross-file=meson/$(CROSS) \
 		-- $(BUILD)
 
-ifeq ($(GITHUB_CI),true)
+ifeq ($(GITHUB_CI),)
 $(BUILD_LINUX)/build.ninja: $(ROOT_INI_LINUX) | $(BUILD_LINUX) $(SKREW_EXE) meson
 	$(MESON) setup \
 		-Dbuild_target=linux \
-		-Dskip_anim_scripts=true \
 		--native-file=meson/$(NATIVE) \
 		--native-file=$(ROOT_INI_LINUX) \
 		--cross-file=meson/cross_pcport_linux.ini \
@@ -180,6 +179,7 @@ else
 $(BUILD_LINUX)/build.ninja: $(ROOT_INI_LINUX) | $(BUILD_LINUX) $(SKREW_EXE) meson
 	$(MESON) setup \
 		-Dbuild_target=linux \
+		-Dskip_anim_scripts=true \
 		--native-file=meson/$(NATIVE) \
 		--native-file=$(ROOT_INI_LINUX) \
 		--cross-file=meson/cross_pcport_linux.ini \
@@ -187,11 +187,10 @@ $(BUILD_LINUX)/build.ninja: $(ROOT_INI_LINUX) | $(BUILD_LINUX) $(SKREW_EXE) meso
 		-- $(BUILD_LINUX)
 endif
 
-ifeq ($(GITHUB_CI),true)
+ifeq ($(GITHUB_CI),)
 $(BUILD_WIN64)/build.ninja: $(ROOT_INI_WIN64) | $(BUILD_WIN64) $(SKREW_EXE) meson
 	$(MESON) setup \
 		-Dbuild_target=win64 \
-		-Dskip_anim_scripts=true \
 		--native-file=meson/$(NATIVE) \
 		--native-file=$(ROOT_INI_WIN64) \
 		--cross-file=meson/cross_pcport_win64.ini \
@@ -201,6 +200,7 @@ else
 $(BUILD_WIN64)/build.ninja: $(ROOT_INI_WIN64) | $(BUILD_WIN64) $(SKREW_EXE) meson
 	$(MESON) setup \
 		-Dbuild_target=win64 \
+		-Dskip_anim_scripts=true \
 		--native-file=meson/$(NATIVE) \
 		--native-file=$(ROOT_INI_WIN64) \
 		--cross-file=meson/cross_pcport_win64.ini \
