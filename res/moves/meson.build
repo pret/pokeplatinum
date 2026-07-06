@@ -76,6 +76,7 @@ battle_anim_script_bin_gen = generator(make_script_bin_sh,
 
 relative_build_dir = fs.relative_to(meson.current_build_dir(), meson.project_build_root())
 
+if(get_option('skip_anim_scripts') == false)
 anim_scripts_narc = custom_target('anim_scripts.narc',
     output: 'anim_scripts.narc',
     input: battle_anim_script_bin_gen.process(
@@ -94,6 +95,7 @@ anim_scripts_narc = custom_target('anim_scripts.narc',
         '@PRIVATE_DIR@',
     ],
 )
+nitrofs_files += anim_scripts_narc
+endif
 
 nitrofs_files += move_data
-nitrofs_files += anim_scripts_narc

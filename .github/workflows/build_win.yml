@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build_win:
     permissions:
       contents: write
     runs-on: windows-latest

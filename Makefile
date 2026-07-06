@@ -44,6 +44,8 @@ UNAME_R := $(shell uname -r)
 UNAME_S := $(shell uname -s)
 CWD := $(shell pwd)
 
+GITHUB_CI = ${GITHUB_ACTIONS}
+
 # Check for Windows-drive access
 ifneq (,$(findstring Microsoft,$(UNAME_R)))
   ifneq (,$(filter /mnt/%,$(realpath $(CWD))))
@@ -164,6 +166,17 @@ $(BUILD)/build.ninja: | $(BUILD) $(SKREW_EXE) meson
 		--cross-file=meson/$(CROSS) \
 		-- $(BUILD)
 
+ifeq ($(GITHUB_CI),true)
+$(BUILD_LINUX)/build.ninja: $(ROOT_INI_LINUX) | $(BUILD_LINUX) $(SKREW_EXE) meson
+	$(MESON) setup \
+		-Dbuild_target=linux \
+		-Dskip_anim_scripts=true \
+		--native-file=meson/$(NATIVE) \
+		--native-file=$(ROOT_INI_LINUX) \
+		--cross-file=meson/cross_pcport_linux.ini \
+		--cross-file=$(ROOT_INI_LINUX) \
+		-- $(BUILD_LINUX)
+else
 $(BUILD_LINUX)/build.ninja: $(ROOT_INI_LINUX) | $(BUILD_LINUX) $(SKREW_EXE) meson
 	$(MESON) setup \
 		-Dbuild_target=linux \
@@ -172,7 +185,19 @@ $(BUILD_LINUX)/build.ninja: $(ROOT_INI_LINUX) | $(BUILD_LINUX) $(SKREW_EXE) meso
 		--cross-file=meson/cross_pcport_linux.ini \
 		--cross-file=$(ROOT_INI_LINUX) \
 		-- $(BUILD_LINUX)
+endif
 
+ifeq ($(GITHUB_CI),true)
+$(BUILD_WIN64)/build.ninja: $(ROOT_INI_WIN64) | $(BUILD_WIN64) $(SKREW_EXE) meson
+	$(MESON) setup \
+		-Dbuild_target=win64 \
+		-Dskip_anim_scripts=true \
+		--native-file=meson/$(NATIVE) \
+		--native-file=$(ROOT_INI_WIN64) \
+		--cross-file=meson/cross_pcport_win64.ini \
+		--cross-file=$(ROOT_INI_WIN64) \
+		-- $(BUILD_WIN64)
+else
 $(BUILD_WIN64)/build.ninja: $(ROOT_INI_WIN64) | $(BUILD_WIN64) $(SKREW_EXE) meson
 	$(MESON) setup \
 		-Dbuild_target=win64 \
@@ -181,6 +206,7 @@ $(BUILD_WIN64)/build.ninja: $(ROOT_INI_WIN64) | $(BUILD_WIN64) $(SKREW_EXE) meso
 		--cross-file=meson/cross_pcport_win64.ini \
 		--cross-file=$(ROOT_INI_WIN64) \
 		-- $(BUILD_WIN64)
+endif
 
 $(BUILD_NX)/build.ninja: $(ROOT_INI_NX) | $(BUILD_NX) $(SKREW_EXE) meson
 	$(MESON) setup \
