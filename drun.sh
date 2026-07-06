@@ -46,6 +46,7 @@ if [ $INTERACTIVE -eq 1 ]; then
 docker run -it --user $(id -u):$(id -g) \
            --env DISPLAY=$DISPLAY \
            --env DEVKITPRO=/opt/devkitpro \
+           --env GITHUB_ACTIONS=$GITHUB_ACTIONS \
            -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
            --privileged \
            --device /dev/fuse \
@@ -59,6 +60,7 @@ fi
 docker run --user $(id -u):$(id -g) \
            --env DISPLAY=$DISPLAY \
            --env DEVKITPRO=/opt/devkitpro \
+           --env GITHUB_ACTIONS=$GITHUB_ACTIONS \
            -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
            --privileged \
            --device /dev/fuse \

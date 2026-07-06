@@ -10,6 +10,9 @@ on:
       - '**.md'
   workflow_dispatch:
 
+env:
+  GITHUB_ACTIONS: "true"
+
 jobs:
   build_win:
     permissions:
