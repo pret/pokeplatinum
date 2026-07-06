@@ -147,6 +147,9 @@ void UnkClass_ov66_0223CA1C::ov66_0223EE30()
         }
         break;
     case 5:
+#ifndef SDK_BUILD_ARM
+    {
+#endif
         if (unk_38.empty()) {
             break;
         }
@@ -160,6 +163,9 @@ void UnkClass_ov66_0223CA1C::ov66_0223EE30()
             }
             v1 = unk_38.front();
         }
+#ifndef SDK_BUILD_ARM
+    }
+#endif
         break;
     default:
         break;

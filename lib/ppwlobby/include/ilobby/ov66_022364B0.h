@@ -32,9 +32,14 @@ s32 ov66_0224154C(T param0, T param1, std::size_t param2)
 {
     typedef typename T::value_type (*ValueTypeFunc)(typename T::value_type);
 
+    //TODO: Not compiling
+    #ifdef SDK_BUILD_ARM
     std::transform(param0.begin(), param0.end(), param0.begin(), (ValueTypeFunc)std::tolower);
     std::transform(param1.begin(), param1.end(), param1.begin(), (ValueTypeFunc)std::tolower);
     return param0.compare(0, param2, param1);
+    #else
+    return 0;
+    #endif
 }
 
 inline s32 inline_ov66_0224154C(const char *param0, const char *param1, std::size_t param2)

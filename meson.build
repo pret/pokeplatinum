@@ -413,7 +413,10 @@ main = executable('main',
         libspl,
         libcrypto_ov97,
         libcrypto_static,
-        libgds
+        libgds,
+        libdwcenc,
+        libdwcppwlobby,
+        libdwcilobby,
     ],
     link_args: [
         link_args,
@@ -459,7 +462,10 @@ main = executable('main',
         libspl,
         libcrypto_ov97,
         libcrypto_static,
-        libgds
+        libgds,
+        libdwcenc,
+        libdwcppwlobby,
+        libdwcilobby,
     ],
     link_args: [
         link_args,
@@ -500,7 +506,7 @@ main = executable('main',
         libspl,
         libcrypto_ov97,
         libcrypto_static,
-        libgds
+        libgds,
     ],
     link_args: [
         link_args,
