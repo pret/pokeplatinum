@@ -116,7 +116,11 @@ BOOL DecorationMenu_Main(DecorationMenu *menu)
     return FALSE;
 }
 
+#ifdef SDK_BUILD_ARM
 static void DecorationMenu_PrintOptionDescription(ListMenu *unused, u32 index, u8 unused2)
+#else
+static void DecorationMenu_PrintOptionDescription(ListMenu *unused, u64 index, u8 unused2)
+#endif
 {
     const int descriptionBankEntries[4] = {
         UndergroundBaseDecoration_Text_DecorateDescription,
@@ -219,7 +223,11 @@ static void DecorationMenu_Clear(DecorationMenu *menu)
     StringList_Free(menu->menuOptions);
 }
 
+#ifdef SDK_BUILD_ARM
 static void DecorationGoodsMenu_ColorPlacedGoods(ListMenu *listMenu, u32 value, u8 unused)
+#else
+static void DecorationGoodsMenu_ColorPlacedGoods(ListMenu *listMenu, u64 value, u8 unused)
+#endif
 {
     u8 isGoodNotPlaced = value & 0x1;
 
@@ -314,7 +322,11 @@ static void DecorationGoodsMenu_HandleInput(DecorationGoodsMenu *menu)
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void DecorationGoodsMenu_PrintGoodDescription(ListMenu *listMenu, u32 value, u8 unused)
+#else
+static void DecorationGoodsMenu_PrintGoodDescription(ListMenu *listMenu, u64 value, u8 unused)
+#endif
 {
     Underground *underground = (Underground *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     u32 optionCount = ListMenu_GetAttribute(listMenu, LIST_MENU_COUNT);

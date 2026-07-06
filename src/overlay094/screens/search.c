@@ -773,7 +773,7 @@ static int ov94_0223F190(GTSApplicationState *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->currentScreenInstruction = 6;
         break;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
@@ -802,9 +802,9 @@ static int ov94_0223F2B0(GTSApplicationState *param0)
     u32 v0;
 
     switch (v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108)) {
-    case 0xffffffff:
+    case MENU_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[1], 0);
@@ -862,10 +862,14 @@ static int ov94_0223F474(GTSApplicationState *param0)
 
 static int ov94_0223F4B0(GTSApplicationState *param0)
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0;
+    #else
+    u64 v0;
+    #endif
 
     switch (v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108)) {
-    case 0xfffffffe:
+    case MENU_CANCEL:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
@@ -919,9 +923,9 @@ static int ov94_0223F638(GTSApplicationState *param0)
     u32 v0;
 
     switch (v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108)) {
-    case 0xffffffff:
+    case MENU_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+    case MENU_CANCEL:
     case 11:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
@@ -971,11 +975,15 @@ static int ov94_0223F780(GTSApplicationState *param0)
 
 static int ov94_0223F7C0(GTSApplicationState *param0)
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108);
+    #else
+    u64 v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108);
+    #endif
 
-    if (v0 == 0xffffffff) {
+    if (v0 == MENU_NOTHING_CHOSEN) {
         (void)0;
-    } else if ((v0 == 0xfffffffe) || (v0 == (Unk_ov94_02245FD4 + 1))) {
+    } else if ((v0 == MENU_CANCEL) || (v0 == (Unk_ov94_02245FD4 + 1))) {
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
@@ -1009,10 +1017,14 @@ static int ov94_0223F8B4(GTSApplicationState *param0)
 
 static int ov94_0223F8D8(GTSApplicationState *param0)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             param0->currentScreenInstruction = 0;
         } else {
             param0->currentScreenInstruction = 2;

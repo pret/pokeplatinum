@@ -154,7 +154,11 @@ u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
         }
     }
 
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(listMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(listMenu);
+    #endif
     u16 prevPos = menu->trueCursorPos;
 
     ListMenu_CalcTrueCursorPos(listMenu, &menu->trueCursorPos);

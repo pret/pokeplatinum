@@ -622,10 +622,14 @@ static int ov61_0222C960(UnkStruct_ov61_0222C664 *param0)
         param0->unk_90++;
         break;
     case 3: {
+        #ifdef SDK_BUILD_ARM
         int v0 = Menu_ProcessInputAndHandleExit(param0->unk_84, 117);
+        #else
+        u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_84, 117);
+        #endif
 
-        if (v0 != 0xffffffff) {
-            if (v0 == 0xfffffffe) {
+        if (v0 != MENU_NOTHING_CHOSEN) {
+            if (v0 == MENU_CANCEL) {
                 param0->unk_08 = 8;
             } else {
                 param0->unk_90++;

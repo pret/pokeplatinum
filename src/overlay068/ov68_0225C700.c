@@ -169,7 +169,11 @@ static void ov68_0225D2A0(UnkStruct_ov68_0225D128 *param0);
 static BOOL ov68_0225D2B4(const UnkStruct_ov68_0225D128 *param0);
 static void ov68_0225D2CC(UnkStruct_ov68_0225D128 *param0);
 static void ov68_0225D304(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, u32 param2);
+#ifdef SDK_BUILD_ARM
 static u32 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, u32 param1);
+#else
+static u64 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, u32 param1);
+#endif
 static void ov68_0225D348(UnkStruct_ov68_0225D128 *param0, u32 param1);
 
 static const CharTransferTemplate Unk_ov68_0225DD58 = {
@@ -704,7 +708,11 @@ static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         param0->unk_28 = 2;
         break;
     case 2: {
+        #ifdef SDK_BUILD_ARM
         u32 v2;
+        #else
+        u64 v2;
+        #endif
 
         v2 = ov68_0225D330(param3, param5);
 
@@ -712,7 +720,7 @@ static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         case 0:
             param0->unk_28 = 3;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             param0->unk_28 = 9;
             break;
         }
@@ -961,11 +969,19 @@ static void ov68_0225D304(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C9
     param0->unk_20 = Menu_MakeYesNoChoice(param1->unk_00, &Unk_ov68_0225DD38, 1 + (18 + 12), 6, param2);
 }
 
+#ifdef SDK_BUILD_ARM
 static u32 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, u32 param1)
+#else
+static u64 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, u32 param1)
+#endif
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0 = Menu_ProcessInputAndHandleExit(param0->unk_20, param1);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_20, param1);
+    #endif
 
-    if (v0 != 0xffffffff) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
         param0->unk_20 = NULL;
     }
 
@@ -1119,7 +1135,11 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         param0->unk_60 = 8;
         break;
     case 8: {
+        #ifdef SDK_BUILD_ARM
         u32 v6;
+        #else
+        u64 v6;
+        #endif
 
         v6 = ov68_0225D330(param3, heapID);
 
@@ -1127,7 +1147,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         case 0:
             param0->unk_60 = 9;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             param0->unk_60 = 20;
             break;
         }

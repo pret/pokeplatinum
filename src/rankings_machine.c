@@ -135,7 +135,11 @@ static void RankingsMachine_InitSprites(RankingsMachineManager *machineMan);
 static void RankingsMachine_FreeSprites(RankingsMachineManager *machineMan);
 static void RankingsMachine_ShowRecordsList(RankingsMachineManager *machineMan, u16 startListPos, u16 startCursorPos);
 static void RankingsMachine_RemoveRecordsList(RankingsMachineManager *machineMan);
+#ifdef SDK_BUILD_ARM
 static void RankingsMachine_SetCursorPos(ListMenu *listMenu, u32 unused, u8 mute);
+#else
+static void RankingsMachine_SetCursorPos(ListMenu *listMenu, u64 unused, u8 mute);
+#endif
 static void RankingsMachine_PrintDeleteInstruction(RankingsMachineManager *machineMan);
 static void RankingsMachine_PrepareForDeletingRecord(RankingsMachineManager *machineMan);
 static void RankingsMachine_PrintRecordExplanation(RankingsMachineManager *machineMan);
@@ -345,7 +349,11 @@ static int RankingsMachine_StateShowRecordsList(RankingsMachineManager *machineM
 
 static int RankingsMachine_HandleRecordsListInput(RankingsMachineManager *machineMan)
 {
+    #ifdef SDK_BUILD_ARM
     s32 input = ListMenu_ProcessInput(machineMan->listMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(machineMan->listMenu);
+    #endif
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -800,7 +808,11 @@ static void RankingsMachine_RemoveRecordsList(RankingsMachineManager *machineMan
     Bg_ScheduleTilemapTransfer(machineMan->bgConfig, BG_LAYER_MAIN_3);
 }
 
+#ifdef SDK_BUILD_ARM
 static void RankingsMachine_SetCursorPos(ListMenu *listMenu, u32 unused, u8 mute)
+#else
+static void RankingsMachine_SetCursorPos(ListMenu *listMenu, u64 unused, u8 mute)
+#endif
 {
     u16 listPos, cursorPos, count;
     RankingsMachineManager *machineMan = (RankingsMachineManager *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);

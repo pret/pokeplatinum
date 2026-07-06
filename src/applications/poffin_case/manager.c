@@ -241,7 +241,11 @@ static int ProcessTouchScreenAction(PoffinManager *app)
 
 static BOOL State_SelectPoffin(PoffinManager *app)
 {
+    #ifdef SDK_BUILD_ARM
     u32 menuSelection = MENU_NOTHING_CHOSEN;
+    #else
+    u64 menuSelection = MENU_NOTHING_CHOSEN;
+    #endif
 
     if (app->poffinMenu == NULL) {
         return FALSE;

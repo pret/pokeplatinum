@@ -1780,7 +1780,11 @@ static BOOL ScriptContext_WaitForYesNoResult(ScriptContext *ctx)
     Menu **menu = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
     u16 *destVar = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
+    #ifdef SDK_BUILD_ARM
     u32 result = Menu_ProcessInputAndHandleExit(*menu, HEAP_ID_FIELD1);
+    #else
+    u64 result = Menu_ProcessInputAndHandleExit(*menu, HEAP_ID_FIELD1);
+    #endif
 
     if (result == MENU_NOTHING_CHOSEN) {
         return FALSE;

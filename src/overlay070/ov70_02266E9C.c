@@ -866,13 +866,17 @@ BOOL ov70_02266E9C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02268DB8(v0);
         break;
     case 21: {
+        #ifdef SDK_BUILD_ARM
         u32 v23;
+        #else
+        u64 v23;
+        #endif
 
         v23 = ov70_0225E0D4(param1);
 
         switch (v23) {
-        case 0xffffffff:
-        case 0xfffffffe:
+        case MENU_NOTHING_CHOSEN:
+        case MENU_CANCEL:
             ov70_02268DCC(v0, param1);
             break;
         default:
@@ -1622,7 +1626,11 @@ BOOL ov70_02268390(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02262E88(param0, 6);
         break;
     case 6: {
+        #ifdef SDK_BUILD_ARM
         u32 v3;
+        #else
+        u64 v3;
+        #endif
         BOOL v4 = 0;
 
         v3 = ov70_0225E0D4(param1);
@@ -1656,7 +1664,7 @@ BOOL ov70_02268390(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
             ov70_02262E88(param0, 16);
             v4 = 1;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         case 7:
             ov70_02262E88(param0, 22);
@@ -1683,7 +1691,11 @@ BOOL ov70_02268390(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02262E88(param0, 9);
         break;
     case 9: {
+        #ifdef SDK_BUILD_ARM
         u32 v5;
+        #else
+        u64 v5;
+        #endif
         BOOL v6 = 0;
 
         v5 = ov70_0225E0D4(param1);
@@ -1701,7 +1713,7 @@ BOOL ov70_02268390(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
             ov70_02262E88(param0, 12);
             v6 = 1;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         case 3:
             ov70_02262E88(param0, 4);
@@ -1761,7 +1773,11 @@ BOOL ov70_02268390(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02262E88(param0, 17);
         break;
     case 17: {
+        #ifdef SDK_BUILD_ARM
         u32 v7;
+        #else
+        u64 v7;
+        #endif
         BOOL v8 = 0;
 
         v7 = ov70_0225E0D4(param1);
@@ -1779,7 +1795,7 @@ BOOL ov70_02268390(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
             ov70_02262E88(param0, 20);
             v8 = 1;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         case 3:
             ov70_02262E88(param0, 4);

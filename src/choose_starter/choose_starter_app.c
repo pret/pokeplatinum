@@ -1242,7 +1242,11 @@ static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID he
         app->chooseStarterStep++;
         break;
     case CHOOSE_STARTER_STEP_PRINT_THESE_ARE_POKE_BALLS_TEXT:
+        #ifdef SDK_BUILD_ARM
         u32 menuResult = Menu_ProcessInputAndHandleExit(app->confirmationMenu, heapID);
+        #else
+        u64 menuResult = Menu_ProcessInputAndHandleExit(app->confirmationMenu, heapID);
+        #endif
 
         switch (menuResult) {
         case MENU_NOTHING_CHOSEN:

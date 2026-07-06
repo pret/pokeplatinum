@@ -14,7 +14,11 @@ void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *options);
 void ov88_0223EC04(Window *param0);
 void ov88_0223EC78(Window *param0, String *param1, int param2, u32 param3, int param4, int param5);
 int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3, StringTemplate *param4);
+#ifdef SDK_BUILD_ARM
 u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2);
+#else
+u64 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2);
+#endif
 void ov88_0223ED80(Window *param0);
 ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig *param3);
 

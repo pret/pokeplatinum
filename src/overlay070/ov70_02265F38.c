@@ -198,13 +198,17 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02262E88(param0, 4);
         break;
     case 4: {
+        #ifdef SDK_BUILD_ARM
         u32 v3;
+        #else
+        u64 v3;
+        #endif
         BOOL v4 = 0;
 
         v3 = ov70_0225E0D4(param1);
 
         switch (v3) {
-        case 0xfffffffe:
+        case MENU_CANCEL:
         case 2:
             v1->unk_00 = 5;
             ov70_02262E88(param0, 28);

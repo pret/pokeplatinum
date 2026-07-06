@@ -88,7 +88,11 @@ u32 MainMenuUtil_CalcMysteryGiftVersionBit(enum Version version);
 void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard);
 void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapID heapID);
 void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *param0, WonderCard *param1, enum HeapID heapID);
+#ifdef SDK_BUILD_ARM
 void MainMenuUtil_ListMenuCursorCB(ListMenu *param0, u32 param1, u8 param2);
+#else
+void MainMenuUtil_ListMenuCursorCB(ListMenu *param0, u64 param1, u8 param2);
+#endif
 void MainMenuUtil_ToggleTerminateOnGBACartRemoved(BOOL enable);
 void MainMenuUtil_UnsetGBACartIRQFunc(void);
 void MainMenuUtil_InitSaving(SaveData *saveData);

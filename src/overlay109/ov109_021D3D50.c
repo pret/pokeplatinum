@@ -841,7 +841,11 @@ static int ov109_021D4950(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D4980(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     int v0;
+    #ifdef SDK_BUILD_ARM
     u32 v1;
+    #else
+    u64 v1;
+    #endif
 
     if (CommSys_CurNetId()) {
         if (param0->unk_10->unk_28) {
@@ -870,8 +874,8 @@ static int ov109_021D4980(UnkStruct_ov109_021D5140 *param0, int param1)
 
     v1 = Menu_ProcessInputAndHandleExit(param0->unk_394, 95);
 
-    if (v1 != 0xffffffff) {
-        if (v1 == 0xfffffffe) {
+    if (v1 != MENU_NOTHING_CHOSEN) {
+        if (v1 == MENU_CANCEL) {
             if (CommSys_CurNetId() == 0) {
                 int v2 = 0;
 
@@ -966,7 +970,11 @@ static int ov109_021D4B64(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D4B94(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     int v0;
+    #ifdef SDK_BUILD_ARM
     u32 v1;
+    #else
+    u64 v1;
+    #endif
 
     if ((ov109_021D548C() != param0->unk_10->unk_2C) || (param0->unk_10->unk_30 != 0)) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
@@ -979,8 +987,8 @@ static int ov109_021D4B94(UnkStruct_ov109_021D5140 *param0, int param1)
 
     v1 = Menu_ProcessInputAndHandleExit(param0->unk_394, 95);
 
-    if (v1 != 0xffffffff) {
-        if (v1 == 0xfffffffe) {
+    if (v1 != MENU_NOTHING_CHOSEN) {
+        if (v1 == MENU_CANCEL) {
             int v2 = 0;
 
             sub_0209BEBC(param0->unk_10, 7, &v2, 1);
@@ -1120,7 +1128,11 @@ static int ov109_021D4DF8(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static int ov109_021D4E28(UnkStruct_ov109_021D5140 *param0, int param1)
 {
+    #ifdef SDK_BUILD_ARM
     int v0;
+    #else
+    u64 v0;
+    #endif
 
     if ((param0->unk_10->unk_2C != ov109_021D548C()) || (param0->unk_10->unk_30 != 0)) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
@@ -1133,8 +1145,8 @@ static int ov109_021D4E28(UnkStruct_ov109_021D5140 *param0, int param1)
 
     v0 = Menu_ProcessInputAndHandleExit(param0->unk_394, 95);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             int v1 = 0;
 
             param0->unk_3B8 = 0;

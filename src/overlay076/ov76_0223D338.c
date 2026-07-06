@@ -397,15 +397,19 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
     } break;
     case 4: {
         UnkFuncPtr_ov76_0223D674 v4;
+        #ifdef SDK_BUILD_ARM
         u32 v5 = Menu_ProcessInput(param0->unk_D4.unk_CC);
+        #else
+        u64 v5 = Menu_ProcessInput(param0->unk_D4.unk_CC);
+        #endif
 
         switch (v5) {
-        case 0xfffffffe:
+        case MENU_CANCEL:
             ov76_0223D4C4(param0);
             ov76_0223CA30(&param0->unk_D4.unk_18[0], 7);
             param0->unk_3D4 = 3;
             break;
-        case 0xffffffff:
+        case MENU_NOTHING_CHOSEN:
             break;
         default:
             v4 = (UnkFuncPtr_ov76_0223D674)v5;

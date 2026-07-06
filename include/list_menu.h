@@ -48,8 +48,13 @@ enum ListMenuAttribute {
 
 typedef struct ListMenu ListMenu;
 
+#ifdef SDK_BUILD_ARM
 typedef void (*CursorCallback)(ListMenu *menu, u32 index, u8 onInit);
 typedef void (*PrintCallback)(ListMenu *menu, u32 index, u8 yOffset);
+#else
+typedef void (*CursorCallback)(ListMenu *menu, u64 index, u8 onInit);
+typedef void (*PrintCallback)(ListMenu *menu, u64 index, u8 yOffset);
+#endif
 
 typedef struct ListMenuTemplate {
     const StringList *choices;

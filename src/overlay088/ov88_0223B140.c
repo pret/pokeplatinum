@@ -1750,7 +1750,7 @@ static int ov88_0223D318(UnkStruct_02095E80 *param0)
         param0->unk_226C = ov88_0223DA00;
         param0->unk_5C = 0;
         break;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D150;
@@ -1796,7 +1796,7 @@ static int ov88_0223D4C4(UnkStruct_02095E80 *param0)
     case 0:
         param0->unk_226C = ov88_0223D854;
         break;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         ov88_0223D49C(param0, 58);
         param0->unk_226C = ov88_0223D740;
         break;
@@ -1819,7 +1819,7 @@ static int ov88_0223D514(UnkStruct_02095E80 *param0)
         sub_02039298(param0->saveData, param0->unk_36C4, 32 - 1, HEAP_ID_26, 0);
         param0->unk_226C = ov88_0223D854;
         break;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         v0 = CommInfo_TrainerInfo(param0->unk_36C4);
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v0);
         ov88_0223D49C(param0, 59);
@@ -1834,15 +1834,19 @@ static int ov88_0223D514(UnkStruct_02095E80 *param0)
 
 static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
 {
+    #ifdef SDK_BUILD_ARM
     int v0;
+    #else
+    u64 v0;
+    #endif
     TrainerInfo *v1;
 
     v0 = ListMenu_ProcessInput(param0->unk_36D8);
 
     switch (v0) {
-    case 0xffffffff:
+    case MENU_NOTHING_CHOSEN:
         return 0;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
@@ -1892,7 +1896,7 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
             }
         }
 
-        StringList_AddFromMessageBank(param0->unk_36D4, param0->unk_36D0, 11, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_36D4, param0->unk_36D0, 11, MENU_CANCEL);
         String_Free(v4);
     }
 
@@ -1911,7 +1915,7 @@ static int ov88_0223D740(UnkStruct_02095E80 *param0)
     case 0:
         param0->unk_226C = ov88_0223D69C;
         break;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         v0 = CommInfo_TrainerInfo(param0->unk_36C4);
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v0);
         ov88_0223D49C(param0, 59);
@@ -1946,7 +1950,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 *param0)
         }
 
         break;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         param0->unk_226C = ov88_0223D854;
         break;
     default:
@@ -2097,7 +2101,7 @@ static int ov88_0223DB48(UnkStruct_02095E80 *param0)
         param0->unk_226C = ov88_0223DC84;
         break;
     case 2:
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         Menu_Free(param0->unk_6C4, NULL);
@@ -2322,7 +2326,7 @@ static int ov88_0223E20C(UnkStruct_02095E80 *param0)
         }
 
         break;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223E41C;
@@ -2351,7 +2355,7 @@ static int ov88_0223E384(UnkStruct_02095E80 *param0)
         ov88_0223E1C0(param0, 23, 20);
         param0->unk_226C = ov88_0223E41C;
         break;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223E41C;
@@ -2439,7 +2443,7 @@ static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
         break;
 
     case 1:
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         Menu_Free(param0->unk_6C4, NULL);

@@ -307,7 +307,11 @@ static void ov64_0222FE70(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E2
 static BOOL ov64_0222FEFC(const UnkStruct_ov64_0222F0C4 *param0);
 static void ov64_0222FF18(UnkStruct_ov64_0222F0C4 *param0);
 static u32 ov64_0222FF38(const UnkStruct_ov64_0222F0C4 *param0);
+#ifdef SDK_BUILD_ARM
 static void ov64_0222FF48(ListMenu *param0, u32 param1, u8 param2);
+#else
+static void ov64_0222FF48(ListMenu *param0, u64 param1, u8 param2);
+#endif
 static void ov64_0222FF5C(UnkStruct_ov64_0222F0C4 *param0);
 static BOOL ov64_02230008(UnkStruct_ov64_0222F0C4 *param0);
 static void ov64_02230044(UnkStruct_ov64_0222F0C4 *param0);
@@ -1306,7 +1310,11 @@ static int ov64_0222EA70(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E06
         param1->unk_04 = 9;
         break;
     case 9: {
+        #ifdef SDK_BUILD_ARM
         int v3;
+        #else
+        u64 v3;
+        #endif
         u32 v4;
         static const u8 v5[3] = {
             0,
@@ -1317,9 +1325,9 @@ static int ov64_0222EA70(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E06
         v3 = Menu_ProcessInputAndHandleExit(param0->unk_2C, heapID);
 
         switch (v3) {
-        case 0xffffffff:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             ov64_0222F050(param0);
             param1->unk_04 = 3;
             break;
@@ -1569,7 +1577,11 @@ static void ov64_0222F09C(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E0
 
 static int ov64_0222F0C4(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, enum HeapID heapID)
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0;
+    #else
+    u64 v0;
+    #endif
     WiFiList *v1;
     u32 v2;
 
@@ -1695,9 +1707,9 @@ static int ov64_0222F0C4(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E06
         v0 = Menu_ProcessInputAndHandleExit(param0->unk_FC, heapID);
 
         switch (v0) {
-        case 0xffffffff:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             ov64_0222FF18(param0);
             ov64_0222EA28(param2, 1);
             param1->unk_04 = 2;
@@ -2095,7 +2107,11 @@ static void ov64_0222FA70(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E0
 
 static u32 ov64_0222FB24(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, enum HeapID heapID)
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0;
+    #else
+    u64 v0;
+    #endif
     u32 v1 = 6;
 
     if (ov64_0222FEFC(param0) == 0) {
@@ -2105,9 +2121,9 @@ static u32 ov64_0222FB24(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E06
     v0 = ListMenu_ProcessInput(param0->unk_F8);
 
     switch (v0) {
-    case 0xffffffff:
+    case MENU_NOTHING_CHOSEN:
         return v1;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov64_0222EA28(param2, 1);
         v1 = 2;
@@ -2267,7 +2283,11 @@ static u32 ov64_0222FF38(const UnkStruct_ov64_0222F0C4 *param0)
     return v0;
 }
 
+#ifdef SDK_BUILD_ARM
 static void ov64_0222FF48(ListMenu *param0, u32 param1, u8 param2)
+#else
+static void ov64_0222FF48(ListMenu *param0, u64 param1, u8 param2)
+#endif
 {
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);

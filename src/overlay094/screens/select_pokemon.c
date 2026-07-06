@@ -744,7 +744,7 @@ static int ov94_02240688(GTSApplicationState *appState)
         }
         break;
     case 3:
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Menu_Free(appState->unk_10D4, NULL);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
@@ -833,7 +833,7 @@ static int ov94_022408E8(GTSApplicationState *appState)
         }
         break;
     case 3:
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Menu_Free(appState->unk_10D4, NULL);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
@@ -869,10 +869,14 @@ static int ov94_02240AC4(GTSApplicationState *appState)
 
 static int ov94_02240AE8(GTSApplicationState *appState)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             appState->currentScreenInstruction = 0;
         } else {
             appState->currentScreenInstruction = 2;
@@ -901,10 +905,14 @@ static int ov94_02240B4C(GTSApplicationState *appState)
 
 static int ov94_02240B70(GTSApplicationState *appState)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             Window_EraseMessageBox(&appState->unk_109C, 0);
             appState->currentScreenInstruction = 1;
         } else {
@@ -957,10 +965,14 @@ static int ov94_02240C84(GTSApplicationState *appState)
 
 static int ov94_02240CA8(GTSApplicationState *appState)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             Window_EraseMessageBox(&appState->unk_109C, 0);
             appState->currentScreenInstruction = 1;
         } else {

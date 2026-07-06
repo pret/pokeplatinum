@@ -370,10 +370,14 @@ static int ov94_0223D640(GTSApplicationState *param0)
 
 static int ov94_0223D664(GTSApplicationState *param0)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             param0->currentScreenInstruction = 0;
             Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         } else {
@@ -441,7 +445,7 @@ static int ov94_0223D754(GTSApplicationState *param0)
         ov94_0223DBBC(param0);
         break;
     case 2:
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);

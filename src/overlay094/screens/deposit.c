@@ -767,7 +767,11 @@ static int ov94_02242068(GTSApplicationState *appState)
 
 static int ov94_0224208C(GTSApplicationState *appState)
 {
+    #ifdef SDK_BUILD_ARM
     int input = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 input = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #endif
 
     if (input != MENU_NOTHING_CHOSEN) {
         if (input == MENU_CANCEL) {
@@ -1254,10 +1258,18 @@ void ov94_02242A44(GTSApplicationState *appState, int selectedCountryIndex)
     }
 }
 
+#ifdef SDK_BUILD_ARM
 u32 ov94_02242A6C(ListMenu *menu, u16 *input)
+#else
+u64 ov94_02242A6C(ListMenu *menu, u16 *input)
+#endif
 {
     u16 pos;
+    #ifdef SDK_BUILD_ARM
     u32 menuInput = ListMenu_ProcessInput(menu);
+    #else
+    u64 menuInput = ListMenu_ProcessInput(menu);
+    #endif
 
     ListMenu_CalcTrueCursorPos(menu, &pos);
 

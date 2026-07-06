@@ -78,8 +78,13 @@ static BOOL WaitForFinishedPrinting(FrontierScriptContext *ctx);
 static void AddListMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index);
 static u32 CalcListMenuWidth(FrontierMenuManager *param0);
 static void InitListMenuTemplate(FrontierMenuManager *menuManager);
+#ifdef SDK_BUILD_ARM
 static void SetListMenuItemAltColor(ListMenu *listMenu, u32 index, u8 yOffset);
 static void ListMenuDummyCursorCallback(ListMenu *listMenu, u32 index, u8 onInit);
+#else
+static void SetListMenuItemAltColor(ListMenu *listMenu, u64 index, u8 yOffset);
+static void ListMenuDummyCursorCallback(ListMenu *listMenu, u64 index, u8 onInit);
+#endif
 static void ListMenuSysTaskCallback(SysTask *task, void *data);
 static void FreeManagerWithListMenu(FrontierMenuManager *menuManager, u8 playSound);
 static void UpdateListMenuAltText(FrontierMenuManager *menuManager);
@@ -492,7 +497,11 @@ static void InitListMenuTemplate(FrontierMenuManager *menuManager)
     menuManager->listMenuTemplate.parent = menuManager;
 }
 
+#ifdef SDK_BUILD_ARM
 static void SetListMenuItemAltColor(ListMenu *listMenu, u32 index, u8 yOffset)
+#else
+static void SetListMenuItemAltColor(ListMenu *listMenu, u64 index, u8 yOffset)
+#endif
 {
     if (index == MENU_HEADER) {
         ListMenu_SetAltTextColors(listMenu, 3, 15, 4);
@@ -501,7 +510,11 @@ static void SetListMenuItemAltColor(ListMenu *listMenu, u32 index, u8 yOffset)
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void ListMenuDummyCursorCallback(ListMenu *listMenu, u32 index, u8 onInit)
+#else
+static void ListMenuDummyCursorCallback(ListMenu *listMenu, u64 index, u8 onInit)
+#endif
 {
     ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
 }
@@ -519,7 +532,11 @@ static void ListMenuSysTaskCallback(SysTask *task, void *data)
         return;
     }
 
+    #ifdef SDK_BUILD_ARM
     u32 selectedEntry = ListMenu_ProcessInput(menuManager->listMenu);
+    #else
+    u64 selectedEntry = ListMenu_ProcessInput(menuManager->listMenu);
+    #endif
     u16 cursorPos = menuManager->cursorPos;
 
     ListMenu_CalcTrueCursorPos(menuManager->listMenu, &menuManager->cursorPos);

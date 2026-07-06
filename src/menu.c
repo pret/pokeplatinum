@@ -121,7 +121,11 @@ u64 Menu_ProcessInput(Menu *menu)
     return MENU_NOTHING_CHOSEN;
 }
 
+#ifdef SDK_BUILD_ARM
 u32 Menu_ProcessInputWithSound(Menu *menu, u16 sdatID)
+#else
+u64 Menu_ProcessInputWithSound(Menu *menu, u16 sdatID)
+#endif
 {
     menu->lastAction = MENU_ACTION_NONE;
 
@@ -170,7 +174,11 @@ u32 Menu_ProcessInputWithSound(Menu *menu, u16 sdatID)
     return MENU_NOTHING_CHOSEN;
 }
 
+#ifdef SDK_BUILD_ARM
 u32 Menu_ProcessExternalInput(Menu *menu, u8 input)
+#else
+u64 Menu_ProcessExternalInput(Menu *menu, u8 input)
+#endif
 {
     switch (input) {
     case MENU_INPUT_CONFIRM:
@@ -179,7 +187,7 @@ u32 Menu_ProcessExternalInput(Menu *menu, u8 input)
 
     case MENU_INPUT_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        return 0xfffffffe;
+        return MENU_CANCEL;
 
     case MENU_INPUT_MOVE_UP:
         TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_UP, SEQ_SE_CONFIRM);
@@ -386,9 +394,17 @@ Menu *Menu_MakeYesNoChoice(BgConfig *bgConfig, const WindowTemplate *winTemplate
     return Menu_MakeYesNoChoiceWithCursorAt(bgConfig, winTemplate, borderTileStart, borderPalette, 0, heapID);
 }
 
+#ifdef SDK_BUILD_ARM
 u32 Menu_ProcessInputAndHandleExit(Menu *menu, u32 heapID)
+#else
+u64 Menu_ProcessInputAndHandleExit(Menu *menu, u32 heapID)
+#endif
 {
+    #ifdef SDK_BUILD_ARM
     u32 result = Menu_ProcessInput(menu);
+    #else
+    u64 result = Menu_ProcessInput(menu);
+    #endif
     if (result != MENU_NOTHING_CHOSEN) {
         Menu_DestroyForExit(menu, heapID);
     }
@@ -396,9 +412,17 @@ u32 Menu_ProcessInputAndHandleExit(Menu *menu, u32 heapID)
     return result;
 }
 
+#ifdef SDK_BUILD_ARM
 u32 Menu_ProcessExternalInputAndHandleExit(Menu *menu, u8 input, u32 heapID)
+#else
+u64 Menu_ProcessExternalInputAndHandleExit(Menu *menu, u8 input, u32 heapID)
+#endif
 {
+    #ifdef SDK_BUILD_ARM
     u32 result = Menu_ProcessExternalInput(menu, input);
+    #else
+    u64 result = Menu_ProcessExternalInput(menu, input);
+    #endif
     if (result != MENU_NOTHING_CHOSEN) {
         Menu_DestroyForExit(menu, heapID);
     }

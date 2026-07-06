@@ -488,14 +488,18 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         param0->unk_BB0 = 4;
         break;
     case 4: {
+        #ifdef SDK_BUILD_ARM
         u32 v0 = Menu_ProcessInputAndHandleExit(param0->unk_BB4, param0->trainerIntroData->heapID);
+        #else
+        u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_BB4, param0->trainerIntroData->heapID);
+        #endif
 
         switch (v0) {
         case 0:
             param0->unk_BB0 = 5;
             param0->unk_BB4 = NULL;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             param0->unk_BB0 = 1;
             param0->unk_BB4 = NULL;
             break;

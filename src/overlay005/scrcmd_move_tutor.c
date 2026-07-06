@@ -79,7 +79,11 @@ void MoveTutorManager_AddMenuEntry(MoveTutorManager *moveTutorManager, u32 strin
 static void MoveTutorManager_ShowMoveSelectionMenu(MoveTutorManager *moveTutorManager);
 static void _MoveTutorManager_AddMenuEntry(MoveTutorManager *moveTutorManager, u32 stringEntryID, u32 param2, u32 index);
 static void MoveTutorManager_InitMenuTemplate(MoveTutorManager *moveTutorManager);
+#ifdef SDK_BUILD_ARM
 static void MoveSelectionMenuCursorCallback(ListMenu *moveTutorManager, u32 index, u8 onInit);
+#else
+static void MoveSelectionMenuCursorCallback(ListMenu *moveTutorManager, u64 index, u8 onInit);
+#endif
 static void SysTaskCallback(SysTask *sysTask, void *moveTutorManager);
 static void MoveTutorManager_Delete(MoveTutorManager *moveTutorManager);
 
@@ -505,7 +509,11 @@ static void MoveTutorManager_InitMenuTemplate(MoveTutorManager *moveTutorManager
     moveTutorManager->menuTemplate.parent = (void *)moveTutorManager;
 }
 
+#ifdef SDK_BUILD_ARM
 static void MoveSelectionMenuCursorCallback(ListMenu *listMenu, u32 index, u8 onInit)
+#else
+static void MoveSelectionMenuCursorCallback(ListMenu *listMenu, u64 index, u8 onInit)
+#endif
 {
     MoveTutorManager *moveTutorManager = (MoveTutorManager *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
 }
@@ -523,7 +531,11 @@ static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)
         return;
     }
 
+    #ifdef SDK_BUILD_ARM
     u32 selectedEntry = ListMenu_ProcessInput(moveTutorManager->moveSelectionMenu);
+    #else
+    u64 selectedEntry = ListMenu_ProcessInput(moveTutorManager->moveSelectionMenu);
+    #endif
     u16 previousCursorPos = moveTutorManager->cursorPos;
 
     ListMenu_CalcTrueCursorPos(moveTutorManager->moveSelectionMenu, &moveTutorManager->cursorPos);

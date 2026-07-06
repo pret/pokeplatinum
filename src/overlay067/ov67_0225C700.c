@@ -211,14 +211,18 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3: {
+        #ifdef SDK_BUILD_ARM
         u32 v2;
+        #else
+        u64 v2;
+        #endif
         v2 = Menu_ProcessInputAndHandleExit(v0->unk_D0, 112);
 
         switch (v2) {
         case 0:
             (*param1) = 4;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             ov67_0225D294(&v0->unk_40);
             (*param1) = 7;
             break;
@@ -319,7 +323,11 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 12: {
+        #ifdef SDK_BUILD_ARM
         u32 v11;
+        #else
+        u64 v11;
+        #endif
         v11 = Menu_ProcessInputAndHandleExit(v0->unk_D0, 112);
 
         switch (v11) {
@@ -327,7 +335,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
             CommManager_LogoutWifiPlaza();
             (*param1) = 13;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             (*param1) = 14;
             break;
         }

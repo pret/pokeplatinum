@@ -105,16 +105,28 @@ BOOL UndergroundInventory_TryAddGoodBag(enum Good goodID);
 void UndergroundMenu_Start(ExitCallback exitCallback, FieldSystem *fieldSystem);
 void UndergroundMenu_EraseCurrentMenu(UndergroundMenu *menu);
 void UndergroundMenu_RemoveSelectedTrap(enum Trap trapID);
+#ifdef SDK_BUILD_ARM
 void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u32 index, u8 onInit);
+#else
+void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u64 index, u8 onInit);
+#endif
 void UndergroundMenu_OpenSellTrapsMenu(UndergroundMenu *menu);
 void UndergroundMenu_OpenTrapsMenu(UndergroundMenu *menu);
 void UndergroundMenu_RemoveSelectedSphere(enum SphereType sphereType);
 void UndergroundMenu_OpenPayWithSpheresMenu(UndergroundMenu *menu);
+#ifdef SDK_BUILD_ARM
 void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u32 index, u8 onInit);
+#else
+void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u64 index, u8 onInit);
+#endif
 void UndergroundMenu_OpenSellTreasuresMenu(UndergroundMenu *menu);
 void UndergroundMenu_OpenTreasuresMenu(UndergroundMenu *menu);
 void UndergroundMenu_StartHoldingFlag(ExitCallback exitCallback, FieldSystem *fieldSystem);
+#ifdef SDK_BUILD_ARM
 void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u32 index, u8 onInit);
+#else
+void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u64 index, u8 onInit);
+#endif
 void UndergroundMenu_OpenSellGoodsMenu(UndergroundMenu *menu);
 void UndergroundMenu_OpenGoodsMenu(UndergroundMenu *menu);
 void UndergroundMenu_OpenStoreGoodsMenu(UndergroundMenu *menu);

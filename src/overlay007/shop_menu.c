@@ -83,8 +83,13 @@ static u8 Shop_MoveCamera(ShopMenu *shopMenu);
 static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu);
 static u8 Shop_MoveCameraBack(FieldSystem *fieldSystem, ShopMenu *shopMenu);
 static void Shop_InitItemsList(ShopMenu *shopMenu);
+#ifdef SDK_BUILD_ARM
 static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit);
 static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset);
+#else
+static void Shop_MenuCursorCallback(ListMenu *menu, u64 index, u8 onInit);
+static void Shop_MenuPrintCallback(ListMenu *menu, u64 index, u8 yOffset);
+#endif
 static void Shop_PrintCurrentMoney(ShopMenu *shopMenu, u8 clearCurrMoney);
 static u8 Shop_ShowPurchaseMenu(ShopMenu *shopMenu);
 static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu);
@@ -695,7 +700,11 @@ static void Shop_InitItemsList(ShopMenu *shopMenu)
     shopMenu->listMenu = ListMenu_New(&listTemplate, 0, 0, HEAP_ID_FIELD2);
 }
 
+#ifdef SDK_BUILD_ARM
 static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
+#else
+static void Shop_MenuCursorCallback(ListMenu *menu, u64 index, u8 onInit)
+#endif
 {
     ShopMenu *shopMenu = (ShopMenu *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -759,7 +768,11 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
     Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION]);
 }
 
+#ifdef SDK_BUILD_ARM
 static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
+#else
+static void Shop_MenuPrintCallback(ListMenu *menu, u64 index, u8 yOffset)
+#endif
 {
     ShopMenu *shopMenu = (ShopMenu *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -858,7 +871,11 @@ static void Shop_PrintCurrentMoney(ShopMenu *shopMenu, u8 clearCurrMoney)
 
 static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
 {
+    #ifdef SDK_BUILD_ARM
     u32 input;
+    #else
+    u64 input;
+    #endif
     u16 prevPos, currPos;
 
     ListMenu_GetListAndCursorPos(shopMenu->listMenu, NULL, &prevPos);

@@ -494,10 +494,14 @@ static int ov94_0223CE5C(GTSApplicationState *appState)
 
 static int ov94_0223CE7C(GTSApplicationState *appState)
 {
+    #ifdef SDK_BUILD_ARM
     int input = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 input = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #endif
 
-    if (input != 0xffffffff) {
-        if (input == 0xfffffffe) {
+    if (input != MENU_NOTHING_CHOSEN) {
+        if (input == MENU_CANCEL) {
             Window_EraseMessageBox(&appState->unk_109C, 1);
             Window_ClearAndCopyToVRAM(&appState->unk_109C);
             Sprite_SetAnimateFlag(appState->cursorSprite, TRUE);

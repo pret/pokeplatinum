@@ -172,7 +172,11 @@ static void RemoveListMenuRegulations(BattleRegulationMenu *menu)
 
 static int ProcessListMenuInputRegulations(BattleRegulationMenu *menu)
 {
+    #ifdef SDK_BUILD_ARM
     int input = ListMenu_ProcessInput(menu->listMenuRegulations);
+    #else
+    u64 input = ListMenu_ProcessInput(menu->listMenuRegulations);
+    #endif
     ListMenu_GetListAndCursorPos(menu->listMenuRegulations, NULL, &menu->cursorPosRegulations);
 
     u16 v1 = menu->unk_80;
@@ -242,7 +246,11 @@ static void ShowListMenuConfirm(BattleRegulationMenu *menu)
 
 static int ProcessListMenuInputConfirm(BattleRegulationMenu *menu)
 {
+    #ifdef SDK_BUILD_ARM
     int input = ListMenu_ProcessInput(menu->listMenuConfirm);
+    #else
+    u64 input = ListMenu_ProcessInput(menu->listMenuConfirm);
+    #endif
     ListMenu_GetListAndCursorPos(menu->listMenuConfirm, NULL, &menu->cursorPosConfirm);
 
     u16 v1 = menu->unk_82;

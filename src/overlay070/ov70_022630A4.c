@@ -739,16 +739,20 @@ static BOOL ov70_02263414(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         ov70_02262E88(param0, 10);
         break;
     case 10: {
+        #ifdef SDK_BUILD_ARM
         u32 v6;
+        #else
+        u64 v6;
+        #endif
         u32 v7;
         BOOL v8 = 0;
 
         v6 = ov70_0225E0D4(param1);
 
         switch (v6) {
-        case 0xffffffff:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         case 0:
             v0->unk_28 = 0;
@@ -804,16 +808,20 @@ static BOOL ov70_02263414(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         ov70_02262E88(param0, 13);
         break;
     case 13: {
+        #ifdef SDK_BUILD_ARM
         u32 v10;
+        #else
+        u64 v10;
+        #endif
         u32 v11;
         BOOL v12 = 0;
 
         v10 = ov70_0225E0D4(param1);
 
         switch (v10) {
-        case 0xffffffff:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         case 0:
             v0->unk_2A = 0;

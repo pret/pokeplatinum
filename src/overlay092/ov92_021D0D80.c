@@ -396,9 +396,13 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
         break;
     case 4: {
+        #ifdef SDK_BUILD_ARM
         int v3 = ListMenu_ProcessInput(v0->listMenu);
+        #else
+        u64 v3 = ListMenu_ProcessInput(v0->listMenu);
+        #endif
 
-        if (v3 == 0xffffffff) {
+        if (v3 == MENU_NOTHING_CHOSEN) {
             break;
         }
 
@@ -413,7 +417,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         case 1:
             *param1 = 5;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
         case 2:
             *param1 = 17;
             break;
@@ -426,7 +430,11 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
         break;
     case 6: {
+        #ifdef SDK_BUILD_ARM
         u32 v4 = Menu_ProcessInputAndHandleExit(v0->menu, v0->heapID);
+        #else
+        u64 v4 = Menu_ProcessInputAndHandleExit(v0->menu, v0->heapID);
+        #endif
 
         switch (v4) {
         case 0:
@@ -437,7 +445,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
                 *param1 = 7;
             }
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             *param1 = 3;
             break;
         }
@@ -451,16 +459,20 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
         break;
     case 8: {
+        #ifdef SDK_BUILD_ARM
         int v5 = ListMenu_ProcessInput(v0->listMenu);
+        #else
+        u64 v5 = ListMenu_ProcessInput(v0->listMenu);
+        #endif
 
-        if (v5 == 0xffffffff) {
+        if (v5 == MENU_NOTHING_CHOSEN) {
             break;
         }
 
         ov92_021D1DB4(v0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-        if (v5 != 0xfffffffe) {
+        if (v5 != MENU_CANCEL) {
             v5 = sub_02099780(0)[v5];
         }
 
@@ -475,7 +487,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
                 *param1 = 11;
             }
         } break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
 
             *param1 = 3;
             break;
@@ -493,16 +505,20 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
         break;
     case 10: {
+        #ifdef SDK_BUILD_ARM
         int v7 = ListMenu_ProcessInput(v0->listMenu);
+        #else
+        u64 v7 = ListMenu_ProcessInput(v0->listMenu);
+        #endif
 
-        if (v7 == 0xffffffff) {
+        if (v7 == MENU_NOTHING_CHOSEN) {
             break;
         }
 
         ov92_021D1DB4(v0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-        if (v7 != 0xfffffffe) {
+        if (v7 != MENU_CANCEL) {
             u32 v8 = sub_020996D4(v0->country2);
             v7 = sub_02099780(v8)[v7];
         }
@@ -512,7 +528,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
             v0->region2 = v7;
             *param1 = 11;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             if (v0->unk_BAF0 == TRUE) {
                 *param1 = 3;
             } else {
@@ -531,7 +547,11 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
         break;
     case 13: {
+        #ifdef SDK_BUILD_ARM
         u32 v9 = Menu_ProcessInputAndHandleExit(v0->menu, v0->heapID);
+        #else
+        u64 v9 = Menu_ProcessInputAndHandleExit(v0->menu, v0->heapID);
+        #endif
 
         switch (v9) {
         case 0:
@@ -542,7 +562,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
             v0->region1 = v0->region2;
             *param1 = 14;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             ov92_021D1F74(v0);
             *param1 = 3;
             break;
@@ -997,7 +1017,11 @@ static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param
     return v0;
 }
 
+#ifdef SDK_BUILD_ARM
 static void ov92_021D1C38(ListMenu *listMenu, u32 unused, u8 param2)
+#else
+static void ov92_021D1C38(ListMenu *listMenu, u64 unused, u8 param2)
+#endif
 {
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);

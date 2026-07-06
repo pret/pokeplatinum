@@ -102,8 +102,13 @@ static void BattleHallRecordSelector_AddOption(BattleHallRecordSelector *selecto
 static void BattleHallRecordSelector_UpdateMessageLoader(BattleHallRecordSelector *selector, MessageLoader *msgLoader);
 static void BattleHallRecordSelector_AddToMenu(BattleHallRecordSelector *selector, u32 entryID, u32 unused, u32 value);
 static void BattleHallRecordSelector_InitListMenuTemplate(BattleHallRecordSelector *selector);
+#ifdef SDK_BUILD_ARM
 static void UpdateItemColor(ListMenu *menu, u32 item, u8 yOffset);
 static void UpdateListPosition(ListMenu *listMenu, u32 item, u8 onInit);
+#else
+static void UpdateItemColor(ListMenu *menu, u64 item, u8 yOffset);
+static void UpdateListPosition(ListMenu *listMenu, u64 item, u8 onInit);
+#endif
 
 static void CalcHiddenPowerTypeAndPower(Pokemon *mon, int *outPower, int *outType);
 
@@ -313,7 +318,11 @@ static void BattleHallRecordSelector_InitListMenuTemplate(BattleHallRecordSelect
     selector->menuTemplate.parent = selector;
 }
 
+#ifdef SDK_BUILD_ARM
 static void UpdateItemColor(ListMenu *menu, u32 item, u8 yOffset)
+#else
+static void UpdateItemColor(ListMenu *menu, u64 item, u8 yOffset)
+#endif
 {
     if (item == MENU_HEADER) {
         ListMenu_SetAltTextColors(menu, 3, 15, 4);
@@ -322,7 +331,11 @@ static void UpdateItemColor(ListMenu *menu, u32 item, u8 yOffset)
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void UpdateListPosition(ListMenu *listMenu, u32 item, u8 onInit)
+#else
+static void UpdateListPosition(ListMenu *listMenu, u64 item, u8 onInit)
+#endif
 {
     u16 listPos = 0;
     u16 cursorPos = 0;
@@ -349,7 +362,11 @@ static void BattleHallRecordSelector_Process(SysTask *task, void *context)
         return;
     }
 
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(selector->listMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(selector->listMenu);
+    #endif
     u16 oldPos = selector->menuPos;
 
     ListMenu_CalcTrueCursorPos(selector->listMenu, &selector->menuPos);

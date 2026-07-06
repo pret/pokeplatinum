@@ -910,7 +910,11 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
 {
     BaseTransitionContext *ctx = data;
     FieldSystem *fieldSystem = ctx->fieldSystem;
+    #ifdef SDK_BUILD_ARM
     int input;
+    #else
+    u64 input;
+    #endif
     BOOL canceled = FALSE;
 
     switch (ctx->state) {
@@ -1860,7 +1864,11 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
         }
         break;
     case DRILL_STATE_CONFIRM:
+        #ifdef SDK_BUILD_ARM
         u32 input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
+        #else
+        u64 input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
+        #endif
 
         if (input == MENU_YES) {
             ctx->state = DRILL_STATE_REMOVE_DRILL;

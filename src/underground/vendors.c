@@ -298,7 +298,11 @@ static void *UndergroundVendors_InitVendorOptionsMenu(UndergroundMenu *menu)
     return menu;
 }
 
+#ifdef SDK_BUILD_ARM
 static void UndergroundVendors_PrintItemDescriptionAndBuyPrice(ListMenu *listMenu, u32 index, u8 onInit)
+#else
+static void UndergroundVendors_PrintItemDescriptionAndBuyPrice(ListMenu *listMenu, u64 index, u8 onInit)
+#endif
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
 
@@ -330,7 +334,11 @@ static void UndergroundVendors_PrintItemDescriptionAndBuyPrice(ListMenu *listMen
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void UndergroundVendors_PrintItemDescriptionAndSellPrice(ListMenu *listMenu, u32 index, u8 onInit)
+#else
+static void UndergroundVendors_PrintItemDescriptionAndSellPrice(ListMenu *listMenu, u64 index, u8 onInit)
+#endif
 {
     MATHRandContext16 rand;
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
@@ -625,7 +633,11 @@ static int UndergroundVendors_FindVendorAtCoordinates(int x, int z, int *outInde
 static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
+    #ifdef SDK_BUILD_ARM
     u32 input;
+    #else
+    u64 input;
+    #endif
     u16 listPos, cursorPos, prevPos;
 
     switch (menu->state) {

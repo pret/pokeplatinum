@@ -640,7 +640,7 @@ static int sub_0207E714(PartyMenuApplication *application)
     switch (Menu_ProcessInputAndHandleExit(application->contextMenu, 12)) {
     case 0:
         return application->yesnoCallbacks.onYes(application);
-    case 0xfffffffe:
+    case MENU_CANCEL:
         return application->yesnoCallbacks.onNo(application);
     }
 
@@ -2945,7 +2945,7 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
         PartyMenu_AddLongMessagePrinter(application);
     }
         return v0;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         return ResetWindowOnInput(application);
     }
 

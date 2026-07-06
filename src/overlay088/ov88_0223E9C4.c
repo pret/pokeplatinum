@@ -16,7 +16,11 @@
 #include "string_list.h"
 #include "text.h"
 
+#ifdef SDK_BUILD_ARM
 static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2);
+#else
+static void ov88_0223EE14(ListMenu *param0, u64 param1, u8 param2);
+#endif
 
 static const u16 Unk_ov88_0223F1A8[][5] = {
     { 0x4, 0x1, 0x9, 0x2, 0x1 },
@@ -154,9 +158,17 @@ static const WindowTemplate Unk_ov88_0223F148 = {
     0x112
 };
 
+#ifdef SDK_BUILD_ARM
 u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2)
+#else
+u64 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2)
+#endif
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0 = 0xffffffff;
+    #else
+    u64 v0 = MENU_NOTHING_CHOSEN;
+    #endif
 
     switch (*param2) {
     case 0:
@@ -166,7 +178,7 @@ u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2)
     case 1:
         v0 = Menu_ProcessInputAndHandleExit(*param1, 26);
 
-        if (v0 != 0xffffffff) {
+        if (v0 != MENU_NOTHING_CHOSEN) {
             (*param2) = 0;
         }
     }
@@ -221,7 +233,11 @@ ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig
     return v0;
 }
 
+#ifdef SDK_BUILD_ARM
 static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2)
+#else
+static void ov88_0223EE14(ListMenu *param0, u64 param1, u8 param2)
+#endif
 {
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);

@@ -258,13 +258,17 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
         }
         break;
     case 1: {
+        #ifdef SDK_BUILD_ARM
         u32 v1 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->heapID);
+        #else
+        u64 v1 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->heapID);
+        #endif
 
         switch (v1) {
         case 0:
             param0->unk_04 = 2;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             param0->unk_04 = 6;
             break;
         }
@@ -276,13 +280,17 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
         }
         break;
     case 3: {
+        #ifdef SDK_BUILD_ARM
         u32 v2 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->heapID);
+        #else
+        u64 v2 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->heapID);
+        #endif
 
         switch (v2) {
         case 0:
             param0->unk_04 = 4;
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             param0->unk_04 = 6;
             break;
         }

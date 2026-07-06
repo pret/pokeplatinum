@@ -54,7 +54,11 @@ typedef struct {
 
 static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1);
 static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0);
+#ifdef SDK_BUILD_ARM
 static void ov5_021EAF90(ListMenu *param0, u32 param1, u8 param2);
+#else
+static void ov5_021EAF90(ListMenu *param0, u64 param1, u8 param2);
+#endif
 
 static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
 {
@@ -141,9 +145,13 @@ static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v0;
     String *v1;
     int v2;
+    #ifdef SDK_BUILD_ARM
     int v3 = Menu_ProcessInputAndHandleExit(param0->unk_44, HEAP_ID_FIELD1);
+    #else
+    u64 v3 = Menu_ProcessInputAndHandleExit(param0->unk_44, HEAP_ID_FIELD1);
+    #endif
 
-    if (v3 == 0xffffffff) {
+    if (v3 == MENU_NOTHING_CHOSEN) {
         return 0;
     } else if (v3 == 0) {
         WiFiList *v4 = SaveData_GetWiFiList(param0->saveData);
@@ -182,9 +190,13 @@ static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v1;
     String *v2;
     int v3;
+    #ifdef SDK_BUILD_ARM
     int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
+    #else
+    u64 v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
+    #endif
 
-    if (v4 == 0xffffffff) {
+    if (v4 == MENU_NOTHING_CHOSEN) {
         return 0;
     } else if (v4 == 0) {
         param0->unk_48 = 8;
@@ -214,9 +226,13 @@ static BOOL ov5_021EAB28(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v1;
     String *v2;
     int v3;
+    #ifdef SDK_BUILD_ARM
     int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
+    #else
+    u64 v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
+    #endif
 
-    if (v4 == 0xffffffff) {
+    if (v4 == MENU_NOTHING_CHOSEN) {
         return 0;
     } else if (v4 == 0) {
         param0->unk_48 = 12;
@@ -273,7 +289,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
             }
         }
 
-        StringList_AddFromMessageBank(param0->unk_00, param0->unk_3C, 11, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_00, param0->unk_3C, 11, MENU_CANCEL);
     }
 
     v1 = Unk_ov5_021FAF08;
@@ -295,12 +311,16 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
 {
     TrainerInfo *v0;
+    #ifdef SDK_BUILD_ARM
     int v1 = ListMenu_ProcessInput(param0->unk_04);
+    #else
+    u64 v1 = ListMenu_ProcessInput(param0->unk_04);
+    #endif
 
     switch (v1) {
-    case 0xffffffff:
+    case MENU_NOTHING_CHOSEN:
         return 0;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0 = CommInfo_TrainerInfo(param0->unk_8C);
         StringTemplate_SetPlayerName(param0->unk_38, 0, v0);
@@ -347,9 +367,13 @@ static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
     TrainerInfo *v1;
     DWCFriendData *v2;
     String *v3;
+    #ifdef SDK_BUILD_ARM
     int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, HEAP_ID_FIELD1);
+    #else
+    u64 v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, HEAP_ID_FIELD1);
+    #endif
 
-    if (v4 == 0xffffffff) {
+    if (v4 == MENU_NOTHING_CHOSEN) {
         return 0;
     } else if (v4 == 0) {
         BattleFrontierSave_ClearFriendStatsAndShift(SaveData_GetBattleFrontier(param0->saveData), param0->unk_90);
@@ -477,7 +501,11 @@ void ov5_021EAF50(FieldSystem *fieldSystem)
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void ov5_021EAF90(ListMenu *param0, u32 param1, u8 param2)
+#else
+static void ov5_021EAF90(ListMenu *param0, u64 param1, u8 param2)
+#endif
 {
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);

@@ -1737,13 +1737,17 @@ static BOOL ov65_02237BC4(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_02237BF8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
+    #ifdef SDK_BUILD_ARM
     int v0;
+    #else
+    u64 v0;
+    #endif
     UnkStruct_ov65_022366E4 v1;
     BOOL v2;
 
     v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
 
-    if (v0 != 0xffffffff) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
         v1.unk_00 = param0->unk_00.unk_06;
 
         if (v0 == 0) {
@@ -1824,9 +1828,13 @@ static BOOL ov65_02237CE4(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_02237D18(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
+    #endif
 
-    if (v0 != 0xffffffff) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
         if (v0 == 0) {
             param0->unk_00.unk_05 = 11;
         } else {
@@ -2008,9 +2016,13 @@ static BOOL ov65_02237F08(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_02237F48(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
+    #endif
 
-    if (v0 != 0xffffffff) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
         if (v0 == 0) {
             param0->unk_00.unk_05 = 22;
         } else {
@@ -2055,9 +2067,13 @@ static BOOL ov65_02237FB8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_02237FF8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
+    #endif
 
-    if (v0 != 0xffffffff) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
         if (v0 == 0) {
             param0->unk_00.unk_05 = 25;
         } else {
@@ -2184,9 +2200,13 @@ static BOOL ov65_0223815C(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_02238190(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
+    #endif
 
-    if (v0 != 0xffffffff) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
         if (v0 == 0) {
             ov65_0223731C(param0, heapID);
 
@@ -2564,7 +2584,11 @@ static BOOL ov65_02238608(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_02238660(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
+    #ifdef SDK_BUILD_ARM
     int v0;
+    #else
+    u64 v0;
+    #endif
 
     ov65_02237550(param0, heapID);
 
@@ -2578,7 +2602,7 @@ static BOOL ov65_02238660(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
     v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
 
-    if (v0 != 0xffffffff) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
         if (v0 == 0) {
             ov65_0223731C(param0, heapID);
 
@@ -2624,9 +2648,13 @@ static BOOL ov65_02238728(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_0223875C(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_30.unk_240, heapID);
+    #endif
 
-    if (v0 != 0xffffffff) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
         if (v0 == 0) {
             param0->unk_00.unk_05 = 24;
         } else {

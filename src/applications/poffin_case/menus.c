@@ -23,9 +23,15 @@
 
 #define POFFIN_LIST_VIEW_HEIGHT 6
 
+#ifdef SDK_BUILD_ARM
 static void DummyCallback(ListMenu *menu, u32 unused, u8 unused2);
 static void UpdateSelectedPoffin(ListMenu *menu, u32 index, u8 onInit);
 static void PlaySound(ListMenu *menu, u32 index, u8 onInit);
+#else
+static void DummyCallback(ListMenu *menu, u64 unused, u8 unused2);
+static void UpdateSelectedPoffin(ListMenu *menu, u64 index, u8 onInit);
+static void PlaySound(ListMenu *menu, u64 index, u8 onInit);
+#endif
 
 static const ListMenuTemplate sPoffinMenuTemplate = {
     .choices = NULL,
@@ -299,12 +305,20 @@ static void PoffinManager_UpdateFlavorSprites(PoffinManager *app, PoffinCaseAppI
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void DummyCallback(ListMenu *menu, u32 unused, u8 unused2)
+#else
+static void DummyCallback(ListMenu *menu, u64 unused, u8 unused2)
+#endif
 {
     ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 }
 
+#ifdef SDK_BUILD_ARM
 static void UpdateSelectedPoffin(ListMenu *menu, u32 index, u8 onInit)
+#else
+static void UpdateSelectedPoffin(ListMenu *menu, u64 index, u8 onInit)
+#endif
 {
     PoffinManager *app = (PoffinManager *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -387,7 +401,11 @@ void PoffinManager_FreeActionMenu(PoffinManager *app)
     app->actionList = NULL;
 }
 
+#ifdef SDK_BUILD_ARM
 static void PlaySound(ListMenu *menu, u32 index, u8 onInit)
+#else
+static void PlaySound(ListMenu *menu, u64 index, u8 onInit)
+#endif
 {
     if (!onInit) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);

@@ -361,10 +361,14 @@ static int ov94_0223E1B0(GTSApplicationState *appState)
 
 static int ov94_0223E1D0(GTSApplicationState *appState)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             appState->currentScreenInstruction = 2;
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
             ov94_0223E358(appState->gtsMessageLoader, &appState->unk_FCC[7]);

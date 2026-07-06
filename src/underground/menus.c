@@ -810,7 +810,11 @@ void UndergroundMenu_RemoveSelectedTrap(enum Trap trapID)
     }
 }
 
+#ifdef SDK_BUILD_ARM
 void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u32 index, u8 onInit)
+#else
+void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u64 index, u8 onInit)
+#endif
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     GetItemFunc getTrap = menu->getItem;
@@ -942,7 +946,11 @@ static BOOL UndergroundMenu_HandleTrapSelectedMenu(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
 
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(menu->itemSelectedMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(menu->itemSelectedMenu);
+    #endif
     u16 prevPos = menu->itemSelectedMenuPos;
 
     ListMenu_CalcTrueCursorPos(menu->itemSelectedMenu, &menu->itemSelectedMenuPos);
@@ -990,7 +998,11 @@ void UndergroundMenu_RemoveSelectedSphere(enum SphereType sphereType)
     Underground_RemoveSphereAtSlot(ctx->underground, ctx->selectedSlot);
 }
 
+#ifdef SDK_BUILD_ARM
 static void UndergroundMenu_PrintSphereDescription(ListMenu *listMenu, u32 index, u8 onInit)
+#else
+static void UndergroundMenu_PrintSphereDescription(ListMenu *listMenu, u64 index, u8 onInit)
+#endif
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     GetItemFunc getSphereType = menu->getItem;
@@ -1117,7 +1129,11 @@ static BOOL UndergroundMenu_HandleSphereSelectedMenu(SysTask *sysTask, void *dat
 {
     UndergroundMenu *menu = data;
 
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(menu->itemSelectedMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(menu->itemSelectedMenu);
+    #endif
     u16 prevPos = menu->itemSelectedMenuPos;
 
     ListMenu_CalcTrueCursorPos(menu->itemSelectedMenu, &menu->itemSelectedMenuPos);
@@ -1162,7 +1178,11 @@ static BOOL UndergroundMenu_HandleSphereSelectedMenu(SysTask *sysTask, void *dat
     return TRUE;
 }
 
+#ifdef SDK_BUILD_ARM
 void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u32 index, u8 onInit)
+#else
+void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u64 index, u8 onInit)
+#endif
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     GetItemFunc getTreasure = menu->getItem;
@@ -1285,7 +1305,11 @@ static BOOL UndergroundMenu_HandleTreasureSelectedMenu(SysTask *sysTask, void *d
 {
     UndergroundMenu *menu = data;
 
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(menu->itemSelectedMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(menu->itemSelectedMenu);
+    #endif
     u16 prevPos = menu->itemSelectedMenuPos;
 
     ListMenu_CalcTrueCursorPos(menu->itemSelectedMenu, &menu->itemSelectedMenuPos);
@@ -1374,7 +1398,11 @@ static void UndergroundMenu_ConfirmReturnToSurface(SysTask *sysTask, void *data)
 static void UndergroundMenu_CheckForReturnYesNo(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
+    #ifdef SDK_BUILD_ARM
     int result = Menu_ProcessInputAndHandleExit(menu->yesNoMenu, HEAP_ID_FIELD1);
+    #else
+    u64 result = Menu_ProcessInputAndHandleExit(menu->yesNoMenu, HEAP_ID_FIELD1);
+    #endif
 
     if (result == MENU_NOTHING_CHOSEN) {
         return;
@@ -1432,7 +1460,11 @@ static void UndergroundMenu_ConfirmThrowAwayFlag(UndergroundMenu *menu)
 
 static void UndergroundMenu_CheckForThrowAwayYesNo(UndergroundMenu *menu)
 {
+    #ifdef SDK_BUILD_ARM
     int input = Menu_ProcessInputAndHandleExit(menu->yesNoMenu, HEAP_ID_FIELD1);
+    #else
+    u64 input = Menu_ProcessInputAndHandleExit(menu->yesNoMenu, HEAP_ID_FIELD1);
+    #endif
 
     if (input == MENU_NOTHING_CHOSEN) {
         return;
@@ -1514,7 +1546,11 @@ static void UndergroundMenu_MainHoldingFlag(SysTask *sysTask, void *data)
     }
 }
 
+#ifdef SDK_BUILD_ARM
 void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u32 index, u8 onInit)
+#else
+void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u64 index, u8 onInit)
+#endif
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     GetItemFunc getGood = menu->getItem;
@@ -1530,7 +1566,11 @@ void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u32 index, u8 onIn
     UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetItemNameTextPrinter(), bankEntry, FALSE, NULL);
 }
 
+#ifdef SDK_BUILD_ARM
 static void UndergroundMenu_ColorPlacedGoods(ListMenu *listMenu, u32 index, u8 yOffset)
+#else
+static void UndergroundMenu_ColorPlacedGoods(ListMenu *listMenu, u64 index, u8 yOffset)
+#endif
 {
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(menu->fieldSystem));
@@ -1673,7 +1713,11 @@ static BOOL UndergroundMenu_HandleGoodSelectedMenu(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
 
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(menu->itemSelectedMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(menu->itemSelectedMenu);
+    #endif
     u16 prevPos = menu->itemSelectedMenuPos;
 
     ListMenu_CalcTrueCursorPos(menu->itemSelectedMenu, &menu->itemSelectedMenuPos);

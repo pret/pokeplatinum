@@ -743,7 +743,11 @@ static BOOL WaitForYesNoResult(FrontierScriptContext *ctx)
 {
     FrontierScriptManager *scriptMan = ctx->scriptMan;
     u16 *destVar = FrontierScriptContext_GetVarPointer(ctx, ctx->data[0]);
+    #ifdef SDK_BUILD_ARM
     u32 result = Menu_ProcessInputAndHandleExit(scriptMan->menu, scriptMan->heapID);
+    #else
+    u64 result = Menu_ProcessInputAndHandleExit(scriptMan->menu, scriptMan->heapID);
+    #endif
     if (result == MENU_NOTHING_CHOSEN) {
         return FALSE;
     }

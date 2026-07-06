@@ -1120,7 +1120,11 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Won
     WonderCardsAppData *appData = ApplicationManager_Data(appMan);
     static StateTransitionFuncPtr optionStateTransitionFunc;
 
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(appData->listMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(appData->listMenu);
+    #endif
 
     switch (input) {
     case MENU_NOTHING_CHOSEN:

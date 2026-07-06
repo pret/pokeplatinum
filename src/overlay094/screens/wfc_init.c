@@ -330,7 +330,11 @@ static int GTSApplication_WFCInit_AskToSetupConnection(GTSApplicationState *appS
 
 static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *appState)
 {
+    #ifdef SDK_BUILD_ARM
     int menuInput = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 menuInput = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #endif
 
     if (menuInput != MENU_NOTHING_CHOSEN) {
         if (menuInput == MENU_CANCEL) {
@@ -357,7 +361,11 @@ static int GTSApplication_WFCInit_AskToDisconnect(GTSApplicationState *appState)
 
 static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
 {
+    #ifdef SDK_BUILD_ARM
     int menuInput = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 menuInput = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    #endif
 
     if (menuInput != MENU_NOTHING_CHOSEN) {
         if (menuInput == MENU_CANCEL) {
@@ -757,10 +765,14 @@ static int GTSApplication_WFCInit_ExitScreen(GTSApplicationState *param0)
 
 static int ov94_022455D0(GTSApplicationState *param0)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             param0->currentScreenInstruction = 0;
         } else {
             GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);

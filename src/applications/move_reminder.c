@@ -127,8 +127,13 @@ static void MoveReminder_DrawMovesInfo(MoveReminderController *controller);
 static void MoveReminder_DrawLabelText(MoveReminderController *controller);
 static void MoveReminder_InitListMenu(MoveReminderController *controller);
 static void MoveReminder_FreeListMenu(MoveReminderController *controller);
+#ifdef SDK_BUILD_ARM
 static void MoveReminder_ListMenuCursorCallback(ListMenu *menu, u32 move, u8 onInit);
 static void MoveReminder_ListMenuPrintCallback(ListMenu *menu, u32 move, u8 yOffset);
+#else
+static void MoveReminder_ListMenuCursorCallback(ListMenu *menu, u64 move, u8 onInit);
+static void MoveReminder_ListMenuPrintCallback(ListMenu *menu, u64 move, u8 yOffset);
+#endif
 static void MoveReminder_DrawBattleMovesText(MoveReminderController *controller, u32 move);
 static void MoveReminder_DrawContestMovesText(MoveReminderController *controller, u32 move);
 static void MoveReminder_DrawAppealPointHearts(MoveReminderController *controller, u16 move);
@@ -856,7 +861,11 @@ static int MoveReminder_State_ProcessMainInput(MoveReminderController *controlle
 
     u16 prevListPos, prevCursorPos;
     ListMenu_GetListAndCursorPos(controller->listMenu, &prevListPos, &prevCursorPos);
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(controller->listMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(controller->listMenu);
+    #endif
     ListMenu_GetListAndCursorPos(controller->listMenu, &controller->data->listPos, &controller->data->cursorPos);
     MoveReminder_Scroll(controller, prevListPos, controller->data->listPos);
 
@@ -1117,7 +1126,11 @@ static void MoveReminder_FreeListMenu(MoveReminderController *controller)
     StringList_Free(controller->stringList);
 }
 
+#ifdef SDK_BUILD_ARM
 static void MoveReminder_ListMenuCursorCallback(ListMenu *menu, u32 move, u8 onInit)
+#else
+static void MoveReminder_ListMenuCursorCallback(ListMenu *menu, u64 move, u8 onInit)
+#endif
 {
     MoveReminderController *controller = (MoveReminderController *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -1132,7 +1145,11 @@ static void MoveReminder_ListMenuCursorCallback(ListMenu *menu, u32 move, u8 onI
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void MoveReminder_ListMenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
+#else
+static void MoveReminder_ListMenuPrintCallback(ListMenu *menu, u64 index, u8 yOffset)
+#endif
 {
     return;
 }

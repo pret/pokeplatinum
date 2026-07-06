@@ -1125,7 +1125,11 @@ static void Mining_ConfirmStartMiningTask(SysTask *sysTask, void *unused)
             sMiningEnv->printerID = -1;
         }
     } else {
+        #ifdef SDK_BUILD_ARM
         int input = Menu_ProcessInputAndHandleExit(sMiningEnv->confirmStartMiningMenu, HEAP_ID_FIELD1);
+        #else
+        u64 input = Menu_ProcessInputAndHandleExit(sMiningEnv->confirmStartMiningMenu, HEAP_ID_FIELD1);
+        #endif
 
         u8 confirmResult;
         if (input == MENU_NOTHING_CHOSEN) {

@@ -34,7 +34,11 @@ void ov94_02242934(GTSPokemonRequirements *requirements, int levelIndex, BOOL is
 int ov94_02242970(int minLevel, int maxLevel, BOOL isRange);
 ListMenu *ov94_022429B4(StringList **stringList, Window *window, MessageLoader *countryMessageLoader, MessageLoader *gtsMessageLoader);
 void ov94_02242A44(GTSApplicationState *appState, int selectedCountryIndex);
+#ifdef SDK_BUILD_ARM
 u32 ov94_02242A6C(ListMenu *menu, u16 *input);
+#else
+u64 ov94_02242A6C(ListMenu *menu, u16 *input);
+#endif
 void ov94_02242AAC(UnkStruct_ov94_02242AAC *param0);
 void ov94_02242AC4(UnkStruct_ov94_02242AAC *param0, int param1, int param2, int param3);
 

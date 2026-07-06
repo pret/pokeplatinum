@@ -54,7 +54,11 @@ const StringList *ov70_0225E054(const UnkStruct_ov70_0225DEE8 *param0);
 BOOL ov70_0225E064(const UnkStruct_ov70_0225DEE8 *param0, u32 param1);
 void ov70_0225E074(UnkStruct_ov70_0225DEE8 *param0, const ListMenuTemplate *param1, u16 param2, u16 param3);
 void ov70_0225E0A4(UnkStruct_ov70_0225DEE8 *param0, const ListMenuTemplate *param1, u16 param2, u16 param3, u8 param4, u8 param5, u8 param6);
+#ifdef SDK_BUILD_ARM
 u32 ov70_0225E0D4(UnkStruct_ov70_0225DEE8 *param0);
+#else
+u64 ov70_0225E0D4(UnkStruct_ov70_0225DEE8 *param0);
+#endif
 void ov70_0225E0E4(UnkStruct_ov70_0225DEE8 *param0, u16 *param1, u16 *param2);
 void ov70_0225E0F4(UnkStruct_ov70_0225DEE8 *param0, BOOL param1);
 void ov70_0225E104(UnkStruct_ov70_0225DEE8 *param0, u8 param1, u8 param2, u8 param3, u8 param4);

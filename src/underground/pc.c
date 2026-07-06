@@ -279,7 +279,11 @@ static int UndergroundPC_TryWithdrawGood(int slot, UndergroundMenu *menu)
     return FALSE;
 }
 
+#ifdef SDK_BUILD_ARM
 static void UndergroundPC_PrintMenuItemDescription(ListMenu *listMenu, u32 menuItemIdx, u8 unused)
+#else
+static void UndergroundPC_PrintMenuItemDescription(ListMenu *listMenu, u64 menuItemIdx, u8 unused)
+#endif
 {
     ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     int index = menuItemIdx;
@@ -291,7 +295,11 @@ static void UndergroundPC_PrintMenuItemDescription(ListMenu *listMenu, u32 menuI
     UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_DecorateDescription + index, FALSE, NULL);
 }
 
+#ifdef SDK_BUILD_ARM
 static void UndergroundPC_PrintRadarMenuItemDescription(ListMenu *listMenu, u32 menuItemIdx, u8 unused)
+#else
+static void UndergroundPC_PrintRadarMenuItemDescription(ListMenu *listMenu, u64 menuItemIdx, u8 unused)
+#endif
 {
     ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     int index = menuItemIdx;
@@ -307,7 +315,11 @@ static BOOL UndergroundPC_HandleMenu(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
 
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(menu->listMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(menu->listMenu);
+    #endif
     u16 listPos, cursorPos;
     ListMenu_GetListAndCursorPos(menu->listMenu, &listPos, &cursorPos);
 
@@ -448,7 +460,11 @@ static BOOL UndergroundPC_HandleRadarMenu(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
 
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(menu->listMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(menu->listMenu);
+    #endif
 
     u16 listPos, cursorPos;
     ListMenu_GetListAndCursorPos(menu->listMenu, &listPos, &cursorPos);
@@ -871,7 +887,11 @@ static void UndergroundPC_TakeFlagPromptTask(SysTask *sysTask, void *data)
         }
         break;
     case TAKE_FLAG_PROMPT_STATE_MAIN:
+        #ifdef SDK_BUILD_ARM
         int input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
+        #else
+        u64 input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
+        #endif
 
         if (input == MENU_NOTHING_CHOSEN) {
             return;

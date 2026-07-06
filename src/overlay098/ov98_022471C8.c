@@ -157,8 +157,13 @@ static int ov98_02249894(Window *param0, String *param1, int param2, int param3,
 void ov98_022498CC(Window *param0, String *param1, int param2, int param3, int param4, TextColor param5);
 static void ov98_02249900(UnkStruct_ov98_02247704 *param0, int param1);
 static void ov98_02249964(UnkStruct_ov98_02247704 *param0, int param1, int param2);
+#ifdef SDK_BUILD_ARM
 static void ov98_022499A0(ListMenu *param0, u32 param1, u8 param2);
 static void ov98_022499B4(ListMenu *param0, u32 param1, u8 param2);
+#else
+static void ov98_022499A0(ListMenu *param0, u64 param1, u8 param2);
+static void ov98_022499B4(ListMenu *param0, u64 param1, u8 param2);
+#endif
 
 static int (*Unk_ov98_02249D70[])(UnkStruct_ov98_02247704 *) = {
     ov98_02247B98,
@@ -722,7 +727,11 @@ static Menu *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
 
 static int ov98_02247B98(UnkStruct_ov98_02247704 *param0)
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0;
+    #else
+    u64 v0;
+    #endif
 
     switch (param0->unk_94) {
     case 0: {
@@ -767,9 +776,9 @@ static int ov98_02247B98(UnkStruct_ov98_02247704 *param0)
         v0 = ListMenu_ProcessInput(param0->unk_A4);
 
         switch (v0) {
-        case 0xffffffff:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0xfffffffe:
+        case MENU_CANCEL:
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov98_02246E88(param0->unk_00, 6, 0);
             param0->unk_9C = 29;
@@ -820,10 +829,14 @@ static int ov98_02247D50(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 2: {
+        #ifdef SDK_BUILD_ARM
         int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #else
+        u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #endif
 
-        if (v0 != 0xffffffff) {
-            if (v0 == 0xfffffffe) {
+        if (v0 != MENU_NOTHING_CHOSEN) {
+            if (v0 == MENU_CANCEL) {
                 ov98_02249714(param0, param0->unk_34, 27, TEXT_SPEED_FAST, 0xf0f);
                 sub_02030D5C(param0->unk_00->saveData, 0, 0);
             } else {
@@ -858,10 +871,14 @@ static int ov98_02247E38(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 2: {
+        #ifdef SDK_BUILD_ARM
         int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #else
+        u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #endif
 
-        if (v0 != 0xffffffff) {
-            if (v0 == 0xfffffffe) {
+        if (v0 != MENU_NOTHING_CHOSEN) {
+            if (v0 == MENU_CANCEL) {
                 param0->unk_08 = 0;
             } else {
                 ov98_02249714(param0, param0->unk_34, 29, TEXT_SPEED_FAST, 0xf0f);
@@ -1107,10 +1124,14 @@ static int ov98_02248684(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 2: {
+        #ifdef SDK_BUILD_ARM
         int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #else
+        u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #endif
 
-        if (v0 != 0xffffffff) {
-            if (v0 == 0xfffffffe) {
+        if (v0 != MENU_NOTHING_CHOSEN) {
+            if (v0 == MENU_CANCEL) {
                 param0->unk_94++;
             } else {
                 ov98_02249714(param0, param0->unk_34, 9, TEXT_SPEED_FAST, 0xf0f);
@@ -1133,10 +1154,14 @@ static int ov98_02248684(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     default: {
+        #ifdef SDK_BUILD_ARM
         int v2 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #else
+        u64 v2 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #endif
 
-        if (v2 != 0xffffffff) {
-            if (v2 == 0xfffffffe) {
+        if (v2 != MENU_NOTHING_CHOSEN) {
+            if (v2 == MENU_CANCEL) {
                 ov98_02249714(param0, param0->unk_34, 10, TEXT_SPEED_FAST, 0xf0f);
                 ov98_02247AE8(param0, 34, 0);
             } else {
@@ -1196,10 +1221,14 @@ static int ov98_02248804(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 3: {
+        #ifdef SDK_BUILD_ARM
         int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #else
+        u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #endif
 
-        if (v0 != 0xffffffff) {
-            if (v0 == 0xfffffffe) {
+        if (v0 != MENU_NOTHING_CHOSEN) {
+            if (v0 == MENU_CANCEL) {
                 ov98_02247AE8(param0, 34, 0);
             } else {
                 param0->unk_94++;
@@ -1223,10 +1252,14 @@ static int ov98_02248804(UnkStruct_ov98_02247704 *param0)
 
 static int ov98_022488F8(UnkStruct_ov98_02247704 *param0)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             CommManager_EndWifiMail();
             ov98_02246E88(param0->unk_00, 6, 0);
             param0->unk_08 = 29;
@@ -1587,10 +1620,14 @@ static int ov98_02248DF4(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 2: {
+        #ifdef SDK_BUILD_ARM
         int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #else
+        u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #endif
 
-        if (v0 != 0xffffffff) {
-            if (v0 == 0xfffffffe) {
+        if (v0 != MENU_NOTHING_CHOSEN) {
+            if (v0 == MENU_CANCEL) {
                 param0->unk_08 = 21;
             } else {
                 param0->unk_94++;
@@ -1631,10 +1668,14 @@ static int ov98_02248EE0(UnkStruct_ov98_02247704 *param0)
         param0->unk_94++;
         break;
     case 2: {
+        #ifdef SDK_BUILD_ARM
         int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #else
+        u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
+        #endif
 
-        if (v0 != 0xffffffff) {
-            if (v0 == 0xfffffffe) {
+        if (v0 != MENU_NOTHING_CHOSEN) {
+            if (v0 == MENU_CANCEL) {
                 param0->unk_08 = 19;
             } else {
                 ov98_02247AE8(param0, 26, 0);
@@ -2218,14 +2259,22 @@ static void ov98_02249964(UnkStruct_ov98_02247704 *param0, int param1, int param
     ov98_02249900(param0, v0);
 }
 
+#ifdef SDK_BUILD_ARM
 static void ov98_022499A0(ListMenu *param0, u32 param1, u8 param2)
+#else
+static void ov98_022499A0(ListMenu *param0, u64 param1, u8 param2)
+#endif
 {
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void ov98_022499B4(ListMenu *param0, u32 param1, u8 param2)
+#else
+static void ov98_022499B4(ListMenu *param0, u64 param1, u8 param2)
+#endif
 {
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);

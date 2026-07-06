@@ -130,10 +130,19 @@ static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1);
 static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, enum HeapID heapID);
 static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1);
 static void sub_020729B4(UnkStruct_02072334 *param0);
+#ifdef SDK_BUILD_ARM
 static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2);
 static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2);
+#else
+static void sub_02072BBC(ListMenu *param0, u64 param1, u8 param2);
+static void sub_02072C0C(ListMenu *param0, u64 param1, u8 param2);
+#endif
 static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2);
+#ifdef SDK_BUILD_ARM
 static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2);
+#else
+static void sub_02072DA4(ListMenu *param0, u64 param1, u8 param2);
+#endif
 static void sub_02072DB8(UnkStruct_02072334 *param0);
 static void sub_02072E4C(UnkStruct_02072334 *param0);
 static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, enum HeapID heapID);
@@ -239,7 +248,11 @@ static void sub_02072370(SysTask *param0, void *param1)
 static void sub_02072390(SysTask *param0, void *param1)
 {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
+    #ifdef SDK_BUILD_ARM
     s32 v1 = ListMenu_ProcessInput(v0->unk_160);
+    #else
+    u64 v1 = ListMenu_ProcessInput(v0->unk_160);
+    #endif
 
     if (v0->unk_1A4 != NULL) {
         ScrollPrompts_UpdateAnim(v0->unk_1A4);
@@ -255,8 +268,8 @@ static void sub_02072390(SysTask *param0, void *param1)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         switch (v1) {
-        case 0xffffffff:
-        case 0xfffffffe:
+        case MENU_NOTHING_CHOSEN:
+        case MENU_CANCEL:
         case 0xFFFF:
             sub_02072EA4(v0, sub_02072518, sub_02072364);
             break;
@@ -297,7 +310,11 @@ static void sub_02072418(SysTask *param0, void *param1)
 static void sub_02072470(SysTask *param0, void *param1)
 {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
+    #ifdef SDK_BUILD_ARM
     s32 v1 = ListMenu_ProcessInput(v0->unk_160);
+    #else
+    u64 v1 = ListMenu_ProcessInput(v0->unk_160);
+    #endif
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072534, sub_02072370);
@@ -309,8 +326,8 @@ static void sub_02072470(SysTask *param0, void *param1)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         switch (v1) {
-        case 0xffffffff:
-        case 0xfffffffe:
+        case MENU_NOTHING_CHOSEN:
+        case MENU_CANCEL:
         case 3:
             sub_02072EA4(v0, sub_02072534, sub_02072370);
             break;
@@ -722,7 +739,11 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     param0->unk_13B_0 = 0;
 }
 
+#ifdef SDK_BUILD_ARM
 static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2)
+#else
+static void sub_02072BBC(ListMenu *param0, u64 param1, u8 param2)
+#endif
 {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)ListMenu_GetAttribute(param0, 19);
 
@@ -737,7 +758,11 @@ static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2)
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2)
+#else
+static void sub_02072C0C(ListMenu *param0, u64 param1, u8 param2)
+#endif
 {
     u16 v0, v1, v2;
     UnkStruct_02072334 *v3 = (UnkStruct_02072334 *)ListMenu_GetAttribute(param0, 19);
@@ -802,7 +827,11 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     param0->unk_13B_0 = 1;
 }
 
+#ifdef SDK_BUILD_ARM
 static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2)
+#else
+static void sub_02072DA4(ListMenu *param0, u64 param1, u8 param2)
+#endif
 {
     if (!param2) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -1119,7 +1148,7 @@ static int sub_0207340C(UnkStruct_02072334 *param0)
     switch (Menu_ProcessInputAndHandleExit(param0->unk_168, param0->heapID)) {
     case 0:
         return 1;
-    case 0xfffffffe:
+    case MENU_CANCEL:
         return 0;
     }
 

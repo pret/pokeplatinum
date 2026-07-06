@@ -59,8 +59,13 @@ static void _FieldMenuManager_ShowListMenuWithWidth(FieldMenuManager *menuManage
 static void _FieldMenuManager_AddListMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 altTextStringID, u32 entryIndex);
 static u32 CalcListMenuWidth(FieldMenuManager *menuManager);
 static void FieldMenuManager_InitListMenuTemplate(FieldMenuManager *menuManager);
+#ifdef SDK_BUILD_ARM
 static void ListMenuPrintCallback(ListMenu *listMenu, u32 index, u8 yOffset);
 static void ListMenuCursorCallback(ListMenu *listMenu, u32 index, u8 onInit);
+#else
+static void ListMenuPrintCallback(ListMenu *listMenu, u64 index, u8 yOffset);
+static void ListMenuCursorCallback(ListMenu *listMenu, u64 index, u8 onInit);
+#endif
 static void ListMenuSysTaskCallback(SysTask *sysTask, void *param);
 static void FieldMenuManager_DeleteWithListMenu(FieldMenuManager *menuManager);
 static void FieldMenuManager_PrintListMenuAltText(FieldMenuManager *menuManager, u16 entryID, u32 printerDelay);
@@ -412,7 +417,11 @@ static void FieldMenuManager_InitListMenuTemplate(FieldMenuManager *menuManager)
     menuManager->listMenuTemplate.parent = (void *)menuManager;
 }
 
+#ifdef SDK_BUILD_ARM
 static void ListMenuPrintCallback(ListMenu *listMenu, u32 index, u8 yOffset)
+#else
+static void ListMenuPrintCallback(ListMenu *listMenu, u64 index, u8 yOffset)
+#endif
 {
     if (index == MENU_HEADER) {
         ListMenu_SetAltTextColors(listMenu, 3, 15, 4);
@@ -421,7 +430,11 @@ static void ListMenuPrintCallback(ListMenu *listMenu, u32 index, u8 yOffset)
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void ListMenuCursorCallback(ListMenu *listMenu, u32 index, u8 onInit)
+#else
+static void ListMenuCursorCallback(ListMenu *listMenu, u64 index, u8 onInit)
+#endif
 {
     u16 v2 = 0;
     u16 v3 = 0;
@@ -448,7 +461,11 @@ static void ListMenuSysTaskCallback(SysTask *sysTask, void *param)
         return;
     }
 
+    #ifdef SDK_BUILD_ARM
     u32 selectedOption = ListMenu_ProcessInput(menuManager->listMenu);
+    #else
+    u64 selectedOption = ListMenu_ProcessInput(menuManager->listMenu);
+    #endif
     u16 cursorPos = menuManager->cursorPos;
 
     ListMenu_CalcTrueCursorPos(menuManager->listMenu, &menuManager->cursorPos);

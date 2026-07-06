@@ -417,10 +417,14 @@ static int ov96_0223C3F0(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223C420(UnkStruct_ov96_0223BF40 *param0)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             CommManager_EndGlobalWifi();
             ov96_0223BC5C(param0, 0, 0);
             param0->unk_1C = 46;
@@ -444,10 +448,14 @@ static int ov96_0223C488(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223C4B8(UnkStruct_ov96_0223BF40 *param0)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             if (!DWC_CheckInet()) {
                 param0->unk_1C = 0;
             } else {
@@ -1352,10 +1360,14 @@ static int ov96_0223D3D8(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D408(UnkStruct_ov96_0223BF40 *param0)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             param0->unk_1C = 13;
         } else {
             param0->unk_1C = 41;
@@ -1376,10 +1388,14 @@ static int ov96_0223D43C(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D46C(UnkStruct_ov96_0223BF40 *param0)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             param0->unk_1C = 29;
         } else {
             param0->unk_1C = 41;
@@ -1434,10 +1450,14 @@ static int ov96_0223D528(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D558(UnkStruct_ov96_0223BF40 *param0)
 {
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             param0->unk_1C = 0;
         } else {
             param0->unk_1C = 41;

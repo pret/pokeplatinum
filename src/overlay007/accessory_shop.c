@@ -580,7 +580,11 @@ static void AccessoryShop_DeleteItemList(AccessoryShopItemList *itemList)
 static u32 AccessoryShop_SelectItemListMenu(AccessoryShopItemList *itemList)
 {
     u16 cursorPos;
+    #ifdef SDK_BUILD_ARM
     u32 input = ListMenu_ProcessInput(itemList->listMenu);
+    #else
+    u64 input = ListMenu_ProcessInput(itemList->listMenu);
+    #endif
 
     if (input == MENU_NOTHING_CHOSEN) {
         ListMenu_CalcTrueCursorPos(itemList->listMenu, &cursorPos);

@@ -770,7 +770,11 @@ void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, Won
     Heap_Free(cryptoCtx);
 }
 
+#ifdef SDK_BUILD_ARM
 void MainMenuUtil_ListMenuCursorCB(ListMenu *listMenu, u32 index, u8 onInit)
+#else
+void MainMenuUtil_ListMenuCursorCB(ListMenu *listMenu, u64 index, u8 onInit)
+#endif
 {
     switch (onInit) {
     case FALSE:

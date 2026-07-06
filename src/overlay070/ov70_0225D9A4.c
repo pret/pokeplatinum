@@ -253,9 +253,17 @@ static void ov70_0225EDF8(UnkStruct_ov70_0225EC20 *param0, const String *param1,
 static const StringList *ov70_0225EE04(const UnkStruct_ov70_0225EC20 *param0);
 static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 *param0, u32 param1);
 static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplate *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 heapID, u8 param6, u8 param7, u8 param8);
+#ifdef SDK_BUILD_ARM
 static u32 ov70_0225EED8(UnkStruct_ov70_0225EC20 *param0);
+#else
+static u64 ov70_0225EED8(UnkStruct_ov70_0225EC20 *param0);
+#endif
 static void ov70_0225EF14(UnkStruct_ov70_0225EC20 *param0, u16 *param1, u16 *param2);
+#ifdef SDK_BUILD_ARM
 static void ov70_0225EF58(ListMenu *param0, u32 param1, u8 param2);
+#else
+static void ov70_0225EF58(ListMenu *param0, u64 param1, u8 param2);
+#endif
 static void ov70_0225EF6C(UnkStruct_ov70_0225EC20 *param0, BOOL param1);
 static void ov70_0225EF70(UnkStruct_ov70_0225EC20 *param0);
 static void ov70_0225EFD4(UnkStruct_ov70_0225EFD4 *param0, UnkStruct_ov70_0225E4EC *param1, u32 heapID);
@@ -976,7 +984,11 @@ extern void ov70_0225E0A4(UnkStruct_ov70_0225DEE8 *param0, const ListMenuTemplat
     ov70_0225EE30(&param0->unk_39C, param1, &param0->unk_3C, param2, param3, HEAP_ID_112, param4, param5, param6);
 }
 
+#ifdef SDK_BUILD_ARM
 u32 ov70_0225E0D4(UnkStruct_ov70_0225DEE8 *param0)
+#else
+u64 ov70_0225E0D4(UnkStruct_ov70_0225DEE8 *param0)
+#endif
 {
     return ov70_0225EED8(&param0->unk_39C);
 }
@@ -1023,10 +1035,14 @@ void ov70_0225E194(UnkStruct_ov70_0225DEE8 *param0)
 
 int ov70_0225E1C4(UnkStruct_ov70_0225DEE8 *param0)
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0 = ov70_0225EED8(&param0->unk_39C);
+    #else
+    u64 v0 = ov70_0225EED8(&param0->unk_39C);
+    #endif
 
     switch (v0) {
-    case 0xfffffffe:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     case 1:
         return 1;
@@ -1736,19 +1752,27 @@ static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplat
     Window_ScheduleCopyToVRAM(&param0->unk_20);
 }
 
+#ifdef SDK_BUILD_ARM
 static u32 ov70_0225EED8(UnkStruct_ov70_0225EC20 *param0)
+#else
+static u64 ov70_0225EED8(UnkStruct_ov70_0225EC20 *param0)
+#endif
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0;
+    #else
+    u64 v0;
+    #endif
 
     if (param0->unk_30 == NULL) {
-        return 0xfffffffe;
+        return MENU_CANCEL;
     }
 
     v0 = ListMenu_ProcessInput(param0->unk_30);
 
     switch (v0) {
-    case 0xffffffff:
-    case 0xfffffffe:
+    case MENU_NOTHING_CHOSEN:
+    case MENU_CANCEL:
         ov70_0225EF70(param0);
         break;
     default:
@@ -1782,7 +1806,11 @@ static void ov70_0225EF14(UnkStruct_ov70_0225EC20 *param0, u16 *param1, u16 *par
     }
 }
 
+#ifdef SDK_BUILD_ARM
 static void ov70_0225EF58(ListMenu *param0, u32 param1, u8 param2)
+#else
+static void ov70_0225EF58(ListMenu *param0, u64 param1, u8 param2)
+#endif
 {
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);

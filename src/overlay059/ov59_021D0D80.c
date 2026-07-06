@@ -853,10 +853,14 @@ static int ov59_021D1A44(UnkStruct_020961E8 *param0, int param1)
         return param1;
     }
 
+    #ifdef SDK_BUILD_ARM
     u32 v1 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
+    #else
+    u64 v1 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
+    #endif
 
-    if (v1 != 0xffffffff) {
-        if (v1 == 0xfffffffe) {
+    if (v1 != MENU_NOTHING_CHOSEN) {
+        if (v1 == MENU_CANCEL) {
             if (CommSys_CurNetId() == 0) {
                 int v2 = 0;
 
@@ -961,10 +965,14 @@ static int ov59_021D1C64(UnkStruct_020961E8 *param0, int param1)
         return param1;
     }
 
+    #ifdef SDK_BUILD_ARM
     u32 v1 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
+    #else
+    u64 v1 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
+    #endif
 
-    if (v1 != 0xffffffff) {
-        if (v1 == 0xfffffffe) {
+    if (v1 != MENU_NOTHING_CHOSEN) {
+        if (v1 == MENU_CANCEL) {
             int v2 = 0;
 
             CommSys_SendData(117, &v2, 1);
@@ -1118,10 +1126,14 @@ static int ov59_021D1F24(UnkStruct_020961E8 *param0, int param1)
         return param1;
     }
 
+    #ifdef SDK_BUILD_ARM
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
+    #else
+    u64 v0 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
+    #endif
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (v0 != MENU_NOTHING_CHOSEN) {
+        if (v0 == MENU_CANCEL) {
             int v1 = 0;
 
             param0->unk_3A8 = 0;
