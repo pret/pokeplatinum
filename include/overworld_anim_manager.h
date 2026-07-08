@@ -6,7 +6,11 @@
 #include "heap.h"
 #include "sys_task.h"
 
+#ifdef SDK_BUILD_ARM
 #define OVERWORLD_ANIM_MANAGER_FUNCS_CONTEXT_SIZE 160
+#else
+#define OVERWORLD_ANIM_MANAGER_FUNCS_CONTEXT_SIZE 320
+#endif
 
 typedef struct OverworldAnimManager OverworldAnimManager;
 

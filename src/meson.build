@@ -1025,6 +1025,7 @@ pokeplatinum_c += files(
     'port/gui_cheats.c',
     'port/gui_configprj.c',
     'port/gui_createmon.c',
+    'port/gui_fieldinfo.c',
     'port/gui_mapjump.c'
 )
 endif

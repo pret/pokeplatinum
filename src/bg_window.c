@@ -815,6 +815,13 @@ static void LoadBgVRAMScr(u8 bgLayer, void *src, u32 offset, u32 size)
 {
     DC_FlushRange(src, size);
 
+    #ifdef SDK_PORT
+    if(src == NULL) {
+        // We shouldn't get here, but this fixes a use-after-free in the slot machine
+        return;
+    }
+    #endif
+
     switch (bgLayer) {
     case BG_LAYER_MAIN_0:
         GX_LoadBG0Scr(src, offset, size);
