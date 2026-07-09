@@ -48,6 +48,7 @@ sub_seq_narc = custom_target(sub_seq_narc_name,
     ],
 )
 
+if(get_option('skip_anim_scripts') == false)
 waza_seq_narc = custom_target(waza_seq_target_name,
     output: waza_seq_target_name,
     input: script_bin_gen.process(
@@ -66,9 +67,12 @@ waza_seq_narc = custom_target(waza_seq_target_name,
         '@PRIVATE_DIR@',
     ],
 )
+endif
 
 nitrofs_files += be_seq_narc
 nitrofs_files += sub_seq_narc
+if(get_option('skip_anim_scripts') == false)
 nitrofs_files += waza_seq_narc
+endif
 
 naix_headers += sub_seq_narc[1]
