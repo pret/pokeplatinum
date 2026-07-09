@@ -38,7 +38,7 @@ void GUI_MapJump_Main(bool * p_open) {
     WarpButton("Veilstone City", 132, 717, 612);
     WarpButton("Pastoria City", 120, 600, 816);
     WarpButton("Canalave City", 33, 58, 723);
-    //WarpButton("Snowpoint City", ) // TODO: Fix Crash
+    WarpButton("Snowpoint City", 165, 379, 234);
     WarpButton("Sunnyshore City", 150, 860, 785);
     WarpButton("Pokemon League", 172, 847, 560);
     WarpButton("Fight Area", 188, 647, 430);
