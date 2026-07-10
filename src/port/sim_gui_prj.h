@@ -8,6 +8,9 @@ void GUI_Cheats_Main(bool * p_open);
 
 void GUI_ConfigPrj_Main(bool * p_open);
 
+void GUI_CreateItem_Init();
+void GUI_CreateItem_Main(bool * p_open);
+
 void GUI_CreateMon_Init();
 void GUI_CreateMon_Main(bool * p_open);
 
