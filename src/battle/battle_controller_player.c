@@ -45,6 +45,10 @@
 
 #include "res/battle/scripts/sub_seq.naix"
 
+#ifdef SDK_PORT
+#include "port/sim_config_prj.h"
+#endif
+
 enum BattleControllerState {
     STATE_PROCESSING = 0,
     STATE_BREAK_OUT,
@@ -608,12 +612,21 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                     BattleSystem_SetStopRecording(battleSys, 1);
                     BattleSystem_IsRecordingStopped(battleSys, BattleSystem_GetBattleContext(battleSys));
                 } else {
+                    #ifdef SDK_PORT
+                    SIM_Config_prj_type * myConfig = SIM_Config_prj_GetConfig();
+                    if(myConfig->runFromTrainerBattles) {
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_RUN_SELECT;
+                    } else {
+                    #endif
                     msg.tags = 0;
                     msg.id = 793;
                     BattleController_EmitSetAlertMessage(battleSys, i, msg);
 
                     battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                     battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
+                    #ifdef SDK_PORT
+                    }
+                    #endif
                 }
             } else if (Battler_IsTrappedMsg(battleSys, battleCtx, i, &msg)) {
                 if (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_RECORDING) {

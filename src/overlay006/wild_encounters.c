@@ -56,6 +56,10 @@
 #include "unk_020559DC.h"
 #include "vars_flags.h"
 
+#ifdef SDK_PORT
+#include "port/sim_config_prj.h"
+#endif
+
 typedef struct RadarEncounterData {
     int shakeType;
     BOOL preserveChain;
@@ -749,6 +753,12 @@ static BOOL TryGenerateFishingEncounter(FieldSystem *fieldSystem, Pokemon *param
 
 static BOOL ShouldGetRandomEncounter(FieldSystem *fieldSystem, const u32 encounterRate, const u8 tileBehavior)
 {
+#ifdef SDK_PORT
+    SIM_Config_prj_type * myConfig = SIM_Config_prj_GetConfig();
+    if(myConfig->disableRandomEncounters) {
+        return FALSE;
+    }
+#endif
     u32 encRate = encounterRate << 8;
 
     // lowers effective encounter rate by 95% for the first few steps after each encounter.

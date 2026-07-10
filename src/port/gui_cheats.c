@@ -21,6 +21,8 @@ void GUI_Cheats_Main(bool * p_open) {
     #define ConfigCheckBox(_label,_configVar) ConfigCheckBoxFunc(_label,(bool*)&myConfig->_configVar,&configChanged)
 
     ConfigCheckBox("Walk Through Walls", walkThroughWalls);
+    ConfigCheckBox("Disable Random Encounters", disableRandomEncounters);
+    ConfigCheckBox("Run from Trainer Battles", runFromTrainerBattles);
 
     if(configChanged) {
         SIM_Config_prj_SaveConfigFile(myConfig);
