@@ -1413,8 +1413,13 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     GF_ASSERT(Unk_ov5_02202120);
     GF_ASSERT(Unk_ov5_02202120->unk_08 == NULL);
 
+    #ifdef SDK_BUILD_ARM
     Unk_ov5_02202120->unk_0C = Heap_Alloc(HEAP_ID_FIELD1, 0x4800);
     Unk_ov5_02202120->unk_08 = ParticleSystem_New(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD1);
+    #else
+    Unk_ov5_02202120->unk_0C = Heap_Alloc(HEAP_ID_FIELD1, 0x4800*2);
+    Unk_ov5_02202120->unk_08 = ParticleSystem_New(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800*2, 1, HEAP_ID_FIELD1);
+    #endif
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 
     ParticleSystem_SetCameraProjection(Unk_ov5_02202120->unk_08, 1);
