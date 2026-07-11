@@ -381,6 +381,9 @@ u32 NARC_GetMemberSizeByIndexPair(enum NarcID narcID, int memberIndex)
 
     GF_ASSERT(chunkSize != 0);
     // Bug: file is never closed!
+    #ifdef SDK_PORT
+    FS_CloseFile(&file);
+    #endif
 
     return chunkSize;
 }
