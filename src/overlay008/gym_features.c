@@ -3780,7 +3780,9 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     gymSystem->fieldSystem = fieldSystem;
     fieldSystem->unk_04->dynamicMapFeaturesData = gymSystem;
 
+    #ifdef SDK_BUILD_ARM
     HearthomeGym_InitFog(gymSystem);
+    #endif
     FieldEffectManager_InitRenderer(fieldSystem->fieldEffMan, 32);
     MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, FALSE);
 

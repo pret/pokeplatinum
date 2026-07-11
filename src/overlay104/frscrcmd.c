@@ -2178,7 +2178,11 @@ static BOOL ov104_022319CC(UnkStruct_ov104_02231148 *param0)
         param0->unk_04++;
         break;
     case 1:
+        #ifdef SDK_BUILD_ARM
         ov104_0223F0B0(&param0->unk_18, 0, 191, (0xFFFF / 192) * 2, FX32_CONST(18), 4 * 100, (u32)REG_BG3HOFS_ADDR, 0, 5 - 1);
+        #else
+        ov104_0223F0B0(&param0->unk_18, 0, 191, (0xFFFF / 192) * 2, FX32_CONST(18), 4 * 100, (u64)REG_BG3HOFS_ADDR, 0, 5 - 1);
+        #endif
         param0->unk_04++;
         break;
     default:

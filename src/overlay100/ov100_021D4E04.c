@@ -87,7 +87,11 @@ void ov100_021D4E58(UnkStruct_ov100_021D4E3C *param0)
     ScreenScrollManager_Delete(param0->screenScrollMgr);
 }
 
+#ifdef SDK_BUILD_ARM
 void ov100_021D4E70(UnkStruct_ov100_021D4E3C *param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8, int param9)
+#else
+void ov100_021D4E70(UnkStruct_ov100_021D4E3C *param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u64 param6, u32 param7, u32 param8, int param9)
+#endif
 {
     if (param9 == 0) {
         ScreenScrollManager_ScrollX(param0->screenScrollMgr, param1, param2, param3, param4, param5, param6, param7, param8);

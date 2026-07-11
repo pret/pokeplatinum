@@ -165,8 +165,17 @@ static void ov100_021D4318(UnkStruct_ov100_021D4104 *param0)
     if (param0->unk_20 < 12) {
         param0->unk_24++;
         param0->unk_24 %= 3;
+        #ifndef SDK_BUILD_ARM
+        // Fix divide by zero error
+        if(param0->unk_24 == 0) {
+            param0->unk_28[0] = 1;
+        } else {
+        #endif
         param0->unk_28[0] = (LCRNG_Next() % param0->unk_24) + 1;
         param0->unk_28[1] = (LCRNG_Next() % param0->unk_24) + 1;
+        #ifndef SDK_BUILD_ARM
+        }
+        #endif
         param0->unk_0C = 2;
     }
 
