@@ -1,8 +1,14 @@
 # Pokémon Platinum PC Port
 
-This is a WIP PC port of Pokemon Platinum based on the [pret](https://github.com/pret/pokeplatinum) decompilation project.
+This is an experimental PC port of Pokemon Platinum based on the [pret](https://github.com/pret/pokeplatinum) decompilation project.
 
-Currently it is possible to reach the first gym. It might be possible to get farther than that, however it has not been tested.
+It should be possible to play the game from start to finish, but there could be crashes and graphical bugs. 
+
+Project goals:
+* Create a native port of pokeplatinum for 64-bit PC platforms
+* * Long term: Create native ports for homebrew on various game consoles
+* Facilitate modding by allowing both a PC port and DS ROM to be compiled and debugged from the same source tree
+* Support all WiFi and multiplayer features
 
 ## Running pre-built binaries
 You MUST dump and extract your own ROM to use pre-built binaries. The ROM filesystem must be extracted to the same directory as the executable file.
