@@ -139,7 +139,11 @@ static BOOL ChangesWereMade(OptionsMenuData *menuData);
 static void DrawConfirmationPrompt(OptionsMenuData *menuData);
 
 static void ProcessMainInput(OptionsMenuData *menuData);
+#ifdef SDK_BUILD_ARM
 static u32 ProcessConfirmationInput(OptionsMenuData *menuData);
+#else
+static u64 ProcessConfirmationInput(OptionsMenuData *menuData);
+#endif
 
 static int TeardownMenuData(OptionsMenuData *menuData);
 static void TeardownBgs(OptionsMenuData *menuData);
@@ -215,7 +219,11 @@ enum OptonsMenuState {
 BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
 {
     OptionsMenuData *menuData = ApplicationManager_Data(appMan);
+    #ifdef SDK_BUILD_ARM
     u32 choiceYesNo;
+    #else
+    u64 choiceYesNo;
+    #endif
 
     switch (menuData->state) {
     case STATE_SETUP_MENU_VISUALS:
@@ -949,7 +957,11 @@ static void DrawConfirmationPrompt(OptionsMenuData *menuData)
         menuData->heapID);
 }
 
+#ifdef SDK_BUILD_ARM
 static u32 ProcessConfirmationInput(OptionsMenuData *menuData)
+#else
+static u64 ProcessConfirmationInput(OptionsMenuData *menuData)
+#endif
 {
     return Menu_ProcessInputAndHandleExit(menuData->yesNoChoice, menuData->heapID);
 }

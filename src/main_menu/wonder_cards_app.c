@@ -693,7 +693,11 @@ static void MakeStateChangeListMenuFromEntryTemplates(WonderCardsAppData *appDat
     appData->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
 
     for (int i = 0; i < numEntries; i++) {
+        #ifdef SDK_BUILD_ARM
         StringList_AddFromMessageBank(appData->strList, appData->msgLoader, entries[i].textEntryID, entries[i].stateChange.asU32);
+        #else
+        StringList_AddFromMessageBank(appData->strList, appData->msgLoader, entries[i].textEntryID, (u64)entries[i].stateChange.transitionFunc);
+        #endif
     }
 
     MessageLoader_Free(appData->msgLoader);

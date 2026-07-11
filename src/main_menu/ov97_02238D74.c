@@ -36,6 +36,9 @@ static void *ov97_02238D74(DWCAllocType param0, u32 param1, int param2)
     #endif
 
     param1 = (((param1 + sizeof(void *)) + 32) & ~31) + 32;
+    #ifndef SDK_BUILD_ARM
+    param1 += 32;
+    #endif
 
     v0 = Heap_Alloc(HEAP_ID_MYSTERY_GIFT_APP, param1);
     #ifdef SDK_BUILD_ARM

@@ -151,7 +151,11 @@ typedef struct PartyPokemon {
 /**
  * @brief The main Pokemon data structure
  */
-typedef struct Pokemon {
+typedef struct 
+#ifndef SDK_BUILD_ARM
+__attribute__((__packed__))
+#endif
+Pokemon {
     BoxPokemon box; //!< Contains the pokemons boxed data
     PartyPokemon party; //!< Contains the pokemons extra data while it is in the players party
 } Pokemon;
