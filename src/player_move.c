@@ -413,7 +413,7 @@ void PlayerAvatar_ClearMoveState(PlayerAvatar *playerAvatar)
  *
  * @return TRUE if PlayerAvatar_ForceStopMovement should be called
  */
-int PlayerAvatar_CheckForceStopMovement(PlayerAvatar *playerAvatar)
+BOOL PlayerAvatar_CheckForceStopMovement(PlayerAvatar *playerAvatar)
 {
     int avatarMoveState = PlayerAvatar_GetMoveState(playerAvatar);
     int playerMoveState = PlayerAvatar_GetPlayerMoveState(playerAvatar);
@@ -611,7 +611,7 @@ static BOOL PlayerAvatar_TileMove_BikeSlope(PlayerAvatar *playerAvatar, int dir)
     Sound_PlayEffect(SEQ_SE_DP_SUNA);
 
     if (moveDir == DIR_NORTH) {
-        if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_AVATAR_CYCLING && PlayerAvatar_GetSpeed(playerAvatar) >= 3) {
+        if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_AVATAR_CYCLING && PlayerAvatar_GetSpeed(playerAvatar) >= AVATAR_MOVE_SPEED_3) {
             if (dir == DIR_NORTH) {
                 PlayerAvatar_SetMovement(playerAvatar, mapObj, MovementAction_TurnActionTowardsDir(moveDir, MOVEMENT_ACTION_WALK_FASTER_SOUTH), PLAYER_ACTION_SPEED_FASTER);
                 PlayerAvatar_SetMoveState(playerAvatar, AVATAR_MOVE_STATE_MOVING);

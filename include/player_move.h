@@ -15,7 +15,7 @@ void PlayerAvatar_MoveMain(PlayerAvatar *playerAvatar, const LandDataManager *la
 BOOL PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int dir);
 void PlayerAvatar_UpdatePlayerMoveState(PlayerAvatar *playerAvatar);
 void PlayerAvatar_ClearMoveState(PlayerAvatar *playerAvatar);
-int PlayerAvatar_CheckForceStopMovement(PlayerAvatar *playerAvatar);
+BOOL PlayerAvatar_CheckForceStopMovement(PlayerAvatar *playerAvatar);
 void PlayerAvatar_ForceStopMovement(PlayerAvatar *playerAvatar, int dir);
 u32 PlayerAvatar_CheckCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, int direction);
 u32 PlayerAvatar_CheckDistortionCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir);
