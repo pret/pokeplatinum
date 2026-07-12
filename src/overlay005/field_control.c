@@ -49,6 +49,7 @@
 #include "party.h"
 #include "persisted_map_features_init.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "pokemon.h"
 #include "pokeradar.h"
 #include "save_player.h"
@@ -66,7 +67,6 @@
 #include "unk_02056B30.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
-#include "unk_0205F180.h"
 #include "vars_flags.h"
 #include "wireless_manager.h"
 
@@ -189,7 +189,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             || (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE
                 && HearthomeGym_CheckIfPlayerSeesTrainer(fieldSystem) == TRUE)) {
 
-            sub_0205F56C(fieldSystem->playerAvatar);
+            PlayerAvatar_ClearMoveState(fieldSystem->playerAvatar);
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
             return TRUE;
         }
@@ -263,8 +263,8 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         }
 
         if (validInteraction == TRUE) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             if (MapObject_GetTrainerType(object) != 0x9) {
@@ -403,8 +403,8 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
         MapObject *object;
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE && MapObject_GetMovementType(object) != 0x1) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
@@ -458,8 +458,8 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
         MapObject *object;
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             CommManager_PauseUnionClient();
@@ -495,8 +495,8 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
         MapObject *object;
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             if (MapObject_GetTrainerType(object) != 0x9) {
@@ -1066,7 +1066,7 @@ static BOOL Field_DistortionInteract(FieldSystem *fieldSystem, MapObject **objec
     int objectIndex = 0;
     int playerX, playerY, playerZ, objectX, objectY, objectZ;
 
-    sub_020617BC(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
+    PlayerAvatar_GetFacingDistortionWorldPos(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
 
     while (MapObjectMan_FindObjectWithStatus(fieldSystem->mapObjMan, object, &objectIndex, 1 << 0)) {
         objectX = MapObject_GetX(*object);

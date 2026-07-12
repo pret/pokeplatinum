@@ -55,4 +55,11 @@
 #define MAP_OBJ_UNK_A0_09 9
 #define MAP_OBJ_UNK_A0_10 10
 
+// Collision Flags
+#define MAP_OBJ_COLLISION_NONE          0
+#define MAP_OBJ_COLLISION_OUT_OF_RANGE  (1 << 0)
+#define MAP_OBJ_COLLISION_WILL_COLLIDE  (1 << 1)
+#define MAP_OBJ_COLLISION_2             (1 << 2)
+#define MAP_OBJ_COLLISION_HEIGHT_CHANGE (1 << 3)
+
 #endif

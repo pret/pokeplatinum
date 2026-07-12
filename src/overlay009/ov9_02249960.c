@@ -57,6 +57,7 @@
 #include "overworld_anim_manager.h"
 #include "persisted_map_features.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "resource_collection.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
@@ -70,7 +71,6 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
@@ -2564,7 +2564,7 @@ BOOL DistWorld_HandlePlayerMoved(FieldSystem *fieldSystem, enum FaceDirection pl
 
     if (PersistedMapFeatures_GetID(persistedMapFeatures) == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
-        int v4 = sub_02061434(fieldSystem->playerAvatar, playerDir);
+        int v4 = PlayerAvatar_GetMoveStateFromPlayerAvatarState(fieldSystem->playerAvatar, playerDir);
 
         int playerX, playerY, playerZ;
         GetPlayerPos(dwSystem, &playerX, &playerY, &playerZ);

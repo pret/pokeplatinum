@@ -6,6 +6,7 @@
 #define WARP_ID_NONE -1
 
 enum FaceDirection {
+    FACE_NONE = -1,
     FACE_UP = 0,
     FACE_DOWN,
     FACE_LEFT,

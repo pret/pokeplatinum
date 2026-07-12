@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/player_avatar.h"
+
 #include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
@@ -12,8 +14,8 @@
 #include "map_object.h"
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "sound_playback.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 
 typedef struct {
@@ -92,11 +94,11 @@ static BOOL ov5_021E120C(FieldTask *param0)
         v0->unk_08++;
         break;
     case 1:
-        if (sub_02061544(v0->playerAvatar)) {
+        if (PlayerAvatar_IsMapObjectAnimationSet(v0->playerAvatar)) {
             int v3 = 0xc;
 
             v3 = MovementAction_TurnActionTowardsDir(v0->unk_00, v3);
-            PlayerAvatar_SetAnimationCode(v0->playerAvatar, v3, 1);
+            PlayerAvatar_SetMapObjMovement(v0->playerAvatar, v3, 1);
             PlayerAvatar_TryFace(v0->playerAvatar, v0->unk_00);
             v0->unk_08++;
             v0->unk_04 = 7;
@@ -130,9 +132,9 @@ static BOOL ov5_021E120C(FieldTask *param0)
             }
 
             {
-                u32 v4 = sub_02060B7C(v0->playerAvatar, v1, v0->unk_00);
+                u32 collision = PlayerAvatar_CheckCollision(v0->playerAvatar, v1, v0->unk_00);
 
-                if (v4 == 0) {
+                if (collision == PLAYER_COLLISION_NONE) {
                     v0->unk_08 = 1;
                 } else {
                     MapObject_SetStatusFlagOff(v1, MAP_OBJ_STATUS_LOCK_DIR);
