@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_PLAYER_MOVE_H
 #define POKEPLATINUM_PLAYER_MOVE_H
 
+#include "constants/player_avatar.h"
 #include "generated/movement_actions.h"
 
 #include "struct_decls/map_object.h"
@@ -20,11 +21,11 @@ u32 PlayerAvatar_CheckCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, i
 u32 PlayerAvatar_CheckDistortionCollision(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir);
 enum FaceDirection PlayerAvatar_CalcFaceDirection(PlayerAvatar *playerAvatar, u16 pressedKeys, u16 heldKeys);
 BOOL PlayerAvatar_IsAnimationSetOrWalkOnSpotSlow(PlayerAvatar *playerAvatar);
-int PlayerAvatar_IsRunButtonHeld(PlayerAvatar *playerAvatar, u16 keyPress);
-int PlayerAvatar_IsRunning(PlayerAvatar *playerAvatar);
-int PlayerAvatar_GetMoveStateFromPlayerAvatarState(PlayerAvatar *playerAvatar, int dir);
+BOOL PlayerAvatar_IsRunButtonHeld(PlayerAvatar *playerAvatar, u16 keyPress);
+BOOL PlayerAvatar_IsRunning(PlayerAvatar *playerAvatar);
+enum AvatarMoveState PlayerAvatar_GetMoveStateFromPlayerAvatarState(PlayerAvatar *playerAvatar, int dir);
 u32 PlayerAvatar_GetMovementActionAnimCode(PlayerAvatar *playerAvatar, u16 pressedKeys, u16 heldKeys, int actionSpeed, int isRunning, int collision);
-int PlayerAvatar_IsMapObjectAnimationSet(PlayerAvatar *playerAvatar);
+BOOL PlayerAvatar_IsMapObjectAnimationSet(PlayerAvatar *playerAvatar);
 void PlayerAvatar_SetMapObjMovement(PlayerAvatar *playerAvatar, enum MovementAction movementAction, int speed);
 u32 PlayerAvatar_GetTileBehaviorFromDir(PlayerAvatar *playerAvatar, int distortionDir);
 void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int direction, int *x, int *z);
