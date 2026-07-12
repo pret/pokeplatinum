@@ -1616,7 +1616,11 @@ void ov88_0223D058(UnkStruct_02095E80 *param0, int param1, int param2)
 
 static void *ov88_0223D08C(Party *param0, int param1)
 {
+    #ifdef SDK_BUILD_ARM
     u32 v0 = (u32)param0;
+    #else
+    u64 v0 = (u64)param0;
+    #endif
 
     return (void *)(v0 + param1 * (236 * 6 + 4 * 2));
 }

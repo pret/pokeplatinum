@@ -232,7 +232,11 @@ void CommManager_StartUnderground(SaveData *saveData)
         return;
     }
 
+    #ifdef SDK_BUILD_ARM
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0xF000);
+    #else
+    Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0xF000*2);
+    #endif
     CommManager_Initialize(saveData, COMM_TYPE_UNDERGROUND);
 
     sCommMan->contestRegulation = 0;

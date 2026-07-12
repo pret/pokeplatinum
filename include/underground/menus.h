@@ -78,7 +78,11 @@ typedef struct UndergroundMenu {
     int listMenuListPos;
     u8 padding3[4];
     u16 menuCursorPos;
+    #ifdef SDK_BUILD_ARM
     u32 startMenuInput;
+    #else
+    u64 startMenuInput;
+    #endif
     u8 padding4[4];
     u8 shopSelection;
     u8 nextState;
