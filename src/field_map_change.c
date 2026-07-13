@@ -26,6 +26,7 @@
 #include "brightness_controller.h"
 #include "communication_system.h"
 #include "field_bgm.h"
+#include "field_map_change_flags.h"
 #include "field_message.h"
 #include "field_overworld_state.h"
 #include "field_overworld_weather.h"
@@ -69,7 +70,6 @@
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_02070428.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/pokemon_center_2f_common.h"
@@ -526,7 +526,7 @@ static BOOL FieldTask_LoadSavedGameMap(FieldTask *task)
         }
 
         sub_02053494(fieldSystem);
-        sub_020705CC(fieldSystem);
+        FieldSystem_RandomizeRoamingPokemonLocations(fieldSystem);
         *state = 2;
         break;
     case 2:

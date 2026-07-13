@@ -107,6 +107,7 @@
 #include "field_bgm.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
+#include "field_map_change_flags.h"
 #include "field_message.h"
 #include "field_overworld_state.h"
 #include "field_script_context.h"
@@ -209,7 +210,6 @@
 #include "unk_0205DFC4.h"
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
-#include "unk_02070428.h"
 #include "unk_020722AC.h"
 #include "unk_0207DA28.h"
 #include "unk_02097B18.h"
@@ -6565,7 +6565,7 @@ static BOOL ScrCmd_CloseSaveInfo(ScriptContext *ctx)
 
 static BOOL ScrCmd_Unused_2C3(ScriptContext *ctx)
 {
-    sub_02070428(ctx->fieldSystem, ScriptContext_ReadByte(ctx));
+    FieldSystem_SetTemporaryMapChange(ctx->fieldSystem, ScriptContext_ReadByte(ctx));
     return FALSE;
 }
 

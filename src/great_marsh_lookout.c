@@ -11,6 +11,7 @@
 #include "overlay006/great_marsh_lookout_sprite.h"
 
 #include "field_map_change.h"
+#include "field_map_change_flags.h"
 #include "field_task.h"
 #include "field_transition.h"
 #include "heap.h"
@@ -21,7 +22,6 @@
 #include "system.h"
 #include "system_flags.h"
 #include "unk_02056B30.h"
-#include "unk_02070428.h"
 #include "vars_flags.h"
 
 // Data used for the Great Marsh lookout binoculars scene.
@@ -55,7 +55,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
 
     switch (lookout->state) {
     case 0:
-        sub_02070428(fieldSystem, 1);
+        FieldSystem_SetTemporaryMapChange(fieldSystem, TRUE);
         GreatMarshBinoculars_SetNextLocationWithCoords(lookout->numCycles, lookout->binocularsData);
         lookout->nextLocation = GreatMarshBinoculars_GetLocation(lookout->binocularsData);
         FieldTransition_FadeOut(taskMan);
@@ -124,7 +124,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
         }
         break;
     case 8:
-        sub_02070428(fieldSystem, 0);
+        FieldSystem_SetTemporaryMapChange(fieldSystem, FALSE);
         GreatMarshBinoculars_FreeData(lookout->binocularsData);
         GreatMarshLookout_FreeSpriteManager(lookout->spriteResources);
         Heap_Free(lookout);

@@ -262,7 +262,7 @@ pokeplatinum_c = files(
     'cutscenes/boat_cutscene/boat_cutscene.c',
     'tv_segment.c',
     'rankings_machine.c',
-    'unk_02070428.c',
+    'field_map_change_flags.c',
     'field_move_tasks.c',
     'unk_020711C8.c',
     'overworld_anim_manager.c',

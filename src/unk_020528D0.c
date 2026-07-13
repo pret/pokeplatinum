@@ -11,6 +11,7 @@
 #include "brightness_controller.h"
 #include "field_bgm.h"
 #include "field_map_change.h"
+#include "field_map_change_flags.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -33,7 +34,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02070428.h"
 
 typedef struct {
     int unk_00;

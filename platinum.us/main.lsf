@@ -276,7 +276,7 @@ Static main
 	Object main.nef.p/src_cutscenes_boat_cutscene_boat_cutscene.c.o
 	Object main.nef.p/src_tv_segment.c.o
 	Object main.nef.p/src_rankings_machine.c.o
-	Object main.nef.p/src_unk_02070428.c.o
+	Object main.nef.p/src_field_map_change_flags.c.o
 	Object main.nef.p/src_field_move_tasks.c.o
 	Object main.nef.p/src_unk_020711C8.c.o
 	Object main.nef.p/src_overworld_anim_manager.c.o

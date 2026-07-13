@@ -139,8 +139,8 @@ void TryUnlockFlyLocationByMap(FieldSystem *fieldSystem, int param1)
     }
 }
 
-BOOL CheckFlyLocationUnlocked(FieldSystem *fieldSystem, int param1)
+BOOL CheckFlyLocationUnlocked(FieldSystem *fieldSystem, int mapId)
 {
-    int v0 = MapSpawnIdToIndex(param1);
-    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, sSpawnLocations[v0].firstArrival);
+    int flyDestination = MapSpawnIdToIndex(mapId);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, sSpawnLocations[flyDestination].firstArrival);
 }
