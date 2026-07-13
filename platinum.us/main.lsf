@@ -309,7 +309,7 @@ Static main
 	Object main.nef.p/src_applications_party_menu_main.c.o
 	Object main.nef.p/src_applications_party_menu_windows.c.o
 	Object main.nef.p/src_applications_party_menu_sprites.c.o
-	Object main.nef.p/src_applications_party_menu_unk_02083370.c.o
+	Object main.nef.p/src_applications_party_menu_context_menu.c.o
 	Object main.nef.p/src_applications_party_menu_callbacks.c.o
 	Object main.nef.p/src_applications_naming_screen.c.o
 	Object main.nef.p/src_unk_020890F4.c.o

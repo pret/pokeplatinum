@@ -867,7 +867,7 @@ static enum PartyMenuState PartyMenuCB_LevelMove_ForgetMove(PartyMenuApplication
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, FALSE);
 
     application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_OVERWRITE_MOVE_LEVEL_UP;
-    application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
+    application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE;
 
     return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
 }
@@ -964,7 +964,7 @@ enum PartyMenuState PartyMenuCB_TeachMove(PartyMenuApplication *application)
 
         PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
         application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
-        application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
+        application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE;
         break;
 
     case TEACH_MOVE_RESULT_ALREADY_LEARNED:
@@ -974,7 +974,7 @@ enum PartyMenuState PartyMenuCB_TeachMove(PartyMenuApplication *application)
 
         PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
         application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
-        application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
+        application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE;
         break;
 
     case TEACH_MOVE_RESULT_MUST_FORGET_FIRST:
@@ -995,7 +995,7 @@ enum PartyMenuState PartyMenuCB_TeachMove(PartyMenuApplication *application)
 
         PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
         application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
-        application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
+        application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE;
         break;
     }
 
@@ -1036,7 +1036,7 @@ enum PartyMenuState PartyMenuCB_TeachMove_HandleInput(PartyMenuApplication *appl
         PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, FALSE);
 
         application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
-        application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
+        application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE;
 
         return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
     }
@@ -1053,7 +1053,7 @@ static enum PartyMenuState PartyMenuCB_TeachMove_ForgetMove(PartyMenuApplication
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, FALSE);
 
     application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_OVERWRITE_MOVE_TM_HM;
-    application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
+    application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE;
 
     return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
 }
@@ -1082,7 +1082,7 @@ static enum PartyMenuState PartyMenuCB_TeachMove_StopTrying(PartyMenuApplication
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, FALSE);
 
     application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
-    application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
+    application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE;
 
     return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
 }
@@ -1209,7 +1209,7 @@ int PartyMenu_MoveSelection_HandleInput(PartyMenuApplication *application)
         PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
 
         application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
-        application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
+        application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE;
 
         return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
     }
@@ -1232,7 +1232,7 @@ void PartyMenu_GiveMail(PartyMenuApplication *application)
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
 
     application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
-    application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS;
+    application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE;
 }
 
 static u16 GetCurrentMapLabel(PartyMenuApplication *application)
