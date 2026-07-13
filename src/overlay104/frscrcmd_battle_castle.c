@@ -11,10 +11,10 @@
 #include "global/utility.h"
 #include "overlay104/battle_castle.h"
 #include "overlay104/battle_castle_helpers.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frontier_script_manager.h"
 #include "overlay104/frscrcmd.h"
-#include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
@@ -396,7 +396,7 @@ BOOL FrontierScrCmd_CallBattleCastleFunction(FrontierScriptContext *ctx)
         }
         break;
     case BC_FUNC_CREATE_OPPONENT_MONS:
-        ov104_0222E330(battleCastle->opponentMons, battleCastle->monSetIDs, battleCastle->opponentMonIVs, battleCastle->opponentMonPersonalities, NULL, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+        BattleFrontier_LoadFrontierPokemon(battleCastle->opponentMons, battleCastle->monSetIDs, battleCastle->opponentMonIVs, battleCastle->opponentMonPersonalities, NULL, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
         break;
     case BC_FUNC_SETUP_OPPONENTS_PARTY:
         BattleCastle_SetupOpponentsParty(battleCastle);
@@ -558,7 +558,7 @@ BOOL FrontierScrCmd_BattleCastle_PrintTrainerIntro(FrontierScriptContext *ctx)
         return FALSE;
     }
 
-    u16 *introMsg = castle->opponents[index].trDataDTO.introMsg;
+    u16 *introMsg = castle->opponents[index].trainer.introMsg;
 
     BattleFrontier_PrintNormalTrainerMessage(ctx, introMsg);
     return TRUE;

@@ -162,7 +162,7 @@ BOOL FrontierScrCmd_85(FrontierScriptContext *param0)
         return 0;
     }
 
-    v1 = battleTower->opponentsDataDTO[v4].trDataDTO.introMsg;
+    v1 = battleTower->opponentsDataDTO[v4].trainer.introMsg;
 
     BattleFrontier_PrintTrainerMessage(param0, v1, BattleTower_GetTrainerMessagesBankID(battleTower->challengeMode));
     return 1;

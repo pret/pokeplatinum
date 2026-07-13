@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "applications/frontier/battle_castle/sprite_manager.h"
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "heap.h"
 #include "pokemon_icon.h"

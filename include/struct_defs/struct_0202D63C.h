@@ -3,10 +3,10 @@
 
 #include "constants/string.h"
 
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 typedef struct WifiTrainerRecord {
-    FrontierPokemonDataDTO monDataDTO[3];
+    FrontierPokemon mons[3];
     u16 trainerName[TRAINER_NAME_LEN + 1];
     u8 unk_B8; // version?
     u8 unk_B9; // language?

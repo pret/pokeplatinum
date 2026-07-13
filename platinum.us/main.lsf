@@ -1535,7 +1535,7 @@ Overlay dummy7
 Overlay overlay104
 {
 	After overlay63
-	Object main.nef.p/src_overlay104_ov104_0222DCE0.c.o
+	Object main.nef.p/src_overlay104_frontier_opponents.c.o
 	Object main.nef.p/src_overlay104_frontier_script_manager.c.o
 	Object main.nef.p/src_overlay104_frontier_script_context.c.o
 	Object main.nef.p/src_overlay104_frontier_scenes.c.o

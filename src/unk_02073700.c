@@ -5,8 +5,6 @@
 #include "struct_defs/wifi_battle_tower_data.h"
 #include "struct_defs/wifi_player_profile.h"
 
-#include "overlay104/frontier_data_transfer.h"
-
 #include "appearance.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -41,10 +39,10 @@ void sub_02073700(SaveData *saveData, int param1, WifiPlayerProfile *profile)
         profile->ratingScore = WifiBattleTowerRecord_UpdateBitFlag(record, 7, 0);
 
         if (profile->ratingScore) {
-            WifiBattleTowerRecord_GetTeam(record, param1, profile->dto);
+            WifiBattleTowerRecord_GetTeam(record, param1, profile->mons);
         }
     } else {
         profile->ratingScore = WifiBattleTowerRecord_GetRatingScore(record);
-        WifiBattleTowerRecord_GetTeam(record, param1, profile->dto);
+        WifiBattleTowerRecord_GetTeam(record, param1, profile->mons);
     }
 }

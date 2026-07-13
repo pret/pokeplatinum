@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0202FF58.h"
 #include "struct_defs/struct_020300F4.h"
 
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223A7F4.h"
 #include "overlay104/struct_battle_factory.h"
@@ -127,7 +127,7 @@ void ov104_02233B98(BattleFactory *param0, u16 param1)
 static void ov104_02233BAC(BattleFactory *param0)
 {
     int v0, v1;
-    FrontierPokemonDataDTO v2[6 * 2];
+    FrontierPokemon v2[6 * 2];
     Pokemon *v4;
     u16 v5[6];
     u16 v6[6];
@@ -167,8 +167,8 @@ static void ov104_02233BAC(BattleFactory *param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         v4 = Pokemon_New(HEAP_ID_FIELD2);
-        FrontierPokemonDataDTO_InitPokemon(&param0->unk_280[v0], v4, BattleFactory_GetPokemonLevel(param0));
-        ov104_0222E1C0(param0->saveData, param0->playersParty, v4);
+        FrontierPokemon_InitPokemon(&param0->unk_280[v0], v4, BattleFactory_GetPokemonLevel(param0));
+        BattleFactory_AddRentalPokemonToParty(param0->saveData, param0->playersParty, v4);
         Heap_Free(v4);
     }
 
@@ -185,7 +185,7 @@ static void ov104_02233D80(BattleFactory *param0, u8 param1, u8 param2)
     u16 v1;
     u8 v2;
     u32 v3;
-    FrontierPokemonDataDTO v4;
+    FrontierPokemon v4;
 
     v0 = (LCRNG_Next() % 6);
 
@@ -227,7 +227,7 @@ static void ov104_02233D80(BattleFactory *param0, u8 param1, u8 param2)
 static void ov104_02233F1C(BattleFactory *param0)
 {
     int v0;
-    FrontierPokemonDataDTO v4[6];
+    FrontierPokemon v4[6];
     u8 v5[6];
     u16 v6[6];
     u32 v7[6];
@@ -246,13 +246,13 @@ static void ov104_02233F1C(BattleFactory *param0)
         param0->unk_4E8[v0] = v6[v0];
     }
 
-    ov104_0222E330(v4, v6, v5, v7, NULL, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+    BattleFrontier_LoadFrontierPokemon(v4, v6, v5, v7, NULL, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
     Pokemon *v1 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        FrontierPokemonDataDTO_InitPokemon(&v4[v0], v1, BattleFactory_GetPokemonLevel(param0));
-        ov104_0222E1C0(param0->saveData, param0->playersParty, v1);
+        FrontierPokemon_InitPokemon(&v4[v0], v1, BattleFactory_GetPokemonLevel(param0));
+        BattleFactory_AddRentalPokemonToParty(param0->saveData, param0->playersParty, v1);
     }
 
     Heap_Free(v1);
@@ -265,13 +265,13 @@ static void ov104_02233F1C(BattleFactory *param0)
         param0->unk_3D2[v0] = v6[v0];
     }
 
-    ov104_0222E330(v4, v6, v5, v7, NULL, 4, 11, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+    BattleFrontier_LoadFrontierPokemon(v4, v6, v5, v7, NULL, 4, 11, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
     v1 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        FrontierPokemonDataDTO_InitPokemon(&v4[v0], v1, BattleFactory_GetPokemonLevel(param0));
-        ov104_0222E1C0(param0->saveData, param0->opponentsParty, v1);
+        FrontierPokemon_InitPokemon(&v4[v0], v1, BattleFactory_GetPokemonLevel(param0));
+        BattleFactory_AddRentalPokemonToParty(param0->saveData, param0->opponentsParty, v1);
     }
 
     Heap_Free(v1);
@@ -425,12 +425,12 @@ u16 ov104_0223443C(BattleFactory *param0)
 
 u16 ov104_02234440(BattleFactory *param0, u8 param1)
 {
-    FrontierTrainerDataDTO v0;
+    FrontierTrainer v0;
     u8 v2 = param0->unk_06 + (param1 * 7);
 
-    Heap_Free(BattleFrontier_GetTrainerData(&v0, param0->trainerIDs[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleFrontier_GetTrainer(&v0, param0->trainerIDs[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return BattleTower_GetObjectIDFromTrainerClass(v0.trainerType);
+    return BattleFrontier_GetObjectIDFromTrainerClass(v0.trainerType);
 }
 
 void ov104_02234474(BattleFactory *param0)
@@ -468,14 +468,14 @@ void ov104_0223449C(BattleFactory *param0)
     v3 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < v1; v0++) {
-        FrontierPokemonDataDTO_InitPokemon(&param0->unk_280[param0->unk_4DC[v0]], v3, BattleFactory_GetPokemonLevel(param0));
-        ov104_0222E1C0(param0->saveData, param0->playersParty, v3);
+        FrontierPokemon_InitPokemon(&param0->unk_280[param0->unk_4DC[v0]], v3, BattleFactory_GetPokemonLevel(param0));
+        BattleFactory_AddRentalPokemonToParty(param0->saveData, param0->playersParty, v3);
         param0->unk_4E8[v0] = param0->unk_254[param0->unk_4DC[v0]];
     }
 
     for (v0 = 0; v0 < v2; v0++) {
-        FrontierPokemonDataDTO_InitPokemon(&param0->unk_3F0[v0], v3, BattleFactory_GetPokemonLevel(param0));
-        ov104_0222E1C0(param0->saveData, param0->opponentsParty, v3);
+        FrontierPokemon_InitPokemon(&param0->unk_3F0[v0], v3, BattleFactory_GetPokemonLevel(param0));
+        BattleFactory_AddRentalPokemonToParty(param0->saveData, param0->opponentsParty, v3);
     }
 
     Heap_Free(v3);
@@ -520,7 +520,7 @@ void ov104_02234570(BattleFactory *param0)
     v7 = ov104_0223A8A8(param0->trainerIDs[param0->unk_06], param0->unk_05);
 
     ov104_0223A918(v4, v5, v2 + v1, v3, param0->unk_3D2, 11, v7, 0, param0->unk_3DA);
-    ov104_0222E330(param0->unk_3F0, param0->unk_3D2, param0->unk_3DA, NULL, param0->unk_3E0, v3, 11, 179);
+    BattleFrontier_LoadFrontierPokemon(param0->unk_3F0, param0->unk_3D2, param0->unk_3DA, NULL, param0->unk_3E0, v3, 11, 179);
 
     return;
 }
@@ -559,8 +559,8 @@ void ov104_0223470C(BattleFactory *param0)
     v3 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < v2; v0++) {
-        FrontierPokemonDataDTO_InitPokemon(&param0->unk_3F0[v0], v3, BattleFactory_GetPokemonLevel(param0));
-        ov104_0222E1C0(param0->saveData, param0->opponentsParty, v3);
+        FrontierPokemon_InitPokemon(&param0->unk_3F0[v0], v3, BattleFactory_GetPokemonLevel(param0));
+        BattleFactory_AddRentalPokemonToParty(param0->saveData, param0->opponentsParty, v3);
     }
 
     Heap_Free(v3);

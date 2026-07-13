@@ -5,13 +5,13 @@
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "field/field_system_decl.h"
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "savedata.h"
 #include "string_template.h"
 
 StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16 numPokemonRequired, u16 unused2, u8 unused3, u8 *outNumBannedSeen);
-u16 BattleFrontier_GetObjectIDFromTrainerClass(u8 trainerClass);
+u16 BattleTower_GetObjectIDFromTrainerClass(u8 trainerClass);
 u16 sub_0204AFC4(FieldSystem *fieldSystem, const u16 *param1);
 u16 sub_0204B020(FieldSystem *fieldSystem, const u16 *param1);
 u16 sub_0204B044(FieldSystem *fieldSystem, const u16 *param1);
@@ -19,7 +19,7 @@ void sub_0204B060(BattleTower *battleTower, SaveData *saveData);
 void sub_0204B0BC(BattleTower *battleTower);
 void sub_0204B0D4(BattleTower *battleTower, u16 param1);
 u16 BattleTower_GetTrainerIDForRoomAndOpponentNum(BattleTower *battleTower, u8 roomNum, u8 opponentNum, int challengeMode);
-BOOL sub_0204B3B8(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, BattleTowerPartnerData *param6, enum HeapID heapID);
-void sub_0204B404(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, BOOL param3, const BattleTowerPartnerData *param4, enum HeapID heapID);
+BOOL sub_0204B3B8(BattleTower *battleTower, FrontierOpponent *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, BattleTowerPartnerData *param6, enum HeapID heapID);
+void sub_0204B404(BattleTower *battleTower, FrontierOpponent *param1, u16 partnerBattleTowerID, BOOL param3, const BattleTowerPartnerData *param4, enum HeapID heapID);
 
 #endif // POKEPLATINUM_UNK_0204AEE8_H

@@ -10,9 +10,9 @@
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay104/defs.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frscrcmd.h"
-#include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02239C58.h"
 #include "overlay104/ov104_0223C164.h"
 #include "overlay104/struct_ov104_02230BE4.h"

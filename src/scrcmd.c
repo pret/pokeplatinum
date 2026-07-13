@@ -1255,7 +1255,7 @@ static BOOL ScrCmd_PrintBattleTowerIntroMessage(ScriptContext *ctx)
         return FALSE;
     }
 
-    u16 *introMsg = battleTower->opponentsDataDTO[opponentID].trDataDTO.introMsg;
+    u16 *introMsg = battleTower->opponentsDataDTO[opponentID].trainer.introMsg;
 
     if (introMsg[0] == 0xFFFF) {
         MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);

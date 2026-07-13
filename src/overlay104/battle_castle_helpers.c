@@ -8,7 +8,7 @@
 
 #include "struct_defs/battle_frontier.h"
 
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "battle_frontier_save.h"
@@ -141,7 +141,7 @@ FieldBattleDTO *BattleCastle_SetupBattle(BattleCastle *battleCastle, FieldFronti
 {
     int i;
     u8 baseSlotID;
-    FrontierTrainerDataDTO trDataDTO;
+    FrontierTrainer trainer;
 
     u8 playerPartySize = BattleCastle_GetPlayerPartySize(battleCastle->challengeType, FALSE);
     u8 opponentPartySize = BattleCastle_GetOpponentPartySize(battleCastle->challengeType, FALSE);
@@ -172,8 +172,8 @@ FieldBattleDTO *BattleCastle_SetupBattle(BattleCastle *battleCastle, FieldFronti
     Heap_Free(mon);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(battleDTO);
 
-    Heap_Free(BattleFrontier_GetTrainerData(&trDataDTO, battleCastle->trainerIDs[battleCastle->currentBattle], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
-    FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_1, HEAP_ID_FIELD2);
+    Heap_Free(BattleFrontier_GetTrainer(&trainer, battleCastle->trainerIDs[battleCastle->currentBattle], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    FieldBattleDTO_InitFrontierTrainer(battleDTO, &trainer, opponentPartySize, BATTLER_ENEMY_1, HEAP_ID_FIELD2);
     Party_InitWithCapacity(battleDTO->parties[BATTLER_ENEMY_1], BattleCastle_GetOpponentPartySize(battleCastle->challengeType, 0));
 
     for (i = 0; i < MAX_BATTLERS; i++) {
@@ -196,9 +196,9 @@ FieldBattleDTO *BattleCastle_SetupBattle(BattleCastle *battleCastle, FieldFronti
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), battleDTO->trainerInfo[BATTLER_PLAYER_2]);
 
-        Heap_Free(BattleFrontier_GetTrainerData(&trDataDTO, battleCastle->trainerIDs[battleCastle->currentBattle + CASTLE_BATTLES_PER_ROUND], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+        Heap_Free(BattleFrontier_GetTrainer(&trainer, battleCastle->trainerIDs[battleCastle->currentBattle + CASTLE_BATTLES_PER_ROUND], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-        FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_2, HEAP_ID_FIELD2);
+        FieldBattleDTO_InitFrontierTrainer(battleDTO, &trainer, opponentPartySize, BATTLER_ENEMY_2, HEAP_ID_FIELD2);
         Party_InitWithCapacity(battleDTO->parties[BATTLER_ENEMY_2], BattleCastle_GetOpponentPartySize(battleCastle->challengeType, 0));
 
         mon = Pokemon_New(HEAP_ID_FIELD2);
@@ -282,7 +282,7 @@ void BattleCastle_SetupOpponentsParty(BattleCastle *battleCastle)
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
 
     for (int i = 0; i < partySize; i++) {
-        FrontierPokemonDataDTO_InitPokemon(&battleCastle->opponentMons[i], mon, BattleCastle_GetOpponentLevel(battleCastle));
+        FrontierPokemon_InitPokemon(&battleCastle->opponentMons[i], mon, BattleCastle_GetOpponentLevel(battleCastle));
         BattleCastle_AddMonToParty(battleCastle, battleCastle->opponentsParty, mon);
     }
 

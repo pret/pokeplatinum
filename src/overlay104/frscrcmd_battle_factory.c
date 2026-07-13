@@ -6,10 +6,10 @@
 #include "constants/heap.h"
 
 #include "applications/frontier/battle_factory/main.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frontier_script_manager.h"
 #include "overlay104/frscrcmd.h"
-#include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_022339B4.h"
 #include "overlay104/ov104_0223A7F4.h"
@@ -252,7 +252,7 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
         break;
     case BF_FUNC_UNK_17: {
         Pokemon *v3 = Pokemon_New(HEAP_ID_FIELD2);
-        FrontierPokemonDataDTO_InitPokemon(&battleFactory->unk_3F0[arg1], v3, BattleFactory_GetPokemonLevel(battleFactory));
+        FrontierPokemon_InitPokemon(&battleFactory->unk_3F0[arg1], v3, BattleFactory_GetPokemonLevel(battleFactory));
         *returnVar = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
         Heap_Free(v3);
     } break;
@@ -267,7 +267,7 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
         Pokemon *v3 = Pokemon_New(HEAP_ID_FIELD2);
 
         for (i = 0; i < v5; i++) {
-            FrontierPokemonDataDTO_InitPokemon(&battleFactory->unk_3F0[i], v3, BattleFactory_GetPokemonLevel(battleFactory));
+            FrontierPokemon_InitPokemon(&battleFactory->unk_3F0[i], v3, BattleFactory_GetPokemonLevel(battleFactory));
 
             u32 v7 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
             u32 v8 = Pokemon_GetValue(v3, MON_DATA_TYPE_2, NULL);
@@ -375,7 +375,7 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
         ov104_0223AE30(battleFactory);
         break;
     case BF_FUNC_UNK_39:
-        ov104_0222E330(battleFactory->unk_3F0, battleFactory->unk_3D2, battleFactory->unk_3DA, battleFactory->unk_3E0, NULL, 4, 11, 179);
+        BattleFrontier_LoadFrontierPokemon(battleFactory->unk_3F0, battleFactory->unk_3D2, battleFactory->unk_3DA, battleFactory->unk_3E0, NULL, 4, 11, 179);
         break;
     case BF_FUNC_UNK_40:
         ov104_0223ADB0(battleFactory);
@@ -466,7 +466,7 @@ BOOL FrontierScrCmd_6B(FrontierScriptContext *param0)
         return 0;
     }
 
-    v0 = v1->unk_34[v3].trDataDTO.introMsg;
+    v0 = v1->unk_34[v3].trainer.introMsg;
 
     BattleFrontier_PrintNormalTrainerMessage(param0, v0);
     return 1;

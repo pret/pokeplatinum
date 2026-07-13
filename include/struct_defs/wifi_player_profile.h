@@ -3,12 +3,12 @@
 
 #include "constants/string.h"
 
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "charcode.h"
 
 typedef struct WifiPlayerProfile {
-    FrontierPokemonDataDTO dto[3];
+    FrontierPokemon mons[3];
     charcode_t name[TRAINER_NAME_LEN + 1];
     u8 version;
     u8 language;
