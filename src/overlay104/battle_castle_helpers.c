@@ -104,18 +104,18 @@ u8 BattleCastle_GetPlayerPartySize(u8 challengeType, BOOL includePartnersMons)
     switch (challengeType) {
     case FRONTIER_CHALLENGE_SINGLE:
     case FRONTIER_CHALLENGE_DOUBLE:
-        return 3;
+        return CASTLE_PARTY_SIZE_SOLO;
     case FRONTIER_CHALLENGE_MULTI:
     case FRONTIER_CHALLENGE_MULTI_WFC:
         if (includePartnersMons == FALSE) {
-            return 2;
+            return CASTLE_PARTY_SIZE_MULTI;
         } else {
-            return 4;
+            return CASTLE_PARTY_SIZE_MULTI * 2;
         }
     }
 
     GF_ASSERT(FALSE);
-    return 3;
+    return CASTLE_PARTY_SIZE_SOLO;
 }
 
 u8 BattleCastle_GetOpponentPartySize(u8 challengeType, BOOL includeBothOpponents)
@@ -123,18 +123,18 @@ u8 BattleCastle_GetOpponentPartySize(u8 challengeType, BOOL includeBothOpponents
     switch (challengeType) {
     case FRONTIER_CHALLENGE_SINGLE:
     case FRONTIER_CHALLENGE_DOUBLE:
-        return 3;
+        return CASTLE_PARTY_SIZE_SOLO;
     case FRONTIER_CHALLENGE_MULTI:
     case FRONTIER_CHALLENGE_MULTI_WFC:
         if (includeBothOpponents == FALSE) {
-            return 2;
+            return CASTLE_PARTY_SIZE_MULTI;
         } else {
-            return 4;
+            return CASTLE_PARTY_SIZE_MULTI * 2;
         }
     }
 
     GF_ASSERT(FALSE);
-    return 3;
+    return CASTLE_PARTY_SIZE_SOLO;
 }
 
 FieldBattleDTO *BattleCastle_SetupBattle(BattleCastle *battleCastle, FieldFrontierDTO *fieldData)
@@ -158,7 +158,7 @@ FieldBattleDTO *BattleCastle_SetupBattle(BattleCastle *battleCastle, FieldFronti
     if (CommSys_CurNetId() == 0) {
         baseSlotID = 0;
     } else {
-        baseSlotID = 2;
+        baseSlotID = CASTLE_PARTY_SIZE_MULTI;
     }
 
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
@@ -298,10 +298,10 @@ static u16 BattleCastle_GetAIMask(BattleCastle *battleCastle)
         }
     }
 
-    u16 v1 = BattleCastle_GetCurrentRound(battleCastle);
+    u16 round = BattleCastle_GetCurrentRound(battleCastle);
     u16 aiMask = AI_FLAG_BASIC | AI_FLAG_EVAL_ATTACK | AI_FLAG_EXPERT;
 
-    switch (v1 + 1) {
+    switch (round + 1) {
     case 1:
     case 2:
         aiMask = AI_FLAG_NONE;
