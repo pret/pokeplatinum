@@ -463,16 +463,16 @@
     .short FRSCRCMD_4F
     .endm
 
-    .macro FrontierScrCmd_50
-    .short FRSCRCMD_50
+    .macro ShowCastlePointsWindows
+    .short FRSCRCMD_SHOWCASTLEPOINTSWINDOWS
     .endm
 
-    .macro FrontierScrCmd_51
-    .short FRSCRCMD_51
+    .macro ClearCastlePointsWindows
+    .short FRSCRCMD_CLEARCASTLEPOINTSWINDOWS
     .endm
 
-    .macro FrontierScrCmd_52
-    .short FRSCRCMD_52
+    .macro ReprintCastlePointsInfo
+    .short FRSCRCMD_REPRINTCASTLEPOINTSINFO
     .endm
 
     .macro FrontierScrCmd_53 arg0
@@ -822,23 +822,23 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_97 arg0, arg1, arg2, arg3, arg4, arg5
-    .short FRSCRCMD_97
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .macro InitBattleCastle resumingFromSave, challengeType, partySlot1, partySlot2, partySlot3, arg5
+    .short FRSCRCMD_INITBATTLECASTLE
+    .short \resumingFromSave
+    .short \challengeType
+    .short \partySlot1
+    .short \partySlot2
+    .short \partySlot3
     .short \arg5
     .endm
 
-    .macro FrontierScrCmd_98 arg0
-    .short FRSCRCMD_98
-    .short \arg0
+    .macro LoadTrainersForRound resumingFromSave
+    .short FRSCRCMD_LOADTRAINERSFORROUND
+    .short \resumingFromSave
     .endm
 
-    .macro FrontierScrCmd_99
-    .short FRSCRCMD_99
+    .macro FreeBattleCastle
+    .short FRSCRCMD_FREEBATTLECASTLE
     .endm
 
     .macro OpenBattleCastleSelfApp
@@ -857,12 +857,12 @@
     .short FRSCRCMD_OPENBATTLECASTLEOPPONENTAPP
     .endm
 
-    .macro FrontierScrCmd_9E
-    .short FRSCRCMD_9E
+    .macro BattleCastle_SetupFirstOpponent
+    .short FRSCRCMD_BATTLECASTLE_SETUPFIRSTOPPONENT
     .endm
 
-    .macro FrontierScrCmd_9F
-    .short FRSCRCMD_9F
+    .macro BattleCastle_SetupNextOpponent
+    .short FRSCRCMD_BATTLECASTLE_SETUPNEXTOPPONENT
     .endm
 
     .macro CallBattleCastleFunction command, arg1, arg2, destVar
@@ -878,20 +878,20 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_A2 arg0, arg1, arg2
-    .short FRSCRCMD_A2
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro BattleCastle_SendCommMessage command, arg, result
+    .short FRSCRCMD_BATTLECASTLE_SENDCOMMMESSAGE
+    .short \command
+    .short \arg
+    .short \result
     .endm
 
-    .macro FrontierScrCmd_A3 arg0
-    .short FRSCRCMD_A3
-    .short \arg0
+    .macro BattleCastle_WaitForCommResponses unused
+    .short FRSCRCMD_BATTLECASTLE_WAITFORCOMMRESPONSES
+    .short \unused
     .endm
 
-    .macro FrontierScrCmd_A4
-    .short FRSCRCMD_A4
+    .macro DummyOpenBattleCastleApp
+    .short FRSCRCMD_DUMMYOPENBATTLECASTLEAPP
     .endm
 
     .macro FrontierScrCmd_A5 arg0
@@ -899,27 +899,27 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_A6 arg0, arg1
-    .short FRSCRCMD_A6
-    .short \arg0
-    .short \arg1
+    .macro GetCurrentCastlePoints challengeType, result
+    .short FRSCRCMD_GETCURRENTCASTLEPOINTS
+    .short \challengeType
+    .short \result
     .endm
 
-    .macro FrontierScrCmd_A7 arg0, arg1
-    .short FRSCRCMD_A7
-    .short \arg0
-    .short \arg1
+    .macro SpendCastlePoints challengeType, cp
+    .short FRSCRCMD_SPENDCASTLEPOINTS
+    .short \challengeType
+    .short \cp
     .endm
 
-    .macro FrontierScrCmd_A8 arg0, arg1
-    .short FRSCRCMD_A8
-    .short \arg0
-    .short \arg1
+    .macro ReceiveCastlePoints challengeType, cp
+    .short FRSCRCMD_RECEIVECASTLEPOINTS
+    .short \challengeType
+    .short \cp
     .endm
 
-    .macro FrontierScrCmd_A9 arg0
-    .short FRSCRCMD_A9
-    .byte \arg0
+    .macro BattleCastle_PrintTrainerIntro index
+    .short FRSCRCMD_BATTLECASTLE_PRINTRAINERINTRO
+    .byte \index
     .endm
 
     .macro FrontierScrCmd_AA

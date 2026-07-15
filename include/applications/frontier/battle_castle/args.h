@@ -9,7 +9,7 @@ typedef struct BattleCastleAppArgs {
     u8 challengeType;
     u8 unused[3];
     u8 identityUnlocked[4];
-    u8 levelAdjustmentUnlocked[4];
+    u8 levelAdjustments[4];
     u8 statsUnlocked[4];
     u8 movesUnlocked[4];
     Party *party;

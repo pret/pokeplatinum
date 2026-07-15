@@ -6,12 +6,11 @@
 #include "struct_defs/struct_0202D080.h"
 #include "struct_defs/struct_0202FF58.h"
 #include "struct_defs/struct_020300F4.h"
-#include "struct_defs/struct_020302DC.h"
-#include "struct_defs/struct_0203041C.h"
 #include "struct_defs/struct_020304A0.h"
 #include "struct_defs/struct_020305B8.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
+#include "battle_castle_save.h"
 #include "battle_hall_save.h"
 #include "wifi_list.h"
 
@@ -26,7 +25,7 @@ typedef struct BattleFrontierSave {
         WifiBattleTowerSave wifiBattleTowerSave;
         UnkStruct_0202FF58 unk_8E0_val2;
         BattleHallSave hallSave;
-        UnkStruct_020302DC unk_8E0_val4;
+        BattleCastleSave castleSave;
         UnkStruct_020304A0 unk_8E0_val5;
     };
     struct {
@@ -41,8 +40,8 @@ typedef struct BattleFrontierSave {
         BattleHallStreakFlags streakFlags;
     } hall;
     struct {
-        UnkStruct_0203041C unk_00;
-    } unk_161C;
+        BattleCastlePersistentSave persistentSave;
+    } castle;
     struct {
         UnkStruct_020305B8 unk_00;
     } unk_1620;

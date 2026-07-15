@@ -263,13 +263,13 @@ BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
         BattleHall_CalcPlayerLevelSqrt(battleHall);
         break;
     case BH_FUNC_GET_NEXT_BATTLE_TYPE:
-        *returnVar = HALL_NEXT_BATTLE_NORMAL;
+        *returnVar = FRONTIER_NEXT_BATTLE_NORMAL;
 
         if (battleHall->challengeType == FRONTIER_CHALLENGE_SINGLE) {
             if (battleHall->currentStreak + 1 == HALL_STREAK_SILVER_BATTLE) {
-                *returnVar = HALL_NEXT_BATTLE_SILVER;
+                *returnVar = FRONTIER_NEXT_BATTLE_SILVER;
             } else if (battleHall->currentStreak + 1 == HALL_STREAK_GOLD_BATTLE) {
-                *returnVar = HALL_NEXT_BATTLE_GOLD;
+                *returnVar = FRONTIER_NEXT_BATTLE_GOLD;
             }
         }
         break;
