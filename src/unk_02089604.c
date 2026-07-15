@@ -123,7 +123,7 @@ BOOL sub_02089820(UnkStruct_02089688 *param0)
         void *v1 = NetworkIcon_GetPalette(HEAP_ID_101);
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
-        PaletteData_LoadBuffer(param0->unk_2EC.unk_10, v0->pRawData, 0x1 | 0x2, 0xe0, 0x20);
+        PaletteData_LoadBuffer(param0->unk_2EC.unk_10, v0->pRawData, PLTTBUF_SUB_OBJ, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES);
         Heap_Free(v1);
     }
 

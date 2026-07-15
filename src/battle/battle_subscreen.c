@@ -899,7 +899,7 @@ void *BattleSubscreen_New(NARC *unused1, NARC *unused2, BattleSystem *battleSys,
             bgNarcIndex = sBgScreenNarcIndices[i];
         }
 
-        void *scrnAlloc = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, bgNarcIndex, 1, &screenData, 5);
+        void *scrnAlloc = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, bgNarcIndex, TRUE, &screenData, HEAP_ID_BATTLE);
 
         MI_CpuCopy32(screenData->rawData, btlSubscreen->tilemapBuffers[i], 0x800);
         Heap_Free(scrnAlloc);
@@ -908,10 +908,10 @@ void *BattleSubscreen_New(NARC *unused1, NARC *unused2, BattleSystem *battleSys,
     int narcMemberIdx = BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_FRONTIER ? 340 : 242;
     btlSubscreen->subscreenPaletteBuf = Heap_Alloc(HEAP_ID_BATTLE, 0x200);
 
-    PaletteData_LoadBufferFromFileStart(pltData, 7, narcMemberIdx, 5, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(pltData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, narcMemberIdx, HEAP_ID_BATTLE, PLTTBUF_SUB_BG, 0, PLTT_DEST(PLTT_0));
 
     if (sSubscreenBgPlttIndices[bg].bgPlttIndex != 0xffff) {
-        PaletteData_LoadBufferFromFileStart(pltData, 7, sSubscreenBgPlttIndices[bg].bgPlttIndex, 5, 1, 0x20, 0);
+        PaletteData_LoadBufferFromFileStart(pltData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, sSubscreenBgPlttIndices[bg].bgPlttIndex, HEAP_ID_BATTLE, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_0));
     }
 
     u16 *unfadedPltBuf = PaletteData_GetUnfadedBuffer(pltData, 1);
@@ -1054,7 +1054,7 @@ void BattleSubscreen_SetupBackground(NARC *unused, NARC *spriteNarc, BattleSubsc
 
     newBattleMenuConfig = &sBattleMenuConfigs[menuConfigIndex];
 
-    PaletteData_LoadBuffer(BattleSystem_GetPaletteData(btlSubscreen->battleSys), btlSubscreen->subscreenPaletteBuf, 1, 0, 0x200);
+    PaletteData_LoadBuffer(BattleSystem_GetPaletteData(btlSubscreen->battleSys), btlSubscreen->subscreenPaletteBuf, PLTTBUF_SUB_BG, 0, PALETTE_SIZE_BYTES * 16);
 
     for (int i = 0; i < SNELEMS(newBattleMenuConfig->bgTilemapBufIndices); i++) {
         if (newBattleMenuConfig->bgTilemapBufIndices[i] != 0xffff && (forceRedraw == TRUE || newBattleMenuConfig->bgTilemapBufIndices[i] != activeBattleMenuConfig->bgTilemapBufIndices[i])) {
@@ -1683,7 +1683,7 @@ static void BattleSubscreen_DrawStopMenu(BattleSubscreen *btlSubscreen, int unus
 
     NNSG2dScreenData *screenData;
 
-    void *srcDataAlloc = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 46, 1, &screenData, 5);
+    void *srcDataAlloc = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 46, TRUE, &screenData, HEAP_ID_BATTLE);
     MI_CpuCopy32(screenData->rawData, btlSubscreen->tilemapBuffers[6], 0x800);
     Heap_Free(srcDataAlloc);
 
@@ -2515,7 +2515,7 @@ static void LoadEmptyMoveSlotBg(BattleSubscreen *btlSubscreen, int startSlot)
 
     for (int i = startSlot; i < SNELEMS(sEmptyMoveSlotTileOffsets); i++) {
         ApplyMoveSlotTilemap(btlSubscreen, &sEmptyMoveSlotTileOffsets[i], &sEmptyMoveSlotTilemapRects[i], 3, 0);
-        PaletteData_LoadBuffer(paletteSys, &btlSubscreen->subscreenPaletteBuf[0xe * 16], 1, (8 + i) * 16, 0x20);
+        PaletteData_LoadBuffer(paletteSys, &btlSubscreen->subscreenPaletteBuf[0xe * 16], PLTTBUF_SUB_BG, PLTT_DEST(PLTT_8 + i), PALETTE_SIZE_BYTES);
     }
 }
 
@@ -2527,7 +2527,7 @@ static void ClearMenuSlotBg(BattleSubscreen *btlSubscreen, int slotIndex)
 
     ApplyMoveSlotTilemap(btlSubscreen, &sClearMenuSlotTileOffsets[slotIndex], &sClearMenuSlotTilemapRects[slotIndex], 4, 0);
 
-    PaletteData_LoadBuffer(paletteData, &btlSubscreen->subscreenPaletteBuf[0xe * 16], 1, plttSlots[slotIndex] * 16, 0x20);
+    PaletteData_LoadBuffer(paletteData, &btlSubscreen->subscreenPaletteBuf[0xe * 16], PLTTBUF_SUB_BG, PLTT_DEST(plttSlots[slotIndex]), PALETTE_SIZE_BYTES);
     Bg_ScheduleTilemapTransfer(bgConfig, 4);
     Bg_FillTilemapRect(bgConfig, 5, 0x6000 / 0x20 - 1, sClearMenuSlotTilemapRects[slotIndex].left, sClearMenuSlotTilemapRects[slotIndex].top, sClearMenuSlotTilemapRects[slotIndex].right - sClearMenuSlotTilemapRects[slotIndex].left + 1, sClearMenuSlotTilemapRects[slotIndex].bottom - sClearMenuSlotTilemapRects[slotIndex].top + 1, 17);
     Bg_ScheduleTilemapTransfer(bgConfig, 5);
@@ -3099,7 +3099,7 @@ static void SysTask_PulseCursorHighlight(SysTask *unused, void *subscreen)
         return;
     }
 
-    PaletteData_Blend(plttData, 1, 16 * 0 + 1, 1, btlSubscreen->pulseCursorBlendValue >> 8, 0x7e37);
+    PaletteData_Blend(plttData, PLTTBUF_SUB_BG, 16 * 0 + 1, 1, btlSubscreen->pulseCursorBlendValue >> 8, 0x7e37);
 
     if (btlSubscreen->pulseCursorDirection == FALSE) {
         btlSubscreen->pulseCursorBlendValue += 0x200;
@@ -3919,7 +3919,7 @@ void BattleSubscreen_ShowStopRecordingMessage(BattleSubscreen *btlSubscreen, int
     GF_ASSERT(btlSubscreen->activeMenuConfigIndex == 18);
 
     LoadStandardWindowGraphics(bgConfig, BG_LAYER_SUB_1, 0x20, 1, 0, HEAP_ID_BATTLE);
-    PaletteData_LoadBufferFromHardware(paletteData, 1, 1 * 16, 0x20);
+    PaletteData_LoadBufferFromHardware(paletteData, PLTTBUF_SUB_BG, PLTT_DEST(PLTT_1), PALETTE_SIZE_BYTES);
 
     int fillVal = 0x20, palette = 1;
     int x = 1;

@@ -1186,19 +1186,19 @@ static void LoadGraphicsData(BattleParty *battleParty)
     BattlePartyButtons_InitializeAdditionalButtonData(battleParty, (u16 *)screenData->rawData);
     Heap_Free(buffer);
 
-    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 23, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, 0);
+    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 23, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, PLTT_DEST(PLTT_0));
     NARC_dtor(narc);
 
     u16 *swappedPaletteData = PaletteData_GetUnfadedBuffer(battleParty->palette, PLTTBUF_SUB_BG);
     memcpy(battleParty->screenPaletteData, &swappedPaletteData[192], PALETTE_SIZE_BYTES * 2);
 
-    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_FONT, 6, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 208);
-    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_FONT, 7, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 240);
+    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_FONT, 6, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
+    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_FONT, 7, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_15));
 
     int optionsFrame = BattleSystem_GetOptionsFrame(battleParty->context->battleSys);
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxTilesNARCMember(optionsFrame), battleParty->background, BG_LAYER_SUB_0, 1, 0, FALSE, battleParty->context->heapID);
-    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 224);
+    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
 
     u16 *rawPaletteData = PaletteData_GetUnfadedBuffer(battleParty->palette, PLTTBUF_SUB_BG);
     u16 *paletteData = Heap_Alloc(battleParty->context->heapID, PALETTE_SIZE_BYTES);
@@ -1207,7 +1207,7 @@ static void LoadGraphicsData(BattleParty *battleParty)
     memcpy(&paletteData[7], &rawPaletteData[154], 4);
     memcpy(&paletteData[3], &rawPaletteData[156], 4);
 
-    PaletteData_LoadBuffer(battleParty->palette, paletteData, PLTTBUF_SUB_BG, 208, PALETTE_SIZE_BYTES);
+    PaletteData_LoadBuffer(battleParty->palette, paletteData, PLTTBUF_SUB_BG, PLTT_DEST(PLTT_13), PALETTE_SIZE_BYTES);
     Heap_Free(paletteData);
 }
 

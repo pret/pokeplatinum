@@ -1206,7 +1206,7 @@ void BattleAnimScriptFunc_MuddyWater(BattleAnimSystem *system)
         NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
         BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCLR),
         BattleAnimSystem_GetHeapID(system),
-        0,
+        PLTTBUF_MAIN_BG,
         PALETTE_SIZE_BYTES,
         PLTT_DEST(BATTLE_BG_PALETTE_EFFECT));
     Bg_ClearTilemap(ctx->common.bgConfig, BATTLE_BG_BASE);

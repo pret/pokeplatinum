@@ -278,7 +278,7 @@ static void AccessoryShop_LoadOptions(AccessoryShop *shop)
 static void AccessoryShop_LoadGraphics(AccessoryShop *shop)
 {
     LoadMessageBoxGraphics(shop->bgConfig, BG_LAYER_MAIN_3, 1, 10, shop->msgBoxFrame, shop->heapID);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), shop->heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), shop->heapID);
     LoadStandardWindowGraphics(shop->bgConfig, BG_LAYER_MAIN_3, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX, 0, shop->heapID);
     Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(FIELD_MESSAGE_PALETTE_INDEX), shop->heapID);
     Bg_ClearTilemap(shop->bgConfig, BG_LAYER_MAIN_3);

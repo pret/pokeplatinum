@@ -458,7 +458,7 @@ static void ov17_022414C0(SysTask *param0, void *param1)
         return;
     }
 
-    PaletteData_Blend(v0->unk_00, 0, Unk_ov17_022536B4[v0->unk_0A] * 16 + 1, 4, v0->unk_08 >> 8, 0x7fff);
+    PaletteData_Blend(v0->unk_00, PLTTBUF_MAIN_BG, Unk_ov17_022536B4[v0->unk_0A] * 16 + 1, 4, v0->unk_08 >> 8, 0x7fff);
 
     if (v0->unk_08 == 0) {
         v0->unk_0B = 0;
@@ -1761,7 +1761,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
                     v0->unk_0F = v2;
                 }
 
-                PaletteData_Blend(v0->unk_00->unk_0C.unk_50, 0, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
+                PaletteData_Blend(v0->unk_00->unk_0C.unk_50, PLTTBUF_MAIN_BG, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
             }
         }
         break;
@@ -1774,7 +1774,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
                     v0->unk_0F = 0;
                 }
 
-                PaletteData_Blend(v0->unk_00->unk_0C.unk_50, 0, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
+                PaletteData_Blend(v0->unk_00->unk_0C.unk_50, PLTTBUF_MAIN_BG, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
                 break;
             }
         }

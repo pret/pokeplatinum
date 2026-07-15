@@ -1449,7 +1449,7 @@ static void ov97_02234DFC(GBAMigrator *migrator)
     GXLayers_SwapDisplay();
     Text_ResetAllPrinters();
 
-    Font_LoadTextPalette(0, 15 * 32, HEAP_ID_MIGRATE_FROM_GBA);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_15), HEAP_ID_MIGRATE_FROM_GBA);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_bg_tiles_NCLR, 0, 0, 32 * 6, HEAP_ID_MIGRATE_FROM_GBA);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_bg_tiles_NCGR_lz, migrator->bgConfig, 2, 0, 10 * 16 * 0x20, 1, HEAP_ID_MIGRATE_FROM_GBA);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_MIGRATE_FROM_GBA);
@@ -1464,7 +1464,7 @@ static void ov97_02234E7C(GBAMigrator *migrator)
 
 static void ov97_02234ECC(GBAMigrator *migrator)
 {
-    Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_14), HEAP_ID_MIGRATE_FROM_GBA);
     LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
     LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0 - (18 + 12), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
@@ -1528,7 +1528,7 @@ static void ov97_02234F88(GBAMigrator *migrator)
     Bg_ChangeTilemapRectPalette(migrator->bgConfig, BG_LAYER_MAIN_2, 0, 0, 32, 24, sGBAGameRectPalettes[migrator->gbaVersion]);
     Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, BG_LAYER_MAIN_2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_14), HEAP_ID_MIGRATE_FROM_GBA);
     LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
     LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0 - (18 + 12), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 

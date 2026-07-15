@@ -243,11 +243,11 @@ int DanceCompetition_Init(ApplicationManager *appMan, int *param1)
     ov17_0223E458(v0);
     v0->unk_14.unk_90 = PaletteData_New(HEAP_ID_23);
 
-    PaletteData_SetAutoTransparent(v0->unk_14.unk_90, 1);
-    PaletteData_AllocBuffer(v0->unk_14.unk_90, 0, 0x200, HEAP_ID_23);
-    PaletteData_AllocBuffer(v0->unk_14.unk_90, 1, 0x200, HEAP_ID_23);
-    PaletteData_AllocBuffer(v0->unk_14.unk_90, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_23);
-    PaletteData_AllocBuffer(v0->unk_14.unk_90, 3, 0x200, HEAP_ID_23);
+    PaletteData_SetAutoTransparent(v0->unk_14.unk_90, TRUE);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 14, HEAP_ID_23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_23);
 
     v0->unk_1050.unk_00 = Heap_Alloc(HEAP_ID_23, 0x200);
     ov17_0224CDB4(v0, 1);
@@ -264,7 +264,7 @@ int DanceCompetition_Init(ApplicationManager *appMan, int *param1)
     InitializeTouchPad(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_23);
 
-    v0->unk_14.unk_58 = SpriteSystem_Alloc(23);
+    v0->unk_14.unk_58 = SpriteSystem_Alloc(HEAP_ID_23);
 
     SpriteSystem_Init(v0->unk_14.unk_58, &Unk_ov17_02253008, &Unk_ov17_02252FDC, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
@@ -424,10 +424,10 @@ int DanceCompetition_Exit(ApplicationManager *appMan, int *param1)
     sub_020127BC(v0->unk_14.unk_94);
     Font_Free(FONT_SUBSCREEN);
     Heap_Free(v0->unk_1050.unk_00);
-    PaletteData_FreeBuffer(v0->unk_14.unk_90, 0);
-    PaletteData_FreeBuffer(v0->unk_14.unk_90, 1);
-    PaletteData_FreeBuffer(v0->unk_14.unk_90, 2);
-    PaletteData_FreeBuffer(v0->unk_14.unk_90, 3);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, PLTTBUF_SUB_OBJ);
     PaletteData_Free(v0->unk_14.unk_90);
     String_Free(v0->unk_14.danceMessage);
     StringTemplate_Free(v0->unk_14.unk_88);
@@ -786,12 +786,12 @@ static void ov17_0223E67C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v3, param0->unk_14.unk_60, 3, 0, 0, 1, HEAP_ID_23);
     }
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 45, 32, 23, 0, 0, 0);
-    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 45, 36, 23, 0, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 32, HEAP_ID_23, PLTTBUF_MAIN_BG, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 36, HEAP_ID_23, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
 
     v0 = Options_Frame(param0->unk_00->options);
     LoadMessageBoxGraphics(param0->unk_14.unk_60, 1, 1, 15, v0, HEAP_ID_23);
-    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 38, GetMessageBoxPaletteNARCMember(v0), 23, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v0), HEAP_ID_23, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
     ov17_0224C848(param0);
 
     {
@@ -831,7 +831,7 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
     camera = ParticleSystem_GetCamera(param0->unk_0C);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
 
-    v2 = ParticleSystem_LoadResourceFromNARC(61, 3, 23);
+    v2 = ParticleSystem_LoadResourceFromNARC(NARC_INDEX_PARTICLEDATA__PARTICLEDATA, 3, HEAP_ID_23);
     ParticleSystem_SetResource(param0->unk_0C, v2, (1 << 1) | (1 << 3), 1);
 }
 

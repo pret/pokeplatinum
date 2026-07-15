@@ -1786,15 +1786,15 @@ static void ov109_021D2004(UnkStruct_ov109_021D0F70 *param0)
 {
     void *v0 = ov109_021D3A2C(param0, 17, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_D90);
-    PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, 0, 32 * 0, 32 * 2);
+    PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, PLTTBUF_MAIN_BG, 0, PALETTE_SIZE_BYTES * 2);
     Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 20, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_D90);
-    PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, 1, 32 * 0, 32 * 2);
+    PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, PLTTBUF_SUB_BG, 0, PALETTE_SIZE_BYTES * 2);
     Heap_Free(v0);
 
-    PaletteData_BlendMulti(param0->unk_D9C, 1, 0xffff, 8, 0);
+    PaletteData_BlendMulti(param0->unk_D9C, PLTTBUF_SUB_BG, 0xffff, 8, 0);
 
     v0 = ov109_021D3A2C(param0, 16, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_D8C);
@@ -1875,25 +1875,25 @@ static void ov109_021D22B0(UnkStruct_ov109_021D0F70 *param0)
 {
     param0->unk_D9C = PaletteData_New(HEAP_ID_95);
 
-    PaletteData_SetAutoTransparent(param0->unk_D9C, 1);
-    PaletteData_AllocBuffer(param0->unk_D9C, 0, 0x200, HEAP_ID_95);
-    PaletteData_AllocBuffer(param0->unk_D9C, 2, 0x200, HEAP_ID_95);
-    PaletteData_AllocBuffer(param0->unk_D9C, 1, 0x200, HEAP_ID_95);
-    PaletteData_AllocBuffer(param0->unk_D9C, 3, 0x200, HEAP_ID_95);
+    PaletteData_SetAutoTransparent(param0->unk_D9C, TRUE);
+    PaletteData_AllocBuffer(param0->unk_D9C, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_95);
+    PaletteData_AllocBuffer(param0->unk_D9C, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_95);
+    PaletteData_AllocBuffer(param0->unk_D9C, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_95);
+    PaletteData_AllocBuffer(param0->unk_D9C, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_95);
 }
 
 static void ov109_021D2308(UnkStruct_ov109_021D0F70 *param0)
 {
-    PaletteData_FreeBuffer(param0->unk_D9C, 0);
-    PaletteData_FreeBuffer(param0->unk_D9C, 2);
-    PaletteData_FreeBuffer(param0->unk_D9C, 1);
-    PaletteData_FreeBuffer(param0->unk_D9C, 3);
+    PaletteData_FreeBuffer(param0->unk_D9C, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(param0->unk_D9C, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(param0->unk_D9C, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(param0->unk_D9C, PLTTBUF_SUB_OBJ);
     PaletteData_Free(param0->unk_D9C);
 }
 
 static void ov109_021D2344(UnkStruct_ov109_021D0F70 *param0, u32 param1)
 {
-    PaletteData_BlendMulti(param0->unk_D9C, 1, 0xffff, param1, 0);
+    PaletteData_BlendMulti(param0->unk_D9C, PLTTBUF_SUB_BG, 0xffff, param1, 0);
 }
 
 static void ov109_021D2368(UnkStruct_ov109_021D0F70 *param0)
@@ -1913,7 +1913,7 @@ static void ov109_021D2368(UnkStruct_ov109_021D0F70 *param0)
             48 + 48, 1024 * 0x40, 512 * 0x20, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
-        param0->unk_D94 = SpriteSystem_Alloc(95);
+        param0->unk_D94 = SpriteSystem_Alloc(HEAP_ID_95);
         SpriteSystem_Init(param0->unk_D94, &v0, &v1, 16 + 16);
     }
 
@@ -1943,34 +1943,26 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
     PaletteData *v2 = param0->unk_D9C;
     NARC *v3 = param0->unk_D80;
 
-    {
-        ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
-    }
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    {
-        NARC *v4;
+    NARC *v4;
 
-        v4 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, HEAP_ID_95);
+    v4 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, HEAP_ID_95);
 
-        SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v4, 14, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, PLTTBUF_MAIN_OBJ, v0, v1, v4, 8, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
-        SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v4, 13, FALSE, 6);
-        SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v4, 12, FALSE, 7);
-        NARC_dtor(v4);
-    }
+    SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v4, 14, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, PLTTBUF_MAIN_OBJ, v0, v1, v4, 8, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v4, 13, FALSE, 6);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v4, 12, FALSE, 7);
+    NARC_dtor(v4);
 
-    {
-        NetworkIcon_Init();
-    }
+    NetworkIcon_Init();
 
-    {
-        NNSG2dPaletteData *v5;
-        void *v6 = NetworkIcon_GetPalette(HEAP_ID_95);
+    NNSG2dPaletteData *v5;
+    void *v6 = NetworkIcon_GetPalette(HEAP_ID_95);
 
-        NNS_G2dGetUnpackedPaletteData(v6, &v5);
-        PaletteData_LoadBuffer(v2, v5->pRawData, 2, 14 * 16, 32);
-        Heap_Free(v6);
-    }
+    NNS_G2dGetUnpackedPaletteData(v6, &v5);
+    PaletteData_LoadBuffer(v2, v5->pRawData, PLTTBUF_MAIN_OBJ, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES);
+    Heap_Free(v6);
 }
 
 static void ov109_021D24C0(UnkStruct_ov109_021D0F70 *param0)
@@ -1987,20 +1979,18 @@ static ManagedSprite *ov109_021D24E0(UnkStruct_ov109_021D0F70 *param0, const Spr
 
 static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
 {
-    int v0;
+    int v0 = 0;
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
 
     LoadStandardWindowGraphics(param0->unk_D84, BG_LAYER_MAIN_1, 1, 15, 0, HEAP_ID_95);
     LoadMessageBoxGraphics(param0->unk_D84, BG_LAYER_MAIN_1, 1 + 9, 14, param0->unk_CC->unk_14.unk_04, HEAP_ID_95);
-    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
-    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), HEAP_ID_95, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
+    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_95, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_15));
 
     v1->unk_04 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPIN_TRADE, HEAP_ID_95);
     v1->unk_08 = StringTemplate_Default(HEAP_ID_95);
 
-    for (v0 = 0; v0 < 1; v0++) {
-        Window_AddFromTemplate(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);
-    }
+    Window_AddFromTemplate(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);
 
     v1->unk_6C = String_Init(0x100, HEAP_ID_95);
 
@@ -2153,7 +2143,7 @@ static void ov109_021D28C4(UnkStruct_ov109_021D0F70 *param0)
 {
     UnkStruct_ov109_021D28C4 *v0 = &param0->unk_D0C;
 
-    v0->camera = Camera_Alloc(95);
+    v0->camera = Camera_Alloc(HEAP_ID_95);
 
     {
         VecFx32 v1;

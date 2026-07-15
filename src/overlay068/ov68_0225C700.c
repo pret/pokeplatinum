@@ -468,7 +468,7 @@ static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *options, enu
         Bg_ClearTilemap(param0->unk_00, Unk_ov68_0225DD68[i]);
     }
 
-    Font_LoadScreenIndicatorsPalette(0, 4 * 0x20, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_4), heapID);
 
     LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 5, Options_Frame(options), heapID);
     LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1 + (18 + 12), 6, 0, heapID);

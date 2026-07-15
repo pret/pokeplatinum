@@ -211,7 +211,7 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
 
     LoadMessageBoxGraphics(param0->unk_14, BG_LAYER_MAIN_0, 512 - (18 + 12), 2, 0, param0->heapID);
     LoadStandardWindowGraphics(param0->unk_14, BG_LAYER_MAIN_0, 512 - (18 + 12) - 9, 3, 0, param0->heapID);
-    Font_LoadTextPalette(0, 1 * (2 * 16), param0->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_1), param0->heapID);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, param0->heapID);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);

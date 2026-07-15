@@ -165,7 +165,7 @@ void Terrain_LoadResources(Terrain *terrain)
 
     SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, objNarc, charNarcIdx, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, charResID);
     SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_GetPaletteData(terrain->battleSys), PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, objNarc, sTerrainPaletteSource[terrain->terrainType][bgTimeOffset], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
-    PaletteData_LoadBufferFromFileStart(BattleSystem_GetPaletteData(terrain->battleSys), NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, sTerrainPaletteSource[terrain->terrainType][bgTimeOffset], 5, PLTTBUF_MAIN_BG, 0x20, 0x7 * 0x10);
+    PaletteData_LoadBufferFromFileStart(BattleSystem_GetPaletteData(terrain->battleSys), NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, sTerrainPaletteSource[terrain->terrainType][bgTimeOffset], HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_7));
     SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, objNarc, cellNarcIdx, TRUE, cellResID);
     SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, objNarc, animNarcIdx, TRUE, animResID);
     NARC_dtor(objNarc);

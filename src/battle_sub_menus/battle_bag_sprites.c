@@ -126,7 +126,7 @@ static void LoadItemIcon(BattleBag *battleBag, u16 item, u32 resourceID)
 
 static void LoadItemPaletteData(BattleBag *battleBag, u16 item, u16 slotIndex, u32 resourceID)
 {
-    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), battleBag->context->heapID, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES, slotIndex * 16);
+    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), battleBag->context->heapID, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES, PLTT_DEST(slotIndex));
 }
 
 static ManagedSprite *CreateSprite(BattleBag *battleBag, u32 spriteIndex)

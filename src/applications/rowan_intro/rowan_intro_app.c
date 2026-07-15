@@ -585,7 +585,7 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
             3,
             0,
             manager->heapID);
-        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 5 * (2 * 16), manager->heapID);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_5), manager->heapID);
         Font_LoadScreenIndicatorsPalette(
             PAL_LOAD_MAIN_BG,
             6 * (2 * 16),
@@ -1607,7 +1607,7 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
 
     Bg_ClearTilesRange(mainBgLayer, 32, 0, manager->heapID);
     Bg_LoadTiles(manager->bgConfig, mainBgLayer, tileSrc, (10 * 10) * 0x20, 1);
-    Bg_LoadPalette(mainBgLayer, paletteBuffer, 2 * 16, (2 * 16) * mainPalette);
+    Bg_LoadPalette(mainBgLayer, paletteBuffer, PALETTE_SIZE_BYTES, (2 * 16) * mainPalette);
     Bg_FillTilemapRect(
         manager->bgConfig,
         subBgLayer,
@@ -1623,7 +1623,7 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
 
     Bg_ClearTilesRange(subBgLayer, 32, 0, manager->heapID);
     Bg_LoadTiles(manager->bgConfig, subBgLayer, tileSrc, (10 * 10) * 0x20, 1);
-    Bg_LoadPalette(subBgLayer, paletteBuffer, 2 * 16, (2 * 16) * subPalette);
+    Bg_LoadPalette(subBgLayer, paletteBuffer, PALETTE_SIZE_BYTES, (2 * 16) * subPalette);
     Heap_Free(paletteBuffer);
     Heap_Free(tileSrc);
     Heap_Free(rawData);
@@ -1829,12 +1829,12 @@ static void RowanIntro_AnimateBuneary_BlendSpritePalette(RowanIntro *manager)
         Bg_LoadPalette(
             BG_LAYER_MAIN_2,
             manager->bunearyBlendedPalette,
-            2 * 16,
+            PALETTE_SIZE_BYTES,
             (2 * 16) * 8);
         Bg_LoadPalette(
             BG_LAYER_SUB_1,
             manager->bunearyBlendedPalette,
-            2 * 16,
+            PALETTE_SIZE_BYTES,
             (2 * 16) * 10);
     }
 }

@@ -130,7 +130,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &sErrorMessageBgTemplate, 0);
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
     LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 512 - 9, 2, 0, HEAP_ID_SYSTEM);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), HEAP_ID_SYSTEM);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_1), HEAP_ID_SYSTEM);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_SYSTEM);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);

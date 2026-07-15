@@ -104,7 +104,7 @@ static void ov5_021F00F0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     }
 
     BlendPalettes(v1->unk_04->pRawData, v1->unk_08, 0x1, v1->unk_28.unk_00, (GX_RGB(31, 10, 23)));
-    Bg_LoadPalette(2, v1->unk_08, 32, 6 * 32);
+    Bg_LoadPalette(BG_LAYER_MAIN_2, v1->unk_08, PALETTE_SIZE_BYTES, PLTT_OFFSET(PLTT_6));
 }
 
 static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
@@ -241,7 +241,7 @@ static void ov5_021F0260(BgConfig *param0)
     GXRgb v0 = (GX_RGB(31, 10, 23));
     u8 *v1;
 
-    Bg_LoadPalette(2, &v0, sizeof(short), (6 * 32) + 2);
+    Bg_LoadPalette(BG_LAYER_MAIN_2, &v0, sizeof(short), (6 * 32) + 2);
 
     v1 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(u8) * 32);
     memset(v1, 0x11, sizeof(u8) * 32);
@@ -294,7 +294,7 @@ static void ov5_021F0310(FieldSystem *fieldSystem)
 
     G2_SetBG2Priority(3);
 
-    Bg_LoadPalette(2, &v0, 2, ((6 * 32) + 4));
+    Bg_LoadPalette(BG_LAYER_MAIN_2, &v0, 2, ((6 * 32) + 4));
     Bg_FillTilesRange(fieldSystem->bgConfig, 2, 2, 1, 2);
     Bg_FillTilemap(fieldSystem->bgConfig, 2, ((6 << 12) | 2));
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -310,7 +310,7 @@ static void ov5_021F0374(FieldSystem *fieldSystem)
 
     G2_SetBG3Priority(3);
 
-    Bg_LoadPalette(3, &v0, 2, ((6 * 32) + 4));
+    Bg_LoadPalette(BG_LAYER_MAIN_3, &v0, 2, ((6 * 32) + 4));
     Bg_FillTilesRange(fieldSystem->bgConfig, 3, 2, 1, 2);
     Bg_FillTilemap(fieldSystem->bgConfig, 3, ((6 << 12) | 2));
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);

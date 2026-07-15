@@ -643,7 +643,7 @@ void *ov17_0223F88C(Contest *param0, UnkStruct_ov17_0223F88C *param1, UnkStruct_
 
         for (v7 = 0; v7 < 2; v7++) {
             v0->unk_34[v7] = Heap_Alloc(HEAP_ID_21, 0x200);
-            PaletteData_LoadBufferFromFileStart(v6, 45, Unk_ov17_02253238[v7], 21, 1, 0, 0);
+            PaletteData_LoadBufferFromFileStart(v6, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, Unk_ov17_02253238[v7], HEAP_ID_21, PLTTBUF_SUB_BG, 0, 0);
             v5 = PaletteData_GetUnfadedBuffer(v6, 1);
             MI_CpuCopy16(v5, v0->unk_34[v7], 0x200);
         }
@@ -705,7 +705,7 @@ void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void
     }
 
     if (1) {
-        PaletteData_LoadBuffer(param0->unk_04->unk_50, param0->unk_34[v0->unk_02], 1, 0, 0x200);
+        PaletteData_LoadBuffer(param0->unk_04->unk_50, param0->unk_34[v0->unk_02], PLTTBUF_SUB_BG, 0, PALETTE_SIZE_BYTES * 16);
     }
 
     for (v2 = 0; v2 < 4; v2++) {
@@ -806,7 +806,7 @@ static void ov17_0223FBD4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
 
     String_Free(contestRankString);
     String_Free(contestTypeString);
-    PaletteData_LoadBufferFromFile(param0->unk_04->unk_50, 45, 38, 21, 1, 0x20, 2 * 16, 16 * param0->unk_04->unk_00->contestType);
+    PaletteData_LoadBufferFromFile(param0->unk_04->unk_50, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 38, HEAP_ID_21, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_2), PLTT_DEST(param0->unk_04->unk_00->contestType));
 }
 
 static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
@@ -853,7 +853,7 @@ static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (moveList[i] != MOVE_NONE && ov17_02243A98(param0->unk_08, param0->unk_04->unk_00->playerContestantID, moveList[i]) == 0) {
-            PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], 1, (4 + i) * 16, 0x20);
+            PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], PLTTBUF_SUB_BG, PLTT_DEST(PLTT_4 + i), PALETTE_SIZE_BYTES);
 
             GF_ASSERT(param0->unk_2C9 == 0xff);
             param0->unk_2C9 = i;
@@ -1162,10 +1162,10 @@ static void ov17_02240424(UnkStruct_ov17_0223F7E4 *param0, int moveContestType, 
     };
 
     if (moveContestType != -1) {
-        PaletteData_LoadBuffer(param0->unk_04->unk_50, v0[moveContestType], 1, (4 + moveSlot) * 16, 0x20);
+        PaletteData_LoadBuffer(param0->unk_04->unk_50, v0[moveContestType], PLTTBUF_SUB_BG, PLTT_DEST(PLTT_4 + moveSlot), PALETTE_SIZE_BYTES);
     } else {
         ov17_022403B0(param0, &Unk_ov17_02253248[moveSlot], &Unk_ov17_02253408[moveSlot], 2, 0);
-        PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], 1, (4 + moveSlot) * 16, 0x20);
+        PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], PLTTBUF_SUB_BG, PLTT_DEST(PLTT_4 + moveSlot), PALETTE_SIZE_BYTES);
     }
 }
 
@@ -1444,7 +1444,7 @@ static void ov17_02240950(SysTask *param0, void *param1)
             v4 = 1;
         }
 
-        PaletteData_Blend(v2, 1, v1->unk_09 * 16, 16, v1->unk_04 >> 8, 0x7fff);
+        PaletteData_Blend(v2, PLTTBUF_SUB_BG, v1->unk_09 * PALETTE_SIZE, 16, v1->unk_04 >> 8, 0x7fff);
 
         if (v4 == 1) {
             ov17_02240910(v0);

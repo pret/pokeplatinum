@@ -734,7 +734,7 @@ static void ov65_02236A28(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 {
     int v0;
 
-    Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_1), heapID);
 
     v0 = Options_Frame(SaveData_GetOptions(param1->saveData));
 

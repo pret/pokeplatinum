@@ -453,7 +453,7 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
         break;
     case BA_FUNC_UNK_44:
         if (arg1 == 0) {
-            PaletteData_Blend(graphics->plttData, 2, 0, 16 * 16, arg1, 0x0);
+            PaletteData_Blend(graphics->plttData, PLTTBUF_MAIN_OBJ, 0, 16 * 16, arg1, 0x0);
         } else {
             {
                 u32 v25;
@@ -463,7 +463,7 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
                 v26 = ov104_0223D5A8(ctx->scriptMan->frontier, arg2);
                 v25 = ov63_0222D050(v26->sprite);
 
-                PaletteData_Blend(graphics->plttData, 2, v25 * 16, 16, arg1, 0x0);
+                PaletteData_Blend(graphics->plttData, PLTTBUF_MAIN_OBJ, v25 * 16, 16, arg1, 0x0);
             }
         }
         break;

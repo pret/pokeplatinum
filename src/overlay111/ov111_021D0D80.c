@@ -1097,8 +1097,8 @@ static void ov111_021D1C0C(UnkStruct_ov111_021D0F7C *param0)
     }
 
     Font_Free(FONT_SUBSCREEN);
-    PaletteData_FreeBuffer(param0->unk_15C, 2);
-    PaletteData_FreeBuffer(param0->unk_15C, 0);
+    PaletteData_FreeBuffer(param0->unk_15C, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(param0->unk_15C, PLTTBUF_MAIN_BG);
     PaletteData_Free(param0->unk_15C);
 
     param0->unk_15C = NULL;
@@ -1148,10 +1148,10 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
     param0->unk_40 = String_Init(600, HEAP_ID_115);
     param0->unk_44 = String_Init(600, HEAP_ID_115);
 
-    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_115);
-    Font_LoadTextPalette(4, 13 * 32, HEAP_ID_115);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_115);
-    Font_LoadScreenIndicatorsPalette(4, 12 * 32, HEAP_ID_115);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_115);
+    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_115);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_115);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_115);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_115);
 
     param0->unk_160 = FontSpecialChars_Init(15, 14, 0, HEAP_ID_115);
@@ -1230,8 +1230,8 @@ static void ov111_021D1FC4(UnkStruct_ov111_021D0F7C *param0)
 
     param0->unk_15C = PaletteData_New(HEAP_ID_115);
 
-    PaletteData_AllocBuffer(param0->unk_15C, 2, 32 * 16, HEAP_ID_115);
-    PaletteData_AllocBuffer(param0->unk_15C, 0, 32 * 16, HEAP_ID_115);
+    PaletteData_AllocBuffer(param0->unk_15C, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_115);
+    PaletteData_AllocBuffer(param0->unk_15C, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_115);
 
     ov111_021D2248(param0, 7);
     ov111_021D22D0();

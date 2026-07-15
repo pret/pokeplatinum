@@ -106,11 +106,11 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
     v0->unk_10 = ov99_021D19AC(HEAP_ID_75);
     v0->unk_0C = PaletteData_New(HEAP_ID_75);
 
-    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, HEAP_ID_75);
-    PaletteData_AllocBuffer(v0->unk_0C, 1, 0x200, HEAP_ID_75);
-    PaletteData_AllocBuffer(v0->unk_0C, 2, 0x200 - 0x40, HEAP_ID_75);
-    PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, HEAP_ID_75);
-    PaletteData_SetAutoTransparent(v0->unk_0C, 1);
+    PaletteData_AllocBuffer(v0->unk_0C, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_75);
+    PaletteData_AllocBuffer(v0->unk_0C, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_75);
+    PaletteData_AllocBuffer(v0->unk_0C, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 14, HEAP_ID_75);
+    PaletteData_AllocBuffer(v0->unk_0C, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_75);
+    PaletteData_SetAutoTransparent(v0->unk_0C, TRUE);
 
     v0->unk_08 = BgConfig_New(HEAP_ID_75);
 
@@ -265,10 +265,10 @@ int ov99_021D11A8(ApplicationManager *appMan, int *param1)
     MessageLoader_Free(v0->unk_20);
     SpriteSystem_FreeResourcesAndManager(v0->unk_18, v0->unk_1C);
     SpriteSystem_Free(v0->unk_18);
-    PaletteData_FreeBuffer(v0->unk_0C, 0);
-    PaletteData_FreeBuffer(v0->unk_0C, 1);
-    PaletteData_FreeBuffer(v0->unk_0C, 2);
-    PaletteData_FreeBuffer(v0->unk_0C, 3);
+    PaletteData_FreeBuffer(v0->unk_0C, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(v0->unk_0C, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(v0->unk_0C, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(v0->unk_0C, PLTTBUF_SUB_OBJ);
     PaletteData_Free(v0->unk_0C);
 
     ov99_021D19A0(v0);
@@ -657,8 +657,8 @@ static void ov99_021D1580(BgConfig *param0)
 
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0)
 {
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 85, 75, 0, 0x20, 15 * 16);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 85, 75, 1, 0x20, 15 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 85, HEAP_ID_75, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_15));
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 85, HEAP_ID_75, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_15));
 }
 
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0)
@@ -740,7 +740,7 @@ static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0)
     VecFx32 v1 = { -31712, -142304, 496744 };
     VecFx32 v2 = { -31712, -67780, -5704 };
 
-    param0->camera = Camera_Alloc(75);
+    param0->camera = Camera_Alloc(HEAP_ID_75);
 
     Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov99_021D46CC, (22 * 0xffff) / 360, 0, 0, param0->camera);
     Camera_SetPosition(&v1, param0->camera);

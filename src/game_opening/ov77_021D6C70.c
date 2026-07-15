@@ -153,7 +153,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
 
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
 
-    v3 = ParticleSystem_LoadResourceFromNARC(61, 4, 76);
+    v3 = ParticleSystem_LoadResourceFromNARC(NARC_INDEX_PARTICLEDATA__PARTICLEDATA, 4, HEAP_ID_76);
     ParticleSystem_SetResource(param0->unk_18, v3, (1 << 1) | (1 << 3), 1);
 }
 

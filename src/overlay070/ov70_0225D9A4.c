@@ -1268,8 +1268,8 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u
         Options *options = SaveData_GetOptions(saveData);
         u8 v2 = Options_Frame(options);
 
-        Font_LoadTextPalette(0, 5 * 32, heapID);
-        Font_LoadScreenIndicatorsPalette(0, 4 * 32, heapID);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_5), heapID);
+        Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_4), heapID);
 
         LoadStandardWindowGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], (1 + (18 + 12)) + ((18 + 12) + 24), 3, 0, heapID);
         LoadMessageBoxGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], 1, 1, v2, heapID);
@@ -2394,7 +2394,7 @@ static void ov70_0225F95C(SysTask *param0, void *param1)
     }
 
     {
-        Font_LoadTextPalette(4, 5 * 32, v0->unk_156);
+        Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_5), v0->unk_156);
     }
 
     {
@@ -2417,7 +2417,7 @@ static void ov70_0225F9BC(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4
     }
 
     {
-        Font_LoadTextPalette(4, 5 * 32, heapID);
+        Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_5), heapID);
     }
 }
 

@@ -619,7 +619,7 @@ static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 heapID)
     Window_FillTilemap(param0->unk_08, 15);
     Window_FillTilemap(param0->unk_0C, 0);
     LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_SUB_0, 1, 0, param0->unk_10, heapID);
-    Font_LoadScreenIndicatorsPalette(4, 1 * 32, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_1), heapID);
     Window_DrawMessageBoxWithScrollCursor(param0->unk_08, 1, 1, 0);
 }
 
@@ -1046,9 +1046,9 @@ static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 heapID)
     };
 
     LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_MAIN_2, 1, 0, param0->unk_18, heapID);
-    Font_LoadScreenIndicatorsPalette(0, 2 * 32, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_2), heapID);
     LoadStandardWindowGraphics(param0->unk_04, BG_LAYER_MAIN_2, 1 + (18 + 12), 1, 0, heapID);
-    Font_LoadTextPalette(0, 3 * 32, heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_3), heapID);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_08[v0] = Window_New(heapID, 1);

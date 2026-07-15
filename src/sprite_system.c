@@ -438,7 +438,7 @@ u8 SpriteSystem_LoadPaletteBuffer(PaletteData *paletteData, enum PaletteBufferID
 {
     int paletteOffset = SpriteSystem_LoadPlttResObj(spriteSys, spriteMan, narcID, memberIdx, compressed, paletteIdx, vramType, resourceID);
     if (paletteOffset != -1) {
-        PaletteData_LoadBufferFromHardware(paletteData, bufferID, paletteOffset * 16, paletteIdx * PALETTE_SIZE_BYTES);
+        PaletteData_LoadBufferFromHardware(paletteData, bufferID, PLTT_DEST(paletteOffset), paletteIdx * PALETTE_SIZE_BYTES);
     }
 
     return paletteOffset;
@@ -448,7 +448,7 @@ u8 SpriteSystem_LoadPaletteBufferFromOpenNarc(PaletteData *paletteData, enum Pal
 {
     int paletteOffset = SpriteSystem_LoadPlttResObjFromOpenNarc(spriteSys, spriteMan, narc, memberIdx, compressed, paletteIdx, vramType, resourceID);
     if (paletteOffset != -1) {
-        PaletteData_LoadBufferFromHardware(paletteData, bufferID, paletteOffset * 16, paletteIdx * PALETTE_SIZE_BYTES);
+        PaletteData_LoadBufferFromHardware(paletteData, bufferID, PLTT_DEST(paletteOffset), paletteIdx * PALETTE_SIZE_BYTES);
     }
 
     return paletteOffset;

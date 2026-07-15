@@ -196,11 +196,11 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
     ov117_022665FC(v0);
     v0->unk_8C = PaletteData_New(HEAP_ID_110);
 
-    PaletteData_SetAutoTransparent(v0->unk_8C, 1);
-    PaletteData_AllocBuffer(v0->unk_8C, 0, 0x200, HEAP_ID_110);
-    PaletteData_AllocBuffer(v0->unk_8C, 1, 0x200, HEAP_ID_110);
-    PaletteData_AllocBuffer(v0->unk_8C, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_110);
-    PaletteData_AllocBuffer(v0->unk_8C, 3, 0x200, HEAP_ID_110);
+    PaletteData_SetAutoTransparent(v0->unk_8C, TRUE);
+    PaletteData_AllocBuffer(v0->unk_8C, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_110);
+    PaletteData_AllocBuffer(v0->unk_8C, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_110);
+    PaletteData_AllocBuffer(v0->unk_8C, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 14, HEAP_ID_110);
+    PaletteData_AllocBuffer(v0->unk_8C, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_110);
 
     v0->unk_2C = BgConfig_New(HEAP_ID_110);
 
@@ -244,8 +244,8 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
         NARC_dtor(v1);
     }
 
-    PaletteData_LoadBufferFromFileStart(v0->unk_8C, 14, 6, 110, 0, 0x20, 0xe * 16);
-    PaletteData_LoadBufferFromFileStart(v0->unk_8C, 14, 6, 110, 1, 0x20, 5 * 16);
+    PaletteData_LoadBufferFromFileStart(v0->unk_8C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_110, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
+    PaletteData_LoadBufferFromFileStart(v0->unk_8C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_110, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_5));
     ov117_022613EC(v0);
     ov117_022614AC(v0, 0);
     ov117_02261368(v0);
@@ -270,12 +270,8 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
 
     v0->unk_1C = ov114_0225CAD4(SpriteManager_GetSpriteList(v0->unk_28), HEAP_ID_110);
 
-    {
-        int v2;
-
-        v2 = ov114_0225CB74(v0->unk_1C);
-        PaletteData_LoadBufferFromHardware(v0->unk_8C, 2, v2 * 16, 3 * 0x20);
-    }
+    int v2 = ov114_0225CB74(v0->unk_1C);
+    PaletteData_LoadBufferFromHardware(v0->unk_8C, PLTTBUF_MAIN_OBJ, PLTT_DEST(v2), 3 * PALETTE_SIZE_BYTES);
 
     SetVBlankCallback(ov117_02260DA0, v0);
 
@@ -457,10 +453,10 @@ int ov117_02260C10(ApplicationManager *appMan, int *param1)
     SpriteSystem_FreeResourcesAndManager(v0->unk_24, v0->unk_28);
     SpriteSystem_Free(v0->unk_24);
     VramTransfer_Free();
-    PaletteData_FreeBuffer(v0->unk_8C, 0);
-    PaletteData_FreeBuffer(v0->unk_8C, 1);
-    PaletteData_FreeBuffer(v0->unk_8C, 2);
-    PaletteData_FreeBuffer(v0->unk_8C, 3);
+    PaletteData_FreeBuffer(v0->unk_8C, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(v0->unk_8C, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(v0->unk_8C, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(v0->unk_8C, PLTTBUF_SUB_OBJ);
     PaletteData_Free(v0->unk_8C);
     String_Free(v0->unk_88);
     StringTemplate_Free(v0->unk_84);
@@ -535,13 +531,13 @@ static void ov117_02260EC0(UnkStruct_ov117_02261280 *param0)
     VecFx32 v0 = { 0, 0x1881e, 0 };
     VecFx32 v1 = { 0, 0x1881e, (FX32_ONE * 5) };
 
-    param0->camera1 = Camera_Alloc(110);
+    param0->camera1 = Camera_Alloc(HEAP_ID_110);
 
     Camera_InitWithTarget(&v0, 0x7b << FX32_SHIFT, &Unk_ov117_02266918, (22 * 0xffff) / 360, 1, 0, param0->camera1);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, param0->camera1);
     Camera_SetAsActive(param0->camera1);
 
-    param0->camera2 = Camera_Alloc(110);
+    param0->camera2 = Camera_Alloc(HEAP_ID_110);
 
     Camera_InitWithTarget(&v0, 80 << FX32_SHIFT, &Unk_ov117_02266918, (22 * 0xffff) / 360, 1, 0, param0->camera2);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, param0->camera2);
@@ -850,7 +846,7 @@ static void ov117_022613EC(UnkStruct_ov117_02261280 *param0)
     for (v0 = 0; v0 < param0->unk_00->unk_30; v0++) {
         if (v4 != param0->unk_00->unk_2C[v0]) {
             v2 = ov114_0225C7CC(&param0->unk_00->unk_00, param0->unk_00->unk_2C[v0]);
-            v3 = TrainerInfo_NameNewString(v2, 110);
+            v3 = TrainerInfo_NameNewString(v2, HEAP_ID_110);
             v1 = ov117_022622C4(param0, param0->unk_00->unk_2C[v0]);
 
             if (ov114_0225C7A4(&param0->unk_00->unk_00, param0->unk_00->unk_2C[v0]) == 1) {
@@ -906,7 +902,7 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
     camera = ParticleSystem_GetCamera(param0->unk_A4);
 
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
-    v2 = ParticleSystem_LoadResourceFromNARC(190, 0, 110);
+    v2 = ParticleSystem_LoadResourceFromNARC(NARC_INDEX_PARTICLEDATA__PL_ETC__PL_ETC_PARTICLE, 0, HEAP_ID_110);
     ParticleSystem_SetResource(param0->unk_A4, v2, (1 << 1) | (1 << 3), 1);
 }
 
@@ -1038,12 +1034,12 @@ static void ov117_022619F8(UnkStruct_ov117_02261280 *param0)
 
 static void ov117_02261A2C(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
-    PaletteData_LoadBufferFromFileStart(param0->unk_8C, 173, 4, 110, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_8C, NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 4, HEAP_ID_110, PLTTBUF_MAIN_BG, 0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->unk_2C, 3, 0, 0, 0, HEAP_ID_110);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, param0->unk_2C, 3, 0, 0, 0, HEAP_ID_110);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 0, param0->unk_2C, 2, 0, 0, 0, HEAP_ID_110);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 1, param0->unk_2C, 2, 0, 0, 0, HEAP_ID_110);
-    PaletteData_FillBufferRange(param0->unk_8C, 0, 2, 0x0, 0, 1);
+    PaletteData_FillBufferRange(param0->unk_8C, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, 0x0, 0, 1);
 }
 
 static void ov117_02261AC4(UnkStruct_ov117_02261280 *param0)
@@ -1053,8 +1049,8 @@ static void ov117_02261AC4(UnkStruct_ov117_02261280 *param0)
 
 static void ov117_02261AC8(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
-    PaletteData_LoadBufferFromFileStart(param0->unk_8C, 173, 5, 110, 1, 5 * 0x20, 0);
-    PaletteData_LoadBufferFromFile(param0->unk_8C, 173, 6, 110, 1, 0x20 * 10, 6 * 16, 6 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_8C, NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 5, HEAP_ID_110, PLTTBUF_SUB_BG, 5 * PALETTE_SIZE_BYTES, 0);
+    PaletteData_LoadBufferFromFile(param0->unk_8C, NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 6, HEAP_ID_110, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 10, PLTT_DEST(PLTT_6), PLTT_DEST(PLTT_6));
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 13, param0->unk_2C, 6, 0, 0, 0, HEAP_ID_110);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_2C, 6, 0, 0, 0, HEAP_ID_110);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_2C, 5, 0, 0, 0, HEAP_ID_110);
@@ -1078,8 +1074,8 @@ static void ov117_02261AC8(UnkStruct_ov117_02261280 *param0, NARC *param1)
     ov117_02264AB0(param0);
 
     LoadStandardWindowGraphics(param0->unk_2C, BG_LAYER_SUB_0, (((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2), 6, 0, HEAP_ID_110);
-    PaletteData_LoadBufferFromHardware(param0->unk_8C, 1, 6 * 16, 0x20);
-    PaletteData_FillBufferRange(param0->unk_8C, 1, 2, 0x0, 0, 1);
+    PaletteData_LoadBufferFromHardware(param0->unk_8C, PLTTBUF_SUB_BG, PLTT_DEST(PLTT_6), PALETTE_SIZE_BYTES);
+    PaletteData_FillBufferRange(param0->unk_8C, PLTTBUF_SUB_BG, PLTTSEL_BOTH, 0x0, 0, 1);
 }
 
 static void ov117_02261C28(UnkStruct_ov117_02261280 *param0)
