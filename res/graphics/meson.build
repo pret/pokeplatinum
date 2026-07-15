@@ -1,5 +1,6 @@
 subdir('bag')
 subdir('battle')
+subdir('berry_tag')
 subdir('diploma')
 subdir('egg_hatch')
 subdir('frontier')

@@ -28,6 +28,7 @@
 #include "unk_0202419C.h"
 #include "unk_0208C098.h"
 
+#include "res/graphics/berry_tag/berry_tag.naix"
 #include "res/text/bank/berry_tags.h"
 
 enum {
@@ -108,7 +109,7 @@ static u32 BerryTag_GetPalette(u32 berryID);
 
 static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
     [BERRY_TAG_WINDOW_LABEL_BERRY_TAG] = {
-        .bgLayer = 3,
+        .bgLayer = BG_LAYER_MAIN_3,
         .tilemapLeft = 1,
         .tilemapTop = 0,
         .width = 12,
@@ -117,7 +118,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 1000,
     },
     [BERRY_TAG_WINDOW_NAME] = {
-        .bgLayer = 1,
+        .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 1,
         .tilemapTop = 3,
         .width = 10,
@@ -126,7 +127,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 65,
     },
     [BERRY_TAG_WINDOW_LABEL_SPICY] = {
-        .bgLayer = 3,
+        .bgLayer = BG_LAYER_MAIN_3,
         .tilemapLeft = 18,
         .tilemapTop = 1,
         .width = 7,
@@ -135,7 +136,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 512,
     },
     [BERRY_TAG_WINDOW_LABEL_DRY] = {
-        .bgLayer = 3,
+        .bgLayer = BG_LAYER_MAIN_3,
         .tilemapLeft = 26,
         .tilemapTop = 6,
         .width = 6,
@@ -144,7 +145,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 526,
     },
     [BERRY_TAG_WINDOW_LABEL_SWEET] = {
-        .bgLayer = 3,
+        .bgLayer = BG_LAYER_MAIN_3,
         .tilemapLeft = 23,
         .tilemapTop = 12,
         .width = 6,
@@ -153,7 +154,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 538,
     },
     [BERRY_TAG_WINDOW_LABEL_BITTER] = {
-        .bgLayer = 3,
+        .bgLayer = BG_LAYER_MAIN_3,
         .tilemapLeft = 14,
         .tilemapTop = 12,
         .width = 6,
@@ -162,7 +163,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 550,
     },
     [BERRY_TAG_WINDOW_LABEL_SOUR] = {
-        .bgLayer = 3,
+        .bgLayer = BG_LAYER_MAIN_3,
         .tilemapLeft = 11,
         .tilemapTop = 6,
         .width = 6,
@@ -171,7 +172,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 562,
     },
     [BERRY_TAG_WINDOW_LABEL_SIZE] = {
-        .bgLayer = 3,
+        .bgLayer = BG_LAYER_MAIN_3,
         .tilemapLeft = 2,
         .tilemapTop = 13,
         .width = 6,
@@ -180,7 +181,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 574,
     },
     [BERRY_TAG_WINDOW_SIZE] = {
-        .bgLayer = 1,
+        .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 8,
         .tilemapTop = 13,
         .width = 6,
@@ -189,7 +190,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 85,
     },
     [BERRY_TAG_WINDOW_LABEL_FIRM] = {
-        .bgLayer = 3,
+        .bgLayer = BG_LAYER_MAIN_3,
         .tilemapLeft = 2,
         .tilemapTop = 15,
         .width = 6,
@@ -198,7 +199,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 586,
     },
     [BERRY_TAG_WINDOW_FIRMNESS] = {
-        .bgLayer = 1,
+        .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 8,
         .tilemapTop = 15,
         .width = 15,
@@ -207,7 +208,7 @@ static const WindowTemplate sWindowTemplates[MAX_BERRY_TAG_WINDOW] = {
         .baseTile = 97,
     },
     [BERRY_TAG_WINDOW_DESCRIPTION] = {
-        .bgLayer = 1,
+        .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 2,
         .tilemapTop = 17,
         .width = 28,
@@ -509,22 +510,22 @@ static void BerryTag_FreeBgs(BgConfig *bgConfig)
 
 static void BerryTag_LoadGraphics(BerryTag *berryTag, NARC *narc)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 2, berryTag->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, HEAP_ID_BERRY_TAG);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 0, berryTag->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, HEAP_ID_BERRY_TAG);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 1, berryTag->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_BERRY_TAG);
-    Graphics_LoadPaletteFromOpenNARC(narc, 3, PAL_LOAD_MAIN_BG, 0, 0, HEAP_ID_BERRY_TAG);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, tiles_NCGR, berryTag->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, HEAP_ID_BERRY_TAG);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, tiles_NSCR, berryTag->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, HEAP_ID_BERRY_TAG);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, dummy_NSCR, berryTag->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_BERRY_TAG);
+    Graphics_LoadPaletteFromOpenNARC(narc, tiles_NCLR, PAL_LOAD_MAIN_BG, 0, 0, HEAP_ID_BERRY_TAG);
 
     u16 *tilemap = Heap_Alloc(HEAP_ID_BERRY_TAG, 8 * 8 * sizeof(u16));
 
     for (u32 i = 0; i < 8 * 8; i++) {
-        tilemap[i] = (3 << 12) + 1 + i;
+        tilemap[i] = TILEMAP_PALETTE_SHIFT(3) + 1 + i;
     }
 
     Bg_LoadToTilemapRect(berryTag->bgConfig, BG_LAYER_MAIN_1, tilemap, 2, 5, 8, 8);
     Heap_Free(tilemap);
     Bg_CopyTilemapBufferToVRAM(berryTag->bgConfig, BG_LAYER_MAIN_1);
 
-    Font_LoadTextPalette(0, PLTT_OFFSET(15), HEAP_ID_BERRY_TAG);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_BERRY_TAG);
 }
 
 static void BerryTag_SetAlphaBlending(void)
@@ -843,12 +844,12 @@ static void BerryTag_LoadBerryGraphics(BerryTag *berryTag, NARC *narc)
 
 static u32 BerryTag_GetTiles(u32 berryID)
 {
-    return 6 + berryID;
+    return cheri_NCGR + berryID;
 }
 
 static u32 BerryTag_GetPalette(u32 berryID)
 {
-    return 70 + berryID;
+    return cheri_NCLR + berryID;
 }
 
 // this assumes that direction is only ever -1 or 1
