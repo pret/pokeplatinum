@@ -74,9 +74,6 @@ field_sprites_textures_32_px_single_palette = [
     { 'file': 'npc/baby_in_pram.png', 'basename': 'baby'},
     { 'file': 'npc/middle_aged_man.png', 'basename': 'middleman2'},
     { 'file': 'npc/middle_aged_woman.png', 'basename': 'middlewoman2'},
-    { 'file': 'npc/unused_woman_1.png', 'basename': 'girl1'},
-    { 'file': 'npc/unused_woman_2.png', 'basename': 'girl1'},
-    { 'file': 'npc/unused_woman_3.png', 'basename': 'girl1'},
     { 'file': 'npc/prof_rowan.png', 'basename': 'doctor'},
     { 'file': 'npc/cyrus.png', 'basename': 'gingaboss'},
     { 'file': 'npc/mars.png', 'basename': 'gkanbu1'},
@@ -572,6 +569,24 @@ foreach index : range(5)
             'pack',
             '--texture', '@INPUT@',
             '--name', 'bigman',
+            '--spritesheet',
+            '--frame-height', '32',
+            '--extract-palette',
+            '@OUTPUT@'
+        ],
+    )
+endforeach
+
+foreach index : range(3)
+    field_sprites_nsbtxs += custom_target(
+        input: 'npc/unused_woman.png',
+        build_subdir: field_sprites_private_dir,
+        output: '@BASENAME@_' + index.to_string() + '.nsbtx',
+        command: [
+            nitrobtx_exe,
+            'pack',
+            '--texture', '@INPUT@',
+            '--name', 'girl1',
             '--spritesheet',
             '--frame-height', '32',
             '--extract-palette',
