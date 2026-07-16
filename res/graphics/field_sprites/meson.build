@@ -105,8 +105,6 @@ field_sprites_textures_32_px_single_palette = [
     { 'file': 'npc/buck.png', 'basename': 'seven4'},
     { 'file': 'npc/mira.png', 'basename': 'seven5'},
     { 'file': 'npc/barry.png', 'basename': 'rivel'},
-    { 'file': 'npc/unused_big_man_1.png', 'basename': 'bigman'},
-    { 'file': 'npc/unused_big_man_2.png', 'basename': 'bigman'},
     { 'file': 'npc/receptionist.png', 'basename': 'woman6'},
     { 'file': 'npc/old_man.png', 'basename': 'oldman2'},
     { 'file': 'npc/old_woman.png', 'basename': 'oldwoman2'},
@@ -114,9 +112,6 @@ field_sprites_textures_32_px_single_palette = [
     { 'file': 'npc/jasmine.png', 'basename': 'mikan'},
     { 'file': 'npc/gym_guide.png', 'basename': 'sunglasses'},
     { 'file': 'npc/palmer.png', 'basename': 'towerboss'},
-    { 'file': 'npc/unused_big_man_3.png', 'basename': 'bigman'},
-    { 'file': 'npc/unused_big_man_4.png', 'basename': 'bigman'},
-    { 'file': 'npc/unused_big_man_5.png', 'basename': 'bigman'},
     { 'file': 'npc/maid.png', 'basename': 'maid'},
     { 'file': 'npc/kid_with_nds.png', 'basename': 'dsboy'},
     { 'file': 'npc/mystery_gift_deliveryman.png', 'basename': 'delivery'},
@@ -192,23 +187,11 @@ field_sprites_textures_32_px_single_palette = [
     { 'file': 'pokemon/rotom_frost.png' ,'basename': 'rotomi'},
     { 'file': 'pokemon/rotom_wash.png' ,'basename': 'rotomw'},
     { 'file': 'pokemon/rotom_mow.png' ,'basename': 'rotomg'},
-    { 'file': 'pokemon/oven_unused.png' ,'basename': 'firebox'},
-    { 'file': 'pokemon/fan_unused.png' ,'basename': 'skybox'},
-    { 'file': 'pokemon/fridge_unused.png' ,'basename': 'icebox'},
-    { 'file': 'pokemon/washing_machine_unused.png' ,'basename': 'waterbox'},
-    { 'file': 'pokemon/lawnmower_unused.png' ,'basename': 'grassbox'},
-    { 'file': 'dummy/dummy_1.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_2.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_3.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_4.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_5.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_6.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_7.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_8.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_9.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_10.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_11.png', 'basename': 'ketsuban'},
-    { 'file': 'dummy/dummy_12.png', 'basename': 'ketsuban'},
+    { 'file': 'objects/oven_unused.png' ,'basename': 'firebox'},
+    { 'file': 'objects/fan_unused.png' ,'basename': 'skybox'},
+    { 'file': 'objects/fridge_unused.png' ,'basename': 'icebox'},
+    { 'file': 'objects/washing_machine_unused.png' ,'basename': 'waterbox'},
+    { 'file': 'objects/lawnmower_unused.png' ,'basename': 'grassbox'},
 ]
 
 field_sprites_textures_single_frame = [
@@ -439,8 +422,8 @@ field_sprites_textures_two_frame_pokemon = [
 
 field_sprites_nsbtxs += custom_target(
     input: [
-        'objects/cave_painting/t5_o01_c.png',
-        'objects/cave_painting/t5_o01_c_.png'
+        'objects/cave_painting/wall.png',
+        'objects/cave_painting/painting.png'
     ],
     build_subdir: field_sprites_private_dir,
     output: 'cave_painting.nsbtx',
@@ -461,8 +444,8 @@ field_sprites_nsbtxs += custom_target(
 
 field_sprites_nsbtxs += custom_target(
     input: [
-        'berry_trees/grepa_blooming/seed25_b.1.png',
-        'berry_trees/grepa_blooming/seed25_b.2.png'
+        'berry_trees/grepa_blooming/frame_1.png',
+        'berry_trees/grepa_blooming/frame_2.png'
     ],
     build_subdir: field_sprites_private_dir,
     output: 'grepa_blooming.nsbtx',
@@ -483,8 +466,8 @@ field_sprites_nsbtxs += custom_target(
 
 field_sprites_nsbtxs += custom_target(
     input: [
-        'berry_trees/apicot_blooming/seed57_b.1.png',
-        'berry_trees/apicot_blooming/seed57_b.2.png'
+        'berry_trees/apicot_blooming/frame_1.png',
+        'berry_trees/apicot_blooming/frame_2.png'
     ],
     build_subdir: field_sprites_private_dir,
     output: 'apicot_blooming.nsbtx',
@@ -553,6 +536,42 @@ foreach texture : field_sprites_textures_32_px_single_palette
             'pack',
             '--texture', '@INPUT@',
             '--name', texture['basename'],
+            '--spritesheet',
+            '--frame-height', '32',
+            '--extract-palette',
+            '@OUTPUT@'
+        ],
+    )
+endforeach
+
+foreach index : range(12)
+    field_sprites_nsbtxs += custom_target(
+        input: 'dummy.png',
+        build_subdir: field_sprites_private_dir,
+        output: '@BASENAME@_' + index.to_string() + '.nsbtx',
+        command: [
+            nitrobtx_exe,
+            'pack',
+            '--texture', '@INPUT@',
+            '--name', 'ketsuban',
+            '--spritesheet',
+            '--frame-height', '32',
+            '--extract-palette',
+            '@OUTPUT@'
+        ],
+    )
+endforeach
+
+foreach index : range(5)
+    field_sprites_nsbtxs += custom_target(
+        input: 'npc/unused_big_man.png',
+        build_subdir: field_sprites_private_dir,
+        output: '@BASENAME@_' + index.to_string() + '.nsbtx',
+        command: [
+            nitrobtx_exe,
+            'pack',
+            '--texture', '@INPUT@',
+            '--name', 'bigman',
             '--spritesheet',
             '--frame-height', '32',
             '--extract-palette',
