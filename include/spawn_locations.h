@@ -3,6 +3,8 @@
 
 #include "field/field_system_decl.h"
 
+#include "generated/map_headers.h"
+
 #include "location.h"
 
 int FieldOverworldState_GetDefaultWarpID(void);
@@ -12,6 +14,6 @@ int GetMapBlackOutWarpId(int mapId);
 int GetMapFlyWarpId(int mapId);
 int GetSpawnIdByMapAndCoords(int mapID, int param1, int param2);
 void TryUnlockFlyLocationByMap(FieldSystem *fieldSystem, int param1);
-BOOL CheckFlyLocationUnlocked(FieldSystem *fieldSystem, int mapId);
+BOOL CheckFlyLocationUnlocked(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID);
 
 #endif // POKEPLATINUM_SPAWN_LOCATIONS_H

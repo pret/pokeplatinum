@@ -8,6 +8,8 @@
 
 #include "field/field_system.h"
 
+#include "generated/map_headers.h"
+
 #include "field_overworld_state.h"
 #include "inlines.h"
 #include "journal.h"
@@ -44,9 +46,7 @@ void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem)
     fieldSystem->wildBattleMetadata.encounterAttempts = 0;
 
     if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE) {
-        SpecialEncounter *speEnc;
-
-        speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+        SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
         RoamingPokemon_UpdatePlayerRecentRoutes(speEnc, fieldSystem->location->mapId);
         RoamingPokemon_MoveAllLocations(speEnc);
     }
@@ -73,9 +73,7 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     fieldSystem->wildBattleMetadata.encounterAttempts = 0;
 
     {
-        SpecialEncounter *speEnc;
-
-        speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+        SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
         RoamingPokemon_UpdatePlayerRecentRoutes(speEnc, fieldSystem->location->mapId);
     }
 
@@ -89,7 +87,7 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     {
         PlayerData *playerData = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-        if ((playerData->playerState == PLAYER_AVATAR_CYCLING) && (MapHeader_IsBikeAllowed(fieldSystem->location->mapId) == 0)) {
+        if (playerData->playerState == PLAYER_AVATAR_CYCLING && MapHeader_IsBikeAllowed(fieldSystem->location->mapId) == FALSE) {
             playerData->playerState = PLAYER_AVATAR_WALKING;
         } else if (playerData->playerState == PLAYER_AVATAR_SURFING) {
             playerData->playerState = PLAYER_AVATAR_WALKING;
@@ -133,9 +131,9 @@ void FieldSystem_RandomizeRoamingPokemonLocations(FieldSystem *fieldSystem)
 
 static BOOL CreateFlyLocationJournalEvent(FieldSystem *fieldSystem)
 {
-    int flyLocation = GetMapFlyWarpId(fieldSystem->location->mapId);
+    enum MapHeaderID flyLocation = GetMapFlyWarpId(fieldSystem->location->mapId);
 
-    if (flyLocation != 0 && CheckFlyLocationUnlocked(fieldSystem, flyLocation) == FALSE) {
+    if (flyLocation != MAP_HEADER_EVERYWHERE && CheckFlyLocationUnlocked(fieldSystem, flyLocation) == FALSE) {
         JournalEntry_CreateAndSaveEventArrivedInLocation(fieldSystem->journalEntry, fieldSystem->location->mapId, HEAP_ID_FIELD3);
         return TRUE;
     }
