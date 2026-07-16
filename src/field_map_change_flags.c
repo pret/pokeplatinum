@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/map_headers.h"
+
 #include "struct_defs/player_data.h"
 #include "struct_defs/special_encounter.h"
 
 #include "field/field_system.h"
-
-#include "generated/map_headers.h"
 
 #include "field_overworld_state.h"
 #include "inlines.h"
