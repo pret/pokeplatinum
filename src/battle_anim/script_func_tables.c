@@ -1,10 +1,7 @@
 #include "battle_anim/script_func_tables.h"
 
 #include <nitro.h>
-#include <string.h>
 
-#include "battle_anim/battle_anim_system.h"
-#include "battle_anim/ov12_022346A4.h"
 #include "battle_anim/script_func_examples.h"
 #include "battle_anim/script_func_mimic.h"
 #include "battle_anim/script_func_tables.h"
@@ -14,6 +11,7 @@
 #include "battle_anim/script_funcs_3.h"
 #include "battle_anim/script_funcs_4.h"
 #include "battle_anim/script_funcs_stat_change.h"
+#include "battle_anim/script_funcs_status.h"
 #include "global/utility.h"
 
 static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
@@ -103,40 +101,40 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_StatChangeMetal
 };
 
-static const BattleAnimScriptSpriteFunc sBattleAnimScriptSpriteFuncs[] = {
-    BattleAnimScriptFunc_SpriteExample,
-    ov12_0222AE68,
-    ov12_0222FE30,
-    ov12_0222D56C,
-    ov12_02230CEC,
-    ov12_02231010,
-    ov12_022312A4,
-    ov12_02231650,
-    ov12_02231950,
-    ov12_02231C1C,
-    ov12_0222777C,
-    ov12_02232378,
-    ov12_022329E0,
-    ov12_02232CA8,
-    ov12_02233454,
-    ov12_02233734,
-    ov12_022339C4,
-    ov12_0222CC54,
-    ov12_02234008,
-    ov12_0222D7C0,
-    ov12_0222DB60,
-    ov12_0222DEFC,
-    ov12_0222E2F8,
-    ov12_0222E61C,
-    ov12_0222EC90,
-    ov12_0222A1AC,
-    ov12_0222A34C,
-    ov12_0222A410,
-    ov12_0222A5C0,
-    ov12_022346A4,
-    ov12_02234A10,
-    ov12_022348C8,
-    ov12_02234D98
+static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
+    BattleAnimSpriteFunc_SpriteExample,
+    BattleAnimSpriteFunc_StringShot,
+    BattleAnimSpriteFunc_Kinesis,
+    BattleAnimSpriteFunc_Trick,
+    BattleAnimSpriteFunc_Metronome,
+    BattleAnimSpriteFunc_Constrict,
+    BattleAnimSpriteFunc_Bonemerang,
+    BattleAnimSpriteFunc_ScaryFace,
+    BattleAnimSpriteFunc_Foresight,
+    BattleAnimSpriteFunc_LockOn,
+    BattleAnimSpriteFunc_Swagger,
+    BattleAnimSpriteFunc_MeanLook,
+    BattleAnimSpriteFunc_Torment,
+    BattleAnimSpriteFunc_BatonPass,
+    BattleAnimSpriteFunc_Unused,
+    BattleAnimSpriteFunc_Grudge,
+    BattleAnimSpriteFunc_GrassWhistle,
+    BattleAnimSpriteFunc_IcicleSpear,
+    BattleAnimSpriteFunc_FakeOut,
+    BattleAnimSpriteFunc_Taunt,
+    BattleAnimSpriteFunc_HelpingHand,
+    BattleAnimSpriteFunc_Assist,
+    BattleAnimSpriteFunc_MetalClaw,
+    BattleAnimSpriteFunc_Ingrain,
+    BattleAnimSpriteFunc_FrenzyPlant,
+    BattleAnimSpriteFunc_OffsetAndAnimate,
+    BattleAnimSpriteFunc_FollowMe,
+    BattleAnimSpriteFunc_Fissure,
+    BattleAnimSpriteFunc_EscapeItem,
+    BattleAnimSpriteFunc_Sleep,
+    BattleAnimSpriteFunc_Burn,
+    BattleAnimSpriteFunc_Freeze,
+    BattleAnimSpriteFunc_ConfusionStatus
 };
 
 static const BattleAnimScriptSpriteFunc sUnusedSpriteFuncs[] = {
@@ -159,9 +157,9 @@ BattleAnimScriptFunc BattleAnimScript_GetFunc(u32 id)
 
 BattleAnimScriptSpriteFunc BattleAnimScript_GetSpriteFunc(u32 id)
 {
-    if (id >= NELEMS(sBattleAnimScriptSpriteFuncs)) {
+    if (id >= NELEMS(sBattleAnimSpriteFuncs)) {
         return NULL;
     }
 
-    return sBattleAnimScriptSpriteFuncs[id];
+    return sBattleAnimSpriteFuncs[id];
 }

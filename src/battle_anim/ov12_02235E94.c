@@ -1636,7 +1636,7 @@ static BOOL ov12_02236F24(BallRotation *param0)
             }
         }
 
-        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
+        if (XYTransformContext_UpdateAndApplyParabolic(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
             ov12_02237E24(param0, 0);
             param0->unk_08++;
         }
@@ -1747,7 +1747,7 @@ static BOOL ov12_022371E4(BallRotation *param0)
             }
         }
 
-        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
+        if (XYTransformContext_UpdateAndApplyParabolic(&param0->unk_48[0], &param0->unk_48[1], param0->unk_30) == 0) {
             ov12_02237E24(param0, 0);
             param0->unk_08++;
         }

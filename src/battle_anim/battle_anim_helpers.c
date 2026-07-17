@@ -146,18 +146,18 @@ fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps)
     return FX_Div(end - start, steps << FX32_SHIFT);
 }
 
-u32 BattleAnimMath_CalcStepCount(fx32 start, fx32 end, fx32 stepSize)
+u32 BattleAnimUtil_GetRequiredSteps(fx32 a, fx32 b, fx32 stepSize)
 {
-    fx32 div = FX_Div(end - start, stepSize);
-    fx32 modf = FX_Modf(div, &div);
+    fx32 steps = FX_Div(b - a, stepSize);
+    fx32 fractional = FX_Modf(steps, &steps);
 
-    if (modf) {
-        div += FX32_ONE;
+    if (fractional) {
+        steps += FX32_ONE;
     }
 
-    div = MATH_ABS(div);
+    steps = MATH_ABS(steps);
 
-    return div >> FX32_SHIFT;
+    return steps >> FX32_SHIFT;
 }
 
 void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *ctx, ManagedSprite *sprite, s16 cx, s16 cy)
@@ -195,23 +195,25 @@ void RevolutionContext_Init(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16
     ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / steps;
 }
 
-void RevolutionContext_InitWithStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSize)
+void RevolutionContext_InitWithStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSizeX)
 {
+    s16 stepSizeSigned;
+
     GF_ASSERT(ctx);
 
     if (sx > ex) {
-        stepSize = -stepSize;
+        stepSizeX = -stepSizeX;
     }
 
-    s16 stepSizeSigned = stepSize;
+    stepSizeSigned = stepSizeX;
 
-    ctx->data[XY_PARAM_REV_STEPS] = BattleAnimMath_CalcStepCount(sx * FX32_ONE, ex * FX32_ONE, stepSizeSigned * FX32_ONE);
+    ctx->data[XY_PARAM_REV_STEPS] = BattleAnimUtil_GetRequiredSteps(sx * FX32_ONE, ex * FX32_ONE, stepSizeSigned * FX32_ONE);
     ctx->data[XY_PARAM_REV_CUR_X] = sx;
     ctx->data[XY_PARAM_REV_RADIUS_X] = rx;
     ctx->data[XY_PARAM_REV_CUR_Y] = sy;
     ctx->data[XY_PARAM_REV_RADIUS_Y] = ry;
     ctx->data[XY_PARAM_REV_STEP_SIZE_X] = stepSizeSigned;
-    ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / ctx->data[0];
+    ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / ctx->data[XY_PARAM_REV_STEPS];
 }
 
 BOOL RevolutionContext_Update(XYTransformContext *ctx)
@@ -332,14 +334,14 @@ BOOL XYTransformContext_UpdateParabolic(XYTransformContext *linear, XYTransformC
     return TRUE;
 }
 
-BOOL XYTransformContext_UpdateParabolicAndApplyToSprite(XYTransformContext *linear, XYTransformContext *revs, ManagedSprite *managedSprite)
+BOOL XYTransformContext_UpdateAndApplyParabolic(XYTransformContext *linear, XYTransformContext *revs, ManagedSprite *sprite)
 {
     if (XYTransformContext_UpdateParabolic(linear, revs)) {
-        XYTransformContext_ApplyPosOffsetToSprite(linear, managedSprite, 0, 0);
-        return 1;
+        XYTransformContext_ApplyPosOffsetToSprite(linear, sprite, 0, 0);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ValueLerpContext_Init(ValueLerpContext *ctx, s32 start, s32 end, u32 steps)
@@ -390,7 +392,7 @@ BOOL ValueLerpContext_UpdateFX32(ValueLerpContext *ctx)
     return FALSE;
 }
 
-void ValueLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
+void ValueLerpContext_InitSinusoidal(ValueLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
 {
     ctx->data[VALUE_PARAM_COS_STEPS] = steps;
     ctx->data[VALUE_PARAM_COS_CUR_ANGLE] = start;
@@ -398,7 +400,7 @@ void ValueLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 am
     ctx->data[VALUE_PARAM_COS_STEP_SIZE] = (end - start) / steps;
 }
 
-BOOL ValueLerpContext_UpdateCos(ValueLerpContext *ctx)
+BOOL ValueLerpContext_UpdateSinusoidal(ValueLerpContext *ctx)
 {
     GF_ASSERT(ctx);
 
@@ -967,55 +969,54 @@ u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
     }
 }
 
-void BattleAnimMath_CalcMidpoint(s16 x0, s16 y0, s16 x1, s16 y1, s16 *outMidX, s16 *outMidY)
+void BattleAnimUtil_GetXYMean(s16 x1, s16 y1, s16 x2, s16 y2, s16 *mx, s16 *my)
 {
-    *outMidX = (x0 + x1) / 2;
-    *outMidY = (y0 + y1) / 2;
+    *mx = (x1 + x2) / 2;
+    *my = (y1 + y2) / 2;
 }
 
-void BattleAnimMath_CalcDistance(s16 x0, s16 y0, s16 x1, s16 y1, fx32 *outDist)
+void BattleAnimUtil_DistanceBetween(s16 x1, s16 y1, s16 x2, s16 y2, fx32 *distance)
 {
-    s16 distX = (x0 - x1);
-    s16 distY = (y0 - y1) * -1;
+    s16 dx = x1 - x2;
+    s16 dy = -(y1 - y2);
 
-    *outDist = FX_Sqrt(((distY * distY) + (distX * distX)) * FX32_ONE);
+    *distance = FX_Sqrt((dy * dy + dx * dx) * FX32_ONE);
 }
 
-void BattleAnimMath_CalcAngle(s16 x0, s16 y0, s16 x1, s16 y1, u16 *outAngle)
+// DO NOT USE THIS FUNCTION, it sucks and is wrong
+void BattleAnimUtil_CalcAngleFromPoints(s16 x1, s16 y1, s16 x2, s16 y2, u16 *angle)
 {
-    s16 distX = (x0 - x1);
-    s16 distY = (y0 - y1) * -1;
+    s16 dx = x1 - x2;
+    s16 ndy = -(y1 - y2);
 
-    *outAngle = FX_Atan2Idx(distY * FX32_ONE, distX * FX32_ONE);
+    *angle = FX_Atan2Idx(ndy * FX32_ONE, dx * FX32_ONE);
 
-    if ((*outAngle > 0) && (distY < 0)) {
-        *outAngle = (*outAngle - ((180 * 0xffff) / 360)) * 0xffff;
-    } else if ((*outAngle < 0) && (distY > 0)) {
-        *outAngle += ((180 * 0xffff) / 360);
+    if (*angle > 0 && ndy < 0) {
+        *angle = (*angle - DEG_TO_IDX(180)) * 0xFFFF;
     }
 }
 
-BOOL BattleAnimMath_StepToward(int *value, int target, s32 step)
+BOOL BattleAnimUtil_StepValue(int *value, int target, s32 step)
 {
     if (step < 0) {
         if (*value + step > target) {
             *value += step;
-            return 0;
+            return FALSE;
         } else {
             *value = target;
-            return 1;
+            return TRUE;
         }
     } else {
         if (*value + step < target) {
             *value += step;
-            return 0;
+            return FALSE;
         } else {
             *value = target;
-            return 1;
+            return TRUE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
 static void PaletteFadeContext_FadeTask(SysTask *task, void *param)

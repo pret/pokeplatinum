@@ -121,8 +121,8 @@ typedef struct BattleBgSwitch {
 } BattleBgSwitch;
 
 enum BattleAnimTaskKind {
-    MOVE_EFFECT_TASK_KIND_EFFECT = 1,
-    MOVE_EFFECT_TASK_KIND_SOUND,
+    BATTLE_ANIM_TASK_KIND_EFFECT = 1,
+    BATTLE_ANIM_TASK_KIND_SOUND,
 };
 
 static void BattleBgAnim_WaveTask(SysTask *task, void *param);
@@ -289,10 +289,10 @@ static void BattleAnimScript_Execute(BattleAnimSystem *system)
 static SysTask *BattleAnimSystem_StartTask(u8 kind, BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority)
 {
     switch (kind) {
-    case MOVE_EFFECT_TASK_KIND_EFFECT:
+    case BATTLE_ANIM_TASK_KIND_EFFECT:
         system->activeAnimTasks++;
         break;
-    case MOVE_EFFECT_TASK_KIND_SOUND:
+    case BATTLE_ANIM_TASK_KIND_SOUND:
         system->activeSoundTasks++;
         break;
     default:
@@ -306,10 +306,10 @@ static SysTask *BattleAnimSystem_StartTask(u8 kind, BattleAnimSystem *system, Sy
 static void BattleAnimSystem_EndTask(u8 kind, BattleAnimSystem *system, SysTask *task)
 {
     switch (kind) {
-    case MOVE_EFFECT_TASK_KIND_EFFECT:
+    case BATTLE_ANIM_TASK_KIND_EFFECT:
         system->activeAnimTasks--;
         break;
-    case MOVE_EFFECT_TASK_KIND_SOUND:
+    case BATTLE_ANIM_TASK_KIND_SOUND:
         system->activeSoundTasks--;
         break;
     default:
@@ -567,27 +567,27 @@ BOOL BattleAnimSystem_IsActive(BattleAnimSystem *system)
 
 SysTask *BattleAnimSystem_StartAnimTaskEx(BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority)
 {
-    return BattleAnimSystem_StartTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, func, param, priority);
+    return BattleAnimSystem_StartTask(BATTLE_ANIM_TASK_KIND_EFFECT, system, func, param, priority);
 }
 
 SysTask *BattleAnimSystem_StartAnimTask(BattleAnimSystem *system, SysTaskFunc func, void *param)
 {
-    return BattleAnimSystem_StartTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, func, param, 1100);
+    return BattleAnimSystem_StartTask(BATTLE_ANIM_TASK_KIND_EFFECT, system, func, param, 1100);
 }
 
 SysTask *BattleAnimSystem_StartSoundTask(BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority)
 {
-    return BattleAnimSystem_StartTask(MOVE_EFFECT_TASK_KIND_SOUND, system, func, param, priority);
+    return BattleAnimSystem_StartTask(BATTLE_ANIM_TASK_KIND_SOUND, system, func, param, priority);
 }
 
 void BattleAnimSystem_EndAnimTask(BattleAnimSystem *system, SysTask *task)
 {
-    BattleAnimSystem_EndTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, task);
+    BattleAnimSystem_EndTask(BATTLE_ANIM_TASK_KIND_EFFECT, system, task);
 }
 
 void BattleAnimSystem_EndSoundTask(BattleAnimSystem *system, SysTask *task)
 {
-    BattleAnimSystem_EndTask(MOVE_EFFECT_TASK_KIND_SOUND, system, task);
+    BattleAnimSystem_EndTask(BATTLE_ANIM_TASK_KIND_SOUND, system, task);
 }
 
 u16 BattleAnimSystem_GetAttacker(BattleAnimSystem *system)
