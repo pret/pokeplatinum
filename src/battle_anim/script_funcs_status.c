@@ -316,7 +316,8 @@ static void BattleAnimTask_Freeze(SysTask *task, void *param)
                 FREEZE_SPRITE_DEFAULT_ALPHA - FREEZE_SPRITE_START_ALPHA,
                 FREEZE_SPRITE_ALPHA_FADEOUT_FRAMES);
         }
-    } break;
+        break;
+    }
     case FREEZE_SPRITE_STATE_FADEOUT:
         if (AlphaFadeContext_IsDone(&ctx->alphaFade)) {
             ctx->state++;
@@ -417,7 +418,8 @@ static void BattleAnimTask_BurnSprite(SysTask *task, void *param)
         if (done) {
             ctx->state++;
         }
-    } break;
+        break;
+    }
     case BURN_SPRITE_STATE_CLEANUP:
         for (i = 0; i < BURN_SPRITE_FLAME_COUNT; i++) {
             Sprite_DeleteAndFreeResources(ctx->sprites[i]);

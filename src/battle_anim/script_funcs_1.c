@@ -255,7 +255,8 @@ static void BattleAnimTask_ShadowPunch(SysTask *task, void *param)
                 ctx->common.state++;
             }
         }
-    } break;
+        break;
+    }
     default:
         BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         BattleAnimUtil_Free(ctx);

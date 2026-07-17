@@ -141,7 +141,8 @@ static void BattleAnimTask_SpriteExample(SysTask *task, void *param)
         Sprite_DeleteAndFreeResources(ctx->mainSprite);
         Heap_Free(ctx);
         BattleAnimSystem_EndAnimTask(system, task);
-    } break;
+        break;
+    }
     }
 }
 

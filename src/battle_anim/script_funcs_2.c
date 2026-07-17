@@ -1555,7 +1555,8 @@ static void BattleAnimTask_KinesisSprite(SysTask *task, void *param)
         if (anyActive == FALSE) {
             ctx->state++;
         }
-    } break;
+        break;
+    }
     case KINESIS_SPRITE_STATE_ANIMATE_SPOON:
         ManagedSprite_TickFrame(ctx->spoon.sprite);
 
@@ -2308,7 +2309,8 @@ static void BattleAnimTask_MetronomeSprite(SysTask *task, void *param)
                 METRONOME_SPRITE_START_SCALE,
                 METRONOME_SPRITE_SCALE_FRAMES);
         }
-    } break;
+        break;
+    }
     case METRONOME_SPRITE_STATE_WIGGLE: {
         BOOL active = ValueLerpContext_Update(&ctx->angle);
         ManagedSprite_SetAffineZRotation(ctx->sprite, ctx->angle.value);
@@ -2326,7 +2328,8 @@ static void BattleAnimTask_MetronomeSprite(SysTask *task, void *param)
                 ctx->state++;
             }
         }
-    } break;
+        break;
+    }
     case METRONOME_SPRITE_STATE_SHRINK: {
         BOOL active = ScaleLerpContext_Update(&ctx->scale);
         if (active == TRUE) {
@@ -2335,7 +2338,8 @@ static void BattleAnimTask_MetronomeSprite(SysTask *task, void *param)
         } else {
             ctx->state++;
         }
-    } break;
+        break;
+    }
     case METRONOME_SPRITE_STATE_CLEANUP:
         Sprite_DeleteAndFreeResources(ctx->sprite);
         BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
@@ -2519,7 +2523,8 @@ static void BattleAnimTask_ConstrictSprite(SysTask *task, void *param)
         if (active == FALSE) {
             ctx->state++;
         }
-    } break;
+        break;
+    }
     case CONSTRICT_SPRITE_STATE_CLEANUP:
         PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER, ctx->defenderX);
         PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER, ctx->defenderY);

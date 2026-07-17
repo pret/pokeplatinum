@@ -981,7 +981,8 @@ static void BattleAnimTask_ScrollCustomBg(SysTask *task, void *param)
         }
 
         G2_ChangeBlendAlpha(ctx->bgAlpha, ctx->otherAlpha);
-    } break;
+        break;
+    }
     case SCROLL_CUSTOM_BG_STATE_WAIT:
         if (ctx->scrollFinished) {
             ctx->common.state++;
@@ -1009,7 +1010,8 @@ static void BattleAnimTask_ScrollCustomBg(SysTask *task, void *param)
         }
 
         G2_ChangeBlendAlpha(ctx->bgAlpha, ctx->otherAlpha);
-    } break;
+        break;
+    }
     default:
         Bg_ToggleLayer(BATTLE_BG_BASE, FALSE);
         BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
@@ -1157,7 +1159,8 @@ static void BattleAnimTask_MuddyWater(SysTask *task, void *param)
         }
 
         G2_ChangeBlendAlpha(ctx->bgAlpha, ctx->otherAlpha);
-    } break;
+        break;
+    }
     case MUDDY_WATER_STATE_WAIT:
         if (ctx->scrollFinished) {
             ctx->common.state++;
@@ -1185,7 +1188,8 @@ static void BattleAnimTask_MuddyWater(SysTask *task, void *param)
         }
 
         G2_ChangeBlendAlpha(ctx->bgAlpha, ctx->otherAlpha);
-    } break;
+        break;
+    }
     default:
         Bg_ToggleLayer(BATTLE_BG_BASE, FALSE);
         BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
@@ -1664,7 +1668,8 @@ void BattleAnimScriptFunc_FadeBattlerSprite(BattleAnimSystem *system)
         }
 
         ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, targetBattler);
-    } break;
+        break;
+    }
     case BATTLE_ANIM_BATTLER_PLAYER_2: {
         targetBattler = BATTLER_NONE;
 
@@ -1681,7 +1686,8 @@ void BattleAnimScriptFunc_FadeBattlerSprite(BattleAnimSystem *system)
         }
 
         ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, targetBattler);
-    } break;
+        break;
+    }
     case BATTLE_ANIM_BATTLER_ENEMY_1: {
         targetBattler = BATTLER_NONE;
 
@@ -1698,7 +1704,8 @@ void BattleAnimScriptFunc_FadeBattlerSprite(BattleAnimSystem *system)
         }
 
         ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, targetBattler);
-    } break;
+        break;
+    }
     case BATTLE_ANIM_BATTLER_ENEMY_2: {
         targetBattler = BATTLER_NONE;
 
@@ -1715,7 +1722,8 @@ void BattleAnimScriptFunc_FadeBattlerSprite(BattleAnimSystem *system)
         }
 
         ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, targetBattler);
-    } break;
+        break;
+    }
     default:
         GF_ASSERT(FALSE);
         break;
@@ -1996,7 +2004,8 @@ void BattleAnimScriptFunc_ScaleBattlerSprite(BattleAnimSystem *system)
         }
 
         ctx->monSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, battler);
-    } break;
+        break;
+    }
     case BATTLE_ANIM_BATTLER_PLAYER_2: {
         int battler = BATTLER_NONE;
 
@@ -2013,7 +2022,8 @@ void BattleAnimScriptFunc_ScaleBattlerSprite(BattleAnimSystem *system)
         }
 
         ctx->monSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, battler);
-    } break;
+        break;
+    }
     case BATTLE_ANIM_BATTLER_ENEMY_1: {
         int battler = BATTLER_NONE;
 
@@ -2030,7 +2040,8 @@ void BattleAnimScriptFunc_ScaleBattlerSprite(BattleAnimSystem *system)
         }
 
         ctx->monSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, battler);
-    } break;
+        break;
+    }
     case BATTLE_ANIM_BATTLER_ENEMY_2: {
         int battler = BATTLER_NONE;
 
@@ -2047,7 +2058,8 @@ void BattleAnimScriptFunc_ScaleBattlerSprite(BattleAnimSystem *system)
         }
 
         ctx->monSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, battler);
-    } break;
+        break;
+    }
     }
 
     if (ctx->monSprite == NULL) {
@@ -2934,7 +2946,8 @@ static void BattleAnimTask_BattlerPartialDrawTest(SysTask *task, void *param)
 
         ctx->y -= ctx->step;
         ctx->drawHeight += ctx->step;
-    } break;
+        break;
+    }
     default:
         ResetMonScale(ctx->spriteInfo.monSprite);
         BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
@@ -3198,7 +3211,8 @@ static void BattleAnimTask_ShakeBg(SysTask *task, void *param)
                 Bg_SetOffset(ctx->bgConfig, ctx->bgLayer, BG_OFFSET_UPDATE_SET_Y, ctx->shake.y);
             }
         }
-    } break;
+        break;
+    }
     default:
         BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         Heap_Free(ctx);
@@ -3716,8 +3730,8 @@ static void BattleAnimTask_FollowMeSprite(SysTask *task, void *param)
 
         ctx->state++;
 
-        if (offsetX != 255) {
-            if (offsetX == 0) {
+        if (offsetX != FOLLOW_ME_SPRITE_OFFSET_END) {
+            if (offsetX == FOLLOW_ME_SPRITE_OFFSET_SWITCH_PRIO) {
                 int explicitPrio = ManagedSprite_GetExplicitPriority(ctx->sprite);
                 if (explicitPrio == BattleAnimSystem_GetPokemonSpritePriority(ctx->common.battleAnimSys)) {
                     int bgPrio = BattleAnimSystem_GetBgPriority(ctx->common.battleAnimSys, BATTLE_ANIM_BG_EFFECT);
@@ -3736,7 +3750,8 @@ static void BattleAnimTask_FollowMeSprite(SysTask *task, void *param)
             ctx->state = 0;
             ctx->common.state++;
         }
-    } break;
+        break;
+    }
     case FOLLOW_ME_SPRITE_STATE_TILT: {
         if (ValueLerpContext_Update(&ctx->tilt) == TRUE) {
             ManagedSprite_SetAffineZRotation(ctx->sprite, ctx->tilt.value);
@@ -3765,7 +3780,8 @@ static void BattleAnimTask_FollowMeSprite(SysTask *task, void *param)
                 }
             }
         }
-    } break;
+        break;
+    }
     default:
         Sprite_DeleteAndFreeResources(ctx->sprite);
         BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
@@ -3882,7 +3898,8 @@ static void BattleAnimTask_EscapeItemSprite(SysTask *task, void *param)
             BattleAnimUtil_SetSpriteBgBlending(ctx->common.battleAnimSys, ctx->spriteAlpha, ctx->bgAlpha);
             ctx->common.state++;
         }
-    } break;
+        break;
+    }
     case ESCAPE_ITEM_SPRITE_STATE_FADEOUT:
         if (ctx->spriteAlpha > ESCAPE_ITEM_SPRITE_MIN_ALPHA) {
             ctx->spriteAlpha--;

@@ -611,6 +611,11 @@ enum SurfState {
 #define SURF_ALPHA_TARGET          4
 #define SURF_SPRITE_HEIGHT         16
 
+// -------------------------------------------------------------------
+// Trick Sprite
+// -------------------------------------------------------------------
+#define TRICK_SPRITE_MAX_CUP_COUNT 2
+
 typedef struct TrickCupSprite {
     ManagedSprite *sprite;
     XYTransformContext arc[2];
@@ -630,7 +635,7 @@ typedef struct TrickSpriteContext {
     int attackerOffset;
     u16 unused;
     fx32 radius;
-    TrickCupSprite cupSprites[2];
+    TrickCupSprite cupSprites[TRICK_SPRITE_MAX_CUP_COUNT];
     s16 mx;
     s16 my;
     XYTransformContext attackerScale;
@@ -1371,7 +1376,8 @@ static void BattleAnimTask_Meditate(SysTask *task, void *param)
 
         s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->attackerY, ctx->attackerHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
         PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER, ctx->attackerY + offset);
-    } break;
+        break;
+    }
     default:
         BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         Heap_Free(ctx);
@@ -1667,7 +1673,8 @@ static void BattleAnimTask_Splash(SysTask *task, void *param)
             ctx->attackerHeight,
             ctx->scale.data[XY_PARAM_CUR_Y],
             BATTLE_ANIM_ANCHOR_BOTTOM);
-    } break;
+        break;
+    }
     default:
         BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         Heap_Free(ctx);
@@ -2206,7 +2213,9 @@ static void BattleAnimTask_FlailDefenderMode(SysTask *task, void *param)
         if (ShakeContext_UpdateAndApplyToMon(&ctx->shake, pos.x, pos.y, ctx->battlerSprites[BATTLER_ROLE_DEFENDER]) == FALSE) {
             ctx->common.state++;
         }
-    } break;
+
+        break;
+    }
     default:
         BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
@@ -2692,7 +2701,9 @@ static void BattleAnimTask_TrickSprite(SysTask *task, void *param)
         } else {
             ctx->state++;
         }
-    } break;
+
+        break;
+    }
     case TRICK_SPRITE_STATE_SET_RISE_2: {
         s16 posX, posY;
         ManagedSprite_GetPositionXY(ctx->cupSprites[0].sprite, &posX, &posY);
@@ -2718,7 +2729,9 @@ static void BattleAnimTask_TrickSprite(SysTask *task, void *param)
         if (ctx->delay == TRICK_SPRITE_CUP_2_OFFSET_DELAY) {
             ManagedSprite_OffsetPositionXY(ctx->cupSprites[1].sprite, 0, 16);
         }
-    } break;
+
+        break;
+    }
     case TRICK_SPRITE_STATE_CALC_ARC_PARAMS:
         if (++ctx->delay < TRICK_SPRITE_DELAY_2 + 1) {
             break;
@@ -2740,7 +2753,7 @@ static void BattleAnimTask_TrickSprite(SysTask *task, void *param)
 
     case TRICK_SPRITE_STATE_INIT_ARC: {
         s16 cup1X, cup1Y, cup2X, cup2Y;
-        s8 cupArcDirections[TRICK_SPRITE_CUP_SWITCH_COUNT][2] = {
+        s8 cupArcDirections[TRICK_SPRITE_CUP_SWITCH_COUNT][TRICK_SPRITE_MAX_CUP_COUNT] = {
             { +1, -1 },
             { -1, +1 },
             { +1, -1 },
@@ -2792,14 +2805,15 @@ static void BattleAnimTask_TrickSprite(SysTask *task, void *param)
             switchDone++;
         }
 
-        if (switchDone == 2) {
+        if (switchDone == TRICK_SPRITE_MAX_CUP_COUNT) {
             if (ctx->iteration == TRICK_SPRITE_CUP_SWITCH_COUNT) {
                 ctx->state++;
             } else {
                 ctx->state--;
             }
         }
-    } break;
+        break;
+    }
     case TRICK_SPRITE_STATE_FADE_OUT: {
         int alphaDone = 0;
 
@@ -2816,7 +2830,8 @@ static void BattleAnimTask_TrickSprite(SysTask *task, void *param)
         if (alphaDone == 2) {
             ctx->state++;
         }
-    } break;
+        break;
+    }
     default:
         for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, TRICK_SPRITE_VAR_CUP_COUNT); i++) {
             Sprite_DeleteAndFreeResources(ctx->cupSprites[i].sprite);

@@ -490,7 +490,8 @@ static void BattleAnimTask_HelpingHandSprite(SysTask *task, void *param)
 
         ctx->currentPair++;
         ctx->state++;
-    } break;
+        break;
+    }
     case HELPING_HAND_SPRITE_STATE_MOVE: {
         int doneCount = 0;
         BOOL active = PosLerpContext_UpdateAndApplyToSprite(&ctx->hand1Pos, ctx->hand1);
@@ -512,7 +513,8 @@ static void BattleAnimTask_HelpingHandSprite(SysTask *task, void *param)
                 ctx->state++;
             }
         }
-    } break;
+        break;
+    }
     case HELPING_HAND_SPRITE_STATE_FADE_OUT:
         if (ctx->spriteAlpha > HELPING_HAND_SPRITE_MIN_ALPHA) {
             ctx->spriteAlpha--;
@@ -680,7 +682,8 @@ static void BattleAnimTask_AssistPaw(SysTask *task, void *param)
             sAssistPawSpriteDestinations[paw->destIndex].y,
             frames);
         paw->state++;
-    } break;
+        break;
+    }
     case ASSIST_PAW_SPRITE_STATE_MOVE: {
         BOOL active = PosLerpContext_UpdateAndApplyToSprite(&paw->pos, paw->sprite);
         if (active == FALSE) {
@@ -718,7 +721,8 @@ static void BattleAnimTask_AssistSprite(SysTask *task, void *param)
         if (scaleDone == TRUE) {
             ctx->state++;
         }
-    } break;
+        break;
+    }
     case ASSIST_SPRITE_STATE_BEGIN_MOVE:
         for (i = 0; i < ctx->pawCount; i++) {
             ctx->pawStates[i] = ASSIST_PAW_SPRITE_OUTER_STATE_MOVE;
@@ -739,7 +743,8 @@ static void BattleAnimTask_AssistSprite(SysTask *task, void *param)
         if (done == TRUE) {
             ctx->state++;
         }
-    } break;
+        break;
+    }
     case ASSIST_SPRITE_STATE_CLEANUP:
         for (i = 0; i < ctx->pawCount; i++) {
             Sprite_DeleteAndFreeResources(ctx->paws[i].sprite);
@@ -832,7 +837,8 @@ static void BattleAnimTask_Camouflage(SysTask *task, void *param)
             BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
         PokemonSprite_SetAttribute(attackerSprite, MON_SPRITE_HIDE, TRUE);
         ctx->common.state++;
-    } break;
+        break;
+    }
     case CAMOUFLAGE_STATE_FADE_OUT:
         if (AlphaFadeContext_IsDone(&ctx->alpha) == FALSE) {
             break;
@@ -877,7 +883,8 @@ static void BattleAnimTask_Camouflage(SysTask *task, void *param)
             BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
         PokemonSprite_SetAttribute(attackerSprite, MON_SPRITE_HIDE, FALSE);
         ctx->common.state++;
-    } break;
+        break;
+    }
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
         BattleAnimSystem_UnloadBaseBg(ctx->common.battleAnimSys, BATTLE_BG_BASE);
