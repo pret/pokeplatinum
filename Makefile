@@ -11,6 +11,7 @@
 	purge         \
 	release       \
 	rom           \
+	run           \
 	setup_debug   \
 	setup_release \
 	skrew         \
@@ -103,6 +104,10 @@ check: rom
 
 rom: $(BUILD)/build.ninja
 	$(NINJA) -C $(BUILD) pokeplatinum.us.nds
+
+# Build the ROM (no matching check) and launch it in melonDS.
+run: rom
+	open -a melonDS $(BUILD)/pokeplatinum.us.nds
 
 format: $(BUILD)/build.ninja
 	$(NINJA) -C $(BUILD) clang-format
