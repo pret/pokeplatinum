@@ -120,6 +120,8 @@ void MapObject_SetMovementType(MapObject *mapObj, u32 movementType);
 u32 MapObject_GetMovementType(const MapObject *mapObj);
 void MapObject_SetTrainerType(MapObject *mapObj, u32 trainerType);
 u32 MapObject_GetTrainerType(const MapObject *mapObj);
+void MapObject_SetPlttVariant(MapObject *mapObj, u8 plttVariant);
+u8 MapObject_GetPlttVariant(const MapObject *mapObj);
 void MapObject_SetFlag(MapObject *mapObj, u32 flag);
 u32 MapObject_GetFlag(const MapObject *mapObj);
 void MapObject_SetScript(MapObject *mapObj, u32 script);

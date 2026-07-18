@@ -1443,6 +1443,7 @@ BOOL ov5_021EDEB4(MapObject *param0, Billboard *param1)
     v1.z += (FX32_ONE * 6);
 
     Billboard_SetPos(param1, &v1);
+    Billboard_SetPlttVariant(param1, MapObject_GetPlttVariant(param0));
 
     return 0;
 }
@@ -1952,6 +1953,7 @@ static Billboard *ov5_021EE454(MapObject *param0, int param1, UnkFuncPtr_ov5_021
     Billboard_SetAnimNum(v11->unk_24, Billboard_GetAnimNum(v10));
     Billboard_SetAnimFrameNum(v11->unk_24, Billboard_GetAnimFrameNum(v10));
     Billboard_SetFrameNum(v11->unk_24, Billboard_GetFrameNum(v10));
+    Billboard_SetPlttVariant(v11->unk_24, MapObject_GetPlttVariant(param0));
     Billboard_AdvanceAnim(v11->unk_24, 0);
     Billboard_SetDrawFlag(v11->unk_24, 1);
     Billboard_TryRequestVRAMTransfer(v11->unk_24);

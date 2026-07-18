@@ -38,6 +38,7 @@ typedef struct Billboard {
     NNSGfdPlttKey plttKey;
     BillboardGfxSequence gfxSequence;
     BillboardVRAMTransfer *vramTransfer;
+    u8 plttVariant;
     u8 state;
     u16 animNum;
     fx32 frameNum;
@@ -128,5 +129,7 @@ NNSG3dResMdl *Billboard_GetModel2(Billboard *billboard);
 NNSG3dResTex *Billboard_GetTexture(Billboard *billboard);
 NNSG3dRenderObj *Billboard_GetRenderObj(Billboard *billboard);
 void Billboard_SetCallback(Billboard *billboard, BillboardCallback callback, void *callbackParam);
+void Billboard_SetPlttVariant(Billboard *billboard, u8 plttVariant);
+u8 Billboard_GetPlttVariant(const Billboard *billboard);
 
 #endif // POKEPLATINUM_BILLBOARD_H

@@ -86,6 +86,54 @@
         "OK, {STRVAR_1 3, 1, 0}? If you’re late, I’m\n",
         "fining you $10 million!\r"
       ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse2F_Text_OutfitPrompt",
+      "en_US": [
+        "Which outfit will you wear?"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse2F_Text_OutfitOriginal",
+      "en_US": [
+        "Blue (original)"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse2F_Text_OutfitRed",
+      "en_US": [
+        "Red"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse2F_Text_OutfitGreen",
+      "en_US": [
+        "Green"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse2F_Text_OutfitPurple",
+      "en_US": [
+        "Purple"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse2F_Text_OutfitOrange",
+      "en_US": [
+        "Orange"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse2F_Text_OutfitGrey",
+      "en_US": [
+        "Grey"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse2F_Text_OutfitCancel",
+      "en_US": [
+        "Cancel"
+      ]
     }
   ]
 }

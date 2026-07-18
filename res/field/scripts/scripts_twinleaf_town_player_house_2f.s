@@ -23,6 +23,7 @@ TwinleafTownPlayerHouse2F_SetVolumeForTV:
     SetInitialVolumeForSequence SEQ_TV_HOUSOU, 50
     End
 
+
 TwinleafTownPlayerHouse2F_OnFrame_ConcludeSpecialProgram:
     LockAll
     SetVar VAR_PLAYER_HOUSE_SPECIAL_PROGRAM_STATE, 1
@@ -45,6 +46,26 @@ TwinleafTownPlayerHouse2F_PC:
     BufferPlayerName 0
     Message TwinleafTownPlayerHouse2F_Text_PCPokemonBasics
     WaitButton
+    CloseMessage
+    Message TwinleafTownPlayerHouse2F_Text_OutfitPrompt
+
+TwinleafTownPlayerHouse2F_Outfit_Menu:
+    InitLocalTextMenu 1, 1, 0, VAR_RESULT, TRUE
+    AddMenuEntryImm TwinleafTownPlayerHouse2F_Text_OutfitOriginal, 0
+    AddMenuEntryImm TwinleafTownPlayerHouse2F_Text_OutfitRed, 1
+    AddMenuEntryImm TwinleafTownPlayerHouse2F_Text_OutfitGreen, 2
+    AddMenuEntryImm TwinleafTownPlayerHouse2F_Text_OutfitPurple, 3
+    AddMenuEntryImm TwinleafTownPlayerHouse2F_Text_OutfitOrange, 4
+    AddMenuEntryImm TwinleafTownPlayerHouse2F_Text_OutfitGrey, 5
+    AddMenuEntryImm TwinleafTownPlayerHouse2F_Text_OutfitCancel, 6
+    ShowMenu
+    @ Covers both the explicit Cancel entry (6) and B, which yields MENU_CANCEL
+    @ (0xFFFE). That value cannot be compared as a literal: the script engine
+    @ treats anything >= VARS_START (0x4000) as a variable ID.
+    GoToIfGe VAR_RESULT, 6, TwinleafTownPlayerHouse2F_Outfit_Done
+    SetPlayerOutfit VAR_RESULT
+
+TwinleafTownPlayerHouse2F_Outfit_Done:
     CloseMessage
     ReleaseAll
     End

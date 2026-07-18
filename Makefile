@@ -105,8 +105,11 @@ check: rom
 rom: $(BUILD)/build.ninja
 	$(NINJA) -C $(BUILD) pokeplatinum.us.nds
 
-# Build the ROM (no matching check) and launch it in melonDS.
 run: rom
+	@if [ ! -f $(BUILD)/pokeplatinum.us.sav ] && [ -f saves/platinum-100.sav ]; then \
+		cp saves/platinum-100.sav $(BUILD)/pokeplatinum.us.sav; \
+		echo "Seeded $(BUILD)/pokeplatinum.us.sav from saves/platinum-100.sav"; \
+	fi
 	open -a melonDS $(BUILD)/pokeplatinum.us.nds
 
 format: $(BUILD)/build.ninja

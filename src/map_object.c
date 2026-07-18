@@ -56,6 +56,7 @@ typedef struct MapObject {
     u32 localID;
     u32 mapID;
     u32 graphicsID;
+    u8 plttVariant;
     u32 movementType;
     u32 trainerType;
     u32 flag;
@@ -1266,6 +1267,16 @@ void MapObject_SetTrainerType(MapObject *mapObj, u32 trainerType)
 u32 MapObject_GetTrainerType(const MapObject *mapObj)
 {
     return mapObj->trainerType;
+}
+
+void MapObject_SetPlttVariant(MapObject *mapObj, u8 plttVariant)
+{
+    mapObj->plttVariant = plttVariant;
+}
+
+u8 MapObject_GetPlttVariant(const MapObject *mapObj)
+{
+    return mapObj->plttVariant;
 }
 
 void MapObject_SetFlag(MapObject *mapObj, u32 flag)

@@ -199,6 +199,7 @@ Static main
 	Object main.nef.p/src_scrcmd_mystery_gift.c.o
 	Object main.nef.p/src_scrcmd_catching_show.c.o
 	Object main.nef.p/src_scrcmd_coins.c.o
+	Object main.nef.p/src_scrcmd_outfit.c.o
 	Object main.nef.p/src_scrcmd_money.c.o
 	Object main.nef.p/src_scrcmd_daycare.c.o
 	Object main.nef.p/src_scrcmd_amity_square.c.o

@@ -153,6 +153,7 @@
 #include "scrcmd_berry.h"
 #include "scrcmd_catching_show.h"
 #include "scrcmd_coins.h"
+#include "scrcmd_outfit.h"
 #include "scrcmd_contests.h"
 #include "scrcmd_daycare.h"
 #include "scrcmd_dummy_23F_242.h"

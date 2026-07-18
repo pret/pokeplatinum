@@ -187,6 +187,7 @@ pokeplatinum_c = files(
     'scrcmd_mystery_gift.c',
     'scrcmd_catching_show.c',
     'scrcmd_coins.c',
+    'scrcmd_outfit.c',
     'scrcmd_money.c',
     'scrcmd_daycare.c',
     'scrcmd_amity_square.c',

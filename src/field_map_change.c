@@ -338,6 +338,12 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
     fieldSystem->wildBattleMetadata.wildMonDefeated = 0;
 }
 
+static void FieldMapChange_ApplySavedOutfit(FieldSystem *fieldSystem)
+{
+    MapObject *mapObj = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
+    MapObject_SetPlttVariant(mapObj, FieldSystem_TryGetVar(fieldSystem, VAR_PLAYER_OUTFIT));
+}
+
 static void FieldMapChange_CreateObjects(FieldSystem *fieldSystem)
 {
     fieldSystem->mapObjMan = MapObjectMan_New(fieldSystem, 64, 5);
@@ -347,6 +353,7 @@ static void FieldMapChange_CreateObjects(FieldSystem *fieldSystem)
     PlayerData *playerData = FieldOverworldState_GetPlayerData(fieldState);
 
     fieldSystem->playerAvatar = PlayerAvatar_New(fieldSystem->mapObjMan, fieldSystem->location->x, fieldSystem->location->z, fieldSystem->location->faceDirection, playerData->playerState, gender, 0, playerData);
+    FieldMapChange_ApplySavedOutfit(fieldSystem);
 
     sub_0203A418(fieldSystem);
     MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
@@ -369,6 +376,7 @@ static void FieldMapChange_LoadObjects(FieldSystem *fieldSystem)
     int gender = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
 
     fieldSystem->playerAvatar = PlayerAvatar_NewLoad(fieldSystem->mapObjMan, playerData, gender);
+    FieldMapChange_ApplySavedOutfit(fieldSystem);
 
     MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
 }

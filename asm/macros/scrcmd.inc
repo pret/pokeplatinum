@@ -5354,6 +5354,12 @@
     CallCommonScript 0x809
     .endm
 
+    @ Sets the player's overworld outfit (a palette index; 0 = the asset's own).
+    .macro SetPlayerOutfit outfitVar
+    .short SCRCMD_SETPLAYEROUTFIT
+    .short \outfitVar
+    .endm
+
     .text
     .globl _start
 _start:
