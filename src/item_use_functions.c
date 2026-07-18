@@ -184,7 +184,7 @@ void ItemUseContext_Init(FieldSystem *fieldSystem, ItemUseContext *ctxOut)
     }
 
     ctxOut->fieldSystem = fieldSystem;
-    ctxOut->mapHeaderID = fieldSystem->location->mapId;
+    ctxOut->mapHeaderID = fieldSystem->location->mapHeaderID;
     ctxOut->hasPartner = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     ctxOut->playerState = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
 
@@ -221,7 +221,7 @@ void ItemUseContext_Init(FieldSystem *fieldSystem, ItemUseContext *ctxOut)
 static void ItemUseContext_InitForDistortionWorld(FieldSystem *fieldSystem, ItemUseContext *ctxOut)
 {
     ctxOut->fieldSystem = fieldSystem;
-    ctxOut->mapHeaderID = fieldSystem->location->mapId;
+    ctxOut->mapHeaderID = fieldSystem->location->mapHeaderID;
     ctxOut->hasPartner = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     ctxOut->playerState = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     ctxOut->currTileBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
@@ -437,7 +437,7 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
             FieldBGM_SetOverride(fieldSystem, SEQ_NONE);
-            FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
+            FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID), 1);
         } else {
             FieldBGM_SetOverride(fieldSystem, SEQ_BICYCLE);
             FieldBGM_TryFadeOut(fieldSystem, SEQ_BICYCLE, 1);

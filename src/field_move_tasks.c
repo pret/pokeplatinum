@@ -17,7 +17,9 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F101C.h"
 #include "overlay006/field_warp.h"
+#include "overlay006/hm_cut_in.h"
 
+#include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "field_task.h"
 #include "heap.h"
@@ -31,6 +33,7 @@
 #include "player_move.h"
 #include "save_player.h"
 #include "script_manager.h"
+#include "spawn_locations.h"
 #include "start_menu.h"
 #include "system_flags.h"
 #include "terrain_collision_manager.h"
@@ -210,7 +213,7 @@ BOOL FieldMoves_FlyTask(FieldTask *task)
 
         Location location;
         Location_InitFly(destination, &location);
-        FieldTask_ChangeMapChangeFly(task, location.mapId, WARP_ID_NONE, location.x, location.z, DIR_SOUTH);
+        FieldTask_ChangeMapChangeFly(task, location.mapHeaderID, WARP_ID_NONE, location.x, location.z, DIR_SOUTH);
 
         Heap_Free(ctx);
     }
@@ -235,7 +238,7 @@ void FieldMoves_SetUsableMoves(FieldSystem *fieldSystem, FieldMoveContext *field
     int currTileBehavior;
 
     fieldMoveContext->fieldSystem = fieldSystem;
-    fieldMoveContext->mapId = fieldSystem->location->mapId;
+    fieldMoveContext->mapHeaderID = fieldSystem->location->mapHeaderID;
     fieldMoveContext->usableMoves = 0;
 
     if (PlayerAvatar_DistortionGravityChanged(fieldSystem->playerAvatar) == TRUE) {
@@ -371,7 +374,7 @@ static enum FieldMoveError FieldMoves_CheckFly(const FieldMoveContext *fieldMove
         return FIELD_MOVE_ERROR_BADGE;
     }
 
-    if (MapHeader_IsFlyAllowed(fieldMoveContext->mapId) == FALSE) {
+    if (MapHeader_IsFlyAllowed(fieldMoveContext->mapHeaderID) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
@@ -707,7 +710,7 @@ static enum FieldMoveError FieldMoves_CheckTeleport(const FieldMoveContext *fiel
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (MapHeader_IsTeleportAllowed(fieldMoveContext->mapId) == FALSE) {
+    if (MapHeader_IsTeleportAllowed(fieldMoveContext->mapHeaderID) == FALSE) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
@@ -754,7 +757,7 @@ static enum FieldMoveError FieldMoves_CheckDig(const FieldMoveContext *fieldMove
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
-    if (!((MapHeader_IsCave(fieldMoveContext->mapId) == TRUE) && (MapHeader_IsEscapeRopeAllowed(fieldMoveContext->mapId) == TRUE))) {
+    if (!((MapHeader_IsCave(fieldMoveContext->mapHeaderID) == TRUE) && (MapHeader_IsEscapeRopeAllowed(fieldMoveContext->mapHeaderID) == TRUE))) {
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
@@ -785,7 +788,7 @@ static BOOL FieldMoves_DigTask(FieldTask *task)
     UnkStruct_020711C8 *v1 = FieldTask_GetEnv(task);
     FieldWarp *fieldWarp = FieldWarp_InitDig(fieldSystem, v1->unk_00, HEAP_ID_FIELD2);
 
-    void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(FIELD_MOVE_DIG, fieldSystem->location->mapId, HEAP_ID_FIELD1);
+    void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(FIELD_MOVE_DIG, fieldSystem->location->mapHeaderID, HEAP_ID_FIELD1);
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 
     Heap_Free(v1);
@@ -821,7 +824,7 @@ static void FieldMoves_SetSweetScentTask(FieldMovePokemon *fieldMoveMon, const F
     startMenu->taskData = v2;
     startMenu->state = START_MENU_STATE_NEW_TASK;
 
-    v4 = JournalEntry_CreateEventUsedMove(FIELD_MOVE_SWEET_SCENT, fieldSystem->location->mapId, HEAP_ID_FIELD2);
+    v4 = JournalEntry_CreateEventUsedMove(FIELD_MOVE_SWEET_SCENT, fieldSystem->location->mapHeaderID, HEAP_ID_FIELD2);
     JournalEntry_SaveData(fieldSystem->journalEntry, v4, JOURNAL_LOCATION);
 }
 

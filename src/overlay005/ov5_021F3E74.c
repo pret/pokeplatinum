@@ -106,7 +106,7 @@ static int ov5_021F3F74(OverworldAnimManager *param0, void *param1)
 
     v1->unk_10 = *v2;
     v1->unk_04 = MapObject_GetLocalID(v1->unk_10.unk_0C);
-    v1->unk_08 = MapObject_GetMapID(v1->unk_10.unk_0C);
+    v1->unk_08 = MapObject_GetMapHeaderID(v1->unk_10.unk_0C);
 
     OverworldAnimManager_GetPosition(param0, &v0);
 

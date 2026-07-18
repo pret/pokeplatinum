@@ -230,8 +230,8 @@ static void PartyMenu_SelectItemTake(PartyMenuApplication *application, int *par
         Pokemon_SetArceusForm(mon);
 
         if (fieldSystem == NULL
-            || fieldSystem->location->mapId < MAP_HEADER_DISTORTION_WORLD_1F
-            || fieldSystem->location->mapId > MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM) {
+            || fieldSystem->location->mapHeaderID < MAP_HEADER_DISTORTION_WORLD_1F
+            || fieldSystem->location->mapHeaderID > MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM) {
             v1 = Pokemon_SetGiratinaFormByHeldItem(mon);
 
             if ((application->partyMembers[application->currPartySlot].heldItem == ITEM_GRISEOUS_ORB) && (v1 == 0)) {

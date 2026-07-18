@@ -175,7 +175,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapID heapID, const Fie
     dto->subscreenCursorOn = NULL;
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
-    dto->mapHeaderID = fieldSystem->location->mapId;
+    dto->mapHeaderID = fieldSystem->location->mapHeaderID;
 
     FieldBattleDTO_CopyPlayerInfoToTrainerData(dto);
 
@@ -278,7 +278,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
 
 void FieldBattleDTO_Init(FieldBattleDTO *dto, const FieldSystem *fieldSystem)
 {
-    FieldBattleDTO_InitFromGameState(dto, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->journalEntry, fieldSystem->bagCursor, fieldSystem->battleSubscreenCursorOn);
+    FieldBattleDTO_InitFromGameState(dto, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapHeaderID, fieldSystem->journalEntry, fieldSystem->bagCursor, fieldSystem->battleSubscreenCursorOn);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(dto);
 }
 
@@ -327,7 +327,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
     dto->palPad = SaveData_GetPalPad(fieldSystem->saveData);
-    dto->mapHeaderID = fieldSystem->location->mapId;
+    dto->mapHeaderID = fieldSystem->location->mapHeaderID;
     dto->saveData = fieldSystem->saveData;
 
     FieldBattleDTO_CopyPlayerInfoToTrainerData(dto);
@@ -391,7 +391,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     dto->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
-    dto->mapHeaderID = fieldSystem->location->mapId;
+    dto->mapHeaderID = fieldSystem->location->mapHeaderID;
     dto->palPad = SaveData_GetPalPad(fieldSystem->saveData);
     dto->saveData = fieldSystem->saveData;
 
@@ -496,7 +496,7 @@ static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground bac
 static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fieldSystem)
 {
     PlayerData *player = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    dto->background = MapHeader_GetBattleBG(fieldSystem->location->mapId);
+    dto->background = MapHeader_GetBattleBG(fieldSystem->location->mapHeaderID);
     if (player->playerState == PLAYER_AVATAR_SURFING) {
         dto->background = BACKGROUND_WATER;
     }

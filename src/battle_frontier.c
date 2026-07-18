@@ -313,7 +313,7 @@ FieldFrontierDTO *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
     fieldData->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
     fieldData->unk_14 = 0;
     fieldData->unk_18 = 0;
-    fieldData->mapHeaderID = fieldSystem->location->mapId;
+    fieldData->mapHeaderID = fieldSystem->location->mapHeaderID;
     fieldData->sceneID = FRONTIER_SCENE_14;
     fieldData->fieldSystem = fieldSystem;
 

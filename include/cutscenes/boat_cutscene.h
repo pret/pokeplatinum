@@ -2,6 +2,7 @@
 #define POKEPLATINUM_BOAT_CUTSCENE_H
 
 #include "constants/boat_cutscene.h"
+#include "generated/map_headers.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/model_attributes.h"
@@ -28,7 +29,7 @@ typedef struct BoatTravelCutscene {
     ModelAttributes *areaModelAttrs;
 } BoatTravelCutscene;
 
-void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, const u8 exitDir, const int mapID, const int x, const int z);
+void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, const u8 exitDir, const enum MapHeaderID mapHeaderID, const int x, const int z);
 
 BOOL BoatCutscene_CanalaveShip_Init(ApplicationManager *appMan, int *state);
 BOOL BoatCutscene_CanalaveShip_Main(ApplicationManager *appMan, int *state);

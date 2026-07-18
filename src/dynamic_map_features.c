@@ -104,6 +104,6 @@ BOOL DynamicMapFeatures_CheckCollision(FieldSystem *fieldSystem, const int tileX
 
 BOOL DynamicMapFeatures_WillPlayerJumpEternaGymClock(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 unused3, int direction)
 {
-    return fieldSystem->location->mapId == MAP_HEADER_ETERNA_CITY_GYM
+    return fieldSystem->location->mapHeaderID == MAP_HEADER_ETERNA_CITY_GYM
         && EternaGym_IsHourHandJumpTile(fieldSystem, tileX, tileZ, direction);
 }

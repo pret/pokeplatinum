@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/map_headers.h"
+
 #include "field/field_system.h"
 #include "overlay006/dual_slot_encounters.h"
 #include "overlay006/great_marsh_daily_encounters.h"
@@ -32,7 +34,7 @@ int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
 
     BOOL natDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
 
-    ReplaceGreatMarshDailyEncounters(SpecialEncounter_GetDailyMon(SaveData_GetSpecialEncounters(fieldSystem->saveData), DAILY_MARSH), natDexObtained, fieldSystem->location->mapId, &encounterTable[6], &encounterTable[7]);
+    ReplaceGreatMarshDailyEncounters(SpecialEncounter_GetDailyMon(SaveData_GetSpecialEncounters(fieldSystem->saveData), DAILY_MARSH), natDexObtained, fieldSystem->location->mapHeaderID, &encounterTable[6], &encounterTable[7]);
     WildEncounters_ReplaceTimedEncounters(encounterData, &encounterTable[2], &encounterTable[3]);
     WildEncounters_ReplaceDualSlotEncounters(encounterData, natDexObtained, &encounterTable[8], &encounterTable[9]);
 
@@ -56,7 +58,7 @@ GreatMarshBinoculars *GreatMarshBinoculars_InitData(const enum HeapID heapID, Fi
 
     binocularsData->coordsList[BINOCULARS_CYCLE_COUNT].x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
     binocularsData->coordsList[BINOCULARS_CYCLE_COUNT].z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
-    binocularsData->lookoutMapId = fieldSystem->location->mapId;
+    binocularsData->lookoutMapHeaderID = fieldSystem->location->mapHeaderID;
     Heap_Free(coordData);
 
     return binocularsData;
@@ -69,23 +71,23 @@ void GreatMarshBinoculars_FreeData(GreatMarshBinoculars *data)
 
 void GreatMarshBinoculars_SetNextLocationWithCoords(const u8 cycleNum, GreatMarshBinoculars *binocularsData)
 {
-    int nextMapId;
+    enum MapHeaderID nextMapHeaderID;
     int nextX, nextZ;
 
     if (cycleNum == 0) {
         int v3 = 240; // member number for NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX. Not sure what it represents exactly.
         nextX = binocularsData->coordsList[cycleNum].x / 32;
         nextZ = binocularsData->coordsList[cycleNum].z / 32;
-        nextMapId = MapMatrixData_GetMapHeaderIDAtCoords(v3, nextX, nextZ);
+        nextMapHeaderID = MapMatrixData_GetMapHeaderIDAtCoords(v3, nextX, nextZ);
     } else if (cycleNum == BINOCULARS_CYCLE_COUNT) {
-        nextMapId = binocularsData->lookoutMapId;
+        nextMapHeaderID = binocularsData->lookoutMapHeaderID;
     } else {
         nextX = binocularsData->coordsList[cycleNum].x / 32;
         nextZ = binocularsData->coordsList[cycleNum].z / 32;
-        nextMapId = MapMatrix_GetMapHeaderIDAtCoords(binocularsData->fieldSystem->mapMatrix, nextX, nextZ);
+        nextMapHeaderID = MapMatrix_GetMapHeaderIDAtCoords(binocularsData->fieldSystem->mapMatrix, nextX, nextZ);
     }
 
-    Location_Set(&binocularsData->viewLocation, nextMapId, -1, binocularsData->coordsList[cycleNum].x, binocularsData->coordsList[cycleNum].z, 0);
+    Location_Set(&binocularsData->viewLocation, nextMapHeaderID, -1, binocularsData->coordsList[cycleNum].x, binocularsData->coordsList[cycleNum].z, 0);
 }
 
 Location *GreatMarshBinoculars_GetLocation(GreatMarshBinoculars *binocData)

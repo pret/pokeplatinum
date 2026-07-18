@@ -186,7 +186,7 @@ static BOOL State_OnIntroScreen(PoketchLinkSearcher *appData)
 
             PoketchLinkSearcherGraphics_StartTask(appData->graphics, LINK_SEARCHER_GRAPHICS_SEARCHING);
 
-            if (MapHeader_IsPokemonCenter2(fieldSystem->location->mapId)) {
+            if (MapHeader_IsPokemonCenter2(fieldSystem->location->mapHeaderID)) {
                 ChangeState(appData, STATE_UNUSABLE_ERROR);
             } else {
                 ChangeState(appData, STATE_SHOW_RESULTS);

@@ -832,7 +832,7 @@ static BOOL ov5_021E03C8(FieldTask *param0)
 
         PlayerAvatar_SetSurfMountAnimManager(v0->playerAvatar, NULL);
         PlayerAvatar_SetPlayerState(v0->playerAvatar, 0x0);
-        FieldBGM_TryFadeOut(v0->fieldSystem, FieldBGM_GetForMapHeader(v0->fieldSystem, v0->fieldSystem->location->mapId), 1);
+        FieldBGM_TryFadeOut(v0->fieldSystem, FieldBGM_GetForMapHeader(v0->fieldSystem, v0->fieldSystem->location->mapHeaderID), 1);
         MonRideTaskEnv_Free(v0);
         return 1;
     }

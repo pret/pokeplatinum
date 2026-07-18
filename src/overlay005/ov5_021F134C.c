@@ -227,7 +227,7 @@ static int ov5_021F15B4(OverworldAnimManager *param0, void *param1)
     if (sub_02062E94(v0->unk_14.unk_08) == 1) {
         v0->unk_08 = sub_02062C18(v0->unk_14.unk_08);
     } else {
-        v0->unk_08 = MapObject_GetMapID(v0->unk_14.unk_08);
+        v0->unk_08 = MapObject_GetMapHeaderID(v0->unk_14.unk_08);
     }
 
     return 1;

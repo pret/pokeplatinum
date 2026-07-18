@@ -1,7 +1,9 @@
-#include "unk_02070428.h"
+#include "field_map_change_flags.h"
 
 #include <nitro.h>
 #include <string.h>
+
+#include "generated/map_headers.h"
 
 #include "struct_defs/player_data.h"
 #include "struct_defs/special_encounter.h"
@@ -23,43 +25,41 @@
 #include "system_vars.h"
 #include "vars_flags.h"
 
-static BOOL sub_020705DC(FieldSystem *fieldSystem);
-static BOOL sub_02070610(FieldSystem *fieldSystem);
+static BOOL CreateFlyLocationJournalEvent(FieldSystem *fieldSystem);
+static BOOL CreateMapTransitionJournalEvent(FieldSystem *fieldSystem);
 
-void sub_02070428(FieldSystem *fieldSystem, BOOL param1)
+void FieldSystem_SetTemporaryMapChange(FieldSystem *fieldSystem, BOOL temporaryMapChange)
 {
-    fieldSystem->unk_B8 = param1;
+    fieldSystem->temporaryMapChange = temporaryMapChange;
 }
 
 void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem)
 {
-    sub_020705DC(fieldSystem);
+    CreateFlyLocationJournalEvent(fieldSystem);
     SystemFlag_HandleForceBikingInGate(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
-    TryUnlockFlyLocationByMap(fieldSystem, fieldSystem->location->mapId);
+    TryUnlockFlyLocationByMap(fieldSystem, fieldSystem->location->mapHeaderID);
     SpecialEncounter_SetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData), FLUTE_FACTOR_NONE);
 
     fieldSystem->wildBattleMetadata.encounterAttempts = 0;
 
     if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE) {
-        SpecialEncounter *v0;
-
-        v0 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
-        RoamingPokemon_UpdatePlayerRecentRoutes(v0, fieldSystem->location->mapId);
-        RoamingPokemon_MoveAllLocations(v0);
+        SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+        RoamingPokemon_UpdatePlayerRecentRoutes(speEnc, fieldSystem->location->mapHeaderID);
+        RoamingPokemon_MoveAllLocations(speEnc);
     }
 }
 
 void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
 {
-    if (fieldSystem->unk_B8 == 1) {
+    if (fieldSystem->temporaryMapChange == TRUE) {
         return;
     }
 
-    if (sub_020705DC(fieldSystem) == 0) {
-        sub_02070610(fieldSystem);
+    if (CreateFlyLocationJournalEvent(fieldSystem) == FALSE) {
+        CreateMapTransitionJournalEvent(fieldSystem);
     }
 
     SystemFlag_HandleForceBikingInGate(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
@@ -67,36 +67,34 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
 
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
-    TryUnlockFlyLocationByMap(fieldSystem, fieldSystem->location->mapId);
+    TryUnlockFlyLocationByMap(fieldSystem, fieldSystem->location->mapHeaderID);
     SpecialEncounter_SetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData), FLUTE_FACTOR_NONE);
 
     fieldSystem->wildBattleMetadata.encounterAttempts = 0;
 
     {
-        SpecialEncounter *v0;
-
-        v0 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
-        RoamingPokemon_UpdatePlayerRecentRoutes(v0, fieldSystem->location->mapId);
+        SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+        RoamingPokemon_UpdatePlayerRecentRoutes(speEnc, fieldSystem->location->mapHeaderID);
     }
 
-    if (!MapHeader_IsCave(fieldSystem->location->mapId)) {
-        VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    if (!MapHeader_IsCave(fieldSystem->location->mapHeaderID)) {
+        VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-        SystemFlag_ClearFlashActive(v1);
-        SystemFlag_ClearDefogActive(v1);
+        SystemFlag_ClearFlashActive(varsFlags);
+        SystemFlag_ClearDefogActive(varsFlags);
     }
 
     {
-        PlayerData *v2 = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+        PlayerData *playerData = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-        if ((v2->playerState == PLAYER_AVATAR_CYCLING) && (MapHeader_IsBikeAllowed(fieldSystem->location->mapId) == 0)) {
-            v2->playerState = PLAYER_AVATAR_WALKING;
-        } else if (v2->playerState == PLAYER_AVATAR_SURFING) {
-            v2->playerState = PLAYER_AVATAR_WALKING;
+        if (playerData->playerState == PLAYER_AVATAR_CYCLING && MapHeader_IsBikeAllowed(fieldSystem->location->mapHeaderID) == FALSE) {
+            playerData->playerState = PLAYER_AVATAR_WALKING;
+        } else if (playerData->playerState == PLAYER_AVATAR_SURFING) {
+            playerData->playerState = PLAYER_AVATAR_WALKING;
         }
     }
 
-    if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
+    if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapHeaderID)) {
         OverworldMapHistory *mapHistory = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
         OverworldMapHistory_PushViaWarp(mapHistory, fieldSystem->location->x, fieldSystem->location->z);
     }
@@ -126,29 +124,29 @@ void FieldSystem_ClearPartnerTrainer(FieldSystem *fieldSystem)
     SystemVars_SetPartnerTrainerID(varsFlags, 0);
 }
 
-void sub_020705CC(FieldSystem *fieldSystem)
+void FieldSystem_RandomizeRoamingPokemonLocations(FieldSystem *fieldSystem)
 {
     RoamingPokemon_RandomizeAllLocations(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 }
 
-static BOOL sub_020705DC(FieldSystem *fieldSystem)
+static BOOL CreateFlyLocationJournalEvent(FieldSystem *fieldSystem)
 {
-    int v0 = GetMapFlyWarpId(fieldSystem->location->mapId);
+    int flyLocation = GetMapFlyWarpId(fieldSystem->location->mapHeaderID);
 
-    if (v0 != 0 && CheckFlyLocationUnlocked(fieldSystem, v0) == 0) {
-        JournalEntry_CreateAndSaveEventArrivedInLocation(fieldSystem->journalEntry, fieldSystem->location->mapId, HEAP_ID_FIELD3);
+    if (flyLocation != MAP_HEADER_EVERYWHERE && CheckFlyLocationUnlocked(fieldSystem, flyLocation) == FALSE) {
+        JournalEntry_CreateAndSaveEventArrivedInLocation(fieldSystem->journalEntry, fieldSystem->location->mapHeaderID, HEAP_ID_FIELD3);
         return TRUE;
     }
 
     return FALSE;
 }
 
-static BOOL sub_02070610(FieldSystem *fieldSystem)
+static BOOL CreateMapTransitionJournalEvent(FieldSystem *fieldSystem)
 {
     Location *location = FieldOverworldState_GetPrevLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    if (location->mapId != fieldSystem->location->mapId) {
-        JournalEntry_CreateAndSaveEventMapTransition(SaveData_GetTrainerInfo(fieldSystem->saveData), fieldSystem->journalEntry, fieldSystem->location->mapId, location->mapId, HEAP_ID_FIELD3);
+    if (location->mapHeaderID != fieldSystem->location->mapHeaderID) {
+        JournalEntry_CreateAndSaveEventMapTransition(SaveData_GetTrainerInfo(fieldSystem->saveData), fieldSystem->journalEntry, fieldSystem->location->mapHeaderID, location->mapHeaderID, HEAP_ID_FIELD3);
         return TRUE;
     }
 

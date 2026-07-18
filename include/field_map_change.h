@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_FIELD_MAP_CHANGE_H
 #define POKEPLATINUM_FIELD_MAP_CHANGE_H
 
+#include "generated/map_headers.h"
+
 #include "field/field_system_decl.h"
 #include "overlay005/save_info_window.h"
 #include "overlay006/field_warp.h"
@@ -14,7 +16,7 @@
 typedef struct MapChangeUndergroundContext {
     int state;
     int transitionState;
-    int mapId;
+    enum MapHeaderID mapHeaderID;
     int dummy;
     int destX;
     int destZ;
@@ -36,10 +38,10 @@ void FieldSystem_SetLoadSavedGameMapTask(FieldSystem *fieldSystem);
 void FieldSystem_StartLoadMapFromErrorTask(FieldSystem *fieldSystem);
 void FieldSystem_StartChangeMapTask(FieldTask *task, const Location *param1);
 void FieldTask_ChangeMapByLocation(FieldTask *task, const Location *param1);
-void FieldTask_ChangeMapToLocation(FieldTask *task, int mapId, int warpId, int x, int z, int dir);
-void FieldTask_StartMapChangeFull(FieldTask *task, int mapId, int warpId, int x, int z, int dir);
-void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int mapId, int warpId, int x, int z, int dir);
-void FieldTask_ChangeMapChangeFly(FieldTask *task, int mapId, int warpId, int x, int z, int dir);
+void FieldTask_ChangeMapToLocation(FieldTask *task, enum MapHeaderID mapHeaderID, int warpId, int x, int z, int dir);
+void FieldTask_StartMapChangeFull(FieldTask *task, enum MapHeaderID mapHeaderID, int warpId, int x, int z, int dir);
+void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID, int warpId, int x, int z, int dir);
+void FieldTask_ChangeMapChangeFly(FieldTask *task, enum MapHeaderID mapHeaderID, int warpId, int x, int z, int dir);
 void FieldTask_ChangeMapByFieldWarp(FieldTask *task, const Location *location, enum FieldWarpType param2);
 void FieldSystem_StartMapChangeWarpTask(FieldSystem *fieldSystem, int param1, int param2);
 MapChangeUndergroundContext *MapChangeUndergroundContext_New(FieldSystem *fieldSystem);
@@ -50,7 +52,7 @@ FieldTaskFunc FieldMapChange_GetMapChangeUndergroundTask(const FieldSystem *fiel
 void sub_020544F0(FieldTask *task, const Location *param1);
 void sub_020545EC(FieldSystem *fieldSystem);
 void sub_02054708(FieldTask *task);
-void FieldTask_StartChangeMapColosseum(FieldTask *task, int mapId, int warpId, int x, int z, int dir);
+void FieldTask_StartChangeMapColosseum(FieldTask *task, enum MapHeaderID mapHeaderID, int warpId, int x, int z, int dir);
 void sub_02054864(FieldTask *task);
 
 #endif // POKEPLATINUM_FIELD_MAP_CHANGE_H

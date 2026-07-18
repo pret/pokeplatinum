@@ -220,7 +220,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
             ov5_021D5F24(fieldSystem->unk_04->unk_0C, weather);
         }
 
-        FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapId);
+        FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapHeaderID);
         FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_RESUME);
 
         fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(HEAP_ID_FIELD1);
@@ -403,26 +403,26 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     int x = (PlayerAvatar_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
     int y = (PlayerAvatar_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
 
-    u32 newMapID = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x, y);
-    u32 oldMapID = fieldSystem->location->mapId;
-    if (newMapID == oldMapID) {
+    enum MapHeaderID newMapHeaderID = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, x, y);
+    enum MapHeaderID oldMapHeaderID = fieldSystem->location->mapHeaderID;
+    if (newMapHeaderID == oldMapHeaderID) {
         return FALSE;
     }
 
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
-    fieldSystem->location->mapId = newMapID;
+    fieldSystem->location->mapHeaderID = newMapHeaderID;
 
-    MapHeaderData_Load(fieldSystem, newMapID);
+    MapHeaderData_Load(fieldSystem, newMapHeaderID);
     FieldMapChange_UpdateGameData(fieldSystem, 1);
 
     int objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
     const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(fieldSystem);
 
-    sub_0206184C(fieldSystem->mapObjMan, oldMapID, newMapID, objEventCount, objEventList);
+    sub_0206184C(fieldSystem->mapObjMan, oldMapHeaderID, newMapHeaderID, objEventCount, objEventList);
 
     RadarChain_Clear(fieldSystem->chain);
-    FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
+    FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID), 1);
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -430,9 +430,9 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
             fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(fieldState));
     }
 
-    int oldMapLabelTextID = MapHeader_GetMapLabelTextID(oldMapID);
-    int newMapLabelTextID = MapHeader_GetMapLabelTextID(newMapID);
-    int mapLabelWindowID = MapHeader_GetMapLabelWindowID(newMapID);
+    int oldMapLabelTextID = MapHeader_GetMapLabelTextID(oldMapHeaderID);
+    int newMapLabelTextID = MapHeader_GetMapLabelTextID(newMapHeaderID);
+    int mapLabelWindowID = MapHeader_GetMapLabelWindowID(newMapHeaderID);
 
     if (oldMapLabelTextID != newMapLabelTextID) {
         if (mapLabelWindowID != 0) {
@@ -445,22 +445,22 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     return TRUE;
 }
 
-void FieldMap_ChangeZoneDistortionWorld(FieldSystem *fieldSystem, u32 mapId)
+void FieldMap_ChangeZoneDistortionWorld(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
-    u32 oldMapId = fieldSystem->location->mapId;
+    enum MapHeaderID oldMapHeaderID = fieldSystem->location->mapHeaderID;
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
-    fieldSystem->location->mapId = mapId;
+    fieldSystem->location->mapHeaderID = mapHeaderID;
 
-    MapHeaderData_Load(fieldSystem, mapId);
+    MapHeaderData_Load(fieldSystem, mapHeaderID);
     FieldMapChange_UpdateGameDataDistortionWorld(fieldSystem, 1);
 
-    int objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
+    u32 objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
     const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(fieldSystem);
 
-    sub_0206184C(fieldSystem->mapObjMan, oldMapId, mapId, objEventCount, objEventList);
+    sub_0206184C(fieldSystem->mapObjMan, oldMapHeaderID, mapHeaderID, objEventCount, objEventList);
 
-    FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
+    FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID), 1);
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -500,7 +500,7 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
 
 static void ov5_021D13B4(FieldSystem *fieldSystem)
 {
-    if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == 0) {
+    if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapHeaderID) == 0) {
         return;
     }
 
@@ -767,9 +767,9 @@ static void InitGraphicsAndManagers(FieldSystem *fieldSystem)
     fieldSystem->mapPropAnimMan = MapPropAnimationManager_New();
     fieldSystem->mapPropOneShotAnimMan = MapPropOneShotAnimationManager_New();
 
-    u16 areaDataArchiveID = MapHeader_GetAreaDataArchiveID(fieldSystem->location->mapId);
+    u16 areaDataArchiveID = MapHeader_GetAreaDataArchiveID(fieldSystem->location->mapHeaderID);
     fieldSystem->areaDataManager = AreaDataManager_Alloc(areaDataArchiveID, fieldSystem->mapPropAnimMan);
-    u16 preloadedMapObjectsArchiveID = MapHeader_GetPreloadedMapObjectsArchiveID(fieldSystem->location->mapId);
+    u16 preloadedMapObjectsArchiveID = MapHeader_GetPreloadedMapObjectsArchiveID(fieldSystem->location->mapHeaderID);
 
     GF_ASSERT(fieldSystem->mapObjectsToPreload == NULL);
     fieldSystem->mapObjectsToPreload = FetchMapObjectsToPreload(HEAP_ID_FIELD1, preloadedMapObjectsArchiveID);
@@ -782,7 +782,7 @@ static void FieldSystem_InitLandManager(FieldSystem *fieldSystem)
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         int v0 = 0, v1 = 0, v2 = 0;
 
-        DistWorld_LoadFloorOffsets(fieldSystem->location->mapId, &v0, &v1, &v2);
+        DistWorld_LoadFloorOffsets(fieldSystem->location->mapHeaderID, &v0, &v1, &v2);
         LandDataManager_DistortionWorldSetOffsets(fieldSystem->landDataMan, v0, v1, v2);
         LandDataManager_SetInDistortionWorld(fieldSystem->landDataMan, TRUE);
         LandDataManager_SetSkipMapProps(fieldSystem->landDataMan, TRUE);

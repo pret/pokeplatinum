@@ -1478,7 +1478,7 @@ void FieldSystem_HatchEgg(FieldSystem *fieldSystem)
     args.mon = eggMon;
     args.options = SaveData_GetOptions(fieldSystem->saveData);
     args.trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    args.bgmID = FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId);
+    args.bgmID = FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID);
 
     EggHatch_HatchEgg(fieldSystem->task, &args);
 }

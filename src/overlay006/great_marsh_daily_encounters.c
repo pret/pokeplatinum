@@ -6,14 +6,12 @@
 #include "heap.h"
 #include "narc.h"
 
-static u8 GreatMarsh_GetAreaNumFromMapId(const int mapId);
+static u8 GreatMarsh_GetAreaNumFromMapId(const enum MapHeaderID mapHeaderID);
 
-void ReplaceGreatMarshDailyEncounters(const int dailyMon, const BOOL nationalDexObtained, const int mapId, int *encounterSlot1, int *encounterSlot2)
+void ReplaceGreatMarshDailyEncounters(const int dailyMon, const BOOL nationalDexObtained, const enum MapHeaderID mapHeaderID, int *encounterSlot1, int *encounterSlot2)
 {
-    int *narc;
     int encDataGroup;
-    u8 encounterIndex;
-    u8 areaNum = GreatMarsh_GetAreaNumFromMapId(mapId);
+    u8 areaNum = GreatMarsh_GetAreaNumFromMapId(mapHeaderID);
 
     if (nationalDexObtained) {
         encDataGroup = 9;
@@ -21,8 +19,8 @@ void ReplaceGreatMarshDailyEncounters(const int dailyMon, const BOOL nationalDex
         encDataGroup = 10;
     }
 
-    narc = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, encDataGroup, HEAP_ID_FIELD1);
-    encounterIndex = ((dailyMon >> (5 * areaNum)) & 0x1f);
+    int *narc = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, encDataGroup, HEAP_ID_FIELD1);
+    u8 encounterIndex = ((dailyMon >> (5 * areaNum)) & 0x1f);
     encounterIndex %= 32;
 
     (*encounterSlot1) = narc[encounterIndex];
@@ -31,11 +29,11 @@ void ReplaceGreatMarshDailyEncounters(const int dailyMon, const BOOL nationalDex
     Heap_Free(narc);
 }
 
-static u8 GreatMarsh_GetAreaNumFromMapId(const int mapId)
+static u8 GreatMarsh_GetAreaNumFromMapId(const enum MapHeaderID mapHeaderID)
 {
     u8 areaNum = 0;
 
-    switch (mapId) {
+    switch (mapHeaderID) {
     case MAP_HEADER_GREAT_MARSH_1:
         areaNum = 0;
         break;

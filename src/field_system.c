@@ -244,7 +244,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     }
 
     enum MapLoadType loadType = fieldSystem->mapLoadType;
-    if (fieldSystem->location->mapId == MAP_HEADER_BATTLE_TOWER) {
+    if (fieldSystem->location->mapHeaderID == MAP_HEADER_BATTLE_TOWER) {
         loadType = MAP_LOAD_TYPE_OVERWORLD;
     }
 

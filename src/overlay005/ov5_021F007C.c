@@ -467,7 +467,7 @@ BOOL ov5_021F0488(FieldTask *param0)
     case 3:
         v1->unk_0E--;
 
-        if (MapHeader_HasWildEncounters(fieldSystem->location->mapId)) {
+        if (MapHeader_HasWildEncounters(fieldSystem->location->mapHeaderID)) {
             if (v1->unk_0E < 0) {
                 {
                     u8 v3;
