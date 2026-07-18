@@ -42,7 +42,7 @@ BOOL ScrCmd_StopMusic(ScriptContext *ctx)
 
 BOOL ScrCmd_PlayDefaultMusic(ScriptContext *ctx)
 {
-    Sound_PlayBGM(FieldBGM_GetForMapHeader(ctx->fieldSystem, ctx->fieldSystem->location->mapId));
+    Sound_PlayBGM(FieldBGM_GetForMapHeader(ctx->fieldSystem, ctx->fieldSystem->location->mapHeaderID));
     return FALSE;
 }
 

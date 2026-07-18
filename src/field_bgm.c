@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/map_headers.h"
 #include "generated/trainer_classes.h"
 
 #include "field/field_system.h"
@@ -104,7 +105,7 @@ const static u16 sTrainerEncounterBGMs[][2] = {
 };
 // clang-format on
 
-static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID);
+static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID);
 static void FieldBGM_GetFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames);
 
 void FieldBGM_Stop()
@@ -134,13 +135,13 @@ void FieldBGM_ClearOverride(FieldSystem *fieldSystem)
     *bgm = SEQ_NONE;
 }
 
-u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapID)
+u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
 
     if (playerState == PLAYER_AVATAR_SURFING) {
-        switch (mapID) {
+        switch (mapHeaderID) {
         case MAP_HEADER_DISTORTION_WORLD_1F:
         case MAP_HEADER_DISTORTION_WORLD_B1F:
         case MAP_HEADER_DISTORTION_WORLD_B2F:
@@ -161,7 +162,7 @@ u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapID)
         return SEQ_POKERADAR;
     }
 
-    u16 bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapID);
+    u16 bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapHeaderID);
 
     if (FieldBGM_GetOverride(fieldSystem) != SEQ_NONE) {
         bgmID = FieldBGM_GetOverride(fieldSystem);
@@ -170,23 +171,23 @@ u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapID)
     return bgmID;
 }
 
-u16 FieldBGM_GetForMapHeader(FieldSystem *fieldSystem, int mapID)
+u16 FieldBGM_GetForMapHeader(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
     u16 sdatID;
 
     if (IsNight() == FALSE) {
-        sdatID = MapHeader_GetDayMusicID(mapID);
+        sdatID = MapHeader_GetDayMusicID(mapHeaderID);
     } else {
-        sdatID = MapHeader_GetNightMusicID(mapID);
+        sdatID = MapHeader_GetNightMusicID(mapHeaderID);
     }
 
-    u16 altSdatID = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), mapID);
+    u16 altSdatID = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), mapHeaderID);
 
     if (altSdatID != SEQ_NONE) {
         sdatID = altSdatID;
     }
 
-    altSdatID = FieldBGM_GetAltMusicForCyclingRoad(fieldSystem, mapID);
+    altSdatID = FieldBGM_GetAltMusicForCyclingRoad(fieldSystem, mapHeaderID);
 
     if (altSdatID != SEQ_NONE) {
         sdatID = altSdatID;
@@ -195,20 +196,19 @@ u16 FieldBGM_GetForMapHeader(FieldSystem *fieldSystem, int mapID)
     return sdatID;
 }
 
-static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID)
+static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
-    int x, y;
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location *location = FieldOverworldState_GetPrevLocation(fieldState);
 
-    x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
-    y = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
+    int x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int y = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
-    if (headerID != MAP_HEADER_ROUTE_206) {
+    if (mapHeaderID != MAP_HEADER_ROUTE_206) {
         return SEQ_NONE;
     }
 
-    if ((location->mapId == MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE) || (location->mapId == MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE)) {
+    if ((location->mapHeaderID == MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE) || (location->mapHeaderID == MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE)) {
         if (x < 299) {
             return 0;
         }
@@ -291,37 +291,35 @@ u16 FieldBGM_GetEyesMeetForTrainer(enum TrainerID trainerID)
     return bgmID;
 }
 
-void FieldBGM_TryFadeIn(FieldSystem *fieldSystem, int mapID)
+void FieldBGM_TryFadeIn(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
     if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
-    if (Sound_GetCurrentBGM() != FieldBGM_GetForMapHeader(fieldSystem, mapID)) {
+    if (Sound_GetCurrentBGM() != FieldBGM_GetForMapHeader(fieldSystem, mapHeaderID)) {
         Sound_FadeOutBGM(0, 40);
     }
 }
 
-void FieldBGM_PlayForMapHeader(FieldSystem *fieldSystem, int mapID)
+void FieldBGM_PlayForMapHeader(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
-    u16 bgmID;
-
     if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
     Sound_SetScene(SOUND_SCENE_NONE);
 
-    bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapID);
+    u16 bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapHeaderID);
 
     Sound_SetFieldBGM(bgmID);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }
 
-void FieldBGM_PlayEffectiveForMapHeader(FieldSystem *fieldSystem, int mapID)
+void FieldBGM_PlayEffectiveForMapHeader(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
-    u16 bgmID = FieldBGM_GetEffective(fieldSystem, mapID);
+    u16 bgmID = FieldBGM_GetEffective(fieldSystem, mapHeaderID);
 
-    Sound_SetFieldBGM(FieldBGM_GetForMapHeader(fieldSystem, mapID));
+    Sound_SetFieldBGM(FieldBGM_GetForMapHeader(fieldSystem, mapHeaderID));
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }

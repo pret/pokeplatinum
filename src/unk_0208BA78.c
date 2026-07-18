@@ -320,9 +320,9 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, enum HeapID heapID)
             sub_02005464(0);
             Sound_SetScene(SOUND_SCENE_NONE);
 
-            bgmID = FieldBGM_GetEffective(param0->fieldSystem, param0->fieldSystem->location->mapId);
+            bgmID = FieldBGM_GetEffective(param0->fieldSystem, param0->fieldSystem->location->mapHeaderID);
 
-            Sound_SetFieldBGM(FieldBGM_GetForMapHeader(param0->fieldSystem, param0->fieldSystem->location->mapId));
+            Sound_SetFieldBGM(FieldBGM_GetForMapHeader(param0->fieldSystem, param0->fieldSystem->location->mapHeaderID));
             Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
         }
 

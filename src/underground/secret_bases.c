@@ -229,7 +229,7 @@ typedef struct BaseTransitionContext {
     SysTask *sysTask;
     int state;
     int subState;
-    int mapID;
+    enum MapHeaderID mapHeaderID;
     int warpID;
     int x;
     int z;
@@ -1019,7 +1019,7 @@ static void SecretBases_StartExitBasePromptTask(FieldSystem *fieldSystem, int x,
     ctx->z = z;
     ctx->netID = netID;
     ctx->baseOwnerNetID = baseOwnerNetID;
-    ctx->mapID = MAP_HEADER_UNDERGROUND;
+    ctx->mapHeaderID = MAP_HEADER_UNDERGROUND;
     ctx->dir = dir;
     ctx->fieldSystem = fieldSystem;
     ctx->sysTask = SysTask_Start(SecretBases_ExitBasePromptTask, ctx, 100);
@@ -1042,9 +1042,9 @@ static BaseTransitionContext *BaseTransitionContext_New(FieldSystem *fieldSystem
         ctx->netID = netID;
         ctx->baseOwnerNetID = baseOwnerNetID;
 
-        GF_ASSERT(fieldSystem->location->mapId == MAP_HEADER_UNDERGROUND);
+        GF_ASSERT(fieldSystem->location->mapHeaderID == MAP_HEADER_UNDERGROUND);
 
-        ctx->mapID = MAP_HEADER_UNDERGROUND;
+        ctx->mapHeaderID = MAP_HEADER_UNDERGROUND;
         ctx->dir = dir;
     }
 
@@ -1248,7 +1248,7 @@ static void SecretBases_StartEnterBasePromptTask(FieldSystem *fieldSystem, int x
     ctx->z = z;
     ctx->netID = netID;
     ctx->baseOwnerNetID = baseOwnerNetID;
-    ctx->mapID = MAP_HEADER_UNDERGROUND;
+    ctx->mapHeaderID = MAP_HEADER_UNDERGROUND;
     ctx->dir = dir;
     ctx->fieldSystem = fieldSystem;
     ctx->timer = 0;
@@ -1651,7 +1651,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         break;
     case MOVE_STATE_UPDATE_LOCATION:
         Location nextLocation;
-        nextLocation.mapId = ctx->mapID;
+        nextLocation.mapHeaderID = ctx->mapHeaderID;
         nextLocation.warpId = ctx->warpID;
         nextLocation.x = ctx->x;
         nextLocation.z = ctx->z;

@@ -280,7 +280,7 @@ static void CreateJournalEntryForTeleport(FieldSystem *fieldSystem, FieldWarp *f
         return;
     }
 
-    void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(FIELD_MOVE_TELEPORT, fieldSystem->location->mapId, HEAP_ID_FIELD1);
+    void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(FIELD_MOVE_TELEPORT, fieldSystem->location->mapHeaderID, HEAP_ID_FIELD1);
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 }
 

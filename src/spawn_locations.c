@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "generated/first_arrival_to_zones.h"
+#include "generated/map_headers.h"
 
 #include "field/field_system.h"
 
@@ -13,10 +14,10 @@
 #include "vars_flags.h"
 
 typedef struct SpawnLocation {
-    u16 blackOutMapId;
+    u16 blackOutMapHeaderID;
     u16 blackOutX;
     u16 blackOutZ;
-    u16 flyMapId;
+    u16 flyMapHeaderID;
     u16 flyX;
     u16 flyZ;
     u8 isWarpPos;
@@ -67,7 +68,7 @@ void Location_InitFly(int flyDestination, Location *location)
 {
     flyDestination = MapSpawnIdToIndex(flyDestination);
 
-    location->mapId = sSpawnLocations[flyDestination].flyMapId;
+    location->mapHeaderID = sSpawnLocations[flyDestination].flyMapHeaderID;
     location->warpId = WARP_ID_NONE;
     location->x = sSpawnLocations[flyDestination].flyX;
     location->z = sSpawnLocations[flyDestination].flyZ;
@@ -78,17 +79,17 @@ void Location_InitBlackOut(int blackOutDestination, Location *location)
 {
     blackOutDestination = MapSpawnIdToIndex(blackOutDestination);
 
-    location->mapId = sSpawnLocations[blackOutDestination].blackOutMapId;
+    location->mapHeaderID = sSpawnLocations[blackOutDestination].blackOutMapHeaderID;
     location->warpId = WARP_ID_NONE;
     location->x = sSpawnLocations[blackOutDestination].blackOutX;
     location->z = sSpawnLocations[blackOutDestination].blackOutZ;
     location->faceDirection = FACE_UP;
 }
 
-int GetMapBlackOutWarpId(int mapId)
+int GetMapBlackOutWarpId(enum MapHeaderID mapHeaderID)
 {
     for (int i = 0; i < NELEMS(sSpawnLocations); i++) {
-        if (sSpawnLocations[i].blackOutMapId == mapId && sSpawnLocations[i].isWarpPos) {
+        if (sSpawnLocations[i].blackOutMapHeaderID == mapHeaderID && sSpawnLocations[i].isWarpPos) {
             return i + 1;
         }
     }
@@ -96,10 +97,10 @@ int GetMapBlackOutWarpId(int mapId)
     return 0;
 }
 
-int GetMapFlyWarpId(int mapId)
+int GetMapFlyWarpId(enum MapHeaderID mapHeaderID)
 {
     for (int i = 0; i < NELEMS(sSpawnLocations); i++) {
-        if (sSpawnLocations[i].flyMapId == mapId && sSpawnLocations[i].isWarpPos) {
+        if (sSpawnLocations[i].flyMapHeaderID == mapHeaderID && sSpawnLocations[i].isWarpPos) {
             return i + 1;
         }
     }
@@ -107,7 +108,7 @@ int GetMapFlyWarpId(int mapId)
     return 0;
 }
 
-int GetSpawnIdByMapAndCoords(int mapID, int param1, int param2)
+int GetSpawnIdByMapAndCoords(enum MapHeaderID mapHeaderID, int param1, int param2)
 {
     int i;
     int v1 = param1 / 32;
@@ -115,7 +116,7 @@ int GetSpawnIdByMapAndCoords(int mapID, int param1, int param2)
     int destinationId = 0;
 
     for (i = 0; i < NELEMS(sSpawnLocations); i++) {
-        if (sSpawnLocations[i].flyMapId == mapID) {
+        if (sSpawnLocations[i].flyMapHeaderID == mapHeaderID) {
             destinationId = i + 1;
 
             if ((v1 == sSpawnLocations[i].flyX / 32) && (v2 == sSpawnLocations[i].flyZ / 32)) {
@@ -127,20 +128,18 @@ int GetSpawnIdByMapAndCoords(int mapID, int param1, int param2)
     return destinationId;
 }
 
-void TryUnlockFlyLocationByMap(FieldSystem *fieldSystem, int param1)
+void TryUnlockFlyLocationByMap(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
-    int v0;
-
-    for (v0 = 0; v0 < NELEMS(sSpawnLocations); v0++) {
-        if ((sSpawnLocations[v0].flyMapId == param1) && sSpawnLocations[v0].unlockOnMapEntry) {
+    for (int v0 = 0; v0 < NELEMS(sSpawnLocations); v0++) {
+        if ((sSpawnLocations[v0].flyMapHeaderID == mapHeaderID) && sSpawnLocations[v0].unlockOnMapEntry) {
             SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_SET, sSpawnLocations[v0].firstArrival);
             return;
         }
     }
 }
 
-BOOL CheckFlyLocationUnlocked(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
+BOOL CheckFlyLocationUnlocked(FieldSystem *fieldSystem, int flyLocation)
 {
-    int flyDestination = MapSpawnIdToIndex(mapHeaderID);
+    int flyDestination = MapSpawnIdToIndex(flyLocation);
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, sSpawnLocations[flyDestination].firstArrival);
 }

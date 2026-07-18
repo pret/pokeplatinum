@@ -154,8 +154,6 @@ void sub_02056BDC(FieldSystem *fieldSystem, const int param1, const int param2, 
 
 void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5)
 {
-    int v0;
-    int v1;
     UnkStruct_02056BDC *v2 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_02056BDC));
 
     v2->unk_00 = 0;
@@ -163,10 +161,10 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
 
     Location_Set(&v2->unk_08, param1, param2, param3, param4, param5);
 
-    v0 = fieldSystem->location->mapId;
-    v1 = 0;
+    enum MapHeaderID mapHeaderID = fieldSystem->location->mapHeaderID;
+    int v1 = 0;
 
-    if (MapHeader_IsCave(v0)) {
+    if (MapHeader_IsCave(mapHeaderID)) {
         if (MapHeader_IsCave(param1)) {
             v1 = 6;
         } else if (MapHeader_IsOutdoors(param1)) {
@@ -176,7 +174,7 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
         } else {
             GF_ASSERT(FALSE);
         }
-    } else if (MapHeader_IsOutdoors(v0)) {
+    } else if (MapHeader_IsOutdoors(mapHeaderID)) {
         if (MapHeader_IsCave(param1)) {
             v1 = 4;
         } else if (MapHeader_IsBuilding(param1)) {
@@ -184,7 +182,7 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
         } else {
             GF_ASSERT(FALSE);
         }
-    } else if (MapHeader_IsBuilding(v0)) {
+    } else if (MapHeader_IsBuilding(mapHeaderID)) {
         if (MapHeader_IsOutdoors(param1)) {
             v1 = 0;
         } else if (MapHeader_IsBuilding(param1)) {
@@ -212,7 +210,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
     switch (v1->unk_00) {
     case 0:
         v1->unk_04 = 0;
-        FieldBGM_TryFadeIn(fieldSystem, v2->mapId);
+        FieldBGM_TryFadeIn(fieldSystem, v2->mapHeaderID);
         FieldTask_InitCall(taskMan, Unk_020EC560[v1->unk_20], v1);
         (v1->unk_00)++;
         break;
@@ -240,7 +238,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
             break;
         }
 
-        FieldBGM_PlayForMapHeader(fieldSystem, v2->mapId);
+        FieldBGM_PlayForMapHeader(fieldSystem, v2->mapHeaderID);
         FieldSystem_RequestLocationName(fieldSystem);
 
         v1->unk_04 = 0;

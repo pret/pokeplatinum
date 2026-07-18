@@ -191,7 +191,7 @@ static BOOL FieldTask_HatchEgg(FieldTask *fieldTask)
 
         Pokemon *mon = app->args.mon;
         TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
-        int location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
+        int location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID);
         int isEgg = FALSE;
 
         Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);

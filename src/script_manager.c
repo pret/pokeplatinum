@@ -263,9 +263,9 @@ static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int
 
 static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx)
 {
-    u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapId);
+    u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapHeaderID);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELD2);
+    ctx->loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapHeaderID), HEAP_ID_FIELD2);
 }
 
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
@@ -559,17 +559,17 @@ void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem)
 {
     u8 rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
-    if (fieldSystem->location->mapId != sIronIslandHiddenItemFlags[rand][0]) {
+    if (fieldSystem->location->mapHeaderID != sIronIslandHiddenItemFlags[rand][0]) {
         FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sIronIslandHiddenItemFlags[rand][1]);
     }
 
     rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
-    if (fieldSystem->location->mapId != sIronIslandHiddenItemFlags[rand][0]) {
+    if (fieldSystem->location->mapHeaderID != sIronIslandHiddenItemFlags[rand][0]) {
         FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sIronIslandHiddenItemFlags[rand][1]);
     }
 
-    if (fieldSystem->location->mapId != MAP_HEADER_FLOAROMA_MEADOW) {
+    if (fieldSystem->location->mapHeaderID != MAP_HEADER_FLOAROMA_MEADOW) {
         rand = LCRNG_Next() % NELEMS(sFloaromaMeadowHiddenItemFlags);
         FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sFloaromaMeadowHiddenItemFlags[rand]);
 

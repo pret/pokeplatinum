@@ -120,7 +120,7 @@ static BOOL SurfMountRenderer_AnimInit(OverworldAnimManager *animMan, void *cont
 
     renderer->userData = *userData;
     renderer->mapObjLocalID = MapObject_GetLocalID(playerMapObj);
-    renderer->mapHeaderID = MapObject_GetMapID(playerMapObj);
+    renderer->mapHeaderID = MapObject_GetMapHeaderID(playerMapObj);
     renderer->dir = userData->dir;
     renderer->syncPos = OverworldAnimManager_GetUserInt(animMan);
     renderer->yOffset = RENDERER_INITIAL_Y_OFFSET;

@@ -136,7 +136,7 @@ BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int par
 
     if (v7 == 0) {
         RadarChain_Clear(chain);
-        FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
+        FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID), 1);
     } else {
         chain->active = TRUE;
     }
@@ -289,7 +289,7 @@ void PokeRadar_ClearIfAllOutOfView(FieldSystem *fieldSystem)
 
     if (inactiveRadarRings == 4) {
         RadarChain_Clear(fieldSystem->chain);
-        FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
+        FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID), 1);
     }
 }
 
@@ -320,7 +320,7 @@ static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const 
         int v5 = v0 / 32;
         int v6 = v1 / 32;
         int v4 = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, v5, v6);
-        if (fieldSystem->location->mapId != v4) {
+        if (fieldSystem->location->mapHeaderID != v4) {
             patch->active = FALSE;
             return FALSE;
         }

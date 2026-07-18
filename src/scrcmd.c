@@ -2348,7 +2348,7 @@ static BOOL ScrCmd_AddObject(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 localID = ScriptContext_GetVar(ctx);
 
-    MapObject *mapObj = MapObjectMan_AddMapObjectFromLocalID(fieldSystem->mapObjMan, localID, MapHeaderData_GetNumObjectEvents(fieldSystem), fieldSystem->location->mapId, MapHeaderData_GetObjectEvents(fieldSystem));
+    MapObject *mapObj = MapObjectMan_AddMapObjectFromLocalID(fieldSystem->mapObjMan, localID, MapHeaderData_GetNumObjectEvents(fieldSystem), fieldSystem->location->mapHeaderID, MapHeaderData_GetObjectEvents(fieldSystem));
 
     if (mapObj == NULL) {
         GF_ASSERT(FALSE);
@@ -2378,7 +2378,7 @@ static BOOL ScrCmd_AddFreeCamera(ScriptContext *ctx)
     u16 zPos = ScriptContext_GetVar(ctx);
     MapObject **cameraObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
-    *cameraObject = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, xPos, zPos, 0, OBJ_EVENT_GFX_INVISIBLE, 0x0, ctx->fieldSystem->location->mapId);
+    *cameraObject = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, xPos, zPos, 0, OBJ_EVENT_GFX_INVISIBLE, 0x0, ctx->fieldSystem->location->mapHeaderID);
 
     MapObject_RecalculateObjectHeight(*cameraObject);
     MapObject_SetHidden(*cameraObject, TRUE);
@@ -2414,7 +2414,7 @@ static BOOL ScrCmd_AddCameraOverrideObject(ScriptContext *ctx)
     u16 zPos = ScriptContext_GetVar(ctx);
     MapObject **cameraObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
-    *cameraObject = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, xPos, zPos, 0, OBJ_EVENT_GFX_INVISIBLE, 0x0, ctx->fieldSystem->location->mapId);
+    *cameraObject = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, xPos, zPos, 0, OBJ_EVENT_GFX_INVISIBLE, 0x0, ctx->fieldSystem->location->mapHeaderID);
 
     MapObject_RecalculateObjectHeight(*cameraObject);
     MapObject_SetHidden(*cameraObject, TRUE);
@@ -3568,13 +3568,13 @@ static BOOL ScriptContext_ScreenWipeDone(ScriptContext *ctx)
 
 static BOOL ScrCmd_Warp(ScriptContext *ctx)
 {
-    u16 mapID = ScriptContext_GetVar(ctx);
+    enum MapHeaderID mapHeaderID = ScriptContext_GetVar(ctx);
     s16 unused = ScriptContext_ReadHalfWord(ctx);
     u16 x = ScriptContext_GetVar(ctx);
     u16 z = ScriptContext_GetVar(ctx);
     u16 direction = ScriptContext_GetVar(ctx);
 
-    FieldTask_StartMapChangeFull(ctx->task, mapID, -1, x, z, direction);
+    FieldTask_StartMapChangeFull(ctx->task, mapHeaderID, -1, x, z, direction);
     return TRUE;
 }
 
@@ -3606,7 +3606,7 @@ static BOOL ScrCmd_GetPreviousMapID(ScriptContext *ctx)
     Location *location = FieldOverworldState_GetPrevLocation(fieldState);
     u16 *mapId = ScriptContext_GetVarPointer(ctx);
 
-    *mapId = location->mapId;
+    *mapId = location->mapHeaderID;
     return FALSE;
 }
 
@@ -3614,7 +3614,7 @@ static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx)
 {
     u16 *mapID = ScriptContext_GetVarPointer(ctx);
 
-    *mapID = ctx->fieldSystem->location->mapId;
+    *mapID = ctx->fieldSystem->location->mapHeaderID;
     return FALSE;
 }
 
@@ -3727,7 +3727,7 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
         PlayerAvatar_SetTransitionState(ctx->fieldSystem->playerAvatar, PLAYER_TRANSITION_WALKING);
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
         FieldBGM_SetOverride(ctx->fieldSystem, SEQ_NONE);
-        FieldBGM_TryFadeOut(ctx->fieldSystem, FieldBGM_GetEffective(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
+        FieldBGM_TryFadeOut(ctx->fieldSystem, FieldBGM_GetEffective(ctx->fieldSystem, ctx->fieldSystem->location->mapHeaderID), 1);
     }
 
     return FALSE;
@@ -3902,7 +3902,7 @@ static BOOL ScrCmd_SetSpecialLocation(ScriptContext *ctx)
 {
     Location location;
 
-    location.mapId = ScriptContext_GetVar(ctx);
+    location.mapHeaderID = ScriptContext_GetVar(ctx);
     location.warpId = ScriptContext_GetVar(ctx);
     location.x = ScriptContext_GetVar(ctx);
     location.z = ScriptContext_GetVar(ctx);
@@ -3918,7 +3918,7 @@ static BOOL ScrCmd_GetFloorsAbove(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
-    *destVar = FieldMenu_GetFloorsAbove(location->mapId);
+    *destVar = FieldMenu_GetFloorsAbove(location->mapHeaderID);
 
     return FALSE;
 }
@@ -5559,11 +5559,11 @@ static BOOL ScrCmd_PlayBoatCutscene(ScriptContext *ctx)
 {
     u8 travelDir = ScriptContext_ReadByte(ctx);
     u8 exitDir = ScriptContext_ReadByte(ctx);
-    int mapID = ScriptContext_ReadHalfWord(ctx);
+    enum MapHeaderID mapHeaderID = ScriptContext_ReadHalfWord(ctx);
     int x = ScriptContext_ReadHalfWord(ctx);
     int z = ScriptContext_ReadHalfWord(ctx);
 
-    FieldSystem_PlayBoatCutscene(ctx->fieldSystem, travelDir, exitDir, mapID, x, z);
+    FieldSystem_PlayBoatCutscene(ctx->fieldSystem, travelDir, exitDir, mapHeaderID, x, z);
     return TRUE;
 }
 
@@ -6504,7 +6504,7 @@ static BOOL ScrCmd_2B5(ScriptContext *ctx)
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
     Location *location = FieldOverworldState_GetExitLocation(fieldState);
 
-    location->mapId = mapId;
+    location->mapHeaderID = mapId;
     location->x = x;
     location->z = z;
     location->warpId = WARP_ID_NONE;
@@ -6588,7 +6588,7 @@ static BOOL ScrCmd_LaunchBattleFrontierScene(ScriptContext *ctx)
     fieldData->options = SaveData_GetOptions(ctx->fieldSystem->saveData);
     fieldData->sceneID = sceneID;
     fieldData->saveData = ctx->fieldSystem->saveData;
-    fieldData->mapHeaderID = ctx->fieldSystem->location->mapId;
+    fieldData->mapHeaderID = ctx->fieldSystem->location->mapHeaderID;
     fieldData->journalEntry = ctx->fieldSystem->journalEntry;
     fieldData->bagCursor = ctx->fieldSystem->bagCursor;
     fieldData->subscreenCursorOn = ctx->fieldSystem->battleSubscreenCursorOn;

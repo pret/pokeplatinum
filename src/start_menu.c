@@ -260,7 +260,7 @@ static const u8 sOnlyMovePages[] = {
 
 BOOL FieldSystem_IsInValidLocation(FieldSystem *fieldSystem)
 {
-    return MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != LocationNames_Text_MysteryZone;
+    return MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID) != LocationNames_Text_MysteryZone;
 }
 
 #define HIDE_OPTION_POKEDEX      (1 << 0)
@@ -376,7 +376,7 @@ static u32 StartMenu_GetNormalHiddenOptions(FieldSystem *fieldSystem)
         hideFlags |= HIDE_OPTION_BAG;
     }
 
-    if (MapHeader_IsAmitySquare(fieldSystem->location->mapId) == TRUE) {
+    if (MapHeader_IsAmitySquare(fieldSystem->location->mapHeaderID) == TRUE) {
         hideFlags |= HIDE_OPTION_POKEMON;
         hideFlags |= HIDE_OPTION_BAG;
     }
@@ -1081,7 +1081,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *fieldTask)
     case PARTY_MENU_EXIT_CODE_EVOLVE_BY_LEVEL:
         evoData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(MenuEvolutionData));
 
-        evoData->dummy = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
+        evoData->dummy = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapHeaderID);
         evoData->class = EVO_CLASS_BY_LEVEL;
         evoData->slot = partyMenu->selectedMonSlot;
         evoData->targetSpecies = partyMenu->evoTargetSpecies;
@@ -1763,7 +1763,7 @@ static void StartMenu_Evolve(FieldTask *fieldTask)
         Heap_Destroy(HEAP_ID_EVOLUTION);
         Sound_StopBGM(SEQ_SHINKA, 0);
         Sound_SetScene(SOUND_SCENE_NONE);
-        FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapId);
+        FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapHeaderID);
 
         menu->taskData = FieldSystem_OpenBag(fieldSystem, &menu->itemUseCtx);
 

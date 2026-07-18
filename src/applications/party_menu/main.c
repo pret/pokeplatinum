@@ -2757,7 +2757,7 @@ static int ProcessItemApplication(PartyMenuApplication *application)
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             v2 = PARTY_MENU_STATE_CONFIRM_ITEM_UPDATE;
         } else if (fieldSystem != NULL) {
-            if (fieldSystem->location->mapId == MAP_HEADER_UNION_ROOM) {
+            if (fieldSystem->location->mapHeaderID == MAP_HEADER_UNION_ROOM) {
                 MessageLoader_GetString(application->messageLoader, PartyMenu_Text_ItemCannotBeGivenHere, application->tmpFormat);
                 StringTemplate_SetItemName(application->template, 0, application->partyMenu->usedItemID);
                 StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
@@ -2812,8 +2812,8 @@ static int UpdatePokemonWithItem(PartyMenuApplication *application, Pokemon *mon
     Pokemon_SetArceusForm(mon);
 
     if (fieldSystem == NULL
-        || fieldSystem->location->mapId < MAP_HEADER_DISTORTION_WORLD_1F
-        || (fieldSystem->location->mapId > MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM)) {
+        || fieldSystem->location->mapHeaderID < MAP_HEADER_DISTORTION_WORLD_1F
+        || (fieldSystem->location->mapHeaderID > MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM)) {
         *param2 = Pokemon_SetGiratinaFormByHeldItem(mon);
     } else {
         *param2 = -1;

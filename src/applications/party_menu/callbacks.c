@@ -815,7 +815,7 @@ static enum PartyMenuState PartyMenuCB_LevelUp(PartyMenuApplication *application
 
     case LEVELUP_STATE_CHECK_EVOLUTION:
         mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-        u32 mapEvoMethod = MapHeader_GetMapEvolutionMethod(application->partyMenu->fieldSystem->location->mapId);
+        u32 mapEvoMethod = MapHeader_GetMapEvolutionMethod(application->partyMenu->fieldSystem->location->mapHeaderID);
         application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(
             application->partyMenu->party,
             mon,
@@ -1238,5 +1238,5 @@ void PartyMenu_GiveMail(PartyMenuApplication *application)
 static u16 GetCurrentMapLabel(PartyMenuApplication *application)
 {
     FieldSystem *fieldSystem = application->partyMenu->fieldSystem;
-    return MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
+    return MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID);
 }

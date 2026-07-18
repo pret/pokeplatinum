@@ -80,7 +80,10 @@
 #define ETERNA_GYM_FOUNTAIN_Z       19
 #define ETERNA_GYM_WIDTH            21
 
-#define ETERNA_CLOCK_NO_HOUR_HAND_JUMP { -1, -1, 2 }
+#define ETERNA_CLOCK_NO_HOUR_HAND_JUMP \
+    {                                  \
+        -1, -1, 2                      \
+    }
 
 // 0x1559 is close to, but not the closest integer to 1/12 of 0x10000. It is
 // used for the hour-positions of the clock hand expect for 3, 6, 9 and 12
@@ -332,7 +335,7 @@ typedef struct VeilstoneGym_BagAnimation {
 typedef int (*VeilstoneGymAnimationStateFunc)(VeilstoneGym_BagAnimation *);
 
 typedef struct HearthomeGymTrainerRoomLayout {
-    int mapID;
+    enum MapHeaderID mapHeaderID;
     int firstDoorID;
     int numExitDoors;
     int offsetX;
@@ -2593,7 +2596,7 @@ static void EternaGym_SetupCameraMoveAwayFromPlayer(FieldSystem *fieldSystem, Et
         cameraMan->moveXFirst = TRUE;
     }
 
-    cameraMan->cameraObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, playerX, playerZ, 0, OBJ_EVENT_GFX_INVISIBLE, 0x0, fieldSystem->location->mapId);
+    cameraMan->cameraObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, playerX, playerZ, 0, OBJ_EVENT_GFX_INVISIBLE, 0x0, fieldSystem->location->mapHeaderID);
 
     MapObject_RecalculateObjectHeight(cameraMan->cameraObj);
     MapObject_SetHidden(cameraMan->cameraObj, TRUE);
@@ -3061,7 +3064,7 @@ BOOL VeilstoneGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, con
 
 static MapObject *VeilstoneGym_CreateObject(FieldSystem *fieldSystem, int x, int z, BOOL isPunchingBag)
 {
-    MapObject *mapObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, x, z, 0, OBJ_EVENT_GFX_INVISIBLE, MOVEMENT_TYPE_NONE, fieldSystem->location->mapId);
+    MapObject *mapObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, x, z, 0, OBJ_EVENT_GFX_INVISIBLE, MOVEMENT_TYPE_NONE, fieldSystem->location->mapHeaderID);
 
     MapObject_SetLocalID(mapObj, VEILSTONE_GYM_OBJECT_LOCALID);
     MapObject_SetDataAt(mapObj, isPunchingBag, 0);
@@ -3593,7 +3596,7 @@ static void VeilstoneGym_InitCameraManager(FieldSystem *fieldSystem, VeilstoneGy
 
     cameraMan->playerX = x;
     cameraMan->playerZ = z;
-    cameraMan->cameraObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, x, z, 0, OBJ_EVENT_GFX_INVISIBLE, MOVEMENT_TYPE_NONE, fieldSystem->location->mapId);
+    cameraMan->cameraObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, x, z, 0, OBJ_EVENT_GFX_INVISIBLE, MOVEMENT_TYPE_NONE, fieldSystem->location->mapHeaderID);
 
     MapObject_RecalculateObjectHeight(cameraMan->cameraObj);
     MapObject_SetHidden(cameraMan->cameraObj, TRUE);
@@ -3688,7 +3691,7 @@ static void VeilstoneGym_UpdateCamera(VeilstoneGym_BagAnimation *bagAnim, fx32 s
 
 static const HearthomeGymTrainerRoomLayout sTrainerRoomLayouts[HEARTHOME_NUM_TRAINER_ROOMS] = {
     {
-        .mapID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_1,
+        .mapHeaderID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_1,
         .firstDoorID = HEARTHOME_DOOR_ID_CIRCLE,
         .numExitDoors = 3,
         .offsetX = 1,
@@ -3697,7 +3700,7 @@ static const HearthomeGymTrainerRoomLayout sTrainerRoomLayouts[HEARTHOME_NUM_TRA
         .sizeZ = HEARTHOME_ROOM_1_SIZE_Z,
     },
     {
-        .mapID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2,
+        .mapHeaderID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2,
         .firstDoorID = HEARTHOME_DOOR_ID_SUN,
         .numExitDoors = 5,
         .offsetX = 1,
@@ -3799,11 +3802,11 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     HearthomeGym_InitTrainers(gymSystem);
 
     int i = 0;
-    int mapID = fieldSystem->location->mapId;
+    enum MapHeaderID mapHeaderID = fieldSystem->location->mapHeaderID;
     const HearthomeGymTrainerRoomLayout *room = sTrainerRoomLayouts;
 
     do {
-        if (room->mapID == mapID) {
+        if (room->mapHeaderID == mapHeaderID) {
             break;
         }
 
@@ -3887,7 +3890,7 @@ static void HearthomeGym_InitFog(HearthomeGymSystem *gymSystem)
     char fogDensity = 109;
     if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(gymSystem->fieldSystem->saveData), BADGE_ID_RELIC) == TRUE) {
         fogDensity = 91;
-    } else if (gymSystem->fieldSystem->location->mapId == MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2) {
+    } else if (gymSystem->fieldSystem->location->mapHeaderID == MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2) {
         fogDensity = 119;
     }
 
@@ -4018,11 +4021,11 @@ BOOL HearthomeGym_CheckIfEnteredIncorrectDoor(FieldSystem *fieldSystem, int play
     }
 
     int i = 0;
-    int mapID = fieldSystem->location->mapId;
+    enum MapHeaderID mapHeaderID = fieldSystem->location->mapHeaderID;
     const HearthomeGymTrainerRoomLayout *room = sTrainerRoomLayouts;
 
     do {
-        if (room->mapID == mapID) {
+        if (room->mapHeaderID == mapHeaderID) {
             break;
         }
 

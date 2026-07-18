@@ -5492,7 +5492,7 @@ static int DistWorldElevatorPlatform_ChangeMaps(DistWorldSystem *system, DistWor
             MapObject_SetScript(elevatorPlatform->passengerMapObj, 6);
         }
 
-        MapObject_SetMapID(elevatorPlatform->passengerMapObj, elevatorPlatform->destMapHeaderID);
+        MapObject_SetMapHeaderID(elevatorPlatform->passengerMapObj, elevatorPlatform->destMapHeaderID);
     }
 
     if (elevatorPlatform->dir == MOVING_PLATFORM_ELEVATOR_DIR_DOWN) {
@@ -7288,7 +7288,7 @@ static MapObject *FindExistingMapObjectByEvent(DistWorldSystem *system, const Ob
     const MapObjectManager *mapObjMan = system->fieldSystem->mapObjMan;
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &mapObj, &startIdx, MAP_OBJ_STATUS_0)) {
-        if (MapObject_GetMapID(mapObj) == mapHeaderID && MapObject_GetLocalID(mapObj) == objEvent->localID) {
+        if (MapObject_GetMapHeaderID(mapObj) == mapHeaderID && MapObject_GetLocalID(mapObj) == objEvent->localID) {
             GF_ASSERT(objEvent->graphicsID == MapObject_GetGraphicsID(mapObj));
             return mapObj;
         }
@@ -7390,7 +7390,7 @@ static void DeleteMapObjectsForMap(DistWorldSystem *system, u32 mapHeaderID)
 
     for (i = 0; i < MAP_OBJECT_MANAGER_OBJECT_COUNT; i++, iter++) {
         if (*iter != NULL) {
-            if (MapObject_GetMapID(*iter) == mapHeaderID) {
+            if (MapObject_GetMapHeaderID(*iter) == mapHeaderID) {
                 MapObject_Delete(*iter);
                 *iter = NULL;
             }
@@ -7434,7 +7434,7 @@ static MapObject *AddMapObjectWithLocalID(DistWorldSystem *system, u32 mapHeader
 
 void DistWorld_AddMapObjectWithLocalID(FieldSystem *fieldSystem, u16 mapObjLocalID)
 {
-    u32 mapHeaderID = fieldSystem->location->mapId;
+    u32 mapHeaderID = fieldSystem->location->mapHeaderID;
     DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     AddMapObjectWithLocalID(dwSystem, mapHeaderID, mapObjLocalID);
@@ -7444,12 +7444,12 @@ void DistWorld_DeleteMapObjectWithLocalID(FieldSystem *fieldSystem, u16 mapObjLo
 {
     int startIdx = 0;
     MapObject *mapObj;
-    u32 mapHeaderID = fieldSystem->location->mapId;
+    u32 mapHeaderID = fieldSystem->location->mapHeaderID;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
     DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &mapObj, &startIdx, MAP_OBJ_STATUS_0) == TRUE) {
-        if (MapObject_GetLocalID(mapObj) == mapObjLocalID && MapObject_GetMapID(mapObj) == mapHeaderID) {
+        if (MapObject_GetLocalID(mapObj) == mapObjLocalID && MapObject_GetMapHeaderID(mapObj) == mapHeaderID) {
             DeleteMapObject(dwSystem, mapObj);
             return;
         }
@@ -7590,7 +7590,7 @@ static BOOL FindBoulderFallLocationFlag(u32 mapHeaderID, int boulderTileX, int b
 BOOL DistWorld_WillBoulderBeAtFallLocation(const MapObject *boulderMapObj, enum FaceDirection boulderDir)
 {
     FieldSystem *fieldSystem = MapObject_FieldSystem(boulderMapObj);
-    u32 mapHeaderID = fieldSystem->location->mapId;
+    u32 mapHeaderID = fieldSystem->location->mapHeaderID;
 
     int boulderTileX = MapObject_GetX(boulderMapObj);
     int boulderTileZ = MapObject_GetZ(boulderMapObj);
@@ -7604,7 +7604,7 @@ BOOL DistWorld_WillBoulderBeAtFallLocation(const MapObject *boulderMapObj, enum 
 static BOOL FindMapObjectBoulderFallLocationFlag(const MapObject *boulderMapObj, u32 *flagIndex)
 {
     FieldSystem *fieldSystem = MapObject_FieldSystem(boulderMapObj);
-    u32 mapHeaderID = fieldSystem->location->mapId;
+    u32 mapHeaderID = fieldSystem->location->mapHeaderID;
 
     int boulderTileX = MapObject_GetX(boulderMapObj);
     int boulderTileZ = MapObject_GetZ(boulderMapObj);
@@ -7667,7 +7667,7 @@ static BOOL DistWorldFallingBoulder_TickToB6F(DistWorldFallingBoulder *boulder)
     Sound_PlayEffect(SEQ_SE_DP_UG_008);
     boulderPos.y = MAP_OBJECT_COORD_EDGE_TO_FX32(115);
     MapObject_SetPosDirFromVec(boulderMapObj, &boulderPos, MapObject_GetFacingDir(boulderMapObj));
-    MapObject_SetMapID(boulderMapObj, MAP_HEADER_DISTORTION_WORLD_B6F);
+    MapObject_SetMapHeaderID(boulderMapObj, MAP_HEADER_DISTORTION_WORLD_B6F);
 
     u32 flagIndexToSet;
     u32 flagIndexToClear;
@@ -9727,7 +9727,7 @@ void DistWorld_LoadFloorOffsets(int mapHeaderID, int *offsetTileX, int *offsetAl
 
 static u32 DistWorldSystem_GetMapHeaderID(DistWorldSystem *system)
 {
-    return system->fieldSystem->location->mapId;
+    return system->fieldSystem->location->mapHeaderID;
 }
 
 static enum AvatarDistortionState GetAvatarDistortionStateForFloatingPlatformKind(u32 platformKind)

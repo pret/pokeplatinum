@@ -311,7 +311,7 @@ MapObject *sub_02069EB8(MapObject *mapObj)
 {
     int v0 = 0;
     int v1 = MapObject_GetTrainerType(mapObj);
-    int v2 = MapObject_GetMapID(mapObj);
+    enum MapHeaderID mapHeaderID = MapObject_GetMapHeaderID(mapObj);
     u32 v3 = MapObject_GetTrainerID(mapObj);
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
     MapObject *v5;
@@ -326,7 +326,7 @@ MapObject *sub_02069EB8(MapObject *mapObj)
     case 0x7:
     case 0x8:
         while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, (1 << 0)) == 1) {
-            if ((mapObj != v5) && (MapObject_GetMapID(v5) == v2)) {
+            if ((mapObj != v5) && (MapObject_GetMapHeaderID(v5) == mapHeaderID)) {
                 if (MapObject_GetTrainerID(v5) == v3) {
                     return v5;
                 }
@@ -339,17 +339,18 @@ MapObject *sub_02069EB8(MapObject *mapObj)
 
 static int sub_02069F48(MapObject *mapObj, UnkStruct_02069F48 *param1)
 {
-    int v0, v1;
+    int v0;
+    enum MapHeaderID v1;
     u32 v2;
     MapObject *v3;
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
     v0 = 0;
-    v1 = MapObject_GetMapID(mapObj);
+    v1 = MapObject_GetMapHeaderID(mapObj);
     v2 = MapObject_GetTrainerID(mapObj);
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v3, &v0, (1 << 0)) == 1) {
-        if ((mapObj != v3) && (MapObject_GetMapID(v3) == v1) && (MapObject_GetTrainerID(v3) == v2)) {
+        if ((mapObj != v3) && (MapObject_GetMapHeaderID(v3) == v1) && (MapObject_GetTrainerID(v3) == v2)) {
             if (param1->unk_01 == 0) {
                 sub_02069FC4(mapObj, param1, v3);
             }
