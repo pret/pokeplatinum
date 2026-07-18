@@ -1,5 +1,5 @@
 [wrap-git]
-url = https://github.com/cybervisi0n/NitroSystem.git
+url = https://github.com/cybervisi0n/libntrsystem.git
 revision = main
 depth = 1
 directory = NitroSystem-071126.1

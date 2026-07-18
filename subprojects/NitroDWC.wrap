@@ -1,5 +1,5 @@
 [wrap-git]
-url = https://github.com/cybervisi0n/NitroDWC.git
+url = https://github.com/cybervisi0n/libntrdwc.git
 revision = main
 depth = 1
 directory = NitroDWC-2.2.30008
