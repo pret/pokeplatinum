@@ -4,8 +4,8 @@
 #include <nitro/rtc.h>
 
 #include "struct_defs/struct_0202D080.h"
-#include "struct_defs/wifi_player_profile.h"
 #include "struct_defs/wifi_battle_tower_data.h"
+#include "struct_defs/wifi_player_profile.h"
 
 #include "overlay104/frontier_data_transfer.h"
 
