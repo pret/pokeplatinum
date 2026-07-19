@@ -19,4 +19,22 @@ typedef struct WorldExchangeTrainer {
     u16 unk_5A;
 } WorldExchangeTrainer;
 
+enum WorldExchangeValidationError {
+    WE_VALIDATION_ERROR_VALID,
+    WE_VALIDATION_ERROR_FAILED_1,
+    WE_VALIDATION_ERROR_FAILED_2,
+};
+
+enum WorldExchangeSystemError {
+    WE_SYSTEM_ERROR_NONE,
+    WE_SYSTEM_ERROR_DWC_1,
+    WE_SYSTEM_ERROR_DWC_2,
+    WE_SYSTEM_ERROR_DWC_3,
+};
+
+typedef struct WorldExchangeTrainerError {
+    u32 validationError;
+    u32 systemError;
+} WorldExchangeTrainerError;
+
 #endif // POKEPLATINUM_STRUCT_WORLD_EXCHANGE_TRAINER_H

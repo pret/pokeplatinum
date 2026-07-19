@@ -6,11 +6,11 @@
 #include "struct_decls/tv_broadcast.h"
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/image_clips.h"
+#include "struct_defs/wifi_player_profile.h"
 
 #include "overlay059/ov59_021D2A2C.h"
 #include "overlay059/ov59_021D2B44.h"
 #include "overlay059/struct_ov59_021D30E0.h"
-#include "overlay096/struct_wifi_player_profile.h"
 #include "savedata/save_table.h"
 
 #include "communication_information.h"

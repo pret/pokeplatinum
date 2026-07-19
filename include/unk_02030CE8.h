@@ -2,8 +2,7 @@
 #define POKEPLATINUM_UNK_02030CE8_H
 
 #include "struct_defs/struct_02030CEC.h"
-
-#include "overlay096/struct_world_exchange_trainer.h"
+#include "struct_defs/world_exchange.h"
 
 #include "savedata.h"
 

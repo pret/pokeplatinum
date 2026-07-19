@@ -8,8 +8,8 @@
 #include "struct_defs/struct_0202D080.h"
 #include "struct_defs/struct_0202D63C.h"
 #include "struct_defs/wifi_battle_tower_data.h"
+#include "struct_defs/wifi_player_profile.h"
 
-#include "overlay096/struct_wifi_player_profile.h"
 #include "overlay104/frontier_data_transfer.h"
 
 #include "easy_chat_sentence.h"
@@ -241,7 +241,6 @@ void WifiBattleTowerRecord_GetTeam(WifiBattleTowerRecord *record, int teamIdx, F
 u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, WifiBattleTowerSave *save)
 {
     u16 progressScore, penaltyA, penaltyB, efficiencyBonus, performanceScore;
-    u16 ratingScore = 0;
 
     progressScore = (save->nextOpponentNum - 1) * 1000;
     penaltyA = save->unk_04 * 10;
@@ -259,7 +258,7 @@ u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, WifiBat
         efficiencyBonus = (1000 - save->unk_06) / 30;
     }
 
-    ratingScore = progressScore + performanceScore + efficiencyBonus;
+    u16 ratingScore = progressScore + performanceScore + efficiencyBonus;
     record->ratingScore = ratingScore;
 
     return ratingScore;
@@ -272,9 +271,7 @@ u16 WifiBattleTowerRecord_GetRatingScore(WifiBattleTowerRecord *record)
 
 u8 WifiBattleTowerRecord_GetRatingTier(WifiBattleTowerRecord *record)
 {
-    u8 ratingTier = 0;
-
-    ratingTier = (record->ratingScore) / 1000;
+    u8 ratingTier = (record->ratingScore) / 1000;
     return ratingTier;
 }
 
@@ -326,7 +323,6 @@ u16 WifiBattleTowerRecord_SetRoomNum(WifiBattleTowerRecord *record, u16 challeng
 
 BOOL WifiBattleTowerRecord_UpdateBitFlag(WifiBattleTowerRecord *record, u16 bitIdx, int op)
 {
-    u16 i;
     u16 mask = 1;
 
     if (bitIdx >= 16) {
@@ -334,7 +330,7 @@ BOOL WifiBattleTowerRecord_UpdateBitFlag(WifiBattleTowerRecord *record, u16 bitI
         return FALSE;
     }
 
-    for (i = 0; i < bitIdx; i++) {
+    for (u16 i = 0; i < bitIdx; i++) {
         mask <<= 1;
     }
 

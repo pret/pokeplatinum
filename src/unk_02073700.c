@@ -3,8 +3,8 @@
 
 #include "struct_defs/wi_fi_history.h"
 #include "struct_defs/wifi_battle_tower_data.h"
+#include "struct_defs/wifi_player_profile.h"
 
-#include "overlay096/struct_wifi_player_profile.h"
 #include "overlay104/frontier_data_transfer.h"
 
 #include "appearance.h"

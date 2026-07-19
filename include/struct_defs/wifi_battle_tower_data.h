@@ -4,8 +4,8 @@
 #include "constants/battle_tower.h"
 
 #include "struct_defs/struct_0202D63C.h"
+#include "struct_defs/wifi_player_profile.h"
 
-#include "overlay096/struct_wifi_player_profile.h"
 #include "overlay104/frontier_data_transfer.h"
 
 typedef struct WifiBattleTowerIndices {

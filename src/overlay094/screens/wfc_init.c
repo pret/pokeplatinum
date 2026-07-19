@@ -647,21 +647,21 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
             GTSApplicationState_DestroyWaitDial(appState);
 
             switch (appState->worldExchangeTrainerError.validationError) {
-            case 0:
+            case WE_VALIDATION_ERROR_VALID:
                 switch (appState->worldExchangeTrainerError.systemError) {
-                case 0:
+                case WE_SYSTEM_ERROR_NONE:
                     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
                     appState->currentScreenInstruction = 11;
                     break;
-                case 3: // pl_msg_00000671_00177
+                case WE_SYSTEM_ERROR_DWC_3: // pl_msg_00000671_00177
                     appState->commsErrorMessage = -5003;
                     appState->currentScreenInstruction = 21;
                     break;
-                case 1: // pl_msg_00000671_00174
+                case WE_SYSTEM_ERROR_DWC_1: // pl_msg_00000671_00174
                     appState->commsErrorMessage = -5000;
                     appState->currentScreenInstruction = 21;
                     break;
-                case 2: // pl_msg_00000671_00174
+                case WE_SYSTEM_ERROR_DWC_2: // pl_msg_00000671_00174
                     appState->commsErrorMessage = -5001;
                     appState->currentScreenInstruction = 21;
                     break;
@@ -670,11 +670,11 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
                     break;
                 }
                 break;
-            case 1: // pl_msg_00000671_00175
+            case WE_VALIDATION_ERROR_FAILED_1: // pl_msg_00000671_00175
                 appState->commsErrorMessage = -5004;
                 appState->currentScreenInstruction = 21;
                 break;
-            case 2: // pl_msg_00000671_00176
+            case WE_VALIDATION_ERROR_FAILED_2: // pl_msg_00000671_00176
                 appState->commsErrorMessage = -5005;
                 appState->currentScreenInstruction = 21;
                 break;
