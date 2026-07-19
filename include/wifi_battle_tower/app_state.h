@@ -6,11 +6,10 @@
 
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/wifi_battle_tower_data.h"
+#include "struct_defs/wifi_player_profile.h"
+#include "struct_defs/world_exchange.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay096/struct_wifi_player_profile.h"
-#include "overlay096/struct_world_exchange_trainer.h"
-#include "overlay096/struct_world_exchange_trainer_error.h"
 
 #include "bg_window.h"
 #include "menu.h"

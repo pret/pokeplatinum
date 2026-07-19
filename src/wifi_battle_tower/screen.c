@@ -7,9 +7,9 @@
 #include "constants/net.h"
 
 #include "struct_defs/wifi_battle_tower_data.h"
+#include "struct_defs/wifi_player_profile.h"
 
 #include "nintendo_wfc/main.h"
-#include "overlay096/struct_wifi_player_profile.h"
 #include "wifi_battle_tower/app_state.h"
 #include "wifi_battle_tower/application.h"
 #include "wifi_battle_tower/http.h"

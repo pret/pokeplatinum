@@ -5,8 +5,7 @@
 
 #include "struct_defs/struct_02030CEC.h"
 #include "struct_defs/wi_fi_history.h"
-
-#include "overlay096/struct_world_exchange_trainer.h"
+#include "struct_defs/world_exchange.h"
 
 #include "charcode_util.h"
 #include "math_util.h"

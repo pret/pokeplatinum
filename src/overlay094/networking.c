@@ -4,11 +4,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/world_exchange.h"
+
 #include "http/http.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/struct_ov94_0223BA24.h"
-#include "overlay096/struct_world_exchange_trainer.h"
-#include "overlay096/struct_world_exchange_trainer_error.h"
 
 #include "enums.h"
 
