@@ -322,7 +322,7 @@ Menu *WifiBattleTower_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int ba
     return Menu_MakeYesNoChoice(bgConfig, &template, SCROLLING_MESSAGE_BOX_TILE_COUNT + 1, WINDOW_BORDER_PLTT_SLOT, HEAP_ID_68);
 }
 
-void WifiBattleTower_SetState(WifiBattleTowerAppState *appState, int state, int nextState)
+void WifiBattleTower_SetState(WifiBattleTowerAppState *appState, enum WifiBattleTowerState state, enum WifiBattleTowerState nextState)
 {
     appState->state = state;
     appState->nextState = nextState;

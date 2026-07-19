@@ -10,7 +10,6 @@
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "applications/frontier/records/windows.h"
-#include "wifi_battle_tower/save.h"
 
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
@@ -37,6 +36,7 @@
 #include "unk_0202FF4C.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/graphics/poketch/poketch.naix"
 #include "res/text/bank/battle_frontier_records.h"

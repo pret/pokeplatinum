@@ -120,7 +120,7 @@ pokeplatinum_c = files(
     'play_time.c',
     'chatot_cry.c',
     'game_records.c',
-    'wifi_battle_tower/save.c',
+    'wifi_battle_tower_save.c',
     'unk_0202D778.c',
     'special_encounter.c',
     'global_trade.c',

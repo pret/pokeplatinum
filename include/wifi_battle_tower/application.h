@@ -22,7 +22,7 @@ BOOL WifiBattleTower_AppMain(ApplicationManager *appMan, int *state);
 BOOL WifiBattleTower_AppExit(ApplicationManager *appMan, int *state);
 void WifiBattleTower_BuildAffineSpriteTemplate(AffineSpriteListTemplate *template, WifiBattleTowerAppState *appState, SpriteResourcesHeader *spriteResourceHeader, int vramType);
 Menu *WifiBattleTower_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int baseTile);
-void WifiBattleTower_SetState(WifiBattleTowerAppState *appState, int state, int nextState);
+void WifiBattleTower_SetState(WifiBattleTowerAppState *appState, enum WifiBattleTowerState state, enum WifiBattleTowerState nextState);
 int WifiBattleTower_GetSignalStrength(void);
 void WifiBattleTower_SetExitMode(WifiBattleTowerAppState *appState, int exitMode, int unused);
 

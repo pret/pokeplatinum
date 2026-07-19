@@ -9,7 +9,6 @@
 #include "generated/map_headers.h"
 
 #include "field/field_system.h"
-#include "wifi_battle_tower/save.h"
 
 #include "bg_window.h"
 #include "coins.h"
@@ -30,6 +29,7 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/text/bank/menu_entries.h"
 #include "res/text/bank/unk_0543.h"

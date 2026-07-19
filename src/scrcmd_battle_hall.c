@@ -10,7 +10,6 @@
 #include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
-#include "wifi_battle_tower/save.h"
 
 #include "bag.h"
 #include "battle_frontier_save.h"
@@ -36,6 +35,7 @@
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
 #include "unk_02099500.h"
+#include "wifi_battle_tower_save.h"
 
 #include "constdata/const_020F410C.h"
 

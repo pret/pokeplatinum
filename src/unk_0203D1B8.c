@@ -72,7 +72,6 @@
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
 #include "wifi_battle_tower/application.h"
-#include "wifi_battle_tower/save.h"
 
 #include "bag.h"
 #include "bag_context.h"
@@ -126,6 +125,7 @@
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "vars_flags.h"
+#include "wifi_battle_tower_save.h"
 #include "wifi_history_save_data.h"
 
 #include "constdata/const_020EA328.h"

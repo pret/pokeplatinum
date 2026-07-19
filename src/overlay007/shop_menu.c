@@ -12,7 +12,6 @@
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/sprite_resource_manager.h"
-#include "wifi_battle_tower/save.h"
 
 #include "bag.h"
 #include "bag_context.h"
@@ -60,6 +59,7 @@
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"
 #include "vars_flags.h"
+#include "wifi_battle_tower_save.h"
 
 #include "res/graphics/shop_menu/shop_gra.naix"
 #include "res/graphics/sprite_templates/shop_menu.h"

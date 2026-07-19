@@ -16,7 +16,6 @@
 #include "overlay104/ov104_02239C58.h"
 #include "overlay104/ov104_0223C164.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "wifi_battle_tower/save.h"
 
 #include "battle_frontier.h"
 #include "battle_frontier_save.h"
@@ -29,6 +28,7 @@
 #include "unk_02049D08.h"
 #include "unk_0204FA34.h"
 #include "unk_0209BA80.h"
+#include "wifi_battle_tower_save.h"
 
 static BOOL ov104_02239680(FrontierScriptContext *param0);
 static BOOL ov104_02239C20(FrontierScriptContext *param0);

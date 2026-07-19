@@ -12,7 +12,6 @@
 #include "overlay059/struct_ov59_021D30E0.h"
 #include "overlay096/struct_wifi_player_profile.h"
 #include "savedata/save_table.h"
-#include "wifi_battle_tower/save.h"
 
 #include "communication_information.h"
 #include "communication_system.h"
@@ -23,6 +22,7 @@
 #include "unk_020298BC.h"
 #include "unk_0202E2CC.h"
 #include "unk_02073700.h"
+#include "wifi_battle_tower_save.h"
 
 typedef struct {
     enum HeapID heapID;

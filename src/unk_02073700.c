@@ -6,12 +6,12 @@
 
 #include "overlay096/struct_wifi_player_profile.h"
 #include "overlay104/frontier_data_transfer.h"
-#include "wifi_battle_tower/save.h"
 
 #include "appearance.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
+#include "wifi_battle_tower_save.h"
 #include "wifi_history_save_data.h"
 
 void sub_02073700(SaveData *saveData, int param1, WifiPlayerProfile *profile)
