@@ -30,7 +30,7 @@ enum BattleTowerHttpRequestState {
     HTTP_STATE_COMPLETE,
 };
 
-struct BattleTowerHttpState {
+typedef struct BattleTowerHttpState {
     enum BattleTowerHttpRequestState requestState;
     s32 result;
     s32 profileId;
@@ -38,12 +38,12 @@ struct BattleTowerHttpState {
     u8 requestBody[239];
     u8 responseBuffer[2];
     u8 *responsePtr;
-};
+} BattleTowerHttpState;
 
 static BOOL BattleTowerNetworking_PrepareRequest(const u8 *url, const void *data, int dataSize, void *response, int maxResponseLength);
 static int BattleTowerHttp_GetPublicErrorCode(int errorCode);
 
-static struct BattleTowerHttpState httpState;
+static BattleTowerHttpState httpState;
 
 void BattleTowerHttp_Init(s32 profileId, u64 friendKey)
 {
