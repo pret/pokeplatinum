@@ -10,6 +10,7 @@ subdir('msgenc')   # Requires libdataproc
 subdir('datagen')
 subdir('fixrom')
 subdir('jsoncnv')
+subdir('nitrobtx')
 subdir('nitrogfx')
 subdir('ordergen')
 subdir('postconf')
