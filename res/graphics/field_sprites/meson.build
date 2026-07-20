@@ -418,10 +418,10 @@ field_sprites_textures_two_frame_pokemon = [
 ]
 
 field_sprites_nsbtxs += custom_target(
-    input: [
+    input: files(
         'objects/cave_painting/wall.png',
         'objects/cave_painting/painting.png'
-    ],
+    ),
     build_subdir: field_sprites_private_dir,
     output: 'cave_painting.nsbtx',
     command: [
@@ -440,10 +440,10 @@ field_sprites_nsbtxs += custom_target(
 )
 
 field_sprites_nsbtxs += custom_target(
-    input: [
+    input: files(
         'berry_trees/grepa_blooming/frame_1.png',
         'berry_trees/grepa_blooming/frame_2.png'
-    ],
+    ),
     build_subdir: field_sprites_private_dir,
     output: 'grepa_blooming.nsbtx',
     command: [
@@ -462,10 +462,10 @@ field_sprites_nsbtxs += custom_target(
 )
 
 field_sprites_nsbtxs += custom_target(
-    input: [
+    input: files(
         'berry_trees/apicot_blooming/frame_1.png',
         'berry_trees/apicot_blooming/frame_2.png'
-    ],
+    ),
     build_subdir: field_sprites_private_dir,
     output: 'apicot_blooming.nsbtx',
     command: [
@@ -484,9 +484,9 @@ field_sprites_nsbtxs += custom_target(
 )
 
 field_sprites_nsbtxs += custom_target(
-    input: [
+    input: files(
         'objects/surf_wake.png'
-    ],
+    ),
     build_subdir: field_sprites_private_dir,
     output: '@BASENAME@.nsbtx',
     command: [
@@ -504,9 +504,9 @@ field_sprites_nsbtxs += custom_target(
 )
 
 field_sprites_nsbtxs += custom_target(
-    input: [
+    input: files(
         'pokemon/giratina_origin.png'
-    ],
+    ),
     build_subdir: field_sprites_private_dir,
     output: '@BASENAME@.nsbtx',
     command: [
@@ -525,7 +525,7 @@ field_sprites_nsbtxs += custom_target(
 
 foreach texture : field_sprites_textures_32_px_single_palette
     field_sprites_nsbtxs += custom_target(
-        input: texture['file'],
+        input: files(texture['file']),
         build_subdir: field_sprites_private_dir,
         output: '@BASENAME@.nsbtx',
         command: [
@@ -543,7 +543,7 @@ endforeach
 
 foreach index : range(12)
     field_sprites_nsbtxs += custom_target(
-        input: 'dummy.png',
+        input: files('dummy.png'),
         build_subdir: field_sprites_private_dir,
         output: '@BASENAME@_' + index.to_string() + '.nsbtx',
         command: [
@@ -561,7 +561,7 @@ endforeach
 
 foreach index : range(5)
     field_sprites_nsbtxs += custom_target(
-        input: 'npc/unused_big_man.png',
+        input: files('npc/unused_big_man.png'),
         build_subdir: field_sprites_private_dir,
         output: '@BASENAME@_' + index.to_string() + '.nsbtx',
         command: [
@@ -579,7 +579,7 @@ endforeach
 
 foreach index : range(3)
     field_sprites_nsbtxs += custom_target(
-        input: 'npc/unused_woman.png',
+        input: files('npc/unused_woman.png'),
         build_subdir: field_sprites_private_dir,
         output: '@BASENAME@_' + index.to_string() + '.nsbtx',
         command: [
@@ -597,7 +597,7 @@ endforeach
 
 foreach texture : field_sprites_textures_single_frame
     field_sprites_nsbtxs += custom_target(
-        input: texture['file'],
+        input: files(texture['file']),
         build_subdir: field_sprites_private_dir,
         output: '@BASENAME@.nsbtx',
         command: [
@@ -613,7 +613,7 @@ endforeach
 
 foreach texture : field_sprites_textures_single_frame_pl_suffix
     field_sprites_nsbtxs += custom_target(
-        input: texture['file'],
+        input: files(texture['file']),
         build_subdir: field_sprites_private_dir,
         output: '@BASENAME@.nsbtx',
         command: [
@@ -630,7 +630,7 @@ endforeach
 
 foreach texture : field_sprites_textures_berry_trees
     field_sprites_nsbtxs += custom_target(
-        input: texture['file'],
+        input: files(texture['file']),
         build_subdir: field_sprites_private_dir,
         output: '@BASENAME@.nsbtx',
         command: [
@@ -650,7 +650,7 @@ endforeach
 
 foreach texture : field_sprites_textures_two_frame_pokemon
     field_sprites_nsbtxs += custom_target(
-        input: texture['file'],
+        input: files(texture['file']),
         build_subdir: field_sprites_private_dir,
         output: '@BASENAME@.nsbtx',
         command: [
