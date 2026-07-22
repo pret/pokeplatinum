@@ -389,7 +389,7 @@ static int GTSApplication_MainMenu_SetupBottomWindowQuestion(GTSApplicationState
     GTSApplication_MainMenu_SetBottomWindowText(appState, GTS_Text_AreYouSeekingOrOfferingAPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 6);
     Sprite_SetAnimateFlag(appState->cursorSprite, TRUE);
-    GTSApplicationState_StartCountingBoxPokemon(appState);
+    GTSApplication_StartCountingBoxPokemon(appState);
 
     return GTS_LOOP_STATE_MAIN;
 }
@@ -397,7 +397,7 @@ static int GTSApplication_MainMenu_SetupBottomWindowQuestion(GTSApplicationState
 static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        ov94_0223CFD8(appState, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(appState), 0, 0xf0f);
+        ov94_0223CFD8(appState, GTS_Text_IsItOKToDisconnect, GTSApplication_GetTextFrameDelay(appState), 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 12);
         Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
@@ -429,7 +429,7 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         case 2: // exit
-            ov94_0223CFD8(appState, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(appState), 0, 0xf0f);
+            ov94_0223CFD8(appState, GTS_Text_IsItOKToDisconnect, GTSApplication_GetTextFrameDelay(appState), 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 12);
             Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
             Sound_PlayEffect(SEQ_SE_CONFIRM);

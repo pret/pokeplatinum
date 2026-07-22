@@ -55,17 +55,17 @@
 
 static void GTSApplication_VBlankCallback(void *appStatePtr);
 static void GTSApplication_SetVRAMBanks(void);
-static void GTSApplicationState_InitPlayerData(GTSApplicationState *appState, ApplicationManager *appMan);
+static void GTSApplication_InitPlayerData(GTSApplicationState *appState, ApplicationManager *appMan);
 static void GTSApplication_Noop(GTSApplicationState *appState);
 static void GTSApplication_InitCharTransfer(void);
 static void GTSApplication_InitGraphics(GTSApplicationState *appState);
 static void GTSApplication_InitSpriteHeaders(GTSApplicationState *appState);
 static void GTSApplication_DWCFree(DWCAllocType name, void *ptr, u32 size);
 static void *GTSApplication_DWCAlloc(DWCAllocType name, u32 size, int align);
-static void ov94_0223C4E0(GTSApplicationState *appState);
+static void GTSApplication_InitRenderingSystem(GTSApplicationState *appState);
 static void GTSApplication_CleanupGraphics(GTSApplicationState *appState);
-static void GTSApplicationState_DecrementNetworkTimer(GTSApplicationState *appState);
-static void GTSApplicationState_CountBoxPokemon(GTSApplicationState *appState);
+static void GTSApplication_DecrementNetworkTimer(GTSApplicationState *appState);
+static void GTSApplication_CountBoxPokemon(GTSApplicationState *appState);
 
 static NNSFndHeapHandle sGTSHeapHandle;
 
@@ -88,7 +88,7 @@ GTSApplicationState *unused_GTSApplicationState;
 BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState)
 {
     switch (*loopState) {
-    case 0:
+    case GTS_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER:
         SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
@@ -122,20 +122,20 @@ BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState)
 
         SetAutorepeat(4, 8);
 
-        GTSApplicationState_InitPlayerData(appState, appMan);
-        ov94_0223C4E0(appState);
+        GTSApplication_InitPlayerData(appState, appMan);
+        GTSApplication_InitRenderingSystem(appState);
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
 
         appState->dwcHeapPointer = Heap_Alloc(HEAP_ID_62, 0x20000 + 32);
         appState->dwcHeapHandle = NNS_FndCreateExpHeap((void *)(((u32)appState->dwcHeapPointer + 31) / 32 * 32), 0x20000);
-        *loopState = 1;
+        *loopState = GTS_LOOP_STATE_INIT;
         break;
-    case 1:
+    case GTS_LOOP_STATE_INIT:
         Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
-        (*loopState) = 0;
+        (*loopState) = GTS_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER;
         return TRUE; // pass through to main
     }
 
@@ -175,7 +175,7 @@ BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState)
     case GTS_LOOP_STATE_FINISH:
         if (IsScreenFadeDone()) {
             if (appState->hasTradedPokemon) { // pokemon received?
-                ov94_0223C4E0(appState);
+                GTSApplication_InitRenderingSystem(appState);
                 ov94_02243EF8(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
                 ov94_02244234(appState, appState->unk_118, 0);
                 ov94_0223D068(appState);
@@ -188,8 +188,8 @@ BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState)
         return TRUE;
     }
 
-    GTSApplicationState_DecrementNetworkTimer(appState);
-    GTSApplicationState_CountBoxPokemon(appState);
+    GTSApplication_DecrementNetworkTimer(appState);
+    GTSApplication_CountBoxPokemon(appState);
 
     if (appState->spriteList != NULL) {
         SpriteList_Update(appState->spriteList);
@@ -260,7 +260,7 @@ static void GTSApplication_SetVRAMBanks(void)
     GXLayers_SetBanks(&banks);
 }
 
-static void GTSApplicationState_InitPlayerData(GTSApplicationState *appState, ApplicationManager *appMan)
+static void GTSApplication_InitPlayerData(GTSApplicationState *appState, ApplicationManager *appMan)
 {
     appState->playerData = (GTSPlayerData *)ApplicationManager_Args(appMan);
     appState->screenId = 0;
@@ -462,12 +462,12 @@ void GTSApplication_MoveToNextScreen(GTSApplicationState *appState)
     appState->screenId = appState->nextScreen;
 }
 
-int GTSApplicationState_GetTextFrameDelay(GTSApplicationState *appState)
+int GTSApplication_GetTextFrameDelay(GTSApplicationState *appState)
 {
     return Options_TextFrameDelay(appState->playerData->options);
 }
 
-static void ov94_0223C4E0(GTSApplicationState *appState)
+static void GTSApplication_InitRenderingSystem(GTSApplicationState *appState)
 {
     GTSApplication_SetVRAMBanks();
     GTSApplication_InitCharTransfer();
@@ -498,20 +498,20 @@ static void GTSApplication_CleanupGraphics(GTSApplicationState *appState)
     PlttTransfer_Free();
 }
 
-static void GTSApplicationState_DecrementNetworkTimer(GTSApplicationState *appState)
+static void GTSApplication_DecrementNetworkTimer(GTSApplicationState *appState)
 {
     if (appState->networkTimer) {
         appState->networkTimer--;
     }
 }
 
-void GTSApplicationState_StartCountingBoxPokemon(GTSApplicationState *appState)
+void GTSApplication_StartCountingBoxPokemon(GTSApplicationState *appState)
 {
     appState->deferredBoxId = 1;
     appState->deferredBoxPokemonCount = 0;
 }
 
-static void GTSApplicationState_CountBoxPokemon(GTSApplicationState *appState)
+static void GTSApplication_CountBoxPokemon(GTSApplicationState *appState)
 {
     if (appState->deferredBoxId) {
         appState->deferredBoxPokemonCount += PCBoxes_CountMonsInBox(appState->playerData->pcBoxes, appState->deferredBoxId - 1);
@@ -523,12 +523,12 @@ static void GTSApplicationState_CountBoxPokemon(GTSApplicationState *appState)
     }
 }
 
-void GTSApplicationState_AddWaitDial(GTSApplicationState *appState)
+void GTSApplication_AddWaitDial(GTSApplicationState *appState)
 {
     appState->waitDial = Window_AddWaitDial(&appState->bottomInstructionWindow, 1);
 }
 
-void GTSApplicationState_DestroyWaitDial(GTSApplicationState *appState)
+void GTSApplication_DestroyWaitDial(GTSApplicationState *appState)
 {
     if (appState->waitDial != NULL) {
         DestroyWaitDial(appState->waitDial);

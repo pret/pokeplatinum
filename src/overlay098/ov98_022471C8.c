@@ -1258,7 +1258,7 @@ static int ov98_0224897C(UnkStruct_ov98_02247704 *param0)
     SleepUnlock(4);
 
     if (param0->unk_00->unk_11C == 1) {
-        ov94_0223B7AC();
+        GTSNetworking_Reset();
         param0->unk_00->unk_11C = 0;
     }
 
@@ -1327,7 +1327,7 @@ static int ov98_02248A68(UnkStruct_ov98_02247704 *param0)
             SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
-                ov94_0223B7AC();
+                GTSNetworking_Reset();
                 param0->unk_00->unk_11C = 0;
             }
 
@@ -1403,7 +1403,7 @@ static int ov98_02248B24(UnkStruct_ov98_02247704 *param0)
             SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
-                ov94_0223B7AC();
+                GTSNetworking_Reset();
                 param0->unk_00->unk_11C = 0;
             }
 
@@ -1456,7 +1456,7 @@ static int ov98_02248BFC(UnkStruct_ov98_02247704 *param0)
 
     v1 = SystemData_GetDWCProfileId(v2);
 
-    ov94_0223B140(v1, DWC_CreateFriendKey(v0));
+    GTSNetworking_InitCredentials(v1, DWC_CreateFriendKey(v0));
 
     param0->unk_00->unk_11C = 1;
     param0->unk_08 = 17;
@@ -1859,7 +1859,7 @@ static int ov98_02249320(UnkStruct_ov98_02247704 *param0)
         SleepUnlock(4);
 
         if (param0->unk_00->unk_11C == 1) {
-            ov94_0223B7AC();
+            GTSNetworking_Reset();
             param0->unk_00->unk_11C = 0;
         }
 
@@ -2022,7 +2022,7 @@ static int ov98_022495C4(UnkStruct_ov98_02247704 *param0)
             SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
-                ov94_0223B7AC();
+                GTSNetworking_Reset();
                 param0->unk_00->unk_11C = 0;
             }
 

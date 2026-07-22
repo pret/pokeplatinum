@@ -513,32 +513,32 @@ static int GTS_IsTradeTimestampRecent(GTSApplicationState *appState, int bySearc
 static int ov94_0223ECD4(GTSApplicationState *param0)
 {
     GTSPokemonRequirements v0;
-    int v1 = 3;
+    int maxResults = 3;
 
     if (GTS_IsTradeTimestampRecent(param0, 1)) {
-        v1 += 2;
+        maxResults += 2;
     }
 
     if (GTS_IsTradeTimestampRecent(param0, 0)) {
-        v1 += 2;
+        maxResults += 2;
     }
 
     if (param0->selectedCountryIndex == 0) {
-        GTSNetworking_Search(&param0->unk_B7A, v1, param0->searchResults);
+        GTSNetworking_SearchGlobal(&param0->unk_B7A, maxResults, param0->searchResults);
     } else {
-        UnkStruct_ov94_0223BA24 v2;
+        GTSCountrySearchRequest v2;
 
-        MI_CpuClear8(&v2, sizeof(UnkStruct_ov94_0223BA24));
+        MI_CpuClear8(&v2, sizeof(GTSCountrySearchRequest));
 
         v2.species = param0->unk_B7A.species;
         v2.gender = param0->unk_B7A.gender;
         v2.level = param0->unk_B7A.level;
         v2.level2 = param0->unk_B7A.level2;
         v2.unk_05 = param0->unk_B7A.unk_05;
-        v2.unk_06 = v1;
-        v2.unk_07 = param0->selectedCountryIndex;
+        v2.count = maxResults;
+        v2.countryIndex = param0->selectedCountryIndex;
 
-        ov94_0223BA24(&v2, param0->searchResults);
+        GTSNetworking_SearchByCountry(&v2, param0->searchResults);
     }
 
     param0->unk_B80 = param0->unk_B7A;
