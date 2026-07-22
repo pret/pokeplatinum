@@ -7,9 +7,9 @@
 #include "generated/ai_flags.h"
 #include "generated/frontier_trainers.h"
 
-#include "struct_defs/battle_frontier_trainer_data.h"
+#include "struct_defs/frontier_trainer_base.h"
 
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
@@ -160,7 +160,7 @@ FieldBattleDTO *FieldBattleDTO_NewBattleArcade(BattleArcade *battleArcade, Field
 {
     int i;
     u8 baseSlotID;
-    FrontierTrainerDataDTO trDataDTO;
+    FrontierTrainer trDataDTO;
 
     u8 playerPartySize = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, 0);
     u8 opponentPartySize = BattleArcade_GetOpponentPartySize(battleArcade->challengeType, 0);
@@ -198,7 +198,7 @@ FieldBattleDTO *FieldBattleDTO_NewBattleArcade(BattleArcade *battleArcade, Field
     Heap_Free(mon);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(battleDTO);
 
-    BattleFrontierTrainerData *trData = BattleFrontier_GetTrainerData(&trDataDTO, battleArcade->trainerIDs[battleArcade->unk_11], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+    FrontierTrainerBase *trData = BattleFrontier_GetTrainer(&trDataDTO, battleArcade->trainerIDs[battleArcade->unk_11], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
 
     Heap_Free(trData);
     FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_1, HEAP_ID_FIELD2);
@@ -224,7 +224,7 @@ FieldBattleDTO *FieldBattleDTO_NewBattleArcade(BattleArcade *battleArcade, Field
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), battleDTO->trainerInfo[BATTLER_PLAYER_2]);
 
-        trData = BattleFrontier_GetTrainerData(&trDataDTO, battleArcade->trainerIDs[battleArcade->unk_11 + 7], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+        trData = BattleFrontier_GetTrainer(&trDataDTO, battleArcade->trainerIDs[battleArcade->unk_11 + 7], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         Heap_Free(trData);
 
         FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_2, HEAP_ID_FIELD2);
@@ -300,7 +300,7 @@ void ov104_0223C04C(BattleArcade *battleArcade)
     v5 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v1 = 0; v1 < v3; v1++) {
-        FrontierPokemonDataDTO_InitPokemon(&battleArcade->unk_330[v1], v5, BattleArcade_GetPokemonLevel(battleArcade));
+        FrontierPokemon_InitPokemon(&battleArcade->unk_330[v1], v5, BattleArcade_GetPokemonLevel(battleArcade));
         ov104_0223C034(battleArcade, battleArcade->opponentsParty, v5);
 
         v6 = Party_GetPokemonBySlotIndex(battleArcade->opponentsParty, v1);

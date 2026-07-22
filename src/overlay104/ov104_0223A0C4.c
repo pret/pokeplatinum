@@ -11,11 +11,11 @@
 #include "generated/moves.h"
 #include "generated/species_data_params.h"
 
-#include "struct_defs/battle_frontier_pokemon_data.h"
 #include "struct_defs/battle_tower.h"
+#include "struct_defs/frontier_pokemon_base.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "communication_information.h"
@@ -29,7 +29,7 @@
 #include "unk_02049D08.h"
 #include "wifi_battle_tower_save.h"
 
-const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
+const FrontierPokemon sDummyFrontierPokemon[] = {
     {
         .species = SPECIES_BULBASAUR,
         .form = 0,
@@ -43,7 +43,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -72,7 +72,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -101,7 +101,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -130,7 +130,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -159,7 +159,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -188,7 +188,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -217,7 +217,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -246,7 +246,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -275,7 +275,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -304,7 +304,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -333,7 +333,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -362,7 +362,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -391,7 +391,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -420,7 +420,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -449,7 +449,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -478,7 +478,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -507,7 +507,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
         .speedIV = MAX_IVS_SINGLE_STAT,
         .spAtkIV = MAX_IVS_SINGLE_STAT,
         .spDefIV = MAX_IVS_SINGLE_STAT,
-        .unk_14_val1_30 = 0,
+        .setSpeciesAsNickname = 0,
         .hpEV = 32,
         .atkEV = 32,
         .defEV = 32,
@@ -525,7 +525,7 @@ const FrontierPokemonDataDTO sDummyPokemonDTOs[] = {
     }
 };
 
-const FrontierTrainerDataDTO sDummyTrainerDTOs[] = {
+const FrontierTrainer sDummyFrontierTrainers[] = {
     {
         .trainerID = 0x12345678,
         .trainerType = 0x2,
@@ -628,31 +628,31 @@ static const UnkStruct_ov104_0223FCB4 Unk_ov104_0223FCB4[] = {
 };
 
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto);
-void BattleTower_CreateWiFiTrainerParty(SaveData *saveData, FrontierDataDTO *dto, const u8 opponentID);
+void BattleTower_CreateWiFiTrainerParty(SaveData *saveData, FrontierOpponent *dto, const u8 opponentID);
 void ov104_0223A734(BattleTower *battleTower, u16 param1);
 u16 ov104_0223A750(BattleTower *battleTower, const u16 *param1);
 int BattleTower_GetPokemonDataNarcID(u8 challengeMode);
 int BattleFrontier_GetTrainerDataNarcID(u8 challengeMode);
 int BattleTower_GetTrainerMessagesBankID(u8 challengeMode);
-static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, BattleFrontierTrainerData *trData, u16 battleTowerTrainerID, FrontierPokemonDataDTO *monDataDTO, u8 partySize, u16 *species, u16 *items, BattleTowerPartnerData *param7, enum HeapID heapID);
-static void BattleTower_CreateDummyWiFiTrainer(FrontierDataDTO *dto, const u8 opponentID);
-static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, FrontierPokemonDataDTO *monDataDTO, u16 setID, u32 otID, u32 givenPersonality, u8 ivs, u8 partyIndex, BOOL giveReservedItem, enum HeapID heapID);
+static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, FrontierTrainerBase *trData, u16 battleTowerTrainerID, FrontierPokemon *monDataDTO, u8 partySize, u16 *species, u16 *items, BattleTowerPartnerData *param7, enum HeapID heapID);
+static void BattleTower_CreateDummyWiFiTrainer(FrontierOpponent *dto, const u8 opponentID);
+static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, FrontierPokemon *monDataDTO, u16 setID, u32 otID, u32 givenPersonality, u8 ivs, u8 partyIndex, BOOL giveReservedItem, enum HeapID heapID);
 static u32 BattleTower_GetBattleTypeFromChallengeMode(u8 challengeMode);
-static void FieldBattleDTO_InitBattleTowerTrainer(FieldBattleDTO *battleDTO, FrontierDataDTO *frontierDTO, int partySize, int battlerId, enum HeapID heapID);
+static void FieldBattleDTO_InitBattleTowerTrainer(FieldBattleDTO *battleDTO, FrontierOpponent *frontierDTO, int partySize, int battlerId, enum HeapID heapID);
 static int BattleTower_AreAllConnectedGamesPlatinum(u8 challengeMode);
 
-BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierDataDTO *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, BattleTowerPartnerData *param6, enum HeapID heapID)
+BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierOpponent *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, BattleTowerPartnerData *param6, enum HeapID heapID)
 {
     BOOL v0 = 0;
-    BattleFrontierTrainerData *trData = BattleFrontier_GetTrainerData(&opponentDataDTO->trDataDTO, battleTowerTrainerID, heapID, BattleFrontier_GetTrainerDataNarcID(battleTower->challengeMode));
-    v0 = BattleTower_CreateRandomTrainerParty(battleTower, trData, battleTowerTrainerID, &opponentDataDTO->monDataDTO[0], partySize, species, items, param6, heapID);
+    FrontierTrainerBase *trData = BattleFrontier_GetTrainer(&opponentDataDTO->trainer, battleTowerTrainerID, heapID, BattleFrontier_GetTrainerDataNarcID(battleTower->challengeMode));
+    v0 = BattleTower_CreateRandomTrainerParty(battleTower, trData, battleTowerTrainerID, &opponentDataDTO->pokemon[0], partySize, species, items, param6, heapID);
 
     Heap_Free(trData);
 
     return v0;
 }
 
-static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, BattleFrontierTrainerData *trData, u16 battleTowerTrainerID, FrontierPokemonDataDTO *monDataDTO, u8 partySize, u16 *species, u16 *items, BattleTowerPartnerData *param7, enum HeapID heapID)
+static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, FrontierTrainerBase *trData, u16 battleTowerTrainerID, FrontierPokemon *monDataDTO, u8 partySize, u16 *species, u16 *items, BattleTowerPartnerData *param7, enum HeapID heapID)
 {
     int i;
     u8 ivs;
@@ -664,8 +664,8 @@ static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, Battl
     int partyIndex;
     int dupeItemFailsafeCount;
     BOOL giveReservedItem = 0;
-    BattleFrontierPokemonData monDataPrev;
-    BattleFrontierPokemonData monDataCurr;
+    FrontierPokemonBase monDataPrev;
+    FrontierPokemonBase monDataCurr;
 
     GF_ASSERT(partySize <= BT_DOUBLES_PARTY_SIZE);
 
@@ -676,10 +676,10 @@ static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, Battl
         random = BattleTower_GetRandom(battleTower) % trData->numSets;
         setID = trData->setIDs[random];
 
-        BattleTower_GetMonDataFromSetIDAndNarcID(&monDataCurr, setID, BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
+        BattleFrontier_GetPokemonBase(&monDataCurr, setID, BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
 
         for (i = 0; i < partyIndex; i++) {
-            BattleTower_GetMonDataFromSetIDAndNarcID(&monDataPrev, setIDs[i], BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
+            BattleFrontier_GetPokemonBase(&monDataPrev, setIDs[i], BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
 
             if (monDataPrev.species == monDataCurr.species) {
                 break;
@@ -704,7 +704,7 @@ static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, Battl
 
         if (dupeItemFailsafeCount < 50) {
             for (i = 0; i < partyIndex; i++) {
-                BattleTower_GetMonDataFromSetIDAndNarcID(&monDataPrev, setIDs[i], BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
+                BattleFrontier_GetPokemonBase(&monDataPrev, setIDs[i], BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
 
                 if (monDataPrev.item && monDataPrev.item == monDataCurr.item) {
                     break;
@@ -759,34 +759,34 @@ static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, Battl
     return giveReservedItem;
 }
 
-void BattleTower_CreateWiFiTrainerParty(SaveData *saveData, FrontierDataDTO *dto, const u8 opponentID)
+void BattleTower_CreateWiFiTrainerParty(SaveData *saveData, FrontierOpponent *oppponent, const u8 opponentID)
 {
-    MI_CpuClear8(dto, sizeof(FrontierDataDTO));
+    MI_CpuClear8(oppponent, sizeof(FrontierOpponent));
 
     WifiBattleTowerDownloadData *v1 = SaveData_GetWifiBattleTowerDownloadData(saveData);
 
     if (!WifiBattleTowerDownloadData_HasOpponentData(v1)) {
-        BattleTower_CreateDummyWiFiTrainer(dto, opponentID);
+        BattleTower_CreateDummyWiFiTrainer(oppponent, opponentID);
         return;
     }
 
-    WifiBattleTowerDownloadData_BuildOpponentDTO(v1, dto, opponentID);
+    WifiBattleTowerDownloadData_BuildOpponent(v1, oppponent, opponentID);
 }
 
-static void BattleTower_CreateDummyWiFiTrainer(FrontierDataDTO *dto, const u8 opponentID)
+static void BattleTower_CreateDummyWiFiTrainer(FrontierOpponent *opponent, const u8 opponentID)
 {
     int i;
-    MI_CpuClear8(dto, sizeof(FrontierDataDTO));
+    MI_CpuClear8(opponent, sizeof(FrontierOpponent));
 
-    const FrontierTrainerDataDTO *trDataDTO = &(sDummyTrainerDTOs[opponentID]);
-    const FrontierPokemonDataDTO *monDataDTO = sDummyPokemonDTOs;
+    const FrontierTrainer *trainer = &(sDummyFrontierTrainers[opponentID]);
+    const FrontierPokemon *mons = sDummyFrontierPokemon;
     const UnkStruct_ov104_0223FCB4 *v3 = &(Unk_ov104_0223FCB4[opponentID]);
 
-    MI_CpuCopy8(trDataDTO, &dto->trDataDTO, sizeof(FrontierTrainerDataDTO));
-    dto->trDataDTO.unk_06 = v3->unk_00;
+    MI_CpuCopy8(trainer, &opponent->trainer, sizeof(FrontierTrainer));
+    opponent->trainer.unk_06 = v3->unk_00;
 
     for (i = 0; i < 4; i++) {
-        MI_CpuCopy8(&(monDataDTO[v3->unk_02[i]]), &(dto->monDataDTO[i]), sizeof(FrontierPokemonDataDTO));
+        MI_CpuCopy8(&(mons[v3->unk_02[i]]), &(opponent->pokemon[i]), sizeof(FrontierPokemon));
     }
 }
 
@@ -797,15 +797,15 @@ static const u16 sBattleTowerReservedItems[] = {
     ITEM_QUICK_CLAW,
 };
 
-static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, FrontierPokemonDataDTO *monDataDTO, u16 setID, u32 otID, u32 givenPersonality, u8 ivs, u8 partyIndex, BOOL giveReservedItem, enum HeapID heapID)
+static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, FrontierPokemon *monDataDTO, u16 setID, u32 otID, u32 givenPersonality, u8 ivs, u8 partyIndex, BOOL giveReservedItem, enum HeapID heapID)
 {
     int v0;
     int evs;
     u32 randomPersonality;
-    BattleFrontierPokemonData monData;
+    FrontierPokemonBase monData;
 
-    MI_CpuClear8(monDataDTO, sizeof(FrontierPokemonDataDTO));
-    BattleTower_GetMonDataFromSetIDAndNarcID(&monData, setID, BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
+    MI_CpuClear8(monDataDTO, sizeof(FrontierPokemon));
+    BattleFrontier_GetPokemonBase(&monData, setID, BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
 
     monDataDTO->species = monData.species;
     monDataDTO->form = monData.form;
@@ -942,13 +942,13 @@ FieldBattleDTO *FieldBattleDTO_NewBattleTower(BattleTower *battleTower, FieldFro
     return dto;
 }
 
-static void FieldBattleDTO_InitBattleTowerTrainer(FieldBattleDTO *battleDTO, FrontierDataDTO *frontierDTO, int partySize, int battlerId, enum HeapID heapID)
+static void FieldBattleDTO_InitBattleTowerTrainer(FieldBattleDTO *battleDTO, FrontierOpponent *frontierDTO, int partySize, int battlerId, enum HeapID heapID)
 {
-    FieldBattleDTO_InitFrontierTrainer(battleDTO, &frontierDTO->trDataDTO, partySize, battlerId, heapID);
+    FieldBattleDTO_InitFrontierTrainer(battleDTO, &frontierDTO->trainer, partySize, battlerId, heapID);
     Pokemon *mon = Pokemon_New(heapID);
 
     for (int i = 0; i < partySize; i++) {
-        FrontierPokemonDataDTO_InitPokemon(&frontierDTO->monDataDTO[i], mon, 120);
+        FrontierPokemon_InitPokemon(&frontierDTO->pokemon[i], mon, 120);
         Party_AddPokemon(battleDTO->parties[battlerId], mon);
     }
 

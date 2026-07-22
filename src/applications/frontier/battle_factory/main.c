@@ -13,7 +13,7 @@
 #include "applications/frontier/battle_factory/sprite_manager.h"
 #include "applications/frontier/battle_factory/windows.h"
 #include "applications/pokemon_summary_screen/main.h"
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/ov104_0223A7F4.h"
 
 #include "bg_window.h"

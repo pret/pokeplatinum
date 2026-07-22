@@ -734,7 +734,7 @@ void sub_0204A97C(BattleTower *battleTower)
 
 u16 BattleTower_GetObjectIDFromOpponentID(BattleTower *battleTower, u16 opponentID)
 {
-    return BattleFrontier_GetObjectIDFromTrainerClass(battleTower->opponentsDataDTO[opponentID].trDataDTO.trainerType);
+    return BattleTower_GetObjectIDFromTrainerClass(battleTower->opponentsDataDTO[opponentID].trainer.trainerType);
 }
 
 u16 BattleTower_GetChallengeMode(BattleTower *battleTower)
@@ -986,7 +986,7 @@ static u16 sub_0204ACC8(BattleTower *battleTower)
     return 1;
 }
 
-static void sub_0204ACFC(FrontierPokemonDataDTO *param0, Pokemon *mon)
+static void sub_0204ACFC(FrontierPokemon *param0, Pokemon *mon)
 {
     int v0;
 
@@ -1016,8 +1016,8 @@ static void sub_0204ACFC(FrontierPokemonDataDTO *param0, Pokemon *mon)
 
 static void sub_0204AE20(BattleTower *battleTower, SaveData *saveData, int param2)
 {
-    FrontierPokemonDataDTO *v1 = Heap_AllocAtEnd(battleTower->heapID, sizeof(FrontierPokemonDataDTO) * 3);
-    MI_CpuClear8(v1, sizeof(FrontierPokemonDataDTO) * 3);
+    FrontierPokemon *v1 = Heap_AllocAtEnd(battleTower->heapID, sizeof(FrontierPokemon) * 3);
+    MI_CpuClear8(v1, sizeof(FrontierPokemon) * 3);
     Party *party = SaveData_GetParty(saveData);
 
     for (int i = 0; i < 3; i++) {
@@ -1025,7 +1025,7 @@ static void sub_0204AE20(BattleTower *battleTower, SaveData *saveData, int param
     }
 
     WifiBattleTowerRecord_SetTeam(battleTower->unk_74, param2, v1);
-    MI_CpuClear8(v1, sizeof(FrontierPokemonDataDTO) * 3);
+    MI_CpuClear8(v1, sizeof(FrontierPokemon) * 3);
     Heap_Free(v1);
 }
 
