@@ -17,11 +17,11 @@
 
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
+#include "scrcmd_battle_castle.h"
 #include "scrcmd_battle_hall.h"
 #include "trainer_case.h"
 #include "trainer_info.h"
 #include "unk_02032798.h"
-#include "unk_0205001C.h"
 #include "unk_02050548.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
@@ -157,7 +157,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { sub_02099510, sub_02099504, NULL },
     { sub_02099510, sub_02099508, NULL },
     { BattleHall_ProcessSelectedSpeciesMsg, CommPacketSizeOf_Variable, NULL },
-    { sub_0205001C, CommPacketSizeOf_Variable, NULL },
+    { BattleCastle_ProcessSpeciesCheckMsg, CommPacketSizeOf_Variable, NULL },
     { sub_02050548, CommPacketSizeOf_Variable, NULL }
 };
 
