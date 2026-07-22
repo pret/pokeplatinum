@@ -3,6 +3,7 @@
 #include "res/text/bank/menu_entries.h"
 #include "res/field/events/events_battle_hall.h"
 #include "constants/battle_frontier.h"
+#include "constants/battle_hall_functions.h"
 
 
     ScriptEntry BattleHall_SingleAttendant
@@ -98,8 +99,8 @@ BattleHall_UpdateReporter:
     CallIfUnset FLAG_HIDE_BATTLE_HALL_REPORTER, BattleHall_RemoveReporter
     CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_SINGLE, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, BattleHall_HideReporter
-    ScrCmd_32A VAR_MAP_LOCAL_0x00
-    GoToIfEq VAR_MAP_LOCAL_0x00, 0, BattleHall_HideReporter
+    CheckIfBattleHallStreakIs50 VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, BattleHall_HideReporter
     ClearFlag FLAG_HIDE_BATTLE_HALL_REPORTER
     AddObject LOCALID_REPORTER
     Return
@@ -221,21 +222,21 @@ BattleHall_HopeToSeeYouAgain:
 
 BattleHall_TryTakeSingleChallenge:
     SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE
-    ScrCmd_2CC 0, 1, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_PrintEligbilityRuleOnePokemon
     GoTo BattleHall_SelectPokemon
     End
 
 BattleHall_TryTakeDoubleChallenge:
     SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE
-    ScrCmd_2CC 0, 2, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE, 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_PrintEligbilityRulesForTwoPokemon
     GoTo BattleHall_SelectPokemon
     End
 
 BattleHall_TryTakeMultiChallenge:
     SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI
-    ScrCmd_2CC 0, 1, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_PrintEligbilityRuleOnePokemon
     GoTo BattleHall_SelectPokemon
     End
@@ -257,7 +258,7 @@ BattleHall_SelectPokemon:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_2CC 4, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_SELECT_POKEMON, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
     GetBattleHallSelectedSlots VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x05
     ReturnToField
     FadeScreenIn
@@ -269,9 +270,9 @@ BattleHall_SelectPokemon:
     GoToIfEq VAR_RESULT, 0xFF, BattleHall_ShowGriseousOrbErrorAndExit
     GetPartyMonSpecies VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x01
     GoToIfEq VAR_MAP_LOCAL_0x01, 0, BattleHall_EndChallenge
-    ScrCmd_2CC 1, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_CHECK_STREAK_ACTIVE, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_TryStartSingleDoubleChallenge
-    ScrCmd_2CC 2, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_GET_CURRENT_STREAK_SPECIES, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
     BufferSpeciesNameFromVar 0, VAR_RESULT, 0, 0
     GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_0x01, BattleHall_TryStartSingleDoubleChallenge
     GoTo BattleHall_AskDeleteOngoingStreak
@@ -290,7 +291,7 @@ BattleHall_AskDeleteOngoingStreak:
     End
 
 BattleHall_DeleteOngoingStreak:
-    ScrCmd_2CC 3, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_DELETE_ACTIVE_STREAK, VAR_BATTLE_HALL_CHALLENGE_TYPE, VAR_RESULT
     GoTo BattleHall_TryStartSingleDoubleChallenge
     End
 
@@ -587,7 +588,7 @@ BattleHall_SaveGame:
 
 BattleHall_OnFrame_DidntSaveBeforeQuit:
     Message BattleHall_Text_DidntSaveBeforeQuit
-    ScrCmd_2D1 VAR_BATTLE_HALL_CHALLENGE_TYPE
+    DeleteActiveBattleHallStreak VAR_BATTLE_HALL_CHALLENGE_TYPE
     GoTo BattleHall_EndChallenge
     End
 
