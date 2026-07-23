@@ -17,14 +17,14 @@ BOOL ScrCmd_2C5(ScriptContext *param0)
 {
     u32 v0;
     u8 v1[4];
-    UnkStruct_020300F4 *v2;
+    BattleFactoryStreakFlags *v2;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
 
-    v2 = sub_020300F4(param0->fieldSystem->saveData);
+    v2 = BattleFactoryStreakFlags_Get(param0->fieldSystem->saveData);
     v1[0] = 0;
 
-    sub_020300B0(v2, 10, (v4 * 4) + v3, v1);
+    BattleFactoryStreakFlags_SetFlag(v2, 10, (v4 * 4) + v3, v1);
 
     if (v3 == 3) {
         if (v4 == 0) {

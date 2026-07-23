@@ -5,14 +5,13 @@
 
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0202FF58.h"
-#include "struct_defs/struct_020300F4.h"
 
 #include "savedata.h"
 
 void sub_0202FF4C(UnkStruct_0202FF58 *param0);
-void sub_020300A4(UnkStruct_020300F4 *param0);
-void sub_020300B0(UnkStruct_020300F4 *param0, u8 param1, u8 param2, const void *param3);
-u32 sub_020300E0(UnkStruct_020300F4 *param0, u8 param1, u8 param2, void *param3);
+void sub_020300A4(BattleFactoryStreakFlags *param0);
+void BattleFactoryStreakFlags_SetFlag(BattleFactoryStreakFlags *param0, u8 param1, u8 param2, const void *param3);
+u32 BattleFactoryStreakFlags_GetFlag(BattleFactoryStreakFlags *param0, u8 param1, u8 param2, void *param3);
 BOOL sub_0202FF68(UnkStruct_0202FF58 *param0);
 void sub_0202FF70(UnkStruct_0202FF58 *param0, BOOL param1);
 void sub_0202FF84(UnkStruct_0202FF58 *param0, u8 param1, u8 param2, const void *param3);
@@ -38,7 +37,6 @@ BOOL sub_0202FF68(UnkStruct_0202FF58 *param0)
 void sub_0202FF70(UnkStruct_0202FF58 *param0, BOOL param1)
 {
     param0->unk_00_4 = param1;
-    return;
 }
 
 void sub_0202FF84(UnkStruct_0202FF58 *param0, u8 param1, u8 param2, const void *param3)
@@ -79,8 +77,6 @@ void sub_0202FF84(UnkStruct_0202FF58 *param0, u8 param1, u8 param2, const void *
         param0->unk_48[param2] = v0[0];
         break;
     }
-
-    return;
 }
 
 u32 sub_02030030(UnkStruct_0202FF58 *param0, u8 param1, u8 param2, void *param3)
@@ -106,48 +102,48 @@ u32 sub_02030030(UnkStruct_0202FF58 *param0, u8 param1, u8 param2, void *param3)
         return (u32)param0->unk_44[param2];
     case 9:
         return (u32)param0->unk_48[param2];
+    default:
+        return 0;
     }
-
-    return 0;
 }
 
-void sub_020300A4(UnkStruct_020300F4 *param0)
+void BattleFactoryStreakFlags_Init(BattleFactoryStreakFlags *flags)
 {
-    MI_CpuClear8(param0, sizeof(UnkStruct_020300F4));
-    return;
+    MI_CpuClear8(flags, sizeof(BattleFactoryStreakFlags));
 }
 
-void sub_020300B0(UnkStruct_020300F4 *param0, u8 param1, u8 param2, const void *param3)
+void BattleFactoryStreakFlags_GetFlag(BattleFactoryStreakFlags *flags, u8 field, u8 challengeType, u8 *value)
 {
-    u32 *v0 = (u32 *)param3;
-    u16 *v1 = (u16 *)param3;
-    u8 *v2 = (u8 *)param3;
-
-    switch (param1) {
-    case 10:
-        if (v2[0] >= 1) {
-            param0->unk_00 |= (1 << param2);
+    u8 *value_dupe = (u8 *)value;
+    switch (field) {
+    case FACTORY_SAVE_STREAK_FLAGS:
+        if (*value_dupe >= 1) {
+            flags->streakActiveFlags |= (1 << challengeType);
         } else {
-            param0->unk_00 &= (0xff ^ (1 << param2));
+            flags->streakActiveFlags &= (0xff ^ (1 << challengeType));
         }
+        break;
+    default:
+        GF_ASSERT(FALSE);
+        break;
+    }
+}
+
+u32 BattleFactoryStreakFlags_GetFlag(BattleFactoryStreakFlags *flags, u8 field, u8 challengeType, void *unused)
+{
+    switch (field) {
+    case FACTORY_SAVE_STREAK_FLAGS:
+        return (u32)((flasg->unk_00 >> param2) & 0x1);
+    default:
+        GF_ASSERT(FALSE);
         break;
     }
 
-    return;
+    return FALSE;
 }
 
-u32 sub_020300E0(UnkStruct_020300F4 *param0, u8 param1, u8 param2, void *param3)
-{
-    switch (param1) {
-    case 10:
-        return (u32)((param0->unk_00 >> param2) & 0x1);
-    }
-
-    return 0;
-}
-
-UnkStruct_020300F4 *sub_020300F4(SaveData *saveData)
+BattleFactoryStreakFlags *BattleFactoryStreakFlags_Get(SaveData *saveData)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &frontier->unk_1614.unk_00;
+    return &frontier->factory.factoryFlags;
 }

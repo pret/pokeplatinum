@@ -557,7 +557,7 @@ static u32 GetBattleFactoryLatestStreakEntryID(FrontierRecordsApp *app, u8 openL
     if (app->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
         streakIsActive = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(app->saveData), v1);
     } else {
-        streakIsActive = sub_020300E0(sub_020300F4(app->saveData), 10, (openLevel * 4) + app->challengeType, NULL);
+        streakIsActive = BattleFactoryStreakFlags_GetFlag(BattleFactoryStreakFlags_Get(app->saveData), 10, (openLevel * 4) + app->challengeType, NULL);
     }
 
     if (streakIsActive == TRUE) {

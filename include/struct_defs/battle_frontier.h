@@ -34,8 +34,8 @@ typedef struct BattleFrontierSave {
         WifiBattleTowerDownloadData wifiBattleTowerDownloadData;
     } unk_950;
     struct {
-        UnkStruct_020300F4 unk_00;
-    } unk_1614;
+        BattleFactoryStreakFlags factoryFlags;
+    } factory;
     struct {
         BattleHallStreakFlags streakFlags;
     } hall;

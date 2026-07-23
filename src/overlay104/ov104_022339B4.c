@@ -49,7 +49,7 @@ u16 ov104_022347F8(BattleFactory *param0);
 BattleFactory *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 param3)
 {
     UnkStruct_0202FF58 *v0;
-    UnkStruct_020300F4 *v1;
+    BattleFactoryStreakFlags *v1;
     const UnkStruct_ov104_0224028C *v2;
     u8 v3;
     u16 v4, v5;
@@ -66,7 +66,7 @@ BattleFactory *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 para
     v7->opponentsParty = Party_New(HEAP_ID_FIELD2);
 
     v0 = v7->unk_4F4;
-    v1 = sub_020300F4(saveData);
+    v1 = BattleFactoryStreakFlags_Get(saveData);
 
     if (param1 == 0) {
         v7->challengeType = param2;
@@ -84,7 +84,7 @@ BattleFactory *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 para
 
             v3 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(v7->saveData));
         } else {
-            v3 = (u8)sub_020300E0(v1, 10, (v7->unk_05 * 4) + v7->challengeType, NULL);
+            v3 = (u8)BattleFactoryStreakFlags_GetFlag(v1, 10, (v7->unk_05 * 4) + v7->challengeType, NULL);
         }
 
         if (v3 == 1) {
@@ -331,7 +331,7 @@ void ov104_02234148(BattleFactory *param0, u8 param1)
     BattleFrontierSave *frontier;
     Pokemon *v12;
     UnkStruct_0202FF58 *v13 = param0->unk_4F4;
-    UnkStruct_020300F4 *v14 = sub_020300F4(param0->saveData);
+    BattleFactoryStreakFlags *v14 = BattleFactoryStreakFlags_Get(param0->saveData);
 
     frontier = SaveData_GetBattleFrontier(param0->saveData);
     v3 = BattleFactory_GetPlayerPartySize(param0->challengeType);
@@ -361,7 +361,7 @@ void ov104_02234148(BattleFactory *param0, u8 param1)
         }
 
         v5[0] = param0->unk_0A;
-        sub_020300B0(v14, 10, (param0->unk_05 * 4) + param0->challengeType, v5);
+        BattleFactoryStreakFlags_SetFlag(v14, 10, (param0->unk_05 * 4) + param0->challengeType, v5);
 
         if (param0->challengeType == 3) {
             if (param0->unk_05 == 0) {
