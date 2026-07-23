@@ -6,7 +6,6 @@
 
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0202FF58.h"
-#include "struct_defs/struct_020300F4.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"

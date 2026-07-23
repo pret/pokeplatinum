@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020300F4.h"
+#include "struct_defs/struct_0202FF58.h"
 
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"

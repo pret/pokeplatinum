@@ -24,7 +24,7 @@ void BattleFrontier_Init(BattleFrontierSave *frontier)
     WifiBattleTowerRecord_Init(&frontier->unk_950.wifiBattleTowerRecord);
     FrontierEasyChatMessages_Init(&frontier->unk_950.easyChatMessages);
     WifiBattleTowerDownloadData_Init(&frontier->unk_950.wifiBattleTowerDownloadData);
-    sub_020300A4(&frontier->unk_1614.unk_00);
+    BattleFactoryStreakFlags_Init(&frontier->factory.streakFlags);
     BattleHallStreakFlags_Init(&frontier->hall.streakFlags);
     BattleCastlePersistentSave_Init(&frontier->castle.persistentSave);
     sub_020305AC(&frontier->unk_1620.unk_00);
