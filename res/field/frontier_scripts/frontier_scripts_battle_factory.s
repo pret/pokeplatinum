@@ -847,7 +847,7 @@ _0A41:
 
 _0A82:
     IncrementRecordValue RECORD_UNK_059
-    FrontierScrCmd_47 2
+    PlayFrontierBrainEncounterEffect FACILITY_FACTORY
     GoTo _0AD0
     End
 

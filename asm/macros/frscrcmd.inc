@@ -411,9 +411,9 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_47 arg0
-    .short FRSCRCMD_47
-    .short \arg0
+    .macro PlayFrontierBrainEncounterEffect facility
+    .short FRSCRCMD_PLAYFRONTIERBRAINENCOUNTEREFFECT
+    .short \facility
     .endm
 
     .macro IncrementRecordValue recordID

@@ -76,7 +76,7 @@ ScriptCommand(FRSCRCMD_CREATEPARTICLESYSTEMEMITTER,              FrontierScrCmd_
 ScriptCommand(FRSCRCMD_WAITFORPARTICLESYSTEMEMITTERS,            FrontierScrCmd_WaitForParticleSystemEmitters)
 ScriptCommand(FRSCRCMD_45,                                       FrontierScrCmd_45)
 ScriptCommand(FRSCRCMD_46,                                       FrontierScrCmd_46)
-ScriptCommand(FRSCRCMD_47,                                       FrontierScrCmd_47)
+ScriptCommand(FRSCRCMD_PLAYFRONTIERBRAINENCOUNTEREFFECT,         FrontierScrCmd_PlayFrontierBrainEncounterEffect)
 ScriptCommand(FRSCRCMD_INCREMENTRECORDVALUE,                     FrontierScrCmd_IncrementRecordValue)
 ScriptCommand(FRSCRCMD_ADDTORECORDVALUE,                         FrontierScrCmd_AddToRecordValue)
 ScriptCommand(FRSCRCMD_INCREMENTTRAINERSCORE,                    FrontierScrCmd_IncrementTrainerScore)

@@ -772,7 +772,7 @@ _08A0:
 
 _08E1:
     IncrementRecordValue RECORD_UNK_059
-    FrontierScrCmd_47 5
+    PlayFrontierBrainEncounterEffect FACILITY_HALL
     GoTo _0907
     End
 

@@ -251,14 +251,14 @@ void FontOAM_GetXY(const FontOAM *fontOAM, int *x, int *y)
     *y = fontOAM->y;
 }
 
-void sub_020129D0(FontOAM *param0, BOOL param1)
+void sub_020129D0(FontOAM *param0, BOOL draw)
 {
     int v0;
 
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        Sprite_SetDrawFlag(param0->unk_00[v0].unk_00, param1);
+        Sprite_SetDrawFlag(param0->unk_00[v0].unk_00, draw);
     }
 }
 
