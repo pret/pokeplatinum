@@ -14,9 +14,9 @@
 #include "struct_defs/wi_fi_history.h"
 
 #include "overlay094/application.h"
+#include "overlay094/avatar.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/networking.h"
-#include "overlay094/ov94_02243EF8.h"
 #include "overlay094/screens/main_menu.h"
 #include "overlay094/screens/select_pokemon.h"
 #include "overlay094/screens/wfc_init.h"
@@ -1062,7 +1062,7 @@ static int ov94_02243884(GTSApplicationState *appState)
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 36);
     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
     GTSApplication_DestroyWaitDial(appState);
-    ov94_022442E4(appState);
+    GTSAvatar_HighlightSearchResults(appState);
 
     return 3;
 }
@@ -1114,7 +1114,7 @@ static int ov94_02243948(GTSApplicationState *param0)
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 37, 36);
     GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
     GTSApplication_DestroyWaitDial(param0);
-    ov94_022442E4(param0);
+    GTSAvatar_HighlightSearchResults(param0);
 
     return GTS_LOOP_STATE_MAIN;
 }

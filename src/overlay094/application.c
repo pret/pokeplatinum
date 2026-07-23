@@ -10,9 +10,9 @@
 #include "struct_defs/gts_player_data.h"
 
 #include "global/utility.h"
+#include "overlay094/avatar.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/networking.h"
-#include "overlay094/ov94_02243EF8.h"
 #include "overlay094/screens/deposit.h"
 #include "overlay094/screens/listing.h"
 #include "overlay094/screens/main_menu.h"
@@ -176,8 +176,8 @@ BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState)
         if (IsScreenFadeDone()) {
             if (appState->hasTradedPokemon) { // pokemon received?
                 GTSApplication_InitRenderingSystem(appState);
-                ov94_02243EF8(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
-                ov94_02244234(appState, appState->unk_118, 0);
+                GTSAvatar_Init(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
+                GTSAvatar_ShowSearchResults(appState, appState->unk_118, 0);
                 ov94_0223D068(appState);
                 appState->hasTradedPokemon = FALSE;
             }
@@ -479,7 +479,7 @@ static void GTSApplication_InitRenderingSystem(GTSApplicationState *appState)
 
 static void GTSApplication_CleanupGraphics(GTSApplicationState *appState)
 {
-    ov94_022443B8(appState);
+    GTSAvatar_FreeGraphics(appState);
 
     SpriteTransfer_ResetCharTransfer(appState->spriteResource[0][0]);
     SpriteTransfer_ResetCharTransfer(appState->spriteResource[1][0]);

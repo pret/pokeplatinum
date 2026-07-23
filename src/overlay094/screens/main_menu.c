@@ -5,8 +5,8 @@
 #include <string.h>
 
 #include "overlay094/application.h"
+#include "overlay094/avatar.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_02243EF8.h"
 #include "overlay094/screens/wfc_init.h"
 
 #include "bg_window.h"
@@ -94,7 +94,7 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
         appState->currentScreenInstruction = 0;
         appState->hasPlayerDescended = TRUE;
 
-        ov94_02243FA8(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
+        GTSAvatar_BeginLoginAnimation(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
     } else {
         if (appState->fadeBothScreens == 1) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
@@ -454,7 +454,7 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
 
 static int ov94_0223CDD8(GTSApplicationState *appState)
 {
-    ov94_022440B8(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
+    GTSAvatar_BeginLogoutAnimation(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
 
     appState->currentScreenInstruction = 8;
     appState->hasAvatarFinishedMoving = FALSE;

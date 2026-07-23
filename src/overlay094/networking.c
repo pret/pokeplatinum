@@ -58,7 +58,7 @@ static GTSNetworkingState sGTSNetworkingState;
 void GTSNetworking_InitCredentials(s32 dwcProfileId, u64 friendKey)
 {
     sGTSNetworkingState.status = NETWORK_STATUS_IDLE;
-    sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+    sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
     sGTSNetworkingState.dwcProfileId = dwcProfileId;
     sGTSNetworkingState.friendKey = friendKey;
 }
@@ -82,7 +82,7 @@ void GTSNetworking_ProcessCurrentRequest(void)
 
             switch (sGTSNetworkingState.responseStatus[0]) {
             case GTS_SERVER_STATUS_SUCCESS:
-                sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
             case GTS_SERVER_STATUS_ALREADY_DEPOSITED:
                 sGTSNetworkingState.result = GTS_RESULT_ALREADY_DEPOSITED;
@@ -136,7 +136,7 @@ void GTSNetworking_ProcessCurrentRequest(void)
 
             switch (sGTSNetworkingState.responseStatus[0]) {
             case GTS_SERVER_STATUS_SUCCESS:
-                sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
             case GTS_SERVER_STATUS_ALREADY_DEPOSITED:
                 sGTSNetworkingState.result = GTS_RESULT_ALREADY_DEPOSITED;
@@ -171,7 +171,7 @@ void GTSNetworking_ProcessCurrentRequest(void)
             sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(GTSPokemonListing)) {
-                sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
             } else {
                 switch (sGTSNetworkingState.responseData[0]) {
                 case GTS_SERVER_STATUS_ALREADY_TRADED:
@@ -205,7 +205,7 @@ void GTSNetworking_ProcessCurrentRequest(void)
             sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(GTSPokemonListing)) {
-                sGTSNetworkingState.result = 1;
+                sGTSNetworkingState.result = GTS_RESULT_PROFILE_EXISTS;
             } else {
                 switch (sGTSNetworkingState.responseData[0]) {
                 case GTS_SERVER_STATUS_ALREADY_TRADED:
@@ -215,7 +215,7 @@ void GTSNetworking_ProcessCurrentRequest(void)
                     sGTSNetworkingState.result = GTS_RESULT_NOT_FOUND;
                     break;
                 case GTS_SERVER_STATUS_NO_MATCH_YET:
-                    sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                    sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                     break;
                 case GTS_SERVER_STATUS_MAINTENANCE:
                     sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
@@ -243,7 +243,7 @@ void GTSNetworking_ProcessCurrentRequest(void)
 
             switch (sGTSNetworkingState.responseStatus[0]) {
             case GTS_SERVER_STATUS_SUCCESS:
-                sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
             case GTS_SERVER_STATUS_ALREADY_TRADED:
                 sGTSNetworkingState.result = GTS_RESULT_ALREADY_TRADED;
@@ -276,7 +276,7 @@ void GTSNetworking_ProcessCurrentRequest(void)
 
             switch (sGTSNetworkingState.responseStatus[0]) {
             case GTS_SERVER_STATUS_SUCCESS:
-                sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
             case GTS_SERVER_STATUS_ALREADY_TRADED:
                 sGTSNetworkingState.result = GTS_RESULT_ALREADY_TRADED;
@@ -315,7 +315,7 @@ void GTSNetworking_ProcessCurrentRequest(void)
                 if (v0 >= sizeof(GTSPokemonListing)) {
                     sGTSNetworkingState.result = (s32)(HTTP_GetResponseLength() / sizeof(GTSPokemonListing));
                 } else if (v0 == 0) {
-                    sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                    sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 } else {
                     switch (sGTSNetworkingState.responseData[0]) {
                     case GTS_SERVER_STATUS_MAINTENANCE:
@@ -343,7 +343,7 @@ void GTSNetworking_ProcessCurrentRequest(void)
             sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(GTSPokemonListing)) {
-                sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
             } else {
                 switch (sGTSNetworkingState.responseData[0]) {
                 case GTS_SERVER_STATUS_ALREADY_DEPOSITED:
@@ -393,7 +393,7 @@ void GTSNetworking_ProcessCurrentRequest(void)
 
             switch (sGTSNetworkingState.responseStatus[0]) {
             case GTS_SERVER_STATUS_SUCCESS:
-                sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
             case GTS_SERVER_STATUS_MAINTENANCE:
                 sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
@@ -419,14 +419,14 @@ void GTSNetworking_ProcessCurrentRequest(void)
             sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
             switch (sGTSNetworkingState.responseStatus[0]) {
-            case 1:
-                sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+            case GTS_SERVER_STATUS_SUCCESS:
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
             case GTS_SERVER_STATUS_PROFILE_EXISTS:
-                sGTSNetworkingState.result = 1;
+                sGTSNetworkingState.result = GTS_RESULT_PROFILE_EXISTS;
                 break;
             case GTS_SERVER_STATUS_CROWDED:
-                sGTSNetworkingState.result = 2;
+                sGTSNetworkingState.result = GTS_RESULT_BANNED;
                 break;
             case GTS_SERVER_STATUS_MAINTENANCE:
                 sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
@@ -452,17 +452,17 @@ void GTSNetworking_ProcessCurrentRequest(void)
             sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(WorldExchangeTrainerError)) {
-                sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
             } else {
                 switch (sGTSNetworkingState.responseStatus[0]) {
                 case GTS_SERVER_STATUS_SUCCESS:
-                    sGTSNetworkingState.result = GTS_SERVER_STATUS_NONE;
+                    sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                     break;
                 case GTS_SERVER_STATUS_PROFILE_EXISTS:
-                    sGTSNetworkingState.result = 1;
+                    sGTSNetworkingState.result = GTS_RESULT_PROFILE_EXISTS;
                     break;
                 case GTS_SERVER_STATUS_CROWDED:
-                    sGTSNetworkingState.result = 2;
+                    sGTSNetworkingState.result = GTS_RESULT_BANNED;
                     break;
                 case GTS_SERVER_STATUS_MAINTENANCE:
                     sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
@@ -542,7 +542,7 @@ void GTSNetworking_Post(const GTSPokemonListing *listing)
 
 void GTSNetworking_PostFinish(void)
 {
-    memcpy(&sGTSNetworkingState.requestData[0], &sGTSNetworkingState.friendKey, 8);
+    memcpy(&sGTSNetworkingState.requestData[0], &sGTSNetworkingState.friendKey, sizeof(sGTSNetworkingState.friendKey));
 
     HTTP_Init();
 

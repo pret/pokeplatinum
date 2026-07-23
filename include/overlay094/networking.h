@@ -26,17 +26,17 @@ void GTSNetworking_SetProfile(const WorldExchangeTrainer *param0, WorldExchangeT
 
 #define GTS_SERVER_BASE_URL "http://gamestats2.gs.nintendowifi.net/pokemondpds/"
 
-#define GTS_URL_WE_POST         GTS_SERVER_BASE_URL "worldexchange/post.asp"
-#define GTS_URL_WE_POST_FINISH         GTS_SERVER_BASE_URL "worldexchange/post_finish.asp"
-#define GTS_URL_WE_GET         GTS_SERVER_BASE_URL "worldexchange/get.asp"
-#define GTS_URL_WE_RESULT         GTS_SERVER_BASE_URL "worldexchange/result.asp"
-#define GTS_URL_WE_DELETE         GTS_SERVER_BASE_URL "worldexchange/delete.asp"
-#define GTS_URL_WE_RETURN         GTS_SERVER_BASE_URL "worldexchange/return.asp"
-#define GTS_URL_WE_SEARCH         GTS_SERVER_BASE_URL "worldexchange/search.asp"
-#define GTS_URL_WE_EXCHANGE         GTS_SERVER_BASE_URL "worldexchange/exchange.asp"
-#define GTS_URL_WE_EXCHANGE_FINISH         GTS_SERVER_BASE_URL "worldexchange/exchange_finish.asp"
-#define GTS_URL_WE_INFO         GTS_SERVER_BASE_URL "worldexchange/info.asp"
-#define GTS_URL_SET_PROFILE         GTS_SERVER_BASE_URL "common/setProfile.asp"
+#define GTS_URL_WE_POST            GTS_SERVER_BASE_URL "worldexchange/post.asp"
+#define GTS_URL_WE_POST_FINISH     GTS_SERVER_BASE_URL "worldexchange/post_finish.asp"
+#define GTS_URL_WE_GET             GTS_SERVER_BASE_URL "worldexchange/get.asp"
+#define GTS_URL_WE_RESULT          GTS_SERVER_BASE_URL "worldexchange/result.asp"
+#define GTS_URL_WE_DELETE          GTS_SERVER_BASE_URL "worldexchange/delete.asp"
+#define GTS_URL_WE_RETURN          GTS_SERVER_BASE_URL "worldexchange/return.asp"
+#define GTS_URL_WE_SEARCH          GTS_SERVER_BASE_URL "worldexchange/search.asp"
+#define GTS_URL_WE_EXCHANGE        GTS_SERVER_BASE_URL "worldexchange/exchange.asp"
+#define GTS_URL_WE_EXCHANGE_FINISH GTS_SERVER_BASE_URL "worldexchange/exchange_finish.asp"
+#define GTS_URL_WE_INFO            GTS_SERVER_BASE_URL "worldexchange/info.asp"
+#define GTS_URL_SET_PROFILE        GTS_SERVER_BASE_URL "common/setProfile.asp"
 
 enum GTSNetworkResponseStatus {
     GTS_SERVER_STATUS_NONE,
@@ -58,7 +58,7 @@ enum GTSNetworkResponseStatus {
 
 enum GTSNetworkResult {
     GTS_RESULT_SUCCESS = 0,
-    GTS_RESULT_TRADE_WAITING = 1,
+    GTS_RESULT_PROFILE_EXISTS = 1,
     GTS_RESULT_BANNED = 2,
 
     GTS_RESULT_GTS_CROWDED = -1,
