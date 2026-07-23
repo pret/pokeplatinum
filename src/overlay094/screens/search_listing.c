@@ -5,8 +5,8 @@
 #include <string.h>
 
 #include "overlay094/application.h"
+#include "overlay094/avatar.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_02243EF8.h"
 #include "overlay094/screens/deposit.h"
 #include "overlay094/screens/listing.h"
 #include "overlay094/screens/wfc_init.h"
@@ -329,7 +329,7 @@ static int ov94_0223E0A4(GTSApplicationState *appState)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     } else {
-        int newSelectedResult = ov94_02244214(appState->unk_118);
+        int newSelectedResult = GTSAvatar_GetTouchedSearchResult(appState->unk_118);
 
         if ((newSelectedResult != appState->selectedSearchResult) && (newSelectedResult >= 0)) {
             Sprite_SetAnim(appState->avatarSprites[newSelectedResult + 1], 16 + newSelectedResult * 4);
@@ -433,12 +433,12 @@ static void ov94_0223E3B0(Window *window, MessageLoader *gtsMessageLoader, Messa
 {
     Window_FillTilemap(window, 0x0);
 
-    ov94_02242158(window, speciesMessageLoader, requirements->species, 0, 3, TEXT_COLOR(15, 2, 0));
-    ov94_02242204(window, gtsMessageLoader, requirements->gender, 0, 3, 70, TEXT_COLOR(15, 2, 0));
+    GTSDeposit_DrawSpeciesText(window, speciesMessageLoader, requirements->species, 0, 3, TEXT_COLOR(15, 2, 0));
+    GTSDeposit_DrawGenderText(window, gtsMessageLoader, requirements->gender, 0, 3, 70, TEXT_COLOR(15, 2, 0));
 #if POKEPLATINUM_REVISION == 0
-    ov94_0224226C(window + 1, gtsMessageLoader, ov94_02242970(requirements->level, requirements->level2, 0), 0, 19, TEXT_COLOR(15, 2, 0), 0, 8);
+    GTSDeposit_DrawLevelText(window + 1, gtsMessageLoader, GTS_FindLevelMessageIndex(requirements->level, requirements->level2, 0), 0, 19, TEXT_COLOR(15, 2, 0), 0, 8);
 #else
-    ov94_0224226C(window, gtsMessageLoader, ov94_02242970(requirements->level, requirements->level2, 0), 0, 19, TEXT_COLOR(15, 2, 0), 0, 8);
+    GTSDeposit_DrawLevelText(window, gtsMessageLoader, GTS_FindLevelMessageIndex(requirements->level, requirements->level2, 0), 0, 19, TEXT_COLOR(15, 2, 0), 0, 8);
 #endif
 }
 

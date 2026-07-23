@@ -14,9 +14,9 @@
 #include "struct_defs/wi_fi_history.h"
 
 #include "overlay094/application.h"
+#include "overlay094/avatar.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/networking.h"
-#include "overlay094/ov94_02243EF8.h"
 #include "overlay094/screens/main_menu.h"
 #include "overlay094/screens/select_pokemon.h"
 #include "overlay094/screens/wfc_init.h"
@@ -381,7 +381,7 @@ static int GTSApplication_NetworkHandler_ParseScreenArgument(GTSApplicationState
         GF_ASSERT(FALSE);
     }
 
-    GTSApplicationState_AddWaitDial(appState);
+    GTSApplication_AddWaitDial(appState);
 
     return GTS_LOOP_STATE_MAIN;
 }
@@ -456,7 +456,7 @@ static int ov94_02242ED0(GTSApplicationState *param0)
 
 static int ov94_02242F78(GTSApplicationState *param0)
 {
-    ov94_0223B834();
+    GTSNetworking_PostFinish();
 
     param0->currentScreenInstruction = 5;
     param0->networkTimeoutCounter = 0;
@@ -613,7 +613,7 @@ static int ov94_022431A4(GTSApplicationState *param0)
 {
     Pokemon_ClearBallCapsuleData((Pokemon *)param0->receivedListing.pokemon.bytes);
 
-    ov94_0223BA88(param0->searchResults[param0->selectedSearchResult].unk_108, &param0->receivedListing, &param0->selectedListing);
+    GTSNetworking_Exchange(param0->searchResults[param0->selectedSearchResult].unk_108, &param0->receivedListing, &param0->selectedListing);
     GTSApplication_NetworkHandler_SetSaveInstructions(param0, 14, 16);
 
     param0->currentScreenInstruction = 13;
@@ -683,7 +683,7 @@ static int ov94_022431F0(GTSApplicationState *param0)
 
 static int ov94_022432D8(GTSApplicationState *param0)
 {
-    ov94_0223BAEC();
+    GTSNetworking_ExchangeFinish();
 
     param0->currentScreenInstruction = 15;
     param0->networkTimeoutCounter = 0;
@@ -751,12 +751,12 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
 
             switch (GTSApplication_NetworkHandler_HaveSpaceForPokemon(appState, &appState->receivedListing)) {
             case 1:
-                GTSApplicationState_DestroyWaitDial(appState);
+                GTSApplication_DestroyWaitDial(appState);
                 GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_Error_StorageBoxesFull, TEXT_SPEED_FAST, 0xf0f);
                 GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 28);
                 break;
             case 2:
-                GTSApplicationState_DestroyWaitDial(appState);
+                GTSApplication_DestroyWaitDial(appState);
                 GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_Error_PartyFullMail, TEXT_SPEED_FAST, 0xf0f);
                 GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 28);
                 break;
@@ -1061,8 +1061,8 @@ static int ov94_02243884(GTSApplicationState *appState)
     GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_Error_TradedToSomeoneElse, TEXT_SPEED_FAST, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 36);
     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
-    GTSApplicationState_DestroyWaitDial(appState);
-    ov94_022442E4(appState);
+    GTSApplication_DestroyWaitDial(appState);
+    GTSAvatar_HighlightSearchResults(appState);
 
     return 3;
 }
@@ -1103,7 +1103,7 @@ static int ov94_02243920(GTSApplicationState *param0)
     ov94_022438C8(param0);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 37, 36);
     GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
-    GTSApplicationState_DestroyWaitDial(param0);
+    GTSApplication_DestroyWaitDial(param0);
 
     return GTS_LOOP_STATE_MAIN;
 }
@@ -1113,8 +1113,8 @@ static int ov94_02243948(GTSApplicationState *param0)
     ov94_022438C8(param0);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 37, 36);
     GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
-    GTSApplicationState_DestroyWaitDial(param0);
-    ov94_022442E4(param0);
+    GTSApplication_DestroyWaitDial(param0);
+    GTSAvatar_HighlightSearchResults(param0);
 
     return GTS_LOOP_STATE_MAIN;
 }
@@ -1162,7 +1162,7 @@ static int GTSApplication_NetworkHandler_WaitForSaveComplete(GTSApplicationState
 {
     if (SaveData_SaveStateMain(appState->playerData->saveData) == SAVE_RESULT_OK) {
         appState->currentScreenInstruction = appState->successfulSaveInstruction;
-        GTSApplicationState_DestroyWaitDial(appState);
+        GTSApplication_DestroyWaitDial(appState);
     }
 
     return GTS_LOOP_STATE_MAIN;
@@ -1182,7 +1182,7 @@ static int GTSApplication_NetworkHandler_WaitForSuccessfulSave(GTSApplicationSta
 {
     if (SaveData_SaveStateMain(appState->playerData->saveData) == SAVE_RESULT_OK) {
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
-        GTSApplicationState_DestroyWaitDial(appState);
+        GTSApplication_DestroyWaitDial(appState);
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, appState->depositReturnError, TEXT_SPEED_FAST, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 28);
     }
@@ -1192,7 +1192,7 @@ static int GTSApplication_NetworkHandler_WaitForSuccessfulSave(GTSApplicationSta
 
 static int GTSApplication_NetworkHandler_FadeAndExit(GTSApplicationState *appState)
 {
-    GTSApplicationState_DestroyWaitDial(appState);
+    GTSApplication_DestroyWaitDial(appState);
     NetworkIcon_Destroy();
 
     if (appState->fadeBothScreens == 1) {

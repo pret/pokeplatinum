@@ -82,7 +82,7 @@ int GTSApplication_Listing_Init(GTSApplicationState *appState, int unused)
     Pokemon *mon = (Pokemon *)appState->receivedListing.pokemon.bytes;
 
     ov94_0223DA78(appState->gtsMessageLoader, &appState->unk_FCC[5], appState->receivedListing.unk_10C, mon, &appState->unk_FCC[10]);
-    ov94_02242368(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[7], appState->receivedListing.unk_F0.species, appState->receivedListing.unk_F0.gender, ov94_02242970(appState->receivedListing.unk_F0.level, appState->receivedListing.unk_F0.level2, 0));
+    GTS_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[7], appState->receivedListing.unk_F0.species, appState->receivedListing.unk_F0.gender, GTS_FindLevelMessageIndex(appState->receivedListing.unk_F0.level, appState->receivedListing.unk_F0.level2, 0));
     ov94_0223DB2C((Pokemon *)appState->receivedListing.pokemon.bytes);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
@@ -594,5 +594,5 @@ void ov94_0223DB2C(Pokemon *param0)
 
 static void ov94_0223DBBC(GTSApplicationState *param0)
 {
-    ov94_02242368(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[7], param0->receivedListing.unk_F0.species, param0->receivedListing.unk_F0.gender, ov94_02242970(param0->receivedListing.unk_F0.level, param0->receivedListing.unk_F0.level2, 0));
+    GTS_DrawWantedCriteria(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[7], param0->receivedListing.unk_F0.species, param0->receivedListing.unk_F0.gender, GTS_FindLevelMessageIndex(param0->receivedListing.unk_F0.level, param0->receivedListing.unk_F0.level2, 0));
 }

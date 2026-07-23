@@ -31,9 +31,9 @@ void GTSApplication_SetSpritePosition(Sprite *sprite, int x, int y);
 int GTSApplication_GetNetworkStrength(void);
 void GTSApplication_SetNextScreenWithArgument(GTSApplicationState *appState, int nextScreen, enum ScreenArgument screenArgument);
 void GTSApplication_MoveToNextScreen(GTSApplicationState *appState);
-int GTSApplicationState_GetTextFrameDelay(GTSApplicationState *appState);
-void GTSApplicationState_StartCountingBoxPokemon(GTSApplicationState *appState);
-void GTSApplicationState_AddWaitDial(GTSApplicationState *appState);
-void GTSApplicationState_DestroyWaitDial(GTSApplicationState *appState);
+int GTSApplication_GetTextFrameDelay(GTSApplicationState *appState);
+void GTSApplication_StartCountingBoxPokemon(GTSApplicationState *appState);
+void GTSApplication_AddWaitDial(GTSApplicationState *appState);
+void GTSApplication_DestroyWaitDial(GTSApplicationState *appState);
 
 #endif // POKEPLATINUM_GTS_APPLICATION_H

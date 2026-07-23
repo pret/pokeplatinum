@@ -11,7 +11,7 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay094/struct_ov94_02242AAC.h"
+#include "overlay094/gts_charpad_scroll_state.h"
 
 #include "bg_window.h"
 #include "evolution.h"
@@ -221,7 +221,7 @@ typedef struct GTSApplicationState {
     BOOL fadeBothScreens;
     void *selectPokemonIconHeapPtr;
     void (*updateBoxPalettesFunc)(void *param0);
-    UnkStruct_ov94_02242AAC unk_111C;
+    GTSCharpadScrollState charpadScrollState;
     WorldExchangeTrainer worldExchangeTrainer;
     WorldExchangeTrainerError worldExchangeTrainerError;
     int selectedCountryIndex;

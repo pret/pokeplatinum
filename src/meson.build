@@ -855,7 +855,7 @@ pokeplatinum_c = files(
     'overlay094/screens/select_pokemon.c',
     'overlay094/screens/deposit.c',
     'overlay094/screens/network_handler.c',
-    'overlay094/ov94_02243EF8.c',
+    'overlay094/avatar.c',
     'overlay094/screens/pokemon_summary.c',
     'overlay094/screens/trade.c',
     'overlay094/screens/wfc_init.c',

@@ -13,110 +13,109 @@
 #include "enums.h"
 
 typedef enum GTSNetworkStatus {
-    UnkEnum_ov94_0223B15C_00,
-    UnkEnum_ov94_0223B15C_01,
+    NETWORK_STATUS_INACTIVE,
+    NETWORK_STATUS_IDLE,
     NETWORK_STATUS_POST_PENDING,
-    UnkEnum_ov94_0223B15C_03,
-    UnkEnum_ov94_0223B15C_04,
-    UnkEnum_ov94_0223B15C_05,
+    NETWORK_STATUS_POST_PENDING_ABORTED,
+    NETWORK_STATUS_POST_FINISH_PENDING,
+    NETWORK_STATUS_POST_FINISH_PENDING_ABORTED,
     NETWORK_STATUS_GET_LISTED_POKEMON_PENDING,
-    UnkEnum_ov94_0223B15C_07,
+    NETWORK_STATUS_GET_LISTED_POKEMON_PENDING_ABORTED,
     NETWORK_STATUS_GET_LISTING_STATUS_PENDING,
-    UnkEnum_ov94_0223B15C_09,
+    NETWORK_STATUS_GET_LISTING_STATUS_PENDING_ABORTED,
     NETWORK_STATUS_DELETE_PENDING,
-    UnkEnum_ov94_0223B15C_11,
-    UnkEnum_ov94_0223B15C_12,
-    UnkEnum_ov94_0223B15C_13,
-    UnkEnum_ov94_0223B15C_14,
-    UnkEnum_ov94_0223B15C_15,
-    UnkEnum_ov94_0223B15C_16,
-    UnkEnum_ov94_0223B15C_17,
-    UnkEnum_ov94_0223B15C_18,
-    UnkEnum_ov94_0223B15C_19,
+    NETWORK_STATUS_DELETE_PENDING_ABORTED,
+    NETWORK_STATUS_RETURN_PENDING,
+    NETWORK_STATUS_RETURN_PENDING_ABORTED,
+    NETWORK_STATUS_SEARCH_PENDING,
+    NETWORK_STATUS_SEARCH_PENDING_ABORTED,
+    NETWORK_STATUS_EXCHANGE_PENDING,
+    NETWORK_STATUS_EXCHANGE_PENDING_ABORTED,
+    NETWORK_STATUS_EXCHANGE_FINISH_PENDING,
+    NETWORK_STATUS_EXCHANGE_FINISH_PENDING_ABORTED,
     NETWORK_STATUS_INIT_PENDING,
-    UnkEnum_ov94_0223B15C_21,
+    NETWORK_STATUS_INIT_PENDING_ABORTED,
     NETWORK_STATUS_SET_PROFILE_PENDING,
-    UnkEnum_ov94_0223B15C_23,
+    NETWORK_STATUS_SET_PROFILE_PENDING_ABORTED,
     NETWORK_STATUS_COMPLETE
 } GTSNetworkStatus;
 
-typedef struct {
-    GTSNetworkStatus unk_00;
-    s32 unk_04; // error code?
-    s32 unk_08;
-    u64 unk_0C;
-    u8 unk_14[296];
-    u8 unk_13C[4];
-    u8 *unk_140;
-} UnkStruct_ov94_02246AC0;
+typedef struct GTSNetworkingState {
+    GTSNetworkStatus status;
+    s32 result;
+    s32 dwcProfileId;
+    u64 friendKey;
+    u8 requestData[296];
+    u8 responseStatus[4];
+    u8 *responseData;
+} GTSNetworkingState;
 
-static BOOL GTSNetworking_PrepareRequest(const u8 *url, const void *param1, int param2, void *param3, int param4);
-static int GTSNetworking_GetPublicErrorCode(int param0);
+static BOOL GTSNetworking_PrepareRequest(const u8 *url, const void *data, int dataSize, void *response, int maxResponseLength);
+static int GTSNetworking_GetPublicErrorCode(int errCode);
 
-static UnkStruct_ov94_02246AC0 Unk_ov94_02246AC0;
+static GTSNetworkingState sGTSNetworkingState;
 
-void ov94_0223B140(s32 param0, u64 param1)
+void GTSNetworking_InitCredentials(s32 dwcProfileId, u64 friendKey)
 {
-    Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_01;
-    Unk_ov94_02246AC0.unk_04 = 0;
-    Unk_ov94_02246AC0.unk_08 = param0;
-    Unk_ov94_02246AC0.unk_0C = param1;
+    sGTSNetworkingState.status = NETWORK_STATUS_IDLE;
+    sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
+    sGTSNetworkingState.dwcProfileId = dwcProfileId;
+    sGTSNetworkingState.friendKey = friendKey;
 }
 
 void GTSNetworking_ProcessCurrentRequest(void)
 {
-    switch (Unk_ov94_02246AC0.unk_00) {
-    case UnkEnum_ov94_0223B15C_00:
+    switch (sGTSNetworkingState.status) {
+    case NETWORK_STATUS_INACTIVE:
         break;
-    case UnkEnum_ov94_0223B15C_01:
+    case NETWORK_STATUS_IDLE:
         break;
     case NETWORK_STATUS_POST_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
-            switch (Unk_ov94_02246AC0.unk_13C[0]) {
-            case 1:
-                Unk_ov94_02246AC0.unk_04 = 0;
+            switch (sGTSNetworkingState.responseStatus[0]) {
+            case GTS_SERVER_STATUS_SUCCESS:
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
-            case 2:
-                Unk_ov94_02246AC0.unk_04 = -5;
+            case GTS_SERVER_STATUS_ALREADY_DEPOSITED:
+                sGTSNetworkingState.result = GTS_RESULT_ALREADY_DEPOSITED;
                 break;
-            case 3:
-                Unk_ov94_02246AC0.unk_04 = -4;
+            case GTS_SERVER_STATUS_NOT_FOUND:
+                sGTSNetworkingState.result = GTS_RESULT_NOT_FOUND;
                 break;
-            case 7:
-                Unk_ov94_02246AC0.unk_04 = -1;
+            case GTS_SERVER_STATUS_CROWDED:
+                sGTSNetworkingState.result = GTS_RESULT_GTS_CROWDED;
                 break;
-            case 12:
-                Unk_ov94_02246AC0.unk_04 = -6;
+            case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_5:
+                sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_1;
                 break;
-            case 13:
-                Unk_ov94_02246AC0.unk_04 = -7;
+            case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_6:
+                sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_2;
                 break;
-            case 8:
-                Unk_ov94_02246AC0.unk_04 = -8;
+            case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_1:
+                sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_3;
                 break;
-            case 9:
-                Unk_ov94_02246AC0.unk_04 = -9;
+            case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_2:
+                sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_4;
                 break;
-            case 10:
-                Unk_ov94_02246AC0.unk_04 = -10;
+            case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_3:
+                sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_5;
                 break;
-            case 11:
-                Unk_ov94_02246AC0.unk_04 = -11;
+            case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_4:
+                sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_6;
                 break;
-            case 14:
-                Unk_ov94_02246AC0.unk_04 = -2;
+            case GTS_SERVER_STATUS_MAINTENANCE:
+                sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                 break;
             default:
-
-                Unk_ov94_02246AC0.unk_04 = -13;
+                sGTSNetworkingState.result = GTS_RESULT_ERROR;
                 break;
             }
 
@@ -125,35 +124,34 @@ void GTSNetworking_ProcessCurrentRequest(void)
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_04:
+    case NETWORK_STATUS_POST_FINISH_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
-            switch (Unk_ov94_02246AC0.unk_13C[0]) {
-            case 1:
-                Unk_ov94_02246AC0.unk_04 = 0;
+            switch (sGTSNetworkingState.responseStatus[0]) {
+            case GTS_SERVER_STATUS_SUCCESS:
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
-            case 2:
-                Unk_ov94_02246AC0.unk_04 = -5;
+            case GTS_SERVER_STATUS_ALREADY_DEPOSITED:
+                sGTSNetworkingState.result = GTS_RESULT_ALREADY_DEPOSITED;
                 break;
-            case 3:
-                Unk_ov94_02246AC0.unk_04 = -4;
+            case GTS_SERVER_STATUS_NOT_FOUND:
+                sGTSNetworkingState.result = GTS_RESULT_NOT_FOUND;
                 break;
-            case 5:
-                Unk_ov94_02246AC0.unk_04 = -3;
+            case GTS_SERVER_STATUS_ALREADY_TRADED:
+                sGTSNetworkingState.result = GTS_RESULT_ALREADY_TRADED;
                 break;
-            case 14:
-                Unk_ov94_02246AC0.unk_04 = -2;
+            case GTS_SERVER_STATUS_MAINTENANCE:
+                sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                 break;
             default:
-
-                Unk_ov94_02246AC0.unk_04 = -13;
+                sGTSNetworkingState.result = GTS_RESULT_ERROR;
                 break;
             }
 
@@ -165,29 +163,28 @@ void GTSNetworking_ProcessCurrentRequest(void)
     case NETWORK_STATUS_GET_LISTED_POKEMON_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(GTSPokemonListing)) {
-                Unk_ov94_02246AC0.unk_04 = 0;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
             } else {
-                switch (Unk_ov94_02246AC0.unk_140[0]) {
-                case 5:
-                    Unk_ov94_02246AC0.unk_04 = -3;
+                switch (sGTSNetworkingState.responseData[0]) {
+                case GTS_SERVER_STATUS_ALREADY_TRADED:
+                    sGTSNetworkingState.result = GTS_RESULT_ALREADY_TRADED;
                     break;
-                case 3:
-                    Unk_ov94_02246AC0.unk_04 = -4;
+                case GTS_SERVER_STATUS_NOT_FOUND:
+                    sGTSNetworkingState.result = GTS_RESULT_NOT_FOUND;
                     break;
-                case 14:
-                    Unk_ov94_02246AC0.unk_04 = -2;
+                case GTS_SERVER_STATUS_MAINTENANCE:
+                    sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                     break;
                 default:
-
-                    Unk_ov94_02246AC0.unk_04 = -13;
+                    sGTSNetworkingState.result = GTS_RESULT_ERROR;
                     break;
                 }
             }
@@ -200,32 +197,31 @@ void GTSNetworking_ProcessCurrentRequest(void)
     case NETWORK_STATUS_GET_LISTING_STATUS_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(GTSPokemonListing)) {
-                Unk_ov94_02246AC0.unk_04 = 1;
+                sGTSNetworkingState.result = GTS_RESULT_PROFILE_EXISTS;
             } else {
-                switch (Unk_ov94_02246AC0.unk_140[0]) {
-                case 5:
-                    Unk_ov94_02246AC0.unk_04 = -3;
+                switch (sGTSNetworkingState.responseData[0]) {
+                case GTS_SERVER_STATUS_ALREADY_TRADED:
+                    sGTSNetworkingState.result = GTS_RESULT_ALREADY_TRADED;
                     break;
-                case 3:
-                    Unk_ov94_02246AC0.unk_04 = -4;
+                case GTS_SERVER_STATUS_NOT_FOUND:
+                    sGTSNetworkingState.result = GTS_RESULT_NOT_FOUND;
                     break;
-                case 4:
-                    Unk_ov94_02246AC0.unk_04 = 0;
+                case GTS_SERVER_STATUS_NO_MATCH_YET:
+                    sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                     break;
-                case 14:
-                    Unk_ov94_02246AC0.unk_04 = -2;
+                case GTS_SERVER_STATUS_MAINTENANCE:
+                    sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                     break;
                 default:
-
-                    Unk_ov94_02246AC0.unk_04 = -13;
+                    sGTSNetworkingState.result = GTS_RESULT_ERROR;
                     break;
                 }
             }
@@ -238,29 +234,28 @@ void GTSNetworking_ProcessCurrentRequest(void)
     case NETWORK_STATUS_DELETE_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
-            switch (Unk_ov94_02246AC0.unk_13C[0]) {
-            case 1:
-                Unk_ov94_02246AC0.unk_04 = 0;
+            switch (sGTSNetworkingState.responseStatus[0]) {
+            case GTS_SERVER_STATUS_SUCCESS:
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
-            case 5:
-                Unk_ov94_02246AC0.unk_04 = -3;
+            case GTS_SERVER_STATUS_ALREADY_TRADED:
+                sGTSNetworkingState.result = GTS_RESULT_ALREADY_TRADED;
                 break;
-            case 3:
-                Unk_ov94_02246AC0.unk_04 = -4;
+            case GTS_SERVER_STATUS_NOT_FOUND:
+                sGTSNetworkingState.result = GTS_RESULT_NOT_FOUND;
                 break;
-            case 14:
-                Unk_ov94_02246AC0.unk_04 = -2;
+            case GTS_SERVER_STATUS_MAINTENANCE:
+                sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                 break;
             default:
-
-                Unk_ov94_02246AC0.unk_04 = -13;
+                sGTSNetworkingState.result = GTS_RESULT_ERROR;
                 break;
             }
 
@@ -269,35 +264,34 @@ void GTSNetworking_ProcessCurrentRequest(void)
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_12:
+    case NETWORK_STATUS_RETURN_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
-            switch (Unk_ov94_02246AC0.unk_13C[0]) {
-            case 1:
-                Unk_ov94_02246AC0.unk_04 = 0;
+            switch (sGTSNetworkingState.responseStatus[0]) {
+            case GTS_SERVER_STATUS_SUCCESS:
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
-            case 5:
-                Unk_ov94_02246AC0.unk_04 = -3;
+            case GTS_SERVER_STATUS_ALREADY_TRADED:
+                sGTSNetworkingState.result = GTS_RESULT_ALREADY_TRADED;
                 break;
-            case 2:
-                Unk_ov94_02246AC0.unk_04 = -5;
+            case GTS_SERVER_STATUS_ALREADY_DEPOSITED:
+                sGTSNetworkingState.result = GTS_RESULT_ALREADY_DEPOSITED;
                 break;
-            case 3:
-                Unk_ov94_02246AC0.unk_04 = -4;
+            case GTS_SERVER_STATUS_NOT_FOUND:
+                sGTSNetworkingState.result = GTS_RESULT_NOT_FOUND;
                 break;
-            case 14:
-                Unk_ov94_02246AC0.unk_04 = -2;
+            case GTS_SERVER_STATUS_MAINTENANCE:
+                sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                 break;
             default:
-
-                Unk_ov94_02246AC0.unk_04 = -13;
+                sGTSNetworkingState.result = GTS_RESULT_ERROR;
                 break;
             }
 
@@ -306,30 +300,29 @@ void GTSNetworking_ProcessCurrentRequest(void)
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_14:
+    case NETWORK_STATUS_SEARCH_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
             {
                 int v0 = HTTP_GetResponseLength();
 
                 if (v0 >= sizeof(GTSPokemonListing)) {
-                    Unk_ov94_02246AC0.unk_04 = (s32)(HTTP_GetResponseLength() / sizeof(GTSPokemonListing));
+                    sGTSNetworkingState.result = (s32)(HTTP_GetResponseLength() / sizeof(GTSPokemonListing));
                 } else if (v0 == 0) {
-                    Unk_ov94_02246AC0.unk_04 = 0;
+                    sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 } else {
-                    switch (Unk_ov94_02246AC0.unk_140[0]) {
-                    case 14:
-                        Unk_ov94_02246AC0.unk_04 = -2;
+                    switch (sGTSNetworkingState.responseData[0]) {
+                    case GTS_SERVER_STATUS_MAINTENANCE:
+                        sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                         break;
                     default:
-
-                        Unk_ov94_02246AC0.unk_04 = -13;
+                        sGTSNetworkingState.result = GTS_RESULT_ERROR;
                         break;
                     }
                 }
@@ -339,47 +332,46 @@ void GTSNetworking_ProcessCurrentRequest(void)
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_16:
+    case NETWORK_STATUS_EXCHANGE_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(GTSPokemonListing)) {
-                Unk_ov94_02246AC0.unk_04 = 0;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
             } else {
-                switch (Unk_ov94_02246AC0.unk_140[0]) {
-                case 2:
-                    Unk_ov94_02246AC0.unk_04 = -5;
+                switch (sGTSNetworkingState.responseData[0]) {
+                case GTS_SERVER_STATUS_ALREADY_DEPOSITED:
+                    sGTSNetworkingState.result = GTS_RESULT_ALREADY_DEPOSITED;
                     break;
-                case 12:
-                    Unk_ov94_02246AC0.unk_04 = -6;
+                case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_5:
+                    sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_1;
                     break;
-                case 13:
-                    Unk_ov94_02246AC0.unk_04 = -7;
+                case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_6:
+                    sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_2;
                     break;
-                case 8:
-                    Unk_ov94_02246AC0.unk_04 = -8;
+                case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_1:
+                    sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_3;
                     break;
-                case 9:
-                    Unk_ov94_02246AC0.unk_04 = -9;
+                case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_2:
+                    sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_4;
                     break;
-                case 10:
-                    Unk_ov94_02246AC0.unk_04 = -10;
+                case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_3:
+                    sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_5;
                     break;
-                case 11:
-                    Unk_ov94_02246AC0.unk_04 = -11;
+                case GTS_SERVER_STATUS_CANNOT_BE_OFFERED_4:
+                    sGTSNetworkingState.result = GTS_RESULT_CANNOT_BE_OFFERED_6;
                     break;
-                case 14:
-                    Unk_ov94_02246AC0.unk_04 = -2;
+                case GTS_SERVER_STATUS_MAINTENANCE:
+                    sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                     break;
                 default:
-
-                    Unk_ov94_02246AC0.unk_04 = -13;
+                    sGTSNetworkingState.result = GTS_RESULT_ERROR;
                     break;
                 }
             }
@@ -389,25 +381,25 @@ void GTSNetworking_ProcessCurrentRequest(void)
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_18:
+    case NETWORK_STATUS_EXCHANGE_FINISH_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
-            switch (Unk_ov94_02246AC0.unk_13C[0]) {
-            case 1:
-                Unk_ov94_02246AC0.unk_04 = 0;
+            switch (sGTSNetworkingState.responseStatus[0]) {
+            case GTS_SERVER_STATUS_SUCCESS:
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
-            case 14:
-                Unk_ov94_02246AC0.unk_04 = -2;
+            case GTS_SERVER_STATUS_MAINTENANCE:
+                sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                 break;
-            case 2:
-                Unk_ov94_02246AC0.unk_04 = -5;
+            case GTS_SERVER_STATUS_ALREADY_DEPOSITED:
+                sGTSNetworkingState.result = GTS_RESULT_ALREADY_DEPOSITED;
                 break;
             }
 
@@ -419,29 +411,28 @@ void GTSNetworking_ProcessCurrentRequest(void)
     case NETWORK_STATUS_INIT_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
-            switch (Unk_ov94_02246AC0.unk_13C[0]) {
-            case 1:
-                Unk_ov94_02246AC0.unk_04 = 0;
+            switch (sGTSNetworkingState.responseStatus[0]) {
+            case GTS_SERVER_STATUS_SUCCESS:
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                 break;
-            case 6:
-                Unk_ov94_02246AC0.unk_04 = 1;
+            case GTS_SERVER_STATUS_PROFILE_EXISTS:
+                sGTSNetworkingState.result = GTS_RESULT_PROFILE_EXISTS;
                 break;
-            case 7:
-                Unk_ov94_02246AC0.unk_04 = 2;
+            case GTS_SERVER_STATUS_CROWDED:
+                sGTSNetworkingState.result = GTS_RESULT_BANNED;
                 break;
-            case 14:
-                Unk_ov94_02246AC0.unk_04 = -2;
+            case GTS_SERVER_STATUS_MAINTENANCE:
+                sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                 break;
             default:
-
-                Unk_ov94_02246AC0.unk_04 = -13;
+                sGTSNetworkingState.result = GTS_RESULT_ERROR;
                 break;
             }
 
@@ -453,32 +444,31 @@ void GTSNetworking_ProcessCurrentRequest(void)
     case NETWORK_STATUS_SET_PROFILE_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case HTTP_STATUS_IDLE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.result = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
         case HTTP_STATUS_COMPLETE:
-            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(WorldExchangeTrainerError)) {
-                Unk_ov94_02246AC0.unk_04 = 0;
+                sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
             } else {
-                switch (Unk_ov94_02246AC0.unk_13C[0]) {
-                case 1:
-                    Unk_ov94_02246AC0.unk_04 = 0;
+                switch (sGTSNetworkingState.responseStatus[0]) {
+                case GTS_SERVER_STATUS_SUCCESS:
+                    sGTSNetworkingState.result = GTS_RESULT_SUCCESS;
                     break;
-                case 6:
-                    Unk_ov94_02246AC0.unk_04 = 1;
+                case GTS_SERVER_STATUS_PROFILE_EXISTS:
+                    sGTSNetworkingState.result = GTS_RESULT_PROFILE_EXISTS;
                     break;
-                case 7:
-                    Unk_ov94_02246AC0.unk_04 = 2;
+                case GTS_SERVER_STATUS_CROWDED:
+                    sGTSNetworkingState.result = GTS_RESULT_BANNED;
                     break;
-                case 14:
-                    Unk_ov94_02246AC0.unk_04 = -2;
+                case GTS_SERVER_STATUS_MAINTENANCE:
+                    sGTSNetworkingState.result = GTS_RESULT_SERVER_MAINTENANCE;
                     break;
                 default:
-
-                    Unk_ov94_02246AC0.unk_04 = -13;
+                    sGTSNetworkingState.result = GTS_RESULT_ERROR;
                     break;
                 }
             }
@@ -488,19 +478,19 @@ void GTSNetworking_ProcessCurrentRequest(void)
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_03:
-    case UnkEnum_ov94_0223B15C_05:
-    case UnkEnum_ov94_0223B15C_07:
-    case UnkEnum_ov94_0223B15C_09:
-    case UnkEnum_ov94_0223B15C_11:
-    case UnkEnum_ov94_0223B15C_13:
-    case UnkEnum_ov94_0223B15C_15:
-    case UnkEnum_ov94_0223B15C_17:
-    case UnkEnum_ov94_0223B15C_19:
-    case UnkEnum_ov94_0223B15C_21:
-    case UnkEnum_ov94_0223B15C_23:
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -12;
+    case NETWORK_STATUS_POST_PENDING_ABORTED:
+    case NETWORK_STATUS_POST_FINISH_PENDING_ABORTED:
+    case NETWORK_STATUS_GET_LISTED_POKEMON_PENDING_ABORTED:
+    case NETWORK_STATUS_GET_LISTING_STATUS_PENDING_ABORTED:
+    case NETWORK_STATUS_DELETE_PENDING_ABORTED:
+    case NETWORK_STATUS_RETURN_PENDING_ABORTED:
+    case NETWORK_STATUS_SEARCH_PENDING_ABORTED:
+    case NETWORK_STATUS_EXCHANGE_PENDING_ABORTED:
+    case NETWORK_STATUS_EXCHANGE_FINISH_PENDING_ABORTED:
+    case NETWORK_STATUS_INIT_PENDING_ABORTED:
+    case NETWORK_STATUS_SET_PROFILE_PENDING_ABORTED:
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ABORTED;
         HTTP_Shutdown();
         break;
     case NETWORK_STATUS_COMPLETE:
@@ -508,19 +498,19 @@ void GTSNetworking_ProcessCurrentRequest(void)
     }
 }
 
-void ov94_0223B7AC(void)
+void GTSNetworking_Reset(void)
 {
-    Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_00;
+    sGTSNetworkingState.status = NETWORK_STATUS_INACTIVE;
 }
 
 BOOL GTSNetworking_RequestComplete(void)
 {
-    switch (Unk_ov94_02246AC0.unk_00) {
-    case UnkEnum_ov94_0223B15C_01:
+    switch (sGTSNetworkingState.status) {
+    case NETWORK_STATUS_IDLE:
         return TRUE;
         break;
     case NETWORK_STATUS_COMPLETE:
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_01;
+        sGTSNetworkingState.status = NETWORK_STATUS_IDLE;
         return TRUE;
         break;
     default:
@@ -532,85 +522,65 @@ BOOL GTSNetworking_RequestComplete(void)
 
 s32 GTSNetworking_GetErrorCode(void)
 {
-    return Unk_ov94_02246AC0.unk_04;
+    return sGTSNetworkingState.result;
 }
 
-void GTSNetworking_Post(const GTSPokemonListing *param0)
+void GTSNetworking_Post(const GTSPokemonListing *listing)
 {
-    memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(GTSPokemonListing));
+    memcpy(&sGTSNetworkingState.requestData[0], listing, sizeof(GTSPokemonListing));
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/post.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            sizeof(GTSPokemonListing),
-            Unk_ov94_02246AC0.unk_13C,
-            2)) {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_POST_PENDING;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_POST), sGTSNetworkingState.requestData, sizeof(GTSPokemonListing), sGTSNetworkingState.responseStatus, 2)) {
+        sGTSNetworkingState.status = NETWORK_STATUS_POST_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
 
-void ov94_0223B834(void)
+void GTSNetworking_PostFinish(void)
 {
-    memcpy(&Unk_ov94_02246AC0.unk_14[0], &Unk_ov94_02246AC0.unk_0C, 8);
+    memcpy(&sGTSNetworkingState.requestData[0], &sGTSNetworkingState.friendKey, sizeof(sGTSNetworkingState.friendKey));
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/post_finish.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            8,
-            Unk_ov94_02246AC0.unk_13C,
-            2)) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_04;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_POST_FINISH), sGTSNetworkingState.requestData, 8, sGTSNetworkingState.responseStatus, 2)) {
+        sGTSNetworkingState.status = NETWORK_STATUS_POST_FINISH_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
 
-void GTSNetworking_GetListedPokemon(GTSPokemonListing *param0)
+void GTSNetworking_GetListedPokemon(GTSPokemonListing *listing)
 {
-    Unk_ov94_02246AC0.unk_140 = (u8 *)param0;
+    sGTSNetworkingState.responseData = (u8 *)listing;
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/get.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            0,
-            param0,
-            sizeof(GTSPokemonListing))) {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_GET_LISTED_POKEMON_PENDING;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_GET), sGTSNetworkingState.requestData, 0, listing, sizeof(GTSPokemonListing))) {
+        sGTSNetworkingState.status = NETWORK_STATUS_GET_LISTED_POKEMON_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
 
-void GTSNetworking_GetListingStatus(GTSPokemonListing *param0)
+void GTSNetworking_GetListingStatus(GTSPokemonListing *listing)
 {
-    Unk_ov94_02246AC0.unk_140 = (u8 *)param0;
+    sGTSNetworkingState.responseData = (u8 *)listing;
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/result.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            0,
-            param0,
-            sizeof(GTSPokemonListing))) {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_GET_LISTING_STATUS_PENDING;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_RESULT), sGTSNetworkingState.requestData, 0, listing, sizeof(GTSPokemonListing))) {
+        sGTSNetworkingState.status = NETWORK_STATUS_GET_LISTING_STATUS_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
@@ -619,16 +589,11 @@ void GTSNetworking_Delete(void)
 {
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/delete.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            0,
-            Unk_ov94_02246AC0.unk_13C,
-            2)) {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_DELETE_PENDING;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_DELETE), sGTSNetworkingState.requestData, 0, sGTSNetworkingState.responseStatus, 2)) {
+        sGTSNetworkingState.status = NETWORK_STATUS_DELETE_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
@@ -637,105 +602,80 @@ void GTSNetworking_Return(void)
 {
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/return.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            0,
-            Unk_ov94_02246AC0.unk_13C,
-            2)) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_12;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_RETURN), sGTSNetworkingState.requestData, 0, sGTSNetworkingState.responseStatus, 2)) {
+        sGTSNetworkingState.status = NETWORK_STATUS_RETURN_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
 
-void GTSNetworking_Search(const GTSPokemonRequirements *param0, s32 param1, GTSPokemonListing *param2)
+void GTSNetworking_SearchGlobal(const GTSPokemonRequirements *requirements, s32 maxResults, GTSPokemonListing *listing)
 {
-    Unk_ov94_02246AC0.unk_140 = (u8 *)param2;
+    sGTSNetworkingState.responseData = (u8 *)listing;
 
     HTTP_Init();
 
-    memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(GTSPokemonRequirements));
-    Unk_ov94_02246AC0.unk_14[sizeof(GTSPokemonRequirements)] = (u8)param1;
+    memcpy(&sGTSNetworkingState.requestData[0], requirements, sizeof(GTSPokemonRequirements));
+    sGTSNetworkingState.requestData[sizeof(GTSPokemonRequirements)] = (u8)maxResults;
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/search.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            sizeof(GTSPokemonRequirements) + 1,
-            param2,
-            (int)sizeof(GTSPokemonListing) * param1)) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_14;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_SEARCH), sGTSNetworkingState.requestData, sizeof(GTSPokemonRequirements) + 1, listing, (int)sizeof(GTSPokemonListing) * maxResults)) {
+        sGTSNetworkingState.status = NETWORK_STATUS_SEARCH_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
 
-void ov94_0223BA24(const UnkStruct_ov94_0223BA24 *param0, GTSPokemonListing *param1)
+void GTSNetworking_SearchByCountry(const GTSCountrySearchRequest *req, GTSPokemonListing *listing)
 {
-    Unk_ov94_02246AC0.unk_140 = (u8 *)param1;
+    sGTSNetworkingState.responseData = (u8 *)listing;
 
     HTTP_Init();
 
-    memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(UnkStruct_ov94_0223BA24));
+    memcpy(&sGTSNetworkingState.requestData[0], req, sizeof(GTSCountrySearchRequest));
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/search.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            sizeof(UnkStruct_ov94_0223BA24),
-            param1,
-            (int)sizeof(GTSPokemonListing) * param0->unk_06)) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_14;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_SEARCH), sGTSNetworkingState.requestData, sizeof(GTSCountrySearchRequest), listing, (int)sizeof(GTSPokemonListing) * req->count)) {
+        sGTSNetworkingState.status = NETWORK_STATUS_SEARCH_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
 
-void ov94_0223BA88(s32 param0, const GTSPokemonListing *param1, GTSPokemonListing *param2)
+void GTSNetworking_Exchange(s32 param0, const GTSPokemonListing *listing1, GTSPokemonListing *listing2)
 {
-    Unk_ov94_02246AC0.unk_140 = (u8 *)param2;
+    sGTSNetworkingState.responseData = (u8 *)listing2;
 
     HTTP_Init();
 
-    memcpy(&Unk_ov94_02246AC0.unk_14[0], param1, sizeof(GTSPokemonListing));
+    memcpy(&sGTSNetworkingState.requestData[0], listing1, sizeof(GTSPokemonListing));
 
-    *(s32 *)(&Unk_ov94_02246AC0.unk_14[sizeof(GTSPokemonListing)]) = param0;
+    *(s32 *)(&sGTSNetworkingState.requestData[sizeof(GTSPokemonListing)]) = param0;
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/exchange.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            sizeof(GTSPokemonListing) + 4,
-            param2,
-            sizeof(GTSPokemonListing))) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_16;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_EXCHANGE), sGTSNetworkingState.requestData, sizeof(GTSPokemonListing) + 4, listing2, sizeof(GTSPokemonListing))) {
+        sGTSNetworkingState.status = NETWORK_STATUS_EXCHANGE_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
 
-void ov94_0223BAEC(void)
+void GTSNetworking_ExchangeFinish(void)
 {
-    memcpy(&Unk_ov94_02246AC0.unk_14[0], &Unk_ov94_02246AC0.unk_0C, 8);
+    memcpy(&sGTSNetworkingState.requestData[0], &sGTSNetworkingState.friendKey, 8);
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/exchange_finish.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            8,
-            Unk_ov94_02246AC0.unk_13C,
-            2)) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_18;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_EXCHANGE_FINISH), sGTSNetworkingState.requestData, 8, sGTSNetworkingState.responseStatus, 2)) {
+        sGTSNetworkingState.status = NETWORK_STATUS_EXCHANGE_FINISH_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
@@ -744,119 +684,108 @@ void GTSNetworking_InitConnection(void)
 {
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "worldexchange/info.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            0,
-            Unk_ov94_02246AC0.unk_13C,
-            2)) {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_INIT_PENDING;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_INFO), sGTSNetworkingState.requestData, 0, sGTSNetworkingState.responseStatus, 2)) {
+        sGTSNetworkingState.status = NETWORK_STATUS_INIT_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
 
-void GTSNetworking_SetProfile(const WorldExchangeTrainer *trainer, WorldExchangeTrainerError *error)
+void GTSNetworking_SetProfile(const WorldExchangeTrainer *trainer, WorldExchangeTrainerError *err)
 {
     OS_GetMacAddress((u8 *)trainer->macAddress);
 
-    memcpy(Unk_ov94_02246AC0.unk_14, trainer, sizeof(WorldExchangeTrainer));
-    Unk_ov94_02246AC0.unk_140 = (u8 *)error;
+    memcpy(sGTSNetworkingState.requestData, trainer, sizeof(WorldExchangeTrainer));
+    sGTSNetworkingState.responseData = (u8 *)err;
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                  "common/setProfile.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            sizeof(WorldExchangeTrainer),
-            Unk_ov94_02246AC0.unk_140,
-            sizeof(WorldExchangeTrainerError))) {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_SET_PROFILE_PENDING;
+    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_SET_PROFILE), sGTSNetworkingState.requestData, sizeof(WorldExchangeTrainer), sGTSNetworkingState.responseData, sizeof(WorldExchangeTrainerError))) {
+        sGTSNetworkingState.status = NETWORK_STATUS_SET_PROFILE_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
+        sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
+        sGTSNetworkingState.result = GTS_RESULT_ERROR;
         HTTP_Shutdown();
     }
 }
 
-static BOOL GTSNetworking_PrepareRequest(const u8 *url, const void *param1, int param2, void *param3, int param4)
+static BOOL GTSNetworking_PrepareRequest(const u8 *url, const void *data, int dataSize, void *response, int maxResponseLength)
 {
-    switch (HTTP_PrepareRequest(url, Unk_ov94_02246AC0.unk_08, param1, param2, (u8 *)param3, param4)) {
-    case 0:
+    switch (HTTP_PrepareRequest(url, sGTSNetworkingState.dwcProfileId, data, dataSize, (u8 *)response, maxResponseLength)) {
+    case HTTP_PREPARE_STATUS_SUCCESS:
         return TRUE;
         break;
-    case 1:
+    case HTTP_PREPARE_STATUS_NOT_READY:
         break;
-    case 2:
+    case HTTP_PREPARE_STATUS_ALLOC_FAILED:
         break;
     }
 
     return FALSE;
 }
 
-static int GTSNetworking_GetPublicErrorCode(int param0)
+static int GTSNetworking_GetPublicErrorCode(int errCode)
 {
-    int v0;
+    int result;
 
-    switch (param0) {
-    case 0:
-    case 1:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 9:
-    case 10:
-    case 23:
-    case 22:
-    case 20:
-    case 21:
-    case 14:
-    case 32:
-        v0 = -13;
+    switch (errCode) {
+    case DWC_ERROR_GHTTP_IN_ERROR:
+    case DWC_ERROR_GHTTP_INVALID_POST:
+    case DWC_ERROR_GHTTP_INVALID_FILE_NAME:
+    case DWC_ERROR_GHTTP_INVALID_BUFFER_SIZE:
+    case DWC_ERROR_GHTTP_INVALID_URL:
+    case DWC_ERROR_GHTTP_UNSPECIFIED_ERROR:
+    case DWC_ERROR_GHTTP_BUFFER_OVERFLOW:
+    case DWC_ERROR_GHTTP_PARSE_URL_FAILED:
+    case DWC_ERROR_GHTTP_FILE_TOO_BIG:
+    case DWC_ERROR_GHTTP_FILE_INCOMPLETE:
+    case DWC_ERROR_GHTTP_20:
+    case DWC_ERROR_GHTTP_21:
+    case DWC_ERROR_GHTTP_BAD_RESPONSE:
+    case DWC_ERROR_GHTTP_32:
+        result = GTS_RESULT_ERROR;
         break;
-    case 2:
-    case 8:
-    case 25:
-        v0 = -13;
+    case DWC_ERROR_GHTTP_INSUFFICIENT_MEMORY:
+    case DWC_ERROR_GHTTP_OUT_OF_MEMORY:
+    case DWC_ERROR_GHTTP_MEMORY_ERROR:
+        result = GTS_RESULT_ERROR;
         break;
-    case 11:
-        v0 = -15;
+    case DWC_ERROR_GHTTP_HOST_LOOKUP_FAILED:
+        result = GTS_RESULT_CONNECTION_FAILED;
         break;
-    case 12:
-    case 13:
-        v0 = -15;
+    case DWC_ERROR_GHTTP_SOCKET_FAILED:
+    case DWC_ERROR_GHTTP_CONNECT_FAILED:
+        result = GTS_RESULT_CONNECTION_FAILED;
         break;
-    case 16:
-    case 17:
-    case 18:
-    case 19:
-    case 26:
-    case 27:
-    case 28:
-    case 29:
-    case 31:
-        v0 = -2;
+    case DWC_ERROR_GHTTP_UNAUTHORIZED:
+    case DWC_ERROR_GHTTP_FORBIDDEN:
+    case DWC_ERROR_GHTTP_FILE_NOT_FOUND:
+    case DWC_ERROR_GHTTP_SERVER_ERROR:
+    case DWC_ERROR_GHTTP_26:
+    case DWC_ERROR_GHTTP_27:
+    case DWC_ERROR_GHTTP_28:
+    case DWC_ERROR_GHTTP_29:
+    case DWC_ERROR_GHTTP_31:
+        result = GTS_RESULT_SERVER_MAINTENANCE;
         break;
-    case 15:
-    case 30:
-        v0 = -2;
+    case DWC_ERROR_GHTTP_REQUEST_REJECTED:
+    case DWC_ERROR_GHTTP_30:
+        result = GTS_RESULT_SERVER_MAINTENANCE;
         break;
     default:
-
-        v0 = -13;
+        result = GTS_RESULT_ERROR;
         break;
     }
 
-    if (v0 != -13) {
+    if (result != GTS_RESULT_ERROR) {
         if (WCM_GetPhase() != WCM_PHASE_DCF) {
-            v0 = -14;
+            result = GTS_RESULT_NOT_IN_DCF_PHASE;
         }
 
         DWC_ClearError();
     }
 
-    return v0;
+    return result;
 }

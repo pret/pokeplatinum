@@ -123,7 +123,7 @@ int GTSApplication_InitWFC_Init(GTSApplicationState *appState, int unused1)
         if (appState->playerData->connectToWiFi) {
             GTSApplication_DisplayStatusMessage(appState, appState->unk0674MessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 2);
-            GTSApplicationState_AddWaitDial(appState);
+            GTSApplication_AddWaitDial(appState);
         } else {
             appState->currentScreenInstruction = 0;
         }
@@ -340,7 +340,7 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
         } else {
             GTSApplication_DisplayStatusMessage(appState, appState->unk0674MessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 2);
-            GTSApplicationState_AddWaitDial(appState);
+            GTSApplication_AddWaitDial(appState);
         }
     }
 
@@ -439,7 +439,7 @@ static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState)
         }
             DWC_ClearError();
             DWC_CleanupInet();
-            GTSApplicationState_DestroyWaitDial(appState);
+            GTSApplication_DestroyWaitDial(appState);
 
             appState->currentScreenInstruction = 23;
 
@@ -456,7 +456,7 @@ static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState)
             int v4;
 
             v3 = DWC_GetLastError(&v4);
-            GTSApplicationState_DestroyWaitDial(appState);
+            GTSApplication_DestroyWaitDial(appState);
 
             appState->currentScreenInstruction = 21;
             appState->commsErrorMessage = -2;
@@ -497,7 +497,7 @@ static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appSt
     case DWC_NASLOGIN_STATE_ERROR:
     case DWC_NASLOGIN_STATE_CANCELED:
     case DWC_NASLOGIN_STATE_DIRTY:
-        GTSApplicationState_DestroyWaitDial(appState);
+        GTSApplication_DestroyWaitDial(appState);
 
         int v0;
         DWCErrorType v1;
@@ -557,7 +557,7 @@ static int GTSApplication_WFCInit_GetDWCKey(GTSApplicationState *appState)
     }
 
     v1 = SystemData_GetDWCProfileId(appState->playerData->systemData);
-    ov94_0223B140(v1, DWC_CreateFriendKey(v0));
+    GTSNetworking_InitCredentials(v1, DWC_CreateFriendKey(v0));
     appState->currentScreenInstruction = 7;
 
     return GTS_LOOP_STATE_MAIN;
@@ -585,31 +585,31 @@ static int GTSApplication_WFCInit_WaitForServerResponse(GTSApplicationState *par
             param0->currentScreenInstruction = 9;
             break;
         case 1: // first byte = 6
-            GTSApplicationState_DestroyWaitDial(param0);
+            GTSApplication_DestroyWaitDial(param0);
             param0->commsErrorMessage = v0;
             param0->currentScreenInstruction = 21;
             break;
         case 2: // first byte = 7
         case -1:
-            GTSApplicationState_DestroyWaitDial(param0);
+            GTSApplication_DestroyWaitDial(param0);
             param0->commsErrorMessage = v0;
             param0->currentScreenInstruction = 21;
             break;
         case -12:
         case -15:
-            GTSApplicationState_DestroyWaitDial(param0);
+            GTSApplication_DestroyWaitDial(param0);
             param0->commsErrorMessage = v0;
             param0->currentScreenInstruction = 21;
             break;
         case -2:
         case -14:
-            GTSApplicationState_DestroyWaitDial(param0);
+            GTSApplication_DestroyWaitDial(param0);
             param0->commsErrorMessage = v0;
             param0->currentScreenInstruction = 21;
             break;
         case -13:
         default:
-            GTSApplicationState_DestroyWaitDial(param0);
+            GTSApplication_DestroyWaitDial(param0);
             NetworkError_DisplayGTSCriticalError();
             break;
         }
@@ -644,7 +644,7 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
 
         switch (errorCode) {
         case 0:
-            GTSApplicationState_DestroyWaitDial(appState);
+            GTSApplication_DestroyWaitDial(appState);
 
             switch (appState->worldExchangeTrainerError.validationError) {
             case WE_VALIDATION_ERROR_VALID:
@@ -679,37 +679,37 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
                 appState->currentScreenInstruction = 21;
                 break;
             default:
-                GTSApplicationState_DestroyWaitDial(appState);
+                GTSApplication_DestroyWaitDial(appState);
                 NetworkError_DisplayGTSCriticalError();
                 break;
             }
             break;
         case 1:
-            GTSApplicationState_DestroyWaitDial(appState);
+            GTSApplication_DestroyWaitDial(appState);
             appState->commsErrorMessage = errorCode;
             appState->currentScreenInstruction = 21;
             break;
         case 2:
         case -1:
-            GTSApplicationState_DestroyWaitDial(appState);
+            GTSApplication_DestroyWaitDial(appState);
             appState->commsErrorMessage = errorCode;
             appState->currentScreenInstruction = 21;
             break;
         case -12:
         case -15:
-            GTSApplicationState_DestroyWaitDial(appState);
+            GTSApplication_DestroyWaitDial(appState);
             appState->commsErrorMessage = errorCode;
             appState->currentScreenInstruction = 21;
             break;
         case -2:
         case -14:
-            GTSApplicationState_DestroyWaitDial(appState);
+            GTSApplication_DestroyWaitDial(appState);
             appState->commsErrorMessage = errorCode;
             appState->currentScreenInstruction = 21;
             break;
         case -13:
         default:
-            GTSApplicationState_DestroyWaitDial(appState);
+            GTSApplication_DestroyWaitDial(appState);
             NetworkError_DisplayGTSCriticalError();
             break;
         }
@@ -746,7 +746,7 @@ static int GTSApplication_WFCInit_RestartConnection(GTSApplicationState *param0)
 static int GTSApplication_WFCInit_ExitScreen(GTSApplicationState *param0)
 {
     NetworkIcon_Destroy();
-    GTSApplicationState_DestroyWaitDial(param0);
+    GTSApplication_DestroyWaitDial(param0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
 
     param0->currentScreenInstruction = 0;

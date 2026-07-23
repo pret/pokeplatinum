@@ -1349,7 +1349,7 @@ static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *appSta
 
     param0->unk_EC = v0;
 
-    ov94_022425A8(param0, appState);
+    GTS_FillListing(param0, appState);
 
     boxMon = Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
 
