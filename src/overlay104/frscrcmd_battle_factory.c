@@ -16,6 +16,7 @@
 #include "overlay104/struct_battle_factory.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
+#include "battle_factory_save.h"
 #include "battle_frontier.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
@@ -25,7 +26,6 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "battle_factory_save.h"
 #include "unk_0209BA80.h"
 
 #include "constdata/const_020EA358.h"

@@ -3,17 +3,17 @@
 
 #include "savedata.h"
 
-#define FACTORY_SAVE_OPEN_LEVEL 0
-#define FACTORY_SAVE_CHALLENGE_TYPE 1
-#define FACTORY_SAVE_CURRENT_BATTLE 2
-#define FACTORY_SAVE_TRAINER_IDS 3
-#define FACTORY_SAVE_PLAYER_SETS 4
-#define FACTORY_SAVE_PLAYER_IVS 5
-#define FACTORY_SAVE_PLAYER_PERSONALITY 6
-#define FACTORY_SAVE_OPPONENT_SETS 7
-#define FACTORY_SAVE_OPPONENT_IVS 8
+#define FACTORY_SAVE_OPEN_LEVEL           0
+#define FACTORY_SAVE_CHALLENGE_TYPE       1
+#define FACTORY_SAVE_CURRENT_BATTLE       2
+#define FACTORY_SAVE_TRAINER_IDS          3
+#define FACTORY_SAVE_PLAYER_SETS          4
+#define FACTORY_SAVE_PLAYER_IVS           5
+#define FACTORY_SAVE_PLAYER_PERSONALITY   6
+#define FACTORY_SAVE_OPPONENT_SETS        7
+#define FACTORY_SAVE_OPPONENT_IVS         8
 #define FACTORY_SAVE_OPPONENT_PERSONALITY 9
-#define FACTORY_SAVE_STREAK_FLAGS 10
+#define FACTORY_SAVE_STREAK_FLAGS         10
 
 typedef struct BattleFactoryStreakFlags {
     u8 streakActiveFlags;
@@ -21,10 +21,10 @@ typedef struct BattleFactoryStreakFlags {
 } BattleFactoryStreakFlags;
 
 typedef struct BattleFactorySave {
-    u8 isOpenLevel: 1;
-    u8 challengeType: 3;
-    u8 didSave: 1;
-    u8 unused: 3;
+    u8 isOpenLevel : 1;
+    u8 challengeType : 3;
+    u8 didSave : 1;
+    u8 unused : 3;
     u8 currentBattleNum;
     u16 unused2;
     u16 trainerIDs[14];

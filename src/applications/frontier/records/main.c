@@ -12,6 +12,7 @@
 #include "applications/frontier/records/windows.h"
 
 #include "battle_castle_save.h"
+#include "battle_factory_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "battle_hall_win_records.h"
@@ -33,7 +34,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "battle_factory_save.h"
 #include "unk_02030494.h"
 #include "wifi_battle_tower_save.h"
 

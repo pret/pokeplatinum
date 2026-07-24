@@ -12,6 +12,7 @@
 #include "overlay104/struct_battle_factory.h"
 #include "overlay104/struct_ov104_0224028C.h"
 
+#include "battle_factory_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "game_records.h"
@@ -21,7 +22,6 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "system_vars.h"
-#include "battle_factory_save.h"
 #include "vars_flags.h"
 
 void ov104_02233B98(BattleFactory *param0, u16 param1);
@@ -68,13 +68,13 @@ BattleFactory *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 para
 
     if (param1 == 0) {
         v7->challengeType = param2;
-        v7->isOpenLevel= param3;
+        v7->isOpenLevel = param3;
         v7->unk_06 = 0;
 
         BattleFactorySave_Init(v0);
 
         if (v7->challengeType == 3) {
-            if (v7->isOpenLevel== 0) {
+            if (v7->isOpenLevel == 0) {
                 v6 = 102;
             } else {
                 v6 = 104;
@@ -95,8 +95,8 @@ BattleFactory *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 para
 
         v7->unk_10 = 0;
     } else {
-        v7->isOpenLevel= (u8)BattleFactorySave_GetMember(v0, 1, 0, NULL);
-        v7->challengeType = (u8)BattleFactorySave_GetMember(v0, 0, 0, NULL);
+        v7->challengeType = (u8)BattleFactorySave_GetMember(v0, 1, 0, NULL);
+        v7->isOpenLevel = (u8)BattleFactorySave_GetMember(v0, 0, 0, NULL);
         v7->unk_06 = (u8)BattleFactorySave_GetMember(v0, 2, 0, NULL);
         v7->currentStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestStreakIdx(v7->isOpenLevel, v7->challengeType));
         v7->unk_08 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v7->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(v7->isOpenLevel, v7->challengeType));

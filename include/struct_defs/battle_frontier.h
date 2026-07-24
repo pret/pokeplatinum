@@ -9,8 +9,8 @@
 #include "struct_defs/struct_020305B8.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
-#include "battle_factory_save.h"
 #include "battle_castle_save.h"
+#include "battle_factory_save.h"
 #include "battle_hall_save.h"
 #include "wifi_list.h"
 

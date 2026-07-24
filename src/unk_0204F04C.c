@@ -5,11 +5,11 @@
 
 #include "struct_defs/struct_0202FF58.h"
 
+#include "battle_factory_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "field_script_context.h"
 #include "inlines.h"
-#include "battle_factory_save.h"
 
 BOOL ScrCmd_2C5(ScriptContext *param0);
 
