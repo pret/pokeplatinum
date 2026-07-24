@@ -348,8 +348,8 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
             Pokemon_GetValue(param0->unk_10.unk_00->contestMons[v4], MON_DATA_NICKNAME_STRING, v2);
             Window_FillTilemap(&param0->unk_10.unk_24[1 + v3], 0x0);
             Window_FillTilemap(&param0->unk_10.unk_24[5 + v3], 0x0);
-            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[1 + v3], FONT_SYSTEM, v2, 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[5 + v3], FONT_SYSTEM, param0->unk_00->unk_00.trainerNames[v4], 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[1 + v3], FONT_SYSTEM, v2, 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[5 + v3], FONT_SYSTEM, param0->unk_00->unk_00.trainerNames[v4], 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
         }
 
         String_Free(v2);

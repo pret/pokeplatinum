@@ -20,7 +20,7 @@ ColoredArrow *ColoredArrow_New(u32 heapID)
     ColoredArrow *arrow = Heap_Alloc(heapID, sizeof(ColoredArrow));
 
     if (arrow) {
-        arrow->color = TEXT_COLOR(1, 2, 15);
+        arrow->color = TEXT_COLOR_BLACK_DARK_SHADOW;
         arrow->string = String_Init(4, heapID);
         String_CopyChars(arrow->string, chars);
     }

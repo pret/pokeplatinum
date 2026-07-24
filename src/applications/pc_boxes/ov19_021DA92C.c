@@ -517,8 +517,8 @@ static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
     const PCMonPreview *preview = BoxApp_GetPCMonPreview(param0->unk_10);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], FONT_SYSTEM, preview->speciesName, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 15), NULL);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 
     switch (preview->gender) {
     case 0:

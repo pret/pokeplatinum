@@ -79,7 +79,7 @@ static void ResetPoffinsFilterDetails(PoffinCaseAppItem *poffin)
 
 static void PrintMessageBox(PoffinManager *app, String *string, u8 renderDelay, u8 hasScroll)
 {
-    u32 color = TEXT_COLOR(1, 2, 15);
+    u32 color = TEXT_COLOR_BLACK_DARK_SHADOW;
 
     if (hasScroll) {
         Window_DrawMessageBoxWithScrollCursor(&app->windows[2], TRUE, 1, 14);
@@ -272,7 +272,7 @@ void PoffinManager_UpdatePoffinFilter(PoffinManager *app, u8 poffinType)
     }
 
     int width = 160 - Font_CalcStringWidth(FONT_SYSTEM, app->messages.flavorDescs[app->flavorFilter], 0);
-    TextColor color = TEXT_COLOR(1, 2, 0);
+    TextColor color = TEXT_COLOR_BLACK;
 
     Text_AddPrinterWithParamsAndColor(&app->windows[6], FONT_SYSTEM, app->messages.flavorDescs[app->flavorFilter], width / 2, 3, TEXT_SPEED_INSTANT, color, NULL);
 }
@@ -346,7 +346,7 @@ static void UpdateSelectedPoffin(ListMenu *menu, u32 index, u8 onInit)
         smoothness = 99;
     }
 
-    TextColor color = TEXT_COLOR(1, 2, 0);
+    TextColor color = TEXT_COLOR_BLACK;
     StringTemplate_SetNumber(app->messages.template, 0, smoothness, 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(app->messages.template, app->messages.string, app->messages.smoothStr);
     Text_AddPrinterWithParamsAndColor(&app->windows[1], FONT_SYSTEM, app->messages.string, 8, 0, TEXT_SPEED_INSTANT, color, NULL);
@@ -430,7 +430,7 @@ void PoffinManager_PrintHeaderandButtons(PoffinManager *app)
         4,
         0,
         TEXT_SPEED_INSTANT,
-        TEXT_COLOR(1, 2, 0),
+        TEXT_COLOR_BLACK,
         NULL);
 
     TextColor buttonTextColor = TEXT_COLOR(2, 3, 1);

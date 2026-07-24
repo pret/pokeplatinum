@@ -730,7 +730,7 @@ static enum PoffinCutsceneState PrintFeedMessage(PoffinCutscene *app)
     StringTemplate_SetString(app->messages.template, 0, app->mon.name, 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(app->messages.template, app->messages.buffer, app->messages.strings[app->mon.poffinPreference]);
 
-    app->printerID = Text_AddPrinterWithParamsAndColor(&app->window, FONT_MESSAGE, app->messages.buffer, 0, 0, app->data->textDelay, TEXT_COLOR(1, 2, 15), NULL);
+    app->printerID = Text_AddPrinterWithParamsAndColor(&app->window, FONT_MESSAGE, app->messages.buffer, 0, 0, app->data->textDelay, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     app->messageClearDelay = 0;
 
     return STATE_WAIT_MESSAGE_CLOSE;

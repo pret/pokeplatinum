@@ -1,4 +1,4 @@
-﻿#include "gts_application/screens/search.h"
+#include "gts_application/screens/search.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -137,10 +137,10 @@ int GTSApplication_Search_Init(GTSApplicationState *appState, int unused)
     GTSSearch_InitWindows(appState);
     GTSSearch_InitSprites(appState);
     GTSSearch_DrawCriteriaLabels(&appState->infoWindows[0], &appState->locationCriteriaWindows[0], appState->gtsMessageLoader);
-    GTSDeposit_DrawSpeciesText(&appState->infoWindows[1], appState->speciesMessageLoader, appState->searchRequirements.species, 0, 0, TEXT_COLOR(1, 2, 0));
-    GTSDeposit_DrawGenderText(&appState->infoWindows[3], appState->gtsMessageLoader, appState->searchRequirements.gender, 1, 0, 0, TEXT_COLOR(1, 2, 0));
-    GTSDeposit_DrawLevelTextAtOrigin(&appState->infoWindows[5], appState->gtsMessageLoader, GTS_FindLevelMessageIndex(appState->searchRequirements.level, appState->searchRequirements.level2, 1), 0, 0, TEXT_COLOR(1, 2, 0), 1);
-    GTSDeposit_DrawCountryText(&appState->locationCriteriaWindows[1], appState->countryMessageLoader, appState->gtsMessageLoader, appState->selectedCountryIndex, 0, 0, TEXT_COLOR(1, 2, 0));
+    GTSDeposit_DrawSpeciesText(&appState->infoWindows[1], appState->speciesMessageLoader, appState->searchRequirements.species, 0, 0, TEXT_COLOR_BLACK);
+    GTSDeposit_DrawGenderText(&appState->infoWindows[3], appState->gtsMessageLoader, appState->searchRequirements.gender, 1, 0, 0, TEXT_COLOR_BLACK);
+    GTSDeposit_DrawLevelTextAtOrigin(&appState->infoWindows[5], appState->gtsMessageLoader, GTS_FindLevelMessageIndex(appState->searchRequirements.level, appState->searchRequirements.level2, 1), 0, 0, TEXT_COLOR_BLACK, 1);
+    GTSDeposit_DrawCountryText(&appState->locationCriteriaWindows[1], appState->countryMessageLoader, appState->gtsMessageLoader, appState->selectedCountryIndex, 0, 0, TEXT_COLOR_BLACK);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
     appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
@@ -798,13 +798,13 @@ static int GTSSearch_HandleSpeciesMenuInput(GTSApplicationState *appState)
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Window_FillTilemap(&appState->infoWindows[1], 0x0);
 
-        GTSDeposit_DrawSpeciesText(&appState->infoWindows[1], appState->speciesMessageLoader, result, 0, 0, TEXT_COLOR(1, 2, 0));
+        GTSDeposit_DrawSpeciesText(&appState->infoWindows[1], appState->speciesMessageLoader, result, 0, 0, TEXT_COLOR_BLACK);
         appState->speciesMenuState->selectedSpeciesGenderRatio = SpeciesData_GetSpeciesValue(result, SPECIES_DATA_GENDER_RATIO);
         GTS_SaveTabScrollState(&appState->charpadScrollState, appState->speciesMenuState->charpadScrollPos + appState->speciesMenuState->charpadCursorPos, appState->speciesMenuState->speciesListScrollPos, appState->speciesMenuState->speciesListCursorPos);
 
         if (GTSDeposit_TryAutoSetGender(&appState->searchRequirements, appState->speciesMenuState->selectedSpeciesGenderRatio)) {
             Window_FillTilemap(&appState->infoWindows[3], 0x0);
-            GTSDeposit_DrawGenderText(&appState->infoWindows[3], appState->gtsMessageLoader, appState->searchRequirements.gender, 1, 0, 0, TEXT_COLOR(1, 2, 0));
+            GTSDeposit_DrawGenderText(&appState->infoWindows[3], appState->gtsMessageLoader, appState->searchRequirements.gender, 1, 0, 0, TEXT_COLOR_BLACK);
         }
         break;
     }
@@ -859,7 +859,7 @@ static int GTSSearch_HandleGenderMenuInput(GTSApplicationState *appState)
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
 
         Window_FillTilemap(&appState->infoWindows[3], 0x0);
-        GTSDeposit_DrawGenderText(&appState->infoWindows[3], appState->gtsMessageLoader, appState->searchRequirements.gender, 1, 0, 0, TEXT_COLOR(1, 2, 0));
+        GTSDeposit_DrawGenderText(&appState->infoWindows[3], appState->gtsMessageLoader, appState->searchRequirements.gender, 1, 0, 0, TEXT_COLOR_BLACK);
         break;
     }
 
@@ -914,7 +914,7 @@ static int GTSSearch_HandleLevelMenuInput(GTSApplicationState *appState)
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
 
         Window_FillTilemap(&appState->infoWindows[5], 0x0);
-        GTSDeposit_DrawLevelTextAtOrigin(&appState->infoWindows[5], appState->gtsMessageLoader, result, 0, 0, TEXT_COLOR(1, 2, 0), 1);
+        GTSDeposit_DrawLevelTextAtOrigin(&appState->infoWindows[5], appState->gtsMessageLoader, result, 0, 0, TEXT_COLOR_BLACK, 1);
         break;
     }
 
@@ -965,7 +965,7 @@ static int GTSSearch_HandleCountryMenuInput(GTSApplicationState *appState)
         GTS_SetSelectedCountry(appState, result);
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
         Window_FillTilemap(&appState->locationCriteriaWindows[1], 0x0);
-        GTSDeposit_DrawCountryText(&appState->locationCriteriaWindows[1], appState->countryMessageLoader, appState->gtsMessageLoader, appState->selectedCountryIndex, 0, 0, TEXT_COLOR(1, 2, 0));
+        GTSDeposit_DrawCountryText(&appState->locationCriteriaWindows[1], appState->countryMessageLoader, appState->gtsMessageLoader, appState->selectedCountryIndex, 0, 0, TEXT_COLOR_BLACK);
     }
 
     return 3;
@@ -1066,14 +1066,14 @@ static void GTSSearch_DrawCriteriaLabels(Window *criteriaWindows, Window *locati
     str1 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Search);
 
     int x1 = Font_CalcCenterAlignment(FONT_SYSTEM, str1, 0, criteriaWindows[6].width * 8);
-    Window_DrawAlignedSystemText(&criteriaWindows[6], str1, x1, 0, 0, TEXT_COLOR(1, 2, 0));
+    Window_DrawAlignedSystemText(&criteriaWindows[6], str1, x1, 0, 0, TEXT_COLOR_BLACK);
 
     String_Free(str1);
 
     str1 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Back);
 
     int x2 = Font_CalcCenterAlignment(FONT_SYSTEM, str1, 0, criteriaWindows[7].width * 8);
-    Window_DrawAlignedSystemText(&criteriaWindows[7], str1, x2, 0, 0, TEXT_COLOR(1, 2, 0));
+    Window_DrawAlignedSystemText(&criteriaWindows[7], str1, x2, 0, 0, TEXT_COLOR_BLACK);
 
     String_Free(str1);
 }

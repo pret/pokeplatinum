@@ -336,7 +336,7 @@ static void AccessoryShop_PrintStringToMsgBox(AccessoryShopMessageBox *msgbox, S
     Window_FillTilemap(msgbox->window, 15);
 
     msgbox->string = String_Clone(string, heapID);
-    msgbox->printerID = Text_AddPrinterWithParamsAndColor(msgbox->window, FONT_MESSAGE, msgbox->string, 0, 0, msgbox->renderDelay, TEXT_COLOR(1, 2, 15), NULL);
+    msgbox->printerID = Text_AddPrinterWithParamsAndColor(msgbox->window, FONT_MESSAGE, msgbox->string, 0, 0, msgbox->renderDelay, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 
     Window_CopyToVRAM(msgbox->window);
 }
@@ -450,7 +450,7 @@ static void AccessoryShop_UpdateDescBox(AccessoryShopDescBox *descBox, u32 berry
 
     for (int i = 0; i < ACCESSORY_SHOP_FORMAT_STRS; i++) {
         StringTemplate_Format(descBox->strTemplate, descBox->string, descBox->fmtString[i]);
-        Text_AddPrinterWithParamsAndColor(descBox->window, FONT_SYSTEM, descBox->string, 0, 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+        Text_AddPrinterWithParamsAndColor(descBox->window, FONT_SYSTEM, descBox->string, 0, 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     }
 
     Window_DrawStandardFrame(descBox->window, FALSE, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX);

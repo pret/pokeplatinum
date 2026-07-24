@@ -83,8 +83,8 @@ void ov22_0225A428(UnkStruct_ov22_0225A428 *param0, UnkStruct_ov22_02256BAC *par
     if (param2 & 32) {
         ov22_0225A748(&param0->unk_134, param1->unk_00, 2, 1, 27, 2, (18 + 12) + (1 + (27 * 4)), 1);
         Window_FillTilemap(param0->unk_134, 15);
-        ov22_0225A860(param0->unk_134, 26, param1->unk_14, 6, 0, 0, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
-        ov22_0225A860(param0->unk_134, 26, param1->unk_14, param1->unk_18, 72, 0, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+        ov22_0225A860(param0->unk_134, 26, param1->unk_14, 6, 0, 0, TEXT_COLOR_BLACK_DARK_SHADOW, TEXT_SPEED_NO_TRANSFER);
+        ov22_0225A860(param0->unk_134, 26, param1->unk_14, param1->unk_18, 72, 0, TEXT_COLOR_BLACK_DARK_SHADOW, TEXT_SPEED_NO_TRANSFER);
         Window_DrawMessageBoxWithScrollCursor(param0->unk_134, 0, 1, 1);
     }
 
@@ -231,7 +231,7 @@ static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int
     s32 v0;
 
     Window_FillTilemap(param0, 15);
-    v0 = ov22_0225A860(param0, param1, param2, param3, param4, param5, TEXT_COLOR(1, 2, 15), param6);
+    v0 = ov22_0225A860(param0, param1, param2, param3, param4, param5, TEXT_COLOR_BLACK_DARK_SHADOW, param6);
     Window_DrawMessageBoxWithScrollCursor(param0, 0, 1, 1);
 
     return v0;
@@ -242,7 +242,7 @@ static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int
     s32 v0;
 
     Window_FillTilemap(param0, 15);
-    v0 = ov22_0225A8B4(param0, param1, param2, param3, param4, param5, TEXT_COLOR(1, 2, 15), param6, param7);
+    v0 = ov22_0225A8B4(param0, param1, param2, param3, param4, param5, TEXT_COLOR_BLACK_DARK_SHADOW, param6, param7);
     Window_DrawMessageBoxWithScrollCursor(param0, 0, 1, 1);
 
     return v0;
@@ -404,8 +404,8 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, SpriteList *param1, S
 
     Window_FillTilemap(param0->unk_18, 0);
 
-    ov22_0225A860(param0->unk_18, 26, 385, 4, 0, 4, TEXT_COLOR(1, 2, 0), TEXT_SPEED_NO_TRANSFER);
-    ov22_0225A860(param0->unk_18, 26, 385, 5, 0 + 72, 4, TEXT_COLOR(1, 2, 0), TEXT_SPEED_NO_TRANSFER);
+    ov22_0225A860(param0->unk_18, 26, 385, 4, 0, 4, TEXT_COLOR_BLACK, TEXT_SPEED_NO_TRANSFER);
+    ov22_0225A860(param0->unk_18, 26, 385, 5, 0 + 72, 4, TEXT_COLOR_BLACK, TEXT_SPEED_NO_TRANSFER);
 
     Window_CopyToVRAM(param0->unk_18);
 }

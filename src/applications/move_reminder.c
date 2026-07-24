@@ -574,7 +574,7 @@ BOOL MoveReminder_Init(ApplicationManager *appMan, int *state)
     MoveReminder_Setup(controller);
     MoveReminder_DrawMoveSelector(controller, controller->data->cursorPos, 0);
     MoveReminder_SetStringTemplate(controller, MOVE_REMINDER_STR_ASK_TEACH_WHICH_TO_MON);
-    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MESSAGE_BOX, FONT_MESSAGE, TEXT_COLOR(1, 2, 15), ALIGN_LEFT);
+    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MESSAGE_BOX, FONT_MESSAGE, TEXT_COLOR_BLACK_DARK_SHADOW, ALIGN_LEFT);
 
     controller->nextState = MOVE_REMINDER_STATE_PROCESS_MAIN_INPUT;
 
@@ -1048,25 +1048,25 @@ static void MoveReminder_FormatNumber(MoveReminderController *controller, u32 en
 static void MoveReminder_DrawLabelText(MoveReminderController *controller)
 {
     MessageLoader_GetString(controller->messageLoader, MoveReminder_Text_BattleMoves, controller->string);
-    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_BATTLE_MOVES, FONT_SYSTEM, TEXT_COLOR(15, 14, 0), ALIGN_CENTER);
+    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_BATTLE_MOVES, FONT_SYSTEM, TEXT_COLOR_WHITE, ALIGN_CENTER);
 
     MessageLoader_GetString(controller->messageLoader, MoveReminder_Text_ContestMoves, controller->string);
-    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_CONTEST_MOVES, FONT_SYSTEM, TEXT_COLOR(15, 14, 0), ALIGN_CENTER);
+    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_CONTEST_MOVES, FONT_SYSTEM, TEXT_COLOR_WHITE, ALIGN_CENTER);
 
     MessageLoader_GetString(controller->messageLoader, MoveReminder_Text_Category, controller->string);
-    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_CATEGORY, FONT_SYSTEM, TEXT_COLOR(15, 14, 0), ALIGN_LEFT);
+    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_CATEGORY, FONT_SYSTEM, TEXT_COLOR_WHITE, ALIGN_LEFT);
 
     MessageLoader_GetString(controller->messageLoader, MoveReminder_Text_Power, controller->string);
-    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_POWER, FONT_SYSTEM, TEXT_COLOR(15, 14, 0), ALIGN_LEFT);
+    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_POWER, FONT_SYSTEM, TEXT_COLOR_WHITE, ALIGN_LEFT);
 
     MessageLoader_GetString(controller->messageLoader, MoveReminder_Text_Accuracy, controller->string);
-    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_ACCURACY, FONT_SYSTEM, TEXT_COLOR(15, 14, 0), ALIGN_LEFT);
+    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_ACCURACY, FONT_SYSTEM, TEXT_COLOR_WHITE, ALIGN_LEFT);
 
     MessageLoader_GetString(controller->messageLoader, MoveReminder_Text_Pp, controller->string);
-    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_PP, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), ALIGN_LEFT);
+    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_PP, FONT_SYSTEM, TEXT_COLOR_BLACK, ALIGN_LEFT);
 
     MessageLoader_GetString(controller->messageLoader, MoveReminder_Text_AppealPts, controller->string);
-    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_APPEAL_PTS, FONT_SYSTEM, TEXT_COLOR(15, 14, 0), ALIGN_CENTER);
+    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_LABEL_APPEAL_PTS, FONT_SYSTEM, TEXT_COLOR_WHITE, ALIGN_CENTER);
 }
 
 static u32 MoveReminder_GetNumMoves(MoveReminderController *controller)
@@ -1152,7 +1152,7 @@ static void MoveReminder_DrawBattleMovesText(MoveReminderController *controller,
         } else {
             MoveReminder_FormatNumber(controller, MoveReminder_Text_PowerValue, power, 3, PADDING_MODE_SPACES);
         }
-        MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MOVE_POWER, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), ALIGN_CENTER);
+        MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MOVE_POWER, FONT_SYSTEM, TEXT_COLOR_BLACK, ALIGN_CENTER);
 
         u32 accuracy = MoveTable_LoadParam(move, MOVEATTRIBUTE_ACCURACY);
         if (accuracy == 0) {
@@ -1160,15 +1160,15 @@ static void MoveReminder_DrawBattleMovesText(MoveReminderController *controller,
         } else {
             MoveReminder_FormatNumber(controller, MoveReminder_Text_AccuracyValue, accuracy, 3, PADDING_MODE_SPACES);
         }
-        MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MOVE_ACCURACY, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), ALIGN_CENTER);
+        MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MOVE_ACCURACY, FONT_SYSTEM, TEXT_COLOR_BLACK, ALIGN_CENTER);
 
         u32 pp = MoveTable_CalcMaxPP(move, 0);
         MoveReminder_FormatNumber(controller, MoveReminder_Text_PpValue, pp, 2, PADDING_MODE_NONE);
-        MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MOVE_PP, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), ALIGN_CENTER);
+        MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MOVE_PP, FONT_SYSTEM, TEXT_COLOR_BLACK, ALIGN_CENTER);
 
         MessageLoader *moveDescLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_DESCRIPTIONS, HEAP_ID_MOVE_REMINDER);
         MessageLoader_GetString(moveDescLoader, move, controller->string);
-        MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MOVE_BATTLE_DESCRIPTION, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), ALIGN_LEFT);
+        MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MOVE_BATTLE_DESCRIPTION, FONT_SYSTEM, TEXT_COLOR_BLACK, ALIGN_LEFT);
 
         MessageLoader_Free(moveDescLoader);
         MoveReminder_DrawCategoryIcon(controller, move);
@@ -1199,7 +1199,7 @@ static void MoveReminder_DrawContestMovesText(MoveReminderController *controller
         MessageLoader *moveDescLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_MOVE_REMINDER);
 
         MessageLoader_GetString(moveDescLoader, entryID, controller->string);
-        Text_AddPrinterWithParamsAndColor(&controller->windows[MOVE_REMINDER_WIN_MOVE_CONTEST_DESCRIPTION], FONT_SYSTEM, controller->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&controller->windows[MOVE_REMINDER_WIN_MOVE_CONTEST_DESCRIPTION], FONT_SYSTEM, controller->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
         MessageLoader_Free(moveDescLoader);
         MoveReminder_DrawAppealPointHearts(controller, (u16)move);
         Window_ScheduleCopyToVRAM(&controller->windows[MOVE_REMINDER_WIN_LABEL_APPEAL_PTS]);
@@ -1371,7 +1371,7 @@ static int MoveReminder_ShouldTeachMove_No(MoveReminderController *controller)
     Window_FillTilemap(&controller->windows[MOVE_REMINDER_WIN_MESSAGE_BOX], 15);
 
     MoveReminder_SetStringTemplate(controller, MOVE_REMINDER_STR_ASK_TEACH_WHICH_TO_MON);
-    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MESSAGE_BOX, FONT_MESSAGE, TEXT_COLOR(1, 2, 15), ALIGN_LEFT);
+    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MESSAGE_BOX, FONT_MESSAGE, TEXT_COLOR_BLACK_DARK_SHADOW, ALIGN_LEFT);
 
     Window_ScheduleCopyToVRAM(&controller->windows[MOVE_REMINDER_WIN_MESSAGE_BOX]);
 
@@ -1392,7 +1392,7 @@ static int MoveReminder_GiveUpTeachingMon_No(MoveReminderController *controller)
     Window_FillTilemap(&controller->windows[MOVE_REMINDER_WIN_MESSAGE_BOX], 15);
 
     MoveReminder_SetStringTemplate(controller, MOVE_REMINDER_STR_ASK_TEACH_WHICH_TO_MON);
-    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MESSAGE_BOX, FONT_MESSAGE, TEXT_COLOR(1, 2, 15), ALIGN_LEFT);
+    MoveReminder_DrawText(controller, MOVE_REMINDER_WIN_MESSAGE_BOX, FONT_MESSAGE, TEXT_COLOR_BLACK_DARK_SHADOW, ALIGN_LEFT);
 
     Window_ScheduleCopyToVRAM(&controller->windows[MOVE_REMINDER_WIN_MESSAGE_BOX]);
 

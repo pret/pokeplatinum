@@ -2501,7 +2501,7 @@ static void PrintPlayersName(BattleFactoryApp *app, Window *window, u32 xOffset,
     if (TrainerInfo_Gender(trainerInfo) == GENDER_MALE) {
         color = TEXT_COLOR(7, 8, 0);
     } else {
-        color = TEXT_COLOR(3, 4, 0);
+        color = TEXT_COLOR_BLUE;
     }
 
     Text_AddPrinterWithParamsAndColor(window, font, name, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
@@ -2521,7 +2521,7 @@ static void PrintPartnersName(BattleFactoryApp *app, Window *window, u32 xOffset
     if (TrainerInfo_Gender(trainerInfo) == 0) {
         color = TEXT_COLOR(7, 8, 0);
     } else {
-        color = TEXT_COLOR(3, 4, 0);
+        color = TEXT_COLOR_BLUE;
     }
 
     Text_AddPrinterWithParamsAndColor(window, font, name, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
@@ -2544,7 +2544,7 @@ static void PrintMonNameAndGender(BattleFactoryApp *app, Window *window, u8 slot
     u8 width = Window_GetWidth(window) - 1;
     u32 gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
     u32 symbol = gender == GENDER_MALE ? BattleFactoryApp_Text_MaleSymbol : BattleFactoryApp_Text_FemaleSymbol;
-    TextColor color = gender == GENDER_MALE ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
+    TextColor color = gender == GENDER_MALE ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR_BLUE;
 
     String_Clear(displayStr);
 
@@ -2569,7 +2569,7 @@ static void PrintPartnersMonNameAndGender(BattleFactoryApp *app, Window *window,
 
     u8 width = Window_GetWidth(window) - 1;
     u32 symbol = gender == GENDER_MALE ? BattleFactoryApp_Text_MaleSymbol : BattleFactoryApp_Text_FemaleSymbol;
-    TextColor color = gender == GENDER_MALE ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
+    TextColor color = gender == GENDER_MALE ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR_BLUE;
 
     String_Clear(string);
 

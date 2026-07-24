@@ -1418,7 +1418,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
     v0 = String_Init(128, heapID);
 
     MessageLoader_GetString(param1->unk_08, 0, v0);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     String_Free(v0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param5, 18, param1->unk_00, 2, 0, 0, 0, heapID);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param5, 20 + (param3 - 2), param1->unk_00, 2, 0, 0, 0, heapID);
@@ -1451,7 +1451,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
                 if (param2->unk_18[v2] == 1) {
                     v8 = TEXT_COLOR(5, 6, 15);
                 } else {
-                    v8 = TEXT_COLOR(1, 2, 15);
+                    v8 = TEXT_COLOR_BLACK_DARK_SHADOW;
                 }
 
                 TrainerInfo_NameString(param2->unk_08[v2], v7);
@@ -4466,7 +4466,7 @@ static void ov115_02265700(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
     {
         String_FormatInt(param0->unk_5C, param2, 2, 2, 1);
         Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_38, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_38, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
         sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->heapID);
         Window_Remove(&param0->unk_38);
     }
@@ -4495,7 +4495,7 @@ static void ov115_022657A8(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         {
             String_FormatInt(param0->unk_5C, param2, 2, 2, 1);
             Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
-            Text_AddPrinterWithParamsAndColor(&param0->unk_38, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_38, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
             sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->heapID);
             Window_Remove(&param0->unk_38);
         }

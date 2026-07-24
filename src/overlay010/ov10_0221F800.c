@@ -1547,7 +1547,7 @@ static void ov10_0222130C(UnkStruct_ov10_0221FB28 *param0, u32 param1, String *p
     v0 = &param0->unk_10[0];
 
     Window_AddToTopLeftCorner(param0->unk_0C, v0, 8, 2, 0, 0);
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLUE, NULL);
 
     v1.unk_00 = param0->unk_B38;
     v1.unk_04 = v0;
@@ -2223,15 +2223,15 @@ static void ov10_02222400(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1
     StringTemplate_SetNickname(param3, 0, Pokemon_GetBoxPokemon(v0));
     StringTemplate_Format(param3, param4, v2);
     String_Free(v2);
-    Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param4, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param4, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
 
     if (param0->unk_214[param5].unk_0E == 0) {
         if (param0->unk_214[param5].unk_0D == 0) {
             MessageLoader_GetString(param1, 27, param4);
-            Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param4, 64, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param4, 64, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLUE, NULL);
         } else if (param0->unk_214[param5].unk_0D == 1) {
             MessageLoader_GetString(param1, 28, param4);
-            Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param4, 64, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param4, 64, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_RED, NULL);
         }
     }
 }

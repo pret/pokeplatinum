@@ -734,7 +734,7 @@ static void ov21_021E998C(Window *param0, enum HeapID heapID)
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_registered, v0);
-    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 32, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 32, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLUE, NULL);
 
     String_Free(v0);
     MessageLoader_Free(pokedexMessageBank);

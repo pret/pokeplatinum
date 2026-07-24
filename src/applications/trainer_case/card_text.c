@@ -187,7 +187,7 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCase *trainerCase)
     for (i = TRAINER_CARD_WINDOW_ID; i < TRAINER_CARD_WINDOW_HOF_DEBUT; i++) {
         if (i != TRAINER_CARD_WINDOW_POKEDEX || i == TRAINER_CARD_WINDOW_POKEDEX && trainerCase->pokedexObtained) {
             MessageLoader_GetString(messageLoader, sTrainerCardTextFields[i], string);
-            Text_AddPrinterWithParamsAndColor(&windows[i], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(&windows[i], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
         }
     }
 
@@ -204,7 +204,7 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCase *trainerCase)
 
     u32 xOffset = TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_MONEY], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_MONEY], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     if (trainerCase->pokedexObtained) {
         StringTemplate_SetNumber(template, 5, trainerCase->seenPokemon, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
@@ -213,7 +213,7 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCase *trainerCase)
 
         xOffset = TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-        Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_POKEDEX], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_POKEDEX], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     }
 
     TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_SCORE], TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string, trainerCase->score, 9, PADDING_MODE_SPACES);
@@ -230,7 +230,7 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCase *trainerCase)
 
     StringTemplate_Format(template, string, fmtString);
     xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_TIME], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_TIME], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     StringTemplate_SetNumber(template, 2, trainerCase->adventureStartedYear, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
     StringTemplate_SetMonthName(template, 3, trainerCase->adventureStartedMonth);
@@ -240,7 +240,7 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCase *trainerCase)
 
     xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_ADVENTURE_STARTED], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_ADVENTURE_STARTED], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     String_Free(fmtString);
     StringTemplate_Free(template);
@@ -263,7 +263,7 @@ void TrainerCard_DrawBackText(Window windows[], const TrainerCase *trainerCase)
 
     for (i = TRAINER_CARD_WINDOW_HOF_DEBUT; i < TRAINER_CARD_WINDOW_COUNT; i++) {
         MessageLoader_GetString(messageLoader, sTrainerCardTextFields[i], string);
-        Text_AddPrinterWithParamsAndColor(&windows[i], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&windows[i], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     }
 
     String *fmtString = String_Init(32, HEAP_ID_TRAINER_CASE);
@@ -285,30 +285,30 @@ void TrainerCard_DrawBackText(Window windows[], const TrainerCase *trainerCase)
     }
 
     u32 xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_HOF_DEBUT], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_HOF_DEBUT], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_HHMMWithColon, fmtString);
     StringTemplate_Format(template, string, fmtString);
     xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_HOF_DEBUT], FONT_SYSTEM, string, xOffset, 16, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_HOF_DEBUT], FONT_SYSTEM, string, xOffset, 16, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     StringTemplate_SetNumber(template, 5, trainerCase->timesLinked, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
     MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_Number_2, fmtString);
     StringTemplate_Format(template, string, fmtString);
     xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_TIMES_LINKED], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_TIMES_LINKED], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     MessageLoader_GetString(messageLoader, TrainerCard_Text_W, string);
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], FONT_SYSTEM, string, 14 * TILE_WIDTH_PIXELS, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], FONT_SYSTEM, string, 14 * TILE_WIDTH_PIXELS, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string, trainerCase->linkBattleLosses, 4, PADDING_MODE_SPACES);
     MessageLoader_GetString(messageLoader, TrainerCard_Text_L, string);
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], FONT_SYSTEM, string, 22 * TILE_WIDTH_PIXELS, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], FONT_SYSTEM, string, 22 * TILE_WIDTH_PIXELS, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_LINK_BATTLES], TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS, 8 * TILE_WIDTH_PIXELS, 0, string, trainerCase->linkBattleWins, 4, PADDING_MODE_SPACES);
 
     StringTemplate_SetNumber(template, 5, trainerCase->linkTrades, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
     MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_Number_2, fmtString);
     StringTemplate_Format(template, string, fmtString);
     xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_LINK_TRADES], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_LINK_TRADES], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     String_Free(fmtString);
     StringTemplate_Free(template);
@@ -327,13 +327,13 @@ static void TrainerCard_DrawNumber(Window *window, u32 windowWidth, u32 endXOffs
 {
     String_FormatInt(string, num, maxDigits, paddingMode, CHARSET_MODE_EN);
     u32 width = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, windowWidth - (width + endXOffset), yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, windowWidth - (width + endXOffset), yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 }
 
 static void TrainerCard_DrawString(Window *window, u32 windowWidth, u32 endXOffset, u32 yOffset, const String *string)
 {
     u32 width = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, windowWidth - (width + endXOffset), yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, windowWidth - (width + endXOffset), yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 }
 
 void TrainerCard_DrawUpdatedTime(Window windows[], const TrainerCase *trainerCase, String *unused)
@@ -358,7 +358,7 @@ void TrainerCard_DrawUpdatedTime(Window windows[], const TrainerCase *trainerCas
     MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_HHMMWithoutColon, fmtString);
     StringTemplate_Format(template, string, fmtString);
     u32 xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_TIME], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_TIME], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     MessageLoader_Free(messageLoader);
     String_Free(string);
@@ -369,7 +369,7 @@ void TrainerCard_DrawUpdatedTime(Window windows[], const TrainerCase *trainerCas
 void TrainerCard_BlinkPlaytimeColon(Window *window, BOOL showColon, String *string)
 {
     if (showColon) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 205, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 205, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     } else {
         Window_FillRectWithColor(window, 0, 205, 0, 5, TRAINER_CARD_WINDOW_HEIGHT * TILE_HEIGHT_PIXELS);
         Window_CopyToVRAM(window);

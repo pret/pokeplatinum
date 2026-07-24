@@ -801,8 +801,8 @@ static void ov17_0223FBD4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
     contestRankString = MessageLoader_GetNewString(param0->unk_04->contestTextMessageLoader, contestRankMessageID);
     contestTypeString = MessageLoader_GetNewString(param0->unk_04->contestTextMessageLoader, contestTypeMessageID);
 
-    ov17_02240138(param0, &param0->unk_40[0], contestRankString, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, 128, 8 * 0x10 - 1, 1, NULL);
-    ov17_02240138(param0, &param0->unk_40[1], contestTypeString, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, 128, 8 * 0x14 - 1, 1, NULL);
+    ov17_02240138(param0, &param0->unk_40[0], contestRankString, FONT_SYSTEM, TEXT_COLOR_BLACK, 0, 33008, 128, 8 * 0x10 - 1, 1, NULL);
+    ov17_02240138(param0, &param0->unk_40[1], contestTypeString, FONT_SYSTEM, TEXT_COLOR_BLACK, 0, 33008, 128, 8 * 0x14 - 1, 1, NULL);
 
     String_Free(contestRankString);
     String_Free(contestTypeString);
@@ -830,8 +830,8 @@ static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
         }
 
         ov17_02240138(param0, &param0->unk_40[0 + i], NULL, FONT_SUBSCREEN, TEXT_COLOR(1, 7, 8), 0, 33008, Unk_ov17_02253278[i][0], Unk_ov17_02253278[i][1], 0, &v8->unk_00[i]);
-        ov17_02240138(param0, &param0->unk_40[4 + i], NULL, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, Unk_ov17_02253314[i][0][0], Unk_ov17_02253314[i][0][1], 0, &v8->unk_50[i]);
-        ov17_02240138(param0, &param0->unk_40[8 + i], NULL, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33008, Unk_ov17_02253314[i][1][0], Unk_ov17_02253314[i][1][1], 0, &v8->unk_A0[i]);
+        ov17_02240138(param0, &param0->unk_40[4 + i], NULL, FONT_SYSTEM, TEXT_COLOR_BLACK, 0, 33008, Unk_ov17_02253314[i][0][0], Unk_ov17_02253314[i][0][1], 0, &v8->unk_50[i]);
+        ov17_02240138(param0, &param0->unk_40[8 + i], NULL, FONT_SYSTEM, TEXT_COLOR_BLACK, 0, 33008, Unk_ov17_02253314[i][1][0], Unk_ov17_02253314[i][1][1], 0, &v8->unk_A0[i]);
 
         if (moveList[i] == MOVE_NONE) {
             sub_020129D0(param0->unk_40[0 + i].unk_00, 0);
@@ -1507,8 +1507,8 @@ void ov17_02240A80(UnkStruct_ov17_0223F7E4 *param0, u16 moves[])
         lineOneEffectMessage = MessageLoader_GetNewString(param0->unk_04->contestEffectMessages, lineOneEffectMessageID);
         lineTwoEffectMessage = MessageLoader_GetNewString(param0->unk_04->contestEffectMessages, lineTwoEffectMessageID);
 
-        ov17_02240BF4(param0, lineOneEffectMessage, FONT_SYSTEM, &v0->unk_50[v1], TEXT_COLOR(1, 2, 0));
-        ov17_02240BF4(param0, lineTwoEffectMessage, FONT_SYSTEM, &v0->unk_A0[v1], TEXT_COLOR(1, 2, 0));
+        ov17_02240BF4(param0, lineOneEffectMessage, FONT_SYSTEM, &v0->unk_50[v1], TEXT_COLOR_BLACK);
+        ov17_02240BF4(param0, lineTwoEffectMessage, FONT_SYSTEM, &v0->unk_A0[v1], TEXT_COLOR_BLACK);
 
         String_Free(lineOneEffectMessage);
         String_Free(lineTwoEffectMessage);

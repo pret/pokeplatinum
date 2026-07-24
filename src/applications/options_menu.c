@@ -689,8 +689,8 @@ static const u8 sEntryLabels[MAX_ENTRIES] = {
 static void PrintTitleAndEntries(OptionsMenuData *menuData)
 {
     u16 i; // Must forward-declare to match
-    TextColor transparentBg = TEXT_COLOR(1, 2, 0);
-    TextColor whiteBg = TEXT_COLOR(1, 2, 15);
+    TextColor transparentBg = TEXT_COLOR_BLACK;
+    TextColor whiteBg = TEXT_COLOR_BLACK_DARK_SHADOW;
 
     String *string = String_Init(256, menuData->heapID);
     MessageLoader_GetString(menuData->msgLoader, OptionsMenu_Text_Title, string);
@@ -773,7 +773,7 @@ static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry)
     u8 textSpeed;
     s8 xOffset = 0;
 
-    darkGray = TEXT_COLOR(1, 2, 15);
+    darkGray = TEXT_COLOR_BLACK_DARK_SHADOW;
     red = TEXT_COLOR(3, 4, 15);
 
     Window_FillRectWithColor(&menuData->windows.entries, PIXEL_FILL(15), CHOICES_X + sEntryXOffsets[entry], entry * SINGLE_ENTRY_HEIGHT, CHOICES_WIDTH, SINGLE_ENTRY_HEIGHT);
@@ -850,7 +850,7 @@ static void PrintBankEntryAsDescription(OptionsMenuData *menuData, u16 entry, BO
 
     Window_FillTilemap(&menuData->windows.description, 15);
 
-    TextColor color = TEXT_COLOR(1, 2, 15);
+    TextColor color = TEXT_COLOR_BLACK_DARK_SHADOW;
     String *string = String_Init(256, menuData->heapID);
     MessageLoader_GetString(menuData->msgLoader, entry, string);
 

@@ -869,7 +869,7 @@ void PartyMenu_PrintMemberName(PartyMenuApplication *application, u8 slot)
         0,
         0,
         TEXT_SPEED_NO_TRANSFER,
-        TEXT_COLOR(15, 14, 0),
+        TEXT_COLOR_WHITE,
         NULL);
 
     if (application->partyMembers[slot].isEgg == TRUE) {
@@ -887,7 +887,7 @@ void PartyMenu_PrintMemberName(PartyMenuApplication *application, u8 slot)
                 64,
                 0,
                 TEXT_SPEED_NO_TRANSFER,
-                TEXT_COLOR(3, 4, 0),
+                TEXT_COLOR_BLUE,
                 NULL);
         } else if (application->partyMembers[slot].gender == GENDER_FEMALE) {
             MessageLoader_GetString(application->messageLoader, PartyMenu_Text_FemaleSymbol, application->tmpFormat);
@@ -898,7 +898,7 @@ void PartyMenu_PrintMemberName(PartyMenuApplication *application, u8 slot)
                 64,
                 0,
                 TEXT_SPEED_NO_TRANSFER,
-                TEXT_COLOR(5, 6, 0),
+                TEXT_COLOR_RED,
                 NULL);
         }
     }
@@ -1151,7 +1151,7 @@ void PartyMenu_PrintButtonText(PartyMenuApplication *application, u8 flags)
             x,                                                                                             \
             0,                                                                                             \
             TEXT_SPEED_NO_TRANSFER,                                                                        \
-            TEXT_COLOR(15, 14, 0),                                                                         \
+            TEXT_COLOR_WHITE,                                                                              \
             NULL);                                                                                         \
         Window_ScheduleCopyToVRAM(&application->windows[__window]);                                        \
     } while (0)
@@ -1268,7 +1268,7 @@ static void PrintMemberEvoComment(PartyMenuApplication *application, u8 slot, u8
         0,
         0,
         TEXT_SPEED_NO_TRANSFER,
-        TEXT_COLOR(15, 14, 0),
+        TEXT_COLOR_WHITE,
         NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(window);
@@ -1299,7 +1299,7 @@ static void PrintMemberMoveComment(PartyMenuApplication *application, u8 slot, u
         0,
         0,
         TEXT_SPEED_NO_TRANSFER,
-        TEXT_COLOR(15, 14, 0),
+        TEXT_COLOR_WHITE,
         NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(window);
@@ -1324,7 +1324,7 @@ static void PrintMemberContestComment(PartyMenuApplication *application, u8 slot
         0,
         0,
         TEXT_SPEED_NO_TRANSFER,
-        TEXT_COLOR(15, 14, 0),
+        TEXT_COLOR_WHITE,
         NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(window);
@@ -1351,7 +1351,7 @@ static void PrintMemberSelectionComment(PartyMenuApplication *application, u8 sl
         0,
         0,
         TEXT_SPEED_NO_TRANSFER,
-        TEXT_COLOR(15, 14, 0),
+        TEXT_COLOR_WHITE,
         NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(window);

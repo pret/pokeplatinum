@@ -187,7 +187,7 @@ void MainMenuUtil_InitWindow(MainMenuWindow *mainMenuWindow, Window *window, int
     mainMenuWindow->framePltt = framePalette;
     mainMenuWindow->bgLayer = BG_LAYER_MAIN_0;
     mainMenuWindow->font = FONT_SYSTEM;
-    mainMenuWindow->textColor = TEXT_COLOR(1, 2, 15);
+    mainMenuWindow->textColor = TEXT_COLOR_BLACK_DARK_SHADOW;
     mainMenuWindow->backgroundColorIdx = 15;
     mainMenuWindow->scrollable = FALSE;
     mainMenuWindow->textXOffset = mainMenuWindow->textYOffset = 0;

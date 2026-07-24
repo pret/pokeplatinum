@@ -549,7 +549,7 @@ static const u8 Unk_ov69_0225F014[5] = {
 };
 
 static const TextColor Unk_ov69_0225F088[5] = {
-    TEXT_COLOR(5, 6, 0),
+    TEXT_COLOR_RED,
     TEXT_COLOR(7, 8, 0),
     TEXT_COLOR(9, 10, 0),
     TEXT_COLOR(11, 12, 0),
@@ -2441,12 +2441,12 @@ static void ov69_0225E644(UnkStruct_ov69_0225E084 *param0, u32 param1, const Unk
 
     {
         v0 = ov69_0225EF90(param3, param2->unk_04);
-        Text_AddPrinterWithParamsAndColor(v1, FONT_MESSAGE, v0, 0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, FONT_MESSAGE, v0, 0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 
     {
         v0 = ov69_0225EFB8(param3, param2->unk_04, param2->unk_08);
-        Text_AddPrinterWithParamsAndColor(v1, FONT_MESSAGE, v0, 0, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, FONT_MESSAGE, v0, 0, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 }
 

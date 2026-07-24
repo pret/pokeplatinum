@@ -614,7 +614,7 @@ static void SignatureApp_InitWindows(SignatureApp *signatureApp, ApplicationMana
     int xOffset = (28 * TILE_WIDTH_PIXELS - stringWidth) / 2;
 
     Window_FillTilemap(&signatureApp->descriptionWindow, 0);
-    Text_AddPrinterWithParamsAndColor(&signatureApp->descriptionWindow, FONT_MESSAGE, signatureApp->descriptionText, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&signatureApp->descriptionWindow, FONT_MESSAGE, signatureApp->descriptionText, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     for (int i = 0; i < DUMMY_COUNT; i++) {
         Window_Add(signatureApp->bgConfig, &signatureApp->dummyWindows[i], BG_LAYER_SUB_0, 5, 3 + i * 4, 10, 2, 13, 1 + i * 20);

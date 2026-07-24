@@ -1,4 +1,4 @@
-﻿#include "gts_application/screens/select_pokemon.h"
+#include "gts_application/screens/select_pokemon.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -414,7 +414,7 @@ static void GTSSelectMon_InitWindows(GTSApplicationState *appState)
     Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, TITLE_WINDOW_TILE_WIDTH, TITLE_WINDOW_TILE_HEIGHT, 13, TITLE_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->titleWindow, 0x0);
 
-    Window_DrawAlignedSystemText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
+    Window_DrawAlignedSystemText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR_WHITE);
 
     Window_Add(appState->bgConfig, &appState->networkErrWindow, 0, 5, 3, 13, 3, 13, BOTTOM_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->networkErrWindow, 0x0);
@@ -1156,7 +1156,7 @@ static void GTSSelectMon_LoadBoxDisplay(GTSApplicationState *appState, int boxID
     NARC_dtor(narc);
     Window_FillTilemap(&appState->networkErrWindow, 0x0);
 
-    Window_DrawAlignedSystemText(&appState->networkErrWindow, appState->selectPokemonBoxName, 0, 5, 1, TEXT_COLOR(1, 2, 0));
+    Window_DrawAlignedSystemText(&appState->networkErrWindow, appState->selectPokemonBoxName, 0, 5, 1, TEXT_COLOR_BLACK);
 
     if (appState->screenArgument == SCREEN_ARGUMENT_CHOOSE_LISTED_MON) {
         GTSApplication_SelectMon_DarkenNonMatchingMons(appState->boxCriteria->criteria, appState->boxSlotIconSprites, &appState->searchResults[appState->selectedSearchResult].requirements, icons);

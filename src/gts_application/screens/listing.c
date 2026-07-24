@@ -1,4 +1,4 @@
-﻿#include "gts_application/screens/listing.h"
+#include "gts_application/screens/listing.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -471,8 +471,8 @@ static void GTSListing_ShowBottomMessage(GTSApplicationState *appState, int mess
 
 static TextColor sGenderTextColors[] = {
     TEXT_COLOR(0, 0, 0),
-    TEXT_COLOR(5, 6, 0),
-    TEXT_COLOR(3, 4, 0)
+    TEXT_COLOR_RED,
+    TEXT_COLOR_BLUE
 };
 
 void GTS_DrawOfferedPokemonInfo(MessageLoader *msgLoader, MessageLoader *speciesMessageLoader, StringTemplate *template, Window windows[], BoxPokemon *boxMon, GTSPokemonCriteria *criteria)

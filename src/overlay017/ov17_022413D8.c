@@ -1554,9 +1554,9 @@ void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int contestantID)
     Pokemon_GetValue(param0->unk_0C.unk_00->contestMons[contestantID], MON_DATA_NICKNAME_STRING, monName);
 
     if (contestantID == param0->unk_00->unk_00.playerContestantID) {
-        color = TEXT_COLOR(1, 2, 0);
+        color = TEXT_COLOR_BLACK;
     } else {
-        color = TEXT_COLOR(5, 6, 0);
+        color = TEXT_COLOR_RED;
     }
 
     ov17_0223F1E8(HEAP_ID_21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[contestantID], monName, FONT_SYSTEM, color, 0, 33005, 0, 0, 0, 0, 15);

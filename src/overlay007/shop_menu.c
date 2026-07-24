@@ -729,7 +729,7 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
             MessageLoader_Free(loader);
         }
 
-        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
         String_Free(string);
 
         Shop_ChangeItemIconGfx(shopMenu, index);
@@ -788,7 +788,7 @@ static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
 
         strWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_LIST], FONT_SYSTEM, string, (19 * 8) - strWidth, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_LIST], FONT_SYSTEM, string, (19 * 8) - strWidth, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
         String_Free(fmtString);
         String_Free(string);
     }
@@ -797,7 +797,7 @@ static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
         String *string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00008);
 
         Window_FillRectWithColor(&shopMenu->windows[SHOP_WINDOW_ITEM_LIST], 15, 0, yOffset, 19 * 8, 16);
-        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_LIST], FONT_SYSTEM, string, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_LIST], FONT_SYSTEM, string, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
         String_Free(string);
     }
 }

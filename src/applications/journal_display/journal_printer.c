@@ -167,18 +167,18 @@ static u8 JournalPrinter_PrintTitle(JournalManager *journalManager, Window *titl
     StringTemplate_SetNumber(journalManager->template, 1, journalEntryTitle.day, 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
     String_Free(string);
-    Text_AddPrinterWithParamsAndColor(titleWindow, FONT_SYSTEM, journalManager->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(titleWindow, FONT_SYSTEM, journalManager->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
     xOffset = Font_CalcStringWidth(FONT_SYSTEM, journalManager->string, 0);
     string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_Sunday + journalEntryTitle.week);
-    Text_AddPrinterWithParamsAndColor(titleWindow, FONT_SYSTEM, string, xOffset + 12, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(titleWindow, FONT_SYSTEM, string, xOffset + 12, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_StartedFromLocation);
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryTitle.mapID));
 
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(eventsWindow, FONT_SYSTEM, journalManager->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(eventsWindow, FONT_SYSTEM, journalManager->string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 
     return 1;
@@ -369,7 +369,7 @@ static void JournalPrinter_PrintTrainerEvent(JournalManager *journalManager, Win
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryTrainer.mapID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, TRAINER_EVENT_Y_OFFSET, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, TRAINER_EVENT_Y_OFFSET, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -467,7 +467,7 @@ static void JournalPrinter_PrintRestedAtHome(JournalManager *journalManager, Win
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_RestedAtHome);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -475,7 +475,7 @@ static void JournalPrinter_PrintLeftResearchLab(JournalManager *journalManager, 
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_LeftResearchLab);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -483,7 +483,7 @@ static void JournalPrinter_PrintUsedPCBox(JournalManager *journalManager, Window
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_UsedPcBox);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -491,7 +491,7 @@ static void JournalPrinter_PrintShoppedAtMart(JournalManager *journalManager, Wi
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_ShoppedAtPokeMart);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -499,7 +499,7 @@ static void JournalPrinter_PrintLotsOfShoppingAtMart(JournalManager *journalMana
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_LotsOfShoppingAtPokeMart);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -507,7 +507,7 @@ static void JournalPrinter_PrintSoldALittleAtMart(JournalManager *journalManager
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_Sold_a_little_at_poke_mart);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -515,7 +515,7 @@ static void JournalPrinter_PrintSoldALotAtMart(JournalManager *journalManager, W
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_Sold_a_lot_at_poke_mart);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -523,7 +523,7 @@ static void JournalPrinter_PrintDidBusinessAtMart(JournalManager *journalManager
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_DidBusinessAtPokeMart);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -533,7 +533,7 @@ static void JournalPrinter_PrintGymWasTooTough(JournalManager *journalManager, W
 
     StringTemplate_SetGymName(journalManager->template, 0, journalEntryLocationEvent->locationID);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -544,7 +544,7 @@ static void JournalPrinter_PrintBeatGymLeader(JournalManager *journalManager, Wi
     StringTemplate_SetGymName(journalManager->template, 0, journalEntryLocationEvent->locationID);
     StringTemplate_SetTrainerName(journalManager->template, 1, journalEntryLocationEvent->trainerID);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -554,7 +554,7 @@ static void JournalPrinter_PrintBeatEliteFourMember(JournalManager *journalManag
 
     StringTemplate_SetTrainerName(journalManager->template, 0, journalEntryLocationEvent->trainerID);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -564,7 +564,7 @@ static void JournalPrinter_PrintBeatChampion(JournalManager *journalManager, Win
 
     StringTemplate_SetTrainerName(journalManager->template, 0, journalEntryLocationEvent->trainerID);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -574,7 +574,7 @@ static void JournalPrinter_PrintArrivedInLocation(JournalManager *journalManager
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -591,7 +591,7 @@ static void JournalPrinter_PrintLeftCave(JournalManager *journalManager, Window 
 
     StringTemplate_SetLocationName(journalManager->template, 0, mapLabelTextID);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -608,7 +608,7 @@ static void JournalPrinter_PrintLeftBuilding(JournalManager *journalManager, Win
 
     StringTemplate_SetLocationName(journalManager->template, 0, mapLabelTextID);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -616,7 +616,7 @@ static void JournalPrinter_PrintGameCorner(JournalManager *journalManager, Windo
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_PlayedAtGameCorner);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -624,7 +624,7 @@ static void JournalPrinter_PrintSafariGame(JournalManager *journalManager, Windo
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_PlayedSafariGame);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -634,7 +634,7 @@ static void JournalPrinter_PrintItemWasObtained(JournalManager *journalManager, 
 
     StringTemplate_SetItemName(journalManager->template, 0, journalEntryLocationEvent->item);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -644,7 +644,7 @@ static void JournalPrinter_PrintUsedRockSmash(JournalManager *journalManager, Wi
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -654,7 +654,7 @@ static void JournalPrinter_PrintUsedCut(JournalManager *journalManager, Window *
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -664,7 +664,7 @@ static void JournalPrinter_PrintFlewToLocation(JournalManager *journalManager, W
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -674,7 +674,7 @@ static void JournalPrinter_PrintUsedDefog(JournalManager *journalManager, Window
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -684,7 +684,7 @@ static void JournalPrinter_PrintUsedStrength(JournalManager *journalManager, Win
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -694,7 +694,7 @@ static void JournalPrinter_PrintUsedSurf(JournalManager *journalManager, Window 
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -704,7 +704,7 @@ static void JournalPrinter_PrintUsedRockClimb(JournalManager *journalManager, Wi
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -714,7 +714,7 @@ static void JournalPrinter_PrintUsedWaterfall(JournalManager *journalManager, Wi
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -724,7 +724,7 @@ static void JournalPrinter_PrintUsedFlash(JournalManager *journalManager, Window
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -734,7 +734,7 @@ static void JournalPrinter_PrintWarpedToLocation(JournalManager *journalManager,
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -744,7 +744,7 @@ static void JournalPrinter_PrintUsedDig(JournalManager *journalManager, Window *
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -752,7 +752,7 @@ static void JournalPrinter_PrintLuredPokemon(JournalManager *journalManager, Win
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_LuredPokemon);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -760,7 +760,7 @@ static void JournalPrinter_PrintUsedSoftboiled(JournalManager *journalManager, W
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_UsedSoftboiled);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -768,7 +768,7 @@ static void JournalPrinter_PrintUsedMilkDrink(JournalManager *journalManager, Wi
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_UsedMilkDrink);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -776,7 +776,7 @@ static void JournalPrinter_PrintDugUnderground(JournalManager *journalManager, W
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_DugUnderground);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -784,7 +784,7 @@ static void JournalPrinter_PrintBuiltSecretBase(JournalManager *journalManager, 
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_BuiltSecretBase);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -813,7 +813,7 @@ static void JournalPrinter_PrintPlayedAtBattleFacility(JournalManager *journalMa
     }
 
     string = MessageLoader_GetNewString(journalManager->loader, message);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -851,7 +851,7 @@ static void JournalPrinter_PrintPokemonCaught(JournalManager *journalManager, Wi
     StringTemplate_SetTimeOfDay(journalManager->template, 1, journalEntryMon->timeOfDay);
 
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, POKEMON_EVENT_Y_OFFSET, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, POKEMON_EVENT_Y_OFFSET, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -880,7 +880,7 @@ static void JournalPrinter_PrintPokemonDefeated(JournalManager *journalManager, 
     StringTemplate_SetTimeOfDay(journalManager->template, 1, journalEntryMon->timeOfDay);
 
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, POKEMON_EVENT_Y_OFFSET, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, POKEMON_EVENT_Y_OFFSET, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -912,7 +912,7 @@ static void JournalPrinter_PrintSingleBattleEvent(JournalManager *journalManager
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -935,7 +935,7 @@ static void JournalPrinter_PrintDoubleBattleEvent(JournalManager *journalManager
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -959,7 +959,7 @@ static void JournalPrinter_PrintMultiBattleEvent(JournalManager *journalManager,
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName2, journalEntryOnlineEvent->unused2, 1);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -982,7 +982,7 @@ static void JournalPrinter_PrintMixSingleBattleEvent(JournalManager *journalMana
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1006,7 +1006,7 @@ static void JournalPrinter_PrintMixMultiBattleEvent(JournalManager *journalManag
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName2, journalEntryOnlineEvent->unused2, 1);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1016,7 +1016,7 @@ static void JournalPrinter_PrintGreetedInUnionRoom(JournalManager *journalManage
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1027,7 +1027,7 @@ static void JournalPrinter_PrintGotPokemonFromTrade(JournalManager *journalManag
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->pokemonName, journalEntryOnlineEvent->unused3, 1);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1035,7 +1035,7 @@ static void JournalPrinter_PrintDrewPictures(JournalManager *journalManager, Win
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_DrewPicturesWithOthers);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1045,7 +1045,7 @@ static void JournalPrinter_PrintGotPokemonInFriendTrade(JournalManager *journalM
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->pokemonName, journalEntryOnlineEvent->unused3, 0);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1053,7 +1053,7 @@ static void JournalPrinter_PrintChattedWithOthers(JournalManager *journalManager
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_ChattedWithOthers);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1076,7 +1076,7 @@ static void JournalPrinter_PrintUnionBattleEvent(JournalManager *journalManager,
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1084,7 +1084,7 @@ static void JournalPrinter_PrintMixedRecords(JournalManager *journalManager, Win
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_MixedRecords);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1094,7 +1094,7 @@ static void JournalPrinter_PrintPlacedInContest(JournalManager *journalManager, 
 
     StringTemplate_SetNumber(journalManager->template, 0, journalEntryOnlineEvent->result, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1102,7 +1102,7 @@ static void JournalPrinter_PrintMadePoffins(JournalManager *journalManager, Wind
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_MadePoffinsInGroup);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1113,7 +1113,7 @@ static void JournalPrinter_PrintGotPokemonGTS(JournalManager *journalManager, Wi
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->pokemonName, journalEntryOnlineEvent->unused3, 1);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1121,7 +1121,7 @@ static void JournalPrinter_PrintBattleRoom(JournalManager *journalManager, Windo
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_WonInBattleRoom);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1129,7 +1129,7 @@ static void JournalPrinter_PrintSpinTrade(JournalManager *journalManager, Window
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_DidSpinTrade);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1155,7 +1155,7 @@ static void JournalPrinter_PrintMiscEvent1(JournalManager *journalManager, Windo
     }
 
     string = MessageLoader_GetNewString(journalManager->loader, message);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1165,7 +1165,7 @@ static void JournalPrinter_PrintChattedInPlaza(JournalManager *journalManager, W
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1175,7 +1175,7 @@ static void JournalPrinter_PrintGotTapToy(JournalManager *journalManager, Window
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1185,7 +1185,7 @@ static void JournalPrinter_PrintPlazaMinigame(JournalManager *journalManager, Wi
 
     StringTemplate_SetPlazaMinigameName(journalManager->template, 0, journalEntryOnlineEvent->result);
     StringTemplate_Format(journalManager->template, journalManager->string, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, journalManager->string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1211,7 +1211,7 @@ static void JournalPrinter_PrintMiscEvent2(JournalManager *journalManager, Windo
     }
 
     string = MessageLoader_GetNewString(journalManager->loader, message);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -1219,6 +1219,6 @@ static void JournalPrinter_PrintWiFiClub(JournalManager *journalManager, Window 
 {
     String *string = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_PlayedAtWiFiClub);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }

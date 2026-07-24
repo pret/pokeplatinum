@@ -1189,7 +1189,7 @@ static BOOL RowanIntro_DisplayTextBlock(
                 0,
                 0,
                 TEXT_SPEED_INSTANT,
-                TEXT_COLOR(1, 2, 0),
+                TEXT_COLOR_BLACK,
                 NULL);
         } else {
             windowTemplate = sControlInfoTextWindow;

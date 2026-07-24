@@ -505,7 +505,7 @@ static void PrintLocationName(TownMapAppData *appData, Window *window, enum MapH
     String_Clear(appData->hoveredMapName);
     Window_FillTilemap(window, 0);
 
-    textColor = TEXT_COLOR(1, 2, 0);
+    textColor = TEXT_COLOR_BLACK;
 
     if (graphicsMan->hoveredBlock != NULL) {
         LoadMapName(appData, header, x, z);
@@ -541,7 +541,7 @@ static void PrintLocationDescription(TownMapAppData *appData, Window *window, To
         return;
     }
 
-    TextColor color = TEXT_COLOR(1, 2, 0);
+    TextColor color = TEXT_COLOR_BLACK;
     Window_FillTilemap(window, 0);
 
     if ((mapBlock->areaDescString != 0xFFFF) && ((appData->context->descCheckResults[mapBlock->index].areaDescHasCheck == FALSE) || appData->context->descCheckResults[mapBlock->index].areaDescCheckResult)) {
@@ -637,7 +637,7 @@ static void PrintBottomScreenHeader(TownMapAppData *appData, Window *window)
     String *string = MessageLoader_GetNewString(appData->townMapStrings, 1);
     u32 yOffset = (10 * 8) - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
     yOffset /= 2;
-    TextColor color = TEXT_COLOR(1, 2, 0);
+    TextColor color = TEXT_COLOR_BLACK;
 
     Window_FillTilemap(window, 0);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, yOffset, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);

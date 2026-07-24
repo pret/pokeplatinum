@@ -1167,7 +1167,7 @@ static void AdvancePokeballChoiceGraphics(ChooseStarterApp *app, enum HeapID hea
         }
         break;
     case CHOOSE_STARTER_STEP_PRINT_THESE_ARE_POKE_BALLS_TEXT:
-        app->messagePrinterID = PrintMessageToWindow(app->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
+        app->messagePrinterID = PrintMessageToWindow(app->messageWindow, heapID, 360, 0, TEXT_COLOR_BLACK_DARK_SHADOW, app->textFrameDelay, &app->string);
         app->chooseStarterStep++;
         break;
     case CHOOSE_STARTER_STEP_DELETE_THESE_ARE_POKE_BALLS_TEXT:
@@ -1177,7 +1177,7 @@ static void AdvancePokeballChoiceGraphics(ChooseStarterApp *app, enum HeapID hea
         }
         break;
     case CHOOSE_STARTER_STEP_PRINT_NOW_CHOOSE_TEXT:
-        app->messagePrinterID = PrintMessageToWindow(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), app->textFrameDelay, &app->string);
+        app->messagePrinterID = PrintMessageToWindow(app->messageWindow, heapID, 360, 7, TEXT_COLOR_BLACK_DARK_SHADOW, app->textFrameDelay, &app->string);
         app->chooseStarterStep++;
         break;
     case CHOOSE_STARTER_STEP_DELETE_NOW_CHOOSE_TEXT:
@@ -1236,7 +1236,7 @@ static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID he
         }
         break;
     case CHOOSE_STARTER_STEP_UPDATE_CURSOR_POSITION:
-        SetMessageWindowText(app->messageWindow, heapID, 360, 1 + app->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+        SetMessageWindowText(app->messageWindow, heapID, 360, 1 + app->cursorPosition, TEXT_COLOR_BLACK_DARK_SHADOW, TEXT_SPEED_NO_TRANSFER);
         app->confirmationMenu = Menu_MakeYesNoChoice(app->bgConfig, &app->confirmationMenuWindowTemplate, 512 + (18 + 12) + 128, 1, heapID);
         app->disableCursorMovement = FALSE;
         app->chooseStarterStep++;
@@ -1262,7 +1262,7 @@ static void AdvancePokeballConfirmGraphics(ChooseStarterApp *app, enum HeapID he
             app->chooseStarterStep = 7;
             ShowPreviewWindow(&app->previewWindow, FALSE);
             PokemonSprite_SetAttribute(app->sprites[app->cursorPosition], MON_SPRITE_HIDE, TRUE);
-            app->messagePrinterID = SetMessageWindowText(app->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+            app->messagePrinterID = SetMessageWindowText(app->messageWindow, heapID, 360, 7, TEXT_COLOR_BLACK_DARK_SHADOW, TEXT_SPEED_NO_TRANSFER);
         }
         break;
     default:

@@ -2894,31 +2894,31 @@ static TextColor GetPPTextColor(int currPP, int maxPP)
     }
 
     if (maxPP == currPP) {
-        return TEXT_COLOR(1, 2, 0);
+        return TEXT_COLOR_BLACK;
     }
 
     if (maxPP <= 2) {
         if (currPP == 1) {
-            return TEXT_COLOR(5, 6, 0);
+            return TEXT_COLOR_RED;
         }
     } else if (maxPP <= 7) {
         switch (currPP) {
         case 1:
-            return TEXT_COLOR(5, 6, 0);
+            return TEXT_COLOR_RED;
         case 2:
-            return TEXT_COLOR(3, 4, 0);
+            return TEXT_COLOR_BLUE;
         }
     } else {
         if (currPP <= maxPP / 4) {
-            return TEXT_COLOR(5, 6, 0);
+            return TEXT_COLOR_RED;
         }
 
         if (currPP <= maxPP / 2) {
-            return TEXT_COLOR(3, 4, 0);
+            return TEXT_COLOR_BLUE;
         }
     }
 
-    return TEXT_COLOR(1, 2, 0);
+    return TEXT_COLOR_BLACK;
 }
 
 static void SysTask_SlideInPanel(SysTask *task, void *panelState)
@@ -3953,7 +3953,7 @@ void BattleSubscreen_ShowStopRecordingMessage(BattleSubscreen *btlSubscreen, int
 
         String *message = MessageLoader_GetNewString(msgLoader, msgIDs[flag][i]);
 
-        BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[1 + i], message, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 4, 20023, 1 * 8 + 8, 6 * 8 + 16 + 16 * i, 0, NULL);
+        BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[1 + i], message, FONT_SYSTEM, TEXT_COLOR_BLACK, 4, 20023, 1 * 8 + 8, 6 * 8 + 16 + 16 * i, 0, NULL);
         String_Free(message);
     }
 }

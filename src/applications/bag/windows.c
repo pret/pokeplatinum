@@ -137,7 +137,7 @@ void BagUI_ClearPocketNameBox(BagController *controller)
 static void PrintPocketNameCentered(BagController *controller, String *string, u16 centerY)
 {
     u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
-    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_POCKET_NAMES], FONT_SYSTEM, string, centerY - stringWidth / 2, 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_POCKET_NAMES], FONT_SYSTEM, string, centerY - stringWidth / 2, 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 }
 
 void BagUI_PrintPocketNames(BagController *controller)
@@ -229,7 +229,7 @@ void BagUI_PrintItemDescription(BagController *controller, u16 item)
         string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_CloseBagDescription);
     }
 
-    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, string, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, string, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 }
 
@@ -239,23 +239,23 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     u16 move = Item_MoveForTMHM(item);
 
     String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Type);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_PP);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Category);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Power);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Accuracy);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     u16 moveStat = MoveTable_CalcMaxPP(move, 0);
@@ -263,7 +263,7 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 2, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
     String_Free(string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 48, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 48, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
 
     moveStat = MoveTable_LoadParam(move, MOVEATTRIBUTE_POWER);
 
@@ -276,7 +276,7 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
     String_Free(string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 96 + 64, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 96 + 64, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     moveStat = MoveTable_LoadParam(move, MOVEATTRIBUTE_ACCURACY);
 
     if (moveStat == 0) {
@@ -288,7 +288,7 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
     String_Free(string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 96 + 64, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 96 + 64, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
 }
 
 void BagUI_LoadItemCountStrings(BagController *controller)
@@ -329,7 +329,7 @@ void BagUI_PrintTMHMNumber(BagController *controller, BagItem *itemSlot, u32 yOf
     if (item < ITEM_HM01) {
         item = item - ITEM_TM01 + 1;
         FontSpecialChars_DrawPartyScreenText(controller->specialChars, SPECIAL_CHAR_NUMBER, item, 2, PADDING_MODE_ZEROES, &controller->windows[BAG_UI_WINDOW_ITEM_LIST], 0, yOffset + 5);
-        BagUI_PrintItemCount(controller, itemSlot->quantity, yOffset, TEXT_COLOR(1, 2, 0));
+        BagUI_PrintItemCount(controller, itemSlot->quantity, yOffset, TEXT_COLOR_BLACK);
     } else {
         item = item - ITEM_HM01 + 1;
         FontSpecialChars_DrawPartyScreenHPText(controller->specialChars, item, 2, PADDING_MODE_SPACES, &controller->windows[BAG_UI_WINDOW_ITEM_LIST], 16, yOffset + 5);
@@ -340,7 +340,7 @@ void BagUI_PrintTMHMNumber(BagController *controller, BagItem *itemSlot, u32 yOf
 void BagUI_PrintBerryNumber(BagController *controller, BagItem *itemSlot, u32 yOffset)
 {
     FontSpecialChars_DrawPartyScreenText(controller->specialChars, SPECIAL_CHAR_NUMBER, Item_BerryNumber(itemSlot->item) + 1, 2, PADDING_MODE_ZEROES, &controller->windows[BAG_UI_WINDOW_ITEM_LIST], 0, yOffset + 5);
-    BagUI_PrintItemCount(controller, itemSlot->quantity, yOffset, TEXT_COLOR(1, 2, 0));
+    BagUI_PrintItemCount(controller, itemSlot->quantity, yOffset, TEXT_COLOR_BLACK);
 }
 
 static void *LoadBagUIItemEntrySprites(BagController *controller, NNSG2dCharacterData **charData)
@@ -364,7 +364,7 @@ void BagUI_PrintCloseBagEntry(BagController *controller, u32 yOffset)
     String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_CloseBag);
 
     Window_FillRectWithColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], 0, 0, yOffset, ITEM_LIST_WINDOW_WIDTH * TILE_WIDTH_PIXELS, TEXT_LINES(1));
-    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], FONT_SYSTEM, string, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], FONT_SYSTEM, string, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 }
 
@@ -494,7 +494,7 @@ void BagUI_PrintMovingItemMsg(BagController *controller)
     BufferPocketSlotItemName(controller, controller->movedItemPos - 1, 0);
 
     StringTemplate_Format(controller->strTemplate, formatted, template);
-    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, formatted, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, formatted, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
     String_Free(formatted);
     String_Free(template);

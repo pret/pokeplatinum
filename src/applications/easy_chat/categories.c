@@ -112,7 +112,7 @@ static u32 EasyChatCategories_PrintGroups(EasyChatCategoriesContext *ctx, BgConf
 
         if (EasyChatWordList_GetGroupWordCount(ctx->unk_08, i)) {
             string = MessageLoader_GetNewString(loader, i);
-            color = TEXT_COLOR(1, 2, 15);
+            color = TEXT_COLOR_BLACK_DARK_SHADOW;
         } else {
             string = MessageLoader_GetNewString(loader, EasyChatGroups_Text_QuestionMarks);
             color = TEXT_COLOR(3, 4, 15);
@@ -163,7 +163,7 @@ static u32 EasyChatCategories_PrintABCModeSelection(EasyChatCategoriesContext *c
 
         TextColor color;
         if (EasyChatWordList_GetLetterWordCount(ctx->unk_08, i)) {
-            color = TEXT_COLOR(1, 2, 15);
+            color = TEXT_COLOR_BLACK_DARK_SHADOW;
         } else {
             color = TEXT_COLOR(3, 4, 15);
         }
@@ -201,7 +201,7 @@ static u32 EasyChatCategories_PrintCancelText(EasyChatCategoriesContext *ctx, Bg
 
         Window_Add(bgConfig, &window, BG_LAYER_MAIN_1, windowPositions[i].tilemapLeft, windowPositions[i].tilemapTop, CANCEL_WINDOW_WIDTH, CANCEL_WINDOW_HEIGHT, 11, baseTile);
         Window_FillTilemap(&window, 15);
-        Text_AddPrinterWithParamsAndColor(&window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+        Text_AddPrinterWithParamsAndColor(&window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
         Window_PutToTilemap(&window);
         Window_LoadTiles(&window);
         Window_Remove(&window);

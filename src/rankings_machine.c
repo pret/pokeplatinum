@@ -457,7 +457,7 @@ static int RankingsMachine_AskDeleteRanking(RankingsMachineManager *machineMan)
     switch (machineMan->deleteState) {
     case 0:
         Window_FillTilemap(&machineMan->msgBoxWindow, PIXEL_FILL(15));
-        machineMan->printerID = Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.deleteInstructions[1], 0, 0, machineMan->textDelay, TEXT_COLOR(1, 2, 15), NULL);
+        machineMan->printerID = Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.deleteInstructions[1], 0, 0, machineMan->textDelay, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
         ManagedSprite_SetExplicitPalette(machineMan->managedSprites[MANAGED_SPRITE_CURSOR], 2);
         machineMan->deleteState++;
         break;
@@ -501,7 +501,7 @@ static int RankingsMachine_CantDeleteOwnRanking(RankingsMachineManager *machineM
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
         Window_FillTilemap(&machineMan->msgBoxWindow, PIXEL_FILL(15));
-        machineMan->printerID = Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.deleteInstructions[2], 0, 0, machineMan->textDelay, TEXT_COLOR(1, 2, 15), NULL);
+        machineMan->printerID = Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.deleteInstructions[2], 0, 0, machineMan->textDelay, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
         ManagedSprite_SetExplicitPalette(machineMan->managedSprites[MANAGED_SPRITE_CURSOR], 2);
         machineMan->deleteState++;
         break;
@@ -784,7 +784,7 @@ static void RankingsMachine_ShowRecordsList(RankingsMachineManager *machineMan, 
     Window_DrawStandardFrame(&machineMan->listWindow, 0, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
     Window_DrawMessageBoxWithScrollCursor(&machineMan->msgBoxWindow, 1, BASE_TILE_SCROLLING_MESSAGE_BOX, 10);
     Window_FillTilemap(&machineMan->msgBoxWindow, PIXEL_FILL(15));
-    Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.whichRecord, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.whichRecord, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     ManagedSprite_SetDrawFlag(machineMan->managedSprites[MANAGED_SPRITE_CURSOR], TRUE);
     Bg_ScheduleTilemapTransfer(machineMan->bgConfig, BG_LAYER_MAIN_3);
 }
@@ -818,7 +818,7 @@ static void RankingsMachine_SetCursorPos(ListMenu *listMenu, u32 unused, u8 mute
 static void RankingsMachine_PrintDeleteInstruction(RankingsMachineManager *machineMan)
 {
     Window_FillTilemap(&machineMan->msgBoxWindow, PIXEL_FILL(15));
-    Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.deleteInstructions[0], 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.deleteInstructions[0], 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 }
 
 static void RankingsMachine_PrepareForDeletingRecord(RankingsMachineManager *machineMan)
@@ -831,7 +831,7 @@ static void RankingsMachine_PrepareForDeletingRecord(RankingsMachineManager *mac
 static void RankingsMachine_PrintRecordExplanation(RankingsMachineManager *machineMan)
 {
     Window_FillTilemap(&machineMan->msgBoxWindow, PIXEL_FILL(15));
-    Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.explanations[machineMan->selectedRecordID], 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.explanations[machineMan->selectedRecordID], 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     ManagedSprite_SetDrawFlag(machineMan->managedSprites[MANAGED_SPRITE_CURSOR], FALSE);
 }
 
@@ -869,10 +869,10 @@ static void RankingsMachine_PrintRecordRankings(RankingsMachineManager *machineM
         StringTemplate_SetNumber(machineMan->text.strTemplate, 0, rank, 1, PADDING_MODE_SPACES, CHARSET_MODE_EN);
         StringTemplate_SetString(machineMan->text.strTemplate, 1, machineRankings->rankingsInfo[i].playerInfo->playerName, 2, 1, GAME_LANGUAGE);
         StringTemplate_Format(machineMan->text.strTemplate, machineMan->text.strBuffer, machineMan->text.recordEntryInfo);
-        Text_AddPrinterWithParamsAndColor(&machineMan->listWindow, FONT_SYSTEM, machineMan->text.strBuffer, 8, rankingID * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+        Text_AddPrinterWithParamsAndColor(&machineMan->listWindow, FONT_SYSTEM, machineMan->text.strBuffer, 8, rankingID * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
         StringTemplate_SetNumber(machineMan->text.strTemplate, 0, recordValue, printingData->maxDigits, PADDING_MODE_SPACES, CHARSET_MODE_EN);
         StringTemplate_Format(machineMan->text.strTemplate, machineMan->text.strBuffer, machineMan->text.values[printingData->valueString - 15]);
-        Text_AddPrinterWithParamsAndColor(&machineMan->listWindow, FONT_SYSTEM, machineMan->text.strBuffer, (24 * 8) - Font_CalcStringWidth(FONT_SYSTEM, machineMan->text.strBuffer, 0) - 8, rankingID * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+        Text_AddPrinterWithParamsAndColor(&machineMan->listWindow, FONT_SYSTEM, machineMan->text.strBuffer, (24 * 8) - Font_CalcStringWidth(FONT_SYSTEM, machineMan->text.strBuffer, 0) - 8, rankingID * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 
         machineMan->rankingIDs[rankingID] = i;
         prevRecordValue = recordValue;
@@ -905,7 +905,7 @@ static void RankingsMachine_ShowRankingList(RankingsMachineManager *machineMan, 
     ManagedSprite_SetDrawFlag(machineMan->managedSprites[MANAGED_SPRITE_DELETE_WINDOW], TRUE);
     Window_Add(machineMan->bgConfig, &machineMan->rankingsWindow, BG_LAYER_MAIN_3, 8, 14, 8, 2, 13, BASE_TILE_RANKINGS_WINDOW);
     Window_FillTilemap(&machineMan->rankingsWindow, PIXEL_FILL(0));
-    Text_AddPrinterWithParamsAndColor(&machineMan->rankingsWindow, FONT_SYSTEM, machineMan->text.deleteRecord, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&machineMan->rankingsWindow, FONT_SYSTEM, machineMan->text.deleteRecord, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     Bg_ScheduleTilemapTransfer(machineMan->bgConfig, BG_LAYER_MAIN_3);
 }
 

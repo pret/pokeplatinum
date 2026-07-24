@@ -319,12 +319,12 @@ static void ov20_021D4658(UnkStruct_ov20_021D4210 *param0, u32 param1, u32 param
     ov20_021D2008(param0->unk_04, param1, param0->unk_3C);
 
     if (param2 <= 240) {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_10, FONT_SYSTEM, param0->unk_3C, 0 + (param1 & 1) * 112, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_10, FONT_SYSTEM, param0->unk_3C, 0 + (param1 & 1) * 112, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     } else {
         u32 v0 = 256 - param2;
 
         Window_FillTilemap(&param0->unk_20, 0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param0->unk_3C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param0->unk_3C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
         Window_BlitBitmapRect(&param0->unk_10, param0->unk_20.pixels, 0, 0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, param2, 12 * 8, v0);
         Window_BlitBitmapRect(&param0->unk_10, param0->unk_20.pixels, 0, v0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, 0, 12 * 8, (2 * 8) - v0);
     }
