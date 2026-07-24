@@ -287,10 +287,10 @@ static void GTSApplication_WFCInit_InitText(GTSApplicationState *appState)
 {
     Window_Add(appState->bgConfig, &appState->unk_F8C, BG_LAYER_MAIN_0, 4, 4, 23, 16, 13, ((1 + (18 + 12)) + 9) + 27 * 4);
     Window_FillTilemap(&appState->unk_F8C, 0x0);
-    Window_Add(appState->bgConfig, &appState->unk_F7C, BG_LAYER_MAIN_0, 4, 1, 24, 2, 13, (((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16);
-    Window_FillTilemap(&appState->unk_F7C, 0x0);
+    Window_Add(appState->bgConfig, &appState->titleWindow, BG_LAYER_MAIN_0, 4, 1, 24, 2, 13, (((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16);
+    Window_FillTilemap(&appState->titleWindow, 0x0);
 
-    ov94_022458CC(&appState->unk_F7C, appState->title, 0, 1, 1, TEXT_COLOR(15, 14, 0));
+    ov94_022458CC(&appState->titleWindow, appState->title, 0, 1, 1, TEXT_COLOR(15, 14, 0));
 
     Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, BG_LAYER_MAIN_0, 2, 19, 27, 4, 13, (1 + (18 + 12)) + 9);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
@@ -299,7 +299,7 @@ static void GTSApplication_WFCInit_InitText(GTSApplicationState *appState)
 static void GTSApplication_WFCInit_CleanupWindows(GTSApplicationState *appState)
 {
     Window_Remove(&appState->bottomInstructionWindow);
-    Window_Remove(&appState->unk_F7C);
+    Window_Remove(&appState->titleWindow);
     Window_Remove(&appState->unk_F8C);
 }
 

@@ -178,7 +178,7 @@ BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState)
                 GTSApplication_InitRenderingSystem(appState);
                 GTSAvatar_Init(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
                 GTSAvatar_ShowSearchResults(appState, appState->unk_118, 0);
-                ov94_0223D068(appState);
+                GTS_LoadSubScreenGraphics(appState);
                 appState->hasTradedPokemon = FALSE;
             }
             *loopState = (*gtsApplicationScreens[appState->screenId][2])(appState, *loopState);
@@ -267,7 +267,7 @@ static void GTSApplication_InitPlayerData(GTSApplicationState *appState, Applica
 
     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
 
-    appState->mainMenuSelectedOption = 0;
+    appState->mainMenuSelectedOption = GTS_MAIN_MENU_OPTION_DEPOSIT;
     appState->unk_B7A.species = SPECIES_NONE;
     appState->unk_B7A.gender = 2 + 1;
     appState->unk_B7A.level = 0;

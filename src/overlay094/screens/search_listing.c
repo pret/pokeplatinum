@@ -71,12 +71,12 @@ int GTSApplication_SearchListing_Init(GTSApplicationState *appState, int unused1
     ov94_0223DE04(appState);
     ov94_0223DED8(appState);
     ov94_0223DE7C(appState);
-    ov94_0223D910(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes), &appState->searchResults[appState->selectedSearchResult].unk_EC);
+    GTS_DrawOfferedPokemonInfo(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes), &appState->searchResults[appState->selectedSearchResult].unk_EC);
 
     Pokemon *mon = (Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes;
 
-    ov94_0223DA78(appState->gtsMessageLoader, &appState->unk_FCC[5], appState->searchResults[appState->selectedSearchResult].unk_10C, mon, &appState->unk_FCC[10]);
-    ov94_0223DB2C((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
+    GTS_DrawTrainerInfo(appState->gtsMessageLoader, &appState->unk_FCC[5], appState->searchResults[appState->selectedSearchResult].unk_10C, mon, &appState->unk_FCC[10]);
+    GTS_LoadListingPokemonSprite((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
     ov94_0223E358(appState->gtsMessageLoader, &appState->unk_FCC[7]);
     ov94_0223E240(appState);
 
@@ -245,7 +245,7 @@ static void ov94_0223DED8(GTSApplicationState *appState)
 {
     Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (1 + (18 + 12) + 9));
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
-    Window_Add(appState->bgConfig, &appState->unk_F9C[0], 0, 21, 15, (5 * 2), 4, 13, ((1 + (18 + 12)) + 9) + 27 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 15, (5 * 2), 4, 13, ((1 + (18 + 12)) + 9) + 27 * 2);
 
     {
         int v1 = ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4);
@@ -262,7 +262,7 @@ static void ov94_0223DED8(GTSApplicationState *appState)
 static void ov94_0223DFA4(GTSApplicationState *appState)
 {
     Window_Remove(&appState->bottomInstructionWindow);
-    Window_Remove(&appState->unk_F9C[0]);
+    Window_Remove(&appState->menuButtonWindows[0]);
 
     {
         for (int i = 0; i < NELEMS(Unk_ov94_02245CC4); i++) {

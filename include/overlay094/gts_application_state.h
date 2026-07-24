@@ -192,11 +192,11 @@ typedef struct GTSApplicationState {
     Sprite *unk_F54[2];
     Window bottomInstructionWindow;
     Window unk_F6C;
-    Window unk_F7C;
+    Window titleWindow;
     Window unk_F8C;
-    Window unk_F9C[3];
+    Window menuButtonWindows[3];
     Window unk_FCC[13];
-    Window unk_109C;
+    Window confirmationWindow;
     Window unk_10AC[2];
     StringList *unk_10CC;
     Menu *yesNoMenu;

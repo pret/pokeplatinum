@@ -322,10 +322,10 @@ static const u16 Unk_ov94_02245D8C[][2] = {
 
 static void ov94_0223E7D4(GTSApplicationState *param0)
 {
-    Window_Add(param0->bgConfig, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, (1 + (18 + 12)) + 9);
-    Window_FillTilemap(&param0->unk_F7C, 0x0);
+    Window_Add(param0->bgConfig, &param0->titleWindow, 0, 1, 1, 28, 2, 13, (1 + (18 + 12)) + 9);
+    Window_FillTilemap(&param0->titleWindow, 0x0);
 
-    ov94_022458CC(&param0->unk_F7C, param0->title, 0, 1, 0, TEXT_COLOR(15, 13, 0));
+    ov94_022458CC(&param0->titleWindow, param0->title, 0, 1, 0, TEXT_COLOR(15, 13, 0));
 
     Window_Add(param0->bgConfig, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9) + 28 * 2);
     Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
@@ -353,7 +353,7 @@ static void ov94_0223E7D4(GTSApplicationState *param0)
 static void ov94_0223E968(GTSApplicationState *param0)
 {
     Window_Remove(&param0->bottomInstructionWindow);
-    Window_Remove(&param0->unk_F7C);
+    Window_Remove(&param0->titleWindow);
 
     {
         int v0;
@@ -738,18 +738,18 @@ static int ov94_0223F0D0(GTSApplicationState *param0)
     ov94_0223F9A4(param0, 9, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 4);
 
-    Window_Add(param0->bgConfig, &param0->unk_F9C[0], 0, 15, 5, 4, 13, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
-    Window_FillTilemap(&param0->unk_F9C[0], 0x0);
+    Window_Add(param0->bgConfig, &param0->menuButtonWindows[0], 0, 15, 5, 4, 13, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
+    Window_FillTilemap(&param0->menuButtonWindows[0], 0x0);
 
-    Window_Add(param0->bgConfig, &param0->unk_F9C[1], 0, 21, 5, 10, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2) + 4 * 13);
-    Window_FillTilemap(&param0->unk_F9C[1], 0x0);
+    Window_Add(param0->bgConfig, &param0->menuButtonWindows[1], 0, 21, 5, 10, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2) + 4 * 13);
+    Window_FillTilemap(&param0->menuButtonWindows[1], 0x0);
 
     return 3;
 }
 
 static int ov94_0223F154(GTSApplicationState *param0)
 {
-    param0->unk_10D8 = GTS_CreateCharpadMenu(param0, &param0->unk_10CC, &param0->unk_F9C[0], param0->gtsMessageLoader);
+    param0->unk_10D8 = GTS_CreateCharpadMenu(param0, &param0->unk_10CC, &param0->menuButtonWindows[0], param0->gtsMessageLoader);
     param0->unk_108 = 0xffff;
     param0->currentScreenInstruction = 5;
 
@@ -776,10 +776,10 @@ static int ov94_0223F190(GTSApplicationState *param0)
     case 0xfffffffe:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
         StringList_Free(param0->unk_10CC);
-        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
-        Window_Remove(&param0->unk_F9C[0]);
-        Window_Remove(&param0->unk_F9C[1]);
+        Window_Remove(&param0->menuButtonWindows[0]);
+        Window_Remove(&param0->menuButtonWindows[1]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->currentScreenInstruction = 0;
         break;
@@ -790,7 +790,7 @@ static int ov94_0223F190(GTSApplicationState *param0)
 
 static int ov94_0223F25C(GTSApplicationState *param0)
 {
-    param0->unk_10D8 = GTS_CreateSpeciesMenu(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->speciesMessageLoader, param0->unk_10E4, param0->playerData->pokedex);
+    param0->unk_10D8 = GTS_CreateSpeciesMenu(param0, &param0->unk_10CC, &param0->menuButtonWindows[1], param0->gtsMessageLoader, param0->speciesMessageLoader, param0->unk_10E4, param0->playerData->pokedex);
     param0->unk_108 = 0xffff;
     param0->currentScreenInstruction = 7;
 
@@ -807,7 +807,7 @@ static int ov94_0223F2B0(GTSApplicationState *appState)
     case 0xfffffffe:
         ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_0A, &appState->unk_10E4->unk_08);
         StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->unk_F9C[1], 0);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[1], 0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         appState->currentScreenInstruction = 4;
         GTS_SaveTabScrollState(&appState->charpadScrollState, appState->unk_10E4->unk_06 + appState->unk_10E4->unk_04, appState->unk_10E4->unk_0A, appState->unk_10E4->unk_08);
@@ -815,10 +815,10 @@ static int ov94_0223F2B0(GTSApplicationState *appState)
     default:
         ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_0A, &appState->unk_10E4->unk_08);
         StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
-        Window_EraseStandardFrame(&appState->unk_F9C[1], 0);
-        Window_Remove(&appState->unk_F9C[0]);
-        Window_Remove(&appState->unk_F9C[1]);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[1], 0);
+        Window_Remove(&appState->menuButtonWindows[0]);
+        Window_Remove(&appState->menuButtonWindows[1]);
 
         appState->unk_B7A.species = v0;
         appState->currentScreenInstruction = 0;
@@ -845,15 +845,15 @@ static int ov94_0223F41C(GTSApplicationState *param0)
     ov94_0223F9A4(param0, 10, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 9);
 
-    Window_Add(param0->bgConfig, &param0->unk_F9C[0], 0, 21, 10, 10, 8, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
-    Window_FillTilemap(&param0->unk_F9C[0], 0x0);
+    Window_Add(param0->bgConfig, &param0->menuButtonWindows[0], 0, 21, 10, 10, 8, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
+    Window_FillTilemap(&param0->menuButtonWindows[0], 0x0);
 
     return 3;
 }
 
 static int ov94_0223F474(GTSApplicationState *param0)
 {
-    param0->unk_10D8 = GTS_CreateGenderMenu(&param0->unk_10CC, &param0->unk_F9C[0], param0->gtsMessageLoader);
+    param0->unk_10D8 = GTS_CreateGenderMenu(&param0->unk_10CC, &param0->menuButtonWindows[0], param0->gtsMessageLoader);
     param0->unk_108 = 0xffff;
     param0->currentScreenInstruction = 10;
 
@@ -868,9 +868,9 @@ static int ov94_0223F4B0(GTSApplicationState *param0)
     case 0xfffffffe:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
-        Window_Remove(&param0->unk_F9C[0]);
+        Window_Remove(&param0->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->currentScreenInstruction = 0;
         break;
@@ -879,8 +879,8 @@ static int ov94_0223F4B0(GTSApplicationState *param0)
     case 2:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
-        Window_Remove(&param0->unk_F9C[0]);
+        Window_EraseStandardFrame(&param0->menuButtonWindows[0], 0);
+        Window_Remove(&param0->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         param0->unk_B7A.gender = v0 + 1;
@@ -899,15 +899,15 @@ static int ov94_0223F5A0(GTSApplicationState *param0)
     ov94_0223F9A4(param0, 11, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 12);
 
-    Window_Add(param0->bgConfig, &param0->unk_F9C[0], 0, 15, 5, 16, 13, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
-    Window_FillTilemap(&param0->unk_F9C[0], 0x0);
+    Window_Add(param0->bgConfig, &param0->menuButtonWindows[0], 0, 15, 5, 16, 13, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
+    Window_FillTilemap(&param0->menuButtonWindows[0], 0x0);
 
     return 3;
 }
 
 static int ov94_0223F5F8(GTSApplicationState *param0)
 {
-    param0->unk_10D8 = GTS_CreateLevelMenu(&param0->unk_10CC, &param0->unk_F9C[0], param0->gtsMessageLoader, 1);
+    param0->unk_10D8 = GTS_CreateLevelMenu(&param0->unk_10CC, &param0->menuButtonWindows[0], param0->gtsMessageLoader, 1);
     param0->unk_108 = 0xffff;
     param0->currentScreenInstruction = 13;
 
@@ -925,17 +925,17 @@ static int ov94_0223F638(GTSApplicationState *param0)
     case 11:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
-        Window_Remove(&param0->unk_F9C[0]);
+        Window_Remove(&param0->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->currentScreenInstruction = 0;
         break;
     default:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
-        Window_Remove(&param0->unk_F9C[0]);
+        Window_EraseStandardFrame(&param0->menuButtonWindows[0], 0);
+        Window_Remove(&param0->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         GTS_SetLevelRequirement(&param0->unk_B7A, v0, 1);
 
@@ -954,15 +954,15 @@ static int ov94_0223F728(GTSApplicationState *param0)
     ov94_0223F9A4(param0, 169, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 15);
 
-    Window_Add(param0->bgConfig, &param0->unk_F9C[0], 0, 2, 5, 28, 13, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
-    Window_FillTilemap(&param0->unk_F9C[0], 0x0);
+    Window_Add(param0->bgConfig, &param0->menuButtonWindows[0], 0, 2, 5, 28, 13, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
+    Window_FillTilemap(&param0->menuButtonWindows[0], 0x0);
 
     return 3;
 }
 
 static int ov94_0223F780(GTSApplicationState *param0)
 {
-    param0->unk_10D8 = GTS_CreateCountryMenu(&param0->unk_10CC, &param0->unk_F9C[0], param0->countryMessageLoader, param0->gtsMessageLoader);
+    param0->unk_10D8 = GTS_CreateCountryMenu(&param0->unk_10CC, &param0->menuButtonWindows[0], param0->countryMessageLoader, param0->gtsMessageLoader);
     param0->unk_108 = 0xffff;
     param0->currentScreenInstruction = 16;
 
@@ -978,16 +978,16 @@ static int ov94_0223F7C0(GTSApplicationState *param0)
     } else if ((v0 == 0xfffffffe) || (v0 == (gGTSAvailableCountryCount + 1))) {
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
-        Window_Remove(&param0->unk_F9C[0]);
+        Window_Remove(&param0->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->currentScreenInstruction = 0;
     } else {
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
-        Window_Remove(&param0->unk_F9C[0]);
+        Window_EraseStandardFrame(&param0->menuButtonWindows[0], 0);
+        Window_Remove(&param0->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         GTS_SetSelectedCountry(param0, v0);

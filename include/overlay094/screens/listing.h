@@ -8,11 +8,11 @@
 #include "pokemon.h"
 #include "string_template.h"
 
-int GTSApplication_Listing_Init(GTSApplicationState *param0, int param1);
-int GTSApplication_Listing_Main(GTSApplicationState *param0, int param1);
-int GTSApplication_Listing_Exit(GTSApplicationState *param0, int param1);
-void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], BoxPokemon *boxMon, GTSPokemonCriteria *param5);
-void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon *param3, Window param4[]);
-void ov94_0223DB2C(Pokemon *param0);
+int GTSApplication_Listing_Init(GTSApplicationState *appState, int unused);
+int GTSApplication_Listing_Main(GTSApplicationState *appState, int unused);
+int GTSApplication_Listing_Exit(GTSApplicationState *appState, int unused);
+void GTS_DrawOfferedPokemonInfo(MessageLoader *msgLoader, MessageLoader *speciesMessageLoader, StringTemplate *template, Window windows[], BoxPokemon *boxMon, GTSPokemonCriteria *criteria);
+void GTS_DrawTrainerInfo(MessageLoader *msgLoader, Window trainerNameWindows[], u16 *trainerName, Pokemon *mon, Window otNameWindows[]);
+void GTS_LoadListingPokemonSprite(Pokemon *mon);
 
 #endif // POKEPLATINUM_GTS_SCREENS_LISTING_H

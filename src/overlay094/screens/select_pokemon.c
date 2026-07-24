@@ -426,34 +426,34 @@ static void ov94_0223FFC8(GTSApplicationState *param0)
 
 static void ov94_02240028(GTSApplicationState *param0)
 {
-    Window_Add(param0->bgConfig, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, (1 + (18 + 12)) + 9);
-    Window_FillTilemap(&param0->unk_F7C, 0x0);
+    Window_Add(param0->bgConfig, &param0->titleWindow, 0, 1, 1, 28, 2, 13, (1 + (18 + 12)) + 9);
+    Window_FillTilemap(&param0->titleWindow, 0x0);
 
-    ov94_02245900(&param0->unk_F7C, param0->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
+    ov94_02245900(&param0->titleWindow, param0->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
 
     Window_Add(param0->bgConfig, &param0->unk_F8C, 0, 5, 3, 13, 3, 13, ((1 + (18 + 12)) + 9) + 28 * 2);
     Window_FillTilemap(&param0->unk_F8C, 0x0);
     Window_CopyToVRAM(&param0->unk_F8C);
     Window_Add(param0->bgConfig, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13);
     Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
-    Window_Add(param0->bgConfig, &param0->unk_109C, 0, 2, 19, 27, 4, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2);
-    Window_FillTilemap(&param0->unk_109C, 0x0);
-    Window_Add(param0->bgConfig, &param0->unk_F9C[1], 1, 25, 21, 6, 2, 0, (((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19);
-    Window_FillTilemap(&param0->unk_F9C[1], 0x606);
+    Window_Add(param0->bgConfig, &param0->confirmationWindow, 0, 2, 19, 27, 4, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2);
+    Window_FillTilemap(&param0->confirmationWindow, 0x0);
+    Window_Add(param0->bgConfig, &param0->menuButtonWindows[1], 1, 25, 21, 6, 2, 0, (((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19);
+    Window_FillTilemap(&param0->menuButtonWindows[1], 0x606);
 
-    ov94_02245900(&param0->unk_F9C[1], param0->unk_BA8, 0, 1, 1, TEXT_COLOR(1, 3, 6));
+    ov94_02245900(&param0->menuButtonWindows[1], param0->unk_BA8, 0, 1, 1, TEXT_COLOR(1, 3, 6));
 
-    Window_Add(param0->bgConfig, &param0->unk_F9C[0], 0, 21, 13, 5 * 2, 6, 13, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2);
+    Window_Add(param0->bgConfig, &param0->menuButtonWindows[0], 0, 21, 13, 5 * 2, 6, 13, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2);
 }
 
 static void ov94_02240190(GTSApplicationState *param0)
 {
-    Window_Remove(&param0->unk_109C);
-    Window_Remove(&param0->unk_F9C[1]);
-    Window_Remove(&param0->unk_F9C[0]);
+    Window_Remove(&param0->confirmationWindow);
+    Window_Remove(&param0->menuButtonWindows[1]);
+    Window_Remove(&param0->menuButtonWindows[0]);
     Window_Remove(&param0->bottomInstructionWindow);
     Window_Remove(&param0->unk_F8C);
-    Window_Remove(&param0->unk_F7C);
+    Window_Remove(&param0->titleWindow);
 }
 
 static void ov94_022401E0(GTSApplicationState *appState)
@@ -683,9 +683,9 @@ static int ov94_022405DC(GTSApplicationState *appState)
     StringList_AddFromMessageBank(appState->unk_10CC, appState->gtsMessageLoader, GTS_Text_Option_Cancel, 3);
 
     v0.choices = appState->unk_10CC;
-    v0.window = &appState->unk_F9C[0];
+    v0.window = &appState->menuButtonWindows[0];
 
-    Window_DrawStandardFrame(&appState->unk_F9C[0], 1, 1 + (18 + 12), 11);
+    Window_DrawStandardFrame(&appState->menuButtonWindows[0], 1, 1 + (18 + 12), 11);
 
     appState->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
     appState->currentScreenInstruction = 8;
@@ -701,14 +701,14 @@ static int ov94_02240688(GTSApplicationState *appState)
     case 1:
         Menu_Free(appState->unk_10D4, NULL);
         StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         appState->currentScreenInstruction = 2;
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_5);
         break;
     case 2:
         Menu_Free(appState->unk_10D4, NULL);
         StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
 
         v0 = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
 
@@ -747,7 +747,7 @@ static int ov94_02240688(GTSApplicationState *appState)
     case 0xfffffffe:
         Menu_Free(appState->unk_10D4, NULL);
         StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         appState->currentScreenInstruction = 1;
         break;
@@ -774,10 +774,10 @@ static int ov94_02240830(GTSApplicationState *appState)
     StringList_AddFromMessageBank(appState->unk_10CC, appState->gtsMessageLoader, 86, 3);
 
     v0.choices = appState->unk_10CC;
-    v0.window = &appState->unk_F9C[0];
+    v0.window = &appState->menuButtonWindows[0];
 
     Window_FillTilemap(v0.window, 0xf0f);
-    Window_DrawStandardFrame(&appState->unk_F9C[0], 1, 1 + (18 + 12), 11);
+    Window_DrawStandardFrame(&appState->menuButtonWindows[0], 1, 1 + (18 + 12), 11);
 
     appState->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
     appState->currentScreenInstruction = 10;
@@ -793,14 +793,14 @@ static int ov94_022408E8(GTSApplicationState *appState)
     case 1:
         Menu_Free(appState->unk_10D4, NULL);
         StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         appState->currentScreenInstruction = 2;
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_6);
         break;
     case 2:
         Menu_Free(appState->unk_10D4, NULL);
         StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
 
         boxMon = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
 
@@ -836,7 +836,7 @@ static int ov94_022408E8(GTSApplicationState *appState)
     case 0xfffffffe:
         Menu_Free(appState->unk_10D4, NULL);
         StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         appState->currentScreenInstruction = 1;
         break;
@@ -905,7 +905,7 @@ static int ov94_02240B70(GTSApplicationState *appState)
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
-            Window_EraseMessageBox(&appState->unk_109C, 0);
+            Window_EraseMessageBox(&appState->confirmationWindow, 0);
             appState->currentScreenInstruction = 1;
         } else {
             ov94_02240BB0(appState);
@@ -961,7 +961,7 @@ static int ov94_02240CA8(GTSApplicationState *appState)
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
-            Window_EraseMessageBox(&appState->unk_109C, 0);
+            Window_EraseMessageBox(&appState->confirmationWindow, 0);
             appState->currentScreenInstruction = 1;
         } else {
             appState->unk_114 = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
@@ -985,7 +985,7 @@ static int ov94_02240D08(GTSApplicationState *appState)
 static int ov94_02240D28(GTSApplicationState *appState)
 {
     if (Text_IsPrinterActive(appState->textPrinter) == 0) {
-        Window_EraseMessageBox(&appState->unk_109C, 0);
+        Window_EraseMessageBox(&appState->confirmationWindow, 0);
         appState->currentScreenInstruction = appState->nextScreenInstruction;
     }
 
@@ -1001,7 +1001,7 @@ static void ov94_02240D58(GTSApplicationState *appState, int param1, int param2,
     if (param5 == 0) {
         v0 = &appState->bottomInstructionWindow;
     } else {
-        v0 = &appState->unk_109C;
+        v0 = &appState->confirmationWindow;
     }
 
     Window_FillTilemap(v0, 0xf0f);
