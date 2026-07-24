@@ -25,8 +25,8 @@
 #include "heap.h"
 #include "item_use_pokemon.h"
 #include "party.h"
+#include "scrcmd_battle_hall.h"
 #include "unk_02049D08.h"
-#include "unk_0204FA34.h"
 #include "unk_0209BA80.h"
 #include "wifi_battle_tower_save.h"
 
@@ -229,7 +229,7 @@ BOOL FrontierScrCmd_B2(FrontierScriptContext *param0)
         *v9 = v4->unk_76[v7];
         break;
     case 6:
-        sub_0204FA50(fieldData->saveData, BattleHallStreakFlags_Get(fieldData->saveData), 3);
+        BattleHall_ClearActiveStreak(fieldData->saveData, BattleHallStreakFlags_Get(fieldData->saveData), 3);
         break;
     case 7:
         v4->unk_A0 = v7;

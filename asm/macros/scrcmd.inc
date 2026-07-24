@@ -4268,11 +4268,11 @@
     .short \species
     .endm
 
-    .macro ScrCmd_2CC arg0, arg1, arg2
-    .short SCRCMD_2CC
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro CallBattleHallLobbyFunction action, arg, result
+    .short SCRCMD_CALLBATTLEHALLLOBBYFUNCTION
+    .short \action
+    .short \arg
+    .short \result
     .endm
 
     .macro ScrCmd_2CD
@@ -4295,9 +4295,9 @@
     .short \slot2
     .endm
 
-    .macro ScrCmd_2D1 arg0
-    .short SCRCMD_2D1
-    .short \arg0
+    .macro DeleteActiveBattleHallStreak challengeType
+    .short SCRCMD_DELETEACTIVEBATTLEHALLSTREAK
+    .short \challengeType
     .endm
 
     .macro ScrCmd_2D2 arg0, arg1, arg2
@@ -4815,9 +4815,9 @@
     .short \movementType
     .endm
 
-    .macro ScrCmd_32A arg0
-    .short SCRCMD_32A
-    .short \arg0
+    .macro CheckIfBattleHallStreakIs50 result
+    .short SCRCMD_CHECKIFBATTLEHALLSTREAKIS50
+    .short \result
     .endm
 
     .macro CheckPartyHasFatefulEncounterRegigigas destVar
