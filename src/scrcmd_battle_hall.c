@@ -4,12 +4,14 @@
 #include <string.h>
 
 #include "constants/battle_frontier.h"
+#include "constants/battle_hall_functions.h"
 #include "generated/game_records.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
+#include "global/utility.h"
 
 #include "bag.h"
 #include "battle_frontier_save.h"
@@ -32,12 +34,20 @@
 #include "script_manager.h"
 #include "string_template.h"
 #include "unk_0202D778.h"
-#include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
 #include "unk_02099500.h"
 #include "wifi_battle_tower_save.h"
 
 #include "constdata/const_020F410C.h"
+
+typedef struct BattleHallSameSpeciesCheck {
+    u8 taskState;
+    u8 receivedMessages;
+    u16 unused;
+    u16 species;
+    u16 partnersSpecies;
+    u16 *speciesAreDifferent;
+} BattleHallSameSpeciesCheck;
 
 typedef struct BattleHallTaskEnv {
     int subTask;
@@ -57,8 +67,8 @@ enum BattleHallSelectionSubTask {
 
 static BOOL CheckPartyIsBattleHallEligible(u16 numPokemonNeeded, SaveData *saveData);
 
-static void CheckPartnerUsesDifferentSpecies(FieldTask *param0, u16 param1, u16 *param2);
-static BOOL CheckPartnerUsesDifferentSpeciesTask(FieldTask *param0);
+static void CheckPartnerUsesDifferentSpecies(FieldTask *task, u16 species, u16 *speciesAreDifferent);
+static BOOL CheckPartnerUsesDifferentSpeciesTask(FieldTask *task);
 
 static void SelectBattleHallChallengers(FieldTask *task, void **partySelect, u8 challengeType);
 static BOOL BattleHallSelectChallengersTask(FieldTask *task);
@@ -67,7 +77,7 @@ static int SubTaskProcessPartyMenu(BattleHallTaskEnv *taskEnv, FieldSystem *fiel
 static int SubTask_SetupMonSummary(BattleHallTaskEnv *taskEnv, FieldSystem *fieldSystem, enum HeapID heapID);
 static int SubTask_ProcessMonSummary(BattleHallTaskEnv *taskEnv, FieldSystem *fieldSystem);
 
-BOOL ScrCmd_2CC(ScriptContext *ctx)
+BOOL ScrCmd_CallBattleHallLobbyFunction(ScriptContext *ctx)
 {
     u8 challengeType;
 
@@ -75,29 +85,29 @@ BOOL ScrCmd_2CC(ScriptContext *ctx)
     u16 arg = ScriptContext_GetVar(ctx);
     u16 *result = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    BattleHallSave *v10 = BattleHallSave_Get(ctx->fieldSystem->saveData);
-    BattleHallStreakFlags *v11 = BattleHallStreakFlags_Get(ctx->fieldSystem->saveData);
+    UNUSED(BattleHallSave_Get(ctx->fieldSystem->saveData));
+    BattleHallStreakFlags *streakFlags = BattleHallStreakFlags_Get(ctx->fieldSystem->saveData);
     void **partySelect = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
     switch (action) {
-    case 0:
+    case BH_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE:
         *result = CheckPartyIsBattleHallEligible(arg, ctx->fieldSystem->saveData);
         break;
-    case 1:
-        if (arg == 3) {
-            *result = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData), 106);
+    case BH_LOBBY_FUNC_CHECK_STREAK_ACTIVE:
+        if (arg == FRONTIER_CHALLENGE_MULTI_WFC) {
+            *result = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData), STAT_HALL_WFC_STREAK_ACTIVE);
         } else {
-            *result = BattleHallStreakFlags_GetFlag(v11, 5, arg, 0, NULL);
+            *result = BattleHallStreakFlags_GetFlag(streakFlags, HALL_SAVE_STREAK_FLAGS, arg, 0, NULL);
         }
         break;
-    case 2:
+    case BH_LOBBY_FUNC_GET_CURRENT_STREAK_SPECIES:
         *result = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
             BattleFrontierStats_GetHallLatestSpeciesIndex(arg));
         break;
-    case 3:
-        sub_0204FA50(ctx->fieldSystem->saveData, v11, arg);
+    case BH_LOBBY_FUNC_DELETE_ACTIVE_STREAK:
+        BattleHall_ClearActiveStreak(ctx->fieldSystem->saveData, streakFlags, arg);
         break;
-    case 4:
+    case BH_LOBBY_FUNC_SELECT_POKEMON:
         if (arg == 0) {
             challengeType = FRONTIER_CHALLENGE_SINGLE;
         } else if (arg == 1) {
@@ -178,12 +188,12 @@ static BOOL CheckPartyIsBattleHallEligible(u16 numPokemonNeeded, SaveData *saveD
     return TRUE;
 }
 
-BOOL ScrCmd_2D1(ScriptContext *ctx)
+BOOL ScrCmd_DeleteActiveBattleHallStreak(ScriptContext *ctx)
 {
     u16 challengeType = ScriptContext_GetVar(ctx);
-    BattleHallStreakFlags *v0 = BattleHallStreakFlags_Get(ctx->fieldSystem->saveData);
+    BattleHallStreakFlags *streakFlags = BattleHallStreakFlags_Get(ctx->fieldSystem->saveData);
 
-    sub_0204FA50(ctx->fieldSystem->saveData, v0, challengeType);
+    BattleHall_ClearActiveStreak(ctx->fieldSystem->saveData, streakFlags, challengeType);
     return FALSE;
 }
 
@@ -260,7 +270,7 @@ static BOOL BattleHallSelectChallengersTask(FieldTask *task)
 
     switch (taskEnv->subTask) {
     case SUBTASK_OPEN_PARTY_MENU:
-        taskEnv->subTask = SubTask_SetupPartyMenu(taskEnv, fieldSystem, 11);
+        taskEnv->subTask = SubTask_SetupPartyMenu(taskEnv, fieldSystem, HEAP_ID_FIELD2);
         break;
     case SUBTASK_PROCESS_PARTY_MENU:
         taskEnv->subTask = SubTaskProcessPartyMenu(taskEnv, fieldSystem);
@@ -396,12 +406,10 @@ static int SubTask_ProcessMonSummary(BattleHallTaskEnv *taskEnv, FieldSystem *fi
     return SUBTASK_OPEN_PARTY_MENU;
 }
 
-typedef struct BattleHallMilestone {
+static const struct {
     u32 record;
     u32 bp;
-} BattleHallMilestone;
-
-static const BattleHallMilestone sBattleHallRecordMilestones[] = {
+} sBattleHallRecordMilestones[] = {
     { 10, 1 },
     { 30, 3 },
     { 50, 5 },
@@ -605,22 +613,50 @@ BOOL ScrCmd_GetBattleHallTotalSinglesRecord(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_32A(ScriptContext *ctx)
+BOOL ScrCmd_CheckIfBattleHallStreakIs50(ScriptContext *ctx)
 {
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    u16 *result = ScriptContext_GetVarPointer(ctx);
 
-    u16 v0 = BattleFrontierSave_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
-        BattleFrontierStats_GetHallLatestSpeciesIndex(0),
+    UNUSED(BattleFrontierSave_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+        BattleFrontierStats_GetHallLatestSpeciesIndex(FRONTIER_CHALLENGE_SINGLE),
+        0xff));
+
+    u16 streak = BattleFrontierSave_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
+        BattleFrontierStats_GetHallLatestStreakIndex(FRONTIER_CHALLENGE_SINGLE),
         0xff);
 
-    u16 v1 = BattleFrontierSave_GetStat(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData),
-        BattleFrontierStats_GetHallLatestStreakIndex(0),
-        0xff);
-
-    *v2 = 0;
-    if (v1 == 50) {
-        *v2 = 1;
+    *result = FALSE;
+    if (streak == HALL_STREAK_SILVER_BATTLE) {
+        *result = TRUE;
     }
 
     return FALSE;
+}
+
+void BattleHall_ProcessSelectedSpeciesMsg(int netID, int unused, void *data, void *context)
+{
+    BattleHallSameSpeciesCheck *myData = context;
+    const BattleHallSameSpeciesCheck *partnersData = data;
+
+    myData->receivedMessages++;
+
+    if (CommSys_CurNetId() == netID) {
+        return;
+    }
+
+    myData->partnersSpecies = partnersData->species;
+}
+
+void BattleHall_ClearActiveStreak(SaveData *saveData, BattleHallStreakFlags *streakFlags, u8 challengeType)
+{
+    u8 value[4];
+
+    value[0] = 0;
+    BattleHallStreakFlags_SetFlag(streakFlags, HALL_SAVE_STREAK_FLAGS, challengeType, 0, value);
+
+    if (challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
+        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_HALL_WFC_STREAK_ACTIVE, 0);
+    }
+
+    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetHallLatestStreakIndex(challengeType), 0);
 }
