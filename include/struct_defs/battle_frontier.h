@@ -9,7 +9,7 @@
 #include "struct_defs/struct_020305B8.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
-#include "unk_0202FF4C.h"
+#include "battle_factory_save.h"
 #include "battle_castle_save.h"
 #include "battle_hall_save.h"
 #include "wifi_list.h"
@@ -23,7 +23,7 @@ typedef struct BattleFrontierSave {
     BattleFrontierStats stats;
     union {
         WifiBattleTowerSave wifiBattleTowerSave;
-        UnkStruct_0202FF58 unk_8E0_val2;
+        BattleFactorySave factorySave;
         BattleHallSave hallSave;
         BattleCastleSave castleSave;
         UnkStruct_020304A0 unk_8E0_val5;

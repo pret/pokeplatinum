@@ -33,7 +33,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202FF4C.h"
+#include "battle_factory_save.h"
 #include "unk_02030494.h"
 #include "wifi_battle_tower_save.h"
 

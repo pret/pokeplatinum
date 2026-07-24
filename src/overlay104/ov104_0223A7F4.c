@@ -421,7 +421,7 @@ static u32 BattleFactory_GetBattleType(u8 challengeType)
 
 u8 BattleFactory_GetPokemonLevel(BattleFactory *battleFactory)
 {
-    if (battleFactory->unk_05 == 0) {
+    if (battleFactory->isOpenLevel == 0) {
         return 50;
     }
 

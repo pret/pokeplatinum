@@ -9,7 +9,7 @@
 #include "battle_frontier_stats.h"
 #include "field_script_context.h"
 #include "inlines.h"
-#include "unk_0202FF4C.h"
+#include "battle_factory_save.h"
 
 BOOL ScrCmd_2C5(ScriptContext *param0);
 
