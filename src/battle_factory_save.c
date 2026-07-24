@@ -100,17 +100,13 @@ void BattleFactoryStreakFlags_Init(BattleFactoryStreakFlags *flags)
 void BattleFactoryStreakFlags_SetFlag(BattleFactoryStreakFlags *flags, u8 field, u8 challengeType, u8 *value)
 {
     u8 *value_dupe = (u8 *)value;
-    switch (field) {
-    case FACTORY_SAVE_STREAK_FLAGS:
+    if (field == FACTORY_SAVE_STREAK_FLAGS) {
         if (*value_dupe >= 1) {
             flags->streakActiveFlags |= (1 << challengeType);
         } else {
             flags->streakActiveFlags &= (0xff ^ (1 << challengeType));
         }
-        break;
     }
-
-    return;
 }
 
 u32 BattleFactoryStreakFlags_GetFlag(BattleFactoryStreakFlags *flags, u8 field, u8 challengeType, void *unused)
