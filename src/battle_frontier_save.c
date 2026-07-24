@@ -5,9 +5,9 @@
 #include "struct_defs/battle_frontier.h"
 
 #include "battle_castle_save.h"
+#include "battle_factory_save.h"
 #include "battle_hall_save.h"
 #include "savedata.h"
-#include "unk_0202FF4C.h"
 #include "unk_02030494.h"
 #include "wifi_battle_tower_save.h"
 #include "wifi_list.h"
@@ -24,7 +24,7 @@ void BattleFrontier_Init(BattleFrontierSave *frontier)
     WifiBattleTowerRecord_Init(&frontier->unk_950.wifiBattleTowerRecord);
     FrontierEasyChatMessages_Init(&frontier->unk_950.easyChatMessages);
     WifiBattleTowerDownloadData_Init(&frontier->unk_950.wifiBattleTowerDownloadData);
-    sub_020300A4(&frontier->unk_1614.unk_00);
+    BattleFactoryStreakFlags_Init(&frontier->factory.streakFlags);
     BattleHallStreakFlags_Init(&frontier->hall.streakFlags);
     BattleCastlePersistentSave_Init(&frontier->castle.persistentSave);
     sub_020305AC(&frontier->unk_1620.unk_00);

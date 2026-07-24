@@ -1,10 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLE_FACTORY_H
 #define POKEPLATINUM_STRUCT_BATTLE_FACTORY_H
 
-#include "struct_defs/struct_0202FF58.h"
-
 #include "overlay104/frontier_data_transfer.h"
 
+#include "battle_factory_save.h"
 #include "field_battle_data_transfer.h"
 #include "party.h"
 #include "savedata.h"
@@ -13,7 +12,7 @@
 typedef struct BattleFactory {
     int unk_00;
     u8 challengeType;
-    u8 unk_05;
+    u8 isOpenLevel;
     u8 unk_06;
     u8 unk_07;
     u16 unk_08;
@@ -39,7 +38,7 @@ typedef struct BattleFactory {
     Party *opponentsParty;
     u16 unk_4DC[6];
     u16 unk_4E8[6];
-    UnkStruct_0202FF58 *unk_4F4;
+    BattleFactorySave *factorySave;
     SaveData *saveData;
     FieldBattleDTO *dto;
     SysTask *unk_500;
