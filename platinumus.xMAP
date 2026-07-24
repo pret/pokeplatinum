@@ -9556,7 +9556,7 @@
                                        38](ScrCmd_ActivateRegiRuinsDot,func) found in global src_overlay005_ov5_021F6454.c.o
                                         39](sDotCoordinatesIronRuins,object) found in local src_overlay005_ov5_021F6454.c.o
                                        38](ScrCmd_CheckPartyHasFatefulEncounterRegigigas,func) found in local src_scrcmd.c.o
-                                       38](ScrCmd_32A,func) found in global src_scrcmd_battle_hall.c.o
+                                       38](ScrCmd_CheckIfBattleHallStreakIs50,func) found in global src_scrcmd_battle_hall.c.o
                                         39](SaveData_GetBattleFrontier,func) found in global src_battle_frontier_save.c.o
                                         39](BattleFrontierStats_GetHallLatestSpeciesIndex,func) found in global src_battle_frontier_stats.c.o
                                         39](BattleFrontierSave_GetStat,func) found in global src_battle_frontier_save.c.o
@@ -20294,7 +20294,7 @@
                                                                62](CommPacketSizeOf_Variable,func) found in global src_unk_02032798.c.o
                                                                62](sub_02050548,func) found in global src_unk_02050548.c.o
                                                                62](sub_0205001C,func) found in global src_unk_0205001C.c.o
-                                                               62](BattleHall_ProcessSelectedSpeciesMsg,func) found in global src_unk_0204FA34.c.o
+                                                               62](BattleHall_ProcessSelectedSpeciesMsg,func) found in global src_scrcmd_battle_hall.c.o
                                                                62](sub_02099508,func) found in local src_unk_02099500.c.o
                                                                62](sub_02099504,func) found in local src_unk_02099500.c.o
                                                                62](sub_0209954C,func) found in local src_unk_02099500.c.o
@@ -29010,7 +29010,7 @@
                                            42](JournalEntry_CreateEventSoldALot,func) found in global src_journal.c.o
                                            42](JournalEntry_CreateEventShoppedAtMart,func) found in global src_journal.c.o
                                            42](JournalEntry_CreateEventSoldALittle,func) found in global src_journal.c.o
-                                        39](BattleFrontierExchangeServiceCorners$28132,object) found in local src_scrcmd.c.o
+                                        39](BattleFrontierExchangeServiceCorners$28172,object) found in local src_scrcmd.c.o
                                        38](ScrCmd_CheckIsMiscSaveInit,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_SaveExtraData,func) found in local src_scrcmd.c.o
                                         39](SaveDataExtra_Init,func) found in global src_savedata.c.o
@@ -29034,9 +29034,9 @@
                                           41](sub_0204FF6C,func) found in local src_unk_0204FAB4.c.o
                                            42](visiblePages$20278,object) found in local src_unk_0204FAB4.c.o
                                           41](sub_0204FFF4,func) found in local src_unk_0204FAB4.c.o
-                                       38](ScrCmd_2D1,func) found in global src_scrcmd_battle_hall.c.o
+                                       38](ScrCmd_DeleteActiveBattleHallStreak,func) found in global src_scrcmd_battle_hall.c.o
                                         39](BattleHallStreakFlags_Get,func) found in global src_battle_hall_save.c.o
-                                        39](sub_0204FA50,func) found in global src_unk_0204FA34.c.o
+                                        39](BattleHall_ClearActiveStreak,func) found in global src_scrcmd_battle_hall.c.o
                                          40](BattleHallStreakFlags_SetFlag,func) found in global src_battle_hall_save.c.o
                                        38](ScrCmd_GetBattleHallSelectedSlots,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_CheckBattleHallPartnerUsesDifferentSpecies,func) found in global src_scrcmd_battle_hall.c.o
@@ -29045,7 +29045,7 @@
                                        38](ScrCmd_Unused_2CE,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_2CD,func) found in local src_scrcmd.c.o
                                         39](sub_020462C0,func) found in local src_scrcmd.c.o
-                                       38](ScrCmd_2CC,func) found in global src_scrcmd_battle_hall.c.o
+                                       38](ScrCmd_CallBattleHallLobbyFunction,func) found in global src_scrcmd_battle_hall.c.o
                                         39](BattleHallSave_Get,func) found in global src_battle_hall_save.c.o
                                         39](CheckPartyIsBattleHallEligible,func) found in local src_scrcmd_battle_hall.c.o
                                         39](BattleHallStreakFlags_GetFlag,func) found in global src_battle_hall_save.c.o
@@ -29054,7 +29054,7 @@
                                           41](SubTask_SetupPartyMenu,func) found in local src_scrcmd_battle_hall.c.o
                                           41](SubTaskProcessPartyMenu,func) found in local src_scrcmd_battle_hall.c.o
                                           41](SubTask_SetupMonSummary,func) found in local src_scrcmd_battle_hall.c.o
-                                           42](sMonSummaryPages$20372,object) found in local src_scrcmd_battle_hall.c.o
+                                           42](sMonSummaryPages$20371,object) found in local src_scrcmd_battle_hall.c.o
                                           41](SubTask_ProcessMonSummary,func) found in local src_scrcmd_battle_hall.c.o
                                        38](ScrCmd_CountRepeatedSpeciesInParty,func) found in global src_scrcmd_party.c.o
                                        38](ScrCmd_AdvanceEternaGymClock,func) found in local src_scrcmd.c.o
@@ -51564,11 +51564,11 @@
   0204F048 00000000 .text   $t	(src_scrcmd_dummy_23F_242.c.o)
   0204F04C 000000F0 .text   ScrCmd_2C5	(src_unk_0204F04C.c.o)
   0204F04C 00000000 .text   $t	(src_unk_0204F04C.c.o)
-  0204F13C 0000012C .text   ScrCmd_2CC	(src_scrcmd_battle_hall.c.o)
+  0204F13C 0000012C .text   ScrCmd_CallBattleHallLobbyFunction	(src_scrcmd_battle_hall.c.o)
   0204F13C 00000000 .text   $t	(src_scrcmd_battle_hall.c.o)
   0204F268 000000F6 .text   CheckPartyIsBattleHallEligible	(src_scrcmd_battle_hall.c.o)
   0204F268 00000000 .text   $t	(src_scrcmd_battle_hall.c.o)
-  0204F360 00000036 .text   ScrCmd_2D1	(src_scrcmd_battle_hall.c.o)
+  0204F360 00000036 .text   ScrCmd_DeleteActiveBattleHallStreak	(src_scrcmd_battle_hall.c.o)
   0204F360 00000000 .text   $t	(src_scrcmd_battle_hall.c.o)
   0204F398 00000036 .text   ScrCmd_CheckBattleHallPartnerUsesDifferentSpecies	(src_scrcmd_battle_hall.c.o)
   0204F398 00000000 .text   $t	(src_scrcmd_battle_hall.c.o)
@@ -51601,12 +51601,12 @@
   0204F950 00000000 .text   $t	(src_scrcmd_battle_hall.c.o)
   0204F950 00000084 .text   ScrCmd_GetBattleHallTotalSinglesRecord	(src_scrcmd_battle_hall.c.o)
   0204F9CC 00000000 .text   $d	(src_scrcmd_battle_hall.c.o)
-  0204F9D4 00000060 .text   ScrCmd_32A	(src_scrcmd_battle_hall.c.o)
+  0204F9D4 00000060 .text   ScrCmd_CheckIfBattleHallStreakIs50	(src_scrcmd_battle_hall.c.o)
   0204F9D4 00000000 .text   $t	(src_scrcmd_battle_hall.c.o)
-  0204FA34 0000001C .text   BattleHall_ProcessSelectedSpeciesMsg	(src_unk_0204FA34.c.o)
-  0204FA34 00000000 .text   $t	(src_unk_0204FA34.c.o)
-  0204FA50 00000062 .text   sub_0204FA50	(src_unk_0204FA34.c.o)
-  0204FA50 00000000 .text   $t	(src_unk_0204FA34.c.o)
+  0204FA34 0000001C .text   BattleHall_ProcessSelectedSpeciesMsg	(src_scrcmd_battle_hall.c.o)
+  0204FA34 00000000 .text   $t	(src_scrcmd_battle_hall.c.o)
+  0204FA50 00000062 .text   BattleHall_ClearActiveStreak	(src_scrcmd_battle_hall.c.o)
+  0204FA50 00000000 .text   $t	(src_scrcmd_battle_hall.c.o)
   0204FAB4 000000FE .text   ScrCmd_2D2	(src_unk_0204FAB4.c.o)
   0204FAB4 00000000 .text   $t	(src_unk_0204FAB4.c.o)
   0204FBB4 00000036 .text   ScrCmd_2D5	(src_unk_0204FAB4.c.o)
@@ -66574,10 +66574,10 @@
   020EAB8C 0000000A .rodata sBattlegroundStatTrainers	(src_scrcmd.c.o)
   020EAB96 00000010 .rodata sBattlegroundGymLeaders	(src_scrcmd.c.o)
   020EABA6 00000012 .rodata sConditionTable	(src_scrcmd.c.o)
-  020EABB8 00000020 .rodata BattleFrontierRightExchangeServiceCorner$28130	(src_scrcmd.c.o)
-  020EABD8 00000024 .rodata unused$27812	(src_scrcmd.c.o)
-  020EABFC 00000024 .rodata pillarRooms$27825	(src_scrcmd.c.o)
-  020EAC20 00000036 .rodata BattleFrontierLeftExchangeServiceCorner$28131	(src_scrcmd.c.o)
+  020EABB8 00000020 .rodata BattleFrontierRightExchangeServiceCorner$28170	(src_scrcmd.c.o)
+  020EABD8 00000024 .rodata unused$27852	(src_scrcmd.c.o)
+  020EABFC 00000024 .rodata pillarRooms$27865	(src_scrcmd.c.o)
+  020EAC20 00000036 .rodata BattleFrontierLeftExchangeServiceCorner$28171	(src_scrcmd.c.o)
   020EAC58 00000D20 .rodata gFieldScriptCommands	(src_scrcmd.c.o)
   020EB978 00000006 .rodata JubilifeMartSpecialties	(src_scrcmd_shop.c.o)
   020EB978 00000000 .rodata .rodata	(src_scrcmd_shop.c.o)
@@ -66634,7 +66634,7 @@
   020EC018 00000000 .rodata .rodata	(src_scrcmd_game_corner_prize.c.o)
   020EC018 0000004C .rodata sGameCornerPrizeData$17214	(src_scrcmd_game_corner_prize.c.o)
   020EC064 00000008 .rodata sBadgeIDs	(src_scrcmd_system_flags.c.o)
-  020EC06C 00000009 .rodata sMonSummaryPages$20372	(src_scrcmd_battle_hall.c.o)
+  020EC06C 00000009 .rodata sMonSummaryPages$20371	(src_scrcmd_battle_hall.c.o)
   020EC078 00000000 .rodata .rodata	(src_scrcmd_battle_hall.c.o)
   020EC078 00000178 .rodata sBattleHallRecordMilestones	(src_scrcmd_battle_hall.c.o)
   020EC1F0 00000009 .rodata visiblePages$20278	(src_unk_0204FAB4.c.o)
@@ -67918,7 +67918,7 @@
   02100AD4 0000000C .data   sFloaromaMeadowHiddenItemFlags	(src_script_manager.c.o)
   02100AE0 00000010 .data   sIronIslandHiddenItemFlags	(src_script_manager.c.o)
   02100AF0 00000000 .data   .data	(src_scrcmd.c.o)
-  02100AF0 00000008 .data   BattleFrontierExchangeServiceCorners$28132	(src_scrcmd.c.o)
+  02100AF0 00000008 .data   BattleFrontierExchangeServiceCorners$28172	(src_scrcmd.c.o)
   02100AF8 00000000 .data   .data	(src_scrcmd_shop.c.o)
   02100AF8 00000008 .data   VeilstoneDeptStoreDecorationStocks	(src_scrcmd_shop.c.o)
   02100B00 0000001C .data   SunyshoreMarketDailyStocks	(src_scrcmd_shop.c.o)
