@@ -74,7 +74,7 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
 
     appState->tradeAnimationConfig.options = appState->playerData->options;
     appState->appMan = ApplicationManager_New(&sTradeSequenceConfig, &appState->tradeAnimationConfig, HEAP_ID_62);
-    appState->hasTradedPokemon = TRUE;
+    appState->appManActive = TRUE;
 
     return GTS_LOOP_STATE_WAIT_FADE;
 }
@@ -162,7 +162,7 @@ static TrainerInfo *GTSPokemonListing_GetTrainerInfo(GTSPokemonListing *listing)
     TrainerInfo *trainerInfo = TrainerInfo_New(HEAP_ID_62);
 
     TrainerInfo_Init(trainerInfo);
-    TrainerInfo_SetName(trainerInfo, listing->unk_10C);
+    TrainerInfo_SetName(trainerInfo, listing->trainerNames);
     TrainerInfo_SetGameCode(trainerInfo, listing->unk_122);
     TrainerInfo_SetLanguage(trainerInfo, listing->trainerLanguage);
 

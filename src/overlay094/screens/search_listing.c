@@ -31,162 +31,153 @@
 
 #include "res/text/bank/gts.h"
 
-static void ov94_0223DD1C(BgConfig *bgConfig);
-static void ov94_0223DDE0(BgConfig *bgConfig);
-static void ov94_0223DE04(GTSApplicationState *appState);
-static void ov94_0223DED8(GTSApplicationState *appState);
-static void ov94_0223DFA4(GTSApplicationState *appState);
-static void ov94_0223DFDC(GTSApplicationState *appState);
-static void ov94_0223E074(GTSApplicationState *appState);
-static void ov94_0223DE7C(GTSApplicationState *appState);
-static void ov94_0223DEC8(GTSApplicationState *appState);
-static int ov94_0223E09C(GTSApplicationState *appState);
-static int ov94_0223E0A4(GTSApplicationState *appState);
-static int ov94_0223E188(GTSApplicationState *appState);
-static int ov94_0223E2E0(GTSApplicationState *appState);
-static int ov94_0223E1B0(GTSApplicationState *appState);
-static int ov94_0223E1D0(GTSApplicationState *appState);
-static int ov94_0223E2D0(GTSApplicationState *appState);
-static void ov94_0223E240(GTSApplicationState *appState);
-static void ov94_0223E358(MessageLoader *messageLoader, Window windows[]);
-static void ov94_0223E300(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4);
-static void ov94_0223E3B0(Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSPokemonRequirements *requirements);
-static void ov94_0223E424(Window *window, String *countryString, String *cityString);
+static void GTSSearchListing_InitBgLayers(BgConfig *bgConfig);
+static void GTSSearchListing_FreeBgLayers(BgConfig *bgConfig);
+static void GTSSearchListing_InitGraphics(GTSApplicationState *appState);
+static void GTSSearchListing_InitWindows(GTSApplicationState *appState);
+static void GTSSearchListing_RemoveWindows(GTSApplicationState *appState);
+static void GTSSearchListing_InitStrings(GTSApplicationState *appState);
+static void GTSSearchListing_FreeStrings(GTSApplicationState *appState);
+static void GTSSearchListing_InitSprites(GTSApplicationState *appState);
+static void GTSSearchListing_FreeSprites(GTSApplicationState *appState);
+static int GTSSearchListing_WaitFadeIn(GTSApplicationState *appState);
+static int GTSSearchListing_HandleInput(GTSApplicationState *appState);
+static int GTSSearchListing_FadeAndExit(GTSApplicationState *appState);
+static int GTSSearchListing_WaitForText(GTSApplicationState *appState);
+static int GTSSearchListing_ShowConfirmationMenu(GTSApplicationState *appState);
+static int GTSSearchListing_HandleConfirmationMenu(GTSApplicationState *appState);
+static int GTSSearchListing_UpdateInfoPanel(GTSApplicationState *appState);
+static void GTSSearchListing_RefreshInfoPanel(GTSApplicationState *appState);
+static void GTSSearchListing_DrawTabHeaders(MessageLoader *messageLoader, Window windows[]);
+static void GTSSearchListing_ShowMessage(GTSApplicationState *appState, int messageId, int textSpeed, int unused1, u16 unused2);
+static void GTSSearchListing_DrawRequirementsInfo(Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSPokemonRequirements *requirements);
+static void GTSSearchListing_DrawTrainerLocationText(Window *window, String *countryString, String *cityString);
 
-static int (*sGTSListingSummaryScreenStates[])(GTSApplicationState *wk) = {
-    ov94_0223E09C,
-    ov94_0223E0A4,
-    ov94_0223E188,
-    ov94_0223E2E0,
-    ov94_0223E1B0,
-    ov94_0223E1D0,
-    ov94_0223E2D0
+static int (*sGTSSearchListingStateHandlers[])(GTSApplicationState *appState) = {
+    [GTS_SEARCHLISTING_IDLE] = GTSSearchListing_WaitFadeIn,
+    [GTS_SEARCHLISTING_HANDLE_INPUT] = GTSSearchListing_HandleInput,
+    [GTS_SEARCHLISTING_FADE_AND_EXIT] = GTSSearchListing_FadeAndExit,
+    [GTS_SEARCHLISTING_WAIT_FOR_TEXT] = GTSSearchListing_WaitForText,
+    [GTS_SEARCHLISTING_SHOW_CONFIRMATION_MENU] = GTSSearchListing_ShowConfirmationMenu,
+    [GTS_SEARCHLISTING_HANDLE_CONFIRMATION_MENU] = GTSSearchListing_HandleConfirmationMenu,
+    [GTS_SEARCHLISTING_HANDLE_UPDATE_INFO_PANEL] = GTSSearchListing_UpdateInfoPanel
 };
 
-int GTSApplication_SearchListing_Init(GTSApplicationState *appState, int unused1)
+int GTSApplication_SearchListing_Init(GTSApplicationState *appState, int unused)
 {
-
-    ov94_0223DFDC(appState);
-    ov94_0223DD1C(appState->bgConfig);
-    ov94_0223DE04(appState);
-    ov94_0223DED8(appState);
-    ov94_0223DE7C(appState);
-    GTS_DrawOfferedPokemonInfo(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes), &appState->searchResults[appState->selectedSearchResult].unk_EC);
+    GTSSearchListing_InitStrings(appState);
+    GTSSearchListing_InitBgLayers(appState->bgConfig);
+    GTSSearchListing_InitGraphics(appState);
+    GTSSearchListing_InitWindows(appState);
+    GTSSearchListing_InitSprites(appState);
+    GTS_DrawOfferedPokemonInfo(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->infoWindows[0], Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes), &appState->searchResults[appState->selectedSearchResult].criteria);
 
     Pokemon *mon = (Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes;
 
-    GTS_DrawTrainerInfo(appState->gtsMessageLoader, &appState->unk_FCC[5], appState->searchResults[appState->selectedSearchResult].unk_10C, mon, &appState->unk_FCC[10]);
+    GTS_DrawTrainerInfo(appState->gtsMessageLoader, &appState->infoWindows[5], appState->searchResults[appState->selectedSearchResult].trainerNames, mon, &appState->infoWindows[10]);
     GTS_LoadListingPokemonSprite((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
-    ov94_0223E358(appState->gtsMessageLoader, &appState->unk_FCC[7]);
-    ov94_0223E240(appState);
+    GTSSearchListing_DrawTabHeaders(appState->gtsMessageLoader, &appState->infoWindows[7]);
+    GTSSearchListing_RefreshInfoPanel(appState);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
 
-    appState->currentScreenInstruction = 0;
+    appState->currentScreenInstruction = GTS_SEARCHLISTING_IDLE;
     return GTS_LOOP_STATE_WAIT_FADE;
 }
 
-int GTSApplication_SearchListing_Main(GTSApplicationState *appState, int unused1)
+int GTSApplication_SearchListing_Main(GTSApplicationState *appState, int unused)
 {
-    return (*sGTSListingSummaryScreenStates[appState->currentScreenInstruction])(appState);
+    return (*sGTSSearchListingStateHandlers[appState->currentScreenInstruction])(appState);
 }
 
-int GTSApplication_SearchListing_Exit(GTSApplicationState *appState, int unused1)
+int GTSApplication_SearchListing_Exit(GTSApplicationState *appState, int unused)
 {
-    ov94_0223DEC8(appState);
-    ov94_0223E074(appState);
-    ov94_0223DFA4(appState);
-    ov94_0223DDE0(appState->bgConfig);
+    GTSSearchListing_FreeSprites(appState);
+    GTSSearchListing_FreeStrings(appState);
+    GTSSearchListing_RemoveWindows(appState);
+    GTSSearchListing_FreeBgLayers(appState->bgConfig);
     GTSApplication_MoveToNextScreen(appState);
 
     return GTS_LOOP_STATE_INIT;
 }
 
-static void ov94_0223DD1C(BgConfig *bgConfig)
+static void GTSSearchListing_InitBgLayers(BgConfig *bgConfig)
 {
-    {
-        BgTemplate v0 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf800,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainWindowTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &v0, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &mainWindowTemplate, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
-    {
-        BgTemplate v1 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBgTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &v1, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &mainBgTemplate, 0);
 
-    {
-        BgTemplate v2 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate subWindowTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &v2, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &subWindowTemplate, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 
-    {
-        BgTemplate v3 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_256,
-            .screenBase = GX_BG_SCRBASE_0xe000,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate subBgTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &v3, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &subBgTemplate, 0);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
-    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, HEAP_ID_62);
 }
 
-static void ov94_0223DDE0(BgConfig *bgConfig)
+static void GTSSearchListing_FreeBgLayers(BgConfig *bgConfig)
 {
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
@@ -194,7 +185,7 @@ static void ov94_0223DDE0(BgConfig *bgConfig)
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void ov94_0223DE04(GTSApplicationState *appState)
+static void GTSSearchListing_InitGraphics(GTSApplicationState *appState)
 {
     BgConfig *bgConfig = appState->bgConfig;
 
@@ -205,7 +196,7 @@ static void ov94_0223DE04(GTSApplicationState *appState)
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 7, 0, 0, 16 * 3 * 2, HEAP_ID_62);
 }
 
-static void ov94_0223DE7C(GTSApplicationState *appState)
+static void GTSSearchListing_InitSprites(GTSApplicationState *appState)
 {
     AffineSpriteListTemplate template;
 
@@ -214,64 +205,60 @@ static void ov94_0223DE7C(GTSApplicationState *appState)
     template.position.x = FX32_ONE * 208;
     template.position.y = FX32_ONE * 58;
 
-    appState->unk_F30 = SpriteList_AddAffine(&template);
+    appState->listingCursorSprite = SpriteList_AddAffine(&template);
 
-    Sprite_SetAnimateFlag(appState->unk_F30, 1);
-    Sprite_SetAnim(appState->unk_F30, 37);
+    Sprite_SetAnimateFlag(appState->listingCursorSprite, 1);
+    Sprite_SetAnim(appState->listingCursorSprite, 37);
     NetworkIcon_Init();
 }
 
-static void ov94_0223DEC8(GTSApplicationState *appState)
+static void GTSSearchListing_FreeSprites(GTSApplicationState *appState)
 {
-    Sprite_Delete(appState->unk_F30);
+    Sprite_Delete(appState->listingCursorSprite);
 }
 
-static const int Unk_ov94_02245CC4[][4] = {
-    { 0x1, 0x2, 0xA, 0x2 },
-    { 0xC, 0x2, 0x8, 0x2 },
-    { 0xE, 0x4, 0x7, 0x2 },
-    { 0x1, 0x7, 0x6, 0x2 },
-    { 0x7, 0x7, 0xB, 0x2 },
-    { 0x2, 0xA, 0x9, 0x2 },
-    { 0xC, 0xA, 0x8, 0x2 },
-    { 0x3, 0xD, 0x9, 0x2 },
-    { 0x10, 0xD, 0xD, 0x2 },
-    { 0x2, 0xF, 0x1C, 0x5 },
-    { 0x1, 0x5, 0x5, 0x2 },
-    { 0x7, 0x5, 0x7, 0x2 }
+static const int sWindowLayouts[][4] = {
+    { 1, 2, 10, 2 },
+    { 12, 2, 8, 2 },
+    { 14, 4, 7, 2 },
+    { 1, 7, 6, 2 },
+    { 7, 7, 11, 2 },
+    { 2, 10, 9, 2 },
+    { 12, 10, 8, 2 },
+    { 3, 13, 9, 2 },
+    { 16, 13, 13, 2 },
+    { 2, 15, 28, 5 },
+    { 1, 5, 5, 2 },
+    { 7, 5, 7, 2 }
 };
 
-static void ov94_0223DED8(GTSApplicationState *appState)
+static void GTSSearchListing_InitWindows(GTSApplicationState *appState)
 {
     Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (1 + (18 + 12) + 9));
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
     Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 15, (5 * 2), 4, 13, ((1 + (18 + 12)) + 9) + 27 * 2);
 
-    {
-        int v1 = ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4);
+    int baseTile = ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4);
 
-        for (int i = 0; i < NELEMS(Unk_ov94_02245CC4); i++) {
-            Window_Add(appState->bgConfig, &appState->unk_FCC[i], 0, Unk_ov94_02245CC4[i][0], Unk_ov94_02245CC4[i][1], Unk_ov94_02245CC4[i][2], Unk_ov94_02245CC4[i][3], 13, v1);
-            Window_FillTilemap(&appState->unk_FCC[i], 0x0);
+    for (int i = 0; i < NELEMS(sWindowLayouts); i++) {
+        Window_Add(appState->bgConfig, &appState->infoWindows[i], 0, sWindowLayouts[i][0], sWindowLayouts[i][1], sWindowLayouts[i][2], sWindowLayouts[i][3], 13, baseTile);
+        Window_FillTilemap(&appState->infoWindows[i], 0x0);
 
-            v1 += Unk_ov94_02245CC4[i][2] * Unk_ov94_02245CC4[i][3];
-        }
+        baseTile += sWindowLayouts[i][2] * sWindowLayouts[i][3];
     }
 }
 
-static void ov94_0223DFA4(GTSApplicationState *appState)
+static void GTSSearchListing_RemoveWindows(GTSApplicationState *appState)
 {
     Window_Remove(&appState->bottomInstructionWindow);
     Window_Remove(&appState->menuButtonWindows[0]);
 
-    {
-        for (int i = 0; i < NELEMS(Unk_ov94_02245CC4); i++) {
-            Window_Remove(&appState->unk_FCC[i]);
-        }
+    for (int i = 0; i < NELEMS(sWindowLayouts); i++) {
+        Window_Remove(&appState->infoWindows[i]);
     }
 }
 
-static void ov94_0223DFDC(GTSApplicationState *appState)
+static void GTSSearchListing_InitStrings(GTSApplicationState *appState)
 {
     GTSPokemonListing *listing = &appState->searchResults[appState->selectedSearchResult];
 
@@ -287,53 +274,53 @@ static void ov94_0223DFDC(GTSApplicationState *appState)
         StringTemplate_SetCityName(appState->stringTemplate, 9, listing->trainerCountry, listing->trainerRegion);
     }
 
-    appState->unk_BB4[0] = MessageUtil_ExpandedString(appState->stringTemplate, appState->gtsMessageLoader, Text_Gts_Template_Country, HEAP_ID_62);
-    appState->unk_BB4[1] = MessageUtil_ExpandedString(appState->stringTemplate, appState->gtsMessageLoader, Text_Gts_Template_City, HEAP_ID_62);
+    appState->trainerLocationStrings[0] = MessageUtil_ExpandedString(appState->stringTemplate, appState->gtsMessageLoader, Text_Gts_Template_Country, HEAP_ID_62);
+    appState->trainerLocationStrings[1] = MessageUtil_ExpandedString(appState->stringTemplate, appState->gtsMessageLoader, Text_Gts_Template_City, HEAP_ID_62);
 }
 
-static void ov94_0223E074(GTSApplicationState *appState)
+static void GTSSearchListing_FreeStrings(GTSApplicationState *appState)
 {
-    String_Free(appState->unk_BB4[0]);
-    String_Free(appState->unk_BB4[1]);
+    String_Free(appState->trainerLocationStrings[0]);
+    String_Free(appState->trainerLocationStrings[1]);
     String_Free(appState->genericMessageBuffer);
 }
 
-static int ov94_0223E09C(GTSApplicationState *appState)
+static int GTSSearchListing_WaitFadeIn(GTSApplicationState *appState)
 {
-    appState->currentScreenInstruction = 1;
+    appState->currentScreenInstruction = GTS_SEARCHLISTING_HANDLE_INPUT;
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223E0A4(GTSApplicationState *appState)
+static int GTSSearchListing_HandleInput(GTSApplicationState *appState)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        ov94_0223E300(appState, Gts_Text_TradeForThisPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
-        GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 4);
+        GTSSearchListing_ShowMessage(appState, Gts_Text_TradeForThisPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
+        GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCHLISTING_WAIT_FOR_TEXT, GTS_SEARCHLISTING_SHOW_CONFIRMATION_MENU);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        appState->currentScreenInstruction = 2;
+        appState->currentScreenInstruction = GTS_SEARCHLISTING_FADE_AND_EXIT;
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        if (appState->unk_10E == 0) {
-            appState->unk_10E = 1;
-            appState->currentScreenInstruction = 6;
+        if (appState->selectedInfoTab == 0) {
+            appState->selectedInfoTab = 1;
+            appState->currentScreenInstruction = GTS_SEARCHLISTING_HANDLE_UPDATE_INFO_PANEL;
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        if (appState->unk_10E != 0) {
-            appState->unk_10E = 0;
-            appState->currentScreenInstruction = 6;
+        if (appState->selectedInfoTab != 0) {
+            appState->selectedInfoTab = 0;
+            appState->currentScreenInstruction = GTS_SEARCHLISTING_HANDLE_UPDATE_INFO_PANEL;
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     } else {
-        int newSelectedResult = GTSAvatar_GetTouchedSearchResult(appState->unk_118);
+        int newSelectedResult = GTSAvatar_GetTouchedSearchResult(appState->searchResultCount);
 
         if ((newSelectedResult != appState->selectedSearchResult) && (newSelectedResult >= 0)) {
             Sprite_SetAnim(appState->avatarSprites[newSelectedResult + 1], 16 + newSelectedResult * 4);
-            appState->currentScreenInstruction = 2;
+            appState->currentScreenInstruction = GTS_SEARCHLISTING_FADE_AND_EXIT;
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
             appState->selectedSearchResult = newSelectedResult;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -343,63 +330,63 @@ static int ov94_0223E0A4(GTSApplicationState *appState)
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223E188(GTSApplicationState *appState)
+static int GTSSearchListing_FadeAndExit(GTSApplicationState *appState)
 {
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
 
-    appState->currentScreenInstruction = 0;
+    appState->currentScreenInstruction = GTS_SEARCHLISTING_IDLE;
     return GTS_LOOP_STATE_FINISH;
 }
 
-static int ov94_0223E1B0(GTSApplicationState *appState)
+static int GTSSearchListing_ShowConfirmationMenu(GTSApplicationState *appState)
 {
     appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, (((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4 + 262 + 64 + 36);
-    appState->currentScreenInstruction = 5;
+    appState->currentScreenInstruction = GTS_SEARCHLISTING_HANDLE_CONFIRMATION_MENU;
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223E1D0(GTSApplicationState *appState)
+static int GTSSearchListing_HandleConfirmationMenu(GTSApplicationState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    int result = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
-            appState->currentScreenInstruction = 2;
+    if (result != MENU_NOTHING_CHOSEN) {
+        if (result == MENU_CANCEL) {
+            appState->currentScreenInstruction = GTS_SEARCHLISTING_FADE_AND_EXIT;
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
-            ov94_0223E358(appState->gtsMessageLoader, &appState->unk_FCC[7]);
-            ov94_0223E240(appState);
+            GTSSearchListing_DrawTabHeaders(appState->gtsMessageLoader, &appState->infoWindows[7]);
+            GTSSearchListing_RefreshInfoPanel(appState);
         } else {
-            appState->currentScreenInstruction = 2;
+            appState->currentScreenInstruction = GTS_SEARCHLISTING_FADE_AND_EXIT;
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_6);
-            ov94_0223E358(appState->gtsMessageLoader, &appState->unk_FCC[7]);
-            ov94_0223E240(appState);
+            GTSSearchListing_DrawTabHeaders(appState->gtsMessageLoader, &appState->infoWindows[7]);
+            GTSSearchListing_RefreshInfoPanel(appState);
         }
     }
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static void ov94_0223E240(GTSApplicationState *appState)
+static void GTSSearchListing_RefreshInfoPanel(GTSApplicationState *appState)
 {
-    if (appState->unk_10E == 0) {
+    if (appState->selectedInfoTab == 0) {
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 27, appState->bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
-        ov94_0223E3B0(&appState->unk_FCC[9], appState->gtsMessageLoader, appState->speciesMessageLoader, &appState->searchResults[appState->selectedSearchResult].unk_F0);
+        GTSSearchListing_DrawRequirementsInfo(&appState->infoWindows[9], appState->gtsMessageLoader, appState->speciesMessageLoader, &appState->searchResults[appState->selectedSearchResult].requirements);
     } else {
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 28, appState->bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
-        ov94_0223E424(&appState->unk_FCC[9], appState->unk_BB4[0], appState->unk_BB4[1]);
+        GTSSearchListing_DrawTrainerLocationText(&appState->infoWindows[9], appState->trainerLocationStrings[0], appState->trainerLocationStrings[1]);
     }
 }
 
-static int ov94_0223E2D0(GTSApplicationState *appState)
+static int GTSSearchListing_UpdateInfoPanel(GTSApplicationState *appState)
 {
-    ov94_0223E240(appState);
-    appState->currentScreenInstruction = 1;
+    GTSSearchListing_RefreshInfoPanel(appState);
+    appState->currentScreenInstruction = GTS_SEARCHLISTING_HANDLE_INPUT;
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223E2E0(GTSApplicationState *appState)
+static int GTSSearchListing_WaitForText(GTSApplicationState *appState)
 {
     if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
         appState->currentScreenInstruction = appState->nextScreenInstruction;
@@ -408,7 +395,7 @@ static int ov94_0223E2E0(GTSApplicationState *appState)
     return GTS_LOOP_STATE_MAIN;
 }
 
-static void ov94_0223E300(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4)
+static void GTSSearchListing_ShowMessage(GTSApplicationState *appState, int messageId, int textSpeed, int unused1, u16 unused2)
 {
     MessageLoader_GetString(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0xf0f);
@@ -417,7 +404,7 @@ static void ov94_0223E300(GTSApplicationState *appState, int messageId, int text
     appState->textPrinter = Text_AddPrinterWithParams(&appState->bottomInstructionWindow, FONT_MESSAGE, appState->genericMessageBuffer, 0, 0, textSpeed, NULL);
 }
 
-static void ov94_0223E358(MessageLoader *messageLoader, Window windows[])
+static void GTSSearchListing_DrawTabHeaders(MessageLoader *messageLoader, Window windows[])
 {
     String *wantedHeader = MessageLoader_GetNewString(messageLoader, Gts_Text_WantedPokemon);
     String *locationHeader = MessageLoader_GetNewString(messageLoader, Gts_Text_OTLocation);
@@ -429,7 +416,7 @@ static void ov94_0223E358(MessageLoader *messageLoader, Window windows[])
     String_Free(locationHeader);
 }
 
-static void ov94_0223E3B0(Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSPokemonRequirements *requirements)
+static void GTSSearchListing_DrawRequirementsInfo(Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSPokemonRequirements *requirements)
 {
     Window_FillTilemap(window, 0x0);
 
@@ -442,7 +429,7 @@ static void ov94_0223E3B0(Window *window, MessageLoader *gtsMessageLoader, Messa
 #endif
 }
 
-static void ov94_0223E424(Window *window, String *countryString, String *cityString)
+static void GTSSearchListing_DrawTrainerLocationText(Window *window, String *countryString, String *cityString)
 {
     Window_FillTilemap(window, 0x0);
 

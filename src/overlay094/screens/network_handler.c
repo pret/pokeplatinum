@@ -1362,7 +1362,7 @@ static void GTSNetworkHandler_LogTradeInJournal(JournalEntry *journalEntry, GTSP
     Pokemon *mon = (Pokemon *)listing->pokemon.bytes;
 
     Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
-    journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonGTS(listing->unk_10C, listing->unk_F6, nickname, Pokemon_GetGender(mon), 62);
+    journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonGTS(listing->trainerNames, listing->unk_F6, nickname, Pokemon_GetGender(mon), 62);
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 

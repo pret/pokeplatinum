@@ -27,7 +27,7 @@ u16 *GTS_LoadAlphabeticalPokedex(enum HeapID heapID, int unused, int *pokedexLen
 u8 *GTS_LoadNationalDexLookup(enum HeapID heapID);
 void GTS_FillListing(GTSPokemonListing *listing, GTSApplicationState *appState);
 ListMenu *GTS_CreateCharpadMenu(GTSApplicationState *appState, StringList **stringList, Window *window, MessageLoader *gtsMessageLoader);
-ListMenu *GTS_CreateSpeciesMenu(GTSApplicationState *appState, StringList **stringList, Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSApplicationState_sub3 *appSubState, Pokedex *pokedex);
+ListMenu *GTS_CreateSpeciesMenu(GTSApplicationState *appState, StringList **stringList, Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSSpeciesMenuState *appSubState, Pokedex *pokedex);
 ListMenu *GTS_CreateGenderMenu(StringList **stringList, Window *window, MessageLoader *gtsMessageLoader);
 ListMenu *GTS_CreateLevelMenu(StringList **stringList, Window *window, MessageLoader *gtsMessageLoader, BOOL isRange);
 void GTS_SetLevelRequirement(GTSPokemonRequirements *requirements, int levelIndex, BOOL isRange);

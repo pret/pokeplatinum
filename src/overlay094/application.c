@@ -160,7 +160,7 @@ BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState)
     case GTS_LOOP_STATE_INIT: // GTS_WFC_INIT_SCREEN
         *loopState = (*gtsApplicationScreens[appState->screenId][0])(appState, *loopState);
 
-        if (appState->hasTradedPokemon) {
+        if (appState->appManActive) {
             GTSApplication_CleanupGraphics(appState);
         }
         break;
@@ -174,12 +174,12 @@ BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState)
         break;
     case GTS_LOOP_STATE_FINISH:
         if (IsScreenFadeDone()) {
-            if (appState->hasTradedPokemon) { // pokemon received?
+            if (appState->appManActive) {
                 GTSApplication_InitRenderingSystem(appState);
                 GTSAvatar_Init(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
-                GTSAvatar_ShowSearchResults(appState, appState->unk_118, 0);
+                GTSAvatar_ShowSearchResults(appState, appState->searchResultCount, 0);
                 GTS_LoadSubScreenGraphics(appState);
-                appState->hasTradedPokemon = FALSE;
+                appState->appManActive = FALSE;
             }
             *loopState = (*gtsApplicationScreens[appState->screenId][2])(appState, *loopState);
         }
@@ -268,16 +268,16 @@ static void GTSApplication_InitPlayerData(GTSApplicationState *appState, Applica
     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
 
     appState->mainMenuSelectedOption = GTS_MAIN_MENU_OPTION_DEPOSIT;
-    appState->unk_B7A.species = SPECIES_NONE;
-    appState->unk_B7A.gender = 2 + 1;
-    appState->unk_B7A.level = 0;
-    appState->unk_B7A.level2 = 0;
-    appState->unk_B80.species = SPECIES_NONE;
+    appState->searchRequirements.species = SPECIES_NONE;
+    appState->searchRequirements.gender = 2 + 1;
+    appState->searchRequirements.level = 0;
+    appState->searchRequirements.level2 = 0;
+    appState->submittedRequirements.species = SPECIES_NONE;
     appState->hasAvatarFinishedMoving = FALSE;
     appState->selectedBoxId = MAX_PC_BOXES;
     appState->deferredBoxPokemonCount = 0;
     appState->deferredBoxId = 0;
-    appState->unk_10F2 = 0;
+    appState->searchResultsVisible = 0;
     appState->waitDial = NULL;
     appState->selectedCountryIndex = 0;
 }

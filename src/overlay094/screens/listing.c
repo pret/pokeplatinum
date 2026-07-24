@@ -77,12 +77,12 @@ int GTSApplication_Listing_Init(GTSApplicationState *appState, int unused)
     GTSListing_LoadGraphics(appState);
     GTSListing_InitWindows(appState);
     GTSListing_InitSprites(appState);
-    GTS_DrawOfferedPokemonInfo(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes), &appState->receivedListing.unk_EC);
+    GTS_DrawOfferedPokemonInfo(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->infoWindows[0], Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes), &appState->receivedListing.criteria);
 
     Pokemon *mon = (Pokemon *)appState->receivedListing.pokemon.bytes;
 
-    GTS_DrawTrainerInfo(appState->gtsMessageLoader, &appState->unk_FCC[5], appState->receivedListing.unk_10C, mon, &appState->unk_FCC[10]);
-    GTS_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[7], appState->receivedListing.unk_F0.species, appState->receivedListing.unk_F0.gender, GTS_FindLevelMessageIndex(appState->receivedListing.unk_F0.level, appState->receivedListing.unk_F0.level2, 0));
+    GTS_DrawTrainerInfo(appState->gtsMessageLoader, &appState->infoWindows[5], appState->receivedListing.trainerNames, mon, &appState->infoWindows[10]);
+    GTS_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->infoWindows[7], appState->receivedListing.requirements.species, appState->receivedListing.requirements.gender, GTS_FindLevelMessageIndex(appState->receivedListing.requirements.level, appState->receivedListing.requirements.level2, 0));
     GTS_LoadListingPokemonSprite((Pokemon *)appState->receivedListing.pokemon.bytes);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
@@ -235,16 +235,16 @@ static void GTSListing_InitSprites(GTSApplicationState *appState)
     template.position.x = FX32_ONE * 208;
     template.position.y = FX32_ONE * 58;
 
-    appState->unk_F30 = SpriteList_AddAffine(&template);
+    appState->listingCursorSprite = SpriteList_AddAffine(&template);
 
-    Sprite_SetAnimateFlag(appState->unk_F30, 1);
-    Sprite_SetAnim(appState->unk_F30, 37);
+    Sprite_SetAnimateFlag(appState->listingCursorSprite, 1);
+    Sprite_SetAnim(appState->listingCursorSprite, 37);
     NetworkIcon_Init();
 }
 
 static void GTSListing_FreeSprites(GTSApplicationState *appState)
 {
-    Sprite_Delete(appState->unk_F30);
+    Sprite_Delete(appState->listingCursorSprite);
 }
 
 static const int sWindowLayouts[][4] = {
@@ -273,8 +273,8 @@ static void GTSListing_InitWindows(GTSApplicationState *appState)
     baseTile = ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4);
 
     for (int i = 0; i < 10 + 2; i++) {
-        Window_Add(appState->bgConfig, &appState->unk_FCC[i], 0, sWindowLayouts[i][0], sWindowLayouts[i][1], sWindowLayouts[i][2], sWindowLayouts[i][3], 13, baseTile);
-        Window_FillTilemap(&appState->unk_FCC[i], 0x0);
+        Window_Add(appState->bgConfig, &appState->infoWindows[i], 0, sWindowLayouts[i][0], sWindowLayouts[i][1], sWindowLayouts[i][2], sWindowLayouts[i][3], 13, baseTile);
+        Window_FillTilemap(&appState->infoWindows[i], 0x0);
 
         baseTile += sWindowLayouts[i][2] * sWindowLayouts[i][3];
     }
@@ -286,7 +286,7 @@ static void GTSListing_RemoveWindows(GTSApplicationState *appState)
     Window_Remove(&appState->menuButtonWindows[0]);
 
     for (int i = 0; i < 10 + 2; i++) {
-        Window_Remove(&appState->unk_FCC[i]);
+        Window_Remove(&appState->infoWindows[i]);
     }
 }
 
@@ -296,14 +296,14 @@ static void GTSListing_AllocState(GTSApplicationState *appState)
     appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_MainMenu_Title);
 
     for (int i = 0; i < 10; i++) {
-        appState->unk_BB4[i] = String_Init(10 * 2, HEAP_ID_62);
+        appState->trainerLocationStrings[i] = String_Init(10 * 2, HEAP_ID_62);
     }
 }
 
 static void GTSListing_FreeState(GTSApplicationState *appState)
 {
     for (int i = 0; i < 10; i++) {
-        String_Free(appState->unk_BB4[i]);
+        String_Free(appState->trainerLocationStrings[i]);
     }
 
     String_Free(appState->genericMessageBuffer);
@@ -569,5 +569,5 @@ void GTS_LoadListingPokemonSprite(Pokemon *mon)
 
 static void GTSListing_DrawWantedCriteria(GTSApplicationState *appState)
 {
-    GTS_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[7], appState->receivedListing.unk_F0.species, appState->receivedListing.unk_F0.gender, GTS_FindLevelMessageIndex(appState->receivedListing.unk_F0.level, appState->receivedListing.unk_F0.level2, 0));
+    GTS_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->infoWindows[7], appState->receivedListing.requirements.species, appState->receivedListing.requirements.gender, GTS_FindLevelMessageIndex(appState->receivedListing.requirements.level, appState->receivedListing.requirements.level2, 0));
 }

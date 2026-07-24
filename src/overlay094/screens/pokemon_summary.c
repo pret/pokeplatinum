@@ -10,11 +10,13 @@
 #include "overlay094/screens/select_pokemon.h"
 
 #include "overlay_manager.h"
+#include "start_menu.h"
 #include "unk_0202D778.h"
 
 #include "constdata/const_020F410C.h"
 
-static const u8 sGTSPokemonSummaryPages[] = {
+// identical to gAllSummaryScreenPages in start_menu.c
+static const u8 sAllSummaryPages[] = {
     SUMMARY_PAGE_INFO,
     SUMMARY_PAGE_MEMO,
     SUMMARY_PAGE_SKILLS,
@@ -26,9 +28,9 @@ static const u8 sGTSPokemonSummaryPages[] = {
     SUMMARY_PAGE_MAX
 };
 
-int GTSApplication_PokemonSummary_Init(GTSApplicationState *appState, int unused1)
+int GTSApplication_PokemonSummary_Init(GTSApplicationState *appState, int unused)
 {
-    appState->pokemonSummary.monData = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+    appState->pokemonSummary.monData = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
     appState->pokemonSummary.dataType = SUMMARY_DATA_BOX_MON;
     appState->pokemonSummary.monMax = 1;
     appState->pokemonSummary.monIndex = 0;
@@ -39,16 +41,16 @@ int GTSApplication_PokemonSummary_Init(GTSApplicationState *appState, int unused
     appState->pokemonSummary.options = appState->playerData->options;
     appState->pokemonSummary.specialRibbons = SaveData_GetRibbons(appState->playerData->saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(&appState->pokemonSummary, sGTSPokemonSummaryPages);
+    PokemonSummaryScreen_FlagVisiblePages(&appState->pokemonSummary, sAllSummaryPages);
     PokemonSummaryScreen_SetPlayerProfile(&appState->pokemonSummary, appState->playerData->trainerInfo);
 
     appState->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &appState->pokemonSummary, HEAP_ID_62);
-    appState->hasTradedPokemon = TRUE;
+    appState->appManActive = TRUE;
 
     return GTS_LOOP_STATE_WAIT_FADE;
 }
 
-int GTSApplication_PokemonSummary_Main(GTSApplicationState *appState, int unused1)
+int GTSApplication_PokemonSummary_Main(GTSApplicationState *appState, int unused)
 {
     int loopState = GTS_LOOP_STATE_MAIN;
 
@@ -62,7 +64,7 @@ int GTSApplication_PokemonSummary_Main(GTSApplicationState *appState, int unused
     return loopState;
 }
 
-int GTSApplication_PokemonSummary_Exit(GTSApplicationState *appState, int unused1)
+int GTSApplication_PokemonSummary_Exit(GTSApplicationState *appState, int unused)
 {
     GTSApplication_MoveToNextScreen(appState);
     return GTS_LOOP_STATE_INIT;

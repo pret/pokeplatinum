@@ -550,7 +550,7 @@ static int ov94_022402BC(GTSApplicationState *appState)
                     switch (ov94_022412F4(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
                     case 1: // a pokemon exists
                         if (ov94_0224121C(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
-                            StringTemplate_SetNickname(appState->stringTemplate, 0, ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex));
+                            StringTemplate_SetNickname(appState->stringTemplate, 0, GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex));
                             ov94_02240D58(appState, pl_msg_00000671_00022, TEXT_SPEED_FAST, 0, 0xf0f, 0);
                             GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 7);
                         } else {
@@ -580,9 +580,9 @@ static int ov94_022402BC(GTSApplicationState *appState)
                 if (appState->partySlotIndex != 31) {
                     switch (ov94_022412F4(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
                     case 1: {
-                        BoxPokemon *v0 = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+                        BoxPokemon *v0 = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
 
-                        if (ov94_02241384(v0, &appState->searchResults[appState->selectedSearchResult].unk_F0)) {
+                        if (ov94_02241384(v0, &appState->searchResults[appState->selectedSearchResult].requirements)) {
                             if (ov94_0224121C(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
                                 StringTemplate_SetNickname(appState->stringTemplate, 0, v0);
                                 ov94_02240D58(appState, 18, TEXT_SPEED_FAST, 0, 0xf0f, 0);
@@ -710,7 +710,7 @@ static int ov94_02240688(GTSApplicationState *appState)
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
 
-        v0 = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+        v0 = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
 
         if (BoxPokemon_HasUnusedRibbons(v0)) {
             ov94_02240D58(appState, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
@@ -736,7 +736,7 @@ static int ov94_02240688(GTSApplicationState *appState)
             }
 
             if (v1 == 0) {
-                appState->unk_114 = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+                appState->unk_114 = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
                 appState->currentScreenInstruction = 2;
 
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_0);
@@ -802,7 +802,7 @@ static int ov94_022408E8(GTSApplicationState *appState)
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
 
-        boxMon = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+        boxMon = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
 
         if (BoxPokemon_HasUnusedRibbons(boxMon)) {
             ov94_02240D58(appState, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
@@ -927,14 +927,14 @@ static int ov94_02240BB0(GTSApplicationState *appState)
         }
     }
 
-    appState->unk_114 = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+    appState->unk_114 = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
     appState->currentScreenInstruction = 2;
     appState->fadeBothScreens = 1;
 
     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_9);
     ov94_022413BC(&appState->receivedListing, appState);
 
-    appState->unk_118 = 0;
+    appState->searchResultCount = 0;
 
     return 1;
 }
@@ -964,7 +964,7 @@ static int ov94_02240CA8(GTSApplicationState *appState)
             Window_EraseMessageBox(&appState->confirmationWindow, 0);
             appState->currentScreenInstruction = 1;
         } else {
-            appState->unk_114 = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+            appState->unk_114 = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
             appState->currentScreenInstruction = 2;
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_0);
         }
@@ -1175,7 +1175,7 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
     ov94_02245900(&appState->unk_F8C, appState->selectPokemonBoxName, 0, 5, 1, TEXT_COLOR(1, 2, 0));
 
     if (appState->screenArgument == SCREEN_ARGUMENT_6) {
-        GTSApplication_SelectPokemon_DarkenNonMatchingMons(appState->boxCriteria->criteria, appState->unk_E28, &appState->searchResults[appState->selectedSearchResult].unk_F0, icons);
+        GTSApplication_SelectPokemon_DarkenNonMatchingMons(appState->boxCriteria->criteria, appState->unk_E28, &appState->searchResults[appState->selectedSearchResult].requirements, icons);
     }
 
     appState->updateBoxPalettesFunc = ov94_02240E5C;
@@ -1186,7 +1186,7 @@ BOOL GTSApplication_IsBoxIDParty(int boxID)
     return boxID == MAX_PC_BOXES;
 }
 
-BoxPokemon *ov94_022411DC(Party *party, PCBoxes *pcBoxes, int boxID, int slot)
+BoxPokemon *GTSApplication_GetSelectedBoxMon(Party *party, PCBoxes *pcBoxes, int boxID, int slot)
 {
     if (GTSApplication_IsBoxIDParty(boxID)) {
         if (slot > (Party_GetCurrentCount(party) - 1)) {
@@ -1278,7 +1278,7 @@ static BOOL BoxPokemon_HeldItemNotInDP(BoxPokemon *boxMon)
 
 static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3)
 {
-    BoxPokemon *boxMon = ov94_022411DC(param0, pcBoxes, param2, param3);
+    BoxPokemon *boxMon = GTSApplication_GetSelectedBoxMon(param0, pcBoxes, param2, param3);
 
     if (boxMon == NULL) {
         return 0;
@@ -1347,7 +1347,7 @@ static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *appSta
     v0.gender = BoxPokemon_GetValue(appState->unk_114, MON_DATA_GENDER, NULL) + 1;
     v0.level = BoxPokemon_GetLevel(appState->unk_114);
 
-    param0->unk_EC = v0;
+    param0->criteria = v0;
 
     GTS_FillListing(param0, appState);
 
@@ -1358,7 +1358,7 @@ static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *appSta
     v1.level = 0;
     v1.level2 = 0;
 
-    param0->unk_F0 = v1;
+    param0->requirements = v1;
 }
 
 static void GTSApplication_SelectPokemon_DarkenNonMatchingMons(GTSPokemonCriteria *criteria, Sprite **param1, GTSPokemonRequirements *requirements, PokemonIcon *icons)

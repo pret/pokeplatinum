@@ -72,12 +72,12 @@ typedef struct GTSPokemonRequirements {
 
 typedef struct GTSPokemonListing {
     GTSPokemonListingMon pokemon;
-    GTSPokemonCriteria unk_EC;
-    GTSPokemonRequirements unk_F0;
+    GTSPokemonCriteria criteria;
+    GTSPokemonRequirements requirements;
     u8 unk_F6;
     u8 unused[17];
     s32 unk_108;
-    u16 unk_10C[8];
+    u16 trainerNames[8];
     u16 unk_11C;
     u8 trainerCountry;
     u8 trainerRegion;
@@ -97,21 +97,21 @@ typedef struct GTSBoxPokemonCriteria {
 } GTSBoxPokemonCriteria;
 
 typedef struct {
-    String **unk_00;
-    u16 unk_04; // cursor
-    u16 unk_06; // start pos
-    u16 unk_08;
-    u16 unk_0A;
-    int unk_0C;
-    int unk_10;
-    u8 *unk_14; // seen
-    u16 *unk_18; // species
-    int unk_1C;
-    int unk_20;
-    int unk_24;
-    int unk_28;
-    int unk_2C;
-} GTSApplicationState_sub3;
+    String **unused_00;
+    u16 charpadCursorPos;
+    u16 charpadScrollPos;
+    u16 speciesListCursorPos;
+    u16 speciesListScrollPos;
+    int unused_0C;
+    int unused_10;
+    u8 *dexSeenFlags;
+    u16 *alphabeticalSpecies;
+    int alphabeticalSpeciesCount;
+    int selectedSpeciesGenderRatio;
+    int requirementsActivePanel;
+    int leftPanelCursorPos;
+    int rightPanelCursorPos;
+} GTSSpeciesMenuState;
 
 typedef struct GTSApplicationState {
     GTSPlayerData *playerData;
@@ -142,15 +142,15 @@ typedef struct GTSApplicationState {
     PokemonSummary pokemonSummary;
     TradeAnimationTemplate tradeAnimationConfig;
     EvolutionData *evolutionData;
-    BOOL hasTradedPokemon;
-    u16 unk_108;
+    BOOL appManActive;
+    u16 listMenuCursorIndex;
     u16 unk_10A;
     u16 mainMenuSelectedOption;
-    u16 unk_10E;
+    u16 selectedInfoTab;
     u16 selectedBoxId;
     u16 partySlotIndex;
     BoxPokemon *unk_114;
-    int unk_118;
+    int searchResultCount;
     int selectedSearchResult;
     TrainerInfo *receivingPokemonTrainer;
     GTSTradedPokemonLocation tradedPokemonLocation;
@@ -159,9 +159,9 @@ typedef struct GTSApplicationState {
     GTSPokemonListing selectedListing;
     GTSPokemonCriteria unk_B70;
     GTSPokemonRequirements unk_B74;
-    GTSPokemonRequirements unk_B7A;
-    GTSPokemonRequirements unk_B80;
-    int unk_B88;
+    GTSPokemonRequirements searchRequirements;
+    GTSPokemonRequirements submittedRequirements;
+    int submittedCountryIndex;
     StringTemplate *stringTemplate;
     MessageLoader *gtsMessageLoader;
     MessageLoader *speciesMessageLoader;
@@ -172,7 +172,7 @@ typedef struct GTSApplicationState {
     String *unk_BA8;
     String *genericMessageBuffer;
     String *title;
-    String *unk_BB4[10];
+    String *trainerLocationStrings[10];
     String *shortErrorBuffer;
     int textPrinter;
     SpriteList *spriteList;
@@ -187,7 +187,7 @@ typedef struct GTSApplicationState {
     Sprite *unk_E28[30];
     Sprite *unk_EA0[30];
     Sprite *selectPokemonPartySprites[MAX_PARTY_SIZE];
-    Sprite *unk_F30;
+    Sprite *listingCursorSprite;
     Sprite *avatarSprites[8];
     Sprite *unk_F54[2];
     Window bottomInstructionWindow;
@@ -195,21 +195,21 @@ typedef struct GTSApplicationState {
     Window titleWindow;
     Window unk_F8C;
     Window menuButtonWindows[3];
-    Window unk_FCC[13];
+    Window infoWindows[13];
     Window confirmationWindow;
-    Window unk_10AC[2];
+    Window locationCriteriaWindows[2];
     StringList *unk_10CC;
     Menu *yesNoMenu;
     Menu *unk_10D4;
     ListMenu *unk_10D8;
     void *waitDial;
     int frameDelay;
-    GTSApplicationState_sub3 *unk_10E4;
+    GTSSpeciesMenuState *speciesMenuState;
     u16 duringSaveInstruction;
     u16 successfulSaveInstruction;
     SysTask *playerAvatarAnimationTask;
     u16 hasAvatarFinishedMoving;
-    u16 unk_10F2;
+    u16 searchResultsVisible;
     void *unk_10F4;
     NNSG2dCharacterData *unk_10F8;
     void *unk_10FC;

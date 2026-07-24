@@ -285,8 +285,8 @@ int GTSApplication_Deposit_Init(GTSApplicationState *appState, int unused)
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
 
     ov94_02245934(appState);
-    GTSDeposit_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], 0, 3, -1);
-    GTSDeposit_DrawOfferedPokemon(appState->gtsMessageLoader, appState->stringTemplate, &appState->unk_FCC[3], appState->unk_114, &appState->unk_B70);
+    GTSDeposit_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->infoWindows[0], 0, 3, -1);
+    GTSDeposit_DrawOfferedPokemon(appState->gtsMessageLoader, appState->stringTemplate, &appState->infoWindows[3], appState->unk_114, &appState->unk_B70);
 
     appState->currentScreenInstruction = 0;
 
@@ -450,16 +450,16 @@ static void GTSDeposit_InitWindows(GTSApplicationState *appState)
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
 
     for (int i = 0; i < 6; i++) {
-        Window_Add(appState->bgConfig, &appState->unk_FCC[i], 0, sCriteriaWindowPositions[i][0], sCriteriaWindowPositions[i][1], 11, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + (11 * 2) * i);
-        Window_FillTilemap(&appState->unk_FCC[i], 0x0);
-        Window_CopyToVRAM(&appState->unk_FCC[i]);
+        Window_Add(appState->bgConfig, &appState->infoWindows[i], 0, sCriteriaWindowPositions[i][0], sCriteriaWindowPositions[i][1], 11, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + (11 * 2) * i);
+        Window_FillTilemap(&appState->infoWindows[i], 0x0);
+        Window_CopyToVRAM(&appState->infoWindows[i]);
     }
 }
 
 static void GTSDeposit_RemoveWindows(GTSApplicationState *appState)
 {
     for (int i = 0; i < 6; i++) {
-        Window_Remove(&appState->unk_FCC[i]);
+        Window_Remove(&appState->infoWindows[i]);
     }
 
     Window_Remove(&appState->bottomInstructionWindow);
@@ -470,21 +470,21 @@ static void GTSDeposit_AllocState(GTSApplicationState *appState)
 {
     appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
     appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_DepositPokemon);
-    appState->unk_10E4 = Heap_Alloc(HEAP_ID_62, sizeof(GTSApplicationState_sub3));
+    appState->speciesMenuState = Heap_Alloc(HEAP_ID_62, sizeof(GTSSpeciesMenuState));
 
-    MI_CpuClearFast(appState->unk_10E4, sizeof(GTSApplicationState_sub3));
+    MI_CpuClearFast(appState->speciesMenuState, sizeof(GTSSpeciesMenuState));
 
-    appState->unk_10E4->unk_18 = GTS_LoadAlphabeticalPokedex(62, 0, &appState->unk_10E4->unk_1C);
-    appState->unk_10E4->unk_14 = GTS_LoadNationalDexLookup(62);
+    appState->speciesMenuState->alphabeticalSpecies = GTS_LoadAlphabeticalPokedex(62, 0, &appState->speciesMenuState->alphabeticalSpeciesCount);
+    appState->speciesMenuState->dexSeenFlags = GTS_LoadNationalDexLookup(62);
 
     GTS_InitTabScrollState(&appState->charpadScrollState);
 }
 
 static void GTSDeposit_FreeState(GTSApplicationState *appState)
 {
-    Heap_Free(appState->unk_10E4->unk_14);
-    Heap_Free(appState->unk_10E4->unk_18);
-    Heap_Free(appState->unk_10E4);
+    Heap_Free(appState->speciesMenuState->dexSeenFlags);
+    Heap_Free(appState->speciesMenuState->alphabeticalSpecies);
+    Heap_Free(appState->speciesMenuState);
     String_Free(appState->genericMessageBuffer);
     String_Free(appState->title);
 }
@@ -520,7 +520,7 @@ static int GTSDeposit_SetupCharpadWindows(GTSApplicationState *appState)
 static int GTSDeposit_ShowCharpadMenu(GTSApplicationState *appState)
 {
     appState->unk_10D8 = GTS_CreateCharpadMenu(appState, &appState->unk_10CC, &appState->menuButtonWindows[0], appState->gtsMessageLoader);
-    appState->unk_108 = 0xffff;
+    appState->listMenuCursorIndex = 0xffff;
     appState->currentScreenInstruction = 4;
 
     return GTS_LOOP_STATE_MAIN;
@@ -528,7 +528,7 @@ static int GTSDeposit_ShowCharpadMenu(GTSApplicationState *appState)
 
 static int GTSDeposit_HandleCharpadInput(GTSApplicationState *appState)
 {
-    switch (GTS_ProcessListMenuInput(appState->unk_10D8, &appState->unk_108)) {
+    switch (GTS_ProcessListMenuInput(appState->unk_10D8, &appState->listMenuCursorIndex)) {
     case 1:
     case 2:
     case 3:
@@ -538,13 +538,13 @@ static int GTSDeposit_HandleCharpadInput(GTSApplicationState *appState)
     case 7:
     case 8:
     case 9:
-        ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_06, &appState->unk_10E4->unk_04);
+        ListMenu_Free(appState->unk_10D8, &appState->speciesMenuState->charpadScrollPos, &appState->speciesMenuState->charpadCursorPos);
         StringList_Free(appState->unk_10CC);
         appState->currentScreenInstruction = 5;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     case MENU_CANCEL:
-        ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_06, &appState->unk_10E4->unk_04);
+        ListMenu_Free(appState->unk_10D8, &appState->speciesMenuState->charpadScrollPos, &appState->speciesMenuState->charpadCursorPos);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
@@ -561,8 +561,8 @@ static int GTSDeposit_HandleCharpadInput(GTSApplicationState *appState)
 
 static int GTSDeposit_ShowSpeciesMenu(GTSApplicationState *appState)
 {
-    appState->unk_10D8 = GTS_CreateSpeciesMenu(appState, &appState->unk_10CC, &appState->menuButtonWindows[1], appState->gtsMessageLoader, appState->speciesMessageLoader, appState->unk_10E4, appState->playerData->pokedex);
-    appState->unk_108 = 0xffff;
+    appState->unk_10D8 = GTS_CreateSpeciesMenu(appState, &appState->unk_10CC, &appState->menuButtonWindows[1], appState->gtsMessageLoader, appState->speciesMessageLoader, appState->speciesMenuState, appState->playerData->pokedex);
+    appState->listMenuCursorIndex = 0xffff;
     appState->currentScreenInstruction = 6;
 
     return GTS_LOOP_STATE_MAIN;
@@ -588,23 +588,23 @@ int GTSDeposit_TryAutoSetGender(GTSPokemonRequirements *requirements, int gender
 static int GTSDeposit_HandleSpeciesInput(GTSApplicationState *appState)
 {
     u32 input;
-    switch (input = GTS_ProcessListMenuInput(appState->unk_10D8, &appState->unk_108)) {
+    switch (input = GTS_ProcessListMenuInput(appState->unk_10D8, &appState->listMenuCursorIndex)) {
     case MENU_NOTHING_CHOSEN:
         break;
     case MENU_CANCEL:
-        ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_0A, &appState->unk_10E4->unk_08);
+        ListMenu_Free(appState->unk_10D8, &appState->speciesMenuState->speciesListScrollPos, &appState->speciesMenuState->speciesListCursorPos);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->menuButtonWindows[1], 0);
         Window_Remove(&appState->menuButtonWindows[0]);
         Window_Remove(&appState->menuButtonWindows[1]);
         appState->currentScreenInstruction = 0;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        GTS_SaveTabScrollState(&appState->charpadScrollState, appState->unk_10E4->unk_06 + appState->unk_10E4->unk_04, appState->unk_10E4->unk_0A, appState->unk_10E4->unk_08);
+        GTS_SaveTabScrollState(&appState->charpadScrollState, appState->speciesMenuState->charpadScrollPos + appState->speciesMenuState->charpadCursorPos, appState->speciesMenuState->speciesListScrollPos, appState->speciesMenuState->speciesListCursorPos);
         break;
     default:
         int gender;
 
-        ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_0A, &appState->unk_10E4->unk_08);
+        ListMenu_Free(appState->unk_10D8, &appState->speciesMenuState->speciesListScrollPos, &appState->speciesMenuState->speciesListCursorPos);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseStandardFrame(&appState->menuButtonWindows[1], 0);
@@ -612,9 +612,9 @@ static int GTSDeposit_HandleSpeciesInput(GTSApplicationState *appState)
         Window_Remove(&appState->menuButtonWindows[1]);
         appState->unk_B74.species = input;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        appState->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(input, SPECIES_DATA_GENDER_RATIO);
+        appState->speciesMenuState->selectedSpeciesGenderRatio = SpeciesData_GetSpeciesValue(input, SPECIES_DATA_GENDER_RATIO);
 
-        if (GTSDeposit_TryAutoSetGender(&appState->unk_B74, appState->unk_10E4->unk_20)) {
+        if (GTSDeposit_TryAutoSetGender(&appState->unk_B74, appState->speciesMenuState->selectedSpeciesGenderRatio)) {
             appState->currentScreenInstruction = 10;
             gender = appState->unk_B74.gender;
         } else {
@@ -622,8 +622,8 @@ static int GTSDeposit_HandleSpeciesInput(GTSApplicationState *appState)
             gender = GENDER_NONE + 1;
         }
 
-        GTSDeposit_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], appState->unk_B74.species, gender, -1);
-        GTS_SaveTabScrollState(&appState->charpadScrollState, appState->unk_10E4->unk_06 + appState->unk_10E4->unk_04, appState->unk_10E4->unk_0A, appState->unk_10E4->unk_08);
+        GTSDeposit_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->infoWindows[0], appState->unk_B74.species, gender, -1);
+        GTS_SaveTabScrollState(&appState->charpadScrollState, appState->speciesMenuState->charpadScrollPos + appState->speciesMenuState->charpadCursorPos, appState->speciesMenuState->speciesListScrollPos, appState->speciesMenuState->speciesListCursorPos);
         break;
     }
 
@@ -644,7 +644,7 @@ static int GTSDeposit_ShowGenderPrompt(GTSApplicationState *appState)
 static int GTSDeposit_ShowGenderMenu(GTSApplicationState *appState)
 {
     appState->unk_10D8 = GTS_CreateGenderMenu(&appState->unk_10CC, &appState->menuButtonWindows[0], appState->gtsMessageLoader);
-    appState->unk_108 = 0xffff;
+    appState->listMenuCursorIndex = 0xffff;
     appState->currentScreenInstruction = 9;
 
     return GTS_LOOP_STATE_MAIN;
@@ -654,7 +654,7 @@ static int GTSDeposit_HandleGenderInput(GTSApplicationState *appState)
 {
     u32 input;
 
-    switch (input = GTS_ProcessListMenuInput(appState->unk_10D8, &appState->unk_108)) {
+    switch (input = GTS_ProcessListMenuInput(appState->unk_10D8, &appState->listMenuCursorIndex)) {
     case MENU_CANCEL:
         ListMenu_Free(appState->unk_10D8, NULL, NULL);
         StringList_Free(appState->unk_10CC);
@@ -675,7 +675,7 @@ static int GTSDeposit_HandleGenderInput(GTSApplicationState *appState)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         appState->unk_B74.gender = input + 1;
         appState->currentScreenInstruction = 10;
-        GTSDeposit_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], appState->unk_B74.species, appState->unk_B74.gender, -1);
+        GTSDeposit_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->infoWindows[0], appState->unk_B74.species, appState->unk_B74.gender, -1);
         break;
     }
 
@@ -696,7 +696,7 @@ static int GTSDeposit_ShowLevelPrompt(GTSApplicationState *appState)
 static int GTSDeposit_ShowLevelMenu(GTSApplicationState *appState)
 {
     appState->unk_10D8 = GTS_CreateLevelMenu(&appState->unk_10CC, &appState->menuButtonWindows[0], appState->gtsMessageLoader, 0);
-    appState->unk_108 = 0xffff;
+    appState->listMenuCursorIndex = 0xffff;
     appState->currentScreenInstruction = 12;
 
     return GTS_LOOP_STATE_MAIN;
@@ -706,7 +706,7 @@ static int GTSDeposit_HandleLevelInput(GTSApplicationState *appState)
 {
     u32 input;
 
-    switch (input = GTS_ProcessListMenuInput(appState->unk_10D8, &appState->unk_108)) {
+    switch (input = GTS_ProcessListMenuInput(appState->unk_10D8, &appState->listMenuCursorIndex)) {
     case MENU_NOTHING_CHOSEN:
         break;
     case MENU_CANCEL:
@@ -718,7 +718,7 @@ static int GTSDeposit_HandleLevelInput(GTSApplicationState *appState)
         Window_Remove(&appState->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-        if (GTSDeposit_TryAutoSetGender(&appState->unk_B74, appState->unk_10E4->unk_20)) {
+        if (GTSDeposit_TryAutoSetGender(&appState->unk_B74, appState->speciesMenuState->selectedSpeciesGenderRatio)) {
             appState->currentScreenInstruction = 0;
         } else {
             appState->currentScreenInstruction = 7;
@@ -732,7 +732,7 @@ static int GTSDeposit_HandleLevelInput(GTSApplicationState *appState)
         Window_Remove(&appState->menuButtonWindows[0]);
         GTS_SetLevelRequirement(&appState->unk_B74, input, 0);
         appState->currentScreenInstruction = 13;
-        GTSDeposit_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], appState->unk_B74.species, appState->unk_B74.gender, GTS_FindLevelMessageIndex(appState->unk_B74.level, appState->unk_B74.level2, 0));
+        GTSDeposit_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->infoWindows[0], appState->unk_B74.species, appState->unk_B74.gender, GTS_FindLevelMessageIndex(appState->unk_B74.level, appState->unk_B74.level2, 0));
         break;
     }
 
@@ -1002,7 +1002,7 @@ void GTS_FillListing(GTSPokemonListing *listing, GTSApplicationState *appState)
         Pokemon_FromBoxPokemon(appState->unk_114, (Pokemon *)listing->pokemon.bytes);
     }
 
-    CharCode_CopyNumChars(listing->unk_10C, TrainerInfo_Name(appState->playerData->trainerInfo), 8);
+    CharCode_CopyNumChars(listing->trainerNames, TrainerInfo_Name(appState->playerData->trainerInfo), 8);
 
     listing->unk_11C = TrainerInfo_ID_LowHalf(appState->playerData->trainerInfo);
     listing->trainerCountry = WiFiHistory_GetCountry(appState->playerData->wiFiHistory);
@@ -1017,8 +1017,8 @@ static void GTSDeposit_FillDepositListing(GTSPokemonListing *listing, GTSApplica
 {
     GTS_FillListing(listing, appState);
 
-    listing->unk_EC = appState->unk_B70;
-    listing->unk_F0 = appState->unk_B74;
+    listing->criteria = appState->unk_B70;
+    listing->requirements = appState->unk_B74;
 }
 
 static const ListMenuTemplate sCharpadListMenuTemplate = {
@@ -1059,7 +1059,7 @@ ListMenu *GTS_CreateCharpadMenu(GTSApplicationState *appState, StringList **stri
 
     Window_DrawStandardFrame(window, 0, 1 + (18 + 12), 11);
 
-    return ListMenu_New(&template, appState->unk_10E4->unk_06, appState->unk_10E4->unk_04, HEAP_ID_62);
+    return ListMenu_New(&template, appState->speciesMenuState->charpadScrollPos, appState->speciesMenuState->charpadCursorPos, HEAP_ID_62);
 }
 
 static u16 sAlphabeticalSpeciesCharpadIndices[] = {
@@ -1101,12 +1101,12 @@ static int GTSDeposit_BuildSeenSpeciesList(StringList **stringList, MessageLoade
     return seen + 1;
 }
 
-ListMenu *GTS_CreateSpeciesMenu(GTSApplicationState *appState, StringList **stringList, Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSApplicationState_sub3 *appSubState, Pokedex *pokedex)
+ListMenu *GTS_CreateSpeciesMenu(GTSApplicationState *appState, StringList **stringList, Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSSpeciesMenuState *appSubState, Pokedex *pokedex)
 {
     Window_FillTilemap(window, 0xf0f);
 
-    int charpad = appSubState->unk_06 + appSubState->unk_04;
-    int seen = GTSDeposit_BuildSeenSpeciesList(stringList, speciesMessageLoader, gtsMessageLoader, appSubState->unk_18, appSubState->unk_14, appSubState->unk_1C, charpad, pokedex);
+    int charpad = appSubState->charpadScrollPos + appSubState->charpadCursorPos;
+    int seen = GTSDeposit_BuildSeenSpeciesList(stringList, speciesMessageLoader, gtsMessageLoader, appSubState->alphabeticalSpecies, appSubState->dexSeenFlags, appSubState->alphabeticalSpeciesCount, charpad, pokedex);
 
     ListMenuTemplate template = sCharpadListMenuTemplate;
     template.count = seen;
