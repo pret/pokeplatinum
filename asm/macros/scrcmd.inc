@@ -38,6 +38,7 @@
 #include "constants/battle/battle_script.h"
 #include "constants/boat_cutscene.h"
 #include "constants/colors.h"
+#include "constants/distortion_world.h"
 #include "constants/elevator_dirs.h"
 #include "constants/fade_screen.h"
 #include "constants/forms.h"
