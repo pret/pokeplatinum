@@ -478,7 +478,7 @@ ScriptCommand(SCRCMD_ADDCONTESTBACKDROP,                                   ScrCm
 ScriptCommand(SCRCMD_CHECKBACKDROP,                                        ScrCmd_CheckBackdrop)
 ScriptCommand(SCRCMD_1D7,                                                  ScrCmd_1D7)
 ScriptCommand(SCRCMD_CHECKCANCOOKPOFFIN,                                   ScrCmd_CheckCanCookPoffin)
-ScriptCommand(SCRCMD_1D9,                                                  ScrCmd_1D9)
+ScriptCommand(SCRCMD_OPENBATTLETOWERRECORDSAPP,                            ScrCmd_OpenBattleTowerRecordsApp)
 ScriptCommand(SCRCMD_SETBATTLETOWERNULL,                                   ScrCmd_SetBattleTowerNull)
 ScriptCommand(SCRCMD_INITBATTLETOWER,                                      ScrCmd_InitBattleTower)
 ScriptCommand(SCRCMD_FREEBATTLETOWER,                                      ScrCmd_FreeBattleTower)

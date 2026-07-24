@@ -29,6 +29,7 @@
 #include "applications/diploma.h"
 #include "applications/easy_chat/main.h"
 #include "applications/frontier/records/main.h"
+#include "applications/frontier/tower_records.h"
 #include "applications/journal_display/journal_controller.h"
 #include "applications/mail.h"
 #include "applications/move_reminder.h"
@@ -62,8 +63,6 @@
 #include "overlay064/ov64_0222DCE0.h"
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
-#include "overlay090/ov90_021D0D80.h"
-#include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay092/ov92_021D0D80.h"
 #include "overlay094/application.h"
 #include "overlay095/ov95_02246C20.h"
@@ -155,7 +154,7 @@ FS_EXTERN_OVERLAY(berry_tag);
 FS_EXTERN_OVERLAY(hall_of_fame);
 FS_EXTERN_OVERLAY(pc_hall_of_fame);
 FS_EXTERN_OVERLAY(overlay88);
-FS_EXTERN_OVERLAY(overlay90);
+FS_EXTERN_OVERLAY(battle_tower_records_app);
 FS_EXTERN_OVERLAY(overlay92);
 FS_EXTERN_OVERLAY(cutscenes);
 FS_EXTERN_OVERLAY(overlay94);
@@ -801,18 +800,18 @@ PoffinCaseAppData *FieldSystem_LaunchPoffinCaseApp(FieldSystem *fieldSystem, enu
     return appData;
 }
 
-void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1)
+void FieldSystem_OpenBattleTowerRecordsApp(FieldSystem *fieldSystem, BattleTowerRecordsAppArgs *args)
 {
-    FS_EXTERN_OVERLAY(overlay90);
+    FS_EXTERN_OVERLAY(battle_tower_records_app);
 
-    const ApplicationManagerTemplate appTemplate = {
-        ov90_021D0D80,
-        ov90_021D0E04,
-        ov90_021D0DE8,
-        FS_OVERLAY_ID(overlay90)
+    const ApplicationManagerTemplate template = {
+        BattleTowerRecordsApp_Init,
+        BattleTowerRecordsApp_Main,
+        BattleTowerRecordsApp_Free,
+        FS_OVERLAY_ID(battle_tower_records_app)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, args);
 }
 
 static UnkStruct_0203DA00 *sub_0203DA00(enum HeapID heapID, SaveData *saveData, int slot, BOOL *param3, BOOL param4)

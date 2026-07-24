@@ -841,7 +841,7 @@ pokeplatinum_c = files(
     'applications/pc_hall_of_fame/display.c',
     'overlay088/ov88_0223B140.c',
     'overlay088/ov88_0223E9C4.c',
-    'overlay090/ov90_021D0D80.c',
+    'applications/frontier/tower_records.c',
     'applications/move_reminder.c',
     'overlay092/ov92_021D0D80.c',
     'cutscenes/boat_cutscene/canalave_ship.c',

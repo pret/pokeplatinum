@@ -1383,10 +1383,10 @@ Overlay dummy6
 	After main
 }
 
-Overlay overlay90
+Overlay battle_tower_records_app
 {
 	After main
-	Object main.nef.p/src_overlay090_ov90_021D0D80.c.o
+	Object main.nef.p/src_applications_frontier_tower_records.c.o
 }
 
 Overlay move_reminder
