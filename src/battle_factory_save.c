@@ -27,7 +27,6 @@ void BattleFactorySave_RecordSave(BattleFactorySave *save, BOOL didSave)
     save->didSave = didSave;
 }
 
-// set value
 void BattleFactorySave_SetMember(BattleFactorySave *save, u8 field, u8 index, const void *value)
 {
     switch (field) {
@@ -68,25 +67,25 @@ u32 BattleFactorySave_GetMember(BattleFactorySave *save, u8 field, u8 index, voi
 {
     switch (field) {
     case FACTORY_SAVE_CHALLENGE_TYPE:
-        return (u32)save->challengeType;
+        return save->challengeType;
     case FACTORY_SAVE_OPEN_LEVEL:
-        return (u32)save->isOpenLevel;
+        return save->isOpenLevel;
     case FACTORY_SAVE_CURRENT_BATTLE:
-        return (u32)save->currentBattleNum;
+        return save->currentBattleNum;
     case FACTORY_SAVE_TRAINER_IDS:
-        return (u32)save->trainerIDs[index];
+        return save->trainerIDs[index];
     case FACTORY_SAVE_PLAYER_SETS:
-        return (u32)save->playerPartySets[index];
+        return save->playerPartySets[index];
     case FACTORY_SAVE_PLAYER_IVS:
-        return (u32)save->playerIVs[index];
+        return save->playerIVs[index];
     case FACTORY_SAVE_PLAYER_PERSONALITY:
-        return (u32)save->playerPersonality[index];
+        return save->playerPersonality[index];
     case FACTORY_SAVE_OPPONENT_SETS:
-        return (u32)save->opponentPartySets[index];
+        return save->opponentPartySets[index];
     case FACTORY_SAVE_OPPONENT_IVS:
-        return (u32)save->opponentIVs[index];
+        return save->opponentIVs[index];
     case FACTORY_SAVE_OPPONENT_PERSONALITY:
-        return (u32)save->opponentPersonality[index];
+        return save->opponentPersonality[index];
     }
 
     return 0;
@@ -113,7 +112,7 @@ u32 BattleFactoryStreakFlags_GetFlag(BattleFactoryStreakFlags *flags, u8 field, 
 {
     switch (field) {
     case FACTORY_SAVE_STREAK_FLAGS:
-        return (u32)((flags->streakActiveFlags >> challengeType) & 0x1);
+        return (flags->streakActiveFlags >> challengeType) & 0x1;
     }
 
     return 0;

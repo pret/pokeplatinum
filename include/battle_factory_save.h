@@ -24,7 +24,6 @@ typedef struct BattleFactorySave {
     u8 isOpenLevel : 1;
     u8 challengeType : 3;
     u8 didSave : 1;
-    u8 unused : 3;
     u8 currentBattleNum;
     u16 unused2;
     u16 trainerIDs[14];
