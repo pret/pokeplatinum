@@ -547,17 +547,17 @@ static void LoadBackgrounds(BattleTowerRecordsApp *app)
 static void InitWindows(BattleTowerRecordsApp *app)
 {
     static const WindowTemplate sResultsScreenWinTemplates[] = {
-        { 0, 4, 1, 24, 5, 2, 192 },
-        { 0, 1, 9, 8, 5, 1, 312 },
-        { 0, 1, 17, 8, 5, 1, 352 },
-        { 0, 10, 9, 21, 5, 1, 392 },
-        { 0, 10, 17, 21, 6, 1, 497 },
-        { 0, 3, 18, 26, 5, 2, 312 },
+        [WINDOW_RESULTS_HEADER] = { 0, 4, 1, 24, 5, 2, 192 },
+        [WINDOW_RESULTS_FIRST_LABEL] = { 0, 1, 9, 8, 5, 1, 312 },
+        [WINDOW_RESULTS_FIRST_VALUE] = { 0, 1, 17, 8, 5, 1, 352 },
+        [WINDOW_RESULTS_SECOND_LABEL] = { 0, 10, 9, 21, 5, 1, 392 },
+        [WINDOW_RESULTS_SECOND_VALUE] = { 0, 10, 17, 21, 6, 1, 497 },
+        { 0, 3, 18, 26, 5, 2, 312 }, // unused
     };
     static const WindowTemplate sRankingScreenWinTemplates[] = {
-        { 0, 4, 1, 24, 5, 2, 192 },
-        { 2, 3, 7, 26, 9, 1, 1 },
-        { 0, 3, 18, 26, 5, 2, 312 },
+        [WINDOW_RANKINGS_HEADER] = { 0, 4, 1, 24, 5, 2, 192 },
+        [WINDOW_RANKINGS_LIST] = { 2, 3, 7, 26, 9, 1, 1 },
+        [WINDOW_RANKINGS_MESSAGE] = { 0, 3, 18, 26, 5, 2, 312 },
     };
 
     if (app->isRankingsScreen == FALSE) {
