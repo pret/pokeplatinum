@@ -12,7 +12,7 @@
 #include "constants/moves.h"
 #include "generated/frontier_trainers.h"
 
-#include "struct_defs/battle_frontier_pokemon_data.h"
+#include "struct_defs/frontier_pokemon_base.h"
 
 static enum_template_t enums[] = {
     include_enum("generated/items.h",                 "enum Item"),
@@ -137,7 +137,7 @@ static const char *ev_flags[] = {
 };
 
 static void pack_pokemon_set(datafile_t *df) {
-    BattleFrontierPokemonData result = {
+    FrontierPokemonBase result = {
         .species = enum_u16(".species", enum Species),
         .nature  = enum_u8(".nature", enum Nature),
         .item    = enum_u16(".item", enum Item),

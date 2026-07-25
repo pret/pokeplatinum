@@ -12,8 +12,8 @@
 #include "global/utility.h"
 #include "overlay104/battle_castle_helpers.h"
 #include "overlay104/defs.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_manager.h"
-#include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
 
 #include "battle_castle_save.h"
@@ -162,12 +162,12 @@ static void SelectTrainersAndFirstBattlesMons(BattleCastle *castle)
 
     BattleCastle_PickOpponentTrainers(castle->challengeType, BattleCastle_GetCurrentRound(castle), castle->trainerIDs, CASTLE_BATTLES_PER_ROUND * 2);
 
-    ov104_0222E4BC(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE), castle->trainerIDs[castle->currentBattle], castle->trainerIDs[castle->currentBattle + CASTLE_BATTLES_PER_ROUND], castle->monSetIDs, castle->opponentMons, castle->opponentMonIVs, castle->opponentMonPersonalities, BattleCastle_IsMultiPlayerChallenge(castle->challengeType));
+    BattleFrontier_GetPokemonForTrainers(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE), castle->trainerIDs[castle->currentBattle], castle->trainerIDs[castle->currentBattle + CASTLE_BATTLES_PER_ROUND], castle->monSetIDs, castle->opponentMons, castle->opponentMonIVs, castle->opponentMonPersonalities, BattleCastle_IsMultiPlayerChallenge(castle->challengeType));
 }
 
 static void LoadTrainersAndMonsFromSave(BattleCastle *castle)
 {
-    FrontierPokemonDataDTO mons[MAX_PARTY_SIZE];
+    FrontierPokemon mons[MAX_PARTY_SIZE];
     u8 ivs[MAX_PARTY_SIZE];
     u16 setIDs[MAX_PARTY_SIZE];
     u32 personalities[MAX_PARTY_SIZE];
@@ -183,11 +183,11 @@ static void LoadTrainersAndMonsFromSave(BattleCastle *castle)
         castle->monSetIDs[i] = setIDs[i];
     }
 
-    ov104_0222E330(mons, setIDs, ivs, NULL, personalities, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+    BattleFrontier_LoadFrontierPokemon(mons, setIDs, ivs, NULL, personalities, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
     for (int i = 0; i < CASTLE_PARTY_SIZE_MULTI * 2; i++) {
-        FrontierPokemonDataDTO_InitPokemon(&mons[i], mon, BattleCastle_GetOpponentLevel(castle));
+        FrontierPokemon_InitPokemon(&mons[i], mon, BattleCastle_GetOpponentLevel(castle));
         BattleCastle_AddMonToParty(castle, castle->opponentsParty, mon);
     }
 
@@ -375,12 +375,12 @@ u16 BattleCastle_GetCurrentBattle(BattleCastle *castle)
 
 u16 BattleCastle_GetNextOpponentObjectID(BattleCastle *castle, u8 trainerSlot)
 {
-    FrontierTrainerDataDTO trainer;
+    FrontierTrainer trainer;
     u8 offset = castle->currentBattle + (trainerSlot * CASTLE_BATTLES_PER_ROUND);
 
-    Heap_Free(BattleFrontier_GetTrainerData(&trainer, castle->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleFrontier_GetTrainer(&trainer, castle->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return BattleTower_GetObjectIDFromTrainerClass(trainer.trainerType);
+    return BattleFrontier_GetObjectIDFromTrainerClass(trainer.trainerType);
 }
 
 void BattleCastle_SaveOnLoss(BattleCastle *castle)
@@ -411,7 +411,7 @@ void BattleCastle_SetupFirstOpponentsParty(BattleCastle *castle)
 
 void BattleCastle_SetupNextOpponentsParty(BattleCastle *castle)
 {
-    ov104_0222E4BC(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE), castle->trainerIDs[castle->currentBattle], castle->trainerIDs[castle->currentBattle + CASTLE_BATTLES_PER_ROUND], castle->monSetIDs, castle->opponentMons, castle->opponentMonIVs, castle->opponentMonPersonalities, BattleCastle_IsMultiPlayerChallenge(castle->challengeType));
+    BattleFrontier_GetPokemonForTrainers(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE), castle->trainerIDs[castle->currentBattle], castle->trainerIDs[castle->currentBattle + CASTLE_BATTLES_PER_ROUND], castle->monSetIDs, castle->opponentMons, castle->opponentMonIVs, castle->opponentMonPersonalities, BattleCastle_IsMultiPlayerChallenge(castle->challengeType));
 
     BattleCastle_SetupOpponentsParty(castle);
 }

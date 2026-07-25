@@ -12,9 +12,9 @@
 #include "overlay104/battle_hall.h"
 #include "overlay104/battle_hall_helpers.h"
 #include "overlay104/defs.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frscrcmd.h"
-#include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
@@ -337,7 +337,7 @@ BOOL FrontierScrCmd_BattleHall_PrintTrainerIntro(FrontierScriptContext *ctx)
         return 0;
     }
 
-    u16 *introMsg = battleHall->opponents[index].trDataDTO.introMsg;
+    u16 *introMsg = battleHall->opponents[index].trainer.introMsg;
 
     BattleFrontier_PrintNormalTrainerMessage(ctx, introMsg);
     return TRUE;

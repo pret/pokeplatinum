@@ -13,7 +13,7 @@
 #include "applications/frontier/battle_castle/sprites.h"
 #include "applications/frontier/battle_castle/windows.h"
 #include "overlay104/battle_castle_helpers.h"
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "battle_castle_save.h"
 #include "battle_frontier_save.h"

@@ -210,8 +210,8 @@ BOOL ScrCmd_GetBattleTowerPartnerSpeciesAndMove(ScriptContext *ctx)
     destVar1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
     destVar2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    *destVar1 = battleTower->partnersDataDTO[partnerID].monDataDTO[monID].species;
-    *destVar2 = battleTower->partnersDataDTO[partnerID].monDataDTO[monID].moves[0];
+    *destVar1 = battleTower->partnersDataDTO[partnerID].pokemon[monID].species;
+    *destVar2 = battleTower->partnersDataDTO[partnerID].pokemon[monID].moves[0];
 
     return FALSE;
 }

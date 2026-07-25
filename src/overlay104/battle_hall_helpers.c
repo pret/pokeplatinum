@@ -8,7 +8,7 @@
 #include "generated/trainer_classes.h"
 
 #include "overlay104/battle_hall.h"
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "battle_hall_save.h"
@@ -32,7 +32,7 @@ typedef struct {
 } BattleHallGroupRange;
 
 static u32 BattleHall_GetBattleType(u8 challengeType);
-static void BattleHall_LoadOpponentMonData(FrontierPokemonDataDTO *monDto, u8 typeRank, u16 trainerID, u16 opponentIndices[], int partySize, int heapID, int narcID);
+static void BattleHall_LoadOpponentMonData(FrontierPokemon *monDto, u8 typeRank, u16 trainerID, u16 opponentIndices[], int partySize, int heapID, int narcID);
 static u32 BattleHall_GetOpponentLevel(BattleHall *battleHall, u8 unused);
 static u8 BattleHall_GetIVsOfOpponentAtRank(u8 typeRank);
 static u16 BattleHall_GetAIMask(BattleHall *battleHall, u8 battleNum, u8 rank);
@@ -1348,7 +1348,7 @@ FieldBattleDTO *BattleHall_SetupBattle(BattleHall *battleHall, FieldFrontierDTO 
     int i;
     u8 rank;
     Pokemon *mon;
-    FrontierTrainerDataDTO trDataDTO;
+    FrontierTrainer trainer;
 
     u8 offset = battleHall->currentBattle * 2;
     u8 playerPartySize = BattleHall_GetPlayerPartySize(battleHall->challengeType);
@@ -1374,8 +1374,8 @@ FieldBattleDTO *BattleHall_SetupBattle(BattleHall *battleHall, FieldFrontierDTO 
     Heap_Free(mon);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(battleDTO);
 
-    Heap_Free(BattleFrontier_GetTrainerData(&trDataDTO, battleHall->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
-    FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_1, HEAP_ID_FIELD2);
+    Heap_Free(BattleFrontier_GetTrainer(&trainer, battleHall->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    FieldBattleDTO_InitFrontierTrainer(battleDTO, &trainer, opponentPartySize, BATTLER_ENEMY_1, HEAP_ID_FIELD2);
     Party_InitWithCapacity(battleDTO->parties[BATTLER_ENEMY_1], opponentPartySize);
 
     rank = BattleHall_GetRankOfType(battleHall->selectedTypeIdx, &battleHall->typeRanks[battleHall->challengeType][0]);
@@ -1397,7 +1397,7 @@ FieldBattleDTO *BattleHall_SetupBattle(BattleHall *battleHall, FieldFrontierDTO 
     for (i = 0; i < opponentPartySize; i++) {
         while (BattleHall_SetMonsPersonality(battleHall, offset) != 0) {}
 
-        FrontierPokemonDataDTO_InitPokemon(&battleHall->opponentMons[offset], mon, BattleHall_GetOpponentLevel(battleHall, rank));
+        FrontierPokemon_InitPokemon(&battleHall->opponentMons[offset], mon, BattleHall_GetOpponentLevel(battleHall, rank));
 
         Pokemon_CalcAbility(mon);
         FieldBattleDTO_AddPokemonToBattler(battleDTO, mon, BATTLER_ENEMY_1);
@@ -1412,16 +1412,16 @@ FieldBattleDTO *BattleHall_SetupBattle(BattleHall *battleHall, FieldFrontierDTO 
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), battleDTO->trainerInfo[BATTLER_PLAYER_2]);
 
-        Heap_Free(BattleFrontier_GetTrainerData(&trDataDTO, battleHall->trainerIDs[offset + 1], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+        Heap_Free(BattleFrontier_GetTrainer(&trainer, battleHall->trainerIDs[offset + 1], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-        FieldBattleDTO_InitFrontierTrainer(battleDTO, &trDataDTO, opponentPartySize, BATTLER_ENEMY_2, HEAP_ID_FIELD2);
+        FieldBattleDTO_InitFrontierTrainer(battleDTO, &trainer, opponentPartySize, BATTLER_ENEMY_2, HEAP_ID_FIELD2);
         Party_InitWithCapacity(battleDTO->parties[BATTLER_ENEMY_2], opponentPartySize);
 
         mon = Pokemon_New(HEAP_ID_FIELD2);
 
         while (BattleHall_SetMonsPersonality(battleHall, offset) != 0) {}
 
-        FrontierPokemonDataDTO_InitPokemon(&battleHall->opponentMons[offset], mon, BattleHall_GetOpponentLevel(battleHall, rank));
+        FrontierPokemon_InitPokemon(&battleHall->opponentMons[offset], mon, BattleHall_GetOpponentLevel(battleHall, rank));
 
         Pokemon_CalcAbility(mon);
         FieldBattleDTO_AddPokemonToBattler(battleDTO, mon, BATTLER_ENEMY_2);
@@ -1475,7 +1475,7 @@ u8 BattleHall_GetOpponentPartySize(u8 challengeType)
     return 1;
 }
 
-static void BattleHall_LoadOpponentMonData(FrontierPokemonDataDTO *frontierMon, u8 typeRank, u16 trainerID, u16 opponentIndices[], int partySize, int heapID, int narcID)
+static void BattleHall_LoadOpponentMonData(FrontierPokemon *frontierMon, u8 typeRank, u16 trainerID, u16 opponentIndices[], int partySize, int heapID, int narcID)
 {
     u32 ivs;
     if (trainerID == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER) {
