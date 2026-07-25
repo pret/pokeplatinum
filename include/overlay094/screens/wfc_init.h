@@ -7,12 +7,64 @@
 #include "message.h"
 #include "string_gf.h"
 
-int GTSApplication_InitWFC_Init(GTSApplicationState *appState, int param1);
-int GTSApplication_WFCInit_Main(GTSApplicationState *appState, int param1);
-int GTSApplication_WFCInit_Exit(GTSApplicationState *appState, int param1);
+int GTSApplication_WFC_Init(GTSApplicationState *appState, int unused);
+int GTSApplication_WFCInit_Main(GTSApplicationState *appState, int unused);
+int GTSApplication_WFCInit_Exit(GTSApplicationState *appState, int unused);
 void GTSApplication_DisplayStatusMessage(GTSApplicationState *appState, MessageLoader *messageLoader, int messageId, int textSpeed, u16 unused);
-void ov94_022458CC(Window *window, String *string, int x, int y, int width, TextColor textColor);
-void ov94_02245900(Window *window, String *string, int x, int y, int centered, TextColor textColor);
-void ov94_02245934(GTSApplicationState *appState);
+void Window_DrawAlignedMessageText(Window *window, String *string, int x, int y, int width, TextColor textColor);
+void Window_DrawAlignedSystemText(Window *window, String *string, int x, int y, int centered, TextColor textColor);
+void GTSApplication_InitNetworkIcon(GTSApplicationState *appState);
+
+enum GTSWFCInitScreenStates {
+    GTSWFCINIT_ASK_TO_SETUP_CONNECTION,
+    GTSWFCINIT_PROCESS_SETUP_CONFIRMATION,
+    GTSWFCINIT_CONNECT,
+    GTSWFCINIT_CHECK_CONNECTION,
+    GTSWFCINIT_AUTHENTICATE,
+    GTSWFCINIT_CHECK_AUTHENTICATION,
+    GTSWFCINIT_GET_DWC_KEY,
+    GTSWFCINIT_CONNECT_TO_REMOTE_SERVER,
+    GTSWFCINIT_WAIT_FOR_SERVER_RESPONSE,
+    GTSWFCINIT_SET_PROFILE_REQUEST,
+    GTSWFCINIT_SET_PROFILE_RESPONSE,
+    GTSWFCINIT_EXIT_SCREEN,
+    GTSWFCINIT_WAIT_FOR_TEXT,
+    GTSWFCINIT_WAIT_FOR_TEXT_THEN_YES_NO_MENU,
+    GTSWFCINIT_HANDLE_RETRY_MENU_INPUT,
+    GTSWFCINIT_ASK_TO_DISCONNECT,
+    GTSWFCINIT_RESTART_OR_EXIT,
+    GTSWFCINIT_SHOW_DISCONNECTING_MESSAGE,
+    GTSWFCINIT_CLEANUP_NETWORKING,
+    GTSWFCINIT_SHOW_DISCONNECTED_MESSAGE,
+    GTSWFCINIT_WAIT_FOR_TEXT_DELAYED,
+    GTSWFCINIT_FATAL_ERROR,
+    GTSWFCINIT_FATAL_ERROR_DISCONNECT_MESSAGE,
+    GTSWFCINIT_SHOW_NETWORK_ERROR,
+    GTSWFCINIT_RESTART_CONNECTION
+};
+
+enum GTSCommsError {
+    GTSCOMMS_RESULT_GTS_MAINTENANCE = 1,
+    GTSCOMMS_RESULT_CROWDED1 = 2,
+    GTSCOMMS_RESULT_CROWDED2 = -1,
+    GTSCOMMS_RESULT_DISCONNECTED1 = -2,
+    GTSCOMMS_RESULT_DISCONNECTED2 = -14,
+    GTSCOMMS_RESULT_UNABLE_TO_CONNECT1 = -12,
+    GTSCOMMS_RESULT_UNABLE_TO_CONNECT2 = -15,
+    GTSCOMMS_RESULT_UNABLE_TO_CONNECT3 = -3,
+    GTSCOMMS_RESULT_UNABLE_TO_CONNECT4 = -5,
+    GTSCOMMS_RESULT_WII_AUTH_ERROR = -5003,
+    GTSCOMMS_RESULT_COMMUNICATION_ERROR1 = -5000,
+    GTSCOMMS_RESULT_COMMUNICATION_ERROR2 = -5001,
+    GTSCOMMS_RESULT_DATA_CORRUPTION = -5004,
+    GTSCOMMS_RESULT_SERVER_MAINTENANCE = -5005,
+};
+
+enum WFCDisconnectMessage {
+    WFCDISCONNECTMSG_DISCONNECTING_FROM_WIFI,
+    WFCDISCONNECTMSG_WAIT_THEN_DISCONNECT,
+    WFCDISCONNECTMSG_YOU_HAVE_DISCONNECTED,
+    WFCDISCONNECTMSG_WAIT_FOR_DISCONNECTED_TEXT
+};
 
 #endif // POKEPLATINUM_GTS_SCREENS_WFC_INIT_H

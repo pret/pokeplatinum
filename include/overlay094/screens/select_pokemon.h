@@ -7,11 +7,37 @@
 #include "pc_boxes.h"
 #include "pokemon.h"
 
-int GTSApplication_SelectPokemon_Init(GTSApplicationState *param0, int param1);
-int GTSApplication_SelectPokemon_Main(GTSApplicationState *param0, int param1);
-int GTSApplication_SelectPokemon_Exit(GTSApplicationState *param0, int param1);
+int GTSApplication_SelectMon_Init(GTSApplicationState *param0, int param1);
+int GTSApplication_SelectMon_Main(GTSApplicationState *param0, int param1);
+int GTSApplication_SelectMon_Exit(GTSApplicationState *param0, int param1);
 BOOL GTSApplication_IsBoxIDParty(int boxID);
 BoxPokemon *GTSApplication_GetSelectedBoxMon(Party *party, PCBoxes *pcBoxes, int boxID, int pos);
 BOOL Pokemon_IsHoldingMail(Pokemon *mon);
+
+enum GTSPokemonSelectScreenStates {
+    GTS_SELECTMON_WAIT_FADE_IN,
+    GTS_SELECTMON_HANDLE_INPUT,
+    GTS_SELECTMON_FADE_AND_EXIT,
+    GTS_SELECTMON_WAIT_FOR_TEXT,
+    GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX,
+    GTS_SELECTMON_CREATE_EXIT_CONFIRM_MENU,
+    GTS_SELECTMON_HANDLE_EXIT_CONFIRM,
+    GTS_SELECTMON_CREATE_POKEMON_MENU,
+    GTS_SELECTMON_HANDLE_POKEMON_MENU_INPUT,
+    GTS_SELECTMON_CREATE_TRADE_MENU,
+    GTS_SELECTMON_HANDLE_TRADE_MENU_INPUT,
+    GTS_SELECTMON_SHOW_BALL_CAPSULE_TRADE_PROMPT,
+    GTS_SELECTMON_CREATE_TRADE_CONFIRM_MENU,
+    GTS_SELECTMON_HANDLE_TRADE_CONFIRM,
+    GTS_SELECTMON_SHOW_BALL_CAPSULE_DEPOSIT_PROMPT,
+    GTS_SELECTMON_CREATE_BALL_CAPSULE_TRADE_CONFIRM_MENU,
+    GTS_SELECTMON_HANDLE_BALL_CAPSULE_TRADE_CONFIRM
+};
+
+enum GTSSlotStatus {
+    GTS_SLOTSTATUS_NO_SPECIES,
+    GTS_SLOTSTATUS_VALID_MON,
+    GTS_SLOTSTATUS_EGG
+};
 
 #endif // POKEPLATINUM_GTS_SCREENS_SELECT_POKEMON_H

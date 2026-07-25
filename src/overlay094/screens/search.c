@@ -316,7 +316,7 @@ static void GTSSearch_InitWindows(GTSApplicationState *appState)
     Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, (1 + (18 + 12)) + 9);
     Window_FillTilemap(&appState->titleWindow, 0x0);
 
-    ov94_022458CC(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR(15, 13, 0));
+    Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR(15, 13, 0));
 
     Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9) + 28 * 2);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
@@ -514,7 +514,7 @@ static int GTSSearch_SendSearchRequest(GTSApplicationState *appState)
         request.gender = appState->searchRequirements.gender;
         request.level = appState->searchRequirements.level;
         request.level2 = appState->searchRequirements.level2;
-        request.unk_05 = appState->searchRequirements.unk_05;
+        request.unk_05 = appState->searchRequirements.unset_05;
         request.count = maxResults;
         request.countryIndex = appState->selectedCountryIndex;
 
@@ -722,7 +722,7 @@ static int GTSSearch_ShowSpeciesSearchPrompt(GTSApplicationState *appState)
 
 static int GTSSearch_CreateCharpad(GTSApplicationState *appState)
 {
-    appState->unk_10D8 = GTS_CreateCharpadMenu(appState, &appState->unk_10CC, &appState->menuButtonWindows[0], appState->gtsMessageLoader);
+    appState->activeListMenu = GTS_CreateCharpadMenu(appState, &appState->menuStringList, &appState->menuButtonWindows[0], appState->gtsMessageLoader);
     appState->listMenuCursorIndex = 0xffff;
     appState->currentScreenInstruction = GTS_SEARCH_HANDLE_CHARPAD_INPUT;
 
@@ -731,7 +731,7 @@ static int GTSSearch_CreateCharpad(GTSApplicationState *appState)
 
 static int GTSSearch_HandleCharpadInput(GTSApplicationState *appState)
 {
-    switch (GTS_ProcessListMenuInput(appState->unk_10D8, &appState->listMenuCursorIndex)) {
+    switch (GTS_ProcessListMenuInput(appState->activeListMenu, &appState->listMenuCursorIndex)) {
     case 1:
     case 2:
     case 3:
@@ -741,14 +741,14 @@ static int GTSSearch_HandleCharpadInput(GTSApplicationState *appState)
     case 7:
     case 8:
     case 9:
-        ListMenu_Free(appState->unk_10D8, &appState->speciesMenuState->charpadScrollPos, &appState->speciesMenuState->charpadCursorPos);
-        StringList_Free(appState->unk_10CC);
+        ListMenu_Free(appState->activeListMenu, &appState->speciesMenuState->charpadScrollPos, &appState->speciesMenuState->charpadCursorPos);
+        StringList_Free(appState->menuStringList);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         appState->currentScreenInstruction = GTS_SEARCH_CREATE_SPECIES_MENU;
         break;
     case MENU_CANCEL:
-        ListMenu_Free(appState->unk_10D8, &appState->speciesMenuState->charpadScrollPos, &appState->speciesMenuState->charpadCursorPos);
-        StringList_Free(appState->unk_10CC);
+        ListMenu_Free(appState->activeListMenu, &appState->speciesMenuState->charpadScrollPos, &appState->speciesMenuState->charpadCursorPos);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->menuButtonWindows[0]);
@@ -763,7 +763,7 @@ static int GTSSearch_HandleCharpadInput(GTSApplicationState *appState)
 
 static int GTSSearch_CreateSpeciesMenu(GTSApplicationState *appState)
 {
-    appState->unk_10D8 = GTS_CreateSpeciesMenu(appState, &appState->unk_10CC, &appState->menuButtonWindows[1], appState->gtsMessageLoader, appState->speciesMessageLoader, appState->speciesMenuState, appState->playerData->pokedex);
+    appState->activeListMenu = GTS_CreateSpeciesMenu(appState, &appState->menuStringList, &appState->menuButtonWindows[1], appState->gtsMessageLoader, appState->speciesMessageLoader, appState->speciesMenuState, appState->playerData->pokedex);
     appState->listMenuCursorIndex = 0xffff;
     appState->currentScreenInstruction = GTS_SEARCH_HANDLE_SPECIES_MENU_INPUT;
 
@@ -774,20 +774,20 @@ static int GTSSearch_HandleSpeciesMenuInput(GTSApplicationState *appState)
 {
     u32 result;
 
-    switch (result = GTS_ProcessListMenuInput(appState->unk_10D8, &appState->listMenuCursorIndex)) {
+    switch (result = GTS_ProcessListMenuInput(appState->activeListMenu, &appState->listMenuCursorIndex)) {
     case MENU_NOTHING_CHOSEN:
         break;
     case MENU_CANCEL:
-        ListMenu_Free(appState->unk_10D8, &appState->speciesMenuState->speciesListScrollPos, &appState->speciesMenuState->speciesListCursorPos);
-        StringList_Free(appState->unk_10CC);
+        ListMenu_Free(appState->activeListMenu, &appState->speciesMenuState->speciesListScrollPos, &appState->speciesMenuState->speciesListCursorPos);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[1], 0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         appState->currentScreenInstruction = GTS_SEARCH_CREATE_CHARPAD;
         GTS_SaveTabScrollState(&appState->charpadScrollState, appState->speciesMenuState->charpadScrollPos + appState->speciesMenuState->charpadCursorPos, appState->speciesMenuState->speciesListScrollPos, appState->speciesMenuState->speciesListCursorPos);
         break;
     default:
-        ListMenu_Free(appState->unk_10D8, &appState->speciesMenuState->speciesListScrollPos, &appState->speciesMenuState->speciesListCursorPos);
-        StringList_Free(appState->unk_10CC);
+        ListMenu_Free(appState->activeListMenu, &appState->speciesMenuState->speciesListScrollPos, &appState->speciesMenuState->speciesListCursorPos);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseStandardFrame(&appState->menuButtonWindows[1], 0);
         Window_Remove(&appState->menuButtonWindows[0]);
@@ -826,7 +826,7 @@ static int GTSSearch_ShowGenderSearchPrompt(GTSApplicationState *appState)
 
 static int GTSSearch_CreateGenderMenu(GTSApplicationState *appState)
 {
-    appState->unk_10D8 = GTS_CreateGenderMenu(&appState->unk_10CC, &appState->menuButtonWindows[0], appState->gtsMessageLoader);
+    appState->activeListMenu = GTS_CreateGenderMenu(&appState->menuStringList, &appState->menuButtonWindows[0], appState->gtsMessageLoader);
     appState->listMenuCursorIndex = 0xffff;
     appState->currentScreenInstruction = GTS_SEARCH_HANDLE_GENDER_MENU_INPUT;
 
@@ -837,10 +837,10 @@ static int GTSSearch_HandleGenderMenuInput(GTSApplicationState *appState)
 {
     u32 result;
 
-    switch (result = GTS_ProcessListMenuInput(appState->unk_10D8, &appState->listMenuCursorIndex)) {
+    switch (result = GTS_ProcessListMenuInput(appState->activeListMenu, &appState->listMenuCursorIndex)) {
     case MENU_CANCEL:
-        ListMenu_Free(appState->unk_10D8, NULL, NULL);
-        StringList_Free(appState->unk_10CC);
+        ListMenu_Free(appState->activeListMenu, NULL, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->menuButtonWindows[0]);
@@ -850,8 +850,8 @@ static int GTSSearch_HandleGenderMenuInput(GTSApplicationState *appState)
     case 0:
     case 1:
     case 2:
-        ListMenu_Free(appState->unk_10D8, NULL, NULL);
-        StringList_Free(appState->unk_10CC);
+        ListMenu_Free(appState->activeListMenu, NULL, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_Remove(&appState->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -880,7 +880,7 @@ static int GTSSearch_ShowLevelSearchPrompt(GTSApplicationState *appState)
 
 static int GTSSearch_CreateLevelMenu(GTSApplicationState *appState)
 {
-    appState->unk_10D8 = GTS_CreateLevelMenu(&appState->unk_10CC, &appState->menuButtonWindows[0], appState->gtsMessageLoader, 1);
+    appState->activeListMenu = GTS_CreateLevelMenu(&appState->menuStringList, &appState->menuButtonWindows[0], appState->gtsMessageLoader, 1);
     appState->listMenuCursorIndex = 0xffff;
     appState->currentScreenInstruction = GTS_SEARCH_HANDLE_LEVEL_MENU_INPUT;
 
@@ -891,13 +891,13 @@ static int GTSSearch_HandleLevelMenuInput(GTSApplicationState *appState)
 {
     u32 result;
 
-    switch (result = GTS_ProcessListMenuInput(appState->unk_10D8, &appState->listMenuCursorIndex)) {
+    switch (result = GTS_ProcessListMenuInput(appState->activeListMenu, &appState->listMenuCursorIndex)) {
     case MENU_NOTHING_CHOSEN:
         break;
     case MENU_CANCEL:
     case 11:
-        ListMenu_Free(appState->unk_10D8, NULL, NULL);
-        StringList_Free(appState->unk_10CC);
+        ListMenu_Free(appState->activeListMenu, NULL, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->menuButtonWindows[0]);
@@ -905,8 +905,8 @@ static int GTSSearch_HandleLevelMenuInput(GTSApplicationState *appState)
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
         break;
     default:
-        ListMenu_Free(appState->unk_10D8, NULL, NULL);
-        StringList_Free(appState->unk_10CC);
+        ListMenu_Free(appState->activeListMenu, NULL, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_Remove(&appState->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -935,7 +935,7 @@ static int GTSSearch_ShowCountrySearchPrompt(GTSApplicationState *appState)
 
 static int GTSSearch_CreateCountryMenu(GTSApplicationState *appState)
 {
-    appState->unk_10D8 = GTS_CreateCountryMenu(&appState->unk_10CC, &appState->menuButtonWindows[0], appState->countryMessageLoader, appState->gtsMessageLoader);
+    appState->activeListMenu = GTS_CreateCountryMenu(&appState->menuStringList, &appState->menuButtonWindows[0], appState->countryMessageLoader, appState->gtsMessageLoader);
     appState->listMenuCursorIndex = 0xffff;
     appState->currentScreenInstruction = GTS_SEARCH_HANDLE_COUNTRY_MENU_INPUT;
 
@@ -944,21 +944,21 @@ static int GTSSearch_CreateCountryMenu(GTSApplicationState *appState)
 
 static int GTSSearch_HandleCountryMenuInput(GTSApplicationState *appState)
 {
-    u32 result = GTS_ProcessListMenuInput(appState->unk_10D8, &appState->listMenuCursorIndex);
+    u32 result = GTS_ProcessListMenuInput(appState->activeListMenu, &appState->listMenuCursorIndex);
 
     if (result == MENU_NOTHING_CHOSEN) {
         (void)0;
     } else if ((result == MENU_CANCEL) || (result == (gGTSAvailableCountryCount + 1))) {
-        ListMenu_Free(appState->unk_10D8, NULL, NULL);
-        StringList_Free(appState->unk_10CC);
+        ListMenu_Free(appState->activeListMenu, NULL, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
     } else {
-        ListMenu_Free(appState->unk_10D8, NULL, NULL);
-        StringList_Free(appState->unk_10CC);
+        ListMenu_Free(appState->activeListMenu, NULL, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_Remove(&appState->menuButtonWindows[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -1049,32 +1049,32 @@ static void GTSSearch_DrawCriteriaLabels(Window *criteriaWindows, Window *locati
     String *str1, *str2, *str3;
 
     str1 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Pokemon);
-    ov94_02245900(&criteriaWindows[0], str1, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&criteriaWindows[0], str1, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     String_Free(str1);
 
     str3 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Gender);
-    ov94_02245900(&criteriaWindows[2], str3, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&criteriaWindows[2], str3, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     String_Free(str3);
 
     str2 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Level);
-    ov94_02245900(&criteriaWindows[4], str2, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&criteriaWindows[4], str2, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     String_Free(str2);
 
     str2 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Location);
-    ov94_02245900(&locationWindows[0], str2, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&locationWindows[0], str2, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     String_Free(str2);
 
     str1 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Search);
 
     int x1 = Font_CalcCenterAlignment(FONT_SYSTEM, str1, 0, criteriaWindows[6].width * 8);
-    ov94_02245900(&criteriaWindows[6], str1, x1, 0, 0, TEXT_COLOR(1, 2, 0));
+    Window_DrawAlignedSystemText(&criteriaWindows[6], str1, x1, 0, 0, TEXT_COLOR(1, 2, 0));
 
     String_Free(str1);
 
     str1 = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_Criteria_Back);
 
     int x2 = Font_CalcCenterAlignment(FONT_SYSTEM, str1, 0, criteriaWindows[7].width * 8);
-    ov94_02245900(&criteriaWindows[7], str1, x2, 0, 0, TEXT_COLOR(1, 2, 0));
+    Window_DrawAlignedSystemText(&criteriaWindows[7], str1, x2, 0, 0, TEXT_COLOR(1, 2, 0));
 
     String_Free(str1);
 }

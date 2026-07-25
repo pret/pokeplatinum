@@ -31,7 +31,7 @@ static const ApplicationManagerTemplate sTradeSequenceConfig = {
     FS_OVERLAY_ID(overlay95)
 };
 
-int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
+int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused)
 {
     appState->tradeTempPokemon = Pokemon_New(HEAP_ID_62);
 
@@ -52,7 +52,7 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
         appState->tradeAnimationConfig.tradeType = TRADE_TYPE_RECEIVE_ONLY;
         break;
-    case SCREEN_ARGUMENT_10:
+    case SCREEN_ARGUMENT_10: // probably dead code, doesn't seem to be reached
         appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
         GlobalTrade_CopyFromStoredPokemon(appState->playerData->globalTrade, appState->tradeTempPokemon);
         appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxPokemon(appState->tradeTempPokemon);
@@ -79,12 +79,12 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
     return GTS_LOOP_STATE_WAIT_FADE;
 }
 
-int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
+int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused)
 {
     int loopState = GTS_LOOP_STATE_MAIN;
 
     switch (appState->currentScreenInstruction) {
-    case 0:
+    case GTS_TRADE_WAIT_ANIMATION:
         if (ApplicationManager_Exec(appState->appMan)) {
             ApplicationManager_Free(appState->appMan);
 
@@ -134,7 +134,7 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
             }
         }
         break;
-    case 1:
+    case GTS_TRADE_WAIT_EVOLUTION:
         if (Evolution_IsDone(appState->evolutionData)) {
             Evolution_Free(appState->evolutionData);
             GTSApplication_Trade_StoreTradedPokemon(appState);
@@ -148,7 +148,7 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
     return loopState;
 }
 
-int GTSApplication_Trade_Exit(GTSApplicationState *appState, int unused1)
+int GTSApplication_Trade_Exit(GTSApplicationState *appState, int unused)
 {
     Heap_Free(appState->tradeTempPokemon);
     Heap_Free(appState->receivingPokemonTrainer);
@@ -163,7 +163,7 @@ static TrainerInfo *GTSPokemonListing_GetTrainerInfo(GTSPokemonListing *listing)
 
     TrainerInfo_Init(trainerInfo);
     TrainerInfo_SetName(trainerInfo, listing->trainerNames);
-    TrainerInfo_SetGameCode(trainerInfo, listing->unk_122);
+    TrainerInfo_SetGameCode(trainerInfo, listing->gameVersion);
     TrainerInfo_SetLanguage(trainerInfo, listing->trainerLanguage);
 
     return trainerInfo;

@@ -71,12 +71,12 @@ static NNSFndHeapHandle sGTSHeapHandle;
 
 // gtsApplicationScreens { init, main, exit }
 static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
-    { GTSApplication_InitWFC_Init, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit },
+    { GTSApplication_WFC_Init, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit },
     { GTSApplication_MainMenu_Init, GTSApplication_MainMenu_Main, GTSApplication_MainMenu_Exit },
     { GTSApplication_Listing_Init, GTSApplication_Listing_Main, GTSApplication_Listing_Exit },
     { GTSApplication_SearchListing_Init, GTSApplication_SearchListing_Main, GTSApplication_SearchListing_Exit },
     { GTSApplication_Search_Init, GTSApplication_Search_Main, GTSApplication_Search_Exit },
-    { GTSApplication_SelectPokemon_Init, GTSApplication_SelectPokemon_Main, GTSApplication_SelectPokemon_Exit },
+    { GTSApplication_SelectMon_Init, GTSApplication_SelectMon_Main, GTSApplication_SelectMon_Exit },
     { GTSApplication_Deposit_Init, GTSApplication_Deposit_Main, GTSApplication_Deposit_Exit },
     { GTSApplication_NetworkHandler_Init, GTSApplication_NetworkHandler_Main, GTSApplication_NetworkHandler_Exit },
     { GTSApplication_PokemonSummary_Init, GTSApplication_PokemonSummary_Main, GTSApplication_PokemonSummary_Exit },
@@ -115,8 +115,8 @@ BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState)
 
         appState->stringTemplate = StringTemplate_New(11, 64, HEAP_ID_62);
         appState->gtsMessageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_GTS, HEAP_ID_62);
-        appState->unk0674MessageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_62);
-        appState->unk0695MessageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_62);
+        appState->connProgressMessageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_62);
+        appState->disconnStatusMessageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_62);
         appState->speciesMessageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_62);
         appState->countryMessageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, HEAP_ID_62);
 
@@ -209,8 +209,8 @@ BOOL GTSApplication_Exit(ApplicationManager *appMan, int *unused)
     GTSApplication_CleanupGraphics(appState);
 
     MessageLoader_Free(appState->speciesMessageLoader);
-    MessageLoader_Free(appState->unk0695MessageLoader);
-    MessageLoader_Free(appState->unk0674MessageLoader);
+    MessageLoader_Free(appState->disconnStatusMessageLoader);
+    MessageLoader_Free(appState->connProgressMessageLoader);
     MessageLoader_Free(appState->gtsMessageLoader);
     MessageLoader_Free(appState->countryMessageLoader);
     StringTemplate_Free(appState->stringTemplate);
@@ -312,7 +312,7 @@ static void GTSApplication_InitGraphics(GTSApplicationState *appState)
 
     appState->spriteList = SpriteList_InitRendering(72 + 6, &appState->g2dRenderer, HEAP_ID_62);
 
-    SetSubScreenViewRect(&appState->g2dRenderer, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&appState->g2dRenderer, 0, 256 * FX32_ONE );
 
     for (int i = 0; i < 4; i++) {
         appState->spriteResourceCollection[i] = SpriteResourceCollection_New(3, i, HEAP_ID_62);
@@ -398,7 +398,7 @@ Menu *GTSApplication_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int bas
     template.tilemapTop = tilemapTop;
     template.baseTile = baseTile;
 
-    return Menu_MakeYesNoChoice(bgConfig, &template, (1 + (18 + 12)), 11, HEAP_ID_62);
+    return Menu_MakeYesNoChoice(bgConfig, &template, 1 + (18 + 12), 11, HEAP_ID_62);
 }
 
 void GTSApplication_SetCurrentAndNextScreenInstruction(GTSApplicationState *appState, int currentInstruction, int nextInstruction)

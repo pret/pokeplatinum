@@ -234,9 +234,9 @@ static const int sWindowLayouts[][4] = {
 
 static void GTSSearchListing_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (1 + (18 + 12) + 9));
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, 1 + (18 + 12) + 9);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 15, (5 * 2), 4, 13, ((1 + (18 + 12)) + 9) + 27 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 15, 5 * 2, 4, 13, ((1 + (18 + 12)) + 9) + 27 * 2);
 
     int baseTile = ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4);
 
@@ -409,8 +409,8 @@ static void GTSSearchListing_DrawTabHeaders(MessageLoader *messageLoader, Window
     String *wantedHeader = MessageLoader_GetNewString(messageLoader, Gts_Text_WantedPokemon);
     String *locationHeader = MessageLoader_GetNewString(messageLoader, Gts_Text_OTLocation);
 
-    ov94_02245900(&windows[0], wantedHeader, 0, 2, 0, TEXT_COLOR(15, 2, 0));
-    ov94_02245900(&windows[1], locationHeader, 0, 2, 1, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&windows[0], wantedHeader, 0, 2, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&windows[1], locationHeader, 0, 2, 1, TEXT_COLOR(15, 2, 0));
 
     String_Free(wantedHeader);
     String_Free(locationHeader);
@@ -434,10 +434,10 @@ static void GTSSearchListing_DrawTrainerLocationText(Window *window, String *cou
     Window_FillTilemap(window, 0x0);
 
     if (countryString != NULL) {
-        ov94_02245900(window, countryString, 0, 3, 0, TEXT_COLOR(15, 2, 0));
+        Window_DrawAlignedSystemText(window, countryString, 0, 3, 0, TEXT_COLOR(15, 2, 0));
     }
 
     if (cityString != NULL) {
-        ov94_02245900(window, cityString, 8, 19, 0, TEXT_COLOR(15, 2, 0));
+        Window_DrawAlignedSystemText(window, cityString, 8, 19, 0, TEXT_COLOR(15, 2, 0));
     }
 }

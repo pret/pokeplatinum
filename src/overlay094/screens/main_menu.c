@@ -82,7 +82,7 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
     GTSMainMenu_InitGraphics(appState);
     GTSMainMenu_InitMenu(appState);
     GTSMainMenu_InitCursor(appState);
-    ov94_02245934(appState);
+    GTSApplication_InitNetworkIcon(appState);
     GTSMainMenu_RenderMenuButtons(appState);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_23, SEQ_BLD_BLD_GTC, 1);

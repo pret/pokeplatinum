@@ -67,23 +67,23 @@ typedef struct GTSPokemonRequirements {
     s8 gender;
     s8 level;
     s8 level2;
-    s8 unk_05;
+    s8 unset_05;
 } GTSPokemonRequirements;
 
 typedef struct GTSPokemonListing {
     GTSPokemonListingMon pokemon;
     GTSPokemonCriteria criteria;
     GTSPokemonRequirements requirements;
-    u8 unk_F6;
+    u8 trainerGender;
     u8 unused[17];
-    s32 unk_108;
+    s32 listingId;
     u16 trainerNames[8];
-    u16 unk_11C;
+    u16 trainerId;
     u8 trainerCountry;
     u8 trainerRegion;
-    u8 unk_120;
+    u8 trainerAppearance;
     s8 exchangedFromRemote; // whether or not the pokemon was exchanged in the remote server (ie: this is the listing that someone traded for your deposited pokemon)
-    u8 unk_122;
+    u8 gameVersion;
     u8 trainerLanguage;
 } GTSPokemonListing;
 
@@ -116,9 +116,9 @@ typedef struct {
 typedef struct GTSApplicationState {
     GTSPlayerData *playerData;
     BgConfig *bgConfig;
-    WiFiList *unk_08;
-    int unk_0C;
-    int unk_10;
+    WiFiList *unused_08;
+    int unused_0C;
+    int unused_10;
     int screenId;
     int nextScreen;
     int returnAfterNetworkScreen;
@@ -129,12 +129,12 @@ typedef struct GTSApplicationState {
     int nextScreenInstruction;
     u16 hasPlayerDescended;
     u16 isPokemonListed;
-    u16 unk_38;
+    u16 unused_38;
     u16 networkTimer;
     int commsErrorMessage;
-    int unk_40; // dwcError
-    int unk_44; // dwcErrorCode
-    int unk_48; // dwcErrorType
+    int dwcErr;
+    int dwcErrCode;
+    int dwcErrType;
     void *dwcHeapPointer;
     NNSFndHeapHandle dwcHeapHandle;
     DWCInetControl dwcInetControlObject;
@@ -144,12 +144,12 @@ typedef struct GTSApplicationState {
     EvolutionData *evolutionData;
     BOOL appManActive;
     u16 listMenuCursorIndex;
-    u16 unk_10A;
+    u16 unused_10A;
     u16 mainMenuSelectedOption;
     u16 selectedInfoTab;
     u16 selectedBoxId;
     u16 partySlotIndex;
-    BoxPokemon *unk_114;
+    BoxPokemon *selectedBoxMon;
     int searchResultCount;
     int selectedSearchResult;
     TrainerInfo *receivingPokemonTrainer;
@@ -157,19 +157,19 @@ typedef struct GTSApplicationState {
     GTSPokemonListing receivedListing;
     GTSPokemonListing searchResults[7];
     GTSPokemonListing selectedListing;
-    GTSPokemonCriteria unk_B70;
-    GTSPokemonRequirements unk_B74;
+    GTSPokemonCriteria offeredPokemonCriteria;
+    GTSPokemonRequirements depositRequirements;
     GTSPokemonRequirements searchRequirements;
     GTSPokemonRequirements submittedRequirements;
     int submittedCountryIndex;
     StringTemplate *stringTemplate;
     MessageLoader *gtsMessageLoader;
     MessageLoader *speciesMessageLoader;
-    MessageLoader *unk0674MessageLoader;
-    MessageLoader *unk0695MessageLoader;
+    MessageLoader *connProgressMessageLoader;
+    MessageLoader *disconnStatusMessageLoader;
     MessageLoader *countryMessageLoader;
     String *selectPokemonBoxName;
-    String *unk_BA8;
+    String *cancelButtonLabel;
     String *genericMessageBuffer;
     String *title;
     String *trainerLocationStrings[10];
@@ -183,25 +183,25 @@ typedef struct GTSApplicationState {
     SpriteResourcesHeader avatarSpriteResourceHeader;
     SpriteResourcesHeader unused_DFC;
     Sprite *cursorSprite;
-    Sprite *unk_E24;
-    Sprite *unk_E28[30];
-    Sprite *unk_EA0[30];
+    Sprite *unused_E24;
+    Sprite *boxSlotIconSprites[30];
+    Sprite *boxSlotItemSprites[30];
     Sprite *selectPokemonPartySprites[MAX_PARTY_SIZE];
     Sprite *listingCursorSprite;
     Sprite *avatarSprites[8];
-    Sprite *unk_F54[2];
+    Sprite *boxArrowSprites[2];
     Window bottomInstructionWindow;
-    Window unk_F6C;
+    Window unused_F6C;
     Window titleWindow;
-    Window unk_F8C;
+    Window networkErrWindow;
     Window menuButtonWindows[3];
     Window infoWindows[13];
     Window confirmationWindow;
     Window locationCriteriaWindows[2];
-    StringList *unk_10CC;
+    StringList *menuStringList;
     Menu *yesNoMenu;
-    Menu *unk_10D4;
-    ListMenu *unk_10D8;
+    Menu *popupMenu;
+    ListMenu *activeListMenu;
     void *waitDial;
     int frameDelay;
     GTSSpeciesMenuState *speciesMenuState;
@@ -210,10 +210,10 @@ typedef struct GTSApplicationState {
     SysTask *playerAvatarAnimationTask;
     u16 hasAvatarFinishedMoving;
     u16 searchResultsVisible;
-    void *unk_10F4;
-    NNSG2dCharacterData *unk_10F8;
-    void *unk_10FC;
-    NNSG2dPaletteData *unk_1100;
+    void *avatarCharDataHeapPtr;
+    NNSG2dCharacterData *avatarCharData;
+    void *avatarPaletteHeapPtr;
+    NNSG2dPaletteData *avatarPaletteData;
     Pokemon *tradeTempPokemon;
     GTSBoxPokemonCriteria *boxCriteria;
     u16 deferredBoxPokemonCount;

@@ -233,10 +233,10 @@ void GTSAvatar_ShowSearchResults(GTSApplicationState *appState, int resultCount,
 
     for (int i = 0; i < GTS_MAX_SEARCH_RESULTS; i++) {
         if (i < resultCount) {
-            int v1 = appState->searchResults[i].unk_120;
-            int v2 = appState->searchResults[i].unk_F6;
+            int v1 = appState->searchResults[i].trainerAppearance;
+            int v2 = appState->searchResults[i].trainerGender;
 
-            GTSAvatar_LoadTrainerSprite(appState->unk_10F8, appState->unk_1100, i, v1, v2);
+            GTSAvatar_LoadTrainerSprite(appState->avatarCharData, appState->avatarPaletteData, i, v1, v2);
 
             if (showIdle) {
                 Sprite_SetAnim(appState->avatarSprites[i + 1], 14 + i * 4);
@@ -269,10 +269,10 @@ void GTSAvatar_HighlightSearchResults(GTSApplicationState *appState)
 
 static void GTSAvatar_LoadGraphics(GTSApplicationState *appState)
 {
-    appState->unk_10FC = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__RECORD, 7, &(appState->unk_1100), HEAP_ID_62);
-    appState->unk_10F4 = Graphics_GetCharData(NARC_INDEX_GRAPHIC__RECORD, 9, 1, &(appState->unk_10F8), HEAP_ID_62);
+    appState->avatarPaletteHeapPtr = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__RECORD, 7, &(appState->avatarPaletteData), HEAP_ID_62);
+    appState->avatarCharDataHeapPtr = Graphics_GetCharData(NARC_INDEX_GRAPHIC__RECORD, 9, 1, &(appState->avatarCharData), HEAP_ID_62);
 
-    DC_FlushRange(appState->unk_10F8, (256 * 256 / 2));
+    DC_FlushRange(appState->avatarCharData, 256 * 256 / 2);
 }
 
 static const u16 sSearchResultVRAMAddresses[] = {
@@ -301,7 +301,7 @@ static void GTSAvatar_LoadTrainerSprite(NNSG2dCharacterData *charData, NNSG2dPal
 void GTSAvatar_FreeGraphics(GTSApplicationState *appState)
 {
     if (appState->hasAvatarFinishedMoving) {
-        Heap_Free(appState->unk_10FC);
-        Heap_Free(appState->unk_10F4);
+        Heap_Free(appState->avatarPaletteHeapPtr);
+        Heap_Free(appState->avatarCharDataHeapPtr);
     }
 }

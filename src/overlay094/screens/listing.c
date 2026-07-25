@@ -378,17 +378,17 @@ static int GTSListing_ShowActionMenu(GTSApplicationState *appState)
     template.suppressCursor = FALSE;
     template.loopAround = FALSE;
 
-    appState->unk_10CC = StringList_New(2, HEAP_ID_62);
+    appState->menuStringList = StringList_New(2, HEAP_ID_62);
 
-    StringList_AddFromMessageBank(appState->unk_10CC, appState->gtsMessageLoader, GTS_Text_MenuOption_TakeBack, 1);
-    StringList_AddFromMessageBank(appState->unk_10CC, appState->gtsMessageLoader, GTS_Text_MenuOption_LeaveAsIs, 2);
+    StringList_AddFromMessageBank(appState->menuStringList, appState->gtsMessageLoader, GTS_Text_MenuOption_TakeBack, 1);
+    StringList_AddFromMessageBank(appState->menuStringList, appState->gtsMessageLoader, GTS_Text_MenuOption_LeaveAsIs, 2);
 
-    template.choices = appState->unk_10CC;
+    template.choices = appState->menuStringList;
     template.window = &appState->menuButtonWindows[0];
 
     Window_DrawStandardFrame(&appState->menuButtonWindows[0], 0, 1 + (18 + 12), 11);
 
-    appState->unk_10D4 = Menu_NewAndCopyToVRAM(&template, 9, 0, 0, 62, PAD_BUTTON_B);
+    appState->popupMenu = Menu_NewAndCopyToVRAM(&template, 9, 0, 0, 62, PAD_BUTTON_B);
     appState->currentScreenInstruction = 8;
 
     return 3;
@@ -396,10 +396,10 @@ static int GTSListing_ShowActionMenu(GTSApplicationState *appState)
 
 static int GTSListing_HandleActionMenu(GTSApplicationState *appState)
 {
-    switch (Menu_ProcessInput(appState->unk_10D4)) {
+    switch (Menu_ProcessInput(appState->popupMenu)) {
     case 1: // take back
-        Menu_Free(appState->unk_10D4, NULL);
-        StringList_Free(appState->unk_10CC);
+        Menu_Free(appState->popupMenu, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Pokemon *mon = (Pokemon *)appState->receivedListing.pokemon.bytes;
 
@@ -418,8 +418,8 @@ static int GTSListing_HandleActionMenu(GTSApplicationState *appState)
         break;
     case 2: // leave as is
     case MENU_CANCEL:
-        Menu_Free(appState->unk_10D4, NULL);
-        StringList_Free(appState->unk_10CC);
+        Menu_Free(appState->popupMenu, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
 
         appState->currentScreenInstruction = 2;
@@ -503,16 +503,16 @@ void GTS_DrawOfferedPokemonInfo(MessageLoader *msgLoader, MessageLoader *species
         Window_FillTilemap(&windows[i], 0x0);
     }
 
-    ov94_02245900(&windows[0], nickname, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&windows[0], nickname, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
     if (gender != GENDER_NONE + 1) {
-        ov94_02245900(&windows[0], genderStr, 70, 0, 0, sGenderTextColors[gender]);
+        Window_DrawAlignedSystemText(&windows[0], genderStr, 70, 0, 0, sGenderTextColors[gender]);
     }
 
-    ov94_02245900(&windows[1], speciesNameStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    ov94_02245900(&windows[2], levelStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    ov94_02245900(&windows[3], itemLabelStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    ov94_02245900(&windows[4], itemName, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&windows[1], speciesNameStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&windows[2], levelStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&windows[3], itemLabelStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&windows[4], itemName, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
     String_Free(itemLabelStr);
     String_Free(itemName);
@@ -535,10 +535,10 @@ void GTS_DrawTrainerInfo(MessageLoader *msgLoader, Window trainerNameWindows[], 
     otNameLabelStr = MessageLoader_GetNewString(msgLoader, pl_msg_00000671_00172);
     Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, otNameStr);
 
-    ov94_02245900(&trainerNameWindows[0], trainerNameLabelStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    ov94_02245900(&trainerNameWindows[1], trainerNameStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    ov94_02245900(&otNameWindows[0], otNameLabelStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
-    ov94_02245900(&otNameWindows[1], otNameStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&trainerNameWindows[0], trainerNameLabelStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&trainerNameWindows[1], trainerNameStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&otNameWindows[0], otNameLabelStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    Window_DrawAlignedSystemText(&otNameWindows[1], otNameStr, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
     String_Free(trainerNameLabelStr);
     String_Free(trainerNameStr);

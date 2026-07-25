@@ -36,80 +36,78 @@
 #include "res/text/bank/unk_0674.h"
 #include "res/text/bank/unk_0695.h"
 
-static void GTSApplication_WFCInit_InitBackground(BgConfig *bgConfig);
-static void GTSApplication_WFCInit_CleanupBackground(BgConfig *bgConfig);
-static void GTSApplication_WFCInit_InitGraphics(GTSApplicationState *appState);
-static void GTSApplication_WFCInit_InitText(GTSApplicationState *appState);
-static void GTSApplication_WFCInit_CleanupWindows(GTSApplicationState *appState);
-static void GTSApplication_WFCInit_InitTitle(GTSApplicationState *appState);
-static void GTSApplication_WFCInit_CleanupStrings(GTSApplicationState *appState);
-static void GTSApplication_WFCInit_DisplayNetworkError(GTSApplicationState *appState, int messageId);
-static void GTSApplication_WFCInit_DisplayErrorCode(GTSApplicationState *appState, int errorCode, int visibleErrorCode);
-static int GTSApplication_WFCInit_AskToSetupConnection(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_Connect(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_GetDWCKey(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_ConnectToRemoteServer(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_SetProfileRequest(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_ExitScreen(GTSApplicationState *appState);
-static int ov94_022455D0(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_WaitForText(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_WaitForTextThenYesNoMenu(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_FatalError(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_WaitForServerResponse(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_AskToDisconnect(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_ShowDisconnectingMessage(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_ShowDisconnectedMessage(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_WaitForTextDelayed(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_Authenticate(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_ShowNetworkError(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_RestartConnection(GTSApplicationState *appState);
-static int ov94_02245894(Window *window, String *string, int x, int centered, TextColor textColor, int font);
+static void GTSWFCInit_InitBackground(BgConfig *bgConfig);
+static void GTSWFCInit_CleanupBackground(BgConfig *bgConfig);
+static void GTSWFCInit_InitGraphics(GTSApplicationState *appState);
+static void GTSWFCInit_InitText(GTSApplicationState *appState);
+static void GTSWFCInit_CleanupWindows(GTSApplicationState *appState);
+static void GTSWFCInit_InitTitle(GTSApplicationState *appState);
+static void GTSWFCInit_CleanupStrings(GTSApplicationState *appState);
+static void GTSWFCInit_DisplayNetworkError(GTSApplicationState *appState, int messageId);
+static void GTSWFCInit_DisplayErrorCode(GTSApplicationState *appState, int errorCode, int visibleErrorCode);
+static int GTSWFCInit_AskToSetupConnection(GTSApplicationState *appState);
+static int GTSWFCInit_ProcessSetupConfirmation(GTSApplicationState *appState);
+static int GTSWFCInit_RestartOrExit(GTSApplicationState *appState);
+static int GTSWFCInit_Connect(GTSApplicationState *appState);
+static int GTSWFCInit_CheckConnection(GTSApplicationState *appState);
+static int GTSWFCInit_GetDWCKey(GTSApplicationState *appState);
+static int GTSWFCInit_ConnectToRemoteServer(GTSApplicationState *appState);
+static int GTSWFCInit_SetProfileRequest(GTSApplicationState *appState);
+static int GTSWFCInit_SetProfileResponse(GTSApplicationState *appState);
+static int GTSWFCInit_ExitScreen(GTSApplicationState *appState);
+static int GTSWFCInit_HandleRetryMenuInput(GTSApplicationState *appState);
+static int GTSWFCInit_WaitForText(GTSApplicationState *appState);
+static int GTSWFCInit_WaitForTextThenYesNoMenu(GTSApplicationState *appState);
+static int GTSWFCInit_FatalError(GTSApplicationState *appState);
+static int GTSWFCInit_FatalErrorDisconnectMessage(GTSApplicationState *appState);
+static int GTSWFCInit_WaitForServerResponse(GTSApplicationState *appState);
+static int GTSWFCInit_AskToDisconnect(GTSApplicationState *appState);
+static int GTSWFCInit_ShowDisconnectingMessage(GTSApplicationState *appState);
+static int GTSWFCInit_CleanupNetworking(GTSApplicationState *appState);
+static int GTSWFCInit_ShowDisconnectedMessage(GTSApplicationState *appState);
+static int GTSWFCInit_WaitForTextDelayed(GTSApplicationState *appState);
+static int GTSWFCInit_Authenticate(GTSApplicationState *appState);
+static int GTSWFCInit_CheckAuthentication(GTSApplicationState *appState);
+static int GTSWFCInit_ShowNetworkError(GTSApplicationState *appState);
+static int GTSWFCInit_RestartConnection(GTSApplicationState *appState);
+static int Text_CalcAlignedX(Window *window, String *string, int x, int centered, TextColor textColor, int font);
 
-static int (*gtsWFCInitScreenStates[])(GTSApplicationState *) = {
-    GTSApplication_WFCInit_AskToSetupConnection,
-    GTSApplication_WFCInit_ProcessSetupConfirmation, // 11 (exit) or 12 (continue)
-    GTSApplication_WFCInit_Connect,
-    GTSApplication_WFCInit_CheckConnection, // returns 23 (connection error), 21 (fatal error), or 4
-    GTSApplication_WFCInit_Authenticate,
-    GTSApplication_WFCInit_CheckAuthentication, // returns 6 (successful) or 23 (connection error)
-    GTSApplication_WFCInit_GetDWCKey,
-    GTSApplication_WFCInit_ConnectToRemoteServer,
-    GTSApplication_WFCInit_WaitForServerResponse,
-    GTSApplication_WFCInit_SetProfileRequest,
-    GTSApplication_WFCInit_SetProfileResponse, // 11 successful, 21 error
-    GTSApplication_WFCInit_ExitScreen, // exit -> returns 4
-
-    GTSApplication_WFCInit_WaitForText,
-    GTSApplication_WFCInit_WaitForTextThenYesNoMenu,
-
-    ov94_022455D0, // never called? returns 0 or 11
-    GTSApplication_WFCInit_AskToDisconnect,
-    GTSApplication_WFCInit_RestartOrExit,
-    GTSApplication_WFCInit_ShowDisconnectingMessage,
-    GTSApplication_WFCInit_CleanupNetworking,
-    GTSApplication_WFCInit_ShowDisconnectedMessage,
-    GTSApplication_WFCInit_WaitForTextDelayed,
-    GTSApplication_WFCInit_FatalError,
-    GTSApplication_WFCInit_FatalErrorDisconnectMessage,
-    GTSApplication_WFCInit_ShowNetworkError,
-    GTSApplication_WFCInit_RestartConnection
+static int (*sGTSWFCInitScreenStates[])(GTSApplicationState *) = {
+    [GTSWFCINIT_ASK_TO_SETUP_CONNECTION] = GTSWFCInit_AskToSetupConnection,
+    [GTSWFCINIT_PROCESS_SETUP_CONFIRMATION] = GTSWFCInit_ProcessSetupConfirmation,
+    [GTSWFCINIT_CONNECT] = GTSWFCInit_Connect,
+    [GTSWFCINIT_CHECK_CONNECTION] = GTSWFCInit_CheckConnection,
+    [GTSWFCINIT_AUTHENTICATE] = GTSWFCInit_Authenticate,
+    [GTSWFCINIT_CHECK_AUTHENTICATION] = GTSWFCInit_CheckAuthentication,
+    [GTSWFCINIT_GET_DWC_KEY] = GTSWFCInit_GetDWCKey,
+    [GTSWFCINIT_CONNECT_TO_REMOTE_SERVER] = GTSWFCInit_ConnectToRemoteServer,
+    [GTSWFCINIT_WAIT_FOR_SERVER_RESPONSE] = GTSWFCInit_WaitForServerResponse,
+    [GTSWFCINIT_SET_PROFILE_REQUEST] = GTSWFCInit_SetProfileRequest,
+    [GTSWFCINIT_SET_PROFILE_RESPONSE] = GTSWFCInit_SetProfileResponse,
+    [GTSWFCINIT_EXIT_SCREEN] = GTSWFCInit_ExitScreen,
+    [GTSWFCINIT_WAIT_FOR_TEXT] = GTSWFCInit_WaitForText,
+    [GTSWFCINIT_WAIT_FOR_TEXT_THEN_YES_NO_MENU] = GTSWFCInit_WaitForTextThenYesNoMenu,
+    [GTSWFCINIT_HANDLE_RETRY_MENU_INPUT] = GTSWFCInit_HandleRetryMenuInput,
+    [GTSWFCINIT_ASK_TO_DISCONNECT] = GTSWFCInit_AskToDisconnect,
+    [GTSWFCINIT_RESTART_OR_EXIT] = GTSWFCInit_RestartOrExit,
+    [GTSWFCINIT_SHOW_DISCONNECTING_MESSAGE] = GTSWFCInit_ShowDisconnectingMessage,
+    [GTSWFCINIT_CLEANUP_NETWORKING] = GTSWFCInit_CleanupNetworking,
+    [GTSWFCINIT_SHOW_DISCONNECTED_MESSAGE] = GTSWFCInit_ShowDisconnectedMessage,
+    [GTSWFCINIT_WAIT_FOR_TEXT_DELAYED] = GTSWFCInit_WaitForTextDelayed,
+    [GTSWFCINIT_FATAL_ERROR] = GTSWFCInit_FatalError,
+    [GTSWFCINIT_FATAL_ERROR_DISCONNECT_MESSAGE] = GTSWFCInit_FatalErrorDisconnectMessage,
+    [GTSWFCINIT_SHOW_NETWORK_ERROR] = GTSWFCInit_ShowNetworkError,
+    [GTSWFCINIT_RESTART_CONNECTION] = GTSWFCInit_RestartConnection,
 };
 
-int GTSApplication_InitWFC_Init(GTSApplicationState *appState, int unused1)
+int GTSApplication_WFC_Init(GTSApplicationState *appState, int unused)
 {
-    GTSApplication_WFCInit_InitTitle(appState);
+    GTSWFCInit_InitTitle(appState);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
 
-    GTSApplication_WFCInit_InitBackground(appState->bgConfig);
-    GTSApplication_WFCInit_InitGraphics(appState);
-    GTSApplication_WFCInit_InitText(appState);
+    GTSWFCInit_InitBackground(appState->bgConfig);
+    GTSWFCInit_InitGraphics(appState);
+    GTSWFCInit_InitText(appState);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
@@ -117,31 +115,31 @@ int GTSApplication_InitWFC_Init(GTSApplicationState *appState, int unused1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, TRUE);
     CommManager_InitializeGlobalWifi(appState->playerData->saveData);
 
-    ov94_02245934(appState);
+    GTSApplication_InitNetworkIcon(appState);
 
     if (!DWC_CheckInet()) {
         if (appState->playerData->connectToWiFi) {
-            GTSApplication_DisplayStatusMessage(appState, appState->unk0674MessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
-            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 2);
+            GTSApplication_DisplayStatusMessage(appState, appState->connProgressMessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSWFCINIT_WAIT_FOR_TEXT, GTSWFCINIT_CONNECT);
             GTSApplication_AddWaitDial(appState);
         } else {
-            appState->currentScreenInstruction = 0;
+            appState->currentScreenInstruction = GTSWFCINIT_ASK_TO_SETUP_CONNECTION;
         }
     } else {
-        appState->currentScreenInstruction = 17;
+        appState->currentScreenInstruction = GTSWFCINIT_SHOW_DISCONNECTING_MESSAGE;
     }
 
     return GTS_LOOP_STATE_WAIT_FADE;
 }
 
-int GTSApplication_WFCInit_Main(GTSApplicationState *appState, int param1)
+int GTSApplication_WFCInit_Main(GTSApplicationState *appState, int unused)
 {
     NetworkIcon_SetStrength(GTSApplication_GetNetworkStrength());
 
     int previousInstruction = appState->currentScreenInstruction;
-    int parentStateCode = (*gtsWFCInitScreenStates[appState->currentScreenInstruction])(appState);
+    int parentStateCode = (*sGTSWFCInitScreenStates[appState->currentScreenInstruction])(appState);
 
-    if (previousInstruction != appState->currentScreenInstruction) { // pointer changed
+    if (previousInstruction != appState->currentScreenInstruction) {
         appState->wfcDisconnectMessageIndex = 0;
         appState->wfcDisconnectMessageFrameDelay = 0;
     }
@@ -151,19 +149,18 @@ int GTSApplication_WFCInit_Main(GTSApplicationState *appState, int param1)
     return parentStateCode;
 }
 
-int GTSApplication_WFCInit_Exit(GTSApplicationState *appState, int param1)
+int GTSApplication_WFCInit_Exit(GTSApplicationState *appState, int unused)
 {
     inline_ov61_0222C160(&appState->unk_11B4);
 
-    GTSApplication_WFCInit_CleanupStrings(appState);
-    GTSApplication_WFCInit_CleanupWindows(appState);
-    GTSApplication_WFCInit_CleanupBackground(appState->bgConfig);
+    GTSWFCInit_CleanupStrings(appState);
+    GTSWFCInit_CleanupWindows(appState);
+    GTSWFCInit_CleanupBackground(appState->bgConfig);
 
     inline_ov96_0223BDEC(&appState->unk_11B4, 0);
 
     GTSApplication_MoveToNextScreen(appState);
 
-    // this line of code is triggered when nextScreen has been set to 0
     if (appState->screenId == 0) {
         return GTS_LOOP_STATE_EXIT;
     }
@@ -171,7 +168,7 @@ int GTSApplication_WFCInit_Exit(GTSApplicationState *appState, int param1)
     return GTS_LOOP_STATE_INIT;
 }
 
-static void GTSApplication_WFCInit_InitBackground(BgConfig *bgConfig)
+static void GTSWFCInit_InitBackground(BgConfig *bgConfig)
 {
     BgTemplate main0Template = {
         .x = 0,
@@ -252,7 +249,7 @@ static void GTSApplication_WFCInit_InitBackground(BgConfig *bgConfig)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, FALSE);
 }
 
-static void GTSApplication_WFCInit_CleanupBackground(BgConfig *bgConfig)
+static void GTSWFCInit_CleanupBackground(BgConfig *bgConfig)
 {
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
@@ -260,7 +257,7 @@ static void GTSApplication_WFCInit_CleanupBackground(BgConfig *bgConfig)
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void GTSApplication_WFCInit_InitGraphics(GTSApplicationState *appState)
+static void GTSWFCInit_InitGraphics(GTSApplicationState *appState)
 {
     BgConfig *bgConfig = appState->bgConfig;
     NARC *narc = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_62);
@@ -283,44 +280,44 @@ static void GTSApplication_WFCInit_InitGraphics(GTSApplicationState *appState)
     NARC_dtor(narc);
 }
 
-static void GTSApplication_WFCInit_InitText(GTSApplicationState *appState)
+static void GTSWFCInit_InitText(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->unk_F8C, BG_LAYER_MAIN_0, 4, 4, 23, 16, 13, ((1 + (18 + 12)) + 9) + 27 * 4);
-    Window_FillTilemap(&appState->unk_F8C, 0x0);
+    Window_Add(appState->bgConfig, &appState->networkErrWindow, BG_LAYER_MAIN_0, 4, 4, 23, 16, 13, ((1 + (18 + 12)) + 9) + 27 * 4);
+    Window_FillTilemap(&appState->networkErrWindow, 0);
     Window_Add(appState->bgConfig, &appState->titleWindow, BG_LAYER_MAIN_0, 4, 1, 24, 2, 13, (((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16);
-    Window_FillTilemap(&appState->titleWindow, 0x0);
+    Window_FillTilemap(&appState->titleWindow, 0);
 
-    ov94_022458CC(&appState->titleWindow, appState->title, 0, 1, 1, TEXT_COLOR(15, 14, 0));
+    Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 1, TEXT_COLOR(15, 14, 0));
 
     Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, BG_LAYER_MAIN_0, 2, 19, 27, 4, 13, (1 + (18 + 12)) + 9);
-    Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
+    Window_FillTilemap(&appState->bottomInstructionWindow, 0);
 }
 
-static void GTSApplication_WFCInit_CleanupWindows(GTSApplicationState *appState)
+static void GTSWFCInit_CleanupWindows(GTSApplicationState *appState)
 {
     Window_Remove(&appState->bottomInstructionWindow);
     Window_Remove(&appState->titleWindow);
-    Window_Remove(&appState->unk_F8C);
+    Window_Remove(&appState->networkErrWindow);
 }
 
-static void GTSApplication_WFCInit_InitTitle(GTSApplicationState *appState)
+static void GTSWFCInit_InitTitle(GTSApplicationState *appState)
 {
     appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
     appState->shortErrorBuffer = String_Init(16 * 8 * 2, HEAP_ID_62);
     appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_NintendoWifiConnection);
 }
 
-static void GTSApplication_WFCInit_CleanupStrings(GTSApplicationState *appState)
+static void GTSWFCInit_CleanupStrings(GTSApplicationState *appState)
 {
     String_Free(appState->title);
     String_Free(appState->shortErrorBuffer);
     String_Free(appState->genericMessageBuffer);
 }
 
-static int GTSApplication_WFCInit_AskToSetupConnection(GTSApplicationState *appState)
+static int GTSWFCInit_AskToSetupConnection(GTSApplicationState *appState)
 {
-    GTSApplication_DisplayStatusMessage(appState, appState->unk0695MessageLoader, pl_msg_00000695_00017, TEXT_SPEED_FAST, 0xf0f);
-    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 13, 1);
+    GTSApplication_DisplayStatusMessage(appState, appState->disconnStatusMessageLoader, pl_msg_00000695_00017, TEXT_SPEED_FAST, 0xf0f);
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSWFCINIT_WAIT_FOR_TEXT_THEN_YES_NO_MENU, GTSWFCINIT_PROCESS_SETUP_CONFIRMATION);
 
     // this starts counting box pokemon in the main loop
     appState->deferredBoxId = 1;
@@ -328,7 +325,7 @@ static int GTSApplication_WFCInit_AskToSetupConnection(GTSApplicationState *appS
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *appState)
+static int GTSWFCInit_ProcessSetupConfirmation(GTSApplicationState *appState)
 {
     int menuInput = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
@@ -336,10 +333,10 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
         if (menuInput == MENU_CANCEL) {
             CommManager_EndGlobalWifi(); // free the network lock?
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
-            appState->currentScreenInstruction = 11;
+            appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
         } else {
-            GTSApplication_DisplayStatusMessage(appState, appState->unk0674MessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
-            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 2);
+            GTSApplication_DisplayStatusMessage(appState, appState->connProgressMessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSWFCINIT_WAIT_FOR_TEXT, GTSWFCINIT_CONNECT);
             GTSApplication_AddWaitDial(appState);
         }
     }
@@ -347,26 +344,26 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_AskToDisconnect(GTSApplicationState *appState)
+static int GTSWFCInit_AskToDisconnect(GTSApplicationState *appState)
 {
     GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_IsItOKToDisconnect, TEXT_SPEED_FAST, 0xf0f);
-    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 13, 16);
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSWFCINIT_WAIT_FOR_TEXT_THEN_YES_NO_MENU, GTSWFCINIT_RESTART_OR_EXIT);
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
+static int GTSWFCInit_RestartOrExit(GTSApplicationState *appState)
 {
     int menuInput = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
     if (menuInput != MENU_NOTHING_CHOSEN) {
         if (menuInput == MENU_CANCEL) {
             if (!DWC_CheckInet()) {
-                appState->currentScreenInstruction = 0;
+                appState->currentScreenInstruction = GTSWFCINIT_ASK_TO_SETUP_CONNECTION;
             } else {
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_CHECK_SERVER);
                 appState->returnAfterNetworkScreen = GTS_SCREEN_MAIN_MENU;
-                appState->currentScreenInstruction = 11;
+                appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
             }
         } else {
             if (DWC_CheckInet()) {
@@ -375,73 +372,73 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
 
             CommManager_EndGlobalWifi();
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
-            appState->currentScreenInstruction = 11;
+            appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
         }
     }
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_ShowDisconnectingMessage(GTSApplicationState *appState)
+static int GTSWFCInit_ShowDisconnectingMessage(GTSApplicationState *appState)
 {
-    GTSApplication_DisplayStatusMessage(appState, appState->unk0695MessageLoader, pl_msg_00000695_00026, TEXT_SPEED_FAST, 0xf0f);
-    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 18);
+    GTSApplication_DisplayStatusMessage(appState, appState->disconnStatusMessageLoader, pl_msg_00000695_00026, TEXT_SPEED_FAST, 0xf0f);
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSWFCINIT_WAIT_FOR_TEXT, GTSWFCINIT_CLEANUP_NETWORKING);
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *appState)
+static int GTSWFCInit_CleanupNetworking(GTSApplicationState *appState)
 {
     CommManager_EndGlobalWifi();
 
     DWC_CleanupInet();
     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
-    appState->currentScreenInstruction = 19;
+    appState->currentScreenInstruction = GTSWFCINIT_SHOW_DISCONNECTED_MESSAGE;
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_ShowDisconnectedMessage(GTSApplicationState *appState)
+static int GTSWFCInit_ShowDisconnectedMessage(GTSApplicationState *appState)
 {
-    GTSApplication_DisplayStatusMessage(appState, appState->unk0695MessageLoader, pl_msg_00000695_00027, TEXT_SPEED_FAST, 0xf0f);
-    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 20, 11);
+    GTSApplication_DisplayStatusMessage(appState, appState->disconnStatusMessageLoader, pl_msg_00000695_00027, TEXT_SPEED_FAST, 0xf0f);
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSWFCINIT_WAIT_FOR_TEXT_DELAYED, GTSWFCINIT_EXIT_SCREEN);
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_Connect(GTSApplicationState *appState)
+static int GTSWFCInit_Connect(GTSApplicationState *appState)
 {
     DWC_InitInetEx(&appState->dwcInetControlObject, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
     DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
     DWC_ConnectInetAsync();
 
-    appState->currentScreenInstruction = 3;
+    appState->currentScreenInstruction = GTSWFCINIT_CHECK_CONNECTION;
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState)
+static int GTSWFCInit_CheckConnection(GTSApplicationState *appState)
 {
     DWC_ProcessInet();
 
     if (DWC_CheckInet()) {
         switch (DWC_GetInetStatus()) {
         case DWC_CONNECTINET_STATE_ERROR: {
-            DWCError v0;
-            int v1;
-            DWCErrorType v2;
+            DWCError dwcErr;
+            int errCode;
+            DWCErrorType errType;
 
-            v0 = DWC_GetLastErrorEx(&v1, &v2);
+            dwcErr = DWC_GetLastErrorEx(&errCode, &errType);
 
-            appState->unk_40 = v0;
-            appState->unk_44 = v1;
-            appState->unk_48 = v2;
+            appState->dwcErr = dwcErr;
+            appState->dwcErrCode = errCode;
+            appState->dwcErrType = errType;
         }
             DWC_ClearError();
             DWC_CleanupInet();
             GTSApplication_DestroyWaitDial(appState);
 
-            appState->currentScreenInstruction = 23;
+            appState->currentScreenInstruction = GTSWFCINIT_SHOW_NETWORK_ERROR;
 
             break;
         case DWC_CONNECTINET_STATE_NOT_INITIALIZED:
@@ -451,28 +448,25 @@ static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState)
         case DWC_CONNECTINET_STATE_DISCONNECTING:
         case DWC_CONNECTINET_STATE_DISCONNECTED:
         default:
-        case DWC_CONNECTINET_STATE_FATAL_ERROR: {
-            DWCError v3;
-            int v4;
+        case DWC_CONNECTINET_STATE_FATAL_ERROR:
+            DWCError unusedErr;
+            int unusedErrCode;
 
-            v3 = DWC_GetLastError(&v4);
+            unusedErr = DWC_GetLastError(&unusedErrCode);
             GTSApplication_DestroyWaitDial(appState);
 
-            appState->currentScreenInstruction = 21;
+            appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
             appState->commsErrorMessage = -2;
-        } break;
+            break;
+        case DWC_CONNECTINET_STATE_CONNECTED:
+            DWCApInfo apInfo;
+            DWC_GetApInfo(&apInfo);
 
-        case DWC_CONNECTINET_STATE_CONNECTED: {
-            DWCApInfo v5;
-
-            DWC_GetApInfo(&v5);
-
-            if (v5.aptype == DWC_APINFO_TYPE_SHOP) {
+            if (apInfo.aptype == DWC_APINFO_TYPE_SHOP) {
                 (void)0;
             }
-        }
 
-            appState->currentScreenInstruction = 4;
+            appState->currentScreenInstruction = GTSWFCINIT_AUTHENTICATE;
             break;
         }
     }
@@ -480,54 +474,54 @@ static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState)
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_Authenticate(GTSApplicationState *appState)
+static int GTSWFCInit_Authenticate(GTSApplicationState *appState)
 {
     DWC_NASLoginAsync();
-    appState->currentScreenInstruction = 5;
+    appState->currentScreenInstruction = GTSWFCINIT_CHECK_AUTHENTICATION;
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appState)
+static int GTSWFCInit_CheckAuthentication(GTSApplicationState *appState)
 {
     switch (DWC_NASLoginProcess()) {
     case DWC_NASLOGIN_STATE_SUCCESS:
-        appState->currentScreenInstruction = 6;
+        appState->currentScreenInstruction = GTSWFCINIT_GET_DWC_KEY;
         break;
     case DWC_NASLOGIN_STATE_ERROR:
     case DWC_NASLOGIN_STATE_CANCELED:
     case DWC_NASLOGIN_STATE_DIRTY:
         GTSApplication_DestroyWaitDial(appState);
 
-        int v0;
-        DWCErrorType v1;
-        DWCError v2;
+        int errCode;
+        DWCErrorType errType;
+        DWCError dwcErr;
 
-        v2 = DWC_GetLastErrorEx(&v0, &v1);
+        dwcErr = DWC_GetLastErrorEx(&errCode, &errType);
 
-        appState->unk_40 = v2;
-        appState->unk_44 = v0;
+        appState->dwcErr = dwcErr;
+        appState->dwcErrCode = errCode;
 
         DWC_ClearError();
         DWC_CleanupInet();
 
-        appState->currentScreenInstruction = 23;
+        appState->currentScreenInstruction = GTSWFCINIT_SHOW_NETWORK_ERROR;
 
-        switch (v1) {
+        switch (errType) {
         case DWC_ETYPE_LIGHT:
         case DWC_ETYPE_SHOW_ERROR:
-            appState->currentScreenInstruction = 23;
+            appState->currentScreenInstruction = GTSWFCINIT_SHOW_NETWORK_ERROR;
             break;
         case DWC_ETYPE_SHUTDOWN_GHTTP:
             DWC_ShutdownGHTTP();
-            appState->currentScreenInstruction = 23;
+            appState->currentScreenInstruction = GTSWFCINIT_SHOW_NETWORK_ERROR;
             break;
         case DWC_ETYPE_DISCONNECT:
-            appState->currentScreenInstruction = 23;
+            appState->currentScreenInstruction = GTSWFCINIT_SHOW_NETWORK_ERROR;
             break;
         case DWC_ETYPE_SHUTDOWN_FM:
             DWC_ShutdownFriendsMatch();
-            appState->currentScreenInstruction = 23;
+            appState->currentScreenInstruction = GTSWFCINIT_SHOW_NETWORK_ERROR;
             break;
         case DWC_ETYPE_SHUTDOWN_ND:
         case DWC_ETYPE_FATAL:
@@ -535,8 +529,8 @@ static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appSt
             break;
         }
 
-        if ((v0 < -20000) && (v0 >= -29999)) {
-            appState->currentScreenInstruction = 23;
+        if ((errCode < -20000) && (errCode >= -29999)) {
+            appState->currentScreenInstruction = GTSWFCINIT_SHOW_NETWORK_ERROR;
         }
         break;
     }
@@ -544,170 +538,70 @@ static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appSt
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_GetDWCKey(GTSApplicationState *appState)
+static int GTSWFCInit_GetDWCKey(GTSApplicationState *appState)
 {
-    DWCUserData *v0;
-    s32 v1;
+    DWCUserData *userData;
+    s32 profileId;
 
-    v0 = WiFiList_GetUserData(appState->playerData->wiFiList);
-    v1 = SystemData_GetDWCProfileId(appState->playerData->systemData);
+    userData = WiFiList_GetUserData(appState->playerData->wiFiList);
+    profileId = SystemData_GetDWCProfileId(appState->playerData->systemData);
 
-    if (v1 == 0) {
+    if (profileId == 0) {
         SystemData_SetDWCProfileId(appState->playerData->systemData, appState->playerData->dwcProfileId);
     }
 
-    v1 = SystemData_GetDWCProfileId(appState->playerData->systemData);
-    GTSNetworking_InitCredentials(v1, DWC_CreateFriendKey(v0));
-    appState->currentScreenInstruction = 7;
+    profileId = SystemData_GetDWCProfileId(appState->playerData->systemData);
+    GTSNetworking_InitCredentials(profileId, DWC_CreateFriendKey(userData));
+    appState->currentScreenInstruction = GTSWFCINIT_CONNECT_TO_REMOTE_SERVER;
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_ConnectToRemoteServer(GTSApplicationState *param0)
+static int GTSWFCInit_ConnectToRemoteServer(GTSApplicationState *appState)
 {
     GTSNetworking_InitConnection();
 
-    param0->currentScreenInstruction = 8;
-    param0->networkTimeoutCounter = 0;
+    appState->currentScreenInstruction = GTSWFCINIT_WAIT_FOR_SERVER_RESPONSE;
+    appState->networkTimeoutCounter = 0;
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_WaitForServerResponse(GTSApplicationState *param0)
+static int GTSWFCInit_WaitForServerResponse(GTSApplicationState *appState)
 {
     if (GTSNetworking_RequestComplete()) {
-        s32 v0 = GTSNetworking_GetErrorCode();
-
-        param0->networkTimeoutCounter = 0;
-
-        switch (v0) {
-        case 0: // success
-            param0->currentScreenInstruction = 9;
-            break;
-        case 1: // first byte = 6
-            GTSApplication_DestroyWaitDial(param0);
-            param0->commsErrorMessage = v0;
-            param0->currentScreenInstruction = 21;
-            break;
-        case 2: // first byte = 7
-        case -1:
-            GTSApplication_DestroyWaitDial(param0);
-            param0->commsErrorMessage = v0;
-            param0->currentScreenInstruction = 21;
-            break;
-        case -12:
-        case -15:
-            GTSApplication_DestroyWaitDial(param0);
-            param0->commsErrorMessage = v0;
-            param0->currentScreenInstruction = 21;
-            break;
-        case -2:
-        case -14:
-            GTSApplication_DestroyWaitDial(param0);
-            param0->commsErrorMessage = v0;
-            param0->currentScreenInstruction = 21;
-            break;
-        case -13:
-        default:
-            GTSApplication_DestroyWaitDial(param0);
-            NetworkError_DisplayGTSCriticalError();
-            break;
-        }
-    } else {
-        param0->networkTimeoutCounter++;
-
-        if (param0->networkTimeoutCounter == (30 * 60 * 2)) {
-            NetworkError_DisplayGTSCriticalError();
-        }
-    }
-
-    return GTS_LOOP_STATE_MAIN;
-}
-
-static int GTSApplication_WFCInit_SetProfileRequest(GTSApplicationState *param0)
-{
-    WorldExchange_GetTrainerObject(param0->playerData->saveData, &param0->worldExchangeTrainer);
-    GTSNetworking_SetProfile(&param0->worldExchangeTrainer, &param0->worldExchangeTrainerError);
-
-    param0->currentScreenInstruction = 10;
-    param0->networkTimeoutCounter = 0;
-
-    return GTS_LOOP_STATE_MAIN;
-}
-
-static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appState)
-{
-    if (GTSNetworking_RequestComplete()) {
-        s32 errorCode = GTSNetworking_GetErrorCode();
+        s32 errCode = GTSNetworking_GetErrorCode();
 
         appState->networkTimeoutCounter = 0;
 
-        switch (errorCode) {
-        case 0:
-            GTSApplication_DestroyWaitDial(appState);
-
-            switch (appState->worldExchangeTrainerError.validationError) {
-            case WE_VALIDATION_ERROR_VALID:
-                switch (appState->worldExchangeTrainerError.systemError) {
-                case WE_SYSTEM_ERROR_NONE:
-                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
-                    appState->currentScreenInstruction = 11;
-                    break;
-                case WE_SYSTEM_ERROR_DWC_3: // pl_msg_00000671_00177
-                    appState->commsErrorMessage = -5003;
-                    appState->currentScreenInstruction = 21;
-                    break;
-                case WE_SYSTEM_ERROR_DWC_1: // pl_msg_00000671_00174
-                    appState->commsErrorMessage = -5000;
-                    appState->currentScreenInstruction = 21;
-                    break;
-                case WE_SYSTEM_ERROR_DWC_2: // pl_msg_00000671_00174
-                    appState->commsErrorMessage = -5001;
-                    appState->currentScreenInstruction = 21;
-                    break;
-                default:
-                    NetworkError_DisplayGTSCriticalError();
-                    break;
-                }
-                break;
-            case WE_VALIDATION_ERROR_FAILED_1: // pl_msg_00000671_00175
-                appState->commsErrorMessage = -5004;
-                appState->currentScreenInstruction = 21;
-                break;
-            case WE_VALIDATION_ERROR_FAILED_2: // pl_msg_00000671_00176
-                appState->commsErrorMessage = -5005;
-                appState->currentScreenInstruction = 21;
-                break;
-            default:
-                GTSApplication_DestroyWaitDial(appState);
-                NetworkError_DisplayGTSCriticalError();
-                break;
-            }
+        switch (errCode) {
+        case GTS_RESULT_SUCCESS:
+            appState->currentScreenInstruction = GTSWFCINIT_SET_PROFILE_REQUEST;
             break;
-        case 1:
+        case GTS_RESULT_PROFILE_EXISTS:
             GTSApplication_DestroyWaitDial(appState);
-            appState->commsErrorMessage = errorCode;
-            appState->currentScreenInstruction = 21;
+            appState->commsErrorMessage = errCode;
+            appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
             break;
-        case 2:
-        case -1:
+        case GTS_RESULT_BANNED:
+        case GTS_RESULT_GTS_CROWDED:
             GTSApplication_DestroyWaitDial(appState);
-            appState->commsErrorMessage = errorCode;
-            appState->currentScreenInstruction = 21;
+            appState->commsErrorMessage = errCode;
+            appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
             break;
-        case -12:
-        case -15:
+        case GTS_RESULT_ABORTED:
+        case GTS_RESULT_CONNECTION_FAILED:
             GTSApplication_DestroyWaitDial(appState);
-            appState->commsErrorMessage = errorCode;
-            appState->currentScreenInstruction = 21;
+            appState->commsErrorMessage = errCode;
+            appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
             break;
-        case -2:
-        case -14:
+        case GTS_RESULT_SERVER_MAINTENANCE:
+        case GTS_RESULT_NOT_IN_DCF_PHASE:
             GTSApplication_DestroyWaitDial(appState);
-            appState->commsErrorMessage = errorCode;
-            appState->currentScreenInstruction = 21;
+            appState->commsErrorMessage = errCode;
+            appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
             break;
-        case -13:
+        case GTS_RESULT_ERROR:
         default:
             GTSApplication_DestroyWaitDial(appState);
             NetworkError_DisplayGTSCriticalError();
@@ -724,118 +618,218 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_ShowNetworkError(GTSApplicationState *appState)
+static int GTSWFCInit_SetProfileRequest(GTSApplicationState *appState)
 {
-    int errorMessage = NintendoWFC_GetErrorCode(-appState->unk_44, appState->unk_48);
-    GTSApplication_WFCInit_DisplayErrorCode(appState, errorMessage, -appState->unk_44);
-    appState->currentScreenInstruction = 24;
+    WorldExchange_GetTrainerObject(appState->playerData->saveData, &appState->worldExchangeTrainer);
+    GTSNetworking_SetProfile(&appState->worldExchangeTrainer, &appState->worldExchangeTrainerError);
+
+    appState->currentScreenInstruction = GTSWFCINIT_SET_PROFILE_RESPONSE;
+    appState->networkTimeoutCounter = 0;
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_RestartConnection(GTSApplicationState *param0)
+static int GTSWFCInit_SetProfileResponse(GTSApplicationState *appState)
 {
-    if (gSystem.pressedKeys & PAD_BUTTON_A || gSystem.pressedKeys & PAD_BUTTON_B) {
-        Window_EraseStandardFrame(&param0->unk_F8C, 0);
-        param0->currentScreenInstruction = 0;
-    }
+    if (GTSNetworking_RequestComplete()) {
+        s32 errorCode = GTSNetworking_GetErrorCode();
 
-    return GTS_LOOP_STATE_MAIN;
-}
+        appState->networkTimeoutCounter = 0;
 
-static int GTSApplication_WFCInit_ExitScreen(GTSApplicationState *param0)
-{
-    NetworkIcon_Destroy();
-    GTSApplication_DestroyWaitDial(param0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
+        switch (errorCode) {
+        case GTS_RESULT_SUCCESS:
+            GTSApplication_DestroyWaitDial(appState);
 
-    param0->currentScreenInstruction = 0;
-    param0->fadeBothScreens = 1;
+            switch (appState->worldExchangeTrainerError.validationError) {
+            case WE_VALIDATION_ERROR_VALID:
+                switch (appState->worldExchangeTrainerError.systemError) {
+                case WE_SYSTEM_ERROR_NONE:
+                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
+                    appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
+                    break;
+                case WE_SYSTEM_ERROR_DWC_3:
+                    appState->commsErrorMessage = GTSCOMMS_RESULT_WII_AUTH_ERROR;
+                    appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
+                    break;
+                case WE_SYSTEM_ERROR_DWC_1:
+                    appState->commsErrorMessage = GTSCOMMS_RESULT_COMMUNICATION_ERROR1;
+                    appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
+                    break;
+                case WE_SYSTEM_ERROR_DWC_2:
+                    appState->commsErrorMessage = GTSCOMMS_RESULT_COMMUNICATION_ERROR2;
+                    appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
+                    break;
+                default:
+                    NetworkError_DisplayGTSCriticalError();
+                    break;
+                }
+                break;
+            case WE_VALIDATION_ERROR_FAILED_1:
+                appState->commsErrorMessage = GTSCOMMS_RESULT_DATA_CORRUPTION;
+                appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
+                break;
+            case WE_VALIDATION_ERROR_FAILED_2:
+                appState->commsErrorMessage = GTSCOMMS_RESULT_SERVER_MAINTENANCE;
+                appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
+                break;
+            default:
+                GTSApplication_DestroyWaitDial(appState);
+                NetworkError_DisplayGTSCriticalError();
+                break;
+            }
+            break;
+        case GTS_RESULT_PROFILE_EXISTS:
+            GTSApplication_DestroyWaitDial(appState);
+            appState->commsErrorMessage = errorCode;
+            appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
+            break;
+        case GTS_RESULT_BANNED:
+        case GTS_RESULT_GTS_CROWDED:
+            GTSApplication_DestroyWaitDial(appState);
+            appState->commsErrorMessage = errorCode;
+            appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
+            break;
+        case GTS_RESULT_ABORTED:
+        case GTS_RESULT_CONNECTION_FAILED:
+            GTSApplication_DestroyWaitDial(appState);
+            appState->commsErrorMessage = errorCode;
+            appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
+            break;
+        case GTS_RESULT_SERVER_MAINTENANCE:
+        case GTS_RESULT_NOT_IN_DCF_PHASE:
+            GTSApplication_DestroyWaitDial(appState);
+            appState->commsErrorMessage = errorCode;
+            appState->currentScreenInstruction = GTSWFCINIT_FATAL_ERROR;
+            break;
+        case GTS_RESULT_ERROR:
+        default:
+            GTSApplication_DestroyWaitDial(appState);
+            NetworkError_DisplayGTSCriticalError();
+            break;
+        }
+    } else {
+        appState->networkTimeoutCounter++;
 
-    return GTS_LOOP_STATE_FINISH;
-}
-
-static int ov94_022455D0(GTSApplicationState *param0)
-{
-    int v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
-
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
-            param0->currentScreenInstruction = 0;
-        } else {
-            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
-            param0->currentScreenInstruction = 11;
+        if (appState->networkTimeoutCounter == (30 * 60 * 2)) {
+            NetworkError_DisplayGTSCriticalError();
         }
     }
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_FatalError(GTSApplicationState *appState)
+static int GTSWFCInit_ShowNetworkError(GTSApplicationState *appState)
+{
+    int errorMessage = NintendoWFC_GetErrorCode(-appState->dwcErrCode, appState->dwcErrType);
+    GTSWFCInit_DisplayErrorCode(appState, errorMessage, -appState->dwcErrCode);
+    appState->currentScreenInstruction = GTSWFCINIT_RESTART_CONNECTION;
+
+    return GTS_LOOP_STATE_MAIN;
+}
+
+static int GTSWFCInit_RestartConnection(GTSApplicationState *appState)
+{
+    if (gSystem.pressedKeys & PAD_BUTTON_A || gSystem.pressedKeys & PAD_BUTTON_B) {
+        Window_EraseStandardFrame(&appState->networkErrWindow, 0);
+        appState->currentScreenInstruction = GTSWFCINIT_ASK_TO_SETUP_CONNECTION;
+    }
+
+    return GTS_LOOP_STATE_MAIN;
+}
+
+static int GTSWFCInit_ExitScreen(GTSApplicationState *appState)
+{
+    NetworkIcon_Destroy();
+    GTSApplication_DestroyWaitDial(appState);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
+
+    appState->currentScreenInstruction = GTSWFCINIT_ASK_TO_SETUP_CONNECTION;
+    appState->fadeBothScreens = 1;
+
+    return GTS_LOOP_STATE_FINISH;
+}
+
+static int GTSWFCInit_HandleRetryMenuInput(GTSApplicationState *appState)
+{
+    int result = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+
+    if (result != MENU_NOTHING_CHOSEN) {
+        if (result == MENU_CANCEL) {
+            appState->currentScreenInstruction = GTSWFCINIT_ASK_TO_SETUP_CONNECTION;
+        } else {
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
+            appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
+        }
+    }
+
+    return GTS_LOOP_STATE_MAIN;
+}
+
+static int GTSWFCInit_FatalError(GTSApplicationState *appState)
 {
     int errorMessage = 0;
 
     switch (appState->commsErrorMessage) {
-    case 1:
+    case GTSCOMMS_RESULT_GTS_MAINTENANCE:
         errorMessage = pl_msg_00000671_00144;
         break;
-    case 2:
-    case -1:
+    case GTSCOMMS_RESULT_CROWDED1:
+    case GTSCOMMS_RESULT_CROWDED2:
         errorMessage = GTS_Text_Error_GTSCrowded;
         break;
-    case -2:
-    case -14:
+    case GTSCOMMS_RESULT_DISCONNECTED1:
+    case GTSCOMMS_RESULT_DISCONNECTED2:
         errorMessage = GTS_Text_Error_DisconnectedFromGTSReturning;
         break;
-    case -12:
-    case -15:
-    case -3:
-    case -5:
+    case GTSCOMMS_RESULT_UNABLE_TO_CONNECT1:
+    case GTSCOMMS_RESULT_UNABLE_TO_CONNECT2:
+    case GTSCOMMS_RESULT_UNABLE_TO_CONNECT3:
+    case GTSCOMMS_RESULT_UNABLE_TO_CONNECT4:
     default:
         errorMessage = pl_msg_00000671_00149;
         break;
-    case -5003:
+    case GTSCOMMS_RESULT_WII_AUTH_ERROR:
         errorMessage = pl_msg_00000671_00177;
         break;
-    case -5000:
+    case GTSCOMMS_RESULT_COMMUNICATION_ERROR1:
         errorMessage = pl_msg_00000671_00174;
         break;
-    case -5001:
+    case GTSCOMMS_RESULT_COMMUNICATION_ERROR2:
         errorMessage = pl_msg_00000671_00174;
         break;
-    case -5004:
+    case GTSCOMMS_RESULT_DATA_CORRUPTION:
         errorMessage = pl_msg_00000671_00175;
         break;
-    case -5005:
+    case GTSCOMMS_RESULT_SERVER_MAINTENANCE:
         errorMessage = pl_msg_00000671_00176;
         break;
     }
 
     GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, errorMessage, TEXT_SPEED_FAST, 0xf0f);
-    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 22);
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSWFCINIT_WAIT_FOR_TEXT, GTSWFCINIT_FATAL_ERROR_DISCONNECT_MESSAGE);
 
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationState *appState)
+static int GTSWFCInit_FatalErrorDisconnectMessage(GTSApplicationState *appState)
 {
     switch (appState->wfcDisconnectMessageIndex) {
-    case 0:
+    case WFCDISCONNECTMSG_DISCONNECTING_FROM_WIFI:
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, pl_msg_00000671_00178, TEXT_SPEED_FAST, 0xf0f);
         appState->wfcDisconnectMessageIndex++;
         break;
-    case 1:
+    case WFCDISCONNECTMSG_WAIT_THEN_DISCONNECT:
         if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
             CommManager_EndGlobalWifi();
             DWC_CleanupInet();
             appState->wfcDisconnectMessageIndex++;
         }
         break;
-    case 2:
+    case WFCDISCONNECTMSG_YOU_HAVE_DISCONNECTED:
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, pl_msg_00000671_00179, TEXT_SPEED_FAST, 0xf0f);
         appState->wfcDisconnectMessageIndex++;
         break;
-    case 3:
+    case WFCDISCONNECTMSG_WAIT_FOR_DISCONNECTED_TEXT:
         if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
             appState->wfcDisconnectMessageIndex++;
         }
@@ -845,7 +839,7 @@ static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationStat
 
         if (appState->wfcDisconnectMessageFrameDelay > 30) {
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
-            appState->currentScreenInstruction = 11;
+            appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
         }
         break;
     }
@@ -853,7 +847,7 @@ static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationStat
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_WaitForText(GTSApplicationState *appState)
+static int GTSWFCInit_WaitForText(GTSApplicationState *appState)
 {
     if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
         appState->currentScreenInstruction = appState->nextScreenInstruction;
@@ -862,7 +856,7 @@ static int GTSApplication_WFCInit_WaitForText(GTSApplicationState *appState)
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_WaitForTextDelayed(GTSApplicationState *appState)
+static int GTSWFCInit_WaitForTextDelayed(GTSApplicationState *appState)
 {
     if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
         if (appState->frameDelay > 30) {
@@ -875,7 +869,7 @@ static int GTSApplication_WFCInit_WaitForTextDelayed(GTSApplicationState *appSta
     return GTS_LOOP_STATE_MAIN;
 }
 
-static int GTSApplication_WFCInit_WaitForTextThenYesNoMenu(GTSApplicationState *appState)
+static int GTSWFCInit_WaitForTextThenYesNoMenu(GTSApplicationState *appState)
 {
     if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
         appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, ((((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16) + 24 * 2);
@@ -898,7 +892,7 @@ void GTSApplication_DisplayStatusMessage(GTSApplicationState *appState, MessageL
     appState->frameDelay = 0;
 }
 
-static int ov94_02245894(Window *window, String *string, int x, int centered, TextColor textColor, int font)
+static int Text_CalcAlignedX(Window *window, String *string, int x, int centered, TextColor textColor, int font)
 {
     int width = 0;
 
@@ -916,39 +910,39 @@ static int ov94_02245894(Window *window, String *string, int x, int centered, Te
     return x;
 }
 
-void ov94_022458CC(Window *window, String *string, int x, int y, int width, TextColor textColor)
+void Window_DrawAlignedMessageText(Window *window, String *string, int x, int y, int alignment, TextColor textColor)
 {
-    x = ov94_02245894(window, string, x, width, textColor, FONT_MESSAGE);
+    x = Text_CalcAlignedX(window, string, x, alignment, textColor, FONT_MESSAGE);
     Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, x, y, TEXT_SPEED_INSTANT, textColor, NULL);
 }
 
-void ov94_02245900(Window *window, String *string, int x, int y, int centered, TextColor textColor)
+void Window_DrawAlignedSystemText(Window *window, String *string, int x, int y, int centered, TextColor textColor)
 {
-    x = ov94_02245894(window, string, x, centered, textColor, FONT_SYSTEM);
+    x = Text_CalcAlignedX(window, string, x, centered, textColor, FONT_SYSTEM);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, x, y, TEXT_SPEED_INSTANT, textColor, NULL);
 }
 
-void ov94_02245934(GTSApplicationState *appState)
+void GTSApplication_InitNetworkIcon(GTSApplicationState *appState)
 {
     NetworkIcon_Init();
 }
 
-static void GTSApplication_WFCInit_DisplayNetworkError(GTSApplicationState *appState, int messageId)
+static void GTSWFCInit_DisplayNetworkError(GTSApplicationState *appState, int messageId)
 {
     String *fmtString = String_Init(16 * 8 * 2, HEAP_ID_62);
 
-    MessageLoader_GetString(appState->unk0695MessageLoader, messageId, fmtString);
+    MessageLoader_GetString(appState->disconnStatusMessageLoader, messageId, fmtString);
     StringTemplate_Format(appState->stringTemplate, appState->shortErrorBuffer, fmtString);
 
-    Window_FillTilemap(&appState->unk_F8C, 15);
-    Window_DrawStandardFrame(&appState->unk_F8C, 1, 1 + (18 + 12), 11);
+    Window_FillTilemap(&appState->networkErrWindow, 15);
+    Window_DrawStandardFrame(&appState->networkErrWindow, 1, 1 + (18 + 12), 11);
 
-    appState->textPrinter = Text_AddPrinterWithParams(&appState->unk_F8C, FONT_MESSAGE, appState->shortErrorBuffer, 0, 0, TEXT_SPEED_INSTANT, NULL);
+    appState->textPrinter = Text_AddPrinterWithParams(&appState->networkErrWindow, FONT_MESSAGE, appState->shortErrorBuffer, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
     String_Free(fmtString);
 }
 
-static void GTSApplication_WFCInit_DisplayErrorCode(GTSApplicationState *appState, int errorCode, int visibleErrorCode)
+static void GTSWFCInit_DisplayErrorCode(GTSApplicationState *appState, int errorCode, int visibleErrorCode)
 {
     int messageId;
 
@@ -961,5 +955,5 @@ static void GTSApplication_WFCInit_DisplayErrorCode(GTSApplicationState *appStat
     StringTemplate_SetNumber(appState->stringTemplate, 0, visibleErrorCode, 5, 2, 1);
     Window_EraseMessageBox(&appState->bottomInstructionWindow, 1);
 
-    GTSApplication_WFCInit_DisplayNetworkError(appState, messageId);
+    GTSWFCInit_DisplayNetworkError(appState, messageId);
 }

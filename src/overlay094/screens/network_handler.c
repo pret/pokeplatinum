@@ -167,7 +167,7 @@ int GTSApplication_NetworkHandler_Init(GTSApplicationState *appState, int unused
     GTSNetworkHandler_InitWindows(appState);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
-    ov94_02245934(appState);
+    GTSApplication_InitNetworkIcon(appState);
 
     appState->currentScreenInstruction = GTS_NETHANDLER_PARSE_SCREEN_ARGUMENT;
 
@@ -611,7 +611,7 @@ static int GTSNetworkHandler_ExchangeRequest(GTSApplicationState *appState)
 {
     Pokemon_ClearBallCapsuleData((Pokemon *)appState->receivedListing.pokemon.bytes);
 
-    GTSNetworking_Exchange(appState->searchResults[appState->selectedSearchResult].unk_108, &appState->receivedListing, &appState->selectedListing);
+    GTSNetworking_Exchange(appState->searchResults[appState->selectedSearchResult].listingId, &appState->receivedListing, &appState->selectedListing);
     GTSNetworkHandler_SetSaveInstructions(appState, GTS_NETHANDLER_EXCHANGE_FINISH_REQUEST, GTS_NETHANDLER_GO_TO_TRADE_DEPOSIT);
 
     appState->currentScreenInstruction = GTS_NETHANDLER_EXCHANGE_RESPONSE;
@@ -1362,7 +1362,7 @@ static void GTSNetworkHandler_LogTradeInJournal(JournalEntry *journalEntry, GTSP
     Pokemon *mon = (Pokemon *)listing->pokemon.bytes;
 
     Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
-    journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonGTS(listing->trainerNames, listing->unk_F6, nickname, Pokemon_GetGender(mon), 62);
+    journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonGTS(listing->trainerNames, listing->trainerGender, nickname, Pokemon_GetGender(mon), 62);
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 

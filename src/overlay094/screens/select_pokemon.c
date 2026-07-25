@@ -40,85 +40,85 @@
 #include "res/text/bank/gts.h"
 
 typedef struct PokemonIcon {
-    int unk_00;
+    int tileData;
     int paletteIndex;
     Sprite *sprite;
-    u8 unk_0C[512]; // icon bytes
+    u8 vramOffset[512]; // icon bytes
 } PokemonIcon;
 
-static void ov94_0223FC08(BgConfig *param0);
-static void ov94_0223FD20(BgConfig *param0);
-static void ov94_0223FD4C(GTSApplicationState *param0);
-static void ov94_0223FE24(GTSApplicationState *param0);
-static void ov94_0223FFC8(GTSApplicationState *param0);
-static void ov94_02240028(GTSApplicationState *param0);
-static void ov94_02240190(GTSApplicationState *param0);
-static void ov94_022401E0(GTSApplicationState *appState);
-static void ov94_02240268(GTSApplicationState *appState);
-static int ov94_022402A8(GTSApplicationState *appState);
-static int ov94_022402BC(GTSApplicationState *appState);
-static int ov94_02240A6C(GTSApplicationState *appState);
-static int ov94_02240AC4(GTSApplicationState *appState);
-static int ov94_02240AE8(GTSApplicationState *appState);
-static int ov94_02240D08(GTSApplicationState *appState);
-static int ov94_02240D28(GTSApplicationState *appState);
-static void ov94_02240D58(GTSApplicationState *appState, int param1, int param2, int param3, u16 param4, int param5);
-static void ov94_02240DF8(int param0, int param1, int param2, int param3, Sprite *param4, NARC *param5, PokemonIcon *param6);
-static void ov94_02240FA0(GTSApplicationState *param0, int boxID);
-static int ov94_022405CC(int param0, int param1, int param2);
-static void ov94_022404F0(GTSApplicationState *appState);
-static int ov94_022405DC(GTSApplicationState *appState);
-static int ov94_02240688(GTSApplicationState *appState);
-static int ov94_02240830(GTSApplicationState *appState);
-static int ov94_022408E8(GTSApplicationState *appState);
-static int ov94_02240B70(GTSApplicationState *appState);
-static int ov94_02240B4C(GTSApplicationState *appState);
-static int ov94_02240B20(GTSApplicationState *appState);
-static int ov94_02240C58(GTSApplicationState *appState);
-static int ov94_02240C84(GTSApplicationState *appState);
-static int ov94_02240CA8(GTSApplicationState *appState);
-static int ov94_02241384(BoxPokemon *boxMon, GTSPokemonRequirements *requirements);
-static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *appState);
-static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u16 *param3, int param4, NARC *param5, GTSPokemonCriteria *param6, PokemonIcon *param7);
-void *ov94_02240DD0(NARC *param0, u32 param1, NNSG2dCharacterData **param2, u32 param3);
-static BOOL GTSApplication_SelectPokemon_MatchesRequirements(GTSPokemonCriteria *param0, GTSPokemonRequirements *param1);
-static void GTSApplication_SelectPokemon_DarkenNonMatchingMons(GTSPokemonCriteria *param0, Sprite **param1, GTSPokemonRequirements *param2, PokemonIcon *param3);
-static int ov94_0224121C(Party *party, PCBoxes *pcBoxes, int boxID, int param3);
-static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3);
-static int ov94_02240BB0(GTSApplicationState *appState);
+static void GTSSelectMon_InitBgLayers(BgConfig *bgConfig);
+static void GTSSelectMon_FreeBgLayers(BgConfig *bgConfig);
+static void GTSSelectMon_LoadGraphics(GTSApplicationState *appState);
+static void GTSSelectMon_InitSprites(GTSApplicationState *appState);
+static void GTSSelectMon_FreeSprites(GTSApplicationState *appState);
+static void GTSSelectMon_InitWindows(GTSApplicationState *appState);
+static void GTSSelectMon_RemoveWindows(GTSApplicationState *appState);
+static void GTSSelectMon_AllocState(GTSApplicationState *appState);
+static void GTSSelectMon_FreeState(GTSApplicationState *appState);
+static int GTSSelectMon_WaitFadeIn(GTSApplicationState *appState);
+static int GTSSelectMon_HandleInput(GTSApplicationState *appState);
+static int GTSSelectMon_FadeAndExit(GTSApplicationState *appState);
+static int GTSSelectMon_CreateExitConfirmMenu(GTSApplicationState *appState);
+static int GTSSelectMon_HandleExitConfirm(GTSApplicationState *appState);
+static int GTSSelectMon_WaitForText(GTSApplicationState *appState);
+static int GTSSelectMon_WaitForTextAndEraseBox(GTSApplicationState *appState);
+static void GTSSelectMon_ShowMessage(GTSApplicationState *appState, int entryID, int renderDelay, int param3, u16 unused, int isConfirmWindow);
+static void GTSSelectMon_LoadPokemonIcon(int species, int form, int isEgg, int iconIndex, Sprite *sprite, NARC *narc, PokemonIcon *monIcon);
+static void GTSSelectMon_LoadBoxDisplay(GTSApplicationState *appState, int boxID);
+static int GTSSelectMon_CycleBoxId(int boxId, int boxCount, int direction);
+static void GTSSelectMon_HandleCursorInput(GTSApplicationState *appState);
+static int GTSSelectMon_CreatePokemonMenu(GTSApplicationState *appState);
+static int GTSSelectMon_HandlePokemonMenuInput(GTSApplicationState *appState);
+static int GTSSelectMon_CreateTradeMenu(GTSApplicationState *appState);
+static int GTSSelectMon_HandleTradeMenuInput(GTSApplicationState *appState);
+static int GTSSelectMon_HandleTradeConfirm(GTSApplicationState *appState);
+static int GTSSelectMon_CreateTradeConfirmMenu(GTSApplicationState *appState);
+static int GTSSelectMon_ShowBallCapsuleTradePrompt(GTSApplicationState *appState);
+static int GTSSelectMon_ShowBallCapsuleDepositPrompt(GTSApplicationState *appState);
+static int GTSSelectMon_CreateBallCapsuleTradeConfirmMenu(GTSApplicationState *appState);
+static int GTSSelectMon_HandleBallCapsuleTradeConfirm(GTSApplicationState *appState);
+static int GTSSelectMon_BoxMonMatchesRequirements(BoxPokemon *boxMon, GTSPokemonRequirements *requirements);
+static void GTSSelectMon_FillTradeListing(GTSPokemonListing *listing, GTSApplicationState *appState);
+static void GTSSelectMon_SetupSlot(BoxPokemon *boxMon, Sprite *iconSprite, Sprite *itemSprite, u16 *species, int iconIndex, NARC *narc, GTSPokemonCriteria *criteria, PokemonIcon *monIcon);
+static void *NARC_AllocAndUnpackBGCharacterData(NARC *narc, u32 memberIdx, NNSG2dCharacterData **charData, u32 heapID);
+static BOOL GTSApplication_SelectMon_MatchesRequirements(GTSPokemonCriteria *criteria, GTSPokemonRequirements *requirements);
+static void GTSApplication_SelectMon_DarkenNonMatchingMons(GTSPokemonCriteria *criteria, Sprite **unused, GTSPokemonRequirements *requirements, PokemonIcon *icons);
+static int GTSSelectMon_CanOfferPokemon(Party *party, PCBoxes *unused1, int boxID, int unused2);
+static int GTSSelectMon_GetSlotStatus(Party *party, PCBoxes *pcBoxes, int boxID, int slot);
+static int GTSSelectMon_InitiateTrade(GTSApplicationState *appState);
 static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon);
 static BOOL BoxPokemon_FormNotInDP(BoxPokemon *boxMon);
 static BOOL BoxPokemon_HeldItemNotInDP(BoxPokemon *boxMon);
 
 static int (*sGTSPokemonSelectScreenStates[])(GTSApplicationState *) = {
-    ov94_022402A8,
-    ov94_022402BC,
-    ov94_02240A6C,
-    ov94_02240D08,
-    ov94_02240D28,
-    ov94_02240AC4,
-    ov94_02240AE8,
-    ov94_022405DC,
-    ov94_02240688,
-    ov94_02240830,
-    ov94_022408E8,
-    ov94_02240B20,
-    ov94_02240B4C,
-    ov94_02240B70,
-    ov94_02240C58,
-    ov94_02240C84,
-    ov94_02240CA8
+    [GTS_SELECTMON_WAIT_FADE_IN] = GTSSelectMon_WaitFadeIn,
+    [GTS_SELECTMON_HANDLE_INPUT] = GTSSelectMon_HandleInput,
+    [GTS_SELECTMON_FADE_AND_EXIT] = GTSSelectMon_FadeAndExit,
+    [GTS_SELECTMON_WAIT_FOR_TEXT] = GTSSelectMon_WaitForText,
+    [GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX] = GTSSelectMon_WaitForTextAndEraseBox,
+    [GTS_SELECTMON_CREATE_EXIT_CONFIRM_MENU] = GTSSelectMon_CreateExitConfirmMenu,
+    [GTS_SELECTMON_HANDLE_EXIT_CONFIRM] = GTSSelectMon_HandleExitConfirm,
+    [GTS_SELECTMON_CREATE_POKEMON_MENU] = GTSSelectMon_CreatePokemonMenu,
+    [GTS_SELECTMON_HANDLE_POKEMON_MENU_INPUT] = GTSSelectMon_HandlePokemonMenuInput,
+    [GTS_SELECTMON_CREATE_TRADE_MENU] = GTSSelectMon_CreateTradeMenu,
+    [GTS_SELECTMON_HANDLE_TRADE_MENU_INPUT] = GTSSelectMon_HandleTradeMenuInput,
+    [GTS_SELECTMON_SHOW_BALL_CAPSULE_TRADE_PROMPT] = GTSSelectMon_ShowBallCapsuleTradePrompt,
+    [GTS_SELECTMON_CREATE_TRADE_CONFIRM_MENU] = GTSSelectMon_CreateTradeConfirmMenu,
+    [GTS_SELECTMON_HANDLE_TRADE_CONFIRM] = GTSSelectMon_HandleTradeConfirm,
+    [GTS_SELECTMON_SHOW_BALL_CAPSULE_DEPOSIT_PROMPT] = GTSSelectMon_ShowBallCapsuleDepositPrompt,
+    [GTS_SELECTMON_CREATE_BALL_CAPSULE_TRADE_CONFIRM_MENU] = GTSSelectMon_CreateBallCapsuleTradeConfirmMenu,
+    [GTS_SELECTMON_HANDLE_BALL_CAPSULE_TRADE_CONFIRM] = GTSSelectMon_HandleBallCapsuleTradeConfirm
 };
 
-int GTSApplication_SelectPokemon_Init(GTSApplicationState *appState, int unused1)
+int GTSApplication_SelectMon_Init(GTSApplicationState *appState, int unused)
 {
-    UNUSED(unused1);
+    UNUSED(unused);
 
-    ov94_022401E0(appState);
-    ov94_0223FC08(appState->bgConfig);
-    ov94_0223FD4C(appState);
-    ov94_02240028(appState);
-    ov94_0223FE24(appState);
+    GTSSelectMon_AllocState(appState);
+    GTSSelectMon_InitBgLayers(appState->bgConfig);
+    GTSSelectMon_LoadGraphics(appState);
+    GTSSelectMon_InitWindows(appState);
+    GTSSelectMon_InitSprites(appState);
 
     if (appState->previousScreen == 8) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
@@ -126,146 +126,134 @@ int GTSApplication_SelectPokemon_Init(GTSApplicationState *appState, int unused1
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
     }
 
-    ov94_02240FA0(appState, appState->selectedBoxId);
-    ov94_02245934(appState);
+    GTSSelectMon_LoadBoxDisplay(appState, appState->selectedBoxId);
+    GTSApplication_InitNetworkIcon(appState);
 
-    appState->currentScreenInstruction = 0;
+    appState->currentScreenInstruction = GTS_SELECTMON_WAIT_FADE_IN;
 
     return GTS_LOOP_STATE_WAIT_FADE;
 }
 
-int GTSApplication_SelectPokemon_Main(GTSApplicationState *appState, int param1)
+int GTSApplication_SelectMon_Main(GTSApplicationState *appState, int unused)
 {
-    UNUSED(param1);
+    UNUSED(unused);
 
     NetworkIcon_SetStrength(GTSApplication_GetNetworkStrength());
 
     return (*sGTSPokemonSelectScreenStates[appState->currentScreenInstruction])(appState);
 }
 
-int GTSApplication_SelectPokemon_Exit(GTSApplicationState *appState, int param1)
+int GTSApplication_SelectMon_Exit(GTSApplicationState *appState, int unused)
 {
     NetworkIcon_Destroy();
 
-    ov94_0223FFC8(appState);
-    ov94_02240268(appState);
-    ov94_02240190(appState);
-    ov94_0223FD20(appState->bgConfig);
+    GTSSelectMon_FreeSprites(appState);
+    GTSSelectMon_FreeState(appState);
+    GTSSelectMon_RemoveWindows(appState);
+    GTSSelectMon_FreeBgLayers(appState->bgConfig);
     GTSApplication_MoveToNextScreen(appState);
 
     return 1;
 }
 
-static void ov94_0223FC08(BgConfig *param0)
+static void GTSSelectMon_InitBgLayers(BgConfig *bgConfig)
 {
-    {
-        GraphicsModes v0 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D
-        };
+    GraphicsModes mode = {
+        GX_DISPMODE_GRAPHICS,
+        GX_BGMODE_0,
+        GX_BGMODE_0,
+        GX_BG0_AS_2D
+    };
 
-        SetAllGraphicsModes(&v0);
-    }
+    SetAllGraphicsModes(&mode);
 
-    {
-        BgTemplate v1 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf800,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainWindowTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &mainWindowTemplate, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
-    {
-        BgTemplate v2 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBgTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &mainBgTemplate, 0);
 
-    {
-        BgTemplate v3 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xe800,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBgOverlayTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe800,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &mainBgOverlayTemplate, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
 
-    {
-        BgTemplate v4 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate subWindowTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &subWindowTemplate, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 
-    {
-        BgTemplate v5 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_256,
-            .screenBase = GX_BG_SCRBASE_0xe000,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate subBgTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v5, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &subBgTemplate, 0);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
@@ -273,190 +261,187 @@ static void ov94_0223FC08(BgConfig *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov94_0223FD20(BgConfig *param0)
+static void GTSSelectMon_FreeBgLayers(BgConfig *bgConfig)
 {
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void ov94_0223FD4C(GTSApplicationState *param0)
+static void GTSSelectMon_LoadGraphics(GTSApplicationState *appState)
 {
-    BgConfig *v0 = param0->bgConfig;
-    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
+    BgConfig *bgConfig = appState->bgConfig;
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 2, 0, 0, 16 * 3 * 2, HEAP_ID_62);
-    Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, HEAP_ID_62);
+    Graphics_LoadPaletteFromOpenNARC(narc, 2, 0, 0, 16 * 3 * 2, HEAP_ID_62);
+    Graphics_LoadPaletteFromOpenNARC(narc, 5, 4, 0, 16 * 8 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->playerData->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 12, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 24, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 29, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_62);
-    NARC_dtor(v1);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 12, bgConfig, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 24, bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 29, bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    NARC_dtor(narc);
 }
 
-static const u16 Unk_ov94_02245ED4[][2] = {
-    { 0x19, 0x3C },
-    { 0x33, 0x3C },
-    { 0x4D, 0x3C },
-    { 0x67, 0x3C },
-    { 0x81, 0x3C },
-    { 0x9B, 0x3C },
-    { 0x19, 0x54 },
-    { 0x33, 0x54 },
-    { 0x4D, 0x54 },
-    { 0x67, 0x54 },
-    { 0x81, 0x54 },
-    { 0x9B, 0x54 },
-    { 0x19, 0x6C },
-    { 0x33, 0x6C },
-    { 0x4D, 0x6C },
-    { 0x67, 0x6C },
-    { 0x81, 0x6C },
-    { 0x9B, 0x6C },
-    { 0x19, 0x84 },
-    { 0x33, 0x84 },
-    { 0x4D, 0x84 },
-    { 0x67, 0x84 },
-    { 0x81, 0x84 },
-    { 0x9B, 0x84 },
-    { 0x19, 0x9C },
-    { 0x33, 0x9C },
-    { 0x4D, 0x9C },
-    { 0x67, 0x9C },
-    { 0x81, 0x9C },
-    { 0x9B, 0x9C },
-    { 0xE0, 0xAF },
-    { 0x62, 0x20 }
+static const u16 sPokemonSlotPositions[][2] = {
+    { 25, 60 },
+    { 51, 60 },
+    { 77, 60 },
+    { 103, 60 },
+    { 129, 60 },
+    { 155, 60 },
+    { 25, 84 },
+    { 51, 84 },
+    { 77, 84 },
+    { 103, 84 },
+    { 129, 84 },
+    { 155, 84 },
+    { 25, 108 },
+    { 51, 108 },
+    { 77, 108 },
+    { 103, 108 },
+    { 129, 108 },
+    { 155, 108 },
+    { 25, 132 },
+    { 51, 132 },
+    { 77, 132 },
+    { 103, 132 },
+    { 129, 132 },
+    { 155, 132 },
+    { 25, 156 },
+    { 51, 156 },
+    { 77, 156 },
+    { 103, 156 },
+    { 129, 156 },
+    { 155, 156 },
+    { 224, 175 },
+    { 98, 32 }
 };
 
-static const u16 Unk_ov94_02245E1C[][2] = {
-    { 0xA2, 0x24 },
-    { 0x16, 0x24 }
+static const u16 sBoxArrowPositions[][2] = {
+    { 162, 36 },
+    { 22, 36 }
 };
 
-static void ov94_0223FE24(GTSApplicationState *param0)
+static void GTSSelectMon_InitSprites(GTSApplicationState *appState)
 {
-    int v0;
-    AffineSpriteListTemplate v1;
+    AffineSpriteListTemplate template;
 
-    GTSApplication_InitAffineTemplate(&v1, param0, &param0->cursorSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
+    GTSApplication_InitAffineTemplate(&template, appState, &appState->cursorSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v1.position.x = FX32_ONE * Unk_ov94_02245ED4[param0->partySlotIndex][0];
-    v1.position.y = FX32_ONE * Unk_ov94_02245ED4[param0->partySlotIndex][1];
+    template.position.x = FX32_ONE * sPokemonSlotPositions[appState->partySlotIndex][0];
+    template.position.y = FX32_ONE * sPokemonSlotPositions[appState->partySlotIndex][1];
 
-    param0->cursorSprite = SpriteList_AddAffine(&v1);
+    appState->cursorSprite = SpriteList_AddAffine(&template);
 
-    Sprite_SetAnimateFlag(param0->cursorSprite, 1);
-    Sprite_SetAnim(param0->cursorSprite, 4);
+    Sprite_SetAnimateFlag(appState->cursorSprite, 1);
+    Sprite_SetAnim(appState->cursorSprite, 4);
 
-    if ((param0->partySlotIndex == 31) || ((param0->partySlotIndex >= 0) && (param0->partySlotIndex <= 5))) {
-        Sprite_SetExplicitPriority(param0->cursorSprite, 0);
+    if ((appState->partySlotIndex == 31) || ((appState->partySlotIndex >= 0) && (appState->partySlotIndex <= 5))) {
+        Sprite_SetExplicitPriority(appState->cursorSprite, 0);
     } else {
-        Sprite_SetExplicitPriority(param0->cursorSprite, 1);
+        Sprite_SetExplicitPriority(appState->cursorSprite, 1);
     }
 
-    for (v0 = 0; v0 < 30; v0++) {
-        v1.position.x = FX32_ONE * Unk_ov94_02245ED4[v0][0];
-        v1.position.y = FX32_ONE * Unk_ov94_02245ED4[v0][1];
-        v1.priority = 20;
+    for (int i = 0; i < 30; i++) {
+        template.position.x = FX32_ONE * sPokemonSlotPositions[i][0];
+        template.position.y = FX32_ONE * sPokemonSlotPositions[i][1];
+        template.priority = 20;
 
-        param0->unk_E28[v0] = SpriteList_AddAffine(&v1);
+        appState->boxSlotIconSprites[i] = SpriteList_AddAffine(&template);
 
-        Sprite_SetAnim(param0->unk_E28[v0], 6 + v0);
-        Sprite_SetExplicitPriority(param0->unk_E28[v0], 1);
+        Sprite_SetAnim(appState->boxSlotIconSprites[i], 6 + i);
+        Sprite_SetExplicitPriority(appState->boxSlotIconSprites[i], 1);
     }
 
-    for (v0 = 0; v0 < 30; v0++) {
-        v1.position.x = FX32_ONE * (Unk_ov94_02245ED4[v0][0] + 4);
-        v1.position.y = FX32_ONE * (Unk_ov94_02245ED4[v0][1] + 6);
-        v1.priority = 10;
+    for (int i = 0; i < 30; i++) {
+        template.position.x = FX32_ONE * (sPokemonSlotPositions[i][0] + 4);
+        template.position.y = FX32_ONE * (sPokemonSlotPositions[i][1] + 6);
+        template.priority = 10;
 
-        param0->unk_EA0[v0] = SpriteList_AddAffine(&v1);
+        appState->boxSlotItemSprites[i] = SpriteList_AddAffine(&template);
 
-        Sprite_SetAnim(param0->unk_EA0[v0], 40);
-        Sprite_SetExplicitPriority(param0->unk_EA0[v0], 1);
+        Sprite_SetAnim(appState->boxSlotItemSprites[i], 40);
+        Sprite_SetExplicitPriority(appState->boxSlotItemSprites[i], 1);
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v1.position.x = FX32_ONE * (Unk_ov94_02245ED4[v0][0] + 4 + 8);
-        v1.position.y = FX32_ONE * (Unk_ov94_02245ED4[v0][1] + 6);
-        v1.priority = 10;
+    for (int i = 0; i < 6; i++) {
+        template.position.x = FX32_ONE * (sPokemonSlotPositions[i][0] + 4 + 8);
+        template.position.y = FX32_ONE * (sPokemonSlotPositions[i][1] + 6);
+        template.priority = 10;
 
-        param0->selectPokemonPartySprites[v0] = SpriteList_AddAffine(&v1);
+        appState->selectPokemonPartySprites[i] = SpriteList_AddAffine(&template);
 
-        Sprite_SetAnim(param0->selectPokemonPartySprites[v0], 42);
-        Sprite_SetExplicitPriority(param0->selectPokemonPartySprites[v0], 1);
+        Sprite_SetAnim(appState->selectPokemonPartySprites[i], 42);
+        Sprite_SetExplicitPriority(appState->selectPokemonPartySprites[i], 1);
     }
 
-    for (v0 = 0; v0 < 2; v0++) {
-        v1.position.x = FX32_ONE * Unk_ov94_02245E1C[v0][0];
-        v1.position.y = FX32_ONE * Unk_ov94_02245E1C[v0][1];
+    for (int i = 0; i < 2; i++) {
+        template.position.x = FX32_ONE * sBoxArrowPositions[i][0];
+        template.position.y = FX32_ONE * sBoxArrowPositions[i][1];
 
-        param0->unk_F54[v0] = SpriteList_AddAffine(&v1);
+        appState->boxArrowSprites[i] = SpriteList_AddAffine(&template);
 
-        Sprite_SetAnimateFlag(param0->unk_F54[v0], 1);
-        Sprite_SetAnim(param0->unk_F54[v0], 38 + v0);
-        Sprite_SetExplicitPriority(param0->unk_F54[v0], 1);
+        Sprite_SetAnimateFlag(appState->boxArrowSprites[i], 1);
+        Sprite_SetAnim(appState->boxArrowSprites[i], 38 + i);
+        Sprite_SetExplicitPriority(appState->boxArrowSprites[i], 1);
     }
 }
 
-static void ov94_0223FFC8(GTSApplicationState *param0)
+static void GTSSelectMon_FreeSprites(GTSApplicationState *appState)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 2; v0++) {
-        Sprite_Delete(param0->unk_F54[v0]);
+    for (int i = 0; i < 2; i++) {
+        Sprite_Delete(appState->boxArrowSprites[i]);
     }
 
-    Sprite_Delete(param0->cursorSprite);
+    Sprite_Delete(appState->cursorSprite);
 
-    for (v0 = 0; v0 < 30; v0++) {
-        Sprite_Delete(param0->unk_E28[v0]);
-        Sprite_Delete(param0->unk_EA0[v0]);
+    for (int i = 0; i < 30; i++) {
+        Sprite_Delete(appState->boxSlotIconSprites[i]);
+        Sprite_Delete(appState->boxSlotItemSprites[i]);
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        Sprite_Delete(param0->selectPokemonPartySprites[v0]);
+    for (int i = 0; i < 6; i++) {
+        Sprite_Delete(appState->selectPokemonPartySprites[i]);
     }
 }
 
-static void ov94_02240028(GTSApplicationState *param0)
+static void GTSSelectMon_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(param0->bgConfig, &param0->titleWindow, 0, 1, 1, 28, 2, 13, (1 + (18 + 12)) + 9);
-    Window_FillTilemap(&param0->titleWindow, 0x0);
+    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, (1 + (18 + 12)) + 9);
+    Window_FillTilemap(&appState->titleWindow, 0x0);
 
-    ov94_02245900(&param0->titleWindow, param0->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
+    Window_DrawAlignedSystemText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(param0->bgConfig, &param0->unk_F8C, 0, 5, 3, 13, 3, 13, ((1 + (18 + 12)) + 9) + 28 * 2);
-    Window_FillTilemap(&param0->unk_F8C, 0x0);
-    Window_CopyToVRAM(&param0->unk_F8C);
-    Window_Add(param0->bgConfig, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13);
-    Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
-    Window_Add(param0->bgConfig, &param0->confirmationWindow, 0, 2, 19, 27, 4, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2);
-    Window_FillTilemap(&param0->confirmationWindow, 0x0);
-    Window_Add(param0->bgConfig, &param0->menuButtonWindows[1], 1, 25, 21, 6, 2, 0, (((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19);
-    Window_FillTilemap(&param0->menuButtonWindows[1], 0x606);
+    Window_Add(appState->bgConfig, &appState->networkErrWindow, 0, 5, 3, 13, 3, 13, ((1 + (18 + 12)) + 9) + 28 * 2);
+    Window_FillTilemap(&appState->networkErrWindow, 0x0);
+    Window_CopyToVRAM(&appState->networkErrWindow);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13);
+    Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
+    Window_Add(appState->bgConfig, &appState->confirmationWindow, 0, 2, 19, 27, 4, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2);
+    Window_FillTilemap(&appState->confirmationWindow, 0x0);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 1, 25, 21, 6, 2, 0, (((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19);
+    Window_FillTilemap(&appState->menuButtonWindows[1], 0x606);
 
-    ov94_02245900(&param0->menuButtonWindows[1], param0->unk_BA8, 0, 1, 1, TEXT_COLOR(1, 3, 6));
+    Window_DrawAlignedSystemText(&appState->menuButtonWindows[1], appState->cancelButtonLabel, 0, 1, 1, TEXT_COLOR(1, 3, 6));
 
-    Window_Add(param0->bgConfig, &param0->menuButtonWindows[0], 0, 21, 13, 5 * 2, 6, 13, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 13, 5 * 2, 6, 13, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2);
 }
 
-static void ov94_02240190(GTSApplicationState *param0)
+static void GTSSelectMon_RemoveWindows(GTSApplicationState *appState)
 {
-    Window_Remove(&param0->confirmationWindow);
-    Window_Remove(&param0->menuButtonWindows[1]);
-    Window_Remove(&param0->menuButtonWindows[0]);
-    Window_Remove(&param0->bottomInstructionWindow);
-    Window_Remove(&param0->unk_F8C);
-    Window_Remove(&param0->titleWindow);
+    Window_Remove(&appState->confirmationWindow);
+    Window_Remove(&appState->menuButtonWindows[1]);
+    Window_Remove(&appState->menuButtonWindows[0]);
+    Window_Remove(&appState->bottomInstructionWindow);
+    Window_Remove(&appState->networkErrWindow);
+    Window_Remove(&appState->titleWindow);
 }
 
-static void ov94_022401E0(GTSApplicationState *appState)
+static void GTSSelectMon_AllocState(GTSApplicationState *appState)
 {
     appState->selectPokemonBoxName = String_Init(9 * 2, HEAP_ID_62);
     appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
@@ -467,7 +452,7 @@ static void ov94_022401E0(GTSApplicationState *appState)
         appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_ChooseYourListedPokemon);
     }
 
-    appState->unk_BA8 = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_CancelPokemonSelection);
+    appState->cancelButtonLabel = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_CancelPokemonSelection);
 
     if (appState->partySlotIndex == 30) {
         appState->partySlotIndex = 0;
@@ -476,91 +461,91 @@ static void ov94_022401E0(GTSApplicationState *appState)
     appState->boxCriteria = Heap_Alloc(HEAP_ID_62, sizeof(GTSBoxPokemonCriteria));
 }
 
-static void ov94_02240268(GTSApplicationState *appState)
+static void GTSSelectMon_FreeState(GTSApplicationState *appState)
 {
     Heap_Free(appState->boxCriteria);
     String_Free(appState->selectPokemonBoxName);
     String_Free(appState->genericMessageBuffer);
-    String_Free(appState->unk_BA8);
+    String_Free(appState->cancelButtonLabel);
     String_Free(appState->title);
 }
 
-static int ov94_022402A8(GTSApplicationState *appState)
+static int GTSSelectMon_WaitFadeIn(GTSApplicationState *appState)
 {
     if (IsScreenFadeDone()) {
-        appState->currentScreenInstruction = 1;
+        appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_INPUT;
     }
 
     return 3;
 }
 
-static const u8 Unk_ov94_02245F54[][4] = {
-    { 0x1F, 0x6, 0x5, 0x1 },
-    { 0x1F, 0x7, 0x0, 0x2 },
-    { 0x1F, 0x8, 0x1, 0x3 },
-    { 0x1F, 0x9, 0x2, 0x4 },
-    { 0x1F, 0xA, 0x3, 0x5 },
-    { 0x1F, 0xB, 0x4, 0x0 },
-    { 0x0, 0xC, 0xB, 0x7 },
-    { 0x1, 0xD, 0x6, 0x8 },
-    { 0x2, 0xE, 0x7, 0x9 },
-    { 0x3, 0xF, 0x8, 0xA },
-    { 0x4, 0x10, 0x9, 0xB },
-    { 0x5, 0x11, 0xA, 0x6 },
-    { 0x6, 0x12, 0x11, 0xD },
-    { 0x7, 0x13, 0xC, 0xE },
-    { 0x8, 0x14, 0xD, 0xF },
-    { 0x9, 0x15, 0xE, 0x10 },
-    { 0xA, 0x16, 0xF, 0x11 },
-    { 0xB, 0x17, 0x10, 0xC },
-    { 0xC, 0x18, 0x17, 0x13 },
-    { 0xD, 0x19, 0x12, 0x14 },
-    { 0xE, 0x1A, 0x13, 0x15 },
-    { 0xF, 0x1B, 0x14, 0x16 },
-    { 0x10, 0x1C, 0x15, 0x17 },
-    { 0x11, 0x1D, 0x16, 0x12 },
-    { 0x12, 0x1F, 0x1E, 0x19 },
-    { 0x13, 0x1F, 0x18, 0x1A },
-    { 0x14, 0x1F, 0x19, 0x1B },
-    { 0x15, 0x1F, 0x1A, 0x1C },
-    { 0x16, 0x1F, 0x1B, 0x1D },
-    { 0x17, 0x1F, 0x1C, 0x1E },
-    { 0x1E, 0x1E, 0x1D, 0x18 },
-    { 0x1A, 0x2, 0x63, 0x65 }
+static const u8 sSlotNavigationTable[][4] = {
+    { 31, 6, 5, 1 },
+    { 31, 7, 0, 2 },
+    { 31, 8, 1, 3 },
+    { 31, 9, 2, 4 },
+    { 31, 10, 3, 5 },
+    { 31, 11, 4, 0 },
+    { 0, 12, 11, 7 },
+    { 1, 13, 6, 8 },
+    { 2, 14, 7, 9 },
+    { 3, 15, 8, 10 },
+    { 4, 16, 9, 11 },
+    { 5, 17, 10, 6 },
+    { 6, 18, 17, 13 },
+    { 7, 19, 12, 14 },
+    { 8, 20, 13, 15 },
+    { 9, 21, 14, 16 },
+    { 10, 22, 15, 17 },
+    { 11, 23, 16, 12 },
+    { 12, 24, 23, 19 },
+    { 13, 25, 18, 20 },
+    { 14, 26, 19, 21 },
+    { 15, 27, 20, 22 },
+    { 16, 28, 21, 23 },
+    { 17, 29, 22, 18 },
+    { 18, 31, 30, 25 },
+    { 19, 31, 24, 26 },
+    { 20, 31, 25, 27 },
+    { 21, 31, 26, 28 },
+    { 22, 31, 27, 29 },
+    { 23, 31, 28, 30 },
+    { 30, 30, 29, 24 },
+    { 26, 2, 99, 101 }
 };
 
-static int ov94_022402BC(GTSApplicationState *appState)
+static int GTSSelectMon_HandleInput(GTSApplicationState *appState)
 {
-    ov94_022404F0(appState);
+    GTSSelectMon_HandleCursorInput(appState);
 
-    if (appState->screenArgument == SCREEN_ARGUMENT_5) { // from main menu
+    if (appState->screenArgument == SCREEN_ARGUMENT_5) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
-            appState->currentScreenInstruction = 2;
+            appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (appState->partySlotIndex == 30) {
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
-                appState->currentScreenInstruction = 2;
+                appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (appState->partySlotIndex != 31) {
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-                    switch (ov94_022412F4(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
-                    case 1: // a pokemon exists
-                        if (ov94_0224121C(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
+                    switch (GTSSelectMon_GetSlotStatus(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
+                    case GTS_SLOTSTATUS_VALID_MON:
+                        if (GTSSelectMon_CanOfferPokemon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
                             StringTemplate_SetNickname(appState->stringTemplate, 0, GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex));
-                            ov94_02240D58(appState, pl_msg_00000671_00022, TEXT_SPEED_FAST, 0, 0xf0f, 0);
-                            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 7);
+                            GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00022, TEXT_SPEED_FAST, 0, 0xf0f, 0);
+                            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT, GTS_SELECTMON_CREATE_POKEMON_MENU);
                         } else {
-                            ov94_02240D58(appState, GTS_Text_Error_PokemonCannotBeOffered, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
+                            GTSSelectMon_ShowMessage(appState, GTS_Text_Error_PokemonCannotBeOffered, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+                            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
                         }
                         break;
-                    case 2: // is egg
-                        ov94_02240D58(appState, pl_msg_00000671_00027, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                        GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
+                    case GTS_SLOTSTATUS_EGG:
+                        GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00027, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+                        GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
                         break;
                     }
                 }
@@ -569,35 +554,35 @@ static int ov94_022402BC(GTSApplicationState *appState)
     } else if (appState->screenArgument == SCREEN_ARGUMENT_6) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
-            appState->currentScreenInstruction = 2;
+            appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (appState->partySlotIndex == 30) {
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
-                appState->currentScreenInstruction = 2;
+                appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (appState->partySlotIndex != 31) {
-                    switch (ov94_022412F4(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
-                    case 1: {
-                        BoxPokemon *v0 = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+                    switch (GTSSelectMon_GetSlotStatus(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
+                    case GTS_SLOTSTATUS_VALID_MON:
+                        BoxPokemon *boxMon = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
 
-                        if (ov94_02241384(v0, &appState->searchResults[appState->selectedSearchResult].requirements)) {
-                            if (ov94_0224121C(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
-                                StringTemplate_SetNickname(appState->stringTemplate, 0, v0);
-                                ov94_02240D58(appState, 18, TEXT_SPEED_FAST, 0, 0xf0f, 0);
-                                GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 9);
+                        if (GTSSelectMon_BoxMonMatchesRequirements(boxMon, &appState->searchResults[appState->selectedSearchResult].requirements)) {
+                            if (GTSSelectMon_CanOfferPokemon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
+                                StringTemplate_SetNickname(appState->stringTemplate, 0, boxMon);
+                                GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00018, TEXT_SPEED_FAST, 0, 0xf0f, 0);
+                                GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT, GTS_SELECTMON_CREATE_TRADE_MENU);
                                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                             } else {
-                                ov94_02240D58(appState, 26, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                                GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
+                                GTSSelectMon_ShowMessage(appState, GTS_Text_Error_PokemonCannotBeOffered, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+                                GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
                             }
                         } else {
                             Sound_PlayEffect(SEQ_SE_CONFIRM);
                         }
-                    } break;
-                    case 2:
-                    case 0:
+                        break;
+                    case GTS_SLOTSTATUS_EGG:
+                    case GTS_SLOTSTATUS_NO_SPECIES:
                         Sound_PlayEffect(SEQ_SE_CONFIRM);
                         break;
                     }
@@ -609,38 +594,38 @@ static int ov94_022402BC(GTSApplicationState *appState)
     return 3;
 }
 
-static void ov94_022404F0(GTSApplicationState *appState)
+static void GTSSelectMon_HandleCursorInput(GTSApplicationState *appState)
 {
-    int v0 = 0, v1 = 0, v2 = 0;
+    int cursorMoved = 0, direction = 0, nextSlotIndex = 0;
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
-        v1 = 1;
+        direction = 1;
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        v1 = 2;
+        direction = 2;
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        v1 = 3;
+        direction = 3;
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        v1 = 4;
+        direction = 4;
     }
 
-    if (v1 != 0) {
-        v2 = Unk_ov94_02245F54[appState->partySlotIndex][v1 - 1];
+    if (direction != 0) {
+        nextSlotIndex = sSlotNavigationTable[appState->partySlotIndex][direction - 1];
 
-        if (v2 != appState->partySlotIndex) {
-            if ((v2 == 99) || (v2 == 101)) {
-                appState->selectedBoxId = ov94_022405CC(appState->selectedBoxId, 19, v2 - 100);
-                ov94_02240FA0(appState, appState->selectedBoxId);
+        if (nextSlotIndex != appState->partySlotIndex) {
+            if ((nextSlotIndex == 99) || (nextSlotIndex == 101)) {
+                appState->selectedBoxId = GTSSelectMon_CycleBoxId(appState->selectedBoxId, MAX_PC_BOXES + 1, nextSlotIndex - 100);
+                GTSSelectMon_LoadBoxDisplay(appState, appState->selectedBoxId);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
-                v0 = 1;
-                appState->partySlotIndex = v2;
+                cursorMoved = 1;
+                appState->partySlotIndex = nextSlotIndex;
             }
         }
     }
 
-    if (v0) {
+    if (cursorMoved) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        GTSApplication_SetSpritePosition(appState->cursorSprite, Unk_ov94_02245ED4[appState->partySlotIndex][0], Unk_ov94_02245ED4[appState->partySlotIndex][1]);
+        GTSApplication_SetSpritePosition(appState->cursorSprite, sPokemonSlotPositions[appState->partySlotIndex][0], sPokemonSlotPositions[appState->partySlotIndex][1]);
     }
 
     if ((appState->partySlotIndex == 31) || ((appState->partySlotIndex >= 0) && (appState->partySlotIndex <= 5))) {
@@ -650,202 +635,202 @@ static void ov94_022404F0(GTSApplicationState *appState)
     }
 }
 
-static int ov94_022405CC(int param0, int param1, int param2)
+static int GTSSelectMon_CycleBoxId(int boxId, int boxCount, int direction)
 {
-    param0 += param2;
+    boxId += direction;
 
-    if (param0 < 0) {
-        return param1 - 1;
+    if (boxId < 0) {
+        return boxCount - 1;
     }
 
-    if (param0 == param1) {
+    if (boxId == boxCount) {
         return 0;
     }
 
-    return param0;
+    return boxId;
 }
 
-static int ov94_022405DC(GTSApplicationState *appState)
+static int GTSSelectMon_CreatePokemonMenu(GTSApplicationState *appState)
 {
-    MenuTemplate v0;
+    MenuTemplate template;
 
-    v0.fontID = FONT_SYSTEM;
-    v0.xSize = 1;
-    v0.ySize = 3;
-    v0.lineSpacing = 0;
-    v0.suppressCursor = FALSE;
-    v0.loopAround = FALSE;
+    template.fontID = FONT_SYSTEM;
+    template.xSize = 1;
+    template.ySize = 3;
+    template.lineSpacing = 0;
+    template.suppressCursor = FALSE;
+    template.loopAround = FALSE;
 
-    appState->unk_10CC = StringList_New(3, HEAP_ID_62);
+    appState->menuStringList = StringList_New(3, HEAP_ID_62);
 
-    StringList_AddFromMessageBank(appState->unk_10CC, appState->gtsMessageLoader, GTS_Text_Option_Summary, 1);
-    StringList_AddFromMessageBank(appState->unk_10CC, appState->gtsMessageLoader, GTS_Text_Option_Offer, 2);
-    StringList_AddFromMessageBank(appState->unk_10CC, appState->gtsMessageLoader, GTS_Text_Option_Cancel, 3);
+    StringList_AddFromMessageBank(appState->menuStringList, appState->gtsMessageLoader, GTS_Text_Option_Summary, 1);
+    StringList_AddFromMessageBank(appState->menuStringList, appState->gtsMessageLoader, GTS_Text_Option_Offer, 2);
+    StringList_AddFromMessageBank(appState->menuStringList, appState->gtsMessageLoader, GTS_Text_Option_Cancel, 3);
 
-    v0.choices = appState->unk_10CC;
-    v0.window = &appState->menuButtonWindows[0];
+    template.choices = appState->menuStringList;
+    template.window = &appState->menuButtonWindows[0];
 
     Window_DrawStandardFrame(&appState->menuButtonWindows[0], 1, 1 + (18 + 12), 11);
 
-    appState->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
-    appState->currentScreenInstruction = 8;
+    appState->popupMenu = Menu_NewAndCopyToVRAM(&template, 9, 0, 0, 62, PAD_BUTTON_B);
+    appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_POKEMON_MENU_INPUT;
 
     return 3;
 }
 
-static int ov94_02240688(GTSApplicationState *appState)
-{
-    BoxPokemon *v0;
-
-    switch (Menu_ProcessInput(appState->unk_10D4)) {
-    case 1:
-        Menu_Free(appState->unk_10D4, NULL);
-        StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
-        appState->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_5);
-        break;
-    case 2:
-        Menu_Free(appState->unk_10D4, NULL);
-        StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
-
-        v0 = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
-
-        if (BoxPokemon_HasUnusedRibbons(v0)) {
-            ov94_02240D58(appState, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
-        } else if (BoxPokemon_FormNotInDP(v0)) {
-            ov94_02240D58(appState, 170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
-        } else if (BoxPokemon_HeldItemNotInDP(v0)) {
-            ov94_02240D58(appState, 171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
-        } else {
-            int v1 = 0;
-
-            if (GTSApplication_IsBoxIDParty(appState->selectedBoxId)) {
-                Pokemon *v2;
-
-                v2 = Party_GetPokemonBySlotIndex(appState->playerData->party, appState->partySlotIndex);
-
-                if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
-                    v1 = 1;
-                    appState->currentScreenInstruction = 14;
-                }
-            }
-
-            if (v1 == 0) {
-                appState->unk_114 = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
-                appState->currentScreenInstruction = 2;
-
-                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_0);
-            }
-        }
-        break;
-    case 3:
-    case 0xfffffffe:
-        Menu_Free(appState->unk_10D4, NULL);
-        StringList_Free(appState->unk_10CC);
-        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
-        Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
-        appState->currentScreenInstruction = 1;
-        break;
-    }
-
-    return 3;
-}
-
-static int ov94_02240830(GTSApplicationState *appState)
-{
-    MenuTemplate v0;
-
-    v0.fontID = FONT_SYSTEM;
-    v0.xSize = 1;
-    v0.ySize = 3;
-    v0.lineSpacing = 0;
-    v0.suppressCursor = FALSE;
-    v0.loopAround = FALSE;
-
-    appState->unk_10CC = StringList_New(3, HEAP_ID_62);
-
-    StringList_AddFromMessageBank(appState->unk_10CC, appState->gtsMessageLoader, 84, 1);
-    StringList_AddFromMessageBank(appState->unk_10CC, appState->gtsMessageLoader, 85, 2);
-    StringList_AddFromMessageBank(appState->unk_10CC, appState->gtsMessageLoader, 86, 3);
-
-    v0.choices = appState->unk_10CC;
-    v0.window = &appState->menuButtonWindows[0];
-
-    Window_FillTilemap(v0.window, 0xf0f);
-    Window_DrawStandardFrame(&appState->menuButtonWindows[0], 1, 1 + (18 + 12), 11);
-
-    appState->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
-    appState->currentScreenInstruction = 10;
-
-    return 3;
-}
-
-static int ov94_022408E8(GTSApplicationState *appState)
+static int GTSSelectMon_HandlePokemonMenuInput(GTSApplicationState *appState)
 {
     BoxPokemon *boxMon;
 
-    switch (Menu_ProcessInput(appState->unk_10D4)) {
-    case 1:
-        Menu_Free(appState->unk_10D4, NULL);
-        StringList_Free(appState->unk_10CC);
+    switch (Menu_ProcessInput(appState->popupMenu)) {
+    case 1: // summary
+        Menu_Free(appState->popupMenu, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
-        appState->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_6);
+        appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_5);
         break;
-    case 2:
-        Menu_Free(appState->unk_10D4, NULL);
-        StringList_Free(appState->unk_10CC);
+    case 2: // offer
+        Menu_Free(appState->popupMenu, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
 
         boxMon = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
 
         if (BoxPokemon_HasUnusedRibbons(boxMon)) {
-            ov94_02240D58(appState, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
+            GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00037, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
         } else if (BoxPokemon_FormNotInDP(boxMon)) {
-            ov94_02240D58(appState, 170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
+            GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
         } else if (BoxPokemon_HeldItemNotInDP(boxMon)) {
-            ov94_02240D58(appState, 171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
+            GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
         } else {
-            int v1 = 0;
+            int hasBallCapsule = 0;
 
             if (GTSApplication_IsBoxIDParty(appState->selectedBoxId)) {
-                Pokemon *v2;
+                Pokemon *mon;
 
-                v2 = Party_GetPokemonBySlotIndex(appState->playerData->party, appState->partySlotIndex);
+                mon = Party_GetPokemonBySlotIndex(appState->playerData->party, appState->partySlotIndex);
 
-                if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
-                    v1 = 1;
-                    appState->currentScreenInstruction = 11;
+                if (Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+                    hasBallCapsule = 1;
+                    appState->currentScreenInstruction = GTS_SELECTMON_SHOW_BALL_CAPSULE_DEPOSIT_PROMPT;
                 }
             }
 
-            if (v1 == 0) {
-                ov94_02240BB0(appState);
+            if (hasBallCapsule == 0) {
+                appState->selectedBoxMon = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+                appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
+
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_0);
             }
         }
         break;
-    case 3:
-    case 0xfffffffe:
-        Menu_Free(appState->unk_10D4, NULL);
-        StringList_Free(appState->unk_10CC);
+    case 3: // cancel
+    case MENU_CANCEL:
+        Menu_Free(appState->popupMenu, NULL);
+        StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
-        appState->currentScreenInstruction = 1;
+        appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_INPUT;
         break;
     }
 
     return 3;
 }
 
-static int ov94_02240A6C(GTSApplicationState *appState)
+static int GTSSelectMon_CreateTradeMenu(GTSApplicationState *appState)
+{
+    MenuTemplate template;
+
+    template.fontID = FONT_SYSTEM;
+    template.xSize = 1;
+    template.ySize = 3;
+    template.lineSpacing = 0;
+    template.suppressCursor = FALSE;
+    template.loopAround = FALSE;
+
+    appState->menuStringList = StringList_New(3, HEAP_ID_62);
+
+    StringList_AddFromMessageBank(appState->menuStringList, appState->gtsMessageLoader, 84, 1);
+    StringList_AddFromMessageBank(appState->menuStringList, appState->gtsMessageLoader, 85, 2);
+    StringList_AddFromMessageBank(appState->menuStringList, appState->gtsMessageLoader, 86, 3);
+
+    template.choices = appState->menuStringList;
+    template.window = &appState->menuButtonWindows[0];
+
+    Window_FillTilemap(template.window, 0xf0f);
+    Window_DrawStandardFrame(&appState->menuButtonWindows[0], 1, 1 + (18 + 12), 11);
+
+    appState->popupMenu = Menu_NewAndCopyToVRAM(&template, 9, 0, 0, 62, PAD_BUTTON_B);
+    appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_TRADE_MENU_INPUT;
+
+    return 3;
+}
+
+static int GTSSelectMon_HandleTradeMenuInput(GTSApplicationState *appState)
+{
+    BoxPokemon *boxMon;
+
+    switch (Menu_ProcessInput(appState->popupMenu)) {
+    case 1:
+        Menu_Free(appState->popupMenu, NULL);
+        StringList_Free(appState->menuStringList);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
+        appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_6);
+        break;
+    case 2:
+        Menu_Free(appState->popupMenu, NULL);
+        StringList_Free(appState->menuStringList);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
+
+        boxMon = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+
+        if (BoxPokemon_HasUnusedRibbons(boxMon)) {
+            GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00037, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
+        } else if (BoxPokemon_FormNotInDP(boxMon)) {
+            GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
+        } else if (BoxPokemon_HeldItemNotInDP(boxMon)) {
+            GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
+        } else {
+            int hasBallCapsule = 0;
+
+            if (GTSApplication_IsBoxIDParty(appState->selectedBoxId)) {
+                Pokemon *mon;
+
+                mon = Party_GetPokemonBySlotIndex(appState->playerData->party, appState->partySlotIndex);
+
+                if (Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+                    hasBallCapsule = 1;
+                    appState->currentScreenInstruction = GTS_SELECTMON_SHOW_BALL_CAPSULE_TRADE_PROMPT;
+                }
+            }
+
+            if (hasBallCapsule == 0) {
+                GTSSelectMon_InitiateTrade(appState);
+            }
+        }
+        break;
+    case 3:
+    case MENU_CANCEL:
+        Menu_Free(appState->popupMenu, NULL);
+        StringList_Free(appState->menuStringList);
+        Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
+        Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
+        appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_INPUT;
+        break;
+    }
+
+    return 3;
+}
+
+static int GTSSelectMon_FadeAndExit(GTSApplicationState *appState)
 {
     if ((appState->nextScreen == GTS_SCREEN_WFC_INIT) || (appState->nextScreen == GTS_SCREEN_POKEMON_SUMMARY)) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
@@ -854,28 +839,28 @@ static int ov94_02240A6C(GTSApplicationState *appState)
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
     }
 
-    appState->currentScreenInstruction = 0;
+    appState->currentScreenInstruction = GTS_SELECTMON_WAIT_FADE_IN;
 
     return 4;
 }
 
-static int ov94_02240AC4(GTSApplicationState *appState)
+static int GTSSelectMon_CreateExitConfirmMenu(GTSApplicationState *appState)
 {
     appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, (((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
-    appState->currentScreenInstruction = 6;
+    appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_EXIT_CONFIRM;
 
     return 3;
 }
 
-static int ov94_02240AE8(GTSApplicationState *appState)
+static int GTSSelectMon_HandleExitConfirm(GTSApplicationState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    int result = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
-            appState->currentScreenInstruction = 0;
+    if (result != MENU_NOTHING_CHOSEN) {
+        if (result == MENU_CANCEL) {
+            appState->currentScreenInstruction = GTS_SELECTMON_WAIT_FADE_IN;
         } else {
-            appState->currentScreenInstruction = 2;
+            appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
         }
     }
@@ -883,89 +868,89 @@ static int ov94_02240AE8(GTSApplicationState *appState)
     return 3;
 }
 
-static int ov94_02240B20(GTSApplicationState *appState)
+static int GTSSelectMon_ShowBallCapsuleTradePrompt(GTSApplicationState *appState)
 {
-    ov94_02240D58(appState, 25, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 12);
+    GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00025, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT, GTS_SELECTMON_CREATE_TRADE_CONFIRM_MENU);
 
     return 3;
 }
 
-static int ov94_02240B4C(GTSApplicationState *appState)
+static int GTSSelectMon_CreateTradeConfirmMenu(GTSApplicationState *appState)
 {
     appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, (((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
-    appState->currentScreenInstruction = 13;
+    appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_TRADE_CONFIRM;
 
     return 3;
 }
 
-static int ov94_02240B70(GTSApplicationState *appState)
+static int GTSSelectMon_HandleTradeConfirm(GTSApplicationState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    int result = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (result != MENU_NOTHING_CHOSEN) {
+        if (result == MENU_CANCEL) {
             Window_EraseMessageBox(&appState->confirmationWindow, 0);
-            appState->currentScreenInstruction = 1;
+            appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_INPUT;
         } else {
-            ov94_02240BB0(appState);
+            GTSSelectMon_InitiateTrade(appState);
         }
     }
 
     return 3;
 }
 
-static int ov94_02240BB0(GTSApplicationState *appState)
+static int GTSSelectMon_InitiateTrade(GTSApplicationState *appState)
 {
     Pokemon *mon = (Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes;
 
     if (Pokemon_IsHoldingMail(mon) && (appState->selectedBoxId != MAX_PC_BOXES)) {
         if (Party_GetCurrentCount(appState->playerData->party) == MAX_PARTY_SIZE) {
-            ov94_02240D58(appState, 28, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
+            GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00028, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
             return 0;
         }
     }
 
-    appState->unk_114 = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
-    appState->currentScreenInstruction = 2;
+    appState->selectedBoxMon = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+    appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
     appState->fadeBothScreens = 1;
 
     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_9);
-    ov94_022413BC(&appState->receivedListing, appState);
+    GTSSelectMon_FillTradeListing(&appState->receivedListing, appState);
 
     appState->searchResultCount = 0;
 
     return 1;
 }
 
-static int ov94_02240C58(GTSApplicationState *appState)
+static int GTSSelectMon_ShowBallCapsuleDepositPrompt(GTSApplicationState *appState)
 {
-    ov94_02240D58(appState, 25, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 15);
+    GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00025, TEXT_SPEED_FAST, 0, 0xf0f, 1);
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT, GTS_SELECTMON_CREATE_BALL_CAPSULE_TRADE_CONFIRM_MENU);
 
     return 3;
 }
 
-static int ov94_02240C84(GTSApplicationState *appState)
+static int GTSSelectMon_CreateBallCapsuleTradeConfirmMenu(GTSApplicationState *appState)
 {
     appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, (((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
-    appState->currentScreenInstruction = 16;
+    appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_BALL_CAPSULE_TRADE_CONFIRM;
 
     return 3;
 }
 
-static int ov94_02240CA8(GTSApplicationState *appState)
+static int GTSSelectMon_HandleBallCapsuleTradeConfirm(GTSApplicationState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
+    int result = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
+    if (result != MENU_NOTHING_CHOSEN) {
+        if (result == MENU_CANCEL) {
             Window_EraseMessageBox(&appState->confirmationWindow, 0);
-            appState->currentScreenInstruction = 1;
+            appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_INPUT;
         } else {
-            appState->unk_114 = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
-            appState->currentScreenInstruction = 2;
+            appState->selectedBoxMon = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+            appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_0);
         }
     }
@@ -973,7 +958,7 @@ static int ov94_02240CA8(GTSApplicationState *appState)
     return 3;
 }
 
-static int ov94_02240D08(GTSApplicationState *appState)
+static int GTSSelectMon_WaitForText(GTSApplicationState *appState)
 {
     if (Text_IsPrinterActive(appState->textPrinter) == 0) {
         appState->currentScreenInstruction = appState->nextScreenInstruction;
@@ -982,7 +967,7 @@ static int ov94_02240D08(GTSApplicationState *appState)
     return 3;
 }
 
-static int ov94_02240D28(GTSApplicationState *appState)
+static int GTSSelectMon_WaitForTextAndEraseBox(GTSApplicationState *appState)
 {
     if (Text_IsPrinterActive(appState->textPrinter) == 0) {
         Window_EraseMessageBox(&appState->confirmationWindow, 0);
@@ -992,144 +977,143 @@ static int ov94_02240D28(GTSApplicationState *appState)
     return 3;
 }
 
-static void ov94_02240D58(GTSApplicationState *appState, int param1, int param2, int param3, u16 param4, int param5)
+static void GTSSelectMon_ShowMessage(GTSApplicationState *appState, int entryID, int renderDelay, int param3, u16 unused, int isConfirmWindow)
 {
-    Window *v0;
-    String *v1 = MessageLoader_GetNewString(appState->gtsMessageLoader, param1);
-    StringTemplate_Format(appState->stringTemplate, appState->genericMessageBuffer, v1);
+    Window *window;
+    String *str = MessageLoader_GetNewString(appState->gtsMessageLoader, entryID);
+    StringTemplate_Format(appState->stringTemplate, appState->genericMessageBuffer, str);
 
-    if (param5 == 0) {
-        v0 = &appState->bottomInstructionWindow;
+    if (isConfirmWindow == 0) {
+        window = &appState->bottomInstructionWindow;
     } else {
-        v0 = &appState->confirmationWindow;
+        window = &appState->confirmationWindow;
     }
 
-    Window_FillTilemap(v0, 0xf0f);
-    Window_DrawMessageBoxWithScrollCursor(v0, 0, 1, 10);
+    Window_FillTilemap(window, 0xf0f);
+    Window_DrawMessageBoxWithScrollCursor(window, 0, 1, 10);
 
-    appState->textPrinter = Text_AddPrinterWithParams(v0, FONT_MESSAGE, appState->genericMessageBuffer, 0, 0, param2, NULL);
+    appState->textPrinter = Text_AddPrinterWithParams(window, FONT_MESSAGE, appState->genericMessageBuffer, 0, 0, renderDelay, NULL);
 
-    String_Free(v1);
+    String_Free(str);
 }
 
-void *ov94_02240DD0(NARC *param0, u32 param1, NNSG2dCharacterData **param2, u32 param3)
+static void *NARC_AllocAndUnpackBGCharacterData(NARC *narc, u32 memberIdx, NNSG2dCharacterData **charData, u32 heapID)
 {
-    void *v0 = NARC_AllocAndReadWholeMember(param0, param1, param3);
+    void *data = NARC_AllocAndReadWholeMember(narc, memberIdx, heapID);
 
-    if (v0 != NULL) {
-        if (NNS_G2dGetUnpackedBGCharacterData(v0, param2) == 0) {
-            Heap_Free(v0);
+    if (data != NULL) {
+        if (NNS_G2dGetUnpackedBGCharacterData(data, charData) == 0) {
+            Heap_Free(data);
             return NULL;
         }
     }
 
-    return v0;
+    return data;
 }
 
-static void ov94_02240DF8(int param0, int param1, int param2, int param3, Sprite *param4, NARC *param5, PokemonIcon *param6)
+static void GTSSelectMon_LoadPokemonIcon(int species, int form, int isEgg, int iconIndex, Sprite *sprite, NARC *narc, PokemonIcon *monIcon)
 {
-    u8 *v0;
-    u8 *v1;
-    NNSG2dCharacterData *v2;
+    u8 *rawData;
+    NNSG2dCharacterData *charData;
 
-    v1 = ov94_02240DD0(param5, PokeIconSpriteIndex(param0, param2, param1), &v2, 62);
+    rawData = NARC_AllocAndUnpackBGCharacterData(narc, PokeIconSpriteIndex(species, isEgg, form), &charData, 62);
 
-    MI_CpuCopyFast(v2->pRawData, param6->unk_0C, (4 * 4) * 0x20);
+    MI_CpuCopyFast(charData->pRawData, monIcon->vramOffset, (4 * 4) * 0x20);
 
-    param6->unk_00 = (12 + param3 * (4 * 4)) * 0x20;
-    param6->sprite = param4;
-    param6->paletteIndex = PokeIconPaletteIndex(param0, param1, param2) + 3;
+    monIcon->tileData = (12 + iconIndex * (4 * 4)) * 0x20;
+    monIcon->sprite = sprite;
+    monIcon->paletteIndex = PokeIconPaletteIndex(species, form, isEgg) + 3;
 
-    Heap_Free(v1);
+    Heap_Free(rawData);
 }
 
-static void ov94_02240E50(BoxPokemon *boxMon, GTSPokemonCriteria *param1)
+static void GTSSelectMon_SetLevelCriteria(BoxPokemon *boxMon, GTSPokemonCriteria *criteria)
 {
-    param1->level = BoxPokemon_GetLevel(boxMon);
+    criteria->level = BoxPokemon_GetLevel(boxMon);
 }
 
-static void ov94_02240E5C(void *param0)
+static void GTSSelectMon_UploadMonIconsCallback(void *statePtr)
 {
-    GTSApplicationState *v0 = param0;
-    int v1;
-    PokemonIcon *v2 = v0->selectPokemonIconHeapPtr;
+    GTSApplicationState *appState = statePtr;
+    int i;
+    PokemonIcon *monIcon = appState->selectPokemonIconHeapPtr;
 
-    for (v1 = 0; v1 < 30; v1++, v2++) {
-        if (v2->sprite) {
-            DC_FlushRange(v2->unk_0C, (4 * 4) * 0x20);
-            GX_LoadOBJ(v2->unk_0C, v2->unk_00, (4 * 4) * 0x20);
+    for (i = 0; i < 30; i++, monIcon++) {
+        if (monIcon->sprite) {
+            DC_FlushRange(monIcon->vramOffset, (4 * 4) * 0x20);
+            GX_LoadOBJ(monIcon->vramOffset, monIcon->tileData, (4 * 4) * 0x20);
 
-            Sprite_SetExplicitPalette(v2->sprite, v2->paletteIndex);
+            Sprite_SetExplicitPalette(monIcon->sprite, monIcon->paletteIndex);
         }
     }
 
-    Heap_Free(v0->selectPokemonIconHeapPtr);
+    Heap_Free(appState->selectPokemonIconHeapPtr);
 }
 
-static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u16 *species, int param4, NARC *param5, GTSPokemonCriteria *param6, PokemonIcon *param7)
+static void GTSSelectMon_SetupSlot(BoxPokemon *boxMon, Sprite *iconSprite, Sprite *itemSprite, u16 *species, int iconIndex, NARC *narc, GTSPokemonCriteria *criteria, PokemonIcon *monIcon)
 {
-    int v0, item, isEgg, form;
+    int speciesExists, item, isEgg, form;
 
     BoxPokemon_EnterDecryptionContext(boxMon);
 
-    v0 = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL);
+    speciesExists = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL);
     *species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
     form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
     isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL);
     item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
 
-    param6->species = *species;
-    param6->gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    criteria->species = *species;
+    criteria->gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
 
     if (isEgg) {
-        param6->level = 0;
+        criteria->level = 0;
     }
 
     BoxPokemon_ExitDecryptionContext(boxMon, 1);
 
-    if (v0) {
-        ov94_02240DF8(*species, form, isEgg, param4, param1, param5, param7);
-        Sprite_SetDrawFlag(param1, TRUE);
+    if (speciesExists) {
+        GTSSelectMon_LoadPokemonIcon(*species, form, isEgg, iconIndex, iconSprite, narc, monIcon);
+        Sprite_SetDrawFlag(iconSprite, TRUE);
 
         if (item != 0) {
-            Sprite_SetDrawFlag(param2, TRUE);
+            Sprite_SetDrawFlag(itemSprite, TRUE);
 
             if (Item_IsMail(item)) {
-                Sprite_SetAnim(param2, 41);
+                Sprite_SetAnim(itemSprite, 41);
             } else {
-                Sprite_SetAnim(param2, 40);
+                Sprite_SetAnim(itemSprite, 40);
             }
         } else {
-            Sprite_SetDrawFlag(param2, FALSE);
+            Sprite_SetDrawFlag(itemSprite, FALSE);
         }
     } else {
-        Sprite_SetDrawFlag(param1, FALSE);
-        Sprite_SetDrawFlag(param2, FALSE);
+        Sprite_SetDrawFlag(iconSprite, FALSE);
+        Sprite_SetDrawFlag(itemSprite, FALSE);
 
-        param7->sprite = NULL;
+        monIcon->sprite = NULL;
     }
 }
 
-static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
+static void GTSSelectMon_LoadBoxDisplay(GTSApplicationState *appState, int boxID)
 {
     u16 species[MAX_MONS_PER_BOX], i;
 
     PCBoxes *pcBoxes = appState->playerData->pcBoxes;
-    NARC *v6; // compiler
+    NARC *narc;
     PokemonIcon *icons;
 
     appState->selectPokemonIconHeapPtr = icons = Heap_AllocAtEnd(HEAP_ID_APPLICATION, sizeof(PokemonIcon) * MAX_MONS_PER_BOX);
-    v6 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_62);
+    narc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_62);
 
     if ((boxID >= 0) && (boxID < MAX_PC_BOXES)) {
         for (i = 0; i < MAX_MONS_PER_BOX; i++) {
-            ov94_02240E50(PCBoxes_GetBoxMonAt(pcBoxes, boxID, i), &appState->boxCriteria->criteria[i]);
+            GTSSelectMon_SetLevelCriteria(PCBoxes_GetBoxMonAt(pcBoxes, boxID, i), &appState->boxCriteria->criteria[i]);
         }
 
         for (i = 0; i < MAX_MONS_PER_BOX; i++) {
             appState->boxCriteria->criteria[i].species = SPECIES_NONE;
-            ov94_02240EAC(PCBoxes_GetBoxMonAt(pcBoxes, boxID, i), appState->unk_E28[i], appState->unk_EA0[i], &species[i], i, v6, &appState->boxCriteria->criteria[i], &icons[i]);
+            GTSSelectMon_SetupSlot(PCBoxes_GetBoxMonAt(pcBoxes, boxID, i), appState->boxSlotIconSprites[i], appState->boxSlotItemSprites[i], &species[i], i, narc, &appState->boxCriteria->criteria[i], &icons[i]);
 
             // "in party" shows as its own box, so when in a box context we want to hide the party
             if (i < MAX_PARTY_SIZE) {
@@ -1145,8 +1129,8 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
             Pokemon *mon = Party_GetPokemonBySlotIndex(appState->playerData->party, i);
             BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
-            ov94_02240E50(boxMon, &appState->boxCriteria->criteria[i]);
-            ov94_02240EAC(boxMon, appState->unk_E28[i], appState->unk_EA0[i], &species[i], i, v6, &appState->boxCriteria->criteria[i], &icons[i]);
+            GTSSelectMon_SetLevelCriteria(boxMon, &appState->boxCriteria->criteria[i]);
+            GTSSelectMon_SetupSlot(boxMon, appState->boxSlotIconSprites[i], appState->boxSlotItemSprites[i], &species[i], i, narc, &appState->boxCriteria->criteria[i], &icons[i]);
 
             if (Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                 Sprite_SetDrawFlag(appState->selectPokemonPartySprites[i], 1);
@@ -1157,8 +1141,8 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
 
         for (; i < MAX_MONS_PER_BOX; i++) {
             appState->boxCriteria->criteria[i].species = SPECIES_NONE;
-            Sprite_SetDrawFlag(appState->unk_E28[i], 0);
-            Sprite_SetDrawFlag(appState->unk_EA0[i], 0);
+            Sprite_SetDrawFlag(appState->boxSlotIconSprites[i], 0);
+            Sprite_SetDrawFlag(appState->boxSlotItemSprites[i], 0);
             icons[i].sprite = NULL;
 
             if (i < MAX_PARTY_SIZE) {
@@ -1169,16 +1153,16 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
         MessageLoader_GetString(appState->gtsMessageLoader, pl_msg_00000671_00089, appState->selectPokemonBoxName);
     }
 
-    NARC_dtor(v6);
-    Window_FillTilemap(&appState->unk_F8C, 0x0);
+    NARC_dtor(narc);
+    Window_FillTilemap(&appState->networkErrWindow, 0x0);
 
-    ov94_02245900(&appState->unk_F8C, appState->selectPokemonBoxName, 0, 5, 1, TEXT_COLOR(1, 2, 0));
+    Window_DrawAlignedSystemText(&appState->networkErrWindow, appState->selectPokemonBoxName, 0, 5, 1, TEXT_COLOR(1, 2, 0));
 
     if (appState->screenArgument == SCREEN_ARGUMENT_6) {
-        GTSApplication_SelectPokemon_DarkenNonMatchingMons(appState->boxCriteria->criteria, appState->unk_E28, &appState->searchResults[appState->selectedSearchResult].requirements, icons);
+        GTSApplication_SelectMon_DarkenNonMatchingMons(appState->boxCriteria->criteria, appState->boxSlotIconSprites, &appState->searchResults[appState->selectedSearchResult].requirements, icons);
     }
 
-    appState->updateBoxPalettesFunc = ov94_02240E5C;
+    appState->updateBoxPalettesFunc = GTSSelectMon_UploadMonIconsCallback;
 }
 
 BOOL GTSApplication_IsBoxIDParty(int boxID)
@@ -1199,10 +1183,10 @@ BoxPokemon *GTSApplication_GetSelectedBoxMon(Party *party, PCBoxes *pcBoxes, int
     return PCBoxes_GetBoxMonAt(pcBoxes, boxID, slot);
 }
 
-static BOOL ov94_0224121C(Party *party, PCBoxes *pcBoxes, int boxID, int param3)
+static BOOL GTSSelectMon_CanOfferPokemon(Party *party, PCBoxes *unused1, int boxID, int unused2)
 {
     if (GTSApplication_IsBoxIDParty(boxID)) {
-        if (Party_GetCurrentCount(party) < 2) {
+        if (Party_GetCurrentCount(party) < 2) { // BUG? includes eggs, so a party of [valid mon, egg] passes the < 2 guard. The last non-egg Pokémon can be deposited, leaving only an egg.
             return FALSE;
         }
     }
@@ -1276,26 +1260,26 @@ static BOOL BoxPokemon_HeldItemNotInDP(BoxPokemon *boxMon)
     return FALSE;
 }
 
-static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3)
+static int GTSSelectMon_GetSlotStatus(Party *party, PCBoxes *pcBoxes, int boxID, int slot)
 {
-    BoxPokemon *boxMon = GTSApplication_GetSelectedBoxMon(param0, pcBoxes, param2, param3);
+    BoxPokemon *boxMon = GTSApplication_GetSelectedBoxMon(party, pcBoxes, boxID, slot);
 
     if (boxMon == NULL) {
-        return 0;
+        return GTS_SLOTSTATUS_NO_SPECIES;
     }
 
     if (!BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
-        return 0;
+        return GTS_SLOTSTATUS_NO_SPECIES;
     }
 
     if (BoxPokemon_GetValue(boxMon, MON_DATA_SANITY_IS_EGG, NULL)) {
-        return 2;
+        return GTS_SLOTSTATUS_EGG;
     }
 
-    return 1;
+    return GTS_SLOTSTATUS_VALID_MON;
 }
 
-static BOOL GTSApplication_SelectPokemon_MatchesRequirements(GTSPokemonCriteria *criteria, GTSPokemonRequirements *requirements)
+static BOOL GTSApplication_SelectMon_MatchesRequirements(GTSPokemonCriteria *criteria, GTSPokemonRequirements *requirements)
 {
     if (criteria->species != requirements->species) {
         return FALSE;
@@ -1326,48 +1310,48 @@ static BOOL GTSApplication_SelectPokemon_MatchesRequirements(GTSPokemonCriteria 
     return TRUE;
 }
 
-static int ov94_02241384(BoxPokemon *boxMon, GTSPokemonRequirements *requirements)
+static int GTSSelectMon_BoxMonMatchesRequirements(BoxPokemon *boxMon, GTSPokemonRequirements *requirements)
 {
-    GTSPokemonCriteria v0;
+    GTSPokemonCriteria criteria;
 
-    v0.species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    v0.gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
-    v0.level = BoxPokemon_GetLevel(boxMon);
+    criteria.species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    criteria.gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    criteria.level = BoxPokemon_GetLevel(boxMon);
 
-    return GTSApplication_SelectPokemon_MatchesRequirements(&v0, requirements);
+    return GTSApplication_SelectMon_MatchesRequirements(&criteria, requirements);
 }
 
-static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *appState)
+static void GTSSelectMon_FillTradeListing(GTSPokemonListing *listing, GTSApplicationState *appState)
 {
-    GTSPokemonCriteria v0;
-    GTSPokemonRequirements v1;
+    GTSPokemonCriteria criteria;
+    GTSPokemonRequirements requirements;
     BoxPokemon *boxMon;
 
-    v0.species = BoxPokemon_GetValue(appState->unk_114, MON_DATA_SPECIES, NULL);
-    v0.gender = BoxPokemon_GetValue(appState->unk_114, MON_DATA_GENDER, NULL) + 1;
-    v0.level = BoxPokemon_GetLevel(appState->unk_114);
+    criteria.species = BoxPokemon_GetValue(appState->selectedBoxMon, MON_DATA_SPECIES, NULL);
+    criteria.gender = BoxPokemon_GetValue(appState->selectedBoxMon, MON_DATA_GENDER, NULL) + 1;
+    criteria.level = BoxPokemon_GetLevel(appState->selectedBoxMon);
 
-    param0->criteria = v0;
+    listing->criteria = criteria;
 
-    GTS_FillListing(param0, appState);
+    GTS_FillListing(listing, appState);
 
     boxMon = Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
 
-    v1.species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    v1.gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
-    v1.level = 0;
-    v1.level2 = 0;
+    requirements.species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    requirements.gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    requirements.level = 0;
+    requirements.level2 = 0;
 
-    param0->requirements = v1;
+    listing->requirements = requirements;
 }
 
-static void GTSApplication_SelectPokemon_DarkenNonMatchingMons(GTSPokemonCriteria *criteria, Sprite **param1, GTSPokemonRequirements *requirements, PokemonIcon *icons)
+static void GTSApplication_SelectMon_DarkenNonMatchingMons(GTSPokemonCriteria *criteria, Sprite **unused, GTSPokemonRequirements *requirements, PokemonIcon *icons)
 {
-    UNUSED(param1);
+    UNUSED(unused);
 
     for (int i = 0; i < MAX_MONS_PER_BOX; i++) {
         if (criteria[i].species != SPECIES_NONE) {
-            if (GTSApplication_SelectPokemon_MatchesRequirements(&criteria[i], requirements) == FALSE) {
+            if (GTSApplication_SelectMon_MatchesRequirements(&criteria[i], requirements) == FALSE) {
                 icons[i].paletteIndex += 3; // greyed out
             }
         }
