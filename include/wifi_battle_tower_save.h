@@ -7,7 +7,7 @@
 #include "struct_defs/wifi_battle_tower_data.h"
 #include "struct_defs/wifi_player_profile.h"
 
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "easy_chat_sentence.h"
 #include "savedata.h"
@@ -30,8 +30,8 @@ void WifiBattleTowerSave_SetIsInProgress(WifiBattleTowerSave *save, BOOL isInPro
 u16 WifiBattleTowerRecord_UpdateBattlePoints(WifiBattleTowerRecord *record, u16 value, int func);
 u8 WifiBattleTowerRecord_UpdateLossStreak(WifiBattleTowerRecord *record, int op);
 u8 WifiBattleTowerRecord_UpdateRank(WifiBattleTowerRecord *record, int op);
-void WifiBattleTowerRecord_SetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemonDataDTO *monDataDTO);
-void WifiBattleTowerRecord_GetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemonDataDTO *outBuf);
+void WifiBattleTowerRecord_SetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemon *mons);
+void WifiBattleTowerRecord_GetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemon *outBuf);
 u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, WifiBattleTowerSave *save);
 u16 WifiBattleTowerRecord_GetRatingScore(WifiBattleTowerRecord *record);
 u8 WifiBattleTowerRecord_GetRatingTier(WifiBattleTowerRecord *record);
@@ -49,10 +49,10 @@ BOOL WifiBattleTowerDownloadData_HasOpponentData(WifiBattleTowerDownloadData *do
 BOOL WifiBattleTowerDownloadData_HasMatchListData(WifiBattleTowerDownloadData *downloadData);
 void WifiBattleTowerDownloadData_StoreOpponentTeams(WifiBattleTowerDownloadData *downloadData, WifiPlayerProfile *opponentData, u8 rank, u8 opponentIdx);
 void WifiBattleTowerDownloadData_GetIndices(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerIndices *outIndices);
-void WifiBattleTowerDownloadData_BuildOpponentDTO(WifiBattleTowerDownloadData *downloadData, FrontierDataDTO *dto, const u8 opponentNum);
+void WifiBattleTowerDownloadData_BuildOpponent(WifiBattleTowerDownloadData *downloadData, FrontierOpponent *opponent, const u8 opponentNum);
 void WifiBattleTowerDownloadData_StoreMatchList(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerMatchCandidate *matchCandidates, u8 rank, u8 opponentIdx);
 void WifiBattleTowerDownloadData_GetMatchIndices(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerIndices *outIndices);
-WifiBattleTowerMatchCandidate *WifiBattleTowerDownloadData_AllocMatchList(WifiBattleTowerDownloadData *, enum HeapID heapID);
+WifiBattleTowerMatchCandidate *WifiBattleTowerDownloadData_AllocMatchList(WifiBattleTowerDownloadData *downloadData, enum HeapID heapID);
 WifiBattleTowerSave *SaveData_GetWifiBattleTowerSave(SaveData *saveData);
 WifiBattleTowerRecord *SaveData_GetWifiBattleTowerRecord(SaveData *saveData);
 WifiBattleTowerDownloadData *SaveData_GetWifiBattleTowerDownloadData(SaveData *saveData);

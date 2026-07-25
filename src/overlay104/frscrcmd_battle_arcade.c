@@ -10,11 +10,11 @@
 #include "overlay104/battle_castle_helpers.h"
 #include "overlay104/defs.h"
 #include "overlay104/frontier_graphics.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_particle_system.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frontier_script_manager.h"
 #include "overlay104/frscrcmd.h"
-#include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_02237DD8.h"
 #include "overlay104/ov104_0223BCBC.h"
@@ -488,7 +488,7 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
         }
         break;
     case BA_FUNC_UNK_49:
-        ov104_0222E330(battleArcade->unk_330, battleArcade->unk_314, battleArcade->unk_31C, battleArcade->unk_320, NULL, 4, 11, 179);
+        BattleFrontier_LoadFrontierPokemon(battleArcade->unk_330, battleArcade->unk_314, battleArcade->unk_31C, battleArcade->unk_320, NULL, 4, 11, 179);
         break;
     case BA_FUNC_UNK_50:
         ov104_0223C04C(battleArcade);
@@ -594,7 +594,7 @@ BOOL FrontierScrCmd_C4(FrontierScriptContext *param0)
         return 0;
     }
 
-    v0 = v1->unk_F4[v3].trDataDTO.introMsg;
+    v0 = v1->unk_F4[v3].trainer.introMsg;
     BattleFrontier_PrintNormalTrainerMessage(param0, v0);
 
     return 1;

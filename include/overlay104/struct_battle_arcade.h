@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020304A0_decl.h"
 
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "field_battle_data_transfer.h"
 #include "party.h"
@@ -45,11 +45,11 @@ typedef struct BattleArcade {
     u32 monSpeed[4];
     u32 monSpAtk[4];
     u32 monSpDef[4];
-    FrontierDataDTO unk_F4[2];
+    FrontierOpponent unk_F4[2];
     u16 unk_314[4];
     u8 unk_31C[4];
     u32 unk_320[4];
-    FrontierPokemonDataDTO unk_330[4];
+    FrontierPokemon unk_330[4];
     u16 unk_410;
     u16 unk_412[3];
     u16 appCursorPos[6];

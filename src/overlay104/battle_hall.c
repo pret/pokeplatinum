@@ -9,7 +9,7 @@
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/battle_hall.h"
 #include "overlay104/battle_hall_helpers.h"
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/ov104_0222ECE8.h"
 
 #include "battle_frontier_save.h"
@@ -285,12 +285,12 @@ u16 BattleHall_GetCurrentBattle(BattleHall *battleHall)
 
 u16 BattleHall_GetNextOpponentObjectID(BattleHall *battleHall, u8 trainerSlot)
 {
-    FrontierTrainerDataDTO trainer;
+    FrontierTrainer trainer;
     u8 offset = (battleHall->currentBattle * 2) + trainerSlot;
 
-    Heap_Free(BattleFrontier_GetTrainerData(&trainer, battleHall->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleFrontier_GetTrainer(&trainer, battleHall->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return BattleTower_GetObjectIDFromTrainerClass(trainer.trainerType);
+    return BattleFrontier_GetObjectIDFromTrainerClass(trainer.trainerType);
 }
 
 void BattleHall_SaveOnLoss(BattleHall *battleHall)

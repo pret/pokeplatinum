@@ -5,7 +5,7 @@
 
 #include "struct_defs/wifi_battle_tower_data.h"
 
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "field_battle_data_transfer.h"
 #include "location.h"
@@ -40,8 +40,8 @@ typedef struct BattleTower {
     Location unk_5C;
     WifiBattleTowerSave *wifiBattleTowerSave;
     WifiBattleTowerRecord *unk_74;
-    FrontierDataDTO opponentsDataDTO[2];
-    FrontierDataDTO partnersDataDTO[BT_PARTNERS_COUNT];
+    FrontierOpponent opponentsDataDTO[2];
+    FrontierOpponent partnersDataDTO[BT_PARTNERS_COUNT];
     BattleTowerPartnerData unk_7E8[BT_PARTNERS_COUNT];
     u8 unk_838[BT_PARTNERS_COUNT];
     u16 unk_83E[35];

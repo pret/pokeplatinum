@@ -1,9 +1,12 @@
 #ifndef POKEPLATINUM_BATTLE_CASTLE_H
 #define POKEPLATINUM_BATTLE_CASTLE_H
 
+#include "constants/battle_frontier.h"
+#include "constants/moves.h"
+
 #include "applications/frontier/battle_castle/args.h"
 #include "overlay104/defs.h"
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "battle_castle_save.h"
 #include "field_battle_data_transfer.h"
@@ -30,20 +33,20 @@ typedef struct BattleCastle {
     Party *playersParty;
     Party *opponentsParty;
     u16 trainerIDs[14];
-    FrontierDataDTO opponents[2];
-    u16 monSetIDs[4];
-    u8 opponentMonIVs[4];
-    u32 opponentMonPersonalities[4];
-    FrontierPokemonDataDTO opponentMons[4];
+    FrontierOpponent opponents[2];
+    u16 monSetIDs[CASTLE_MAX_PARTY_SIZE];
+    u8 opponentMonIVs[CASTLE_MAX_PARTY_SIZE];
+    u32 opponentMonPersonalities[CASTLE_MAX_PARTY_SIZE];
+    FrontierPokemon opponentMons[CASTLE_MAX_PARTY_SIZE];
     u16 unused3;
     u16 savedHeldItems[3];
-    u8 appIdentityUnlocked[4];
-    u8 levelAdjustments[4];
-    u8 appStatsUnlocked[4];
-    u8 appMovesUnlocked[4];
+    u8 appIdentityUnlocked[CASTLE_MAX_PARTY_SIZE];
+    u8 levelAdjustments[CASTLE_MAX_PARTY_SIZE];
+    u8 appStatsUnlocked[CASTLE_MAX_PARTY_SIZE];
+    u8 appMovesUnlocked[CASTLE_MAX_PARTY_SIZE];
     u16 selectedAppSlots[6];
     u16 unused4[4];
-    u16 startingPP[4][4];
+    u16 startingPP[CASTLE_MAX_PARTY_SIZE][LEARNED_MOVES_MAX];
     u16 unused5[6];
     u16 unk_3C0[40];
     u8 unk_410[512];
