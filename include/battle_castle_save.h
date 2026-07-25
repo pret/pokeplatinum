@@ -18,9 +18,8 @@
 typedef struct BattleCastleSave {
     u8 challengeType : 3;
     u8 didSave : 1;
-    u8 unk_00_4 : 4;
     u8 currentBattleNum;
-    u8 unk_02;
+    u8 unused;
     u8 partySlots[3];
     u16 trainerIDs[14];
     u16 monHP[4];
@@ -28,13 +27,13 @@ typedef struct BattleCastleSave {
     u32 monStatus[4];
     u16 heldItems[4];
     u16 monSetIDs[14];
-    u16 unk_70;
+    u16 unused2;
 } BattleCastleSave;
 
-typedef struct UnkStruct_0203041C_t {
+typedef struct BattleCastlePersistentSave {
     u8 streakActiveFlags;
     u8 haveHeardIntro;
-    u8 unk_02[2];
+    u16 unused;
 } BattleCastlePersistentSave;
 
 void BattleCastleSave_Init(BattleCastleSave *castleSave);
