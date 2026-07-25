@@ -164,11 +164,11 @@ u32 PartyMenu_GetAction(u8 action)
 
 void PartyMenu_ClearContextWindow(PartyMenuApplication *application)
 {
-    Window_EraseStandardFrame(application->menuWindows, TRUE);
-    Window_ClearAndScheduleCopyToVRAM(application->menuWindows);
+    Window_EraseStandardFrame(&application->menuWindows[0], TRUE);
+    Window_ClearAndScheduleCopyToVRAM(&application->menuWindows[0]);
     Menu_Free(application->contextMenu, NULL);
     StringList_Free(application->contextMenuChoices);
-    Window_Remove(application->menuWindows);
+    Window_Remove(&application->menuWindows[0]);
 }
 
 static void PartyMenu_SelectItem(PartyMenuApplication *application, int *partyMenuState)
