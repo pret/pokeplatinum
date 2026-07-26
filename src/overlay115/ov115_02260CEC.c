@@ -3121,7 +3121,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_5), heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(5), heapID);
     LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 4, 0, heapID);
 }
 

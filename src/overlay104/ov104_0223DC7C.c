@@ -611,7 +611,7 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const FrontierBrain
     G2_SetWnd0Position(0, 0, 0, 0);
     G2_SetWnd1Position(0, 0, 0, 0);
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_1C, NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, param1->bannerPalette, HEAP_ID_94, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_12));
+    PaletteData_LoadBufferFromFileStart(param0->unk_1C, NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, param1->bannerPalette, HEAP_ID_94, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(12));
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_24, param1->bannerTiles, param0->unk_10, 1, 0, 0, 0, HEAP_ID_94);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_24, param1->bannerTilemap, param0->unk_10, 1, 0, 0, 0, HEAP_ID_94);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 32, 12);
@@ -647,7 +647,7 @@ static void ov104_0223E6BC(SysTask *param0, void *param1)
         v0->unk_3C = 0;
     }
 
-    PaletteData_LoadBuffer(v0->unk_1C, &v0->unk_40[v0->unk_3C * 16], PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_12), PALETTE_SIZE_BYTES);
+    PaletteData_LoadBuffer(v0->unk_1C, &v0->unk_40[v0->unk_3C * 16], PLTTBUF_MAIN_BG, PLTT_DEST(12), PALETTE_SIZE_BYTES);
 }
 
 static void ov104_0223E6F0(UnkStruct_ov104_0223DD30 *param0, int param1)

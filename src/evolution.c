@@ -75,7 +75,7 @@ static const WindowTemplate sYesNowWindowTemplate = {
     .tilemapTop = 13,
     .width = 7,
     .height = 4,
-    .palette = PLTT_11,
+    .palette = 11,
     .baseTile = 10,
 };
 
@@ -121,9 +121,9 @@ EvolutionData *Evolution_Begin(Party *party, Pokemon *mon, int targetSpecies, Op
     sub_0207C664();
     sub_0207C730();
     Evolution_InitGraphics(evolutionData, evolutionData->bgConfig);
-    Window_Add(evolutionData->bgConfig, evolutionData->window, BG_LAYER_MAIN_1, 2, 19, 27, 4, PLTT_11, (18 + 12) + 1);
+    Window_Add(evolutionData->bgConfig, evolutionData->window, BG_LAYER_MAIN_1, 2, 19, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(evolutionData->window, 0xFF);
-    Window_DrawMessageBoxWithScrollCursor(evolutionData->window, 0, 1, PLTT_10);
+    Window_DrawMessageBoxWithScrollCursor(evolutionData->window, 0, 1, 10);
 
     evolutionData->monSpriteMan = PokemonSpriteManager_New(heapID);
     evolutionData->monAnimMan = PokemonAnimManager_New(heapID, 1, FALSE);
@@ -551,7 +551,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
         if (ApplicationManager_Exec(evolutionData->summaryScreenAppMan)) {
             ApplicationManager_Free(evolutionData->summaryScreenAppMan);
             Evolution_InitGraphics(evolutionData, evolutionData->bgConfig);
-            Window_DrawMessageBoxWithScrollCursor(evolutionData->window, 0, 1, PLTT_10);
+            Window_DrawMessageBoxWithScrollCursor(evolutionData->window, 0, 1, 10);
             PokemonSprite_SetAttribute(evolutionData->monSprites[0], MON_SPRITE_HIDE, 0);
             PokemonSprite_SetAttribute(evolutionData->monSprites[1], MON_SPRITE_HIDE, 0);
             PokemonSprite_ScheduleReloadFromNARC(evolutionData->monSprites[0]);
@@ -901,15 +901,15 @@ static void Evolution_InitGraphics(EvolutionData *evolutionData, BgConfig *bgCon
     ReplaceTransparentTiles(bgConfig, BG_LAYER_MAIN_1, 1, 10, frame, evolutionData->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, sinnoh_document_NCGR, bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, evolutionData->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, national_dex_document_NCGR, bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, evolutionData->heapID);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, sinnoh_document_NSCR, evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, PLTT_DEST(PLTT_0));
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_10));
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, national_dex_blank_NCLR, evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_11));
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, sinnoh_document_NSCR, evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, PLTT_DEST(0));
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(10));
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, national_dex_blank_NCLR, evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(11));
     LoadStandardWindowTiles(evolutionData->bgConfig, BG_LAYER_MAIN_2, 1, 0, evolutionData->heapID);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_8));
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(8));
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, sinnoh_blank_NSCR, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, evolutionData->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, national_dex_blank_NSCR, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, evolutionData->heapID);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__POKETCH, 12, evolutionData->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__POKETCH, 12, evolutionData->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(0));
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);

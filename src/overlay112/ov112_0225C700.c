@@ -505,7 +505,7 @@ static void ov112_0225CA34(UnkStruct_ov112_0225C9BC *param0, enum HeapID heapID)
 
     {
         Graphics_LoadPaletteFromOpenNARC(param0->unk_1A4, 0, 0, 0, 0, heapID);
-        Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_10), heapID);
+        Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(10), heapID);
         Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_1A4, 1, param0->unk_00, 1, 0, 0, 0, heapID);
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A4, 3, param0->unk_00, 1, 0, 0, 0, heapID);
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A4, 4, param0->unk_00, 2, 0, 0, 0, heapID);

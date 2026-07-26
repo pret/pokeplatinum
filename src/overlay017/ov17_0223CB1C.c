@@ -596,16 +596,16 @@ static void ov17_0223D4A8(UnkStruct_ov17_02247A48 *param0, NARC *param1)
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 23, param0->unk_0C.unk_24, 3, 0, 0, TRUE, HEAP_ID_22);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 22, param0->unk_0C.unk_24, 3, 0, 0, TRUE, HEAP_ID_22);
     Bg_ClearTilemap(param0->unk_0C.unk_24, 1);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 35, HEAP_ID_22, PLTTBUF_MAIN_BG, 0, PLTT_DEST(PLTT_0));
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 36, HEAP_ID_22, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 35, HEAP_ID_22, PLTTBUF_MAIN_BG, 0, PLTT_DEST(0));
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 36, HEAP_ID_22, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
 
     v0 = Options_Frame(param0->unk_00->options);
 
     LoadMessageBoxGraphics(param0->unk_0C.unk_24, 1, 1, 15, v0, HEAP_ID_22);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v0), HEAP_ID_22, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v0), HEAP_ID_22, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 24, param0->unk_0C.unk_24, 2, 0, 0, 1, HEAP_ID_22);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 21, param0->unk_0C.unk_24, 2, 0, 0, 1, HEAP_ID_22);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 37, HEAP_ID_22, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_12));
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 37, HEAP_ID_22, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(12));
 }
 
 static void ov17_0223D5AC(UnkStruct_ov17_02247A48 *param0)
@@ -617,7 +617,7 @@ static void ov17_0223D5B0(UnkStruct_ov17_02247A48 *param0, NARC *param1)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 19, param0->unk_0C.unk_24, 4, 0, 0, 1, HEAP_ID_22);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 20, param0->unk_0C.unk_24, 4, 0, 0, 1, HEAP_ID_22);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 34, HEAP_ID_22, PLTTBUF_SUB_BG, 0, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 34, HEAP_ID_22, PLTTBUF_SUB_BG, 0, PLTT_DEST(0));
 }
 
 static void ov17_0223D608(UnkStruct_ov17_02247A48 *param0)

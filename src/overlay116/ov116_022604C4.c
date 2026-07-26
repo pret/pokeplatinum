@@ -69,7 +69,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     void *v1 = NetworkIcon_GetPalette(HEAP_ID_106);
 
     NNS_G2dGetUnpackedPaletteData(v1, &v0);
-    PaletteData_LoadBuffer(param0->unk_48.unk_14, v0->pRawData, PLTTBUF_MAIN_OBJ, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES);
+    PaletteData_LoadBuffer(param0->unk_48.unk_14, v0->pRawData, PLTTBUF_MAIN_OBJ, PLTT_DEST(14), PALETTE_SIZE_BYTES);
     Heap_Free(v1);
 
     int v2 = CommInfo_CountReceived();
@@ -217,7 +217,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     }
 
     param0->unk_7C = ov114_0225CAD4(SpriteManager_GetSpriteList(param0->unk_48.unk_0C), HEAP_ID_106);
-    PaletteData_LoadBufferFromHardware(param0->unk_48.unk_14, PLTTBUF_MAIN_OBJ, PLTT_DEST(PLTT_0), 16 * PALETTE_SIZE_BYTES);
+    PaletteData_LoadBufferFromHardware(param0->unk_48.unk_14, PLTTBUF_MAIN_OBJ, PLTT_DEST(0), 16 * PALETTE_SIZE_BYTES);
 
     if (param0->unk_80->unk_3C) {
         NintendoWFC_StartVoiceChat(HEAP_ID_106);

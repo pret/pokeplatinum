@@ -9904,7 +9904,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         BattleSystem_SetHealthboxPriority(data->battleSys, 0 + 2); // gauge's default is 0
 
         LoadStandardWindowTiles(bgl, 2, 1, 0, HEAP_ID_BATTLE);
-        PaletteData_LoadBufferFromFileStart(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_8));
+        PaletteData_LoadBufferFromFileStart(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(8));
         Window_Add(bgl, window, 2, 17, 7, 14, 12, 11, 9 + 1);
         Window_FillTilemap(window, 0xFF);
         Window_DrawStandardFrame(window, 0, 1, 8);

@@ -655,7 +655,7 @@ static void ov17_0223BBA8(UnkStruct_ov17_02246F24 *param0, NARC *param1)
 
     ov17_0223BB14(param0, 0, 0);
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_50, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 30, HEAP_ID_21, PLTTBUF_MAIN_BG, 0, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_50, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 30, HEAP_ID_21, PLTTBUF_MAIN_BG, 0, PLTT_DEST(0));
 
     u16 *v0, *v1, *v2, *v3;
 

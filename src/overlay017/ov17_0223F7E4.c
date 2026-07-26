@@ -806,7 +806,7 @@ static void ov17_0223FBD4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
 
     String_Free(contestRankString);
     String_Free(contestTypeString);
-    PaletteData_LoadBufferFromFile(param0->unk_04->unk_50, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 38, HEAP_ID_21, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_2), PLTT_DEST(param0->unk_04->unk_00->contestType));
+    PaletteData_LoadBufferFromFile(param0->unk_04->unk_50, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 38, HEAP_ID_21, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(2), PLTT_DEST(param0->unk_04->unk_00->contestType));
 }
 
 static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
@@ -853,7 +853,7 @@ static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (moveList[i] != MOVE_NONE && ov17_02243A98(param0->unk_08, param0->unk_04->unk_00->playerContestantID, moveList[i]) == 0) {
-            PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], PLTTBUF_SUB_BG, PLTT_DEST(PLTT_4 + i), PALETTE_SIZE_BYTES);
+            PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], PLTTBUF_SUB_BG, PLTT_DEST(4 + i), PALETTE_SIZE_BYTES);
 
             GF_ASSERT(param0->unk_2C9 == 0xff);
             param0->unk_2C9 = i;
@@ -1162,10 +1162,10 @@ static void ov17_02240424(UnkStruct_ov17_0223F7E4 *param0, int moveContestType, 
     };
 
     if (moveContestType != -1) {
-        PaletteData_LoadBuffer(param0->unk_04->unk_50, v0[moveContestType], PLTTBUF_SUB_BG, PLTT_DEST(PLTT_4 + moveSlot), PALETTE_SIZE_BYTES);
+        PaletteData_LoadBuffer(param0->unk_04->unk_50, v0[moveContestType], PLTTBUF_SUB_BG, PLTT_DEST(4 + moveSlot), PALETTE_SIZE_BYTES);
     } else {
         ov17_022403B0(param0, &Unk_ov17_02253248[moveSlot], &Unk_ov17_02253408[moveSlot], 2, 0);
-        PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], PLTTBUF_SUB_BG, PLTT_DEST(PLTT_4 + moveSlot), PALETTE_SIZE_BYTES);
+        PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], PLTTBUF_SUB_BG, PLTT_DEST(4 + moveSlot), PALETTE_SIZE_BYTES);
     }
 }
 

@@ -93,8 +93,8 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
             void *v1 = NetworkIcon_GetPalette(HEAP_ID_102);
 
             NNS_G2dGetUnpackedPaletteData(v1, &v0);
-            PaletteData_LoadBuffer(param0->unk_14.unk_14, v0->pRawData, PLTTBUF_MAIN_OBJ, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES);
-            PaletteData_LoadBuffer(param0->unk_14.unk_14, v0->pRawData, PLTTBUF_SUB_OBJ, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES);
+            PaletteData_LoadBuffer(param0->unk_14.unk_14, v0->pRawData, PLTTBUF_MAIN_OBJ, PLTT_DEST(14), PALETTE_SIZE_BYTES);
+            PaletteData_LoadBuffer(param0->unk_14.unk_14, v0->pRawData, PLTTBUF_SUB_OBJ, PLTT_DEST(14), PALETTE_SIZE_BYTES);
             Heap_Free(v1);
         }
     }

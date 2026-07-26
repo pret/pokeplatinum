@@ -444,9 +444,9 @@ void BattleSystem_SetupBattleScreen(BattleSystem *battleSys)
 
     ReplaceTransparentTiles(battleSys->bgConfig, 1, 1, 10, frame, HEAP_ID_BATTLE);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 3 + battleSys->background, battleSys->bgConfig, BG_LAYER_MAIN_3, 0, 0, 1, HEAP_ID_BATTLE);
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 172 + battleSys->background * 3 + BattleSystem_GetBackgroundTimeOffset(battleSys), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, 0, PLTT_DEST(PLTT_0));
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_10));
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_11));
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 172 + battleSys->background * 3 + BattleSystem_GetBackgroundTimeOffset(battleSys), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, 0, PLTT_DEST(0));
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(10));
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(11));
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 2, battleSys->bgConfig, 3, 0, 0, 1, HEAP_ID_BATTLE);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -894,9 +894,9 @@ static void BattleMain_InitBattleGraphics(BattleSystem *battleSys, BgConfig *bgC
 
     ReplaceTransparentTiles(bgConfig, 1, 1, 10, frame, HEAP_ID_BATTLE);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 3 + battleSys->background, bgConfig, BG_LAYER_MAIN_3, 0, 0, 1, HEAP_ID_BATTLE);
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 172 + battleSys->background * 3 + BattleSystem_GetBackgroundTimeOffset(battleSys), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, 0, PLTT_DEST(PLTT_0));
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_10));
-    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_11));
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 172 + battleSys->background * 3 + BattleSystem_GetBackgroundTimeOffset(battleSys), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, 0, PLTT_DEST(0));
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(10));
+    PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(11));
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 2, bgConfig, 3, 0, 0, 1, HEAP_ID_BATTLE);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -1673,8 +1673,8 @@ static void BattleMain_InitLinkCommScreen(ApplicationManager *appMan, FieldBattl
     int frame = Options_Frame(dto->options);
 
     ReplaceTransparentTiles(linkBattleCommState->bgConfig, 1, 1, 10, frame, HEAP_ID_BATTLE);
-    PaletteData_LoadBufferFromFileStart(linkBattleCommState->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_11));
-    PaletteData_LoadBufferFromFileStart(linkBattleCommState->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_10));
+    PaletteData_LoadBufferFromFileStart(linkBattleCommState->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(11));
+    PaletteData_LoadBufferFromFileStart(linkBattleCommState->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_BATTLE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(10));
     PaletteData_FillBufferRange(linkBattleCommState->paletteData, PLTTBUF_MAIN_BG, PLTTSEL_FADED, 0, 0, 256);
 
     GXLayers_TurnBothDispOn();

@@ -897,21 +897,21 @@ void ov76_0223C8BC(UnkStruct_ov76_0223DE00 *param0)
 void ov76_0223C8EC(BgConfig *param0, PaletteData *param1, int param2)
 {
     LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_1, 1, 15, param2, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(param2), HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_12));
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(param2), HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(12));
     LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, 1 + (18 + 12), 13, 0, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
 }
 
 void ov76_0223C974(BgConfig *param0, PaletteData *param1, int param2)
 {
     LoadMessageBoxGraphics(param0, BG_LAYER_SUB_0, 1, 15, param2, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(param2), HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_12));
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(param2), HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(12));
     LoadStandardWindowGraphics(param0, BG_LAYER_SUB_0, 1 + (18 + 12), 13, 0, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_3));
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, 294, HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_11));
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(3));
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, 294, HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(11));
 }
 
 void ov76_0223CA30(Window *param0, int param1)

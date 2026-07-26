@@ -1428,11 +1428,11 @@ static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0)
     v0 = Options_Frame(param0->trainerIntroData->dto->options);
 
     LoadMessageBoxGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1, 15, v0, param0->trainerIntroData->heapID);
-    PaletteData_LoadBufferFromHardware(param0->unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_15), PALETTE_SIZE_BYTES * 1);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(15), PALETTE_SIZE_BYTES * 1);
     LoadStandardWindowGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1 + (18 + 12), 14, 0, param0->trainerIntroData->heapID);
-    PaletteData_LoadBufferFromHardware(param0->unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES * 1);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), param0->trainerIntroData->heapID);
-    PaletteData_LoadBufferFromHardware(param0->unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_13), PALETTE_SIZE_BYTES * 1);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(14), PALETTE_SIZE_BYTES * 1);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), param0->trainerIntroData->heapID);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(13), PALETTE_SIZE_BYTES * 1);
     Window_Add(param0->unk_0C, &param0->unk_B7C, 0, 0x2, 0x13, 27, 4, 13, (1 + (18 + 12)) + 9);
     Window_Add(param0->unk_0C, &param0->unk_B8C, 0, 0x2, 0x13, 27, 4, 13, (1 + (18 + 12)) + 9);
 }

@@ -308,7 +308,7 @@ static BOOL ov62_02237F08(UnkStruct_0208C06C *param0)
         param0->unk_08++;
         break;
     case 1:
-        PaletteData_LoadBufferFromHardware(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_0), 16 * PALETTE_SIZE_BYTES);
+        PaletteData_LoadBufferFromHardware(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, PLTT_DEST(0), 16 * PALETTE_SIZE_BYTES);
         param0->unk_08++;
         break;
     case 2:
@@ -922,7 +922,7 @@ static BOOL ov62_02238D04(UnkStruct_0208C06C *param0)
         param0->unk_08++;
         break;
     case 1:
-        PaletteData_LoadBufferFromHardware(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_0), 16 * PALETTE_SIZE_BYTES);
+        PaletteData_LoadBufferFromHardware(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, PLTT_DEST(0), 16 * PALETTE_SIZE_BYTES);
         param0->unk_08++;
         break;
     case 2:
@@ -1104,7 +1104,7 @@ static BOOL ov62_0223900C(UnkStruct_0208C06C *param0)
         if (v0->unk_0C == 0) {
             (void)0;
         } else {
-            PaletteData_LoadBufferFromHardware(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_0), 16 * PALETTE_SIZE_BYTES);
+            PaletteData_LoadBufferFromHardware(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, PLTT_DEST(0), 16 * PALETTE_SIZE_BYTES);
         }
 
         param0->unk_08++;
@@ -1196,7 +1196,7 @@ static BOOL ov62_0223921C(UnkStruct_0208C06C *param0)
         break;
     case 3:
         if (v0->unk_0C == 0) {
-            PaletteData_LoadBufferFromHardware(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_0), 16 * PALETTE_SIZE_BYTES);
+            PaletteData_LoadBufferFromHardware(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, PLTT_DEST(0), 16 * PALETTE_SIZE_BYTES);
         } else {
             (void)0;
         }

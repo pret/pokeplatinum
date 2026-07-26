@@ -812,8 +812,8 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val3.unk_08, PALETTE_SIZE_BYTES * 8);
         Heap_Free(v2);
 
-        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_1), PALETTE_SIZE_BYTES);
-        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, PLTTBUF_SUB_BG, PLTT_DEST(PLTT_1), PALETTE_SIZE_BYTES);
+        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, PLTTBUF_MAIN_BG, PLTT_DEST(1), PALETTE_SIZE_BYTES);
+        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, PLTTBUF_SUB_BG, PLTT_DEST(1), PALETTE_SIZE_BYTES);
     }
 
     Bg_SetOffset(v0, BG_LAYER_MAIN_2, 0, 0);

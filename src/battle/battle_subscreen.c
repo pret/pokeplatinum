@@ -908,10 +908,10 @@ void *BattleSubscreen_New(NARC *unused1, NARC *unused2, BattleSystem *battleSys,
     int narcMemberIdx = BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_FRONTIER ? 340 : 242;
     btlSubscreen->subscreenPaletteBuf = Heap_Alloc(HEAP_ID_BATTLE, 0x200);
 
-    PaletteData_LoadBufferFromFileStart(pltData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, narcMemberIdx, HEAP_ID_BATTLE, PLTTBUF_SUB_BG, 0, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(pltData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, narcMemberIdx, HEAP_ID_BATTLE, PLTTBUF_SUB_BG, 0, PLTT_DEST(0));
 
     if (sSubscreenBgPlttIndices[bg].bgPlttIndex != 0xffff) {
-        PaletteData_LoadBufferFromFileStart(pltData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, sSubscreenBgPlttIndices[bg].bgPlttIndex, HEAP_ID_BATTLE, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_0));
+        PaletteData_LoadBufferFromFileStart(pltData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, sSubscreenBgPlttIndices[bg].bgPlttIndex, HEAP_ID_BATTLE, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(0));
     }
 
     u16 *unfadedPltBuf = PaletteData_GetUnfadedBuffer(pltData, 1);
@@ -2506,7 +2506,7 @@ static void FreeCategoryIcons(BattleSubscreen *btlSubscreen)
 
 static void LoadMoveSelectPlttSlot(BattleSubscreen *btlSubscreen, enum PokemonType moveType, int moveSlot)
 {
-    LoadMoveSelectPltt(BattleSystem_GetPaletteData(btlSubscreen->battleSys), moveType, 5, PLTTBUF_SUB_BG, PLTT_8 + moveSlot);
+    LoadMoveSelectPltt(BattleSystem_GetPaletteData(btlSubscreen->battleSys), moveType, 5, PLTTBUF_SUB_BG, 8 + moveSlot);
 }
 
 static void LoadEmptyMoveSlotBg(BattleSubscreen *btlSubscreen, int startSlot)
@@ -2515,7 +2515,7 @@ static void LoadEmptyMoveSlotBg(BattleSubscreen *btlSubscreen, int startSlot)
 
     for (int i = startSlot; i < SNELEMS(sEmptyMoveSlotTileOffsets); i++) {
         ApplyMoveSlotTilemap(btlSubscreen, &sEmptyMoveSlotTileOffsets[i], &sEmptyMoveSlotTilemapRects[i], 3, 0);
-        PaletteData_LoadBuffer(paletteSys, &btlSubscreen->subscreenPaletteBuf[0xe * 16], PLTTBUF_SUB_BG, PLTT_DEST(PLTT_8 + i), PALETTE_SIZE_BYTES);
+        PaletteData_LoadBuffer(paletteSys, &btlSubscreen->subscreenPaletteBuf[0xe * 16], PLTTBUF_SUB_BG, PLTT_DEST(8 + i), PALETTE_SIZE_BYTES);
     }
 }
 
@@ -3919,7 +3919,7 @@ void BattleSubscreen_ShowStopRecordingMessage(BattleSubscreen *btlSubscreen, int
     GF_ASSERT(btlSubscreen->activeMenuConfigIndex == 18);
 
     LoadStandardWindowGraphics(bgConfig, BG_LAYER_SUB_1, 0x20, 1, 0, HEAP_ID_BATTLE);
-    PaletteData_LoadBufferFromHardware(paletteData, PLTTBUF_SUB_BG, PLTT_DEST(PLTT_1), PALETTE_SIZE_BYTES);
+    PaletteData_LoadBufferFromHardware(paletteData, PLTTBUF_SUB_BG, PLTT_DEST(1), PALETTE_SIZE_BYTES);
 
     int fillVal = 0x20, palette = 1;
     int x = 1;

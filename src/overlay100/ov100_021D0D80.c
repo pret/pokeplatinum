@@ -72,8 +72,8 @@ int ov100_021D0D80(ApplicationManager *appMan, int *param1)
         Window_CopyToVRAM(v1);
 
         LoadMessageBoxGraphics(v0->unk_0C.unk_0C, 1, 500, 15, v2, HEAP_ID_111);
-        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v2), HEAP_ID_111, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_15));
-        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_111, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
+        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v2), HEAP_ID_111, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
+        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_111, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
         Window_DrawMessageBoxWithScrollCursor(v1, 0, 500, 15);
 
         ov100_021D4788(&v0->unk_0C);

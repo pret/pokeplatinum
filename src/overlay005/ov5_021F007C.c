@@ -104,7 +104,7 @@ static void ov5_021F00F0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     }
 
     BlendPalettes(v1->unk_04->pRawData, v1->unk_08, 0x1, v1->unk_28.unk_00, (GX_RGB(31, 10, 23)));
-    Bg_LoadPalette(BG_LAYER_MAIN_2, v1->unk_08, PALETTE_SIZE_BYTES, PLTT_OFFSET(PLTT_6));
+    Bg_LoadPalette(BG_LAYER_MAIN_2, v1->unk_08, PALETTE_SIZE_BYTES, PLTT_OFFSET(6));
 }
 
 static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)

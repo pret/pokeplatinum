@@ -277,7 +277,7 @@ static const WindowTemplate sYesNoWindowTemplate = {
     .tilemapTop = 13,
     .width = 6,
     .height = 4,
-    .palette = PLTT_14,
+    .palette = 14,
     .baseTile = 0x355,
 };
 

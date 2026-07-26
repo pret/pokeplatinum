@@ -657,8 +657,8 @@ static void ov99_021D1580(BgConfig *param0)
 
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0)
 {
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 85, HEAP_ID_75, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_15));
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 85, HEAP_ID_75, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_15));
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 85, HEAP_ID_75, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__ENDING, 85, HEAP_ID_75, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
 }
 
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0)

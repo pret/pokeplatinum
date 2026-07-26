@@ -1240,7 +1240,7 @@ static void ov62_0223B158(UnkStruct_0208C06C *param0)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, (138 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, HEAP_ID_102);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, (140 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, HEAP_ID_102);
-    PaletteData_LoadBufferFromFile(param0->unk_14.unk_14, NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, (139 + (v0->unk_04.unk_176 * 3)), HEAP_ID_102, 0, PALETTE_SIZE_BYTES * 2, PLTT_DEST(PLTT_12), PLTT_DEST(PLTT_12));
+    PaletteData_LoadBufferFromFile(param0->unk_14.unk_14, NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, (139 + (v0->unk_04.unk_176 * 3)), HEAP_ID_102, 0, PALETTE_SIZE_BYTES * 2, PLTT_DEST(12), PLTT_DEST(12));
 
     ov62_0223B050(param0);
     ov62_0223AE60(param0);
@@ -1269,7 +1269,7 @@ static void ov62_0223B230(UnkStruct_0208C06C *param0)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, (138 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, HEAP_ID_102);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, (140 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, HEAP_ID_102);
-    PaletteData_LoadBufferFromFile(param0->unk_14.unk_14, NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, (139 + (v0->unk_04.unk_176 * 3)), HEAP_ID_102, 0, PALETTE_SIZE_BYTES * 2, PLTT_DEST(PLTT_12), PLTT_DEST(PLTT_12));
+    PaletteData_LoadBufferFromFile(param0->unk_14.unk_14, NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, (139 + (v0->unk_04.unk_176 * 3)), HEAP_ID_102, 0, PALETTE_SIZE_BYTES * 2, PLTT_DEST(12), PLTT_DEST(12));
 
     ov62_0223B050(param0);
     ov62_0223AE60(param0);

@@ -516,7 +516,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
 
         break;
     case 5:
-        PaletteData_LoadBufferFromHardware(v0->unk_0C, PLTTBUF_MAIN_BG, PLTT_DEST(PLTT_11), PALETTE_SIZE_BYTES * 2);
+        PaletteData_LoadBufferFromHardware(v0->unk_0C, PLTTBUF_MAIN_BG, PLTT_DEST(11), PALETTE_SIZE_BYTES * 2);
         {
             u32 v4 = YesNoTouchMenu_ProcessInput(v0->unk_24);
 
@@ -891,14 +891,14 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
         int v2;
         v2 = Options_Frame(SaveData_GetOptions(param0->saveData));
 
-        PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v2), HEAP_ID_118, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
+        PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v2), HEAP_ID_118, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
         LoadMessageBoxGraphics(param0->unk_08, BG_LAYER_MAIN_1, 1, 14, v2, HEAP_ID_118);
-        PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_118, 0, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
+        PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_118, 0, PALETTE_SIZE_BYTES, PLTT_DEST(13));
 
         if (param0->unk_00->unk_04 == 0) {
-            PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_118, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
+            PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_118, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
         } else {
-            PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 25, HEAP_ID_118, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
+            PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 25, HEAP_ID_118, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
         }
     }
 

@@ -249,18 +249,18 @@ void EggHatch_FadeOut(void)
 
 void EggHatch_LoadMessageBoxGraphics(BgConfig *bgConfig, PaletteData *plttData, int frame)
 {
-    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_1, BASE_TILE_OFFSET, PLTT_15, frame, HEAP_ID_EGG_HATCH);
-    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_12));
-    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_1, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT, PLTT_13, STANDARD_WINDOW_SYSTEM, HEAP_ID_EGG_HATCH);
-    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_13));
-    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__PL_FONT, screen_indicators_NCLR, HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_1, BASE_TILE_OFFSET, 15, frame, HEAP_ID_EGG_HATCH);
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(12));
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_1, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT, 13, STANDARD_WINDOW_SYSTEM, HEAP_ID_EGG_HATCH);
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__PL_FONT, screen_indicators_NCLR, HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
 }
 
 void EggHatch_CreateMessageWindow(BgConfig *bgConfig, Window *window, enum BgLayer bgLayer, int tilemapTop, int tilemapLeft, int width, int height, int baseTile, int palette)
 {
     Window_Init(window);
     Window_Add(bgConfig, window, bgLayer, tilemapTop, tilemapLeft, width, height, palette, baseTile);
-    Window_DrawMessageBoxWithScrollCursor(window, TRUE, BASE_TILE_OFFSET, PLTT_12);
+    Window_DrawMessageBoxWithScrollCursor(window, TRUE, BASE_TILE_OFFSET, 12);
     Window_FillTilemap(window, 15);
     Window_CopyToVRAM(window);
 }
@@ -315,7 +315,7 @@ void EggHatch_CreateYesNoMenu(EggHatchCutscene *eggHatch, BgConfig *bgConfig, Wi
     menuTemplate.suppressCursor = FALSE;
     menuTemplate.loopAround = TRUE;
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT, PLTT_13);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT, 13);
     eggHatch->graphics.yesNoMenu = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, HEAP_ID_EGG_HATCH, PAD_BUTTON_B);
 }
 
@@ -338,14 +338,14 @@ void EggHatch_LoadMainBackground(BgConfig *bgConfig, PaletteData *plttData)
 {
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, background_NCGR_lz, bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_EGG_HATCH);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, background_NSCR_lz, bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_EGG_HATCH);
-    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, background_NCLR, HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, background_NCLR, HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, PLTT_DEST(0));
 }
 
 void EggHatch_LoadSubScreenBackground(BgConfig *bgConfig, PaletteData *plttData)
 {
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, unavailable_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_EGG_HATCH);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, unavailable_NSCR_lz, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_EGG_HATCH);
-    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__POKETCH, unavailable_bg_tiles_NCLR, HEAP_ID_EGG_HATCH, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__POKETCH, unavailable_bg_tiles_NCLR, HEAP_ID_EGG_HATCH, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(0));
 }
 
 static u32 AllocTexVram(u32 size, BOOL is4x4Comp)

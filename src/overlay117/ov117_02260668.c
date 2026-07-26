@@ -245,7 +245,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
     }
 
     PaletteData_LoadBufferFromFileStart(v0->unk_8C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_110, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
-    PaletteData_LoadBufferFromFileStart(v0->unk_8C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_110, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_5));
+    PaletteData_LoadBufferFromFileStart(v0->unk_8C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_110, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(5));
     ov117_022613EC(v0);
     ov117_022614AC(v0, 0);
     ov117_02261368(v0);
@@ -1050,7 +1050,7 @@ static void ov117_02261AC4(UnkStruct_ov117_02261280 *param0)
 static void ov117_02261AC8(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
     PaletteData_LoadBufferFromFileStart(param0->unk_8C, NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 5, HEAP_ID_110, PLTTBUF_SUB_BG, 5 * PALETTE_SIZE_BYTES, 0);
-    PaletteData_LoadBufferFromFile(param0->unk_8C, NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 6, HEAP_ID_110, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 10, PLTT_DEST(PLTT_6), PLTT_DEST(PLTT_6));
+    PaletteData_LoadBufferFromFile(param0->unk_8C, NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 6, HEAP_ID_110, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 10, PLTT_DEST(6), PLTT_DEST(6));
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 13, param0->unk_2C, 6, 0, 0, 0, HEAP_ID_110);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_2C, 6, 0, 0, 0, HEAP_ID_110);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_2C, 5, 0, 0, 0, HEAP_ID_110);
@@ -1074,7 +1074,7 @@ static void ov117_02261AC8(UnkStruct_ov117_02261280 *param0, NARC *param1)
     ov117_02264AB0(param0);
 
     LoadStandardWindowGraphics(param0->unk_2C, BG_LAYER_SUB_0, (((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2), 6, 0, HEAP_ID_110);
-    PaletteData_LoadBufferFromHardware(param0->unk_8C, PLTTBUF_SUB_BG, PLTT_DEST(PLTT_6), PALETTE_SIZE_BYTES);
+    PaletteData_LoadBufferFromHardware(param0->unk_8C, PLTTBUF_SUB_BG, PLTT_DEST(6), PALETTE_SIZE_BYTES);
     PaletteData_FillBufferRange(param0->unk_8C, PLTTBUF_SUB_BG, PLTTSEL_BOTH, 0x0, 0, 1);
 }
 

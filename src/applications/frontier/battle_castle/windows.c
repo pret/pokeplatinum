@@ -316,14 +316,14 @@ void BattleCastleApp_FreeWindows(Window *windows, u8 isOpponentApp)
 
 void BattleCastleApp_DrawWindow(BgConfig *bgConfig, Window *window)
 {
-    LoadStandardWindowGraphics(bgConfig, Window_GetBgLayer(window), BASE_TILE_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_BATTLE_CASTLE_APP);
-    Window_DrawStandardFrame(window, 1, BASE_TILE_WINDOW_FRAME, PLTT_11);
+    LoadStandardWindowGraphics(bgConfig, Window_GetBgLayer(window), BASE_TILE_WINDOW_FRAME, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_BATTLE_CASTLE_APP);
+    Window_DrawStandardFrame(window, 1, BASE_TILE_WINDOW_FRAME, 11);
 }
 
 void BattleCastleApp_DrawMessageBox(Window *window, int frame)
 {
-    LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_10, frame, HEAP_ID_BATTLE_CASTLE_APP);
+    LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), BASE_TILE_STANDARD_WINDOW_FRAME, 10, frame, HEAP_ID_BATTLE_CASTLE_APP);
     Window_FillTilemap(window, 15);
-    Window_DrawMessageBoxWithScrollCursor(window, 1, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_10);
+    Window_DrawMessageBoxWithScrollCursor(window, 1, BASE_TILE_STANDARD_WINDOW_FRAME, 10);
     Window_ScheduleCopyToVRAM(window);
 }

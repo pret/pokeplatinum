@@ -1961,7 +1961,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
     void *v6 = NetworkIcon_GetPalette(HEAP_ID_95);
 
     NNS_G2dGetUnpackedPaletteData(v6, &v5);
-    PaletteData_LoadBuffer(v2, v5->pRawData, PLTTBUF_MAIN_OBJ, PLTT_DEST(PLTT_14), PALETTE_SIZE_BYTES);
+    PaletteData_LoadBuffer(v2, v5->pRawData, PLTTBUF_MAIN_OBJ, PLTT_DEST(14), PALETTE_SIZE_BYTES);
     Heap_Free(v6);
 }
 
@@ -1984,8 +1984,8 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
 
     LoadStandardWindowGraphics(param0->unk_D84, BG_LAYER_MAIN_1, 1, 15, 0, HEAP_ID_95);
     LoadMessageBoxGraphics(param0->unk_D84, BG_LAYER_MAIN_1, 1 + 9, 14, param0->unk_CC->unk_14.unk_04, HEAP_ID_95);
-    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), HEAP_ID_95, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_14));
-    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_95, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_15));
+    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), HEAP_ID_95, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
+    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_95, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
 
     v1->unk_04 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPIN_TRADE, HEAP_ID_95);
     v1->unk_08 = StringTemplate_Default(HEAP_ID_95);

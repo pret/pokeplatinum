@@ -1753,13 +1753,13 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
 
     // Palette Index 0: White Clouds
     for (i = 0; i < 1; i++) {
-        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, sCutInWindParticlePalette[i].memberIdx, FALSE, sCutInWindParticlePalette[i].resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD1);
+        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, sCutInWindParticlePalette[i].memberIdx, FALSE, sCutInWindParticlePalette[i].resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD1);
     }
 
     // Palette Index 1: Player Female
     if (cutIn->playerGender == 0) {
     } else {
-        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 4, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD1);
+        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 4, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD1);
         i++;
     }
 

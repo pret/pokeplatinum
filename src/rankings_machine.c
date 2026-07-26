@@ -445,7 +445,7 @@ static void RankingsMachine_MakeYesNoMenu(RankingsMachineManager *machineMan)
         .tilemapTop = 13,
         .width = 6,
         .height = 4,
-        .palette = PLTT_13,
+        .palette = 13,
         .baseTile = 0x355,
     };
 
@@ -657,8 +657,8 @@ static void RankingsMachine_InitBg(RankingsMachineManager *machineMan)
     LoadMessageBoxGraphics(machineMan->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_SCROLLING_MESSAGE_BOX, 10, machineMan->frame, machineMan->heapID);
     LoadStandardWindowGraphics(machineMan->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, 11, 0, machineMan->heapID);
     LoadStandardWindowGraphics(machineMan->bgConfig, BG_LAYER_MAIN_1, BASE_TILE_STANDARD_WINDOW_FRAME, 11, 0, machineMan->heapID);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), machineMan->heapID);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), machineMan->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), machineMan->heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), machineMan->heapID);
     Window_Add(machineMan->bgConfig, &machineMan->msgBoxWindow, BG_LAYER_MAIN_3, 2, 19, 27, 4, 12, BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT);
     Window_FillTilemap(&machineMan->msgBoxWindow, PIXEL_FILL(15));
 }

@@ -1148,10 +1148,10 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
     param0->unk_40 = String_Init(600, HEAP_ID_115);
     param0->unk_44 = String_Init(600, HEAP_ID_115);
 
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_115);
-    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_115);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_115);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_115);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_115);
+    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(13), HEAP_ID_115);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_115);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(12), HEAP_ID_115);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_115);
 
     param0->unk_160 = FontSpecialChars_Init(15, 14, 0, HEAP_ID_115);

@@ -1841,7 +1841,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         32 * 14 * 2,
         TRUE,
         HEAP_ID_NAMING_SCREEN_APP);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_NAMING_SCREEN_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_NAMING_SCREEN_APP);
     LoadMessageBoxGraphics(
         namingScreen->bgConfig,
         BG_LAYER_SUB_0,
@@ -1849,7 +1849,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         10,
         Options_Frame(namingScreen->options),
         HEAP_ID_NAMING_SCREEN_APP);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_NAMING_SCREEN_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(12), HEAP_ID_NAMING_SCREEN_APP);
 
     namingScreen->charDataAlloc = Graphics_GetCharDataFromOpenNARC(
         narc,
@@ -2270,7 +2270,7 @@ static void NamingScreen_AnimateChangeChars(
 
 static void NamingScreen_PrintMessageOnWindowLeftAlign(Window *window, int unused, String *str)
 {
-    Window_DrawMessageBoxWithScrollCursor(window, FALSE, 32 * 8, PLTT_10);
+    Window_DrawMessageBoxWithScrollCursor(window, FALSE, 32 * 8, 10);
     Text_AddPrinterWithParams(window, FONT_MESSAGE, str, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Window_CopyToVRAM(window);
 }
@@ -2307,7 +2307,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         1,
         26,
         12,
-        PLTT_1,
+        1,
         32 * 8);
     Window_Add(
         namingScreen->bgConfig,
@@ -2317,7 +2317,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         1,
         26,
         12,
-        PLTT_1,
+        1,
         (32 * 8) + (26 * 12));
 
     if (namingScreen->type == NAMING_SCREEN_TYPE_UNK4) {
@@ -2357,7 +2357,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         2,
         22,
         2,
-        PLTT_0,
+        0,
         ((32 * 8) + (26 * 12)) + (26 * 12));
 
     int width = ((namingScreen->maxChars * 12) / 8) + 1;
@@ -2370,7 +2370,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         3,
         width,
         2,
-        PLTT_0,
+        0,
         (((32 * 8) + (26 * 12)) + (26 * 12)) + 44);
     Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_ENTERED_TEXT], 0x01);
     Window_Add(
@@ -2381,7 +2381,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         3,
         7,
         2,
-        PLTT_0,
+        0,
         ((((32 * 8) + (26 * 12)) + (26 * 12)) + 44) + 36);
     Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_GROUP_TEXT], 0x01);
 
@@ -2401,7 +2401,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         19,
         27,
         4,
-        PLTT_12,
+        12,
         120 + (2 * 2 * 3));
     Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_PROMPT], 15);
     NamingScreen_PrintMessageOnWindowLeftAlign(
@@ -2433,7 +2433,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
             0,
             2,
             2,
-            PLTT_0,
+            0,
             120);
         Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_UNK_0 + i], 0);
     }
@@ -2446,7 +2446,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         0,
         16,
         2,
-        PLTT_0,
+        0,
         120 + (2 * 2 * 3));
     Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_UNK_3], 0);
 }

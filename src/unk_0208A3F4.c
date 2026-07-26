@@ -77,11 +77,11 @@ void sub_0208A490(UnkStruct_02089688 *param0)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 12, v1, 1, 0, 0, 0, HEAP_ID_101);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 14, v1, 1, 0, 0, 0, HEAP_ID_101);
-    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_ARC__CODEIN_GRA, 13, HEAP_ID_101, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_ARC__CODEIN_GRA, 13, HEAP_ID_101, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(0));
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 15, v1, 5, 0, 0, 0, HEAP_ID_101);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 17, v1, 5, 0, 0, 0, HEAP_ID_101);
-    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_ARC__CODEIN_GRA, 16, HEAP_ID_101, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_0));
+    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_ARC__CODEIN_GRA, 16, HEAP_ID_101, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(0));
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, PLTTBUF_MAIN_OBJ, v2, v3, v0, 1, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
     SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 0, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
@@ -101,8 +101,8 @@ void sub_0208A490(UnkStruct_02089688 *param0)
     int v5 = Options_Frame(param0->unk_3B8.options);
 
     LoadMessageBoxGraphics(v1, BG_LAYER_SUB_0, 1, 10, v5, HEAP_ID_101);
-    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v5), HEAP_ID_101, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_11));
-    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_101, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(PLTT_12));
+    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v5), HEAP_ID_101, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(11));
+    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_101, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(12));
 }
 
 void sub_0208A6CC(UnkStruct_02089688 *param0)

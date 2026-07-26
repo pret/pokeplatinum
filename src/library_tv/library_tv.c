@@ -272,7 +272,7 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__LIBRARY_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__LIBRARY_TV, 3, 0, 0, 0, ltv->heapID);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_1), ltv->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(1), ltv->heapID);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 

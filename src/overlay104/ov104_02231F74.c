@@ -262,7 +262,7 @@ void FrontierMenuManager_ShowMenu(FrontierMenuManager *menuManager)
     }
 
     Window_Add(graphics->bgConfig, &menuManager->window, BG_LAYER_MAIN_1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
-    Window_DrawStandardFrame(&menuManager->window, TRUE, 985, PLTT_12);
+    Window_DrawStandardFrame(&menuManager->window, TRUE, 985, 12);
     SetupSingleColumnMenu(menuManager);
     menuManager->menu = Menu_NewSimple(&menuManager->menuTemplate, menuManager->initialCursorPos, menuManager->scriptMan->heapID);
     UpdateMenuAltText(menuManager);
@@ -423,7 +423,7 @@ void FrontierMenuManager_ShowListMenu(FrontierMenuManager *menuManager)
         }
         Window_Add(graphics->bgConfig, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
     }
-    Window_DrawStandardFrame(&menuManager->window, 1, 985, PLTT_12);
+    Window_DrawStandardFrame(&menuManager->window, 1, 985, 12);
     InitListMenuTemplate(menuManager);
     menuManager->listMenu = ListMenu_New(&menuManager->listMenuTemplate, 0, menuManager->initialCursorPos, menuManager->scriptMan->heapID);
     UpdateListMenuAltText(menuManager);

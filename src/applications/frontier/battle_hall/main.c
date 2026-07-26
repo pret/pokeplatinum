@@ -814,8 +814,8 @@ static void LoadAssets(BattleHallApp *app)
         app->yesNoStrs[i] = String_Init(32, HEAP_ID_BATTLE_HALL_APP);
     }
 
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_13), HEAP_ID_BATTLE_HALL_APP);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_12), HEAP_ID_BATTLE_HALL_APP);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_BATTLE_HALL_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_BATTLE_HALL_APP);
 
     app->specialChars = FontSpecialChars_Init(15, 14, 0, HEAP_ID_BATTLE_HALL_APP);
 

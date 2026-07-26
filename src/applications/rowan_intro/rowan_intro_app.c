@@ -585,7 +585,7 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
             3,
             0,
             manager->heapID);
-        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_5), manager->heapID);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(5), manager->heapID);
         Font_LoadScreenIndicatorsPalette(
             PAL_LOAD_MAIN_BG,
             6 * (2 * 16),
