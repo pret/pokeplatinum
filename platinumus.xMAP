@@ -18521,19 +18521,19 @@
                                                                         71](PartyMenu_CheckBattleCastleEligibility,func) found in global src_applications_party_menu_main.c.o
                                                                        70](sub_020801F0,func) found in local src_applications_party_menu_main.c.o
                                                                        70](PartyMenu_DrawContextMenu,func) found in global src_applications_party_menu_windows.c.o
-                                                                        71](PartyMenu_GetAction,func) found in global src_applications_party_menu_unk_02083370.c.o
-                                                                         72](sPartyMenuActions,object) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectSoftboiled,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                           74](PartyMenu_StartFieldMoveHPTransfer,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                            75](PartyMenu_ClearContextWindow,func) found in global src_applications_party_menu_unk_02083370.c.o
+                                                                        71](PartyMenu_GetAction,func) found in global src_applications_party_menu_context_menu.c.o
+                                                                         72](sPartyMenuActions,object) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectSoftboiled,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                           74](PartyMenu_StartFieldMoveHPTransfer,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                            75](PartyMenu_ClearContextWindow,func) found in global src_applications_party_menu_context_menu.c.o
                                                                             75](PartyMenu_GetMemberPanelAnim,func) found in global src_applications_party_menu_main.c.o
                                                                             75](PartyMenu_UpdateSlotPalette,func) found in global src_applications_party_menu_main.c.o
                                                                              76](sub_0207F984,func) found in local src_applications_party_menu_main.c.o
                                                                             75](PartyMenu_PrintShortMessage,func) found in global src_applications_party_menu_windows.c.o
                                                                              76](PrintPartyMenuMessage,func) found in local src_applications_party_menu_windows.c.o
-                                                                          73](PartyMenu_SelectMilkDrink,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectChatter,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                           74](PartyMenu_SelectFieldMove,func) found in local src_applications_party_menu_unk_02083370.c.o
+                                                                          73](PartyMenu_SelectMilkDrink,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectChatter,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                           74](PartyMenu_SelectFieldMove,func) found in local src_applications_party_menu_context_menu.c.o
                                                                             75](FieldMove_GetTaskOrError,func) found in global src_field_move_tasks.c.o
                                                                              76](fieldMoveTaskOrError,object) found in local src_field_move_tasks.c.o
                                                                               77](FieldMoves_CheckChatter,func) found in local src_field_move_tasks.c.o
@@ -19642,35 +19642,35 @@
                                                                               77](FieldMoves_CheckCut,func) found in local src_field_move_tasks.c.o
                                                                               77](FieldMoves_SetCutTask,func) found in local src_field_move_tasks.c.o
                                                                                78](FieldMoves_CutTask,func) found in local src_field_move_tasks.c.o
-                                                                          73](PartyMenu_SelectSweetScent,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectDig,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectTeleport,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectFlash,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectRockClimb,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectWaterfall,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectRockSmash,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectDefog,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectStrength,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectSurf,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectFly,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectCut,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](sub_020846FC,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](sub_02084760,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                           74](sub_02084780,func) found in global src_applications_party_menu_unk_02083370.c.o
-                                                                          73](sub_020846CC,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](sub_020845E8,func) found in local src_applications_party_menu_unk_02083370.c.o
+                                                                          73](PartyMenu_SelectSweetScent,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectDig,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectTeleport,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectFlash,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectRockClimb,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectWaterfall,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectRockSmash,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectDefog,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectStrength,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectSurf,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectFly,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectCut,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_CleanupContextMenu2,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SetBallCapsuleAction,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                           74](PartyMenu_SetBallCapsule,func) found in global src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_CleanupContextMenu,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_PrintAllEligibilities,func) found in local src_applications_party_menu_context_menu.c.o
                                                                            74](PartyMenu_PrintSelectionEligibility,func) found in global src_applications_party_menu_windows.c.o
                                                                             75](PrintMemberSelectionComment,func) found in local src_applications_party_menu_windows.c.o
-                                                                          73](PartyMenu_SelectChooseWithLimit,func) found in local src_applications_party_menu_unk_02083370.c.o
+                                                                          73](PartyMenu_SelectChooseWithLimit,func) found in local src_applications_party_menu_context_menu.c.o
                                                                            74](sub_0207FD68,func) found in global src_applications_party_menu_main.c.o
                                                                             75](GridMenuCursor_CheckNavigation,func) found in global src_grid_menu_cursor_position.c.o
                                                                             75](InitAnimAndPaletteForSlot,func) found in local src_applications_party_menu_main.c.o
                                                                             75](DrawMemberTouchScreenButton,func) found in local src_applications_party_menu_main.c.o
-                                                                          73](PartyMenu_SelectBallSeal,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                           74](sub_02083A78,func) found in global src_applications_party_menu_unk_02083370.c.o
-                                                                           74](sub_02083AA4,func) found in global src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectMailTake,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                           74](sub_0208384C,func) found in local src_applications_party_menu_unk_02083370.c.o
+                                                                          73](PartyMenu_SelectBallSeal,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                           74](PartyMenuCB_DetachBallSeal_Clear,func) found in global src_applications_party_menu_context_menu.c.o
+                                                                           74](PartyMenuCB_DetachBallSeal_Cancel,func) found in global src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectMailTake,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                           74](PartyMenuCB_TakeMail_Transfer,func) found in local src_applications_party_menu_context_menu.c.o
                                                                             75](Mail_TransferFromMonToMailbox,func) found in global src_applications_mail.c.o
                                                                              76](Mail_GetEmptyMailSlot,func) found in global src_mail.c.o
                                                                               77](Mail_GetEmptySlot,func) found in local src_mail.c.o
@@ -19678,22 +19678,22 @@
                                                                              76](Mailbox_CopyMailToSlot,func) found in global src_mail.c.o
                                                                               77](GetMailAtMailboxSlot,func) found in local src_mail.c.o
                                                                             75](PartyMenu_DrawMemberHeldItem,func) found in global src_applications_party_menu_sprites.c.o
-                                                                           74](sub_020838C4,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                            75](sub_020838F4,func) found in local src_applications_party_menu_unk_02083370.c.o
+                                                                           74](PartyMenuCB_TakeMail_PromptRemoval,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                            75](PartyMenuCB_TakeMail_Remove,func) found in local src_applications_party_menu_context_menu.c.o
                                                                              76](Bag_TryAddItem,func) found in global src_bag.c.o
                                                                               77](Bag_FindSlotToAddItem,func) found in local src_bag.c.o
                                                                                78](Pocket_FindSlotToAddItem,func) found in local src_bag.c.o
                                                                               77](Pocket_Sort,func) found in global src_bag.c.o
                                                                              76](Pokemon_SetArceusForm,func) found in global src_pokemon.c.o
-                                                                            75](sub_02083990,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectMailRead,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectMail,func) found in local src_applications_party_menu_unk_02083370.c.o
+                                                                            75](PartyMenuCB_TakeMail_Cancel,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectMailRead,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectMail,func) found in local src_applications_party_menu_context_menu.c.o
                                                                            74](PartyMenu_PrintMediumMessage,func) found in global src_applications_party_menu_windows.c.o
-                                                                          73](PartyMenu_SelectItemTake,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectItemGive,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectItem,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectSummary,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                          73](PartyMenu_SelectSwitch,func) found in local src_applications_party_menu_unk_02083370.c.o
+                                                                          73](PartyMenu_SelectItemTake,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectItemGive,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectItem,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectSummary,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                          73](PartyMenu_SelectSwitch,func) found in local src_applications_party_menu_context_menu.c.o
                                                                        70](PartyMenu_LoadContextMenuPrompt,func) found in global src_applications_party_menu_windows.c.o
                                                                       69](PartyMenu_HandleNavigationAndTouchScreen,func) found in local src_applications_party_menu_main.c.o
                                                                        70](PartyMenu_TryHandleDirectionPadInput,func) found in local src_applications_party_menu_main.c.o
@@ -19712,7 +19712,7 @@
                                                                       69](CheckUniqueValues,func) found in local src_applications_party_menu_main.c.o
                                                                       69](CheckEqualityInArray,func) found in local src_applications_party_menu_main.c.o
                                                                     67](HandleWindowInputEvent,func) found in local src_applications_party_menu_main.c.o
-                                                                    67](sub_02084B34,func) found in global src_applications_party_menu_unk_02083370.c.o
+                                                                    67](PartyMenu_WaitABPress,func) found in global src_applications_party_menu_context_menu.c.o
                                                                     67](HandleUseItem,func) found in local src_applications_party_menu_main.c.o
                                                                      68](HandleSpecialInput,func) found in local src_applications_party_menu_main.c.o
                                                                      68](ApplyItemEffectOnPokemon,func) found in local src_applications_party_menu_main.c.o
@@ -19801,10 +19801,10 @@
                                                                      68](PartyMenu_TeardownFormChangeAnim,func) found in global src_applications_party_menu_main.c.o
                                                                     67](UpdatePokemonFormWithItem,func) found in local src_applications_party_menu_main.c.o
                                                                     67](HandleContextMenuInput,func) found in local src_applications_party_menu_main.c.o
-                                                                    67](sub_02083658,func) found in global src_applications_party_menu_unk_02083370.c.o
-                                                                    67](sub_020836A8,func) found in global src_applications_party_menu_unk_02083370.c.o
-                                                                    67](sub_020836E4,func) found in global src_applications_party_menu_unk_02083370.c.o
-                                                                    67](sub_020839BC,func) found in global src_applications_party_menu_unk_02083370.c.o
+                                                                    67](PartyMenu_WaitForPrinter,func) found in global src_applications_party_menu_context_menu.c.o
+                                                                    67](PartyMenu_WaitForPrinterThenFormChange,func) found in global src_applications_party_menu_context_menu.c.o
+                                                                    67](PartyMenu_ChangeForm,func) found in global src_applications_party_menu_context_menu.c.o
+                                                                    67](PartyMenu_WaitABPress2,func) found in global src_applications_party_menu_context_menu.c.o
                                                                     67](HandleTeachMove,func) found in local src_applications_party_menu_main.c.o
                                                                      68](PartyMenuCB_TeachMove,func) found in global src_applications_party_menu_callbacks.c.o
                                                                       69](PartyMenu_TeachMove_Check,func) found in global src_applications_party_menu_callbacks.c.o
@@ -19813,21 +19813,21 @@
                                                                         71](CanBoxPokemonLearnTM,func) found in local src_pokemon.c.o
                                                                          72](CanPokemonFormLearnTM,func) found in global src_pokemon.c.o
                                                                     67](PartyMenuCB_TeachMove_HandleInput,func) found in global src_applications_party_menu_callbacks.c.o
-                                                                    67](sub_020845A8,func) found in global src_applications_party_menu_unk_02083370.c.o
+                                                                    67](PartyMenu_WaitABPressChooseMons,func) found in global src_applications_party_menu_context_menu.c.o
                                                                     67](WaitForPrinter,func) found in local src_applications_party_menu_main.c.o
-                                                                    67](WaitABPress,func) found in local src_applications_party_menu_main.c.o
+                                                                    67](WaitABPressBeforeFadeOut,func) found in local src_applications_party_menu_main.c.o
                                                                     67](DrawYesNoChoice,func) found in local src_applications_party_menu_main.c.o
                                                                     67](sub_0207E714,func) found in local src_applications_party_menu_main.c.o
-                                                                    67](sub_020805E4,func) found in local src_applications_party_menu_main.c.o
-                                                                     68](PartyMenu_ResetCursor,func) found in global src_applications_party_menu_unk_02083370.c.o
-                                                                     68](sub_02083BD4,func) found in global src_applications_party_menu_unk_02083370.c.o
-                                                                    67](sub_02083D1C,func) found in global src_applications_party_menu_unk_02083370.c.o
-                                                                     68](sub_02083E8C,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                     68](sub_02083FDC,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                     68](sub_02084134,func) found in local src_applications_party_menu_unk_02083370.c.o
+                                                                    67](SelectSwitchSlot,func) found in local src_applications_party_menu_main.c.o
+                                                                     68](PartyMenu_ResetCursor,func) found in global src_applications_party_menu_context_menu.c.o
+                                                                     68](PartyMenu_PrepareSwitch,func) found in global src_applications_party_menu_context_menu.c.o
+                                                                    67](PartyMenu_DoSwitch,func) found in global src_applications_party_menu_context_menu.c.o
+                                                                     68](UpdateBGScroll,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                     68](UpdateSpriteScroll,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                     68](SwapSwitchedSlots,func) found in local src_applications_party_menu_context_menu.c.o
                                                                       69](PartyMenu_CopyMemberWindowToVRAM,func) found in global src_applications_party_menu_windows.c.o
-                                                                      69](sub_02084420,func) found in local src_applications_party_menu_unk_02083370.c.o
-                                                                       70](sub_0207F248,func) found in global src_applications_party_menu_main.c.o
+                                                                      69](UpdateSlotHealthbar,func) found in local src_applications_party_menu_context_menu.c.o
+                                                                       70](PartyMenu_GetHealthbarTilemap,func) found in global src_applications_party_menu_main.c.o
                                                                       69](PartyMenu_DrawMemberBallSeal,func) found in global src_applications_party_menu_sprites.c.o
                                                                      68](Party_SwapSlots,func) found in global src_party.c.o
                                                                     67](PartyMenu_UseHPTransferFieldMove,func) found in local src_applications_party_menu_main.c.o
@@ -19851,12 +19851,12 @@
                                                                     67](PartyMenu_AddWindows,func) found in global src_applications_party_menu_windows.c.o
                                                                      68](AddPartyMemberWindows,func) found in local src_applications_party_menu_windows.c.o
                                                                     67](PartyMenu_InitSpriteResources,func) found in global src_applications_party_menu_sprites.c.o
-                                                                     68](@15508,object) found in local src_applications_party_menu_sprites.c.o
-                                                                      69](@15517,object) found in local src_applications_party_menu_sprites.c.o
-                                                                      69](@15516,object) found in local src_applications_party_menu_sprites.c.o
+                                                                     68](@15506,object) found in local src_applications_party_menu_sprites.c.o
                                                                       69](@15515,object) found in local src_applications_party_menu_sprites.c.o
                                                                       69](@15514,object) found in local src_applications_party_menu_sprites.c.o
                                                                       69](@15513,object) found in local src_applications_party_menu_sprites.c.o
+                                                                      69](@15512,object) found in local src_applications_party_menu_sprites.c.o
+                                                                      69](@15511,object) found in local src_applications_party_menu_sprites.c.o
                                                                     67](PartyMenu_InitSprites,func) found in global src_applications_party_menu_sprites.c.o
                                                                     67](SetupRequestedMode,func) found in local src_applications_party_menu_main.c.o
                                                                      68](PartyMenu_PrintButtonText,func) found in global src_applications_party_menu_windows.c.o
@@ -19886,13 +19886,13 @@
                                                                     67](SetupMenuCursor,func) found in local src_applications_party_menu_main.c.o
                                                                     67](sub_0207E898,func) found in local src_applications_party_menu_main.c.o
                                                                  64](State_InitPokemonSummaryBeforeGiving,func) found in local src_applications_poffin_case_main.c.o
-                                                                  65](summaryPages$15627,object) found in local src_applications_poffin_case_main.c.o
+                                                                  65](summaryPages$15625,object) found in local src_applications_poffin_case_main.c.o
                                                                  64](State_OpenSummaryBeforeGiving,func) found in local src_applications_poffin_case_main.c.o
                                                                  64](State_InitPoffinGivingCutscene,func) found in local src_applications_poffin_case_main.c.o
                                                                   65](PoffinCase_AllocateForSlot,func) found in global src_poffin.c.o
                                                                  64](State_PlayPoffinGivingCutscene,func) found in local src_applications_poffin_case_main.c.o
                                                                  64](State_InitSummaryAfterGiving,func) found in local src_applications_poffin_case_main.c.o
-                                                                  65](summaryPages$15662,object) found in local src_applications_poffin_case_main.c.o
+                                                                  65](summaryPages$15660,object) found in local src_applications_poffin_case_main.c.o
                                                                  64](State_OpenSummaryAfterGiving,func) found in local src_applications_poffin_case_main.c.o
                                                                 63](PoffinCaseApp_Init,func) found in local src_applications_poffin_case_main.c.o
                                                           57](OpenPartyMenuForGracidea,func) found in local src_item_use_functions.c.o
@@ -22998,7 +22998,7 @@
                                                    50](BattlePartyButtons_LoadScreenPaletteData,func) found in global src_battle_sub_menus_battle_party_buttons.c.o
                                                    50](BattlePartySprites_InitializeSprites,func) found in global src_battle_sub_menus_battle_party_sprites.c.o
                                                     51](InitializeSpriteManager,func) found in local src_battle_sub_menus_battle_party_sprites.c.o
-                                                     52](@16600,object) found in local src_battle_sub_menus_battle_party_sprites.c.o
+                                                     52](@16598,object) found in local src_battle_sub_menus_battle_party_sprites.c.o
                                                     51](LoadPartyPokemonSpriteData,func) found in local src_battle_sub_menus_battle_party_sprites.c.o
                                                     51](LoadSummaryStatusesSpriteData,func) found in local src_battle_sub_menus_battle_party_sprites.c.o
                                                      52](PokemonSummaryScreen_StatusIconPltt,func) found in global src_applications_pokemon_summary_screen_main.c.o
@@ -23970,7 +23970,7 @@
                                               45](ov10_0221F870,func) found in local src_overlay010_ov10_0221F800.c.o
                                                46](ov10_0221FB28,func) found in local src_overlay010_ov10_0221F800.c.o
                                                 47](ov10_0221F900,func) found in local src_overlay010_ov10_0221F800.c.o
-                                                 48](@18786,object) found in local src_overlay010_ov10_0221F800.c.o
+                                                 48](@18784,object) found in local src_overlay010_ov10_0221F800.c.o
                                                   49](ov10_02220228,func) found in local src_overlay010_ov10_0221F800.c.o
                                                    50](ov10_02221188,func) found in local src_overlay010_ov10_0221F800.c.o
                                                     51](.rodata,section) found in local src_overlay010_ov10_0221F800.c.o
@@ -28294,7 +28294,7 @@
                                        38](ScrCmd_2E3,func) found in global src_scrcmd.c.o
                                        38](ScrCmd_2E2,func) found in global src_scrcmd.c.o
                                         39](sub_0203E608,func) found in global src_unk_0203D1B8.c.o
-                                         40](v1$22708,object) found in local src_unk_0203D1B8.c.o
+                                         40](v1$22706,object) found in local src_unk_0203D1B8.c.o
                                           41](BattleFrontierRecordsApp_Exit,func) found in global src_applications_frontier_records_main.c.o
                                            42](GetWindowGroup,func) found in local src_applications_frontier_records_main.c.o
                                            42](FrontierRecordsApp_FreeWindows,func) found in global src_applications_frontier_records_windows.c.o
@@ -28926,7 +28926,7 @@
                                           41](sub_0205037C,func) found in local src_unk_0205003C.c.o
                                           41](sub_02050448,func) found in local src_unk_0205003C.c.o
                                           41](sub_02050498,func) found in local src_unk_0205003C.c.o
-                                           42](visiblePages$20356,object) found in local src_unk_0205003C.c.o
+                                           42](visiblePages$20354,object) found in local src_unk_0205003C.c.o
                                           41](sub_02050520,func) found in local src_unk_0205003C.c.o
                                        38](ScrCmd_PokeMartFrontier,func) found in local src_scrcmd.c.o
                                         39](Shop_Start,func) found in global src_overlay007_shop_menu.c.o
@@ -29032,7 +29032,7 @@
                                           41](sub_0204FE50,func) found in local src_unk_0204FAB4.c.o
                                           41](sub_0204FF1C,func) found in local src_unk_0204FAB4.c.o
                                           41](sub_0204FF6C,func) found in local src_unk_0204FAB4.c.o
-                                           42](visiblePages$20336,object) found in local src_unk_0204FAB4.c.o
+                                           42](visiblePages$20334,object) found in local src_unk_0204FAB4.c.o
                                           41](sub_0204FFF4,func) found in local src_unk_0204FAB4.c.o
                                        38](ScrCmd_DeleteActiveBattleHallStreak,func) found in global src_scrcmd_battle_hall.c.o
                                         39](BattleHallStreakFlags_Get,func) found in global src_battle_hall_save.c.o
@@ -29054,7 +29054,7 @@
                                           41](SubTask_SetupPartyMenu,func) found in local src_scrcmd_battle_hall.c.o
                                           41](SubTaskProcessPartyMenu,func) found in local src_scrcmd_battle_hall.c.o
                                           41](SubTask_SetupMonSummary,func) found in local src_scrcmd_battle_hall.c.o
-                                           42](sMonSummaryPages$20430,object) found in local src_scrcmd_battle_hall.c.o
+                                           42](sMonSummaryPages$20428,object) found in local src_scrcmd_battle_hall.c.o
                                           41](SubTask_ProcessMonSummary,func) found in local src_scrcmd_battle_hall.c.o
                                        38](ScrCmd_CountRepeatedSpeciesInParty,func) found in global src_scrcmd_party.c.o
                                        38](ScrCmd_AdvanceEternaGymClock,func) found in local src_scrcmd.c.o
@@ -29423,7 +29423,7 @@
                                             43](FieldSystem_OpenPartyMenu_SelectForSpinTrade,func) found in global src_unk_0203D1B8.c.o
                                            42](sub_0209C2C0,func) found in local src_unk_0209C194.c.o
                                             43](sub_0203D670,func) found in global src_unk_0203D1B8.c.o
-                                             44](visiblePages$22190,object) found in local src_unk_0203D1B8.c.o
+                                             44](visiblePages$22188,object) found in local src_unk_0203D1B8.c.o
                                             43](Unk_020F950C,object) found in local src_unk_0209C194.c.o
                                            42](sub_0209C280,func) found in local src_unk_0209C194.c.o
                                             43](sub_0209C1E8,func) found in global src_unk_0209C194.c.o
@@ -29723,7 +29723,7 @@
                                                 47](InitSpriteManager,func) found in local src_applications_frontier_battle_arcade_main.c.o
                                                  48](BattleArcadeApp_InitSpriteManager,func) found in global src_applications_frontier_battle_arcade_sprite_manager.c.o
                                                   49](InitCharPlttTransferBuffers,func) found in local src_applications_frontier_battle_arcade_sprite_manager.c.o
-                                                   50](@15491,object) found in local src_applications_frontier_battle_arcade_sprite_manager.c.o
+                                                   50](@15489,object) found in local src_applications_frontier_battle_arcade_sprite_manager.c.o
                                                   49](InitSubScreenSpriteResources,func) found in local src_applications_frontier_battle_arcade_sprite_manager.c.o
                                                   49](InitMainScreenSpriteResources,func) found in local src_applications_frontier_battle_arcade_sprite_manager.c.o
                                                   49](InitItemSpriteResources,func) found in local src_applications_frontier_battle_arcade_sprite_manager.c.o
@@ -29951,7 +29951,7 @@
                                               45](ov104_02239D1C,func) found in local src_overlay104_ov104_02239C58.c.o
                                               45](ov104_02239F38,func) found in local src_overlay104_ov104_02239C58.c.o
                                               45](ov104_02239FB0,func) found in local src_overlay104_ov104_02239C58.c.o
-                                               46](visiblePages$16932,object) found in local src_overlay104_ov104_02239C58.c.o
+                                               46](visiblePages$16930,object) found in local src_overlay104_ov104_02239C58.c.o
                                               45](ov104_0223A090,func) found in local src_overlay104_ov104_02239C58.c.o
                                             43](FrontierScrCmd_AE,func) found in global src_overlay104_ov104_022395F0.c.o
                                             43](FrontierScrCmd_AD,func) found in global src_overlay104_ov104_022395F0.c.o
@@ -30123,7 +30123,7 @@
                                                 47](InitSpriteManager,func) found in local src_applications_frontier_battle_castle_self_app.c.o
                                                  48](BattleCastleApp_InitSpriteManager,func) found in global src_applications_frontier_battle_castle_sprite_manager.c.o
                                                   49](InitCharPlttTransferBuffers,func) found in local src_applications_frontier_battle_castle_sprite_manager.c.o
-                                                   50](@15549,object) found in local src_applications_frontier_battle_castle_sprite_manager.c.o
+                                                   50](@15547,object) found in local src_applications_frontier_battle_castle_sprite_manager.c.o
                                                   49](InitItemIconSpriteResources,func) found in local src_applications_frontier_battle_castle_sprite_manager.c.o
                                                   49](sCapacities,object) found in local src_applications_frontier_battle_castle_sprite_manager.c.o
                                                 47](BattleCastleApp_InitWindows,func) found in global src_applications_frontier_battle_castle_windows.c.o
@@ -31234,7 +31234,7 @@
                                        38](ScrCmd_267,func) found in local src_scrcmd.c.o
                                         39](sub_0203E414,func) found in global src_unk_0203D1B8.c.o
                                          40](sub_0203E484,func) found in local src_unk_0203D1B8.c.o
-                                          41](v0$22647,object) found in local src_unk_0203D1B8.c.o
+                                          41](v0$22645,object) found in local src_unk_0203D1B8.c.o
                                          40](sub_0203E35C,func) found in local src_unk_0203D1B8.c.o
                                           41](sub_0203E348,func) found in global src_unk_0203D1B8.c.o
                                           41](TimeElapsed,func) found in global src_rtc.c.o
@@ -32152,7 +32152,7 @@
                                            42](sub_0206B9D8,func) found in local src_unk_0206B9D8.c.o
                                            42](sub_0206BA84,func) found in local src_unk_0206B9D8.c.o
                                            42](sub_0206BAE0,func) found in local src_unk_0206B9D8.c.o
-                                            43](visiblePages$20681,object) found in local src_unk_0206B9D8.c.o
+                                            43](visiblePages$20679,object) found in local src_unk_0206B9D8.c.o
                                            42](sub_0206BB6C,func) found in local src_unk_0206B9D8.c.o
                                         39](sub_0204A378,func) found in global src_unk_02049D08.c.o
                                         39](BattleTower_CheckDuplicateSpeciesAndHeldItems,func) found in global src_unk_02049D08.c.o
@@ -32485,7 +32485,7 @@
                                         39](PokemonSummary_GetSelectedMoveSlot,func) found in global src_unk_0203D1B8.c.o
                                        38](ScrCmd_SelectPartyMonMove,func) found in global src_scrcmd_party_mon_moves.c.o
                                         39](FieldSystem_OpenSummaryScreenSelectMove,func) found in global src_unk_0203D1B8.c.o
-                                         40](visiblePages$22199,object) found in local src_unk_0203D1B8.c.o
+                                         40](visiblePages$22197,object) found in local src_unk_0203D1B8.c.o
                                        38](ScrCmd_InitSizeContestRecord,func) found in local src_scrcmd.c.o
                                         39](SystemVars_SetSizeContestRecord,func) found in global src_system_vars.c.o
                                        38](ScrCmd_BufferSizeContestRecord,func) found in local src_scrcmd.c.o
@@ -32576,7 +32576,7 @@
                                            42](sub_02072370,func) found in local src_unk_020722AC.c.o
                                             43](sub_020731F4,func) found in local src_unk_020722AC.c.o
                                             43](sub_020729B4,func) found in local src_unk_020722AC.c.o
-                                             44](v3$18301,object) found in local src_unk_020722AC.c.o
+                                             44](v3$18299,object) found in local src_unk_020722AC.c.o
                                              44](sub_02072C0C,func) found in local src_unk_020722AC.c.o
                                              44](sub_02072BBC,func) found in local src_unk_020722AC.c.o
                                             43](sub_02072390,func) found in local src_unk_020722AC.c.o
@@ -32826,8 +32826,8 @@
                                         39](BagContext_GetSelectedItem,func) found in global src_unk_0203D1B8.c.o
                                        38](ScrCmd_OpenBag,func) found in local src_scrcmd.c.o
                                         39](FieldSystem_CreateBagContext,func) found in global src_unk_0203D1B8.c.o
-                                         40](itemsPockets$22049,object) found in local src_unk_0203D1B8.c.o
-                                         40](berriesPockets$22048,object) found in local src_unk_0203D1B8.c.o
+                                         40](itemsPockets$22047,object) found in local src_unk_0203D1B8.c.o
+                                         40](berriesPockets$22046,object) found in local src_unk_0203D1B8.c.o
                                        38](ScrCmd_GetPartyCount,func) found in global src_scrcmd_party.c.o
                                        38](ScrCmd_PressSunyshoreGymButton,func) found in local src_scrcmd.c.o
                                         39](SunyshoreGym_PressButton,func) found in global src_overlay008_gym_features.c.o
@@ -32991,7 +32991,7 @@
                                                         55](sub_0205A164,func) found in local src_unk_0205A0D8.c.o
                                                         55](sub_0205A258,func) found in local src_unk_0205A0D8.c.o
                                                         55](sub_0205A0D8,func) found in local src_unk_0205A0D8.c.o
-                                                         56](visiblePages$21042,object) found in local src_unk_0205A0D8.c.o
+                                                         56](visiblePages$21040,object) found in local src_unk_0205A0D8.c.o
                                                         55](sub_0205A2B0,func) found in local src_unk_0205A0D8.c.o
                                                         55](CommManager_SetParty,func) found in global src_comm_manager.c.o
                                                         55](sub_0205A2DC,func) found in local src_unk_0205A0D8.c.o
@@ -36971,7 +36971,7 @@
                                             43](StartMenu_InitSprites,func) found in local src_start_menu.c.o
                                              44](StartMenu_SetCursorPos,func) found in local src_start_menu.c.o
                                              44](StartMenu_SetIconAnimationAndPalette,func) found in local src_start_menu.c.o
-                                             44](@19604,object) found in local src_start_menu.c.o
+                                             44](@19602,object) found in local src_start_menu.c.o
                                               45](StartMenu_SelectRetire,func) found in local src_start_menu.c.o
                                                46](StartMenu_Close,func) found in local src_start_menu.c.o
                                                 47](StartMenu_FreeSprites,func) found in local src_start_menu.c.o
@@ -58533,7 +58533,7 @@
   0207E6C0 00000024 .text   WaitForPrinter	(src_applications_party_menu_main.c.o)
   0207E6DC 00000000 .text   $d	(src_applications_party_menu_main.c.o)
   0207E6E4 00000000 .text   $t	(src_applications_party_menu_main.c.o)
-  0207E6E4 00000024 .text   WaitABPress	(src_applications_party_menu_main.c.o)
+  0207E6E4 00000024 .text   WaitABPressBeforeFadeOut	(src_applications_party_menu_main.c.o)
   0207E700 00000000 .text   $d	(src_applications_party_menu_main.c.o)
   0207E708 0000000A .text   DrawYesNoChoice	(src_applications_party_menu_main.c.o)
   0207E708 00000000 .text   $t	(src_applications_party_menu_main.c.o)
@@ -58594,7 +58594,7 @@
   0207F124 00000000 .text   $d	(src_applications_party_menu_main.c.o)
   0207F134 00000112 .text   CountEarnedRibbonsForContestType	(src_applications_party_menu_main.c.o)
   0207F134 00000000 .text   $t	(src_applications_party_menu_main.c.o)
-  0207F248 00000008 .text   sub_0207F248	(src_applications_party_menu_main.c.o)
+  0207F248 00000008 .text   PartyMenu_GetHealthbarTilemap	(src_applications_party_menu_main.c.o)
   0207F248 00000000 .text   $t	(src_applications_party_menu_main.c.o)
   0207F250 00000000 .text   $t	(src_applications_party_menu_main.c.o)
   0207F250 000000B8 .text   DrawMemberPanel	(src_applications_party_menu_main.c.o)
@@ -58692,7 +58692,7 @@
   020805D0 00000014 .text   PartyMenu_GetMemberPanelAnim	(src_applications_party_menu_main.c.o)
   020805D0 00000000 .text   $t	(src_applications_party_menu_main.c.o)
   020805E4 00000000 .text   $t	(src_applications_party_menu_main.c.o)
-  020805E4 0000008C .text   sub_020805E4	(src_applications_party_menu_main.c.o)
+  020805E4 0000008C .text   SelectSwitchSlot	(src_applications_party_menu_main.c.o)
   02080664 00000000 .text   $d	(src_applications_party_menu_main.c.o)
   02080670 00000000 .text   $t	(src_applications_party_menu_main.c.o)
   02080670 0000025C .text   HandleGameWindowEvent	(src_applications_party_menu_main.c.o)
@@ -58945,163 +58945,163 @@
   020832E4 00000000 .text   $t	(src_applications_party_menu_sprites.c.o)
   02083334 0000003C .text   PartyMenu_UpdateTouchButtonEffect	(src_applications_party_menu_sprites.c.o)
   02083334 00000000 .text   $t	(src_applications_party_menu_sprites.c.o)
-  02083370 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083370 0000000C .text   PartyMenu_GetAction	(src_applications_party_menu_unk_02083370.c.o)
-  02083378 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  0208337C 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  0208337C 00000040 .text   PartyMenu_ClearContextWindow	(src_applications_party_menu_unk_02083370.c.o)
-  020833B8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020833BC 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020833BC 000000C0 .text   PartyMenu_SelectItem	(src_applications_party_menu_unk_02083370.c.o)
-  02083478 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  0208347C 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  0208347C 00000034 .text   PartyMenu_SelectItemGive	(src_applications_party_menu_unk_02083370.c.o)
-  020834A8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020834B0 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020834B0 000001A8 .text   PartyMenu_SelectItemTake	(src_applications_party_menu_unk_02083370.c.o)
-  02083644 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02083658 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083658 00000050 .text   sub_02083658	(src_applications_party_menu_unk_02083370.c.o)
-  0208369C 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020836A8 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020836A8 0000003C .text   sub_020836A8	(src_applications_party_menu_unk_02083370.c.o)
-  020836DC 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020836E4 0000001A .text   sub_020836E4	(src_applications_party_menu_unk_02083370.c.o)
-  020836E4 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083700 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083700 000000C0 .text   PartyMenu_SelectMail	(src_applications_party_menu_unk_02083370.c.o)
-  020837BC 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020837C0 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020837C0 00000034 .text   PartyMenu_SelectMailRead	(src_applications_party_menu_unk_02083370.c.o)
-  020837EC 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020837F4 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020837F4 00000058 .text   PartyMenu_SelectMailTake	(src_applications_party_menu_unk_02083370.c.o)
-  0208383C 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  0208384C 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  0208384C 00000078 .text   sub_0208384C	(src_applications_party_menu_unk_02083370.c.o)
-  020838B8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020838C4 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020838C4 00000030 .text   sub_020838C4	(src_applications_party_menu_unk_02083370.c.o)
-  020838E8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020838F4 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020838F4 0000009C .text   sub_020838F4	(src_applications_party_menu_unk_02083370.c.o)
-  02083984 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02083990 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083990 0000002C .text   sub_02083990	(src_applications_party_menu_unk_02083370.c.o)
-  020839B8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020839BC 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020839BC 00000040 .text   sub_020839BC	(src_applications_party_menu_unk_02083370.c.o)
-  020839F4 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020839FC 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020839FC 0000007C .text   PartyMenu_SelectBallSeal	(src_applications_party_menu_unk_02083370.c.o)
-  02083A5C 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02083A78 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083A78 0000002C .text   sub_02083A78	(src_applications_party_menu_unk_02083370.c.o)
-  02083A9C 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02083AA4 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083AA4 0000002C .text   sub_02083AA4	(src_applications_party_menu_unk_02083370.c.o)
-  02083ACC 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02083AD0 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083AD0 000000B8 .text   PartyMenu_SelectSwitch	(src_applications_party_menu_unk_02083370.c.o)
-  02083B78 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02083B88 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083B88 0000004C .text   PartyMenu_ResetCursor	(src_applications_party_menu_unk_02083370.c.o)
-  02083BC8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02083BD4 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083BD4 00000148 .text   sub_02083BD4	(src_applications_party_menu_unk_02083370.c.o)
-  02083D08 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02083D1C 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083D1C 00000170 .text   sub_02083D1C	(src_applications_party_menu_unk_02083370.c.o)
-  02083E70 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02083E8C 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083E8C 00000150 .text   sub_02083E8C	(src_applications_party_menu_unk_02083370.c.o)
-  02083FD4 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02083FDC 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02083FDC 00000158 .text   sub_02083FDC	(src_applications_party_menu_unk_02083370.c.o)
-  02084124 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084134 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084134 000002EC .text   sub_02084134	(src_applications_party_menu_unk_02083370.c.o)
-  02084410 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084420 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084420 00000090 .text   sub_02084420	(src_applications_party_menu_unk_02083370.c.o)
-  020844A8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020844B0 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020844B0 000000F8 .text   PartyMenu_SelectChooseWithLimit	(src_applications_party_menu_unk_02083370.c.o)
-  02084598 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020845A8 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020845A8 00000040 .text   sub_020845A8	(src_applications_party_menu_unk_02083370.c.o)
-  020845E0 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020845E8 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020845E8 000000E4 .text   sub_020845E8	(src_applications_party_menu_unk_02083370.c.o)
-  020846BC 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020846CC 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020846CC 00000030 .text   sub_020846CC	(src_applications_party_menu_unk_02083370.c.o)
-  020846F4 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020846FC 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020846FC 00000030 .text   sub_020846FC	(src_applications_party_menu_unk_02083370.c.o)
-  02084724 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  0208472C 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  0208472C 00000034 .text   PartyMenu_SelectSummary	(src_applications_party_menu_unk_02083370.c.o)
-  02084758 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084760 00000020 .text   sub_02084760	(src_applications_party_menu_unk_02083370.c.o)
-  02084760 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084780 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084780 00000088 .text   sub_02084780	(src_applications_party_menu_unk_02083370.c.o)
-  020847F8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084808 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084808 000000A0 .text   PartyMenu_SelectFieldMove	(src_applications_party_menu_unk_02083370.c.o)
-  0208489C 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020848A8 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020848A8 00000018 .text   PartyMenu_SelectCut	(src_applications_party_menu_unk_02083370.c.o)
-  020848B8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020848C0 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020848C0 00000018 .text   PartyMenu_SelectRockSmash	(src_applications_party_menu_unk_02083370.c.o)
-  020848D0 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020848D8 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020848D8 00000018 .text   PartyMenu_SelectStrength	(src_applications_party_menu_unk_02083370.c.o)
-  020848E8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020848F0 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020848F0 00000018 .text   PartyMenu_SelectSurf	(src_applications_party_menu_unk_02083370.c.o)
-  02084900 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084908 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084908 00000018 .text   PartyMenu_SelectDefog	(src_applications_party_menu_unk_02083370.c.o)
-  02084918 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084920 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084920 00000018 .text   PartyMenu_SelectRockClimb	(src_applications_party_menu_unk_02083370.c.o)
-  02084930 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084938 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084938 00000018 .text   PartyMenu_SelectFly	(src_applications_party_menu_unk_02083370.c.o)
-  02084948 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084950 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084950 00000018 .text   PartyMenu_SelectWaterfall	(src_applications_party_menu_unk_02083370.c.o)
-  02084960 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084968 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084968 00000018 .text   PartyMenu_SelectFlash	(src_applications_party_menu_unk_02083370.c.o)
-  02084978 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084980 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084980 00000018 .text   PartyMenu_SelectTeleport	(src_applications_party_menu_unk_02083370.c.o)
-  02084990 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084998 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084998 00000018 .text   PartyMenu_SelectDig	(src_applications_party_menu_unk_02083370.c.o)
-  020849A8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020849B0 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020849B0 00000018 .text   PartyMenu_SelectSweetScent	(src_applications_party_menu_unk_02083370.c.o)
-  020849C0 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020849C8 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020849C8 00000018 .text   PartyMenu_SelectChatter	(src_applications_party_menu_unk_02083370.c.o)
-  020849D8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020849E0 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020849E0 0000001C .text   PartyMenu_SelectMilkDrink	(src_applications_party_menu_unk_02083370.c.o)
-  020849F8 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  020849FC 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  020849FC 0000001C .text   PartyMenu_SelectSoftboiled	(src_applications_party_menu_unk_02083370.c.o)
-  02084A14 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084A18 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084A18 0000011C .text   PartyMenu_StartFieldMoveHPTransfer	(src_applications_party_menu_unk_02083370.c.o)
-  02084B0C 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
-  02084B34 00000000 .text   $t	(src_applications_party_menu_unk_02083370.c.o)
-  02084B34 0000003C .text   sub_02084B34	(src_applications_party_menu_unk_02083370.c.o)
-  02084B68 00000000 .text   $d	(src_applications_party_menu_unk_02083370.c.o)
+  02083370 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083370 0000000C .text   PartyMenu_GetAction	(src_applications_party_menu_context_menu.c.o)
+  02083378 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  0208337C 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  0208337C 00000040 .text   PartyMenu_ClearContextWindow	(src_applications_party_menu_context_menu.c.o)
+  020833B8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020833BC 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020833BC 000000C0 .text   PartyMenu_SelectItem	(src_applications_party_menu_context_menu.c.o)
+  02083478 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  0208347C 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  0208347C 00000034 .text   PartyMenu_SelectItemGive	(src_applications_party_menu_context_menu.c.o)
+  020834A8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020834B0 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020834B0 000001A8 .text   PartyMenu_SelectItemTake	(src_applications_party_menu_context_menu.c.o)
+  02083644 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02083658 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083658 00000050 .text   PartyMenu_WaitForPrinter	(src_applications_party_menu_context_menu.c.o)
+  0208369C 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020836A8 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020836A8 0000003C .text   PartyMenu_WaitForPrinterThenFormChange	(src_applications_party_menu_context_menu.c.o)
+  020836DC 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020836E4 0000001A .text   PartyMenu_ChangeForm	(src_applications_party_menu_context_menu.c.o)
+  020836E4 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083700 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083700 000000C0 .text   PartyMenu_SelectMail	(src_applications_party_menu_context_menu.c.o)
+  020837BC 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020837C0 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020837C0 00000034 .text   PartyMenu_SelectMailRead	(src_applications_party_menu_context_menu.c.o)
+  020837EC 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020837F4 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020837F4 00000058 .text   PartyMenu_SelectMailTake	(src_applications_party_menu_context_menu.c.o)
+  0208383C 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  0208384C 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  0208384C 00000078 .text   PartyMenuCB_TakeMail_Transfer	(src_applications_party_menu_context_menu.c.o)
+  020838B8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020838C4 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020838C4 00000030 .text   PartyMenuCB_TakeMail_PromptRemoval	(src_applications_party_menu_context_menu.c.o)
+  020838E8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020838F4 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020838F4 0000009C .text   PartyMenuCB_TakeMail_Remove	(src_applications_party_menu_context_menu.c.o)
+  02083984 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02083990 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083990 0000002C .text   PartyMenuCB_TakeMail_Cancel	(src_applications_party_menu_context_menu.c.o)
+  020839B8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020839BC 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020839BC 00000040 .text   PartyMenu_WaitABPress2	(src_applications_party_menu_context_menu.c.o)
+  020839F4 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020839FC 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020839FC 0000007C .text   PartyMenu_SelectBallSeal	(src_applications_party_menu_context_menu.c.o)
+  02083A5C 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02083A78 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083A78 0000002C .text   PartyMenuCB_DetachBallSeal_Clear	(src_applications_party_menu_context_menu.c.o)
+  02083A9C 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02083AA4 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083AA4 0000002C .text   PartyMenuCB_DetachBallSeal_Cancel	(src_applications_party_menu_context_menu.c.o)
+  02083ACC 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02083AD0 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083AD0 000000B8 .text   PartyMenu_SelectSwitch	(src_applications_party_menu_context_menu.c.o)
+  02083B78 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02083B88 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083B88 0000004C .text   PartyMenu_ResetCursor	(src_applications_party_menu_context_menu.c.o)
+  02083BC8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02083BD4 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083BD4 00000148 .text   PartyMenu_PrepareSwitch	(src_applications_party_menu_context_menu.c.o)
+  02083D08 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02083D1C 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083D1C 00000170 .text   PartyMenu_DoSwitch	(src_applications_party_menu_context_menu.c.o)
+  02083E70 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02083E8C 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083E8C 00000150 .text   UpdateBGScroll	(src_applications_party_menu_context_menu.c.o)
+  02083FD4 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02083FDC 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02083FDC 00000158 .text   UpdateSpriteScroll	(src_applications_party_menu_context_menu.c.o)
+  02084124 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084134 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084134 000002EC .text   SwapSwitchedSlots	(src_applications_party_menu_context_menu.c.o)
+  02084410 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084420 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084420 00000090 .text   UpdateSlotHealthbar	(src_applications_party_menu_context_menu.c.o)
+  020844A8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020844B0 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020844B0 000000F8 .text   PartyMenu_SelectChooseWithLimit	(src_applications_party_menu_context_menu.c.o)
+  02084598 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020845A8 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020845A8 00000040 .text   PartyMenu_WaitABPressChooseMons	(src_applications_party_menu_context_menu.c.o)
+  020845E0 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020845E8 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020845E8 000000E4 .text   PartyMenu_PrintAllEligibilities	(src_applications_party_menu_context_menu.c.o)
+  020846BC 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020846CC 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020846CC 00000030 .text   PartyMenu_CleanupContextMenu	(src_applications_party_menu_context_menu.c.o)
+  020846F4 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020846FC 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020846FC 00000030 .text   PartyMenu_CleanupContextMenu2	(src_applications_party_menu_context_menu.c.o)
+  02084724 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  0208472C 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  0208472C 00000034 .text   PartyMenu_SelectSummary	(src_applications_party_menu_context_menu.c.o)
+  02084758 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084760 00000020 .text   PartyMenu_SetBallCapsuleAction	(src_applications_party_menu_context_menu.c.o)
+  02084760 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084780 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084780 00000088 .text   PartyMenu_SetBallCapsule	(src_applications_party_menu_context_menu.c.o)
+  020847F8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084808 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084808 000000A0 .text   PartyMenu_SelectFieldMove	(src_applications_party_menu_context_menu.c.o)
+  0208489C 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020848A8 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020848A8 00000018 .text   PartyMenu_SelectCut	(src_applications_party_menu_context_menu.c.o)
+  020848B8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020848C0 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020848C0 00000018 .text   PartyMenu_SelectRockSmash	(src_applications_party_menu_context_menu.c.o)
+  020848D0 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020848D8 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020848D8 00000018 .text   PartyMenu_SelectStrength	(src_applications_party_menu_context_menu.c.o)
+  020848E8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020848F0 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020848F0 00000018 .text   PartyMenu_SelectSurf	(src_applications_party_menu_context_menu.c.o)
+  02084900 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084908 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084908 00000018 .text   PartyMenu_SelectDefog	(src_applications_party_menu_context_menu.c.o)
+  02084918 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084920 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084920 00000018 .text   PartyMenu_SelectRockClimb	(src_applications_party_menu_context_menu.c.o)
+  02084930 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084938 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084938 00000018 .text   PartyMenu_SelectFly	(src_applications_party_menu_context_menu.c.o)
+  02084948 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084950 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084950 00000018 .text   PartyMenu_SelectWaterfall	(src_applications_party_menu_context_menu.c.o)
+  02084960 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084968 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084968 00000018 .text   PartyMenu_SelectFlash	(src_applications_party_menu_context_menu.c.o)
+  02084978 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084980 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084980 00000018 .text   PartyMenu_SelectTeleport	(src_applications_party_menu_context_menu.c.o)
+  02084990 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084998 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084998 00000018 .text   PartyMenu_SelectDig	(src_applications_party_menu_context_menu.c.o)
+  020849A8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020849B0 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020849B0 00000018 .text   PartyMenu_SelectSweetScent	(src_applications_party_menu_context_menu.c.o)
+  020849C0 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020849C8 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020849C8 00000018 .text   PartyMenu_SelectChatter	(src_applications_party_menu_context_menu.c.o)
+  020849D8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020849E0 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020849E0 0000001C .text   PartyMenu_SelectMilkDrink	(src_applications_party_menu_context_menu.c.o)
+  020849F8 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  020849FC 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  020849FC 0000001C .text   PartyMenu_SelectSoftboiled	(src_applications_party_menu_context_menu.c.o)
+  02084A14 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084A18 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084A18 0000011C .text   PartyMenu_StartFieldMoveHPTransfer	(src_applications_party_menu_context_menu.c.o)
+  02084B0C 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
+  02084B34 00000000 .text   $t	(src_applications_party_menu_context_menu.c.o)
+  02084B34 0000003C .text   PartyMenu_WaitABPress	(src_applications_party_menu_context_menu.c.o)
+  02084B68 00000000 .text   $d	(src_applications_party_menu_context_menu.c.o)
   02084B70 000002E8 .text   NormalizeItemEffect	(src_applications_party_menu_callbacks.c.o)
   02084B70 00000000 .text   $t	(src_applications_party_menu_callbacks.c.o)
   02084E58 00000000 .text   $t	(src_applications_party_menu_callbacks.c.o)
@@ -66518,8 +66518,8 @@
   020EA020 00000009 .rodata sAllPockets	(src_start_menu.c.o)
   020EA02C 00000009 .rodata gAllSummaryScreenPages	(src_start_menu.c.o)
   020EA038 00000000 .rodata .rodata	(src_start_menu.c.o)
-  020EA038 0000000C .rodata @19617	(src_start_menu.c.o)
-  020EA044 00000018 .rodata @19604	(src_start_menu.c.o)
+  020EA038 0000000C .rodata @19615	(src_start_menu.c.o)
+  020EA044 00000018 .rodata @19602	(src_start_menu.c.o)
   020EA05C 00000048 .rodata sStartMenuActions	(src_start_menu.c.o)
   020EA0A4 00000068 .rodata sSpriteTemplates	(src_start_menu.c.o)
   020EA10C 00000010 .rodata gFieldSystemNewGameTemplate	(src_field_system.c.o)
@@ -66527,42 +66527,42 @@
   020EA12C 00000000 .rodata .rodata	(src_location.c.o)
   020EA12C 00000014 .rodata sPlayerStartLocation	(src_location.c.o)
   020EA140 00000014 .rodata sPlayerFirstRespawnLocation	(src_location.c.o)
-  020EA154 00000002 .rodata itemsPockets$22049	(src_unk_0203D1B8.c.o)
-  020EA158 00000002 .rodata berriesPockets$22048	(src_unk_0203D1B8.c.o)
+  020EA154 00000002 .rodata itemsPockets$22047	(src_unk_0203D1B8.c.o)
+  020EA158 00000002 .rodata berriesPockets$22046	(src_unk_0203D1B8.c.o)
   020EA15C 00000003 .rodata sTeachMoveSummaryPages	(src_unk_0203D1B8.c.o)
-  020EA160 00000003 .rodata visiblePages$22199	(src_unk_0203D1B8.c.o)
+  020EA160 00000003 .rodata visiblePages$22197	(src_unk_0203D1B8.c.o)
   020EA164 00000009 .rodata Unk_020EA164	(src_unk_0203D1B8.c.o)
-  020EA170 00000009 .rodata visiblePages$22190	(src_unk_0203D1B8.c.o)
-  020EA17C 0000000C .rodata v0$22647	(src_unk_0203D1B8.c.o)
+  020EA170 00000009 .rodata visiblePages$22188	(src_unk_0203D1B8.c.o)
+  020EA17C 0000000C .rodata v0$22645	(src_unk_0203D1B8.c.o)
   020EA188 00000000 .rodata .rodata	(src_unk_0203D1B8.c.o)
-  020EA188 00000010 .rodata template$22684	(src_unk_0203D1B8.c.o)
-  020EA198 00000010 .rodata @22588	(src_unk_0203D1B8.c.o)
-  020EA1A8 00000010 .rodata v0$22581	(src_unk_0203D1B8.c.o)
-  020EA1B8 00000010 .rodata template$22571	(src_unk_0203D1B8.c.o)
-  020EA1C8 00000010 .rodata template$22566	(src_unk_0203D1B8.c.o)
-  020EA1D8 00000010 .rodata @22725	(src_unk_0203D1B8.c.o)
-  020EA1E8 00000010 .rodata @22595	(src_unk_0203D1B8.c.o)
-  020EA1F8 00000010 .rodata template$22532	(src_unk_0203D1B8.c.o)
-  020EA208 00000010 .rodata @22602	(src_unk_0203D1B8.c.o)
-  020EA218 00000010 .rodata template$22526	(src_unk_0203D1B8.c.o)
-  020EA228 00000010 .rodata template$22520	(src_unk_0203D1B8.c.o)
+  020EA188 00000010 .rodata template$22682	(src_unk_0203D1B8.c.o)
+  020EA198 00000010 .rodata @22586	(src_unk_0203D1B8.c.o)
+  020EA1A8 00000010 .rodata v0$22579	(src_unk_0203D1B8.c.o)
+  020EA1B8 00000010 .rodata template$22569	(src_unk_0203D1B8.c.o)
+  020EA1C8 00000010 .rodata template$22564	(src_unk_0203D1B8.c.o)
+  020EA1D8 00000010 .rodata @22723	(src_unk_0203D1B8.c.o)
+  020EA1E8 00000010 .rodata @22593	(src_unk_0203D1B8.c.o)
+  020EA1F8 00000010 .rodata template$22530	(src_unk_0203D1B8.c.o)
+  020EA208 00000010 .rodata @22600	(src_unk_0203D1B8.c.o)
+  020EA218 00000010 .rodata template$22524	(src_unk_0203D1B8.c.o)
+  020EA228 00000010 .rodata template$22518	(src_unk_0203D1B8.c.o)
   020EA238 00000010 .rodata Unk_020EA238	(src_unk_0203D1B8.c.o)
   020EA248 00000010 .rodata Unk_020EA248	(src_unk_0203D1B8.c.o)
   020EA258 00000010 .rodata Unk_020EA258	(src_unk_0203D1B8.c.o)
-  020EA268 00000010 .rodata appTemplate2$22392	(src_unk_0203D1B8.c.o)
-  020EA278 00000010 .rodata @22323	(src_unk_0203D1B8.c.o)
-  020EA288 00000010 .rodata template$22267	(src_unk_0203D1B8.c.o)
-  020EA298 00000010 .rodata @22539	(src_unk_0203D1B8.c.o)
-  020EA2A8 00000010 .rodata @22546	(src_unk_0203D1B8.c.o)
-  020EA2B8 00000010 .rodata appTemplate$22615	(src_unk_0203D1B8.c.o)
-  020EA2C8 00000010 .rodata boxAppManTemplate$22210	(src_unk_0203D1B8.c.o)
-  020EA2D8 00000010 .rodata @22555	(src_unk_0203D1B8.c.o)
-  020EA2E8 00000010 .rodata @22077	(src_unk_0203D1B8.c.o)
-  020EA2F8 00000010 .rodata @22070	(src_unk_0203D1B8.c.o)
-  020EA308 00000010 .rodata appTemplate$22249	(src_unk_0203D1B8.c.o)
-  020EA318 00000010 .rodata @22256	(src_unk_0203D1B8.c.o)
+  020EA268 00000010 .rodata appTemplate2$22390	(src_unk_0203D1B8.c.o)
+  020EA278 00000010 .rodata @22321	(src_unk_0203D1B8.c.o)
+  020EA288 00000010 .rodata template$22265	(src_unk_0203D1B8.c.o)
+  020EA298 00000010 .rodata @22537	(src_unk_0203D1B8.c.o)
+  020EA2A8 00000010 .rodata @22544	(src_unk_0203D1B8.c.o)
+  020EA2B8 00000010 .rodata appTemplate$22613	(src_unk_0203D1B8.c.o)
+  020EA2C8 00000010 .rodata boxAppManTemplate$22208	(src_unk_0203D1B8.c.o)
+  020EA2D8 00000010 .rodata @22553	(src_unk_0203D1B8.c.o)
+  020EA2E8 00000010 .rodata @22075	(src_unk_0203D1B8.c.o)
+  020EA2F8 00000010 .rodata @22068	(src_unk_0203D1B8.c.o)
+  020EA308 00000010 .rodata appTemplate$22247	(src_unk_0203D1B8.c.o)
+  020EA318 00000010 .rodata @22254	(src_unk_0203D1B8.c.o)
   020EA328 00000010 .rodata Unk_020EA328	(src_unk_0203D1B8.c.o)
-  020EA338 00000010 .rodata @22032	(src_unk_0203D1B8.c.o)
+  020EA338 00000010 .rodata @22030	(src_unk_0203D1B8.c.o)
   020EA348 00000010 .rodata LibraryTV_template	(src_unk_0203D1B8.c.o)
   020EA358 00000010 .rodata gBattleApplicationTemplate	(src_unk_0203D1B8.c.o)
   020EA368 00000010 .rodata sDWWarpTemplate	(src_unk_0203D1B8.c.o)
@@ -66634,11 +66634,11 @@
   020EC018 00000000 .rodata .rodata	(src_scrcmd_game_corner_prize.c.o)
   020EC018 0000004C .rodata sGameCornerPrizeData$17272	(src_scrcmd_game_corner_prize.c.o)
   020EC064 00000008 .rodata sBadgeIDs	(src_scrcmd_system_flags.c.o)
-  020EC06C 00000009 .rodata sMonSummaryPages$20430	(src_scrcmd_battle_hall.c.o)
+  020EC06C 00000009 .rodata sMonSummaryPages$20428	(src_scrcmd_battle_hall.c.o)
   020EC078 00000000 .rodata .rodata	(src_scrcmd_battle_hall.c.o)
   020EC078 00000178 .rodata sBattleHallRecordMilestones	(src_scrcmd_battle_hall.c.o)
-  020EC1F0 00000009 .rodata visiblePages$20336	(src_unk_0204FAB4.c.o)
-  020EC1FC 00000009 .rodata visiblePages$20356	(src_unk_0205003C.c.o)
+  020EC1F0 00000009 .rodata visiblePages$20334	(src_unk_0204FAB4.c.o)
+  020EC1FC 00000009 .rodata visiblePages$20354	(src_unk_0205003C.c.o)
   020EC208 00000000 .rodata .rodata	(src_enc_effects.c.o)
   020EC208 0000008C .rodata sEncEffectsTable	(src_enc_effects.c.o)
   020EC294 00000000 .rodata .rodata	(src_field_battle_data_transfer.c.o)
@@ -66679,7 +66679,7 @@
   020ED4E4 0000000C .rodata @21030	(src_comm_player_manager.c.o)
   020ED4F0 00000010 .rodata @21380	(src_comm_player_manager.c.o)
   020ED500 00000014 .rodata @20869	(src_comm_player_manager.c.o)
-  020ED514 00000009 .rodata visiblePages$21042	(src_unk_0205A0D8.c.o)
+  020ED514 00000009 .rodata visiblePages$21040	(src_unk_0205A0D8.c.o)
   020ED520 00000000 .rodata .rodata	(src_unk_0205B33C.c.o)
   020ED520 00000008 .rodata sMessagesThisIsPlayerAskDoSomething	(src_unk_0205B33C.c.o)
   020ED528 00000008 .rodata sMessagesAskIfYouWantSomething	(src_unk_0205B33C.c.o)
@@ -67148,7 +67148,7 @@
   020EFA84 00000014 .rodata sTownMapFlyLocationUnlockFlags	(src_applications_town_map_context.c.o)
   020EFA98 00000000 .rodata .rodata	(src_applications_town_map_context.c.o)
   020EFA98 000000A0 .rodata sDistWorldMapOffsets	(src_applications_town_map_context.c.o)
-  020EFB38 00000009 .rodata visiblePages$20681	(src_unk_0206B9D8.c.o)
+  020EFB38 00000009 .rodata visiblePages$20679	(src_unk_0206B9D8.c.o)
   020EFB44 00000000 .rodata .rodata	(src_roaming_pokemon.c.o)
   020EFB44 00000074 .rodata RoamingPokemonRoutes	(src_roaming_pokemon.c.o)
   020EFBB8 0000015C .rodata sNearbyRoutes	(src_roaming_pokemon.c.o)
@@ -67187,9 +67187,9 @@
   020F03F4 000000D8 .rodata sPerMapPlatformLiftConfiguration	(src_platform_lift.c.o)
   020F04CC 00000018 .rodata sCanalaveGymPlatformsStartInPositionB	(src_persisted_map_features_init.c.o)
   020F04E4 00000000 .rodata .rodata	(src_unk_020722AC.c.o)
-  020F04E4 00000008 .rodata v0$18537	(src_unk_020722AC.c.o)
-  020F04EC 00000008 .rodata v2$18358	(src_unk_020722AC.c.o)
-  020F04F4 00000010 .rodata v3$18301	(src_unk_020722AC.c.o)
+  020F04E4 00000008 .rodata v0$18535	(src_unk_020722AC.c.o)
+  020F04EC 00000008 .rodata v2$18356	(src_unk_020722AC.c.o)
+  020F04F4 00000010 .rodata v3$18299	(src_unk_020722AC.c.o)
   020F0504 00000020 .rodata Unk_020F0504	(src_unk_020722AC.c.o)
   020F0524 00000020 .rodata Unk_020F0524	(src_unk_020722AC.c.o)
   020F0544 00000000 .rodata .rodata	(src_simple3d.c.o)
@@ -67257,12 +67257,12 @@
   020F1ED0 00000038 .rodata sTextWindows	(src_applications_party_menu_windows.c.o)
   020F1F08 00000168 .rodata sMemberWindowTemplates	(src_applications_party_menu_windows.c.o)
   020F2070 00000000 .rodata .rodata	(src_applications_party_menu_sprites.c.o)
-  020F2070 00000014 .rodata @15510	(src_applications_party_menu_sprites.c.o)
-  020F2084 0000001C .rodata @15518	(src_applications_party_menu_sprites.c.o)
-  020F20A0 00000020 .rodata @15508	(src_applications_party_menu_sprites.c.o)
+  020F2070 00000014 .rodata @15508	(src_applications_party_menu_sprites.c.o)
+  020F2084 0000001C .rodata @15516	(src_applications_party_menu_sprites.c.o)
+  020F20A0 00000020 .rodata @15506	(src_applications_party_menu_sprites.c.o)
   020F20C0 00000398 .rodata sSpriteTemplates	(src_applications_party_menu_sprites.c.o)
-  020F2458 00000000 .rodata .rodata	(src_applications_party_menu_unk_02083370.c.o)
-  020F2458 00000080 .rodata sPartyMenuActions	(src_applications_party_menu_unk_02083370.c.o)
+  020F2458 00000000 .rodata .rodata	(src_applications_party_menu_context_menu.c.o)
+  020F2458 00000080 .rodata sPartyMenuActions	(src_applications_party_menu_context_menu.c.o)
   020F24D8 00000004 .rodata sUnkGXObjOffsets1	(src_applications_naming_screen.c.o)
   020F24DC 00000004 .rodata sCharsBgColor	(src_applications_naming_screen.c.o)
   020F24E0 00000005 .rodata sCharsAltBgColor	(src_applications_naming_screen.c.o)
@@ -67439,11 +67439,11 @@
   020F680C 00000010 .rodata v2$16218	(src_unk_020985E4.c.o)
   020F681C 00000006 .rodata languageArray	(src_pokedex_language.c.o)
   020F6824 00000010 .rodata gRowanIntroAppTemplate	(src_rowan_intro_app_template.c.o)
-  020F6834 00000002 .rodata summaryPages$15662	(src_applications_poffin_case_main.c.o)
-  020F6838 00000003 .rodata summaryPages$15627	(src_applications_poffin_case_main.c.o)
-  020F683C 00000010 .rodata poffinManagerTemplate$15613	(src_applications_poffin_case_main.c.o)
+  020F6834 00000002 .rodata summaryPages$15660	(src_applications_poffin_case_main.c.o)
+  020F6838 00000003 .rodata summaryPages$15625	(src_applications_poffin_case_main.c.o)
+  020F683C 00000010 .rodata poffinManagerTemplate$15611	(src_applications_poffin_case_main.c.o)
   020F683C 00000000 .rodata .rodata	(src_applications_poffin_case_main.c.o)
-  020F684C 00000010 .rodata cutsceneTemplate$15649	(src_applications_poffin_case_main.c.o)
+  020F684C 00000010 .rodata cutsceneTemplate$15647	(src_applications_poffin_case_main.c.o)
   020F685C 00000032 .rodata sFlavorPreferences	(src_applications_poffin_case_main.c.o)
   020F6890 00000010 .rodata gPoffinCaseAppTemplate	(src_applications_poffin_case_main.c.o)
   020F68A0 00000000 .rodata .rodata	(src_poffin_sprite.c.o)
@@ -67908,12 +67908,12 @@
   02100A5C 00000012 .data   @13475	(src_network_icon.c.o)
   02100A70 00000010 .data   @13476	(src_network_icon.c.o)
   02100A80 00000000 .data   .data	(src_unk_0203D1B8.c.o)
-  02100A80 00000004 .data   pocketList$22047	(src_unk_0203D1B8.c.o)
-  02100A84 00000010 .data   template$22694	(src_unk_0203D1B8.c.o)
-  02100A94 00000010 .data   v1$22708	(src_unk_0203D1B8.c.o)
-  02100AA4 00000010 .data   appTemplate1$22391	(src_unk_0203D1B8.c.o)
-  02100AB4 00000010 .data   appTemplate$22371	(src_unk_0203D1B8.c.o)
-  02100AC4 00000010 .data   appTemplate$22365	(src_unk_0203D1B8.c.o)
+  02100A80 00000004 .data   pocketList$22045	(src_unk_0203D1B8.c.o)
+  02100A84 00000010 .data   template$22692	(src_unk_0203D1B8.c.o)
+  02100A94 00000010 .data   v1$22706	(src_unk_0203D1B8.c.o)
+  02100AA4 00000010 .data   appTemplate1$22389	(src_unk_0203D1B8.c.o)
+  02100AB4 00000010 .data   appTemplate$22369	(src_unk_0203D1B8.c.o)
+  02100AC4 00000010 .data   appTemplate$22363	(src_unk_0203D1B8.c.o)
   02100AD4 00000000 .data   .data	(src_script_manager.c.o)
   02100AD4 0000000C .data   sFloaromaMeadowHiddenItemFlags	(src_script_manager.c.o)
   02100AE0 00000010 .data   sIronIslandHiddenItemFlags	(src_script_manager.c.o)
@@ -67932,11 +67932,11 @@
   02100BA4 00000000 .data   .data	(src_tv_segment.c.o)
   02100BA4 0000000A .data   sOnTheSpotWeatherLocations	(src_tv_segment.c.o)
   02100BB0 0000001B .data   @24596	(src_pokemon.c.o)
-  02100BCC 00000013 .data   @15517	(src_applications_party_menu_sprites.c.o)
-  02100BE0 00000016 .data   @15514	(src_applications_party_menu_sprites.c.o)
-  02100BF8 00000016 .data   @15513	(src_applications_party_menu_sprites.c.o)
-  02100C10 00000017 .data   @15515	(src_applications_party_menu_sprites.c.o)
-  02100C28 00000017 .data   @15516	(src_applications_party_menu_sprites.c.o)
+  02100BCC 00000013 .data   @15515	(src_applications_party_menu_sprites.c.o)
+  02100BE0 00000016 .data   @15512	(src_applications_party_menu_sprites.c.o)
+  02100BF8 00000016 .data   @15511	(src_applications_party_menu_sprites.c.o)
+  02100C10 00000017 .data   @15513	(src_applications_party_menu_sprites.c.o)
+  02100C28 00000017 .data   @15514	(src_applications_party_menu_sprites.c.o)
   02100C40 00000000 .data   .data	(src_applications_naming_screen.c.o)
   02100C40 00000014 .data   sHomeRowLayouts	(src_applications_naming_screen.c.o)
   02100C54 00000064 .data   sCharCodes	(src_applications_naming_screen.c.o)
@@ -82989,27 +82989,27 @@
   02222A48 0000001C .text   ov10_02222A48	(src_overlay010_ov10_0221F800.c.o)
   02222A60 00000000 .text   $d	(src_overlay010_ov10_0221F800.c.o)
   02222A64 00000000 .rodata .rodata	(src_overlay010_ov10_0221F800.c.o)
-  02222A64 00000004 .rodata @19192	(src_overlay010_ov10_0221F800.c.o)
+  02222A64 00000004 .rodata @19190	(src_overlay010_ov10_0221F800.c.o)
   02222A68 00000008 .rodata Unk_ov10_02222A68	(src_overlay010_ov10_0221F800.c.o)
   02222A70 0000000C .rodata Unk_ov10_02222A70	(src_overlay010_ov10_0221F800.c.o)
   02222A7C 0000000C .rodata Unk_ov10_02222A7C	(src_overlay010_ov10_0221F800.c.o)
-  02222A88 00000010 .rodata @19113	(src_overlay010_ov10_0221F800.c.o)
-  02222A98 00000010 .rodata @19351	(src_overlay010_ov10_0221F800.c.o)
+  02222A88 00000010 .rodata @19111	(src_overlay010_ov10_0221F800.c.o)
+  02222A98 00000010 .rodata @19349	(src_overlay010_ov10_0221F800.c.o)
   02222AA8 00000014 .rodata Unk_ov10_02222AA8	(src_overlay010_ov10_0221F800.c.o)
-  02222ABC 00000014 .rodata @19074	(src_overlay010_ov10_0221F800.c.o)
+  02222ABC 00000014 .rodata @19072	(src_overlay010_ov10_0221F800.c.o)
   02222AD0 00000014 .rodata Unk_ov10_02222AD0	(src_overlay010_ov10_0221F800.c.o)
-  02222AE4 00000018 .rodata @19281	(src_overlay010_ov10_0221F800.c.o)
-  02222AFC 00000018 .rodata @19501	(src_overlay010_ov10_0221F800.c.o)
-  02222B14 00000018 .rodata @19171	(src_overlay010_ov10_0221F800.c.o)
-  02222B2C 0000001C .rodata @19115	(src_overlay010_ov10_0221F800.c.o)
-  02222B48 0000001C .rodata @19355	(src_overlay010_ov10_0221F800.c.o)
-  02222B64 0000001C .rodata @19117	(src_overlay010_ov10_0221F800.c.o)
-  02222B80 0000001C .rodata @19119	(src_overlay010_ov10_0221F800.c.o)
-  02222B9C 0000001C .rodata @19353	(src_overlay010_ov10_0221F800.c.o)
-  02222BB8 0000001C .rodata @19125	(src_overlay010_ov10_0221F800.c.o)
-  02222BD4 0000001C .rodata @19357	(src_overlay010_ov10_0221F800.c.o)
-  02222BF0 00000020 .rodata @19072	(src_overlay010_ov10_0221F800.c.o)
-  02222C10 00000028 .rodata @18786	(src_overlay010_ov10_0221F800.c.o)
+  02222AE4 00000018 .rodata @19279	(src_overlay010_ov10_0221F800.c.o)
+  02222AFC 00000018 .rodata @19499	(src_overlay010_ov10_0221F800.c.o)
+  02222B14 00000018 .rodata @19169	(src_overlay010_ov10_0221F800.c.o)
+  02222B2C 0000001C .rodata @19113	(src_overlay010_ov10_0221F800.c.o)
+  02222B48 0000001C .rodata @19353	(src_overlay010_ov10_0221F800.c.o)
+  02222B64 0000001C .rodata @19115	(src_overlay010_ov10_0221F800.c.o)
+  02222B80 0000001C .rodata @19117	(src_overlay010_ov10_0221F800.c.o)
+  02222B9C 0000001C .rodata @19351	(src_overlay010_ov10_0221F800.c.o)
+  02222BB8 0000001C .rodata @19123	(src_overlay010_ov10_0221F800.c.o)
+  02222BD4 0000001C .rodata @19355	(src_overlay010_ov10_0221F800.c.o)
+  02222BF0 00000020 .rodata @19070	(src_overlay010_ov10_0221F800.c.o)
+  02222C10 00000028 .rodata @18784	(src_overlay010_ov10_0221F800.c.o)
   02222C38 00000034 .rodata Unk_ov10_02222C38	(src_overlay010_ov10_0221F800.c.o)
   02222C6C 0000003C .rodata Unk_ov10_02222C6C	(src_overlay010_ov10_0221F800.c.o)
   02222CA8 0000004C .rodata Unk_ov10_02222CA8	(src_overlay010_ov10_0221F800.c.o)
@@ -85949,7 +85949,7 @@
   022292B4 00000010 .rodata sMoveSummaryScreenPokemonTypeSpritePositions	(src_battle_sub_menus_battle_party_sprites.c.o)
   022292C4 00000010 .rodata sPokemonSummaryScreenPokemonTypeSpritePositions	(src_battle_sub_menus_battle_party_sprites.c.o)
   022292D4 00000018 .rodata sConfirmLearnMoveScreenCursorPositions	(src_battle_sub_menus_battle_party_sprites.c.o)
-  022292EC 00000018 .rodata @16600	(src_battle_sub_menus_battle_party_sprites.c.o)
+  022292EC 00000018 .rodata @16598	(src_battle_sub_menus_battle_party_sprites.c.o)
   02229304 00000020 .rodata sPokemonSummaryScreenCursorPositions	(src_battle_sub_menus_battle_party_sprites.c.o)
   02229324 00000020 .rodata sPokemonMovesScreenMoveTypeSpritePositions	(src_battle_sub_menus_battle_party_sprites.c.o)
   02229344 00000020 .rodata sSelectPokemonScreenCursorPositions	(src_battle_sub_menus_battle_party_sprites.c.o)
@@ -133868,7 +133868,7 @@
   0223FC88 00000009 .rodata v3$19593	(src_overlay104_ov104_02237DD8.c.o)
   0223FC94 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223FC94 0000000A .rodata partnerGraphics$16515	(src_overlay104_frscrcmd_battle_tower.c.o)
-  0223FCA0 00000009 .rodata visiblePages$16932	(src_overlay104_ov104_02239C58.c.o)
+  0223FCA0 00000009 .rodata visiblePages$16930	(src_overlay104_ov104_02239C58.c.o)
   0223FCAC 00000000 .rodata .rodata	(src_overlay104_ov104_0223A0C4.c.o)
   0223FCAC 00000008 .rodata sBattleTowerReservedItems	(src_overlay104_ov104_0223A0C4.c.o)
   0223FCB4 0000002A .rodata Unk_ov104_0223FCB4	(src_overlay104_ov104_0223A0C4.c.o)
@@ -133946,7 +133946,7 @@
   02241ACC 00000000 .bss    .bss	(src_overlay104_ov104_02237DD8.c.o)
   02241ACC 00000004 .bss    v9$18814	(src_overlay104_ov104_02237DD8.c.o)
   02241AD0 00000000 .bss    .bss	(src_overlay104_ov104_02239C58.c.o)
-  02241AD0 00000004 .bss    v0$16843	(src_overlay104_ov104_02239C58.c.o)
+  02241AD0 00000004 .bss    v0$16841	(src_overlay104_ov104_02239C58.c.o)
 #>02241AE0          SDK_OVERLAY.overlay104.BSS_END (linker command file)
 #>00000020          SDK_OVERLAY.overlay104.BSS_SIZE (linker command file)
 
@@ -135130,7 +135130,7 @@
   0224A1DC 00000028 .rodata @19402	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A204 00000004 .rodata sCapacities	(src_applications_frontier_battle_castle_sprite_manager.c.o)
   0224A208 00000000 .rodata .rodata	(src_applications_frontier_battle_castle_sprite_manager.c.o)
-  0224A208 00000010 .rodata @15549	(src_applications_frontier_battle_castle_sprite_manager.c.o)
+  0224A208 00000010 .rodata @15547	(src_applications_frontier_battle_castle_sprite_manager.c.o)
   0224A218 00000010 .rodata sWinTemplates	(src_applications_frontier_battle_castle_windows.c.o)
   0224A218 00000000 .rodata .rodata	(src_applications_frontier_battle_castle_windows.c.o)
   0224A228 00000060 .rodata sOpponentAppWinTemplates	(src_applications_frontier_battle_castle_windows.c.o)
@@ -135312,7 +135312,7 @@
   02243738 00000028 .rodata @18946	(src_applications_frontier_battle_arcade_main.c.o)
   02243760 00000004 .rodata sCapacities	(src_applications_frontier_battle_arcade_sprite_manager.c.o)
   02243764 00000000 .rodata .rodata	(src_applications_frontier_battle_arcade_sprite_manager.c.o)
-  02243764 00000010 .rodata @15491	(src_applications_frontier_battle_arcade_sprite_manager.c.o)
+  02243764 00000010 .rodata @15489	(src_applications_frontier_battle_arcade_sprite_manager.c.o)
   02243774 00000000 .rodata .rodata	(src_applications_frontier_battle_arcade_windows.c.o)
   02243774 00000010 .rodata sWinTemplates	(src_applications_frontier_battle_arcade_windows.c.o)
 #>02243784          SDK_OVERLAY.battle_arcade_app.SINIT_START (linker command file)
