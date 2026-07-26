@@ -10,8 +10,8 @@
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 
+#include "overlay104/frontier_communication.h"
 #include "overlay104/frontier_opponents.h"
-#include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay104/struct_battle_arcade.h"
@@ -1011,7 +1011,7 @@ BOOL ov104_02238B40(BattleArcade *param0, u16 param1, u16 param2)
         v0 = ov104_0222F86C(param0);
         break;
     case 1:
-        v0 = ov104_0222F8D0(param0);
+        v0 = ArcadeCommunication_SendTrainers(param0);
         break;
     case 2:
         v0 = ov104_0222F944(param0);
@@ -1023,7 +1023,7 @@ BOOL ov104_02238B40(BattleArcade *param0, u16 param1, u16 param2)
         v0 = ov104_0222FA84(param0, param2);
         break;
     case 5:
-        v0 = ov104_0222FAD0(param0);
+        v0 = ArcadeCommunication_SendPlayersParty(param0);
         break;
     }
 

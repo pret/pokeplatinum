@@ -12,9 +12,9 @@
 #include "global/utility.h"
 #include "overlay104/battle_castle_helpers.h"
 #include "overlay104/defs.h"
+#include "overlay104/frontier_communication.h"
 #include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_manager.h"
-#include "overlay104/ov104_0222ECE8.h"
 
 #include "battle_castle_save.h"
 #include "battle_frontier_save.h"
@@ -565,25 +565,25 @@ BOOL BattleCastle_SendCommMessage(BattleCastle *castle, u16 command, u16 arg)
 
     switch (command) {
     case 0:
-        success = ov104_0222F3B8(castle);
+        success = CastleCommunication_SendPlayersCP(castle);
         break;
     case 1:
-        success = ov104_0222F44C(castle);
+        success = CastleCommunication_SendTrainers(castle);
         break;
     case 2:
         success = ov104_0222F4B8(castle);
         break;
     case 3:
-        success = ov104_0222F5D4(castle);
+        success = CastleCommunication_SendOpponentMons(castle);
         break;
     case 4:
         success = ov104_0222F6C8(castle, arg);
         break;
     case 5:
-        success = ov104_0222F710(castle, arg);
+        success = FrontierCommunication_Unreachable4(castle, arg);
         break;
     case 6:
-        success = ov104_0222F758(castle);
+        success = CastleCommunication_SendPlayersParty(castle);
         break;
     }
 
