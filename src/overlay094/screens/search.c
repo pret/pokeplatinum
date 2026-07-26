@@ -1,19 +1,18 @@
-#include "overlay094/screens/search.h"
+﻿#include "overlay094/screens/search.h"
 
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/net.h"
 #include "constants/species.h"
 
 #include "overlay094/application.h"
 #include "overlay094/avatar.h"
-#include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/networking.h"
 #include "overlay094/screens/deposit.h"
 #include "overlay094/screens/wfc_init.h"
-#include "overlay094/struct_ov94_0223BA24.h"
 
 #include "bg_window.h"
 #include "comm_manager.h"
@@ -264,7 +263,7 @@ static void GTSSearch_LoadGraphics(GTSApplicationState *appState)
     Graphics_LoadPaletteFromOpenNARC(narc, 5, 4, 0, 16 * 8 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 13, bgConfig, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 26, bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
     NARC_dtor(narc);
@@ -313,12 +312,12 @@ static const u16 Unk_ov94_02245D8C[][2] = {
 
 static void GTSSearch_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, (1 + (18 + 12)) + 9);
+    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
     Window_FillTilemap(&appState->titleWindow, 0x0);
 
     Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR(15, 13, 0));
 
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9) + 28 * 2);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
 
     int i, unused;
@@ -329,12 +328,12 @@ static void GTSSearch_InitWindows(GTSApplicationState *appState)
     }
 
     for (i = 0; i < 2; i++) {
-        Window_Add(appState->bgConfig, &appState->infoWindows[6 + i], 2, Unk_ov94_02245D84[i][0], Unk_ov94_02245D84[i][1], 8, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + (8 * 2) * i);
+        Window_Add(appState->bgConfig, &appState->infoWindows[6 + i], 2, Unk_ov94_02245D84[i][0], Unk_ov94_02245D84[i][1], 8, 2, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + (8 * 2) * i);
         Window_FillTilemap(&appState->infoWindows[6 + i], 0x0);
     }
 
     for (i = 0; i < 2; i++) {
-        Window_Add(appState->bgConfig, &appState->locationCriteriaWindows[i], 3, Unk_ov94_02245D8C[i][0], Unk_ov94_02245D8C[i][1], 28, 2, 13, (1 + 11 * 2 * 6) + (28 * 2) * i);
+        Window_Add(appState->bgConfig, &appState->locationCriteriaWindows[i], 3, Unk_ov94_02245D8C[i][0], Unk_ov94_02245D8C[i][1], 28, 2, 13, (1 + 11 * 2 * 6) + (TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) * i);
         Window_FillTilemap(&appState->locationCriteriaWindows[i], 0x0);
     }
 }
@@ -434,7 +433,7 @@ static int GTSSearch_HandleInput(GTSApplicationState *appState)
             if (result >= 0) {
                 Sprite_SetAnim(appState->avatarSprites[result + 1], 16 + result * 4);
                 appState->currentScreenInstruction = GTS_SEARCH_FADE_AND_EXIT;
-                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_NONE);
                 appState->selectedSearchResult = result;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
@@ -567,7 +566,7 @@ static int GTSSearch_WaitForSearchResults(GTSApplicationState *appState)
     } else {
         appState->networkTimeoutCounter++;
 
-        if (appState->networkTimeoutCounter == (30 * 60 * 2)) {
+        if (appState->networkTimeoutCounter == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -628,7 +627,7 @@ static int GTSSearch_DisconnectAndExit(GTSApplicationState *appState)
 {
     GTSSearch_ShowMessage(appState, 152, TEXT_SPEED_NORMAL, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT_WITH_DELAY, GTS_SEARCH_FADE_AND_EXIT);
-    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
+    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_NONE);
     Sound_PlayEffect(SEQ_SE_DP_BOX03);
 
     return 3;
@@ -711,10 +710,10 @@ static int GTSSearch_ShowSpeciesSearchPrompt(GTSApplicationState *appState)
     GTSSearch_ShowMessage(appState, 9, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_CREATE_CHARPAD);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 4, 13, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 4, 13, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2);
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 0, 21, 5, 10, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2) + 4 * 13);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 0, 21, 5, 10, 13, 13, ((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2) + 4 * 13);
     Window_FillTilemap(&appState->menuButtonWindows[1], 0x0);
 
     return 3;
@@ -732,15 +731,15 @@ static int GTSSearch_CreateCharpad(GTSApplicationState *appState)
 static int GTSSearch_HandleCharpadInput(GTSApplicationState *appState)
 {
     switch (GTS_ProcessListMenuInput(appState->activeListMenu, &appState->listMenuCursorIndex)) {
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
+    case GTS_CHARPAD_TAB_ABC:
+    case GTS_CHARPAD_TAB_DEF:
+    case GTS_CHARPAD_TAB_GHI:
+    case GTS_CHARPAD_TAB_JKL:
+    case GTS_CHARPAD_TAB_MNO:
+    case GTS_CHARPAD_TAB_PQR:
+    case GTS_CHARPAD_TAB_STU:
+    case GTS_CHARPAD_TAB_VWX:
+    case GTS_CHARPAD_TAB_YZ:
         ListMenu_Free(appState->activeListMenu, &appState->speciesMenuState->charpadScrollPos, &appState->speciesMenuState->charpadCursorPos);
         StringList_Free(appState->menuStringList);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -818,7 +817,7 @@ static int GTSSearch_ShowGenderSearchPrompt(GTSApplicationState *appState)
     GTSSearch_ShowMessage(appState, 10, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_CREATE_GENDER_MENU);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 10, 10, 8, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 10, 10, 8, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2);
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
     return 3;
@@ -872,7 +871,7 @@ static int GTSSearch_ShowLevelSearchPrompt(GTSApplicationState *appState)
     GTSSearch_ShowMessage(appState, 11, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_CREATE_LEVEL_MENU);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 16, 13, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 16, 13, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2);
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
     return 3;
@@ -927,7 +926,7 @@ static int GTSSearch_ShowCountrySearchPrompt(GTSApplicationState *appState)
     GTSSearch_ShowMessage(appState, 169, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_CREATE_COUNTRY_MENU);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 2, 5, 28, 13, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 2, 5, 28, 13, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2);
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
     return 3;
@@ -974,7 +973,7 @@ static int GTSSearch_HandleCountryMenuInput(GTSApplicationState *appState)
 
 static int GTSSearch_CreateExitConfirmMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2) + 16 * 13);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2) + 16 * 13);
     appState->currentScreenInstruction = GTS_SEARCH_HANDLE_EXIT_CONFIRM;
 
     return 3;
@@ -989,7 +988,7 @@ static int GTSSearch_HandleExitConfirm(GTSApplicationState *appState)
             appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
         } else {
             appState->currentScreenInstruction = GTS_SEARCH_FADE_AND_EXIT;
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_NONE);
             GTSAvatar_HighlightSearchResults(appState);
             appState->searchResultCount = 0;
         }

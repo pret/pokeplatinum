@@ -1,4 +1,4 @@
-#include "overlay094/screens/main_menu.h"
+﻿#include "overlay094/screens/main_menu.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -96,7 +96,7 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
 
         GTSAvatar_BeginLoginAnimation(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
     } else {
-        if (appState->fadeBothScreens == 1) {
+        if (appState->fadeBothScreens == TRUE) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
         } else {
             StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
@@ -105,7 +105,7 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
         appState->currentScreenInstruction = GTS_MAINMENU_SETUP_BOTTOM_WINDOW_QUESTION;
     }
 
-    appState->fadeBothScreens = 0;
+    appState->fadeBothScreens = FALSE;
     return GTS_LOOP_STATE_WAIT_FADE;
 }
 
@@ -259,7 +259,7 @@ static void GTSMainMenu_InitGraphics(GTSApplicationState *appState)
     Graphics_LoadPaletteFromOpenNARC(narc, 4, PAL_LOAD_MAIN_BG, 0, PALETTE_SIZE_BYTES * 3, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_62);
     LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 14, bgConfig, BG_LAYER_MAIN_1, 0, 16 * 6 * 0x20, TRUE, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 30, bgConfig, BG_LAYER_MAIN_1, 0, 32 * 24 * 2, TRUE, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 29, bgConfig, BG_LAYER_MAIN_2, 0, 32 * 24 * 2, TRUE, HEAP_ID_62);
@@ -297,7 +297,7 @@ static void GTSMainMenu_DeleteCursor(GTSApplicationState *appState)
 
 static void GTSMainMenu_InitMenu(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, (1 + (18 + 12)) + 9);
+    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
     Window_FillTilemap(&appState->titleWindow, 0x0);
     Text_AddPrinterWithParamsAndColor(&appState->titleWindow, FONT_MESSAGE, appState->title, 0, 2, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 4, 0), NULL);
 
@@ -306,9 +306,9 @@ static void GTSMainMenu_InitMenu(GTSApplicationState *appState)
         Window_FillTilemap(&appState->menuButtonWindows[i], 0x0);
     }
 
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9) + 28 * 2);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0xf0f);
-    Window_Add(appState->bgConfig, &appState->confirmationWindow, 0, 2, 19, 27, 4, 13, (((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2);
+    Window_Add(appState->bgConfig, &appState->confirmationWindow, 0, 2, 19, 27, 4, 13, ((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2);
     Window_FillTilemap(&appState->confirmationWindow, 0xf0f);
 }
 
@@ -354,7 +354,7 @@ static int GTSMainMenu_WaitUntilFinishedMoving(GTSApplicationState *appState)
 
 static int GTSMainMenu_QueueFadeIn(GTSApplicationState *appState)
 {
-    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 2);
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_MAINMENU_WAIT_FOR_TEXT_PRINTER, GTS_MAINMENU_BEGIN_FADE_IN);
     return GTS_LOOP_STATE_MAIN;
 }
 
@@ -387,7 +387,7 @@ static int GTSMainMenu_WaitFadeIn2(GTSApplicationState *appState)
 static int GTSMainMenu_SetupBottomWindowQuestion(GTSApplicationState *appState)
 {
     GTSMainMenu_SetBottomWindowText(appState, GTS_Text_AreYouSeekingOrOfferingAPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
-    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 6);
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_MAINMENU_WAIT_FOR_TEXT_PRINTER, GTS_MAINMENU_HANDLE_INPUT);
     Sprite_SetAnimateFlag(appState->cursorSprite, TRUE);
     GTSApplication_StartCountingBoxPokemon(appState);
 
@@ -398,13 +398,13 @@ static int GTSMainMenu_HandleInput(GTSApplicationState *appState)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         GTSMainMenu_ShowConfirmationWindow(appState, GTS_Text_IsItOKToDisconnect, GTSApplication_GetTextFrameDelay(appState), 0, 0xf0f);
-        GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 12);
+        GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_MAINMENU_WAIT_FOR_TEXT_PRINTER, GTS_MAINMENU_SHOW_CONFIRMATION_MENU);
         Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         switch (appState->mainMenuSelectedOption) {
         case GTS_MAIN_MENU_OPTION_DEPOSIT:
             if (appState->isPokemonListed == FALSE) {
-                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_5);
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_CHOOSE_OFFER_MON);
                 appState->currentScreenInstruction = GTS_MAINMENU_FADE_AND_EXIT;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
@@ -417,20 +417,20 @@ static int GTSMainMenu_HandleInput(GTSApplicationState *appState)
                 } else {
                     Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
                     GTSMainMenu_SetBottomWindowText(appState, GTS_Text_PleaseWaitAWhile, TEXT_SPEED_FAST, 0, 0xf0f);
-                    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 11, 5);
+                    GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_MAINMENU_WAIT_FOR_MESSAGE_WITH_DELAY, GTS_MAINMENU_SETUP_BOTTOM_WINDOW_QUESTION);
                     Sound_PlayEffect(SEQ_SE_DP_BOX03);
                     appState->frameDelay = 0;
                 }
             }
             break;
         case GTS_MAIN_MENU_OPTION_SEEK:
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTS_MAINMENU_FADE_AND_EXIT;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         case GTS_MAIN_MENU_OPTION_EXIT:
             GTSMainMenu_ShowConfirmationWindow(appState, GTS_Text_IsItOKToDisconnect, GTSApplication_GetTextFrameDelay(appState), 0, 0xf0f);
-            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 12);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_MAINMENU_WAIT_FOR_TEXT_PRINTER, GTS_MAINMENU_SHOW_CONFIRMATION_MENU);
             Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
@@ -486,7 +486,7 @@ static int GTSMainMenu_FadeAndExit(GTSApplicationState *appState)
 
 static int GTSMainMenu_ShowConfirmationMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 27 * 4);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 27 * 4);
     appState->currentScreenInstruction = GTS_MAINMENU_HANDLE_CONFIRMATION_MENU;
 
     return GTS_LOOP_STATE_MAIN;
@@ -505,7 +505,7 @@ static int GTSMainMenu_HandleConfirmationMenu(GTSApplicationState *appState)
         } else {
             Window_EraseMessageBox(&appState->confirmationWindow, 1);
             Window_ClearAndCopyToVRAM(&appState->confirmationWindow);
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTS_MAINMENU_BEGIN_LOGOUT_ANIM;
         }
     }

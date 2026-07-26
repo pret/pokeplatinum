@@ -1562,7 +1562,7 @@ static int ov98_02248C88(UnkStruct_ov98_02247704 *param0)
     } else {
         param0->unk_E8++;
 
-        if (param0->unk_E8 == (30 * 60 * 2)) {
+        if (param0->unk_E8 == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -1735,7 +1735,7 @@ static int ov98_02248F7C(UnkStruct_ov98_02247704 *param0)
         } else {
             param0->unk_E8++;
 
-            if (param0->unk_E8 == (30 * 60 * 2)) {
+            if (param0->unk_E8 == NETWORK_TIMEOUT_FRAMES) {
                 NetworkError_DisplayGTSCriticalError();
             }
         }

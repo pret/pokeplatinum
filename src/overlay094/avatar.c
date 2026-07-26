@@ -23,8 +23,15 @@ typedef struct AvatarAnimationData {
     GTSApplicationState *appState;
 } AvatarAnimationData;
 
+enum AvatarAnimState {
+    AVATARANIM_INITIAL_SLIDE,
+    AVATARANIM_WAIT_FOR_ANIM,
+    AVATARANIM_SECONDARY_SLIDE,
+    AVATARANIM_FINISH
+};
+
 static void GTSAvatar_LoginAnimTask(SysTask *task, void *param);
-static void GTSAvatar_LogoutAnimTask(SysTask *task, void *param1);
+static void GTSAvatar_LogoutAnimTask(SysTask *task, void *param);
 static void GTSAvatar_SetSpritePosition(Sprite *sprite, int x, int y);
 static void GTSAvatar_SetPlayerAnimation(AvatarAnimationData *animData, int animIndex);
 static void GTSAvatar_LoadGraphics(GTSApplicationState *appState);
@@ -44,7 +51,6 @@ static const u16 sSearchResultSpritePositions[][2] = {
 void GTSAvatar_Init(GTSApplicationState *appState, int gender)
 {
     AffineSpriteListTemplate template;
-    int i;
 
     GTSAvatar_LoadGraphics(appState);
     GTSApplication_InitAffineTemplate(&template, appState, &appState->avatarSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -59,7 +65,7 @@ void GTSAvatar_Init(GTSApplicationState *appState, int gender)
     Sprite_SetAnim(appState->avatarSprites[0], 3 + gender * 7);
     Sprite_SetDrawFlag(appState->avatarSprites[0], TRUE);
 
-    for (i = 0; i < GTS_MAX_SEARCH_RESULTS; i++) {
+    for (int i = 0; i < GTS_MAX_SEARCH_RESULTS; i++) {
         appState->avatarSprites[i + 1] = SpriteList_AddAffine(&template);
 
         Sprite_SetAnimateFlag(appState->avatarSprites[i + 1], 1);
@@ -77,7 +83,7 @@ void GTSAvatar_BeginLoginAnimation(GTSApplicationState *appState, int gender)
     appState->playerAvatarAnimationTask = SysTask_StartAndAllocateParam(GTSAvatar_LoginAnimTask, sizeof(AvatarAnimationData), 5, HEAP_ID_62);
 
     animData = SysTask_GetParam(appState->playerAvatarAnimationTask);
-    animData->state = 0;
+    animData->state = AVATARANIM_INITIAL_SLIDE;
     animData->y = -40;
     animData->gender = gender;
     animData->appState = appState;
@@ -97,35 +103,33 @@ static void GTSAvatar_LoginAnimTask(SysTask *task, void *param)
     GTSApplicationState *appState = animData->appState;
 
     switch (animData->state) {
-    case 0:
+    case AVATARANIM_INITIAL_SLIDE:
         if (animData->y > 160) {
             animData->y = 160;
-            animData->state = 1;
-
+            animData->state = AVATARANIM_WAIT_FOR_ANIM;
             GTSAvatar_SetPlayerAnimation(animData, 1);
         }
 
         animData->y += 5;
         GTSAvatar_SetSpritePosition(appState->avatarSprites[0], 128, animData->y);
         break;
-    case 1:
+    case AVATARANIM_WAIT_FOR_ANIM:
         if (!Sprite_IsAnimated(appState->avatarSprites[0])) {
             GTSAvatar_SetPlayerAnimation(animData, 2);
-            animData->state = 2;
+            animData->state = AVATARANIM_SECONDARY_SLIDE;
         }
         break;
-    case 2:
+    case AVATARANIM_SECONDARY_SLIDE:
         if (animData->y < 130) {
             animData->y = 130;
-            animData->state = 3;
-
+            animData->state = AVATARANIM_FINISH;
             GTSAvatar_SetPlayerAnimation(animData, 3);
         }
 
         animData->y -= 2;
         GTSAvatar_SetSpritePosition(appState->avatarSprites[0], 128, animData->y);
         break;
-    case 3:
+    case AVATARANIM_FINISH:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         animData->appState->hasAvatarFinishedMoving = TRUE;
         SysTask_FinishAndFreeParam(task);
@@ -140,7 +144,7 @@ void GTSAvatar_BeginLogoutAnimation(GTSApplicationState *appState, int gender)
     appState->playerAvatarAnimationTask = SysTask_StartAndAllocateParam(GTSAvatar_LogoutAnimTask, sizeof(AvatarAnimationData), 5, HEAP_ID_62);
 
     animData = SysTask_GetParam(appState->playerAvatarAnimationTask);
-    animData->state = 0;
+    animData->state = AVATARANIM_INITIAL_SLIDE;
     animData->y = 130;
     animData->gender = gender;
     animData->appState = appState;
@@ -155,35 +159,33 @@ static void GTSAvatar_LogoutAnimTask(SysTask *task, void *param)
     GTSApplicationState *appState = animData->appState;
 
     switch (animData->state) {
-    case 0:
+    case AVATARANIM_INITIAL_SLIDE:
         if (animData->y > 160) {
             animData->y = 160;
-            animData->state = 1;
-
+            animData->state = AVATARANIM_WAIT_FOR_ANIM;
             GTSAvatar_SetPlayerAnimation(animData, 6);
         }
 
         animData->y += 2;
         GTSAvatar_SetSpritePosition(appState->avatarSprites[0], 128, animData->y);
         break;
-    case 1:
+    case AVATARANIM_WAIT_FOR_ANIM:
         if (!Sprite_IsAnimated(appState->avatarSprites[0])) {
             GTSAvatar_SetPlayerAnimation(animData, 0);
-            animData->state = 2;
+            animData->state = AVATARANIM_SECONDARY_SLIDE;
             Sound_PlayEffect(SEQ_SE_DP_PYUU2);
         }
         break;
-    case 2:
+    case AVATARANIM_SECONDARY_SLIDE:
         if (animData->y < -20) {
-            animData->state = 3;
-
+            animData->state = AVATARANIM_FINISH;
             GTSAvatar_SetPlayerAnimation(animData, 3);
         }
 
         animData->y -= 5;
         GTSAvatar_SetSpritePosition(appState->avatarSprites[0], 128, animData->y);
         break;
-    case 3:
+    case AVATARANIM_FINISH:
         animData->appState->hasAvatarFinishedMoving = TRUE;
         SysTask_FinishAndFreeParam(task);
         break;
@@ -209,14 +211,14 @@ static const TouchScreenRect sSearchResultTouchRects[] = {
     { 54, 86, 176, 208 },
     { 86, 118, 32, 64 },
     { 86, 118, 192, 224 },
-    { 255, 0, 0, 0 }
+    { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
 int GTSAvatar_GetTouchedSearchResult(int resultCount)
 {
     int rectPressed = TouchScreen_CheckRectanglePressed(sSearchResultTouchRects);
 
-    if (rectPressed != 0xffffffff) {
+    if (rectPressed != MENU_NOTHING_CHOSEN) {
         if (rectPressed < resultCount) {
             return rectPressed;
         }
@@ -233,10 +235,10 @@ void GTSAvatar_ShowSearchResults(GTSApplicationState *appState, int resultCount,
 
     for (int i = 0; i < GTS_MAX_SEARCH_RESULTS; i++) {
         if (i < resultCount) {
-            int v1 = appState->searchResults[i].trainerAppearance;
-            int v2 = appState->searchResults[i].trainerGender;
+            int appearance = appState->searchResults[i].trainerAppearance;
+            int gender = appState->searchResults[i].trainerGender;
 
-            GTSAvatar_LoadTrainerSprite(appState->avatarCharData, appState->avatarPaletteData, i, v1, v2);
+            GTSAvatar_LoadTrainerSprite(appState->avatarCharData, appState->avatarPaletteData, i, appearance, gender);
 
             if (showIdle) {
                 Sprite_SetAnim(appState->avatarSprites[i + 1], 14 + i * 4);

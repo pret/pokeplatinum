@@ -1,4 +1,4 @@
-#include "overlay094/screens/select_pokemon.h"
+﻿#include "overlay094/screens/select_pokemon.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -62,7 +62,7 @@ static int GTSSelectMon_CreateExitConfirmMenu(GTSApplicationState *appState);
 static int GTSSelectMon_HandleExitConfirm(GTSApplicationState *appState);
 static int GTSSelectMon_WaitForText(GTSApplicationState *appState);
 static int GTSSelectMon_WaitForTextAndEraseBox(GTSApplicationState *appState);
-static void GTSSelectMon_ShowMessage(GTSApplicationState *appState, int entryID, int renderDelay, int param3, u16 unused, int isConfirmWindow);
+static void GTSSelectMon_ShowMessage(GTSApplicationState *appState, int entryID, int renderDelay, int unused1, u16 unused2, int isConfirmWindow);
 static void GTSSelectMon_LoadPokemonIcon(int species, int form, int isEgg, int iconIndex, Sprite *sprite, NARC *narc, PokemonIcon *monIcon);
 static void GTSSelectMon_LoadBoxDisplay(GTSApplicationState *appState, int boxID);
 static int GTSSelectMon_CycleBoxId(int boxId, int boxCount, int direction);
@@ -279,7 +279,7 @@ static void GTSSelectMon_LoadGraphics(GTSApplicationState *appState)
     Graphics_LoadPaletteFromOpenNARC(narc, 5, 4, 0, 16 * 8 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 12, bgConfig, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 24, bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 29, bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_62);
@@ -411,24 +411,24 @@ static void GTSSelectMon_FreeSprites(GTSApplicationState *appState)
 
 static void GTSSelectMon_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, (1 + (18 + 12)) + 9);
+    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
     Window_FillTilemap(&appState->titleWindow, 0x0);
 
     Window_DrawAlignedSystemText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(appState->bgConfig, &appState->networkErrWindow, 0, 5, 3, 13, 3, 13, ((1 + (18 + 12)) + 9) + 28 * 2);
+    Window_Add(appState->bgConfig, &appState->networkErrWindow, 0, 5, 3, 13, 3, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT);
     Window_FillTilemap(&appState->networkErrWindow, 0x0);
     Window_CopyToVRAM(&appState->networkErrWindow);
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
-    Window_Add(appState->bgConfig, &appState->confirmationWindow, 0, 2, 19, 27, 4, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2);
+    Window_Add(appState->bgConfig, &appState->confirmationWindow, 0, 2, 19, 27, 4, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2);
     Window_FillTilemap(&appState->confirmationWindow, 0x0);
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 1, 25, 21, 6, 2, 0, (((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 1, 25, 21, 6, 2, 0, ((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2) + 2 * 19);
     Window_FillTilemap(&appState->menuButtonWindows[1], 0x606);
 
     Window_DrawAlignedSystemText(&appState->menuButtonWindows[1], appState->cancelButtonLabel, 0, 1, 1, TEXT_COLOR(1, 3, 6));
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 13, 5 * 2, 6, 13, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 13, 5 * 2, 6, 13, (((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2);
 }
 
 static void GTSSelectMon_RemoveWindows(GTSApplicationState *appState)
@@ -446,9 +446,9 @@ static void GTSSelectMon_AllocState(GTSApplicationState *appState)
     appState->selectPokemonBoxName = String_Init(9 * 2, HEAP_ID_62);
     appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
 
-    if (appState->screenArgument == SCREEN_ARGUMENT_5) {
+    if (appState->screenArgument == SCREEN_ARGUMENT_CHOOSE_OFFER_MON) {
         appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_ChooseYourOfferPokemon);
-    } else if (appState->screenArgument == SCREEN_ARGUMENT_6) {
+    } else if (appState->screenArgument == SCREEN_ARGUMENT_CHOOSE_LISTED_MON) {
         appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_ChooseYourListedPokemon);
     }
 
@@ -518,14 +518,14 @@ static int GTSSelectMon_HandleInput(GTSApplicationState *appState)
 {
     GTSSelectMon_HandleCursorInput(appState);
 
-    if (appState->screenArgument == SCREEN_ARGUMENT_5) {
+    if (appState->screenArgument == SCREEN_ARGUMENT_CHOOSE_OFFER_MON) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (appState->partySlotIndex == 30) {
-                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_NONE);
                 appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
@@ -551,14 +551,14 @@ static int GTSSelectMon_HandleInput(GTSApplicationState *appState)
                 }
             }
         }
-    } else if (appState->screenArgument == SCREEN_ARGUMENT_6) {
+    } else if (appState->screenArgument == SCREEN_ARGUMENT_CHOOSE_LISTED_MON) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (appState->partySlotIndex == 30) {
-                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_NONE);
                 appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
@@ -670,7 +670,7 @@ static int GTSSelectMon_CreatePokemonMenu(GTSApplicationState *appState)
     template.choices = appState->menuStringList;
     template.window = &appState->menuButtonWindows[0];
 
-    Window_DrawStandardFrame(&appState->menuButtonWindows[0], 1, 1 + (18 + 12), 11);
+    Window_DrawStandardFrame(&appState->menuButtonWindows[0], 1, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11);
 
     appState->popupMenu = Menu_NewAndCopyToVRAM(&template, 9, 0, 0, 62, PAD_BUTTON_B);
     appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_POKEMON_MENU_INPUT;
@@ -688,7 +688,7 @@ static int GTSSelectMon_HandlePokemonMenuInput(GTSApplicationState *appState)
         StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_5);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_CHOOSE_OFFER_MON);
         break;
     case 2: // offer
         Menu_Free(appState->popupMenu, NULL);
@@ -724,7 +724,7 @@ static int GTSSelectMon_HandlePokemonMenuInput(GTSApplicationState *appState)
                 appState->selectedBoxMon = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
                 appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
 
-                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_0);
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_NONE);
             }
         }
         break;
@@ -762,7 +762,7 @@ static int GTSSelectMon_CreateTradeMenu(GTSApplicationState *appState)
     template.window = &appState->menuButtonWindows[0];
 
     Window_FillTilemap(template.window, 0xf0f);
-    Window_DrawStandardFrame(&appState->menuButtonWindows[0], 1, 1 + (18 + 12), 11);
+    Window_DrawStandardFrame(&appState->menuButtonWindows[0], 1, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11);
 
     appState->popupMenu = Menu_NewAndCopyToVRAM(&template, 9, 0, 0, 62, PAD_BUTTON_B);
     appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_TRADE_MENU_INPUT;
@@ -780,7 +780,7 @@ static int GTSSelectMon_HandleTradeMenuInput(GTSApplicationState *appState)
         StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_6);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_CHOOSE_LISTED_MON);
         break;
     case 2:
         Menu_Free(appState->popupMenu, NULL);
@@ -834,7 +834,7 @@ static int GTSSelectMon_FadeAndExit(GTSApplicationState *appState)
 {
     if ((appState->nextScreen == GTS_SCREEN_WFC_INIT) || (appState->nextScreen == GTS_SCREEN_POKEMON_SUMMARY)) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
-        appState->fadeBothScreens = 1;
+        appState->fadeBothScreens = TRUE;
     } else {
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
     }
@@ -846,7 +846,7 @@ static int GTSSelectMon_FadeAndExit(GTSApplicationState *appState)
 
 static int GTSSelectMon_CreateExitConfirmMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, (((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
     appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_EXIT_CONFIRM;
 
     return 3;
@@ -861,7 +861,7 @@ static int GTSSelectMon_HandleExitConfirm(GTSApplicationState *appState)
             appState->currentScreenInstruction = GTS_SELECTMON_WAIT_FADE_IN;
         } else {
             appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_NONE);
         }
     }
 
@@ -878,7 +878,7 @@ static int GTSSelectMon_ShowBallCapsuleTradePrompt(GTSApplicationState *appState
 
 static int GTSSelectMon_CreateTradeConfirmMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, (((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, ((((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
     appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_TRADE_CONFIRM;
 
     return 3;
@@ -914,9 +914,9 @@ static int GTSSelectMon_InitiateTrade(GTSApplicationState *appState)
 
     appState->selectedBoxMon = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
     appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
-    appState->fadeBothScreens = 1;
+    appState->fadeBothScreens = TRUE;
 
-    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_9);
+    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_EXCHANGE_POKEMON);
     GTSSelectMon_FillTradeListing(&appState->receivedListing, appState);
 
     appState->searchResultCount = 0;
@@ -934,7 +934,7 @@ static int GTSSelectMon_ShowBallCapsuleDepositPrompt(GTSApplicationState *appSta
 
 static int GTSSelectMon_CreateBallCapsuleTradeConfirmMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, (((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, ((((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
     appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_BALL_CAPSULE_TRADE_CONFIRM;
 
     return 3;
@@ -951,7 +951,7 @@ static int GTSSelectMon_HandleBallCapsuleTradeConfirm(GTSApplicationState *appSt
         } else {
             appState->selectedBoxMon = GTSApplication_GetSelectedBoxMon(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
             appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_NONE);
         }
     }
 
@@ -977,7 +977,7 @@ static int GTSSelectMon_WaitForTextAndEraseBox(GTSApplicationState *appState)
     return 3;
 }
 
-static void GTSSelectMon_ShowMessage(GTSApplicationState *appState, int entryID, int renderDelay, int param3, u16 unused, int isConfirmWindow)
+static void GTSSelectMon_ShowMessage(GTSApplicationState *appState, int entryID, int renderDelay, int unused1, u16 unused2, int isConfirmWindow)
 {
     Window *window;
     String *str = MessageLoader_GetNewString(appState->gtsMessageLoader, entryID);
@@ -1158,7 +1158,7 @@ static void GTSSelectMon_LoadBoxDisplay(GTSApplicationState *appState, int boxID
 
     Window_DrawAlignedSystemText(&appState->networkErrWindow, appState->selectPokemonBoxName, 0, 5, 1, TEXT_COLOR(1, 2, 0));
 
-    if (appState->screenArgument == SCREEN_ARGUMENT_6) {
+    if (appState->screenArgument == SCREEN_ARGUMENT_CHOOSE_LISTED_MON) {
         GTSApplication_SelectMon_DarkenNonMatchingMons(appState->boxCriteria->criteria, appState->boxSlotIconSprites, &appState->searchResults[appState->selectedSearchResult].requirements, icons);
     }
 
@@ -1186,7 +1186,7 @@ BoxPokemon *GTSApplication_GetSelectedBoxMon(Party *party, PCBoxes *pcBoxes, int
 static BOOL GTSSelectMon_CanOfferPokemon(Party *party, PCBoxes *unused1, int boxID, int unused2)
 {
     if (GTSApplication_IsBoxIDParty(boxID)) {
-        if (Party_GetCurrentCount(party) < 2) { // BUG? includes eggs, so a party of [valid mon, egg] passes the < 2 guard. The last non-egg Pokémon can be deposited, leaving only an egg.
+        if (Party_GetCurrentCount(party) < 2) { // BUG? includes eggs, so a party of [valid mon, egg] passes the < 2 guard. The last non-egg PokÃ©mon can be deposited, leaving only an egg.
             return FALSE;
         }
     }

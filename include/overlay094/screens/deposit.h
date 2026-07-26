@@ -12,6 +12,9 @@
 #include "string_template.h"
 #include "text.h"
 
+extern const u32 gGTSAvailableCountryCount;
+extern const int gGTSGenderPreferenceMessages[];
+
 int GTSApplication_Deposit_Init(GTSApplicationState *appState, int unused);
 int GTSApplication_Deposit_Main(GTSApplicationState *appState, int unused);
 int GTSApplication_Deposit_Exit(GTSApplicationState *appState, int unused);
@@ -37,5 +40,25 @@ void GTS_SetSelectedCountry(GTSApplicationState *appState, int selectedCountryIn
 u32 GTS_ProcessListMenuInput(ListMenu *menu, u16 *input);
 void GTS_InitTabScrollState(GTSCharpadScrollState *state);
 void GTS_SaveTabScrollState(GTSCharpadScrollState *state, int index, int cursorPos, int scrollPos);
+
+enum DepositInstructions {
+    GTSDEPOSIT_WAIT_FADE_IN,
+    GTSDEPOSIT_SETUP_CHARPAD_WINDOWS,
+    GTSDEPOSIT_BEGIN_EXIT,
+    GTSDEPOSIT_SHOW_CHARPAD_MENU,
+    GTSDEPOSIT_HANDLE_CHARPAD_INPUT,
+    GTSDEPOSIT_SHOW_SPECIES_MENU,
+    GTSDEPOSIT_HANDLE_SPECIES_INPUT,
+    GTSDEPOSIT_SHOW_GENDER_PROMPT,
+    GTSDEPOSIT_SHOW_GENDER_MENU,
+    GTSDEPOSIT_HANDLE_GENDER_INPUT,
+    GTSDEPOSIT_SHOW_LEVEL_PROMPT,
+    GTSDEPOSIT_SHOW_LEVEL_MENU,
+    GTSDEPOSIT_HANDLE_LEVEL_INPUT,
+    GTSDEPOSIT_SHOW_CONFIRMATION_PROMPT,
+    GTSDEPOSIT_SHOW_CONFIRMATION_MENU,
+    GTSDEPOSIT_HANDLE_CONFIRMATION_INPUT,
+    GTSDEPOSIT_WAIT_FOR_TEXT
+};
 
 #endif // POKEPLATINUM_GTS_SCREENS_DEPOSIT_H

@@ -1,11 +1,10 @@
-#include "overlay094/screens/listing.h"
+﻿#include "overlay094/screens/listing.h"
 
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
 
 #include "overlay094/application.h"
-#include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/screens/deposit.h"
 #include "overlay094/screens/select_pokemon.h"
@@ -59,15 +58,15 @@ static int GTSListing_HandleActionMenu(GTSApplicationState *appState);
 static void GTSListing_ShowBottomMessage(GTSApplicationState *appState, int entr, int renderDelay, int unused1, u16 unused2, Pokemon *mon);
 
 static int (*sGTSListingStateHandlers[])(GTSApplicationState *) = {
-    GTSListing_WaitFadeIn,
-    GTSListing_HandleInput,
-    GTSListing_BeginExit,
-    GTSListing_WaitForMessage,
-    GTSListing_WaitForMessageWithDelay,
-    GTSListing_ShowConfirmationMenu,
-    GTSListing_HandleConfirmationMenu,
-    GTSListing_ShowActionMenu,
-    GTSListing_HandleActionMenu
+    [GTSLISTING_WAIT_FADE_IN] = GTSListing_WaitFadeIn,
+    [GTSLISTING_HANDLE_INPUT] = GTSListing_HandleInput,
+    [GTSLISTING_BEGIN_EXIT] = GTSListing_BeginExit,
+    [GTSLISTING_WAIT_FOR_MESSAGE] = GTSListing_WaitForMessage,
+    [GTSLISTING_WAIT_FOR_MESSAGE_WITH_DELAY] = GTSListing_WaitForMessageWithDelay,
+    [GTSLISTING_SHOW_CONFIRMATION_MENU] = GTSListing_ShowConfirmationMenu,
+    [GTSLISTING_HANDLE_CONFIRMATION_MENU] = GTSListing_HandleConfirmationMenu,
+    [GTSLISTING_SHOW_ACTION_MENU] = GTSListing_ShowActionMenu,
+    [GTSLISTING_HANDLE_ACTION_MENU] = GTSListing_HandleActionMenu,
 };
 
 int GTSApplication_Listing_Init(GTSApplicationState *appState, int unused)
@@ -87,7 +86,7 @@ int GTSApplication_Listing_Init(GTSApplicationState *appState, int unused)
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
 
-    appState->currentScreenInstruction = 0;
+    appState->currentScreenInstruction = GTSLISTING_WAIT_FADE_IN;
 
     return 2;
 }
@@ -218,7 +217,7 @@ static void GTSListing_LoadGraphics(GTSApplicationState *appState)
     Graphics_LoadPaletteFromOpenNARC(narc, 5, 4, 0, 16 * 8 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 17, bgConfig, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 25, bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 15, bgConfig, 5, 0, 32 * 21 * 0x40, 1, HEAP_ID_62);
@@ -264,13 +263,13 @@ static const int sWindowLayouts[][4] = {
 
 static void GTSListing_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (1 + (18 + 12)) + 9);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 15, 5 * 2, 4, 13, ((1 + (18 + 12)) + 9) + 27 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 15, 5 * 2, 4, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 2);
 
     int baseTile;
 
-    baseTile = ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4);
+    baseTile = (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 2) + (5 * 2) * 4);
 
     for (int i = 0; i < 10 + 2; i++) {
         Window_Add(appState->bgConfig, &appState->infoWindows[i], 0, sWindowLayouts[i][0], sWindowLayouts[i][1], sWindowLayouts[i][2], sWindowLayouts[i][3], 13, baseTile);
@@ -312,7 +311,7 @@ static void GTSListing_FreeState(GTSApplicationState *appState)
 
 static int GTSListing_WaitFadeIn(GTSApplicationState *appState)
 {
-    appState->currentScreenInstruction = 1;
+    appState->currentScreenInstruction = GTSLISTING_HANDLE_INPUT;
     return 3;
 }
 
@@ -320,11 +319,11 @@ static int GTSListing_HandleInput(GTSApplicationState *appState)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         GTSListing_ShowBottomMessage(appState, GTS_Text_Selection_DoWhat, TEXT_SPEED_FAST, 0, 0xf0f, (Pokemon *)appState->receivedListing.pokemon.bytes);
-        GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 7);
+        GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSLISTING_WAIT_FOR_MESSAGE, GTSLISTING_SHOW_ACTION_MENU);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        appState->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
+        appState->currentScreenInstruction = GTSLISTING_BEGIN_EXIT;
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_NONE);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
@@ -335,14 +334,14 @@ static int GTSListing_BeginExit(GTSApplicationState *appState)
 {
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
 
-    appState->currentScreenInstruction = 0;
+    appState->currentScreenInstruction = GTSLISTING_WAIT_FADE_IN;
     return 4;
 }
 
 static int GTSListing_ShowConfirmationMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, (((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4 + 200 + 12);
-    appState->currentScreenInstruction = 6;
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 2) + (5 * 2) * 4 + 200 + 12);
+    appState->currentScreenInstruction = GTSLISTING_HANDLE_CONFIRMATION_MENU;
 
     return 3;
 }
@@ -353,11 +352,11 @@ static int GTSListing_HandleConfirmationMenu(GTSApplicationState *appState)
 
     if (result != MENU_NOTHING_CHOSEN) {
         if (result == MENU_CANCEL) {
-            appState->currentScreenInstruction = 0;
+            appState->currentScreenInstruction = GTSLISTING_WAIT_FADE_IN;
             Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         } else {
-            appState->currentScreenInstruction = 2;
-            appState->fadeBothScreens = 1;
+            appState->currentScreenInstruction = GTSLISTING_BEGIN_EXIT;
+            appState->fadeBothScreens = TRUE;
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_TAKE_BACK_POKEMON);
         }
 
@@ -386,10 +385,10 @@ static int GTSListing_ShowActionMenu(GTSApplicationState *appState)
     template.choices = appState->menuStringList;
     template.window = &appState->menuButtonWindows[0];
 
-    Window_DrawStandardFrame(&appState->menuButtonWindows[0], 0, 1 + (18 + 12), 11);
+    Window_DrawStandardFrame(&appState->menuButtonWindows[0], 0, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11);
 
     appState->popupMenu = Menu_NewAndCopyToVRAM(&template, 9, 0, 0, 62, PAD_BUTTON_B);
-    appState->currentScreenInstruction = 8;
+    appState->currentScreenInstruction = GTSLISTING_HANDLE_ACTION_MENU;
 
     return 3;
 }
@@ -406,13 +405,13 @@ static int GTSListing_HandleActionMenu(GTSApplicationState *appState)
         if (Pokemon_IsHoldingMail(mon)) {
             if (Party_GetCurrentCount(appState->playerData->party) == MAX_PARTY_SIZE) {
                 GTSListing_ShowBottomMessage(appState, GTS_Text_Error_NoRoomInParty, TEXT_SPEED_FAST, 0, 0xf0f, mon);
-                GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 1);
+                GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSLISTING_WAIT_FOR_MESSAGE, GTSLISTING_HANDLE_INPUT);
                 return 3;
             }
         }
 
         GTSListing_ShowBottomMessage(appState, GTS_Text_WillYouTakeThis, TEXT_SPEED_FAST, 0, 0xf0f, mon);
-        GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 5);
+        GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSLISTING_WAIT_FOR_MESSAGE, GTSLISTING_SHOW_CONFIRMATION_MENU);
 
         GTSListing_DrawWantedCriteria(appState);
         break;
@@ -422,9 +421,9 @@ static int GTSListing_HandleActionMenu(GTSApplicationState *appState)
         StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
 
-        appState->currentScreenInstruction = 2;
+        appState->currentScreenInstruction = GTSLISTING_BEGIN_EXIT;
 
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_NONE);
         GTSListing_DrawWantedCriteria(appState);
         break;
     }

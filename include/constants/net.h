@@ -9,4 +9,6 @@
 #define WIRELESS_DRIVER_STATUS_CONNECTING   1
 #define WIRELESS_DRIVER_STATUS_CONNECTED    2
 
+#define NETWORK_TIMEOUT_FRAMES (30 * 60 * 2) // 30 fps × 60 seconds × 2 = 3600 frames = 2 minutes
+
 #endif // POKEPLATINUM_CONSTANTS_NET_H

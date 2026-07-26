@@ -1,4 +1,4 @@
-#include "overlay094/screens/search_listing.h"
+﻿#include "overlay094/screens/search_listing.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -191,7 +191,7 @@ static void GTSSearchListing_InitGraphics(GTSApplicationState *appState)
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 17, bgConfig, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 7, 0, 0, 16 * 3 * 2, HEAP_ID_62);
 }
@@ -234,11 +234,11 @@ static const int sWindowLayouts[][4] = {
 
 static void GTSSearchListing_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, 1 + (18 + 12) + 9);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + 9);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 15, 5 * 2, 4, 13, ((1 + (18 + 12)) + 9) + 27 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 15, 5 * 2, 4, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 2);
 
-    int baseTile = ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4);
+    int baseTile = (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 2) + (5 * 2) * 4);
 
     for (int i = 0; i < NELEMS(sWindowLayouts); i++) {
         Window_Add(appState->bgConfig, &appState->infoWindows[i], 0, sWindowLayouts[i][0], sWindowLayouts[i][1], sWindowLayouts[i][2], sWindowLayouts[i][3], 13, baseTile);
@@ -299,7 +299,7 @@ static int GTSSearchListing_HandleInput(GTSApplicationState *appState)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         appState->currentScreenInstruction = GTS_SEARCHLISTING_FADE_AND_EXIT;
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_NONE);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (appState->selectedInfoTab == 0) {
@@ -321,7 +321,7 @@ static int GTSSearchListing_HandleInput(GTSApplicationState *appState)
         if ((newSelectedResult != appState->selectedSearchResult) && (newSelectedResult >= 0)) {
             Sprite_SetAnim(appState->avatarSprites[newSelectedResult + 1], 16 + newSelectedResult * 4);
             appState->currentScreenInstruction = GTS_SEARCHLISTING_FADE_AND_EXIT;
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_NONE);
             appState->selectedSearchResult = newSelectedResult;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
@@ -340,7 +340,7 @@ static int GTSSearchListing_FadeAndExit(GTSApplicationState *appState)
 
 static int GTSSearchListing_ShowConfirmationMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, (((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4 + 262 + 64 + 36);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 2) + (5 * 2) * 4 + 262 + 64 + 36);
     appState->currentScreenInstruction = GTS_SEARCHLISTING_HANDLE_CONFIRMATION_MENU;
 
     return GTS_LOOP_STATE_MAIN;
@@ -353,12 +353,12 @@ static int GTSSearchListing_HandleConfirmationMenu(GTSApplicationState *appState
     if (result != MENU_NOTHING_CHOSEN) {
         if (result == MENU_CANCEL) {
             appState->currentScreenInstruction = GTS_SEARCHLISTING_FADE_AND_EXIT;
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_NONE);
             GTSSearchListing_DrawTabHeaders(appState->gtsMessageLoader, &appState->infoWindows[7]);
             GTSSearchListing_RefreshInfoPanel(appState);
         } else {
             appState->currentScreenInstruction = GTS_SEARCHLISTING_FADE_AND_EXIT;
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_6);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_CHOOSE_LISTED_MON);
             GTSSearchListing_DrawTabHeaders(appState->gtsMessageLoader, &appState->infoWindows[7]);
             GTSSearchListing_RefreshInfoPanel(appState);
         }

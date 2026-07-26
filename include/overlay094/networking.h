@@ -4,7 +4,16 @@
 #include "struct_defs/world_exchange.h"
 
 #include "overlay094/gts_application_state.h"
-#include "overlay094/struct_ov94_0223BA24.h"
+
+typedef struct GTSCountrySearchRequest {
+    s16 species;
+    s8 gender;
+    s8 level;
+    s8 level2;
+    s8 unk_05;
+    s8 count;
+    u8 countryIndex;
+} GTSCountrySearchRequest;
 
 void GTSNetworking_InitCredentials(s32 dwcProfileId, u64 friendKey);
 void GTSNetworking_ProcessCurrentRequest(void);
@@ -17,12 +26,12 @@ void GTSNetworking_GetListedPokemon(GTSPokemonListing *listing);
 void GTSNetworking_GetListingStatus(GTSPokemonListing *listing);
 void GTSNetworking_Delete(void);
 void GTSNetworking_Return(void);
-void GTSNetworking_SearchGlobal(const GTSPokemonRequirements *param0, s32 param1, GTSPokemonListing *param2);
-void GTSNetworking_SearchByCountry(const GTSCountrySearchRequest *param0, GTSPokemonListing *param1);
-void GTSNetworking_Exchange(s32 param0, const GTSPokemonListing *param1, GTSPokemonListing *param2);
+void GTSNetworking_SearchGlobal(const GTSPokemonRequirements *requirements, s32 maxResults, GTSPokemonListing *listing);
+void GTSNetworking_SearchByCountry(const GTSCountrySearchRequest *req, GTSPokemonListing *listing);
+void GTSNetworking_Exchange(s32 listingId, const GTSPokemonListing *listing1, GTSPokemonListing *listing2);
 void GTSNetworking_ExchangeFinish(void);
 void GTSNetworking_InitConnection(void);
-void GTSNetworking_SetProfile(const WorldExchangeTrainer *param0, WorldExchangeTrainerError *param1);
+void GTSNetworking_SetProfile(const WorldExchangeTrainer *trainer, WorldExchangeTrainerError *err);
 
 #define GTS_SERVER_BASE_URL "http://gamestats2.gs.nintendowifi.net/pokemondpds/"
 

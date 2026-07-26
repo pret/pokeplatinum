@@ -136,7 +136,7 @@ BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState)
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
         (*loopState) = GTS_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER;
-        return TRUE; // pass through to main
+        return TRUE;
     }
 
     return FALSE;
@@ -157,19 +157,19 @@ BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState)
             *loopState = GTS_LOOP_STATE_INIT;
         }
         break;
-    case GTS_LOOP_STATE_INIT: // GTS_WFC_INIT_SCREEN
+    case GTS_LOOP_STATE_INIT:
         *loopState = (*gtsApplicationScreens[appState->screenId][0])(appState, *loopState);
 
         if (appState->appManActive) {
             GTSApplication_CleanupGraphics(appState);
         }
         break;
-    case GTS_LOOP_STATE_WAIT_FADE: // GTS_WFC_VISIBLE
+    case GTS_LOOP_STATE_WAIT_FADE:
         if (IsScreenFadeDone()) {
             *loopState = GTS_LOOP_STATE_MAIN;
         }
         break;
-    case GTS_LOOP_STATE_MAIN: // GTS_WFC_CONNECTING
+    case GTS_LOOP_STATE_MAIN:
         *loopState = (*gtsApplicationScreens[appState->screenId][1])(appState, *loopState);
         break;
     case GTS_LOOP_STATE_FINISH:
@@ -398,7 +398,7 @@ Menu *GTSApplication_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int bas
     template.tilemapTop = tilemapTop;
     template.baseTile = baseTile;
 
-    return Menu_MakeYesNoChoice(bgConfig, &template, 1 + (18 + 12), 11, HEAP_ID_62);
+    return Menu_MakeYesNoChoice(bgConfig, &template, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11, HEAP_ID_62);
 }
 
 void GTSApplication_SetCurrentAndNextScreenInstruction(GTSApplicationState *appState, int currentInstruction, int nextInstruction)

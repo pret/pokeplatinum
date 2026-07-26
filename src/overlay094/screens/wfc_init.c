@@ -1,4 +1,4 @@
-#include "overlay094/screens/wfc_init.h"
+﻿#include "overlay094/screens/wfc_init.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -267,7 +267,7 @@ static void GTSWFCInit_InitGraphics(GTSApplicationState *appState)
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_62);
     LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 2, bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 5, bgConfig, BG_LAYER_MAIN_1, 0, 32 * 24 * 2, FALSE, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 10, bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_62);
@@ -282,14 +282,14 @@ static void GTSWFCInit_InitGraphics(GTSApplicationState *appState)
 
 static void GTSWFCInit_InitText(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->networkErrWindow, BG_LAYER_MAIN_0, 4, 4, 23, 16, 13, ((1 + (18 + 12)) + 9) + 27 * 4);
+    Window_Add(appState->bgConfig, &appState->networkErrWindow, BG_LAYER_MAIN_0, 4, 4, 23, 16, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 4);
     Window_FillTilemap(&appState->networkErrWindow, 0);
-    Window_Add(appState->bgConfig, &appState->titleWindow, BG_LAYER_MAIN_0, 4, 1, 24, 2, 13, (((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16);
+    Window_Add(appState->bgConfig, &appState->titleWindow, BG_LAYER_MAIN_0, 4, 1, 24, 2, 13, ((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 4) + 23 * 16);
     Window_FillTilemap(&appState->titleWindow, 0);
 
     Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 1, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, BG_LAYER_MAIN_0, 2, 19, 27, 4, 13, (1 + (18 + 12)) + 9);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, BG_LAYER_MAIN_0, 2, 19, 27, 4, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0);
 }
 
@@ -319,7 +319,6 @@ static int GTSWFCInit_AskToSetupConnection(GTSApplicationState *appState)
     GTSApplication_DisplayStatusMessage(appState, appState->disconnStatusMessageLoader, pl_msg_00000695_00017, TEXT_SPEED_FAST, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSWFCINIT_WAIT_FOR_TEXT_THEN_YES_NO_MENU, GTSWFCINIT_PROCESS_SETUP_CONFIRMATION);
 
-    // this starts counting box pokemon in the main loop
     appState->deferredBoxId = 1;
 
     return GTS_LOOP_STATE_MAIN;
@@ -331,8 +330,8 @@ static int GTSWFCInit_ProcessSetupConfirmation(GTSApplicationState *appState)
 
     if (menuInput != MENU_NOTHING_CHOSEN) {
         if (menuInput == MENU_CANCEL) {
-            CommManager_EndGlobalWifi(); // free the network lock?
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
+            CommManager_EndGlobalWifi();
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
         } else {
             GTSApplication_DisplayStatusMessage(appState, appState->connProgressMessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
@@ -371,7 +370,7 @@ static int GTSWFCInit_RestartOrExit(GTSApplicationState *appState)
             }
 
             CommManager_EndGlobalWifi();
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
         }
     }
@@ -392,7 +391,7 @@ static int GTSWFCInit_CleanupNetworking(GTSApplicationState *appState)
     CommManager_EndGlobalWifi();
 
     DWC_CleanupInet();
-    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
+    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_NONE);
     appState->currentScreenInstruction = GTSWFCINIT_SHOW_DISCONNECTED_MESSAGE;
 
     return GTS_LOOP_STATE_MAIN;
@@ -610,7 +609,7 @@ static int GTSWFCInit_WaitForServerResponse(GTSApplicationState *appState)
     } else {
         appState->networkTimeoutCounter++;
 
-        if (appState->networkTimeoutCounter == (30 * 60 * 2)) {
+        if (appState->networkTimeoutCounter == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -644,7 +643,7 @@ static int GTSWFCInit_SetProfileResponse(GTSApplicationState *appState)
             case WE_VALIDATION_ERROR_VALID:
                 switch (appState->worldExchangeTrainerError.systemError) {
                 case WE_SYSTEM_ERROR_NONE:
-                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
+                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_NONE);
                     appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
                     break;
                 case WE_SYSTEM_ERROR_DWC_3:
@@ -710,7 +709,7 @@ static int GTSWFCInit_SetProfileResponse(GTSApplicationState *appState)
     } else {
         appState->networkTimeoutCounter++;
 
-        if (appState->networkTimeoutCounter == (30 * 60 * 2)) {
+        if (appState->networkTimeoutCounter == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -744,7 +743,7 @@ static int GTSWFCInit_ExitScreen(GTSApplicationState *appState)
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
 
     appState->currentScreenInstruction = GTSWFCINIT_ASK_TO_SETUP_CONNECTION;
-    appState->fadeBothScreens = 1;
+    appState->fadeBothScreens = TRUE;
 
     return GTS_LOOP_STATE_FINISH;
 }
@@ -757,7 +756,7 @@ static int GTSWFCInit_HandleRetryMenuInput(GTSApplicationState *appState)
         if (result == MENU_CANCEL) {
             appState->currentScreenInstruction = GTSWFCINIT_ASK_TO_SETUP_CONNECTION;
         } else {
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
         }
     }
@@ -838,7 +837,7 @@ static int GTSWFCInit_FatalErrorDisconnectMessage(GTSApplicationState *appState)
         appState->wfcDisconnectMessageFrameDelay++;
 
         if (appState->wfcDisconnectMessageFrameDelay > 30) {
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTSWFCINIT_EXIT_SCREEN;
         }
         break;
@@ -872,7 +871,7 @@ static int GTSWFCInit_WaitForTextDelayed(GTSApplicationState *appState)
 static int GTSWFCInit_WaitForTextThenYesNoMenu(GTSApplicationState *appState)
 {
     if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
-        appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, ((((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16) + 24 * 2);
+        appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 4) + 23 * 16) + 24 * 2);
         appState->currentScreenInstruction = appState->nextScreenInstruction;
     }
 
@@ -935,7 +934,7 @@ static void GTSWFCInit_DisplayNetworkError(GTSApplicationState *appState, int me
     StringTemplate_Format(appState->stringTemplate, appState->shortErrorBuffer, fmtString);
 
     Window_FillTilemap(&appState->networkErrWindow, 15);
-    Window_DrawStandardFrame(&appState->networkErrWindow, 1, 1 + (18 + 12), 11);
+    Window_DrawStandardFrame(&appState->networkErrWindow, 1, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT, 11);
 
     appState->textPrinter = Text_AddPrinterWithParams(&appState->networkErrWindow, FONT_MESSAGE, appState->shortErrorBuffer, 0, 0, TEXT_SPEED_INSTANT, NULL);
 

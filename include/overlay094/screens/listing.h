@@ -15,4 +15,16 @@ void GTS_DrawOfferedPokemonInfo(MessageLoader *msgLoader, MessageLoader *species
 void GTS_DrawTrainerInfo(MessageLoader *msgLoader, Window trainerNameWindows[], u16 *trainerName, Pokemon *mon, Window otNameWindows[]);
 void GTS_LoadListingPokemonSprite(Pokemon *mon);
 
+enum GTSListingStateHandlers {
+    GTSLISTING_WAIT_FADE_IN,
+    GTSLISTING_HANDLE_INPUT,
+    GTSLISTING_BEGIN_EXIT,
+    GTSLISTING_WAIT_FOR_MESSAGE,
+    GTSLISTING_WAIT_FOR_MESSAGE_WITH_DELAY,
+    GTSLISTING_SHOW_CONFIRMATION_MENU,
+    GTSLISTING_HANDLE_CONFIRMATION_MENU,
+    GTSLISTING_SHOW_ACTION_MENU,
+    GTSLISTING_HANDLE_ACTION_MENU
+};
+
 #endif // POKEPLATINUM_GTS_SCREENS_LISTING_H

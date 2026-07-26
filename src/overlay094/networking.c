@@ -8,7 +8,6 @@
 
 #include "http/http.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/struct_ov94_0223BA24.h"
 
 #include "enums.h"
 
@@ -531,7 +530,7 @@ void GTSNetworking_Post(const GTSPokemonListing *listing)
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_POST), sGTSNetworkingState.requestData, sizeof(GTSPokemonListing), sGTSNetworkingState.responseStatus, 2)) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_POST, sGTSNetworkingState.requestData, sizeof(GTSPokemonListing), sGTSNetworkingState.responseStatus, 2)) {
         sGTSNetworkingState.status = NETWORK_STATUS_POST_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -546,7 +545,7 @@ void GTSNetworking_PostFinish(void)
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_POST_FINISH), sGTSNetworkingState.requestData, 8, sGTSNetworkingState.responseStatus, 2)) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_POST_FINISH, sGTSNetworkingState.requestData, 8, sGTSNetworkingState.responseStatus, 2)) {
         sGTSNetworkingState.status = NETWORK_STATUS_POST_FINISH_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -561,7 +560,7 @@ void GTSNetworking_GetListedPokemon(GTSPokemonListing *listing)
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_GET), sGTSNetworkingState.requestData, 0, listing, sizeof(GTSPokemonListing))) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_GET, sGTSNetworkingState.requestData, 0, listing, sizeof(GTSPokemonListing))) {
         sGTSNetworkingState.status = NETWORK_STATUS_GET_LISTED_POKEMON_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -576,7 +575,7 @@ void GTSNetworking_GetListingStatus(GTSPokemonListing *listing)
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_RESULT), sGTSNetworkingState.requestData, 0, listing, sizeof(GTSPokemonListing))) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_RESULT, sGTSNetworkingState.requestData, 0, listing, sizeof(GTSPokemonListing))) {
         sGTSNetworkingState.status = NETWORK_STATUS_GET_LISTING_STATUS_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -589,7 +588,7 @@ void GTSNetworking_Delete(void)
 {
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_DELETE), sGTSNetworkingState.requestData, 0, sGTSNetworkingState.responseStatus, 2)) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_DELETE, sGTSNetworkingState.requestData, 0, sGTSNetworkingState.responseStatus, 2)) {
         sGTSNetworkingState.status = NETWORK_STATUS_DELETE_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -602,7 +601,7 @@ void GTSNetworking_Return(void)
 {
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_RETURN), sGTSNetworkingState.requestData, 0, sGTSNetworkingState.responseStatus, 2)) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_RETURN, sGTSNetworkingState.requestData, 0, sGTSNetworkingState.responseStatus, 2)) {
         sGTSNetworkingState.status = NETWORK_STATUS_RETURN_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -620,7 +619,7 @@ void GTSNetworking_SearchGlobal(const GTSPokemonRequirements *requirements, s32 
     memcpy(&sGTSNetworkingState.requestData[0], requirements, sizeof(GTSPokemonRequirements));
     sGTSNetworkingState.requestData[sizeof(GTSPokemonRequirements)] = (u8)maxResults;
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_SEARCH), sGTSNetworkingState.requestData, sizeof(GTSPokemonRequirements) + 1, listing, (int)sizeof(GTSPokemonListing) * maxResults)) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_SEARCH, sGTSNetworkingState.requestData, sizeof(GTSPokemonRequirements) + 1, listing, (int)sizeof(GTSPokemonListing) * maxResults)) {
         sGTSNetworkingState.status = NETWORK_STATUS_SEARCH_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -637,7 +636,7 @@ void GTSNetworking_SearchByCountry(const GTSCountrySearchRequest *req, GTSPokemo
 
     memcpy(&sGTSNetworkingState.requestData[0], req, sizeof(GTSCountrySearchRequest));
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_SEARCH), sGTSNetworkingState.requestData, sizeof(GTSCountrySearchRequest), listing, (int)sizeof(GTSPokemonListing) * req->count)) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_SEARCH, sGTSNetworkingState.requestData, sizeof(GTSCountrySearchRequest), listing, (int)sizeof(GTSPokemonListing) * req->count)) {
         sGTSNetworkingState.status = NETWORK_STATUS_SEARCH_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -646,7 +645,7 @@ void GTSNetworking_SearchByCountry(const GTSCountrySearchRequest *req, GTSPokemo
     }
 }
 
-void GTSNetworking_Exchange(s32 param0, const GTSPokemonListing *listing1, GTSPokemonListing *listing2)
+void GTSNetworking_Exchange(s32 listingId, const GTSPokemonListing *listing1, GTSPokemonListing *listing2)
 {
     sGTSNetworkingState.responseData = (u8 *)listing2;
 
@@ -654,9 +653,9 @@ void GTSNetworking_Exchange(s32 param0, const GTSPokemonListing *listing1, GTSPo
 
     memcpy(&sGTSNetworkingState.requestData[0], listing1, sizeof(GTSPokemonListing));
 
-    *(s32 *)(&sGTSNetworkingState.requestData[sizeof(GTSPokemonListing)]) = param0;
+    *(s32 *)(&sGTSNetworkingState.requestData[sizeof(GTSPokemonListing)]) = listingId;
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_EXCHANGE), sGTSNetworkingState.requestData, sizeof(GTSPokemonListing) + 4, listing2, sizeof(GTSPokemonListing))) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_EXCHANGE, sGTSNetworkingState.requestData, sizeof(GTSPokemonListing) + 4, listing2, sizeof(GTSPokemonListing))) {
         sGTSNetworkingState.status = NETWORK_STATUS_EXCHANGE_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -671,7 +670,7 @@ void GTSNetworking_ExchangeFinish(void)
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_EXCHANGE_FINISH), sGTSNetworkingState.requestData, 8, sGTSNetworkingState.responseStatus, 2)) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_EXCHANGE_FINISH, sGTSNetworkingState.requestData, 8, sGTSNetworkingState.responseStatus, 2)) {
         sGTSNetworkingState.status = NETWORK_STATUS_EXCHANGE_FINISH_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -684,7 +683,7 @@ void GTSNetworking_InitConnection(void)
 {
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_WE_INFO), sGTSNetworkingState.requestData, 0, sGTSNetworkingState.responseStatus, 2)) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_WE_INFO, sGTSNetworkingState.requestData, 0, sGTSNetworkingState.responseStatus, 2)) {
         sGTSNetworkingState.status = NETWORK_STATUS_INIT_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
@@ -702,7 +701,7 @@ void GTSNetworking_SetProfile(const WorldExchangeTrainer *trainer, WorldExchange
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const u8 *)GTS_URL_SET_PROFILE), sGTSNetworkingState.requestData, sizeof(WorldExchangeTrainer), sGTSNetworkingState.responseData, sizeof(WorldExchangeTrainerError))) {
+    if (GTSNetworking_PrepareRequest((const u8 *)GTS_URL_SET_PROFILE, sGTSNetworkingState.requestData, sizeof(WorldExchangeTrainer), sGTSNetworkingState.responseData, sizeof(WorldExchangeTrainerError))) {
         sGTSNetworkingState.status = NETWORK_STATUS_SET_PROFILE_PENDING;
     } else {
         sGTSNetworkingState.status = NETWORK_STATUS_COMPLETE;
