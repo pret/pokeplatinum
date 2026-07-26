@@ -498,7 +498,7 @@ BOOL FrontierScrCmd_CallBattleArcadeFunction(FrontierScriptContext *ctx)
         battleArcade->unk_1E = 1;
         break;
     case BA_FUNC_UNK_52:
-        battleArcade->unk_A7C = 0;
+        battleArcade->msgsReceived = 0;
         break;
     }
 
@@ -573,8 +573,8 @@ static BOOL ov104_02237D18(FrontierScriptContext *param0)
 
     v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
 
-    if (v0->unk_A7C >= 2) {
-        v0->unk_A7C = 0;
+    if (v0->msgsReceived >= 2) {
+        v0->msgsReceived = 0;
         return 1;
     }
 

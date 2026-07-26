@@ -43,7 +43,7 @@ typedef struct BattleFactory {
     SaveData *saveData;
     FieldBattleDTO *dto;
     SysTask *unk_500;
-    u16 unk_504[60];
+    u16 commBuffer[60];
     u8 unk_57C;
     u8 unk_57D;
     u16 unk_57E;
@@ -54,7 +54,7 @@ typedef struct BattleFactory {
     u32 unk_598[6];
     FrontierPokemon unk_5B0[6];
     u16 unk_700;
-    u8 unk_702;
+    u8 msgsReceived;
     u32 unk_704;
 } BattleFactory;
 

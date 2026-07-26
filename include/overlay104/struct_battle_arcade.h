@@ -53,8 +53,8 @@ typedef struct BattleArcade {
     u16 unk_410;
     u16 unk_412[3];
     u16 appCursorPos[6];
-    u16 unk_424[40];
-    u8 unk_474[512];
+    u16 commBuffer[40];
+    u8 commHugeBuffer[512];
     u8 unk_674[2][512];
     u8 unk_A74;
     u8 unk_A75;
@@ -62,7 +62,7 @@ typedef struct BattleArcade {
     u16 unk_A78;
     u8 unk_A7A;
     u8 unk_A7B;
-    u8 unk_A7C;
+    u8 msgsReceived;
     u8 unk_A7D;
     u16 *unk_A80;
     u32 unk_A84;

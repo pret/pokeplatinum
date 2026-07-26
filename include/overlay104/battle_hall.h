@@ -38,13 +38,13 @@ typedef struct BattleHall {
     FieldBattleDTO *dto;
     u8 typeRanks[4][9];
     u16 heldItems[2];
-    u16 unk_72C[44];
-    u8 unk_784[512];
+    u16 commBuffer[44];
+    u8 commHugeBuffer[512];
     u8 unk_984[2][512];
     u16 unk_D84[2];
     u8 unk_D88;
     Pokemon *partnersMon;
-    u8 unk_D90;
+    u8 msgsReceived;
     u32 unk_D94;
 } BattleHall;
 

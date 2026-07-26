@@ -23,12 +23,12 @@
 #include "trainer_info.h"
 #include "unk_02030494.h"
 
-void ov104_0222ECE8(int dummy1, int unused, void *dummy2, BattleHall *battleHall)
+void ov104_0222ECE8(int dummy1, int unused1, void *dummy2, void *battleHall)
 {
     BattleHall *battleHall_dupe = battleHall;
-    const u16 *unused = dummy2;
+    const u16 *unused2 = dummy2;
 
-    battleHall_dupe->unk_D90++;
+    battleHall_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == dummy1) {
         return;
@@ -41,14 +41,14 @@ BOOL ov104_0222ED00(BattleHall *battleHall)
     TrainerInfo *dummy2;
     u16 *data;
     int result, dataSize = 44;
-    data = battleHall->unk_72C;
+    data = battleHall->commBuffer;
     dummy1 = 0;
     dummy2 = SaveData_GetTrainerInfo(battleHall->saveData);
 
     dummy1 += 1;
     dummy1 += (7 + 1);
 
-    if (CommSys_SendData(OV104_0222ED00_2, data, dataSize) == 1) {
+    if (CommSys_SendData(34, data, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -57,14 +57,14 @@ BOOL ov104_0222ED00(BattleHall *battleHall)
     return result;
 }
 
-void ov104_0222ED2C(int dummy1, int unused1, void *dummy2, BattleHall *battleHall)
+void ov104_0222ED2C(int dummy1, int unused1, void *dummy2, void *battleHall)
 {
     int unused, dummy3;
     BattleHall *battleHall_dupe = battleHall;
     const u16 *unused2 = dummy2;
 
     dummy3 = 0;
-    battleHall->unk_D90++;
+    battleHall_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == dummy1) {
         return;
@@ -81,16 +81,16 @@ BOOL ov104_0222ED44(BattleHall *battleHall)
     int i, dummy;
     u16 *data;
     int result, dataSize = 44;
-    v4 = battleHall->unk_72C; // data of some sort
+    data = battleHall->commBuffer;
     dummy = 0;
 
     for (i = 0; i < (10 * 2); i++) {
-        v4[i + dummy] = battleHall->trainerIDs[i];
+        data[i + dummy] = battleHall->trainerIDs[i];
     }
 
     dummy += (10 * 2);
 
-    if (CommSys_SendData(OV104_0222ED44, data, dataSize) == 1) {
+    if (CommSys_SendData(35, data, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -99,14 +99,14 @@ BOOL ov104_0222ED44(BattleHall *battleHall)
     return result;
 }
 
-void ov104_0222ED74(int param0, int unused, void *param2, BattleHall *battleHall)
+void ov104_0222ED74(int param0, int unused, void *trainerIDs, void *battleHall)
 {
     int i, dummy;
     BattleHall *battleHall_dupe = battleHall;
-    const u16 *v3 = param2; // param2_dupe
+    const u16 *trainerIDs_dupe = trainerIDs;
 
     dummy = 0;
-    battleHall_dupe->unk_D90++;
+    battleHall_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -117,7 +117,7 @@ void ov104_0222ED74(int param0, int unused, void *param2, BattleHall *battleHall
     }
 
     for (i = 0; i < (10 * 2); i++) {
-        battleHall_dupe->trainerIDs[i] = v3[i + dummy];
+        battleHall_dupe->trainerIDs[i] = trainerIDs_dupe[i + dummy];
     }
 
     dummy += (10 * 2);
@@ -128,11 +128,11 @@ BOOL ov104_0222EDA8(BattleHall *battleHall) // related to the party pokemon
     int i, dummy;
     u16 *data; // data
     int result, dataSize = 44;
-    data = battleHall->unk_72C;
+    data = battleHall->commBuffer;
     dummy = 0;
 
     for (i = 0; i < (10 * 2); i++) {
-        v2[i] = battleHall->monIndices[i];
+        data[i] = battleHall->monIndices[i];
     }
 
     dummy += (10 * 2);
@@ -146,14 +146,14 @@ BOOL ov104_0222EDA8(BattleHall *battleHall) // related to the party pokemon
     return result;
 }
 
-void ov104_0222EDDC(int param0, int unused, void *param2, BattleHall *battleHall) // get party pokemon
+void ov104_0222EDDC(int param0, int unused, void *param2, void *battleHall) // get party pokemon
 {
     int i, dummy;
     BattleHall *battleHall_dupe = battleHall;
-    const u16 *v3 = param2; // param2_dupe
+    const u16 *v3 = param2;
 
     dummy = 0;
-    battleHall_dupe->unk_D90++;
+    battleHall_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -164,7 +164,7 @@ void ov104_0222EDDC(int param0, int unused, void *param2, BattleHall *battleHall
     }
 
     for (i = 0; i < (10 * 2); i++) {
-        battleHall_dupe->monIndices[i] = v3[v0];
+        battleHall_dupe->monIndices[i] = v3[i];
     }
 
     dummy += (10 * 2);
@@ -174,7 +174,7 @@ BOOL ov104_0222EE14(BattleHall *battleHall, u8 param1)
 {
     u16 *data;
     int result, dataSize = 44;
-    data = battleHall->unk_72C;
+    data = battleHall->commBuffer;
 
     data[0] = param1;
 
@@ -187,12 +187,12 @@ BOOL ov104_0222EE14(BattleHall *battleHall, u8 param1)
     return result;
 }
 
-void ov104_0222EE38(int param0, int unused, void *param2, BattleHall *battleHall)
+void ov104_0222EE38(int param0, int unused, void *param2, void *battleHall)
 {
     BattleHall *battleHall_dupe = battleHall;
     const u16 *v1 = param2; // param2_dupe
 
-    battleHall_dupe->unk_D90++;
+    battleHall_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -213,9 +213,9 @@ BOOL ov104_0222EE60(BattleHall *battleHall) // something about an individual pok
     party = SaveData_GetParty(battleHall->saveData);
     pokemon = Party_GetPokemonBySlotIndex(party, battleHall->partySlots[0]);
 
-    MI_CpuCopy8(pokemon, &battleHall->unk_784[0], pokemonSize);
+    MI_CpuCopy8(pokemon, battleHall->commHugeBuffer, pokemonSize);
 
-    if (CommSys_SendDataHuge(OV104_0222EE60_1, battleHall->unk_784, dataSize) == 1) {
+    if (CommSys_SendDataHuge(38, battleHall->commHugeBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -224,28 +224,28 @@ BOOL ov104_0222EE60(BattleHall *battleHall) // something about an individual pok
     return result;
 }
 
-void ov104_0222EEA8(int param0, int unused, void *param2, BattleHall *battleHall) // double battle?
+void ov104_0222EEA8(int param0, int unused1, void *partnersMon, void *battleHall) // switch battle
 {
-    int unused, dummy, pokemonSize;
+    int unused2, dummy, pokemonSize;
     BattleHall *battleHall_dupe = battleHall;
-    const u8 *v4 = param2; // param2_dupe
+    const u8 *partnersMon_dupe = partnersMon; // param2_dupe
 
     dummy = 0;
-    battleHall_dupe->unk_D90++;
+    battleHall_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
     }
 
     pokemonSize = Pokemon_StructSize();
-    MI_CpuCopy8(&v4[0], battleHall->partnersMon, pokemonSize);
+    MI_CpuCopy8(partnersMon_dupe, battleHall_dupe->partnersMon, pokemonSize);
 }
 
-u8 *ov104_0222EED8(int index, BattleHall *battleHall, int param2)
+u8 *ov104_0222EED8(int index, void *battleHall, int size)
 {
     BattleHall *battleHall_dupe = battleHall;
 
-    GF_ASSERT(param2 <= 512);
+    GF_ASSERT(size <= 512);
     return battleHall_dupe->unk_984[index];
 }
 
@@ -253,20 +253,20 @@ BOOL ov104_0222EEF8(BattleFactory *battleFactory)
 {
     int unused, dummy1;
     TrainerInfo *dummy2;
-    u16 *v3; // data
+    u16 *data;
     int result, dataSize = 60;
-    v3 = battleFactory->unk_504;
-    dummy = 0;
+    data = battleFactory->commBuffer;
+    dummy1 = 0;
     dummy2 = SaveData_GetTrainerInfo(battleFactory->saveData);
 
-    v3[1] = battleFactory->unk_08;
-    v3[2] = battleFactory->currentStreak;
-    v3[3] = battleFactory->unk_0E;
+    data[1] = battleFactory->unk_08;
+    data[2] = battleFactory->currentStreak;
+    data[3] = battleFactory->unk_0E;
 
-    dummy += 4;
-    dummy += (7 + 1);
+    dummy1 += 4;
+    dummy1 += (7 + 1);
 
-    if (CommSys_SendData(OV104_0222EEF8_2, v3, dataSize) == 1) {
+    if (CommSys_SendData(22, data, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -275,14 +275,14 @@ BOOL ov104_0222EEF8(BattleFactory *battleFactory)
     return result;
 }
 
-void ov104_0222EF30(int param0, int unused1, void *param2, BattleFactory *battleFactory)
+void ov104_0222EF30(int param0, int unused1, void *param2, void *battleFactory)
 {
     int unused2, dummy;
     BattleFactory *battleFactory_dupe = battleFactory;
     const u16 *v3 = param2; // param2_dupe
 
     dummy = 0;
-    battleFactory_dupe->unk_702++;
+    battleFactory_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -301,11 +301,11 @@ BOOL ov104_0222EF64(BattleFactory *battleFactory)
     int i, dummy;
     u16 *data;
     int result, dataSize = 60;
-    v2 = battleFactory->unk_504;
+    data = battleFactory->commBuffer;
     dummy = 0;
 
     for (i = 0; i < 7 * 2; i++) {
-        v2[i + dummy] = battleFactory->trainerIDs[i];
+        data[i + dummy] = battleFactory->trainerIDs[i];
     }
 
     dummy += (7 * 2);
@@ -319,14 +319,14 @@ BOOL ov104_0222EF64(BattleFactory *battleFactory)
     return result;
 }
 
-void ov104_0222EF94(int param0, int unused, void *param2, BattleFactory *battleFactory)
+void ov104_0222EF94(int param0, int unused, void *param2, void *battleFactory)
 {
     int i, dummy;
     BattleFactory *battleFactory_dupe = battleFactory;
     const u16 *v3 = param2;
 
     dummy = 0;
-    battleFactory_dupe->unk_702++;
+    battleFactory_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -337,7 +337,7 @@ void ov104_0222EF94(int param0, int unused, void *param2, BattleFactory *battleF
     }
 
     for (i = 0; i < 7 * 2; i++) {
-        battleFactory->trainerIDs[i] = v3[i + dummy];
+        battleFactory_dupe->trainerIDs[i] = v3[i + dummy];
     }
 
     dummy += (7 * 2);
@@ -346,31 +346,31 @@ void ov104_0222EF94(int param0, int unused, void *param2, BattleFactory *battleF
 BOOL ov104_0222EFCC(BattleFactory *battleFactory)
 {
     int i, offset;
-    u16 *v2;
-    int result, dataSize = OV104_0222EEF8_1;
-    v2 = battleFactory->unk_504;
+    u16 *data;
+    int result, dataSize = 60;
+    data = battleFactory->commBuffer;
     offset = 0;
 
     for (i = 0; i < 6; i++) {
-        v2[i] = battleFactory->unk_584[i];
+        data[i] = battleFactory->unk_584[i];
     }
 
     offset += 6;
 
     for (i = 0; i < 6; i++) {
-        v2[i + offset] = battleFactory->unk_590[i];
+        data[i + offset] = battleFactory->unk_590[i];
     }
 
-    offest += 6;
+    offset += 6;
 
     for (i = 0; i < 6; i++) {
-        v2[i + offset] = (battleFactory->unk_598[i] & 0xFFFF);
-        v2[i + offset + 6] = ((battleFactory->unk_598[i] >> 16) & 0xFFFF);
+        data[i + offset] = (battleFactory->unk_598[i] & 0xFFFF);
+        data[i + offset + 6] = ((battleFactory->unk_598[i] >> 16) & 0xFFFF);
     }
 
     offset += (6 * 2);
 
-    if (CommSys_SendData(OV104_0222EFCC, v2, dataSize) == 1) {
+    if (CommSys_SendData(24, data, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -379,15 +379,15 @@ BOOL ov104_0222EFCC(BattleFactory *battleFactory)
     return result;
 }
 
-void ov104_0222F03C(int param0, int unused, void *param2, BattleFactory *battleFactory)
+void ov104_0222F03C(int param0, int unused1, void *param2, void *battleFactory)
 {
     int i, offset;
-    Pokemon *unused;
+    Pokemon *unused2;
     BattleFactory *battleFactory_dupe = battleFactory;
     const u16 *v4 = param2; // param2_dupe
 
-    v1 = 0;
-    battleFactory_dupe->unk_702++;
+    offset = 0;
+    battleFactory_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -407,44 +407,44 @@ void ov104_0222F03C(int param0, int unused, void *param2, BattleFactory *battleF
         battleFactory_dupe->unk_260[i] = v4[i + offset];
     }
 
-    v1 += 6;
+    offset += 6;
 
     for (i = 0; i < 6; i++) {
         battleFactory_dupe->unk_268[i] = v4[i + offset];
         battleFactory_dupe->unk_268[i] |= (v4[i + offset + 6] << 16);
     }
 
-    v1 += (6 * 2);
+    offset += (6 * 2);
 }
 
 BOOL ov104_0222F0B4(BattleFactory *battleFactory)
 {
     int i, offset;
-    u16 *v2; // data
+    u16 *data;
     int result, dataSize = 60;
-    v2 = battleFactory->unk_504;
+    data = battleFactory->commBuffer;
     offset = 0;
 
     for (i = 0; i < 4; i++) {
-        v2[i] = battleFactory->unk_3D2[i];
+        data[i] = battleFactory->unk_3D2[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        v2[i + offset] = battleFactory->unk_3DA[i];
+        data[i + offset] = battleFactory->unk_3DA[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        v2[i + offset] = (battleFactory->unk_3E0[i] & 0xFFFF);
-        v2[i + offset + 4] = ((battleFactory->unk_3E0[i] >> 16) & 0xFFFF);
+        data[i + offset] = (battleFactory->unk_3E0[i] & 0xFFFF);
+        data[i + offset + 4] = ((battleFactory->unk_3E0[i] >> 16) & 0xFFFF);
     }
 
     offset += (4 * 2);
 
-    if (CommSys_SendData(OV104_0222F0B4_1, v2, dataSize) == 1) {
+    if (CommSys_SendData(25, data, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -453,14 +453,14 @@ BOOL ov104_0222F0B4(BattleFactory *battleFactory)
     return result;
 }
 
-void ov104_0222F124(int param0, int unused, void *param2, BattleFactory *battleFactory)
+void ov104_0222F124(int param0, int unused, void *param2, void *battleFactory)
 {
     int i, offset;
     BattleFactory *battleFactory_dupe = battleFactory;
     const u16 *v3 = param2;
 
     offset = 0;
-    battleFactory->unk_702++;
+    battleFactory_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -494,11 +494,11 @@ BOOL ov104_0222F1A0(BattleFactory *battleFactory, u8 param1)
 {
     u16 *data;
     int result, dataSize = 60;
-    data = battleFactory->unk_504; // data
+    data = battleFactory->commBuffer; // data
 
     data[0] = param1;
 
-    if (CommSys_SendData(OV104_0222F1A0, data, dataSize) == 1) {
+    if (CommSys_SendData(26, data, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -507,12 +507,12 @@ BOOL ov104_0222F1A0(BattleFactory *battleFactory, u8 param1)
     return result;
 }
 
-void ov104_0222F1C4(int param0, int unused, void *param2, BattleFactory *battleFactory)
+void ov104_0222F1C4(int param0, int unused, void *param2, void *battleFactory)
 {
     BattleFactory *battleFactory_dupe = battleFactory;
     const u16 *v1 = param2; // param2_dupe
 
-    battleFactory_dupe->unk_702++;
+    battleFactory_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -525,11 +525,11 @@ BOOL ov104_0222F1EC(BattleFactory *battleFactory, u8 param1)
 {
     u16 *v0;
     int result, dataSize = 60;
-    v0 = battleFactory->unk_504;
+    v0 = battleFactory->commBuffer;
 
     v0[0] = param1;
 
-    if (CommSys_SendData(OV104_0222F1EC, v0, dataSize) == 1) {
+    if (CommSys_SendData(27, v0, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -538,12 +538,12 @@ BOOL ov104_0222F1EC(BattleFactory *battleFactory, u8 param1)
     return result;
 }
 
-void ov104_0222F210(int param0, int unused, void *param2, BattleFactory *battleFactory)
+void ov104_0222F210(int param0, int unused, void *param2, void *battleFactory)
 {
     BattleFactory *battleFactory_dupe = battleFactory;
     const u16 *v1 = param2; // param2_dupe
 
-    battleFactory_dupe->unk_702++;
+    battleFactory_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -555,16 +555,16 @@ void ov104_0222F210(int param0, int unused, void *param2, BattleFactory *battleF
 BOOL ov104_0222F238(BattleFactory *battleFactory)
 {
     u8 partySize;
-    int i, v2;
-    u16 *v3; // unk_4E8, ivs, personality & 0xFFFF, personality >> 16 & 0xFFFF
+    int i, offset;
+    u16 *data; // likely setid, ivs, personality & 0xFFFF, personality >> 16 & 0xFFFF
     int result, dataSize;
-    u32 ivs[2];
-    u8 peronsality[2];
+    u32 personality[2];
+    u8 ivs[2];
     Pokemon *pokemon;
 
-    v5 = 60;
-    v3 = battleFactory->unk_504;
-    v2 = 0;
+    dataSize = 60;
+    data = battleFactory->commBuffer;
+    offset = 0;
     partySize = BattleFactory_GetPlayerPartySize(battleFactory->challengeType);
 
     for (i = 0; i < partySize; i++) {
@@ -574,25 +574,25 @@ BOOL ov104_0222F238(BattleFactory *battleFactory)
     }
 
     for (i = 0; i < partySize; i++) {
-        v3[i] = battleFactory->unk_4E8[i];
+        data[i] = battleFactory->unk_4E8[i]; // setid likely
     }
 
-    v2 += partySize;
+    offset += partySize;
 
     for (i = 0; i < partySize; i++) {
-        v3[i + v2] = ivs[i];
+        data[i + offset] = ivs[i];
     }
 
-    v2 += partySize;
+    offset += partySize;
 
-    for (i = 0; i < partySizw; i++) {
-        v3[i + v2] = (personality[i] & 0xFFFF);
-        v3[i + v2 + partySize] = ((personality[i] >> 16) & 0xFFFF);
+    for (i = 0; i < partySize; i++) {
+        data[i + offset] = (personality[i] & 0xFFFF);
+        data[i + offset + partySize] = ((personality[i] >> 16) & 0xFFFF);
     }
 
-    v2 += (partySize * 2);
+    offset += (partySize * 2);
 
-    if (CommSys_SendData(OV104_0222F238, v3, dataSize) == 1) {
+    if (CommSys_SendData(28, data, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -601,7 +601,7 @@ BOOL ov104_0222F238(BattleFactory *battleFactory)
     return result;
 }
 
-void ov104_0222F31C(int param0, int unused1, void *dummy, BattleFactory *battleFactory)
+void ov104_0222F31C(int param0, int unused1, void *param2, void *battleFactory)
 {
     int i, offset;
     u8 partySize;
@@ -612,7 +612,7 @@ void ov104_0222F31C(int param0, int unused1, void *dummy, BattleFactory *battleF
     const u16 *v7 = param2; // param2_dupe
 
     offset = 0;
-    battleFactory_dupe->unk_702++;
+    battleFactory_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -647,16 +647,16 @@ BOOL ov104_0222F3B8(BattleCastle *battleCastle)
     dataSize = 40;
     index = 0;
 
-    battleCastle->unk_3C0[1] = battleCastle->currentStreak;
-    battleCastle->unk_3C0[2] = battleCastle->currentRound;
+    battleCastle->commBuffer[1] = battleCastle->currentStreak;
+    battleCastle->commBuffer[2] = battleCastle->currentRound;
 
     index += 3;
     index += (7 + 1);
 
-    battleCastle->unk_3C0[index] = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(battleCastle->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType));
+    battleCastle->commBuffer[index] = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(battleCastle->saveData), BattleFrontierStats_GetCastleLatestCPIndex(battleCastle->challengeType));
     index += 1;
 
-    if (CommSys_SendData(OV104_0222F3B8_2, battleCastle->unk_3C0, dataSize) == 1) {
+    if (CommSys_SendData(42, battleCastle->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -665,9 +665,9 @@ BOOL ov104_0222F3B8(BattleCastle *battleCastle)
     return result;
 }
 
-void ov104_0222F418(int param0, int unused, void *param2, BattleCastle *battleCastle)
+void ov104_0222F418(int param0, int unused1, void *param2, void *battleCastle)
 {
-    int unused, index;
+    int unused2, index;
     BattleCastle *battleCastle_dupe = battleCastle;
     const u16 *v3 = param2; // param2_dupe
 
@@ -684,7 +684,7 @@ void ov104_0222F418(int param0, int unused, void *param2, BattleCastle *battleCa
     index += 3;
     index += (7 + 1);
 
-    battleCastle_dupe->partnersCP = v3[index];
+    battleCastle_dupe->partnersCP = v3[index]; // CP = castle points
     index += 1;
 }
 
@@ -696,12 +696,12 @@ BOOL ov104_0222F44C(BattleCastle *battleCastle)
     dataSize = 40;
 
     for (i = 0; i < (7 * 2); i++) {
-        battleCastle->unk_3C0[i + dummy] = battleCastle->trainerIDs[i];
+        battleCastle->commBuffer[i + dummy] = battleCastle->trainerIDs[i];
     }
 
     dummy += (7 * 2);
 
-    if (CommSys_SendData(OV104_0222F44C, battleCastle->unk_3C0, dataSize) == 1) {
+    if (CommSys_SendData(43, battleCastle->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -710,11 +710,11 @@ BOOL ov104_0222F44C(BattleCastle *battleCastle)
     return result;
 }
 
-void ov104_0222F480(int param0, int unused, void *trainerIDs, BattleCastle *battleCastle)
+void ov104_0222F480(int param0, int unused, void *trainerIDs, void *battleCastle)
 {
     int i, dummy;
     BattleCastle *battleCastle_dupe = battleCastle;
-    const u16 *trianerIDs_dupe = trainerIDs;
+    const u16 *trainerIDs_dupe = trainerIDs;
 
     dummy = 0;
     battleCastle_dupe->msgsReceived++;
@@ -736,13 +736,13 @@ void ov104_0222F480(int param0, int unused, void *trainerIDs, BattleCastle *batt
 
 BOOL ov104_0222F4B8(BattleCastle *battleCastle)
 {
-    int unused, dummy, result, dataSize;
-    TrainerInfo *v4;
+    int unused1, dummy, result, dataSize;
+    TrainerInfo *unused2;
 
     dummy = 0;
     dataSize = 40;
 
-    battleCastle->unk_3C0[0] = battleCastle->unk_A18;
+    battleCastle->commBuffer[0] = battleCastle->unk_A18;
 
     if (CommSys_CurNetId() == 0) {
         if (battleCastle->unk_A1B == 0) {
@@ -762,9 +762,9 @@ BOOL ov104_0222F4B8(BattleCastle *battleCastle)
         }
     }
 
-    battleCastle->unk_3C0[1] = battleCastle->unk_A1B;
+    battleCastle->commBuffer[1] = battleCastle->unk_A1B;
 
-    if (CommSys_SendData(OV104_0222ED00_1, battleCastle->unk_3C0, dataSize) == 1) {
+    if (CommSys_SendData(44, battleCastle->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -773,13 +773,14 @@ BOOL ov104_0222F4B8(BattleCastle *battleCastle)
     return result;
 }
 
-void ov104_0222F530(int param0, int unused, void *param2, BattleCastle *battleCastle)
+void ov104_0222F530(int param0, int unused, void *param2, void *battleCastle)
 {
     Pokemon *unused1;
     int unused2, dummy;
     BattleCastle *battleCastle_dupe = battleCastle;
     const u16 *v4 = param2; // param2_dupe
 
+    dummy = 0;
     battleCastle_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
@@ -828,25 +829,25 @@ BOOL ov104_0222F5D4(BattleCastle *battleCastle)
     dataSize = 40;
 
     for (i = 0; i < 4; i++) {
-        battleCastle->unk_3C0[i] = battleCastle->monSetIDs[i];
+        battleCastle->commBuffer[i] = battleCastle->monSetIDs[i]; // opponent
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        battleCastle->unk_3C0[i + offset] = battleCastle->opponentMonIVs[i];
+        battleCastle->commBuffer[i + offset] = battleCastle->opponentMonIVs[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        battleCastle->unk_3C0[i + offset] = (battleCastle->opponentMonPersonalities[i] & 0xFFFF);
-        battleCastle->unk_3C0[i + offset + 4] = ((battleCastle->opponentMonPersonalities[i] >> 16) & 0xFFFF);
+        battleCastle->commBuffer[i + offset] = (battleCastle->opponentMonPersonalities[i] & 0xFFFF);
+        battleCastle->commBuffer[i + offset + 4] = ((battleCastle->opponentMonPersonalities[i] >> 16) & 0xFFFF);
     }
 
     offset += (4 * 2);
 
-    if (CommSys_SendData(OV104_0222F5D4, battleCastle->unk_3C0, dataSize) == 1) {
+    if (CommSys_SendData(45, battleCastle->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -855,7 +856,7 @@ BOOL ov104_0222F5D4(BattleCastle *battleCastle)
     return result;
 }
 
-void ov104_0222F650(int param0, int unused, void *param2, BattleCastle *battleCastle)
+void ov104_0222F650(int param0, int unused, void *param2, void *battleCastle)
 {
     int i, offset;
     BattleCastle *battleCastle_dupe = battleCastle;
@@ -873,7 +874,7 @@ void ov104_0222F650(int param0, int unused, void *param2, BattleCastle *battleCa
     }
 
     for (i = 0; i < 4; i++) {
-        battleCastle_dupe->monSetIDs[i] = v3[i];
+        battleCastle_dupe->monSetIDs[i] = v3[i]; // also opponent
     }
 
     offset += 4;
@@ -895,9 +896,9 @@ void ov104_0222F650(int param0, int unused, void *param2, BattleCastle *battleCa
 BOOL ov104_0222F6C8(BattleCastle *battleCastle, u16 param1)
 {
     int result, dataSize = 40;
-    battleCastle->unk_3C0[0] = param1;
+    battleCastle->commBuffer[0] = param1;
 
-    if (CommSys_SendData(OV104_0222F6C8, battleCastle->unk_3C0, dataSize) == 1) {
+    if (CommSys_SendData(46, battleCastle->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -906,7 +907,7 @@ BOOL ov104_0222F6C8(BattleCastle *battleCastle, u16 param1)
     return result;
 }
 
-void ov104_0222F6E8(int param0, int unused, void *param2, BattleCastle *battleCastle)
+void ov104_0222F6E8(int param0, int unused, void *param2, void *battleCastle)
 {
     int dummy;
     BattleCastle *battleCastle_dupe = battleCastle;
@@ -925,9 +926,9 @@ void ov104_0222F6E8(int param0, int unused, void *param2, BattleCastle *battleCa
 BOOL ov104_0222F710(BattleCastle *battleCastle, u16 param1)
 {
     int result, dataSize = 40;
-    battleCastle->unk_3C0[0] = param1;
+    battleCastle->commBuffer[0] = param1;
 
-    if (CommSys_SendData(OV104_0222F710, battleCastle->unk_3C0, v1) == 1) {
+    if (CommSys_SendData(47, battleCastle->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -936,7 +937,7 @@ BOOL ov104_0222F710(BattleCastle *battleCastle, u16 param1)
     return result;
 }
 
-void ov104_0222F730(int param0, int unused, void *param2, BattleCastle *battleCastle)
+void ov104_0222F730(int param0, int unused, void *param2, void *battleCastle)
 {
     int dummy;
     BattleCastle *battleCastle_dupe = battleCastle;
@@ -965,10 +966,10 @@ BOOL ov104_0222F758(BattleCastle *battleCastle) // send party
 
     for (i = 0; i < partySize; i++) {
         pokemon = Party_GetPokemonBySlotIndex(battleCastle->playersParty, i);
-        MI_CpuCopy8(pokemon, &battleCastle->unk_410[i * pokemonSize], pokemonSize);
+        MI_CpuCopy8(pokemon, &battleCastle->commHugeBuffer[i * pokemonSize], pokemonSize);
     }
 
-    if (CommSys_SendDataHuge(OV104_0222F758, battleCastle->unk_410, dataSize) == 1) {
+    if (CommSys_SendDataHuge(48, battleCastle->commHugeBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -977,7 +978,7 @@ BOOL ov104_0222F758(BattleCastle *battleCastle) // send party
     return result;
 }
 
-void ov104_0222F7BC(int param0, int unused, void *param2, BattleCastle *battleCastle)
+void ov104_0222F7BC(int param0, int unused, void *param2, void *battleCastle)
 {
     u8 partySize;
     int i, v2, pokemonSize;
@@ -986,34 +987,34 @@ void ov104_0222F7BC(int param0, int unused, void *param2, BattleCastle *battleCa
     const u8 *v6 = param2; // param2_dupe
 
     v2 = 0;
-    battleCastle->msgsReceived++;
+    battleCastle_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
     }
 
-    partySize = BattleCastle_GetPlayerPartySize(battleCastle->challengeType, 0);
+    partySize = BattleCastle_GetPlayerPartySize(battleCastle_dupe->challengeType, 0);
     pokemonSize = Pokemon_StructSize();
     emptySlot = Pokemon_New(HEAP_ID_FIELD2); // empty pokemon
 
     for (i = 0; i < partySize; i++) {
         MI_CpuCopy8(&v6[pokemonSize * i], emptySlot, pokemonSize);
-        Party_AddPokemon(battleCastle->playersParty, emptySlot);
+        Party_AddPokemon(battleCastle_dupe->playersParty, emptySlot);
     }
 
     Heap_Free(emptySlot);
 
     if (CommSys_CurNetId() != 0) {
-        Party_SwapSlots(battleCastle->playersParty, 0, 2);
-        Party_SwapSlots(battleCastle->playersParty, 1, 3);
+        Party_SwapSlots(battleCastle_dupe->playersParty, 0, 2);
+        Party_SwapSlots(battleCastle_dupe->playersParty, 1, 3);
     }
 }
 
-u8 *ov104_0222F84C(int index, BattleCastle *battleCastle, int param2)
+u8 *ov104_0222F84C(int index, void *battleCastle, int size)
 {
     BattleCastle *battleCastle_dupe = battleCastle;
 
-    GF_ASSERT(param2 <= 512);
+    GF_ASSERT(size <= 512);
     return battleCastle_dupe->unk_610[index];
 }
 
@@ -1024,12 +1025,12 @@ BOOL ov104_0222F86C(BattleArcade *battleArcade)
     dataSize = 40;
     dummy = 0;
 
-    battleArcade->unk_424[1] = battleArcade->currentStreak;
-    battleArcade->unk_424[2] = battleArcade->unk_1A;
+    battleArcade->commBuffer[1] = battleArcade->currentStreak;
+    battleArcade->commBuffer[2] = battleArcade->unk_1A;
 
     dummy += 3;
 
-    if (CommSys_SendData(OV104_0222F86C, battleArcade->unk_424, dataSize) == 1) {
+    if (CommSys_SendData(65, battleArcade->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -1038,14 +1039,14 @@ BOOL ov104_0222F86C(BattleArcade *battleArcade)
     return result;
 }
 
-void ov104_0222F8A0(int param0, int unused, void *param2, BattleArcade *battleArcade)
+void ov104_0222F8A0(int param0, int unused1, void *param2, void *battleArcade)
 {
-    int unused, dummy;
+    int unused2, dummy;
     BattleArcade *battleArcade_dupe = battleArcade;
     const u16 *v3 = param2; // param2_dupe
 
     dummy = 0;
-    battleArcade_dupe->unk_A7C++;
+    battleArcade_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1065,12 +1066,12 @@ BOOL ov104_0222F8D0(BattleArcade *battleArcade)
     dataSize = 40;
 
     for (i = 0; i < (7 * 2); i++) {
-        battleArcade->unk_424[i + dummy] = battleArcade->trainerIDs[i];
+        battleArcade->commBuffer[i + dummy] = battleArcade->trainerIDs[i];
     }
 
     dummy += (7 * 2);
 
-    if (CommSys_SendData(OV104_0222F8D0, battleArcade->unk_424, dataSize) == 1) {
+    if (CommSys_SendData(66, battleArcade->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -1079,14 +1080,14 @@ BOOL ov104_0222F8D0(BattleArcade *battleArcade)
     return result;
 }
 
-void ov104_0222F908(int param0, int unused, void *trainerIDs, BattleArcade *battleArcade)
+void ov104_0222F908(int param0, int unused, void *trainerIDs, void *battleArcade)
 {
     int i, dummy;
     BattleArcade *battleArcade_dupe = battleArcade;
     const u16 *trainerIDs_dupe = trainerIDs; // param2_dupe
 
     dummy = 0;
-    battleArcade->unk_A7C++;
+    battleArcade_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1097,7 +1098,7 @@ void ov104_0222F908(int param0, int unused, void *trainerIDs, BattleArcade *batt
     }
 
     for (i = 0; i < (7 * 2); i++) {
-        battleArcade_dupe->trainerIDs[i] = trainerIDs_dupe[i + dupe];
+        battleArcade_dupe->trainerIDs[i] = trainerIDs_dupe[i + dummy];
     }
 
     dummy += (7 * 2);
@@ -1111,25 +1112,25 @@ BOOL ov104_0222F944(BattleArcade *battleArcade)
     dataSize = 40;
 
     for (i = 0; i < 4; i++) {
-        battleArcade->unk_424[i] = battleArcade->unk_314[i];
+        battleArcade->commBuffer[i] = battleArcade->unk_314[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        battleArcade->unk_424[i + offset] = battleArcade->unk_31C[i];
+        battleArcade->commBuffer[i + offset] = battleArcade->unk_31C[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        battleArcade->unk_424[i + offset] = (battleArcade->unk_320[i] & 0xFFFF);
-        battleArcade->unk_424[i + offset + 4] = ((battleArcade->unk_320[i] >> 16) & 0xFFFF);
+        battleArcade->commBuffer[i + offset] = (battleArcade->unk_320[i] & 0xFFFF);
+        battleArcade->commBuffer[i + offset + 4] = ((battleArcade->unk_320[i] >> 16) & 0xFFFF);
     }
 
     offset += (4 * 2);
 
-    if (CommSys_SendData(OV104_0222F944, battleArcade->unk_424, dataSize) == 1) {
+    if (CommSys_SendData(67, battleArcade->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -1138,14 +1139,14 @@ BOOL ov104_0222F944(BattleArcade *battleArcade)
     return result;
 }
 
-void ov104_0222F9C0(int param0, int unused, void *param2, BattleArcade *battleArcade)
+void ov104_0222F9C0(int param0, int unused, void *param2, void *battleArcade)
 {
     int i, offset;
     BattleArcade *battleArcade_dupe = battleArcade;
     const u16 *v3 = param2; // param2_dupe
 
     offset = 0;
-    battleArcade_dupe->unk_A7C++;
+    battleArcade_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1178,9 +1179,9 @@ void ov104_0222F9C0(int param0, int unused, void *param2, BattleArcade *battleAr
 BOOL ov104_0222FA38(BattleArcade *battleArcade, u16 param1)
 {
     int result, dataSize = 40;
-    battleArcade->unk_424[0] = param1;
+    battleArcade->commBuffer[0] = param1;
 
-    if (CommSys_SendData(OV104_0222FA38, battleArcade->unk_424, dataSize) == 1) {
+    if (CommSys_SendData(68, battleArcade->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -1189,14 +1190,14 @@ BOOL ov104_0222FA38(BattleArcade *battleArcade, u16 param1)
     return result;
 }
 
-void ov104_0222FA5C(int param0, int unused, void *param2, BattleArcade *battleArcade)
+void ov104_0222FA5C(int param0, int unused, void *param2, void *battleArcade)
 {
     int dummy;
     BattleArcade *battleArcade_dupe = battleArcade;
     const u16 *v2 = param2; // param2_dupe
 
     dummy = 0;
-    battleArcade_dupe->unk_A7C++;
+    battleArcade_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1208,9 +1209,9 @@ void ov104_0222FA5C(int param0, int unused, void *param2, BattleArcade *battleAr
 BOOL ov104_0222FA84(BattleArcade *battleArcade, u16 param1)
 {
     int result, dataSize = 40;
-    battleArcade->unk_424[0] = param1;
+    battleArcade->commBuffer[0] = param1;
 
-    if (CommSys_SendData(OV104_0222FA84, battleArcade->unk_424, dataSize) == 1) {
+    if (CommSys_SendData(69, battleArcade->commBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -1219,14 +1220,14 @@ BOOL ov104_0222FA84(BattleArcade *battleArcade, u16 param1)
     return result;
 }
 
-void ov104_0222FAA8(int param0, int unused, void *param2, BattleArcade *battleArcade)
+void ov104_0222FAA8(int param0, int unused, void *param2, void *battleArcade)
 {
     int dummy;
     BattleArcade *battleArcade_dupe = battleArcade;
     const u16 *v2 = param2; // param2_dupe
 
     dummy = 0;
-    battleArcade_dupe->unk_A7C++;
+    battleArcade_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1248,10 +1249,10 @@ BOOL ov104_0222FAD0(BattleArcade *battleArcade) // send party
 
     for (i = 0; i < partySize; i++) {
         pokemon = Party_GetPokemonBySlotIndex(battleArcade->playersParty, i);
-        MI_CpuCopy8(pokemon, &battleArcade->unk_474[i * pokemonSize], pokemonSize);
+        MI_CpuCopy8(pokemon, &battleArcade->commHugeBuffer[i * pokemonSize], pokemonSize);
     }
 
-    if (CommSys_SendDataHuge(OV104_0222FAD0, battleArcade->unk_474, dataSize) == 1) {
+    if (CommSys_SendDataHuge(70, battleArcade->commHugeBuffer, dataSize) == 1) {
         result = TRUE;
     } else {
         result = FALSE;
@@ -1260,7 +1261,7 @@ BOOL ov104_0222FAD0(BattleArcade *battleArcade) // send party
     return result;
 }
 
-void ov104_0222FB34(int param0, int unused, void *param2, BattleArcade *battleArcade)
+void ov104_0222FB34(int param0, int unused, void *param2, void *battleArcade)
 {
     u8 partySize;
     int i, dummy, pokemonSize;
@@ -1269,7 +1270,7 @@ void ov104_0222FB34(int param0, int unused, void *param2, BattleArcade *battleAr
     const u8 *v6 = param2;
 
     dummy = 0;
-    battleArcade_dupe->unk_A7C++;
+    battleArcade_dupe->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1287,15 +1288,15 @@ void ov104_0222FB34(int param0, int unused, void *param2, BattleArcade *battleAr
     Heap_Free(emptySlot);
 
     if (CommSys_CurNetId() != 0) {
-        Party_SwapSlots(battleArcade->playersParty, 0, 2);
-        Party_SwapSlots(battleArcade->playersParty, 1, 3);
+        Party_SwapSlots(battleArcade_dupe->playersParty, 0, 2);
+        Party_SwapSlots(battleArcade_dupe->playersParty, 1, 3);
     }
 }
 
-u8 *ov104_0222FBC4(int param0, BattleArcade *battleArcade, int param2)
+u8 *ov104_0222FBC4(int param0, void *battleArcade, int size)
 {
     BattleArcade *battleArcade_dupe = battleArcade;
 
-    GF_ASSERT(param2 <= 512);
+    GF_ASSERT(size <= 512);
     return battleArcade_dupe->unk_674[param0];
 }
