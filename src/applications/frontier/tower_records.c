@@ -547,17 +547,90 @@ static void LoadBackgrounds(BattleTowerRecordsApp *app)
 static void InitWindows(BattleTowerRecordsApp *app)
 {
     static const WindowTemplate sResultsScreenWinTemplates[] = {
-        [WINDOW_RESULTS_HEADER] = { 0, 4, 1, 24, 5, 2, 192 },
-        [WINDOW_RESULTS_FIRST_LABEL] = { 0, 1, 9, 8, 5, 1, 312 },
-        [WINDOW_RESULTS_FIRST_VALUE] = { 0, 1, 17, 8, 5, 1, 352 },
-        [WINDOW_RESULTS_SECOND_LABEL] = { 0, 10, 9, 21, 5, 1, 392 },
-        [WINDOW_RESULTS_SECOND_VALUE] = { 0, 10, 17, 21, 6, 1, 497 },
-        { 0, 3, 18, 26, 5, 2, 312 }, // unused
+        [WINDOW_RESULTS_HEADER] = {
+            .bgLayer = BG_LAYER_MAIN_0,
+            .tilemapLeft = 4,
+            .tilemapTop = 1,
+            .width = 24,
+            .height = 5,
+            .palette = 2,
+            .baseTile = 192,
+        },
+        [WINDOW_RESULTS_FIRST_LABEL] = {
+            .bgLayer = BG_LAYER_MAIN_0,
+            .tilemapLeft = 1,
+            .tilemapTop = 9,
+            .width = 8,
+            .height = 5,
+            .palette = 1,
+            .baseTile = 312,
+        },
+        [WINDOW_RESULTS_FIRST_VALUE] = {
+            .bgLayer = BG_LAYER_MAIN_0,
+            .tilemapLeft = 1,
+            .tilemapTop = 17,
+            .width = 8,
+            .height = 5,
+            .palette = 1,
+            .baseTile = 352,
+        },
+        [WINDOW_RESULTS_SECOND_LABEL] = {
+            .bgLayer = BG_LAYER_MAIN_0,
+            .tilemapLeft = 10,
+            .tilemapTop = 9,
+            .width = 21,
+            .height = 5,
+            .palette = 1,
+            .baseTile = 392,
+        },
+        [WINDOW_RESULTS_SECOND_VALUE] = {
+            .bgLayer = BG_LAYER_MAIN_0,
+            .tilemapLeft = 10,
+            .tilemapTop = 17,
+            .width = 21,
+            .height = 6,
+            .palette = 1,
+            .baseTile = 497,
+        },
+        // unused
+        {
+            .bgLayer = BG_LAYER_MAIN_0,
+            .tilemapLeft = 3,
+            .tilemapTop = 18,
+            .width = 26,
+            .height = 5,
+            .palette = 2,
+            .baseTile = 312,
+        },
     };
     static const WindowTemplate sRankingScreenWinTemplates[] = {
-        [WINDOW_RANKINGS_HEADER] = { 0, 4, 1, 24, 5, 2, 192 },
-        [WINDOW_RANKINGS_LIST] = { 2, 3, 7, 26, 9, 1, 1 },
-        [WINDOW_RANKINGS_MESSAGE] = { 0, 3, 18, 26, 5, 2, 312 },
+        [WINDOW_RANKINGS_HEADER] = {
+            .bgLayer = BG_LAYER_MAIN_0,
+            .tilemapLeft = 4,
+            .tilemapTop = 1,
+            .width = 24,
+            .height = 5,
+            .palette = 2,
+            .baseTile = 192,
+        },
+        [WINDOW_RANKINGS_LIST] = {
+            .bgLayer = BG_LAYER_MAIN_2,
+            .tilemapLeft = 3,
+            .tilemapTop = 7,
+            .width = 26,
+            .height = 9,
+            .palette = 1,
+            .baseTile = 1,
+        },
+        [WINDOW_RANKINGS_MESSAGE] = {
+            .bgLayer = BG_LAYER_MAIN_0,
+            .tilemapLeft = 3,
+            .tilemapTop = 18,
+            .width = 26,
+            .height = 5,
+            .palette = 2,
+            .baseTile = 312,
+        },
     };
 
     if (app->isRankingsScreen == FALSE) {
