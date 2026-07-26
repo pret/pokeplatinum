@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02030494_H
-#define POKEPLATINUM_UNK_02030494_H
+#ifndef POKEPLATINUM_BATTLE_ARCADE_SAVE_H
+#define POKEPLATINUM_BATTLE_ARCADE_SAVE_H
 
 #include "savedata.h"
 
@@ -42,4 +42,4 @@ BattleArcadeStreakFlags *BattleArcadeStreakFlags_Get(SaveData *saveData);
 void BattleArcadeStreakFlags_SetFlag(BattleArcadeStreakFlags *flags, u8 field, u8 challengeType, u8 unused, const void *value);
 u32 BattleArcadeStreakFlags_GetFlag(BattleArcadeStreakFlags *flags, u8 field, u8 challengeType, u8 unused, void *unused2);
 
-#endif // POKEPLATINUM_UNK_02030494_H
+#endif // POKEPLATINUM_BATTLE_ARCADE_SAVE_H

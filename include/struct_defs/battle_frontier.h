@@ -7,10 +7,10 @@
 #include "struct_defs/struct_0202FF58.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
+#include "battle_arcade_save.h"
 #include "battle_castle_save.h"
 #include "battle_factory_save.h"
 #include "battle_hall_save.h"
-#include "unk_02030494.h"
 #include "wifi_list.h"
 
 typedef struct BattleFrontierStats {

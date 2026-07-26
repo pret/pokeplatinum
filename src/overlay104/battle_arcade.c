@@ -1,4 +1,4 @@
-#include "overlay104/ov104_02237DD8.h"
+#include "overlay104/battle_arcade.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -8,12 +8,13 @@
 #include "generated/items.h"
 
 #include "global/utility.h"
+#include "overlay104/battle_arcade.h"
+#include "overlay104/battle_arcade_helpers.h"
 #include "overlay104/frontier_opponents.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_02231F74.h"
-#include "overlay104/ov104_0223BCBC.h"
-#include "overlay104/struct_battle_arcade.h"
 
+#include "battle_arcade_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "bg_window.h"
@@ -29,7 +30,6 @@
 #include "savedata.h"
 #include "sprite.h"
 #include "system_vars.h"
-#include "unk_02030494.h"
 #include "vars_flags.h"
 
 #include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"

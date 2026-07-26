@@ -1,9 +1,9 @@
-#ifndef POKEPLATINUM_OV104_0223BCBC_H
-#define POKEPLATINUM_OV104_0223BCBC_H
+#ifndef POKEPLATINUM_BATTLE_ARCADE_HELPERS_H
+#define POKEPLATINUM_BATTLE_ARCADE_HELPERS_H
 
-#include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
+#include "battle_arcade.h"
 #include "field_battle_data_transfer.h"
 #include "party.h"
 
@@ -19,4 +19,4 @@ u16 BattleArcade_GetFreeBPFromEvent(BattleArcade *battleArcade, u8 activeEffect)
 u16 BattleArcade_GetCurrentRound(BattleArcade *battleArcade);
 u8 BattleArcade_GetCategoryFromEffect(u8 effect);
 
-#endif // POKEPLATINUM_OV104_0223BCBC_H
+#endif // POKEPLATINUM_BATTLE_ARCADE_HELPERS_H

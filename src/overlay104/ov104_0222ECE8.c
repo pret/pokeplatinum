@@ -3,13 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay104/battle_arcade.h"
+#include "overlay104/battle_arcade_helpers.h"
 #include "overlay104/battle_castle_helpers.h"
 #include "overlay104/battle_hall.h"
 #include "overlay104/ov104_0223A7F4.h"
-#include "overlay104/ov104_0223BCBC.h"
-#include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_battle_factory.h"
 
+#include "battle_arcade_save.h"
 #include "battle_castle_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
@@ -19,7 +20,6 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "trainer_info.h"
-#include "unk_02030494.h"
 
 BOOL ov104_0222EEF8(BattleFactory *param0);
 void ov104_0222EF30(int param0, int param1, void *param2, void *param3);

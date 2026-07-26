@@ -1,4 +1,4 @@
-#include "overlay104/ov104_0223BCBC.h"
+#include "overlay104/battle_arcade_helpers.h"
 
 #include <nitro.h>
 
@@ -8,8 +8,8 @@
 
 #include "struct_defs/frontier_trainer_base.h"
 
+#include "overlay104/battle_arcade.h"
 #include "overlay104/frontier_opponents.h"
-#include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "communication_information.h"
