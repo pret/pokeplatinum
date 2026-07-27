@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_GTS_SCREENS_TRADE_H
 #define POKEPLATINUM_GTS_SCREENS_TRADE_H
 
-#include "overlay094/gts_application_state.h"
+#include "gts_application/gts.h"
 
 int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused);
 int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused);

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_GTS_SCREENS_NETWORK_HANDLER_H
 #define POKEPLATINUM_GTS_SCREENS_NETWORK_HANDLER_H
 
-#include "overlay094/gts_application_state.h"
+#include "gts_application/gts.h"
 
 int GTSApplication_NetworkHandler_Init(GTSApplicationState *appState, int unused);
 int GTSApplication_NetworkHandler_Main(GTSApplicationState *appState, int unused);

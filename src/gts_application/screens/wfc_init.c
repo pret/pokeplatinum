@@ -1,4 +1,4 @@
-﻿#include "overlay094/screens/wfc_init.h"
+﻿#include "gts_application/screens/wfc_init.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -6,10 +6,10 @@
 
 #include "constants/net.h"
 
+#include "gts_application/application.h"
+#include "gts_application/gts.h"
+#include "gts_application/networking.h"
 #include "nintendo_wfc/main.h"
-#include "overlay094/application.h"
-#include "overlay094/gts_application_state.h"
-#include "overlay094/networking.h"
 
 #include "bg_window.h"
 #include "comm_manager.h"

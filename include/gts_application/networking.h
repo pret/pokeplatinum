@@ -3,7 +3,7 @@
 
 #include "struct_defs/world_exchange.h"
 
-#include "overlay094/gts_application_state.h"
+#include "gts_application/gts.h"
 
 typedef struct GTSCountrySearchRequest {
     s16 species;

@@ -1,15 +1,15 @@
-﻿#include "overlay094/screens/search_listing.h"
+﻿#include "gts_application/screens/search_listing.h"
 
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay094/application.h"
-#include "overlay094/avatar.h"
-#include "overlay094/gts_application_state.h"
-#include "overlay094/screens/deposit.h"
-#include "overlay094/screens/listing.h"
-#include "overlay094/screens/wfc_init.h"
+#include "gts_application/application.h"
+#include "gts_application/avatar.h"
+#include "gts_application/gts.h"
+#include "gts_application/screens/deposit.h"
+#include "gts_application/screens/listing.h"
+#include "gts_application/screens/wfc_init.h"
 
 #include "bg_window.h"
 #include "font.h"

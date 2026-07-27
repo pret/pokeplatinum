@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_GTS_APPLICATION_H
 #define POKEPLATINUM_GTS_APPLICATION_H
 
-#include "overlay094/gts_application_state.h"
+#include "gts_application/gts.h"
 
 #include "bg_window.h"
 #include "menu.h"
@@ -38,7 +38,7 @@ enum GTSCharpadTab {
 
 BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState);
 BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState);
-BOOL GTSApplication_Exit(ApplicationManager *appMan, int *unused1);
+BOOL GTSApplication_Exit(ApplicationManager *appMan, int *unused);
 void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSApplicationState *appState, SpriteResourcesHeader *spriteResourceHeader, NNS_G2D_VRAM_TYPE vramType);
 Menu *GTSApplication_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int baseTile);
 void GTSApplication_SetCurrentAndNextScreenInstruction(GTSApplicationState *appState, int currentInstruction, int nextInstruction);

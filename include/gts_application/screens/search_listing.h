@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_GTS_SCREENS_SEARCH_LISTING_H
 #define POKEPLATINUM_GTS_SCREENS_SEARCH_LISTING_H
 
-#include "overlay094/gts_application_state.h"
+#include "gts_application/gts.h"
 
 int GTSApplication_SearchListing_Init(GTSApplicationState *appState, int unused);
 int GTSApplication_SearchListing_Main(GTSApplicationState *appState, int unused);

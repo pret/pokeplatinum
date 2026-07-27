@@ -115,7 +115,7 @@ int TradeSequence_Init(ApplicationManager *appMan, int *param1)
         tradeData = ApplicationManager_NewData(appMan, sizeof(TradeSequenceData), HEAP_ID_57);
 
         if (tradeData) {
-            tradeData->animationConfig = ApplicationManager_Args(appMan); // this is overlay094's unk_E8
+            tradeData->animationConfig = ApplicationManager_Args(appMan);
             tradeData->unk_04 = 0;
             tradeData->unk_08 = BgConfig_New(HEAP_ID_57);
             tradeData->unk_14 = String_Init(400, HEAP_ID_57);
@@ -142,7 +142,7 @@ int TradeSequence_Init(ApplicationManager *appMan, int *param1)
 
             RenderOam_Init(0, 128, 0, 32, 1, 127, 0, 32, 57);
             tradeData->unk_18 = SpriteList_InitRendering(64, &tradeData->unk_1C, HEAP_ID_57);
-            SetSubScreenViewRect(&(tradeData->unk_1C), 0, (192 + 40 << FX32_SHIFT));
+            SetSubScreenViewRect(&(tradeData->unk_1C), 0, 192 + 40 << FX32_SHIFT);
 
             tradeData->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_SPECIES, NULL);
             tradeData->unk_1B2 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_FORM, NULL);

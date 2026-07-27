@@ -1,4 +1,4 @@
-﻿#include "overlay094/screens/network_handler.h"
+﻿#include "gts_application/screens/network_handler.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -14,13 +14,13 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/wi_fi_history.h"
 
-#include "overlay094/application.h"
-#include "overlay094/avatar.h"
-#include "overlay094/gts_application_state.h"
-#include "overlay094/networking.h"
-#include "overlay094/screens/main_menu.h"
-#include "overlay094/screens/select_pokemon.h"
-#include "overlay094/screens/wfc_init.h"
+#include "gts_application/application.h"
+#include "gts_application/avatar.h"
+#include "gts_application/gts.h"
+#include "gts_application/networking.h"
+#include "gts_application/screens/main_menu.h"
+#include "gts_application/screens/select_pokemon.h"
+#include "gts_application/screens/wfc_init.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"

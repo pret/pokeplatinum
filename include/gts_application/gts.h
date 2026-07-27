@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_GTS_APPLICATION_STATE_H
-#define POKEPLATINUM_STRUCT_GTS_APPLICATION_STATE_H
+#ifndef POKEPLATINUM_STRUCT_GTS_H
+#define POKEPLATINUM_STRUCT_GTS_H
 
 #include <dwc.h>
 #include <nnsys.h>
@@ -11,7 +11,6 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay094/gts_charpad_scroll_state.h"
 
 #include "bg_window.h"
 #include "evolution.h"
@@ -51,6 +50,13 @@ enum GTSApplicationLoopState {
     GTS_LOOP_STATE_FINISH,
     GTS_LOOP_STATE_EXIT
 };
+
+typedef struct GTSCharpadScrollState {
+    u16 unread_00;
+    u16 unread_02;
+    u16 cursorPos[9];
+    u16 scrollPos[9];
+} GTSCharpadScrollState;
 
 typedef struct GTSPokemonListingMon {
     u8 bytes[236];
@@ -234,4 +240,4 @@ typedef struct GTSApplicationState {
     s32 networkTimeoutCounter;
 } GTSApplicationState;
 
-#endif // POKEPLATINUM_STRUCT_GTS_APPLICATION_STATE_H
+#endif // POKEPLATINUM_STRUCT_GTS_H

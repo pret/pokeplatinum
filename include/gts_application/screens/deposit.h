@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_GTS_SCREENS_DEPOSIT_H
 #define POKEPLATINUM_GTS_SCREENS_DEPOSIT_H
 
-#include "overlay094/gts_application_state.h"
-#include "overlay094/gts_charpad_scroll_state.h"
+#include "gts_application/gts.h"
 
 #include "bg_window.h"
 #include "list_menu.h"

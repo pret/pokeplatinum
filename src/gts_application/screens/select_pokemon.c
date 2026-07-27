@@ -1,4 +1,4 @@
-﻿#include "overlay094/screens/select_pokemon.h"
+﻿#include "gts_application/screens/select_pokemon.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -7,10 +7,10 @@
 #include "generated/species.h"
 
 #include "global/utility.h"
-#include "overlay094/application.h"
-#include "overlay094/gts_application_state.h"
-#include "overlay094/screens/deposit.h"
-#include "overlay094/screens/wfc_init.h"
+#include "gts_application/application.h"
+#include "gts_application/gts.h"
+#include "gts_application/screens/deposit.h"
+#include "gts_application/screens/wfc_init.h"
 
 #include "bg_window.h"
 #include "font.h"

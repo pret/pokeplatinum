@@ -1,11 +1,11 @@
-﻿#include "overlay094/screens/trade.h"
+﻿#include "gts_application/screens/trade.h"
 
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay094/application.h"
-#include "overlay094/gts_application_state.h"
+#include "gts_application/application.h"
+#include "gts_application/gts.h"
 #include "overlay095/ov95_02246C20.h"
 
 #include "evolution.h"

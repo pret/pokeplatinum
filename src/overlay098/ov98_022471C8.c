@@ -9,9 +9,9 @@
 
 #include "struct_decls/wi_fi_list.h"
 
+#include "gts_application/networking.h"
 #include "nintendo_wfc/main.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay094/networking.h"
 #include "overlay098/ov98_02246C20.h"
 #include "overlay098/ov98_022499C8.h"
 #include "overlay098/struct_ov98_02246E88.h"

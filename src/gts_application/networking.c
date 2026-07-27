@@ -1,4 +1,4 @@
-#include "overlay094/networking.h"
+#include "gts_application/networking.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -6,8 +6,8 @@
 
 #include "struct_defs/world_exchange.h"
 
+#include "gts_application/gts.h"
 #include "http/http.h"
-#include "overlay094/gts_application_state.h"
 
 #include "enums.h"
 

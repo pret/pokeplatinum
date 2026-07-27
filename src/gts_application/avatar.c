@@ -1,11 +1,11 @@
-#include "overlay094/avatar.h"
+#include "gts_application/avatar.h"
 
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay094/application.h"
-#include "overlay094/gts_application_state.h"
+#include "gts_application/application.h"
+#include "gts_application/gts.h"
 
 #include "appearance.h"
 #include "graphics.h"

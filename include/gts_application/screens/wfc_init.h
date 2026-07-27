@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_GTS_SCREENS_WFC_INIT_H
 #define POKEPLATINUM_GTS_SCREENS_WFC_INIT_H
 
-#include "overlay094/gts_application_state.h"
+#include "gts_application/gts.h"
 
 #include "bg_window.h"
 #include "message.h"

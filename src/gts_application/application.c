@@ -1,4 +1,4 @@
-#include "overlay094/application.h"
+#include "gts_application/application.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -10,19 +10,19 @@
 #include "struct_defs/gts_player_data.h"
 
 #include "global/utility.h"
-#include "overlay094/avatar.h"
-#include "overlay094/gts_application_state.h"
-#include "overlay094/networking.h"
-#include "overlay094/screens/deposit.h"
-#include "overlay094/screens/listing.h"
-#include "overlay094/screens/main_menu.h"
-#include "overlay094/screens/network_handler.h"
-#include "overlay094/screens/pokemon_summary.h"
-#include "overlay094/screens/search.h"
-#include "overlay094/screens/search_listing.h"
-#include "overlay094/screens/select_pokemon.h"
-#include "overlay094/screens/trade.h"
-#include "overlay094/screens/wfc_init.h"
+#include "gts_application/avatar.h"
+#include "gts_application/gts.h"
+#include "gts_application/networking.h"
+#include "gts_application/screens/deposit.h"
+#include "gts_application/screens/listing.h"
+#include "gts_application/screens/main_menu.h"
+#include "gts_application/screens/network_handler.h"
+#include "gts_application/screens/pokemon_summary.h"
+#include "gts_application/screens/search.h"
+#include "gts_application/screens/search_listing.h"
+#include "gts_application/screens/select_pokemon.h"
+#include "gts_application/screens/trade.h"
+#include "gts_application/screens/wfc_init.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"

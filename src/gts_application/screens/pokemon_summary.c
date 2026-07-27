@@ -1,13 +1,13 @@
-#include "overlay094/screens/pokemon_summary.h"
+#include "gts_application/screens/pokemon_summary.h"
 
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "overlay094/application.h"
-#include "overlay094/gts_application_state.h"
-#include "overlay094/screens/select_pokemon.h"
+#include "gts_application/application.h"
+#include "gts_application/gts.h"
+#include "gts_application/screens/select_pokemon.h"
 
 #include "overlay_manager.h"
 #include "start_menu.h"

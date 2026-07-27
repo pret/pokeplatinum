@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_AVATAR_H
 #define POKEPLATINUM_AVATAR_H
 
-#include "overlay094/gts_application_state.h"
+#include "gts_application/gts.h"
 
 void GTSAvatar_Init(GTSApplicationState *appState, int gender);
 void GTSAvatar_BeginLoginAnimation(GTSApplicationState *appState, int gender);
