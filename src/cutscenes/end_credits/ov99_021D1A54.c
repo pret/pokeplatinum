@@ -1,22 +1,22 @@
-#include "overlay099/ov99_021D1A54.h"
+#include "cutscenes/end_credits/ov99_021D1A54.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/graphics.h"
 
-#include "overlay099/ov99_021D0D80.h"
-#include "overlay099/ov99_021D2C08.h"
-#include "overlay099/ov99_021D2E28.h"
-#include "overlay099/ov99_021D340C.h"
-#include "overlay099/ov99_021D3A40.h"
-#include "overlay099/ov99_021D3C18.h"
-#include "overlay099/ov99_021D3DE0.h"
-#include "overlay099/ov99_021D3E78.h"
-#include "overlay099/ov99_021D4134.h"
-#include "overlay099/struct_ov99_021D2CB0.h"
-#include "overlay099/struct_ov99_021D2CB0_sub2.h"
-#include "overlay099/struct_ov99_021D3A40.h"
+#include "cutscenes/end_credits/ov99_021D0D80.h"
+#include "cutscenes/end_credits/ov99_021D2C08.h"
+#include "cutscenes/end_credits/ov99_021D2E28.h"
+#include "cutscenes/end_credits/ov99_021D340C.h"
+#include "cutscenes/end_credits/ov99_021D3A40.h"
+#include "cutscenes/end_credits/ov99_021D3C18.h"
+#include "cutscenes/end_credits/ov99_021D3DE0.h"
+#include "cutscenes/end_credits/ov99_021D3E78.h"
+#include "cutscenes/end_credits/ov99_021D4134.h"
+#include "cutscenes/end_credits/struct_ov99_021D2CB0.h"
+#include "cutscenes/end_credits/struct_ov99_021D2CB0_sub2.h"
+#include "cutscenes/end_credits/struct_ov99_021D3A40.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"

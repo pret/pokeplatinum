@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV99_021D3A40_H
 #define POKEPLATINUM_STRUCT_OV99_021D3A40_H
 
-#include "overlay099/struct_ov99_021D2C08.h"
-#include "overlay099/struct_ov99_021D2E28.h"
-#include "overlay099/struct_ov99_021D340C.h"
-#include "overlay099/struct_ov99_021D3B2C.h"
-#include "overlay099/struct_ov99_021D3C18.h"
-#include "overlay099/struct_ov99_021D3DE0.h"
+#include "cutscenes/end_credits/struct_ov99_021D2C08.h"
+#include "cutscenes/end_credits/struct_ov99_021D2E28.h"
+#include "cutscenes/end_credits/struct_ov99_021D340C.h"
+#include "cutscenes/end_credits/struct_ov99_021D3B2C.h"
+#include "cutscenes/end_credits/struct_ov99_021D3C18.h"
+#include "cutscenes/end_credits/struct_ov99_021D3DE0.h"
 
 typedef struct {
     int unk_00;

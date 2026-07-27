@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV99_021D0D80_H
 #define POKEPLATINUM_OV99_021D0D80_H
 
-#include "overlay099/struct_ov99_021D2CB0.h"
+#include "cutscenes/end_credits/struct_ov99_021D2CB0.h"
 
 #include "overlay_manager.h"
 

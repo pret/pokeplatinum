@@ -1,11 +1,11 @@
-#include "overlay099/ov99_021D3DE0.h"
+#include "cutscenes/end_credits/ov99_021D3DE0.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay099/struct_ov99_021D2CB0.h"
-#include "overlay099/struct_ov99_021D3A40.h"
-#include "overlay099/struct_ov99_021D3DE0.h"
+#include "cutscenes/end_credits/struct_ov99_021D2CB0.h"
+#include "cutscenes/end_credits/struct_ov99_021D3A40.h"
+#include "cutscenes/end_credits/struct_ov99_021D3DE0.h"
 
 #include "screen_fade.h"
 #include "system.h"

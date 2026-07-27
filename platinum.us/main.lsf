@@ -1482,19 +1482,19 @@ Overlay overlay98
 	Object main.nef.p/src_overlay098_ov98_022499C8.c.o
 }
 
-Overlay overlay99
+Overlay end_credits
 {
 	After main
-	Object main.nef.p/src_overlay099_ov99_021D0D80.c.o
-	Object main.nef.p/src_overlay099_ov99_021D1A54.c.o
-	Object main.nef.p/src_overlay099_ov99_021D2C08.c.o
-	Object main.nef.p/src_overlay099_ov99_021D2E28.c.o
-	Object main.nef.p/src_overlay099_ov99_021D340C.c.o
-	Object main.nef.p/src_overlay099_ov99_021D3A40.c.o
-	Object main.nef.p/src_overlay099_ov99_021D3C18.c.o
-	Object main.nef.p/src_overlay099_ov99_021D3DE0.c.o
-	Object main.nef.p/src_overlay099_ov99_021D3E78.c.o
-	Object main.nef.p/src_overlay099_ov99_021D4134.c.o
+	Object main.nef.p/src_cutscenes_end_credits_ov99_021D0D80.c.o
+	Object main.nef.p/src_cutscenes_end_credits_ov99_021D1A54.c.o
+	Object main.nef.p/src_cutscenes_end_credits_ov99_021D2C08.c.o
+	Object main.nef.p/src_cutscenes_end_credits_ov99_021D2E28.c.o
+	Object main.nef.p/src_cutscenes_end_credits_ov99_021D340C.c.o
+	Object main.nef.p/src_cutscenes_end_credits_ov99_021D3A40.c.o
+	Object main.nef.p/src_cutscenes_end_credits_ov99_021D3C18.c.o
+	Object main.nef.p/src_cutscenes_end_credits_ov99_021D3DE0.c.o
+	Object main.nef.p/src_cutscenes_end_credits_ov99_021D3E78.c.o
+	Object main.nef.p/src_cutscenes_end_credits_ov99_021D4134.c.o
 }
 
 Overlay overlay100

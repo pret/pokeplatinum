@@ -3,10 +3,10 @@
 
 #include "struct_defs/clear_game_player_info.h"
 
-#include "overlay099/struct_ov99_021D2CB0_sub1.h"
-#include "overlay099/struct_ov99_021D2CB0_sub2.h"
-#include "overlay099/struct_ov99_021D3A40.h"
-#include "overlay099/struct_ov99_021D3E78_decl.h"
+#include "cutscenes/end_credits/struct_ov99_021D2CB0_sub1.h"
+#include "cutscenes/end_credits/struct_ov99_021D2CB0_sub2.h"
+#include "cutscenes/end_credits/struct_ov99_021D3A40.h"
+#include "cutscenes/end_credits/struct_ov99_021D3E78_decl.h"
 
 #include "bg_window.h"
 #include "camera.h"

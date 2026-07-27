@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV99_021D2E28_H
 #define POKEPLATINUM_STRUCT_OV99_021D2E28_H
 
-#include "overlay099/struct_ov99_021D2FD4.h"
+#include "cutscenes/end_credits/struct_ov99_021D2FD4.h"
 
 typedef struct {
     fx32 unk_00;
