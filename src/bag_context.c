@@ -10,6 +10,7 @@
 #include "struct_defs/seal_case.h"
 
 #include "bag.h"
+#include "ball_seal_info.h"
 #include "coins.h"
 #include "heap.h"
 #include "message.h"
@@ -19,7 +20,6 @@
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_020298BC.h"
-#include "unk_0202C9F4.h"
 #include "wifi_battle_tower_save.h"
 
 #include "res/text/bank/bag.h"

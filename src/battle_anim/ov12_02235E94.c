@@ -15,6 +15,7 @@
 #include "battle_anim/struct_ov12_02236690.h"
 #include "battle_anim/struct_ov12_02237728.h"
 
+#include "ball_seal_info.h"
 #include "heap.h"
 #include "math_util.h"
 #include "narc.h"
@@ -28,7 +29,6 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 
 #include "res/graphics/battle/sprites.naix"

@@ -93,6 +93,7 @@
 
 #include "appearance.h"
 #include "bag.h"
+#include "ball_seal_info.h"
 #include "battle_frontier.h"
 #include "bg_window.h"
 #include "binoculars_vista_lighthouse.h"
@@ -192,7 +193,6 @@
 #include "tv_segment.h"
 #include "underground.h"
 #include "unk_020298BC.h"
-#include "unk_0202C9F4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"

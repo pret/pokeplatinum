@@ -15,6 +15,7 @@
 
 #include "bag.h"
 #include "bag_context.h"
+#include "ball_seal_info.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "field_message.h"
@@ -54,7 +55,6 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_0202C9F4.h"
 #include "unk_0203D1B8.h"
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"

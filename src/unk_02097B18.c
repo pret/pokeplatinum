@@ -17,6 +17,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "ball_seal_info.h"
 #include "bg_window.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -41,7 +42,6 @@
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
 #include "tv_segment.h"
-#include "unk_0202C9F4.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F64C0.h"
@@ -94,49 +94,45 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
     v0->unk_D4.unk_00 = 0xFF;
     v0->unk_418.unk_00 = 0;
 
-    {
-        int v2 = 0;
-        int v3;
+    int v2 = 0;
+    int v3;
 
-        v3 = (SealCase_CountUniqueSeals(v0->unk_00->unk_20));
+    v3 = (SealCase_CountUniqueSeals(v0->unk_00->unk_20));
 
-        if (v3 % 8) {
-            v2 = 1;
-        }
-
-        v0->unk_418.unk_04 = (SealCase_CountUniqueSeals(v0->unk_00->unk_20) / 8) + v2;
+    if (v3 % 8) {
+        v2 = 1;
     }
+
+    v0->unk_418.unk_04 = (SealCase_CountUniqueSeals(v0->unk_00->unk_20) / 8) + v2;
 
     if (v0->unk_418.unk_04 > (SEAL_ID_MAX / 8)) {
         v0->unk_418.unk_04 = (SEAL_ID_MAX / 8);
     }
 
-    v0->unk_3C4[0] = sub_02097F18(v0->unk_00);
+    v0->unk_3C4[0] = sub_02097F18(v0->unk_00); // 2C
     v0->unk_3C4[1] = sub_02097F18(v0->unk_00);
 
-    {
-        int i;
-        int capsuleId;
-        BallCapsule *capsule;
+    int i;
+    int capsuleId;
+    BallCapsule *capsule;
 
-        v0->unk_64 = SealCase_GetSealsObtained(v0->unk_00->unk_20);
+    v0->unk_64 = SealCase_GetSealsObtained(v0->unk_00->unk_20);
 
-        for (i = 0; i < TOTAL_CAPSULES; i++) {
-            capsule = SealCase_GetCapsuleById(v0->unk_00->unk_20, i);
-            v0->unk_04[i].unk_00 = 0xff;
-            v0->unk_04[i].unk_04 = capsule;
+    for (i = 0; i < CAPSULE_NUM; i++) {
+        capsule = SealCase_GetCapsuleById(v0->unk_00->unk_20, i);
+        v0->unk_04[i].unk_00 = 0xff;
+        v0->unk_04[i].unk_04 = capsule;
+    }
+
+    for (i = 0; i < 6; i++) {
+        if (v0->unk_00->unk_04[i] == NULL) {
+            continue;
         }
 
-        for (i = 0; i < 6; i++) {
-            if (v0->unk_00->unk_04[i] == NULL) {
-                continue;
-            }
+        capsuleId = Pokemon_GetValue(v0->unk_00->unk_04[i], MON_DATA_BALL_CAPSULE_ID, 0);
 
-            capsuleId = Pokemon_GetValue(v0->unk_00->unk_04[i], MON_DATA_BALL_CAPSULE_ID, 0);
-
-            if (capsuleId != 0) {
-                v0->unk_04[capsuleId - 1].unk_00 = i;
-            }
+        if (capsuleId != 0) {
+            v0->unk_04[capsuleId - 1].unk_00 = i;
         }
     }
 
@@ -161,15 +157,13 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
 
     ov76_0223C398(&v0->unk_D4);
 
-    {
-        u32 v8;
+    u32 v8;
 
-        EnableTouchPad();
-        v8 = InitializeTouchPad(4);
+    EnableTouchPad();
+    v8 = InitializeTouchPad(4);
 
-        if (v8 != 1) {
-            (void)0;
-        }
+    if (v8 != 1) {
+        (void)0;
     }
 
     ov76_0223DCC0(v0);

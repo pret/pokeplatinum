@@ -116,7 +116,7 @@ pokeplatinum_c = files(
     'journal.c',
     'trainer_case_save_data.c',
     'wifi_history_save_data.c',
-    'unk_0202C9F4.c',
+    'ball_seal_info.c',
     'play_time.c',
     'chatot_cry.c',
     'game_records.c',

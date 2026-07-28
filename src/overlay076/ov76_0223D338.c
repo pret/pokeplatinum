@@ -19,6 +19,7 @@
 #include "overlay076/struct_ov76_0223BF74.h"
 #include "overlay076/struct_ov76_0223DE00.h"
 
+#include "ball_seal_info.h"
 #include "bg_window.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -40,7 +41,6 @@
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
 #include "unk_02012744.h"
-#include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 #include "vram_transfer.h"
 #include "yes_no_touch_menu.h"
@@ -50,13 +50,6 @@ typedef struct {
     ManagedSprite *unk_04;
     FontOAM *unk_08;
 } UnkStruct_ov76_0223D9AC;
-
-static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0);
-static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0);
-static BOOL ov76_0223E8A4(UnkStruct_ov76_0223DE00 *param0);
-static BOOL ov76_0223E950(UnkStruct_ov76_0223DE00 *param0);
-static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0);
-static BOOL ov76_0223EB1C(UnkStruct_ov76_0223DE00 *param0);
 
 void ov76_0223D338(UnkStruct_ov76_0223DE00 *param0)
 {
@@ -86,9 +79,9 @@ void ov76_0223D384(UnkStruct_ov76_0223DE00 *param0)
     }
 }
 
-void ov76_0223D3A0(void)
+void ov76_0223D3A0(void) // just set transparency?
 {
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 11, 7);
+    Gd_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 11, 7);
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
@@ -1297,7 +1290,7 @@ static BOOL ov76_0223EB1C(UnkStruct_ov76_0223DE00 *param0)
     return 0;
 }
 
-void ov76_0223EB20(int param0)
+void ov76_0223EB20(int unused) // gfx init
 {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

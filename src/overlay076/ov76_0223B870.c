@@ -15,6 +15,7 @@
 #include "overlay076/struct_ov76_0223C398.h"
 #include "overlay076/struct_ov76_0223DE00.h"
 
+#include "ball_seal_info.h"
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "font.h"
@@ -41,7 +42,6 @@
 #include "touch_screen.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
-#include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 
 typedef struct {

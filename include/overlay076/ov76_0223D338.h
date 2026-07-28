@@ -28,7 +28,7 @@ void ov76_0223DE00(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223DF70(UnkStruct_ov76_0223DE00 *param0, int param1);
 void ov76_0223DF84(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223E91C(UnkStruct_ov76_0223DE00 *param0, int param1);
-void ov76_0223EB20(int param0);
+void ov76_0223EB20(int unused);
 void ov76_0223EB54(int param0);
 void ov76_0223EB64(BgConfig *param0);
 void ov76_0223ECB0(void *param0);

@@ -5,7 +5,7 @@
 
 #include "struct_defs/seal_case.h"
 
-#include "unk_0202C9F4.h"
+#include "ball_seal_info.h"
 #include "unk_02097B18.h"
 
 int ov12_02237E54(s16 param0, s16 param1, s16 param2, s16 param3)

@@ -10,14 +10,14 @@
 
 typedef struct {
     int unk_00;
-    Pokemon *unk_04[6];
-    Party *unk_1C;
-    SealCase *unk_20;
+    Pokemon *pokemon[6];
+    Party *party;
+    SealCase *sealCase;
     Options *options;
     SaveData *saveData;
     u8 unk_2C;
     u8 unk_2D;
-    u8 padding[2];
+    u8 unused[2];
 } UnkStruct_02097F18;
 
 #endif // POKEPLATINUM_STRUCT_02097F18_H
