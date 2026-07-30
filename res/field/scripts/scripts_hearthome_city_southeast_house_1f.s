@@ -13,7 +13,7 @@ HearthomeCitySoutheastHouse1F_MiddleAgedMan:
     End
 
 HearthomeCitySoutheastHouse1F_Lady:
-    NPCMessage HearthomeCitySoutheastHouse1F_Text_ICouldCaptivateTheWholeWorld
+    NPCMessage HearthomeCitySoutheastHouse1F_Text_CaptivateTheWholeWorld
     End
 
 HearthomeCitySoutheastHouse1F_Twin:

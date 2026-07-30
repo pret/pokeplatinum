@@ -11,7 +11,7 @@
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C_decl.h"
+#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_02230914.h"
 #include "overlay066/struct_ov66_02230E68.h"
 #include "overlay070/ov70_0225C858.h"
@@ -34,6 +34,7 @@
 #include "bg_window.h"
 #include "cell_transfer.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "enums.h"
 #include "error_handling.h"
 #include "font.h"
@@ -72,7 +73,6 @@
 #include "trainer_info.h"
 #include "type_icon.h"
 #include "unk_0202419C.h"
-#include "unk_020366A0.h"
 #include "vram_transfer.h"
 
 typedef struct {
@@ -694,9 +694,9 @@ int ov70_0225DB90(ApplicationManager *appMan, int *param1)
         ov70_0225F024(&v0->unk_428);
         ov70_0225F100(&v0->unk_404);
 
-        if (sub_020383E8()) {
+        if (CommManager_CheckWifiError()) {
             ov70_0225F184(&v0->unk_3F4, &v0->unk_340);
-        } else if (sub_0203881C()) {
+        } else if (CommManager_IsWifiPlazaError()) {
             ov70_0225F1C0(&v0->unk_3F4, &v0->unk_340, ov66_022326DC());
         } else {
             ov70_0225F1F0(&v0->unk_3F4, &v0->unk_340, ov66_0222DFF8(v0->unk_34));
@@ -1268,8 +1268,8 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u
         Options *options = SaveData_GetOptions(saveData);
         u8 v2 = Options_Frame(options);
 
-        Font_LoadTextPalette(0, 5 * 32, heapID);
-        Font_LoadScreenIndicatorsPalette(0, 4 * 32, heapID);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(5), heapID);
+        Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(4), heapID);
 
         LoadStandardWindowGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], (1 + (18 + 12)) + ((18 + 12) + 24), 3, 0, heapID);
         LoadMessageBoxGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], 1, 1, v2, heapID);
@@ -1904,7 +1904,7 @@ static void ov70_0225F184(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F2
 {
     u32 v0;
     String *v1;
-    UnkStruct_ov65_0222F6EC *v2 = sub_020382F8();
+    UnkStruct_ov65_0222F6EC *v2 = CommManager_GetUnk34();
     v0 = ov66_022316F4(v2->unk_00, v2->unk_04);
 
     ov70_0225F2A8(param1, v2->unk_00, 5, 0, 2);
@@ -2006,7 +2006,7 @@ static void ov70_0225F318(UnkStruct_ov70_0225F208 *param0, u32 param1, u32 param
 
 static void ov70_0225F32C(UnkStruct_ov70_0225F208 *param0, u32 param1, u16 param2)
 {
-    StringTemplate_SetCustomMessageWord(param0->unk_00, param1, param2);
+    StringTemplate_SetEasyChatWord(param0->unk_00, param1, param2);
 }
 
 static void ov70_0225F338(UnkStruct_ov70_0225F208 *param0)
@@ -2223,7 +2223,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
             v14 = ov66_0222EBA4(v0, ov66_0222E338(v0));
 
             if (v14 == 0xffffffff) {
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
 
                 v14 = 0;
             }
@@ -2394,7 +2394,7 @@ static void ov70_0225F95C(SysTask *param0, void *param1)
     }
 
     {
-        Font_LoadTextPalette(4, 5 * 32, v0->unk_156);
+        Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(5), v0->unk_156);
     }
 
     {
@@ -2417,7 +2417,7 @@ static void ov70_0225F9BC(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4
     }
 
     {
-        Font_LoadTextPalette(4, 5 * 32, heapID);
+        Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(5), heapID);
     }
 }
 

@@ -1,0 +1,30 @@
+{
+  "name": "Choice Specs",
+  "plural": "Choice Specs",
+  "article": "the",
+  "description": [
+    "An item to be held by a Pokémon. These\n",
+    "distinctive glasses boost Sp. Atk, but\n",
+    "allow only one kind of move to be used."
+  ],
+  "icon": {
+    "sprite": "choice_specs_NCGR",
+    "palette": "choice_specs_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_CHOICE_SPATK",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

@@ -1,7 +1,9 @@
 #ifndef POKEPLATINUM_UNK_020363E8_H
 #define POKEPLATINUM_UNK_020363E8_H
 
-void CommTool_Init(int param0);
+#include "constants/heap.h"
+
+void CommTool_Init(enum HeapID heapID);
 void CommTool_Delete(void);
 BOOL CommTool_IsInitialized(void);
 void CommCmd_16(int param0, int param1, void *param2, void *param3);

@@ -2,7 +2,7 @@
   "key": 40315,
   "messages": [
     {
-      "id": "pl_msg_00000488_00000",
+      "id": "Route211East_Text_ImStrong",
       "en_US": [
         "I’m strong!\n",
         "I’m strong!\f",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000488_00001",
+      "id": "Route211East_Text_YouStartledMe",
       "en_US": [
         "Wah!\n",
         "You startled me good!\r",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000488_00002",
+      "id": "Route211East_Text_ExplainPsychUp",
       "en_US": [
         "Let me explain how that move works\n",
         "without getting too technical.\r",
@@ -41,14 +41,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000488_00003",
+      "id": "Route211East_Text_SignMtCoronet",
       "en_US": [
         "Rt. 211\n",
         "Mt. Coronet"
       ]
     },
     {
-      "id": "pl_msg_00000488_00004",
+      "id": "Route211East_Text_TrainerTipsCheckSupply",
       "en_US": [
         "Trainer Tips\r",
         "Even Veterans can get lost inside of\n",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000488_00005",
+      "id": "Route211East_Text_SignCelesticTown",
       "en_US": [
         "Rt. 211\n",
         "Celestic Town"

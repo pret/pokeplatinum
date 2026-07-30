@@ -15,13 +15,13 @@ _032:
     DeletePokemon BTLSCR_DEFENDER
     Wait 
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_TRAINER, _067
-    HealthbarSlideOut BTLSCR_DEFENDER
+    HealthBoxSlideOut BTLSCR_DEFENDER
     Wait 
     SwitchAndUpdateMon BTLSCR_FORCED_OUT
     Wait 
     PokemonSendOut BTLSCR_DEFENDER
     WaitTime 72
-    HealthbarSlideIn BTLSCR_DEFENDER
+    HealthBoxSlideIn BTLSCR_DEFENDER
     Wait 
     // {0} was dragged out!
     PrintMessage BattleStrings_Text_PokemonWasDraggedOut_Ally, TAG_NICKNAME, BTLSCR_DEFENDER

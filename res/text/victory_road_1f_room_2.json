@@ -2,7 +2,7 @@
   "key": 42006,
   "messages": [
     {
-      "id": "pl_msg_00000251_00000",
+      "id": "VictoryRoad1FRoom2_Text_LetMeGoWithYou",
       "en_US": [
         "...I’m Marley.\n",
         "...You are?\r",
@@ -13,21 +13,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000251_00001",
+      "id": "VictoryRoad1FRoom2_Text_DecidedToGoWithMarley",
       "en_US": [
         "{STRVAR_1 3, 0, 0} decided to go with\n",
         "Marley!"
       ]
     },
     {
-      "id": "pl_msg_00000251_00002",
+      "id": "VictoryRoad1FRoom2_Text_IllHealPokemon",
       "en_US": [
         "Marley: ...Pokémon shouldn’t be\n",
         "hurt... I’ll heal them..."
       ]
     },
     {
-      "id": "pl_msg_00000251_00003",
+      "id": "VictoryRoad1FRoom2_Text_YouTookSoLong",
       "en_US": [
         "Marley: ...You took so long...\n",
         "Please, don’t make me wait...\r",
@@ -35,14 +35,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000251_00004",
+      "id": "VictoryRoad1FRoom2_Text_YoureGoingBack",
       "en_US": [
         "Marley: ...You’re going back...\n",
         "Too bad... Bye-bye...\r"
       ]
     },
     {
-      "id": "pl_msg_00000251_00005",
+      "id": "VictoryRoad1FRoom2_Text_IAppreciateEscorting",
       "en_US": [
         "Marley: ...Oh! This is it.\n",
         "There’s a stone tablet ahead...\r",
@@ -53,27 +53,27 @@
       ]
     },
     {
-      "id": "pl_msg_00000251_00006",
+      "id": "VictoryRoad1FRoom2_Text_Dummy6",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000251_00007",
+      "id": "VictoryRoad1FRoom2_Text_Dummy7",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000251_00008",
+      "id": "VictoryRoad1FRoom2_Text_Dummy8",
       "garbage": 22
     },
     {
-      "id": "pl_msg_00000251_00009",
+      "id": "VictoryRoad1FRoom2_Text_Dummy9",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000251_00010",
+      "id": "VictoryRoad1FRoom2_Text_Dummy10",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000251_00011",
+      "id": "VictoryRoad1FRoom2_Text_Dummy11",
       "garbage": 11
     }
   ]

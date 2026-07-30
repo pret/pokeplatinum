@@ -2,7 +2,7 @@
   "key": 17598,
   "messages": [
     {
-      "id": "pl_msg_00000621_00000",
+      "id": "TVReporterInterviews_Text_MayIDoQuickInterview",
       "en_US": [
         "Hello!\n",
         "I’m with Jubilife TV!\r",
@@ -11,14 +11,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00001",
+      "id": "TVReporterInterviews_Text_ThatsTooBad",
       "en_US": [
         "Oh, that’s too bad.\n",
         "I hope you can oblige another time!"
       ]
     },
     {
-      "id": "pl_msg_00000621_00002",
+      "id": "TVReporterInterviews_Text_ThanksForSharingThoughts",
       "en_US": [
         "Thank you for sharing your thoughts\n",
         "with us.\r",
@@ -29,11 +29,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00003",
+      "id": "TVReporterInterviews_Text_Dummy3",
       "garbage": 7
     },
     {
-      "id": "pl_msg_00000621_00004",
+      "id": "TVReporterInterviews_Text_BattleTowerCorner",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -43,11 +43,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00005",
+      "id": "TVReporterInterviews_Text_Dummy5",
       "garbage": 7
     },
     {
-      "id": "pl_msg_00000621_00006",
+      "id": "TVReporterInterviews_Text_YourPokemonCorner",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -58,11 +58,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00007",
+      "id": "TVReporterInterviews_Text_Dummy7",
       "garbage": 7
     },
     {
-      "id": "pl_msg_00000621_00008",
+      "id": "TVReporterInterviews_Text_ThePoketchWatch",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00009",
+      "id": "TVReporterInterviews_Text_ContestHall",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -86,11 +86,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00010",
+      "id": "TVReporterInterviews_Text_Dummy10",
       "garbage": 7
     },
     {
-      "id": "pl_msg_00000621_00011",
+      "id": "TVReporterInterviews_Text_RightOnPhotoCorner",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00012",
+      "id": "TVReporterInterviews_Text_StreetCornerPersonalityCheckup",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00013",
+      "id": "TVReporterInterviews_Text_ThreeCheersForPoffinCorner",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -117,11 +117,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00014",
+      "id": "TVReporterInterviews_Text_Dummy14",
       "garbage": 7
     },
     {
-      "id": "pl_msg_00000621_00015",
+      "id": "TVReporterInterviews_Text_AmitySquareWatch",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00016",
+      "id": "TVReporterInterviews_Text_BattleFrontierFrontlineNews_Single",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00017",
+      "id": "TVReporterInterviews_Text_InYourFaceInterview_Question1",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00018",
+      "id": "TVReporterInterviews_Text_InYourFaceInterview_Question2",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00019",
+      "id": "TVReporterInterviews_Text_InYourFaceInterview_Question3",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00020",
+      "id": "TVReporterInterviews_Text_InYourFaceInterview_Question4",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00021",
+      "id": "TVReporterInterviews_Text_BattleFrontierFrontlineNews_Multi",
       "en_US": [
         "Thank you very much!\n",
         "Let’s not waste any time...\r",
@@ -191,71 +191,71 @@
       ]
     },
     {
-      "id": "pl_msg_00000621_00022",
+      "id": "TVReporterInterviews_Text_Normal",
       "en_US": "Normal"
     },
     {
-      "id": "pl_msg_00000621_00023",
+      "id": "TVReporterInterviews_Text_Fire",
       "en_US": "Fire"
     },
     {
-      "id": "pl_msg_00000621_00024",
+      "id": "TVReporterInterviews_Text_Water",
       "en_US": "Water"
     },
     {
-      "id": "pl_msg_00000621_00025",
+      "id": "TVReporterInterviews_Text_Electric",
       "en_US": "Electric"
     },
     {
-      "id": "pl_msg_00000621_00026",
+      "id": "TVReporterInterviews_Text_Grass",
       "en_US": "Grass"
     },
     {
-      "id": "pl_msg_00000621_00027",
+      "id": "TVReporterInterviews_Text_Ice",
       "en_US": "Ice"
     },
     {
-      "id": "pl_msg_00000621_00028",
+      "id": "TVReporterInterviews_Text_Fighting",
       "en_US": "Fighting"
     },
     {
-      "id": "pl_msg_00000621_00029",
+      "id": "TVReporterInterviews_Text_Poison",
       "en_US": "Poison"
     },
     {
-      "id": "pl_msg_00000621_00030",
+      "id": "TVReporterInterviews_Text_Ground",
       "en_US": "Ground"
     },
     {
-      "id": "pl_msg_00000621_00031",
+      "id": "TVReporterInterviews_Text_Flying",
       "en_US": "Flying"
     },
     {
-      "id": "pl_msg_00000621_00032",
+      "id": "TVReporterInterviews_Text_Psychic",
       "en_US": "Psychic"
     },
     {
-      "id": "pl_msg_00000621_00033",
+      "id": "TVReporterInterviews_Text_Bug",
       "en_US": "Bug"
     },
     {
-      "id": "pl_msg_00000621_00034",
+      "id": "TVReporterInterviews_Text_Rock",
       "en_US": "Rock"
     },
     {
-      "id": "pl_msg_00000621_00035",
+      "id": "TVReporterInterviews_Text_Ghost",
       "en_US": "Ghost"
     },
     {
-      "id": "pl_msg_00000621_00036",
+      "id": "TVReporterInterviews_Text_Dragon",
       "en_US": "Dragon"
     },
     {
-      "id": "pl_msg_00000621_00037",
+      "id": "TVReporterInterviews_Text_Dark",
       "en_US": "Dark"
     },
     {
-      "id": "pl_msg_00000621_00038",
+      "id": "TVReporterInterviews_Text_Steel",
       "en_US": "Steel"
     }
   ]

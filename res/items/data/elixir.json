@@ -1,0 +1,33 @@
+{
+  "name": "Elixir",
+  "plural": "Elixirs",
+  "article": "an",
+  "description": [
+    "It restores the PP of all the\n",
+    "moves learned by the targeted Pokémon\n",
+    "by 10 points each."
+  ],
+  "icon": {
+    "sprite": "ether_NCGR",
+    "palette": "elixir_NCLR"
+  },
+  "gbaID": "GBA_ITEM_ELIXIR",
+  "price": 3000,
+  "effectParam": 10,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_PP",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 2,
+  "itemUseParams": {
+    "restorePPAllMoves": true,
+    "ppRestored": 10
+  }
+}

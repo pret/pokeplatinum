@@ -2,7 +2,7 @@
   "key": 9262,
   "messages": [
     {
-      "id": "TwinleafTownSouthwestHouse_Text_ThePokemonProfessorReturned",
+      "id": "TwinleafTownSouthwestHouse_Text_PokemonProfessorReturned",
       "en_US": [
         "Did you hear?\r",
         "The Pokémon Professor returned\n",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "TwinleafTownSouthwestHouse_Text_ProfRowanGaveYouAPokedexDidHe",
+      "id": "TwinleafTownSouthwestHouse_Text_ProfRowanGavePokedex",
       "en_US": [
         "Well! Professor Rowan gave you a\n",
         "Pokédex, did he?"
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "TwinleafTownSouthwestHouse_Text_DoYouThinkICanBeFriendsWithPokemon",
+      "id": "TwinleafTownSouthwestHouse_Text_CanIBeFriendsWithPokemon",
       "en_US": [
         "Listen, listen, {STRVAR_1 3, 0, 0}.\r",
         "Do you think I can be friends with\n",

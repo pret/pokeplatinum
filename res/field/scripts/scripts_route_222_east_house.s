@@ -3,11 +3,11 @@
 #include "generated/size_contest_results.h"
 
 
-    ScriptEntry Route222EastHouse_OnLoad
+    ScriptEntry Route222EastHouse_OnTransition
     ScriptEntry Route222EastHouse_Fisherman
     ScriptEntryEnd
 
-Route222EastHouse_OnLoad:
+Route222EastHouse_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_POKEMON_SIZE_JUDGE
     End
 
@@ -16,7 +16,7 @@ Route222EastHouse_Fisherman:
     LockAll
     FacePlayer
     CheckPartyHasSpecies VAR_RESULT, SPECIES_REMORAID
-    GoToIfEq VAR_RESULT, 0, Route222EastHouse_NoRemoraid
+    GoToIfEq VAR_RESULT, FALSE, Route222EastHouse_NoRemoraid
     Message Route222EastHouse_Text_DreamtLargeRemoraidWasNoDream
     CloseMessage
     FadeScreenOut
@@ -26,7 +26,7 @@ Route222EastHouse_Fisherman:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8002, 0xFF, Route222EastHouse_ShowNoPokemon
+    GoToIfEq VAR_0x8002, PARTY_SLOT_NONE, Route222EastHouse_ShowNoPokemon
     GetPartyMonSpecies VAR_0x8002, VAR_0x8001
     GoToIfNe VAR_0x8001, SPECIES_REMORAID, Route222EastHouse_ShowedOtherSpecies
     CalcSizeContestResult VAR_RESULT, VAR_0x8002

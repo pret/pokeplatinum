@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "PokemonLeagueNorthPokecenter1F_Text_LetUsExamineYourGymBadges",
+      "id": "PokemonLeagueNorthPokecenter1F_Text_ExamineGymBadges",
       "en_US": [
         "Let me confirm that you are qualified\n",
         "to challenge the Pokémon League.\r",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "PokemonLeagueNorthPokecenter1F_Text_YouveCollectedAllGymBadges",
+      "id": "PokemonLeagueNorthPokecenter1F_Text_CollectedAllGymBadges",
       "en_US": [
         "Very well!\r",
         "Trainer, you’ve indeed collected\n",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "PokemonLeagueNorthPokecenter1F_Text_YouWillBeFacingTheEliteFour",
+      "id": "PokemonLeagueNorthPokecenter1F_Text_YouWillFaceTheEliteFour",
       "en_US": [
         "You will be facing the Elite Four\n",
         "of the Pokémon League.\r",

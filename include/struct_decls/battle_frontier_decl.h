@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_STRUCT_0209B75C_DECL_H
+#define POKEPLATINUM_STRUCT_0209B75C_DECL_H
+
+typedef struct BattleFrontier BattleFrontier;
+
+#endif // POKEPLATINUM_STRUCT_0209B75C_DECL_H

@@ -1,0 +1,50 @@
+{
+  "name": "Lum Berry",
+  "plural": "Lum Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. It may be used\n",
+    "or held by a Pokémon to recover from\n",
+    "any status problem."
+  ],
+  "icon": {
+    "sprite": "lum_berry_NCGR",
+    "palette": "lum_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_LUM_BERRY",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_STATUS_RESTORE",
+  "pluckEffect": "PLUCK_EFFECT_ALL_RESTORE",
+  "flingEffect": "FLING_EFFECT_ALL_RESTORE",
+  "flingPower": 10,
+  "naturalGiftPower": 60,
+  "naturalGiftType": "TYPE_FLYING",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "healSleep": true,
+    "healPoison": true,
+    "healBurn": true,
+    "healFreeze": true,
+    "healParalysis": true,
+    "healConfusion": true
+  },
+  "berryData": {
+    "size": 34,
+    "firmness": "FIRMNESS_SUPER_HARD",
+    "baseYield": 1,
+    "stageDuration": 12,
+    "moistureDrainRate": 8,
+    "spiciness": 10,
+    "dryness": 10,
+    "sweetness": 10,
+    "bitterness": 10,
+    "sourness": 0,
+    "smoothness": 20
+  }
+}

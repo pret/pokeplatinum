@@ -13,9 +13,8 @@
 #include "applications/frontier/battle_factory/sprite_manager.h"
 #include "applications/frontier/battle_factory/windows.h"
 #include "applications/pokemon_summary_screen/main.h"
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/ov104_0223A7F4.h"
-#include "overlay104/struct_ov104_02234130.h"
 
 #include "bg_window.h"
 #include "communication_information.h"
@@ -32,7 +31,6 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
-#include "narc_frontier_bg.h"
 #include "network_icon.h"
 #include "overlay_manager.h"
 #include "palette.h"
@@ -58,6 +56,7 @@
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 #include "res/text/bank/battle_factory_app.h"
 
 FS_EXTERN_OVERLAY(overlay104);
@@ -386,15 +385,15 @@ int BattleFactoryApp_Init(ApplicationManager *appMan, int *state)
     app->bgConfig = BgConfig_New(HEAP_ID_BATTLE_FACTORY_APP);
     app->appMan = appMan;
 
-    UnkStruct_ov104_02234130 *v2 = ApplicationManager_Args(appMan);
+    BattleFactoryAppArgs *args = ApplicationManager_Args(appMan);
 
-    app->saveData = v2->saveData;
-    app->challengeType = v2->unk_04;
-    app->unk_0A = v2->unk_05;
-    app->isExchangeMode = v2->unk_06;
-    app->personalParty = v2->unk_08;
-    app->receivableParty = v2->unk_0C;
-    app->selectedIndicesFinal = &v2->unk_10[0];
+    app->saveData = args->saveData;
+    app->challengeType = args->challengeType;
+    app->unk_0A = args->unk_05;
+    app->isExchangeMode = args->isExchangeMode;
+    app->personalParty = args->personalParty;
+    app->receivableParty = args->receivableParty;
+    app->selectedIndicesFinal = &args->selectedIndices[0];
     app->options = SaveData_GetOptions(app->saveData);
     app->wheelPaletteCounter = 8;
 
@@ -744,7 +743,7 @@ static BOOL State_SetupAppStrings(BattleFactoryApp *app)
 static void PrintStringsForInitialSelect(BattleFactoryApp *app)
 {
     int i;
-    u8 numMons = BattleFactory_GetPartySize(app->challengeType);
+    u8 numMons = BattleFactory_GetPlayerPartySize(app->challengeType);
 
     SetMenuWasCancelled(app, FALSE);
     app->monCursor = BattleFactoryAppCursor_New(&app->spriteMan, app->numPokeballs, app->numPokeballs, CURSOR_MODE_MON_ONLY, app->startingSlot, sInitialSelectCursorPositions, NULL);
@@ -1063,7 +1062,7 @@ static void RemoveSelectedMonUnderCursor(BattleFactoryApp *app)
 static BOOL State_ConfirmPartySelection(BattleFactoryApp *app)
 {
     int i;
-    u8 numMons = BattleFactory_GetPartySize(app->challengeType);
+    u8 numMons = BattleFactory_GetPlayerPartySize(app->challengeType);
 
     switch (app->subState) {
     case 0:
@@ -1246,7 +1245,7 @@ static BOOL State_ConfirmPartySelection(BattleFactoryApp *app)
 
 static BOOL State_ReturnToInitialPartySelection(BattleFactoryApp *app)
 {
-    u8 numMons = BattleFactory_GetPartySize(app->challengeType);
+    u8 numMons = BattleFactory_GetPlayerPartySize(app->challengeType);
 
     switch (app->subState) {
     case 0:
@@ -1353,7 +1352,7 @@ static BOOL State_ReturnToInitialPartySelection(BattleFactoryApp *app)
 
 static void RedisplayInfoForInitialSelection(BattleFactoryApp *app)
 {
-    BattleFactory_GetPartySize(app->challengeType);
+    BattleFactory_GetPlayerPartySize(app->challengeType);
 
     for (int i = 0; i < app->numMonsSelected; i++) {
         PrintMonNameAndGender(app, &app->windows[WINDOW_SELECTED_MON_NAME_1 + i], app->selectedIndices[i], 0, 0, 15, 2, 0, FONT_SYSTEM, app->personalParty);
@@ -1782,7 +1781,7 @@ static void RecreateReceivableMonSprite(BattleFactoryApp *app)
 static BOOL State_ChangeExchangeToReceiveSelect(BattleFactoryApp *app)
 {
     int i;
-    u8 numMons = BattleFactory_GetPartySize(app->challengeType);
+    u8 numMons = BattleFactory_GetPlayerPartySize(app->challengeType);
 
     switch (app->subState) {
     case 0:
@@ -2336,38 +2335,38 @@ static void SetPanelSpritesAnim(BattleFactoryApp *app, u32 animID)
 
 static void LoadMonSelectionBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_factory_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
 
     if (!BattleFactory_IsMultiplayerChallenge(app->challengeType)) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_MON_SELECTION_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_factory_app_mon_selection_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_MULTI_MON_SELECTION_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_factory_app_multi_mon_selection_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     }
 }
 
 static void LoadAppStartupBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_NO_SCREENS_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_factory_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_factory_app_no_screens_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
 static void LoadConveyorBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_CONVEYOR_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_factory_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_factory_app_conveyor_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
 static void LoadWheelBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_WHEEL_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_factory_app_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_factory_app_wheel_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     Bg_SetPriority(BG_LAYER_MAIN_1, 2);
 }
 
 static void LoadPalette(void)
 {
     NNSG2dPaletteData *plttData;
-    void *pltt = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, BATTLE_FACTORY_APP_PLTT, &plttData, HEAP_ID_BATTLE_FACTORY_APP);
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_FRONTIER_BACKGROUNDS, battle_factory_app_NCLR, &plttData, HEAP_ID_BATTLE_FACTORY_APP);
 
     DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 11);
     GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 11);
@@ -2376,31 +2375,31 @@ static void LoadPalette(void)
 
 static void LoadSubScreenBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
-    Graphics_LoadPaletteFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_PLTT, PAL_LOAD_SUB_BG, 0, PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, battle_frontier_app_sub_NCGR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_frontier_app_sub_NSCR_lz, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadPaletteFromOpenNARC(app->narc, battle_frontier_app_sub_NCLR, PAL_LOAD_SUB_BG, 0, PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
 static void ReloadMonSelectionBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
     if (!BattleFactory_IsMultiplayerChallenge(app->challengeType)) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_MON_SELECTION_TILEMAP, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_factory_app_mon_selection_NSCR_lz, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_MULTI_MON_SELECTION_TILEMAP, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_factory_app_multi_mon_selection_NSCR_lz, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     }
 }
 
 static void ReloadNoScreensBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_NO_SCREENS_TILEMAP, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_factory_app_no_screens_NSCR_lz, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
 static void LoadSelectionConfirmBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
     if (!BattleFactory_IsMultiplayerChallenge(app->challengeType)) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_SUMMARY_TILEMAP, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_factory_app_summary_NSCR_lz, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_MULTI_SUMMARY_TILEMAP, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, battle_factory_app_multi_summary_NSCR_lz, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     }
 }
 
@@ -2657,7 +2656,7 @@ static void InitGraphicsPlane(void)
 
 static void LoadAssets(BattleFactoryApp *app)
 {
-    app->narc = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_BATTLE_FACTORY_APP);
+    app->narc = NARC_ctor(NARC_INDEX_FRONTIER_BACKGROUNDS, HEAP_ID_BATTLE_FACTORY_APP);
 
     LoadBackgrounds(app);
     InitSpriteManager(app);
@@ -2888,7 +2887,7 @@ void BattleFactoryApp_HandleSelectionUpdateCmd(int netID, int unused, void *data
     const u16 *payload = data;
 
     int offset = 0;
-    BattleFactory_GetPartySize(app->challengeType);
+    BattleFactory_GetPlayerPartySize(app->challengeType);
 
     if (CommSys_CurNetId() == netID) {
         return;
@@ -2911,12 +2910,12 @@ void BattleFactoryApp_HandleSelectionUpdateCmd(int netID, int unused, void *data
 
 void BattleFactoryApp_DummyCommCommand2(int netID, int unused, void *data, void *context)
 {
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static void UpdatePartnersMonsListing(BattleFactoryApp *app)
 {
-    u8 numMons = BattleFactory_GetPartySize(app->challengeType);
+    u8 numMons = BattleFactory_GetPlayerPartySize(app->challengeType);
 
     if (app->clearPartnerInfo == TRUE) {
         Window_ClearAndCopyToVRAM(&app->windows[WINDOW_PARTNERS_NAME]);
@@ -3046,7 +3045,7 @@ static BattleFactoryAppPanelSprite *CreateGreenPanelSprite(BattleFactoryApp *app
         y = 40;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         x = 0;
         y = 0;
         break;

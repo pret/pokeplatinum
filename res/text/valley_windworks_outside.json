@@ -2,7 +2,7 @@
   "key": 51110,
   "messages": [
     {
-      "id": "ValleyWindworksOutside_Text_DontYouDareGoIntoTheValleyWindworksYoullHaveToBattleMeForIt",
+      "id": "ValleyWindworksOutside_Text_BattleMeForIt",
       "en_US": [
         "Don’t you dare go into the Valley\n",
         "Windworks.\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksOutside_Text_IsntThatJustGreatGettingOwnedBySomeKid",
+      "id": "ValleyWindworksOutside_Text_GettingOwnedBySomeKid",
       "en_US": [
         "Isn’t that just great.\n",
         "Getting owned by some kid.\r",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksOutside_Text_IHaveReceivedTipsThatTheTeamGalacticHideoutIsInEternaCity",
+      "id": "ValleyWindworksOutside_Text_HideoutIsInEternaCity",
       "en_US": [
         "Looker: Magnificent! Yes, it is!\n",
         "What you have said, it is all true!\r",
@@ -68,25 +68,25 @@
       "en_US": "It’s locked from inside!"
     },
     {
-      "id": "ValleyWindworksOutside_Text_ItsLockedFromInsideUseTheWorksKey",
+      "id": "ValleyWindworksOutside_Text_UseTheWorksKey",
       "en_US": [
         "It’s locked from inside!\r",
         "Use the Works Key?"
       ]
     },
     {
-      "id": "ValleyWindworksOutside_Text_KerchunkTheDoorToValleyWindworksOpened",
+      "id": "ValleyWindworksOutside_Text_KerchunkTheDoorOpened",
       "en_US": [
         "Ker-chunk!\r",
         "The door to Valley Windworks opened!"
       ]
     },
     {
-      "id": "ValleyWindworksOutside_Text_Floooooon",
+      "id": "ValleyWindworksOutside_Text_DrifloonCry",
       "en_US": "Floooooon!\r"
     },
     {
-      "id": "ValleyWindworksOutside_Text_ValleyWindworksEcologicalWindDrivenEnergy",
+      "id": "ValleyWindworksOutside_Text_SignValleyWindworks",
       "en_US": [
         "Valley Windworks\n",
         "Ecological, Wind-Driven Energy"

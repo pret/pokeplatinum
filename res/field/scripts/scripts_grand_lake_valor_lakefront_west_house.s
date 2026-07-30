@@ -9,10 +9,10 @@ GrandLakeValorLakefrontWestHouse_GameDirector:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0001, GrandLakeValorLakefrontWestHouse_StoriesAreUnique
+    GoToIfSet FLAG_MAP_LOCAL_0x01, GrandLakeValorLakefrontWestHouse_StoriesAreUnique
     CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, GrandLakeValorLakefrontWestHouse_ImTheGameDirector
-    GoToIfUnset FLAG_LOCAL_DEX_DIPLOMA_RECEIVED, GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma
+    GoToIfUnset FLAG_RECEIVED_LOCAL_DEX_DIPLOMA, GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma
     CheckNationalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma
     GoTo GrandLakeValorLakefrontWestHouse_ShowNationalDexDiploma
@@ -25,9 +25,9 @@ GrandLakeValorLakefrontWestHouse_ImTheGameDirector:
     End
 
 GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma:
-    CallIfUnset FLAG_LOCAL_DEX_DIPLOMA_RECEIVED, GrandLakeValorLakefrontWestHouse_IncrementScoreLocalDexDiplomaReceived
-    SetFlag FLAG_LOCAL_DEX_DIPLOMA_RECEIVED
-    SetFlag FLAG_UNK_0x0001
+    CallIfUnset FLAG_RECEIVED_LOCAL_DEX_DIPLOMA, GrandLakeValorLakefrontWestHouse_IncrementScoreLocalDexDiplomaReceived
+    SetFlag FLAG_RECEIVED_LOCAL_DEX_DIPLOMA
+    SetFlag FLAG_MAP_LOCAL_0x01
     Message GrandLakeValorLakefrontWestHouse_Text_SeenEverySinnohPokemon
     PlayFanfare SEQ_FANFA4
     WaitFanfare
@@ -42,9 +42,9 @@ GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma:
     End
 
 GrandLakeValorLakefrontWestHouse_ShowNationalDexDiploma:
-    CallIfUnset FLAG_NATIONAL_DEX_DIPLOMA_RECEIVED, GrandLakeValorLakefrontWestHouse_IncrementScoreNationalDexDiplomaReceived
-    SetFlag FLAG_NATIONAL_DEX_DIPLOMA_RECEIVED
-    SetFlag FLAG_UNK_0x0001
+    CallIfUnset FLAG_RECEIVED_NATIONAL_DEX_DIPLOMA, GrandLakeValorLakefrontWestHouse_IncrementScoreNationalDexDiplomaReceived
+    SetFlag FLAG_RECEIVED_NATIONAL_DEX_DIPLOMA
+    SetFlag FLAG_MAP_LOCAL_0x01
     Message GrandLakeValorLakefrontWestHouse_Text_ObtainedEveryPokemon
     PlayFanfare SEQ_FANFA4
     WaitFanfare

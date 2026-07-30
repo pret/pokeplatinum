@@ -2,28 +2,28 @@
   "key": 54351,
   "messages": [
     {
-      "id": "pl_msg_00000283_00000",
+      "id": "GalacticHQ2F_Text_TakeARest",
       "en_US": [
         "It’s a bed...\n",
         "Want to take a rest?"
       ]
     },
     {
-      "id": "pl_msg_00000283_00001",
+      "id": "GalacticHQ2F_Text_FellAsleep",
       "en_US": [
         "{STRVAR_1 3, 0, 0} quickly fell asleep\n",
         "in the bed...\r"
       ]
     },
     {
-      "id": "pl_msg_00000283_00002",
+      "id": "GalacticHQ2F_Text_PokemonBecameFullyHealed",
       "en_US": [
         "{STRVAR_1 3, 0, 0} and the Pokémon\n",
         "became fully healed from the rest!"
       ]
     },
     {
-      "id": "pl_msg_00000283_00003",
+      "id": "GalacticHQ2F_Text_ReadReport",
       "en_US": [
         "There is a report titled “The Pokémon\n",
         "Statues of Eterna.”\r",
@@ -31,11 +31,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000283_00004",
+      "id": "GalacticHQ2F_Text_PutReportBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the report back."
     },
     {
-      "id": "pl_msg_00000283_00005",
+      "id": "GalacticHQ2F_Text_StatuePlateText1",
       "en_US": [
         "Pokémon statue plate text no. 1\n",
         "(from stolen plate):\r",
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000283_00006",
+      "id": "GalacticHQ2F_Text_StatuePlateText2",
       "en_US": [
         "Pokémon statue plate text no. 2\n",
         "(from stolen plate):\r",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000283_00007",
+      "id": "GalacticHQ2F_Text_TeamGalacticNapRoom",
       "en_US": [
         "Team Galactic Nap Room\r",
         "Ensure the bed is unoccupied\n",
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000283_00008",
+      "id": "GalacticHQ2F_Text_TeamGalacticTVRoom",
       "en_US": [
         "Team Galactic TV Room\r",
         "State-of-the-art audio & video\n",
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000283_00009",
+      "id": "GalacticHQ2F_Text_TeamGalacticCredo",
       "en_US": [
         "The Team Galactic credo!\n",
         "Everything belongs to Team Galactic!\r",
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000283_00010",
+      "id": "GalacticHQ2F_Text_KitchenSinkNotice",
       "en_US": [
         "There is a notice tacked on to\n",
         "the kitchen sink.\r",
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000283_00011",
+      "id": "GalacticHQ2F_Text_RefrigeratorNotice",
       "en_US": [
         "There is a notice taped on to\n",
         "the refrigerator.\r",

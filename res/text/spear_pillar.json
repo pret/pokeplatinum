@@ -2,7 +2,7 @@
   "key": 24598,
   "messages": [
     {
-      "id": "pl_msg_00000234_00000",
+      "id": "SpearPillar_Text_TakeYouDown",
       "en_US": [
         "Our boss is about to do something\n",
         "spectacular!\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00001",
+      "id": "SpearPillar_Text_OnlyOnePokemon",
       "en_US": [
         "Our boss is about to do something\n",
         "spectacular!\r",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00002",
+      "id": "SpearPillar_Text_WeLetYouPass",
       "en_US": [
         "We are not capable of slowing you.\r",
         "We will let you pass so you can get\n",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00003",
+      "id": "SpearPillar_Text_GoThroughMeFirst",
       "en_US": [
         "Mars: Where do you think you’re going?\n",
         "I won’t let you disturb our boss.\r",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00004",
+      "id": "SpearPillar_Text_IllBeNext",
       "en_US": [
         "Jupiter: And I’ll be next.\r",
         "You might be tough, but this time,\n",
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00005",
+      "id": "SpearPillar_Text_DontPartyWithoutMe",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hold on one second!\r",
         "Don’t you start the party without\n",
@@ -61,22 +61,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00006",
+      "id": "SpearPillar_Text_Dummy6",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000234_00007",
+      "id": "SpearPillar_Text_Huh",
       "en_US": "Jupiter: Huh?\r"
     },
     {
-      "id": "pl_msg_00000234_00008",
+      "id": "SpearPillar_Text_ImHereForRevenge",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Remember me?\n",
         "I’m here to get my revenge!\r"
       ]
     },
     {
-      "id": "pl_msg_00000234_00009",
+      "id": "SpearPillar_Text_LetsBattleTwoOnTwo",
       "en_US": [
         "Jupiter: Ha!\n",
         "If it isn’t that little boy.\f",
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00010",
+      "id": "SpearPillar_Text_IllHelpYou",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...Heh.\n",
         "My Pokémon are tough, right?\f",
@@ -97,21 +97,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00011",
+      "id": "SpearPillar_Text_FullyHealedPokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0} fully healed\n",
         "{STRVAR_1 3, 1, 0}’s Pokémon!\r"
       ]
     },
     {
-      "id": "pl_msg_00000234_00012",
+      "id": "SpearPillar_Text_ItsYourShowNow",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
         "This is it! It’s your show now!\r"
       ]
     },
     {
-      "id": "pl_msg_00000234_00013",
+      "id": "SpearPillar_Text_EverythingIsReady",
       "en_US": [
         "Cyrus: ...\n",
         "...\r",
@@ -130,18 +130,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00014",
+      "id": "SpearPillar_Text_DialgaMasterOfTime",
       "en_US": [
         "DIALGA, the mythical Pokémon, and\n",
         "the master of time!\r"
       ]
     },
     {
-      "id": "pl_msg_00000234_00015",
+      "id": "SpearPillar_Text_Dummy15",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000234_00016",
+      "id": "SpearPillar_Text_PalkiaMasterOfSpace",
       "en_US": [
         "...And the other.\r",
         "PALKIA, the mythical Pokémon, and\n",
@@ -149,11 +149,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00017",
+      "id": "SpearPillar_Text_Dummy17",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000234_00018",
+      "id": "SpearPillar_Text_IWillCreateNewWorld",
       "en_US": [
         "Cyrus: I’ve waited so long for this\n",
         "moment, DIALGA and PALKIA.\r",
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00019",
+      "id": "SpearPillar_Text_NothingCanRemain",
       "en_US": [
         "The incomplete and ugly world we have\n",
         "now can disappear.\r",
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00020",
+      "id": "SpearPillar_Text_IShouldHaveExpectedAsMuch",
       "en_US": [
         "Cyrus: ...I should have expected as\n",
         "much.\r",
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00021",
+      "id": "SpearPillar_Text_CantMaintainBalance",
       "en_US": [
         "The Pokémon have come to protect\n",
         "Sinnoh? Pathetic and worthless.\r",
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00022",
+      "id": "SpearPillar_Text_MyDreamWillBeReality",
       "en_US": [
         "Now, {STRVAR_1 3, 0, 0}.\r",
         "You’ve constantly interfered with my\n",
@@ -225,14 +225,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00023",
+      "id": "SpearPillar_Text_WhatIsThisPressure",
       "en_US": [
         "What is this pressure I feel...?\n",
         "Something...is enraged?\r"
       ]
     },
     {
-      "id": "pl_msg_00000234_00024",
+      "id": "SpearPillar_Text_PokemonThatAppearsAsShadow",
       "en_US": [
         "Cyrus: Interesting.\r",
         "So, there is a Pokémon that can only\n",
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00025",
+      "id": "SpearPillar_Text_IHaveHarnessedPowers",
       "en_US": [
         "Regardless, the effort is rash and\n",
         "foolish.\r",
@@ -249,220 +249,220 @@
       ]
     },
     {
-      "id": "pl_msg_00000234_00026",
+      "id": "SpearPillar_Text_NoMoreInterference",
       "en_US": [
         "I, Cyrus, won’t have any more\n",
         "interferererererere...!"
       ]
     },
     {
-      "id": "pl_msg_00000234_00027",
+      "id": "SpearPillar_Text_Dummy27",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000234_00028",
+      "id": "SpearPillar_Text_Dummy28",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000234_00029",
+      "id": "SpearPillar_Text_Dummy29",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000234_00030",
+      "id": "SpearPillar_Text_Dummy30",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000234_00031",
+      "id": "SpearPillar_Text_Dummy31",
       "garbage": 247
     },
     {
-      "id": "pl_msg_00000234_00032",
+      "id": "SpearPillar_Text_Dummy32",
       "garbage": 74
     },
     {
-      "id": "pl_msg_00000234_00033",
+      "id": "SpearPillar_Text_Dummy33",
       "garbage": 21
     },
     {
-      "id": "pl_msg_00000234_00034",
+      "id": "SpearPillar_Text_Dummy34",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00035",
+      "id": "SpearPillar_Text_Dummy35",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000234_00036",
+      "id": "SpearPillar_Text_Dummy36",
       "garbage": 33
     },
     {
-      "id": "pl_msg_00000234_00037",
+      "id": "SpearPillar_Text_Dummy37",
       "garbage": 32
     },
     {
-      "id": "pl_msg_00000234_00038",
+      "id": "SpearPillar_Text_Dummy38",
       "garbage": 24
     },
     {
-      "id": "pl_msg_00000234_00039",
+      "id": "SpearPillar_Text_Dummy39",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000234_00040",
+      "id": "SpearPillar_Text_Dummy40",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000234_00041",
+      "id": "SpearPillar_Text_Dummy41",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000234_00042",
+      "id": "SpearPillar_Text_Dummy42",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000234_00043",
+      "id": "SpearPillar_Text_SurprisedYouMadeIt",
       "en_US": [
         "Mars: I’m surprised you made it here.\n",
         "You can stay if you won’t meddle."
       ]
     },
     {
-      "id": "pl_msg_00000234_00044",
+      "id": "SpearPillar_Text_BeQuietAndWatch",
       "en_US": [
         "Jupiter: Be quiet and watch what our\n",
         "boss is about to do."
       ]
     },
     {
-      "id": "pl_msg_00000234_00045",
+      "id": "SpearPillar_Text_Dummy45",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00046",
+      "id": "SpearPillar_Text_Dummy46",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00047",
+      "id": "SpearPillar_Text_Dummy47",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00048",
+      "id": "SpearPillar_Text_Dummy48",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00049",
+      "id": "SpearPillar_Text_Dummy49",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00050",
+      "id": "SpearPillar_Text_Dummy50",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00051",
+      "id": "SpearPillar_Text_Dummy51",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00052",
+      "id": "SpearPillar_Text_Dummy52",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00053",
+      "id": "SpearPillar_Text_Dummy53",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00054",
+      "id": "SpearPillar_Text_Dummy54",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00055",
+      "id": "SpearPillar_Text_Dummy55",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00056",
+      "id": "SpearPillar_Text_Dummy56",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00057",
+      "id": "SpearPillar_Text_Dummy57",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00058",
+      "id": "SpearPillar_Text_Dummy58",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00059",
+      "id": "SpearPillar_Text_Dummy59",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00060",
+      "id": "SpearPillar_Text_Dummy60",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00061",
+      "id": "SpearPillar_Text_Dummy61",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00062",
+      "id": "SpearPillar_Text_Dummy62",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00063",
+      "id": "SpearPillar_Text_Dummy63",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00064",
+      "id": "SpearPillar_Text_Dummy64",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00065",
+      "id": "SpearPillar_Text_Dummy65",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00066",
+      "id": "SpearPillar_Text_Dummy66",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00067",
+      "id": "SpearPillar_Text_Dummy67",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00068",
+      "id": "SpearPillar_Text_Dummy68",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00069",
+      "id": "SpearPillar_Text_Dummy69",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00070",
+      "id": "SpearPillar_Text_Dummy70",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00071",
+      "id": "SpearPillar_Text_Dummy71",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00072",
+      "id": "SpearPillar_Text_Dummy72",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00073",
+      "id": "SpearPillar_Text_Dummy73",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00074",
+      "id": "SpearPillar_Text_Dummy74",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00075",
+      "id": "SpearPillar_Text_Dummy75",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000234_00076",
+      "id": "SpearPillar_Text_Dummy76",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000234_00077",
+      "id": "SpearPillar_Text_Dummy77",
       "garbage": 25
     }
   ]

@@ -2,19 +2,19 @@
   "key": 29766,
   "messages": [
     {
-      "id": "pl_msg_00000318_00000",
+      "id": "DistortionWorldB6F_Text_MespritCry",
       "en_US": "MESPRIT: Piih!\r"
     },
     {
-      "id": "pl_msg_00000318_00001",
+      "id": "DistortionWorldB6F_Text_UxieCry",
       "en_US": "UXIE: Piih!\r"
     },
     {
-      "id": "pl_msg_00000318_00002",
+      "id": "DistortionWorldB6F_Text_AzelfCry",
       "en_US": "AZELF: Piiuw!\r"
     },
     {
-      "id": "pl_msg_00000318_00003",
+      "id": "DistortionWorldB6F_Text_ThisPlaceGiantPuzzle",
       "en_US": [
         "Cynthia: This place...\n",
         "It seems to be a giant puzzle.\r",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000318_00004",
+      "id": "DistortionWorldB6F_Text_LakePokemonWentHome",
       "en_US": [
         "Cynthia: I guess the Pokémon of the\n",
         "lakes must have gone home.\r",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000318_00005",
+      "id": "DistortionWorldB6F_Text_WereGettingClose",
       "en_US": [
         "Cynthia: Call it a Trainer’s intuition,\n",
         "but we’re getting close.\r",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000318_00006",
+      "id": "DistortionWorldB6F_Text_BoulderMightFit",
       "en_US": [
         "At the bottom of the pit is a space\n",
         "that a boulder might fit into..."

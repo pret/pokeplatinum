@@ -2,11 +2,11 @@
   "key": 29794,
   "messages": [
     {
-      "id": "pl_msg_00000314_00000",
+      "id": "DistortionWorld1F_Text_ThisPlace",
       "en_US": "Cynthia: This place...\r"
     },
     {
-      "id": "pl_msg_00000314_00001",
+      "id": "DistortionWorld1F_Text_SpaceCalledDistortionWorld",
       "en_US": [
         "Can you feel it?\n",
         "There are no Pokémon here at all.\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000314_00002",
+      "id": "DistortionWorld1F_Text_LetsFindGiratina",
       "en_US": [
         "Let’s find GIRATINA.\r",
         "We need it to stop the spreading\n",
@@ -26,14 +26,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000314_00003",
+      "id": "DistortionWorld1F_Text_ThatWasGiratina",
       "en_US": [
         "Cynthia: That was...\r",
         "GIRATINA...!"
       ]
     },
     {
-      "id": "pl_msg_00000314_00004",
+      "id": "DistortionWorld1F_Text_WeHaveToHurry",
       "en_US": [
         "We have to hurry!\r",
         "If something’s not done, the distortion\n",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000314_00005",
+      "id": "DistortionWorld1F_Text_SlabMovesIfYouStep",
       "en_US": [
         "Cynthia: This rock slab...\r",
         "It appears to move if you step on a\n",
@@ -50,14 +50,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000314_00006",
+      "id": "DistortionWorld1F_Text_WhyIsGroundColoredDifferently",
       "en_US": [
         "Cynthia: On the ground here...\n",
         "Why is it colored differently?"
       ]
     },
     {
-      "id": "pl_msg_00000314_00007",
+      "id": "DistortionWorld1F_Text_ReturnToSpearPillar",
       "en_US": [
         "There is the portal leading back to\n",
         "the Spear Pillar.\r",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000314_00008",
+      "id": "DistortionWorld1F_Text_PlayerHeadedForSpearPillar",
       "en_US": [
         "{STRVAR_1 3, 0, 0} headed for the Spear\n",
         "Pillar!\r"

@@ -1,0 +1,30 @@
+{
+  "name": "Power Herb",
+  "plural": "Power Herbs",
+  "article": "a",
+  "description": [
+    "A single-use item to be held by a\n",
+    "Pokémon. It allows the immediate use of\n",
+    "a move that charges on the first turn."
+  ],
+  "icon": {
+    "sprite": "power_herb_NCGR",
+    "palette": "power_herb_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_CHARGE_SKIP",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

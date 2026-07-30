@@ -12,6 +12,7 @@
 #include "overlay094/networking.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -28,9 +29,8 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
-#include "unk_020366A0.h"
+#include "wifi_list.h"
 
 #include "res/text/bank/gts.h"
 #include "res/text/bank/unk_0674.h"
@@ -115,7 +115,7 @@ int GTSApplication_InitWFC_Init(GTSApplicationState *appState, int unused1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, TRUE);
-    sub_02038438(appState->playerData->saveData);
+    CommManager_InitializeGlobalWifi(appState->playerData->saveData);
 
     ov94_02245934(appState);
 
@@ -267,8 +267,8 @@ static void GTSApplication_WFCInit_InitGraphics(GTSApplicationState *appState)
 
     Graphics_LoadPaletteFromOpenNARC(narc, 3, PAL_LOAD_MAIN_BG, 0, 0, HEAP_ID_62);
     Graphics_LoadPaletteFromOpenNARC(narc, 3, PAL_LOAD_SUB_BG, 0, 0, HEAP_ID_62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(13), HEAP_ID_62);
     LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 2, bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_62);
@@ -334,7 +334,7 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
 
     if (menuInput != MENU_NOTHING_CHOSEN) {
         if (menuInput == MENU_CANCEL) {
-            sub_0203848C(); // free the network lock?
+            CommManager_EndGlobalWifi(); // free the network lock?
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 11;
         } else {
@@ -373,7 +373,7 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
                 DWC_CleanupInet();
             }
 
-            sub_0203848C();
+            CommManager_EndGlobalWifi();
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 11;
         }
@@ -392,7 +392,7 @@ static int GTSApplication_WFCInit_ShowDisconnectingMessage(GTSApplicationState *
 
 static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *appState)
 {
-    sub_0203848C();
+    CommManager_EndGlobalWifi();
 
     DWC_CleanupInet();
     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
@@ -647,21 +647,21 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
             GTSApplicationState_DestroyWaitDial(appState);
 
             switch (appState->worldExchangeTrainerError.validationError) {
-            case 0:
+            case WE_VALIDATION_ERROR_VALID:
                 switch (appState->worldExchangeTrainerError.systemError) {
-                case 0:
+                case WE_SYSTEM_ERROR_NONE:
                     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
                     appState->currentScreenInstruction = 11;
                     break;
-                case 3: // pl_msg_00000671_00177
+                case WE_SYSTEM_ERROR_DWC_3: // pl_msg_00000671_00177
                     appState->commsErrorMessage = -5003;
                     appState->currentScreenInstruction = 21;
                     break;
-                case 1: // pl_msg_00000671_00174
+                case WE_SYSTEM_ERROR_DWC_1: // pl_msg_00000671_00174
                     appState->commsErrorMessage = -5000;
                     appState->currentScreenInstruction = 21;
                     break;
-                case 2: // pl_msg_00000671_00174
+                case WE_SYSTEM_ERROR_DWC_2: // pl_msg_00000671_00174
                     appState->commsErrorMessage = -5001;
                     appState->currentScreenInstruction = 21;
                     break;
@@ -670,11 +670,11 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
                     break;
                 }
                 break;
-            case 1: // pl_msg_00000671_00175
+            case WE_VALIDATION_ERROR_FAILED_1: // pl_msg_00000671_00175
                 appState->commsErrorMessage = -5004;
                 appState->currentScreenInstruction = 21;
                 break;
-            case 2: // pl_msg_00000671_00176
+            case WE_VALIDATION_ERROR_FAILED_2: // pl_msg_00000671_00176
                 appState->commsErrorMessage = -5005;
                 appState->currentScreenInstruction = 21;
                 break;
@@ -826,7 +826,7 @@ static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationStat
         break;
     case 1:
         if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
-            sub_0203848C();
+            CommManager_EndGlobalWifi();
             DWC_CleanupInet();
             appState->wfcDisconnectMessageIndex++;
         }

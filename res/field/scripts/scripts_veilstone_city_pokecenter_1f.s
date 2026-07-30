@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 VeilstoneCityPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_VEILSTONE_NURSE
     End
 
 VeilstoneCityPokecenter1F_Socialite:

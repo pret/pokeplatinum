@@ -2,7 +2,7 @@
   "key": 42051,
   "messages": [
     {
-      "id": "WaywardCave1F_Text_ImMiraPleaseTakeMeToTheExit",
+      "id": "WaywardCave1F_Text_PleaseTakeMeToTheExit",
       "en_US": [
         "I’m Mira...\r",
         "I was catching Pokémon, and then\n",
@@ -20,14 +20,14 @@
       ]
     },
     {
-      "id": "WaywardCave1F_Text_IllKeepYourPokemonHealthyAllTheTime",
+      "id": "WaywardCave1F_Text_IllKeepYourPokemonHealthy",
       "en_US": [
         "Mira: I’ll keep your Pokémon healthy\n",
         "all the time!"
       ]
     },
     {
-      "id": "WaywardCave1F_Text_MyNameIsMiraILikeYourName",
+      "id": "WaywardCave1F_Text_ILikeYourName",
       "en_US": [
         "Trainer, your name is {STRVAR_1 3, 0, 0}?\r",
         "My name is Mira.\n",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "WaywardCave1F_Text_OhTheresTheExitThankYou",
+      "id": "WaywardCave1F_Text_TheresTheExit",
       "en_US": [
         "Mira: Oh! There’s the exit!\r",
         "I want to get tougher so I\n",
@@ -64,7 +64,7 @@
       "garbage": 26
     },
     {
-      "id": "WaywardCave1F_Text_ILikeHelpfulPokemonMovesLikeGrowlAndMinimize",
+      "id": "WaywardCave1F_Text_ILikeHelpfulMoves",
       "en_US": [
         "Mira: I like helpful Pokémon moves\n",
         "like Growl and Minimize.\r",
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "WaywardCave1F_Text_ThisCaveItsSoEasyToGetConfused",
+      "id": "WaywardCave1F_Text_EasyToGetConfused",
       "en_US": [
         "Mira: This cave...\n",
         "It’s so easy to get confused.\r",
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "WaywardCave1F_Text_PlayerDidYouGetToBeSoGoodBecauseYoureAlwaysWithPokemon",
+      "id": "WaywardCave1F_Text_MiraWillTryLikeYou",
       "en_US": [
         "Mira: {STRVAR_1 3, 0, 0}, did you get to be\n",
         "so good because you’re always with\f",

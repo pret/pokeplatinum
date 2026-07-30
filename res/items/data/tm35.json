@@ -1,0 +1,31 @@
+{
+  "name": "TM35",
+  "plural": "TM35s",
+  "article": "a",
+  "description": [
+    "The foe is scorched with an intense\n",
+    "blast of fire. The target may also be\n",
+    "left with a burn."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_fire_NCLR"
+  },
+  "gbaID": "GBA_ITEM_TM35",
+  "price": 3000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_FLAMETHROWER"
+}

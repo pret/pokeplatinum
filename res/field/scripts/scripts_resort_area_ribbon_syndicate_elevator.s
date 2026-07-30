@@ -1,12 +1,13 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_ribbon_syndicate_elevator.h"
 #include "res/text/bank/menu_entries.h"
+#include "res/field/events/events_resort_area_ribbon_syndicate_elevator.h"
 
 
-    ScriptEntry ResortAreaRibbonSyndicateElevator_TalkElevatorOperator
+    ScriptEntry ResortAreaRibbonSyndicateElevator_Receptionist
     ScriptEntryEnd
 
-ResortAreaRibbonSyndicateElevator_TalkElevatorOperator:
+ResortAreaRibbonSyndicateElevator_Receptionist:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -62,7 +63,7 @@ ResortAreaRibbonSyndicateElevator_ElevatorAnimation:
     CallIfEq VAR_0x8004, ELEVATOR_DIR_DOWN, ResortAreaRibbonSyndicateElevator_GoingDownMessage
     CallIfEq VAR_0x8004, ELEVATOR_DIR_UP, ResortAreaRibbonSyndicateElevator_GoingUpMessage
     CloseMessage
-    ApplyMovement 0, ResortAreaRibbonSyndicateElevator_LookDown
+    ApplyMovement LOCALID_RECEPTIONIST, ResortAreaRibbonSyndicateElevator_Movement_ReceptionistWalkOnSpotSouth
     WaitMovement
     WaitSE SEQ_SE_CONFIRM
     PlayElevatorAnimation VAR_0x8004, 4
@@ -100,6 +101,6 @@ ResortAreaRibbonSyndicateElevator_SelectCurrentFloor:
     End
 
     .balign 4, 0
-ResortAreaRibbonSyndicateElevator_LookDown:
+ResortAreaRibbonSyndicateElevator_Movement_ReceptionistWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement

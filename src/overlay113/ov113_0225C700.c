@@ -9,9 +9,7 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_02015958.h"
 
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -62,9 +60,9 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "unk_02012744.h"
-#include "unk_02015920.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
+#include "yes_no_touch_menu.h"
 
 typedef struct {
     Easy3DModel unk_00;
@@ -87,7 +85,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     SysTask *unk_18;
     SpriteSystem *unk_1C;
     SpriteManager *unk_20;
-    UnkStruct_02015920 *unk_24;
+    YesNoTouchMenu *unk_24;
     u8 unk_28;
     u8 unk_29;
     StringTemplate *unk_2C;
@@ -359,12 +357,12 @@ int ov113_0225C700(ApplicationManager *appMan, int *param1)
     v0->unk_14 = ov113_0225DC6C(HEAP_ID_118);
     v0->unk_0C = PaletteData_New(HEAP_ID_118);
 
-    PaletteData_SetAutoTransparent(v0->unk_0C, 1);
-    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, HEAP_ID_118);
-    PaletteData_AllocBuffer(v0->unk_0C, 1, 0x200, HEAP_ID_118);
-    PaletteData_AllocBuffer(v0->unk_0C, 2, 0x200 - 0x40, HEAP_ID_118);
-    PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, HEAP_ID_118);
-    PaletteData_SetAutoTransparent(v0->unk_0C, 1);
+    PaletteData_SetAutoTransparent(v0->unk_0C, TRUE);
+    PaletteData_AllocBuffer(v0->unk_0C, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_118);
+    PaletteData_AllocBuffer(v0->unk_0C, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_118);
+    PaletteData_AllocBuffer(v0->unk_0C, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 14, HEAP_ID_118);
+    PaletteData_AllocBuffer(v0->unk_0C, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_118);
+    PaletteData_SetAutoTransparent(v0->unk_0C, TRUE);
 
     v0->unk_08 = BgConfig_New(HEAP_ID_118);
 
@@ -389,7 +387,7 @@ int ov113_0225C700(ApplicationManager *appMan, int *param1)
     ov113_0225DBCC(v0);
 
     v0->unk_C4 = String_Init(256, HEAP_ID_118);
-    v0->unk_1C = SpriteSystem_Alloc(118);
+    v0->unk_1C = SpriteSystem_Alloc(HEAP_ID_118);
 
     SpriteSystem_Init(v0->unk_1C, &Unk_ov113_02260954, &Unk_ov113_022608E8, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
@@ -409,7 +407,7 @@ int ov113_0225C700(ApplicationManager *appMan, int *param1)
     ov113_0225D6F8(v0);
     ov113_0225D7CC(v0);
 
-    v0->unk_24 = sub_02015920(HEAP_ID_118);
+    v0->unk_24 = YesNoTouchMenu_New(HEAP_ID_118);
 
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_118);
 
@@ -486,8 +484,8 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
                 ov113_0225E068(v0, v2);
             } else if (((*param1) == 2) && (v2 == 0xfe)) {
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
-                PaletteData_Blend(v0->unk_0C, 0, 0 * 16 + 9, 1, 8, 0x0);
-                PaletteData_Blend(v0->unk_0C, 2, v0->unk_921 * 16, 16, 8, 0x0);
+                PaletteData_Blend(v0->unk_0C, PLTTBUF_MAIN_BG, 0 * 16 + 9, 1, 8, 0x0);
+                PaletteData_Blend(v0->unk_0C, PLTTBUF_MAIN_OBJ, v0->unk_921 * 16, 16, 8, 0x0);
                 *param1 = 3;
             }
         }
@@ -501,16 +499,16 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
         break;
     case 4:
         if (Text_IsPrinterActive(v0->unk_C8) == 0) {
-            UnkStruct_02015958 v3;
+            YesNoTouchMenuParams v3;
 
-            v3.unk_00 = v0->unk_08;
-            v3.unk_04 = 1;
-            v3.unk_08 = (1 + (18 + 12));
-            v3.unk_0C = 11;
-            v3.unk_10 = 25;
-            v3.unk_11 = 6;
+            v3.bgConfig = v0->unk_08;
+            v3.bgLayer = BG_LAYER_MAIN_1;
+            v3.baseTile = (1 + (18 + 12));
+            v3.palette = 11;
+            v3.tilemapLeft = 25;
+            v3.tilemapTop = 6;
 
-            sub_02015958(v0->unk_24, &v3);
+            YesNoTouchMenu_InitWithParams(v0->unk_24, &v3);
 
             v0->unk_28 = 1;
             (*param1)++;
@@ -518,25 +516,25 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
 
         break;
     case 5:
-        PaletteData_LoadBufferFromHardware(v0->unk_0C, 0, 11 * 16, 0x20 * 2);
+        PaletteData_LoadBufferFromHardware(v0->unk_0C, PLTTBUF_MAIN_BG, PLTT_DEST(11), PALETTE_SIZE_BYTES * 2);
         {
-            u32 v4 = sub_020159FC(v0->unk_24);
+            u32 v4 = YesNoTouchMenu_ProcessInput(v0->unk_24);
 
             switch (v4) {
-            case 1:
-                sub_02015A54(v0->unk_24);
+            case YES_NO_TOUCH_MENU_YES:
+                YesNoTouchMenu_Reset(v0->unk_24);
                 v0->unk_28 = 0;
                 Window_EraseMessageBox(&v0->unk_B4, 0);
                 v0->unk_168.unk_00 = 0;
                 v0->unk_9BC = 3;
                 *param1 = 9;
                 break;
-            case 2:
-                sub_02015A54(v0->unk_24);
+            case YES_NO_TOUCH_MENU_NO:
+                YesNoTouchMenu_Reset(v0->unk_24);
                 v0->unk_28 = 0;
                 Window_EraseMessageBox(&v0->unk_B4, 0);
-                PaletteData_Blend(v0->unk_0C, 0, 0 * 16 + 9, 1, 0, 0x0);
-                PaletteData_Blend(v0->unk_0C, 2, v0->unk_921 * 16, 16, 0, 0x0);
+                PaletteData_Blend(v0->unk_0C, PLTTBUF_MAIN_BG, 0 * 16 + 9, 1, 0, 0x0);
+                PaletteData_Blend(v0->unk_0C, PLTTBUF_MAIN_OBJ, v0->unk_921 * 16, 16, 0, 0x0);
                 *param1 = 2;
                 break;
             }
@@ -592,7 +590,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
 
         if (((ov66_02231760() == 1) || (ov66_0222E12C(v0->unk_00->unk_00) == 1)) && ((*param1) != 4)) {
             if (v0->unk_28 == 1) {
-                sub_02015A54(v0->unk_24);
+                YesNoTouchMenu_Reset(v0->unk_24);
             }
 
             v0->unk_168.unk_00 = 0;
@@ -620,7 +618,7 @@ int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
     SysTask_Done(v0->unk_18);
     ov113_0225D5D8(v0);
     ov113_0225D7A4(v0);
-    sub_02015938(v0->unk_24);
+    YesNoTouchMenu_Free(v0->unk_24);
     ov113_0225E378(&v0->unk_194);
 
     String_Free(v0->unk_C4);
@@ -635,10 +633,10 @@ int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
     Heap_Free(v0->unk_08);
     SpriteSystem_FreeResourcesAndManager(v0->unk_1C, v0->unk_20);
     SpriteSystem_Free(v0->unk_1C);
-    PaletteData_FreeBuffer(v0->unk_0C, 0);
-    PaletteData_FreeBuffer(v0->unk_0C, 1);
-    PaletteData_FreeBuffer(v0->unk_0C, 2);
-    PaletteData_FreeBuffer(v0->unk_0C, 3);
+    PaletteData_FreeBuffer(v0->unk_0C, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(v0->unk_0C, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(v0->unk_0C, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(v0->unk_0C, PLTTBUF_SUB_OBJ);
     PaletteData_Free(v0->unk_0C);
 
     ov113_0225DAFC(v0);
@@ -870,14 +868,14 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
     BgConfig *v0 = param0->unk_08;
     u16 *v1;
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 187, 19, 118, 0, 0x200 - 0x40, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 19, HEAP_ID_118, PLTTBUF_MAIN_BG, 0x200 - 0x40, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_08, 2, 0, 0, 0, HEAP_ID_118);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_08, 2, 0, 0, 0, HEAP_ID_118);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 20, param0->unk_08, 3, 0, 0, 0, HEAP_ID_118);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 187, 23, 118, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 23, HEAP_ID_118, PLTTBUF_SUB_BG, 0, 0);
 
     if (param0->unk_00->unk_04 == 0) {
-        PaletteData_CopyBuffer(param0->unk_0C, 1, 16 * 1, 1, 16 * 0, 0x20);
+        PaletteData_CopyBuffer(param0->unk_0C, 1, 16 * 1, 1, 16 * 0, PALETTE_SIZE_BYTES);
     }
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 22, param0->unk_08, 6, 0, 0, 0, HEAP_ID_118);
@@ -893,14 +891,14 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
         int v2;
         v2 = Options_Frame(SaveData_GetOptions(param0->saveData));
 
-        PaletteData_LoadBufferFromFileStart(param0->unk_0C, 38, GetMessageBoxPaletteNARCMember(v2), 118, 0, 0x20, 14 * 16);
+        PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v2), HEAP_ID_118, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
         LoadMessageBoxGraphics(param0->unk_08, BG_LAYER_MAIN_1, 1, 14, v2, HEAP_ID_118);
-        PaletteData_LoadBufferFromFileStart(param0->unk_0C, 14, 6, 118, 0, 0x20, 13 * 16);
+        PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_118, 0, PALETTE_SIZE_BYTES, PLTT_DEST(13));
 
         if (param0->unk_00->unk_04 == 0) {
-            PaletteData_LoadBufferFromFileStart(param0->unk_0C, 14, 6, 118, 1, 0x20, 13 * 16);
+            PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__PL_FONT, 6, HEAP_ID_118, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
         } else {
-            PaletteData_LoadBufferFromFileStart(param0->unk_0C, 187, 25, 118, 1, 0x20, 13 * 16);
+            PaletteData_LoadBufferFromFileStart(param0->unk_0C, NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 25, HEAP_ID_118, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
         }
     }
 
@@ -1142,7 +1140,7 @@ static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0)
 {
     VecFx32 v0 = { 0, -FX32_ONE * 8, 0 };
 
-    param0->camera = Camera_Alloc(118);
+    param0->camera = Camera_Alloc(HEAP_ID_118);
 
     Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov113_022608B4, (22 * 0xffff) / 360, 0, 0, param0->camera);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, param0->camera);
@@ -1339,7 +1337,7 @@ BOOL ov113_0225DDC0(UnkStruct_ov113_0225DBCC *param0, const UnkStruct_ov113_0226
                 param0->unk_9AC[v1] = param1->unk_00;
                 ov113_0225D938(param1->unk_02, param1->unk_08, param0->unk_970[v1], param0->unk_160, param0->unk_164, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_19E0);
                 ManagedSprite_SetDrawFlag(param0->unk_970[v1], 1);
-                PaletteData_FillBufferRange(param0->unk_0C, 1, 2, param1->unk_00, (2 * 16 + 1) + v1, (2 * 16 + 1) + v1 + 1);
+                PaletteData_FillBufferRange(param0->unk_0C, PLTTBUF_SUB_BG, PLTTSEL_BOTH, param1->unk_00, (2 * 16 + 1) + v1, (2 * 16 + 1) + v1 + 1);
             }
         }
 
@@ -1586,7 +1584,7 @@ static BOOL ov113_0225E318(UnkStruct_ov113_0225DBCC *param0, int param1)
     }
 
     if (param0->unk_19D8 < param0->unk_19D4) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         param0->unk_19D8 = param0->unk_19D4;
     }
 

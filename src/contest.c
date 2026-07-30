@@ -11,7 +11,7 @@
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202440C_decl.h"
+#include "struct_decls/tv_broadcast.h"
 #include "struct_defs/contest_camera_flash_task.h"
 #include "struct_defs/contest_player_mon_dto.h"
 #include "struct_defs/image_clips.h"
@@ -54,7 +54,7 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
 #include "unk_02094EDC.h"
@@ -261,7 +261,7 @@ static BOOL FieldTask_RunContest(FieldTask *fieldTask)
         taskEnv->state++;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     case CONTEST_MANAGER_STATE_END:
         Heap_Free(taskEnv);
         return TRUE;
@@ -378,7 +378,7 @@ static BOOL FieldTask_RunPracticeCompetition(FieldTask *fieldTask)
         taskEnv->state++;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     case 9:
         Heap_Free(taskEnv);
         return 1;

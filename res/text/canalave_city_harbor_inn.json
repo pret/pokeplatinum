@@ -2,7 +2,7 @@
   "key": 29739,
   "messages": [
     {
-      "id": "pl_msg_00000063_00000",
+      "id": "CanalaveCityHarborInn_Text_ReservationForYou",
       "en_US": [
         "...Welcome...\r",
         "...\n",
@@ -12,22 +12,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000063_00001",
+      "id": "CanalaveCityHarborInn_Text_PlayerLayDown",
       "en_US": [
         "{STRVAR_1 3, 0, 0} lay down on the bed as if\n",
         "bidden there...\r"
       ]
     },
     {
-      "id": "pl_msg_00000063_00002",
+      "id": "CanalaveCityHarborInn_Text_PlayerAwakened",
       "en_US": "{STRVAR_1 3, 0, 0} awakened!"
     },
     {
-      "id": "pl_msg_00000063_00003",
+      "id": "CanalaveCityHarborInn_Text_Dummy3",
       "garbage": 35
     },
     {
-      "id": "pl_msg_00000063_00004",
+      "id": "CanalaveCityHarborInn_Text_TheseWordsWereHeard",
       "en_US": [
         "Though fading out of consciousness,\n",
         "these words were heard...\r",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000063_00005",
+      "id": "CanalaveCityHarborInn_Text_Dummy5",
       "garbage": 12
     }
   ]

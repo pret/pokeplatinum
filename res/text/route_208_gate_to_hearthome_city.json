@@ -2,7 +2,7 @@
   "key": 33826,
   "messages": [
     {
-      "id": "Route208GateToHearthomeCity_Text_HearthomeCityIsAGreatPlace",
+      "id": "Route208GateToHearthomeCity_Text_HearthomeCityGreatPlace",
       "en_US": [
         "Hearthome City is a great place.\r",
         "Every year, it gets voted the most\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "Route208GateToHearthomeCity_Text_IfYouSayHearthomeISayContests",
+      "id": "Route208GateToHearthomeCity_Text_YouSayHearthomeISayContests",
       "en_US": [
         "If you say Hearthome City, I only\n",
         "say this: Pokémon Contests!\r",

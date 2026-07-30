@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "overlay005/field_effect_manager.h"
 
@@ -31,7 +31,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    int unk_0C;
+    enum MapHeaderID unk_0C;
     int unk_10;
     int unk_14;
     VecFx32 unk_18;
@@ -96,16 +96,14 @@ OverworldAnimManager *ov5_021F511C(MapObject *param0)
 
 static int ov5_021F5158(OverworldAnimManager *param0, void *param1)
 {
-    UnkStruct_ov5_021F5158 *v0;
-    const UnkStruct_ov5_021F511C *v1;
     VecFx32 v2;
 
-    v0 = param1;
-    v1 = OverworldAnimManager_GetUserData(param0);
+    UnkStruct_ov5_021F5158 *v0 = param1;
+    const UnkStruct_ov5_021F511C *v1 = OverworldAnimManager_GetUserData(param0);
 
     v0->unk_30 = *v1;
     v0->unk_08 = MapObject_GetLocalID(v0->unk_30.unk_08);
-    v0->unk_0C = MapObject_GetMapID(v0->unk_30.unk_08);
+    v0->unk_0C = MapObject_GetMapHeaderID(v0->unk_30.unk_08);
     v0->unk_24.y = (FX32_ONE * 6);
 
     MapObject_GetPosPtr(v0->unk_30.unk_08, &v2);

@@ -10,15 +10,15 @@
 
 #include "spl.h"
 
-UnkStruct_ov12_02235FE0 *ov12_02235FE0(enum HeapID heapID);
-UnkStruct_ov12_02235FE0 *ov12_02236004(enum HeapID heapID, const UnkStruct_ov12_02236030 *param1);
-void ov12_02236030(UnkStruct_ov12_02235FE0 *param0, const UnkStruct_ov12_02236030 *param1);
-void ov12_02236320(UnkStruct_ov12_02235FE0 *param0);
-BOOL ov12_02236374(UnkStruct_ov12_02235FE0 *param0);
-void ov12_02236384(UnkStruct_ov12_02235FE0 *param0, SPLEmitterCallback param1);
-void ov12_022363B4(UnkStruct_ov12_02235FE0 *param0);
-BOOL ov12_022363C4(UnkStruct_ov12_02235FE0 *param0);
-void ov12_02236428(UnkStruct_ov12_02235FE0 *param0);
+BallCapsuleSealEffect *ov12_02235FE0(enum HeapID heapID);
+BallCapsuleSealEffect *ov12_02236004(enum HeapID heapID, const BallCapsuleConfig *ballCapCfg);
+void ov12_02236030(BallCapsuleSealEffect *ballCapSealEff, const BallCapsuleConfig *ballCapCfg);
+void ov12_02236320(BallCapsuleSealEffect *ballCapSealEff);
+BOOL ov12_02236374(BallCapsuleSealEffect *ballCapSealEff);
+void ov12_02236384(BallCapsuleSealEffect *ballCapSealEff, SPLEmitterCallback param1);
+void ov12_022363B4(BallCapsuleSealEffect *ballCapSealEff);
+BOOL ov12_022363C4(BallCapsuleSealEffect *ballCapSealEff);
+void ov12_02236428(BallCapsuleSealEffect *ballCapSealEff);
 UnkStruct_ov12_02236648 *ov12_02236690(UnkStruct_ov12_02236690 *param0);
 void ov12_022366F0(UnkStruct_ov12_02236648 *param0);
 BOOL ov12_02236764(UnkStruct_ov12_02236648 *param0);

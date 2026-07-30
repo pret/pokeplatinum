@@ -1,12 +1,13 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_elevator.h"
 #include "res/text/bank/menu_entries.h"
+#include "res/field/events/events_veilstone_store_elevator.h"
 
 
-    ScriptEntry VeilstoneStoreElevator_TalkElevatorOperator
+    ScriptEntry VeilstoneStoreElevator_Receptionist
     ScriptEntryEnd
 
-VeilstoneStoreElevator_TalkElevatorOperator:
+VeilstoneStoreElevator_Receptionist:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -145,7 +146,7 @@ VeilstoneStoreElevator_GoingDownMessage:
 VeilstoneStoreElevator_ElevatorAnimation:
     SetVar VAR_ELEVATOR_FLOORS_ABOVE, -1
     CloseMessage
-    ApplyMovement 0, VeilstoneStoreElevator_LookDown
+    ApplyMovement LOCALID_RECEPTIONIST, VeilstoneStoreElevator_Movement_ReceptionistWalkOnSpotSouth
     WaitMovement
     WaitSE SEQ_SE_CONFIRM
     PlayElevatorAnimation VAR_0x8004, 4
@@ -216,6 +217,6 @@ VeilstoneStoreElevator_SelectNoFloor:
     End
 
     .balign 4, 0
-VeilstoneStoreElevator_LookDown:
+VeilstoneStoreElevator_Movement_ReceptionistWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement

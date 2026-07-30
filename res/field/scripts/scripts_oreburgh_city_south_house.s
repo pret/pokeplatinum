@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 OreburghCitySouthHouse_Worker:
-    NPCMessage OreburghCitySouthHouse_Text_YoureTakingATourOfOurCoalMine
+    NPCMessage OreburghCitySouthHouse_Text_ItsAlwaysGoodToLearn
     End
 
     .balign 4, 0

@@ -2,7 +2,7 @@
   "key": 20369,
   "messages": [
     {
-      "id": "pl_msg_00000591_00000",
+      "id": "SurvivalAreaMart_Text_WordOfAdvice",
       "en_US": [
         "A word of advice from a grizzled\n",
         "mountain man!\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000591_00001",
+      "id": "SurvivalAreaMart_Text_WasOn54WinStreak",
       "en_US": [
         "I was on a 54-win streak...\n",
         "If only I used that move when..."

@@ -54,11 +54,11 @@
       "en_US": "Type"
     },
     {
-      "id": "PokemonSummary_Text_LabelOtName",
+      "id": "PokemonSummary_Text_LabelOTName",
       "en_US": "OT"
     },
     {
-      "id": "PokemonSummary_Text_OtnameTemplate",
+      "id": "PokemonSummary_Text_OTNameTemplate",
       "en_US": "{STRVAR_1 3, 0, 0}"
     },
     {

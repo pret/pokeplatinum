@@ -1,26 +1,25 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/acuity_cavern.h"
+#include "res/field/events/events_acuity_cavern.h"
 
-#define LOCALID_UXIE 0
 
-
-    ScriptEntry _000E
-    ScriptEntry AcuityCavern_CheckShouldUxieBeRemoved
+    ScriptEntry AcuityCavern_OnTransition
+    ScriptEntry AcuityCavern_OnLoad
     ScriptEntry AcuityCavern_Uxie
     ScriptEntryEnd
 
-_000E:
+AcuityCavern_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_ACUITY_CAVERN
     End
 
-AcuityCavern_CheckShouldUxieBeRemoved:
-    GoToIfSet FLAG_MAP_LOCAL, AcuityCavern_RemoveUxie
+AcuityCavern_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, AcuityCavern_RemoveUxie
     End
 
 AcuityCavern_RemoveUxie:
-    SetFlag FLAG_UXIE_DISAPPEARED
+    SetFlag FLAG_HIDE_ACUITY_CAVERN_UXIE
     RemoveObject LOCALID_UXIE
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 AcuityCavern_Uxie:
@@ -30,9 +29,9 @@ AcuityCavern_Uxie:
     PlayCry SPECIES_UXIE
     Message AcuityCavern_Text_UxieCry
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartLegendaryBattle SPECIES_UXIE, 50
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, AcuityCavern_LostBattle
     CheckDidNotCapture VAR_RESULT

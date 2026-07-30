@@ -1,0 +1,30 @@
+{
+  "name": "Big Pearl",
+  "plural": "Big Pearls",
+  "article": "a",
+  "description": [
+    "A quite-large pearl that sparkles in a\n",
+    "pretty silver color. It can be sold at\n",
+    "a high price to shops."
+  ],
+  "icon": {
+    "sprite": "big_pearl_NCGR",
+    "palette": "pearl_NCLR"
+  },
+  "gbaID": "GBA_ITEM_BIG_PEARL",
+  "price": 7500,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}

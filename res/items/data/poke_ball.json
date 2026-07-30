@@ -1,0 +1,30 @@
+{
+  "name": "Poké Ball",
+  "plural": "Poké Balls",
+  "article": "a",
+  "description": [
+    "A device for catching wild Pokémon.\n",
+    "It is thrown like a ball at the target.\n",
+    "It is designed as a capsule system."
+  ],
+  "icon": {
+    "sprite": "poke_ball_NCGR",
+    "palette": "poke_ball_NCLR"
+  },
+  "gbaID": "GBA_ITEM_POKE_BALL",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BALLS",
+  "battlePocket": "BATTLE_POCKET_MASK_POKE_BALLS",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 1,
+  "itemUseParams": null
+}

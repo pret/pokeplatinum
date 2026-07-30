@@ -1,0 +1,43 @@
+{
+  "name": "Ganlon Berry",
+  "plural": "Ganlon Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient.\n",
+    "If held by a Pokémon, it raises its\n",
+    "Defense stat in a pinch."
+  ],
+  "icon": {
+    "sprite": "ganlon_berry_NCGR",
+    "palette": "ganlon_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_GANLON_BERRY",
+  "price": 20,
+  "effectParam": 4,
+  "holdEffect": "HOLD_EFFECT_PINCH_DEF_UP",
+  "pluckEffect": "PLUCK_EFFECT_DEF_UP",
+  "flingEffect": "FLING_EFFECT_DEF_UP",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_ICE",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 33,
+    "firmness": "FIRMNESS_VERY_HARD",
+    "baseYield": 1,
+    "stageDuration": 24,
+    "moistureDrainRate": 4,
+    "spiciness": 0,
+    "dryness": 30,
+    "sweetness": 10,
+    "bitterness": 30,
+    "sourness": 0,
+    "smoothness": 40
+  }
+}

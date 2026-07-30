@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_216_ACE_TRAINER_BLAKE",
+            "id": "LOCALID_ACE_TRAINER_BLAKE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -28,7 +28,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_ACE_TRAINER_LAURA",
+            "id": "LOCALID_ACE_TRAINER_LAURA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -45,7 +45,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_BLACK_BELT_PHILIP",
+            "id": "LOCALID_BLACK_BELT_PHILIP",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_SKIER_BRADLEY",
+            "id": "LOCALID_SKIER_BRADLEY",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_SPIN_COUNTERCLOCKWISE",
@@ -79,7 +79,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_ACE_TRAINER_GARRETT",
+            "id": "LOCALID_ACE_TRAINER_GARRETT",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -96,7 +96,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_ACE_TRAINER_MARIA",
+            "id": "LOCALID_ACE_TRAINER_MARIA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -113,7 +113,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_SKIER_KAITLYN",
+            "id": "LOCALID_SKIER_KAITLYN",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_EAST_NORTH_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -130,7 +130,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_SKIER_EDWARD",
+            "id": "LOCALID_SKIER_EDWARD",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_EAST_NORTH_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -147,7 +147,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_SKIER_ANDREA",
+            "id": "LOCALID_SKIER_ANDREA",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -164,7 +164,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_ARROW_SIGNPOST_9",
+            "id": "LOCALID_ARROW_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -181,7 +181,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_216_SIGNBOARD_10",
+            "id": "LOCALID_SIGNBOARD_SNOWBOUND_LODGE",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

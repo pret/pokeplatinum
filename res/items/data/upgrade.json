@@ -1,0 +1,30 @@
+{
+  "name": "Up-Grade",
+  "plural": "Up-Grades",
+  "article": "an",
+  "description": [
+    "A transparent device filled with all\n",
+    "sorts of data.\n",
+    "It was produced by Silph Co."
+  ],
+  "icon": {
+    "sprite": "upgrade_NCGR",
+    "palette": "upgrade_NCLR"
+  },
+  "gbaID": "GBA_ITEM_UP_GRADE",
+  "price": 2100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_EVOLVE_PORYGON",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

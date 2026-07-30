@@ -9,7 +9,7 @@
       ]
     },
     {
-      "id": "VeilstoneStore2F_Text_MayIHelpYouPersonalized",
+      "id": "VeilstoneStore2F_Text_PlayerMayIHelpYou",
       "en_US": [
         "Hello, {STRVAR_1 3, 0, 0}.\n",
         "May I help you with anything?"
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "VeilstoneStore2F_Text_MatchingDressesForMeAndMyPokemon",
+      "id": "VeilstoneStore2F_Text_MatchingDresses",
       "en_US": [
         "Where can I find matching dresses for\n",
         "myself and my dear Pokémon?"

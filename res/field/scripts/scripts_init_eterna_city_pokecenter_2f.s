@@ -6,10 +6,10 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40D5, 1, 0x2334
-    InitScriptGoToIfEqual VAR_UNK_0x40D5, 2, 0x2335
-    InitScriptGoToIfEqual VAR_UNK_0x40D5, 4, 0x2336
-    InitScriptGoToIfEqual VAR_UNK_0x40D5, 3, 0x2337
+    InitScriptGoToIfEqual VAR_COMMUNICATION_LOAD_ACTION, 1, 0x2334
+    InitScriptGoToIfEqual VAR_COMMUNICATION_LOAD_ACTION, 2, 0x2335
+    InitScriptGoToIfEqual VAR_COMMUNICATION_LOAD_ACTION, 4, 0x2336
+    InitScriptGoToIfEqual VAR_COMMUNICATION_LOAD_ACTION, 3, 0x2337
     InitScriptFrameTableEnd
 
     InitScriptEnd

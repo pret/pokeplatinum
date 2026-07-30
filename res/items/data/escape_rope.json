@@ -1,0 +1,30 @@
+{
+  "name": "Escape Rope",
+  "plural": "Escape Ropes",
+  "article": "an",
+  "description": [
+    "A long, durable rope.\n",
+    "Use it to escape instantly from a cave\n",
+    "or a dungeon."
+  ],
+  "icon": {
+    "sprite": "escape_rope_NCGR",
+    "palette": "escape_rope_NCLR"
+  },
+  "gbaID": "GBA_ITEM_ESCAPE_ROPE",
+  "price": 550,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_ESCAPE_ROPE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}

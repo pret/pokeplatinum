@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x4104, 1, 3
+    InitScriptGoToIfEqual VAR_RESTAURANT_STATE, 1, 3
     InitScriptFrameTableEnd
 
     InitScriptEnd

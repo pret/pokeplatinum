@@ -1,43 +1,44 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_228.h"
 
 
-    ScriptEntry _007B
-    ScriptEntry _0092
-    ScriptEntry _0012
-    ScriptEntry _0047
+    ScriptEntry Route228_ArrowSignpostRt226
+    ScriptEntry Route228_ArrowSignpostRt229
+    ScriptEntry Route228_OnTransition
+    ScriptEntry Route228_OnLoad
     ScriptEntryEnd
 
-_0012:
-    CallIfNe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, _003F
-    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, 0, _0067
-    GoToIfEq VAR_MAP_LOCAL_1, 1, _0071
+Route228_OnTransition:
+    CallIfNe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, Route228_ResetRockPeakRuinsState
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, Route228_RemoveWarpRockPeakRuinsWithRegirock
+    GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, Route228_RemoveWarpRockPeakRuinsWithoutRegirock
     End
 
-_003F:
+Route228_ResetRockPeakRuinsState:
     SetVar VAR_ROCK_PEAK_RUINS_STATE, 0
     Return
 
-_0047:
-    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, 0, _0067
-    GoToIfEq VAR_MAP_LOCAL_1, 1, _0071
+Route228_OnLoad:
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, Route228_RemoveWarpRockPeakRuinsWithRegirock
+    GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, Route228_RemoveWarpRockPeakRuinsWithoutRegirock
     End
 
-_0067:
-    SetWarpEventPos 5, 0x30F, 0x153
+Route228_RemoveWarpRockPeakRuinsWithRegirock:
+    SetWarpEventPos 5, 783, 339
     End
 
-_0071:
-    SetWarpEventPos 4, 0x30F, 0x153
+Route228_RemoveWarpRockPeakRuinsWithoutRegirock:
+    SetWarpEventPos 4, 783, 339
     End
 
-_007B:
-    ShowArrowSign 0
+Route228_ArrowSignpostRt226:
+    ShowArrowSign Route228_Text_SignRt226
     End
 
-_0092:
-    ShowArrowSign 1
+Route228_ArrowSignpostRt229:
+    ShowArrowSign Route228_Text_SignRt229
     End
 
     .balign 4, 0

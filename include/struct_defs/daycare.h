@@ -3,8 +3,9 @@
 
 #include "constants/daycare.h"
 
-#include "struct_defs/mail.h"
 #include "struct_defs/pokemon.h"
+
+#include "mail.h"
 
 typedef struct DaycareMail {
     Mail mail;

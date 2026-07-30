@@ -10,7 +10,7 @@
 #include "sprite.h"
 #include "sprite_system.h"
 
-#include "res/graphics/scroll_prompts/fld_comact.naix"
+#include "res/graphics/scroll_prompts/scroll_prompts.naix"
 
 static const SpriteTemplate sArrowSpriteTemplates[] = {
     {

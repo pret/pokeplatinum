@@ -2,14 +2,14 @@
   "key": 50203,
   "messages": [
     {
-      "id": "pl_msg_00000181_00000",
+      "id": "SnowpointCityEastHouse_Text_HearTrendySaying",
       "en_US": [
         "Hello, hello. Would you like to hear\n",
         "a trendy saying?"
       ]
     },
     {
-      "id": "pl_msg_00000181_00001",
+      "id": "SnowpointCityEastHouse_Text_TrendyThingIsThis",
       "en_US": [
         "Very well...\r",
         "The trendy thing to say for you\n",
@@ -20,36 +20,36 @@
       ]
     },
     {
-      "id": "pl_msg_00000181_00002",
+      "id": "SnowpointCityEastHouse_Text_ComeOnNow",
       "en_US": [
         "Oh, come on now. With an attitude like\n",
         "that, you’ll fall behind the times!"
       ]
     },
     {
-      "id": "pl_msg_00000181_00003",
+      "id": "SnowpointCityEastHouse_Text_UseTrendySayings",
       "en_US": [
         "I hope you’ll use trendy sayings\n",
         "in a trendy way."
       ]
     },
     {
-      "id": "pl_msg_00000181_00004",
+      "id": "SnowpointCityEastHouse_Text_AreYouUsingTrendySayings",
       "en_US": [
         "Hello, hello. Are you using trendy\n",
         "sayings?"
       ]
     },
     {
-      "id": "pl_msg_00000181_00005",
+      "id": "SnowpointCityEastHouse_Text_Dummy5",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000181_00006",
+      "id": "SnowpointCityEastHouse_Text_Dummy6",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000181_00007",
+      "id": "SnowpointCityEastHouse_Text_WantMeToTeachMove",
       "en_US": [
         "Share colored Shards with me, and I’ll\n",
         "teach your Pokémon some moves.\r",
@@ -57,48 +57,48 @@
       ]
     },
     {
-      "id": "pl_msg_00000181_00008",
+      "id": "SnowpointCityEastHouse_Text_BeSeeingYou",
       "en_US": "Be seeing you, then!"
     },
     {
-      "id": "pl_msg_00000181_00009",
+      "id": "SnowpointCityEastHouse_Text_WhichPokemon",
       "en_US": "Which Pokémon will it be?\r"
     },
     {
-      "id": "pl_msg_00000181_00010",
+      "id": "SnowpointCityEastHouse_Text_NoMovesToTeach",
       "en_US": [
         "There are no moves that can be taught\n",
         "to this Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000181_00011",
+      "id": "SnowpointCityEastHouse_Text_NotEnoughShards",
       "en_US": "You don’t have enough Shards."
     },
     {
-      "id": "pl_msg_00000181_00012",
+      "id": "SnowpointCityEastHouse_Text_TeachWhichMove",
       "en_US": [
         "Teach which move to\n",
         "{STRVAR_1 1, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000181_00013",
+      "id": "SnowpointCityEastHouse_Text_Dummy13",
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000181_00014",
+      "id": "SnowpointCityEastHouse_Text_Dummy14",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000181_00015",
+      "id": "SnowpointCityEastHouse_Text_PokemonLearnedMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} learned\n",
         "{STRVAR_1 6, 1, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000181_00016",
+      "id": "SnowpointCityEastHouse_Text_DeleteOlderMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} is trying to learn\n",
         "{STRVAR_1 6, 1, 0}.\r",
@@ -109,32 +109,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000181_00017",
+      "id": "SnowpointCityEastHouse_Text_StopTryingToTeachMove",
       "en_US": [
         "Stop trying to teach\n",
         "{STRVAR_1 6, 1, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000181_00018",
+      "id": "SnowpointCityEastHouse_Text_PokemonDidntLearnMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} did not learn the\n",
         "move {STRVAR_1 6, 1, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000181_00019",
+      "id": "SnowpointCityEastHouse_Text_ForgetThisMove",
       "en_US": [
         "{STRVAR_1 6, 1, 0} is the move that\n",
         "you want forgotten?"
       ]
     },
     {
-      "id": "pl_msg_00000181_00020",
+      "id": "SnowpointCityEastHouse_Text_OneTwoThreePoof",
       "en_US": "1{PAUSE 20}, 2{PAUSE 20}, and{PAUSE 20}... {PAUSE 20}... Poof!"
     },
     {
-      "id": "pl_msg_00000181_00021",
+      "id": "SnowpointCityEastHouse_Text_PokemonForgotMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} forgot\n",
         "{STRVAR_1 6, 1, 0}.\r",
@@ -142,14 +142,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000181_00022",
+      "id": "SnowpointCityEastHouse_Text_PokemonLearnedMove2",
       "en_US": [
         "{STRVAR_1 1, 0, 0} learned\n",
         "{STRVAR_1 6, 1, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000181_00023",
+      "id": "SnowpointCityEastHouse_Text_CantTeachEgg",
       "en_US": [
         "It’s beyond my ability to teach moves\n",
         "to an Egg!"

@@ -41,7 +41,7 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_RIGHT_ROOM_WORKER_NOEL",
+            "id": "LOCALID_WORKER_NOEL",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_NORTH_WEST_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -58,7 +58,7 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B2F_RIGHT_ROOM_WORKER_BRADEN",
+            "id": "LOCALID_WORKER_BRADEN",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_WALK_NORTH_EAST_WEST_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",

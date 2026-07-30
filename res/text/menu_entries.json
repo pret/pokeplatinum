@@ -2,23 +2,23 @@
   "key": 20529,
   "messages": [
     {
-      "id": "pl_msg_00000361_00000",
+      "id": "MenuEntries_Text_Status_Poisoned",
       "en_US": "POISONED"
     },
     {
-      "id": "pl_msg_00000361_00001",
+      "id": "MenuEntries_Text_Status_Paralyzed",
       "en_US": "PARALYZED"
     },
     {
-      "id": "pl_msg_00000361_00002",
+      "id": "MenuEntries_Text_Status_Asleep",
       "en_US": "ASLEEP"
     },
     {
-      "id": "pl_msg_00000361_00003",
+      "id": "MenuEntries_Text_Status_Burned",
       "en_US": "BURNED"
     },
     {
-      "id": "pl_msg_00000361_00004",
+      "id": "MenuEntries_Text_Status_Frozen",
       "en_US": "FROZEN"
     },
     {
@@ -42,11 +42,11 @@
       "en_US": "MULTI BATTLE"
     },
     {
-      "id": "MenuEntries_Text_Battle_Info",
+      "id": "MenuEntries_Text_Info",
       "en_US": "INFO"
     },
     {
-      "id": "MenuEntries_Text_Battle_Exit",
+      "id": "MenuEntries_Text_Exit2",
       "en_US": "EXIT"
     },
     {
@@ -54,11 +54,11 @@
       "en_US": "EXIT"
     },
     {
-      "id": "MenuEntries_Text_BattleTower_JoinGroup",
+      "id": "MenuEntries_Text_JoinGroup",
       "en_US": "JOIN GROUP"
     },
     {
-      "id": "MenuEntries_Text_BattleTower_BecomeLeader",
+      "id": "MenuEntries_Text_BecomeLeader",
       "en_US": "BECOME LEADER"
     },
     {
@@ -90,11 +90,11 @@
       "en_US": "SMART"
     },
     {
-      "id": "pl_msg_00000361_00022",
+      "id": "MenuEntries_Text_UnionRoom_Trade",
       "en_US": "TRADE"
     },
     {
-      "id": "pl_msg_00000361_00023",
+      "id": "MenuEntries_Text_UnionRoom_Cancel",
       "en_US": "CANCEL"
     },
     {
@@ -178,7 +178,7 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00044",
+      "id": "MenuEntries_Text_Fossil_Cancel",
       "en_US": "CANCEL"
     },
     {
@@ -198,7 +198,7 @@
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000361_00049",
+      "id": "MenuEntries_Text_UnionRoom_Battle",
       "en_US": "BATTLE"
     },
     {
@@ -226,7 +226,7 @@
       "en_US": "PLANT BERRY"
     },
     {
-      "id": "pl_msg_00000361_00056",
+      "id": "MenuEntries_Text_UnionRoom_Draw",
       "en_US": "DRAW"
     },
     {
@@ -234,127 +234,127 @@
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000361_00058",
+      "id": "MenuEntries_Text_PC_SomeonesPC",
       "en_US": "SOMEONE’S PC"
     },
     {
-      "id": "pl_msg_00000361_00059",
+      "id": "MenuEntries_Text_PC_BebesPC",
       "en_US": "BEBE’S PC"
     },
     {
-      "id": "pl_msg_00000361_00060",
+      "id": "MenuEntries_Text_PC_PlayersPC",
       "en_US": "{STRVAR_1 3, 0, 0}’s PC"
     },
     {
-      "id": "pl_msg_00000361_00061",
+      "id": "MenuEntries_Text_PC_HallOfFame",
       "en_US": "HALL OF FAME"
     },
     {
-      "id": "pl_msg_00000361_00062",
+      "id": "MenuEntries_Text_PC_OaksPC",
       "en_US": "OAK’S PC"
     },
     {
-      "id": "pl_msg_00000361_00063",
+      "id": "MenuEntries_Text_PC_RowansPC",
       "en_US": "ROWAN’S PC"
     },
     {
-      "id": "pl_msg_00000361_00064",
+      "id": "MenuEntries_Text_PC_SwitchOff",
       "en_US": "SWITCH OFF"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageDepositPokemon",
+      "id": "MenuEntries_Text_PC_DepositPokemon",
       "en_US": "DEPOSIT POKéMON"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageWithdrawPokemon",
+      "id": "MenuEntries_Text_PC_WithdrawPokemon",
       "en_US": "WITHDRAW POKéMON"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageMovePokemon",
+      "id": "MenuEntries_Text_PC_MovePokemon",
       "en_US": "MOVE POKéMON"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageMoveItems",
+      "id": "MenuEntries_Text_PC_MoveItems",
       "en_US": "MOVE ITEMS"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageComparePokemon",
+      "id": "MenuEntries_Text_PC_ComparePokemon",
       "en_US": "COMPARE POKéMON"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageSeeYa",
+      "id": "MenuEntries_Text_PC_SeeYa",
       "en_US": "SEE YA!"
     },
     {
-      "id": "pl_msg_00000361_00071",
+      "id": "MenuEntries_Text_PC_Mailbox",
       "en_US": "MAILBOX"
     },
     {
-      "id": "pl_msg_00000361_00072",
+      "id": "MenuEntries_Text_PC_BallCapsules",
       "en_US": "BALL CAPSULES"
     },
     {
-      "id": "pl_msg_00000361_00073",
+      "id": "MenuEntries_Text_PC_LogOut",
       "en_US": "LOG OUT"
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageDepositPokemonDescription",
+      "id": "MenuEntries_Text_PC_DescriptionDepositPokemon",
       "en_US": [
         "Pokémon in your party may be stored\n",
         "in the storage system’s Boxes."
       ]
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageWithdrawPokemonDescription",
+      "id": "MenuEntries_Text_PC_DescriptionWithdrawPokemon",
       "en_US": [
         "Pokémon stored in Boxes may be added\n",
         "to your party."
       ]
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageMovePokemonDescription",
+      "id": "MenuEntries_Text_PC_DescriptionMovePokemon",
       "en_US": [
         "You may sort the Pokémon in Boxes\n",
         "and in your party."
       ]
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageMoveItemsDescription",
+      "id": "MenuEntries_Text_PC_DescriptionMoveItems",
       "en_US": [
         "You may sort the items held by your\n",
         "Pokémon in Boxes and in your party."
       ]
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageComparePokemonDescription",
+      "id": "MenuEntries_Text_PC_DescriptionComparePokemon",
       "en_US": [
         "You may compare two Pokémon in Boxes\n",
         "or your party side by side."
       ]
     },
     {
-      "id": "MenuEntries_Text_PokemonStorageSeeYaDescription",
+      "id": "MenuEntries_Text_PC_DescriptionSeeYa",
       "en_US": [
         "Log out of the Pokémon Storage\n",
         "System."
       ]
     },
     {
-      "id": "pl_msg_00000361_00080",
+      "id": "MenuEntries_Text_PC_DescriptionMailBox",
       "en_US": [
         "Up to 20 pieces of Mail can be\n",
         "stored."
       ]
     },
     {
-      "id": "pl_msg_00000361_00081",
+      "id": "MenuEntries_Text_PC_DescriptionBallCapsules",
       "en_US": [
         "You may set or edit capsules for\n",
         "decorating Poké Balls."
       ]
     },
     {
-      "id": "pl_msg_00000361_00082",
+      "id": "MenuEntries_Text_PC_DescriptionLogOut",
       "en_US": "Log out of your PC."
     },
     {
@@ -538,39 +538,39 @@
       "en_US": "NO THANKS"
     },
     {
-      "id": "pl_msg_00000361_00128",
+      "id": "MenuEntries_Text_GTS_Info",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000361_00129",
+      "id": "MenuEntries_Text_GTS_Trade",
       "en_US": "TRADE"
     },
     {
-      "id": "pl_msg_00000361_00130",
+      "id": "MenuEntries_Text_GTS_Exit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00131",
+      "id": "MenuEntries_Text_GTS_OfferPokemon",
       "en_US": "OFFER POKéMON?"
     },
     {
-      "id": "pl_msg_00000361_00132",
+      "id": "MenuEntries_Text_GTS_SeekPokemon",
       "en_US": "SEEK POKéMON?"
     },
     {
-      "id": "pl_msg_00000361_00133",
+      "id": "MenuEntries_Text_GTS_Understood",
       "en_US": "UNDERSTOOD!"
     },
     {
-      "id": "pl_msg_00000361_00134",
+      "id": "MenuEntries_Text_DayCare_Pokemon1",
       "en_US": "{STRVAR_1 0, 0, 0}{STRVAR_1 2, 2, 0}{CURSOR_X 90}Lv. {STRVAR_1 52, 1, 0}"
     },
     {
-      "id": "pl_msg_00000361_00135",
+      "id": "MenuEntries_Text_DayCare_Pokemon2",
       "en_US": "{STRVAR_1 0, 0, 0}{STRVAR_1 2, 2, 0}{CURSOR_X 90}Lv. {STRVAR_1 52, 1, 0}"
     },
     {
-      "id": "pl_msg_00000361_00136",
+      "id": "MenuEntries_Text_DayCare_Cancel",
       "en_US": "CANCEL"
     },
     {
@@ -582,11 +582,11 @@
       "en_US": "LEFT"
     },
     {
-      "id": "pl_msg_00000361_00139",
+      "id": "MenuEntries_Text_UnionRoom_Spin",
       "en_US": "SPIN"
     },
     {
-      "id": "pl_msg_00000361_00140",
+      "id": "MenuEntries_Text_UnionRoom_Records",
       "en_US": "RECORDS"
     },
     {
@@ -638,43 +638,43 @@
       "en_US": "CHALLENGE EARLIER ROOM"
     },
     {
-      "id": "pl_msg_00000361_00153",
+      "id": "MenuEntries_Text_PalPadInfo_RegisterAFriend",
       "en_US": "REGISTER A FRIEND?"
     },
     {
-      "id": "pl_msg_00000361_00154",
+      "id": "MenuEntries_Text_PalPadInfo_Understood",
       "en_US": "UNDERSTOOD!"
     },
     {
-      "id": "pl_msg_00000361_00155",
+      "id": "MenuEntries_Text_PalPadInfo_TellMeAgain",
       "en_US": "TELL ME AGAIN"
     },
     {
-      "id": "pl_msg_00000361_00156",
+      "id": "MenuEntries_Text_Fossil_OldAmber",
       "en_US": "OLD AMBER"
     },
     {
-      "id": "pl_msg_00000361_00157",
+      "id": "MenuEntries_Text_Fossil_Helix",
       "en_US": "HELIX FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00158",
+      "id": "MenuEntries_Text_Fossil_Dome",
       "en_US": "DOME FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00159",
+      "id": "MenuEntries_Text_Fossil_Root",
       "en_US": "ROOT FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00160",
+      "id": "MenuEntries_Text_Fossil_Claw",
       "en_US": "CLAW FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00161",
+      "id": "MenuEntries_Text_Fossil_Armor",
       "en_US": "ARMOR FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00162",
+      "id": "MenuEntries_Text_Fossil_Skull",
       "en_US": "SKULL FOSSIL"
     },
     {
@@ -686,15 +686,15 @@
       "en_US": "BATTLES FOR FOUR"
     },
     {
-      "id": "pl_msg_00000361_00165",
+      "id": "MenuEntries_Text_UnionRoom_Greet",
       "en_US": "GREET"
     },
     {
-      "id": "pl_msg_00000361_00166",
+      "id": "MenuEntries_Text_UnionRoom_Converse",
       "en_US": "CONVERSE"
     },
     {
-      "id": "pl_msg_00000361_00167",
+      "id": "MenuEntries_Text_UnionRoom_Chat",
       "en_US": "CHAT"
     },
     {
@@ -878,15 +878,15 @@
       "en_US": "GREEN SHARD"
     },
     {
-      "id": "pl_msg_00000361_00213",
+      "id": "MenuEntries_Text_CanalaveDock_IronIsland",
       "en_US": "IRON ISLAND"
     },
     {
-      "id": "pl_msg_00000361_00214",
+      "id": "MenuEntries_Text_CanalaveDock_FullmoonIsland",
       "en_US": "FULLMOON ISLAND"
     },
     {
-      "id": "pl_msg_00000361_00215",
+      "id": "MenuEntries_Text_CanalaveDock_NewmoonIsland",
       "en_US": "NEWMOON ISLAND"
     },
     {
@@ -898,7 +898,7 @@
       "en_US": "SNOWPOINT CITY"
     },
     {
-      "id": "pl_msg_00000361_00218",
+      "id": "MenuEntries_Text_CanalaveDock_Exit",
       "en_US": "EXIT"
     },
     {
@@ -950,11 +950,11 @@
       "en_US": "{STRVAR_1 53, 0, 0} BP"
     },
     {
-      "id": "pl_msg_00000361_00231",
+      "id": "MenuEntries_Text_UnusedPrizeExchange_Prize",
       "en_US": "{STRVAR_1 8, 0, 0}{CURSOR_X 96}{STRVAR_1 52, 1, 0}BP"
     },
     {
-      "id": "pl_msg_00000361_00232",
+      "id": "MenuEntries_Text_UnusedPrizeExchange_NoThanks",
       "en_US": "NO THANKS"
     },
     {
@@ -1062,19 +1062,19 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00259",
+      "id": "MenuEntries_Text_SinnohFolkStory_Part1",
       "en_US": "PART 1"
     },
     {
-      "id": "pl_msg_00000361_00260",
+      "id": "MenuEntries_Text_SinnohFolkStory_Part2",
       "en_US": "PART 2"
     },
     {
-      "id": "pl_msg_00000361_00261",
+      "id": "MenuEntries_Text_SinnohFolkStory_Part3",
       "en_US": "PART 3"
     },
     {
-      "id": "pl_msg_00000361_00262",
+      "id": "MenuEntries_Text_SinnohFolkStory_Exit",
       "en_US": "EXIT"
     },
     {
@@ -1098,19 +1098,19 @@
       "en_US": "DIVE BALL"
     },
     {
-      "id": "pl_msg_00000361_00268",
+      "id": "MenuEntries_Text_GalacticReport_CreationOfSpace",
       "en_US": "THE CREATION OF SPACE"
     },
     {
-      "id": "pl_msg_00000361_00269",
+      "id": "MenuEntries_Text_GalacticReport_MythicalPokemon",
       "en_US": "MYTHICAL POKéMON"
     },
     {
-      "id": "pl_msg_00000361_00270",
+      "id": "MenuEntries_Text_GalacticReport_RedChain",
       "en_US": "RED CHAIN"
     },
     {
-      "id": "pl_msg_00000361_00271",
+      "id": "MenuEntries_Text_GalacticReport_Exit",
       "en_US": "EXIT"
     },
     {
@@ -1138,11 +1138,11 @@
       "en_US": "X {STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000361_00278",
+      "id": "MenuEntries_Text_StarPieces_1",
       "en_US": "1"
     },
     {
-      "id": "pl_msg_00000361_00279",
+      "id": "MenuEntries_Text_StarPieces_10",
       "en_US": "10"
     }
   ]

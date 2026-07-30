@@ -5,7 +5,7 @@ _000:
     // {0} cured its {2} status with its {1}!
     PrintMessage BattleStrings_Text_PokemonCuredItsStatusWithItsAbility_Ally, TAG_NICKNAME_ABILITY_STATUS, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
     Wait 
-    SetHealthbarStatus BTLSCR_MSG_TEMP, BATTLE_ANIMATION_NONE
+    SetHealthBoxStatusIcon BTLSCR_MSG_TEMP, BATTLE_ANIMATION_NONE
     WaitButtonABTime 30
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_TEMP, 0, _033
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_TEMP, 5, _045

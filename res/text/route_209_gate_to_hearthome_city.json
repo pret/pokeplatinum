@@ -2,7 +2,7 @@
   "key": 33850,
   "messages": [
     {
-      "id": "Route209GateToHearthomeCity_Text_TheresAWreckedStonePillar",
+      "id": "Route209GateToHearthomeCity_Text_WreckedStonePillar",
       "en_US": [
         "There’s a wrecked stone pillar up\n",
         "ahead.\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "Route209GateToHearthomeCity_Text_MySurefireWinningStrategyDoesntWork",
+      "id": "Route209GateToHearthomeCity_Text_MyStrategyDoesntWork",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Waaah!\r",
         "It goes to show my surefire winning\n",

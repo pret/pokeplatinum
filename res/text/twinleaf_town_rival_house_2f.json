@@ -2,14 +2,14 @@
   "key": 9226,
   "messages": [
     {
-      "id": "TwinleafTownRivalHouse2F_Text_IdBetterTakeBagAndJournal",
+      "id": "TwinleafTownRivalHouse2F_Text_TakeBagAndJournal",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...I’d better take\n",
         "my Bag and Journal, too...\r"
       ]
     },
     {
-      "id": "TwinleafTownRivalHouse2F_Text_IllBeWaitingOnTheRoad",
+      "id": "TwinleafTownRivalHouse2F_Text_WaitingOnTheRoad",
       "en_US": [
         "Oh, hey, {STRVAR_1 3, 0, 0}!\r",
         "I’ll be waiting on the road!\n",

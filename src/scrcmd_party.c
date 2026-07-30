@@ -21,14 +21,14 @@
 #include "pokemon.h"
 #include "ribbon.h"
 #include "save_player.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_02017038.h"
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
 
 BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
 {
-    int metLocation = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapId);
+    int metLocation = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapHeaderID);
     int metTerrain = TERRAIN_MAX;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 species = ScriptContext_GetVar(ctx);
@@ -280,7 +280,7 @@ BOOL ScrCmd_IncreasePartyMonFriendship(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 value = ScriptContext_GetVar(ctx);
     u16 slot = ScriptContext_GetVar(ctx);
-    u32 location = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapId);
+    u32 location = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapHeaderID);
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
     u16 friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);

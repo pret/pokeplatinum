@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_CONST_020F67FC_H
-#define POKEPLATINUM_CONST_020F67FC_H
-
-extern const ApplicationManagerTemplate Unk_020F67FC;
-
-#endif // POKEPLATINUM_CONST_020F67FC_H

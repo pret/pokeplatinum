@@ -9,28 +9,28 @@
 #include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/clear_game_player_info.h"
 #include "struct_defs/dress_up_photo.h"
+#include "struct_defs/frontier_records_app_args.h"
 #include "struct_defs/gts_player_data.h"
+#include "struct_defs/hall_of_fame_display_data.h"
 #include "struct_defs/image_clips.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
-#include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0203E348.h"
-#include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/struct_02097728.h"
 
 #include "applications/bag/application.h"
+#include "applications/berry_tag.h"
 #include "applications/diploma.h"
+#include "applications/easy_chat/main.h"
 #include "applications/frontier/records/main.h"
 #include "applications/journal_display/journal_controller.h"
+#include "applications/mail.h"
 #include "applications/move_reminder.h"
 #include "applications/naming_screen.h"
 #include "applications/options_menu.h"
@@ -42,7 +42,9 @@
 #include "applications/poffin_case/main.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/signature.h"
 #include "applications/town_map/main.h"
+#include "applications/trainer_case/main.h"
 #include "battle/battle_main.h"
 #include "choose_starter/choose_starter_app.h"
 #include "cutscenes/boat_cutscene.h"
@@ -53,14 +55,11 @@
 #include "overlay005/daycare.h"
 #include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay007/accessory_shop.h"
-#include "overlay020/ov20_021D0D80.h"
 #include "overlay022/ov22_02255D44.h"
 #include "overlay022/ov22_0225B660.h"
 #include "overlay058/ov58_021D0D80.h"
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay064/ov64_0222DCE0.h"
-#include "overlay072/ov72_0223D7A0.h"
-#include "overlay085/ov85_02241440.h"
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay090/ov90_021D0D80.h"
@@ -68,19 +67,22 @@
 #include "overlay092/ov92_021D0D80.h"
 #include "overlay094/application.h"
 #include "overlay095/ov95_02246C20.h"
-#include "overlay096/ov96_0223B6A0.h"
 #include "overlay099/ov99_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
-#include "trainer_card_screen/trainer_card_screen.h"
+#include "wifi_battle_tower/application.h"
 
 #include "bag.h"
 #include "bag_context.h"
 #include "coins.h"
+#include "comm_manager.h"
 #include "dexmode_checker.h"
+#include "easy_chat_args.h"
+#include "egg_hatch.h"
 #include "evolution.h"
 #include "field_battle_data_transfer.h"
+#include "field_bgm.h"
 #include "field_move_tasks.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -112,48 +114,44 @@
 #include "system_data.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "trainer_card.h"
-#include "trainer_card_save_data.h"
+#include "trainer_case.h"
+#include "trainer_case_save_data.h"
 #include "trainer_info.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_02017498.h"
 #include "unk_020298BC.h"
-#include "unk_0202C858.h"
-#include "unk_0202D05C.h"
 #include "unk_0202D778.h"
-#include "unk_020366A0.h"
 #include "unk_02038FFC.h"
-#include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
-#include "unk_0209747C.h"
-#include "unk_02097624.h"
-#include "unk_02098218.h"
 #include "vars_flags.h"
+#include "wifi_battle_tower_save.h"
+#include "wifi_history_save_data.h"
 
 #include "constdata/const_020EA328.h"
 #include "constdata/const_020EA358.h"
 #include "constdata/const_020F2FCC.h"
 #include "constdata/const_020F410C.h"
 #include "constdata/const_020F6890.h"
+#include "res/text/bank/easy_chat.h"
 
 FS_EXTERN_OVERLAY(battle);
 FS_EXTERN_OVERLAY(pc_boxes);
-FS_EXTERN_OVERLAY(overlay20);
+FS_EXTERN_OVERLAY(easy_chat);
 FS_EXTERN_OVERLAY(pokedex);
 FS_EXTERN_OVERLAY(overlay22);
 FS_EXTERN_OVERLAY(overlay58);
 FS_EXTERN_OVERLAY(overlay59);
 FS_EXTERN_OVERLAY(overlay61);
 FS_EXTERN_OVERLAY(overlay64);
-FS_EXTERN_OVERLAY(trainer_card_screen);
-FS_EXTERN_OVERLAY(overlay72);
+FS_EXTERN_OVERLAY(trainer_case);
+FS_EXTERN_OVERLAY(signature);
 FS_EXTERN_OVERLAY(options_menu);
 FS_EXTERN_OVERLAY(choose_starter);
 FS_EXTERN_OVERLAY(town_map);
 FS_EXTERN_OVERLAY(journal_display);
 FS_EXTERN_OVERLAY(bag);
-FS_EXTERN_OVERLAY(overlay85);
+FS_EXTERN_OVERLAY(berry_tag);
 FS_EXTERN_OVERLAY(hall_of_fame);
 FS_EXTERN_OVERLAY(pc_hall_of_fame);
 FS_EXTERN_OVERLAY(overlay88);
@@ -162,7 +160,7 @@ FS_EXTERN_OVERLAY(overlay92);
 FS_EXTERN_OVERLAY(cutscenes);
 FS_EXTERN_OVERLAY(overlay94);
 FS_EXTERN_OVERLAY(overlay95);
-FS_EXTERN_OVERLAY(overlay96);
+FS_EXTERN_OVERLAY(wifi_battle_tower);
 FS_EXTERN_OVERLAY(overlay99);
 FS_EXTERN_OVERLAY(overlay101);
 FS_EXTERN_OVERLAY(frontier_records_app);
@@ -174,14 +172,14 @@ FS_EXTERN_OVERLAY(dw_warp);
 typedef struct {
     enum HeapID heapID;
     PartyMenu *partyMenu;
-    PokemonSummary *unk_08;
+    PokemonSummary *monSummary;
 } UnkStruct_0203D444;
 
 typedef struct {
     u16 *unk_00;
     u16 *unk_04;
     u16 *unk_08;
-    UnkStruct_0209747C *unk_0C;
+    EasyChatArgs *unk_0C;
 } UnkStruct_0203D764;
 
 typedef struct {
@@ -196,7 +194,7 @@ typedef struct {
     UnkStruct_ov88_0223C370 unk_04;
     TradeAnimationTemplate unk_48;
     EvolutionData *unk_60;
-    int unk_64;
+    int unused;
 } UnkStruct_0203DBF0;
 
 typedef struct {
@@ -225,9 +223,9 @@ static BOOL ApplicationMain_Battle(ApplicationManager *appMan, int *state)
 {
     if (Battle_Main(appMan, state)) {
         return TRUE;
-    } else {
-        return FALSE;
     }
+
+    return FALSE;
 }
 
 static BOOL ApplicationExit_Battle(ApplicationManager *appMan, int *state)
@@ -281,7 +279,7 @@ BagContext *FieldSystem_OpenBag(FieldSystem *fieldSystem, ItemUseContext *itemUs
     BagContext_Init(bagCtx, fieldSystem->saveData, 0, fieldSystem->bagCursor);
     BagContext_SetMapLoadType(bagCtx, fieldSystem->mapLoadType);
 
-    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == PLAYER_STATE_CYCLING) {
+    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == PLAYER_AVATAR_CYCLING) {
         BagContext_SetIsCycling(bagCtx);
     }
 
@@ -293,7 +291,6 @@ BagContext *FieldSystem_OpenBag(FieldSystem *fieldSystem, ItemUseContext *itemUs
 
 void *FieldSystem_CreateBagContext(FieldSystem *fieldSystem, int pocketType)
 {
-    void *bagContext;
     static const u8 *pocketList;
     static const u8 berriesPockets[] = { POCKET_BERRIES, POCKET_LIST_END };
     static const u8 itemsPockets[] = { POCKET_ITEMS, POCKET_LIST_END };
@@ -307,10 +304,10 @@ void *FieldSystem_CreateBagContext(FieldSystem *fieldSystem, int pocketType)
         pocketList = berriesPockets;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
-    bagContext = BagContext_CreateWithPockets(bag, pocketList, HEAP_ID_FIELD3);
+    void *bagContext = BagContext_CreateWithPockets(bag, pocketList, HEAP_ID_FIELD3);
 
     BagContext_Init(bagContext, fieldSystem->saveData, 3, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, bagContext);
@@ -323,38 +320,38 @@ u16 BagContext_GetSelectedItem(void *bagContext)
     u16 selectedItem = BagContext_GetItem(bagContext);
 
     if (selectedItem != 0 && BagContext_GetExitCode(bagContext) == 5) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return selectedItem;
 }
 
-void sub_0203D2E4(FieldSystem *fieldSystem, void *param1)
+void sub_0203D2E4(FieldSystem *fieldSystem, void *appArgs)
 {
-    FS_EXTERN_OVERLAY(overlay85);
+    FS_EXTERN_OVERLAY(berry_tag);
 
-    const ApplicationManagerTemplate v0 = {
-        ov85_02241440,
-        ov85_0224154C,
-        ov85_022415A0,
-        FS_OVERLAY_ID(overlay85)
+    const ApplicationManagerTemplate appTemplate = {
+        BerryTag_Init,
+        BerryTag_Main,
+        BerryTag_Exit,
+        FS_OVERLAY_ID(berry_tag)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, appArgs);
 }
 
-void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
+void sub_0203D30C(FieldSystem *fieldSystem, void *appArgs)
 {
     FS_EXTERN_OVERLAY(journal_display);
 
-    const ApplicationManagerTemplate template = {
+    const ApplicationManagerTemplate appTemplate = {
         JournalController_Init,
         JournalController_Main,
         JournalController_Exit,
         FS_OVERLAY_ID(journal_display)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &template, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, fieldSystem->saveData);
 }
 
 void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs)
@@ -410,7 +407,7 @@ int PartyMenu_GetSelectedSlot(PartyMenu *partyMenu)
     return partyMenu->selectedMonSlot;
 }
 
-PartyMenu *FieldSystem_OpenPartyMenu_SelectForDaycare(int param0, FieldSystem *fieldSystem, int selectedMonSlot)
+PartyMenu *FieldSystem_OpenPartyMenu_SelectForDaycare(int unused, FieldSystem *fieldSystem, int selectedMonSlot)
 {
     PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, PARTY_MENU_TYPE_BASIC, PARTY_MENU_MODE_DAYCARE);
     partyMenu->selectedMonSlot = selectedMonSlot;
@@ -429,47 +426,47 @@ int PokemonSummary_GetPartySlot(PokemonSummary *monSummary)
     return monSummary->monIndex;
 }
 
-static BOOL sub_0203D444(FieldTask *param0)
+static BOOL sub_0203D444(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0203D444 *v1 = FieldTask_GetEnv(param0);
-    int *v2 = FieldTask_GetState(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_0203D444 *taskEnv = FieldTask_GetEnv(taskMan);
+    int *taskState = FieldTask_GetState(taskMan);
 
-    switch (*v2) {
+    switch (*taskState) {
     case 0:
-        FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, v1->partyMenu);
-        *v2 = 1;
+        FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, taskEnv->partyMenu);
+        *taskState = 1;
         break;
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            switch (v1->partyMenu->selectedMonSlot) {
+            switch (taskEnv->partyMenu->selectedMonSlot) {
             case 7:
                 sub_0205BAAC(2);
-                *v2 = 4;
+                *taskState = 4;
                 break;
             case 6:
                 sub_0205BAAC(1);
-                *v2 = 4;
+                *taskState = 4;
                 break;
             default:
-                *v2 = 2;
+                *taskState = 2;
             }
         }
         break;
     case 2:
-        v1->unk_08 = sub_0203D670(fieldSystem, v1->heapID, SUMMARY_MODE_NORMAL);
-        v1->unk_08->monIndex = v1->partyMenu->selectedMonSlot;
-        FieldSystem_OpenSummaryScreen(fieldSystem, v1->unk_08);
-        *v2 = 3;
+        taskEnv->monSummary = sub_0203D670(fieldSystem, taskEnv->heapID, SUMMARY_MODE_NORMAL);
+        taskEnv->monSummary->monIndex = taskEnv->partyMenu->selectedMonSlot;
+        FieldSystem_OpenSummaryScreen(fieldSystem, taskEnv->monSummary);
+        *taskState = 3;
         break;
     case 3:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_Free(v1->unk_08);
-            *v2 = 0;
+            Heap_Free(taskEnv->monSummary);
+            *taskState = 0;
         }
         break;
     case 4:
-        Heap_Free(v1);
+        Heap_Free(taskEnv);
         return 1;
     }
 
@@ -513,7 +510,7 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForContest(int unused, FieldSystem *f
     return partyMenu;
 }
 
-void *FieldSystem_GetContestMonSummary(int unused, FieldSystem *fieldSystem, int partySlot)
+void *FieldSystem_GetPartyMenuMonSummary(int unused, FieldSystem *fieldSystem, int partySlot)
 {
     PokemonSummary *monSummary = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PokemonSummary));
 
@@ -547,42 +544,48 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForSpinTrade(FieldSystem *fieldSystem
 
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, enum HeapID heapID, int mode)
 {
-    PokemonSummary *v0;
-    SaveData *saveData;
-    static const u8 v2[] = {
-        0, 1, 2, 4, 3, 5, 6, 7, 8
+    static const u8 visiblePages[] = {
+        SUMMARY_PAGE_INFO,
+        SUMMARY_PAGE_MEMO,
+        SUMMARY_PAGE_SKILLS,
+        SUMMARY_PAGE_CONDITION,
+        SUMMARY_PAGE_BATTLE_MOVES,
+        SUMMARY_PAGE_CONTEST_MOVES,
+        SUMMARY_PAGE_RIBBONS,
+        SUMMARY_PAGE_EXIT,
+        SUMMARY_PAGE_MAX,
     };
 
-    saveData = fieldSystem->saveData;
-    v0 = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
+    SaveData *saveData = fieldSystem->saveData;
+    PokemonSummary *monSummary = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
 
-    MI_CpuClear8(v0, sizeof(PokemonSummary));
+    MI_CpuClear8(monSummary, sizeof(PokemonSummary));
 
-    v0->options = SaveData_GetOptions(saveData);
-    v0->monData = SaveData_GetParty(saveData);
-    v0->dataType = SUMMARY_DATA_PARTY_MON;
-    v0->monIndex = 0;
-    v0->monMax = Party_GetCurrentCount(v0->monData);
-    v0->move = 0;
-    v0->mode = mode;
-    v0->dexMode = SaveData_GetDexMode(saveData);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
-    v0->specialRibbons = SaveData_GetRibbons(saveData);
+    monSummary->options = SaveData_GetOptions(saveData);
+    monSummary->monData = SaveData_GetParty(saveData);
+    monSummary->dataType = SUMMARY_DATA_PARTY_MON;
+    monSummary->monIndex = 0;
+    monSummary->monMax = Party_GetCurrentCount(monSummary->monData);
+    monSummary->move = 0;
+    monSummary->mode = mode;
+    monSummary->dexMode = SaveData_GetDexMode(saveData);
+    monSummary->showContest = PokemonSummaryScreen_ShowContestData(saveData);
+    monSummary->specialRibbons = SaveData_GetRibbons(saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, v2);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
+    PokemonSummaryScreen_FlagVisiblePages(monSummary, visiblePages);
+    PokemonSummaryScreen_SetPlayerProfile(monSummary, SaveData_GetTrainerInfo(saveData));
 
-    return v0;
+    return monSummary;
 }
-
-static const u8 Unk_020EA160[] = {
-    0x3,
-    0x5,
-    0x8
-};
 
 void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapID heapID, FieldSystem *fieldSystem, u8 partySlot)
 {
+    static const u8 visiblePages[] = {
+        SUMMARY_PAGE_BATTLE_MOVES,
+        SUMMARY_PAGE_CONTEST_MOVES,
+        SUMMARY_PAGE_MAX,
+    };
+
     PokemonSummary *summary = Heap_Alloc(heapID, sizeof(PokemonSummary));
 
     memset(summary, 0, sizeof(PokemonSummary));
@@ -597,7 +600,7 @@ void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapID heapID, FieldSystem *f
     summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(summary, Unk_020EA160);
+    PokemonSummaryScreen_FlagVisiblePages(summary, visiblePages);
     PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
     FieldSystem_OpenSummaryScreen(fieldSystem, summary);
 
@@ -625,41 +628,40 @@ void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSess
 
 static BOOL sub_0203D764(FieldTask *taskMan)
 {
-    int *v0 = FieldTask_GetState(taskMan);
-    UnkStruct_0203D764 *v1 = FieldTask_GetEnv(taskMan);
+    int *taskState = FieldTask_GetState(taskMan);
+    UnkStruct_0203D764 *taskEnv = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    switch (*v0) {
+    switch (*taskState) {
     case 0:
-        sub_0203D874(fieldSystem, v1->unk_0C);
-        (*v0)++;
+        FieldSystem_OpenEasyChat(fieldSystem, taskEnv->unk_0C);
+        (*taskState)++;
         break;
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            (*v0)++;
+            (*taskState)++;
         }
         break;
     case 2:
-        if (sub_02097528(v1->unk_0C) || !sub_0209752C(v1->unk_0C)) {
-            *(v1->unk_00) = 0;
+        if (EasyChatArgs_IsUnmodified(taskEnv->unk_0C) || !EasyChatArgs_WasUpdated(taskEnv->unk_0C)) {
+            *taskEnv->unk_00 = 0;
         } else {
-            *(v1->unk_00) = 1;
+            *taskEnv->unk_00 = 1;
 
-            if (v1->unk_08 == NULL) {
-                *(v1->unk_04) = sub_02097530(v1->unk_0C);
+            if (taskEnv->unk_08 == NULL) {
+                *taskEnv->unk_04 = EasyChatArgs_GetOneWord(taskEnv->unk_0C);
             } else {
                 u16 v3[2];
 
-                sub_02097534(v1->unk_0C, v3);
-                *(v1->unk_04) = v3[0];
-                *(v1->unk_08) = v3[1];
+                EasyChatArgs_CopyTwoWordsTo(taskEnv->unk_0C, v3);
+                *taskEnv->unk_04 = v3[0];
+                *taskEnv->unk_08 = v3[1];
             }
         }
 
-        sub_020974EC(v1->unk_0C);
-        Heap_Free(v1);
+        EasyChatArgs_Free(taskEnv->unk_0C);
+        Heap_Free(taskEnv);
         return 1;
-        break;
     }
 
     return 0;
@@ -667,37 +669,36 @@ static BOOL sub_0203D764(FieldTask *taskMan)
 
 void sub_0203D80C(FieldTask *taskMan, u16 *param1, u16 *param2, u16 *param3)
 {
-    UnkStruct_0203D764 *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0203D764));
+    UnkStruct_0203D764 *v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0203D764));
     v0->unk_00 = param1;
     v0->unk_04 = param2;
     v0->unk_08 = param3;
 
     if (param3 == NULL) {
-        v0->unk_0C = sub_0209747C(0, 0, fieldSystem->saveData, HEAP_ID_FIELD3);
-        sub_020974F4(v0->unk_0C, *param2);
+        v0->unk_0C = EasyChatArgs_New(EASY_CHAT_TYPE_ONE_WORD, EasyChat_Text_ChooseWordOrPhrase, fieldSystem->saveData, HEAP_ID_FIELD3);
+        EasyChatArgs_SetOneWord(v0->unk_0C, *param2);
     } else {
-        v0->unk_0C = sub_0209747C(1, 0, fieldSystem->saveData, HEAP_ID_FIELD3);
-        sub_020974F8(v0->unk_0C, *param2, *param3);
+        v0->unk_0C = EasyChatArgs_New(EASY_CHAT_TYPE_TWO_WORDS, EasyChat_Text_ChooseWordOrPhrase, fieldSystem->saveData, HEAP_ID_FIELD3);
+        EasyChatArgs_SetTwoWords(v0->unk_0C, *param2, *param3);
     }
 
     FieldTask_InitCall(taskMan, sub_0203D764, v0);
 }
 
-void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1)
+void FieldSystem_OpenEasyChat(FieldSystem *fieldSystem, EasyChatArgs *args)
 {
-    FS_EXTERN_OVERLAY(overlay20);
+    FS_EXTERN_OVERLAY(easy_chat);
 
-    static const ApplicationManagerTemplate v0 = {
-        ov20_021D0D80,
-        ov20_021D0DF8,
-        ov20_021D0EA8,
-        FS_OVERLAY_ID(overlay20)
+    static const ApplicationManagerTemplate appTemplate = {
+        EasyChat_Init,
+        EasyChat_Main,
+        EasyChat_Exit,
+        FS_OVERLAY_ID(easy_chat)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, args);
 }
 
 void FieldSystem_OpenTownMap(FieldSystem *fieldSystem, TownMapContext *townMapCtx)
@@ -716,10 +717,9 @@ void FieldSystem_OpenTownMap(FieldSystem *fieldSystem, TownMapContext *townMapCt
 
 void *FieldSystem_OpenTownMapItem(FieldSystem *fieldSystem)
 {
-    TownMapContext *townMapCtx;
     FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    townMapCtx = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(TownMapContext));
+    TownMapContext *townMapCtx = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(TownMapContext));
 
     TownMapContext_Init(fieldSystem, townMapCtx, TOWN_MAP_MODE_ITEM);
     FieldSystem_OpenTownMap(fieldSystem, townMapCtx);
@@ -750,42 +750,42 @@ void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem)
     return optionsMenu;
 }
 
-extern const ApplicationManagerTemplate Unk_020F64B0;
+extern const ApplicationManagerTemplate gMailAppArgsTemplate;
 
-static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
+static void LaunchMailApp(FieldSystem *fieldSystem, MailAppArgs *mailAppArgs)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F64B0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gMailAppArgsTemplate, mailAppArgs);
 }
 
-UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID)
+MailAppArgs *FieldSystem_LaunchMailApp_Write(FieldSystem *fieldSystem, enum MailContext context, u8 partySlot, u8 mailType, int unusedHeapID)
 {
-    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, mailType, HEAP_ID_FIELD2);
-    sub_0203D910(fieldSystem, v0);
+    MailAppArgs *mailAppArgs = MailAppArgs_New_Write(FieldSystem_GetSaveData(fieldSystem), context, partySlot, mailType, HEAP_ID_FIELD2);
+    LaunchMailApp(fieldSystem, mailAppArgs);
 
-    return v0;
+    return mailAppArgs;
 }
 
-UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, enum HeapID heapID)
+MailAppArgs *FieldSystem_LaunchMailApp_Read(FieldSystem *fieldSystem, enum MailContext context, u8 param2, enum HeapID heapID)
 {
-    UnkStruct_02097728 *v0;
+    MailAppArgs *mailAppArgs;
 
-    if (param1 == 3) {
-        v0 = sub_020976F4(FieldSystem_GetSaveData(fieldSystem), param2, heapID);
+    if (context == MAIL_CONTEXT_CHECK) {
+        mailAppArgs = MailAppArgs_New_Check(FieldSystem_GetSaveData(fieldSystem), param2, heapID);
     } else {
-        v0 = sub_0209767C(FieldSystem_GetSaveData(fieldSystem), param1, param2, heapID);
+        mailAppArgs = MailAppArgs_New_ReadFromMailbox(FieldSystem_GetSaveData(fieldSystem), context, param2, heapID);
     }
 
-    sub_0203D910(fieldSystem, v0);
+    LaunchMailApp(fieldSystem, mailAppArgs);
 
-    return v0;
+    return mailAppArgs;
 }
 
-UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID)
+MailAppArgs *FieldSystem_LaunchMailApp_ReadHeld(FieldSystem *fieldSystem, Pokemon *mon, enum HeapID heapID)
 {
-    UnkStruct_02097728 *v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, heapID);
-    sub_0203D910(fieldSystem, v0);
+    MailAppArgs *mailAppArgs = MailAppArgs_New_ReadHeld(FieldSystem_GetSaveData(fieldSystem), mon, heapID);
+    LaunchMailApp(fieldSystem, mailAppArgs);
 
-    return v0;
+    return mailAppArgs;
 }
 
 static void OpenPoffinCaseApp(FieldSystem *fieldSystem, PoffinCaseAppData *poffinCaseAppData)
@@ -805,66 +805,59 @@ void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1)
 {
     FS_EXTERN_OVERLAY(overlay90);
 
-    const ApplicationManagerTemplate v0 = {
+    const ApplicationManagerTemplate appTemplate = {
         ov90_021D0D80,
         ov90_021D0E04,
         ov90_021D0DE8,
         FS_OVERLAY_ID(overlay90)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, param1);
 }
 
-static UnkStruct_0203DA00 *sub_0203DA00(enum HeapID heapID, SaveData *saveData, int param2, BOOL *param3, BOOL param4)
+static UnkStruct_0203DA00 *sub_0203DA00(enum HeapID heapID, SaveData *saveData, int slot, BOOL *param3, BOOL param4)
 {
-    UnkStruct_0203DA00 *v0;
-    Pokemon *v1;
-    int v2;
-    ImageClips *imageClips;
-    DressUpPhoto *photo;
-    FashionCase *fashionCase;
-
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203DA00));
+    UnkStruct_0203DA00 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203DA00));
     memset(v0, 0, sizeof(UnkStruct_0203DA00));
-    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(saveData), param2);
+    Pokemon *pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(saveData), slot);
 
-    v0->unk_00 = v1;
+    v0->pokemon = pokemon;
 
-    imageClips = SaveData_GetImageClips(saveData);
-    photo = ImageClips_GetDressUpPhoto(imageClips, 0);
-    fashionCase = ImageClips_GetFashionCase(imageClips);
+    ImageClips *imageClips = SaveData_GetImageClips(saveData);
+    DressUpPhoto *photo = ImageClips_GetDressUpPhoto(imageClips, 0);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
     v0->photo = photo;
     v0->fashionCase = fashionCase;
     v0->options = SaveData_GetOptions(saveData);
     v0->records = SaveData_GetGameRecords(saveData);
-    v0->unk_14 = SaveData_GetTrainerInfo(saveData);
+    v0->trainerInfo = SaveData_GetTrainerInfo(saveData);
     v0->unk_18 = param3;
     v0->unk_1C = param4;
 
     return v0;
 }
 
-static BOOL sub_0203DA64(FieldTask *param0)
+static BOOL sub_0203DA64(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0203DA64 *v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_0203DA64 *taskEnv = FieldTask_GetEnv(taskMan);
 
-    switch (v1->unk_00) {
+    switch (taskEnv->unk_00) {
     case 0:
-        sub_0203DB10(fieldSystem, v1->unk_0C);
-        v1->unk_00++;
+        sub_0203DB10(fieldSystem, taskEnv->unk_0C);
+        taskEnv->unk_00++;
         break;
     case 1:
         if (FieldSystem_IsRunningApplication(fieldSystem) == 0) {
-            if (v1->unk_08 == 1) {
-                *v1->unk_04 = 1;
+            if (taskEnv->unk_08 == 1) {
+                *taskEnv->unk_04 = 1;
             } else {
-                *v1->unk_04 = 0;
+                *taskEnv->unk_04 = 0;
             }
 
-            Heap_Free(v1->unk_0C);
-            Heap_Free(v1);
+            Heap_Free(taskEnv->unk_0C);
+            Heap_Free(taskEnv);
 
             return 1;
         }
@@ -874,7 +867,7 @@ static BOOL sub_0203DA64(FieldTask *param0)
     return 0;
 }
 
-void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *saveData, u16 param3, u16 param4)
+void sub_0203DAC0(FieldTask *taskMan, u16 *param1, SaveData *saveData, u16 param3, u16 param4)
 {
     UnkStruct_0203DA64 *v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0203DA64));
     memset(v0, 0, sizeof(UnkStruct_0203DA64));
@@ -882,21 +875,21 @@ void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *saveData, u16 param3
     v0->unk_0C = sub_0203DA00(HEAP_ID_FIELD3, saveData, param3, &v0->unk_08, param4);
     v0->unk_04 = param1;
 
-    FieldTask_InitCall(param0, sub_0203DA64, v0);
+    FieldTask_InitCall(taskMan, sub_0203DA64, v0);
 }
 
 BOOL sub_0203DB10(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(overlay22);
 
-    static ApplicationManagerTemplate v0 = {
+    static ApplicationManagerTemplate appTemplate = {
         ov22_02255D44,
         ov22_02255E50,
         ov22_02256098,
         FS_OVERLAY_ID(overlay22)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, param1);
 
     return 1;
 }
@@ -905,159 +898,158 @@ BOOL sub_0203DB24(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(overlay22);
 
-    static ApplicationManagerTemplate v0 = {
+    static ApplicationManagerTemplate appTemplate = {
         ov22_0225B660,
         ov22_0225B738,
         ov22_0225B7FC,
         FS_OVERLAY_ID(overlay22)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, param1);
 
     return 1;
 }
 
-static ApplicationManagerTemplate Unk_02100AA4 = {
-    ov88_0223B140,
-    ov88_0223B57C,
-    ov88_0223C03C,
-    FS_OVERLAY_ID(overlay88)
-};
-
-static const ApplicationManagerTemplate Unk_020EA268 = {
-    TradeSequence_Init,
-    TradeSequence_Main,
-    TradeSequence_Exit,
-    FS_OVERLAY_ID(overlay95)
-};
-
 static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSystem)
 {
-    param0->unk_04 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    param0->unk_08 = SaveData_GetParty(fieldSystem->saveData);
-    param0->unk_0C = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
+    param0->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    param0->party = SaveData_GetParty(fieldSystem->saveData);
+    param0->palPad = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
     param0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     param0->options = SaveData_GetOptions(fieldSystem->saveData);
-    param0->unk_24 = SaveData_GetPokedex(fieldSystem->saveData);
-    param0->unk_30 = SaveData_GetDexMode(fieldSystem->saveData);
+    param0->pokedex = SaveData_GetPokedex(fieldSystem->saveData);
+    param0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     param0->saveData = fieldSystem->saveData;
-    param0->unk_1C = fieldSystem->journalEntry;
+    param0->journalEntry = fieldSystem->journalEntry;
     param0->records = SaveData_GetGameRecords(fieldSystem->saveData);
-    param0->unk_38 = Heap_Alloc(HEAP_ID_FIELD3, TrainerInfo_Size());
-    param0->unk_3C = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
-    param0->unk_40 = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
+    param0->trainerInfoSize = Heap_Alloc(HEAP_ID_FIELD3, TrainerInfo_Size());
+    param0->sendingMon = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
+    param0->receivingMon = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
     param0->fieldSystem = fieldSystem;
     param0->unk_34 = 0;
 }
 
 static void sub_0203DBC0(UnkStruct_ov88_0223C370 *param0)
 {
-    if (param0->unk_38) {
-        Heap_Free(param0->unk_38);
-        param0->unk_38 = NULL;
+    if (param0->trainerInfoSize) {
+        Heap_Free(param0->trainerInfoSize);
+        param0->trainerInfoSize = NULL;
     }
 
-    if (param0->unk_3C) {
-        Heap_Free(param0->unk_3C);
-        param0->unk_3C = NULL;
+    if (param0->sendingMon) {
+        Heap_Free(param0->sendingMon);
+        param0->sendingMon = NULL;
     }
 
-    if (param0->unk_40) {
-        Heap_Free(param0->unk_40);
-        param0->unk_40 = NULL;
+    if (param0->receivingMon) {
+        Heap_Free(param0->receivingMon);
+        param0->receivingMon = NULL;
     }
 }
 
-BOOL sub_0203DBF0(FieldTask *param0)
+BOOL sub_0203DBF0(FieldTask *taskMan)
 {
-    int v0;
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0203DBF0 *v2 = FieldTask_GetEnv(param0);
+    static ApplicationManagerTemplate appTemplate1 = {
+        ov88_0223B140,
+        ov88_0223B57C,
+        ov88_0223C03C,
+        FS_OVERLAY_ID(overlay88)
+    };
 
-    switch (v2->unk_00) {
+    static const ApplicationManagerTemplate appTemplate2 = {
+        TradeSequence_Init,
+        TradeSequence_Main,
+        TradeSequence_Exit,
+        FS_OVERLAY_ID(overlay95)
+    };
+
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_0203DBF0 *taskEnv = FieldTask_GetEnv(taskMan);
+
+    switch (taskEnv->unk_00) {
     case 0:
-        if (!CommMan_IsConnectedToWifi()) {
-            FieldTransition_FinishMap(param0);
+        if (!CommManager_IsConnectedToWifi()) {
+            FieldTransition_FinishMap(taskMan);
         }
 
-        v2->unk_00++;
+        taskEnv->unk_00++;
         break;
     case 1:
-        sub_0203DB38(&(v2->unk_04), fieldSystem);
-        v2->unk_00++;
+        sub_0203DB38(&(taskEnv->unk_04), fieldSystem);
+        taskEnv->unk_00++;
     case 2:
-        FieldTask_RunApplication(param0, &Unk_02100AA4, &v2->unk_04);
-        v2->unk_00++;
+        FieldTask_RunApplication(taskMan, &appTemplate1, &taskEnv->unk_04);
+        taskEnv->unk_00++;
         break;
     case 3:
-        if (v2->unk_04.unk_28 == 0) {
-            sub_0203DBC0(&(v2->unk_04));
-            Heap_Free(v2);
+        if (taskEnv->unk_04.unk_28 == 0) {
+            sub_0203DBC0(&(taskEnv->unk_04));
+            Heap_Free(taskEnv);
             return 1;
         }
 
-        v2->unk_00++;
+        taskEnv->unk_00++;
         break;
     case 4:
-        v2->unk_48.otherTrainer = v2->unk_04.unk_38;
-        v2->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
-        v2->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
-        v2->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
-        v2->unk_48.tradeType = TRADE_TYPE_NORMAL;
+        taskEnv->unk_48.otherTrainer = taskEnv->unk_04.trainerInfoSize;
+        taskEnv->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(taskEnv->unk_04.sendingMon);
+        taskEnv->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(taskEnv->unk_04.receivingMon);
+        taskEnv->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
+        taskEnv->unk_48.tradeType = TRADE_TYPE_NORMAL;
 
         switch (FieldSystem_GetTimeOfDay(fieldSystem)) {
         case TIMEOFDAY_MORNING:
         case TIMEOFDAY_DAY:
         default:
-            v2->unk_48.background = TRADE_BACKGROUND_DAY;
+            taskEnv->unk_48.background = TRADE_BACKGROUND_DAY;
             break;
         case TIMEOFDAY_TWILIGHT:
-            v2->unk_48.background = TRADE_BACKGROUND_EVENING;
+            taskEnv->unk_48.background = TRADE_BACKGROUND_EVENING;
             break;
         case TIMEOFDAY_NIGHT:
         case TIMEOFDAY_LATE_NIGHT:
-            v2->unk_48.background = TRADE_BACKGROUND_NIGHT;
+            taskEnv->unk_48.background = TRADE_BACKGROUND_NIGHT;
             break;
         }
 
-        if (CommMan_IsConnectedToWifi()) {
-            v2->unk_48.background = TRADE_BACKGROUND_WIFI;
+        if (CommManager_IsConnectedToWifi()) {
+            taskEnv->unk_48.background = TRADE_BACKGROUND_WIFI;
         }
 
-        FieldTask_RunApplication(param0, &Unk_020EA268, &v2->unk_48);
-        v2->unk_00 = 5;
+        FieldTask_RunApplication(taskMan, &appTemplate2, &taskEnv->unk_48);
+        taskEnv->unk_00 = 5;
         break;
     case 5: {
-        int v3 = Pokemon_GetValue(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
+        int v3 = Pokemon_GetValue(taskEnv->unk_04.receivingMon, MON_DATA_HELD_ITEM, NULL);
         int v4;
         int v5;
 
-        if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, v2->unk_04.unk_40, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
+        if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, taskEnv->unk_04.receivingMon, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x30000);
-            v2->unk_60 = Evolution_Begin(NULL, v2->unk_04.unk_40, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
-            v2->unk_00 = 6;
+            taskEnv->unk_60 = Evolution_Begin(NULL, taskEnv->unk_04.receivingMon, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
+            taskEnv->unk_00 = 6;
         } else {
-            v2->unk_00 = 7;
+            taskEnv->unk_00 = 7;
         }
     } break;
     case 6:
-        if (Evolution_IsDone(v2->unk_60)) {
-            Pokemon_Copy(v2->unk_04.unk_40, Party_GetPokemonBySlotIndex(v2->unk_04.unk_08, v2->unk_04.unk_2C));
-            Evolution_Free(v2->unk_60);
+        if (Evolution_IsDone(taskEnv->unk_60)) {
+            Pokemon_Copy(taskEnv->unk_04.receivingMon, Party_GetPokemonBySlotIndex(taskEnv->unk_04.party, taskEnv->unk_04.unk_2C));
+            Evolution_Free(taskEnv->unk_60);
             Heap_Destroy(HEAP_ID_26);
-            v2->unk_00 = 7;
+            taskEnv->unk_00 = 7;
         }
         break;
     case 7:
-        v2->unk_04.unk_34++;
-        v2->unk_00 = 2;
+        taskEnv->unk_04.unk_34++;
+        taskEnv->unk_00 = 2;
 
         {
-            GameRecords *v6 = SaveData_GetGameRecords(fieldSystem->saveData);
-            GameRecords_IncrementTrainerScore(v6, TRAINER_SCORE_EVENT_UNK_16);
+            GameRecords *gameRecords = SaveData_GetGameRecords(fieldSystem->saveData);
+            GameRecords_IncrementTrainerScore(gameRecords, TRAINER_SCORE_EVENT_UNK_16);
 
-            if (CommMan_IsConnectedToWifi()) {
-                GameRecords_IncrementRecordValue(v6, RECORD_UNK_113);
+            if (CommManager_IsConnectedToWifi()) {
+                GameRecords_IncrementRecordValue(gameRecords, RECORD_UNK_113);
             }
         }
         break;
@@ -1066,12 +1058,12 @@ BOOL sub_0203DBF0(FieldTask *param0)
     return 0;
 }
 
-void sub_0203DDDC(FieldTask *param0)
+void sub_0203DDDC(FieldTask *taskMan)
 {
     UnkStruct_0203DBF0 *v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0203DBF0));
 
     v0->unk_00 = 0;
-    FieldTask_InitCall(param0, sub_0203DBF0, v0);
+    FieldTask_InitCall(taskMan, sub_0203DBF0, v0);
 }
 
 const ApplicationManagerTemplate Unk_020EA258 = {
@@ -1107,7 +1099,7 @@ void *sub_0203DE34(FieldSystem *fieldSystem)
     v0->unk_04 = fieldSystem->unk_80;
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecords(fieldSystem->saveData);
-    v0->unk_10 = fieldSystem->journalEntry;
+    v0->journalEntry = fieldSystem->journalEntry;
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA248, v0);
 
@@ -1131,52 +1123,51 @@ void sub_0203DE88(FieldSystem *fieldSystem, SaveData *saveData)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F2FCC, fieldSystem);
 }
 
-static BOOL sub_0203DE98(FieldTask *param0)
+static BOOL sub_0203DE98(FieldTask *taskMan)
 {
-    int v0;
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0203DE98 *v2 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_0203DE98 *taskEnv = FieldTask_GetEnv(taskMan);
 
-    switch (v2->unk_00) {
+    switch (taskEnv->unk_00) {
     case 0:
-        FieldTransition_FinishMap(param0);
-        v2->unk_00++;
+        FieldTransition_FinishMap(taskMan);
+        taskEnv->unk_00++;
         break;
     case 1:
-        FieldTask_RunApplication(param0, &gNamingScreenAppTemplate, v2->unk_0C);
-        v2->unk_00++;
+        FieldTask_RunApplication(taskMan, &gNamingScreenAppTemplate, taskEnv->unk_0C);
+        taskEnv->unk_00++;
         break;
     case 2:
-        FieldTransition_StartMap(param0);
-        v2->unk_00++;
+        FieldTransition_StartMap(taskMan);
+        taskEnv->unk_00++;
         break;
     case 3:
-        if (v2->unk_0C->type == NAMING_SCREEN_TYPE_POKEMON) {
-            if (String_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
-                v2->unk_0C->returnCode = 1;
+        if (taskEnv->unk_0C->type == NAMING_SCREEN_TYPE_POKEMON) {
+            if (String_Compare(taskEnv->unk_0C->textInputStr, taskEnv->unk_10) == 0) {
+                taskEnv->unk_0C->returnCode = 1;
             }
-        } else if (v2->unk_0C->type == NAMING_SCREEN_TYPE_GROUP) {
-            const u16 *v3 = String_GetData(v2->unk_0C->textInputStr);
+        } else if (taskEnv->unk_0C->type == NAMING_SCREEN_TYPE_GROUP) {
+            const u16 *v3 = String_GetData(taskEnv->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
             if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
                 // this re-uses the returnCode field with values not associated with the naming
                 // screen. these should probably have their own enum.
-                v2->unk_0C->returnCode = 2;
+                taskEnv->unk_0C->returnCode = 2;
             }
         }
 
-        if (v2->unk_0C->returnCode == 0) {
-            sub_0203DF68(param0);
+        if (taskEnv->unk_0C->returnCode == 0) {
+            sub_0203DF68(taskMan);
         }
 
-        if (v2->unk_08 != NULL) {
-            *v2->unk_08 = v2->unk_0C->returnCode;
+        if (taskEnv->unk_08 != NULL) {
+            *taskEnv->unk_08 = taskEnv->unk_0C->returnCode;
         }
 
-        NamingScreenArgs_Free(v2->unk_0C);
-        String_Free(v2->unk_10);
-        Heap_Free(v2);
+        NamingScreenArgs_Free(taskEnv->unk_0C);
+        String_Free(taskEnv->unk_10);
+        Heap_Free(taskEnv);
 
         return 1;
     }
@@ -1184,38 +1175,33 @@ static BOOL sub_0203DE98(FieldTask *param0)
     return 0;
 }
 
-static void sub_0203DF68(FieldTask *param0)
+static void sub_0203DF68(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0203DE98 *v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_0203DE98 *taskEnv = FieldTask_GetEnv(taskMan);
 
-    switch (v1->unk_0C->type) {
-    case NAMING_SCREEN_TYPE_PLAYER: {
-        TrainerInfo *v2 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        TrainerInfo_SetName(v2, v1->unk_0C->nameInputRaw);
-    } break;
-    case NAMING_SCREEN_TYPE_POKEMON: {
-        Pokemon *v3;
-        int v4;
-
-        v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v1->unk_04);
-        Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->nameInputRaw);
-    } break;
-    case NAMING_SCREEN_TYPE_GROUP: {
-        RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
-        RecordMixedRNG_GetEntryNameAsString(v5, 0, 0, v1->unk_0C->textInputStr);
-    } break;
-    case NAMING_SCREEN_TYPE_UNK6: {
-        MiscSaveBlock *v6 = SaveData_MiscSaveBlock(fieldSystem->saveData);
-        MiscSaveBlock_SetTabletName(v6, v1->unk_0C->textInputStr);
-    } break;
+    switch (taskEnv->unk_0C->type) {
+    case NAMING_SCREEN_TYPE_PLAYER:
+        TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+        TrainerInfo_SetName(trainerInfo, taskEnv->unk_0C->nameInputRaw);
+        break;
+    case NAMING_SCREEN_TYPE_POKEMON:
+        Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), taskEnv->unk_04);
+        Pokemon_SetValue(mon, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&taskEnv->unk_0C->nameInputRaw);
+        break;
+    case NAMING_SCREEN_TYPE_GROUP:
+        RecordMixedRNG *recMixedRNG = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
+        RecordMixedRNG_GetEntryNameAsString(recMixedRNG, 0, 0, taskEnv->unk_0C->textInputStr);
+        break;
+    case NAMING_SCREEN_TYPE_SHAYMIN_TABLET:
+        MiscSaveBlock *miscSaveBlock = SaveData_MiscSaveBlock(fieldSystem->saveData);
+        MiscSaveBlock_SetTabletName(miscSaveBlock, taskEnv->unk_0C->textInputStr);
+        break;
     }
-
-    return;
 }
 
 void sub_0203DFE8(
-    FieldTask *param0,
+    FieldTask *taskMan,
     enum NamingScreenType type,
     int param2,
     int param3,
@@ -1223,8 +1209,7 @@ void sub_0203DFE8(
     const u16 *param5,
     u16 *param6)
 {
-    Pokemon *v0;
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_0203DE98 *v2 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0203DE98));
 
     v2->unk_00 = 0;
@@ -1235,9 +1220,9 @@ void sub_0203DFE8(
 
     switch (type) {
     case NAMING_SCREEN_TYPE_POKEMON:
-        v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2->unk_04);
-        v2->unk_0C->monGender = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
-        v2->unk_0C->monForm = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2->unk_04);
+        v2->unk_0C->monGender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
+        v2->unk_0C->monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {
             String_CopyChars(v2->unk_10, param5);
@@ -1253,21 +1238,21 @@ void sub_0203DFE8(
         break;
     }
 
-    FieldTask_InitCall(param0, sub_0203DE98, v2);
+    FieldTask_InitCall(taskMan, sub_0203DE98, v2);
 }
 
-void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *trainerCard)
+void FieldSystem_OpenTrainerCase(FieldSystem *fieldSystem, TrainerCase *trainerCase)
 {
-    FS_EXTERN_OVERLAY(trainer_card_screen);
+    FS_EXTERN_OVERLAY(trainer_case);
 
     static const ApplicationManagerTemplate template = {
-        .init = TrainerCardScreen_Init,
-        .main = TrainerCardScreen_Main,
-        .exit = TrainerCardScreen_Exit,
-        .overlayID = FS_OVERLAY_ID(trainer_card_screen)
+        .init = TrainerCaseApp_Init,
+        .main = TrainerCaseApp_Main,
+        .exit = TrainerCaseApp_Exit,
+        .overlayID = FS_OVERLAY_ID(trainer_case)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &template, trainerCard);
+    FieldSystem_StartChildProcess(fieldSystem, &template, trainerCase);
 }
 
 BOOL FieldSystem_OpenPokedex(FieldSystem *fieldSystem, PokedexOverlayArgs *args)
@@ -1299,20 +1284,20 @@ void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterD
     FieldSystem_StartChildProcess(fieldSystem, &template, chooseStarterData);
 }
 
-void sub_0203E0D0(FieldSystem *fieldSystem)
+void FieldSystem_LaunchSignatureApp(FieldSystem *fieldSystem)
 {
-    TrainerCardSaveData *v0 = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
+    TrainerCaseSaveData *unused = SaveData_GetTrainerCaseSaveData(fieldSystem->saveData);
 
-    FS_EXTERN_OVERLAY(overlay72);
+    FS_EXTERN_OVERLAY(signature);
 
-    const ApplicationManagerTemplate v1 = {
-        ov72_0223D7A0,
-        ov72_0223D920,
-        ov72_0223D984,
-        FS_OVERLAY_ID(overlay72)
+    const ApplicationManagerTemplate template = {
+        SignatureApp_Init,
+        SignatureApp_Main,
+        SignatureApp_Exit,
+        FS_OVERLAY_ID(signature)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v1, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &template, fieldSystem->saveData);
 }
 
 void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi)
@@ -1351,31 +1336,29 @@ void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi)
 
 void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
 {
-    UnkStruct_0206BC70 *v0;
+    FS_EXTERN_OVERLAY(wifi_battle_tower);
 
-    FS_EXTERN_OVERLAY(overlay96);
-
-    const ApplicationManagerTemplate v1 = {
-        ov96_0223B6A0,
-        ov96_0223B7F8,
-        ov96_0223B8CC,
-        FS_OVERLAY_ID(overlay96)
+    const ApplicationManagerTemplate appTemplate = {
+        WifiBattleTower_AppInit,
+        WifiBattleTower_AppMain,
+        WifiBattleTower_AppExit,
+        FS_OVERLAY_ID(wifi_battle_tower)
     };
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206BC70));
+    UnkStruct_0206BC70 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206BC70));
 
-    v0->unk_00 = sub_0202D750(fieldSystem->saveData);
-    v0->unk_04 = sub_0202D764(fieldSystem->saveData);
-    v0->unk_08 = SaveData_GetSystemData(fieldSystem->saveData);
+    v0->record = SaveData_GetWifiBattleTowerRecord(fieldSystem->saveData);
+    v0->downloadData = SaveData_GetWifiBattleTowerDownloadData(fieldSystem->saveData);
+    v0->systemData = SaveData_GetSystemData(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_14 = WiFiList_GetUserData(SaveData_GetWiFiList(fieldSystem->saveData));
+    v0->userData = WiFiList_GetUserData(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->saveData = fieldSystem->saveData;
-    v0->unk_1C = WiFiList_GetUserGsProfileId(SaveData_GetWiFiList(fieldSystem->saveData));
-    v0->unk_18 = param1;
+    v0->profileId = WiFiList_GetUserGsProfileId(SaveData_GetWiFiList(fieldSystem->saveData));
+    v0->mode = param1;
     v0->unk_24 = param2;
     v0->unk_20 = 1;
 
-    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, v0);
 
     return (void *)v0;
 }
@@ -1414,18 +1397,17 @@ void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem)
         .exit = PCHallOfFameManager_Exit,
         .overlayID = FS_OVERLAY_ID(pc_hall_of_fame),
     };
-    HallOfFame *hallOfFame;
-    int resultCode;
 
-    hallOfFame = SaveData_HallOfFame(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
+    int resultCode;
+    HallOfFame *hallOfFame = SaveData_HallOfFame(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
 
     if (resultCode == LOAD_RESULT_CORRUPT) {
         Heap_Free(hallOfFame);
         return NULL;
-    } else {
-        FieldSystem_StartChildProcess(fieldSystem, &template, hallOfFame);
-        return hallOfFame;
     }
+
+    FieldSystem_StartChildProcess(fieldSystem, &template, hallOfFame);
+    return hallOfFame;
 }
 
 void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1)
@@ -1484,45 +1466,44 @@ void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *ta
     FieldSystem_StartChildProcess(fieldSystem, &appTemplate, taskEnv);
 }
 
-void sub_0203E2FC(FieldSystem *fieldSystem)
+void FieldSystem_HatchEgg(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203E2FC v0;
-    Party *v1 = SaveData_GetParty(fieldSystem->saveData);
-    Pokemon *v2 = Party_GetFirstEgg(v1);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    Pokemon *eggMon = Party_GetFirstEgg(party);
 
-    GF_ASSERT(v2 != NULL);
-    FieldSystem_SaveTVEpisodeSegment_HappyHappyEggClub(fieldSystem, v2);
+    GF_ASSERT(eggMon != NULL);
+    FieldSystem_SaveTVSegment_HappyHappyEggClub(fieldSystem, eggMon);
 
-    v0.unk_00 = v2;
-    v0.options = SaveData_GetOptions(fieldSystem->saveData);
-    v0.unk_08 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v0.unk_0C = Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId);
+    EggHatchArgs args;
+    args.mon = eggMon;
+    args.options = SaveData_GetOptions(fieldSystem->saveData);
+    args.trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    args.bgmID = FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID);
 
-    sub_020985AC(fieldSystem->task, &v0);
+    EggHatch_HatchEgg(fieldSystem->task, &args);
 }
 
 BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1)
 {
     FS_EXTERN_OVERLAY(overlay101);
 
-    static const ApplicationManagerTemplate v0 = {
+    static const ApplicationManagerTemplate appTemplate = {
         ov101_021D0D80,
         ov101_021D0E40,
         ov101_021D0EE4,
         FS_OVERLAY_ID(overlay101)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, param1);
     return 1;
 }
 
-static BOOL sub_0203E35C(FieldTask *param0)
+static BOOL sub_0203E35C(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    UnkStruct_0203E35C *v2 = FieldTask_GetEnv(param0);
-    int *v3 = FieldTask_GetState(param0);
-    int v4;
+    UnkStruct_0203E35C *v2 = FieldTask_GetEnv(taskMan);
+    int *v3 = FieldTask_GetState(taskMan);
 
     switch (*v3) {
     case 0:
@@ -1531,15 +1512,15 @@ static BOOL sub_0203E35C(FieldTask *param0)
         break;
     case 1:
         if (FieldSystem_IsRunningApplication(fieldSystem) == 0) {
-            u16 *v5 = SaveData_GetCoins(fieldSystem->saveData);
-            s64 v6 = GetTimestamp();
+            u16 *coins = SaveData_GetCoins(fieldSystem->saveData);
+            s64 timeStamp = GetTimestamp();
 
-            sub_0206DD38(fieldSystem, Coins_GetValue(v5), v2->unk_00, TimeElapsed(v2->startTime, v6) / 60);
+            sub_0206DD38(fieldSystem, Coins_GetValue(coins), v2->unk_00, TimeElapsed(v2->startTime, timeStamp) / 60);
             Coins_SetValue(SaveData_GetCoins(fieldSystem->saveData), v2->unk_00);
 
-            v4 = SystemVars_GetConsecutiveBonusRoundWins(v1);
+            int bonusRoundsWins = SystemVars_GetConsecutiveBonusRoundWins(v1);
 
-            if ((v2->unk_0C.unk_0C) > v4) {
+            if (v2->unk_0C.unk_0C > bonusRoundsWins) {
                 SystemVars_SetConsecutiveBonusRoundWins(v1, v2->unk_0C.unk_0C);
             }
 
@@ -1668,8 +1649,6 @@ void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, enum HeapID heapID, BOOL
 
 void *FieldSystem_OpenBattleFrontierRecord(FieldSystem *fieldSystem, u8 challengeType, u8 facility, u16 species, enum HeapID heapID)
 {
-    FrontierRecordsAppArgs *args;
-
     FS_EXTERN_OVERLAY(frontier_records_app);
 
     static ApplicationManagerTemplate template = {
@@ -1679,7 +1658,7 @@ void *FieldSystem_OpenBattleFrontierRecord(FieldSystem *fieldSystem, u8 challeng
         FS_OVERLAY_ID(frontier_records_app)
     };
 
-    args = Heap_Alloc(heapID, sizeof(FrontierRecordsAppArgs));
+    FrontierRecordsAppArgs *args = Heap_Alloc(heapID, sizeof(FrontierRecordsAppArgs));
 
     args->challengeType = challengeType;
     args->facility = facility;
@@ -1714,8 +1693,6 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem
 
 void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID)
 {
-    UnkStruct_0203E608 *v0;
-
     FS_EXTERN_OVERLAY(overlay111);
 
     static ApplicationManagerTemplate v1 = {
@@ -1725,7 +1702,7 @@ void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID)
         FS_OVERLAY_ID(overlay111)
     };
 
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E608));
+    UnkStruct_0203E608 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E608));
     memset(v0, 0, sizeof(UnkStruct_0203E608));
 
     v0->saveData = fieldSystem->saveData;
@@ -1765,18 +1742,16 @@ void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSyste
 
 void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2)
 {
-    UnkStruct_0203E6C0 *v0;
-
     FS_EXTERN_OVERLAY(overlay61);
 
-    const ApplicationManagerTemplate v1 = {
+    const ApplicationManagerTemplate appTemplate = {
         sub_02017498,
         sub_02017524,
         sub_02017658,
         FS_OVERLAY_ID(overlay61)
     };
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0203E6C0));
+    UnkStruct_0203E6C0 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0203E6C0));
     MI_CpuClear8(v0, sizeof(UnkStruct_0203E6C0));
 
     v0->fieldSystem = fieldSystem;
@@ -1784,7 +1759,7 @@ void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2)
     v0->unk_08 = param1;
     v0->unk_0C = param2;
 
-    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, v0);
 }
 
 FS_EXTERN_OVERLAY(library_tv);
@@ -1796,19 +1771,19 @@ static const ApplicationManagerTemplate LibraryTV_template = {
     FS_OVERLAY_ID(library_tv)
 };
 
-void sub_0203E704(FieldSystem *fieldSystem)
+void FieldSystem_StartLibraryTV(FieldSystem *fieldSystem)
 {
     FieldSystem_StartChildProcess(fieldSystem, &LibraryTV_template, fieldSystem->saveData);
 }
 
-static const ApplicationManagerTemplate Unk_020EA368 = {
+static const ApplicationManagerTemplate sDWWarpTemplate = {
     DWWarp_Init,
     DWWarp_Main,
     DWWarp_Exit,
     FS_OVERLAY_ID(dw_warp)
 };
 
-void sub_0203E714(FieldSystem *fieldSystem)
+void FieldSystem_StartDWWarp(FieldSystem *fieldSystem)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA368, fieldSystem->saveData);
+    FieldSystem_StartChildProcess(fieldSystem, &sDWWarpTemplate, fieldSystem->saveData);
 }

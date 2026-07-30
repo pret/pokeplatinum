@@ -2,7 +2,7 @@
   "key": 5120,
   "messages": [
     {
-      "id": "pl_msg_00000402_00000",
+      "id": "Restaurant_Text_PartakeInBattles",
       "en_US": [
         "At our restaurant, you can enjoy\n",
         "more than just exquisite dining.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00001",
+      "id": "Restaurant_Text_WeAreNowClosed",
       "en_US": [
         "I am so sorry.\n",
         "We are now closed.\f",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00002",
+      "id": "Restaurant_Text_IsmaelNeedMultiplePokemon",
       "en_US": [
         "Before we make our toast, I’d hoped\n",
         "for a battle...\r",
@@ -28,14 +28,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00003",
+      "id": "Restaurant_Text_HarleyNeedMultiplePokemon",
       "en_US": [
         "If you want to have a battle with us,\n",
         "you’ll need to bring more Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000402_00004",
+      "id": "Restaurant_Text_IsmaelIntro0",
       "en_US": [
         "With someone as beautiful as you for\n",
         "my model, I am sure to paint\f",
@@ -43,18 +43,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00005",
+      "id": "Restaurant_Text_IsmaelAskBattle0",
       "en_US": [
         "What is it?\n",
         "Do you wish for a battle?\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00006",
+      "id": "Restaurant_Text_Dummy6",
       "garbage": 47
     },
     {
-      "id": "pl_msg_00000402_00007",
+      "id": "Restaurant_Text_IsmaelDefeated0",
       "en_US": [
         "Though we lost our battle...\n",
         "A toast to your beauty, that no\f",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00008",
+      "id": "Restaurant_Text_HarleyIntro0",
       "en_US": [
         "He said he’d treat me to a dinner\n",
         "here if I agreed to model for him.\r",
@@ -71,25 +71,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00009",
+      "id": "Restaurant_Text_HarleyAskBattle0",
       "en_US": [
         "When I can’t decide, I battle\n",
         "to make the decision!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00010",
+      "id": "Restaurant_Text_Dummy10",
       "garbage": 59
     },
     {
-      "id": "pl_msg_00000402_00011",
+      "id": "Restaurant_Text_HarleyDefeated0",
       "en_US": [
         "I’ve decided to model for him.\n",
         "That’s given me an appetite!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00012",
+      "id": "Restaurant_Text_IsmaelIntro1",
       "en_US": [
         "There is no price too high for the\n",
         "sake of my art...\r",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00013",
+      "id": "Restaurant_Text_IsmaelAskBattle1",
       "en_US": [
         "What is it?\n",
         "Are you feeling hungry, too?\r",
@@ -107,15 +107,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00014",
+      "id": "Restaurant_Text_Dummy14",
       "garbage": 43
     },
     {
-      "id": "pl_msg_00000402_00015",
+      "id": "Restaurant_Text_IsmaelDefeated1",
       "en_US": "My hors d’oeuvres have gone cold..."
     },
     {
-      "id": "pl_msg_00000402_00016",
+      "id": "Restaurant_Text_HarleyIntro1",
       "en_US": [
         "I have to slow down on eating these\n",
         "delicious hors d’oeuvres.\r",
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00017",
+      "id": "Restaurant_Text_HarleyAskBattle1",
       "en_US": [
         "I’d like a light battle to work up\n",
         "my appetite.\r",
@@ -132,11 +132,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00018",
+      "id": "Restaurant_Text_Dummy18",
       "garbage": 66
     },
     {
-      "id": "pl_msg_00000402_00019",
+      "id": "Restaurant_Text_HarleyDefeated1",
       "en_US": [
         "The hors d’oeuvres haven’t grown\n",
         "cold...\r",
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00020",
+      "id": "Restaurant_Text_IsmaelIntro2",
       "en_US": [
         "The worth of a meal isn’t determined\n",
         "merely by its flavor.\r",
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00021",
+      "id": "Restaurant_Text_IsmaelAskBattle2",
       "en_US": [
         "And in Pokémon battles, I also hope\n",
         "to see beauty.\r",
@@ -164,11 +164,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00022",
+      "id": "Restaurant_Text_Dummy22",
       "garbage": 97
     },
     {
-      "id": "pl_msg_00000402_00023",
+      "id": "Restaurant_Text_IsmaelDefeated2",
       "en_US": [
         "The meals prepared here are not\n",
         "merely tasty, they are also healthy.\r",
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00024",
+      "id": "Restaurant_Text_HarleyIntro2",
       "en_US": [
         "Today’s main dish is scrumptiously\n",
         "delicious!\r",
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00025",
+      "id": "Restaurant_Text_HarleyAskBattle2",
       "en_US": [
         "I feel guilty just eating all this\n",
         "delicious food like this.\r",
@@ -194,11 +194,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00026",
+      "id": "Restaurant_Text_Dummy26",
       "garbage": 62
     },
     {
-      "id": "pl_msg_00000402_00027",
+      "id": "Restaurant_Text_HarleyDefeated2",
       "en_US": [
         "The models of great paintings were\n",
         "often rather plump.\r",
@@ -207,46 +207,46 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00028",
+      "id": "Restaurant_Text_RomanNeedMultiplePokemon",
       "en_US": [
         "If you want to challenge us, bring\n",
         "some more Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000402_00029",
+      "id": "Restaurant_Text_KylieNeedMultiplePokemon",
       "en_US": [
         "If you want to battle us, you have\n",
         "to have at least two Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00030",
+      "id": "Restaurant_Text_RomanIntro0",
       "en_US": [
         "Actually, my father happens to be\n",
         "the chef here.\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00031",
+      "id": "Restaurant_Text_RomanAskBattle0",
       "en_US": [
         "What is it? A battle?\n",
         "Bahaha... You think you can beat me?"
       ]
     },
     {
-      "id": "pl_msg_00000402_00032",
+      "id": "Restaurant_Text_Dummy32",
       "garbage": 27
     },
     {
-      "id": "pl_msg_00000402_00033",
+      "id": "Restaurant_Text_RomanDefeated0",
       "en_US": [
         "We’ve lost, but let’s make a toast\n",
         "to our future together anyway!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00034",
+      "id": "Restaurant_Text_KylieIntro0",
       "en_US": [
         "Oh, my!\n",
         "Your father is the chef here?\r",
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00035",
+      "id": "Restaurant_Text_KylieAskBattle0",
       "en_US": [
         "I haven’t told him, but my father owns\n",
         "the hotel and restaurant...\r",
@@ -263,25 +263,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00036",
+      "id": "Restaurant_Text_Dummy36",
       "garbage": 43
     },
     {
-      "id": "pl_msg_00000402_00037",
+      "id": "Restaurant_Text_KylieDefeated0",
       "en_US": [
         "Let’s make a toast to the prosperity\n",
         "of the restaurant!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00038",
+      "id": "Restaurant_Text_RomanIntro1",
       "en_US": [
         "I have to hand it to my father--\n",
         "these hors d’oeuvres are delicious!\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00039",
+      "id": "Restaurant_Text_RomanAskBattle1",
       "en_US": [
         "...Are you maybe asking me for\n",
         "a battle?\r",
@@ -290,25 +290,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00040",
+      "id": "Restaurant_Text_Dummy40",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000402_00041",
+      "id": "Restaurant_Text_RomanDefeated1",
       "en_US": [
         "Finally. Now we can go about enjoying\n",
         "our meal without disruption."
       ]
     },
     {
-      "id": "pl_msg_00000402_00042",
+      "id": "Restaurant_Text_KylieIntro1",
       "en_US": [
         "Yes! This meal is good enough to\n",
         "serve at the hotel.\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00043",
+      "id": "Restaurant_Text_KylieAskBattle1",
       "en_US": [
         "Please don’t tell my date that my\n",
         "father owns the restaurant.\r",
@@ -317,18 +317,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00044",
+      "id": "Restaurant_Text_Dummy44",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000402_00045",
+      "id": "Restaurant_Text_KylieDefeated1",
       "en_US": [
         "My date did his best, but you were\n",
         "better than the both of us."
       ]
     },
     {
-      "id": "pl_msg_00000402_00046",
+      "id": "Restaurant_Text_RomanIntro2",
       "en_US": [
         "Fufufu, my date’s really enjoying\n",
         "my dad’s cooking.\r",
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00047",
+      "id": "Restaurant_Text_RomanAskBattle2",
       "en_US": [
         "I’m feeling great!\n",
         "Sure, I’ll have a battle with you.\r",
@@ -345,11 +345,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00048",
+      "id": "Restaurant_Text_Dummy48",
       "garbage": 33
     },
     {
-      "id": "pl_msg_00000402_00049",
+      "id": "Restaurant_Text_RomanDefeated2",
       "en_US": [
         "My prowess as a Trainer isn’t up to\n",
         "snuff...\r",
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00050",
+      "id": "Restaurant_Text_KylieIntro2",
       "en_US": [
         "This succulent flavor!\n",
         "It reminds me of a world trip I took.\r",
@@ -367,7 +367,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00051",
+      "id": "Restaurant_Text_KylieAskBattle2",
       "en_US": [
         "Eating this fabulous meal has really\n",
         "lifted my spirits.\r",
@@ -375,11 +375,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00052",
+      "id": "Restaurant_Text_Dummy52",
       "garbage": 56
     },
     {
-      "id": "pl_msg_00000402_00053",
+      "id": "Restaurant_Text_KylieDefeated2",
       "en_US": [
         "Your father’s cooking has a very\n",
         "magical quality to it.\r",
@@ -388,7 +388,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00054",
+      "id": "Restaurant_Text_LeonardoNeedMultiplePokemon",
       "en_US": [
         "If your intention is to test your\n",
         "skill on us, I daresay you ought to\f",
@@ -396,7 +396,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00055",
+      "id": "Restaurant_Text_RebeccaNeedMultiplePokemon",
       "en_US": [
         "Oh, you’re offering to do battle\n",
         "with us? How nice of you.\r",
@@ -405,14 +405,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00056",
+      "id": "Restaurant_Text_LeonardoIntro0",
       "en_US": [
         "Let me propose a toast to many\n",
         "more happy years together.\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00057",
+      "id": "Restaurant_Text_LeonardoAskBattle0",
       "en_US": [
         "Since I took my retirement, I’ve been\n",
         "traveling with my wife.\r",
@@ -423,25 +423,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00058",
+      "id": "Restaurant_Text_Dummy58",
       "garbage": 31
     },
     {
-      "id": "pl_msg_00000402_00059",
+      "id": "Restaurant_Text_LeonardoDefeated0",
       "en_US": [
         "Well, so much for that. Let’s try to\n",
         "enjoy the rest of our meal."
       ]
     },
     {
-      "id": "pl_msg_00000402_00060",
+      "id": "Restaurant_Text_RebeccaIntro0",
       "en_US": [
         "To our health, welfare, and to fine\n",
         "dining! Cheers!\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00061",
+      "id": "Restaurant_Text_RebeccaAskBattle0",
       "en_US": [
         "A toast before a meal helps stimulate\n",
         "the appetite, I find.\r",
@@ -450,11 +450,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00062",
+      "id": "Restaurant_Text_Dummy62",
       "garbage": 24
     },
     {
-      "id": "pl_msg_00000402_00063",
+      "id": "Restaurant_Text_RebeccaDefeated0",
       "en_US": [
         "Gourmet dining in restaurants and\n",
         "exhilarating Pokémon battles...\r",
@@ -463,7 +463,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00064",
+      "id": "Restaurant_Text_LeonardoIntro1",
       "en_US": [
         "Hmm!\n",
         "Now, this is special!\r",
@@ -473,7 +473,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00065",
+      "id": "Restaurant_Text_LeonardoAskBattle1",
       "en_US": [
         "When you get to be an accomplished\n",
         "gourmet like myself, one can tell at\f",
@@ -483,11 +483,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00066",
+      "id": "Restaurant_Text_Dummy66",
       "garbage": 52
     },
     {
-      "id": "pl_msg_00000402_00067",
+      "id": "Restaurant_Text_LeonardoDefeated1",
       "en_US": [
         "Well, so much for that.\r",
         "We’ll keep a stiff upper lip and look\n",
@@ -495,7 +495,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00068",
+      "id": "Restaurant_Text_RebeccaIntro1",
       "en_US": [
         "These hors d’oeuvres are simply\n",
         "divine!\r",
@@ -504,7 +504,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00069",
+      "id": "Restaurant_Text_RebeccaAskBattle1",
       "en_US": [
         "I thought the main course arrived\n",
         "already...\r",
@@ -512,18 +512,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00070",
+      "id": "Restaurant_Text_Dummy70",
       "garbage": 48
     },
     {
-      "id": "pl_msg_00000402_00071",
+      "id": "Restaurant_Text_RebeccaDefeated1",
       "en_US": [
         "The hors d’oeuvres were most\n",
         "excellent!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00072",
+      "id": "Restaurant_Text_LeonardoIntro2",
       "en_US": [
         "Hmm!\n",
         "The chef flambeed this to perfection!\r",
@@ -532,7 +532,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00073",
+      "id": "Restaurant_Text_LeonardoAskBattle2",
       "en_US": [
         "You’re throwing down a challenge\n",
         "in the middle of our meal?\r",
@@ -541,18 +541,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00074",
+      "id": "Restaurant_Text_Dummy74",
       "garbage": 54
     },
     {
-      "id": "pl_msg_00000402_00075",
+      "id": "Restaurant_Text_LeonardoDefeated2",
       "en_US": [
         "Ah... I’m very satisfied with our\n",
         "meal and our battle."
       ]
     },
     {
-      "id": "pl_msg_00000402_00076",
+      "id": "Restaurant_Text_RebeccaIntro2",
       "en_US": [
         "...!\n",
         "This sauce!\r",
@@ -561,7 +561,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00077",
+      "id": "Restaurant_Text_RebeccaAskBattle2",
       "en_US": [
         "Would you like to sample a bite?\r",
         "...\n",
@@ -569,11 +569,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00078",
+      "id": "Restaurant_Text_Dummy78",
       "garbage": 46
     },
     {
-      "id": "pl_msg_00000402_00079",
+      "id": "Restaurant_Text_RebeccaDefeated2",
       "en_US": [
         "Battling is fine, of course.\r",
         "But for me, I would rather be out\n",
@@ -581,21 +581,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00080",
+      "id": "Restaurant_Text_EugeneNeedMultiplePokemon",
       "en_US": [
         "If you want to battle us, you\n",
         "have to have two Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000402_00081",
+      "id": "Restaurant_Text_AlisonNeedMultiplePokemon",
       "en_US": [
         "Don’t you have two Pokémon?\n",
         "We’ll have to battle another time!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00082",
+      "id": "Restaurant_Text_EugeneIntro0",
       "en_US": [
         "Alison, um, I, er...\n",
         "Thank you for coming today...\r",
@@ -603,7 +603,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00083",
+      "id": "Restaurant_Text_EugeneAskBattle0",
       "en_US": [
         "She’s the girl from the Pokémon-goods\n",
         "shop I go to all the time.\r",
@@ -612,18 +612,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00084",
+      "id": "Restaurant_Text_Dummy84",
       "garbage": 51
     },
     {
-      "id": "pl_msg_00000402_00085",
+      "id": "Restaurant_Text_EugeneDefeated0",
       "en_US": [
         "Oh, no, I’m sorry we lost.\n",
         "Alison, you’re not upset?"
       ]
     },
     {
-      "id": "pl_msg_00000402_00086",
+      "id": "Restaurant_Text_AlisonIntro0",
       "en_US": [
         "Fufu... Eugene, you act so different\n",
         "from the way you do at the shop.\r",
@@ -631,7 +631,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00087",
+      "id": "Restaurant_Text_AlisonAskBattle0",
       "en_US": [
         "I work at a Pokémon-goods shop\n",
         "because I love Pokémon.\r",
@@ -642,11 +642,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00088",
+      "id": "Restaurant_Text_Dummy88",
       "garbage": 45
     },
     {
-      "id": "pl_msg_00000402_00089",
+      "id": "Restaurant_Text_AlisonDefeated0",
       "en_US": [
         "I don’t worry much about winning\n",
         "or losing.\r",
@@ -655,7 +655,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00090",
+      "id": "Restaurant_Text_EugeneIntro1",
       "en_US": [
         "If my Pokémon buddies hear I went\n",
         "on a date with you, Alison...\r",
@@ -664,15 +664,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00091",
+      "id": "Restaurant_Text_EugeneAskBattle1",
       "en_US": "Are you Alison’s fan, too?"
     },
     {
-      "id": "pl_msg_00000402_00092",
+      "id": "Restaurant_Text_Dummy92",
       "garbage": 45
     },
     {
-      "id": "pl_msg_00000402_00093",
+      "id": "Restaurant_Text_EugeneDefeated1",
       "en_US": [
         "Alison, seeing your smiling face...\r",
         "I can’t tell if these appetizers\n",
@@ -680,7 +680,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00094",
+      "id": "Restaurant_Text_AlisonIntro1",
       "en_US": [
         "Sorry? What? Date?\r",
         "Um... Eugene...\n",
@@ -688,7 +688,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00095",
+      "id": "Restaurant_Text_AlisonAskBattle1",
       "en_US": [
         "...Even though I said that, I admit\n",
         "the invitation was flattering.\r",
@@ -698,11 +698,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00096",
+      "id": "Restaurant_Text_Dummy96",
       "garbage": 44
     },
     {
-      "id": "pl_msg_00000402_00097",
+      "id": "Restaurant_Text_AlisonDefeated1",
       "en_US": [
         "You know, it is true what they say.\n",
         "There is no evil among Pokémon fans!\r",
@@ -710,7 +710,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00098",
+      "id": "Restaurant_Text_EugeneIntro2",
       "en_US": [
         "Looks like our main course is here.\n",
         "Please, enjoy yourself.\r",
@@ -718,18 +718,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00099",
+      "id": "Restaurant_Text_EugeneAskBattle2",
       "en_US": [
         "I’ll defeat you and collect the\n",
         "prize money!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00100",
+      "id": "Restaurant_Text_Dummy100",
       "garbage": 57
     },
     {
-      "id": "pl_msg_00000402_00101",
+      "id": "Restaurant_Text_EugeneDefeated2",
       "en_US": [
         "My wallet’s empty after paying the\n",
         "prize money...\r",
@@ -738,14 +738,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00102",
+      "id": "Restaurant_Text_AlisonIntro2",
       "en_US": [
         "Eugene, I think you’re a little\n",
         "awkward, but you’re very earnest.\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00103",
+      "id": "Restaurant_Text_AlisonAskBattle2",
       "en_US": [
         "If I team up with my date, it could\n",
         "be an interesting combination.\r",
@@ -754,11 +754,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00104",
+      "id": "Restaurant_Text_Dummy104",
       "garbage": 33
     },
     {
-      "id": "pl_msg_00000402_00105",
+      "id": "Restaurant_Text_AlisonDefeated2",
       "en_US": [
         "The meal was delicious, and our battle\n",
         "was so much fun.\r",
@@ -766,14 +766,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00106",
+      "id": "Restaurant_Text_EstebanNeedMultiplePokemon",
       "en_US": [
         "If you have two Pokémon, I’ll take\n",
         "you on with my mom."
       ]
     },
     {
-      "id": "pl_msg_00000402_00107",
+      "id": "Restaurant_Text_MeredithNeedMultiplePokemon",
       "en_US": [
         "I’m willing to have a battle with\n",
         "my son, my pride and joy.\r",
@@ -782,14 +782,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00108",
+      "id": "Restaurant_Text_EstebanIntro0",
       "en_US": [
         "What should I have today?\n",
         "Juice, ice cream, cake, and, and...\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00109",
+      "id": "Restaurant_Text_EstebanAskBattle0",
       "en_US": [
         "Oh, hi, Trainer!\r",
         "Want to battle Pokémon with us\n",
@@ -797,11 +797,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00110",
+      "id": "Restaurant_Text_Dummy110",
       "garbage": 41
     },
     {
-      "id": "pl_msg_00000402_00111",
+      "id": "Restaurant_Text_EstebanDefeated0",
       "en_US": [
         "I don’t get it. Grown-ups always have\n",
         "a toast before eating.\r",
@@ -810,7 +810,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00112",
+      "id": "Restaurant_Text_MeredithIntro0",
       "en_US": [
         "My dear, Mommy is so proud of you\n",
         "for doing so well on your test.\r",
@@ -819,7 +819,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00113",
+      "id": "Restaurant_Text_MeredithAskBattle0",
       "en_US": [
         "Did you know? My boy is not only a\n",
         "genius at school, but he’s also\f",
@@ -829,11 +829,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00114",
+      "id": "Restaurant_Text_Dummy114",
       "garbage": 47
     },
     {
-      "id": "pl_msg_00000402_00115",
+      "id": "Restaurant_Text_MeredithDefeated0",
       "en_US": [
         "I wish to propose a toast.\r",
         "May my darling Esteban get another\n",
@@ -841,7 +841,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00116",
+      "id": "Restaurant_Text_EstebanIntro1",
       "en_US": [
         "Wow, they bring out things one dish\n",
         "at a time!\r",
@@ -849,32 +849,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00117",
+      "id": "Restaurant_Text_EstebanAskBattle1",
       "en_US": [
         "I do my homework while eating.\n",
         "I can battle anytime!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00118",
+      "id": "Restaurant_Text_Dummy118",
       "garbage": 47
     },
     {
-      "id": "pl_msg_00000402_00119",
+      "id": "Restaurant_Text_EstebanDefeated1",
       "en_US": [
         "We’re going to eat this delicious\n",
         "stuff now. Bye-bye!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00120",
+      "id": "Restaurant_Text_MeredithIntro1",
       "en_US": [
         "This restaurant is the talk of the\n",
         "town for the delicious food.\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00121",
+      "id": "Restaurant_Text_MeredithAskBattle1",
       "en_US": [
         "I beg your pardon?\n",
         "You want a battle now?\r",
@@ -883,18 +883,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00122",
+      "id": "Restaurant_Text_Dummy122",
       "garbage": 33
     },
     {
-      "id": "pl_msg_00000402_00123",
+      "id": "Restaurant_Text_MeredithDefeated1",
       "en_US": [
         "Thank you for letting my dear son\n",
         "experience an invaluable lesson."
       ]
     },
     {
-      "id": "pl_msg_00000402_00124",
+      "id": "Restaurant_Text_EstebanIntro2",
       "en_US": [
         "Do mothers and fathers go off to\n",
         "eat like this?\r",
@@ -903,7 +903,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00125",
+      "id": "Restaurant_Text_EstebanAskBattle2",
       "en_US": [
         "But that’s OK.\r",
         "It’s way more fun for me to battle\n",
@@ -911,15 +911,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00126",
+      "id": "Restaurant_Text_Dummy126",
       "garbage": 50
     },
     {
-      "id": "pl_msg_00000402_00127",
+      "id": "Restaurant_Text_EstebanDefeated2",
       "en_US": "Mom, you gotta make me this at home!"
     },
     {
-      "id": "pl_msg_00000402_00128",
+      "id": "Restaurant_Text_MeredithIntro2",
       "en_US": [
         "This is a special occasion, Esteban.\r",
         "This is to celebrate your great\n",
@@ -927,43 +927,43 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00129",
+      "id": "Restaurant_Text_MeredithAskBattle2",
       "en_US": [
         "Oh? A battle, you say?\n",
         "Well, certainly. Why not?"
       ]
     },
     {
-      "id": "pl_msg_00000402_00130",
+      "id": "Restaurant_Text_Dummy130",
       "garbage": 47
     },
     {
-      "id": "pl_msg_00000402_00131",
+      "id": "Restaurant_Text_MeredithDefeated2",
       "en_US": "Is the dessert coming soon?"
     },
     {
-      "id": "pl_msg_00000402_00132",
+      "id": "Restaurant_Text_EmanuelNeedMultiplePokemon",
       "en_US": [
         "My daughter and I always battle\n",
         "together, none of that one-on-one."
       ]
     },
     {
-      "id": "pl_msg_00000402_00133",
+      "id": "Restaurant_Text_BlytheNeedMultiplePokemon",
       "en_US": [
         "I can go against you with Papa.\n",
         "Please bring more Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000402_00134",
+      "id": "Restaurant_Text_EmanuelIntro0",
       "en_US": [
         "Here’s a toast for Mom.\n",
         "May she always be healthy!\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00135",
+      "id": "Restaurant_Text_EmanuelAskBattle0",
       "en_US": [
         "My wife’s in the hospital waiting for\n",
         "the baby to arrive.\r",
@@ -974,25 +974,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00136",
+      "id": "Restaurant_Text_Dummy136",
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000402_00137",
+      "id": "Restaurant_Text_EmanuelDefeated0",
       "en_US": [
         "The house will be a lot noisier when\n",
         "the baby comes home with Mommy."
       ]
     },
     {
-      "id": "pl_msg_00000402_00138",
+      "id": "Restaurant_Text_BlytheIntro0",
       "en_US": [
         "I wonder what Mommy will bring home?\n",
         "A baby boy? A baby girl?\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00139",
+      "id": "Restaurant_Text_BlytheAskBattle0",
       "en_US": [
         "A boy will be a brother, and a girl\n",
         "will be a sister.\r",
@@ -1001,25 +1001,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00140",
+      "id": "Restaurant_Text_Dummy140",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000402_00141",
+      "id": "Restaurant_Text_BlytheDefeated0",
       "en_US": [
         "Little babies cry like Pokémon!\n",
         "Piyaaaah!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00142",
+      "id": "Restaurant_Text_EmanuelIntro1",
       "en_US": [
         "Wow... Look at these appetizers.\n",
         "This is just so extravagant.\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00143",
+      "id": "Restaurant_Text_EmanuelAskBattle1",
       "en_US": [
         "I’m no cook, I’ll admit that freely.\r",
         "But battling Pokémon... There’s\n",
@@ -1027,25 +1027,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00144",
+      "id": "Restaurant_Text_Dummy144",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000402_00145",
+      "id": "Restaurant_Text_EmanuelDefeated1",
       "en_US": [
         "Let’s get over the sting of this loss\n",
         "by enjoying this delicious meal!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00146",
+      "id": "Restaurant_Text_BlytheIntro1",
       "en_US": [
         "Wow!\n",
         "This food looks really fancy!\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00147",
+      "id": "Restaurant_Text_BlytheAskBattle1",
       "en_US": [
         "Papa is a rotten cook, so we can\n",
         "go out and eat good food like this!\r",
@@ -1054,65 +1054,65 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00148",
+      "id": "Restaurant_Text_Dummy148",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000402_00149",
+      "id": "Restaurant_Text_BlytheDefeated1",
       "en_US": [
         "I’ve never eaten anything like this\n",
         "before."
       ]
     },
     {
-      "id": "pl_msg_00000402_00150",
+      "id": "Restaurant_Text_EmanuelIntro2",
       "en_US": "Here’s the main dish!\r"
     },
     {
-      "id": "pl_msg_00000402_00151",
+      "id": "Restaurant_Text_EmanuelAskBattle2",
       "en_US": [
         "What is it?\n",
         "Did you want to battle with us?"
       ]
     },
     {
-      "id": "pl_msg_00000402_00152",
+      "id": "Restaurant_Text_Dummy152",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000402_00153",
+      "id": "Restaurant_Text_EmanuelDefeated2",
       "en_US": [
         "Jocelyn, I hope the new baby will be\n",
         "as kindhearted as you."
       ]
     },
     {
-      "id": "pl_msg_00000402_00154",
+      "id": "Restaurant_Text_BlytheIntro2",
       "en_US": [
         "I wish Mommy were here to eat with\n",
         "us...\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00155",
+      "id": "Restaurant_Text_BlytheAskBattle2",
       "en_US": [
         "Mommy gave me my Pokémon.\n",
         "Want to see how tough they are?"
       ]
     },
     {
-      "id": "pl_msg_00000402_00156",
+      "id": "Restaurant_Text_Dummy156",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000402_00157",
+      "id": "Restaurant_Text_BlytheDefeated2",
       "en_US": [
         "Next time, let’s come with everyone.\n",
         "The baby, too!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00158",
+      "id": "Restaurant_Text_DarrylNeedMultiplePokemon",
       "en_US": [
         "Yeah? What’s up?\n",
         "Did you want to be on TV, too?\r",
@@ -1123,7 +1123,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00159",
+      "id": "Restaurant_Text_ValerieNeedMultiplePokemon",
       "en_US": [
         "If you want an autograph, you’ll\n",
         "have to wait till we finish filming.\r",
@@ -1132,32 +1132,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00160",
+      "id": "Restaurant_Text_DarrylIntro0",
       "en_US": [
         "Let’s start with a shot of the\n",
         "drinks as a camera test.\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00161",
+      "id": "Restaurant_Text_DarrylAskBattle0",
       "en_US": [
         "Hunh? You’re inviting us to battle at\n",
         "a time like this?"
       ]
     },
     {
-      "id": "pl_msg_00000402_00162",
+      "id": "Restaurant_Text_Dummy162",
       "garbage": 42
     },
     {
-      "id": "pl_msg_00000402_00163",
+      "id": "Restaurant_Text_DarrylDefeated0",
       "en_US": [
         "Oh, man...\n",
         "Our drinks are lukewarm now."
       ]
     },
     {
-      "id": "pl_msg_00000402_00164",
+      "id": "Restaurant_Text_ValerieIntro0",
       "en_US": [
         "Today’s featured drink is freshly\n",
         "squeezed juice made from ripened\f",
@@ -1165,7 +1165,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00165",
+      "id": "Restaurant_Text_ValerieAskBattle0",
       "en_US": [
         "Pardon?\n",
         "Pokémon?\r",
@@ -1174,11 +1174,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00166",
+      "id": "Restaurant_Text_Dummy166",
       "garbage": 45
     },
     {
-      "id": "pl_msg_00000402_00167",
+      "id": "Restaurant_Text_ValerieDefeated0",
       "en_US": [
         "Do you think we should rehearse this\n",
         "one more time?\r",
@@ -1187,7 +1187,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00168",
+      "id": "Restaurant_Text_DarrylIntro1",
       "en_US": [
         "Hey, these appetizers sure do look\n",
         "delicious.\r",
@@ -1196,7 +1196,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00169",
+      "id": "Restaurant_Text_DarrylAskBattle1",
       "en_US": [
         "Thanks, that was quick!\r",
         "...Wait, where’s the mist spray?\n",
@@ -1206,25 +1206,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00170",
+      "id": "Restaurant_Text_Dummy170",
       "garbage": 61
     },
     {
-      "id": "pl_msg_00000402_00171",
+      "id": "Restaurant_Text_DarrylDefeated1",
       "en_US": [
         "Photographing food isn’t easy.\n",
         "It’s actually very technical."
       ]
     },
     {
-      "id": "pl_msg_00000402_00172",
+      "id": "Restaurant_Text_ValerieIntro1",
       "en_US": [
         "These look fabulous, too.\n",
         "We need the camera to zoom in more!\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00173",
+      "id": "Restaurant_Text_ValerieAskBattle1",
       "en_US": [
         "Please don’t talk to me while we’re\n",
         "filming!\r",
@@ -1236,11 +1236,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00174",
+      "id": "Restaurant_Text_Dummy174",
       "garbage": 31
     },
     {
-      "id": "pl_msg_00000402_00175",
+      "id": "Restaurant_Text_ValerieDefeated1",
       "en_US": [
         "Darling Darryl, are you ready?\r",
         "When I take a bite, I want\n",
@@ -1248,7 +1248,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00176",
+      "id": "Restaurant_Text_DarrylIntro2",
       "en_US": [
         "Whoa...\n",
         "So this is the main dish? Yowza!\r",
@@ -1257,25 +1257,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00177",
+      "id": "Restaurant_Text_DarrylAskBattle2",
       "en_US": [
         "You’ve been sniffing around a lot...\n",
         "Are you messing with our filming?"
       ]
     },
     {
-      "id": "pl_msg_00000402_00178",
+      "id": "Restaurant_Text_Dummy178",
       "garbage": 42
     },
     {
-      "id": "pl_msg_00000402_00179",
+      "id": "Restaurant_Text_DarrylDefeated2",
       "en_US": [
         "Oh, no... Everything’s gone cold while\n",
         "we were battling..."
       ]
     },
     {
-      "id": "pl_msg_00000402_00180",
+      "id": "Restaurant_Text_ValerieIntro2",
       "en_US": [
         "Chomp!\r",
         "Mmm... This is...\n",
@@ -1287,7 +1287,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00181",
+      "id": "Restaurant_Text_ValerieAskBattle2",
       "en_US": [
         "It’s not easy trying to describe\n",
         "food while you’re eating.\r",
@@ -1296,11 +1296,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00182",
+      "id": "Restaurant_Text_Dummy182",
       "garbage": 99
     },
     {
-      "id": "pl_msg_00000402_00183",
+      "id": "Restaurant_Text_ValerieDefeated2",
       "en_US": [
         "Do you know what the most important\n",
         "thing is for gourmet reporting?\r",
@@ -1308,7 +1308,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00184",
+      "id": "Restaurant_Text_KendrickNeedMultiplePokemon",
       "en_US": [
         "I’ll only say this once, so listen\n",
         "closely. I’ll even say it slowly.\r",
@@ -1319,21 +1319,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00185",
+      "id": "Restaurant_Text_GabriellaNeedMultiplePokemon",
       "en_US": [
         "Oh, you’ll have to bring more Pokémon\n",
         "than that to battle us!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00186",
+      "id": "Restaurant_Text_KendrickIntro0",
       "en_US": [
         "And another brilliant day on the\n",
         "markets! A toast to my Lady Luck!\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00187",
+      "id": "Restaurant_Text_KendrickAskBattle0",
       "en_US": [
         "Since I’ve been with her, I’ve been\n",
         "riding a hot streak on the markets.\r",
@@ -1342,25 +1342,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00188",
+      "id": "Restaurant_Text_Dummy188",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000402_00189",
+      "id": "Restaurant_Text_KendrickDefeated0",
       "en_US": [
         "This is just a minor setback.\n",
         "I can easily make up for this!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00190",
+      "id": "Restaurant_Text_GabriellaIntro0",
       "en_US": [
         "Ooh! All your stocks went up again?\n",
         "You haven’t guessed wrong yet!\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00191",
+      "id": "Restaurant_Text_GabriellaAskBattle0",
       "en_US": [
         "My boyfriend’s a stock-market\n",
         "wizard!\r",
@@ -1371,18 +1371,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00192",
+      "id": "Restaurant_Text_Dummy192",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000402_00193",
+      "id": "Restaurant_Text_GabriellaDefeated0",
       "en_US": [
         "It’s just one loss. We can make that\n",
         "back with a big win next time!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00194",
+      "id": "Restaurant_Text_KendrickIntro1",
       "en_US": [
         "There’s no need for technique.\r",
         "You just have to read what’s in your\n",
@@ -1390,7 +1390,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00195",
+      "id": "Restaurant_Text_KendrickAskBattle1",
       "en_US": [
         "When I say “heart,” I don’t mean\n",
         "what that person’s thinking.\r",
@@ -1401,25 +1401,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00196",
+      "id": "Restaurant_Text_Dummy196",
       "garbage": 31
     },
     {
-      "id": "pl_msg_00000402_00197",
+      "id": "Restaurant_Text_KendrickDefeated1",
       "en_US": [
         "I had a bad feeling about this\n",
         "Trainer..."
       ]
     },
     {
-      "id": "pl_msg_00000402_00198",
+      "id": "Restaurant_Text_GabriellaIntro1",
       "en_US": [
         "No, really? Ooeeeh! That is so neat!\n",
         "How can you tell these things?\r"
       ]
     },
     {
-      "id": "pl_msg_00000402_00199",
+      "id": "Restaurant_Text_GabriellaAskBattle1",
       "en_US": [
         "My boyfriend could tell that deep\n",
         "down, I’m actually a frightened and\f",
@@ -1429,18 +1429,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00200",
+      "id": "Restaurant_Text_Dummy200",
       "garbage": 28
     },
     {
-      "id": "pl_msg_00000402_00201",
+      "id": "Restaurant_Text_GabriellaDefeated1",
       "en_US": [
         "It’s amazing that you predicted you\n",
         "would lose!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00202",
+      "id": "Restaurant_Text_KendrickIntro2",
       "en_US": [
         "Let’s savor this extravagant meal\n",
         "and think of what it represents.\r",
@@ -1449,7 +1449,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00203",
+      "id": "Restaurant_Text_KendrickAskBattle2",
       "en_US": [
         "Personally, I think there are two\n",
         "kinds of people.\r",
@@ -1460,11 +1460,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00204",
+      "id": "Restaurant_Text_Dummy204",
       "garbage": 40
     },
     {
-      "id": "pl_msg_00000402_00205",
+      "id": "Restaurant_Text_KendrickDefeated2",
       "en_US": [
         "If I had the power of premonition,\n",
         "I’d be a terror on the markets.\r",
@@ -1473,7 +1473,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00206",
+      "id": "Restaurant_Text_GabriellaIntro2",
       "en_US": [
         "How can you guess right about\n",
         "everything all the time?\r",
@@ -1482,7 +1482,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00207",
+      "id": "Restaurant_Text_GabriellaAskBattle2",
       "en_US": [
         "I’m convinced that he has some\n",
         "extrasensory power or something.\r",
@@ -1491,32 +1491,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00208",
+      "id": "Restaurant_Text_Dummy208",
       "garbage": 41
     },
     {
-      "id": "pl_msg_00000402_00209",
+      "id": "Restaurant_Text_GabriellaDefeated2",
       "en_US": [
         "If it’s not premonition, did you...\n",
         "Maybe come from the future?"
       ]
     },
     {
-      "id": "pl_msg_00000402_00210",
+      "id": "Restaurant_Text_EmilioNeedMultiplePokemon",
       "en_US": [
         "One Pokémon is insufficient if you\n",
         "want to battle against us."
       ]
     },
     {
-      "id": "pl_msg_00000402_00211",
+      "id": "Restaurant_Text_KayleeNeedMultiplePokemon",
       "en_US": [
         "If you’d bring two or more Pokémon,\n",
         "we could have a battle with you."
       ]
     },
     {
-      "id": "pl_msg_00000402_00212",
+      "id": "Restaurant_Text_EmilioIntro0",
       "en_US": [
         "Hmm... This beverage’s coloration\n",
         "borders on the positively toxic...\r",
@@ -1525,7 +1525,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00213",
+      "id": "Restaurant_Text_EmilioAskBattle0",
       "en_US": [
         "What is it?\n",
         "You are?\r",
@@ -1534,18 +1534,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00214",
+      "id": "Restaurant_Text_Dummy214",
       "garbage": 63
     },
     {
-      "id": "pl_msg_00000402_00215",
+      "id": "Restaurant_Text_EmilioDefeated0",
       "en_US": [
         "The results of that battle are\n",
         "insignificant. Let’s drink up."
       ]
     },
     {
-      "id": "pl_msg_00000402_00216",
+      "id": "Restaurant_Text_KayleeIntro0",
       "en_US": [
         "Oh, dear!\n",
         "I wish you wouldn’t!\r",
@@ -1554,15 +1554,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00217",
+      "id": "Restaurant_Text_KayleeAskBattle0",
       "en_US": "Oh, you’re a Trainer?"
     },
     {
-      "id": "pl_msg_00000402_00218",
+      "id": "Restaurant_Text_Dummy218",
       "garbage": 56
     },
     {
-      "id": "pl_msg_00000402_00219",
+      "id": "Restaurant_Text_KayleeDefeated0",
       "en_US": [
         "Cheers, dear!\r",
         "Please don’t start analyzing what\n",
@@ -1570,7 +1570,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00220",
+      "id": "Restaurant_Text_EmilioIntro1",
       "en_US": [
         "Interesting...\n",
         "These hors d’oeuvres are fascinating.\r",
@@ -1579,18 +1579,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00221",
+      "id": "Restaurant_Text_EmilioAskBattle1",
       "en_US": [
         "What is it now? Do you want me to\n",
         "analyze your skill level?"
       ]
     },
     {
-      "id": "pl_msg_00000402_00222",
+      "id": "Restaurant_Text_Dummy222",
       "garbage": 61
     },
     {
-      "id": "pl_msg_00000402_00223",
+      "id": "Restaurant_Text_EmilioDefeated1",
       "en_US": [
         "I feel compelled to analyze that\n",
         "which is unknown to me.\r",
@@ -1599,7 +1599,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00224",
+      "id": "Restaurant_Text_KayleeIntro1",
       "en_US": [
         "Oh, dear, must you go on that way?\n",
         "It takes the magic out of a meal.\r",
@@ -1608,7 +1608,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00225",
+      "id": "Restaurant_Text_KayleeAskBattle1",
       "en_US": [
         "My husband never ceases to amaze\n",
         "me with his dedication to research.\r",
@@ -1617,11 +1617,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00226",
+      "id": "Restaurant_Text_Dummy226",
       "garbage": 54
     },
     {
-      "id": "pl_msg_00000402_00227",
+      "id": "Restaurant_Text_KayleeDefeated1",
       "en_US": [
         "If you were to ask me, I would\n",
         "rather not know about what I don’t\f",
@@ -1629,7 +1629,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00228",
+      "id": "Restaurant_Text_EmilioIntro2",
       "en_US": [
         "By my calculations, the main dish\n",
         "should have arrived by now.\r",
@@ -1638,18 +1638,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00229",
+      "id": "Restaurant_Text_EmilioAskBattle2",
       "en_US": [
         "You there!\n",
         "Let’s battle to consume time!"
       ]
     },
     {
-      "id": "pl_msg_00000402_00230",
+      "id": "Restaurant_Text_Dummy230",
       "garbage": 60
     },
     {
-      "id": "pl_msg_00000402_00231",
+      "id": "Restaurant_Text_EmilioDefeated2",
       "en_US": [
         "They brought the main course while\n",
         "we were battling...\r",
@@ -1658,7 +1658,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00232",
+      "id": "Restaurant_Text_KayleeIntro2",
       "en_US": [
         "There isn’t any point getting\n",
         "impatient over the food, dear.\r",
@@ -1667,7 +1667,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00233",
+      "id": "Restaurant_Text_KayleeAskBattle2",
       "en_US": [
         "Oh, what good timing!\r",
         "Would you join us for a quick\n",
@@ -1675,11 +1675,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000402_00234",
+      "id": "Restaurant_Text_Dummy234",
       "garbage": 55
     },
     {
-      "id": "pl_msg_00000402_00235",
+      "id": "Restaurant_Text_KayleeDefeated2",
       "en_US": [
         "Oh, dear, if we take in too many\n",
         "calories, we can always work them off\f",

@@ -227,7 +227,7 @@ BOOL SystemFlag_CheckUnlockedVsSeekerLevel(VarsFlags *varsFlags, int level)
     return result;
 }
 
-u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeader mapHeader)
+u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeaderID mapHeader)
 {
     u16 sdatID = 0;
     switch (mapHeader) {
@@ -490,7 +490,7 @@ void SystemFlag_SetConnectedToWiFi(VarsFlags *varsFlags)
     SetFlag(varsFlags, FLAG_CONNECTED_TO_WIFI);
 }
 
-BOOL SystemFlag_HandleOwnsVillaFurniture(VarsFlags *varsFlags, enum HandleFlagOp op, enum VillaFurniture furniture)
+BOOL SystemFlag_HandleOwnsVillaFurniture(VarsFlags *varsFlags, enum HandleFlagOp op, enum VillaFurnitureType furniture)
 {
     GF_ASSERT(furniture < VILLA_FURNITURE_MAX);
     return HandleFlag(varsFlags, op, FLAG_VILLA_FURNITURE_START + furniture);

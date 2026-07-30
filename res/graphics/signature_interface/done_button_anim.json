@@ -1,0 +1,52 @@
+{
+	"labelEnabled":	true,
+	"uaatEnabled":	false,
+	"sequenceCount":	2,
+	"frameCount":	6,
+	"sequences":	[{
+			"frameCount":	1,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	2,
+			"frameData":	[{
+					"frameDelay":	1,
+					"resultId":	0
+				}]
+		}, {
+			"frameCount":	5,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	1,
+			"frameData":	[{
+					"frameDelay":	3,
+					"resultId":	0
+				}, {
+					"frameDelay":	3,
+					"resultId":	1
+				}, {
+					"frameDelay":	8,
+					"resultId":	2
+				}, {
+					"frameDelay":	3,
+					"resultId":	1
+				}, {
+					"frameDelay":	3,
+					"resultId":	0
+				}]
+		}],
+	"animationResults":	[{
+			"resultType":	0,
+			"index":	0
+		}, {
+			"resultType":	0,
+			"index":	1
+		}, {
+			"resultType":	0,
+			"index":	2
+		}],
+	"resultCount":	3,
+	"labels":	["button_04", "button_05"],
+	"labelCount":	2
+}

@@ -42,7 +42,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_7",
+            "var": "VAR_MAP_LOCAL_0x07",
             "value": 0
         },
         {
@@ -52,7 +52,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_4",
+            "var": "VAR_MAP_LOCAL_0x04",
             "value": 0
         },
         {
@@ -62,7 +62,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_1",
+            "var": "VAR_MAP_LOCAL_0x01",
             "value": 0
         },
         {
@@ -72,7 +72,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_3",
+            "var": "VAR_MAP_LOCAL_0x03",
             "value": 0
         },
         {
@@ -82,7 +82,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_2",
+            "var": "VAR_MAP_LOCAL_0x02",
             "value": 0
         },
         {
@@ -92,7 +92,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_5",
+            "var": "VAR_MAP_LOCAL_0x05",
             "value": 0
         },
         {
@@ -102,7 +102,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_MAP_LOCAL_6",
+            "var": "VAR_MAP_LOCAL_0x06",
             "value": 0
         }
     ]

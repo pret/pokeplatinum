@@ -14,6 +14,7 @@
 
 #include "bag.h"
 #include "field_battle_data_transfer.h"
+#include "field_bgm.h"
 #include "game_overlay.h"
 #include "game_records.h"
 #include "heap.h"
@@ -24,7 +25,6 @@
 #include "sound.h"
 #include "system_flags.h"
 #include "unk_0202F1D4.h"
-#include "unk_020553DC.h"
 #include "unk_0208C010.h"
 #include "vars_flags.h"
 #include "wifi_overlays.h"
@@ -302,7 +302,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, enum HeapID heapID)
             break;
         }
 
-        param0->unk_14->unk_874 = param0->unk_10->unk_19C;
+        param0->unk_14->unk_874 = param0->unk_10->recordingStopped;
 
         if (param0->unk_14->unk_00 != 0) {
             if (param0->unk_14->unk_874 == 0) {
@@ -320,9 +320,9 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, enum HeapID heapID)
             sub_02005464(0);
             Sound_SetScene(SOUND_SCENE_NONE);
 
-            bgmID = Sound_GetOverrideBGM(param0->fieldSystem, param0->fieldSystem->location->mapId);
+            bgmID = FieldBGM_GetEffective(param0->fieldSystem, param0->fieldSystem->location->mapHeaderID);
 
-            Sound_SetFieldBGM(Sound_GetBGMByMapID(param0->fieldSystem, param0->fieldSystem->location->mapId));
+            Sound_SetFieldBGM(FieldBGM_GetForMapHeader(param0->fieldSystem, param0->fieldSystem->location->mapHeaderID));
             Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
         }
 

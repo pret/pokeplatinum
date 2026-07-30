@@ -6481,7 +6481,7 @@
       "en_US": "{STRVAR_1 1, 0, 0}{COLOR 4}♀{COLOR 0}"
     },
     {
-      "id": "BattleStrings_Text_HealthbarPokemonName",
+      "id": "BattleStrings_Text_HealthBoxPokemonName",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {

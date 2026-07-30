@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/comm_queue_man.h"
 #include "struct_defs/struct_020322D8.h"
-#include "struct_defs/struct_020322F8.h"
 #include "struct_defs/struct_02032318.h"
 #include "struct_defs/struct_0203233C.h"
 

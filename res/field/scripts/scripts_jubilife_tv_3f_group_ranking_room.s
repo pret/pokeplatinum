@@ -32,7 +32,7 @@ JubilifeTV3FGroupRankingRoom_RecordMachineContests:
     End
 
 JubilifeTV3FGroupRankingRoom_Youngster:
-    NPCMessage JubilifeTV3FGroupRankingRoom_Text_YouCanSeeTheRankingsOfPeopleInYourGroupHere
+    NPCMessage JubilifeTV3FGroupRankingRoom_Text_SeeRankingsInGroupHere
     End
 
 JubilifeTV3FGroupRankingRoom_BattleGirl:
@@ -40,7 +40,7 @@ JubilifeTV3FGroupRankingRoom_BattleGirl:
     End
 
 JubilifeTV3FGroupRankingRoom_Worker:
-    NPCMessage JubilifeTV3FGroupRankingRoom_Text_SorryImStillFineTuningThisThingyHere
+    NPCMessage JubilifeTV3FGroupRankingRoom_Text_ImStillFineTuningThisThingy
     End
 
     .balign 4, 0

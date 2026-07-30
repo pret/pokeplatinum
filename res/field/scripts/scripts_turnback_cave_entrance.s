@@ -2,28 +2,28 @@
 #include "res/text/bank/turnback_cave_entrance.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _002A
+    ScriptEntry TurnbackCaveEntrance_OnTransition
+    ScriptEntry TurnbackCaveEntrance_Inscription
     ScriptEntryEnd
 
-_000A:
+TurnbackCaveEntrance_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_TURNBACK_CAVE
-    Call _001C
+    Call TurnbackCaveEntrance_ResetVars
     InitTurnbackCave VAR_TURNBACK_CAVE_PILLARS_SEEN, VAR_TURNBACK_CAVE_ROOMS_VISITED
     End
 
-_001C:
+TurnbackCaveEntrance_ResetVars:
     SetVar VAR_TURNBACK_CAVE_PILLARS_SEEN, 0
     SetVar VAR_TURNBACK_CAVE_ROOMS_VISITED, 0
     Return
 
-_002A:
-    GoToIfSet FLAG_CAUGHT_GIRATINA, _0046
-    EventMessage 0
+TurnbackCaveEntrance_Inscription:
+    GoToIfSet FLAG_CAUGHT_GIRATINA, TurnbackCaveEntrance_PastThreePillarsOfferUp
+    EventMessage TurnbackCaveEntrance_Text_PastThreePillars
     End
 
-_0046:
-    EventMessage 1
+TurnbackCaveEntrance_PastThreePillarsOfferUp:
+    EventMessage TurnbackCaveEntrance_Text_PastThreePillarsOfferUp
     End
 
     .balign 4, 0

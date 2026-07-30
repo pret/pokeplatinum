@@ -2,7 +2,7 @@
   "key": 46115,
   "messages": [
     {
-      "id": "PalPark_Text_WouldYouLikeToRetireFromYourCatchingShow",
+      "id": "PalPark_Text_RetireWithoutAllPokemon",
       "en_US": [
         "You haven’t caught all your\n",
         "Pokémon yet, but...\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "PalPark_Text_ISeeImDisappointedThatYouDroppedOut",
+      "id": "PalPark_Text_ImDisappointed",
       "en_US": [
         "I see...\r",
         "I’m disappointed that you dropped\n",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "PalPark_Text_Unused_00004",
+      "id": "PalPark_Text_Dummy4",
       "garbage": 36
     },
     {
@@ -46,11 +46,11 @@
       ]
     },
     {
-      "id": "PalPark_Text_Unused_00006",
+      "id": "PalPark_Text_Dummy6",
       "garbage": 37
     },
     {
-      "id": "PalPark_Text_Unused_00007",
+      "id": "PalPark_Text_Dummy7",
       "garbage": 39
     },
     {

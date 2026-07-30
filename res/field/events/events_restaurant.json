@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "RESTAURANT_GENTLEMAN_0",
+            "id": "LOCALID_GENTLEMAN_LEONARDO",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0246",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_LEONARDO_REBECCA",
             "script": 8,
             "initial_dir": 3,
             "data": [],
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_SOCIALITE_1",
+            "id": "LOCALID_SOCIALITE_REBECCA",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0246",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_LEONARDO_REBECCA",
             "script": 9,
             "initial_dir": 2,
             "data": [],
@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_RICH_BOY_2",
+            "id": "LOCALID_RICH_BOY_ROMAN",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0245",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_ROMAN_KYLIE",
             "script": 6,
             "initial_dir": 3,
             "data": [],
@@ -47,11 +47,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_LADY_3",
+            "id": "LOCALID_LADY_KYLIE",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0245",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_ROMAN_KYLIE",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -62,11 +62,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_REPORTER_4",
+            "id": "LOCALID_REPORTER_VALERIE",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x024A",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_DARRYL_VALERIE",
             "script": 17,
             "initial_dir": 2,
             "data": [],
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_CAMERAMAN_5",
+            "id": "LOCALID_CAMERAMAN_DARRYL",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x024A",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_DARRYL_VALERIE",
             "script": 16,
             "initial_dir": 3,
             "data": [],
@@ -92,11 +92,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_ARTIST_6",
+            "id": "LOCALID_ARTIST_ISMAEL",
             "graphics_id": "OBJ_EVENT_GFX_ARTIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0244",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_ISMAEL_HARLEY",
             "script": 4,
             "initial_dir": 3,
             "data": [],
@@ -107,11 +107,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_RICH_BOY_7",
+            "id": "LOCALID_PI_KENDRICK",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x024B",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_KENDRICK_GABRIELLA",
             "script": 18,
             "initial_dir": 3,
             "data": [],
@@ -122,11 +122,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_BEAUTY_8",
+            "id": "LOCALID_BEAUTY_GABRIELLA",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x024B",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_KENDRICK_GABRIELLA",
             "script": 19,
             "initial_dir": 2,
             "data": [],
@@ -137,11 +137,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_BEAUTY_9",
+            "id": "LOCALID_BEAUTY_HARLEY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0244",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_ISMAEL_HARLEY",
             "script": 5,
             "initial_dir": 2,
             "data": [],
@@ -152,11 +152,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_POKEMON_BREEDER_F_10",
+            "id": "LOCALID_AROMA_LADY_ALISON",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0247",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_EUGENE_ALISON",
             "script": 11,
             "initial_dir": 2,
             "data": [],
@@ -167,11 +167,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_EXPERT_M_11",
+            "id": "LOCALID_VETERAN_EMANUEL",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0249",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_EMANUEL_BLYTHE",
             "script": 14,
             "initial_dir": 3,
             "data": [],
@@ -182,11 +182,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_LASS_12",
+            "id": "LOCALID_LASS_BLYTHE",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0249",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_EMANUEL_BLYTHE",
             "script": 15,
             "initial_dir": 2,
             "data": [],
@@ -197,11 +197,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_POKEFAN_F_13",
+            "id": "LOCALID_POKEFAN_MEREDITH",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0248",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_ESTEBAN_MEREDITH",
             "script": 13,
             "initial_dir": 2,
             "data": [],
@@ -212,11 +212,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_SCIENTIST_M_14",
+            "id": "LOCALID_SCIENTIST_EMILIO",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x024C",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_EMILIO_KAYLEE",
             "script": 20,
             "initial_dir": 3,
             "data": [],
@@ -227,11 +227,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_SCHOOL_KID_M_15",
+            "id": "LOCALID_SCHOOL_KID_ESTEBAN",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0248",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_ESTEBAN_MEREDITH",
             "script": 12,
             "initial_dir": 3,
             "data": [],
@@ -242,11 +242,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_POKEMON_BREEDER_F_16",
+            "id": "LOCALID_BREEDER_KAYLEE",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x024C",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_EMILIO_KAYLEE",
             "script": 21,
             "initial_dir": 2,
             "data": [],
@@ -257,11 +257,11 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_COLLECTOR_17",
+            "id": "LOCALID_COLLECTOR_EUGINE",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "FLAG_UNK_0x0247",
+            "hidden_flag": "FLAG_HIDE_RESTAURANT_EUGENE_ALISON",
             "script": 10,
             "initial_dir": 3,
             "data": [],
@@ -272,7 +272,7 @@
             "y": 0
         },
         {
-            "id": "RESTAURANT_WAITER_18",
+            "id": "LOCALID_WAITER",
             "graphics_id": "OBJ_EVENT_GFX_WAITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -5,14 +5,14 @@
 
 #include "system.h"
 
-static int CheckRectangleTouch(const TouchScreenRect *rect, u32 x, u32 y);
+static int CheckRectangleTouch(const TouchScreenRect rects[], u32 touchX, u32 touchY);
 static BOOL IsTouchInCircle(const TouchScreenHitTable *hitTable, u32 touchX, u32 touchY);
 static BOOL IsTouchInRectangle(const TouchScreenHitTable *hitTable, u32 touchX, u32 touchY);
 
-static int CheckRectangleTouch(const TouchScreenRect *rect, u32 x, u32 y)
+static int CheckRectangleTouch(const TouchScreenRect rects[], u32 touchX, u32 touchY)
 {
-    for (int i = 0; rect[i].rect.top != TOUCHSCREEN_TABLE_TERMINATOR; i++) {
-        if ((x - rect[i].rect.left < rect[i].rect.right - rect[i].rect.left) & (y - rect[i].rect.top < rect[i].rect.bottom - rect[i].rect.top)) {
+    for (int i = 0; rects[i].rect.top != TOUCHSCREEN_TABLE_TERMINATOR; i++) {
+        if ((touchX - rects[i].rect.left < rects[i].rect.right - rects[i].rect.left) & (touchY - rects[i].rect.top < rects[i].rect.bottom - rects[i].rect.top)) {
             return i;
         }
     }
@@ -41,19 +41,19 @@ static BOOL IsTouchInRectangle(const TouchScreenHitTable *hitTable, u32 touchX, 
     return FALSE;
 }
 
-int TouchScreen_CheckRectangleHeld(const TouchScreenRect *rect)
+int TouchScreen_CheckRectangleHeld(const TouchScreenRect rects[])
 {
     if (gSystem.touchHeld) {
-        return CheckRectangleTouch(rect, gSystem.touchX, gSystem.touchY);
+        return CheckRectangleTouch(rects, gSystem.touchX, gSystem.touchY);
     }
 
     return TOUCHSCREEN_INPUT_NONE;
 }
 
-int TouchScreen_CheckRectanglePressed(const TouchScreenRect *rect)
+int TouchScreen_CheckRectanglePressed(const TouchScreenRect rects[])
 {
     if (gSystem.touchPressed) {
-        return CheckRectangleTouch(rect, gSystem.touchX, gSystem.touchY);
+        return CheckRectangleTouch(rects, gSystem.touchX, gSystem.touchY);
     }
 
     return TOUCHSCREEN_INPUT_NONE;

@@ -1,8 +1,8 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry ContestHallStageOngoingContest_Dummy1
     ScriptEntryEnd
 
-_0006:
+ContestHallStageOngoingContest_Dummy1:
     End

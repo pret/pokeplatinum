@@ -1,6 +1,8 @@
 #include "generated/pokemon_anim_constants.h"
 #include "generated/pokemon_sprite_attributes.h"
 
+#include "data/scripts/pokemon_anim_cmd.h"
+
 /* 
  * In these scripts, GF distinguished between anim var indexes and literal values by supplying
  * the relevant ANIM_READ_TYPE parameter to the anim command. This makes the scripts verbose,
@@ -37,19 +39,19 @@
     .endm
 
     .macro End
-    .long 0
+    .long POKEMONANIMCMD_END
     .endm
 
     .macro WaitFrame
-    .long 1
+    .long POKEMONANIMCMD_WAITFRAME
     .endm
 
     .macro SetOriginalPosition
-    .long 2
+    .long POKEMONANIMCMD_SETORIGINALPOSITION
     .endm
 
     .macro SetVarIfExplicit readType1, varIndex1, valueOrVarIndex2, comparisonType, readType2, destVarIndex, newValueOrVar
-    .long 3
+    .long POKEMONANIMCMD_SETVARIF
     .long \readType1
     Var \varIndex1
     .long \valueOrVarIndex2
@@ -78,19 +80,19 @@
     .endm
 
     .macro SetVar destVarIndex, value
-    .long 4
+    .long POKEMONANIMCMD_SETVAR
     Var \destVarIndex
     .long \value
     .endm
 
     .macro CopyVar destVarIndex, originIndex
-    .long 5
+    .long POKEMONANIMCMD_COPYVAR
     Var \destVarIndex
     Var \originIndex
     .endm
 
     .macro AddExplicit destVarIndex, readType, varIndex1, valueOrVarIndex2
-    .long 6
+    .long POKEMONANIMCMD_ADD
     Var \destVarIndex
     .long \readType
     Var \varIndex1
@@ -103,7 +105,7 @@
     .endm
 
     .macro MultiplyExplicit destVarIndex, readType, varIndex1, valueOrVarIndex2
-    .long 7
+    .long POKEMONANIMCMD_MULTIPLY
     Var \destVarIndex
     .long \readType
     Var \varIndex1
@@ -116,7 +118,7 @@
     .endm
 
     .macro SubtractExplicit destVarIndex, readType1, readType2, valueOrVarIndex1, valueOrVarIndex2
-    .long 8
+    .long POKEMONANIMCMD_SUBTRACT
     Var \destVarIndex
     .long \readType1
     .long \readType2
@@ -131,7 +133,7 @@
     .endm
     
     .macro DivideExplicit destVarIndex, readType1, readType2, valueOrVarIndex1, valueOrVarIndex2
-    .long 9
+    .long POKEMONANIMCMD_DIVIDE
     Var \destVarIndex
     .long \readType1
     .long \readType2
@@ -146,7 +148,7 @@
     .endm
     
     .macro ModuloExplicit destVarIndex, readType1, readType2, valueOrVarIndex1, valueOrVarIndex2
-    .long 10
+    .long POKEMONANIMCMD_MODULO
     Var \destVarIndex
     .long \readType1
     .long \readType2
@@ -161,28 +163,28 @@
     .endm
     
     .macro Loop loopMax
-    .long 11
+    .long POKEMONANIMCMD_LOOP
     .long \loopMax
     .endm
 
     .macro LoopEnd
-    .long 12
+    .long POKEMONANIMCMD_LOOPEND
     .endm
 
     .macro SetSpriteAttribute, spriteAttribute, originIndex
-    .long 13
+    .long POKEMONANIMCMD_SETSPRITEATTRIBUTE
     .long \spriteAttribute
     Var \originIndex
     .endm
 
     .macro AddSpriteAttribute spriteAttribute, originIndex
-    .long 14
+    .long POKEMONANIMCMD_ADDSPRITEATTRIBUTE
     .long \spriteAttribute
     Var \originIndex
     .endm
 
     .macro UpdateSpriteAttributeExplicit spriteAttribute, readType, valueOrVarIndex, updateType
-    .long 15
+    .long POKEMONANIMCMD_UPDATESPRITEATTRIBUTE
     .long \spriteAttribute
     .long \readType
     .long \valueOrVarIndex
@@ -195,7 +197,7 @@
     .endm
 
     .macro SinExplicit destVarIndex, radiansIndex, readTypeAmplitude, amplitude, readTypeOffset, offset
-    .long 16
+    .long POKEMONANIMCMD_SIN
     Var \destVarIndex
     Var \radiansIndex
     .long \readTypeAmplitude
@@ -211,7 +213,7 @@
     .endm
 
     .macro CosExplicit destVarIndex, radiansIndex, readTypeAmplitude, amplitude, readTypeOffset, offset
-    .long 17
+    .long POKEMONANIMCMD_COS
     Var \destVarIndex
     Var \radiansIndex
     .long \readTypeAmplitude
@@ -227,19 +229,19 @@
     .endm
 
     .macro SetTranslation varIndex, translationType
-    .long 18
+    .long POKEMONANIMCMD_SETTRANSLATION
     Var \varIndex
     .long \translationType
     .endm
 
     .macro AddTranslation varIndex, translationType
-    .long 19
+    .long POKEMONANIMCMD_ADDTRANSLATION
     Var \varIndex
     .long \translationType
     .endm
 
     .macro UpdateAttributeExplicit animAttribute, readType, valueOrVarIndex, updateType
-    .long 20
+    .long POKEMONANIMCMD_UPDATEATTRIBUTE
     .long \animAttribute
     .long \readType
     .long \valueOrVarIndex
@@ -252,30 +254,30 @@
     .endm
 
     .macro ApplyTranslation
-    .long 21
+    .long POKEMONANIMCMD_APPLYTRANSLATION
     .endm
 
     .macro ApplyScaleAndRotation
-    .long 22
+    .long POKEMONANIMCMD_APPLYSCALEANDROTATION
     .endm
 
     .macro SetOffset varIndex, offsetType
-    .long 23
+    .long POKEMONANIMCMD_SETOFFSET
     Var \varIndex
     .long \offsetType
     .endm
 
     .macro WaitTransform
-    .long 24
+    .long POKEMONANIMCMD_WAITTRANSFORM
     .endm
 
     .macro SetYNormalization yNormalizationType
-    .long 25
+    .long POKEMONANIMCMD_SETYNORMALIZATION
     .long \yNormalizationType
     .endm
 
     .macro TransformCurve calcType, startDelay, curveType, transformType, amplitude, radians, offset, steps
-    .long 26
+    .long POKEMONANIMCMD_TRANSFORMCURVE
     .long \calcType
     .long \startDelay
     .long \curveType
@@ -287,7 +289,7 @@
     .endm
 
     .macro TransformCurveEven calcType, startDelay, curveType, transformType, amplitude, radians, offset, steps
-    .long 27
+    .long POKEMONANIMCMD_TRANSFORMCURVEEVEN
     .long \calcType
     .long \startDelay
     .long \curveType
@@ -299,7 +301,7 @@
     .endm
 
     .macro TransformLinear  calcType, startDelay, transformType, speed, acceleration, steps
-    .long 28
+    .long POKEMONANIMCMD_TRANSFORMLINEAR
     .long \calcType
     .long \startDelay
     .long \transformType
@@ -309,7 +311,7 @@
     .endm
 
     .macro TransformLinearEven calcType, startDelay, transformType, distance, steps
-    .long 29
+    .long POKEMONANIMCMD_TRANSFORMLINEAREVEN
     .long \calcType
     .long \startDelay
     .long \transformType
@@ -318,7 +320,7 @@
     .endm
 
     .macro TransformLinearBounded calcType, startDelay, transformType, speed, acceleration, maxDistance
-    .long 30
+    .long POKEMONANIMCMD_TRANSFORMLINEARBOUNDED
     .long \calcType
     .long \startDelay
     .long \transformType
@@ -328,12 +330,12 @@
     .endm
 
     .macro SetStartDelay delay
-    .long 31
+    .long POKEMONANIMCMD_SETSTARTDELAY
     .long \delay
     .endm
 
     .macro Fade initAlpha, targetAlpha, delay, color
-    .long 32
+    .long POKEMONANIMCMD_FADE
     .long \initAlpha
     .long \targetAlpha
     .long \delay
@@ -341,7 +343,7 @@
     .endm
 
     .macro WaitFade
-    .long 33
+    .long POKEMONANIMCMD_WAITFADE
     .endm
 
     .text

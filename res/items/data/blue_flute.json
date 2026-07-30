@@ -1,0 +1,32 @@
+{
+  "name": "Blue Flute",
+  "plural": "Blue Flutes",
+  "article": "a",
+  "description": [
+    "A blue flute made from blown glass.\n",
+    "Its melody awakens a single Pokémon\n",
+    "from sleep."
+  ],
+  "icon": {
+    "sprite": "blue_flute_NCGR",
+    "palette": "blue_flute_NCLR"
+  },
+  "gbaID": "GBA_ITEM_BLUE_FLUTE",
+  "price": 100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BATTLE_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "healSleep": true
+  }
+}

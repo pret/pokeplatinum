@@ -7,13 +7,14 @@
 #include "constants/graphics.h"
 #include "constants/net.h"
 
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 #include "struct_defs/struct_02017498.h"
 
 #include "nintendo_wfc/main.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -38,10 +39,9 @@
 #include "system_data.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "unk_0202ACE0.h"
-#include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "vram_transfer.h"
+#include "wifi_list.h"
 
 typedef struct {
     UnkStruct_02017498 *unk_00;
@@ -76,7 +76,7 @@ typedef struct {
     UnkStruct_ov61_0222C3B0 unk_A4;
 } UnkStruct_ov61_0222C664;
 
-int ov61_0222BF44(ApplicationManager *appMan, int *param1);
+int ov61_0222BF44(ApplicationManager *appMan, int *unused);
 int ov61_0222C0F8(ApplicationManager *appMan, int *param1);
 int ov61_0222C160(ApplicationManager *appMan, int *param1);
 static void ov61_0222C1FC(void *param0);
@@ -137,10 +137,8 @@ static const WindowTemplate Unk_ov61_0222E4A0 = {
     0x0
 };
 
-int ov61_0222BF44(ApplicationManager *appMan, int *param1)
+int ov61_0222BF44(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_ov61_0222C664 *v0;
-
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
@@ -155,7 +153,7 @@ int ov61_0222BF44(ApplicationManager *appMan, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_117, 0x50000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov61_0222C664), HEAP_ID_117);
+    UnkStruct_ov61_0222C664 *v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov61_0222C664), HEAP_ID_117);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov61_0222C664));
     v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_04 = BgConfig_New(HEAP_ID_117);
@@ -210,7 +208,6 @@ int ov61_0222BF44(ApplicationManager *appMan, int *param1)
 int ov61_0222C0F8(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov61_0222C664 *v0 = ApplicationManager_Data(appMan);
-    int v1, v2;
 
     switch (*param1) {
     case 0:
@@ -219,8 +216,8 @@ int ov61_0222C0F8(ApplicationManager *appMan, int *param1)
         }
         break;
     case 1:
-        v2 = v0->unk_08;
-        v1 = (*Unk_ov61_0222E600[v0->unk_08])(v0);
+        int v2 = v0->unk_08;
+        int v1 = (*Unk_ov61_0222E600[v0->unk_08])(v0);
 
         if (v2 != v0->unk_08) {
             v0->unk_90 = 0;
@@ -427,8 +424,8 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
 
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, HEAP_ID_117);
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_117);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_117);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_117);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_117);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(13), HEAP_ID_117);
     LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(SaveData_GetOptions(param0->unk_00->unk_00->saveData)), HEAP_ID_117);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_117);
@@ -647,7 +644,7 @@ static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0)
 {
     switch (param0->unk_90) {
     case 0:
-        sub_02038438(param0->unk_00->unk_00->saveData);
+        CommManager_InitializeGlobalWifi(param0->unk_00->unk_00->saveData);
         NetworkIcon_Init();
         ov61_0222C8B8(param0, param0->unk_28, 1, TEXT_SPEED_FAST, 0xf0f);
         ov61_0222C850(param0);
@@ -698,10 +695,9 @@ static int ov61_0222CAA8(UnkStruct_ov61_0222C664 *param0)
         case DWC_CONNECTINET_STATE_DISCONNECTED:
         default:
         case DWC_CONNECTINET_STATE_FATAL_ERROR: {
-            DWCError v3;
             int v4;
 
-            v3 = DWC_GetLastError(&v4);
+            DWCError v3 = DWC_GetLastError(&v4);
 
             ov61_0222C86C(param0);
             param0->unk_08 = 10;
@@ -745,9 +741,8 @@ static int ov61_0222CB3C(UnkStruct_ov61_0222C664 *param0)
         {
             int v0;
             DWCErrorType v1;
-            DWCError v2;
 
-            v2 = DWC_GetLastErrorEx(&v0, &v1);
+            DWCError v2 = DWC_GetLastErrorEx(&v0, &v1);
 
             param0->unk_14 = v2;
             param0->unk_18 = v0;
@@ -791,18 +786,17 @@ static int ov61_0222CB3C(UnkStruct_ov61_0222C664 *param0)
 
 static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
 {
-    DWCUserData *v0;
-    s32 v1;
-    WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->unk_00->saveData);
-    SystemData *v2 = SaveData_GetSystemData(param0->unk_00->unk_00->saveData);
-    v0 = WiFiList_GetUserData(v3);
-    v1 = SystemData_GetDWCProfileId(v2);
+    s32 profileID;
+    WiFiList *wiFiList = SaveData_GetWiFiList(param0->unk_00->unk_00->saveData);
+    SystemData *sysData = SaveData_GetSystemData(param0->unk_00->unk_00->saveData);
+    DWCUserData *userData = WiFiList_GetUserData(wiFiList);
+    profileID = SystemData_GetDWCProfileId(sysData);
 
-    if (v1 == 0) {
-        SystemData_SetDWCProfileId(v2, WiFiList_GetUserGsProfileId(v3));
+    if (profileID == 0) {
+        SystemData_SetDWCProfileId(sysData, WiFiList_GetUserGsProfileId(wiFiList));
     }
 
-    v1 = SystemData_GetDWCProfileId(v2);
+    profileID = SystemData_GetDWCProfileId(sysData);
 
     param0->unk_08 = 9;
     param0->unk_00->unk_8C = 1;
@@ -812,8 +806,8 @@ static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
 
 static int ov61_0222CC40(UnkStruct_ov61_0222C664 *param0)
 {
-    int v0 = NintendoWFC_GetErrorCode(-param0->unk_18, param0->unk_1C);
-    ov61_0222C7F8(param0, v0, -param0->unk_18);
+    int errorCode = NintendoWFC_GetErrorCode(-param0->unk_18, param0->unk_1C);
+    ov61_0222C7F8(param0, errorCode, -param0->unk_18);
     param0->unk_08 = 7;
 
     return 0;
@@ -838,7 +832,7 @@ static int ov61_0222CC64(UnkStruct_ov61_0222C664 *param0)
 static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0)
 {
     if (param0->unk_08 != 9) {
-        sub_0203848C();
+        CommManager_EndGlobalWifi();
     }
 
     NetworkIcon_Destroy();
@@ -888,7 +882,7 @@ static int ov61_0222CD58(UnkStruct_ov61_0222C664 *param0)
         break;
     case 1:
         if (ov61_0222C834(param0->unk_40) == 0) {
-            sub_0203848C();
+            CommManager_EndGlobalWifi();
             DWC_CleanupInet();
             param0->unk_90++;
         }
@@ -937,7 +931,7 @@ static int ov61_0222CE2C(UnkStruct_ov61_0222C664 *param0)
         break;
     case 1:
         DWC_CleanupInet();
-        sub_0203848C();
+        CommManager_EndGlobalWifi();
         param0->unk_90++;
         break;
     case 2:

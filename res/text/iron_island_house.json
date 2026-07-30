@@ -2,7 +2,7 @@
   "key": 62555,
   "messages": [
     {
-      "id": "pl_msg_00000278_00000",
+      "id": "IronIslandHouse_Text_TakeApology",
       "en_US": [
         "Byron: Hm?\n",
         "You’re in training, then?\r",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000278_00001",
+      "id": "IronIslandHouse_Text_EvolveUsingMetalCoat",
       "en_US": [
         "There are Pokémon that evolve into\n",
         "the Steel type using that Metal Coat.\r",

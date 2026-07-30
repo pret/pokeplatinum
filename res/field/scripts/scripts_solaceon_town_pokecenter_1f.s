@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 SolaceonTownPokecenter1F_Nurse:
-    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_SOLACEON_NURSE
     End
 
 SolaceonTownPokecenter1F_OldMan:
@@ -18,7 +18,7 @@ SolaceonTownPokecenter1F_OldMan:
     End
 
 SolaceonTownPokecenter1F_Lass:
-    NPCMessage SolaceonTownPokecenter1F_Text_ItsQuiteFarToVeilstoneCity
+    NPCMessage SolaceonTownPokecenter1F_Text_QuiteFarToVeilstoneCity
     End
 
 SolaceonTownPokecenter1F_RuinManiac:

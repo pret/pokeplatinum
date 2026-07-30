@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_UNK_02049D08_H
 #define POKEPLATINUM_UNK_02049D08_H
 
-#include "struct_decls/struct_0202D060_decl.h"
 #include "struct_defs/battle_tower.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "field/field_system_decl.h"
 
@@ -13,8 +13,8 @@
 u16 BattleTower_GetPartySizeForChallengeMode(u16 param0);
 BOOL sub_02049EC4(u16 param0, SaveData *saveData, u8 param2);
 void BattleTower_ResetSystem(void);
-void sub_02049F98(UnkStruct_0202D060 *param0);
-BOOL sub_02049FA0(UnkStruct_0202D060 *param0);
+void sub_02049F98(WifiBattleTowerSave *param0);
+BOOL sub_02049FA0(WifiBattleTowerSave *param0);
 void BattleTower_SetCommunicationClubAccessible(FieldSystem *fieldSystem);
 void BattleTower_ClearCommunicationClubAccessible(FieldSystem *fieldSystem);
 u16 sub_02049FF8(SaveData *saveData, u16 param1);

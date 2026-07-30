@@ -27,11 +27,11 @@ RockPeakRuins_Statue:
     FacePlayer
     GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, RockPeakRuins_CaughtRegirockStatueStoppedEmanatingPower
     GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, RockPeakRuins_DidNotCatchRegirockStatueStoppedEmanatingPower
-    GoToIfUnset FLAG_GAME_COMPLETED, RockPeakRuins_ItsAStatueOfAPokemonItSeemsToExudePower
+    GoToIfUnset FLAG_GAME_COMPLETED, RockPeakRuins_SeemsToExudePower
     CheckPartyHasFatefulEncounterRegigigas VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, RockPeakRuins_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut
+    GoToIfEq VAR_RESULT, 0, RockPeakRuins_FromSomewhereSomethingSpokeOut
     GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, RockPeakRuins_EncounterRegirock
-    GoToIfLt VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut
+    GoToIfLt VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_FromSomewhereSomethingSpokeOut
     WaitSE SEQ_SE_CONFIRM
     ScrCmd_29F 1
     SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
@@ -54,13 +54,13 @@ RockPeakRuins_EncounterRegirock:
     End
 
 RockPeakRuins_CaughtRegirockStatueStoppedEmanatingPower:
-    Message RockPeakRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    Message RockPeakRuins_Text_StatueStoppedEmanatingPower
     GoTo RockPeakRuins_StatueEnd
     End
 
 RockPeakRuins_DidNotCatchRegirockStatueStoppedEmanatingPower:
     SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI
-    Message RockPeakRuins_Text_ThePokemonStatueHasStoppedEmanatingPower
+    Message RockPeakRuins_Text_StatueStoppedEmanatingPower
     GoTo RockPeakRuins_StatueEnd
     End
 
@@ -69,13 +69,13 @@ RockPeakRuins_BlackOut:
     ReleaseAll
     End
 
-RockPeakRuins_ItsAStatueOfAPokemonItSeemsToExudePower:
-    Message RockPeakRuins_Text_ItsAStatueOfAPokemonItSeemsToExudePower
+RockPeakRuins_SeemsToExudePower:
+    Message RockPeakRuins_Text_SeemsToExudePower
     GoTo RockPeakRuins_StatueEnd
     End
 
-RockPeakRuins_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut:
-    Message RockPeakRuins_Text_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut
+RockPeakRuins_FromSomewhereSomethingSpokeOut:
+    Message RockPeakRuins_Text_FromSomewhereSomethingSpokeOut
     GoTo RockPeakRuins_StatueEnd
     End
 
@@ -86,43 +86,43 @@ RockPeakRuins_StatueEnd:
     End
 
 RockPeakRuins_DotNorthWest:
-    SetVar VAR_MAP_LOCAL_1, 1
+    SetVar VAR_MAP_LOCAL_0x01, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotNorthEast:
-    SetVar VAR_MAP_LOCAL_2, 1
+    SetVar VAR_MAP_LOCAL_0x02, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotWest:
-    SetVar VAR_MAP_LOCAL_3, 1
+    SetVar VAR_MAP_LOCAL_0x03, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotMiddle:
-    SetVar VAR_MAP_LOCAL_4, 1
+    SetVar VAR_MAP_LOCAL_0x04, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotEast:
-    SetVar VAR_MAP_LOCAL_5, 1
+    SetVar VAR_MAP_LOCAL_0x05, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotSouthWest:
-    SetVar VAR_MAP_LOCAL_6, 1
+    SetVar VAR_MAP_LOCAL_0x06, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End
 
 RockPeakRuins_DotSouthEast:
-    SetVar VAR_MAP_LOCAL_7, 1
+    SetVar VAR_MAP_LOCAL_0x07, 1
     GoToIfGe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_DotEnd
     GoTo RockPeakRuins_ActivateDot
     End

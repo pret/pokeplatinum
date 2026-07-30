@@ -2,7 +2,7 @@
   "key": 17299,
   "messages": [
     {
-      "id": "pl_msg_00000192_00000",
+      "id": "FightArea_Text_ComeWithMe",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Oh, hey, {STRVAR_1 3, 1, 0}!\n",
         "What took you so long?\f",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00001",
+      "id": "FightArea_Text_LetsTeamUp",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: {STRVAR_1 3, 1, 0}, I tried to\n",
         "get into the Battle Frontier,\f",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00002",
+      "id": "FightArea_Text_WeCanWhoopEm",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Yeah, that’s what I’m\n",
         "talking about!\r",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00003",
+      "id": "FightArea_Text_INeedYourHelp",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, seriously, can I say\n",
         "something?\r",
@@ -48,14 +48,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00004",
+      "id": "FightArea_Text_LetsShowThem",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Come on, let’s show them\n",
         "how tough we really are!"
       ]
     },
     {
-      "id": "pl_msg_00000192_00005",
+      "id": "FightArea_Text_UpToTheChallenge",
       "en_US": [
         "Flint: Yo, Trainer!\n",
         "It’s been too long, amigo!\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00006",
+      "id": "FightArea_Text_SorryAboutMyFriend",
       "en_US": [
         "Volkner: You only want to go into the\n",
         "Frontier, don’t you?\r",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00007",
+      "id": "FightArea_Text_LetFlintSeeSpirit",
       "en_US": [
         "Flint: This situation just cooks!\n",
         "The drama and tension sizzles!\r",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00008",
+      "id": "FightArea_Text_ShowMeSkills",
       "en_US": [
         "Volkner: I don’t know how I managed to\n",
         "get myself into this, but...\r",
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00009",
+      "id": "FightArea_Text_FlintEllipses",
       "en_US": [
         "Flint: ...\n",
         "...\r",
@@ -110,14 +110,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00010",
+      "id": "FightArea_Text_DontBurnOut",
       "en_US": [
         "Volkner: Hey! Don’t burn out on us!\n",
         "Now you’re just getting in the way.\r"
       ]
     },
     {
-      "id": "pl_msg_00000192_00011",
+      "id": "FightArea_Text_ThatWasABlast",
       "en_US": [
         "Volkner: Hahaha!\n",
         "That was a blast!\r",
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00012",
+      "id": "FightArea_Text_ImOffToTheFronti",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: See?\n",
         "I got a lot tougher, yeah?\r",
@@ -136,22 +136,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00013",
+      "id": "FightArea_Text_BigThud",
       "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000192_00014",
+      "id": "FightArea_Text_WhatsThisAllAbout",
       "en_US": "What’s this all about?!\r"
     },
     {
-      "id": "pl_msg_00000192_00015",
+      "id": "FightArea_Text_WhatTheDaddy",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What the...\r",
         "{SIZE 200}...Daddy?!{SIZE 100}\r"
       ]
     },
     {
-      "id": "pl_msg_00000192_00016",
+      "id": "FightArea_Text_IfItIsntRival",
       "en_US": [
         "Palmer: Huh? Ah!\r",
         "If it isn’t {STRVAR_1 3, 0, 0}!\n",
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00017",
+      "id": "FightArea_Text_LookingForwardToChallenge",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, your mother told me\n",
         "you’d gone off to the Battle Zone.\r",
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00018",
+      "id": "FightArea_Text_DadIsTowerTycoon",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: My dad is cool, huh?\n",
         "I mean, when it gets right down to it.\f",
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00019",
+      "id": "FightArea_Text_WhatToDo",
       "en_US": [
         "Ooh, what am I going to do?\r",
         "Should I make the challenge now?\n",
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00020",
+      "id": "FightArea_Text_GoingToGetStronger",
       "en_US": [
         "OK! I’ve decided!\n",
         "I’m going to get tougher! By a lot!\r",
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00021",
+      "id": "FightArea_Text_WhoAreYouGuys",
       "en_US": [
         "Who are you guys?\r",
         "What makes an Elite Four and a Gym\n",
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00022",
+      "id": "FightArea_Text_ComeToSurvivalArea",
       "en_US": [
         "Hey, hey.\n",
         "I just watched you two battle.\r",
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00023",
+      "id": "FightArea_Text_HowdyImBuck",
       "en_US": [
         "Anyways, howdy, I’m Buck.\n",
         "Sheesh, that punk can’t beat me.\r",
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00024",
+      "id": "FightArea_Text_LearnALotByWatching",
       "en_US": [
         "You can learn a lot by watching other\n",
         "Trainers battle.\r",
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00025",
+      "id": "FightArea_Text_IMustBeLucky",
       "en_US": [
         "I can’t believe I’m going to see a\n",
         "battle involving the best Trainers!\r",
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00026",
+      "id": "FightArea_Text_LotToThink",
       "en_US": [
         "There’s a lot to think about in any\n",
         "two-on-two battle.\r",
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00027",
+      "id": "FightArea_Text_AreVolknerAndFlintFriends",
       "en_US": [
         "Are Volkner and Flint really good\n",
         "friends?\r",
@@ -292,14 +292,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00028",
+      "id": "FightArea_Text_ThatCombinationsIntriguing",
       "en_US": [
         "An Elite Four and a Gym Leader...\n",
         "That combination’s intriguing!"
       ]
     },
     {
-      "id": "pl_msg_00000192_00029",
+      "id": "FightArea_Text_YouHavePokedexDoYou",
       "en_US": [
         "Howdy, Trainer!\n",
         "You have a Pokédex, do you?\r",
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00030",
+      "id": "FightArea_Text_HaveYouBeenToFrontier",
       "en_US": [
         "Howdy, Trainer!\n",
         "Have you been to the Battle Frontier?\r",
@@ -319,7 +319,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00031",
+      "id": "FightArea_Text_BattleTowerLooms",
       "en_US": [
         "The way the Battle Tower looms...\r",
         "It really is a wall that stands\n",
@@ -327,11 +327,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00032",
+      "id": "FightArea_Text_Dummy32",
       "garbage": 45
     },
     {
-      "id": "pl_msg_00000192_00033",
+      "id": "FightArea_Text_BattledManyTrainers",
       "en_US": [
         "I’ve battled many Trainers over\n",
         "the years.\r",
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00034",
+      "id": "FightArea_Text_LandIsCraggy",
       "en_US": [
         "Because of the volcano, the land\n",
         "around here is craggy.\r",
@@ -351,14 +351,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00035",
+      "id": "FightArea_Text_EliteFourComeSometimes",
       "en_US": [
         "The Pokémon League’s Elite Four\n",
         "come here sometimes!"
       ]
     },
     {
-      "id": "pl_msg_00000192_00036",
+      "id": "FightArea_Text_NotUsedToSinnohPokemon",
       "en_US": [
         "Your Pokémon are from Sinnoh,\n",
         "aren’t they?\r",
@@ -367,7 +367,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00037",
+      "id": "FightArea_Text_NoEndToBecomingTough",
       "en_US": [
         "There’s no end to becoming tough!\r",
         "I just made that up, but it sounds\n",
@@ -375,28 +375,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00038",
+      "id": "FightArea_Text_SailToSnowpointCity",
       "en_US": [
         "What’s up? Do you want to sail to\n",
         "Snowpoint City?"
       ]
     },
     {
-      "id": "pl_msg_00000192_00039",
+      "id": "FightArea_Text_AnchorsAweigh",
       "en_US": [
         "Aye, right!\n",
         "It’s anchors aweigh, then!\r"
       ]
     },
     {
-      "id": "pl_msg_00000192_00040",
+      "id": "FightArea_Text_YoudRatherFly",
       "en_US": [
         "Oh, right. You’d rather just fly\n",
         "everywhere in some big hurry."
       ]
     },
     {
-      "id": "pl_msg_00000192_00041",
+      "id": "FightArea_Text_ThrillWithNewDiscoveries",
       "en_US": [
         "Whenever I go to a new place, I get\n",
         "excited over what I might discover.\r",
@@ -406,7 +406,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00042",
+      "id": "FightArea_Text_SuperRoodReallyGood",
       "en_US": [
         "Hmm!\n",
         "A Super Rod is really good!\r",
@@ -414,7 +414,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00043",
+      "id": "FightArea_Text_TakeThisSuperRod",
       "en_US": [
         "Hmm!\n",
         "We’re of identical minds!\r",
@@ -423,18 +423,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00044",
+      "id": "FightArea_Text_TryLuckAtFishing",
       "en_US": [
         "Wherever there’s water, try your\n",
         "luck at fishing."
       ]
     },
     {
-      "id": "pl_msg_00000192_00045",
+      "id": "FightArea_Text_DontYouLikeToFish",
       "en_US": "Don’t you like to fish?"
     },
     {
-      "id": "pl_msg_00000192_00046",
+      "id": "FightArea_Text_AdviceForFishing",
       "en_US": [
         "What’s that?\n",
         "Any advice for fishing?\r",
@@ -443,28 +443,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00047",
+      "id": "FightArea_Text_MapSign",
       "en_US": [
         "Fight Area\n",
         "Battles Galore"
       ]
     },
     {
-      "id": "pl_msg_00000192_00048",
+      "id": "FightArea_Text_SignBattleFrontierAhead",
       "en_US": [
         "Battle Frontier Ahead\n",
         "Aim to Win Glory with Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000192_00049",
+      "id": "FightArea_Text_SignRt225Ahead",
       "en_US": [
         "Rt. 225 Ahead\n",
         "A Road of Challenges"
       ]
     },
     {
-      "id": "pl_msg_00000192_00050",
+      "id": "FightArea_Text_GetReadyToBattle",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\r",
         "You’re not the only one who’s getting\n",
@@ -474,7 +474,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000192_00051",
+      "id": "FightArea_Text_ThereNoEndToPokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...!\n",
         "It’s OK, though.\r",

@@ -194,8 +194,8 @@ void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int 
     GX_EndLoadBGExtPltt();
 
     Heap_Free(v2);
-    PaletteData_FillBufferRange(param0->unk_0C, 0, 2, 0x0, 0, 1);
-    PaletteData_FillBufferRange(param0->unk_0C, 1, 2, 0x0, 0, 1);
+    PaletteData_FillBufferRange(param0->unk_0C, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, 0x0, 0, 1);
+    PaletteData_FillBufferRange(param0->unk_0C, PLTTBUF_SUB_BG, PLTTSEL_BOTH, 0x0, 0, 1);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, v3->unk_00, param0->unk_08, param2, 0, 0, 0, HEAP_ID_75);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, v3->unk_02, param0->unk_08, param2, 0, 0, 0, HEAP_ID_75);
     Bg_SetOffset(v0, param2, 0, v3->unk_06);

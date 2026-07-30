@@ -8,7 +8,7 @@
 #include "constants/savedata/vars_flags.h"
 #include "constants/string.h"
 
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_02089438.h"
 
@@ -21,6 +21,7 @@
 #include "appearance.h"
 #include "ascii_util.h"
 #include "bag.h"
+#include "battle_frontier_save.h"
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "character_sprite.h"
@@ -59,12 +60,11 @@
 #include "system_flags.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0202ACE0.h"
-#include "unk_0203061C.h"
 #include "unk_0203909C.h"
 #include "unk_020890F4.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
+#include "wifi_list.h"
 
 #include "constdata/const_020F2DBC.h"
 
@@ -765,7 +765,7 @@ static u32 ov64_0222E09C(UnkStruct_ov64_0222E060 *param0, String *param1, String
     v5 = DWC_CreateFriendKey(WiFiList_GetUserData(v1));
 
     for (v0 = 0; v0 < 32; v0++) {
-        v2 = sub_0202AF78(v1, v0);
+        v2 = WiFiList_IsValidFriendData(v1, v0);
 
         if (v2 == 0) {
             v4 = String_AtoI(param1, &v3);
@@ -795,7 +795,7 @@ static u32 ov64_0222E09C(UnkStruct_ov64_0222E060 *param0, String *param1, String
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 
     return 0;
 }
@@ -823,7 +823,7 @@ static void ov64_0222E164(UnkStruct_ov64_0222E060 *param0)
     param0->unk_08.unk_00 = 0;
 
     for (v0 = 0; v0 < (8 * 4); v0++) {
-        if (sub_0202AF78(v1, v0) == 1) {
+        if (WiFiList_IsValidFriendData(v1, v0) == 1) {
             param0->unk_08.unk_04[param0->unk_08.unk_00] = v0;
             param0->unk_08.unk_00++;
         }
@@ -1023,7 +1023,7 @@ static void ov64_0222E620(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_
 {
     int v0 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
-    Font_LoadScreenIndicatorsPalette(0, 7 * 0x20, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(7), heapID);
     LoadMessageBoxGraphics(param0->unk_00, Unk_ov64_02232258[1], 1 + 9, 8, v0, heapID);
     LoadStandardWindowGraphics(param0->unk_00, Unk_ov64_02232258[1], 1, 9, 0, heapID);
     Window_Init(&param0->unk_220);
@@ -1550,7 +1550,7 @@ static BOOL ov64_0222F068(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E0
         v1 = SaveData_GetWiFiList(param1->saveData);
 
         for (v0 = 0; v0 < 32; v0++) {
-            if (!sub_0202AF78(v1, v0)) {
+            if (!WiFiList_IsValidFriendData(v1, v0)) {
                 return 1;
             }
         }
@@ -1718,7 +1718,7 @@ static int ov64_0222F0C4(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E06
             v2 = ov64_0222FF38(param0);
 
             sub_0202AFD4(v1, param1->unk_08.unk_04[v2]);
-            sub_02030788(SaveData_GetBattleFrontier(param1->saveData), param1->unk_08.unk_04[v2]);
+            BattleFrontierSave_ClearFriendStatsAndShift(SaveData_GetBattleFrontier(param1->saveData), param1->unk_08.unk_04[v2]);
             ov64_0222E164(param1);
             ov64_0222FC80(param0, param1, param2, param0->unk_00, param0->unk_04, 0, heapID);
             ov64_0222EA28(param2, 1);
@@ -3180,7 +3180,7 @@ static void ov64_02231164(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
 static void ov64_02231528(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, enum HeapID heapID)
 {
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(param1->saveData);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(param1->saveData);
 
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
@@ -3188,18 +3188,18 @@ static void ov64_02231528(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     ov64_022320B8(param0, 2, 0, param1, param2, 25, 0, 8, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
     u32 entryID;
-    if (sub_02030698(frontier, 100, param1->unk_08.unk_04[param1->unk_07]) == 0) {
+    if (BattleFrontierSave_GetStat(frontier, STAT_TOWER_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
         entryID = 30;
     } else {
         entryID = 31;
     }
 
     ov64_022320B8(param0, 2, 0, param1, param2, entryID, 0, 32, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
-    ov64_0222E970(param2, sub_02030698(frontier, 113, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_TOWER_LATEST_STREAK_MODE_6, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 2, 0, param1, param2, 38, 160, 32, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_022320B8(param0, 2, 0, param1, param2, 32, 0, 56, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
-    ov64_0222E970(param2, sub_02030698(frontier, 112, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_TOWER_RECORD_STREAK_MODE_6, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 2, 0, param1, param2, 38, 160, 56, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_02231080(param0, 2);
@@ -3210,7 +3210,7 @@ static void ov64_02231528(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
 static void ov64_02231664(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, enum HeapID heapID)
 {
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(param1->saveData);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(param1->saveData);
 
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
@@ -3221,7 +3221,7 @@ static void ov64_02231664(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     ov64_022320B8(param0, 3, 1, param1, param2, 35, 224, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     u32 entryID;
-    if (sub_02030698(frontier, 102, param1->unk_08.unk_04[param1->unk_07]) == 0) {
+    if (BattleFrontierSave_GetStat(frontier, STAT_FACTORY_50_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
         entryID = 30;
     } else {
         entryID = 31;
@@ -3229,24 +3229,24 @@ static void ov64_02231664(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
     ov64_022320B8(param0, 3, 2, param1, param2, entryID, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 115, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_LATEST_STREAK_50_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 3, 2, param1, param2, 38, 112, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 117, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_LATEST_TRADE_COUNT_50_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 3, 2, param1, param2, 39, 224, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_022320B8(param0, 3, 2, param1, param2, 32, 0, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 114, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_RECORD_STREAK_50_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 3, 2, param1, param2, 38, 112, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 116, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_RECORD_TRADE_COUNT_50_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 3, 2, param1, param2, 39, 224, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_022320B8(param0, 3, 3, param1, param2, 34, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
     ov64_022320B8(param0, 3, 3, param1, param2, 35, 224, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
-    if (sub_02030698(frontier, 104, param1->unk_08.unk_04[param1->unk_07]) == 0) {
+    if (BattleFrontierSave_GetStat(frontier, STAT_FACTORY_OPEN_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
         entryID = 30;
     } else {
         entryID = 31;
@@ -3254,18 +3254,18 @@ static void ov64_02231664(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
     ov64_022320B8(param0, 3, 4, param1, param2, entryID, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 119, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_LATEST_STREAK_OPEN_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 3, 4, param1, param2, 38, 112, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 121, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_LATEST_TRADE_COUNT_OPEN_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 3, 4, param1, param2, 39, 224, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_022320B8(param0, 3, 4, param1, param2, 32, 0, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 118, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_RECORD_STREAK_OPEN_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 3, 4, param1, param2, 38, 112, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 120, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_RECORD_TRADE_COUNT_OPEN_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 3, 4, param1, param2, 39, 224, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_02231080(param0, 3);
@@ -3276,7 +3276,7 @@ static void ov64_02231664(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
 static void ov64_02231A00(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, enum HeapID heapID)
 {
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(param1->saveData);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(param1->saveData);
 
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
@@ -3285,7 +3285,7 @@ static void ov64_02231A00(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     ov64_022320B8(param0, 4, 0, param1, param2, 36, 224, 20, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     u32 entryID;
-    if (sub_02030698(frontier, 108, param1->unk_08.unk_04[param1->unk_07]) == 0) {
+    if (BattleFrontierSave_GetStat(frontier, STAT_CASTLE_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
         entryID = 30;
     } else {
         entryID = 31;
@@ -3293,18 +3293,18 @@ static void ov64_02231A00(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
     ov64_022320B8(param0, 4, 0, param1, param2, entryID, 0, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 135, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_CASTLE_LATEST_STREAK_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 4, 0, param1, param2, 41, 112, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 136, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_CASTLE_LATEST_CP_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 4, 0, param1, param2, 40, 224, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_022320B8(param0, 4, 0, param1, param2, 32, 0, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 134, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_CASTLE_RECORD_STREAK_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 4, 0, param1, param2, 41, 112, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 138, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_CASTLE_RECORD_CP_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 4, 0, param1, param2, 40, 224, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_02231080(param0, 4);
@@ -3315,19 +3315,19 @@ static void ov64_02231A00(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
 static void ov64_02231BE0(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, enum HeapID heapID)
 {
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(param1->saveData);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(param1->saveData);
 
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
 
     ov64_022320B8(param0, 5, 0, param1, param2, 28, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    String *speciesName = MessageUtil_SpeciesName(sub_02030698(frontier, 124, param1->unk_08.unk_04[param1->unk_07]), heapID);
+    String *speciesName = MessageUtil_SpeciesName(BattleFrontierSave_GetStat(frontier, STAT_HALL_LATEST_SPECIES_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]), heapID);
     Text_AddPrinterWithParamsAndColor(&param0->unk_0C[5][0], FONT_SYSTEM, speciesName, 0, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     String_Free(speciesName);
 
     u32 entryID;
-    if (sub_02030698(frontier, 106, param1->unk_08.unk_04[param1->unk_07]) == 0) {
+    if (BattleFrontierSave_GetStat(frontier, STAT_HALL_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
         entryID = 30;
     } else {
         entryID = 31;
@@ -3335,12 +3335,12 @@ static void ov64_02231BE0(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
     ov64_022320B8(param0, 5, 0, param1, param2, entryID, 0, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 123, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_HALL_LATEST_STREAK_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 5, 0, param1, param2, 38, 160, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_022320B8(param0, 5, 0, param1, param2, 32, 0, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 122, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, 122, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 5, 0, param1, param2, 38, 160, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_02231080(param0, 5);
@@ -3351,7 +3351,7 @@ static void ov64_02231BE0(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
 static void ov64_02231D58(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, enum HeapID heapID)
 {
-    BattleFrontier *frontier = SaveData_GetBattleFrontier(param1->saveData);
+    BattleFrontierSave *frontier = SaveData_GetBattleFrontier(param1->saveData);
 
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
@@ -3359,7 +3359,7 @@ static void ov64_02231D58(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     ov64_022320B8(param0, 6, 0, param1, param2, 29, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
     u32 entryID;
-    if (sub_02030698(frontier, 110, param1->unk_08.unk_04[param1->unk_07]) == 0) {
+    if (BattleFrontierSave_GetStat(frontier, STAT_ARCADE_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
         entryID = 30;
     } else {
         entryID = 31;
@@ -3367,12 +3367,12 @@ static void ov64_02231D58(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
     ov64_022320B8(param0, 6, 0, param1, param2, entryID, 0, 24, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 143, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_ARCADE_LATEST_STREAK_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 6, 0, param1, param2, 42, 160, 24, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_022320B8(param0, 6, 0, param1, param2, 32, 0, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
-    ov64_0222E970(param2, sub_02030698(frontier, 142, param1->unk_08.unk_04[param1->unk_07]));
+    ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_ARCADE_RECORD_STREAK_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
     ov64_022320B8(param0, 6, 0, param1, param2, 42, 160, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
 
     ov64_02231080(param0, 6);
@@ -3383,7 +3383,7 @@ static void ov64_02231D58(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
 static void ov64_02231E94(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, enum HeapID heapID)
 {
-    BattleFrontier *unused = SaveData_GetBattleFrontier(param1->saveData);
+    BattleFrontierSave *unused = SaveData_GetBattleFrontier(param1->saveData);
     WiFiList *wifiList = SaveData_GetWiFiList(param1->saveData);
 
     String *string = String_Init(128, heapID);

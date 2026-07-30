@@ -2,7 +2,7 @@
   "key": 29702,
   "messages": [
     {
-      "id": "pl_msg_00000578_00000",
+      "id": "PokemonDayCare_Text_SharePoketchApp",
       "en_US": [
         "Are you a fan of the Day-Care\n",
         "Couple like me?\r",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000578_00001",
+      "id": "PokemonDayCare_Text_CheckOnDayCarePokemon",
       "en_US": [
         "With that Day-Care Checker, you can\n",
         "check on the Pokémon that you’ve\f",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000578_00002",
+      "id": "PokemonDayCare_Text_PokemonGrowsWithYou",
       "en_US": [
         "As you travel, your Pokémon grows\n",
         "with you...\r",

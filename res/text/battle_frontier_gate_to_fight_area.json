@@ -2,7 +2,7 @@
   "key": 5218,
   "messages": [
     {
-      "id": "pl_msg_00000309_00000",
+      "id": "BattleFrontierGateToFightArea_Text_RightThisWay",
       "en_US": [
         "Welcome to the Battle Frontier!\r",
         "This is your first visit?\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00001",
+      "id": "BattleFrontierGateToFightArea_Text_BorrowVsRecorder",
       "en_US": [
         "Oh! You have a Vs. Recorder!\n",
         "How nice!\r",
@@ -24,14 +24,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00002",
+      "id": "BattleFrontierGateToFightArea_Text_VsRecorderWasUpgraded",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s Vs. Recorder was\n",
         "upgraded."
       ]
     },
     {
-      "id": "pl_msg_00000309_00003",
+      "id": "BattleFrontierGateToFightArea_Text_AnyQuestions",
       "en_US": [
         "Our other staff will be pleased to\n",
         "explain how the individual facilities\f",
@@ -41,11 +41,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00004",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainWhichTopic",
       "en_US": "Which topic should I explain?"
     },
     {
-      "id": "pl_msg_00000309_00005",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainBattleFrontier",
       "en_US": [
         "The Battle Frontier has five facilities\n",
         "dedicated to battling.\r",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00006",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainBasicRules",
       "en_US": [
         "The battles at the five Battle Frontier\n",
         "facilities are held under special rules.\r",
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00007",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainBattlePoints",
       "en_US": [
         "Battle Points are usually referred to\n",
         "as BP.\r",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00008",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainExchangeServiceCorner",
       "en_US": [
         "The Exchange Service Corner is the\n",
         "tent straight ahead past here.\r",
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00009",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainPerformanceMonitor",
       "en_US": [
         "The Performance Monitor shows Trainer\n",
         "data, such as the previous record and\f",
@@ -112,35 +112,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00010",
+      "id": "BattleFrontierGateToFightArea_Text_EnjoyYourVisit",
       "en_US": "We hope you enjoy your visit!"
     },
     {
-      "id": "pl_msg_00000309_00011",
+      "id": "BattleFrontierGateToFightArea_Text_BattleFrontier",
       "en_US": "BATTLE FRONTIER"
     },
     {
-      "id": "pl_msg_00000309_00012",
+      "id": "BattleFrontierGateToFightArea_Text_BattlePoints",
       "en_US": "BATTLE POINTS"
     },
     {
-      "id": "pl_msg_00000309_00013",
+      "id": "BattleFrontierGateToFightArea_Text_ExchangeServiceCorner",
       "en_US": "EXCHANGE SERVICE CORNER"
     },
     {
-      "id": "pl_msg_00000309_00014",
+      "id": "BattleFrontierGateToFightArea_Text_PerformanceMonitor",
       "en_US": "PERFORMANCE MONITOR"
     },
     {
-      "id": "pl_msg_00000309_00015",
+      "id": "BattleFrontierGateToFightArea_Text_Exit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000309_00016",
+      "id": "BattleFrontierGateToFightArea_Text_BasicRules",
       "en_US": "BASIC RULES"
     },
     {
-      "id": "pl_msg_00000309_00017",
+      "id": "BattleFrontierGateToFightArea_Text_ShouldIExplainBattleTower",
       "en_US": [
         "Welcome to the Battle Frontier!\r",
         "Should I explain how the Battle Tower\n",
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00018",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainBattleTower",
       "en_US": [
         "The Battle Tower is the building at the\n",
         "back of the Battle Frontier.\r",
@@ -158,11 +158,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00019",
+      "id": "BattleFrontierGateToFightArea_Text_EnjoyVisitBattleTower",
       "en_US": "We hope you enjoy your visit!"
     },
     {
-      "id": "pl_msg_00000309_00020",
+      "id": "BattleFrontierGateToFightArea_Text_ShouldIExplainBattleFactory",
       "en_US": [
         "Welcome to the Battle Frontier!\r",
         "Should I explain how the Battle Factory\n",
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00021",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainBattleFactory",
       "en_US": [
         "The Battle Factory is at the upper-\n",
         "right corner of the Battle Frontier.\r",
@@ -184,11 +184,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00022",
+      "id": "BattleFrontierGateToFightArea_Text_EnjoyVisitBattleFactory",
       "en_US": "We hope you enjoy your visit!"
     },
     {
-      "id": "pl_msg_00000309_00023",
+      "id": "BattleFrontierGateToFightArea_Text_ShouldIExplainBattleHall",
       "en_US": [
         "Welcome to the Battle Frontier!\r",
         "Should I explain how the Battle Hall\n",
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00024",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainBattleHall",
       "en_US": [
         "The Battle Hall is at the upper-left\n",
         "corner of the Battle Frontier.\r",
@@ -207,11 +207,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00025",
+      "id": "BattleFrontierGateToFightArea_Text_EnjoyVisitBattleHall",
       "en_US": "We hope you enjoy your visit!"
     },
     {
-      "id": "pl_msg_00000309_00026",
+      "id": "BattleFrontierGateToFightArea_Text_ShouldIExplainBattleCastle",
       "en_US": [
         "Welcome to the Battle Frontier!\r",
         "Should I explain how the Battle Castle\n",
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00027",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainBattleCastle",
       "en_US": [
         "The Battle Castle is at the lower-left\n",
         "corner of the Battle Frontier.\r",
@@ -232,11 +232,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00028",
+      "id": "BattleFrontierGateToFightArea_Text_EnjoyVisitBattleCastle",
       "en_US": "We hope you enjoy your visit!"
     },
     {
-      "id": "pl_msg_00000309_00029",
+      "id": "BattleFrontierGateToFightArea_Text_ShouldIExplainBattleArcade",
       "en_US": [
         "Welcome to the Battle Frontier!\r",
         "Should I explain how the Battle Arcade\n",
@@ -244,7 +244,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00030",
+      "id": "BattleFrontierGateToFightArea_Text_ExplainBattleArcade",
       "en_US": [
         "The Battle Arcade is at the lower-right\n",
         "corner of the Battle Frontier.\r",
@@ -261,11 +261,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00031",
+      "id": "BattleFrontierGateToFightArea_Text_EnjoyVisitBattleArcade",
       "en_US": "We hope you enjoy your visit!"
     },
     {
-      "id": "pl_msg_00000309_00032",
+      "id": "BattleFrontierGateToFightArea_Text_FrontierUpAhead",
       "en_US": [
         "The Battle Frontier is up ahead!\r",
         "What kinds of Trainers will I see?\n",
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00033",
+      "id": "BattleFrontierGateToFightArea_Text_NoAcronymFacilities",
       "en_US": [
         "The five facilities of the Battle\n",
         "Frontier are...\r",
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00034",
+      "id": "BattleFrontierGateToFightArea_Text_VsRecorderIsNifty",
       "en_US": [
         "The Vs. Recorder is sure nifty!\r",
         "Touching the screen shows you how\n",
@@ -300,7 +300,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000309_00035",
+      "id": "BattleFrontierGateToFightArea_Text_DreamToBattlePalmer",
       "en_US": [
         "My dream is to battle Palmer of the\n",
         "Battle Tower.\r",

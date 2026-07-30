@@ -1,0 +1,31 @@
+{
+  "name": "TM36",
+  "plural": "TM36s",
+  "article": "a",
+  "description": [
+    "Unsanitary sludge is hurled at\n",
+    "the foe. It may also poison the\n",
+    "target."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_poison_NCLR"
+  },
+  "gbaID": "GBA_ITEM_TM36",
+  "price": 3000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_SLUDGE_BOMB"
+}

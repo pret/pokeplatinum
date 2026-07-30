@@ -267,7 +267,7 @@ static int ov101_021D5B44(OverworldAnimManager *param0, void *param1)
     VecFx32 v0;
     UnkStruct_ov101_021D5B9C *v1 = param1;
 
-    v1->unk_04 = OverworldAnimManager_GetID(param0);
+    v1->unk_04 = OverworldAnimManager_GetUserInt(param0);
     v1->unk_08 = v1->unk_04 * 10;
     v1->unk_00 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
@@ -340,7 +340,7 @@ static int ov101_021D5C7C(OverworldAnimManager *param0, void *param1)
     VecFx32 v0;
     UnkStruct_ov101_021D5CD4 *v1 = param1;
 
-    v1->unk_04 = OverworldAnimManager_GetID(param0);
+    v1->unk_04 = OverworldAnimManager_GetUserInt(param0);
     v1->unk_08 = v1->unk_04 * 10;
     v1->unk_00 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
@@ -440,7 +440,7 @@ static int ov101_021D5DD0(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov101_021D630C *v0 = param1;
 
     v0->unk_38 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
-    v0->unk_10 = OverworldAnimManager_GetID(param0);
+    v0->unk_10 = OverworldAnimManager_GetUserInt(param0);
 
     return 1;
 }
@@ -1050,7 +1050,7 @@ static int ov101_021D67BC(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov101_021D66D0 *v0 = param1;
 
     v0->unk_20 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
-    v0->unk_18 = OverworldAnimManager_GetID(param0);
+    v0->unk_18 = OverworldAnimManager_GetUserInt(param0);
 
     ov101_021D66D0(v0);
 
@@ -2087,7 +2087,7 @@ static int ov101_021D7810(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov101_021D7984 *v6 = param1;
     UnkStruct_ov101_021D13C8 *v7 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
 
-    v6->unk_00 = OverworldAnimManager_GetID(param0);
+    v6->unk_00 = OverworldAnimManager_GetUserInt(param0);
     v6->unk_14 = v7;
 
     if (v6->unk_00 == UnkEnum_ov101_021D77E4_00) {
@@ -2201,7 +2201,7 @@ static int ov101_021D7A00(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov101_021D7A00 *v5 = param1;
 
     v5->unk_08 = (UnkStruct_ov101_021D13C8 *)OverworldAnimManager_GetUserData(param0);
-    v1 = OverworldAnimManager_GetID(param0);
+    v1 = OverworldAnimManager_GetUserInt(param0);
 
     OverworldAnimManager_GetPosition(param0, &v4);
 

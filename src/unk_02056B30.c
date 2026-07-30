@@ -5,7 +5,7 @@
 
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -19,6 +19,7 @@
 #include "overlay005/struct_ov5_021D4E00_decl.h"
 
 #include "camera.h"
+#include "field_bgm.h"
 #include "field_map_change.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -32,7 +33,6 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_020553DC.h"
 #include "unk_020655F4.h"
 
 typedef struct {
@@ -154,8 +154,6 @@ void sub_02056BDC(FieldSystem *fieldSystem, const int param1, const int param2, 
 
 void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5)
 {
-    int v0;
-    int v1;
     UnkStruct_02056BDC *v2 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_02056BDC));
 
     v2->unk_00 = 0;
@@ -163,10 +161,10 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
 
     Location_Set(&v2->unk_08, param1, param2, param3, param4, param5);
 
-    v0 = fieldSystem->location->mapId;
-    v1 = 0;
+    enum MapHeaderID mapHeaderID = fieldSystem->location->mapHeaderID;
+    int v1 = 0;
 
-    if (MapHeader_IsCave(v0)) {
+    if (MapHeader_IsCave(mapHeaderID)) {
         if (MapHeader_IsCave(param1)) {
             v1 = 6;
         } else if (MapHeader_IsOutdoors(param1)) {
@@ -174,17 +172,17 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
         } else if (MapHeader_IsBuilding(param1)) {
             v1 = 6;
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
-    } else if (MapHeader_IsOutdoors(v0)) {
+    } else if (MapHeader_IsOutdoors(mapHeaderID)) {
         if (MapHeader_IsCave(param1)) {
             v1 = 4;
         } else if (MapHeader_IsBuilding(param1)) {
             v1 = 6;
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
-    } else if (MapHeader_IsBuilding(v0)) {
+    } else if (MapHeader_IsBuilding(mapHeaderID)) {
         if (MapHeader_IsOutdoors(param1)) {
             v1 = 0;
         } else if (MapHeader_IsBuilding(param1)) {
@@ -192,10 +190,10 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
         } else if (MapHeader_IsCave(param1)) {
             v1 = 0;
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     v2->unk_20 = v1;
@@ -212,7 +210,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
     switch (v1->unk_00) {
     case 0:
         v1->unk_04 = 0;
-        Sound_TryFadeInBGM(fieldSystem, v2->mapId);
+        FieldBGM_TryFadeIn(fieldSystem, v2->mapHeaderID);
         FieldTask_InitCall(taskMan, Unk_020EC560[v1->unk_20], v1);
         (v1->unk_00)++;
         break;
@@ -240,7 +238,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
             break;
         }
 
-        Sound_PlayMapBGM(fieldSystem, v2->mapId);
+        FieldBGM_PlayForMapHeader(fieldSystem, v2->mapHeaderID);
         FieldSystem_RequestLocationName(fieldSystem);
 
         v1->unk_04 = 0;
@@ -284,7 +282,7 @@ static BOOL sub_02056E20(FieldTask *taskMan)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v2);
+        ov5_021D4334(PlayerAvatar_GetXPos(fieldSystem->playerAvatar), PlayerAvatar_GetZPos(fieldSystem->playerAvatar), v2);
         (v1->unk_04)++;
         break;
     case 1:
@@ -316,13 +314,13 @@ static BOOL sub_02056EA4(FieldTask *taskMan)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v2);
+        ov5_021D4334(PlayerAvatar_GetXPos(fieldSystem->playerAvatar), PlayerAvatar_GetZPos(fieldSystem->playerAvatar), v2);
         (v1->unk_04)++;
         break;
     case 1:
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
 
-        if (ov5_021D4A24(fieldSystem, v2, PlayerAvatar_GetDir(fieldSystem->playerAvatar))) {
+        if (ov5_021D4A24(fieldSystem, v2, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar))) {
             ov5_021D432C(v1->unk_1C);
             (v1->unk_04)++;
         }
@@ -342,9 +340,9 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
 
     switch (v1->unk_04) {
     case 0: {
-        int v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        int v3 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
-        v2 = Player_MapObject(fieldSystem->playerAvatar);
+        v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (v3 == 2) {
             LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_WEST);
@@ -357,7 +355,7 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
         (v1->unk_04)++;
         break;
     case 1:
-        v2 = Player_MapObject(fieldSystem->playerAvatar);
+        v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v2) == 1) {
             sub_020656AC(v2);
@@ -383,7 +381,7 @@ static BOOL sub_02056FC0(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
-    MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (v1->unk_04) {
     case 0: {
@@ -404,7 +402,7 @@ static BOOL sub_02057008(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
-    MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (v1->unk_04) {
     case 0: {
@@ -431,9 +429,9 @@ static BOOL sub_02057050(FieldTask *taskMan)
     switch (v2->unk_04) {
     case 0: {
         u8 v4;
-        MapObject *v5 = Player_MapObject(fieldSystem->playerAvatar);
+        MapObject *v5 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
-        v4 = TerrainCollisionManager_GetTileBehavior(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
+        v4 = TerrainCollisionManager_GetTileBehavior(fieldSystem, PlayerAvatar_GetXPos(fieldSystem->playerAvatar), PlayerAvatar_GetZPos(fieldSystem->playerAvatar));
 
         if (TileBehavior_IsDoor(v4)) {
             MapObject_SetHidden(v5, 1);
@@ -449,7 +447,7 @@ static BOOL sub_02057050(FieldTask *taskMan)
     case 1:
         v2->unk_1C = (UnkStruct_ov5_021D432C *)ov5_021D431C();
         v3 = (UnkStruct_ov5_021D432C *)v2->unk_1C;
-        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v3);
+        ov5_021D4334(PlayerAvatar_GetXPos(fieldSystem->playerAvatar), PlayerAvatar_GetZPos(fieldSystem->playerAvatar), v3);
         (v2->unk_04)++;
         break;
     case 2:
@@ -458,7 +456,7 @@ static BOOL sub_02057050(FieldTask *taskMan)
         if (ov5_021D453C(fieldSystem, v3)) {
             ov5_021D432C(v3);
             {
-                MapObject *v7 = Player_MapObject(fieldSystem->playerAvatar);
+                MapObject *v7 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
                 MapObject_SetHidden(v7, 0);
             }
@@ -482,9 +480,9 @@ static BOOL sub_0205711C(FieldTask *taskMan)
     switch (v2->unk_04) {
     case 0: {
         u8 v4;
-        MapObject *v5 = Player_MapObject(fieldSystem->playerAvatar);
+        MapObject *v5 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
-        v4 = TerrainCollisionManager_GetTileBehavior(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
+        v4 = TerrainCollisionManager_GetTileBehavior(fieldSystem, PlayerAvatar_GetXPos(fieldSystem->playerAvatar), PlayerAvatar_GetZPos(fieldSystem->playerAvatar));
 
         if (TileBehavior_IsDoor(v4)) {
             MapObject_SetHidden(v5, 1);
@@ -515,13 +513,13 @@ static BOOL sub_020571A0(FieldTask *taskMan)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v2);
+        ov5_021D4334(PlayerAvatar_GetXPos(fieldSystem->playerAvatar), PlayerAvatar_GetZPos(fieldSystem->playerAvatar), v2);
         (v1->unk_04)++;
         break;
     case 1:
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
 
-        if (ov5_021D4858(fieldSystem, v2, PlayerAvatar_GetDir(fieldSystem->playerAvatar))) {
+        if (ov5_021D4858(fieldSystem, v2, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar))) {
             ov5_021D432C(v1->unk_1C);
             (v1->unk_04)++;
         }
@@ -543,12 +541,12 @@ static BOOL sub_02057218(FieldTask *taskMan)
     case 0:
 
         FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_IN);
-        v2 = Player_MapObject(fieldSystem->playerAvatar);
+        v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (1) {
             int v3;
 
-            v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+            v3 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
             if (v3 == 2) {
                 LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_WEST);
@@ -564,7 +562,7 @@ static BOOL sub_02057218(FieldTask *taskMan)
         (v1->unk_04)++;
         break;
     case 1:
-        v2 = Player_MapObject(fieldSystem->playerAvatar);
+        v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v2) == 1) {
             sub_020656AC(v2);
@@ -587,7 +585,7 @@ static BOOL sub_020572B8(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
-    MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v2 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
     switch (v1->unk_04) {
     case 0: {
@@ -609,8 +607,8 @@ static void sub_02057300(FieldSystem *fieldSystem)
     int v0;
     VecFx32 v1;
 
-    v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
-    PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
+    v0 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
+    PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &v1);
 
     if (v0 == 3) {
         v1.x -= (FX32_ONE * 16);
@@ -620,9 +618,9 @@ static void sub_02057300(FieldSystem *fieldSystem)
 
     v1.y = TerrainCollisionManager_GetHeight(fieldSystem, v1.y, v1.x, v1.z, NULL);
 
-    sub_0205ECB8(fieldSystem->playerAvatar, &v1, v0);
-    Camera_SetTargetAndUpdatePosition(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
-    Camera_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
+    PlayerAvatar_SetPosDirFromVec(fieldSystem->playerAvatar, &v1, v0);
+    Camera_SetTargetAndUpdatePosition(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem->camera);
+    Camera_TrackTarget(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem->camera);
 }
 
 static void sub_02057368(FieldSystem *fieldSystem)
@@ -631,11 +629,11 @@ static void sub_02057368(FieldSystem *fieldSystem)
     VecFx32 v3;
     u8 v4;
 
-    v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
-    PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v3);
+    v2 = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
+    PlayerAvatar_GetPosPtr(fieldSystem->playerAvatar, &v3);
 
-    v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    v1 = Player_GetZPos(fieldSystem->playerAvatar);
+    v0 = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    v1 = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     v4 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v0, v1);
 
     if (TileBehavior_IsWarpStairsEast(v4)) {
@@ -650,7 +648,7 @@ static void sub_02057368(FieldSystem *fieldSystem)
 
     v3.y = TerrainCollisionManager_GetHeight(fieldSystem, v3.y, v3.x, v3.z, NULL);
 
-    sub_0205ECB8(fieldSystem->playerAvatar, &v3, v2);
-    Camera_SetTargetAndUpdatePosition(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
-    Camera_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
+    PlayerAvatar_SetPosDirFromVec(fieldSystem->playerAvatar, &v3, v2);
+    Camera_SetTargetAndUpdatePosition(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem->camera);
+    Camera_TrackTarget(PlayerAvatar_GetPos(fieldSystem->playerAvatar), fieldSystem->camera);
 }

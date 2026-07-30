@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV62_02248408_H
 #define POKEPLATINUM_OV62_02248408_H
 
-#include "struct_defs/struct_0202F264.h"
+#include "struct_defs/battle_recording.h"
 
 #include "field_battle_data_transfer.h"
 #include "savedata.h"

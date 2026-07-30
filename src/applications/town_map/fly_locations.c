@@ -235,7 +235,7 @@ TownMapAppFlyLocationsManager *TownMap_LoadFlyLocations(SpriteSystem *spriteSyst
         .z = 0,
         .animIdx = 0,
         .priority = 10,
-        .plttIdx = PLTT_5,
+        .plttIdx = 5,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     };
 
@@ -262,7 +262,7 @@ TownMapAppFlyLocationsManager *TownMap_LoadFlyLocations(SpriteSystem *spriteSyst
         Sprite_SetDrawFlag(flyDest->sprite, TRUE);
 
         if (flyDest->isUnlocked) {
-            Sprite_SetExplicitPalette(flyDest->sprite, PLTT_5 + flyDest->descriptor.palette + flyDest->isUnlocked);
+            Sprite_SetExplicitPalette(flyDest->sprite, 5 + flyDest->descriptor.palette + flyDest->isUnlocked);
         } else {
             if (flyDest->descriptor.specialFlyLocationID == FLY_LOCATION_PAL_PARK || flyDest->descriptor.specialFlyLocationID == FLY_LOCATION_VICTORY_ROAD) {
                 Sprite_SetDrawFlag(flyDest->sprite, FALSE);
@@ -288,7 +288,7 @@ void TownMap_FreeFlyLocations(TownMapAppFlyLocationsManager *flyLocations)
     Heap_Free(flyLocations);
 }
 
-TownMapAppFlyLocation *TownMap_GetFlyLocationAtPos(TownMapAppFlyLocationsManager *flyLocations, enum MapHeader mapHeader, int x, int z)
+TownMapAppFlyLocation *TownMap_GetFlyLocationAtPos(TownMapAppFlyLocationsManager *flyLocations, enum MapHeaderID mapHeader, int x, int z)
 {
     for (short i = 0; i < flyLocations->count; i++) {
         TownMapAppFlyLocation *flyLocation = &(flyLocations->flyLocationsList[i]);
@@ -323,7 +323,7 @@ TownMapAppFlyLocation *TownMap_GetFlyLocationAtPos(TownMapAppFlyLocationsManager
     return NULL;
 }
 
-BOOL TownMap_UpdateHoveredFlyLocation(TownMapAppFlyLocationsManager *flyLocations, enum MapHeader mapHeader, int x, int y)
+BOOL TownMap_UpdateHoveredFlyLocation(TownMapAppFlyLocationsManager *flyLocations, enum MapHeaderID mapHeader, int x, int y)
 {
     if (flyLocations == NULL) {
         return FALSE;
@@ -333,7 +333,7 @@ BOOL TownMap_UpdateHoveredFlyLocation(TownMapAppFlyLocationsManager *flyLocation
 
     if (hoveredFlyDest == NULL || hoveredFlyDest->isUnlocked == FALSE) {
         if (flyLocations->hovered != NULL) {
-            Sprite_SetExplicitPalette(flyLocations->hovered->sprite, PLTT_5 + flyLocations->hovered->descriptor.palette + flyLocations->hovered->isUnlocked);
+            Sprite_SetExplicitPalette(flyLocations->hovered->sprite, 5 + flyLocations->hovered->descriptor.palette + flyLocations->hovered->isUnlocked);
         }
 
         flyLocations->hovered = NULL;
@@ -346,7 +346,7 @@ BOOL TownMap_UpdateHoveredFlyLocation(TownMapAppFlyLocationsManager *flyLocation
     } else {
         if (hoveredFlyDest->descriptor.specialFlyLocationID == FLY_LOCATION_VICTORY_ROAD
             || hoveredFlyDest->descriptor.specialFlyLocationID == FLY_LOCATION_POKEMON_LEAGUE) {
-            Sprite_SetExplicitPalette(flyLocations->hovered->sprite, PLTT_5 + flyLocations->hovered->descriptor.palette + flyLocations->hovered->isUnlocked);
+            Sprite_SetExplicitPalette(flyLocations->hovered->sprite, 5 + flyLocations->hovered->descriptor.palette + flyLocations->hovered->isUnlocked);
         }
     }
 
@@ -361,9 +361,9 @@ void TownMap_BlinkHoveredFlyLocation(TownMapAppFlyLocationsManager *flyLocations
     }
 
     if (flyLocations->blinkState == 0) {
-        Sprite_SetExplicitPalette(flyLocations->hovered->sprite, PLTT_8 + flyLocations->hovered->descriptor.palette);
+        Sprite_SetExplicitPalette(flyLocations->hovered->sprite, 8 + flyLocations->hovered->descriptor.palette);
     } else {
-        Sprite_SetExplicitPalette(flyLocations->hovered->sprite, PLTT_5 + flyLocations->hovered->descriptor.palette + flyLocations->hovered->isUnlocked);
+        Sprite_SetExplicitPalette(flyLocations->hovered->sprite, 5 + flyLocations->hovered->descriptor.palette + flyLocations->hovered->isUnlocked);
     }
 
     flyLocations->blinkTimer++;

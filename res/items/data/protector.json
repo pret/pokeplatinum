@@ -1,0 +1,30 @@
+{
+  "name": "Protector",
+  "plural": "Protectors",
+  "article": "a",
+  "description": [
+    "A protective item of some sort.\n",
+    "It is extremely stiff and heavy.\n",
+    "It is loved by a certain Pokémon."
+  ],
+  "icon": {
+    "sprite": "protector_NCGR",
+    "palette": "protector_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 2100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_EVOLVE_RHYDON",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 80,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

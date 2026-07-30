@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x4074, 1, 5
+    InitScriptGoToIfEqual VAR_CELESTIC_TOWN_STATE, 1, 5
     InitScriptFrameTableEnd
 
     InitScriptEnd

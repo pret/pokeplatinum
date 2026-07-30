@@ -2,7 +2,7 @@
   "key": 58402,
   "messages": [
     {
-      "id": "OreburghCityWestHouse_Text_HaveYouEverSeenOrHeardAboutDifferentlyColoredPokemon",
+      "id": "OreburghCityWestHouse_Text_HaveYouSeenDifferentlyColoredPokemon",
       "en_US": [
         "Have you ever seen or heard about\n",
         "differently colored Pokémon?\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "OreburghCityWestHouse_Text_YouKnowHowPokemonHaveDifferentNaturesLikeWeHavePersonalities",
+      "id": "OreburghCityWestHouse_Text_PokemonHaveDifferentNatures",
       "en_US": [
         "You know how Pokémon have different\n",
         "natures like we have personalities?\r",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "OreburghCityWestHouse_Text_PikachuPikaaah",
+      "id": "OreburghCityWestHouse_Text_PikachuCry",
       "en_US": "PIKACHU: Pikaaah!"
     }
   ]

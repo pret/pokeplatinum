@@ -4,7 +4,10 @@
 #include "constants/moves.h"
 #include "constants/string.h"
 
+#include "struct_defs/seal_case.h"
+
 #include "charcode.h"
+#include "mail.h"
 
 // clang-format off
 /**
@@ -124,9 +127,6 @@ typedef struct BoxPokemon {
     /* 0x008 */ PokemonDataBlock dataBlocks[4];
 } BoxPokemon;
 // clang-format on
-
-#include "struct_defs/mail.h"
-#include "struct_defs/seal_case.h"
 
 /**
  * @brief Party Pokemon data structure

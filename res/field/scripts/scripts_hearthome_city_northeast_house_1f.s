@@ -9,7 +9,7 @@
     ScriptEntry HearthomeCityNortheastHouse1F_Twin
     ScriptEntry HearthomeCityNortheastHouse1F_SchoolKidM
     ScriptEntry HearthomeCityNortheastHouse1F_Lass
-    ScriptEntry HearthomeCityNortheastHouse1F_Unused
+    ScriptEntry HearthomeCityNortheastHouse1F_Dummy8
     ScriptEntry HearthomeCityNortheastHouse1F_Pikachu
     ScriptEntryEnd
 
@@ -41,7 +41,7 @@ HearthomeCityNortheastHouse1F_Lass:
     NPCMessage HearthomeCityNortheastHouse1F_Text_WowYoureAPokemonTrainer
     End
 
-HearthomeCityNortheastHouse1F_Unused:
+HearthomeCityNortheastHouse1F_Dummy8:
     NPCMessage HearthomeCityNortheastHouse1F_Text_Dummy7
     End
 

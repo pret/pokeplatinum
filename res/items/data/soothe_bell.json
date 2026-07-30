@@ -1,0 +1,30 @@
+{
+  "name": "Soothe Bell",
+  "plural": "Soothe Bells",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon. It is\n",
+    "a bell with a comforting chime that\n",
+    "calms the holder and makes it friendly."
+  ],
+  "icon": {
+    "sprite": "soothe_bell_NCGR",
+    "palette": "soothe_bell_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SOOTHE_BELL",
+  "price": 100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_FRIENDSHIP_UP",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

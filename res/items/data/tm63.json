@@ -1,0 +1,31 @@
+{
+  "name": "TM63",
+  "plural": "TM63s",
+  "article": "a",
+  "description": [
+    "It prevents the foe from using its\n",
+    "held item. Its Trainer is also\n",
+    "prevented from using items on it."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_dark_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 2000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_EMBARGO"
+}

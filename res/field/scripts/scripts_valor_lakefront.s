@@ -9,15 +9,15 @@
     ScriptEntry ValorLakefront_CameramanSouth
     ScriptEntry ValorLakefront_Beauty
     ScriptEntry ValorLakefront_CameramanNorth
-    ScriptEntry ValorLakefront_SignSevenStarsRestaurant
+    ScriptEntry ValorLakefront_SignboardSevenStarsRestaurant
     ScriptEntry ValorLakefront_Collector
-    ScriptEntry ValorLakefront_TriggerBlockSunyshore
+    ScriptEntry ValorLakefront_CoordEvent_BlockSunyshore
     ScriptEntryEnd
 
 ValorLakefront_OnTransition:
     CallIfSet FLAG_TALKED_TO_VALOR_LAKEFRONT_GRUNT_M, ValorLakefront_SetGruntMPositionNorth
-    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValorDrained
-    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValor
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_RemoveWarpsLakeValorNormal
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_RemoveWarpsLakeValorDrained
     End
     End
 
@@ -28,16 +28,16 @@ ValorLakefront_SetGruntMPositionNorth:
     Return
 
 ValorLakefront_OnLoad:
-    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValorDrained
-    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_SetWarpEventsLakeValor
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_RemoveWarpsLakeValorNormal
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorLakefront_RemoveWarpsLakeValorDrained
     End
 
-ValorLakefront_SetWarpEventsLakeValorDrained:
+ValorLakefront_RemoveWarpsLakeValorNormal:
     SetWarpEventPos 5, 713, 760
     SetWarpEventPos 6, 713, 761
     End
 
-ValorLakefront_SetWarpEventsLakeValor:
+ValorLakefront_RemoveWarpsLakeValorDrained:
     SetWarpEventPos 3, 713, 760
     SetWarpEventPos 4, 713, 761
     End
@@ -357,11 +357,11 @@ ValorLakefront_CynthiaLeave:
 
 ValorLakefront_RemoveCynthia:
     RemoveObject LOCALID_CYNTHIA
-    SetVar VAR_UNK_0x4083, 2
+    SetVar VAR_DUMMY_0x4083, 2
     SetFlag FLAG_DUMMY_0x00B7
     SetFlag FLAG_HIDE_PASTORIA_CITY_RIVAL
     ClearFlag FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE
-    SetVar VAR_PASTORIA_STATE, 6
+    SetVar VAR_PASTORIA_CITY_STATE, 6
     ReleaseAll
     End
 
@@ -421,7 +421,7 @@ ValorLakefront_Movement_CynthiaLeave:
     WalkNormalNorth 9
     EndMovement
 
-ValorLakefront_UnusedMovement:
+ValorLakefront_Movement_Unused:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
@@ -444,7 +444,7 @@ ValorLakefront_Movement_PlayerWatchRivalLeave:
     WalkOnSpotNormalNorth
     EndMovement
 
-ValorLakefront_UnusedMovement2:
+ValorLakefront_Movement_Unused2:
     Delay8 3
     WalkOnSpotNormalNorth
     EndMovement
@@ -505,7 +505,7 @@ ValorLakefront_Movement_WalkNorth:
     WalkNormalNorth
     EndMovement
 
-ValorLakefront_SignSevenStarsRestaurant:
+ValorLakefront_SignboardSevenStarsRestaurant:
     ShowLandmarkSign ValorLakefront_Text_SignSevenStarsRestaurant
     End
 
@@ -513,7 +513,7 @@ ValorLakefront_Collector:
     NPCMessage ValorLakefront_Text_SunyshoreHadBlackout2
     End
 
-ValorLakefront_TriggerBlockSunyshore:
+ValorLakefront_CoordEvent_BlockSunyshore:
     LockAll
     ApplyMovement LOCALID_COLLECTOR, ValorLakefront_Movement_CollectorExclamationMark
     WaitMovement

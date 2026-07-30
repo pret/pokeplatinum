@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "constants/sunyshore_gym_buttons.h"
 #include "res/text/bank/sunyshore_city_gym_room_1.h"
 
 
@@ -9,12 +10,12 @@
     ScriptEntryEnd
 
 SunyshoreGymRoom1_Init:
-    SetVar VAR_MAP_LOCAL_0, 0
+    SetVar VAR_MAP_LOCAL_0x00, 0
     InitPersistedMapFeaturesForSunyshoreGym 0
     End
 
 SunyshoreGymRoom1_Button:
-    SunyshoreGymButton 0
+    PressSunyshoreGymButton SUNYSHORE_GYM_BUTTON_NORMAL
     End
 
 SunyshoreGymRoom1_GymGuide:

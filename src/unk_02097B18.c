@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202440C_decl.h"
+#include "struct_decls/tv_broadcast.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/struct_02097F18.h"
 
@@ -40,7 +40,7 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_0202C9F4.h"
 #include "vram_transfer.h"
 
@@ -143,11 +143,11 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
     v0->unk_D4.unk_10 = BgConfig_New(HEAP_ID_53);
     VramTransfer_New(64, HEAP_ID_53);
     v0->unk_D4.unk_14 = PaletteData_New(HEAP_ID_53);
-    PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, HEAP_ID_53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 1, 0x200, HEAP_ID_53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 2, 0x200, HEAP_ID_53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 3, 0x200, HEAP_ID_53);
+    PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, TRUE);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
 
     ov76_0223EB64(v0->unk_D4.unk_10);
     ov76_0223BF10();
@@ -231,10 +231,10 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 6);
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 7);
     Heap_Free(v0->unk_D4.unk_10);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 0);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 1);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 2);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 3);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_OBJ);
     PaletteData_Free(v0->unk_D4.unk_14);
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
     Heap_Free(v0->unk_428);
@@ -272,7 +272,7 @@ Pokemon *sub_02097F00(UnkStruct_02097F18 *param0, int param1)
     int v0 = param1;
 
     if (param0->unk_00 < v0) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
     }
 
@@ -314,10 +314,8 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         {
             int v3;
-            int v4;
-
             v1->unk_1C = SaveData_GetParty(v0->saveData);
-            v4 = Party_GetCurrentCount(v1->unk_1C);
+            int v4 = Party_GetCurrentCount(v1->unk_1C);
             v1->unk_00 = v4;
 
             for (v3 = 0; v3 < v4; v3++) {
@@ -341,7 +339,7 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         switch (v5) {
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         case 0:
             v0->unk_14 = 5;
             break;
@@ -367,28 +365,21 @@ static BOOL sub_02097F38(FieldTask *param0)
     } break;
     case 4: {
         PartyMenu *partyMenu = v0->partyMenu;
-        Pokemon *v8;
-        BallCapsule *v9;
-        BallSeal *v10;
-        TVBroadcast *broadcast;
-        int v12;
-        int v13;
-
-        v13 = sub_02097F18(v0->unk_08) + 1;
+        int v13 = sub_02097F18(v0->unk_08) + 1;
 
         if (partyMenu->selectedMonSlot != 7) {
-            v8 = sub_02097F00(v0->unk_08, partyMenu->selectedMonSlot);
+            Pokemon *v8 = sub_02097F00(v0->unk_08, partyMenu->selectedMonSlot);
 
             Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
             Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(v1->unk_20, v13 - 1));
 
-            v9 = SealCase_GetCapsuleById(v1->unk_20, v13 - 1);
-            v10 = BallCapsule_GetBallSeals(v9, 0);
-            v12 = BallSeal_GetSealType(v10);
+            BallCapsule *v9 = SealCase_GetCapsuleById(v1->unk_20, v13 - 1);
+            BallSeal *v10 = BallCapsule_GetBallSeals(v9, 0);
+            int v12 = BallSeal_GetSealType(v10);
             v12 = sub_02098164(v12);
-            broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+            TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-            FieldSystem_SaveTVEpisodeSegment_SealClubShow(broadcast, v8, v12);
+            FieldSystem_SaveTVSegment_SealClubShow(broadcast, v8, v12);
         }
     }
         v0->unk_14 = 1;

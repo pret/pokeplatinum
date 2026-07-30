@@ -2,7 +2,7 @@
   "key": 25643,
   "messages": [
     {
-      "id": "MiningMuseum_Text_Welcome",
+      "id": "MiningMuseum_Text_WelcomeToMuseum",
       "en_US": [
         "Hello! Welcome to the Oreburgh\n",
         "Mining Museum!"
@@ -18,14 +18,14 @@
       ]
     },
     {
-      "id": "MiningMuseum_Text_HaveFossilForMe",
+      "id": "MiningMuseum_Text_ShallIReviveFossil",
       "en_US": [
         "You have a Fossil for me, yes?\n",
         "Shall I turn it into a Pokémon?"
       ]
     },
     {
-      "id": "MiningMuseum_Text_WhichFossilToRevive",
+      "id": "MiningMuseum_Text_ReviveWhichFossil",
       "en_US": [
         "Which Fossil should I turn back\n",
         "into a Pokémon? Choose! Now!"
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "MiningMuseum_Text_PokemonRevivedTooLong",
+      "id": "MiningMuseum_Text_ThisIsRevivedPokemon",
       "en_US": [
         "You were gone too long!\n",
         "You kept us waiting! Unacceptable!\r",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "MiningMuseum_Text_PokemonReceived",
+      "id": "MiningMuseum_Text_ReceivedPokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received\n",
         "the {STRVAR_1 0, 1, 0}!\r"
@@ -185,14 +185,14 @@
       ]
     },
     {
-      "id": "MiningMuseum_Text_CoalSamplesDisplay",
+      "id": "MiningMuseum_Text_SamplesDifferentRegions",
       "en_US": [
         "Samples of coal from different regions\n",
         "are displayed."
       ]
     },
     {
-      "id": "MiningMuseum_Text_CoalSamplesBox",
+      "id": "MiningMuseum_Text_CategorizedCoalSamples",
       "en_US": [
         "The box contains categorized samples\n",
         "of coal."

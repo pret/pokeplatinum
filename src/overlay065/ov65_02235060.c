@@ -414,7 +414,7 @@ void ov65_022355B0(UnkStruct_ov65_02235130 *param0)
         return;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 void ov65_022355EC(UnkStruct_ov65_02235130 *param0)
@@ -788,7 +788,7 @@ static void ov65_02235C64(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_02235C
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static void ov65_02235D08(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_02235C64 *param1)
@@ -813,7 +813,7 @@ static void ov65_02235D08(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_02235C
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 static UnkStruct_ov65_022354D8 *ov65_02235D7C(UnkStruct_ov65_02235130 *param0)
@@ -826,7 +826,7 @@ static UnkStruct_ov65_022354D8 *ov65_02235D7C(UnkStruct_ov65_02235130 *param0)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
@@ -1140,7 +1140,7 @@ static void ov65_0223628C(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354
         ov65_02235EC8(param0, param1);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

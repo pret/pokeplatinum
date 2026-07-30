@@ -1,18 +1,19 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/footstep_house.h"
+#include "res/field/events/events_footstep_house.h"
 #include "constants/footstep_house.h"
 #include "generated/ribbons.h"
 
-#define LOCALID_HAS_PRINT VAR_0x8000
-#define LOCALID_FOOTPRINT_TYPE VAR_0x8001
-#define LOCALID_PARTY_SLOT VAR_0x8002
+#define LOCAL_VAR_HAS_PRINT      VAR_0x8000
+#define LOCAL_VAR_FOOTPRINT_TYPE VAR_0x8001
+#define LOCAL_VAR_PARTY_SLOT     VAR_0x8002
 
 
-    ScriptEntry _000A
+    ScriptEntry FootstepHouse_OnTransition
     ScriptEntry FootstepHouse_DrFootstep
     ScriptEntryEnd
 
-_000A:
+FootstepHouse_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_DOCTOR_FOOTSTEPS_HOUSE
     End
 
@@ -20,19 +21,19 @@ FootstepHouse_DrFootstep:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetFirstNonEggInParty LOCALID_PARTY_SLOT
-    BufferPartyMonSpecies 0, LOCALID_PARTY_SLOT
+    GetFirstNonEggInParty LOCAL_VAR_PARTY_SLOT
+    BufferPartyMonSpecies 0, LOCAL_VAR_PARTY_SLOT
     BufferPlayerName 1
-    BufferPartyMonNickname 2, LOCALID_PARTY_SLOT
-    GetPartyMonFootprintType LOCALID_HAS_PRINT, LOCALID_FOOTPRINT_TYPE, LOCALID_PARTY_SLOT
+    BufferPartyMonNickname 2, LOCAL_VAR_PARTY_SLOT
+    GetPartyMonFootprintType LOCAL_VAR_HAS_PRINT, LOCAL_VAR_FOOTPRINT_TYPE, LOCAL_VAR_PARTY_SLOT
     GoToIfSet FLAG_TALKED_TO_DR_FOOTSTEP, FootstepHouse_CheckFeelingsAgain
     SetFlag FLAG_TALKED_TO_DR_FOOTSTEP
-    Message FootstepHouse_Text_PokemonAreQuiteEasyForMeToRead
+    Message FootstepHouse_Text_PokemonEasyToRead
     CloseMessage
     GoTo FootstepHouse_FadeScreen
 
 FootstepHouse_CheckFeelingsAgain:
-    Message FootstepHouse_Text_DoYouWantToCheckTheFeelingsOfYourPokemonAgain
+    Message FootstepHouse_Text_CheckFeelingsAgain
     CloseMessage
     GoTo FootstepHouse_FadeScreen
 
@@ -42,356 +43,356 @@ FootstepHouse_FadeScreen:
     WaitTime 40, VAR_RESULT
     FadeScreenIn
     WaitFadeScreen
-    Call _008A
+    Call FootstepHouse_DrFootstepStepBack
     WaitTime 20, VAR_RESULT
     IncrementGameRecord RECORD_CHECKED_FOOTPRINTS
     GoTo FootstepHouse_CheckType
 
-_008A:
+FootstepHouse_DrFootstepStepBack:
     GetPlayerMapPos VAR_0x8005, VAR_0x8006
-    GoToIfEq VAR_0x8005, 4, _00BD
-    GoToIfEq VAR_0x8005, 6, _00C9
-    GoToIfEq VAR_0x8006, 5, _00D5
-    GoTo _00E1
+    GoToIfEq VAR_0x8005, 4, FootstepHouse_DrFootstepStepBackX4
+    GoToIfEq VAR_0x8005, 6, FootstepHouse_DrFootstepStepBackX6
+    GoToIfEq VAR_0x8006, 5, FootstepHouse_DrFootstepStepBackZ5
+    GoTo FootstepHouse_DrFootstepStepBackZ7
 
-_00BD:
-    ApplyMovement 0, _0698
+FootstepHouse_DrFootstepStepBackX4:
+    ApplyMovement LOCALID_DR_FOOTSTEP, FootstepHouse_Movement_DrFootstepStepBackEast
     WaitMovement
     Return
 
-_00C9:
-    ApplyMovement 0, _06A8
+FootstepHouse_DrFootstepStepBackX6:
+    ApplyMovement LOCALID_DR_FOOTSTEP, FootstepHouse_Movement_DrFootstepStepBackWest
     WaitMovement
     Return
 
-_00D5:
-    ApplyMovement 0, _06B8
+FootstepHouse_DrFootstepStepBackZ5:
+    ApplyMovement LOCALID_DR_FOOTSTEP, FootstepHouse_Movement_DrFootstepStepBackSouth
     WaitMovement
     Return
 
-_00E1:
-    ApplyMovement 0, _06C8
+FootstepHouse_DrFootstepStepBackZ7:
+    ApplyMovement LOCALID_DR_FOOTSTEP, FootstepHouse_Movement_DrFootstepStepBackNorth
     WaitMovement
     Return
 
-_00ED:
+FootstepHouse_DrFootstepWalkToPlayer:
     GetPlayerMapPos VAR_0x8005, VAR_0x8006
-    GoToIfEq VAR_0x8005, 4, _0120
-    GoToIfEq VAR_0x8005, 6, _012C
-    GoToIfEq VAR_0x8006, 5, _0138
-    GoTo _0144
+    GoToIfEq VAR_0x8005, 4, FootstepHouse_DrFootstepWalkToPlayerX4
+    GoToIfEq VAR_0x8005, 6, FootstepHouse_DrFootstepWalkToPlayerX6
+    GoToIfEq VAR_0x8006, 5, FootstepHouse_DrFootstepWalkToPlayerZ5
+    GoTo FootstepHouse_DrFootstepWalkToPlayerZ7
 
-_0120:
-    ApplyMovement 0, _06D8
+FootstepHouse_DrFootstepWalkToPlayerX4:
+    ApplyMovement LOCALID_DR_FOOTSTEP, FootstepHouse_Movement_DrFootstepWalkToPlayerX4
     WaitMovement
     Return
 
-_012C:
-    ApplyMovement 0, _06E0
+FootstepHouse_DrFootstepWalkToPlayerX6:
+    ApplyMovement LOCALID_DR_FOOTSTEP, FootstepHouse_Movement_DrFootstepWalkToPlayerX6
     WaitMovement
     Return
 
-_0138:
-    ApplyMovement 0, _06E8
+FootstepHouse_DrFootstepWalkToPlayerZ5:
+    ApplyMovement LOCALID_DR_FOOTSTEP, FootstepHouse_Movement_DrFootstepWalkToPlayerZ5
     WaitMovement
     Return
 
-_0144:
-    ApplyMovement 0, _06F0
+FootstepHouse_DrFootstepWalkToPlayerZ7:
+    ApplyMovement LOCALID_DR_FOOTSTEP, FootstepHouse_Movement_DrFootstepWalkToPlayerZ7
     WaitMovement
     Return
 
 FootstepHouse_CheckType:
-    GoToIfEq LOCALID_FOOTPRINT_TYPE, FOOTPRINT_TYPE_CUTE, FootstepHouse_CuteType
-    GoToIfEq LOCALID_FOOTPRINT_TYPE, FOOTPRINT_TYPE_TOUGH, FootstepHouse_ToughType
-    GoToIfEq LOCALID_FOOTPRINT_TYPE, FOOTPRINT_TYPE_SCARY, FootstepHouse_ScaryType
-    GoToIfEq LOCALID_FOOTPRINT_TYPE, FOOTPRINT_TYPE_SLOW, FootstepHouse_SlowType
+    GoToIfEq LOCAL_VAR_FOOTPRINT_TYPE, FOOTPRINT_TYPE_CUTE, FootstepHouse_CuteType
+    GoToIfEq LOCAL_VAR_FOOTPRINT_TYPE, FOOTPRINT_TYPE_TOUGH, FootstepHouse_ToughType
+    GoToIfEq LOCAL_VAR_FOOTPRINT_TYPE, FOOTPRINT_TYPE_SCARY, FootstepHouse_ScaryType
+    GoToIfEq LOCAL_VAR_FOOTPRINT_TYPE, FOOTPRINT_TYPE_SLOW, FootstepHouse_SlowType
     GoTo FootstepHouse_VoicelessType
 
 FootstepHouse_CuteType:
-    GoToIfEq LOCALID_HAS_PRINT, TRUE, FootstepHouse_CuteType_WithPrint
-    GoTo FootstepHouse_CuteType_WithoutPrint
+    GoToIfEq LOCAL_VAR_HAS_PRINT, TRUE, FootstepHouse_Cute_WithPrint
+    GoTo FootstepHouse_Cute_NoPrint
 
 FootstepHouse_ToughType:
-    GoToIfEq LOCALID_HAS_PRINT, TRUE, FootstepHouse_ToughType_WithPrint
-    GoTo FootstepHouse_ToughType_WithoutPrint
+    GoToIfEq LOCAL_VAR_HAS_PRINT, TRUE, FootstepHouse_Tough_WithPrint
+    GoTo FootstepHouse_Tough_NoPrint
 
 FootstepHouse_ScaryType:
-    GoToIfEq LOCALID_HAS_PRINT, TRUE, FootstepHouse_ScaryType_WithPrint
-    GoTo FootstepHouse_ScaryType_WithoutPrint
+    GoToIfEq LOCAL_VAR_HAS_PRINT, TRUE, FootstepHouse_Scary_WithPrint
+    GoTo FootstepHouse_Scary_NoPrint
 
 FootstepHouse_SlowType:
-    GoToIfEq LOCALID_HAS_PRINT, TRUE, FootstepHouse_SlowType_WithPrint
-    GoTo FootstepHouse_SlowType_WithoutPrint
+    GoToIfEq LOCAL_VAR_HAS_PRINT, TRUE, FootstepHouse_Slow_WithPrint
+    GoTo FootstepHouse_Slow_NoPrint
 
-FootstepHouse_CuteType_WithPrint:
-    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_CuteType_WithPrint_Level5
-    GoToIfGe VAR_RESULT, 200, FootstepHouse_CuteType_WithPrint_Level4
-    GoToIfGe VAR_RESULT, 150, FootstepHouse_CuteType_WithPrint_Level3
-    GoToIfGe VAR_RESULT, 70, FootstepHouse_CuteType_WithPrint_Level2
-    GoTo FootstepHouse_CuteType_WithPrint_Level1
+FootstepHouse_Cute_WithPrint:
+    GetPartyMonFriendship VAR_RESULT, LOCAL_VAR_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 255, FootstepHouse_Cute_WithPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_Cute_WithPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_Cute_WithPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_Cute_WithPrint_Level2
+    GoTo FootstepHouse_Cute_WithPrint_Level1
 
-FootstepHouse_CuteType_WithoutPrint:
-    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_CuteType_WithoutPrint_Level5
-    GoToIfGe VAR_RESULT, 200, FootstepHouse_CuteType_WithoutPrint_Level4
-    GoToIfGe VAR_RESULT, 150, FootstepHouse_CuteType_WithoutPrint_Level3
-    GoToIfGe VAR_RESULT, 70, FootstepHouse_CuteType_WithoutPrint_Level2
-    GoTo FootstepHouse_CuteType_WithoutPrint_Level1
+FootstepHouse_Cute_NoPrint:
+    GetPartyMonFriendship VAR_RESULT, LOCAL_VAR_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 255, FootstepHouse_Cute_NoPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_Cute_NoPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_Cute_NoPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_Cute_NoPrint_Level2
+    GoTo FootstepHouse_Cute_NoPrint_Level1
 
-FootstepHouse_ToughType_WithPrint:
-    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_ToughType_WithPrint_Level5
-    GoToIfGe VAR_RESULT, 200, FootstepHouse_ToughType_WithPrint_Level4
-    GoToIfGe VAR_RESULT, 150, FootstepHouse_ToughType_WithPrint_Level3
-    GoToIfGe VAR_RESULT, 70, FootstepHouse_ToughType_WithPrint_Level2
-    GoTo FootstepHouse_ToughType_WithPrint_Level1
+FootstepHouse_Tough_WithPrint:
+    GetPartyMonFriendship VAR_RESULT, LOCAL_VAR_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 255, FootstepHouse_Tough_WithPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_Tough_WithPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_Tough_WithPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_Tough_WithPrint_Level2
+    GoTo FootstepHouse_Tough_WithPrint_Level1
 
-FootstepHouse_ToughType_WithoutPrint:
-    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_ToughType_WithoutPrint_Level5
-    GoToIfGe VAR_RESULT, 200, FootstepHouse_ToughType_WithoutPrint_Level4
-    GoToIfGe VAR_RESULT, 150, FootstepHouse_ToughType_WithoutPrint_Level3
-    GoToIfGe VAR_RESULT, 70, FootstepHouse_ToughType_WithoutPrint_Level2
-    GoTo FootstepHouse_ToughType_WithoutPrint_Level1
+FootstepHouse_Tough_NoPrint:
+    GetPartyMonFriendship VAR_RESULT, LOCAL_VAR_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 255, FootstepHouse_Tough_NoPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_Tough_NoPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_Tough_NoPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_Tough_NoPrint_Level2
+    GoTo FootstepHouse_Tough_NoPrint_Level1
 
-FootstepHouse_ScaryType_WithPrint:
-    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_ScaryType_WithPrint_Level5
-    GoToIfGe VAR_RESULT, 200, FootstepHouse_ScaryType_WithPrint_Level4
-    GoToIfGe VAR_RESULT, 150, FootstepHouse_ScaryType_WithPrint_Level3
-    GoToIfGe VAR_RESULT, 70, FootstepHouse_ScaryType_WithPrint_Level2
-    GoTo FootstepHouse_ScaryType_WithPrint_Level1
+FootstepHouse_Scary_WithPrint:
+    GetPartyMonFriendship VAR_RESULT, LOCAL_VAR_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 255, FootstepHouse_Scary_WithPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_Scary_WithPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_Scary_WithPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_Scary_WithPrint_Level2
+    GoTo FootstepHouse_Scary_WithPrint_Level1
 
-FootstepHouse_ScaryType_WithoutPrint:
-    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_ScaryType_WithoutPrint_Level5
-    GoToIfGe VAR_RESULT, 200, FootstepHouse_ScaryType_WithoutPrint_Level4
-    GoToIfGe VAR_RESULT, 150, FootstepHouse_ScaryType_WithoutPrint_Level3
-    GoToIfGe VAR_RESULT, 70, FootstepHouse_ScaryType_WithoutPrint_Level2
-    GoTo FootstepHouse_ScaryType_WithoutPrint_Level1
+FootstepHouse_Scary_NoPrint:
+    GetPartyMonFriendship VAR_RESULT, LOCAL_VAR_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 255, FootstepHouse_Scary_NoPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_Scary_NoPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_Scary_NoPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_Scary_NoPrint_Level2
+    GoTo FootstepHouse_Scary_NoPrint_Level1
 
-FootstepHouse_SlowType_WithPrint:
-    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_SlowType_WithPrint_Level5
-    GoToIfGe VAR_RESULT, 200, FootstepHouse_SlowType_WithPrint_Level4
-    GoToIfGe VAR_RESULT, 150, FootstepHouse_SlowType_WithPrint_Level3
-    GoToIfGe VAR_RESULT, 70, FootstepHouse_SlowType_WithPrint_Level2
-    GoTo FootstepHouse_SlowType_WithPrint_Level1
+FootstepHouse_Slow_WithPrint:
+    GetPartyMonFriendship VAR_RESULT, LOCAL_VAR_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 255, FootstepHouse_Slow_WithPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_Slow_WithPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_Slow_WithPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_Slow_WithPrint_Level2
+    GoTo FootstepHouse_Slow_WithPrint_Level1
 
-FootstepHouse_SlowType_WithoutPrint:
-    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
-    GoToIfGe VAR_RESULT, 0xFF, FootstepHouse_SlowType_WithoutPrint_Level5
-    GoToIfGe VAR_RESULT, 200, FootstepHouse_SlowType_WithoutPrint_Level4
-    GoToIfGe VAR_RESULT, 150, FootstepHouse_SlowType_WithoutPrint_Level3
-    GoToIfGe VAR_RESULT, 70, FootstepHouse_SlowType_WithoutPrint_Level2
-    GoTo FootstepHouse_SlowType_WithoutPrint_Level1
+FootstepHouse_Slow_NoPrint:
+    GetPartyMonFriendship VAR_RESULT, LOCAL_VAR_PARTY_SLOT
+    GoToIfGe VAR_RESULT, 255, FootstepHouse_Slow_NoPrint_Level5
+    GoToIfGe VAR_RESULT, 200, FootstepHouse_Slow_NoPrint_Level4
+    GoToIfGe VAR_RESULT, 150, FootstepHouse_Slow_NoPrint_Level3
+    GoToIfGe VAR_RESULT, 70, FootstepHouse_Slow_NoPrint_Level2
+    GoTo FootstepHouse_Slow_NoPrint_Level1
 
-FootstepHouse_CuteType_WithPrint_Level1:
-    Message FootstepHouse_Text_CuteType_WithPrint_Level1
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Cute_WithPrint_Level1:
+    Message FootstepHouse_Text_Cute_WithPrint_Level1
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_CuteType_WithPrint_Level2:
-    Message FootstepHouse_Text_CuteType_WithPrint_Level2
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Cute_WithPrint_Level2:
+    Message FootstepHouse_Text_Cute_WithPrint_Level2
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_CuteType_WithPrint_Level3:
-    Message FootstepHouse_Text_CuteType_WithPrint_Level3
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Cute_WithPrint_Level3:
+    Message FootstepHouse_Text_Cute_WithPrint_Level3
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_CuteType_WithPrint_Level4:
-    Message FootstepHouse_Text_CuteType_WithPrint_Level4
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Cute_WithPrint_Level4:
+    Message FootstepHouse_Text_Cute_WithPrint_Level4
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_CuteType_WithPrint_Level5:
-    Message FootstepHouse_Text_CuteType_WithPrint_Level5
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon
+FootstepHouse_Cute_WithPrint_Level5:
+    Message FootstepHouse_Text_Cute_WithPrint_Level5
+    GoTo FootstepHouse_ThatsWhatPokemonThinks_TryGiveRibbon
 
-FootstepHouse_CuteType_WithoutPrint_Level1:
-    Message FootstepHouse_Text_CuteType_WithoutPrint_Level1
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Cute_NoPrint_Level1:
+    Message FootstepHouse_Text_Cute_NoPrint_Level1
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_CuteType_WithoutPrint_Level2:
-    Message FootstepHouse_Text_CuteType_WithoutPrint_Level2
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Cute_NoPrint_Level2:
+    Message FootstepHouse_Text_Cute_NoPrint_Level2
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_CuteType_WithoutPrint_Level3:
-    Message FootstepHouse_Text_CuteType_WithoutPrint_Level3
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Cute_NoPrint_Level3:
+    Message FootstepHouse_Text_Cute_NoPrint_Level3
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_CuteType_WithoutPrint_Level4:
-    Message FootstepHouse_Text_CuteType_WithoutPrint_Level4
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Cute_NoPrint_Level4:
+    Message FootstepHouse_Text_Cute_NoPrint_Level4
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_CuteType_WithoutPrint_Level5:
-    Message FootstepHouse_Text_CuteType_WithoutPrint_Level5
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon
+FootstepHouse_Cute_NoPrint_Level5:
+    Message FootstepHouse_Text_Cute_NoPrint_Level5
+    GoTo FootstepHouse_NoFootprints_TryGiveRibbon
 
-FootstepHouse_ToughType_WithPrint_Level1:
-    Message FootstepHouse_Text_ToughType_WithPrint_Level1
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Tough_WithPrint_Level1:
+    Message FootstepHouse_Text_Tough_WithPrint_Level1
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_ToughType_WithPrint_Level2:
-    Message FootstepHouse_Text_ToughType_WithPrint_Level2
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Tough_WithPrint_Level2:
+    Message FootstepHouse_Text_Tough_WithPrint_Level2
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_ToughType_WithPrint_Level3:
-    Message FootstepHouse_Text_ToughType_WithPrint_Level3
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Tough_WithPrint_Level3:
+    Message FootstepHouse_Text_Tough_WithPrint_Level3
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_ToughType_WithPrint_Level4:
-    Message FootstepHouse_Text_ToughType_WithPrint_Level4
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Tough_WithPrint_Level4:
+    Message FootstepHouse_Text_Tough_WithPrint_Level4
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_ToughType_WithPrint_Level5:
-    Message FootstepHouse_Text_ToughType_WithPrint_Level5
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon
+FootstepHouse_Tough_WithPrint_Level5:
+    Message FootstepHouse_Text_Tough_WithPrint_Level5
+    GoTo FootstepHouse_ThatsWhatPokemonThinks_TryGiveRibbon
 
-FootstepHouse_ToughType_WithoutPrint_Level1:
-    Message FootstepHouse_Text_ToughType_WithoutPrint_Level1
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Tough_NoPrint_Level1:
+    Message FootstepHouse_Text_Tough_NoPrint_Level1
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_ToughType_WithoutPrint_Level2:
-    Message FootstepHouse_Text_ToughType_WithoutPrint_Level2
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Tough_NoPrint_Level2:
+    Message FootstepHouse_Text_Tough_NoPrint_Level2
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_ToughType_WithoutPrint_Level3:
-    Message FootstepHouse_Text_ToughType_WithoutPrint_Level3
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Tough_NoPrint_Level3:
+    Message FootstepHouse_Text_Tough_NoPrint_Level3
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_ToughType_WithoutPrint_Level4:
-    Message FootstepHouse_Text_ToughType_WithoutPrint_Level4
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Tough_NoPrint_Level4:
+    Message FootstepHouse_Text_Tough_NoPrint_Level4
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_ToughType_WithoutPrint_Level5:
-    Message FootstepHouse_Text_ToughType_WithoutPrint_Level5
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon
+FootstepHouse_Tough_NoPrint_Level5:
+    Message FootstepHouse_Text_Tough_NoPrint_Level5
+    GoTo FootstepHouse_NoFootprints_TryGiveRibbon
 
-FootstepHouse_ScaryType_WithPrint_Level1:
-    Message FootstepHouse_Text_ScaryType_WithPrint_Level1
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Scary_WithPrint_Level1:
+    Message FootstepHouse_Text_Scary_WithPrint_Level1
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_ScaryType_WithPrint_Level2:
-    Message FootstepHouse_Text_ScaryType_WithPrint_Level2
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Scary_WithPrint_Level2:
+    Message FootstepHouse_Text_Scary_WithPrint_Level2
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_ScaryType_WithPrint_Level3:
-    Message FootstepHouse_Text_ScaryType_WithPrint_Level3
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Scary_WithPrint_Level3:
+    Message FootstepHouse_Text_Scary_WithPrint_Level3
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_ScaryType_WithPrint_Level4:
-    Message FootstepHouse_Text_ScaryType_WithPrint_Level4
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Scary_WithPrint_Level4:
+    Message FootstepHouse_Text_Scary_WithPrint_Level4
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_ScaryType_WithPrint_Level5:
-    Message FootstepHouse_Text_ScaryType_WithPrint_Level5
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon
+FootstepHouse_Scary_WithPrint_Level5:
+    Message FootstepHouse_Text_Scary_WithPrint_Level5
+    GoTo FootstepHouse_ThatsWhatPokemonThinks_TryGiveRibbon
 
-FootstepHouse_ScaryType_WithoutPrint_Level1:
-    Message FootstepHouse_Text_ScaryType_WithoutPrint_Level1
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Scary_NoPrint_Level1:
+    Message FootstepHouse_Text_Scary_NoPrint_Level1
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_ScaryType_WithoutPrint_Level2:
-    Message FootstepHouse_Text_ScaryType_WithoutPrint_Level2
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Scary_NoPrint_Level2:
+    Message FootstepHouse_Text_Scary_NoPrint_Level2
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_ScaryType_WithoutPrint_Level3:
-    Message FootstepHouse_Text_ScaryType_WithoutPrint_Level3
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Scary_NoPrint_Level3:
+    Message FootstepHouse_Text_Scary_NoPrint_Level3
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_ScaryType_WithoutPrint_Level4:
-    Message FootstepHouse_Text_ScaryType_WithoutPrint_Level4
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Scary_NoPrint_Level4:
+    Message FootstepHouse_Text_Scary_NoPrint_Level4
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_ScaryType_WithoutPrint_Level5:
-    Message FootstepHouse_Text_ScaryType_WithoutPrint_Level5
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon
+FootstepHouse_Scary_NoPrint_Level5:
+    Message FootstepHouse_Text_Scary_NoPrint_Level5
+    GoTo FootstepHouse_NoFootprints_TryGiveRibbon
 
-FootstepHouse_SlowType_WithPrint_Level1:
-    Message FootstepHouse_Text_SlowType_WithoutPrint_Level1
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Slow_WithPrint_Level1:
+    Message FootstepHouse_Text_Slow_NoPrint_Level1
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_SlowType_WithPrint_Level2:
-    Message FootstepHouse_Text_SlowType_WithoutPrint_Level2
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Slow_WithPrint_Level2:
+    Message FootstepHouse_Text_Slow_NoPrint_Level2
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_SlowType_WithPrint_Level3:
-    Message FootstepHouse_Text_SlowType_WithoutPrint_Level3
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Slow_WithPrint_Level3:
+    Message FootstepHouse_Text_Slow_NoPrint_Level3
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_SlowType_WithPrint_Level4:
-    Message FootstepHouse_Text_SlowType_WithoutPrint_Level4
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_Slow_WithPrint_Level4:
+    Message FootstepHouse_Text_Slow_NoPrint_Level4
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_SlowType_WithPrint_Level5:
-    Message FootstepHouse_Text_SlowType_WithoutPrint_Level5
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon
+FootstepHouse_Slow_WithPrint_Level5:
+    Message FootstepHouse_Text_Slow_NoPrint_Level5
+    GoTo FootstepHouse_ThatsWhatPokemonThinks_TryGiveRibbon
 
-FootstepHouse_SlowType_WithoutPrint_Level1:
-    Message FootstepHouse_Text_SlowType_WithPrint_Level1
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Slow_NoPrint_Level1:
+    Message FootstepHouse_Text_Slow_WithPrint_Level1
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_SlowType_WithoutPrint_Level2:
-    Message FootstepHouse_Text_SlowType_WithPrint_Level2
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Slow_NoPrint_Level2:
+    Message FootstepHouse_Text_Slow_WithPrint_Level2
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_SlowType_WithoutPrint_Level3:
-    Message FootstepHouse_Text_SlowType_WithPrint_Level3
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Slow_NoPrint_Level3:
+    Message FootstepHouse_Text_Slow_WithPrint_Level3
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_SlowType_WithoutPrint_Level4:
-    Message FootstepHouse_Text_SlowType_WithPrint_Level4
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_Slow_NoPrint_Level4:
+    Message FootstepHouse_Text_Slow_WithPrint_Level4
+    GoTo FootstepHouse_NoFootprints
 
-FootstepHouse_SlowType_WithoutPrint_Level5:
-    Message FootstepHouse_Text_SlowType_WithPrint_Level5
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon
+FootstepHouse_Slow_NoPrint_Level5:
+    Message FootstepHouse_Text_Slow_WithPrint_Level5
+    GoTo FootstepHouse_NoFootprints_TryGiveRibbon
 
-FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon:
-    GetPartyMonRibbon VAR_RESULT, LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
-    GoToIfEq VAR_RESULT, FALSE, FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_GiveRibbon
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
+FootstepHouse_ThatsWhatPokemonThinks_TryGiveRibbon:
+    GetPartyMonRibbon VAR_RESULT, LOCAL_VAR_PARTY_SLOT, RIBBON_FOOTPRINT
+    GoToIfEq VAR_RESULT, FALSE, FootstepHouse_ThatsWhatPokemonThinks_GiveRibbon
+    GoTo FootstepHouse_ThatsWhatPokemonThinks
 
-FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon:
-    GetPartyMonRibbon VAR_RESULT, LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
-    GoToIfEq VAR_RESULT, FALSE, FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon
-    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
+FootstepHouse_NoFootprints_TryGiveRibbon:
+    GetPartyMonRibbon VAR_RESULT, LOCAL_VAR_PARTY_SLOT, RIBBON_FOOTPRINT
+    GoToIfEq VAR_RESULT, FALSE, FootstepHouse_NoFootprints_GiveRibbon
+    GoTo FootstepHouse_NoFootprints
 
 FootstepHouse_VoicelessType:
     Message FootstepHouse_Text_SilentType
-    GetPartyMonFriendship VAR_RESULT, LOCALID_PARTY_SLOT
-    GoToIfLt VAR_RESULT, 0xFF, FootstepHouse_PokemonSilentType_NoRibbon
-    GetPartyMonRibbon VAR_RESULT, LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
+    GetPartyMonFriendship VAR_RESULT, LOCAL_VAR_PARTY_SLOT
+    GoToIfLt VAR_RESULT, 255, FootstepHouse_PokemonSilentType
+    GetPartyMonRibbon VAR_RESULT, LOCAL_VAR_PARTY_SLOT, RIBBON_FOOTPRINT
     GoToIfEq VAR_RESULT, FALSE, FootstepHouse_PokemonSilentType_GiveRibbon
-    GoTo FootstepHouse_PokemonSilentType_NoRibbon
+    GoTo FootstepHouse_PokemonSilentType
 
-FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon:
+FootstepHouse_ThatsWhatPokemonThinks:
     CloseMessage
     WaitTime 20, VAR_RESULT
-    Call _00ED
+    Call FootstepHouse_DrFootstepWalkToPlayer
     WaitTime 10, VAR_RESULT
-    Message FootstepHouse_Text_AndThatsWhatYourPokemonThinksOfYou
+    Message FootstepHouse_Text_ThatsWhatPokemonThinks
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-FootstepHouse_PokemonDoesntLeaveAnyFootprints:
+FootstepHouse_NoFootprints:
     CloseMessage
     WaitTime 20, VAR_RESULT
-    Call _00ED
+    Call FootstepHouse_DrFootstepWalkToPlayer
     WaitTime 10, VAR_RESULT
-    Message FootstepHouse_Text_PokemonDoesntLeaveAnyFootprints
+    Message FootstepHouse_Text_NoFootprints
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-FootstepHouse_PokemonSilentType_NoRibbon:
+FootstepHouse_PokemonSilentType:
     CloseMessage
     WaitTime 20, VAR_RESULT
-    Call _00ED
+    Call FootstepHouse_DrFootstepWalkToPlayer
     WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_PokemonSilentType
     WaitButton
@@ -399,33 +400,33 @@ FootstepHouse_PokemonSilentType_NoRibbon:
     ReleaseAll
     End
 
-FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_GiveRibbon:
+FootstepHouse_ThatsWhatPokemonThinks_GiveRibbon:
     CloseMessage
     WaitTime 20, VAR_RESULT
-    Call _00ED
+    Call FootstepHouse_DrFootstepWalkToPlayer
     WaitTime 10, VAR_RESULT
-    Message FootstepHouse_Text_AndThatsWhatYourPokemonThinksOfYou_CloseBond
+    Message FootstepHouse_Text_ThatsWhatPokemonThinks_CloseBond
     PlayFanfare SEQ_FANFA1
     Message FootstepHouse_Text_PlayerReceivedFootprintRibbon
     WaitFanfare
-    SetPartyMonRibbon LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
-    Message FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon
+    SetPartyMonRibbon LOCAL_VAR_PARTY_SLOT, RIBBON_FOOTPRINT
+    Message FootstepHouse_Text_PutRibbonOnPokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon:
+FootstepHouse_NoFootprints_GiveRibbon:
     CloseMessage
     WaitTime 20, VAR_RESULT
-    Call _00ED
+    Call FootstepHouse_DrFootstepWalkToPlayer
     WaitTime 10, VAR_RESULT
-    Message FootstepHouse_Text_PokemonDoesntLeaveAnyFootprints_CloseBond
+    Message FootstepHouse_Text_NoFootprints_CloseBond
     PlayFanfare SEQ_FANFA1
     Message FootstepHouse_Text_PlayerReceivedFootprintRibbon
     WaitFanfare
-    SetPartyMonRibbon LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
-    Message FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon
+    SetPartyMonRibbon LOCAL_VAR_PARTY_SLOT, RIBBON_FOOTPRINT
+    Message FootstepHouse_Text_PutRibbonOnPokemon
     WaitButton
     CloseMessage
     ReleaseAll
@@ -434,63 +435,63 @@ FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon:
 FootstepHouse_PokemonSilentType_GiveRibbon:
     CloseMessage
     WaitTime 20, VAR_RESULT
-    Call _00ED
+    Call FootstepHouse_DrFootstepWalkToPlayer
     WaitTime 10, VAR_RESULT
     Message FootstepHouse_Text_SilentType_CloseBond
     PlayFanfare SEQ_FANFA1
     Message FootstepHouse_Text_PlayerReceivedFootprintRibbon
     WaitFanfare
-    SetPartyMonRibbon LOCALID_PARTY_SLOT, RIBBON_FOOTPRINT
-    Message FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon
+    SetPartyMonRibbon LOCAL_VAR_PARTY_SLOT, RIBBON_FOOTPRINT
+    Message FootstepHouse_Text_PutRibbonOnPokemon
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_0698:
+FootstepHouse_Movement_DrFootstepStepBackEast:
     LockDir
     WalkNormalEast
     UnlockDir
     EndMovement
 
     .balign 4, 0
-_06A8:
+FootstepHouse_Movement_DrFootstepStepBackWest:
     LockDir
     WalkNormalWest
     UnlockDir
     EndMovement
 
     .balign 4, 0
-_06B8:
+FootstepHouse_Movement_DrFootstepStepBackSouth:
     LockDir
     WalkNormalSouth
     UnlockDir
     EndMovement
 
     .balign 4, 0
-_06C8:
+FootstepHouse_Movement_DrFootstepStepBackNorth:
     LockDir
     WalkNormalNorth
     UnlockDir
     EndMovement
 
     .balign 4, 0
-_06D8:
+FootstepHouse_Movement_DrFootstepWalkToPlayerX4:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_06E0:
+FootstepHouse_Movement_DrFootstepWalkToPlayerX6:
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-_06E8:
+FootstepHouse_Movement_DrFootstepWalkToPlayerZ5:
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_06F0:
+FootstepHouse_Movement_DrFootstepWalkToPlayerZ7:
     WalkNormalSouth
     EndMovement

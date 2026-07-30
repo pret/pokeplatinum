@@ -4,7 +4,7 @@
 
 #include "constants/field/field_effect_renderer.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021ECC20.h"
@@ -35,7 +35,7 @@ typedef struct BerryPatchMoistureEffectContext {
 
 typedef struct BerryPatchMoistureEffect {
     int localID;
-    int mapID;
+    enum MapHeaderID mapHeaderID;
     BOOL isHidden;
     int moistureLevel;
     BerryPatchMoistureEffectContext context;
@@ -139,7 +139,7 @@ static BOOL BerryPatchMoistureEffect_Init(OverworldAnimManager *effect, void *co
 
     moistureEffect->context = *effectContext;
     moistureEffect->localID = MapObject_GetLocalID(moistureEffect->context.mapObject);
-    moistureEffect->mapID = MapObject_GetMapID(moistureEffect->context.mapObject);
+    moistureEffect->mapHeaderID = MapObject_GetMapHeaderID(moistureEffect->context.mapObject);
 
     return TRUE;
 }
@@ -154,7 +154,7 @@ static void BerryPatchMoistureEffect_Update(OverworldAnimManager *effectTask, vo
     BerryPatchMoistureEffect *berryPatchEffect = effectData;
     MapObject *mapObject = berryPatchEffect->context.mapObject;
 
-    if (!sub_02062764(mapObject, berryPatchEffect->localID, berryPatchEffect->mapID)) {
+    if (!sub_02062764(mapObject, berryPatchEffect->localID, berryPatchEffect->mapHeaderID)) {
         FieldEffectManager_FinishAnimManager(effectTask);
         return;
     }
@@ -313,7 +313,7 @@ static void BerryPatchSparkleEffect_Update(OverworldAnimManager *effect, void *c
         sparkleEffect->isAnimating = FALSE;
         sparkleEffect->animationFrame++;
 
-        if (sparkleEffect->animationFrame >= (int)NELEMS(animationSpeeds)) {
+        if (sparkleEffect->animationFrame >= SNELEMS(animationSpeeds)) {
             FieldEffectManager_FinishAnimManager(effect);
             return;
         }

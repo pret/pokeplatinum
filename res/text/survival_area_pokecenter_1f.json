@@ -2,7 +2,7 @@
   "key": 44690,
   "messages": [
     {
-      "id": "pl_msg_00000592_00000",
+      "id": "SurvivalAreaPokecenter1F_Text_BuildingNextDoor",
       "en_US": [
         "The building next door?\r",
         "I see Gym Leaders go in and out every\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000592_00001",
+      "id": "SurvivalAreaPokecenter1F_Text_ChallengeWithoutOwnPokemon",
       "en_US": [
         "The Battle Factory lets you make\n",
         "challenges without your own Pokémon.\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000592_00002",
+      "id": "SurvivalAreaPokecenter1F_Text_CoordinationIsVital",
       "en_US": [
         "In a Multi Battle, coordination with\n",
         "your partner is vital.\r",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000592_00003",
+      "id": "SurvivalAreaPokecenter1F_Text_ShapedByEgg",
       "en_US": [
         "Some say the universe was shaped by\n",
         "something born from an Egg...\r",

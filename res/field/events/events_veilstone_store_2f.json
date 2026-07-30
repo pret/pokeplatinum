@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "VEILSTONE_STORE_2F_LADY_0",
+            "id": "LOCALID_LADY",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -26,7 +26,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_2F_BUG_CATCHER_1",
+            "id": "LOCALID_BUG_CATCHER_1",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,7 +41,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_2F_CASHIER_M_2",
+            "id": "LOCALID_CASHIER_M",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -56,7 +56,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_2F_RECEPTIONIST_3",
+            "id": "LOCALID_RECEPTIONIST",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -71,7 +71,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_2F_CASHIER_F_4",
+            "id": "LOCALID_CASHIER_F_UP",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -86,7 +86,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_2F_CASHIER_F_5",
+            "id": "LOCALID_CASHIER_F_MID",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -101,7 +101,7 @@
             "y": 0
         },
         {
-            "id": "VEILSTONE_STORE_2F_BUG_CATCHER_6",
+            "id": "LOCALID_BUG_CATCHER_2",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",

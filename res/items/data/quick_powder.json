@@ -1,0 +1,30 @@
+{
+  "name": "Quick Powder",
+  "plural": "Quick Powders",
+  "article": "a",
+  "description": [
+    "An item to be held by DITTO.\n",
+    "Extremely fine yet hard, this odd\n",
+    "powder boosts the Speed stat."
+  ],
+  "icon": {
+    "sprite": "metal_powder_NCGR",
+    "palette": "quick_powder_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 10,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_DITTO_SPEED_UP",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

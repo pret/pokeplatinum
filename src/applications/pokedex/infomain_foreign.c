@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/versions.h"
+
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
@@ -21,7 +23,6 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
-#include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -772,22 +773,22 @@ static int LanguageMessage(int languageID)
     int entryID;
 
     switch (languageID) {
-    case JAPANESE:
+    case LANGUAGE_JAPANESE:
         entryID = pl_msg_pokedex_japanese;
         break;
-    case ENGLISH:
+    case LANGUAGE_ENGLISH:
         entryID = pl_msg_pokedex_english;
         break;
-    case FRENCH:
+    case LANGUAGE_FRENCH:
         entryID = pl_msg_pokedex_french;
         break;
-    case ITALIAN:
+    case LANGUAGE_ITALIAN:
         entryID = pl_msg_pokedex_italian;
         break;
-    case GERMAN:
+    case LANGUAGE_GERMAN:
         entryID = pl_msg_pokedex_german;
         break;
-    case SPANISH:
+    case LANGUAGE_SPANISH:
         entryID = pl_msg_pokedex_spanish;
         break;
     default:

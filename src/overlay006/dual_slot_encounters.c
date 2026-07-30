@@ -1,7 +1,8 @@
 #include "overlay006/dual_slot_encounters.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "constants/versions.h"
 
 #include "overlay006/wild_encounters.h"
 

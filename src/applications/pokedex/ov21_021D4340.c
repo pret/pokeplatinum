@@ -46,7 +46,7 @@ BOOL ov21_021D4340(UnkStruct_ov21_021D4340_1 *param0)
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -87,7 +87,7 @@ BOOL ov21_021D43A8(UnkStruct_ov21_021D4340_1 *param0)
         *v0->unk_10 = 1;
         return 1;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -166,7 +166,7 @@ BOOL ov21_021D4434(UnkStruct_ov21_021D4340_1 *param0)
 
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -228,7 +228,7 @@ BOOL ov21_021D4558(UnkStruct_ov21_021D4340_1 *param0)
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

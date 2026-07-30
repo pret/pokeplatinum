@@ -25,7 +25,6 @@ metang_generators = {
     'battle_context_params': { 'type': 'enum', 'tag': 'BattleContextParam' },
     'battle_message_tags': { 'type': 'enum', 'tag': 'BattleMessageTag' },
     'battle_mon_params': { 'type': 'enum', 'tag': 'BattleMonParam' },
-    'battle_move_effects': { 'type': 'enum', 'tag': 'BattleMoveEffect' },
     'battle_move_subscript_ptrs': { 'type': 'enum', 'tag': 'BattleMoveSubscriptPtr' },
     'battle_script_battlers': { 'type': 'enum', 'tag': 'Battler' },
     'battle_script_check_side_condition_ops': { 'type': 'enum', 'tag': 'BattleScriptCheckSideConditionOp' },
@@ -38,13 +37,11 @@ metang_generators = {
     'battle_sub_animations': { 'type': 'enum', 'tag': 'BattleSubAnimation' },
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
-    'battle_tower_functions': { 'type': 'enum', 'tag': 'BattleTowerFunction' },
     'battle_tower_modes': { 'type': 'enum', 'tag': 'BattleTowerMode' },
     'berry_growth_stages': { 'type': 'enum', 'tag': 'BerryGrowthStage' },
     'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
-    'contest_effects': { 'type': 'enum', 'tag': 'ContestEffects' },
     'comm_club_ret_codes': { 'type': 'enum', 'tag': 'CommClubRetCode' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
@@ -67,17 +64,18 @@ metang_generators = {
     'items': { 'type': 'enum', 'tag': 'Item' },
     'journal_location_events': { 'type': 'enum', 'tag': 'JournalLocationEventType' },
     'journal_online_events': { 'type': 'enum', 'tag': 'JournalOnlineEventType' },
-    'map_headers': { 'type': 'enum', 'tag': 'MapHeader' },
+    'map_headers': { 'type': 'enum', 'tag': 'MapHeaderID' },
     'maps': { 'type': 'enum', 'tag': 'MapID' },
     'move_attributes': { 'type': 'enum', 'tag': 'MoveAttribute' },
+    'move_battle_effects': { 'type': 'enum', 'tag': 'MoveBattleEffect' },
     'move_classes': { 'type': 'enum', 'tag': 'MoveClass' },
+    'move_contest_effects': { 'type': 'enum', 'tag': 'MoveContestEffect' },
     'move_flags': { 'type': 'mask', 'tag': 'MoveFlag' },
     'move_ranges': { 'type': 'mask', 'tag': 'MoveRange', 'extra': ['--no-auto'] },
     'movement_actions': { 'type': 'enum', 'tag': 'MovementAction' },
     'movement_types': { 'type': 'enum', 'tag': 'MovementType' },
     'moves': { 'type': 'enum', 'tag': 'Move' },
     'natures': { 'type': 'enum', 'tag': 'Nature' },
-    'npc_trades': { 'type': 'enum', 'tag': 'NpcTradeID' },
     'object_events_gfx': { 'type': 'enum', 'tag': 'ObjectEventGfx' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
@@ -104,7 +102,6 @@ metang_generators = {
     'species': { 'type': 'enum', 'tag': 'Species' },
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },
     'sphere_types': { 'type': 'enum', 'tag': 'SphereType' },
-    'string_padding_mode': { 'type': 'enum', 'tag': 'PaddingMode' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
     'time_of_day': { 'type': 'enum', 'tag': 'TimeOfDay' },
     'town_map_description_flag_types': { 'type': 'enum', 'tag': 'TownMapDescriptionFlagType' },
@@ -116,8 +113,7 @@ metang_generators = {
     'traps': { 'type': 'enum', 'tag': 'Trap' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
     'vars_flags': {'type': 'enum', 'tag': 'VarFlag'},
-    'versions': {'type': 'enum', 'tag': 'Version'},
-    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'},
+    'villa_furniture_type': {'type': 'enum', 'tag': 'VillaFurnitureType'},
     'mart_specialties_id': {'type': 'enum', 'tag': 'MartSpecialtiesID'},
     'mart_decor_id': {'type': 'enum', 'tag': 'MartDecorID'},
     'mart_seal_id': {'type': 'enum', 'tag': 'MartSealID'},
@@ -163,7 +159,6 @@ foreach gen_key : metang_generators.keys()
 endforeach
 
 moves_txt = files('moves.txt')
-npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
 trainer_classes_txt = files('trainer_classes.txt')

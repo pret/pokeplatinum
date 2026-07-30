@@ -1,0 +1,26 @@
+{
+    "name": "Teleport",
+    "description": [
+        "Use it to flee from\n",
+        "any wild Pokémon.\n",
+        "It may also be used\n",
+        "to warp to the last\n",
+        "Poké Center visited."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_PSYCHIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_FLEE_FROM_WILD_BATTLE",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": "CONTEST_EFFECT_FIRST_NEXT_TURN",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

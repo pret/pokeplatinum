@@ -8,15 +8,15 @@
     ScriptEntryEnd
 
 JubilifeCitySouthHouse2F_Youngster:
-    NPCMessage JubilifeCitySouthHouse2F_SomeKindsOfPokemonEvolveWhenTheyGetStrongerFromBattling
+    NPCMessage JubilifeCitySouthHouse2F_EvolveWhenStrongerFromBattling
     End
 
 JubilifeCitySouthHouse2F_PokefanF:
-    NPCMessage JubilifeCitySouthHouse2F_EvolutionMakesPokemonJustThatMuchMoreFascinating
+    NPCMessage JubilifeCitySouthHouse2F_EvolutionMakesMoreFascinating
     End
 
 JubilifeCitySouthHouse2F_PokemonBreederF:
-    NPCMessage JubilifeCitySouthHouse2F_DidntProfRowanConductResearchWithProfOak
+    NPCMessage JubilifeCitySouthHouse2F_ConductResearchWithProfOak
     End
 
     .balign 4, 0

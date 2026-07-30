@@ -2,7 +2,7 @@
   "key": 24307,
   "messages": [
     {
-      "id": "FootstepHouse_Text_PokemonAreQuiteEasyForMeToRead",
+      "id": "FootstepHouse_Text_PokemonEasyToRead",
       "en_US": [
         "Dr. Footstep: Pokémon are quite easy\n",
         "for me to read.\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_DoYouWantToCheckTheFeelingsOfYourPokemonAgain",
+      "id": "FootstepHouse_Text_CheckFeelingsAgain",
       "en_US": [
         "Dr. Footstep: Do you want to check\n",
         "the feelings of your Pokémon again?\r",
@@ -29,14 +29,14 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_AndThatsWhatYourPokemonThinksOfYou",
+      "id": "FootstepHouse_Text_ThatsWhatPokemonThinks",
       "en_US": [
         "Dr. Footstep: ...And that is what\n",
         "your {STRVAR_1 0, 0, 0} thinks of you."
       ]
     },
     {
-      "id": "FootstepHouse_Text_PokemonDoesntLeaveAnyFootprints",
+      "id": "FootstepHouse_Text_NoFootprints",
       "en_US": [
         "Dr. Footstep: ...Hmmm... {STRVAR_1 0, 0, 0}\n",
         "doesn’t leave any footprints.\r",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_AndThatsWhatYourPokemonThinksOfYou_CloseBond",
+      "id": "FootstepHouse_Text_ThatsWhatPokemonThinks_CloseBond",
       "en_US": [
         "Dr. Footstep: ...And that is what\n",
         "your {STRVAR_1 0, 0, 0} thinks of you.\r",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_PokemonDoesntLeaveAnyFootprints_CloseBond",
+      "id": "FootstepHouse_Text_NoFootprints_CloseBond",
       "en_US": [
         "Dr. Footstep: ...Hmmm... {STRVAR_1 0, 0, 0}\n",
         "doesn’t leave any footprints.\r",
@@ -91,14 +91,14 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_PlayerPutTheFootprintRibbonOnPokemon",
+      "id": "FootstepHouse_Text_PutRibbonOnPokemon",
       "en_US": [
         "{STRVAR_1 3, 1, 0} put the Footprint Ribbon\n",
         "on {STRVAR_1 0, 0, 0}."
       ]
     },
     {
-      "id": "FootstepHouse_Text_CuteType_WithPrint_Level1",
+      "id": "FootstepHouse_Text_Cute_WithPrint_Level1",
       "en_US": [
         "Aww... {STRVAR_1 3, 1, 0} only plays with\n",
         "other Pokémon...\r",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_CuteType_WithPrint_Level2",
+      "id": "FootstepHouse_Text_Cute_WithPrint_Level2",
       "en_US": [
         "Others say there are people who\n",
         "aren’t very nice to Pokémon.\r",
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_CuteType_WithPrint_Level3",
+      "id": "FootstepHouse_Text_Cute_WithPrint_Level3",
       "en_US": [
         "This adventure with {STRVAR_1 3, 1, 0}\n",
         "is lots of fun.\r",
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_CuteType_WithPrint_Level4",
+      "id": "FootstepHouse_Text_Cute_WithPrint_Level4",
       "en_US": [
         "{STRVAR_1 1, 2, 0} and {STRVAR_1 3, 1, 0} make\n",
         "a perfectly matched combo!\r",
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_CuteType_WithPrint_Level5",
+      "id": "FootstepHouse_Text_Cute_WithPrint_Level5",
       "en_US": [
         "If I said there can be friendship\n",
         "between Pokémon and people, will\f",
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_CuteType_WithoutPrint_Level1",
+      "id": "FootstepHouse_Text_Cute_NoPrint_Level1",
       "en_US": [
         "{STRVAR_1 1, 2, 0} is bored...\n",
         "Play with me more, more...\r",
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_CuteType_WithoutPrint_Level2",
+      "id": "FootstepHouse_Text_Cute_NoPrint_Level2",
       "en_US": [
         "Gonna go with {STRVAR_1 3, 1, 0} all over\n",
         "the place...\r",
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_CuteType_WithoutPrint_Level3",
+      "id": "FootstepHouse_Text_Cute_NoPrint_Level3",
       "en_US": [
         "{STRVAR_1 1, 2, 0} get strong, make\n",
         "{STRVAR_1 3, 1, 0} happy.\r",
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_CuteType_WithoutPrint_Level4",
+      "id": "FootstepHouse_Text_Cute_NoPrint_Level4",
       "en_US": [
         "{STRVAR_1 1, 2, 0} and {STRVAR_1 3, 1, 0}\n",
         "make a friendly combo.\r",
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_CuteType_WithoutPrint_Level5",
+      "id": "FootstepHouse_Text_Cute_NoPrint_Level5",
       "en_US": [
         "{STRVAR_1 3, 1, 0} makes {STRVAR_1 1, 2, 0}\n",
         "very proud!\r",
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ToughType_WithPrint_Level1",
+      "id": "FootstepHouse_Text_Tough_WithPrint_Level1",
       "en_US": [
         "Why does {STRVAR_1 3, 1, 0} use only\n",
         "other Pokémon?\r",
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ToughType_WithPrint_Level2",
+      "id": "FootstepHouse_Text_Tough_WithPrint_Level2",
       "en_US": [
         "Humans can’t understand the cries\n",
         "of Pokémon, nor our feelings.\r",
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ToughType_WithPrint_Level3",
+      "id": "FootstepHouse_Text_Tough_WithPrint_Level3",
       "en_US": [
         "If a Pokémon were to travel alone,\n",
         "it would be limited as to where\f",
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ToughType_WithPrint_Level4",
+      "id": "FootstepHouse_Text_Tough_WithPrint_Level4",
       "en_US": [
         "Some wild Pokémon frown upon others\n",
         "for traveling with humans.\r",
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ToughType_WithPrint_Level5",
+      "id": "FootstepHouse_Text_Tough_WithPrint_Level5",
       "en_US": [
         "{STRVAR_1 3, 1, 0} is...\n",
         "A remarkable human and Trainer.\r",
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ToughType_WithoutPrint_Level1",
+      "id": "FootstepHouse_Text_Tough_NoPrint_Level1",
       "en_US": [
         "Does {STRVAR_1 3, 1, 0} intend to ignore\n",
         "me forever?\r",
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ToughType_WithoutPrint_Level2",
+      "id": "FootstepHouse_Text_Tough_NoPrint_Level2",
       "en_US": [
         "If a Pokémon is treated as a friend,\n",
         "it will return the sentiments.\r",
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ToughType_WithoutPrint_Level3",
+      "id": "FootstepHouse_Text_Tough_NoPrint_Level3",
       "en_US": [
         "Did {STRVAR_1 1, 2, 0} get stronger?\n",
         "Who is responsible for making me so?\r",
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ToughType_WithoutPrint_Level4",
+      "id": "FootstepHouse_Text_Tough_NoPrint_Level4",
       "en_US": [
         "{STRVAR_1 3, 1, 0} and {STRVAR_1 1, 2, 0} are\n",
         "alike in some ways.\r",
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ToughType_WithoutPrint_Level5",
+      "id": "FootstepHouse_Text_Tough_NoPrint_Level5",
       "en_US": [
         "{STRVAR_1 3, 1, 0} is very impressive,\n",
         "especially for a human.\r",
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ScaryType_WithPrint_Level1",
+      "id": "FootstepHouse_Text_Scary_WithPrint_Level1",
       "en_US": [
         "That {STRVAR_1 3, 1, 0}...\n",
         "What is that Trainer thinking?\r",
@@ -339,7 +339,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ScaryType_WithPrint_Level2",
+      "id": "FootstepHouse_Text_Scary_WithPrint_Level2",
       "en_US": [
         "I have little understanding of\n",
         "{STRVAR_1 3, 1, 0} as a human...\r",
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ScaryType_WithPrint_Level3",
+      "id": "FootstepHouse_Text_Scary_WithPrint_Level3",
       "en_US": [
         "Our kind prefers to lurk in dark\n",
         "and dank places...\r",
@@ -363,7 +363,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ScaryType_WithPrint_Level4",
+      "id": "FootstepHouse_Text_Scary_WithPrint_Level4",
       "en_US": [
         "Not for a moment did I think I would\n",
         "be traveling with a human...\r",
@@ -373,7 +373,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ScaryType_WithPrint_Level5",
+      "id": "FootstepHouse_Text_Scary_WithPrint_Level5",
       "en_US": [
         "That {STRVAR_1 3, 1, 0} is the most\n",
         "impressive of humans.\r",
@@ -386,7 +386,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ScaryType_WithoutPrint_Level1",
+      "id": "FootstepHouse_Text_Scary_NoPrint_Level1",
       "en_US": [
         "Wooooooh...\n",
         "{STRVAR_1 1, 2, 0} has nothing to do...\r",
@@ -395,7 +395,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ScaryType_WithoutPrint_Level2",
+      "id": "FootstepHouse_Text_Scary_NoPrint_Level2",
       "en_US": [
         "Is there any human that would grow\n",
         "to like us {STRVAR_1 0, 0, 0}?\r",
@@ -406,7 +406,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ScaryType_WithoutPrint_Level3",
+      "id": "FootstepHouse_Text_Scary_NoPrint_Level3",
       "en_US": [
         "{STRVAR_1 3, 1, 0} treats me, {STRVAR_1 1, 2, 0},\n",
         "nicely without being scared.\r",
@@ -416,7 +416,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ScaryType_WithoutPrint_Level4",
+      "id": "FootstepHouse_Text_Scary_NoPrint_Level4",
       "en_US": [
         "{STRVAR_1 1, 2, 0} is starting to forget\n",
         "a little about being in the wild...\r",
@@ -425,7 +425,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_ScaryType_WithoutPrint_Level5",
+      "id": "FootstepHouse_Text_Scary_NoPrint_Level5",
       "en_US": [
         "There are no Pokémon that dislike\n",
         "humans...\r",
@@ -437,7 +437,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_SlowType_WithoutPrint_Level1",
+      "id": "FootstepHouse_Text_Slow_NoPrint_Level1",
       "en_US": [
         "Hnurrrr... Hunh?\n",
         "This is... Where?\r",
@@ -449,7 +449,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_SlowType_WithoutPrint_Level2",
+      "id": "FootstepHouse_Text_Slow_NoPrint_Level2",
       "en_US": [
         "Hnurrr... Me? Uhm...\n",
         "I like to sleep most the time.\f",
@@ -464,7 +464,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_SlowType_WithoutPrint_Level3",
+      "id": "FootstepHouse_Text_Slow_NoPrint_Level3",
       "en_US": [
         "Hnurrr... Me? Uhm...\n",
         "There are lots of kinds of moves.\r",
@@ -478,7 +478,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_SlowType_WithoutPrint_Level4",
+      "id": "FootstepHouse_Text_Slow_NoPrint_Level4",
       "en_US": [
         "Hnurrr... I don’t know how to begin\n",
         "saying this...\r",
@@ -493,7 +493,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_SlowType_WithoutPrint_Level5",
+      "id": "FootstepHouse_Text_Slow_NoPrint_Level5",
       "en_US": [
         "Hnurrr... Me? Uhm...\n",
         "Other Pokémon, they say to me...\r",
@@ -507,7 +507,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_SlowType_WithPrint_Level1",
+      "id": "FootstepHouse_Text_Slow_WithPrint_Level1",
       "en_US": [
         "Hnurrr... I did not know that?\n",
         "I really don’t? What is this?\f",
@@ -516,7 +516,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_SlowType_WithPrint_Level2",
+      "id": "FootstepHouse_Text_Slow_WithPrint_Level2",
       "en_US": [
         "Hnurrr... Well, I...\n",
         "I think I’m motivated.\f",
@@ -526,7 +526,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_SlowType_WithPrint_Level3",
+      "id": "FootstepHouse_Text_Slow_WithPrint_Level3",
       "en_US": [
         "Hnurrr... How should I say this?\n",
         "We both look out for each other.\f",
@@ -536,7 +536,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_SlowType_WithPrint_Level4",
+      "id": "FootstepHouse_Text_Slow_WithPrint_Level4",
       "en_US": [
         "Hnurrr... How do I say?\n",
         "How should I describe us?\r",
@@ -548,7 +548,7 @@
       ]
     },
     {
-      "id": "FootstepHouse_Text_SlowType_WithPrint_Level5",
+      "id": "FootstepHouse_Text_Slow_WithPrint_Level5",
       "en_US": [
         "Hnurrr...\n",
         "What is left to say, I say?\r",

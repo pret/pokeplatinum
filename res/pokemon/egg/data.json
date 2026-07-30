@@ -41,8 +41,8 @@
     "evolutions": [  ],
     "offspring": "SPECIES_EGG",
     "pokedex_data": {
-        "height": 0,
-        "weight": 0,
+        "height_inches": 0,
+        "weight_pounds": 0.0,
         "body_shape": "SHAPE_QUADRUPED",
         "trainer_scale_f": 0,
         "pokemon_scale_f": 0,

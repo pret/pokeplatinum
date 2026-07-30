@@ -6,9 +6,9 @@
 
 #include "constants/savedata/vars_flags.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02097728.h"
+#include "struct_decls/map_object.h"
 
+#include "applications/mail.h"
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/poffin_case/main.h"
@@ -26,6 +26,7 @@
 #include "bag_context.h"
 #include "berry_patch_manager.h"
 #include "bg_window.h"
+#include "field_bgm.h"
 #include "field_map_change.h"
 #include "field_message.h"
 #include "field_system.h"
@@ -43,6 +44,7 @@
 #include "map_tile_behavior.h"
 #include "party.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "pokedex.h"
 #include "pokeradar.h"
 #include "render_window.h"
@@ -57,8 +59,6 @@
 #include "terrain_collision_manager.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
-#include "unk_020553DC.h"
-#include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
 
@@ -184,16 +184,16 @@ void ItemUseContext_Init(FieldSystem *fieldSystem, ItemUseContext *ctxOut)
     }
 
     ctxOut->fieldSystem = fieldSystem;
-    ctxOut->mapHeaderID = fieldSystem->location->mapId;
+    ctxOut->mapHeaderID = fieldSystem->location->mapHeaderID;
     ctxOut->hasPartner = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     ctxOut->playerState = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
 
-    int x = Player_GetXPos(fieldSystem->playerAvatar);
-    int z = Player_GetZPos(fieldSystem->playerAvatar);
+    int x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     ctxOut->currTileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
 
-    int playerDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int playerDirection = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 
     switch (playerDirection) {
     case DIR_NORTH:
@@ -221,7 +221,7 @@ void ItemUseContext_Init(FieldSystem *fieldSystem, ItemUseContext *ctxOut)
 static void ItemUseContext_InitForDistortionWorld(FieldSystem *fieldSystem, ItemUseContext *ctxOut)
 {
     ctxOut->fieldSystem = fieldSystem;
-    ctxOut->mapHeaderID = fieldSystem->location->mapId;
+    ctxOut->mapHeaderID = fieldSystem->location->mapHeaderID;
     ctxOut->hasPartner = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     ctxOut->playerState = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     ctxOut->currTileBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
@@ -380,7 +380,7 @@ static enum ItemUseCheckResult CanUseExplorerKit(const ItemUseContext *usageCont
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    if (PlayerAvatar_GetPlayerState(usageContext->playerAvatar) == PLAYER_STATE_SURFING) {
+    if (PlayerAvatar_GetPlayerState(usageContext->playerAvatar) == PLAYER_AVATAR_SURFING) {
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
@@ -392,8 +392,8 @@ static enum ItemUseCheckResult CanUseExplorerKit(const ItemUseContext *usageCont
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    u16 x = Player_GetXPos(usageContext->fieldSystem->playerAvatar);
-    u16 z = Player_GetZPos(usageContext->fieldSystem->playerAvatar);
+    u16 x = PlayerAvatar_GetXPos(usageContext->fieldSystem->playerAvatar);
+    u16 z = PlayerAvatar_GetZPos(usageContext->fieldSystem->playerAvatar);
 
     // doesn't match as !MapHeaderData_IsPosFreeOfObjectEvents
     if (MapHeaderData_IsPosFreeOfObjectEvents(usageContext->fieldSystem, x, z) == FALSE) {
@@ -432,16 +432,16 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
         break;
     case 1:
         if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
-            MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
+            MapObject_SetPauseMovementOff(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar));
             PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_WALKING);
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
-            Sound_SetSpecialBGM(fieldSystem, SEQ_NONE);
-            Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
+            FieldBGM_SetOverride(fieldSystem, SEQ_NONE);
+            FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID), 1);
         } else {
-            Sound_SetSpecialBGM(fieldSystem, SEQ_BICYCLE);
-            Sound_TryFadeOutToBGM(fieldSystem, SEQ_BICYCLE, 1);
-            MapObject_SetPauseMovementOff(Player_MapObject(fieldSystem->playerAvatar));
+            FieldBGM_SetOverride(fieldSystem, SEQ_BICYCLE);
+            FieldBGM_TryFadeOut(fieldSystem, SEQ_BICYCLE, 1);
+            MapObject_SetPauseMovementOff(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar));
 
             PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_CYCLING);
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
@@ -479,7 +479,7 @@ static enum ItemUseCheckResult CanUseBicycle(const ItemUseContext *usageContext)
     }
 
     {
-        MapObject *v1 = Player_MapObject(usageContext->playerAvatar);
+        MapObject *v1 = PlayerAvatar_GetMapObject(usageContext->playerAvatar);
 
         if (MapObject_IsOnBikeBridgeNorthSouth(v1, usageContext->currTileBehavior) == TRUE || MapObject_IsOnBikeBridgeEastWest(v1, usageContext->currTileBehavior) == TRUE) {
             return ITEM_USE_CANNOT_DISMOUNT;
@@ -494,7 +494,7 @@ static enum ItemUseCheckResult CanUseBicycle(const ItemUseContext *usageContext)
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    if (usageContext->playerState == PLAYER_STATE_SURFING) {
+    if (usageContext->playerState == PLAYER_AVATAR_SURFING) {
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
@@ -551,10 +551,10 @@ static void UseMailFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    UnkStruct_02097728 *v2 = sub_0203D94C(fieldSystem, 3, Item_MailNumber(usageContext->item), HEAP_ID_FIELD2);
+    MailAppArgs *args = FieldSystem_LaunchMailApp_Read(fieldSystem, MAIL_CONTEXT_CHECK, Item_GetMailType(usageContext->item), HEAP_ID_FIELD2);
 
-    menu->additionalTaskContext = sub_0203C540(usageContext->item, 3, 0);
-    menu->taskData = v2;
+    menu->additionalTaskContext = StartMenu_BuildMailData(usageContext->item, MAIL_READ_FROM_BAG, 0);
+    menu->taskData = args;
 
     StartMenu_SetCallback(menu, StartMenu_ExitMail);
 }
@@ -574,7 +574,7 @@ static void UseBerryFromMenu(ItemMenuUseContext *usageContext, const ItemUseCont
     v1 = FieldTask_GetEnv(usageContext->fieldTask);
 
     if (additionalContext->berryPatchFlags & BERRY_PATCH_FLAG_EMPTY) {
-        sub_02068540(usageContext, additionalContext, 2801);
+        sub_02068540(usageContext, additionalContext, SCRIPT_ID(BERRY_TREE_INTERACTIONS, 1));
     } else {
         UseHealingItemFromMenu(usageContext, additionalContext);
     }
@@ -675,12 +675,12 @@ static enum ItemUseCheckResult CanUsePokeRadar(const ItemUseContext *usageContex
 
 static void UseSprayDuckFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    sub_02068540(usageContext, additionalContext, 2802);
+    sub_02068540(usageContext, additionalContext, SCRIPT_ID(BERRY_TREE_INTERACTIONS, 2));
 }
 
 static BOOL UseSprayDuckInField(ItemFieldUseContext *usageContext)
 {
-    sub_02068584(usageContext, 2802);
+    sub_02068584(usageContext, SCRIPT_ID(BERRY_TREE_INTERACTIONS, 2));
     return FALSE;
 }
 
@@ -699,7 +699,7 @@ static enum ItemUseCheckResult CanUseSprayDuck(const ItemUseContext *usageContex
 
 static void UseMulchFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    sub_02068540(usageContext, additionalContext, 2803);
+    sub_02068540(usageContext, additionalContext, SCRIPT_ID(BERRY_TREE_INTERACTIONS, 3));
 }
 
 static enum ItemUseCheckResult CanUseMulch(const ItemUseContext *usageContext)
@@ -837,9 +837,9 @@ static enum ItemUseCheckResult CanUseFishingRod(const ItemUseContext *usageConte
 
     if (TileBehavior_IsSurfable(usageContext->facingTileBehavior) == TRUE) {
         if ((TileBehavior_IsBridge(usageContext->currTileBehavior) == TRUE) || (TileBehavior_IsBridgeStart(usageContext->currTileBehavior) == TRUE)) {
-            MapObject *v0 = Player_MapObject(usageContext->playerAvatar);
+            MapObject *playerObj = PlayerAvatar_GetMapObject(usageContext->playerAvatar);
 
-            if (sub_02062F30(v0) == TRUE) {
+            if (MapObject_IsStatusOnElevatedBridge(playerObj) == TRUE) {
                 return ITEM_USE_CANNOT_USE_GENERIC;
             }
         }

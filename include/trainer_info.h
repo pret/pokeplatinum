@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_TRAINER_INFO_H
 #define POKEPLATINUM_TRAINER_INFO_H
 
+#include "constants/heap.h"
 #include "constants/string.h"
 
-#include "heap.h"
 #include "string_gf.h"
 
 typedef struct TrainerInfo {

@@ -31,12 +31,12 @@ void GlobalTrade_SetPokemonListed(GlobalTrade *globalTrade, int listed)
     globalTrade->pokemonListed = listed;
 }
 
-void GlobalTrade_CopyStoredPokemon(GlobalTrade *globalTrade, Pokemon *mon)
+void GlobalTrade_CopyFromStoredPokemon(GlobalTrade *globalTrade, Pokemon *mon)
 {
     MI_CpuCopyFast(globalTrade->storedPokemon, (void *)mon, sizeof(Pokemon));
 }
 
-void sub_0202DA7C(GlobalTrade *globalTrade, Pokemon *mon, int unused)
+void GlobalTrade_CopyToStoredPokemon(GlobalTrade *globalTrade, Pokemon *mon, int unused)
 {
     MI_CpuCopyFast((void *)mon, globalTrade->storedPokemon, sizeof(Pokemon));
 }

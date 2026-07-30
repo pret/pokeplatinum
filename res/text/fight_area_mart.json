@@ -2,7 +2,7 @@
   "key": 27313,
   "messages": [
     {
-      "id": "pl_msg_00000193_00000",
+      "id": "FightAreaMart_Text_HoldWhatItems",
       "en_US": [
         "What items should Pokémon hold?\n",
         "It’s an important question.\r",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000193_00001",
+      "id": "FightAreaMart_Text_DilemmaEveryTime",
       "en_US": [
         "Should one enhance a Pokémon’s strong\n",
         "point?\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000193_00002",
+      "id": "FightAreaMart_Text_TheyDontSellThat",
       "en_US": [
         "An item that guarantees you won’t\n",
         "ever lose a battle...\r",

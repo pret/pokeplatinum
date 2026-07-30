@@ -266,7 +266,7 @@ BOOL ov76_0223B52C(UnkStruct_ov76_0223DE00 *param0, u8 param1)
     v2 = &param0->unk_324[param1];
 
     if (v2->unk_00 == 1) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 
@@ -336,7 +336,7 @@ BOOL ov76_0223B5C4(UnkStruct_ov76_0223DE00 *param0, u32 param1, u8 param2)
         }
     } break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

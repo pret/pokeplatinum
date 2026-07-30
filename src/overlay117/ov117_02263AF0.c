@@ -558,7 +558,7 @@ BOOL ov117_02263DC4(UnkStruct_ov117_02261280 *param0, const UnkStruct_ov117_0226
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
@@ -1411,7 +1411,7 @@ BOOL ov117_02264EB8(UnkStruct_ov117_02261280 *param0, int param1)
     }
 
     if (v0 == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 
@@ -1679,7 +1679,7 @@ static int ov117_02265454(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
             v0 = -32 + v2;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
         if (param2->unk_12 >= 15) {

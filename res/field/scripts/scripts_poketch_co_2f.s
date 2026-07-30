@@ -9,19 +9,19 @@
     ScriptEntryEnd
 
 PoketchCo2F_PokefanM:
-    NPCMessage PoketchCo2F_Text_WellTryToThinkLikeATrainerAndFindWhatPoketchAppsWouldBeGood
+    NPCMessage PoketchCo2F_Text_WellThinkLikeATrainer
     End
 
 PoketchCo2F_OldMan:
-    NPCMessage PoketchCo2F_Text_PokemonWatchThatsPoketchForShort
+    NPCMessage PoketchCo2F_Text_PoketchForShort
     End
 
 PoketchCo2F_Clefairy:
-    PokemonCryAndMessage SPECIES_CLEFAIRY, PoketchCo2F_Text_ClefairyCleffy
+    PokemonCryAndMessage SPECIES_CLEFAIRY, PoketchCo2F_Text_ClefairyCry
     End
 
 PoketchCo2F_Pachirisu:
-    PokemonCryAndMessage SPECIES_PACHIRISU, PoketchCo2F_Text_PachirisuPatchii
+    PokemonCryAndMessage SPECIES_PACHIRISU, PoketchCo2F_Text_PachirisuCry
     End
 
     .balign 4, 0

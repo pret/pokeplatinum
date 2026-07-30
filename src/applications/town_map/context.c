@@ -87,13 +87,13 @@ void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *ctx, enum Tow
 
     memset(ctx, 0, sizeof(TownMapContext));
 
-    playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
     int j = NELEMS(sDistWorldMapOffsets) - 1;
     Location *playerLocation = FieldOverworldState_GetPlayerLocation(fieldState);
 
-    currentMap = playerLocation->mapId;
+    currentMap = playerLocation->mapHeaderID;
 
     while (j >= 0) {
         if (currentMap == sDistWorldMapOffsets[j].mapHeader) {

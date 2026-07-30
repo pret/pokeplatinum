@@ -6,9 +6,9 @@
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 
+#include "struct_decls/map_object.h"
+#include "struct_decls/map_object_manager.h"
 #include "struct_decls/struct_0205B43C_decl.h"
-#include "struct_decls/struct_02061830_decl.h"
-#include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205B4F8.h"
 #include "struct_defs/struct_0205C22C.h"
@@ -20,6 +20,8 @@
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F600C.h"
 
+#include "comm_manager.h"
+#include "easy_chat_sentence.h"
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
@@ -32,8 +34,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
-#include "unk_020366A0.h"
 #include "unk_0205B33C.h"
 #include "unk_020655F4.h"
 
@@ -249,14 +249,14 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
 
     GF_ASSERT(param0->playerAvatar != NULL);
 
-    v2 = Player_GetXPos(param0->playerAvatar);
-    v3 = Player_GetZPos(param0->playerAvatar);
+    v2 = PlayerAvatar_GetXPos(param0->playerAvatar);
+    v3 = PlayerAvatar_GetZPos(param0->playerAvatar);
 
     for (v1 = 0; v1 < 50; v1++) {
         v0 = MapObjMan_LocalMapObjByIndex(param1, v1 + 1);
 
         if (v0 == NULL) {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
 
         switch (param0->unk_0C[v1].unk_01) {
@@ -321,7 +321,7 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
         }
     }
 
-    sub_0205C7BC(&param0->unk_0C[50], Player_MapObject(param0->playerAvatar));
+    sub_0205C7BC(&param0->unk_0C[50], PlayerAvatar_GetMapObject(param0->playerAvatar));
     sub_0205C6BC(&param0->unk_0C[50]);
 }
 
@@ -423,7 +423,7 @@ static void sub_0205C7E4(MapObjectManager *mapObjMan, int param1, int param2)
         v1 = MapObjMan_LocalMapObjByIndex(mapObjMan, v0);
 
         if (v1 == NULL) {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
 
         MapObject_SetHidden(v1, 1);
@@ -440,11 +440,11 @@ void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1)
     mapObj = MapObjMan_LocalMapObjByIndex(mapObjMan, 0);
 
     if (mapObj == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     if (LocalMapObj_IsAnimationSet(mapObj) == 1) {
-        if (sub_02036AA0() || sub_02036A68()) {
+        if (CommManager_IsConnectUnionServer() || CommManager_IsConnectedUnionClientSuccess()) {
             int v2;
 
             for (v2 = 0; v2 < 10; v2++) {
@@ -457,7 +457,7 @@ void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1)
                 mapObj = MapObjMan_LocalMapObjByIndex(mapObjMan, v2 + 1);
 
                 if (mapObj == NULL) {
-                    GF_ASSERT(0);
+                    GF_ASSERT(FALSE);
                 }
 
                 sub_02061AD4(mapObj, v1->unk_08);
@@ -492,7 +492,7 @@ static void sub_0205C8DC(UnkStruct_0205C924 *param0)
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
 
-    sub_02014A9C(&param0->unk_14, 0);
+    EasyChatSentence_InitWithType(&param0->unk_14, EASY_CHAT_SENTENCE_TYPE_PRE_BATTLE);
 
     param0->unk_10 = 0;
     param0->unk_0C = 0;

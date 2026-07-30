@@ -4,10 +4,10 @@
 
 
     ScriptEntry VeilstoneCityGalacticWarehouse_GalacticHQDoor
-    ScriptEntry VeilstoneCityGalacticWarehouse_OnFrameEnterWithLooker
+    ScriptEntry VeilstoneCityGalacticWarehouse_OnFrame_EnterWithLooker
     ScriptEntry VeilstoneCityGalacticWarehouse_Looker
     ScriptEntry VeilstoneCityGalacticWarehouse_OnTransition
-    ScriptEntry VeilstoneCityGalacticWarehouse_TriggerLookerOpenDoor
+    ScriptEntry VeilstoneCityGalacticWarehouse_CoordEvent_LookerOpenDoor
     ScriptEntryEnd
 
 VeilstoneCityGalacticWarehouse_OnTransition:
@@ -71,7 +71,7 @@ VeilstoneCityGalacticWarehouse_Movement_GalacticHQDoorEastOpen:
     WalkFastEast
     EndMovement
 
-VeilstoneCityGalacticWarehouse_OnFrameEnterWithLooker:
+VeilstoneCityGalacticWarehouse_OnFrame_EnterWithLooker:
     LockAll
     ApplyMovement LOCALID_LOOKER, VeilstoneCityGalacticWarehouse_Movement_LookerWalkToDoor
     WaitMovement
@@ -86,7 +86,7 @@ VeilstoneCityGalacticWarehouse_OnFrameEnterWithLooker:
     ApplyMovement LOCALID_PLAYER, VeilstoneCityGalacticWarehouse_Movement_PlayerFaceLookerNorth
     ApplyMovement LOCALID_LOOKER, VeilstoneCityGalacticWarehouse_Movement_LookerWalkToPlayer
     WaitMovement
-    SetVar VAR_PASTORIA_STATE, 1
+    SetVar VAR_PASTORIA_CITY_STATE, 1
     SetVar VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE, 2
     Message VeilstoneCityGalacticWarehouse_Text_WeDidntLearnMuch
     WaitButton
@@ -135,7 +135,7 @@ VeilstoneCityGalacticWarehouse_Looker:
     NPCMessage VeilstoneCityGalacticWarehouse_Text_GalacticTransportedToPastoria
     End
 
-VeilstoneCityGalacticWarehouse_TriggerLookerOpenDoor:
+VeilstoneCityGalacticWarehouse_CoordEvent_LookerOpenDoor:
     LockAll
     SetObjectEventPos LOCALID_LOOKER, 8, 11
     SetObjectEventMovementType LOCALID_LOOKER, MOVEMENT_TYPE_LOOK_NORTH

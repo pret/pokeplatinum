@@ -2,14 +2,14 @@
   "key": 61163,
   "messages": [
     {
-      "id": "pl_msg_00000511_00000",
+      "id": "Route218GateToJubilifeCity_Text_GreatFishingHole",
       "en_US": [
         "Route 218 up ahead is a great fishing\n",
         "hole that’s almost unknown to people."
       ]
     },
     {
-      "id": "pl_msg_00000511_00001",
+      "id": "Route218GateToJubilifeCity_Text_OldRodGoodRight",
       "en_US": [
         "Yes, sir!\n",
         "An Old Rod is a good thing!\r",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000511_00002",
+      "id": "Route218GateToJubilifeCity_Text_HereYouGo",
       "en_US": [
         "Yes! Good answer!\n",
         "We can be friends!\r",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000511_00003",
+      "id": "Route218GateToJubilifeCity_Text_DidYouNeedTips",
       "en_US": [
         "You should fish wherever there is\n",
         "a body of water.\r",
@@ -35,14 +35,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000511_00004",
+      "id": "Route218GateToJubilifeCity_Text_YouDontLikeToFish",
       "en_US": [
         "Oh, really?\n",
         "You don’t like to fish?"
       ]
     },
     {
-      "id": "pl_msg_00000511_00005",
+      "id": "Route218GateToJubilifeCity_Text_ExplainFishing",
       "en_US": [
         "First, you face any body of water,\n",
         "then you use your fishing rod.\r",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000511_00006",
+      "id": "Route218GateToJubilifeCity_Text_FishingTwiceTheFun",
       "en_US": [
         "When you’re fishing for Pokémon,\n",
         "the first hurdle is getting a bite.\r",

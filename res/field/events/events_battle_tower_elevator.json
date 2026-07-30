@@ -2,8 +2,8 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "BATTLE_TOWER_ELEVATOR_UNK_111_0",
-            "graphics_id": "OBJ_EVENT_GFX_POKECENTER_DAILY_TRAINER_1",
+            "id": "LOCALID_ATTENDANT",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_A",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",

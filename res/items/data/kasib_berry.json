@@ -1,0 +1,43 @@
+{
+  "name": "Kasib Berry",
+  "plural": "Kasib Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. If held by a\n",
+    "Pokémon, it weakens a foe’s\n",
+    "supereffective Ghost-type attack."
+  ],
+  "icon": {
+    "sprite": "kasib_berry_NCGR",
+    "palette": "kasib_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_WEAKEN_SE_GHOST",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 60,
+  "naturalGiftType": "TYPE_GHOST",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 144,
+    "firmness": "FIRMNESS_HARD",
+    "baseYield": 1,
+    "stageDuration": 18,
+    "moistureDrainRate": 6,
+    "spiciness": 0,
+    "dryness": 10,
+    "sweetness": 20,
+    "bitterness": 0,
+    "sourness": 0,
+    "smoothness": 35
+  }
+}

@@ -2,7 +2,7 @@
   "key": 54339,
   "messages": [
     {
-      "id": "pl_msg_00000282_00000",
+      "id": "GalacticHQ1F_Text_ThisIsGalacticVeilstoneBuilding",
       "en_US": [
         "Welcome.\n",
         "This is Team Galactic Headqu...\r",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000282_00001",
+      "id": "GalacticHQ1F_Text_WeHaveNoPlansNow",
       "en_US": [
         "Welcome.\n",
         "This is Team Galactic Headqu...\r",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000282_00002",
+      "id": "GalacticHQ1F_Text_GalacticConductsRnD",
       "en_US": [
         "Team Galactic conducts R&D around\n",
         "the clock here.\r",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000282_00003",
+      "id": "GalacticHQ1F_Text_ThisIsWhereWeWork",
       "en_US": [
         "This is where we, Team Galactic, work.\n",
         "What are we supposed to do?\r",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000282_00004",
+      "id": "GalacticHQ1F_Text_WeWillTakeEverything",
       "en_US": [
         "We, Team Galactic, will take everything\n",
         "that can be taken!\r",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000282_00005",
+      "id": "GalacticHQ1F_Text_NothingLeftNow",
       "en_US": [
         "We, Team Galactic, will take everything\n",
         "that can be taken!\r",
@@ -67,18 +67,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000282_00006",
+      "id": "GalacticHQ1F_Text_YoureTooYoung",
       "en_US": [
         "You’re too young for us...\n",
         "You can join us when you’re older."
       ]
     },
     {
-      "id": "pl_msg_00000282_00007",
+      "id": "GalacticHQ1F_Text_IWonderWhereBossWent",
       "en_US": "I wonder where our boss went..."
     },
     {
-      "id": "pl_msg_00000282_00008",
+      "id": "GalacticHQ1F_Text_WhatToDo",
       "en_US": [
         "Saturn: So, it’s you...\r",
         "I’ve heard about you and what took\n",
@@ -107,14 +107,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000282_00009",
+      "id": "GalacticHQ1F_Text_DoorIsLocked",
       "en_US": [
         "The door is locked.\n",
         "A special key is needed."
       ]
     },
     {
-      "id": "pl_msg_00000282_00010",
+      "id": "GalacticHQ1F_Text_UseGalacticKey",
       "en_US": [
         "The door is locked.\n",
         "A special key is needed.\r",
@@ -122,11 +122,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000282_00011",
+      "id": "GalacticHQ1F_Text_TheDoorOpened",
       "en_US": "The door opened."
     },
     {
-      "id": "pl_msg_00000282_00012",
+      "id": "GalacticHQ1F_Text_TeamGalacticCredo",
       "en_US": [
         "The Team Galactic credo!\n",
         "Everything belongs to Team Galactic!\r",

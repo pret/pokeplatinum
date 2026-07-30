@@ -1,10 +1,10 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry Unk276_Dummy1
     ScriptEntryEnd
 
-_0006:
+Unk276_Dummy1:
     SetFlag FLAG_FIRST_ARRIVAL_SENDOFF_SPRING_UNUSED
     End
 

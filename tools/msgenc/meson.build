@@ -21,7 +21,5 @@ msgenc_exe = executable('msgenc',
         '-Wno-unused-parameter',
     ],
     native: true,
-    dependencies: [
-        rapidjson_dep,
-    ]
+    dependencies: dataproc_dep,
 )

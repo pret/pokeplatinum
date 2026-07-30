@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 #define POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 
+#include "struct_decls/map_object_manager.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
-#include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/map_load_mode.h"
@@ -13,14 +13,13 @@
 #include "overlay005/area_light.h"
 #include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/field_effect_manager.h"
+#include "overlay005/fog_manager.h"
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/model_attributes.h"
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay005/signpost.h"
-#include "overlay005/struct_ov5_021D1A68_decl.h"
-#include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 #include "underground/struct_underground_top_screen_context_decl.h"
@@ -66,6 +65,14 @@ typedef struct FieldProcessManager {
     BOOL kill;
 } FieldProcessManager;
 
+#define MAP_OBJECT_PRELOAD_SENTINEL 0xFFFF
+#define MAX_MAP_OBJECTS_TO_PRELOAD  24
+
+typedef struct MapObjectsToPreload {
+    u16 count;
+    int ids[MAX_MAP_OBJECTS_TO_PRELOAD];
+} MapObjectsToPreload;
+
 typedef struct FieldSystem_t {
     FieldProcessManager *processManager;
     FieldSystem_sub2 *unk_04;
@@ -80,12 +87,12 @@ typedef struct FieldSystem_t {
     LandDataManager *landDataMan;
     MapMatrix *mapMatrix;
     AreaDataManager *areaDataManager;
-    UnkStruct_ov5_021D1A68 *unk_34;
+    MapObjectsToPreload *mapObjectsToPreload;
     MapObjectManager *mapObjMan;
     PlayerAvatar *playerAvatar;
     FieldEffectManager *fieldEffMan;
     ModelAttributes *areaModelAttrs;
-    UnkStruct_ov5_021D57D8 *unk_48;
+    FogManager *fogMan;
     AreaLightManager *areaLightMan;
     MapPropAnimationManager *mapPropAnimMan;
     MapPropOneShotAnimationManager *mapPropOneShotAnimMan;
@@ -111,9 +118,9 @@ typedef struct FieldSystem_t {
     MapPropManager *mapPropManager;
     HoneyTreeShakeList *unk_A8;
     BattleTower *battleTower;
-    const BattleRegulation *unk_B0;
+    const BattleRegulation *battleRegulation;
     PokedexMemory *pokedexMemory;
-    BOOL unk_B8;
+    BOOL temporaryMapChange;
     u8 *battleSubscreenCursorOn;
     u32 unk_C0;
     UnkStruct_ov66_0222DCE0_sub1 unk_C4;

@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "BATTLEGROUND_EXPERT_M_0",
+            "id": "LOCALID_EXPERT_M",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "BATTLEGROUND_BUCK_1",
+            "id": "LOCALID_BUCK",
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01D6",
+            "hidden_flag": "FLAG_HIDE_BATTLEGROUND_BUCK",
             "script": 2,
             "initial_dir": 1,
             "data": [],
@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "BATTLEGROUND_UNK_102_2",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_102",
+            "id": "LOCALID_TRAINER_1",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_1",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02A2",
+            "hidden_flag": "FLAG_HIDE_BATTLEGROUND_TRAINER_1",
             "script": 5,
             "initial_dir": 3,
             "data": [],
@@ -47,11 +47,11 @@
             "y": 0
         },
         {
-            "id": "BATTLEGROUND_UNK_103_3",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_103",
+            "id": "LOCALID_TRAINER_2",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_2",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02A3",
+            "hidden_flag": "FLAG_HIDE_BATTLEGROUND_TRAINER_2",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -62,11 +62,11 @@
             "y": 0
         },
         {
-            "id": "BATTLEGROUND_UNK_104_4",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_104",
+            "id": "LOCALID_TRAINER_3",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_3",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02A4",
+            "hidden_flag": "FLAG_HIDE_BATTLEGROUND_TRAINER_3",
             "script": 7,
             "initial_dir": 2,
             "data": [],
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "BATTLEGROUND_UNK_105_5",
-            "graphics_id": "OBJ_EVENT_GFX_UNK_105",
+            "id": "LOCALID_TRAINER_4",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_4",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02A5",
+            "hidden_flag": "FLAG_HIDE_BATTLEGROUND_TRAINER_4",
             "script": 8,
             "initial_dir": 0,
             "data": [],

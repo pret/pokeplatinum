@@ -2,37 +2,49 @@
 
 #include <assert.h>
 #include <errno.h>
+#include <stdarg.h>
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 #include "dataproc.h"
-#include "enum.h"
+#include "libenum.h"
+#include "libexpr.h"
 #include "nitroarc.h"
 
 #define MAX_LOADED_ENUMS 128
+
+typedef struct enum_t enum_t;
+struct enum_t {
+    lookup_t *members;
+    size_t    size;
+    char     *pool;
+};
 
 static enum_t loaded_enums[MAX_LOADED_ENUMS] = { 0 };
 static size_t num_loaded_enums = 0;
 
 static void   unload_enums(void);
-static void   finish_headers(void);
+static void   finish_outputs(void);
 static FILE*  open_depfile(const char *depfile_path);
-static void   load_header_template(header_template_t *h, FILE *depfile);
+static void   load_header_template(header_template_t *h);
 static enum_t dp_include(
     const char *from_file,
     const char *with_prefix,
     const char *for_type,
-    bool        from_defs,
-    FILE       *depfile
+    bool        from_defs
 );
 
-static archive_template_t *s_archives   = NULL;
-static header_template_t  *s_headers    = NULL;
-static const char         *s_output_dir = NULL;
+static archive_template_t  *s_archives   = NULL;
+static header_template_t   *s_headers    = NULL;
+static textbank_template_t *s_textbanks  = NULL;
+static const char          *s_output_dir = NULL;
+static FILE                *s_depfile    = NULL;
 
 static void* crt_malloc(void *ctx, unsigned items, unsigned size) {
     (void)ctx;
@@ -74,27 +86,84 @@ static FILE* open_depfile(const char *depfile_path) {
     return depfile;
 }
 
+enum_seq_t _common_initenum(initenum_params_t params) {
+    size_t size = 0;
+    char  *data = fload(params.basefile, &size);
+    char  *endp = NULL;
+
+    enum_seq_t result = libenum_find(data, size, params.enumname, &endp);
+    if (result.errc != LIBENUM_E_OK) { // handles the empty-case
+        fprintf(stderr, "libenum error: %s\n", libenum_errs(result.errc));
+        exit(EXIT_FAILURE);
+    }
+
+    if (result.members == NULL) {
+        fprintf(stderr, "could not find enum named '%s' in %s", params.enumname, params.basefile);
+        exit(EXIT_FAILURE);
+    }
+
+    if (result.size > UINT16_MAX) {
+        fprintf(stderr, "count of enum members %zu exceeds maximum of %u\n",
+                result.size, UINT16_MAX);
+        exit(EXIT_FAILURE);
+    }
+
+    if (strncmp(result.members[result.size - 1].name, "MAX_", lengthof("MAX_")) == 0) {
+        result.size--;
+    }
+
+    u16 count = 0;
+    if (params.filter) {
+        for (size_t i = 0; i < result.size; i++) {
+            count += params.filter(result.members[i].name);
+        }
+    }
+    else count = (u16)result.size;
+
+    for (archive_template_t *t = params.archives; t && t->out_filename; t++) {
+        t->num_files = count + params.extra_files;
+    }
+
+    common_init(
+        params.format,
+        params.enums,
+        params.archives,
+        params.headers,
+        params.textbanks,
+        params.sourcefile,
+        params.depfile,
+        params.outdir,
+        params.hook_before,
+        params.hook_after
+    );
+
+    free(data);
+    return result;
+}
+
 void common_init(
-    enum format         format,
-    enum_template_t    *lookups,
-    archive_template_t *archives,
-    header_template_t  *headers,
-    const char         *source_name,
-    const char         *depfile_path,
-    const char         *output_dir,
-    void              (*pre_init_hook)(void),
-    void              (*post_init_hook)(void)
+    enum format          format,
+    enum_template_t     *lookups,
+    archive_template_t  *archives,
+    header_template_t   *headers,
+    textbank_template_t *textbanks,
+    const char          *source_name,
+    const char          *depfile_path,
+    const char          *output_dir,
+    void               (*pre_init_hook)(void),
+    void               (*post_init_hook)(void)
 ) {
     dp_init(format);
     if (pre_init_hook) pre_init_hook();
 
     s_archives   = archives;
     s_headers    = headers;
+    s_textbanks  = textbanks;
     s_output_dir = output_dir;
     atexit(unload_enums);
-    atexit(finish_headers);
+    atexit(finish_outputs);
 
-    FILE *depfile = open_depfile(depfile_path);
+    s_depfile = open_depfile(depfile_path);
 
     // Initialize all the requested iteratively-packed archives
     for (archive_template_t *to_init = archives; to_init && to_init->out_filename; to_init++) {
@@ -113,8 +182,7 @@ void common_init(
         }
 
         char *full_path = pathjoin(output_dir, NULL, to_init->out_filename);
-        fputs(full_path, depfile);
-        fputc(' ',       depfile);
+        declare_dep(full_path);
         free(full_path);
     }
 
@@ -129,13 +197,30 @@ void common_init(
         }
 
         fprintf(to_init->out_file, header_comment, source_name);
-
-        fputs(full_path, depfile);
-        fputc(' ',       depfile);
+        declare_dep(full_path);
         free(full_path);
     }
 
-    fputs(": ", depfile);
+    // Prepare iteratively-written data-files
+    for (textbank_template_t *to_init = textbanks; to_init && to_init->out_filename; to_init++) {
+        char *full_path   = pathjoin(output_dir, NULL, to_init->out_filename);
+        to_init->out_file = fopen(full_path, "wb");
+        if (to_init->out_file == NULL) {
+            fprintf(stderr, "could not open output file '%s': %s",
+                    full_path, strerror(errno));
+            exit(EXIT_FAILURE);
+        }
+
+        to_init->df   = dp_new();
+        to_init->root = dp_set_obj(&to_init->df);
+        dp_obj_putint(&to_init->root, "key", to_init->key);
+        to_init->root = dp_obj_putarray(&to_init->root, "messages"); // Nothing else should be touched
+
+        declare_dep(full_path);
+        free(full_path);
+    }
+
+    fputs(": ", s_depfile);
 
     // Load all the requested lookup-tables from their sources
     for (enum_template_t *to_load = lookups; to_load && to_load->from_file; to_load++) {
@@ -143,25 +228,23 @@ void common_init(
             to_load->from_file,
             to_load->with_prefix,
             to_load->for_type,
-            to_load->from_defs,
-            depfile
+            to_load->from_defs
         );
     }
 
     // Second pass: load a header template as a dependency
     for (header_template_t *to_init = headers; to_init && to_init->out_filename; to_init++) {
-        load_header_template(to_init, depfile);
+        load_header_template(to_init);
         fputs(to_init->header, to_init->out_file);
     }
 
     if (post_init_hook) post_init_hook();
-    fclose(depfile);
 }
 
 #define HEADER_TEMPLATE_SUFFIX ".template"
 #define HEADER_TEMPLATE_MAGIC  "/* =========== MAGIC CONTENT MARKER =========== */"
 
-static void load_header_template(header_template_t *h, FILE *depfile) {
+static void load_header_template(header_template_t *h) {
     size_t len_out_fname  = strlen(h->out_filename);
     char  *template_fname = calloc(len_out_fname + sizeof(HEADER_TEMPLATE_SUFFIX) + 1, 1);
     assert(template_fname);
@@ -171,7 +254,7 @@ static void load_header_template(header_template_t *h, FILE *depfile) {
     memcpy(template_fname + len_out_fname, HEADER_TEMPLATE_SUFFIX, sizeof(HEADER_TEMPLATE_SUFFIX));
 
     char *full_path = pathjoin(TEMPLATES_DIR, NULL, template_fname);
-    char *template  = fload(full_path);
+    char *template  = fload(full_path, NULL);
     char *marker    = strstr(template, HEADER_TEMPLATE_MAGIC);
     char *footer    = marker + sizeof(HEADER_TEMPLATE_MAGIC);
     *marker         = '\0';
@@ -179,18 +262,19 @@ static void load_header_template(header_template_t *h, FILE *depfile) {
     h->header = template;
     h->footer = footer;
 
-    fputs(full_path, depfile);
-    fputc(' ',       depfile);
-
+    declare_dep(full_path);
     free(full_path);
     free(template_fname);
 }
 
 static void unload_enums(void) {
-    for (size_t i = 0; i < num_loaded_enums; i++) enum_free(&loaded_enums[i]);
+    for (size_t i = 0; i < num_loaded_enums; i++) {
+        free(loaded_enums[i].pool);
+        free(loaded_enums[i].members);
+    }
 }
 
-static void finish_headers(void) {
+static void finish_outputs(void) {
     for (header_template_t *h = s_headers; h && h->out_filename; h++) {
         if (h->out_file) {
             fputs(h->footer, h->out_file);
@@ -198,15 +282,31 @@ static void finish_headers(void) {
             free(h->header);
         }
     }
+
+    for (textbank_template_t *t = s_textbanks; t && t->out_filename; t++) {
+        if (t->out_file) {
+            char *payload = dp_dump(&t->df);
+            fputs(payload, t->out_file);
+            free(payload);
+            fclose(t->out_file);
+        }
+    }
 }
 
 int common_done(int errc, int (*addl_done_hook)(void)) {
+    if (addl_done_hook) errc = addl_done_hook() || errc;
+
     for (archive_template_t *a = s_archives; a && a->out_filename; a++) {
         if (fdump_narc(&a->packer, a->out_filename, errc == 0)) errc = EXIT_FAILURE;
     }
 
-    if (addl_done_hook) errc = addl_done_hook() || errc;
+    fclose(s_depfile);
     return errc;
+}
+
+void declare_dep(const char *filename) {
+    fputs(filename, s_depfile);
+    fputc(' ',      s_depfile);
 }
 
 char* strremove(char *s, const char *sub) {
@@ -229,6 +329,41 @@ char* strreplace(char *s, char r, char c) {
     return s;
 }
 
+char* strreplstr(const char *s, const char *repl, const char *with) {
+    if (!s || !repl) return NULL;
+
+    char  *result;
+    char  *insert;
+    char  *tmp;
+    size_t count = 0;
+    size_t front = 0;
+
+    size_t len_repl = strlen(repl);
+    if (len_repl == 0) return NULL;
+    if (!with) with = "";
+    size_t len_with = strlen(with);
+
+    insert = (char *)s;
+    for (count = 0; (tmp = strstr(insert, repl)); count++) {
+        insert = tmp + len_repl;
+    }
+
+    size_t len = strlen(s);
+    len += ((len_with - len_repl) * count);
+    result = malloc(len + 1);
+    tmp    = result;
+    while (count--) {
+        insert = strstr(s, repl);
+        front  = insert - s;
+        tmp    = strncpy(tmp, s, front) + front;
+        tmp    = strcpy(tmp, with) + len_with;
+        s     += front + len_repl;
+    }
+
+    strcpy(tmp, s);
+    return result;
+}
+
 char* strupper(const char *s) {
     char *capped = calloc(strlen(s) + 1, 1);
     for (size_t i = 0; i < strlen(s); i++) {
@@ -237,6 +372,34 @@ char* strupper(const char *s) {
     }
 
     return capped;
+}
+
+char* strlower(const char *s) {
+    char *capped = calloc(strlen(s) + 1, 1);
+    for (size_t i = 0; i < strlen(s); i++) {
+        capped[i] = s[i];
+        if (capped[i] >= 'A' && capped[i] <= 'Z') capped[i] += ('a' - 'A');
+    }
+
+    return capped;
+}
+
+char* strjoin(const char *s, const char *with, const char *sep) {
+    if (!s)   s   = "";
+    if (!sep) sep = "";
+
+    size_t len_s    = strlen(s);
+    size_t len_with = strlen(with);
+    size_t len_sep  = strlen(sep);
+
+    char *result = malloc(len_s + len_with + len_sep + 1);
+    char *p      = result;
+
+    p = (char *)memcpy(p, s, len_s) + len_s;
+    p = (char *)memcpy(p, sep, len_sep) + len_sep;
+    p = (char *)memcpy(p, with, len_with) + len_with;
+    *p = 0;
+    return result;
 }
 
 void splitenv(const char *name, char ***target, size_t *target_len, const char **extra, size_t extra_len) {
@@ -278,11 +441,12 @@ void splitenv(const char *name, char ***target, size_t *target_len, const char *
     }
 }
 
-char* fload(const char *filename) {
+char* fload(const char *filename, size_t *out_size) {
     char *buf = NULL;
     FILE *f   = fopen(filename, "rb");
     if (f == NULL) {
         fprintf(stderr, "could not open file '%s': %s\n", filename, strerror(errno));
+        if (*out_size) *out_size = 0;
         return NULL;
     }
 
@@ -304,6 +468,7 @@ char* fload(const char *filename) {
     buf[fsize] = 0;
 
 cleanup:
+    if (out_size) *out_size = fsize;
     fclose(f);
     return buf;
 }
@@ -363,9 +528,14 @@ int fdump_narc(nitroarc_packer_t *p, const char *dest, bool ok) {
     return errc;
 }
 
-int fdump_blobnarc(const void *data, u32 size, const char *name) {
+nitroarc_packer_t init_narc(u16 num_files, bool named, bool stripped) {
     nitroarc_packer_t p = default_packer();
-    nitroarc_pinit(&p, 1, false, false);
+    nitroarc_pinit(&p, num_files, named, stripped);
+    return p;
+}
+
+int fdump_blobnarc(const void *data, u32 size, const char *name) {
+    nitroarc_packer_t p = init_narc(1, false, false);
     nitroarc_ppack(&p, (void *)data, size, NULL);
     return fdump_narc(&p, name, true);
 }
@@ -377,14 +547,31 @@ static const char *include_paths[MAX_INCLUDES] = {
     REPO_BUILD,
 };
 
+static int membercmp(const void *lhs, const void *rhs) {
+    const lookup_t *l = lhs;
+    const lookup_t *r = rhs;
+
+    if (l == NULL && r == NULL) return 0;
+    else if (l == NULL) return 1;
+    else if (r == NULL) return -1;
+
+    if (l->def == NULL && r->def == NULL) return 0;
+    else if (l->def == NULL) return 1;
+    else if (r->def == NULL) return -1;
+
+    return strcmp(l->def, r->def);
+}
+
 static enum_t dp_include(
     const char *from_file,
     const char *with_prefix,
     const char *for_type,
-    bool        from_defs,
-    FILE       *depfile
+    bool        from_defs
 ) {
     assert(from_file && "included filename must not be NULL");
+    if (!from_defs) {
+        assert(strncmp("enum", for_type, sizeof("enum") - 1) == 0 && "'for_type' value must be prefixed with 'enum '");
+    }
 
     char *found_file = NULL;
     for (int i = 0; i < MAX_INCLUDES && include_paths[i]; i++) {
@@ -398,16 +585,108 @@ static enum_t dp_include(
         exit(EXIT_FAILURE);
     }
 
-    char  *buf    = fload(found_file);
-    enum_t result = from_defs
-        ? enum_parse_def(buf, with_prefix, ENUM_F_SORT | ENUM_F_CONVERT)
-        : enum_parse_one(buf, ENUM_F_SORT | ENUM_F_CONVERT, NULL);
+    size_t     bufsize  = 0;
+    char      *endptr   = NULL;
+    char      *buf      = fload(found_file, &bufsize);
+    enum_seq_t parsed   = from_defs
+        ? libenum_loadcpp(buf, bufsize, with_prefix, &endptr)
+        : libenum_find(buf, bufsize, &for_type[5], &endptr); // strip 'enum ' prefix
 
-    dp_register((lookup_t *)result.syms, result.len, for_type);
-    fputs(found_file, depfile);
-    fputc(' ',        depfile);
+    if (parsed.errc != LIBENUM_E_OK) {
+        // TODO: line number + column number of the error
+        fprintf(stderr, "syntax error while parsing included file '%s': %s\n",
+                found_file, libenum_errs(parsed.errc));
+        exit(EXIT_FAILURE);
+    }
+    else if (parsed.members == NULL) {
+        fprintf(stderr, "enum named '%s' could not be found in file '%s'\n",
+                for_type, found_file);
+        exit(EXIT_FAILURE);
+    }
 
-    free(buf);
+    enum_t result = {
+        .members = calloc(parsed.size, sizeof(*result.members)),
+        .size    = parsed.size,
+        .pool    = parsed.pool,
+    };
+
+    long curr = 0;
+    for (size_t i = 0; i < parsed.size; i++) {
+        result.members[i].def = parsed.members[i].name;
+        if (parsed.members[i].expr == NULL) {
+            result.members[i].val = curr++;
+        }
+        else {
+            // WARN: this cast is filthy, but it works!
+            result.members[i].val = libexpr_eval(parsed.members[i].expr, &endptr, (scope_t *)&result);
+            curr                  = result.members[i].val + 1;
+            if (*endptr) {
+                fprintf(stderr, "syntax error while parsing expression '%s' from included file '%s'\n",
+                        parsed.members[i].expr, found_file);
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+
+    qsort(result.members, result.size, sizeof(*result.members), membercmp);
+
+    dp_register(result.members, result.size, for_type);
+    declare_dep(found_file);
+
     free(found_file);
     return result;
 }
+
+void bank_pushnode(datanode_t *root, const char *id, datanode_t content) {
+    datanode_t entry = dp_arr_appobject(root);
+    dp_obj_putstring(&entry, "id", id);
+
+    if (content.type == DATAPROC_T_STRING) {
+        dp_obj_putstring(&entry, "en_US", dp_string(content));
+    }
+    else if (content.type == DATAPROC_T_ARRAY) {
+        size_t     count = dp_arrlen(content);
+        datanode_t lines = dp_obj_putarray(&entry, "en_US");
+        for (size_t i = 0; i < count; i++) {
+            dp_arr_appstring(&lines, dp_string(dp_arrelem(content, i)));
+        }
+    }
+    else {
+        dp_error(&content, "expected message content to be a string or an array");
+    }
+}
+
+void bank_pushraw(datanode_t *root, const char *id, const char *content) {
+    datanode_t entry = dp_arr_appobject(root);
+    dp_obj_putstring(&entry, "id", id);
+    dp_obj_putstring(&entry, "en_US", content);
+}
+
+void bank_pushgarbage(datanode_t *root, const char *id, uint64_t size) {
+    datanode_t entry = dp_arr_appobject(root);
+    dp_obj_putstring(&entry, "id", id);
+    dp_obj_putint(&entry, "garbage", size);
+}
+
+void bank_pushlines(datanode_t *root, const char *id, ...) {
+    va_list content;
+    va_start(content, id);
+
+    datanode_t entry = dp_arr_appobject(root);
+    dp_obj_putstring(&entry, "id", id);
+
+    datanode_t lines = dp_obj_putarray(&entry, "en_US");
+    for (;;) {
+        const char *line = va_arg(content, const char *);
+        if (!line) break;
+        dp_arr_appstring(&lines, line);
+    }
+
+    va_end(content);
+}
+
+bool order_subfile(const char *basename, const char *subfile, FILE *f_order) {
+    fprintf(f_order, "%s/%s\n", basename, subfile);
+    return true;
+}
+

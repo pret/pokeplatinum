@@ -4,12 +4,9 @@
 #include "constants/graphics.h"
 #include "constants/pokemon.h"
 
-#include "struct_defs/funcptr_0207F248_sub1.h"
-#include "struct_defs/mail.h"
-#include "struct_defs/struct_0202440C.h"
+#include "struct_defs/tv.h"
 
 #include "field/field_system_decl.h"
-#include "functypes/funcptr_0207F248.h"
 
 #include "bag.h"
 #include "battle_regulation.h"
@@ -19,6 +16,7 @@
 #include "g3d_pipeline.h"
 #include "game_options.h"
 #include "grid_menu_cursor_position.h"
+#include "mail.h"
 #include "menu.h"
 #include "message.h"
 #include "particle_system.h"
@@ -36,6 +34,16 @@
 #define PARTY_MENU_SHOW_CONFIRM (1 << 0)
 #define PARTY_MENU_SHOW_CANCEL  (1 << 1)
 #define PARTY_MENU_SHOW_ALL     (PARTY_MENU_SHOW_CONFIRM | PARTY_MENU_SHOW_CANCEL)
+
+#define PARTY_MENU_SLOT_CANCEL (MAX_PARTY_SIZE + 1)
+
+#define MEMBER_PANEL_WIDTH  16
+#define MEMBER_PANEL_HEIGHT 6
+
+#define MEMBER_HEALTHBAR_XPOS  6
+#define MEMBER_HEALTHBAR_YPOS  3
+#define MEMBER_HEALTHBAR_WIDTH 9
+#define MEMBER_HEALTHBAR_EMPTY 0x17
 
 enum PartyMenuMode {
     PARTY_MENU_MODE_FIELD = 0,
@@ -77,7 +85,7 @@ enum PartyMenuExitCodes {
     PARTY_MENU_EXIT_CODE_GIVE_ITEM,
     PARTY_MENU_EXIT_CODE_OVERWRITE_MOVE_TM_HM,
     PARTY_MENU_EXIT_CODE_OVERWRITE_MOVE_LEVEL_UP,
-    PARTY_MENU_EXIT_CODE_MAIL,
+    PARTY_MENU_EXIT_CODE_WRITE_MAIL,
     PARTY_MENU_EXIT_CODE_READ_MAIL,
     PARTY_MENU_EXIT_CODE_EVOLVE_BY_ITEM,
     PARTY_MENU_EXIT_CODE_EVOLVE_BY_LEVEL,
@@ -136,12 +144,12 @@ enum PartyMenuWindow {
     PARTY_MENU_WIN_MEDIUM_MESSAGE,
     PARTY_MENU_WIN_LONG_MESSAGE,
     PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL,
-    PARTY_MENU_WIN_TEACH_MOVE,
+    PARTY_MENU_WIN_MOVE_LIST,
 
     NUM_PARTY_MENU_WINS,
 };
 
-#define PARTY_MENU_WIN_NUM_PER_MEMBER (PARTY_MENU_WIN_COMMENT_MEMB0 + 1)
+#define PARTY_MENU_WIN_NUM_PER_MEMBER (PARTY_MENU_WIN_NAME_MEMB1)
 
 enum PartyMenuString {
     PARTY_MENU_STR_SWITCH = 0,
@@ -271,13 +279,13 @@ typedef struct PartyMenuFormChange {
 #define PARTY_MENU_MEMBER_PANEL_SIZE_TILES 96
 
 typedef struct PartyOrderSwitchData {
-    u16 unk_00[2][PARTY_MENU_MEMBER_PANEL_SIZE_TILES];
-    u16 unk_180[2][PARTY_MENU_MEMBER_PANEL_SIZE_TILES];
+    u16 bufPanels[2][PARTY_MENU_MEMBER_PANEL_SIZE_TILES];
+    u16 bufWindows[2][PARTY_MENU_MEMBER_PANEL_SIZE_TILES];
     u8 slots[2];
-    u8 unk_302[2];
+    u8 sides[2];
     u8 inProgress;
-    u8 unk_305;
-    u8 unk_306;
+    u8 state;
+    u8 scrollTicker;
 } PartyOrderSwitchData;
 
 enum MonHPTransferIndex {
@@ -296,7 +304,47 @@ enum HpTransferState {
     HP_TRANSFER_STATE_CONFIRM_DONE
 };
 
-typedef struct PartyMenuApplication {
+enum PartyMenuState {
+    PARTY_MENU_STATE_START,
+    PARTY_MENU_STATE_DEFAULT,
+    PARTY_MENU_STATE_HANDLE_PARTY_MENU_ACTION,
+    PARTY_MENU_STATE_WAIT_AB_PRESS,
+    PARTY_MENU_STATE_USE_ITEM,
+    PARTY_MENU_STATE_EXEC_CALLBACK,
+    PARTY_MENU_STATE_WAIT_MOVE_LIST_SELECTION,
+    PARTY_MENU_STATE_USE_SACRED_ASH,
+    PARTY_MENU_STATE_GIVE_ITEM,
+    PARTY_MENU_STATE_SHOW_ITEM_SWAP_CONFIRMATION,
+    PARTY_MENU_STATE_HELD_ITEM_SWAP,
+    PARTY_MENU_STATE_CONFIRM_ITEM_UPDATE,
+    PARTY_MENU_STATE_12,
+    PARTY_MENU_STATE_13,
+    PARTY_MENU_STATE_14,
+    PARTY_MENU_STATE_HANDLE_CONTEXT_MENU_INPUT,
+    PARTY_MENU_STATE_16,
+    PARTY_MENU_STATE_PRINTING,
+    PARTY_MENU_STATE_PRINTING_FORM_CHANGE,
+    PARTY_MENU_STATE_FORM_CHANGE,
+    PARTY_MENU_STATE_WAIT_AB_PRESS_2,
+    PARTY_MENU_STATE_TEACH_MOVE,
+    PARTY_MENU_STATE_TEACH_MOVE_HANDLE_INPUT,
+    PARTY_MENU_STATE_WAIT_AB_PRESS_CHOOSE_MONS,
+    PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE,
+    PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE,
+    PARTY_MENU_STATE_DRAW_YES_NO_CHOICE,
+    PARTY_MENU_STATE_27,
+    PARTY_MENU_STATE_SELECT_SWITCH_SLOT,
+    PARTY_MENU_STATE_DO_SWITCH,
+    PARTY_MENU_STATE_HP_TRANSFER_FIELD_MOVE,
+    PARTY_MENU_STATE_WAIT_FORM_CHANGE,
+    PARTY_MENU_STATE_FADE_OUT,
+    PARTY_MENU_STATE_WAIT_FADE_OUT,
+};
+
+typedef struct PartyMenuApplication PartyMenuApplication;
+typedef enum PartyMenuState (*PartyMenuCallback)(PartyMenuApplication *);
+
+struct PartyMenuApplication {
     BgConfig *bgConfig;
     Window windows[NUM_PARTY_MENU_WINS];
     Window menuWindows[1]; // There is only ever 1 here, but it is never unrolled by the compiler
@@ -320,13 +368,16 @@ typedef struct PartyMenuApplication {
     PartyMenuMember partyMembers[MAX_PARTY_SIZE];
     const GridMenuCursorPosition *cursorPosTable;
     PartyOrderSwitchData orderSwitch;
-    GenericFunctionPtr unk_B00;
-    FunctionPtrPair unk_B04;
+    PartyMenuCallback callback;
+    struct {
+        PartyMenuCallback onYes;
+        PartyMenuCallback onNo;
+    } yesnoCallbacks;
     u8 unk_B0C;
     u8 unk_B0D;
     union {
         u8 stateAfterMessage;
-        u8 unk_B0E; // turns into a local state in sub_02085804()
+        u8 sacredAshState;
     };
     u8 selectTargetSlot : 6;
     u8 inTargetSlotMode : 1;
@@ -334,7 +385,7 @@ typedef struct PartyMenuApplication {
     u8 textPrinterID;
     u8 currPartySlot;
     u8 prevPartySlot;
-    u8 unk_B13;
+    u8 callbackState;
     union {
         u16 monStats[STAT_MAX];
         u16 monHpTransfer[HP_TRANSFER_INDEX_MAX];
@@ -342,6 +393,6 @@ typedef struct PartyMenuApplication {
     HeightWeightData *heightWeight;
     PartyMenuFormChange *formChanger;
     G3DPipelineBuffers *formChange3DPipeline;
-} PartyMenuApplication;
+};
 
 #endif // POKEPLATINUM_PARTY_MENU_DEFS_H

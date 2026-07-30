@@ -1,0 +1,30 @@
+{
+  "name": "Soul Dew",
+  "plural": "Soul Dews",
+  "article": "a",
+  "description": [
+    "A wondrous orb to be held by LATIOS or\n",
+    "LATIAS. It raises both the Sp. Atk and\n",
+    "Sp. Def stats."
+  ],
+  "icon": {
+    "sprite": "soul_dew_NCGR",
+    "palette": "soul_dew_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SOUL_DEW",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_LATI_SPECIAL",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

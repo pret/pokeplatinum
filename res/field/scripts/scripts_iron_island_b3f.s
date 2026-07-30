@@ -1,43 +1,43 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0032
-    ScriptEntry _0075
-    ScriptEntry _0081
-    ScriptEntry _0012
+    ScriptEntry IronIslandB3F_OnTransition
+    ScriptEntry IronIslandB3F_CoordEvent_PlatformLift
+    ScriptEntry IronIslandB3F_Dummy3
+    ScriptEntry IronIslandB3F_OnLoad
     ScriptEntryEnd
 
-_0012:
-    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_4
-    GoToIfEq VAR_MAP_LOCAL_4, 0, _0061
-    GoToIfEq VAR_MAP_LOCAL_4, 1, _006B
+IronIslandB3F_OnLoad:
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x04
+    GoToIfEq VAR_MAP_LOCAL_0x04, FALSE, IronIslandB3F_RemoveWarpIronRuinsWithRegisteel
+    GoToIfEq VAR_MAP_LOCAL_0x04, TRUE, IronIslandB3F_RemoveWarpIronRuinsWithoutRegisteel
     End
 
-_0032:
+IronIslandB3F_OnTransition:
     InitPersistedMapFeaturesForPlatformLift
-    CallIfNe VAR_IRON_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, _0079
-    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_4
-    GoToIfEq VAR_MAP_LOCAL_4, 0, _0061
-    GoToIfEq VAR_MAP_LOCAL_4, 1, _006B
+    CallIfNe VAR_IRON_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, IronIslandB3F_ResetIronRuinsState
+    CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x04
+    GoToIfEq VAR_MAP_LOCAL_0x04, FALSE, IronIslandB3F_RemoveWarpIronRuinsWithRegisteel
+    GoToIfEq VAR_MAP_LOCAL_0x04, TRUE, IronIslandB3F_RemoveWarpIronRuinsWithoutRegisteel
     End
 
-_0061:
+IronIslandB3F_RemoveWarpIronRuinsWithRegisteel:
     SetWarpEventPos 3, 17, 1
     End
 
-_006B:
+IronIslandB3F_RemoveWarpIronRuinsWithoutRegisteel:
     SetWarpEventPos 2, 17, 1
     End
 
-_0075:
+IronIslandB3F_CoordEvent_PlatformLift:
     TriggerPlatformLift
     End
 
-_0079:
+IronIslandB3F_ResetIronRuinsState:
     SetVar VAR_IRON_RUINS_STATE, 0
     Return
 
-_0081:
+IronIslandB3F_Dummy3:
     End
 
     .balign 4, 0

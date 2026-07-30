@@ -3,12 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/vs_seeker.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 #include "generated/trainer_types.h"
 #include "generated/trainers.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "overlay005/map_object_anim_cmd.h"
@@ -46,11 +47,6 @@
 // Number of steps for which the rematches are available
 // until the Vs. Seeker has to be used again
 #define VS_SEEKER_MAX_NUM_ACTIVE_STEPS 100
-
-#define VS_SEEKER_USE_RESULT_OK                 0
-#define VS_SEEKER_USE_RESULT_NO_BATTERY         1
-#define VS_SEEKER_USE_RESULT_NO_TRAINERS        2
-#define VS_SEEKER_USE_RESULT_NO_TRAINERS_PICKED 3 // No trainers were picked for a rematch (e.g. all the random chances failed)
 
 #define VS_SEEKER_REMATCH_DATA_INDEX_NONE 0xFF
 
@@ -107,7 +103,7 @@ static BOOL VsSeeker_IsMoveCodeHidden(u32 moveCode);
 static BOOL VsSeeker_ExecuteTask(FieldTask *taskMan);
 static enum VsSeekerUsability VsSeekerSystem_CheckUsability(VsSeekerSystem *vsSeeker);
 static void VsSeekerSystem_SetState(VsSeekerSystem *vsSeeker, enum VsSeekerState state);
-static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker);
+static void VsSeekerSystem_CollectViableNPCs(VsSeekerSystem *vsSeeker);
 static void VsSeekerSystem_StartAnimation(VsSeekerSystem *vsSeeker, MapObject *mapObj, const MapObjectAnimCmd *animCmdList);
 static void VsSeekerSystem_StartAnimationTask(VsSeekerSystem *vsSeeker, SysTask *animTask);
 static void VsSeeker_TrackAnimation(SysTask *task, void *param);
@@ -122,7 +118,7 @@ static u16 VsSeeker_GetNextLowerRematchLevel(u16 rematchDataIndex, u16 level);
 static u16 VsSeeker_GetTrainerIDForRematchLevel(u16 rematchDataIndex, u16 level);
 static BOOL VsSeeker_IsTrainerDoingRematchAnimation(MapObject *trainerObj);
 static void VsSeeker_SetTrainerMoveCode(MapObject *trainerObj, u16 moveCode);
-static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem);
+static BOOL VsSeeker_WaitForNPCsToPause(FieldSystem *fieldSystem);
 static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem, MapObject *trainerObj, enum VsSeeker2v2TrainerSearchMode mode);
 
 #define _ VS_SEEKER_REMATCH_DATA_NONE
@@ -410,12 +406,12 @@ static BOOL VsSeeker_ExecuteTask(FieldTask *taskMan)
 
     switch (vsSeeker->state) {
     case VS_SEEKER_STATE_WAIT_FOR_NPCS:
-        if (VsSeeker_WaitForNpcsToPause(vsSeeker->fieldSystem) == TRUE) {
+        if (VsSeeker_WaitForNPCsToPause(vsSeeker->fieldSystem) == TRUE) {
             VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_CHECK_USABILITY);
         }
         break;
     case VS_SEEKER_STATE_CHECK_USABILITY:
-        VsSeekerSystem_CollectViableNpcs(vsSeeker);
+        VsSeekerSystem_CollectViableNPCs(vsSeeker);
         usability = VsSeekerSystem_CheckUsability(vsSeeker);
 
         if (usability == VS_SEEKER_USABILITY_OK) {
@@ -501,7 +497,7 @@ static enum VsSeekerUsability VsSeekerSystem_CheckUsability(VsSeekerSystem *vsSe
     return VS_SEEKER_USABILITY_NO_BATTERY;
 }
 
-static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker)
+static void VsSeekerSystem_CollectViableNPCs(VsSeekerSystem *vsSeeker)
 {
     // Can't get this to match with C99 style declarations
     int numVisibleTrainers;
@@ -514,8 +510,8 @@ static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker)
         vsSeeker->trainers[i] = NULL;
     }
 
-    int playerX = Player_GetXPos(vsSeeker->fieldSystem->playerAvatar);
-    int playerZ = Player_GetZPos(vsSeeker->fieldSystem->playerAvatar);
+    int playerX = PlayerAvatar_GetXPos(vsSeeker->fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(vsSeeker->fieldSystem->playerAvatar);
     xMin = playerX - VS_SEEKER_SEARCH_RADIUS_LEFT;
     xMax = playerX + VS_SEEKER_SEARCH_RADIUS_RIGHT;
     zMin = playerZ - VS_SEEKER_SEARCH_RADIUS_UP;
@@ -813,7 +809,7 @@ void VsSeeker_SetMoveCodeForFacingDirection(FieldSystem *fieldSystem, MapObject 
     VsSeeker_SetTrainerMoveCode(trainerObj, moveCode);
 }
 
-static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem)
+static BOOL VsSeeker_WaitForNPCsToPause(FieldSystem *fieldSystem)
 {
     u32 objEventCount = MapHeaderData_GetNumObjectEvents(fieldSystem);
     BOOL anyMoving = FALSE;

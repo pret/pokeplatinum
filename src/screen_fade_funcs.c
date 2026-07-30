@@ -1485,7 +1485,7 @@ static void sub_02010238(ScreenFade *param0, int param1)
             v0 = -16;
             v1 = 0;
 
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
     } else {
         if (param0->color == 0x7fff) {
@@ -1498,7 +1498,7 @@ static void sub_02010238(ScreenFade *param0, int param1)
             v0 = 0;
             v1 = -16;
 
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
     }
 
@@ -2014,7 +2014,7 @@ static BOOL sub_02010F64(ScreenFade *param0)
         v2 = 1;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -2178,7 +2178,7 @@ static BOOL sub_0201123C(ScreenFade *param0)
         v2 = 1;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -2439,7 +2439,7 @@ static BOOL sub_020116D8(ScreenFade *param0)
         v2 = 1;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -2592,7 +2592,7 @@ static BOOL sub_020119A0(ScreenFade *param0)
         v2 = 1;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -2767,7 +2767,7 @@ static BOOL sub_02011CD4(ScreenFade *param0)
         v2 = 1;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -2920,7 +2920,7 @@ static BOOL sub_02011F88(ScreenFade *param0)
         v2 = 1;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -3092,7 +3092,7 @@ static BOOL sub_02012228(ScreenFade *param0)
         v2 = 1;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

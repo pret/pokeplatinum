@@ -7,8 +7,8 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40DE, 1, 3
-    InitScriptGoToIfEqual VAR_UNK_0x40DE, 2, 4
+    InitScriptGoToIfEqual VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 1, 3
+    InitScriptGoToIfEqual VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 2, 4
     InitScriptFrameTableEnd
 
     InitScriptEnd

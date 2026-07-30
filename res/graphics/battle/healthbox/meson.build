@@ -90,14 +90,14 @@ battle_sprites += [
   )
 ]
 
-healthbar_parts_embed = custom_target(
-  'healthbar_parts.4bpp.h',
+healthbox_parts_embed = custom_target(
+  'healthbox_parts.4bpp.h',
   output: [
-    'healthbar_parts.4bpp',
-    'healthbar_parts.4bpp.h',
+    'healthbox_parts.4bpp',
+    'healthbox_parts.4bpp.h',
   ],
-  input: files('healthbar_parts.png'),
-  command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT0@', '-embed', 'sHealthbarPartsBitmap' ],
+  input: files('healthbox_parts.png'),
+  command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT0@', '-embed', 'sHealthBoxPartsBitmap' ],
 )
 
-embed_headers += healthbar_parts_embed[1]
+embed_headers += healthbox_parts_embed[1]

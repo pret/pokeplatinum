@@ -2,22 +2,22 @@
   "key": 48102,
   "messages": [
     {
-      "id": "pl_msg_00000357_00000",
+      "id": "EggHatch_Text_MonHatched",
       "en_US": "{STRVAR_1 0, 0, 0} hatched from the Egg!"
     },
     {
-      "id": "pl_msg_00000357_00001",
+      "id": "EggHatch_Text_WantToNickname",
       "en_US": [
         "Would you like to nickname the newly\n",
         "hatched {STRVAR_1 0, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000357_00002",
+      "id": "EggHatch_Text_Yes",
       "en_US": "Yes"
     },
     {
-      "id": "pl_msg_00000357_00003",
+      "id": "EggHatch_Text_No",
       "en_US": "No"
     }
   ]

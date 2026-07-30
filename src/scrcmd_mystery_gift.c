@@ -22,6 +22,7 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "ribbon.h"
+#include "save_catchrecords.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "string_gf.h"
@@ -33,7 +34,6 @@
 #include "unk_020298BC.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D778.h"
-#include "unk_0202F180.h"
 #include "unk_02054884.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
@@ -92,10 +92,10 @@ BOOL ScrCmd_MysteryGiftGive(ScriptContext *ctx)
     case MYSTERY_GIFT_LOAD:
         MysteryGift_Load(ctx->fieldSystem->saveData, 32);
         break;
-    case MYSTERY_GIFT_UNLOAD_RECEIVED:
+    case MYSTERY_GIFT_UNLOAD_NOT_RECEIVED:
         MysteryGift_Unload(ctx->fieldSystem->saveData, 0);
         break;
-    case MYSTERY_GIFT_UNLOAD_NOT_RECEIVED:
+    case MYSTERY_GIFT_UNLOAD_RECEIVED:
         MysteryGift_Unload(ctx->fieldSystem->saveData, 1);
         break;
     case MYSTERY_GIFT_CHECK_AVAILABLE_PGT: {

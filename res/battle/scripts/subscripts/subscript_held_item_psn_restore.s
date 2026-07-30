@@ -7,7 +7,7 @@ _000:
     // {0}’s {1} cured its poison!
     PrintMessage BattleStrings_Text_PokemonsItemCuredItsPoison_Ally, TAG_NICKNAME_ITEM, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
     Wait 
-    SetHealthbarStatus BTLSCR_MSG_TEMP, BATTLE_ANIMATION_NONE
+    SetHealthBoxStatusIcon BTLSCR_MSG_TEMP, BATTLE_ANIMATION_NONE
     WaitButtonABTime 30
     UpdateMonData OPCODE_SET, BTLSCR_MSG_TEMP, BATTLEMON_STATUS, MON_CONDITION_NONE
     Call BATTLE_SUBSCRIPT_PLUCK_CHECK

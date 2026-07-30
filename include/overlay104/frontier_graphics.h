@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_FRONTIER_GRAPHICS_H
 #define POKEPLATINUM_FRONTIER_GRAPHICS_H
 
-#include "struct_decls/struct_0209B75C_decl.h"
+#include "struct_decls/battle_frontier_decl.h"
 
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
@@ -30,7 +30,7 @@
 typedef struct FrontierGraphics {
     BgConfig *bgConfig;
     PaletteData *plttData;
-    UnkStruct_0209B75C *unk_08;
+    BattleFrontier *frontier;
     G3DPipelineBuffers *g3dPipeline;
     FrontierParticleSystem *particleSys;
     UnkStruct_ov63_0222BE18 *unk_14;
@@ -59,7 +59,7 @@ typedef struct FrontierGraphics {
     u8 unk_C2;
 } FrontierGraphics;
 
-FrontierGraphics *FrontierGraphics_New(UnkStruct_0209B75C *param0);
+FrontierGraphics *FrontierGraphics_New(BattleFrontier *frontier);
 void FrontierGraphics_Free(FrontierGraphics *graphics);
 
 void ov104_0223C634(FrontierGraphics *param0);
@@ -77,6 +77,6 @@ ManagedSprite *ov104_0223D370(FrontierGraphics *param0, u16 param1);
 void ov104_0223D378(FrontierGraphics *param0, u16 param1, int param2);
 u32 ov104_0223D3A4(FrontierGraphics *param0, u16 param1);
 void ov104_0223D554(FrontierGraphics *param0, s16 *param1, s16 *param2);
-UnkStruct_ov104_0223C634 *ov104_0223D5A8(UnkStruct_0209B75C *param0, int param1);
+UnkStruct_ov104_0223C634 *ov104_0223D5A8(BattleFrontier *param0, int param1);
 
 #endif // POKEPLATINUM_FRONTIER_GRAPHICS_H

@@ -2,7 +2,7 @@
   "key": 39226,
   "messages": [
     {
-      "id": "pl_msg_00000547_00000",
+      "id": "DayCareCommon_Text_ImTheDayCareMan",
       "en_US": [
         "I’m the Day-Care Man.\r",
         "We look after the precious Pokémon\n",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000547_00001",
+      "id": "DayCareCommon_Text_PokemonHoldingEggYouWantIt",
       "en_US": [
         "Ah, it’s you!\r",
         "We were raising your Pokémon,\n",
@@ -24,39 +24,39 @@
       ]
     },
     {
-      "id": "pl_msg_00000547_00002",
+      "id": "DayCareCommon_Text_PokemonIsDoingJustFine",
       "en_US": [
         "Ah, it’s you! Good to see you.\n",
         "Your {STRVAR_1 0, 0, 0}’s doing just fine."
       ]
     },
     {
-      "id": "pl_msg_00000547_00003",
+      "id": "DayCareCommon_Text_IllHangOnToIt",
       "en_US": [
         "Well then, I’ll hang on to it.\n",
         "Thanks!"
       ]
     },
     {
-      "id": "pl_msg_00000547_00004",
+      "id": "DayCareCommon_Text_YouHaveNoRoom",
       "en_US": [
         "You have no room for it right now...\n",
         "Come back when you’ve made room."
       ]
     },
     {
-      "id": "pl_msg_00000547_00005",
+      "id": "DayCareCommon_Text_PlayerReceivedEgg",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received the Egg from\n",
         "the Day-Care Man."
       ]
     },
     {
-      "id": "pl_msg_00000547_00006",
+      "id": "DayCareCommon_Text_TakeGoodCareOfIt",
       "en_US": "You take good care of it."
     },
     {
-      "id": "pl_msg_00000547_00007",
+      "id": "DayCareCommon_Text_SawPokemonReceivingMail",
       "en_US": [
         "By the way, I saw your {STRVAR_1 0, 0, 0}\n",
         "cavorting with {STRVAR_1 3, 1, 0}’s\f",
@@ -66,14 +66,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000547_00008",
+      "id": "DayCareCommon_Text_TalkToWifeToPickUpPokemon",
       "en_US": [
         "If you want to pick up your Pokémon,\n",
         "have a word with my wife."
       ]
     },
     {
-      "id": "pl_msg_00000547_00009",
+      "id": "DayCareCommon_Text_PokemonAreDoingJustFine",
       "en_US": [
         "Ah, it’s you!\n",
         "Good to see you!\r",
@@ -82,36 +82,36 @@
       ]
     },
     {
-      "id": "pl_msg_00000547_00010",
+      "id": "DayCareCommon_Text_YouDoWantThisYes",
       "en_US": [
         "I really will keep it.\n",
         "You do want this, yes?"
       ]
     },
     {
-      "id": "pl_msg_00000547_00011",
+      "id": "DayCareCommon_Text_TheTwoGetAlongVeryWell",
       "en_US": "The two seem to get along very well."
     },
     {
-      "id": "pl_msg_00000547_00012",
+      "id": "DayCareCommon_Text_TheTwoGetAlong",
       "en_US": "The two seem to get along."
     },
     {
-      "id": "pl_msg_00000547_00013",
+      "id": "DayCareCommon_Text_TheTwoDontLikeEachOther",
       "en_US": [
         "The two don’t seem to like each\n",
         "other much."
       ]
     },
     {
-      "id": "pl_msg_00000547_00014",
+      "id": "DayCareCommon_Text_TheTwoPlayWithOtherPokemon",
       "en_US": [
         "The two prefer to play with other\n",
         "Pokémon more than with each other."
       ]
     },
     {
-      "id": "pl_msg_00000547_00015",
+      "id": "DayCareCommon_Text_ImTheDayCareLadyRaisePokemon",
       "en_US": [
         "I’m the Day-Care Lady.\n",
         "We can raise Pokémon for you.\r",
@@ -120,14 +120,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000547_00016",
+      "id": "DayCareCommon_Text_RaiseWhichPokemon",
       "en_US": [
         "Which Pokémon should we raise for\n",
         "you?\r"
       ]
     },
     {
-      "id": "pl_msg_00000547_00017",
+      "id": "DayCareCommon_Text_WellRaiseYourPokemon_ArrowPrompt",
       "en_US": [
         "Fine, we’ll raise your {STRVAR_1 0, 0, 0}\n",
         "for a while.\r",
@@ -135,92 +135,92 @@
       ]
     },
     {
-      "id": "pl_msg_00000547_00018",
+      "id": "DayCareCommon_Text_RaiseAnotherPokemon",
       "en_US": [
         "We can raise two of your Pokémon.\n",
         "Would you like us to raise another?"
       ]
     },
     {
-      "id": "pl_msg_00000547_00019",
+      "id": "DayCareCommon_Text_HusbandWasLookingForYou",
       "en_US": [
         "Ah, there you are!\n",
         "My husband was looking for you."
       ]
     },
     {
-      "id": "pl_msg_00000547_00020",
+      "id": "DayCareCommon_Text_OhFineThen",
       "en_US": [
         "Oh, fine, then.\n",
         "Come again."
       ]
     },
     {
-      "id": "pl_msg_00000547_00021",
+      "id": "DayCareCommon_Text_NotEnoughMoney",
       "en_US": "You don’t have enough money..."
     },
     {
-      "id": "pl_msg_00000547_00022",
+      "id": "DayCareCommon_Text_DoYouWantOtherBackToo",
       "en_US": [
         "Do you want to take back the other\n",
         "one, too?"
       ]
     },
     {
-      "id": "pl_msg_00000547_00023",
+      "id": "DayCareCommon_Text_VeryGoodComeAgain",
       "en_US": [
         "Very good.\n",
         "Come again."
       ]
     },
     {
-      "id": "pl_msg_00000547_00024",
+      "id": "DayCareCommon_Text_AboutYourPokemon",
       "en_US": [
         "Ah, it’s you! Good to see you.\n",
         "Now, about your Pokémon...\r"
       ]
     },
     {
-      "id": "pl_msg_00000547_00025",
+      "id": "DayCareCommon_Text_PokemonHasGrownXLevels",
       "en_US": [
         "By level, your {STRVAR_1 0, 0, 0} has\n",
         "grown by about {STRVAR_1 51, 1, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000547_00026",
+      "id": "DayCareCommon_Text_TeamIsFull",
       "en_US": [
         "Your Pokémon team is full.\n",
         "Make room, then come see me."
       ]
     },
     {
-      "id": "pl_msg_00000547_00027",
+      "id": "DayCareCommon_Text_TakeBackWhichPokemon",
       "en_US": "Which Pokémon will you take back?"
     },
     {
-      "id": "pl_msg_00000547_00028",
+      "id": "DayCareCommon_Text_PokemonBackCostsX",
       "en_US": [
         "If you want your {STRVAR_1 0, 0, 0} back,\n",
         "it will cost ${STRVAR_1 53, 1, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000547_00029",
+      "id": "DayCareCommon_Text_HeresYourPokemon",
       "en_US": [
         "Excellent!\n",
         "Here’s your Pokémon.\r"
       ]
     },
     {
-      "id": "pl_msg_00000547_00030",
+      "id": "DayCareCommon_Text_PlayerTookPokemonBack",
       "en_US": [
         "{STRVAR_1 3, 1, 0} took {STRVAR_1 0, 0, 0} back\n",
         "from the Day-Care Lady.\r"
       ]
     },
     {
-      "id": "pl_msg_00000547_00031",
+      "id": "DayCareCommon_Text_OnlyOnePokemonWithYou",
       "en_US": [
         "Oh? But you only have one\n",
         "Pokémon with you.\r",
@@ -229,11 +229,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000547_00032",
+      "id": "DayCareCommon_Text_DoYouWantPokemonBack",
       "en_US": "Do you want your Pokémon back?"
     },
     {
-      "id": "pl_msg_00000547_00033",
+      "id": "DayCareCommon_Text_WhatWillYouBattleWith",
       "en_US": [
         "If you leave me that Pokémon,\n",
         "what are you gonna battle with?\r",
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000547_00034",
+      "id": "DayCareCommon_Text_YoullBeLeftWithJustOne",
       "en_US": [
         "Huh? Now, now.\r",
         "If you leave that Pokémon with\n",
@@ -251,14 +251,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000547_00035",
+      "id": "DayCareCommon_Text_ThatIsMerelyAnEgg",
       "en_US": [
         "Now, now.\n",
         "That is merely an Egg!"
       ]
     },
     {
-      "id": "pl_msg_00000547_00036",
+      "id": "DayCareCommon_Text_WellRaiseYourPokemon",
       "en_US": [
         "Fine, we’ll raise your {STRVAR_1 0, 0, 0}\n",
         "for a while.\r",
@@ -266,23 +266,23 @@
       ]
     },
     {
-      "id": "pl_msg_00000547_00037",
+      "id": "DayCareCommon_Text_Huh",
       "en_US": "Huh?"
     },
     {
-      "id": "pl_msg_00000547_00038",
+      "id": "DayCareCommon_Text_00038",
       "en_US": "Lv. {STRVAR_1 52, 1, 0}"
     },
     {
-      "id": "pl_msg_00000547_00039",
+      "id": "DayCareCommon_Text_00039",
       "en_US": "{STRVAR_1 0, 0, 0}♂"
     },
     {
-      "id": "pl_msg_00000547_00040",
+      "id": "DayCareCommon_Text_00040",
       "en_US": "{STRVAR_1 0, 0, 0}♀"
     },
     {
-      "id": "pl_msg_00000547_00041",
+      "id": "DayCareCommon_Text_00041",
       "en_US": "{STRVAR_1 0, 0, 0}"
     }
   ]

@@ -2,7 +2,7 @@
   "key": 18231,
   "messages": [
     {
-      "id": "pl_msg_00000590_00000",
+      "id": "SurvivalArea_Text_ThisIsMyPlace",
       "en_US": [
         "Buck: Yo, if it isn’t {STRVAR_1 3, 0, 0}!\r",
         "This! It’s my place!\n",
@@ -10,14 +10,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000590_00001",
+      "id": "SurvivalArea_Text_DoorMembersOnly",
       "en_US": [
         "The door is shut tight.\n",
         "“Members Only” is painted on it."
       ]
     },
     {
-      "id": "pl_msg_00000590_00002",
+      "id": "SurvivalArea_Text_IllProveImTougher",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}! You\n",
         "aren’t the only one getting tougher!\r",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000590_00003",
+      "id": "SurvivalArea_Text_KeepGettingTougher",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...!\r",
         "It’s all right, though.\n",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000590_00004",
+      "id": "SurvivalArea_Text_PilingUpWins",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
         "How are you doing?\r",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000590_00005",
+      "id": "SurvivalArea_Text_DidYouBattleEveryone",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Oh, it’s you,\n",
         "{STRVAR_1 3, 1, 0}.\r",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000590_00006",
+      "id": "SurvivalArea_Text_BestTrainersLovePokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...!\n",
         "Oh, it’s you, {STRVAR_1 3, 1, 0}.\r",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000590_00007",
+      "id": "SurvivalArea_Text_BagFullOfItems",
       "en_US": [
         "Hey, traveling Trainer.\n",
         "Is your big Bag full of items?\f",
@@ -88,21 +88,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000590_00008",
+      "id": "SurvivalArea_Text_ComeHereToTrain",
       "en_US": [
         "Trainers who lose at the Battle\n",
         "Frontier come here to train."
       ]
     },
     {
-      "id": "pl_msg_00000590_00009",
+      "id": "SurvivalArea_Text_ScoreCommemorativePrints",
       "en_US": [
         "I’m taking the Frontier challenges to\n",
         "score some commemorative prints."
       ]
     },
     {
-      "id": "pl_msg_00000590_00010",
+      "id": "SurvivalArea_Text_IFilmedRedGyarados",
       "en_US": [
         "I’m a Cameraman, obviously.\r",
         "Have you seen that TV program,\n",
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000590_00011",
+      "id": "SurvivalArea_Text_AllSetToProduce",
       "en_US": [
         "I’m a Cameraman, obviously.\r",
         "“The Eruption of Stark Mountain?\n",
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000590_00012",
+      "id": "SurvivalArea_Text_AllMappedOut",
       "en_US": [
         "I’m a Cameraman, obviously.\r",
         "“The Eruption of Stark Mountain?\n",
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000590_00013",
+      "id": "SurvivalArea_Text_MapSign",
       "en_US": [
         "Survival Area\n",
         "Staging Point"

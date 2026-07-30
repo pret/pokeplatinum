@@ -2,7 +2,7 @@
   "key": 36501,
   "messages": [
     {
-      "id": "pl_msg_00000374_00000",
+      "id": "GroupConnection_Text_LeaveGroupAndJoinOther",
       "en_US": [
         "Hi!\n",
         "How’s it going?\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000374_00001",
+      "id": "GroupConnection_Text_LeaveGroupAndMakeNewOne",
       "en_US": [
         "Hi!\n",
         "How’s it going?\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000374_00002",
+      "id": "GroupConnection_Text_WantToJoinAGroup",
       "en_US": [
         "Hi, I know it’s a little sudden, but\n",
         "would you like to join a group?\r",
@@ -35,18 +35,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000374_00003",
+      "id": "GroupConnection_Text_JoinWhichGroup",
       "en_US": "Which group would you like to join?"
     },
     {
-      "id": "pl_msg_00000374_00004",
+      "id": "GroupConnection_Text_ThatsTooBad",
       "en_US": [
         "Oh.\n",
         "That’s too bad."
       ]
     },
     {
-      "id": "pl_msg_00000374_00005",
+      "id": "GroupConnection_Text_GroupWillBeDisbanded",
       "en_US": [
         "Oh, you want to make a new group?\n",
         "Sure thing!\r",
@@ -55,14 +55,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000374_00006",
+      "id": "GroupConnection_Text_NameYourGroup",
       "en_US": [
         "Yay, cool! What do you want to name\n",
         "your group?"
       ]
     },
     {
-      "id": "pl_msg_00000374_00007",
+      "id": "GroupConnection_Text_ThatsAGreatName",
       "en_US": [
         "The {STRVAR_1 61, 0, 0} group, huh?\n",
         "That’s a great name!\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000374_00008",
+      "id": "GroupConnection_Text_JoinThisGroup",
       "en_US": [
         "The {STRVAR_1 61, 0, 0} group?\n",
         "{STRVAR_1 3, 1, 0} is the leader.\f",
@@ -79,14 +79,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000374_00009",
+      "id": "GroupConnection_Text_NowAMemberOfGroup",
       "en_US": [
         "OK! {STRVAR_1 3, 0, 0} is now a member\n",
         "of the {STRVAR_1 61, 1, 0} group."
       ]
     },
     {
-      "id": "pl_msg_00000374_00010",
+      "id": "GroupConnection_Text_GroupInfo",
       "en_US": [
         "When you form or join a new group,\n",
         "be sure to visit any Union Room.\r",
@@ -103,54 +103,54 @@
       ]
     },
     {
-      "id": "pl_msg_00000374_00011",
+      "id": "GroupConnection_Text_MakeGroup",
       "en_US": "MAKE GROUP"
     },
     {
-      "id": "pl_msg_00000374_00012",
+      "id": "GroupConnection_Text_JoinGroup",
       "en_US": "JOIN GROUP"
     },
     {
-      "id": "pl_msg_00000374_00013",
+      "id": "GroupConnection_Text_Info",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000374_00014",
+      "id": "GroupConnection_Text_Exit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000374_00015",
+      "id": "GroupConnection_Text_GroupPlayerOriginal",
       "en_US": "{STRVAR_1 61, 0, 0} Group"
     },
     {
-      "id": "pl_msg_00000374_00016",
+      "id": "GroupConnection_Text_GroupQueue0",
       "en_US": "{STRVAR_1 61, 1, 0} Group"
     },
     {
-      "id": "pl_msg_00000374_00017",
+      "id": "GroupConnection_Text_GroupQueue1",
       "en_US": "{STRVAR_1 61, 2, 0} Group"
     },
     {
-      "id": "pl_msg_00000374_00018",
+      "id": "GroupConnection_Text_GroupQueue2",
       "en_US": "{STRVAR_1 61, 3, 0} Group"
     },
     {
-      "id": "pl_msg_00000374_00019",
+      "id": "GroupConnection_Text_GroupQueue3",
       "en_US": "{STRVAR_1 61, 4, 0} Group"
     },
     {
-      "id": "pl_msg_00000374_00020",
+      "id": "GroupConnection_Text_GroupSelectionExit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000374_00021",
+      "id": "GroupConnection_Text_DidntPlayerMakeThatAlready",
       "en_US": [
         "That group?\n",
         "Didn’t {STRVAR_1 3, 0, 0} make it already?"
       ]
     },
     {
-      "id": "pl_msg_00000374_00022",
+      "id": "GroupConnection_Text_AlreadyGroupWithThatName",
       "en_US": [
         "Isn’t there already another group\n",
         "with that name?"

@@ -3,14 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay006/great_marsh_binoculars.h"
-#include "overlay006/ov6_022426AC.h"
+#include "overlay006/great_marsh_lookout_sprite.h"
 
 #include "field_map_change.h"
+#include "field_map_change_flags.h"
 #include "field_task.h"
 #include "field_transition.h"
 #include "heap.h"
@@ -21,12 +22,11 @@
 #include "system.h"
 #include "system_flags.h"
 #include "unk_02056B30.h"
-#include "unk_02070428.h"
 #include "vars_flags.h"
 
 // Data used for the Great Marsh lookout binoculars scene.
 typedef struct LookoutData {
-    GreatMarshLookout_SpriteResources *spriteResources;
+    GreatMarshLookoutSpriteManager *spriteResources;
     GreatMarshBinoculars *binocularsData;
     Location *nextLocation;
     u8 state;
@@ -40,7 +40,7 @@ void GreatMarshLookout_Init(FieldSystem *fieldSystem)
 {
     LookoutData *lookout = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(LookoutData));
 
-    lookout->spriteResources = GreatMarshLookout_AllocSpriteResources(HEAP_ID_FIELD2);
+    lookout->spriteResources = GreatMarshLookout_AllocSpriteManager(HEAP_ID_FIELD2);
     lookout->binocularsData = GreatMarshBinoculars_InitData(HEAP_ID_FIELD2, fieldSystem);
     lookout->state = 0;
     lookout->numCycles = 0;
@@ -55,7 +55,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
 
     switch (lookout->state) {
     case 0:
-        sub_02070428(fieldSystem, 1);
+        FieldSystem_SetTemporaryMapChange(fieldSystem, TRUE);
         GreatMarshBinoculars_SetNextLocationWithCoords(lookout->numCycles, lookout->binocularsData);
         lookout->nextLocation = GreatMarshBinoculars_GetLocation(lookout->binocularsData);
         FieldTransition_FadeOut(taskMan);
@@ -73,27 +73,25 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
         } else if (lookout->numCycles == BINOCULARS_CYCLE_COUNT) {
             SystemFlag_ClearPoketchHidden(flags);
         }
-    }
 
         FieldTask_ChangeMapByLocation(taskMan, lookout->nextLocation);
         lookout->state = 3;
-        break;
+    } break;
     case 3:
         FieldTransition_StartMap(taskMan);
         lookout->state = 4;
         break;
     case 4: {
-        MapObject *playerAvatar = Player_MapObject(fieldSystem->playerAvatar);
+        MapObject *playerAvatar = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
 
         lookout->numCycles++;
 
         if (lookout->numCycles <= BINOCULARS_CYCLE_COUNT) {
-            int species;
+            int species = GreatMarshBinoculars_GetMonSpecies(fieldSystem);
 
-            species = GreatMarshBinoculars_GetMonSpecies(fieldSystem);
             MapObject_SetHidden(playerAvatar, 1);
-            GreatMarshLookout_CreateLookoutMonSprite(lookout->spriteResources, species);
-            ov6_022427F4(lookout->spriteResources);
+            GreatMarshLookout_CreateMonSprite(lookout->spriteResources, species);
+            GreatMarshLookout_ShowMonSprite(lookout->spriteResources);
             lookout->timer = 0;
             Sound_PlayEffect(SEQ_SE_DP_KASYA); // binoculars switch
             sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, HEAP_ID_FIELD2);
@@ -107,7 +105,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
     case 5:
         lookout->timer++;
 
-        if ((lookout->timer >= 60) || (gSystem.pressedKeys & PAD_BUTTON_A)) {
+        if (lookout->timer >= 60 || JOY_NEW(PAD_BUTTON_A)) {
             GreatMarshBinoculars_SetNextLocationWithCoords(lookout->numCycles, lookout->binocularsData);
             lookout->nextLocation = GreatMarshBinoculars_GetLocation(lookout->binocularsData);
             Sound_PlayEffect(SEQ_SE_DP_KASYA);
@@ -116,23 +114,23 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
         }
         break;
     case 6:
-        ov6_02242814(lookout->spriteResources);
+        GreatMarshLookout_StopShowingMonSprite(lookout->spriteResources);
         lookout->state = 7;
         break;
     case 7:
-        if (ov6_02242820(lookout->spriteResources)) {
-            ov6_02242828(lookout->spriteResources);
+        if (GreateMarshLookout_IsSpriteTaskFinished(lookout->spriteResources)) {
+            GreatMarshLookout_FreeSpriteResources(lookout->spriteResources);
             lookout->state = 1;
         }
         break;
     case 8:
-        sub_02070428(fieldSystem, 0);
+        FieldSystem_SetTemporaryMapChange(fieldSystem, FALSE);
         GreatMarshBinoculars_FreeData(lookout->binocularsData);
-        GreatMarshLookout_FreeSpriteResources(lookout->spriteResources);
+        GreatMarshLookout_FreeSpriteManager(lookout->spriteResources);
         Heap_Free(lookout);
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }

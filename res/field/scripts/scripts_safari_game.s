@@ -41,7 +41,7 @@ SafariGame_OutOfSteps:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, DIR_SOUTH
+    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 5, 2, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_SAFARI_GAME_STATE, 2
@@ -64,7 +64,7 @@ SafariGame_OutOfSafariBalls_Field:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, DIR_SOUTH
+    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 5, 2, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_SAFARI_GAME_STATE, 2
@@ -80,7 +80,7 @@ SafariGame_OutOfRoomForPokemon:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, DIR_SOUTH
+    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 5, 2, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_SAFARI_GAME_STATE, 2
@@ -96,7 +96,7 @@ SafariGame_Retire:
     GoToIfNe VAR_RESULT, MENU_YES, SafariGame_NoRetire
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, DIR_SOUTH
+    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 5, 2, DIR_SOUTH
     FadeScreenIn
     WaitFadeScreen
     SetVar VAR_SAFARI_GAME_STATE, 2
@@ -344,67 +344,67 @@ SafariGame_ExitQuickTramMenu:
     End
 
 SafariGame_BoardQuickTramFromWestGoingToOddArea:
-    ApplyMovement LOCALID_PLAYER, SafariGame_BoardQuickTramFromWestGoingToOddArea_Movement
+    ApplyMovement LOCALID_PLAYER, SafariGame_Movement_BoardQuickTramFromWestGoingToOddArea
     WaitMovement
     Return
 
 SafariGame_BoardQuickTramFromWestGoingToEvenArea:
-    ApplyMovement LOCALID_PLAYER, SafariGame_BoardQuickTramFromWestGoingToEvenArea_Movement
+    ApplyMovement LOCALID_PLAYER, SafariGame_Movement_BoardQuickTramFromWestGoingToEvenArea
     WaitMovement
     Return
 
 SafariGame_BoardQuickTramFromEastGoingToEvenArea:
-    ApplyMovement LOCALID_PLAYER, SafariGame_BoardQuickTramFromEastGoingToEvenArea_Movement
+    ApplyMovement LOCALID_PLAYER, SafariGame_Movement_BoardQuickTramFromEastGoingToEvenArea
     WaitMovement
     Return
 
 SafariGame_BoardQuickTramFromEastGoingToOddArea:
-    ApplyMovement LOCALID_PLAYER, SafariGame_BoardQuickTramFromEastGoingToOddArea_Movement
+    ApplyMovement LOCALID_PLAYER, SafariGame_Movement_BoardQuickTramFromEastGoingToOddArea
     WaitMovement
     Return
 
 SafariGame_LeaveQuickTramEast:
-    ApplyMovement LOCALID_PLAYER, SafariGame_LeaveQuickTramEast_Movement
+    ApplyMovement LOCALID_PLAYER, SafariGame_Movement_LeaveQuickTramEast
     WaitMovement
     Return
 
 SafariGame_LeaveQuickTramWest:
-    ApplyMovement LOCALID_PLAYER, SafariGame_LeaveQuickTramWest_Movement
+    ApplyMovement LOCALID_PLAYER, SafariGame_Movement_LeaveQuickTramWest
     WaitMovement
     Return
 
     .balign 4, 0
-SafariGame_BoardQuickTramFromWestGoingToOddArea_Movement:
+SafariGame_Movement_BoardQuickTramFromWestGoingToOddArea:
     WalkNormalEast 3
     SetInvisible
     EndMovement
 
     .balign 4, 0
-SafariGame_BoardQuickTramFromWestGoingToEvenArea_Movement:
+SafariGame_Movement_BoardQuickTramFromWestGoingToEvenArea:
     WalkNormalEast 4
     SetInvisible
     EndMovement
 
     .balign 4, 0
-SafariGame_BoardQuickTramFromEastGoingToEvenArea_Movement:
+SafariGame_Movement_BoardQuickTramFromEastGoingToEvenArea:
     WalkNormalWest 3
     SetInvisible
     EndMovement
 
     .balign 4, 0
-SafariGame_BoardQuickTramFromEastGoingToOddArea_Movement:
+SafariGame_Movement_BoardQuickTramFromEastGoingToOddArea:
     WalkNormalWest 4
     SetInvisible
     EndMovement
 
     .balign 4, 0
-SafariGame_LeaveQuickTramEast_Movement:
+SafariGame_Movement_LeaveQuickTramEast:
     SetVisible
     WalkNormalEast 3
     EndMovement
 
     .balign 4, 0
-SafariGame_LeaveQuickTramWest_Movement:
+SafariGame_Movement_LeaveQuickTramWest:
     SetVisible
     WalkNormalWest 3
     EndMovement

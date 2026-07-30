@@ -1,13 +1,13 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _000A
-    ScriptEntry _000E
+    ScriptEntry DistortionWorldB5F_OnTransition
+    ScriptEntry DistortionWorldB5F_Dummy2
     ScriptEntryEnd
 
-_000A:
+DistortionWorldB5F_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-_000E:
+DistortionWorldB5F_Dummy2:
     End

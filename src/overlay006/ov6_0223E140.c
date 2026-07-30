@@ -4,9 +4,10 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "constants/versions.h"
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -1071,7 +1072,7 @@ static void ov6_0223EB4C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     v0->fieldSystem = fieldSystem;
     v0->unk_108 = MapObjMan_LocalMapObjByIndex(v0->fieldSystem->mapObjMan, 1);
     v0->unk_10C = MapObjMan_LocalMapObjByIndex(v0->fieldSystem->mapObjMan, 0);
-    v0->unk_110 = Player_MapObject(FieldSystem_GetPlayerAvatar(v0->fieldSystem));
+    v0->unk_110 = PlayerAvatar_GetMapObject(FieldSystem_GetPlayerAvatar(v0->fieldSystem));
 
     HeapExp_FndInitAllocator(&v0->unk_C0, HEAP_ID_FIELD1, 32);
     ov6_0223EA98(v0);

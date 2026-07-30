@@ -48,8 +48,11 @@ frontier_text_bank_names = [
     'frontier_trainer_names.json'
 ]
 
-town_map_text_bank_name = [
-    'town_map.json'
+item_text_bank_names = [
+    'item_names.json',
+    'item_names_plural.json',
+    'item_names_with_articles.json',
+    'item_descriptions.json',
 ]
 
 # This list will be what's used hereafter when referring to any-and-all generated banks.
@@ -57,7 +60,10 @@ generated_text_banks = [
     species_text_bank_names,
     trainer_text_bank_names,
     frontier_text_bank_names,
-    town_map_text_bank_name,
+    item_text_bank_names,
+    move_text_bank_names,
+    'town_map.json',
+    'npc_trade_names.json',
 ]
 
 # 2. All other files must be static. Pull these from `generated/text_banks.txt`. This allows us
@@ -101,51 +107,15 @@ json_to_bin_gen = generator(msgenc_exe,
     output: '@BASENAME@'
 )
 
-# 5. Set up targets which build generated text banks and build the final NARC.
-species_text_banks = custom_target('species_text_banks',
-    output: species_text_bank_names,
-    command: [
-        make_species_text_banks_py,
-        '--source-dir', pokemon_data_root,
-        '--output-dir', '@OUTDIR@',
-        '--format', 'json',
-    ],
-    env: species_env,
-    depend_files: [ species_data_files ],
-)
-
 text_bank_files += species_text_banks
-
-trainer_text_banks = custom_target('trainer_text_banks',
-    output: trainer_text_bank_names,
-    command: [
-        'cp',
-        '@OUTDIR@/../trainers/npc_trainer_messages.json',
-        '@OUTDIR@/../trainers/npc_trainer_names.json',
-        '@OUTDIR@',
-    ],
-    env: trainer_env,
-    depends: [ datagen_trainer_out ],
-)
-
 text_bank_files += trainer_text_banks
-
-frontier_text_banks = custom_target('frontier_text_banks',
-    output: frontier_text_bank_names,
-    command: [
-        'cp',
-        '@OUTDIR@/../trainers/frontier/frontier_trainer_messages.json',
-        '@OUTDIR@/../trainers/frontier/frontier_trainer_names.json',
-        '@OUTDIR@',
-    ],
-    env: trainer_env,
-    depends: [ datagen_frontier_out ],
-)
-
 text_bank_files += frontier_text_banks
+text_bank_files += item_text_banks
+text_bank_files += npctrade_text_banks
+text_bank_files += move_text_banks
 
 town_map_text_bank = custom_target('town_map_text_bank',
-    output: town_map_text_bank_name,
+    output: 'town_map.json',
     command: [
         'cp',
         '@OUTDIR@/../town_map/town_map.json',

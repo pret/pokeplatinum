@@ -1,0 +1,43 @@
+{
+  "name": "Durin Berry",
+  "plural": "Durin Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient.\n",
+    "Bury it in soft soil to grow a\n",
+    "Durin Plant."
+  ],
+  "icon": {
+    "sprite": "durin_berry_NCGR",
+    "palette": "durin_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_DURIN_BERRY",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_WATER",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 280,
+    "firmness": "FIRMNESS_HARD",
+    "baseYield": 3,
+    "stageDuration": 15,
+    "moistureDrainRate": 8,
+    "spiciness": 0,
+    "dryness": 0,
+    "sweetness": 0,
+    "bitterness": 30,
+    "sourness": 10,
+    "smoothness": 35
+  }
+}

@@ -1,157 +1,158 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_frontier.h"
+#include "res/field/events/events_battle_frontier.h"
 
 
-    ScriptEntry _0460
-    ScriptEntry _00DB
-    ScriptEntry _00EE
-    ScriptEntry _0101
-    ScriptEntry _0114
-    ScriptEntry _0127
-    ScriptEntry _013A
-    ScriptEntry _014D
-    ScriptEntry _0160
-    ScriptEntry _0173
-    ScriptEntry _0186
-    ScriptEntry _0199
-    ScriptEntry _01AC
-    ScriptEntry _01BF
-    ScriptEntry _01D2
-    ScriptEntry _01E5
-    ScriptEntry _01F8
-    ScriptEntry _020B
-    ScriptEntry _021E
-    ScriptEntry _0231
-    ScriptEntry _0244
-    ScriptEntry _0257
-    ScriptEntry _026A
-    ScriptEntry _027E
-    ScriptEntry _02A6
-    ScriptEntry _02BA
-    ScriptEntry _02D1
-    ScriptEntry _02E8
-    ScriptEntry _02FF
-    ScriptEntry _0316
-    ScriptEntry _032D
-    ScriptEntry _033E
-    ScriptEntry _034F
-    ScriptEntry _0360
-    ScriptEntry _03A0
-    ScriptEntry _03E0
-    ScriptEntry _0420
-    ScriptEntry _009A
+    ScriptEntry BattleFrontier_Dummy1
+    ScriptEntry BattleFrontier_NinjaBoy
+    ScriptEntry BattleFrontier_BlackBelt
+    ScriptEntry BattleFrontier_Idol
+    ScriptEntry BattleFrontier_AceTrainerSnowF
+    ScriptEntry BattleFrontier_Twin
+    ScriptEntry BattleFrontier_ParasolLady
+    ScriptEntry BattleFrontier_ExpertM
+    ScriptEntry BattleFrontier_ExpertF
+    ScriptEntry BattleFrontier_Waitress
+    ScriptEntry BattleFrontier_Cowgirl
+    ScriptEntry BattleFrontier_Roughneck
+    ScriptEntry BattleFrontier_PokefanM
+    ScriptEntry BattleFrontier_Collector
+    ScriptEntry BattleFrontier_Gentleman
+    ScriptEntry BattleFrontier_AceTrainerM2
+    ScriptEntry BattleFrontier_Picnicker
+    ScriptEntry BattleFrontier_PokemonBreederF
+    ScriptEntry BattleFrontier_AceTrainerM1
+    ScriptEntry BattleFrontier_SchoolKidM
+    ScriptEntry BattleFrontier_Fisherman
+    ScriptEntry BattleFrontier_TuberM
+    ScriptEntry BattleFrontier_AttendantSouthwest
+    ScriptEntry BattleFrontier_ScratchOffCards_Unused
+    ScriptEntry BattleFrontier_AttendantSoutheast
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleTower
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleHall
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleCastle
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleArcade
+    ScriptEntry BattleFrontier_TrainerTipsSignpostBattleFactory
+    ScriptEntry BattleFrontier_StatueWest
+    ScriptEntry BattleFrontier_StatueEast
+    ScriptEntry BattleFrontier_ScaleModel
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleHall
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleCastle
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleArcade
+    ScriptEntry BattleFrontier_CoordEvent_EnterBattleFactory
+    ScriptEntry BattleFrontier_OnTransition
     ScriptEntryEnd
 
-_009A:
+BattleFrontier_OnTransition:
     SetFlag FLAG_HIDE_BATTLE_HALL_MAJOR_NPC
-    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 0, _00D5
-    ScrCmd_329 VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_MAP_LOCAL_4
-    SetObjectEventPos 29, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2
-    SetObjectEventDir 29, VAR_MAP_LOCAL_3
-    SetObjectEventMovementType 29, VAR_MAP_LOCAL_4
-    ClearFlag FLAG_UNK_0x02C3
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_BATTLE_FRONTIER_FRONTLINE_NEWS_MULTI, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, BattleFrontier_HideReporter
+    GetBattleFrontierReporterPosition VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x03, VAR_MAP_LOCAL_0x04
+    SetObjectEventPos LOCALID_REPORTER, VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x02
+    SetObjectEventDir LOCALID_REPORTER, VAR_MAP_LOCAL_0x03
+    SetObjectEventMovementType LOCALID_REPORTER, VAR_MAP_LOCAL_0x04
+    ClearFlag FLAG_HIDE_BATTLE_FRONTIER_REPORTER
     End
 
-_00D5:
-    SetFlag FLAG_UNK_0x02C3
+BattleFrontier_HideReporter:
+    SetFlag FLAG_HIDE_BATTLE_FRONTIER_REPORTER
     End
 
-_00DB:
-    NPCMessage 0
+BattleFrontier_NinjaBoy:
+    NPCMessage BattleFrontier_Text_HeightIsSymbolOfChallenge
     End
 
-_00EE:
-    NPCMessage 1
+BattleFrontier_BlackBelt:
+    NPCMessage BattleFrontier_Text_TeamUpWithFriend
     End
 
-_0101:
-    NPCMessage 2
+BattleFrontier_Idol:
+    NPCMessage BattleFrontier_Text_LearnAboutPokemon
     End
 
-_0114:
-    NPCMessage 3
+BattleFrontier_AceTrainerSnowF:
+    NPCMessage BattleFrontier_Text_BattleWithWorldsBest
     End
 
-_0127:
-    NPCMessage 4
+BattleFrontier_Twin:
+    NPCMessage BattleFrontier_Text_MostImportantIsLady
     End
 
-_013A:
-    NPCMessage 5
+BattleFrontier_ParasolLady:
+    NPCMessage BattleFrontier_Text_PokemonAlwaysWithMe
     End
 
-_014D:
-    NPCMessage 6
+BattleFrontier_ExpertM:
+    NPCMessage BattleFrontier_Text_StoryBehindEveryPokemon
     End
 
-_0160:
-    NPCMessage 7
+BattleFrontier_ExpertF:
+    NPCMessage BattleFrontier_Text_BeenTogetherLongTime
     End
 
-_0173:
-    NPCMessage 8
+BattleFrontier_Waitress:
+    NPCMessage BattleFrontier_Text_ExpectSoMuchFromMaid
     End
 
-_0186:
-    NPCMessage 9
+BattleFrontier_Cowgirl:
+    NPCMessage BattleFrontier_Text_StrongIsWeak
     End
 
-_0199:
-    NPCMessage 10
+BattleFrontier_Roughneck:
+    NPCMessage BattleFrontier_Text_ThoseWhoLoveBattling
     End
 
-_01AC:
-    NPCMessage 11
+BattleFrontier_PokefanM:
+    NPCMessage BattleFrontier_Text_HowManyYears
     End
 
-_01BF:
-    NPCMessage 12
+BattleFrontier_Collector:
+    NPCMessage BattleFrontier_Text_CommandInConfidence
     End
 
-_01D2:
-    NPCMessage 13
+BattleFrontier_Gentleman:
+    NPCMessage BattleFrontier_Text_TreatEveryBattleAsLast
     End
 
-_01E5:
-    NPCMessage 14
+BattleFrontier_AceTrainerM2:
+    NPCMessage BattleFrontier_Text_CantOverlookSingleDetail
     End
 
-_01F8:
-    NPCMessage 15
+BattleFrontier_Picnicker:
+    NPCMessage BattleFrontier_Text_LookForWhoToBlame
     End
 
-_020B:
-    NPCMessage 16
+BattleFrontier_PokemonBreederF:
+    NPCMessage BattleFrontier_Text_WinToChallengeTheBoss
     End
 
-_021E:
-    NPCMessage 17
+BattleFrontier_AceTrainerM1:
+    NPCMessage BattleFrontier_Text_WayOfPokemonIsDeep
     End
 
-_0231:
-    NPCMessage 18
+BattleFrontier_SchoolKidM:
+    NPCMessage BattleFrontier_Text_WinningWithRentalPokemon
     End
 
-_0244:
-    NPCMessage 19
+BattleFrontier_Fisherman:
+    NPCMessage BattleFrontier_Text_MagikarpHasShotAtNo1
     End
 
-_0257:
-    NPCMessage 20
+BattleFrontier_TuberM:
+    NPCMessage BattleFrontier_Text_RideEbbsAndFlows
     End
 
-_026A:
+BattleFrontier_AttendantSouthwest:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 21
+    Message BattleFrontier_Text_TradeBPForPrizes
     CloseMessageWithoutErasing
-    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_DOWN
+    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_LEFT
     ReleaseAll
     End
 
-_027E:
+BattleFrontier_ScratchOffCards_Unused:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -164,117 +165,117 @@ _027E:
     ReleaseAll
     End
 
-_02A6:
+BattleFrontier_AttendantSoutheast:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 23
+    Message BattleFrontier_Text_TradeBPForPrizes2
     CloseMessageWithoutErasing
-    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_UP
+    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_RIGHT
     ReleaseAll
     End
 
-_02BA:
-    ShowLandmarkSign 24
+BattleFrontier_TrainerTipsSignpostBattleTower:
+    ShowLandmarkSign BattleFrontier_Text_SignBattleTower
     End
 
-_02D1:
-    ShowLandmarkSign 25
+BattleFrontier_TrainerTipsSignpostBattleHall:
+    ShowLandmarkSign BattleFrontier_Text_SignBattleHall
     End
 
-_02E8:
-    ShowLandmarkSign 26
+BattleFrontier_TrainerTipsSignpostBattleCastle:
+    ShowLandmarkSign BattleFrontier_Text_SignBattleCastle
     End
 
-_02FF:
-    ShowLandmarkSign 27
+BattleFrontier_TrainerTipsSignpostBattleArcade:
+    ShowLandmarkSign BattleFrontier_Text_SignBattleArcade
     End
 
-_0316:
-    ShowLandmarkSign 28
+BattleFrontier_TrainerTipsSignpostBattleFactory:
+    ShowLandmarkSign BattleFrontier_Text_SignBattleFactory
     End
 
-_032D:
-    EventMessage 29
+BattleFrontier_StatueWest:
+    EventMessage BattleFrontier_Text_StatueRepresentsTrainer
     End
 
-_033E:
-    EventMessage 30
+BattleFrontier_StatueEast:
+    EventMessage BattleFrontier_Text_TitleBoastfulOfCapture
     End
 
-_034F:
-    EventMessage 31
+BattleFrontier_ScaleModel:
+    EventMessage BattleFrontier_Text_ScaleModelBattleFrontier
     End
 
-_0360:
+BattleFrontier_CoordEvent_EnterBattleHall:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _0398
+    ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleHall
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_HALL, 0, 25, 9, 2
+    Warp MAP_HEADER_BATTLE_HALL, 25, 9, DIR_WEST
     FadeScreenIn
     WaitFadeScreen
     End
 
     .balign 4, 0
-_0398:
+BattleFrontier_Movement_PlayerEnterBattleHall:
     WalkFastWest 5
     EndMovement
 
-_03A0:
+BattleFrontier_CoordEvent_EnterBattleCastle:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _03D8
+    ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleCastle
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_CASTLE, 0, 21, 9, 2
+    Warp MAP_HEADER_BATTLE_CASTLE, 21, 9, DIR_WEST
     FadeScreenIn
     WaitFadeScreen
     End
 
     .balign 4, 0
-_03D8:
+BattleFrontier_Movement_PlayerEnterBattleCastle:
     WalkFastWest 6
     EndMovement
 
-_03E0:
+BattleFrontier_CoordEvent_EnterBattleArcade:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _0418
+    ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleArcade
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_ARCADE, 0, 1, 6, 3
+    Warp MAP_HEADER_BATTLE_ARCADE, 1, 6, DIR_EAST
     FadeScreenIn
     WaitFadeScreen
     End
 
     .balign 4, 0
-_0418:
+BattleFrontier_Movement_PlayerEnterBattleArcade:
     WalkFastEast 5
     EndMovement
 
-_0420:
+BattleFrontier_CoordEvent_EnterBattleFactory:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _0458
+    ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleFactory
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_BATTLE_FACTORY, 0, 1, 7, 3
+    Warp MAP_HEADER_BATTLE_FACTORY, 1, 7, DIR_EAST
     FadeScreenIn
     WaitFadeScreen
     End
 
     .balign 4, 0
-_0458:
+BattleFrontier_Movement_PlayerEnterBattleFactory:
     WalkFastEast 6
     EndMovement
 
-_0460:
+BattleFrontier_Dummy1:
     End
 
     .balign 4, 0

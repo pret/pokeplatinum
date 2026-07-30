@@ -1068,7 +1068,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     StringTemplate_SetNickname(summaryScreen->strFormatter, 0, boxMon);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.nickname, summaryScreen->string);
 
-    MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_OtnameTemplate, summaryScreen->string);
+    MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_OTNameTemplate, summaryScreen->string);
     StringTemplate_SetOTName(summaryScreen->strFormatter, 0, boxMon);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.OTName, summaryScreen->string);
 

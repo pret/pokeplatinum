@@ -1,0 +1,32 @@
+{
+  "name": "Max Ether",
+  "plural": "Max Ethers",
+  "article": "a",
+  "description": [
+    "It fully restores the PP of a single\n",
+    "selected move that has been learned\n",
+    "by the target Pokémon."
+  ],
+  "icon": {
+    "sprite": "ether_NCGR",
+    "palette": "max_ether_NCLR"
+  },
+  "gbaID": "GBA_ITEM_MAX_ETHER",
+  "price": 2000,
+  "effectParam": 255,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_PP",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 2,
+  "itemUseParams": {
+    "ppRestored": -1
+  }
+}

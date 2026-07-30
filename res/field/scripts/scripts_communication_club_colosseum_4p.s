@@ -1,12 +1,12 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _0006
+    ScriptEntry CommunicationClubColosseum4P_OnTransition
     ScriptEntryEnd
 
-_0006:
-    ScrCmd_151
+CommunicationClubColosseum4P_OnTransition:
+    FieldCommEnterBattleRoom
     End
 
-CommClubColosseum4P_Unused:
+CommunicationClubColosseum4P_Unused:
     End

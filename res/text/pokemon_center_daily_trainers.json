@@ -289,28 +289,28 @@
       ]
     },
     {
-      "id": "PokemonCenterDailyTrainers_Text_GracePastiora_Intro",
+      "id": "PokemonCenterDailyTrainers_Text_GracePastoria_Intro",
       "en_US": [
         "Would you like to battle with me?\n",
         "As a memento of your visit to Pastoria?"
       ]
     },
     {
-      "id": "PokemonCenterDailyTrainers_Text_GracePastiora_BattleAccepted",
+      "id": "PokemonCenterDailyTrainers_Text_GracePastoria_BattleAccepted",
       "en_US": [
         "I’ll let you join my fan club if you can\n",
         "beat me!\r"
       ]
     },
     {
-      "id": "PokemonCenterDailyTrainers_Text_GracePastiora_BattleDeclined",
+      "id": "PokemonCenterDailyTrainers_Text_GracePastoria_BattleDeclined",
       "en_US": [
         "You’re not interested in Idols?\n",
         "...I think I’m going to cry."
       ]
     },
     {
-      "id": "PokemonCenterDailyTrainers_Text_GracePastiora_PostBattle",
+      "id": "PokemonCenterDailyTrainers_Text_GracePastoria_PostBattle",
       "en_US": [
         "Well, that’s me and my Pokémon!\n",
         "I hope you’ll support us!\r",
@@ -326,21 +326,21 @@
       ]
     },
     {
-      "id": "PokemonCenterDailyTrainers_Text_LeePastiora_BattleAccepted",
+      "id": "PokemonCenterDailyTrainers_Text_LeePastoria_BattleAccepted",
       "en_US": [
         "OK, how shall we do this?\n",
         "Shall we do something fantastical?\r"
       ]
     },
     {
-      "id": "PokemonCenterDailyTrainers_Text_LeePastiora_BattleDeclined",
+      "id": "PokemonCenterDailyTrainers_Text_LeePastoria_BattleDeclined",
       "en_US": [
         "Oh, how shall I say this...?\n",
         "It makes me all lonely, I say..."
       ]
     },
     {
-      "id": "PokemonCenterDailyTrainers_Text_LeePastiora_PostBattle",
+      "id": "PokemonCenterDailyTrainers_Text_LeePastoria_PostBattle",
       "en_US": [
         "Well, let’s see!\n",
         "Which town will we go to next?"
@@ -354,21 +354,21 @@
       ]
     },
     {
-      "id": "PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleAccepted",
+      "id": "PokemonCenterDailyTrainers_Text_ArturoPastoria_BattleAccepted",
       "en_US": [
         "Your spirit’s vibes...\n",
         "You’ve got rock in your veins!\r"
       ]
     },
     {
-      "id": "PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleDeclined",
+      "id": "PokemonCenterDailyTrainers_Text_ArturoPastoria_BattleDeclined",
       "en_US": [
         "My guitar...\n",
         "It lies broken and weeping..."
       ]
     },
     {
-      "id": "PokemonCenterDailyTrainers_Text_ArturoPastiora_PostBattle",
+      "id": "PokemonCenterDailyTrainers_Text_ArturoPastoria_PostBattle",
       "en_US": [
         "Rock is about your spirit!\n",
         "Battling is about spirit, too!\f",

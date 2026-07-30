@@ -5,6 +5,8 @@
 #include "constants/menu.h"
 #include "generated/backdrops.h"
 
+#define BATTLEGROUND_TRAINER_NONE 0xFFF
+
 #define BERRY_WATERING_START 0
 #define BERRY_WATERING_END   1
 
@@ -22,5 +24,9 @@
 
 #define SAFARI_GAME_ACTIVE   0
 #define SAFARI_GAME_INACTIVE 1
+
+#define FIELD_MOVE_FUNC_CLEAR_ACTIVE 0
+#define FIELD_MOVE_FUNC_SET_ACTIVE   1
+#define FIELD_MOVE_FUNC_CHECK_ACTIVE 2
 
 #endif // POKEPLATINUM_CONSTANTS_SCRCMD_H

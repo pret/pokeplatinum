@@ -1,0 +1,30 @@
+{
+  "name": "Black Sludge",
+  "plural": "Black Sludges",
+  "article": "a",
+  "description": [
+    "A hold item that gradually restores\n",
+    "the HP of Poison-type Pokémon.\n",
+    "It inflicts damage on all other types."
+  ],
+  "icon": {
+    "sprite": "black_sludge_NCGR",
+    "palette": "black_sludge_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 16,
+  "holdEffect": "HOLD_EFFECT_HP_RESTORE_PSN_TYPE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

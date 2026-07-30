@@ -2,7 +2,7 @@
   "key": 5122,
   "messages": [
     {
-      "id": "ValleyWindworksBuilding_Text_YouHaveTheKeyIveGotToAlertTheCommander",
+      "id": "ValleyWindworksBuilding_Text_GotToAlertCommander",
       "en_US": [
         "What?! No way!\n",
         "You have the key?\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_HumphJustYouWaitOurCommanderWillSmooshYou",
+      "id": "ValleyWindworksBuilding_Text_CommanderWillSmooshYou",
       "en_US": [
         "My Pokémon can’t battle anymore.\r",
         "They’re gonna take away my Pokémon\n",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_MyNameIsMarsLetsHaveABattleToDecideWhatWeShouldDoNext",
+      "id": "ValleyWindworksBuilding_Text_LetsHaveABattle",
       "en_US": [
         "I’m one of Team Galactic’s three\n",
         "Commanders.\r",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_OopsIMessedThatOneUp",
+      "id": "ValleyWindworksBuilding_Text_IMessedThatOneUp",
       "en_US": [
         "Mars: Oops!\n",
         "I messed that one up!\r",
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_LoseToAChildWillYouNowMarsWeShouldBeGoing",
+      "id": "ValleyWindworksBuilding_Text_LoseToAChild",
       "en_US": [
         "Charon: My, my.\n",
         "Lose to a child, will you?\r",
@@ -78,14 +78,14 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_IGuessItsTimeToSayGoodbyeAndLeaveForTheTimeBeing",
+      "id": "ValleyWindworksBuilding_Text_LeaveForTheTimeBeing",
       "en_US": [
         "I guess it’s time to say good-bye\n",
         "and leave for the time being!\r"
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_ICanFinallySeeMyLittleDaughterAgain",
+      "id": "ValleyWindworksBuilding_Text_FinallySeeMyDaughterAgain",
       "en_US": [
         "Team Galactic...\r",
         "They were saying they had to gather\n",
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_YuckPapaYoureStinkyGoShowerNowStinky",
+      "id": "ValleyWindworksBuilding_Text_YuckPapaYoureStinky",
       "en_US": [
         "Little girl: Papa!\r",
         "Yuck! Papa, you’re stinky!\n",
@@ -109,14 +109,14 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_OhSorryAhahaTheyHadMeWorkingNonstop",
+      "id": "ValleyWindworksBuilding_Text_SorryWorkingNonstop",
       "en_US": [
         "Papa: Oh, sorry! Ahaha!\n",
         "They had me working nonstop!\r"
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_IThinkTheBalloonPokemonWillComeVisitingAgain",
+      "id": "ValleyWindworksBuilding_Text_BalloonPokemonWillVisitAgain",
       "en_US": [
         "Little girl: Thank you, Trainer!\n",
         "You made those bad people go away!\r",
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_ABalloonPokemonAppearsInFrontOfTheWindworksItsAlwaysACertainDayOfTheWeek",
+      "id": "ValleyWindworksBuilding_Text_BalloonPokemonOnDayOfWeek",
       "en_US": [
         "Papa: Oh, yes, a balloon Pokémon\n",
         "appears in front of the windworks.\r",
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_TheValleyWindworksUsesTurbinesToCaptureEnergy",
+      "id": "ValleyWindworksBuilding_Text_ValleyWindworksUsesTurbines",
       "en_US": [
         "The Valley Windworks uses turbines\n",
         "to capture energy from winds driven\f",
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_IfTheBalloonPokemonCameTheWindWouldBlowItAway",
+      "id": "ValleyWindworksBuilding_Text_BlowBalloonPokemonAway",
       "en_US": [
         "If the balloon Pokémon came,\n",
         "the wind would blow it away!"
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "ValleyWindworksBuilding_Text_ThePCScreenIsFilledWithNumbersUponNumbers",
+      "id": "ValleyWindworksBuilding_Text_PCScreenFilledWithNumbers",
       "en_US": [
         "The PC screen is filled with numbers\n",
         "upon numbers.\r",

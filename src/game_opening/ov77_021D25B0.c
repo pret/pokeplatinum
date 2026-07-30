@@ -966,7 +966,7 @@ static int ov77_021D2D94(ApplicationManager *appMan, int *param1)
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -1703,7 +1703,7 @@ static void ov77_021D3F24(UnkStruct_ov77_021D37C0 *param0, int param1, int param
 
 static void ov77_021D4044(UnkStruct_ov77_021D37C0 *param0, int param1)
 {
-    param0->unk_20.camera = Camera_Alloc(76);
+    param0->unk_20.camera = Camera_Alloc(HEAP_ID_76);
 
     {
         VecFx32 v0 = { 0, 0, FX32_ONE * 16 * 6 };

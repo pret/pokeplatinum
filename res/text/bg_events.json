@@ -2,25 +2,25 @@
   "key": 31140,
   "messages": [
     {
-      "id": "pl_msg_00000017_00000",
+      "id": "BgEvents_Text_SmallBookshelf1",
       "en_US": "It’s lined with Pokémon picture books."
     },
     {
-      "id": "pl_msg_00000017_00001",
+      "id": "BgEvents_Text_SmallBookshelf2",
       "en_US": [
         "Are these books for Pokémon\n",
         "to read?"
       ]
     },
     {
-      "id": "pl_msg_00000017_00002",
+      "id": "BgEvents_Text_Bookshelf1",
       "en_US": [
         "It’s chock-full of Pokémon books and\n",
         "photo collections."
       ]
     },
     {
-      "id": "pl_msg_00000017_00003",
+      "id": "BgEvents_Text_Bookshelf2",
       "en_US": [
         "Pokémon magazines!\r",
         "Pokémon Pal...\n",
@@ -29,25 +29,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000017_00004",
+      "id": "BgEvents_Text_TrashCan",
       "en_US": "The trash can is empty."
     },
     {
-      "id": "pl_msg_00000017_00005",
+      "id": "BgEvents_Text_MartShelf1",
       "en_US": [
         "The shelves are jammed with colorful\n",
         "Pokémon goods."
       ]
     },
     {
-      "id": "pl_msg_00000017_00006",
+      "id": "BgEvents_Text_MartShelf2",
       "en_US": [
         "There’s a ton of convenient items.\n",
         "They all look useful."
       ]
     },
     {
-      "id": "pl_msg_00000017_00007",
+      "id": "BgEvents_Text_MartShelf3",
       "en_US": [
         "The shelves brim with all sorts of\n",
         "Pokémon merchandise."

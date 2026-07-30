@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202440C_decl.h"
+#include "struct_decls/tv_broadcast.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -19,15 +19,15 @@
 #include "special_encounter.h"
 #include "system_data.h"
 #include "system_vars.h"
-#include "trainer_card_badge_dirt.h"
-#include "tv_episode_segment.h"
+#include "trainer_case_badge_dirt.h"
+#include "tv_segment.h"
 #include "underground.h"
-#include "unk_0202C858.h"
 #include "unk_0202E2CC.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
+#include "wifi_history_save_data.h"
 
-static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1);
+static void FieldSystem_HandleDailyEvents(FieldSystem *fieldSystem, s32 param1);
 static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *param2);
 static void sub_02055A14(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2);
 static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2, const RTCTime *param3);
@@ -55,7 +55,7 @@ static void sub_02055A14(FieldSystem *fieldSystem, GameTime *gameTime, const RTC
     if (currentDay < gameTime->day) {
         gameTime->day = currentDay;
     } else if (currentDay > gameTime->day) {
-        sub_02055AC0(fieldSystem, currentDay - gameTime->day);
+        FieldSystem_HandleDailyEvents(fieldSystem, currentDay - gameTime->day);
         gameTime->day = currentDay;
     }
 }
@@ -84,42 +84,29 @@ static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RT
     }
 }
 
-static void sub_02055AC0(FieldSystem *fieldSystem, s32 daysPassed)
+static void FieldSystem_HandleDailyEvents(FieldSystem *fieldSystem, s32 daysPassed)
 {
     Underground_HandleDailyEvents(FieldSystem_GetSaveData(fieldSystem), daysPassed);
-    sub_0203F1FC(fieldSystem);
-    TrainerCard_AccumulateBadgeDirt(fieldSystem->saveData, daysPassed);
+    FieldSystem_ClearDailyFlags(fieldSystem);
+    TrainerCase_AccumulateBadgeDirt(fieldSystem->saveData, daysPassed);
     RecordMixedRNG_AdvanceEntries(SaveData_GetRecordMixedRNG(fieldSystem->saveData), daysPassed);
     SpecialEncounter_SetMixedRecordDailies(SaveData_GetSpecialEncounters(fieldSystem->saveData), RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(fieldSystem->saveData)));
 
-    {
-        Party *v0;
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    Party_UpdatePokerusStatus(party, daysPassed);
 
-        v0 = SaveData_GetParty(fieldSystem->saveData);
-        Party_UpdatePokerusStatus(v0, daysPassed);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+    u16 deadlineInDays = SystemVars_GetNewsPressDeadline(varsFlags);
+
+    if (deadlineInDays > daysPassed) {
+        deadlineInDays -= daysPassed;
+    } else {
+        deadlineInDays = 0;
     }
 
-    {
-        VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
-        u16 deadlineInDays = SystemVars_GetNewsPressDeadline(varsFlags);
-
-        if (deadlineInDays > daysPassed) {
-            deadlineInDays -= daysPassed;
-        } else {
-            deadlineInDays = 0;
-        }
-
-        SystemVars_SetNewsPressDeadline(varsFlags, deadlineInDays);
-    }
-
-    {
-        SystemVars_SynchronizeJubilifeLotteryTrainerID(fieldSystem->saveData, daysPassed);
-    }
-
-    {
-        SystemVars_InitDailyRandomLevel(fieldSystem->saveData);
-    }
-
+    SystemVars_SetNewsPressDeadline(varsFlags, deadlineInDays);
+    SystemVars_SynchronizeJubilifeLotteryTrainerID(fieldSystem->saveData, daysPassed);
+    SystemVars_InitDailyRandomLevel(fieldSystem->saveData);
     SystemVars_UpdateVillaVisitor(fieldSystem->saveData);
     FieldSystem_ClearDailyHiddenItemFlags(fieldSystem);
     sub_0206C008(fieldSystem->saveData);

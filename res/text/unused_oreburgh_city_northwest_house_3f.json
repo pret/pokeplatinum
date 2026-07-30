@@ -1,0 +1,26 @@
+{
+  "key": 25611,
+  "messages": [
+    {
+      "id": "OreburghCityNorthwestHouse3F_Text_LetOneHoldThisItem",
+      "en_US": [
+        "Do you make your Pokémon hold items?\r",
+        "If you’d like, let one hold this\n",
+        "{STRVAR_1 8, 0, 0}.\r"
+      ]
+    },
+    {
+      "id": "OreburghCityNorthwestHouse3F_Text_IntensifiesPowerOfRockTypeMoves",
+      "en_US": [
+        "That {STRVAR_1 8, 0, 0} intensifies the\n",
+        "power of Rock-type moves.\r",
+        "Unfortunately, none of my Pokémon\n",
+        "can use Rock-type moves, so..."
+      ]
+    },
+    {
+      "id": "OreburghCityNorthwestHouse3F_Text_PsyduckDuuuck",
+      "en_US": "PSYDUCK: Duuuck?"
+    }
+  ]
+}

@@ -13,8 +13,8 @@ typedef struct BattleRegulation {
     u8 maxLevel;
     s8 heightRestriction;
     s8 weightRestriction;
-    u8 speciesRestriction : 1;
-    u8 itemRestriction : 1;
+    u8 evolutionRestriction : 1;
+    u8 specialSpeciesRestriction : 1;
     u8 speciesUniqueness : 1;
     u8 itemUniqueness : 1;
     u8 moveRestrictions : 1;
@@ -28,14 +28,14 @@ enum BattleRegulationRule {
     BATTLE_REGULATION_RULE_TEAM_SIZE = 1,
     BATTLE_REGULATION_RULE_MAX_LEVEL,
     BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL,
-    BATTLE_REGULATION_RULE_SPECIES_RESTRICT,
+    BATTLE_REGULATION_RULE_EVOLUTION_RESTRICT,
     BATTLE_REGULATION_RULE_HEIGHT_RESTRICT,
     BATTLE_REGULATION_RULE_HEIGHT_TYPE,
     BATTLE_REGULATION_RULE_WEIGHT_RESTRICT,
     BATTLE_REGULATION_RULE_WEIGHT_TYPE,
     BATTLE_REGULATION_RULE_ITEM_UNIQUE,
     BATTLE_REGULATION_RULE_SPECIES_UNIQUE,
-    BATTLE_REGULATION_RULE_ITEM_RESTRICT,
+    BATTLE_REGULATION_RULE_SPECIAL_SPECIES_RESTRICT,
     BATTLE_REGULATION_RULE_MOVE_RESTRICTIONS,
 };
 

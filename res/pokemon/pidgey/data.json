@@ -111,8 +111,8 @@
         "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
-        "height": 3,
-        "weight": 18,
+        "height_inches": 12,
+        "weight_pounds": 4.0,
         "body_shape": "SHAPE_WINGED",
         "trainer_scale_f": 272,
         "pokemon_scale_f": 560,
@@ -143,7 +143,7 @@
         "de": {
             "name": "TAUBSI",
             "category": "Kleinvogel",
-            "entry_text": [ "Reizt man dieses an sich gutmütige\n", "Pokémon, wehrt es sich wütend." ]
+            "entry_text": [ "Reizt man dieses an sich gutm\u00fctige\n", "Pok\u00e9mon, wehrt es sich w\u00fctend." ]
         },
         "it": {
             "name": "PIDGEY",

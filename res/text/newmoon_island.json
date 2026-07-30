@@ -2,18 +2,18 @@
   "key": 52142,
   "messages": [
     {
-      "id": "pl_msg_00000300_00000",
+      "id": "NewmoonIsland_Text_SailBackToCanalave",
       "en_US": "Should we sail back to Canalave?"
     },
     {
-      "id": "pl_msg_00000300_00001",
+      "id": "NewmoonIsland_Text_AnchorsAweigh",
       "en_US": [
         "Aye, aye!\n",
         "Anchors aweigh!\r"
       ]
     },
     {
-      "id": "pl_msg_00000300_00002",
+      "id": "NewmoonIsland_Text_AllRightThen",
       "en_US": [
         "All right, then. Tell me if you’d like\n",
         "to return to Canalave."

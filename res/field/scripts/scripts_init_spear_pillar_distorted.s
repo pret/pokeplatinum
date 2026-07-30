@@ -5,7 +5,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40C3, 1, 1
+    InitScriptGoToIfEqual VAR_SPEAR_PILLAR_DISTORTED_STATE, 1, 1
     InitScriptFrameTableEnd
 
     InitScriptEnd

@@ -1,6 +1,7 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/battle_tower_multi_battle_room.h"
 # include "res/text/bank/menu_entries.h"
+# include "constants/battle_frontier.h"
 
     .data
 
@@ -135,125 +136,92 @@ _00A0:
 
     .balign 4, 0
 _00B8:
-    .short 0x0004
-    .short 0x0001
-    .short 0x0006
-    .short 0x0003
-    .short 0x0004
-    .short 0x0003
-    .short 0x0003
-    .short 0x0001
-    .short 0xFD13
+    WalkNorth
+    WalkWest 3
+    WalkNorth 3
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _00CC:
-    .short 0x0004
-    .short 0x0001
-    .short 0x0006
-    .short 0x0004
-    .short 0x0004
-    .short 0x0002
-    .short 0x0003
-    .short 0x0001
-    .short 0xFD13
+    WalkNorth
+    WalkWest 4
+    WalkNorth 2
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _00E0:
-    .short 0x0005
-    .short 0x0001
-    .short 0x0007
-    .short 0x0003
-    .short 0x0005
-    .short 0x0003
-    .short 0x0002
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth
+    WalkEast 3
+    WalkSouth 3
+    FaceWest
+    EndMovement
 
     .balign 4, 0
 _00F4:
-    .short 0x0005
-    .short 0x0001
-    .short 0x0007
-    .short 0x0004
-    .short 0x0005
-    .short 0x0002
-    .short 0x0002
-    .short 0x0001
-    .short 0xFD13
+    WalkSouth
+    WalkEast 4
+    WalkSouth 2
+    FaceWest
+    EndMovement
 
     .balign 4, 0
 _0108:
-    .short 0x0007
-    .short 0x0001
-    .short 0xFD13
+    WalkEast
+    EndMovement
 
     .balign 4, 0
 _0110:
-    .short 0x0006
-    .short 0x0001
-    .short 0xFD13
+    WalkWest
+    EndMovement
 
     .balign 4, 0
 _0118:
-    .short 0x0016
-    .short 0x0001
-    .short 0xFD13
+    WalkOnSpotSlowWest
+    EndMovement
 
     .balign 4, 0
 _0120:
-    .short 0x0004
-    .short 0x0003
-    .short 0x0006
-    .short 0x0002
-    .short 0x0004
-    .short 0x0001
-    .short 0xFD13
+    WalkNorth 3
+    WalkWest 2
+    WalkNorth
+    EndMovement
 
     .balign 4, 0
 _0130:
-    .short 0x0004
-    .short 0x0002
-    .short 0x0006
-    .short 0x0003
-    .short 0x0004
-    .short 0x0001
-    .short 0xFD13
+    WalkNorth 2
+    WalkWest 3
+    WalkNorth
+    EndMovement
 
     .balign 4, 0
 _0140:
-    .short 0x0006
-    .short 0x0001
-    .short 0x0002
-    .short 0x0001
-    .short 0xFD13
+    WalkWest
+    FaceWest
+    EndMovement
 
     .balign 4, 0
 _014C:
-    .short 0x0007
-    .short 0x0001
-    .short 0xFD13
+    WalkEast
+    EndMovement
 
     .balign 4, 0
 _0154:
-    .short 0x0003
-    .short 0x0001
-    .short 0xFD13
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _015C:
-    .short 0x0002
-    .short 0x0001
-    .short 0x0006
-    .short 0x0001
-    .short 0x0003
-    .short 0x0001
-    .short 0xFD13
+    FaceWest
+    WalkWest
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _016C:
-    .short 0x0002
-    .short 0x0001
-    .short 0xFD13
+    FaceWest
+    EndMovement
 
 _0172:
     InitNewBattleRecording
@@ -283,13 +251,13 @@ _01CE:
 
 _01F8:
     FadeScreenIn
-    FrontierScrCmd_3E VAR_UNK_0x40DE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0226
     GoToIfEq VAR_0x8008, 2, _04FB
     End
 
 _0226:
-    FrontierScrCmd_3D VAR_UNK_0x40DE, 3
+    SetSystemVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 3
     Call _025C
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _0270
@@ -298,9 +266,9 @@ _0226:
     End
 
 _025C:
-    FrontierScrCmd_28 VAR_0x8001, _00B8
-    FrontierScrCmd_28 VAR_0x8002, _00CC
-    FrontierScrCmd_29
+    ApplyMovement VAR_0x8001, _00B8
+    ApplyMovement VAR_0x8002, _00CC
+    WaitMovement
     Return
 
 _0270:
@@ -358,7 +326,7 @@ _037F:
     SetVar VAR_0x8006, 0
     Message BattleTowerMultiBattleRoom_Text_AwaitingResponseFromFriend
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 5
+    SyncConnectedPlayers 5
     CallBattleTowerFunction BT_FUNC_UNK_58, 0, VAR_0x8008
     GoTo _039F
     End
@@ -380,7 +348,7 @@ _03DD:
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _0437
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _0443
     WaitTime 30, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40D8, 1
+    SetSystemVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
     FadeScreenOut
     FrontierScrCmd_25 0
     FrontierScrCmd_25 1
@@ -398,15 +366,15 @@ _0437:
 
 _0443:
     WaitTime 30, VAR_0x8008
-    FrontierScrCmd_3D VAR_UNK_0x40D8, 1
+    SetSystemVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 1
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 6
+    SyncConnectedPlayers 6
     CallIfEq VAR_0x8004, 100, _04D1
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     CallIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _04DF
     FadeScreenOut
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 8
+    SyncConnectedPlayers 8
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     CallIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _04F7
     FrontierScrCmd_25 0
@@ -426,7 +394,7 @@ _04D1:
 
 _04D5:
     ClearTowerStruct
-    FrontierScrCmd_04 14, 1
+    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
     End
 
 _04DF:
@@ -444,7 +412,7 @@ _04F7:
     Return
 
 _04FB:
-    FrontierScrCmd_3D VAR_UNK_0x40DE, 3
+    SetSystemVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 3
     SetVar VAR_0x8006, 1
     Call _025C
     Call _051B
@@ -452,11 +420,11 @@ _04FB:
     End
 
 _051B:
-    FrontierScrCmd_28 1, _014C
-    FrontierScrCmd_28 2, _014C
-    FrontierScrCmd_28 VAR_0x8001, _016C
-    FrontierScrCmd_28 VAR_0x8002, _016C
-    FrontierScrCmd_29
+    ApplyMovement 1, _014C
+    ApplyMovement 2, _014C
+    ApplyMovement VAR_0x8001, _016C
+    ApplyMovement VAR_0x8002, _016C
+    WaitMovement
     Return
 
 _053F:
@@ -498,11 +466,11 @@ _05F1:
     End
 
 _0605:
-    FrontierScrCmd_28 VAR_0x8001, _0154
-    FrontierScrCmd_28 VAR_0x8002, _0154
-    FrontierScrCmd_28 1, _015C
-    FrontierScrCmd_28 2, _015C
-    FrontierScrCmd_29
+    ApplyMovement VAR_0x8001, _0154
+    ApplyMovement VAR_0x8002, _0154
+    ApplyMovement 1, _015C
+    ApplyMovement 2, _015C
+    WaitMovement
     Return
 
 _0629:
@@ -568,7 +536,7 @@ _06E7:
     End
 
 _0707:
-    FrontierScrCmd_3D VAR_UNK_0x40D8, 2
+    SetSystemVar VAR_BATTLE_TOWER_LOBBY_LOAD_ACTION, 2
     CallBattleTowerFunction BT_FUNC_UNK_39, 0, VAR_0x8008
     FreeTowerStruct
     Message BattleTowerMultiBattleRoom_Text_ThanksForParticipating
@@ -718,9 +686,9 @@ _09B7:
     End
 
 _09C5:
-    FrontierScrCmd_28 3, _0120
-    FrontierScrCmd_28 4, _0130
-    FrontierScrCmd_29
+    ApplyMovement 3, _0120
+    ApplyMovement 4, _0130
+    WaitMovement
     FrontierScrCmd_25 3
     FrontierScrCmd_25 4
     FrontierScrCmd_23 VAR_0x800B
@@ -728,11 +696,11 @@ _09C5:
     Return
 
 _09E9:
-    FrontierScrCmd_28 VAR_0x8001, _0140
-    FrontierScrCmd_28 VAR_0x8002, _0140
-    FrontierScrCmd_28 1, _014C
-    FrontierScrCmd_28 2, _014C
-    FrontierScrCmd_29
+    ApplyMovement VAR_0x8001, _0140
+    ApplyMovement VAR_0x8002, _0140
+    ApplyMovement 1, _014C
+    ApplyMovement 2, _014C
+    WaitMovement
     Return
 
 _0A0D:
@@ -755,8 +723,8 @@ _0A1B:
     CloseMessage
     Call _0A91
     FrontierScrCmd_3F 0
-    FrontierScrCmd_87
-    CheckWonTowerBattle VAR_0x8003
+    BattleTower_StartBattle
+    BattleTower_CheckWonBattle VAR_0x8003
     FadeScreenIn
     Return
 
@@ -765,27 +733,27 @@ _0A61:
     CallBattleTowerFunction BT_FUNC_GET_OPPONENT_OBJECT_ID, 1, VAR_0x800C
     FrontierScrCmd_22 _0020
     FrontierScrCmd_24 _00A0
-    FrontierScrCmd_28 3, _00E0
-    FrontierScrCmd_28 4, _00F4
-    FrontierScrCmd_29
+    ApplyMovement 3, _00E0
+    ApplyMovement 4, _00F4
+    WaitMovement
     Return
 
 _0A91:
-    FrontierScrCmd_28 VAR_0x8001, _0108
-    FrontierScrCmd_28 VAR_0x8002, _0108
-    FrontierScrCmd_28 3, _0110
-    FrontierScrCmd_28 4, _0110
-    FrontierScrCmd_29
+    ApplyMovement VAR_0x8001, _0108
+    ApplyMovement VAR_0x8002, _0108
+    ApplyMovement 3, _0110
+    ApplyMovement 4, _0110
+    WaitMovement
     Return
 
 _0AB5:
-    FrontierScrCmd_28 3, _0118
-    FrontierScrCmd_29
+    ApplyMovement 3, _0118
+    WaitMovement
     Return
 
 _0AC1:
-    FrontierScrCmd_28 4, _0118
-    FrontierScrCmd_29
+    ApplyMovement 4, _0118
+    WaitMovement
     Return
 
 _0ACD:
@@ -802,11 +770,11 @@ _0ACD:
     Call _0A91
     MessageNoSkip BattleTowerMultiBattleRoom_Text_PleaseWait
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 4
+    SyncConnectedPlayers 4
     CloseMessage
     FrontierScrCmd_3F 0
-    FrontierScrCmd_87
-    CheckWonTowerBattle VAR_0x8003
+    BattleTower_StartBattle
+    BattleTower_CheckWonBattle VAR_0x8003
     FadeScreenIn
     Return
 
@@ -822,7 +790,7 @@ _0B4B:
     Message BattleTowerMultiBattleRoom_Text_YouHaveChosenToRetire
     WaitTime 30, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 7
+    SyncConnectedPlayers 7
     CloseMessage
     GoTo _0765
     End
@@ -846,7 +814,7 @@ _0B91:
     End
 
 _0BCF:
-    FrontierScrCmd_3E VAR_UNK_0x40DE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0C01
     GoToIfEq VAR_0x8000, 1, _0C03
     CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_0x8009
@@ -862,13 +830,13 @@ _0C03:
     Return
 
 _0C15:
-    FrontierScrCmd_3E VAR_UNK_0x40DE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, VAR_0x8008
     CallIfNe VAR_0x8008, 0, _0C4B
     GoTo _0C30
     End
 
 _0C30:
-    FrontierScrCmd_3E VAR_UNK_0x40DE, VAR_0x8008
+    GetSystemVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, VAR_0x8008
     GoToIfEq VAR_0x8008, 3, _0C4D
     GoTo _0C55
     End

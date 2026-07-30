@@ -8,7 +8,7 @@
 #include "overlay066/struct_ov66_02231428.h"
 #include "overlay066/struct_ov66_02231560.h"
 
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 #include "unk_020996D0.h"
 
 void ov66_02231428(UnkStruct_ov66_02231428 *param0, const s64 *param1)
@@ -273,7 +273,7 @@ int ov66_02231718(int param0, int param1)
 
 BOOL ov66_02231760(void)
 {
-    if (sub_020383E8() || sub_0203881C()) {
+    if (CommManager_CheckWifiError() || CommManager_IsWifiPlazaError()) {
         return 1;
     }
 

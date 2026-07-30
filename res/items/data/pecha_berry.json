@@ -1,0 +1,45 @@
+{
+  "name": "Pecha Berry",
+  "plural": "Pecha Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. It may be used\n",
+    "or held by a Pokémon to recover from\n",
+    "poison."
+  ],
+  "icon": {
+    "sprite": "pecha_berry_NCGR",
+    "palette": "pecha_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_PECHA_BERRY",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_PSN_RESTORE",
+  "pluckEffect": "PLUCK_EFFECT_PSN_RESTORE",
+  "flingEffect": "FLING_EFFECT_PSN_RESTORE",
+  "flingPower": 10,
+  "naturalGiftPower": 60,
+  "naturalGiftType": "TYPE_ELECTRIC",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "healPoison": true
+  },
+  "berryData": {
+    "size": 40,
+    "firmness": "FIRMNESS_VERY_SOFT",
+    "baseYield": 1,
+    "stageDuration": 3,
+    "moistureDrainRate": 15,
+    "spiciness": 0,
+    "dryness": 0,
+    "sweetness": 10,
+    "bitterness": 0,
+    "sourness": 0,
+    "smoothness": 25
+  }
+}

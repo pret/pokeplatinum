@@ -2,7 +2,7 @@
   "key": 50106,
   "messages": [
     {
-      "id": "pl_msg_00000259_00000",
+      "id": "FullmoonIsland_Text_ThatsTheLunarWing",
       "en_US": [
         "That Pokémon you met was the\n",
         "Lunar Pokémon...\r",
@@ -15,18 +15,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000259_00001",
+      "id": "FullmoonIsland_Text_SailBackToCanalave",
       "en_US": "Should we sail back to Canalave?"
     },
     {
-      "id": "pl_msg_00000259_00002",
+      "id": "FullmoonIsland_Text_AnchorsAweigh",
       "en_US": [
         "Aye, aye!\n",
         "Anchors aweigh!\r"
       ]
     },
     {
-      "id": "pl_msg_00000259_00003",
+      "id": "FullmoonIsland_Text_AllRightThen",
       "en_US": [
         "All right, then. Tell me if you’d like\n",
         "to return to Canalave."

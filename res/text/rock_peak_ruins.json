@@ -2,7 +2,7 @@
   "key": 25726,
   "messages": [
     {
-      "id": "RockPeakRuins_Text_ItsAStatueOfAPokemonFromSomewhereSomethingSpokeOut",
+      "id": "RockPeakRuins_Text_FromSomewhereSomethingSpokeOut",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power...\r",
@@ -24,14 +24,14 @@
       "en_US": "Zaza zari za...\r"
     },
     {
-      "id": "RockPeakRuins_Text_ThePokemonStatueHasStoppedEmanatingPower",
+      "id": "RockPeakRuins_Text_StatueStoppedEmanatingPower",
       "en_US": [
         "The Pokémon statue has stopped\n",
         "emanating power."
       ]
     },
     {
-      "id": "RockPeakRuins_Text_ItsAStatueOfAPokemonItSeemsToExudePower",
+      "id": "RockPeakRuins_Text_SeemsToExudePower",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power..."

@@ -99,7 +99,7 @@ BOOL ScriptContext_Run(ScriptContext *ctx)
 
 static BOOL ScriptContext_Push(ScriptContext *ctx, const u8 *ptr)
 {
-    if (ctx->stackPointer + 1 >= (int)NELEMS(ctx->stack)) {
+    if (ctx->stackPointer + 1 >= SNELEMS(ctx->stack)) {
         return TRUE;
     }
 

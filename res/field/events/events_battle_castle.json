@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "BATTLE_CASTLE_FRONTIER_SINGLE_ATTENDANT_0",
+            "id": "LOCALID_SINGLE_ATTENDANT",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -26,7 +26,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_CASTLE_FRONTIER_MULTI_ATTENDANT_1",
+            "id": "LOCALID_MULTI_ATTENDANT",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,7 +41,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_CASTLE_ROUGHNECK_2",
+            "id": "LOCALID_ROUGHNECK",
             "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -56,7 +56,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_CASTLE_BLACK_BELT_3",
+            "id": "LOCALID_BLACK_BELT",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -71,7 +71,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_CASTLE_GENTLEMAN_4",
+            "id": "LOCALID_GENTLEMAN",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -86,7 +86,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_CASTLE_COLLECTOR_5",
+            "id": "LOCALID_COLLECTOR",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -101,7 +101,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_CASTLE_ARTIST_6",
+            "id": "LOCALID_ARTIST",
             "graphics_id": "OBJ_EVENT_GFX_ARTIST",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -116,7 +116,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_CASTLE_SOCIALITE_7",
+            "id": "LOCALID_SOCIALITE",
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -131,7 +131,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_CASTLE_WAITRESS_8",
+            "id": "LOCALID_WAITRESS",
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",

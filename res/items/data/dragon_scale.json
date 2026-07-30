@@ -1,0 +1,30 @@
+{
+  "name": "Dragon Scale",
+  "plural": "Dragon Scales",
+  "article": "a",
+  "description": [
+    "A thick and tough scale.\n",
+    "Dragon-type Pokémon may be holding\n",
+    "this item when caught."
+  ],
+  "icon": {
+    "sprite": "dragon_scale_NCGR",
+    "palette": "dragon_scale_NCLR"
+  },
+  "gbaID": "GBA_ITEM_DRAGON_SCALE",
+  "price": 2100,
+  "effectParam": 10,
+  "holdEffect": "HOLD_EFFECT_EVOLVE_SEADRA",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

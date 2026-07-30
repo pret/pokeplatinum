@@ -1,0 +1,30 @@
+{
+  "name": "Black Belt",
+  "plural": "Black Belts",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It is a belt that boosts determination\n",
+    "and Fighting-type moves."
+  ],
+  "icon": {
+    "sprite": "black_belt_NCGR",
+    "palette": "blackglasses_NCLR"
+  },
+  "gbaID": "GBA_ITEM_BLACK_BELT",
+  "price": 100,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_STRENGTHEN_FIGHT",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

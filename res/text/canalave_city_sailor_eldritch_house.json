@@ -2,7 +2,7 @@
   "key": 62498,
   "messages": [
     {
-      "id": "pl_msg_00000064_00000",
+      "id": "CanalaveCitySailorEldritchHouse_Text_GoingToBeSailor",
       "en_US": [
         "I’m going to be a Sailor like my\n",
         "daddy!\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000064_00001",
+      "id": "CanalaveCitySailorEldritchHouse_Text_ThrashingInSleep",
       "en_US": [
         "The little boy is thrashing about\n",
         "in his sleep.\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000064_00002",
+      "id": "CanalaveCitySailorEldritchHouse_Text_LunarWingGlows",
       "en_US": [
         "The little boy is thrashing about\n",
         "in his sleep.\r",
@@ -35,11 +35,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000064_00003",
+      "id": "CanalaveCitySailorEldritchHouse_Text_LittleBoyWokeUp",
       "en_US": "The little boy woke up!"
     },
     {
-      "id": "pl_msg_00000064_00004",
+      "id": "CanalaveCitySailorEldritchHouse_Text_ScaryDreamDarkPokemon",
       "en_US": [
         "I couldn’t wake up...\n",
         "I saw it...\r",
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000064_00005",
+      "id": "CanalaveCitySailorEldritchHouse_Text_YoureAwake",
       "en_US": [
         "Oh, my gosh!\n",
         "You’re awake!\r",
@@ -60,14 +60,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000064_00006",
+      "id": "CanalaveCitySailorEldritchHouse_Text_WellNeverForgetYou",
       "en_US": [
         "Thank you!\n",
         "We’ll never forget you!\r"
       ]
     },
     {
-      "id": "pl_msg_00000064_00007",
+      "id": "CanalaveCitySailorEldritchHouse_Text_ComeSailWithMe",
       "en_US": [
         "Seeing you back to normal makes\n",
         "me feel great!\r",
@@ -76,14 +76,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000064_00008",
+      "id": "CanalaveCitySailorEldritchHouse_Text_TooMuchEnergy",
       "en_US": [
         "Our boy has too much energy!\n",
         "...That’s the best way to be!"
       ]
     },
     {
-      "id": "pl_msg_00000064_00009",
+      "id": "CanalaveCitySailorEldritchHouse_Text_WeFeelFrustrated",
       "en_US": [
         "I never thought our boy would fall into\n",
         "this endless nightmare...\r",
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000064_00010",
+      "id": "CanalaveCitySailorEldritchHouse_Text_CantThankYouEnough",
       "en_US": [
         "Thank you! We can’t thank you\n",
         "enough, but thank you!"

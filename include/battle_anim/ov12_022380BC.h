@@ -6,10 +6,10 @@
 extern const s16 gEncounterCoords[][3];
 extern const s16 gSlideTrainerInCoords[][3];
 
-void ov12_022380BC(UnkStruct_ov12_022380DC *param0, enum HeapID heapID);
-void ov12_022380CC(UnkStruct_ov12_022380DC *param0, enum HeapID heapID);
-void ov12_022382BC(UnkStruct_ov12_022380DC *param0, enum HeapID heapID);
-void ov12_02238390(UnkStruct_ov12_022380DC *param0, enum HeapID heapID);
-s16 ov12_022384CC(int param0, int param1);
+void ov12_022380BC(BattlerSpriteContext *battlerSpriteCtx, enum HeapID heapID);
+void ov12_022380CC(BattlerSpriteContext *battlerSpriteCtx, enum HeapID heapID);
+void ov12_022382BC(BattlerSpriteContext *battlerSpriteCtx, enum HeapID heapID);
+void ov12_02238390(BattlerSpriteContext *battlerSpriteCtx, enum HeapID heapID);
+s16 ov12_022384CC(int battlerType, int coordIndex);
 
 #endif // POKEPLATINUM_OV12_022380BC_H

@@ -2,21 +2,21 @@
   "key": 50179,
   "messages": [
     {
-      "id": "pl_msg_00000180_00000",
+      "id": "SnowpointCityWestHouse_Text_SuchVivacityAndCharm",
       "en_US": [
         "I love how my girl has so much\n",
         "vivacity and charm."
       ]
     },
     {
-      "id": "pl_msg_00000180_00001",
+      "id": "SnowpointCityWestHouse_Text_MyGirlsHappy",
       "en_US": [
         "Thanks to you, my girl’s been in\n",
         "a really happy mood."
       ]
     },
     {
-      "id": "pl_msg_00000180_00002",
+      "id": "SnowpointCityWestHouse_Text_AskTradeMedichamForHaunter",
       "en_US": [
         "By any chance, do you have a Pokémon\n",
         "called MEDICHAM?\r",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000180_00003",
+      "id": "SnowpointCityWestHouse_Text_IMadeItPreventEvolving",
       "en_US": [
         "Haha! Did my HAUNTER turn into\n",
         "something else? Just kidding!\r",
@@ -36,11 +36,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000180_00004",
+      "id": "SnowpointCityWestHouse_Text_IAskedForMedicham",
       "en_US": "What I asked for was a MEDICHAM...?"
     },
     {
-      "id": "pl_msg_00000180_00005",
+      "id": "SnowpointCityWestHouse_Text_OKIfYouDontWant",
       "en_US": [
         "It’s OK if you don’t want to.\r",
         "But if you change your mind, let’s\n",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000180_00006",
+      "id": "SnowpointCityWestHouse_Text_WeGotToBeFriends",
       "en_US": [
         "Thanks to Pokémon, we got to be\n",
         "friends, didn’t we?"

@@ -1,0 +1,31 @@
+{
+  "name": "TM50",
+  "plural": "TM50s",
+  "article": "a",
+  "description": [
+    "The user attacks the foe at full\n",
+    "power using fiery energy. It also\n",
+    "sharply reduces the user’s Sp. Atk."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_fire_NCLR"
+  },
+  "gbaID": "GBA_ITEM_TM50",
+  "price": 5500,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_OVERHEAT"
+}

@@ -2,35 +2,35 @@
   "key": 34812,
   "messages": [
     {
-      "id": "pl_msg_00000635_00000",
+      "id": "UnionRoom_Text_Dummy0",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000635_00001",
+      "id": "UnionRoom_Text_Dummy1",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000635_00002",
+      "id": "UnionRoom_Text_Dummy2",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000635_00003",
+      "id": "UnionRoom_Text_Dummy3",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000635_00004",
+      "id": "UnionRoom_Text_Dummy4",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000635_00005",
+      "id": "UnionRoom_Text_Dummy5",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000635_00006",
+      "id": "UnionRoom_Text_Dummy6",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000635_00007",
+      "id": "UnionRoom_Text_PlayerContactedYou",
       "en_US": [
         "{STRVAR_1 28, 2, 0}{PAUSE 15}\r",
         "{STRVAR_1 3, 0, 0}\n",
@@ -38,22 +38,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00008",
+      "id": "UnionRoom_Text_ChatHasBeenDropped",
       "en_US": "The chat has been dropped."
     },
     {
-      "id": "pl_msg_00000635_00009",
+      "id": "UnionRoom_Text_AwaitingResponseFromPlayer",
       "en_US": [
         "Awaiting a response from\n",
         "{STRVAR_1 3, 0, 0}..."
       ]
     },
     {
-      "id": "pl_msg_00000635_00010",
+      "id": "UnionRoom_Text_ChatWasEnded",
       "en_US": "The chat was ended."
     },
     {
-      "id": "pl_msg_00000635_00011",
+      "id": "UnionRoom_Text_ShowTrainerCase",
       "en_US": [
         "You have an offer to see\n",
         "{STRVAR_1 3, 0, 0}’s Trainer Case.\r",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00012",
+      "id": "UnionRoom_Text_TrainerCasePlayerFromCityCountry",
       "en_US": [
         "This is the Trainer Case of\n",
         "{STRVAR_1 3, 0, 0}, who lives in\r",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00013",
+      "id": "UnionRoom_Text_TrainerCasePlayerFromCountry",
       "en_US": [
         "This is the Trainer Case of\n",
         "{STRVAR_1 3, 0, 0}, who lives in\f",
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00014",
+      "id": "UnionRoom_Text_TrainerCasePlayerFromCity",
       "en_US": [
         "This is the Trainer Case of\n",
         "{STRVAR_1 3, 0, 0}, who lives in\f",
@@ -87,22 +87,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00015",
+      "id": "UnionRoom_Text_PlayersTrainerCase",
       "en_US": [
         "This is {STRVAR_1 3, 0, 0}’s\n",
         "Trainer Case."
       ]
     },
     {
-      "id": "pl_msg_00000635_00016",
+      "id": "UnionRoom_Text_WaitOtherPlayerFinish",
       "en_US": "Awaiting the other player to finish."
     },
     {
-      "id": "pl_msg_00000635_00017",
+      "id": "UnionRoom_Text_DeclinedOfferShowTrainerCase",
       "en_US": "You declined the offer."
     },
     {
-      "id": "pl_msg_00000635_00018",
+      "id": "UnionRoom_Text_JoinOtherPlayerAndDraw",
       "en_US": [
         "{STRVAR_1 3, 0, 0} has invited you to draw\n",
         "something.\r",
@@ -111,15 +111,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00019",
+      "id": "UnionRoom_Text_LetsGetDrawing",
       "en_US": "Let’s get drawing!"
     },
     {
-      "id": "pl_msg_00000635_00020",
+      "id": "UnionRoom_Text_DeclinedInvitationTrade",
       "en_US": "You declined the invitation."
     },
     {
-      "id": "pl_msg_00000635_00021",
+      "id": "UnionRoom_Text_AcceptBattleChallenge",
       "en_US": [
         "{STRVAR_1 3, 0, 0} challenges you to\n",
         "a battle.\r",
@@ -128,26 +128,26 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00022",
+      "id": "UnionRoom_Text_BattleWillBeStarted",
       "en_US": "The battle will be started."
     },
     {
-      "id": "pl_msg_00000635_00023",
+      "id": "UnionRoom_Text_DeclinedToTakePart",
       "en_US": "You declined to take part."
     },
     {
-      "id": "pl_msg_00000635_00024",
+      "id": "UnionRoom_Text_NeedTwoPokemonLv30",
       "en_US": [
         "For a battle, you need two\n",
         "Pokémon that are Lv. 30 or below."
       ]
     },
     {
-      "id": "pl_msg_00000635_00025",
+      "id": "UnionRoom_Text_BattleHasBeenCanceled",
       "en_US": "The battle has been canceled."
     },
     {
-      "id": "pl_msg_00000635_00026",
+      "id": "UnionRoom_Text_AcceptTradeOffer",
       "en_US": [
         "{STRVAR_1 3, 0, 0} has offered to\n",
         "make a trade.\r",
@@ -155,22 +155,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00027",
+      "id": "UnionRoom_Text_TradeWillBeStarted",
       "en_US": "The trade will be started."
     },
     {
-      "id": "pl_msg_00000635_00028",
+      "id": "UnionRoom_Text_DeclinedDraw",
       "en_US": "You declined the offer."
     },
     {
-      "id": "pl_msg_00000635_00029",
+      "id": "UnionRoom_Text_NeedAtLeastTwoPokemon",
       "en_US": [
         "For trading, you must have at\n",
         "least two Pokémon with you."
       ]
     },
     {
-      "id": "pl_msg_00000635_00030",
+      "id": "UnionRoom_Text_MixRecordsWithPlayer",
       "en_US": [
         "{STRVAR_1 3, 0, 0} invites you to mix\n",
         "records.\r",
@@ -179,15 +179,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00031",
+      "id": "UnionRoom_Text_RecordMixingWillBeStarted",
       "en_US": "Record mixing will be started."
     },
     {
-      "id": "pl_msg_00000635_00032",
+      "id": "UnionRoom_Text_00032",
       "en_US": "You declined the invitation."
     },
     {
-      "id": "pl_msg_00000635_00033",
+      "id": "UnionRoom_Text_TakePartInSpinTrade",
       "en_US": [
         "{STRVAR_1 3, 0, 0} has invited you to join\n",
         "a Spin Trade session.\r",
@@ -196,22 +196,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00034",
+      "id": "UnionRoom_Text_StartingTheSpinTrade",
       "en_US": "Starting the Spin Trade!"
     },
     {
-      "id": "pl_msg_00000635_00035",
+      "id": "UnionRoom_Text_DeclinedInvitationShowTrainerCase",
       "en_US": "You declined the invitation."
     },
     {
-      "id": "pl_msg_00000635_00036",
+      "id": "UnionRoom_Text_YouDontHaveAnEgg",
       "en_US": [
         "You don’t have an Egg.\n",
         "The invitation was turned down."
       ]
     },
     {
-      "id": "pl_msg_00000635_00037",
+      "id": "UnionRoom_Text_ThisIsPlayerSomethingToDoMale",
       "en_US": [
         "{STRVAR_1 28, 2, 0}{PAUSE 15}\r",
         "This is {STRVAR_1 3, 0, 0}! Is there\n",
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00038",
+      "id": "UnionRoom_Text_SorrySomethingElseToDoMale",
       "en_US": [
         "Whoops! Sorry, but I have to do\n",
         "something else.\f",
@@ -227,32 +227,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00039",
+      "id": "UnionRoom_Text_DoAnythingElseMale",
       "en_US": [
         "Do you want to\n",
         "do anything else?"
       ]
     },
     {
-      "id": "pl_msg_00000635_00040",
+      "id": "UnionRoom_Text_TrainersAppearsBusy",
       "en_US": [
         "... ...\n",
         "The Trainer appears to be busy..."
       ]
     },
     {
-      "id": "pl_msg_00000635_00041",
+      "id": "UnionRoom_Text_00041",
       "garbage": 23
     },
     {
-      "id": "pl_msg_00000635_00042",
+      "id": "UnionRoom_Text_HeresMyTrainerCase",
       "en_US": [
         "Sure thing! As my “Greetings,”\n",
         "here’s my Trainer Case."
       ]
     },
     {
-      "id": "pl_msg_00000635_00043",
+      "id": "UnionRoom_Text_DeclinedShowTrainerCaseMale",
       "en_US": [
         "Huh? My Trainer Case...\n",
         "Where’d it go now?\r",
@@ -260,39 +260,39 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00044",
+      "id": "UnionRoom_Text_ShowTrainerCaseMale",
       "en_US": [
         "I’m just showing my Trainer Case\n",
         "as my way of a greeting."
       ]
     },
     {
-      "id": "pl_msg_00000635_00045",
+      "id": "UnionRoom_Text_ShowingTrainerCaseMale",
       "en_US": "I hope I get to know you better!"
     },
     {
-      "id": "pl_msg_00000635_00046",
+      "id": "UnionRoom_Text_WaitForDrawAnswerMale",
       "en_US": [
         "Oh, did you want to draw with me?\n",
         "Sure thing, but wait just a second."
       ]
     },
     {
-      "id": "pl_msg_00000635_00047",
+      "id": "UnionRoom_Text_LetsStartDrawMale",
       "en_US": [
         "Thanks for waiting!\n",
         "Let’s get drawing!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00048",
+      "id": "UnionRoom_Text_DeclinedDrawMale",
       "en_US": [
         "Oh, sorry! I can’t now.\n",
         "Let’s draw another time."
       ]
     },
     {
-      "id": "pl_msg_00000635_00049",
+      "id": "UnionRoom_Text_AskJoinDrawMale",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: We’re drawing right\n",
         "now.\r",
@@ -301,67 +301,67 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00050",
+      "id": "UnionRoom_Text_DeclinedJoinDrawMale",
       "en_US": [
         "Oh, all right.\n",
         "Come see me anytime, OK?"
       ]
     },
     {
-      "id": "pl_msg_00000635_00051",
+      "id": "UnionRoom_Text_LetsDrawTogetherMale",
       "en_US": [
         "OK! Let’s do some drawing\n",
         "together!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00052",
+      "id": "UnionRoom_Text_00052",
       "garbage": 42
     },
     {
-      "id": "pl_msg_00000635_00053",
+      "id": "UnionRoom_Text_DrawingMale1",
       "en_US": [
         "The last letter of what you draw has\n",
         "to be the first letter of what I draw?"
       ]
     },
     {
-      "id": "pl_msg_00000635_00054",
+      "id": "UnionRoom_Text_DrawingMale2",
       "en_US": [
         "Stop drawing funny faces!\n",
         "It hurts to laugh so much!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00055",
+      "id": "UnionRoom_Text_DrawingMale3",
       "en_US": [
         "Wow, you’re good!\n",
         "I’ll try to imitate you!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00056",
+      "id": "UnionRoom_Text_DrawingMale4",
       "en_US": [
         "...Uh-huh... What is that?\n",
         "That’s supposed to be me?"
       ]
     },
     {
-      "id": "pl_msg_00000635_00057",
+      "id": "UnionRoom_Text_WaitForBattleAnswerMale",
       "en_US": [
         "A battle? Of course, but I need\n",
         "time to get ready."
       ]
     },
     {
-      "id": "pl_msg_00000635_00058",
+      "id": "UnionRoom_Text_LetsStartBattleMale",
       "en_US": [
         "Thanks for waiting!\n",
         "Let’s get our battle started!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00059",
+      "id": "UnionRoom_Text_DeclinedBattleMale",
       "en_US": [
         "Sorry! My Pokémon don’t seem to\n",
         "be feeling too well right now.\f",
@@ -369,56 +369,56 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00060",
+      "id": "UnionRoom_Text_NeedTwoLv30PokemonToBattleMale",
       "en_US": [
         "If you want to battle, you need two\n",
         "Pokémon that are Lv. 30 or lower.\r"
       ]
     },
     {
-      "id": "pl_msg_00000635_00061",
+      "id": "UnionRoom_Text_BattlingMale1",
       "en_US": [
         "Whoa!\n",
         "I can tell you’re pretty tough!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00062",
+      "id": "UnionRoom_Text_BattlingMale2",
       "en_US": [
         "You used that move?\n",
         "That’s good strategy!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00063",
+      "id": "UnionRoom_Text_BattlingMale3",
       "en_US": [
         "Way to go!\n",
         "That was an eye-opener!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00064",
+      "id": "UnionRoom_Text_BattlingMale4",
       "en_US": [
         "Oh! How could you use that\n",
         "Pokémon in that situation?"
       ]
     },
     {
-      "id": "pl_msg_00000635_00065",
+      "id": "UnionRoom_Text_WaitForTradeAnswerMale",
       "en_US": [
         "You want to trade, huh?\n",
         "Sure, hold on just a second."
       ]
     },
     {
-      "id": "pl_msg_00000635_00066",
+      "id": "UnionRoom_Text_LetsStartTradeMale",
       "en_US": [
         "All right!\n",
         "Let’s trade!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00067",
+      "id": "UnionRoom_Text_DeclinedTradeMale",
       "en_US": [
         "Sorry! I don’t have a Pokémon I\n",
         "can trade right now.\r",
@@ -426,49 +426,49 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00068",
+      "id": "UnionRoom_Text_TradingMale1",
       "en_US": [
         "Oh yeah!\n",
         "I really wanted this Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00069",
+      "id": "UnionRoom_Text_TradingMale2",
       "en_US": [
         "Finally, I got that Pokémon\n",
         "I’ve wanted for such a long time."
       ]
     },
     {
-      "id": "pl_msg_00000635_00070",
+      "id": "UnionRoom_Text_CantTradeIfOnePokemonMale",
       "en_US": [
         "You can’t trade if you have only one\n",
         "Pokémon with you.\r"
       ]
     },
     {
-      "id": "pl_msg_00000635_00071",
+      "id": "UnionRoom_Text_ShoutIfYouWantSomethingMale",
       "en_US": [
         "If you want to do something with\n",
         "me, just give me a shout!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00072",
+      "id": "UnionRoom_Text_WaitForMixRecordsAnswerMale",
       "en_US": [
         "You want to mix records with me?\n",
         "OK, I just need a little time."
       ]
     },
     {
-      "id": "pl_msg_00000635_00073",
+      "id": "UnionRoom_Text_LetsStartMixRecordsMale",
       "en_US": [
         "Thanks for waiting!\n",
         "Let’s mix our records, then."
       ]
     },
     {
-      "id": "pl_msg_00000635_00074",
+      "id": "UnionRoom_Text_DeclinedSpinTradeMixRecordsMale",
       "en_US": [
         "Oh, I’m sorry.\n",
         "I have too much to do right now.\f",
@@ -476,7 +476,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00075",
+      "id": "UnionRoom_Text_AskJoinMixRecordsMale",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: We’re going to mix our\n",
         "records now.\r",
@@ -485,18 +485,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00076",
+      "id": "UnionRoom_Text_DeclinedJoinMixRecordsMale",
       "en_US": [
         "Oh, all right.\n",
         "Come see me anytime, OK?"
       ]
     },
     {
-      "id": "pl_msg_00000635_00077",
+      "id": "UnionRoom_Text_LetsMixRecordsTogetherMale",
       "en_US": "OK! Let’s mix our records!"
     },
     {
-      "id": "pl_msg_00000635_00078",
+      "id": "UnionRoom_Text_00078",
       "en_US": [
         "Oh, sorry!\n",
         "I just can’t right this instant.\f",
@@ -504,40 +504,40 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00079",
+      "id": "UnionRoom_Text_MixingRecordsMale1",
       "en_US": "It’s fun mixing records!"
     },
     {
-      "id": "pl_msg_00000635_00080",
+      "id": "UnionRoom_Text_MixingRecordsMale2",
       "en_US": [
         "I’m going to mix records with\n",
         "everyone!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00081",
+      "id": "UnionRoom_Text_MixingRecordsMale3",
       "en_US": "Mix it up! Keep mixing!"
     },
     {
-      "id": "pl_msg_00000635_00082",
+      "id": "UnionRoom_Text_MixingRecordsMale4",
       "en_US": "You should mix records, too!"
     },
     {
-      "id": "pl_msg_00000635_00083",
+      "id": "UnionRoom_Text_WaitForSpinTradeAnswerMale",
       "en_US": [
         "Spin Trade? Sure!\n",
         "OK, just hold on a second!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00084",
+      "id": "UnionRoom_Text_LetsStartSpinTradeMale",
       "en_US": [
         "OK, all set!\n",
         "Let’s do a Spin Trade!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00085",
+      "id": "UnionRoom_Text_DeclinedUnusedMale",
       "en_US": [
         "Oh! Sorry!\n",
         "I can’t right now.\f",
@@ -545,14 +545,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00086",
+      "id": "UnionRoom_Text_NeedEggToSpinTradeMale",
       "en_US": [
         "You need an Egg if you want to take\n",
         "part in a Spin Trade.\r"
       ]
     },
     {
-      "id": "pl_msg_00000635_00087",
+      "id": "UnionRoom_Text_AskJoinSpinTradeMale",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: We’re going to do a Spin\n",
         "Trade now.\r",
@@ -561,58 +561,58 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00088",
+      "id": "UnionRoom_Text_DeclinedJoinSpinTradeMale",
       "en_US": [
         "Oh, OK.\n",
         "Come see us anytime!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00089",
+      "id": "UnionRoom_Text_LetsSpinTradeTogetherMale",
       "en_US": [
         "OK!\n",
         "Let’s do a Spin Trade together!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00090",
+      "id": "UnionRoom_Text_Dummy90",
       "garbage": 41
     },
     {
-      "id": "pl_msg_00000635_00091",
+      "id": "UnionRoom_Text_Dummy91",
       "garbage": 40
     },
     {
-      "id": "pl_msg_00000635_00092",
+      "id": "UnionRoom_Text_BadEggInPartyMale",
       "en_US": [
         "There is an Egg that cannot be traded\n",
         "in your party."
       ]
     },
     {
-      "id": "pl_msg_00000635_00093",
+      "id": "UnionRoom_Text_SpinTradingMale1",
       "en_US": "Spin Trades are so much fun!"
     },
     {
-      "id": "pl_msg_00000635_00094",
+      "id": "UnionRoom_Text_SpinTradingMale2",
       "en_US": [
         "There!\n",
         "Stop there!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00095",
+      "id": "UnionRoom_Text_SpinTradingMale3",
       "en_US": "My Egg’s awesome!"
     },
     {
-      "id": "pl_msg_00000635_00096",
+      "id": "UnionRoom_Text_SpinTradingMale4",
       "en_US": [
         "Yes!\n",
         "I got the Egg I wanted!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00097",
+      "id": "UnionRoom_Text_ItsPlayerDoSomethingFemale",
       "en_US": [
         "{STRVAR_1 28, 2, 0}{PAUSE 15}\r",
         "Hello, it’s {STRVAR_1 3, 0, 0}!\n",
@@ -620,7 +620,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00098",
+      "id": "UnionRoom_Text_SorrySomethingElseToDoFemale",
       "en_US": [
         "Whoops!\n",
         "Sorry, but I have to do something else.\f",
@@ -628,32 +628,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00099",
+      "id": "UnionRoom_Text_DoSomethingElseFemale",
       "en_US": [
         "Want to do\n",
         "something else?"
       ]
     },
     {
-      "id": "pl_msg_00000635_00100",
+      "id": "UnionRoom_Text_TrainersAppearsBusyFemale",
       "en_US": [
         "... ...\n",
         "The Trainer appears to be busy..."
       ]
     },
     {
-      "id": "pl_msg_00000635_00101",
+      "id": "UnionRoom_Text_Dummy101",
       "garbage": 23
     },
     {
-      "id": "pl_msg_00000635_00102",
+      "id": "UnionRoom_Text_IllShowMyTrainerCase",
       "en_US": [
         "As my introduction, I’ll show you\n",
         "my Trainer Case."
       ]
     },
     {
-      "id": "pl_msg_00000635_00103",
+      "id": "UnionRoom_Text_DeclinedShowTrainerCaseFemale",
       "en_US": [
         "Oh? Now where did I put my\n",
         "Trainer Case...?\r",
@@ -661,42 +661,42 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00104",
+      "id": "UnionRoom_Text_ShowTrainerCaseFemale",
       "en_US": [
         "We’re showing each other our\n",
         "Trainer Cases to get acquainted."
       ]
     },
     {
-      "id": "pl_msg_00000635_00105",
+      "id": "UnionRoom_Text_ShowingTrainerCaseFemale",
       "en_US": [
         "Glad to meet you.\n",
         "Please don’t be a stranger!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00106",
+      "id": "UnionRoom_Text_WaitForDrawAnswerFemale",
       "en_US": [
         "You want to draw with me?\n",
         "Sure! Just give me a second..."
       ]
     },
     {
-      "id": "pl_msg_00000635_00107",
+      "id": "UnionRoom_Text_LetsStartDrawFemale",
       "en_US": [
         "Sorry I made you wait!\n",
         "Let’s get started!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00108",
+      "id": "UnionRoom_Text_DeclinedDrawFemale",
       "en_US": [
         "Oh, I’m sorry!\n",
         "Let’s draw another time!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00109",
+      "id": "UnionRoom_Text_AskJoinDrawFemale",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: We were drawing right\n",
         "now.\r",
@@ -705,21 +705,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00110",
+      "id": "UnionRoom_Text_DeclinedJoinDrawFemale",
       "en_US": [
         "Oh...\n",
         "Please come by anytime."
       ]
     },
     {
-      "id": "pl_msg_00000635_00111",
+      "id": "UnionRoom_Text_LetsGetDrawingFemale",
       "en_US": [
         "OK! Thanks for waiting!\n",
         "Let’s get drawing!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00112",
+      "id": "UnionRoom_Text_00112",
       "en_US": [
         "Sorry!\n",
         "I just can’t right now!\f",
@@ -727,49 +727,49 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00113",
+      "id": "UnionRoom_Text_DrawingFemale1",
       "en_US": [
         "Wow!\n",
         "You’re really good!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00114",
+      "id": "UnionRoom_Text_DrawingFemale2",
       "en_US": [
         "Ahaha!\n",
         "What is that?!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00115",
+      "id": "UnionRoom_Text_DrawingFemale3",
       "en_US": [
         "I love drawing!\n",
         "I can draw and draw!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00116",
+      "id": "UnionRoom_Text_DrawingFemale4",
       "en_US": [
         "Oops!\n",
         "I can’t stay inside the lines!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00117",
+      "id": "UnionRoom_Text_WaitForBattleAnswerFemale",
       "en_US": [
         "A battle? Of course, but I need\n",
         "time to get ready."
       ]
     },
     {
-      "id": "pl_msg_00000635_00118",
+      "id": "UnionRoom_Text_LetsStartBattleFemale",
       "en_US": [
         "Sorry I made you wait!\n",
         "Let’s get started!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00119",
+      "id": "UnionRoom_Text_DeclinedBattleFemale",
       "en_US": [
         "I’m terribly sorry, but my Pokémon\n",
         "aren’t feeling well...\r",
@@ -777,56 +777,56 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00120",
+      "id": "UnionRoom_Text_NeedTwoLv30PokemonToBattleFemale",
       "en_US": [
         "If you want to battle, you need two\n",
         "Pokémon that are Lv. 30 or lower.\r"
       ]
     },
     {
-      "id": "pl_msg_00000635_00121",
+      "id": "UnionRoom_Text_BattlingFemale1",
       "en_US": [
         "That Pokémon...\n",
         "It’s been raised really well!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00122",
+      "id": "UnionRoom_Text_BattlingFemale2",
       "en_US": [
         "That’s it!\n",
         "This is the right move now!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00123",
+      "id": "UnionRoom_Text_BattlingFemale3",
       "en_US": [
         "That’s awesome!\n",
         "You can battle that way?"
       ]
     },
     {
-      "id": "pl_msg_00000635_00124",
+      "id": "UnionRoom_Text_BattlingFemale4",
       "en_US": [
         "You have exquisite timing for\n",
         "switching Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00125",
+      "id": "UnionRoom_Text_WaitForTradeAnswerFemale",
       "en_US": [
         "A trade? Of course, but I need\n",
         "time to get ready."
       ]
     },
     {
-      "id": "pl_msg_00000635_00126",
+      "id": "UnionRoom_Text_LetsStartTradeFemale",
       "en_US": [
         "Sorry I made you wait!\n",
         "Let’s get started!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00127",
+      "id": "UnionRoom_Text_DeclinedTradeFemale",
       "en_US": [
         "I’m sorry, but I don’t have any\n",
         "Pokémon that I can trade now...\r",
@@ -834,53 +834,53 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00128",
+      "id": "UnionRoom_Text_TradingFemale1",
       "en_US": "I’m trading Pokémon right now."
     },
     {
-      "id": "pl_msg_00000635_00129",
+      "id": "UnionRoom_Text_TradingFemale2",
       "en_US": [
         "I finally got that Pokémon I\n",
         "wanted in a trade!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00130",
+      "id": "UnionRoom_Text_CantTradeIfOnePokemonFemale",
       "en_US": [
         "You can’t trade if you have only\n",
         "one Pokémon with you.\r"
       ]
     },
     {
-      "id": "pl_msg_00000635_00131",
+      "id": "UnionRoom_Text_AskIfYouWantSomethingFemale",
       "en_US": [
         "If you want to do something with\n",
         "me, don’t be shy. Just ask!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00132",
+      "id": "UnionRoom_Text_WaitForMixRecordsAnswerFemale",
       "en_US": [
         "You want to mix records?\n",
         "Sure! But I need a little time!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00133",
+      "id": "UnionRoom_Text_LetsStartMixRecordsFemale",
       "en_US": [
         "Sorry I made you wait!\n",
         "Let’s get started!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00134",
+      "id": "UnionRoom_Text_DeclinedSpinTradeMixRecordsFemale",
       "en_US": [
         "Oh, sorry!\n",
         "Let’s do this another time!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00135",
+      "id": "UnionRoom_Text_AskJoinMixRecordsFemale",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: We were just mixing\n",
         "our records.\r",
@@ -889,72 +889,72 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00136",
+      "id": "UnionRoom_Text_DeclinedJoinMixRecordsFemale",
       "en_US": [
         "Oh...\n",
         "Please come by anytime."
       ]
     },
     {
-      "id": "pl_msg_00000635_00137",
+      "id": "UnionRoom_Text_LetsMixRecordsTogetherFemale",
       "en_US": [
         "Thanks for waiting!\n",
         "Let’s mix some records!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00138",
+      "id": "UnionRoom_Text_00138",
       "en_US": [
         "Oh, sorry!\n",
         "Let’s do this another time!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00139",
+      "id": "UnionRoom_Text_MixingRecordsFemale1",
       "en_US": "It’s so fun to mix records!"
     },
     {
-      "id": "pl_msg_00000635_00140",
+      "id": "UnionRoom_Text_MixingRecordsFemale2",
       "en_US": "I’m going to keep mixing!"
     },
     {
-      "id": "pl_msg_00000635_00141",
+      "id": "UnionRoom_Text_MixingRecordsFemale3",
       "en_US": "Let’s mix it up!"
     },
     {
-      "id": "pl_msg_00000635_00142",
+      "id": "UnionRoom_Text_MixingRecordsFemale4",
       "en_US": "I wonder what’s going to happen?"
     },
     {
-      "id": "pl_msg_00000635_00143",
+      "id": "UnionRoom_Text_WaitForSpinTradeAnswerFemale",
       "en_US": [
         "Spin Trade? Of course!\n",
         "OK, can you just wait a moment?"
       ]
     },
     {
-      "id": "pl_msg_00000635_00144",
+      "id": "UnionRoom_Text_LetsStartSpinTradeFemale",
       "en_US": [
         "OK, all ready!\n",
         "Let’s get this Spin Trade started!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00145",
+      "id": "UnionRoom_Text_DeclinedUnusedFemale",
       "en_US": [
         "Oh! Sorry!\n",
         "Let’s do this another time!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00146",
+      "id": "UnionRoom_Text_NeedEggToSpinTradeFemale",
       "en_US": [
         "If you want to join a Spin Trade, you\n",
         "need to bring an Egg, too.\r"
       ]
     },
     {
-      "id": "pl_msg_00000635_00147",
+      "id": "UnionRoom_Text_AskJoinSpinTradeFemale",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: We were doing Spin Trades\n",
         "just now.\r",
@@ -963,58 +963,58 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00148",
+      "id": "UnionRoom_Text_DeclinedJoinSpinTradeFemale",
       "en_US": [
         "Oh, OK.\n",
         "Come see us anytime!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00149",
+      "id": "UnionRoom_Text_LetsSpinTradeTogetherFemale",
       "en_US": [
         "OK!\n",
         "Let’s do a Spin Trade together!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00150",
+      "id": "UnionRoom_Text_Dummy150",
       "garbage": 45
     },
     {
-      "id": "pl_msg_00000635_00151",
+      "id": "UnionRoom_Text_Dummy151",
       "garbage": 21
     },
     {
-      "id": "pl_msg_00000635_00152",
+      "id": "UnionRoom_Text_BadEggInPartyFemale",
       "en_US": [
         "There is an Egg that cannot be traded\n",
         "in your party."
       ]
     },
     {
-      "id": "pl_msg_00000635_00153",
+      "id": "UnionRoom_Text_SpinTradingFemale1",
       "en_US": "We’re doing Spin Trades!"
     },
     {
-      "id": "pl_msg_00000635_00154",
+      "id": "UnionRoom_Text_SpinTradingFemale2",
       "en_US": [
         "Wah!\n",
         "It moved again!"
       ]
     },
     {
-      "id": "pl_msg_00000635_00155",
+      "id": "UnionRoom_Text_SpinTradingFemale3",
       "en_US": "There goes the Egg I wanted..."
     },
     {
-      "id": "pl_msg_00000635_00156",
+      "id": "UnionRoom_Text_SpinTradingFemale4",
       "en_US": [
         "If it stopped there, I would’ve gotten\n",
         "a Berry."
       ]
     },
     {
-      "id": "pl_msg_00000635_00157",
+      "id": "UnionRoom_Text_WelcomeToUnionRoom",
       "en_US": [
         "Welcome to the Union Room.\r",
         "If there is anything you need help\n",
@@ -1022,18 +1022,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00158",
+      "id": "UnionRoom_Text_HowMayIHelp",
       "en_US": "How may I help you?"
     },
     {
-      "id": "pl_msg_00000635_00159",
+      "id": "UnionRoom_Text_ExplainWhichTopic",
       "en_US": [
         "Which topic would you\n",
         "like me to explain?"
       ]
     },
     {
-      "id": "pl_msg_00000635_00160",
+      "id": "UnionRoom_Text_ExplainBattle",
       "en_US": [
         "In the Union Room, you may battle\n",
         "with two Pokémon of your choice\f",
@@ -1044,7 +1044,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00161",
+      "id": "UnionRoom_Text_ExplainTrade",
       "en_US": [
         "You may trade your Pokémon with\n",
         "other players.\r",
@@ -1053,7 +1053,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00162",
+      "id": "UnionRoom_Text_ExplainRecordMixing",
       "en_US": [
         "You may communicate with other\n",
         "players and mix your records.\r",
@@ -1066,7 +1066,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00163",
+      "id": "UnionRoom_Text_ExplainSpinTrade",
       "en_US": [
         "In a Spin Trade, participants each bring\n",
         "an Egg for trading with others.\r",
@@ -1078,7 +1078,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00164",
+      "id": "UnionRoom_Text_ExplainDraw",
       "en_US": [
         "You may get together with others\n",
         "and draw.\r",
@@ -1091,7 +1091,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00165",
+      "id": "UnionRoom_Text_ExplainChat",
       "en_US": [
         "You can chat with other people\n",
         "by selecting “CHAT” in the menu.\r",
@@ -1104,7 +1104,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00166",
+      "id": "UnionRoom_Text_HereComesSomeoneNow",
       "en_US": [
         "Oh!\n",
         "Here comes someone now!\r",
@@ -1113,7 +1113,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00167",
+      "id": "UnionRoom_Text_BoringIfNoOneComes",
       "en_US": [
         "It’s rather boring if no one comes\n",
         "to visit...\r",
@@ -1121,7 +1121,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00168",
+      "id": "UnionRoom_Text_MistakenForTrainerClass",
       "en_US": [
         "Do you sometimes get mistaken for\n",
         "a real {STRVAR_1 14, 0, 0}?\r",
@@ -1130,7 +1130,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00169",
+      "id": "UnionRoom_Text_Teala1",
       "en_US": [
         "Hello!\r",
         "That’s right!\n",
@@ -1140,7 +1140,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00170",
+      "id": "UnionRoom_Text_Teala2",
       "en_US": [
         "Greetings!\r",
         "{STRVAR_1 28, 0, 0}?\n",
@@ -1154,7 +1154,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00171",
+      "id": "UnionRoom_Text_Teala3",
       "en_US": [
         "{STRVAR_1 28, 0, 0} Trainer?\n",
         "That’s what you are?\f",
@@ -1166,7 +1166,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00172",
+      "id": "UnionRoom_Text_Teala4",
       "en_US": [
         "Oh! Your {STRVAR_1 28, 0, 0}!\n",
         "I would love to have it!\f",
@@ -1178,7 +1178,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00173",
+      "id": "UnionRoom_Text_Teala5",
       "en_US": [
         "{STRVAR_1 28, 0, 0}?\n",
         "I can understand you’d want one...\r",
@@ -1189,7 +1189,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00174",
+      "id": "UnionRoom_Text_Teala6",
       "en_US": [
         "Welcome to the Union Room!\r",
         "I’m the only one here now, but\n",
@@ -1202,7 +1202,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00175",
+      "id": "UnionRoom_Text_Teala7",
       "en_US": [
         "I’m quite good at drawing!\r",
         "If it’s {STRVAR_1 28, 0, 0},\n",
@@ -1211,7 +1211,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00176",
+      "id": "UnionRoom_Text_Teala8",
       "en_US": [
         "Oh, you’re leaving...\r",
         "...\r",
@@ -1220,7 +1220,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00177",
+      "id": "UnionRoom_Text_Teala9",
       "en_US": [
         "What’s wrong?\n",
         "Are you feeling down about something?\r",
@@ -1230,7 +1230,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00178",
+      "id": "UnionRoom_Text_Teala10",
       "en_US": [
         "{STRVAR_1 28, 0, 0}?\n",
         "Yes, please!\r",
@@ -1241,7 +1241,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00179",
+      "id": "UnionRoom_Text_Teala11",
       "en_US": [
         "{STRVAR_1 28, 0, 0}?\n",
         "Me, too, please!\r",
@@ -1251,7 +1251,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00180",
+      "id": "UnionRoom_Text_Teala12",
       "en_US": [
         "{STRVAR_1 28, 0, 0}?\n",
         "You’re inviting me?\r",
@@ -1262,7 +1262,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00181",
+      "id": "UnionRoom_Text_Teala13",
       "en_US": [
         "That’s right!\r",
         "Sometimes, it might be better to\n",
@@ -1272,7 +1272,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00182",
+      "id": "UnionRoom_Text_Teala14",
       "en_US": [
         "Yes!\n",
         "It’s OK!\r",
@@ -1282,7 +1282,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00183",
+      "id": "UnionRoom_Text_Teala15",
       "en_US": [
         "Everyone has at least one thing\n",
         "they aren’t good at.\r",
@@ -1293,7 +1293,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00184",
+      "id": "UnionRoom_Text_Teala16",
       "en_US": [
         "Good luck! I hope you enjoy\n",
         "serious battles.\r",
@@ -1302,7 +1302,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00185",
+      "id": "UnionRoom_Text_Teala17",
       "en_US": [
         "You want to chat?\r",
         "Well, you shouldn’t be wasting your\n",
@@ -1314,7 +1314,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00186",
+      "id": "UnionRoom_Text_Teala18",
       "en_US": [
         "Where are you?\n",
         "Um... Right before my eyes.\r",
@@ -1327,7 +1327,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00187",
+      "id": "UnionRoom_Text_Teala19",
       "en_US": [
         "{STRVAR_1 28, 0, 0} trade?\n",
         "That sounds fun!\f",
@@ -1337,7 +1337,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00188",
+      "id": "UnionRoom_Text_Teala20",
       "en_US": [
         "If you want to have a {STRVAR_1 28, 0, 0}\n",
         "Battle, you need to be more\f",
@@ -1348,55 +1348,55 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00189",
+      "id": "UnionRoom_Text_00189",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000635_00190",
+      "id": "UnionRoom_Text_00190",
       "en_US": "CHAT"
     },
     {
-      "id": "pl_msg_00000635_00191",
+      "id": "UnionRoom_Text_00191",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000635_00192",
+      "id": "UnionRoom_Text_00192",
       "en_US": "BATTLE"
     },
     {
-      "id": "pl_msg_00000635_00193",
+      "id": "UnionRoom_Text_00193",
       "en_US": "TRADE"
     },
     {
-      "id": "pl_msg_00000635_00194",
+      "id": "UnionRoom_Text_00194",
       "en_US": "RECORDS"
     },
     {
-      "id": "pl_msg_00000635_00195",
+      "id": "UnionRoom_Text_00195",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000635_00196",
+      "id": "UnionRoom_Text_00196",
       "en_US": "DRAW"
     },
     {
-      "id": "pl_msg_00000635_00197",
+      "id": "UnionRoom_Text_00197",
       "en_US": "CHAT"
     },
     {
-      "id": "pl_msg_00000635_00198",
+      "id": "UnionRoom_Text_00198",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000635_00199",
+      "id": "UnionRoom_Text_TalkingToPlayer",
       "en_US": "Talking to {STRVAR_1 3, 0, 0}..."
     },
     {
-      "id": "pl_msg_00000635_00200",
+      "id": "UnionRoom_Text_Dummy200",
       "garbage": 18
     },
     {
-      "id": "pl_msg_00000635_00201",
+      "id": "UnionRoom_Text_00201",
       "en_US": [
         "Whoops! Sorry, but I have to do\n",
         "something else.\f",
@@ -1404,71 +1404,71 @@
       ]
     },
     {
-      "id": "pl_msg_00000635_00202",
+      "id": "UnionRoom_Text_WaitOtherPlayersChoice",
       "en_US": "Waiting for the other player’s choice."
     },
     {
-      "id": "pl_msg_00000635_00203",
+      "id": "UnionRoom_Text_Dummy203",
       "garbage": 10
     },
     {
-      "id": "pl_msg_00000635_00204",
+      "id": "UnionRoom_Text_Dummy204",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000635_00205",
+      "id": "UnionRoom_Text_Dummy205",
       "garbage": 33
     },
     {
-      "id": "pl_msg_00000635_00206",
+      "id": "UnionRoom_Text_Dummy206",
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000635_00207",
+      "id": "UnionRoom_Text_Dummy207",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000635_00208",
+      "id": "UnionRoom_Text_00208",
       "en_US": "{STRVAR_1 3, 0, 0}’s friend"
     },
     {
-      "id": "pl_msg_00000635_00209",
+      "id": "UnionRoom_Text_00209",
       "en_US": "{STRVAR_1 3, 1, 0}’s friend"
     },
     {
-      "id": "pl_msg_00000635_00210",
+      "id": "UnionRoom_Text_00210",
       "en_US": "{STRVAR_1 3, 2, 0}’s friend"
     },
     {
-      "id": "pl_msg_00000635_00211",
+      "id": "UnionRoom_Text_GreetingJapanese",
       "en_US": "こんにちは！"
     },
     {
-      "id": "pl_msg_00000635_00212",
+      "id": "UnionRoom_Text_GreetingEnglish",
       "en_US": "Hello!"
     },
     {
-      "id": "pl_msg_00000635_00213",
+      "id": "UnionRoom_Text_GreetingFrench",
       "en_US": "Bonjour!"
     },
     {
-      "id": "pl_msg_00000635_00214",
+      "id": "UnionRoom_Text_GreetingItalian",
       "en_US": "Ciao!"
     },
     {
-      "id": "pl_msg_00000635_00215",
+      "id": "UnionRoom_Text_GreetingGerman",
       "en_US": "Hallo!"
     },
     {
-      "id": "pl_msg_00000635_00216",
+      "id": "UnionRoom_Text_GreetingSpanish",
       "en_US": "Hola!"
     },
     {
-      "id": "pl_msg_00000635_00217",
+      "id": "UnionRoom_Text_GreetingDefault",
       "en_US": "H-e-l-l-o-!"
     },
     {
-      "id": "pl_msg_00000635_00218",
+      "id": "UnionRoom_Text_CantSpinTradeDiamondPearl",
       "en_US": [
         "Sorry, you can’t do a Spin Trade with\n",
         "Pokémon Diamond or Pearl.\r"

@@ -2,7 +2,7 @@
   "key": 17414,
   "messages": [
     {
-      "id": "pl_msg_00000599_00000",
+      "id": "ResortAreaRibbonSyndicate1F_Text_CollectLotsOfRibbons",
       "en_US": [
         "...Sniff...\n",
         "I do apologize.\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000599_00001",
+      "id": "ResortAreaRibbonSyndicate1F_Text_YouMustJoinUs",
       "en_US": [
         "...Sniff...\n",
         "I do apologize.\r",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000599_00002",
+      "id": "ResortAreaRibbonSyndicate1F_Text_LookedForwardSeeingYou",
       "en_US": [
         "Welcome! We’ve looked forward to\n",
         "seeing you, {STRVAR_1 3, 0, 0}.\r",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000599_00003",
+      "id": "ResortAreaRibbonSyndicate1F_Text_OfferGorgeousRibbon",
       "en_US": [
         "Welcome.\r",
         "May I interest you in top-grade\n",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000599_00004",
+      "id": "ResortAreaRibbonSyndicate1F_Text_OfferRoyalRibbon",
       "en_US": [
         "Welcome.\r",
         "May I interest you in top-grade\n",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000599_00005",
+      "id": "ResortAreaRibbonSyndicate1F_Text_OfferGorgeousRoyalRibbon",
       "en_US": [
         "Welcome.\r",
         "May I interest you in top-grade\n",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000599_00006",
+      "id": "ResortAreaRibbonSyndicate1F_Text_ThatsGorgeousRoyalRibbon",
       "en_US": [
         "Welcome...\n",
         "Ooh! That’s a Gorgeous Royal Ribbon!\r",
@@ -105,49 +105,49 @@
       ]
     },
     {
-      "id": "pl_msg_00000599_00007",
+      "id": "ResortAreaRibbonSyndicate1F_Text_BoughtGorgeousRibbon",
       "en_US": [
         "{STRVAR_1 3, 0, 0} bought\n",
         "a Gorgeous Ribbon.\r"
       ]
     },
     {
-      "id": "pl_msg_00000599_00008",
+      "id": "ResortAreaRibbonSyndicate1F_Text_PutGorgeousRibbonOnPokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the Gorgeous Ribbon\n",
         "on {STRVAR_1 0, 2, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000599_00009",
+      "id": "ResortAreaRibbonSyndicate1F_Text_BoughtRoyalRibbon",
       "en_US": [
         "{STRVAR_1 3, 0, 0} bought\n",
         "a Royal Ribbon.\r"
       ]
     },
     {
-      "id": "pl_msg_00000599_00010",
+      "id": "ResortAreaRibbonSyndicate1F_Text_PutRoyalRibbonOnPokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the Royal Ribbon\n",
         "on {STRVAR_1 0, 2, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000599_00011",
+      "id": "ResortAreaRibbonSyndicate1F_Text_BoughtGorgeousRoyalRibbon",
       "en_US": [
         "{STRVAR_1 3, 0, 0} bought\n",
         "a Gorgeous Royal Ribbon.\r"
       ]
     },
     {
-      "id": "pl_msg_00000599_00012",
+      "id": "ResortAreaRibbonSyndicate1F_Text_PutRoyalGorgeousRibbonOnPokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0} put the Gorgeous Royal\n",
         "Ribbon on {STRVAR_1 0, 2, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000599_00013",
+      "id": "ResortAreaRibbonSyndicate1F_Text_DontJokeAboutMoney",
       "en_US": [
         "Oh, please, {STRVAR_1 3, 0, 0}.\r",
         "You shouldn’t joke about not\n",
@@ -155,39 +155,39 @@
       ]
     },
     {
-      "id": "pl_msg_00000599_00014",
+      "id": "ResortAreaRibbonSyndicate1F_Text_PleaseVisitAgain",
       "en_US": [
         "I see.\n",
         "Please do visit again."
       ]
     },
     {
-      "id": "pl_msg_00000599_00015",
+      "id": "ResortAreaRibbonSyndicate1F_Text_SignOfStatus",
       "en_US": [
         "Just being in here is a sign of\n",
         "status, just so you know."
       ]
     },
     {
-      "id": "pl_msg_00000599_00016",
+      "id": "ResortAreaRibbonSyndicate1F_Text_WishMenPayAttention",
       "en_US": [
         "I wish men would pay more attention\n",
         "to the way they dress themselves..."
       ]
     },
     {
-      "id": "pl_msg_00000599_00017",
+      "id": "ResortAreaRibbonSyndicate1F_Text_WomenWorthyBeingSeen",
       "en_US": [
         "A woman worthy of being seen with\n",
         "Pokémon... That’s what I hope to be."
       ]
     },
     {
-      "id": "pl_msg_00000599_00018",
+      "id": "ResortAreaRibbonSyndicate1F_Text_SkittyCry",
       "en_US": "SKITTY: Skiii!"
     },
     {
-      "id": "pl_msg_00000599_00019",
+      "id": "ResortAreaRibbonSyndicate1F_Text_PsyduckCry",
       "en_US": "PSYDUCK: Gyaugyau!"
     }
   ]

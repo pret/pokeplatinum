@@ -2,7 +2,7 @@
   "key": 50230,
   "messages": [
     {
-      "id": "pl_msg_00000047_00000",
+      "id": "GlobalTerminal2F_Text_ThisIsDiscriminatory",
       "en_US": [
         "This is discriminatory!\n",
         "Why are there only shots of Pokémon?\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000047_00001",
+      "id": "GlobalTerminal2F_Text_SneakingAPeek",
       "en_US": [
         "Sneaking a peek at other people’s PC\n",
         "Boxes fills me with guilty glee.\r",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000047_00002",
+      "id": "GlobalTerminal2F_Text_DidYouKnow",
       "en_US": [
         "Did you know?\n",
         "About my PC Box, I mean.\r",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000047_00003",
+      "id": "GlobalTerminal2F_Text_IVisitEveryDay",
       "en_US": [
         "I visit every day to check on other\n",
         "people’s Dress-Up Data.\r",
@@ -44,14 +44,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000047_00004",
+      "id": "GlobalTerminal2F_Text_ThisIsAlmostScandalous",
       "en_US": [
         "Oh, dear me! Gracious!\n",
         "This is almost scandalous!"
       ]
     },
     {
-      "id": "pl_msg_00000047_00005",
+      "id": "GlobalTerminal2F_Text_CombinationWasWonderful",
       "en_US": [
         "The combination of that Pokémon with\n",
         "those Accessories...\r",
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000047_00006",
+      "id": "GlobalTerminal2F_Text_DifferentImpressions",
       "en_US": [
         "The same kind of Accessory can create\n",
         "entirely different impressions.\r",
@@ -69,14 +69,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000047_00007",
+      "id": "GlobalTerminal2F_Text_BackdropFromNiceLady",
       "en_US": [
         "I got a Backdrop from a nice lady\n",
         "downstairs. For free!"
       ]
     },
     {
-      "id": "pl_msg_00000047_00008",
+      "id": "GlobalTerminal2F_Text_ILikeSneakingGlances",
       "en_US": [
         "What I like to do...\r",
         "I like sneaking glances at the people\n",
@@ -84,25 +84,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000047_00009",
+      "id": "GlobalTerminal2F_Text_WarpsTo1F",
       "en_US": [
         "Warps to the GTS and the Trainer\n",
         "Rankings on 1F."
       ]
     },
     {
-      "id": "pl_msg_00000047_00010",
+      "id": "GlobalTerminal2F_Text_WarpsTo3F",
       "en_US": "Warps to the Battle Video Gallery on 3F."
     },
     {
-      "id": "pl_msg_00000047_00011",
+      "id": "GlobalTerminal2F_Text_ConnectForDressUpData",
       "en_US": [
         "Connect to Nintendo Wi-Fi Connection\n",
         "to view and post Dress-Up Data?"
       ]
     },
     {
-      "id": "pl_msg_00000047_00012",
+      "id": "GlobalTerminal2F_Text_ExplainDressUpData",
       "en_US": [
         "Here, you may post the Dress-Up Data\n",
         "of your Pokémon.\r",
@@ -115,14 +115,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000047_00013",
+      "id": "GlobalTerminal2F_Text_ConnectForBoxData",
       "en_US": [
         "Connect to Nintendo Wi-Fi Connection\n",
         "to view and post Box Data?"
       ]
     },
     {
-      "id": "pl_msg_00000047_00014",
+      "id": "GlobalTerminal2F_Text_ExplainBoxData",
       "en_US": [
         "Here, you may post the Box Data\n",
         "containing your Pokémon.\r",
@@ -135,15 +135,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000047_00015",
+      "id": "GlobalTerminal2F_Text_Use",
       "en_US": "USE"
     },
     {
-      "id": "pl_msg_00000047_00016",
+      "id": "GlobalTerminal2F_Text_Info",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000047_00017",
+      "id": "GlobalTerminal2F_Text_Cancel",
       "en_US": "CANCEL"
     }
   ]

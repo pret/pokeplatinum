@@ -1,11 +1,14 @@
 #ifndef POKEPLATINUM_LOCATION_H
 #define POKEPLATINUM_LOCATION_H
 
+#include "generated/map_headers.h"
+
 #include "savedata.h"
 
 #define WARP_ID_NONE -1
 
 enum FaceDirection {
+    FACE_NONE = -1,
     FACE_UP = 0,
     FACE_DOWN,
     FACE_LEFT,
@@ -13,16 +16,16 @@ enum FaceDirection {
 };
 
 typedef struct Location {
-    int mapId;
+    enum MapHeaderID mapHeaderID;
     int warpId;
     int x;
     int z;
     int faceDirection;
 } Location;
 
-static inline void Location_Set(Location *location, int mapId, int warpId, int x, int z, int faceDirection)
+static inline void Location_Set(Location *location, enum MapHeaderID mapHeaderID, int warpId, int x, int z, int faceDirection)
 {
-    location->mapId = mapId;
+    location->mapHeaderID = mapHeaderID;
     location->warpId = warpId;
     location->x = x;
     location->z = z;

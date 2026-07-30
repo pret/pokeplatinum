@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_effect_manager.h"
@@ -150,7 +150,7 @@ static int ov5_021F2980(OverworldAnimManager *param0, void *param1)
 
     v0->unk_10 = *v1;
     v0->unk_04 = v1->unk_00;
-    v0->unk_0C = OverworldAnimManager_GetID(param0);
+    v0->unk_0C = OverworldAnimManager_GetUserInt(param0);
 
     ov5_021F28D4(v0->unk_10.unk_0C);
     ov5_021F2874(v0->unk_10.unk_0C);

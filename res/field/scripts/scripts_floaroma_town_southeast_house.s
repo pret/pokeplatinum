@@ -7,9 +7,9 @@
     ScriptEntryEnd
 
 FloaromaTownSoutheastHouse_PokefanM:
-    NPCMessage FloaromaTownSoutheastHouse_Text_SomeKindsOfPokemonAppearOnlyIfTheyreAttractedByHoney
+    NPCMessage FloaromaTownSoutheastHouse_Text_SomePokemonAppearOnlyByHoney
     End
 
 FloaromaTownSoutheastHouse_PokefanF:
-    NPCMessage FloaromaTownSoutheastHouse_Text_PokemonHaveAnAcuteSenseOfSmell
+    NPCMessage FloaromaTownSoutheastHouse_Text_PokemonHaveAcuteSmell
     End

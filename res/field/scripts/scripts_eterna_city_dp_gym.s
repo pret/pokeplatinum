@@ -1,14 +1,14 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _000A
-    ScriptEntry _000C
+    ScriptEntry EternaCityDPGym_OnTransition
+    ScriptEntry EternaCityDPGym_OnLoad
     ScriptEntryEnd
 
-_000A:
+EternaCityDPGym_OnTransition:
     End
 
-_000C:
+EternaCityDPGym_OnLoad:
     End
 
     .balign 4, 0

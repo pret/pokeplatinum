@@ -315,3 +315,4 @@ map_matrix_narc = custom_target('map_matrix.narc',
 )
 
 nitrofs_files += map_matrix_narc
+naix_headers += map_matrix_narc[1]

@@ -5,9 +5,7 @@
 
 #include "constants/graphics.h"
 
-#include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_02015958.h"
+#include "struct_decls/wi_fi_list.h"
 
 #include "nintendo_wfc/main.h"
 #include "overlay066/ov66_0222DDF0.h"
@@ -19,6 +17,7 @@
 #include "bg_window.h"
 #include "buffer_manager.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "enums.h"
@@ -50,13 +49,12 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02015920.h"
-#include "unk_0202ACE0.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0203909C.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
+#include "wifi_list.h"
+#include "yes_no_touch_menu.h"
 
 typedef struct {
     fx32 unk_00;
@@ -177,8 +175,8 @@ typedef struct {
     u8 unk_00;
     u8 unk_01;
     u16 unk_02;
-    UnkStruct_02015920 *unk_04;
-    UnkStruct_02015958 unk_08;
+    YesNoTouchMenu *unk_04;
+    YesNoTouchMenuParams unk_08;
     u8 unk_1C;
     u8 unk_1D;
     u8 unk_1E;
@@ -1042,11 +1040,11 @@ BOOL ov114_0225CA54(UnkStruct_ov114_0225C76C *param0)
             v0 = 1;
         }
 
-        if (sub_02038284() == 1) {
+        if (CommManager_GetDisconnectedWifi() == 1) {
             v0 = 1;
         }
 
-        if (sub_020380E4() >= 2) {
+        if (CommManager_GetMatchmakingState() >= 2) {
             v0 = 1;
         }
 
@@ -1069,9 +1067,9 @@ BOOL ov114_0225CA98(const UnkStruct_ov114_0225C76C *param0)
 
     if (CommInfo_IsInitialized() == 1) {
         CommInfo_Delete();
-        sub_0203888C();
+        CommManager_EndWifiP2P();
     } else {
-        if (sub_020382C0() == 1) {
+        if (CommManager_IsLoginBattleMatchWifi() == 1) {
             return 1;
         }
     }
@@ -1404,8 +1402,8 @@ static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 heapID)
     param0->unk_08 = String_Init(128, heapID);
     param0->unk_0C = String_Init(128, heapID);
 
-    Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, heapID);
-    Font_LoadScreenIndicatorsPalette(4, 12 * 0x20, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(12), heapID);
 }
 
 static void ov114_0225D0D8(UnkStruct_ov114_0225D084 *param0)
@@ -1880,7 +1878,7 @@ static int ov114_0225DA2C(const u8 *param0, u32 param1)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return param1 - 1;
 }
 
@@ -2399,7 +2397,7 @@ static void ov114_0225E4B0(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
         Bg_SetOffset(param1->unk_00, BG_LAYER_MAIN_1, 3, param2);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
@@ -2417,7 +2415,7 @@ static void ov114_0225E500(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
         Bg_ScheduleScroll(param1->unk_00, 1, 3, param2);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
@@ -2503,7 +2501,7 @@ static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *
         v0->unk_6A8 = SysTask_Start(ov114_0225ED40, v0, 0);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0->unk_6A8 = SysTask_Start(ov114_0225E874, v0, 0);
         break;
     }
@@ -2669,7 +2667,7 @@ static void ov114_0225E874(SysTask *param0, void *param1)
             v0->unk_6B6 = 32;
             break;
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
 
@@ -3176,20 +3174,20 @@ static void ov114_0225F234(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
 {
     memset(param0, 0, sizeof(UnkStruct_ov114_0225F270));
 
-    param0->unk_08.unk_00 = param1->unk_00;
-    param0->unk_08.unk_04 = 4;
-    param0->unk_08.unk_08 = ((1 + (18 + 12)) + (27 * 4));
-    param0->unk_08.unk_0C = 2;
-    param0->unk_08.unk_10 = 24;
-    param0->unk_08.unk_11 = 8;
-    param0->unk_04 = sub_02015920(heapID);
+    param0->unk_08.bgConfig = param1->unk_00;
+    param0->unk_08.bgLayer = BG_LAYER_SUB_0;
+    param0->unk_08.baseTile = ((1 + (18 + 12)) + (27 * 4));
+    param0->unk_08.palette = 2;
+    param0->unk_08.tilemapLeft = 24;
+    param0->unk_08.tilemapTop = 8;
+    param0->unk_04 = YesNoTouchMenu_New(heapID);
     param0->unk_01 = param2;
     param0->unk_1D = 1;
 }
 
 static void ov114_0225F270(UnkStruct_ov114_0225F270 *param0)
 {
-    sub_02015938(param0->unk_04);
+    YesNoTouchMenu_Free(param0->unk_04);
 }
 
 static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_0225D338 *param1, UnkStruct_ov114_0225D084 *param2, u32 param3, u32 heapID)
@@ -3225,16 +3223,16 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
         }
         break;
     case 4:
-        sub_02015958(param0->unk_04, &param0->unk_08);
+        YesNoTouchMenu_InitWithParams(param0->unk_04, &param0->unk_08);
         param0->unk_00++;
         break;
     case 5:
-        v0 = sub_020159FC(param0->unk_04);
+        v0 = YesNoTouchMenu_ProcessInput(param0->unk_04);
 
-        if ((v0 == 1) || (v0 == 2)) {
-            if (v0 == 1) {
+        if (v0 == YES_NO_TOUCH_MENU_YES || v0 == YES_NO_TOUCH_MENU_NO) {
+            if (v0 == YES_NO_TOUCH_MENU_YES) {
                 CommSys_SendData(22, NULL, 0);
-            } else if (v0 == 2) {
+            } else if (v0 == YES_NO_TOUCH_MENU_NO) {
                 CommSys_SendData(23, NULL, 0);
             }
 
@@ -3563,7 +3561,7 @@ static u32 ov114_0225F8FC(const UnkStruct_ov114_0225E854 *param0)
         v0 = 0;
         break;
     case UnkEnum_ov66_022324D0_02:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v0 = 0;
         break;
     }

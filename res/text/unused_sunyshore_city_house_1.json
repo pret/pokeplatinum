@@ -1,0 +1,63 @@
+{
+  "key": 21538,
+  "messages": [
+    {
+      "id": "SunyshoreCityHouse1_Text_BurmyInterestingExample",
+      "en_US": [
+        "Hmmm... The Pokémon BURMY is an\n",
+        "interesting example...\r",
+        "It hints at how the environment can\n",
+        "shape people’s personalities."
+      ]
+    },
+    {
+      "id": "SunyshoreCityHouse1_Text_DoYouHaveAllBurmy",
+      "en_US": [
+        "You know that Pokémon BURMY, and how\n",
+        "it comes in different forms?\r",
+        "Do you have all the forms of that\n",
+        "BURMY?\r"
+      ]
+    },
+    {
+      "id": "SunyshoreCityHouse1_Text_NotASingleBurmy",
+      "en_US": [
+        "Aww, you don’t even have a single\n",
+        "BURMY?\r",
+        "What, you don’t like them?\n",
+        "They’re all mooshy and cute!"
+      ]
+    },
+    {
+      "id": "SunyshoreCityHouse1_Text_CoolIfDifferentBurmy",
+      "en_US": [
+        "Hmm...\r",
+        "It’d be cool if you had all the\n",
+        "different-looking BURMY."
+      ]
+    },
+    {
+      "id": "SunyshoreCityHouse1_Text_ThatsAllBurmy",
+      "en_US": [
+        "Cool! That’s all the different kinds\n",
+        "of BURMY! I feel giddy!\r",
+        "Since I feel so giddy, take this!\n",
+        "Go ahead, take it!"
+      ]
+    },
+    {
+      "id": "SunyshoreCityHouse1_Text_BagIsCrammedFull",
+      "en_US": [
+        "Whoops, your Bag is crammed full!\n",
+        "I’ll give this to you later."
+      ]
+    },
+    {
+      "id": "SunyshoreCityHouse1_Text_YoureGood",
+      "en_US": [
+        "You’re good!\n",
+        "You’d make an awesome Bug Maniac!"
+      ]
+    }
+  ]
+}

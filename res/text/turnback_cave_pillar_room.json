@@ -2,7 +2,7 @@
   "key": 50219,
   "messages": [
     {
-      "id": "pl_msg_00000267_00000",
+      "id": "TurnbackCavePillarRoom_Text_PillarsSeenRoomsVisited",
       "en_US": [
         "{STRVAR_1 51, 0, 0}\n",
         "{STRVAR_1 51, 1, 0}"

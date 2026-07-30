@@ -2,7 +2,7 @@
   "key": 7819,
   "messages": [
     {
-      "id": "pl_msg_00000526_00000",
+      "id": "Route227House_Text_RestUp",
       "en_US": [
         "Oh, dear, are your Pokémon feeling\n",
         "tired?\r",
@@ -11,14 +11,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000526_00001",
+      "id": "Route227House_Text_GetSomeRest",
       "en_US": [
         "Yes, yes, that’s right.\n",
         "Get some well-earned rest.\r"
       ]
     },
     {
-      "id": "pl_msg_00000526_00002",
+      "id": "Route227House_Text_RestUpAgain",
       "en_US": [
         "Oh, you’re still looking tired.\n",
         "You’re still needing rest, are you?\r",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000526_00003",
+      "id": "Route227House_Text_IsThatRight",
       "en_US": [
         "Is that right?\n",
         "You’re sure now?\r",

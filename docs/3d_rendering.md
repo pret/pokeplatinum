@@ -74,7 +74,7 @@ This is all that needs to be done in terms of setup, now the model is ready to d
 ### Drawing the Model
 Before drawing there's a few things that should be configured on the object, one of them being the position of the model obviously. For simplicity's sake I will just set the models position to the player's position.
 ```c
-const VecFx32 *pos = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
+const VecFx32 *pos = PlayerAvatar_GetPos(fieldSystem->playerAvatar);
 Easy3DObject_SetPosition(&giratinaObj, pos->x, pos->y, pos->z);
 
 // Make sure the model actually gets rendered

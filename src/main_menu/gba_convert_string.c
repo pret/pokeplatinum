@@ -1,9 +1,9 @@
 #include "main_menu/gba_convert_string.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/charcode.h"
+#include "constants/versions.h"
 
 #include "charcode.h"
 
@@ -262,22 +262,22 @@ static const charcode_t sGBACharToDSChars[][2] = {
 
 static u16 GetSpaceChar(u32 language)
 {
-    return (language == JAPANESE) ? CHAR_WIDE_SPACE : CHAR_SPACE;
+    return (language == LANGUAGE_JAPANESE) ? CHAR_WIDE_SPACE : CHAR_SPACE;
 }
 
 static u16 GetDoubleQuoteOpenChar(u32 language)
 {
     switch (language) {
-    case JAPANESE:
+    case LANGUAGE_JAPANESE:
     default:
         return CHAR_JP_DOUBLE_QUOTE_OPEN;
-    case ENGLISH:
-    case ITALIAN:
-    case SPANISH:
+    case LANGUAGE_ENGLISH:
+    case LANGUAGE_ITALIAN:
+    case LANGUAGE_SPANISH:
         return CHAR_DOUBLE_QUOTE_OPEN;
-    case FRENCH:
+    case LANGUAGE_FRENCH:
         return CHAR_DOUBLE_PAREN_OPEN;
-    case GERMAN:
+    case LANGUAGE_GERMAN:
         return CHAR_DOUBLE_QUOTE_CLOSE_INVERTED;
     }
 }
@@ -285,23 +285,23 @@ static u16 GetDoubleQuoteOpenChar(u32 language)
 static u16 GetDoubleQuoteCloseChar(u32 language)
 {
     switch (language) {
-    case JAPANESE:
+    case LANGUAGE_JAPANESE:
     default:
         return CHAR_JP_DOUBLE_QUOTE_CLOSE;
-    case ENGLISH:
-    case ITALIAN:
-    case SPANISH:
+    case LANGUAGE_ENGLISH:
+    case LANGUAGE_ITALIAN:
+    case LANGUAGE_SPANISH:
         return CHAR_DOUBLE_QUOTE_CLOSE;
-    case FRENCH:
+    case LANGUAGE_FRENCH:
         return CHAR_DOUBLE_PAREN_CLOSE;
-    case GERMAN:
+    case LANGUAGE_GERMAN:
         return CHAR_DOUBLE_QUOTE_OPEN;
     }
 }
 
 BOOL GBA_ConvertStringToDS(const u8 *src, charcode_t *dst, u32 length, u32 language)
 {
-    BOOL nonJa = (language != JAPANESE);
+    BOOL nonJa = (language != LANGUAGE_JAPANESE);
 
     u32 i;
     for (i = 0; i < (length - 1); i++) {

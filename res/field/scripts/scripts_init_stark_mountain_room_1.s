@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40AD, 0, 2
+    InitScriptGoToIfEqual VAR_STARK_MOUNTAIN_ROOM_1_STATE, 0, 2
     InitScriptFrameTableEnd
 
     InitScriptEnd

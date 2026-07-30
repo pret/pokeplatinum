@@ -2,59 +2,59 @@
   "key": 41845,
   "messages": [
     {
-      "id": "pl_msg_00000436_00000",
+      "id": "EasyChatGroups_Text_Pokemon",
       "en_US": "POKéMON"
     },
     {
-      "id": "pl_msg_00000436_00001",
+      "id": "EasyChatGroups_Text_Pokemon2",
       "en_US": "POKéMON 2"
     },
     {
-      "id": "pl_msg_00000436_00002",
+      "id": "EasyChatGroups_Text_Move",
       "en_US": "MOVE"
     },
     {
-      "id": "pl_msg_00000436_00003",
+      "id": "EasyChatGroups_Text_Move2",
       "en_US": "MOVE 2"
     },
     {
-      "id": "pl_msg_00000436_00004",
+      "id": "EasyChatGroups_Text_Status",
       "en_US": "STATUS"
     },
     {
-      "id": "pl_msg_00000436_00005",
+      "id": "EasyChatGroups_Text_Trainer",
       "en_US": "TRAINER"
     },
     {
-      "id": "pl_msg_00000436_00006",
+      "id": "EasyChatGroups_Text_People",
       "en_US": "PEOPLE"
     },
     {
-      "id": "pl_msg_00000436_00007",
+      "id": "EasyChatGroups_Text_Greetings",
       "en_US": "GREETINGS"
     },
     {
-      "id": "pl_msg_00000436_00008",
+      "id": "EasyChatGroups_Text_Lifestyle",
       "en_US": "LIFESTYLE"
     },
     {
-      "id": "pl_msg_00000436_00009",
+      "id": "EasyChatGroups_Text_Feelings",
       "en_US": "FEELINGS"
     },
     {
-      "id": "pl_msg_00000436_00010",
+      "id": "EasyChatGroups_Text_ToughWords",
       "en_US": "TOUGH WORDS"
     },
     {
-      "id": "pl_msg_00000436_00011",
+      "id": "EasyChatGroups_Text_Union",
       "en_US": "UNION"
     },
     {
-      "id": "pl_msg_00000436_00012",
+      "id": "EasyChatGroups_Text_QuestionMarks",
       "en_US": "???"
     },
     {
-      "id": "pl_msg_00000436_00013",
+      "id": "EasyChatGroups_Text_Cancel",
       "en_US": "CANCEL"
     }
   ]

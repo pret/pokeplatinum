@@ -247,16 +247,16 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
 
 static void AddWindows(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData, u32 baseTile)
 {
-    Window_Add(graphics->bgConfig, &(graphics->windowAttackType), BG_LAYER_SUB_2, 6, 15, 6, 2, PLTT_0, baseTile);
+    Window_Add(graphics->bgConfig, &(graphics->windowAttackType), BG_LAYER_SUB_2, 6, 15, 6, 2, 0, baseTile);
     baseTile += 12;
 
-    Window_Add(graphics->bgConfig, &(graphics->windowDefenderType1), BG_LAYER_SUB_2, 16, 4, 6, 2, PLTT_0, baseTile);
+    Window_Add(graphics->bgConfig, &(graphics->windowDefenderType1), BG_LAYER_SUB_2, 16, 4, 6, 2, 0, baseTile);
     baseTile += 12;
 
-    Window_Add(graphics->bgConfig, &(graphics->windowDefenderType2), BG_LAYER_SUB_2, 16, 8, 6, 2, PLTT_0, baseTile);
+    Window_Add(graphics->bgConfig, &(graphics->windowDefenderType2), BG_LAYER_SUB_2, 16, 8, 6, 2, 0, baseTile);
     baseTile += 12;
 
-    Window_Add(graphics->bgConfig, &(graphics->windowExclamations), BG_LAYER_SUB_2, 3, 19, 22, 2, PLTT_0, baseTile);
+    Window_Add(graphics->bgConfig, &(graphics->windowExclamations), BG_LAYER_SUB_2, 3, 19, 22, 2, 0, baseTile);
 
     Window_PutToTilemap(&graphics->windowAttackType);
     Window_PutToTilemap(&graphics->windowDefenderType1);

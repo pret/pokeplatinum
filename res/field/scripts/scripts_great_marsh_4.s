@@ -3,13 +3,13 @@
 
 
     ScriptEntry GreatMarsh4_BugCatcher
-    ScriptEntry GreatMarsh4_SignArea4
+    ScriptEntry GreatMarsh4_SignboardArea4
     ScriptEntryEnd
 
 GreatMarsh4_BugCatcher:
     NPCMessage GreatMarsh4_Text_YouGetSuckedDown
     End
 
-GreatMarsh4_SignArea4:
+GreatMarsh4_SignboardArea4:
     ShowLandmarkSign GreatMarsh4_Text_SignArea4
     End

@@ -122,8 +122,8 @@
         "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
-        "height": 4,
-        "weight": 175,
+        "height_inches": 16,
+        "weight_pounds": 38.6,
         "body_shape": "SHAPE_QUADRUPED",
         "trainer_scale_f": 272,
         "pokemon_scale_f": 505,
@@ -163,7 +163,7 @@
         "it": {
             "name": "ZIGZAGOON",
             "category": "Pokémon Procione",
-            "entry_text": [ "Avanza a zigzag. È bravo a trovare\n", "strumenti nell’erba e sul terreno." ]
+            "entry_text": [ "Avanza a zigzag. \u00c8 bravo a trovare\n", "strumenti nell\u2019erba e sul terreno." ]
         },
         "es": {
             "name": "ZIGZAGOON",

@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02095EAC_decl.h"
-#include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_02095EAC_t.h"
 #include "struct_defs/struct_02095FE4.h"
@@ -14,6 +13,7 @@
 
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -44,15 +44,14 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02015920.h"
-#include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_02095E98.h"
 #include "vram_transfer.h"
+#include "wireless_manager.h"
+#include "yes_no_touch_menu.h"
 
 typedef struct {
     int (*unk_00)(UnkStruct_02095EAC *, int);
@@ -117,7 +116,7 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0);
 static int ov58_021D22D8(UnkStruct_02095EAC *param0, int param1);
 static void ov58_021D2CB0(UnkStruct_02095EAC *param0, int param1);
 static void ov58_021D2CB8(UnkStruct_02095EAC *param0, int param1);
-static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, UnkStruct_02015958 *param1);
+static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, YesNoTouchMenuParams *param1);
 static void ov58_021D2D10(UnkStruct_02095EAC *param0);
 static int ov58_021D2D30(UnkStruct_02095EAC *param0);
 static void ov58_021D2D4C(UnkStruct_ov58_021D2820 *param0, TouchPadDataBuffer *param1, int param2, int param3);
@@ -164,14 +163,14 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_39, 0x40000);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_DRAWING, HEAP_SIZE_DRAWING);
 
-        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02095EAC), HEAP_ID_39);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02095EAC), HEAP_ID_DRAWING);
         memset(v0, 0, sizeof(UnkStruct_02095EAC));
-        v0->unk_00 = BgConfig_New(HEAP_ID_39);
+        v0->unk_00 = BgConfig_New(HEAP_ID_DRAWING);
 
-        v0->unk_0C = StringTemplate_Default(HEAP_ID_39);
-        v0->unk_10 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0425, HEAP_ID_39);
+        v0->unk_0C = StringTemplate_Default(HEAP_ID_DRAWING);
+        v0->unk_10 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_DRAWING, HEAP_ID_DRAWING);
 
         SetAutorepeat(4, 8);
 
@@ -180,14 +179,14 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
 
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
         SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 16, 1, HEAP_ID_DRAWING);
 
         {
             UnkStruct_0203DDFC *v2 = (UnkStruct_0203DDFC *)ApplicationManager_Args(appMan);
             v0->unk_08 = v2;
         }
 
-        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__OEKAKI, HEAP_ID_39);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__OEKAKI, HEAP_ID_DRAWING);
 
         ov58_021D142C(v0, v1);
 
@@ -206,10 +205,10 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
         sub_02095E98(v0);
-        CommMan_SetErrorHandling(0, 1);
+        CommManager_SetErrorHandling(0, 1);
 
         if (CommSys_CurNetId() == 0) {
-            sub_02037B58(3);
+            CommManager_SetMaxNumConnections(3);
         }
 
         NetworkIcon_Init();
@@ -237,7 +236,7 @@ int ov58_021D0F08(ApplicationManager *appMan, int *param1)
     UnkStruct_02095EAC *v0 = ApplicationManager_Data(appMan);
 
     if ((CommSys_CurNetId() == 0) && (v0->unk_9418 != 0)) {
-        v0->unk_9418 &= sub_020318EC();
+        v0->unk_9418 &= WirelessManager_GetConnectedBitmap();
     }
 
     v0->unk_364 = *param1;
@@ -328,8 +327,8 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 1:
-        sub_02037B58(1);
-        sub_02036AC4();
+        CommManager_SetMaxNumConnections(1);
+        CommManager_UnionRestartSearch();
         sub_0205C2C8(v1->unk_00);
 
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
@@ -340,7 +339,7 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
         break;
     case 2:
         if (v0->unk_9464) {
-            if (sub_020318EC() == 1) {
+            if (WirelessManager_GetConnectedBitmap() == 1) {
                 (*param1)++;
             }
         } else {
@@ -348,15 +347,15 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3:
-        sub_02037B58(2);
+        CommManager_SetMaxNumConnections(2);
 
         ov58_021D13B4(v0);
 
         Heap_Free(v0->unk_08);
         ApplicationManager_FreeData(appMan);
         SetVBlankCallback(NULL, NULL);
-        Heap_Destroy(HEAP_ID_39);
-        sub_02037B58(2);
+        Heap_Destroy(HEAP_ID_DRAWING);
+        CommManager_SetMaxNumConnections(2);
 
         return 1;
     }
@@ -502,10 +501,10 @@ static void ov58_021D11A4(BgConfig *param0)
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v5, 0);
     }
 
-    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_39);
-    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_39);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_39);
-    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_39);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_DRAWING);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_DRAWING);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_DRAWING);
+    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_DRAWING);
 }
 
 static void ov58_021D12C4(UnkStruct_02095EAC *param0)
@@ -513,21 +512,21 @@ static void ov58_021D12C4(UnkStruct_02095EAC *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_14[v0] = String_Init(7 + 1, HEAP_ID_39);
+        param0->unk_14[v0] = String_Init(7 + 1, HEAP_ID_DRAWING);
         param0->unk_43E6[v0].unk_08_3 = 0;
         param0->unk_4418[v0].unk_02 = 0;
         param0->unk_398[v0][0] = NULL;
         param0->unk_398[v0][1] = NULL;
     }
 
-    param0->unk_28 = String_Init(10, HEAP_ID_39);
-    param0->unk_2C = String_Init(40 * 2, HEAP_ID_39);
+    param0->unk_28 = String_Init(10, HEAP_ID_DRAWING);
+    param0->unk_2C = String_Init(40 * 2, HEAP_ID_DRAWING);
     param0->unk_43DA = 0;
     param0->unk_43DB = 1;
     param0->unk_9458 = 1;
     param0->unk_945C = 0;
     param0->unk_37C = 2;
-    param0->unk_380 = sub_020318EC();
+    param0->unk_380 = WirelessManager_GetConnectedBitmap();
     param0->unk_9460 = 0;
     param0->unk_9464 = 0;
     param0->unk_368 = 0;
@@ -542,8 +541,8 @@ static void ov58_021D12C4(UnkStruct_02095EAC *param0)
 
     MessageLoader_GetString(param0->unk_10, 7, param0->unk_28);
 
-    param0->unk_442C = Heap_Alloc(HEAP_ID_39, 30 * 16 * 32);
-    param0->unk_9454 = sub_02015920(HEAP_ID_39);
+    param0->unk_442C = Heap_Alloc(HEAP_ID_DRAWING, 30 * 16 * 32);
+    param0->unk_9454 = YesNoTouchMenu_New(HEAP_ID_DRAWING);
     param0->unk_378 = 0;
 }
 
@@ -552,7 +551,7 @@ static void ov58_021D13B4(UnkStruct_02095EAC *param0)
     int v0;
 
     Heap_Free(param0->unk_442C);
-    sub_02015938(param0->unk_9454);
+    YesNoTouchMenu_Free(param0->unk_9454);
 
     for (v0 = 0; v0 < 5; v0++) {
         String_Free(param0->unk_14[v0]);
@@ -577,29 +576,29 @@ static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_00;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 2, HEAP_ID_39);
-    Graphics_LoadPaletteFromOpenNARC(param1, 1, 4, 0, 16 * 2 * 2, HEAP_ID_39);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_39);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_39);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, 32 * 8 * 0x20, 1, HEAP_ID_39);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_39);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, HEAP_ID_39);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_39);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_08->options), HEAP_ID_39);
-    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_39);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 2, HEAP_ID_DRAWING);
+    Graphics_LoadPaletteFromOpenNARC(param1, 1, 4, 0, 16 * 2 * 2, HEAP_ID_DRAWING);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_DRAWING);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(13), HEAP_ID_DRAWING);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, 32 * 8 * 0x20, 1, HEAP_ID_DRAWING);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_DRAWING);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, HEAP_ID_DRAWING);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_DRAWING);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_08->options), HEAP_ID_DRAWING);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_DRAWING);
 }
 
 static void ov58_021D1524(void)
 {
     {
         CharTransferTemplate v0 = {
-            20, 2048, 2048, HEAP_ID_39
+            20, 2048, 2048, HEAP_ID_DRAWING
         };
 
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(20, HEAP_ID_39);
+    PlttTransfer_Init(20, HEAP_ID_DRAWING);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -611,21 +610,21 @@ static void ov58_021D1554(UnkStruct_02095EAC *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
 
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 39);
-    param0->unk_34 = SpriteList_InitRendering(50 + 3, &param0->unk_38, HEAP_ID_39);
+    param0->unk_34 = SpriteList_InitRendering(50 + 3, &param0->unk_38, HEAP_ID_DRAWING);
     SetSubScreenViewRect(&param0->unk_38, 0, 256 * FX32_ONE);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1C4[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_39);
+        param0->unk_1C4[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_DRAWING);
     }
 
-    param0->unk_1D4[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_39);
-    param0->unk_1D4[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_39);
-    param0->unk_1D4[0][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 0, 2, HEAP_ID_39);
-    param0->unk_1D4[0][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 0, 3, HEAP_ID_39);
-    param0->unk_1D4[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_39);
-    param0->unk_1D4[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAP_ID_39);
-    param0->unk_1D4[1][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 1, 2, HEAP_ID_39);
-    param0->unk_1D4[1][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 1, 3, HEAP_ID_39);
+    param0->unk_1D4[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_DRAWING);
+    param0->unk_1D4[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAP_ID_DRAWING);
+    param0->unk_1D4[0][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 0, 2, HEAP_ID_DRAWING);
+    param0->unk_1D4[0][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 0, 3, HEAP_ID_DRAWING);
+    param0->unk_1D4[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1C4[0], param1, 6, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_DRAWING);
+    param0->unk_1D4[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1C4[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAP_ID_DRAWING);
+    param0->unk_1D4[1][2] = SpriteResourceCollection_AddFrom(param0->unk_1C4[2], param1, 7, 1, 1, 2, HEAP_ID_DRAWING);
+    param0->unk_1D4[1][3] = SpriteResourceCollection_AddFrom(param0->unk_1C4[3], param1, 8, 1, 1, 3, HEAP_ID_DRAWING);
 
     SpriteTransfer_RequestChar(param0->unk_1D4[0][0]);
     SpriteTransfer_RequestChar(param0->unk_1D4[1][0]);
@@ -668,7 +667,7 @@ static void ov58_021D16D8(UnkStruct_02095EAC *param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = HEAP_ID_39;
+        v1.heapID = HEAP_ID_DRAWING;
 
         for (v0 = 0; v0 < 5; v0++) {
             v1.resourceData = &param0->unk_218;
@@ -818,12 +817,12 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
         case 8:
             if (param0->unk_368 == 4) {
                 if (CommSys_CurNetId() == 0) {
-                    if (param0->unk_380 != sub_020318EC()) {
+                    if (param0->unk_380 != WirelessManager_GetConnectedBitmap()) {
                         Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                         break;
                     }
 
-                    sub_02037B58(CommSys_ConnectedCount());
+                    CommManager_SetMaxNumConnections(CommSys_ConnectedCount());
                     param0->unk_9458 = 2;
                     ov58_021D2A98(param0, 1, TEXT_SPEED_FAST);
                     ov58_021D2CB0(param0, 5);
@@ -972,15 +971,15 @@ static int ov58_021D1DC8(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D1DFC(UnkStruct_02095EAC *param0, int param1)
 {
     if (ov58_021D2B0C(param0->unk_30)) {
-        UnkStruct_02015958 v0;
+        YesNoTouchMenuParams v0;
         BOOL v1;
 
-        v0.unk_00 = param0->unk_00;
-        v0.unk_04 = 0;
-        v0.unk_08 = (1 + (18 + 12) + 9 + 27 * 4) + 8 * 4;
-        v0.unk_0C = 8;
-        v0.unk_10 = 25;
-        v0.unk_11 = 6;
+        v0.bgConfig = param0->unk_00;
+        v0.bgLayer = BG_LAYER_MAIN_0;
+        v0.baseTile = (1 + (18 + 12) + 9 + 27 * 4) + 8 * 4;
+        v0.palette = 8;
+        v0.tilemapLeft = 25;
+        v0.tilemapTop = 6;
 
         v1 = ov58_021D2CEC(param0, &v0);
         GF_ASSERT(v1);
@@ -1018,10 +1017,10 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
         return param1;
     }
 
-    v0 = sub_020159FC(param0->unk_9454);
+    v0 = YesNoTouchMenu_ProcessInput(param0->unk_9454);
 
     switch (v0) {
-    case 1:
+    case YES_NO_TOUCH_MENU_YES:
         if (CommSys_CurNetId() == 0) {
             ov58_021D2CB0(param0, 13);
             ov58_021D2A98(param0, 4, TEXT_SPEED_FAST);
@@ -1044,7 +1043,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
         ov58_021D2D10(param0);
         Window_CopyToVRAM(&param0->unk_32C);
         break;
-    case 2:
+    case YES_NO_TOUCH_MENU_NO:
         ov58_021D2CB0(param0, 4);
         ov58_021D1CDC(param0->unk_2AC, 0);
         Window_EraseMessageBox(&param0->unk_33C, 1);
@@ -1052,7 +1051,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
         Window_CopyToVRAM(&param0->unk_32C);
 
         if (CommSys_CurNetId() == 0) {
-            sub_02037B58(CommSys_ConnectedCount() + 1);
+            CommManager_SetMaxNumConnections(CommSys_ConnectedCount() + 1);
             param0->unk_9458 = 1;
         }
         break;
@@ -1144,7 +1143,7 @@ static int ov58_021D20C8(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D20F4(UnkStruct_02095EAC *param0, int param1)
 {
     if (++param0->unk_374 > 60) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_DRAWING);
         param1 = 3;
     }
 
@@ -1155,15 +1154,15 @@ static int ov58_021D20F4(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D2130(UnkStruct_02095EAC *param0, int param1)
 {
     if (ov58_021D2B0C(param0->unk_30)) {
-        UnkStruct_02015958 v0;
+        YesNoTouchMenuParams v0;
         BOOL v1;
 
-        v0.unk_00 = param0->unk_00;
-        v0.unk_04 = 0;
-        v0.unk_08 = (1 + (18 + 12) + 9 + 27 * 4) + 8 * 4;
-        v0.unk_0C = 8;
-        v0.unk_10 = 25;
-        v0.unk_11 = 6;
+        v0.bgConfig = param0->unk_00;
+        v0.bgLayer = BG_LAYER_MAIN_0;
+        v0.baseTile = (1 + (18 + 12) + 9 + 27 * 4) + 8 * 4;
+        v0.palette = 8;
+        v0.tilemapLeft = 25;
+        v0.tilemapTop = 6;
 
         v1 = ov58_021D2CEC(param0, &v0);
         GF_ASSERT(v1);
@@ -1177,7 +1176,7 @@ static int ov58_021D2130(UnkStruct_02095EAC *param0, int param1)
 
 static int ov58_021D2180(UnkStruct_02095EAC *param0, int param1)
 {
-    int v0 = sub_020159FC(param0->unk_9454);
+    int v0 = YesNoTouchMenu_ProcessInput(param0->unk_9454);
 
     if ((param0->unk_37C != ov58_021D2A30()) || (param0->unk_9418 != 0)) {
         ov58_021D1D40(param0);
@@ -1185,21 +1184,21 @@ static int ov58_021D2180(UnkStruct_02095EAC *param0, int param1)
     }
 
     switch (v0) {
-    case 1:
+    case YES_NO_TOUCH_MENU_YES:
         ov58_021D2CB0(param0, 15);
         CommSys_SendDataServer(127, NULL, 0);
         StringTemplate_SetPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
         param1 = 2;
         ov58_021D2D10(param0);
         break;
-    case 2:
+    case YES_NO_TOUCH_MENU_NO:
         ov58_021D2CB0(param0, 4);
         ov58_021D1CDC(param0->unk_2AC, 0);
         Window_EraseMessageBox(&param0->unk_33C, 1);
         ov58_021D2D10(param0);
 
         if (CommSys_CurNetId() == 0) {
-            sub_02037B58(CommSys_ConnectedCount() + 1);
+            CommManager_SetMaxNumConnections(CommSys_ConnectedCount() + 1);
             param0->unk_9458 = 1;
         }
         break;
@@ -1234,7 +1233,7 @@ static int ov58_021D2270(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D2298(UnkStruct_02095EAC *param0, int param1)
 {
     if (CommTiming_IsSyncState(200) || (CommSys_ConnectedCount() == 1)) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_DRAWING);
         param1 = 3;
     }
 
@@ -1701,7 +1700,7 @@ static int ov58_021D2A54(UnkStruct_02095EAC *param0)
 
 static void ov58_021D2A98(UnkStruct_02095EAC *param0, int param1, int param2)
 {
-    String *v0 = String_Init(40 * 2, HEAP_ID_39);
+    String *v0 = String_Init(40 * 2, HEAP_ID_DRAWING);
 
     MessageLoader_GetString(param0->unk_10, param1, v0);
     StringTemplate_Format(param0->unk_0C, param0->unk_2C, v0);
@@ -1748,7 +1747,7 @@ static void ov58_021D2B3C(UnkStruct_02095EAC *param0, int param1)
             v0 = 5;
         }
 
-        sub_02037B58(v0);
+        CommManager_SetMaxNumConnections(v0);
     }
 }
 
@@ -1759,12 +1758,12 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0)
     switch (v0) {
     case 1:
         if (param0->unk_368 <= 14) {
-            if (sub_020318EC() != 1) {
+            if (WirelessManager_GetConnectedBitmap() != 1) {
                 param0->unk_9464 = 1;
             }
 
             param0->unk_36C = 19;
-            sub_02037B58(1);
+            CommManager_SetMaxNumConnections(1);
 
             if (param0->unk_945C) {
                 ov58_021D2D10(param0);
@@ -1794,7 +1793,7 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0)
 
     if (v0 < param0->unk_378) {
         param0->unk_37C = CommSys_ConnectedCount();
-        param0->unk_380 = sub_020318EC();
+        param0->unk_380 = WirelessManager_GetConnectedBitmap();
 
         if (param0->unk_9468) {
             if (!(param0->unk_380 & param0->unk_946C)) {
@@ -1812,7 +1811,7 @@ static int ov58_021D2B5C(UnkStruct_02095EAC *param0)
     if (param0->unk_37C < CommSys_ConnectedCount()) {
         param0->unk_9458 = 2;
         param0->unk_9468 = 1;
-        param0->unk_946C = param0->unk_380 ^ sub_020318EC();
+        param0->unk_946C = param0->unk_380 ^ WirelessManager_GetConnectedBitmap();
         GF_ASSERT((param0->unk_946C == 2) || (param0->unk_946C == 4) || (param0->unk_946C == 8) || (param0->unk_946C == 16));
     }
 
@@ -1837,10 +1836,10 @@ static void ov58_021D2CB8(UnkStruct_02095EAC *param0, int param1)
     }
 }
 
-static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, UnkStruct_02015958 *param1)
+static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, YesNoTouchMenuParams *param1)
 {
     if (!param0->unk_945C) {
-        sub_02015958(param0->unk_9454, param1);
+        YesNoTouchMenu_InitWithParams(param0->unk_9454, param1);
         param0->unk_945C = 1;
         return 1;
     } else {
@@ -1851,7 +1850,7 @@ static BOOL ov58_021D2CEC(UnkStruct_02095EAC *param0, UnkStruct_02015958 *param1
 static void ov58_021D2D10(UnkStruct_02095EAC *param0)
 {
     if (param0->unk_945C) {
-        sub_02015A54(param0->unk_9454);
+        YesNoTouchMenu_Reset(param0->unk_9454);
         param0->unk_945C = 0;
     }
 }

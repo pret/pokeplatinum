@@ -57,7 +57,7 @@ _064:
     FreePartyGaugeGraphics 
     PokemonSendOut BTLSCR_SWITCHED_MON
     WaitTime 72
-    HealthbarSlideIn BTLSCR_SWITCHED_MON
+    HealthBoxSlideIn BTLSCR_SWITCHED_MON
     Wait 
     Call BATTLE_SUBSCRIPT_HAZARDS_CHECK
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_MON_FAINTED, _091

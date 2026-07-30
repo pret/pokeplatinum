@@ -6,7 +6,7 @@
 
 #include "battle/battle_lib.h"
 #include "battle/battle_system.h"
-#include "battle/ov16_0226DE44.h"
+#include "battle/indicator.h"
 #include "battle_sub_menus/battle_bag_buttons.h"
 #include "battle_sub_menus/battle_bag_sprites.h"
 #include "battle_sub_menus/battle_bag_text.h"
@@ -583,7 +583,7 @@ static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
 
     switch (battleBag->catchTutorialState) {
     case CATCH_TUTORIAL_STATE_MENU_SCREEN:
-        if (ov16_0226DFD4(battleBag->catchTutorialCursor) == TRUE) {
+        if (Indicator_GetHasDropped(battleBag->catchTutorialCursor) == TRUE) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             battleBag->currentBattlePocket = BATTLE_POCKET_INDEX_POKE_BALLS;
             battleBag->queuedState = TASK_STATE_CATCH_TUTORIAL;
@@ -600,7 +600,7 @@ static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
         battleBag->catchTutorialState++;
         break;
     case CATCH_TUTORIAL_STATE_POCKET_MENU_SCREEN:
-        if (ov16_0226DFD4(battleBag->catchTutorialCursor) == TRUE) {
+        if (Indicator_GetHasDropped(battleBag->catchTutorialCursor) == TRUE) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket] = 0;
             battleBag->queuedState = TASK_STATE_CATCH_TUTORIAL;
@@ -617,7 +617,7 @@ static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
         battleBag->catchTutorialState++;
         break;
     case CATCH_TUTORIAL_STATE_USE_ITEM_SCREEN:
-        if (ov16_0226DFD4(battleBag->catchTutorialCursor) == TRUE) {
+        if (Indicator_GetHasDropped(battleBag->catchTutorialCursor) == TRUE) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             battleBag->context->selectedBattleBagItem = BattleBag_GetItem(battleBag, battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket]);
             battleBag->context->selectedBattleBagPocket = battleBag->currentBattlePocket;
@@ -733,12 +733,12 @@ static void LoadGraphicsData(BattleBag *battleBag)
     Heap_Free(buffer);
 
     NARC_dtor(narc);
-    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_BATTLE__GRAPHIC__B_BAG_GRA, 3, battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 12, 0);
-    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_FONT, 7, battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 240);
+    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_BATTLE__GRAPHIC__B_BAG_GRA, 3, battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 12, PLTT_DEST(0));
+    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_FONT, 7, battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
 
     int optionsFrame = BattleSystem_GetOptionsFrame(battleBag->context->battleSys);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxTilesNARCMember(optionsFrame), battleBag->background, BG_LAYER_SUB_0, 1024 - SCROLLING_MESSAGE_BOX_TILE_COUNT, 0, FALSE, battleBag->context->heapID);
-    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 224);
+    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
 }
 
 static void InitializeMessageLoader(BattleBag *battleBagTask)

@@ -2,24 +2,24 @@
 
 
     ScriptEntry PokemonLeagueElevatorToFlintRoom_OnTransition
-    ScriptEntry _0029
-    ScriptEntry PokemonLeagueElevatorToFlintRoom_TriggerPlatformLift
+    ScriptEntry PokemonLeagueElevatorToFlintRoom_DisablePlatformLift
+    ScriptEntry PokemonLeagueElevatorToFlintRoom_CoordEvent_PlatformLift
     ScriptEntryEnd
 
 PokemonLeagueElevatorToFlintRoom_OnTransition:
-    SetVar VAR_MAP_LOCAL_0, 0
+    SetVar VAR_MAP_LOCAL_0x00, 0
     InitPersistedMapFeaturesForPlatformLift
-    CheckPlatformLiftNotUsedWhenEnteredMap VAR_MAP_LOCAL_1
-    GoToIfEq VAR_MAP_LOCAL_1, 0, _0029
+    CheckPlatformLiftNotUsedWhenEnteredMap VAR_MAP_LOCAL_0x01
+    GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, PokemonLeagueElevatorToFlintRoom_DisablePlatformLift
     End
 
-_0029:
-    SetVar VAR_MAP_LOCAL_0, 1
+PokemonLeagueElevatorToFlintRoom_DisablePlatformLift:
+    SetVar VAR_MAP_LOCAL_0x00, 1
     End
 
-PokemonLeagueElevatorToFlintRoom_TriggerPlatformLift:
+PokemonLeagueElevatorToFlintRoom_CoordEvent_PlatformLift:
     TriggerPlatformLift
-    SetVar VAR_MAP_LOCAL_0, 1
+    SetVar VAR_MAP_LOCAL_0x00, 1
     End
 
     .balign 4, 0

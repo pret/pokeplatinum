@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "IRON_ISLAND_HOUSE_BYRON_0",
+            "id": "LOCALID_BYRON",
             "graphics_id": "OBJ_EVENT_GFX_BYRON",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x024D",
+            "hidden_flag": "FLAG_HIDE_IRON_ISLAND_HOUSE_BYRON",
             "script": 2,
             "initial_dir": 1,
             "data": [],

@@ -1,0 +1,29 @@
+{
+  "name": "Journal",
+  "plural": "Journals",
+  "article": "a",
+  "description": [
+    "A notebook that keeps a day-to-day\n",
+    "record of your adventure so far.\n"
+  ],
+  "icon": {
+    "sprite": "journal_NCGR",
+    "palette": "journal_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": true,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_JOURNAL",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

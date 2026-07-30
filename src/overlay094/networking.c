@@ -4,11 +4,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/world_exchange.h"
+
 #include "http/http.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/struct_ov94_0223BA24.h"
-#include "overlay096/struct_world_exchange_trainer.h"
-#include "overlay096/struct_world_exchange_trainer_error.h"
 
 #include "enums.h"
 
@@ -72,12 +72,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case NETWORK_STATUS_POST_PENDING:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
@@ -127,12 +127,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case UnkEnum_ov94_0223B15C_04:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
@@ -164,12 +164,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case NETWORK_STATUS_GET_LISTED_POKEMON_PENDING:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(GTSPokemonListing)) {
@@ -199,12 +199,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case NETWORK_STATUS_GET_LISTING_STATUS_PENDING:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(GTSPokemonListing)) {
@@ -237,12 +237,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case NETWORK_STATUS_DELETE_PENDING:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
@@ -271,12 +271,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case UnkEnum_ov94_0223B15C_12:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
@@ -308,12 +308,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case UnkEnum_ov94_0223B15C_14:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             {
                 int v0 = HTTP_GetResponseLength();
@@ -341,12 +341,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case UnkEnum_ov94_0223B15C_16:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(GTSPokemonListing)) {
@@ -391,12 +391,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case UnkEnum_ov94_0223B15C_18:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
@@ -418,12 +418,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case NETWORK_STATUS_INIT_PENDING:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
@@ -452,12 +452,12 @@ void GTSNetworking_ProcessCurrentRequest(void)
         break;
     case NETWORK_STATUS_SET_PROFILE_PENDING:
         switch (HTTP_GetRequestStatus()) {
-        case 1:
+        case HTTP_STATUS_IDLE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
             HTTP_Shutdown();
             break;
-        case 7:
+        case HTTP_STATUS_COMPLETE:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             if (HTTP_GetResponseLength() == sizeof(WorldExchangeTrainerError)) {

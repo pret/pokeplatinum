@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0203A9C8_H
-#define POKEPLATINUM_UNK_0203A9C8_H
+#ifndef POKEPLATINUM_START_MENU_H
+#define POKEPLATINUM_START_MENU_H
 
 #include "field/field_system_decl.h"
 #include "overlay005/sprite_resource_manager.h"
@@ -53,6 +53,13 @@ enum StartMenuState {
     START_MENU_STATE_SAVED,
 };
 
+enum MailUsageType {
+    MAIL_GIVE_FROM_PARTY_MENU = 0,
+    MAIL_GIVE_FROM_BAG,
+    MAIL_READ_FROM_PARTY_MENU,
+    MAIL_READ_FROM_BAG,
+};
+
 extern const u8 gAllSummaryScreenPages[];
 
 BOOL FieldSystem_IsInValidLocation(FieldSystem *fieldSystem);
@@ -65,10 +72,10 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *fieldTask);
 BOOL StartMenu_ExitTownMap(FieldTask *fieldTask);
 BOOL StartMenu_FlyDestinationSelected(FieldTask *fieldTask);
 BOOL StartMenu_ExitJournal(FieldTask *fieldTask);
-void *sub_0203C540(u16 param0, u8 param1, u8 param2);
+void *StartMenu_BuildMailData(u16 itemID, u8 usageType, u8 partySlot);
 BOOL StartMenu_ExitMail(FieldTask *fieldTask);
 BOOL StartMenu_ExitPoffinCase(FieldTask *fieldTask);
 BOOL StartMenu_ExitPalPad(FieldTask *fieldTask);
 BOOL StartMenu_ExitVsRecorder(FieldTask *fieldTask);
 
-#endif // POKEPLATINUM_UNK_0203A9C8_H
+#endif // POKEPLATINUM_START_MENU_H

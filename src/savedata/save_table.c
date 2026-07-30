@@ -4,9 +4,12 @@
 #include <string.h>
 
 #include "bag.h"
+#include "battle_frontier_save.h"
+#include "battle_hall_win_records.h"
 #include "battle_regulation.h"
 #include "chatot_cry.h"
 #include "daycare_save.h"
+#include "easy_chat_words.h"
 #include "field_overworld_state.h"
 #include "game_records.h"
 #include "global_trade.h"
@@ -16,6 +19,7 @@
 #include "mail.h"
 #include "mystery_gift.h"
 #include "pal_pad.h"
+#include "pal_park_transfers.h"
 #include "party.h"
 #include "pc_boxes.h"
 #include "poffin.h"
@@ -28,22 +32,18 @@
 #include "savedata_misc.h"
 #include "special_encounter.h"
 #include "system_data.h"
-#include "trainer_card_save_data.h"
+#include "trainer_case_save_data.h"
 #include "underground.h"
-#include "unk_02014D38.h"
 #include "unk_020298BC.h"
-#include "unk_0202ACE0.h"
-#include "unk_0202C858.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D778.h"
 #include "unk_0202E2CC.h"
-#include "unk_0202EEC0.h"
 #include "unk_0202F1D4.h"
-#include "unk_0203061C.h"
-#include "unk_02030880.h"
 #include "unk_02030CE8.h"
 #include "unk_02030EA4.h"
 #include "vars_flags.h"
+#include "wifi_history_save_data.h"
+#include "wifi_list.h"
 
 const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_SYSTEM, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SystemData_SaveSize, (SaveEntryInitFunc)SystemData_Clear },
@@ -65,11 +65,11 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_POFFINS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)PoffinCase_SaveSize, (SaveEntryInitFunc)PoffinCase_Init },
     { SAVE_TABLE_ENTRY_RECORD_MIXED_RNG, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RecordMixedRNG_SaveSize, (SaveEntryInitFunc)RecordMixedRNG_Init },
     { SAVE_TABLE_ENTRY_JOURNAL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Journal_SaveSize, (SaveEntryInitFunc)Journal_Init10 },
-    { SAVE_TABLE_ENTRY_TRAINER_CARD, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)TrainerCardSaveData_Size, (SaveEntryInitFunc)TrainerCardSaveData_Init },
+    { SAVE_TABLE_ENTRY_TRAINER_CASE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)TrainerCaseSaveData_Size, (SaveEntryInitFunc)TrainerCaseSaveData_Init },
     { SAVE_TABLE_ENTRY_GAME_RECORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GameRecords_SaveSize, (SaveEntryInitFunc)GameRecords_Init },
     { SAVE_TABLE_ENTRY_SEAL_CASE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SealCase_SaveSize, (SaveEntryInitFunc)SealCase_Init },
     { SAVE_TABLE_ENTRY_CHATOT, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ChatotCry_SaveSize, (SaveEntryInitFunc)ChatotCry_Init },
-    { SAVE_TABLE_ENTRY_FRONTIER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BattleFrontier_SaveSize, (SaveEntryInitFunc)BattleFrontier_Init },
+    { SAVE_TABLE_ENTRY_FRONTIER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BattleFrontierSave_Size, (SaveEntryInitFunc)BattleFrontier_Init },
     { SAVE_TABLE_ENTRY_RIBBONS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Ribbons_SaveSize, (SaveEntryInitFunc)Ribbons_Init },
     { SAVE_TABLE_ENTRY_ENCOUNTERS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SpecialEncounter_SaveSize, (SaveEntryInitFunc)SpecialEncounter_Init },
     { SAVE_TABLE_ENTRY_GLOBAL_TRADE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GlobalTrade_SaveSize, (SaveEntryInitFunc)GlobalTrade_Init },
@@ -80,7 +80,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_MYSTERY_GIFT, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MysteryGift_SaveSize, (SaveEntryInitFunc)MysteryGift_Init },
     { SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MigratedPokemon_SaveSize, (SaveEntryInitFunc)PalParkTransfer_Init },
     { SAVE_TABLE_ENTRY_LINK_CONTEST_RECORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)LinkContestRecords_SaveSize, (SaveEntryInitFunc)LinkContestRecords_Init },
-    { SAVE_TABLE_ENTRY_SENTENCE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Sentence_SaveSize, (SaveEntryInitFunc)Sentence_Init },
+    { SAVE_TABLE_ENTRY_UNLOCKED_EASY_CHAT_WORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)UnlockedEasyChatWords_SaveSize, (SaveEntryInitFunc)UnlockedEasyChatWords_Init },
     { SAVE_TABLE_ENTRY_EMAIL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Email_SaveSize, (SaveEntryInitFunc)Email_Init },
     { SAVE_TABLE_ENTRY_WIFI_QUESTIONS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiQuestion_SaveSize, (SaveEntryInitFunc)WiFiQuestion_Init },
     { SAVE_TABLE_ENTRY_PC_BOXES, SAVE_BLOCK_ID_BOXES, (SaveEntrySizeFunc)PCBoxes_SaveSize, (SaveEntryInitFunc)PCBoxes_Init },
@@ -112,7 +112,7 @@ MigratedPokemon *SaveData_GetPalParkTransfer(SaveData *saveData)
 
 const SaveTableEntry gExtraSaveTable[] = {
     { EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, SAVE_PAGE_MAX, (SaveEntrySizeFunc)HallOfFame_SaveSize, (SaveEntryInitFunc)HallOfFame_Init },
-    { EXTRA_SAVE_TABLE_ENTRY_FRONTIER, SAVE_PAGE_MAX + 3, (SaveEntrySizeFunc)Frontier_Extra_SaveSize, (SaveEntryInitFunc)Frontier_Extra_Init },
+    { EXTRA_SAVE_TABLE_ENTRY_FRONTIER, SAVE_PAGE_MAX + 3, (SaveEntrySizeFunc)BattleHallWinRecords_SaveSize, (SaveEntryInitFunc)BattleHallWinRecords_Init },
     { EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS, SAVE_PAGE_MAX + 4, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
     { EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_0, SAVE_PAGE_MAX + 6, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
     { EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_1, SAVE_PAGE_MAX + 8, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
@@ -142,13 +142,13 @@ int SaveData_SaveBattleRecording(SaveData *saveData, BattleRecording *rec, int r
     return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, rec);
 }
 
-BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, enum HeapID heapID, int *resultCode)
+BattleHallWinRecords *SaveData_BattleHallWinRecords(SaveData *saveData, enum HeapID heapID, int *resultCode)
 {
     BOOL tmp;
     return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, resultCode, &tmp);
 }
 
-int SaveData_SaveBattleFrontierStage(SaveData *saveData, BattleFrontierStage *frontier)
+int SaveData_SaveBattleHallWinRecords(SaveData *saveData, BattleHallWinRecords *records)
 {
-    return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, frontier);
+    return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, records);
 }

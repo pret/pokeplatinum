@@ -1,0 +1,30 @@
+{
+  "name": "Griseous Orb",
+  "plural": "Griseous Orbs",
+  "article": "a",
+  "description": [
+    "A glowing orb to be held by GIRATINA.\n",
+    "It boosts the power of Dragon- and\n",
+    "Ghost-type moves."
+  ],
+  "icon": {
+    "sprite": "griseous_orb_NCGR",
+    "palette": "griseous_orb_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 10000,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_GIRATINA_BOOST",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 60,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

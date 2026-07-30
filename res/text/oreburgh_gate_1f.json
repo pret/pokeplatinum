@@ -2,7 +2,7 @@
   "key": 62499,
   "messages": [
     {
-      "id": "OreburghGate1F_Text_SoLetMeMakeAGiftOfThisHiddenMachineToYou",
+      "id": "OreburghGate1F_Text_MakeAGiftOfThisHM",
       "en_US": [
         "That sparkling new Pokétch!\n",
         "Your awkwardness as a traveler!\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "OreburghGate1F_Text_ThatHiddenMachineContainsRockSmash",
+      "id": "OreburghGate1F_Text_ThatHMContainsRockSmash",
       "en_US": [
         "That Hidden Machine, or HM for short,\n",
         "contains the hidden move Rock Smash.\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "OreburghGate1F_Text_NowYouCanUseTheHiddenMoveRockSmashOnSmallBoulders",
+      "id": "OreburghGate1F_Text_NowYouCanUseRockSmash",
       "en_US": [
         "Oh! Good golly!\n",
         "That’s Oreburgh City’s Gym Badge!\r",

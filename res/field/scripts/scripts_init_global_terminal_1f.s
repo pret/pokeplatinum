@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40D5, 6, 12
+    InitScriptGoToIfEqual VAR_COMMUNICATION_LOAD_ACTION, 6, 12
     InitScriptFrameTableEnd
 
     InitScriptEnd

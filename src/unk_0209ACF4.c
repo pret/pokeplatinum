@@ -3,14 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0209747C_decl.h"
-#include "struct_defs/sentence.h"
-
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 
 #include "bg_window.h"
 #include "colored_arrow.h"
+#include "easy_chat_args.h"
+#include "easy_chat_sentence.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "heap.h"
@@ -23,10 +22,10 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02014A84.h"
-#include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
-#include "unk_0209747C.h"
+#include "wifi_battle_tower_save.h"
+
+#include "res/text/bank/easy_chat.h"
 
 typedef struct {
     FieldSystem *fieldSystem;
@@ -38,8 +37,8 @@ typedef struct {
     Window unk_18;
     Window unk_28;
     Window unk_38;
-    Sentence unk_48;
-    UnkStruct_0209747C *unk_50;
+    EasyChatSentence unk_48;
+    EasyChatArgs *unk_50;
     int unk_54;
     int unk_58;
     int unk_5C;
@@ -71,7 +70,7 @@ void sub_0209ACF4(FieldTask *param0)
     v1->unk_0C = StringTemplate_Default(HEAP_ID_FIELD3);
     v1->unk_10 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0420, HEAP_ID_FIELD3);
     v1->unk_14 = ColoredArrow_New(HEAP_ID_FIELD3);
-    v1->unk_50 = sub_0209747C(2, 0, v1->fieldSystem->saveData, HEAP_ID_FIELD3);
+    v1->unk_50 = EasyChatArgs_New(EASY_CHAT_TYPE_SENTENCE, EasyChat_Text_ChooseWordOrPhrase, v1->fieldSystem->saveData, HEAP_ID_FIELD3);
 
     sub_02097520(v1->unk_50);
     Window_Init(&(v1->unk_18));
@@ -85,7 +84,7 @@ void sub_0209ACF4(FieldTask *param0)
 
 static void sub_0209AD84(UnkStruct_0209AD84 *param0)
 {
-    sub_020974EC(param0->unk_50);
+    EasyChatArgs_Free(param0->unk_50);
     ColoredArrow_Free(param0->unk_14);
     String_Free(param0->unk_04);
     String_Free(param0->unk_08);
@@ -136,19 +135,19 @@ static BOOL sub_0209AE14(FieldTask *param0)
 
             switch (v0->unk_64) {
             case 0:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 0));
+                EasyChatSentence_Copy(&(v0->unk_48), FrontierEasyChatMessages_GetSentence(v0->fieldSystem->saveData, 0));
                 v0->unk_54 = 3;
                 break;
             case 1:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 1));
+                EasyChatSentence_Copy(&(v0->unk_48), FrontierEasyChatMessages_GetSentence(v0->fieldSystem->saveData, 1));
                 v0->unk_54 = 3;
                 break;
             case 2:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 2));
+                EasyChatSentence_Copy(&(v0->unk_48), FrontierEasyChatMessages_GetSentence(v0->fieldSystem->saveData, 2));
                 v0->unk_54 = 3;
                 break;
             case 3:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 3));
+                EasyChatSentence_Copy(&(v0->unk_48), FrontierEasyChatMessages_GetSentence(v0->fieldSystem->saveData, 3));
                 v0->unk_54 = 3;
                 break;
             case 4:
@@ -169,10 +168,10 @@ static BOOL sub_0209AE14(FieldTask *param0)
         break;
     case 5:
         if (IsScreenFadeDone()) {
-            sub_02097500(v0->unk_50, &(v0->unk_48));
-            sub_02097514(v0->unk_50);
+            EasyChatArgs_SetSentence(v0->unk_50, &(v0->unk_48));
+            EasyChatArgs_FlagAsUnmodified(v0->unk_50);
             sub_0209ADBC(v0);
-            sub_0203D874(v0->fieldSystem, v0->unk_50);
+            FieldSystem_OpenEasyChat(v0->fieldSystem, v0->unk_50);
             v0->unk_54 = 6;
         }
         break;
@@ -190,11 +189,11 @@ static BOOL sub_0209AE14(FieldTask *param0)
         break;
     case 8:
         if (IsScreenFadeDone()) {
-            if (sub_02097528(v0->unk_50)) {
+            if (EasyChatArgs_IsUnmodified(v0->unk_50)) {
                 v0->unk_54 = 11;
             } else {
-                sub_02097540(v0->unk_50, &(v0->unk_48));
-                sub_0202D478(v0->fieldSystem->saveData, v0->unk_64, &(v0->unk_48));
+                EasyChatArgs_CopySentenceTo(v0->unk_50, &(v0->unk_48));
+                FrontierEasyChatMessages_SetSentence(v0->fieldSystem->saveData, v0->unk_64, &(v0->unk_48));
                 sub_0209B084(v0, 6, 0);
                 v0->unk_54 = 9;
             }
@@ -218,11 +217,11 @@ static BOOL sub_0209AE14(FieldTask *param0)
                 break;
             case 1:
             default: {
-                u16 v1 = Sentence_GetWord(&v0->unk_48, 0);
+                u16 v1 = EasyChatSentence_GetWord(&v0->unk_48, 0);
                 sub_0209B27C(v0);
 
-                if (v1 != 0xffff) {
-                    StringTemplate_SetCustomMessageWord(v0->unk_0C, 0, v1);
+                if (v1 != WORD_NONE) {
+                    StringTemplate_SetEasyChatWord(v0->unk_0C, 0, v1);
                     sub_0209B084(v0, 8, 1);
                 } else {
                     sub_0209B084(v0, 7, 0);

@@ -2,7 +2,7 @@
   "key": 40596,
   "messages": [
     {
-      "id": "Route203_Text_OfCourseIGotTougherIllDemonstrateItToYou",
+      "id": "Route203_Text_IGotTougher",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey! {STRVAR_1 3, 1, 0}!\n",
         "Tell me you got a little tougher!\r",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "Route203_Text_YourFavoritePokemonShouldBePlacedAtTheTop",
+      "id": "Route203_Text_FavoritePokemonAtTheTop",
       "en_US": [
         "Your favorite Pokémon should be placed\n",
         "at the top left of your party list.\r",
@@ -37,21 +37,21 @@
       ]
     },
     {
-      "id": "Route203_Text_Rt203JubilifeCity",
+      "id": "Route203_Text_SignJubilifeCity",
       "en_US": [
         "Rt. 203\n",
         "Jubilife City"
       ]
     },
     {
-      "id": "Route203_Text_Rt203OreburghCity",
+      "id": "Route203_Text_SignOreburghCity",
       "en_US": [
         "Rt. 203\n",
         "Oreburgh City"
       ]
     },
     {
-      "id": "Route203_Text_TrainerTipsIfAPokemonIsAboutToEvolveItCanBeInstantlyStopped",
+      "id": "Route203_Text_TrainerTipsEvolveCanBeStopped",
       "en_US": [
         "Trainer Tips!\r",
         "If a Pokémon is about to evolve,\n",
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "Route203_Text_TrainerTipsPokemonMovesUseEnergyCalledPowerPoints",
+      "id": "Route203_Text_TrainerTipsMovesUsePowerPoints",
       "en_US": [
         "Trainer Tips!\r",
         "Pokémon moves use energy called\n",

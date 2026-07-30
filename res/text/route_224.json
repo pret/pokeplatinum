@@ -2,7 +2,7 @@
   "key": 38536,
   "messages": [
     {
-      "id": "pl_msg_00000521_00000",
+      "id": "Route224_Text_ExamineTabletMale",
       "en_US": [
         "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
         "It’s good to see you!\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000521_00001",
+      "id": "Route224_Text_ExamineTabletFemale",
       "en_US": [
         "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
         "It’s good to see you!\r",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000521_00002",
+      "id": "Route224_Text_SayThanksToWhom",
       "en_US": [
         "I tried deciphering the engravings on\n",
         "the stone tablet.\r",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000521_00003",
+      "id": "Route224_Text_ExpressThanksToName",
       "en_US": [
         "Hm...\r",
         "You most want to express your\n",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000521_00004",
+      "id": "Route224_Text_WhatWasThatPokemon",
       "en_US": [
         "Oak: ?!\n",
         "What was that Pokémon?\r",
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000521_00005",
+      "id": "Route224_Text_WhatWasThatPokemon2",
       "en_US": [
         "Oak: ?!\n",
         "What was that Pokémon?\r",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000521_00006",
+      "id": "Route224_Text_NotSuggestingNoOne",
       "en_US": [
         "Oak: What’s wrong? You’re not\n",
         "suggesting there’s no one?\r",
@@ -89,21 +89,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000521_00007",
+      "id": "Route224_Text_SurfaceIsUnmarked",
       "en_US": [
         "The surface is unmarked.\n",
         "It is polished like a mirror."
       ]
     },
     {
-      "id": "pl_msg_00000521_00008",
+      "id": "Route224_Text_NameWhomIThank",
       "en_US": [
         "{STRVAR_1 28, 1, 0}, to whom I give\n",
         "my thanks."
       ]
     },
     {
-      "id": "pl_msg_00000521_00009",
+      "id": "Route224_Text_PokemonThatConveysGratitude",
       "en_US": [
         "Marley: I...\n",
         "I don’t like to talk...\r",
@@ -117,14 +117,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000521_00010",
+      "id": "Route224_Text_ThatStoneTablet",
       "en_US": [
         "Marley: That stone tablet...\n",
         "It has a strange feel to it..."
       ]
     },
     {
-      "id": "pl_msg_00000521_00011",
+      "id": "Route224_Text_ThankYou",
       "en_US": [
         "Marley: Thank you...\r",
         "That must have been the Pokémon that\n",
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000521_00012",
+      "id": "Route224_Text_ThankYouToo",
       "en_US": [
         "Marley: To you, too...\r",
         "Thank you..."

@@ -11,7 +11,7 @@ OldChateau_OnTransition:
     End
 
 OldChateau_Statue:
-    EventMessage OldChateau_Text_ItAppearsAsIfItIsGlaring
+    EventMessage OldChateau_Text_ItAppearsGlaring
     End
 
     .balign 4, 0

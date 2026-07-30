@@ -28,6 +28,7 @@ struct PngToNtrOptions {
     char *cellFilePath;
     bool cellSnap;
     int numTiles;
+    int tilesWide;
     int bitDepth;
     int colsPerChunk;
     int rowsPerChunk;

@@ -23,8 +23,8 @@ typedef struct MoveAnimation {
     u8 formNums[MAX_BATTLERS];
     u32 personalities[MAX_BATTLERS];
     u32 moveEffectMasks[MAX_BATTLERS];
-    int unk_4C;
-    int unk_50;
+    int animMode;
+    int secondaryAnimID;
     int terrain;
 } MoveAnimation;
 

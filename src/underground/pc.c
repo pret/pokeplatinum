@@ -599,8 +599,8 @@ static void UndergroundPC_MoveCamera(BOOL isDecorating, FieldSystem *fieldSystem
     VecFx32 delta;
 
     delta.y = 0;
-    delta.x = 15 * MAP_OBJECT_TILE_SIZE - Player_GetXPos(fieldSystem->playerAvatar) * MAP_OBJECT_TILE_SIZE;
-    delta.z = 17 * MAP_OBJECT_TILE_SIZE - Player_GetZPos(fieldSystem->playerAvatar) * MAP_OBJECT_TILE_SIZE;
+    delta.x = 15 * MAP_OBJECT_TILE_SIZE - PlayerAvatar_GetXPos(fieldSystem->playerAvatar) * MAP_OBJECT_TILE_SIZE;
+    delta.z = 17 * MAP_OBJECT_TILE_SIZE - PlayerAvatar_GetZPos(fieldSystem->playerAvatar) * MAP_OBJECT_TILE_SIZE;
 
     if (!isDecorating) {
         delta.x = -delta.x;

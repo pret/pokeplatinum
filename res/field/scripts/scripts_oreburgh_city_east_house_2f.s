@@ -4,30 +4,30 @@
 
     ScriptEntry OreburghCityEastHouse2F_Gentleman
     ScriptEntry OreburghCityEastHouse2F_Youngster
-    ScriptEntry OreburghCityEastHouse2F_Unused
+    ScriptEntry OreburghCityEastHouse2F_Dummy3
     ScriptEntry OreburghCityEastHouse2F_ScientistM
     ScriptEntryEnd
 
 OreburghCityEastHouse2F_Gentleman:
-    NPCMessage OreburghCityEastHouse2F_Text_TheOreburghMineIsOperatedWithTheUtmostCare
+    NPCMessage OreburghCityEastHouse2F_Text_OperatedWithUtmostCare
     End
 
 OreburghCityEastHouse2F_Youngster:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_EAST_HOUSE_2F_GREAT_BALL, OreburghCityEastHouse2F_YouKnowHowPokemonStayInsideTheirPokeBalls
-    Message OreburghCityEastHouse2F_Text_HereIWantYouToHaveThis
+    GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_EAST_HOUSE_2F_GREAT_BALL, OreburghCityEastHouse2F_IThinkAboutBestPokeBalls
+    Message OreburghCityEastHouse2F_Text_HereHaveThis
     SetVar VAR_0x8004, ITEM_GREAT_BALL
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghCityEastHouse2F_BagIsFull
     Common_GiveItemQuantity
     SetFlag FLAG_RECEIVED_OREBURGH_CITY_EAST_HOUSE_2F_GREAT_BALL
-    GoTo OreburghCityEastHouse2F_YouKnowHowPokemonStayInsideTheirPokeBalls
+    GoTo OreburghCityEastHouse2F_IThinkAboutBestPokeBalls
     End
 
-OreburghCityEastHouse2F_YouKnowHowPokemonStayInsideTheirPokeBalls:
-    Message OreburghCityEastHouse2F_Text_YouKnowHowPokemonStayInsideTheirPokeBalls
+OreburghCityEastHouse2F_IThinkAboutBestPokeBalls:
+    Message OreburghCityEastHouse2F_Text_IThinkAboutBestPokeBalls
     WaitButton
     CloseMessage
     ReleaseAll
@@ -39,11 +39,11 @@ OreburghCityEastHouse2F_BagIsFull:
     ReleaseAll
     End
 
-OreburghCityEastHouse2F_Unused:
+OreburghCityEastHouse2F_Dummy3:
     End
 
 OreburghCityEastHouse2F_ScientistM:
-    NPCMessage OreburghCityEastHouse2F_Text_CoalIsCarriedOutOfTheOreburghMineOnAFullyAutomatedSystem
+    NPCMessage OreburghCityEastHouse2F_Text_FullyAutomatedSystem
     End
 
     .balign 4, 0

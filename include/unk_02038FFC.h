@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02038FFC_H
 #define POKEPLATINUM_UNK_02038FFC_H
 
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 
 #include "savedata.h"
 

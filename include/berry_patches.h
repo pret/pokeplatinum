@@ -36,7 +36,7 @@ typedef struct BerryPatch {
 typedef struct BerryGrowthData {
     u8 stageDuration;
     u8 moistureDrainRate;
-    u8 yieldCategory;
+    u8 baseYield;
 } BerryGrowthData;
 
 void BerryPatches_Clear(BerryPatch *patches);

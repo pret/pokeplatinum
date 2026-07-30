@@ -12,6 +12,7 @@
 #include "overlay005/save_info_window.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "field_overworld_state.h"
 #include "font.h"
 #include "location.h"
@@ -25,7 +26,6 @@
 #include "string_gf.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_020366A0.h"
 
 static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem);
 
@@ -50,7 +50,7 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
     Location *curLocation = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(saveData));
     Pokedex *pokedex = SaveData_GetPokedex(saveData);
 
-    saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
+    saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapHeaderID);
 
     if (Pokedex_IsObtained(pokedex)) {
         saveInfo->pokedexCount = Pokedex_CountSeen(pokedex);
@@ -196,27 +196,27 @@ static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem)
     FieldSystem_SaveObjects(fieldSystem);
     FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SAVE, 0);
 
-    fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
-    fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
+    fieldSystem->location->x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    fieldSystem->location->z = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     fieldSystem->location->warpId = WARP_ID_NONE;
-    fieldSystem->location->faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    fieldSystem->location->faceDirection = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
 }
 
 void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem)
 {
     if (fieldSystem == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 
-    switch (fieldSystem->location->mapId) {
+    switch (fieldSystem->location->mapHeaderID) {
     case MAP_HEADER_UNION_ROOM:
     case MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_2P:
     case MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_4P:
         return;
     }
 
-    if (sub_02038EB4() == TRUE) {
+    if (CommManager_IsInitializedNotPoketch() == TRUE) {
         return;
     }
 

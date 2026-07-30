@@ -2,21 +2,21 @@
 #include "res/text/bank/route_227_house.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry Route227House_ExpertF
     ScriptEntryEnd
 
-_0006:
+Route227House_ExpertF:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message Route227House_Text_RestUp
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0031
-    GoToIfEq VAR_RESULT, MENU_NO, _0079
+    GoToIfEq VAR_RESULT, MENU_YES, Route227House_RestUp
+    GoToIfEq VAR_RESULT, MENU_NO, Route227House_IsThatRight
     End
 
-_0031:
-    Message 1
+Route227House_RestUp:
+    Message Route227House_Text_GetSomeRest
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -25,14 +25,14 @@ _0031:
     HealParty
     FadeScreenIn
     WaitFadeScreen
-    Message 2
+    Message Route227House_Text_RestUpAgain
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0031
-    GoToIfEq VAR_RESULT, MENU_NO, _0079
+    GoToIfEq VAR_RESULT, MENU_YES, Route227House_RestUp
+    GoToIfEq VAR_RESULT, MENU_NO, Route227House_IsThatRight
     End
 
-_0079:
-    Message 3
+Route227House_IsThatRight:
+    Message Route227House_Text_IsThatRight
     WaitButton
     CloseMessage
     ReleaseAll

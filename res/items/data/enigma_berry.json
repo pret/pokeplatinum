@@ -1,0 +1,43 @@
+{
+  "name": "Enigma Berry",
+  "plural": "Enigma Berries",
+  "article": "an",
+  "description": [
+    "A Poffin ingredient. If held by a\n",
+    "Pokémon, it restores its HP if it is\n",
+    "hit by a foe’s supereffective attack."
+  ],
+  "icon": {
+    "sprite": "enigma_berry_NCGR",
+    "palette": "enigma_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_ENIGMA_BERRY",
+  "price": 20,
+  "effectParam": 4,
+  "holdEffect": "HOLD_EFFECT_HP_RESTORE_SE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_BUG",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 155,
+    "firmness": "FIRMNESS_HARD",
+    "baseYield": 1,
+    "stageDuration": 24,
+    "moistureDrainRate": 7,
+    "spiciness": 40,
+    "dryness": 10,
+    "sweetness": 0,
+    "bitterness": 0,
+    "sourness": 0,
+    "smoothness": 60
+  }
+}

@@ -2,7 +2,7 @@
   "key": 54307,
   "messages": [
     {
-      "id": "pl_msg_00000262_00000",
+      "id": "StarkMountainRoom1_Text_IllMakeYouTalk",
       "en_US": [
         "Mars: Hey! You!\n",
         "Tell us where Master Cyrus went.\r",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000262_00001",
+      "id": "StarkMountainRoom1_Text_PokemonLetMeDown",
       "en_US": [
         "Mars: My Pokémon let me down again!\r",
         "How am I supposed to get information\n",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000262_00002",
+      "id": "StarkMountainRoom1_Text_IllGoUpNext",
       "en_US": [
         "Jupiter: ...Mars.\n",
         "You really are weak. Pitifully so.\r",
@@ -37,11 +37,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000262_00003",
+      "id": "StarkMountainRoom1_Text_HowDareYou",
       "en_US": "Jupiter: ...How dare you!\r"
     },
     {
-      "id": "pl_msg_00000262_00004",
+      "id": "StarkMountainRoom1_Text_ThatsItForMe",
       "en_US": [
         "Mars: OK! That’s it for me!\n",
         "I’m going to look for Master Cyrus.\r",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000262_00005",
+      "id": "StarkMountainRoom1_Text_ImQuittingToo",
       "en_US": [
         "Jupiter: Following Mars’s lead at\n",
         "anything irks me, but...\r",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000262_00006",
+      "id": "StarkMountainRoom1_Text_BackToOrdinaryGirls",
       "en_US": [
         "Mars: There you have it. We’re going\n",
         "back to being ordinary girls.\r",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000262_00007",
+      "id": "StarkMountainRoom1_Text_NotOrdinaryGirl",
       "en_US": [
         "Jupiter: ...Says you.\n",
         "An “ordinary girl” you’re not.\r",
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000262_00008",
+      "id": "StarkMountainRoom1_Text_ImpressionableAndImpetuous",
       "en_US": [
         "Charon: Sigh...\n",
         "So impressionable and impetuous.\r",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000262_00009",
+      "id": "StarkMountainRoom1_Text_OffToCollectMagmaStone",
       "en_US": [
         "...But that’s fine.\n",
         "The young can live with their dreams.\r",

@@ -7,7 +7,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x411B, 1, 11
+    InitScriptGoToIfEqual VAR_ROTOMS_ROOM_STATE, 1, 11
     InitScriptFrameTableEnd
 
     InitScriptEnd

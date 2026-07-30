@@ -56,14 +56,14 @@ typedef struct ItemPartyParam {
 typedef struct ItemData {
     u16 price;
     u8 holdEffect;
-    u8 holdEffectParam;
+    u8 effectParam;
     u8 pluckEffect;
     u8 flingEffect;
     u8 flingPower;
     u8 naturalGiftPower;
     u16 naturalGiftType : 5;
     u16 preventToss : 1;
-    u16 isSelectable : 1;
+    u16 canRegister : 1;
     u16 fieldPocket : 4;
     u16 battlePocket : 5;
     u8 fieldUseFunc;
@@ -74,8 +74,7 @@ typedef struct ItemData {
         u8 dummy;
         ItemPartyParam partyUseParam;
     };
-    u8 padding[2];
-} ItemData;
+} ALIGN_4 ItemData;
 
 enum ItemFileType {
     ITEM_FILE_TYPE_DATA,
@@ -87,9 +86,9 @@ enum ItemFileType {
 enum ItemDataParam {
     ITEM_PARAM_PRICE,
     ITEM_PARAM_HOLD_EFFECT,
-    ITEM_PARAM_HOLD_EFFECT_PARAM,
+    ITEM_PARAM_EFFECT_PARAM,
     ITEM_PARAM_PREVENT_TOSS,
-    ITEM_PARAM_IS_SELECTABLE,
+    ITEM_PARAM_CAN_REGISTER,
     ITEM_PARAM_FIELD_POCKET,
     ITEM_PARAM_FIELD_USE_FUNC,
     ITEM_PARAM_BATTLE_USE_FUNC,
@@ -246,7 +245,7 @@ s32 Item_Get(ItemData *itemData, enum ItemDataParam param);
  * @param item      The TM or HM item ID.
  * @return The move stored in the given TM or HM.
  */
-const u16 Item_MoveForTMHM(u16 item);
+u16 Item_MoveForTMHM(u16 item);
 
 /**
  * @brief Check if a given move is an HM move.
@@ -275,20 +274,20 @@ u8 Item_TMHMNumber(u16 item);
 u8 Item_IsMail(u16 item);
 
 /**
- * @brief Get the mail number for a given item.
+ * @brief Get the mail type for a given item.
  *
  * @param item
- * @return The mail number for the item, or ITEM_NONE if the item is not mail.
+ * @return The mail type for the item, or ITEM_NONE if the item is not mail.
  */
-u8 Item_MailNumber(u16 item);
+u8 Item_GetMailType(u16 item);
 
 /**
- * @brief Get the item for a given mail number.
+ * @brief Get the item for a given mail type.
  *
  * @param mail
- * @return The item for the mail number, or ITEM_NONE if none exists.
+ * @return The item for the mail type, or ITEM_NONE if none exists.
  */
-u16 Item_ForMailNumber(u8 mail);
+u16 Item_ForMailType(u8 mailType);
 
 /**
  * @brief Check if a given item is a berry.

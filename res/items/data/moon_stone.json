@@ -1,0 +1,30 @@
+{
+  "name": "Moon Stone",
+  "plural": "Moon Stones",
+  "article": "a",
+  "description": [
+    "A peculiar stone that makes certain\n",
+    "species of Pokémon evolve.\n",
+    "It is as black as the night sky."
+  ],
+  "icon": {
+    "sprite": "moon_stone_NCGR",
+    "palette": "moon_stone_NCLR"
+  },
+  "gbaID": "GBA_ITEM_MOON_STONE",
+  "price": 2100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_EVO_STONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}

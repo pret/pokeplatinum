@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "TwinleafTown_Text_PokemonYouLookGoodTogether",
+      "id": "TwinleafTown_Text_YouLookGoodTogether",
       "en_US": [
         "Oh! A Pokémon!\n",
         "You look good together!"
@@ -110,11 +110,11 @@
       ]
     },
     {
-      "id": "TwinleafTown_Text_PlayerMailbox",
+      "id": "TwinleafTown_Text_PlayersHouse",
       "en_US": "{STRVAR_1 3, 0, 0}’s House"
     },
     {
-      "id": "TwinleafTown_Text_RivalMailbox",
+      "id": "TwinleafTown_Text_RivalsHouse",
       "en_US": "{STRVAR_1 3, 0, 0}’s House"
     }
   ]

@@ -19,7 +19,7 @@ static OverworldAnimManager *OverworldAnimManagerList_GetManagers(const Overworl
 static void OverworldAnimManager_SetActive(OverworldAnimManager *manager);
 static void OverworldAnimManager_SetFlags(OverworldAnimManager *manager, u32 mask);
 static u32 OverworldAnimManager_GetFlags(OverworldAnimManager *manager, u32 mask);
-static void OverworldAnimManager_SetID(OverworldAnimManager *manager, int id);
+static void OverworldAnimManager_SetUserInt(OverworldAnimManager *manager, int userInt);
 static void OverworldAnimManager_SetUserData(OverworldAnimManager *manager, const void *userData);
 static void OverworldAnimManager_SetTickSysTask(OverworldAnimManager *manager, SysTask *sysTask);
 static SysTask *OverworldAnimManager_GetTickSysTask(OverworldAnimManager *manager);
@@ -48,7 +48,7 @@ void OverworldAnimManagerList_FinishAndFree(OverworldAnimManagerList *managerLis
     OverworldAnimManagerList_Free(managerList);
 }
 
-OverworldAnimManager *OverworldAnimManagerList_InitManagerEx(OverworldAnimManagerList *managerList, const OverworldAnimManagerExtendedFuncs *funcs, const VecFx32 *initialPos, int id, const void *userData, int sysTaskPriority)
+OverworldAnimManager *OverworldAnimManagerList_InitManagerEx(OverworldAnimManagerList *managerList, const OverworldAnimManagerExtendedFuncs *funcs, const VecFx32 *initialPos, int userInt, const void *userData, int sysTaskPriority)
 {
     int i = 0;
     int count = OverworldAnimManagerList_GetManagerCount(managerList);
@@ -68,7 +68,7 @@ OverworldAnimManager *OverworldAnimManagerList_InitManagerEx(OverworldAnimManage
     }
 
     OverworldAnimManager_SetActive(iter);
-    OverworldAnimManager_SetID(iter, id);
+    OverworldAnimManager_SetUserInt(iter, userInt);
     OverworldAnimManager_SetUserData(iter, userData);
     OverworldAnimManager_SetList(iter, managerList);
 
@@ -108,14 +108,14 @@ OverworldAnimManager *OverworldAnimManagerList_InitManagerEx(OverworldAnimManage
     return iter;
 }
 
-OverworldAnimManager *OverworldAnimManagerList_InitManager(OverworldAnimManagerList *managerList, const OverworldAnimManagerFuncs *funcs, const VecFx32 *initialPos, int id, const void *userData, int sysTaskPriority)
+OverworldAnimManager *OverworldAnimManagerList_InitManager(OverworldAnimManagerList *managerList, const OverworldAnimManagerFuncs *funcs, const VecFx32 *initialPos, int userInt, const void *userData, int sysTaskPriority)
 {
     OverworldAnimManagerExtendedFuncs funcsEx;
     funcsEx.baseFuncs = *funcs;
     funcsEx.unused1Func = OverworldAnimManager_DummyUnused1Func;
     funcsEx.unused2Func = OverworldAnimManager_DummyUnused2Func;
 
-    return OverworldAnimManagerList_InitManagerEx(managerList, &funcsEx, initialPos, id, userData, sysTaskPriority);
+    return OverworldAnimManagerList_InitManagerEx(managerList, &funcsEx, initialPos, userInt, userData, sysTaskPriority);
 }
 
 void OverworldAnimManager_Finish(OverworldAnimManager *manager)
@@ -323,14 +323,14 @@ void OverworldAnimManager_ResetFuncsContext(OverworldAnimManager *manager, int c
     memset(ctx, 0, ctxSize);
 }
 
-static void OverworldAnimManager_SetID(OverworldAnimManager *manager, int id)
+static void OverworldAnimManager_SetUserInt(OverworldAnimManager *manager, int userInt)
 {
-    manager->id = id;
+    manager->userInt = userInt;
 }
 
-int OverworldAnimManager_GetID(const OverworldAnimManager *manager)
+int OverworldAnimManager_GetUserInt(const OverworldAnimManager *manager)
 {
-    return manager->id;
+    return manager->userInt;
 }
 
 static void OverworldAnimManager_SetUserData(OverworldAnimManager *manager, const void *userData)

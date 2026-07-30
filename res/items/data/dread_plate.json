@@ -1,0 +1,30 @@
+{
+  "name": "Dread Plate",
+  "plural": "Dread Plates",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "It is a stone tablet that boosts the\n",
+    "power of Dark-type moves."
+  ],
+  "icon": {
+    "sprite": "flame_plate_NCGR",
+    "palette": "dread_plate_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 1000,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_ARCEUS_DARK",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 90,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

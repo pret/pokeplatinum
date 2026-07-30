@@ -9,6 +9,8 @@
 #define MAX_DIR   4
 #define DIR_NONE  -1
 
+#define DISTANCE_INVALID -1
+
 // Status Flags
 #define MAP_OBJ_STATUS_0                           (1 << 0)
 #define MAP_OBJ_STATUS_1                           (1 << 1)
@@ -38,7 +40,7 @@
 #define MAP_OBJ_STATUS_25                          (1 << 25)
 #define MAP_OBJ_STATUS_26                          (1 << 26)
 #define MAP_OBJ_DO_NOT_SINK_INTO_TERRAIN           (1 << 27)
-#define MAP_OBJ_STATUS_28                          (1 << 28)
+#define MAP_OBJ_STATUS_ON_ELEVATED_BRIDGE          (1 << 28)
 #define MAP_OBJ_DYNAMIC_HEIGHT_CALCULATION_ENABLED (1 << 29)
 
 #define MAP_OBJ_UNK_A0_00 0
@@ -52,5 +54,12 @@
 #define MAP_OBJ_UNK_A0_08 8
 #define MAP_OBJ_UNK_A0_09 9
 #define MAP_OBJ_UNK_A0_10 10
+
+// Collision Flags
+#define MAP_OBJ_COLLISION_NONE          0
+#define MAP_OBJ_COLLISION_OUT_OF_RANGE  (1 << 0)
+#define MAP_OBJ_COLLISION_WILL_COLLIDE  (1 << 1)
+#define MAP_OBJ_COLLISION_2             (1 << 2)
+#define MAP_OBJ_COLLISION_HEIGHT_CHANGE (1 << 3)
 
 #endif

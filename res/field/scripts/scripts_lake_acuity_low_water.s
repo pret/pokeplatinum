@@ -2,25 +2,25 @@
 #include "res/text/bank/lake_acuity_low_water.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry LakeAcuityLowWater_Rival
     ScriptEntryEnd
 
-_0006:
+LakeAcuityLowWater_Rival:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00A9, _002B
-    SetFlag FLAG_UNK_0x00A9
+    GoToIfSet FLAG_TALKED_TO_LAKE_ACUITY_LOW_WATER_RIVAL, LakeAcuityLowWater_ChallengeSunyshoreGym
+    SetFlag FLAG_TALKED_TO_LAKE_ACUITY_LOW_WATER_RIVAL
     BufferRivalName 0
-    Message 0
+    Message LakeAcuityLowWater_Text_NotSupposedToBeHere
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_002B:
+LakeAcuityLowWater_ChallengeSunyshoreGym:
     BufferRivalName 0
-    Message 1
+    Message LakeAcuityLowWater_Text_ChallengeSunyshoreGym
     WaitButton
     CloseMessage
     ReleaseAll

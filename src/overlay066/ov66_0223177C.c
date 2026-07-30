@@ -457,7 +457,7 @@ u32 ov66_02231D00(const UnkStruct_ov66_0223177C *param0, int param1, u32 param2)
     if (v0->unk_00 < 9) {
         v1 = v2[v0->unk_00](v0, param2);
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         v1 = 20;
     }
 

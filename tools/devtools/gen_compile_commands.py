@@ -55,7 +55,7 @@ arm9_c_flags = [
     "-DPOKEPLATINUM_GENERATED_ENUM",
     "-DPM_KEEP_ASSERTS",
     "-DGAME_VERSION=VERSION_PLATINUM",
-    "-DGAME_LANGUAGE=ENGLISH",
+    "-DGAME_LANGUAGE=LANGUAGE_ENGLISH",
     "-DEXPLICIT_WCHAR_TYPEDEF",
 ]
 
@@ -311,19 +311,12 @@ datagen_cpp_commands = [
     for file in (homedir / "tools" / "datagen").rglob("*.cpp")
 ]
 
-dataproc_c_commands = [
+enumproc_c_commands = [
     {
         "directory": builddir,
         "arguments": [
             "gcc",
-            f"-I{homedir}/subprojects/yyjson-0.12.0/src",
-            f"-I{homedir}/tools/nitroarc/lib/include",
-            f"-I{homedir}/tools/dataproc/lib/include",
-            f"-I{homedir}/include",
-            f"-I{builddir}",
-            f'-DREPO_INCLUDE="{homedir}/include"',
-            f'-DREPO_BUILD="{builddir}"',
-            f'-DTEMPLATES_DIR="{homedir}/tools/dataproc/data"',
+            f"-I{homedir}/tools/enumproc",
             "-std=gnu17",
             "-Wall",
             "-Wextra",
@@ -336,7 +329,57 @@ dataproc_c_commands = [
         ],
         "file": file.resolve(),
     }
+    for file in (homedir / "tools" / "enumproc").rglob("*.c")
+]
+
+dataproc_c_commands = [
+    {
+        "directory": builddir,
+        "arguments": [
+            "gcc",
+            f"-I{homedir}/subprojects/yyjson-0.12.0/src",
+            f"-I{homedir}/tools/nitroarc/lib/include",
+            f"-I{homedir}/tools/enumproc",
+            f"-I{homedir}/tools/dataproc/lib/include",
+            f"-I{homedir}/include",
+            f"-I{builddir}",
+            f'-DREPO_INCLUDE="{homedir}/include"',
+            f'-DREPO_BUILD="{builddir}"',
+            f'-DTEMPLATES_DIR="{homedir}/tools/dataproc/data"',
+            "-std=gnu17",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Wconversion",
+            "-Wno-sign-conversion",
+            "-Wno-language-extension-token",
+            "-o",
+            file.with_suffix(".o"),
+            file.resolve(),
+        ],
+        "file": file.resolve(),
+    }
     for file in (homedir / "tools" / "dataproc").rglob("*.c")
+]
+
+msgenc_cpp_commands = [
+    {
+        "directory": builddir,
+        "arguments": [
+            "g++",
+            f"-I{homedir}/tools/dataproc/lib/include",
+            "-std=c++17",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Wno-unused-parameter",
+            "-o",
+            file.with_suffix(".o"),
+            file.resolve(),
+        ],
+        "file": file.resolve(),
+    }
+    for file in (homedir / "tools" / "msgenc").rglob("*.cpp")
 ]
 
 with open("compile_commands.json", "w") as ofp:
@@ -351,7 +394,8 @@ with open("compile_commands.json", "w") as ofp:
         + c_commands
         + datagen_cpp_commands
         + nitroarc_c_commands
-        + dataproc_c_commands,
+        + dataproc_c_commands
+        + msgenc_cpp_commands,
         ofp,
         default=str,
         indent=4,

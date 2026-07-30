@@ -117,8 +117,8 @@
         "type": "FOOTPRINT_TYPE_SILENT"
     },
     "pokedex_data": {
-        "height": 6,
-        "weight": 120,
+        "height_inches": 24,
+        "weight_pounds": 26.5,
         "body_shape": "SHAPE_FINS",
         "trainer_scale_f": 272,
         "pokemon_scale_f": 331,
@@ -140,7 +140,7 @@
         "fr": {
             "name": "REMORAID",
             "category": "Pokémon Jet",
-            "entry_text": [ "Il crache un puissant jet d’eau\n", "pour abattre les proies volantes." ]
+            "entry_text": [ "Il crache un puissant jet d\u2019eau\n", "pour abattre les proies volantes." ]
         },
         "de": {
             "name": "REMORAID",

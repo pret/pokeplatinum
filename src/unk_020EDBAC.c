@@ -3,7 +3,7 @@
 
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 #include "struct_defs/struct_020EDF0C.h"
 
 #include "berry_patch_graphics.h"

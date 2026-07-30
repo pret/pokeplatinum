@@ -2,21 +2,21 @@
 #include "res/text/bank/route_210_north.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0038
+    ScriptEntry Route210North_BlackBelt
+    ScriptEntry Route210North_ArrowSignpostCelesticTown
+    ScriptEntry Route210North_SignboardGrandmaWilmasHouse
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+Route210North_BlackBelt:
+    NPCMessage Route210North_Text_HowDoesDefogWork
     End
 
-_0021:
-    ShowArrowSign 1
+Route210North_ArrowSignpostCelesticTown:
+    ShowArrowSign Route210North_Text_SignCelesticTown
     End
 
-_0038:
-    ShowLandmarkSign 2
+Route210North_SignboardGrandmaWilmasHouse:
+    ShowLandmarkSign Route210North_Text_SignGrandmaWilmasHouse
     End
 
     .balign 4, 0

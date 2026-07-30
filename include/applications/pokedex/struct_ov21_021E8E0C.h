@@ -5,13 +5,13 @@
 #include "palette.h"
 #include "pokemon.h"
 
-typedef struct {
-    BgConfig *unk_00;
-    PaletteData *unk_04;
-    PokemonSpriteManager *unk_08;
+typedef struct PokedexEntryScreenParams {
+    BgConfig *bgConfig;
+    PaletteData *plttData;
+    PokemonSpriteManager *monSpriteMan;
     enum HeapID heapID;
-    Pokemon *unk_10;
-    int unk_14;
-} UnkStruct_ov21_021E8E0C;
+    Pokemon *mon;
+    int hasNationalDex;
+} PokedexEntryScreenParams;
 
 #endif // POKEPLATINUM_STRUCT_OV21_021E8E0C_H

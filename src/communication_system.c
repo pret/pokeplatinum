@@ -6,12 +6,13 @@
 
 #include "constants/heap.h"
 
+#include "struct_defs/comm_queue_man.h"
 #include "struct_defs/struct_020322D8.h"
-#include "struct_defs/struct_020322F8.h"
 #include "struct_defs/struct_0203233C.h"
 
 #include "nintendo_wfc/main.h"
 
+#include "comm_manager.h"
 #include "comm_ring.h"
 #include "communication_information.h"
 #include "heap.h"
@@ -19,13 +20,12 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02030EE0.h"
 #include "unk_020322D8.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
+#include "wireless_manager.h"
 
 enum TransmissionType {
     TRANSMISSION_TYPE_SERVER_CLIENT,
@@ -153,7 +153,7 @@ static BOOL CommSys_Init(BOOL shouldAlloc, int maxPacketSize)
     Unk_021C07C5 = FALSE;
 
     if (shouldAlloc) {
-        int maxMachines = CommLocal_MaxMachines(sub_0203895C()) + 1;
+        int maxMachines = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
         if (sCommunicationSystem != NULL) {
             return TRUE;
@@ -166,7 +166,7 @@ static BOOL CommSys_Init(BOOL shouldAlloc, int maxPacketSize)
 
         MI_CpuClear8(sCommunicationSystem, sizeof(CommunicationSystem));
 
-        if (CommLocal_IsWifiGroup(sub_0203895C())) {
+        if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
             sCommunicationSystem->maxPacketSize = maxPacketSize * 2 + 64;
         } else {
             sCommunicationSystem->maxPacketSize = maxPacketSize + 64;
@@ -180,7 +180,7 @@ static BOOL CommSys_Init(BOOL shouldAlloc, int maxPacketSize)
         sCommunicationSystem->recvBufferRingServer = Heap_Alloc(HEAP_ID_COMMUNICATION, sCommunicationSystem->allocSize);
         sCommunicationSystem->unk_488 = Heap_Alloc(HEAP_ID_COMMUNICATION, sCommunicationSystem->allocSize);
 
-        if (sub_0203895C() == 10) {
+        if (CommManager_GetCommType() == 10) {
             CommQueueMan_Init(&sCommunicationSystem->commQueueManSend, 100, &sCommunicationSystem->sendRing);
             CommQueueMan_Init(&sCommunicationSystem->commQueueManSendServer, 800, &sCommunicationSystem->sendRingServer);
         } else {
@@ -215,7 +215,7 @@ static BOOL CommSys_Init(BOOL shouldAlloc, int maxPacketSize)
 static void CommSys_ClearData(void)
 {
     int netId, size;
-    int maxMachines = CommLocal_MaxMachines(sub_0203895C()) + 1;
+    int maxMachines = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
     sCommunicationSystem->playerMovementState = MOVEMENT_STATE_NORMAL;
     sCommunicationSystem->randomPadKeyTimer = 0;
@@ -306,7 +306,7 @@ static void CommSys_ClearServerRecvData(int netId)
     sCommunicationSystem->unk_697[netId] = 1;
     sCommunicationSystem->unk_664[netId] = 0;
 
-    int v0 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+    int v0 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
     int v1 = sCommunicationSystem->allocSize / v0;
 
     CommRing_Init(&sCommunicationSystem->unk_4B0[netId], &sCommunicationSystem->unk_488[netId * v1], v1);
@@ -338,9 +338,9 @@ BOOL CommSys_InitServer(BOOL param0, BOOL param1, int param2, BOOL param3)
 {
     BOOL ret = TRUE;
 
-    if (!CommLocal_IsWifiGroup(sub_0203895C())) {
+    if (!CommLocal_IsWifiGroup(CommManager_GetCommType())) {
         ret = CommServerClient_InitServer(param0, param1, param3);
-        sub_02032124(sub_02034770);
+        WirelessManager_SetConnectCallback(sub_02034770);
     }
 
     CommSys_Init(param0, param2);
@@ -351,7 +351,7 @@ BOOL CommSys_InitClient(BOOL param0, BOOL param1, int param2)
 {
     BOOL v0 = TRUE;
 
-    if (!CommLocal_IsWifiGroup(sub_0203895C())) {
+    if (!CommLocal_IsWifiGroup(CommManager_GetCommType())) {
         v0 = CommServerClient_InitClient(param0, param1);
     }
 
@@ -440,7 +440,7 @@ void CommSys_Delete(void)
     BOOL v0 = FALSE;
 
     if (sCommunicationSystem) {
-        if (CommLocal_IsWifiGroup(sub_0203895C())) {
+        if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
             NintendoWFC_Stop();
             v0 = 1;
         } else {
@@ -508,7 +508,7 @@ static void sub_020349C4(void)
 
 BOOL CommSys_Update(void)
 {
-    sub_02036C50();
+    CommManager_Update();
 
     if (sCommunicationSystem != NULL) {
         if (!sCommunicationSystem->shuttingDown) {
@@ -524,7 +524,7 @@ BOOL CommSys_Update(void)
                 CommSys_RecvData();
             }
 
-            if ((CommSys_CurNetId() == 0 && CommSys_IsPlayerConnected(0) || CommSys_IsAlone()) && !sub_0203272C(sub_0203895C())) {
+            if ((CommSys_CurNetId() == 0 && CommSys_IsPlayerConnected(0) || CommSys_IsAlone()) && !sub_0203272C(CommManager_GetCommType())) {
                 sub_02034F68();
             }
 
@@ -546,7 +546,7 @@ BOOL CommSys_Update(void)
         sub_02033D94(0);
     }
 
-    sub_02038A20(0);
+    CommManager_DisplayError(0);
     sub_0203650C();
 
     return TRUE;
@@ -595,7 +595,7 @@ void CommSys_ResetBattleClient(void)
 
 static void sub_02034B50(void)
 {
-    if (sub_0203272C(sub_0203895C())) {
+    if (sub_0203272C(CommManager_GetCommType())) {
         if (sCommunicationSystem->wifiConnected) {
             if (sCommunicationSystem->unk_65C) {
                 if (!CommSys_CheckRecvLimit()) {
@@ -622,7 +622,7 @@ static void sub_02034B50(void)
 
             if (NintendoWFC_SendData(sCommunicationSystem->sendBuffer[0], 38)) {
                 int i;
-                int v1 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+                int v1 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
                 for (i = 0; i < v1; i++) {
                     if (CommSys_IsPlayerConnected(i)) {
@@ -633,7 +633,7 @@ static void sub_02034B50(void)
                 Unk_02100A1D = 4;
             }
         }
-    } else if (CommLocal_IsWifiGroup(sub_0203895C())) {
+    } else if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
         if (sCommunicationSystem->wifiConnected) {
             if (sCommunicationSystem->unk_65C) {
                 if (sCommunicationSystem->unk_660 > 3) {
@@ -663,7 +663,7 @@ static void sub_02034B50(void)
                 sCommunicationSystem->unk_660++;
             }
         }
-    } else if (((sub_02031934() == 4) && (CommSys_IsPlayerConnected(CommSys_CurNetId()))) || CommSys_IsAlone()) {
+    } else if (((WirelessManager_GetState() == 4) && (CommSys_IsPlayerConnected(CommSys_CurNetId()))) || CommSys_IsAlone()) {
         while (TRUE) {
             if (Unk_02100A1D != 4) {
                 break;
@@ -689,8 +689,8 @@ static BOOL sub_02034CF8(int param0)
     int v1;
     int i, v3, v4 = 0;
 
-    v0 = sub_02036128(sub_0203895C());
-    v1 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+    v0 = sub_02036128(CommManager_GetCommType());
+    v1 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
     for (i = 0; i < v1; i++) {
         CommRing_UpdateEndPos(&sCommunicationSystem->unk_4B0[i]);
@@ -726,12 +726,12 @@ static void CommSys_UpdateServerClient(void)
         return;
     }
 
-    if (CommLocal_IsWifiGroup(sub_0203895C())) {
+    if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
         return;
     }
 
-    v2 = sub_02036128(sub_0203895C());
-    v3 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+    v2 = sub_02036128(CommManager_GetCommType());
+    v3 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
     if ((Unk_02100A1C == 2) || (Unk_02100A1C == 0)) {
         Unk_02100A1C++;
@@ -741,9 +741,9 @@ static void CommSys_UpdateServerClient(void)
             Unk_021C07C4 = 1;
         }
 
-        if (sub_02031934() == 4
+        if (WirelessManager_GetState() == 4
             && !CommSys_IsAlone()
-            && !sub_02031E9C(sCommunicationSystem->sendBufferServer[sCommunicationSystem->unk_6A8], 192, 14, sub_020353B0)) {
+            && !WirelessManager_SendMessage(sCommunicationSystem->sendBufferServer[sCommunicationSystem->unk_6A8], 192, 14, sub_020353B0)) {
             Unk_02100A1C--;
         }
 
@@ -762,7 +762,7 @@ static void CommSys_UpdateServerClient(void)
             sCommunicationSystem->unk_6A8 = 1 - sCommunicationSystem->unk_6A8;
         }
 
-        if ((sub_02031934() != 4) || CommSys_IsAlone()) {
+        if ((WirelessManager_GetState() != 4) || CommSys_IsAlone()) {
             Unk_02100A1C++;
         }
     }
@@ -771,7 +771,7 @@ static void CommSys_UpdateServerClient(void)
 static BOOL CommSys_CheckRecvLimit(void)
 {
     int i;
-    int v1 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+    int v1 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
     for (i = 1; i < v1; i++) {
         if (CommSys_IsPlayerConnected(i) && sCommunicationSystem->unk_664[i] > 3) {
@@ -785,9 +785,9 @@ static BOOL CommSys_CheckRecvLimit(void)
 static void sub_02034F68(void)
 {
     int i;
-    int v1 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+    int v1 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
-    if (CommLocal_IsWifiGroup(sub_0203895C())) {
+    if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
         if (CommSys_IsPlayerConnected(0)) {
             if (sCommunicationSystem->unk_65C) {
                 if (!CommSys_CheckRecvLimit()) {
@@ -821,7 +821,7 @@ static void sub_02034F68(void)
                 (void)0;
             }
         }
-    } else if ((sub_02031934() == 4) || (CommSys_IsAlone())) {
+    } else if ((WirelessManager_GetState() == 4) || (CommSys_IsAlone())) {
         if (Unk_02100A1C != 4) {
             return;
         }
@@ -876,8 +876,8 @@ static void sub_020350A4(u16 param0, u16 *param1, u16 param2)
     sCommunicationSystem->unk_6AA = 0;
 
     if (CommSys_TransmissionType() == 1) {
-        int v3 = sub_02036128(sub_0203895C());
-        int v4 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+        int v3 = sub_02036128(CommManager_GetCommType());
+        int v4 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
         for (i = 0; i < v4; i++) {
             if (v0[0] == 0xff) {
@@ -940,8 +940,8 @@ static void sub_02035200(u16 param0, u16 *_buffer, u16 param2)
     sCommunicationSystem->unk_697[param0] = 0;
 
     if (CommSys_TransmissionType() == 1) {
-        int v2 = sub_02036128(sub_0203895C());
-        int v3 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+        int v2 = sub_02036128(CommManager_GetCommType());
+        int v3 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
         if (!(buffer[0] & 0x2)) {
             CommRring_Write(&sCommunicationSystem->unk_4B0[param0], buffer, v2, 1449);
@@ -979,8 +979,8 @@ void sub_020352C0(u16 param0, u16 *param1, u16 param2)
     sCommunicationSystem->unk_697[param0] = 0;
 
     if (CommSys_TransmissionType() == 1) {
-        int v2 = sub_02036128(sub_0203895C());
-        int v3 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+        int v2 = sub_02036128(CommManager_GetCommType());
+        int v3 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
         if (buffer[0] == 0xff) {
             sCommunicationSystem->unk_68C = sCommunicationSystem->unk_68C & ~(1 << param0);
@@ -1009,7 +1009,7 @@ static void sub_02035394(BOOL param0)
     if (param0) {
         Unk_02100A1D++;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -1018,7 +1018,7 @@ static void sub_020353B0(BOOL param0)
     if (param0) {
         Unk_02100A1C++;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -1028,12 +1028,12 @@ static void sub_020353CC(void)
         return;
     }
 
-    if (CommLocal_IsWifiGroup(sub_0203895C())) {
+    if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
         return;
     }
 
-    int v3 = sub_02036128(sub_0203895C());
-    int v4 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+    int v3 = sub_02036128(CommManager_GetCommType());
+    int v4 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
     if (CommSys_IsAlone()) {
         if (Unk_02100A1D == 2 || Unk_02100A1D == 0) {
@@ -1047,7 +1047,7 @@ static void sub_020353CC(void)
         }
     }
 
-    if (sub_02031934() == 4) {
+    if (WirelessManager_GetState() == 4) {
         if (!CommSys_IsPlayerConnected(CommSys_CurNetId())) {
             if (CommSys_CurNetId() == 1) {
                 (void)0;
@@ -1060,13 +1060,13 @@ static void sub_020353CC(void)
             if (CommSys_CurNetId() != 0) {
                 Unk_02100A1D++;
 
-                if (!sub_02031E9C(sCommunicationSystem->sendBuffer[sCommunicationSystem->unk_6A7], v3, 14, sub_02035394)) {
+                if (!WirelessManager_SendMessage(sCommunicationSystem->sendBuffer[sCommunicationSystem->unk_6A7], v3, 14, sub_02035394)) {
                     Unk_02100A1D--;
                 } else {
                     sCommunicationSystem->unk_6A7 = 1 - sCommunicationSystem->unk_6A7;
                     sCommunicationSystem->unk_660++;
                 }
-            } else if (sub_020318EC() & 0xfffe) {
+            } else if (WirelessManager_GetConnectedBitmap() & 0xfffe) {
                 Unk_02100A1D++;
                 sub_02035394(1);
                 sub_02035200(0, (u16 *)sCommunicationSystem->sendBuffer[sCommunicationSystem->unk_6A7], v3);
@@ -1217,8 +1217,8 @@ static BOOL sub_02035730(u8 *param0)
 
 static BOOL sub_020357F0(u8 *param0)
 {
-    int v1 = sub_02036128(sub_0203895C());
-    int v2 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+    int v1 = sub_02036128(CommManager_GetCommType());
+    int v2 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
     if (sCommunicationSystem->unk_6AC == 0) {
         param0[0] = 0x0;
@@ -1268,7 +1268,7 @@ static void sub_020358C0(u8 *param0)
         param0[1] = 0x1;
     }
 
-    u16 v1 = sub_020318EC();
+    u16 v1 = WirelessManager_GetConnectedBitmap();
 
     param0[2] = v1 >> 8;
     param0[3] = v1 & 0xff;
@@ -1315,7 +1315,7 @@ BOOL CommSys_SendDataHuge(int cmd, const void *data, int size)
         return TRUE;
     }
 
-    if (sub_0203895C() == 10) {
+    if (CommManager_GetCommType() == 10) {
         sub_020363BC();
     }
 
@@ -1332,7 +1332,7 @@ BOOL CommSys_SendData(int cmd, const void *data, int size)
         return TRUE;
     }
 
-    if (sub_0203895C() == 10) {
+    if (CommManager_GetCommType() == 10) {
         sub_020363BC();
     }
 
@@ -1358,7 +1358,7 @@ BOOL CommSys_SendDataHugeServer(int cmd, const void *data, int size)
         return TRUE;
     }
 
-    if (sub_0203895C() == 10) {
+    if (CommManager_GetCommType() == 10) {
         sub_020363BC();
     }
 
@@ -1385,7 +1385,7 @@ BOOL CommSys_SendDataServer(int cmd, const void *data, int size)
         return TRUE;
     }
 
-    if (sub_0203895C() == 10) {
+    if (CommManager_GetCommType() == 10) {
         sub_020363BC();
     }
 
@@ -1524,7 +1524,7 @@ static void CommSys_RecvDataServer(void)
         return;
     }
 
-    v3 = CommLocal_MaxMachines(sub_0203895C()) + 1;
+    v3 = CommLocal_MaxMachines(CommManager_GetCommType()) + 1;
 
     for (i = 0; i < v3; i++) {
         CommRing_UpdateEndPos(&sCommunicationSystem->sendRingClient[i]);
@@ -1541,7 +1541,7 @@ BOOL CommSys_IsPlayerConnected(u16 param0)
         return FALSE;
     }
 
-    if (CommLocal_IsWifiGroup(sub_0203895C())) {
+    if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
         if (sCommunicationSystem->wifiConnected) {
             u16 v0 = DWC_GetAIDBitmap();
 
@@ -1557,14 +1557,14 @@ BOOL CommSys_IsPlayerConnected(u16 param0)
         return FALSE;
     }
 
-    if (sub_02031934() != 4) {
+    if (WirelessManager_GetState() != 4) {
         return FALSE;
     }
 
     if (CommSys_CurNetId() == param0) {
         return TRUE;
     } else if (CommSys_CurNetId() == 0) {
-        u16 v1 = sub_020318EC();
+        u16 v1 = WirelessManager_GetConnectedBitmap();
 
         if (v1 & (1 << param0)) {
             return TRUE;
@@ -1592,7 +1592,7 @@ int CommSys_ConnectedCount(void)
 BOOL CommSys_IsInitialized(void)
 {
     if (sCommunicationSystem) {
-        if (CommLocal_IsWifiGroup(sub_0203895C())) {
+        if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
             return TRUE;
         }
     }
@@ -1731,7 +1731,7 @@ void sub_02036058(int unused0, int unused1, void *param2, void *unused3)
 u16 CommSys_CurNetId(void)
 {
     if (sCommunicationSystem) {
-        if (CommLocal_IsWifiGroup(sub_0203895C())) {
+        if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
             int netId = NintendoWFC_GetNetID();
 
             if (netId != -1) {
@@ -1740,7 +1740,7 @@ u16 CommSys_CurNetId(void)
         } else if (CommSys_IsAlone()) {
             return 0;
         } else {
-            return sub_02031F90();
+            return WirelessManager_GetAID();
         }
     }
 
@@ -1769,7 +1769,7 @@ BOOL CommSys_CheckError(void)
     }
 
     if (sCommunicationSystem && sCommunicationSystem->unk_6B1) {
-        CommMan_SetErrorHandling(1, 1);
+        CommManager_SetErrorHandling(1, 1);
         return TRUE;
     }
 
@@ -1885,7 +1885,7 @@ int sub_020362F4(int networkId)
 
 BOOL sub_02036314(void)
 {
-    if (!CommLocal_IsWifiGroup(sub_0203895C())) {
+    if (!CommLocal_IsWifiGroup(CommManager_GetCommType())) {
         return FALSE;
     }
 
@@ -1896,7 +1896,7 @@ void sub_0203632C(BOOL param0)
 {
     int i;
 
-    if (CommLocal_IsWifiGroup(sub_0203895C())) {
+    if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
         if (sCommunicationSystem->unk_65C == param0) {
             return;
         }
@@ -1917,7 +1917,7 @@ void sub_02036378(BOOL param0)
 {
     sub_0203632C(param0);
 
-    if (CommLocal_IsWifiGroup(sub_0203895C())) {
+    if (CommLocal_IsWifiGroup(CommManager_GetCommType())) {
         if (param0) {
             NintendoWFC_SetVoiceChatEnabled_Battle(0);
         } else {

@@ -58,7 +58,7 @@ u32 SpecialEncounter_GetDailyMon(SpecialEncounter *speEnc, const u8 dailyType)
     case DAILY_SWARM:
         return speEnc->swarmDaily;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 }

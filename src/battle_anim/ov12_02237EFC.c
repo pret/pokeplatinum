@@ -17,7 +17,7 @@
 typedef struct UnkStruct_ov12_02238004_t {
     int unk_00;
     enum HeapID heapID;
-    UnkStruct_ov12_02237F38 unk_08;
+    ParticleEffectTemplate particleEffectTemplate;
     ParticleSystem *unk_10;
     SPLEmitter *unk_14;
     SysTask *unk_18;
@@ -42,7 +42,7 @@ UnkStruct_ov12_02237F98 *ov12_02237EFC(enum HeapID heapID, UnkStruct_ov12_02237E
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02237F98));
 
     if (v0 == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
 
@@ -65,7 +65,7 @@ UnkStruct_ov12_02237F98 *ov12_02237EFC(enum HeapID heapID, UnkStruct_ov12_02237E
     return v0;
 }
 
-UnkStruct_ov12_02238004 *ov12_02237F38(UnkStruct_ov12_02237F98 *param0, UnkStruct_ov12_02237F38 *param1)
+UnkStruct_ov12_02238004 *ov12_02237F38(UnkStruct_ov12_02237F98 *param0, ParticleEffectTemplate *particleEffectTemplate)
 {
     int v0;
     UnkStruct_ov12_02238004 *v1 = NULL;
@@ -75,7 +75,7 @@ UnkStruct_ov12_02238004 *ov12_02237F38(UnkStruct_ov12_02237F98 *param0, UnkStruc
             continue;
         }
 
-        param0->unk_08[v0] = ov12_02237FC8(param0->heapID, param1);
+        param0->unk_08[v0] = ov12_02237FC8(param0->heapID, particleEffectTemplate);
         param0->unk_08[v0]->unk_18 = NULL;
 
         v1 = param0->unk_08[v0];
@@ -85,7 +85,7 @@ UnkStruct_ov12_02238004 *ov12_02237F38(UnkStruct_ov12_02237F98 *param0, UnkStruc
     }
 
     if (v1 == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return v1;
@@ -129,7 +129,7 @@ void ov12_02237F98(UnkStruct_ov12_02237F98 *param0)
     }
 }
 
-UnkStruct_ov12_02238004 *ov12_02237FC8(enum HeapID heapID, UnkStruct_ov12_02237F38 *param1)
+UnkStruct_ov12_02238004 *ov12_02237FC8(enum HeapID heapID, ParticleEffectTemplate *particleEffectTemplate)
 {
     UnkStruct_ov12_02238004 *v0;
 
@@ -138,14 +138,14 @@ UnkStruct_ov12_02238004 *ov12_02237FC8(enum HeapID heapID, UnkStruct_ov12_02237F
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02238004));
 
     if (v0 == NULL) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
 
     v0->heapID = heapID;
-    v0->unk_08 = *param1;
-    v0->unk_1C = ov12_02238088(v0->unk_08.unk_00);
-    v0->unk_10 = BattleParticleUtil_CreateParticleSystem(v0->heapID, v0->unk_08.unk_00, 1);
+    v0->particleEffectTemplate = *particleEffectTemplate;
+    v0->unk_1C = ov12_02238088(v0->particleEffectTemplate.resourceID);
+    v0->unk_10 = BattleParticleUtil_CreateParticleSystem(v0->heapID, v0->particleEffectTemplate.resourceID, 1);
 
     return v0;
 }
@@ -187,7 +187,7 @@ static void ov12_02238054(UnkStruct_ov12_02238004 *param0, SPLEmitterCallback pa
         ParticleSystem_CreateEmitterWithCallback(param0->unk_10, v0, param1, param0);
     }
 
-    ParticleSystem_SetCameraProjection(param0->unk_10, param0->unk_08.unk_04);
+    ParticleSystem_SetCameraProjection(param0->unk_10, param0->particleEffectTemplate.cameraProjection);
 }
 
 static void ov12_02238080(SPLEmitter *param0)
@@ -224,7 +224,7 @@ static int ov12_02238088(int param0)
     int v1 = param0 - 5;
 
     if (v1 >= NELEMS(v0)) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 

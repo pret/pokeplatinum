@@ -1,0 +1,43 @@
+{
+  "name": "Custap Berry",
+  "plural": "Custap Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. If held by a\n",
+    "Pokémon, it gets to move first just\n",
+    "once in a pinch."
+  ],
+  "icon": {
+    "sprite": "custap_berry_NCGR",
+    "palette": "custap_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 20,
+  "effectParam": 4,
+  "holdEffect": "HOLD_EFFECT_PINCH_PRIORITY",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_GHOST",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 267,
+    "firmness": "FIRMNESS_SUPER_HARD",
+    "baseYield": 1,
+    "stageDuration": 24,
+    "moistureDrainRate": 7,
+    "spiciness": 0,
+    "dryness": 0,
+    "sweetness": 40,
+    "bitterness": 10,
+    "sourness": 0,
+    "smoothness": 60
+  }
+}

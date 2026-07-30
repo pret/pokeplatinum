@@ -2,7 +2,7 @@
   "key": 46175,
   "messages": [
     {
-      "id": "pl_msg_00000271_00000",
+      "id": "SnowpointTempleB5F_Text_GatherThreePokemon",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power...\r",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000271_00001",
+      "id": "SnowpointTempleB5F_Text_KingShallAppear",
       "en_US": [
         "It’s a statue of a Pokémon.\n",
         "It seems to exude power...\r",
@@ -32,11 +32,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000271_00002",
+      "id": "SnowpointTempleB5F_Text_RegigigasCry",
       "en_US": "...Zut zutt!\r"
     },
     {
-      "id": "pl_msg_00000271_00003",
+      "id": "SnowpointTempleB5F_Text_RegigigasDisappeared",
       "en_US": "REGIGIGAS disappeared from view..."
     }
   ]

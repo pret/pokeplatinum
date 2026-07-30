@@ -1,0 +1,38 @@
+{
+  "name": "Full Restore",
+  "plural": "Full Restores",
+  "article": "a",
+  "description": [
+    "A medicine that fully restores the HP\n",
+    "and heals any status problems of a\n",
+    "single Pokémon."
+  ],
+  "icon": {
+    "sprite": "full_restore_NCGR",
+    "palette": "full_restore_NCLR"
+  },
+  "gbaID": "GBA_ITEM_FULL_RESTORE",
+  "price": 3000,
+  "effectParam": 255,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_HP_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 2,
+  "itemUseParams": {
+    "healSleep": true,
+    "healPoison": true,
+    "healBurn": true,
+    "healFreeze": true,
+    "healParalysis": true,
+    "healConfusion": true,
+    "hpRestored": -1
+  }
+}

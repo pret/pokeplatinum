@@ -9,6 +9,7 @@
 
 #include "enums.h"
 #include "pc_boxes.h"
+#include "record_mixed_rng.h"
 #include "savedata.h"
 #include "string_gf.h"
 #include "trainer_info.h"
@@ -85,7 +86,7 @@ void StringTemplate_SetGymName(StringTemplate *template, u32 idx, u32 gym);
 void StringTemplate_SetTimeOfDay(StringTemplate *template, u32 idx, u32 timeOfDay);
 void StringTemplate_SetCountryName(StringTemplate *template, u32 idx, u32 country);
 void StringTemplate_SetCityName(StringTemplate *template, u32 idx, u32 country, u32 city);
-void StringTemplate_SetCustomMessageWord(StringTemplate *template, u32 idx, u16 customMessageWord);
+void StringTemplate_SetEasyChatWord(StringTemplate *template, u32 idx, u16 word);
 void StringTemplate_SetBallSealName(StringTemplate *template, u32 idx, u32 ballSeal);
 void StringTemplate_SetBallSealNamePlural(StringTemplate *template, u32 idx, u32 ballSeal);
 void StringTemplate_SetMetLocationName(StringTemplate *template, u32 idx, u32 location);
@@ -93,7 +94,7 @@ void StringTemplate_SetPoffinName(StringTemplate *template, u32 idx, u32 poffin)
 void StringTemplate_SetContestAccessoryName(StringTemplate *template, u32 idx, u32 accessory);
 void StringTemplate_SetContestAccessoryNameWithArticle(StringTemplate *template, u32 idx, u32 accessory);
 void StringTemplate_SetContestBackdropName(StringTemplate *template, u32 idx, u32 backdrop);
-void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *saveData, int groupID, int idx, int nameType);
+void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *saveData, int groupID, int idx, enum RecordMixedRNGName nameType);
 void StringTemplate_SetPlazaMinigameName(StringTemplate *template, u32 idx, enum PlazaMinigame minigame);
 void StringTemplate_SetPlazaEventName(StringTemplate *template, u32 idx, int event);
 void StringTemplate_SetPlazaItemName(StringTemplate *template, u32 idx, u32 item);

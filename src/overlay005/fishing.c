@@ -5,7 +5,7 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DFB54.h"
@@ -34,7 +34,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "tv_episode_segment.h"
+#include "tv_segment.h"
 #include "unk_020655F4.h"
 
 #include "res/text/bank/common_strings.h"
@@ -137,7 +137,7 @@ BOOL FieldTask_Fishing(FieldTask *taskMan)
 
             if (caughtFish == TRUE) {
                 Pokemon *wildFish = Party_GetPokemonBySlotIndex(fishingContext->fishEncounterDTO->parties[1], 0);
-                FieldSystem_SaveTVEpisodeSegment_WhatsFishing(fieldSystem, TRUE, fishingContext->fishingRodItemID, wildFish);
+                FieldSystem_SaveTVSegment_WhatsFishing(fieldSystem, TRUE, fishingContext->fishingRodItemID, wildFish);
 
                 GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_CAUGHT_FISH);
 
@@ -200,7 +200,7 @@ static void GoFish(SysTask *task, void *fishingTaskParam)
 {
     FishingTask *fishingTask = fishingTaskParam;
     PlayerAvatar *playerAvatar = fishingTask->fieldSystem->playerAvatar;
-    MapObject *playerMapObject = Player_MapObject(playerAvatar);
+    MapObject *playerMapObject = PlayerAvatar_GetMapObject(playerAvatar);
 
     while (sFishingActions[fishingTask->fishingTask](fishingTask, playerAvatar, playerMapObject)) {}
 }
@@ -365,7 +365,7 @@ static BOOL FishingTask_FishGotAway(FishingTask *fishingTask, PlayerAvatar *play
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fishingTask->fieldSystem->saveData), RECORD_FISH_GOT_AWAY);
 
-    FieldSystem_SaveTVEpisodeSegment_WhatsFishing(fishingTask->fieldSystem, FALSE, ConvertRodTypeToRodItem(fishingTask->rodType), NULL);
+    FieldSystem_SaveTVSegment_WhatsFishing(fishingTask->fieldSystem, FALSE, ConvertRodTypeToRodItem(fishingTask->rodType), NULL);
 
     return TRUE;
 }
@@ -561,7 +561,7 @@ static u16 ConvertRodTypeToRodItem(enum EncounterFishingRodType rodType)
 {
     switch (rodType) {
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     case FISHING_TYPE_OLD_ROD:
         return ITEM_OLD_ROD;
     case FISHING_TYPE_GOOD_ROD:

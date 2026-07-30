@@ -1,0 +1,24 @@
+{
+  "key": 59412,
+  "messages": [
+    {
+      "id": "Mail_Text_Confirm",
+      "en_US": "CONFIRM"
+    },
+    {
+      "id": "Mail_Text_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "Mail_Text_EnterPhraseOrWord",
+      "en_US": "Please enter a phrase or word."
+    },
+    {
+      "id": "Mail_Text_StopGivingMailPrompt",
+      "en_US": [
+        "Stop giving the Pokémon\n",
+        "Mail?"
+      ]
+    }
+  ]
+}

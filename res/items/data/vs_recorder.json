@@ -1,0 +1,30 @@
+{
+  "name": "Vs. Recorder",
+  "plural": "Vs. Recorders",
+  "article": "a",
+  "description": [
+    "An amazing device that can record a\n",
+    "battle either between friends or at a\n",
+    "special battle facility."
+  ],
+  "icon": {
+    "sprite": "vs_recorder_NCGR",
+    "palette": "vs_recorder_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": true,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_VS_RECORDER",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

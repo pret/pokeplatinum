@@ -2,14 +2,14 @@
   "key": 37243,
   "messages": [
     {
-      "id": "pl_msg_00000493_00000",
+      "id": "Route212South_Text_CrossLogsOnBike",
       "en_US": [
         "You can zip across fallen logs like\n",
         "bridges on your Bike."
       ]
     },
     {
-      "id": "pl_msg_00000493_00001",
+      "id": "Route212South_Text_ImNotStuck",
       "en_US": [
         "...Am I stuck in the bog?\r",
         "Of course not. How silly!\n",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000493_00002",
+      "id": "Route212South_Text_HowAboutPokemonMansion",
       "en_US": [
         "You’ve been to the Great Marsh?\n",
         "How about the Pokémon Mansion?\r",
@@ -30,28 +30,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000493_00003",
+      "id": "Route212South_Text_ConstantPatrol",
       "en_US": [
         "We’re on constant patrol.\n",
         "It’s safe here, even at night."
       ]
     },
     {
-      "id": "pl_msg_00000493_00004",
+      "id": "Route212South_Text_SignPastoriaCity",
       "en_US": [
         "Rt. 212\n",
         "Pastoria City"
       ]
     },
     {
-      "id": "pl_msg_00000493_00005",
+      "id": "Route212South_Text_SignShardsWanted",
       "en_US": [
         "Shards Wanted\n",
         "Pokémon Moves Taught"
       ]
     },
     {
-      "id": "pl_msg_00000493_00006",
+      "id": "Route212South_Text_TrainerTipsBog",
       "en_US": [
         "Trainer Tips\r",
         "If you get stuck in the bog, you can\n",

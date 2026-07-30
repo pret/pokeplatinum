@@ -2,7 +2,7 @@
   "key": 32403,
   "messages": [
     {
-      "id": "pl_msg_00000516_00000",
+      "id": "Route221House_Text_ShowThisLevelPokemon",
       "en_US": [
         "...I saw it!\n",
         "Today’s number is {STRVAR_1 51, 0, 0}!\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000516_00001",
+      "id": "Route221House_Text_PokemonIsCorrectLevel",
       "en_US": [
         "...I saw it!\n",
         "Today’s number is {STRVAR_1 51, 0, 0}!\r",
@@ -25,21 +25,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000516_00002",
+      "id": "Route221House_Text_NoRoomInBag",
       "en_US": [
         "Oh? You’ve no room in your Bag.\n",
         "I’ll hold it, so come back later."
       ]
     },
     {
-      "id": "pl_msg_00000516_00003",
+      "id": "Route221House_Text_ThankWithItem",
       "en_US": [
         "I’ll thank you for that visual treat\n",
         "with this {STRVAR_1 8, 2, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000516_00004",
+      "id": "Route221House_Text_ComeAgainTomorrow",
       "en_US": [
         "High-level Pokémon were once of low\n",
         "level.\r",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000516_00005",
+      "id": "Route221House_Text_WinItemsFromMe",
       "en_US": [
         "Win Items from Me!\r",
         "Black Belt: Powers up Fighting-type\n",

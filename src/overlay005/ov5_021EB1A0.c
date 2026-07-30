@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "overlay005/const_ov5_021FB51C.h"
 #include "overlay005/field_effect_manager.h"
@@ -1553,7 +1553,7 @@ static void ov5_021EC700(u32 param0, VecFx32 *param1)
         v0++;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 void ov5_021EC734(MapObject *mapObj)

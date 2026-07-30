@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02039A58.h"
+#include "struct_defs/comm_cmd_table.h"
 #include "struct_defs/struct_02095EAC_sub1.h"
 #include "struct_defs/struct_02095EAC_t.h"
 #include "struct_defs/struct_02095FE4.h"
@@ -12,11 +12,11 @@
 #include "overlay058/struct_ov58_021D2820.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "communication_system.h"
-#include "unk_02030EE0.h"
 #include "unk_02032798.h"
-#include "unk_020366A0.h"
 #include "unk_02099500.h"
+#include "wireless_manager.h"
 
 typedef struct UnkStruct_02095EAC_t UnkStruct_02095EAC;
 
@@ -213,7 +213,7 @@ void sub_02095F9C(int param0, int param1, void *param2, void *param3)
 
     if (CommSys_CurNetId() == 0) {
         v0->unk_37C = CommSys_ConnectedCount();
-        v0->unk_380 = sub_020318EC();
+        v0->unk_380 = WirelessManager_GetConnectedBitmap();
         v0->unk_9458 = 1;
     }
 }
@@ -232,12 +232,12 @@ void sub_02095FE4(int param0, int param1, void *param2, void *param3)
 
             switch (v2->unk_02) {
             case 0:
-                if ((v0->unk_37C != CommSys_ConnectedCount()) || (v0->unk_37C != ov58_021D2A4C()) || (v0->unk_37C != MATH_CountPopulation(sub_020318EC()))) {
+                if ((v0->unk_37C != CommSys_ConnectedCount()) || (v0->unk_37C != ov58_021D2A4C()) || (v0->unk_37C != MATH_CountPopulation(WirelessManager_GetConnectedBitmap()))) {
                     v1.unk_03 = 0;
                 } else {
                     v0->unk_9418 |= 1 << param0;
                     v1.unk_03 = 1;
-                    sub_02037B58(CommSys_ConnectedCount());
+                    CommManager_SetMaxNumConnections(CommSys_ConnectedCount());
                 }
                 break;
             case 1:
@@ -318,7 +318,7 @@ void sub_0209612C(int param0, int param1, void *param2, void *param3)
         }
     }
 
-    CommMan_SetErrorHandling(0, 1);
+    CommManager_SetErrorHandling(0, 1);
 }
 
 static void sub_02096170(int param0, int param1, void *param2, void *param3)

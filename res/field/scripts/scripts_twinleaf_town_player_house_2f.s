@@ -6,13 +6,13 @@
     ScriptEntry TwinleafTownPlayerHouse2F_Wii
     ScriptEntry TwinleafTownPlayerHouse2F_PC
     ScriptEntry TwinleafTownPlayerHouse2F_OnFrame_ConcludeSpecialProgram
-    ScriptEntry TwinleafTownPlayerHouse2F_ScrollingSign
+    ScriptEntry TwinleafTownPlayerHouse2F_ScrollingSignpost
     ScriptEntry TwinleafTownPlayerHouse2F_OnTransition
     ScriptEntry TwinleafTownPlayerHouse2F_TV
-    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerNorth
-    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerWest
-    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerEast
-    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerSouth
+    ScriptEntry TwinleafTownPlayerHouse2F_CoordEvent_RivalNorth
+    ScriptEntry TwinleafTownPlayerHouse2F_CoordEvent_RivalWest
+    ScriptEntry TwinleafTownPlayerHouse2F_CoordEvent_RivalEast
+    ScriptEntry TwinleafTownPlayerHouse2F_CoordEvent_RivalSouth
     ScriptEntryEnd
 
 TwinleafTownPlayerHouse2F_OnTransition:
@@ -26,7 +26,7 @@ TwinleafTownPlayerHouse2F_SetVolumeForTV:
 TwinleafTownPlayerHouse2F_OnFrame_ConcludeSpecialProgram:
     LockAll
     SetVar VAR_PLAYER_HOUSE_SPECIAL_PROGRAM_STATE, 1
-    Message TwinleafTownPlayerHouse2F_Text_ThatConcludesOurSpecialProgram
+    Message TwinleafTownPlayerHouse2F_Text_ConcludesSpecialProgram
     PlayFanfare SEQ_TV_END
     Message TwinleafTownPlayerHouse2F_Text_SeeYouNextWeek
     WaitFanfare
@@ -49,31 +49,31 @@ TwinleafTownPlayerHouse2F_PC:
     ReleaseAll
     End
 
-TwinleafTownPlayerHouse2F_ScrollingSign:
-    ShowScrollingSign TwinleafTownPlayerHouse2F_Text_TheXButtonOpensTheMenu
+TwinleafTownPlayerHouse2F_ScrollingSignpost:
+    ShowScrollingSign TwinleafTownPlayerHouse2F_Text_XButtonOpensMenu
     End
 
 TwinleafTownPlayerHouse2F_TV:
-    EventMessage TwinleafTownPlayerHouse2F_Text_MomBoughThisTVAsAGift
+    EventMessage TwinleafTownPlayerHouse2F_Text_MomBoughtTVAsGift
     End
 
-TwinleafTownPlayerHouse2F_RivalTriggerNorth:
-    SetVar VAR_MAP_LOCAL_0, 0
+TwinleafTownPlayerHouse2F_CoordEvent_RivalNorth:
+    SetVar VAR_MAP_LOCAL_0x00, 0
     GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
-TwinleafTownPlayerHouse2F_RivalTriggerWest:
-    SetVar VAR_MAP_LOCAL_0, 1
+TwinleafTownPlayerHouse2F_CoordEvent_RivalWest:
+    SetVar VAR_MAP_LOCAL_0x00, 1
     GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
-TwinleafTownPlayerHouse2F_RivalTriggerEast:
-    SetVar VAR_MAP_LOCAL_0, 2
+TwinleafTownPlayerHouse2F_CoordEvent_RivalEast:
+    SetVar VAR_MAP_LOCAL_0x00, 2
     GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
-TwinleafTownPlayerHouse2F_RivalTriggerSouth:
-    SetVar VAR_MAP_LOCAL_0, 3
+TwinleafTownPlayerHouse2F_CoordEvent_RivalSouth:
+    SetVar VAR_MAP_LOCAL_0x00, 3
     GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
@@ -87,45 +87,45 @@ TwinleafTownPlayerHouse2F_Rival:
     BufferRivalName 0
     Message TwinleafTownPlayerHouse2F_Text_ThereYouAre
     CloseMessage
-    CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalApproachPlayerNorth
-    CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalApproachPlayerWest
-    CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalApproachPlayerEast
-    CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalApproachPlayerSouth
+    CallIfEq VAR_MAP_LOCAL_0x00, 0, TwinleafTownPlayerHouse2F_RivalApproachPlayerNorth
+    CallIfEq VAR_MAP_LOCAL_0x00, 1, TwinleafTownPlayerHouse2F_RivalApproachPlayerWest
+    CallIfEq VAR_MAP_LOCAL_0x00, 2, TwinleafTownPlayerHouse2F_RivalApproachPlayerEast
+    CallIfEq VAR_MAP_LOCAL_0x00, 3, TwinleafTownPlayerHouse2F_RivalApproachPlayerSouth
     BufferPlayerName 1
-    Message TwinleafTownPlayerHouse2F_Text_ProfRowanWouldGiveUsPokemon
+    Message TwinleafTownPlayerHouse2F_Text_ProfRowanWouldGivePokemon
     CloseMessage
     ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalExclamationMark
     WaitMovement
-    CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalApproachPCNorth
-    CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalApproachPCWest
-    CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalApproachPCEast
-    CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalApproachPCSouth
+    CallIfEq VAR_MAP_LOCAL_0x00, 0, TwinleafTownPlayerHouse2F_RivalApproachPCNorth
+    CallIfEq VAR_MAP_LOCAL_0x00, 1, TwinleafTownPlayerHouse2F_RivalApproachPCWest
+    CallIfEq VAR_MAP_LOCAL_0x00, 2, TwinleafTownPlayerHouse2F_RivalApproachPCEast
+    CallIfEq VAR_MAP_LOCAL_0x00, 3, TwinleafTownPlayerHouse2F_RivalApproachPCSouth
     Message TwinleafTownPlayerHouse2F_Text_IsThisANewPC
     CloseMessage
-    CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalTurnBackNorth
-    CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalTurnBackWest
-    CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalTurnBackEast
-    CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalTurnBackSouth
+    CallIfEq VAR_MAP_LOCAL_0x00, 0, TwinleafTownPlayerHouse2F_RivalTurnBackNorth
+    CallIfEq VAR_MAP_LOCAL_0x00, 1, TwinleafTownPlayerHouse2F_RivalTurnBackWest
+    CallIfEq VAR_MAP_LOCAL_0x00, 2, TwinleafTownPlayerHouse2F_RivalTurnBackEast
+    CallIfEq VAR_MAP_LOCAL_0x00, 3, TwinleafTownPlayerHouse2F_RivalTurnBackSouth
     BufferRivalName 0
     Message TwinleafTownPlayerHouse2F_Text_WhereWasI
     CloseMessage
-    CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerNorth
-    CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerWest
-    CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerEast
-    CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerSouth
+    CallIfEq VAR_MAP_LOCAL_0x00, 0, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerNorth
+    CallIfEq VAR_MAP_LOCAL_0x00, 1, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerWest
+    CallIfEq VAR_MAP_LOCAL_0x00, 2, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerEast
+    CallIfEq VAR_MAP_LOCAL_0x00, 3, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerSouth
     BufferPlayerName 1
-    Message TwinleafTownPlayerHouse2F_Text_WereGoingToSeeProfRowanAndGetPokemon
+    Message TwinleafTownPlayerHouse2F_Text_SeeProfRowanAndGetPokemon
     CloseMessage
-    CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalLeaveNorth
-    CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalLeaveWest
-    CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalLeaveEast
-    CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalLeaveSouth
+    CallIfEq VAR_MAP_LOCAL_0x00, 0, TwinleafTownPlayerHouse2F_RivalLeaveNorth
+    CallIfEq VAR_MAP_LOCAL_0x00, 1, TwinleafTownPlayerHouse2F_RivalLeaveWest
+    CallIfEq VAR_MAP_LOCAL_0x00, 2, TwinleafTownPlayerHouse2F_RivalLeaveEast
+    CallIfEq VAR_MAP_LOCAL_0x00, 3, TwinleafTownPlayerHouse2F_RivalLeaveSouth
     PlaySE SEQ_SE_DP_KAIDAN2
     RemoveObject LOCALID_RIVAL
     Common_FadeToDefaultMusic2
     WaitSE SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
-    SetVar VAR_PLAYER_HOUSE_RIVAL_TRIGGER_STATE, 1
+    SetVar VAR_PLAYER_HOUSE_RIVAL_STATE, 1
     ReleaseAll
     End
 

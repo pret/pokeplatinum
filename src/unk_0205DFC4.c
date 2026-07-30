@@ -1,68 +1,40 @@
 #include "unk_0205DFC4.h"
 
 #include <nitro.h>
-#include <string.h>
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
-#include "nintendo_wfc/main.h"
 
-#include "communication_information.h"
-#include "communication_system.h"
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
 #include "math_util.h"
 #include "party.h"
 #include "pokemon.h"
-#include "save_player.h"
 #include "savedata.h"
-#include "trainer_info.h"
 
 #include "res/text/bank/pokedex_ratings.h"
 
-typedef struct {
-    MapObject *unk_00;
-    fx32 unk_04;
-    fx32 unk_08;
-    u16 unk_0C;
-    u16 unk_0E;
-    u16 unk_10;
-} UnkStruct_0205E268;
+typedef struct MapObjectShakeData {
+    MapObject *mapObj;
+    fx32 xOffset;
+    fx32 zOffset;
+    u16 times;
+    u16 degrees;
+    u16 speed;
+} MapObjectShakeData;
 
-typedef struct {
-    MapObject *unk_00;
-    u16 unk_04;
-    u16 unk_06;
-    u8 unk_08;
-    u8 unk_09;
-} UnkStruct_0205E3AC;
+typedef struct MapObjectFlickerData {
+    MapObject *mapObj;
+    u16 times;
+    u16 delay;
+    u8 timer;
+    u8 hiddenFlag;
+} MapObjectFlickerData;
 
-u16 Pokedex_GetRatingMessageID_Local(u16 pokemonSeen, u16 reachedEternaCity);
-u16 Pokedex_GetRatingMessageID_National(u16 pokemonCaught, u16 playerGender);
-int sub_0205E430(u8 param0, u8 param1);
-int sub_0205E45C(u8 param0, u8 param1);
-int sub_0205E488(u8 param0, u8 param1);
-int sub_0205E4B4(u8 param0, u8 param1);
-int sub_0205E4E0(u8 param0, u8 param1);
-int sub_0205E50C(u8 param0);
-int sub_0205E534(u8 param0);
-int sub_0205E55C(u8 param0);
-int sub_0205E584(u8 param0);
-int sub_0205E5B4(u8 param0, u8 param1);
-int sub_0205E5E0(u8 param0);
-int sub_0205E608(u8 param0);
-int sub_0205E630(u8 param0);
-int sub_0205E658(u8 param0);
-int sub_0205E680(u8 param0);
-int sub_0205E6A8(u32 param0);
-u8 sub_0205E6B8(void);
+static u8 GetPartnerGameCode(void);
 u8 sub_0205E6D8(SaveData *saveData);
-int sub_0205E700(u8 param0);
-int sub_0205E728(u8 param0);
-int sub_0205E750(u8 param0);
-int sub_0205E790(u8 param0);
 
 u16 GetNumberDigitCount(u32 number)
 {
@@ -282,553 +254,84 @@ BOOL HasAllLegendaryTitansInParty(SaveData *saveData)
     return FALSE;
 }
 
-static BOOL sub_0205E268(FieldTask *param0)
+static BOOL Task_ShakeMapObject(FieldTask *task)
 {
-    VecFx32 v0;
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E268 *v2 = FieldTask_GetEnv(param0);
+    VecFx32 pos;
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    MapObjectShakeData *shakeData = FieldTask_GetEnv(task);
 
-    v0.x = FX32_CONST(8);
-    v0.z = FX32_CONST(8);
-    v0.x = FX_Mul(CalcSineDegrees(v2->unk_0E), v2->unk_04);
-    v0.z = FX_Mul(CalcSineDegrees(v2->unk_0E), v2->unk_08);
-    v0.y = 0;
+    pos.x = FX32_CONST(8);
+    pos.z = FX32_CONST(8);
+    pos.x = FX_Mul(CalcSineDegrees(shakeData->degrees), shakeData->xOffset);
+    pos.z = FX_Mul(CalcSineDegrees(shakeData->degrees), shakeData->zOffset);
+    pos.y = 0;
 
-    MapObject_SetSpritePosOffset(v2->unk_00, &v0);
+    MapObject_SetSpritePosOffset(shakeData->mapObj, &pos);
 
-    v2->unk_0E += v2->unk_10;
+    shakeData->degrees += shakeData->speed;
 
-    if (v2->unk_0E >= 360) {
-        v2->unk_0E = 0;
-        v2->unk_0C--;
+    if (shakeData->degrees >= 360) {
+        shakeData->degrees = 0;
+        shakeData->times--;
     }
 
-    if (v2->unk_0C == 0) {
-        v0.x = v0.y = v0.z = 0;
-        MapObject_SetSpritePosOffset(v2->unk_00, &v0);
-        Heap_Free(v2);
-        return 1;
+    if (shakeData->times == 0) {
+        pos.x = pos.y = pos.z = 0;
+        MapObject_SetSpritePosOffset(shakeData->mapObj, &pos);
+        Heap_Free(shakeData);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5)
+void MapObject_Shake(FieldTask *task, MapObject *mapObj, u16 times, u16 speed, u16 xOffset, u16 zOffset)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E268 *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0205E268));
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    MapObjectShakeData *shakeData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapObjectShakeData));
 
-    MI_CpuClear8(v1, sizeof(UnkStruct_0205E268));
+    MI_CpuClear8(shakeData, sizeof(MapObjectShakeData));
 
-    v1->unk_04 = FX32_CONST(param4);
-    v1->unk_08 = FX32_CONST(param5);
-    v1->unk_0C = param2;
-    v1->unk_10 = param3;
-    v1->unk_00 = param1;
+    shakeData->xOffset = FX32_CONST(xOffset);
+    shakeData->zOffset = FX32_CONST(zOffset);
+    shakeData->times = times;
+    shakeData->speed = speed;
+    shakeData->mapObj = mapObj;
 
-    FieldTask_InitCall(fieldSystem->task, sub_0205E268, v1);
+    FieldTask_InitCall(fieldSystem->task, Task_ShakeMapObject, shakeData);
 }
 
-static BOOL sub_0205E3AC(FieldTask *param0)
+static BOOL Task_FlickerMapObject(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E3AC *v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    MapObjectFlickerData *flickerData = FieldTask_GetEnv(task);
 
-    MapObject_SetHidden(v1->unk_00, v1->unk_09);
+    MapObject_SetHidden(flickerData->mapObj, flickerData->hiddenFlag);
 
-    if (v1->unk_08++ >= v1->unk_06) {
-        v1->unk_09 ^= 1;
-        v1->unk_08 = 0;
+    if (flickerData->timer++ >= flickerData->delay) {
+        flickerData->hiddenFlag ^= 1;
+        flickerData->timer = 0;
 
-        if (v1->unk_04-- == 0) {
-            Heap_Free(v1);
-            return 1;
+        if (flickerData->times-- == 0) {
+            Heap_Free(flickerData);
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3)
+void MapObject_Flicker(FieldTask *task, MapObject *mapObj, u16 times, u16 delay)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E3AC *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0205E3AC));
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    MapObjectFlickerData *flickerData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapObjectFlickerData));
 
-    MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));
+    MI_CpuClear8(flickerData, sizeof(MapObjectFlickerData));
 
-    v1->unk_04 = param2;
-    v1->unk_06 = param3;
-    v1->unk_00 = param1;
-    v1->unk_09 = 0;
+    flickerData->times = times;
+    flickerData->delay = delay;
+    flickerData->mapObj = mapObj;
+    flickerData->hiddenFlag = 0;
 
-    FieldTask_InitCall(fieldSystem->task, sub_0205E3AC, v1);
-}
-
-int sub_0205E430(u8 param0, u8 param1)
-{
-    int v0;
-
-    switch (param1) {
-    case 0:
-        v0 = 11;
-        break;
-    case 1:
-        v0 = 19;
-        break;
-    case 2:
-        v0 = 27;
-        break;
-    case 3:
-        v0 = 115;
-        break;
-    }
-
-    return v0 + (param0 * 4);
-}
-
-int sub_0205E45C(u8 param0, u8 param1)
-{
-    int v0;
-
-    switch (param1) {
-    case 0:
-        v0 = 10;
-        break;
-    case 1:
-        v0 = 18;
-        break;
-    case 2:
-        v0 = 26;
-        break;
-    case 3:
-        v0 = 114;
-        break;
-    }
-
-    return v0 + (param0 * 4);
-}
-
-int sub_0205E488(u8 param0, u8 param1)
-{
-    int v0;
-
-    switch (param1) {
-    case 0:
-        v0 = 13;
-        break;
-    case 1:
-        v0 = 21;
-        break;
-    case 2:
-        v0 = 29;
-        break;
-    case 3:
-        v0 = 117;
-        break;
-    }
-
-    return v0 + (param0 * 4);
-}
-
-int sub_0205E4B4(u8 param0, u8 param1)
-{
-    int v0;
-
-    switch (param1) {
-    case 0:
-        v0 = 12;
-        break;
-    case 1:
-        v0 = 20;
-        break;
-    case 2:
-        v0 = 28;
-        break;
-    case 3:
-        v0 = 116;
-        break;
-    }
-
-    return v0 + (param0 * 4);
-}
-
-int sub_0205E4E0(u8 param0, u8 param1)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 37;
-        break;
-    case 1:
-        v0 = 49;
-        break;
-    case 2:
-        v0 = 61;
-        break;
-    case 3:
-        v0 = 125;
-        break;
-    }
-
-    v0 += (param1 / 2);
-    return v0;
-}
-
-int sub_0205E50C(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 35;
-        break;
-    case 1:
-        v0 = 47;
-        break;
-    case 2:
-        v0 = 59;
-        break;
-    case 3:
-        v0 = 123;
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E534(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 34;
-        break;
-    case 1:
-        v0 = 46;
-        break;
-    case 2:
-        v0 = 58;
-        break;
-    case 3:
-        v0 = 122;
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E55C(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 36;
-        break;
-    case 1:
-        v0 = 48;
-        break;
-    case 2:
-        v0 = 60;
-        break;
-    case 3:
-        v0 = 124;
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E584(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 0;
-        break;
-    case 1:
-        v0 = 1;
-        break;
-    case 2:
-        v0 = 2;
-        break;
-    case 3:
-        v0 = 2;
-        GF_ASSERT(0);
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E5B4(u8 param0, u8 param1)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 75;
-        break;
-    case 1:
-        v0 = 83;
-        break;
-    case 2:
-        v0 = 91;
-        break;
-    case 3:
-        v0 = 139;
-        break;
-    }
-
-    v0 += param1;
-    return v0;
-}
-
-int sub_0205E5E0(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 71;
-        break;
-    case 1:
-        v0 = 79;
-        break;
-    case 2:
-        v0 = 87;
-        break;
-    case 3:
-        v0 = 135;
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E608(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 70;
-        break;
-    case 1:
-        v0 = 78;
-        break;
-    case 2:
-        v0 = 86;
-        break;
-    case 3:
-        v0 = 134;
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E630(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 72;
-        break;
-    case 1:
-        v0 = 80;
-        break;
-    case 2:
-        v0 = 88;
-        break;
-    case 3:
-        v0 = 136;
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E658(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 73;
-        break;
-    case 1:
-        v0 = 81;
-        break;
-    case 2:
-        v0 = 89;
-        break;
-    case 3:
-        v0 = 137;
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E680(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 74;
-        break;
-    case 1:
-        v0 = 82;
-        break;
-    case 2:
-        v0 = 90;
-        break;
-    case 3:
-        v0 = 138;
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E6A8(u32 param0)
-{
-    if (param0 < 100) {
-        return 0xff;
-    }
-
-    return NintendoWFC_GetHostFriendIdx();
-}
-
-u8 sub_0205E6B8(void)
-{
-    TrainerInfo *v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
-    GF_ASSERT(v0 != NULL);
-
-    return TrainerInfo_GameCode(v0);
-}
-
-u8 sub_0205E6D8(SaveData *saveData)
-{
-    if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(saveData)) == 0) {
-        return 1;
-    }
-
-    if (sub_0205E6B8() == 0) {
-        return 1;
-    }
-
-    return 0;
-}
-
-int sub_0205E700(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 95;
-        break;
-    case 1:
-        v0 = 97;
-        break;
-    case 2:
-        v0 = 99;
-        break;
-    case 3:
-        v0 = 143;
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E728(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 94;
-        break;
-    case 1:
-        v0 = 96;
-        break;
-    case 2:
-        v0 = 98;
-        break;
-    case 3:
-        v0 = 142;
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E750(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 1;
-        break;
-    case 1:
-        v0 = 3;
-        break;
-    case 2:
-        v0 = 5;
-        break;
-    case 3:
-        v0 = 7;
-        break;
-    case 4:
-        v0 = 9;
-        break;
-    case 6:
-        v0 = 113;
-        break;
-    default:
-        GF_ASSERT(0);
-        break;
-    }
-
-    return v0;
-}
-
-int sub_0205E790(u8 param0)
-{
-    int v0;
-
-    switch (param0) {
-    case 0:
-        v0 = 0;
-        break;
-    case 1:
-        v0 = 2;
-        break;
-    case 2:
-        v0 = 4;
-        break;
-    case 3:
-        v0 = 6;
-        break;
-    case 4:
-        v0 = 8;
-        break;
-    case 6:
-        v0 = 112;
-        break;
-    default:
-        GF_ASSERT(0);
-        break;
-    }
-
-    return v0;
+    FieldTask_InitCall(fieldSystem->task, Task_FlickerMapObject, flickerData);
 }

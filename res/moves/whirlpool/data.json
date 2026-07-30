@@ -1,0 +1,31 @@
+{
+    "name": "Whirlpool",
+    "description": [
+        "The user traps the\n",
+        "foe inside a fast,\n",
+        "vicious whirlpool that\n",
+        "lasts for two to five\n",
+        "turns."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_WATER",
+    "power": 15,
+    "accuracy": 70,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_WHIRLPOOL",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_SHADOWS"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_HIGH_SCORE_LATER_TURN",
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

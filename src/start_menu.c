@@ -12,11 +12,8 @@
 #include "generated/species.h"
 #include "generated/text_banks.h"
 
-#include "struct_decls/struct_0209747C_decl.h"
-#include "struct_defs/sentence.h"
-#include "struct_defs/struct_02097728.h"
-
 #include "applications/bag/application.h"
+#include "applications/mail.h"
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/poffin_case/main.h"
@@ -28,12 +25,18 @@
 #include "overlay005/save_info_window.h"
 #include "overlay005/sprite_resource_manager.h"
 
+#include "appearance.h"
 #include "bag.h"
 #include "bag_context.h"
+#include "berry_tag_data.h"
 #include "bg_window.h"
 #include "catching_show.h"
+#include "comm_manager.h"
 #include "dexmode_checker.h"
+#include "easy_chat_args.h"
+#include "easy_chat_sentence.h"
 #include "evolution.h"
+#include "field_bgm.h"
 #include "field_move_tasks.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -53,6 +56,7 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "poketch.h"
@@ -71,25 +75,19 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "text.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
 #include "unk_0202D778.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
-#include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
-#include "unk_020972FC.h"
-#include "unk_0209747C.h"
-#include "unk_02097624.h"
 #include "vars_flags.h"
 
 #include "res/graphics/start_menu/start_menu.naix"
+#include "res/text/bank/easy_chat.h"
 #include "res/text/bank/location_names.h"
 #include "res/text/bank/start_menu.h"
 
@@ -97,7 +95,7 @@ enum StartMenuOption {
     START_MENU_OPTION_POKEDEX = 0,
     START_MENU_OPTION_POKEMON,
     START_MENU_OPTION_BAG,
-    START_MENU_OPTION_TRAINER_CARD,
+    START_MENU_OPTION_TRAINER_CASE,
     START_MENU_OPTION_SAVE,
     START_MENU_OPTION_OPTIONS,
     START_MENU_OPTION_EXIT,
@@ -105,11 +103,11 @@ enum StartMenuOption {
     START_MENU_OPTION_RETIRE,
 };
 
-typedef struct {
+typedef struct MenuMailData {
     u16 itemID;
-    u8 slot;
-    u8 unk_03;
-} UnkStruct_0203C540;
+    u8 partySlot;
+    u8 usageType;
+} MenuMailData;
 
 typedef struct MenuEvolutionData {
     u8 slot;
@@ -157,9 +155,9 @@ static void StartMenu_ApplicationRun(FieldTask *fieldTask);
 static BOOL StartMenu_SelectPokedex(FieldTask *fieldTask);
 static BOOL StartMenu_OpenPokedex(FieldTask *fieldTask);
 static BOOL StartMenu_ExitPokedex(FieldTask *fieldTask);
-static BOOL StartMenu_SelectTrainerCard(FieldTask *fieldTask);
-static BOOL StartMenu_TrainerCard(FieldTask *fieldTask);
-static BOOL StartMenu_ExitTrainerCard(FieldTask *fieldTask);
+static BOOL StartMenu_SelectTrainerCase(FieldTask *fieldTask);
+static BOOL StartMenu_TrainerCase(FieldTask *fieldTask);
+static BOOL StartMenu_ExitTrainerCase(FieldTask *fieldTask);
 static BOOL StartMenu_SelectOptions(FieldTask *fieldTask);
 static BOOL StartMenu_Options(FieldTask *fieldTask);
 static BOOL StartMenu_ExitOptions(FieldTask *fieldTask);
@@ -180,7 +178,7 @@ static BOOL StartMenu_ExitBerryTag(FieldTask *fieldTask);
 static void StartMenu_EvolveInit(FieldTask *fieldTask);
 static void StartMenu_Evolve(FieldTask *fieldTask);
 static BOOL StartMenu_SelectRetire(FieldTask *fieldTask);
-static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 mode);
+static void StartMenu_ProcessGivenMail(FieldSystem *fieldSystem, StartMenu *menu, u8 mode);
 
 typedef struct StartMenuAction {
     u32 bankEntry;
@@ -194,7 +192,7 @@ static const StartMenuAction sStartMenuActions[] = {
     [START_MENU_OPTION_POKEDEX]      = { .bankEntry = StartMenu_Text_Pokedex,        .callback = StartMenu_SelectPokedex     },
     [START_MENU_OPTION_POKEMON]      = { .bankEntry = StartMenu_Text_Pokemon,        .callback = StartMenu_SelectPokemon     },
     [START_MENU_OPTION_BAG]          = { .bankEntry = StartMenu_Text_Bag,            .callback = StartMenu_SelectBag         },
-    [START_MENU_OPTION_TRAINER_CARD] = { .bankEntry = StartMenu_Text_PlayerTemplate, .callback = StartMenu_SelectTrainerCard },
+    [START_MENU_OPTION_TRAINER_CASE] = { .bankEntry = StartMenu_Text_PlayerTemplate, .callback = StartMenu_SelectTrainerCase },
     [START_MENU_OPTION_SAVE]         = { .bankEntry = StartMenu_Text_Save,           .callback = StartMenu_SelectSave        },
     [START_MENU_OPTION_OPTIONS]      = { .bankEntry = StartMenu_Text_Options,        .callback = StartMenu_SelectOptions     },
     [START_MENU_OPTION_EXIT]         = { .bankEntry = StartMenu_Text_Exit,           .callback = (void *)MENU_CANCEL         },
@@ -262,13 +260,13 @@ static const u8 sOnlyMovePages[] = {
 
 BOOL FieldSystem_IsInValidLocation(FieldSystem *fieldSystem)
 {
-    return MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != LocationNames_Text_MysteryZone;
+    return MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID) != LocationNames_Text_MysteryZone;
 }
 
 #define HIDE_OPTION_POKEDEX      (1 << 0)
 #define HIDE_OPTION_POKEMON      (1 << 1)
 #define HIDE_OPTION_BAG          (1 << 2)
-#define HIDE_OPTION_TRAINER_CARD (1 << 3)
+#define HIDE_OPTION_TRAINER_CASE (1 << 3)
 #define HIDE_OPTION_SAVE         (1 << 4)
 #define HIDE_OPTION_OPTIONS      (1 << 5)
 #define HIDE_OPTION_EXIT         (1 << 6)
@@ -291,8 +289,8 @@ void StartMenu_Open(FieldSystem *fieldSystem)
 
     menu->inUnionRoom = FALSE;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, StartMenu_Main, menu);
@@ -305,8 +303,8 @@ void StartMenu_OpenUnionRoom(FieldSystem *fieldSystem)
     menu->hideOptionFlags = StartMenu_GetUnionRoomHiddenOptions(fieldSystem);
     menu->inUnionRoom = TRUE;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, StartMenu_Main, menu);
@@ -319,8 +317,8 @@ void StartMenu_OpenColosseum(FieldSystem *fieldSystem)
     menu->hideOptionFlags = StartMenu_GetColosseumHiddenOptions(fieldSystem);
     menu->inUnionRoom = FALSE;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, StartMenu_Main, menu);
@@ -378,7 +376,7 @@ static u32 StartMenu_GetNormalHiddenOptions(FieldSystem *fieldSystem)
         hideFlags |= HIDE_OPTION_BAG;
     }
 
-    if (MapHeader_IsAmitySquare(fieldSystem->location->mapId) == TRUE) {
+    if (MapHeader_IsAmitySquare(fieldSystem->location->mapHeaderID) == TRUE) {
         hideFlags |= HIDE_OPTION_POKEMON;
         hideFlags |= HIDE_OPTION_BAG;
     }
@@ -536,7 +534,7 @@ static void StartMenu_InitMenu(FieldTask *fieldTask)
     menu->cursorPos = 0;
 
     for (u32 i = 0; i < optionCount; i++) {
-        if (menu->options[i] == START_MENU_OPTION_TRAINER_CARD) {
+        if (menu->options[i] == START_MENU_OPTION_TRAINER_CASE) {
             StringTemplate *template = StringTemplate_Default(HEAP_ID_FIELD2);
             String *string = String_Init(8, HEAP_ID_FIELD2);
             String *fmtString = MessageLoader_GetNewString(loader, sStartMenuActions[menu->options[i]].bankEntry);
@@ -597,7 +595,7 @@ static u32 StartMenu_MakeOptionList(StartMenu *menu, u8 *listOut)
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_POKEDEX, HIDE_OPTION_POKEDEX);
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_POKEMON, HIDE_OPTION_POKEMON);
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_BAG, HIDE_OPTION_BAG);
-    ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_TRAINER_CARD, HIDE_OPTION_TRAINER_CARD);
+    ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_TRAINER_CASE, HIDE_OPTION_TRAINER_CASE);
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_SAVE, HIDE_OPTION_SAVE);
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_OPTIONS, HIDE_OPTION_OPTIONS);
     ADD_OPTION_IF_NOT_HIDDEN(START_MENU_OPTION_EXIT, HIDE_OPTION_EXIT);
@@ -724,7 +722,7 @@ static void sub_0203B2EC(StartMenu *menu, FieldSystem *fieldSystem)
         if (menu->inUnionRoom) {
             sub_0205C2B0(fieldSystem->unk_80);
 
-            sub_02036AC4();
+            CommManager_UnionRestartSearch();
             sub_0205BEA8(0);
         }
     }
@@ -1034,24 +1032,22 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *fieldTask)
         menu->taskData = summary;
         StartMenu_SetCallback(menu, StartMenu_ExitSummary);
         break;
-    case PARTY_MENU_EXIT_CODE_MAIL:
-        UnkStruct_02097728 *v8 = sub_0203D920(fieldSystem, 2, partyMenu->selectedMonSlot, Item_MailNumber(partyMenu->usedItemID), HEAP_ID_FIELD2);
-        menu->taskData = v8;
+    case PARTY_MENU_EXIT_CODE_WRITE_MAIL:
+        menu->taskData = FieldSystem_LaunchMailApp_Write(fieldSystem, MAIL_CONTEXT_WRITE, partyMenu->selectedMonSlot, Item_GetMailType(partyMenu->usedItemID), HEAP_ID_FIELD2);
 
         if (partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM_DONE) {
-            menu->additionalTaskContext = sub_0203C540(partyMenu->usedItemID, 0, partyMenu->selectedMonSlot);
+            menu->additionalTaskContext = StartMenu_BuildMailData(partyMenu->usedItemID, MAIL_GIVE_FROM_PARTY_MENU, partyMenu->selectedMonSlot);
         } else {
-            menu->additionalTaskContext = sub_0203C540(partyMenu->usedItemID, 1, partyMenu->selectedMonSlot);
+            menu->additionalTaskContext = StartMenu_BuildMailData(partyMenu->usedItemID, MAIL_GIVE_FROM_BAG, partyMenu->selectedMonSlot);
         }
 
         StartMenu_SetCallback(menu, StartMenu_ExitMail);
         break;
     case PARTY_MENU_EXIT_CODE_READ_MAIL:
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partyMenu->selectedMonSlot);
-        UnkStruct_02097728 *v9 = sub_0203D984(fieldSystem, mon, HEAP_ID_FIELD2);
 
-        menu->taskData = v9;
-        menu->additionalTaskContext = sub_0203C540(partyMenu->usedItemID, 2, partyMenu->selectedMonSlot);
+        menu->taskData = FieldSystem_LaunchMailApp_ReadHeld(fieldSystem, mon, HEAP_ID_FIELD2);
+        menu->additionalTaskContext = StartMenu_BuildMailData(partyMenu->usedItemID, MAIL_READ_FROM_PARTY_MENU, partyMenu->selectedMonSlot);
 
         StartMenu_SetCallback(menu, StartMenu_ExitMail);
         break;
@@ -1085,7 +1081,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *fieldTask)
     case PARTY_MENU_EXIT_CODE_EVOLVE_BY_LEVEL:
         evoData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(MenuEvolutionData));
 
-        evoData->dummy = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
+        evoData->dummy = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapHeaderID);
         evoData->class = EVO_CLASS_BY_LEVEL;
         evoData->slot = partyMenu->selectedMonSlot;
         evoData->targetSpecies = partyMenu->evoTargetSpecies;
@@ -1221,9 +1217,8 @@ static BOOL StartMenu_ExitBag(FieldTask *fieldTask)
         Heap_Free(menu->additionalTaskContext);
 
         if (Item_IsMail(item) == TRUE && Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL) == ITEM_NONE) {
-            UnkStruct_02097728 *v11 = sub_0203D920(fieldSystem, 2, slot, Item_MailNumber(item), HEAP_ID_FIELD2);
-            menu->taskData = v11;
-            menu->additionalTaskContext = sub_0203C540(item, 0, slot);
+            menu->taskData = FieldSystem_LaunchMailApp_Write(fieldSystem, MAIL_CONTEXT_WRITE, slot, Item_GetMailType(item), HEAP_ID_FIELD2);
+            menu->additionalTaskContext = StartMenu_BuildMailData(item, MAIL_GIVE_FROM_PARTY_MENU, slot);
             StartMenu_SetCallback(menu, StartMenu_ExitMail);
         } else {
             PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
@@ -1261,39 +1256,39 @@ static BOOL StartMenu_ExitBag(FieldTask *fieldTask)
     return FALSE;
 }
 
-static BOOL StartMenu_SelectTrainerCard(FieldTask *fieldTask)
+static BOOL StartMenu_SelectTrainerCase(FieldTask *fieldTask)
 {
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
     FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
 
-    menu->callback = StartMenu_TrainerCard;
+    menu->callback = StartMenu_TrainerCase;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
 }
 
-static BOOL StartMenu_TrainerCard(FieldTask *fieldTask)
+static BOOL StartMenu_TrainerCase(FieldTask *fieldTask)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
-    menu->taskData = TrainerCard_New(HEAP_ID_FIELD2);
+    menu->taskData = TrainerCase_New(HEAP_ID_FIELD2);
 
-    TrainerCard_Init(TRUE, TRUE, 0, 0xFF, fieldSystem, (TrainerCard *)menu->taskData);
-    FieldSystem_OpenTrainerCardScreen(fieldSystem, (TrainerCard *)menu->taskData);
+    TrainerCase_Init(TRUE, TRUE, 0, TRAINER_APPEARANCE_DEFAULT, fieldSystem, (TrainerCase *)menu->taskData);
+    FieldSystem_OpenTrainerCase(fieldSystem, (TrainerCase *)menu->taskData);
 
-    menu->callback = StartMenu_ExitTrainerCard;
+    menu->callback = StartMenu_ExitTrainerCase;
     return FALSE;
 }
 
-static BOOL StartMenu_ExitTrainerCard(FieldTask *fieldTask)
+static BOOL StartMenu_ExitTrainerCase(FieldTask *fieldTask)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
-    TrainerCard_SaveBadgePolish(fieldSystem, (TrainerCard *)menu->taskData);
-    TrainerCard_Free((TrainerCard *)menu->taskData);
+    TrainerCase_SaveBadgePolish(fieldSystem, (TrainerCase *)menu->taskData);
+    TrainerCase_Free((TrainerCase *)menu->taskData);
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->state = START_MENU_STATE_REINIT;
@@ -1407,12 +1402,12 @@ static BOOL StartMenu_Chat(FieldTask *fieldTask)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
-    menu->taskData = sub_0209747C(2, 0, fieldSystem->saveData, HEAP_ID_FIELD2);
+    menu->taskData = EasyChatArgs_New(EASY_CHAT_TYPE_SENTENCE, EasyChat_Text_ChooseWordOrPhrase, fieldSystem->saveData, HEAP_ID_FIELD2);
 
-    Sentence sentence;
-    sub_02014A9C(&sentence, 4);
-    sub_02097500(menu->taskData, &sentence);
-    sub_0203D874(fieldSystem, (UnkStruct_0209747C *)menu->taskData);
+    EasyChatSentence sentence;
+    EasyChatSentence_InitWithType(&sentence, EASY_CHAT_SENTENCE_TYPE_UNION_ROOM);
+    EasyChatArgs_SetSentence(menu->taskData, &sentence);
+    FieldSystem_OpenEasyChat(fieldSystem, (EasyChatArgs *)menu->taskData);
 
     menu->callback = StartMenu_ExitChat;
 
@@ -1424,9 +1419,9 @@ static BOOL StartMenu_ExitChat(FieldTask *fieldTask)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
-    if (sub_02097528(menu->taskData) == 0) {
-        Sentence sentence;
-        sub_02097540(menu->taskData, &sentence);
+    if (!EasyChatArgs_IsUnmodified(menu->taskData)) {
+        EasyChatSentence sentence;
+        EasyChatArgs_CopySentenceTo(menu->taskData, &sentence);
 
         if (CommServerClient_IsInitialized()) {
             sub_0205C12C(&sentence);
@@ -1438,7 +1433,7 @@ static BOOL StartMenu_ExitChat(FieldTask *fieldTask)
         menu->state = START_MENU_STATE_REINIT;
     }
 
-    sub_020974EC((UnkStruct_0209747C *)menu->taskData);
+    EasyChatArgs_Free((EasyChatArgs *)menu->taskData);
     FieldSystem_StartFieldMap(fieldSystem);
     sub_0205C2B0(fieldSystem->unk_80);
 
@@ -1524,23 +1519,23 @@ static void StartMenu_ShowBerryTag(FieldTask *fieldTask, u16 berryItemID)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
-    menu->taskData = sub_020972FC(HEAP_ID_FIELD2);
+    menu->taskData = BerryTagData_Alloc(HEAP_ID_FIELD2);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    sub_02097320(menu->taskData, berryItemID, 1);
+    BerryTagData_Add(menu->taskData, berryItemID, TRUE);
     u8 berryTypeCount = 0;
 
     for (berry = 0; berry < NUM_BERRIES; berry++) {
         berryItemID = Item_ForBerryNumber(berry);
 
         if (Bag_CanRemoveItem(bag, berryItemID, 1, HEAP_ID_FIELD2) == TRUE) {
-            sub_02097320(menu->taskData, berryItemID, 0);
+            BerryTagData_Add(menu->taskData, berryItemID, FALSE);
             berryTypeCount++;
         }
     }
 
     u8 scroll, index;
     BagCursor_GetFieldPocketPosition(fieldSystem->bagCursor, POCKET_BERRIES, &index, &scroll);
-    sub_0209733C(menu->taskData, scroll, index, berryTypeCount + 3);
+    BerryTagData_SetScroll(menu->taskData, scroll, index, berryTypeCount + 3);
 
     sub_0203D2E4(fieldSystem, menu->taskData);
     StartMenu_SetCallback(menu, StartMenu_ExitBerryTag);
@@ -1552,7 +1547,7 @@ static BOOL StartMenu_ExitBerryTag(FieldTask *fieldTask)
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
 
     u8 scroll, index;
-    sub_02097390(menu->taskData, &scroll, &index);
+    BerryTagData_GetScroll(menu->taskData, &scroll, &index);
     BagCursor_SetFieldPocketPosition(fieldSystem->bagCursor, POCKET_BERRIES, index, scroll);
     Heap_FreeExplicit(HEAP_ID_FIELD2, menu->taskData);
 
@@ -1616,48 +1611,48 @@ BOOL StartMenu_ExitJournal(FieldTask *fieldTask)
     return FALSE;
 }
 
-void *sub_0203C540(u16 itemID, u8 param1, u8 slot)
+void *StartMenu_BuildMailData(u16 itemID, u8 usageType, u8 partySlot)
 {
-    UnkStruct_0203C540 *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0203C540));
+    MenuMailData *data = Heap_Alloc(HEAP_ID_FIELD2, sizeof(MenuMailData));
 
-    v0->itemID = itemID;
-    v0->slot = slot;
-    v0->unk_03 = param1;
+    data->itemID = itemID;
+    data->partySlot = partySlot;
+    data->usageType = usageType;
 
-    return (void *)v0;
+    return (void *)data;
 }
 
 BOOL StartMenu_ExitMail(FieldTask *fieldTask)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
-    UnkStruct_0203C540 *v2 = menu->additionalTaskContext;
+    MenuMailData *data = menu->additionalTaskContext;
 
-    switch (v2->unk_03) {
-    case 3:
-        sub_02097770(menu->taskData);
+    switch (data->usageType) {
+    case MAIL_READ_FROM_BAG:
+        MailAppArgs_Free(menu->taskData);
         menu->taskData = FieldSystem_OpenBag(fieldSystem, &menu->itemUseCtx);
         StartMenu_SetCallback(menu, StartMenu_ExitBag);
         break;
-    case 2:
-        sub_02097770(menu->taskData);
-        menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, v2->slot);
+    case MAIL_READ_FROM_PARTY_MENU:
+        MailAppArgs_Free(menu->taskData);
+        menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, data->partySlot);
         StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
         break;
-    case 0:
-        if (sub_02097728(menu->taskData) == 1) {
-            sub_0203C668(fieldSystem, menu, PARTY_MENU_MODE_GIVE_MAIL_DONE);
+    case MAIL_GIVE_FROM_PARTY_MENU:
+        if (MailApp_WasMailWritten(menu->taskData) == TRUE) {
+            StartMenu_ProcessGivenMail(fieldSystem, menu, PARTY_MENU_MODE_GIVE_MAIL_DONE);
         } else {
-            sub_02097770(menu->taskData);
-            menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, v2->slot);
+            MailAppArgs_Free(menu->taskData);
+            menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, data->partySlot);
             StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
         }
         break;
-    case 1:
-        if (sub_02097728(menu->taskData) == 1) {
-            sub_0203C668(fieldSystem, menu, PARTY_MENU_MODE_GIVE_MAIL);
+    case MAIL_GIVE_FROM_BAG:
+        if (MailApp_WasMailWritten(menu->taskData) == TRUE) {
+            StartMenu_ProcessGivenMail(fieldSystem, menu, PARTY_MENU_MODE_GIVE_MAIL);
         } else {
-            sub_02097770(menu->taskData);
+            MailAppArgs_Free(menu->taskData);
             menu->taskData = FieldSystem_OpenBag(fieldSystem, &menu->itemUseCtx);
             StartMenu_SetCallback(menu, StartMenu_ExitBag);
         }
@@ -1665,12 +1660,12 @@ BOOL StartMenu_ExitMail(FieldTask *fieldTask)
     }
 
     Heap_Free(menu->additionalTaskContext);
-    return 0;
+    return FALSE;
 }
 
-static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 mode) // TODO:
+static void StartMenu_ProcessGivenMail(FieldSystem *fieldSystem, StartMenu *menu, u8 mode)
 {
-    UnkStruct_0203C540 *v0 = menu->additionalTaskContext;
+    MenuMailData *data = menu->additionalTaskContext;
     PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
     memset(partyMenu, 0, sizeof(PartyMenu));
@@ -1680,13 +1675,13 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 mode) // 
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMenu->fieldMoveContext = &menu->fieldMoveContext;
     partyMenu->type = PARTY_MENU_TYPE_BASIC;
-    partyMenu->usedItemID = v0->itemID;
-    partyMenu->selectedMonSlot = v0->slot;
+    partyMenu->usedItemID = data->itemID;
+    partyMenu->selectedMonSlot = data->partySlot;
     partyMenu->mode = mode;
     partyMenu->fieldSystem = fieldSystem;
 
-    sub_02097750(menu->taskData, Party_GetPokemonBySlotIndex(partyMenu->party, v0->slot));
-    sub_02097770(menu->taskData);
+    MailApp_AddWrittenMailToMon(menu->taskData, Party_GetPokemonBySlotIndex(partyMenu->party, data->partySlot));
+    MailAppArgs_Free(menu->taskData);
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
 
     menu->taskData = partyMenu;
@@ -1768,7 +1763,7 @@ static void StartMenu_Evolve(FieldTask *fieldTask)
         Heap_Destroy(HEAP_ID_EVOLUTION);
         Sound_StopBGM(SEQ_SHINKA, 0);
         Sound_SetScene(SOUND_SCENE_NONE);
-        sub_020556A0(fieldSystem, fieldSystem->location->mapId);
+        FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapHeaderID);
 
         menu->taskData = FieldSystem_OpenBag(fieldSystem, &menu->itemUseCtx);
 

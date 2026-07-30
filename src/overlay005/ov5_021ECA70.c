@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/struct_ov5_021ECB8C_decl.h"

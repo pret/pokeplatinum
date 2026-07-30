@@ -1,0 +1,35 @@
+{
+  "name": "HP Up",
+  "plural": "HP Ups",
+  "article": "an",
+  "description": [
+    "A nutritious drink for Pokémon.\n",
+    "It raises the base HP of a single\n",
+    "Pokémon."
+  ],
+  "icon": {
+    "sprite": "hp_up_NCGR",
+    "palette": "hp_up_NCLR"
+  },
+  "gbaID": "GBA_ITEM_HP_UP",
+  "price": 9800,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "hpEVs": 10,
+    "friendshipLow": 5,
+    "friendshipMed": 3,
+    "friendshipHigh": 2
+  }
+}

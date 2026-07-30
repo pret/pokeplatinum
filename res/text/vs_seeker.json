@@ -2,7 +2,7 @@
   "key": 12640,
   "messages": [
     {
-      "id": "pl_msg_00000539_00000",
+      "id": "VsSeeker_Text_BatteryIsntChargedEnough",
       "en_US": [
         "The battery isn’t charged enough.\r",
         "Number of steps required to fully\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000539_00001",
+      "id": "VsSeeker_Text_NoTrainersWithinRange",
       "en_US": [
         "There are no Trainers within range\n",
         "who can battle...\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000539_00002",
+      "id": "VsSeeker_Text_NoTrainersReadyToBattle",
       "en_US": [
         "The other Trainers don’t appear\n",
         "to be ready for battle.\r",

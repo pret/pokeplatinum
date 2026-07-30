@@ -2,21 +2,21 @@
   "key": 39283,
   "messages": [
     {
-      "id": "pl_msg_00000110_00000",
+      "id": "HearthomeCityDPGymElevatorRoom1_Text_WhatIs3Times13",
       "en_US": [
         "Question: 3 times 13 is?\n",
         "Answer: ←39 ↑93 →33"
       ]
     },
     {
-      "id": "pl_msg_00000110_00001",
+      "id": "HearthomeCityDPGymElevatorRoom1_Text_Correct",
       "en_US": [
         "Correct!\n",
         "Congratulations!"
       ]
     },
     {
-      "id": "pl_msg_00000110_00002",
+      "id": "HearthomeCityDPGymElevatorRoom1_Text_PleaseAnswer",
       "en_US": "Please answer the quiz!"
     }
   ]

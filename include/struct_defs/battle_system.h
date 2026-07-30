@@ -10,12 +10,12 @@
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
+#include "battle/battle_main.h"
+#include "battle/battle_subscreen.h"
+#include "battle/party_gauge.h"
 #include "battle/pokemon_sprite_data.h"
-#include "battle/struct_ov16_02268520.h"
-#include "battle/struct_ov16_02268A14_decl.h"
-#include "battle/struct_ov16_0226D160_decl.h"
+#include "battle/terrain.h"
 #include "battle_anim/battle_anim_system.h"
-#include "overlay010/struct_ov10_0221F800.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -69,44 +69,44 @@ struct BattleSystem {
     Poketch *poketch;
     CaptureAttempt *captureAttempt;
     u16 trainerIDs[MAX_BATTLERS];
-    u8 unk_A8[4];
+    u8 unwritten[4];
     Trainer trainers[MAX_BATTLERS];
-    UnkStruct_ov16_02268520 unk_17C[2];
-    UnkStruct_ov16_02268A14 *unk_198;
+    Terrain terrains[2];
+    BattleSubscreen *btlSubscreen;
     PartyGauge *partyGauges[2];
     FontSpecialCharsContext *specialCharsHP;
     FontSpecialCharsContext *specialCharsLevel;
-    UnkStruct_020157E4 *unk_1AC;
+    PaletteAnimator *paletteAnimator;
     Options *options;
     PalPad *palPad;
     WaitDial *waitDial;
     u8 *subscreenCursorOn;
-    UnkStruct_ov10_0221F800 *unk_1C0;
+    TrainerIntroData *trainerIntroData;
     PokemonAnimManager *monAnimMan;
     NNSG2dCellTransferState *cellTransferState;
     PokemonSpriteData pokemonSpriteDataArray[4];
     BattleRecords unusedBattleRecords;
     GameRecords *records;
-    u8 *unk_21C;
-    u16 *unk_220;
+    u8 *bgTileSnapshot;
+    u16 *bgPaletteSnapshot;
     u8 serverMessage[4096];
     u8 clientMessage[4096];
-    u16 unk_2224[112];
-    u16 unk_2304[112];
+    u16 savedBgPalettes[112];
+    u16 savedObjPalettes[112];
     u16 serverReadIndex;
     u16 serverWriteIndex;
     u16 serverEndIndex;
     u16 clientReadIndex;
     u16 clientWriteIndex;
     u16 clientEndIndex;
-    u8 *unk_23F0;
-    u8 *unk_23F4;
-    u8 unk_23F8;
-    u8 unk_23F9;
+    u8 *linkServerSenderState;
+    u8 *linkClientReceiverState;
+    u8 battleInitialized;
+    u8 renderMode;
     u8 commandIsEndWait;
-    u8 unk_23FB_0 : 1;
-    u8 unk_23FB_1 : 1;
-    u8 unk_23FB_2 : 1;
+    u8 pendingBlendReset : 1;
+    u8 pendingBattleVRAMSetup : 1;
+    u8 pendingSubMenuVRAMSetup : 1;
     u8 redHPSoundFlag : 2;
     u8 redHPSoundEffectDelay : 3;
     enum BattleTerrain terrain;
@@ -115,7 +115,7 @@ struct BattleSystem {
     u32 battleStatusMask;
     enum TimeOfDay time;
     int safariBalls;
-    u8 unk_2414[4];
+    u8 battleParticipantMask[MAX_BATTLERS];
     u32 rulesetMask;
     u8 resultMask;
     u8 catchingTutorialLowHP;
@@ -128,15 +128,15 @@ struct BattleSystem {
     int yOffset;
     int caughtBattlerIdx;
     int commandSelectionFlags;
-    u8 unk_2440;
+    u8 unread_2440;
     u8 overlayFlags;
     u16 networkID;
     u32 seedRandNext;
     u32 seedDTO;
-    u16 unk_244C[MAX_BATTLERS];
-    u16 unk_2454[4];
-    u16 unk_245C[MAX_BATTLERS];
-    int unk_2464[MAX_BATTLERS];
+    u16 recordingCollectedPos[MAX_BATTLERS];
+    u16 recordingWritePos[MAX_BATTLERS];
+    u16 recordingAckPos[MAX_BATTLERS];
+    int linkPlayerPositions[MAX_BATTLERS];
     u32 recordingStopped : 1;
     u32 padding_2474_1 : 31;
     SysTask *playbackStopButton;

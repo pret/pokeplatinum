@@ -2,7 +2,7 @@
   "key": 17431,
   "messages": [
     {
-      "id": "JubilifeTV2F_Text_WhatAccessoriesWillGoWellWithMyDressToday",
+      "id": "JubilifeTV2F_Text_WhatAccessoriesWillGoWell",
       "en_US": [
         "I don’t know what to do.\r",
         "What Accessories will go well with\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "JubilifeTV2F_Text_SoAGiftForOurFutureStar",
+      "id": "JubilifeTV2F_Text_GiftForFutureStar",
       "en_US": [
         "The star of tomorrow is... You!\n",
         "Your Pokémon has a glow about it!\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "JubilifeTV2F_Text_IHopeYouGetIntoCollectingAccessoriesForYourPokemon",
+      "id": "JubilifeTV2F_Text_IHopeYouCollectAccessories",
       "en_US": [
         "That’s a {STRVAR_1 31, 0, 0}!\r",
         "I hope you get into collecting\n",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "JubilifeTV2F_Text_TheRoomAtTheBackIsOurDreamyFittingRoom",
+      "id": "JubilifeTV2F_Text_FittingRoomAtTheBack",
       "en_US": [
         "The room at the back is our dreamy\n",
         "fitting room.\r",

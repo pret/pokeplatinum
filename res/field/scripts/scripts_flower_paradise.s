@@ -11,12 +11,12 @@
 
 FlowerParadise_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_FLOWER_PARADISE
-    GetNationalDexEnabled VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, FlowerParadise_HideShaymin
-    CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, FlowerParadise_HideShaymin
-    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, FALSE, FlowerParadise_HideShaymin
+    GetNationalDexEnabled VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, FlowerParadise_HideShaymin
+    CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, FlowerParadise_HideShaymin
+    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, FlowerParadise_HideShaymin
     GoToIfSet FLAG_CAUGHT_SHAYMIN, FlowerParadise_HideShaymin
     ClearFlag FLAG_HIDE_FLOWER_PARADISE_SHAYMIN
     End
@@ -26,13 +26,13 @@ FlowerParadise_HideShaymin:
     End
 
 FlowerParadise_OnLoad:
-    GoToIfSet FLAG_MAP_LOCAL, FlowerParadise_RemoveShaymin
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, FlowerParadise_RemoveShaymin
     End
 
 FlowerParadise_RemoveShaymin:
     SetFlag FLAG_HIDE_FLOWER_PARADISE_SHAYMIN
     RemoveObject LOCALID_SHAYMIN
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
 
 FlowerParadise_Shaymin:
@@ -42,19 +42,19 @@ FlowerParadise_Shaymin:
     PlayCry SPECIES_SHAYMIN
     Message FlowerParadise_Text_KyuuUuhn
     CloseMessage
-    SetFlag FLAG_MAP_LOCAL
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     StartFatefulEncounter SPECIES_SHAYMIN, 30
-    ClearFlag FLAG_MAP_LOCAL
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, FlowerParadise_BlackOut
     CheckDidNotCapture VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, FlowerParadise_ShayminDisappearedAmongTheFlowers
+    GoToIfEq VAR_RESULT, TRUE, FlowerParadise_ShayminDisappearedAmongFlowers
     SetFlag FLAG_CAUGHT_SHAYMIN
     ReleaseAll
     End
 
-FlowerParadise_ShayminDisappearedAmongTheFlowers:
-    Message FlowerParadise_Text_ShayminDisappearedAmongTheFlowers
+FlowerParadise_ShayminDisappearedAmongFlowers:
+    Message FlowerParadise_Text_ShayminDisappearedAmongFlowers
     WaitButton
     CloseMessage
     ClearFlag FLAG_HIDE_FLOWER_PARADISE_SHAYMIN

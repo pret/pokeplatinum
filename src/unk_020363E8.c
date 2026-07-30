@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "communication_system.h"
 #include "heap.h"
 
@@ -25,10 +27,10 @@ typedef struct {
 
 static CommTool *sCommTool = NULL;
 
-void CommTool_Init(int netId)
+void CommTool_Init(enum HeapID heapID)
 {
     if (!sCommTool) {
-        sCommTool = Heap_Alloc(netId, sizeof(CommTool));
+        sCommTool = Heap_Alloc(heapID, sizeof(CommTool));
         MI_CpuFill8(sCommTool, 0, sizeof(CommTool));
     }
 

@@ -391,7 +391,7 @@ static void ov70_0226CBB4(u32 param0, UnkStruct_ov70_0226CBB4 *param1)
         param1->unk_00 = Unk_ov70_0226E6C8;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

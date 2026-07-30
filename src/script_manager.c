@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/approach_type.h"
 #include "constants/battle.h"
 #include "generated/bg_event_types.h"
 #include "generated/map_headers.h"
@@ -38,16 +39,16 @@
     Entry(SCRIPT_ID_OFFSET_TV_BROADCAST,                   scripts_tv_broadcast,                   TEXT_BANK_TV_PROGRAMS) \
     Entry(SCRIPT_ID_OFFSET_FIELD_MOVES,                    scripts_field_moves,                    TEXT_BANK_FIELD_MOVES) \
     Entry(SCRIPT_ID_OFFSET_POKEDEX_RATINGS,                scripts_pokedex_ratings,                TEXT_BANK_POKEDEX_RATINGS) \
-    Entry(9900,                                            scripts_unk_0397,                       TEXT_BANK_COMMON_STRINGS) \
-    Entry(SCRIPT_ID_OFFSET_CONTESTS,                       scripts_contests,                       TEXT_BANK_CONTEST_REGISTRATION) \
+    Entry(SCRIPT_ID_OFFSET_UNUSED_0397,                    scripts_unused_0397,                    TEXT_BANK_COMMON_STRINGS) \
+    Entry(SCRIPT_ID_OFFSET_CONTESTS,                       scripts_contests,                       TEXT_BANK_CONTEST_COMMON) \
     Entry(SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS,              scripts_follower_partners,              TEXT_BANK_FOLLOWER_PARTNERS) \
     Entry(SCRIPT_ID_OFFSET_INIT_NEW_GAME,                  scripts_init_new_game,                  TEXT_BANK_COMMON_STRINGS) \
     Entry(SCRIPT_ID_OFFSET_DAY_CARE_COMMON,                scripts_day_care_common,                TEXT_BANK_DAY_CARE_COMMON) \
     Entry(SCRIPT_ID_OFFSET_POFFIN_COMMON,                  scripts_poffin_common,                  TEXT_BANK_POFFIN_COMMON) \
     Entry(SCRIPT_ID_OFFSET_GROUP_CONNECTION,               scripts_group_connection,               TEXT_BANK_GROUP_CONNECTION) \
-    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_B1F_ATTENDANTS,  scripts_pokemon_center_b1f_attendants,  TEXT_BANK_POKEMON_CENTER_B1F_ATTENDANTS) \
+    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_B1F_COMMON,      scripts_pokemon_center_b1f_common,      TEXT_BANK_POKEMON_CENTER_B1F_COMMON) \
     Entry(SCRIPT_ID_OFFSET_COMMUNICATION_CLUB,             scripts_communication_club,             TEXT_BANK_COMMUNICATION_CLUB) \
-    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_2F_ATTENDANTS,   scripts_pokemon_center_2f_attendants,   TEXT_BANK_POKEMON_CENTER_2F_ATTENDANTS) \
+    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_2F_COMMON,       scripts_pokemon_center_2f_common,       TEXT_BANK_POKEMON_CENTER_2F_COMMON) \
     Entry(SCRIPT_ID_OFFSET_POKE_RADAR,                     scripts_poke_radar,                     TEXT_BANK_BAG) \
     Entry(SCRIPT_ID_OFFSET_VS_SEEKER,                      scripts_vs_seeker,                      TEXT_BANK_VS_SEEKER) \
     Entry(SCRIPT_ID_OFFSET_RECORD_CHATOT_CRY,              scripts_record_chatot_cry,              TEXT_BANK_RECORD_CHATOT_CRY) \
@@ -84,7 +85,7 @@ void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object
     FieldSystem_CreateTask(fieldSystem, FieldTask_RunScript, scriptManager);
 }
 
-void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int param6, int approachNum)
+void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, enum ApproachType approachType, int approachNum)
 {
     ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
     ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
@@ -93,7 +94,7 @@ void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *ob
     trainer->direction = direction;
     trainer->scriptID = scriptID;
     trainer->trainerID = trainerID;
-    trainer->unk_10 = param6;
+    trainer->approachType = approachType;
     trainer->object = object;
 }
 
@@ -188,7 +189,7 @@ static void ScriptManager_Init(FieldSystem *fieldSystem, ScriptManager *scriptMa
 {
     u16 *targetID = ScriptManager_GetMemberPtr(scriptManager, SCRIPT_DATA_TARGET_OBJECT_ID);
 
-    scriptManager->playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    scriptManager->playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
     scriptManager->targetObject = object;
     scriptManager->scriptID = scriptID;
     scriptManager->saveType = saveType;
@@ -262,9 +263,9 @@ static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int
 
 static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx)
 {
-    u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapId);
+    u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapHeaderID);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELD2);
+    ctx->loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapHeaderID), HEAP_ID_FIELD2);
 }
 
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
@@ -334,7 +335,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &trainer->trainerID;
     case SCRIPT_MANAGER_TRAINER_0_TYPE:
         trainer = &scriptManager->trainers[0];
-        return &trainer->unk_10;
+        return &trainer->approachType;
     case SCRIPT_MANAGER_TRAINER_0_MAP_OBJECT:
         trainer = &scriptManager->trainers[0];
         return &trainer->object;
@@ -355,7 +356,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &trainer->trainerID;
     case SCRIPT_MANAGER_TRAINER_1_TYPE:
         trainer = &scriptManager->trainers[1];
-        return &trainer->unk_10;
+        return &trainer->approachType;
     case SCRIPT_MANAGER_TRAINER_1_MAP_OBJECT:
         trainer = &scriptManager->trainers[1];
         return &trainer->object;
@@ -475,15 +476,15 @@ void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    memset(VarsFlags_GetFlagChunk(varsFlags, 1), 0, 64 / 8);
-    memset(VarsFlags_GetVarAddress(varsFlags, VARS_START), 0, 2 * 32);
+    memset(VarsFlags_GetFlagChunk(varsFlags, MAP_LOCAL_FLAGS_START), 0, (MAP_LOCAL_FLAGS_END - MAP_LOCAL_FLAGS_START + 1) / 8);
+    memset(VarsFlags_GetVarAddress(varsFlags, MAP_LOCAL_VARS_START), 0, (MAP_LOCAL_VARS_END - MAP_LOCAL_VARS_START + 1) * sizeof(u16));
 }
 
-void sub_0203F1FC(FieldSystem *fieldSystem)
+void FieldSystem_ClearDailyFlags(FieldSystem *fieldSystem)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    memset(VarsFlags_GetFlagChunk(varsFlags, 2400 + 320), 0, 192 / 8);
+    memset(VarsFlags_GetFlagChunk(varsFlags, DAILY_FLAGS_START), 0, (DAILY_FLAGS_END - DAILY_FLAGS_START + 1) / 8);
 }
 
 void FieldSystem_SetScriptParameters(FieldSystem *fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3)
@@ -515,22 +516,22 @@ BOOL Script_IsTrainerDoubleBattle(u16 trainerID)
 
 BOOL Script_IsTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
 {
-    return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_OFFSET_TRAINER_DEFEATED + trainerID);
+    return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAGS_START + trainerID);
 }
 
 void Script_SetTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
 {
-    VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_OFFSET_TRAINER_DEFEATED + trainerID);
+    VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAGS_START + trainerID);
 }
 
 void Script_ClearTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
 {
-    VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_OFFSET_TRAINER_DEFEATED + trainerID);
+    VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAGS_START + trainerID);
 }
 
 u16 Script_GetHiddenItemFlag(u16 scriptID)
 {
-    return scriptID - SCRIPT_ID_OFFSET_HIDDEN_ITEMS + FLAG_OFFSET_HIDDEN_ITEMS;
+    return scriptID - SCRIPT_ID_OFFSET_HIDDEN_ITEMS + HIDDEN_ITEM_FLAGS_START;
 }
 
 u16 Script_GetHiddenItemScript(u16 scriptID)
@@ -539,41 +540,41 @@ u16 Script_GetHiddenItemScript(u16 scriptID)
 }
 
 static u16 sIronIslandHiddenItemFlags[][2] = {
-    { MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM, 0x34 },
-    { MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM, 0x35 },
-    { MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM, 0x36 },
-    { MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM, 0x37 }
+    { MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM, FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B1F_RIGHT_ROOM_STAR_PIECE - HIDDEN_ITEM_FLAGS_START },
+    { MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM, FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B2F_RIGHT_ROOM_STAR_PIECE - HIDDEN_ITEM_FLAGS_START },
+    { MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM, FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B2F_LEFT_ROOM_STAR_PIECE_1 - HIDDEN_ITEM_FLAGS_START },
+    { MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM, FLAG_OBTAINED_HIDDEN_IRON_ISLAND_B2F_LEFT_ROOM_STAR_PIECE_2 - HIDDEN_ITEM_FLAGS_START }
 };
 
 static u16 sFloaromaMeadowHiddenItemFlags[] = {
-    0x3A,
-    0x3B,
-    0xDB,
-    0xDC,
-    0xDD,
-    0xDE
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_1 - HIDDEN_ITEM_FLAGS_START,
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_2 - HIDDEN_ITEM_FLAGS_START,
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_3 - HIDDEN_ITEM_FLAGS_START,
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_4 - HIDDEN_ITEM_FLAGS_START,
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_5 - HIDDEN_ITEM_FLAGS_START,
+    FLAG_OBTAINED_HIDDEN_FLOAROMA_MEADOW_HONEY_6 - HIDDEN_ITEM_FLAGS_START
 };
 
 void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem)
 {
     u8 rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
-    if (fieldSystem->location->mapId != sIronIslandHiddenItemFlags[rand][0]) {
-        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]);
+    if (fieldSystem->location->mapHeaderID != sIronIslandHiddenItemFlags[rand][0]) {
+        FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sIronIslandHiddenItemFlags[rand][1]);
     }
 
     rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
-    if (fieldSystem->location->mapId != sIronIslandHiddenItemFlags[rand][0]) {
-        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]);
+    if (fieldSystem->location->mapHeaderID != sIronIslandHiddenItemFlags[rand][0]) {
+        FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sIronIslandHiddenItemFlags[rand][1]);
     }
 
-    if (fieldSystem->location->mapId != MAP_HEADER_FLOAROMA_MEADOW) {
+    if (fieldSystem->location->mapHeaderID != MAP_HEADER_FLOAROMA_MEADOW) {
         rand = LCRNG_Next() % NELEMS(sFloaromaMeadowHiddenItemFlags);
-        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sFloaromaMeadowHiddenItemFlags[rand]);
+        FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sFloaromaMeadowHiddenItemFlags[rand]);
 
         rand = LCRNG_Next() % NELEMS(sFloaromaMeadowHiddenItemFlags);
-        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sFloaromaMeadowHiddenItemFlags[rand]);
+        FieldSystem_ClearFlag(fieldSystem, HIDDEN_ITEM_FLAGS_START + sFloaromaMeadowHiddenItemFlags[rand]);
     }
 }
 
@@ -652,8 +653,8 @@ HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSyste
         return hiddenItems;
     }
 
-    playerX = Player_GetXPos(fieldSystem->playerAvatar);
-    playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
     playerMinX = playerX - 7;
     playerMaxX = playerX + 7;
     playerMinZ = playerZ - 7;

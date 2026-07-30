@@ -2,7 +2,7 @@
   "key": 54371,
   "messages": [
     {
-      "id": "pl_msg_00000290_00000",
+      "id": "GalacticHQHall_Text_PsstOverHere",
       "en_US": [
         "Looker: Psst! Here.\n",
         "Over here.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000290_00001",
+      "id": "GalacticHQHall_Text_TheWorldMustChange",
       "en_US": [
         "Cyrus: Fellow members of Team Galactic!\n",
         "Hear me!\r",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000290_00002",
+      "id": "GalacticHQHall_Text_WeWillChangeIt",
       "en_US": [
         "Then, who will change it?\r",
         "Me, Cyrus. And Team Galactic.\n",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000290_00003",
+      "id": "GalacticHQHall_Text_LetThereBeGlory",
       "en_US": [
         "Understand it, fellow members!\r",
         "My long-held dreamworld is on the\n",
@@ -62,15 +62,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000290_00004",
+      "id": "GalacticHQHall_Text_GruntsWroooar",
       "en_US": "Grunts: WROOOAR!!\r"
     },
     {
-      "id": "pl_msg_00000290_00005",
+      "id": "GalacticHQHall_Text_CyrusIsTheGreatest",
       "en_US": "Grunt: Master Cyrus is the greatest!\r"
     },
     {
-      "id": "pl_msg_00000290_00006",
+      "id": "GalacticHQHall_Text_QuiteThePerformance",
       "en_US": [
         "Looker: ...Whew.\r",
         "So, that was Cyrus, the boss of the\n",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000290_00007",
+      "id": "GalacticHQHall_Text_Dummy7",
       "garbage": 34
     }
   ]

@@ -6,7 +6,7 @@
       "en_US": "{STRVAR_1 3, 0, 0}: What’s going on...?\r"
     },
     {
-      "id": "LakeVerityLowWater_Text_IWillMakeTimeAndSpaceMine",
+      "id": "LakeVerityLowWater_Text_MakeTimeAndSpaceMine",
       "en_US": [
         "...The flowing time...\n",
         "...The expanding space...\r",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "LakeVerityLowWater_Text_LetsCatchThatLegendaryPokemon",
+      "id": "LakeVerityLowWater_Text_LetsCatchThatLegendary",
       "en_US": [
         "OK, {STRVAR_1 3, 1, 0}!\n",
         "Let’s catch that legendary Pokémon!\r"
@@ -42,7 +42,7 @@
       "en_US": "Kyauuun!\r"
     },
     {
-      "id": "LakeVerityLowWater_Text_ThatWasTheLegendaryPokemonCrying",
+      "id": "LakeVerityLowWater_Text_ThatWasTheLegendaryCrying",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: !\n",
         "Did you hear that, {STRVAR_1 3, 1, 0}?!\r",
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "LakeVerityLowWater_Text_RowanNoLegendaryPokemonHowWasLakeValor",
+      "id": "LakeVerityLowWater_Text_RowanNoLegendaryHowWasLakeValor",
       "en_US": [
         "Rowan: Hmmm...\r",
         "No legendary Pokémon, nothing out\n",

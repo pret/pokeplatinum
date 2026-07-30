@@ -3,13 +3,13 @@
 
 
     ScriptEntry GreatMarsh2_ParasolLady
-    ScriptEntry GreatMarsh2_SignArea2
+    ScriptEntry GreatMarsh2_SignboardArea2
     ScriptEntryEnd
 
 GreatMarsh2_ParasolLady:
     NPCMessage GreatMarsh2_Text_PokemonDifferDayToDay
     End
 
-GreatMarsh2_SignArea2:
+GreatMarsh2_SignboardArea2:
     ShowLandmarkSign GreatMarsh2_Text_SignArea2
     End

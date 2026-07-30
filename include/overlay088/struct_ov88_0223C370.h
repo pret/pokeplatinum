@@ -17,22 +17,22 @@
 
 typedef struct {
     FieldSystem *fieldSystem;
-    TrainerInfo *unk_04;
-    Party *unk_08;
-    PalPad *unk_0C;
+    TrainerInfo *trainerInfo;
+    Party *party;
+    PalPad *palPad;
     SaveData *saveData;
     WiFiHistory *wiFiHistory;
     Options *options;
-    JournalEntry *unk_1C;
+    JournalEntry *journalEntry;
     GameRecords *records;
-    Pokedex *unk_24;
+    Pokedex *pokedex;
     int unk_28;
     int unk_2C;
-    int unk_30;
+    int dexMode;
     int unk_34;
-    TrainerInfo *unk_38;
-    Pokemon *unk_3C;
-    Pokemon *unk_40;
+    TrainerInfo *trainerInfoSize;
+    Pokemon *sendingMon;
+    Pokemon *receivingMon;
 } UnkStruct_ov88_0223C370;
 
 #endif // POKEPLATINUM_STRUCT_OV88_0223C370_H

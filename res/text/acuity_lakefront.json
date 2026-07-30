@@ -2,7 +2,7 @@
   "key": 18403,
   "messages": [
     {
-      "id": "pl_msg_00000405_00000",
+      "id": "AcuityLakefront_Text_CantClimbWithoutBadge",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
         "What, you finally come along now?\f",
@@ -16,14 +16,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000405_00001",
+      "id": "AcuityLakefront_Text_MakeSureNoDisturbance",
       "en_US": [
         "We’re here to make sure Snowpoint’s\n",
         "Gym Leader doesn’t disturb us!"
       ]
     },
     {
-      "id": "pl_msg_00000405_00002",
+      "id": "AcuityLakefront_Text_YouMustBeBored",
       "en_US": [
         "You’re here to see the lake Pokémon,\n",
         "too?\r",
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000405_00003",
+      "id": "AcuityLakefront_Text_StandingGuardIsImportant",
       "en_US": [
         "Standing guard is a very important\n",
         "assignment!\r",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000405_00004",
+      "id": "AcuityLakefront_Text_LakePokemonConnected",
       "en_US": [
         "The Pokémon of the three lakes\n",
         "appear to be connected somehow.\r",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000405_00005",
+      "id": "AcuityLakefront_Text_SignLakeAcuityAhead",
       "en_US": "Lake Acuity ahead"
     }
   ]

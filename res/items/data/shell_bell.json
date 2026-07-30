@@ -1,0 +1,30 @@
+{
+  "name": "Shell Bell",
+  "plural": "Shell Bells",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "The holder’s HP is restored a little\n",
+    "every time it inflicts damage."
+  ],
+  "icon": {
+    "sprite": "shell_bell_NCGR",
+    "palette": "shoal_shell_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SHELL_BELL",
+  "price": 200,
+  "effectParam": 8,
+  "holdEffect": "HOLD_EFFECT_HP_RESTORE_ON_DMG",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

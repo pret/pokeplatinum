@@ -3,8 +3,8 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02061830_decl.h"
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
+#include "struct_decls/map_object_manager.h"
 
 #include "overlay005/struct_ov5_021ECD10.h"
 

@@ -1,6 +1,6 @@
 project('pokeplatinum', ['c', 'cpp', 'nasm'],
     version: '1.0',
-    meson_version: '>=1.5.0',
+    meson_version: '>=1.10.0',
     default_options : [
         'buildtype=plain',
         'warning_level=0'
@@ -19,10 +19,9 @@ toplevel_includes = include_directories('.')
 ############################################################
 ###                    COMPILER FLAGS                    ###
 ############################################################
-c_args = [
+shared_args = [
     '-proc', 'arm946e',
     '-enum', 'int',
-    '-lang', 'c99',
     '-Cpp_exceptions', 'off',
     '-gccext,on',
     '-msgstyle', 'gcc',
@@ -38,33 +37,41 @@ c_args = [
 ]
 
 if get_option('revision') == '0'
-    c_args += [
+    shared_args += [
         '-DPOKEPLATINUM_REVISION=0'
     ]
 else
-    c_args += [
+    shared_args += [
         '-DPOKEPLATINUM_REVISION=1'
     ]
 endif
 
 if get_option('gdb_debugging')
-    c_args += [
+    shared_args += [
         '-O1,p',
 #        '-inline', 'off' todo: figure out why this makes the rom crash after the copyright screen
     ]
 else
-    c_args += '-O4,p'
+    shared_args += '-O4,p'
 endif
+
+c_args = shared_args + ['-lang', 'c99']
+cpp_args = shared_args + ['-RTTI', 'off']
 
 add_global_arguments(c_args,
     language: 'c',
     native: false
 )
 
+add_global_arguments(cpp_args,
+    language: 'cpp',
+    native: false
+)
+
 pokeplatinum_args = [
     '-DPM_KEEP_ASSERTS',
     '-DGAME_VERSION=VERSION_PLATINUM',
-    '-DGAME_LANGUAGE=ENGLISH'
+    '-DGAME_LANGUAGE=LANGUAGE_ENGLISH'
 ]
 
 if get_option('gdb_debugging')
@@ -129,7 +136,6 @@ nitrodwc_dep = dependency('NitroDWC',
 
 libvct_dep = dependency('libvct')
 libsyscall_dep = dependency('libsyscall')
-ppwlobby_dep = dependency('ppwlobby')
 
 ############################################################
 ###                       CONSTS                         ###
@@ -160,9 +166,6 @@ subdir('lib')
 ############################################################
 subdir('res')
 
-# Phony-like target to build all generated data files
-alias_target('data', nitrofs_files)
-
 ############################################################
 ###                     ARM9 BINARY                      ###
 ############################################################
@@ -185,6 +188,9 @@ trainer_ai_o = custom_target(
     depfile: '@BASENAME@.d',
 )
 
+libmslc = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a')
+libmslcpp = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C++/MSL_ARM/Lib/MSL_CPP_NITRO_Ai_LE.a')
+
 main = executable('main',
     sources: [
         pokeplatinum_c,
@@ -204,6 +210,7 @@ main = executable('main',
         libcrypto_public_includes,
         libgds_public_includes,
         libspl_public_includes,
+        ppwlobby_public_includes,
     ],
     dependencies: [
         nitrosdk_dep,
@@ -211,13 +218,18 @@ main = executable('main',
         nitrowifi_dep,
         nitrodwc_dep,
         libvct_dep,
-        libcrypto_dep,
         libsyscall_dep,
-	    ppwlobby_dep
     ],
     link_with: [
+        libcrypto_ov97,
+        libcrypto_static,
         libgds,
-        libspl
+        libspl,
+        libmslc,
+        libmslcpp,
+        libdwcenc,
+        libdwcppwlobby,
+        libdwcilobby
     ],
     link_args: [
         link_args,

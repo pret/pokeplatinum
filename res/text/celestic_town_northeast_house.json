@@ -2,7 +2,7 @@
   "key": 58391,
   "messages": [
     {
-      "id": "pl_msg_00000587_00000",
+      "id": "CelesticTownNortheastHouse_Text_MtCoronetCenter",
       "en_US": [
         "Mt. Coronet towers at the center\n",
         "of Sinnoh.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000587_00001",
+      "id": "CelesticTownNortheastHouse_Text_SeeAllOfSinnoh",
       "en_US": [
         "If I climb on top of Mt. Coronet,\n",
         "will I be able to see all of Sinnoh?"

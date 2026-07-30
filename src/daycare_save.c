@@ -6,8 +6,7 @@
 #include "constants/charcode.h"
 #include "constants/daycare.h"
 
-#include "struct_defs/mail.h"
-
+#include "mail.h"
 #include "pokemon.h"
 #include "savedata.h"
 

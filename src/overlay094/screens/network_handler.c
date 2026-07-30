@@ -9,7 +9,7 @@
 #include "generated/species.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202440C_decl.h"
+#include "struct_decls/tv_broadcast.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/wi_fi_history.h"
 
@@ -24,6 +24,7 @@
 
 #include "bg_window.h"
 #include "chatot_cry.h"
+#include "comm_manager.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -38,15 +39,14 @@
 #include "pc_boxes.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "save_catchrecords.h"
 #include "savedata.h"
 #include "screen_fade.h"
 #include "string_gf.h"
 #include "string_template.h"
 #include "system_vars.h"
 #include "text.h"
-#include "tv_episode_segment.h"
-#include "unk_0202F180.h"
-#include "unk_020366A0.h"
+#include "tv_segment.h"
 #include "unk_02038F8C.h"
 #include "unk_02039814.h"
 #include "vars_flags.h"
@@ -486,7 +486,7 @@ static int ov94_02242F98(GTSApplicationState *param0)
         case -2:
         case -14:
         case -15:
-            Link_SetErrorState(4);
+            CommManager_SetCommError(4);
             break;
         case -13:
             NetworkError_DisplayGTSCriticalError();
@@ -586,13 +586,13 @@ static int ov94_02243120(GTSApplicationState *param0)
         case -3:
         case -4:
         case -5:
-            Link_SetErrorState(3);
+            CommManager_SetCommError(3);
             break;
         case -12:
         case -15:
         case -2:
         case -14:
-            Link_SetErrorState(4);
+            CommManager_SetCommError(4);
             break;
         case -13:
             NetworkError_DisplayGTSCriticalError();
@@ -703,13 +703,13 @@ static int ov94_022432F4(GTSApplicationState *param0)
             param0->currentScreenInstruction = 33;
             break;
         case -5:
-            Link_SetErrorState(3);
+            CommManager_SetCommError(3);
             break;
         case -12:
         case -2:
         case -14:
         case -15:
-            Link_SetErrorState(4);
+            CommManager_SetCommError(4);
             break;
         case -13:
             NetworkError_DisplayGTSCriticalError();
@@ -772,7 +772,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
             if (GlobalTrade_IsPokemonListed(appState->playerData->globalTrade)) {
                 Pokemon *tempPokemon = Pokemon_New(HEAP_ID_62);
 
-                GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, tempPokemon);
+                GlobalTrade_CopyFromStoredPokemon(appState->playerData->globalTrade, tempPokemon);
                 StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
 
                 appState->depositReturnError = pl_msg_00000671_00002;
@@ -792,7 +792,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
             if (GlobalTrade_IsPokemonListed(appState->playerData->globalTrade)) {
                 Pokemon *tempPokemon = Pokemon_New(HEAP_ID_62);
 
-                GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, tempPokemon);
+                GlobalTrade_CopyFromStoredPokemon(appState->playerData->globalTrade, tempPokemon);
                 StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
 
                 appState->depositReturnError = pl_msg_00000671_00003;
@@ -943,7 +943,7 @@ static int GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse(GTSApplic
             appState->currentScreenInstruction = 33;
             break;
         case -3: // first byte = 5
-            Link_SetErrorState(3);
+            CommManager_SetCommError(3);
             break;
         case -4: // first byte = 3
         case -12:
@@ -951,7 +951,7 @@ static int GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse(GTSApplic
         case -15:
         case -2: // first byte = 14
         case -14:
-            Link_SetErrorState(4);
+            CommManager_SetCommError(4);
             break;
         case -13: // catch-all
             NetworkError_DisplayGTSCriticalError();
@@ -1033,13 +1033,13 @@ static int GTSApplication_NetworkHandler_DeleteDesyncedPokemonResponse(GTSApplic
         case -4: // first byte = 3
             GTSApplication_NetworkHandler_ReturnToPreviousScreen(appState);
         case -5: // first byte = 2 (unsuccessful delete)
-            Link_SetErrorState(3);
+            CommManager_SetCommError(3);
             break;
         case -12:
         case -15:
         case -2: // first byte = 14
         case -14:
-            Link_SetErrorState(4);
+            CommManager_SetCommError(4);
             break;
         case -13:
             NetworkError_DisplayGTSCriticalError();
@@ -1215,30 +1215,30 @@ static int GTSApplication_NetworkHandler_WaitForText(GTSApplicationState *appSta
     return GTS_LOOP_STATE_MAIN;
 }
 
-static void ov94_02243B08(GTSApplicationState *param0, int param1)
+static void ov94_02243B08(GTSApplicationState *appState, int param1)
 {
-    if (param0->selectedBoxId != MAX_PC_BOXES) {
-        Pokemon *v0 = Pokemon_New(HEAP_ID_62);
+    if (appState->selectedBoxId != MAX_PC_BOXES) {
+        Pokemon *mon = Pokemon_New(HEAP_ID_62);
 
-        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112), v0);
-        sub_0202DA7C(param0->playerData->globalTrade, v0, param0->selectedBoxId);
-        PCBoxes_InitBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
-        Heap_Free(v0);
+        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex), mon);
+        GlobalTrade_CopyToStoredPokemon(appState->playerData->globalTrade, mon, appState->selectedBoxId);
+        PCBoxes_InitBoxMonAt(appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
+        Heap_Free(mon);
     } else {
-        Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(appState->playerData->party, appState->partySlotIndex);
 
-        Pokemon_ClearBallCapsuleData(v1);
-        sub_0202DA7C(param0->playerData->globalTrade, v1, param0->selectedBoxId);
-        Party_RemovePokemonBySlotIndex(param0->playerData->party, param0->unk_112);
+        Pokemon_ClearBallCapsuleData(mon);
+        GlobalTrade_CopyToStoredPokemon(appState->playerData->globalTrade, mon, appState->selectedBoxId);
+        Party_RemovePokemonBySlotIndex(appState->playerData->party, appState->partySlotIndex);
 
-        if (Party_HasSpecies(param0->playerData->party, SPECIES_CHATOT) == 0) {
-            ChatotCry *v2 = SaveData_GetChatotCry(param0->playerData->saveData);
-            ChatotCry_ResetStatus(v2);
+        if (Party_HasSpecies(appState->playerData->party, SPECIES_CHATOT) == 0) {
+            ChatotCry *chatotCry = SaveData_GetChatotCry(appState->playerData->saveData);
+            ChatotCry_ResetStatus(chatotCry);
         }
     }
 
     if (param1) {
-        GlobalTrade_SetPokemonListed(param0->playerData->globalTrade, 1);
+        GlobalTrade_SetPokemonListed(appState->playerData->globalTrade, 1);
     }
 }
 

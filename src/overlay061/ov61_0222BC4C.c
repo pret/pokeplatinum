@@ -171,7 +171,7 @@ int ov61_0222BD18(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222BCF8_sub1_
 
     if (v4 > param2) {
         v4 = param2;
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     v2 = (UnkStruct_ov61_0222BCF8_sub1 *)(v1->unk_04);
@@ -324,7 +324,7 @@ int ov61_0222BE20(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222BE20 **par
 
     if (v4 > param2) {
         v4 = param2;
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     v2 = (UnkStruct_ov61_0222BE00_sub1 *)(v1->unk_04);

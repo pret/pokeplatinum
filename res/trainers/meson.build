@@ -6,45 +6,32 @@
 #       AI behavior flags, and items on-hand.
 #     - trpoke - party information for individual trainers in-game
 
-trainer_data_dir = meson.current_source_dir() / 'data'
-
-# 1. Build the list of trainer stems, which define the files to be scanned
-# by the batch processor below. While building this list, assert that each
-# stem must have a corresponding data file.
-trainer_consts = fs.read(trainers_txt).splitlines()
-trainer_stems = []
-trainer_data_files = []
-foreach trainer : trainer_consts
-    # `substring` here strips the `TRAINER_` prefix
-    trainer_stem = trainer.substring(8).to_lower()
-    trainer_stems += trainer_stem
-    trainer_data_files += files(trainer_data_dir / (trainer_stem + '.json'))
-endforeach
-
-# 2. Build the environment of trainer stems to be passed to the batch processor.
-trainer_env = environment()
-trainer_env.append('TRAINERS', trainer_stems, separator: ';')
-
-# 3. Process the trainer data files in batch and emit header data + party lists.
-datagen_trainer_out = custom_target('datagen_trainer_out',
+trainer_data = custom_target('trainer_data',
     output: [
         'trdata.narc',
         'trpoke.narc',
         'trtbl.narc',
         'trtblofs.narc',
+        'trainer_scripts.h',
+        'npc_trainer_messages.json',
+        'npc_trainer_names.json',
     ],
+
     command: [
-        datagen_trainer_exe,
-        meson.current_build_dir(),
-        trainer_data_dir,
+        trainerproc_exe,
+        '-M', '@DEPFILE@',
+        '-o', meson.current_build_dir(),
+        meson.global_build_root() / 'generated' / 'trainers.h',
+        meson.current_source_dir() / 'data',
     ],
-    env: trainer_env,
-    depend_files: [
-        trainer_data_files,
-    ],
+
+    depfile: 'trainer_data.d',
 )
 
-nitrofs_files += datagen_trainer_out
+nitrofs_files += trainer_data
+trainer_data_outputs = trainer_data.to_list()
+h_headers += trainer_data_outputs.slice(4, 5)
+trainer_text_banks = trainer_data_outputs.slice(5, trainer_data_outputs.length())
 
 
 subdir('classes')

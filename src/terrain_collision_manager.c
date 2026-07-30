@@ -21,12 +21,6 @@
 #define INVALID_TILE_ATTRIBUTES 0xFF
 #define INVALID_TILE_BEHAVIOR   0xFF
 
-enum VerticalDirection {
-    VERTICAL_DIRECTION_DOWN = -1,
-    VERTICAL_DIRECTION_NONE,
-    VERTICAL_DIRECTION_UP
-};
-
 static const fx32 GetHeight(const FieldSystem *fieldSystem, const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, u8 *newObjectHeightSourceOut);
 static const fx32 GetSimpleHeight(const FieldSystem *fieldSystem, const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, u8 *newObjectHeightSourceOut);
 static BOOL GetTileAttributes(const FieldSystem *fieldSystem, const int tileX, const int tileZ, u16 *attributes);
@@ -297,7 +291,7 @@ BOOL TerrainCollisionManager_WillMapObjectCollide(const FieldSystem *fieldSystem
         if (!isColliding && newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_DYNAMIC) {
             u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileZ);
 
-            if (TileBehavior_IsPastoriaGymWater(tileBehavior)) {
+            if (TileBehavior_HasDynamicHeightCollision(tileBehavior)) {
                 return TRUE;
             }
         }
@@ -327,7 +321,7 @@ BOOL TerrainCollisionManager_WillPlayerCollide(FieldSystem *fieldSystem, const V
             if (!isColliding && newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_DYNAMIC) {
                 u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileZ);
 
-                if (TileBehavior_IsPastoriaGymWater(tileBehavior)) {
+                if (TileBehavior_HasDynamicHeightCollision(tileBehavior)) {
                     return TRUE;
                 }
             }

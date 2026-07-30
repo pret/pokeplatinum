@@ -83,7 +83,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_217_SKIER_SHAWN",
+            "id": "LOCALID_SKIER_SHAWN",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_WEST_SOUTH_EAST_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -100,7 +100,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_SKIER_LEXIE",
+            "id": "LOCALID_SKIER_LEXIE",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_F",
             "movement_type": "MOVEMENT_TYPE_WALK_NORTH_WEST_SOUTH_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -117,7 +117,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_SKIER_BJORN",
+            "id": "LOCALID_SKIER_BJORN",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_EAST_SOUTH_WEST_NORTH",
             "trainer_type": "TRAINER_TYPE_SPIN_COUNTERCLOCKWISE",
@@ -134,7 +134,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_SKIER_MADISON",
+            "id": "LOCALID_SKIER_MADISON",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_F",
             "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -151,7 +151,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_NINJA_BOY_MATTHEW",
+            "id": "LOCALID_NINJA_BOY_MATTHEW",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_SNOW",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
@@ -168,7 +168,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_NINJA_BOY_ETHAN",
+            "id": "LOCALID_NINJA_BOY_ETHAN",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_DISGUISE_SNOW",
             "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
@@ -185,7 +185,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_BLACK_BELT_LUKE",
+            "id": "LOCALID_BLACK_BELT_LUKE",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_FACE_COUNTERCLOCKWISE",
@@ -202,7 +202,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_ACE_TRAINER_DALTON",
+            "id": "LOCALID_ACE_TRAINER_DALTON",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -219,7 +219,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_ACE_TRAINER_OLIVIA",
+            "id": "LOCALID_ACE_TRAINER_OLIVIA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -236,7 +236,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_ARROW_SIGNPOST_9",
+            "id": "LOCALID_ARROW_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -298,7 +298,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_ICE_ROCK_13",
+            "id": "LOCALID_ICE_ROCK",
             "graphics_id": "OBJ_EVENT_GFX_ICE_ROCK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -313,7 +313,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_SNOWPOINT_NPC_F_14",
+            "id": "LOCALID_SNOWPOINT_NPC_F",
             "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -328,11 +328,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_217_MAYLENE_15",
+            "id": "LOCALID_MAYLENE",
             "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0297",
+            "hidden_flag": "FLAG_HIDE_ROUTE_217_MAYLENE",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -410,7 +410,7 @@
             "y": 0,
             "width": 2,
             "length": 1,
-            "var": "VAR_UNK_0x40A8",
+            "var": "VAR_ROUTE_217_STATE",
             "value": 0
         }
     ]

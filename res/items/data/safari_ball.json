@@ -1,0 +1,30 @@
+{
+  "name": "Safari Ball",
+  "plural": "Safari Balls",
+  "article": "a",
+  "description": [
+    "A special Poké Ball that is used only in\n",
+    "the Great Marsh. It is decorated in a\n",
+    "camouflage pattern."
+  ],
+  "icon": {
+    "sprite": "safari_ball_NCGR",
+    "palette": "safari_ball_NCLR"
+  },
+  "gbaID": "GBA_ITEM_SAFARI_BALL",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BALLS",
+  "battlePocket": "BATTLE_POCKET_MASK_POKE_BALLS",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 1,
+  "itemUseParams": null
+}

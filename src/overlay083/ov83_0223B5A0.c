@@ -6,8 +6,8 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/tv_broadcast.h"
+#include "struct_decls/wi_fi_list.h"
 
 #include "nintendo_wfc/main.h"
 #include "overlay083/ov83_0223C958.h"
@@ -21,6 +21,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "game_options.h"
@@ -36,12 +37,11 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "system.h"
-#include "tv_episode_segment.h"
-#include "unk_0202ACE0.h"
+#include "tv_segment.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 #include "unk_0203909C.h"
 #include "vram_transfer.h"
+#include "wifi_list.h"
 
 typedef int (*UnkFuncPtr_ov83_0224024C)(UnkStruct_ov83_0223C344 *, UnkStruct_ov83_0223B784 *, int *);
 
@@ -195,7 +195,7 @@ int ov83_0223B65C(ApplicationManager *appMan, int *param1)
     }
 
     ov83_0223CBA4(v3);
-    sub_02038A1C(v3->heapID, v3->unk_20);
+    CommManager_Dummy_02038A1C(v3->heapID, v3->unk_20);
 
     if (v3->unk_04) {
         return 1;
@@ -356,7 +356,7 @@ static int ov83_0223B964(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -624,7 +624,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     case 6:
         return param1->unk_0C + 1;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -710,8 +710,8 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     case 8:
         v0 = ov83_0223F7DC(&param1->unk_1480);
 
-        if ((v0 == 1) || (v0 == 2)) {
-            if (v0 == 1) {
+        if (v0 == YES_NO_TOUCH_MENU_YES || v0 == YES_NO_TOUCH_MENU_NO) {
+            if (v0 == YES_NO_TOUCH_MENU_YES) {
                 if (PoffinCase_CountFilledSlots(param0->unk_10->poffinCase) >= MAX_POFFINS) {
                     ov83_0223EC8C(&param1->unk_6A0, 2);
                     (*param2) = 10;
@@ -765,7 +765,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

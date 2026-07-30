@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02061830_decl.h"
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
+#include "struct_decls/map_object_manager.h"
 
 #include "overlay005/const_ov5_021FC194.h"
 #include "overlay005/ov5_021ECE40.h"
@@ -96,7 +96,7 @@ static const UnkStruct_ov5_021ECD10 *ov5_021ECD10(int param0)
         v0++;
     } while (v0->unk_00 != 0xffff);
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
@@ -146,12 +146,12 @@ void ov5_021ECDA0(const MapObject *param0, VecFx32 *adjustedObjectPos)
     adjustedObjectPos->z = objectPosition.z + jumpOffset.z + posOffset.z + terrainSpriteOffset.z;
 }
 
-void ov5_021ECDFC(MapObject *param0, int param1)
+void ov5_021ECDFC(MapObject *mapObj, int dir)
 {
-    MapObject_TryFace(param0, param1);
+    MapObject_TryFace(mapObj, dir);
 
-    if (sub_02062D4C(param0) == 1) {
-        sub_02062B68(param0);
+    if (sub_02062D4C(mapObj) == 1) {
+        sub_02062B68(mapObj);
     }
 }
 

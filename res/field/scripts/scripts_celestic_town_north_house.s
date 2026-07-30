@@ -2,77 +2,77 @@
 #include "res/text/bank/celestic_town_north_house.h"
 
 
-    ScriptEntry _001C
-    ScriptEntry _0056
-    ScriptEntry _00A1
-    ScriptEntry _00B4
-    ScriptEntry _001A
-    ScriptEntry _00C5
+    ScriptEntry CelesticTownNorthHouse_ExpertM
+    ScriptEntry CelesticTownNorthHouse_Elder
+    ScriptEntry CelesticTownNorthHouse_Lass
+    ScriptEntry CelesticTownNorthHouse_Scroll
+    ScriptEntry CelesticTownNorthHouse_OnTransition
+    ScriptEntry CelesticTownNorthHouse_Book
     ScriptEntryEnd
 
-_001A:
+CelesticTownNorthHouse_OnTransition:
     End
 
-_001C:
+CelesticTownNorthHouse_ExpertM:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message CelesticTownNorthHouse_Text_LikeToKnowMesprit
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _0043
-    Message 1
-    GoTo _004E
+    GoToIfEq VAR_RESULT, MENU_NO, CelesticTownNorthHouse_YouWouldnt
+    Message CelesticTownNorthHouse_Text_MespritInfo
+    GoTo CelesticTownNorthHouse_ExpertMEnd
     End
 
-_0043:
-    Message 2
-    GoTo _004E
+CelesticTownNorthHouse_YouWouldnt:
+    Message CelesticTownNorthHouse_Text_YouWouldnt
+    GoTo CelesticTownNorthHouse_ExpertMEnd
     End
 
-_004E:
+CelesticTownNorthHouse_ExpertMEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_0056:
+CelesticTownNorthHouse_Elder:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_GAME_COMPLETED, _007F
-    GoToIfSet FLAG_FIRST_ARRIVAL_CANALAVE_CITY, _008E
-    Message 3
-    GoTo _0099
+    GoToIfSet FLAG_GAME_COMPLETED, CelesticTownNorthHouse_IDidSomeResearch
+    GoToIfSet FLAG_FIRST_ARRIVAL_CANALAVE_CITY, CelesticTownNorthHouse_CelesticOldestTown
+    Message CelesticTownNorthHouse_Text_UsingSurfGoPlaces
+    GoTo CelesticTownNorthHouse_ElderEnd
     End
 
-_007F:
-    SetFlag FLAG_UNK_0x0145
-    Message 5
-    GoTo _0099
+CelesticTownNorthHouse_IDidSomeResearch:
+    SetFlag FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR
+    Message CelesticTownNorthHouse_Text_IDidSomeResearch
+    GoTo CelesticTownNorthHouse_ElderEnd
     End
 
-_008E:
-    Message 4
-    GoTo _0099
+CelesticTownNorthHouse_CelesticOldestTown:
+    Message CelesticTownNorthHouse_Text_CelesticOldestTown
+    GoTo CelesticTownNorthHouse_ElderEnd
     End
 
-_0099:
+CelesticTownNorthHouse_ElderEnd:
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00A1:
-    NPCMessage 9
+CelesticTownNorthHouse_Lass:
+    NPCMessage CelesticTownNorthHouse_Text_MySisterStudiesMyths
     End
 
-_00B4:
-    EventMessage 10
+CelesticTownNorthHouse_Scroll:
+    EventMessage CelesticTownNorthHouse_Text_InvaluableScroll
     End
 
-_00C5:
+CelesticTownNorthHouse_Book:
     BufferPlayerName 0
-    NPCMessage 11
+    NPCMessage CelesticTownNorthHouse_Text_OldBook
     End
 
     .balign 4, 0

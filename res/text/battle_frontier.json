@@ -2,21 +2,21 @@
   "key": 52134,
   "messages": [
     {
-      "id": "pl_msg_00000308_00000",
+      "id": "BattleFrontier_Text_HeightIsSymbolOfChallenge",
       "en_US": [
         "Battle Tower... Its height is a symbol\n",
         "of its challenge to Trainers."
       ]
     },
     {
-      "id": "pl_msg_00000308_00001",
+      "id": "BattleFrontier_Text_TeamUpWithFriend",
       "en_US": [
         "All the places in the Battle Frontier\n",
         "let you team up with a friend!"
       ]
     },
     {
-      "id": "pl_msg_00000308_00002",
+      "id": "BattleFrontier_Text_LearnAboutPokemon",
       "en_US": [
         "I don’t think it’s good enough for an\n",
         "Idol to just be cute, sing, and dance.\r",
@@ -25,14 +25,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00003",
+      "id": "BattleFrontier_Text_BattleWithWorldsBest",
       "en_US": [
         "I get to battle with the world’s best\n",
         "in do-or-die situations here."
       ]
     },
     {
-      "id": "pl_msg_00000308_00004",
+      "id": "BattleFrontier_Text_MostImportantIsLady",
       "en_US": [
         "The most important person in the Battle\n",
         "Castle is a lady.\r",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00005",
+      "id": "BattleFrontier_Text_PokemonAlwaysWithMe",
       "en_US": [
         "What makes me the most happy being\n",
         "a Trainer?\r",
@@ -49,14 +49,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00006",
+      "id": "BattleFrontier_Text_StoryBehindEveryPokemon",
       "en_US": [
         "Behind every Pokémon, there is a\n",
         "story. Isn’t that right, dear?"
       ]
     },
     {
-      "id": "pl_msg_00000308_00007",
+      "id": "BattleFrontier_Text_BeenTogetherLongTime",
       "en_US": [
         "Like a Pokémon and Trainer, we have\n",
         "been together for a long time.\r",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00008",
+      "id": "BattleFrontier_Text_ExpectSoMuchFromMaid",
       "en_US": [
         "People expect so much from a maid.\n",
         "Cooking, cleaning, and laundry...\r",
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00009",
+      "id": "BattleFrontier_Text_StrongIsWeak",
       "en_US": [
         "To be strong is to be weak.\n",
         "To be weak is to be strong.\r",
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00010",
+      "id": "BattleFrontier_Text_ThoseWhoLoveBattling",
       "en_US": [
         "There are those who love battling from\n",
         "deep in the cockles of their hearts.\r",
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00011",
+      "id": "BattleFrontier_Text_HowManyYears",
       "en_US": [
         "I wonder how many years it’s been since\n",
         "I first met a Pokémon?\r",
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00012",
+      "id": "BattleFrontier_Text_CommandInConfidence",
       "en_US": [
         "Trainers can command Pokémon to\n",
         "use moves in battle with confidence.\r",
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00013",
+      "id": "BattleFrontier_Text_TreatEveryBattleAsLast",
       "en_US": [
         "I treat every battle as if it were my\n",
         "last.\r",
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00014",
+      "id": "BattleFrontier_Text_CantOverlookSingleDetail",
       "en_US": [
         "The Pokémon’s type!\r",
         "The moves to be learned!\r",
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00015",
+      "id": "BattleFrontier_Text_LookForWhoToBlame",
       "en_US": [
         "You know, when I lose, the first thing\n",
         "I do is look for who to blame.\r",
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00016",
+      "id": "BattleFrontier_Text_WinToChallengeTheBoss",
       "en_US": [
         "There are five facilities in the Battle\n",
         "Frontier.\r",
@@ -158,14 +158,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00017",
+      "id": "BattleFrontier_Text_WayOfPokemonIsDeep",
       "en_US": [
         "I know it’s no revelation now, but...\n",
         "The way of Pokémon is deep."
       ]
     },
     {
-      "id": "pl_msg_00000308_00018",
+      "id": "BattleFrontier_Text_WinningWithRentalPokemon",
       "en_US": [
         "At the Battle Factory, you have to\n",
         "keep winning with rental Pokémon.\r",
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00019",
+      "id": "BattleFrontier_Text_MagikarpHasShotAtNo1",
       "en_US": [
         "The Battle Hall is where I want to be.\r",
         "Even the MAGIKARP I caught fishing\n",
@@ -182,14 +182,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00020",
+      "id": "BattleFrontier_Text_RideEbbsAndFlows",
       "en_US": [
         "My inflatable tube lets me ride out\n",
         "the ebbs and flows of life."
       ]
     },
     {
-      "id": "pl_msg_00000308_00021",
+      "id": "BattleFrontier_Text_TradeBPForPrizes",
       "en_US": [
         "Welcome to the Exchange Service\n",
         "Corner!\r",
@@ -198,11 +198,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00022",
+      "id": "BattleFrontier_Text_Dummy22",
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000308_00023",
+      "id": "BattleFrontier_Text_TradeBPForPrizes2",
       "en_US": [
         "Welcome to the Exchange Service\n",
         "Corner!\r",
@@ -211,56 +211,56 @@
       ]
     },
     {
-      "id": "pl_msg_00000308_00024",
+      "id": "BattleFrontier_Text_SignBattleTower",
       "en_US": [
         "Battle Tower\n",
         "Never Lose! Keep Winning!"
       ]
     },
     {
-      "id": "pl_msg_00000308_00025",
+      "id": "BattleFrontier_Text_SignBattleHall",
       "en_US": [
         "Battle Hall\n",
         "Let Each Pokémon Seek No. 1"
       ]
     },
     {
-      "id": "pl_msg_00000308_00026",
+      "id": "BattleFrontier_Text_SignBattleCastle",
       "en_US": [
         "Battle Castle\n",
         "Manage Battles with Castle Points "
       ]
     },
     {
-      "id": "pl_msg_00000308_00027",
+      "id": "BattleFrontier_Text_SignBattleArcade",
       "en_US": [
         "Battle Arcade\n",
         "Where Events Sway Outcomes"
       ]
     },
     {
-      "id": "pl_msg_00000308_00028",
+      "id": "BattleFrontier_Text_SignBattleFactory",
       "en_US": [
         "Battle Factory\n",
         "Win Consecutively with Rental Pokémon"
       ]
     },
     {
-      "id": "pl_msg_00000308_00029",
+      "id": "BattleFrontier_Text_StatueRepresentsTrainer",
       "en_US": [
         "A Trainer who just caught a Pokémon.\n",
         "That’s what this statue represents."
       ]
     },
     {
-      "id": "pl_msg_00000308_00030",
+      "id": "BattleFrontier_Text_TitleBoastfulOfCapture",
       "en_US": [
         "“Boastful of Capture”...\n",
         "That seems to be the title."
       ]
     },
     {
-      "id": "pl_msg_00000308_00031",
+      "id": "BattleFrontier_Text_ScaleModelBattleFrontier",
       "en_US": [
         "This...!\n",
         "A scale model of the Battle Frontier."

@@ -1,0 +1,30 @@
+{
+  "name": "Root Fossil",
+  "plural": "Root Fossils",
+  "article": "a",
+  "description": [
+    "A fossil of an ancient Pokémon that\n",
+    "lived in the sea. It appears to be\n",
+    "part of a plant root."
+  ],
+  "icon": {
+    "sprite": "root_fossil_NCGR",
+    "palette": "root_fossil_NCLR"
+  },
+  "gbaID": "GBA_ITEM_ROOT_FOSSIL",
+  "price": 1000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 100,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}

@@ -1,11 +1,12 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/fuego_ironworks_outside.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry FuegoIronworksOutside_Signboard
     ScriptEntryEnd
 
-_0006:
-    ShowLandmarkSign 0
+FuegoIronworksOutside_Signboard:
+    ShowLandmarkSign FuegoIronworksOutside_Text_SignFuegoIronworks
     End
 
     .balign 4, 0

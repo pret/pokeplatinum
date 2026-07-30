@@ -1,0 +1,121 @@
+{
+  "key": 50210,
+  "messages": [
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy0",
+      "garbage": 42
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy1",
+      "garbage": 69
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy2",
+      "garbage": 168
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy3",
+      "garbage": 52
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy4",
+      "garbage": 17
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy5",
+      "garbage": 76
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy6",
+      "garbage": 128
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy7",
+      "garbage": 174
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy8",
+      "garbage": 48
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy9",
+      "garbage": 17
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy10",
+      "garbage": 101
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy11",
+      "garbage": 108
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy12",
+      "garbage": 57
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy13",
+      "garbage": 17
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy14",
+      "garbage": 205
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy15",
+      "garbage": 160
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy16",
+      "garbage": 109
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy17",
+      "garbage": 14
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy18",
+      "garbage": 13
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Exit",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_BattlePark",
+      "en_US": "BATTLE PARK"
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_ExchangeServiceCorner",
+      "en_US": "EXCHANGE SERVICE CORNER"
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_BattleTower",
+      "en_US": "BATTLE TOWER"
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_PointCard",
+      "en_US": "POINT CARD"
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_BP",
+      "en_US": "BP"
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_LevelLimit",
+      "en_US": "LEVEL LIMIT"
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_SpeciesAndNumbers",
+      "en_US": "SPECIES & NUMBERS"
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_HoldItems",
+      "en_US": "HOLD ITEMS"
+    },
+    {
+      "id": "BattleParkGateToFightArea_Text_Dummy28",
+      "garbage": 51
+    }
+  ]
+}

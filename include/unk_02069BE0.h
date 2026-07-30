@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02069BE0_H
 #define POKEPLATINUM_UNK_02069BE0_H
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "overworld_anim_manager.h"
 

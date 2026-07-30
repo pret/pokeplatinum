@@ -86,12 +86,12 @@ static BOOL CharacterSprite_SpeciesIsSpinda(enum Species species)
     return FALSE;
 }
 
-static void CharacterSprite_LoadTiledPokemonSprite(enum NarcID narcID, int narcIdx, enum HeapID headID, int x, int y, int width, int height, void *buffer, u32 personality, BOOL isAnimated, int face, enum Species species)
+static void CharacterSprite_LoadTiledPokemonSprite(enum NarcID narcID, int narcIdx, enum HeapID heapID, int x, int y, int width, int height, void *buffer, u32 personality, BOOL isAnimated, int face, enum Species species)
 {
     BOOL speciesIsSpinda;
     NNSG2dCharacterData *monSpriteData = NULL;
 
-    CharacterSprite_LoadSpriteData(narcID, narcIdx, headID, &monSpriteData);
+    CharacterSprite_LoadSpriteData(narcID, narcIdx, heapID, &monSpriteData);
     PokemonSprite_Decrypt(monSpriteData->pRawData, narcID);
 
     speciesIsSpinda = CharacterSprite_SpeciesIsSpinda(species);

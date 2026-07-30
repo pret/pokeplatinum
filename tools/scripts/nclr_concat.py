@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-from os import SEEK_SET
+from os import SEEK_SET, SEEK_CUR
 import pathlib
 import struct
 
@@ -22,12 +22,16 @@ argparser.add_argument('-o', '--output',
                        help='Path to the output NCLR.')
 argparser.add_argument('-p', '--preserve-pcmp', action='store_true',
                        help="Preserve the values from each input NCLR's PCMP chunk.")
+argparser.add_argument('-r', '--row',
+                       default=-1,
+                       help="Only use an individual row of the input NCLRs.")
 
 args = argparser.parse_args()
 
 input_paths = map(pathlib.Path, args.input)
 output_path = pathlib.Path(args.output)
 preserve_pcmp = args.preserve_pcmp
+row = int(args.row)
 
 out_num_palettes = 0
 colors = bytearray()
@@ -60,7 +64,11 @@ for p in input_paths:
                 elif out_color_depth != color_depth:
                     print(f"Error: incompatible color depths: {p} has color depth {2 ** (color_depth - 1)}bpp, expected {2 ** (out_color_depth - 1)}bpp!")
                     exit(1)
-                colors.extend(nclr_in.read(data_len))
+                if row != -1:
+                    nclr_in.seek(row * 32, SEEK_CUR)
+                    colors.extend(nclr_in.read(32))
+                else:
+                    colors.extend(nclr_in.read(data_len))
             elif magic == PCMP_MAGIC:
                 found_pcmp = True
                 num_palettes, _, _ = struct.unpack(f"{endianness}HHI", nclr_in.read(8))

@@ -6,7 +6,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F0EB0.h"
@@ -1031,7 +1031,7 @@ static void FadeOut(void)
 
 static void HidePlayerMapObj(FieldSystem *fieldSystem, BOOL hidden)
 {
-    MapObject *playerMapObject = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *playerMapObject = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     MapObject_SetHidden(playerMapObject, hidden);
 }
 
@@ -1753,13 +1753,13 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
 
     // Palette Index 0: White Clouds
     for (i = 0; i < 1; i++) {
-        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, sCutInWindParticlePalette[i].memberIdx, FALSE, sCutInWindParticlePalette[i].resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD1);
+        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, sCutInWindParticlePalette[i].memberIdx, FALSE, sCutInWindParticlePalette[i].resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD1);
     }
 
     // Palette Index 1: Player Female
     if (cutIn->playerGender == 0) {
     } else {
-        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 4, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD1);
+        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 4, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD1);
         i++;
     }
 
@@ -1974,7 +1974,7 @@ static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData *
 
     NNS_G2dGetUnpackedPaletteData(nclrFile, paletteData);
 
-    Bg_LoadPalette(BG_LAYER_MAIN_3, (*paletteData)->pRawData, 32 * 1, 32 * 12);
+    Bg_LoadPalette(BG_LAYER_MAIN_3, (*paletteData)->pRawData, PALETTE_SIZE_BYTES, 32 * 12);
     Heap_Free(nclrFile);
 }
 
@@ -2249,16 +2249,16 @@ static void WindParticle_RunAnimFuncs(HMCutIn *cutIn, const VecFx32 *initialPos,
     v0 = OverworldAnimManagerList_InitManager(cutIn->unk_244, &sWindParticleAnimFuncs, initialPos, param4, &animData, 132);
 }
 
-static int WindParticleAnim_SetUpSprite(OverworldAnimManager *param0, void *windParticleAnimEnv)
+static int WindParticleAnim_SetUpSprite(OverworldAnimManager *animMan, void *windParticleAnimEnv)
 {
     VecFx32 position;
     WindParticleAnimEnv *env = windParticleAnimEnv;
-    const WindParticleAnimData *animData = OverworldAnimManager_GetUserData(param0);
+    const WindParticleAnimData *animData = OverworldAnimManager_GetUserData(animMan);
 
     env->data = *animData;
-    env->animID = OverworldAnimManager_GetID(param0);
+    env->animID = OverworldAnimManager_GetUserInt(animMan);
 
-    OverworldAnimManager_GetPosition(param0, &position);
+    OverworldAnimManager_GetPosition(animMan, &position);
 
     env->sprite = WindParticle_CreateSprite(env->data.cutIn, &position, env->data.spriteListPriority, env->animID);
     Sprite_SetDrawFlag(env->sprite, FALSE);
@@ -2266,23 +2266,23 @@ static int WindParticleAnim_SetUpSprite(OverworldAnimManager *param0, void *wind
     return 1;
 }
 
-static void WindParticleAnim_DeleteSprite(OverworldAnimManager *param0, void *windParticleAnimEnv)
+static void WindParticleAnim_DeleteSprite(OverworldAnimManager *animMan, void *windParticleAnimEnv)
 {
     WindParticleAnimEnv *env = windParticleAnimEnv;
     Sprite_Delete(env->sprite);
 }
 
-static void WindParticleAnim_AnimateParticle(OverworldAnimManager *param0, void *windParticleAnimEnv)
+static void WindParticleAnim_AnimateParticle(OverworldAnimManager *animMan, void *windParticleAnimEnv)
 {
     VecFx32 newPos;
     WindParticleAnimEnv *env = windParticleAnimEnv;
 
-    OverworldAnimManager_GetPosition(param0, &newPos);
+    OverworldAnimManager_GetPosition(animMan, &newPos);
 
     newPos.x += env->data.movementDelta.x;
     newPos.x %= (FX32_ONE * 512);
 
-    OverworldAnimManager_SetPosition(param0, &newPos);
+    OverworldAnimManager_SetPosition(animMan, &newPos);
     Sprite_SetPosition(env->sprite, &newPos);
 
     if (env->data.allowWindParticles == TRUE) {
@@ -2306,7 +2306,7 @@ static void WindParticleAnim_AnimateParticle(OverworldAnimManager *param0, void 
     }
 }
 
-static void WindParticleAnim_DoNothing(OverworldAnimManager *param0, void *windParticleAnimEnv)
+static void WindParticleAnim_DoNothing(OverworldAnimManager *animMan, void *windParticleAnimEnv)
 {
     WindParticleAnimEnv *env = windParticleAnimEnv;
 }
@@ -3049,7 +3049,7 @@ static void *FlyLanding_AllocFromHeapAtEnd(enum HeapID heapID, int size)
 
 static void HideAndStopPlayerMapObj(HMCutIn *cutIn, BOOL hidden)
 {
-    MapObject *playObj = Player_MapObject(cutIn->fieldSystem->playerAvatar);
+    MapObject *playObj = PlayerAvatar_GetMapObject(cutIn->fieldSystem->playerAvatar);
 
     MapObject_SetPauseMovementOff(playObj);
     MapObject_SetHidden(playObj, hidden);

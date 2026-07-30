@@ -1,20 +1,22 @@
 #include "unk_0205B33C.h"
 
 #include <nitro.h>
-#include <string.h>
 
-#include "struct_decls/struct_02014EC4_decl.h"
+#include "constants/union_room_message_types.h"
+#include "constants/versions.h"
+
 #include "struct_decls/struct_0205B43C_decl.h"
-#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205B4F8.h"
 
 #include "field/field_system.h"
-#include "global/pm_version.h"
 
 #include "appearance.h"
+#include "comm_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "easy_chat_sentence.h"
+#include "easy_chat_words.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
@@ -27,16 +29,16 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "trainer_card.h"
+#include "trainer_case.h"
 #include "trainer_info.h"
-#include "unk_02014A84.h"
-#include "unk_02014D38.h"
 #include "unk_02033200.h"
-#include "unk_020366A0.h"
 #include "unk_02095E98.h"
 #include "unk_02099500.h"
 
 #include "constdata/const_020ED570.h"
+#include "res/text/bank/country_names.h"
+#include "res/text/bank/greetings.h"
+#include "res/text/bank/union_room.h"
 
 typedef void (*UnkFuncPtr_0205B43C)(UnkStruct_0205B43C *);
 
@@ -78,10 +80,10 @@ struct UnkStruct_0205B43C_t {
     int unk_170;
     u16 unk_174;
     u8 unk_176[2];
-    Sentence unk_178;
+    EasyChatSentence unk_178;
     BOOL unk_180;
-    TrainerCard *unk_184;
-    TrainerCard *unk_188[2];
+    TrainerCase *unk_184;
+    TrainerCase *unk_188[2];
 };
 
 static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem);
@@ -99,8 +101,8 @@ static void sub_0205B6C4(UnkStruct_0205B43C *param0);
 static void sub_0205B694(UnkStruct_0205B43C *param0);
 static void sub_0205C160(UnkStruct_0205B43C *param0);
 static int sub_0205B4D4(void);
-static int sub_0205BAE8(UnkStruct_0205B43C *param0, int param1);
-static int sub_0205BCD4(int param0, int param1, StringTemplate *param2);
+static int UnionRoom_GetTrainerBusyMessage(UnkStruct_0205B43C *param0, int param1);
+static int UnionRoom_GetStartMessage(int param0, int gender, StringTemplate *strTemplate);
 static void sub_0205B408(UnkStruct_0205B43C *param0);
 static void sub_0205BFF0(UnkStruct_0205B4F8 *param0);
 
@@ -125,7 +127,7 @@ UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem)
     }
 
     CommFieldCmd_Init((void *)fieldSystem);
-    sub_02037B58(2);
+    CommManager_SetMaxNumConnections(2);
     sub_0205B5B4(v0, sub_0205B408, 40);
 
     return v0;
@@ -151,7 +153,7 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
     }
 
     saveData = FieldSystem_GetSaveData(fieldSystem);
-    sub_020369EC(saveData);
+    CommManager_StartUnion(saveData);
 
     v2 = (UnkStruct_0205B43C *)Heap_Alloc(HEAP_ID_31, sizeof(UnkStruct_0205B43C));
     MI_CpuClear8(v2, sizeof(UnkStruct_0205B43C));
@@ -171,10 +173,10 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
 
 static void sub_0205B408(UnkStruct_0205B43C *param0)
 {
-    Sentence v0;
+    EasyChatSentence v0;
 
     if (CommServerClient_IsInitialized()) {
-        sub_02014AB4(&v0);
+        EasyChatSentence_InitWithEnteredUnionRoom(&v0);
         sub_0205C12C(&v0);
         sub_0205C010(param0, &v0);
         sub_0205B5B4(param0, sub_0205B43C, 40);
@@ -185,7 +187,7 @@ static int Unk_021C0850;
 
 static void sub_0205B43C(UnkStruct_0205B43C *param0)
 {
-    if (sub_02036AA0()) {
+    if (CommManager_IsConnectUnionServer()) {
         Unk_021C0850 = 0;
         sub_0205B5B4(param0, sub_0205B4F8, 0);
         return;
@@ -196,15 +198,15 @@ static void sub_0205B43C(UnkStruct_0205B43C *param0)
 
         if (param0->unk_20 == 1) {
             if (param0->unk_30 == 5) {
-                sub_02037888(param0->unk_18);
+                CommManager_StartMixRecordsClient(param0->unk_18);
             } else if (param0->unk_30 == 6) {
-                sub_020378C8(param0->unk_18);
+                CommManager_StartSpinTradeClient(param0->unk_18);
             } else {
-                sub_02036A38(param0->unk_18);
+                CommManager_ConnectUnion(param0->unk_18);
             }
         } else if (param0->unk_20 == 2) {
             sub_02095E98(NULL);
-            sub_02037854(param0->unk_18);
+            CommManager_StartDrawClient(param0->unk_18);
         }
 
         sub_0205B5B4(param0, sub_0205B634, 12);
@@ -214,7 +216,7 @@ static void sub_0205B43C(UnkStruct_0205B43C *param0)
 
 static void sub_0205B4B0(UnkStruct_0205B43C *param0)
 {
-    if (sub_02036B44() == 1) {
+    if (CommManager_UnionRestartSuccess() == 1) {
         CommFieldCmd_Init((void *)param0->fieldSystem);
         sub_0205B5B4(param0, sub_0205B43C, 2);
     }
@@ -252,13 +254,13 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
 
     if (CommSys_IsClientConnecting() && (sub_0205B4D4() == 1) && (v0->unk_1C != 4)) {
         CommInfo_SendPlayerInfo();
-        CommMan_SetErrorHandling(1, 1);
+        CommManager_SetErrorHandling(1, 1);
         sub_0205BEA8(11);
         sub_0205B5B4(param0, sub_0205B578, 0);
     }
 
-    if (sub_02036AA0() == 0) {
-        sub_02036AC4();
+    if (CommManager_IsConnectUnionServer() == 0) {
+        CommManager_UnionRestartSearch();
         sub_0205C160(param0);
         sub_0205BEA8(0);
         sub_0205B5B4(param0, sub_0205B4B0, 2);
@@ -267,12 +269,12 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
 
 static void sub_0205B578(UnkStruct_0205B43C *param0)
 {
-    if (sub_02038938() && (0 == CommSys_IsClientConnecting())) {
+    if (CommManager_CheckError() && (0 == CommSys_IsClientConnecting())) {
         return;
     }
 
     if (0 == CommSys_IsClientConnecting()) {
-        sub_02036AC4();
+        CommManager_UnionRestartSearch();
         sub_0205C160(param0);
         sub_0205BEA8(0);
         sub_0205B5B4(param0, sub_0205B4B0, 2);
@@ -315,7 +317,7 @@ static void sub_0205B5FC(UnkStruct_0205B43C *param0)
         return;
     }
 
-    sub_02036B68();
+    CommManager_ExitUnion();
     sub_0205B5B4(param0, sub_0205B620, 0);
 }
 
@@ -330,7 +332,7 @@ static void sub_0205B620(UnkStruct_0205B43C *param0)
 
 static void sub_0205B634(UnkStruct_0205B43C *param0)
 {
-    if (1 == sub_02036A68()) {
+    if (1 == CommManager_IsConnectedUnionClientSuccess()) {
         CommInfo_SendPlayerInfo();
         sub_0205B5B4(param0, sub_0205B6C4, 3);
         return;
@@ -341,7 +343,7 @@ static void sub_0205B634(UnkStruct_0205B43C *param0)
         sub_0205B5B4(param0, sub_0205B4F8, 0);
     }
 
-    if (0 == sub_02036A68()) {
+    if (0 == CommManager_IsConnectedUnionClientSuccess()) {
         return;
     }
 
@@ -356,7 +358,7 @@ static void sub_0205B634(UnkStruct_0205B43C *param0)
 static void sub_0205B694(UnkStruct_0205B43C *param0)
 {
     if (!FieldSystem_IsRunningTask(param0->fieldSystem)) {
-        sub_02036AC4();
+        CommManager_UnionRestartSearch();
         sub_0205C160(param0);
         sub_0205BEA8(0);
         sub_0205B5B4(param0, sub_0205B4B0, 2);
@@ -365,17 +367,17 @@ static void sub_0205B694(UnkStruct_0205B43C *param0)
 
 static void sub_0205B6C4(UnkStruct_0205B43C *param0)
 {
-    if (1 == sub_02036A68()) {
+    if (1 == CommManager_IsConnectedUnionClientSuccess()) {
         if (CommInfo_TrainerInfo(CommSys_CurNetId()) != NULL) {
             param0->unk_20 = 0;
             param0->unk_1C = 1;
             param0->unk_44 = 0;
 
-            CommMan_SetErrorHandling(1, 1);
+            CommManager_SetErrorHandling(1, 1);
             sub_0205B5B4(param0, sub_0205B72C, 3);
         }
-    } else if (0 == sub_02036A68()) {
-        sub_02036AC4();
+    } else if (0 == CommManager_IsConnectedUnionClientSuccess()) {
+        CommManager_UnionRestartSearch();
         sub_0205C160(param0);
         sub_0205B5B4(param0, sub_0205B4B0, 2);
 
@@ -388,8 +390,8 @@ static void sub_0205B6C4(UnkStruct_0205B43C *param0)
 
 static void sub_0205B72C(UnkStruct_0205B43C *param0)
 {
-    if (0 == sub_02036A68()) {
-        sub_02036AC4();
+    if (0 == CommManager_IsConnectedUnionClientSuccess()) {
+        CommManager_UnionRestartSearch();
         sub_0205C160(param0);
         sub_0205B5B4(param0, sub_0205B4B0, 2);
 
@@ -550,7 +552,7 @@ int sub_0205B804(UnkStruct_0205B43C *param0, int param1, u16 param2)
         break;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 
     return 0;
 }
@@ -571,11 +573,11 @@ u32 sub_0205B8DC(UnkStruct_0205B43C *param0)
     }
 
     if (CommSys_CurNetId() == 0) {
-        if (sub_02036AA0() == 1) {
+        if (CommManager_IsConnectUnionServer() == 1) {
             return param0->unk_40;
         }
     } else {
-        if (sub_02036A68() == 1) {
+        if (CommManager_IsConnectedUnionClientSuccess() == 1) {
             return param0->unk_40;
         }
     }
@@ -585,7 +587,7 @@ u32 sub_0205B8DC(UnkStruct_0205B43C *param0)
 
 u32 sub_0205B91C(UnkStruct_0205B43C *param0)
 {
-    if (sub_02036AA0() == 1) {
+    if (CommManager_IsConnectUnionServer() == 1) {
         return param0->unk_30;
     }
 
@@ -659,7 +661,7 @@ void sub_0205B9C4(int param0, int param1, void *param2, void *param3)
     fieldSystem->unk_7C->unk_40 = *v1;
 
     if (*v1 == 4) {
-        sub_0203781C();
+        CommManager_StartDrawServer();
     }
 }
 
@@ -688,18 +690,18 @@ int sub_0205B9EC(UnkStruct_0205B43C *param0, int param1)
 void sub_0205BA08(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
-    TrainerCard *trainerCard = (TrainerCard *)param2;
+    TrainerCase *trainerCase = (TrainerCase *)param2;
     TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     void *journalEntryOnlineEvent;
 
     int i, v5 = 0;
     u8 *v6 = (u8 *)param2;
 
-    for (i = 0; i < sizeof(TrainerCard); i++) {
+    for (i = 0; i < sizeof(TrainerCase); i++) {
         v5 ^= v6[i];
     }
 
-    trainerCard->unk_66A = 1;
+    trainerCase->unk_66A = 1;
 
     if (param0 != CommSys_CurNetId()) {
         journalEntryOnlineEvent = JournalEntry_CreateEventGreetedInUnionRoom((u16 *)TrainerInfo_Name(trainerInfo), TrainerInfo_Gender(trainerInfo), 31);
@@ -745,138 +747,138 @@ void sub_0205BAAC(int param0)
     CommSys_SendData(101, &v0, 1);
 }
 
-static const int Unk_020ED560[2][2] = {
-    { 0x2C, 0x68 },
-    { 0x2D, 0x69 }
+static const int sMessagesShowingTrainerCase[][2] = {
+    { UnionRoom_Text_ShowTrainerCaseMale, UnionRoom_Text_ShowTrainerCaseFemale },
+    { UnionRoom_Text_ShowingTrainerCaseMale, UnionRoom_Text_ShowingTrainerCaseFemale }
 };
 
-static const int Unk_020ED600[4][2] = {
-    { 0x35, 0x71 },
-    { 0x36, 0x72 },
-    { 0x37, 0x73 },
-    { 0x38, 0x74 }
+static const int sMessagesDrawing[][2] = {
+    { UnionRoom_Text_DrawingMale1, UnionRoom_Text_DrawingFemale1 },
+    { UnionRoom_Text_DrawingMale2, UnionRoom_Text_DrawingFemale2 },
+    { UnionRoom_Text_DrawingMale3, UnionRoom_Text_DrawingFemale3 },
+    { UnionRoom_Text_DrawingMale4, UnionRoom_Text_DrawingFemale4 }
 };
 
-static const int Unk_020ED620[4][2] = {
-    { 0x3D, 0x79 },
-    { 0x3E, 0x7A },
-    { 0x3F, 0x7B },
-    { 0x40, 0x7C }
+static const int sMessagesBattling[][2] = {
+    { UnionRoom_Text_BattlingMale1, UnionRoom_Text_BattlingFemale1 },
+    { UnionRoom_Text_BattlingMale2, UnionRoom_Text_BattlingFemale2 },
+    { UnionRoom_Text_BattlingMale3, UnionRoom_Text_BattlingFemale3 },
+    { UnionRoom_Text_BattlingMale4, UnionRoom_Text_BattlingFemale4 }
 };
 
-static const int Unk_020ED550[2][2] = {
-    { 0x44, 0x80 },
-    { 0x45, 0x81 }
+static const int sMessagesTrading[][2] = {
+    { UnionRoom_Text_TradingMale1, UnionRoom_Text_TradingFemale1 },
+    { UnionRoom_Text_TradingMale2, UnionRoom_Text_TradingFemale2 }
 };
 
-static const int Unk_020ED640[4][2] = {
-    { 0x4F, 0x8B },
-    { 0x50, 0x8C },
-    { 0x51, 0x8D },
-    { 0x52, 0x8E }
+static const int sMessagesMixingRecords[][2] = {
+    { UnionRoom_Text_MixingRecordsMale1, UnionRoom_Text_MixingRecordsFemale1 },
+    { UnionRoom_Text_MixingRecordsMale2, UnionRoom_Text_MixingRecordsFemale2 },
+    { UnionRoom_Text_MixingRecordsMale3, UnionRoom_Text_MixingRecordsFemale3 },
+    { UnionRoom_Text_MixingRecordsMale4, UnionRoom_Text_MixingRecordsFemale4 }
 };
 
-static const int Unk_020ED660[4][2] = {
-    { 0x5D, 0x99 },
-    { 0x5E, 0x9A },
-    { 0x5F, 0x9B },
-    { 0x60, 0x9C }
+static const int sMessagesSpinTrading[][2] = {
+    { UnionRoom_Text_SpinTradingMale1, UnionRoom_Text_SpinTradingFemale1 },
+    { UnionRoom_Text_SpinTradingMale2, UnionRoom_Text_SpinTradingFemale2 },
+    { UnionRoom_Text_SpinTradingMale3, UnionRoom_Text_SpinTradingFemale3 },
+    { UnionRoom_Text_SpinTradingMale4, UnionRoom_Text_SpinTradingFemale4 }
 };
 
-static const int Unk_020ED6E8[][2] = {
-    { 0x2C, 0x68 },
-    { 0x3A, 0x76 },
-    { 0x42, 0x7E },
-    { 0x2F, 0x6B },
-    { 0x49, 0x85 },
-    { 0x54, 0x90 },
-    { 0x54, 0x90 }
+static const int sMessagesStartActivity[][2] = {
+    { UnionRoom_Text_ShowTrainerCaseMale, UnionRoom_Text_ShowTrainerCaseFemale },
+    { UnionRoom_Text_LetsStartBattleMale, UnionRoom_Text_LetsStartBattleFemale },
+    { UnionRoom_Text_LetsStartTradeMale, UnionRoom_Text_LetsStartTradeFemale },
+    { UnionRoom_Text_LetsStartDrawMale, UnionRoom_Text_LetsStartDrawFemale },
+    { UnionRoom_Text_LetsStartMixRecordsMale, UnionRoom_Text_LetsStartMixRecordsFemale },
+    { UnionRoom_Text_LetsStartSpinTradeMale, UnionRoom_Text_LetsStartSpinTradeFemale },
+    { UnionRoom_Text_LetsStartSpinTradeMale, UnionRoom_Text_LetsStartSpinTradeFemale }
 };
 
-static const int Unk_020ED520[2] = {
-    0x25,
-    0x61
+static const int sMessagesThisIsPlayerAskDoSomething[2] = {
+    UnionRoom_Text_ThisIsPlayerSomethingToDoMale,
+    UnionRoom_Text_ItsPlayerDoSomethingFemale
 };
 
-static const int Unk_020ED548[2] = {
-    0x28,
-    0x64
+static const int sMessagesTrainerAppearsBusy[2] = {
+    UnionRoom_Text_TrainersAppearsBusy,
+    UnionRoom_Text_TrainersAppearsBusyFemale
 };
 
-static const int Unk_020ED680[][2] = {
-    { 0x2B, 0x67 },
-    { 0x30, 0x6C },
-    { 0x3B, 0x77 },
-    { 0x43, 0x7F },
-    { 0x55, 0x91 },
-    { 0x4A, 0x86 }
+static const int sMessagesDeclinedStartActivity[][2] = {
+    { UnionRoom_Text_DeclinedShowTrainerCaseMale, UnionRoom_Text_DeclinedShowTrainerCaseFemale },
+    { UnionRoom_Text_DeclinedDrawMale, UnionRoom_Text_DeclinedDrawFemale },
+    { UnionRoom_Text_DeclinedBattleMale, UnionRoom_Text_DeclinedBattleFemale },
+    { UnionRoom_Text_DeclinedTradeMale, UnionRoom_Text_DeclinedTradeFemale },
+    { UnionRoom_Text_DeclinedUnusedMale, UnionRoom_Text_DeclinedUnusedFemale },
+    { UnionRoom_Text_DeclinedSpinTradeMixRecordsMale, UnionRoom_Text_DeclinedSpinTradeMixRecordsFemale }
 };
 
-static const int Unk_020ED5CC[][2] = {
-    { 0x3C, 0x78 },
-    { 0x46, 0x82 },
-    { 0x56, 0x92 }
+static const int sMessagesRequirements[][2] = {
+    { UnionRoom_Text_NeedTwoLv30PokemonToBattleMale, UnionRoom_Text_NeedTwoLv30PokemonToBattleFemale },
+    { UnionRoom_Text_CantTradeIfOnePokemonMale, UnionRoom_Text_CantTradeIfOnePokemonFemale },
+    { UnionRoom_Text_NeedEggToSpinTradeMale, UnionRoom_Text_NeedEggToSpinTradeFemale }
 };
 
-static const int Unk_020ED6B0[][2] = {
-    { 0x2A, 0x66 },
-    { 0x39, 0x75 },
-    { 0x41, 0x7D },
-    { 0x2E, 0x6A },
-    { 0x48, 0x84 },
-    { 0x53, 0x8F },
-    { 0x53, 0x8F }
+static const int sMessagesWaitForAnswer[][2] = {
+    { UnionRoom_Text_HeresMyTrainerCase, UnionRoom_Text_IllShowMyTrainerCase },
+    { UnionRoom_Text_WaitForBattleAnswerMale, UnionRoom_Text_WaitForBattleAnswerFemale },
+    { UnionRoom_Text_WaitForTradeAnswerMale, UnionRoom_Text_WaitForTradeAnswerFemale },
+    { UnionRoom_Text_WaitForDrawAnswerMale, UnionRoom_Text_WaitForDrawAnswerFemale },
+    { UnionRoom_Text_WaitForMixRecordsAnswerMale, UnionRoom_Text_WaitForMixRecordsAnswerFemale },
+    { UnionRoom_Text_WaitForSpinTradeAnswerMale, UnionRoom_Text_WaitForSpinTradeAnswerFemale },
+    { UnionRoom_Text_WaitForSpinTradeAnswerMale, UnionRoom_Text_WaitForSpinTradeAnswerFemale }
 };
 
-static const int Unk_020ED584[][2] = {
-    { 0x31, 0x6D },
-    { 0x4B, 0x87 },
-    { 0x57, 0x93 }
+static const int sMessagesAskJoinActivity[][2] = {
+    { UnionRoom_Text_AskJoinDrawMale, UnionRoom_Text_AskJoinDrawFemale },
+    { UnionRoom_Text_AskJoinMixRecordsMale, UnionRoom_Text_AskJoinMixRecordsFemale },
+    { UnionRoom_Text_AskJoinSpinTradeMale, UnionRoom_Text_AskJoinSpinTradeFemale }
 };
 
-static const int Unk_020ED59C[][2] = {
-    { 0x33, 0x6F },
-    { 0x4D, 0x89 },
-    { 0x59, 0x95 }
+static const int sMessagesJoinedActivity[][2] = {
+    { UnionRoom_Text_LetsDrawTogetherMale, UnionRoom_Text_LetsGetDrawingFemale },
+    { UnionRoom_Text_LetsMixRecordsTogetherMale, UnionRoom_Text_LetsMixRecordsTogetherFemale },
+    { UnionRoom_Text_LetsSpinTradeTogetherMale, UnionRoom_Text_LetsSpinTradeTogetherFemale }
 };
 
-static const int Unk_020ED5B4[][2] = {
-    { 0x32, 0x6E },
-    { 0x4C, 0x88 },
-    { 0x58, 0x94 }
+static const int sMessagesDeclinedJoinActivity[][2] = {
+    { UnionRoom_Text_DeclinedJoinDrawMale, UnionRoom_Text_DeclinedJoinDrawFemale },
+    { UnionRoom_Text_DeclinedJoinMixRecordsMale, UnionRoom_Text_DeclinedJoinMixRecordsFemale },
+    { UnionRoom_Text_DeclinedJoinSpinTradeMale, UnionRoom_Text_DeclinedJoinSpinTradeFemale }
 };
 
-static const int Unk_020ED530[] = {
-    0x27,
-    0x63
+static const int sMessagesDoSomethingElse[] = {
+    UnionRoom_Text_DoAnythingElseMale,
+    UnionRoom_Text_DoSomethingElseFemale
 };
 
-static const int Unk_020ED528[2] = {
-    0x47,
-    0x83
+static const int sMessagesAskIfYouWantSomething[2] = {
+    UnionRoom_Text_ShoutIfYouWantSomethingMale,
+    UnionRoom_Text_AskIfYouWantSomethingFemale
 };
 
-static const int Unk_020ED538[2] = {
-    0x26,
-    0x62
+static const int sMessagesSomethingElseToDo[2] = {
+    UnionRoom_Text_SorrySomethingElseToDoMale,
+    UnionRoom_Text_SorrySomethingElseToDoFemale
 };
 
-static const int Unk_020ED540[2] = {
-    0x5C,
-    0x98
+static const int sMessagesBadEgg[2] = {
+    UnionRoom_Text_BadEggInPartyMale,
+    UnionRoom_Text_BadEggInPartyFemale
 };
 
 const u16 Unk_020ED570[] = {
-    0xA,
-    0xE,
-    0x12,
-    0x16,
-    0x1A,
-    0x1E,
-    0x22,
-    0x26,
-    0x2A,
-    0x2E
+    10,
+    14,
+    18,
+    22,
+    26,
+    30,
+    34,
+    38,
+    42,
+    46
 };
 
 static int sub_0205BAC0(int param0)
@@ -892,12 +894,9 @@ static int sub_0205BAC0(int param0)
     return -1;
 }
 
-static int sub_0205BAE8(UnkStruct_0205B43C *param0, int param1)
+static int UnionRoom_GetTrainerBusyMessage(UnkStruct_0205B43C *param0, int param1)
 {
-    int v0, v1;
-    TrainerInfo *v2;
-    UnkStruct_0203330C *v3;
-    UnkStruct_0205B4F8 *v4;
+    int gender, v1;
 
     if (param1 > 9) {
         v1 = sub_0205BAC0(param1);
@@ -907,198 +906,189 @@ static int sub_0205BAE8(UnkStruct_0205B43C *param0, int param1)
     }
 
     if (param0->unk_110[v1] == NULL) {
-        return 40;
+        return UnionRoom_Text_TrainersAppearsBusy;
     }
 
-    v2 = sub_02033FB0(v1);
-    v3 = (UnkStruct_0203330C *)param0->unk_110[v1]->gameInfo.userGameInfo;
-    v4 = (UnkStruct_0205B4F8 *)v3->unk_30;
+    TrainerInfo *trainerInfo = sub_02033FB0(v1);
+    UnkStruct_0203330C *v3 = (UnkStruct_0203330C *)param0->unk_110[v1]->gameInfo.userGameInfo;
+    UnkStruct_0205B4F8 *v4 = (UnkStruct_0205B4F8 *)v3->unk_30;
 
-    if (v2 == NULL) {
-        return 40;
+    if (trainerInfo == NULL) {
+        return UnionRoom_Text_TrainersAppearsBusy;
     }
 
     if (param1 > 9) {
-        v0 = v4->unk_18[(param1 - 10) % 4];
-        v0 = v0 >> 7;
+        gender = v4->unk_18[(param1 - 10) % 4];
+        gender = gender >> 7;
     } else {
-        v0 = TrainerInfo_Gender(v2);
+        gender = TrainerInfo_Gender(trainerInfo);
     }
 
     switch (v4->unk_1C) {
     case 4:
     case 11:
-        return Unk_020ED548[v0];
+        return sMessagesTrainerAppearsBusy[gender];
         break;
     case 5:
-        return Unk_020ED560[LCRNG_Next() % 2][v0];
+        return sMessagesShowingTrainerCase[LCRNG_Next() % SNELEMS(sMessagesShowingTrainerCase)][gender];
         break;
     case 6:
-        return Unk_020ED620[LCRNG_Next() % 4][v0];
+        return sMessagesBattling[LCRNG_Next() % SNELEMS(sMessagesBattling)][gender];
         break;
     case 7:
-        return Unk_020ED550[LCRNG_Next() % 2][v0];
+        return sMessagesTrading[LCRNG_Next() % SNELEMS(sMessagesTrading)][gender];
         break;
     case 8:
     case 1:
-        return Unk_020ED600[LCRNG_Next() % 4][v0];
+        return sMessagesDrawing[LCRNG_Next() % SNELEMS(sMessagesDrawing)][gender];
         break;
     case 9:
     case 2:
-        return Unk_020ED640[LCRNG_Next() % 4][v0];
+        return sMessagesMixingRecords[LCRNG_Next() % SNELEMS(sMessagesMixingRecords)][gender];
         break;
     case 10:
     case 3:
     case 12:
     case 13:
-        return Unk_020ED660[LCRNG_Next() % 4][v0];
+        return sMessagesSpinTrading[LCRNG_Next() % SNELEMS(sMessagesSpinTrading)][gender];
         break;
     }
 
-    return 40;
+    return UnionRoom_Text_TrainersAppearsBusy;
 }
 
-int sub_0205BC50(StringTemplate *param0)
+int UnionRoom_GetTrainerCasePlayerMessage(StringTemplate *strTemplate)
 {
-    u8 v0, v1;
-    u8 v2, v3;
+    u8 playerCountry = CommInfo_PlayerCountry(CommSys_CurNetId());
+    u8 commCountry = CommInfo_PlayerCountry(CommSys_CurNetId() ^ 1);
+    u8 playerRegion = CommInfo_PlayerRegion(CommSys_CurNetId());
+    u8 commRegion = CommInfo_PlayerRegion(CommSys_CurNetId() ^ 1);
 
-    v0 = CommInfo_PlayerCountry(CommSys_CurNetId());
-    v1 = CommInfo_PlayerCountry(CommSys_CurNetId() ^ 1);
-    v2 = CommInfo_PlayerRegion(CommSys_CurNetId());
-    v3 = CommInfo_PlayerRegion(CommSys_CurNetId() ^ 1);
-
-    if (v1 == 0) {
-        return 15;
+    if (commCountry == Country_Text_None) {
+        return UnionRoom_Text_PlayersTrainerCase;
     }
 
-    if (v1 != 0) {
-        StringTemplate_SetCountryName(param0, 3, v1);
+    if (commCountry != 0) {
+        StringTemplate_SetCountryName(strTemplate, 3, commCountry);
 
-        if (v3 != 0) {
-            StringTemplate_SetCityName(param0, 4, v1, v3);
+        if (commRegion != 0) {
+            StringTemplate_SetCityName(strTemplate, 4, commCountry, commRegion);
         }
     }
 
-    if (v0 != v1) {
-        if (v3 == 0) {
-            return 13;
+    if (playerCountry != commCountry) {
+        if (commRegion == 0) {
+            return UnionRoom_Text_TrainerCasePlayerFromCountry;
         }
 
-        if (v2 == v3) {
-            return 13;
+        if (playerRegion == commRegion) {
+            return UnionRoom_Text_TrainerCasePlayerFromCountry;
         }
 
-        return 12;
+        return UnionRoom_Text_TrainerCasePlayerFromCityCountry;
     }
 
-    if (v2 != v3) {
-        return 14;
+    if (playerRegion != commRegion) {
+        return UnionRoom_Text_TrainerCasePlayerFromCity;
     }
 
-    return 15;
+    return UnionRoom_Text_PlayersTrainerCase;
 }
 
-static int sub_0205BCD4(int param0, int param1, StringTemplate *param2)
+static int UnionRoom_GetStartMessage(int param0, int gender, StringTemplate *strTemplate)
 {
-    if (param0 != (1 - 1)) {
-        return Unk_020ED6E8[param0][param1];
+    if (param0 != 0) {
+        return sMessagesStartActivity[param0][gender];
     }
 
-    return sub_0205BC50(param2);
+    return UnionRoom_GetTrainerCasePlayerMessage(strTemplate);
 }
 
-int sub_0205BCF4(UnkStruct_0205B43C *param0, int param1, int param2, StringTemplate *param3)
+int UnionRoom_GetMessage(UnkStruct_0205B43C *param0, int param1, int msgType, StringTemplate *strTemplate)
 {
-    int v0;
-    TrainerInfo *v1;
-
     param1--;
 
-    if (param2 == 0) {
-        return sub_0205BAE8(param0, param1);
+    if (msgType == 0) {
+        return UnionRoom_GetTrainerBusyMessage(param0, param1);
     }
 
-    v1 = sub_02033FB0(param1);
+    TrainerInfo *trainerInfo = sub_02033FB0(param1);
 
-    if (v1 == NULL) {
-        CommMan_SetErrorHandling(1, 1);
-        Link_SetErrorState(1);
+    if (trainerInfo == NULL) {
+        CommManager_SetErrorHandling(1, 1);
+        CommManager_SetCommError(1);
         return 0;
     }
 
-    v0 = TrainerInfo_Gender(v1);
+    int gender = TrainerInfo_Gender(trainerInfo);
 
-    switch (param2) {
-    case 1:
-        return sub_0205BCD4(param0->unk_34 - 1, v0, param3);
+    switch (msgType) {
+    case UR_MSG_LETS_START:
+        return UnionRoom_GetStartMessage(param0->unk_34 - 1, gender, strTemplate);
         break;
-    case 2:
-        return Unk_020ED520[v0];
+    case UR_MSG_THIS_IS_PLAYER_ASK_DO_SOMETHING:
+        return sMessagesThisIsPlayerAskDoSomething[gender];
         break;
-    case 9:
+    case UR_MSG_WAIT_FOR_ANSWER:
         if (param0->unk_34 == 0) {
             return 0;
         }
-        return Unk_020ED6B0[param0->unk_34 - 1][v0];
+        return sMessagesWaitForAnswer[param0->unk_34 - 1][gender];
         break;
-    case 19:
-    case 20:
-    case 21:
-        return Unk_020ED5CC[param2 - 19][v0];
+    case UR_MSG_NEED_TWO_LV_30_POKEMON_TO_BATTLE:
+    case UR_MSG_CANT_TRADE_IF_ONE_POKEMON:
+    case UR_MSG_NEED_EGG_TO_SPIN_TRADE:
+        return sMessagesRequirements[msgType - UR_MSG_NEED_TWO_LV_30_POKEMON_TO_BATTLE][gender];
         break;
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-        return Unk_020ED680[param2 - 3][v0];
+    case UR_MSG_DECLINED_GREET:
+    case UR_MSG_DECLINED_DRAW:
+    case UR_MSG_DECLINED_BATTLE:
+    case UR_MSG_DECLINED_TRADE:
+    case UR_MSG_DECLINED_UNUSED:
+    case UR_MSG_DECLINED_SPIN_TRADE_MIX_RECORDS:
+        return sMessagesDeclinedStartActivity[msgType - UR_MSG_DECLINED_GREET][gender];
         break;
-    case 10:
-    case 11:
-    case 12:
-        return Unk_020ED584[param2 - 10][v0];
+    case UR_MSG_ASK_JOIN_DRAW:
+    case UR_MSG_ASK_JOIN_MIX_RECORDS:
+    case UR_MSG_ASK_JOIN_SPIN_TRADE:
+        return sMessagesAskJoinActivity[msgType - UR_MSG_ASK_JOIN_DRAW][gender];
         break;
-    case 13:
-    case 14:
-    case 15:
-        return Unk_020ED59C[param2 - 13][v0];
+    case UR_MSG_JOINED_DRAW:
+    case UR_MSG_JOINED_MIX_RECORDS:
+    case UR_MSG_JOINED_SPIN_TRADE:
+        return sMessagesJoinedActivity[msgType - UR_MSG_JOINED_DRAW][gender];
         break;
-    case 16:
-    case 17:
-    case 18:
-        return Unk_020ED5B4[param2 - 16][v0];
+    case UR_MSG_DECLINED_JOIN_DRAW:
+    case UR_MSG_DECLINED_JOIN_MIX_RECORDS:
+    case UR_MSG_DECLINED_JOIN_SPIN_TRADE:
+        return sMessagesDeclinedJoinActivity[msgType - UR_MSG_DECLINED_JOIN_DRAW][gender];
         break;
-    case 22:
-        return Unk_020ED530[v0];
+    case UR_MSG_DO_SOMETHING_ELSE:
+        return sMessagesDoSomethingElse[gender];
         break;
-    case 23:
-        return Unk_020ED528[v0];
+    case UR_MSG_ASK_IF_YOU_WANT_SOMETHING:
+        return sMessagesAskIfYouWantSomething[gender];
         break;
-    case 24:
-        return Unk_020ED538[v0];
+    case UR_MSG_SOMETHING_ELSE_TO_DO:
+        return sMessagesSomethingElseToDo[gender];
         break;
-    case 25:
-        return 218;
+    case UR_MSG_CANT_SPIN_TRADE_DIAMOND_PEARL:
+        return UnionRoom_Text_CantSpinTradeDiamondPearl;
         break;
-    case 26:
-        return Unk_020ED540[v0];
+    case UR_MSG_CANT_SPIN_TRADE_BAD_EGG:
+        return sMessagesBadEgg[gender];
         break;
     }
 
-    GF_ASSERT(0);
-    return 40;
+    GF_ASSERT(FALSE);
+    return UnionRoom_Text_TrainersAppearsBusy;
 }
 
-u8 sub_0205BE38(void)
+u8 UnionRoom_GetCommInfoGameCode(void)
 {
-    u8 v0;
-    TrainerInfo *v1 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
-    GF_ASSERT(v1 != NULL);
-    v0 = TrainerInfo_GameCode(v1);
-
-    return v0;
+    TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    GF_ASSERT(trainerInfo != NULL);
+    return TrainerInfo_GameCode(trainerInfo);
 }
 
 static void sub_0205BE58(UnkStruct_0205B4F8 *param0, int param1)
@@ -1170,32 +1160,32 @@ void sub_0205BEA8(int param0)
     sub_020340FC();
 }
 
-static const int Unk_020ED720[] = {
-    0xA9,
-    0xAA,
-    0xAB,
-    0xAC,
-    0xAD,
-    0xAE,
-    0xAF,
-    0xB0,
-    0xB1,
-    0xB2,
-    0xB3,
-    0xB4,
-    0xB5,
-    0xB6,
-    0xB7,
-    0xB8,
-    0xB9,
-    0xBA,
-    0xBB,
-    0xBC
+static const int sTealaMessages[] = {
+    UnionRoom_Text_Teala1,
+    UnionRoom_Text_Teala2,
+    UnionRoom_Text_Teala3,
+    UnionRoom_Text_Teala4,
+    UnionRoom_Text_Teala5,
+    UnionRoom_Text_Teala6,
+    UnionRoom_Text_Teala7,
+    UnionRoom_Text_Teala8,
+    UnionRoom_Text_Teala9,
+    UnionRoom_Text_Teala10,
+    UnionRoom_Text_Teala11,
+    UnionRoom_Text_Teala12,
+    UnionRoom_Text_Teala13,
+    UnionRoom_Text_Teala14,
+    UnionRoom_Text_Teala15,
+    UnionRoom_Text_Teala16,
+    UnionRoom_Text_Teala17,
+    UnionRoom_Text_Teala18,
+    UnionRoom_Text_Teala19,
+    UnionRoom_Text_Teala20
 };
 
-int sub_0205BF44(UnkStruct_0205B43C *param0, StringTemplate *param1)
+int UnionRoom_GetTealaMessage(UnkStruct_0205B43C *param0, StringTemplate *strTemplate)
 {
-    int v0, v1 = 0, v2;
+    int v0, v1 = 0;
     u16 v3;
 
     for (v0 = 0; v0 < 10; v0++) {
@@ -1205,33 +1195,33 @@ int sub_0205BF44(UnkStruct_0205B43C *param0, StringTemplate *param1)
     }
 
     if (v1 != 0) {
-        return 166;
+        return UnionRoom_Text_HereComesSomeoneNow;
     }
 
-    if (!sub_02014BBC(&param0->unk_178)) {
-        return 167;
+    if (!EasyChatSentence_IsValid(&param0->unk_178)) {
+        return UnionRoom_Text_BoringIfNoOneComes;
     }
 
-    if (sub_02014C80(&param0->unk_178) != 4) {
-        int v4 = TrainerInfo_Appearance(param0->unk_08);
-        int v5 = TrainerInfo_Gender(param0->unk_08);
+    if (EasyChatSentence_GetType(&param0->unk_178) != 4) {
+        int appearance = TrainerInfo_Appearance(param0->unk_08);
+        int gender = TrainerInfo_Gender(param0->unk_08);
 
-        StringTemplate_SetTrainerClassName(param1, 0, Appearance_GetData(v5, v4, APPEARANCE_DATA_TRAINER_CLASS_1));
+        StringTemplate_SetTrainerClassName(strTemplate, 0, Appearance_GetData(gender, appearance, APPEARANCE_DATA_TRAINER_CLASS_1));
 
-        return 168;
+        return UnionRoom_Text_MistakenForTrainerClass;
     }
 
-    v2 = sub_02014C84(&param0->unk_178);
+    int id = EasyChatSentence_GetID(&param0->unk_178);
 
-    if (v2 >= 20) {
-        v2 = 0;
+    if (id >= 20) {
+        id = 0;
     }
 
-    if ((v3 = Sentence_GetWord(&param0->unk_178, 0)) != 0xffff) {
-        StringTemplate_SetCustomMessageWord(param1, 0, v3);
+    if ((v3 = EasyChatSentence_GetWord(&param0->unk_178, 0)) != WORD_NONE) {
+        StringTemplate_SetEasyChatWord(strTemplate, 0, v3);
     }
 
-    return Unk_020ED720[v2];
+    return sTealaMessages[id];
 }
 
 static void sub_0205BFF0(UnkStruct_0205B4F8 *param0)
@@ -1248,13 +1238,13 @@ static void sub_0205BFF0(UnkStruct_0205B4F8 *param0)
     }
 }
 
-void sub_0205C010(UnkStruct_0205B43C *param0, Sentence *param1)
+void sub_0205C010(UnkStruct_0205B43C *param0, EasyChatSentence *param1)
 {
-    sub_02014CC0(&param0->unk_178, param1);
+    EasyChatSentence_Copy(&param0->unk_178, param1);
     param0->unk_180 = 1;
 }
 
-Sentence *sub_0205C028(UnkStruct_0205B43C *param0)
+EasyChatSentence *sub_0205C028(UnkStruct_0205B43C *param0)
 {
     if (param0->unk_180 == 0) {
         return NULL;
@@ -1264,79 +1254,78 @@ Sentence *sub_0205C028(UnkStruct_0205B43C *param0)
     return &param0->unk_178;
 }
 
-void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *param3, UnkStruct_02014EC4 *param4)
+void UnionRoom_DoGreeting(StringTemplate *strTemplate, int param1, int param2, TrainerInfo *playerTrainerInfo, UnlockedEasyChatWords *unlockedWords)
 {
-    TrainerInfo *v0;
-    String *v1;
-    MessageLoader *v2 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD1);
-    int language, v4;
+    TrainerInfo *commTrainerInfo;
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD1);
+    int entryID;
 
     param2--;
 
     if (param1 == 0) {
-        v0 = sub_02033FB0(param2);
+        commTrainerInfo = sub_02033FB0(param2);
     } else {
-        v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+        commTrainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     }
 
-    if (v0 == NULL) {
-        MessageLoader_Free(v2);
+    if (commTrainerInfo == NULL) {
+        MessageLoader_Free(msgLoader);
         return;
     }
 
-    StringTemplate_SetPlayerName(param0, 0, v0);
-    StringTemplate_SetPlayerName(param0, 1, param3);
+    StringTemplate_SetPlayerName(strTemplate, 0, commTrainerInfo);
+    StringTemplate_SetPlayerName(strTemplate, 1, playerTrainerInfo);
 
-    language = TrainerInfo_Language(v0);
+    int language = TrainerInfo_Language(commTrainerInfo);
 
-    if (language >= JAPANESE && language <= SPANISH) {
-        static const int v5[] = {
-            0,
-            1,
-            2,
-            3,
-            4,
-            -1,
-            5,
+    if (language >= LANGUAGE_JAPANESE && language <= LANGUAGE_SPANISH) {
+        static const int greetingBankEntries[] = {
+            [LANGUAGE_JAPANESE - 1] = Greetings_Text_Konnichiwa,
+            [LANGUAGE_ENGLISH - 1] = Greetings_Text_Hello,
+            [LANGUAGE_FRENCH - 1] = Greetings_Text_Bonjour,
+            [LANGUAGE_ITALIAN - 1] = Greetings_Text_Ciao,
+            [LANGUAGE_GERMAN - 1] = Greetings_Text_Hallo,
+            [LANGUAGE_UNUSED_6 - 1] = -1,
+            [LANGUAGE_SPANISH - 1] = Greetings_Text_Hola,
         };
-        u16 v6 = language - 1;
+        u16 index = language - 1;
 
-        if (v6 < NELEMS(v5) && v5[v6] >= 0) {
-            sub_02014F98(param4, v5[v6]);
+        if (index < NELEMS(greetingBankEntries) && greetingBankEntries[index] >= 0) {
+            EasyChatWords_UnlockGreeting(unlockedWords, greetingBankEntries[index]);
         }
     }
 
     switch (language) {
-    case JAPANESE:
-        v4 = 211;
+    case LANGUAGE_JAPANESE:
+        entryID = UnionRoom_Text_GreetingJapanese;
         break;
-    case ENGLISH:
-        v4 = 212;
+    case LANGUAGE_ENGLISH:
+        entryID = UnionRoom_Text_GreetingEnglish;
         break;
-    case FRENCH:
-        v4 = 213;
+    case LANGUAGE_FRENCH:
+        entryID = UnionRoom_Text_GreetingFrench;
         break;
-    case ITALIAN:
-        v4 = 214;
+    case LANGUAGE_ITALIAN:
+        entryID = UnionRoom_Text_GreetingItalian;
         break;
-    case GERMAN:
-        v4 = 215;
+    case LANGUAGE_GERMAN:
+        entryID = UnionRoom_Text_GreetingGerman;
         break;
-    case SPANISH:
-        v4 = 216;
+    case LANGUAGE_SPANISH:
+        entryID = UnionRoom_Text_GreetingSpanish;
         break;
     default:
-        v4 = 217;
+        entryID = UnionRoom_Text_GreetingDefault;
     }
 
-    v1 = MessageLoader_GetNewString(v2, v4);
+    String *string = MessageLoader_GetNewString(msgLoader, entryID);
 
-    StringTemplate_SetString(param0, 2, v1, 0, 1, language);
-    Heap_Free(v1);
-    MessageLoader_Free(v2);
+    StringTemplate_SetString(strTemplate, 2, string, 0, TRUE, language);
+    Heap_Free(string);
+    MessageLoader_Free(msgLoader);
 }
 
-void sub_0205C12C(Sentence *param0)
+void sub_0205C12C(EasyChatSentence *param0)
 {
     UnkStruct_0205B4F8 v0;
 
@@ -1367,13 +1356,13 @@ static void sub_0205C160(UnkStruct_0205B43C *param0)
     param0->unk_44 = 0;
 }
 
-void *sub_0205C17C(UnkStruct_0205B43C *param0)
+void *UnionRoom_GetTrainerCase(UnkStruct_0205B43C *param0)
 {
-    param0->unk_184 = TrainerCard_New(HEAP_ID_SYSTEM);
-    param0->unk_188[0] = TrainerCard_New(HEAP_ID_SYSTEM);
-    param0->unk_188[1] = TrainerCard_New(HEAP_ID_SYSTEM);
+    param0->unk_184 = TrainerCase_New(HEAP_ID_SYSTEM);
+    param0->unk_188[0] = TrainerCase_New(HEAP_ID_SYSTEM);
+    param0->unk_188[1] = TrainerCase_New(HEAP_ID_SYSTEM);
 
-    TrainerCard_Init(FALSE, FALSE, 0, Appearance_GetData(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
+    TrainerCase_Init(FALSE, FALSE, 0, Appearance_GetData(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
 
     return (void *)param0->unk_188[CommSys_CurNetId() ^ 1];
 }
@@ -1385,7 +1374,7 @@ void sub_0205C1F0(UnkStruct_0205B43C *param0)
     Heap_Free(param0->unk_184);
 }
 
-void sub_0205C214(UnkStruct_0205B43C *param0)
+void UnionRoom_SendTrainerCase(UnkStruct_0205B43C *param0)
 {
-    CommSys_SendDataHuge(105, param0->unk_184, sizeof(TrainerCard));
+    CommSys_SendDataHuge(105, param0->unk_184, sizeof(TrainerCase));
 }

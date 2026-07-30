@@ -2,7 +2,7 @@
   "key": 29698,
   "messages": [
     {
-      "id": "pl_msg_00000229_00000",
+      "id": "FuegoIronworksBuilding_Text_HeresASouvenir",
       "en_US": [
         "Mr. Fuego: Well, hello!\n",
         "It’s not often I get a visitor here.\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000229_00001",
+      "id": "FuegoIronworksBuilding_Text_TradeStarPiecesForShards",
       "en_US": [
         "Mr. Fuego: My ironworks makes iron by\n",
         "removing impurities from iron ore.\r",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000229_00002",
+      "id": "FuegoIronworksBuilding_Text_AskTradeStarPiecesForShards",
       "en_US": [
         "Mr. Fuego: My ironworks makes iron by\n",
         "removing impurities from iron ore.\r",
@@ -37,21 +37,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000229_00003",
+      "id": "FuegoIronworksBuilding_Text_AnyStarPieces",
       "en_US": [
         "Mr. Fuego: Do you have any Star Pieces?\n",
         "You can trade them for various Shards."
       ]
     },
     {
-      "id": "pl_msg_00000229_00004",
+      "id": "FuegoIronworksBuilding_Text_WantToTrade",
       "en_US": [
         "Mr. Fuego: Are you interested?\n",
         "Want to trade Star Pieces for Shards?"
       ]
     },
     {
-      "id": "pl_msg_00000229_00005",
+      "id": "FuegoIronworksBuilding_Text_WantToTrade10StarPieces",
       "en_US": [
         "Mr. Fuego: I see you’ve got many Star\n",
         "Pieces.\r",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000229_00006",
+      "id": "FuegoIronworksBuilding_Text_ThereYouAre",
       "en_US": [
         "Mr. Fuego: There you are--\n",
         "red, blue, yellow, and green.\f",
@@ -67,11 +67,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000229_00007",
+      "id": "FuegoIronworksBuilding_Text_YoureNotTrading",
       "en_US": "Mr. Fuego: You’re not trading?!"
     },
     {
-      "id": "pl_msg_00000229_00008",
+      "id": "FuegoIronworksBuilding_Text_NothingIfNoIron",
       "en_US": [
         "Mr. Fuego: My ironworks would be\n",
         "nothing if there were no iron.\r",

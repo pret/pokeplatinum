@@ -2,7 +2,7 @@
   "key": 25606,
   "messages": [
     {
-      "id": "pl_msg_00000585_00000",
+      "id": "CelesticTownNorthHouse_Text_LikeToKnowMesprit",
       "en_US": [
         "Where are you from?\r",
         "...\r",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000585_00001",
+      "id": "CelesticTownNorthHouse_Text_MespritInfo",
       "en_US": [
         "MESPRIT is the legendary Pokémon\n",
         "that symbolizes the emotions.\r",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000585_00002",
+      "id": "CelesticTownNorthHouse_Text_YouWouldnt",
       "en_US": [
         "Hahaha!\n",
         "Well, of course you wouldn’t.\r",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000585_00003",
+      "id": "CelesticTownNorthHouse_Text_UsingSurfGoPlaces",
       "en_US": [
         "Using the move Surf, you’ll be able to\n",
         "go to places that were inaccessible.\r",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000585_00004",
+      "id": "CelesticTownNorthHouse_Text_CelesticOldestTown",
       "en_US": [
         "Celestic Town is the oldest town in\n",
         "all of Sinnoh.\r",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000585_00005",
+      "id": "CelesticTownNorthHouse_Text_IDidSomeResearch",
       "en_US": [
         "Well, hello!\n",
         "You look good.\r",
@@ -83,25 +83,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000585_00006",
+      "id": "CelesticTownNorthHouse_Text_PalkiaIsWritten",
       "en_US": [
         "“PALKIA, the Pokémon that binds the\n",
         "spatial dimensions,” it is written...\r"
       ]
     },
     {
-      "id": "pl_msg_00000585_00007",
+      "id": "CelesticTownNorthHouse_Text_DialgaIsWritten",
       "en_US": [
         "“DIALGA, the guardian Pokémon of\n",
         "time,” it is written...\r"
       ]
     },
     {
-      "id": "pl_msg_00000585_00008",
+      "id": "CelesticTownNorthHouse_Text_Dummy8",
       "garbage": 63
     },
     {
-      "id": "pl_msg_00000585_00009",
+      "id": "CelesticTownNorthHouse_Text_MySisterStudiesMyths",
       "en_US": [
         "My big sister is studying the myths\n",
         "of Sinnoh.\r",
@@ -115,14 +115,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000585_00010",
+      "id": "CelesticTownNorthHouse_Text_InvaluableScroll",
       "en_US": [
         "It’s hard to tell for sure, but it’s\n",
         "probably an invaluable scroll."
       ]
     },
     {
-      "id": "pl_msg_00000585_00011",
+      "id": "CelesticTownNorthHouse_Text_OldBook",
       "en_US": [
         "It’s an old book.\n",
         "{STRVAR_1 3, 0, 0} began reading it.\r",

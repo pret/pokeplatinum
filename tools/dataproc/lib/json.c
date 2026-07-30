@@ -1,6 +1,7 @@
 #include "json.h"
 
 #include <assert.h>
+#include <stdbool.h>
 #include <stdlib.h>
 
 #include "dataproc.h"
@@ -11,6 +12,12 @@ typedef struct yyjson_ctx yyjson_ctx_t;
 struct yyjson_ctx {
     yyjson_doc *doc;
     yyjson_val *root;
+};
+
+typedef struct yyjson_mutctx yyjson_mutctx_t;
+struct yyjson_mutctx {
+    yyjson_mut_doc *doc;
+    yyjson_mut_val *root;
 };
 
 int json_read(datafile_t *df) {
@@ -110,4 +117,118 @@ void* json_get_element(void *array, size_t i) {
 
 void* json_get_member(void *object, const char *k) {
     return yyjson_obj_get(object, k);
+}
+
+int json_new(datafile_t *df) {
+    yyjson_mutctx_t *yyjctx = malloc(sizeof(*yyjctx));
+    if (yyjctx == NULL) return DATAPROC_E_ALLOC;
+
+    yyjctx->doc  = yyjson_mut_doc_new(NULL);
+    yyjctx->root = NULL;
+    if (yyjctx->doc == NULL) return DATAPROC_E_BACKEND;
+
+    df->ctx = yyjctx;
+    return DATAPROC_E_NONE;
+}
+
+char* json_dump(datafile_t *df) {
+    size_t           size   = 0;
+    yyjson_mutctx_t *yyjctx = df->ctx;
+    yyjson_write_err yyjerr;
+
+    char *result = yyjson_mut_write_opts(yyjctx->doc, YYJSON_WRITE_PRETTY_TWO_SPACES, NULL, &size, &yyjerr);
+    if (yyjerr.code) {
+        dp_gerror(df, 0, 0, "JSON dump error: %s", yyjerr.msg);
+        return NULL;
+    }
+
+    return result;
+}
+
+void* json_arr_new(void *ctx) {
+    assert(ctx && "ctx pointer must not be NULL");
+
+    yyjson_mutctx_t *yyjctx = ctx;
+    yyjctx->root = yyjson_mut_arr(yyjctx->doc);
+    yyjson_mut_doc_set_root(yyjctx->doc, yyjctx->root);
+    return yyjctx->root;
+}
+
+bool json_arr_appbool(void *ctx, void *node, bool v) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_arr_add_bool(yyjctx->doc, node, v);
+}
+
+bool json_arr_appint(void *ctx, void *node, int64_t v) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_arr_add_int(yyjctx->doc, node, v);
+}
+
+bool json_arr_appuint(void *ctx, void *node, uint64_t v) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_arr_add_uint(yyjctx->doc, node, v);
+}
+
+bool json_arr_appfloat(void *ctx, void *node, double v) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_arr_add_real(yyjctx->doc, node, v);
+}
+
+bool json_arr_appstring(void *ctx, void *node, const char *v) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_arr_add_strcpy(yyjctx->doc, node, v);
+}
+
+void* json_arr_apparray(void *ctx, void *node) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_arr_add_arr(yyjctx->doc, node);
+}
+
+void* json_arr_appobject(void *ctx, void *node) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_arr_add_obj(yyjctx->doc, node);
+}
+
+void* json_obj_new(void *ctx) {
+    assert(ctx && "ctx pointer must not be NULL");
+
+    yyjson_mutctx_t *yyjctx = ctx;
+    yyjctx->root = yyjson_mut_obj(yyjctx->doc);
+    yyjson_mut_doc_set_root(yyjctx->doc, yyjctx->root);
+    return yyjctx->root;
+}
+
+bool json_obj_putbool(void *ctx, void *node, const char *k, bool v) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_obj_add_bool(yyjctx->doc, node, k, v);
+}
+
+bool json_obj_putint(void *ctx, void *node, const char *k, int64_t v) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_obj_add_int(yyjctx->doc, node, k, v);
+}
+
+bool json_obj_putuint(void *ctx, void *node, const char *k, uint64_t v) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_obj_add_uint(yyjctx->doc, node, k, v);
+}
+
+bool json_obj_putfloat(void *ctx, void *node, const char *k, double v) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_obj_add_real(yyjctx->doc, node, k, v);
+}
+
+bool json_obj_putstring(void *ctx, void *node, const char *k, const char *v) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_obj_add_strcpy(yyjctx->doc, node, k, v);
+}
+
+void* json_obj_putarray(void *ctx, void *node, const char *k) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_obj_add_arr(yyjctx->doc, node, k);
+}
+
+void* json_obj_putobject(void *ctx, void *node, const char *k) {
+    yyjson_mutctx_t *yyjctx = ctx;
+    return yyjson_mut_obj_add_obj(yyjctx->doc, node, k);
 }

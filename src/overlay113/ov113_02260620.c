@@ -9,7 +9,7 @@
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C_decl.h"
+#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay113/footprint_data.h"
 #include "overlay113/struct_ov113_02260818.h"
 
@@ -78,7 +78,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     }
 
     if (v7 >= 8) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 
@@ -113,7 +113,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
 void ov113_02260714(Window param0[], u32 param1)
 {
     if (param1 >= 8) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 

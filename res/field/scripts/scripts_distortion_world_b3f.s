@@ -1,45 +1,44 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b3f.h"
 
-
-    ScriptEntry _000A
-    ScriptEntry _000E
+    ScriptEntry DistortionWorldB3F_OnTransition
+    ScriptEntry DistortionWorldB3F_CoordEvent_Cyrus
     ScriptEntryEnd
 
-_000A:
+DistortionWorldB3F_OnTransition:
     InitPersistedMapFeaturesForDistortionWorld
     End
 
-_000E:
+DistortionWorldB3F_CoordEvent_Cyrus:
     LockAll
-    AddDistortionWorldMapObject 128
-    ApplyMovement 128, _0060
+    AddDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_B3F_CYRUS
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B3F_CYRUS, DistortionWorldB3F_Movement_CyrusEnter
     WaitMovement
-    Message 0
+    Message DistortionWorldB3F_Text_DoYouUnderstandGenes
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _003B
-    Message 1
-    GoTo _003E
+    GoToIfEq VAR_RESULT, MENU_NO, DistortionWorldB3F_OfCourseYouWouldnt
+    Message DistortionWorldB3F_Text_YouveImpressedMe
+    GoTo DistortionWorldB3F_TwoWorldsMustBalance
 
-_003B:
-    Message 2
-_003E:
-    Message 3
-    Message 4
+DistortionWorldB3F_OfCourseYouWouldnt:
+    Message DistortionWorldB3F_Text_OfCourseYouWouldnt
+DistortionWorldB3F_TwoWorldsMustBalance:
+    Message DistortionWorldB3F_Text_TwoWorldsMustBalance
+    Message DistortionWorldB3F_Text_DefeatingThatPokemonMatters
     CloseMessage
-    ApplyMovement 128, _0068
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B3F_CYRUS, DistortionWorldB3F_Movement_CyrusLeave
     WaitMovement
-    DeleteDistortionWorldMapObject 128
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 6
+    DeleteDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_B3F_CYRUS
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_TALKED_TO_B3F_CYRUS
     ReleaseAll
     End
 
     .balign 4, 0
-_0060:
+DistortionWorldB3F_Movement_CyrusEnter:
     WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
-_0068:
+DistortionWorldB3F_Movement_CyrusLeave:
     WalkNormalSouth 7
     EndMovement

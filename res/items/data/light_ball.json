@@ -1,0 +1,30 @@
+{
+  "name": "Light Ball",
+  "plural": "Light Balls",
+  "article": "a",
+  "description": [
+    "An item to be held by PIKACHU.\n",
+    "It is a puzzling orb that raises\n",
+    "the Attack and Sp. Atk stat."
+  ],
+  "icon": {
+    "sprite": "light_ball_NCGR",
+    "palette": "light_ball_NCLR"
+  },
+  "gbaID": "GBA_ITEM_LIGHT_BALL",
+  "price": 100,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_PIKA_SPATK_UP",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_PARALYZE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/battle/battle_script.h"
+#include "constants/communication/comm_error.h"
 #include "constants/flavor.h"
 #include "constants/heap.h"
 #include "constants/items.h"
@@ -23,12 +24,12 @@
 #include "battle/battle_controller.h"
 #include "battle/battle_controller_player.h"
 #include "battle/battle_display.h"
-#include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
 
 #include "charcode_util.h"
+#include "comm_manager.h"
 #include "flags.h"
 #include "heap.h"
 #include "item.h"
@@ -41,7 +42,6 @@
 #include "string_gf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_020366A0.h"
 #include "unk_0208C098.h"
 
 #include "res/battle/scripts/sub_seq.naix"
@@ -287,7 +287,7 @@ void BattleIO_UpdateTimeout(BattleContext *battleCtx)
 {
     battleCtx->linkBattleTimeout++;
     if (battleCtx->linkBattleTimeout > LINK_BATTLE_TIMEOUT) {
-        Link_SetErrorState(LINK_BATTLE_RESET_SAVEPOINT);
+        CommManager_SetCommError(COMM_ERROR_RESET_SAVEPOINT);
     }
 }
 
@@ -1874,7 +1874,7 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
 {
     int battleType = BattleSystem_GetBattleType(battleSys);
 
-    if (battleType & BATTLE_TYPE_NO_TRAINER_MESSAGES) {
+    if (battleType & BATTLE_TYPE_FRONTIER_LINK) {
         return FALSE;
     }
 
@@ -5459,7 +5459,7 @@ s32 Battler_HeldItemPower(BattleContext *battleCtx, int battler, enum HeldItemPo
         break;
     }
 
-    return BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HOLD_EFFECT_PARAM);
+    return BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_EFFECT_PARAM);
 }
 
 s32 Battler_NaturalGiftPower(BattleContext *battleCtx, int battler)
@@ -5854,7 +5854,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
 BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     int effect = Battler_ItemFlingEffect(battleCtx, battler);
-    int effectPower = Battler_HeldItemPower(battleCtx, battler, ITEM_PARAM_HOLD_EFFECT_PARAM);
+    int effectPower = Battler_HeldItemPower(battleCtx, battler, ITEM_PARAM_EFFECT_PARAM);
 
     battleCtx->movePower = Battler_ItemFlingPower(battleCtx, battler);
     battleCtx->flingScript = 0;
@@ -6661,11 +6661,11 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
     itemTmp = Battler_HeldItem(battleCtx, attacker);
     attackerParams.heldItemEffect = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT);
-    attackerParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT_PARAM);
+    attackerParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_EFFECT_PARAM);
 
     itemTmp = Battler_HeldItem(battleCtx, defender);
     defenderParams.heldItemEffect = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT);
-    defenderParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT_PARAM);
+    defenderParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_EFFECT_PARAM);
 
     battleType = BattleSystem_GetBattleType(battleSys);
 

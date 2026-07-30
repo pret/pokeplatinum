@@ -55,7 +55,7 @@ void LandDataManager_DistortionWorldFreeLoadedMapBuffers(LandDataManager *landDa
 void LandDataManager_DistortionWorldInitialLoad(LandDataManager *landDataMan, const int playerTileX, const int playerTileZ);
 void LandDataManager_DistortionWorldInitLoadedMaps(LandDataManager *landDataMan, const int trackedTargetTileX, const int trackedTargetTileZ, int *loadedMapMatrixIndexes);
 void LandDataManager_DistortionWorldLoadAndInvalidate(LandDataManager *landDataMan, int loadedMapIndex, int mapMatrixIndex);
-void LandDataManager_DistortionWorldRenderNextFloorMaps(const LandDataManager *landDataMan, const ModelAttributes *modelAttrs);
+void LandDataManager_DistortionWorldRenderInactiveFloor(const LandDataManager *landDataMan, const ModelAttributes *modelAttrs);
 void LandDataManager_DistortionWorldEndWithoutFreeing(LandDataManager *landDataMan);
 void LandDataManager_DistortionWorldPrepareNextFloor(MapMatrix *mapMatrix, AreaDataManager *areaDataMan, LandDataManager *src, LandDataManager *dest, const int trackedTargetTileX, const int trackedTargetTileZ);
 void LandDataManager_DistortionWorldPreparePreviousFloor(LandDataManager *dest, LandDataManager *src);

@@ -7,13 +7,13 @@
 
 BOOL ScrCmd_Dummy23F(ScriptContext *ctx)
 {
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return FALSE;
 }
 
 BOOL ScrCmd_Dummy240(ScriptContext *ctx)
 {
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return FALSE;
 }
 

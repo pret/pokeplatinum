@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40A7, 0, 7
+    InitScriptGoToIfEqual VAR_RESORT_AREA_RIBBON_SYNDICATE_1F_STATE, 0, 7
     InitScriptFrameTableEnd
 
     InitScriptEnd

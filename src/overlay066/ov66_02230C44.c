@@ -6,7 +6,7 @@
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C_decl.h"
+#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_02230DBC.h"
 #include "overlay066/struct_ov66_02230E68.h"
 #include "overlay066/struct_ov66_02230F50.h"
@@ -390,7 +390,7 @@ static int ov66_02230E90(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4
         ov66_02230D54(param0, 12);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

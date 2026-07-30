@@ -121,8 +121,8 @@
         "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
-        "height": 4,
-        "weight": 25,
+        "height_inches": 16,
+        "weight_pounds": 5.5,
         "body_shape": "SHAPE_MULTI_BODY",
         "trainer_scale_f": 272,
         "pokemon_scale_f": 377,

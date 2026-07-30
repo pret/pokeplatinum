@@ -3,8 +3,8 @@
 
 #include "constants/narc.h"
 
-#include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/struct_0208C06C.h"
+#include "struct_defs/wifi_battle_tower_data.h"
 
 #include "overlay062/ov62_0222F2C0.h"
 #include "overlay062/ov62_022300D8.h"
@@ -25,10 +25,10 @@
 #include "system_vars.h"
 #include "touch_screen.h"
 #include "unk_02012744.h"
-#include "unk_0202D05C.h"
 #include "unk_02030A80.h"
 #include "unk_0208B284.h"
 #include "vars_flags.h"
+#include "wifi_battle_tower_save.h"
 
 typedef struct {
     int unk_00;
@@ -250,7 +250,7 @@ static void ov62_0223712C(UnkStruct_0208C06C *param0)
         }
     }
 
-    PaletteData_SetAutoTransparent(v4, 1);
+    PaletteData_SetAutoTransparent(v4, TRUE);
 }
 
 static void ov62_022371CC(UnkStruct_0208C06C *param0)
@@ -606,15 +606,15 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 1:
         if (ov62_02231664(&v0->unk_00, 1)) {
-            UnkStruct_0202D750 *v2 = sub_0202D750(param0->saveData);
+            WifiBattleTowerRecord *record = SaveData_GetWifiBattleTowerRecord(param0->saveData);
 
-            v0->unk_90 = BattlePoints_ApplyFuncAndGet(v2, 0, BATTLE_POINTS_FUNC_NONE);
+            v0->unk_90 = WifiBattleTowerRecord_UpdateBattlePoints(record, 0, BATTLE_POINTS_FUNC_NONE);
             param0->unk_08++;
         }
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_00, param0->unk_14.unk_44);
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_00, param0->unk_14.unk_44);
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_00, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, 0xC, v0->unk_00, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC, v0->unk_00, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0x2, v0->unk_00, param0->unk_14.unk_44);
         break;
 
     case 2:
@@ -626,7 +626,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
         ov62_02234314();
         Bg_SetPriority(BG_LAYER_SUB_2, 2);
         ov62_02236E14(param0);
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
         param0->unk_08++;
         break;
     case 3:
@@ -654,7 +654,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
             ov62_02237814(param0);
         }
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
     } break;
     default:
         ov62_0222FB60(param0, 1);
@@ -698,8 +698,8 @@ static BOOL ov62_02237B00(UnkStruct_0208C06C *param0)
             v0->unk_00 += 2;
         }
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x4018, v0->unk_00, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0x4018, v0->unk_00, param0->unk_14.unk_44);
 
         if (ov62_022376C4(param0) == 0) {
             v0->unk_00 = 0;
@@ -740,9 +740,9 @@ static BOOL ov62_02237B00(UnkStruct_0208C06C *param0)
         } else {
             param0->unk_08++;
             ov62_02231688(&v0->unk_00);
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_00, param0->unk_14.unk_44);
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_00, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, 0xC, v0->unk_00, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0x2, v0->unk_00, param0->unk_14.unk_44);
         }
 
         break;
@@ -753,12 +753,12 @@ static BOOL ov62_02237B00(UnkStruct_0208C06C *param0)
             Heap_Free(v0);
             ov62_022318E8(param0);
             ov62_02231688(&v0->unk_00);
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, 0xC, 16, param0->unk_14.unk_44);
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
         } else {
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_00, param0->unk_14.unk_44);
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_00, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC, v0->unk_00, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0x2, v0->unk_00, param0->unk_14.unk_44);
         }
 
         break;

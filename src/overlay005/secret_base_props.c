@@ -18,7 +18,7 @@
 
 void SecretBase_LoadProps(FieldSystem *fieldSystem)
 {
-    SecretBase *secretBase = FieldCommMan_GetCurrentOccupiedSecretBase(fieldSystem->saveData);
+    SecretBase *secretBase = FieldCommManager_GetCurrentOccupiedSecretBase(fieldSystem->saveData);
 
     if (secretBase == NULL) {
         return;

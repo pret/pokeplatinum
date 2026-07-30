@@ -27,7 +27,8 @@
 
 #define AI_CONTEXT (battleCtx->aiContext)
 
-static const u16 sRiskyMoves[] = {
+// Moves with an effect ID in either of these tables do not use the standard damage-calculation during scoring.
+static const u16 sNoDamageCalcMoveEffects[] = {
     BATTLE_EFFECT_HALVE_DEFENSE,
     BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP,
     BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT,
@@ -44,7 +45,7 @@ static const u16 sRiskyMoves[] = {
     0xFFFF
 };
 
-static const u16 sAltPowerCalcMoves[] = {
+static const u16 sAltPowerMoveEffects[] = {
     BATTLE_EFFECT_RANDOM_POWER_BASED_ON_IVS,
     BATTLE_EFFECT_POWER_BASED_ON_LOW_SPEED,
     BATTLE_EFFECT_NATURAL_GIFT,
@@ -204,115 +205,7 @@ static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battl
 static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler);
 
 static const AICommandFunc sAICommandTable[] = {
-    AICmd_IfRandomLessThan,
-    AICmd_IfRandomGreaterThan,
-    AICmd_IfRandomEqualTo,
-    AICmd_IfRandomNotEqualTo,
-    AICmd_AddToMoveScore,
-    AICmd_IfHPPercentLessThan,
-    AICmd_IfHPPercentGreaterThan,
-    AICmd_IfHPPercentEqualTo,
-    AICmd_IfHPPercentNotEqualTo,
-    AICmd_IfStatus,
-    AICmd_IfNotStatus,
-    AICmd_IfVolatileStatus,
-    AICmd_IfNotVolatileStatus,
-    AICmd_IfMoveEffect,
-    AICmd_IfNotMoveEffect,
-    AICmd_IfSideCondition,
-    AICmd_IfNotSideCondition,
-    AICmd_IfLoadedLessThan,
-    AICmd_IfLoadedGreaterThan,
-    AICmd_IfLoadedEqualTo,
-    AICmd_IfLoadedNotEqualTo,
-    AICmd_IfLoadedMask,
-    AICmd_IfLoadedNotMask,
-    AICmd_IfMoveEqualTo,
-    AICmd_IfMoveNotEqualTo,
-    AICmd_IfLoadedInTable,
-    AICmd_IfLoadedNotInTable,
-    AICmd_IfAttackerHasDamagingMoves,
-    AICmd_IfAttackerHasNoDamagingMoves,
-    AICmd_LoadTurnCount,
-    AICmd_LoadTypeFrom,
-    AICmd_LoadMovePower,
-    AICmd_FlagMoveDamageScore,
-    AICmd_LoadBattlerPreviousMove,
-    AICmd_IfTempEqualTo,
-    AICmd_IfTempNotEqualTo,
-    AICmd_IfSpeedCompareEqualTo,
-    AICmd_IfSpeedCompareNotEqualTo,
-    AICmd_CountAlivePartyBattlers,
-    AICmd_LoadCurrentMove,
-    AICmd_LoadCurrentMoveEffect,
-    AICmd_LoadBattlerAbility,
-    AICmd_CalcMaxEffectiveness,
-    AICmd_IfMoveEffectivenessEquals,
-    AICmd_IfPartyMemberStatus,
-    AICmd_IfPartyMemberNotStatus,
-    AICmd_LoadCurrentWeather,
-    AICmd_IfCurrentMoveEffectEqualTo,
-    AICmd_IfCurrentMoveEffectNotEqualTo,
-    AICmd_IfStatStageLessThan,
-    AICmd_IfStatStageGreaterThan,
-    AICmd_IfStatStageEqualTo,
-    AICmd_IfStatStageNotEqualTo,
-    AICmd_IfCurrentMoveKills,
-    AICmd_IfCurrentMoveDoesNotKill,
-    AICmd_IfMoveKnown,
-    AICmd_IfMoveNotKnown,
-    AICmd_IfMoveEffectKnown,
-    AICmd_IfMoveEffectNotKnown,
-    AICmd_IfBattlerUnderEffect,
-    AICmd_IfCurrentMoveMatchesEffect,
-    AICmd_Escape,
-    AICmd_Dummy3E,
-    AICmd_Dummy3F,
-    AICmd_LoadHeldItem,
-    AICmd_LoadHeldItemEffect,
-    AICmd_LoadGender,
-    AICmd_LoadIsFirstTurnInBattle,
-    AICmd_LoadStockpileCount,
-    AICmd_LoadBattleType,
-    AICmd_LoadRecycleItem,
-    AICmd_LoadTypeOfLoadedMove,
-    AICmd_LoadPowerOfLoadedMove,
-    AICmd_LoadEffectOfLoadedMove,
-    AICmd_LoadProtectChain,
-    AICmd_PushAndGoTo,
-    AICmd_GoTo,
-    AICmd_PopOrEnd,
-    AICmd_IfLevel,
-    AICmd_IfTargetIsTaunted,
-    AICmd_IfTargetIsNotTaunted,
-    AICmd_IfTargetIsPartner,
-    AICmd_FlagBattlerIsType,
-    AICmd_CheckBattlerAbility,
-    AICmd_IfActivatedFlashFire,
-    AICmd_IfHeldItemEqualTo,
-    AICmd_IfFieldConditionsMask,
-    AICmd_LoadSpikesLayers,
-    AICmd_IfAnyPartyMemberIsWounded,
-    AICmd_IfAnyPartyMemberUsedPP,
-    AICmd_LoadFlingPower,
-    AICmd_LoadCurrentMovePP,
-    AICmd_IfCanUseLastResort,
-    AICmd_LoadCurrentMoveClass,
-    AICmd_LoadDefenderLastUsedMoveClass,
-    AICmd_LoadBattlerSpeedRank,
-    AICmd_LoadBattlerTurnCount,
-    AICmd_IfPartyMemberDealsMoreDamage,
-    AICmd_IfHasSuperEffectiveMove,
-    AICmd_IfBattlerDealsMoreDamage,
-    AICmd_SumPositiveStatStages,
-    AICmd_DiffStatStages,
-    AICmd_IfBattlerHasHigherStat,
-    AICmd_IfBattlerHasLowerStat,
-    AICmd_IfBattlerHasEqualStat,
-    AICmd_CheckIfHighestDamageWithPartner,
-    AICmd_IfBattlerFainted,
-    AICmd_IfBattlerNotFainted,
-    AICmd_LoadAbility,
+#include "data/scripts/aicmd.h"
 };
 
 void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u8 initScore)
@@ -1118,7 +1011,7 @@ static void AICmd_LoadMovePower(BattleSystem *battleSys, BattleContext *battleCt
 
 static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int i = 0, riskyIdx, altPowerIdx;
+    int i = 0, noCalcIdx, altPowerIdx;
     s32 moveDamage[LEARNED_MOVES_MAX];
     BOOL varyDamage;
     u8 ivs[STAT_MAX];
@@ -1127,20 +1020,20 @@ static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *ba
 
     varyDamage = AIScript_Read(battleCtx);
 
-    for (riskyIdx = 0; sRiskyMoves[riskyIdx] != 0xFFFF; riskyIdx++) {
-        if (MOVE_DATA(AI_CONTEXT.move).effect == sRiskyMoves[riskyIdx]) {
+    for (noCalcIdx = 0; sNoDamageCalcMoveEffects[noCalcIdx] != 0xFFFF; noCalcIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sNoDamageCalcMoveEffects[noCalcIdx]) {
             break;
         }
     }
 
-    for (altPowerIdx = 0; sAltPowerCalcMoves[altPowerIdx] != 0xFFFF; altPowerIdx++) {
-        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerCalcMoves[altPowerIdx]) {
+    for (altPowerIdx = 0; sAltPowerMoveEffects[altPowerIdx] != 0xFFFF; altPowerIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerMoveEffects[altPowerIdx]) {
             break;
         }
     }
 
-    if (sAltPowerCalcMoves[altPowerIdx] != 0xFFFF
-        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sRiskyMoves[riskyIdx] == 0xFFFF)) {
+    if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         for (i = 0; i < STAT_MAX; i++) {
             ivs[i] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + i, NULL);
         }
@@ -1643,22 +1536,22 @@ static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *bat
         roll = 100;
     }
 
-    int riskyIdx;
-    for (riskyIdx = 0; sRiskyMoves[riskyIdx] != 0xFFFF; riskyIdx++) {
-        if (MOVE_DATA(AI_CONTEXT.move).effect == sRiskyMoves[riskyIdx]) {
+    int noCalcIdx;
+    for (noCalcIdx = 0; sNoDamageCalcMoveEffects[noCalcIdx] != 0xFFFF; noCalcIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sNoDamageCalcMoveEffects[noCalcIdx]) {
             break;
         }
     }
 
     int altPowerIdx;
-    for (altPowerIdx = 0; sAltPowerCalcMoves[altPowerIdx] != 0xFFFF; altPowerIdx++) {
-        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerCalcMoves[altPowerIdx]) {
+    for (altPowerIdx = 0; sAltPowerMoveEffects[altPowerIdx] != 0xFFFF; altPowerIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerMoveEffects[altPowerIdx]) {
             break;
         }
     }
 
-    if (sAltPowerCalcMoves[altPowerIdx] != 0xFFFF
-        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sRiskyMoves[riskyIdx] == 0xFFFF)) {
+    if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         u8 ivs[STAT_MAX];
         for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
             ivs[stat] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + stat, NULL);
@@ -1694,22 +1587,22 @@ static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContex
         roll = 100;
     }
 
-    int riskyIdx;
-    for (riskyIdx = 0; sRiskyMoves[riskyIdx] != 0xFFFF; riskyIdx++) {
-        if (MOVE_DATA(AI_CONTEXT.move).effect == sRiskyMoves[riskyIdx]) {
+    int noCalcIdx;
+    for (noCalcIdx = 0; sNoDamageCalcMoveEffects[noCalcIdx] != 0xFFFF; noCalcIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sNoDamageCalcMoveEffects[noCalcIdx]) {
             break;
         }
     }
 
     int altPowerIdx;
-    for (altPowerIdx = 0; sAltPowerCalcMoves[altPowerIdx] != 0xFFFF; altPowerIdx++) {
-        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerCalcMoves[altPowerIdx]) {
+    for (altPowerIdx = 0; sAltPowerMoveEffects[altPowerIdx] != 0xFFFF; altPowerIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerMoveEffects[altPowerIdx]) {
             break;
         }
     }
 
-    if (sAltPowerCalcMoves[altPowerIdx] != 0xFFFF
-        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sRiskyMoves[riskyIdx] == 0xFFFF)) {
+    if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         u8 ivs[STAT_MAX];
         for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
             ivs[stat] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + stat, NULL);
@@ -2485,20 +2378,20 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
     AIScript_Iter(battleCtx, 1);
     varyDamage = AIScript_Read(battleCtx);
 
-    for (j = 0; sRiskyMoves[j] != 0xFFFF; j++) {
-        if (MOVE_DATA(AI_CONTEXT.move).effect == sRiskyMoves[j]) {
+    for (j = 0; sNoDamageCalcMoveEffects[j] != 0xFFFF; j++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sNoDamageCalcMoveEffects[j]) {
             break;
         }
     }
 
-    for (k = 0; sAltPowerCalcMoves[k] != 0xFFFF; k++) {
-        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerCalcMoves[k]) {
+    for (k = 0; sAltPowerMoveEffects[k] != 0xFFFF; k++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerMoveEffects[k]) {
             break;
         }
     }
 
-    if (sAltPowerCalcMoves[k] != 0xFFFF
-        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sRiskyMoves[j] == 0xFFFF)) {
+    if (sAltPowerMoveEffects[k] != 0xFFFF
+        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[j] == 0xFFFF)) {
         battler = AI_CONTEXT.attacker;
 
         for (j = 0; j < MAX_BATTLERS_PER_SIDE; j++) {
@@ -2905,7 +2798,7 @@ static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler)
  */
 static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 *moves, s32 *damageVals, u16 heldItem, u8 *ivs, int ability, int embargoTurns, BOOL varyDamage)
 {
-    int i, riskyScanIdx, altPowerScanIdx;
+    int i, noCalcIdx, altPowerIdx;
     s32 maxDamage;
     u8 damageRoll;
 
@@ -2913,26 +2806,26 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
 
     // Step 1: Compute the true damage of a given move.
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        riskyScanIdx = 0;
-        while (sRiskyMoves[riskyScanIdx] != 0xFFFF) {
-            if (MOVE_DATA(moves[i]).effect == sRiskyMoves[riskyScanIdx]) {
+        noCalcIdx = 0;
+        while (sNoDamageCalcMoveEffects[noCalcIdx] != 0xFFFF) {
+            if (MOVE_DATA(moves[i]).effect == sNoDamageCalcMoveEffects[noCalcIdx]) {
                 break;
             }
 
-            riskyScanIdx++;
+            noCalcIdx++;
         }
 
-        altPowerScanIdx = 0;
-        while (sAltPowerCalcMoves[altPowerScanIdx] != 0xFFFF) {
-            if (MOVE_DATA(moves[i]).effect == sAltPowerCalcMoves[altPowerScanIdx]) {
+        altPowerIdx = 0;
+        while (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF) {
+            if (MOVE_DATA(moves[i]).effect == sAltPowerMoveEffects[altPowerIdx]) {
                 break;
             }
 
-            altPowerScanIdx++;
+            altPowerIdx++;
         }
 
-        if (sAltPowerCalcMoves[altPowerScanIdx] != 0xFFFF
-            || (moves[i] != MOVE_NONE && sRiskyMoves[riskyScanIdx] == 0xFFFF && MOVE_DATA(moves[i]).power > 1)) {
+        if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+            || (moves[i] != MOVE_NONE && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF && MOVE_DATA(moves[i]).power > 1)) {
             if (varyDamage == TRUE) {
                 damageRoll = AI_CONTEXT.moveDamageRolls[i];
             } else {

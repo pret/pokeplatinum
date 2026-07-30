@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "FULLMOON_ISLAND_FOREST_CRESSELIA_0",
+            "id": "LOCALID_CRESSELIA",
             "graphics_id": "OBJ_EVENT_GFX_CRESSELIA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -21,7 +21,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_OBTAINED_FULLMOON_ISLAND_FOREST",
+            "hidden_flag": "FLAG_OBTAINED_FULLMOON_ISLAND_FOREST_LUNAR_WING",
             "script": 7092,
             "initial_dir": 0,
             "data": [],

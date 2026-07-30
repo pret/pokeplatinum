@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/comm_cmd_table.h"
 #include "struct_defs/struct_02029C88.h"
-#include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_02095B28.h"
 #include "struct_defs/struct_02095C60.h"
 

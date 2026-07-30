@@ -2,7 +2,7 @@
   "key": 37914,
   "messages": [
     {
-      "id": "EternaCityCondominiums3F_Text_IGatheredUpALotOfBerriesSoImTradingThemInForAccessories",
+      "id": "EternaCityCondominiums3F_Text_GatheredUpBerries",
       "en_US": [
         "I gathered up a lot of Berries, so\n",
         "I’m trading them in for Accessories.\r",
@@ -21,14 +21,14 @@
       ]
     },
     {
-      "id": "EternaCityCondominiums3F_Text_HahahaIveGotYouNowImGonnaTakeYourFlag",
+      "id": "EternaCityCondominiums3F_Text_ImGonnaTakeYourFlag",
       "en_US": [
         "Hahaha! I’ve got you now!\n",
         "I’m gonna take your Flag!"
       ]
     },
     {
-      "id": "EternaCityCondominiums3F_Text_YouCantCatchMeISetSomeTraps",
+      "id": "EternaCityCondominiums3F_Text_ISetSomeTraps",
       "en_US": [
         "You can’t catch me!\n",
         "I set some Traps!"

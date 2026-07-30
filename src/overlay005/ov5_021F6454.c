@@ -10,10 +10,10 @@
 #include "generated/game_records.h"
 #include "generated/items.h"
 #include "generated/species.h"
+#include "generated/villa_furniture_type.h"
 
-#include "struct_decls/struct_020308A0_decl.h"
-#include "struct_decls/struct_02061830_decl.h"
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
+#include "struct_decls/map_object_manager.h"
 #include "struct_defs/wi_fi_history.h"
 
 #include "field/field_system.h"
@@ -21,6 +21,8 @@
 #include "overlay005/ov5_021ECE40.h"
 
 #include "bag.h"
+#include "battle_frontier_stats.h"
+#include "battle_hall_win_records.h"
 #include "berry_patch_graphics.h"
 #include "bg_window.h"
 #include "billboard.h"
@@ -52,11 +54,9 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_vars.h"
-#include "unk_0202C858.h"
-#include "unk_02030880.h"
 #include "unk_02038F8C.h"
-#include "unk_0205DFC4.h"
 #include "vars_flags.h"
+#include "wifi_history_save_data.h"
 
 #include "res/text/bank/battle_tower.h"
 #include "res/text/bank/menu_entries.h"
@@ -123,7 +123,7 @@ static u16 sAlphabeticalSpeciesLists[] = {
 BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
 {
     int resultCode;
-    BattleFrontierStage *frontierStage;
+    BattleHallWinRecords *records;
     u16 *speciesList;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -137,14 +137,14 @@ BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
 
     MessageLoader *monMsgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD3);
     BattleHallRecordSelector *selector = BattleHallRecordSelecter_New(fieldSystem, 20, 1, 0, TRUE, FieldSystem_GetVarPointer(fieldSystem, resultVar), *strTemplate, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), monMsgLoader, FieldSystem_GetVarPointer(fieldSystem, listPosVar), FieldSystem_GetVarPointer(fieldSystem, cursorPosVar));
-    frontierStage = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
+    records = BattleHallWinRecords_Get(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
 
     if (resultCode == LOAD_RESULT_OK) {
         int speciesListSize;
         speciesList = BattleHallRecordSelector_GetSpeciesList(HEAP_ID_FIELD3, sAlphabeticalSpeciesLists[letterGroup], &speciesListSize);
 
         for (int i = 0; i < speciesListSize; i++) {
-            u16 streak = sub_020308BC(fieldSystem->saveData, frontierStage, sub_0205E584(challengeType), speciesList[i]);
+            u16 streak = BattleHallWinRecords_GetRecordForSpecies(fieldSystem->saveData, records, BattleFrontierStats_GetHallRecordStreakIndex(challengeType), speciesList[i]);
 
             if (streak != 0) {
                 BattleHallRecordSelector_AddOption(selector, speciesList[i], 0xff, speciesList[i]);
@@ -154,8 +154,8 @@ BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
         Heap_Free(speciesList);
     }
 
-    if (frontierStage != NULL) {
-        Heap_Free(frontierStage);
+    if (records != NULL) {
+        Heap_Free(records);
     }
 
     MessageLoader *menuMsgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);
@@ -263,8 +263,8 @@ static void BattleHallRecordSelector_OpenMenu(BattleHallRecordSelector *selector
         Window_Add(selector->fieldSystem->bgConfig, &selector->window, BG_LAYER_MAIN_3, selector->tilemapLeft, selector->tilemapTop, 11, selector->numOptions * 2, 13, 1);
     }
 
-    LoadStandardWindowGraphics(selector->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(&selector->window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
+    LoadStandardWindowGraphics(selector->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(&selector->window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
     BattleHallRecordSelector_InitListMenuTemplate(selector);
 
     selector->listMenu = ListMenu_New(&selector->menuTemplate, *selector->listPos, *selector->cursorPos, HEAP_ID_FIELD1);
@@ -448,74 +448,72 @@ BOOL ScrCmd_JudgeStats(ScriptContext *ctx)
     return 0;
 }
 
-BOOL ScrCmd_31D(ScriptContext *param0)
+BOOL ScrCmd_TryRevertPartyPokemonForms(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    Party *v1;
-    int v2, v3, v4;
-    int v5, v6;
-    u32 v7;
-    int v8[6];
-    int v9 = 0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v11 = ScriptContext_GetVarPointer(param0);
+    Pokemon *mon;
+    int slot, bagNotFull;
+    int species, form;
+    int items[MAX_PARTY_SIZE];
+    int griseousOrbCount = 0;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v1 = SaveData_GetParty(fieldSystem->saveData);
-    v2 = Party_GetCurrentCount(v1);
-    *v11 = 0;
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    int partyCount = Party_GetCurrentCount(party);
+    *destVar = 0;
 
-    for (v3 = 0; v3 < v2; v3++) {
-        v0 = Party_GetPokemonBySlotIndex(v1, v3);
-        v8[v3] = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
+    for (slot = 0; slot < partyCount; slot++) {
+        mon = Party_GetPokemonBySlotIndex(party, slot);
+        items[slot] = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
-        if (v8[v3] == ITEM_GRISEOUS_ORB) {
-            v9++;
+        if (items[slot] == ITEM_GRISEOUS_ORB) {
+            griseousOrbCount++;
         }
     }
 
-    if (v9 > 0) {
-        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, v9, HEAP_ID_FIELD1);
+    if (griseousOrbCount > 0) {
+        bagNotFull = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, griseousOrbCount, HEAP_ID_FIELD1);
 
-        if (v4 == 0) {
-            *v11 = 0xff;
-            return 0;
+        if (bagNotFull == FALSE) {
+            *destVar = 0xFF;
+            return FALSE;
         }
 
-        v7 = 0;
+        u32 emptyHeldItem = ITEM_NONE;
 
-        for (v3 = 0; v3 < v2; v3++) {
-            if (v8[v3] == ITEM_GRISEOUS_ORB) {
-                v0 = Party_GetPokemonBySlotIndex(v1, v3);
-                Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v7);
+        for (slot = 0; slot < partyCount; slot++) {
+            if (items[slot] == ITEM_GRISEOUS_ORB) {
+                mon = Party_GetPokemonBySlotIndex(party, slot);
+                Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &emptyHeldItem);
             }
         }
     }
 
-    for (v3 = 0; v3 < v2; v3++) {
-        v0 = Party_GetPokemonBySlotIndex(v1, v3);
-        v6 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+    for (slot = 0; slot < partyCount; slot++) {
+        mon = Party_GetPokemonBySlotIndex(party, slot);
+        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-        if (v6 > 0) {
-            v5 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+        if (form > 0) {
+            species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-            switch (v5) {
+            switch (species) {
             case SPECIES_GIRATINA:
-                Pokemon_SetGiratinaFormByHeldItem(v0);
+                Pokemon_SetGiratinaFormByHeldItem(mon);
                 break;
             case SPECIES_ROTOM:
-                Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
+                Pokemon_SetRotomForm(mon, ROTOM_FORM_BASE, 0);
                 break;
             case SPECIES_SHAYMIN:
-                Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
+                Pokemon_SetShayminForm(mon, SHAYMIN_FORM_LAND);
                 break;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
+BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *ctx)
 {
     Pokemon *mon;
     Party *party;
@@ -523,9 +521,9 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
     u32 emptyHeldItem;
     int currentHeldItem;
     int bagNotFull;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 partySlot = ScriptContext_GetVar(param0);
-    u16 *result = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *result = ScriptContext_GetVarPointer(ctx);
 
     party = SaveData_GetParty(fieldSystem->saveData);
     mon = Party_GetPokemonBySlotIndex(party, partySlot);
@@ -533,7 +531,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
     *result = 0;
 
     if (partySlot == 0xff) {
-        return 0;
+        return FALSE;
     }
 
     currentHeldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
@@ -541,12 +539,12 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
     if (currentHeldItem == ITEM_GRISEOUS_ORB) {
         bagNotFull = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, HEAP_ID_FIELD1);
 
-        if (bagNotFull == 0) {
-            *result = 0xff;
-            return 0;
+        if (bagNotFull == FALSE) {
+            *result = 0xFF;
+            return FALSE;
         }
 
-        emptyHeldItem = 0;
+        emptyHeldItem = ITEM_NONE;
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &emptyHeldItem);
     }
 
@@ -568,7 +566,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_2F1(ScriptContext *param0)
@@ -586,24 +584,24 @@ BOOL ScrCmd_2F1(ScriptContext *param0)
 
 BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
 {
-    int partyCount, i, count;
+    int partyCount;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVarCount = ScriptContext_GetVarPointer(ctx);
     u16 *destVarPartySlot = ScriptContext_GetVarPointer(ctx);
 
-    count = 0;
-    *destVarPartySlot = 0xff;
+    int count = 0;
+    *destVarPartySlot = PARTY_SLOT_NONE;
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     partyCount = Party_GetCurrentCount(party);
 
-    for (i = 0; i < partyCount; i++) {
+    for (int i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
         u32 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
         u32 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         u32 isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
         if (species == SPECIES_ROTOM && form != ROTOM_FORM_BASE && isEgg == FALSE) {
-            if (*destVarPartySlot == 0xff) {
+            if (*destVarPartySlot == PARTY_SLOT_NONE) {
                 *destVarPartySlot = i;
             }
 
@@ -612,7 +610,7 @@ BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
     }
 
     *destVarCount = count;
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_SetRotomForm(ScriptContext *ctx)
@@ -695,37 +693,36 @@ static void CalcHiddenPowerTypeAndPower(Pokemon *mon, int *outPower, int *outTyp
     }
 }
 
-BOOL ScrCmd_300(ScriptContext *param0)
+BOOL ScrCmd_SetFavoriteMon(ScriptContext *ctx)
 {
-    MiscSaveBlock *v0;
-    Pokemon *v1;
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
-    v0 = SaveData_MiscSaveBlock(fieldSystem->saveData);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
+    MiscSaveBlock *miscSave = SaveData_MiscSaveBlock(fieldSystem->saveData);
 
-    MiscSaveBlock_SetFavoriteMon(v0, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v1, MON_DATA_FORM, NULL), Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL));
-    return 0;
+    MiscSaveBlock_SetFavoriteMon(miscSave,
+        Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL),
+        Pokemon_GetValue(mon, MON_DATA_FORM, NULL),
+        Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL));
+    return FALSE;
 }
 
-BOOL ScrCmd_301(ScriptContext *param0)
+BOOL ScrCmd_GetFavoriteMon(ScriptContext *ctx)
 {
-    int v0, v1, v2;
-    MiscSaveBlock *v3;
-    Pokemon *v4;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v6 = ScriptContext_GetVarPointer(param0);
-    u16 *v7 = ScriptContext_GetVarPointer(param0);
-    u16 *v8 = ScriptContext_GetVarPointer(param0);
+    int species, form, isEgg;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVarSpecies = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarForm = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarIsEgg = ScriptContext_GetVarPointer(ctx);
 
-    v3 = SaveData_MiscSaveBlock(fieldSystem->saveData);
-    MiscSaveBlock_FavoriteMon(v3, &v0, &v1, &v2);
+    MiscSaveBlock *miscSave = SaveData_MiscSaveBlock(fieldSystem->saveData);
+    MiscSaveBlock_GetFavoriteMon(miscSave, &species, &form, &isEgg);
 
-    *v6 = v0;
-    *v7 = v1;
-    *v8 = v2;
+    *destVarSpecies = species;
+    *destVarForm = form;
+    *destVarIsEgg = isEgg;
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx)
@@ -741,91 +738,91 @@ BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_30F(ScriptContext *param0)
+BOOL ScrCmd_CheckMetFurnitureRequirements(ScriptContext *ctx)
 {
-    VarsFlags *v0;
-    GameRecords *v1;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 *v4 = ScriptContext_GetVarPointer(param0);
+    VarsFlags *varsFlags;
+    GameRecords *gameRecords;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 furniture = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    v1 = SaveData_GetGameRecords(fieldSystem->saveData);
-    *v4 = 1;
+    varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+    gameRecords = SaveData_GetGameRecords(fieldSystem->saveData);
+    *destVar = TRUE;
 
-    switch (v3) {
-    case 13:
-        if (GameRecords_GetRecordValue(v1, RECORD_BATTLE_TOWER_VICTORIES) < 1) {
-            *v4 = 0;
+    switch (furniture) {
+    case VILLA_FURNITURE_POKEMON_BUST + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_TOWER_VICTORIES) < 1) {
+            *destVar = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_060) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_FACTORY_VICTORIES) < 1) {
+            *destVar = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_061) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_CASTLE_VICTORIES) < 1) {
+            *destVar = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_062) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_HALL_VICTORIES) < 1) {
+            *destVar = FALSE;
         }
 
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_063) < 1) {
-            *v4 = 0;
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_ARCADE_VICTORIES) < 1) {
+            *destVar = FALSE;
         }
         break;
-    case 14:
-        *v4 = 0;
+    case VILLA_FURNITURE_POKEMON_BUST_SILVER + 1:
+        *destVar = FALSE;
 
-        if (SystemVars_GetBattleFactoryPrintState(v0) >= 2) {
-            *v4 = 1;
-        }
-
-        if (SystemVars_GetBattleHallPrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleFactoryPrintState(varsFlags) >= 2) {
+            *destVar = TRUE;
         }
 
-        if (SystemVars_GetBattleCastlePrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleHallPrintState(varsFlags) >= 2) {
+            *destVar = TRUE;
         }
 
-        if (SystemVars_GetBattleArcadePrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleCastlePrintState(varsFlags) >= 2) {
+            *destVar = TRUE;
         }
 
-        if (SystemVars_GetBattleTowerPrintState(v0) >= 2) {
-            *v4 = 1;
+        if (SystemVars_GetBattleArcadePrintState(varsFlags) >= 2) {
+            *destVar = TRUE;
+        }
+
+        if (SystemVars_GetBattleTowerPrintState(varsFlags) >= 2) {
+            *destVar = TRUE;
         }
         break;
-    case 15:
-        if (GameRecords_GetRecordValue(v1, RECORD_TIMES_ENTERED_HALL_OF_FAME) < 10) {
-            *v4 = 0;
+    case VILLA_FURNITURE_PIANO + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_TIMES_ENTERED_HALL_OF_FAME) < 10) {
+            *destVar = FALSE;
         }
         break;
-    case 16:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_057) < 50) {
-            *v4 = 0;
+    case VILLA_FURNITURE_GUEST_SET + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_TIMES_BATTLED_AT_BATTLEGROUND) < 50) {
+            *destVar = FALSE;
         }
         break;
-    case 17:
-        if (GameRecords_GetRecordValue(v1, RECORD_BERRIES_PLANTED) < 50) {
-            *v4 = 0;
+    case VILLA_FURNITURE_WALL_CLOCK + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_BERRIES_PLANTED) < 50) {
+            *destVar = FALSE;
         }
         break;
-    case 18:
-        if (GameRecords_GetRecordValue(v1, RECORD_EGGS_HATCHED) < 30) {
-            *v4 = 0;
+    case VILLA_FURNITURE_MASTERPIECE + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_EGGS_HATCHED) < 30) {
+            *destVar = FALSE;
         }
         break;
-    case 20:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_000) < 300000) {
-            *v4 = 0;
+    case VILLA_FURNITURE_CHANDELIER + 1:
+        if (GameRecords_GetRecordValue(gameRecords, RECORD_STEPS) < 300000) {
+            *destVar = FALSE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_Dummy316(ScriptContext *ctx)
@@ -922,7 +919,7 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
     int v3 = 0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
-    MapObject *v6 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v6 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     MapObject *v7;
 
     MapObject_GetPosPtr(v6, &v1);
@@ -963,7 +960,7 @@ BOOL ScrCmd_32E(ScriptContext *ctx)
     int v0 = 0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
-    MapObject *v3 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v3 = PlayerAvatar_GetMapObject(fieldSystem->playerAvatar);
     MapObject *v4;
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v4, &v0, MAP_OBJ_STATUS_0) == 1) {
@@ -1081,10 +1078,10 @@ BOOL ScrCmd_LogLinkInfoInWiFiHistory(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_333(ScriptContext *ctx)
+BOOL ScrCmd_SetPlayerVolume(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 volume = ScriptContext_GetVar(ctx);
 
-    Sound_SetPlayerVolume(1, v0);
-    return 0;
+    Sound_SetPlayerVolume(PLAYER_FIELD, volume);
+    return FALSE;
 }

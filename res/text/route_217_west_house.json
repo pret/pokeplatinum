@@ -2,7 +2,7 @@
   "key": 7915,
   "messages": [
     {
-      "id": "pl_msg_00000508_00000",
+      "id": "Route217WestHouse_Text_IDroppedHM",
       "en_US": [
         "While I was fighting my way through\n",
         "the blizzard, I dropped an HM.\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000508_00001",
+      "id": "Route217WestHouse_Text_YouFoundHM",
       "en_US": [
         "While I was fighting my way through\n",
         "the blizzard, I dropped an HM.\r",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000508_00002",
+      "id": "Route217WestHouse_Text_IFoundIciclePlate",
       "en_US": [
         "That Icicle Plate, I found that under\n",
         "the snow as well.\r",

@@ -8,7 +8,7 @@
 #include "constants/field_base_tiles.h"
 #include "constants/map_object.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "overlay005/land_data.h"
@@ -24,6 +24,7 @@
 #include "underground/traps.h"
 #include "underground/vendors.h"
 
+#include "comm_manager.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -45,9 +46,8 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "underground.h"
-#include "unk_02030EE0.h"
-#include "unk_020366A0.h"
 #include "vars_flags.h"
+#include "wireless_manager.h"
 
 #include "res/graphics/trap_effects/trap_effects.naix"
 #include "res/text/bank/underground_common.h"
@@ -161,7 +161,7 @@ static void UndergroundMan_Init(UndergroundManager *dest, FieldSystem *fieldSyst
 
     SystemFlag_SetEnteredUnderground(SaveData_GetVarsFlags(sUndergroundMan->fieldSystem->saveData));
     sUndergroundMan->sysTask = SysTask_Start(UndergroundMan_ClearPrinterIDsTask, NULL, 0);
-    sub_SetDisconnectCallback(UndergroundMan_DisconnectCallback);
+    WirelessManager_SetDisconnectCallback(UndergroundMan_DisconnectCallback);
 }
 
 static void UndergroundMan_Free(void)
@@ -172,7 +172,7 @@ static void UndergroundMan_Free(void)
         }
     }
 
-    sub_SetDisconnectCallback(NULL);
+    WirelessManager_SetDisconnectCallback(NULL);
     SysTask_Done(sUndergroundMan->sysTask);
 
     UndergroundTextPrinter_Free(sUndergroundMan->commonTextPrinter);
@@ -722,7 +722,7 @@ void UndergroundMan_Process(void)
             }
         }
 
-        sub_02037B58(UndergroundMan_CountInitializedPlayers() + 2);
+        CommManager_SetMaxNumConnections(UndergroundMan_CountInitializedPlayers() + 2);
     }
 
     sUndergroundMan->dummyCounter++;

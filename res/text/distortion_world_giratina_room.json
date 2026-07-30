@@ -2,43 +2,43 @@
   "key": 28774,
   "messages": [
     {
-      "id": "pl_msg_00000320_00000",
+      "id": "DistortionWorldGiratinaRoom_Text_GiratinaCryGiygogagogwoh",
       "en_US": "Giygogagogwoh!"
     },
     {
-      "id": "pl_msg_00000320_00001",
+      "id": "DistortionWorldGiratinaRoom_Text_GiratinaIsEyeingPlayer",
       "en_US": [
         "GIRATINA is quietly eyeing\n",
         "{STRVAR_1 3, 0, 0}..."
       ]
     },
     {
-      "id": "pl_msg_00000320_00002",
+      "id": "DistortionWorldGiratinaRoom_Text_GiratinaCryGiygogagohgwooh",
       "en_US": "Giygogagohgwooh!\r"
     },
     {
-      "id": "pl_msg_00000320_00003",
+      "id": "DistortionWorldGiratinaRoom_Text_GiratinaUnderstoodUs",
       "en_US": [
         "Cynthia: GIRATINA seems to have\n",
         "understood us!\r"
       ]
     },
     {
-      "id": "pl_msg_00000320_00004",
+      "id": "DistortionWorldGiratinaRoom_Text_ThatPokemonWasDefeated",
       "en_US": [
         "Cyrus: That Pokémon...\r",
         "That shadowy Pokémon was defeated?!\r"
       ]
     },
     {
-      "id": "pl_msg_00000320_00005",
+      "id": "DistortionWorldGiratinaRoom_Text_ThatPokemonWasCaptured",
       "en_US": [
         "Cyrus: That Pokémon...\r",
         "That shadowy Pokémon was captured?!\r"
       ]
     },
     {
-      "id": "pl_msg_00000320_00006",
+      "id": "DistortionWorldGiratinaRoom_Text_YouRefusedToBattle",
       "en_US": [
         "Cyrus: That shadowy Pokémon...\r",
         "You quelled its rage by refusing to\n",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000320_00007",
+      "id": "DistortionWorldGiratinaRoom_Text_NewWorldCantBeMade",
       "en_US": [
         "Your doing so means this irrational\n",
         "world will remain in existence!\r",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000320_00008",
+      "id": "DistortionWorldGiratinaRoom_Text_PokemonUniteUs",
       "en_US": [
         "Cynthia: ...The places we are born.\r",
         "The time we spend living...\r",
@@ -76,11 +76,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000320_00009",
+      "id": "DistortionWorldGiratinaRoom_Text_BigSilence",
       "en_US": "{SIZE 200}Silence!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000320_00010",
+      "id": "DistortionWorldGiratinaRoom_Text_EnoughBlathering",
       "en_US": [
         "Cyrus: Enough of your blathering!\r",
         "That’s how you justify spirit as\n",
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000320_00011",
+      "id": "DistortionWorldGiratinaRoom_Text_WeCanFeelJoy",
       "en_US": [
         "Cynthia: ...\n",
         "...\r",
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000320_00012",
+      "id": "DistortionWorldGiratinaRoom_Text_LetsGoBackHome",
       "en_US": [
         "Let’s go back home.\r",
         "The portal where GIRATINA was should\n",
@@ -127,14 +127,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000320_00013",
+      "id": "DistortionWorldGiratinaRoom_Text_LeapIntoPortal",
       "en_US": [
         "There is a portal where GIRATINA was.\n",
         "Will you leap into the portal?"
       ]
     },
     {
-      "id": "pl_msg_00000320_00014",
+      "id": "DistortionWorldGiratinaRoom_Text_PlayerLeaptIntoPortal",
       "en_US": "{STRVAR_1 3, 0, 0} leapt into the portal.\r"
     }
   ]

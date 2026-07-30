@@ -5,15 +5,14 @@
 
 #include "struct_defs/struct_02030CEC.h"
 #include "struct_defs/wi_fi_history.h"
-
-#include "overlay096/struct_world_exchange_trainer.h"
+#include "struct_defs/world_exchange.h"
 
 #include "charcode_util.h"
 #include "math_util.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0202C858.h"
+#include "wifi_history_save_data.h"
 
 static void sub_02030DD0(SaveData *saveData, WorldExchangeTrainer *param1);
 

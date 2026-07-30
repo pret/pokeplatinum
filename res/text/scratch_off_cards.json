@@ -2,7 +2,7 @@
   "key": 51441,
   "messages": [
     {
-      "id": "pl_msg_00000541_00000",
+      "id": "ScratchOffCards_Text_WouldYouLikeCards",
       "en_US": [
         "Welcome!\r",
         "Would you like some Scratch-Off Cards?\n",
@@ -10,27 +10,27 @@
       ]
     },
     {
-      "id": "pl_msg_00000541_00001",
+      "id": "ScratchOffCards_Text_WillYouBuyCards",
       "en_US": "Will you buy some Scratch-Off Cards?"
     },
     {
-      "id": "pl_msg_00000541_00002",
+      "id": "ScratchOffCards_Text_Scratch",
       "en_US": "SCRATCH"
     },
     {
-      "id": "pl_msg_00000541_00003",
+      "id": "ScratchOffCards_Text_Info",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000541_00004",
+      "id": "ScratchOffCards_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000541_00005",
+      "id": "ScratchOffCards_Text_PleaseVisitAgain",
       "en_US": "Please visit again."
     },
     {
-      "id": "pl_msg_00000541_00006",
+      "id": "ScratchOffCards_Text_ScratchOffCardsInfo",
       "en_US": [
         "You may buy three Scratch-Off Cards\n",
         "for {STRVAR_1 50, 0, 0} BP.\r",
@@ -43,54 +43,54 @@
       ]
     },
     {
-      "id": "pl_msg_00000541_00007",
+      "id": "ScratchOffCards_Text_XBPForThreeCards",
       "en_US": [
         "It will be {STRVAR_1 50, 2, 0} BP for three\n",
         "Scratch-Off Cards. Is that OK?"
       ]
     },
     {
-      "id": "pl_msg_00000541_00008",
+      "id": "ScratchOffCards_Text_Dummy8",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000541_00009",
+      "id": "ScratchOffCards_Text_Dummy9",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000541_00010",
+      "id": "ScratchOffCards_Text_SelectThreeCards",
       "en_US": [
         "OK, please select three\n",
         "Scratch-Off Cards.\r"
       ]
     },
     {
-      "id": "pl_msg_00000541_00011",
+      "id": "ScratchOffCards_Text_YouWonOnXCards",
       "en_US": [
         "Congratulations!\r",
         "You won on {STRVAR_1 50, 0, 0} Scratch-Off Card(s)!\r"
       ]
     },
     {
-      "id": "pl_msg_00000541_00012",
+      "id": "ScratchOffCards_Text_NoRoomForItem",
       "en_US": [
         "Too bad! There is no more room for\n",
         "the {STRVAR_1 8, 0, 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000541_00013",
+      "id": "ScratchOffCards_Text_ReceivedXItems",
       "en_US": "Received {STRVAR_1 50, 1, 0} {STRVAR_1 8, 0, 0}!\r"
     },
     {
-      "id": "pl_msg_00000541_00014",
+      "id": "ScratchOffCards_Text_NotEnoughBP",
       "en_US": [
         "I’m sorry, but you don’t have enough\n",
         "BP. Please come again."
       ]
     },
     {
-      "id": "pl_msg_00000541_00015",
+      "id": "ScratchOffCards_Text_IntroduceScratchOffCards",
       "en_US": [
         "Welcome!\n",
         "Would you like some Scratch-Off Cards?\r",

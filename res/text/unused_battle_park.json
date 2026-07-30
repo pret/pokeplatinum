@@ -1,0 +1,151 @@
+{
+  "key": 52138,
+  "messages": [
+    {
+      "id": "BattlePark_Text_BigThudPalmer",
+      "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
+    },
+    {
+      "id": "BattlePark_Text_WhatThe",
+      "en_US": "What the...\r"
+    },
+    {
+      "id": "BattlePark_Text_SorryAboutThat",
+      "en_US": [
+        "Whoops, sorry about that!\n",
+        "I was in a rush.\r"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_YourePlayerFromTwinleaf",
+      "en_US": [
+        "Oh, wait a second...\n",
+        "Aren’t you...\r",
+        "You’re {STRVAR_1 3, 1, 0} from Twinleaf!\n",
+        "Wow, that brings back memories!\r",
+        "So, if you’re here, he can’t be far\n",
+        "behind...\r",
+        "This should be fun.\n",
+        "See you!\r"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_BigThudRival",
+      "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
+    },
+    {
+      "id": "BattlePark_Text_MeasureUpBeforeStarkMountain",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What the...\r",
+        "Oh, hey, {STRVAR_1 3, 1, 0}!\r",
+        "You came to the Battle Tower too,\n",
+        "huh?\r",
+        "I decided I’ll see how I measure up\n",
+        "before going to Stark Mountain.\r",
+        "But that guy you were just talking\n",
+        "to...\r",
+        "...Nah, it’s all right!\n",
+        "I got here on my own power.\f",
+        "It won’t take long before I see him.\r",
+        "See ya, {STRVAR_1 3, 1, 0}!\n",
+        "I’m going to toughen up here!\r"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_MeasureUpForMyQuest",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What the...\r",
+        "Oh, hey, {STRVAR_1 3, 1, 0}!\r",
+        "You came to the Battle Tower too,\n",
+        "huh?\r",
+        "I decided I’ll see how I measure up\n",
+        "for my quest to be the greatest!\r",
+        "But that guy you were just talking\n",
+        "to...\r",
+        "...Nah, it’s all right!\n",
+        "I got here on my own power.\f",
+        "It won’t take long before I see him.\r",
+        "See ya, {STRVAR_1 3, 1, 0}!\n",
+        "I’m going to toughen up here!\r"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_SignExchangeServiceCorner",
+      "en_US": [
+        "Exchange Service Corner\n",
+        "A Cornucopia of Fabulous Prizes!"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_SignBattleTower",
+      "en_US": [
+        "Battle Tower\n",
+        "Gather, All Ye Greatest!"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_SeventhTrainerIsBoss",
+      "en_US": [
+        "In the Battle Rooms, the seventh\n",
+        "Trainer you face is the room’s boss.\r",
+        "You’ll need to stay focused if you\n",
+        "want to win!"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_BattleRealSuperstars",
+      "en_US": [
+        "If you get a big win streak at the\n",
+        "Battle Tower, you get to battle\f",
+        "some real superstars."
+      ]
+    },
+    {
+      "id": "BattlePark_Text_EarnedLotsOfBP",
+      "en_US": [
+        "Mwahahaha! We earned a lot of BP\n",
+        "at the Battle Tower.\r",
+        "Now I can exchange them for\n",
+        "loads of prizes!"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_Aah",
+      "en_US": "Aah."
+    },
+    {
+      "id": "BattlePark_Text_ImABabysittingTrainer",
+      "en_US": [
+        "I’m a babysitting Trainer!\r",
+        "I’m off to the Multi Battle Rooms\n",
+        "with my beloved son!"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_WorldsBestGatherHere",
+      "en_US": [
+        "I heard that the world’s best\n",
+        "gather here for battles.\r",
+        "This is my chance to get global\n",
+        "fame and recognition!"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_NoDetailCanBeOverlooked",
+      "en_US": [
+        "The types of Pokémon!\r",
+        "The moves to be taught and used!\r",
+        "The items to be held!\r",
+        "To become number one here, there is \n",
+        "no detail that can be overlooked!"
+      ]
+    },
+    {
+      "id": "BattlePark_Text_HookUpWithBeauty",
+      "en_US": [
+        "I’d love to hook up with a Beauty\n",
+        "for the Multi Battle Rooms."
+      ]
+    }
+  ]
+}

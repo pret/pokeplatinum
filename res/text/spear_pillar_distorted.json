@@ -2,23 +2,23 @@
   "key": 24594,
   "messages": [
     {
-      "id": "pl_msg_00000235_00000",
+      "id": "SpearPillarDistorted_Text_No",
       "en_US": "Cynthia: No...!\r"
     },
     {
-      "id": "pl_msg_00000235_00001",
+      "id": "SpearPillarDistorted_Text_Dummy1",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000235_00002",
+      "id": "SpearPillarDistorted_Text_Dummy2",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000235_00003",
+      "id": "SpearPillarDistorted_Text_Dummy3",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000235_00004",
+      "id": "SpearPillarDistorted_Text_SorryITookSoLong",
       "en_US": [
         "Cynthia: I’m sorry I took so long.\r",
         "I think I finally found the answer\n",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000235_00005",
+      "id": "SpearPillarDistorted_Text_WorldWillBeDestroyed",
       "en_US": [
         "The pillars are distorting...\r",
         "It’s because of that portal.\n",
@@ -49,70 +49,70 @@
       ]
     },
     {
-      "id": "pl_msg_00000235_00006",
+      "id": "SpearPillarDistorted_Text_AreYouReady",
       "en_US": [
         "Cynthia: Are you ready?\n",
         "We have to chase Cyrus!"
       ]
     },
     {
-      "id": "pl_msg_00000235_00007",
+      "id": "SpearPillarDistorted_Text_WeHaveToHurry",
       "en_US": "Cynthia: We have to hurry!\r"
     },
     {
-      "id": "pl_msg_00000235_00008",
+      "id": "SpearPillarDistorted_Text_IllWaitHere",
       "en_US": [
         "Cynthia: You need to get ready?\n",
         "I’ll wait here."
       ]
     },
     {
-      "id": "pl_msg_00000235_00009",
+      "id": "SpearPillarDistorted_Text_WhereDidHeGo",
       "en_US": [
         "Mars: M-Master Cyrus?!\n",
         "Where did he go?!"
       ]
     },
     {
-      "id": "pl_msg_00000235_00010",
+      "id": "SpearPillarDistorted_Text_WhatWasIt",
       "en_US": [
         "Jupiter: That shadow...\n",
         "What was it...?!"
       ]
     },
     {
-      "id": "pl_msg_00000235_00011",
+      "id": "SpearPillarDistorted_Text_CanOnlyPanicAimlessly",
       "en_US": [
         "Without anyone to guide us, we can only\n",
         "panic aimlessly..."
       ]
     },
     {
-      "id": "pl_msg_00000235_00012",
+      "id": "SpearPillarDistorted_Text_Dummy12",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000235_00013",
+      "id": "SpearPillarDistorted_Text_Dummy13",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000235_00014",
+      "id": "SpearPillarDistorted_Text_Dummy14",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000235_00015",
+      "id": "SpearPillarDistorted_Text_Dummy15",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000235_00016",
+      "id": "SpearPillarDistorted_Text_Dummy16",
       "garbage": 48
     },
     {
-      "id": "pl_msg_00000235_00017",
+      "id": "SpearPillarDistorted_Text_Dummy17",
       "garbage": 22
     },
     {
-      "id": "pl_msg_00000235_00018",
+      "id": "SpearPillarDistorted_Text_TimeEmanatesFromRift",
       "en_US": [
         "An overwhelming feeling of time\n",
         "emanates powerfully from this rift...\r",
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000235_00019",
+      "id": "SpearPillarDistorted_Text_SpaceEmanatesFromRift",
       "en_US": [
         "An overwhelming feeling of space\n",
         "emanates powerfully from this rift...\r",

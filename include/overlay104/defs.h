@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_0209B75C_decl.h"
+#include "struct_decls/battle_frontier_decl.h"
 
 #include "overlay104/struct_ov104_0222E8C8.h"
 
@@ -74,7 +74,7 @@ typedef struct FrontierMenuManager {
 } FrontierMenuManager;
 
 struct FrontierScriptManager {
-    UnkStruct_0209B75C *unk_00;
+    BattleFrontier *frontier;
     FrontierScriptContext *ctx[8];
     UnkStruct_ov104_0222E8C8 unk_24;
     enum HeapID heapID;
@@ -88,7 +88,7 @@ struct FrontierScriptManager {
     s8 numSetContexts;
     u16 scene;
     u8 unused[5];
-    u8 unk_59;
+    u8 movementCount;
     u8 isMsgBoxOpen;
     int unused2;
     FrontierMenuManager *menuMan;
@@ -97,8 +97,8 @@ struct FrontierScriptManager {
     u16 *unused3;
     void *savingIcon;
     int unused4[10];
-    Window *unk_A8;
-    Window *unk_AC;
+    Window *castleHostInfoWin;
+    Window *castlePlayer2InfoWin;
     u16 unk_B0;
     u16 unk_B2;
     u16 unk_B4;

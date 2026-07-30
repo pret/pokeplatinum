@@ -15,7 +15,7 @@ _000:
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     PlayFaintAnimation 
     Wait 
-    HealthbarSlideOut BTLSCR_FAINTED_MON
+    HealthBoxSlideOut BTLSCR_FAINTED_MON
     // {0} fainted!
     PrintMessage BattleStrings_Text_PokemonFainted_Ally, TAG_NICKNAME, BTLSCR_FAINTED_MON
     Wait 

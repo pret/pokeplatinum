@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_effect_manager.h"
@@ -185,13 +185,13 @@ static int ov5_021F36F4(OverworldAnimManager *param0, void *param1)
 
     v2->unk_10 = *v3;
     v2->unk_04 = MapObject_GetLocalID(v2->unk_10.unk_0C);
-    v2->unk_08 = MapObject_GetMapID(v2->unk_10.unk_0C);
+    v2->unk_08 = MapObject_GetMapHeaderID(v2->unk_10.unk_0C);
 
     OverworldAnimManager_GetPosition(param0, &v1);
 
     {
         u32 v4[4] = { 8, 14, 15, 16 };
-        int v5 = OverworldAnimManager_GetID(param0);
+        int v5 = OverworldAnimManager_GetUserInt(param0);
 
         v2->unk_20 = ov5_021DF84C(v2->unk_10.unk_04, v4[v5], &v1);
     }

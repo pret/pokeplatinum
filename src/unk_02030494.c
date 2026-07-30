@@ -26,7 +26,7 @@ void sub_02030494(UnkStruct_020304A0 *param0)
 
 UnkStruct_020304A0 *sub_020304A0(SaveData *saveData)
 {
-    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &frontier->unk_8E0_val5;
 }
 
@@ -73,7 +73,7 @@ void sub_020304CC(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, c
         param0->unk_2A[param2] = v1[0];
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -100,7 +100,7 @@ u32 sub_0203054C(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, vo
     case 7:
         return param0->unk_2A[param2];
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -115,7 +115,7 @@ void sub_020305AC(UnkStruct_020305B8 *param0)
 
 UnkStruct_020305B8 *sub_020305B8(SaveData *saveData)
 {
-    BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
+    BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &frontier->unk_1620.unk_00;
 }
 
@@ -134,7 +134,7 @@ void sub_020305CC(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, c
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -147,7 +147,7 @@ u32 sub_02030600(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, vo
     case 8:
         return (u32)((param0->unk_00 >> param2) & 0x1);
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 

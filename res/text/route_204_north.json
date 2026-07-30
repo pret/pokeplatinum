@@ -2,7 +2,7 @@
   "key": 2418,
   "messages": [
     {
-      "id": "Route204North_Text_AreYouRaisingDifferentKindsOfPokemon",
+      "id": "Route204North_Text_RaisingDifferentPokemon",
       "en_US": [
         "Are you raising different kinds of\n",
         "Pokémon?\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "Route204North_Text_IdLikeYouToHaveThisTM",
+      "id": "Route204North_Text_HaveThisTM",
       "en_US": [
         "Hi, are you the flirty type?\n",
         "I’m asking you this to make a point.\r",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "id": "Route204North_Text_CaptivateOnlyWorksAgainstTheOppositeGender",
+      "id": "Route204North_Text_CaptivateOppositeGender",
       "en_US": [
         "You know how Pokémon have genders?\n",
         "Like, there are males and females?\r",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "id": "Route204North_Text_Rt204FloaromaTown",
+      "id": "Route204North_Text_SignFloaromaTown",
       "en_US": [
         "Rt. 204\n",
         "Floaroma Town"

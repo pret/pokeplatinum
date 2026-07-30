@@ -43,7 +43,7 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_221_SWIMMER_DILLON",
+            "id": "LOCALID_SWIMMER_DILLON",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -60,7 +60,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_221_SWIMMER_VANESSA",
+            "id": "LOCALID_SWIMMER_VANESSA",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -77,7 +77,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_221_FISHERMAN_CORY",
+            "id": "LOCALID_FISHERMAN_CORY",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -92,7 +92,7 @@
             "y": 1
         },
         {
-            "id": "ROUTE_221_COLLECTOR_IVAN",
+            "id": "LOCALID_COLLECTOR_IVAN",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -109,7 +109,7 @@
             "y": 1
         },
         {
-            "id": "ROUTE_221_ACE_TRAINER_JAKE",
+            "id": "LOCALID_ACE_TRAINER_JAKE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -126,7 +126,7 @@
             "y": 1
         },
         {
-            "id": "ROUTE_221_ACE_TRAINER_SHANNON",
+            "id": "LOCALID_ACE_TRAINER_SHANNON",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -143,7 +143,7 @@
             "y": 1
         },
         {
-            "id": "ROUTE_221_SIGNBOARD_6",
+            "id": "LOCALID_SIGNBOARD_PAL_PARK",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -203,7 +203,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_221_BERRY_SOIL_10",
+            "id": "LOCALID_BERRY_SOIL_1",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -220,7 +220,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_221_BERRY_SOIL_11",
+            "id": "LOCALID_BERRY_SOIL_2",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -237,7 +237,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_221_BERRY_SOIL_12",
+            "id": "LOCALID_BERRY_SOIL_3",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -254,7 +254,7 @@
             "y": 0
         },
         {
-            "id": "ROUTE_221_BERRY_SOIL_13",
+            "id": "LOCALID_BERRY_SOIL_4",
             "graphics_id": "OBJ_EVENT_GFX_BERRY_SOIL",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -286,11 +286,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_221_WORKER_15",
+            "id": "LOCALID_WORKER_WEST",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x027F",
+            "hidden_flag": "FLAG_HIDE_ROUTE_221_WORKER_WEST",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -301,11 +301,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_221_WORKER_16",
+            "id": "LOCALID_WORKER_EAST",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0280",
+            "hidden_flag": "FLAG_HIDE_ROUTE_221_WORKER_EAST",
             "script": 2,
             "initial_dir": 1,
             "data": [],

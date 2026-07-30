@@ -5,13 +5,13 @@
 
 #include "struct_defs/struct_0207DFAC.h"
 
-#include "unk_020366A0.h"
+#include "comm_manager.h"
 
 BOOL sub_0207DFAC(int param0)
 {
     int v0;
     int v1;
-    UnkStruct_0207DFAC *v2 = sub_020388E8();
+    UnkStruct_0207DFAC *v2 = CommManager_GetUnk00();
 
     v0 = v2->unk_00.unk_1B;
     v1 = v2->unk_24[param0].unk_1B;

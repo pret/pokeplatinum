@@ -2,7 +2,7 @@
   "key": 9295,
   "messages": [
     {
-      "id": "pl_msg_00000298_00000",
+      "id": "LakeAcuity_Text_YoureNotGettingAway",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: !\r",
         "You’re not getting away with this,\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000298_00001",
+      "id": "LakeAcuity_Text_BackToVeilstoneCity",
       "en_US": [
         "Jupiter: Oh?\n",
         "Are you finished already?\r",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000298_00002",
+      "id": "LakeAcuity_Text_DontWasteYourTime",
       "en_US": [
         "Oh? Don’t I know you?\n",
         "We met in Eterna City.\r",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000298_00003",
+      "id": "LakeAcuity_Text_ICouldntDoAnything",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...\n",
         "...\r",
@@ -51,14 +51,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000298_00004",
+      "id": "LakeAcuity_Text_UxieWasSuffering",
       "en_US": [
         "That Pokémon called UXIE...\n",
         "It was suffering...\r"
       ]
     },
     {
-      "id": "pl_msg_00000298_00005",
+      "id": "LakeAcuity_Text_IHaveToBeStronger",
       "en_US": [
         "I’m going to get tougher...\r",
         "It’s not about winning or losing...\n",

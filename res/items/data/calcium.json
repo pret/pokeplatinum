@@ -1,0 +1,35 @@
+{
+  "name": "Calcium",
+  "plural": "Calciums",
+  "article": "a",
+  "description": [
+    "A nutritious drink for Pokémon.\n",
+    "It raises the base Sp. Atk (Special\n",
+    "Attack) stat of a single Pokémon."
+  ],
+  "icon": {
+    "sprite": "protein_NCGR",
+    "palette": "calcium_NCLR"
+  },
+  "gbaID": "GBA_ITEM_CALCIUM",
+  "price": 9800,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "spatkEVs": 10,
+    "friendshipLow": 5,
+    "friendshipMed": 3,
+    "friendshipHigh": 2
+  }
+}

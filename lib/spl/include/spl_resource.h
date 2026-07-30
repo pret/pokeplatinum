@@ -1,9 +1,16 @@
 #ifndef SPL_RESOURCE_H
 #define SPL_RESOURCE_H
 
+#include <nitro/fx/fx.h>
 #include <nitro/types.h>
 
-#include "struct_defs/struct_020147B8.h"
+struct SPLParticle;
+struct SPLEmitter;
+
+typedef struct SPLBehavior {
+    void (*applyFunc)(const void *, struct SPLParticle *, VecFx32 *, struct SPLEmitter *);
+    const void *object;
+} SPLBehavior;
 
 #define SPL_TEX_ANIM_MAX_FRAMES 8
 

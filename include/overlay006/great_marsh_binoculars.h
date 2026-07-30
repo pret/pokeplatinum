@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_GREAT_MARSH_BINOCULARS_H
 #define POKEPLATINUM_GREAT_MARSH_BINOCULARS_H
 
+#include "generated/map_headers.h"
+
 #include "field/field_system_decl.h"
 
 #include "great_marsh_lookout.h"
@@ -16,7 +18,7 @@ typedef struct GreatMarshBinoculars {
     BinocularCoords coordsList[BINOCULARS_CYCLE_COUNT + 1];
     Location viewLocation;
     FieldSystem *fieldSystem;
-    int lookoutMapId;
+    enum MapHeaderID lookoutMapHeaderID;
 } GreatMarshBinoculars;
 
 int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem);

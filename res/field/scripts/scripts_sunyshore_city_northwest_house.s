@@ -2,14 +2,14 @@
 #include "res/text/bank/sunyshore_city_northwest_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry SunyshoreCityNorthwestHouse_OldMan
+    ScriptEntry SunyshoreCityNorthwestHouse_OldWoman
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+SunyshoreCityNorthwestHouse_OldMan:
+    NPCMessage SunyshoreCityNorthwestHouse_Text_GalacticUpToNoGood
     End
 
-_001D:
-    NPCMessage 1
+SunyshoreCityNorthwestHouse_OldWoman:
+    NPCMessage SunyshoreCityNorthwestHouse_Text_CyrusLivedHere
     End

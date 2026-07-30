@@ -4,15 +4,14 @@
 #include <dwc.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 #include "struct_defs/gts_player_data.h"
+#include "struct_defs/world_exchange.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay094/struct_ov94_02242AAC.h"
-#include "overlay096/struct_world_exchange_trainer.h"
-#include "overlay096/struct_world_exchange_trainer_error.h"
 
 #include "bg_window.h"
 #include "evolution.h"
@@ -149,7 +148,7 @@ typedef struct GTSApplicationState {
     u16 mainMenuSelectedOption;
     u16 unk_10E;
     u16 selectedBoxId;
-    u16 unk_112;
+    u16 partySlotIndex;
     BoxPokemon *unk_114;
     int unk_118;
     int selectedSearchResult;

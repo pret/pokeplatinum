@@ -2,11 +2,11 @@
 #include "res/text/bank/bag.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001C
+    ScriptEntry PokeRadar_BatteryHasRunDry
+    ScriptEntry PokeRadar_GrassyPatchRemainedQUiet
     ScriptEntryEnd
 
-_000A:
+PokeRadar_BatteryHasRunDry:
     LockAll
     BufferNumber 0, VAR_0x8000
     Message Bag_Text_BatteryHasRunDry
@@ -15,7 +15,7 @@ _000A:
     ReleaseAll
     End
 
-_001C:
+PokeRadar_GrassyPatchRemainedQUiet:
     LockAll
     Message Bag_Text_GrassyPatchRemainedQuiet
     WaitButton

@@ -2,14 +2,14 @@
 #include "res/text/bank/celestic_town_northeast_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry CelesticTownNortheastHouse_PokefanM
+    ScriptEntry CelesticTownNortheastHouse_NinjaBoy
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+CelesticTownNortheastHouse_PokefanM:
+    NPCMessage CelesticTownNortheastHouse_Text_MtCoronetCenter
     End
 
-_001D:
-    NPCMessage 1
+CelesticTownNortheastHouse_NinjaBoy:
+    NPCMessage CelesticTownNortheastHouse_Text_SeeAllOfSinnoh
     End

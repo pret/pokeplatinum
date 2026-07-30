@@ -5,7 +5,7 @@
 
 #include "constants/field/field_effect_renderer.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_light.h"
@@ -348,10 +348,10 @@ static void RenderFieldEffects(FieldEffectManager *fieldEffMan)
     }
 }
 
-OverworldAnimManager *FieldEffectManager_InitAnimManager(const FieldEffectManager *fieldEffMan, const OverworldAnimManagerFuncs *funcs, const VecFx32 *initialPos, int animId, const void *userData, int sysTaskPriority)
+OverworldAnimManager *FieldEffectManager_InitAnimManager(const FieldEffectManager *fieldEffMan, const OverworldAnimManagerFuncs *funcs, const VecFx32 *initialPos, int userInt, const void *userData, int sysTaskPriority)
 {
     OverworldAnimManagerList *animManList = fieldEffMan->animManList;
-    OverworldAnimManager *animMan = OverworldAnimManagerList_InitManager(animManList, funcs, initialPos, animId, userData, sysTaskPriority);
+    OverworldAnimManager *animMan = OverworldAnimManagerList_InitManager(animManList, funcs, initialPos, userInt, userData, sysTaskPriority);
 
     GF_ASSERT(animMan != NULL);
     return animMan;

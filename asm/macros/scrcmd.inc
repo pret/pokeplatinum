@@ -1,7 +1,5 @@
-#include "constants/accessories.h"
 #include "generated/badges.h"
 #include "generated/battle_tower_modes.h"
-#include "generated/battle_tower_functions.h"
 #include "generated/berry_growth_stages.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/comm_club_ret_codes.h"
@@ -20,7 +18,6 @@
 #include "generated/movement_types.h"
 #include "generated/moves.h"
 #include "generated/mystery_gift_delivery_stages.h"
-#include "generated/npc_trades.h"
 #include "generated/object_events_gfx.h"
 #include "generated/player_transitions.h"
 #include "generated/poketch_apps.h"
@@ -29,15 +26,19 @@
 #include "generated/sdat.h"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
-#include "generated/string_padding_mode.h"
 #include "generated/time_of_day.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
-#include "constants/battle/battle_script.h"
+#include "generated/villa_furniture_type.h"
+#include "constants/accessories.h"
 #include "constants/animation_tags.h"
+#include "constants/battle.h"
 #include "constants/battle_tower.h"
+#include "constants/battle_tower_functions.h"
+#include "constants/battle/battle_script.h"
 #include "constants/boat_cutscene.h"
 #include "constants/colors.h"
+#include "constants/distortion_world.h"
 #include "constants/elevator_dirs.h"
 #include "constants/fade_screen.h"
 #include "constants/forms.h"
@@ -45,17 +46,22 @@
 #include "constants/init_script_types.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
+#include "constants/moves.h"
 #include "constants/overworld_weather.h"
 #include "constants/pokemon.h"
+#include "constants/records_mixed_rng.h"
 #include "constants/regi_ruins.h"
 #include "constants/roamer_states.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
+#include "constants/sound_volume.h"
+#include "constants/string.h"
 #include "constants/tv_broadcast.h"
-#include "constants/battle.h"
+#include "constants/union_room_message_types.h"
+#include "constants/villa_visitors.h"
+#include "constants/vs_seeker.h"
 
-#define INC_AS_ASM
-#include "data/field/script_commands.h"
+#include "data/scripts/scrcmd.h"
 #include "macros/movement.inc"
 
     .set FALSE, 0
@@ -590,9 +596,9 @@
     .short \seqID
     .endm
 
-    .macro StopMusic dummy
+    .macro StopMusic
     .short SCRCMD_STOPMUSIC
-    .short \dummy
+    .short 0 // unused
     .endm
 
     // Plays the default music track based on the player's current location
@@ -1110,8 +1116,8 @@
     .short SCRCMD_0AC
     .endm
 
-    .macro ScrCmd_0AD
-    .short SCRCMD_0AD
+    .macro OpenUnionRoomTrainerCase
+    .short SCRCMD_OPENUNIONROOMTRAINERCASE
     .endm
 
     .macro ScrCmd_0AE
@@ -1126,8 +1132,8 @@
     .short SCRCMD_CLEARGAME
     .endm
 
-    .macro ScrCmd_0B1
-    .short SCRCMD_0B1
+    .macro OpenPCHallOfFameScreen
+    .short SCRCMD_OPENPCHALLOFFAMESCREEN
     .endm
 
     .macro TryStartGTSApp connectToWiFi, destVar
@@ -1149,8 +1155,8 @@
     .short SCRCMD_SAVECHOSENSTARTER
     .endm
 
-    .macro ScrCmd_0B6 approachNum
-    .short SCRCMD_0B6
+    .macro StartApproachingTrainerTask approachNum
+    .short SCRCMD_STARTAPPROACHINGTRAINERTASK
     .short \approachNum
     .endm
 
@@ -1160,8 +1166,8 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_0B8 destVar
-    .short SCRCMD_0B8
+    .macro GetApproachingTrainerType destVar
+    .short SCRCMD_GETAPPROACHINGTRAINERTYPE
     .short \destVar
     .endm
 
@@ -1202,10 +1208,10 @@
     .short SCRCMD_WAITFADESCREEN
     .endm
 
-    .macro Warp mapID, dummy, x, z, direction
+    .macro Warp mapID, x, z, direction
     .short SCRCMD_WARP
     .short \mapID
-    .short \dummy
+    .short 0 // unused
     .short \x
     .short \z
     .short \direction
@@ -1241,9 +1247,9 @@
     .short SCRCMD_0C4
     .endm
 
-    .macro ScrCmd_0C5 arg0
-    .short SCRCMD_0C5
-    .short \arg0
+    .macro PlayHMCutIn slot
+    .short SCRCMD_PLAYHMCUTIN
+    .short \slot
     .endm
 
     .macro ChangeIntoContestAttire
@@ -1793,12 +1799,12 @@
     .short SCRCMD_STARTHONEYTREEBATTLE
     .endm
 
-    .macro ScrCmd_12A
-    .short SCRCMD_12A
+    .macro StopHoneyTreeShaking
+    .short SCRCMD_STOPHONEYTREESHAKING
     .endm
 
-    .macro ScrCmd_12B
-    .short SCRCMD_12B
+    .macro StartSignatureApp
+    .short SCRCMD_STARTSIGNATUREAPP
     .endm
 
     .macro CheckSaveType destVarID
@@ -1862,9 +1868,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_138 arg0
-    .short SCRCMD_138
-    .short \arg0
+    .macro GetUnionRoomTealaMessage destVar
+    .short SCRCMD_GETUNIONROOMTEALAMESSAGE
+    .short \destVar
     .endm
 
     .macro ScrCmd_139 arg0
@@ -1880,23 +1886,23 @@
     .short SCRCMD_13B
     .endm
 
-    .macro ScrCmd_13C arg0
-    .short SCRCMD_13C
+    .macro DoUnionRoomGreeting arg0
+    .short SCRCMD_DOUNIONROOMGREETING
     .short \arg0
     .endm
 
-    .macro ScrCmd_13D
-    .short SCRCMD_13D
+    .macro InitCommFieldCmd
+    .short SCRCMD_INITCOMMFIELDCMD
     .endm
 
     .macro ScrCmd_13E
     .short SCRCMD_13E
     .endm
 
-    .macro ScrCmd_13F arg0, arg1
-    .short SCRCMD_13F
-    .short \arg0
-    .short \arg1
+    .macro GetUnionRoomMessage msgType, destVar
+    .short SCRCMD_GETUNIONROOMMESSAGE
+    .short \msgType
+    .short \destVar
     .endm
 
     .macro ScrCmd_140 arg0
@@ -1981,8 +1987,8 @@
     .short SCRCMD_ENDCOMMUNICATION
     .endm
 
-    .macro ScrCmd_151
-    .short SCRCMD_151
+    .macro FieldCommEnterBattleRoom
+    .short SCRCMD_FIELDCOMMENTERBATTLEROOM
     .endm
 
     .macro SetCommPlayerDir dir
@@ -2142,8 +2148,8 @@
     .short SCRCMD_INITPERSISTEDMAPFEATURESFORHEARTHOMEGYM
     .endm
 
-    .macro ScrCmd_172
-    .short SCRCMD_172
+    .macro MoveHearthomeGymDPLift
+    .short SCRCMD_MOVEHEARTHOMEGYMDPLIFT
     .endm
 
     .macro InitPersistedMapFeaturesForCanalaveGym
@@ -2154,14 +2160,14 @@
     .short SCRCMD_INITPERSISTEDMAPFEATURESFORVEILSTONEGYM
     .endm
 
-    .macro InitPersistedMapFeaturesForSunyshoreGym floorID
+    .macro InitPersistedMapFeaturesForSunyshoreGym roomID
     .short SCRCMD_INITPERSISTEDMAPFEATURESFORSUNYSHOREGYM
-    .byte \floorID
+    .byte \roomID
     .endm
 
-    .macro SunyshoreGymButton arg0
-    .short SCRCMD_SUNYSHOREGYMBUTTON
-    .byte \arg0
+    .macro PressSunyshoreGymButton buttonType
+    .short SCRCMD_PRESSSUNYSHOREGYMBUTTON
+    .byte \buttonType
     .endm
 
     .macro GetPartyCount destVarID
@@ -2241,9 +2247,9 @@
     .short \berryItemID
     .endm
 
-    .macro SetBerryWateringState direction
+    .macro SetBerryWateringState state
     .short SCRCMD_SETBERRYWATERINGSTATE
-    .short \direction
+    .short \state
     .endm
 
     .macro HarvestBerry
@@ -2292,10 +2298,10 @@
     .short \z
     .endm
 
-    .macro ScrCmd_18C arg0, arg1
+    .macro ScrCmd_18C localID, dir
     .short SCRCMD_18C
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \dir
     .endm
 
     .macro ShowSavingIcon
@@ -2342,8 +2348,8 @@
     .short \useDefaultContestRank
     .endm
 
-    .macro TryEnterContestMon partySlot, menuItemSelection
-    .short SCRCMD_TRYENTERCONTESTMON
+    .macro GetContestPartyMenuResult partySlot, menuItemSelection
+    .short SCRCMD_GETCONTESTPARTYMENURESULT
     .short \partySlot
     .short \menuItemSelection
     .endm
@@ -2464,8 +2470,8 @@
     .short \valueOrVarID
     .endm
 
-    .macro ScrCmd_1AC
-    .short SCRCMD_1AC
+    .macro HatchEgg
+    .short SCRCMD_HATCHEGG
     .endm
 
     .macro Dummy1AD dummy
@@ -2479,9 +2485,9 @@
     .short \daycareSlot
     .endm
 
-    .macro BufferPartyMonNicknameReturnSpecies unused, partySlot, destVar
+    .macro BufferPartyMonNicknameReturnSpecies partySlot, destVar
     .short SCRCMD_BUFFERPARTYMONNICKNAMERETURNSPECIES
-    .short \unused
+    .short 0 // unused
     .short \partySlot
     .short \destVar
     .endm
@@ -2505,9 +2511,9 @@
     .short SCRCMD_1B3
     .endm
 
-    .macro ScrCmd_1B4 arg0
-    .short SCRCMD_1B4
-    .short \arg0
+    .macro CountMailInMailbox destVar
+    .short SCRCMD_COUNTMAILINMAILBOX
+    .short \destVar
     .endm
 
     .macro StartRankingsMachine machineID
@@ -2656,7 +2662,7 @@
     .short SCRCMD_GIVEJOURNAL
     .endm
 
-    .macro CreateJournalEvent eventType, eventParam, unused1, unused2, unused3
+    .macro CreateJournalEvent eventType, eventParam=0, unused1=0, unused2=0, unused3=0
     .short SCRCMD_CREATEJOURNALEVENT
     .short \eventType
     .short \eventParam
@@ -2669,26 +2675,26 @@
     .short SCRCMD_UNUSED_1CE
     .endm
 
-    .macro Strength mode, checkDestVarID=0
-    .short SCRCMD_STRENGTH
-    .byte \mode
-    .if \mode == 2
+    .macro DoStrengthFunc func, checkDestVarID=0
+    .short SCRCMD_DOSTRENGTHFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
 
-    .macro Flash mode, checkDestVarID=0
-    .short SCRCMD_FLASH
-    .byte \mode
-    .if \mode == 2
+    .macro DoFlashFunc func, checkDestVarID=0
+    .short SCRCMD_DOFLASHFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
 
-    .macro Defog mode, checkDestVarID=0
-    .short SCRCMD_DEFOG
-    .byte \mode
-    .if \mode == 2
+    .macro DoDefogFunc func, checkDestVarID=0
+    .short SCRCMD_DODEFOGFUNC
+    .byte \func
+    .if \func == FIELD_MOVE_FUNC_CHECK_ACTIVE
         .short \checkDestVarID
     .endif
     .endm
@@ -2731,9 +2737,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1D8 arg0
-    .short SCRCMD_1D8
-    .short \arg0
+    .macro CheckCanCookPoffin destVar
+    .short SCRCMD_CHECKCANCOOKPOFFIN
+    .short \destVar
     .endm
 
     .macro ScrCmd_1D9 arg0, arg1
@@ -2980,13 +2986,13 @@
     StartEndSafariGame SAFARI_GAME_INACTIVE
     .endm
 
-    .macro ScrCmd_203 arg0, arg1, arg2, arg3, arg4
-    .short SCRCMD_203
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .macro WarpToColosseum mapID, warpID, x, z, dir
+    .short SCRCMD_WARPTOCOLOSSEUM
+    .short \mapID
+    .short \warpID
+    .short \x
+    .short \z
+    .short \dir
     .endm
 
     .macro ScrCmd_204
@@ -3012,17 +3018,17 @@
     .short \gender
     .endm
 
-    .macro ScrCmd_209
-    .short SCRCMD_209
+    .macro RemovePokemonPreview
+    .short SCRCMD_REMOVEPOKEMONPREVIEW
     .endm
 
-    .macro ScrCmd_20A arg0
-    .short SCRCMD_20A
-    .short \arg0
+    .macro StartVsSeeker destVar
+    .short SCRCMD_STARTVSSEEKER
+    .short \destVar
     .endm
 
-    .macro ScrCmd_20B
-    .short SCRCMD_20B
+    .macro SetMoveCodeForFacingDirection
+    .short SCRCMD_SETMOVECODEFORFACINGDIRECTION
     .endm
 
     .macro MessageFromTrainerType
@@ -3112,14 +3118,14 @@
     .byte \slot
     .endm
 
-    .macro ScrCmd_21D arg0, arg1=0, arg2=0
-    .short SCRCMD_21D
-    .short \arg0
-    .if \arg0 == 0 || \arg0 == 1 || \arg0 == 2 || \arg0 == 3
+    .macro DoGroupConnectionAction action, arg1=0, arg2=0
+    .short SCRCMD_DOGROUPCONNECTIONACTION
+    .short \action
+    .if \action == GC_ACTION_CHECK_IS_ENTRY_VALID || \action == GC_ACTION_CHECK_IS_ENTRY_OVERRIDE || \action == GC_ACTION_BUFFER_GROUP_NAME || \action == GC_ACTION_BUFFER_LEADER_NAME
         .short \arg1
         .short \arg2
     .else
-        .if \arg0 == 4 || \arg0 == 5
+        .if \action == GC_ACTION_OPEN_GROUP_NAMING_SCREEN || \action == GC_ACTION_JOIN_GROUP
             .short \arg1
         .endif
     .endif
@@ -3169,12 +3175,12 @@
     .byte \npcTradeID
     .endm
 
-    .macro GetNpcTradeSpecies destVar
+    .macro GetNPCTradeSpecies destVar
     .short SCRCMD_GETNPCTRADESPECIES
     .short \destVar
     .endm
 
-    .macro GetNpcTradeRequestedSpecies destVar
+    .macro GetNPCTradeRequestedSpecies destVar
     .short SCRCMD_GETNPCTRADEREQUESTEDSPECIES
     .short \destVar
     .endm
@@ -3184,16 +3190,16 @@
     .short \partySlot
     .endm
 
-    .macro FinishNpcTrade
+    .macro FinishNPCTrade
     .short SCRCMD_FINISHNPCTRADE
     .endm
 
-    .macro ScrCmd_22B
-    .short SCRCMD_22B
+    .macro TurnOnPokedexLanguageDetection
+    .short SCRCMD_TURNONPOKEDEXLANGUAGEDETECTION
     .endm
 
-    .macro ScrCmd_22C
-    .short SCRCMD_22C
+    .macro TurnOnPokedexFormDetection
+    .short SCRCMD_TURNONPOKEDEXFORMDETECTION
     .endm
 
     .macro GetSetNationalDexEnabled getSet, destVar
@@ -3320,9 +3326,9 @@
     .endif
     .endm
 
-    .macro ScrCmd_236 arg0
-    .short SCRCMD_236
-    .short \arg0
+    .macro SaveTVSegmentHiddenItem item
+    .short SCRCMD_SAVETVSEGMENTHIDDENITEM
+    .short \item
     .endm
 
     .macro CallTVInterview callID, interviewSegmentID, arg2, arg3
@@ -3347,9 +3353,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_239 arg0
-    .short SCRCMD_239
-    .short \arg0
+    .macro OpenBattleRegulationMenu destVar
+    .short SCRCMD_OPENBATTLEREGULATIONMENU
+    .short \destVar
     .endm
 
     .macro GetPartyMonFootprintType hasPrintVar, printTypeVar, partySlot
@@ -3447,12 +3453,12 @@
     MysteryGiftGive MYSTERY_GIFT_CANT_RECEIVE, \destTextBank, \destStringID
     .endm
 
-    .macro UnloadMysteryGift
-    MysteryGiftGive MYSTERY_GIFT_UNLOAD_RECEIVED
+    .macro UnloadMysteryGiftNotReceived
+    MysteryGiftGive MYSTERY_GIFT_UNLOAD_NOT_RECEIVED
     .endm
 
-    .macro UnloadMysteryGift2
-    MysteryGiftGive MYSTERY_GIFT_UNLOAD_NOT_RECEIVED
+    .macro UnloadMysteryGiftReceived
+    MysteryGiftGive MYSTERY_GIFT_UNLOAD_RECEIVED
     .endm
 
     .macro Dummy23F
@@ -3471,16 +3477,16 @@
     .short SCRCMD_DUMMY242
     .endm
 
-    .macro ChooseCustomMessageWord unused, resultVar, destVar
+    .macro ChooseCustomMessageWord resultVar, destVar
     .short SCRCMD_CHOOSECUSTOMMESSAGEWORD
-    .short \unused
+    .short 0 // unused
     .short \resultVar
     .short \destVar
     .endm
 
-    .macro ChooseTwoCustomMessageWords unused, resultVar, destVar1, destVar2
+    .macro ChooseTwoCustomMessageWords resultVar, destVar1, destVar2
     .short SCRCMD_CHOOSETWOCUSTOMMESSAGEWORDS
-    .short \unused
+    .short 0 // unused
     .short \resultVar
     .short \destVar1
     .short \destVar2
@@ -3629,12 +3635,12 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_25E
-    .short SCRCMD_25E
+    .macro InitLakeGuardianContainmentUnits
+    .short SCRCMD_INITLAKEGUARDIANCONTAINMENTUNITS
     .endm
 
-    .macro ScrCmd_25F
-    .short SCRCMD_25F
+    .macro DeactivateLakeGuardianContainmentUnits
+    .short SCRCMD_DEACTIVATELAKEGUARDIANCONTAINMENTUNITS
     .endm
 
     .macro IncrementTrainerScore2 scoreID
@@ -3684,20 +3690,20 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_269 arg0, arg1, arg2, arg3, arg4
-    .short SCRCMD_269
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .macro ShakeObject localID, times, speed, xOffset, zOffset
+    .short SCRCMD_SHAKEOBJECT
+    .short \localID
+    .short \times
+    .short \speed
+    .short \xOffset
+    .short \zOffset
     .endm
 
-    .macro ScrCmd_26A arg0, arg1, arg2
-    .short SCRCMD_26A
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro FlickerObject localID, times, delay
+    .short SCRCMD_FLICKEROBJECT
+    .short \localID
+    .short \times
+    .short \delay
     .endm
 
     .macro CheckHasAllLegendaryTitansInParty destVar
@@ -3740,9 +3746,9 @@
     SetHiddenLocation \hiddenLocation, FALSE
     .endm
 
-    .macro ScrCmd_271 arg0
-    .short SCRCMD_271
-    .short \arg0
+    .macro OpenShayminTabletNamingScreen destVar
+    .short SCRCMD_OPENSHAYMINTABLETNAMINGSCREEN
+    .short \destVar
     .endm
 
     .macro BufferTabletName templateArg
@@ -3798,8 +3804,8 @@
     .short \amount
     .endm
 
-    .macro ScrCmd_27A
-    .short SCRCMD_27A
+    .macro UseVistaLighthouseBinoculars
+    .short SCRCMD_USEVISTALIGHTHOUSEBINOCULARS
     .endm
 
     .macro InitDailyRandomLevel
@@ -3812,10 +3818,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_27D arg0, arg1
-    .short SCRCMD_27D
-    .short \arg0
-    .short \arg1
+    .macro TryBufferAndUnlockRandomToughWord destVar, index
+    .short SCRCMD_TRYBUFFERANDUNLOCKRANDOMTOUGHWORD
+    .short \destVar
+    .short \index
     .endm
 
     /* Returns TRUE in destVarID if the player has bought at least 5 items at the Veilstone Department Store */
@@ -3824,9 +3830,9 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_27F arg0
-    .short SCRCMD_27F
-    .short \arg0
+    .macro CheckAllToughWordsUnlocked destVar
+    .short SCRCMD_CHECKALLTOUGHWORDSUNLOCKED
+    .short \destVar
     .endm
 
     .macro BufferVarPaddingDigits templateArg, varID, paddingMode, maxDigits
@@ -3909,13 +3915,13 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_28D
-    .short SCRCMD_28D
+    .macro SetPokemonPreviewAnim
+    .short SCRCMD_SETPOKEMONPREVIEWANIM
     .endm
 
-    .macro ScrCmd_28E arg0
-    .short SCRCMD_28E
-    .short \arg0
+    .macro WaitPokemonPreviewAnim unused
+    .short SCRCMD_WAITPOKEMONPREVIEWANIM
+    .short \unused
     .endm
 
     .macro GetLeagueVictories arg0
@@ -3928,10 +3934,10 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_291 arg0, arg1
-    .short SCRCMD_291
-    .short \arg0
-    .short \arg1
+    .macro GetDayCarePartyMenuResult selectedSlot, showSummary
+    .short SCRCMD_GETDAYCAREPARTYMENURESULT
+    .short \selectedSlot
+    .short \showSummary
     .endm
 
     .macro CheckShouldShowGhost percentChance, destVar
@@ -3959,33 +3965,33 @@
     .short SCRCMD_UPDATEBPDISPLAY
     .endm
 
-    .macro ScrCmd_297 arg0
-    .short SCRCMD_297
-    .short \arg0
+    .macro GetBattlePoints destVar
+    .short SCRCMD_GETBATTLEPOINTS
+    .short \destVar
     .endm
 
-    .macro ScrCmd_298 arg0
-    .short SCRCMD_298
-    .short \arg0
+    .macro GiveBattlePoints value
+    .short SCRCMD_GIVEBATTLEPOINTS
+    .short \value
     .endm
 
-    .macro ScrCmd_299 arg0
-    .short SCRCMD_299
-    .short \arg0
+    .macro RemoveBattlePoints value
+    .short SCRCMD_REMOVEBATTLEPOINTS
+    .short \value
     .endm
 
-    .macro ScrCmd_29A arg0, arg1
-    .short SCRCMD_29A
-    .short \arg0
-    .short \arg1
+    .macro CheckBattlePoints value, destVar
+    .short SCRCMD_CHECKBATTLEPOINTS
+    .short \value
+    .short \destVar
     .endm
 
-    .macro ScrCmd_29B arg0, arg1, arg2, arg3
-    .short SCRCMD_29B
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .macro GetExchangeServiceCornerItemAndCost martID, prizeID, item, cost
+    .short SCRCMD_GetExchangeServiceCornerItemAndCost
+    .short \martID
+    .short \prizeID
+    .short \item
+    .short \cost
     .endm
 
     .macro CalculateTrainerInfoAppearance variant, destVar
@@ -4000,10 +4006,10 @@
     .short \entryIndex
     .endm
 
-    .macro ScrCmd_29E arg0, arg1
-    .short SCRCMD_29E
-    .short \arg0
-    .short \arg1
+    .macro StartDestroyObstacleAnimation obstacle, destVar
+    .short SCRCMD_STARTDESTROYOBSTACLEANIMATION
+    .short \obstacle
+    .short \destVar
     .endm
 
     .macro ScrCmd_29F arg0
@@ -4030,14 +4036,14 @@
     .short \item
     .endm
 
-    .macro ScrCmd_2A3 arg0
-    .short SCRCMD_2A3
-    .short \arg0
+    .macro CheckHasWiFiListValidLogin destVar
+    .short SCRCMD_CHECKHASWIFILISTVALIDLOGIN
+    .short \destVar
     .endm
 
-    .macro ScrCmd_2A4 arg0
-    .short SCRCMD_2A4
-    .short \arg0
+    .macro GetWiFListValidFriendsCount destVar
+    .short SCRCMD_GETWIFLISTVALIDFRIENDSCOUNT
+    .short \destVar
     .endm
 
     .macro OpenPartyMenuForTrade
@@ -4099,9 +4105,9 @@
     .short \customMessageWord4
     .endm
 
-    .macro ScrCmd_2AB arg0
-    .short SCRCMD_2AB
-    .short \arg0
+    .macro CountUniqueSealsInSealCase destVar
+    .short SCRCMD_COUNTUNIQUESEALSINSEALCASE
+    .short \destVar
     .endm
 
     .macro UnlockMysteryGift
@@ -4120,9 +4126,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_2AF arg0
-    .short SCRCMD_2AF
-    .short \arg0
+    .macro GetTrainerCasePlayerMessage destVar
+    .short SCRCMD_GETTRAINERCASEPLAYERMESSAGE
+    .short \destVar
     .endm
 
     .macro ScrCmd_2B0
@@ -4148,16 +4154,16 @@
     .short SCRCMD_LOCKLASTTALKED
     .endm
 
-    .macro ScrCmd_2B5 arg0, arg1, arg2
+    .macro ScrCmd_2B5 mapId, x, z
     .short SCRCMD_2B5
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \mapId
+    .short \x
+    .short \z
     .endm
 
-    .macro ScrCmd_2B6 arg0, arg1
+    .macro ScrCmd_2B6 localID, arg1
     .short SCRCMD_2B6
-    .short \arg0
+    .short \localID
     .byte \arg1
     .endm
 
@@ -4222,9 +4228,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_2C4 arg0
-    .short SCRCMD_2C4
-    .byte \arg0
+    .macro LaunchBattleFrontierScene sceneID
+    .short SCRCMD_LAUNCHBATTLEFRONTIERSCENE
+    .byte \sceneID
     .endm
 
     .macro ScrCmd_2C5 arg0, arg1
@@ -4237,9 +4243,9 @@
     .short SCRCMD_2C6
     .endm
 
-    .macro ScrCmd_2C7 arg0
-    .short SCRCMD_2C7
-    .short \arg0
+    .macro IsCommGameCodePlatinum destVar
+    .short SCRCMD_ISCOMMGAMECODEPLATINUM
+    .short \destVar
     .endm
 
     .macro OpenFrontierRecordsApp challengeType, facility, species
@@ -4263,11 +4269,11 @@
     .short \species
     .endm
 
-    .macro ScrCmd_2CC arg0, arg1, arg2
-    .short SCRCMD_2CC
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro CallBattleHallLobbyFunction action, arg, result
+    .short SCRCMD_CALLBATTLEHALLLOBBYFUNCTION
+    .short \action
+    .short \arg
+    .short \result
     .endm
 
     .macro ScrCmd_2CD
@@ -4278,8 +4284,8 @@
     .short SCRCMD_UNUSED_2CE
     .endm
 
-    .macro BattleHallCheckUsingSameSpeciesAsPartner species, result
-    .short SCRCMD_BATTLEHALLCHECKUSINGSAMESPECIESASPARTNER
+    .macro CheckBattleHallPartnerUsesDifferentSpecies species, result
+    .short SCRCMD_CHECKBATTLEHALLPARTNERUSESDIFFERENTSPECIES
     .short \species
     .short \result
     .endm
@@ -4290,9 +4296,9 @@
     .short \slot2
     .endm
 
-    .macro ScrCmd_2D1 arg0
-    .short SCRCMD_2D1
-    .short \arg0
+    .macro DeleteActiveBattleHallStreak challengeType
+    .short SCRCMD_DELETEACTIVEBATTLEHALLSTREAK
+    .short \challengeType
     .endm
 
     .macro ScrCmd_2D2 arg0, arg1, arg2
@@ -4504,12 +4510,12 @@
     .short \trainerID
     .endm
 
-    .macro ScrCmd_2F4 arg0, arg1, arg2, arg3
-    .short SCRCMD_2F4
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .macro GetRandomBattlegroundTrainers destVar1, destVar2, destVar3, destVar4
+    .short ScrCmd_GETRANDOMBATTLEGROUNDTRAINERS
+    .short \destVar1
+    .short \destVar2
+    .short \destVar3
+    .short \destVar4
     .endm
 
     .macro BufferValuePaddingDigits templateArg, value, paddingMode, maxDigits
@@ -4532,8 +4538,8 @@
     .short \arg0
     .endm
 
-    .macro SetScene22
-    .short SCRCMD_SETSCENE22
+    .macro SetScenePlayBGMMusicBox
+    .short SCRCMD_SETSCENEPLAYBGMMUSICBOX
     .endm
 
     .macro SetFieldScene bgmID
@@ -4550,9 +4556,9 @@
     .short SCRCMD_2FB
     .endm
 
-    .macro ScrCmd_2FC arg0
-    .short SCRCMD_2FC
-    .short \arg0
+    .macro CheckABPress destVar
+    .short SCRCMD_CHECKABPRESS
+    .short \destVar
     .endm
 
     .macro BufferTypeName templateArg, type
@@ -4573,15 +4579,15 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_300
-    .short SCRCMD_300
+    .macro SetFavoriteMon
+    .short SCRCMD_SETFAVORITEMON
     .endm
 
-    .macro ScrCmd_301 arg0, arg1, arg2
-    .short SCRCMD_301
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro GetFavoriteMon destVarSpecies, destVarForm, destVarIsEgg
+    .short SCRCMD_GETFAVORITEMON
+    .short \destVarSpecies
+    .short \destVarForm
+    .short \destVarIsEgg
     .endm
 
     .macro GetRotomFormsInSave destVarHeat, destVarWash, destVarFrost, destVarFan, destVarMow
@@ -4639,17 +4645,17 @@
     .short \scoreID
     .endm
 
-    .macro ScrCmd_30B
-    .short SCRCMD_30B
+    .macro SaveTVSegmentPokemonStorageBulletin
+    .short SCRCMD_SAVETVSEGMENTPOKEMONSTORAGEBULLETIN
     .endm
 
-    .macro ScrCmd_30C
-    .short SCRCMD_30C
+    .macro SaveTVSegmentHomeAndManorNoFurniture
+    .short SCRCMD_SAVETVSEGMENTHOMEANDMANORNOFURNITURE
     .endm
 
-    .macro ScrCmd_30D arg0
-    .short SCRCMD_30D
-    .short \arg0
+    .macro SaveTVSegmentHomeAndManor furniture
+    .short SCRCMD_SAVETVSEGMENTHOMEANDMANOR
+    .short \furniture
     .endm
 
     .macro ScrCmd_30E arg0
@@ -4657,14 +4663,14 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_30F arg0, arg1
-    .short SCRCMD_30F
-    .short \arg0
-    .short \arg1
+    .macro CheckMetFurnitureRequirements furniture, destVar
+    .short SCRCMD_CHECKMETFURNITUREREQUIREMENTS
+    .short \furniture
+    .short \destVar
     .endm
 
-    .macro ScrCmd_310
-    .short SCRCMD_310
+    .macro StartLibraryTV
+    .short SCRCMD_STARTLIBRARYTV
     .endm
 
     .macro AddDistortionWorldMapObject mapObjLocalID
@@ -4739,9 +4745,9 @@
     .short \species
     .endm
 
-    .macro ScrCmd_31D arg0
-    .short SCRCMD_31D
-    .short \arg0
+    .macro TryRevertPartyPokemonForms destVar
+    .short SCRCMD_TRYREVERTPARTYPOKEMONFORMS
+    .short \destVar
     .endm
 
     .macro TryRevertPokemonForm partySlot, destVar
@@ -4754,8 +4760,8 @@
     .short SCRCMD_RESETDISTORTIONWORLDPERSISTEDCAMERAANGLES
     .endm
 
-    .macro ScrCmd_320
-    .short SCRCMD_320
+    .macro DoDWWarp
+    .short SCRCMD_DODWWARP
     .endm
 
     .macro StartDistortionWorldGiratinaShadowEvent eventIndex
@@ -4767,9 +4773,9 @@
     .short SCRCMD_FINISHDISTORTIONWORLDGIRATINASHADOWEVENT
     .endm
 
-    .macro ScrCmd_323 arg0
-    .short SCRCMD_323
-    .short \arg0
+    .macro CheckNoWiFiPlazaCooldown destVar
+    .short SCRCMD_CHECKNOWIFIPLAZACOOLDOWN
+    .short \destVar
     .endm
 
     .macro GetBattleHallRecordKeeperStats curStreakIdx, passedMilestoneIdx, nextMilestoneIdx, earnedBPIdx, nextMilestone, response
@@ -4802,17 +4808,17 @@
     .short \form
     .endm
 
-    .macro ScrCmd_329 arg0, arg1, arg2, arg3
-    .short SCRCMD_329
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .macro GetBattleFrontierReporterPosition x, z, dir, movementType
+    .short SCRCMD_GETBATTLEFRONTIERREPORTERPOSITION
+    .short \x
+    .short \z
+    .short \dir
+    .short \movementType
     .endm
 
-    .macro ScrCmd_32A arg0
-    .short SCRCMD_32A
-    .short \arg0
+    .macro CheckIfBattleHallStreakIs50 result
+    .short SCRCMD_CHECKIFBATTLEHALLSTREAKIS50
+    .short \result
     .endm
 
     .macro CheckPartyHasFatefulEncounterRegigigas destVar
@@ -4854,9 +4860,9 @@
     .short SCRCMD_332
     .endm
 
-    .macro ScrCmd_333 arg0
-    .short SCRCMD_333
-    .short \arg0
+    .macro SetPlayerVolume volume
+    .short SCRCMD_SETPLAYERVOLUME
+    .short \volume
     .endm
 
     .macro AddToGameRecord recordID, value
@@ -4872,9 +4878,9 @@
     .long \value
     .endm
 
-    .macro ScrCmd_336 arg0
-    .short SCRCMD_336
-    .short \arg0
+    .macro CheckIsHallOfFameCorrupted destVar
+    .short SCRCMD_CHECKISHALLOFFAMECORRUPTED
+    .short \destVar
     .endm
 
     .macro CheckHasSeenSpecies species, ret

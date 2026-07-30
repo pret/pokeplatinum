@@ -29,7 +29,7 @@ VeilstoneStore2F_Attendant:
 
 VeilstoneStore2F_AttendantPersonalized:
     BufferPlayerName 0
-    Message VeilstoneStore2F_Text_MayIHelpYouPersonalized
+    Message VeilstoneStore2F_Text_PlayerMayIHelpYou
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm MenuEntries_Text_WhatIsRecommended, 0
     AddMenuEntryImm MenuEntries_Text_NothingThanks, 1
@@ -77,7 +77,7 @@ VeilstoneStore2F_AttendantXAccuracy:
     End
 
 VeilstoneStore2F_Lady:
-    NPCMessage VeilstoneStore2F_Text_MatchingDressesForMeAndMyPokemon
+    NPCMessage VeilstoneStore2F_Text_MatchingDresses
     End
 
 VeilstoneStore2F_BugCatcher1:

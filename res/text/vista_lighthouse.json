@@ -2,7 +2,7 @@
   "key": 54347,
   "messages": [
     {
-      "id": "pl_msg_00000174_00000",
+      "id": "VistaLighthouse_Text_YoureTheLatestChallenger",
       "en_US": [
         "...\n",
         "...\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000174_00001",
+      "id": "VistaLighthouse_Text_IWantThrillAgain",
       "en_US": [
         "All right, I’ve decided!\r",
         "If I find you to be weak, I’m going to\n",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000174_00002",
+      "id": "VistaLighthouse_Text_UnleashArsenalAtYou",
       "en_US": [
         "As the toughest Gym Leader in Sinnoh,\n",
         "I’m going to unleash everything in\f",
@@ -31,21 +31,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000174_00003",
+      "id": "VistaLighthouse_Text_PlayerLookedThroughBinoculars",
       "en_US": [
         "{STRVAR_1 3, 0, 0} took a look through\n",
         "the binoculars.\r"
       ]
     },
     {
-      "id": "pl_msg_00000174_00004",
+      "id": "VistaLighthouse_Text_LighthouseRepresentsSafety",
       "en_US": [
         "The Vista Lighthouse represents\n",
         "safety and protection to us Sailors."
       ]
     },
     {
-      "id": "pl_msg_00000174_00005",
+      "id": "VistaLighthouse_Text_GoingFarAwayOneDay",
       "en_US": [
         "I love how far away you can see with\n",
         "the binoculars.\r",
@@ -54,35 +54,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000174_00006",
+      "id": "VistaLighthouse_Text_Dummy6",
       "garbage": 69
     },
     {
-      "id": "pl_msg_00000174_00007",
+      "id": "VistaLighthouse_Text_Dummy7",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000174_00008",
+      "id": "VistaLighthouse_Text_Dummy8",
       "garbage": 32
     },
     {
-      "id": "pl_msg_00000174_00009",
+      "id": "VistaLighthouse_Text_Dummy9",
       "garbage": 10
     },
     {
-      "id": "pl_msg_00000174_00010",
+      "id": "VistaLighthouse_Text_Dummy10",
       "garbage": 90
     },
     {
-      "id": "pl_msg_00000174_00011",
+      "id": "VistaLighthouse_Text_Dummy11",
       "garbage": 89
     },
     {
-      "id": "pl_msg_00000174_00012",
+      "id": "VistaLighthouse_Text_Dummy12",
       "garbage": 45
     },
     {
-      "id": "pl_msg_00000174_00013",
+      "id": "VistaLighthouse_Text_Dummy13",
       "garbage": 27
     }
   ]

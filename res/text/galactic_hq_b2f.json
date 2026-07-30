@@ -2,7 +2,7 @@
   "key": 54367,
   "messages": [
     {
-      "id": "pl_msg_00000287_00000",
+      "id": "GalacticHQB2F_Text_ToGetIntoSpeech",
       "en_US": [
         "OK, to get into Master Cyrus’s\n",
         "speech... Uh, where was it now?\r",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000287_00001",
+      "id": "GalacticHQB2F_Text_FreeAllPokemon",
       "en_US": [
         "Team Galactic will set free all Pokémon,\n",
         "all of nature!\r",
@@ -24,14 +24,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000287_00002",
+      "id": "GalacticHQB2F_Text_DoorIsLocked",
       "en_US": [
         "The door is locked.\n",
         "A special key is needed."
       ]
     },
     {
-      "id": "pl_msg_00000287_00003",
+      "id": "GalacticHQB2F_Text_UseGalacticKey",
       "en_US": [
         "The door is locked.\n",
         "A special key is needed.\r",
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000287_00004",
+      "id": "GalacticHQB2F_Text_DoorOpened",
       "en_US": "The door opened."
     }
   ]

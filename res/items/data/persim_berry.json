@@ -1,0 +1,45 @@
+{
+  "name": "Persim Berry",
+  "plural": "Persim Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. It may be used\n",
+    "or held by a Pokémon to recover from\n",
+    "confusion."
+  ],
+  "icon": {
+    "sprite": "persim_berry_NCGR",
+    "palette": "persim_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_PERSIM_BERRY",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_CONFUSE_RESTORE",
+  "pluckEffect": "PLUCK_EFFECT_CNF_RESTORE",
+  "flingEffect": "FLING_EFFECT_CNF_RESTORE",
+  "flingPower": 10,
+  "naturalGiftPower": 60,
+  "naturalGiftType": "TYPE_GROUND",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "healConfusion": true
+  },
+  "berryData": {
+    "size": 47,
+    "firmness": "FIRMNESS_HARD",
+    "baseYield": 1,
+    "stageDuration": 4,
+    "moistureDrainRate": 15,
+    "spiciness": 10,
+    "dryness": 10,
+    "sweetness": 10,
+    "bitterness": 0,
+    "sourness": 10,
+    "smoothness": 20
+  }
+}

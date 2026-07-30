@@ -157,7 +157,7 @@ BOOL Overlay_LoadByID(const FSOverlayID overlayID, enum OverlayLoadType loadType
         result = LoadOverlayNoInitAsync(MI_PROCESSOR_ARM9, overlayID);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return 0;
     }
 
@@ -188,7 +188,7 @@ static BOOL CanOverlayBeLoaded(const FSOverlayID overlayID)
     for (i = 0; i < 8; i++) {
         if (loadedOverlays[i].isActive == TRUE && GetOverlayRamBounds(loadedOverlays[i].id, &theirStart, &theirEnd) == TRUE) {
             if (((myStart >= theirStart) && (myStart < theirEnd)) || ((myEnd > theirStart) && (myEnd <= theirEnd)) || ((myStart <= theirStart) && (myEnd >= theirEnd))) {
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 return FALSE;
             }
         }
@@ -222,7 +222,7 @@ static BOOL GetOverlayRamBounds(const FSOverlayID overlayID, u32 *start, u32 *en
     FSOverlayInfo info;
 
     if (!FS_LoadOverlayInfo(&info, MI_PROCESSOR_ARM9, overlayID)) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return FALSE;
     }
 

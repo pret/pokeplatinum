@@ -5,6 +5,6 @@
 
 #include "field_task.h"
 
-void FieldTask_StartNPCTrade(FieldTask *task, NpcTradeData *data, int partySlot, enum HeapID heapID);
+void FieldTask_StartNPCTrade(FieldTask *task, NPCTradeData *data, int partySlot, enum HeapID heapID);
 
 #endif // POKEPLATINUM_NPC_TRADE_TASK_H

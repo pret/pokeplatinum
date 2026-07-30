@@ -10,7 +10,7 @@
 #include "generated/text_banks.h"
 
 #include "struct_defs/clear_game_player_info.h"
-#include "struct_defs/struct_0203E234.h"
+#include "struct_defs/hall_of_fame_display_data.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"

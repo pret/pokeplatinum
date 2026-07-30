@@ -1,111 +1,112 @@
 #include "macros/scrcmd.inc"
 #include "generated/hidden_locations.h"
 #include "res/text/bank/newmoon_island.h"
+#include "res/field/events/events_newmoon_island.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _0037
+    ScriptEntry NewmoonIsland_OnTransition
+    ScriptEntry NewmoonIsland_Sailor
     ScriptEntryEnd
 
-_000A:
+NewmoonIsland_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_NEWMOON_ISLAND
     EnableHiddenLocation HIDDEN_LOCATION_NEWMOON_ISLAND
-    ClearFlag FLAG_UNK_0x0279
-    CallIfUnset FLAG_UNK_0x0158, _0024
+    ClearFlag FLAG_HIDE_NEWMOON_ISLAND_SAILOR
+    CallIfUnset FLAG_CAUGHT_DARKRAI, NewmoonIsland_TryHideSailor
     End
 
-_0024:
-    GoToIfNe VAR_UNK_0x40F8, 2, _0035
-    SetFlag FLAG_UNK_0x0279
-_0035:
+NewmoonIsland_TryHideSailor:
+    GoToIfNe VAR_DARKRAI_EVENT_STATE, 2, NewmoonIsland_OnTransitionReturn
+    SetFlag FLAG_HIDE_NEWMOON_ISLAND_SAILOR
+NewmoonIsland_OnTransitionReturn:
     Return
 
-_0037:
+NewmoonIsland_Sailor:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerDir VAR_0x8004
-    Message 0
+    Message NewmoonIsland_Text_SailBackToCanalave
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _005D
-    GoTo _009D
+    GoToIfEq VAR_RESULT, MENU_YES, NewmoonIsland_TakeShipToCanalave
+    GoTo NewmoonIsland_AllRightThen
 
-_005D:
-    Message 1
+NewmoonIsland_TakeShipToCanalave:
+    Message NewmoonIsland_Text_AnchorsAweigh
     CloseMessage
-    Call _00A8
-    CallIfEq VAR_0x8004, 1, _00C2
-    CallIfEq VAR_0x8004, 2, _00DC
-    CallIfEq VAR_0x8004, 0, _00F6
+    Call NewmoonIsland_SailorEnterShip
+    CallIfEq VAR_0x8004, DIR_SOUTH, NewmoonIsland_PlayerEnterShipSouth
+    CallIfEq VAR_0x8004, DIR_WEST, NewmoonIsland_PlayerEnterShipWest
+    CallIfEq VAR_0x8004, DIR_NORTH, NewmoonIsland_PlayerEnterShipNorth
     TakeShipToCanalave
     ReleaseAll
     End
 
-_009D:
-    Message 2
+NewmoonIsland_AllRightThen:
+    Message NewmoonIsland_Text_AllRightThen
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
-_00A8:
-    ApplyMovement 0, _0110
+NewmoonIsland_SailorEnterShip:
+    ApplyMovement LOCALID_SAILOR, NewmoonIslandForest_Movement_SailorWalkToShip
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0, _011C
+    ApplyMovement LOCALID_SAILOR, NewmoonIslandForest_Movement_SetInvisible
     WaitMovement
     Return
 
-_00C2:
-    ApplyMovement LOCALID_PLAYER, _0124
+NewmoonIsland_PlayerEnterShipSouth:
+    ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_PlayerWalkToShipSouth
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    ApplyMovement LOCALID_PLAYER, _011C
+    ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_SetInvisible
     WaitMovement
     Return
 
-_00DC:
-    ApplyMovement LOCALID_PLAYER, _0134
+NewmoonIsland_PlayerEnterShipWest:
+    ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_PlayerWalkToShipWest
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    ApplyMovement LOCALID_PLAYER, _011C
+    ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_SetInvisible
     WaitMovement
     Return
 
-_00F6:
-    ApplyMovement LOCALID_PLAYER, _0140
+NewmoonIsland_PlayerEnterShipNorth:
+    ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_PlayerWalkToShipNorth
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2
-    ApplyMovement LOCALID_PLAYER, _011C
+    ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_SetInvisible
     WaitMovement
     Return
 
     .balign 4, 0
-_0110:
+NewmoonIslandForest_Movement_SailorWalkToShip:
     WalkNormalWest
     Delay15
     EndMovement
 
     .balign 4, 0
-_011C:
+NewmoonIslandForest_Movement_SetInvisible:
     SetInvisible
     EndMovement
 
     .balign 4, 0
-_0124:
+NewmoonIslandForest_Movement_PlayerWalkToShipSouth:
     WalkNormalSouth
     WalkNormalWest 2
     Delay15
     EndMovement
 
     .balign 4, 0
-_0134:
+NewmoonIslandForest_Movement_PlayerWalkToShipWest:
     WalkNormalWest 2
     Delay15
     EndMovement
 
     .balign 4, 0
-_0140:
+NewmoonIslandForest_Movement_PlayerWalkToShipNorth:
     WalkNormalNorth
     WalkNormalWest 2
     Delay15

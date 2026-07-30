@@ -313,7 +313,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
 
     scriptContext->data[0] = selectedOptionVar;
 
-    if (partySlot != 0xff) {
+    if (partySlot != PARTY_SLOT_NONE) {
         mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(scriptContext->fieldSystem->saveData), partySlot);
     }
 
@@ -326,7 +326,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
 
     int learnableMovesCount = 0;
 
-    if (partySlot != 0xff) {
+    if (partySlot != PARTY_SLOT_NONE) {
         for (knownMoveIndex = 0; knownMoveIndex < LEARNED_MOVES_MAX; knownMoveIndex++) {
             knownMoves[knownMoveIndex] = Pokemon_GetValue(mon, (MON_DATA_MOVE1 + knownMoveIndex), NULL);
         }
@@ -337,7 +337,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
             for (int j = 0; j < 8; j++) {
                 canLearn = ((movesetMaskByte >> j) & 0x1);
 
-                if ((canLearn == TRUE) && (location == sTeachableMoves[i * 8 + j].location)) {
+                if (canLearn == TRUE && location == sTeachableMoves[i * 8 + j].location) {
                     for (knownMoveIndex = 0; knownMoveIndex < LEARNED_MOVES_MAX; knownMoveIndex++) {
                         if (knownMoves[knownMoveIndex] == sTeachableMoves[i * 8 + j].moveID) {
                             break;
@@ -361,13 +361,13 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
     }
 
     for (int i = 0; i < learnableMovesCount; i++) {
-        MoveTutorManager_AddMenuEntry(moveTutorManager, learnableMoves[i], 0xff, learnableMoves[i]);
+        MoveTutorManager_AddMenuEntry(moveTutorManager, learnableMoves[i], 0xFF, learnableMoves[i]);
     }
 
     miscMessageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD3);
 
     MoveTutorManager_SetMessageLoader(moveTutorManager, miscMessageLoader);
-    MoveTutorManager_AddMenuEntry(moveTutorManager, MenuEntries_Text_Exit, 0xff, (u16)MENU_CANCEL); // cast required to match
+    MoveTutorManager_AddMenuEntry(moveTutorManager, MenuEntries_Text_Exit, 0xFF, (u16)MENU_CANCEL); // cast required to match
     MessageLoader_Free(miscMessageLoader);
 
     MoveTutorManager_SetMessageLoader(moveTutorManager, moveNamesLoader);

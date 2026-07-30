@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 #include "struct_decls/struct_02030A80_decl.h"
-#include "struct_defs/struct_0202F264.h"
+#include "struct_defs/battle_recording.h"
 
 #include "field_battle_data_transfer.h"
 #include "savedata.h"

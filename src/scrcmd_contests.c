@@ -96,7 +96,7 @@ BOOL ScrCmd_EndContest(ScriptContext *ctx)
 {
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 unused = ScriptContext_GetVar(ctx);
-    u32 mapID = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapId);
+    u32 mapID = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapHeaderID);
 
     Contest_EndContest(*contest, ctx->fieldSystem->saveData, mapID, ctx->fieldSystem->journalEntry);
     Contest_Free(*contest);

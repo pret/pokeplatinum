@@ -1,0 +1,30 @@
+{
+  "name": "Coupon 2",
+  "plural": "Coupon 2s",
+  "article": "a",
+  "description": [
+    "A coupon to be exchanged for a\n",
+    "Pokémon Watch (Pokétch for short).\n",
+    "Three coupons are needed."
+  ],
+  "icon": {
+    "sprite": "coupon_2_NCGR",
+    "palette": "coupon_2_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": false,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

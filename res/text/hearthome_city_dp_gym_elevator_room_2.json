@@ -2,21 +2,21 @@
   "key": 39243,
   "messages": [
     {
-      "id": "pl_msg_00000111_00000",
+      "id": "HearthomeCityDPGymElevatorRoom2_Text_WhatsFirstRoomsAnswer",
       "en_US": [
         "Question: The first room’s answer?\n",
         "Answer: ←2 ↑16 →15"
       ]
     },
     {
-      "id": "pl_msg_00000111_00001",
+      "id": "HearthomeCityDPGymElevatorRoom2_Text_Correct",
       "en_US": [
         "Correct!\n",
         "Congratulations!"
       ]
     },
     {
-      "id": "pl_msg_00000111_00002",
+      "id": "HearthomeCityDPGymElevatorRoom2_Text_PleaseAnswer",
       "en_US": "Please answer the quiz!"
     }
   ]

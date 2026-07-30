@@ -51,7 +51,7 @@ _0039:
     FrontierScrCmd_B2 0, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 176
+    SyncConnectedPlayers 176
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_22 _000C
     FrontierScrCmd_24 _0014
@@ -86,13 +86,13 @@ _010E:
     FrontierScrCmd_B2 7, 1, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 1
-    FrontierScrCmd_3D VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
 _012F:
-    FrontierScrCmd_3D VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    FrontierScrCmd_3D VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0143
     End
 
@@ -113,7 +113,7 @@ _0188:
     FrontierScrCmd_B2 7, 2, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 2
-    FrontierScrCmd_3D VAR_UNK_0x40B9, 0
+    SetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 0
     GoTo _0254
     End
 
@@ -121,7 +121,7 @@ _01A9:
     FrontierScrCmd_B2 7, 3, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 3
-    FrontierScrCmd_3D VAR_UNK_0x40B9, 1
+    SetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 1
     GoTo _0254
     End
 
@@ -129,8 +129,8 @@ _01CA:
     FrontierScrCmd_B2 7, 4, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 4
-    FrontierScrCmd_3D VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    FrontierScrCmd_3D VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
@@ -138,8 +138,8 @@ _01F1:
     FrontierScrCmd_B2 7, 5, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 5
-    FrontierScrCmd_3D VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    FrontierScrCmd_3D VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
@@ -147,8 +147,8 @@ _0218:
     FrontierScrCmd_B2 7, 6, 0, VAR_0x8008
     SetVar VAR_0x8004, 0
     SetVar VAR_0x8009, 6
-    FrontierScrCmd_3D VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
-    FrontierScrCmd_3D VAR_MAP_LOCAL_3, 0
+    SetSystemVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
+    SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
@@ -174,7 +174,7 @@ _0260:
     FrontierScrCmd_B1 VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _02B8
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 170
+    SyncConnectedPlayers 170
     ClearReceivedTempDataAllPlayers
     GoTo _02C0
     End
@@ -223,8 +223,8 @@ _037E:
     FrontierScrCmd_AF VAR_0x8009, 1, VAR_0x8008
     GoToIfEq VAR_0x8008, 2, _0366
     FrontierScrCmd_B0 VAR_0x8002, VAR_0x8005
-    FrontierScrCmd_3D VAR_MAP_LOCAL_2, VAR_0x8002
-    FrontierScrCmd_3D VAR_MAP_LOCAL_5, VAR_0x8005
+    SetSystemVar VAR_MAP_LOCAL_0x02, VAR_0x8002
+    SetSystemVar VAR_MAP_LOCAL_0x05, VAR_0x8005
     FadeScreenIn
     GoTo _03C1
     End
@@ -414,9 +414,9 @@ _0758:
 
 _0766:
     FrontierScrCmd_B2 12, 0, 0, VAR_0x8008
-    FrontierScrCmd_3D VAR_WIFI_FRONTIER_CLEARED, VAR_0x8008
+    SetSystemVar VAR_WIFI_FRONTIER_CLEARED, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 175
+    SyncConnectedPlayers 175
     ClearReceivedTempDataAllPlayers
     MessageInstant pl_msg_00000015_00019
     ShowSavingIcon
@@ -427,14 +427,14 @@ _0766:
     MessageNoSkip pl_msg_00000015_00020
     WaitTime 10, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 171
+    SyncConnectedPlayers 171
     ClearReceivedTempDataAllPlayers
     CloseMessage
     FadeScreenOut
     FrontierScrCmd_25 0
     FrontierScrCmd_25 2
     FrontierScrCmd_25 3
-    IncrementRecordValue RECORD_UNK_058
+    IncrementRecordValue RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
     FrontierScrCmd_B2 9, 0, 0, VAR_0x8008
     SetVar FR_VAR_0x8010, VAR_0x8008
     GoToIfEq FR_VAR_0x8010, 1, _0842
@@ -458,7 +458,7 @@ _0838:
 
 _0842:
     FrontierScrCmd_B3
-    FrontierScrCmd_3D VAR_UNK_0x40DE, 1
+    SetSystemVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 1
     Call _08D3
     GoTo _0858
     End
@@ -468,46 +468,46 @@ _0858:
     GoToIfEq VAR_0x8008, 0, _0858
     FrontierScrCmd_B5
     Call _08C9
-    FrontierScrCmd_04 6, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_TOWER_MULTI_CORRIDOR, 0
     End
 
 _0879:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_FACTORY
     Call _08C9
-    FrontierScrCmd_04 3, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_FACTORY_CORRIDOR, 0
     End
 
 _088D:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_STAGE
     Call _08C9
-    FrontierScrCmd_04 9, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_HALL_CORRIDOR, 0
     End
 
 _08A1:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_CASTLE02
     Call _08C9
-    FrontierScrCmd_04 11, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_CASTLE_CORRIDOR, 0
     End
 
 _08B5:
     FrontierScrCmd_AB
     PlayBGM SEQ_PL_BF_ROULETTE
     Call _08C9
-    FrontierScrCmd_04 15, 0
+    FrontierScrCmd_04 FRONTIER_SCENE_ARCADE_CORRIDOR, 0
     End
 
 _08C9:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 173
+    SyncConnectedPlayers 173
     ClearReceivedTempDataAllPlayers
     Return
 
 _08D3:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 174
+    SyncConnectedPlayers 174
 
 _08D9:
     ClearReceivedTempDataAllPlayers
@@ -520,7 +520,7 @@ _08DD:
     FrontierScrCmd_B2 0, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 177
+    SyncConnectedPlayers 177
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_22 _000C
     FrontierScrCmd_24 _0014
@@ -567,7 +567,7 @@ _09AD:
 
 _09C0:
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 172
+    SyncConnectedPlayers 172
     ClearReceivedTempDataAllPlayers
     CloseMessage
     GoTo _09D2
@@ -577,7 +577,7 @@ _09D2:
     FadeScreenOut
     FrontierScrCmd_AB
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_35 178
+    SyncConnectedPlayers 178
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_02
 

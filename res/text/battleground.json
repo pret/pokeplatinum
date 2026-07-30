@@ -2,7 +2,7 @@
   "key": 21510,
   "messages": [
     {
-      "id": "pl_msg_00000593_00000",
+      "id": "Battleground_Text_WelcomeToBattleground",
       "en_US": [
         "Oh? So, you are?!\n",
         "You’re Buck’s friend, yes!\r",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00001",
+      "id": "Battleground_Text_TalkAboutStarkMountain",
       "en_US": [
         "What should we talk about today?\n",
         "...Ah, I know.\r",
@@ -36,22 +36,22 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00002",
+      "id": "Battleground_Text_MakeYourselfAtHome",
       "en_US": [
         "Welcome to the Battleground!\n",
         "Make yourself at home like always."
       ]
     },
     {
-      "id": "pl_msg_00000593_00003",
+      "id": "Battleground_Text_Dummy3",
       "garbage": 108
     },
     {
-      "id": "pl_msg_00000593_00004",
+      "id": "Battleground_Text_Dummy4",
       "garbage": 98
     },
     {
-      "id": "pl_msg_00000593_00005",
+      "id": "Battleground_Text_OpenToToughestTrainers",
       "en_US": [
         "Buck: My place is open only to the\n",
         "toughest Trainers--I’m serious.\r",
@@ -63,31 +63,31 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00006",
+      "id": "Battleground_Text_Dummy6",
       "garbage": 127
     },
     {
-      "id": "pl_msg_00000593_00007",
+      "id": "Battleground_Text_Dummy7",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000593_00008",
+      "id": "Battleground_Text_Dummy8",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000593_00009",
+      "id": "Battleground_Text_Dummy9",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000593_00010",
+      "id": "Battleground_Text_Dummy10",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000593_00011",
+      "id": "Battleground_Text_Dummy11",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000593_00012",
+      "id": "Battleground_Text_RoarkAskBattle",
       "en_US": [
         "Roark: I went down to the Underground\n",
         "every day.\r",
@@ -98,14 +98,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00013",
+      "id": "Battleground_Text_RoarkIntro",
       "en_US": [
         "Roark: Here goes! These are my rocking\n",
         "Pokémon, my pride and joy!\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00014",
+      "id": "Battleground_Text_RoarkDeclinedBattle",
       "en_US": [
         "Roark: This is another topic, but you\n",
         "know those Spheres you can dig up?\r",
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00015",
+      "id": "Battleground_Text_RoarkAskBattleAgain",
       "en_US": [
         "Roark: Look, can I have some time?\r",
         "I feel lucky to have run into you here,\n",
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00016",
+      "id": "Battleground_Text_RoarkDefeat",
       "en_US": [
         "Roark: ...We lost control there.\r",
         "Next time, I’d like to challenge you to\n",
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00017",
+      "id": "Battleground_Text_RoarkAskBattle2",
       "en_US": [
         "Roark: Would you like to battle?\r",
         "You’ll get to see a different me than\n",
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00018",
+      "id": "Battleground_Text_RoarkIntro2",
       "en_US": [
         "Roark: I’ve got a TYRANITAR I’m going\n",
         "to send out.\r",
@@ -151,18 +151,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00019",
+      "id": "Battleground_Text_RoarkDeclinedBattle2",
       "en_US": [
         "Roark: Hmm...\n",
         "That’s a heartbreaking answer."
       ]
     },
     {
-      "id": "pl_msg_00000593_00020",
+      "id": "Battleground_Text_RoarkAskBattleAgain2",
       "en_US": "Roark: Oh, you do want to battle?"
     },
     {
-      "id": "pl_msg_00000593_00021",
+      "id": "Battleground_Text_RoarkDefeat2",
       "en_US": [
         "Roark: Pokémon from ancient\n",
         "times...\r",
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00022",
+      "id": "Battleground_Text_RoarkDefeatByronPresent",
       "en_US": [
         "Roark: When I became a Gym Leader,\n",
         "I finally realized how great my dad is.\r",
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00023",
+      "id": "Battleground_Text_GardeniaAskBattle",
       "en_US": [
         "Gardenia: Hi, have you been keeping\n",
         "well?\r",
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00024",
+      "id": "Battleground_Text_GardeniaIntro",
       "en_US": [
         "Gardenia: Yes, that’s right!\r",
         "A battle will tell you if someone you\n",
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00025",
+      "id": "Battleground_Text_GardeniaDeclinedBattle",
       "en_US": [
         "Gardenia: You won’t battle?\n",
         "You’re not in the mood, huh?\r",
@@ -208,14 +208,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00026",
+      "id": "Battleground_Text_GardeniaAskBattleAgain",
       "en_US": [
         "Gardenia: Oh?\n",
         "You do want a battle?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00027",
+      "id": "Battleground_Text_GardeniaDefeat",
       "en_US": [
         "Gardenia: Out of the Gym, a Gym Leader\n",
         "is just another Trainer.\r",
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00028",
+      "id": "Battleground_Text_GardeniaAskBattle2",
       "en_US": [
         "Gardenia: My Grass-type Pokémon are\n",
         "growing good and strong.\r",
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00029",
+      "id": "Battleground_Text_GardeniaIntro2",
       "en_US": [
         "Gardenia: I can’t deny that Grass-type\n",
         "Pokémon have many weak points.\r",
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00030",
+      "id": "Battleground_Text_GardeniaDeclinedBattle2",
       "en_US": [
         "Gardenia: Aww, really?\r",
         "My grass Pokémon are growing good\n",
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00031",
+      "id": "Battleground_Text_GardeniaAskBattleAgain2",
       "en_US": [
         "Gardenia: My Grass-type Pokémon are\n",
         "growing good and strong.\r",
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00032",
+      "id": "Battleground_Text_GardeniaDefeat2",
       "en_US": [
         "Gardenia: By the way...\n",
         "Have you been to the Old Chateau?\r",
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00033",
+      "id": "Battleground_Text_FantinaAskBattle",
       "en_US": [
         "Fantina: Finally, you have arrived!\r",
         "So, you shall challenge me.\n",
@@ -286,11 +286,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00034",
+      "id": "Battleground_Text_FantinaIntro",
       "en_US": "{SIZE 200}Ohohoho!!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000593_00035",
+      "id": "Battleground_Text_FantinaDeclinedBattle",
       "en_US": [
         "Fantina: You... You disappoint me.\n",
         "It is very sad.\r",
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00036",
+      "id": "Battleground_Text_FantinaAskBattleAgain",
       "en_US": [
         "Fantina: This time, you shall challenge\n",
         "me, yes?\r",
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00037",
+      "id": "Battleground_Text_FantinaDefeat",
       "en_US": [
         "Fantina: You are an amazing person!\n",
         "Très fantastique!\r",
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00038",
+      "id": "Battleground_Text_FantinaAskBattle2",
       "en_US": [
         "Fantina: Oh? It is you?\n",
         "Are you not taking part in Contests?\r",
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00039",
+      "id": "Battleground_Text_FantinaIntro2",
       "en_US": [
         "Fantina: Pokémon battles, they are fun,\n",
         "always without fail.\r",
@@ -338,7 +338,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00040",
+      "id": "Battleground_Text_FantinaDeclinedBattle2",
       "en_US": [
         "Fantina: No?\n",
         "Well, that is OK, also.\r",
@@ -347,21 +347,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00041",
+      "id": "Battleground_Text_FantinaAskBattleAgain2",
       "en_US": [
         "Fantina: Yes, what is it?\n",
         "I accept your challenge if you give it!"
       ]
     },
     {
-      "id": "pl_msg_00000593_00042",
+      "id": "Battleground_Text_FantinaDefeat2",
       "en_US": [
         "Fantina: I wish to battle as if I were\n",
         "dancing."
       ]
     },
     {
-      "id": "pl_msg_00000593_00043",
+      "id": "Battleground_Text_MayleneAskBattle",
       "en_US": [
         "Maylene: I think it’s OK if I were to\n",
         "keep losing to the same Trainer.\r",
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00044",
+      "id": "Battleground_Text_MayleneIntro",
       "en_US": [
         "Maylene: OK! Rei!\n",
         "Oh, that’s my bow before a match.\r",
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00045",
+      "id": "Battleground_Text_MayleneDeclinedBattle",
       "en_US": [
         "Maylene: Sigh...\r",
         "I braced myself for a battle.\n",
@@ -389,14 +389,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00046",
+      "id": "Battleground_Text_MayleneAskBattleAgain",
       "en_US": [
         "Maylene: Yes, what is it, {STRVAR_1 3, 0, 0}?\n",
         "Would you maybe like a battle?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00047",
+      "id": "Battleground_Text_MayleneDefeat",
       "en_US": [
         "Maylene: I love visiting here.\r",
         "Buck’s grandpa cooks for us, and it’s\n",
@@ -406,7 +406,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00048",
+      "id": "Battleground_Text_MayleneAskBattle2",
       "en_US": [
         "Maylene: Being together with Pokémon\n",
         "gave me the strength to keep going.\r",
@@ -415,14 +415,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00049",
+      "id": "Battleground_Text_MayleneIntro2",
       "en_US": [
         "Maylene: OK, here we come,\n",
         "{STRVAR_1 3, 0, 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00050",
+      "id": "Battleground_Text_MayleneDeclinedBattle2",
       "en_US": [
         "Maylene: OK! Got it!\r",
         "We’ll train much harder so we can\n",
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00051",
+      "id": "Battleground_Text_MayleneAskBattleAgain2",
       "en_US": [
         "Maylene: {STRVAR_1 3, 0, 0}!\n",
         "I know I’m being a pest, but please,\f",
@@ -438,7 +438,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00052",
+      "id": "Battleground_Text_MayleneDefeat2",
       "en_US": [
         "Maylene: Hello, {STRVAR_1 3, 0, 0}!\r",
         "I’ve heard that it’s more healthy to\n",
@@ -448,7 +448,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00053",
+      "id": "Battleground_Text_WakeAskBattle",
       "en_US": [
         "Wake: What’s there to do for Trainers\n",
         "here?\r",
@@ -457,7 +457,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00054",
+      "id": "Battleground_Text_WakeIntro",
       "en_US": [
         "Wake: My Pokémon have new Water-type\n",
         "moves under their belts!\r",
@@ -465,7 +465,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00055",
+      "id": "Battleground_Text_WakeDeclinedBattle",
       "en_US": [
         "Wake: Then, you get my song instead!\n",
         "Er-hem!\r",
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00056",
+      "id": "Battleground_Text_WakeAskBattleAgain",
       "en_US": [
         "Wake: Words aren’t needed.\r",
         "We understand each other through\n",
@@ -491,7 +491,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00057",
+      "id": "Battleground_Text_WakeDefeat",
       "en_US": [
         "Wake: Battles that end with both sides\n",
         "enjoying the experience without caring\f",
@@ -503,7 +503,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00058",
+      "id": "Battleground_Text_WakeAskBattle2",
       "en_US": [
         "Wake: All right!\n",
         "How’s it going?\r",
@@ -516,14 +516,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00059",
+      "id": "Battleground_Text_WakeIntro2",
       "en_US": [
         "Wake: That’s the spirit!\n",
         "Bring it on!\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00060",
+      "id": "Battleground_Text_WakeDeclinedBattle2",
       "en_US": [
         "Wake: Whoops!\r",
         "You’re giving me the slip?\n",
@@ -531,14 +531,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00061",
+      "id": "Battleground_Text_WakeAskBattleAgain2",
       "en_US": [
         "Wake: So, what’s the story?\n",
         "Are we gonna battle?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00062",
+      "id": "Battleground_Text_WakeDefeat2",
       "en_US": [
         "Wake: For all the training I do, there\n",
         "are still plenty tougher than me.\r",
@@ -551,7 +551,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00063",
+      "id": "Battleground_Text_ByronAskBattle",
       "en_US": [
         "Byron: I’ve faced many a challenger at\n",
         "my Gym.\r",
@@ -563,7 +563,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00064",
+      "id": "Battleground_Text_ByronIntro",
       "en_US": [
         "Byron: We are tempered and honed by\n",
         "battling the strong.\r",
@@ -571,14 +571,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00065",
+      "id": "Battleground_Text_ByronDeclinedBattle",
       "en_US": [
         "Byron: When you came to the Gym, you\n",
         "had a glint that’s dulled now."
       ]
     },
     {
-      "id": "pl_msg_00000593_00066",
+      "id": "Battleground_Text_ByronAskBattleAgain",
       "en_US": [
         "Byron: I have the confidence now to\n",
         "batter down your defenses.\r",
@@ -586,7 +586,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00067",
+      "id": "Battleground_Text_ByronDefeat",
       "en_US": [
         "Byron: I trained by pummeling steel\n",
         "continuously on Iron Island alongside\f",
@@ -596,7 +596,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00068",
+      "id": "Battleground_Text_ByronAskBattle2",
       "en_US": [
         "Byron: Since we last lost to you, we’ve\n",
         "been in training.\r",
@@ -606,7 +606,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00069",
+      "id": "Battleground_Text_ByronIntro2",
       "en_US": [
         "Byron: Thank you!\r",
         "Like me, my Pokémon were longing for\n",
@@ -614,7 +614,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00070",
+      "id": "Battleground_Text_ByronDeclinedBattle2",
       "en_US": [
         "Byron: Gwahahaha!\n",
         "That’s disappointing, but all right!\r",
@@ -623,14 +623,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00071",
+      "id": "Battleground_Text_ByronAskBattleAgain2",
       "en_US": [
         "Byron: Could I ask you for another\n",
         "rematch?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00072",
+      "id": "Battleground_Text_ByronDefeat2",
       "en_US": [
         "Byron: Argh...\n",
         "Came up short again...\r",
@@ -641,7 +641,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00073",
+      "id": "Battleground_Text_ByronDefeatRoarkPresent",
       "en_US": [
         "Byron: ...That Roark thinks he can show\n",
         "up his old man?\r",
@@ -651,7 +651,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00074",
+      "id": "Battleground_Text_CandiceAskBattle",
       "en_US": [
         "Candice: Hiya!\n",
         "What’s up?\r",
@@ -661,28 +661,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00075",
+      "id": "Battleground_Text_CandiceIntro",
       "en_US": [
         "Candice: This time, Candice is going to\n",
         "push through on willpower!\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00076",
+      "id": "Battleground_Text_CandiceDeclinedBattle",
       "en_US": [
         "Candice: Oh...\n",
         "Did my willpower intimidate you?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00077",
+      "id": "Battleground_Text_CandiceAskBattleAgain",
       "en_US": [
         "Candice: Listen, listen.\n",
         "You’ll battle Candice, won’t you?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00078",
+      "id": "Battleground_Text_CandiceDefeat",
       "en_US": [
         "Candice: Oh, wow, your scarf is totally\n",
         "in fashion.\r",
@@ -690,7 +690,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00079",
+      "id": "Battleground_Text_CandiceAskBattle2",
       "en_US": [
         "Candice: Candice is on fire!\r",
         "I’m blazing hot!\r",
@@ -699,7 +699,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00080",
+      "id": "Battleground_Text_CandiceIntro2",
       "en_US": [
         "Candice: OK! I’ll show you how good\n",
         "Candice...\r",
@@ -707,18 +707,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00081",
+      "id": "Battleground_Text_CandiceDeclinedBattle2",
       "en_US": "Candice: Awww!"
     },
     {
-      "id": "pl_msg_00000593_00082",
+      "id": "Battleground_Text_CandiceAskBattleAgain2",
       "en_US": [
         "Candice: You really want to battle\n",
         "with me, don’t you?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00083",
+      "id": "Battleground_Text_CandiceDefeat2",
       "en_US": [
         "Candice: Awww!\n",
         "That’s it!\r",
@@ -727,7 +727,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00084",
+      "id": "Battleground_Text_VolknerAskBattle",
       "en_US": [
         "Volkner: Your Pokémon...\n",
         "I can feel their power!\r",
@@ -737,7 +737,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00085",
+      "id": "Battleground_Text_VolknerIntro",
       "en_US": [
         "Volkner: Yeah! It’s electric, this\n",
         "feeling of anticipation!\r",
@@ -746,21 +746,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00086",
+      "id": "Battleground_Text_VolknerDeclinedBattle",
       "en_US": [
         "Volkner: Aww, come on now.\n",
         "Don’t disappoint me..."
       ]
     },
     {
-      "id": "pl_msg_00000593_00087",
+      "id": "Battleground_Text_VolknerAskBattleAgain",
       "en_US": [
         "Volkner: Hm? What’s up?\n",
         "You do want to battle?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00088",
+      "id": "Battleground_Text_VolknerDefeat",
       "en_US": [
         "Volkner: Winning makes me happy, and\n",
         "losing leaves me angry...\r",
@@ -769,7 +769,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00089",
+      "id": "Battleground_Text_VolknerAskBattle2",
       "en_US": [
         "Volkner: My ELECTIVIRE demands tough\n",
         "opponents.\r",
@@ -778,21 +778,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00090",
+      "id": "Battleground_Text_VolknerIntro2",
       "en_US": [
         "Volkner: You! And me!\n",
         "Let’s make some sparks fly!\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00091",
+      "id": "Battleground_Text_VolknerDeclinedBattle2",
       "en_US": [
         "Volkner: Well, yeah, an ELECTIVIRE is\n",
         "intimidating. I hear you..."
       ]
     },
     {
-      "id": "pl_msg_00000593_00092",
+      "id": "Battleground_Text_VolknerAskBattleAgain2",
       "en_US": [
         "Volkner: Hm? What’s up?\n",
         "You’re willing to face my ELECTIVIRE?\f",
@@ -800,7 +800,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00093",
+      "id": "Battleground_Text_VolknerDefeat2",
       "en_US": [
         "Volkner: Some Trainers have Pokémon\n",
         "they just have to have in their party.\r",
@@ -808,35 +808,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00094",
+      "id": "Battleground_Text_CherylAskBattle",
       "en_US": [
         "Cheryl: Oh, hello, {STRVAR_1 3, 0, 0}.\n",
         "You’re my opponent of the day?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00095",
+      "id": "Battleground_Text_CherylIntro",
       "en_US": [
         "Cheryl: My Pokémon have been itching\n",
         "for a battle.\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00096",
+      "id": "Battleground_Text_CherylDeclinedBattle",
       "en_US": [
         "Cheryl: Oh, but my Pokémon were itching\n",
         "for a battle..."
       ]
     },
     {
-      "id": "pl_msg_00000593_00097",
+      "id": "Battleground_Text_CherylAskBattleAgain",
       "en_US": [
         "Cheryl: {STRVAR_1 3, 0, 0}, may I ask you for\n",
         "a battle?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00098",
+      "id": "Battleground_Text_CherylDefeat",
       "en_US": [
         "Cheryl: Thank you, {STRVAR_1 3, 0, 0}!\r",
         "Thanks to you, my adorable Pokémon\n",
@@ -844,7 +844,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00099",
+      "id": "Battleground_Text_CherylAskBattle2",
       "en_US": [
         "Cheryl: It’s been a long time...\n",
         "Hasn’t it?\r",
@@ -853,14 +853,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00100",
+      "id": "Battleground_Text_CherylIntro2",
       "en_US": [
         "Cheryl: I should warn you, my Pokémon\n",
         "can be quite rambunctious.\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00101",
+      "id": "Battleground_Text_CherylDeclinedBattle2",
       "en_US": [
         "Cheryl: Giggle...\r",
         "Pokémon would get worn out if we\n",
@@ -868,14 +868,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00102",
+      "id": "Battleground_Text_CherylAskBattleAgain2",
       "en_US": [
         "Cheryl: ...Yes?\n",
         "Would you like to battle after all?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00103",
+      "id": "Battleground_Text_CherylDefeat2",
       "en_US": [
         "Cheryl: Being a Trainer isn’t easy.\r",
         "The more you battle, the more you\n",
@@ -885,14 +885,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00104",
+      "id": "Battleground_Text_MiraAskBattle",
       "en_US": [
         "Mira: {STRVAR_1 3, 0, 0}!\n",
         "Please teach Mira about Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000593_00105",
+      "id": "Battleground_Text_MiraIntro",
       "en_US": [
         "Mira: {STRVAR_1 3, 0, 0}!\r",
         "Mira will show you that Mira doesn’t get\n",
@@ -900,21 +900,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00106",
+      "id": "Battleground_Text_MiraDeclinedBattle",
       "en_US": [
         "Mira: Mira is a little sad...\n",
         "Mira’s Pokémon are stronger now."
       ]
     },
     {
-      "id": "pl_msg_00000593_00107",
+      "id": "Battleground_Text_MiraAskBattleAgain",
       "en_US": [
         "Mira: {STRVAR_1 3, 0, 0}, please?\n",
         "Please teach Mira about Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000593_00108",
+      "id": "Battleground_Text_MiraDefeat",
       "en_US": [
         "Mira: {STRVAR_1 3, 0, 0}, please teach Mira\n",
         "about Pokémon again!\r",
@@ -923,7 +923,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00109",
+      "id": "Battleground_Text_MiraAskBattle2",
       "en_US": [
         "Mira: {STRVAR_1 3, 0, 0}!\n",
         "Mira is stronger now!\f",
@@ -931,25 +931,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00110",
+      "id": "Battleground_Text_MiraIntro2",
       "en_US": [
         "Mira: {STRVAR_1 3, 0, 0} will be shocked by\n",
         "Mira!\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00111",
+      "id": "Battleground_Text_MiraDeclinedBattle2",
       "en_US": [
         "Mira: Mira really did get stronger.\n",
         "Mira wanted {STRVAR_1 3, 0, 0} to see."
       ]
     },
     {
-      "id": "pl_msg_00000593_00112",
+      "id": "Battleground_Text_MiraAskBattleAgain2",
       "en_US": "Mira: You will battle Mira?"
     },
     {
-      "id": "pl_msg_00000593_00113",
+      "id": "Battleground_Text_MiraDefeat2",
       "en_US": [
         "Mira: {STRVAR_1 3, 0, 0}, you are always with\n",
         "your Pokémon.\r",
@@ -958,7 +958,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00114",
+      "id": "Battleground_Text_RileyAskBattle",
       "en_US": [
         "Riley: You and I, we’re both Trainers.\r",
         "Let’s forego the small talk and proceed\n",
@@ -967,25 +967,25 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00115",
+      "id": "Battleground_Text_RileyIntro",
       "en_US": "Riley: Battling is our way of greeting!\r"
     },
     {
-      "id": "pl_msg_00000593_00116",
+      "id": "Battleground_Text_RileyDeclinedBattle",
       "en_US": [
         "Riley: All right, then.\n",
         "So, what’ve you got to tell me?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00117",
+      "id": "Battleground_Text_RileyAskBattleAgain",
       "en_US": [
         "Riley: See? It just doesn’t feel right\n",
         "if we don’t battle, does it?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00118",
+      "id": "Battleground_Text_RileyDefeat",
       "en_US": [
         "Riley: Know your enemy.\r",
         "If you know your opponent’s Pokémon\n",
@@ -995,7 +995,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00119",
+      "id": "Battleground_Text_RileyAskBattle2",
       "en_US": [
         "Riley: Hi. Long time, no see.\r",
         "If it’s all right with you, I’d like to\n",
@@ -1003,28 +1003,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00120",
+      "id": "Battleground_Text_RileyIntro2",
       "en_US": [
         "Riley: We’re pulling out all the stops\n",
         "to put your Pokémon down.\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00121",
+      "id": "Battleground_Text_RileyDeclinedBattle2",
       "en_US": [
         "Riley: Oh, all right.\n",
         "Then we’ll wait till you’re ready."
       ]
     },
     {
-      "id": "pl_msg_00000593_00122",
+      "id": "Battleground_Text_RileyAskBattleAgain2",
       "en_US": [
         "Riley: That look you have...\n",
         "I take it you’re ready for our battle?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00123",
+      "id": "Battleground_Text_RileyDefeat2",
       "en_US": [
         "Riley: If I weren’t on Iron Island\n",
         "then...\r",
@@ -1035,35 +1035,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00124",
+      "id": "Battleground_Text_MarleyAskBattle",
       "en_US": [
         "Marley: I...\n",
         "Is it OK to battle?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00125",
+      "id": "Battleground_Text_MarleyIntro",
       "en_US": [
         "Marley: ...OK.\n",
         "I’ll do my best.\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00126",
+      "id": "Battleground_Text_MarleyDeclinedBattle",
       "en_US": [
         "Marley: ...Oh?\n",
         "...You can be that mean?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00127",
+      "id": "Battleground_Text_MarleyAskBattleAgain",
       "en_US": [
         "Marley: ...So?\n",
         "Are we battling?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00128",
+      "id": "Battleground_Text_MarleyDefeat",
       "en_US": [
         "Marley: ...You’re so strong.\n",
         "It makes me feel happy.\r",
@@ -1072,35 +1072,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00129",
+      "id": "Battleground_Text_MarleyAskBattle2",
       "en_US": [
         "Marley: ...Oh?\n",
         "A battle? With me?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00130",
+      "id": "Battleground_Text_MarleyIntro2",
       "en_US": [
         "Marley: ...OK.\n",
         "I...won’t lose...!\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00131",
+      "id": "Battleground_Text_MarleyDeclinedBattle2",
       "en_US": [
         "Marley: ...Oh, you.\n",
         "I’m getting to dislike you a little."
       ]
     },
     {
-      "id": "pl_msg_00000593_00132",
+      "id": "Battleground_Text_MarleyAskBattleAgain2",
       "en_US": [
         "Marley: ...If you won’t battle, I might\n",
         "not come back..."
       ]
     },
     {
-      "id": "pl_msg_00000593_00133",
+      "id": "Battleground_Text_MarleyDefeat2",
       "en_US": [
         "Marley: ...I might like battling with\n",
         "you.\r",
@@ -1109,21 +1109,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00134",
+      "id": "Battleground_Text_BuckAskBattle",
       "en_US": [
         "Buck: Ehehehe! You’re here at last!\n",
         "Let’s not waste time! Let’s do this!"
       ]
     },
     {
-      "id": "pl_msg_00000593_00135",
+      "id": "Battleground_Text_BuckIntro",
       "en_US": [
         "Buck: ...I’m telling you right now.\n",
         "I’m seriously tough. Act surprised!\r"
       ]
     },
     {
-      "id": "pl_msg_00000593_00136",
+      "id": "Battleground_Text_BuckDeclinedBattle",
       "en_US": [
         "Buck: Huh, what?\n",
         "That takes the wind out of my sails.\r",
@@ -1132,14 +1132,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00137",
+      "id": "Battleground_Text_BuckAskBattleAgain",
       "en_US": [
         "Buck: What? What?!\n",
         "So we are going to battle?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00138",
+      "id": "Battleground_Text_BuckDefeat",
       "en_US": [
         "Buck: Fweh! Too much!\r",
         "I guess I’ll better my team\n",
@@ -1147,7 +1147,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00139",
+      "id": "Battleground_Text_BuckAskBattle2",
       "en_US": [
         "Buck: One, there’s no shortcuts in\n",
         "the way of Pokémon!\r",
@@ -1156,7 +1156,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00140",
+      "id": "Battleground_Text_BuckIntro2",
       "en_US": [
         "Buck: I can feel my Pokémon shivering\n",
         "inside their Poké Balls!\r",
@@ -1164,21 +1164,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000593_00141",
+      "id": "Battleground_Text_BuckDeclinedBattle2",
       "en_US": [
         "Buck: Hey! This place! It’s named\n",
         "the Battleground for a reason!"
       ]
     },
     {
-      "id": "pl_msg_00000593_00142",
+      "id": "Battleground_Text_BuckAskBattleAgain2",
       "en_US": [
         "Buck: So?\n",
         "Do you feel like battling now?"
       ]
     },
     {
-      "id": "pl_msg_00000593_00143",
+      "id": "Battleground_Text_BuckDefeat2",
       "en_US": [
         "Buck: Fweh! Too much!\r",
         "I guess I’ll better my team on\n",

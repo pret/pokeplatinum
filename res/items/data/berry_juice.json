@@ -1,0 +1,32 @@
+{
+  "name": "Berry Juice",
+  "plural": "Berry Juices",
+  "article": "a",
+  "description": [
+    "A 100% pure juice made of Berries.\n",
+    "It restores the HP of one Pokémon by\n",
+    "just 20 points."
+  ],
+  "icon": {
+    "sprite": "berry_juice_NCGR",
+    "palette": "berry_juice_NCLR"
+  },
+  "gbaID": "GBA_ITEM_BERRY_JUICE",
+  "price": 100,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_HP_RESTORE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_HP",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 2,
+  "itemUseParams": {
+    "hpRestored": 20
+  }
+}

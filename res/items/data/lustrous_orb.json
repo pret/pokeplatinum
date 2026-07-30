@@ -1,0 +1,30 @@
+{
+  "name": "Lustrous Orb",
+  "plural": "Lustrous Orbs",
+  "article": "a",
+  "description": [
+    "A beautifully glowing orb to be held by\n",
+    "PALKIA. It boosts the power of Dragon-\n",
+    "and Water-type moves."
+  ],
+  "icon": {
+    "sprite": "lustrous_orb_NCGR",
+    "palette": "lustrous_orb_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 10000,
+  "effectParam": 20,
+  "holdEffect": "HOLD_EFFECT_PALKIA_BOOST",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 60,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

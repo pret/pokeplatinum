@@ -1,0 +1,15 @@
+#include "macros/scrcmd.inc"
+#include "res/text/bank/unused_jubilife_city_condominiums_3f.h"
+
+
+    ScriptEntry JubilifeCityCondominiums3F_Collector
+    ScriptEntry JubilifeCityCondominiums3F_Lass
+    ScriptEntryEnd
+
+JubilifeCityCondominiums3F_Collector:
+    NPCMessage JubilifeCityCondominiums3F_Text_TradeAroundTheWorld
+    End
+
+JubilifeCityCondominiums3F_Lass:
+    NPCMessage JubilifeCityCondominiums3F_Text_TheWorldYouCanReach
+    End

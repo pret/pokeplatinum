@@ -1,4 +1,4 @@
-species_data_files += files('data.json')
+species_data_files += files('data.json', 'sprite_data.json')
 species_data_files += files('forms/sandy/data.json')
 species_data_files += files('forms/trash/data.json')
 

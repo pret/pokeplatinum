@@ -9,7 +9,7 @@
       ]
     },
     {
-      "id": "VeilstoneStore4F_Text_MayIHelpYouPersonalized",
+      "id": "VeilstoneStore4F_Text_PlayerMayIHelpYou",
       "en_US": [
         "Hello, {STRVAR_1 3, 0, 0}.\n",
         "May I help you with anything?"
@@ -20,35 +20,35 @@
       "en_US": "Please enjoy yourself."
     },
     {
-      "id": "VeilstoneStore4F_Text_YellowCushionIsSoftAndFirm",
+      "id": "VeilstoneStore4F_Text_YellowCushionIsPopular",
       "en_US": [
         "The Yellow Cushion is popular for its\n",
         "perfect balance of soft and firm."
       ]
     },
     {
-      "id": "VeilstoneStore4F_Text_SurprisedHowManyBuyCupboards",
+      "id": "VeilstoneStore4F_Text_ManyBuyCupboards",
       "en_US": [
         "You would be surprised at how many\n",
         "customers buy Cupboards."
       ]
     },
     {
-      "id": "VeilstoneStore4F_Text_BuizelDollIsVeryPopular",
+      "id": "VeilstoneStore4F_Text_BuizelDollVeryPopular",
       "en_US": [
         "The BUIZEL Doll is very popular due\n",
         "to its nautical image."
       ]
     },
     {
-      "id": "VeilstoneStore4F_Text_MantykeDollHasBeenHotSeller",
+      "id": "VeilstoneStore4F_Text_MantykeDollHotSeller",
       "en_US": [
         "Let me think... The MANTYKE Doll has\n",
         "been a hot seller recently."
       ]
     },
     {
-      "id": "VeilstoneStore4F_Text_ChuckAQuickBallOrTimerBall",
+      "id": "VeilstoneStore4F_Text_QuickBallOrTimerBall",
       "en_US": [
         "If you encounter a wild Pokémon,\n",
         "chuck a Quick Ball right off the bat!\r",
@@ -57,14 +57,14 @@
       ]
     },
     {
-      "id": "VeilstoneStore4F_Text_ThatBoySaysHeIsTrainingHisImage",
+      "id": "VeilstoneStore4F_Text_BoyIsTrainingHisImage",
       "en_US": [
         "That boy doesn’t have any Pokémon,\n",
         "but he says he’s training his image!"
       ]
     },
     {
-      "id": "VeilstoneStore4F_Text_NeedAnotherCopyOfGameToChallengePapa",
+      "id": "VeilstoneStore4F_Text_NeedAnotherCopyOfGame",
       "en_US": [
         "We need another copy of the game so I\n",
         "can challenge my papa!"

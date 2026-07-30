@@ -1,8 +1,9 @@
 #include "scrcmd_system_flags.h"
 
+#include "constants/scrcmd.h"
 #include "generated/badges.h"
 
-#include "struct_defs/struct_0205EC34.h"
+#include "struct_defs/player_data.h"
 
 #include "field_overworld_state.h"
 #include "field_script_context.h"
@@ -157,21 +158,21 @@ BOOL ScrCmd_SetGameCompleted(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_Strength(ScriptContext *ctx)
+BOOL ScrCmd_DoStrengthFunc(ScriptContext *ctx)
 {
     u16 *destVar;
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
     switch (ScriptContext_ReadByte(ctx)) {
-    case 1:
+    case FIELD_MOVE_FUNC_SET_ACTIVE:
         SystemFlag_HandleStrengthActive(varsFlags, HANDLE_FLAG_SET);
         break;
 
-    case 0:
+    case FIELD_MOVE_FUNC_CLEAR_ACTIVE:
         SystemFlag_HandleStrengthActive(varsFlags, HANDLE_FLAG_CLEAR);
         break;
 
-    case 2:
+    case FIELD_MOVE_FUNC_CHECK_ACTIVE:
         destVar = ScriptContext_GetVarPointer(ctx);
         *destVar = SystemFlag_HandleStrengthActive(varsFlags, HANDLE_FLAG_CHECK);
         break;
@@ -183,21 +184,21 @@ BOOL ScrCmd_Strength(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_Flash(ScriptContext *ctx)
+BOOL ScrCmd_DoFlashFunc(ScriptContext *ctx)
 {
     u16 *destVar;
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
     switch (ScriptContext_ReadByte(ctx)) {
-    case 1:
+    case FIELD_MOVE_FUNC_SET_ACTIVE:
         SystemFlag_SetFlashActive(varsFlags);
         break;
 
-    case 0:
+    case FIELD_MOVE_FUNC_CLEAR_ACTIVE:
         SystemFlag_ClearFlashActive(varsFlags);
         break;
 
-    case 2:
+    case FIELD_MOVE_FUNC_CHECK_ACTIVE:
         destVar = ScriptContext_GetVarPointer(ctx);
         *destVar = SystemFlag_CheckFlashActive(varsFlags);
         break;
@@ -209,21 +210,21 @@ BOOL ScrCmd_Flash(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_Defog(ScriptContext *ctx)
+BOOL ScrCmd_DoDefogFunc(ScriptContext *ctx)
 {
     u16 *destVar;
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
     switch (ScriptContext_ReadByte(ctx)) {
-    case 1:
+    case FIELD_MOVE_FUNC_SET_ACTIVE:
         SystemFlag_SetDefogActive(varsFlags);
         break;
 
-    case 0:
+    case FIELD_MOVE_FUNC_CLEAR_ACTIVE:
         SystemFlag_ClearDefogActive(varsFlags);
         break;
 
-    case 2:
+    case FIELD_MOVE_FUNC_CHECK_ACTIVE:
         destVar = ScriptContext_GetVarPointer(ctx);
         *destVar = SystemFlag_CheckDefogActive(varsFlags);
         break;

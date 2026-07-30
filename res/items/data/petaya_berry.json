@@ -1,0 +1,43 @@
+{
+  "name": "Petaya Berry",
+  "plural": "Petaya Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient.\n",
+    "If held by a Pokémon, it raises its\n",
+    "Sp. Atk stat in a pinch."
+  ],
+  "icon": {
+    "sprite": "petaya_berry_NCGR",
+    "palette": "petaya_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_PETAYA_BERRY",
+  "price": 20,
+  "effectParam": 4,
+  "holdEffect": "HOLD_EFFECT_PINCH_SPATK_UP",
+  "pluckEffect": "PLUCK_EFFECT_SPATK_UP",
+  "flingEffect": "FLING_EFFECT_SPATK_UP",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_POISON",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 237,
+    "firmness": "FIRMNESS_VERY_HARD",
+    "baseYield": 1,
+    "stageDuration": 24,
+    "moistureDrainRate": 4,
+    "spiciness": 30,
+    "dryness": 0,
+    "sweetness": 0,
+    "bitterness": 30,
+    "sourness": 10,
+    "smoothness": 40
+  }
+}

@@ -124,8 +124,8 @@
         "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
-        "height": 16,
-        "weight": 1025,
+        "height_inches": 63,
+        "weight_pounds": 226.0,
         "body_shape": "SHAPE_BIPEDAL_TAILED",
         "trainer_scale_f": 272,
         "pokemon_scale_f": 292,
@@ -170,7 +170,7 @@
         "es": {
             "name": "RAMPARDOS",
             "category": "Pokémon Cabezazo",
-            "entry_text": [ "Su potente cabezazo puede\n", "hacer añicos cualquier cosa." ]
+            "entry_text": [ "Su potente cabezazo puede\n", "hacer a\u00f1icos cualquier cosa." ]
         },
         "jp": {
             "name": "ラムパルド",

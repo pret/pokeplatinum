@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0209B75C_decl.h"
+#include "struct_decls/battle_frontier_decl.h"
 #include "struct_defs/struct_0209BBA4.h"
 
 #include "applications/party_menu/defs.h"
@@ -12,6 +12,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_frontier.h"
 #include "dexmode_checker.h"
 #include "heap.h"
 #include "mail.h"
@@ -19,18 +20,17 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "unk_0202D778.h"
-#include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 
 #include "constdata/const_020F410C.h"
 
 void ov104_02239C7C(UnkStruct_0209BBA4 *param0);
 BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 param3);
-void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 param2);
-static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
-static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
-static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID);
-static void ov104_0223A090(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
+void ov104_02239CD0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, u16 param2);
+static void ov104_02239D1C(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
+static void ov104_02239F38(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
+static void ov104_02239FB0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID);
+static void ov104_0223A090(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
 
 UnkStruct_0209BBA4 *ov104_02239C58(SaveData *saveData)
 {
@@ -51,8 +51,6 @@ void ov104_02239C7C(UnkStruct_0209BBA4 *param0)
 
     Heap_Free(param0);
     param0 = NULL;
-
-    return;
 }
 
 BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 param3)
@@ -80,7 +78,7 @@ BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 para
     return v0;
 }
 
-void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 param2)
+void ov104_02239CD0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, u16 param2)
 {
     FieldSystem *fieldSystem = param1->fieldSystem;
 
@@ -100,11 +98,9 @@ void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 
     case 4:
         return;
     }
-
-    return;
 }
 
-static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void ov104_02239D1C(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
 {
     u8 v0;
 
@@ -126,7 +122,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     } else if (param1->unk_A0 == 6) {
         param1->partyMenu->mode = PARTY_MENU_MODE_BATTLE_CASTLE;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     param1->partyMenu->fieldSystem = fieldSystem;
@@ -153,17 +149,14 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
         param1->partyMenu->maxSelectionSlots = 2;
         param1->partyMenu->reqLevel = 100;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     sub_0209B988(param0, &gPokemonPartyAppTemplate, param1->partyMenu, 0, NULL);
-    return;
 }
 
-static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void ov104_02239F38(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
 {
-    int v0;
-
     switch (param1->partyMenu->selectedMonSlot) {
     case 7:
         *param1->unk_B0 = 4;
@@ -184,14 +177,20 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->partyMenu = NULL;
     *param1->unk_B0 = 2;
     param1->unk_9D = 2;
-
-    return;
 }
 
-static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID)
+static void ov104_02239FB0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID)
 {
-    static const u8 v0[] = {
-        0, 1, 2, 4, 3, 5, 6, 7, 8
+    static const u8 visiblePages[] = {
+        SUMMARY_PAGE_INFO,
+        SUMMARY_PAGE_MEMO,
+        SUMMARY_PAGE_SKILLS,
+        SUMMARY_PAGE_CONDITION,
+        SUMMARY_PAGE_BATTLE_MOVES,
+        SUMMARY_PAGE_CONTEST_MOVES,
+        SUMMARY_PAGE_RIBBONS,
+        SUMMARY_PAGE_EXIT,
+        SUMMARY_PAGE_MAX,
     };
 
     param1->unk_AC = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
@@ -208,20 +207,16 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_AC->mode = SUMMARY_MODE_NORMAL;
     param1->unk_AC->specialRibbons = SaveData_GetRibbons(param1->saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(param1->unk_AC, v0);
+    PokemonSummaryScreen_FlagVisiblePages(param1->unk_AC, visiblePages);
     PokemonSummaryScreen_SetPlayerProfile(param1->unk_AC, SaveData_GetTrainerInfo(param1->saveData));
     sub_0209B988(param0, &gPokemonSummaryScreenApp, param1->unk_AC, 0, NULL);
-
-    return;
 }
 
-static void ov104_0223A090(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void ov104_0223A090(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
 {
     param1->unk_9F = param1->unk_AC->monIndex;
     Heap_Free(param1->unk_AC);
     param1->unk_AC = NULL;
     *param1->unk_B0 = 0;
     param1->unk_9D = 0;
-
-    return;
 }

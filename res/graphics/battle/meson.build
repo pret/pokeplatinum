@@ -1,4 +1,5 @@
 subdir('moves')
+subdir('particles')
 
 battle_sprites = []
 base_directory = meson.current_source_dir()

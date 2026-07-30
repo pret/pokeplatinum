@@ -1,0 +1,31 @@
+{
+  "name": "TM57",
+  "plural": "TM57s",
+  "article": "a",
+  "description": [
+    "The user attacks with an electric\n",
+    "charge. The user may use any remaining\n",
+    "electricity to raise its Sp. Atk stat."
+  ],
+  "icon": {
+    "sprite": "tm_NCGR",
+    "palette": "tm_electric_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 3000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_TMHMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
+  "battleUseFunc": 0,
+  "itemUseParams": null,
+  "teachesMove": "MOVE_CHARGE_BEAM"
+}

@@ -2,7 +2,7 @@
   "key": 58407,
   "messages": [
     {
-      "id": "pl_msg_00000589_00000",
+      "id": "CelesticTownCave_Text_WhatsThisAbout",
       "en_US": [
         "{STRVAR_1 3, 0, 0} examined the ancient\n",
         "cave painting.\r",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00001",
+      "id": "CelesticTownCave_Text_AncientLegendOfSinnoh",
       "en_US": [
         "The cave painting’s meaning seems\n",
         "to be this...\r",
@@ -32,18 +32,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00002",
+      "id": "CelesticTownCave_Text_IdLikeToKnowMore",
       "en_US": [
         "???: I would like to know more about\n",
         "that legend, if you will.\r"
       ]
     },
     {
-      "id": "pl_msg_00000589_00003",
+      "id": "CelesticTownCave_Text_WhoMightYouBe",
       "en_US": "Elder: Who might you be...?\r"
     },
     {
-      "id": "pl_msg_00000589_00004",
+      "id": "CelesticTownCave_Text_MyNameIsCyrus",
       "en_US": [
         "My name is Cyrus.\r",
         "I want to put an end to pointless\n",
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00005",
+      "id": "CelesticTownCave_Text_NotInterested",
       "en_US": [
         "Elder: I wouldn’t know.\n",
         "I do know the world is in balance.\r",
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00006",
+      "id": "CelesticTownCave_Text_ChallengeMe",
       "en_US": [
         "Cyrus: ...Plead ignorance, will you?\n",
         "What a pointless attitude.\r",
@@ -84,14 +84,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00007",
+      "id": "CelesticTownCave_Text_WellChallengeMe",
       "en_US": [
         "Cyrus: Well? Am I wrong?\n",
         "If you feel that way, challenge me.\r"
       ]
     },
     {
-      "id": "pl_msg_00000589_00008",
+      "id": "CelesticTownCave_Text_ErrorOfYourWays",
       "en_US": [
         "Cyrus: ...I know you, Trainer.\n",
         "We’ve met at Mt. Coronet.\r",
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00009",
+      "id": "CelesticTownCave_Text_YouChoseCoward",
       "en_US": [
         "Cyrus: ...You chose to be a coward.\n",
         "How sensible of you.\r",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00010",
+      "id": "CelesticTownCave_Text_YouChoseCoward2",
       "en_US": [
         "Cyrus: ...You chose to be a coward.\n",
         "How sensible of you.\r",
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00011",
+      "id": "CelesticTownCave_Text_Remarkable",
       "en_US": [
         "Cyrus: ...Remarkable.\r",
         "But, Elder, your attitude told me what\n",
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00012",
+      "id": "CelesticTownCave_Text_WeValueMemories",
       "en_US": [
         "That cave painting isn’t protected\n",
         "simply because it’s old.\r",
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00013",
+      "id": "CelesticTownCave_Text_YouShouldTakeThis",
       "en_US": [
         "Such a strange, strange man.\n",
         "Spouting such nonsense.\r",
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00014",
+      "id": "CelesticTownCave_Text_SurfAcrossWater",
       "en_US": [
         "If a Pokémon learns Surf, it can\n",
         "carry you across water and the sea.\r",
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00015",
+      "id": "CelesticTownCave_Text_PlayerExaminedPainting",
       "en_US": [
         "{STRVAR_1 3, 0, 0} examined the ancient\n",
         "cave painting.\r",
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00016",
+      "id": "CelesticTownCave_Text_PaintingDescribedThisWay",
       "en_US": [
         "Cynthia: This cave painting...\n",
         "It’s always been described this way.\r",
@@ -194,11 +194,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00017",
+      "id": "CelesticTownCave_Text_MayIContinue",
       "en_US": "May I continue?"
     },
     {
-      "id": "pl_msg_00000589_00018",
+      "id": "CelesticTownCave_Text_OtherInterpretationContinueLonger",
       "en_US": [
         "Cynthia: But, then, I realized that\n",
         "there may be another way of\f",
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00019",
+      "id": "CelesticTownCave_Text_ThanksForListening",
       "en_US": [
         "Cynthia: Thank you for listening to\n",
         "my theory.\r",
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00020",
+      "id": "CelesticTownCave_Text_NotSureHowGiratinaFits",
       "en_US": [
         "I’m not quite sure how GIRATINA fits\n",
         "into this scheme of things, but...\r",
@@ -248,14 +248,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00021",
+      "id": "CelesticTownCave_Text_MayISayLastBit",
       "en_US": [
         "I’m sorry this is so long.\n",
         "May I say one last bit?"
       ]
     },
     {
-      "id": "pl_msg_00000589_00022",
+      "id": "CelesticTownCave_Text_ThatsWhatIBelieve",
       "en_US": [
         "A long time ago, I wonder what sort of\n",
         "person painted this?\r",
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000589_00023",
+      "id": "CelesticTownCave_Text_IGotCarriedAway",
       "en_US": [
         "I’m so sorry.\n",
         "I let myself get carried away...\r"

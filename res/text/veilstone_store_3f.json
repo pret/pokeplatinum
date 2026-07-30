@@ -9,7 +9,7 @@
       ]
     },
     {
-      "id": "VeilstoneStore3F_Text_MayIHelpYouPersonalized",
+      "id": "VeilstoneStore3F_Text_PlayerMayIHelpYou",
       "en_US": [
         "Hello, {STRVAR_1 3, 0, 0}.\n",
         "May I help you with anything?"
@@ -20,7 +20,7 @@
       "en_US": "Please enjoy yourself."
     },
     {
-      "id": "VeilstoneStore3F_Text_FalseSwipeMakesPokemonEasierToCatch",
+      "id": "VeilstoneStore3F_Text_FalseSwipeMakesCatchingEasier",
       "en_US": [
         "False Swipe makes wild Pokémon easier\n",
         "to catch.\r",
@@ -29,14 +29,14 @@
       ]
     },
     {
-      "id": "VeilstoneStore3F_Text_ForFireTypesSuggestFireBlast",
+      "id": "VeilstoneStore3F_Text_FireBlastForFireTypes",
       "en_US": [
         "For Fire-type Pokémon, may I suggest\n",
         "Fire Blast?"
       ]
     },
     {
-      "id": "VeilstoneStore3F_Text_ProtectIsForDodgingAttacks",
+      "id": "VeilstoneStore3F_Text_ProtectForDodgingAttacks",
       "en_US": [
         "The move Protect is the perfect\n",
         "solution for dodging attacks.\r",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "VeilstoneStore3F_Text_WouldLoveToBuyAllTheMerchandise",
+      "id": "VeilstoneStore3F_Text_WantToBuyAllMerchandise",
       "en_US": [
         "I would love to buy up all the\n",
         "merchandise here.\r",

@@ -2343,54 +2343,54 @@ VisibleItems_CheckPlateOrItemPocket:
 VisibleItems_BufferPocketNameItems:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo VisibleItems_MessagePlayerPutTheItemInTheItemPocket
+    GoTo VisibleItems_MessagePlayerPutItemInItemPocket
     End
 
 VisibleItems_BufferPocketNameKeyItems:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo VisibleItems_MessagePlayerPutTheItemInTheItemPocket
+    GoTo VisibleItems_MessagePlayerPutItemInItemPocket
     End
 
 VisibleItems_BufferPocketNameTMHMs:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo VisibleItems_MessagePlayerPutTheItemInTheItemPocket
+    GoTo VisibleItems_MessagePlayerPutItemInItemPocket
     End
 
 VisibleItems_BufferPocketNameMail:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo VisibleItems_MessagePlayerPutTheItemInTheItemPocket
+    GoTo VisibleItems_MessagePlayerPutItemInItemPocket
     End
 
 VisibleItems_BufferPocketNameMedicine:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo VisibleItems_MessagePlayerPutTheItemInTheItemPocket
+    GoTo VisibleItems_MessagePlayerPutItemInItemPocket
     End
 
 VisibleItems_BufferPocketNameBerries:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo VisibleItems_MessagePlayerPutTheItemInTheItemPocket
+    GoTo VisibleItems_MessagePlayerPutItemInItemPocket
     End
 
 VisibleItems_BufferPocketNameBalls:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo VisibleItems_MessagePlayerPutTheItemInTheItemPocket
+    GoTo VisibleItems_MessagePlayerPutItemInItemPocket
     End
 
 VisibleItems_BufferPocketNameBattleItems:
     GetItemPocket VAR_0x8004, VAR_RESULT
     BufferPocketName 2, VAR_RESULT
-    GoTo VisibleItems_MessagePlayerPutTheItemInTheItemPocket
+    GoTo VisibleItems_MessagePlayerPutItemInItemPocket
     End
 
-VisibleItems_MessagePlayerPutTheItemInTheItemPocket:
-    CreateJournalEvent LOCATION_EVENT_ITEM_WAS_OBTAINED, VAR_0x8004, 0, 0, 0
-    Message VisibleItems_Text_PlayerPutTheItemInTheItemPocket2
+VisibleItems_MessagePlayerPutItemInItemPocket:
+    CreateJournalEvent LOCATION_EVENT_ITEM_WAS_OBTAINED, VAR_0x8004
+    Message VisibleItems_Text_PlayerPutItemInItemPocket2
     WaitButton
     SetVar VAR_RESULT, TRUE
     GoTo VisibleItems_End
@@ -2413,7 +2413,7 @@ VisibleItems_MessagePlayerFoundItem:
 
 VisibleItems_BagIsFull:
     BufferItemName 0, VAR_0x8004
-    Message VisibleItems_Text_ObtainedTheItemTooBadTheBagIsFull
+    Message VisibleItems_Text_ObtainedItemBagIsFull
     WaitButton
     SetVar VAR_RESULT, FALSE
     GoTo VisibleItems_End

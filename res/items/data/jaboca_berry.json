@@ -1,0 +1,43 @@
+{
+  "name": "Jaboca Berry",
+  "plural": "Jaboca Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. If held by a\n",
+    "Pokémon, and if a foe’s physical attack\n",
+    "lands, the foe also takes damage."
+  ],
+  "icon": {
+    "sprite": "jaboca_berry_NCGR",
+    "palette": "jaboca_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 20,
+  "effectParam": 8,
+  "holdEffect": "HOLD_EFFECT_RECOIL_PHYSICAL",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_DRAGON",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 33,
+    "firmness": "FIRMNESS_SOFT",
+    "baseYield": 1,
+    "stageDuration": 24,
+    "moistureDrainRate": 7,
+    "spiciness": 0,
+    "dryness": 0,
+    "sweetness": 0,
+    "bitterness": 40,
+    "sourness": 10,
+    "smoothness": 60
+  }
+}

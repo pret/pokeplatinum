@@ -1,53 +1,54 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_house.h"
+#include "res/field/events/events_resort_area_house.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0034
-    ScriptEntry _0047
+    ScriptEntry ResortAreaHouse_Collector
+    ScriptEntry ResortAreaHouse_OldMan
+    ScriptEntry ResortAreaHouse_NinjaBoy
     ScriptEntryEnd
 
-_000E:
+ResortAreaHouse_Collector:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message ResortAreaHouse_Text_AllINeedIsTV
     WaitButton
     CloseMessage
-    ApplyMovement 0, _002C
+    ApplyMovement LOCALID_COLLECTOR, ResortAreaHouse_Movement_CollectorWalkOnSpotNorth
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
-_002C:
+ResortAreaHouse_Movement_CollectorWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
-_0034:
-    NPCMessage 2
+ResortAreaHouse_OldMan:
+    NPCMessage ResortAreaHouse_Text_BestTrainersAtFrontier
     End
 
-_0047:
+ResortAreaHouse_NinjaBoy:
     PlaySE SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _006F
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, _007A
+    GoToIfEq VAR_RESULT, GENDER_MALE, ResortAreaHouse_SeenEveryPokemonSinnohMale
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, ResortAreaHouse_SeenEveryPokemonSinnohFemale
     End
 
-_006F:
-    Message 3
-    GoTo _0085
+ResortAreaHouse_SeenEveryPokemonSinnohMale:
+    Message ResortAreaHouse_Text_SeenEveryPokemonSinnohMale
+    GoTo ResortAreaHouse_NinjaBoyEnd
     End
 
-_007A:
-    Message 4
-    GoTo _0085
+ResortAreaHouse_SeenEveryPokemonSinnohFemale:
+    Message ResortAreaHouse_Text_SeenEveryPokemonSinnohFemale
+    GoTo ResortAreaHouse_NinjaBoyEnd
     End
 
-_0085:
+ResortAreaHouse_NinjaBoyEnd:
     WaitButton
     CloseMessage
     ReleaseAll

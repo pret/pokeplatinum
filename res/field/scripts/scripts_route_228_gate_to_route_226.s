@@ -2,14 +2,14 @@
 #include "res/text/bank/route_228_gate_to_route_226.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry Route228GateToRoute226_AceTrainerF
+    ScriptEntry Route228GateToRoute226_SchoolKidF
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+Route228GateToRoute226_AceTrainerF:
+    NPCMessage Route228GateToRoute226_Text_WhichIsBetter
     End
 
-_001D:
-    NPCMessage 1
+Route228GateToRoute226_SchoolKidF:
+    NPCMessage Route228GateToRoute226_Text_StudyMoltingPokemon
     End

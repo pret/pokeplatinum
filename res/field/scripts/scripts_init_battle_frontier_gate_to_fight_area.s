@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x4113, 0, 1
+    InitScriptGoToIfEqual VAR_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA_STATE, 0, 1
     InitScriptFrameTableEnd
 
     InitScriptEnd

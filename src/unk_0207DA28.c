@@ -20,6 +20,7 @@
 #include "overlay117/struct_ov117_02260440.h"
 #include "wfc_settings/wfc_settings.h"
 
+#include "battle_frontier.h"
 #include "communication_system.h"
 #include "encounter.h"
 #include "field_system.h"
@@ -31,7 +32,6 @@
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
 #include "unk_02099604.h"
-#include "unk_0209BA18.h"
 #include "vars_flags.h"
 #include "wifi_overlays.h"
 

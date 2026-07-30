@@ -1,0 +1,97 @@
+{
+  "key": 65462,
+  "messages": [
+    {
+      "id": "UnionWords_Text_Single",
+      "en_US": "SINGLE"
+    },
+    {
+      "id": "UnionWords_Text_Double",
+      "en_US": "DOUBLE"
+    },
+    {
+      "id": "UnionWords_Text_MixBattle",
+      "en_US": "MIX BATTLE"
+    },
+    {
+      "id": "UnionWords_Text_MultiBattle",
+      "en_US": "MULTI BATTLE"
+    },
+    {
+      "id": "UnionWords_Text_Level50",
+      "en_US": "LEVEL 50"
+    },
+    {
+      "id": "UnionWords_Text_Level100",
+      "en_US": "LEVEL 100"
+    },
+    {
+      "id": "UnionWords_Text_Colosseum",
+      "en_US": "COLOSSEUM"
+    },
+    {
+      "id": "UnionWords_Text_Pokemon",
+      "en_US": "POKéMON"
+    },
+    {
+      "id": "UnionWords_Text_Drawing",
+      "en_US": "DRAWING"
+    },
+    {
+      "id": "UnionWords_Text_Record",
+      "en_US": "RECORD"
+    },
+    {
+      "id": "UnionWords_Text_Gotcha",
+      "en_US": "GOTCHA"
+    },
+    {
+      "id": "UnionWords_Text_Chat",
+      "en_US": "CHAT"
+    },
+    {
+      "id": "UnionWords_Text_FriendCode",
+      "en_US": "FRIEND CODE"
+    },
+    {
+      "id": "UnionWords_Text_Connection",
+      "en_US": "CONNECTION"
+    },
+    {
+      "id": "UnionWords_Text_VoiceChat",
+      "en_US": "VOICE CHAT"
+    },
+    {
+      "id": "UnionWords_Text_WiFi",
+      "en_US": "WI-FI"
+    },
+    {
+      "id": "UnionWords_Text_Underground",
+      "en_US": "UNDERGROUND"
+    },
+    {
+      "id": "UnionWords_Text_Union",
+      "en_US": "UNION"
+    },
+    {
+      "id": "UnionWords_Text_Poffin",
+      "en_US": "POFFIN"
+    },
+    {
+      "id": "UnionWords_Text_Contest",
+      "en_US": "CONTEST"
+    },
+    {
+      "id": "UnionWords_Text_BattleTower",
+      "en_US": "BATTLE TOWER"
+    },
+    {
+      "id": "UnionWords_Text_GTS",
+      "en_US": "GTS"
+    },
+    {
+      "id": "UnionWords_Text_SecretBase",
+      "en_US": "SECRET BASE"
+    }
+  ]
+}

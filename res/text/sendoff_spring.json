@@ -2,11 +2,11 @@
   "key": 50211,
   "messages": [
     {
-      "id": "pl_msg_00000265_00000",
+      "id": "SendoffSpring_Text_ThisPlace",
       "en_US": "Cynthia: ...This place?!\r"
     },
     {
-      "id": "pl_msg_00000265_00001",
+      "id": "SendoffSpring_Text_ItsTheSendoffSpring",
       "en_US": [
         "It’s the Sendoff Spring...\r",
         "It’s said to somehow lead to the great\n",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000265_00002",
+      "id": "SendoffSpring_Text_YouShouldVisitProfRowan",
       "en_US": [
         "Oh! I’m sincerely sorry!\n",
         "It’s very rude of me!\r",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000265_00003",
+      "id": "SendoffSpring_Text_GoTellProfRowan",
       "en_US": [
         "Cynthia: You have to go tell Prof.\n",
         "Rowan about this at his lab.\r",
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000265_00004",
+      "id": "SendoffSpring_Text_IWishIBattledGiratina",
       "en_US": [
         "Cynthia: Sigh...\n",
         "I wish I could have battled GIRATINA.\r",

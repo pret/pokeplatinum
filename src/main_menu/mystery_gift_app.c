@@ -6,7 +6,7 @@
 #include "constants/graphics.h"
 #include "constants/narc.h"
 #include "constants/savedata/savedata.h"
-#include "generated/string_padding_mode.h"
+#include "constants/string.h"
 #include "generated/text_banks.h"
 
 #include "game_opening/const_ov77_021D742C.h"
@@ -21,6 +21,7 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "comm_manager.h"
 #include "communication_system.h"
 #include "font.h"
 #include "game_options.h"
@@ -57,7 +58,6 @@
 #include "text.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
-#include "unk_020366A0.h"
 
 #include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/mystery_gift_menu.h"
@@ -575,10 +575,10 @@ static void ShowConfirmReceiveGiftMenu(ApplicationManager *appMan, BOOL hideMsgB
     Window *window = &appData->menuWindows[2];
 
     if (window->bgConfig == NULL) {
-        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_YES_NO_MENU);
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), 0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, 3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sConfirmReceiveGiftOptions, NELEMS(sConfirmReceiveGiftOptions), window, msgBoxTextId);
 }
 
@@ -614,10 +614,10 @@ static enum MysteryGiftAppState AskConfirmWireless_FriendOrGBA(ApplicationManage
     window = &appData->menuWindows[2];
 
     if (window->bgConfig == NULL) {
-        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_YES_NO_MENU);
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), 0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, 3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sStartWirelessCommsOptions_FriendOrGBA, NELEMS(sStartWirelessCommsOptions_FriendOrGBA), window, MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched);
 
     return MG_APP_STATE_WAIT_CONFIRM_WIRELESS_COMMS;
@@ -635,10 +635,10 @@ static enum MysteryGiftAppState AskConfirmConnectToWFC(ApplicationManager *appMa
     window = &appData->menuWindows[2];
 
     if (window->bgConfig == NULL) {
-        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_YES_NO_MENU);
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), 0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, 3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sConfirmConnectToWFCOptions, NELEMS(sConfirmConnectToWFCOptions), window, MysteryGiftMenu_Text_ConnectToWFC);
 
     return MG_APP_STATE_WAIT_CONFIRM_WIRELESS_COMMS;
@@ -655,10 +655,10 @@ static enum MysteryGiftAppState AskConfirmWireless_WirelessDistribution(Applicat
     Window *window = &appData->menuWindows[2];
 
     if (window->bgConfig == NULL) {
-        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_YES_NO_MENU);
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), 0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, 3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sStartWirelessCommsOption_WirelessDistribution, NELEMS(sStartWirelessCommsOption_WirelessDistribution), window, MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched2);
 
     return MG_APP_STATE_WAIT_CONFIRM_WIRELESS_COMMS;
@@ -671,10 +671,10 @@ static void ShowConfirmReceiveGiftMenu_LocalWireless(ApplicationManager *appMan)
     Window *window = &appData->menuWindows[2];
 
     if (window->bgConfig == NULL) {
-        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_YES_NO_MENU);
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, TEXT_LINES_TILES(2), 0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, 3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sConfirmReceiveGiftOptions_WirelessDistribution, NELEMS(sConfirmReceiveGiftOptions_WirelessDistribution), window, MysteryGiftMenu_Text_ReceiveThisGift);
 }
 
@@ -776,10 +776,10 @@ static enum MysteryGiftAppState ShowMysteryGiftReceptionMethodsMenu(ApplicationM
     window = &appData->menuWindows[1];
 
     if (window->bgConfig == NULL) {
-        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 15, 9, 16, TEXT_LINES_TILES(NUM_RECEPTION_METHODS), PLTT_0, BASE_TILE_RECEPTION_METHODS_MENU);
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 15, 9, 16, TEXT_LINES_TILES(NUM_RECEPTION_METHODS), 0, BASE_TILE_RECEPTION_METHODS_MENU);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, 3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, sMysteryGiftReceiveOptions, NELEMS(sMysteryGiftReceiveOptions), window, MysteryGiftMenu_Text_ChooseHowToReceiveGift);
 
     return MG_APP_STATE_WAIT_RECEPTION_METHOD_CHOICE;
@@ -858,7 +858,7 @@ static void LoadBottomScreenBg(BgConfig *bgConfig)
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, PAL_LOAD_SUB_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_NSCR_lz, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
-    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_SUB_1, 0, 0, MG_BACKGROUND_TILEMAP_WIDTH, MG_BACKGROUND_TILEMAP_HEIGHT, PLTT_8);
+    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_SUB_1, 0, 0, MG_BACKGROUND_TILEMAP_WIDTH, MG_BACKGROUND_TILEMAP_HEIGHT, 8);
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_SUB_1);
 }
 
@@ -867,7 +867,7 @@ static void LoadBothScreensBg(BgConfig *bgConfig)
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_NSCR_lz, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
-    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_1, 0, 0, MG_BACKGROUND_TILEMAP_WIDTH, MG_BACKGROUND_TILEMAP_HEIGHT, PLTT_8);
+    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_1, 0, 0, MG_BACKGROUND_TILEMAP_WIDTH, MG_BACKGROUND_TILEMAP_HEIGHT, 8);
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 
     LoadBottomScreenBg(bgConfig);
@@ -924,10 +924,10 @@ static void ShowMysteryGiftMenuOptions(ApplicationManager *appMan, int windowBas
     entries[numEntries++] = sMysteryGiftMenuOptions[MG_MENU_EXIT];
 
     if (window->bgConfig == NULL) {
-        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 8, 7, 16, TEXT_LINES_TILES(numEntries), PLTT_0, windowBaseTile);
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 8, 7, 16, TEXT_LINES_TILES(numEntries), 0, windowBaseTile);
     }
 
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_MG_WINDOW_FRAME, 3);
     MakeStateChangeListMenuFromEntryTemplates(appMan, entries, numEntries, window, textEntryId);
 }
 
@@ -948,7 +948,7 @@ static void ShowMessageBox(ApplicationManager *appMan, Window *window, u32 entry
         String_Free(string);
     }
 
-    Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_2);
+    Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, 2);
     MessageLoader_Free(appData->msgLoader);
     StringTemplate_Free(appData->strTemplate);
 
@@ -964,7 +964,7 @@ static void ShowWonderCardTitle(ApplicationManager *appMann, Window *window, cha
     String_CopyNumChars(string, title, WONDERCARD_TITLE_LENGTH);
     Window_FillTilemap(window, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Window_DrawStandardFrame(window, FALSE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
+    Window_DrawStandardFrame(window, FALSE, BASE_TILE_MG_WINDOW_FRAME, 3);
     String_Free(string);
 }
 
@@ -1012,13 +1012,13 @@ static BOOL ShowAppMainMenu(ApplicationManager *appMan, MysteryGiftAppData *appD
 
     int frameType = Options_Frame(appData->options);
 
-    LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_2, frameType, HEAP_ID_MYSTERY_GIFT_APP);
-    LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MG_WINDOW_FRAME, PLTT_3, STANDARD_WINDOW_FIELD, HEAP_ID_MYSTERY_GIFT_APP);
+    LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, 2, frameType, HEAP_ID_MYSTERY_GIFT_APP);
+    LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MG_WINDOW_FRAME, 3, STANDARD_WINDOW_FIELD, HEAP_ID_MYSTERY_GIFT_APP);
 
-    *HW_BG_A_PLTT_COLOR(PLTT_0, 0) = GX_RGB(12, 12, 31);
+    *HW_BG_A_PLTT_COLOR(0, 0) = GX_RGB(12, 12, 31);
 
     if (!Window_IsInUse(&appData->messageBox)) {
-        Window_Add(appData->bgConfig, &appData->messageBox, BG_LAYER_MAIN_0, 2, 19, 27, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_MAIN_APP_MENU_MSG_BOX);
+        Window_Add(appData->bgConfig, &appData->messageBox, BG_LAYER_MAIN_0, 2, 19, 27, TEXT_LINES_TILES(2), 0, BASE_TILE_MAIN_APP_MENU_MSG_BOX);
     }
 
     ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_Welcome);
@@ -1072,7 +1072,7 @@ void MysteryGiftApp_ShowWiFiCommError(MysteryGiftAppData *appData)
     StringTemplate_SetNumber(strTemplate, 0, appData->wifiCommErrorCode, 5, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
 
     MainMenuWindow window;
-    MainMenuUtil_InitWindow(&window, &appData->wifiCommErrorWindow, PLTT_1, TEXT_BANK_UNK_0695, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
+    MainMenuUtil_InitWindow(&window, &appData->wifiCommErrorWindow, 1, TEXT_BANK_UNK_0695, BASE_TILE_MG_WINDOW_FRAME, 3);
     MainMenuWindow_SetDimensionsAndBasetile(&window, 24, TEXT_LINES_TILES(8), BASE_TILE_WIFI_COMM_ERROR_WINDOW);
     MainMenuWindow_SetScrollableAndFont(&window, FALSE, FONT_MESSAGE);
 
@@ -1187,7 +1187,7 @@ static int MysteryGiftApp_Init(ApplicationManager *appMan, int *unused)
     appData->options = SaveData_GetOptions(appData->saveData);
     appData->msgBoxPrinterDelay = TEXT_SPEED_NO_TRANSFER;
 
-    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_NETWORK_ICON, HEAP_SIZE_NETWORK_ICON);
 
     return TRUE;
 }
@@ -1209,7 +1209,7 @@ static void LoadParticleSpriteResources(MysteryGiftAnimationManager *animMan)
     resourceID = 20000 + vramType;
 
     animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTiles(animMan->spriteMan->resourceCollections[SPRITE_RESOURCE_CHAR], narcID, tilesID, compressed, resourceID, vramType, heapID);
-    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(animMan->spriteMan->resourceCollections[SPRITE_RESOURCE_PLTT], narcID, paletteID, FALSE, resourceID, vramType, PLTT_1, heapID);
+    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(animMan->spriteMan->resourceCollections[SPRITE_RESOURCE_PLTT], narcID, paletteID, FALSE, resourceID, vramType, 1, heapID);
     animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_Add(animMan->spriteMan->resourceCollections[SPRITE_RESOURCE_CELL], narcID, cellsID, compressed, resourceID, SPRITE_RESOURCE_CELL, heapID);
     animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_Add(animMan->spriteMan->resourceCollections[SPRITE_RESOURCE_ANIM], narcID, animationID, compressed, resourceID, SPRITE_RESOURCE_ANIM, heapID);
 
@@ -1217,7 +1217,7 @@ static void LoadParticleSpriteResources(MysteryGiftAnimationManager *animMan)
     resourceID = 20000 + vramType;
 
     animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTiles(animMan->spriteMan->resourceCollections[SPRITE_RESOURCE_CHAR], narcID, tilesID, compressed, resourceID, vramType, heapID);
-    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(animMan->spriteMan->resourceCollections[SPRITE_RESOURCE_PLTT], narcID, paletteID, FALSE, resourceID, vramType, PLTT_1, heapID);
+    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(animMan->spriteMan->resourceCollections[SPRITE_RESOURCE_PLTT], narcID, paletteID, FALSE, resourceID, vramType, 1, heapID);
     animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_Add(animMan->spriteMan->resourceCollections[SPRITE_RESOURCE_CELL], narcID, cellsID, compressed, resourceID, SPRITE_RESOURCE_CELL, heapID);
     animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_Add(animMan->spriteMan->resourceCollections[SPRITE_RESOURCE_ANIM], narcID, animationID, compressed, resourceID, SPRITE_RESOURCE_ANIM, heapID);
 
@@ -2036,7 +2036,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
                 *state = MG_APP_STATE_FROM_FRIEND_OR_CANT_RECEIVE;
             } else {
                 if (!Window_IsInUse(&appData->wonderCardTitleWindow)) {
-                    Window_Add(appData->bgConfig, &appData->wonderCardTitleWindow, BG_LAYER_MAIN_0, 3, 2, 26, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_WONDERCARD_TITLE);
+                    Window_Add(appData->bgConfig, &appData->wonderCardTitleWindow, BG_LAYER_MAIN_0, 3, 2, 26, TEXT_LINES_TILES(2), 0, BASE_TILE_WONDERCARD_TITLE);
                 }
 
                 ShowWonderCardTitle(appMan, &appData->wonderCardTitleWindow, ov97_02238D54());
@@ -2146,7 +2146,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             appData->canReceiveGiftStatus = ov97_02232148(appData->saveData, &appData->eventData);
 
             if (!Window_IsInUse(&appData->wonderCardTitleWindow)) {
-                Window_Add(appData->bgConfig, &appData->wonderCardTitleWindow, BG_LAYER_MAIN_0, 3, 2, 26, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_WONDERCARD_TITLE);
+                Window_Add(appData->bgConfig, &appData->wonderCardTitleWindow, BG_LAYER_MAIN_0, 3, 2, 26, TEXT_LINES_TILES(2), 0, BASE_TILE_WONDERCARD_TITLE);
             }
 
             ShowWonderCardTitle(appMan, &appData->wonderCardTitleWindow, appData->eventData.header.title);
@@ -2171,7 +2171,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         if (netID != 0 && CommSys_IsPlayerConnected(netID)) {
             if (CommTiming_IsSyncState(0xAB) == TRUE) {
                 ToggleWaitDial(appData, FALSE);
-                CommMan_SetErrorHandling(TRUE, TRUE);
+                CommManager_SetErrorHandling(TRUE, TRUE);
                 ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_ReceivingGiftDontTurnOff);
                 SetDownloadArrowAnim(appData, 1);
                 ToggleWaitDial(appData, TRUE);
@@ -2213,7 +2213,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         break;
     case MG_APP_STATE_SAVE_GIFT_FROM_FRIEND:
         MainMenuUtil_LoadGiftSprite(appData->bgConfig, GetReceivedWonderCard(appMan));
-        CommMan_SetErrorHandling(0, 0);
+        CommManager_SetErrorHandling(0, 0);
         SaveReceivedGift(appMan);
         *state = MG_APP_STATE_CHECK_FRIEND_CONNECTION_STILL_VALID;
         break;
@@ -2311,7 +2311,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             *state = MG_APP_STATE_FROM_FRIEND_OR_CANT_RECEIVE;
         } else {
             if (!Window_IsInUse(&appData->wonderCardTitleWindow)) {
-                Window_Add(appData->bgConfig, &appData->wonderCardTitleWindow, BG_LAYER_MAIN_0, 3, 2, 26, TEXT_LINES_TILES(2), PLTT_0, BASE_TILE_WONDERCARD_TITLE);
+                Window_Add(appData->bgConfig, &appData->wonderCardTitleWindow, BG_LAYER_MAIN_0, 3, 2, 26, TEXT_LINES_TILES(2), 0, BASE_TILE_WONDERCARD_TITLE);
             }
 
             ShowWonderCardTitle(appMan, &appData->wonderCardTitleWindow, appData->eventData.header.title);
@@ -2458,7 +2458,7 @@ static int MysteryGiftApp_Exit(ApplicationManager *appMan, int *unused)
         EnqueueApplication(FS_OVERLAY_ID(main_menu), &gWonderCardsAppTemplate);
     }
 
-    Heap_Destroy(HEAP_ID_91);
+    Heap_Destroy(HEAP_ID_NETWORK_ICON);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_MYSTERY_GIFT_APP);
 
@@ -2479,19 +2479,19 @@ static void ov97_02230224(MysteryGiftAppData *param0)
     case 29:
         break;
     case 28:
-        sub_02037D48(param0->saveData);
+        CommManager_InitializeSearchParty(param0->saveData);
         param0->unk_630 = 120;
         param0->unk_62C = 30;
         break;
     case 30:
-        v0 = sub_02037DA0();
+        v0 = CommManager_GetAvailableConnections();
 
         if (v0 & 0x1) {
             param0->unk_634 = 1;
         }
 
         if (--param0->unk_630 == 0) {
-            sub_02037D84();
+            CommManager_EndSearchParty();
             param0->unk_62C = 29;
         }
         break;

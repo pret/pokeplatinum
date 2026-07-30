@@ -32,11 +32,11 @@
 #include "map_header_data.h"
 #include "map_matrix.h"
 #include "overlay_manager.h"
+#include "player_move.h"
 #include "pokedex_memory.h"
 #include "pokeradar.h"
 #include "savedata.h"
 #include "system.h"
-#include "unk_0205F180.h"
 #include "unk_0209C370.h"
 
 FS_EXTERN_OVERLAY(overlay5);
@@ -148,7 +148,7 @@ static FieldSystem *InitFieldSystem(ApplicationManager *appMan)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD2, HEAP_SIZE_FIELD2);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD3, HEAP_SIZE_FIELD3);
-    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_NETWORK_ICON, HEAP_SIZE_NETWORK_ICON);
 
     FieldSystem *fieldSystem = ApplicationManager_NewData(appMan, sizeof(FieldSystem), HEAP_ID_FIELD2);
     MI_CpuClear8(fieldSystem, sizeof(FieldSystem));
@@ -189,7 +189,7 @@ static void TeardownFieldSystem(ApplicationManager *appMan)
 
     Heap_Free(fieldSystem->processManager);
     ApplicationManager_FreeData(appMan);
-    Heap_Destroy(HEAP_ID_91);
+    Heap_Destroy(HEAP_ID_NETWORK_ICON);
     Heap_Destroy(HEAP_ID_FIELD2);
     Heap_Destroy(HEAP_ID_FIELD3);
 }
@@ -239,12 +239,12 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
 
     FieldInput fieldInput;
     if (processInput) {
-        sub_0205F490(fieldSystem->playerAvatar);
+        PlayerAvatar_UpdatePlayerMoveState(fieldSystem->playerAvatar);
         FieldInput_Update(&fieldInput, fieldSystem, gSystem.pressedKeys, gSystem.heldKeys);
     }
 
     enum MapLoadType loadType = fieldSystem->mapLoadType;
-    if (fieldSystem->location->mapId == MAP_HEADER_BATTLE_TOWER) {
+    if (fieldSystem->location->mapHeaderID == MAP_HEADER_BATTLE_TOWER) {
         loadType = MAP_LOAD_TYPE_OVERWORLD;
     }
 
@@ -274,7 +274,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     case MAP_LOAD_TYPE_UNION:
         if (processInput) {
             if (FieldInput_Process_UnionRoom(&fieldInput, fieldSystem) != TRUE) {
-                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->landDataMan, -1, fieldInput.pressedKeys, fieldInput.heldKeys, 0);
+                PlayerAvatar_MoveMain(fieldSystem->playerAvatar, fieldSystem->landDataMan, -1, fieldInput.pressedKeys, fieldInput.heldKeys, 0);
             }
         }
         break;
@@ -282,13 +282,13 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     case MAP_LOAD_TYPE_BATTLE_TOWER:
         if (processInput) {
             if (FieldInput_Process_BattleTower(&fieldInput, fieldSystem) == TRUE) {
-                MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
+                MapNamePopUp_Hide(fieldSystem->unk_04->mapPopup);
                 Signpost_DoCommand(fieldSystem, SIGNPOST_CMD_REMOVE);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SLEEP, 1);
             } else {
                 if (gSystem.pressedKeys & PAD_BUTTON_A) {
-                    MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
+                    MapNamePopUp_Hide(fieldSystem->unk_04->mapPopup);
                 }
 
                 BOOL tappedPoketch = FALSE;
@@ -297,7 +297,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
                     tappedPoketch = PoketchSystem_IsTapped(poketchSys);
                 }
 
-                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->landDataMan, -1, fieldInput.pressedKeys, fieldInput.heldKeys, tappedPoketch);
+                PlayerAvatar_MoveMain(fieldSystem->playerAvatar, fieldSystem->landDataMan, -1, fieldInput.pressedKeys, fieldInput.heldKeys, tappedPoketch);
             }
         }
         break;
@@ -305,14 +305,14 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     default:
         if (processInput) {
             if (FieldInput_Process(&fieldInput, fieldSystem) == TRUE) {
-                MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
+                MapNamePopUp_Hide(fieldSystem->unk_04->mapPopup);
                 Signpost_DoCommand(fieldSystem, SIGNPOST_CMD_REMOVE);
-                sub_0205F56C(fieldSystem->playerAvatar);
+                PlayerAvatar_ClearMoveState(fieldSystem->playerAvatar);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SLEEP, 1);
             } else {
                 if (gSystem.pressedKeys & PAD_BUTTON_A) {
-                    MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
+                    MapNamePopUp_Hide(fieldSystem->unk_04->mapPopup);
                 }
 
                 BOOL tappedPoketch = 0;
@@ -321,7 +321,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
                     tappedPoketch = PoketchSystem_IsTapped(poketchSys);
                 }
 
-                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->landDataMan, -1, fieldInput.pressedKeys, fieldInput.heldKeys, tappedPoketch);
+                PlayerAvatar_MoveMain(fieldSystem->playerAvatar, fieldSystem->landDataMan, -1, fieldInput.pressedKeys, fieldInput.heldKeys, tappedPoketch);
             }
         }
         break;

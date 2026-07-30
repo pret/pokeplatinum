@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_FIELD_OVERWORLD_STATE_H
 #define POKEPLATINUM_FIELD_OVERWORLD_STATE_H
 
-#include "struct_defs/struct_0205EC34.h"
+#include "struct_defs/player_data.h"
 
 #include "field/field_system_decl.h"
 

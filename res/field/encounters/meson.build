@@ -298,3 +298,4 @@ pokedex_enc_platinum_narc = custom_target('zukan_enc_platinum.narc',
 nitrofs_files += pl_enc_tbl_narc
 nitrofs_files += encdata_ex_narc
 nitrofs_files += pokedex_enc_platinum_narc
+naix_headers += pl_enc_tbl_narc[1]

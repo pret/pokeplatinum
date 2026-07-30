@@ -3,7 +3,7 @@
 
 #include "struct_decls/battle_system.h"
 
-#include "battle/struct_ov16_0226DEEC_decl.h"
+#include "battle/indicator.h"
 #include "battle_sub_menus/battle_sub_menu_buttons_defs.h"
 #include "battle_sub_menus/battle_sub_menu_cursor.h"
 
@@ -98,7 +98,7 @@ typedef struct BattleBag {
     u8 useAltPocketMenuWindows;
     u8 textPrinterID;
     BattleSubMenuCursor *cursor;
-    UnkStruct_ov16_0226DEEC *catchTutorialCursor;
+    Indicator *catchTutorialCursor;
     BagItem items[BATTLE_POCKET_MAX][BATTLE_POCKET_SIZE];
     SpriteManager *spriteManager;
     ManagedSprite *sprites[NUM_BATTLE_BAG_SPRITES];

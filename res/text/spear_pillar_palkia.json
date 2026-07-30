@@ -2,7 +2,7 @@
   "key": 24610,
   "messages": [
     {
-      "id": "pl_msg_00000238_00000",
+      "id": "SpearPillarPalkia_Text_WillYouChallengePalkia",
       "en_US": [
         "On the other side of the rift...\n",
         "In a fantastically bizarre place...\f",
@@ -11,11 +11,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000238_00001",
+      "id": "SpearPillarPalkia_Text_PalkiaCry",
       "en_US": "PALKIA: Gagyagyaah!\r"
     },
     {
-      "id": "pl_msg_00000238_00002",
+      "id": "SpearPillarPalkia_Text_SpaceEmanatesFromRift",
       "en_US": [
         "An overwhelming feeling of space\n",
         "powerfully emanates from this rift...\r",
@@ -23,11 +23,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000238_00003",
+      "id": "SpearPillarPalkia_Text_Dummy3",
       "garbage": 11
     },
     {
-      "id": "pl_msg_00000238_00004",
+      "id": "SpearPillarPalkia_Text_Dummy4",
       "garbage": 25
     }
   ]

@@ -1,0 +1,30 @@
+{
+  "name": "Star Piece",
+  "plural": "Star Pieces",
+  "article": "a",
+  "description": [
+    "A shard of a pretty gem that sparkles\n",
+    "in a red color. It can be sold at a\n",
+    "high price to shops."
+  ],
+  "icon": {
+    "sprite": "star_piece_NCGR",
+    "palette": "stardust_NCLR"
+  },
+  "gbaID": "GBA_ITEM_STAR_PIECE",
+  "price": 9800,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}

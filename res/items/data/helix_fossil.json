@@ -1,0 +1,30 @@
+{
+  "name": "Helix Fossil",
+  "plural": "Helix Fossils",
+  "article": "a",
+  "description": [
+    "A fossil of an ancient Pokémon that\n",
+    "lived in the sea. It appears to be\n",
+    "part of a seashell."
+  ],
+  "icon": {
+    "sprite": "helix_fossil_NCGR",
+    "palette": "helix_fossil_NCLR"
+  },
+  "gbaID": "GBA_ITEM_HELIX_FOSSIL",
+  "price": 1000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 100,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": {}
+}

@@ -12,6 +12,7 @@
 #include "overlay017/struct_ov17_0224FECC.h"
 
 #include "bg_window.h"
+#include "comm_manager.h"
 #include "contest.h"
 #include "font.h"
 #include "game_overlay.h"
@@ -36,7 +37,6 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "unk_02012744.h"
-#include "unk_020366A0.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
 
@@ -157,11 +157,11 @@ int ContestFinalScoring_Init(ApplicationManager *appMan, int *param1)
     v0->unk_127B = 0;
     v0->unk_10.unk_C0 = PaletteData_New(HEAP_ID_24);
 
-    PaletteData_SetAutoTransparent(v0->unk_10.unk_C0, 1);
-    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 0, 0x200, HEAP_ID_24);
-    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 1, 0x200, HEAP_ID_24);
-    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_24);
-    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 3, 0x200, HEAP_ID_24);
+    PaletteData_SetAutoTransparent(v0->unk_10.unk_C0, TRUE);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 14, HEAP_ID_24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_24);
 
     v0->unk_10.unk_20 = BgConfig_New(HEAP_ID_24);
 
@@ -303,10 +303,10 @@ int ContestFinalScoring_Exit(ApplicationManager *appMan, int *param1)
     sub_020127BC(v0->unk_10.unk_C4);
     Font_Free(FONT_SUBSCREEN);
 
-    PaletteData_FreeBuffer(v0->unk_10.unk_C0, 0);
-    PaletteData_FreeBuffer(v0->unk_10.unk_C0, 1);
-    PaletteData_FreeBuffer(v0->unk_10.unk_C0, 2);
-    PaletteData_FreeBuffer(v0->unk_10.unk_C0, 3);
+    PaletteData_FreeBuffer(v0->unk_10.unk_C0, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(v0->unk_10.unk_C0, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(v0->unk_10.unk_C0, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(v0->unk_10.unk_C0, PLTTBUF_SUB_OBJ);
     PaletteData_Free(v0->unk_10.unk_C0);
 
     String_Free(v0->unk_10.unk_BC);
@@ -399,7 +399,7 @@ static void ov17_0224FAFC(SysTask *param0, void *param1)
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 
-    sub_02038A1C(24, v0->unk_10.unk_20);
+    CommManager_Dummy_02038A1C(24, v0->unk_10.unk_20);
 }
 
 static void ov17_0224FB34(BgConfig *param0)
@@ -605,7 +605,7 @@ static void ov17_0224FE70(UnkStruct_ov17_0224FCA0 *param0)
 {
     Graphics_LoadTilesToBgLayer(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 19, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 20, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
-    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 34, 24, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 34, HEAP_ID_24, PLTTBUF_SUB_BG, 0, 0);
 }
 
 static void ov17_0224FEC8(UnkStruct_ov17_0224FCA0 *param0)

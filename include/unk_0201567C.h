@@ -6,11 +6,11 @@
 #include "palette.h"
 #include "sys_task_manager.h"
 
-typedef struct UnkStruct_020157E4 UnkStruct_020157E4;
+typedef struct PaletteAnimator PaletteAnimator;
 
-typedef void (*UnkFuncPtr_020157E4)(UnkStruct_020157E4 *, u16 *);
+typedef void (*UnkFuncPtr_020157E4)(PaletteAnimator *, u16 *);
 
-struct UnkStruct_020157E4 {
+struct PaletteAnimator {
     SysTask *unk_00;
     UnkFuncPtr_020157E4 unk_04;
     PaletteData *unk_08;
@@ -22,8 +22,8 @@ struct UnkStruct_020157E4 {
     u8 unk_4F;
 };
 
-UnkStruct_020157E4 *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, enum HeapID heapID);
-void sub_02015738(UnkStruct_020157E4 *param0, u8 param1);
-void sub_02015760(UnkStruct_020157E4 *param0);
+PaletteAnimator *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, enum HeapID heapID);
+void sub_02015738(PaletteAnimator *param0, u8 param1);
+void sub_02015760(PaletteAnimator *param0);
 
 #endif // POKEPLATINUM_UNK_0201567C_H

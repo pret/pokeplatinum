@@ -1,0 +1,43 @@
+{
+  "name": "Rowap Berry",
+  "plural": "Rowap Berries",
+  "article": "a",
+  "description": [
+    "A Poffin ingredient. If held by a\n",
+    "Pokémon, and if a foe’s special attack\n",
+    "lands, the foe also takes damage."
+  ],
+  "icon": {
+    "sprite": "rowap_berry_NCGR",
+    "palette": "rowap_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 20,
+  "effectParam": 8,
+  "holdEffect": "HOLD_EFFECT_RECOIL_SPECIAL",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 80,
+  "naturalGiftType": "TYPE_DARK",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {},
+  "berryData": {
+    "size": 52,
+    "firmness": "FIRMNESS_VERY_SOFT",
+    "baseYield": 1,
+    "stageDuration": 24,
+    "moistureDrainRate": 7,
+    "spiciness": 10,
+    "dryness": 0,
+    "sweetness": 0,
+    "bitterness": 0,
+    "sourness": 40,
+    "smoothness": 60
+  }
+}

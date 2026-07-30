@@ -47,7 +47,7 @@ enum OverworldAnimManagerFlags {
 
 struct OverworldAnimManager {
     u32 flags;
-    int id;
+    int userInt;
     int distWorldGhostPropKind;
     const void *userData;
     SysTask *tickSysTask;
@@ -68,8 +68,8 @@ struct OverworldAnimManager {
 OverworldAnimManagerList *OverworldAnimManagerList_New(enum HeapID heapID, int managerCount);
 void OverworldAnimManagerList_Free(OverworldAnimManagerList *managerList);
 void OverworldAnimManagerList_FinishAndFree(OverworldAnimManagerList *managerList);
-OverworldAnimManager *OverworldAnimManagerList_InitManagerEx(OverworldAnimManagerList *managerList, const OverworldAnimManagerExtendedFuncs *funcs, const VecFx32 *initialPos, int id, const void *userData, int sysTaskPriority);
-OverworldAnimManager *OverworldAnimManagerList_InitManager(OverworldAnimManagerList *managerList, const OverworldAnimManagerFuncs *funcs, const VecFx32 *initialPos, int id, const void *userData, int sysTaskPriority);
+OverworldAnimManager *OverworldAnimManagerList_InitManagerEx(OverworldAnimManagerList *managerList, const OverworldAnimManagerExtendedFuncs *funcs, const VecFx32 *initialPos, int userInt, const void *userData, int sysTaskPriority);
+OverworldAnimManager *OverworldAnimManagerList_InitManager(OverworldAnimManagerList *managerList, const OverworldAnimManagerFuncs *funcs, const VecFx32 *initialPos, int userInt, const void *userData, int sysTaskPriority);
 void OverworldAnimManager_Finish(OverworldAnimManager *manager);
 void OverworldAnimManagerList_Finish(OverworldAnimManagerList *managerList);
 void OverworldAnimManagerList_Render(OverworldAnimManagerList *managerList);
@@ -86,7 +86,7 @@ void OverworldAnimManager_SetUnused1Func(OverworldAnimManager *manager, Overworl
 void OverworldAnimManager_SetUnused2Func(OverworldAnimManager *manager, OverworldAnimManager_Unused2Func unused2Func);
 void *OverworldAnimManager_GetFuncsContext(OverworldAnimManager *manager);
 void OverworldAnimManager_ResetFuncsContext(OverworldAnimManager *manager, int ctxSize);
-int OverworldAnimManager_GetID(const OverworldAnimManager *manager);
+int OverworldAnimManager_GetUserInt(const OverworldAnimManager *manager);
 const void *OverworldAnimManager_GetUserData(const OverworldAnimManager *manager);
 void OverworldAnimManager_SetDistWorldGhostPropKind(OverworldAnimManager *manager, int kind);
 int OverworldAnimManager_GetDistWorldGhostPropKind(const OverworldAnimManager *manager);

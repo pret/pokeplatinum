@@ -5,7 +5,7 @@
 
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_decls/map_object.h"
 
 #include "field/field_system.h"
 
@@ -13,9 +13,9 @@
 #include "map_object_move.h"
 #include "math_util.h"
 #include "player_avatar.h"
-#include "unk_0205F180.h"
+#include "player_move.h"
+#include "trainer_encounter.h"
 #include "unk_020655F4.h"
-#include "unk_02067A84.h"
 
 typedef struct {
     int unk_00;
@@ -1100,7 +1100,7 @@ static int sub_02065124(MapObject *mapObj, UnkStruct_0206502C *param1)
         PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
         int v2 = MapObject_GetFacingDir(mapObj);
         int v3 = MapObject_GetDataAt(mapObj, 0);
-        int v4 = sub_02067D58(mapObj, playerAvatar, v2, v3);
+        int v4 = MapObject_GetDistanceToPlayer(mapObj, playerAvatar, v2, v3);
 
         if (v4 != -1) {
             int v5 = MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_JUMP_ON_SPOT_FAST_NORTH);
@@ -1280,7 +1280,7 @@ static int sub_0206537C(MapObject *mapObj)
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
 
-        if (sub_0206140C(playerAvatar) == 0) {
+        if (PlayerAvatar_IsRunning(playerAvatar) == 0) {
             return -1;
         }
 
@@ -1303,7 +1303,7 @@ static int sub_0206537C(MapObject *mapObj)
         }
 
         {
-            const MapObject *v5 = Player_MapObject(playerAvatar);
+            const MapObject *v5 = PlayerAvatar_GetMapObject(playerAvatar);
             int v6 = sub_020630DC(v5);
             int v7 = sub_020630DC(mapObj);
 
@@ -1313,8 +1313,8 @@ static int sub_0206537C(MapObject *mapObj)
         }
 
         {
-            int v8 = Player_GetXPos(playerAvatar);
-            int v9 = Player_GetZPos(playerAvatar);
+            int v8 = PlayerAvatar_GetXPos(playerAvatar);
+            int v9 = PlayerAvatar_GetZPos(playerAvatar);
             int v10 = MapObject_GetDataAt(mapObj, 0);
             int v11 = MapObject_GetX(mapObj);
             int v12 = MapObject_GetZ(mapObj);
@@ -1325,7 +1325,7 @@ static int sub_0206537C(MapObject *mapObj)
 
             if ((v15 <= v9) && (v16 >= v9)) {
                 if ((v13 <= v8) && (v14 >= v8)) {
-                    return sub_02064488(v11, v12, v8, v9);
+                    return GetDirectionBetweenPoints(v11, v12, v8, v9);
                 }
             }
         }
@@ -1369,8 +1369,8 @@ static int sub_02065448(MapObject *mapObj, int param1, int param2)
                 int v7 = MapObject_GetZ(mapObj);
                 FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
                 PlayerAvatar *playerAvatar = FieldSystem_GetPlayerAvatar(fieldSystem);
-                int v10 = Player_GetXPos(playerAvatar);
-                int v11 = Player_GetZPos(playerAvatar);
+                int v10 = PlayerAvatar_GetXPos(playerAvatar);
+                int v11 = PlayerAvatar_GetZPos(playerAvatar);
 
                 if (v6 > v10) {
                     v4 = 2;

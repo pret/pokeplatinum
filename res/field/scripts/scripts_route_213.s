@@ -8,9 +8,9 @@
     ScriptEntry Route213_Fisherman
     ScriptEntry Route213_Beauty
     ScriptEntry Route213_Collector
-    ScriptEntry Route213_ArrowSignPastoriaCity
-    ScriptEntry Route213_SignHotelGrandLake
-    ScriptEntry Route213_SignDrFootstepsHouse
+    ScriptEntry Route213_ArrowSignpostPastoriaCity
+    ScriptEntry Route213_SignboardHotelGrandLake
+    ScriptEntry Route213_SignboardDrFootstepsHouse
     ScriptEntryEnd
 
 Route213_OnTransition:
@@ -18,8 +18,8 @@ Route213_OnTransition:
     End
 
 Route213_CheckBadge:
-    CheckBadgeAcquired BADGE_ID_FEN, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, TRUE, Route213_CheckShowGruntM
+    CheckBadgeAcquired BADGE_ID_FEN, VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, TRUE, Route213_CheckShowGruntM
     End
 
 Route213_CheckShowGruntM:
@@ -326,15 +326,15 @@ Route213_Fisherman:
     NPCMessage Route213_Text_TheresAFancyHotel
     End
 
-Route213_ArrowSignPastoriaCity:
-    ShowArrowSign Route213_Text_SignRt213PastoriaCity
+Route213_ArrowSignpostPastoriaCity:
+    ShowArrowSign Route213_Text_SignPastoriaCity
     End
 
-Route213_SignHotelGrandLake:
+Route213_SignboardHotelGrandLake:
     ShowLandmarkSign Route213_Text_SignHotelGrandLake
     End
 
-Route213_SignDrFootstepsHouse:
+Route213_SignboardDrFootstepsHouse:
     ShowLandmarkSign Route213_Text_SignDrFootstepsHouse
     End
 

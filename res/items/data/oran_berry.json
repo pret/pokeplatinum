@@ -1,0 +1,45 @@
+{
+  "name": "Oran Berry",
+  "plural": "Oran Berries",
+  "article": "an",
+  "description": [
+    "A Poffin ingredient. It may be used\n",
+    "or held by a Pokémon to heal the\n",
+    "user by just 10 HP."
+  ],
+  "icon": {
+    "sprite": "oran_berry_NCGR",
+    "palette": "oran_berry_NCLR"
+  },
+  "gbaID": "GBA_ITEM_ORAN_BERRY",
+  "price": 20,
+  "effectParam": 10,
+  "holdEffect": "HOLD_EFFECT_HP_RESTORE",
+  "pluckEffect": "PLUCK_EFFECT_HP_RESTORE",
+  "flingEffect": "FLING_EFFECT_HP_RESTORE",
+  "flingPower": 10,
+  "naturalGiftPower": 60,
+  "naturalGiftType": "TYPE_POISON",
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_BERRIES",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_HP",
+  "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
+  "battleUseFunc": 0,
+  "itemUseParams": {
+    "hpRestored": 10
+  },
+  "berryData": {
+    "size": 35,
+    "firmness": "FIRMNESS_SUPER_HARD",
+    "baseYield": 1,
+    "stageDuration": 4,
+    "moistureDrainRate": 15,
+    "spiciness": 10,
+    "dryness": 10,
+    "sweetness": 0,
+    "bitterness": 10,
+    "sourness": 10,
+    "smoothness": 20
+  }
+}

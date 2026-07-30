@@ -5,7 +5,7 @@
 
     ScriptEntry OreburghGate1F_OnTransition
     ScriptEntry OreburghGate1F_Hiker
-    ScriptEntry OreburghGate1F_HikerTrigger
+    ScriptEntry OreburghGate1F_CoordEvent_Hiker
     ScriptEntryEnd
 
 OreburghGate1F_OnTransition:
@@ -18,23 +18,23 @@ OreburghGate1F_Hiker:
     FacePlayer
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, OreburghGate1F_HikerGiveHM
-    Message OreburghGate1F_Text_NowYouCanUseTheHiddenMoveRockSmashOnSmallBoulders
+    Message OreburghGate1F_Text_NowYouCanUseRockSmash
     WaitButton
     CloseMessage
     ReleaseAll
     End
 
 OreburghGate1F_HikerGiveHM:
-    GoToIfSet FLAG_RECEIVED_HM06, OreburghGate1F_ThatHiddenMachineContainsRockSmash
-    Message OreburghGate1F_Text_SoLetMeMakeAGiftOfThisHiddenMachineToYou
+    GoToIfSet FLAG_RECEIVED_HM06, OreburghGate1F_ThatHMContainsRockSmash
+    Message OreburghGate1F_Text_MakeAGiftOfThisHM
     SetVar VAR_0x8004, ITEM_HM06
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     Call OreburghGate1F_SetFlagReceivedHM06
-    GoTo OreburghGate1F_ThatHiddenMachineContainsRockSmash
+    GoTo OreburghGate1F_ThatHMContainsRockSmash
 
-OreburghGate1F_ThatHiddenMachineContainsRockSmash:
-    Message OreburghGate1F_Text_ThatHiddenMachineContainsRockSmash
+OreburghGate1F_ThatHMContainsRockSmash:
+    Message OreburghGate1F_Text_ThatHMContainsRockSmash
     WaitButton
     CloseMessage
     ReleaseAll
@@ -45,17 +45,17 @@ OreburghGate1F_SetFlagReceivedHM06:
     SetVar VAR_OREBURGH_GATE_1F_HIKER_STATE, 2
     Return
 
-OreburghGate1F_HikerTrigger:
+OreburghGate1F_CoordEvent_Hiker:
     LockAll
     ApplyMovement LOCALID_HIKER, OreburghGate1F_Movement_HikerWalkToPlayer
     ApplyMovement LOCALID_PLAYER, OreburghGate1F_Movement_PlayerFaceHiker
     WaitMovement
-    Message OreburghGate1F_Text_SoLetMeMakeAGiftOfThisHiddenMachineToYou
+    Message OreburghGate1F_Text_MakeAGiftOfThisHM
     SetVar VAR_0x8004, ITEM_HM06
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     Call OreburghGate1F_SetFlagReceivedHM06
-    Message OreburghGate1F_Text_ThatHiddenMachineContainsRockSmash
+    Message OreburghGate1F_Text_ThatHMContainsRockSmash
     WaitButton
     CloseMessage
     ReleaseAll

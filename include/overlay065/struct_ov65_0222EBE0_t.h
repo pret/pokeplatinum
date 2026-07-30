@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV65_0222EBE0_T_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_0202B370_decl.h"
+#include "struct_decls/wi_fi_list.h"
 #include "struct_defs/struct_0207DFAC.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"

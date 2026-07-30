@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "FULLMOON_ISLAND_SAILOR_0",
+            "id": "LOCALID_SAILOR",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "FULLMOON_ISLAND_BOLLARD_1",
+            "id": "LOCALID_BOLLARD_1",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "FULLMOON_ISLAND_BOLLARD_2",
+            "id": "LOCALID_BOLLARD_2",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "FULLMOON_ISLAND_BOLLARD_3",
+            "id": "LOCALID_BOLLARD_3",
             "graphics_id": "OBJ_EVENT_GFX_BOLLARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

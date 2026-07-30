@@ -109,8 +109,8 @@
         "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
-        "height": 14,
-        "weight": 270,
+        "height_inches": 55,
+        "weight_pounds": 59.5,
         "body_shape": "SHAPE_TENTACLES",
         "trainer_scale_f": 272,
         "pokemon_scale_f": 232,

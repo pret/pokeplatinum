@@ -16,7 +16,7 @@
 FS_EXTERN_OVERLAY(overlay95);
 
 typedef struct NPCTradeTaskEnv {
-    NpcTradeData *npcTradeData;
+    NPCTradeData *npcTradeData;
     u32 state;
     int partySlot;
     TradeAnimationTemplate tradeAnimTemplate;
@@ -52,7 +52,7 @@ static BOOL FieldTask_ProcessNPCTrade(FieldTask *task)
     switch (taskEnv->state) {
     case 0:
         NPCTrade_FillAnimationTemplate(fieldSystem, taskEnv->npcTradeData, taskEnv->partySlot, &taskEnv->tradeAnimTemplate, taskEnv->givingMon, taskEnv->receivingMon);
-        NpcTrade_ReceiveMon(fieldSystem, taskEnv->npcTradeData, taskEnv->partySlot);
+        NPCTrade_ReceiveMon(fieldSystem, taskEnv->npcTradeData, taskEnv->partySlot);
         taskEnv->state++;
         break;
     case 1:
@@ -85,7 +85,7 @@ static BOOL FieldTask_ProcessNPCTrade(FieldTask *task)
     return FALSE;
 }
 
-void FieldTask_StartNPCTrade(FieldTask *task, NpcTradeData *npcTradeData, int partySlot, enum HeapID heapID)
+void FieldTask_StartNPCTrade(FieldTask *task, NPCTradeData *npcTradeData, int partySlot, enum HeapID heapID)
 {
     NPCTradeTaskEnv *taskEnv = Heap_Alloc(heapID, sizeof(NPCTradeTaskEnv));
 

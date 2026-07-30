@@ -632,7 +632,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         ov17_022439C8(v0->unk_00->unk_00, v0->contestantID, v0->moveID, &v0->unk_104);
         v0->state++;
     case 10: {
-        MoveAnimation v3;
+        MoveAnimation moveAnim;
         BattleAnimBattlerContext battlerContext;
         int v5;
         int isShiny, monForm;
@@ -644,7 +644,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
             v16 = 0;
         }
 
-        MI_CpuClear8(&v3, sizeof(MoveAnimation));
+        MI_CpuClear8(&moveAnim, sizeof(MoveAnimation));
         MI_CpuClear8(&battlerContext, sizeof(BattleAnimBattlerContext));
 
         int species = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->contestMons[v0->contestantID], MON_DATA_SPECIES, NULL);
@@ -659,23 +659,23 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         v13 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->contestMons[v16], MON_DATA_FORM, NULL);
         v15 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->contestMons[v16], MON_DATA_PERSONALITY, NULL);
 
-        v3.command = 0;
-        v3.unk_01 = 0;
-        v3.move = v0->unk_104.actingAnimationMoveID;
-        v3.damage = 1;
-        v3.power = 10;
-        v3.effectChance = v0->unk_104.unk_07;
-        v3.friendship = v0->unk_104.friendship;
-        v3.fieldConditions = 0;
-        v3.attacker = 0;
-        v3.defender = 1;
-        v3.terrain = 9;
+        moveAnim.command = 0;
+        moveAnim.unk_01 = 0;
+        moveAnim.move = v0->unk_104.actingAnimationMoveID;
+        moveAnim.damage = 1;
+        moveAnim.power = 10;
+        moveAnim.effectChance = v0->unk_104.unk_07;
+        moveAnim.friendship = v0->unk_104.friendship;
+        moveAnim.fieldConditions = 0;
+        moveAnim.attacker = 0;
+        moveAnim.defender = 1;
+        moveAnim.terrain = 9;
 
         for (v5 = 0; v5 < 4; v5++) {
-            v3.species[v5] = species;
+            moveAnim.species[v5] = species;
         }
 
-        v3.species[1] = v10;
+        moveAnim.species[1] = v10;
 
         battlerContext.bgConfig = v0->unk_00->unk_0C.unk_24;
         battlerContext.paletteData = v0->unk_00->unk_0C.unk_50;
@@ -716,7 +716,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         battlerContext.spriteSystem = v0->unk_00->unk_0C.unk_18;
         battlerContext.chatotCry = v0->unk_00->unk_00->chatotCry[v0->contestantID];
 
-        BattleAnimSystem_StartMove(v0->unk_00->unk_0C.unk_20, &v3, v0->unk_104.actingAnimationMoveID, &battlerContext);
+        BattleAnimSystem_StartMove(v0->unk_00->unk_0C.unk_20, &moveAnim, v0->unk_104.actingAnimationMoveID, &battlerContext);
     }
 
         {

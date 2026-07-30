@@ -1,0 +1,32 @@
+{
+  "name": "Moomoo Milk",
+  "plural": "Moomoo Milks",
+  "article": "a",
+  "description": [
+    "Milk with a very high nutrition content.\n",
+    "It restores the HP of one Pokémon by\n",
+    "100 points."
+  ],
+  "icon": {
+    "sprite": "moomoo_milk_NCGR",
+    "palette": "moomoo_milk_NCLR"
+  },
+  "gbaID": "GBA_ITEM_MOOMOO_MILK",
+  "price": 500,
+  "effectParam": 100,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_HP",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 2,
+  "itemUseParams": {
+    "hpRestored": 100
+  }
+}

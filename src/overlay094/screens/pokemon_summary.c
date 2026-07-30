@@ -28,7 +28,7 @@ static const u8 sGTSPokemonSummaryPages[] = {
 
 int GTSApplication_PokemonSummary_Init(GTSApplicationState *appState, int unused1)
 {
-    appState->pokemonSummary.monData = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->unk_112);
+    appState->pokemonSummary.monData = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex);
     appState->pokemonSummary.dataType = SUMMARY_DATA_BOX_MON;
     appState->pokemonSummary.monMax = 1;
     appState->pokemonSummary.monIndex = 0;

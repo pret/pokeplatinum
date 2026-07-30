@@ -58,7 +58,7 @@ BOOL ov6_02243004(FieldSystem *fieldSystem, int param1)
         Unk_ov6_02249940 = ov6_0223EA74(fieldSystem, 2);
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return 0;

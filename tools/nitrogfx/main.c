@@ -187,7 +187,7 @@ void ConvertPngToNtr(char *inputPath, char *outputPath, struct PngToNtrOptions *
     WriteNtrImage(outputPath, options->numTiles, options->bitDepth, options->colsPerChunk, options->rowsPerChunk,
                   &image, !image.hasPalette, options->clobberSize, options->byteOrder, options->version101,
                   options->sopc, options->vramTransfer, options->scan, options->encodeMode, options->mappingType,
-                  key, options->wrongSize, options->convertTo4Bpp, options->rotate);
+                  key, options->wrongSize, options->convertTo4Bpp, options->rotate, options->tilesWide);
 
     FreeImage(&image);
 }
@@ -517,6 +517,7 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
     options.cellFilePath = NULL;
     options.cellSnap = true;
     options.numTiles = 0;
+    options.tilesWide = 0;
     options.bitDepth = 0;
     options.colsPerChunk = 1;
     options.rowsPerChunk = 1;
@@ -588,6 +589,19 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
                     break;
                 }
             }
+        }
+        else if (strcmp(option, "-width") == 0)
+        {
+            if (i + 1 >= argc)
+                FATAL_ERROR("No number of tiles following \"-width\".\n");
+
+            i++;
+
+            if (!ParseNumber(argv[i], NULL, 10, &options.tilesWide))
+                FATAL_ERROR("Failed to parse tile width.\n");
+
+            if (options.tilesWide < 1)
+                FATAL_ERROR("Tile width must be positive.\n");
         }
         else if (strcmp(option, "-mwidth") == 0 || strcmp(option, "-cpc") == 0)
         {
@@ -809,7 +823,7 @@ void HandlePngToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, c
     }
 
     ReadPngPalette(inputPath, &palette);
-    WriteNtrPalette(outputPath, &palette, ncpr, ir, bitdepth, !nopad, compNum, pcmp, pcmpStartIndex, inverted, convertTo4Bpp);
+    WriteNtrPalette(outputPath, &palette, ncpr, ir, bitdepth, !nopad, compNum, pcmp, pcmpStartIndex, inverted, convertTo4Bpp, false);
 }
 
 void HandleGbaToJascPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
@@ -817,7 +831,7 @@ void HandleGbaToJascPaletteCommand(char *inputPath, char *outputPath, int argc U
     struct Palette palette;
 
     ReadGbaPalette(inputPath, &palette);
-    WriteJascPalette(outputPath, &palette);
+    WriteJascPalette(outputPath, &palette, 0);
 }
 
 void HandleNtrToJascPaletteCommand(char *inputPath, char *outputPath, int argc, char **argv)
@@ -854,7 +868,20 @@ void HandleNtrToJascPaletteCommand(char *inputPath, char *outputPath, int argc, 
     }
 
     ReadNtrPalette(inputPath, &palette, bitdepth, 0, false, verbose);
-    WriteJascPalette(outputPath, &palette);
+    if (!palette.extendedLength)
+    {
+        WriteJascPalette(outputPath, &palette, 0);
+    }
+    else
+    {
+        int pathLen = strlen(outputPath);
+        char *extendedOutputPath = calloc(pathLen + 4, sizeof(char));
+        for (int i = 0; i < palette.extendedLength; i++)
+        {
+            snprintf(extendedOutputPath, pathLen + 4, "%.*s_%d.pal", pathLen - 4, outputPath, i);
+            WriteJascPalette(extendedOutputPath, &palette, i);
+        }
+    }
 }
 
 void HandleJascToGbaPaletteCommand(char *inputPath, char *outputPath, int argc, char **argv)
@@ -886,7 +913,7 @@ void HandleJascToGbaPaletteCommand(char *inputPath, char *outputPath, int argc, 
 
     struct Palette palette;
 
-    ReadJascPalette(inputPath, &palette);
+    ReadJascPalette(inputPath, &palette, 0);
 
     if (numColors != 0)
         palette.numColors = numColors;
@@ -905,6 +932,8 @@ void HandleJascToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, 
     int pcmpStartIndex = 0;
     bool pcmp = false;
     bool inverted = false;
+    int extendedLength = 0;
+    int paddingType = 0;
 
     for (int i = 3; i < argc; i++)
     {
@@ -979,6 +1008,27 @@ void HandleJascToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, 
         {
             inverted = true;
         }
+        else if (strcmp(option, "-extended") == 0)
+        {
+
+            if (i + 1 >= argc)
+                FATAL_ERROR("No length value following \"-extended\".\n");
+
+            i++;
+
+            if (!ParseNumber(argv[i], NULL, 10, &extendedLength))
+                FATAL_ERROR("Failed to parse extended length.\n");
+
+            if (i + 2 < argc)
+            {
+                if (strcmp(argv[i + 1], "-paddingtype") == 0)
+                {
+                    i += 2;
+                    if (!ParseNumber(argv[i], NULL, 10, &paddingType))
+                        FATAL_ERROR("Failed to parse extended NCLR padding type.\n");
+                }
+            }
+        }
         else
         {
             FATAL_ERROR("Unrecognized option \"%s\".\n", option);
@@ -986,13 +1036,63 @@ void HandleJascToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, 
     }
 
     struct Palette palette;
-
-    ReadJascPalette(inputPath, &palette);
+    if (!extendedLength)
+    {
+        ReadJascPalette(inputPath, &palette, 0);
+    }
+    else
+    {
+        int pathLen = strlen(inputPath);
+        char *extendedInputPath = calloc(pathLen + 4, sizeof(char));
+        for (int i = 0; i < extendedLength; i++)
+        {
+            snprintf(extendedInputPath, pathLen + 4, "%.*s_%d.pal", pathLen - 6, inputPath, i);
+            ReadJascPalette(extendedInputPath, &palette, i);
+        }
+        if (nopad)
+        {
+            palette.numColors *= extendedLength;
+        }
+        else
+        {
+            palette.numColors *= 16;
+            if (paddingType == 0)
+            {
+                if (extendedLength < 16)
+                    memset(&palette.extendedColors[extendedLength - 1], 0, sizeof(struct Color) * (16 - extendedLength) * 256);
+            }
+            else
+            {
+                for (int i = extendedLength; i < 16; i++)
+                {
+                    int count = 0;
+                    int red = 0;
+                    int green = 0;
+                    for (int j = 0; j < 256; j++)
+                    {
+                        palette.extendedColors[i - 1][j].red = (red * 255) / 31;
+                        palette.extendedColors[i - 1][j].green = (green * 255) / 31;
+                        palette.extendedColors[i - 1][j].blue = 0;
+                        red += i * 2;
+                        if (red >= 32)
+                        {
+                            red &= 0x1F;
+                            if (++count == 8)
+                            {
+                                green++;
+                                count = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     if (numColors != 0)
         palette.numColors = numColors;
 
-    WriteNtrPalette(outputPath, &palette, ncpr, ir, bitdepth, !nopad, compNum, pcmp, pcmpStartIndex, inverted, false);
+    WriteNtrPalette(outputPath, &palette, ncpr, ir, bitdepth, !nopad, compNum, pcmp, pcmpStartIndex, inverted, false, extendedLength);
 }
 
 void HandleJsonToNtrCellCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)

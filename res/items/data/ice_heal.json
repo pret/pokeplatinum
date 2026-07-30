@@ -1,0 +1,32 @@
+{
+  "name": "Ice Heal",
+  "plural": "Ice Heals",
+  "article": "an",
+  "description": [
+    "A spray-type medicine.\n",
+    "It defrosts a Pokémon that has been\n",
+    "frozen solid."
+  ],
+  "icon": {
+    "sprite": "burn_heal_NCGR",
+    "palette": "ice_heal_NCLR"
+  },
+  "gbaID": "GBA_ITEM_ICE_HEAL",
+  "price": 250,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 2,
+  "itemUseParams": {
+    "healFreeze": true
+  }
+}

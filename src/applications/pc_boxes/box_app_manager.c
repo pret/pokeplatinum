@@ -256,7 +256,7 @@ BOOL BoxAppMan_Main(ApplicationManager *appMan, int *state)
         return boxAppMan->cursorLocationInputHandler(boxAppMan);
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return TRUE;
 }
 

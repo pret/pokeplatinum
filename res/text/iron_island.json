@@ -2,7 +2,7 @@
   "key": 53182,
   "messages": [
     {
-      "id": "pl_msg_00000276_00000",
+      "id": "IronIsland_Text_ImRileyHeresAGift",
       "en_US": [
         "...You are?\r",
         "OK, you’re {STRVAR_1 3, 0, 0}.\n",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000276_00001",
+      "id": "IronIsland_Text_YouCanJoinMeInside",
       "en_US": [
         "Riley: That Hidden Machine contains\n",
         "the move Strength.\r",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000276_00002",
+      "id": "IronIsland_Text_YouNeedMineBadge",
       "en_US": [
         "Riley: That Hidden Machine contains\n",
         "the move Strength.\r",
@@ -38,18 +38,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000276_00003",
+      "id": "IronIsland_Text_WantToSailSomewhere",
       "en_US": "Do you want to sail somewhere?"
     },
     {
-      "id": "pl_msg_00000276_00004",
+      "id": "IronIsland_Text_AnchorsAweigh",
       "en_US": [
         "Aye, aye!\n",
         "Anchors aweigh!\r"
       ]
     },
     {
-      "id": "pl_msg_00000276_00005",
+      "id": "IronIsland_Text_TellWheneverSetSail",
       "en_US": [
         "You just go on and tell me whenever\n",
         "you want to set sail again!"

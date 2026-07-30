@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40C1, 0, 3
+    InitScriptGoToIfEqual VAR_BATTLEGROUND_STATE, 0, 3
     InitScriptFrameTableEnd
 
     InitScriptEnd
