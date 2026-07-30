@@ -16,7 +16,6 @@
 #define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMonsLocal) / sizeof(u16)))
 #define NATIONAL_DEX_GOAL     (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
 #define LOCAL_DEX_GOAL        (REGIONAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
-#define LOCAL_DEX_GOAL_SUB_1  (LOCAL_DEX_GOAL - 1)
 
 typedef struct Pokedex {
     u32 magic;
