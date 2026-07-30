@@ -193,7 +193,7 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, link_searcher_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     PoketchGraphics_LoadActivePalette(0, 0);
 
-    Window_Add(graphics->bgConfig, &graphics->window, BG_LAYER_SUB_2, 2, 2, 24, 20, PLTT_0, tileCount);
+    Window_Add(graphics->bgConfig, &graphics->window, BG_LAYER_SUB_2, 2, 2, 24, 20, 0, tileCount);
     Window_PutToTilemap(&graphics->window);
 
     PrintIntroMessage(graphics);

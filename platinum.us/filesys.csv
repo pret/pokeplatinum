@@ -252,7 +252,7 @@ res/items/pl_item_data.narc,/itemtool/itemdata/pl_item_data.narc
 res/pokemon/pl_poke_icon.narc,/poketool/icongra/pl_poke_icon.narc
 res/prebuilt/poketool/icongra/poke_icon.narc,/poketool/icongra/poke_icon.narc
 res/pokemon/pokefoot.narc,/poketool/pokefoot/pokefoot.narc
-res/prebuilt/data/mmodel/mmodel.narc,/data/mmodel/mmodel.narc
+res/graphics/field_sprites/field_sprites.narc,/data/mmodel/mmodel.narc
 res/prebuilt/data/mmodel/fldeff.narc,/data/mmodel/fldeff.narc
 res/graphics/battle/particles/pokeballs/ball_particles.narc,/wazaeffect/effectdata/ball_particle.narc
 res/graphics/battle/particles/battle_particles.narc,/wazaeffect/effectdata/waza_particle.narc

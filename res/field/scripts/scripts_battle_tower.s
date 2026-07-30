@@ -14,8 +14,8 @@
     ScriptEntry BattleTower_Teala
     ScriptEntry BattleTower_OnFrame_QuitBattleSalon
     ScriptEntry BattleTower_Dummy9
-    ScriptEntry BattleTower_ResultsMachine0_Unused
-    ScriptEntry BattleTower_ResultsMachine1_Unused
+    ScriptEntry BattleTower_MachineSoloResults
+    ScriptEntry BattleTower_MachineMultiResults
     ScriptEntry BattleTower_MachineWiFiResults
     ScriptEntry BattleTower_MachineWiFiLeaders
     ScriptEntry BattleTower_ParasolLady
@@ -1117,27 +1117,27 @@ BattleTower_Movement_PlayerFaceEast:
     FaceEast
     EndMovement
 
-BattleTower_ResultsMachine0_Unused:
+BattleTower_MachineSoloResults: // Unused, leftover from DP
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    SetVar VAR_0x8000, 0
-    SetVar VAR_0x8001, 0
+    SetVar VAR_0x8000, FALSE
+    SetVar VAR_0x8001, TOWER_RECORDS_RESULTS_SOLO
     Call BattleTower_ResultsMachine
     End
 
-BattleTower_ResultsMachine1_Unused:
+BattleTower_MachineMultiResults: // Unused, leftover from DP
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    SetVar VAR_0x8000, 0
-    SetVar VAR_0x8001, 1
+    SetVar VAR_0x8000, FALSE
+    SetVar VAR_0x8001, TOWER_RECORDS_RESULTS_MULTI
     Call BattleTower_ResultsMachine
     End
 
 BattleTower_MachineWiFiResults:
     PlaySE SEQ_SE_CONFIRM
     LockAll
-    SetVar VAR_0x8000, 0
-    SetVar VAR_0x8001, 2
+    SetVar VAR_0x8000, FALSE
+    SetVar VAR_0x8001, TOWER_RECORDS_RESULTS_WIFI
     Call BattleTower_ResultsMachine
     End
 
@@ -1146,8 +1146,8 @@ BattleTower_MachineWiFiLeaders:
     LockAll
     ScrCmd_1E4 VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleTower_NoDataYet
-    SetVar VAR_0x8000, 1
-    SetVar VAR_0x8001, 0
+    SetVar VAR_0x8000, TRUE
+    SetVar VAR_0x8001, TOWER_RECORDS_RESULTS_SOLO
     Call BattleTower_ResultsMachine
     End
 
@@ -1161,7 +1161,7 @@ BattleTower_NoDataYet:
 BattleTower_ResultsMachine:
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_1D9 VAR_0x8000, VAR_0x8001
+    OpenBattleTowerRecordsApp VAR_0x8000, VAR_0x8001
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

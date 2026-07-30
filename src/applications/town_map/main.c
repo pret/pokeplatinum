@@ -444,8 +444,8 @@ static void LoadBGGraphics(TownMapAppData *appData)
     appData->hiddenLocationsMapFile = App_LoadScreenData(townMapGraphicsNarc, NARC_INDEX_GRAPHIC__TMAP_GRA, hidden_location_bottom_screen_NSCR, &appData->hiddenLocationsZoomedInMapGraphics, appData->heapID);
 
     NARC_dtor(townMapGraphicsNarc);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_15), appData->heapID);
-    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_15), appData->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), appData->heapID);
+    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(15), appData->heapID);
 }
 
 static void FreeTilemapFiles(TownMapAppData *appData)

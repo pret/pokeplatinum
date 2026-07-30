@@ -464,7 +464,7 @@ void ov76_0223BF74(BgConfig *bgConfig, Window *window, int param2, UnkStruct_ov7
     menuTemplate.loopAround = TRUE;
 
     Window_DrawStandardFrame(window, 1, 1 + (18 + 12), 13);
-    param3->unk_D4.menu = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, 53, PAD_BUTTON_B);
+    param3->unk_D4.menu = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, HEAP_ID_53, PAD_BUTTON_B);
 }
 
 void ov76_0223C0EC(int param0, s16 *param1, s16 *param2)
@@ -597,7 +597,7 @@ void ov76_0223C354(UnkStruct_ov76_0223DE00 *param0)
 
 void ov76_0223C398(UnkStruct_ov76_0223C398 *param0)
 {
-    param0->unk_08 = SpriteSystem_Alloc(53);
+    param0->unk_08 = SpriteSystem_Alloc(HEAP_ID_53);
     {
         const RenderOamTemplate v0 = {
             0,
@@ -861,22 +861,22 @@ void ov76_0223C8BC(UnkStruct_ov76_0223DE00 *param0) // sprite destructor
 
 void ov76_0223C8EC(BgConfig *bgConfig, PaletteData *paletteData, int messageBoxFrame)
 {
-    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_1, 1, 15, param2, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(paletteData, 38, GetMessageBoxPaletteNARCMember(messageBoxFrame), 53, 0, 0x20, 12 * 16);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_1, 1, 15, messageBoxFrame, HEAP_ID_53);
+    PaletteData_LoadBufferFromFileStart(paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(messageBoxFrame), HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(12));
     LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_1, 1 + (18 + 12), 13, 0, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(paletteData, 38, GetStandardWindowPaletteNARCMember(), 53, 0, 0x20, 13 * 16);
-    PaletteData_LoadBufferFromFileStart(paletteData, 14, 7, 53, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
+    PaletteData_LoadBufferFromFileStart(paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
 }
 
 void ov76_0223C974(BgConfig *bgConfig, PaletteData *paletteData, int messageBoxFrame)
 {
-    LoadMessageBoxGraphics(bgConfig, BG_LAYER_SUB_0, 1, 15, param2, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(paletteData, 38, GetMessageBoxPaletteNARCMember(messageBoxFrame), 53, 1, 0x20, 12 * 16);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_SUB_0, 1, 15, messageBoxFrame, HEAP_ID_53);
+    PaletteData_LoadBufferFromFileStart(paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(messageBoxFrame), HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(12));
     LoadStandardWindowGraphics(bgConfig, BG_LAYER_SUB_0, 1 + (18 + 12), 13, 0, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(paletteData, 38, GetStandardWindowPaletteNARCMember(), 53, 1, 0x20, 13 * 16);
-    PaletteData_LoadBufferFromFileStart(paletteData, 14, 7, 53, 1, 0x20, 14 * 16);
-    PaletteData_LoadBufferFromFileStart(paletteData, 14, 7, 53, 1, 0x20, 3 * 16);
-    PaletteData_LoadBufferFromFileStart(paletteData, 91, 294, 53, 1, 0x20, 11 * 16);
+    PaletteData_LoadBufferFromFileStart(paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
+    PaletteData_LoadBufferFromFileStart(paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
+    PaletteData_LoadBufferFromFileStart(paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(3));
+    PaletteData_LoadBufferFromFileStart(paletteData, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, 294, HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(11));
 }
 
 void ov76_0223CA30(Window *window, int entryID)
@@ -1047,14 +1047,14 @@ void ov76_0223CE84(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, v1, param0->unk_D4.bgConfig, v4, 0, 0, 1, HEAP_ID_53);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v2, param0->unk_D4.bgConfig, v4, 0, 0, 1, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, 53, 0, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SZE_BYTES * 2, 0);
 
     v1 = 269;
     v2 = 285;
     v4 = 3;
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, v1, param0->unk_D4.bgConfig, v4, 0, 0, 1, HEAP_ID_53);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v2, param0->unk_D4.bgConfig, v4, 0, 0, 1, HEAP_ID_53);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, v1, param0->unk_D4.bgConfig, v4, 0, 0, TRUE, HEAP_ID_53);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v2, param0->unk_D4.bgConfig, v4, 0, 0, TRUE, HEAP_ID_53);
 }
 
 void ov76_0223CF24(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
@@ -1067,7 +1067,7 @@ void ov76_0223CF24(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, v1, param0->unk_D4.bgConfig, v4, 0, 0, 1, HEAP_ID_53);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v2, param0->unk_D4.bgConfig, v4, 0, 0, 1, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, 53, 1, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, HEAP_ID_53, PLTTBUF_SUB_BG, 0x20 * 2, 0);
 }
 
 void ov76_0223CF88(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
@@ -1080,7 +1080,7 @@ void ov76_0223CF88(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, v1, param0->unk_D4.bgConfig, v4, 0, 0, 1, HEAP_ID_53);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v2, param0->unk_D4.bgConfig, v4, 0, 0, 1, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, 53, 1, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, HEAP_ID_53, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 2, 0);
 }
 
 void ov76_0223CFEC(UnkStruct_ov76_0223DE00 *param0, NARC *param1)

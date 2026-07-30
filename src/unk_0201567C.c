@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
+
 #include "bg_window.h"
 #include "hardware_palette.h"
 #include "palette.h"
@@ -135,20 +137,20 @@ static u8 sub_020157E4(PaletteAnimator *param0)
 
 static void sub_02015840(PaletteAnimator *param0, u16 *param1)
 {
-    Bg_LoadPalette(0, param1, 0x20, param0->unk_4D * 0x20);
+    Bg_LoadPalette(BG_LAYER_MAIN_0, param1, PALETTE_SIZE_BYTES, PLTT_OFFSET(param0->unk_4D));
 }
 
 static void sub_02015858(PaletteAnimator *param0, u16 *param1)
 {
-    Bg_LoadPalette(4, param1, 0x20, param0->unk_4D * 0x20);
+    Bg_LoadPalette(BG_LAYER_SUB_0, param1, PALETTE_SIZE_BYTES, PLTT_OFFSET(param0->unk_4D));
 }
 
 static void sub_02015870(PaletteAnimator *param0, u16 *param1)
 {
-    PaletteData_LoadBuffer(param0->unk_08, param1, 0, param0->unk_4D * 16, 0x20);
+    PaletteData_LoadBuffer(param0->unk_08, param1, PLTTBUF_MAIN_BG, PLTT_DEST(param0->unk_4D), PALETTE_SIZE_BYTES);
 }
 
 static void sub_0201588C(PaletteAnimator *param0, u16 *param1)
 {
-    PaletteData_LoadBuffer(param0->unk_08, param1, 1, param0->unk_4D * 16, 0x20);
+    PaletteData_LoadBuffer(param0->unk_08, param1, PLTTBUF_SUB_BG, PLTT_DEST(param0->unk_4D), PALETTE_SIZE_BYTES);
 }

@@ -3,9 +3,11 @@
 
 #include <ppwlobby/ppw_lobby.h>
 
+#include "constants/pokemon.h"
+#include "constants/string.h"
+
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E294.h"
-#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_0222E908.h"
 #include "overlay066/struct_ov66_02230914.h"
 #include "overlay066/struct_ov66_02231428.h"
@@ -14,9 +16,36 @@
 #include "overlay066/struct_ov66_02232068.h"
 #include "overlay068/struct_ov68_0225DC74.h"
 
+#include "charcode.h"
 #include "enums.h"
 #include "savedata.h"
 #include "trainer_info.h"
+
+typedef struct WiFiPlazaProfile {
+    s32 unk_00;
+    u32 trainerID;
+    charcode_t trainerName[TRAINER_NAME_LEN + 1];
+    UnkStruct_ov66_02231428 unk_18;
+    UnkStruct_ov66_02231428 unk_1C;
+    u16 partySpecies[MAX_PARTY_SIZE];
+    u8 partyForms[MAX_PARTY_SIZE];
+    u8 partyIsEgg[MAX_PARTY_SIZE];
+    u8 trainerGender;
+    u8 language;
+    u16 trainerAppearanceIdx;
+    u16 country;
+    u8 region;
+    u8 isNationalDexObtained;
+    u8 isMainStoryCleared;
+    u8 unk_41;
+    u8 gameVersion;
+    u8 unk_43;
+    s64 startTimestamp;
+    u8 unk_4C[12];
+    s32 unk_58[12];
+    u16 unk_88[2];
+    UnkStruct_ov66_0222E908 unk_8C;
+} WiFiPlazaProfile;
 
 UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, enum HeapID heapID);
 void ov66_0222DEEC(UnkStruct_ov66_0222DFF8 *param0);
@@ -62,32 +91,32 @@ void ov66_0222E31C(UnkStruct_ov66_0222DFF8 *param0, BOOL param1);
 u32 ov66_0222E338(const UnkStruct_ov66_0222DFF8 *param0);
 s32 ov66_0222E344(const UnkStruct_ov66_0222DFF8 *param0);
 BOOL ov66_0222E34C(const UnkStruct_ov66_0222DFF8 *param0, u32 param1);
-const UnkStruct_ov66_0222E71C *ov66_0222E374(const UnkStruct_ov66_0222DFF8 *param0, u32 param1);
-UnkStruct_ov66_0222E71C *ov66_0222E3BC(UnkStruct_ov66_0222DFF8 *param0);
+const WiFiPlazaProfile *ov66_0222E374(const UnkStruct_ov66_0222DFF8 *param0, u32 param1);
+WiFiPlazaProfile *ov66_0222E3BC(UnkStruct_ov66_0222DFF8 *param0);
 void ov66_0222E3E4(UnkStruct_ov66_0222DFF8 *param0, int param1);
 void ov66_0222E500(UnkStruct_ov66_0222DFF8 *param0, int param1, s32 param2);
 void ov66_0222E528(UnkStruct_ov66_0222DFF8 *param0, u32 param1);
-void ov66_0222E56C(UnkStruct_ov66_0222DFF8 *param0, int param1, int param2);
+void ov66_0222E56C(UnkStruct_ov66_0222DFF8 *param0, int type1, int type2);
 void ov66_0222E5D8(UnkStruct_ov66_0222DFF8 *param0, u32 param1, u32 param2);
-void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, enum HeapID heapID);
-u32 ov66_0222E71C(const UnkStruct_ov66_0222E71C *param0);
-int ov66_0222E728(const UnkStruct_ov66_0222E71C *param0, u32 param1);
-s32 ov66_0222E760(const UnkStruct_ov66_0222E71C *param0, u32 param1);
-s32 ov66_0222E798(const UnkStruct_ov66_0222E71C *param0);
-u32 ov66_0222E79C(const UnkStruct_ov66_0222E71C *param0);
-int ov66_0222E7A0(const UnkStruct_ov66_0222E71C *param0);
-UnkStruct_ov66_02231428 ov66_0222E7C4(const UnkStruct_ov66_0222E71C *param0);
-u32 ov66_0222E7C8(const UnkStruct_ov66_0222E71C *param0);
-u32 ov66_0222E80C(const UnkStruct_ov66_0222E71C *param0);
-BOOL ov66_0222E824(const UnkStruct_ov66_0222E71C *param0);
-u32 ov66_0222E850(const UnkStruct_ov66_0222E71C *param0);
-u32 ov66_0222E858(const UnkStruct_ov66_0222E71C *param0);
-u32 ov66_0222E880(const UnkStruct_ov66_0222E71C *param0);
-u32 ov66_0222E8A4(const UnkStruct_ov66_0222E71C *param0);
-u32 ov66_0222E8C4(const UnkStruct_ov66_0222E71C *param0);
-BOOL ov66_0222E8D8(const UnkStruct_ov66_0222E71C *param0);
-int ov66_0222E8E8(const UnkStruct_ov66_0222E71C *param0, u32 param1);
-void ov66_0222E908(const UnkStruct_ov66_0222E71C *param0, UnkStruct_ov66_0222E908 *param1);
+void ov66_0222E640(const WiFiPlazaProfile *profile, TrainerInfo *param1, enum HeapID heapID);
+u32 ov66_0222E71C(const WiFiPlazaProfile *profile);
+int ov66_0222E728(const WiFiPlazaProfile *profile, u32 param1);
+s32 ov66_0222E760(const WiFiPlazaProfile *profile, u32 param1);
+s32 ov66_0222E798(const WiFiPlazaProfile *profile);
+u32 WiFiPlazaProfile_GetTrainerID(const WiFiPlazaProfile *profile);
+int ov66_0222E7A0(const WiFiPlazaProfile *profile);
+UnkStruct_ov66_02231428 ov66_0222E7C4(const WiFiPlazaProfile *profile);
+u32 WiFiPlazaProfile_GetGender(const WiFiPlazaProfile *profile);
+u32 WiFiPlazaProfile_GetNormalizedLanguage(const WiFiPlazaProfile *profile);
+BOOL WiFiPlazaProfile_IsLanguageValid(const WiFiPlazaProfile *profile);
+u32 WiFiPlazaProfile_GetLanguage(const WiFiPlazaProfile *profile);
+u32 WiFiPlazaProfile_GetTrainerAppearanceGraphicsID(const WiFiPlazaProfile *profile);
+u32 ov66_0222E880(const WiFiPlazaProfile *profile);
+u32 ov66_0222E8A4(const WiFiPlazaProfile *profile);
+u32 ov66_0222E8C4(const WiFiPlazaProfile *profile);
+BOOL ov66_0222E8D8(const WiFiPlazaProfile *profile);
+int ov66_0222E8E8(const WiFiPlazaProfile *profile, u32 param1);
+void ov66_0222E908(const WiFiPlazaProfile *profile, UnkStruct_ov66_0222E908 *param1);
 TrainerInfo *ov66_0222E918(const UnkStruct_ov66_0222DFF8 *param0);
 BOOL ov66_0222E924(const UnkStruct_ov66_0222DFF8 *param0, u32 param1);
 void ov66_0222E934(const UnkStruct_ov66_0222DFF8 *param0, UnkStruct_ov66_02232068 *param1);
