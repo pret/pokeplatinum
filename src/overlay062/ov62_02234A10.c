@@ -71,10 +71,10 @@ static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
         }
 
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_102);
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFE, 16, ov62_022316D0(param0));
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xBFFF, 16, ov62_022316D0(param0));
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0x3FFE, 16, ov62_022316D0(param0));
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, 16, ov62_022316D0(param0));
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, 0xFFFE, 16, ov62_022316D0(param0));
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, 0xBFFF, 16, ov62_022316D0(param0));
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0x3FFE, 16, ov62_022316D0(param0));
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0xFFFF, 16, ov62_022316D0(param0));
         sub_0208BA30(param0->unk_6F4);
         sub_0208BA30(param0->unk_6F0);
         param0->unk_08++;
@@ -117,7 +117,7 @@ static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
     case 4:
         if (param0->unk_0C < 16) {
             param0->unk_0C += 4;
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xF000, param0->unk_0C, 0xFFFF);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, 0xF000, param0->unk_0C, 0xFFFF);
         } else {
             param0->unk_08++;
         }
@@ -125,7 +125,7 @@ static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
     case 5:
         if (param0->unk_0C > 0) {
             param0->unk_0C -= 4;
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xF000, param0->unk_0C, 0xFFFF);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, 0xF000, param0->unk_0C, 0xFFFF);
         } else {
             param0->unk_08++;
         }
@@ -189,13 +189,13 @@ static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0)
         } else {
             if (param0->unk_0C != 0) {
                 param0->unk_0C -= 2;
-                PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFE, param0->unk_0C, ov62_022316D0(param0));
-                PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_0C, ov62_022316D0(param0));
-                PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0x3FFE, param0->unk_0C, ov62_022316D0(param0));
-                PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_0C, ov62_022316D0(param0));
+                PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, 0xFFFE, param0->unk_0C, ov62_022316D0(param0));
+                PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_BG, 0xFFFF, param0->unk_0C, ov62_022316D0(param0));
+                PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0x3FFE, param0->unk_0C, ov62_022316D0(param0));
+                PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0xFFFF, param0->unk_0C, ov62_022316D0(param0));
             } else {
-                PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, 16, param0->unk_14.unk_44);
-                PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
+                PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0x2, 16, param0->unk_14.unk_44);
+                PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, 0xC, 16, param0->unk_14.unk_44);
                 param0->unk_08++;
             }
         }
@@ -230,7 +230,7 @@ static BOOL ov62_02234EF8(UnkStruct_0208C06C *param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208B8B0(param0->unk_6F0, 1);
         param0->unk_0C++;
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, 16 - param0->unk_0C, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0x2, 16 - param0->unk_0C, param0->unk_14.unk_44);
 
         if (param0->unk_0C == 2) {
             param0->unk_0C = 15;
@@ -238,12 +238,12 @@ static BOOL ov62_02234EF8(UnkStruct_0208C06C *param0)
         }
         break;
     case 1:
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, param0->unk_0C, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0x2, param0->unk_0C, param0->unk_14.unk_44);
         param0->unk_08++;
         break;
     case 2:
         param0->unk_0C--;
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, param0->unk_0C, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0x2, param0->unk_0C, param0->unk_14.unk_44);
 
         if (param0->unk_0C == 0) {
             param0->unk_08++;
@@ -283,7 +283,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C *param0)
         param0->unk_860 = v0;
         v0->unk_50 = 16;
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_50, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, 0xC, v0->unk_50, param0->unk_14.unk_44);
 
         {
             int v1;
@@ -309,7 +309,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C *param0)
 
         if (v0->unk_50 != 0) {
             v0->unk_50 -= (1 * 1);
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_50, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, 0xC, v0->unk_50, param0->unk_14.unk_44);
         }
 
         {
