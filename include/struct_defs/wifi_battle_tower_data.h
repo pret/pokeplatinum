@@ -20,15 +20,8 @@ typedef struct WifiBattleTowerMatchCandidate {
     u8 region;
     u8 padding_14[4];
     u16 trainerKey[4];
-    union {
-        struct {
-            u8 isAnonymous : 1;
-            u8 anonymousNameIdx : 1;
-            u8 : 6;
-        };
-        u8 unk_20_val2;
-    };
-    u8 padding_21;
+    u8 isAnonymous : 1;
+    u8 anonymousNameIdx : 1;
 } WifiBattleTowerMatchCandidate;
 
 typedef struct WifiBattleTowerDownloadBuffer {
