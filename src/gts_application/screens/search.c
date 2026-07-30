@@ -312,28 +312,28 @@ static const u16 Unk_ov94_02245D8C[][2] = {
 
 static void GTSSearch_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
+    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, TITLE_WINDOW_TILE_WIDTH, TITLE_WINDOW_TILE_HEIGHT, 13, TITLE_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->titleWindow, 0x0);
 
     Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR(15, 13, 0));
 
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, BOTTOM_WINDOW_TILE_WIDTH, BOTTOM_WINDOW_TILE_HEIGHT, 13, BOTTOM_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
 
     int i, unused;
 
     for (i = 0; i < 6; i++) {
-        Window_Add(appState->bgConfig, &appState->infoWindows[i], 3, sCriteriaWindowPositions[i][0], sCriteriaWindowPositions[i][1], 11, 2, 13, 1 + (11 * 2) * i);
+        Window_Add(appState->bgConfig, &appState->infoWindows[i], 3, sCriteriaWindowPositions[i][0], sCriteriaWindowPositions[i][1], INFO_WINDOW_TILE_WIDTH, INFO_WINDOW_TILE_HEIGHT, 13, 1 + (11 * 2) * i);
         Window_FillTilemap(&appState->infoWindows[i], 0x0);
     }
 
     for (i = 0; i < 2; i++) {
-        Window_Add(appState->bgConfig, &appState->infoWindows[6 + i], 2, Unk_ov94_02245D84[i][0], Unk_ov94_02245D84[i][1], 8, 2, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + (8 * 2) * i);
+        Window_Add(appState->bgConfig, &appState->infoWindows[6 + i], 2, Unk_ov94_02245D84[i][0], Unk_ov94_02245D84[i][1], 8, 2, 13, (BOTTOM_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT) + (8 * 2) * i);
         Window_FillTilemap(&appState->infoWindows[6 + i], 0x0);
     }
 
     for (i = 0; i < 2; i++) {
-        Window_Add(appState->bgConfig, &appState->locationCriteriaWindows[i], 3, Unk_ov94_02245D8C[i][0], Unk_ov94_02245D8C[i][1], 28, 2, 13, (1 + 11 * 2 * 6) + (TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) * i);
+        Window_Add(appState->bgConfig, &appState->locationCriteriaWindows[i], 3, Unk_ov94_02245D8C[i][0], Unk_ov94_02245D8C[i][1], TITLE_WINDOW_TILE_WIDTH, TITLE_WINDOW_TILE_HEIGHT, 13, (1 + 11 * 2 * 6) + (TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) * i);
         Window_FillTilemap(&appState->locationCriteriaWindows[i], 0x0);
     }
 }
@@ -710,10 +710,10 @@ static int GTSSearch_ShowSpeciesSearchPrompt(GTSApplicationState *appState)
     GTSSearch_ShowMessage(appState, 9, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_CREATE_CHARPAD);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 4, 13, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 4, 13, 13, (BOTTOM_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT) + 8 * 2 * 2);
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 0, 21, 5, 10, 13, 13, ((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2) + 4 * 13);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 0, 21, 5, 10, 13, 13, ((BOTTOM_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT) + 8 * 2 * 2) + 4 * 13);
     Window_FillTilemap(&appState->menuButtonWindows[1], 0x0);
 
     return 3;
@@ -817,7 +817,7 @@ static int GTSSearch_ShowGenderSearchPrompt(GTSApplicationState *appState)
     GTSSearch_ShowMessage(appState, 10, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_CREATE_GENDER_MENU);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 10, 10, 8, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 10, 10, 8, 13, (BOTTOM_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT) + 8 * 2 * 2);
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
     return 3;
@@ -871,7 +871,7 @@ static int GTSSearch_ShowLevelSearchPrompt(GTSApplicationState *appState)
     GTSSearch_ShowMessage(appState, 11, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_CREATE_LEVEL_MENU);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 16, 13, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 16, 13, 13, (BOTTOM_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT) + 8 * 2 * 2);
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
     return 3;
@@ -926,7 +926,7 @@ static int GTSSearch_ShowCountrySearchPrompt(GTSApplicationState *appState)
     GTSSearch_ShowMessage(appState, 169, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_CREATE_COUNTRY_MENU);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 2, 5, 28, 13, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 2, 5, 28, 13, 13, (BOTTOM_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT) + 8 * 2 * 2);
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
     return 3;
@@ -973,7 +973,7 @@ static int GTSSearch_HandleCountryMenuInput(GTSApplicationState *appState)
 
 static int GTSSearch_CreateExitConfirmMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 8 * 2 * 2) + 16 * 13);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((BOTTOM_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT) + 8 * 2 * 2) + 16 * 13);
     appState->currentScreenInstruction = GTS_SEARCH_HANDLE_EXIT_CONFIRM;
 
     return 3;

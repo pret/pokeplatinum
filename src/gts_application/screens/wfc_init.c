@@ -282,14 +282,14 @@ static void GTSWFCInit_InitGraphics(GTSApplicationState *appState)
 
 static void GTSWFCInit_InitText(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->networkErrWindow, BG_LAYER_MAIN_0, 4, 4, 23, 16, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 4);
+    Window_Add(appState->bgConfig, &appState->networkErrWindow, BG_LAYER_MAIN_0, 4, 4, 23, 16, 13, TITLE_WINDOW_BASE_TILE + 27 * 4);
     Window_FillTilemap(&appState->networkErrWindow, 0);
-    Window_Add(appState->bgConfig, &appState->titleWindow, BG_LAYER_MAIN_0, 4, 1, 24, 2, 13, ((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 4) + 23 * 16);
+    Window_Add(appState->bgConfig, &appState->titleWindow, BG_LAYER_MAIN_0, 4, 1, 24, 2, 13, (TITLE_WINDOW_BASE_TILE + 27 * 4) + 23 * 16);
     Window_FillTilemap(&appState->titleWindow, 0);
 
     Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 1, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, BG_LAYER_MAIN_0, 2, 19, 27, 4, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, BG_LAYER_MAIN_0, 2, 19, 27, 4, 13, TITLE_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0);
 }
 
@@ -871,7 +871,7 @@ static int GTSWFCInit_WaitForTextDelayed(GTSApplicationState *appState)
 static int GTSWFCInit_WaitForTextThenYesNoMenu(GTSApplicationState *appState)
 {
     if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
-        appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 4) + 23 * 16) + 24 * 2);
+        appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, ((TITLE_WINDOW_BASE_TILE + 27 * 4) + 23 * 16) + 24 * 2);
         appState->currentScreenInstruction = appState->nextScreenInstruction;
     }
 

@@ -297,7 +297,7 @@ static void GTSMainMenu_DeleteCursor(GTSApplicationState *appState)
 
 static void GTSMainMenu_InitMenu(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
+    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, TITLE_WINDOW_TILE_WIDTH, TITLE_WINDOW_TILE_HEIGHT, 13, TITLE_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->titleWindow, 0x0);
     Text_AddPrinterWithParamsAndColor(&appState->titleWindow, FONT_MESSAGE, appState->title, 0, 2, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 4, 0), NULL);
 
@@ -306,9 +306,9 @@ static void GTSMainMenu_InitMenu(GTSApplicationState *appState)
         Window_FillTilemap(&appState->menuButtonWindows[i], 0x0);
     }
 
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, BOTTOM_WINDOW_TILE_WIDTH, BOTTOM_WINDOW_TILE_HEIGHT, 13, BOTTOM_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0xf0f);
-    Window_Add(appState->bgConfig, &appState->confirmationWindow, 0, 2, 19, 27, 4, 13, ((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2);
+    Window_Add(appState->bgConfig, &appState->confirmationWindow, 0, 2, 19, 27, 4, 13, BOTTOM_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT);
     Window_FillTilemap(&appState->confirmationWindow, 0xf0f);
 }
 
@@ -486,7 +486,7 @@ static int GTSMainMenu_FadeAndExit(GTSApplicationState *appState)
 
 static int GTSMainMenu_ShowConfirmationMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 27 * 4);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, (BOTTOM_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT) + 27 * 4);
     appState->currentScreenInstruction = GTS_MAINMENU_HANDLE_CONFIRMATION_MENU;
 
     return GTS_LOOP_STATE_MAIN;

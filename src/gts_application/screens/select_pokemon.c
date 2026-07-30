@@ -411,24 +411,24 @@ static void GTSSelectMon_FreeSprites(GTSApplicationState *appState)
 
 static void GTSSelectMon_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
+    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, TITLE_WINDOW_TILE_WIDTH, TITLE_WINDOW_TILE_HEIGHT, 13, TITLE_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->titleWindow, 0x0);
 
     Window_DrawAlignedSystemText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(appState->bgConfig, &appState->networkErrWindow, 0, 5, 3, 13, 3, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT);
+    Window_Add(appState->bgConfig, &appState->networkErrWindow, 0, 5, 3, 13, 3, 13, BOTTOM_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->networkErrWindow, 0x0);
     Window_CopyToVRAM(&appState->networkErrWindow);
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, BOTTOM_WINDOW_TILE_WIDTH, BOTTOM_WINDOW_TILE_HEIGHT, 13, BOTTOM_WINDOW_BASE_TILE + 13 * 13);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
-    Window_Add(appState->bgConfig, &appState->confirmationWindow, 0, 2, 19, 27, 4, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2);
+    Window_Add(appState->bgConfig, &appState->confirmationWindow, 0, 2, 19, 27, 4, 13, (BOTTOM_WINDOW_BASE_TILE + 13 * 13) + BOTTOM_WINDOW_TILE_COUNT);
     Window_FillTilemap(&appState->confirmationWindow, 0x0);
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 1, 25, 21, 6, 2, 0, ((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2) + 2 * 19);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 1, 25, 21, 6, 2, 0, ((BOTTOM_WINDOW_BASE_TILE + 13 * 13) + BOTTOM_WINDOW_TILE_COUNT) + 2 * 19);
     Window_FillTilemap(&appState->menuButtonWindows[1], 0x606);
 
     Window_DrawAlignedSystemText(&appState->menuButtonWindows[1], appState->cancelButtonLabel, 0, 1, 1, TEXT_COLOR(1, 3, 6));
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 13, 5 * 2, 6, 13, (((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 13, 5 * 2, 6, 13, (((BOTTOM_WINDOW_BASE_TILE + 13 * 13) + BOTTOM_WINDOW_TILE_COUNT) + 2 * 19) + 6 * 2);
 }
 
 static void GTSSelectMon_RemoveWindows(GTSApplicationState *appState)
@@ -846,7 +846,7 @@ static int GTSSelectMon_FadeAndExit(GTSApplicationState *appState)
 
 static int GTSSelectMon_CreateExitConfirmMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((((BOTTOM_WINDOW_BASE_TILE + 13 * 13) + BOTTOM_WINDOW_TILE_COUNT) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
     appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_EXIT_CONFIRM;
 
     return 3;
@@ -878,7 +878,7 @@ static int GTSSelectMon_ShowBallCapsuleTradePrompt(GTSApplicationState *appState
 
 static int GTSSelectMon_CreateTradeConfirmMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, ((((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, ((((BOTTOM_WINDOW_BASE_TILE + 13 * 13) + BOTTOM_WINDOW_TILE_COUNT) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
     appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_TRADE_CONFIRM;
 
     return 3;
@@ -934,7 +934,7 @@ static int GTSSelectMon_ShowBallCapsuleDepositPrompt(GTSApplicationState *appSta
 
 static int GTSSelectMon_CreateBallCapsuleTradeConfirmMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, ((((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, ((((BOTTOM_WINDOW_BASE_TILE + 13 * 13) + BOTTOM_WINDOW_TILE_COUNT) + 2 * 19) + 6 * 2) + (5 * 2) * 6);
     appState->currentScreenInstruction = GTS_SELECTMON_HANDLE_BALL_CAPSULE_TRADE_CONFIRM;
 
     return 3;

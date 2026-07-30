@@ -438,16 +438,16 @@ static void GTSDeposit_LoadGraphics(GTSApplicationState *appState)
 
 static void GTSDeposit_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, 28, 2, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
+    Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, TITLE_WINDOW_TILE_WIDTH, TITLE_WINDOW_TILE_HEIGHT, 13, TITLE_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->titleWindow, 0);
 
     Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, BOTTOM_WINDOW_TILE_WIDTH, BOTTOM_WINDOW_TILE_HEIGHT, 13, BOTTOM_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0);
 
     for (int i = 0; i < 6; i++) {
-        Window_Add(appState->bgConfig, &appState->infoWindows[i], 0, sCriteriaWindowPositions[i][0], sCriteriaWindowPositions[i][1], 11, 2, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + (11 * 2) * i);
+        Window_Add(appState->bgConfig, &appState->infoWindows[i], 0, sCriteriaWindowPositions[i][0], sCriteriaWindowPositions[i][1], INFO_WINDOW_TILE_WIDTH, INFO_WINDOW_TILE_HEIGHT, 13, INFO_WINDOW_BASE_TILE(i));
         Window_FillTilemap(&appState->infoWindows[i], 0);
         Window_CopyToVRAM(&appState->infoWindows[i]);
     }
@@ -503,10 +503,10 @@ static int GTSDeposit_SetupCharpadWindows(GTSApplicationState *appState)
         appState->currentScreenInstruction = GTSDEPOSIT_BEGIN_EXIT;
     }
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 4, 13, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 11 * 2 * 6);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 4, 13, 13, INFO_WINDOW_BASE_TILE(6));
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 0, 21, 5, 10, 13, 13, ((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 11 * 2 * 6) + 4 * 13);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[1], 0, 21, 5, 10, 13, 13, INFO_WINDOW_BASE_TILE(6) + 4 * 13);
     Window_FillTilemap(&appState->menuButtonWindows[1], 0x0);
 
     appState->currentScreenInstruction = GTSDEPOSIT_SHOW_CHARPAD_MENU;
@@ -632,7 +632,7 @@ static int GTSDeposit_ShowGenderPrompt(GTSApplicationState *appState)
     GTSDeposit_ShowBottomMessage(appState, GTS_Text_PleaseChooseGender, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSDEPOSIT_WAIT_FOR_TEXT, GTSDEPOSIT_SHOW_GENDER_MENU);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 10, 10, 8, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 11 * 2 * 6);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 10, 10, 8, 13, INFO_WINDOW_BASE_TILE(6));
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
     return GTS_LOOP_STATE_MAIN;
@@ -684,7 +684,7 @@ static int GTSDeposit_ShowLevelPrompt(GTSApplicationState *appState)
     GTSDeposit_ShowBottomMessage(appState, GTS_Text_PleaseChooseLevel, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSDEPOSIT_WAIT_FOR_TEXT, GTSDEPOSIT_SHOW_LEVEL_MENU);
 
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 16, 13, 13, (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 11 * 2 * 6);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 15, 5, 16, 13, 13, INFO_WINDOW_BASE_TILE(6));
     Window_FillTilemap(&appState->menuButtonWindows[0], 0x0);
 
     return GTS_LOOP_STATE_MAIN;
@@ -746,7 +746,7 @@ static int GTSDeposit_ShowConfirmationPrompt(GTSApplicationState *appState)
 
 static int GTSDeposit_ShowConfirmationMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + TITLE_WINDOW_TILE_WIDTH * TITLE_WINDOW_TILE_HEIGHT) + 27 * 2) + 11 * 2 * 6) + 16 * 13);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, INFO_WINDOW_BASE_TILE(6) + 16 * 13);
     appState->currentScreenInstruction = GTSDEPOSIT_HANDLE_CONFIRMATION_INPUT;
 
     return GTS_LOOP_STATE_MAIN;

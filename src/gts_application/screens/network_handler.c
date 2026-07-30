@@ -330,7 +330,7 @@ static void GTSNetworkHandler_InitGraphics(GTSApplicationState *appState)
 
 static void GTSNetworkHandler_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 19, 27, 4, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 19, 27, 4, 13, TITLE_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
 }
 

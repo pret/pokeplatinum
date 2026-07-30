@@ -234,11 +234,11 @@ static const int sWindowLayouts[][4] = {
 
 static void GTSSearchListing_InitWindows(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + 9);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, BOTTOM_WINDOW_TILE_WIDTH, BOTTOM_WINDOW_TILE_HEIGHT, 13, 1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + 9);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
-    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 15, 5 * 2, 4, 13, (1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 2);
+    Window_Add(appState->bgConfig, &appState->menuButtonWindows[0], 0, 21, 15, 5 * 2, 4, 13, TITLE_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT);
 
-    int baseTile = (((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 2) + (5 * 2) * 4);
+    int baseTile = ((TITLE_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT) + (5 * 2) * 4);
 
     for (int i = 0; i < NELEMS(sWindowLayouts); i++) {
         Window_Add(appState->bgConfig, &appState->infoWindows[i], 0, sWindowLayouts[i][0], sWindowLayouts[i][1], sWindowLayouts[i][2], sWindowLayouts[i][3], 13, baseTile);
@@ -340,7 +340,7 @@ static int GTSSearchListing_FadeAndExit(GTSApplicationState *appState)
 
 static int GTSSearchListing_ShowConfirmationMenu(GTSApplicationState *appState)
 {
-    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((1 + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT) + 27 * 2) + (5 * 2) * 4 + 262 + 64 + 36);
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, (TITLE_WINDOW_BASE_TILE + BOTTOM_WINDOW_TILE_COUNT) + (5 * 2) * 4 + 262 + 64 + 36);
     appState->currentScreenInstruction = GTS_SEARCHLISTING_HANDLE_CONFIRMATION_MENU;
 
     return GTS_LOOP_STATE_MAIN;
