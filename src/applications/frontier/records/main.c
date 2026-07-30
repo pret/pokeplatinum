@@ -12,6 +12,7 @@
 #include "applications/frontier/records/windows.h"
 
 #include "battle_castle_save.h"
+#include "battle_factory_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "battle_hall_win_records.h"
@@ -33,7 +34,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202FF4C.h"
 #include "unk_02030494.h"
 #include "wifi_battle_tower_save.h"
 
@@ -557,7 +557,7 @@ static u32 GetBattleFactoryLatestStreakEntryID(FrontierRecordsApp *app, u8 openL
     if (app->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
         streakIsActive = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(app->saveData), v1);
     } else {
-        streakIsActive = sub_020300E0(sub_020300F4(app->saveData), 10, (openLevel * 4) + app->challengeType, NULL);
+        streakIsActive = BattleFactoryStreakFlags_GetFlag(BattleFactoryStreakFlags_Get(app->saveData), 10, (openLevel * 4) + app->challengeType, NULL);
     }
 
     if (streakIsActive == TRUE) {

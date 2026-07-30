@@ -16,6 +16,7 @@
 #include "overlay104/struct_battle_factory.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
+#include "battle_factory_save.h"
 #include "battle_frontier.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
@@ -25,7 +26,6 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0202FF4C.h"
 #include "unk_0209BA80.h"
 
 #include "constdata/const_020EA358.h"
@@ -93,7 +93,7 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppInitial(FrontierScriptContext *ctx)
 
     args->saveData = fieldData->saveData;
     args->challengeType = battleFactory->challengeType;
-    args->unk_05 = battleFactory->unk_05;
+    args->unk_05 = battleFactory->isOpenLevel;
     args->isExchangeMode = FALSE;
     args->personalParty = battleFactory->playersParty;
     args->receivableParty = battleFactory->opponentsParty;
@@ -151,7 +151,7 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppForTrade(FrontierScriptContext *ctx)
 
     args->saveData = fieldData->saveData;
     args->challengeType = battleFactory->challengeType;
-    args->unk_05 = battleFactory->unk_05;
+    args->unk_05 = battleFactory->isOpenLevel;
     args->isExchangeMode = TRUE;
     args->personalParty = battleFactory->playersParty;
     args->receivableParty = battleFactory->opponentsParty;
@@ -216,7 +216,7 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
         battleFactory->unk_07 = arg1;
         break;
     case BF_FUNC_UNK_1:
-        battleFactory->unk_05 = arg1;
+        battleFactory->isOpenLevel = arg1;
         break;
     case BF_FUNC_SET_CHALLENGE_TYPE:
         battleFactory->challengeType = arg1;
@@ -236,7 +236,7 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
         OS_ResetSystem(0);
         break;
     case BF_FUNC_UNK_9:
-        *returnVar = sub_0202FF68(battleFactory->unk_4F4);
+        *returnVar = BattleFactorySave_HasSaved(battleFactory->factorySave);
         break;
     case BF_FUNC_UNK_10:
         ov104_02234148(battleFactory, 2);

@@ -132,7 +132,7 @@ pokeplatinum_c = files(
     'link_contest_records.c',
     'save_catchrecords.c',
     'unk_0202F1D4.c',
-    'unk_0202FF4C.c',
+    'battle_factory_save.c',
     'battle_hall_save.c',
     'battle_castle_save.c',
     'unk_02030494.c',
