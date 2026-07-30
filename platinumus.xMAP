@@ -7221,7 +7221,7 @@
            10](EasyChatWord_FromBankAndEntry,func) found in global src_easy_chat_words.c.o
            10](defaultFrontierSentenceData$14286,object) found in local src_easy_chat_sentence.c.o
          8](WifiBattleTowerDownloadData_Init,func) found in global src_wifi_battle_tower_save.c.o
-         8](sub_020300A4,func) found in global src_unk_0202FF4C.c.o
+         8](BattleFactoryStreakFlags_Init,func) found in global src_battle_factory_save.c.o
          8](BattleHallStreakFlags_Init,func) found in global src_battle_hall_save.c.o
          8](BattleCastlePersistentSave_Init,func) found in global src_battle_castle_save.c.o
          8](sub_020305AC,func) found in global src_unk_02030494.c.o
@@ -14198,7 +14198,7 @@
                                             43](ov64_0222F068,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                              44](WiFiList_IsValidFriendData,func) found in global src_wifi_list.c.o
                                             43](ov64_0222EF4C,func) found in local src_overlay064_ov64_0222DCE0.c.o
-                                             44](v0$21075,object) found in local src_overlay064_ov64_0222DCE0.c.o
+                                             44](v0$21098,object) found in local src_overlay064_ov64_0222DCE0.c.o
                                              44](ov64_0222E074,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                             43](ov64_0222EF64,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                              44](ov64_0222E7C8,func) found in local src_overlay064_ov64_0222DCE0.c.o
@@ -14219,7 +14219,7 @@
                                                46](DWCi_Acc_SetFriendKey,func) found in global libdwcaccount.a
                                              44](sub_0202AF0C,func) found in global src_wifi_list.c.o
                                              44](sub_0202AE2C,func) found in global src_wifi_list.c.o
-                                            43](v5$20982,object) found in local src_overlay064_ov64_0222DCE0.c.o
+                                            43](v5$21005,object) found in local src_overlay064_ov64_0222DCE0.c.o
                                            42](ov64_0222F0C4,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                             43](ov64_0222E164,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                             43](ov64_0222F668,func) found in local src_overlay064_ov64_0222DCE0.c.o
@@ -14329,10 +14329,10 @@
                                               45](ov64_0222E620,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                               45](ov64_0222E9A4,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                               45](ov64_0222E6D8,func) found in local src_overlay064_ov64_0222DCE0.c.o
-                                               46](v0$20811,object) found in local src_overlay064_ov64_0222DCE0.c.o
+                                               46](v0$20834,object) found in local src_overlay064_ov64_0222DCE0.c.o
                                              44](ov64_0222EC94,func) found in local src_overlay064_ov64_0222DCE0.c.o
-                                              45](entryIDs$21008,object) found in local src_overlay064_ov64_0222DCE0.c.o
-                                              45](yOffsets$21010,object) found in local src_overlay064_ov64_0222DCE0.c.o
+                                              45](entryIDs$21031,object) found in local src_overlay064_ov64_0222DCE0.c.o
+                                              45](yOffsets$21033,object) found in local src_overlay064_ov64_0222DCE0.c.o
                                              44](ov64_0222F414,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                               45](ov64_02230074,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                               45](ov63_0222AE60,func) found in global src_overlay063_ov63_0222AE60.c.o
@@ -14350,7 +14350,7 @@
                                              44](ov64_02230680,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                              44](ov64_02230B1C,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                               45](ov64_02230F24,func) found in local src_overlay064_ov64_0222DCE0.c.o
-                                               46](v0$21963,object) found in local src_overlay064_ov64_0222DCE0.c.o
+                                               46](v0$21986,object) found in local src_overlay064_ov64_0222DCE0.c.o
                                               45](ov64_02230F78,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                               45](ov64_02230F9C,func) found in local src_overlay064_ov64_0222DCE0.c.o
                                               45](Unk_ov64_02232434,object) found in local src_overlay064_ov64_0222DCE0.c.o
@@ -14641,7 +14641,7 @@
                                                46](ov59_021D3088,func) found in local src_overlay059_ov59_021D2F88.c.o
                                                 47](sub_0202E9FC,func) found in global src_rankings.c.o
                                                  48](GetRecordValues,func) found in local src_rankings.c.o
-                                                  49](recordIDs$17200,object) found in local src_rankings.c.o
+                                                  49](recordIDs$17223,object) found in local src_rankings.c.o
                                                46](RankingsEntries_Size,func) found in global src_rankings.c.o
                                                46](ov59_021D2C28,func) found in global src_overlay059_ov59_021D2B44.c.o
                                                46](ov59_021D2CB4,func) found in global src_overlay059_ov59_021D2B44.c.o
@@ -15110,12 +15110,12 @@
                                           41](ov90_021D0E04,func) found in global src_overlay090_ov90_021D0D80.c.o
                                            42](ov90_021D0ECC,func) found in local src_overlay090_ov90_021D0D80.c.o
                                             43](ov90_021D1014,func) found in local src_overlay090_ov90_021D0D80.c.o
-                                             44](@20012,object) found in local src_overlay090_ov90_021D0D80.c.o
-                                              45](@20296,object) found in local src_overlay090_ov90_021D0D80.c.o
-                                              45](@20295,object) found in local src_overlay090_ov90_021D0D80.c.o
-                                              45](@20294,object) found in local src_overlay090_ov90_021D0D80.c.o
-                                              45](@20293,object) found in local src_overlay090_ov90_021D0D80.c.o
-                                              45](@20292,object) found in local src_overlay090_ov90_021D0D80.c.o
+                                             44](@20035,object) found in local src_overlay090_ov90_021D0D80.c.o
+                                              45](@20319,object) found in local src_overlay090_ov90_021D0D80.c.o
+                                              45](@20318,object) found in local src_overlay090_ov90_021D0D80.c.o
+                                              45](@20317,object) found in local src_overlay090_ov90_021D0D80.c.o
+                                              45](@20316,object) found in local src_overlay090_ov90_021D0D80.c.o
+                                              45](@20315,object) found in local src_overlay090_ov90_021D0D80.c.o
                                             43](ov90_021D11EC,func) found in local src_overlay090_ov90_021D0D80.c.o
                                             43](ov90_021D12B0,func) found in local src_overlay090_ov90_021D0D80.c.o
                                             43](ov90_021D13D8,func) found in local src_overlay090_ov90_021D0D80.c.o
@@ -26535,8 +26535,8 @@
                                                         55](get_sockaddrin,func) found in local libdwcgscommon.a
                                                         55](GSIACHostname,object) found in global libdwcgscommon.a
                                                         55](@9092,object) found in local libdwcgscommon.a
-                                                      53](@19162,object) found in local src_nintendo_wfc_main.c.o
-                                                      53](@19161,object) found in local src_nintendo_wfc_main.c.o
+                                                      53](@19185,object) found in local src_nintendo_wfc_main.c.o
+                                                      53](@19184,object) found in local src_nintendo_wfc_main.c.o
                                                       53](LoginCompleteCallback,func) found in local src_nintendo_wfc_main.c.o
                                                        54](DWC_CheckDirtyFlag,func) found in global libdwcaccount.a
                                                         55](DWCi_Acc_IsDirty,func) found in global libdwcaccount.a
@@ -27791,7 +27791,7 @@
                                                          56](DWCi_ConnectToAnybodyAsync,func) found in global libdwcbase.a
                                                           57](@15212,object) found in local libdwcbase.a
                                                         55](.rodata,section) found in local src_nintendo_wfc_main.c.o
-                                                        55](@19192,object) found in local src_nintendo_wfc_main.c.o
+                                                        55](@19215,object) found in local src_nintendo_wfc_main.c.o
                                                         55](sPPWMatchKeyFmt,object) found in local src_nintendo_wfc_main.c.o
                                                         55](DummyPlayerEvalCallback,func) found in local src_nintendo_wfc_main.c.o
                                                         55](MatchmakingLobbyMatchedCallback,func) found in local src_nintendo_wfc_main.c.o
@@ -28309,8 +28309,8 @@
                                               45](GetBattleFactoryLatestStreakEntryID,func) found in local src_applications_frontier_records_main.c.o
                                                46](BattleFrontierStats_GetHostFriendIdx,func) found in global src_battle_frontier_stats.c.o
                                                 47](NintendoWFC_GetHostFriendIdx,func) found in global src_nintendo_wfc_main.c.o
-                                               46](sub_020300F4,func) found in global src_unk_0202FF4C.c.o
-                                               46](sub_020300E0,func) found in global src_unk_0202FF4C.c.o
+                                               46](BattleFactoryStreakFlags_Get,func) found in global src_battle_factory_save.c.o
+                                               46](BattleFactoryStreakFlags_GetFlag,func) found in global src_battle_factory_save.c.o
                                               45](BattleFrontierStats_GetFactoryLatestStreakIdx,func) found in global src_battle_frontier_stats.c.o
                                               45](SetStringTemplateNumber,func) found in local src_applications_frontier_records_main.c.o
                                               45](BattleFrontierStats_GetFactoryLatestTradeCountIndex,func) found in global src_battle_frontier_stats.c.o
@@ -28926,7 +28926,7 @@
                                           41](sub_0205037C,func) found in local src_unk_0205003C.c.o
                                           41](sub_02050448,func) found in local src_unk_0205003C.c.o
                                           41](sub_02050498,func) found in local src_unk_0205003C.c.o
-                                           42](visiblePages$20354,object) found in local src_unk_0205003C.c.o
+                                           42](visiblePages$20377,object) found in local src_unk_0205003C.c.o
                                           41](sub_02050520,func) found in local src_unk_0205003C.c.o
                                        38](ScrCmd_PokeMartFrontier,func) found in local src_scrcmd.c.o
                                         39](Shop_Start,func) found in global src_overlay007_shop_menu.c.o
@@ -29032,7 +29032,7 @@
                                           41](sub_0204FE50,func) found in local src_unk_0204FAB4.c.o
                                           41](sub_0204FF1C,func) found in local src_unk_0204FAB4.c.o
                                           41](sub_0204FF6C,func) found in local src_unk_0204FAB4.c.o
-                                           42](visiblePages$20334,object) found in local src_unk_0204FAB4.c.o
+                                           42](visiblePages$20357,object) found in local src_unk_0204FAB4.c.o
                                           41](sub_0204FFF4,func) found in local src_unk_0204FAB4.c.o
                                        38](ScrCmd_DeleteActiveBattleHallStreak,func) found in global src_scrcmd_battle_hall.c.o
                                         39](BattleHallStreakFlags_Get,func) found in global src_battle_hall_save.c.o
@@ -29054,7 +29054,7 @@
                                           41](SubTask_SetupPartyMenu,func) found in local src_scrcmd_battle_hall.c.o
                                           41](SubTaskProcessPartyMenu,func) found in local src_scrcmd_battle_hall.c.o
                                           41](SubTask_SetupMonSummary,func) found in local src_scrcmd_battle_hall.c.o
-                                           42](sMonSummaryPages$20428,object) found in local src_scrcmd_battle_hall.c.o
+                                           42](sMonSummaryPages$20451,object) found in local src_scrcmd_battle_hall.c.o
                                           41](SubTask_ProcessMonSummary,func) found in local src_scrcmd_battle_hall.c.o
                                        38](ScrCmd_CountRepeatedSpeciesInParty,func) found in global src_scrcmd_party.c.o
                                        38](ScrCmd_AdvanceEternaGymClock,func) found in local src_scrcmd.c.o
@@ -29431,7 +29431,7 @@
                                             43](sub_0209C194,func) found in global src_unk_0209C194.c.o
                                              44](sub_0209BDF8,func) found in global src_unk_0209BDF8.c.o
                                        38](ScrCmd_2C5,func) found in global src_unk_0204F04C.c.o
-                                        39](sub_020300B0,func) found in global src_unk_0202FF4C.c.o
+                                        39](BattleFactoryStreakFlags_SetFlag,func) found in global src_battle_factory_save.c.o
                                        38](ScrCmd_LaunchBattleFrontierScene,func) found in local src_scrcmd.c.o
                                         39](gBattleFrontierAppTemplate,object) found in global src_battle_frontier.c.o
                                          40](BattleFrontier_Exit,func) found in global src_battle_frontier.c.o
@@ -29673,7 +29673,7 @@
                                              44](StoreBattleArcadeAppResults,func) found in local src_overlay104_frscrcmd_battle_arcade.c.o
                                               45](BattleArcade_StoreAppResults,func) found in global src_overlay104_ov104_02237DD8.c.o
                                                46](ov104_02238264,func) found in local src_overlay104_ov104_02237DD8.c.o
-                                             44](sBattleArcadeAppTemplate$18691,object) found in local src_overlay104_frscrcmd_battle_arcade.c.o
+                                             44](sBattleArcadeAppTemplate$18714,object) found in local src_overlay104_frscrcmd_battle_arcade.c.o
                                               45](BattleArcadeApp_Exit,func) found in global src_applications_frontier_battle_arcade_main.c.o
                                                46](FreeAssets,func) found in local src_applications_frontier_battle_arcade_main.c.o
                                                 47](BattleArcadeAppSprite_Free,func) found in global src_applications_frontier_battle_arcade_sprites.c.o
@@ -29861,8 +29861,8 @@
                                              44](ov63_0222D050,func) found in global src_overlay063_ov63_0222CCE4.c.o
                                               45](ov63_0222B234,func) found in global src_overlay063_ov63_0222AE60.c.o
                                              44](ov104_02239014,func) found in global src_overlay104_ov104_02237DD8.c.o
-                                              45](v2$19592,object) found in local src_overlay104_ov104_02237DD8.c.o
-                                              45](v3$19593,object) found in local src_overlay104_ov104_02237DD8.c.o
+                                              45](v2$19615,object) found in local src_overlay104_ov104_02237DD8.c.o
+                                              45](v3$19616,object) found in local src_overlay104_ov104_02237DD8.c.o
                                              44](BattleFrontier_LoadFrontierPokemon,func) found in global src_overlay104_frontier_opponents.c.o
                                               45](BattleFrontier_LoadOpponentMonData,func) found in global src_overlay104_frontier_opponents.c.o
                                                46](FrontierPokemon_Init,func) found in local src_overlay104_frontier_opponents.c.o
@@ -29983,7 +29983,7 @@
                                              44](StoreBattleCastleAppResult,func) found in local src_overlay104_frscrcmd_battle_castle.c.o
                                               45](BattleCastle_StoreAppResults,func) found in global src_overlay104_battle_castle.c.o
                                                46](GetBattleCastleAppSelectedSlot,func) found in local src_overlay104_battle_castle.c.o
-                                             44](sBattleCastleNullTemplate$18644,object) found in local src_overlay104_frscrcmd_battle_castle.c.o
+                                             44](sBattleCastleNullTemplate$18667,object) found in local src_overlay104_frscrcmd_battle_castle.c.o
                                               45](BattleCastleSelfApp_Exit,func) found in global src_applications_frontier_battle_castle_self_app.c.o
                                                46](FreeAssets,func) found in local src_applications_frontier_battle_castle_self_app.c.o
                                                 47](BattleCastleAppSprite_Free,func) found in global src_applications_frontier_battle_castle_sprites.c.o
@@ -30255,8 +30255,8 @@
                                               45](GetEmblemTiles,func) found in local src_overlay104_battle_castle_helpers.c.o
                                                46](CapCurrentRound,func) found in local src_overlay104_battle_castle_helpers.c.o
                                              44](BattleCastle_GetEarnedBP,func) found in global src_overlay104_battle_castle.c.o
-                                              45](sBPPerRoundSolo$19057,object) found in local src_overlay104_battle_castle.c.o
-                                              45](sBPPerRoundWifi$19058,object) found in local src_overlay104_battle_castle.c.o
+                                              45](sBPPerRoundSolo$19080,object) found in local src_overlay104_battle_castle.c.o
+                                              45](sBPPerRoundWifi$19081,object) found in local src_overlay104_battle_castle.c.o
                                              44](BattleCastle_SetupOpponentsParty,func) found in global src_overlay104_battle_castle_helpers.c.o
                                               45](BattleCastle_GetOpponentLevel,func) found in global src_overlay104_battle_castle_helpers.c.o
                                               45](BattleCastle_AddMonToParty,func) found in global src_overlay104_battle_castle_helpers.c.o
@@ -30319,8 +30319,8 @@
                                              44](BattleHall_GetPlayerPartySize,func) found in global src_overlay104_battle_hall_helpers.c.o
                                              44](BattleHall_IsMultiPlayerChallenge,func) found in global src_overlay104_battle_hall_helpers.c.o
                                              44](BattleHall_GetEarnedBP,func) found in global src_overlay104_battle_hall.c.o
-                                              45](sBPPerRoundSolo$18397,object) found in local src_overlay104_battle_hall.c.o
-                                              45](sBPPerRoundWiFi$18398,object) found in local src_overlay104_battle_hall.c.o
+                                              45](sBPPerRoundSolo$18420,object) found in local src_overlay104_battle_hall.c.o
+                                              45](sBPPerRoundWiFi$18421,object) found in local src_overlay104_battle_hall.c.o
                                              44](BattleHall_CapTypeRanks,func) found in global src_overlay104_battle_hall.c.o
                                              44](BattleHall_CalcPlayerLevelSqrt,func) found in global src_overlay104_battle_hall.c.o
                                               45](BattleHall_GetHighestLevelInParty,func) found in global src_overlay104_battle_hall_helpers.c.o
@@ -30449,9 +30449,9 @@
                                             43](FrontierScrCmd_CallBattleTowerFunction,func) found in global src_overlay104_frscrcmd_battle_tower.c.o
                                              44](BattleTower_ResetSystem,func) found in global src_unk_02049D08.c.o
                                              44](BattleTower_GiveBattlePointsReward,func) found in global src_unk_02049D08.c.o
-                                              45](wifiBattlePoints$21223,object) found in local src_unk_02049D08.c.o
-                                              45](linkMultiBattlePoints$21225,object) found in local src_unk_02049D08.c.o
-                                              45](soloBattlePoints$21224,object) found in local src_unk_02049D08.c.o
+                                              45](wifiBattlePoints$21246,object) found in local src_unk_02049D08.c.o
+                                              45](linkMultiBattlePoints$21248,object) found in local src_unk_02049D08.c.o
+                                              45](soloBattlePoints$21247,object) found in local src_unk_02049D08.c.o
                                              44](sub_0206D0C8,func) found in global src_tv_segment.c.o
                                              44](BattleTower_GetPartnerParam,func) found in local src_overlay104_frscrcmd_battle_tower.c.o
                                               45](partnerGraphics$16515,object) found in local src_overlay104_frscrcmd_battle_tower.c.o
@@ -30538,11 +30538,11 @@
                                               45](ov104_0222F238,func) found in global src_overlay104_ov104_0222ECE8.c.o
                                             43](FrontierScrCmd_BattleFactory_CheckWonBattle,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
                                             43](FrontierScrCmd_CallBattleFactoryFunction,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](sub_0202FF68,func) found in global src_unk_0202FF4C.c.o
+                                             44](BattleFactorySave_HasSaved,func) found in global src_battle_factory_save.c.o
                                              44](ov104_02234148,func) found in global src_overlay104_ov104_022339B4.c.o
                                               45](BattleFactory_GetOpponentPartySize,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                              45](sub_0202FF84,func) found in global src_unk_0202FF4C.c.o
-                                              45](sub_0202FF70,func) found in global src_unk_0202FF4C.c.o
+                                              45](BattleFactorySave_SetMember,func) found in global src_battle_factory_save.c.o
+                                              45](BattleFactorySave_RecordSave,func) found in global src_battle_factory_save.c.o
                                              44](ov104_02234430,func) found in global src_overlay104_ov104_022339B4.c.o
                                              44](BattleFactory_GetPokemonLevel,func) found in global src_overlay104_ov104_0223A7F4.c.o
                                              44](ov104_0223AF34,func) found in global src_overlay104_ov104_0223A7F4.c.o
@@ -30617,7 +30617,7 @@
                                                  48](LoadAssets,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                   49](LoadBackgrounds,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](SetGXBanks,func) found in local src_applications_frontier_battle_factory_main.c.o
-                                                    51](@19432,object) found in local src_applications_frontier_battle_factory_main.c.o
+                                                    51](@19455,object) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](InitBackgrounds,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](LoadPalette,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](LoadWheelBackground,func) found in local src_applications_frontier_battle_factory_main.c.o
@@ -30734,11 +30734,11 @@
                                                46](ov104_02233D80,func) found in local src_overlay104_ov104_022339B4.c.o
                                                46](ov104_0223AB0C,func) found in global src_overlay104_ov104_0223A7F4.c.o
                                               45](ov104_02233F1C,func) found in local src_overlay104_ov104_022339B4.c.o
-                                               46](sub_02030030,func) found in global src_unk_0202FF4C.c.o
+                                               46](BattleFactorySave_GetMember,func) found in global src_battle_factory_save.c.o
                                             43](FrontierScrCmd_5C,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
                                              44](ov104_022339B4,func) found in global src_overlay104_ov104_022339B4.c.o
-                                              45](sub_0202FF58,func) found in global src_unk_0202FF4C.c.o
-                                              45](sub_0202FF4C,func) found in global src_unk_0202FF4C.c.o
+                                              45](BattleFactorySave_Get,func) found in global src_battle_factory_save.c.o
+                                              45](BattleFactorySave_Init,func) found in global src_battle_factory_save.c.o
                                               45](.bss,section) found in local src_overlay104_ov104_022339B4.c.o
                                             43](FrontierScrCmd_StopBGM,func) found in global src_overlay104_frscrcmd_sound.c.o
                                             43](FrontierScrCmd_PlayBGM,func) found in global src_overlay104_frscrcmd_sound.c.o
@@ -32134,7 +32134,7 @@
                                         39](sub_02049FF8,func) found in global src_unk_02049D08.c.o
                                         39](sub_0204AABC,func) found in global src_unk_02049D08.c.o
                                          40](WifiBattleTowerRecord_UpdateLossStreak,func) found in global src_wifi_battle_tower_save.c.o
-                                         40](v3$21272,object) found in local src_unk_02049D08.c.o
+                                         40](v3$21295,object) found in local src_unk_02049D08.c.o
                                         39](sub_0204A030,func) found in global src_unk_02049D08.c.o
                                         39](sub_0204A050,func) found in global src_unk_02049D08.c.o
                                         39](sub_0204A064,func) found in global src_unk_02049D08.c.o
@@ -32152,7 +32152,7 @@
                                            42](sub_0206B9D8,func) found in local src_unk_0206B9D8.c.o
                                            42](sub_0206BA84,func) found in local src_unk_0206B9D8.c.o
                                            42](sub_0206BAE0,func) found in local src_unk_0206B9D8.c.o
-                                            43](visiblePages$20679,object) found in local src_unk_0206B9D8.c.o
+                                            43](visiblePages$20702,object) found in local src_unk_0206B9D8.c.o
                                            42](sub_0206BB6C,func) found in local src_unk_0206B9D8.c.o
                                         39](sub_0204A378,func) found in global src_unk_02049D08.c.o
                                         39](BattleTower_CheckDuplicateSpeciesAndHeldItems,func) found in global src_unk_02049D08.c.o
@@ -36388,7 +36388,7 @@
                                              44](Unk_ov65_02239D2C,object) found in local src_overlay065_ov65_0222DCE0.c.o
                                               45](ov65_022343CC,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                46](ov65_022346C4,func) found in local src_overlay065_ov65_0222DCE0.c.o
-                                                47](v3$23631,object) found in local src_overlay065_ov65_0222DCE0.c.o
+                                                47](v3$23654,object) found in local src_overlay065_ov65_0222DCE0.c.o
                                                  48](ov65_0222FED8,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                46](ov65_02234694,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                 47](ov65_02234708,func) found in local src_overlay065_ov65_0222DCE0.c.o
@@ -36601,7 +36601,7 @@
                                                  48](ov65_02234E50,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                   49](Unk_ov65_02238930,object) found in local src_overlay065_ov65_0222DCE0.c.o
                                                 47](ov65_02234A10,func) found in local src_overlay065_ov65_0222DCE0.c.o
-                                                 48](v0$23736,object) found in local src_overlay065_ov65_0222DCE0.c.o
+                                                 48](v0$23759,object) found in local src_overlay065_ov65_0222DCE0.c.o
                                                 47](ov65_02234DD8,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                  48](ov65_02234E8C,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                                   49](Unk_ov65_0223892C,object) found in local src_overlay065_ov65_0222DCE0.c.o
@@ -46691,29 +46691,29 @@
   0202FF44 00000000 .text   $t	(src_unk_0202F1D4.c.o)
   0202FF44 00000008 .text   sub_0202FF44	(src_unk_0202F1D4.c.o)
   0202FF48 00000000 .text   $d	(src_unk_0202F1D4.c.o)
-  0202FF4C 00000000 .text   $t	(src_unk_0202FF4C.c.o)
-  0202FF4C 0000000C .text   sub_0202FF4C	(src_unk_0202FF4C.c.o)
-  0202FF54 00000000 .text   $d	(src_unk_0202FF4C.c.o)
-  0202FF58 00000010 .text   sub_0202FF58	(src_unk_0202FF4C.c.o)
-  0202FF58 00000000 .text   $t	(src_unk_0202FF4C.c.o)
-  0202FF68 00000008 .text   sub_0202FF68	(src_unk_0202FF4C.c.o)
-  0202FF68 00000000 .text   $t	(src_unk_0202FF4C.c.o)
-  0202FF70 00000014 .text   sub_0202FF70	(src_unk_0202FF4C.c.o)
-  0202FF70 00000000 .text   $t	(src_unk_0202FF4C.c.o)
-  0202FF84 000000AA .text   sub_0202FF84	(src_unk_0202FF4C.c.o)
-  0202FF84 00000000 .text   $t	(src_unk_0202FF4C.c.o)
-  02030030 00000074 .text   sub_02030030	(src_unk_0202FF4C.c.o)
-  02030030 00000000 .text   $t	(src_unk_0202FF4C.c.o)
-  020300A4 00000000 .text   $t	(src_unk_0202FF4C.c.o)
-  020300A4 0000000C .text   sub_020300A4	(src_unk_0202FF4C.c.o)
-  020300AC 00000000 .text   $d	(src_unk_0202FF4C.c.o)
-  020300B0 0000002E .text   sub_020300B0	(src_unk_0202FF4C.c.o)
-  020300B0 00000000 .text   $t	(src_unk_0202FF4C.c.o)
-  020300E0 00000014 .text   sub_020300E0	(src_unk_0202FF4C.c.o)
-  020300E0 00000000 .text   $t	(src_unk_0202FF4C.c.o)
-  020300F4 00000000 .text   $t	(src_unk_0202FF4C.c.o)
-  020300F4 00000014 .text   sub_020300F4	(src_unk_0202FF4C.c.o)
-  02030104 00000000 .text   $d	(src_unk_0202FF4C.c.o)
+  0202FF4C 00000000 .text   $t	(src_battle_factory_save.c.o)
+  0202FF4C 0000000C .text   BattleFactorySave_Init	(src_battle_factory_save.c.o)
+  0202FF54 00000000 .text   $d	(src_battle_factory_save.c.o)
+  0202FF58 00000010 .text   BattleFactorySave_Get	(src_battle_factory_save.c.o)
+  0202FF58 00000000 .text   $t	(src_battle_factory_save.c.o)
+  0202FF68 00000008 .text   BattleFactorySave_HasSaved	(src_battle_factory_save.c.o)
+  0202FF68 00000000 .text   $t	(src_battle_factory_save.c.o)
+  0202FF70 00000014 .text   BattleFactorySave_RecordSave	(src_battle_factory_save.c.o)
+  0202FF70 00000000 .text   $t	(src_battle_factory_save.c.o)
+  0202FF84 000000AA .text   BattleFactorySave_SetMember	(src_battle_factory_save.c.o)
+  0202FF84 00000000 .text   $t	(src_battle_factory_save.c.o)
+  02030030 00000074 .text   BattleFactorySave_GetMember	(src_battle_factory_save.c.o)
+  02030030 00000000 .text   $t	(src_battle_factory_save.c.o)
+  020300A4 00000000 .text   $t	(src_battle_factory_save.c.o)
+  020300A4 0000000C .text   BattleFactoryStreakFlags_Init	(src_battle_factory_save.c.o)
+  020300AC 00000000 .text   $d	(src_battle_factory_save.c.o)
+  020300B0 0000002E .text   BattleFactoryStreakFlags_SetFlag	(src_battle_factory_save.c.o)
+  020300B0 00000000 .text   $t	(src_battle_factory_save.c.o)
+  020300E0 00000014 .text   BattleFactoryStreakFlags_GetFlag	(src_battle_factory_save.c.o)
+  020300E0 00000000 .text   $t	(src_battle_factory_save.c.o)
+  020300F4 00000000 .text   $t	(src_battle_factory_save.c.o)
+  020300F4 00000014 .text   BattleFactoryStreakFlags_Get	(src_battle_factory_save.c.o)
+  02030104 00000000 .text   $d	(src_battle_factory_save.c.o)
   02030108 00000000 .text   $t	(src_battle_hall_save.c.o)
   02030108 0000000C .text   BattleHallSave_Init	(src_battle_hall_save.c.o)
   02030110 00000000 .text   $d	(src_battle_hall_save.c.o)
@@ -66473,7 +66473,7 @@
   020E5C68 00000066 .rodata sTrainerScoreIncrements	(src_game_records.c.o)
   020E5CD0 00000000 .rodata .rodata	(src_rankings.c.o)
   020E5CD0 00000006 .rodata sRecordsListsInfo	(src_rankings.c.o)
-  020E5CD8 00000034 .rodata recordIDs$17200	(src_rankings.c.o)
+  020E5CD8 00000034 .rodata recordIDs$17223	(src_rankings.c.o)
   020E5D0C 00000000 .rodata .rodata	(src_unk_0202F1D4.c.o)
   020E5D0C 00000004 .rodata @14773	(src_unk_0202F1D4.c.o)
   020E5D10 00000008 .rodata @14771	(src_unk_0202F1D4.c.o)
@@ -66615,10 +66615,10 @@
   020EBC78 00000000 .rodata .rodata	(src_unk_020494DC.c.o)
   020EBC78 0000000A .rodata partnerGraphics$18140	(src_unk_020494DC.c.o)
   020EBC82 000000A4 .rodata prizeList$18216	(src_unk_020494DC.c.o)
-  020EBD28 00000008 .rodata linkMultiBattlePoints$21225	(src_unk_02049D08.c.o)
-  020EBD30 00000008 .rodata soloBattlePoints$21224	(src_unk_02049D08.c.o)
-  020EBD38 0000000A .rodata v3$21272	(src_unk_02049D08.c.o)
-  020EBD44 0000000B .rodata wifiBattlePoints$21223	(src_unk_02049D08.c.o)
+  020EBD28 00000008 .rodata linkMultiBattlePoints$21248	(src_unk_02049D08.c.o)
+  020EBD30 00000008 .rodata soloBattlePoints$21247	(src_unk_02049D08.c.o)
+  020EBD38 0000000A .rodata v3$21295	(src_unk_02049D08.c.o)
+  020EBD44 0000000B .rodata wifiBattlePoints$21246	(src_unk_02049D08.c.o)
   020EBD50 00000000 .rodata .rodata	(src_unk_0204AEE8.c.o)
   020EBD50 00000008 .rodata Unk_020EBD50	(src_unk_0204AEE8.c.o)
   020EBD58 00000020 .rodata sBattleTowerTrainerRangesPerRoom	(src_unk_0204AEE8.c.o)
@@ -66634,11 +66634,11 @@
   020EC018 00000000 .rodata .rodata	(src_scrcmd_game_corner_prize.c.o)
   020EC018 0000004C .rodata sGameCornerPrizeData$17272	(src_scrcmd_game_corner_prize.c.o)
   020EC064 00000008 .rodata sBadgeIDs	(src_scrcmd_system_flags.c.o)
-  020EC06C 00000009 .rodata sMonSummaryPages$20428	(src_scrcmd_battle_hall.c.o)
+  020EC06C 00000009 .rodata sMonSummaryPages$20451	(src_scrcmd_battle_hall.c.o)
   020EC078 00000000 .rodata .rodata	(src_scrcmd_battle_hall.c.o)
   020EC078 00000178 .rodata sBattleHallRecordMilestones	(src_scrcmd_battle_hall.c.o)
-  020EC1F0 00000009 .rodata visiblePages$20334	(src_unk_0204FAB4.c.o)
-  020EC1FC 00000009 .rodata visiblePages$20354	(src_unk_0205003C.c.o)
+  020EC1F0 00000009 .rodata visiblePages$20357	(src_unk_0204FAB4.c.o)
+  020EC1FC 00000009 .rodata visiblePages$20377	(src_unk_0205003C.c.o)
   020EC208 00000000 .rodata .rodata	(src_enc_effects.c.o)
   020EC208 0000008C .rodata sEncEffectsTable	(src_enc_effects.c.o)
   020EC294 00000000 .rodata .rodata	(src_field_battle_data_transfer.c.o)
@@ -67148,7 +67148,7 @@
   020EFA84 00000014 .rodata sTownMapFlyLocationUnlockFlags	(src_applications_town_map_context.c.o)
   020EFA98 00000000 .rodata .rodata	(src_applications_town_map_context.c.o)
   020EFA98 000000A0 .rodata sDistWorldMapOffsets	(src_applications_town_map_context.c.o)
-  020EFB38 00000009 .rodata visiblePages$20679	(src_unk_0206B9D8.c.o)
+  020EFB38 00000009 .rodata visiblePages$20702	(src_unk_0206B9D8.c.o)
   020EFB44 00000000 .rodata .rodata	(src_roaming_pokemon.c.o)
   020EFB44 00000074 .rodata RoamingPokemonRoutes	(src_roaming_pokemon.c.o)
   020EFBB8 0000015C .rodata sNearbyRoutes	(src_roaming_pokemon.c.o)
@@ -72983,7 +72983,7 @@
   0221585C 0000000C .text   MD5Final	(libstubsmd5.a src_dummy_md5.c)
   02215864 00000000 .text   $d	(libstubsmd5.a src_dummy_md5.c)
   02215868 00000000 .rodata .rodata	(src_nintendo_wfc_main.c.o)
-  02215868 00000008 .rodata @17858	(src_nintendo_wfc_main.c.o)
+  02215868 00000008 .rodata @17881	(src_nintendo_wfc_main.c.o)
   02215870 0000000A .rodata sPPWMatchKeyFmt	(src_nintendo_wfc_main.c.o)
   0221587C 00000000 .rodata .rodata	(src_nintendo_wfc_voice_chat.c.o)
   0221587C 00000003 .rodata @15349	(src_nintendo_wfc_voice_chat.c.o)
@@ -73046,9 +73046,9 @@
 #>02215E74          SDK_OVERLAY.nintendo_wfc.SINIT_END (linker command file)
 #>02215E80          SDK_OVERLAY.nintendo_wfc.TEXT_END (linker command file)
 #>02215E80          SDK_OVERLAY.nintendo_wfc.DATA_START (linker command file)
-  02215E80 0000000C .data   @19161	(src_nintendo_wfc_main.c.o)
-  02215E8C 00000007 .data   @19162	(src_nintendo_wfc_main.c.o)
-  02215E94 0000000A .data   @19192	(src_nintendo_wfc_main.c.o)
+  02215E80 0000000C .data   @19184	(src_nintendo_wfc_main.c.o)
+  02215E8C 00000007 .data   @19185	(src_nintendo_wfc_main.c.o)
+  02215E94 0000000A .data   @19215	(src_nintendo_wfc_main.c.o)
   02215EA0 0000001C .data   DWCauthhttpparam	(libdwcauth.a dwc_auth.o     )
   02215EA0 00000000 .data   .data	(libdwcauth.a dwc_auth.o     )
   02215EBC 00000025 .data   @8854	(libdwcauth.a dwc_auth.o     )
@@ -113754,49 +113754,49 @@
   0223217C 00000000 .text   $t	(src_overlay064_ov64_0222DCE0.c.o)
   0223217C 00000024 .text   ov64_0223217C	(src_overlay064_ov64_0222DCE0.c.o)
   0223219C 00000000 .text   $d	(src_overlay064_ov64_0222DCE0.c.o)
-  022321A0 00000002 .rodata v0$20811	(src_overlay064_ov64_0222DCE0.c.o)
-  022321A4 00000003 .rodata v5$20982	(src_overlay064_ov64_0222DCE0.c.o)
+  022321A0 00000002 .rodata v0$20834	(src_overlay064_ov64_0222DCE0.c.o)
+  022321A4 00000003 .rodata v5$21005	(src_overlay064_ov64_0222DCE0.c.o)
   022321A8 00000000 .rodata .rodata	(src_overlay064_ov64_0222DCE0.c.o)
   022321A8 00000004 .rodata Unk_ov64_022321A8	(src_overlay064_ov64_0222DCE0.c.o)
   022321AC 00000004 .rodata Unk_ov64_022321AC	(src_overlay064_ov64_0222DCE0.c.o)
   022321B0 00000004 .rodata Unk_ov64_022321B0	(src_overlay064_ov64_0222DCE0.c.o)
   022321B4 00000004 .rodata Unk_ov64_022321B4	(src_overlay064_ov64_0222DCE0.c.o)
   022321B8 00000004 .rodata Unk_ov64_022321B8	(src_overlay064_ov64_0222DCE0.c.o)
-  022321BC 00000006 .rodata Unk_ov64_022321BC$21202	(src_overlay064_ov64_0222DCE0.c.o)
-  022321C2 00000008 .rodata Unk_ov64_022321FC$21060	(src_overlay064_ov64_0222DCE0.c.o)
+  022321BC 00000006 .rodata Unk_ov64_022321BC$21225	(src_overlay064_ov64_0222DCE0.c.o)
+  022321C2 00000008 .rodata Unk_ov64_022321FC$21083	(src_overlay064_ov64_0222DCE0.c.o)
   022321CA 00000008 .rodata Unk_ov64_022321CA	(src_overlay064_ov64_0222DCE0.c.o)
-  022321D4 0000000C .rodata v2$21836	(src_overlay064_ov64_0222DCE0.c.o)
-  022321E0 0000000C .rodata v6$21606	(src_overlay064_ov64_0222DCE0.c.o)
-  022321EC 00000010 .rodata @20765	(src_overlay064_ov64_0222DCE0.c.o)
-  022321FC 00000010 .rodata xOffsets$21009	(src_overlay064_ov64_0222DCE0.c.o)
-  0223220C 00000010 .rodata @20741	(src_overlay064_ov64_0222DCE0.c.o)
+  022321D4 0000000C .rodata v2$21859	(src_overlay064_ov64_0222DCE0.c.o)
+  022321E0 0000000C .rodata v6$21629	(src_overlay064_ov64_0222DCE0.c.o)
+  022321EC 00000010 .rodata @20788	(src_overlay064_ov64_0222DCE0.c.o)
+  022321FC 00000010 .rodata xOffsets$21032	(src_overlay064_ov64_0222DCE0.c.o)
+  0223220C 00000010 .rodata @20764	(src_overlay064_ov64_0222DCE0.c.o)
   0223221C 00000012 .rodata Unk_ov64_0223221C	(src_overlay064_ov64_0222DCE0.c.o)
   0223222E 00000014 .rodata Unk_ov64_0223222E	(src_overlay064_ov64_0222DCE0.c.o)
   02232242 00000014 .rodata Unk_ov64_02232242	(src_overlay064_ov64_0222DCE0.c.o)
   02232258 00000014 .rodata Unk_ov64_02232258	(src_overlay064_ov64_0222DCE0.c.o)
   0223226C 00000020 .rodata Unk_ov64_0223226C	(src_overlay064_ov64_0222DCE0.c.o)
-  0223228C 00000028 .rodata @20733	(src_overlay064_ov64_0222DCE0.c.o)
-  022322B4 00000030 .rodata @21204	(src_overlay064_ov64_0222DCE0.c.o)
+  0223228C 00000028 .rodata @20756	(src_overlay064_ov64_0222DCE0.c.o)
+  022322B4 00000030 .rodata @21227	(src_overlay064_ov64_0222DCE0.c.o)
   022322E4 00000040 .rodata Unk_ov64_022322E4	(src_overlay064_ov64_0222DCE0.c.o)
   02232324 0000006C .rodata Unk_ov64_02232324	(src_overlay064_ov64_0222DCE0.c.o)
   02232390 0000008C .rodata Unk_ov64_02232390	(src_overlay064_ov64_0222DCE0.c.o)
-  0223241C 00000004 .rodata yOffsets$21010	(src_overlay064_ov64_0222DCE0.c.o)
-  02232420 00000004 .rodata v0$21075	(src_overlay064_ov64_0222DCE0.c.o)
-  02232424 00000004 .rodata entryIDs$21008	(src_overlay064_ov64_0222DCE0.c.o)
+  0223241C 00000004 .rodata yOffsets$21033	(src_overlay064_ov64_0222DCE0.c.o)
+  02232420 00000004 .rodata v0$21098	(src_overlay064_ov64_0222DCE0.c.o)
+  02232424 00000004 .rodata entryIDs$21031	(src_overlay064_ov64_0222DCE0.c.o)
   02232428 00000004 .rodata Unk_ov64_02232428	(src_overlay064_ov64_0222DCE0.c.o)
-  0223242C 00000007 .rodata v0$21963	(src_overlay064_ov64_0222DCE0.c.o)
+  0223242C 00000007 .rodata v0$21986	(src_overlay064_ov64_0222DCE0.c.o)
   02232434 00000007 .rodata Unk_ov64_02232434	(src_overlay064_ov64_0222DCE0.c.o)
 #>0223243C          SDK_OVERLAY.overlay64.SINIT_START (linker command file)
 #>02232440          SDK_OVERLAY.overlay64.SINIT_END (linker command file)
 #>02232440          SDK_OVERLAY.overlay64.TEXT_END (linker command file)
 #>02232440          SDK_OVERLAY.overlay64.DATA_START (linker command file)
   02232440 00000000 .data   .data	(src_overlay064_ov64_0222DCE0.c.o)
-  02232440 00000010 .data   v4$21349	(src_overlay064_ov64_0222DCE0.c.o)
-  02232450 00000010 .data   v4$21815	(src_overlay064_ov64_0222DCE0.c.o)
+  02232440 00000010 .data   v4$21372	(src_overlay064_ov64_0222DCE0.c.o)
+  02232450 00000010 .data   v4$21838	(src_overlay064_ov64_0222DCE0.c.o)
   02232460 00000010 .data   Unk_ov64_02232460	(src_overlay064_ov64_0222DCE0.c.o)
   02232470 0000001C .data   Unk_ov64_02232470	(src_overlay064_ov64_0222DCE0.c.o)
-  0223248C 0000001C .data   v0$22052	(src_overlay064_ov64_0222DCE0.c.o)
-  022324A8 00000060 .data   v0$20891	(src_overlay064_ov64_0222DCE0.c.o)
+  0223248C 0000001C .data   v0$22075	(src_overlay064_ov64_0222DCE0.c.o)
+  022324A8 00000060 .data   v0$20914	(src_overlay064_ov64_0222DCE0.c.o)
 #>02232520          SDK_OVERLAY.overlay64.DATA_END (linker command file)
 #>02232520          SDK_OVERLAY.overlay64.END (linker command file)
 #>00004760          SDK_OVERLAY.overlay64.TEXT_SIZE (linker command file)
@@ -114840,7 +114840,7 @@
   0223892C 00000003 .rodata Unk_ov65_0223892C	(src_overlay065_ov65_0222DCE0.c.o)
   02238930 00000003 .rodata Unk_ov65_02238930	(src_overlay065_ov65_0222DCE0.c.o)
   02238934 00000004 .rodata Unk_ov65_02238934	(src_overlay065_ov65_0222DCE0.c.o)
-  02238938 00000004 .rodata v0$23736	(src_overlay065_ov65_0222DCE0.c.o)
+  02238938 00000004 .rodata v0$23759	(src_overlay065_ov65_0222DCE0.c.o)
   0223893C 00000005 .rodata Unk_ov65_0223893C	(src_overlay065_ov65_0222DCE0.c.o)
   02238944 00000000 .rodata .rodata	(src_overlay065_ov65_0222DCE0.c.o)
   02238944 00000008 .rodata Unk_ov65_02238944	(src_overlay065_ov65_0222DCE0.c.o)
@@ -114848,23 +114848,23 @@
   02238954 00000008 .rodata Unk_ov65_02238954	(src_overlay065_ov65_0222DCE0.c.o)
   0223895C 0000000C .rodata Unk_ov65_0223895C	(src_overlay065_ov65_0222DCE0.c.o)
   02238968 00000010 .rodata Unk_ov65_02238968	(src_overlay065_ov65_0222DCE0.c.o)
-  02238978 00000010 .rodata @21478	(src_overlay065_ov65_0222DCE0.c.o)
-  02238988 00000010 .rodata @21262	(src_overlay065_ov65_0222DCE0.c.o)
-  02238998 00000018 .rodata v3$23631	(src_overlay065_ov65_0222DCE0.c.o)
-  022389B0 0000001C .rodata @21264	(src_overlay065_ov65_0222DCE0.c.o)
-  022389CC 0000001C .rodata @21266	(src_overlay065_ov65_0222DCE0.c.o)
-  022389E8 0000001C .rodata @21270	(src_overlay065_ov65_0222DCE0.c.o)
-  02238A04 0000001C .rodata @21272	(src_overlay065_ov65_0222DCE0.c.o)
-  02238A20 0000001C .rodata @21274	(src_overlay065_ov65_0222DCE0.c.o)
-  02238A3C 0000001C .rodata @21276	(src_overlay065_ov65_0222DCE0.c.o)
-  02238A58 0000001C .rodata @21278	(src_overlay065_ov65_0222DCE0.c.o)
-  02238A74 0000001C .rodata @21268	(src_overlay065_ov65_0222DCE0.c.o)
+  02238978 00000010 .rodata @21501	(src_overlay065_ov65_0222DCE0.c.o)
+  02238988 00000010 .rodata @21285	(src_overlay065_ov65_0222DCE0.c.o)
+  02238998 00000018 .rodata v3$23654	(src_overlay065_ov65_0222DCE0.c.o)
+  022389B0 0000001C .rodata @21287	(src_overlay065_ov65_0222DCE0.c.o)
+  022389CC 0000001C .rodata @21289	(src_overlay065_ov65_0222DCE0.c.o)
+  022389E8 0000001C .rodata @21293	(src_overlay065_ov65_0222DCE0.c.o)
+  02238A04 0000001C .rodata @21295	(src_overlay065_ov65_0222DCE0.c.o)
+  02238A20 0000001C .rodata @21297	(src_overlay065_ov65_0222DCE0.c.o)
+  02238A3C 0000001C .rodata @21299	(src_overlay065_ov65_0222DCE0.c.o)
+  02238A58 0000001C .rodata @21301	(src_overlay065_ov65_0222DCE0.c.o)
+  02238A74 0000001C .rodata @21291	(src_overlay065_ov65_0222DCE0.c.o)
   02238A90 00000020 .rodata Unk_ov65_02238A90	(src_overlay065_ov65_0222DCE0.c.o)
-  02238AB0 00000020 .rodata v0$23280	(src_overlay065_ov65_0222DCE0.c.o)
+  02238AB0 00000020 .rodata v0$23303	(src_overlay065_ov65_0222DCE0.c.o)
   02238AD0 00000020 .rodata Unk_ov65_02238AD0	(src_overlay065_ov65_0222DCE0.c.o)
   02238AF0 00000020 .rodata Unk_ov65_02238AF0	(src_overlay065_ov65_0222DCE0.c.o)
-  02238B10 00000028 .rodata @21256	(src_overlay065_ov65_0222DCE0.c.o)
-  02238B38 00000090 .rodata @23759	(src_overlay065_ov65_0222DCE0.c.o)
+  02238B10 00000028 .rodata @21279	(src_overlay065_ov65_0222DCE0.c.o)
+  02238B38 00000090 .rodata @23782	(src_overlay065_ov65_0222DCE0.c.o)
   02238BC8 00000004 .rodata Unk_ov65_02238BC8	(src_overlay065_ov65_02235060.c.o)
   02238BC8 00000000 .rodata .rodata	(src_overlay065_ov65_02235060.c.o)
   02238BCC 0000000B .rodata @13965	(src_overlay065_ov65_02235060.c.o)
@@ -114898,7 +114898,7 @@
   02239C28 00000008 .data   Unk_ov65_02239C28	(src_overlay065_ov65_0222DCE0.c.o)
   02239C30 00000008 .data   Unk_ov65_02239C30	(src_overlay065_ov65_0222DCE0.c.o)
   02239C38 00000008 .data   Unk_ov65_02239C38	(src_overlay065_ov65_0222DCE0.c.o)
-  02239C40 0000001C .data   v0$23525	(src_overlay065_ov65_0222DCE0.c.o)
+  02239C40 0000001C .data   v0$23548	(src_overlay065_ov65_0222DCE0.c.o)
   02239C5C 00000020 .data   Unk_ov65_02239C5C	(src_overlay065_ov65_0222DCE0.c.o)
   02239C7C 00000020 .data   Unk_ov65_02239C7C	(src_overlay065_ov65_0222DCE0.c.o)
   02239C9C 00000020 .data   Unk_ov65_02239C9C	(src_overlay065_ov65_0222DCE0.c.o)
@@ -114917,7 +114917,7 @@
 # .overlay65.bss
 #>02239E60          SDK_OVERLAY.overlay65.BSS_START (linker command file)
   02239E60 00000000 .bss    .bss	(src_overlay065_ov65_0222DCE0.c.o)
-  02239E60 00000004 .bss    v1$21195	(src_overlay065_ov65_0222DCE0.c.o)
+  02239E60 00000004 .bss    v1$21218	(src_overlay065_ov65_0222DCE0.c.o)
 #>02239E80          SDK_OVERLAY.overlay65.BSS_END (linker command file)
 #>00000020          SDK_OVERLAY.overlay65.BSS_SIZE (linker command file)
 
@@ -125319,17 +125319,17 @@
   0223EE24 00000000 .text   $d	(src_overlay088_ov88_0223E9C4.c.o)
   0223EE28 00000000 .rodata .rodata	(src_overlay088_ov88_0223B140.c.o)
   0223EE28 00000008 .rodata Unk_ov88_0223EE28	(src_overlay088_ov88_0223B140.c.o)
-  0223EE30 00000010 .rodata @21107	(src_overlay088_ov88_0223B140.c.o)
-  0223EE40 00000010 .rodata @21176	(src_overlay088_ov88_0223B140.c.o)
+  0223EE30 00000010 .rodata @21130	(src_overlay088_ov88_0223B140.c.o)
+  0223EE40 00000010 .rodata @21199	(src_overlay088_ov88_0223B140.c.o)
   0223EE50 00000018 .rodata Unk_ov88_0223EE50	(src_overlay088_ov88_0223B140.c.o)
-  0223EE68 0000001C .rodata @21117	(src_overlay088_ov88_0223B140.c.o)
-  0223EE84 0000001C .rodata @21119	(src_overlay088_ov88_0223B140.c.o)
-  0223EEA0 0000001C .rodata @21111	(src_overlay088_ov88_0223B140.c.o)
-  0223EEBC 0000001C .rodata @21121	(src_overlay088_ov88_0223B140.c.o)
-  0223EED8 0000001C .rodata @21109	(src_overlay088_ov88_0223B140.c.o)
-  0223EEF4 0000001C .rodata @21113	(src_overlay088_ov88_0223B140.c.o)
-  0223EF10 0000001C .rodata @21115	(src_overlay088_ov88_0223B140.c.o)
-  0223EF2C 00000028 .rodata @21101	(src_overlay088_ov88_0223B140.c.o)
+  0223EE68 0000001C .rodata @21140	(src_overlay088_ov88_0223B140.c.o)
+  0223EE84 0000001C .rodata @21142	(src_overlay088_ov88_0223B140.c.o)
+  0223EEA0 0000001C .rodata @21134	(src_overlay088_ov88_0223B140.c.o)
+  0223EEBC 0000001C .rodata @21144	(src_overlay088_ov88_0223B140.c.o)
+  0223EED8 0000001C .rodata @21132	(src_overlay088_ov88_0223B140.c.o)
+  0223EEF4 0000001C .rodata @21136	(src_overlay088_ov88_0223B140.c.o)
+  0223EF10 0000001C .rodata @21138	(src_overlay088_ov88_0223B140.c.o)
+  0223EF2C 00000028 .rodata @21124	(src_overlay088_ov88_0223B140.c.o)
   0223EF54 00000048 .rodata Unk_ov88_0223EF54	(src_overlay088_ov88_0223B140.c.o)
   0223EF9C 00000068 .rodata Unk_ov88_0223EF9C	(src_overlay088_ov88_0223B140.c.o)
   0223F004 00000138 .rodata Unk_ov88_0223F004	(src_overlay088_ov88_0223B140.c.o)
@@ -125463,24 +125463,24 @@
   021D1C90 000000CC .text   ov90_021D1C90	(src_overlay090_ov90_021D0D80.c.o)
   021D1C90 00000000 .text   $t	(src_overlay090_ov90_021D0D80.c.o)
   021D1D5C 00000000 .rodata .rodata	(src_overlay090_ov90_021D0D80.c.o)
-  021D1D5C 00000010 .rodata @20089	(src_overlay090_ov90_021D0D80.c.o)
-  021D1D6C 00000014 .rodata @20290	(src_overlay090_ov90_021D0D80.c.o)
-  021D1D80 00000018 .rodata v2$20128	(src_overlay090_ov90_021D0D80.c.o)
-  021D1D98 0000001C .rodata @20297	(src_overlay090_ov90_021D0D80.c.o)
-  021D1DB4 00000020 .rodata @20288	(src_overlay090_ov90_021D0D80.c.o)
-  021D1DD4 00000028 .rodata @20012	(src_overlay090_ov90_021D0D80.c.o)
-  021D1DFC 00000030 .rodata v1$20127	(src_overlay090_ov90_021D0D80.c.o)
-  021D1E2C 00000054 .rodata @20091	(src_overlay090_ov90_021D0D80.c.o)
+  021D1D5C 00000010 .rodata @20112	(src_overlay090_ov90_021D0D80.c.o)
+  021D1D6C 00000014 .rodata @20313	(src_overlay090_ov90_021D0D80.c.o)
+  021D1D80 00000018 .rodata v2$20151	(src_overlay090_ov90_021D0D80.c.o)
+  021D1D98 0000001C .rodata @20320	(src_overlay090_ov90_021D0D80.c.o)
+  021D1DB4 00000020 .rodata @20311	(src_overlay090_ov90_021D0D80.c.o)
+  021D1DD4 00000028 .rodata @20035	(src_overlay090_ov90_021D0D80.c.o)
+  021D1DFC 00000030 .rodata v1$20150	(src_overlay090_ov90_021D0D80.c.o)
+  021D1E2C 00000054 .rodata @20114	(src_overlay090_ov90_021D0D80.c.o)
   021D1E80 000000A0 .rodata sSpriteTemplates	(src_overlay090_ov90_021D0D80.c.o)
 #>021D1F20          SDK_OVERLAY.overlay90.SINIT_START (linker command file)
 #>021D1F24          SDK_OVERLAY.overlay90.SINIT_END (linker command file)
 #>021D1F40          SDK_OVERLAY.overlay90.TEXT_END (linker command file)
 #>021D1F40          SDK_OVERLAY.overlay90.DATA_START (linker command file)
-  021D1F40 00000017 .data   @20293	(src_overlay090_ov90_021D0D80.c.o)
-  021D1F58 00000017 .data   @20292	(src_overlay090_ov90_021D0D80.c.o)
-  021D1F70 00000018 .data   @20294	(src_overlay090_ov90_021D0D80.c.o)
-  021D1F88 00000018 .data   @20295	(src_overlay090_ov90_021D0D80.c.o)
-  021D1FA0 00000019 .data   @20296	(src_overlay090_ov90_021D0D80.c.o)
+  021D1F40 00000017 .data   @20316	(src_overlay090_ov90_021D0D80.c.o)
+  021D1F58 00000017 .data   @20315	(src_overlay090_ov90_021D0D80.c.o)
+  021D1F70 00000018 .data   @20317	(src_overlay090_ov90_021D0D80.c.o)
+  021D1F88 00000018 .data   @20318	(src_overlay090_ov90_021D0D80.c.o)
+  021D1FA0 00000019 .data   @20319	(src_overlay090_ov90_021D0D80.c.o)
 #>021D1FC0          SDK_OVERLAY.overlay90.DATA_END (linker command file)
 #>021D1FC0          SDK_OVERLAY.overlay90.END (linker command file)
 #>000011C0          SDK_OVERLAY.overlay90.TEXT_SIZE (linker command file)
@@ -133839,17 +133839,17 @@
   0223FA40 00000009 .rodata v3$18613	(src_overlay104_ov104_022339B4.c.o)
   0223FA4C 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_hall.c.o)
   0223FA4C 00000010 .rodata sBattleHallAppTemplate$16548	(src_overlay104_frscrcmd_battle_hall.c.o)
-  0223FA5C 00000013 .rodata sBPPerRoundSolo$18397	(src_overlay104_battle_hall.c.o)
-  0223FA70 00000013 .rodata sBPPerRoundWiFi$18398	(src_overlay104_battle_hall.c.o)
-  0223FA84 00000010 .rodata sBattleCastleNullTemplate$18644	(src_overlay104_frscrcmd_battle_castle.c.o)
+  0223FA5C 00000013 .rodata sBPPerRoundSolo$18420	(src_overlay104_battle_hall.c.o)
+  0223FA70 00000013 .rodata sBPPerRoundWiFi$18421	(src_overlay104_battle_hall.c.o)
+  0223FA84 00000010 .rodata sBattleCastleNullTemplate$18667	(src_overlay104_frscrcmd_battle_castle.c.o)
   0223FA84 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_castle.c.o)
-  0223FA94 00000010 .rodata sBattleCastleSelfAppTemplate$18636	(src_overlay104_frscrcmd_battle_castle.c.o)
-  0223FAA4 00000010 .rodata sBattleCastleOpponentAppTemplate$18669	(src_overlay104_frscrcmd_battle_castle.c.o)
-  0223FAB4 00000009 .rodata sBPPerRoundSolo$19057	(src_overlay104_battle_castle.c.o)
-  0223FAC0 00000009 .rodata sBPPerRoundWifi$19058	(src_overlay104_battle_castle.c.o)
+  0223FA94 00000010 .rodata sBattleCastleSelfAppTemplate$18659	(src_overlay104_frscrcmd_battle_castle.c.o)
+  0223FAA4 00000010 .rodata sBattleCastleOpponentAppTemplate$18692	(src_overlay104_frscrcmd_battle_castle.c.o)
+  0223FAB4 00000009 .rodata sBPPerRoundSolo$19080	(src_overlay104_battle_castle.c.o)
+  0223FAC0 00000009 .rodata sBPPerRoundWifi$19081	(src_overlay104_battle_castle.c.o)
   0223FACC 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_arcade.c.o)
-  0223FACC 0000000C .rodata @18903	(src_overlay104_frscrcmd_battle_arcade.c.o)
-  0223FAD8 00000010 .rodata sBattleArcadeAppTemplate$18691	(src_overlay104_frscrcmd_battle_arcade.c.o)
+  0223FACC 0000000C .rodata @18926	(src_overlay104_frscrcmd_battle_arcade.c.o)
+  0223FAD8 00000010 .rodata sBattleArcadeAppTemplate$18714	(src_overlay104_frscrcmd_battle_arcade.c.o)
   0223FAE8 00000005 .rodata sFaintedMonsFitness	(src_overlay104_ov104_02237DD8.c.o)
   0223FAF0 00000005 .rodata sStatusConditionFitness	(src_overlay104_ov104_02237DD8.c.o)
   0223FAF8 00000006 .rodata Unk_ov104_0223FAF8	(src_overlay104_ov104_02237DD8.c.o)
@@ -133864,8 +133864,8 @@
   0223FB78 0000001A .rodata Unk_ov104_0223FB78	(src_overlay104_ov104_02237DD8.c.o)
   0223FB92 00000028 .rodata Unk_ov104_0223FB92	(src_overlay104_ov104_02237DD8.c.o)
   0223FBBA 000000C0 .rodata Unk_ov104_0223FBBA	(src_overlay104_ov104_02237DD8.c.o)
-  0223FC7C 00000009 .rodata v2$19592	(src_overlay104_ov104_02237DD8.c.o)
-  0223FC88 00000009 .rodata v3$19593	(src_overlay104_ov104_02237DD8.c.o)
+  0223FC7C 00000009 .rodata v2$19615	(src_overlay104_ov104_02237DD8.c.o)
+  0223FC88 00000009 .rodata v3$19616	(src_overlay104_ov104_02237DD8.c.o)
   0223FC94 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223FC94 0000000A .rodata partnerGraphics$16515	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223FCA0 00000009 .rodata visiblePages$16930	(src_overlay104_ov104_02239C58.c.o)
@@ -133928,7 +133928,7 @@
   02241A2C 0000000C .data   Unk_ov104_02241A2C	(src_overlay104_ov104_02237DD8.c.o)
   02241A38 00000080 .data   Unk_ov104_02241A38	(src_overlay104_ov104_02237DD8.c.o)
   02241AB8 00000000 .data   .data	(src_overlay104_ov104_0223A7F4.c.o)
-  02241AB8 00000004 .data   v1$17211	(src_overlay104_ov104_0223A7F4.c.o)
+  02241AB8 00000004 .data   v1$17234	(src_overlay104_ov104_0223A7F4.c.o)
 #>02241AC0          SDK_OVERLAY.overlay104.DATA_END (linker command file)
 #>02241AC0          SDK_OVERLAY.overlay104.END (linker command file)
 #>00013CC0          SDK_OVERLAY.overlay104.TEXT_SIZE (linker command file)
@@ -133940,11 +133940,11 @@
   02241AC0 00000000 .bss    .bss	(src_overlay104_ov104_022339B4.c.o)
   02241AC0 00000004 .bss    v7$18301	(src_overlay104_ov104_022339B4.c.o)
   02241AC4 00000000 .bss    .bss	(src_overlay104_battle_hall.c.o)
-  02241AC4 00000004 .bss    battleHall$18197	(src_overlay104_battle_hall.c.o)
+  02241AC4 00000004 .bss    battleHall$18220	(src_overlay104_battle_hall.c.o)
   02241AC8 00000000 .bss    .bss	(src_overlay104_battle_castle.c.o)
-  02241AC8 00000004 .bss    castle$18655	(src_overlay104_battle_castle.c.o)
+  02241AC8 00000004 .bss    castle$18678	(src_overlay104_battle_castle.c.o)
   02241ACC 00000000 .bss    .bss	(src_overlay104_ov104_02237DD8.c.o)
-  02241ACC 00000004 .bss    v9$18814	(src_overlay104_ov104_02237DD8.c.o)
+  02241ACC 00000004 .bss    v9$18837	(src_overlay104_ov104_02237DD8.c.o)
   02241AD0 00000000 .bss    .bss	(src_overlay104_ov104_02239C58.c.o)
   02241AD0 00000004 .bss    v0$16841	(src_overlay104_ov104_02239C58.c.o)
 #>02241AE0          SDK_OVERLAY.overlay104.BSS_END (linker command file)
@@ -134285,17 +134285,17 @@
   02246308 0000000C .rodata sMonOptionsMenuCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246314 0000000C .rodata sExchangeSelectPokeballPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246320 00000010 .rodata sReceiveSelectMultiPokeballPositions	(src_applications_frontier_battle_factory_main.c.o)
-  02246330 00000010 .rodata @19438	(src_applications_frontier_battle_factory_main.c.o)
+  02246330 00000010 .rodata @19461	(src_applications_frontier_battle_factory_main.c.o)
   02246340 00000010 .rodata sExchangeSelectCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246350 00000014 .rodata sReceiveSelectCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246364 00000018 .rodata sInitialSelectionPokeballPositions	(src_applications_frontier_battle_factory_main.c.o)
   0224637C 00000018 .rodata sReceiveSelectMultiCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246394 00000018 .rodata sInitialSelectCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
-  022463AC 0000001C .rodata @19442	(src_applications_frontier_battle_factory_main.c.o)
-  022463C8 0000001C .rodata @19446	(src_applications_frontier_battle_factory_main.c.o)
-  022463E4 0000001C .rodata @19440	(src_applications_frontier_battle_factory_main.c.o)
-  02246400 0000001C .rodata @19444	(src_applications_frontier_battle_factory_main.c.o)
-  0224641C 00000028 .rodata @19432	(src_applications_frontier_battle_factory_main.c.o)
+  022463AC 0000001C .rodata @19465	(src_applications_frontier_battle_factory_main.c.o)
+  022463C8 0000001C .rodata @19469	(src_applications_frontier_battle_factory_main.c.o)
+  022463E4 0000001C .rodata @19463	(src_applications_frontier_battle_factory_main.c.o)
+  02246400 0000001C .rodata @19467	(src_applications_frontier_battle_factory_main.c.o)
+  0224641C 00000028 .rodata @19455	(src_applications_frontier_battle_factory_main.c.o)
   02246444 00000004 .rodata sCapacities	(src_applications_frontier_battle_factory_sprite_manager.c.o)
   02246448 00000000 .rodata .rodata	(src_applications_frontier_battle_factory_sprite_manager.c.o)
   02246448 00000010 .rodata @12856	(src_applications_frontier_battle_factory_sprite_manager.c.o)
@@ -135097,16 +135097,16 @@
   02249E0C 00000006 .rodata sHealingCosts	(src_applications_frontier_battle_castle_self_app.c.o)
   02249E12 00000006 .rodata sBerriesAvailableByRank	(src_applications_frontier_battle_castle_self_app.c.o)
   02249E18 0000000A .rodata sMonMenuDescriptions	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249E24 00000010 .rodata @19524	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249E24 00000010 .rodata @19547	(src_applications_frontier_battle_castle_self_app.c.o)
   02249E34 00000012 .rodata sRankUpMessages	(src_applications_frontier_battle_castle_self_app.c.o)
   02249E46 00000012 .rodata sRankUpCosts	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249E58 0000001C .rodata @19532	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249E74 0000001C .rodata @19530	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249E90 0000001C .rodata @19534	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249EAC 0000001C .rodata @19526	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249EC8 0000001C .rodata @19528	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249E58 0000001C .rodata @19555	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249E74 0000001C .rodata @19553	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249E90 0000001C .rodata @19557	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249EAC 0000001C .rodata @19549	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249EC8 0000001C .rodata @19551	(src_applications_frontier_battle_castle_self_app.c.o)
   02249EE4 00000020 .rodata sDefaultListTemplate	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249F04 00000028 .rodata @19518	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249F04 00000028 .rodata @19541	(src_applications_frontier_battle_castle_self_app.c.o)
   02249F2C 00000028 .rodata sMonMenuEntries	(src_applications_frontier_battle_castle_self_app.c.o)
   02249F54 00000030 .rodata sRentalMenuEntries	(src_applications_frontier_battle_castle_self_app.c.o)
   02249F84 00000036 .rodata sItemsForRent	(src_applications_frontier_battle_castle_self_app.c.o)
@@ -135116,18 +135116,18 @@
   0224A06C 00000040 .rodata sBerryPrices	(src_applications_frontier_battle_castle_self_app.c.o)
   0224A0AC 00000000 .rodata .rodata	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A0AC 00000010 .rodata sSummaryMenuDescriptions	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A0BC 00000010 .rodata @19408	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A0BC 00000010 .rodata @19431	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A0CC 00000010 .rodata sMonMenuDescriptions	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A0DC 00000012 .rodata sRankUpMessages	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A0F0 0000001C .rodata @19410	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A10C 0000001C .rodata @19418	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A128 0000001C .rodata @19412	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A144 0000001C .rodata @19414	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A160 0000001C .rodata @19416	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A0F0 0000001C .rodata @19433	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A10C 0000001C .rodata @19441	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A128 0000001C .rodata @19435	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A144 0000001C .rodata @19437	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A160 0000001C .rodata @19439	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A17C 00000020 .rodata sDefaultListMenuTemplate	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A19C 00000020 .rodata sSummaryMenuEntries	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A1BC 00000020 .rodata sMonMenuEntries	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A1DC 00000028 .rodata @19402	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A1DC 00000028 .rodata @19425	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A204 00000004 .rodata sCapacities	(src_applications_frontier_battle_castle_sprite_manager.c.o)
   0224A208 00000000 .rodata .rodata	(src_applications_frontier_battle_castle_sprite_manager.c.o)
   0224A208 00000010 .rodata @15547	(src_applications_frontier_battle_castle_sprite_manager.c.o)
@@ -135303,13 +135303,13 @@
   02243680 00000007 .rodata sEffectAvailabilityByBattle	(src_applications_frontier_battle_arcade_main.c.o)
   02243687 00000008 .rodata sStopButtonHitBox	(src_applications_frontier_battle_arcade_main.c.o)
   0224368F 00000010 .rodata sCursorMoveFrames	(src_applications_frontier_battle_arcade_main.c.o)
-  022436A0 00000010 .rodata @18952	(src_applications_frontier_battle_arcade_main.c.o)
+  022436A0 00000010 .rodata @18975	(src_applications_frontier_battle_arcade_main.c.o)
   022436B0 00000014 .rodata sCategoryWeights	(src_applications_frontier_battle_arcade_main.c.o)
-  022436C4 0000001C .rodata @18958	(src_applications_frontier_battle_arcade_main.c.o)
-  022436E0 0000001C .rodata @18954	(src_applications_frontier_battle_arcade_main.c.o)
-  022436FC 0000001C .rodata @18956	(src_applications_frontier_battle_arcade_main.c.o)
+  022436C4 0000001C .rodata @18981	(src_applications_frontier_battle_arcade_main.c.o)
+  022436E0 0000001C .rodata @18977	(src_applications_frontier_battle_arcade_main.c.o)
+  022436FC 0000001C .rodata @18979	(src_applications_frontier_battle_arcade_main.c.o)
   02243718 00000020 .rodata sEffectAvailabilityByRound	(src_applications_frontier_battle_arcade_main.c.o)
-  02243738 00000028 .rodata @18946	(src_applications_frontier_battle_arcade_main.c.o)
+  02243738 00000028 .rodata @18969	(src_applications_frontier_battle_arcade_main.c.o)
   02243760 00000004 .rodata sCapacities	(src_applications_frontier_battle_arcade_sprite_manager.c.o)
   02243764 00000000 .rodata .rodata	(src_applications_frontier_battle_arcade_sprite_manager.c.o)
   02243764 00000010 .rodata @15489	(src_applications_frontier_battle_arcade_sprite_manager.c.o)
