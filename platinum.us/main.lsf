@@ -1410,19 +1410,19 @@ Overlay cutscenes
 Overlay overlay94
 {
 	After battle_anim
-	Object main.nef.p/src_overlay094_networking.c.o
-	Object main.nef.p/src_overlay094_application.c.o
-	Object main.nef.p/src_overlay094_screens_main_menu.c.o
-	Object main.nef.p/src_overlay094_screens_listing.c.o
-	Object main.nef.p/src_overlay094_screens_search_listing.c.o
-	Object main.nef.p/src_overlay094_screens_search.c.o
-	Object main.nef.p/src_overlay094_screens_select_pokemon.c.o
-	Object main.nef.p/src_overlay094_screens_deposit.c.o
-	Object main.nef.p/src_overlay094_screens_network_handler.c.o
-	Object main.nef.p/src_overlay094_ov94_02243EF8.c.o
-	Object main.nef.p/src_overlay094_screens_pokemon_summary.c.o
-	Object main.nef.p/src_overlay094_screens_trade.c.o
-	Object main.nef.p/src_overlay094_screens_wfc_init.c.o
+	Object main.nef.p/src_gts_application_networking.c.o
+	Object main.nef.p/src_gts_application_application.c.o
+	Object main.nef.p/src_gts_application_screens_main_menu.c.o
+	Object main.nef.p/src_gts_application_screens_listing.c.o
+	Object main.nef.p/src_gts_application_screens_search_listing.c.o
+	Object main.nef.p/src_gts_application_screens_search.c.o
+	Object main.nef.p/src_gts_application_screens_select_pokemon.c.o
+	Object main.nef.p/src_gts_application_screens_deposit.c.o
+	Object main.nef.p/src_gts_application_screens_network_handler.c.o
+	Object main.nef.p/src_gts_application_avatar.c.o
+	Object main.nef.p/src_gts_application_screens_pokemon_summary.c.o
+	Object main.nef.p/src_gts_application_screens_trade.c.o
+	Object main.nef.p/src_gts_application_screens_wfc_init.c.o
 }
 
 Overlay overlay95
