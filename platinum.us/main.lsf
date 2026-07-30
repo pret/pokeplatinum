@@ -1542,7 +1542,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_frscrcmd.c.o
 	Object main.nef.p/src_overlay104_ov104_02231F74.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_factory.c.o
-	Object main.nef.p/src_overlay104_ov104_022339B4.c.o
+	Object main.nef.p/src_overlay104_battle_factory.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_hall.c.o
 	Object main.nef.p/src_overlay104_battle_hall.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_castle.c.o
@@ -1555,7 +1555,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_022395F0.c.o
 	Object main.nef.p/src_overlay104_ov104_02239C58.c.o
 	Object main.nef.p/src_overlay104_ov104_0223A0C4.c.o
-	Object main.nef.p/src_overlay104_ov104_0223A7F4.c.o
+	Object main.nef.p/src_overlay104_battle_factory_helpers.c.o
 	Object main.nef.p/src_overlay104_battle_hall_helpers.c.o
 	Object main.nef.p/src_overlay104_battle_castle_helpers.c.o
 	Object main.nef.p/src_overlay104_battle_arcade_helpers.c.o

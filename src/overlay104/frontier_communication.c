@@ -6,9 +6,8 @@
 #include "overlay104/battle_arcade.h"
 #include "overlay104/battle_arcade_helpers.h"
 #include "overlay104/battle_castle_helpers.h"
+#include "overlay104/battle_factory_helpers.h"
 #include "overlay104/battle_hall.h"
-#include "overlay104/ov104_0223A7F4.h"
-#include "overlay104/struct_battle_factory.h"
 
 #include "battle_arcade_save.h"
 #include "battle_castle_save.h"
@@ -251,9 +250,9 @@ BOOL ov104_0222EEF8(BattleFactory *battleFactory)
     dummy1 = 0;
     dummy2 = SaveData_GetTrainerInfo(battleFactory->saveData);
 
-    data[1] = battleFactory->unk_08;
+    data[1] = battleFactory->tradeCount;
     data[2] = battleFactory->currentStreak;
-    data[3] = battleFactory->unk_0E;
+    data[3] = battleFactory->currentRound;
 
     dummy1 += 4;
     dummy1 += (7 + 1);
@@ -340,20 +339,20 @@ BOOL ov104_0222EFCC(BattleFactory *battleFactory)
     offset = 0;
 
     for (i = 0; i < 6; i++) {
-        data[i] = battleFactory->unk_584[i];
+        data[i] = battleFactory->partnerRentalSetIDs[i];
     }
 
     offset += 6;
 
     for (i = 0; i < 6; i++) {
-        data[i + offset] = battleFactory->unk_590[i];
+        data[i + offset] = battleFactory->partnerRentalIVs[i];
     }
 
     offset += 6;
 
     for (i = 0; i < 6; i++) {
-        data[i + offset] = (battleFactory->unk_598[i] & 0xFFFF);
-        data[i + offset + 6] = ((battleFactory->unk_598[i] >> 16) & 0xFFFF);
+        data[i + offset] = (battleFactory->partnerRentalPersonalities[i] & 0xFFFF);
+        data[i + offset + 6] = ((battleFactory->partnerRentalPersonalities[i] >> 16) & 0xFFFF);
     }
 
     offset += (6 * 2);
@@ -382,20 +381,20 @@ void ov104_0222F03C(int netID, int unused1, void *param2, void *battleFactory)
     }
 
     for (i = 0; i < 6; i++) {
-        battleFactory_dupe->unk_254[i] = param2_dupe[i];
+        battleFactory_dupe->initialRentalSetIDs[i] = param2_dupe[i];
     }
 
     offset += 6;
 
     for (i = 0; i < 6; i++) {
-        battleFactory_dupe->unk_260[i] = param2_dupe[i + offset];
+        battleFactory_dupe->initialRentalIVs[i] = param2_dupe[i + offset];
     }
 
     offset += 6;
 
     for (i = 0; i < 6; i++) {
-        battleFactory_dupe->unk_268[i] = param2_dupe[i + offset];
-        battleFactory_dupe->unk_268[i] |= (param2_dupe[i + offset + 6] << 16);
+        battleFactory_dupe->initialRentalPersonalities[i] = param2_dupe[i + offset];
+        battleFactory_dupe->initialRentalPersonalities[i] |= (param2_dupe[i + offset + 6] << 16);
     }
 
     offset += (6 * 2);
@@ -410,20 +409,20 @@ BOOL ov104_0222F0B4(BattleFactory *battleFactory)
     offset = 0;
 
     for (i = 0; i < 4; i++) {
-        data[i] = battleFactory->unk_3D2[i];
+        data[i] = battleFactory->opponentMonSetIDs[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        data[i + offset] = battleFactory->unk_3DA[i];
+        data[i + offset] = battleFactory->opponentMonIVs[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        data[i + offset] = (battleFactory->unk_3E0[i] & 0xFFFF);
-        data[i + offset + 4] = ((battleFactory->unk_3E0[i] >> 16) & 0xFFFF);
+        data[i + offset] = (battleFactory->opponentMonPersonalities[i] & 0xFFFF);
+        data[i + offset + 4] = ((battleFactory->opponentMonPersonalities[i] >> 16) & 0xFFFF);
     }
 
     offset += (4 * 2);
@@ -451,20 +450,20 @@ void ov104_0222F124(int netID, int unused, void *param2, void *battleFactory)
     }
 
     for (i = 0; i < 4; i++) {
-        battleFactory_dupe->unk_3D2[i] = param2_dupe[i];
+        battleFactory_dupe->opponentMonSetIDs[i] = param2_dupe[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        battleFactory_dupe->unk_3DA[i] = param2_dupe[i + offset];
+        battleFactory_dupe->opponentMonIVs[i] = param2_dupe[i + offset];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        battleFactory_dupe->unk_3E0[i] = param2_dupe[i + offset];
-        battleFactory_dupe->unk_3E0[i] |= (param2_dupe[i + offset + 4] << 16);
+        battleFactory_dupe->opponentMonPersonalities[i] = param2_dupe[i + offset];
+        battleFactory_dupe->opponentMonPersonalities[i] |= (param2_dupe[i + offset + 4] << 16);
     }
 
     offset += (4 * 2);
@@ -554,7 +553,7 @@ BOOL ov104_0222F238(BattleFactory *battleFactory)
     }
 
     for (i = 0; i < partySize; i++) {
-        data[i] = battleFactory->unk_4E8[i];
+        data[i] = battleFactory->playerMonSetIDs[i];
     }
 
     offset += partySize;
@@ -601,20 +600,20 @@ void ov104_0222F31C(int netID, int unused1, void *param2, void *battleFactory)
     partySize = BattleFactory_GetPlayerPartySize(battleFactory_dupe->challengeType);
 
     for (i = 0; i < partySize; i++) {
-        battleFactory_dupe->unk_584[i] = param2_dupe[i];
+        battleFactory_dupe->partnerRentalSetIDs[i] = param2_dupe[i];
     }
 
     offset += partySize;
 
     for (i = 0; i < partySize; i++) {
-        battleFactory_dupe->unk_590[i] = param2_dupe[i + offset];
+        battleFactory_dupe->partnerRentalIVs[i] = param2_dupe[i + offset];
     }
 
     offset += partySize;
 
     for (i = 0; i < partySize; i++) {
-        battleFactory_dupe->unk_598[i] = param2_dupe[i + offset];
-        battleFactory_dupe->unk_598[i] |= (param2_dupe[i + offset + partySize] << 16);
+        battleFactory_dupe->partnerRentalPersonalities[i] = param2_dupe[i + offset];
+        battleFactory_dupe->partnerRentalPersonalities[i] |= (param2_dupe[i + offset + partySize] << 16);
     }
 
     offset += (partySize * 2);

@@ -518,20 +518,20 @@
     .short \seqID
     .endm
 
-    .macro FrontierScrCmd_5C arg0, arg1, arg2
-    .short FRSCRCMD_5C
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro InitBattleFactory resumingFromSave, challengeType, isOpenLevel
+    .short FRSCRCMD_INITBATTLEFACTORY
+    .short \resumingFromSave
+    .short \challengeType
+    .short \isOpenLevel
     .endm
 
-    .macro FrontierScrCmd_5D arg0
-    .short FRSCRCMD_5D
-    .short \arg0
+    .macro BattleFactory_LoadTrainersForRound resumingFromSave
+    .short FRSCRCMD_BATTLEFACTORY_LOADTRAINERSFORROUND
+    .short \resumingFromSave
     .endm
 
-    .macro FrontierScrCmd_5E
-    .short FRSCRCMD_5E
+    .macro FreeBattleFactory
+    .short FRSCRCMD_FREEBATTLEFACTORY
     .endm
 
     .macro OpenBattleFactoryAppInitial
@@ -550,20 +550,20 @@
     .short FRSCRCMD_OPENBATTLEFACTORYAPPFORTRADE
     .endm
 
-    .macro FrontierScrCmd_63
-    .short FRSCRCMD_63
+    .macro AddSelectedRentalsToParty
+    .short FRSCRCMD_ADDSELECTEDRENTALSTOPARTY
     .endm
 
-    .macro FrontierScrCmd_64
-    .short FRSCRCMD_64
+    .macro BattleFactory_SetupNextOpponent
+    .short FRSCRCMD_BATTLEFACTORY_SETUPNEXTOPPONENT
     .endm
 
-    .macro FrontierScrCmd_65
-    .short FRSCRCMD_65
+    .macro BattleFactory_ApplyTrade
+    .short FRSCRCMD_BATTLEFACTORY_APPLYTRADE
     .endm
 
-    .macro FrontierScrCmd_66
-    .short FRSCRCMD_66
+    .macro BattleFactory_SetupNextOpponentsParty
+    .short FRSCRCMD_BATTLEFACTORY_SETUPNEXTOPPONENTSPARTY
     .endm
 
     .macro CallBattleFactoryFunction command, arg1, arg2, destVar
@@ -579,21 +579,21 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_69 arg0, arg1, arg2
-    .short FRSCRCMD_69
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro BattleFactory_SendCommMessage command, arg, success
+    .short FRSCRCMD_BATTLEFACTORY_SENDCOMMMESSAGE
+    .short \command
+    .short \arg
+    .short \success
     .endm
 
-    .macro FrontierScrCmd_6A arg0
-    .short FRSCRCMD_6A
-    .short \arg0
+    .macro BattleFactory_WaitForCommResponses unused
+    .short FRSCRCMD_BATTLEFACTORY_WAITFORCOMMRESPONSES
+    .short \unused
     .endm
 
-    .macro FrontierScrCmd_6B arg0
-    .short FRSCRCMD_6B
-    .byte \arg0
+    .macro BattleFactory_PrintTrainerIntro index
+    .short FRSCRCMD_BATTLEFACTORY_PRINTTRAINERINTRO
+    .byte \index
     .endm
 
     .macro InitNewBattleRecording
