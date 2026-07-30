@@ -56,6 +56,10 @@
 #define LIST_MENU_MAX_DISPLAY       8
 #define CURSOR_MARGIN_SIZE          12
 
+#define MON_SPRITE_BASE_RESOURCE_ID       2000
+#define ITEM_SPRITE_BASE_RESOURCE_ID      2009
+#define ITEM_SPRITE_SECONDARY_RESOURCE_ID 2001
+
 typedef struct {
     u16 unk_00;
     u16 unk_02;
@@ -832,116 +836,116 @@ void ov104_02232E80(FrontierGraphics *param0, int param1)
     SpriteManager_UnloadAnimObjById(param0->spriteMan, param1);
 }
 
-static const SpriteTemplate Unk_ov104_0223F9E0 = {
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x64,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    { 0x7D0, 0x7D0, 0x7D0, 0x7D0, 0xffffffff, 0xffffffff },
-    0x1,
-    0x0
+static const SpriteTemplate sMonSpriteTemplate = {
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 100,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = { MON_SPRITE_BASE_RESOURCE_ID, MON_SPRITE_BASE_RESOURCE_ID, MON_SPRITE_BASE_RESOURCE_ID, MON_SPRITE_BASE_RESOURCE_ID, -1, -1 },
+    .bgPriority = 1,
+    .vramTransfer = FALSE,
 };
 
-static const SpriteTemplate Unk_ov104_0223F9AC = {
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x63,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    { 0x7D9, 0x7D1, 0x7D1, 0x7D1, 0xffffffff, 0xffffffff },
-    0x1,
-    0x0
+static const SpriteTemplate sItemSpriteTemplate = {
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 99,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = { ITEM_SPRITE_BASE_RESOURCE_ID, ITEM_SPRITE_SECONDARY_RESOURCE_ID, ITEM_SPRITE_SECONDARY_RESOURCE_ID, ITEM_SPRITE_SECONDARY_RESOURCE_ID, -1, -1 },
+    .bgPriority = 1,
+    .vramTransfer = FALSE,
 };
 
-void ov104_02232EC0(FrontierGraphics *param0)
+void BattleFrontier_LoadMonSpriteData(FrontierGraphics *graphics)
 {
-    SpriteSystem_LoadPaletteBuffer(param0->plttData, PLTTBUF_MAIN_OBJ, param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 2000);
-    SpriteSystem_LoadCellResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KCellsFileIndex(), FALSE, 2000);
-    SpriteSystem_LoadAnimResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KAnimationFileIndex(), FALSE, 2000);
+    SpriteSystem_LoadPaletteBuffer(graphics->plttData, PLTTBUF_MAIN_OBJ, graphics->spriteSystem, graphics->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, MON_SPRITE_BASE_RESOURCE_ID);
+    SpriteSystem_LoadCellResObj(graphics->spriteSystem, graphics->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KCellsFileIndex(), FALSE, MON_SPRITE_BASE_RESOURCE_ID);
+    SpriteSystem_LoadAnimResObj(graphics->spriteSystem, graphics->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KAnimationFileIndex(), FALSE, MON_SPRITE_BASE_RESOURCE_ID);
 }
 
-void ov104_02232F28(FrontierGraphics *param0)
+void BattleFrontier_UnloadMonSpriteData(FrontierGraphics *graphics)
 {
-    SpriteManager_UnloadCellObjById(param0->spriteMan, 2000);
-    SpriteManager_UnloadAnimObjById(param0->spriteMan, 2000);
-    SpriteManager_UnloadPlttObjById(param0->spriteMan, 2000);
+    SpriteManager_UnloadCellObjById(graphics->spriteMan, MON_SPRITE_BASE_RESOURCE_ID);
+    SpriteManager_UnloadAnimObjById(graphics->spriteMan, MON_SPRITE_BASE_RESOURCE_ID);
+    SpriteManager_UnloadPlttObjById(graphics->spriteMan, MON_SPRITE_BASE_RESOURCE_ID);
 }
 
-ManagedSprite *ov104_02232F4C(FrontierGraphics *param0, Pokemon *param1, int param2, int param3, int param4)
+ManagedSprite *BattleFrontier_CreateMonSprite(FrontierGraphics *graphics, Pokemon *mon, int resourceID, int x, int y)
 {
-    ManagedSprite *v0;
-    SpriteTemplate v1;
+    ManagedSprite *sprite;
+    SpriteTemplate template;
 
-    GF_ASSERT(param2 < (2008 - 2000));
+    GF_ASSERT(resourceID < ITEM_SPRITE_BASE_RESOURCE_ID - 1 - MON_SPRITE_BASE_RESOURCE_ID);
 
     SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(
-        param0->spriteSystem, param0->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param1), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2000 + param2);
+        graphics->spriteSystem, graphics->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(mon), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, MON_SPRITE_BASE_RESOURCE_ID + resourceID);
 
-    v1 = Unk_ov104_0223F9E0;
+    template = sMonSpriteTemplate;
 
-    v1.resources[0] += param2;
-    v1.x = param3;
-    v1.y = param4;
-    v1.priority = 200;
+    template.resources[0] += resourceID;
+    template.x = x;
+    template.y = y;
+    template.priority = 200;
 
-    v0 = SpriteSystem_NewSprite(param0->spriteSystem, param0->spriteMan, &v1);
+    sprite = SpriteSystem_NewSprite(graphics->spriteSystem, graphics->spriteMan, &template);
 
-    Sprite_SetExplicitPaletteOffsetAutoAdjust(v0->sprite, Pokemon_IconPaletteIndex(param1));
-    ManagedSprite_TickFrame(v0);
+    Sprite_SetExplicitPaletteOffsetAutoAdjust(sprite->sprite, Pokemon_IconPaletteIndex(mon));
+    ManagedSprite_TickFrame(sprite);
 
-    return v0;
+    return sprite;
 }
 
-void ov104_02232FD4(FrontierGraphics *param0, ManagedSprite *param1, int param2)
+void BattleFrontier_DeleteMonSprite(FrontierGraphics *graphics, ManagedSprite *sprite, int resourceID)
 {
-    SpriteManager_UnloadCharObjById(param0->spriteMan, 2000 + param2);
-    Sprite_DeleteAndFreeResources(param1);
+    SpriteManager_UnloadCharObjById(graphics->spriteMan, MON_SPRITE_BASE_RESOURCE_ID + resourceID);
+    Sprite_DeleteAndFreeResources(sprite);
 }
 
-void ov104_02232FEC(FrontierGraphics *param0)
+void BattleFrontier_LoadItemSpriteData(FrontierGraphics *graphics)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_94);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_94);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->plttData, PLTTBUF_MAIN_OBJ, param0->spriteSystem, param0->spriteMan, v0, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, v0, sub_02081938(), FALSE, 2001);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, v0, sub_0208193C(), FALSE, 2001);
-    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->spriteSystem, param0->spriteMan, 20, sub_02081930(), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2009);
-    NARC_dtor(v0);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(graphics->plttData, PLTTBUF_MAIN_OBJ, graphics->spriteSystem, graphics->spriteMan, narc, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, ITEM_SPRITE_SECONDARY_RESOURCE_ID);
+    SpriteSystem_LoadCellResObjFromOpenNarc(graphics->spriteSystem, graphics->spriteMan, narc, sub_02081938(), FALSE, ITEM_SPRITE_SECONDARY_RESOURCE_ID);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(graphics->spriteSystem, graphics->spriteMan, narc, sub_0208193C(), FALSE, ITEM_SPRITE_SECONDARY_RESOURCE_ID);
+    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(graphics->spriteSystem, graphics->spriteMan, NARC_INDEX_GRAPHIC__PL_PLIST_GRA, sub_02081930(), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, ITEM_SPRITE_BASE_RESOURCE_ID);
+    NARC_dtor(narc);
 }
 
-void ov104_0223307C(FrontierGraphics *param0)
+void BattleFrontier_UnloadItemSpriteData(FrontierGraphics *graphics)
 {
-    SpriteManager_UnloadCharObjById(param0->spriteMan, 2009);
-    SpriteManager_UnloadCellObjById(param0->spriteMan, 2001);
-    SpriteManager_UnloadAnimObjById(param0->spriteMan, 2001);
-    SpriteManager_UnloadPlttObjById(param0->spriteMan, 2001);
+    SpriteManager_UnloadCharObjById(graphics->spriteMan, ITEM_SPRITE_BASE_RESOURCE_ID);
+    SpriteManager_UnloadCellObjById(graphics->spriteMan, ITEM_SPRITE_SECONDARY_RESOURCE_ID);
+    SpriteManager_UnloadAnimObjById(graphics->spriteMan, ITEM_SPRITE_SECONDARY_RESOURCE_ID);
+    SpriteManager_UnloadPlttObjById(graphics->spriteMan, ITEM_SPRITE_SECONDARY_RESOURCE_ID);
 }
 
-ManagedSprite *ov104_022330AC(FrontierGraphics *param0, int param1, int param2)
+ManagedSprite *BattleFrontier_CreateItemSprite(FrontierGraphics *graphics, int x, int y)
 {
-    ManagedSprite *v0;
-    SpriteTemplate v1;
+    ManagedSprite *sprite;
+    SpriteTemplate template;
 
-    v1 = Unk_ov104_0223F9AC;
+    template = sItemSpriteTemplate;
 
-    v1.x = param1;
-    v1.y = param2;
-    v1.priority = 300;
+    template.x = x;
+    template.y = y;
+    template.priority = 300;
 
-    v0 = SpriteSystem_NewSprite(param0->spriteSystem, param0->spriteMan, &v1);
-    ManagedSprite_TickFrame(v0);
+    sprite = SpriteSystem_NewSprite(graphics->spriteSystem, graphics->spriteMan, &template);
+    ManagedSprite_TickFrame(sprite);
 
-    return v0;
+    return sprite;
 }
 
-void ov104_022330F0(FrontierGraphics *param0, ManagedSprite *param1)
+void BattleFrontier_DeleteItemSprite(FrontierGraphics *graphics, ManagedSprite *sprite)
 {
-    Sprite_DeleteAndFreeResources(param1);
+    Sprite_DeleteAndFreeResources(sprite);
 }
 
 void BattleFrontier_PrintNormalTrainerMessage(FrontierScriptContext *ctx, u16 *args)

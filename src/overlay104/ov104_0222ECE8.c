@@ -3,15 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020305B8_decl.h"
-
+#include "overlay104/battle_arcade.h"
+#include "overlay104/battle_arcade_helpers.h"
 #include "overlay104/battle_castle_helpers.h"
 #include "overlay104/battle_hall.h"
 #include "overlay104/ov104_0223A7F4.h"
-#include "overlay104/ov104_0223BCBC.h"
-#include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_battle_factory.h"
 
+#include "battle_arcade_save.h"
 #include "battle_castle_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
@@ -21,7 +20,6 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "trainer_info.h"
-#include "unk_02030494.h"
 
 BOOL ov104_0222EEF8(BattleFactory *param0);
 void ov104_0222EF30(int param0, int param1, void *param2, void *param3);
@@ -1113,12 +1111,12 @@ u8 *ov104_0222F84C(int param0, void *param1, int param2)
 BOOL ov104_0222F86C(BattleArcade *param0)
 {
     int v0, v1, v2, v3;
-    UnkStruct_020305B8 *v4 = sub_020305B8(param0->saveData);
+    BattleArcadeStreakFlags *v4 = BattleArcadeStreakFlags_Get(param0->saveData);
     v3 = 40;
     v1 = 0;
 
     param0->unk_424[1] = param0->currentStreak;
-    param0->unk_424[2] = param0->unk_1A;
+    param0->unk_424[2] = param0->currentRound;
 
     v1 += 3;
 
@@ -1138,7 +1136,7 @@ void ov104_0222F8A0(int param0, int param1, void *param2, void *param3)
     const u16 *v3 = param2;
 
     v1 = 0;
-    v2->unk_A7C++;
+    v2->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1181,7 +1179,7 @@ void ov104_0222F908(int param0, int param1, void *param2, void *param3)
     const u16 *v3 = param2;
 
     v1 = 0;
-    v2->unk_A7C++;
+    v2->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1208,20 +1206,20 @@ BOOL ov104_0222F944(BattleArcade *param0)
     v3 = 40;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_424[v0] = param0->unk_314[v0];
+        param0->unk_424[v0] = param0->monSetIDs[v0];
     }
 
     v1 += 4;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_424[v0 + v1] = param0->unk_31C[v0];
+        param0->unk_424[v0 + v1] = param0->opponentMonIVs[v0];
     }
 
     v1 += 4;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_424[v0 + v1] = (param0->unk_320[v0] & 0xffff);
-        param0->unk_424[v0 + v1 + 4] = ((param0->unk_320[v0] >> 16) & 0xffff);
+        param0->unk_424[v0 + v1] = (param0->opponentMonPersonalities[v0] & 0xffff);
+        param0->unk_424[v0 + v1 + 4] = ((param0->opponentMonPersonalities[v0] >> 16) & 0xffff);
     }
 
     v1 += (4 * 2);
@@ -1242,7 +1240,7 @@ void ov104_0222F9C0(int param0, int param1, void *param2, void *param3)
     const u16 *v3 = param2;
 
     v1 = 0;
-    v2->unk_A7C++;
+    v2->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1253,20 +1251,20 @@ void ov104_0222F9C0(int param0, int param1, void *param2, void *param3)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        v2->unk_314[v0] = v3[v0];
+        v2->monSetIDs[v0] = v3[v0];
     }
 
     v1 += 4;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v2->unk_31C[v0] = v3[v0 + v1];
+        v2->opponentMonIVs[v0] = v3[v0 + v1];
     }
 
     v1 += 4;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v2->unk_320[v0] = v3[v0 + v1];
-        v2->unk_320[v0] |= (v3[v0 + v1 + 4] << 16);
+        v2->opponentMonPersonalities[v0] = v3[v0 + v1];
+        v2->opponentMonPersonalities[v0] |= (v3[v0 + v1 + 4] << 16);
     }
 
     v1 += (4 * 2);
@@ -1295,7 +1293,7 @@ void ov104_0222FA5C(int param0, int param1, void *param2, void *param3)
     const u16 *v2 = param2;
 
     v0 = 0;
-    v1->unk_A7C++;
+    v1->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1326,7 +1324,7 @@ void ov104_0222FAA8(int param0, int param1, void *param2, void *param3)
     const u16 *v2 = param2;
 
     v0 = 0;
-    v1->unk_A7C++;
+    v1->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -1370,7 +1368,7 @@ void ov104_0222FB34(int param0, int param1, void *param2, void *param3)
     const u8 *v6 = param2;
 
     v2 = 0;
-    v5->unk_A7C++;
+    v5->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;

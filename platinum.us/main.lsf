@@ -146,7 +146,7 @@ Static main
 	Object main.nef.p/src_battle_factory_save.c.o
 	Object main.nef.p/src_battle_hall_save.c.o
 	Object main.nef.p/src_battle_castle_save.c.o
-	Object main.nef.p/src_unk_02030494.c.o
+	Object main.nef.p/src_battle_arcade_save.c.o
 	Object main.nef.p/src_battle_frontier_save.c.o
 	Object main.nef.p/src_battle_hall_win_records.c.o
 	Object main.nef.p/src_unk_02030A80.c.o
@@ -1548,7 +1548,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_frscrcmd_battle_castle.c.o
 	Object main.nef.p/src_overlay104_battle_castle.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_arcade.c.o
-	Object main.nef.p/src_overlay104_ov104_02237DD8.c.o
+	Object main.nef.p/src_overlay104_battle_arcade.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_sound.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_tower.c.o
 	Object main.nef.p/src_overlay104_ov104_022394A4.c.o
@@ -1558,7 +1558,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_0223A7F4.c.o
 	Object main.nef.p/src_overlay104_battle_hall_helpers.c.o
 	Object main.nef.p/src_overlay104_battle_castle_helpers.c.o
-	Object main.nef.p/src_overlay104_ov104_0223BCBC.c.o
+	Object main.nef.p/src_overlay104_battle_arcade_helpers.c.o
 	Object main.nef.p/src_overlay104_ov104_0223C164.c.o
 	Object main.nef.p/src_overlay104_frontier_graphics.c.o
 	Object main.nef.p/src_overlay104_frontier_particle_system.c.o
