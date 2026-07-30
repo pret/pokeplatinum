@@ -29742,13 +29742,13 @@
                                                  48](BattleArcadeApp_HandleUnusedCmd,func) found in global src_applications_frontier_battle_arcade_main.c.o
                                                  48](BattleArcadeApp_HandleResultCmd,func) found in global src_applications_frontier_battle_arcade_main.c.o
                                                  48](BattleArcadeApp_HandleInitialLayoutCmd,func) found in global src_applications_frontier_battle_arcade_main.c.o
-                                                 48](ov104_0222FBC4,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222FB34,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222FAA8,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222FA5C,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F9C0,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F908,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F8A0,func) found in global src_overlay104_ov104_0222ECE8.c.o
+                                                 48](ArcadeCommunication_VerifyPacketSize,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ArcadeCommunication_ReceivePartnersParty,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222FAA8,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222FA5C,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222F9C0,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ArcadeCommunication_ReceiveTrainers,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222F8A0,func) found in global src_overlay104_frontier_communication.c.o
                                                  48](sub_0209BB68,func) found in local src_unk_0209BA80.c.o
                                                  48](sub_0209BB34,func) found in local src_unk_0209BA80.c.o
                                                  48](sub_0209BA94,func) found in local src_unk_0209BA80.c.o
@@ -29772,49 +29772,49 @@
                                                    50](GetCursorSpritePos,func) found in local src_applications_frontier_battle_castle_self_app.c.o
                                                  48](BattleCastleSelfApp_HandlePurchaseInfoCmd,func) found in global src_applications_frontier_battle_castle_self_app.c.o
                                                  48](BattleCastleSelfApp_HandlePlayerInfoCmd,func) found in global src_applications_frontier_battle_castle_self_app.c.o
-                                                 48](ov104_0222F84C,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F7BC,func) found in global src_overlay104_ov104_0222ECE8.c.o
+                                                 48](CastleCommunication_VerifyPacketSize,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](CastleCommunication_ReceivePartnersParty,func) found in global src_overlay104_frontier_communication.c.o
                                                   49](BattleCastle_GetPlayerPartySize,func) found in global src_overlay104_battle_castle_helpers.c.o
-                                                 48](ov104_0222F730,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F6E8,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F650,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F530,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F480,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F418,func) found in global src_overlay104_ov104_0222ECE8.c.o
+                                                 48](FrontierCommunication_Unreachable5,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222F6E8,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222F650,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222F530,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](CastleCommunications_ReceiveTrainers,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](CastleCommunication_ReceivePartnersCP,func) found in global src_overlay104_frontier_communication.c.o
                                                  48](BattleHall_HandlePartnerDecisionCmd,func) found in global src_applications_frontier_battle_hall_main.c.o
                                                  48](BattleHall_HandleTypeSelectionMsg,func) found in global src_applications_frontier_battle_hall_main.c.o
                                                  48](BattleHall_DummyCommCommand,func) found in global src_applications_frontier_battle_hall_main.c.o
-                                                 48](ov104_0222EED8,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222EEA8,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222EE38,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222EDDC,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222ED74,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222ED2C,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222ECE8,func) found in global src_overlay104_ov104_0222ECE8.c.o
+                                                 48](HallCommunication_VerifyPacketSize,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](HallCommunication_ReceivePartnersPokemon,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222EE38,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](HallCommunication_ReceiveOpponentMons,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](HallCommunication_ReceiveTrainers,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](FrontierCommunication_Unreachable3,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](FrontierCommunication_Unreachable1,func) found in global src_overlay104_frontier_communication.c.o
                                                  48](BattleFactoryApp_HandleTradeResultCmd,func) found in global src_applications_frontier_battle_factory_main.c.o
                                                  48](BattleFactoryApp_DummyCommCommand2,func) found in global src_applications_frontier_battle_factory_main.c.o
                                                  48](BattleFactoryApp_HandleSelectionUpdateCmd,func) found in global src_applications_frontier_battle_factory_main.c.o
                                                   49](BattleFactory_GetPlayerPartySize,func) found in global src_overlay104_ov104_0223A7F4.c.o
                                                  48](BattleFactoryApp_DummyCommCommand,func) found in global src_applications_frontier_battle_factory_main.c.o
-                                                 48](ov104_0222F31C,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F210,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F1C4,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F124,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222F03C,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222EF94,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                                 48](ov104_0222EF30,func) found in global src_overlay104_ov104_0222ECE8.c.o
+                                                 48](ov104_0222F31C,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222F210,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222F1C4,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222F124,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222F03C,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](FactoryCommunication_ReceiveTrainers,func) found in global src_overlay104_frontier_communication.c.o
+                                                 48](ov104_0222EF30,func) found in global src_overlay104_frontier_communication.c.o
                                                46](.bss,section) found in local src_applications_frontier_battle_arcade_main.c.o
                                             43](FrontierScrCmd_BattleArcade_WaitForCommResponses,func) found in global src_overlay104_frscrcmd_battle_arcade.c.o
                                              44](WaitForCommResponses,func) found in local src_overlay104_frscrcmd_battle_arcade.c.o
                                             43](FrontierScrCmd_BattleArcade_SendCommMessage,func) found in global src_overlay104_frscrcmd_battle_arcade.c.o
                                              44](FrontierScriptContext_TryGetVarPointer,func) found in global src_overlay104_frscrcmd.c.o
                                              44](BattleArcade_SendCommMessage,func) found in global src_overlay104_battle_arcade.c.o
-                                              45](ov104_0222F86C,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F8D0,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F944,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222FA38,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222FA84,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222FAD0,func) found in global src_overlay104_ov104_0222ECE8.c.o
+                                              45](ov104_0222F86C,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ArcadeCommunication_SendTrainers,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222F944,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222FA38,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222FA84,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ArcadeCommunication_SendPlayersParty,func) found in global src_overlay104_frontier_communication.c.o
                                             43](FrontierScrCmd_BattleArcade_CheckWonBattle,func) found in global src_overlay104_frscrcmd_battle_arcade.c.o
                                             43](FrontierScrCmd_CallBattleArcadeFunction,func) found in global src_overlay104_frscrcmd_battle_arcade.c.o
                                              44](BattleArcadeSave_HasSaved,func) found in global src_battle_arcade_save.c.o
@@ -30229,13 +30229,13 @@
                                              44](WaitForCommResponses,func) found in local src_overlay104_frscrcmd_battle_castle.c.o
                                             43](FrontierScrCmd_BattleCastle_SendCommMessage,func) found in global src_overlay104_frscrcmd_battle_castle.c.o
                                              44](BattleCastle_SendCommMessage,func) found in global src_overlay104_battle_castle.c.o
-                                              45](ov104_0222F3B8,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F44C,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F4B8,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F5D4,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F6C8,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F710,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F758,func) found in global src_overlay104_ov104_0222ECE8.c.o
+                                              45](CastleCommunication_SendPlayersCP,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](CastleCommunication_SendTrainers,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222F4B8,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](CastleCommunication_SendOpponentMons,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222F6C8,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](FrontierCommunication_Unreachable4,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](CastleCommunication_SendPlayersParty,func) found in global src_overlay104_frontier_communication.c.o
                                             43](FrontierScrCmd_BattleCastle_CheckWonBattle,func) found in global src_overlay104_frscrcmd_battle_castle.c.o
                                             43](FrontierScrCmd_CallBattleCastleFunction,func) found in global src_overlay104_frscrcmd_battle_castle.c.o
                                              44](BattleCastleSave_HasSaved,func) found in global src_battle_castle_save.c.o
@@ -30293,11 +30293,11 @@
                                              44](ov104_02234CEC,func) found in local src_overlay104_frscrcmd_battle_hall.c.o
                                             43](FrontierScrCmd_BattleHall_SendCommMessage,func) found in global src_overlay104_frscrcmd_battle_hall.c.o
                                              44](BattleHall_SendCommMessage,func) found in global src_overlay104_battle_hall.c.o
-                                              45](ov104_0222ED00,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222ED44,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222EDA8,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222EE14,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222EE60,func) found in global src_overlay104_ov104_0222ECE8.c.o
+                                              45](FrontierCommunication_Unreachable2,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](HallCommunication_SendTrainers,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](HallCommunication_SendOpponentMons,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222EE14,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](HallCommunication_SendPlayersPokemon,func) found in global src_overlay104_frontier_communication.c.o
                                             43](FrontierScrCmd_BattleHall_CheckWonBattle,func) found in global src_overlay104_frscrcmd_battle_hall.c.o
                                             43](FrontierScrCmd_CallBattleHallFunction,func) found in global src_overlay104_frscrcmd_battle_hall.c.o
                                              44](BattleHallSave_HasSaved,func) found in global src_battle_hall_save.c.o
@@ -30529,13 +30529,13 @@
                                              44](ov104_0223394C,func) found in local src_overlay104_frscrcmd_battle_factory.c.o
                                             43](FrontierScrCmd_69,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
                                              44](ov104_022347A4,func) found in global src_overlay104_ov104_022339B4.c.o
-                                              45](ov104_0222EEF8,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222EF64,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222EFCC,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F0B4,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F1A0,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F1EC,func) found in global src_overlay104_ov104_0222ECE8.c.o
-                                              45](ov104_0222F238,func) found in global src_overlay104_ov104_0222ECE8.c.o
+                                              45](ov104_0222EEF8,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](FactoryCommunication_SendTrainers,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222EFCC,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222F0B4,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222F1A0,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222F1EC,func) found in global src_overlay104_frontier_communication.c.o
+                                              45](ov104_0222F238,func) found in global src_overlay104_frontier_communication.c.o
                                             43](FrontierScrCmd_BattleFactory_CheckWonBattle,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
                                             43](FrontierScrCmd_CallBattleFactoryFunction,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
                                              44](BattleFactorySave_HasSaved,func) found in global src_battle_factory_save.c.o
@@ -31750,7 +31750,7 @@
                                            42](TVCommercial_IsEligible_PokedexObtained,func) found in local src_overlay006_tv_commercials.c.o
                                            42](TVCommercial_IsEligible_LocalDexCompleted,func) found in local src_overlay006_tv_commercials.c.o
                                             43](Pokedex_LocalDexCompleted,func) found in global src_pokedex.c.o
-                                             44](Pokedex_NumCaught_Local,func) found in global src_pokedex.c.o
+                                             44](Pokedex_NumSeen_Local,func) found in global src_pokedex.c.o
                                               45](CountsForDexCompletion_Local,func) found in local src_pokedex.c.o
                                            42](TVCommercial_IsEligible_HasFiveBadges,func) found in local src_overlay006_tv_commercials.c.o
                                            42](TVCommercial_IsEligible_ArrivedAtFightArea,func) found in local src_overlay006_tv_commercials.c.o
@@ -44744,7 +44744,7 @@
   02026F20 00000038 .text   Pokedex_NumCaught_National	(src_pokedex.c.o)
   02026F54 00000000 .text   $d	(src_pokedex.c.o)
   02026F58 00000000 .text   $t	(src_pokedex.c.o)
-  02026F58 00000044 .text   Pokedex_NumCaught_Local	(src_pokedex.c.o)
+  02026F58 00000044 .text   Pokedex_NumSeen_Local	(src_pokedex.c.o)
   02026F98 00000000 .text   $d	(src_pokedex.c.o)
   02026F9C 00000000 .text   $t	(src_pokedex.c.o)
   02026F9C 0000004C .text   Pokedex_HasCaughtSpecies	(src_pokedex.c.o)
@@ -132089,158 +132089,158 @@
   0222ECE0 00000000 .text   $d	(src_overlay104_frontier_scenes.c.o)
   0222ECE4 00000002 .text   BattleCastleBattleRoomSceneDestroy	(src_overlay104_frontier_scenes.c.o)
   0222ECE4 00000000 .text   $t	(src_overlay104_frontier_scenes.c.o)
-  0222ECE8 00000016 .text   ov104_0222ECE8	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ECE8 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ED00 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ED00 0000002C .text   ov104_0222ED00	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ED24 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ED2C 00000016 .text   ov104_0222ED2C	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ED2C 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ED44 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ED44 00000030 .text   ov104_0222ED44	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ED70 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ED74 00000034 .text   ov104_0222ED74	(src_overlay104_ov104_0222ECE8.c.o)
-  0222ED74 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EDA8 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EDA8 00000034 .text   ov104_0222EDA8	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EDD8 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EDDC 00000038 .text   ov104_0222EDDC	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EDDC 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EE14 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EE14 00000024 .text   ov104_0222EE14	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EE34 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EE38 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EE38 00000028 .text   ov104_0222EE38	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EE5C 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EE60 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EE60 00000048 .text   ov104_0222EE60	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EEA0 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EEA8 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EEA8 00000030 .text   ov104_0222EEA8	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EED4 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EED8 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EED8 00000020 .text   ov104_0222EED8	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EEF4 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EEF8 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EEF8 00000038 .text   ov104_0222EEF8	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EF2C 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EF30 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EF30 00000034 .text   ov104_0222EF30	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EF60 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EF64 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EF64 00000030 .text   ov104_0222EF64	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EF90 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EF94 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EF94 00000038 .text   ov104_0222EF94	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EFC8 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EFCC 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222EFCC 00000070 .text   ov104_0222EFCC	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F030 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F03C 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F03C 00000078 .text   ov104_0222F03C	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F0B0 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F0B4 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F0B4 00000070 .text   ov104_0222F0B4	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F118 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F124 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F124 0000007C .text   ov104_0222F124	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F194 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F1A0 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F1A0 00000024 .text   ov104_0222F1A0	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F1C0 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F1C4 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F1C4 00000028 .text   ov104_0222F1C4	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F1E4 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F1EC 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F1EC 00000024 .text   ov104_0222F1EC	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F20C 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F210 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F210 00000028 .text   ov104_0222F210	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F230 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F238 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F238 000000E4 .text   ov104_0222F238	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F310 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F31C 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F31C 0000009C .text   ov104_0222F31C	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F3AC 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F3B8 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F3B8 00000060 .text   ov104_0222F3B8	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F410 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F418 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F418 00000034 .text   ov104_0222F418	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F444 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F44C 00000032 .text   ov104_0222F44C	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F44C 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F480 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F480 00000038 .text   ov104_0222F480	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F4B4 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F4B8 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F4B8 00000078 .text   ov104_0222F4B8	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F524 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F530 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F530 000000A4 .text   ov104_0222F530	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F5C4 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F5D4 0000007C .text   ov104_0222F5D4	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F5D4 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F650 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F650 00000078 .text   ov104_0222F650	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F6C4 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F6C8 00000020 .text   ov104_0222F6C8	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F6C8 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F6E8 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F6E8 00000028 .text   ov104_0222F6E8	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F70C 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F710 00000020 .text   ov104_0222F710	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F710 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F730 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F730 00000028 .text   ov104_0222F730	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F750 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F758 00000064 .text   ov104_0222F758	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F758 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F7BC 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F7BC 00000090 .text   ov104_0222F7BC	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F848 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F84C 0000001E .text   ov104_0222F84C	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F84C 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F86C 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F86C 00000034 .text   ov104_0222F86C	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F89C 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F8A0 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F8A0 00000030 .text   ov104_0222F8A0	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F8C8 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F8D0 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F8D0 00000038 .text   ov104_0222F8D0	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F904 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F908 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F908 0000003C .text   ov104_0222F908	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F940 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F944 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F944 0000007C .text   ov104_0222F944	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F9B8 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F9C0 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222F9C0 00000078 .text   ov104_0222F9C0	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FA34 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FA38 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FA38 00000024 .text   ov104_0222FA38	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FA58 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FA5C 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FA5C 00000028 .text   ov104_0222FA5C	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FA7C 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FA84 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FA84 00000024 .text   ov104_0222FA84	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FAA4 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FAA8 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FAA8 00000028 .text   ov104_0222FAA8	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FAC8 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FAD0 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FAD0 00000064 .text   ov104_0222FAD0	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FB30 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FB34 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FB34 00000090 .text   ov104_0222FB34	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FBC0 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FBC4 00000000 .text   $t	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FBC4 00000020 .text   ov104_0222FBC4	(src_overlay104_ov104_0222ECE8.c.o)
-  0222FBE0 00000000 .text   $d	(src_overlay104_ov104_0222ECE8.c.o)
+  0222ECE8 00000016 .text   FrontierCommunication_Unreachable1	(src_overlay104_frontier_communication.c.o)
+  0222ECE8 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222ED00 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222ED00 0000002C .text   FrontierCommunication_Unreachable2	(src_overlay104_frontier_communication.c.o)
+  0222ED24 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222ED2C 00000016 .text   FrontierCommunication_Unreachable3	(src_overlay104_frontier_communication.c.o)
+  0222ED2C 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222ED44 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222ED44 00000030 .text   HallCommunication_SendTrainers	(src_overlay104_frontier_communication.c.o)
+  0222ED70 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222ED74 00000034 .text   HallCommunication_ReceiveTrainers	(src_overlay104_frontier_communication.c.o)
+  0222ED74 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EDA8 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EDA8 00000034 .text   HallCommunication_SendOpponentMons	(src_overlay104_frontier_communication.c.o)
+  0222EDD8 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222EDDC 00000038 .text   HallCommunication_ReceiveOpponentMons	(src_overlay104_frontier_communication.c.o)
+  0222EDDC 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EE14 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EE14 00000024 .text   ov104_0222EE14	(src_overlay104_frontier_communication.c.o)
+  0222EE34 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222EE38 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EE38 00000028 .text   ov104_0222EE38	(src_overlay104_frontier_communication.c.o)
+  0222EE5C 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222EE60 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EE60 00000048 .text   HallCommunication_SendPlayersPokemon	(src_overlay104_frontier_communication.c.o)
+  0222EEA0 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222EEA8 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EEA8 00000030 .text   HallCommunication_ReceivePartnersPokemon	(src_overlay104_frontier_communication.c.o)
+  0222EED4 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222EED8 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EED8 00000020 .text   HallCommunication_VerifyPacketSize	(src_overlay104_frontier_communication.c.o)
+  0222EEF4 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222EEF8 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EEF8 00000038 .text   ov104_0222EEF8	(src_overlay104_frontier_communication.c.o)
+  0222EF2C 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222EF30 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EF30 00000034 .text   ov104_0222EF30	(src_overlay104_frontier_communication.c.o)
+  0222EF60 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222EF64 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EF64 00000030 .text   FactoryCommunication_SendTrainers	(src_overlay104_frontier_communication.c.o)
+  0222EF90 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222EF94 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EF94 00000038 .text   FactoryCommunication_ReceiveTrainers	(src_overlay104_frontier_communication.c.o)
+  0222EFC8 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222EFCC 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222EFCC 00000070 .text   ov104_0222EFCC	(src_overlay104_frontier_communication.c.o)
+  0222F030 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F03C 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F03C 00000078 .text   ov104_0222F03C	(src_overlay104_frontier_communication.c.o)
+  0222F0B0 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F0B4 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F0B4 00000070 .text   ov104_0222F0B4	(src_overlay104_frontier_communication.c.o)
+  0222F118 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F124 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F124 0000007C .text   ov104_0222F124	(src_overlay104_frontier_communication.c.o)
+  0222F194 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F1A0 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F1A0 00000024 .text   ov104_0222F1A0	(src_overlay104_frontier_communication.c.o)
+  0222F1C0 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F1C4 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F1C4 00000028 .text   ov104_0222F1C4	(src_overlay104_frontier_communication.c.o)
+  0222F1E4 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F1EC 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F1EC 00000024 .text   ov104_0222F1EC	(src_overlay104_frontier_communication.c.o)
+  0222F20C 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F210 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F210 00000028 .text   ov104_0222F210	(src_overlay104_frontier_communication.c.o)
+  0222F230 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F238 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F238 000000E4 .text   ov104_0222F238	(src_overlay104_frontier_communication.c.o)
+  0222F310 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F31C 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F31C 0000009C .text   ov104_0222F31C	(src_overlay104_frontier_communication.c.o)
+  0222F3AC 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F3B8 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F3B8 00000060 .text   CastleCommunication_SendPlayersCP	(src_overlay104_frontier_communication.c.o)
+  0222F410 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F418 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F418 00000034 .text   CastleCommunication_ReceivePartnersCP	(src_overlay104_frontier_communication.c.o)
+  0222F444 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F44C 00000032 .text   CastleCommunication_SendTrainers	(src_overlay104_frontier_communication.c.o)
+  0222F44C 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F480 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F480 00000038 .text   CastleCommunications_ReceiveTrainers	(src_overlay104_frontier_communication.c.o)
+  0222F4B4 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F4B8 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F4B8 00000078 .text   ov104_0222F4B8	(src_overlay104_frontier_communication.c.o)
+  0222F524 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F530 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F530 000000A4 .text   ov104_0222F530	(src_overlay104_frontier_communication.c.o)
+  0222F5C4 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F5D4 0000007C .text   CastleCommunication_SendOpponentMons	(src_overlay104_frontier_communication.c.o)
+  0222F5D4 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F650 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F650 00000078 .text   ov104_0222F650	(src_overlay104_frontier_communication.c.o)
+  0222F6C4 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F6C8 00000020 .text   ov104_0222F6C8	(src_overlay104_frontier_communication.c.o)
+  0222F6C8 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F6E8 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F6E8 00000028 .text   ov104_0222F6E8	(src_overlay104_frontier_communication.c.o)
+  0222F70C 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F710 00000020 .text   FrontierCommunication_Unreachable4	(src_overlay104_frontier_communication.c.o)
+  0222F710 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F730 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F730 00000028 .text   FrontierCommunication_Unreachable5	(src_overlay104_frontier_communication.c.o)
+  0222F750 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F758 00000064 .text   CastleCommunication_SendPlayersParty	(src_overlay104_frontier_communication.c.o)
+  0222F758 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F7BC 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F7BC 00000090 .text   CastleCommunication_ReceivePartnersParty	(src_overlay104_frontier_communication.c.o)
+  0222F848 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F84C 0000001E .text   CastleCommunication_VerifyPacketSize	(src_overlay104_frontier_communication.c.o)
+  0222F84C 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F86C 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F86C 00000034 .text   ov104_0222F86C	(src_overlay104_frontier_communication.c.o)
+  0222F89C 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F8A0 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F8A0 00000030 .text   ov104_0222F8A0	(src_overlay104_frontier_communication.c.o)
+  0222F8C8 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F8D0 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F8D0 00000038 .text   ArcadeCommunication_SendTrainers	(src_overlay104_frontier_communication.c.o)
+  0222F904 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F908 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F908 0000003C .text   ArcadeCommunication_ReceiveTrainers	(src_overlay104_frontier_communication.c.o)
+  0222F940 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F944 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F944 0000007C .text   ov104_0222F944	(src_overlay104_frontier_communication.c.o)
+  0222F9B8 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222F9C0 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222F9C0 00000078 .text   ov104_0222F9C0	(src_overlay104_frontier_communication.c.o)
+  0222FA34 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222FA38 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222FA38 00000024 .text   ov104_0222FA38	(src_overlay104_frontier_communication.c.o)
+  0222FA58 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222FA5C 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222FA5C 00000028 .text   ov104_0222FA5C	(src_overlay104_frontier_communication.c.o)
+  0222FA7C 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222FA84 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222FA84 00000024 .text   ov104_0222FA84	(src_overlay104_frontier_communication.c.o)
+  0222FAA4 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222FAA8 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222FAA8 00000028 .text   ov104_0222FAA8	(src_overlay104_frontier_communication.c.o)
+  0222FAC8 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222FAD0 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222FAD0 00000064 .text   ArcadeCommunication_SendPlayersParty	(src_overlay104_frontier_communication.c.o)
+  0222FB30 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222FB34 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222FB34 00000090 .text   ArcadeCommunication_ReceivePartnersParty	(src_overlay104_frontier_communication.c.o)
+  0222FBC0 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
+  0222FBC4 00000000 .text   $t	(src_overlay104_frontier_communication.c.o)
+  0222FBC4 00000020 .text   ArcadeCommunication_VerifyPacketSize	(src_overlay104_frontier_communication.c.o)
+  0222FBE0 00000000 .text   $d	(src_overlay104_frontier_communication.c.o)
   0222FBE4 0000001C .text   FrontierScriptContext_TryGetVarPointer	(src_overlay104_frscrcmd.c.o)
   0222FBE4 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
   0222FC00 00000012 .text   FrontierScriptContext_GetVar	(src_overlay104_frscrcmd.c.o)
