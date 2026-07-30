@@ -39,10 +39,10 @@ void FrontierCommunication_Unreachable1(int dummy1, int unused1, void *dummy2, v
 
 BOOL FrontierCommunication_Unreachable2(BattleHall *battleHall)
 {
-    int unused, dummy1;
+    int dummy1;
     TrainerInfo *dummy2;
     u16 *data;
-    int result, dataSize = 44;
+    int result, dataSize = SNELEMS(battleHall->commBuffer);
     data = battleHall->commBuffer;
     dummy1 = 0;
     dummy2 = SaveData_GetTrainerInfo(battleHall->saveData);
@@ -61,7 +61,7 @@ BOOL FrontierCommunication_Unreachable2(BattleHall *battleHall)
 
 void FrontierCommunication_Unreachable3(int dummy1, int unused1, void *dummy2, void *battleHall)
 {
-    int unused, dummy3;
+    int dummy3;
     BattleHall *battleHall_dupe = battleHall;
     const u16 *unused2 = dummy2;
 
@@ -82,7 +82,7 @@ BOOL HallCommunication_SendTrainers(BattleHall *battleHall)
     Pokemon *unused2;
     int i, dummy;
     u16 *data;
-    int result, dataSize = 44;
+    int result, dataSize = SNELEMS(battleHall->commBuffer);
     data = battleHall->commBuffer;
     dummy = 0;
 
@@ -110,11 +110,7 @@ void HallCommunication_ReceiveTrainers(int netID, int unused, void *trainerIDs, 
     dummy = 0;
     battleHall_dupe->msgsReceived++;
 
-    if (CommSys_CurNetId() == netID) {
-        return;
-    }
-
-    if (CommSys_CurNetId() == 0) {
+    if (CommSys_CurNetId() == netID || CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -129,7 +125,7 @@ BOOL HallCommunication_SendOpponentMons(BattleHall *battleHall)
 {
     int i, dummy;
     u16 *data;
-    int result, dataSize = 44;
+    int result, dataSize = SNELEMS(battleHall->commBuffer);
     data = battleHall->commBuffer;
     dummy = 0;
 
@@ -157,11 +153,7 @@ void HallCommunication_ReceiveOpponentMons(int netID, int unused, void *monIndic
     dummy = 0;
     battleHall_dupe->msgsReceived++;
 
-    if (CommSys_CurNetId() == netID) {
-        return;
-    }
-
-    if (CommSys_CurNetId() == 0) {
+    if (CommSys_CurNetId() == netID || CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -175,7 +167,7 @@ void HallCommunication_ReceiveOpponentMons(int netID, int unused, void *monIndic
 BOOL ov104_0222EE14(BattleHall *battleHall, u8 param1)
 {
     u16 *data;
-    int result, dataSize = 44;
+    int result, dataSize = SNELEMS(battleHall->commBuffer);
     data = battleHall->commBuffer;
 
     *data = param1;
@@ -205,12 +197,12 @@ void ov104_0222EE38(int netID, int unused, void *param2, void *battleHall)
 
 BOOL HallCommunication_SendPlayersPokemon(BattleHall *battleHall)
 {
-    int unused, dummy, result, dataSize, pokemonSize;
+    int dummy, result, dataSize, pokemonSize;
     Pokemon *pokemon;
     Party *party;
 
     dummy = 0;
-    dataSize = 512;
+    dataSize = SNELEMS(battleHall->commHugeBuffer);
     pokemonSize = Pokemon_StructSize();
     party = SaveData_GetParty(battleHall->saveData);
     pokemon = Party_GetPokemonBySlotIndex(party, battleHall->partySlots[0]);
@@ -228,7 +220,7 @@ BOOL HallCommunication_SendPlayersPokemon(BattleHall *battleHall)
 
 void HallCommunication_ReceivePartnersPokemon(int netID, int unused1, void *partnersMon, void *battleHall)
 {
-    int unused2, dummy, pokemonSize;
+    int dummy, pokemonSize;
     BattleHall *battleHall_dupe = battleHall;
     const u8 *partnersMon_dupe = partnersMon;
 
@@ -247,16 +239,16 @@ u8 *HallCommunication_VerifyPacketSize(int index, void *battleHall, int size)
 {
     BattleHall *battleHall_dupe = battleHall;
 
-    GF_ASSERT(size <= 512);
+    GF_ASSERT(size <= SNELEMS(battleHall_dupe->commHugeBuffer));
     return battleHall_dupe->unk_984[index];
 }
 
 BOOL ov104_0222EEF8(BattleFactory *battleFactory)
 {
-    int unused, dummy1;
+    int dummy1;
     TrainerInfo *dummy2;
     u16 *data;
-    int result, dataSize = 60;
+    int result, dataSize = SNELEMS(battleFactory->commBuffer);
     data = battleFactory->commBuffer;
     dummy1 = 0;
     dummy2 = SaveData_GetTrainerInfo(battleFactory->saveData);
@@ -279,7 +271,7 @@ BOOL ov104_0222EEF8(BattleFactory *battleFactory)
 
 void ov104_0222EF30(int netID, int unused1, void *param2, void *battleFactory)
 {
-    int unused2, dummy;
+    int dummy;
     BattleFactory *battleFactory_dupe = battleFactory;
     const u16 *param2_dupe = param2;
 
@@ -302,7 +294,7 @@ BOOL FactoryCommunication_SendTrainers(BattleFactory *battleFactory)
 {
     int i, dummy;
     u16 *data;
-    int result, dataSize = 60;
+    int result, dataSize = SNELEMS(battleFactory->commBuffer);
     data = battleFactory->commBuffer;
     dummy = 0;
 
@@ -330,11 +322,7 @@ void FactoryCommunication_ReceiveTrainers(int netID, int unused, void *trainerID
     dummy = 0;
     battleFactory_dupe->msgsReceived++;
 
-    if (CommSys_CurNetId() == netID) {
-        return;
-    }
-
-    if (CommSys_CurNetId() == 0) {
+    if (CommSys_CurNetId() == netID || CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -349,7 +337,7 @@ BOOL ov104_0222EFCC(BattleFactory *battleFactory)
 {
     int i, offset;
     u16 *data;
-    int result, dataSize = 60;
+    int result, dataSize = SNELEMS(battleFactory->commBuffer);
     data = battleFactory->commBuffer;
     offset = 0;
 
@@ -391,11 +379,7 @@ void ov104_0222F03C(int netID, int unused1, void *param2, void *battleFactory)
     offset = 0;
     battleFactory_dupe->msgsReceived++;
 
-    if (CommSys_CurNetId() == netID) {
-        return;
-    }
-
-    if (CommSys_CurNetId() == 0) {
+    if (CommSys_CurNetId() == netID || CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -423,7 +407,7 @@ BOOL ov104_0222F0B4(BattleFactory *battleFactory)
 {
     int i, offset;
     u16 *data;
-    int result, dataSize = 60;
+    int result, dataSize = SNELEMS(battleFactory->commBuffer);
     data = battleFactory->commBuffer;
     offset = 0;
 
@@ -464,11 +448,7 @@ void ov104_0222F124(int netID, int unused, void *param2, void *battleFactory)
     offset = 0;
     battleFactory_dupe->msgsReceived++;
 
-    if (CommSys_CurNetId() == netID) {
-        return;
-    }
-
-    if (CommSys_CurNetId() == 0) {
+    if (CommSys_CurNetId() == netID || CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -495,7 +475,7 @@ void ov104_0222F124(int netID, int unused, void *param2, void *battleFactory)
 BOOL ov104_0222F1A0(BattleFactory *battleFactory, u8 param1)
 {
     u16 *data;
-    int result, dataSize = 60;
+    int result, dataSize = SNELEMS(battleFactory->commBuffer);
     data = battleFactory->commBuffer;
 
     data[0] = param1;
@@ -526,7 +506,7 @@ void ov104_0222F1C4(int netID, int unused, void *param2, void *battleFactory)
 BOOL ov104_0222F1EC(BattleFactory *battleFactory, u8 param1)
 {
     u16 *data;
-    int result, dataSize = 60;
+    int result, dataSize = SNELEMS(battleFactory->commBuffer);
     data = battleFactory->commBuffer;
 
     data[0] = param1;
@@ -564,7 +544,7 @@ BOOL ov104_0222F238(BattleFactory *battleFactory)
     u8 ivs[2];
     Pokemon *pokemon;
 
-    dataSize = 60;
+    dataSize = SNELEMS(battleFactory->commBuffer);
     data = battleFactory->commBuffer;
     offset = 0;
     partySize = BattleFactory_GetPlayerPartySize(battleFactory->challengeType);
@@ -644,9 +624,9 @@ void ov104_0222F31C(int netID, int unused1, void *param2, void *battleFactory)
 
 BOOL CastleCommunication_SendPlayersCP(BattleCastle *battleCastle)
 {
-    int unused1, index, result, dataSize;
+    int index, result, dataSize;
     BattleCastlePersistentSave *unused2 = BattleCastlePersistentSave_Get(battleCastle->saveData);
-    dataSize = 40;
+    dataSize = SNELEMS(battleCastle->commBuffer);
     index = 0;
 
     battleCastle->commBuffer[1] = battleCastle->currentStreak;
@@ -669,7 +649,7 @@ BOOL CastleCommunication_SendPlayersCP(BattleCastle *battleCastle)
 
 void CastleCommunication_ReceivePartnersCP(int netID, int unused1, void *partnersCP, void *battleCastle)
 {
-    int unused2, index;
+    int index;
     BattleCastle *battleCastle_dupe = battleCastle;
     const u16 *partnersCP_dupe = partnersCP;
 
@@ -695,7 +675,7 @@ BOOL CastleCommunication_SendTrainers(BattleCastle *battleCastle)
     int i, dummy, result, dataSize;
 
     dummy = 0;
-    dataSize = 40;
+    dataSize = SNELEMS(battleCastle->commBuffer);
 
     for (i = 0; i < (7 * 2); i++) {
         battleCastle->commBuffer[i + dummy] = battleCastle->trainerIDs[i];
@@ -721,11 +701,7 @@ void CastleCommunications_ReceiveTrainers(int netID, int unused, void *trainerID
     dummy = 0;
     battleCastle_dupe->msgsReceived++;
 
-    if (CommSys_CurNetId() == netID) {
-        return;
-    }
-
-    if (CommSys_CurNetId() == 0) {
+    if (CommSys_CurNetId() == netID || CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -738,11 +714,11 @@ void CastleCommunications_ReceiveTrainers(int netID, int unused, void *trainerID
 
 BOOL ov104_0222F4B8(BattleCastle *battleCastle)
 {
-    int unused1, dummy, result, dataSize;
+    int dummy, result, dataSize;
     TrainerInfo *unused2;
 
     dummy = 0;
-    dataSize = 40;
+    dataSize = SNELEMS(battleCastle->commBuffer);
 
     battleCastle->commBuffer[0] = battleCastle->unk_A18;
 
@@ -756,11 +732,9 @@ BOOL ov104_0222F4B8(BattleCastle *battleCastle)
                 }
             }
         }
-    } else {
-        if (battleCastle->unk_A1B == 4) {
-            if (battleCastle->unk_A18 != 4) {
-                battleCastle->unk_A1B = battleCastle->unk_A18 + 6;
-            }
+    } else if (battleCastle->unk_A1B == 4) {
+        if (battleCastle->unk_A18 != 4) {
+            battleCastle->unk_A1B = battleCastle->unk_A18 + 6;
         }
     }
 
@@ -778,7 +752,7 @@ BOOL ov104_0222F4B8(BattleCastle *battleCastle)
 void ov104_0222F530(int netID, int unused, void *param2, void *battleCastle)
 {
     Pokemon *unused1;
-    int unused2, dummy;
+    int dummy;
     BattleCastle *battleCastle_dupe = battleCastle;
     const u16 *param2_dupe = param2;
 
@@ -828,7 +802,7 @@ BOOL CastleCommunication_SendOpponentMons(BattleCastle *battleCastle)
     int i, offset, result, dataSize;
 
     offset = 0;
-    dataSize = 40;
+    dataSize = SNELEMS(battleCastle->commBuffer);
 
     for (i = 0; i < 4; i++) {
         battleCastle->commBuffer[i] = battleCastle->monSetIDs[i];
@@ -867,11 +841,7 @@ void ov104_0222F650(int netID, int unused, void *monData, void *battleCastle)
     offset = 0;
     battleCastle_dupe->msgsReceived++;
 
-    if (CommSys_CurNetId() == netID) {
-        return;
-    }
-
-    if (CommSys_CurNetId() == 0) {
+    if (CommSys_CurNetId() == netID || CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -897,7 +867,7 @@ void ov104_0222F650(int netID, int unused, void *monData, void *battleCastle)
 
 BOOL ov104_0222F6C8(BattleCastle *battleCastle, u16 param1)
 {
-    int result, dataSize = 40;
+    int result, dataSize = SNELEMS(battleCastle->commBuffer);
     *battleCastle->commBuffer = param1;
 
     if (CommSys_SendData(46, battleCastle->commBuffer, dataSize) == 1) {
@@ -927,7 +897,7 @@ void ov104_0222F6E8(int netID, int unused, void *param2, void *battleCastle)
 
 BOOL FrontierCommunication_Unreachable4(BattleCastle *battleCastle, u16 param1)
 {
-    int result, dataSize = 40;
+    int result, dataSize = SNELEMS(battleCastle->commBuffer);
     battleCastle->commBuffer[0] = param1;
 
     if (CommSys_SendData(FRONTIER_COMMUNICATION_UNREACHABLE4, battleCastle->commBuffer, dataSize) == 1) {
@@ -962,7 +932,7 @@ BOOL CastleCommunication_SendPlayersParty(BattleCastle *battleCastle)
     Pokemon *pokemon;
 
     dummy = 0;
-    dataSize = 512;
+    dataSize = SNELEMS(battleCastle->commHugeBuffer);
     partySize = BattleCastle_GetPlayerPartySize(battleCastle->challengeType, 0);
     pokemonSize = Pokemon_StructSize();
 
@@ -1016,15 +986,15 @@ u8 *CastleCommunication_VerifyPacketSize(int index, void *battleCastle, int size
 {
     BattleCastle *battleCastle_dupe = battleCastle;
 
-    GF_ASSERT(size <= 512);
+    GF_ASSERT(size <= SNELEMS(battleCastle_dupe->commHugeBuffer));
     return battleCastle_dupe->unk_610[index];
 }
 
 BOOL ov104_0222F86C(BattleArcade *battleArcade)
 {
-    int unused, dummy, result, dataSize;
+    int dummy, result, dataSize;
     UnkStruct_020305B8 *v4 = sub_020305B8(battleArcade->saveData);
-    dataSize = 40;
+    dataSize = SNELEMS(battleArcade->commBuffer);
     dummy = 0;
 
     battleArcade->commBuffer[1] = battleArcade->currentStreak;
@@ -1043,7 +1013,7 @@ BOOL ov104_0222F86C(BattleArcade *battleArcade)
 
 void ov104_0222F8A0(int netID, int unused1, void *param2, void *battleArcade)
 {
-    int unused2, dummy;
+    int dummy;
     BattleArcade *battleArcade_dupe = battleArcade;
     const u16 *param2_dupe = param2;
 
@@ -1065,7 +1035,7 @@ BOOL ArcadeCommunication_SendTrainers(BattleArcade *battleArcade)
     int i, dummy, result, dataSize;
 
     dummy = 0;
-    dataSize = 40;
+    dataSize = SNELEMS(battleArcade->commBuffer);
 
     for (i = 0; i < (7 * 2); i++) {
         battleArcade->commBuffer[i + dummy] = battleArcade->trainerIDs[i];
@@ -1091,11 +1061,7 @@ void ArcadeCommunication_ReceiveTrainers(int netID, int unused, void *trainerIDs
     dummy = 0;
     battleArcade_dupe->msgsReceived++;
 
-    if (CommSys_CurNetId() == netID) {
-        return;
-    }
-
-    if (CommSys_CurNetId() == 0) {
+    if (CommSys_CurNetId() == netID || CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -1111,7 +1077,7 @@ BOOL ov104_0222F944(BattleArcade *battleArcade)
     int i, offset, result, dataSize;
 
     offset = 0;
-    dataSize = 40;
+    dataSize = SNELEMS(battleArcade->commBuffer);
 
     for (i = 0; i < 4; i++) {
         battleArcade->commBuffer[i] = battleArcade->unk_314[i];
@@ -1150,11 +1116,7 @@ void ov104_0222F9C0(int netID, int unused, void *param2, void *battleArcade)
     offset = 0;
     battleArcade_dupe->msgsReceived++;
 
-    if (CommSys_CurNetId() == netID) {
-        return;
-    }
-
-    if (CommSys_CurNetId() == 0) {
+    if (CommSys_CurNetId() == netID || CommSys_CurNetId() == 0) {
         return;
     }
 
@@ -1180,7 +1142,7 @@ void ov104_0222F9C0(int netID, int unused, void *param2, void *battleArcade)
 
 BOOL ov104_0222FA38(BattleArcade *battleArcade, u16 param1)
 {
-    int result, dataSize = 40;
+    int result, dataSize = SNELEMS(battleArcade->commBuffer);
     battleArcade->commBuffer[0] = param1;
 
     if (CommSys_SendData(68, battleArcade->commBuffer, dataSize) == 1) {
@@ -1210,7 +1172,7 @@ void ov104_0222FA5C(int netID, int unused, void *param2, void *battleArcade)
 
 BOOL ov104_0222FA84(BattleArcade *battleArcade, u16 param1)
 {
-    int result, dataSize = 40;
+    int result, dataSize = SNELEMS(battleArcade->commBuffer);
     battleArcade->commBuffer[0] = param1;
 
     if (CommSys_SendData(69, battleArcade->commBuffer, dataSize) == 1) {
@@ -1245,7 +1207,7 @@ BOOL ArcadeCommunication_SendPlayersParty(BattleArcade *battleArcade)
     Pokemon *pokemon;
 
     dummy = 0;
-    dataSize = 512;
+    dataSize = SNELEMS(battleArcade->commHugeBuffer);
     partySize = BattleArcade_GetPlayerPartySize(battleArcade->challengeType, 0);
     pokemonSize = Pokemon_StructSize();
 
@@ -1299,6 +1261,6 @@ u8 *ArcadeCommunication_VerifyPacketSize(int netID, void *battleArcade, int size
 {
     BattleArcade *battleArcade_dupe = battleArcade;
 
-    GF_ASSERT(size <= 512);
+    GF_ASSERT(size <= SNELEMS(battleArcade_dupe->commHugeBuffer));
     return battleArcade_dupe->unk_674[netID];
 }
