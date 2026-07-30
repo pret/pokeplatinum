@@ -11,9 +11,9 @@
 #include "generated/species_data_params.h"
 #include "generated/trainer_classes.h"
 
-#include "struct_defs/battle_frontier_pokemon_data.h"
-#include "struct_defs/battle_frontier_trainer_data.h"
 #include "struct_defs/battle_tower.h"
+#include "struct_defs/frontier_pokemon_base.h"
+#include "struct_defs/frontier_trainer_base.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "field/field_system.h"
@@ -35,9 +35,9 @@
 #include "unk_02049D08.h"
 #include "wifi_battle_tower_save.h"
 
-static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *trainerData, u16 partnerBattleTowerID, FrontierPokemonDataDTO *param3, u8 partySize, u16 *param5, u16 *param6, BattleTowerPartnerData *param7, enum HeapID heapID);
+static BOOL sub_0204B470(BattleTower *battleTower, FrontierTrainerBase *trainerData, u16 partnerBattleTowerID, FrontierPokemon *param3, u8 partySize, u16 *param5, u16 *param6, BattleTowerPartnerData *param7, enum HeapID heapID);
 static void *sub_0204B630(u16 param0, int param1);
-static void sub_0204B640(BattleFrontierPokemonData *param0, int param1);
+static void sub_0204B640(FrontierPokemonBase *param0, int param1);
 
 static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_TRAINER_CHERYL, OBJ_EVENT_GFX_CHERYL },
@@ -140,7 +140,7 @@ StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16
     return bannedSpeciesList;
 }
 
-u16 BattleFrontier_GetObjectIDFromTrainerClass(u8 trainerClass)
+u16 BattleTower_GetObjectIDFromTrainerClass(u8 trainerClass)
 {
     for (int v0 = 0; v0 < (NELEMS(sTrainerClassToObjectID)); v0++) {
         if (sTrainerClassToObjectID[v0][0] == trainerClass) {
@@ -278,22 +278,22 @@ u16 BattleTower_GetTrainerIDForRoomAndOpponentNum(BattleTower *battleTower, u8 r
     return trainerID;
 }
 
-static BattleFrontierTrainerData *sub_0204B184(FrontierDataDTO *param0, u16 param1, enum HeapID heapID)
+static FrontierTrainerBase *sub_0204B184(FrontierOpponent *param0, u16 param1, enum HeapID heapID)
 {
     MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 
-    MI_CpuClear8(param0, sizeof(FrontierDataDTO));
+    MI_CpuClear8(param0, sizeof(FrontierOpponent));
 
-    BattleFrontierTrainerData *v0 = sub_0204B630(param1, heapID);
+    FrontierTrainerBase *v0 = sub_0204B630(param1, heapID);
 
-    param0->trDataDTO.trainerID = param1;
-    param0->trDataDTO.introMsg[0] = 0xFFFF;
-    param0->trDataDTO.introMsg[1] = param1 * 3;
-    param0->trDataDTO.trainerType = v0->trainerType;
+    param0->trainer.trainerID = param1;
+    param0->trainer.introMsg[0] = 0xFFFF;
+    param0->trainer.introMsg[1] = param1 * 3;
+    param0->trainer.trainerType = v0->trainerType;
 
     String *v2 = MessageLoader_GetNewString(v1, param1);
 
-    String_ToChars(v2, &param0->trDataDTO.trainerName[0], TRAINER_NAME_LEN + 1);
+    String_ToChars(v2, &param0->trainer.trainerName[0], TRAINER_NAME_LEN + 1);
     String_Free(v2);
     MessageLoader_Free(v1);
 
@@ -307,13 +307,13 @@ static const u16 Unk_020EBD50[] = {
     ITEM_QUICK_CLAW
 };
 
-static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 ivs, u8 param6, BOOL param7, enum HeapID heapID)
+static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemon *param1, u16 param2, u32 param3, u32 param4, u8 ivs, u8 param6, BOOL param7, enum HeapID heapID)
 {
     int v0;
     u32 v2;
-    BattleFrontierPokemonData v4;
+    FrontierPokemonBase v4;
 
-    MI_CpuClear8(param1, sizeof(FrontierPokemonDataDTO));
+    MI_CpuClear8(param1, sizeof(FrontierPokemon));
     sub_0204B640(&v4, param2);
 
     param1->species = v4.species;
@@ -396,31 +396,31 @@ static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1
     return v2;
 }
 
-BOOL sub_0204B3B8(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, BattleTowerPartnerData *param6, enum HeapID heapID)
+BOOL sub_0204B3B8(BattleTower *battleTower, FrontierOpponent *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, BattleTowerPartnerData *param6, enum HeapID heapID)
 {
     BOOL v0 = FALSE;
-    BattleFrontierTrainerData *trainerData = sub_0204B184(param1, partnerBattleTowerID, heapID);
-    v0 = sub_0204B470(battleTower, trainerData, partnerBattleTowerID, &param1->monDataDTO[0], partysize, param4, param5, param6, heapID);
+    FrontierTrainerBase *trainerData = sub_0204B184(param1, partnerBattleTowerID, heapID);
+    v0 = sub_0204B470(battleTower, trainerData, partnerBattleTowerID, &param1->pokemon[0], partysize, param4, param5, param6, heapID);
 
     Heap_Free(trainerData);
 
     return v0;
 }
 
-void sub_0204B404(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, BOOL param3, const BattleTowerPartnerData *param4, enum HeapID heapID)
+void sub_0204B404(BattleTower *battleTower, FrontierOpponent *param1, u16 partnerBattleTowerID, BOOL param3, const BattleTowerPartnerData *param4, enum HeapID heapID)
 {
     u8 ivs = 0;
-    BattleFrontierTrainerData *v2 = sub_0204B184(param1, partnerBattleTowerID, heapID);
+    FrontierTrainerBase *v2 = sub_0204B184(param1, partnerBattleTowerID, heapID);
     ivs = BattleTower_GetIVsFromTrainerID(partnerBattleTowerID);
 
     for (int v0 = 0; v0 < 2; v0++) {
-        sub_0204B1E8(battleTower, &(param1->monDataDTO[v0]), param4->monSetIDs[v0], param4->otID, param4->personalities[v0], ivs, v0, param3, heapID);
+        sub_0204B1E8(battleTower, &(param1->pokemon[v0]), param4->monSetIDs[v0], param4->otID, param4->personalities[v0], ivs, v0, param3, heapID);
     }
 
     Heap_Free(v2);
 }
 
-static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *trainerData, u16 partnerBattleTowerID, FrontierPokemonDataDTO *param3, u8 partySize, u16 *param5, u16 *param6, BattleTowerPartnerData *param7, enum HeapID heapID)
+static BOOL sub_0204B470(BattleTower *battleTower, FrontierTrainerBase *trainerData, u16 partnerBattleTowerID, FrontierPokemon *param3, u8 partySize, u16 *param5, u16 *param6, BattleTowerPartnerData *param7, enum HeapID heapID)
 {
     int v0, v1;
     u8 ivs;
@@ -432,8 +432,8 @@ static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *tr
     int v8;
     int v9;
     BOOL v10 = FALSE;
-    BattleFrontierPokemonData v11;
-    BattleFrontierPokemonData v12;
+    FrontierPokemonBase v11;
+    FrontierPokemonBase v12;
 
     GF_ASSERT(partySize <= 4);
 
@@ -532,7 +532,7 @@ static void *sub_0204B630(u16 param0, int param1)
     return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR, param0, param1);
 }
 
-static void sub_0204B640(BattleFrontierPokemonData *param0, int param1)
+static void sub_0204B640(FrontierPokemonBase *param0, int param1)
 {
     NARC_ReadWholeMemberByIndexPair(param0, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM, param1);
 }

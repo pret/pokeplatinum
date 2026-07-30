@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0202D63C.h"
 #include "struct_defs/wifi_player_profile.h"
 
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 typedef struct WifiBattleTowerIndices {
     u8 rank;
@@ -76,8 +76,8 @@ typedef struct WifiBattleTowerRecord {
     };
     u16 roomNums[6];
     u16 ratingScore;
-    FrontierPokemonDataDTO team1[3];
-    FrontierPokemonDataDTO team0[3];
+    FrontierPokemon team1[3];
+    FrontierPokemon team0[3];
 } WifiBattleTowerRecord;
 
 typedef struct BattleTowerPartnerData {

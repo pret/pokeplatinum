@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_0223BCBC.h"
@@ -378,7 +378,7 @@ static void ov104_02238080(BattleArcade *param0)
 {
     ov104_0223BD28(param0->challengeType, ov104_0223C124(param0), param0->trainerIDs, 7 * 2);
 
-    ov104_0222E4BC(BattleArcade_GetOpponentPartySize(param0->challengeType, 1), param0->trainerIDs[param0->unk_11], param0->trainerIDs[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->challengeType));
+    BattleFrontier_GetPokemonForTrainers(BattleArcade_GetOpponentPartySize(param0->challengeType, 1), param0->trainerIDs[param0->unk_11], param0->trainerIDs[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->challengeType));
 
     u16 v0 = ov104_0223C124(param0);
 
@@ -395,7 +395,7 @@ static void ov104_02238080(BattleArcade *param0)
 static void ov104_02238114(BattleArcade *param0)
 {
     int v1;
-    FrontierPokemonDataDTO v4[6];
+    FrontierPokemon v4[6];
     u8 v5[6];
     u16 v6[6];
     u32 v7[6];
@@ -411,12 +411,12 @@ static void ov104_02238114(BattleArcade *param0)
         param0->unk_314[v1] = v6[v1];
     }
 
-    ov104_0222E330(v4, v6, v5, NULL, v7, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+    BattleFrontier_LoadFrontierPokemon(v4, v6, v5, NULL, v7, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
     Pokemon *v2 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v1 = 0; v1 < 4; v1++) {
-        FrontierPokemonDataDTO_InitPokemon(&v4[v1], v2, BattleArcade_GetPokemonLevel(param0));
+        FrontierPokemon_InitPokemon(&v4[v1], v2, BattleArcade_GetPokemonLevel(param0));
         ov104_0223C034(param0, param0->opponentsParty, v2);
     }
 
@@ -566,12 +566,12 @@ u16 ov104_02238460(BattleArcade *param0)
 
 u16 ov104_02238464(BattleArcade *param0, u8 param1)
 {
-    FrontierTrainerDataDTO v0;
+    FrontierTrainer v0;
     u8 v2 = ov104_02238498(param0, param1);
 
-    Heap_Free(BattleFrontier_GetTrainerData(&v0, param0->trainerIDs[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleFrontier_GetTrainer(&v0, param0->trainerIDs[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return BattleTower_GetObjectIDFromTrainerClass(v0.trainerType);
+    return BattleFrontier_GetObjectIDFromTrainerClass(v0.trainerType);
 }
 
 u16 ov104_02238498(BattleArcade *param0, u8 param1)
@@ -613,7 +613,7 @@ void ov104_022384DC(BattleArcade *param0)
     int v0, v1, v2;
     u8 v3;
 
-    ov104_0222E4BC(BattleArcade_GetOpponentPartySize(param0->challengeType, 1), param0->trainerIDs[param0->unk_11], param0->trainerIDs[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->challengeType));
+    BattleFrontier_GetPokemonForTrainers(BattleArcade_GetOpponentPartySize(param0->challengeType, 1), param0->trainerIDs[param0->unk_11], param0->trainerIDs[param0->unk_11 + 7], param0->unk_314, param0->unk_330, param0->unk_31C, param0->unk_320, BattleArcade_IsMultiPlayerChallenge(param0->challengeType));
 
     for (v0 = 0; v0 < 4; v0++) {
         (void)0;

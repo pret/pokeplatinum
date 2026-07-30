@@ -143,7 +143,7 @@ Static main
 	Object main.nef.p/src_link_contest_records.c.o
 	Object main.nef.p/src_save_catchrecords.c.o
 	Object main.nef.p/src_unk_0202F1D4.c.o
-	Object main.nef.p/src_unk_0202FF4C.c.o
+	Object main.nef.p/src_battle_factory_save.c.o
 	Object main.nef.p/src_battle_hall_save.c.o
 	Object main.nef.p/src_battle_castle_save.c.o
 	Object main.nef.p/src_unk_02030494.c.o
@@ -212,7 +212,6 @@ Static main
 	Object main.nef.p/src_scrcmd_dummy_23F_242.c.o
 	Object main.nef.p/src_unk_0204F04C.c.o
 	Object main.nef.p/src_scrcmd_battle_hall.c.o
-	Object main.nef.p/src_unk_0204FA34.c.o
 	Object main.nef.p/src_unk_0204FAB4.c.o
 	Object main.nef.p/src_unk_0205001C.c.o
 	Object main.nef.p/src_unk_0205003C.c.o
@@ -309,7 +308,7 @@ Static main
 	Object main.nef.p/src_applications_party_menu_main.c.o
 	Object main.nef.p/src_applications_party_menu_windows.c.o
 	Object main.nef.p/src_applications_party_menu_sprites.c.o
-	Object main.nef.p/src_applications_party_menu_unk_02083370.c.o
+	Object main.nef.p/src_applications_party_menu_context_menu.c.o
 	Object main.nef.p/src_applications_party_menu_callbacks.c.o
 	Object main.nef.p/src_applications_naming_screen.c.o
 	Object main.nef.p/src_unk_020890F4.c.o
@@ -1535,7 +1534,7 @@ Overlay dummy7
 Overlay overlay104
 {
 	After overlay63
-	Object main.nef.p/src_overlay104_ov104_0222DCE0.c.o
+	Object main.nef.p/src_overlay104_frontier_opponents.c.o
 	Object main.nef.p/src_overlay104_frontier_script_manager.c.o
 	Object main.nef.p/src_overlay104_frontier_script_context.c.o
 	Object main.nef.p/src_overlay104_frontier_scenes.c.o

@@ -1,9 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b3f.h"
 
-// NOTE: These constants must mirror those in ov9_02249960.c
-#define LOCALID_CYRUS 128
-
     ScriptEntry DistortionWorldB3F_OnTransition
     ScriptEntry DistortionWorldB3F_CoordEvent_Cyrus
     ScriptEntryEnd
@@ -14,8 +11,8 @@ DistortionWorldB3F_OnTransition:
 
 DistortionWorldB3F_CoordEvent_Cyrus:
     LockAll
-    AddDistortionWorldMapObject LOCALID_CYRUS
-    ApplyMovement LOCALID_CYRUS, DistortionWorldB3F_Movement_CyrusEnter
+    AddDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_B3F_CYRUS
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B3F_CYRUS, DistortionWorldB3F_Movement_CyrusEnter
     WaitMovement
     Message DistortionWorldB3F_Text_DoYouUnderstandGenes
     ShowYesNoMenu VAR_RESULT
@@ -29,10 +26,10 @@ DistortionWorldB3F_TwoWorldsMustBalance:
     Message DistortionWorldB3F_Text_TwoWorldsMustBalance
     Message DistortionWorldB3F_Text_DefeatingThatPokemonMatters
     CloseMessage
-    ApplyMovement LOCALID_CYRUS, DistortionWorldB3F_Movement_CyrusLeave
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B3F_CYRUS, DistortionWorldB3F_Movement_CyrusLeave
     WaitMovement
-    DeleteDistortionWorldMapObject LOCALID_CYRUS
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 6
+    DeleteDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_B3F_CYRUS
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_TALKED_TO_B3F_CYRUS
     ReleaseAll
     End
 

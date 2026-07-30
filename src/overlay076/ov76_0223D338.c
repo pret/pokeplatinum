@@ -1007,7 +1007,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 break;
             }
 
-            PaletteData_SetAutoTransparent(param0->unk_D4.unk_14, 0);
+            PaletteData_SetAutoTransparent(param0->unk_D4.unk_14, FALSE);
             ov76_0223CA98(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[2], 4, 2, 1, 27, 4, 0 + ((1 + (18 + 12)) + 9));
 
             {
@@ -1038,7 +1038,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             case YES_NO_TOUCH_MENU_YES:
             case YES_NO_TOUCH_MENU_NO:
                 param0->unk_3E0 = v10;
-                PaletteData_SetAutoTransparent(param0->unk_D4.unk_14, 1);
+                PaletteData_SetAutoTransparent(param0->unk_D4.unk_14, TRUE);
                 YesNoTouchMenu_Reset(param0->unk_D4.unk_150);
                 YesNoTouchMenu_Free(param0->unk_D4.unk_150);
                 Window_EraseMessageBox(&param0->unk_D4.unk_18[2], 1);

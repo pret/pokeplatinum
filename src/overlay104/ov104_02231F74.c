@@ -262,7 +262,7 @@ void FrontierMenuManager_ShowMenu(FrontierMenuManager *menuManager)
     }
 
     Window_Add(graphics->bgConfig, &menuManager->window, BG_LAYER_MAIN_1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
-    Window_DrawStandardFrame(&menuManager->window, TRUE, 985, PLTT_12);
+    Window_DrawStandardFrame(&menuManager->window, TRUE, 985, 12);
     SetupSingleColumnMenu(menuManager);
     menuManager->menu = Menu_NewSimple(&menuManager->menuTemplate, menuManager->initialCursorPos, menuManager->scriptMan->heapID);
     UpdateMenuAltText(menuManager);
@@ -423,7 +423,7 @@ void FrontierMenuManager_ShowListMenu(FrontierMenuManager *menuManager)
         }
         Window_Add(graphics->bgConfig, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
     }
-    Window_DrawStandardFrame(&menuManager->window, 1, 985, PLTT_12);
+    Window_DrawStandardFrame(&menuManager->window, 1, 985, 12);
     InitListMenuTemplate(menuManager);
     menuManager->listMenu = ListMenu_New(&menuManager->listMenuTemplate, 0, menuManager->initialCursorPos, menuManager->scriptMan->heapID);
     UpdateListMenuAltText(menuManager);
@@ -807,10 +807,10 @@ void ov104_02232CE0(FrontierGraphics *param0, Pokemon *param1, enum HeapID heapI
         v12 = Sprite_GetPaletteProxy(v5->sprite);
         v13 = PlttTransfer_GetPlttOffset(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteData_LoadBufferFromFileStart(v2, v3.narcID, v3.palette, heapID, 2, 0x20, v13 * 16);
+        PaletteData_LoadBufferFromFileStart(v2, v3.narcID, v3.palette, heapID, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES, PLTT_DEST(v13));
 
         if (param8 > 0) {
-            PaletteData_Blend(v2, 2, v13 * 16, 16, param8, param9);
+            PaletteData_Blend(v2, PLTTBUF_MAIN_OBJ, v13 * 16, 16, param8, param9);
         }
     }
 

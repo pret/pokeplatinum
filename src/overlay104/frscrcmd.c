@@ -21,6 +21,7 @@
 #include "overlay063/struct_ov63_0222D77C_decl.h"
 #include "overlay104/defs.h"
 #include "overlay104/frontier_graphics.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_particle_system.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frontier_script_manager.h"
@@ -30,7 +31,6 @@
 #include "overlay104/frscrcmd_battle_hall.h"
 #include "overlay104/frscrcmd_battle_tower.h"
 #include "overlay104/frscrcmd_sound.h"
-#include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_022395F0.h"
 #include "overlay104/ov104_0223D768.h"
@@ -277,7 +277,7 @@ static const WindowTemplate sYesNoWindowTemplate = {
     .tilemapTop = 13,
     .width = 6,
     .height = 4,
-    .palette = PLTT_14,
+    .palette = 14,
     .baseTile = 0x355,
 };
 
@@ -1761,7 +1761,7 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
         param0->unk_28 = Window_New(HEAP_ID_FIELD2, 1);
 
         Window_Add(param0->unk_00->bgConfig, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
-        PaletteData_FillBufferRange(param0->unk_00->plttData, 0, 2, 0x0, 0, 16);
+        PaletteData_FillBufferRange(param0->unk_00->plttData, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, 0x0, 0, 16);
         Window_FillTilemap(param0->unk_28, 0);
         Window_ScheduleCopyToVRAM(param0->unk_28);
 
@@ -1815,7 +1815,7 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
         param0->unk_28 = Window_New(HEAP_ID_FIELD2, 1);
 
         Window_Add(param0->unk_00->bgConfig, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
-        PaletteData_FillBufferRange(param0->unk_00->plttData, 0, 2, 0x0, 0, 16);
+        PaletteData_FillBufferRange(param0->unk_00->plttData, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, 0x0, 0, 16);
         Window_FillTilemap(param0->unk_28, 0);
         Window_ScheduleCopyToVRAM(param0->unk_28);
 
@@ -2162,7 +2162,7 @@ static BOOL FrontierScrCmd_3F(FrontierScriptContext *ctx)
 
     BattleFrontier_SetFacilityStruct(ctx->scriptMan->frontier, v1);
     FrontierScriptContext_Pause(ctx, ov104_02231AA8);
-    PaletteData_FillBufferRange(v1->unk_00->plttData, 0, 2, 0x0, 0, 1);
+    PaletteData_FillBufferRange(v1->unk_00->plttData, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, 0x0, 0, 1);
 
     return TRUE;
 }

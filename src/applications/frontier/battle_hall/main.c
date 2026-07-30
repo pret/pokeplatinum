@@ -9,7 +9,7 @@
 #include "applications/frontier/battle_hall/windows.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay104/battle_hall_helpers.h"
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "battle_hall_save.h"
 #include "bg_window.h"
@@ -814,8 +814,8 @@ static void LoadAssets(BattleHallApp *app)
         app->yesNoStrs[i] = String_Init(32, HEAP_ID_BATTLE_HALL_APP);
     }
 
-    Font_LoadTextPalette(0, 13 * PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_HALL_APP);
-    Font_LoadScreenIndicatorsPalette(0, 12 * PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_HALL_APP);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_BATTLE_HALL_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_BATTLE_HALL_APP);
 
     app->specialChars = FontSpecialChars_Init(15, 14, 0, HEAP_ID_BATTLE_HALL_APP);
 

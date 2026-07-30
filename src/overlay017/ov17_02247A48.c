@@ -278,8 +278,8 @@ static void ov17_02247C5C(SysTask *param0, void *param1)
         break;
     case 3:
         G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-        PaletteData_BlendMulti(v0->unk_00->unk_0C.unk_44, 0, 0x1fff, 0, 0x0);
-        PaletteData_BlendMulti(v0->unk_00->unk_0C.unk_44, 2, 0x3fff, 0, 0x0);
+        PaletteData_BlendMulti(v0->unk_00->unk_0C.unk_44, PLTTBUF_MAIN_BG, 0x1fff, 0, 0x0);
+        PaletteData_BlendMulti(v0->unk_00->unk_0C.unk_44, PLTTBUF_MAIN_OBJ, 0x3fff, 0, 0x0);
         Sound_PlayEffect(SEQ_SE_DP_CON_019);
         v0->unk_10++;
         break;
@@ -1225,8 +1225,8 @@ static void ov17_02248EC4(SysTask *param0, void *param1)
         break;
     case 1:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
-            PaletteData_FillBufferRange(v0->unk_00->unk_0C.unk_44, 0, 0, 0x0, 0, (13 * 16));
-            PaletteData_FillBufferRange(v0->unk_00->unk_0C.unk_44, 2, 0, 0x0, 0, ((16 - 2) * 16));
+            PaletteData_FillBufferRange(v0->unk_00->unk_0C.unk_44, PLTTBUF_MAIN_BG, PLTTSEL_FADED, 0x0, 0, (13 * 16));
+            PaletteData_FillBufferRange(v0->unk_00->unk_0C.unk_44, PLTTBUF_MAIN_OBJ, PLTTSEL_FADED, 0x0, 0, ((16 - 2) * 16));
             v0->unk_10++;
         }
         break;
