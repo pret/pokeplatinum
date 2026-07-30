@@ -48,8 +48,8 @@ typedef struct BattleCastle {
     u16 unused4[4];
     u16 startingPP[CASTLE_MAX_PARTY_SIZE][LEARNED_MOVES_MAX];
     u16 unused5[6];
-    u16 unk_3C0[40];
-    u8 unk_410[512];
+    u16 commBuffer[40];
+    u8 commHugeBuffer[512];
     u8 unk_610[2][512];
     u8 unk_A10;
     u8 unk_A11;

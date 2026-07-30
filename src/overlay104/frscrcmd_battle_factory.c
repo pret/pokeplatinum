@@ -445,8 +445,8 @@ static BOOL ov104_0223394C(FrontierScriptContext *param0)
 
     v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
 
-    if (v0->unk_702 >= 2) {
-        v0->unk_702 = 0;
+    if (v0->msgsReceived >= 2) {
+        v0->msgsReceived = 0;
         return 1;
     }
 

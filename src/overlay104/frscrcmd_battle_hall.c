@@ -318,8 +318,8 @@ static BOOL ov104_02234CEC(FrontierScriptContext *ctx)
 
     BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (battleHall->unk_D90 >= 2) {
-        battleHall->unk_D90 = 0;
+    if (battleHall->msgsReceived >= 2) {
+        battleHall->msgsReceived = 0;
         return TRUE;
     }
 

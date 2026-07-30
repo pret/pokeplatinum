@@ -54,8 +54,8 @@ typedef struct BattleArcade {
     u16 unused3;
     u16 savedHeldItems[MATH_MAX(ARCADE_PARTY_SIZE_SOLO, ARCADE_PARTY_SIZE_MULTI)];
     u16 appCursorPos[6];
-    u16 unk_424[40];
-    u8 unk_474[512];
+    u16 commBuffer[40];
+    u8 commHugeBuffer[512];
     u8 unk_674[2][512];
     u8 unk_A74;
     u8 unk_A75;

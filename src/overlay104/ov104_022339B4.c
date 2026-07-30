@@ -6,8 +6,8 @@
 
 #include "struct_defs/battle_frontier.h"
 
+#include "overlay104/frontier_communication.h"
 #include "overlay104/frontier_opponents.h"
-#include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223A7F4.h"
 #include "overlay104/struct_battle_factory.h"
 #include "overlay104/struct_ov104_0224028C.h"
@@ -588,7 +588,7 @@ BOOL ov104_022347A4(BattleFactory *param0, u16 param1, u16 param2)
         v0 = ov104_0222EEF8(param0);
         break;
     case 1:
-        v0 = ov104_0222EF64(param0);
+        v0 = FactoryCommunication_SendTrainers(param0);
         break;
     case 2:
         v0 = ov104_0222EFCC(param0);

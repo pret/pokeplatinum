@@ -10,8 +10,8 @@
 #include "global/utility.h"
 #include "overlay104/battle_arcade.h"
 #include "overlay104/battle_arcade_helpers.h"
+#include "overlay104/frontier_communication.h"
 #include "overlay104/frontier_opponents.h"
-#include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_02231F74.h"
 
 #include "battle_arcade_save.h"
@@ -868,7 +868,7 @@ BOOL BattleArcade_SendCommMessage(BattleArcade *arcade, u16 command, u16 arg)
         success = ov104_0222F86C(arcade);
         break;
     case 1:
-        success = ov104_0222F8D0(arcade);
+        success = ArcadeCommunication_SendTrainers(arcade);
         break;
     case 2:
         success = ov104_0222F944(arcade);
@@ -880,7 +880,7 @@ BOOL BattleArcade_SendCommMessage(BattleArcade *arcade, u16 command, u16 arg)
         success = ov104_0222FA84(arcade, arg);
         break;
     case 5:
-        success = ov104_0222FAD0(arcade);
+        success = ArcadeCommunication_SendPlayersParty(arcade);
         break;
     }
 
