@@ -4545,18 +4545,18 @@
                 15](_ZNK22UnkClass_ov66_02235FC813ov66_02235FC8Ev,func) found in multidef libdwcppwlobby.a
                  16](_ZNSbIcSt11char_traitsIcE13PPW_AllocatorIcEEC1ERKSbIcS0_S2_E,func) found in multidef libdwcppwlobby.a
                   17](_ZNSbIcSt11char_traitsIcE13PPW_AllocatorIcEE7reserveEm,func) found in multidef libdwcppwlobby.a
-                   18](@36535,object) found in local libdwcppwlobby.a
+                   18](@36923,object) found in local libdwcppwlobby.a
                   17](_ZNSbIcSt11char_traitsIcE13PPW_AllocatorIcEE10do_replaceEmmPKcS4_St26random_access_iterator_tag,func) found in multidef libdwcppwlobby.a
                    18](_ZNSbIcSt11char_traitsIcE13PPW_AllocatorIcEE6assignIPKcEERSbIcS0_S2_ET_S8_PNN10Metrowerks11restrict_toIXsrNS9_4_notINS9_11is_integralIS8_EEEE5valueEvEE4typeE,func) found in multidef libdwcppwlobby.a
-                   18](@36644,object) found in local libdwcppwlobby.a
-                   18](@37001,object) found in local libdwcppwlobby.a
+                   18](@37032,object) found in local libdwcppwlobby.a
+                   18](@37389,object) found in local libdwcppwlobby.a
                    18](.data,section) found in local libdwcppwlobby.a
-                    19](@20896,object) found in local libdwcppwlobby.a
-                    19](@20895,object) found in local libdwcppwlobby.a
-                    19](@20891,object) found in local libdwcppwlobby.a
-                    19](@20893,object) found in local libdwcppwlobby.a
-                    19](@20894,object) found in local libdwcppwlobby.a
-                    19](@20892,object) found in local libdwcppwlobby.a
+                    19](@21284,object) found in local libdwcppwlobby.a
+                    19](@21283,object) found in local libdwcppwlobby.a
+                    19](@21279,object) found in local libdwcppwlobby.a
+                    19](@21281,object) found in local libdwcppwlobby.a
+                    19](@21282,object) found in local libdwcppwlobby.a
+                    19](@21280,object) found in local libdwcppwlobby.a
                 15](DWCi_LobbySetChannelMode,func) found in global libdwcilobby.a
                  16](_ZNSbIcSt11char_traitsIcE13PPW_AllocatorIcEEC1EPKc,func) found in multidef libdwcppwlobby.a
                  16](_ZNK22UnkClass_ov66_02243B6413ov66_022467C4ERKSbIcSt11char_traitsIcE13PPW_AllocatorIcEE,func) found in global libdwcilobby.a
@@ -4597,7 +4597,7 @@
                    18](@28989,object) found in local libdwcilobby.a
                   17](_ZNKSbIcSt11char_traitsIcE13PPW_AllocatorIcEE7compareEPKc,func) found in multidef libdwcppwlobby.a
                    18](_ZNKSbIcSt11char_traitsIcE13PPW_AllocatorIcEE7compareEmmPKcm,func) found in multidef libdwcppwlobby.a
-                    19](@36850,object) found in local libdwcppwlobby.a
+                    19](@37238,object) found in local libdwcppwlobby.a
                   17](chatSendUserMessageA,func) found in global libdwcgschat.a
                    18](__func__$10824,object) found in local libdwcgschat.a
                    18](@12491,object) found in local libdwcgschat.a
@@ -4614,20 +4614,20 @@
                  16](DWCi_LobbySendChannelMessage,func) found in global libdwcilobby.a
                   17](chatSendChannelMessageA,func) found in global libdwcgschat.a
                    18](__func__$10516,object) found in local libdwcgschat.a
-                 16](@31609,object) found in local libdwcppwlobby.a
+                 16](@31997,object) found in local libdwcppwlobby.a
                 15](_ZN22UnkClass_ov66_0223CA1C13ov66_0223F0D0Ev,func) found in global libdwcppwlobby.a
                 15](_ZNSt15__deque_deleterI23PPW_LobbyScheduleRecord13PPW_AllocatorIS0_EE14erase_at_beginEmN10Metrowerks8int2typeILi1EEE,func) found in multidef libdwcppwlobby.a
                 15](Unk_ov66_02258C8C,object) found in local libdwcppwlobby.a
                14](_Z13ov66_022378A822PPW_LOBBY_CHANNEL_KINDRKSbIcSt11char_traitsIcE13PPW_AllocatorIcEE,func) found in local libdwcppwlobby.a
                 15](_ZStplIcSt11char_traitsIcE13PPW_AllocatorIcEESbIT_T0_T1_ERKSbIS4_S5_S6_EPKT_,func) found in multidef libdwcppwlobby.a
                 15](Unk_ov66_02258BF4,object) found in local libdwcppwlobby.a
-                 16](@20890,object) found in local libdwcppwlobby.a
-                 16](@20889,object) found in local libdwcppwlobby.a
-                 16](@20888,object) found in local libdwcppwlobby.a
-                 16](@20887,object) found in local libdwcppwlobby.a
-                 16](@20886,object) found in local libdwcppwlobby.a
-                 16](@20885,object) found in local libdwcppwlobby.a
-                15](@32858,object) found in local libdwcppwlobby.a
+                 16](@21278,object) found in local libdwcppwlobby.a
+                 16](@21277,object) found in local libdwcppwlobby.a
+                 16](@21276,object) found in local libdwcppwlobby.a
+                 16](@21275,object) found in local libdwcppwlobby.a
+                 16](@21274,object) found in local libdwcppwlobby.a
+                 16](@21273,object) found in local libdwcppwlobby.a
+                15](@33246,object) found in local libdwcppwlobby.a
                14](DWCi_LobbyEnumChannelsAsync,func) found in global libdwcilobby.a
                 15](_ZNSt14__tree_deleterIP22UnkClass_ov66_02243C74N22UnkClass_ov66_0225B6E433UnkClass_ov66_0225B6E4_BinaryFuncIS0_EE13PPW_AllocatorIS1_EE10insert_oneERKS1_,func) found in multidef libdwcilobby.a
                  16](_ZNSt14__tree_deleterIP22UnkClass_ov66_02243C74N22UnkClass_ov66_0225B6E433UnkClass_ov66_0225B6E4_BinaryFuncIS0_EE13PPW_AllocatorIS1_EE9find_leafIS1_EEPNS7_4nodeERKT_RSB_RbSG_,func) found in multidef libdwcilobby.a
@@ -4903,10 +4903,10 @@
                        22](@30571,object) found in local libdwcppwlobby.a
                       21](_ZSt17__construct_rangeISt15__wrap_iteratorISt6vectorI23PPW_LobbyScheduleRecord13PPW_AllocatorIS2_EEPS2_ESt16__deque_iteratorISt15__deque_deleterIS2_S4_ELb0EEmS4_ENN10Metrowerks11restrict_toIXaaaantsrSt14__is_segmentedIT_E5valuesrSt27__is_random_access_iteratorISF_E5valuesrSE_IT0_E5valueESJ_EE4typeESF_SF_SJ_RT2_RT1_,func) found in multidef libdwcppwlobby.a
                      20](_ZNSt15__deque_deleterI23PPW_LobbyScheduleRecord13PPW_AllocatorIS0_EE12erase_at_endEmN10Metrowerks8int2typeILi1EEE,func) found in multidef libdwcppwlobby.a
-                   18](@33376,object) found in local libdwcppwlobby.a
-                   18](@33377,object) found in local libdwcppwlobby.a
-                   18](@33378,object) found in local libdwcppwlobby.a
-                   18](@33379,object) found in local libdwcppwlobby.a
+                   18](@33764,object) found in local libdwcppwlobby.a
+                   18](@33765,object) found in local libdwcppwlobby.a
+                   18](@33766,object) found in local libdwcppwlobby.a
+                   18](@33767,object) found in local libdwcppwlobby.a
                 15](_Z13ov66_0223A958PKcS0_Pv,func) found in local libdwcppwlobby.a
                 15](_Z13ov66_02239408i23DWCi_LOBBY_ENTER_RESULTPKcPv,func) found in local libdwcppwlobby.a
                  16](DWCi_LobbyEnumUsersAsync,func) found in global libdwcilobby.a
@@ -4922,7 +4922,7 @@
                  16](_ZNSt14__tree_deleterISt4pairIKm32UnkClass_ov66_02243B64_Sub1_Sub1ENSt18__map_do_transformImS2_St4lessImE13PPW_AllocatorIS0_ImS2_EELb0EE13value_compareES9_E10insert_oneERKS3_,func) found in multidef libdwcppwlobby.a
                   17](_ZNSt14__tree_deleterISt4pairIKm32UnkClass_ov66_02243B64_Sub1_Sub1ENSt18__map_do_transformImS2_St4lessImE13PPW_AllocatorIS0_ImS2_EELb0EE13value_compareES9_E9find_leafIS3_EEPNSD_4nodeERKT_RSH_RbSM_,func) found in multidef libdwcppwlobby.a
                   17](_ZNSt14__tree_deleterISt4pairIKm32UnkClass_ov66_02243B64_Sub1_Sub1ENSt18__map_do_transformImS2_St4lessImE13PPW_AllocatorIS0_ImS2_EELb0EE13value_compareES9_E14insert_node_atEPNSD_4nodeEbbRKS3_,func) found in multidef libdwcppwlobby.a
-                   18](@35626,object) found in local libdwcppwlobby.a
+                   18](@36014,object) found in local libdwcppwlobby.a
                  16](_Z13ov66_0223A5A4iPKclPKlPv,func) found in local libdwcppwlobby.a
                   17](DWCi_LobbyGetChannelDataAsync,func) found in global libdwcilobby.a
                    18](chatGetChannelKeysA,func) found in global libdwcgschat.a
@@ -4986,11 +4986,11 @@
                14](_ZTV22UnkClass_ov66_02241C44,object) found in multidef libdwcppwlobby.a
                 15](_ZN22UnkClass_ov66_02241C44D0Ev,func) found in multidef libdwcppwlobby.a
                 15](_ZN22UnkClass_ov66_02241C44D1Ev,func) found in multidef libdwcppwlobby.a
-               14](@31186,object) found in local libdwcppwlobby.a
+               14](@31574,object) found in local libdwcppwlobby.a
                14](_Z13ov66_0223A250ilPPKcS1_PKlPv,func) found in local libdwcppwlobby.a
                 15](_Z13ov66_02237A88v,func) found in local libdwcppwlobby.a
                  16](_Z13ov66_02237ADCISbIcSt11char_traitsIcE13PPW_AllocatorIcEEET_PKcz,func) found in multidef libdwcppwlobby.a
-                 16](@32982,object) found in local libdwcppwlobby.a
+                 16](@33370,object) found in local libdwcppwlobby.a
               13](ov66_022341F4,func) found in local src_overlay066_ov66_022324F0.c.o
                14](NintendoWFC_GetNumConnections,func) found in global src_nintendo_wfc_main.c.o
                 15](DWC_GetNumConnectionHost,func) found in global libdwcbase.a
@@ -25609,10 +25609,10 @@
                                                          56](ov66_022337E8,func) found in local src_overlay066_ov66_022324F0.c.o
                                                        54](ov66_0222E640,func) found in global src_overlay066_ov66_0222DDF0.c.o
                                                         55](ov66_0222F1B4,func) found in local src_overlay066_ov66_0222DDF0.c.o
-                                                        55](ov66_0222E79C,func) found in global src_overlay066_ov66_0222DDF0.c.o
-                                                        55](ov66_0222E7C8,func) found in global src_overlay066_ov66_0222DDF0.c.o
-                                                         56](ov66_02230C2C,func) found in local src_overlay066_ov66_0222DDF0.c.o
-                                                          57](Unk_ov66_02258974,object) found in local src_overlay066_ov66_0222DDF0.c.o
+                                                        55](WiFiPlazaProfile_GetTrainerID,func) found in global src_overlay066_ov66_0222DDF0.c.o
+                                                        55](WiFiPlazaProfile_GetGender,func) found in global src_overlay066_ov66_0222DDF0.c.o
+                                                         56](GetTrainerAppearanceGraphicsID,func) found in local src_overlay066_ov66_0222DDF0.c.o
+                                                          57](sWiFiPlazaTrainerAppearances,object) found in local src_overlay066_ov66_0222DDF0.c.o
                                                            58](ov66_022301D0,func) found in local src_overlay066_ov66_0222DDF0.c.o
                                                             59](ov66_02231B80,func) found in global src_overlay066_ov66_0223177C.c.o
                                                              60](ov66_022324D0,func) found in local src_overlay066_ov66_0223177C.c.o
@@ -25665,7 +25665,7 @@
                                                              60](ov66_022303DC,func) found in local src_overlay066_ov66_0222DDF0.c.o
                                                            58](ov66_02230764,func) found in local src_overlay066_ov66_0222DDF0.c.o
                                                            58](ov66_02230750,func) found in local src_overlay066_ov66_0222DDF0.c.o
-                                                            59](v2$19631,object) found in local src_overlay066_ov66_0222DDF0.c.o
+                                                            59](v2$19957,object) found in local src_overlay066_ov66_0222DDF0.c.o
                                                            58](ov66_02230728,func) found in local src_overlay066_ov66_0222DDF0.c.o
                                                             59](ov66_0222FC74,func) found in local src_overlay066_ov66_0222DDF0.c.o
                                                              60](ov66_0222FD7C,func) found in local src_overlay066_ov66_0222DDF0.c.o
@@ -25683,10 +25683,10 @@
                                                               61](PPW_LobbySendPlayerBinaryMessage,func) found in global libdwcppwlobby.a
                                                             59](ov66_0222FD70,func) found in local src_overlay066_ov66_0222DDF0.c.o
                                                         55](TrainerInfo_SetGender,func) found in global src_trainer_info.c.o
-                                                        55](ov66_0222E858,func) found in global src_overlay066_ov66_0222DDF0.c.o
+                                                        55](WiFiPlazaProfile_GetTrainerAppearanceGraphicsID,func) found in global src_overlay066_ov66_0222DDF0.c.o
                                                         55](TrainerInfo_SetAppearance,func) found in global src_trainer_info.c.o
-                                                        55](ov66_0222E80C,func) found in global src_overlay066_ov66_0222DDF0.c.o
-                                                         56](ov66_0222E824,func) found in global src_overlay066_ov66_0222DDF0.c.o
+                                                        55](WiFiPlazaProfile_GetNormalizedLanguage,func) found in global src_overlay066_ov66_0222DDF0.c.o
+                                                         56](WiFiPlazaProfile_IsLanguageValid,func) found in global src_overlay066_ov66_0222DDF0.c.o
                                                         55](TrainerInfo_SetMainStoryCleared,func) found in global src_trainer_info.c.o
                                                        54](ov66_0222E924,func) found in global src_overlay066_ov66_0222DDF0.c.o
                                                         55](ov66_02230884,func) found in local src_overlay066_ov66_0222DDF0.c.o
@@ -26213,7 +26213,7 @@
                                                       53](ov66_02233538,func) found in global src_overlay066_ov66_022324F0.c.o
                                                      52](ov66_0222F144,func) found in global src_overlay066_ov66_0222DDF0.c.o
                                                      52](ov68_0225DCCC,func) found in local src_overlay068_ov68_0225C700.c.o
-                                                      53](ov66_0222E850,func) found in global src_overlay066_ov66_0222DDF0.c.o
+                                                      53](WiFiPlazaProfile_GetLanguage,func) found in global src_overlay066_ov66_0222DDF0.c.o
                                                       53](ov66_022335C0,func) found in global src_overlay066_ov66_022324F0.c.o
                                                      52](ov66_0222F124,func) found in global src_overlay066_ov66_0222DDF0.c.o
                                                      52](ov68_0225DC74,func) found in local src_overlay068_ov68_0225C700.c.o
@@ -115078,7 +115078,7 @@
   0222E760 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
   0222E798 00000004 .text   ov66_0222E798	(src_overlay066_ov66_0222DDF0.c.o)
   0222E798 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
-  0222E79C 00000004 .text   ov66_0222E79C	(src_overlay066_ov66_0222DDF0.c.o)
+  0222E79C 00000004 .text   WiFiPlazaProfile_GetTrainerID	(src_overlay066_ov66_0222DDF0.c.o)
   0222E79C 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
   0222E7A0 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
   0222E7A0 00000024 .text   ov66_0222E7A0	(src_overlay066_ov66_0222DDF0.c.o)
@@ -115086,16 +115086,16 @@
   0222E7C4 00000004 .text   ov66_0222E7C4	(src_overlay066_ov66_0222DDF0.c.o)
   0222E7C4 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
   0222E7C8 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
-  0222E7C8 00000044 .text   ov66_0222E7C8	(src_overlay066_ov66_0222DDF0.c.o)
+  0222E7C8 00000044 .text   WiFiPlazaProfile_GetGender	(src_overlay066_ov66_0222DDF0.c.o)
   0222E804 00000000 .text   $d	(src_overlay066_ov66_0222DDF0.c.o)
-  0222E80C 00000016 .text   ov66_0222E80C	(src_overlay066_ov66_0222DDF0.c.o)
+  0222E80C 00000016 .text   WiFiPlazaProfile_GetNormalizedLanguage	(src_overlay066_ov66_0222DDF0.c.o)
   0222E80C 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
-  0222E824 0000002C .text   ov66_0222E824	(src_overlay066_ov66_0222DDF0.c.o)
+  0222E824 0000002C .text   WiFiPlazaProfile_IsLanguageValid	(src_overlay066_ov66_0222DDF0.c.o)
   0222E824 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
-  0222E850 00000006 .text   ov66_0222E850	(src_overlay066_ov66_0222DDF0.c.o)
+  0222E850 00000006 .text   WiFiPlazaProfile_GetLanguage	(src_overlay066_ov66_0222DDF0.c.o)
   0222E850 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
   0222E858 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
-  0222E858 00000028 .text   ov66_0222E858	(src_overlay066_ov66_0222DDF0.c.o)
+  0222E858 00000028 .text   WiFiPlazaProfile_GetTrainerAppearanceGraphicsID	(src_overlay066_ov66_0222DDF0.c.o)
   0222E87C 00000000 .text   $d	(src_overlay066_ov66_0222DDF0.c.o)
   0222E880 00000024 .text   ov66_0222E880	(src_overlay066_ov66_0222DDF0.c.o)
   0222E880 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
@@ -115504,7 +115504,7 @@
   02230C0C 00000020 .text   ov66_02230C0C	(src_overlay066_ov66_0222DDF0.c.o)
   02230C28 00000000 .text   $d	(src_overlay066_ov66_0222DDF0.c.o)
   02230C2C 00000000 .text   $t	(src_overlay066_ov66_0222DDF0.c.o)
-  02230C2C 00000018 .text   ov66_02230C2C	(src_overlay066_ov66_0222DDF0.c.o)
+  02230C2C 00000018 .text   GetTrainerAppearanceGraphicsID	(src_overlay066_ov66_0222DDF0.c.o)
   02230C3C 00000000 .text   $d	(src_overlay066_ov66_0222DDF0.c.o)
   02230C44 0000004A .text   ov66_02230C44	(src_overlay066_ov66_02230C44.c.o)
   02230C44 00000000 .text   $t	(src_overlay066_ov66_02230C44.c.o)
@@ -117747,8 +117747,8 @@
   02258918 00000000 .rodata .rodata	(src_overlay066_ov66_0222DDF0.c.o)
   02258918 00000014 .rodata Unk_ov66_02258918	(src_overlay066_ov66_0222DDF0.c.o)
   0225892C 00000024 .rodata Unk_ov66_0225892C	(src_overlay066_ov66_0222DDF0.c.o)
-  02258950 00000024 .rodata v2$19631	(src_overlay066_ov66_0222DDF0.c.o)
-  02258974 00000040 .rodata Unk_ov66_02258974	(src_overlay066_ov66_0222DDF0.c.o)
+  02258950 00000024 .rodata v2$19957	(src_overlay066_ov66_0222DDF0.c.o)
+  02258974 00000040 .rodata sWiFiPlazaTrainerAppearances	(src_overlay066_ov66_0222DDF0.c.o)
   022589B4 00000040 .rodata Unk_ov66_022589B4	(src_overlay066_ov66_0222DDF0.c.o)
   022589F4 00000000 .rodata .rodata	(src_overlay066_ov66_02230C44.c.o)
   022589F4 00000010 .rodata v0$17432	(src_overlay066_ov66_02230C44.c.o)
@@ -117809,45 +117809,45 @@
   02258E1C 0000000C .data   v0$13573	(src_overlay066_ov66_022343A8.c.o)
   02258E28 00000030 .data   v3$13521	(src_overlay066_ov66_022343A8.c.o)
   02258E58 00000000 .data   .data	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258E58 00000001 .data   @23041	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258E59 00000001 .data   @23825	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258E5A 00000001 .data   @23037	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258E5B 00000001 .data   @23811	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258E58 00000001 .data   @23429	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258E59 00000001 .data   @24213	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258E5A 00000001 .data   @23425	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258E5B 00000001 .data   @24199	(libdwcppwlobby.a src_ppw_lobby.o)
   02258E5C 00000004 .data   Unk_ov66_02258E5C	(libdwcppwlobby.a src_ppw_lobby.o)
   02258E60 00000004 .data   Unk_ov66_02258E60	(libdwcppwlobby.a src_ppw_lobby.o)
   02258E64 00000004 .data   Unk_ov66_02258E64	(libdwcppwlobby.a src_ppw_lobby.o)
   02258E68 00000004 .data   Unk_ov66_02258E68	(libdwcppwlobby.a src_ppw_lobby.o)
   02258E6C 00000004 .data   Unk_ov66_02258E6C	(libdwcppwlobby.a src_ppw_lobby.o)
   02258E70 00000004 .data   Unk_ov66_02258E70	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258E74 00000002 .data   @20889	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258E78 00000002 .data   @20885	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258E7C 00000002 .data   @20888	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258E80 00000003 .data   @20887	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258E84 00000003 .data   @20886	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258E74 00000002 .data   @21277	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258E78 00000002 .data   @21273	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258E7C 00000002 .data   @21276	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258E80 00000003 .data   @21275	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258E84 00000003 .data   @21274	(libdwcppwlobby.a src_ppw_lobby.o)
   02258E88 00000007 .data   UnkClass_ov66_0225B6C4::UnkClass_ov66_0225B6C4_InlineFunc13(const PPW_LobbyRecruitInfo&, std::basic_string<char, std::char_traits<char>, PPW_Allocator<char> >&)literal string	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258E90 00000008 .data   @20890	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258E90 00000008 .data   @21278	(libdwcppwlobby.a src_ppw_lobby.o)
   02258E98 00000010 .data   virtual table for UnkClass_ov66_02241C44	(libdwcppwlobby.a src_ppw_lobby.o)
   02258EA8 00000010 .data   virtual table for UnkClass_ov66_02241BD8	(libdwcppwlobby.a src_ppw_lobby.o)
   02258EB8 00000010 .data   virtual table for UnkClass_ov66_0225B6D4	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258EC8 0000001A .data   @20894	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258EE4 0000001F .data   @20893	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258F04 00000020 .data   @20892	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258F24 00000024 .data   @20895	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258F48 00000027 .data   @20896	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258F70 00000040 .data   @20891	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258FB0 00000002 .data   @31186	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258FB4 00000001 .data   @31609	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258FB8 00000002 .data   @32858	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258FBC 00000007 .data   @32982	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258FC4 0000000D .data   @33376	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258FD4 0000000F .data   @33377	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258FE4 0000000D .data   @33378	(libdwcppwlobby.a src_ppw_lobby.o)
-  02258FF4 0000000E .data   @33379	(libdwcppwlobby.a src_ppw_lobby.o)
-  02259004 0000001A .data   @35626	(libdwcppwlobby.a src_ppw_lobby.o)
-  02259020 00000023 .data   @36535	(libdwcppwlobby.a src_ppw_lobby.o)
-  02259044 0000001B .data   @36644	(libdwcppwlobby.a src_ppw_lobby.o)
-  02259060 0000001A .data   @36850	(libdwcppwlobby.a src_ppw_lobby.o)
-  0225907C 0000001B .data   @37001	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258EC8 0000001A .data   @21282	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258EE4 0000001F .data   @21281	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258F04 00000020 .data   @21280	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258F24 00000024 .data   @21283	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258F48 00000027 .data   @21284	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258F70 00000040 .data   @21279	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258FB0 00000002 .data   @31574	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258FB4 00000001 .data   @31997	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258FB8 00000002 .data   @33246	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258FBC 00000007 .data   @33370	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258FC4 0000000D .data   @33764	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258FD4 0000000F .data   @33765	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258FE4 0000000D .data   @33766	(libdwcppwlobby.a src_ppw_lobby.o)
+  02258FF4 0000000E .data   @33767	(libdwcppwlobby.a src_ppw_lobby.o)
+  02259004 0000001A .data   @36014	(libdwcppwlobby.a src_ppw_lobby.o)
+  02259020 00000023 .data   @36923	(libdwcppwlobby.a src_ppw_lobby.o)
+  02259044 0000001B .data   @37032	(libdwcppwlobby.a src_ppw_lobby.o)
+  02259060 0000001A .data   @37238	(libdwcppwlobby.a src_ppw_lobby.o)
+  0225907C 0000001B .data   @37389	(libdwcppwlobby.a src_ppw_lobby.o)
   02259098 00000001 .data   @23200	(libdwcppwlobby.a src_ppw_innerin)
   02259098 00000000 .data   .data	(libdwcppwlobby.a src_ppw_innerin)
   02259099 00000001 .data   @23186	(libdwcppwlobby.a src_ppw_innerin)
