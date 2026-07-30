@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_FRONTIER_COMMUNICATION_H
 #define POKEPLATINUM_FRONTIER_COMMUNICATION_H
 
+#include "overlay104/battle_arcade.h"
 #include "overlay104/battle_castle.h"
 #include "overlay104/battle_hall.h"
-#include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_battle_factory.h"
 
 #define FRONTIER_COMMUNICATION_UNREACHABLE2     34

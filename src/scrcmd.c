@@ -85,7 +85,6 @@
 #include "overlay007/shop_menu.h"
 #include "overlay008/gym_features.h"
 #include "overlay009/ov9_02249960.h"
-#include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
@@ -383,7 +382,7 @@ static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
 static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
 static BOOL ScrCmd_CheckCanCookPoffin(ScriptContext *ctx);
-static BOOL ScrCmd_1D9(ScriptContext *ctx);
+static BOOL ScrCmd_OpenBattleTowerRecordsApp(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPokemonStorage(ScriptContext *ctx);
 static BOOL ScrCmd_0AC(ScriptContext *ctx);
 static BOOL ScrCmd_OpenUnionRoomTrainerCase(ScriptContext *ctx);
@@ -3267,22 +3266,22 @@ static BOOL ScrCmd_CheckCanCookPoffin(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1D9(ScriptContext *ctx)
+static BOOL ScrCmd_OpenBattleTowerRecordsApp(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    void **v3 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    u16 isRankingsScreen = ScriptContext_GetVar(ctx);
+    u16 resultsType = ScriptContext_GetVar(ctx);
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v3 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov90_021D0D80));
+    *data = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleTowerRecordsAppArgs));
 
-    UnkStruct_ov90_021D0D80 *v0 = (UnkStruct_ov90_021D0D80 *)*v3;
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov90_021D0D80));
+    BattleTowerRecordsAppArgs *args = *data;
+    MI_CpuClear8(args, sizeof(BattleTowerRecordsAppArgs));
 
-    v0->unk_04 = v1;
-    v0->unk_06 = v2;
-    v0->saveData = ctx->fieldSystem->saveData;
+    args->isRankingsScreen = isRankingsScreen;
+    args->resultsType = resultsType;
+    args->saveData = ctx->fieldSystem->saveData;
 
-    sub_0203D9D8(ctx->fieldSystem, *v3);
+    FieldSystem_OpenBattleTowerRecordsApp(ctx->fieldSystem, *data);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return TRUE;

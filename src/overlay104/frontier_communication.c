@@ -3,15 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020305B8_decl.h"
-
+#include "overlay104/battle_arcade.h"
+#include "overlay104/battle_arcade_helpers.h"
 #include "overlay104/battle_castle_helpers.h"
 #include "overlay104/battle_hall.h"
 #include "overlay104/ov104_0223A7F4.h"
-#include "overlay104/ov104_0223BCBC.h"
-#include "overlay104/struct_battle_arcade.h"
 #include "overlay104/struct_battle_factory.h"
 
+#include "battle_arcade_save.h"
 #include "battle_castle_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
@@ -21,7 +20,6 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "trainer_info.h"
-#include "unk_02030494.h"
 
 // This file includes the communications for the Battle Frontier (excluding the Battle Tower) relating largely to multi battles
 
@@ -993,12 +991,12 @@ u8 *CastleCommunication_VerifyPacketSize(int index, void *battleCastle, int size
 BOOL ov104_0222F86C(BattleArcade *battleArcade)
 {
     int dummy, result, dataSize;
-    UnkStruct_020305B8 *v4 = sub_020305B8(battleArcade->saveData);
+    BattleArcadeStreakFlags *v4 = BattleArcadeStreakFlags_Get(battleArcade->saveData);
     dataSize = SNELEMS(battleArcade->commBuffer);
     dummy = 0;
 
     battleArcade->commBuffer[1] = battleArcade->currentStreak;
-    battleArcade->commBuffer[2] = battleArcade->unk_1A;
+    battleArcade->commBuffer[2] = battleArcade->currentRound;
 
     dummy += 3;
 
@@ -1080,20 +1078,20 @@ BOOL ov104_0222F944(BattleArcade *battleArcade)
     dataSize = SNELEMS(battleArcade->commBuffer);
 
     for (i = 0; i < 4; i++) {
-        battleArcade->commBuffer[i] = battleArcade->unk_314[i];
+        battleArcade->commBuffer[i] = battleArcade->monSetIDs[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        battleArcade->commBuffer[i + offset] = battleArcade->unk_31C[i];
+        battleArcade->commBuffer[i + offset] = battleArcade->opponentMonIVs[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        battleArcade->commBuffer[i + offset] = (battleArcade->unk_320[i] & 0xFFFF);
-        battleArcade->commBuffer[i + offset + 4] = ((battleArcade->unk_320[i] >> 16) & 0xFFFF);
+        battleArcade->commBuffer[i + offset] = (battleArcade->opponentMonPersonalities[i] & 0xFFFF);
+        battleArcade->commBuffer[i + offset + 4] = ((battleArcade->opponentMonPersonalities[i] >> 16) & 0xFFFF);
     }
 
     offset += (4 * 2);
@@ -1121,20 +1119,20 @@ void ov104_0222F9C0(int netID, int unused, void *param2, void *battleArcade)
     }
 
     for (i = 0; i < 4; i++) {
-        battleArcade_dupe->unk_314[i] = param2_dupe[i];
+        battleArcade_dupe->monSetIDs[i] = param2_dupe[i];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        battleArcade_dupe->unk_31C[i] = param2_dupe[i + offset];
+        battleArcade_dupe->opponentMonIVs[i] = param2_dupe[i + offset];
     }
 
     offset += 4;
 
     for (i = 0; i < 4; i++) {
-        battleArcade_dupe->unk_320[i] = param2_dupe[i + offset];
-        battleArcade_dupe->unk_320[i] |= (param2_dupe[i + offset + 4] << 16);
+        battleArcade_dupe->opponentMonPersonalities[i] = param2_dupe[i + offset];
+        battleArcade_dupe->opponentMonPersonalities[i] |= (param2_dupe[i + offset + 4] << 16);
     }
 
     offset += (4 * 2);

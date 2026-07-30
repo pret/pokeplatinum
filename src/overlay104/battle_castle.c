@@ -114,7 +114,7 @@ BattleCastle *BattleCastle_Init(SaveData *saveData, u16 resumingFromSave, u8 cha
     }
 
     Party *fieldParty = SaveData_GetParty(castle->saveData);
-    u8 partySize = BattleCastle_GetPlayerPartySize(castle->challengeType, 0);
+    u8 partySize = BattleCastle_GetPlayerPartySize(castle->challengeType, FALSE);
 
     for (u16 i = 0; i < partySize; i++) {
         Party_AddPokemon(castle->playersParty, Party_GetPokemonBySlotIndex(fieldParty, castle->partySlots[i]));

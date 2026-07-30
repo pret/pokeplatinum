@@ -996,23 +996,23 @@
     .short FRSCRCMD_SETWIFILISTHOSTFRIENDCURRENTDATE
     .endm
 
-    .macro FrontierScrCmd_B8 arg0, arg1, arg2, arg3, arg4, arg5
-    .short FRSCRCMD_B8
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .macro InitBattleArcade resumingFromSave, challengeType, partySlot1, partySlot2, partySlot3, arg5
+    .short FRSCRCMD_INITBATTLEARCADE
+    .short \resumingFromSave
+    .short \challengeType
+    .short \partySlot1
+    .short \partySlot2
+    .short \partySlot3
     .short \arg5
     .endm
 
-    .macro FrontierScrCmd_B9 arg0
-    .short FRSCRCMD_B9
-    .short \arg0
+    .macro BattleArcade_LoadTrainersForRound resumingFromSave
+    .short FRSCRCMD_BATTLEARCADE_LOADTRAINERSFORROUND
+    .short \resumingFromSave
     .endm
 
-    .macro FrontierScrCmd_BA
-    .short FRSCRCMD_BA
+    .macro FreeBattleArcade
+    .short FRSCRCMD_FREEBATTLEARCADE
     .endm
 
     .macro BattleArcade_CleanupBattle
@@ -1023,12 +1023,12 @@
     .short FRSCRCMD_BATTLEARCADE_STARTBATTLE
     .endm
 
-    .macro FrontierScrCmd_BD
-    .short FRSCRCMD_BD
+    .macro BattleArcade_SetupFirstOpponent
+    .short FRSCRCMD_BATTLEARCADE_SETUPFIRSTOPPONENT
     .endm
 
-    .macro FrontierScrCmd_BE
-    .short FRSCRCMD_BE
+    .macro BattleArcade_SetupNextOpponent
+    .short FRSCRCMD_BATTLEARCADE_SETUPNEXTOPPONENT
     .endm
 
     .macro CallBattleArcadeFunction command, arg1, arg2, destVar
@@ -1044,36 +1044,36 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_C1 arg0, arg1, arg2
-    .short FRSCRCMD_C1
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro BattleArcade_SendCommMessage command, arg, successs
+    .short FRSCRCMD_BATTLEARCADE_SENDCOMMMESSAGE
+    .short \command
+    .short \arg
+    .short \successs
     .endm
 
-    .macro FrontierScrCmd_C2 arg0
-    .short FRSCRCMD_C2
-    .short \arg0
+    .macro BattleArcade_WaitForCommResponses unused
+    .short FRSCRCMD_BATTLEARCADE_WAITFORCOMMRESPONSES
+    .short \unused
     .endm
 
     .macro OpenBattleArcadeApp
     .short FRSCRCMD_OPENBATTLEARCADEAPP
     .endm
 
-    .macro FrontierScrCmd_C4 arg0
-    .short FRSCRCMD_C4
-    .byte \arg0
+    .macro BattleArcade_PrintTrainerInfo index
+    .short FRSCRCMD_BATTLEARCADE_PRINTTRAINERINFO
+    .byte \index
     .endm
 
-    .macro FrontierScrCmd_C5
-    .short FRSCRCMD_C5
+    .macro ApplyArcadeEffect
+    .short FRSCRCMD_APPLYARCADEEFFECT
     .endm
 
-    .macro FrontierScrCmd_C6 arg0, arg1, arg2
-    .short FRSCRCMD_C6
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro SetItemDrawFlag isOpponent, slot, draw
+    .short FRSCRCMD_SETITEMDRAWFLAG
+    .short \isOpponent
+    .short \slot
+    .short \draw
     .endm
 
     .macro FrontierScrCmd_C7
