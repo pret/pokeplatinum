@@ -44,7 +44,7 @@ typedef struct {
     UnkStruct_02012744 *unk_160;
     FontOAM *unk_164[2];
     CharTransferAllocation unk_16C[2];
-    BOOL unk_184;
+    BOOL unk_184; // rendered?
     PokemonAnimManager *unk_188;
     BOOL unk_18C;
 } UnkStruct_ov76_0223C398;

@@ -4,7 +4,7 @@
 #include "struct_defs/seal_case.h"
 
 typedef struct {
-    int index; // not 100% on this one
+    int index; // 0xFF if inactive?
     BallCapsule *capsule;
 } UnkStruct_ov76_0223DD88_sub1;
 

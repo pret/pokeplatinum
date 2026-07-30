@@ -10,6 +10,10 @@
 #include "palette.h"
 #include "sprite_system.h"
 
+typedef struct {
+    ManagedSprite *sprites[13];
+} SealSprites;
+
 void ov76_0223B8A8(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223B8C4(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223B904(UnkStruct_ov76_0223DE00 *param0);

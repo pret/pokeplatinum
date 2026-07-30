@@ -15,15 +15,15 @@
 #include "sprite_system.h"
 
 typedef struct {
-    UnkStruct_02097F18 *unk_00;
-    UnkStruct_ov76_0223DD88_sub1 capsules[CAPSULE_NUM]; // unk_04
-    SealCounts *unk_64;
+    UnkStruct_02097F18 *unk_00; // handles sprites
+    UnkStruct_ov76_0223DD88_sub1 capsules[CAPSULE_NUM];
+    SealCounts *sealCount;
     BallCapsule unk_68;
     u8 unk_80[81];
     u8 unused[3];
     UnkStruct_ov76_0223C398 unk_D4;
     UnkStruct_ov76_0223DD88_sub2 unk_264[CAPSULE_NUM];
-    ManagedSprite *unk_2F4[2];
+    ManagedSprite *unk_2F4[2]; // these may be ui
     ManagedSprite *unk_2FC[6];
     ManagedSprite *unk_314[4];
     SealRenderInfo sealRenderInfo[SEALS_PER_CAPSULE];
@@ -35,7 +35,7 @@ typedef struct {
     int unk_3D8;
     int unk_3DC;
     int unk_3E0;
-    UnkStruct_ov76_0223BBAC unk_3E4;
+    SealSprites sprites;
     UnkStruct_ov76_0223DD88_sub3 unk_418;
     Pokemon *pokemon;
     NARC *unk_42C; // NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_53)

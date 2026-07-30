@@ -1,9 +1,10 @@
+#include "ball_seal_info.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/seal_case.h"
 
-#include "ball_seal_info.h"
 #include "savedata.h"
 
 int SealCase_SaveSize(void)

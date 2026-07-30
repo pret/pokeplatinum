@@ -5,8 +5,8 @@
 
 typedef struct {
     int unk_00;
-    int unk_04;
-    ManagedSprite *unk_08;
+    int animIdx;
+    ManagedSprite *sprite;
 } UnkStruct_ov76_0223DD88_sub2;
 
 #endif // POKEPLATINUM_STRUCT_OV76_0223DD88_SUB2_H
