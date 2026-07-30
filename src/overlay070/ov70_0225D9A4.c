@@ -11,7 +11,6 @@
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_02230914.h"
 #include "overlay066/struct_ov66_02230E68.h"
 #include "overlay070/ov70_0225C858.h"
@@ -298,9 +297,9 @@ static BOOL ov70_0225F7FC(const UnkStruct_ov70_0225F350 *param0);
 static BOOL ov70_0225F814(const UnkStruct_ov70_0225F350 *param0);
 static BOOL ov70_0225F828(const UnkStruct_ov70_0225F350 *param0);
 static BOOL ov70_0225F834(const UnkStruct_ov70_0225F350 *param0);
-static void ov70_0225F844(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225E4EC *param2, UnkStruct_ov70_0225F208 *param3, BOOL param4, u32 heapID, const UnkStruct_ov66_0222E71C *param6, const UnkStruct_ov66_0222E71C *param7, BOOL param8, BOOL param9, const UnkStruct_ov66_02230914 *param10, BOOL param11);
+static void ov70_0225F844(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225E4EC *param2, UnkStruct_ov70_0225F208 *param3, BOOL param4, u32 heapID, const WiFiPlazaProfile *param6, const WiFiPlazaProfile *param7, BOOL param8, BOOL param9, const UnkStruct_ov66_02230914 *param10, BOOL param11);
 static void ov70_0225F89C(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225E4EC *param2);
-static void ov70_0225F8AC(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4EC *param1, UnkStruct_ov70_0225F208 *param2, u32 heapID, const UnkStruct_ov66_0222E71C *param4);
+static void ov70_0225F8AC(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4EC *param1, UnkStruct_ov70_0225F208 *param2, u32 heapID, const WiFiPlazaProfile *param4);
 static void ov70_0225F8F0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4EC *param1, u32 heapID, u32 param3);
 static void ov70_0225F920(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4EC *param1);
 static void ov70_0225F934(UnkStruct_ov70_0225F350 *param0, BOOL param1);
@@ -310,8 +309,8 @@ static void ov70_0225FA10(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4
 static void ov70_0225FA84(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4EC *param1, NARC *param2, u32 heapID);
 static void ov70_0225FAA8(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225E4EC *param2);
 static void ov70_0225FACC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E9C8 *param1);
-static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225FA84 *param2, UnkStruct_ov70_0225E4EC *param3, UnkStruct_ov70_0225F208 *param4, BOOL param5, NARC *param6, u32 heapID, const UnkStruct_ov66_0222E71C *param8, const UnkStruct_ov66_0222E71C *param9, BOOL param10, BOOL param11, const UnkStruct_ov66_02230914 *param12, BOOL param13);
-static void ov70_0225FDA0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225FA84 *param1, UnkStruct_ov70_0225E4EC *param2, u32 heapID, const UnkStruct_ov66_0222E71C *param4);
+static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225FA84 *param2, UnkStruct_ov70_0225E4EC *param3, UnkStruct_ov70_0225F208 *param4, BOOL param5, NARC *param6, u32 heapID, const WiFiPlazaProfile *param8, const WiFiPlazaProfile *param9, BOOL param10, BOOL param11, const UnkStruct_ov66_02230914 *param12, BOOL param13);
+static void ov70_0225FDA0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225FA84 *param1, UnkStruct_ov70_0225E4EC *param2, u32 heapID, const WiFiPlazaProfile *param4);
 static void ov70_0225FE80(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225E4EC *param2);
 static void ov70_0225FEC4(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4EC *param1, NARC *param2, u32 heapID, u32 param4);
 static BOOL ov70_0225FEEC(const UnkStruct_ov70_0225FA84 *param0);
@@ -325,15 +324,15 @@ static void ov70_022602DC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F2
 static void ov70_02260314(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, u32 param2, u32 param3, u8 param4, u8 param5, u32 param6);
 static void ov70_02260360(UnkStruct_ov70_0225FA84 *param0, u32 param1);
 static void ov70_02260370(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, const TrainerInfo *param2);
-static void ov70_02260380(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, const UnkStruct_ov66_0222E71C *param2);
+static void ov70_02260380(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, const WiFiPlazaProfile *param2);
 static void ov70_022603B0(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, const UnkStruct_ov66_02230914 *param2);
-static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4EC *param1, NARC *param2, u32 heapID, const UnkStruct_ov66_0222E71C *param4, const UnkStruct_ov66_0222E71C *param5);
+static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4EC *param1, NARC *param2, u32 heapID, const WiFiPlazaProfile *param4, const WiFiPlazaProfile *param5);
 static void ov70_0226068C(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4EC *param1);
 static const UnkStruct_ov70_0226D844 *ov70_02260728(int param0, s32 param1, s32 param2, u32 param3);
 static void ov70_02260744(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, NARC *param2, u32 heapID);
 static void ov70_022607A8(UnkStruct_ov70_02260744 *param0);
 static BOOL ov70_022607D4(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, NARC *param2, u32 heapID);
-static void ov70_02260870(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, UnkStruct_ov70_0225F208 *param2, const UnkStruct_ov66_0222E71C *param3, NARC *param4, u32 heapID);
+static void ov70_02260870(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, UnkStruct_ov70_0225F208 *param2, const WiFiPlazaProfile *param3, NARC *param4, u32 heapID);
 static void ov70_02260930(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2, NARC *param3, u32 heapID);
 static void ov70_022609A8(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1);
 static void ov70_022609D4(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2, NARC *param3, u32 heapID);
@@ -618,7 +617,7 @@ int ov70_0225D9A4(ApplicationManager *appMan, int *param1)
     ov70_0225F350(&v0->unk_1E8, v0->unk_38, &v0->unk_3C, v0->unk_458, HEAP_ID_112);
 
     {
-        const UnkStruct_ov66_0222E71C *v3;
+        const WiFiPlazaProfile *v3;
 
         v3 = ov66_0222E3BC(v0->unk_34);
 
@@ -1057,7 +1056,7 @@ void ov70_0225E21C(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2, u32 
 void ov70_0225E234(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2)
 {
     TrainerInfo *v0;
-    const UnkStruct_ov66_0222E71C *v1;
+    const WiFiPlazaProfile *v1;
 
     v0 = TrainerInfo_New(HEAP_ID_112);
 
@@ -1139,7 +1138,7 @@ void ov70_0225E378(UnkStruct_ov70_0225DEE8 *param0, u32 param1)
 
 void ov70_0225E390(UnkStruct_ov70_0225DEE8 *param0)
 {
-    const UnkStruct_ov66_0222E71C *v0;
+    const WiFiPlazaProfile *v0;
     u32 v1;
 
     if (ov70_0225F7FC(&param0->unk_1E8) == 0) {
@@ -1207,7 +1206,7 @@ BOOL ov70_0225E45C(UnkStruct_ov70_0225DEE8 *param0)
 
 void ov70_0225E46C(UnkStruct_ov70_0225DEE8 *param0, u32 param1)
 {
-    const UnkStruct_ov66_0222E71C *v0;
+    const WiFiPlazaProfile *v0;
     u32 v1;
 
     GF_ASSERT(param1 < 20);
@@ -2078,7 +2077,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
     case 2:
         if (IsScreenFadeDone() == TRUE) {
             {
-                const UnkStruct_ov66_0222E71C *v4;
+                const WiFiPlazaProfile *v4;
 
                 v4 = ov66_0222E3BC(v0);
                 ov70_0225F8AC(param0, v1, &param1->unk_340, heapID, v4);
@@ -2174,7 +2173,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         }
         break;
     case 8: {
-        const UnkStruct_ov66_0222E71C *v8;
+        const WiFiPlazaProfile *v8;
         BOOL v9;
         BOOL v10;
         const UnkStruct_ov66_02230914 *v11;
@@ -2187,7 +2186,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
             break;
         case 2: {
             BOOL v12;
-            const UnkStruct_ov66_0222E71C *v13;
+            const WiFiPlazaProfile *v13;
 
             v13 = ov66_0222E3BC(v0);
 
@@ -2330,7 +2329,7 @@ static BOOL ov70_0225F834(const UnkStruct_ov70_0225F350 *param0)
     return 0;
 }
 
-static void ov70_0225F844(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225E4EC *param2, UnkStruct_ov70_0225F208 *param3, BOOL param4, u32 heapID, const UnkStruct_ov66_0222E71C *param6, const UnkStruct_ov66_0222E71C *param7, BOOL param8, BOOL param9, const UnkStruct_ov66_02230914 *param10, BOOL param11)
+static void ov70_0225F844(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225E4EC *param2, UnkStruct_ov70_0225F208 *param3, BOOL param4, u32 heapID, const WiFiPlazaProfile *param6, const WiFiPlazaProfile *param7, BOOL param8, BOOL param9, const UnkStruct_ov66_02230914 *param10, BOOL param11)
 {
     if (param0->unk_01 == 2) {
         ov70_0225F89C(param0, param1, param2);
@@ -2346,7 +2345,7 @@ static void ov70_0225F89C(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
     param0->unk_01 = 0;
 }
 
-static void ov70_0225F8AC(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4EC *param1, UnkStruct_ov70_0225F208 *param2, u32 heapID, const UnkStruct_ov66_0222E71C *param4)
+static void ov70_0225F8AC(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4EC *param1, UnkStruct_ov70_0225F208 *param2, u32 heapID, const WiFiPlazaProfile *param4)
 {
     if ((param0->unk_01 == 1) || (param0->unk_01 == 4) || (param0->unk_01 == 3)) {
         ov70_0225F920(param0, param1);
@@ -2482,14 +2481,14 @@ static void ov70_0225FACC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E9
     return;
 }
 
-static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225FA84 *param2, UnkStruct_ov70_0225E4EC *param3, UnkStruct_ov70_0225F208 *param4, BOOL param5, NARC *param6, u32 heapID, const UnkStruct_ov66_0222E71C *param8, const UnkStruct_ov66_0222E71C *param9, BOOL param10, BOOL param11, const UnkStruct_ov66_02230914 *param12, BOOL param13)
+static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225FA84 *param2, UnkStruct_ov70_0225E4EC *param3, UnkStruct_ov70_0225F208 *param4, BOOL param5, NARC *param6, u32 heapID, const WiFiPlazaProfile *param8, const WiFiPlazaProfile *param9, BOOL param10, BOOL param11, const UnkStruct_ov66_02230914 *param12, BOOL param13)
 {
     u32 v0;
     TrainerInfo *v1;
 
     ov70_0225F338(param4);
 
-    if (ov66_0222E7C8(param8) == 0) {
+    if (WiFiPlazaProfile_GetGender(param8) == 0) {
         v0 = TEXT_COLOR(7, 8, 0);
 
         if (param10 == 0) {
@@ -2567,13 +2566,13 @@ static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
         u32 v3;
 
         if (param5 == 1) {
-            if (ov66_0222E7C8(param8) == 1) {
+            if (WiFiPlazaProfile_GetGender(param8) == 1) {
                 v3 = 0x61;
             } else {
                 v3 = 0x0;
             }
         } else {
-            v3 = ov66_0222E858(param8);
+            v3 = WiFiPlazaProfile_GetTrainerAppearanceGraphicsID(param8);
         }
 
         ov70_02260080(param2, param3, param6, heapID, v3);
@@ -2584,7 +2583,7 @@ static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
     Heap_Free(v1);
 }
 
-static void ov70_0225FDA0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225FA84 *param1, UnkStruct_ov70_0225E4EC *param2, u32 heapID, const UnkStruct_ov66_0222E71C *param4)
+static void ov70_0225FDA0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225FA84 *param1, UnkStruct_ov70_0225E4EC *param2, u32 heapID, const WiFiPlazaProfile *param4)
 {
     u16 v0;
     int v1;
@@ -2847,7 +2846,7 @@ static void ov70_02260370(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F2
     ov70_0225F2C8(param1, param2, 0);
 }
 
-static void ov70_02260380(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, const UnkStruct_ov66_0222E71C *param2)
+static void ov70_02260380(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, const WiFiPlazaProfile *param2)
 {
     u32 v0;
     u32 v1;
@@ -2868,7 +2867,7 @@ static void ov70_022603B0(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F2
     }
 }
 
-static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4EC *param1, NARC *param2, u32 heapID, const UnkStruct_ov66_0222E71C *param4, const UnkStruct_ov66_0222E71C *param5)
+static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4EC *param1, NARC *param2, u32 heapID, const WiFiPlazaProfile *param4, const WiFiPlazaProfile *param5)
 {
     int v0;
     NARC *v1;
@@ -2902,7 +2901,7 @@ static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__UNIONOBJ2D_ONLYFRONT, heapID);
     v6 = ov66_0222E798(param5);
-    v7 = ov66_0222E7C8(param5);
+    v7 = WiFiPlazaProfile_GetGender(param5);
 
     for (v0 = 0; v0 < 4; v0++) {
         if (v0 == 2) {
@@ -3088,7 +3087,7 @@ static BOOL ov70_022607D4(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
     return v0;
 }
 
-static void ov70_02260870(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, UnkStruct_ov70_0225F208 *param2, const UnkStruct_ov66_0222E71C *param3, NARC *param4, u32 heapID)
+static void ov70_02260870(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, UnkStruct_ov70_0225F208 *param2, const WiFiPlazaProfile *param3, NARC *param4, u32 heapID)
 {
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param4, 55, param1->unk_00, Unk_ov70_0226D5CC[1], 0, 0, 0, heapID);
 
