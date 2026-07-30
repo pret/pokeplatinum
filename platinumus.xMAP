@@ -6833,12 +6833,12 @@
              12](CreateNetworkIcon,func) found in local src_network_icon.c.o
               13](LoadIconPalette,func) found in local src_network_icon.c.o
                14](ReadFileToBuffer,func) found in global src_system.c.o
-               14](@13445,object) found in local src_network_icon.c.o
+               14](@13557,object) found in local src_network_icon.c.o
               13](LoadIconGraphic,func) found in local src_network_icon.c.o
                14](GX_GetBankForOBJ,func) found in global libgx.a
                14](GX_GetBankForSubOBJ,func) found in global libgx.a
-               14](@13475,object) found in local src_network_icon.c.o
-               14](@13476,object) found in local src_network_icon.c.o
+               14](@13587,object) found in local src_network_icon.c.o
+               14](@13588,object) found in local src_network_icon.c.o
               13](PostVBlankCallback,func) found in local src_network_icon.c.o
                14](UpdateOAM,func) found in local src_network_icon.c.o
              12](sUnused,object) found in local src_network_icon.c.o
@@ -22248,7 +22248,7 @@
                                           41](LibraryTV_Exit,func) found in global src_library_tv_library_tv.c.o
                                           41](LibraryTV_Main,func) found in global src_library_tv_library_tv.c.o
                                            42](LibraryTV_SetVramBank,func) found in local src_library_tv_library_tv.c.o
-                                            43](@13245,object) found in local src_library_tv_library_tv.c.o
+                                            43](@13357,object) found in local src_library_tv_library_tv.c.o
                                            42](LibraryTV_SetMsgLdr,func) found in local src_library_tv_library_tv.c.o
                                            42](LibraryTV_UpdateScanLines,func) found in local src_library_tv_library_tv.c.o
                                            42](LibraryTV_ReleaseMsgLdr,func) found in local src_library_tv_library_tv.c.o
@@ -29412,7 +29412,7 @@
                                             43](ov109_021D3884,func) found in local src_overlay109_ov109_021D0D80.c.o
                                              44](ov109_021D3864,func) found in local src_overlay109_ov109_021D0D80.c.o
                                               45](ov109_021D3818,func) found in local src_overlay109_ov109_021D0D80.c.o
-                                               46](v0$19692,object) found in local src_overlay109_ov109_021D0D80.c.o
+                                               46](v0$19687,object) found in local src_overlay109_ov109_021D0D80.c.o
                                             43](ov109_021D1C00,func) found in local src_overlay109_ov109_021D0D80.c.o
                                            42](sub_0209C364,func) found in local src_unk_0209C194.c.o
                                             43](sub_0209C1D0,func) found in global src_unk_0209C194.c.o
@@ -67904,9 +67904,9 @@
   02100A30 00000006 .data   sGameConfirmationMessage	(src_comm_manager.c.o)
   02100A38 00000000 .data   .data	(src_network_icon.c.o)
   02100A38 00000014 .data   sUnused	(src_network_icon.c.o)
-  02100A4C 00000010 .data   @13445	(src_network_icon.c.o)
-  02100A5C 00000012 .data   @13475	(src_network_icon.c.o)
-  02100A70 00000010 .data   @13476	(src_network_icon.c.o)
+  02100A4C 00000010 .data   @13557	(src_network_icon.c.o)
+  02100A5C 00000012 .data   @13587	(src_network_icon.c.o)
+  02100A70 00000010 .data   @13588	(src_network_icon.c.o)
   02100A80 00000000 .data   .data	(src_unk_0203D1B8.c.o)
   02100A80 00000004 .data   pocketList$22045	(src_unk_0203D1B8.c.o)
   02100A84 00000010 .data   template$22692	(src_unk_0203D1B8.c.o)
@@ -135981,10 +135981,10 @@
   021D59B0 00000008 .rodata Unk_ov109_021D59B0	(src_overlay109_ov109_021D0D80.c.o)
   021D59B8 00000008 .rodata Unk_ov109_021D59B8	(src_overlay109_ov109_021D0D80.c.o)
   021D59C0 00000008 .rodata Unk_ov109_021D59C0	(src_overlay109_ov109_021D0D80.c.o)
-  021D59C8 00000008 .rodata @19768	(src_overlay109_ov109_021D0D80.c.o)
+  021D59C8 00000008 .rodata @19763	(src_overlay109_ov109_021D0D80.c.o)
   021D59D0 00000008 .rodata Unk_ov109_021D59D0	(src_overlay109_ov109_021D0D80.c.o)
   021D59D8 0000000C .rodata Unk_ov109_021D59D8	(src_overlay109_ov109_021D0D80.c.o)
-  021D59E4 00000010 .rodata @19628	(src_overlay109_ov109_021D0D80.c.o)
+  021D59E4 00000010 .rodata @19623	(src_overlay109_ov109_021D0D80.c.o)
   021D59F4 00000010 .rodata @18859	(src_overlay109_ov109_021D0D80.c.o)
   021D5A04 00000010 .rodata Unk_ov109_021D5A04	(src_overlay109_ov109_021D0D80.c.o)
   021D5A14 00000014 .rodata Unk_ov109_021D5A14	(src_overlay109_ov109_021D0D80.c.o)
@@ -136028,7 +136028,7 @@
 #>021D5F20          SDK_OVERLAY.overlay109.TEXT_END (linker command file)
 #>021D5F20          SDK_OVERLAY.overlay109.DATA_START (linker command file)
   021D5F20 00000000 .data   .data	(src_overlay109_ov109_021D0D80.c.o)
-  021D5F20 00000040 .data   v0$19692	(src_overlay109_ov109_021D0D80.c.o)
+  021D5F20 00000040 .data   v0$19687	(src_overlay109_ov109_021D0D80.c.o)
 #>021D5F60          SDK_OVERLAY.overlay109.DATA_END (linker command file)
 #>021D5F60          SDK_OVERLAY.overlay109.END (linker command file)
 #>000051A0          SDK_OVERLAY.overlay109.TEXT_SIZE (linker command file)
@@ -139296,12 +139296,12 @@
   021D1178 00000016 .text   LibraryTV_UpdateScanLines	(src_library_tv_library_tv.c.o)
   021D1178 00000000 .text   $t	(src_library_tv_library_tv.c.o)
   021D1190 00000000 .rodata .rodata	(src_library_tv_library_tv.c.o)
-  021D1190 00000010 .rodata @13247	(src_library_tv_library_tv.c.o)
-  021D11A0 0000001C .rodata @13258	(src_library_tv_library_tv.c.o)
-  021D11BC 0000001C .rodata @13252	(src_library_tv_library_tv.c.o)
-  021D11D8 0000001C .rodata @13256	(src_library_tv_library_tv.c.o)
-  021D11F4 0000001C .rodata @13254	(src_library_tv_library_tv.c.o)
-  021D1210 00000028 .rodata @13245	(src_library_tv_library_tv.c.o)
+  021D1190 00000010 .rodata @13359	(src_library_tv_library_tv.c.o)
+  021D11A0 0000001C .rodata @13370	(src_library_tv_library_tv.c.o)
+  021D11BC 0000001C .rodata @13364	(src_library_tv_library_tv.c.o)
+  021D11D8 0000001C .rodata @13368	(src_library_tv_library_tv.c.o)
+  021D11F4 0000001C .rodata @13366	(src_library_tv_library_tv.c.o)
+  021D1210 00000028 .rodata @13357	(src_library_tv_library_tv.c.o)
 #>021D1238          SDK_OVERLAY.library_tv.SINIT_START (linker command file)
 #>021D123C          SDK_OVERLAY.library_tv.SINIT_END (linker command file)
 #>021D1240          SDK_OVERLAY.library_tv.TEXT_END (linker command file)
