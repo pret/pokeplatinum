@@ -10,7 +10,6 @@
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay070/ov70_0225C700.h"
 #include "overlay070/ov70_0225C858.h"
 #include "overlay070/ov70_0225C9B4.h"
@@ -2717,7 +2716,7 @@ static BOOL ov70_0226545C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
     } break;
     case 2: {
-        const UnkStruct_ov66_0222E71C *v7;
+        const WiFiPlazaProfile *v7;
         u32 v8;
 
         v7 = ov66_0222E374(v2, param2);
@@ -2728,7 +2727,7 @@ static BOOL ov70_0226545C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
 
         if (ov66_0222E8D8(v7) == 1) {
-            v1 = ov70_0225CBB8(v3, param2, GetTrainerAppearance(v7));
+            v1 = ov70_0225CBB8(v3, param2, WiFiPlazaProfile_GetTrainerAppearanceGraphicsID(v7));
 
             if (v1) {
                 ov70_0225D0C0(v1, 0);
@@ -2739,7 +2738,7 @@ static BOOL ov70_0226545C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
     } break;
     case 3: {
         u32 v9;
-        const UnkStruct_ov66_0222E71C *v10;
+        const WiFiPlazaProfile *v10;
         BOOL v11;
 
         v10 = ov66_0222E374(v2, param2);
@@ -2840,7 +2839,7 @@ static BOOL ov70_02265630(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
 
         {
             u32 v7;
-            const UnkStruct_ov66_0222E71C *v8;
+            const WiFiPlazaProfile *v8;
             BOOL v9;
 
             v8 = ov66_0222E374(v3, param2);
@@ -3083,8 +3082,8 @@ static BOOL ov70_02265A84(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
     } break;
     case 5: {
-        const UnkStruct_ov66_0222E71C *v8;
-        const UnkStruct_ov66_0222E71C *v9;
+        const WiFiPlazaProfile *v8;
+        const WiFiPlazaProfile *v9;
         BOOL v10 = 0;
 
         if ((v0->unk_03 == 1) && (ov66_0222EEAC(v4) == 0)) {

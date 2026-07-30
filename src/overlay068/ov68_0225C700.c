@@ -11,7 +11,6 @@
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_0222E908.h"
 #include "overlay066/struct_ov66_02231374.h"
 #include "overlay068/struct_ov68_0225DC74.h"
@@ -611,7 +610,7 @@ static String *ov68_0225CC44(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 pa
 static void ov68_0225CC78(UnkStruct_ov68_0225CB70 *param0, u32 param1, enum HeapID heapID)
 {
     TrainerInfo *v0 = TrainerInfo_New(heapID);
-    const UnkStruct_ov66_0222E71C *v1 = ov66_0222E3BC(param0->unk_30);
+    const WiFiPlazaProfile *v1 = ov66_0222E3BC(param0->unk_30);
 
     ov66_0222E640(v1, v0, heapID);
     StringTemplate_SetPlayerName(param0->unk_24, param1, v0);
@@ -1076,7 +1075,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         break;
     case 4: {
         UnkStruct_ov66_0222E908 v2;
-        const UnkStruct_ov66_0222E71C *v3;
+        const WiFiPlazaProfile *v3;
         BOOL v4;
 
         v3 = ov66_0222E3BC(param4->unk_04);
@@ -1496,7 +1495,7 @@ static u32 ov68_0225DCA4(const UnkStruct_ov68_0225DC74 *param0, u32 param1, u32 
 
 static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_0222DFF8 *param1)
 {
-    const UnkStruct_ov66_0222E71C *v0;
+    const WiFiPlazaProfile *v0;
     UnkStruct_ov66_0222E908 v1;
     int v2;
     u32 language;
@@ -1508,7 +1507,7 @@ static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_
         v0 = ov66_0222E374(param1, v2);
 
         if (v0 != NULL) {
-            language = GetLanguage(v0);
+            language = WiFiPlazaProfile_GetLanguage(v0);
             ov66_0222E908(v0, &v1);
             v4 = ov66_022335C0(UnkEnum_ov66_022335C0_00, language);
 
