@@ -15,11 +15,11 @@
 #include "sprite_system.h"
 
 typedef struct {
-    UnkStruct_02097F18 *unk_00; // handles sprites
+    UnkStruct_02097F18 *unk_00; // random stuff (pokemon, party, svae, sealcase)
     UnkStruct_ov76_0223DD88_sub1 capsules[CAPSULE_NUM];
     SealCounts *sealCount;
-    BallCapsule unk_68;
-    u8 unk_80[81];
+    BallCapsule activeCapsule;
+    u8 unk_80[SEAL_ID_MAX];
     u8 unused[3];
     UnkStruct_ov76_0223C398 unk_D4;
     UnkStruct_ov76_0223DD88_sub2 unk_264[CAPSULE_NUM];
@@ -31,14 +31,14 @@ typedef struct {
     int unk_3C4[2]; // [0] is current index?
     int unk_3CC;
     u8 unused[4];
-    int unk_3D4;
+    int stateID; // these should all be different stateIDs
     int unk_3D8;
     int unk_3DC;
     int unk_3E0;
-    SealSprites sprites;
+    SealSprites sealSprites;
     UnkStruct_ov76_0223DD88_sub3 unk_418;
     Pokemon *pokemon;
-    NARC *unk_42C; // NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_53)
+    NARC *narc;
 } UnkStruct_ov76_0223DE00; // this should be the main struct
 
 #endif // POKEPLATINUM_STRUCT_OV76_0223DE00_H

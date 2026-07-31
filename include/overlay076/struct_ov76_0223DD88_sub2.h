@@ -4,7 +4,7 @@
 #include "sprite_system.h"
 
 typedef struct {
-    int unk_00;
+    int index; // also no 100% on this one
     int animIdx;
     ManagedSprite *sprite;
 } UnkStruct_ov76_0223DD88_sub2;

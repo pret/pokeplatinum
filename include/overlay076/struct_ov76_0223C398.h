@@ -33,19 +33,19 @@ typedef struct {
     Menu *menu;
     PokemonSpriteManager *monSpriteManager;
     PokemonSprite *monSprite;
-    int unk_D8;
+    int pokemonYOffset;
     UnkStruct_ov22_02258A48 unk_DC;
-    TouchScreenActions *unk_F8;
-    TouchScreenRect touchScreenRect[21];
+    TouchScreenActions *touchScreenActions;
+    TouchScreenRect touchScreenRects[21];
     YesNoTouchMenu *yesNoTouchMenu;
     BallCapsuleSealEffect *sealEffect;
     BallRotation *ballRotation;
     G3DPipelineBuffers *pipelineBuffers;
     UnkStruct_02012744 *unk_160;
-    FontOAM *unk_164[2];
+    FontOAM *fontOAM[2];
     CharTransferAllocation unk_16C[2];
     BOOL unk_184; // rendered?
-    PokemonAnimManager *unk_188;
+    PokemonAnimManager *pokemonAnimManager;
     BOOL unk_18C;
 } UnkStruct_ov76_0223C398;
 
