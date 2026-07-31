@@ -49,7 +49,7 @@
 #include "battle/battle_main.h"
 #include "choose_starter/choose_starter_app.h"
 #include "cutscenes/boat_cutscene.h"
-#include "cutscenes/end_credits/ov99_021D0D80.h"
+#include "cutscenes/end_credits/main.h"
 #include "cutscenes/hall_of_fame.h"
 #include "dw_warp/dw_warp.h"
 #include "field/field_system.h"
@@ -1409,18 +1409,18 @@ void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem)
     return hallOfFame;
 }
 
-void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1)
+void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *clearGamePlayerInfo)
 {
     FS_EXTERN_OVERLAY(end_credits);
 
-    static const ApplicationManagerTemplate v0 = {
-        ov99_021D0D80,
-        ov99_021D1028,
-        ov99_021D11A8,
+    static const ApplicationManagerTemplate template = {
+        EndCreditsApp_Init,
+        EndCreditsApp_Main,
+        EndCreditsApp_Exit,
         FS_OVERLAY_ID(end_credits)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, clearGamePlayerInfo);
 }
 
 void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData)

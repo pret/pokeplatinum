@@ -1,9 +1,7 @@
-#include "cutscenes/end_credits/ov99_021D3E78.h"
+#include "cutscenes/end_credits/strings.h"
 
 #include <nitro.h>
 #include <string.h>
-
-#include "cutscenes/end_credits/struct_ov99_021D3E78_decl.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -14,11 +12,17 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
+enum EndCreditsStringsState {
+    END_CREDITS_STRINGS_STATE_PRINTING = 0,
+    END_CREDITS_STRINGS_STATE_ALL_PRINTED,
+    END_CREDITS_STRINGS_STATE_ALL_ERASED
+};
+
 static const struct {
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-} Unk_ov99_021D4CE4[] = {
+    u16 messageID;
+    u16 yOffset;
+    u16 centered;
+} sEndCreditStringProps[] = {
     { 0x0, 0x0, 0x1 },
     { 0x1, 0x10, 0x1 },
     { 0x2, 0x92, 0x0 },
@@ -258,154 +262,137 @@ static const struct {
     { 0xEC, 0x1D9D, 0x0 }
 };
 
-struct UnkStruct_ov99_021D3E78_t {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    BOOL unk_14;
-    BOOL unk_18;
-    int unk_1C;
-    BgConfig *unk_20;
-    Window *unk_24;
-    Window *unk_28;
-    MessageLoader *unk_2C;
-    String *unk_30;
-    SysTask *unk_34;
-};
+static void EndCreditsStrings_VBlankCallback(SysTask *sysTask, void *_manager);
 
-static void ov99_021D4104(SysTask *param0, void *param1);
-
-UnkStruct_ov99_021D3E78 *ov99_021D3E78(BgConfig *param0, int param1, int param2, int param3, MessageLoader *param4)
+EndCreditsStringsManager *EndCreditsStrings_CreateManager(BgConfig *bgConfig, int startTopY, int bgLayer, int palette, MessageLoader *messageLoader)
 {
-    UnkStruct_ov99_021D3E78 *v0 = Heap_Alloc(HEAP_ID_75, sizeof(UnkStruct_ov99_021D3E78));
+    EndCreditsStringsManager *manager = Heap_Alloc(HEAP_ID_END_CREDITS, sizeof(EndCreditsStringsManager));
 
-    if (v0) {
-        v0->unk_20 = param0;
-        v0->unk_00 = param1;
-        v0->unk_04 = param1 + 192;
-        v0->unk_08 = param2;
-        v0->unk_2C = param4;
-        v0->unk_0C = 0;
-        v0->unk_10 = 0;
-        v0->unk_14 = 0;
-        v0->unk_18 = 0;
-        v0->unk_1C = 0;
-        v0->unk_30 = String_Init(256, HEAP_ID_75);
-        v0->unk_24 = Window_New(HEAP_ID_75, 1);
+    if (manager) {
+        manager->bgConfig = bgConfig;
+        manager->topY = startTopY;
+        manager->bottomY = startTopY + 192;
+        manager->bgLayer = bgLayer;
+        manager->messageLoader = messageLoader;
+        manager->entryToDraw = 0;
+        manager->entryToErase = 0;
+        manager->unused_14 = 0;
+        manager->reloadWindow = 0;
+        manager->state = END_CREDITS_STRINGS_STATE_PRINTING;
+        manager->string = String_Init(256, HEAP_ID_END_CREDITS);
+        manager->window = Window_New(HEAP_ID_END_CREDITS, 1);
 
-        Window_Add(param0, v0->unk_24, param2, 0, 0, 32, 32, param3, 0);
-        Window_FillTilemap(v0->unk_24, 0x0);
-        Window_PutToTilemap(v0->unk_24);
-        Window_CopyToVRAM(v0->unk_24);
+        Window_Add(bgConfig, manager->window, bgLayer, 0, 0, 32, 32, palette, 0);
+        Window_FillTilemap(manager->window, 0x0);
+        Window_PutToTilemap(manager->window);
+        Window_CopyToVRAM(manager->window);
 
-        v0->unk_28 = Window_New(HEAP_ID_75, 1);
-        Window_Add(param0, v0->unk_28, param2, 0, 0, 32, 2, param3, 0);
-        v0->unk_34 = SysTask_ExecuteAfterVBlank(ov99_021D4104, v0, 0);
+        manager->window2 = Window_New(HEAP_ID_END_CREDITS, 1);
+        Window_Add(bgConfig, manager->window2, bgLayer, 0, 0, 32, 2, palette, 0);
+        manager->sysTask = SysTask_ExecuteAfterVBlank(EndCreditsStrings_VBlankCallback, manager, 0);
     }
 
-    return v0;
+    return manager;
 }
 
-void ov99_021D3F38(UnkStruct_ov99_021D3E78 *param0)
+void EndCreditsStrings_FreeManager(EndCreditsStringsManager *manager)
 {
-    if (param0->unk_34) {
-        SysTask_Done(param0->unk_34);
+    if (manager->sysTask) {
+        SysTask_Done(manager->sysTask);
     }
 
-    String_Free(param0->unk_30);
-    Window_Remove(param0->unk_24);
-    Window_Remove(param0->unk_28);
-    Heap_Free(param0->unk_24);
-    Heap_Free(param0->unk_28);
-    Heap_Free(param0);
+    String_Free(manager->string);
+    Window_Remove(manager->window);
+    Window_Remove(manager->window2);
+    Heap_Free(manager->window);
+    Heap_Free(manager->window2);
+    Heap_Free(manager);
 }
 
-BOOL ov99_021D3F6C(UnkStruct_ov99_021D3E78 *param0, int param1)
+BOOL EndCreditsStrings_ScrollCredits(EndCreditsStringsManager *manager, int scrollSpeed)
 {
-    if (param0->unk_1C == 2) {
-        return 1;
+    if (manager->state == END_CREDITS_STRINGS_STATE_ALL_ERASED) {
+        return TRUE;
     } else {
-        int v0 = param0->unk_04 + param1;
+        int nextBottomY = manager->bottomY + scrollSpeed;
 
-        if (param0->unk_1C == 0) {
-            if (v0 >= Unk_ov99_021D4CE4[param0->unk_0C].unk_02) {
-                int v1, v2;
+        if (manager->state == END_CREDITS_STRINGS_STATE_PRINTING) {
+            if (nextBottomY >= sEndCreditStringProps[manager->entryToDraw].yOffset) {
+                int xOffset, yOffset;
 
-                MessageLoader_GetString(param0->unk_2C, Unk_ov99_021D4CE4[param0->unk_0C].unk_00, param0->unk_30);
+                MessageLoader_GetString(manager->messageLoader, sEndCreditStringProps[manager->entryToDraw].messageID, manager->string);
 
-                if (Unk_ov99_021D4CE4[param0->unk_0C].unk_04) {
-                    v1 = (256 - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_30, 0)) / 2;
+                if (sEndCreditStringProps[manager->entryToDraw].centered) {
+                    xOffset = (256 - Font_CalcStringWidth(FONT_SYSTEM, manager->string, 0)) / 2;
                 } else {
-                    v1 = 32;
+                    xOffset = 32;
                 }
 
-                v2 = Unk_ov99_021D4CE4[param0->unk_0C].unk_02 & 0xff;
-                Text_AddPrinterWithParamsAndColor(param0->unk_24, FONT_SYSTEM, param0->unk_30, v1, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+                yOffset = sEndCreditStringProps[manager->entryToDraw].yOffset & 0xff;
+                Text_AddPrinterWithParamsAndColor(manager->window, FONT_SYSTEM, manager->string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
-                if (v2 > (256 - 16)) {
-                    Window_FillTilemap(param0->unk_28, 0x0);
-                    Text_AddPrinterWithParamsAndColor(param0->unk_28, FONT_SYSTEM, param0->unk_30, v1, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+                if (yOffset > (256 - 16)) {
+                    Window_FillTilemap(manager->window2, 0x0);
+                    Text_AddPrinterWithParamsAndColor(manager->window2, FONT_SYSTEM, manager->string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
-                    v2 = 16 - (v2 - (256 - 16));
-                    Window_BlitBitmapRect(param0->unk_24, param0->unk_28->pixels, 0, v2, param0->unk_28->width * 8, param0->unk_28->height * 8, 0, 0, 32 * 8, (16 - v2));
+                    yOffset = 16 - (yOffset - (256 - 16));
+                    Window_BlitBitmapRect(manager->window, manager->window2->pixels, 0, yOffset, manager->window2->width * 8, manager->window2->height * 8, 0, 0, 32 * 8, (16 - yOffset));
                 }
 
-                param0->unk_18 = 1;
+                manager->reloadWindow = TRUE;
 
-                if (++(param0->unk_0C) >= (NELEMS(Unk_ov99_021D4CE4) - 1)) {
-                    param0->unk_1C = 1;
+                if (++(manager->entryToDraw) >= (NELEMS(sEndCreditStringProps) - 1)) {
+                    manager->state = END_CREDITS_STRINGS_STATE_ALL_PRINTED;
                 }
             }
         }
 
-        param0->unk_04 = v0;
+        manager->bottomY = nextBottomY;
 
-        if (param0->unk_00 > (Unk_ov99_021D4CE4[param0->unk_10].unk_02 + 16)) {
-            int v3 = Unk_ov99_021D4CE4[param0->unk_10].unk_02 & 0xff;
+        if (manager->topY > (sEndCreditStringProps[manager->entryToErase].yOffset + 16)) {
+            int yOffset = sEndCreditStringProps[manager->entryToErase].yOffset & 0xff;
 
-            if (v3 <= (256 - 16)) {
-                Window_FillRectWithColor(param0->unk_24, 0x0, 0, v3, 32 * 8, 16);
+            if (yOffset <= (256 - 16)) {
+                Window_FillRectWithColor(manager->window, 0x0, 0, yOffset, 32 * 8, 16);
             } else {
-                int v4, v5;
+                int height1, height2;
 
-                v4 = 16 - (v3 - (256 - 16));
-                v5 = 16 - v4;
+                height1 = 16 - (yOffset - (256 - 16));
+                height2 = 16 - height1;
 
-                Window_FillRectWithColor(param0->unk_24, 0x0, 0, v3, 32 * 8, v4);
-                Window_FillRectWithColor(param0->unk_24, 0x0, 0, 0, 32 * 8, v5);
+                Window_FillRectWithColor(manager->window, 0x0, 0, yOffset, 32 * 8, height1);
+                Window_FillRectWithColor(manager->window, 0x0, 0, 0, 32 * 8, height2);
             }
 
-            param0->unk_18 = 1;
+            manager->reloadWindow = TRUE;
 
-            if (++(param0->unk_10) >= NELEMS(Unk_ov99_021D4CE4)) {
-                param0->unk_1C = 2;
+            if (++(manager->entryToErase) >= NELEMS(sEndCreditStringProps)) {
+                manager->state = END_CREDITS_STRINGS_STATE_ALL_ERASED;
             }
         }
 
-        param0->unk_00 += param1;
+        manager->topY += scrollSpeed;
 
-        return 0;
+        return FALSE;
     }
 }
 
-static void ov99_021D4104(SysTask *param0, void *param1)
+static void EndCreditsStrings_VBlankCallback(SysTask *sysTask, void *_manager)
 {
-    UnkStruct_ov99_021D3E78 *v0 = param1;
+    EndCreditsStringsManager *manager = _manager;
 
-    if (v0->unk_18) {
-        Window_LoadTiles(v0->unk_24);
-        v0->unk_18 = 0;
+    if (manager->reloadWindow) {
+        Window_LoadTiles(manager->window);
+        manager->reloadWindow = FALSE;
     }
 
     {
-        int v1 = v0->unk_00 & 255;
-        Bg_SetOffset(v0->unk_20, v0->unk_08, 3, v1);
+        int yPos = manager->topY & 255;
+        Bg_SetOffset(manager->bgConfig, manager->bgLayer, BG_OFFSET_UPDATE_SET_Y, yPos);
     }
 }
 
-int ov99_021D4130(void)
+int EndCreditsStrings_GetLastMessageID(void)
 {
-    return Unk_ov99_021D4CE4[NELEMS(Unk_ov99_021D4CE4) - 1].unk_00;
+    return sEndCreditStringProps[NELEMS(sEndCreditStringProps) - 1].messageID;
 }

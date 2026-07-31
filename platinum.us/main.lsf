@@ -1485,16 +1485,16 @@ Overlay overlay98
 Overlay end_credits
 {
 	After main
-	Object main.nef.p/src_cutscenes_end_credits_ov99_021D0D80.c.o
-	Object main.nef.p/src_cutscenes_end_credits_ov99_021D1A54.c.o
-	Object main.nef.p/src_cutscenes_end_credits_ov99_021D2C08.c.o
-	Object main.nef.p/src_cutscenes_end_credits_ov99_021D2E28.c.o
-	Object main.nef.p/src_cutscenes_end_credits_ov99_021D340C.c.o
-	Object main.nef.p/src_cutscenes_end_credits_ov99_021D3A40.c.o
-	Object main.nef.p/src_cutscenes_end_credits_ov99_021D3C18.c.o
-	Object main.nef.p/src_cutscenes_end_credits_ov99_021D3DE0.c.o
-	Object main.nef.p/src_cutscenes_end_credits_ov99_021D3E78.c.o
-	Object main.nef.p/src_cutscenes_end_credits_ov99_021D4134.c.o
+	Object main.nef.p/src_cutscenes_end_credits_main.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_bike_morning.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_bike_day.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_bike_night.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_memories.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_twinleaf.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_fin.c.o
+	Object main.nef.p/src_cutscenes_end_credits_strings.c.o
+	Object main.nef.p/src_cutscenes_end_credits_common.c.o
 }
 
 Overlay overlay100
