@@ -519,10 +519,10 @@ endif
 ############################################################
 ###                    ARM7 BINARIES                     ###
 ############################################################
-ichneumon_sub = subproject('NitroSDK'
+ichneumon_sub = subproject('libntr'
     ).get_variable('ichneumon_sub')
 
-ichneumon_sub_defs = subproject('NitroSDK'
+ichneumon_sub_defs = subproject('libntr'
     ).get_variable('ichneumon_sub_defs')
 
 

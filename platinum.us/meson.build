@@ -1,6 +1,6 @@
 # Collect inputs for main.lcf
 main_lsf = files('main.lsf')
-main_lcf_template = subproject('NitroSDK').get_variable('main_lcf_template')
+main_lcf_template = subproject('libntr').get_variable('main_lcf_template')
 
 # Generate main.lcf
 main_lcf = custom_target('main.lcf',
