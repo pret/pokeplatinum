@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 FrontierRecords_BattleTower:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_TOWER
     GoTo FrontierRecords_BattleTowerMenus
@@ -30,7 +30,7 @@ FrontierRecords_BattleTowerMenus:
     End
 
 FrontierRecords_BattleTowerDupe:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_TOWER
     GoTo FrontierRecords_BattleTowerMenusDupe
@@ -47,7 +47,7 @@ FrontierRecords_BattleTowerMenusDupe:
     End
 
 FrontierRecords_BattleFactory:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_FACTORY
     GoTo FrontierRecords_BattleFactoryMenus
@@ -64,7 +64,7 @@ FrontierRecords_BattleFactoryMenus:
     End
 
 FrontierRecords_BattleHall:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_HALL
     GoTo FrontierRecords_BattleHallMenus
@@ -115,7 +115,7 @@ FrontierRecords_SelectPokemonWithStartingLetter:
     End
 
 FrontierRecords_BattleCastle:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_CASTLE
     GoTo FrontierRecords_BattleCastleMenus
@@ -132,7 +132,7 @@ FrontierRecords_BattleCastleMenus:
     End
 
 FrontierRecords_BattleArcade:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_ARCADE
     GoTo FrontierRecords_BattleArcadeMenus

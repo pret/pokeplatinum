@@ -551,7 +551,7 @@ static int ov94_02241A58(GTSApplicationState *appState)
         ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_06, &appState->unk_10E4->unk_04);
         StringList_Free(appState->unk_10CC);
         appState->currentScreenInstruction = 5;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     case MENU_CANCEL:
         ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_06, &appState->unk_10E4->unk_04);
@@ -562,7 +562,7 @@ static int ov94_02241A58(GTSApplicationState *appState)
         Window_Remove(&appState->unk_F9C[1]);
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_5);
         appState->currentScreenInstruction = 2;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     }
 
@@ -608,7 +608,7 @@ static int ov94_02241BAC(GTSApplicationState *appState)
         Window_Remove(&appState->unk_F9C[0]);
         Window_Remove(&appState->unk_F9C[1]);
         appState->currentScreenInstruction = 0;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         ov94_02242AC4(&appState->unk_111C, appState->unk_10E4->unk_06 + appState->unk_10E4->unk_04, appState->unk_10E4->unk_0A, appState->unk_10E4->unk_08);
         break;
     default:
@@ -621,7 +621,7 @@ static int ov94_02241BAC(GTSApplicationState *appState)
         Window_Remove(&appState->unk_F9C[0]);
         Window_Remove(&appState->unk_F9C[1]);
         appState->unk_B74.species = input;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(input, SPECIES_DATA_GENDER_RATIO);
 
         if (ov94_02241B80(&appState->unk_B74, appState->unk_10E4->unk_20)) {
@@ -671,7 +671,7 @@ static int ov94_02241DA0(GTSApplicationState *appState)
         Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->unk_F9C[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->currentScreenInstruction = 0;
         break;
 
@@ -682,7 +682,7 @@ static int ov94_02241DA0(GTSApplicationState *appState)
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
         Window_Remove(&appState->unk_F9C[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->unk_B74.gender = input + 1;
         appState->currentScreenInstruction = 10;
         ov94_022422D4(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], appState->unk_B74.species, appState->unk_B74.gender, -1);
@@ -726,7 +726,7 @@ static int ov94_02241F28(GTSApplicationState *appState)
         Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->unk_F9C[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (ov94_02241B80(&appState->unk_B74, appState->unk_10E4->unk_20)) {
             appState->currentScreenInstruction = 0;
@@ -735,7 +735,7 @@ static int ov94_02241F28(GTSApplicationState *appState)
         }
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         ListMenu_Free(appState->unk_10D8, NULL, NULL);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
@@ -1263,7 +1263,7 @@ u32 ov94_02242A6C(ListMenu *menu, u16 *input)
 
     if (*input != pos) {
         if (*input != 0xffff) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
 
         *input = pos;

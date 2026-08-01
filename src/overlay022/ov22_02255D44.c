@@ -543,7 +543,7 @@ int VisualCompetition_Main(ApplicationManager *appMan, int *param1)
         break;
     case 10:
         ov22_0225718C(v0);
-        Sound_PlayEffect(SEQ_SE_DP_CON_016);
+        Sound_PlayEffect(SEQ_SE_DP_CON_016_sseq);
         (*param1)++;
         break;
     case 11:
@@ -552,7 +552,7 @@ int VisualCompetition_Main(ApplicationManager *appMan, int *param1)
         break;
     case 12:
         if (IsScreenFadeDone()) {
-            Sound_SetSceneAndPlayBGM(SOUND_SCENE_7, SEQ_CO_DRESS, 0);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_7, SEQ_CO_DRESS_sseq, 0);
             (*param1)++;
         }
         break;
@@ -572,7 +572,7 @@ int VisualCompetition_Main(ApplicationManager *appMan, int *param1)
 
         if (0 == v2) {
             (*param1) = 15;
-            Sound_PlayEffect(SEQ_SE_DP_MAZYO);
+            Sound_PlayEffect(SEQ_SE_DP_MAZYO_sseq);
         }
 
         ov22_0225890C(&v0->unk_4FC);
@@ -585,7 +585,7 @@ int VisualCompetition_Main(ApplicationManager *appMan, int *param1)
 
         if (0 == v2) {
             (*param1) = 15;
-            Sound_PlayEffect(SEQ_SE_DP_MAZYO);
+            Sound_PlayEffect(SEQ_SE_DP_MAZYO_sseq);
         }
 
         ov22_02257564(v0);
@@ -605,7 +605,7 @@ int VisualCompetition_Main(ApplicationManager *appMan, int *param1)
         }
 
         StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_26, FADE_TYPE_UNK_26, COLOR_BLACK, 6, 1, HEAP_ID_13);
-        Sound_PlayEffect(SEQ_SE_DP_CON_017);
+        Sound_PlayEffect(SEQ_SE_DP_CON_017_sseq);
         (*param1)++;
         break;
     case 20:

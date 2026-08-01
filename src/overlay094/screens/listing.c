@@ -342,11 +342,11 @@ static int ov94_0223D5B8(GTSApplicationState *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov94_0223D88C(param0, GTS_Text_Selection_DoWhat, TEXT_SPEED_FAST, 0, 0xf0f, (Pokemon *)param0->receivedListing.pokemon.bytes);
         GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 7);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->currentScreenInstruction = 2;
         GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     return 3;

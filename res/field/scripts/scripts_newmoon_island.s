@@ -22,7 +22,7 @@ NewmoonIsland_OnTransitionReturn:
     Return
 
 NewmoonIsland_Sailor:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerDir VAR_0x8004
@@ -52,7 +52,7 @@ NewmoonIsland_AllRightThen:
 NewmoonIsland_SailorEnterShip:
     ApplyMovement LOCALID_SAILOR, NewmoonIslandForest_Movement_SailorWalkToShip
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_SAILOR, NewmoonIslandForest_Movement_SetInvisible
     WaitMovement
     Return
@@ -60,7 +60,7 @@ NewmoonIsland_SailorEnterShip:
 NewmoonIsland_PlayerEnterShipSouth:
     ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_PlayerWalkToShipSouth
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_SetInvisible
     WaitMovement
     Return
@@ -68,7 +68,7 @@ NewmoonIsland_PlayerEnterShipSouth:
 NewmoonIsland_PlayerEnterShipWest:
     ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_PlayerWalkToShipWest
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_SetInvisible
     WaitMovement
     Return
@@ -76,7 +76,7 @@ NewmoonIsland_PlayerEnterShipWest:
 NewmoonIsland_PlayerEnterShipNorth:
     ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_PlayerWalkToShipNorth
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, NewmoonIslandForest_Movement_SetInvisible
     WaitMovement
     Return

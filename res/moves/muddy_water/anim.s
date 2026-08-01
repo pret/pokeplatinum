@@ -9,12 +9,12 @@ L_0:
     LoadAnimResObj 0, surf_anim_NANR_lz
     AddSprite 0, 0, surf_NCGR_lz, muddy_water_NCLR, surf_cell_NCER_lz, surf_anim_NANR_lz, 0, 0
     AddSprite 0, 1, surf_NCGR_lz, muddy_water_NCLR, surf_cell_NCER_lz, surf_anim_NANR_lz, 0, 0
-    PlaySoundEffectL SEQ_SE_DP_W057
+    PlaySoundEffectL SEQ_SE_DP_W057_sseq
     Func_Surf 1
     WaitForAnimTasks
     FreeSpriteManager 0
     Func_MuddyWater 49, 0, 256, -6, 6, TRUE, 16, 45
-    PlaySoundEffectC SEQ_SE_DP_W057B
+    PlaySoundEffectC SEQ_SE_DP_W057B_sseq
     Delay 15
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE

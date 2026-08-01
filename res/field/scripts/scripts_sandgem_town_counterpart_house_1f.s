@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 SandgemTownCounterpartHouse1F_ExpertM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetNationalDexEnabled VAR_RESULT
@@ -26,7 +26,7 @@ SandgemTownCounterpartHouse1F_YouveGotANationalPokedex:
     End
 
 SandgemTownCounterpartHouse1F_Twin:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetNationalDexEnabled VAR_RESULT

@@ -9729,7 +9729,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             && data->battleCtx->battleMons[BATTLER_ENEMY_1].curHP + data->battleCtx->battleMons[BATTLER_ENEMY_2].curHP == 0
             && Pokemon_GetValue(mon, MON_DATA_HP, NULL)
             && data->battleCtx->expJinglePlayed == FALSE) {
-            Sound_PlayBGM(SEQ_VICTORY_WILD_POKEMON);
+            Sound_PlayBGM(VICTORY_WILD_POKEMON_sseq);
             data->battleCtx->expJinglePlayed = TRUE;
             BattleSystem_SetRedHPSoundFlag(data->battleSys, 2); // turn off
         }
@@ -9974,7 +9974,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF_WAIT:
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE_WAIT:
         if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             data->seqNum++;
         }
         break;
@@ -10395,7 +10395,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             data->ballRotation = ov12_02237728(&ballThrow);
             data->seqNum = SEQ_CATCH_MON_CHECK_BATTLE_TYPE;
 
-            Sound_PlayEffect(SEQ_SE_DP_NAGERU);
+            Sound_PlayEffect(SEQ_SE_DP_NAGERU_sseq);
             data->battleSys->ballsThrown++;
             ov12_022368C8(data->ballRotation, 0);
         } else {
@@ -10406,7 +10406,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
                 battlerData->ballRotation = NULL;
                 data->seqNum = SEQ_CATCH_MON_CHECK_BATTLE_TYPE;
 
-                Sound_PlayEffect(SEQ_SE_DP_NAGERU);
+                Sound_PlayEffect(SEQ_SE_DP_NAGERU_sseq);
                 data->battleSys->ballsThrown++;
                 ov12_022368C8(data->ballRotation, 0);
             }
@@ -10417,11 +10417,11 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             u32 battleType = BattleSystem_GetBattleType(data->battleSys);
 
             if (battleType & BATTLE_TYPE_TRAINER) {
-                Sound_PlayPannedEffect(SEQ_SE_DP_KON, BATTLE_SOUND_PAN_RIGHT);
+                Sound_PlayPannedEffect(SEQ_SE_DP_KON_sseq, BATTLE_SOUND_PAN_RIGHT);
                 ov12_022368C8(data->ballRotation, 2);
                 data->seqNum = SEQ_CATCH_MON_PRINT_TRAINER_BLOCKED_BALL;
             } else {
-                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA4, BATTLE_SOUND_PAN_RIGHT);
+                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA4_sseq, BATTLE_SOUND_PAN_RIGHT);
                 ov12_022368C8(data->ballRotation, 1);
 
                 data->seqNum = SEQ_CATCH_MON_CALC_SHAKES;
@@ -10479,7 +10479,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
     case SEQ_CATCH_MON_WAIT_SHAKES_FINISH:
         if (--data->tmpData[CATCH_MON_DELAY] == 0) {
             ov12_022368C8(data->ballRotation, 6);
-            Sound_PlayPannedEffect(SEQ_SE_DP_GETTING, BATTLE_SOUND_PAN_RIGHT);
+            Sound_PlayPannedEffect(SEQ_SE_DP_GETTING_sseq, BATTLE_SOUND_PAN_RIGHT);
             data->seqNum = SEQ_CATCH_MON_PRINT_POKEMON_WAS_CAUGHT;
         }
         break;
@@ -10494,7 +10494,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             data->tmpData[CATCH_MON_DELAY] = 30;
             data->seqNum = SEQ_CATCH_MON_WAIT_PRINT_POKEMON_WAS_CAUGHT;
 
-            Sound_PlayBGM(SEQ_VICTORY_WILD_POKEMON);
+            Sound_PlayBGM(VICTORY_WILD_POKEMON_sseq);
             BattleSystem_SetRedHPSoundFlag(data->battleSys, 2);
         }
         break;
@@ -10574,7 +10574,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 data->seqNum = SEQ_CATCH_MON_MOVE_FOR_ASK_NICKNAME;
             } else if (TouchScreen_Tapped()) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 data->seqNum = SEQ_CATCH_MON_MOVE_FOR_ASK_NICKNAME;
             }
 

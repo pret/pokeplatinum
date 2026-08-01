@@ -402,8 +402,8 @@ _04DF:
     ShowSavingIcon
     FrontierScrCmd_73 VAR_0x8008
     HideSavingIcon
-    PlaySoundEffect SEQ_SE_DP_SAVE
-    WaitSoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
+    WaitSoundEffect SEQ_SE_DP_SAVE_sseq
     CloseMessage
     Return
 
@@ -514,7 +514,7 @@ _069B:
     Return
 
 _06CE:
-    PlaySoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
     BufferPlayerName 0
     Message BattleTowerMultiBattleRoom_Text_BattleHasBeenSaved
     Return
@@ -543,8 +543,8 @@ _0707:
     ShowSavingIcon
     FrontierScrCmd_72 VAR_0x8008
     HideSavingIcon
-    PlaySoundEffect SEQ_SE_DP_SAVE
-    WaitSoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
+    WaitSoundEffect SEQ_SE_DP_SAVE_sseq
     FadeScreenOut
     CloseMessage
     FreeBattleRecording
@@ -601,7 +601,7 @@ _0817:
     BufferNumber 1, VAR_0x8008
     BufferPlayerName 0
     Message BattleTowerMultiBattleRoom_Text_PlayerReceivedBP
-    PlayFanfare SEQ_PL_POINTGET3
+    PlayFanfare SEQ_PL_POINTGET3_sseq
     WaitFanfare
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_LINK_MULTI, _0869
@@ -705,7 +705,7 @@ _09E9:
 
 _0A0D:
     Message BattleTowerMultiBattleRoom_Text_YourPokemonWillBeRestored
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     Return

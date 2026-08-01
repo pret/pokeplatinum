@@ -18,7 +18,7 @@ CanalaveCityMart_SpecialtyVendor:
     End
 
 CanalaveCityMart_Lady:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferItemName 0, ITEM_MAX_POTION //Unused?
@@ -29,7 +29,7 @@ CanalaveCityMart_Lady:
     End
 
 CanalaveCityMart_Pokefan:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferItemName 0, ITEM_X_ATTACK //Unused?

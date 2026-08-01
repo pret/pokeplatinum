@@ -494,7 +494,7 @@ static void PoketchGraphics_UpBtnHalfPressed_Task(SysTask *task, void *taskMan)
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapUpBtnHalfPressed, BUTTON_UP);
-    Sound_PlayEffect(SEQ_SE_DP_DENSI04);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI04_sseq);
 }
 
 static void PoketchGraphics_DownBtnHalfPressed_Task(SysTask *task, void *taskMan)
@@ -502,7 +502,7 @@ static void PoketchGraphics_DownBtnHalfPressed_Task(SysTask *task, void *taskMan
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapDownBtnHalfPressed, BUTTON_DOWN);
-    Sound_PlayEffect(SEQ_SE_DP_DENSI04);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI04_sseq);
 }
 
 static void PoketchGraphics_UpBtnPressed_Task(SysTask *task, void *taskMan)
@@ -524,7 +524,7 @@ static void PoketchGraphics_UpBtnReleased_Task(SysTask *task, void *taskMan)
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapUpBtn, BUTTON_UP);
-    Sound_PlayEffect(SEQ_SE_DP_DENSI01);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI01_sseq);
 }
 
 static void PoketchGraphics_DownBtnReleased_Task(SysTask *task, void *taskMan)
@@ -532,7 +532,7 @@ static void PoketchGraphics_DownBtnReleased_Task(SysTask *task, void *taskMan)
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapDownBtn, BUTTON_DOWN);
-    Sound_PlayEffect(SEQ_SE_DP_DENSI01);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI01_sseq);
 }
 
 static void PoketchGraphics_LoadAppCounterTask(SysTask *task, void *taskMan)

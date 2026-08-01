@@ -412,7 +412,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         ov62_02231AAC(param0, 286);
         v0->unk_2DC = sub_02030A80(HEAP_ID_102);
         sub_02030AA0(v0->unk_2DC, param0->saveData);
-        Sound_PlayEffect(SEQ_SE_PL_BREC80);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80_sseq);
         param0->unk_08++;
         break;
     case 3:
@@ -431,7 +431,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         } else {
             Sound_StopEffect(1381, 0);
             ov62_02233704(param0, 47);
-            Sound_PlayEffect(SEQ_SE_PL_BREC12);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12_sseq);
 
             param0->unk_08++;
         }
@@ -842,7 +842,7 @@ static BOOL ov62_02238B70(UnkStruct_0208C06C *param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
         ov62_02231AAC(param0, 287);
-        Sound_PlayEffect(SEQ_SE_PL_BREC80);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80_sseq);
         param0->unk_08++;
         break;
     case 1:
@@ -862,7 +862,7 @@ static BOOL ov62_02238B70(UnkStruct_0208C06C *param0)
             ov62_0222FB60(param0, 3);
         } else {
             Sound_StopEffect(1381, 0);
-            Sound_PlayEffect(SEQ_SE_PL_BREC12);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12_sseq);
             param0->unk_08++;
         }
         break;
@@ -1577,7 +1577,7 @@ static void ov62_02239BAC(u32 param0, enum TouchScreenButtonState param1, void *
         return;
     }
     if (ov62_02239984(v0, param0) == 0) {
-        Sound_PlayEffect(SEQ_SE_PL_BREC58);
+        Sound_PlayEffect(SEQ_SE_PL_BREC58_sseq);
         return;
     }
 

@@ -17,7 +17,7 @@ SnowpointCityGym_HideSnowpointCityCandice:
     End
 
 SnowpointGym_Candice:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_CandiceAfterBadge
@@ -30,7 +30,7 @@ SnowpointGym_Candice:
     Message SnowpointGym_Text_BeatCandice
     BufferPlayerName 0
     Message SnowpointGym_Text_CandiceReceiveIciclebadge
-    PlayFanfare SEQ_BADGE
+    PlayFanfare SEQ_BADGE_sseq
     WaitFanfare
     GiveBadge BADGE_ID_ICICLE
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
@@ -79,7 +79,7 @@ SnowpointGym_LostBattle:
     End
 
 SnowpointGym_GymGuide:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_GymGuideAfterBadge
@@ -98,7 +98,7 @@ SnowpointGym_GymGuideAfterBadge:
     End
 
 SnowpointGym_GymStatue:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_GymStatueAfterBadge
     BufferRivalName 0

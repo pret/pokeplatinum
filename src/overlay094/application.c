@@ -125,7 +125,7 @@ BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState)
         GTSApplicationState_InitPlayerData(appState, appMan);
         ov94_0223C4E0(appState);
 
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY_sseq, 1);
 
         appState->dwcHeapPointer = Heap_Alloc(HEAP_ID_62, 0x20000 + 32);
         appState->dwcHeapHandle = NNS_FndCreateExpHeap((void *)(((u32)appState->dwcHeapPointer + 31) / 32 * 32), 0x20000);

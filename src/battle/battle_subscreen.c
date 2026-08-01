@@ -1436,7 +1436,7 @@ static void BattleSubscreen_SlideInPanel(BattleSubscreen *btlSubscreen, int dire
     slideInPanelState->bgXOffset = (255 * 100 - slideInPanelState->xShift) / 100;
     slideInPanelState->bgYOffset = (40 * 100 - slideInPanelState->yShift) / 100;
 
-    Sound_PlayEffect(SEQ_SE_DP_SLIDEIN);
+    Sound_PlayEffect(SEQ_SE_DP_SLIDEIN_sseq);
     SysTask_Start(SysTask_SlideInPanel, slideInPanelState, 1210);
 
     BOOL success = SetHBlankCallback(HBlankCallback_SlideInPanel, slideInPanelState);
@@ -3167,7 +3167,7 @@ static int BattleSystem_MenuKeys(BattleSubscreen *btlSubscreen)
     if (!cursor->isActive) { // Check if the cursor is inactive
         if (btlSubscreen->suppressActivationSfx == TRUE || gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN)) {
             if (btlSubscreen->suppressActivationSfx == 0) { // If a key was pressed, play sfx
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
 
             cursor->isActive = TRUE; // Activate the cursor
@@ -3216,12 +3216,12 @@ static int BattleSystem_Cursor_Menu(BattleSubscreen *btlSubscreen, BOOL cursorHi
                 if (gSystem.pressedKeys & PAD_KEY_LEFT) { // Move to bag on the bottom row
                     cursor->x = 0;
                     cursor->y = 1;
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     button = PAD_KEY_LEFT;
                 } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) { // Move to pokemon on the bottom row
                     cursor->x = 2;
                     cursor->y = 1;
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     button = PAD_KEY_RIGHT;
                 }
             }
@@ -3803,7 +3803,7 @@ static u32 BattleSystem_MoveCursor(MenuCursor *cursor, int width, int height, co
     }
 
     if (cursor->x != x || cursor->y != y) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else {
         if (key & PAD_KEY) {
             return 0;

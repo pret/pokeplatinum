@@ -8,7 +8,7 @@ L_0:
     LoadCellResObj 0, fake_out_cell_NCER_lz
     LoadAnimResObj 0, fake_out_anim_NANR_lz
     AddSpriteWithFunc 0, SPRITE_FUNC_FAKE_OUT, fake_out_NCGR_lz, fake_out_NCLR, fake_out_cell_NCER_lz, fake_out_anim_NANR_lz, 0, 0
-    PlayDelayedSoundEffectC SEQ_SE_DP_W260, 20
+    PlayDelayedSoundEffectC SEQ_SE_DP_W260_sseq, 20
     Delay 2
     Func_FakeOutCurtain
     Delay 4
@@ -16,7 +16,7 @@ L_0:
     Delay 4
     Delay 8
     Func_FakeOut
-    PlaySoundEffectR SEQ_SE_DP_W166
+    PlaySoundEffectR SEQ_SE_DP_W166_sseq
     WaitForAnimTasks
     FreeSpriteManager 0
     WaitForAllEmitters

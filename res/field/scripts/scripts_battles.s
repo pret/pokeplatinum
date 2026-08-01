@@ -6,7 +6,7 @@
 
 
 Battles_Trainer:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetTrainerID VAR_0x8004

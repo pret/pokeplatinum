@@ -6,8 +6,8 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_HURU
-    PlayDelayedSoundEffectR SEQ_SE_DP_W025B, 5
+    PlaySoundEffectR SEQ_SE_DP_HURU_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_W025B_sseq, 5
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

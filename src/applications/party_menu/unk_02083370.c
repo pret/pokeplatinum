@@ -543,7 +543,7 @@ BOOL sub_02083D1C(PartyMenuApplication *application)
 
     switch (v0->unk_305) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_POKELIST_001);
+        Sound_PlayEffect(SEQ_SE_DP_POKELIST_001_sseq);
         v0->unk_305 = 1;
         break;
     case 1:
@@ -562,7 +562,7 @@ BOOL sub_02083D1C(PartyMenuApplication *application)
         break;
     case 2:
         sub_02084134(application);
-        Sound_PlayEffect(SEQ_SE_DP_POKELIST_001);
+        Sound_PlayEffect(SEQ_SE_DP_POKELIST_001_sseq);
         v0->unk_305 = 3;
         break;
     case 3:

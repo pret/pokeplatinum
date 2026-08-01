@@ -485,7 +485,7 @@ u32 ov83_0223DD30(UnkStruct_ov83_0223DB30 *param0)
                 Sprite_SetDrawFlag(param0->unk_18[v0], TRUE);
                 Sprite_SetAnimateFlag(param0->unk_18[v0], 1);
                 Sprite_SetDrawFlag(param0->unk_08[v0], FALSE);
-                Sound_PlayEffect(SEQ_SE_DP_NM09);
+                Sound_PlayEffect(SEQ_SE_DP_NM09_sseq);
                 param0->unk_1CC[v0]++;
             }
             break;

@@ -133,7 +133,7 @@ static BOOL FieldTask_DoClearGameSequence(FieldTask *task)
     } break;
     case 5:
         if (ClearGame_FieldMessageFinishedPrinting(clearGameStruct)) {
-            Sound_PlayEffect(SEQ_SE_DP_SAVE);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE_sseq);
             clearGameStruct->delay = 18;
             (*state)++;
         }

@@ -85,7 +85,7 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
     ov94_02245934(appState); // some kind of networking init?
     GTSApplication_MainMenu_RenderMenuButtons(appState);
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_23, SEQ_BLD_BLD_GTC, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_23, SEQ_BLD_BLD_GTC_sseq, 1);
 
     if (appState->hasPlayerDescended == FALSE) {
         ov94_0223C85C(appState);
@@ -406,19 +406,19 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
             if (appState->isPokemonListed == FALSE) {
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_5);
                 appState->currentScreenInstruction = 9;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             } else {
                 if (appState->networkTimer == 0) {
                     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_CHECK_SERVER);
                     appState->returnAfterNetworkScreen = GTS_SCREEN_LISTING;
                     appState->currentScreenInstruction = 9;
                     appState->networkTimer = (60 * 30);
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 } else {
                     Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
                     GTSApplication_MainMenu_SetBottomWindowText(appState, GTS_Text_PleaseWaitAWhile, TEXT_SPEED_FAST, 0, 0xf0f);
                     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 11, 5);
-                    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                     appState->frameDelay = 0;
                 }
             }
@@ -426,25 +426,25 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
         case 1: // seek pokemon
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 9;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         case 2: // exit
             ov94_0223CFD8(appState, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(appState), 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 12);
             Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         }
     } else if (gSystem.pressedKeys & PAD_KEY_UP) {
         if (appState->mainMenuSelectedOption != 0) {
             appState->mainMenuSelectedOption--;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             GTSApplication_SetSpritePosition(appState->cursorSprite, sMainMenuCursorPositions[appState->mainMenuSelectedOption][0], sMainMenuCursorPositions[appState->mainMenuSelectedOption][1]);
         }
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (appState->mainMenuSelectedOption < 2) {
             appState->mainMenuSelectedOption++;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             GTSApplication_SetSpritePosition(appState->cursorSprite, sMainMenuCursorPositions[appState->mainMenuSelectedOption][0], sMainMenuCursorPositions[appState->mainMenuSelectedOption][1]);
         }
     }

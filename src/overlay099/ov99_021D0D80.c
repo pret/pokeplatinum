@@ -163,7 +163,7 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
     v0->unk_14 = SysTask_Start(ov99_021D1244, v0, 60000);
 
     SetVBlankCallback(ov99_021D1350, v0);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_14, SEQ_BLD_ENDING, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_14, SEQ_BLD_ENDING_sseq, 1);
 
     BrightnessController_SetScreenBrightness(-16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_BOTH_SCREENS);
     SetScreenMasterBrightness(DS_SCREEN_MAIN, 0);

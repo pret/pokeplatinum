@@ -403,7 +403,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
 
         ov92_021D1DB4(v0);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         switch (v3) {
         default:
@@ -458,7 +458,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
 
         ov92_021D1DB4(v0);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (v5 != 0xfffffffe) {
             v5 = sub_02099780(0)[v5];
@@ -500,7 +500,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         }
 
         ov92_021D1DB4(v0);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (v7 != 0xfffffffe) {
             u32 v8 = sub_020996D4(v0->country2);
@@ -579,7 +579,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
 
         if ((gSystem.pressedKeys & PAD_BUTTON_B) || (v0->unk_BAF8 & PAD_BUTTON_B)) {
             Window_EraseStandardFrame(&v0->unk_B834, 0);
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             Window_FillRectWithColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
 
             if (v0->country1 == Country_Text_None) {
@@ -595,7 +595,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
                 ov92_021D1F90(v0);
 
                 if (v0->unk_BB28 == 1) {
-                    Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                    Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 }
                 break;
             }
@@ -621,9 +621,9 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
                 *param1 = 16;
 
                 if (v0->unk_BAD8 == 0) {
-                    Sound_PlayEffect(SEQ_SE_PL_FTIMER03);
+                    Sound_PlayEffect(SEQ_SE_PL_TIMER03_sseq_1);
                 } else {
-                    Sound_PlayEffect(SEQ_SE_PL_FTIMER03);
+                    Sound_PlayEffect(SEQ_SE_PL_TIMER03_sseq_1);
                 }
             }
         }
@@ -1000,7 +1000,7 @@ static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param
 static void ov92_021D1C38(ListMenu *listMenu, u32 unused, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 

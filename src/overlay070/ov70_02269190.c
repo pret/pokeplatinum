@@ -899,33 +899,33 @@ static void ov70_02269738(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
     };
 
     static const u32 v1[27] = {
-        SEQ_SE_PL_HIROBA01_4,
-        SEQ_SE_PL_HIROBA01_5,
-        SEQ_SE_PL_HIROBA01_6,
-        SEQ_SE_PL_HIROBA03,
-        SEQ_SE_PL_HIROBA03_2,
-        SEQ_SE_PL_HIROBA03_3,
-        SEQ_SE_PL_HIROBA02_4,
-        SEQ_SE_PL_HIROBA02_5,
-        SEQ_SE_PL_HIROBA02_6,
-        SEQ_SE_PL_HIROBA70,
-        SEQ_SE_PL_HIROBA70_2,
-        SEQ_SE_PL_HIROBA70_3,
-        SEQ_SE_PL_HIROBA100,
-        SEQ_SE_PL_HIROBA100_2,
-        SEQ_SE_PL_HIROBA100_3,
-        SEQ_SE_PL_HIROBA05,
-        SEQ_SE_PL_HIROBA05_2,
-        SEQ_SE_PL_HIROBA05_3,
-        SEQ_SE_PL_W030,
-        SEQ_SE_PL_W030_2,
-        SEQ_SE_PL_W030_3,
-        SEQ_SE_PL_W019,
-        SEQ_SE_PL_W019_2,
-        SEQ_SE_PL_W019_3,
-        SEQ_SE_PL_HIROBA30,
-        SEQ_SE_PL_HIROBA30,
-        SEQ_SE_PL_HIROBA30
+        SEQ_SE_PL_HIROBA01_4_sseq,
+        SEQ_SE_PL_HIROBA01_5_sseq,
+        SEQ_SE_PL_HIROBA01_6_sseq,
+        SEQ_SE_PL_HIROBA03_sseq,
+        SEQ_SE_PL_HIROBA03_2_sseq,
+        SEQ_SE_PL_HIROBA03_3_sseq,
+        SEQ_SE_PL_HIROBA02_4_sseq,
+        SEQ_SE_PL_HIROBA02_5_sseq,
+        SEQ_SE_PL_HIROBA02_6_sseq,
+        SEQ_SE_PL_HIROBA70_sseq,
+        SEQ_SE_PL_HIROBA70_2_sseq,
+        SEQ_SE_PL_HIROBA70_3_sseq,
+        SEQ_SE_PL_HIROBA100_sseq,
+        SEQ_SE_PL_HIROBA100_2_sseq,
+        SEQ_SE_PL_HIROBA100_3_sseq,
+        SEQ_SE_PL_HIROBA05_sseq,
+        SEQ_SE_PL_HIROBA05_2_sseq,
+        SEQ_SE_PL_HIROBA05_3_sseq,
+        SEQ_SE_PL_W030_sseq,
+        SEQ_SE_PL_W030_2_sseq,
+        SEQ_SE_PL_W030_3_sseq,
+        SEQ_SE_PL_W019_sseq,
+        SEQ_SE_PL_W019_2_sseq,
+        SEQ_SE_PL_W019_3_sseq,
+        SEQ_SE_PL_HIROBA30_sseq,
+        SEQ_SE_PL_HIROBA30_sseq,
+        SEQ_SE_PL_HIROBA30_sseq
     };
 
     GF_ASSERT(param3 < 27);
@@ -2094,7 +2094,7 @@ static BOOL ov70_0226AF7C(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
             param1->unk_954.val1.unk_02 = 0;
             param1->unk_954.val1.unk_04 = v3.y;
 
-            ov70_02269510(param0, param1, SEQ_SE_PL_SUTYA);
+            ov70_02269510(param0, param1, SEQ_SE_PL_SUTYA2_sseq_1);
         }
     } break;
     case 4: {
@@ -2149,7 +2149,7 @@ static BOOL ov70_0226AF7C(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
                 v10 = ov70_0226B714(param0, param1, v0, 4);
 
                 if (v10 == 1) {
-                    ov70_02269510(param0, param1, SEQ_SE_PL_HIROBA20);
+                    ov70_02269510(param0, param1, SEQ_SE_PL_HIROBA20_sseq);
                 }
             }
         }
@@ -2170,7 +2170,7 @@ static BOOL ov70_0226B1D0(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
 
     switch (param1->unk_954.val1.unk_00) {
     case 0:
-        ov70_02269510(param0, param1, SEQ_SE_PL_HIROBA20);
+        ov70_02269510(param0, param1, SEQ_SE_PL_HIROBA20_sseq);
 
         for (v0 = 0; v0 < param1->unk_954.val1.unk_01; v0++) {
             ov70_0226B714(param0, param1, v0, 4);
@@ -2214,7 +2214,7 @@ static BOOL ov70_0226B1D0(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
             param1->unk_954.val1.unk_02 = 0;
             param1->unk_954.val1.unk_04 = v3.y;
 
-            ov70_02269510(param0, param1, SEQ_SE_PL_SUTYA);
+            ov70_02269510(param0, param1, SEQ_SE_PL_SUTYA2_sseq_1);
             ov70_0225D030(param1->unk_08, 1);
 
             {

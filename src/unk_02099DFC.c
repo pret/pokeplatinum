@@ -98,7 +98,7 @@ int sub_02099E38(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        Sound_StopBGM(SEQ_TITLE01, 0);
+        Sound_StopBGM(SEQ_TITLE01_sseq, 0);
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
         Sound_SetScene(SOUND_SCENE_NONE);
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);

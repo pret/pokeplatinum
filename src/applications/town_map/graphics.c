@@ -163,7 +163,7 @@ BOOL TownMap_FadeInBothScreens(TownMapAppData *appData)
     appData->dummy_14 = 0;
 
     StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_UNK_37, COLOR_BLACK, 6, 1, appData->heapID);
-    Sound_PlayEffect(SEQ_SE_DP_MEKURU);
+    Sound_PlayEffect(SEQ_SE_DP_MEKURU_sseq);
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
@@ -176,7 +176,7 @@ BOOL TownMap_FadeOutBothScreens(TownMapAppData *appData)
     appData->dummy_14 = 0;
 
     StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, appData->heapID);
-    Sound_PlayEffect(SEQ_SE_DP_MEKURU2);
+    Sound_PlayEffect(SEQ_SE_DP_MEKURU2_sseq);
     return FALSE;
 }
 
@@ -185,7 +185,7 @@ BOOL TownMap_FadeInTopScreen(TownMapAppData *appData)
     appData->dummy_14 = 0;
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 6, 1, appData->heapID);
-    Sound_PlayEffect(SEQ_SE_DP_MEKURU);
+    Sound_PlayEffect(SEQ_SE_DP_MEKURU_sseq);
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 28, 4);
@@ -197,7 +197,7 @@ BOOL TownMap_FadeOutTopScreen(TownMapAppData *appData)
     appData->dummy_14 = 0;
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 6, 1, appData->heapID);
-    Sound_PlayEffect(SEQ_SE_DP_MEKURU2);
+    Sound_PlayEffect(SEQ_SE_DP_MEKURU2_sseq);
 
     return FALSE;
 }
@@ -207,7 +207,7 @@ BOOL TownMap_HandleInput_Item(TownMapAppData *appData)
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
     if (graphicsMan->zoomedInMapTransitionStage <= 1 && JOY_NEW(PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         return TRUE;
     }
 
@@ -227,13 +227,13 @@ BOOL TownMap_HandleInput_Fly(TownMapAppData *appData)
     if (graphicsMan->zoomedInMapTransitionStage <= 1) {
         if (JOY_NEW(PAD_BUTTON_A)) {
             if (CanFlyToHoveredLocation(appData)) {
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 return TRUE;
             }
 
             return FALSE;
         } else if (JOY_NEW(PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             return TRUE;
         }
     }
@@ -249,7 +249,7 @@ BOOL TownMap_HandleInput_Fly(TownMapAppData *appData)
 BOOL TownMap_HandleInput_WallMap(TownMapAppData *appData)
 {
     if (JOY_NEW(PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         return TRUE;
     }
 
@@ -1024,7 +1024,7 @@ static void Task_SwitchBottomScreenToZoomedMap(SysTask *sysTask, void *_appData)
         Sprite_SetDrawFlag(graphicsMan->zoomBtnShockwave, TRUE);
         Sprite_SetAnimateFlag(graphicsMan->zoomBtnShockwave, 1);
         Sprite_SetAnimFrame(graphicsMan->zoomBtnShockwave, 1);
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
         graphicsMan->taskState++;
         break;
     case 1:
@@ -1089,7 +1089,7 @@ static void Task_SwitchBottomScreenToZoomButton(SysTask *sysTask, void *_appData
     case 0:
         appData->dummy_14 = 0;
         StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_DOWNWARD_OUT, COLOR_BLACK, 8, 1, appData->heapID);
-        Sound_PlayEffect(SEQ_SE_DP_MEKURU3);
+        Sound_PlayEffect(SEQ_SE_DP_MEKURU3_sseq);
         graphicsMan->taskState++;
         break;
     case 1:

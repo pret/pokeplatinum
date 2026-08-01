@@ -16,7 +16,7 @@ L_0:
     SetExtraParams 0, 2, 10, 6, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 10, 6, 0, 0
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_SUIRYU, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_SUIRYU_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 8
     Func_Shake 2, 0, 1, 14, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER

@@ -519,7 +519,7 @@ static void MainCallbackSaveGame(MysteryGiftAppData *appData)
 
     if (saveStatus == SAVE_RESULT_OK || saveStatus == SAVE_RESULT_CORRUPT) {
         if (ShouldPlayAnimation(&appData->eventData.wonderCard) != TRUE) {
-            Sound_PlayEffect(SEQ_SE_DP_SAVE);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE_sseq);
         }
 
         appData->mainCallback = NULL;
@@ -979,7 +979,7 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Mys
     case MENU_NOTHING_CHOSEN:
         break;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (onCancel) {
             enum MysteryGiftAppState nextState = onCancel(appMan);
@@ -990,7 +990,7 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Mys
         }
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (input) {
             optionStateTransitionFunc = (StateTransitionFuncPtr)input;
@@ -1052,7 +1052,7 @@ static void SearchForWiFiDistributionEvent(ApplicationManager *appMan, enum Myst
         Window_ClearAndCopyToVRAM(&appData->wifiCommErrorWindow);
         Window_Remove(&appData->wifiCommErrorWindow);
         Bg_ClearTilemap(appData->bgConfig, BG_LAYER_MAIN_0);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         ShowMysteryGiftMenuOptions(appMan, BASE_TILE_MAIN_APP_MENU, MysteryGiftMenu_Text_Welcome);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
         *state = MG_APP_STATE_WAIT_MAIN_MENU_INPUT;
@@ -1173,7 +1173,7 @@ static int MysteryGiftApp_Init(ApplicationManager *appMan, int *unused)
     SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
     SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT_sseq, 1);
     DistributionCartridge_UseHeap(HEAP_ID_MYSTERY_GIFT_APP);
 
     if (DistributionCartridge_ReadLength()) {
@@ -1883,7 +1883,7 @@ static void RunMysteryGiftAnimationFrame(SysTask *sysTask, MysteryGiftAnimationM
         FadeTopScreenBlendBrightness(animMan, FADE_TOWARDS_WHITE, 2);
 
         if (goToNextStage || (numParticlesDone == ((NUM_MYSTERY_GIFT_PARTICLES / 4) - 1))) {
-            Sound_PlayEffect(SEQ_SE_DP_SAVE);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE_sseq);
             animMan->animationStage = MG_ANIMATION_STAGE_FLASH_WHITE;
             DeleteTopScreenSmallParticles(animMan);
             SetupBottomScreenLargeParticle(animMan);
@@ -2114,7 +2114,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
                 MainMenuUtil_LoadGiftSprite(appData->bgConfig, wonderCard);
                 appData->animationStatus = MG_ANIMATION_STATUS_PROCEED_IMPLOSION;
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_UG_020);
+                Sound_PlayEffect(SEQ_SE_DP_UG_020_sseq);
             }
 
             *state = MG_APP_STATE_WAIT_FOR_ANIMATION_FINISHED;
@@ -2264,13 +2264,13 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             ToggleWaitDial(appData, FALSE);
             ov97_0222D2DC();
             NetworkIcon_Destroy();
-            Sound_PlayEffect(SEQ_SE_DP_UG_020);
+            Sound_PlayEffect(SEQ_SE_DP_UG_020_sseq);
             SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
             *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_GiftReceivedPickUpInPokeMart, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
         }
         break;
     case MG_APP_STATE_FRIEND_LEFT_BEFORE_SENDING:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_RequestTurnedDown);
         EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
         *state = MG_APP_STATE_RETURN_TO_MENU;
@@ -2282,14 +2282,14 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         }
 
         ToggleWaitDial(appData, FALSE);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_NoGiftsToBeFound);
         EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
         *state = MG_APP_STATE_RETURN_TO_MENU;
         break;
     case MG_APP_STATE_RETURN_TO_MENU:
         if (gSystem.pressedKeys) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             ShowMysteryGiftMenuOptions(appMan, BASE_TILE_MAIN_APP_MENU, MysteryGiftMenu_Text_Welcome);
             *state = MG_APP_STATE_WAIT_MAIN_MENU_INPUT;
         }
@@ -2351,7 +2351,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             appData->delay = 1;
             ToggleWaitDial(appData, FALSE);
             SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
-            Sound_PlayEffect(SEQ_SE_DP_UG_020);
+            Sound_PlayEffect(SEQ_SE_DP_UG_020_sseq);
             *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_GiftReceivedPickUpInPokeMart, MG_APP_STATE_WAIT_BEFORE_EXIT_AFTER_RECEIVING_GIFT);
         } else if (MainMenuUtil_GetSavingStatus() == MAIN_MENU_UTIL_SAVE_FAILURE) {
             SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
@@ -2399,7 +2399,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         break;
     case MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT:
         if (gSystem.pressedKeys) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             if (appData->eventData.header.hasWonderCard == TRUE) {
                 MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_OUT, MG_APP_STATE_SHOW_RECEIVED_WONDERCARD, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);

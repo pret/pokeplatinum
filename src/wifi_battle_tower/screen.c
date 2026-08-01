@@ -867,7 +867,7 @@ static int WifiBattleTower_State_SelectOpponent(WifiBattleTowerAppState *appStat
         }
 
         Window_DrawNumber(&appState->opponentWindow, appState->opponentIdxString, appState->selectedOpponentIdx, 3);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         appState->selectedOpponentIdx--;
 
@@ -876,7 +876,7 @@ static int WifiBattleTower_State_SelectOpponent(WifiBattleTowerAppState *appStat
         }
 
         Window_DrawNumber(&appState->opponentWindow, appState->opponentIdxString, appState->selectedOpponentIdx, 3);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         {
             RTCTime time;
@@ -892,11 +892,11 @@ static int WifiBattleTower_State_SelectOpponent(WifiBattleTowerAppState *appStat
         }
 
         WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
         appState->state = BT_STATE_EXIT_PROMPT;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     return BT_LOOP_STATE_MAIN;
@@ -1132,7 +1132,7 @@ static int WifiBattleTower_State_SelectRank(WifiBattleTowerAppState *appState)
         }
 
         Window_DrawNumber(&appState->rankWindow, appState->rankString, appState->selectedRank, 2);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         appState->selectedRank--;
 
@@ -1141,15 +1141,15 @@ static int WifiBattleTower_State_SelectRank(WifiBattleTowerAppState *appState)
         }
 
         Window_DrawNumber(&appState->rankWindow, appState->rankString, appState->selectedRank, 2);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
         WifiBattleTower_SetState(appState, BT_STATE_REQUEST_ROOM_COUNT, BT_STATE_MATCH_LIST_SELECT_PROMPT);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
         appState->state = BT_STATE_EXIT_MATCH_LIST_PROMPT;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     return BT_LOOP_STATE_MAIN;
@@ -1187,7 +1187,7 @@ static int WifiBattleTower_State_SelectMatchList(WifiBattleTowerAppState *appSta
         }
 
         Window_DrawNumber(&appState->opponentWindow, appState->opponentIdxString, appState->selectedOpponentIdx, 3);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         appState->selectedOpponentIdx--;
 
@@ -1196,15 +1196,15 @@ static int WifiBattleTower_State_SelectMatchList(WifiBattleTowerAppState *appSta
         }
 
         Window_DrawNumber(&appState->opponentWindow, appState->opponentIdxString, appState->selectedOpponentIdx, 3);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
         appState->state = BT_STATE_DOWNLOAD_MATCH_LIST_PROMPT;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         WifiBattleTower_SetSelectionArrowsVisible(appState, 0, 0);
         appState->state = BT_STATE_SELECT_RANK_PROMPT;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     return BT_LOOP_STATE_MAIN;

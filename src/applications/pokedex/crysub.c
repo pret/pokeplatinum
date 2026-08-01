@@ -664,7 +664,7 @@ static void ButtonTouchActions(u32 button, enum TouchScreenButtonState touchScre
             case CRYSUB_LOOP:
                 pokedexCrySubPageData->playButtonState = PLAY_HOLD;
                 SetLoop(pokedexCrySubPageData, pokedexCrySubPageData->loop ^ TRUE);
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 break;
             default:
                 break;
@@ -724,13 +724,13 @@ static void AdjustorHeld(enum CrySubAdjustors adjustor, PokedexCrySubData *poked
                 if (SWITCH_THRESHOLD <= deltaX) {
                     pokedexCrySubPageData->switchMode = SWITCH_PAN;
                     pokedexCrySubPageData->switchX = gSystem.touchX;
-                    Sound_PlayEffect(SEQ_SE_DP_KATI);
+                    Sound_PlayEffect(SEQ_SE_DP_KATI_sseq);
                 }
             } else {
                 if (-SWITCH_THRESHOLD >= deltaX) {
                     pokedexCrySubPageData->switchMode = SWITCH_CHORUS;
                     pokedexCrySubPageData->switchX = gSystem.touchX;
-                    Sound_PlayEffect(SEQ_SE_DP_KATI);
+                    Sound_PlayEffect(SEQ_SE_DP_KATI_sseq);
                 }
             }
         }
@@ -1086,7 +1086,7 @@ static void UpdateDialPosition(PokedexCrySubPageData *pokedexCrySubPageData)
 static void UpdateDialMagnitude(PokedexCrySubPageData *pokedexCrySubPageData)
 {
     if ((pokedexCrySubPageData->dialPosition / DIAL_INCREMENT) != pokedexCrySubPageData->dialMagnitude) {
-        Sound_PlayEffect(SEQ_SE_DP_KATI);
+        Sound_PlayEffect(SEQ_SE_DP_KATI_sseq);
         pokedexCrySubPageData->dialMagnitude = pokedexCrySubPageData->dialPosition / DIAL_INCREMENT;
     }
 }

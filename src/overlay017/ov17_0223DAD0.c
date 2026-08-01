@@ -317,12 +317,12 @@ int DanceCompetition_Init(ApplicationManager *appMan, int *param1)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, SEQ_CONTEST_DRESSING_ROOM, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, CONTEST_DRESSING_ROOM_sseq, 1);
     SetLockTextWithAutoScroll(v0->unk_00->isLinkContest);
 
     G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, -6);
 
-    Sound_PlayEffect(SEQ_SE_DP_CON_007);
+    Sound_PlayEffect(SEQ_SE_DP_CON_007_sseq);
     SetVBlankCallback(ov17_0223E09C, v0);
 
     return 1;

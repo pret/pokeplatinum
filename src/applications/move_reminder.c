@@ -848,7 +848,7 @@ static int MoveReminder_State_Init(MoveReminderController *controller)
 static int MoveReminder_State_ProcessMainInput(MoveReminderController *controller)
 {
     if (JOY_NEW(PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         controller->data->showingContest ^= 1;
         MoveReminder_DrawMovesInfo(controller);
         return MOVE_REMINDER_STATE_PROCESS_MAIN_INPUT;
@@ -871,7 +871,7 @@ static int MoveReminder_State_ProcessMainInput(MoveReminderController *controlle
         break;
 
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         MoveReminder_DrawMoveSelector(controller, controller->data->cursorPos, 1);
         MoveReminder_HideScrollArrows(controller);
         MoveReminder_SetMessageBoxText(controller, MOVE_REMINDER_STR_ASK_GIVE_UP_TEACHING_MON);
@@ -880,7 +880,7 @@ static int MoveReminder_State_ProcessMainInput(MoveReminderController *controlle
         return MOVE_REMINDER_STATE_PRINT_MESSAGE_BOX_TEXT;
 
     default:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         MoveReminder_DrawMoveSelector(controller, controller->data->cursorPos, 1);
         MoveReminder_HideScrollArrows(controller);
         if (MoveReminder_GetEmptyMoveSlot(controller) < LEARNED_MOVES_MAX) {
@@ -1122,7 +1122,7 @@ static void MoveReminder_ListMenuCursorCallback(ListMenu *menu, u32 move, u8 onI
     MoveReminderController *controller = (MoveReminderController *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (onInit != TRUE) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
     }
 
     if (controller->data->showingContest == 0) {
@@ -1331,15 +1331,15 @@ static BOOL MoveReminder_TextPrinterCallback(TextPrinterTemplate *printer, u16 p
         return Sound_IsBGMPausedByFanfare();
 
     case 3:
-        Sound_PlayEffect(SEQ_SE_DP_KON);
+        Sound_PlayEffect(SEQ_SE_DP_KON_sseq);
         break;
 
     case 4:
-        Sound_PlayFanfare(SEQ_FANFA1);
+        Sound_PlayFanfare(SEQ_FANFA1_sseq);
         break;
 
     case 5:
-        return Sound_IsEffectPlaying(SEQ_SE_DP_KON);
+        return Sound_IsEffectPlaying(SEQ_SE_DP_KON_sseq);
     }
 
     return FALSE;

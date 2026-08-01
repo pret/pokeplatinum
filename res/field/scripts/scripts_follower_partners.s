@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 FollowerPartners_Rival:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_RIVAL_STATE, 3, FollowerPartners_Rival_PostStarterMessage
@@ -86,7 +86,7 @@ FollowerPartners_Rival_IncreaseTimesTalked:
     End
 
 FollowerPartners_DummyFollower_Unused:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_UNUSED_TIMES_TALKED, 2, FollowerPartners_DummyFollowerTalkedGe2Times_Unused
@@ -115,7 +115,7 @@ FollowerPartners_DummyFollowerTalked0Times_Unused:
     End
 
 FollowerPartners_Cheryl:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_CHERYL_TIMES_TALKED, 2, FollowerPartners_Cheryl_BattlingWithYouMakesMeElated
@@ -146,7 +146,7 @@ FollowerPartners_Cheryl_IncreaseTimesTalked:
     End
 
 FollowerPartners_Buck:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_BUCK_TIMES_TALKED, 3, FollowerPartners_Buck_ItMightBeCool
@@ -182,7 +182,7 @@ FollowerPartners_Buck_IncreaseTimesTalked:
     End
 
 FollowerPartners_Mira_Unused:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_MIRA_TIMES_TALKED, 2, FollowerPartners_Mira_IWillTryLikeYou_Unused
@@ -214,7 +214,7 @@ FollowerPartners_Mira_IncreaseTimesTalked_Unused:
     End
 
 FollowerPartners_Marley:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_FOLLOWER_MARLEY_TIMES_TALKED, 1, FollowerPartners_Marley_ThePokemonAmongFlowers

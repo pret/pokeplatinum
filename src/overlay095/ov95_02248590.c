@@ -386,7 +386,7 @@ static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1)
     case 3:
         if (param0->unk_08 < 40) {
             if (++(param0->unk_08) == 40) {
-                Sound_PlayEffect(SEQ_SE_DP_KOUKAN10);
+                Sound_PlayEffect(SEQ_SE_DP_KOUKAN10_sseq);
             }
         }
 

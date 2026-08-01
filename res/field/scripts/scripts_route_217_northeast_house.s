@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 Route217NortheastHouse_PokemonBreederF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_217_NORTHEAST_HOUSE_SPELL_TAG, Route217NortheastHouse_ExplainSpellTag

@@ -14,7 +14,7 @@ DistortionWorldB2F_OnTransition:
     End
 
 DistortionWorldB2F_OnFrame_FirstEntry:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 5, DistortionWorldB2F_Cynthia
     GetPlayer3DPos VAR_0x8004, VAR_0x8005, VAR_0x8006

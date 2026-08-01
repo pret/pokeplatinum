@@ -70,35 +70,35 @@ RotomsRoom_ShowLawnMower:
     Return
 
 RotomsRoom_Microwave:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_HEAT
     GoTo RotomsRoom_CheckAppliance
     End
 
 RotomsRoom_Refrigerator:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FROST
     GoTo RotomsRoom_CheckAppliance
     End
 
 RotomsRoom_WashingMachine:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_WASH
     GoTo RotomsRoom_CheckAppliance
     End
 
 RotomsRoom_Fan:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_FAN
     GoTo RotomsRoom_CheckAppliance
     End
 
 RotomsRoom_LawnMower:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar LOCAL_VAR_ROTOM_FORM, ROTOM_FORM_MOW
     GoTo RotomsRoom_CheckAppliance
@@ -318,12 +318,12 @@ RotomsRoom_LearnMove:
     GetPartyMonMove VAR_RESULT, LOCAL_VAR_PARTY_SLOT, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
     Message RotomsRoom_Text_12andPoof
-    PlaySE SEQ_SE_DP_KON
-    WaitSE SEQ_SE_DP_KON
+    PlaySE SEQ_SE_DP_KON_sseq
+    WaitSE SEQ_SE_DP_KON_sseq
     WaitTime 30, VAR_RESULT
     Message RotomsRoom_Text_PokemonForgotMove
     WaitTime 32, VAR_RESULT
-    PlayFanfare SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1_sseq
     BufferMoveName 1, LOCAL_VAR_MOVE_TO_LEARN
     Message RotomsRoom_Text_PokemonLearnedMove
     WaitFanfare
@@ -489,7 +489,7 @@ RotomsRoom_MysteriousNotebook:
     End
 
 RotomsRoom_ApplianceSpot:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GetPartyRotomCountAndFirst VAR_0x8003, VAR_RESULT
     GoToIfEq VAR_0x8003, 0, RotomsRoom_ThereWasAnApplianceHere
@@ -520,9 +520,9 @@ RotomsRoom_SetStateEnterProfRowan:
 RotomsRoom_OnFrame_ProfRowan:
     LockAll
     ClearFlag FLAG_HIDE_ROTOMS_ROOM_PROF_ROWAN
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     AddObject LOCALID_PROF_ROWAN
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, RotomsRoom_Movement_PlayerNoticeRowan
     ApplyMovement LOCALID_PROF_ROWAN, RotomsRoom_Movement_RowanEnter
     WaitMovement
@@ -542,9 +542,9 @@ RotomsRoom_OnFrame_ProfRowan:
     CloseMessage
     ApplyMovement LOCALID_PROF_ROWAN, RotomsRoom_Movement_RowanLeave
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_PROF_ROWAN
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetVar VAR_ROTOMS_ROOM_STATE, 2
     ReleaseAll
     End
@@ -600,7 +600,7 @@ RotomsRoom_Movement_RowanLeave:
     EndMovement
 
 RotomsRoom_OldNotebook:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message RotomsRoom_Text_ReadOldNotebook

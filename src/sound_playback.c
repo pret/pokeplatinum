@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/species.h"
-#include "generated/sdat.h"
 
 #include "struct_defs/chatot_cry.h"
 
@@ -16,6 +15,8 @@
 #include "sound_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+
+#include "res/sound/pl_sound_data.naix"
 
 #define WAVE_OUT_SPEED_HYPERVOICE_1 (WAVE_OUT_SPEED(1.046875))
 #define WAVE_OUT_SPEED_UPROAR_1     (WAVE_OUT_SPEED(0.8125))
@@ -331,16 +332,16 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
 
     u16 waveID = species;
     if (Sound_Impl_IsShayminSkyForm(species, form) == TRUE) {
-        waveID = WAVE_ARC_PV516_SKY;
+        waveID = shaymin_forms_sky_cry_swar;
     }
 
-    if (waveID != WAVE_ARC_PV516_SKY) {
+    if (waveID != shaymin_forms_sky_cry_swar) {
         if (waveID > MAX_SPECIES || waveID == SPECIES_NONE) {
-            waveID = SPECIES_BULBASAUR;
+            waveID = bulbasaur_cry_swar;
         }
     }
 
-    if (waveID == SPECIES_CHATOT) {
+    if (waveID == chatot_cry_swar) {
         if (Sound_Impl_PlayChatotCry(*chatotCry, 0, SOUND_VOLUME_MAX, 0) == TRUE) {
             Sound_SetUsingDefaultChatotCry(FALSE);
             return TRUE;
@@ -352,10 +353,10 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
             Sound_StopPokemonCries(0);
         }
 
-        success = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_POKEMON_CRY), -1, waveID, -1, SEQ_PV);
+        success = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_POKEMON_CRY), -1, waveID, -1, SEQ_PV001_sseq_1);
         Sound_AdjustVolumeForVoiceChatEx(waveID, SOUND_HANDLE_TYPE_POKEMON_CRY);
     } else {
-        success = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_ECHO), -1, waveID, -1, SEQ_PV);
+        success = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_ECHO), -1, waveID, -1, SEQ_PV001_sseq_1);
         Sound_AdjustVolumeForVoiceChatEx(waveID, SOUND_HANDLE_TYPE_ECHO);
     }
 
@@ -421,10 +422,10 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY));
 
     if (Sound_Impl_IsShayminSkyForm(species, form) == TRUE) {
-        species = WAVE_ARC_PV516_SKY;
+        species = shaymin_forms_sky_cry_swar;
     }
 
-    if (species != WAVE_ARC_PV516_SKY) {
+    if (species != shaymin_forms_sky_cry_swar) {
         if (species > MAX_SPECIES || species == SPECIES_NONE) {
             species = SPECIES_BULBASAUR;
         }
@@ -699,7 +700,7 @@ void Sound_PlayDelayedPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int p
     }
 
     if (Sound_Impl_IsShayminSkyForm(species, form) == TRUE) {
-        species = WAVE_ARC_PV516_SKY;
+        species = shaymin_forms_sky_cry_swar;
     }
 
     if (species == SPECIES_NONE) {
@@ -727,7 +728,7 @@ static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form)
         }
     }
 
-    if (species == WAVE_ARC_PV516_SKY) {
+    if (species == shaymin_forms_sky_cry_swar) {
         return TRUE;
     }
 

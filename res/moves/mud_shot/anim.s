@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, mud_shot_spa
     JumpIfFriendlyFire L_1
     JumpIfContest L_2
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W250, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W250_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterForMove 0, 0, 3, 6, 7, 8, 9, 18
     Delay 10
     CreateEmitter 0, 14, EMITTER_CB_SET_POS_TO_DEFENDER
@@ -15,7 +15,7 @@ L_0:
     End
 
 L_1:
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W250, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W250_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterForFriendlyFire 0, 11, 12, 11, 12, 3
     Delay 10
     CreateEmitter 0, 14, EMITTER_CB_SET_POS_TO_DEFENDER
@@ -25,7 +25,7 @@ L_1:
     End
 
 L_2:
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W250, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W250_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 10, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 5, 0, 0, 0
     SetExtraParams 0, 11008, -8256, 0

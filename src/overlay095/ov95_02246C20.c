@@ -110,7 +110,7 @@ int TradeSequence_Init(ApplicationManager *appMan, int *param1)
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_57, 98304);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_58, 98304);
         ov95_02247688();
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN_sseq, 1);
 
         tradeData = ApplicationManager_NewData(appMan, sizeof(TradeSequenceData), HEAP_ID_57);
 
@@ -315,7 +315,7 @@ static void ov95_02247060(SysTask *param0, void *param1)
 
     if (v0->unk_E8 == 0) {
         if (--(v0->unk_F0) <= 0) {
-            Sound_PlayEffect(SEQ_SE_DP_KOUKAN08);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN08_sseq);
             v0->unk_F0 = 30;
             ov95_02247170(v0);
         }

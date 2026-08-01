@@ -376,15 +376,15 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
             ov76_0223B69C(param0, 1);
             ov76_0223B1E0(param0);
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             param0->unk_3D4++;
             ov76_0223CA30(&param0->unk_D4.unk_18[0], 8);
             ov76_0223BF74(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[1], 1, param0, param0->unk_3C4[0]);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             param0->unk_3D4 = 5;
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         }
     } break;
     case 4: {
@@ -526,7 +526,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
             ov76_0223BB04(v0);
             ov76_0223BBAC(v0);
             ov76_0223CC8C(v0);
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM02);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM02_sseq);
         }
 
         ov76_0223D94C(v0->unk_3E4.unk_00[8], param1);
@@ -541,7 +541,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
             ov76_0223BB04(v0);
             ov76_0223BBAC(v0);
             ov76_0223CC8C(v0);
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM02);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM02_sseq);
         }
         ov76_0223D94C(v0->unk_3E4.unk_00[9], param1);
         break;
@@ -549,7 +549,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
         if (param1 == TOUCH_BUTTON_PRESSED) {
             if (v0->unk_3D4 != 5) {
                 v0->unk_3D4 = 5;
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             }
 
             ov76_0223DA00(v0->unk_3E4.unk_00[10], NULL);
@@ -562,7 +562,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
             if (v0->unk_3D4 != 6) {
                 v0->unk_3D4 = 6;
                 ov76_0223DCB8(v0, 0);
-                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO_sseq);
             }
 
             ov76_0223DA00(v0->unk_3E4.unk_00[11], v0->unk_D4.unk_164[0]);
@@ -575,7 +575,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
             if (v0->unk_3D4 != 7) {
                 v0->unk_3D4 = 7;
                 ov76_0223DCB8(v0, 0);
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             }
 
             ov76_0223DA00(v0->unk_3E4.unk_00[12], v0->unk_D4.unk_164[1]);
@@ -595,7 +595,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
 
         if (param1 == TOUCH_BUTTON_PRESSED) {
             if (ov76_0223B2F8(v0) == 0) {
-                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                 ov76_0223CA30(&v0->unk_D4.unk_18[0], 15);
             } else {
                 if ((v0->unk_418.unk_08[param0] != 0) && (SealCase_GetSealCount(v0->unk_64, v0->unk_418.unk_08[param0] - 1) != 0)) {
@@ -605,10 +605,10 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
                     ov76_0223CDC4(&v0->unk_D4.unk_18[0], v1);
                     GiveOrTakeSeal(v0->unk_00->unk_20, v0->unk_418.unk_08[param0], -1);
                     ov76_0223CD20(v0, param0);
-                    Sound_PlayEffect(SEQ_SE_DP_BOX02);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
                 } else {
                     if (v0->unk_418.unk_08[param0] != 0) {
-                        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                         ov76_0223CA30(&v0->unk_D4.unk_18[0], 16);
                     }
                 }
@@ -632,7 +632,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
             v3 = sub_02098164(v0->unk_324[v2].unk_04);
 
             ov76_0223CDC4(&v0->unk_D4.unk_18[0], v3);
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
         }
     } break;
     default:
@@ -874,7 +874,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 ov12_022363B4(param0->unk_D4.unk_154);
                 ov76_0223DF70(param0, 0);
                 ov76_0223DE54(param0);
-                Sound_PlayEffect(SEQ_SE_DP_CUSTOM05);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM05_sseq);
                 param0->unk_3DC++;
             }
             break;
@@ -1153,7 +1153,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 ov76_0223B704(param0, v13);
             }
 
-            Sound_PlayEffect(SEQ_SE_DP_BOX01);
+            Sound_PlayEffect(SEQ_SE_DP_BOX01_sseq);
             param0->unk_D4.unk_00 = 0xFF;
             ov76_0223CDC4(&param0->unk_D4.unk_18[0], 0xFFFF);
         }
@@ -1258,18 +1258,18 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
         if (v0 == 1) {
             ov76_0223D600(param0, 1, 0);
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             ov76_0223C80C(param0, param0->unk_3C4[0], param0->unk_3C4[1]);
             ov76_0223D600(param0, 1, 1);
             ov76_0223CA30(&param0->unk_D4.unk_18[0], 11);
             param0->unk_3D4 = 2;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ManagedSprite_SetDrawFlag(param0->unk_2F4[1], 0);
             ov76_0223D600(param0, 0, 1);
             param0->unk_3D4 = 3;
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         }
     } break;
     case 2:

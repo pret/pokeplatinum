@@ -22,7 +22,7 @@ RockPeakRuins_ResetState:
     End
 
 RockPeakRuins_Statue:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, RockPeakRuins_CaughtRegirockStatueStoppedEmanatingPower
@@ -32,7 +32,7 @@ RockPeakRuins_Statue:
     GoToIfEq VAR_RESULT, 0, RockPeakRuins_FromSomewhereSomethingSpokeOut
     GoToIfEq VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, RockPeakRuins_EncounterRegirock
     GoToIfLt VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, RockPeakRuins_FromSomewhereSomethingSpokeOut
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     ScrCmd_29F 1
     SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
     Message RockPeakRuins_Text_SomethingChangedInTheAir
@@ -140,7 +140,7 @@ RockPeakRuins_DotEnd:
 
 RockPeakRuins_ActivateStatue:
     GoToIfUnset FLAG_GAME_COMPLETED, RockPeakRuins_DotEnd
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     ScrCmd_29F 1
     SetVar VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
     Message RockPeakRuins_Text_SomethingChangedInTheAir

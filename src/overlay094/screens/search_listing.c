@@ -309,24 +309,24 @@ static int ov94_0223E0A4(GTSApplicationState *appState)
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov94_0223E300(appState, Gts_Text_TradeForThisPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 4);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         appState->currentScreenInstruction = 2;
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (appState->unk_10E == 0) {
             appState->unk_10E = 1;
             appState->currentScreenInstruction = 6;
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (appState->unk_10E != 0) {
             appState->unk_10E = 0;
             appState->currentScreenInstruction = 6;
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
     } else {
         int newSelectedResult = ov94_02244214(appState->unk_118);
@@ -336,7 +336,7 @@ static int ov94_0223E0A4(GTSApplicationState *appState)
             appState->currentScreenInstruction = 2;
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
             appState->selectedSearchResult = newSelectedResult;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
     }
 

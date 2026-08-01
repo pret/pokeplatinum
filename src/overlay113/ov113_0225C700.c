@@ -483,7 +483,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
                 v0->unk_920 = v2;
                 ov113_0225E068(v0, v2);
             } else if (((*param1) == 2) && (v2 == 0xfe)) {
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
                 PaletteData_Blend(v0->unk_0C, 0, 0 * 16 + 9, 1, 8, 0x0);
                 PaletteData_Blend(v0->unk_0C, 2, v0->unk_921 * 16, 16, 8, 0x0);
                 *param1 = 3;
@@ -599,7 +599,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
             if (ov66_02231760() == 1) {
                 (*param1) = 9;
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_PINPON);
+                Sound_PlayEffect(SEQ_SE_DP_PINPON_sseq);
                 ov66_0222E2A4(v0->unk_00->unk_00);
                 (*param1) = 6;
             }
@@ -1341,7 +1341,7 @@ BOOL ov113_0225DDC0(UnkStruct_ov113_0225DBCC *param0, const UnkStruct_ov113_0226
             }
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BOX02);
+        Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
     }
 
     return v0;
@@ -1408,10 +1408,10 @@ static int ov113_0225DE98(UnkStruct_ov113_0225DBCC *param0)
     param0->unk_194.unk_73F = v4;
 
     if (v2 > 0) {
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
         return 1;
     } else if (v3 > 0) {
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
         return 2;
     }
 
@@ -1446,7 +1446,7 @@ static void ov113_0225E068(UnkStruct_ov113_0225DBCC *param0, int param1)
     }
 
     ov113_0225E0D4(param0, param1);
-    Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
 }
 
 static void ov113_0225E0D4(UnkStruct_ov113_0225DBCC *param0, int param1)

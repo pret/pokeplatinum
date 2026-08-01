@@ -247,12 +247,12 @@ static void sub_02072390(SysTask *param0, void *param1)
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072518, sub_02072364);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         switch (v1) {
         case 0xffffffff:
@@ -301,12 +301,12 @@ static void sub_02072470(SysTask *param0, void *param1)
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072534, sub_02072370);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         switch (v1) {
         case 0xffffffff:
@@ -746,7 +746,7 @@ static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2)
     v2 = ListMenu_GetAttribute(param0, 2);
 
     if (!param2) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     if (v0 == 0) {
@@ -805,7 +805,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
 static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2)
 {
     if (!param2) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 

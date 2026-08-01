@@ -107,7 +107,7 @@ int ov98_02246C20(ApplicationManager *appMan, int *param1)
     v0->options = SaveData_GetOptions(v0->saveData);
     v0->unk_114 = String_Init(100, HEAP_ID_108);
     v0->unk_118 = String_Init(100, HEAP_ID_108);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_17, SEQ_WIFILOBBY, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_17, SEQ_WIFILOBBY_sseq, 1);
     v0->unk_8C = 0;
 
     return 1;

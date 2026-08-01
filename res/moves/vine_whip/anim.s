@@ -8,10 +8,10 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_MUCHI
+    PlaySoundEffectR SEQ_SE_PL_WHIP_sseq_1
     Delay 5
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_PASA2
+    PlaySoundEffectR SEQ_SE_DP_PASA2_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

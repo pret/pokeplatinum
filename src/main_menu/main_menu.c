@@ -343,7 +343,7 @@ static BOOL ShowWFCUserInfoErasedMsg(MainMenuAppData *appData)
         }
     } else {
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             Window_EraseStandardFrame(&appData->wfcUserInfoErasedWindow, FALSE);
             Window_Remove(&appData->wfcUserInfoErasedWindow);
         }
@@ -531,7 +531,7 @@ static BOOL ShowAlerts(MainMenuAppData *appData)
                 Window_Remove(&appData->alertWindow);
                 appData->alertsState = MAIN_MENU_ALERTS_STATE_HIDE_ALERT;
                 appData->alertDismissKeys = gSystem.pressedKeys;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         }
         break;
@@ -977,7 +977,7 @@ static void FocusNextOption(MainMenuAppData *appData, int direction)
 
         // Found an available option
         if (appData->optionApps[nextFocused]) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         }
     }
@@ -1203,7 +1203,7 @@ static BOOL MainMenu_Main(ApplicationManager *appMan, int *state)
     case MAIN_MENU_STATE_SELECT_OPTION:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             if (JOY_NEW(PAD_BUTTON_A)) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 appData->nextApplication = appData->optionApps[appData->focusedOption];
 
                 if (appData->nextApplication == NEXT_APP_GBA_MIGRATION) {
@@ -1216,7 +1216,7 @@ static BOOL MainMenu_Main(ApplicationManager *appMan, int *state)
                     }
                 }
             } else {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 appData->nextApplication = NEXT_APP_TITLE_SCREEN;
                 MainMenuUtil_SetFadeToWhite(TRUE);
             }

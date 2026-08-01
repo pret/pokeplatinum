@@ -93,7 +93,7 @@ CommonScript_Dummy2007:
     End
 
 CommonScript_PokecenterNurse:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetTrainerCardLevel VAR_RESULT
@@ -289,19 +289,19 @@ CommonScript_GetBagPocketForItem:
     End
 
 CommonScript_PlayFanfare_SEQ_FANFA4:
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     Return
 
 CommonScript_PlayFanfare_SEQ_WAZA:
-    PlayFanfare SEQ_WAZA
+    PlayFanfare SEQ_WAZA_sseq
     Return
 
 CommonScript_PlayFanfare_SEQ_FANFA3:
-    PlayFanfare SEQ_FANFA3
+    PlayFanfare SEQ_FANFA3_sseq
     Return
 
 CommonScript_PlayFanfare_SEQ_FANFA2:
-    PlayFanfare SEQ_FANFA2
+    PlayFanfare SEQ_FANFA2_sseq
     Return
 
 CommonScript_Unused:
@@ -419,8 +419,8 @@ CommonScript_SaveComplete:
     GoToIfEq VAR_RESULT, 0, CommonScript_SaveError
     BufferPlayerName 0
     Message CommonStrings_Text_PlayerSavedTheGame
-    PlaySE SEQ_SE_DP_SAVE
-    WaitSE SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE_sseq
+    WaitSE SEQ_SE_DP_SAVE_sseq
     WaitABPressTime 30
     CloseSaveInfo
     Return
@@ -458,7 +458,7 @@ CommonScript_QuickSaveCheckMiscFlag:
     End
 
 CommonScript_HoneyTree:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckItem ITEM_HONEY, 1, VAR_RESULT
     GoToIfNe VAR_RESULT, FALSE, CommonScript_HoneyTreeWithHoney
@@ -550,7 +550,7 @@ CommonScript_ObtainPoketchApp:
 CommonScript_InternalObtainPoketchApp:
     BufferPlayerName 0
     BufferPoketchAppName 1, VAR_0x8004
-    PlayFanfare SEQ_POCKETCH
+    PlayFanfare SEQ_POCKETCH_sseq
     Message CommonStrings_Text_ObtainedPoketchApp
     WaitFanfare
     Message CommonStrings_Text_InstalledPoketchApp
@@ -699,7 +699,7 @@ CommonScript_SendToUndergroundPCWithLinefeed:
     End
 
 CommonScript_ObtainUndergroundItem:
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     SendGoodToPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundGoodsNameWithArticle 0, VAR_0x8004
     Message CommonStrings_Text_ObtainedUndergroundItem
@@ -713,7 +713,7 @@ CommonScript_ObtainUndergroundTrap:
     End
 
 CommonScript_InternalObtainUndergroundTrap:
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     GiveTrap VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundTrapName 0, VAR_0x8004
     Message CommonStrings_Text_ObtainedTheUndergroundTrap
@@ -726,7 +726,7 @@ CommonScript_ObtainUndergroundSphere:
     End
 
 CommonScript_InternalObtainUndergroundSphere:
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     GiveSphere VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundItemName 0, VAR_0x8004
     BufferNumber 1, VAR_0x8005
@@ -748,7 +748,7 @@ CommonScript_ObtainAccessory:
     End
 
 CommonScript_InternalObtainAccessory:
-    PlayFanfare SEQ_ACCE
+    PlayFanfare SEQ_ACCE_sseq
     AddAccessory VAR_0x8004, VAR_0x8005
     BufferAccessoryName 0, VAR_0x8004
     Message CommonStrings_Text_ObtainedItem
@@ -771,7 +771,7 @@ CommonScript_ObtainContestBackdrop:
     End
 
 CommonScript_InternalObtainContestBackdrop:
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     AddContestBackdrop VAR_0x8004
     BufferContestBackdropName 0, VAR_0x8004
     Message CommonStrings_Text_ObtainedItem
@@ -905,7 +905,7 @@ CommonScript_InternalBagIsFull:
 
 CommonScript_PC:
     LockAll
-    PlaySE SEQ_SE_DP_PC_ON
+    PlaySE SEQ_SE_DP_PC_ON_sseq
     Call CommonScript_PCBootUpAnimation
     BufferPlayerName 0
     Message CommonStrings_Text_BootedUpThePC
@@ -974,7 +974,7 @@ CommonScript_PCMenu:
     GoTo CommonScript_PCSwitchOff
 
 CommonScript_StorageSystem:
-    PlaySE SEQ_SE_DP_PC_LOGIN
+    PlaySE SEQ_SE_DP_PC_LOGIN_sseq
     BufferPlayerName 0
     Message CommonStrings_Text_AccessedPokemonStorage
     Call CommonScript_InitStorageSystemMenu
@@ -1049,7 +1049,7 @@ CommonScript_PCFadeInAccessWhichPC:
     GoTo CommonScript_HandleStorageSystemMenuInput
 
 CommonScript_PlayersPC:
-    PlaySE SEQ_SE_DP_PC_LOGIN
+    PlaySE SEQ_SE_DP_PC_LOGIN_sseq
     BufferPlayerName 0
     Message CommonStrings_Text_AccessedPlayersPC
     GoTo CommonScript_PlayersPCMenu
@@ -1110,7 +1110,7 @@ CommonScript_BallCapsulesEnd:
     GoTo CommonScript_HandlePlayersPCMenuInput
 
 CommonScript_PCHallOfFame:
-    PlaySE SEQ_SE_DP_PC_LOGIN
+    PlaySE SEQ_SE_DP_PC_LOGIN_sseq
     CloseMessage
     CheckIsHallOfFameCorrupted VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, CommonScript_HallOfFameDataCorrupted
@@ -1125,13 +1125,13 @@ CommonScript_HallOfFameDataCorrupted:
     GoTo CommonScript_AccessWhichPC
 
 CommonScript_ProfsPC:
-    PlaySE SEQ_SE_DP_PC_LOGIN
+    PlaySE SEQ_SE_DP_PC_LOGIN_sseq
     CallCommonScript 0x26DF
     GoTo CommonScript_AccessWhichPC
 
 CommonScript_PCSwitchOff:
     CloseMessage
-    PlaySE SEQ_SE_DP_PC_LOGOFF
+    PlaySE SEQ_SE_DP_PC_LOGOFF_sseq
     Call CommonScript_PCShutDownAnimation
     ReleaseAll
     End
@@ -1176,7 +1176,7 @@ CommonScript_PlayerHouseBlackOutRecover:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     FadeScreenIn
@@ -1361,7 +1361,7 @@ CommonScript_Dummy2024:
     End
 
 CommonScript_Geonet:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FadeScreenOut
     WaitFadeScreen
@@ -1373,7 +1373,7 @@ CommonScript_Geonet:
     End
 
 CommonScript_2026:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     MessageFromTrainerType
@@ -1398,7 +1398,7 @@ CommonScript_BikeParking:
     CheckItem ITEM_BICYCLE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, CommonScript_BikeParkingEnd
     LockAll
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     CheckPlayerOnBike VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, CommonScript_AskGetOffYourBike
     Message CommonStrings_Text_RideYourBike
@@ -1427,7 +1427,7 @@ CommonScript_BikeParkingEnd:
     End
 
 CommonScript_HatchEgg:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message CommonStrings_Text_Oh
     WaitABPress
@@ -1441,7 +1441,7 @@ CommonScript_HatchEgg:
     End
 
 CommonScript_RepelsEffectWoreOff:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message CommonStrings_Text_RepelsEffectWoreOff
     WaitABPress
@@ -1450,7 +1450,7 @@ CommonScript_RepelsEffectWoreOff:
     End
 
 _139D:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ScrCmd_0A5
@@ -1546,7 +1546,7 @@ CommonScript_AskUseAzureFlute:
     Message CommonStrings_Text_PlayerBlewAzureFlute
     CloseMessage
     WaitTime 30, VAR_RESULT
-    PlayMusic SEQ_FUE
+    PlayMusic SEQ_FUE_sseq
     WaitTime 540, VAR_RESULT
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     FadeScreenOut FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
@@ -1581,28 +1581,28 @@ CommonScript_SetCounterpartBGM:
     End
 
 CommonScript_SetTheGirlBGM:
-    SetBGM SEQ_THE_GIRL
+    SetBGM SEQ_THE_GIRL_sseq
     Return
 
 CommonScript_SetTheBoyBGM:
-    SetBGM SEQ_THE_BOY
+    SetBGM SEQ_THE_BOY_sseq
     Return
 
 CommonScript_SetRivalBGM:
     StopMusic
-    SetBGM SEQ_THE_RIV
+    SetBGM SEQ_THE_RIV_sseq
     ReturnCommonScript
     End
 
 CommonScript_SetFollowMeBGM:
     StopMusic
-    SetBGM SEQ_TSURETEKE
+    SetBGM SEQ_TSURETEKE_sseq
     ReturnCommonScript
     End
 
 CommonScript_SetLookerBGM:
     StopMusic
-    SetBGM SEQ_PL_HANDSOME
+    SetBGM SEQ_PL_HANDSOME_sseq
     ReturnCommonScript
     End
 
@@ -1634,21 +1634,21 @@ CommonScript_GlobalTerminalMachineNoValidLogin:
     End
 
 CommonScript_ShardCostWindowRoute212:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_ROUTE_212
     GoTo CommonScript_ShardCostWindow
     End
 
 CommonScript_ShardCostWindowSurvivalArea:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_SURVIVAL_AREA
     GoTo CommonScript_ShardCostWindow
     End
 
 CommonScript_ShardCostWindowSnowpointCity:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_SNOWPOINT_CITY
     GoTo CommonScript_ShardCostWindow

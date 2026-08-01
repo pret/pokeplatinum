@@ -164,7 +164,7 @@ BattleHall_SetWinstonAsFan:
     Return
 
 BattleHall_SingleAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, 0
@@ -173,7 +173,7 @@ BattleHall_SingleAttendant:
     End
 
 BattleHall_MultiAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, 0
@@ -395,7 +395,7 @@ BattleHall_WalkIntoCorridor:
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_WalkToCorridorSingleChallenge
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_WalkToCorridorDoubleChallenge
     CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_WalkToCorridorMultiChallenge
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     GoTo BattleHall_StartChallenge
     End
 
@@ -581,8 +581,8 @@ BattleHall_SaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlaySE SEQ_SE_DP_SAVE
-    WaitSE SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE_sseq
+    WaitSE SEQ_SE_DP_SAVE_sseq
     Return
 
 BattleHall_OnFrame_DidntSaveBeforeQuit:
@@ -607,7 +607,7 @@ BattleHall_EarnedSilverPrint:
     Message BattleHall_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleHall_Text_SilverPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_HALL_PRINT_STATE, 2
     Return
@@ -616,7 +616,7 @@ BattleHall_EarnedGoldPrint:
     Message BattleHall_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleHall_Text_GoldPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_HALL_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained
@@ -675,7 +675,7 @@ BattleHall_BugCatcher:
     End
 
 BattleHall_RecordKeeper:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfUnset FLAG_SPOKEN_TO_BATTLE_HALL_RECORD_KEEPER, BattleHall_RecordKeeperIntro
@@ -686,7 +686,7 @@ BattleHall_RecordKeeper:
     BufferPlayerName 0
     Message BattleHall_Text_StreakRecordIsX
     Message BattleHall_Text_BPRewardForStreak
-    PlayFanfare SEQ_PL_POINTGET3
+    PlayFanfare SEQ_PL_POINTGET3_sseq
     Message BattleHall_Text_PlayerReceivedBP
     WaitFanfare
     GoTo BattleHall_RecordKeeperEnd
@@ -723,7 +723,7 @@ BattleHall_RecordKeeperEnd:
     End
 
 BattleHall_SerenaWinston:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerGender VAR_RESULT
@@ -799,7 +799,7 @@ BattleHall_WinstonEnd:
     End
 
 BattleHall_WinstonSerena:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerGender VAR_RESULT
@@ -875,7 +875,7 @@ BattleHall_SerenaEnd:
     End
 
 BattleHall_MajorNPC:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0

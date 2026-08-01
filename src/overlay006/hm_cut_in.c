@@ -1461,7 +1461,7 @@ static BOOL HMCutIn_PlaySwooshSound(HMCutIn *cutIn)
         return FALSE;
     }
 
-    Sound_PlayEffect(SEQ_SE_DP_FW019);
+    Sound_PlayEffect(SEQ_SE_DP_FW019_sseq);
 
     cutIn->windowDelta = FX32_CONST(0.5);
     cutIn->windParticlesAnimState = 2;

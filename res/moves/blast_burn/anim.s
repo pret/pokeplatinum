@@ -11,7 +11,7 @@ L_1:
     LoadParticleResource 1, flamethrower_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_DARK_RED2
     WaitForAnimTasks
-    PlayLoopedSoundEffectL SEQ_SE_DP_W085, 1, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W085_sseq, 1, 2
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1
@@ -50,7 +50,7 @@ L_1:
     CreateEmitterEx 0, 14, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 14, 90, 90, 90, 90, 48, 24, 7, REV_MODE, 0
     Delay 8
-    PlayLoopedSoundEffectL SEQ_SE_DP_W085, 1, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W085_sseq, 1, 2
     CreateEmitterEx 0, 3, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 3, -90, -90, -90, -90, 64, 24, 7, REV_MODE, 0
     CreateEmitterEx 0, 4, 1, EMITTER_CB_SET_POS_TO_ATTACKER
@@ -82,7 +82,7 @@ L_1:
     CreateEmitterEx 0, 14, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 14, 90, 90, 90, 90, 64, 24, 7, REV_MODE, 0
     Delay 8
-    PlayLoopedSoundEffectL SEQ_SE_DP_W085, 1, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W085_sseq, 1, 2
     CreateEmitterEx 0, 3, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 3, -90, -90, -90, -90, 92, 24, 7, REV_MODE, 0
     CreateEmitterEx 0, 4, 1, EMITTER_CB_SET_POS_TO_ATTACKER
@@ -114,7 +114,7 @@ L_1:
     CreateEmitterEx 0, 14, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 14, 90, 90, 90, 90, 92, 24, 7, REV_MODE, 0
     Delay 8
-    PlaySoundEffectR SEQ_SE_DP_W379
+    PlaySoundEffectR SEQ_SE_DP_CLIMAX09_sseq_1
     CreateEmitter 1, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 10, 0
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
@@ -134,7 +134,7 @@ L_2:
     LoadParticleResource 1, flamethrower_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_DARK_RED2
     WaitForAnimTasks
-    PlayLoopedSoundEffectL SEQ_SE_DP_W085, 1, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W085_sseq, 1, 2
     CreateEmitterEx 0, 3, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 3, 90, 90, 90, 90, 48, 24, 7, REV_MODE, 0
     CreateEmitterEx 0, 4, 1, EMITTER_CB_SET_POS_TO_ATTACKER
@@ -166,7 +166,7 @@ L_2:
     CreateEmitterEx 0, 14, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 14, 270, 270, 270, 270, 48, 24, 7, REV_MODE, 0
     Delay 8
-    PlayLoopedSoundEffectL SEQ_SE_DP_W085, 1, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W085_sseq, 1, 2
     CreateEmitterEx 0, 3, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 3, 90, 90, 90, 90, 64, 24, 7, REV_MODE, 0
     CreateEmitterEx 0, 4, 1, EMITTER_CB_SET_POS_TO_ATTACKER
@@ -198,7 +198,7 @@ L_2:
     CreateEmitterEx 0, 14, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 14, 270, 270, 270, 270, 64, 24, 7, REV_MODE, 0
     Delay 8
-    PlayLoopedSoundEffectL SEQ_SE_DP_W085, 1, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W085_sseq, 1, 2
     CreateEmitterEx 0, 3, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 3, 90, 90, 90, 90, 92, 24, 7, REV_MODE, 0
     CreateEmitterEx 0, 4, 1, EMITTER_CB_SET_POS_TO_ATTACKER
@@ -230,7 +230,7 @@ L_2:
     CreateEmitterEx 0, 14, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_RevolveEmitter 14, 270, 270, 270, 270, 92, 24, 7, REV_MODE, 0
     Delay 8
-    PlaySoundEffectR SEQ_SE_DP_W379
+    PlaySoundEffectR SEQ_SE_DP_CLIMAX09_sseq_1
     CreateEmitter 1, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 10, 0
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

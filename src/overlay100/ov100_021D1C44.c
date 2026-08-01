@@ -454,7 +454,7 @@ BOOL ov100_021D2428(void *param0)
     case 11:
         v0->unk_1A0.unk_10DC[0].unk_160 = 1;
         Easy3DObject_SetVisible(&v0->unk_1A0.unk_10DC[0].unk_00, 1);
-        Sound_PlayBGM(SEQ_PL_EV_GIRA);
+        Sound_PlayBGM(SEQ_PL_EV_GIRA_sseq);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
         v0->unk_00++;
         break;
@@ -464,7 +464,7 @@ BOOL ov100_021D2428(void *param0)
         }
 
         if ((v0->unk_04 == 15) || (v0->unk_04 == 45) || (v0->unk_04 == 75) || (v0->unk_04 == 95) || (v0->unk_04 == 115) || (v0->unk_04 == 130) || (v0->unk_04 == 145)) {
-            Sound_PlayEffect(SEQ_SE_PL_W060);
+            Sound_PlayEffect(SEQ_SE_PL_W060_sseq);
             Sound_SetPitchForSequence(1477, 0xffff, (v0->unk_04 / 30 * 32) + (v0->unk_04 % 32 * 10));
         }
 
@@ -506,7 +506,7 @@ BOOL ov100_021D2428(void *param0)
         v0->unk_04++;
 
         if (v0->unk_04 == 1) {
-            Sound_PlayEffect(SEQ_SE_PL_W082C);
+            Sound_PlayEffect(SEQ_SE_PL_W082C_sseq);
         }
 
         if (v0->unk_04 == 20) {
@@ -585,7 +585,7 @@ BOOL ov100_021D2428(void *param0)
             ov100_021D4788(v0->unk_1EBC);
         }
 
-        Sound_PlayBGM(SEQ_PL_EV_GIRA2);
+        Sound_PlayBGM(SEQ_PL_EV_GIRA2_sseq);
 
         v0->unk_1A0.unk_934[4].unk_160 = 1;
 

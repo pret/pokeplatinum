@@ -316,7 +316,7 @@ static BOOL ov62_0223E22C(UnkStruct_0208C06C *param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
         v0->unk_1FC0 = 0;
-        Sound_PlayEffect(SEQ_SE_PL_BREC80);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80_sseq);
         param0->unk_08++;
         break;
     case 3:
@@ -346,7 +346,7 @@ static BOOL ov62_0223E22C(UnkStruct_0208C06C *param0)
         break;
     default:
         if (v0->unk_1FC0) {
-            Sound_PlayEffect(SEQ_SE_PL_BREC12);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12_sseq);
             ov62_0222FB60(param0, v0->unk_1FBC);
             ov62_0223381C(param0, 1);
         } else {
@@ -443,7 +443,7 @@ static BOOL ov62_0223E510(UnkStruct_0208C06C *param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
         param0->unk_08++;
-        Sound_PlayEffect(SEQ_SE_PL_BREC80);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80_sseq);
         break;
     case 4:
         if (ov62_022411B8(param0) == 0) {
@@ -471,7 +471,7 @@ static BOOL ov62_0223E510(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         } else {
             Sound_StopEffect(1381, 0);
-            Sound_PlayEffect(SEQ_SE_PL_BREC12);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12_sseq);
             param0->unk_08++;
         }
         ov62_0223E0FC(param0, 281, 0);
@@ -1043,7 +1043,7 @@ static BOOL ov62_0223F348(UnkStruct_0208C06C *param0)
             ov62_02231AAC(param0, 292);
         }
 
-        Sound_PlayEffect(SEQ_SE_PL_BREC80);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80_sseq);
         param0->unk_08++;
         break;
     case 1:
@@ -1082,7 +1082,7 @@ static BOOL ov62_0223F348(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         } else {
             Sound_StopEffect(1381, 0);
-            Sound_PlayEffect(SEQ_SE_PL_BREC12);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12_sseq);
 
             if (param0->unk_8B4.unk_3900 == 0) {
                 ov62_022348B8(param0, 5, 0, 0);

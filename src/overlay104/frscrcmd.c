@@ -1352,7 +1352,7 @@ static BOOL FrontierScrCmd_6E(FrontierScriptContext *ctx)
     MI_CpuClear8(dto, sizeof(FieldBattleDTO));
 
     sub_0202F298(fieldData->saveData, 11, &v0, dto, 0);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_TRAINER_sseq, 1);
     sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 1, NULL);
 
     return TRUE;
@@ -2152,7 +2152,7 @@ static BOOL FrontierScrCmd_3F(FrontierScriptContext *ctx)
     fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     ctx->data[0] = FrontierScriptContext_GetVar(ctx);
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_TRAINER_sseq, 1);
 
     v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_02231148));
     v1->unk_14 = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
@@ -2388,7 +2388,7 @@ static BOOL FrontierScrCmd_47(FrontierScriptContext *ctx)
 
     ov104_0223D554(v0, &v2, &v3);
     ov104_0223DC7C(v1, v0->bgConfig, v0->spriteSystem, v0->spriteMan, v0->plttData, &ctx->data[0], v2, v3);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_FRONTIER_BRAIN, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_FRONTIER_BRAIN_sseq, 1);
     FrontierScriptContext_Pause(ctx, ov104_02231E14);
 
     return TRUE;

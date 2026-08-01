@@ -10,9 +10,9 @@ L_0:
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 1, 1, BATTLE_COLOR_PURPLE, 12, 
     Delay 1
-    PlaySoundEffectR SEQ_SE_DP_W044
+    PlaySoundEffectR SEQ_SE_DP_W044_sseq
     Delay 9
-    PlayLoopedSoundEffectR SEQ_SE_DP_W092D, 8, 4
+    PlayLoopedSoundEffectR SEQ_SE_DP_W092D_sseq, 8, 4
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

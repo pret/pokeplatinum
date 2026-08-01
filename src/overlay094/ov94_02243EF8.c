@@ -86,7 +86,7 @@ void ov94_02243FA8(GTSApplicationState *appState, int gender)
         v0->unk_0C = appState;
 
         ov94_02243FF0(v0, 0);
-        Sound_PlayEffect(SEQ_SE_DP_PYUU);
+        Sound_PlayEffect(SEQ_SE_DP_PYUU_sseq);
     }
 }
 
@@ -131,7 +131,7 @@ static void ov94_0224400C(SysTask *param0, void *param1)
         ov94_022441A0(v2->avatarSprites[0], 128, v1->y);
         break;
     case 3:
-        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN_sseq);
         v1->unk_0C->hasAvatarFinishedMoving = TRUE;
         SysTask_FinishAndFreeParam(param0);
         break;
@@ -152,7 +152,7 @@ void ov94_022440B8(GTSApplicationState *param0, int gender)
         v0->unk_0C = param0;
 
         ov94_02243FF0(v0, 5);
-        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF_sseq);
     }
 }
 
@@ -178,7 +178,7 @@ static void ov94_022440FC(SysTask *param0, void *param1)
         if (!Sprite_IsAnimated(v2->avatarSprites[0])) {
             ov94_02243FF0(v1, 0);
             v1->state = 2;
-            Sound_PlayEffect(SEQ_SE_DP_PYUU2);
+            Sound_PlayEffect(SEQ_SE_DP_PYUU2_sseq);
         }
         break;
     case 2:
@@ -238,7 +238,7 @@ void ov94_02244234(GTSApplicationState *param0, int param1, int param2)
     int v0;
 
     if ((param1 != 0) && (param2 == 1)) {
-        Sound_PlayEffect(SEQ_SE_DP_TELE2);
+        Sound_PlayEffect(SEQ_SE_DP_TELE2_sseq);
     }
 
     for (v0 = 0; v0 < 7; v0++) {

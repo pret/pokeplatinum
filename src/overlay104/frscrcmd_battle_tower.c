@@ -184,7 +184,7 @@ BOOL FrontierScrCmd_BattleTower_StartBattle(FrontierScriptContext *ctx)
     FieldBattleDTO *dto = FieldBattleDTO_NewBattleTower(battleTower, fieldData);
     battleTower->dto = dto;
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_TRAINER_sseq, 1);
     sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
 
     return TRUE;

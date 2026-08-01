@@ -166,14 +166,14 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
             shop->state = ACCESSORY_SHOP_STATE_WAIT_MSGBOX;
             shop->nextState = ACCESSORY_SHOP_STATE_INIT_YES_NO_CHOICE;
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (input == MENU_CANCEL) {
             string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_PleaseComeAgain);
             AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
             String_Free(string);
             shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
             shop->nextState = ACCESSORY_SHOP_STATE_FREE_INTERFACE;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
         break;
     case ACCESSORY_SHOP_STATE_INIT_YES_NO_CHOICE:
@@ -589,7 +589,7 @@ static u32 AccessoryShop_SelectItemListMenu(AccessoryShopItemList *itemList)
             itemList->cursorPos = cursorPos;
             itemList->updateFunc(itemList->unk_130, itemList->cursorPos);
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             AccessoryShop_UpdateScrollArrowsVisibility(itemList);
         }
     } else if (input != MENU_CANCEL) {

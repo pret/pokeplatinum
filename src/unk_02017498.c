@@ -54,7 +54,7 @@ int sub_02017498(ApplicationManager *appMan, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_02017498));
     v0->unk_00 = ApplicationManager_Args(appMan);
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY_sseq, 1);
 
     return 1;
 }

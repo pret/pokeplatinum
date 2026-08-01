@@ -113,8 +113,8 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
         if (tv->delayUpdateCounter) {
             tv->delayUpdateCounter--;
         } else {
-            Sound_SetFieldBGM(SEQ_TV_HOUSOU);
-            Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_TV_HOUSOU, 1);
+            Sound_SetFieldBGM(SEQ_TV_HOUSOU_sseq);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_TV_HOUSOU_sseq, 1);
 
             tv->delayUpdateCounter = 3 * 30;
             *state = RIT_APP_STATE_WAIT_AND_START_FADE_IN;

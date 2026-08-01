@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 TwinleafTownNortheastHouse_Guitarist:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTownNortheastHouse_AdventureLongTimeAgo

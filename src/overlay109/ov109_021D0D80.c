@@ -779,7 +779,7 @@ static int ov109_021D122C(UnkStruct_ov109_021D0F70 *param0)
     param0->unk_D4.unk_40 = (FX32_ONE * (v1->unk_04));
     param0->unk_00 = 17;
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_15, SEQ_PL_GURUGURU, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_15, SEQ_PL_GURUGURU_sseq, 1);
     ov109_021D2788(param0);
 
     return 1;
@@ -1066,7 +1066,7 @@ static int ov109_021D1648(UnkStruct_ov109_021D0F70 *param0)
         param0->unk_00 = 31;
     }
 
-    Sound_PlayEffect(SEQ_SE_DP_PINPON);
+    Sound_PlayEffect(SEQ_SE_DP_PINPON_sseq);
     return 1;
 }
 
@@ -1239,7 +1239,7 @@ static int ov109_021D18A0(UnkStruct_ov109_021D0F70 *param0)
     }
 
     {
-        Sound_PlayFanfare(SEQ_FANFA4);
+        Sound_PlayFanfare(SEQ_FANFA4_sseq);
     }
 
     param0->unk_00 = 38;
@@ -1282,7 +1282,7 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
         ov109_021D2714(param0, 3, v0);
 
         BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.saveData), v0, 1, HEAP_ID_95);
-        Sound_PlayFanfare(SEQ_FANFA4);
+        Sound_PlayFanfare(SEQ_FANFA4_sseq);
 
         if (removedItem == TRUE) {
             param0->unk_00 = 40;
@@ -2629,7 +2629,7 @@ static int ov109_021D308C(UnkStruct_ov109_021D2FE0 *param0)
     if (param0->unk_08 == 0) {
         if (v0->unk_50.y <= (FX32_ONE * 104)) {
             param0->unk_08 = 1;
-            Sound_PlayEffect(SEQ_SE_DP_FW104);
+            Sound_PlayEffect(SEQ_SE_DP_FW104_sseq);
         }
     }
 
@@ -2965,7 +2965,7 @@ static void ov109_021D34A8(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
             ov109_021D3218(param0);
             param1->unk_04 = 1;
             param1->unk_00++;
-            Sound_PlayEffect(SEQ_SE_DP_DANSA5);
+            Sound_PlayEffect(SEQ_SE_PL_DANSA5_sseq_1);
         }
         break;
     case 4:
@@ -2987,7 +2987,7 @@ static void ov109_021D34A8(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
             param1->unk_08 = 0;
             param1->unk_04 = 0;
             param1->unk_00 = 0;
-            Sound_PlayEffect(SEQ_SE_DP_SUTYA);
+            Sound_PlayEffect(SEQ_SE_PL_SUTYA2_sseq_2);
         }
         break;
     }
@@ -3109,7 +3109,7 @@ static void ov109_021D3700(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
         break;
     case 1:
         ov109_021D228C(param0);
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
         param1->unk_04 = 0;
         param1->unk_00++;
     case 2:

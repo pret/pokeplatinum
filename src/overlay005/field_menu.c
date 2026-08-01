@@ -253,7 +253,7 @@ static void MenuSysTaskCallback(SysTask *sysTask, void *param)
 
 void FieldMenuManager_DeleteWithMenu(FieldMenuManager *menuManager)
 {
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
     Menu_Free(menuManager->menu, NULL);
     Window_EraseStandardFrame(menuManager->menuTemplate.window, FALSE);
     Window_Remove(menuManager->menuTemplate.window);
@@ -455,7 +455,7 @@ static void ListMenuSysTaskCallback(SysTask *sysTask, void *param)
     ListMenu_CalcTrueCursorPos(menuManager->listMenu, &menuManager->cursorPos);
 
     if (cursorPos != menuManager->cursorPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     if (JOY_REPEAT(PAD_KEY_UP) || JOY_REPEAT(PAD_KEY_DOWN) || JOY_REPEAT(PAD_KEY_LEFT) || JOY_REPEAT(PAD_KEY_RIGHT)) {
@@ -467,13 +467,13 @@ static void ListMenuSysTaskCallback(SysTask *sysTask, void *param)
         break;
     case MENU_CANCEL:
         if (menuManager->canExitWithB == TRUE) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             *menuManager->selectedOptionPtr = MENU_CANCEL;
             FieldMenuManager_DeleteWithListMenu(param);
         }
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         *menuManager->selectedOptionPtr = selectedOption;
         FieldMenuManager_DeleteWithListMenu(param);
         break;
@@ -482,7 +482,7 @@ static void ListMenuSysTaskCallback(SysTask *sysTask, void *param)
 
 static void FieldMenuManager_DeleteWithListMenu(FieldMenuManager *menuManager)
 {
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
     ListMenu_Free(menuManager->listMenu, NULL, NULL);
     Window_EraseStandardFrame(menuManager->listMenuTemplate.window, FALSE);
     Window_Remove(&menuManager->menuWindow);

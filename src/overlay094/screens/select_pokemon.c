@@ -537,15 +537,15 @@ static int ov94_022402BC(GTSApplicationState *appState)
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 2;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (appState->partySlotIndex == 30) {
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
                 appState->currentScreenInstruction = 2;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             } else {
                 if (appState->partySlotIndex != 31) {
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
                     switch (ov94_022412F4(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
                     case 1: // a pokemon exists
@@ -570,12 +570,12 @@ static int ov94_022402BC(GTSApplicationState *appState)
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 2;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (appState->partySlotIndex == 30) {
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
                 appState->currentScreenInstruction = 2;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             } else {
                 if (appState->partySlotIndex != 31) {
                     switch (ov94_022412F4(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
@@ -587,18 +587,18 @@ static int ov94_022402BC(GTSApplicationState *appState)
                                 StringTemplate_SetNickname(appState->stringTemplate, 0, v0);
                                 ov94_02240D58(appState, 18, TEXT_SPEED_FAST, 0, 0xf0f, 0);
                                 GTSApplication_SetCurrentAndNextScreenInstruction(appState, 3, 9);
-                                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                             } else {
                                 ov94_02240D58(appState, 26, TEXT_SPEED_FAST, 0, 0xf0f, 1);
                                 GTSApplication_SetCurrentAndNextScreenInstruction(appState, 4, 1);
                             }
                         } else {
-                            Sound_PlayEffect(SEQ_SE_CONFIRM);
+                            Sound_PlayEffect(SE_CONFIRM_sseq_3);
                         }
                     } break;
                     case 2:
                     case 0:
-                        Sound_PlayEffect(SEQ_SE_CONFIRM);
+                        Sound_PlayEffect(SE_CONFIRM_sseq_3);
                         break;
                     }
                 }
@@ -630,7 +630,7 @@ static void ov94_022404F0(GTSApplicationState *appState)
             if ((v2 == 99) || (v2 == 101)) {
                 appState->selectedBoxId = ov94_022405CC(appState->selectedBoxId, 19, v2 - 100);
                 ov94_02240FA0(appState, appState->selectedBoxId);
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             } else {
                 v0 = 1;
                 appState->partySlotIndex = v2;
@@ -639,7 +639,7 @@ static void ov94_022404F0(GTSApplicationState *appState)
     }
 
     if (v0) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         GTSApplication_SetSpritePosition(appState->cursorSprite, Unk_ov94_02245ED4[appState->partySlotIndex][0], Unk_ov94_02245ED4[appState->partySlotIndex][1]);
     }
 

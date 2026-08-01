@@ -411,27 +411,27 @@ static int ov94_0223EA84(GTSApplicationState *param0)
         switch (v0) {
         case 0:
             param0->currentScreenInstruction = 3;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         case 1:
             if (param0->unk_B7A.species != 0) {
                 param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(param0->unk_B7A.species, SPECIES_DATA_GENDER_RATIO);
 
                 if (ov94_02241B80(&param0->unk_B7A, param0->unk_10E4->unk_20)) {
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     return 3;
                 }
             }
             param0->currentScreenInstruction = 8;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         case 2:
             param0->currentScreenInstruction = 11;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         case 3:
             param0->currentScreenInstruction = 14;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         case 4:
             param0->currentScreenInstruction = 17;
@@ -439,13 +439,13 @@ static int ov94_0223EA84(GTSApplicationState *param0)
         case 5:
             ov94_0223F9A4(param0, 15, TEXT_SPEED_FAST, 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 25);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         }
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov94_0223F9A4(param0, 15, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 25);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else {
         int v1 = ov94_02244214(param0->unk_118);
 
@@ -455,7 +455,7 @@ static int ov94_0223EA84(GTSApplicationState *param0)
                 param0->currentScreenInstruction = 2;
                 GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
                 param0->selectedSearchResult = v1;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         }
     }
@@ -468,14 +468,14 @@ static int ov94_0223EBCC(GTSApplicationState *param0)
     if (param0->unk_B7A.species == SPECIES_NONE) {
         ov94_0223F9A4(param0, 12, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 1);
-        Sound_PlayEffect(SEQ_SE_DP_BOX03);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
     } else {
         if (ov94_0223FB0C(&param0->unk_B7A, &param0->unk_B80, param0->selectedCountryIndex, param0->unk_B88)) {
             ov94_0223F9A4(param0, 33, TEXT_SPEED_FAST, 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 1);
-            Sound_PlayEffect(SEQ_SE_DP_BOX03);
+            Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_Z_SEARCH);
+            Sound_PlayEffect(SEQ_SE_DP_Z_SEARCH_sseq);
 
             ov94_0223F9A4(param0, 13, TEXT_SPEED_FAST, 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 18);
@@ -603,7 +603,7 @@ static int ov94_0223EE40(GTSApplicationState *param0)
     if (param0->unk_118 == 0) {
         ov94_0223F9A4(param0, 14, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 1);
-        Sound_PlayEffect(SEQ_SE_DP_BOX03);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
     } else {
         ov94_0223F9A4(param0, 30, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 21);
@@ -632,7 +632,7 @@ static int ov94_0223EEE0(GTSApplicationState *param0)
 
     ov94_0223F9A4(param0, 38, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 1);
-    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
 
     return 3;
 }
@@ -642,7 +642,7 @@ static int ov94_0223EF1C(GTSApplicationState *param0)
     ov94_0223F9A4(param0, 147, TEXT_SPEED_NORMAL, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 24, 30);
     param0->frameDelay = 0;
-    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
 
     return 3;
 }
@@ -652,7 +652,7 @@ static int ov94_0223EF58(GTSApplicationState *param0)
     ov94_0223F9A4(param0, 152, TEXT_SPEED_NORMAL, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 24, 2);
     GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
-    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
 
     return 3;
 }
@@ -678,11 +678,11 @@ static void ov94_0223EFAC(GTSApplicationState *param0)
         if (param0->unk_10E4->unk_24 == 0) {
             if (param0->unk_10E4->unk_28 > 0) {
                 param0->unk_10E4->unk_28--;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         } else {
             if (param0->unk_10E4->unk_2C != 0) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
 
             param0->unk_10E4->unk_2C = 0;
@@ -691,24 +691,24 @@ static void ov94_0223EFAC(GTSApplicationState *param0)
         if (param0->unk_10E4->unk_24 == 0) {
             if (param0->unk_10E4->unk_28 < 3) {
                 param0->unk_10E4->unk_28++;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         } else {
             if (param0->unk_10E4->unk_2C != 1) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
 
             param0->unk_10E4->unk_2C = 1;
         }
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (param0->unk_10E4->unk_24 != 1) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
 
         param0->unk_10E4->unk_24 = 1;
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (param0->unk_10E4->unk_24 != 0) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
 
         param0->unk_10E4->unk_24 = 0;
@@ -770,7 +770,7 @@ static int ov94_0223F190(GTSApplicationState *param0)
     case 9:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
         StringList_Free(param0->unk_10CC);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         param0->currentScreenInstruction = 6;
         break;
     case 0xfffffffe:
@@ -780,7 +780,7 @@ static int ov94_0223F190(GTSApplicationState *param0)
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         param0->currentScreenInstruction = 0;
         break;
     }
@@ -808,7 +808,7 @@ static int ov94_0223F2B0(GTSApplicationState *param0)
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[1], 0);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         param0->currentScreenInstruction = 4;
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
         break;
@@ -823,7 +823,7 @@ static int ov94_0223F2B0(GTSApplicationState *param0)
         param0->unk_B7A.species = v0;
         param0->currentScreenInstruction = 0;
 
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Window_FillTilemap(&param0->unk_FCC[1], 0x0);
 
         ov94_02242158(&param0->unk_FCC[1], param0->speciesMessageLoader, v0, 0, 0, TEXT_COLOR(1, 2, 0));
@@ -871,7 +871,7 @@ static int ov94_0223F4B0(GTSApplicationState *param0)
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         Window_Remove(&param0->unk_F9C[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         param0->currentScreenInstruction = 0;
         break;
     case 0:
@@ -881,7 +881,7 @@ static int ov94_0223F4B0(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         param0->unk_B7A.gender = v0 + 1;
         param0->currentScreenInstruction = 0;
@@ -928,7 +928,7 @@ static int ov94_0223F638(GTSApplicationState *param0)
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         Window_Remove(&param0->unk_F9C[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         param0->currentScreenInstruction = 0;
         break;
     default:
@@ -936,7 +936,7 @@ static int ov94_0223F638(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         ov94_02242934(&param0->unk_B7A, v0, 1);
 
         param0->currentScreenInstruction = 0;
@@ -981,14 +981,14 @@ static int ov94_0223F7C0(GTSApplicationState *param0)
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         Window_Remove(&param0->unk_F9C[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         param0->currentScreenInstruction = 0;
     } else {
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         ov94_02242A44(param0, v0);
         param0->currentScreenInstruction = 0;

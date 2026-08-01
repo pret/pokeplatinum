@@ -109,7 +109,7 @@ BOOL ov100_021D14A8(void *param0)
             break;
         }
 
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_18, SEQ_D_RYAYHY, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_18, SEQ_D_RYAYHY_sseq, 0);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
         v0->unk_00 = 2;
         break;
@@ -122,7 +122,7 @@ BOOL ov100_021D14A8(void *param0)
         break;
     case 3:
         if (v0->unk_04 == v3[v0->unk_08]) {
-            Sound_PlayEffect(SEQ_SE_PL_W392);
+            Sound_PlayEffect(SEQ_SE_PL_W392_sseq);
         }
 
         if (v0->unk_04 == v2[v0->unk_08]) {
