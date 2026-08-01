@@ -263,8 +263,8 @@ static void BattleHallRecordSelector_OpenMenu(BattleHallRecordSelector *selector
         Window_Add(selector->fieldSystem->bgConfig, &selector->window, BG_LAYER_MAIN_3, selector->tilemapLeft, selector->tilemapTop, 11, selector->numOptions * 2, 13, 1);
     }
 
-    LoadStandardWindowGraphics(selector->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
-    Window_DrawStandardFrame(&selector->window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_11);
+    LoadStandardWindowGraphics(selector->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    Window_DrawStandardFrame(&selector->window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
     BattleHallRecordSelector_InitListMenuTemplate(selector);
 
     selector->listMenu = ListMenu_New(&selector->menuTemplate, *selector->listPos, *selector->cursorPos, HEAP_ID_FIELD1);

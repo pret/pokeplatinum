@@ -2,6 +2,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/menu.h"
 #include "res/text/bank/battle_frontier_records.h"
+#include "constants/battle_hall_functions.h"
 
 
     ScriptEntry FrontierRecords_BattleTower
@@ -76,9 +77,9 @@ FrontierRecords_BattleHallMenus:
     SetVar VAR_0x8008, VAR_0x8001
     GoToIfEq VAR_0x8008, 3, FrontierRecords_CloseAndExit
     GoToIfEq VAR_0x8008, MENU_CANCEL, FrontierRecords_CloseAndExit
-    ScrCmd_2CC 1, VAR_0x8001, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_CHECK_STREAK_ACTIVE, VAR_0x8001, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, FrontierRecords_WhichPokemon
-    ScrCmd_2CC 2, VAR_0x8001, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_GET_CURRENT_STREAK_SPECIES, VAR_0x8001, VAR_RESULT
     BufferSpeciesNameFromVar 0, VAR_RESULT, 0, 0
     Message BattleFrontierRecords_Text_OnChallengeNow
     GoTo FrontierRecords_InitVarsSelectStartingLetters

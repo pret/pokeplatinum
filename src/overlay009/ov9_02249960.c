@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/colors.h"
+#include "constants/distortion_world.h"
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
 #include "constants/graphics.h"
@@ -129,7 +130,6 @@
 #define RUNNING_EVENT_DATA_BUFFER_SIZE 160
 
 #define MAP_OBJECT_MANAGER_OBJECT_COUNT 19
-#define MAP_OBJECT_BASE_LOCAL_ID        128
 
 #define UXIE_BOULDER_TUTO_ASCEND_Y_DELTA            (FX32_ONE * 2)
 #define UXIE_BOULDER_TUTO_ASCEND_Y_TARGET           17
@@ -424,89 +424,6 @@ enum EventCmdHandlerResult {
     EVENT_CMD_HANDLER_RES_CONTINUE = 0,
     EVENT_CMD_HANDLER_RES_LOOP,
     EVENT_CMD_HANDLER_RES_FINISH,
-};
-
-// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_1f.s
-enum MapObjectEvent1FLocalID {
-    MAP_OBJECT_1F_CYNTHIA_PORTAL = MAP_OBJECT_BASE_LOCAL_ID,
-    MAP_OBJECT_1F_CYNTHIA_ELEVATOR,
-};
-
-// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_b1f.s
-enum MapObjectEventB1FLocalID {
-    MAP_OBJECT_B1F_CYNTHIA_ELEVATOR = MAP_OBJECT_BASE_LOCAL_ID,
-    MAP_OBJECT_B1F_MESPRIT,
-};
-
-// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_b2f.s
-enum MapObjectEventB2FLocalID {
-    MAP_OBJECT_B2F_CYNTHIA_1 = MAP_OBJECT_BASE_LOCAL_ID,
-    MAP_OBJECT_B2F_CYNTHIA_2 = MAP_OBJECT_B2F_CYNTHIA_1,
-};
-
-// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_b3f.s
-enum MapObjectEventB3FLocalID {
-    MAP_OBJECT_B3F_CYRUS = MAP_OBJECT_BASE_LOCAL_ID,
-};
-
-enum MapObjectEventB4FLocalID {
-    MAP_OBJECT_B4F_CYRUS = MAP_OBJECT_BASE_LOCAL_ID + 6,
-};
-
-enum MapObjectEventB5FLocalID {
-    MAP_OBJECT_B5F_MESPRIT_BOULDER = MAP_OBJECT_BASE_LOCAL_ID,
-    MAP_OBJECT_B5F_AZELF_BOULDER,
-    MAP_OBJECT_B5F_UXIE_BOULDER,
-    MAP_OBJECT_B5F_UXIE,
-    MAP_OBJECT_B5F_AZELF,
-    MAP_OBJECT_B5F_MESPRIT,
-};
-
-// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_b6f.s
-enum MapObjectEventB6FLocalID {
-    MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE = MAP_OBJECT_BASE_LOCAL_ID,
-    MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE,
-    MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE,
-    MAP_OBJECT_B6F_MESPRIT,
-    MAP_OBJECT_B6F_UXIE,
-    MAP_OBJECT_B6F_AZELF,
-    MAP_OBJECT_B6F_CYNTHIA,
-    MAP_OBJECT_B6F_CYNTHIA_ELEVATOR = MAP_OBJECT_B6F_CYNTHIA,
-    MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_1,
-    MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_2,
-    MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_3,
-    MAP_OBJECT_B6F_UXIE_BOULDER_PIT_TEXT_1,
-    MAP_OBJECT_B6F_UXIE_BOULDER_PIT_TEXT_2,
-    MAP_OBJECT_B6F_UXIE_BOULDER_PIT_TEXT_3,
-    MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_1,
-    MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_2,
-    MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_3,
-    MAP_OBJECT_B6F_MESPRIT_BOULDER_IN_PIT,
-    MAP_OBJECT_B6F_AZELF_BOULDER_IN_PIT,
-    MAP_OBJECT_B6F_UXIE_BOULDER_IN_PIT,
-};
-
-// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_b7f.s
-enum MapObjectEventB7FLocalID {
-    MAP_OBJECT_B7F_CYNTHIA_INITIAL = MAP_OBJECT_BASE_LOCAL_ID,
-    MAP_OBJECT_B7F_CYNTHIA_TALKING = MAP_OBJECT_B7F_CYNTHIA_INITIAL,
-    MAP_OBJECT_B7F_CYNTHIA_POST_BATTLE = MAP_OBJECT_B7F_CYNTHIA_INITIAL,
-    MAP_OBJECT_B7F_CYRUS_INITIAL,
-    MAP_OBJECT_B7F_CYRUS_TALKING = MAP_OBJECT_B7F_CYRUS_INITIAL,
-};
-
-// NOTE: These constants must mirror those in res/field/scripts/scripts_distortion_world_giratina_room.s
-enum MapObjectEventGiratinaRoomLocalID {
-    MAP_OBJECT_GIRATINA_ROOM_GIRATINA = MAP_OBJECT_BASE_LOCAL_ID,
-    MAP_OBJECT_GIRATINA_ROOM_CYNTHIA,
-    MAP_OBJECT_GIRATINA_ROOM_CYRUS,
-    MAP_OBJECT_GIRATINA_ROOM_PORTAL,
-    MAP_OBJECT_GIRATINA_ROOM_CYNTHIA_TEXT,
-};
-
-enum MapObjectEventTurnbackCaveLocalID {
-    MAP_OBJECT_TURNBACK_CAVE_PORTAL = MAP_OBJECT_BASE_LOCAL_ID,
-    MAP_OBJECT_TURNBACK_CAVE_GRISEOUS_ORB_ITEM,
 };
 
 enum EventCmdSetMapObjectAnimationState {
@@ -2608,7 +2525,7 @@ BOOL DistWorld_HandlePlayerMovementEnd(FieldSystem *fieldSystem, enum FaceDirect
         if (playerDir == FACE_UP) {
             VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
 
-            if (SystemVars_GetDistortionWorldProgress(varsFlags) >= 10) {
+            if (SystemVars_GetDistortionWorldProgress(varsFlags) >= DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE) {
                 int playerX;
                 int playerY;
                 int playerZ;
@@ -2670,7 +2587,7 @@ BOOL DistWorld_HandlePlayerPositionChanged(FieldSystem *fieldSystem)
     VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
 
     if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B7F && playerDir == FACE_UP) {
-        if (SystemVars_GetDistortionWorldProgress(varsFlags) >= 10) {
+        if (SystemVars_GetDistortionWorldProgress(varsFlags) >= DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE) {
             if (playerX == B7F_TELEPORT_TILE_X && playerY == B7F_TELEPORT_TILE_Y && (playerZ == B7F_TELEPORT_TILE_Z - 1 || playerZ == B7F_TELEPORT_TILE_Z)) {
                 ScriptManager_Set(fieldSystem, B7F_TELEPORT_SCRIPT_ID, NULL);
                 return TRUE;
@@ -2696,7 +2613,7 @@ BOOL DistWorld_CheckMapTransition(FieldSystem *fieldSystem, enum FaceDirection t
         if (transitionDir == FACE_UP) {
             VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
 
-            if (SystemVars_GetDistortionWorldProgress(varsFlags) >= 10) {
+            if (SystemVars_GetDistortionWorldProgress(varsFlags) >= DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE) {
                 int playerX;
                 int playerY;
                 int playerZ;
@@ -3279,10 +3196,10 @@ static void InitSkyCloudAnimators(DistWorldSystem *system, FieldEffectManager *f
         VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
         u32 distWorldProgress = SystemVars_GetDistortionWorldProgress(varsFlags);
 
-        if (distWorldProgress >= 10) {
-            if (distWorldProgress <= 12) {
+        if (distWorldProgress >= DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE) {
+            if (distWorldProgress <= DIST_WORLD_PROGRESS_GIRATINA_ROOM_SECOND_SHADOW) {
                 system->skyKind = SKY_GIRATINA_ROOM;
-            } else if (distWorldProgress <= 13) {
+            } else if (distWorldProgress <= DIST_WORLD_PROGRESS_GIRATINA_ARRIVED) {
                 system->skyKind = SKY_GIRATINA_ROOM_DARK;
             }
         }
@@ -5285,11 +5202,11 @@ static int DistWorldElevatorPlatform_BeginMovement(DistWorldSystem *system, Dist
         VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
         u16 distWorldProgress = SystemVars_GetDistortionWorldProgress(varsFlags);
 
-        if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_1F && distWorldProgress == 2) {
-            elevatorPlatform->passengerMapObj = MapObjMan_LocalMapObjByIndex(system->fieldSystem->mapObjMan, MAP_OBJECT_1F_CYNTHIA_ELEVATOR);
+        if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_1F && distWorldProgress == DIST_WORLD_PROGRESS_JUMPED_ON_1F_ELEVATOR) {
+            elevatorPlatform->passengerMapObj = MapObjMan_LocalMapObjByIndex(system->fieldSystem->mapObjMan, DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_ELEVATOR);
             GF_ASSERT(elevatorPlatform->passengerMapObj != NULL);
-        } else if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B6F && distWorldProgress == 7) {
-            elevatorPlatform->passengerMapObj = MapObjMan_LocalMapObjByIndex(system->fieldSystem->mapObjMan, MAP_OBJECT_B6F_CYNTHIA_ELEVATOR);
+        } else if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B6F && distWorldProgress == DIST_WORLD_PROGRESS_FINISHED_BOULDER_PUZZLE) {
+            elevatorPlatform->passengerMapObj = MapObjMan_LocalMapObjByIndex(system->fieldSystem->mapObjMan, DIST_WORLD_MAP_OBJECT_B6F_CYNTHIA);
             GF_ASSERT(elevatorPlatform->passengerMapObj != NULL);
         }
     } else {
@@ -5487,9 +5404,9 @@ static int DistWorldElevatorPlatform_ChangeMaps(DistWorldSystem *system, DistWor
 
     if (elevatorPlatform->passengerMapObj != NULL) {
         if (elevatorPlatform->destMapHeaderID == MAP_HEADER_DISTORTION_WORLD_B1F) {
-            MapObject_SetLocalID(elevatorPlatform->passengerMapObj, MAP_OBJECT_B1F_CYNTHIA_ELEVATOR);
+            MapObject_SetLocalID(elevatorPlatform->passengerMapObj, DIST_WORLD_MAP_OBJECT_B1F_CYNTHIA_ELEVATOR);
         } else {
-            MapObject_SetLocalID(elevatorPlatform->passengerMapObj, MAP_OBJECT_B7F_CYNTHIA_INITIAL);
+            MapObject_SetLocalID(elevatorPlatform->passengerMapObj, DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA);
             MapObject_SetScript(elevatorPlatform->passengerMapObj, 6);
         }
 
@@ -5639,7 +5556,7 @@ static int DistWorldElevatorPlatform_CyrusB4FStartAnimation(DistWorldSystem *sys
 {
     int cyrusTileX;
 
-    MapObject *cyrusMapObj = MapObjMan_LocalMapObjByIndex(system->fieldSystem->mapObjMan, MAP_OBJECT_B4F_CYRUS);
+    MapObject *cyrusMapObj = MapObjMan_LocalMapObjByIndex(system->fieldSystem->mapObjMan, DIST_WORLD_MAP_OBJECT_B4F_CYRUS);
     GF_ASSERT(cyrusMapObj != NULL);
 
     cyrusTileX = MapObject_GetX(cyrusMapObj);
@@ -5656,7 +5573,7 @@ static int DistWorldElevatorPlatform_CyrusB4FEndAnimation(DistWorldSystem *syste
 {
     if (MapObject_HasAnimationEnded(elevatorPlatform->passengerAnimTask) == TRUE) {
         MapObject_FinishAnimation(elevatorPlatform->passengerAnimTask);
-        MapObject *cyrusMapObj = MapObjMan_LocalMapObjByIndex(system->fieldSystem->mapObjMan, MAP_OBJECT_B4F_CYRUS);
+        MapObject *cyrusMapObj = MapObjMan_LocalMapObjByIndex(system->fieldSystem->mapObjMan, DIST_WORLD_MAP_OBJECT_B4F_CYRUS);
 
         DeleteMapObject(system, cyrusMapObj);
         VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
@@ -7413,7 +7330,7 @@ static MapObject *AddMapObjectWithLocalID(DistWorldSystem *system, u32 mapHeader
                     mapObj = FindFreeMapObjectSlot(system);
                     AddMapObjectFromEvent(system, mapObj, *objEventIter, mapHeaderID, TRUE);
 
-                    if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B6F && mapObjLocalID >= MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_1 && mapObjLocalID <= MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_3) {
+                    if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B6F && mapObjLocalID >= DIST_WORLD_MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_1 && mapObjLocalID <= DIST_WORLD_MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_3) {
                         sub_02062D80(*mapObj, FALSE);
                     }
 
@@ -7674,17 +7591,17 @@ static BOOL DistWorldFallingBoulder_TickToB6F(DistWorldFallingBoulder *boulder)
     u32 flagIndexToClear;
 
     switch (MapObject_GetLocalID(boulderMapObj)) {
-    case MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
+    case DIST_WORLD_MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
         flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_OUTSIDE;
         flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B5F;
         break;
 
-    case MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
+    case DIST_WORLD_MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
         flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_OUTSIDE;
         flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B5F;
         break;
 
-    case MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
+    case DIST_WORLD_MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
         flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_OUTSIDE;
         flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B5F;
         break;
@@ -7743,18 +7660,18 @@ static BOOL DistWorldFallingBoulder_TickToCorrectPit(DistWorldFallingBoulder *bo
         SetPersistedBoulderPuzzleFlag(boulder->system, boulder->flagIndex);
 
         switch (MapObject_GetLocalID(boulderMapObj)) {
-        case MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
-            boulderNewLocalID = MAP_OBJECT_B6F_MESPRIT_BOULDER_IN_PIT;
+        case DIST_WORLD_MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
+            boulderNewLocalID = DIST_WORLD_MAP_OBJECT_B6F_MESPRIT_BOULDER_IN_PIT;
             flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_OUTSIDE;
             break;
 
-        case MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
-            boulderNewLocalID = MAP_OBJECT_B6F_AZELF_BOULDER_IN_PIT;
+        case DIST_WORLD_MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
+            boulderNewLocalID = DIST_WORLD_MAP_OBJECT_B6F_AZELF_BOULDER_IN_PIT;
             flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_OUTSIDE;
             break;
 
-        case MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
-            boulderNewLocalID = MAP_OBJECT_B6F_UXIE_BOULDER_IN_PIT;
+        case DIST_WORLD_MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
+            boulderNewLocalID = DIST_WORLD_MAP_OBJECT_B6F_UXIE_BOULDER_IN_PIT;
             flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_OUTSIDE;
             break;
 
@@ -7923,17 +7840,17 @@ static BOOL DistWorldFallingBoulder_TickToWrongPit(DistWorldFallingBoulder *boul
         boulderMapObj = boulder->mapObj;
 
         switch (MapObject_GetLocalID(boulderMapObj)) {
-        case MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
+        case DIST_WORLD_MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
             flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B5F;
             flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_OUTSIDE;
             break;
 
-        case MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
+        case DIST_WORLD_MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE:
             flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B5F;
             flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_OUTSIDE;
             break;
 
-        case MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
+        case DIST_WORLD_MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE:
             flagIndexToSet = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B5F;
             flagIndexToClear = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_OUTSIDE;
             break;
@@ -7986,7 +7903,7 @@ static void InitSkyBackgroundDarkness(DistWorldSystem *system)
     if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM) {
         VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
 
-        if (SystemVars_GetDistortionWorldProgress(varsFlags) == 13) {
+        if (SystemVars_GetDistortionWorldProgress(varsFlags) == DIST_WORLD_PROGRESS_GIRATINA_ARRIVED) {
             skyBg->darknessCalculationDisabled = TRUE;
             skyBg->darknessLevel = SKY_BACKGROUND_MAX_DARKNESS;
         }
@@ -8981,7 +8898,7 @@ void DistWorld_ApplyGiratinaSpritePalette(FieldSystem *fieldSystem)
 static int EventCmdPlayGiratinaArrival_InitMapObject(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
     CmdRunDataPlayGiratinaArrival *runData = ResetLoadedEventDataBuffer(system, sizeof(CmdRunDataPlayGiratinaArrival));
-    runData->giratinaMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, MAP_OBJECT_GIRATINA_ROOM_GIRATINA);
+    runData->giratinaMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_GIRATINA);
     runData->giratinaSpritePosOffset.y = GIRATINA_ROOM_PLAY_ARRIVAL_INITIAL_Y_OFFSET;
 
     MapObject_SetSpritePosOffset(runData->giratinaMapObj, &runData->giratinaSpritePosOffset);
@@ -9080,7 +8997,7 @@ static const DistWorldEventCmdHandler sPlayGiratinaArrivalHandlers[] = {
 static int EventCmdShowUxieBoulderTuto_Init(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
     CmdRunDataShowUxieBoulderTuto *runData = ResetLoadedEventDataBuffer(system, sizeof(CmdRunDataShowUxieBoulderTuto));
-    runData->uxieMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B5F, MAP_OBJECT_B5F_UXIE);
+    runData->uxieMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B5F, DIST_WORLD_MAP_OBJECT_B5F_UXIE);
 
     Sound_PlayPokemonCry(SPECIES_UXIE, 0);
 
@@ -9180,7 +9097,7 @@ static int EventCmdShowUxieBoulderTuto_Descend(DistWorldSystem *system, FieldTas
         DeleteMapObject(system, runData->uxieMapObj);
         SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_UXIE_TUTO_SEEN);
         SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_UXIE_IN_B6F);
-        runData->uxieMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B6F, MAP_OBJECT_B6F_UXIE);
+        runData->uxieMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B6F, DIST_WORLD_MAP_OBJECT_B6F_UXIE);
 
         return EVENT_CMD_HANDLER_RES_FINISH;
     }
@@ -9210,7 +9127,7 @@ static const MapObjectAnimCmd sAzelfBoulderTutoAnimation[] = {
 static int EventCmdShowAzelfBoulderTuto_Init(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
     CmdRunDataShowAzelfBoulderTuto *runData = ResetLoadedEventDataBuffer(system, sizeof(CmdRunDataShowAzelfBoulderTuto));
-    runData->azelfMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B5F, MAP_OBJECT_B5F_AZELF);
+    runData->azelfMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B5F, DIST_WORLD_MAP_OBJECT_B5F_AZELF);
 
     Sound_PlayPokemonCry(SPECIES_AZELF, 0);
 
@@ -9269,7 +9186,7 @@ static int EventCmdShowAzelfBoulderTuto_Descend(DistWorldSystem *system, FieldTa
         DeleteMapObject(system, runData->azelfMapObj);
         SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_AZELF_TUTO_SEEN);
         SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_AZELF_IN_B6F);
-        runData->azelfMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B6F, MAP_OBJECT_B6F_AZELF);
+        runData->azelfMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B6F, DIST_WORLD_MAP_OBJECT_B6F_AZELF);
 
         return EVENT_CMD_HANDLER_RES_FINISH;
     }
@@ -9376,7 +9293,7 @@ static const MapObjectAnimCmd sMespritBoulderTutoAnimationPlayerBottom[] = {
 static int EventCmdShowMespritBoulderTuto_Init(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
     CmdRunDataShowMespritBoulderTuto *runData = ResetLoadedEventDataBuffer(system, sizeof(CmdRunDataShowAzelfBoulderTuto));
-    runData->mespritMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B5F, MAP_OBJECT_B5F_MESPRIT);
+    runData->mespritMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B5F, DIST_WORLD_MAP_OBJECT_B5F_MESPRIT);
 
     Sound_PlayPokemonCry(SPECIES_MESPRIT, 0);
 
@@ -9451,7 +9368,7 @@ static int EventCmdShowMespritBoulderTuto_Descend(DistWorldSystem *system, Field
         DeleteMapObject(system, runData->mespritMapObj);
         SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_MESPRIT_TUTO_SEEN);
         SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_MESPRIT_IN_B6F);
-        runData->mespritMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B6F, MAP_OBJECT_B6F_MESPRIT);
+        runData->mespritMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B6F, DIST_WORLD_MAP_OBJECT_B6F_MESPRIT);
 
         return EVENT_CMD_HANDLER_RES_FINISH;
     }
@@ -9820,7 +9737,7 @@ BOOL DistWorld_IsBlockedByCynthia(FieldSystem *fieldSystem, int tileX, int tileZ
             VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
             u32 distWorldProgress = SystemVars_GetDistortionWorldProgress(varsFlags);
 
-            if (distWorldProgress == 14) {
+            if (distWorldProgress == DIST_WORLD_PROGRESS_BATTLED_GIRATINA) {
                 return TRUE;
             }
         }
@@ -11133,7 +11050,7 @@ static const CmdParamsStartScript sMapEventCmdParams1F_CynthiaElevatorText_1 = {
 };
 
 static const CmdParamsSetDistortionWorldProgress sMapEventCmdParams1F_CynthiaElevatorText_2 = {
-    .progress = 0x2
+    .progress = DIST_WORLD_PROGRESS_JUMPED_ON_1F_ELEVATOR
 };
 
 static const DistWorldEventCmd sMapEvent1F_CynthiaElevatorText[] = {
@@ -11154,7 +11071,7 @@ static const DistWorldEvent sMapEvents1F[] = {
         .tileY = 0x121,
         .tileZ = 0x34,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-        .flagCondVal = 0x1,
+        .flagCondVal = DIST_WORLD_PROGRESS_ENTERED_1F,
         .cmds = sMapEvent1F_CynthiaElevatorText,
     },
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
@@ -11165,12 +11082,12 @@ static const CmdParamsStartScript sMapEventCmdParamsB1F_Mesprit_1 = {
 };
 
 static const CmdParamsSetDistortionWorldProgress sMapEventCmdParamsB1F_Mesprit_2 = {
-    .progress = 0x4
+    .progress = DIST_WORLD_PROGRESS_SAW_B1F_MESPRIT
 };
 
 static const CmdParamsAddMapObjWithLocalID sMapEventCmdParamsB1F_Mesprit_3 = {
     .mapHeaderID = MAP_HEADER_DISTORTION_WORLD_B2F,
-    .mapObjLocalID = MAP_OBJECT_B2F_CYNTHIA_1
+    .mapObjLocalID = DIST_WORLD_MAP_OBJECT_B2F_CYNTHIA
 };
 
 static const DistWorldEventCmd sMapEventB1F_Mesprit[] = {
@@ -11195,7 +11112,7 @@ static const DistWorldEvent sMapEventsB1F[] = {
         .tileY = 0x101,
         .tileZ = 0x3A,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-        .flagCondVal = 0x3,
+        .flagCondVal = DIST_WORLD_PROGRESS_ENTERED_B1F,
         .cmds = sMapEventB1F_Mesprit,
     },
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
@@ -12398,7 +12315,7 @@ static const CmdParamsStartScript sMapEventCmdParamsB3F_Cyrus_1 = {
 };
 
 static const CmdParamsSetDistortionWorldProgress sMapEventCmdParamsB3F_Cyrus_2 = {
-    .progress = 0x6
+    .progress = DIST_WORLD_PROGRESS_TALKED_TO_B3F_CYRUS
 };
 
 static const DistWorldEventCmd sMapEventB3F_Cyrus[] = {
@@ -12419,7 +12336,7 @@ static const DistWorldEvent sMapEventsB3F[] = {
         .tileY = 0xC1,
         .tileZ = 0x29,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-        .flagCondVal = 0x4,
+        .flagCondVal = DIST_WORLD_PROGRESS_SAW_B1F_MESPRIT,
         .cmds = sMapEventB3F_Cyrus,
     },
     {
@@ -12427,7 +12344,7 @@ static const DistWorldEvent sMapEventsB3F[] = {
         .tileY = 0xC1,
         .tileZ = 0x29,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-        .flagCondVal = 0x5,
+        .flagCondVal = DIST_WORLD_PROGRESS_TALKED_TO_B2F_CYNTHIA,
         .cmds = sMapEventB3F_Cyrus,
     },
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
@@ -12646,7 +12563,7 @@ static const CmdParamsStartScript sMapEventCmdParamsB7F_CynthiaCyrus_1 = {
 };
 
 static const CmdParamsSetDistortionWorldProgress sMapEventCmdParamsB7F_CynthiaCyrus_2 = {
-    .progress = 0x9
+    .progress = DIST_WORLD_PROGRESS_LISTENED_TO_CYNTHIA_CYRUS
 };
 
 static const DistWorldEventCmd sMapEventB7F_CynthiaCyrus[] = {
@@ -12667,7 +12584,7 @@ static const DistWorldEvent sMapEventsB7F[] = {
         .tileY = 0x41,
         .tileZ = 0x4C,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-        .flagCondVal = 0x8,
+        .flagCondVal = DIST_WORLD_PROGRESS_ENTERED_B7F,
         .cmds = sMapEventB7F_CynthiaCyrus,
     },
     {
@@ -12675,7 +12592,7 @@ static const DistWorldEvent sMapEventsB7F[] = {
         .tileY = 0x41,
         .tileZ = 0x4C,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-        .flagCondVal = 0x8,
+        .flagCondVal = DIST_WORLD_PROGRESS_ENTERED_B7F,
         .cmds = sMapEventB7F_CynthiaCyrus,
     },
     {
@@ -12683,7 +12600,7 @@ static const DistWorldEvent sMapEventsB7F[] = {
         .tileY = 0x41,
         .tileZ = 0x4C,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-        .flagCondVal = 0x8,
+        .flagCondVal = DIST_WORLD_PROGRESS_ENTERED_B7F,
         .cmds = sMapEventB7F_CynthiaCyrus,
     },
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
@@ -12737,7 +12654,7 @@ static const DistWorldGiratinaShadowTemplate sMapEventCmdParamsGiratinaRoom_Firs
 };
 
 static const CmdParamsSetDistortionWorldProgress sMapEventCmdParamsGiratinaRoom_FirstShadow_3 = {
-    .progress = 0xB
+    .progress = DIST_WORLD_PROGRESS_GIRATINA_ROOM_FIRST_SHADOW
 };
 
 static const DistWorldEventCmd sMapEventGiratinaRoom_FirstShadow[] = {
@@ -12768,7 +12685,7 @@ static const DistWorldGiratinaShadowTemplate sMapEventCmdParamsGiratinaRoom_Seco
 };
 
 static const CmdParamsSetDistortionWorldProgress sMapEventCmdParamsGiratinaRoom_SecondShadow_2 = {
-    .progress = 0xC
+    .progress = DIST_WORLD_PROGRESS_GIRATINA_ROOM_SECOND_SHADOW
 };
 
 static const DistWorldEventCmd sMapEventGiratinaRoom_SecondShadow[] = {
@@ -12784,7 +12701,7 @@ static const DistWorldEventCmd sMapEventGiratinaRoom_SecondShadow[] = {
 };
 
 static const CmdParamsSetDistortionWorldProgress sMapEventCmdParamsGiratinaRoom_Arrival_1 = {
-    .progress = 0xD
+    .progress = DIST_WORLD_PROGRESS_GIRATINA_ARRIVED
 };
 
 static const CmdParamsStartScript sMapEventCmdParamsGiratinaRoom_Arrival_3 = {
@@ -12829,7 +12746,7 @@ static const DistWorldEvent sMapEventsGiratinaRoom[] = {
         .tileY = 0x1,
         .tileZ = 0x18,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-        .flagCondVal = 0xA,
+        .flagCondVal = DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE,
         .cmds = sMapEventGiratinaRoom_FirstShadow,
     },
     {
@@ -12837,7 +12754,7 @@ static const DistWorldEvent sMapEventsGiratinaRoom[] = {
         .tileY = 0x1,
         .tileZ = 0x11,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-        .flagCondVal = 0xB,
+        .flagCondVal = DIST_WORLD_PROGRESS_GIRATINA_ROOM_FIRST_SHADOW,
         .cmds = sMapEventGiratinaRoom_SecondShadow,
     },
     {
@@ -12845,7 +12762,7 @@ static const DistWorldEvent sMapEventsGiratinaRoom[] = {
         .tileY = 0x1,
         .tileZ = 0xE,
         .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-        .flagCondVal = 0xC,
+        .flagCondVal = DIST_WORLD_PROGRESS_GIRATINA_ROOM_SECOND_SHADOW,
         .cmds = sMapEventGiratinaRoom_Arrival,
     },
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
@@ -12894,7 +12811,7 @@ static const DistWorldSimplePropTemplate sSimplePropsGiratinaRoom[] = {
         .tileY = 1,
         .tileZ = 12,
         .flagCond = FLAG_COND_WORLD_PROGRESS_GEQ,
-        .flagCondVal = 14,
+        .flagCondVal = DIST_WORLD_PROGRESS_BATTLED_GIRATINA,
     },
     { 0, PROP_KIND_INVALID, 0, 0, 0, FLAG_COND_NONE, 0 }
 };
@@ -12925,7 +12842,7 @@ static const DistWorldObjectEvent sMapObjectEvent1F_CynthiaPortal = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_1F_CYNTHIA_PORTAL,
+        .localID = DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_PORTAL,
         .graphicsID = OBJ_EVENT_GFX_CYNTHIA,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -12943,11 +12860,11 @@ static const DistWorldObjectEvent sMapObjectEvent1F_CynthiaPortal = {
 
 static const DistWorldObjectEvent sMapObjectEvent1F_CynthiaElevator = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_LEQ,
-    .flagCondVal = 0x2,
+    .flagCondVal = DIST_WORLD_PROGRESS_JUMPED_ON_1F_ELEVATOR,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_1F_CYNTHIA_ELEVATOR,
+        .localID = DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_ELEVATOR,
         .graphicsID = OBJ_EVENT_GFX_CYNTHIA,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -12975,7 +12892,7 @@ static const DistWorldObjectEvent sMapObjectEventB1F_Mesprit = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B1F_MESPRIT,
+        .localID = DIST_WORLD_MAP_OBJECT_B1F_MESPRIT,
         .graphicsID = OBJ_EVENT_GFX_DIST_WORLD_B1F_MESPRIT,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -12998,11 +12915,11 @@ static const DistWorldObjectEvent *sMapObjectEventsB1F[] = {
 
 static const DistWorldObjectEvent sMapObjectEventB2F_Cynthia1 = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-    .flagCondVal = 0x4,
+    .flagCondVal = DIST_WORLD_PROGRESS_SAW_B1F_MESPRIT,
     .rotated = TRUE,
     .rotationAngle = 0x5A,
     .objEvent = {
-        .localID = MAP_OBJECT_B2F_CYNTHIA_1,
+        .localID = DIST_WORLD_MAP_OBJECT_B2F_CYNTHIA,
         .graphicsID = OBJ_EVENT_GFX_CYNTHIA,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13020,11 +12937,11 @@ static const DistWorldObjectEvent sMapObjectEventB2F_Cynthia1 = {
 
 static const DistWorldObjectEvent sMapObjectEventB2F_Cynthia2 = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-    .flagCondVal = 0x5,
+    .flagCondVal = DIST_WORLD_PROGRESS_TALKED_TO_B2F_CYNTHIA,
     .rotated = TRUE,
     .rotationAngle = 0x5A,
     .objEvent = {
-        .localID = MAP_OBJECT_B2F_CYNTHIA_2,
+        .localID = DIST_WORLD_MAP_OBJECT_B2F_CYNTHIA,
         .graphicsID = OBJ_EVENT_GFX_CYNTHIA,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13052,7 +12969,7 @@ static const DistWorldObjectEvent sMapObjectEventB3F_Cyrus = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B3F_CYRUS,
+        .localID = DIST_WORLD_MAP_OBJECT_B3F_CYRUS,
         .graphicsID = OBJ_EVENT_GFX_CYRUS,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13079,7 +12996,7 @@ static const DistWorldObjectEvent sMapObjectEventB4F_Cyrus = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B4F_CYRUS,
+        .localID = DIST_WORLD_MAP_OBJECT_B4F_CYRUS,
         .graphicsID = OBJ_EVENT_GFX_CYRUS,
         .movementType = MOVEMENT_TYPE_067,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13106,7 +13023,7 @@ static const DistWorldObjectEvent sMapObjectEventB5F_MespritBoulder = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B5F_MESPRIT_BOULDER,
+        .localID = DIST_WORLD_MAP_OBJECT_B5F_MESPRIT_BOULDER,
         .graphicsID = OBJ_EVENT_GFX_STRENGTH_BOULDER,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13128,7 +13045,7 @@ static const DistWorldObjectEvent sMapObjectEventB5F_AzelfBoulder = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B5F_AZELF_BOULDER,
+        .localID = DIST_WORLD_MAP_OBJECT_B5F_AZELF_BOULDER,
         .graphicsID = OBJ_EVENT_GFX_STRENGTH_BOULDER,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13150,7 +13067,7 @@ static const DistWorldObjectEvent sMapObjectEventB5F_UxieBoulder = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B5F_UXIE_BOULDER,
+        .localID = DIST_WORLD_MAP_OBJECT_B5F_UXIE_BOULDER,
         .graphicsID = OBJ_EVENT_GFX_STRENGTH_BOULDER,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13172,7 +13089,7 @@ static const DistWorldObjectEvent sMapObjectEventB5F_Uxie = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B5F_UXIE,
+        .localID = DIST_WORLD_MAP_OBJECT_B5F_UXIE,
         .graphicsID = OBJ_EVENT_GFX_UXIE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13194,7 +13111,7 @@ static const DistWorldObjectEvent sMapObjectEventB5F_Azelf = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B5F_AZELF,
+        .localID = DIST_WORLD_MAP_OBJECT_B5F_AZELF,
         .graphicsID = OBJ_EVENT_GFX_AZELF,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13216,7 +13133,7 @@ static const DistWorldObjectEvent sMapObjectEventB5F_Mesprit = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B5F_MESPRIT,
+        .localID = DIST_WORLD_MAP_OBJECT_B5F_MESPRIT,
         .graphicsID = OBJ_EVENT_GFX_MESPRIT,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13248,7 +13165,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_MespritBoulderOutside = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE,
         .graphicsID = OBJ_EVENT_GFX_STRENGTH_BOULDER,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13270,7 +13187,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_AzelfBoulderOutside = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_AZELF_BOULDER_OUTSIDE,
         .graphicsID = OBJ_EVENT_GFX_STRENGTH_BOULDER,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13292,7 +13209,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_UxieBoulderOutside = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_UXIE_BOULDER_OUTSIDE,
         .graphicsID = OBJ_EVENT_GFX_STRENGTH_BOULDER,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13314,7 +13231,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_Mesprit = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_MESPRIT,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_MESPRIT,
         .graphicsID = OBJ_EVENT_GFX_DIST_WORLD_B6F_MESPRIT,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13336,7 +13253,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_Uxie = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_UXIE,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_UXIE,
         .graphicsID = OBJ_EVENT_GFX_DIST_WORLD_B6F_UXIE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13358,7 +13275,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_Azelf = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_AZELF,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_AZELF,
         .graphicsID = OBJ_EVENT_GFX_DIST_WORLD_B6F_AZELF,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13376,11 +13293,11 @@ static const DistWorldObjectEvent sMapObjectEventB6F_Azelf = {
 
 static const DistWorldObjectEvent sMapObjectEventB6F_Cynthia = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-    .flagCondVal = 0x6,
+    .flagCondVal = DIST_WORLD_PROGRESS_TALKED_TO_B3F_CYRUS,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_CYNTHIA,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_CYNTHIA,
         .graphicsID = OBJ_EVENT_GFX_CYNTHIA,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13398,11 +13315,11 @@ static const DistWorldObjectEvent sMapObjectEventB6F_Cynthia = {
 
 static const DistWorldObjectEvent sMapObjectEventB6F_CynthiaElevator = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-    .flagCondVal = 0x7,
+    .flagCondVal = DIST_WORLD_PROGRESS_FINISHED_BOULDER_PUZZLE,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_CYNTHIA_ELEVATOR,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_CYNTHIA,
         .graphicsID = OBJ_EVENT_GFX_CYNTHIA,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13424,7 +13341,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_MespritBoulderPitText1 = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_1,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_1,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13446,7 +13363,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_MespritBoulderPitText2 = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_2,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_2,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13468,7 +13385,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_MespritBoulderPitText3 = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_3,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_MESPRIT_BOULDER_PIT_TEXT_3,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13490,7 +13407,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_UxieBoulderPitText1 = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_UXIE_BOULDER_PIT_TEXT_1,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_UXIE_BOULDER_PIT_TEXT_1,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13512,7 +13429,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_UxieBoulderPitText2 = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_UXIE_BOULDER_PIT_TEXT_2,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_UXIE_BOULDER_PIT_TEXT_2,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13534,7 +13451,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_UxieBoulderPitText3 = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_UXIE_BOULDER_PIT_TEXT_3,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_UXIE_BOULDER_PIT_TEXT_3,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13556,7 +13473,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_AzelfBoulderPitText1 = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_1,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_1,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13578,7 +13495,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_AzelfBoulderPitText2 = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_2,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_2,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13600,7 +13517,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_AzelfBoulderPitText3 = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_3,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_AZELF_BOULDER_PIT_TEXT_3,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13622,7 +13539,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_MespritBoulderInPit = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_MESPRIT_BOULDER_IN_PIT,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_MESPRIT_BOULDER_IN_PIT,
         .graphicsID = OBJ_EVENT_GFX_STRENGTH_BOULDER,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13644,7 +13561,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_AzelfBoulderInPit = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_AZELF_BOULDER_IN_PIT,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_AZELF_BOULDER_IN_PIT,
         .graphicsID = OBJ_EVENT_GFX_STRENGTH_BOULDER,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13666,7 +13583,7 @@ static const DistWorldObjectEvent sMapObjectEventB6F_UxieBoulderInPit = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B6F_UXIE_BOULDER_IN_PIT,
+        .localID = DIST_WORLD_MAP_OBJECT_B6F_UXIE_BOULDER_IN_PIT,
         .graphicsID = OBJ_EVENT_GFX_STRENGTH_BOULDER,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13708,11 +13625,11 @@ static const DistWorldObjectEvent *sMapObjectEventsB6F[] = {
 
 static const DistWorldObjectEvent sMapObjectEventB7F_CynthiaInitial = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-    .flagCondVal = 0x8,
+    .flagCondVal = DIST_WORLD_PROGRESS_ENTERED_B7F,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B7F_CYNTHIA_INITIAL,
+        .localID = DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA,
         .graphicsID = OBJ_EVENT_GFX_CYNTHIA,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13730,11 +13647,11 @@ static const DistWorldObjectEvent sMapObjectEventB7F_CynthiaInitial = {
 
 static const DistWorldObjectEvent sMapObjectEventB7F_CynthiaTalking = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-    .flagCondVal = 0x9,
+    .flagCondVal = DIST_WORLD_PROGRESS_LISTENED_TO_CYNTHIA_CYRUS,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B7F_CYNTHIA_TALKING,
+        .localID = DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA,
         .graphicsID = OBJ_EVENT_GFX_CYNTHIA,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13752,11 +13669,11 @@ static const DistWorldObjectEvent sMapObjectEventB7F_CynthiaTalking = {
 
 static const DistWorldObjectEvent sMapObjectEventB7F_CynthiaPostBattle = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_GEQ,
-    .flagCondVal = 0xA,
+    .flagCondVal = DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B7F_CYNTHIA_POST_BATTLE,
+        .localID = DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA,
         .graphicsID = OBJ_EVENT_GFX_CYNTHIA,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13774,11 +13691,11 @@ static const DistWorldObjectEvent sMapObjectEventB7F_CynthiaPostBattle = {
 
 static const DistWorldObjectEvent sMapObjectEventB7F_CyrusInitial = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_LEQ,
-    .flagCondVal = 0x8,
+    .flagCondVal = DIST_WORLD_PROGRESS_ENTERED_B7F,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B7F_CYRUS_INITIAL,
+        .localID = DIST_WORLD_MAP_OBJECT_B7F_CYRUS,
         .graphicsID = OBJ_EVENT_GFX_CYRUS,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13796,11 +13713,11 @@ static const DistWorldObjectEvent sMapObjectEventB7F_CyrusInitial = {
 
 static const DistWorldObjectEvent sMapObjectEventB7F_CyrusTalking = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-    .flagCondVal = 0x9,
+    .flagCondVal = DIST_WORLD_PROGRESS_LISTENED_TO_CYNTHIA_CYRUS,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_B7F_CYRUS_TALKING,
+        .localID = DIST_WORLD_MAP_OBJECT_B7F_CYRUS,
         .graphicsID = OBJ_EVENT_GFX_CYRUS,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13827,11 +13744,11 @@ static const DistWorldObjectEvent *sMapObjectEventsB7F[] = {
 
 static const DistWorldObjectEvent sMapObjectEventGiratinaRoom_Giratina = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-    .flagCondVal = 0xD,
+    .flagCondVal = DIST_WORLD_PROGRESS_GIRATINA_ARRIVED,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_GIRATINA_ROOM_GIRATINA,
+        .localID = DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_GIRATINA,
         .graphicsID = OBJ_EVENT_GFX_GIRATINA_ORIGIN,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13853,7 +13770,7 @@ static const DistWorldObjectEvent sMapObjectEventGiratinaRoom_Cynthia = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_GIRATINA_ROOM_CYNTHIA,
+        .localID = DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYNTHIA,
         .graphicsID = OBJ_EVENT_GFX_CYNTHIA,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13875,7 +13792,7 @@ static const DistWorldObjectEvent sMapObjectEventGiratinaRoom_Cyrus = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_GIRATINA_ROOM_CYRUS,
+        .localID = DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYRUS,
         .graphicsID = OBJ_EVENT_GFX_CYRUS,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13893,11 +13810,11 @@ static const DistWorldObjectEvent sMapObjectEventGiratinaRoom_Cyrus = {
 
 static const DistWorldObjectEvent sMapObjectEventGiratinaRoom_Portal = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-    .flagCondVal = 0xE,
+    .flagCondVal = DIST_WORLD_PROGRESS_BATTLED_GIRATINA,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_GIRATINA_ROOM_PORTAL,
+        .localID = DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_PORTAL,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13915,11 +13832,11 @@ static const DistWorldObjectEvent sMapObjectEventGiratinaRoom_Portal = {
 
 static const DistWorldObjectEvent sMapObjectEventGiratinaRoom_CynthiaText = {
     .flagCond = FLAG_COND_WORLD_PROGRESS_EQ,
-    .flagCondVal = 0xE,
+    .flagCondVal = DIST_WORLD_PROGRESS_BATTLED_GIRATINA,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_GIRATINA_ROOM_CYNTHIA_TEXT,
+        .localID = DIST_WORLD_MAP_OBJECT_GIRATINA_ROOM_CYNTHIA_TEXT,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13950,7 +13867,7 @@ static const DistWorldObjectEvent sMapObjectEventTurnbackCaveRoom_Portal = {
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_TURNBACK_CAVE_PORTAL,
+        .localID = DIST_WORLD_MAP_OBJECT_TURNBACK_CAVE_PORTAL,
         .graphicsID = OBJ_EVENT_GFX_INVISIBLE,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,
@@ -13972,7 +13889,7 @@ static const DistWorldObjectEvent sMapObjectEventTurnbackCaveRoom_GriseousOrbIte
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
-        .localID = MAP_OBJECT_TURNBACK_CAVE_GRISEOUS_ORB_ITEM,
+        .localID = DIST_WORLD_MAP_OBJECT_TURNBACK_CAVE_GRISEOUS_ORB_ITEM,
         .graphicsID = OBJ_EVENT_GFX_POKEBALL,
         .movementType = MOVEMENT_TYPE_NONE,
         .trainerType = TRAINER_TYPE_NONE,

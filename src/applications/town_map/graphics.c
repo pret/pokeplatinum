@@ -305,7 +305,7 @@ BOOL TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData)
     PrintLocationDescription(appData, &(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION]), mapBlock);
     String_Clear(appData->hoveredMapName);
     LoadMapName(appData, header, graphicsMan->cursorX, graphicsMan->cursorZ);
-    LoadSignpostContentGraphics(appData->bgConfig, BG_LAYER_SUB_0, BASE_TILE_SIGNPOST_GRAPHIC, PLTT_14, mapBlock->signpostType, mapBlock->signpostNARCMemberIdx, appData->heapID);
+    LoadSignpostContentGraphics(appData->bgConfig, BG_LAYER_SUB_0, BASE_TILE_SIGNPOST_GRAPHIC, 14, mapBlock->signpostType, mapBlock->signpostNARCMemberIdx, appData->heapID);
 
     Window *signpostWindow;
     if (mapBlock->signpostType == SIGNPOST_TYPE_MAP || mapBlock->signpostType == SIGNPOST_TYPE_ARROW) {
@@ -317,7 +317,7 @@ BOOL TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData)
     graphicsMan->signpostWindow = signpostWindow;
     graphicsMan->signpostType = mapBlock->signpostType;
 
-    Window_DrawSignpost(signpostWindow, 1, BASE_TILE_SIGNPOST_GRAPHIC, PLTT_14, mapBlock->signpostType);
+    Window_DrawSignpost(signpostWindow, 1, BASE_TILE_SIGNPOST_GRAPHIC, 14, mapBlock->signpostType);
     Window_FillTilemap(signpostWindow, 15);
     Text_AddPrinterWithParams(signpostWindow, FONT_MESSAGE, appData->hoveredMapName, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_CopyToVRAM(signpostWindow);
@@ -649,11 +649,11 @@ static void MakeAppWindows(TownMapAppData *appData)
 {
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
-    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_NAME], BG_LAYER_MAIN_1, 3, 21, LOCATION_NAME_WINDOW_WIDTH, LOCATION_NAME_WINDOW_HEIGHT, PLTT_15, BASE_TILE_LOCATION_NAME);
-    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_1], BG_LAYER_SUB_0, 9, 3, SIGNPOST_NAME_1_WINDOW_WIDTH, SIGNPOST_NAME_1_WINDOW_HEIGHT, PLTT_14, BASE_TILE_SIGNPOST_NAME_1);
-    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_2], BG_LAYER_SUB_0, 2, 3, SIGNPOST_NAME_2_WINDOW_WIDTH, SIGNPOST_NAME_2_WINDOW_HEIGHT, PLTT_14, BASE_TILE_SIGNPOST_NAME_2);
-    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION], BG_LAYER_SUB_0, 1, 8, LOCATION_DESC_WINDOW_WIDTH, LOCATION_DESC_WINDOW_HEIGHT, PLTT_14, BASE_TILE_LOCATION_DESCRIPTION);
-    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_BOTTOM_SCREEN_HEADER], BG_LAYER_SUB_0, 11, 0, BOTTOM_SCREEN_HEADER_WINDOW_WIDTH, BOTTOM_SCREEN_HEADER_WINDOW_HEIGHT, PLTT_15, BASE_TILE_BOTTOM_SCREEN_HEADER);
+    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_NAME], BG_LAYER_MAIN_1, 3, 21, LOCATION_NAME_WINDOW_WIDTH, LOCATION_NAME_WINDOW_HEIGHT, 15, BASE_TILE_LOCATION_NAME);
+    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_1], BG_LAYER_SUB_0, 9, 3, SIGNPOST_NAME_1_WINDOW_WIDTH, SIGNPOST_NAME_1_WINDOW_HEIGHT, 14, BASE_TILE_SIGNPOST_NAME_1);
+    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_2], BG_LAYER_SUB_0, 2, 3, SIGNPOST_NAME_2_WINDOW_WIDTH, SIGNPOST_NAME_2_WINDOW_HEIGHT, 14, BASE_TILE_SIGNPOST_NAME_2);
+    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION], BG_LAYER_SUB_0, 1, 8, LOCATION_DESC_WINDOW_WIDTH, LOCATION_DESC_WINDOW_HEIGHT, 14, BASE_TILE_LOCATION_DESCRIPTION);
+    Window_Add(appData->bgConfig, &graphicsMan->windows[TOWN_MAP_WINDOW_BOTTOM_SCREEN_HEADER], BG_LAYER_SUB_0, 11, 0, BOTTOM_SCREEN_HEADER_WINDOW_WIDTH, BOTTOM_SCREEN_HEADER_WINDOW_HEIGHT, 15, BASE_TILE_BOTTOM_SCREEN_HEADER);
     Window_FillTilemap(&(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_NAME]), 0);
     Window_FillTilemap(&(graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_1]), 0);
     Window_FillTilemap(&(graphicsMan->windows[TOWN_MAP_WINDOW_SIGNPOST_NAME_2]), 0);
@@ -810,7 +810,7 @@ static const SpriteTemplateFromResourceHeader sTownMapSpriteTemplates[] = {
         .z = 0,
         .animIdx = 0,
         .priority = 0,
-        .plttIdx = PLTT_0,
+        .plttIdx = 0,
         .vramType = NNS_G2D_VRAM_TYPE_2DSUB,
     },
     [SPRITE_TEMPLATE_CURSOR] = {
@@ -820,7 +820,7 @@ static const SpriteTemplateFromResourceHeader sTownMapSpriteTemplates[] = {
         .z = 0,
         .animIdx = 0,
         .priority = 0,
-        .plttIdx = PLTT_0,
+        .plttIdx = 0,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_PLAYER_ICONS] = {
@@ -830,7 +830,7 @@ static const SpriteTemplateFromResourceHeader sTownMapSpriteTemplates[] = {
         .z = 0,
         .animIdx = 0,
         .priority = 1,
-        .plttIdx = PLTT_1,
+        .plttIdx = 1,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
 };
@@ -854,9 +854,9 @@ static void CreateSprites(TownMapAppData *appData)
     Sprite_SetPositionXY(graphicsMan->cursorSprite, TOWN_MAP_GRID_X(graphicsMan->cursorX), TOWN_MAP_GRID_Y(graphicsMan->cursorZ));
 
     if (appData->context->trainerGender == GENDER_MALE) {
-        playerIconTemplate.plttIdx = PLTT_1;
+        playerIconTemplate.plttIdx = 1;
     } else {
-        playerIconTemplate.plttIdx = PLTT_0;
+        playerIconTemplate.plttIdx = 0;
     }
 
     graphicsMan->playerSprite = SpriteSystem_NewSpriteFromResourceHeader(appData->spriteSystem, appData->spriteMan, &playerIconTemplate);
@@ -913,7 +913,7 @@ static void LoadLocationHistory(TownMapAppData *appData)
         .z = 0,
         .animIdx = 0,
         .priority = 2,
-        .plttIdx = PLTT_2,
+        .plttIdx = 2,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     };
 

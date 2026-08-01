@@ -1,10 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b7f.h"
 
-// NOTE: These constants must mirror those in ov9_02249960.c
-#define LOCALID_CYNTHIA 128
-#define LOCALID_CYRUS   129
-
     ScriptEntry DistortionWorldB7F_OnTransition
     ScriptEntry DistortionWorldB7F_CoordEvent_WarpToGiratinaRoom
     ScriptEntry DistortionWorldB7F_OnFrame_FirstEntry
@@ -27,22 +23,22 @@ DistortionWorldB7F_CoordEvent_WarpToGiratinaRoom:
 
 DistortionWorldB7F_OnFrame_FirstEntry:
     LockAll
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkOnSpotNorth
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkOnSpotNorth
     ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerWalkOnSpotNorth
     WaitMovement
     Message DistortionWorldB7F_Text_GiratinaIsUpAhead
     CloseMessage
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkNorth
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkNorth
     WaitMovement
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 8
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_ENTERED_B7F
     End
 
 DistortionWorldB7F_CoordEvent_CynthiaCyrus:
     LockAll
     Message DistortionWorldB7F_Text_YouWereAlreadyHere
     CloseMessage
-    ApplyMovement LOCALID_CYRUS, DistortionWorldB7F_Movement_CyrusWalkToCynthia
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaMoveAside
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYRUS, DistortionWorldB7F_Movement_CyrusWalkToCynthia
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA, DistortionWorldB7F_Movement_CynthiaMoveAside
     WaitMovement
     Message DistortionWorldB7F_Text_WhyChangeTheWorld
     Message DistortionWorldB7F_Text_ThatIsMyJustice
@@ -60,7 +56,7 @@ DistortionWorldB7F_Cyrus:
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, DistortionWorldB7F_LostBattle
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 10
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE
     Message DistortionWorldB7F_Text_YoullDestroyThisWorld
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -71,11 +67,11 @@ DistortionWorldB7F_Cyrus:
 DistortionWorldB7F_PlayerWatchCyrusLeave:
     ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerWatchCyrusLeave
 DistortionWorldB7F_CyrusLeave:
-    ApplyMovement LOCALID_CYRUS, DistortionWorldB7F_Movement_CyrusLeave
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWatchCyrusLeave
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYRUS, DistortionWorldB7F_Movement_CyrusLeave
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWatchCyrusLeave
     WaitMovement
-    DeleteDistortionWorldMapObject LOCALID_CYRUS
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkToPlayer
+    DeleteDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_B7F_CYRUS
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkToPlayer
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 74, DistortionWorldB7F_CynthiaPlayerFaceEachOtherAfterDelay
@@ -83,19 +79,19 @@ DistortionWorldB7F_CyrusLeave:
     GoTo DistortionWorldB7F_DontBelieveHisLies
 
 DistortionWorldB7F_CynthiaPlayerFaceEachOtherAfterDelay:
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaFaceCynthiaEastAfterDelay
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA, DistortionWorldB7F_Movement_CynthiaFaceCynthiaEastAfterDelay
     ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerFaceCynthiaWestAfterDelay
 DistortionWorldB7F_DontBelieveHisLies:
     Message DistortionWorldB7F_Text_DontBelieveHisLies
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 74, DistortionWorldB7F_CynthiaPlayerWalkOnSpotEastWest
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkOnSpotSouth
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkOnSpotSouth
     ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerWalkOnSpotNorthAfterDelay
     GoTo DistortionWorldB7F_MeetGiratina
 
 DistortionWorldB7F_CynthiaPlayerWalkOnSpotEastWest:
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkOnSpotEast
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkOnSpotEast
     ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerWalkOnSpotWestAfterDelay
 DistortionWorldB7F_MeetGiratina:
     BufferPlayerName 0
@@ -106,7 +102,7 @@ DistortionWorldB7F_MeetGiratina:
     WaitMovement
     Message DistortionWorldB7F_Text_LetsGoMeetGiratina
     CloseMessage
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkToGiratina
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B7F_CYNTHIA, DistortionWorldB7F_Movement_CynthiaWalkToGiratina
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 74, DistortionWorldB7F_PlayerFollowCynthiaToGiratinaY74
     ApplyMovement LOCALID_PLAYER, DistortionWorldB7F_Movement_PlayerFollowCynthiaToGiratinaY75
@@ -122,7 +118,7 @@ DistortionWorldB7F_GiratinaIsEnraged:
     End
 
 DistortionWorldB7F_LostBattle:
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 9
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_LISTENED_TO_CYNTHIA_CYRUS
     BlackOutFromBattle
     ReleaseAll
     End
@@ -130,7 +126,7 @@ DistortionWorldB7F_LostBattle:
 DistortionWorldB7F_Cynthia:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
-    GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, 10, DistortionWorldB7F_YourBondIsStrong
+    GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE, DistortionWorldB7F_YourBondIsStrong
     Message DistortionWorldB7F_Text_ThatsNoJustice
     WaitButton
     CloseMessage

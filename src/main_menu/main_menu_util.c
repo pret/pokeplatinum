@@ -173,7 +173,7 @@ void MainMenuUtil_CheckScreenFadeDone(int *state)
     }
 }
 
-void MainMenuUtil_InitWindow(MainMenuWindow *mainMenuWindow, Window *window, enum Palette textPalette, enum TextBank textBank, int baseTile, enum Palette framePalette)
+void MainMenuUtil_InitWindow(MainMenuWindow *mainMenuWindow, Window *window, int textPalette, enum TextBank textBank, int baseTile, int framePalette)
 {
     memset(mainMenuWindow, 0, sizeof(MainMenuWindow));
 
@@ -365,7 +365,7 @@ void MainMenuUtil_LoadSprite(enum NarcID narcID, int tilesID, int plttID, int ce
     }
 
     if (plttID != -1) {
-        utilMan->spriteManager.resources[screen][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(utilMan->spriteManager.resourceCollections[SPRITE_RESOURCE_PLTT], narcID, plttID, FALSE, screen, vramType, PLTT_3, utilMan->heapID);
+        utilMan->spriteManager.resources[screen][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(utilMan->spriteManager.resourceCollections[SPRITE_RESOURCE_PLTT], narcID, plttID, FALSE, screen, vramType, 3, utilMan->heapID);
     }
 
     if (cellID != -1) {
@@ -677,7 +677,7 @@ void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
     Bg_LoadTilemapBuffer(bgConfig, BG_LAYER_SUB_1, screenData->rawData, (HW_LCD_WIDTH / TILE_WIDTH_PIXELS) * (HW_LCD_HEIGHT / TILE_HEIGHT_PIXELS) * 2);
     Heap_Free(nscr);
 
-    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_SUB_1, 0, 0, HW_LCD_WIDTH / TILE_WIDTH_PIXELS, HW_LCD_HEIGHT / TILE_HEIGHT_PIXELS, PLTT_8 + plttOffset);
+    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_SUB_1, 0, 0, HW_LCD_WIDTH / TILE_WIDTH_PIXELS, HW_LCD_HEIGHT / TILE_HEIGHT_PIXELS, 8 + plttOffset);
     Bg_ScheduleTilemapTransfer(bgConfig, BG_LAYER_SUB_1);
 
     utilMan->onVBlank = LoadMysteryGiftPalettes;

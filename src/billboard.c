@@ -4,12 +4,6 @@
 #include "easy3d.h"
 #include "heap.h"
 
-enum BillboardAnimType {
-    BILLBOARD_ANIM_TYPE_LOOP = 0,
-    BILLBOARD_ANIM_TYPE_ONESHOT,
-    BILLBOARD_ANIM_TYPE_TABLE_END, // used as the anim type for the dummy entry at the end of anim tables
-};
-
 enum BillboardAnimStatus {
     BILLBOARD_ANIM_STATUS_RUNNING = 0,
     BILLBOARD_ANIM_STATUS_FINISHED,

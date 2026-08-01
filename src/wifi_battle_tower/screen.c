@@ -667,7 +667,7 @@ static int WifiBattleTower_State_WaitInfo(WifiBattleTowerAppState *appState)
     } else {
         appState->timeoutCounter++;
 
-        if (appState->timeoutCounter == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -766,7 +766,7 @@ static int WifiBattleTower_State_WaitSetProfile(WifiBattleTowerAppState *appStat
     } else {
         appState->timeoutCounter++;
 
-        if (appState->timeoutCounter == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -829,7 +829,7 @@ static int WifiBattleTower_State_WaitRoomCount(WifiBattleTowerAppState *appState
     } else {
         appState->timeoutCounter++;
 
-        if (appState->timeoutCounter == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -990,7 +990,7 @@ static int WifiBattleTower_State_WaitDownload(WifiBattleTowerAppState *appState)
     } else {
         appState->timeoutCounter++;
 
-        if (appState->timeoutCounter == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -1081,7 +1081,7 @@ static int WifiBattleTower_State_WaitUpload(WifiBattleTowerAppState *appState)
     } else {
         appState->timeoutCounter++;
 
-        if (appState->timeoutCounter == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -1283,7 +1283,7 @@ static int WifiBattleTower_State_WaitMatchList(WifiBattleTowerAppState *appState
     } else {
         appState->timeoutCounter++;
 
-        if (appState->timeoutCounter == (30 * 60 * 2)) {
+        if (appState->timeoutCounter == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }

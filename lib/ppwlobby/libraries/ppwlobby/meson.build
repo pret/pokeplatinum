@@ -7,10 +7,10 @@ libdwcppwlobby_srcs = files(
 )
 
 libdwcppwlobby = static_library('dwcppwlobby',
-    sources: libdwcppwlobby_srcs,
+    sources: [libdwcppwlobby_srcs, c_consts_generators],
     c_args: ppwlobby_c_args,
-    cpp_args: cpp_args + ppwlobby_c_args,
-    include_directories: [public_includes, ppwlobby_public_includes],
+    cpp_args: [cpp_args, ppwlobby_c_args],
+    include_directories: [public_includes, ppwlobby_public_includes, toplevel_includes],
     dependencies: [nitrosdk_dep, nitrodwc_dep, nitrowifi_dep, libdwcenc_dep],
     pic: false
 )

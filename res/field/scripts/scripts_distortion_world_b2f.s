@@ -1,9 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b2f.h"
 
-// NOTE: These constants must mirror those in ov9_02249960.c
-#define LOCALID_CYNTHIA 128
-
     ScriptEntry DistortionWorldB2F_OnTransition
     ScriptEntry DistortionWorldB2F_OnFrame_FirstEntry
     ScriptEntry DistortionWorldB2F_Cynthia
@@ -16,27 +13,27 @@ DistortionWorldB2F_OnTransition:
 DistortionWorldB2F_OnFrame_FirstEntry:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
-    GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 5, DistortionWorldB2F_Cynthia
+    GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_TALKED_TO_B2F_CYNTHIA, DistortionWorldB2F_Cynthia
     GetPlayer3DPos VAR_0x8004, VAR_0x8005, VAR_0x8006
     GoToIfEq VAR_0x8005, 232, DistortionWorldB2F_LetsSplitUpY232
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceSouth
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B2F_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceSouth
     WaitMovement
     Message DistortionWorldB2F_Text_LetsSplitUp
     CloseMessage
-    ApplyMovement LOCALID_CYNTHIA, _00E4
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B2F_CYNTHIA, _00E4
     WaitMovement
     GoTo DistortionWorldB2F_IncreaseProgressVar
 
 DistortionWorldB2F_LetsSplitUpY232:
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceEast
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B2F_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceEast
     WaitMovement
     Message DistortionWorldB2F_Text_LetsSplitUp
     CloseMessage
-    ApplyMovement LOCALID_CYNTHIA, _00F8
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B2F_CYNTHIA, _00F8
     ApplyMovement LOCALID_PLAYER, _011C
     WaitMovement
 DistortionWorldB2F_IncreaseProgressVar:
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 5
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_TALKED_TO_B2F_CYNTHIA
     ReleaseAll
     End
 
@@ -44,17 +41,17 @@ DistortionWorldB2F_Cynthia:
     GetPlayer3DPos VAR_0x8004, VAR_0x8005, VAR_0x8006
     GoToIfEq VAR_0x8005, 231, DistortionWorldB2F_CynthiaFaceEast
     GoToIfEq VAR_0x8005, 232, DistortionWorldB2F_CynthiaFaceSouth
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceWest
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B2F_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceWest
     WaitMovement
     GoTo DistortionWorldB2F_DontNeedToGoTogether
 
 DistortionWorldB2F_CynthiaFaceEast:
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceEast2
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B2F_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceEast2
     WaitMovement
     GoTo DistortionWorldB2F_DontNeedToGoTogether
 
 DistortionWorldB2F_CynthiaFaceSouth:
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceSouth2
+    ApplyMovement DIST_WORLD_MAP_OBJECT_B2F_CYNTHIA, DistortionWorldB2F_Movement_CynthiaFaceSouth2
     WaitMovement
 DistortionWorldB2F_DontNeedToGoTogether:
     Message DistortionWorldB2F_Text_DontNeedToGoTogether

@@ -1182,7 +1182,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         {
             GXRgb v6 = 0;
 
-            Bg_LoadPalette(3, &v6, sizeof(short), 2 * 15);
+            Bg_LoadPalette(BG_LAYER_MAIN_3, &v6, sizeof(short), 2 * 15);
         }
 
         Window_FillTilemap(v1->unk_270, 0);
@@ -1514,7 +1514,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         {
             GXRgb v6 = 0;
 
-            Bg_LoadPalette(3, &v6, sizeof(short), 2 * 15);
+            Bg_LoadPalette(BG_LAYER_MAIN_3, &v6, sizeof(short), 2 * 15);
         }
 
         Window_FillTilemap(v1->unk_264, 0);
@@ -2154,7 +2154,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         {
             GXRgb v3 = 0;
 
-            Bg_LoadPalette(3, &v3, sizeof(short), 2 * 15);
+            Bg_LoadPalette(BG_LAYER_MAIN_3, &v3, sizeof(short), 2 * 15);
         }
 
         Window_FillTilemap(v1->unk_00, 0);

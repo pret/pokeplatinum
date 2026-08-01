@@ -3811,7 +3811,7 @@ static void ov101_021D4F18(const u16 *param0, const u16 *param1, u16 param2, u16
 
 static void ov101_021D4F40(UnkStruct_ov101_021D13C8 *param0, u32 param1, int param2, u16 *param3)
 {
-    Bg_LoadPalette(param1, param3, 32, 32 * param2);
+    Bg_LoadPalette(param1, param3, PALETTE_SIZE_BYTES, PLTT_OFFSET(param2));
 }
 
 static int Unk_ov101_021D9E60[UnkEnum_ov101_021D4F58_05] = {

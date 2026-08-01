@@ -143,11 +143,11 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
     v0->unk_D4.unk_10 = BgConfig_New(HEAP_ID_53);
     VramTransfer_New(64, HEAP_ID_53);
     v0->unk_D4.unk_14 = PaletteData_New(HEAP_ID_53);
-    PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, HEAP_ID_53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 1, 0x200, HEAP_ID_53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 2, 0x200, HEAP_ID_53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 3, 0x200, HEAP_ID_53);
+    PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, TRUE);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
 
     ov76_0223EB64(v0->unk_D4.unk_10);
     ov76_0223BF10();
@@ -231,10 +231,10 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 6);
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 7);
     Heap_Free(v0->unk_D4.unk_10);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 0);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 1);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 2);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 3);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_OBJ);
     PaletteData_Free(v0->unk_D4.unk_14);
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
     Heap_Free(v0->unk_428);
