@@ -1,4 +1,4 @@
-name: build
+name: build_arm
 
 on:
   push:
@@ -30,18 +30,6 @@ jobs:
 
       - name: Install Metroskrew
         run: ./drun.sh make skrew
-
-      - name: Build (Linux)
-        run: ./drun.sh make linux
-
-      - name: Package release artifact (linux)
-        run: ./tools/scripts/package_artifacts_linux.sh
-
-      - name: Upload release artifact (linux)
-        uses: actions/upload-artifact@v6
-        with:
-          name: release_linux
-          path: build_linux/pokeplatinum/release_linux
 
       - name: Build (ARM)
         run: ./drun.sh make

@@ -1,0 +1,44 @@
+name: build_linux
+
+on:
+  push:
+    branches: [ pc_port ]
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+
+env:
+  LM_LICENSE_FILE: "${{ github.workspace }}/tools/cw/license.dat"
+  BUILD: /var/tmp/pokeplatinum
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Install Software
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends fuse git python3 wget zip
+
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: Install Metroskrew
+        run: ./drun.sh make skrew
+
+      - name: Build (Linux)
+        run: ./drun.sh make linux
+
+      - name: Package release artifact (linux)
+        run: ./tools/scripts/package_artifacts_linux.sh
+
+      - name: Upload release artifact (linux)
+        uses: actions/upload-artifact@v6
+        with:
+          name: release_linux
+          path: build_linux/pokeplatinum/release_linux
