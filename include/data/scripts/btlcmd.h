@@ -227,6 +227,7 @@ ScriptCommand(BTLCMD_WAITTIME,                    BtlCmd_WaitTime)
 ScriptCommand(BTLCMD_CHECKCURMOVEISTYPE,          BtlCmd_CheckCurMoveIsType)
 ScriptCommand(BTLCMD_LOADARCHIVEDMONDATA,         BtlCmd_LoadArchivedMonData)
 ScriptCommand(BTLCMD_REFRESHMONDATA,              BtlCmd_RefreshMonData)
+ScriptCommand(BTLCMD_CHECKSTICKYWEB,              BtlCmd_CheckStickyWeb)
 ScriptCommand(BTLCMD_END,                         BtlCmd_End)
 
 // clang-format on

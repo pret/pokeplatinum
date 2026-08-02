@@ -70,6 +70,7 @@
 #define WEATHER_IS_SUN  (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY)
 #define WEATHER_IS_HAIL (battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING)
 #define WEATHER_IS_FOG  (battleCtx->fieldConditionsMask & FIELD_CONDITION_DEEP_FOG)
+#define WEATHER_IS_STICKY (battleCtx->fieldConditionsMask & FIELD_CONDITION_STICKY_WEB)
 
 #define FLAG_NEGATE(flag) ((flag) ^ 0xFFFFFFFF)
 

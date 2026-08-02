@@ -910,6 +910,7 @@ enum FieldCondCheckState {
     FIELD_COND_CHECK_STATE_HAILING,
     FIELD_COND_CHECK_STATE_DEEP_FOG,
     FIELD_COND_CHECK_STATE_GRAVITY,
+    FIELD_COND_CHECK_STATE_STICKY_WEB,
 
     FIELD_COND_CHECK_END
 };
@@ -1057,6 +1058,14 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
             }
 
             StepFieldConditionCheck(battleCtx, state);
+            break;
+
+        case FIELD_COND_CHECK_STATE_STICKY_WEB:
+            if (battleCtx->fieldConditionsMask & FIELD_CONDITION_STICKY_WEB) {
+                PrepareSubroutineSequence(battleCtx, subscript_weather_continues);
+                state = STATE_BREAK_OUT;
+            }
+            battleCtx->fieldConditionCheckState++;
             break;
 
         case FIELD_COND_CHECK_STATE_LUCKY_CHANT:

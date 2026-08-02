@@ -641,6 +641,12 @@
     .long (\jump_no_spikes-.) / 4 - 1
     .endm
 
+    .macro CheckStickyWeb battler, jump_no_sticky
+    .long BTLCMD_CHECKSTICKYWEB
+    .long \battler
+    .long (\jump_no_sticky-.) / 4 - 1
+    .endm
+
     .macro TryPerishSong jump_if_fail
     .long BTLCMD_TRYPERISHSONG
     .long (\jump_if_fail-.) / 4 - 1
