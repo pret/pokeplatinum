@@ -1,6 +1,6 @@
 # Pokémon Platinum PC Port
 
-This is an experimental PC port of Pokemon Platinum based on the [pret](https://github.com/pret/pokeplatinum) decompilation project.
+This is an experimental PC port of Pokemon Platinum based on the [pret](https://github.com/pret/pokeplatinum) decompilation project. It is powered by the [libntr](https://github.com/cybervisi0n/libntr) suite, a collection of libraries that replace the NitroSDK to allow for easy porting of Nintendo DS games.
 
 It should be possible to play the game from start to finish, but there could be crashes and graphical bugs. 
 
