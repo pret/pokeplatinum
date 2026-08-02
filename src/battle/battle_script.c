@@ -190,6 +190,7 @@ static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCt
 static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySpikes(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckSpikes(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryPerishSong(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_GetMonBySpeedOrder(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_GoToIfValidMon(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -5442,6 +5443,38 @@ static BOOL BtlCmd_CheckSpikes(BattleSystem *battleSys, BattleContext *battleCtx
 }
 
 /**
+ * @brief Check for the Sticky Web effect on the given battler.
+ *
+ * Battlers will lose one speed stage.
+ *
+ * Inputs:
+ * 1. The battler who should take Spikes damage.
+ * 2. The distance to jump if there is no Spikes damage to take.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int side = BattleSystem_GetBattlerSide(battleSys, battler);
+
+    if (WEATHER_IS_STICKY && battleCtx->battleMons[battler].curHP) {
+        battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SPEED_DOWN_1_STAGE;
+        battleCtx->sideEffectMon = battler;
+    } else {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+    }
+
+    return FALSE;
+}
+
+/**
  * @brief Try to execute the Perish Song effect.
  *
  * This command will loop over all active battlers and attempt to apply Perish
@@ -6797,6 +6830,14 @@ static BOOL BtlCmd_TrySnatch(BattleSystem *battleSys, BattleContext *battleCtx)
 
 #include "data/battle/weight_to_power.h"
 
+static BOOL DbugMessage(BattleSystem *battleSys){
+    BattleMessage msg;
+    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(battleSys);
+    msg.id = BattleStrings_Text_BattleOneTwoAndPoof; // "1, 2, and... ... Poof!"
+    msg.tags = TAG_NONE;
+    BattleMessage_Print(battleSys, msgLoader, &msg, TEXT_SPEED_FAST);
+}
+
 /**
  * @brief Calculate the base power of a move which scales with the defender's
  * weight.
@@ -6862,6 +6903,11 @@ static BOOL BtlCmd_CalcWeatherBallParams(BattleSystem *battleSys, BattleContext 
 
             if (WEATHER_IS_HAIL) {
                 battleCtx->moveType = TYPE_ICE;
+            }
+
+            if(WEATHER_IS_STICKY) {
+                battleCtx->movePower = CURRENT_MOVE_DATA.power / 2;
+                battleCtx->moveType = TYPE_NORMAL;
             }
         } else {
             battleCtx->movePower = CURRENT_MOVE_DATA.power;

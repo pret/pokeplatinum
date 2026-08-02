@@ -2959,6 +2959,20 @@
       ]
     },
     {
+      "id": "BattleStrings_Text_PokemonIsSlowedByStickyWeb_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} has its\n",
+        "speed lowered by the sticky web!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_YourSideStickyWeb",
+      "en_US": [
+        "Your side of the field is\n",
+        "covered in sticky webs!"
+      ]
+    },
+    {
       "id": "BattleStrings_Text_PokemonIsHurtByTheSpikes_Wild",
       "en_US": [
         "The wild {STRVAR_1 1, 0, 0} is hurt\n",

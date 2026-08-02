@@ -3697,6 +3697,11 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
 
+                case OVERWORLD_STICKY_WEB:
+                    subscript = subscript_overworld_sticky_web;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+
                 default:
                     break;
                 }
