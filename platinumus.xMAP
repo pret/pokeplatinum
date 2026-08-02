@@ -29010,7 +29010,7 @@
                                            42](JournalEntry_CreateEventSoldALot,func) found in global src_journal.c.o
                                            42](JournalEntry_CreateEventShoppedAtMart,func) found in global src_journal.c.o
                                            42](JournalEntry_CreateEventSoldALittle,func) found in global src_journal.c.o
-                                        39](BattleFrontierExchangeServiceCorners$28234,object) found in local src_scrcmd.c.o
+                                        39](BattleFrontierExchangeServiceCorners$28232,object) found in local src_scrcmd.c.o
                                        38](ScrCmd_CheckIsMiscSaveInit,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_SaveExtraData,func) found in local src_scrcmd.c.o
                                         39](SaveDataExtra_Init,func) found in global src_savedata.c.o
@@ -66574,10 +66574,10 @@
   020EAB8C 0000000A .rodata sBattlegroundStatTrainers	(src_scrcmd.c.o)
   020EAB96 00000010 .rodata sBattlegroundGymLeaders	(src_scrcmd.c.o)
   020EABA6 00000012 .rodata sConditionTable	(src_scrcmd.c.o)
-  020EABB8 00000020 .rodata BattleFrontierRightExchangeServiceCorner$28232	(src_scrcmd.c.o)
-  020EABD8 00000024 .rodata unused$27914	(src_scrcmd.c.o)
-  020EABFC 00000024 .rodata pillarRooms$27927	(src_scrcmd.c.o)
-  020EAC20 00000036 .rodata BattleFrontierLeftExchangeServiceCorner$28233	(src_scrcmd.c.o)
+  020EABB8 00000020 .rodata BattleFrontierRightExchangeServiceCorner$28230	(src_scrcmd.c.o)
+  020EABD8 00000024 .rodata unused$27912	(src_scrcmd.c.o)
+  020EABFC 00000024 .rodata pillarRooms$27925	(src_scrcmd.c.o)
+  020EAC20 00000036 .rodata BattleFrontierLeftExchangeServiceCorner$28231	(src_scrcmd.c.o)
   020EAC58 00000D20 .rodata gFieldScriptCommands	(src_scrcmd.c.o)
   020EB978 00000006 .rodata JubilifeMartSpecialties	(src_scrcmd_shop.c.o)
   020EB978 00000000 .rodata .rodata	(src_scrcmd_shop.c.o)
@@ -67918,7 +67918,7 @@
   02100AD4 0000000C .data   sFloaromaMeadowHiddenItemFlags	(src_script_manager.c.o)
   02100AE0 00000010 .data   sIronIslandHiddenItemFlags	(src_script_manager.c.o)
   02100AF0 00000000 .data   .data	(src_scrcmd.c.o)
-  02100AF0 00000008 .data   BattleFrontierExchangeServiceCorners$28234	(src_scrcmd.c.o)
+  02100AF0 00000008 .data   BattleFrontierExchangeServiceCorners$28232	(src_scrcmd.c.o)
   02100AF8 00000000 .data   .data	(src_scrcmd_shop.c.o)
   02100AF8 00000008 .data   VeilstoneDeptStoreDecorationStocks	(src_scrcmd_shop.c.o)
   02100B00 0000001C .data   SunyshoreMarketDailyStocks	(src_scrcmd_shop.c.o)
