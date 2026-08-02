@@ -3250,7 +3250,7 @@ static BOOL ScrCmd_1D7(ScriptContext *ctx)
 
 static BOOL ScrCmd_CheckCanCookPoffin(ScriptContext *ctx)
 {
-    u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     if (!Bag_HasItemsInPocket(SaveData_GetBag(ctx->fieldSystem->saveData), POCKET_BERRIES)) {
         *destVar = 1;
@@ -3383,9 +3383,7 @@ static BOOL ScrCmd_TryStartGTSApp(ScriptContext *ctx)
 
 static BOOL ScrCmd_0B3(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-
-    sub_0207DDE0(ctx->task, FieldSystem_GetVarPointer(ctx->fieldSystem, v0));
+    sub_0207DDE0(ctx->task, ScriptContext_GetVarPointer(ctx));
     return TRUE;
 }
 
@@ -5516,9 +5514,7 @@ static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx)
 
 static BOOL ScrCmd_OpenBattleRegulationMenu(ScriptContext *ctx)
 {
-    u16 destVar = ScriptContext_ReadHalfWord(ctx);
-
-    OpenBattleRegulationMenu(ctx->task, FieldSystem_GetVarPointer(ctx->fieldSystem, destVar));
+    OpenBattleRegulationMenu(ctx->task, ScriptContext_GetVarPointer(ctx));
     return TRUE;
 }
 
@@ -5877,7 +5873,7 @@ static BOOL ScrCmd_FlickerObject(ScriptContext *ctx)
 
 static BOOL ScrCmd_CheckHasAllLegendaryTitansInParty(ScriptContext *ctx)
 {
-    u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     *destVar = HasAllLegendaryTitansInParty(ctx->fieldSystem->saveData);
     return FALSE;
@@ -6870,8 +6866,7 @@ static BOOL ScrCmd_2F6(ScriptContext *ctx)
 
 static BOOL ScrCmd_2F7(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u16 *v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
+    u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     if (WiFiList_HasValidLogin(ctx->fieldSystem->saveData)) {
         sub_0205749C(ctx->task, *v1);
