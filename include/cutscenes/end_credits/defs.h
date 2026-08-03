@@ -69,7 +69,7 @@ enum EndCreditsMemory {
     END_CREDITS_MEMORY_COUNT
 };
 
-typedef struct {
+typedef struct Bg3DModelAnim {
     s16 modelCount;
     s16 speed;
     fx32 startXPos;
@@ -80,11 +80,11 @@ typedef struct {
     fx32 zOffset;
 } Bg3DModelAnim;
 
-typedef struct {
+typedef struct EndCredits3DModelManager {
     Bg3DModelAnim bg3DModels[2];
 } EndCredits3DModelManager;
 
-typedef struct {
+typedef struct DrifloonState {
     fx32 xPos;
     fx32 yPos;
     fx32 degrees;
@@ -93,13 +93,13 @@ typedef struct {
     s8 scaleDirection;
 } DrifloonState;
 
-typedef struct {
+typedef struct EndCreditsMorningSceneData {
     fx32 bgXPos;
     fx32 unused_04;
     DrifloonState drifloonStates[3];
 } EndCreditsMorningSceneData;
 
-typedef struct {
+typedef struct WingullState {
     fx32 xPos;
     fx32 yPos;
     fx32 unused_08;
@@ -119,7 +119,7 @@ typedef struct {
     u8 phase;
 } WingullState;
 
-typedef struct {
+typedef struct EndCreditsDaySceneData {
     fx32 unused_00;
     fx32 bgYPos;
     u16 bgPaletteBuffers[4][16];
@@ -129,7 +129,7 @@ typedef struct {
     WingullState wingullStates[2];
 } EndCreditsDaySceneData;
 
-typedef struct {
+typedef struct MagnezoneState {
     fx32 xPos;
     fx32 yPos;
     fx32 degrees;
@@ -137,7 +137,7 @@ typedef struct {
     s8 rotateDirection;
 } MagnezoneState;
 
-typedef struct {
+typedef struct EndCreditsNightSceneData {
     fx32 unused_00;
     fx32 unused_04;
     u16 bgPaletteBuffers[8][16];
@@ -154,11 +154,11 @@ typedef struct {
     MagnezoneState magnezoneStates[1];
 } EndCreditsNightSceneData;
 
-typedef struct {
+typedef struct EndCreditsMemoriesSceneData {
     u32 framesElapsed;
 } EndCreditsMemoriesSceneData;
 
-typedef struct {
+typedef struct EndCreditsTwinleafSceneData {
     u32 framesElapsed;
     u8 currentImage;
     s8 ev1;
@@ -166,11 +166,11 @@ typedef struct {
     u32 plane1;
 } EndCreditsTwinleafSceneData;
 
-typedef struct {
+typedef struct EndCreditsFinSceneData {
     u32 unused_00;
 } EndCreditsFinSceneData;
 
-typedef struct {
+typedef struct EndCreditsSceneManager {
     int state;
     s16 memoryCooldown;
     s16 unused_06;
@@ -184,7 +184,7 @@ typedef struct {
     };
 } EndCreditsSceneManager;
 
-typedef struct {
+typedef struct EndCreditsStringsManager {
     int topY;
     int bottomY;
     int bgLayer;
@@ -201,14 +201,14 @@ typedef struct {
     SysTask *sysTask;
 } EndCreditsStringsManager;
 
-typedef struct {
+typedef struct EndCreditsPlayerAnimManager {
     s16 blinkFrames;
     s16 blinkState;
     s16 animCount;
     s16 blinkCount;
 } EndCreditsPlayerAnimManager;
 
-typedef struct {
+typedef struct EndCreditsApp {
     ClearGamePlayerInfo *clearGamePlayerInfo;
     BOOL unused_04;
     BgConfig *bgConfig;

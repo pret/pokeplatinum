@@ -95,7 +95,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2);
 void sub_0203E224(FieldSystem *fieldSystem);
 void FieldTask_StartHallOfFame(FieldSystem *fieldSystem, HallOfFameDisplayData *displayData);
 void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem);
-void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1);
+void FieldSystem_StartEndCredits(FieldSystem *fieldSystem, ClearGamePlayerInfo *clearGamePlayerInfo);
 void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData);
 void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv);
 void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv);

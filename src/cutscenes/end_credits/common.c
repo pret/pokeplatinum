@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "cutscenes/end_credits/defs.h"
+#include "pch/global_pch.h"
 
 #include "bg_window.h"
 #include "easy3d_object.h"
@@ -15,7 +16,7 @@
 #include "sprite.h"
 #include "sprite_system.h"
 
-typedef struct {
+typedef struct MemoryImageData {
     u16 tiles;
     u16 tileMap;
     u16 palette;
@@ -26,75 +27,72 @@ typedef struct {
 
 static const Bg3DModelAnim sEndCredits3DModelAnims[][2] = {
     {
-        { 0xE, 0x3AC, 0x65800, 0x1C800, -217088, 0x2B800, 0x7000, 0x47000 },
-        { 0xE, 0x618, 0x9B000, 0x1C800, -217088, 0x2B800, 0x7000, 0x47000 },
+        { .modelCount = 14, .speed = 940, .startXPos = 415744, .xOffset = 116736, .startYPos = -217088, .yOffset = 178176, .startZPos = 28672, .zOffset = 290816 },
+        { .modelCount = 14, .speed = 1560, .startXPos = 634880, .xOffset = 116736, .startYPos = -217088, .yOffset = 178176, .startZPos = 28672, .zOffset = 290816 },
     },
     {
-        { 0xE, 0x1B8, 0x65800, 0x1C800, -217088, 0x2B800, 0x7000, 0x47000 },
-        { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 },
+        { .modelCount = 14, .speed = 440, .startXPos = 415744, .xOffset = 116736, .startYPos = -217088, .yOffset = 178176, .startZPos = 28672, .zOffset = 290816 },
+        { .modelCount = 0, .speed = 0, .startXPos = 0, .xOffset = 0, .startYPos = 0, .yOffset = 0, .startZPos = 0, .zOffset = 0 },
     },
     {
-        { 0x10, 0x3AC, 0x65800, 0x1C800, -217088, 0x2B800, 0x7000, 0x47000 },
-        { 0xE, 0x618, 0x9B000, 0x1C800, -217088, 0x2B800, 0x7000, 0x47000 },
+        { .modelCount = 16, .speed = 940, .startXPos = 415744, .xOffset = 116736, .startYPos = -217088, .yOffset = 178176, .startZPos = 28672, .zOffset = 290816 },
+        { .modelCount = 14, .speed = 1560, .startXPos = 634880, .xOffset = 116736, .startYPos = -217088, .yOffset = 178176, .startZPos = 28672, .zOffset = 290816 },
     },
 };
 
 static const MemoryImageData sEndCreditsMaleMemories[] = {
-    { 0x26, 0x25, 0x30, 0x0, 0x0 },
-    { 0x27, 0x25, 0x31, -32, -48 },
-    { 0x28, 0x25, 0x32, -16, -30 },
-    { 0x29, 0x25, 0x33, -42, -2 },
-    { 0x2A, 0x25, 0x34, -8, -20 },
-    { 0x2B, 0x25, 0x35, -50, -16 },
-    { 0x2C, 0x25, 0x36, -40, -34 },
-    { 0x2D, 0x25, 0x37, -16, -1 },
-    { 0x2E, 0x25, 0x38, -44, -15 },
-    { 0x2F, 0x25, 0x39, -30, -30 }
+    { .tiles = 38, .tileMap = 37, .palette = 48, .xOffset = 0, .yOffset = 0 },
+    { .tiles = 39, .tileMap = 37, .palette = 49, .xOffset = -32, .yOffset = -48 },
+    { .tiles = 40, .tileMap = 37, .palette = 50, .xOffset = -16, .yOffset = -30 },
+    { .tiles = 41, .tileMap = 37, .palette = 51, .xOffset = -42, .yOffset = -2 },
+    { .tiles = 42, .tileMap = 37, .palette = 52, .xOffset = -8, .yOffset = -20 },
+    { .tiles = 43, .tileMap = 37, .palette = 53, .xOffset = -50, .yOffset = -16 },
+    { .tiles = 44, .tileMap = 37, .palette = 54, .xOffset = -40, .yOffset = -34 },
+    { .tiles = 45, .tileMap = 37, .palette = 55, .xOffset = -16, .yOffset = -1 },
+    { .tiles = 46, .tileMap = 37, .palette = 56, .xOffset = -44, .yOffset = -15 },
+    { .tiles = 47, .tileMap = 37, .palette = 57, .xOffset = -30, .yOffset = -30 }
 };
 
 static const MemoryImageData sEndCreditsFemaleMemories[] = {
-    { 0x3A, 0x25, 0x44, 0x0, 0x0 },
-    { 0x3B, 0x25, 0x45, -32, -48 },
-    { 0x3C, 0x25, 0x46, -16, -30 },
-    { 0x3D, 0x25, 0x47, -42, -2 },
-    { 0x3E, 0x25, 0x48, -8, -20 },
-    { 0x3F, 0x25, 0x49, -50, -16 },
-    { 0x40, 0x25, 0x4A, -40, -34 },
-    { 0x41, 0x25, 0x4B, -16, -1 },
-    { 0x42, 0x25, 0x4C, -44, -15 },
-    { 0x43, 0x25, 0x4D, -30, -30 }
+    { .tiles = 58, .tileMap = 37, .palette = 68, .xOffset = 0, .yOffset = 0 },
+    { .tiles = 59, .tileMap = 37, .palette = 69, .xOffset = -32, .yOffset = -48 },
+    { .tiles = 60, .tileMap = 37, .palette = 70, .xOffset = -16, .yOffset = -30 },
+    { .tiles = 61, .tileMap = 37, .palette = 71, .xOffset = -42, .yOffset = -2 },
+    { .tiles = 62, .tileMap = 37, .palette = 72, .xOffset = -8, .yOffset = -20 },
+    { .tiles = 63, .tileMap = 37, .palette = 73, .xOffset = -50, .yOffset = -16 },
+    { .tiles = 64, .tileMap = 37, .palette = 74, .xOffset = -40, .yOffset = -34 },
+    { .tiles = 65, .tileMap = 37, .palette = 75, .xOffset = -16, .yOffset = -1 },
+    { .tiles = 66, .tileMap = 37, .palette = 76, .xOffset = -44, .yOffset = -15 },
+    { .tiles = 67, .tileMap = 37, .palette = 77, .xOffset = -30, .yOffset = -30 }
 };
 
 static const MemoryImageData sEndCreditsMaleTwinleaf[] = {
-    { 0x57, 0x56, 0x5B, 0x0, 0x0 },
-    { 0x58, 0x56, 0x5C, 0x0, 0x0 },
-    { 0x59, 0x56, 0x5D, 0x0, 0x0 },
-    { 0x5A, 0x56, 0x5E, 0x0, 0x0 }
+    { .tiles = 87, .tileMap = 86, .palette = 91, .xOffset = 0, .yOffset = 0 },
+    { .tiles = 88, .tileMap = 86, .palette = 92, .xOffset = 0, .yOffset = 0 },
+    { .tiles = 89, .tileMap = 86, .palette = 93, .xOffset = 0, .yOffset = 0 },
+    { .tiles = 90, .tileMap = 86, .palette = 94, .xOffset = 0, .yOffset = 0 }
 };
 
 static const MemoryImageData sEndCreditsFemaleTwinleaf[] = {
-    { 0x5F, 0x56, 0x63, 0x0, 0x0 },
-    { 0x60, 0x56, 0x64, 0x0, 0x0 },
-    { 0x61, 0x56, 0x65, 0x0, 0x0 },
-    { 0x62, 0x56, 0x66, 0x0, 0x0 }
+    { .tiles = 95, .tileMap = 86, .palette = 99, .xOffset = 0, .yOffset = 0 },
+    { .tiles = 96, .tileMap = 86, .palette = 100, .xOffset = 0, .yOffset = 0 },
+    { .tiles = 97, .tileMap = 86, .palette = 101, .xOffset = 0, .yOffset = 0 },
+    { .tiles = 98, .tileMap = 86, .palette = 102, .xOffset = 0, .yOffset = 0 }
 };
 
 void EndCreditsCommon_Load3DModelStartingPositions(EndCreditsApp *endCreditsApp, int bikeSceneIndex)
 {
-    int i;
-
-    for (i = 0; i < 2; i++) {
+    for (int i = 0; i < SNELEMS(endCreditsApp->modelManager.bg3DModels); i++) {
         endCreditsApp->modelManager.bg3DModels[i] = sEndCredits3DModelAnims[bikeSceneIndex][i];
     }
 }
 
 void EndCreditsCommon_Set3DModelStartingPositions(EndCreditsApp *endCreditsApp)
 {
-    int j, i;
-    Bg3DModelAnim *modelAnim;
+    int j;
 
-    for (i = 0; i < endCreditsApp->bg3DModelRows; i++) {
-        modelAnim = &endCreditsApp->modelManager.bg3DModels[i];
+    for (int i = 0; i < endCreditsApp->bg3DModelRows; i++) {
+        Bg3DModelAnim *modelAnim = &endCreditsApp->modelManager.bg3DModels[i];
         GF_ASSERT(modelAnim->modelCount <= 16);
 
         for (j = 0; j < modelAnim->modelCount; j++) {
@@ -103,7 +101,7 @@ void EndCreditsCommon_Set3DModelStartingPositions(EndCreditsApp *endCreditsApp)
             Easy3DObject_SetVisible(&endCreditsApp->bg3DObjects[i][j], TRUE);
         }
 
-        for (; j < 16; j++) {
+        for (; j < SNELEMS(endCreditsApp->bg3DObjects[i]); j++) {
             Easy3DObject_SetPosition(&endCreditsApp->bg3DObjects[i][j], 0, (-64 * FX32_ONE), (-50 * FX32_ONE));
             Easy3DObject_SetScale(&endCreditsApp->bg3DObjects[i][j], FX32_ONE, FX32_ONE, FX32_ONE);
             Easy3DObject_SetVisible(&endCreditsApp->bg3DObjects[i][j], FALSE);
@@ -115,17 +113,15 @@ BOOL EndCreditsCommon_Scroll3DModels(EndCreditsApp *endCreditsApp, s32 nightMode
 {
     fx32 nextXPos, nextYPos, nextZPos;
     fx32 currentXPos, currentYPos, currentZPos;
-    int i, j;
-    Bg3DModelAnim *modelAnim;
     BOOL status = FALSE;
 
-    for (i = 0; i < endCreditsApp->bg3DModelRows; i++) {
-        modelAnim = &endCreditsApp->modelManager.bg3DModels[i];
+    for (int i = 0; i < endCreditsApp->bg3DModelRows; i++) {
+        Bg3DModelAnim *modelAnim = &endCreditsApp->modelManager.bg3DModels[i];
         nextXPos = modelAnim->xOffset * modelAnim->modelCount / modelAnim->speed;
         nextYPos = modelAnim->yOffset * modelAnim->modelCount / modelAnim->speed;
         nextZPos = modelAnim->zOffset * modelAnim->modelCount / modelAnim->speed;
 
-        for (j = 0; j < modelAnim->modelCount; j++) {
+        for (int j = 0; j < modelAnim->modelCount; j++) {
             Easy3DObject_GetPosition(&endCreditsApp->bg3DObjects[i][j], &currentXPos, &currentYPos, &currentZPos);
 
             if (currentXPos + nextXPos >= modelAnim->startXPos) {
@@ -153,7 +149,6 @@ void EndCreditsCommon_LoadMemoryImage(EndCreditsApp *endCreditsApp, int index, i
 {
     BgConfig *bgConfig = endCreditsApp->bgConfig;
     NNSG2dPaletteData *palette;
-    void *nclrBuffer;
     const MemoryImageData *memoryImage;
 
     GF_ASSERT(NELEMS(sEndCreditsMaleMemories) == NELEMS(sEndCreditsFemaleMemories));
@@ -180,12 +175,12 @@ void EndCreditsCommon_LoadMemoryImage(EndCreditsApp *endCreditsApp, int index, i
         break;
     }
 
-    nclrBuffer = Graphics_GetPlttDataFromOpenNARC(endCreditsApp->narc, memoryImage->palette, &palette, HEAP_ID_END_CREDITS);
+    void *nclrBuffer = Graphics_GetPlttDataFromOpenNARC(endCreditsApp->narc, memoryImage->palette, &palette, HEAP_ID_END_CREDITS);
 
     DC_FlushRange(palette->pRawData, palette->szByte);
     GX_BeginLoadBGExtPltt();
 
-    if (bgLayer == 3) {
+    if (bgLayer == BG_LAYER_MAIN_3) {
         GX_LoadBGExtPltt(palette->pRawData, 0x6000, 0x2000);
     } else {
         GX_LoadBGExtPltt(palette->pRawData, 0x4000, 0x2000);
@@ -204,9 +199,7 @@ void EndCreditsCommon_LoadMemoryImage(EndCreditsApp *endCreditsApp, int index, i
 
 void EndCreditsCommon_AnimatePlayerSprite(EndCreditsApp *endCreditsApp, ManagedSprite *managedSprite)
 {
-    void *charPtr;
     u32 animID;
-    NNSG2dImageProxy *image;
 
     if (endCreditsApp->eyeCharData == NULL) {
         return;
@@ -216,19 +209,19 @@ void EndCreditsCommon_AnimatePlayerSprite(EndCreditsApp *endCreditsApp, ManagedS
         if (endCreditsApp->playerAnimManager.blinkFrames > 0) {
             endCreditsApp->playerAnimManager.blinkFrames--;
         } else {
-            charPtr = G2_GetOBJCharPtr();
-            image = Sprite_GetImageProxy(managedSprite->sprite);
+            void *charPtr = G2_GetOBJCharPtr();
+            NNSG2dImageProxy *image = Sprite_GetImageProxy(managedSprite->sprite);
 
             if (endCreditsApp->clearGamePlayerInfo->gender == GENDER_MALE) {
-                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((0x20 * 8) / 2)], (void *)((u32)charPtr + 0x1d * 0x20 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
-                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((0x20 * 8) / 2) + 0x20], (void *)((u32)charPtr + 0x1e * 0x20 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
-                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((0x20 * 8) / 2) + 0x40], (void *)((u32)charPtr + 0x25 * 0x20 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
-                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((0x20 * 8) / 2) + 0x60], (void *)((u32)charPtr + 0x26 * 0x20 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((32 * 8) / 2)], (void *)((u32)charPtr + 0x1d * 32 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 32);
+                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((32 * 8) / 2) + 32], (void *)((u32)charPtr + 0x1e * 32 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 32);
+                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((32 * 8) / 2) + 64], (void *)((u32)charPtr + 0x25 * 32 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 32);
+                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((32 * 8) / 2) + 96], (void *)((u32)charPtr + 0x26 * 32 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 32);
             } else {
-                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((0x20 * 8) / 2)], (void *)((u32)charPtr + 0x45 * 0x20 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
-                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((0x20 * 8) / 2) + 0x20], (void *)((u32)charPtr + 0x46 * 0x20 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
-                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((0x20 * 8) / 2) + 0x40], (void *)((u32)charPtr + 0x4d * 0x20 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
-                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((0x20 * 8) / 2) + 0x60], (void *)((u32)charPtr + 0x4e * 0x20 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((32 * 8) / 2)], (void *)((u32)charPtr + 0x45 * 32 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 32);
+                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((32 * 8) / 2) + 32], (void *)((u32)charPtr + 0x46 * 32 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 32);
+                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((32 * 8) / 2) + 64], (void *)((u32)charPtr + 0x4d * 32 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 32);
+                MI_CpuCopy32(&endCreditsApp->eyeCharData[endCreditsApp->playerAnimManager.blinkState * ((32 * 8) / 2) + 96], (void *)((u32)charPtr + 0x4e * 32 + image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 32);
             }
 
             if (endCreditsApp->playerAnimManager.blinkState == 0) {

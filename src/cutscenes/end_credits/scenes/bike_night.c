@@ -1,12 +1,13 @@
-#include "cutscenes/end_credits/scenes/bike_night.h"
-
 #include <nitro.h>
 #include <string.h>
 
 #include "cutscenes/end_credits/common.h"
 #include "cutscenes/end_credits/defs.h"
+#include "cutscenes/end_credits/scenes.h"
+#include "pch/global_pch.h"
 
 #include "brightness_controller.h"
+#include "coordinates.h"
 #include "math_util.h"
 #include "palette.h"
 #include "sprite_system.h"
@@ -29,7 +30,7 @@ enum EndCreditsNightBackgroundState {
     END_CREDITS_NIGHT_BACKGROUND_STATE_TRANSITION
 };
 
-typedef struct {
+typedef struct MagnezoneAnim {
     s16 startXPos;
     s16 startYPos;
     fx32 xSpeed;
@@ -39,11 +40,6 @@ typedef struct {
     s32 rotateSpeed;
     u16 rotateDuration;
 } MagnezoneAnim;
-
-typedef struct {
-    s16 startXPos;
-    s16 startYPos;
-} MeteorAnim;
 
 static void EndCreditsNightScene_SetMagnezoneStartingPositions(EndCreditsApp *endCreditsApp, EndCreditsNightSceneData *data);
 static void EndCreditsNightScene_AnimateMagnezone(EndCreditsApp *endCreditsApp, EndCreditsNightSceneData *data);
@@ -55,16 +51,16 @@ static void EndCreditsNightScene_SetMeteorStartingPosition(EndCreditsApp *endCre
 static void EndCreditsNightScene_UpdateMeteorAnim(EndCreditsApp *endCreditsApp, EndCreditsNightSceneData *data);
 
 static const MagnezoneAnim sEndCreditsMagnezoneAnims[] = {
-    { 0x130, -10, -0xe00, 0x600, 0x8000, 0xC000, 0x96, 0x14 }
+    { .startXPos = 304, .startYPos = -10, .xSpeed = -3584, .ySpeed = 1536, .bobbingSpeed = 32768, .amplitude = 49152, .rotateSpeed = 150, .rotateDuration = 20 }
 };
 
-static const MeteorAnim sEndCreditsMeteorAnims[] = {
-    { 0xC8, 0x0 },
-    { 0x90, 0x0 },
-    { 0xB4, 0x0 }
+static const CoordinatesU16 sEndCreditsMeteorAnims[] = {
+    { .x = 200, .y = 0 },
+    { .x = 144, .y = 0 },
+    { .x = 180, .y = 0 }
 };
 
-__attribute__((aligned(4))) const u16 sEndCreditsNightTreeTypes[] = {
+ALIGN_4 const u16 sEndCreditsNightTreeTypes[] = {
     END_CREDITS_NIGHT_SCENE_MODEL_TYPE_NORMAL_TREE,
     END_CREDITS_NIGHT_SCENE_MODEL_TYPE_NORMAL_TREE,
     END_CREDITS_NIGHT_SCENE_MODEL_TYPE_NORMAL_TREE,
@@ -101,10 +97,8 @@ BOOL EndCreditsNightScene_Run(EndCreditsApp *endCreditsApp, EndCreditsSceneManag
     s32 modelType;
 
     switch (sceneManager->state) {
-    case END_CREDITS_NIGHT_SCENE_STATE_INIT: {
-        int i;
-
-        for (i = 0; i < 16; i++) {
+    case END_CREDITS_NIGHT_SCENE_STATE_INIT:
+        for (int i = 0; i < SNELEMS(endCreditsApp->bg3DObjects[0]); i++) {
             MI_CpuClear8(&endCreditsApp->bg3DObjects[0][i].renderObj, sizeof(NNSG3dRenderObj));
 
             if (i % 8 == 0) {
@@ -119,7 +113,7 @@ BOOL EndCreditsNightScene_Run(EndCreditsApp *endCreditsApp, EndCreditsSceneManag
         }
 
         data->modelToRender = 16;
-    }
+
         EndCreditsNightScene_SetMagnezoneStartingPositions(endCreditsApp, data);
         EndCreditsNightScene_InitMeteors(endCreditsApp);
         BrightnessController_StartTransition(24, BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
@@ -166,11 +160,11 @@ BOOL EndCreditsNightScene_Run(EndCreditsApp *endCreditsApp, EndCreditsSceneManag
 
 static void EndCreditsNightScene_SetMagnezoneStartingPositions(EndCreditsApp *endCreditsApp, EndCreditsNightSceneData *data)
 {
-    int i, j = 0;
+    int j = 0;
 
     GF_ASSERT(NELEMS(sEndCreditsMagnezoneAnims) == 2 - 2 + 1);
 
-    for (i = 2; i <= 2; i++, j++) {
+    for (int i = 2; i <= 2; i++, j++) {
         ManagedSprite_SetAffineOverwriteMode(endCreditsApp->managedSprites[i], AFFINE_OVERWRITE_MODE_DOUBLE);
         ManagedSprite_SetPositionXYWithSubscreenOffset(endCreditsApp->managedSprites[i], sEndCreditsMagnezoneAnims[j].startXPos, sEndCreditsMagnezoneAnims[j].startYPos, ((192 + 80) << FX32_SHIFT));
         data->magnezoneStates[j].xPos = sEndCreditsMagnezoneAnims[j].startXPos * FX32_ONE;
@@ -180,13 +174,13 @@ static void EndCreditsNightScene_SetMagnezoneStartingPositions(EndCreditsApp *en
 
 static void EndCreditsNightScene_AnimateMagnezone(EndCreditsApp *endCreditsApp, EndCreditsNightSceneData *data)
 {
-    int i, j = 0;
+    int j = 0;
 
     if (endCreditsApp->framesElapsed < 7440) {
         return;
     }
 
-    for (i = 2; i <= 2; i++, j++) {
+    for (int i = 2; i <= 2; i++, j++) {
         EndCreditsNightScene_UpdateMagnezoneAnim(endCreditsApp, data, endCreditsApp->managedSprites[i], j);
     }
 }
@@ -195,7 +189,6 @@ static void EndCreditsNightScene_UpdateMagnezoneAnim(EndCreditsApp *endCreditsAp
 {
     MagnezoneState *currentState = &data->magnezoneStates[index];
     const MagnezoneAnim *magnezoneAnim = &sEndCreditsMagnezoneAnims[index];
-    fx32 yOffset;
 
     if (currentState->xPos < -64 * FX32_ONE) {
         return;
@@ -207,7 +200,7 @@ static void EndCreditsNightScene_UpdateMagnezoneAnim(EndCreditsApp *endCreditsAp
         currentState->degrees -= 360 << FX32_SHIFT;
     }
 
-    yOffset = FX_Mul(CalcSineDegrees_FX32(currentState->degrees), magnezoneAnim->amplitude);
+    fx32 yOffset = FX_Mul(CalcSineDegrees_FX32(currentState->degrees), magnezoneAnim->amplitude);
 
     currentState->xPos += magnezoneAnim->xSpeed;
     currentState->yPos += magnezoneAnim->ySpeed;
@@ -261,7 +254,7 @@ static void EndCreditsNightScene_SetMeteorStartingPosition(EndCreditsApp *endCre
     data->ev1 = 0;
     data->ev2 = 31;
 
-    ManagedSprite_SetPositionXYWithSubscreenOffset(endCreditsApp->managedSprites[END_CREDITS_SPRITE_NIGHT_METEOR_2], sEndCreditsMeteorAnims[index].startXPos, sEndCreditsMeteorAnims[index].startYPos, ((192 + 80) << FX32_SHIFT));
+    ManagedSprite_SetPositionXYWithSubscreenOffset(endCreditsApp->managedSprites[END_CREDITS_SPRITE_NIGHT_METEOR_2], sEndCreditsMeteorAnims[index].x, sEndCreditsMeteorAnims[index].y, ((192 + 80) << FX32_SHIFT));
     ManagedSprite_SetDrawFlag(endCreditsApp->managedSprites[END_CREDITS_SPRITE_NIGHT_METEOR_2], TRUE);
     ManagedSprite_SetDrawFlag(endCreditsApp->managedSprites[END_CREDITS_SPRITE_NIGHT_METEOR_1], FALSE);
 
@@ -291,7 +284,7 @@ static void EndCreditsNightScene_UpdateMeteorAnim(EndCreditsApp *endCreditsApp, 
 
         G2S_ChangeBlendAlpha(data->ev1, data->ev2);
 
-        ManagedSprite_OffsetPositionFxXY(endCreditsApp->managedSprites[END_CREDITS_SPRITE_NIGHT_METEOR_2], -0x6000, 0xd000);
+        ManagedSprite_OffsetPositionFxXY(endCreditsApp->managedSprites[END_CREDITS_SPRITE_NIGHT_METEOR_2], -24576, 53248);
         Sprite_GetPositionXYWithSubscreenOffset2(endCreditsApp->managedSprites[END_CREDITS_SPRITE_NIGHT_METEOR_2], &xPos, &yPos, ((192 + 80) << FX32_SHIFT));
 
         if (yPos > 192 + 32) {
@@ -314,7 +307,7 @@ static void EndCreditsNightScene_UpdateMeteorAnim(EndCreditsApp *endCreditsApp, 
 
         G2_ChangeBlendAlpha(data->ev1, data->ev2);
 
-        ManagedSprite_OffsetPositionFxXY(endCreditsApp->managedSprites[END_CREDITS_SPRITE_NIGHT_METEOR_1], -0x6000, 0xd000);
+        ManagedSprite_OffsetPositionFxXY(endCreditsApp->managedSprites[END_CREDITS_SPRITE_NIGHT_METEOR_1], -24576, 53248);
         Sprite_GetPositionXYWithSubscreenOffset2(endCreditsApp->managedSprites[END_CREDITS_SPRITE_NIGHT_METEOR_1], &xPos, &yPos, ((192 + 80) << FX32_SHIFT));
 
         if (yPos > 192 + 32) {
@@ -327,9 +320,7 @@ static void EndCreditsNightScene_UpdateMeteorAnim(EndCreditsApp *endCreditsApp, 
 
 static void EndCreditsNightScene_AnimateBackgroundSprite(EndCreditsApp *endCreditsApp, EndCreditsNightSceneData *data)
 {
-    int unused, i;
-    int frames, fraction, nextFrame;
-    u16 *mainFadedBuffer, *subFadedBuffer;
+    int unused, frames, fraction;
 
     switch (data->backgroundState) {
     case END_CREDITS_NIGHT_BACKGROUND_STATE_STATIC:
@@ -347,7 +338,7 @@ static void EndCreditsNightScene_AnimateBackgroundSprite(EndCreditsApp *endCredi
         break;
     case END_CREDITS_NIGHT_BACKGROUND_STATE_TRANSITION:
         frames = data->currentTransitionFrame;
-        data->fraction += 0x400;
+        data->fraction += 1024;
 
         if (data->fraction >= (16 << 8)) {
             fraction = 16;
@@ -358,16 +349,16 @@ static void EndCreditsNightScene_AnimateBackgroundSprite(EndCreditsApp *endCredi
             fraction = data->fraction >> 8;
         }
 
-        nextFrame = frames + 1;
+        int nextFrame = frames + 1;
 
         if (nextFrame >= 8) {
             nextFrame = 8 - 1;
         }
 
-        mainFadedBuffer = PaletteData_GetFadedBuffer(endCreditsApp->paletteData, PLTTBUF_MAIN_BG);
-        subFadedBuffer = PaletteData_GetFadedBuffer(endCreditsApp->paletteData, PLTTBUF_SUB_BG);
+        u16 *mainFadedBuffer = PaletteData_GetFadedBuffer(endCreditsApp->paletteData, PLTTBUF_MAIN_BG);
+        u16 *subFadedBuffer = PaletteData_GetFadedBuffer(endCreditsApp->paletteData, PLTTBUF_SUB_BG);
 
-        for (i = 0; i < 16; i++) {
+        for (int i = 0; i < SNELEMS(data->bgPaletteBuffers[frames]); i++) {
             BlendPalette(&data->bgPaletteBuffers[frames][i], &mainFadedBuffer[i + 16 * 1], 1, fraction, data->bgPaletteBuffers[nextFrame][i]);
             BlendPalette(&data->bgPaletteBuffers[frames][i], &subFadedBuffer[i + 16 * 1], 1, fraction, data->bgPaletteBuffers[nextFrame][i]);
         }

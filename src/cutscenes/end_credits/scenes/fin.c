@@ -1,9 +1,8 @@
-#include "cutscenes/end_credits/scenes/fin.h"
-
 #include <nitro.h>
 #include <string.h>
 
 #include "cutscenes/end_credits/defs.h"
+#include "cutscenes/end_credits/scenes.h"
 
 #include "screen_fade.h"
 #include "system.h"

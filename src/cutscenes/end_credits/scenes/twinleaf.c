@@ -1,10 +1,9 @@
-#include "cutscenes/end_credits/scenes/twinleaf.h"
-
 #include <nitro.h>
 #include <string.h>
 
 #include "cutscenes/end_credits/common.h"
 #include "cutscenes/end_credits/defs.h"
+#include "cutscenes/end_credits/scenes.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"

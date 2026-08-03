@@ -1409,7 +1409,7 @@ void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem)
     return hallOfFame;
 }
 
-void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *clearGamePlayerInfo)
+void FieldSystem_StartEndCredits(FieldSystem *fieldSystem, ClearGamePlayerInfo *clearGamePlayerInfo)
 {
     FS_EXTERN_OVERLAY(end_credits);
 

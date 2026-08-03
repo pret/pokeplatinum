@@ -152,7 +152,7 @@ static BOOL FieldTask_DoClearGameSequence(FieldTask *task)
     case 8:
         if (IsScreenFadeDone()) {
             ClearGame_FreeStringRemoveWindowFreeTilemapBuffer(fieldSystem, clearGameStruct);
-            sub_0203E274(fieldSystem, &(clearGameStruct->playerInfo));
+            FieldSystem_StartEndCredits(fieldSystem, &(clearGameStruct->playerInfo));
             (*state)++;
         }
         break;

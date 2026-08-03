@@ -9,6 +9,7 @@
 #include "cutscenes/end_credits/defs.h"
 #include "cutscenes/end_credits/scenes.h"
 #include "cutscenes/end_credits/strings.h"
+#include "pch/global_pch.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -40,41 +41,43 @@ enum EndCreditsState {
 };
 
 static const CameraAngle sEndCreditsCameraAngle = {
-    ((0 * 0xffff) / 360),
-    (0 * 0xffff) / 360,
-    ((0 * 0xffff) / 360)
+    .x = 0,
+    .y = 0,
+    .z = 0
 };
 
 static const RenderOamTemplate sEndCreditsRenderOamTemplate = {
-    0x0,
-    0x80,
-    0x0,
-    0x20,
-    0x0,
-    0x80,
-    0x0,
-    0x20
+    .mainOamStart = 0,
+    .mainOamCount = 128,
+    .mainAffineOamStart = 0,
+    .mainAffineOamCount = 32,
+    .subOamStart = 0,
+    .subOamCount = 128,
+    .subAffineOamStart = 0,
+    .subAffineOamCount = 32
 };
 
 static const CharTransferTemplateWithModes sEndCreditsCharTransferTemplate = {
-    0x60,
-    0x10000,
-    0x4000,
-    GX_OBJVRAMMODE_CHAR_1D_128K,
-    GX_OBJVRAMMODE_CHAR_1D_128K
+    .maxTasks = 0x60,
+    .sizeMain = 0x10000,
+    .sizeSub = 0x4000,
+    .modeMain = GX_OBJVRAMMODE_CHAR_1D_128K,
+    .modeSub = GX_OBJVRAMMODE_CHAR_1D_128K
 };
 
 static const SpriteResourceCapacities sEndCreditsResourceCapacities = {
-    0x60,
-    0x20,
-    0x40,
-    0x40,
-    0x8,
-    0x8
+    .asStruct = {
+        .charCapacity = 96,
+        .plttCapacity = 32,
+        .cellCapacity = 64,
+        .animCapacity = 64,
+        .mcellCapacity = 8,
+        .manimCapacity = 8,
+    }
 };
 
-static void EndCredits_DrawSprites(SysTask *sysTask, void *_endCreditsApp);
-static void EndCredits_VBlankCallback(void *_endCreditsApp);
+static void EndCredits_DrawSprites(SysTask *sysTask, void *pEndCreditsApp);
+static void EndCredits_VBlankCallback(void *pEndCreditsApp);
 static void EndCredits_InitBackgrounds(BgConfig *bgConfig);
 static void EndCredits_Draw3DModels(EndCreditsApp *endCreditsApp);
 static void EndCredits_InitCamera(EndCreditsApp *endCreditsApp);
@@ -87,10 +90,8 @@ static void EndCredits_FreeAppResources(EndCreditsApp *endCreditsApp);
 static void EndCredits_FreeTilemapBuffers(EndCreditsApp *endCreditsApp);
 static void EndCredits_InitBackgrounds2(BgConfig *bgConfig);
 
-int EndCreditsApp_Init(ApplicationManager *appMan, int *state)
+BOOL EndCreditsApp_Init(ApplicationManager *appMan, int *state)
 {
-    EndCreditsApp *endCreditsApp;
-
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
@@ -105,7 +106,7 @@ int EndCreditsApp_Init(ApplicationManager *appMan, int *state)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_END_CREDITS, 0x80000);
 
-    endCreditsApp = ApplicationManager_NewData(appMan, sizeof(EndCreditsApp), HEAP_ID_END_CREDITS);
+    EndCreditsApp *endCreditsApp = ApplicationManager_NewData(appMan, sizeof(EndCreditsApp), HEAP_ID_END_CREDITS);
     MI_CpuClear8(endCreditsApp, sizeof(EndCreditsApp));
 
     endCreditsApp->clearGamePlayerInfo = ApplicationManager_Args(appMan);
@@ -181,7 +182,7 @@ int EndCreditsApp_Init(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-int EndCreditsApp_Main(ApplicationManager *appMan, int *state)
+BOOL EndCreditsApp_Main(ApplicationManager *appMan, int *state)
 {
     EndCreditsApp *endCreditsApp = ApplicationManager_Data(appMan);
 
@@ -249,14 +250,10 @@ int EndCreditsApp_Main(ApplicationManager *appMan, int *state)
 
     endCreditsApp->framesElapsed++;
 
-    if (endCreditsApp->framesElapsed % 30 == 0) {
-        (void)0;
-    }
-
     return FALSE;
 }
 
-int EndCreditsApp_Exit(ApplicationManager *appMan, int *state)
+BOOL EndCreditsApp_Exit(ApplicationManager *appMan, int *state)
 {
     EndCreditsApp *endCreditsApp = ApplicationManager_Data(appMan);
 
@@ -290,9 +287,9 @@ int EndCreditsApp_Exit(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-static void EndCredits_DrawSprites(SysTask *sysTask, void *_endCreditsApp)
+static void EndCredits_DrawSprites(SysTask *sysTask, void *pEndCreditsApp)
 {
-    EndCreditsApp *endCreditsApp = _endCreditsApp;
+    EndCreditsApp *endCreditsApp = pEndCreditsApp;
 
     if (endCreditsApp->bg3DModelLoaded == TRUE) {
         EndCredits_Draw3DModels(endCreditsApp);
@@ -349,9 +346,9 @@ static void EndCredits_FreeTilemapBuffers(EndCreditsApp *endCreditsApp)
     Heap_Free(endCreditsApp->bgConfig);
 }
 
-static void EndCredits_VBlankCallback(void *_endCreditsApp)
+static void EndCredits_VBlankCallback(void *pEndCreditsApp)
 {
-    EndCreditsApp *endCreditsApp = _endCreditsApp;
+    EndCreditsApp *endCreditsApp = pEndCreditsApp;
 
     VramTransfer_Process();
     SpriteSystem_TransferOam();
@@ -366,164 +363,156 @@ static void EndCredits_InitBackgrounds(BgConfig *bgConfig)
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
-    {
-        GXBanks banks = {
-            GX_VRAM_BG_128_B,
-            GX_VRAM_BGEXTPLTT_23_G,
-            GX_VRAM_BG_128_C,
-            GX_VRAM_SUB_BGEXTPLTT_NONE,
-            GX_VRAM_OBJ_64_E,
-            GX_VRAM_OBJEXTPLTT_NONE,
-            GX_VRAM_SUB_OBJ_16_I,
-            GX_VRAM_SUB_OBJEXTPLTT_NONE,
-            GX_VRAM_TEX_0_A,
-            GX_VRAM_TEXPLTT_0_F
-        };
+    GXBanks banks = {
+        .unk_00 = GX_VRAM_BG_128_B,
+        .unk_04 = GX_VRAM_BGEXTPLTT_23_G,
+        .unk_08 = GX_VRAM_BG_128_C,
+        .unk_0C = GX_VRAM_SUB_BGEXTPLTT_NONE,
+        .unk_10 = GX_VRAM_OBJ_64_E,
+        .unk_14 = GX_VRAM_OBJEXTPLTT_NONE,
+        .unk_18 = GX_VRAM_SUB_OBJ_16_I,
+        .unk_1C = GX_VRAM_SUB_OBJEXTPLTT_NONE,
+        .unk_20 = GX_VRAM_TEX_0_A,
+        .unk_24 = GX_VRAM_TEXPLTT_0_F
+    };
 
-        GXLayers_SetBanks(&banks);
+    GXLayers_SetBanks(&banks);
 
-        MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
-    }
+    MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 
-    {
-        GraphicsModes graphicsModes = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_3,
-            GX_BGMODE_0,
-            GX_BG0_AS_3D,
-        };
+    GraphicsModes graphicsModes = {
+        .displayMode = GX_DISPMODE_GRAPHICS,
+        .mainBgMode = GX_BGMODE_3,
+        .subBgMode = GX_BGMODE_0,
+        .bg0As2DOr3D = GX_BG0_AS_3D,
+    };
 
-        SetAllGraphicsModes(&graphicsModes);
-    }
+    SetAllGraphicsModes(&graphicsModes);
 
-    {
-        BgTemplate bgTemplates[] = {
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x0000,
-                .charBase = GX_BG_CHARBASE_0x04000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 0,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x2000,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_512x512,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x1000,
-                .charBase = GX_BG_CHARBASE_0x0c000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 3,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_256,
-                .screenBase = GX_BG_SCRBASE_0x3000,
-                .charBase = GX_BG_CHARBASE_0x10000,
-                .bgExtPltt = GX_BG_EXTPLTT_23,
-                .priority = 2,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-        };
+    BgTemplate bgTemplates[] = {
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x2000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_512x512,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0x3000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgTemplates[0], BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgTemplates[0], BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, 0);
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgTemplates[1], BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgTemplates[1], BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgTemplates[2], BG_TYPE_STATIC_WITH_AFFINE);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgTemplates[2], BG_TYPE_STATIC_WITH_AFFINE);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
 
-        G2_SetBG0Priority(1);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
-    }
+    G2_SetBG0Priority(1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
 
-    {
-        BgTemplate bgTemplates[] = {
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x0000,
-                .charBase = GX_BG_CHARBASE_0x04000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 0,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x1000,
-                .charBase = GX_BG_CHARBASE_0x0c000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 1,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x2000,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_512x512,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x2000,
-                .charBase = GX_BG_CHARBASE_0x14000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 3,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-        };
+    BgTemplate bgTemplates2[] = {
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x2000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_512x512,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x2000,
+            .charBase = GX_BG_CHARBASE_0x14000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &bgTemplates[0], BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_1);
-        Bg_SetOffset(bgConfig, BG_LAYER_SUB_1, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(bgConfig, BG_LAYER_SUB_1, BG_OFFSET_UPDATE_SET_Y, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &bgTemplates2[0], BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_1);
+    Bg_SetOffset(bgConfig, BG_LAYER_SUB_1, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_SUB_1, BG_OFFSET_UPDATE_SET_Y, 0);
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_2, &bgTemplates[1], BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_2);
-        Bg_SetOffset(bgConfig, BG_LAYER_SUB_2, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(bgConfig, BG_LAYER_SUB_2, BG_OFFSET_UPDATE_SET_Y, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_2, &bgTemplates2[1], BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_2);
+    Bg_SetOffset(bgConfig, BG_LAYER_SUB_2, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_SUB_2, BG_OFFSET_UPDATE_SET_Y, 0);
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_3, &bgTemplates[2], BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_3);
-        Bg_SetOffset(bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_Y, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_3, &bgTemplates2[2], BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_3);
+    Bg_SetOffset(bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_Y, 0);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_END_CREDITS);
     Bg_ClearTilesRange(BG_LAYER_SUB_1, 32, 0, HEAP_ID_END_CREDITS);
@@ -539,124 +528,116 @@ static void EndCredits_InitBackgrounds2(BgConfig *bgConfig)
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
-    {
-        GXBanks banks = {
-            GX_VRAM_BG_256_AB,
-            GX_VRAM_BGEXTPLTT_23_G,
-            GX_VRAM_BG_128_C,
-            GX_VRAM_SUB_BGEXTPLTT_NONE,
-            GX_VRAM_OBJ_64_E,
-            GX_VRAM_OBJEXTPLTT_NONE,
-            GX_VRAM_SUB_OBJ_16_I,
-            GX_VRAM_SUB_OBJEXTPLTT_NONE,
-            GX_VRAM_TEX_NONE,
-            GX_VRAM_TEXPLTT_NONE
-        };
+    GXBanks banks = {
+        .unk_00 = GX_VRAM_BG_256_AB,
+        .unk_04 = GX_VRAM_BGEXTPLTT_23_G,
+        .unk_08 = GX_VRAM_BG_128_C,
+        .unk_0C = GX_VRAM_SUB_BGEXTPLTT_NONE,
+        .unk_10 = GX_VRAM_OBJ_64_E,
+        .unk_14 = GX_VRAM_OBJEXTPLTT_NONE,
+        .unk_18 = GX_VRAM_SUB_OBJ_16_I,
+        .unk_1C = GX_VRAM_SUB_OBJEXTPLTT_NONE,
+        .unk_20 = GX_VRAM_TEX_NONE,
+        .unk_24 = GX_VRAM_TEXPLTT_NONE
+    };
 
-        GXLayers_SetBanks(&banks);
+    GXLayers_SetBanks(&banks);
 
-        MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
-    }
+    MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 
-    {
-        GraphicsModes graphicsModes = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_5,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D,
-        };
+    GraphicsModes graphicsModes = {
+        .displayMode = GX_DISPMODE_GRAPHICS,
+        .mainBgMode = GX_BGMODE_5,
+        .subBgMode = GX_BGMODE_0,
+        .bg0As2DOr3D = GX_BG0_AS_2D,
+    };
 
-        SetAllGraphicsModes(&graphicsModes);
-    }
+    SetAllGraphicsModes(&graphicsModes);
 
-    {
-        BgTemplate bgTemplates[] = {
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x0000,
-                .charBase = GX_BG_CHARBASE_0x0c000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 3,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_256,
-                .screenBase = GX_BG_SCRBASE_0x0800,
-                .charBase = GX_BG_CHARBASE_0x20000,
-                .bgExtPltt = GX_BG_EXTPLTT_23,
-                .priority = 2,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_256,
-                .screenBase = GX_BG_SCRBASE_0x2800,
-                .charBase = GX_BG_CHARBASE_0x30000,
-                .bgExtPltt = GX_BG_EXTPLTT_23,
-                .priority = 3,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-        };
+    BgTemplate bgTemplates[] = {
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0x0800,
+            .charBase = GX_BG_CHARBASE_0x20000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0x2800,
+            .charBase = GX_BG_CHARBASE_0x30000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgTemplates[0], BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgTemplates[0], BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, 0);
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgTemplates[1], BG_TYPE_STATIC_WITH_AFFINE);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgTemplates[1], BG_TYPE_STATIC_WITH_AFFINE);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgTemplates[2], BG_TYPE_STATIC_WITH_AFFINE);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgTemplates[2], BG_TYPE_STATIC_WITH_AFFINE);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
 
-    {
-        BgTemplate bgTemplates[] = {
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x2000,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_512x512,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x2000,
-                .charBase = GX_BG_CHARBASE_0x14000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 3,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-        };
+    BgTemplate bgTemplates2[] = {
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x2000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_512x512,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x2000,
+            .charBase = GX_BG_CHARBASE_0x14000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_3, &bgTemplates[0], BG_TYPE_STATIC);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_3);
-        Bg_SetOffset(bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_Y, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_3, &bgTemplates2[0], BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_3);
+    Bg_SetOffset(bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_Y, 0);
 
     Bg_ClearTilesRange(BG_LAYER_SUB_3, 32, 0, HEAP_ID_END_CREDITS);
 }
@@ -727,13 +708,9 @@ static void EndCredits_Draw3DModels(EndCreditsApp *endCreditsApp)
     NNS_G3dGlbSetBaseScale(&scaleVec);
     NNS_G3dGePushMtx();
 
-    {
-        int i, j;
-
-        for (i = 0; i < 2; i++) {
-            for (j = 0; j < 16; j++) {
-                Easy3DObject_Draw(&endCreditsApp->bg3DObjects[i][j]);
-            }
+    for (int i = 0; i < SNELEMS(endCreditsApp->bg3DObjects); i++) {
+        for (int j = 0; j < SNELEMS(endCreditsApp->bg3DObjects[i]); j++) {
+            Easy3DObject_Draw(&endCreditsApp->bg3DObjects[i][j]);
         }
     }
 
@@ -742,9 +719,9 @@ static void EndCredits_Draw3DModels(EndCreditsApp *endCreditsApp)
 
 static void EndCredits_InitCamera(EndCreditsApp *endCreditsApp)
 {
-    VecFx32 target1 = { 0, -FX32_ONE * 8, 0 };
-    VecFx32 pos = { -31712, -142304, 496744 };
-    VecFx32 target2 = { -31712, -67780, -5704 };
+    VecFx32 target1 = { .x = 0, .y = -FX32_ONE * 8, .z = 0 };
+    VecFx32 pos = { .x = -31712, .y = -142304, .z = 496744 };
+    VecFx32 target2 = { .x = -31712, .y = -67780, .z = -5704 };
 
     endCreditsApp->camera = Camera_Alloc(HEAP_ID_END_CREDITS);
 

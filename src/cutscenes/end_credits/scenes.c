@@ -8,13 +8,9 @@
 #include "cutscenes/end_credits/common.h"
 #include "cutscenes/end_credits/defs.h"
 #include "cutscenes/end_credits/main.h"
-#include "cutscenes/end_credits/scenes/bike_day.h"
-#include "cutscenes/end_credits/scenes/bike_morning.h"
-#include "cutscenes/end_credits/scenes/bike_night.h"
-#include "cutscenes/end_credits/scenes/fin.h"
-#include "cutscenes/end_credits/scenes/memories.h"
-#include "cutscenes/end_credits/scenes/twinleaf.h"
+#include "cutscenes/end_credits/scenes.h"
 #include "cutscenes/end_credits/strings.h"
+#include "pch/global_pch.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -36,7 +32,7 @@
 typedef void (*EndCreditsSceneFunc)(EndCreditsApp *);
 typedef BOOL (*EndCreditsSceneRunFunc)(EndCreditsApp *, EndCreditsSceneManager *);
 
-typedef struct {
+typedef struct EndCreditsSceneFuncs {
     EndCreditsSceneFunc load1;
     EndCreditsSceneFunc load2;
     EndCreditsSceneFunc load3;
@@ -54,7 +50,7 @@ typedef struct {
 
 static void EndCreditsScenes_LoadPlayerSprite(EndCreditsApp *endCreditsApp);
 static void EndCreditsScenes_UnloadPlayerSprite(EndCreditsApp *endCreditsApp);
-static void EndCreditsScenes_LoadPlayerAnim(EndCreditsApp *endCreditsApp, ManagedSprite **_playerSprite, ManagedSprite **_scarfSprite);
+static void EndCreditsScenes_LoadPlayerAnim(EndCreditsApp *endCreditsApp, ManagedSprite **pPlayerSprite, ManagedSprite **pScarfSprite);
 static void EndCreditsScenes_UnloadPlayerAnim(EndCreditsApp *endCreditsApp, ManagedSprite *playerSprite, ManagedSprite *scarfSprite);
 static void EndCreditsScenes_LoadBackgroundMorning(EndCreditsApp *endCreditsApp);
 static void EndCreditsScenes_UnloadBackgroundMorning(EndCreditsApp *endCreditsApp);
@@ -100,7 +96,7 @@ static void EndCreditsScenes_LoadPlayerAnimNight(EndCreditsApp *endCreditsApp);
 static void EndCreditsScenes_UnloadPlayerAnimNight(EndCreditsApp *endCreditsApp);
 static void EndCreditsScenes_LoadExtraSpritesNight(EndCreditsApp *endCreditsApp);
 static void EndCreditsScenes_UnloadExtraSpritesNight(EndCreditsApp *endCreditsApp);
-static void EndCreditsScenes_LoadExtraAnim(EndCreditsApp *endCreditsApp);
+static void EndCreditsScenes_LoadExtraAnimNight(EndCreditsApp *endCreditsApp);
 static void EndCreditsScenes_UnloadExtraAnimNight(EndCreditsApp *endCreditsApp);
 static void EndCreditsScenes_Load3DModelsNight(EndCreditsApp *endCreditsApp);
 static void EndCreditsScenes_Unload3DModelsNight(EndCreditsApp *endCreditsApp);
@@ -131,188 +127,188 @@ static void Dummy_021D2C04(EndCreditsApp *endCreditsApp);
 
 static const EndCreditsSceneFuncs sEndCreditsSceneFuncs[] = {
     [END_CREDITS_SCENE_BIKE_MORNING] = {
-        EndCreditsScenes_LoadBackgroundMorning,
-        EndCreditsScenes_Load3DModelsMorning,
-        EndCreditsScenes_LoadPlayerSpriteMorning,
-        EndCreditsScenes_LoadExtraSpritesMorning,
-        EndCreditsScenes_LoadPlayerAnimMorning,
-        EndCreditsScenes_LoadExtraAnimMorning,
-        EndCreditsScenes_UnloadBackgroundMorning,
-        EndCreditsScenes_Unload3DModelsMorning,
-        EndCreditsScenes_UnloadPlayerSpriteMorning,
-        EndCreditsScenes_UnloadExtraSpritesMorning,
-        EndCreditsScenes_UnloadPlayerAnimMorning,
-        EndCreditsScenes_UnloadExtraAnimMorning,
-        EndCreditsMorningScene_Run,
+        .load1 = EndCreditsScenes_LoadBackgroundMorning,
+        .load2 = EndCreditsScenes_Load3DModelsMorning,
+        .load3 = EndCreditsScenes_LoadPlayerSpriteMorning,
+        .load4 = EndCreditsScenes_LoadExtraSpritesMorning,
+        .load5 = EndCreditsScenes_LoadPlayerAnimMorning,
+        .load6 = EndCreditsScenes_LoadExtraAnimMorning,
+        .unload1 = EndCreditsScenes_UnloadBackgroundMorning,
+        .unload2 = EndCreditsScenes_Unload3DModelsMorning,
+        .unload3 = EndCreditsScenes_UnloadPlayerSpriteMorning,
+        .unload4 = EndCreditsScenes_UnloadExtraSpritesMorning,
+        .unload5 = EndCreditsScenes_UnloadPlayerAnimMorning,
+        .unload6 = EndCreditsScenes_UnloadExtraAnimMorning,
+        .run = EndCreditsMorningScene_Run,
     },
     [END_CREDITS_SCENE_MEMORIES_1] = {
-        EndCreditsScenes_LoadMemories,
-        Dummy_021D2178,
-        Dummy_021D2158,
-        Dummy_021D2168,
-        Dummy_021D2160,
-        Dummy_021D2170,
-        EndCreditsScenes_UnloadMemories,
-        Dummy_021D217C,
-        Dummy_021D215C,
-        Dummy_021D216C,
-        Dummy_021D2164,
-        Dummy_021D2174,
-        EndCreditsMemoriesScene_Run1,
+        .load1 = EndCreditsScenes_LoadMemories,
+        .load2 = Dummy_021D2178,
+        .load3 = Dummy_021D2158,
+        .load4 = Dummy_021D2168,
+        .load5 = Dummy_021D2160,
+        .load6 = Dummy_021D2170,
+        .unload1 = EndCreditsScenes_UnloadMemories,
+        .unload2 = Dummy_021D217C,
+        .unload3 = Dummy_021D215C,
+        .unload4 = Dummy_021D216C,
+        .unload5 = Dummy_021D2164,
+        .unload6 = Dummy_021D2174,
+        .run = EndCreditsMemoriesScene_Run1,
     },
     [END_CREDITS_SCENE_BIKE_DAY] = {
-        EndCreditsScenes_LoadBackgroundDay,
-        EndCreditsScenes_Load3DModelsDay,
-        EndCreditsScenes_LoadPlayerSpriteDay,
-        EndCreditsScenes_LoadExtraSpritesDay,
-        EndCreditsScenes_LoadPlayerAnimDay,
-        EndCreditsScenes_LoadExtraAnimDay,
-        EndCreditsScenes_UnloadBackgroundDay,
-        EndCreditsScenes_Unload3DModelsDay,
-        EndCreditsScenes_UnloadPlayerSpriteDay,
-        EndCreditsScenes_UnloadExtraSpritesDay,
-        EndCreditsScenes_UnloadPlayerAnimDay,
-        EndCreditsScenes_UnloadExtraAnimDay,
-        EndCreditsDayScene_Run,
+        .load1 = EndCreditsScenes_LoadBackgroundDay,
+        .load2 = EndCreditsScenes_Load3DModelsDay,
+        .load3 = EndCreditsScenes_LoadPlayerSpriteDay,
+        .load4 = EndCreditsScenes_LoadExtraSpritesDay,
+        .load5 = EndCreditsScenes_LoadPlayerAnimDay,
+        .load6 = EndCreditsScenes_LoadExtraAnimDay,
+        .unload1 = EndCreditsScenes_UnloadBackgroundDay,
+        .unload2 = EndCreditsScenes_Unload3DModelsDay,
+        .unload3 = EndCreditsScenes_UnloadPlayerSpriteDay,
+        .unload4 = EndCreditsScenes_UnloadExtraSpritesDay,
+        .unload5 = EndCreditsScenes_UnloadPlayerAnimDay,
+        .unload6 = EndCreditsScenes_UnloadExtraAnimDay,
+        .run = EndCreditsDayScene_Run,
     },
     [END_CREDITS_SCENE_MEMORIES_2] = {
-        EndCreditsScenes_LoadMemories,
-        Dummy_021D2178,
-        Dummy_021D2158,
-        Dummy_021D2168,
-        Dummy_021D2160,
-        Dummy_021D2170,
-        EndCreditsScenes_UnloadMemories,
-        Dummy_021D217C,
-        Dummy_021D215C,
-        Dummy_021D216C,
-        Dummy_021D2164,
-        Dummy_021D2174,
-        EndCreditsMemoriesScene_Run2,
+        .load1 = EndCreditsScenes_LoadMemories,
+        .load2 = Dummy_021D2178,
+        .load3 = Dummy_021D2158,
+        .load4 = Dummy_021D2168,
+        .load5 = Dummy_021D2160,
+        .load6 = Dummy_021D2170,
+        .unload1 = EndCreditsScenes_UnloadMemories,
+        .unload2 = Dummy_021D217C,
+        .unload3 = Dummy_021D215C,
+        .unload4 = Dummy_021D216C,
+        .unload5 = Dummy_021D2164,
+        .unload6 = Dummy_021D2174,
+        .run = EndCreditsMemoriesScene_Run2,
     },
     [END_CREDITS_SCENE_BIKE_NIGHT] = {
-        EndCreditsScenes_LoadBackgroundNight,
-        EndCreditsScenes_Load3DModelsNight,
-        EndCreditsScenes_LoadPlayerSpriteNight,
-        EndCreditsScenes_LoadExtraSpritesNight,
-        EndCreditsScenes_LoadPlayerAnimNight,
-        EndCreditsScenes_LoadExtraAnim,
-        EndCreditsScenes_UnloadBackgroundNight,
-        EndCreditsScenes_Unload3DModelsNight,
-        EndCreditsScenes_UnloadPlayerSpriteNight,
-        EndCreditsScenes_UnloadExtraSpritesNight,
-        EndCreditsScenes_UnloadPlayerAnimNight,
-        EndCreditsScenes_UnloadExtraAnimNight,
-        EndCreditsNightScene_Run,
+        .load1 = EndCreditsScenes_LoadBackgroundNight,
+        .load2 = EndCreditsScenes_Load3DModelsNight,
+        .load3 = EndCreditsScenes_LoadPlayerSpriteNight,
+        .load4 = EndCreditsScenes_LoadExtraSpritesNight,
+        .load5 = EndCreditsScenes_LoadPlayerAnimNight,
+        .load6 = EndCreditsScenes_LoadExtraAnimNight,
+        .unload1 = EndCreditsScenes_UnloadBackgroundNight,
+        .unload2 = EndCreditsScenes_Unload3DModelsNight,
+        .unload3 = EndCreditsScenes_UnloadPlayerSpriteNight,
+        .unload4 = EndCreditsScenes_UnloadExtraSpritesNight,
+        .unload5 = EndCreditsScenes_UnloadPlayerAnimNight,
+        .unload6 = EndCreditsScenes_UnloadExtraAnimNight,
+        .run = EndCreditsNightScene_Run,
     },
     [END_CREDITS_SCENE_TWINLEAF] = {
-        EndCreditsScenes_LoadTwinleaf,
-        Dummy_021D2AA4,
-        Dummy_021D2A84,
-        Dummy_021D2A94,
-        Dummy_021D2A8C,
-        Dummy_021D2A9C,
-        EndCreditsScenes_UnloadTwinleaf,
-        Dummy_021D2AA8,
-        Dummy_021D2A88,
-        Dummy_021D2A98,
-        Dummy_021D2A90,
-        Dummy_021D2AA0,
-        EndCreditsTwinleafScene_Run,
+        .load1 = EndCreditsScenes_LoadTwinleaf,
+        .load2 = Dummy_021D2AA4,
+        .load3 = Dummy_021D2A84,
+        .load4 = Dummy_021D2A94,
+        .load5 = Dummy_021D2A8C,
+        .load6 = Dummy_021D2A9C,
+        .unload1 = EndCreditsScenes_UnloadTwinleaf,
+        .unload2 = Dummy_021D2AA8,
+        .unload3 = Dummy_021D2A88,
+        .unload4 = Dummy_021D2A98,
+        .unload5 = Dummy_021D2A90,
+        .unload6 = Dummy_021D2AA0,
+        .run = EndCreditsTwinleafScene_Run,
     },
     [END_CREDITS_SCENE_FIN] = {
-        EndCreditsScenes_LoadFin,
-        Dummy_021D2C00,
-        Dummy_021D2BE0,
-        Dummy_021D2BF0,
-        Dummy_021D2BE8,
-        Dummy_021D2BF8,
-        EndCreditsScenes_UnloadFin,
-        Dummy_021D2C04,
-        Dummy_021D2BE4,
-        Dummy_021D2BF4,
-        Dummy_021D2BEC,
-        Dummy_021D2BFC,
-        EndCreditsFinScene_Run,
+        .load1 = EndCreditsScenes_LoadFin,
+        .load2 = Dummy_021D2C00,
+        .load3 = Dummy_021D2BE0,
+        .load4 = Dummy_021D2BF0,
+        .load5 = Dummy_021D2BE8,
+        .load6 = Dummy_021D2BF8,
+        .unload1 = EndCreditsScenes_UnloadFin,
+        .unload2 = Dummy_021D2C04,
+        .unload3 = Dummy_021D2BE4,
+        .unload4 = Dummy_021D2BF4,
+        .unload5 = Dummy_021D2BEC,
+        .unload6 = Dummy_021D2BFC,
+        .run = EndCreditsFinScene_Run,
     },
 };
 
 static const SpriteTemplate sEndCreditsDrifloonTemplate = {
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x96,
-    0x1,
-    NNS_G2D_VRAM_TYPE_2DSUB,
-    { 0x2713, 0x2713, 0x2713, 0x2713, 0xffffffff, 0xffffffff },
-    0x2,
-    0x0
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 150,
+    .plttIdx = 1,
+    .vramType = NNS_G2D_VRAM_TYPE_2DSUB,
+    .resources = { 0x2713, 0x2713, 0x2713, 0x2713, 0xffffffff, 0xffffffff },
+    .bgPriority = 2,
+    .vramTransfer = FALSE
 };
 
 static const SpriteTemplate sEndCreditsWingullTemplate = {
-    0x0,
-    0x0,
-    0x0,
-    0x1,
-    0x96,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DSUB,
-    { 0x2714, 0x2714, 0x2714, 0x2714, 0xffffffff, 0xffffffff },
-    0x2,
-    0x0
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 1,
+    .priority = 150,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DSUB,
+    .resources = { 0x2714, 0x2714, 0x2714, 0x2714, 0xffffffff, 0xffffffff },
+    .bgPriority = 2,
+    .vramTransfer = FALSE
 };
 
 static const SpriteTemplate sEndCreditsMagnezoneTemplate = {
-    0x0,
-    0x0,
-    0x0,
-    0x2,
-    0x96,
-    0x2,
-    NNS_G2D_VRAM_TYPE_2DSUB,
-    { 0x2715, 0x2715, 0x2715, 0x2715, 0xffffffff, 0xffffffff },
-    0x2,
-    0x0
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 2,
+    .priority = 150,
+    .plttIdx = 2,
+    .vramType = NNS_G2D_VRAM_TYPE_2DSUB,
+    .resources = { 0x2715, 0x2715, 0x2715, 0x2715, 0xffffffff, 0xffffffff },
+    .bgPriority = 2,
+    .vramTransfer = FALSE
 };
 
 static const SpriteTemplate sEndCreditsMeteorTemplate1 = {
-    0x0,
-    0x0,
-    0x0,
-    0x3,
-    0xC8,
-    0x3,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    { 0x2712, 0x2712, 0x2712, 0x2712, 0xffffffff, 0xffffffff },
-    0x3,
-    0x0
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 3,
+    .priority = 200,
+    .plttIdx = 3,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = { 0x2712, 0x2712, 0x2712, 0x2712, 0xffffffff, 0xffffffff },
+    .bgPriority = 3,
+    .vramTransfer = FALSE
 };
 
 static const SpriteTemplate sEndCreditsMeteorTemplate2 = {
-    0x0,
-    0x0,
-    0x0,
-    0x3,
-    0xC8,
-    0x3,
-    NNS_G2D_VRAM_TYPE_2DSUB,
-    { 0x2715, 0x2715, 0x2715, 0x2715, 0xffffffff, 0xffffffff },
-    0x3,
-    0x0
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 3,
+    .priority = 200,
+    .plttIdx = 3,
+    .vramType = NNS_G2D_VRAM_TYPE_2DSUB,
+    .resources = { 0x2715, 0x2715, 0x2715, 0x2715, 0xffffffff, 0xffffffff },
+    .bgPriority = 3,
+    .vramTransfer = FALSE
 };
 
 static const SpriteTemplate sEndCreditsPlayerTemplate = {
-    0xC0,
-    0xA0,
-    0x0,
-    0x0,
-    0x33,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    { 0x2711, 0x2711, 0x2711, 0x2711, 0xffffffff, 0xffffffff },
-    0x1,
-    0x1
+    .x = 192,
+    .y = 160,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 51,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = { 0x2711, 0x2711, 0x2711, 0x2711, 0xffffffff, 0xffffffff },
+    .bgPriority = 1,
+    .vramTransfer = TRUE
 };
 
 static void EndCreditsScenes_LoadPlayerSprite(EndCreditsApp *endCreditsApp)
@@ -351,49 +347,44 @@ static void EndCreditsScenes_UnloadPlayerSprite(EndCreditsApp *endCreditsApp)
     SpriteManager_UnloadAnimObjById(endCreditsApp->spriteManager, 10001);
 }
 
-static void EndCreditsScenes_LoadPlayerAnim(EndCreditsApp *endCreditsApp, ManagedSprite **_playerSprite, ManagedSprite **_scarfSprite)
+static void EndCreditsScenes_LoadPlayerAnim(EndCreditsApp *endCreditsApp, ManagedSprite **pPlayerSprite, ManagedSprite **pScarfSprite)
 {
-    ManagedSprite *playerSprite;
-    ManagedSprite *scarfSprite;
     SpriteTemplate playerTemplate = sEndCreditsPlayerTemplate;
 
     MI_CpuClear8(&endCreditsApp->playerAnimManager, sizeof(EndCreditsPlayerAnimManager));
 
-    playerSprite = SpriteSystem_NewSprite(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, &playerTemplate);
+    ManagedSprite *playerSprite = SpriteSystem_NewSprite(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, &playerTemplate);
 
     ManagedSprite_SetAnimateFlag(playerSprite, TRUE);
     Sprite_TickFrame(playerSprite->sprite);
 
-    *_playerSprite = playerSprite;
+    *pPlayerSprite = playerSprite;
     playerTemplate.priority = 60;
-    scarfSprite = SpriteSystem_NewSprite(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, &playerTemplate);
+    ManagedSprite *scarfSprite = SpriteSystem_NewSprite(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, &playerTemplate);
 
     ManagedSprite_SetAnim(scarfSprite, 2);
     ManagedSprite_SetAnimateFlag(scarfSprite, TRUE);
     Sprite_TickFrame(scarfSprite->sprite);
 
-    *_scarfSprite = scarfSprite;
+    *pScarfSprite = scarfSprite;
 
-    {
-        void *ncgrBuffer;
-        NNSG2dCharacterData *charData;
-        u32 entryId;
+    NNSG2dCharacterData *charData;
+    u32 entryId;
 
-        GF_ASSERT(endCreditsApp->eyeCharData == NULL);
+    GF_ASSERT(endCreditsApp->eyeCharData == NULL);
 
-        if (endCreditsApp->clearGamePlayerInfo->gender == GENDER_MALE) {
-            entryId = 27;
-        } else {
-            entryId = 32;
-        }
-
-        endCreditsApp->eyeCharData = Heap_Alloc(HEAP_ID_END_CREDITS, (0x20 * 8));
-        ncgrBuffer = Graphics_GetCharDataFromOpenNARC(endCreditsApp->narc, entryId, 0, &charData, HEAP_ID_END_CREDITS);
-
-        MI_CpuCopy32(charData->pRawData, endCreditsApp->eyeCharData, (0x20 * 8));
-        Heap_Free(ncgrBuffer);
-        DC_FlushRange(endCreditsApp->eyeCharData, (0x20 * 8));
+    if (endCreditsApp->clearGamePlayerInfo->gender == GENDER_MALE) {
+        entryId = 27;
+    } else {
+        entryId = 32;
     }
+
+    endCreditsApp->eyeCharData = Heap_Alloc(HEAP_ID_END_CREDITS, (32 * 8));
+    void *ncgrBuffer = Graphics_GetCharDataFromOpenNARC(endCreditsApp->narc, entryId, 0, &charData, HEAP_ID_END_CREDITS);
+
+    MI_CpuCopy32(charData->pRawData, endCreditsApp->eyeCharData, (32 * 8));
+    Heap_Free(ncgrBuffer);
+    DC_FlushRange(endCreditsApp->eyeCharData, (32 * 8));
 }
 
 static void EndCreditsScenes_UnloadPlayerAnim(EndCreditsApp *endCreditsApp, ManagedSprite *playerSprite, ManagedSprite *scarfSprite)
@@ -514,9 +505,7 @@ static void EndCreditsScenes_UnloadExtraSpritesMorning(EndCreditsApp *endCredits
 
 static void EndCreditsScenes_LoadExtraAnimMorning(EndCreditsApp *endCreditsApp)
 {
-    int i;
-
-    for (i = 2; i <= 4; i++) {
+    for (int i = 2; i <= 4; i++) {
         endCreditsApp->managedSprites[i] = SpriteSystem_NewSprite(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, &sEndCreditsDrifloonTemplate);
 
         ManagedSprite_SetAffineOverwriteMode(endCreditsApp->managedSprites[i], AFFINE_OVERWRITE_MODE_DOUBLE);
@@ -527,9 +516,7 @@ static void EndCreditsScenes_LoadExtraAnimMorning(EndCreditsApp *endCreditsApp)
 
 static void EndCreditsScenes_UnloadExtraAnimMorning(EndCreditsApp *endCreditsApp)
 {
-    int i;
-
-    for (i = 2; i <= 4; i++) {
+    for (int i = 2; i <= 4; i++) {
         Sprite_DeleteAndFreeResources(endCreditsApp->managedSprites[i]);
     }
 }
@@ -552,14 +539,14 @@ static void EndCreditsScenes_Load3DModelsMorning(EndCreditsApp *endCreditsApp)
     NNS_G3dMdlUseGlbSpec(endCreditsApp->bg3DModels[1].model);
     NNS_G3dMdlUseGlbEmi(endCreditsApp->bg3DModels[1].model);
 
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < SNELEMS(endCreditsApp->bg3DObjects[0]); i++) {
         Easy3DObject_Init(&endCreditsApp->bg3DObjects[0][i], &endCreditsApp->bg3DModels[0]);
         Easy3DObject_SetPosition(&endCreditsApp->bg3DObjects[0][i], 0, 0, 0);
         Easy3DObject_SetScale(&endCreditsApp->bg3DObjects[0][i], FX32_ONE, FX32_ONE, FX32_ONE);
         Easy3DObject_SetVisible(&endCreditsApp->bg3DObjects[0][i], TRUE);
     }
 
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < SNELEMS(endCreditsApp->bg3DObjects[1]); i++) {
         Easy3DObject_Init(&endCreditsApp->bg3DObjects[1][i], &endCreditsApp->bg3DModels[1]);
         Easy3DObject_SetPosition(&endCreditsApp->bg3DObjects[1][i], 0, 0, 0);
         Easy3DObject_SetScale(&endCreditsApp->bg3DObjects[1][i], FX32_ONE, FX32_ONE, FX32_ONE);
@@ -576,9 +563,7 @@ static void EndCreditsScenes_Load3DModelsMorning(EndCreditsApp *endCreditsApp)
 
 static void EndCreditsScenes_Unload3DModelsMorning(EndCreditsApp *endCreditsApp)
 {
-    int i;
-
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < SNELEMS(endCreditsApp->bg3DModels); i++) {
         Easy3DModel_Release(&endCreditsApp->bg3DModels[i]);
     }
 
@@ -663,14 +648,11 @@ static void EndCreditsScenes_LoadBackgroundDay(EndCreditsApp *endCreditsApp)
     Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, 13, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, 7, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
 
-    {
-        NNSG2dPaletteData *paletteData;
-        void *nclrBuffer;
+    NNSG2dPaletteData *paletteData;
 
-        nclrBuffer = Graphics_GetPlttDataFromOpenNARC(endCreditsApp->narc, 16, &paletteData, HEAP_ID_END_CREDITS);
-        MI_CpuCopy16(paletteData->pRawData, endCreditsApp->sceneManager.daySceneData.bgPaletteBuffers, PALETTE_SIZE_BYTES * 4);
-        Heap_Free(nclrBuffer);
-    }
+    void *nclrBuffer = Graphics_GetPlttDataFromOpenNARC(endCreditsApp->narc, 16, &paletteData, HEAP_ID_END_CREDITS);
+    MI_CpuCopy16(paletteData->pRawData, endCreditsApp->sceneManager.daySceneData.bgPaletteBuffers, PALETTE_SIZE_BYTES * 4);
+    Heap_Free(nclrBuffer);
 
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
@@ -732,9 +714,7 @@ static void EndCreditsScenes_UnloadExtraSpritesDay(EndCreditsApp *endCreditsApp)
 
 static void EndCreditsScenes_LoadExtraAnimDay(EndCreditsApp *endCreditsApp)
 {
-    int i;
-
-    for (i = 2; i <= 3; i++) {
+    for (int i = 2; i <= 3; i++) {
         endCreditsApp->managedSprites[i] = SpriteSystem_NewSprite(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, &sEndCreditsWingullTemplate);
         ManagedSprite_SetAnimateFlag(endCreditsApp->managedSprites[i], TRUE);
         Sprite_TickFrame(endCreditsApp->managedSprites[i]->sprite);
@@ -743,9 +723,7 @@ static void EndCreditsScenes_LoadExtraAnimDay(EndCreditsApp *endCreditsApp)
 
 static void EndCreditsScenes_UnloadExtraAnimDay(EndCreditsApp *endCreditsApp)
 {
-    int i;
-
-    for (i = 2; i <= 3; i++) {
+    for (int i = 2; i <= 3; i++) {
         Sprite_DeleteAndFreeResources(endCreditsApp->managedSprites[i]);
     }
 }
@@ -761,14 +739,14 @@ static void EndCreditsScenes_Load3DModelsDay(EndCreditsApp *endCreditsApp)
     NNS_G3dMdlUseGlbSpec(endCreditsApp->bg3DModels[0].model);
     NNS_G3dMdlUseGlbEmi(endCreditsApp->bg3DModels[0].model);
 
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < SNELEMS(endCreditsApp->bg3DObjects[0]); i++) {
         Easy3DObject_Init(&endCreditsApp->bg3DObjects[0][i], &endCreditsApp->bg3DModels[0]);
         Easy3DObject_SetPosition(&endCreditsApp->bg3DObjects[0][i], 0, 0, 0);
         Easy3DObject_SetScale(&endCreditsApp->bg3DObjects[0][i], FX32_ONE, FX32_ONE, FX32_ONE);
         Easy3DObject_SetVisible(&endCreditsApp->bg3DObjects[0][i], TRUE);
     }
 
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < SNELEMS(endCreditsApp->bg3DObjects[1]); i++) {
         Easy3DObject_SetVisible(&endCreditsApp->bg3DObjects[1][i], FALSE);
     }
 
@@ -782,9 +760,7 @@ static void EndCreditsScenes_Load3DModelsDay(EndCreditsApp *endCreditsApp)
 
 static void EndCreditsScenes_Unload3DModelsDay(EndCreditsApp *endCreditsApp)
 {
-    int i;
-
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < SNELEMS(endCreditsApp->bg3DModels); i++) {
         Easy3DModel_Release(&endCreditsApp->bg3DModels[i]);
     }
 
@@ -803,17 +779,14 @@ static void EndCreditsScenes_LoadBackgroundNight(EndCreditsApp *endCreditsApp)
     Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, 14, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, 8, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
 
-    {
-        NNSG2dPaletteData *paletteData;
-        void *nclrBuffer;
+    NNSG2dPaletteData *paletteData;
 
-        nclrBuffer = Graphics_GetPlttDataFromOpenNARC(endCreditsApp->narc, 17, &paletteData, HEAP_ID_END_CREDITS);
-        MI_CpuCopy16(paletteData->pRawData, endCreditsApp->sceneManager.nightSceneData.bgPaletteBuffers, PALETTE_SIZE_BYTES * 8);
-        Heap_Free(nclrBuffer);
+    void *nclrBuffer = Graphics_GetPlttDataFromOpenNARC(endCreditsApp->narc, 17, &paletteData, HEAP_ID_END_CREDITS);
+    MI_CpuCopy16(paletteData->pRawData, endCreditsApp->sceneManager.nightSceneData.bgPaletteBuffers, PALETTE_SIZE_BYTES * 8);
+    Heap_Free(nclrBuffer);
 
-        PaletteData_LoadBuffer(endCreditsApp->paletteData, endCreditsApp->sceneManager.nightSceneData.bgPaletteBuffers, PLTTBUF_MAIN_BG, PLTT_DEST(1), PALETTE_SIZE_BYTES);
-        PaletteData_LoadBuffer(endCreditsApp->paletteData, endCreditsApp->sceneManager.nightSceneData.bgPaletteBuffers, PLTTBUF_SUB_BG, PLTT_DEST(1), PALETTE_SIZE_BYTES);
-    }
+    PaletteData_LoadBuffer(endCreditsApp->paletteData, endCreditsApp->sceneManager.nightSceneData.bgPaletteBuffers, PLTTBUF_MAIN_BG, PLTT_DEST(1), PALETTE_SIZE_BYTES);
+    PaletteData_LoadBuffer(endCreditsApp->paletteData, endCreditsApp->sceneManager.nightSceneData.bgPaletteBuffers, PLTTBUF_SUB_BG, PLTT_DEST(1), PALETTE_SIZE_BYTES);
 
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
@@ -890,11 +863,9 @@ static void EndCreditsScenes_UnloadExtraSpritesNight(EndCreditsApp *endCreditsAp
     SpriteManager_UnloadAnimObjById(endCreditsApp->spriteManager, 10005);
 }
 
-static void EndCreditsScenes_LoadExtraAnim(EndCreditsApp *endCreditsApp)
+static void EndCreditsScenes_LoadExtraAnimNight(EndCreditsApp *endCreditsApp)
 {
-    int i;
-
-    for (i = 2; i <= 2; i++) {
+    for (int i = 2; i <= 2; i++) {
         endCreditsApp->managedSprites[i] = SpriteSystem_NewSprite(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, &sEndCreditsMagnezoneTemplate);
         ManagedSprite_SetAnimateFlag(endCreditsApp->managedSprites[i], TRUE);
         Sprite_TickFrame(endCreditsApp->managedSprites[i]->sprite);
@@ -909,9 +880,7 @@ static void EndCreditsScenes_LoadExtraAnim(EndCreditsApp *endCreditsApp)
 
 static void EndCreditsScenes_UnloadExtraAnimNight(EndCreditsApp *endCreditsApp)
 {
-    int i;
-
-    for (i = 2; i <= 2; i++) {
+    for (int i = 2; i <= 2; i++) {
         Sprite_DeleteAndFreeResources(endCreditsApp->managedSprites[i]);
     }
 
@@ -945,7 +914,7 @@ static void EndCreditsScenes_Load3DModelsNight(EndCreditsApp *endCreditsApp)
 
     Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[3], endCreditsApp->narc, 79, HEAP_ID_END_CREDITS);
 
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < SNELEMS(endCreditsApp->bg3DObjects[0]); i++) {
         Easy3DObject_Init(&endCreditsApp->bg3DObjects[0][i], &endCreditsApp->bg3DModels[0]);
 
         Easy3DObject_SetPosition(&endCreditsApp->bg3DObjects[0][i], 0, 0, 0);
@@ -953,7 +922,7 @@ static void EndCreditsScenes_Load3DModelsNight(EndCreditsApp *endCreditsApp)
         Easy3DObject_SetVisible(&endCreditsApp->bg3DObjects[0][i], TRUE);
     }
 
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < SNELEMS(endCreditsApp->bg3DObjects[1]); i++) {
         Easy3DObject_Init(&endCreditsApp->bg3DObjects[1][i], &endCreditsApp->bg3DModels[2]);
 
         Easy3DObject_SetPosition(&endCreditsApp->bg3DObjects[1][i], 0, 0, 0);
@@ -971,9 +940,7 @@ static void EndCreditsScenes_Load3DModelsNight(EndCreditsApp *endCreditsApp)
 
 static void EndCreditsScenes_Unload3DModelsNight(EndCreditsApp *endCreditsApp)
 {
-    int i;
-
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < SNELEMS(endCreditsApp->bg3DModels); i++) {
         Easy3DModel_Release(&endCreditsApp->bg3DModels[i]);
     }
 
@@ -1059,23 +1026,18 @@ static void EndCreditsScenes_LoadFin(EndCreditsApp *endCreditsApp)
     GXLayers_SwapDisplay();
     PaletteData_FillBufferRange(endCreditsApp->paletteData, PLTTBUF_MAIN_BG, PLTTSEL_BOTH, 0x0, 0, 1);
 
-    {
-        String *finalString;
-        int xOffset;
+    endCreditsApp->window = Window_New(HEAP_ID_END_CREDITS, 1);
 
-        endCreditsApp->window = Window_New(HEAP_ID_END_CREDITS, 1);
+    Window_Add(bgConfig, endCreditsApp->window, BG_LAYER_SUB_3, 0, 0, 32, 32, 15, 0);
+    Window_FillTilemap(endCreditsApp->window, 15);
+    Window_PutToTilemap(endCreditsApp->window);
 
-        Window_Add(bgConfig, endCreditsApp->window, BG_LAYER_SUB_3, 0, 0, 32, 32, 15, 0);
-        Window_FillTilemap(endCreditsApp->window, 15);
-        Window_PutToTilemap(endCreditsApp->window);
+    String *finalString = MessageLoader_GetNewString(endCreditsApp->messageLoader, EndCreditsStrings_GetLastMessageID());
+    int xOffset = (256 - Font_CalcStringWidth(FONT_SYSTEM, finalString, 0)) / 2;
 
-        finalString = MessageLoader_GetNewString(endCreditsApp->messageLoader, EndCreditsStrings_GetLastMessageID());
-        xOffset = (256 - Font_CalcStringWidth(FONT_SYSTEM, finalString, 0)) / 2;
-
-        Text_AddPrinterWithParamsColorAndSpacing(endCreditsApp->window, FONT_SYSTEM, finalString, xOffset, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), 3, 0, NULL);
-        Window_LoadTiles(endCreditsApp->window);
-        String_Free(finalString);
-    }
+    Text_AddPrinterWithParamsColorAndSpacing(endCreditsApp->window, FONT_SYSTEM, finalString, xOffset, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), 3, 0, NULL);
+    Window_LoadTiles(endCreditsApp->window);
+    String_Free(finalString);
 
     Bg_SetOffset(bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_X, 0);
     Bg_SetOffset(bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_Y, 0);

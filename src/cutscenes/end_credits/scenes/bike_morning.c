@@ -1,10 +1,9 @@
-#include "cutscenes/end_credits/scenes/bike_morning.h"
-
 #include <nitro.h>
 #include <string.h>
 
 #include "cutscenes/end_credits/common.h"
 #include "cutscenes/end_credits/defs.h"
+#include "cutscenes/end_credits/scenes.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -17,7 +16,7 @@ enum EndCreditsMorningSceneState {
     END_CREDITS_MORNING_SCENE_STATE_END
 };
 
-typedef struct {
+typedef struct DrifloonAnim {
     s32 animStartFrame;
     fx32 startXPos;
     fx32 startYPos;
@@ -37,37 +36,37 @@ static void EndCreditsMorningScene_UpdateDrifloonAnim(EndCreditsApp *endCreditsA
 
 static const DrifloonAnim sEndCreditsDrifloonAnims[] = {
     {
-        900,
-        -64 * FX32_ONE,
-        80 * FX32_ONE,
-        0x600,
-        -0x80,
-        0xe00,
-        0x8000,
-        0.0030,
-        60,
+        .animStartFrame = 900,
+        .startXPos = -64 * FX32_ONE,
+        .startYPos = 80 * FX32_ONE,
+        .speedX = 1536,
+        .speedY = -128,
+        .bobbingSpeed = 3584,
+        .yAmplitude = 32768,
+        .scaleSpeed = 0.0030,
+        .scaleDuration = 60,
     },
     {
-        1350,
-        -64 * FX32_ONE,
-        190 * FX32_ONE,
-        0x780,
-        -0xa0,
-        0x1000,
-        0xc000,
-        -0.0040,
-        50,
+        .animStartFrame = 1350,
+        .startXPos = -64 * FX32_ONE,
+        .startYPos = 190 * FX32_ONE,
+        .speedX = 1920,
+        .speedY = -160,
+        .bobbingSpeed = 4096,
+        .yAmplitude = 49152,
+        .scaleSpeed = -0.0040,
+        .scaleDuration = 50,
     },
     {
-        1590,
-        -64 * FX32_ONE,
-        120 * FX32_ONE,
-        0x640,
-        -0x90,
-        0xc00,
-        0x8000,
-        -0.0045,
-        60,
+        .animStartFrame = 1590,
+        .startXPos = -64 * FX32_ONE,
+        .startYPos = 120 * FX32_ONE,
+        .speedX = 1600,
+        .speedY = -144,
+        .bobbingSpeed = 3072,
+        .yAmplitude = 32768,
+        .scaleSpeed = -0.0045,
+        .scaleDuration = 60,
     },
 };
 
@@ -104,11 +103,11 @@ BOOL EndCreditsMorningScene_Run(EndCreditsApp *endCreditsApp, EndCreditsSceneMan
 
 static void EndCreditsMorningScene_SetDrifloonStartingPositions(EndCreditsApp *endCreditsApp, EndCreditsMorningSceneData *data)
 {
-    int i, j = 0;
+    int j = 0;
 
     GF_ASSERT(NELEMS(sEndCreditsDrifloonAnims) == 4 - 2 + 1);
 
-    for (i = 2; i <= 4; i++, j++) {
+    for (int i = 2; i <= 4; i++, j++) {
         ManagedSprite_SetPositionFxXYWithSubscreenOffset(endCreditsApp->managedSprites[i], sEndCreditsDrifloonAnims[j].startXPos, sEndCreditsDrifloonAnims[j].startYPos, ((192 + 80) << FX32_SHIFT));
         data->drifloonStates[j].xPos = sEndCreditsDrifloonAnims[j].startXPos;
         data->drifloonStates[j].yPos = sEndCreditsDrifloonAnims[j].startYPos;
@@ -117,9 +116,9 @@ static void EndCreditsMorningScene_SetDrifloonStartingPositions(EndCreditsApp *e
 
 static void EndCreditsMorningScene_AnimateDrifloon(EndCreditsApp *endCreditsApp, EndCreditsMorningSceneData *data)
 {
-    int i, j = 0;
+    int j = 0;
 
-    for (i = 2; i <= 4; i++, j++) {
+    for (int i = 2; i <= 4; i++, j++) {
         EndCreditsMorningScene_UpdateDrifloonAnim(endCreditsApp, data, endCreditsApp->managedSprites[i], j);
     }
 }
@@ -128,7 +127,6 @@ static void EndCreditsMorningScene_UpdateDrifloonAnim(EndCreditsApp *endCreditsA
 {
     DrifloonState *currentState = &data->drifloonStates[index];
     const DrifloonAnim *drifloonAnim = &sEndCreditsDrifloonAnims[index];
-    fx32 yOffset;
 
     if (currentState->frame < drifloonAnim->animStartFrame) {
         currentState->frame++;
@@ -141,7 +139,7 @@ static void EndCreditsMorningScene_UpdateDrifloonAnim(EndCreditsApp *endCreditsA
         currentState->degrees -= 360 << FX32_SHIFT;
     }
 
-    yOffset = FX_Mul(CalcSineDegrees_FX32(currentState->degrees), drifloonAnim->yAmplitude);
+    fx32 yOffset = FX_Mul(CalcSineDegrees_FX32(currentState->degrees), drifloonAnim->yAmplitude);
 
     currentState->xPos += drifloonAnim->speedX;
     currentState->yPos += drifloonAnim->speedY;
@@ -164,7 +162,7 @@ static void EndCreditsMorningScene_UpdateDrifloonAnim(EndCreditsApp *endCreditsA
 
 static void EndCreditsMorningScene_AnimateBackground(EndCreditsApp *endCreditsApp, EndCreditsMorningSceneData *data)
 {
-    data->bgXPos += -0x40;
+    data->bgXPos += -64;
 
     Bg_SetOffset(endCreditsApp->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, data->bgXPos / FX32_ONE);
     Bg_SetOffset(endCreditsApp->bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_X, data->bgXPos / FX32_ONE);

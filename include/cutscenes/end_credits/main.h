@@ -5,9 +5,9 @@
 
 #include "overlay_manager.h"
 
-int EndCreditsApp_Init(ApplicationManager *appMan, int *state);
-int EndCreditsApp_Main(ApplicationManager *appMan, int *state);
-int EndCreditsApp_Exit(ApplicationManager *appMan, int *state);
+BOOL EndCreditsApp_Init(ApplicationManager *appMan, int *state);
+BOOL EndCreditsApp_Main(ApplicationManager *appMan, int *state);
+BOOL EndCreditsApp_Exit(ApplicationManager *appMan, int *state);
 void EndCredits_FreeAppResources(EndCreditsApp *endCreditsApp);
 void EndCredits_InitFinalScenes(EndCreditsApp *endCreditsApp);
 

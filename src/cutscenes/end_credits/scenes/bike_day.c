@@ -1,10 +1,9 @@
-#include "cutscenes/end_credits/scenes/bike_day.h"
-
 #include <nitro.h>
 #include <string.h>
 
 #include "cutscenes/end_credits/common.h"
 #include "cutscenes/end_credits/defs.h"
+#include "cutscenes/end_credits/scenes.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -27,7 +26,7 @@ enum EndCreditsDaySceneWingullPhase {
     END_CREDITS_DAY_SCENE_WINGULL_PHASE_FLY_OUT
 };
 
-typedef struct {
+typedef struct WingullAnim {
     s32 animStartFrame;
     fx32 flyInXAmplitude;
     fx32 flyInYAmplitude;
@@ -60,50 +59,50 @@ static void EndCreditsDayScene_AnimateWingull(EndCreditsApp *endCreditsApp, EndC
 
 static const WingullAnim sEndCreditsWingullAnims[] = {
     {
-        90,
-        160 * FX32_ONE,
-        32 * FX32_ONE,
-        0x2700,
-        0 * FX32_ONE,
-        70 * FX32_ONE,
-        90 * FX32_ONE,
-        0x200,
-        0x1800,
-        -24 * FX32_ONE,
-        7 * FX32_ONE,
-        0x1b00,
-        0x7800,
-        160 * FX32_ONE,
-        60 * FX32_ONE,
-        0x3000,
-        (128 - 54) * FX32_ONE,
-        (96 + 16) * FX32_ONE,
-        0x80,
-        80,
-        30,
+        .animStartFrame = 90,
+        .flyInXAmplitude = 160 * FX32_ONE,
+        .flyInYAmplitude = 32 * FX32_ONE,
+        .startFlyInSpeed = 9984,
+        .startDegrees = 0 * FX32_ONE,
+        .startDecelDegree = 70 * FX32_ONE,
+        .endDecelDegree = 90 * FX32_ONE,
+        .decelSpeed = 512,
+        .minSpeed = 6144,
+        .xAmplitude = -24 * FX32_ONE,
+        .yAmplitude = 7 * FX32_ONE,
+        .xSpeed = 6912,
+        .ySpeed = 30720,
+        .flyOutXAmplitude = 160 * FX32_ONE,
+        .flyOutYAmplitude = 60 * FX32_ONE,
+        .flyOutSpeed = 12288,
+        .startXPos = (128 - 54) * FX32_ONE,
+        .startYPos = (96 + 16) * FX32_ONE,
+        .moveUpSpeed = 128,
+        .rotateSpeed = 80,
+        .rotateDuration = 30,
     },
     {
-        100,
-        -160 * FX32_ONE,
-        -48 * FX32_ONE,
-        0x2400,
-        0 * FX32_ONE,
-        80 * FX32_ONE,
-        90 * FX32_ONE,
-        0x40,
-        0x1800,
-        24 * FX32_ONE,
-        6 * FX32_ONE,
-        0x1d00,
-        0x7000,
-        -160 * FX32_ONE,
-        -52 * FX32_ONE,
-        0x2800,
-        (128 + 62) * FX32_ONE,
-        (96 + 10) * FX32_ONE,
-        0x80,
-        70,
-        35,
+        .animStartFrame = 100,
+        .flyInXAmplitude = -160 * FX32_ONE,
+        .flyInYAmplitude = -48 * FX32_ONE,
+        .startFlyInSpeed = 9216,
+        .startDegrees = 0 * FX32_ONE,
+        .startDecelDegree = 80 * FX32_ONE,
+        .endDecelDegree = 90 * FX32_ONE,
+        .decelSpeed = 64,
+        .minSpeed = 6144,
+        .xAmplitude = 24 * FX32_ONE,
+        .yAmplitude = 6 * FX32_ONE,
+        .xSpeed = 7424,
+        .ySpeed = 28672,
+        .flyOutXAmplitude = -160 * FX32_ONE,
+        .flyOutYAmplitude = -52 * FX32_ONE,
+        .flyOutSpeed = 10240,
+        .startXPos = (128 + 62) * FX32_ONE,
+        .startYPos = (96 + 10) * FX32_ONE,
+        .moveUpSpeed = 128,
+        .rotateSpeed = 70,
+        .rotateDuration = 35,
     },
 };
 
@@ -141,11 +140,11 @@ BOOL EndCreditsDayScene_Run(EndCreditsApp *endCreditsApp, EndCreditsSceneManager
 
 static void EndCreditsDayScene_SetWingullStartingPositions(EndCreditsApp *endCreditsApp, EndCreditsDaySceneData *data)
 {
-    int i, j = 0;
+    int j = 0;
 
     GF_ASSERT(NELEMS(sEndCreditsWingullAnims) == 3 - 2 + 1);
 
-    for (i = 2; i <= 3; i++, j++) {
+    for (int i = 2; i <= 3; i++, j++) {
         data->wingullStates[j].xPos = sEndCreditsWingullAnims[j].startXPos - sEndCreditsWingullAnims[j].flyInXAmplitude;
         data->wingullStates[j].yPos = sEndCreditsWingullAnims[j].startYPos;
         data->wingullStates[j].degrees = sEndCreditsWingullAnims[j].startDegrees;
@@ -161,9 +160,9 @@ static void EndCreditsDayScene_SetWingullStartingPositions(EndCreditsApp *endCre
 
 static void EndCreditsDayScene_AnimateAllWingull(EndCreditsApp *endCreditsApp, EndCreditsDaySceneData *data)
 {
-    int i, j = 0;
+    int j = 0;
 
-    for (i = 2; i <= 3; i++, j++) {
+    for (int i = 2; i <= 3; i++, j++) {
         EndCreditsDayScene_AnimateWingull(endCreditsApp, data, endCreditsApp->managedSprites[i], j);
     }
 }
@@ -182,6 +181,7 @@ static void EndCreditsDayScene_AnimateWingull(EndCreditsApp *endCreditsApp, EndC
     switch (currentState->phase) {
     case END_CREDITS_DAY_SCENE_WINGULL_PHASE_INIT:
         currentState->phase++;
+        // fallthrough
     case END_CREDITS_DAY_SCENE_WINGULL_PHASE_FLY_IN:
         if (currentState->degrees > wingullAnim->startDecelDegree) {
             currentState->flyInOutSpeed -= wingullAnim->decelSpeed;
@@ -209,6 +209,7 @@ static void EndCreditsDayScene_AnimateWingull(EndCreditsApp *endCreditsApp, EndC
         currentState->xSpeed = wingullAnim->xSpeed;
         currentState->ySpeed = wingullAnim->ySpeed;
         currentState->phase++;
+        // fallthrough
     case END_CREDITS_DAY_SCENE_WINGULL_PHASE_FLY_AROUND:
         currentState->xDegrees += currentState->xSpeed;
         currentState->yDegrees += currentState->ySpeed;
@@ -241,6 +242,7 @@ static void EndCreditsDayScene_AnimateWingull(EndCreditsApp *endCreditsApp, EndC
         currentState->xOffset = FX_Mul(CalcSineDegrees_FX32(0), wingullAnim->flyOutXAmplitude);
         currentState->yOffset = FX_Mul(CalcCosineDegrees_FX32(0), wingullAnim->flyOutYAmplitude);
         currentState->phase++;
+        // fallthrough
     case END_CREDITS_DAY_SCENE_WINGULL_PHASE_FLY_OUT:
         currentState->degrees += currentState->flyInOutSpeed;
         currentState->xOffset = FX_Mul(CalcCosineDegrees_FX32(currentState->degrees), wingullAnim->flyOutXAmplitude);
@@ -273,7 +275,7 @@ static void EndCreditsDayScene_AnimateWingull(EndCreditsApp *endCreditsApp, EndC
 
 static void EndCreditsDayScene_AnimateBackground(EndCreditsApp *endCreditsApp, EndCreditsDaySceneData *data)
 {
-    data->bgYPos += 0x60;
+    data->bgYPos += 96;
 
     Bg_SetOffset(endCreditsApp->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, data->bgYPos / FX32_ONE);
     Bg_SetOffset(endCreditsApp->bgConfig, BG_LAYER_SUB_3, BG_OFFSET_UPDATE_SET_Y, data->bgYPos / FX32_ONE);
@@ -281,12 +283,10 @@ static void EndCreditsDayScene_AnimateBackground(EndCreditsApp *endCreditsApp, E
 
 static void EndCreditsDayScene_AnimateBackgroundSun(EndCreditsApp *endCreditsApp, EndCreditsDaySceneData *data)
 {
-    int unused, i;
-    int frames, fraction, nextFrame;
-    u16 *fadedBuffer;
+    int unused, fraction, nextFrame;
 
-    frames = data->currentTransitionFrame;
-    data->fraction += 0x200;
+    int frames = data->currentTransitionFrame;
+    data->fraction += 512;
 
     if (data->fraction >= (16 << 8)) {
         fraction = 16;
@@ -325,9 +325,9 @@ static void EndCreditsDayScene_AnimateBackgroundSun(EndCreditsApp *endCreditsApp
         }
     }
 
-    fadedBuffer = PaletteData_GetFadedBuffer(endCreditsApp->paletteData, PLTTBUF_SUB_BG);
+    u16 *fadedBuffer = PaletteData_GetFadedBuffer(endCreditsApp->paletteData, PLTTBUF_SUB_BG);
 
-    for (i = 0; i < 16; i++) {
+    for (int i = 0; i < 16; i++) {
         BlendPalette(&data->bgPaletteBuffers[frames][i], &fadedBuffer[(2 * 16) + i], 1, fraction, data->bgPaletteBuffers[nextFrame][i]);
     }
 }
