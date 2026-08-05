@@ -14,267 +14,258 @@
 #include "inlines.h"
 #include "narc.h"
 
-struct UnkStruct_ov95_02247958_t {
-    void *unk_00;
-    NNSG3dRenderObj unk_04;
-    NNSG3dResMdlSet *unk_58;
-    NNSG3dResMdl *unk_5C;
-    NNSG3dResTex *unk_60;
-    BOOL unk_64;
-    VecFx32 unk_68;
-    VecFx32 unk_74;
-    VecFx16 unk_80;
-    int unk_88;
+struct Trade3DModel_t {
+    void *modelData;
+    NNSG3dRenderObj renderObj;
+    NNSG3dResMdlSet *modelSet;
+    NNSG3dResMdl *model;
+    NNSG3dResTex *texture;
+    BOOL enabled;
+    VecFx32 position;
+    VecFx32 scale;
+    VecFx16 rotation;
+    int alpha;
 };
 
-struct UnkStruct_ov95_0224773C_t {
+struct Trade3DScene_t {
     Camera *camera;
-    VecFx32 unk_04;
+    VecFx32 target;
     CameraAngle cameraAngle;
-    UnkStruct_ov95_02247958 *unk_18;
-    u32 unk_1C;
+    Trade3DModel *models;
+    u32 modelCount;
 };
 
-static void inline inline_ov95_022477B8(MtxFx33 *param0, const VecFx16 *param1);
-static void ov95_022477B8(UnkStruct_ov95_02247958 *param0);
-static void ov95_02247868(UnkStruct_ov95_02247958 *param0);
-static void ov95_0224789C(UnkStruct_ov95_02247958 *param0);
-static void ov95_02247AF0(UnkStruct_ov95_0224773C *param0, fx32 param1, fx32 param2, fx32 param3);
-static void ov95_02247B5C(UnkStruct_ov95_0224773C *param0);
+static void inline inline_Trade3DModel_BuildRotationMatrix(MtxFx33 *matrix, const VecFx16 *rotation);
+static void Trade3DModel_Render(Trade3DModel *tradeModel);
+static void Trade3DModel_Init(Trade3DModel *tradeModel);
+static void Trade3DModel_Unload(Trade3DModel *tradeModel);
+static void Trade3DScene_InitCamera(Trade3DScene *tradeScene, fx32 targetX, fx32 targetY, fx32 targetZ);
+static void Trade3DScene_DestroyCamera(Trade3DScene *tradeScene);
 
-UnkStruct_ov95_0224773C *ov95_022476F0(u32 param0, fx32 param1, fx32 param2, fx32 param3)
+Trade3DScene *Trade3DScene_New(u32 modelCount, fx32 targetX, fx32 targetY, fx32 targetZ)
 {
-    UnkStruct_ov95_0224773C *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224773C));
+    Trade3DScene *tradeScene = Heap_Alloc(HEAP_ID_58, sizeof(Trade3DScene));
 
-    if (v0) {
-        u32 v1;
+    if (tradeScene) {
+        Trade3DScene_InitCamera(tradeScene, targetX, targetY, targetZ);
 
-        ov95_02247AF0(v0, param1, param2, param3);
+        tradeScene->models = Heap_Alloc(HEAP_ID_58, sizeof(Trade3DModel) * modelCount);
+        tradeScene->modelCount = modelCount;
 
-        v0->unk_18 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_02247958) * param0);
-        v0->unk_1C = param0;
-
-        for (v1 = 0; v1 < param0; v1++) {
-            ov95_02247868(&v0->unk_18[v1]);
+        for (int i = 0; i < modelCount; i++) {
+            Trade3DModel_Init(&tradeScene->models[i]);
         }
     }
 
-    return v0;
+    return tradeScene;
 }
 
-void ov95_0224773C(UnkStruct_ov95_0224773C *param0)
+void Trade3DScene_Free(Trade3DScene *tradeScene)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_1C; v0++) {
-        ov95_0224789C(&(param0->unk_18[v0]));
+    for (int i = 0; i < tradeScene->modelCount; i++) {
+        Trade3DModel_Unload(&(tradeScene->models[i]));
     }
 
-    Heap_Free(param0->unk_18);
-    ov95_02247B5C(param0);
-    Heap_Free(param0);
+    Heap_Free(tradeScene->models);
+    Trade3DScene_DestroyCamera(tradeScene);
+    Heap_Free(tradeScene);
 }
 
-void ov95_02247770(UnkStruct_ov95_0224773C *param0)
+void Trade3DScene_Render(Trade3DScene *tradeScene)
 {
     NNS_G3dGePushMtx();
-    {
-        int v0;
+    Camera_ComputeViewMatrix();
 
-        Camera_ComputeViewMatrix();
-
-        for (v0 = 0; v0 < param0->unk_1C; v0++) {
-            if (param0->unk_18[v0].unk_64) {
-                ov95_022477B8(&(param0->unk_18[v0]));
-            }
+    for (int i = 0; i < tradeScene->modelCount; i++) {
+        if (tradeScene->models[i].enabled) {
+            Trade3DModel_Render(&(tradeScene->models[i]));
         }
     }
 
     NNS_G3dGePopMtx(1);
 }
 
-static void inline inline_ov95_022477B8(MtxFx33 *param0, const VecFx16 *param1)
+static void inline inline_Trade3DModel_BuildRotationMatrix(MtxFx33 *matrix, const VecFx16 *rotation)
 {
-    MtxFx33 v0;
+    MtxFx33 tempMatrix;
 
-    MTX_Identity33(param0);
-    MTX_RotX33(&v0, FX_SinIdx((u16)(param1->x)), FX_CosIdx((u16)(param1->x)));
-    MTX_Concat33(&v0, param0, param0);
-    MTX_RotY33(&v0, FX_SinIdx((u16)(param1->y)), FX_CosIdx((u16)(param1->y)));
-    MTX_Concat33(&v0, param0, param0);
-    MTX_RotZ33(&v0, FX_SinIdx((u16)(param1->z)), FX_CosIdx((u16)(param1->z)));
-    MTX_Concat33(&v0, param0, param0);
+    MTX_Identity33(matrix);
+    MTX_RotX33(&tempMatrix, FX_SinIdx((u16)(rotation->x)), FX_CosIdx((u16)(rotation->x)));
+    MTX_Concat33(&tempMatrix, matrix, matrix);
+    MTX_RotY33(&tempMatrix, FX_SinIdx((u16)(rotation->y)), FX_CosIdx((u16)(rotation->y)));
+    MTX_Concat33(&tempMatrix, matrix, matrix);
+    MTX_RotZ33(&tempMatrix, FX_SinIdx((u16)(rotation->z)), FX_CosIdx((u16)(rotation->z)));
+    MTX_Concat33(&tempMatrix, matrix, matrix);
 }
 
-static void ov95_022477B8(UnkStruct_ov95_02247958 *param0)
+static void Trade3DModel_Render(Trade3DModel *tradeModel)
 {
-    MtxFx33 v0;
+    MtxFx33 mtxFx;
 
-    inline_ov95_022477B8(&v0, &(param0->unk_80));
+    inline_Trade3DModel_BuildRotationMatrix(&mtxFx, &(tradeModel->rotation));
 
-    if (param0->unk_88 != 31) {
-        NNS_G3dGlbPolygonAttr(0, 0, 0, 0, param0->unk_88, 0);
+    if (tradeModel->alpha != 31) {
+        NNS_G3dGlbPolygonAttr(0, 0, 0, 0, tradeModel->alpha, 0);
     }
 
-    Easy3D_DrawRenderObj(&param0->unk_04, &param0->unk_68, &v0, &param0->unk_74);
+    Easy3D_DrawRenderObj(&tradeModel->renderObj, &tradeModel->position, &mtxFx, &tradeModel->scale);
 }
 
-static void ov95_02247868(UnkStruct_ov95_02247958 *param0)
+static void Trade3DModel_Init(Trade3DModel *tradeModel)
 {
-    param0->unk_64 = 0;
-    param0->unk_00 = NULL;
-    param0->unk_80.x = param0->unk_80.y = param0->unk_80.z = 0;
-    param0->unk_74.x = param0->unk_74.y = param0->unk_74.z = FX32_ONE;
-    param0->unk_68.x = param0->unk_68.y = param0->unk_68.z = 0;
+    tradeModel->enabled = 0;
+    tradeModel->modelData = NULL;
+    tradeModel->rotation.x = tradeModel->rotation.y = tradeModel->rotation.z = 0;
+    tradeModel->scale.x = tradeModel->scale.y = tradeModel->scale.z = FX32_ONE;
+    tradeModel->position.x = tradeModel->position.y = tradeModel->position.z = 0;
 }
 
-static void ov95_0224789C(UnkStruct_ov95_02247958 *param0)
+static void Trade3DModel_Unload(Trade3DModel *tradeModel)
 {
-    if (param0->unk_00) {
-        Heap_Free(param0->unk_00);
-        param0->unk_00 = NULL;
-        param0->unk_64 = 0;
+    if (tradeModel->modelData) {
+        Heap_Free(tradeModel->modelData);
+        tradeModel->modelData = NULL;
+        tradeModel->enabled = 0;
     }
 }
 
-UnkStruct_ov95_02247958 *ov95_022478B4(UnkStruct_ov95_0224773C *param0, int param1, enum NarcID narcID, u32 param3, fx32 param4, fx32 param5, fx32 param6, BOOL param7)
+Trade3DModel *Trade3DModel_Load(Trade3DScene *tradeScene, int modelIndex, enum NarcID narcID, u32 memberIndex, fx32 x, fx32 y, fx32 z, BOOL enabled)
 {
-    UnkStruct_ov95_02247958 *v0 = &param0->unk_18[param1];
+    Trade3DModel *tradeModel = &tradeScene->models[modelIndex];
 
-    v0->unk_00 = LoadMemberFromNARC(narcID, param3, 0, HEAP_ID_58, 1);
-    DC_FlushRange(v0->unk_00, NARC_GetMemberSizeByIndexPair(narcID, param3));
+    tradeModel->modelData = LoadMemberFromNARC(narcID, memberIndex, 0, HEAP_ID_58, 1);
+    DC_FlushRange(tradeModel->modelData, NARC_GetMemberSizeByIndexPair(narcID, memberIndex));
 
-    if (v0->unk_00) {
-        v0->unk_58 = NNS_G3dGetMdlSet(v0->unk_00);
-        v0->unk_5C = NNS_G3dGetMdlByIdx(v0->unk_58, 0);
-        v0->unk_60 = NNS_G3dGetTex(v0->unk_00);
+    if (tradeModel->modelData) {
+        tradeModel->modelSet = NNS_G3dGetMdlSet(tradeModel->modelData);
+        tradeModel->model = NNS_G3dGetMdlByIdx(tradeModel->modelSet, 0);
+        tradeModel->texture = NNS_G3dGetTex(tradeModel->modelData);
 
-        Easy3D_UploadTextureToVRAM(v0->unk_60);
-        Easy3D_BindTextureToResource(v0->unk_00, v0->unk_60);
+        Easy3D_UploadTextureToVRAM(tradeModel->texture);
+        Easy3D_BindTextureToResource(tradeModel->modelData, tradeModel->texture);
 
-        NNS_G3dRenderObjInit(&v0->unk_04, v0->unk_5C);
+        NNS_G3dRenderObjInit(&tradeModel->renderObj, tradeModel->model);
 
-        v0->unk_68.x = param4;
-        v0->unk_68.y = param5;
-        v0->unk_68.z = param6;
-        v0->unk_88 = 31;
-        v0->unk_64 = param7;
+        tradeModel->position.x = x;
+        tradeModel->position.y = y;
+        tradeModel->position.z = z;
+        tradeModel->alpha = 31;
+        tradeModel->enabled = enabled;
     }
 
-    return v0;
+    return tradeModel;
 }
 
-void ov95_02247958(const UnkStruct_ov95_02247958 *param0, VecFx32 *param1)
+void Trade3DModel_GetPosition(const Trade3DModel *tradeModel, VecFx32 *outPosition)
 {
-    *param1 = param0->unk_68;
+    *outPosition = tradeModel->position;
 }
 
-void ov95_02247968(UnkStruct_ov95_02247958 *param0, const VecFx32 *param1)
+void Trade3DModel_SetPosition(Trade3DModel *tradeModel, const VecFx32 *position)
 {
-    param0->unk_68 = *param1;
+    tradeModel->position = *position;
 }
 
-void ov95_02247978(const UnkStruct_ov95_02247958 *param0, VecFx16 *param1)
+void Trade3DModel_GetRotation(const Trade3DModel *tradeModel, VecFx16 *outRotation)
 {
-    *param1 = param0->unk_80;
+    *outRotation = tradeModel->rotation;
 }
 
-void ov95_02247990(UnkStruct_ov95_02247958 *param0, const VecFx16 *param1)
+void Trade3DModel_SetRotation(Trade3DModel *tradeModel, const VecFx16 *rotation)
 {
-    param0->unk_80 = *param1;
+    tradeModel->rotation = *rotation;
 }
 
-void ov95_022479A8(UnkStruct_ov95_02247958 *param0, BOOL param1)
+void Trade3DModel_SetEnabled(Trade3DModel *tradeModel, BOOL enabled)
 {
-    param0->unk_64 = param1;
+    tradeModel->enabled = enabled;
 }
 
-void ov95_022479AC(UnkStruct_ov95_02247958 *param0, int param1)
+void Trade3DModel_SetAlpha(Trade3DModel *tradeModel, int alpha)
 {
-    param0->unk_88 = param1;
+    tradeModel->alpha = alpha;
 
-    if (param1 != 31) {
-        NNS_G3dMdlUseGlbAlpha(param0->unk_5C);
+    if (alpha != 31) {
+        NNS_G3dMdlUseGlbAlpha(tradeModel->model);
     } else {
-        NNS_G3dMdlUseMdlAlpha(param0->unk_5C);
+        NNS_G3dMdlUseMdlAlpha(tradeModel->model);
     }
 }
 
-void ov95_022479D4(UnkStruct_ov95_02247958 *param0, fx32 param1)
+void Trade3DModel_SetScale(Trade3DModel *tradeModel, fx32 scale)
 {
-    param0->unk_74.x = param1;
-    param0->unk_74.y = param1;
-    param0->unk_74.z = param1;
+    tradeModel->scale.x = scale;
+    tradeModel->scale.y = scale;
+    tradeModel->scale.z = scale;
 }
 
-BOOL ov95_022479DC(UnkStruct_ov95_02247958 *param0)
+BOOL Trade3DModel_IsInView(Trade3DModel *tradeModel)
 {
-    MtxFx33 v0;
-    BOOL v1;
+    MtxFx33 rotMatrix;
+    BOOL result;
 
-    inline_ov95_022477B8(&v0, &(param0->unk_80));
+    inline_Trade3DModel_BuildRotationMatrix(&rotMatrix, &(tradeModel->rotation));
 
     NNS_G3dGePushMtx();
 
     Camera_ComputeViewMatrix();
-    v1 = GFXBoxTest_IsModelInView(param0->unk_5C, &param0->unk_68, &v0, &param0->unk_74);
+    result = GFXBoxTest_IsModelInView(tradeModel->model, &tradeModel->position, &rotMatrix, &tradeModel->scale);
 
     NNS_G3dGePopMtx(1);
 
-    return v1;
+    return result;
 }
 
-void ov95_02247A90(UnkStruct_ov95_0224773C *param0, VecFx32 *param1)
+void Trade3DScene_GetCameraPosition(Trade3DScene *tradeScene, VecFx32 *outPosition)
 {
-    *param1 = Camera_GetPosition(param0->camera);
+    *outPosition = Camera_GetPosition(tradeScene->camera);
 }
 
-void ov95_02247AB0(UnkStruct_ov95_0224773C *param0, const CameraAngle *cameraAngle)
+void Trade3DScene_SetCameraAngle(Trade3DScene *tradeScene, const CameraAngle *cameraAngle)
 {
-    Camera_SetAngleAroundTarget(cameraAngle, param0->camera);
+    Camera_SetAngleAroundTarget(cameraAngle, tradeScene->camera);
 }
 
-void ov95_02247AC0(UnkStruct_ov95_0224773C *param0, const CameraAngle *cameraAngle)
+void Trade3DScene_AdjustCameraAngle(Trade3DScene *tradeScene, const CameraAngle *cameraAngle)
 {
-    Camera_AdjustAngleAroundSelf(cameraAngle, param0->camera);
+    Camera_AdjustAngleAroundSelf(cameraAngle, tradeScene->camera);
 }
 
-void ov95_02247AD0(UnkStruct_ov95_0224773C *param0, u8 param1)
+void Trade3DScene_ComputeProjection(Trade3DScene *tradeScene, u8 projectionType)
 {
-    Camera_ComputeProjectionMatrix(param1, param0->camera);
+    Camera_ComputeProjectionMatrix(projectionType, tradeScene->camera);
 }
 
-void ov95_02247AE0(UnkStruct_ov95_0224773C *param0, u16 param1)
+void Trade3DScene_SetFOV(Trade3DScene *tradeScene, u16 fov)
 {
-    Camera_SetFOV(param1, param0->camera);
+    Camera_SetFOV(fov, tradeScene->camera);
 }
 
-static void ov95_02247AF0(UnkStruct_ov95_0224773C *param0, fx32 param1, fx32 param2, fx32 param3)
+static void Trade3DScene_InitCamera(Trade3DScene *tradeScene, fx32 targetX, fx32 targetY, fx32 targetZ)
 {
-    CameraAngle v0;
-    VecFx32 v1;
+    VecFx32 upVector;
 
-    param0->camera = Camera_Alloc(HEAP_ID_58);
-    param0->unk_04.x = param1;
-    param0->unk_04.y = param2;
-    param0->unk_04.z = param3;
-    param0->cameraAngle.x = ((0 * 0xffff) / 360);
-    param0->cameraAngle.y = ((0 * 0xffff) / 360);
-    param0->cameraAngle.z = ((0 * 0xffff) / 360);
+    tradeScene->camera = Camera_Alloc(HEAP_ID_58);
+    tradeScene->target.x = targetX;
+    tradeScene->target.y = targetY;
+    tradeScene->target.z = targetZ;
+    tradeScene->cameraAngle.x = ((0 * 0xffff) / 360);
+    tradeScene->cameraAngle.y = ((0 * 0xffff) / 360);
+    tradeScene->cameraAngle.z = ((0 * 0xffff) / 360);
 
-    Camera_InitWithTarget(&(param0->unk_04), 1228800, &(param0->cameraAngle), 4004, 0, 1, param0->camera);
+    Camera_InitWithTarget(&(tradeScene->target), 1228800, &(tradeScene->cameraAngle), 4004, 0, 1, tradeScene->camera);
 
-    v1.x = 0;
-    v1.y = FX32_ONE;
-    v1.z = 0;
+    upVector.x = 0;
+    upVector.y = FX32_ONE;
+    upVector.z = 0;
 
-    Camera_SetUp(&v1, param0->camera);
-    Camera_SetAsActive(param0->camera);
-    Camera_SetClipping((0 << FX32_SHIFT), (1000 << FX32_SHIFT), param0->camera);
+    Camera_SetUp(&upVector, tradeScene->camera);
+    Camera_SetAsActive(tradeScene->camera);
+    Camera_SetClipping((0 << FX32_SHIFT), (1000 << FX32_SHIFT), tradeScene->camera);
 }
 
-static void ov95_02247B5C(UnkStruct_ov95_0224773C *param0)
+static void Trade3DScene_DestroyCamera(Trade3DScene *tradeScene)
 {
     Camera_ClearActive();
-    Camera_Delete(param0->camera);
+    Camera_Delete(tradeScene->camera);
 }

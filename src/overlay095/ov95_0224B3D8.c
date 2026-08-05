@@ -34,193 +34,187 @@
 #include "res/text/bank/trade.h"
 
 enum {
-    UnkEnum_ov95_0224BD5C_00 = -0x780,
-    UnkEnum_ov95_0224BD5C_01 = 0x180,
-    UnkEnum_ov95_0224BD5C_02 = 0xffff5000
+    BALL_GRAVITY = -1920,
+    BALL_ROTATION_SPEED = 384,
+    BALL_FLOOR_Y = 0xffff5000
 };
 
 enum {
-    UnkEnum_ov95_0224BC6C_00 = 0x1000,
-    UnkEnum_ov95_0224BC6C_01 = 20
+    BALL_INITIAL_ROTATION_SPEED = 4096,
+    BALL_FADE_IN_DURATION = 20
 };
 
 enum {
-    UnkEnum_ov95_0224B520_00 = 0x13000,
+    BALL_REST_Y = 77824,
 };
 
-typedef struct {
-    TradeSequenceData *unk_00;
-    int unk_04;
-    int unk_08;
-    BOOL unk_0C;
-    PokemonSpriteManager *unk_10;
-    PokemonSprite *unk_14;
-    SpriteAnimFrame unk_18[10];
-    Sprite *unk_40[2];
-    UnkStruct_ov95_02247568 unk_48;
-    BgConfig *unk_58;
-    Window unk_5C;
-    String *unk_6C;
-    String *unk_70;
-    UnkStruct_ov95_0224773C *unk_74;
-    UnkStruct_ov95_02247958 *unk_78;
-    SysTask *unk_7C;
-    SysTask *unk_80;
-    NARC *unk_84;
-} UnkStruct_ov95_0224B4D4;
+typedef struct TradeReceivePhase {
+    TradeSequenceData *sequenceData;
+    int subStepCounter;
+    int timer;
+    BOOL fanfarePlaying;
+    PokemonSpriteManager *spriteManager;
+    PokemonSprite *pokemonSprite;
+    SpriteAnimFrame animFrames[10];
+    Sprite *sprites[2];
+    SpriteAnimResources animResources;
+    BgConfig *bgConfig;
+    Window window;
+    String *string0;
+    String *string1;
+    Trade3DScene *scene;
+    Trade3DModel *model;
+    SysTask *task0;
+    SysTask *task1;
+    NARC *pokeDataNarc;
+} TradeReceivePhase;
 
-typedef struct {
-    UnkStruct_ov95_0224B4D4 *unk_00;
-    fx32 unk_04;
-    fx32 unk_08;
-    fx32 unk_0C;
-    int unk_10;
-} UnkStruct_ov95_0224BBB0;
+typedef struct BrightnessAnimState {
+    TradeReceivePhase *phase;
+    fx32 currentValue;
+    fx32 targetValue;
+    fx32 step;
+    int framesRemaining;
+} BrightnessAnimState;
 
-typedef struct {
-    SysTask **unk_00;
-    int unk_04;
-    void *unk_08;
-    int unk_0C;
-    UnkStruct_ov95_0224773C *unk_10;
-    UnkStruct_ov95_02247958 *unk_14;
-    fx32 unk_18;
-    fx32 unk_1C;
-    int unk_20;
-    VecFx32 unk_24;
-    fx32 unk_30;
-    VecFx16 unk_34;
-    fx16 unk_3A;
-    fx16 unk_3C;
-    fx16 unk_3E;
-    int unk_40;
-} UnkStruct_ov95_0224BC6C;
+typedef struct BallOpenState {
+    SysTask **taskHandle;
+    int subState;
+    void *phase;
+    int timer;
+    Trade3DScene *scene;
+    Trade3DModel *model;
+    fx32 currentAlpha;
+    fx32 alphaStep;
+    int alphaFrames;
+    VecFx32 position;
+    fx32 velocityY;
+    VecFx16 rotation;
+    fx16 rotationSpeed;
+    fx16 rotationSpeedStep;
+    fx16 targetRotationSpeed;
+    int rotationTransitionFrames;
+} BallOpenState;
 
-static void ov95_0224B4D4(UnkStruct_ov95_0224B4D4 *param0);
-static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1);
-static int ov95_0224B6F0(UnkStruct_ov95_0224B4D4 *param0, int *param1);
-static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1);
-static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1);
-static BOOL ov95_0224B990(UnkStruct_ov95_0224B4D4 *param0, int param1);
-static void ov95_0224B9C0(UnkStruct_ov95_0224B4D4 *param0);
-static PokemonSprite *ov95_0224BA8C(UnkStruct_ov95_0224B4D4 *param0);
-static void ov95_0224BAE8(UnkStruct_ov95_0224B4D4 *param0);
-static void ov95_0224BB8C(UnkStruct_ov95_0224B4D4 *param0);
-static void ov95_0224BBB0(UnkStruct_ov95_0224B4D4 *param0, int param1, int param2, int param3);
-static BOOL ov95_0224BC00(UnkStruct_ov95_0224B4D4 *param0);
-static void ov95_0224BC10(UnkStruct_ov95_0224B4D4 *param0);
-static void ov95_0224BC30(SysTask *param0, void *param1);
-static void ov95_0224BC6C(UnkStruct_ov95_0224B4D4 *param0, SysTask **param1);
-static void ov95_0224BCE8(SysTask *param0);
-static void ov95_0224BD04(void *param0);
-static void ov95_0224BD40(void *param0, fx32 param1, int param2);
-static void ov95_0224BD5C(SysTask *param0, void *param1);
+static void TradeReceivePhase_Tick(TradeReceivePhase *trPhase);
+static int TradeReceivePhase_InitGraphics(TradeReceivePhase *trPhase, int *unused);
+static int TradeReceivePhase_Animate(TradeReceivePhase *trPhase, int *subStepCounter);
+static int TradeReceivePhase_RevealPokemon(TradeReceivePhase *trPhase, int *subStepCounter);
+static int TradeReceivePhase_ShowMessage(TradeReceivePhase *trPhase, int *subStepCounter);
+static BOOL TradeReceivePhase_IsTimerAndFanfareDone(TradeReceivePhase *trPhase, int timerTarget);
+static void TradeReceivePhase_Init3DScene(TradeReceivePhase *trPhase);
+static PokemonSprite *TradeReceivePhase_CreatePokemonSprite(TradeReceivePhase *trPhase);
+static void TradeReceivePhase_CreateBallSprites(TradeReceivePhase *trPhase);
+static void TradeReceivePhase_DeleteBallSprites(TradeReceivePhase *trPhase);
+static void BrightnessAnimState_Start(TradeReceivePhase *trPhase, int startValue, int targetValue, int duration);
+static BOOL TradeReceivePhase_IsBrightnessAnimDone(TradeReceivePhase *trPhase);
+static void TradeReceivePhase_FreeBrightnessAnimState(TradeReceivePhase *trPhase);
+static void BrightnessAnimState_Task(SysTask *unused, void *param);
+static void BallOpenState_Start(TradeReceivePhase *trPhase, SysTask **task);
+static void BallOpenState_Free(SysTask *task);
+static void BallOpenState_UpdateRotation(BallOpenState *boState);
+static void BallOpenState_SetRotationTarget(BallOpenState *boState, fx32 targetSpeed, int duration);
+static void BallOpenState_Task(SysTask *task, void *param);
 
-void *ov95_0224B3D8(TradeSequenceData *param0)
+void *TradeReceivePhase_New(TradeSequenceData *sequenceData)
 {
-    UnkStruct_ov95_0224B4D4 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B4D4));
+    TradeReceivePhase *trPhase = Heap_Alloc(HEAP_ID_58, sizeof(TradeReceivePhase));
 
-    if (v0) {
-        int v1;
-
-        v0->unk_00 = param0;
-        v0->unk_04 = 0;
-        v0->unk_58 = ov95_02247628(param0);
-        v0->unk_10 = PokemonSpriteManager_New(HEAP_ID_58);
-        v0->unk_14 = NULL;
-        v0->unk_6C = String_Init(300, HEAP_ID_58);
-        v0->unk_70 = String_Init(300, HEAP_ID_58);
-        v0->unk_7C = NULL;
-        v0->unk_80 = NULL;
-        v0->unk_74 = NULL;
-        v0->unk_84 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_58);
+    if (trPhase) {
+        trPhase->sequenceData = sequenceData;
+        trPhase->subStepCounter = 0;
+        trPhase->bgConfig = TradeSequence_GetBgConfig(sequenceData);
+        trPhase->spriteManager = PokemonSpriteManager_New(HEAP_ID_58);
+        trPhase->pokemonSprite = NULL;
+        trPhase->string0 = String_Init(300, HEAP_ID_58);
+        trPhase->string1 = String_Init(300, HEAP_ID_58);
+        trPhase->task0 = NULL;
+        trPhase->task1 = NULL;
+        trPhase->scene = NULL;
+        trPhase->pokeDataNarc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_58);
     }
 
-    return v0;
+    return trPhase;
 }
 
-void ov95_0224B438(void *param0)
+void TradeReceivePhase_Free(void *param)
 {
-    UnkStruct_ov95_0224B4D4 *v0 = param0;
+    TradeReceivePhase *trPhase = param;
 
-    if (v0) {
-        int v1;
+    if (trPhase) {
+        TradeReceivePhase_FreeBrightnessAnimState(trPhase);
+        TradeReceivePhase_DeleteBallSprites(trPhase);
+        BallOpenState_Free(trPhase->task1);
 
-        ov95_0224BC10(v0);
-        ov95_0224BB8C(v0);
-        ov95_0224BCE8(v0->unk_80);
+        String_Free(trPhase->string0);
+        String_Free(trPhase->string1);
 
-        String_Free(v0->unk_6C);
-        String_Free(v0->unk_70);
-
-        if (v0->unk_74) {
-            ov95_0224773C(v0->unk_74);
+        if (trPhase->scene) {
+            Trade3DScene_Free(trPhase->scene);
         }
 
-        Bg_FreeTilemapBuffer(v0->unk_58, BG_LAYER_MAIN_1);
-        Window_Remove(&(v0->unk_5C));
+        Bg_FreeTilemapBuffer(trPhase->bgConfig, BG_LAYER_MAIN_1);
+        Window_Remove(&(trPhase->window));
 
-        if (v0->unk_14) {
-            PokemonSprite_Delete(v0->unk_14);
+        if (trPhase->pokemonSprite) {
+            PokemonSprite_Delete(trPhase->pokemonSprite);
         }
 
-        NARC_dtor(v0->unk_84);
-        PokemonSpriteManager_Free(v0->unk_10);
-        Heap_Free(v0);
+        NARC_dtor(trPhase->pokeDataNarc);
+        PokemonSpriteManager_Free(trPhase->spriteManager);
+        Heap_Free(trPhase);
     }
 }
 
-BOOL ov95_0224B49C(void *param0, int *param1)
+BOOL TradeReceivePhase_Run(void *param, int *state)
 {
-    static int (*const v0[])(UnkStruct_ov95_0224B4D4 *, int *) = {
-        ov95_0224B520,
-        ov95_0224B6F0,
-        ov95_0224B71C,
-        ov95_0224B81C
+    static int (*const sStepFuncs[])(TradeReceivePhase *, int *) = {
+        TradeReceivePhase_InitGraphics,
+        TradeReceivePhase_Animate,
+        TradeReceivePhase_RevealPokemon,
+        TradeReceivePhase_ShowMessage
     };
 
-    UnkStruct_ov95_0224B4D4 *v1 = param0;
+    TradeReceivePhase *trPhase = param;
 
-    if ((*param1) < NELEMS(v0)) {
-        if (v0[*param1](v1, &(v1->unk_04))) {
-            (*param1)++;
-            v1->unk_04 = 0;
+    if ((*state) < NELEMS(sStepFuncs)) {
+        if (sStepFuncs[*state](trPhase, &(trPhase->subStepCounter))) {
+            (*state)++;
+            trPhase->subStepCounter = 0;
         }
 
-        ov95_0224B4D4(v1);
+        TradeReceivePhase_Tick(trPhase);
 
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void ov95_0224B4D4(UnkStruct_ov95_0224B4D4 *param0)
+static void TradeReceivePhase_Tick(TradeReceivePhase *trPhase)
 {
     G3X_Reset();
 
     NNS_G3dGePushMtx();
 
-    {
-        NNS_G3dGeFlushBuffer();
-        NNS_G2dSetupSoftwareSpriteCamera();
+    NNS_G3dGeFlushBuffer();
+    NNS_G2dSetupSoftwareSpriteCamera();
 
-        PokemonSpriteManager_UpdateCharAndPltt(param0->unk_10);
-        PokemonSpriteManager_DrawSprites(param0->unk_10);
-    }
+    PokemonSpriteManager_UpdateCharAndPltt(trPhase->spriteManager);
+    PokemonSpriteManager_DrawSprites(trPhase->spriteManager);
 
     NNS_G3dGePopMtx(1);
 
-    if (param0->unk_74) {
-        ov95_02247770(param0->unk_74);
+    if (trPhase->scene) {
+        Trade3DScene_Render(trPhase->scene);
     }
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
 
-static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
+static int TradeReceivePhase_InitGraphics(TradeReceivePhase *trPhase, int *unused)
 {
-    static const GXBanks v0 = {
+    static const GXBanks banks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_23_G,
         GX_VRAM_SUB_BG_128_C,
@@ -232,13 +226,13 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_0123_E
     };
-    static const GraphicsModes v1 = {
+    static const GraphicsModes modes = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_3D
     };
-    static const BgTemplate v2 = {
+    static const BgTemplate bgTemplate1 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
@@ -252,7 +246,7 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         .areaOver = 0,
         .mosaic = FALSE,
     };
-    static const BgTemplate v3 = {
+    static const BgTemplate bgTemplate2 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0,
@@ -267,44 +261,42 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         .mosaic = FALSE,
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
-    SetAllGraphicsModes(&v1);
+    SetAllGraphicsModes(&modes);
 
-    Bg_InitFromTemplate(param0->unk_58, BG_LAYER_MAIN_1, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_58, BG_LAYER_MAIN_2, &v3, 0);
+    Bg_InitFromTemplate(trPhase->bgConfig, BG_LAYER_MAIN_1, &bgTemplate1, 0);
+    Bg_InitFromTemplate(trPhase->bgConfig, BG_LAYER_MAIN_2, &bgTemplate2, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
 
-    Bg_FillTilesRange(param0->unk_58, 1, 0x0, 1, 0);
-    Bg_FillTilemapRect(param0->unk_58, 1, 0x0, 0, 0, 32, 32, 0);
-    LoadMessageBoxGraphics(param0->unk_58, BG_LAYER_MAIN_1, 109, 2, ov95_02247674(param0->unk_00), HEAP_ID_58);
+    Bg_FillTilesRange(trPhase->bgConfig, 1, 0x0, 1, 0);
+    Bg_FillTilemapRect(trPhase->bgConfig, 1, 0x0, 0, 0, 32, 32, 0);
+    LoadMessageBoxGraphics(trPhase->bgConfig, BG_LAYER_MAIN_1, 109, 2, TradeSequence_GetOptionsFrame(trPhase->sequenceData), HEAP_ID_58);
 
-    Window_Add(param0->unk_58, &(param0->unk_5C), 1, 2, 19, 27, 4, 1, 1);
-    Window_FillTilemap(&(param0->unk_5C), 0xf);
+    Window_Add(trPhase->bgConfig, &(trPhase->window), 1, 2, 19, 27, 4, 1, 1);
+    Window_FillTilemap(&(trPhase->window), 0xf);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 7, 0, 1 * 0x20, 0x20, HEAP_ID_58);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_58, 1);
+    Bg_CopyTilemapBufferToVRAM(trPhase->bgConfig, 1);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, param0->unk_58, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, param0->unk_58, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, trPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, trPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 23, 0, 0 * 0x20, 0x20, HEAP_ID_58);
 
-    ov95_0224B9C0(param0);
+    TradeReceivePhase_Init3DScene(trPhase);
 
-    param0->unk_74 = ov95_022476F0(1, 0, 0, 0);
-    param0->unk_14 = ov95_0224BA8C(param0);
+    trPhase->scene = Trade3DScene_New(1, 0, 0, 0);
+    trPhase->pokemonSprite = TradeReceivePhase_CreatePokemonSprite(trPhase);
 
-    PokemonSprite_SetAttribute(param0->unk_14, MON_SPRITE_HIDE, 1);
+    PokemonSprite_SetAttribute(trPhase->pokemonSprite, MON_SPRITE_HIDE, 1);
 
-    param0->unk_78 = ov95_022478B4(param0->unk_74, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, UnkEnum_ov95_0224B520_00, 491520, 0);
+    trPhase->model = Trade3DModel_Load(trPhase->scene, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, BALL_REST_Y, 491520, 0);
 
-    {
-        VecFx16 v4 = { 0x0, 0xf000, 0x0 };
-        ov95_02247990(param0->unk_78, &v4);
-    }
+    VecFx16 vecFx = { 0x0, 0xf000, 0x0 };
+    Trade3DModel_SetRotation(trPhase->model, &vecFx);
 
-    ov95_0224BAE8(param0);
+    TradeReceivePhase_CreateBallSprites(trPhase);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -315,13 +307,13 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     return 1;
 }
 
-static int ov95_0224B6F0(UnkStruct_ov95_0224B4D4 *param0, int *param1)
+static int TradeReceivePhase_Animate(TradeReceivePhase *trPhase, int *subStepCounter)
 {
-    switch (*param1) {
+    switch (*subStepCounter) {
     case 0:
         if (IsScreenFadeDone()) {
-            Sprite_SetAnim(param0->unk_40[0], 1);
-            Sprite_SetDrawFlag(param0->unk_40[0], TRUE);
+            Sprite_SetAnim(trPhase->sprites[0], 1);
+            Sprite_SetDrawFlag(trPhase->sprites[0], TRUE);
             return 1;
         }
         break;
@@ -330,46 +322,46 @@ static int ov95_0224B6F0(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     return 0;
 }
 
-static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
+static int TradeReceivePhase_RevealPokemon(TradeReceivePhase *trPhase, int *subStepCounter)
 {
-    switch (*param1) {
+    switch (*subStepCounter) {
     case 0:
-        ov95_0224BC6C(param0, &(param0->unk_80));
-        (*param1)++;
+        BallOpenState_Start(trPhase, &(trPhase->task1));
+        (*subStepCounter)++;
     case 1:
-        if (param0->unk_80 == NULL) {
-            Sprite_SetAnim(param0->unk_40[1], 2);
-            Sprite_SetDrawFlag(param0->unk_40[1], TRUE);
-            ov95_022479A8(param0->unk_78, 0);
-            param0->unk_08 = 0;
-            (*param1)++;
+        if (trPhase->task1 == NULL) {
+            Sprite_SetAnim(trPhase->sprites[1], 2);
+            Sprite_SetDrawFlag(trPhase->sprites[1], TRUE);
+            Trade3DModel_SetEnabled(trPhase->model, 0);
+            trPhase->timer = 0;
+            (*subStepCounter)++;
         }
         break;
     case 2:
-        if (++(param0->unk_08) > 10) {
-            PokemonSprite_SetAttribute(param0->unk_14, MON_SPRITE_HIDE, 0);
-            ov95_0224BBB0(param0, 16, 0, 12);
-            param0->unk_04++;
+        if (++(trPhase->timer) > 10) {
+            PokemonSprite_SetAttribute(trPhase->pokemonSprite, MON_SPRITE_HIDE, 0);
+            BrightnessAnimState_Start(trPhase, 16, 0, 12);
+            trPhase->subStepCounter++;
         }
         break;
     case 3:
-        if (ov95_0224BC00(param0)) {
-            const BoxPokemon *v0 = TradeSequence_GetReceivingPokemon(param0->unk_00);
+        if (TradeReceivePhase_IsBrightnessAnimDone(trPhase)) {
+            const BoxPokemon *boxMon = TradeSequence_GetReceivingPokemon(trPhase->sequenceData);
 
-            if (BoxPokemon_GetValue((BoxPokemon *)v0, MON_DATA_IS_EGG, NULL) == 0) {
+            if (BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL) == 0) {
                 u8 delay;
 
-                PokemonSprite_LoadCryDelay(param0->unk_84, &delay, ov95_02247660(param0->unk_00), 1);
-                Sound_PlayDelayedPokemonCry(ov95_02247660(param0->unk_00), delay, ov95_02247668(param0->unk_00));
-                PokemonSprite_InitAnim(param0->unk_14, 1);
+                PokemonSprite_LoadCryDelay(trPhase->pokeDataNarc, &delay, TradeSequence_GetReceivingSpecies(trPhase->sequenceData), 1);
+                Sound_PlayDelayedPokemonCry(TradeSequence_GetReceivingSpecies(trPhase->sequenceData), delay, TradeSequence_GetReceivingForm(trPhase->sequenceData));
+                PokemonSprite_InitAnim(trPhase->pokemonSprite, 1);
             }
 
-            param0->unk_08 = 0;
-            (*param1)++;
+            trPhase->timer = 0;
+            (*subStepCounter)++;
         }
         break;
     case 4:
-        if (++(param0->unk_08) > 30) {
+        if (++(trPhase->timer) > 30) {
             return 1;
         }
     }
@@ -377,65 +369,65 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     return 0;
 }
 
-static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
+static int TradeReceivePhase_ShowMessage(TradeReceivePhase *trPhase, int *subStepCounter)
 {
-    switch (*param1) {
+    switch (*subStepCounter) {
     case 0:
-        param0->unk_08 = 0;
-        (*param1)++;
+        trPhase->timer = 0;
+        (*subStepCounter)++;
         break;
     case 1:
-        if (++(param0->unk_08) > 10) {
-            MessageLoader *v0 = ov95_02247630(param0->unk_00);
-            StringTemplate *v1 = ov95_0224762C(param0->unk_00);
-            int v2, v3;
+        if (++(trPhase->timer) > 10) {
+            MessageLoader *msgLoader = TradeSequence_GetMsgLoader(trPhase->sequenceData);
+            StringTemplate *strTemplate = TradeSequence_GetStrTemplate(trPhase->sequenceData);
+            int msgId, nextStep;
 
-            if (TradeSequence_GetTradeType(param0->unk_00) == TRADE_TYPE_NORMAL) {
-                v2 = pl_msg_00000350_00002;
-                v3 = 2;
+            if (TradeSequence_GetTradeType(trPhase->sequenceData) == TRADE_TYPE_NORMAL) {
+                msgId = pl_msg_00000350_00002;
+                nextStep = 2;
             } else {
-                v2 = pl_msg_00000350_00005;
-                v3 = 3;
+                msgId = pl_msg_00000350_00005;
+                nextStep = 3;
             }
 
-            MessageLoader_GetString(v0, v2, param0->unk_6C);
-            StringTemplate_Format(v1, param0->unk_70, param0->unk_6C);
-            Text_AddPrinterWithParams(&(param0->unk_5C), FONT_MESSAGE, param0->unk_70, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+            MessageLoader_GetString(msgLoader, msgId, trPhase->string0);
+            StringTemplate_Format(strTemplate, trPhase->string1, trPhase->string0);
+            Text_AddPrinterWithParams(&(trPhase->window), FONT_MESSAGE, trPhase->string1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
-            Window_DrawMessageBox(&(param0->unk_5C), 109, 2);
-            Window_CopyToVRAM(&(param0->unk_5C));
+            Window_DrawMessageBox(&(trPhase->window), 109, 2);
+            Window_CopyToVRAM(&(trPhase->window));
             Sound_PlayFanfare(SEQ_FANFA5);
 
-            param0->unk_08 = 0;
-            param0->unk_0C = 1;
-            (*param1) = v3;
+            trPhase->timer = 0;
+            trPhase->fanfarePlaying = 1;
+            (*subStepCounter) = nextStep;
         }
         break;
     case 2:
-        if (ov95_0224B990(param0, 60)) {
-            MessageLoader *v4 = ov95_02247630(param0->unk_00);
-            StringTemplate *v5 = ov95_0224762C(param0->unk_00);
+        if (TradeReceivePhase_IsTimerAndFanfareDone(trPhase, 60)) {
+            MessageLoader *msgLoader = TradeSequence_GetMsgLoader(trPhase->sequenceData);
+            StringTemplate *strTemplate = TradeSequence_GetStrTemplate(trPhase->sequenceData);
 
-            MessageLoader_GetString(v4, pl_msg_00000350_00003, param0->unk_6C);
-            StringTemplate_Format(v5, param0->unk_70, param0->unk_6C);
-            Window_FillTilemap(&(param0->unk_5C), 0xf);
-            Text_AddPrinterWithParams(&(param0->unk_5C), FONT_MESSAGE, param0->unk_70, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-            Window_LoadTiles(&(param0->unk_5C));
-            param0->unk_08 = 0;
-            (*param1)++;
+            MessageLoader_GetString(msgLoader, pl_msg_00000350_00003, trPhase->string0);
+            StringTemplate_Format(strTemplate, trPhase->string1, trPhase->string0);
+            Window_FillTilemap(&(trPhase->window), 0xf);
+            Text_AddPrinterWithParams(&(trPhase->window), FONT_MESSAGE, trPhase->string1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+            Window_LoadTiles(&(trPhase->window));
+            trPhase->timer = 0;
+            (*subStepCounter)++;
         }
         break;
     case 3:
-        if (ov95_0224B990(param0, 60)) {
-            Window_EraseMessageBox(&(param0->unk_5C), 0);
-            param0->unk_08 = 0;
-            (*param1)++;
+        if (TradeReceivePhase_IsTimerAndFanfareDone(trPhase, 60)) {
+            Window_EraseMessageBox(&(trPhase->window), 0);
+            trPhase->timer = 0;
+            (*subStepCounter)++;
         }
         break;
     case 4:
-        if (++(param0->unk_08) > 10) {
+        if (++(trPhase->timer) > 10) {
             StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_58);
-            (*param1)++;
+            (*subStepCounter)++;
         }
         break;
     case 5:
@@ -448,24 +440,24 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     return 0;
 }
 
-static BOOL ov95_0224B990(UnkStruct_ov95_0224B4D4 *param0, int param1)
+static BOOL TradeReceivePhase_IsTimerAndFanfareDone(TradeReceivePhase *trPhase, int timerTarget)
 {
-    if (param0->unk_0C) {
-        param0->unk_0C = Sound_IsBGMPausedByFanfare();
+    if (trPhase->fanfarePlaying) {
+        trPhase->fanfarePlaying = Sound_IsBGMPausedByFanfare();
     }
 
-    if (param0->unk_08 < param1) {
-        param0->unk_08++;
-        return 0;
+    if (trPhase->timer < timerTarget) {
+        trPhase->timer++;
+        return FALSE;
     }
 
-    return param0->unk_0C == 0;
+    return trPhase->fanfarePlaying == 0;
 }
 
-static void ov95_0224B9C0(UnkStruct_ov95_0224B4D4 *param0)
+static void TradeReceivePhase_Init3DScene(TradeReceivePhase *trPhase)
 {
-    NNSGfdTexKey v0;
-    NNSGfdPlttKey v1;
+    NNSGfdTexKey texKey;
+    NNSGfdPlttKey plttKey;
 
     NNS_G3dInit();
 
@@ -482,237 +474,232 @@ static void ov95_0224B9C0(UnkStruct_ov95_0224B4D4 *param0)
     NNS_GfdInitFrmTexVramManager(1, 1);
     NNS_GfdInitFrmPlttVramManager(0x4000, 1);
 
-    v0 = NNS_GfdAllocTexVram(0x4000, 0, 0);
-    v1 = NNS_GfdAllocPlttVram(0x80, 0, NNS_GFD_ALLOC_FROM_LOW);
+    texKey = NNS_GfdAllocTexVram(0x4000, 0, 0);
+    plttKey = NNS_GfdAllocPlttVram(0x80, 0, NNS_GFD_ALLOC_FROM_LOW);
 
-    PokemonSpriteManager_SetCharBaseAddrAndSize(param0->unk_10, NNS_GfdGetTexKeyAddr(v0), NNS_GfdGetTexKeySize(v0));
-    PokemonSpriteManager_SetPlttBaseAddrAndSize(param0->unk_10, NNS_GfdGetPlttKeyAddr(v1), NNS_GfdGetPlttKeySize(v1));
+    PokemonSpriteManager_SetCharBaseAddrAndSize(trPhase->spriteManager, NNS_GfdGetTexKeyAddr(texKey), NNS_GfdGetTexKeySize(texKey));
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(trPhase->spriteManager, NNS_GfdGetPlttKeyAddr(plttKey), NNS_GfdGetPlttKeySize(plttKey));
 }
 
-static PokemonSprite *ov95_0224BA8C(UnkStruct_ov95_0224B4D4 *param0)
+static PokemonSprite *TradeReceivePhase_CreatePokemonSprite(TradeReceivePhase *trPhase)
 {
-    PokemonSpriteTemplate v0;
-    BoxPokemon *v1;
-    int v2;
+    PokemonSpriteTemplate template;
+    BoxPokemon *boxMon;
+    int y;
 
-    v1 = (BoxPokemon *)TradeSequence_GetReceivingPokemon(param0->unk_00);
+    boxMon = (BoxPokemon *)TradeSequence_GetReceivingPokemon(trPhase->sequenceData);
 
-    BoxPokemon_BuildSpriteTemplate(&v0, v1, 2, 0);
-    PokemonSprite_LoadAnimFrames(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);
+    BoxPokemon_BuildSpriteTemplate(&template, boxMon, 2, 0);
+    PokemonSprite_LoadAnimFrames(trPhase->pokeDataNarc, trPhase->animFrames, TradeSequence_GetReceivingSpecies(trPhase->sequenceData), 1);
 
-    v2 = (100 - 20) + BoxPokemon_SpriteYOffset(v1, 2, 0);
-    return PokemonSpriteManager_CreateSprite(param0->unk_10, &v0, 128, v2, 0, 0, param0->unk_18, NULL);
+    y = (100 - 20) + BoxPokemon_SpriteYOffset(boxMon, 2, 0);
+    return PokemonSpriteManager_CreateSprite(trPhase->spriteManager, &template, 128, y, 0, 0, trPhase->animFrames, NULL);
 }
 
-static void ov95_0224BAE8(UnkStruct_ov95_0224B4D4 *param0)
+static void TradeReceivePhase_CreateBallSprites(TradeReceivePhase *trPhase)
 {
-    NNSG2dImagePaletteProxy v0;
-    NNSG2dImageProxy v1;
-    SpriteResourcesHeader v2;
+    NNSG2dImagePaletteProxy plttProxy;
+    NNSG2dImageProxy imgProxy;
+    SpriteResourcesHeader header;
 
-    ov95_02247568(&param0->unk_48, 93, 7, 8);
+    SpriteAnimResources_Load(&trPhase->animResources, 93, 7, 8);
 
-    NNS_G2dInitImagePaletteProxy(&v0);
-    NNS_G2dInitImageProxy(&v1);
+    NNS_G2dInitImagePaletteProxy(&plttProxy);
+    NNS_G2dInitImageProxy(&imgProxy);
 
-    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
+    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &imgProxy);
+    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &plttProxy);
 
-    ov95_022475C4(&v2, &param0->unk_48, &v1, &v0, 2);
+    SpriteResourcesHeader_InitFromAnimResources(&header, &trPhase->animResources, &imgProxy, &plttProxy, 2);
 
-    param0->unk_40[0] = ov95_022475E4(param0->unk_00, &v2, 128, 100, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
-    param0->unk_40[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
+    trPhase->sprites[0] = TradeSequence_AddSprite(trPhase->sequenceData, &header, 128, 100, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
+    trPhase->sprites[1] = TradeSequence_AddSprite(trPhase->sequenceData, &header, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    Sprite_SetExplicitPriority(param0->unk_40[1], 1);
-    Sprite_SetDrawFlag(param0->unk_40[0], FALSE);
-    Sprite_SetDrawFlag(param0->unk_40[1], FALSE);
+    Sprite_SetExplicitPriority(trPhase->sprites[1], 1);
+    Sprite_SetDrawFlag(trPhase->sprites[0], FALSE);
+    Sprite_SetDrawFlag(trPhase->sprites[1], FALSE);
 }
 
-static void ov95_0224BB8C(UnkStruct_ov95_0224B4D4 *param0)
+static void TradeReceivePhase_DeleteBallSprites(TradeReceivePhase *trPhase)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 2; v0++) {
-        if (param0->unk_40[v0]) {
-            Sprite_Delete(param0->unk_40[v0]);
+    for (int i = 0; i < 2; i++) {
+        if (trPhase->sprites[i]) {
+            Sprite_Delete(trPhase->sprites[i]);
         }
     }
 
-    ov95_022475A0(&param0->unk_48);
+    SpriteAnimResources_Free(&trPhase->animResources);
 }
 
-static void ov95_0224BBB0(UnkStruct_ov95_0224B4D4 *param0, int param1, int param2, int param3)
+static void BrightnessAnimState_Start(TradeReceivePhase *trPhase, int startValue, int targetValue, int duration)
 {
-    UnkStruct_ov95_0224BBB0 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224BBB0));
+    BrightnessAnimState *baState = Heap_Alloc(HEAP_ID_58, sizeof(BrightnessAnimState));
 
-    if (v0) {
-        v0->unk_00 = param0;
-        v0->unk_04 = param1 << 12;
-        v0->unk_08 = param2 << 12;
-        v0->unk_0C = (v0->unk_08 - v0->unk_04) / param3;
-        v0->unk_10 = param3;
-        param0->unk_7C = SysTask_ExecuteOnVBlank(ov95_0224BC30, v0, 0);
+    if (baState) {
+        baState->phase = trPhase;
+        baState->currentValue = startValue << 12;
+        baState->targetValue = targetValue << 12;
+        baState->step = (baState->targetValue - baState->currentValue) / duration;
+        baState->framesRemaining = duration;
+        trPhase->task0 = SysTask_ExecuteOnVBlank(BrightnessAnimState_Task, baState, 0);
 
-        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, param1);
+        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, startValue);
     }
 }
 
-static BOOL ov95_0224BC00(UnkStruct_ov95_0224B4D4 *param0)
+static BOOL TradeReceivePhase_IsBrightnessAnimDone(TradeReceivePhase *trPhase)
 {
-    return param0->unk_7C == NULL;
+    return trPhase->task0 == NULL;
 }
 
-static void ov95_0224BC10(UnkStruct_ov95_0224B4D4 *param0)
+static void TradeReceivePhase_FreeBrightnessAnimState(TradeReceivePhase *trPhase)
 {
-    if (param0->unk_7C) {
-        ov95_022476C8(SysTask_GetParam(param0->unk_7C));
-        SysTask_Done(param0->unk_7C);
-        param0->unk_7C = NULL;
+    if (trPhase->task0) {
+        DeferredFree_Enqueue(SysTask_GetParam(trPhase->task0));
+        SysTask_Done(trPhase->task0);
+        trPhase->task0 = NULL;
     }
 }
 
-static void ov95_0224BC30(SysTask *param0, void *param1)
+static void BrightnessAnimState_Task(SysTask *unused, void *param)
 {
-    UnkStruct_ov95_0224BBB0 *v0 = param1;
-    int v1;
+    BrightnessAnimState *baState = param;
+    int brightness;
 
-    if (--(v0->unk_10) > 0) {
-        v0->unk_04 += v0->unk_0C;
-        v1 = v0->unk_04 >> 12;
-        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, v1);
+    if (--(baState->framesRemaining) > 0) {
+        baState->currentValue += baState->step;
+        brightness = baState->currentValue >> 12;
+        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, brightness);
     } else {
-        v1 = v0->unk_08 >> 12;
-        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, v1);
-        ov95_0224BC10(v0->unk_00);
+        brightness = baState->targetValue >> 12;
+        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, brightness);
+        TradeReceivePhase_FreeBrightnessAnimState(baState->phase);
     }
 }
 
-static void ov95_0224BC6C(UnkStruct_ov95_0224B4D4 *param0, SysTask **param1)
+static void BallOpenState_Start(TradeReceivePhase *trPhase, SysTask **task)
 {
-    UnkStruct_ov95_0224BC6C *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224BC6C));
+    BallOpenState *boState = Heap_Alloc(HEAP_ID_58, sizeof(BallOpenState));
 
-    if (v0) {
-        v0->unk_04 = 0;
-        v0->unk_00 = param1;
-        v0->unk_10 = param0->unk_74;
-        v0->unk_14 = param0->unk_78;
-        v0->unk_08 = param0;
-        v0->unk_18 = 0;
-        v0->unk_1C = (31 << 12) / UnkEnum_ov95_0224BC6C_01;
-        v0->unk_20 = UnkEnum_ov95_0224BC6C_01;
-        v0->unk_3A = UnkEnum_ov95_0224BC6C_00;
-        v0->unk_40 = 0;
+    if (boState) {
+        boState->subState = 0;
+        boState->taskHandle = task;
+        boState->scene = trPhase->scene;
+        boState->model = trPhase->model;
+        boState->phase = trPhase;
+        boState->currentAlpha = 0;
+        boState->alphaStep = (31 << 12) / BALL_FADE_IN_DURATION;
+        boState->alphaFrames = BALL_FADE_IN_DURATION;
+        boState->rotationSpeed = BALL_INITIAL_ROTATION_SPEED;
+        boState->rotationTransitionFrames = 0;
 
-        ov95_022479AC(v0->unk_14, 0);
-        ov95_022479A8(v0->unk_14, 1);
-        ov95_02247958(v0->unk_14, &(v0->unk_24));
-        ov95_02247978(v0->unk_14, &(v0->unk_34));
+        Trade3DModel_SetAlpha(boState->model, 0);
+        Trade3DModel_SetEnabled(boState->model, 1);
+        Trade3DModel_GetPosition(boState->model, &(boState->position));
+        Trade3DModel_GetRotation(boState->model, &(boState->rotation));
 
-        *param1 = SysTask_Start(ov95_0224BD5C, v0, 0);
+        *task = SysTask_Start(BallOpenState_Task, boState, 0);
 
-        if (*param1 == NULL) {
-            Heap_Free(v0);
+        if (*task == NULL) {
+            Heap_Free(boState);
         }
     } else {
-        *param1 = NULL;
+        *task = NULL;
     }
 }
 
-static void ov95_0224BCE8(SysTask *param0)
+static void BallOpenState_Free(SysTask *task)
 {
-    if (param0) {
-        UnkStruct_ov95_0224BC6C *v0 = SysTask_GetParam(param0);
+    if (task) {
+        BallOpenState *boState = SysTask_GetParam(task);
 
-        *(v0->unk_00) = NULL;
-        Heap_Free(v0);
-        SysTask_Done(param0);
+        *(boState->taskHandle) = NULL;
+        Heap_Free(boState);
+        SysTask_Done(task);
     }
 }
 
-static void ov95_0224BD04(void *param0)
+static void BallOpenState_UpdateRotation(BallOpenState *boState)
 {
-    UnkStruct_ov95_0224BC6C *v0 = param0;
 
-    if (v0->unk_40) {
-        v0->unk_3A += v0->unk_3C;
+    if (boState->rotationTransitionFrames) {
+        boState->rotationSpeed += boState->rotationSpeedStep;
 
-        if (--(v0->unk_40) == 0) {
-            v0->unk_3A = v0->unk_3E;
+        if (--(boState->rotationTransitionFrames) == 0) {
+            boState->rotationSpeed = boState->targetRotationSpeed;
         }
     }
 
-    v0->unk_34.y += v0->unk_3A;
-    ov95_02247990(v0->unk_14, &(v0->unk_34));
+    boState->rotation.y += boState->rotationSpeed;
+    Trade3DModel_SetRotation(boState->model, &(boState->rotation));
 }
 
-static void ov95_0224BD40(void *param0, fx32 param1, int param2)
+static void BallOpenState_SetRotationTarget(BallOpenState *boState, fx32 targetSpeed, int duration)
 {
-    if (param2) {
-        UnkStruct_ov95_0224BC6C *v0 = param0;
-
-        v0->unk_3C = (param1 - v0->unk_3A) / param2;
-        v0->unk_40 = param2;
+    if (duration) {
+        boState->rotationSpeedStep = (targetSpeed - boState->rotationSpeed) / duration;
+        boState->rotationTransitionFrames = duration;
     }
 }
 
-static void ov95_0224BD5C(SysTask *param0, void *param1)
+static void BallOpenState_Task(SysTask *task, void *param)
 {
-    UnkStruct_ov95_0224BC6C *v0 = param1;
+    BallOpenState *boState = param;
 
-    ov95_0224BD04(v0);
+    BallOpenState_UpdateRotation(boState);
 
-    switch (v0->unk_04) {
+    switch (boState->subState) {
     case 0:
-        if (v0->unk_20) {
-            v0->unk_18 += v0->unk_1C;
-            v0->unk_20--;
-            ov95_022479AC(v0->unk_14, v0->unk_18 >> 12);
+        if (boState->alphaFrames) {
+            boState->currentAlpha += boState->alphaStep;
+            boState->alphaFrames--;
+            Trade3DModel_SetAlpha(boState->model, boState->currentAlpha >> 12);
         } else {
-            ov95_022479AC(v0->unk_14, 31);
-            v0->unk_04++;
+            Trade3DModel_SetAlpha(boState->model, 31);
+            boState->subState++;
         }
         break;
     case 1:
-        ov95_0224BD40(v0, UnkEnum_ov95_0224BD5C_01, 30);
-        v0->unk_0C = 0;
-        v0->unk_04++;
+        BallOpenState_SetRotationTarget(boState, BALL_ROTATION_SPEED, 30);
+        boState->timer = 0;
+        boState->subState++;
         break;
     case 2:
-        if (++(v0->unk_0C) > 10) {
-            v0->unk_30 = 0;
-            v0->unk_04++;
+        if (++(boState->timer) > 10) {
+            boState->velocityY = 0;
+            boState->subState++;
         }
         break;
     case 3:
-        v0->unk_24.y += v0->unk_30;
-        v0->unk_30 += UnkEnum_ov95_0224BD5C_00;
+        boState->position.y += boState->velocityY;
+        boState->velocityY += BALL_GRAVITY;
 
-        ov95_02247968(v0->unk_14, &(v0->unk_24));
+        Trade3DModel_SetPosition(boState->model, &(boState->position));
 
-        if (v0->unk_24.y < UnkEnum_ov95_0224BD5C_02) {
+        if (boState->position.y < BALL_FLOOR_Y) {
             Sound_PlayEffect(SEQ_SE_DP_KON);
-            v0->unk_30 *= -1;
+            boState->velocityY *= -1;
 
-            ov95_0224BBB0(v0->unk_08, 0, 16, 8);
-            v0->unk_04++;
+            BrightnessAnimState_Start(boState->phase, 0, 16, 8);
+            boState->subState++;
         }
         break;
     case 4:
-        v0->unk_24.y += v0->unk_30;
+        boState->position.y += boState->velocityY;
 
-        if (v0->unk_24.y >= UnkEnum_ov95_0224B520_00) {
-            v0->unk_24.y = UnkEnum_ov95_0224B520_00;
+        if (boState->position.y >= BALL_REST_Y) {
+            boState->position.y = BALL_REST_Y;
         }
 
-        ov95_02247968(v0->unk_14, &(v0->unk_24));
+        Trade3DModel_SetPosition(boState->model, &(boState->position));
 
-        if (v0->unk_24.y == UnkEnum_ov95_0224B520_00) {
-            v0->unk_04++;
+        if (boState->position.y == BALL_REST_Y) {
+            boState->subState++;
         }
         break;
     case 5:
-        if (ov95_0224BC00(v0->unk_08)) {
-            ov95_0224BCE8(param0);
+        if (TradeReceivePhase_IsBrightnessAnimDone(boState->phase)) {
+            BallOpenState_Free(task);
         }
     }
 }

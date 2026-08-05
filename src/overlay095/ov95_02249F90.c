@@ -16,108 +16,104 @@
 #include "sys_task_manager.h"
 
 enum {
-    UnkEnum_ov95_0224A020_00 = 0x50,
-    UnkEnum_ov95_0224A020_01 = -0x30,
-    UnkEnum_ov95_0224A020_02 = -0x180,
-    UnkEnum_ov95_0224A020_03 = -0x30,
-    UnkEnum_ov95_0224A020_04 = 0x3C
+    BG2_SCROLL_START = 80,
+    BG2_SCROLL_END = -48,
+    BG1_SCROLL_START = -384,
+    BG1_SCROLL_END = -48,
+    SCROLL_DURATION = 60
 };
 
-typedef struct {
-    TradeSequenceData *unk_00;
-    int unk_04;
-    int unk_08;
-    BgConfig *unk_0C;
-    fx32 unk_10;
-    fx32 unk_14;
-    fx32 unk_18;
-    fx32 unk_1C;
-    BOOL unk_20;
-} UnkStruct_ov95_02249FF8;
+typedef struct TradeWormholePhase {
+    TradeSequenceData *sequenceData;
+    int subStepCounter;
+    int framesRemaining;
+    BgConfig *bgConfig;
+    fx32 bg1Scroll;
+    fx32 bg2Scroll;
+    fx32 bg1ScrollStep;
+    fx32 bg2ScrollStep;
+    BOOL scrollDone;
+} TradeWormholePhase;
 
-static int ov95_02249FF8(UnkStruct_ov95_02249FF8 *param0, int *param1);
-static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1);
-static void ov95_0224A0C4(SysTask *param0, void *param1);
-static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0);
-static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0);
-static void ov95_0224A358(BgConfig *param0, int param1, int param2);
+static int TradeWormholePhase_Setup(TradeWormholePhase *twPhase, int *unused);
+static int TradeWormholePhase_Animate(TradeWormholePhase *twPhase, int *subStepCounter);
+static void TradeWormholePhase_ScrollTask(SysTask *task, void *param);
+static void TradeWormholePhase_InitGraphics(TradeWormholePhase *twPhase);
+static void TradeWormholePhase_FreeGraphics(TradeWormholePhase *twPhase);
+static void TradeWormholePhase_SetBgScroll(BgConfig *bgConfig, int bg1Scroll, int bg2Scroll);
 
-void *ov95_02249F90(TradeSequenceData *param0)
+void *TradeWormholePhase_New(TradeSequenceData *sequenceData)
 {
-    UnkStruct_ov95_02249FF8 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_02249FF8));
+    TradeWormholePhase *twPhase = Heap_Alloc(HEAP_ID_58, sizeof(TradeWormholePhase));
 
-    if (v0) {
-        int v1;
-
-        v0->unk_00 = param0;
-        v0->unk_04 = 0;
-        v0->unk_0C = ov95_02247628(param0);
+    if (twPhase) {
+        twPhase->sequenceData = sequenceData;
+        twPhase->subStepCounter = 0;
+        twPhase->bgConfig = TradeSequence_GetBgConfig(sequenceData);
     }
 
-    return v0;
+    return twPhase;
 }
 
-void ov95_02249FB4(void *param0)
+void TradeWormholePhase_Free(void *param)
 {
-    UnkStruct_ov95_02249FF8 *v0 = param0;
+    TradeWormholePhase *twPhase = param;
 
-    if (v0) {
-        int v1;
-
-        ov95_0224A320(v0);
-        Heap_Free(v0);
+    if (twPhase) {
+        TradeWormholePhase_FreeGraphics(twPhase);
+        Heap_Free(twPhase);
     }
 }
 
-BOOL ov95_02249FC8(void *param0, int *param1)
+BOOL TradeWormholePhase_Run(void *param, int *state)
 {
-    static int (*const v0[])(UnkStruct_ov95_02249FF8 *, int *) = {
-        ov95_02249FF8,
-        ov95_0224A020
+    static int (*const sStepFuncs[])(TradeWormholePhase *, int *) = {
+        TradeWormholePhase_Setup,
+        TradeWormholePhase_Animate
     };
 
-    UnkStruct_ov95_02249FF8 *v1 = param0;
+    TradeWormholePhase *twPhase = param;
 
-    if ((*param1) < NELEMS(v0)) {
-        if (v0[*param1](v1, &(v1->unk_04))) {
-            (*param1)++;
-            v1->unk_04 = 0;
+    if ((*state) < NELEMS(sStepFuncs)) {
+        if (sStepFuncs[*state](twPhase, &(twPhase->subStepCounter))) {
+            (*state)++;
+            twPhase->subStepCounter = 0;
         }
 
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static int ov95_02249FF8(UnkStruct_ov95_02249FF8 *param0, int *param1)
+static int TradeWormholePhase_Setup(TradeWormholePhase *twPhase, int *unused)
 {
-    ov95_0224A10C(param0);
+    TradeWormholePhase_InitGraphics(twPhase);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
 
     return 1;
 }
 
-static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
+static int TradeWormholePhase_Animate(TradeWormholePhase *twPhase, int *subStepCounter)
 {
-    switch (*param1) {
+    switch (*subStepCounter) {
     case 0:
         if (IsScreenFadeDone()) {
-            param0->unk_10 = UnkEnum_ov95_0224A020_02 << 12;
-            param0->unk_14 = UnkEnum_ov95_0224A020_00 << 12;
-            param0->unk_18 = ((UnkEnum_ov95_0224A020_03 - UnkEnum_ov95_0224A020_02) << 12) / UnkEnum_ov95_0224A020_04;
-            param0->unk_1C = ((UnkEnum_ov95_0224A020_01 - UnkEnum_ov95_0224A020_00) << 12) / UnkEnum_ov95_0224A020_04;
-            param0->unk_08 = UnkEnum_ov95_0224A020_04;
-            param0->unk_20 = 0;
-            SysTask_ExecuteOnVBlank(ov95_0224A0C4, param0, 0);
-            (*param1)++;
+            twPhase->bg1Scroll = BG1_SCROLL_START << 12;
+            twPhase->bg2Scroll = BG2_SCROLL_START << 12;
+            twPhase->bg1ScrollStep = ((BG1_SCROLL_END - BG1_SCROLL_START) << 12) / SCROLL_DURATION;
+            twPhase->bg2ScrollStep = ((BG2_SCROLL_END - BG2_SCROLL_START) << 12) / SCROLL_DURATION;
+            twPhase->framesRemaining = SCROLL_DURATION;
+            twPhase->scrollDone = 0;
+            SysTask_ExecuteOnVBlank(TradeWormholePhase_ScrollTask, twPhase, 0);
+            (*subStepCounter)++;
         }
         break;
     case 1:
-        if (param0->unk_20) {
+        if (twPhase->scrollDone) {
             Sound_PlayEffect(SEQ_SE_DP_KOUKAN03);
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_58);
-            (*param1)++;
+            (*subStepCounter)++;
         }
         break;
     case 2:
@@ -130,26 +126,26 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
     return 0;
 }
 
-static void ov95_0224A0C4(SysTask *param0, void *param1)
+static void TradeWormholePhase_ScrollTask(SysTask *task, void *param)
 {
-    UnkStruct_ov95_02249FF8 *v0 = param1;
+    TradeWormholePhase *twPhase = param;
 
-    if (v0->unk_08) {
-        v0->unk_08--;
-        v0->unk_10 += v0->unk_18;
-        v0->unk_14 += v0->unk_1C;
+    if (twPhase->framesRemaining) {
+        twPhase->framesRemaining--;
+        twPhase->bg1Scroll += twPhase->bg1ScrollStep;
+        twPhase->bg2Scroll += twPhase->bg2ScrollStep;
 
-        ov95_0224A358(v0->unk_0C, v0->unk_10 >> 12, v0->unk_14 >> 12);
+        TradeWormholePhase_SetBgScroll(twPhase->bgConfig, twPhase->bg1Scroll >> 12, twPhase->bg2Scroll >> 12);
     } else {
-        ov95_0224A358(v0->unk_0C, UnkEnum_ov95_0224A020_03, UnkEnum_ov95_0224A020_01);
-        v0->unk_20 = 1;
-        SysTask_Done(param0);
+        TradeWormholePhase_SetBgScroll(twPhase->bgConfig, BG1_SCROLL_END, BG2_SCROLL_END);
+        twPhase->scrollDone = 1;
+        SysTask_Done(task);
     }
 }
 
-static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
+static void TradeWormholePhase_InitGraphics(TradeWormholePhase *twPhase)
 {
-    static const GXBanks v0 = {
+    static const GXBanks banks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_23_G,
         GX_VRAM_SUB_BG_128_C,
@@ -161,13 +157,13 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_0123_E
     };
-    static const GraphicsModes v1 = {
+    static const GraphicsModes modes = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_3D
     };
-    static const BgTemplate v2 = {
+    static const BgTemplate bgTemplate1 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x1000,
@@ -181,7 +177,7 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
         .areaOver = 1,
         .mosaic = FALSE,
     };
-    static const BgTemplate v3 = {
+    static const BgTemplate bgTemplate2 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x1000,
@@ -195,7 +191,7 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
         .areaOver = 1,
         .mosaic = FALSE,
     };
-    static const BgTemplate v4 = {
+    static const BgTemplate bgTemplate3 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x0,
@@ -210,66 +206,66 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
         .mosaic = FALSE,
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
-    SetAllGraphicsModes(&v1);
+    SetAllGraphicsModes(&modes);
 
-    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_1, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v3, 0);
-    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v4, 0);
-    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_3, &v4, 0);
+    Bg_InitFromTemplate(twPhase->bgConfig, BG_LAYER_MAIN_1, &bgTemplate1, 0);
+    Bg_InitFromTemplate(twPhase->bgConfig, BG_LAYER_SUB_1, &bgTemplate1, 0);
+    Bg_InitFromTemplate(twPhase->bgConfig, BG_LAYER_MAIN_2, &bgTemplate2, 0);
+    Bg_InitFromTemplate(twPhase->bgConfig, BG_LAYER_MAIN_3, &bgTemplate3, 0);
+    Bg_InitFromTemplate(twPhase->bgConfig, BG_LAYER_SUB_3, &bgTemplate3, 0);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, twPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, twPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, twPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, twPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 20, 0, 0, 0x20, HEAP_ID_58);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 20, 4, 0, 0x20, HEAP_ID_58);
 
-    Bg_FillTilesRange(param0->unk_0C, 1, 0x0, 1, 200);
-    Bg_FillTilesRange(param0->unk_0C, 5, 0x0, 1, 200);
-    Bg_FillTilesRange(param0->unk_0C, 2, 0x0, 1, 200);
+    Bg_FillTilesRange(twPhase->bgConfig, 1, 0x0, 1, 200);
+    Bg_FillTilesRange(twPhase->bgConfig, 5, 0x0, 1, 200);
+    Bg_FillTilesRange(twPhase->bgConfig, 2, 0x0, 1, 200);
 
-    ov95_022473E8(param0->unk_00, 0, 1, 14, 0);
-    ov95_022473E8(param0->unk_00, 0, 5, 14, 0);
-    ov95_022473E8(param0->unk_00, 1, 2, 15, 0);
+    TradeSequence_LoadPokemonBGTiles(twPhase->sequenceData, 0, 1, 14, 0);
+    TradeSequence_LoadPokemonBGTiles(twPhase->sequenceData, 0, 5, 14, 0);
+    TradeSequence_LoadPokemonBGTiles(twPhase->sequenceData, 1, 2, 15, 0);
 
-    Bg_FillTilemapRect(param0->unk_0C, 1, 200, 0, 0, 32, 64, 0);
-    Bg_FillTilemapRect(param0->unk_0C, 5, 200, 0, 0, 32, 64, 0);
-    Bg_FillTilemapRect(param0->unk_0C, 2, 200, 0, 0, 32, 64, 0);
+    Bg_FillTilemapRect(twPhase->bgConfig, 1, 200, 0, 0, 32, 64, 0);
+    Bg_FillTilemapRect(twPhase->bgConfig, 5, 200, 0, 0, 32, 64, 0);
+    Bg_FillTilemapRect(twPhase->bgConfig, 2, 200, 0, 0, 32, 64, 0);
 
-    ov95_022474D4(param0->unk_00, 0, 1, 14, 20, 0);
-    ov95_022474D4(param0->unk_00, 0, 5, 14, 20, 0);
-    ov95_022474D4(param0->unk_00, 1, 2, 15, 2, 0);
+    TradeSequence_LoadPokemonPlatform(twPhase->sequenceData, 0, 1, 14, 20, 0);
+    TradeSequence_LoadPokemonPlatform(twPhase->sequenceData, 0, 5, 14, 20, 0);
+    TradeSequence_LoadPokemonPlatform(twPhase->sequenceData, 1, 2, 15, 2, 0);
 
-    Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 1);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 5);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 2);
+    Bg_CopyTilemapBufferToVRAM(twPhase->bgConfig, 1);
+    Bg_CopyTilemapBufferToVRAM(twPhase->bgConfig, 5);
+    Bg_CopyTilemapBufferToVRAM(twPhase->bgConfig, 2);
 
-    ov95_0224A358(param0->unk_0C, UnkEnum_ov95_0224A020_00, UnkEnum_ov95_0224A020_02);
+    TradeWormholePhase_SetBgScroll(twPhase->bgConfig, BG2_SCROLL_START, BG1_SCROLL_START);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0)
+static void TradeWormholePhase_FreeGraphics(TradeWormholePhase *twPhase)
 {
-    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
-    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
-    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_2);
-    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(twPhase->bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(twPhase->bgConfig, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(twPhase->bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(twPhase->bgConfig, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(twPhase->bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(twPhase->bgConfig, BG_LAYER_SUB_1);
 }
 
-static void ov95_0224A358(BgConfig *param0, int param1, int param2)
+static void TradeWormholePhase_SetBgScroll(BgConfig *bgConfig, int bg1Scroll, int bg2Scroll)
 {
-    param2 &= 0x1ff;
-    param1 &= 0x1ff;
+    bg2Scroll &= 0x1ff;
+    bg1Scroll &= 0x1ff;
 
-    Bg_SetOffset(param0, BG_LAYER_MAIN_2, 3, param2);
-    Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, param1);
-    Bg_SetOffset(param0, BG_LAYER_SUB_1, 3, param1 + 192);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, 3, bg2Scroll);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_1, 3, bg1Scroll);
+    Bg_SetOffset(bgConfig, BG_LAYER_SUB_1, 3, bg1Scroll + 192);
 }

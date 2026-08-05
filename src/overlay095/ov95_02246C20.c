@@ -37,118 +37,118 @@
 #include "sys_task_manager.h"
 #include "system.h"
 
-struct UnkStruct_ov95_02247004_t {
-    u16 unk_00[96];
-    SysTask *unk_C0;
-    SysTask *unk_C4[8];
-    BOOL *unk_E4;
-    BOOL unk_E8;
-    int unk_EC;
-    int unk_F0;
-    int unk_F4;
-    int unk_F8;
-    int unk_FC;
+struct PaletteShimmerEffect_t {
+    u16 paletteBuffer[96];
+    SysTask *vblankTask;
+    SysTask *sparkTasks[8];
+    BOOL *isAlive;
+    BOOL stopping;
+    int dirty;
+    int spawnTimer;
+    int activeSparkCount;
+    int nextSparkSlot;
+    int direction;
 };
 
-typedef struct {
-    UnkStruct_ov95_02247004 *unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-} UnkStruct_ov95_02247170;
+typedef struct PaletteShimmerSpark {
+    PaletteShimmerEffect *shimmerEffect;
+    int paletteIndex;
+    int framesPerStep;
+    int frameCounter;
+    int slotIndex;
+    int direction;
+} PaletteShimmerSpark;
 
-struct UnkStruct_ov95_022472C4_t {
-    BgConfig *unk_00;
-    volatile BOOL *unk_04;
-    fx32 unk_08;
-    fx32 unk_0C;
-    fx32 unk_10;
-    fx32 unk_14;
-    int unk_18;
-    int unk_1C;
-    SysTask *unk_20;
+struct BgScaleAnimation_t {
+    BgConfig *bgConfig;
+    volatile BOOL *done;
+    fx32 currentScale;
+    fx32 targetScale;
+    fx32 rate;
+    fx32 acceleration;
+    int direction;
+    int centerIndex;
+    SysTask *task;
 };
 
-typedef void *(*UnkFuncPtr_ov95_0224BE8C)(TradeSequenceData *);
-typedef BOOL (*UnkFuncPtr_ov95_0224BE8C_1)(void *, int *);
-typedef void (*UnkFuncPtr_ov95_0224BE8C_2)(void *);
+typedef void *(*TradePhaseNewFunc)(TradeSequenceData *);
+typedef BOOL (*TradePhaseOverlayFunc)(void *, int *);
+typedef void (*TradePhaseFreeFunc)(void *);
 
 static BOOL DoesMonSpeciesFlipsSprite(BoxPokemon *boxMon);
-static void ov95_02246F0C(SysTask *param0, void *param1);
-static void ov95_02247060(SysTask *param0, void *param1);
-static void ov95_02247148(UnkStruct_ov95_02247004 *param0, int param1, int param2, int param3);
-static void ov95_02247170(UnkStruct_ov95_02247004 *param0);
-static void ov95_02247224(UnkStruct_ov95_02247004 *param0, int param1);
-static void ov95_02247254(SysTask *param0, void *param1);
-static void ov95_0224732C(SysTask *param0, void *param1);
-static void ov95_022473A0(UnkStruct_ov95_022472C4 *param0);
-static void ov95_02247688(void);
-static void ov95_02247694(void);
+static void TradeSequence_VBlankCallback(SysTask *unused, void *param);
+static void PaletteShimmerEffect_VBlankTask(SysTask *task, void *param);
+static void PaletteShimmerEffect_SetEntry(PaletteShimmerEffect *shimmerEffect, int clearIndex, int setIndex, int color);
+static void PaletteShimmerEffect_SpawnSpark(PaletteShimmerEffect *shimmerEffect);
+static void PaletteShimmerEffect_FreeSpark(PaletteShimmerEffect *shimmerEffect, int slotIdx);
+static void PaletteShimmerEffect_SparkTask(SysTask *unused, void *param);
+static void BgScaleAnimation_Task(SysTask *task, void *param);
+static void BgScaleAnimation_Apply(BgScaleAnimation *bgScaleAnim);
+static void DeferredFree_Init(void);
+static void DeferredFree_Flush(void);
 
 static const struct {
-    UnkFuncPtr_ov95_0224BE8C unk_00;
-    UnkFuncPtr_ov95_0224BE8C_1 unk_04;
-    UnkFuncPtr_ov95_0224BE8C_2 unk_08;
-    int unk_0C;
-} Unk_ov95_0224BE8C[] = {
-    { ov95_02247B6C, ov95_02247C34, ov95_02247BC8, 1 | 2 },
-    { ov95_02248590, ov95_02248650, ov95_022485FC, 1 | 2 },
-    { ov95_02249740, ov95_022497A0, ov95_02249770, 1 | 2 },
-    { ov95_02249F90, ov95_02249FC8, ov95_02249FB4, 1 },
-    { ov95_0224A390, ov95_0224A3FC, ov95_0224A3CC, 1 | 4 },
-    { ov95_0224ABC0, ov95_0224AC2C, ov95_0224ABF4, 1 | 4 },
-    { ov95_0224B3D8, ov95_0224B49C, ov95_0224B438, 1 | 4 },
+    TradePhaseNewFunc New;
+    TradePhaseOverlayFunc Run;
+    TradePhaseFreeFunc Free;
+    int tradeTypeFlags;
+} sTradePhaseTable[] = {
+    { TradeSendPhase_New, TradeSendPhase_Run, TradeSendPhase_Free, 1 | 2 },
+    { TradeTubePhase_New, TradeTubePhase_Run, TradeTubePhase_Free, 1 | 2 },
+    { TradeBallFlybyPhase_New, TradeBallFlybyPhase_Run, TradeBallFlybyPhase_Free, 1 | 2 },
+    { TradeWormholePhase_New, TradeWormholePhase_Run, TradeWormholePhase_Free, 1 },
+    { ReceiveBall_New, ReceiveBall_Run, ReceiveBall_Free, 1 | 4 },
+    { TradePokemonRevealPhase_New, TradePokemonRevealPhase_Run, TradePokemonRevealPhase_Free, 1 | 4 },
+    { TradeReceivePhase_New, TradeReceivePhase_Run, TradeReceivePhase_Free, 1 | 4 },
 };
 
-int TradeSequence_Init(ApplicationManager *appMan, int *param1)
+int TradeSequence_Init(ApplicationManager *appMan, int *unused)
 {
     if (IsScreenFadeDone()) {
-        TradeSequenceData *tradeData;
+        TradeSequenceData *sequenceData;
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_57, 98304);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_58, 98304);
-        ov95_02247688();
+        DeferredFree_Init();
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN, 1);
 
-        tradeData = ApplicationManager_NewData(appMan, sizeof(TradeSequenceData), HEAP_ID_57);
+        sequenceData = ApplicationManager_NewData(appMan, sizeof(TradeSequenceData), HEAP_ID_57);
 
-        if (tradeData) {
-            tradeData->animationConfig = ApplicationManager_Args(appMan);
-            tradeData->unk_04 = 0;
-            tradeData->unk_08 = BgConfig_New(HEAP_ID_57);
-            tradeData->unk_14 = String_Init(400, HEAP_ID_57);
-            tradeData->unk_10 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRADE, HEAP_ID_57);
-            tradeData->unk_0C = StringTemplate_Default(HEAP_ID_57);
+        if (sequenceData) {
+            sequenceData->animationTemplate = ApplicationManager_Args(appMan);
+            sequenceData->currentPhase = 0;
+            sequenceData->bgConfig = BgConfig_New(HEAP_ID_57);
+            sequenceData->strBuffer = String_Init(400, HEAP_ID_57);
+            sequenceData->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRADE, HEAP_ID_57);
+            sequenceData->strTemplate = StringTemplate_Default(HEAP_ID_57);
 
-            switch (tradeData->animationConfig->tradeType) {
+            switch (sequenceData->animationTemplate->tradeType) {
             case TRADE_TYPE_NORMAL:
-                StringTemplate_SetNickname(tradeData->unk_0C, 0, (BoxPokemon *)(tradeData->animationConfig->sendingPokemon));
-                StringTemplate_SetNickname(tradeData->unk_0C, 1, (BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
-                StringTemplate_SetPlayerName(tradeData->unk_0C, 2, tradeData->animationConfig->otherTrainer);
-                tradeData->unk_1AC = DoesMonSpeciesFlipsSprite((BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
+                StringTemplate_SetNickname(sequenceData->strTemplate, 0, (BoxPokemon *)(sequenceData->animationTemplate->sendingPokemon));
+                StringTemplate_SetNickname(sequenceData->strTemplate, 1, (BoxPokemon *)(sequenceData->animationTemplate->receivingPokemon));
+                StringTemplate_SetPlayerName(sequenceData->strTemplate, 2, sequenceData->animationTemplate->otherTrainer);
+                sequenceData->flipSprite = DoesMonSpeciesFlipsSprite((BoxPokemon *)(sequenceData->animationTemplate->receivingPokemon));
                 break;
             case TRADE_TYPE_SEND_ONLY:
-                StringTemplate_SetNickname(tradeData->unk_0C, 0, (BoxPokemon *)(tradeData->animationConfig->sendingPokemon));
+                StringTemplate_SetNickname(sequenceData->strTemplate, 0, (BoxPokemon *)(sequenceData->animationTemplate->sendingPokemon));
                 break;
             case TRADE_TYPE_RECEIVE_ONLY:
-                StringTemplate_SetNickname(tradeData->unk_0C, 1, (BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
-                tradeData->unk_1AC = DoesMonSpeciesFlipsSprite((BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
+                StringTemplate_SetNickname(sequenceData->strTemplate, 1, (BoxPokemon *)(sequenceData->animationTemplate->receivingPokemon));
+                sequenceData->flipSprite = DoesMonSpeciesFlipsSprite((BoxPokemon *)(sequenceData->animationTemplate->receivingPokemon));
                 break;
             }
 
             NNS_G2dInitOamManagerModule();
 
             RenderOam_Init(0, 128, 0, 32, 1, 127, 0, 32, 57);
-            tradeData->unk_18 = SpriteList_InitRendering(64, &tradeData->unk_1C, HEAP_ID_57);
-            SetSubScreenViewRect(&(tradeData->unk_1C), 0, 192 + 40 << FX32_SHIFT);
+            sequenceData->spriteList = SpriteList_InitRendering(64, &sequenceData->renderer, HEAP_ID_57);
+            SetSubScreenViewRect(&(sequenceData->renderer), 0, 192 + 40 << FX32_SHIFT);
 
-            tradeData->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_SPECIES, NULL);
-            tradeData->unk_1B2 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_FORM, NULL);
-            tradeData->unk_1B4 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->receivingPokemon), MON_DATA_SPECIES, NULL);
-            tradeData->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->receivingPokemon), MON_DATA_FORM, NULL);
-            tradeData->unk_1B8 = NULL;
+            sequenceData->sendingSpecies = BoxPokemon_GetValue((BoxPokemon *)(sequenceData->animationTemplate->sendingPokemon), MON_DATA_SPECIES, NULL);
+            sequenceData->sendingForm = BoxPokemon_GetValue((BoxPokemon *)(sequenceData->animationTemplate->sendingPokemon), MON_DATA_FORM, NULL);
+            sequenceData->receivingSpecies = BoxPokemon_GetValue((BoxPokemon *)(sequenceData->animationTemplate->receivingPokemon), MON_DATA_SPECIES, NULL);
+            sequenceData->receivingForm = BoxPokemon_GetValue((BoxPokemon *)(sequenceData->animationTemplate->receivingPokemon), MON_DATA_FORM, NULL);
+            sequenceData->currentPhaseData = NULL;
 
             SetVBlankCallback(NULL, NULL);
             DisableHBlank();
@@ -158,8 +158,8 @@ int TradeSequence_Init(ApplicationManager *appMan, int *param1)
             GX_SetVisiblePlane(0);
             GXS_SetVisiblePlane(0);
 
-            tradeData->unk_1A8 = SysTask_CreateOnPrintQueue(ov95_02246F0C, tradeData, 1);
-            tradeData->unk_1B8 = NULL;
+            sequenceData->task = SysTask_CreateOnPrintQueue(TradeSequence_VBlankCallback, sequenceData, 1);
+            sequenceData->currentPhaseData = NULL;
         }
 
         return 1;
@@ -176,54 +176,54 @@ static BOOL DoesMonSpeciesFlipsSprite(BoxPokemon *boxMon)
     return SpeciesData_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE) == FALSE;
 }
 
-int TradeSequence_Exit(ApplicationManager *appMan, int *param1)
+int TradeSequence_Exit(ApplicationManager *appMan, int *unused)
 {
-    OSIntrMode v0;
-    TradeSequenceData *v1;
+    OSIntrMode intrMode;
+    TradeSequenceData *sequenceData;
 
-    v0 = OS_DisableInterrupts();
-    v1 = ApplicationManager_Data(appMan);
+    intrMode = OS_DisableInterrupts();
+    sequenceData = ApplicationManager_Data(appMan);
 
-    SysTask_Done(v1->unk_1A8);
+    SysTask_Done(sequenceData->task);
     NetworkIcon_Destroy();
-    StringTemplate_Free(v1->unk_0C);
-    MessageLoader_Free(v1->unk_10);
-    String_Free(v1->unk_14);
-    Heap_Free(v1->unk_08);
-    SpriteList_Delete(v1->unk_18);
+    StringTemplate_Free(sequenceData->strTemplate);
+    MessageLoader_Free(sequenceData->msgLoader);
+    String_Free(sequenceData->strBuffer);
+    Heap_Free(sequenceData->bgConfig);
+    SpriteList_Delete(sequenceData->spriteList);
     RenderOam_Free();
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_57);
     Heap_Destroy(HEAP_ID_58);
 
-    OS_RestoreInterrupts(v0);
+    OS_RestoreInterrupts(intrMode);
 
     return 1;
 }
 
-int TradeSequence_Main(ApplicationManager *appMan, int *param1)
+int TradeSequence_Main(ApplicationManager *appMan, int *state)
 {
-    TradeSequenceData *v0 = ApplicationManager_Data(appMan);
+    TradeSequenceData *sequenceData = ApplicationManager_Data(appMan);
 
-    if (v0->unk_04 < NELEMS(Unk_ov95_0224BE8C)) {
-        if (Unk_ov95_0224BE8C[v0->unk_04].unk_0C & v0->animationConfig->tradeType) {
-            if (v0->unk_1B8 == NULL) {
-                v0->unk_1B8 = Unk_ov95_0224BE8C[v0->unk_04].unk_00(v0);
+    if (sequenceData->currentPhase < NELEMS(sTradePhaseTable)) {
+        if (sTradePhaseTable[sequenceData->currentPhase].tradeTypeFlags & sequenceData->animationTemplate->tradeType) {
+            if (sequenceData->currentPhaseData == NULL) {
+                sequenceData->currentPhaseData = sTradePhaseTable[sequenceData->currentPhase].New(sequenceData);
             }
 
-            if (Unk_ov95_0224BE8C[v0->unk_04].unk_04(v0->unk_1B8, param1)) {
-                Unk_ov95_0224BE8C[v0->unk_04].unk_08(v0->unk_1B8);
-                v0->unk_1B8 = NULL;
+            if (sTradePhaseTable[sequenceData->currentPhase].Run(sequenceData->currentPhaseData, state)) {
+                sTradePhaseTable[sequenceData->currentPhase].Free(sequenceData->currentPhaseData);
+                sequenceData->currentPhaseData = NULL;
 
-                v0->unk_04++;
-                (*param1) = 0;
+                sequenceData->currentPhase++;
+                (*state) = 0;
             }
         } else {
-            v0->unk_04++;
-            (*param1) = 0;
+            sequenceData->currentPhase++;
+            (*state) = 0;
         }
 
-        ov95_02247694();
+        DeferredFree_Flush();
 
         return 0;
     } else {
@@ -231,498 +231,494 @@ int TradeSequence_Main(ApplicationManager *appMan, int *param1)
     }
 }
 
-static void ov95_02246F0C(SysTask *param0, void *param1)
+static void TradeSequence_VBlankCallback(SysTask *unused, void *param)
 {
-    TradeSequenceData *v0 = param1;
+    TradeSequenceData *sequenceData = param;
 
-    SpriteList_Update(v0->unk_18);
+    SpriteList_Update(sequenceData->spriteList);
     RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-UnkStruct_ov95_02247004 *ov95_02246F30(BOOL *param0, int param1)
+PaletteShimmerEffect *PaletteShimmerEffect_New(BOOL *isAlive, int direction)
 {
-    UnkStruct_ov95_02247004 *v0 = Heap_Alloc(HEAP_ID_57, sizeof(UnkStruct_ov95_02247004));
+    PaletteShimmerEffect *shimmerEffect = Heap_Alloc(HEAP_ID_57, sizeof(PaletteShimmerEffect));
 
-    *param0 = 0;
+    *isAlive = 0;
 
-    if (v0) {
-        NNSG2dPaletteData *v1;
-        void *v2;
-        u32 v3;
-        int v4;
+    if (shimmerEffect) {
+        NNSG2dPaletteData *plttData;
+        void *rawPaletteBuffer;
 
-        v2 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__DEMO_TRADE, 6, &v1, HEAP_ID_57);
+        rawPaletteBuffer = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__DEMO_TRADE, 6, &plttData, HEAP_ID_57);
 
-        if (v2) {
-            MI_CpuFill16(v0->unk_00, 0x0, 96);
-            Heap_Free(v2);
+        if (rawPaletteBuffer) {
+            MI_CpuFill16(shimmerEffect->paletteBuffer, 0x0, 96);
+            Heap_Free(rawPaletteBuffer);
         }
 
-        v0->unk_EC = 0;
-        v0->unk_E8 = 0;
-        v0->unk_F0 = 0;
-        v0->unk_F4 = 0;
-        v0->unk_E4 = param0;
-        v0->unk_F8 = 0;
-        v0->unk_FC = param1;
+        shimmerEffect->dirty = 0;
+        shimmerEffect->stopping = 0;
+        shimmerEffect->spawnTimer = 0;
+        shimmerEffect->activeSparkCount = 0;
+        shimmerEffect->isAlive = isAlive;
+        shimmerEffect->nextSparkSlot = 0;
+        shimmerEffect->direction = direction;
 
-        for (v4 = 0; v4 < 8; v4++) {
-            v0->unk_C4[v4] = NULL;
+        for (int i = 0; i < 8; i++) {
+            shimmerEffect->sparkTasks[i] = NULL;
         }
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 16, 8);
         G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 16, 8);
 
-        v0->unk_C0 = SysTask_ExecuteAfterVBlank(ov95_02247060, v0, 20);
+        shimmerEffect->vblankTask = SysTask_ExecuteAfterVBlank(PaletteShimmerEffect_VBlankTask, shimmerEffect, 20);
 
-        if (v0->unk_C0) {
-            *(v0->unk_E4) = 1;
+        if (shimmerEffect->vblankTask) {
+            *(shimmerEffect->isAlive) = 1;
         }
     }
 
-    return v0;
+    return shimmerEffect;
 }
 
-void ov95_02247004(UnkStruct_ov95_02247004 *param0)
+void PaletteShimmerEffect_Stop(PaletteShimmerEffect *shimmerEffect)
 {
-    if (*(param0->unk_E4) == 1) {
-        param0->unk_E8 = 1;
+    if (*(shimmerEffect->isAlive) == 1) {
+        shimmerEffect->stopping = 1;
     }
 }
 
-void ov95_02247018(UnkStruct_ov95_02247004 *param0)
+void PaletteShimmerEffect_Free(PaletteShimmerEffect *shimmerEffect)
 {
-    if (*(param0->unk_E4) == 1) {
-        int v0;
-
-        for (v0 = 0; v0 < 8; v0++) {
-            if (param0->unk_C4[v0]) {
-                ov95_02247224(param0, v0);
+    if (*(shimmerEffect->isAlive) == 1) {
+        for (int i = 0; i < 8; i++) {
+            if (shimmerEffect->sparkTasks[i]) {
+                PaletteShimmerEffect_FreeSpark(shimmerEffect, i);
             }
         }
 
-        *(param0->unk_E4) = 0;
-        SysTask_Done(param0->unk_C0);
-        Heap_Free(param0);
+        *(shimmerEffect->isAlive) = 0;
+        SysTask_Done(shimmerEffect->vblankTask);
+        Heap_Free(shimmerEffect);
     }
 }
 
-static void ov95_02247060(SysTask *param0, void *param1)
+static void PaletteShimmerEffect_VBlankTask(SysTask *task, void *param)
 {
-    UnkStruct_ov95_02247004 *v0 = param1;
+    PaletteShimmerEffect *shimmerEffect = param;
 
-    if (v0->unk_E8 == 0) {
-        if (--(v0->unk_F0) <= 0) {
+    if (shimmerEffect->stopping == 0) {
+        if (--(shimmerEffect->spawnTimer) <= 0) {
             Sound_PlayEffect(SEQ_SE_DP_KOUKAN08);
-            v0->unk_F0 = 30;
-            ov95_02247170(v0);
+            shimmerEffect->spawnTimer = 30;
+            PaletteShimmerEffect_SpawnSpark(shimmerEffect);
         }
 
-        if (v0->unk_EC) {
+        if (shimmerEffect->dirty) {
             GX_BeginLoadBGExtPltt();
             GXS_BeginLoadBGExtPltt();
 
-            DC_FlushRange(v0->unk_00, 96);
-            GX_LoadBGExtPltt(v0->unk_00, 0x6000, 96);
-            GXS_LoadBGExtPltt(v0->unk_00, 0x6000, 96);
+            DC_FlushRange(shimmerEffect->paletteBuffer, 96);
+            GX_LoadBGExtPltt(shimmerEffect->paletteBuffer, 0x6000, 96);
+            GXS_LoadBGExtPltt(shimmerEffect->paletteBuffer, 0x6000, 96);
 
             GX_EndLoadBGExtPltt();
             GXS_EndLoadBGExtPltt();
 
-            v0->unk_EC = 0;
+            shimmerEffect->dirty = 0;
         }
     } else {
-        if (v0->unk_EC) {
+        if (shimmerEffect->dirty) {
             GX_BeginLoadBGExtPltt();
             GXS_BeginLoadBGExtPltt();
 
-            DC_FlushRange(v0->unk_00, 96);
-            GX_LoadBGExtPltt(v0->unk_00, 0x6000, 96);
-            GXS_LoadBGExtPltt(v0->unk_00, 0x6000, 96);
+            DC_FlushRange(shimmerEffect->paletteBuffer, 96);
+            GX_LoadBGExtPltt(shimmerEffect->paletteBuffer, 0x6000, 96);
+            GXS_LoadBGExtPltt(shimmerEffect->paletteBuffer, 0x6000, 96);
 
             GX_EndLoadBGExtPltt();
             GXS_EndLoadBGExtPltt();
 
-            v0->unk_EC = 0;
+            shimmerEffect->dirty = 0;
         }
 
-        if (v0->unk_F4 == 0) {
-            *(v0->unk_E4) = 0;
-            Heap_Free(v0);
-            SysTask_Done(param0);
+        if (shimmerEffect->activeSparkCount == 0) {
+            *(shimmerEffect->isAlive) = 0;
+            Heap_Free(shimmerEffect);
+            SysTask_Done(task);
         }
     }
 }
 
-static void ov95_02247148(UnkStruct_ov95_02247004 *param0, int param1, int param2, int param3)
+static void PaletteShimmerEffect_SetEntry(PaletteShimmerEffect *shimmerEffect, int clearIndex, int setIndex, int color)
 {
-    if ((param1 >= 0) && (param1 < 96)) {
-        param0->unk_00[param1] = 0x0;
+    if ((clearIndex >= 0) && (clearIndex < 96)) {
+        shimmerEffect->paletteBuffer[clearIndex] = 0x0;
     }
 
-    if ((param2 >= 0) && (param2 < 96)) {
-        param0->unk_00[param2] = param3;
+    if ((setIndex >= 0) && (setIndex < 96)) {
+        shimmerEffect->paletteBuffer[setIndex] = color;
     }
 
-    param0->unk_EC = 1;
+    shimmerEffect->dirty = 1;
 }
 
-static void ov95_02247170(UnkStruct_ov95_02247004 *param0)
+static void PaletteShimmerEffect_SpawnSpark(PaletteShimmerEffect *shimmerEffect)
 {
-    if (param0->unk_C4[param0->unk_F8] == NULL) {
-        UnkStruct_ov95_02247170 *v0 = Heap_Alloc(HEAP_ID_57, sizeof(UnkStruct_ov95_02247170));
+    if (shimmerEffect->sparkTasks[shimmerEffect->nextSparkSlot] == NULL) {
+        PaletteShimmerSpark *spark = Heap_Alloc(HEAP_ID_57, sizeof(PaletteShimmerSpark));
 
-        if (v0) {
-            v0->unk_00 = param0;
+        if (spark) {
+            spark->shimmerEffect = shimmerEffect;
 
-            if (param0->unk_FC == 1) {
-                v0->unk_04 = -1;
+            if (shimmerEffect->direction == 1) {
+                spark->paletteIndex = -1;
             } else {
-                v0->unk_04 = 15;
+                spark->paletteIndex = 15;
             }
 
-            v0->unk_0C = 0;
-            v0->unk_08 = 2;
-            v0->unk_10 = param0->unk_F8;
-            v0->unk_14 = param0->unk_FC;
-            param0->unk_C4[param0->unk_F8] = SysTask_Start(ov95_02247254, v0, 10);
+            spark->frameCounter = 0;
+            spark->framesPerStep = 2;
+            spark->slotIndex = shimmerEffect->nextSparkSlot;
+            spark->direction = shimmerEffect->direction;
+            shimmerEffect->sparkTasks[shimmerEffect->nextSparkSlot] = SysTask_Start(PaletteShimmerEffect_SparkTask, spark, 10);
 
-            if (param0->unk_C4[param0->unk_F8]) {
-                param0->unk_F4++;
+            if (shimmerEffect->sparkTasks[shimmerEffect->nextSparkSlot]) {
+                shimmerEffect->activeSparkCount++;
 
-                if (++(param0->unk_F8) >= 8) {
-                    param0->unk_F8 = 0;
+                if (++(shimmerEffect->nextSparkSlot) >= 8) {
+                    shimmerEffect->nextSparkSlot = 0;
                 }
             } else {
-                Heap_Free(v0);
+                Heap_Free(spark);
             }
         }
     }
 }
 
-static void ov95_02247224(UnkStruct_ov95_02247004 *param0, int param1)
+static void PaletteShimmerEffect_FreeSpark(PaletteShimmerEffect *shimmerEffect, int slotIdx)
 {
-    if (param0->unk_C4[param1]) {
-        Heap_Free(SysTask_GetParam(param0->unk_C4[param1]));
-        SysTask_Done(param0->unk_C4[param1]);
-        param0->unk_C4[param1] = NULL;
-        param0->unk_F4--;
+    if (shimmerEffect->sparkTasks[slotIdx]) {
+        Heap_Free(SysTask_GetParam(shimmerEffect->sparkTasks[slotIdx]));
+        SysTask_Done(shimmerEffect->sparkTasks[slotIdx]);
+        shimmerEffect->sparkTasks[slotIdx] = NULL;
+        shimmerEffect->activeSparkCount--;
     }
 }
 
-static void ov95_02247254(SysTask *param0, void *param1)
+static void PaletteShimmerEffect_SparkTask(SysTask *unused, void *param)
 {
-    UnkStruct_ov95_02247170 *v0 = param1;
+    PaletteShimmerSpark *spark = param;
 
-    if (++(v0->unk_0C) >= v0->unk_08) {
-        v0->unk_0C = 0;
+    if (++(spark->frameCounter) >= spark->framesPerStep) {
+        spark->frameCounter = 0;
 
-        if (v0->unk_14 == 1) {
-            if (v0->unk_04 + 1 >= 15) {
-                ov95_02247148(v0->unk_00, v0->unk_04, v0->unk_04 + 1, 0x0);
-                ov95_02247224(v0->unk_00, v0->unk_10);
+        if (spark->direction == 1) {
+            if (spark->paletteIndex + 1 >= 15) {
+                PaletteShimmerEffect_SetEntry(spark->shimmerEffect, spark->paletteIndex, spark->paletteIndex + 1, 0x0);
+                PaletteShimmerEffect_FreeSpark(spark->shimmerEffect, spark->slotIndex);
             } else {
-                ov95_02247148(v0->unk_00, v0->unk_04, v0->unk_04 + 1, 0x7fff);
-                v0->unk_04++;
+                PaletteShimmerEffect_SetEntry(spark->shimmerEffect, spark->paletteIndex, spark->paletteIndex + 1, 0x7fff);
+                spark->paletteIndex++;
             }
         } else {
-            if (v0->unk_04 < 0) {
-                ov95_02247148(v0->unk_00, v0->unk_04, v0->unk_04 + 1, 0x0);
-                ov95_02247224(v0->unk_00, v0->unk_10);
+            if (spark->paletteIndex < 0) {
+                PaletteShimmerEffect_SetEntry(spark->shimmerEffect, spark->paletteIndex, spark->paletteIndex + 1, 0x0);
+                PaletteShimmerEffect_FreeSpark(spark->shimmerEffect, spark->slotIndex);
             } else {
-                ov95_02247148(v0->unk_00, v0->unk_04 + 1, v0->unk_04, 0x7fff);
-                v0->unk_04--;
+                PaletteShimmerEffect_SetEntry(spark->shimmerEffect, spark->paletteIndex + 1, spark->paletteIndex, 0x7fff);
+                spark->paletteIndex--;
             }
         }
     }
 }
 
-UnkStruct_ov95_022472C4 *ov95_022472C4(BgConfig *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, int param5, volatile BOOL *param6)
+BgScaleAnimation *BgScaleAnimation_New(BgConfig *bgConfig, fx32 currentScale, fx32 targetScale, fx32 rate, fx32 acceleration, int centerIndex, volatile BOOL *done)
 {
-    UnkStruct_ov95_022472C4 *v0 = Heap_Alloc(HEAP_ID_57, sizeof(UnkStruct_ov95_022472C4));
+    BgScaleAnimation *bgScaleAnim = Heap_Alloc(HEAP_ID_57, sizeof(BgScaleAnimation));
 
-    *param6 = 1;
+    *done = 1;
 
-    if (v0) {
-        v0->unk_00 = param0;
-        v0->unk_08 = param1;
-        v0->unk_0C = param2;
-        v0->unk_10 = param3;
-        v0->unk_14 = param4;
-        v0->unk_18 = (param1 < param2) ? 0 : 1;
-        v0->unk_1C = param5;
-        v0->unk_04 = param6;
-        *param6 = 0;
+    if (bgScaleAnim) {
+        bgScaleAnim->bgConfig = bgConfig;
+        bgScaleAnim->currentScale = currentScale;
+        bgScaleAnim->targetScale = targetScale;
+        bgScaleAnim->rate = rate;
+        bgScaleAnim->acceleration = acceleration;
+        bgScaleAnim->direction = (currentScale < targetScale) ? 0 : 1;
+        bgScaleAnim->centerIndex = centerIndex;
+        bgScaleAnim->done = done;
+        *done = 0;
 
-        v0->unk_20 = SysTask_ExecuteOnVBlank(ov95_0224732C, v0, 0);
+        bgScaleAnim->task = SysTask_ExecuteOnVBlank(BgScaleAnimation_Task, bgScaleAnim, 0);
 
-        if (v0->unk_20) {
+        if (bgScaleAnim->task) {
             (void)0;
         } else {
-            *param6 = 1;
-            Heap_Free(v0);
+            *done = 1;
+            Heap_Free(bgScaleAnim);
         }
     }
 
-    return v0;
+    return bgScaleAnim;
 }
 
-static void ov95_0224732C(SysTask *param0, void *param1)
+static void BgScaleAnimation_Task(SysTask *task, void *param)
 {
-    UnkStruct_ov95_022472C4 *v0 = param1;
-    fx32 v1;
+    BgScaleAnimation *bgScaleAnim = param;
+    fx32 step;
 
-    v1 = ((v0->unk_08 * v0->unk_10) >> FX32_SHIFT) / 32;
+    step = ((bgScaleAnim->currentScale * bgScaleAnim->rate) >> FX32_SHIFT) / 32;
 
-    switch (v0->unk_18) {
+    switch (bgScaleAnim->direction) {
     case 0:
-        if ((v0->unk_08 + v1) < v0->unk_0C) {
-            v0->unk_08 += v1;
+        if ((bgScaleAnim->currentScale + step) < bgScaleAnim->targetScale) {
+            bgScaleAnim->currentScale += step;
         } else {
-            v0->unk_08 = v0->unk_0C;
-            *(v0->unk_04) = 1;
+            bgScaleAnim->currentScale = bgScaleAnim->targetScale;
+            *(bgScaleAnim->done) = 1;
         }
         break;
     case 1:
-        if ((v0->unk_08 - v1) > v0->unk_0C) {
-            v0->unk_08 -= v1;
+        if ((bgScaleAnim->currentScale - step) > bgScaleAnim->targetScale) {
+            bgScaleAnim->currentScale -= step;
         } else {
-            v0->unk_08 = v0->unk_0C;
-            *(v0->unk_04) = 1;
+            bgScaleAnim->currentScale = bgScaleAnim->targetScale;
+            *(bgScaleAnim->done) = 1;
         }
         break;
     }
 
-    ov95_022473A0(v0);
+    BgScaleAnimation_Apply(bgScaleAnim);
 
-    if (*(v0->unk_04)) {
-        ov95_022476C8(v0);
-        SysTask_Done(param0);
+    if (*(bgScaleAnim->done)) {
+        DeferredFree_Enqueue(bgScaleAnim);
+        SysTask_Done(task);
     } else {
-        v0->unk_10 += v0->unk_14;
+        bgScaleAnim->rate += bgScaleAnim->acceleration;
     }
 }
 
-static void ov95_022473A0(UnkStruct_ov95_022472C4 *param0)
+static void BgScaleAnimation_Apply(BgScaleAnimation *bgScaleAnim)
 {
-    static const int v0[] = {
+    static const int sCenterY[] = {
         144,
         56,
     };
-    MtxFx22 v1;
+    MtxFx22 mtx;
 
-    v1._00 = param0->unk_08;
-    v1._01 = 1 << FX32_ONE;
-    v1._10 = 0;
-    v1._11 = param0->unk_08;
+    mtx._00 = bgScaleAnim->currentScale;
+    mtx._01 = 1 << FX32_ONE;
+    mtx._10 = 0;
+    mtx._11 = bgScaleAnim->currentScale;
 
-    Bg_SetAffineParams(param0->unk_00, 2, &v1, 128, v0[param0->unk_1C]);
-    Bg_SetAffineParams(param0->unk_00, 6, &v1, 128, v0[param0->unk_1C]);
+    Bg_SetAffineParams(bgScaleAnim->bgConfig, 2, &mtx, 128, sCenterY[bgScaleAnim->centerIndex]);
+    Bg_SetAffineParams(bgScaleAnim->bgConfig, 6, &mtx, 128, sCenterY[bgScaleAnim->centerIndex]);
 }
 
-void ov95_022473E8(TradeSequenceData *param0, int param1, u32 param2, u32 param3, BOOL param4)
+void TradeSequence_LoadPokemonBGTiles(TradeSequenceData *sequenceData, int pokemonIndex, u32 bgLayer, u32 paletteSlot, BOOL loadBothFrames)
 {
-    PokemonSpriteTemplate v0;
-    u32 v1;
-    u32 v2;
-    void *v3;
+    PokemonSpriteTemplate template;
+    u32 paletteBank;
+    u32 tileBufferSize;
+    void *tileBuffer;
 
-    v2 = (param4) ? 0x20 * 200 : 0x20 * 100;
-    v3 = Heap_AllocAtEnd(HEAP_ID_57, v2);
+    tileBufferSize = (loadBothFrames) ? 0x20 * 200 : 0x20 * 100;
+    tileBuffer = Heap_AllocAtEnd(HEAP_ID_57, tileBufferSize);
 
-    if (v3) {
-        TileRegion v4 = FRAME_0_REGION;
-        BoxPokemon *v5;
-        BOOL v6;
+    if (tileBuffer) {
+        TileRegion tileRegion = FRAME_0_REGION;
+        BoxPokemon *boxMon;
+        BOOL wasEncrypted;
         u32 personality;
         u16 species;
 
-        v5 = (BoxPokemon *)((param1 == 0) ? param0->animationConfig->sendingPokemon : param0->animationConfig->receivingPokemon);
-        v6 = BoxPokemon_EnterDecryptionContext(v5);
+        boxMon = (BoxPokemon *)((pokemonIndex == 0) ? sequenceData->animationTemplate->sendingPokemon : sequenceData->animationTemplate->receivingPokemon);
+        wasEncrypted = BoxPokemon_EnterDecryptionContext(boxMon);
 
-        BoxPokemon_BuildSpriteTemplate(&v0, v5, 2, 0);
+        BoxPokemon_BuildSpriteTemplate(&template, boxMon, 2, 0);
 
-        personality = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
-        species = BoxPokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
+        personality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
+        species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
-        if (param4) {
-            v4.width *= 2;
+        if (loadBothFrames) {
+            tileRegion.width *= 2;
         }
 
-        CharacterSprite_LoadPokemonSpriteRegion(v0.narcID, v0.character, HEAP_ID_57, &v4, v3, personality, param4, FACE_FRONT, species);
-        DC_FlushRange(v3, v2);
-        Bg_LoadTiles(param0->unk_08, param2, v3, v2, 0);
+        CharacterSprite_LoadPokemonSpriteRegion(template.narcID, template.character, HEAP_ID_57, &tileRegion, tileBuffer, personality, loadBothFrames, FACE_FRONT, species);
+        DC_FlushRange(tileBuffer, tileBufferSize);
+        Bg_LoadTiles(sequenceData->bgConfig, bgLayer, tileBuffer, tileBufferSize, 0);
 
-        BoxPokemon_ExitDecryptionContext(v5, v6);
-        Heap_Free(v3);
+        BoxPokemon_ExitDecryptionContext(boxMon, wasEncrypted);
+        Heap_Free(tileBuffer);
     }
 
-    v1 = (param2 >= 4) ? 4 : 0;
-    Graphics_LoadPalette(v0.narcID, v0.palette, v1, param3 * 0x20, 0x20, HEAP_ID_57);
+    paletteBank = (bgLayer >= 4) ? 4 : 0;
+    Graphics_LoadPalette(template.narcID, template.palette, paletteBank, paletteSlot * 0x20, 0x20, HEAP_ID_57);
 }
 
-void ov95_022474D4(TradeSequenceData *param0, int param1, u32 param2, u32 param3, u32 param4, u32 param5)
+void TradeSequence_LoadPokemonPlatform(TradeSequenceData *sequenceData, int pokemonIndex, u32 bgLayer, u32 paletteIdx, u32 tilemapX, u32 tilemapY)
 {
-    void *v0;
-    NNSG2dScreenData *v1;
-    u32 v2;
+    void *screenBuffer;
+    NNSG2dScreenData *screenData;
+    u32 narcMemberIdx;
 
-    if (param1 == 0) {
-        v2 = 262;
+    if (pokemonIndex == 0) {
+        narcMemberIdx = 262;
     } else {
-        v2 = (param0->unk_1AC) ? 263 : 262;
+        narcMemberIdx = (sequenceData->flipSprite) ? 263 : 262;
     }
 
-    v0 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v2, FALSE, &v1, HEAP_ID_57);
+    screenBuffer = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, narcMemberIdx, FALSE, &screenData, HEAP_ID_57);
 
-    if (v0) {
-        Bg_CopyToTilemapRect(param0->unk_08, param2, param4, param5, 10, 10, v1->rawData, 0, 0, 32, 32);
-        Bg_ChangeTilemapRectPalette(param0->unk_08, param2, param4, param5, 10, 10, param3);
-        Heap_Free(v0);
-    }
-}
-
-void ov95_02247568(UnkStruct_ov95_02247568 *param0, u32 param1, u32 param2, u32 param3)
-{
-    param0->unk_00 = Graphics_GetCellBank(param1, param2, 1, &(param0->unk_08), HEAP_ID_58);
-    param0->unk_04 = Graphics_GetAnimBank(param1, param3, 1, &(param0->unk_0C), HEAP_ID_58);
-}
-
-void ov95_022475A0(UnkStruct_ov95_02247568 *param0)
-{
-    if (param0->unk_00) {
-        Heap_Free(param0->unk_00);
-        param0->unk_00 = NULL;
-    }
-
-    if (param0->unk_04) {
-        Heap_Free(param0->unk_04);
-        param0->unk_04 = NULL;
+    if (screenBuffer) {
+        Bg_CopyToTilemapRect(sequenceData->bgConfig, bgLayer, tilemapX, tilemapY, 10, 10, screenData->rawData, 0, 0, 32, 32);
+        Bg_ChangeTilemapRectPalette(sequenceData->bgConfig, bgLayer, tilemapX, tilemapY, 10, 10, paletteIdx);
+        Heap_Free(screenBuffer);
     }
 }
 
-void ov95_022475C4(SpriteResourcesHeader *param0, UnkStruct_ov95_02247568 *param1, NNSG2dImageProxy *param2, NNSG2dImagePaletteProxy *param3, u32 param4)
+void SpriteAnimResources_Load(SpriteAnimResources *animResources, u32 narcID, u32 cellMemberIdx, u32 animMemberIdx)
 {
-    param0->imageProxy = param2;
-    param0->paletteProxy = param3;
-    param0->cellBank = param1->unk_08;
-    param0->cellAnimBank = param1->unk_0C;
-    param0->priority = param4;
-    param0->charData = NULL;
-    param0->multiCellBank = NULL;
-    param0->multiCellAnimBank = NULL;
-    param0->isVRamTransfer = 0;
+    animResources->cellBuffer = Graphics_GetCellBank(narcID, cellMemberIdx, 1, &(animResources->cellBank), HEAP_ID_58);
+    animResources->animBuffer = Graphics_GetAnimBank(narcID, animMemberIdx, 1, &(animResources->animBank), HEAP_ID_58);
 }
 
-Sprite *ov95_022475E4(TradeSequenceData *param0, SpriteResourcesHeader *param1, u32 param2, u32 param3, u32 param4, int param5)
+void SpriteAnimResources_Free(SpriteAnimResources *animResources)
 {
-    Sprite *v0;
-    SpriteListTemplate v1;
-
-    v1.list = param0->unk_18;
-    v1.resourceData = param1;
-    v1.position.x = param2 * FX32_ONE;
-    v1.position.y = param3 * FX32_ONE;
-    v1.position.z = 0;
-    v1.priority = param4;
-    v1.vramType = param5;
-    v1.heapID = HEAP_ID_57;
-
-    v0 = SpriteList_Add(&v1);
-
-    if (v0) {
-        Sprite_SetAnimateFlag(v0, 1);
-        Sprite_SetAnimSpeed(v0, FX32_ONE);
+    if (animResources->cellBuffer) {
+        Heap_Free(animResources->cellBuffer);
+        animResources->cellBuffer = NULL;
     }
 
-    return v0;
+    if (animResources->animBuffer) {
+        Heap_Free(animResources->animBuffer);
+        animResources->animBuffer = NULL;
+    }
 }
 
-BgConfig *ov95_02247628(TradeSequenceData *param0)
+void SpriteResourcesHeader_InitFromAnimResources(SpriteResourcesHeader *srHeader, SpriteAnimResources *animResources, NNSG2dImageProxy *imageProxy, NNSG2dImagePaletteProxy *paletteProxy, u32 priority)
 {
-    return param0->unk_08;
+    srHeader->imageProxy = imageProxy;
+    srHeader->paletteProxy = paletteProxy;
+    srHeader->cellBank = animResources->cellBank;
+    srHeader->cellAnimBank = animResources->animBank;
+    srHeader->priority = priority;
+    srHeader->charData = NULL;
+    srHeader->multiCellBank = NULL;
+    srHeader->multiCellAnimBank = NULL;
+    srHeader->isVRamTransfer = 0;
 }
 
-StringTemplate *ov95_0224762C(TradeSequenceData *param0)
+Sprite *TradeSequence_AddSprite(TradeSequenceData *sequenceData, SpriteResourcesHeader *srHeader, u32 x, u32 y, u32 priority, int vramType)
 {
-    return param0->unk_0C;
+    Sprite *sprite;
+    SpriteListTemplate template;
+
+    template.list = sequenceData->spriteList;
+    template.resourceData = srHeader;
+    template.position.x = x * FX32_ONE;
+    template.position.y = y * FX32_ONE;
+    template.position.z = 0;
+    template.priority = priority;
+    template.vramType = vramType;
+    template.heapID = HEAP_ID_57;
+
+    sprite = SpriteList_Add(&template);
+
+    if (sprite) {
+        Sprite_SetAnimateFlag(sprite, 1);
+        Sprite_SetAnimSpeed(sprite, FX32_ONE);
+    }
+
+    return sprite;
 }
 
-MessageLoader *ov95_02247630(TradeSequenceData *param0)
+BgConfig *TradeSequence_GetBgConfig(TradeSequenceData *sequenceData)
 {
-    return param0->unk_10;
+    return sequenceData->bgConfig;
 }
 
-const BoxPokemon *TradeSequence_GetSendingPokemon(TradeSequenceData *tradeSequence)
+StringTemplate *TradeSequence_GetStrTemplate(TradeSequenceData *sequenceData)
 {
-    return tradeSequence->animationConfig->sendingPokemon;
+    return sequenceData->strTemplate;
 }
 
-const BoxPokemon *TradeSequence_GetReceivingPokemon(TradeSequenceData *tradeSequence)
+MessageLoader *TradeSequence_GetMsgLoader(TradeSequenceData *sequenceData)
 {
-    return tradeSequence->animationConfig->receivingPokemon;
+    return sequenceData->msgLoader;
 }
 
-enum TradeBackground TradeSequence_GetBackground(TradeSequenceData *tradeSequence)
+const BoxPokemon *TradeSequence_GetSendingPokemon(TradeSequenceData *sequenceData)
 {
-    return tradeSequence->animationConfig->background;
+    return sequenceData->animationTemplate->sendingPokemon;
 }
 
-u16 ov95_0224764C(TradeSequenceData *param0)
+const BoxPokemon *TradeSequence_GetReceivingPokemon(TradeSequenceData *sequenceData)
 {
-    return param0->unk_1B0;
+    return sequenceData->animationTemplate->receivingPokemon;
 }
 
-u16 ov95_02247654(TradeSequenceData *param0)
+enum TradeBackground TradeSequence_GetBackground(TradeSequenceData *sequenceData)
 {
-    return param0->unk_1B2;
+    return sequenceData->animationTemplate->background;
 }
 
-u16 ov95_02247660(TradeSequenceData *param0)
+u16 TradeSequence_GetSendingSpecies(TradeSequenceData *sequenceData)
 {
-    return param0->unk_1B4;
+    return sequenceData->sendingSpecies;
 }
 
-u16 ov95_02247668(TradeSequenceData *param0)
+u16 TradeSequence_GetSendingForm(TradeSequenceData *sequenceData)
 {
-    return param0->unk_1B6;
+    return sequenceData->sendingForm;
 }
 
-int ov95_02247674(TradeSequenceData *param0)
+u16 TradeSequence_GetReceivingSpecies(TradeSequenceData *sequenceData)
 {
-    return Options_Frame(param0->animationConfig->options);
+    return sequenceData->receivingSpecies;
 }
 
-enum TradeType TradeSequence_GetTradeType(TradeSequenceData *tradeSequence)
+u16 TradeSequence_GetReceivingForm(TradeSequenceData *sequenceData)
 {
-    return tradeSequence->animationConfig->tradeType;
+    return sequenceData->receivingForm;
 }
 
-static int Unk_ov95_0224C2E0 = 0;
-static void *Unk_ov95_0224C2E4[32];
-
-static void ov95_02247688(void)
+int TradeSequence_GetOptionsFrame(TradeSequenceData *sequenceData)
 {
-    Unk_ov95_0224C2E0 = 0;
+    return Options_Frame(sequenceData->animationTemplate->options);
 }
 
-static void ov95_02247694(void)
+enum TradeType TradeSequence_GetTradeType(TradeSequenceData *sequenceData)
 {
-    if (Unk_ov95_0224C2E0) {
+    return sequenceData->animationTemplate->tradeType;
+}
+
+static int sDeferredFreeCount = 0;
+static void *sDeferredFreeQueue[32];
+
+static void DeferredFree_Init(void)
+{
+    sDeferredFreeCount = 0;
+}
+
+static void DeferredFree_Flush(void)
+{
+    if (sDeferredFreeCount) {
         int i;
 
-        for (i = 0; i < Unk_ov95_0224C2E0; i++) {
-            Heap_Free(Unk_ov95_0224C2E4[i]);
+        for (i = 0; i < sDeferredFreeCount; i++) {
+            Heap_Free(sDeferredFreeQueue[i]);
         }
 
-        Unk_ov95_0224C2E0 = 0;
+        sDeferredFreeCount = 0;
     }
 }
 
-void ov95_022476C8(void *param0)
+void DeferredFree_Enqueue(void *param)
 {
-    GF_ASSERT(Unk_ov95_0224C2E0 < 32);
-    Unk_ov95_0224C2E4[Unk_ov95_0224C2E0++] = param0;
+    GF_ASSERT(sDeferredFreeCount < 32);
+    sDeferredFreeQueue[sDeferredFreeCount++] = param;
 }

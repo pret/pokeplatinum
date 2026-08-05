@@ -3,8 +3,8 @@
 
 #include "overlay095/ov95_02246C20.h"
 
-void *ov95_0224B3D8(TradeSequenceData *param0);
-void ov95_0224B438(void *param0);
-BOOL ov95_0224B49C(void *param0, int *param1);
+void *TradeReceivePhase_New(TradeSequenceData *sequenceData);
+void TradeReceivePhase_Free(void *param);
+BOOL TradeReceivePhase_Run(void *param, int *state);
 
 #endif // POKEPLATINUM_OV95_0224B3D8_H

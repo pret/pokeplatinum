@@ -26,300 +26,293 @@
 #include "unk_0202419C.h"
 
 enum {
-    UnkEnum_ov95_022488A4_00 = 0x480,
-    UnkEnum_ov95_022488A4_01 = 0x1,
-    UnkEnum_ov95_022488A4_02 = 0x128
+    BG_SCALE_START = 1152,
+    BG_SCALE_RATE = 1,
+    BG_SCALE_DURATION = 296
 };
 
 enum {
-    UnkEnum_ov95_02248B84_00 = 0x1C00,
-    UnkEnum_ov95_02248B84_01 = 0xFFFE6800,
-    UnkEnum_ov95_02248B84_02 = 0xEBE0
+    TUBE_MODEL_SCALE = 7168,
+    TUBE_MODEL_Y_OFFSET = 0xFFFE6800,
+    TUBE_CAMERA_ANGLE_X = 60384
 };
 
 enum {
-    UnkEnum_ov95_02249154_00 = 0x14000,
-    UnkEnum_ov95_02249154_01 = 0x29000,
-    UnkEnum_ov95_02249154_02 = -8 << 12,
-    UnkEnum_ov95_02249154_03 = 0x1E,
-    UnkEnum_ov95_02249154_04 = 0x4000,
-    UnkEnum_ov95_02249154_05 = 0xD00
+    BALL_ORBIT_RADIUS_Z = 81920,
+    BALL_ORBIT_RADIUS_X = 167936,
+    BALL_ENTRY_TARGET_Y = -8 << 12,
+    BALL_ENTRY_DURATION = 30,
+    BALL_INITIAL_ROTATION_SPEED = 16384,
+    BALL_TARGET_ROTATION_SPEED = 3328
 };
 
 enum {
-    UnkEnum_ov95_02249424_00 = 0x200
+    BALL_EXIT_Y_ACCEL = 512
 };
 
 enum {
-    UnkEnum_ov95_0224950C_00 = -128 << 12,
-    UnkEnum_ov95_0224950C_01 = 0xFFFEF000,
-    UnkEnum_ov95_0224950C_02 = 20,
-    UnkEnum_ov95_0224950C_03 = 0x2000
+    BALL_RETURN_START_Y = -128 << 12,
+    BALL_RETURN_TARGET_Y = 0xFFFEF000,
+    BALL_RETURN_ENTRY_DURATION = 20,
+    BALL_RETURN_SCALE = 8192
 };
 
 enum {
-    UnkEnum_ov95_022495F8_00 = 0x6E,
-    UnkEnum_ov95_022495F8_01 = 0xFFFC5800,
-    UnkEnum_ov95_022495F8_02 = 0x35,
+    BALL_RETURN_COAST_DURATION = 110,
+    BALL_RETURN_FINAL_TARGET_Y = 0xFFFC5800,
+    BALL_RETURN_FINAL_APPROACH_DURATION = 53,
 };
 
 enum {
-    UnkEnum_ov95_022496B4_00 = 0x1,
-    UnkEnum_ov95_022496B4_01 = 0x20000
+    BALL_RETURN_COAST2_DURATION = 1,
+    BALL_RETURN_EXIT_Y_STEP = 131072
 };
 
 enum {
-    UnkEnum_ov95_02249020_00 = 0x120,
-    UnkEnum_ov95_02249020_01 = 512 << 12
+    BG_SCROLL_ACCEL = 288,
+    BG_SCROLL_MAX = 512 << 12
 };
 
 enum {
-    UnkEnum_ov95_02248EC4_00 = 0xC
+    PARTICLE_ACTIVATE_INTERVAL = 12
 };
 
 enum {
-    UnkEnum_ov95_02248EC4_01 = 0x21000,
-    UnkEnum_ov95_02248CA8_00 = 0x35947D1
+    PARTICLE_SCROLL_SPEED = 135168,
+    SPRITE_RNG_SEED = 56182737
 };
 
-typedef struct {
-    fx16 unk_00;
-    fx16 unk_02;
-    fx16 unk_04;
-    u16 unk_06;
-} UnkStruct_ov95_0224922C_sub1;
+typedef struct AxisRotAnimator {
+    fx16 currentValue;
+    fx16 step;
+    fx16 targetValue;
+    u16 framesRemaining;
+} AxisRotAnimator;
 
-typedef struct {
-    UnkStruct_ov95_02247958 *unk_00;
-    UnkStruct_ov95_0224773C *unk_04;
-    VecFx32 unk_08;
-    VecFx32 unk_14;
-    VecFx16 unk_20;
-    fx32 unk_28;
-    fx32 unk_2C;
-    fx32 unk_30;
-    fx32 unk_34;
-    fx32 unk_38;
-    fx32 unk_3C;
-    fx32 unk_40;
-    fx32 unk_44;
-    fx32 unk_48;
-    fx32 unk_4C;
-    u32 unk_50;
-    s16 unk_54;
-    s16 unk_56;
-    s16 unk_58;
-    s16 unk_5A;
-    UnkStruct_ov95_0224922C_sub1 unk_5C[3];
-    u32 unk_74;
-    BOOL unk_78;
-    BOOL unk_7C;
-    int unk_80;
-} UnkStruct_ov95_0224922C;
+typedef struct BallPathState {
+    Trade3DModel *model;
+    Trade3DScene *scene;
+    VecFx32 orbitCenter;
+    VecFx32 currentPos;
+    VecFx16 rotation;
+    fx32 currentY;
+    fx32 yStep;
+    fx32 yAccel;
+    fx32 unused_34;
+    fx32 orbitRadiusX;
+    fx32 orbitRadiusZ;
+    fx32 orbitRadiusXStep;
+    fx32 orbitRadiusZStep;
+    fx32 targetOrbitRadiusX;
+    fx32 targetOrbitRadiusZ;
+    u32 orbitTransitionFrames;
+    s16 angleAccum;
+    s16 rotationSpeed;
+    s16 targetRotationSpeed;
+    s16 rotationSpeedStep;
+    AxisRotAnimator axisRotAnimators[3];
+    u32 rotSpeedTransitionFrames;
+    BOOL exitedView;
+    BOOL midpointReached;
+    int entryFramesRemaining;
+} BallPathState;
 
-typedef struct {
-    TradeSequenceData *unk_00;
-    int unk_04;
-    int unk_08;
-    UnkStruct_ov95_02247568 unk_0C;
-    Sprite *unk_1C[20][2];
-    u32 unk_BC;
-    BgConfig *unk_C0;
-    UnkStruct_ov95_02247004 *unk_C4;
-    BOOL unk_C8;
-    UnkStruct_ov95_022472C4 *unk_CC;
-    volatile BOOL unk_D0;
-    UnkStruct_ov95_0224773C *unk_D4;
-    UnkStruct_ov95_02247958 *unk_D8;
-    UnkStruct_ov95_0224922C unk_DC;
-    SysTask *unk_160;
-    SysTask *unk_164;
-    BOOL unk_168;
-} UnkStruct_ov95_02248688;
+typedef struct TradeTubePhase {
+    TradeSequenceData *sequenceData;
+    int subStepCounter;
+    int timer;
+    SpriteAnimResources animResources;
+    Sprite *sprites[20][2];
+    u32 rngSeed;
+    BgConfig *bgConfig;
+    PaletteShimmerEffect *shimmerEffect;
+    BOOL shimmerActive;
+    BgScaleAnimation *bgScaleAnim;
+    volatile BOOL bgScaleAnimDone;
+    Trade3DScene *scene;
+    Trade3DModel *model;
+    BallPathState ballAnim;
+    SysTask *task0;
+    SysTask *task1;
+    BOOL screenSwapPending;
+} TradeTubePhase;
 
-typedef struct {
-    SysTask **unk_00;
-    UnkStruct_ov95_02248688 *unk_04;
-    BOOL unk_08[20];
-    VecFx32 unk_58[20];
-    int unk_148;
-    int unk_14C;
-} UnkStruct_ov95_02248E5C;
+typedef struct TubeParticleScrollState {
+    SysTask **taskHandle;
+    TradeTubePhase *phase;
+    BOOL spriteActive[20];
+    VecFx32 spritePos[20];
+    int activateTimer;
+    int nextSpriteToActivate;
+} TubeParticleScrollState;
 
-typedef struct {
-    UnkStruct_ov95_02248688 *unk_00;
-    UnkStruct_ov95_02248E5C unk_04;
-    BgConfig *unk_154;
-    fx32 unk_158;
-    fx32 unk_15C;
-    fx32 unk_160;
-    fx32 unk_164;
-    SysTask **unk_168;
-    SysTask *unk_16C;
-} UnkStruct_ov95_02248FAC;
+typedef struct TubeBgScrollState {
+    TradeTubePhase *phase;
+    TubeParticleScrollState particleState;
+    BgConfig *bgConfig;
+    fx32 mainBgStartOffset;
+    fx32 subBgStartOffset;
+    fx32 scrollAccel;
+    fx32 totalScrolled;
+    SysTask **taskHandle;
+    SysTask *particleTask;
+} TubeBgScrollState;
 
-typedef struct {
-    fx32 unk_00;
-    fx32 unk_04;
-    fx32 unk_08;
-    int unk_0C;
-    UnkStruct_ov95_02247958 *unk_10;
-} UnkStruct_ov95_022490D0;
+typedef struct ModelFadeState {
+    fx32 currentValue;
+    fx32 step;
+    fx32 targetValue;
+    int framesRemaining;
+    Trade3DModel *model;
+} ModelFadeState;
 
-static void ov95_02248C98(UnkStruct_ov95_02248688 *param0);
-static void ov95_02248688(UnkStruct_ov95_02248688 *param0);
-static int ov95_022486AC(UnkStruct_ov95_02248688 *param0, int *param1);
-static int ov95_022486E0(UnkStruct_ov95_02248688 *param0, int *param1);
-static int ov95_02248728(UnkStruct_ov95_02248688 *param0, int *param1);
-static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1);
-static void ov95_022488A4(UnkStruct_ov95_02248688 *param0);
-static void ov95_02248B3C(UnkStruct_ov95_02248688 *param0);
-static void ov95_02248B84(UnkStruct_ov95_02248688 *param0);
-static void ov95_02248CA8(UnkStruct_ov95_02248688 *param0);
-static void ov95_02248DC4(UnkStruct_ov95_02248688 *param0);
-static void ov95_02248DF4(UnkStruct_ov95_02248688 *param0);
-static void ov95_02248E00(SysTask *param0, void *param1);
-static void ov95_02248EC4(SysTask *param0, void *param1);
-static void ov95_02248F94(SysTask *param0);
-static void ov95_02248FAC(UnkStruct_ov95_02248688 *param0, SysTask **param1);
-static void ov95_02249020(SysTask *param0, void *param1);
-static void ov95_022490A4(SysTask *param0);
-static void ov95_022490D0(UnkStruct_ov95_02247958 *param0, int param1, int param2, int param3);
-static void ov95_02249118(SysTask *param0, void *param1);
-static SysTask *ov95_02249154(UnkStruct_ov95_02248688 *param0);
-static void ov95_0224922C(UnkStruct_ov95_0224922C *param0, fx32 param1, int param2);
-static void ov95_02249268(UnkStruct_ov95_0224922C *param0, fx32 param1, fx32 param2, int param3);
-static void ov95_022492A4(UnkStruct_ov95_0224922C *param0, int param1, fx32 param2, int param3);
-static void ov95_022492DC(UnkStruct_ov95_0224922C *param0);
-static void ov95_02249424(SysTask *param0, void *param1);
-static void ov95_022494A8(SysTask *param0, void *param1);
-static BOOL ov95_022494F4(SysTask *param0);
-static BOOL ov95_02249500(SysTask *param0);
-static void ov95_0224950C(SysTask *param0);
-static void ov95_0224959C(SysTask *param0, void *param1);
-static void ov95_022495F8(SysTask *param0, void *param1);
-static void ov95_02249658(SysTask *param0, void *param1);
-static void ov95_022496B4(SysTask *param0, void *param1);
-static void ov95_02249700(SysTask *param0, void *param1);
+static void TradeTubePhase_Free3DScene(TradeTubePhase *ttPhase);
+static void TradeTubePhase_Tick(TradeTubePhase *ttPhase);
+static int TradeTubePhase_Setup(TradeTubePhase *ttPhase, int *unused);
+static int TradeTubePhase_WaitForAnimation(TradeTubePhase *ttPhase, int *subStepCounter);
+static int TradeTubePhase_AnimateBall(TradeTubePhase *ttPhase, int *subStepCounter);
+static int TradeTubePhase_Exit(TradeTubePhase *ttPhase, int *subStepCounter);
+static void TradeTubePhase_InitGraphics(TradeTubePhase *ttPhase);
+static void TradeTubePhase_FreeGraphics(TradeTubePhase *ttPhase);
+static void TradeTubePhase_Init3DScene(TradeTubePhase *ttPhase);
+static void TradeTubePhase_CreateSprites(TradeTubePhase *ttPhase);
+static void TradeTubePhase_DeleteSprites(TradeTubePhase *ttPhase);
+static void TradeTubePhase_RequestScreenSwap(TradeTubePhase *ttPhase);
+static void TradeTubePhase_ScreenSwapTask(SysTask *task, void *param);
+static void TubeParticleScrollState_Task(SysTask *task, void *param);
+static void TubeParticleScrollState_Stop(SysTask *task);
+static void TubeBgScrollState_Start(TradeTubePhase *ttPhase, SysTask **task);
+static void TubeBgScrollState_Task(SysTask *task, void *param);
+static void TubeBgScrollState_Stop(SysTask *task);
+static void ModelFadeState_Start(Trade3DModel *model, int currentValue, int targetValue, int framesRemaining);
+static void ModelFadeState_Task(SysTask *task, void *param);
+static SysTask *BallPathState_Start(TradeTubePhase *ttPhase);
+static void BallPathState_SetRotationSpeed(BallPathState *bpState, fx32 targetSpeed, int duration);
+static void BallPathState_SetOrbitRadius(BallPathState *bpState, fx32 targetRadiusX, fx32 targetRadiusZ, int duration);
+static void BallPathState_SetAxisRotStep(BallPathState *bpState, int axis, fx32 targetValue, int duration);
+static void BallPathState_Tick(BallPathState *bpState);
+static void BallPathState_EntryTask(SysTask *task, void *param);
+static void BallPathState_ExitTask(SysTask *task, void *param);
+static BOOL BallPathState_IsDone(SysTask *task);
+static BOOL BallPathState_IsAtMidpoint(SysTask *task);
+static void BallPathState_StartReturn(SysTask *task);
+static void BallPathState_ReturnApproachTask(SysTask *task, void *param);
+static void BallPathState_ReturnCoastTask(SysTask *task, void *param);
+static void BallPathState_ReturnFinalApproachTask(SysTask *task, void *param);
+static void BallPathState_ReturnCoast2Task(SysTask *task, void *param);
+static void BallPathState_ReturnExitTask(SysTask *task, void *param);
 
-void *ov95_02248590(TradeSequenceData *param0)
+void *TradeTubePhase_New(TradeSequenceData *sequenceData)
 {
-    UnkStruct_ov95_02248688 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_02248688));
+    TradeTubePhase *ttPhase = Heap_Alloc(HEAP_ID_58, sizeof(TradeTubePhase));
 
-    if (v0) {
-        int v1;
+    if (ttPhase) {
+        ttPhase->sequenceData = sequenceData;
+        ttPhase->subStepCounter = 0;
+        ttPhase->bgConfig = TradeSequence_GetBgConfig(sequenceData);
+        ttPhase->scene = NULL;
+        ttPhase->shimmerEffect = NULL;
+        ttPhase->bgScaleAnim = NULL;
+        ttPhase->task0 = NULL;
+        ttPhase->task1 = NULL;
+        ttPhase->rngSeed = MTRNG_Next();
+        ttPhase->bgScaleAnimDone = 0;
+        ttPhase->screenSwapPending = 0;
 
-        v0->unk_00 = param0;
-        v0->unk_04 = 0;
-        v0->unk_C0 = ov95_02247628(param0);
-        v0->unk_D4 = NULL;
-        v0->unk_C4 = NULL;
-        v0->unk_CC = NULL;
-        v0->unk_160 = NULL;
-        v0->unk_164 = NULL;
-        v0->unk_BC = MTRNG_Next();
-        v0->unk_D0 = 0;
-        v0->unk_168 = 0;
-
-        SysTask_ExecuteAfterVBlank(ov95_02248E00, v0, 0);
+        SysTask_ExecuteAfterVBlank(TradeTubePhase_ScreenSwapTask, ttPhase, 0);
     }
 
-    return v0;
+    return ttPhase;
 }
 
-void ov95_022485FC(void *param0)
+void TradeTubePhase_Free(void *param)
 {
-    OSIntrMode v0;
-    UnkStruct_ov95_02248688 *v1;
+    TradeTubePhase *ttPhase = param;
+    OSIntrMode mode = OS_DisableInterrupts();
 
-    v0 = OS_DisableInterrupts();
-    v1 = param0;
+    if (ttPhase) {
+        TradeTubePhase_FreeGraphics(ttPhase);
+        TradeTubePhase_Free3DScene(ttPhase);
+        TradeTubePhase_DeleteSprites(ttPhase);
 
-    if (v1) {
-        int v2;
-
-        ov95_02248B3C(v1);
-        ov95_02248C98(v1);
-        ov95_02248DC4(v1);
-
-        if (v1->unk_160) {
-            SysTask_Done(v1->unk_160);
+        if (ttPhase->task0) {
+            SysTask_Done(ttPhase->task0);
         }
 
-        if (v1->unk_164) {
-            ov95_022490A4(v1->unk_164);
+        if (ttPhase->task1) {
+            TubeBgScrollState_Stop(ttPhase->task1);
         }
 
-        MTRNG_SetSeed(v1->unk_BC);
-        Heap_Free(v1);
+        MTRNG_SetSeed(ttPhase->rngSeed);
+        Heap_Free(ttPhase);
     }
 
-    OS_RestoreInterrupts(v0);
+    OS_RestoreInterrupts(mode);
 }
 
-BOOL ov95_02248650(void *param0, int *param1)
+BOOL TradeTubePhase_Run(void *param, int *state)
 {
-    static int (*const v0[])(UnkStruct_ov95_02248688 *, int *) = {
-        ov95_022486AC,
-        ov95_022486E0,
-        ov95_02248728,
-        ov95_022487D4
+    static int (*const sStepFuncs[])(TradeTubePhase *, int *) = {
+        TradeTubePhase_Setup,
+        TradeTubePhase_WaitForAnimation,
+        TradeTubePhase_AnimateBall,
+        TradeTubePhase_Exit
     };
 
-    UnkStruct_ov95_02248688 *v1 = param0;
+    TradeTubePhase *ttPhase = param;
 
-    if ((*param1) < NELEMS(v0)) {
-        if (v0[*param1](v1, &(v1->unk_04))) {
-            (*param1)++;
-            v1->unk_04 = 0;
+    if ((*state) < NELEMS(sStepFuncs)) {
+        if (sStepFuncs[*state](ttPhase, &(ttPhase->subStepCounter))) {
+            (*state)++;
+            ttPhase->subStepCounter = 0;
         }
 
-        ov95_02248688(v1);
+        TradeTubePhase_Tick(ttPhase);
 
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void ov95_02248688(UnkStruct_ov95_02248688 *param0)
+static void TradeTubePhase_Tick(TradeTubePhase *ttPhase)
 {
-    if (param0->unk_D4) {
+    if (ttPhase->scene) {
         G3X_Reset();
 
-        ov95_02247770(param0->unk_D4);
+        Trade3DScene_Render(ttPhase->scene);
         G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 }
 
-static int ov95_022486AC(UnkStruct_ov95_02248688 *param0, int *param1)
+static int TradeTubePhase_Setup(TradeTubePhase *ttPhase, int *unused)
 {
-    ov95_022488A4(param0);
-    ov95_02248B84(param0);
-    ov95_02248CA8(param0);
+    TradeTubePhase_InitGraphics(ttPhase);
+    TradeTubePhase_Init3DScene(ttPhase);
+    TradeTubePhase_CreateSprites(ttPhase);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_58);
 
     return 1;
 }
 
-static int ov95_022486E0(UnkStruct_ov95_02248688 *param0, int *param1)
+static int TradeTubePhase_WaitForAnimation(TradeTubePhase *ttPhase, int *subStepCounter)
 {
-    static int v0 = 0;
+    static int frameCount = 0;
 
-    switch (*param1) {
+    switch (*subStepCounter) {
     case 0:
         if (IsScreenFadeDone()) {
-            v0 = 0;
-            (*param1)++;
+            frameCount = 0;
+            (*subStepCounter)++;
         }
         break;
 
     case 1:
-        if (v0 < 30) {
-            v0++;
+        if (frameCount < 30) {
+            frameCount++;
         }
 
-        if (param0->unk_D0) {
+        if (ttPhase->bgScaleAnimDone) {
             return 1;
         }
         break;
@@ -328,71 +321,71 @@ static int ov95_022486E0(UnkStruct_ov95_02248688 *param0, int *param1)
     return 0;
 }
 
-static int ov95_02248728(UnkStruct_ov95_02248688 *param0, int *param1)
+static int TradeTubePhase_AnimateBall(TradeTubePhase *ttPhase, int *subStepCounter)
 {
-    switch (*param1) {
+    switch (*subStepCounter) {
     case 0:
-        param0->unk_08 = 0;
-        (*param1)++;
+        ttPhase->timer = 0;
+        (*subStepCounter)++;
         break;
     case 1:
-        if (++(param0->unk_08) > 8) {
-            ov95_022490D0(param0->unk_D8, 0, 31, 24);
-            param0->unk_160 = ov95_02249154(param0);
-            ov95_022479AC(param0->unk_D8, 0);
-            ov95_022479A8(param0->unk_D8, 1);
-            (*param1)++;
+        if (++(ttPhase->timer) > 8) {
+            ModelFadeState_Start(ttPhase->model, 0, 31, 24);
+            ttPhase->task0 = BallPathState_Start(ttPhase);
+            Trade3DModel_SetAlpha(ttPhase->model, 0);
+            Trade3DModel_SetEnabled(ttPhase->model, 1);
+            (*subStepCounter)++;
         }
         break;
     case 2:
-        if (ov95_02249500(param0->unk_160)) {
-            (*param1)++;
+        if (BallPathState_IsAtMidpoint(ttPhase->task0)) {
+            (*subStepCounter)++;
         }
         break;
     case 3:
-        if (ov95_022494F4(param0->unk_160)) {
-            (*param1)++;
+        if (BallPathState_IsDone(ttPhase->task0)) {
+            (*subStepCounter)++;
         }
         break;
     case 4:
-        ov95_02248DF4(param0);
+        TradeTubePhase_RequestScreenSwap(ttPhase);
         return 1;
     }
 
     return 0;
 }
 
-static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1)
+static int TradeTubePhase_Exit(TradeTubePhase *ttPhase, int *subStepCounter)
 {
-    switch (*param1) {
+    switch (*subStepCounter) {
     case 0:
-        ov95_0224950C(param0->unk_160);
-        param0->unk_08 = 0;
-        (*param1)++;
+        BallPathState_StartReturn(ttPhase->task0);
+        ttPhase->timer = 0;
+        (*subStepCounter)++;
         break;
     case 1:
-        if (++(param0->unk_08) > 2) {
-            param0->unk_08 = 0;
-            ov95_02247004(param0->unk_C4);
-            (*param1)++;
+        if (++(ttPhase->timer) > 2) {
+            ttPhase->timer = 0;
+            PaletteShimmerEffect_Stop(ttPhase->shimmerEffect);
+            (*subStepCounter)++;
         }
         break;
     case 2:
-        if (param0->unk_C8 == 0) {
-            ov95_02248FAC(param0, &(param0->unk_164));
-            (*param1)++;
+        if (ttPhase->shimmerActive == 0) {
+            TubeBgScrollState_Start(ttPhase, &(ttPhase->task1));
+            (*subStepCounter)++;
         }
         break;
     case 3:
-        if (param0->unk_08 < 40) {
-            if (++(param0->unk_08) == 40) {
+        if (ttPhase->timer < 40) {
+            if (++(ttPhase->timer) == 40) {
                 Sound_PlayEffect(SEQ_SE_DP_KOUKAN10);
             }
         }
 
-        if (ov95_022494F4(param0->unk_160)) {
+        if (BallPathState_IsDone(ttPhase->task0)) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 4, 1, HEAP_ID_58);
-            (*param1)++;
+            (*subStepCounter)++;
         }
         break;
     case 4:
@@ -404,9 +397,9 @@ static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1)
     return 0;
 }
 
-static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
+static void TradeTubePhase_InitGraphics(TradeTubePhase *ttPhase)
 {
-    static const GXBanks v0 = {
+    static const GXBanks banks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_23_G,
         GX_VRAM_SUB_BG_128_C,
@@ -418,13 +411,13 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_0123_E
     };
-    static const GraphicsModes v1 = {
+    static const GraphicsModes modes = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_4,
         GX_BGMODE_4,
         GX_BG0_AS_3D
     };
-    static const BgTemplate v2 = {
+    static const BgTemplate template1 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0,
@@ -438,7 +431,7 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
         .areaOver = 1,
         .mosaic = FALSE,
     };
-    static const BgTemplate v3 = {
+    static const BgTemplate template2 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
@@ -452,90 +445,86 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
         .areaOver = 1,
         .mosaic = FALSE,
     };
-    static const u16 v4[] = {
-        0x20,
-        0x60,
-        0xa0,
-        0xe0,
+    static const u16 sPaletteOffsets[] = {
+        32,
+        96,
+        160,
+        224,
     };
-    u32 v5;
+    u32 backgroundIndex;
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
-    SetAllGraphicsModes(&v1);
+    SetAllGraphicsModes(&modes);
 
-    Bg_InitFromTemplate(param0->unk_C0, BG_LAYER_MAIN_2, &v2, 1);
-    Bg_InitFromTemplate(param0->unk_C0, BG_LAYER_SUB_2, &v2, 1);
+    Bg_InitFromTemplate(ttPhase->bgConfig, BG_LAYER_MAIN_2, &template1, 1);
+    Bg_InitFromTemplate(ttPhase->bgConfig, BG_LAYER_SUB_2, &template1, 1);
 
-    {
-        OSIntrMode v6 = OS_DisableInterrupts();
+    OSIntrMode savedInterrupts = OS_DisableInterrupts();
 
-        Bg_InitFromTemplate(param0->unk_C0, BG_LAYER_MAIN_3, &v3, 2);
-        Bg_InitFromTemplate(param0->unk_C0, BG_LAYER_SUB_3, &v3, 2);
+     Bg_InitFromTemplate(ttPhase->bgConfig, BG_LAYER_MAIN_3, &template2, 2);
+     Bg_InitFromTemplate(ttPhase->bgConfig, BG_LAYER_SUB_3, &template2, 2);
 
-        OS_RestoreInterrupts(v6);
-    }
+    OS_RestoreInterrupts(savedInterrupts);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, param0->unk_C0, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, param0->unk_C0, 6, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 0, param0->unk_C0, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 0, param0->unk_C0, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, ttPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, ttPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 0, ttPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 0, ttPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_58);
 
-    v5 = TradeSequence_GetBackground(param0->unk_00);
+    backgroundIndex = TradeSequence_GetBackground(ttPhase->sequenceData);
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 0, 0, 0x20, HEAP_ID_58);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 4, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, v4[v5], 0x20, 0x40, HEAP_ID_58);
-    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, v4[v5], 0x20, 0x40, HEAP_ID_58);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, sPaletteOffsets[backgroundIndex], 0x20, 0x40, HEAP_ID_58);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, sPaletteOffsets[backgroundIndex], 0x20, 0x40, HEAP_ID_58);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, param0->unk_C0, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, param0->unk_C0, 7, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, param0->unk_C0, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, param0->unk_C0, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, ttPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, ttPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, ttPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, ttPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
 
-    {
-        u8 *v7 = Heap_Alloc(HEAP_ID_58, 96);
+    u8 *clearBuf = Heap_Alloc(HEAP_ID_58, 96);
 
-        if (v7) {
-            MI_CpuClear32(v7, 96);
-            DC_FlushRange(v7, 96);
+    if (clearBuf) {
+        MI_CpuClear32(clearBuf, 96);
+        DC_FlushRange(clearBuf, 96);
 
-            GX_BeginLoadBGExtPltt();
-            GXS_BeginLoadBGExtPltt();
-            GX_LoadBGExtPltt(v7, 0x6000, 96);
-            GXS_LoadBGExtPltt(v7, 0x6000, 96);
-            GX_EndLoadBGExtPltt();
-            GXS_EndLoadBGExtPltt();
+        GX_BeginLoadBGExtPltt();
+        GXS_BeginLoadBGExtPltt();
+        GX_LoadBGExtPltt(clearBuf, 0x6000, 96);
+        GXS_LoadBGExtPltt(clearBuf, 0x6000, 96);
+        GX_EndLoadBGExtPltt();
+        GXS_EndLoadBGExtPltt();
 
-            Heap_Free(v7);
-        }
+        Heap_Free(clearBuf);
     }
 
-    Bg_SetOffset(param0->unk_C0, BG_LAYER_SUB_2, 3, -256);
+    Bg_SetOffset(ttPhase->bgConfig, BG_LAYER_SUB_2, 3, -256);
     Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_3, 3, 0);
+    Bg_SetOffset(ttPhase->bgConfig, BG_LAYER_MAIN_3, 3, 0);
 
-    param0->unk_C4 = ov95_02246F30(&(param0->unk_C8), 1);
-    param0->unk_CC = ov95_022472C4(param0->unk_C0, UnkEnum_ov95_022488A4_00, 0x1000, UnkEnum_ov95_022488A4_01, UnkEnum_ov95_022488A4_02, 0, &(param0->unk_D0));
+    ttPhase->shimmerEffect = PaletteShimmerEffect_New(&(ttPhase->shimmerActive), 1);
+    ttPhase->bgScaleAnim = BgScaleAnimation_New(ttPhase->bgConfig, BG_SCALE_START, 0x1000, BG_SCALE_RATE, BG_SCALE_DURATION, 0, &(ttPhase->bgScaleAnimDone));
 }
 
-static void ov95_02248B3C(UnkStruct_ov95_02248688 *param0)
+static void TradeTubePhase_FreeGraphics(TradeTubePhase *ttPhase)
 {
-    if (param0->unk_C8) {
-        ov95_02247018(param0->unk_C4);
+    if (ttPhase->shimmerActive) {
+        PaletteShimmerEffect_Free(ttPhase->shimmerEffect);
     }
 
-    Bg_FreeTilemapBuffer(param0->unk_C0, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0->unk_C0, BG_LAYER_SUB_2);
-    Bg_FreeTilemapBuffer(param0->unk_C0, BG_LAYER_MAIN_3);
-    Bg_FreeTilemapBuffer(param0->unk_C0, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(ttPhase->bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(ttPhase->bgConfig, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(ttPhase->bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(ttPhase->bgConfig, BG_LAYER_SUB_3);
 }
 
-static void ov95_02248B84(UnkStruct_ov95_02248688 *param0)
+static void TradeTubePhase_Init3DScene(TradeTubePhase *ttPhase)
 {
-    static const GXRgb v0[8] = {
+    static const GXRgb sEdgeColors[8] = {
         GX_RGB(4, 4, 4),
         GX_RGB(4, 4, 4),
         GX_RGB(4, 4, 4),
@@ -545,7 +534,6 @@ static void ov95_02248B84(UnkStruct_ov95_02248688 *param0)
         GX_RGB(4, 4, 4),
         GX_RGB(4, 4, 4)
     };
-    int v1;
 
     NNS_G3dInit();
 
@@ -555,7 +543,7 @@ static void ov95_02248B84(UnkStruct_ov95_02248688 *param0)
     G3X_AlphaTest(0, 0);
     G3X_AlphaBlend(1);
     G3X_EdgeMarking(1);
-    G3X_SetEdgeColorTable(v0);
+    G3X_SetEdgeColorTable(sEdgeColors);
     G3X_SetClearColor(GX_RGB(31, 31, 16), 0, 0x7fff, 63, 0);
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
     G3_ViewPort(0, 0, 255, 191);
@@ -566,545 +554,535 @@ static void ov95_02248B84(UnkStruct_ov95_02248688 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     G2_SetBG0Priority(0);
 
-    param0->unk_D4 = ov95_022476F0(1, 0, 0, 0);
-    param0->unk_D8 = ov95_022478B4(param0->unk_D4, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, -122880 + UnkEnum_ov95_02248B84_01, 0, 0);
+    ttPhase->scene = Trade3DScene_New(1, 0, 0, 0);
+    ttPhase->model = Trade3DModel_Load(ttPhase->scene, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, -122880 + TUBE_MODEL_Y_OFFSET, 0, 0);
 
-    {
-        static CameraAngle v2;
+    static CameraAngle cameraAngle;
 
-        v2.x = UnkEnum_ov95_02248B84_02;
-        v2.y = 0;
-        v2.z = 0;
+    cameraAngle.x = TUBE_CAMERA_ANGLE_X;
+    cameraAngle.y = 0;
+    cameraAngle.z = 0;
 
-        ov95_02247AB0(param0->unk_D4, &v2);
-    }
+    Trade3DScene_SetCameraAngle(ttPhase->scene, &cameraAngle);
 
-    ov95_022479D4(param0->unk_D8, UnkEnum_ov95_02248B84_00);
+    Trade3DModel_SetScale(ttPhase->model, TUBE_MODEL_SCALE);
 }
 
-static void ov95_02248C98(UnkStruct_ov95_02248688 *param0)
+static void TradeTubePhase_Free3DScene(TradeTubePhase *ttPhase)
 {
-    if (param0->unk_D4) {
-        ov95_0224773C(param0->unk_D4);
+    if (ttPhase->scene) {
+        Trade3DScene_Free(ttPhase->scene);
     }
 }
 
-static void ov95_02248CA8(UnkStruct_ov95_02248688 *param0)
+static void TradeTubePhase_CreateSprites(TradeTubePhase *ttPhase)
 {
-    NNSG2dImagePaletteProxy v0;
-    NNSG2dImageProxy v1;
-    SpriteResourcesHeader v2;
-    int v3;
-    fx32 v4, v5;
+    NNSG2dImagePaletteProxy plttProxy;
+    NNSG2dImageProxy imgProxy;
+    SpriteResourcesHeader header;
+    fx32 x, y;
 
-    ov95_02247568(&param0->unk_0C, 93, 11, 12);
+    SpriteAnimResources_Load(&ttPhase->animResources, 93, 11, 12);
 
-    NNS_G2dInitImagePaletteProxy(&v0);
-    NNS_G2dInitImageProxy(&v1);
+    NNS_G2dInitImagePaletteProxy(&plttProxy);
+    NNS_G2dInitImageProxy(&imgProxy);
 
-    Graphics_LoadImageMapping(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    Graphics_LoadImageMapping(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v1);
-    Graphics_LoadPartialPalette(93, 14, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
-    Graphics_LoadPartialPalette(93, 14, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v0);
-    ov95_022475C4(&v2, &param0->unk_0C, &v1, &v0, 1);
-    MTRNG_SetSeed(UnkEnum_ov95_02248CA8_00);
+    Graphics_LoadImageMapping(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &imgProxy);
+    Graphics_LoadImageMapping(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &imgProxy);
+    Graphics_LoadPartialPalette(93, 14, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &plttProxy);
+    Graphics_LoadPartialPalette(93, 14, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &plttProxy);
+    SpriteResourcesHeader_InitFromAnimResources(&header, &ttPhase->animResources, &imgProxy, &plttProxy, 1);
+    MTRNG_SetSeed(SPRITE_RNG_SEED);
 
-    for (v3 = 0; v3 < 20; v3++) {
-        v4 = 12 + (MTRNG_Next() % 232);
-        v5 = -28 + (MTRNG_Next() % 452);
+    for (int i = 0; i < 20; i++) {
+        x = 12 + (MTRNG_Next() % 232);
+        y = -28 + (MTRNG_Next() % 452);
 
-        param0->unk_1C[v3][0] = ov95_022475E4(param0->unk_00, &v2, v4, v5, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
-        param0->unk_1C[v3][1] = ov95_022475E4(param0->unk_00, &v2, v4, v5 + 56, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
+        ttPhase->sprites[i][0] = TradeSequence_AddSprite(ttPhase->sequenceData, &header, x, y, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
+        ttPhase->sprites[i][1] = TradeSequence_AddSprite(ttPhase->sequenceData, &header, x, y + 56, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        Sprite_SetAnim(param0->unk_1C[v3][0], 0);
-        Sprite_SetAnim(param0->unk_1C[v3][1], 1);
-        Sprite_SetDrawFlag(param0->unk_1C[v3][0], FALSE);
-        Sprite_SetDrawFlag(param0->unk_1C[v3][1], FALSE);
+        Sprite_SetAnim(ttPhase->sprites[i][0], 0);
+        Sprite_SetAnim(ttPhase->sprites[i][1], 1);
+        Sprite_SetDrawFlag(ttPhase->sprites[i][0], FALSE);
+        Sprite_SetDrawFlag(ttPhase->sprites[i][1], FALSE);
     }
 }
 
-static void ov95_02248DC4(UnkStruct_ov95_02248688 *param0)
+static void TradeTubePhase_DeleteSprites(TradeTubePhase *ttPhase)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 20; v0++) {
-        if (param0->unk_1C[v0][0]) {
-            Sprite_Delete(param0->unk_1C[v0][0]);
+    for (int i = 0; i < 20; i++) {
+        if (ttPhase->sprites[i][0]) {
+            Sprite_Delete(ttPhase->sprites[i][0]);
         }
 
-        if (param0->unk_1C[v0][1]) {
-            Sprite_Delete(param0->unk_1C[v0][1]);
+        if (ttPhase->sprites[i][1]) {
+            Sprite_Delete(ttPhase->sprites[i][1]);
         }
     }
 
-    ov95_022475A0(&param0->unk_0C);
+    SpriteAnimResources_Free(&ttPhase->animResources);
 }
 
-static void ov95_02248DF4(UnkStruct_ov95_02248688 *param0)
+static void TradeTubePhase_RequestScreenSwap(TradeTubePhase *ttPhase)
 {
-    param0->unk_168 = 1;
+    ttPhase->screenSwapPending = 1;
 }
 
-static void ov95_02248E00(SysTask *param0, void *param1)
+static void TradeTubePhase_ScreenSwapTask(SysTask *task, void *param)
 {
-    UnkStruct_ov95_02248688 *v0 = param1;
+    TradeTubePhase *ttPhase = param;
 
-    if (v0->unk_168) {
-        v0->unk_168 = 0;
+    if (ttPhase->screenSwapPending) {
+        ttPhase->screenSwapPending = 0;
 
-        Bg_SetOffset(v0->unk_C0, BG_LAYER_MAIN_2, 3, -256);
-        Bg_SetOffset(v0->unk_C0, BG_LAYER_SUB_2, 3, 0);
+        Bg_SetOffset(ttPhase->bgConfig, BG_LAYER_MAIN_2, 3, -256);
+        Bg_SetOffset(ttPhase->bgConfig, BG_LAYER_SUB_2, 3, 0);
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
         Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
-        SysTask_Done(param0);
+        SysTask_Done(task);
     }
 }
 
-static void ov95_02248E5C(UnkStruct_ov95_02248688 *param0, SysTask **param1, UnkStruct_ov95_02248E5C *param2)
+static void TubeParticleScrollState_Start(TradeTubePhase *ttPhase, SysTask **task, TubeParticleScrollState *tpsState)
 {
-    int v0;
+    tpsState->phase = ttPhase;
+    tpsState->taskHandle = task;
+    tpsState->activateTimer = 0;
+    tpsState->nextSpriteToActivate = 0;
 
-    param2->unk_04 = param0;
-    param2->unk_00 = param1;
-    param2->unk_148 = 0;
-    param2->unk_14C = 0;
-
-    for (v0 = 0; v0 < 20; v0++) {
-        param2->unk_08[v0] = 0;
-        param2->unk_58[v0] = *(Sprite_GetPosition(param0->unk_1C[v0][0]));
+    for (int i = 0; i < 20; i++) {
+        tpsState->spriteActive[i] = 0;
+        tpsState->spritePos[i] = *(Sprite_GetPosition(ttPhase->sprites[i][0]));
     }
 
-    *(param2->unk_00) = SysTask_Start(ov95_02248EC4, param2, 0);
+    *(tpsState->taskHandle) = SysTask_Start(TubeParticleScrollState_Task, tpsState, 0);
 
-    if (*(param2->unk_00) == NULL) {
-        Heap_Free(param2);
+    if (*(tpsState->taskHandle) == NULL) {
+        Heap_Free(tpsState);
     }
 }
 
-static void ov95_02248EC4(SysTask *param0, void *param1)
+static void TubeParticleScrollState_Task(SysTask *unused, void *param)
 {
-    UnkStruct_ov95_02248E5C *v0 = param1;
-    VecFx32 v1;
-    int v2;
+    TubeParticleScrollState *tpsState = param;
+    VecFx32 spritePos;
 
-    if (++(v0->unk_148) > UnkEnum_ov95_02248EC4_00) {
-        v0->unk_148 = 0;
+    if (++(tpsState->activateTimer) > PARTICLE_ACTIVATE_INTERVAL) {
+        tpsState->activateTimer = 0;
 
-        if (v0->unk_14C < 20) {
-            v0->unk_08[v0->unk_14C] = 1;
-            v0->unk_14C++;
+        if (tpsState->nextSpriteToActivate < 20) {
+            tpsState->spriteActive[tpsState->nextSpriteToActivate] = 1;
+            tpsState->nextSpriteToActivate++;
         }
     }
 
-    for (v2 = 0; v2 < 20; v2++) {
-        v0->unk_58[v2].y += UnkEnum_ov95_02248EC4_01;
+    for (int i = 0; i < 20; i++) {
+        tpsState->spritePos[i].y += PARTICLE_SCROLL_SPEED;
 
-        if (v0->unk_58[v2].y >= (424 << 12)) {
-            v0->unk_58[v2].y = -114688 + (v0->unk_58[v2].y - 1736704);
+        if (tpsState->spritePos[i].y >= (424 << 12)) {
+            tpsState->spritePos[i].y = -114688 + (tpsState->spritePos[i].y - 1736704);
 
-            if (v0->unk_08[v2]) {
-                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][0], TRUE);
-                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][1], TRUE);
+            if (tpsState->spriteActive[i]) {
+                Sprite_SetDrawFlag(tpsState->phase->sprites[i][0], TRUE);
+                Sprite_SetDrawFlag(tpsState->phase->sprites[i][1], TRUE);
             }
         }
 
-        Sprite_SetPosition(v0->unk_04->unk_1C[v2][0], &(v0->unk_58[v2]));
+        Sprite_SetPosition(tpsState->phase->sprites[i][0], &(tpsState->spritePos[i]));
 
-        v1 = v0->unk_58[v2];
-        v1.y += 229376;
+        spritePos = tpsState->spritePos[i];
+        spritePos.y += 229376;
 
-        Sprite_SetPosition(v0->unk_04->unk_1C[v2][1], &v1);
+        Sprite_SetPosition(tpsState->phase->sprites[i][1], &spritePos);
     }
 }
 
-static void ov95_02248F94(SysTask *param0)
+static void TubeParticleScrollState_Stop(SysTask *task)
 {
-    if (param0) {
-        UnkStruct_ov95_02248E5C *v0 = SysTask_GetParam(param0);
+    if (task) {
+        TubeParticleScrollState *tpsState = SysTask_GetParam(task);
 
-        *(v0->unk_00) = NULL;
-        SysTask_Done(param0);
+        *(tpsState->taskHandle) = NULL;
+        SysTask_Done(task);
     }
 }
 
-static void ov95_02248FAC(UnkStruct_ov95_02248688 *param0, SysTask **param1)
+static void TubeBgScrollState_Start(TradeTubePhase *ttPhase, SysTask **task)
 {
-    UnkStruct_ov95_02248FAC *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_02248FAC));
+    TubeBgScrollState *tbsState = Heap_Alloc(HEAP_ID_58, sizeof(TubeBgScrollState));
 
-    if (v0) {
-        v0->unk_00 = param0;
-        v0->unk_154 = param0->unk_C0;
-        v0->unk_158 = Bg_GetYOffset(v0->unk_154, 2) << 12;
-        v0->unk_15C = Bg_GetYOffset(v0->unk_154, 6) << 12;
-        v0->unk_160 = 0;
-        v0->unk_164 = 0;
-        v0->unk_168 = param1;
-        v0->unk_16C = NULL;
+    if (tbsState) {
+        tbsState->phase = ttPhase;
+        tbsState->bgConfig = ttPhase->bgConfig;
+        tbsState->mainBgStartOffset = Bg_GetYOffset(tbsState->bgConfig, 2) << 12;
+        tbsState->subBgStartOffset = Bg_GetYOffset(tbsState->bgConfig, 6) << 12;
+        tbsState->scrollAccel = 0;
+        tbsState->totalScrolled = 0;
+        tbsState->taskHandle = task;
+        tbsState->particleTask = NULL;
 
-        *param1 = SysTask_ExecuteOnVBlank(ov95_02249020, v0, 0);
+        *task = SysTask_ExecuteOnVBlank(TubeBgScrollState_Task, tbsState, 0);
 
-        if (*param1 == NULL) {
-            Heap_Free(v0);
+        if (*task == NULL) {
+            Heap_Free(tbsState);
         }
     }
 }
 
-static void ov95_02249020(SysTask *param0, void *param1)
+static void TubeBgScrollState_Task(SysTask *unused, void *param)
 {
-    UnkStruct_ov95_02248FAC *v0 = param1;
+    TubeBgScrollState *tbsState = param;
 
-    if (v0->unk_164 < UnkEnum_ov95_02249020_01) {
-        v0->unk_160 += UnkEnum_ov95_02249020_00;
-        v0->unk_164 += v0->unk_160;
+    if (tbsState->totalScrolled < BG_SCROLL_MAX) {
+        tbsState->scrollAccel += BG_SCROLL_ACCEL;
+        tbsState->totalScrolled += tbsState->scrollAccel;
 
-        Bg_SetOffset(v0->unk_154, BG_LAYER_MAIN_2, 3, (v0->unk_158 - v0->unk_164) >> 12);
-        Bg_SetOffset(v0->unk_154, BG_LAYER_SUB_2, 3, (v0->unk_15C - v0->unk_164) >> 12);
+        Bg_SetOffset(tbsState->bgConfig, BG_LAYER_MAIN_2, 3, (tbsState->mainBgStartOffset - tbsState->totalScrolled) >> 12);
+        Bg_SetOffset(tbsState->bgConfig, BG_LAYER_SUB_2, 3, (tbsState->subBgStartOffset - tbsState->totalScrolled) >> 12);
 
-        if (v0->unk_164 >= (128 << 12)) {
-            if (v0->unk_16C == NULL) {
-                ov95_02248E5C(v0->unk_00, &(v0->unk_16C), &(v0->unk_04));
+        if (tbsState->totalScrolled >= (128 << 12)) {
+            if (tbsState->particleTask == NULL) {
+                TubeParticleScrollState_Start(tbsState->phase, &(tbsState->particleTask), &(tbsState->particleState));
             }
         }
     }
 }
 
-static void ov95_022490A4(SysTask *param0)
+static void TubeBgScrollState_Stop(SysTask *task)
 {
-    if (param0) {
-        UnkStruct_ov95_02248FAC *v0 = SysTask_GetParam(param0);
+    if (task) {
+        TubeBgScrollState *tbsState = SysTask_GetParam(task);
 
-        *(v0->unk_168) = NULL;
-        ov95_02248F94(v0->unk_16C);
-        Heap_Free(v0);
-        SysTask_Done(param0);
+        *(tbsState->taskHandle) = NULL;
+        TubeParticleScrollState_Stop(tbsState->particleTask);
+        Heap_Free(tbsState);
+        SysTask_Done(task);
     }
 }
 
-static void ov95_022490D0(UnkStruct_ov95_02247958 *param0, int param1, int param2, int param3)
+static void ModelFadeState_Start(Trade3DModel *model, int currentValue, int targetValue, int framesRemaining)
 {
-    UnkStruct_ov95_022490D0 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_022490D0));
+    ModelFadeState *mfState = Heap_Alloc(HEAP_ID_58, sizeof(ModelFadeState));
 
-    if (v0) {
-        v0->unk_00 = param1 << 12;
-        v0->unk_08 = param2 << 12;
-        v0->unk_04 = (v0->unk_08 - v0->unk_00) / param3;
-        v0->unk_0C = param3;
-        v0->unk_10 = param0;
+    if (mfState) {
+        mfState->currentValue = currentValue << 12;
+        mfState->targetValue = targetValue << 12;
+        mfState->step = (mfState->targetValue - mfState->currentValue) / framesRemaining;
+        mfState->framesRemaining = framesRemaining;
+        mfState->model = model;
 
-        ov95_022479AC(param0, param1);
-        SysTask_Start(ov95_02249118, v0, 0);
+        Trade3DModel_SetAlpha(model, currentValue);
+        SysTask_Start(ModelFadeState_Task, mfState, 0);
     }
 }
 
-static void ov95_02249118(SysTask *param0, void *param1)
+static void ModelFadeState_Task(SysTask *task, void *param)
 {
-    UnkStruct_ov95_022490D0 *v0 = param1;
+    ModelFadeState *mfState = param;
 
-    if (--(v0->unk_0C) > 0) {
-        v0->unk_00 += v0->unk_04;
-        ov95_022479AC(v0->unk_10, v0->unk_00 >> 12);
+    if (--(mfState->framesRemaining) > 0) {
+        mfState->currentValue += mfState->step;
+        Trade3DModel_SetAlpha(mfState->model, mfState->currentValue >> 12);
     } else {
-        ov95_022479AC(v0->unk_10, v0->unk_08 >> 12);
-        Heap_Free(v0);
-        SysTask_Done(param0);
+        Trade3DModel_SetAlpha(mfState->model, mfState->targetValue >> 12);
+        Heap_Free(mfState);
+        SysTask_Done(task);
     }
 }
 
-static SysTask *ov95_02249154(UnkStruct_ov95_02248688 *param0)
+static SysTask *BallPathState_Start(TradeTubePhase *ttPhase)
 {
-    UnkStruct_ov95_0224922C *v0 = &(param0->unk_DC);
-    int v1;
+    BallPathState *bpState = &(ttPhase->ballAnim);
 
-    ov95_02247958(param0->unk_D8, &v0->unk_08);
-    ov95_02247978(param0->unk_D8, &v0->unk_20);
+    Trade3DModel_GetPosition(ttPhase->model, &bpState->orbitCenter);
+    Trade3DModel_GetRotation(ttPhase->model, &bpState->rotation);
 
-    v0->unk_14 = v0->unk_08;
-    v0->unk_04 = param0->unk_D4;
-    v0->unk_00 = param0->unk_D8;
-    v0->unk_28 = v0->unk_08.y;
-    v0->unk_2C = (UnkEnum_ov95_02249154_02 - v0->unk_08.y) / UnkEnum_ov95_02249154_03;
-    v0->unk_80 = UnkEnum_ov95_02249154_03;
-    v0->unk_38 = 0;
-    v0->unk_3C = 0;
-    v0->unk_40 = 0;
-    v0->unk_44 = 0;
-    v0->unk_54 = 0;
-    v0->unk_56 = UnkEnum_ov95_02249154_04;
-    v0->unk_5A = 0;
-    v0->unk_7C = 0;
+    bpState->currentPos = bpState->orbitCenter;
+    bpState->scene = ttPhase->scene;
+    bpState->model = ttPhase->model;
+    bpState->currentY = bpState->orbitCenter.y;
+    bpState->yStep = (BALL_ENTRY_TARGET_Y - bpState->orbitCenter.y) / BALL_ENTRY_DURATION;
+    bpState->entryFramesRemaining = BALL_ENTRY_DURATION;
+    bpState->orbitRadiusX = 0;
+    bpState->orbitRadiusZ = 0;
+    bpState->orbitRadiusXStep = 0;
+    bpState->orbitRadiusZStep = 0;
+    bpState->angleAccum = 0;
+    bpState->rotationSpeed = BALL_INITIAL_ROTATION_SPEED;
+    bpState->rotationSpeedStep = 0;
+    bpState->midpointReached = 0;
 
-    for (v1 = 0; v1 < 3; v1++) {
-        v0->unk_5C[v1].unk_00 = 0;
-        v0->unk_5C[v1].unk_02 = 0;
-        v0->unk_5C[v1].unk_04 = 0;
-        v0->unk_5C[v1].unk_06 = 0;
+    for (int i = 0; i < 3; i++) {
+        bpState->axisRotAnimators[i].currentValue = 0;
+        bpState->axisRotAnimators[i].step = 0;
+        bpState->axisRotAnimators[i].targetValue = 0;
+        bpState->axisRotAnimators[i].framesRemaining = 0;
     }
 
-    v0->unk_78 = 0;
+    bpState->exitedView = 0;
 
-    ov95_0224922C(v0, UnkEnum_ov95_02249154_05, UnkEnum_ov95_02249154_03);
-    ov95_02249268(v0, UnkEnum_ov95_02249154_01, UnkEnum_ov95_02249154_00, UnkEnum_ov95_02249154_03);
+    BallPathState_SetRotationSpeed(bpState, BALL_TARGET_ROTATION_SPEED, BALL_ENTRY_DURATION);
+    BallPathState_SetOrbitRadius(bpState, BALL_ORBIT_RADIUS_X, BALL_ORBIT_RADIUS_Z, BALL_ENTRY_DURATION);
 
-    return SysTask_Start(ov95_02249424, v0, 0);
+    return SysTask_Start(BallPathState_EntryTask, bpState, 0);
 }
 
-static void ov95_0224922C(UnkStruct_ov95_0224922C *param0, fx32 param1, int param2)
+static void BallPathState_SetRotationSpeed(BallPathState *bpState, fx32 targetSpeed, int duration)
 {
-    if (param2) {
-        param0->unk_5A = (int)(param1 - param0->unk_56) / param2;
-        param0->unk_56 += param0->unk_5A;
+    if (duration) {
+        bpState->rotationSpeedStep = (int)(targetSpeed - bpState->rotationSpeed) / duration;
+        bpState->rotationSpeed += bpState->rotationSpeedStep;
     } else {
-        param0->unk_56 = param1;
+        bpState->rotationSpeed = targetSpeed;
     }
 
-    param0->unk_58 = param1;
-    param0->unk_74 = param2;
+    bpState->targetRotationSpeed = targetSpeed;
+    bpState->rotSpeedTransitionFrames = duration;
 }
 
-static void ov95_02249268(UnkStruct_ov95_0224922C *param0, fx32 param1, fx32 param2, int param3)
+static void BallPathState_SetOrbitRadius(BallPathState *bpState, fx32 targetRadiusX, fx32 targetRadiusZ, int duration)
 {
-    if (param3) {
-        param0->unk_40 = (param1 - param0->unk_38) / param3;
-        param0->unk_44 = (param2 - param0->unk_3C) / param3;
-        param0->unk_38 += param0->unk_40;
-        param0->unk_3C += param0->unk_44;
-        param0->unk_48 = param1;
-        param0->unk_4C = param2;
+    if (duration) {
+        bpState->orbitRadiusXStep = (targetRadiusX - bpState->orbitRadiusX) / duration;
+        bpState->orbitRadiusZStep = (targetRadiusZ - bpState->orbitRadiusZ) / duration;
+        bpState->orbitRadiusX += bpState->orbitRadiusXStep;
+        bpState->orbitRadiusZ += bpState->orbitRadiusZStep;
+        bpState->targetOrbitRadiusX = targetRadiusX;
+        bpState->targetOrbitRadiusZ = targetRadiusZ;
     }
 
-    param0->unk_50 = param3;
+    bpState->orbitTransitionFrames = duration;
 }
 
-static void ov95_022492A4(UnkStruct_ov95_0224922C *param0, int param1, fx32 param2, int param3)
+static void BallPathState_SetAxisRotStep(BallPathState *bpState, int axis, fx32 targetValue, int duration)
 {
-    if (param3) {
-        param0->unk_5C[param1].unk_02 = (param2 - param0->unk_5C[param1].unk_00) / param3;
+    if (duration) {
+        bpState->axisRotAnimators[axis].step = (targetValue - bpState->axisRotAnimators[axis].currentValue) / duration;
     }
 
-    param0->unk_5C[param1].unk_04 = param2;
-    param0->unk_5C[param1].unk_06 = param3;
+    bpState->axisRotAnimators[axis].targetValue = targetValue;
+    bpState->axisRotAnimators[axis].framesRemaining = duration;
 }
 
-static void ov95_022492DC(UnkStruct_ov95_0224922C *param0)
+static void BallPathState_Tick(BallPathState *bpState)
 {
-    int v0, v1;
+    int angleDegrees;
 
-    if (param0->unk_74) {
-        param0->unk_74--;
+    if (bpState->rotSpeedTransitionFrames) {
+        bpState->rotSpeedTransitionFrames--;
 
-        if (param0->unk_74) {
-            param0->unk_56 += param0->unk_5A;
+        if (bpState->rotSpeedTransitionFrames) {
+            bpState->rotationSpeed += bpState->rotationSpeedStep;
         } else {
-            param0->unk_56 = param0->unk_58;
+            bpState->rotationSpeed = bpState->targetRotationSpeed;
         }
     }
 
-    param0->unk_54 += param0->unk_56;
-    v0 = (u16)(param0->unk_54) / (65536 / 360);
+    bpState->angleAccum += bpState->rotationSpeed;
+    angleDegrees = (u16)(bpState->angleAccum) / (65536 / 360);
 
-    if (v0 >= 360) {
-        v0 -= 360;
+    if (angleDegrees >= 360) {
+        angleDegrees -= 360;
     }
 
-    if (param0->unk_50) {
-        param0->unk_38 += param0->unk_40;
-        param0->unk_3C += param0->unk_44;
-        param0->unk_50--;
+    if (bpState->orbitTransitionFrames) {
+        bpState->orbitRadiusX += bpState->orbitRadiusXStep;
+        bpState->orbitRadiusZ += bpState->orbitRadiusZStep;
+        bpState->orbitTransitionFrames--;
 
-        if (param0->unk_50 == 0) {
-            param0->unk_38 = param0->unk_48;
-            param0->unk_3C = param0->unk_4C;
+        if (bpState->orbitTransitionFrames == 0) {
+            bpState->orbitRadiusX = bpState->targetOrbitRadiusX;
+            bpState->orbitRadiusZ = bpState->targetOrbitRadiusZ;
         }
     }
 
-    param0->unk_14.x = param0->unk_08.x + FX_Mul(CalcCosineDegrees(v0), param0->unk_38);
-    param0->unk_14.z = param0->unk_08.z + FX_Mul(CalcSineDegrees(v0), param0->unk_3C);
-    param0->unk_20.y += param0->unk_56;
+    bpState->currentPos.x = bpState->orbitCenter.x + FX_Mul(CalcCosineDegrees(angleDegrees), bpState->orbitRadiusX);
+    bpState->currentPos.z = bpState->orbitCenter.z + FX_Mul(CalcSineDegrees(angleDegrees), bpState->orbitRadiusZ);
+    bpState->rotation.y += bpState->rotationSpeed;
 
-    for (v1 = 0; v1 < 3; v1++) {
-        if (param0->unk_5C[v1].unk_06) {
-            param0->unk_5C[v1].unk_06--;
+    for (int i = 0; i < 3; i++) {
+        if (bpState->axisRotAnimators[i].framesRemaining) {
+            bpState->axisRotAnimators[i].framesRemaining--;
 
-            if (param0->unk_5C[v1].unk_06 == 0) {
-                param0->unk_5C[v1].unk_00 = param0->unk_5C[v1].unk_04;
+            if (bpState->axisRotAnimators[i].framesRemaining == 0) {
+                bpState->axisRotAnimators[i].currentValue = bpState->axisRotAnimators[i].targetValue;
             } else {
-                param0->unk_5C[v1].unk_00 += param0->unk_5C[v1].unk_02;
+                bpState->axisRotAnimators[i].currentValue += bpState->axisRotAnimators[i].step;
             }
         }
     }
 
-    param0->unk_20.x += param0->unk_5C[0].unk_00;
-    param0->unk_20.y += param0->unk_5C[1].unk_00;
-    param0->unk_20.z += param0->unk_5C[2].unk_00;
+    bpState->rotation.x += bpState->axisRotAnimators[0].currentValue;
+    bpState->rotation.y += bpState->axisRotAnimators[1].currentValue;
+    bpState->rotation.z += bpState->axisRotAnimators[2].currentValue;
 }
 
-static void ov95_02249424(SysTask *param0, void *param1)
+static void BallPathState_EntryTask(SysTask *task, void *param)
 {
-    UnkStruct_ov95_0224922C *v0 = param1;
-    int v1;
+    BallPathState *bpState = param;
 
-    if (v0->unk_80) {
-        v0->unk_28 += v0->unk_2C;
-        v0->unk_14.y = v0->unk_28;
+    if (bpState->entryFramesRemaining) {
+        bpState->currentY += bpState->yStep;
+        bpState->currentPos.y = bpState->currentY;
 
-        if (--(v0->unk_80) <= 0) {
-            v0->unk_30 = UnkEnum_ov95_02249424_00;
-            v0->unk_2C = 0;
+        if (--(bpState->entryFramesRemaining) <= 0) {
+            bpState->yAccel = BALL_EXIT_Y_ACCEL;
+            bpState->yStep = 0;
 
-            ov95_02249268(v0, 0x4000, 0x4000, 60);
-            ov95_022492A4(v0, 0, -0x800, 30);
-            v0->unk_7C = 1;
-            SysTask_SetCallback(param0, ov95_022494A8);
+            BallPathState_SetOrbitRadius(bpState, 0x4000, 0x4000, 60);
+            BallPathState_SetAxisRotStep(bpState, 0, -0x800, 30);
+            bpState->midpointReached = 1;
+            SysTask_SetCallback(task, BallPathState_ExitTask);
         }
     }
 
-    ov95_022492DC(v0);
-    ov95_02247968(v0->unk_00, &(v0->unk_14));
-    ov95_02247990(v0->unk_00, &(v0->unk_20));
+    BallPathState_Tick(bpState);
+    Trade3DModel_SetPosition(bpState->model, &(bpState->currentPos));
+    Trade3DModel_SetRotation(bpState->model, &(bpState->rotation));
 }
 
-static void ov95_022494A8(SysTask *param0, void *param1)
+static void BallPathState_ExitTask(SysTask *unused, void *param)
 {
-    UnkStruct_ov95_0224922C *v0 = param1;
+    BallPathState *bpState = param;
 
-    if (v0->unk_78 == 0) {
-        v0->unk_2C += v0->unk_30;
-        v0->unk_28 += v0->unk_2C;
-        v0->unk_14.y = v0->unk_28;
+    if (bpState->exitedView == 0) {
+        bpState->yStep += bpState->yAccel;
+        bpState->currentY += bpState->yStep;
+        bpState->currentPos.y = bpState->currentY;
 
-        ov95_022492DC(v0);
-        ov95_02247968(v0->unk_00, &(v0->unk_14));
-        ov95_02247990(v0->unk_00, &(v0->unk_20));
+        BallPathState_Tick(bpState);
+        Trade3DModel_SetPosition(bpState->model, &(bpState->currentPos));
+        Trade3DModel_SetRotation(bpState->model, &(bpState->rotation));
 
-        if (ov95_022479DC(v0->unk_00) == 0) {
-            ov95_022479A8(v0->unk_00, 0);
-            v0->unk_78 = 1;
+        if (Trade3DModel_IsInView(bpState->model) == 0) {
+            Trade3DModel_SetEnabled(bpState->model, 0);
+            bpState->exitedView = 1;
         }
     }
 }
 
-static BOOL ov95_022494F4(SysTask *param0)
+static BOOL BallPathState_IsDone(SysTask *task)
 {
-    UnkStruct_ov95_0224922C *v0 = SysTask_GetParam(param0);
-    return v0->unk_78;
+    BallPathState *bpState = SysTask_GetParam(task);
+    return bpState->exitedView;
 }
 
-static BOOL ov95_02249500(SysTask *param0)
+static BOOL BallPathState_IsAtMidpoint(SysTask *task)
 {
-    UnkStruct_ov95_0224922C *v0 = SysTask_GetParam(param0);
-    return v0->unk_7C;
+    BallPathState *bpState = SysTask_GetParam(task);
+    return bpState->midpointReached;
 }
 
-static void ov95_0224950C(SysTask *param0)
+static void BallPathState_StartReturn(SysTask *task)
 {
-    UnkStruct_ov95_0224922C *v0 = SysTask_GetParam(param0);
-    CameraAngle v1;
+    BallPathState *bpState = SysTask_GetParam(task);
+    CameraAngle cameraAngle;
 
-    v0->unk_78 = 0;
-    v1.x = v1.y = v1.z = 0;
+    bpState->exitedView = 0;
+    cameraAngle.x = cameraAngle.y = cameraAngle.z = 0;
 
-    ov95_02247AD0(v0->unk_04, 1);
-    ov95_02247AB0(v0->unk_04, &v1);
+    Trade3DScene_ComputeProjection(bpState->scene, 1);
+    Trade3DScene_SetCameraAngle(bpState->scene, &cameraAngle);
 
-    v0->unk_2C = (UnkEnum_ov95_0224950C_01 - UnkEnum_ov95_0224950C_00) / UnkEnum_ov95_0224950C_02;
-    v0->unk_28 = UnkEnum_ov95_0224950C_00 + v0->unk_2C;
-    v0->unk_80 = UnkEnum_ov95_0224950C_02;
-    v0->unk_14.y = v0->unk_28;
+    bpState->yStep = (BALL_RETURN_TARGET_Y - BALL_RETURN_START_Y) / BALL_RETURN_ENTRY_DURATION;
+    bpState->currentY = BALL_RETURN_START_Y + bpState->yStep;
+    bpState->entryFramesRemaining = BALL_RETURN_ENTRY_DURATION;
+    bpState->currentPos.y = bpState->currentY;
 
-    ov95_02249268(v0, 0x0, 0x0, 20);
-    ov95_022492A4(v0, 1, -(v0->unk_56), 30);
-    ov95_022492A4(v0, 2, 0x100, 50);
-    ov95_022479D4(v0->unk_00, UnkEnum_ov95_0224950C_03);
-    ov95_022479A8(v0->unk_00, 1);
+    BallPathState_SetOrbitRadius(bpState, 0x0, 0x0, 20);
+    BallPathState_SetAxisRotStep(bpState, 1, -(bpState->rotationSpeed), 30);
+    BallPathState_SetAxisRotStep(bpState, 2, 0x100, 50);
+    Trade3DModel_SetScale(bpState->model, BALL_RETURN_SCALE);
+    Trade3DModel_SetEnabled(bpState->model, 1);
 
-    SysTask_SetCallback(param0, ov95_0224959C);
+    SysTask_SetCallback(task, BallPathState_ReturnApproachTask);
 }
 
-static void ov95_0224959C(SysTask *param0, void *param1)
+static void BallPathState_ReturnApproachTask(SysTask *task, void *param)
 {
-    UnkStruct_ov95_0224922C *v0 = param1;
+    BallPathState *bpState = param;
 
-    ov95_022492DC(v0);
+    BallPathState_Tick(bpState);
 
-    if (v0->unk_80) {
-        v0->unk_28 += v0->unk_2C;
-        v0->unk_14.y = v0->unk_28;
+    if (bpState->entryFramesRemaining) {
+        bpState->currentY += bpState->yStep;
+        bpState->currentPos.y = bpState->currentY;
 
-        if (--(v0->unk_80) == 0) {
-            SysTask_SetCallback(param0, ov95_022495F8);
+        if (--(bpState->entryFramesRemaining) == 0) {
+            SysTask_SetCallback(task, BallPathState_ReturnCoastTask);
         }
     }
 
-    ov95_02247968(v0->unk_00, &(v0->unk_14));
-    ov95_02247990(v0->unk_00, &(v0->unk_20));
+    Trade3DModel_SetPosition(bpState->model, &(bpState->currentPos));
+    Trade3DModel_SetRotation(bpState->model, &(bpState->rotation));
 }
 
-static void ov95_022495F8(SysTask *param0, void *param1)
+static void BallPathState_ReturnCoastTask(SysTask *task, void *param)
 {
-    UnkStruct_ov95_0224922C *v0 = param1;
+    BallPathState *bpState = param;
 
-    ov95_022492DC(v0);
+    BallPathState_Tick(bpState);
 
-    if (++(v0->unk_80) > UnkEnum_ov95_022495F8_00) {
-        v0->unk_2C = (UnkEnum_ov95_022495F8_01 - v0->unk_28) / UnkEnum_ov95_022495F8_02;
-        v0->unk_80 = UnkEnum_ov95_022495F8_02;
-        SysTask_SetCallback(param0, ov95_02249658);
+    if (++(bpState->entryFramesRemaining) > BALL_RETURN_COAST_DURATION) {
+        bpState->yStep = (BALL_RETURN_FINAL_TARGET_Y - bpState->currentY) / BALL_RETURN_FINAL_APPROACH_DURATION;
+        bpState->entryFramesRemaining = BALL_RETURN_FINAL_APPROACH_DURATION;
+        SysTask_SetCallback(task, BallPathState_ReturnFinalApproachTask);
     }
 
-    ov95_02247968(v0->unk_00, &(v0->unk_14));
-    ov95_02247990(v0->unk_00, &(v0->unk_20));
+    Trade3DModel_SetPosition(bpState->model, &(bpState->currentPos));
+    Trade3DModel_SetRotation(bpState->model, &(bpState->rotation));
 }
 
-static void ov95_02249658(SysTask *param0, void *param1)
+static void BallPathState_ReturnFinalApproachTask(SysTask *task, void *param)
 {
-    UnkStruct_ov95_0224922C *v0 = param1;
+    BallPathState *bpState = param;
 
-    ov95_022492DC(v0);
+    BallPathState_Tick(bpState);
 
-    if (v0->unk_80) {
-        v0->unk_28 += v0->unk_2C;
-        v0->unk_14.y = v0->unk_28;
+    if (bpState->entryFramesRemaining) {
+        bpState->currentY += bpState->yStep;
+        bpState->currentPos.y = bpState->currentY;
 
-        if (--(v0->unk_80) == 0) {
-            SysTask_SetCallback(param0, ov95_022496B4);
+        if (--(bpState->entryFramesRemaining) == 0) {
+            SysTask_SetCallback(task, BallPathState_ReturnCoast2Task);
         }
     }
 
-    ov95_02247968(v0->unk_00, &(v0->unk_14));
-    ov95_02247990(v0->unk_00, &(v0->unk_20));
+    Trade3DModel_SetPosition(bpState->model, &(bpState->currentPos));
+    Trade3DModel_SetRotation(bpState->model, &(bpState->rotation));
 }
 
-static void ov95_022496B4(SysTask *param0, void *param1)
+static void BallPathState_ReturnCoast2Task(SysTask *task, void *param)
 {
-    UnkStruct_ov95_0224922C *v0 = param1;
+    BallPathState *bpState = param;
 
-    ov95_022492DC(v0);
+    BallPathState_Tick(bpState);
 
-    if (++(v0->unk_80) > UnkEnum_ov95_022496B4_00) {
-        v0->unk_2C = UnkEnum_ov95_022496B4_01;
-        SysTask_SetCallback(param0, ov95_02249700);
+    if (++(bpState->entryFramesRemaining) > BALL_RETURN_COAST2_DURATION) {
+        bpState->yStep = BALL_RETURN_EXIT_Y_STEP;
+        SysTask_SetCallback(task, BallPathState_ReturnExitTask);
     }
 
-    ov95_02247968(v0->unk_00, &(v0->unk_14));
-    ov95_02247990(v0->unk_00, &(v0->unk_20));
+    Trade3DModel_SetPosition(bpState->model, &(bpState->currentPos));
+    Trade3DModel_SetRotation(bpState->model, &(bpState->rotation));
 }
 
-static void ov95_02249700(SysTask *param0, void *param1)
+static void BallPathState_ReturnExitTask(SysTask *unused, void *param)
 {
-    UnkStruct_ov95_0224922C *v0 = param1;
+    BallPathState *bpState = param;
 
-    if (v0->unk_78 == 0) {
-        ov95_022492DC(v0);
+    if (bpState->exitedView == 0) {
+        BallPathState_Tick(bpState);
 
-        v0->unk_28 += v0->unk_2C;
-        v0->unk_14.y = v0->unk_28;
+        bpState->currentY += bpState->yStep;
+        bpState->currentPos.y = bpState->currentY;
 
-        ov95_02247968(v0->unk_00, &(v0->unk_14));
-        ov95_02247990(v0->unk_00, &(v0->unk_20));
+        Trade3DModel_SetPosition(bpState->model, &(bpState->currentPos));
+        Trade3DModel_SetRotation(bpState->model, &(bpState->rotation));
 
-        if (ov95_022479DC(v0->unk_00) == 0) {
-            v0->unk_78 = 1;
+        if (Trade3DModel_IsInView(bpState->model) == 0) {
+            bpState->exitedView = 1;
         }
     }
 }

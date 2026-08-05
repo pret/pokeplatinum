@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV95_0224773C_DECL_H
 #define POKEPLATINUM_STRUCT_OV95_0224773C_DECL_H
 
-typedef struct UnkStruct_ov95_0224773C_t UnkStruct_ov95_0224773C;
+typedef struct Trade3DScene_t Trade3DScene;
 
 #endif // POKEPLATINUM_STRUCT_OV95_0224773C_DECL_H

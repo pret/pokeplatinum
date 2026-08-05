@@ -33,165 +33,159 @@
 
 #include "res/text/bank/trade.h"
 
-typedef struct {
-    TradeSequenceData *unk_00;
-    int unk_04;
-    int unk_08;
-    PokemonSpriteManager *unk_0C;
-    PokemonSprite *unk_10;
-    SpriteAnimFrame unk_14[10];
-    Sprite *unk_3C[2];
-    UnkStruct_ov95_02247568 unk_44;
-    BgConfig *unk_54;
-    Window unk_58;
-    String *unk_68;
-    String *unk_6C;
-    UnkStruct_ov95_0224773C *unk_70;
-    UnkStruct_ov95_02247958 *unk_74;
-    SysTask *unk_78;
-    SysTask *unk_7C;
-    NARC *unk_80;
-} UnkStruct_ov95_02247C6C;
+typedef struct TradeSendPhase {
+    TradeSequenceData *sequenceData;
+    int subStepCounter;
+    int timer;
+    PokemonSpriteManager *spriteManager;
+    PokemonSprite *pokemonSprite;
+    SpriteAnimFrame animFrames[10];
+    Sprite *sprites[2];
+    SpriteAnimResources animResources;
+    BgConfig *bgConfig;
+    Window window;
+    String *string0;
+    String *string1;
+    Trade3DScene *scene;
+    Trade3DModel *model;
+    SysTask *task0;
+    SysTask *task1;
+    NARC *pokeDataNarc;
+} TradeSendPhase;
 
-typedef struct {
-    UnkStruct_ov95_02247C6C *unk_00;
-    fx32 unk_04;
-    fx32 unk_08;
-    fx32 unk_0C;
-    int unk_10;
-} UnkStruct_ov95_02248364;
+typedef struct BrightnessAnimState {
+    TradeSendPhase *phase;
+    fx32 currentValue;
+    fx32 targetValue;
+    fx32 step;
+    int framesRemaining;
+} BrightnessAnimState;
 
-typedef struct {
-    UnkStruct_ov95_02247C6C *unk_00;
-    UnkStruct_ov95_02247958 *unk_04;
-    VecFx32 unk_08;
-    VecFx16 unk_14;
-    fx32 unk_1C;
-    int unk_20;
-    BOOL unk_24;
-    int unk_28;
-    fx16 unk_2C;
-} UnkStruct_ov95_02248420;
+typedef struct BallBounceState {
+    TradeSendPhase *phase;
+    Trade3DModel *model;
+    VecFx32 position;
+    VecFx16 rotation;
+    fx32 velocityY;
+    int bounceCount;
+    BOOL settled;
+    int settleTimer;
+    fx16 spinSpeed;
+} BallBounceState;
 
-static void ov95_02247C6C(UnkStruct_ov95_02247C6C *param0);
-static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1);
-static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1);
-static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1);
-static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1);
-static void ov95_02248174(UnkStruct_ov95_02247C6C *param0);
-static PokemonSprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0);
-static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0);
-static void ov95_02248340(UnkStruct_ov95_02247C6C *param0);
-static void ov95_02248364(UnkStruct_ov95_02247C6C *param0, int param1, int param2, int param3);
-static BOOL ov95_022483B4(UnkStruct_ov95_02247C6C *param0);
-static void ov95_022483C4(UnkStruct_ov95_02247C6C *param0);
-static void ov95_022483E4(SysTask *param0, void *param1);
-static void ov95_02248420(UnkStruct_ov95_02247C6C *param0);
-static BOOL ov95_0224846C(UnkStruct_ov95_02247C6C *param0);
-static int ov95_0224847C(UnkStruct_ov95_02247C6C *param0);
-static void ov95_02248490(UnkStruct_ov95_02247C6C *param0);
-static void ov95_022484B0(SysTask *param0, void *param1);
+static void TradeSendPhase_Tick(TradeSendPhase *tsPhase);
+static int TradeSendPhase_InitGraphics(TradeSendPhase *tsPhase, int *unused);
+static int TradeSendPhase_RevealSprite(TradeSendPhase *tsPhase, int *subStepCounter);
+static int TradeSendPhase_ShowPokemonInfo(TradeSendPhase *tsPhase, int *subStepCounter);
+static int TradeSendPhase_ThrowBall(TradeSendPhase *tsPhase, int *subStepCounter);
+static void TradeSendPhase_Init3DScene(TradeSendPhase *tsPhase);
+static PokemonSprite *TradeSendPhase_CreatePokemonSprite(TradeSendPhase *tsPhase);
+static void TradeSendPhase_CreateBallSprites(TradeSendPhase *tsPhase);
+static void TradeSendPhase_DeleteBallSprites(TradeSendPhase *tsPhase);
+static void BrightnessAnimState_Start(TradeSendPhase *tsPhase, int startValue, int targetValue, int duration);
+static BOOL TradeSendPhase_IsBrightnessAnimDone(TradeSendPhase *tsPhase);
+static void TradeSendPhase_FreeBrightnessAnimState(TradeSendPhase *tsPhase);
+static void BrightnessAnimState_Task(SysTask *task, void *param);
+static void BallBounceState_Start(TradeSendPhase *tsPhase);
+static BOOL TradeSendPhase_IsBallBounceDone(TradeSendPhase *tsPhase);
+static int TradeSendPhase_GetBounceCount(TradeSendPhase *tsPhase);
+static void BallBounceState_Free(TradeSendPhase *tsPhase);
+static void BallBounceState_Task(SysTask *task, void *param);
 
-void *ov95_02247B6C(TradeSequenceData *param0)
+void *TradeSendPhase_New(TradeSequenceData *sequenceData)
 {
-    UnkStruct_ov95_02247C6C *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_02247C6C));
+    TradeSendPhase *tsPhase = Heap_Alloc(HEAP_ID_58, sizeof(TradeSendPhase));
 
-    if (v0) {
-        int v1;
-
-        v0->unk_00 = param0;
-        v0->unk_04 = 0;
-        v0->unk_54 = ov95_02247628(param0);
-        v0->unk_0C = PokemonSpriteManager_New(HEAP_ID_58);
-        v0->unk_10 = NULL;
-        v0->unk_68 = String_Init(300, HEAP_ID_58);
-        v0->unk_6C = String_Init(300, HEAP_ID_58);
-        v0->unk_78 = NULL;
-        v0->unk_7C = NULL;
-        v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_58);
+    if (tsPhase) {
+        tsPhase->sequenceData = sequenceData;
+        tsPhase->subStepCounter = 0;
+        tsPhase->bgConfig = TradeSequence_GetBgConfig(sequenceData);
+        tsPhase->spriteManager = PokemonSpriteManager_New(HEAP_ID_58);
+        tsPhase->pokemonSprite = NULL;
+        tsPhase->string0 = String_Init(300, HEAP_ID_58);
+        tsPhase->string1 = String_Init(300, HEAP_ID_58);
+        tsPhase->task0 = NULL;
+        tsPhase->task1 = NULL;
+        tsPhase->pokeDataNarc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_58);
     }
 
-    return v0;
+    return tsPhase;
 }
 
-void ov95_02247BC8(void *param0)
+void TradeSendPhase_Free(void *param)
 {
-    UnkStruct_ov95_02247C6C *v0 = param0;
+    TradeSendPhase *tsPhase = param;
 
-    if (v0) {
-        int v1;
+    if (tsPhase) {
+        TradeSendPhase_FreeBrightnessAnimState(tsPhase);
+        BallBounceState_Free(tsPhase);
+        TradeSendPhase_DeleteBallSprites(tsPhase);
 
-        ov95_022483C4(v0);
-        ov95_02248490(v0);
-        ov95_02248340(v0);
+        String_Free(tsPhase->string0);
+        String_Free(tsPhase->string1);
 
-        String_Free(v0->unk_68);
-        String_Free(v0->unk_6C);
+        Trade3DScene_Free(tsPhase->scene);
 
-        ov95_0224773C(v0->unk_70);
+        Bg_FreeTilemapBuffer(tsPhase->bgConfig, BG_LAYER_MAIN_1);
+        Bg_FreeTilemapBuffer(tsPhase->bgConfig, BG_LAYER_MAIN_2);
+        Bg_FreeTilemapBuffer(tsPhase->bgConfig, BG_LAYER_SUB_2);
+        Window_Remove(&(tsPhase->window));
+        NARC_dtor(tsPhase->pokeDataNarc);
 
-        Bg_FreeTilemapBuffer(v0->unk_54, BG_LAYER_MAIN_1);
-        Bg_FreeTilemapBuffer(v0->unk_54, BG_LAYER_MAIN_2);
-        Bg_FreeTilemapBuffer(v0->unk_54, BG_LAYER_SUB_2);
-        Window_Remove(&(v0->unk_58));
-        NARC_dtor(v0->unk_80);
-
-        if (v0->unk_10) {
-            PokemonSprite_Delete(v0->unk_10);
+        if (tsPhase->pokemonSprite) {
+            PokemonSprite_Delete(tsPhase->pokemonSprite);
         }
 
-        PokemonSpriteManager_Free(v0->unk_0C);
-        Heap_Free(v0);
+        PokemonSpriteManager_Free(tsPhase->spriteManager);
+        Heap_Free(tsPhase);
     }
 }
 
-BOOL ov95_02247C34(void *param0, int *param1)
+BOOL TradeSendPhase_Run(void *param, int *state)
 {
-    static int (*const v0[])(UnkStruct_ov95_02247C6C *, int *) = {
-        ov95_02247CB4,
-        ov95_02247ED8,
-        ov95_02247F04,
-        ov95_02248090,
+    static int (*const sStepFuncs[])(TradeSendPhase *, int *) = {
+        TradeSendPhase_InitGraphics,
+        TradeSendPhase_RevealSprite,
+        TradeSendPhase_ShowPokemonInfo,
+        TradeSendPhase_ThrowBall,
     };
 
-    UnkStruct_ov95_02247C6C *v1 = param0;
+    TradeSendPhase *tsPhase = param;
 
-    if ((*param1) < NELEMS(v0)) {
-        if (v0[*param1](v1, &(v1->unk_04))) {
-            (*param1)++;
-            v1->unk_04 = 0;
+    if ((*state) < NELEMS(sStepFuncs)) {
+        if (sStepFuncs[*state](tsPhase, &(tsPhase->subStepCounter))) {
+            (*state)++;
+            tsPhase->subStepCounter = 0;
         }
 
-        ov95_02247C6C(v1);
+        TradeSendPhase_Tick(tsPhase);
 
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void ov95_02247C6C(UnkStruct_ov95_02247C6C *param0)
+static void TradeSendPhase_Tick(TradeSendPhase *tsPhase)
 {
     G3X_Reset();
     NNS_G3dGePushMtx();
 
-    {
-        NNS_G3dGeFlushBuffer();
-        NNS_G2dSetupSoftwareSpriteCamera();
+    NNS_G3dGeFlushBuffer();
+    NNS_G2dSetupSoftwareSpriteCamera();
 
-        PokemonSpriteManager_UpdateCharAndPltt(param0->unk_0C);
-        PokemonSpriteManager_DrawSprites(param0->unk_0C);
-    }
+    PokemonSpriteManager_UpdateCharAndPltt(tsPhase->spriteManager);
+    PokemonSpriteManager_DrawSprites(tsPhase->spriteManager);
 
     NNS_G3dGePopMtx(1);
 
-    ov95_02247770(param0->unk_70);
+    Trade3DScene_Render(tsPhase->scene);
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
 
-static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
+static int TradeSendPhase_InitGraphics(TradeSendPhase *tsPhase, int *unused)
 {
-    static const GXBanks v0 = {
+    static const GXBanks banks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_23_G,
         GX_VRAM_SUB_BG_128_C,
@@ -203,13 +197,13 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_0123_E
     };
-    static const GraphicsModes v1 = {
+    static const GraphicsModes modes = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_3D
     };
-    static const BgTemplate v2 = {
+    static const BgTemplate bgTemplate1 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
@@ -223,7 +217,7 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
         .areaOver = 0,
         .mosaic = FALSE,
     };
-    static const BgTemplate v3 = {
+    static const BgTemplate bgTemplate2 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0,
@@ -238,46 +232,44 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
         .mosaic = FALSE,
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
-    SetAllGraphicsModes(&v1);
+    SetAllGraphicsModes(&modes);
 
-    Bg_InitFromTemplate(param0->unk_54, BG_LAYER_MAIN_1, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_54, BG_LAYER_MAIN_2, &v3, 0);
-    Bg_InitFromTemplate(param0->unk_54, BG_LAYER_SUB_2, &v3, 0);
+    Bg_InitFromTemplate(tsPhase->bgConfig, BG_LAYER_MAIN_1, &bgTemplate1, 0);
+    Bg_InitFromTemplate(tsPhase->bgConfig, BG_LAYER_MAIN_2, &bgTemplate2, 0);
+    Bg_InitFromTemplate(tsPhase->bgConfig, BG_LAYER_SUB_2, &bgTemplate2, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
 
-    Bg_FillTilesRange(param0->unk_54, 1, 0x0, 1, 0);
-    Bg_FillTilemapRect(param0->unk_54, 1, 0x0, 0, 0, 32, 32, 0);
-    LoadMessageBoxGraphics(param0->unk_54, BG_LAYER_MAIN_1, 109, 2, ov95_02247674(param0->unk_00), HEAP_ID_58);
-    Window_Add(param0->unk_54, &(param0->unk_58), 1, 2, 19, 27, 4, 1, 1);
-    Window_FillTilemap(&(param0->unk_58), 0xf);
+    Bg_FillTilesRange(tsPhase->bgConfig, 1, 0x0, 1, 0);
+    Bg_FillTilemapRect(tsPhase->bgConfig, 1, 0x0, 0, 0, 32, 32, 0);
+    LoadMessageBoxGraphics(tsPhase->bgConfig, BG_LAYER_MAIN_1, 109, 2, TradeSequence_GetOptionsFrame(tsPhase->sequenceData), HEAP_ID_58);
+    Window_Add(tsPhase->bgConfig, &(tsPhase->window), 1, 2, 19, 27, 4, 1, 1);
+    Window_FillTilemap(&(tsPhase->window), 0xf);
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 7, 0, 1 * 0x20, 0x20, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, param0->unk_54, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, param0->unk_54, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, tsPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, tsPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 23, 0, 0 * 0x20, 0x20, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, param0->unk_54, 6, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, param0->unk_54, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, tsPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, tsPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_58);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 23, 4, 0 * 0x20, 0x20, HEAP_ID_58);
 
-    Bg_CopyTilemapBufferToVRAM(param0->unk_54, 1);
-    ov95_02248174(param0);
+    Bg_CopyTilemapBufferToVRAM(tsPhase->bgConfig, 1);
+    TradeSendPhase_Init3DScene(tsPhase);
 
-    param0->unk_70 = ov95_022476F0(1, 0, 0, 0);
-    param0->unk_10 = ov95_02248240(param0);
-    param0->unk_74 = ov95_022478B4(param0->unk_70, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, 147456 + 4294928384, 245760 + 227328, 0);
+    tsPhase->scene = Trade3DScene_New(1, 0, 0, 0);
+    tsPhase->pokemonSprite = TradeSendPhase_CreatePokemonSprite(tsPhase);
+    tsPhase->model = Trade3DModel_Load(tsPhase->scene, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, 147456 + 4294928384, 245760 + 227328, 0);
 
-    {
-        VecFx16 v4 = { 0x0, 0xf000, 0x0 };
-        ov95_02247990(param0->unk_74, &v4);
-    }
+    VecFx16 vecFx = { 0x0, 0xf000, 0x0 };
+    Trade3DModel_SetRotation(tsPhase->model, &vecFx);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    ov95_0224829C(param0);
+    TradeSendPhase_CreateBallSprites(tsPhase);
 
     G2_BlendNone();
 
@@ -288,13 +280,13 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
     return 1;
 }
 
-static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1)
+static int TradeSendPhase_RevealSprite(TradeSendPhase *tsPhase, int *subStepCounter)
 {
-    switch (*param1) {
+    switch (*subStepCounter) {
     case 0:
         if (IsScreenFadeDone()) {
-            Sprite_SetAnim(param0->unk_3C[0], 1);
-            Sprite_SetDrawFlag(param0->unk_3C[0], TRUE);
+            Sprite_SetAnim(tsPhase->sprites[0], 1);
+            Sprite_SetDrawFlag(tsPhase->sprites[0], TRUE);
             return 1;
         }
         break;
@@ -303,72 +295,72 @@ static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1)
     return 0;
 }
 
-static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
+static int TradeSendPhase_ShowPokemonInfo(TradeSendPhase *tsPhase, int *subStepCounter)
 {
-    switch (*param1) {
+    switch (*subStepCounter) {
     case 0:
-        param0->unk_08 = 0;
-        (*param1)++;
+        tsPhase->timer = 0;
+        (*subStepCounter)++;
         break;
     case 1:
-        if (++(param0->unk_08) > 10) {
-            MessageLoader *v0 = ov95_02247630(param0->unk_00);
-            StringTemplate *v1 = ov95_0224762C(param0->unk_00);
-            int v2, v3;
+        if (++(tsPhase->timer) > 10) {
+            MessageLoader *msgLoader = TradeSequence_GetMsgLoader(tsPhase->sequenceData);
+            StringTemplate *template = TradeSequence_GetStrTemplate(tsPhase->sequenceData);
+            int msgId, nextStep;
 
-            if (TradeSequence_GetTradeType(param0->unk_00) == TRADE_TYPE_NORMAL) {
-                v2 = pl_msg_00000350_00000;
-                v3 = 2;
+            if (TradeSequence_GetTradeType(tsPhase->sequenceData) == TRADE_TYPE_NORMAL) {
+                msgId = pl_msg_00000350_00000;
+                nextStep = 2;
             } else {
-                v2 = pl_msg_00000350_00004;
-                v3 = 3;
+                msgId = pl_msg_00000350_00004;
+                nextStep = 3;
             }
 
-            MessageLoader_GetString(v0, v2, param0->unk_68);
-            StringTemplate_Format(v1, param0->unk_6C, param0->unk_68);
-            Text_AddPrinterWithParams(&(param0->unk_58), FONT_MESSAGE, param0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-            Window_DrawMessageBox(&(param0->unk_58), 109, 2);
-            Window_CopyToVRAM(&(param0->unk_58));
-            param0->unk_08 = 0;
-            (*param1) = v3;
+            MessageLoader_GetString(msgLoader, msgId, tsPhase->string0);
+            StringTemplate_Format(template, tsPhase->string1, tsPhase->string0);
+            Text_AddPrinterWithParams(&(tsPhase->window), FONT_MESSAGE, tsPhase->string1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+            Window_DrawMessageBox(&(tsPhase->window), 109, 2);
+            Window_CopyToVRAM(&(tsPhase->window));
+            tsPhase->timer = 0;
+            (*subStepCounter) = nextStep;
         }
         break;
     case 2:
-        if (++(param0->unk_08) > 60) {
-            MessageLoader *v4 = ov95_02247630(param0->unk_00);
-            StringTemplate *v5 = ov95_0224762C(param0->unk_00);
+        if (++(tsPhase->timer) > 60) {
+            MessageLoader *msgLoader = TradeSequence_GetMsgLoader(tsPhase->sequenceData);
+            StringTemplate *template = TradeSequence_GetStrTemplate(tsPhase->sequenceData);
 
-            MessageLoader_GetString(v4, 1, param0->unk_68);
-            StringTemplate_Format(v5, param0->unk_6C, param0->unk_68);
+            MessageLoader_GetString(msgLoader, 1, tsPhase->string0);
+            StringTemplate_Format(template, tsPhase->string1, tsPhase->string0);
 
             {
-                const BoxPokemon *v6 = TradeSequence_GetSendingPokemon(param0->unk_00);
+                const BoxPokemon *boxMon = TradeSequence_GetSendingPokemon(tsPhase->sequenceData);
 
-                if (BoxPokemon_GetValue((BoxPokemon *)v6, MON_DATA_IS_EGG, NULL) == 0) {
+                if (BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL) == 0) {
                     u8 delay;
 
-                    PokemonSprite_InitAnim(param0->unk_10, 1);
-                    PokemonSprite_LoadCryDelay(param0->unk_80, &delay, ov95_0224764C(param0->unk_00), 1);
-                    Sound_PlayDelayedPokemonCry(ov95_0224764C(param0->unk_00), delay, ov95_02247654(param0->unk_00));
+                    PokemonSprite_InitAnim(tsPhase->pokemonSprite, 1);
+                    PokemonSprite_LoadCryDelay(tsPhase->pokeDataNarc, &delay, TradeSequence_GetSendingSpecies(tsPhase->sequenceData), 1);
+                    Sound_PlayDelayedPokemonCry(TradeSequence_GetSendingSpecies(tsPhase->sequenceData), delay, TradeSequence_GetSendingForm(tsPhase->sequenceData));
                 }
 
-                Window_FillTilemap(&(param0->unk_58), 0xf);
-                Text_AddPrinterWithParams(&(param0->unk_58), FONT_MESSAGE, param0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-                Window_LoadTiles(&(param0->unk_58));
-                param0->unk_08 = 0;
-                (*param1)++;
+                Window_FillTilemap(&(tsPhase->window), 0xf);
+                Text_AddPrinterWithParams(&(tsPhase->window), FONT_MESSAGE, tsPhase->string1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+                Window_LoadTiles(&(tsPhase->window));
+                tsPhase->timer = 0;
+                (*subStepCounter)++;
             }
         }
         break;
     case 3:
-        if (++(param0->unk_08) > 60) {
-            Window_EraseMessageBox(&(param0->unk_58), 0);
-            param0->unk_08 = 0;
-            (*param1)++;
+        if (++(tsPhase->timer) > 60) {
+            Window_EraseMessageBox(&(tsPhase->window), 0);
+            tsPhase->timer = 0;
+            (*subStepCounter)++;
         }
         break;
     case 4:
-        if (++(param0->unk_08) > 20) {
+        if (++(tsPhase->timer) > 20) {
             return 1;
         }
         break;
@@ -377,39 +369,39 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
     return 0;
 }
 
-static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
+static int TradeSendPhase_ThrowBall(TradeSendPhase *tsPhase, int *subStepCounter)
 {
-    switch (*param1) {
+    switch (*subStepCounter) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_KOUKAN01);
-        ov95_02248364(param0, 0, 16, 12);
-        (*param1)++;
+        BrightnessAnimState_Start(tsPhase, 0, 16, 12);
+        (*subStepCounter)++;
         break;
     case 1:
-        if (ov95_022483B4(param0)) {
-            PokemonSprite_Delete(param0->unk_10);
-            Sprite_SetAnim(param0->unk_3C[1], 0);
-            Sprite_SetDrawFlag(param0->unk_3C[1], TRUE);
-            (*param1)++;
+        if (TradeSendPhase_IsBrightnessAnimDone(tsPhase)) {
+            PokemonSprite_Delete(tsPhase->pokemonSprite);
+            Sprite_SetAnim(tsPhase->sprites[1], 0);
+            Sprite_SetDrawFlag(tsPhase->sprites[1], TRUE);
+            (*subStepCounter)++;
         }
         break;
     case 2:
-        if (Sprite_IsAnimated(param0->unk_3C[1]) == 0) {
-            ov95_022479A8(param0->unk_74, 1);
-            ov95_02248364(param0, 16, 0, 16);
-            ov95_02248420(param0);
-            (*param1)++;
+        if (Sprite_IsAnimated(tsPhase->sprites[1]) == 0) {
+            Trade3DModel_SetEnabled(tsPhase->model, 1);
+            BrightnessAnimState_Start(tsPhase, 16, 0, 16);
+            BallBounceState_Start(tsPhase);
+            (*subStepCounter)++;
         }
         break;
     case 3:
-        if ((ov95_0224847C(param0) >= 2) || (ov95_0224846C(param0) == 1)) {
+        if ((TradeSendPhase_GetBounceCount(tsPhase) >= 2) || (TradeSendPhase_IsBallBounceDone(tsPhase) == 1)) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 24, 1, HEAP_ID_58);
-            (*param1)++;
+            (*subStepCounter)++;
         }
         break;
     case 4:
         if (IsScreenFadeDone()) {
-            if (ov95_0224846C(param0)) {
+            if (TradeSendPhase_IsBallBounceDone(tsPhase)) {
                 return 1;
             }
         }
@@ -419,10 +411,10 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
     return 0;
 }
 
-static void ov95_02248174(UnkStruct_ov95_02247C6C *param0)
+static void TradeSendPhase_Init3DScene(TradeSendPhase *tsPhase)
 {
-    NNSGfdTexKey v0;
-    NNSGfdPlttKey v1;
+    NNSGfdTexKey texKey;
+    NNSGfdPlttKey plttKey;
 
     NNS_G3dInit();
 
@@ -439,208 +431,205 @@ static void ov95_02248174(UnkStruct_ov95_02247C6C *param0)
     NNS_GfdInitFrmTexVramManager(1, 1);
     NNS_GfdInitFrmPlttVramManager(0x4000, 1);
 
-    v0 = NNS_GfdAllocTexVram(0x4000, 0, 0);
-    v1 = NNS_GfdAllocPlttVram(0x80, 0, NNS_GFD_ALLOC_FROM_LOW);
+    texKey = NNS_GfdAllocTexVram(0x4000, 0, 0);
+    plttKey = NNS_GfdAllocPlttVram(0x80, 0, NNS_GFD_ALLOC_FROM_LOW);
 
-    PokemonSpriteManager_SetCharBaseAddrAndSize(param0->unk_0C, NNS_GfdGetTexKeyAddr(v0), NNS_GfdGetTexKeySize(v0));
-    PokemonSpriteManager_SetPlttBaseAddrAndSize(param0->unk_0C, NNS_GfdGetPlttKeyAddr(v1), NNS_GfdGetPlttKeySize(v1));
+    PokemonSpriteManager_SetCharBaseAddrAndSize(tsPhase->spriteManager, NNS_GfdGetTexKeyAddr(texKey), NNS_GfdGetTexKeySize(texKey));
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(tsPhase->spriteManager, NNS_GfdGetPlttKeyAddr(plttKey), NNS_GfdGetPlttKeySize(plttKey));
 }
 
-static PokemonSprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0)
+static PokemonSprite *TradeSendPhase_CreatePokemonSprite(TradeSendPhase *tsPhase)
 {
-    PokemonSpriteTemplate v0;
-    BoxPokemon *v1;
-    int v2;
+    PokemonSpriteTemplate template;
+    BoxPokemon *boxMon;
+    int y;
 
-    v1 = (BoxPokemon *)TradeSequence_GetSendingPokemon(param0->unk_00);
+    boxMon = (BoxPokemon *)TradeSequence_GetSendingPokemon(tsPhase->sequenceData);
 
-    BoxPokemon_BuildSpriteTemplate(&v0, v1, 2, 0);
-    PokemonSprite_LoadAnimFrames(param0->unk_80, param0->unk_14, ov95_0224764C(param0->unk_00), 1);
+    BoxPokemon_BuildSpriteTemplate(&template, boxMon, 2, 0);
+    PokemonSprite_LoadAnimFrames(tsPhase->pokeDataNarc, tsPhase->animFrames, TradeSequence_GetSendingSpecies(tsPhase->sequenceData), 1);
 
-    v2 = (100 - 20) + BoxPokemon_SpriteYOffset(v1, 2, 0);
+    y = (100 - 20) + BoxPokemon_SpriteYOffset(boxMon, 2, 0);
 
-    return PokemonSpriteManager_CreateSprite(param0->unk_0C, &v0, 128, v2, 0, 0, param0->unk_14, NULL);
+    return PokemonSpriteManager_CreateSprite(tsPhase->spriteManager, &template, 128, y, 0, 0, tsPhase->animFrames, NULL);
 }
 
-static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0)
+static void TradeSendPhase_CreateBallSprites(TradeSendPhase *tsPhase)
 {
-    NNSG2dImagePaletteProxy v0;
-    NNSG2dImageProxy v1;
-    SpriteResourcesHeader v2;
+    NNSG2dImagePaletteProxy plttProxy;
+    NNSG2dImageProxy imgProxy;
+    SpriteResourcesHeader header;
 
-    ov95_02247568(&param0->unk_44, 93, 7, 8);
+    SpriteAnimResources_Load(&tsPhase->animResources, 93, 7, 8);
 
-    NNS_G2dInitImagePaletteProxy(&v0);
-    NNS_G2dInitImageProxy(&v1);
+    NNS_G2dInitImagePaletteProxy(&plttProxy);
+    NNS_G2dInitImageProxy(&imgProxy);
 
-    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
+    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &imgProxy);
+    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &plttProxy);
 
-    ov95_022475C4(&v2, &param0->unk_44, &v1, &v0, 2);
+    SpriteResourcesHeader_InitFromAnimResources(&header, &tsPhase->animResources, &imgProxy, &plttProxy, 2);
 
-    param0->unk_3C[0] = ov95_022475E4(param0->unk_00, &v2, 128, 100, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
-    param0->unk_3C[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
+    tsPhase->sprites[0] = TradeSequence_AddSprite(tsPhase->sequenceData, &header, 128, 100, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
+    tsPhase->sprites[1] = TradeSequence_AddSprite(tsPhase->sequenceData, &header, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    Sprite_SetExplicitPriority(param0->unk_3C[1], 1);
-    Sprite_SetDrawFlag(param0->unk_3C[0], FALSE);
-    Sprite_SetDrawFlag(param0->unk_3C[1], FALSE);
+    Sprite_SetExplicitPriority(tsPhase->sprites[1], 1);
+    Sprite_SetDrawFlag(tsPhase->sprites[0], FALSE);
+    Sprite_SetDrawFlag(tsPhase->sprites[1], FALSE);
 }
 
-static void ov95_02248340(UnkStruct_ov95_02247C6C *param0)
+static void TradeSendPhase_DeleteBallSprites(TradeSendPhase *tsPhase)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 2; v0++) {
-        if (param0->unk_3C[v0]) {
-            Sprite_Delete(param0->unk_3C[v0]);
+    for (int i = 0; i < 2; i++) {
+        if (tsPhase->sprites[i]) {
+            Sprite_Delete(tsPhase->sprites[i]);
         }
     }
 
-    ov95_022475A0(&param0->unk_44);
+    SpriteAnimResources_Free(&tsPhase->animResources);
 }
 
-static void ov95_02248364(UnkStruct_ov95_02247C6C *param0, int param1, int param2, int param3)
+static void BrightnessAnimState_Start(TradeSendPhase *tsPhase, int startValue, int targetValue, int duration)
 {
-    UnkStruct_ov95_02248364 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_02248364));
+    BrightnessAnimState *baState = Heap_Alloc(HEAP_ID_58, sizeof(BrightnessAnimState));
 
-    if (v0) {
-        v0->unk_00 = param0;
-        v0->unk_04 = param1 << 12;
-        v0->unk_08 = param2 << 12;
-        v0->unk_0C = (v0->unk_08 - v0->unk_04) / param3;
-        v0->unk_10 = param3;
-        param0->unk_78 = SysTask_ExecuteOnVBlank(ov95_022483E4, v0, 0);
+    if (baState) {
+        baState->phase = tsPhase;
+        baState->currentValue = startValue << 12;
+        baState->targetValue = targetValue << 12;
+        baState->step = (baState->targetValue - baState->currentValue) / duration;
+        baState->framesRemaining = duration;
+        tsPhase->task0 = SysTask_ExecuteOnVBlank(BrightnessAnimState_Task, baState, 0);
 
-        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, param1);
+        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, startValue);
     }
 }
 
-static BOOL ov95_022483B4(UnkStruct_ov95_02247C6C *param0)
+static BOOL TradeSendPhase_IsBrightnessAnimDone(TradeSendPhase *tsPhase)
 {
-    return param0->unk_78 == NULL;
+    return tsPhase->task0 == NULL;
 }
 
-static void ov95_022483C4(UnkStruct_ov95_02247C6C *param0)
+static void TradeSendPhase_FreeBrightnessAnimState(TradeSendPhase *tsPhase)
 {
-    if (param0->unk_78) {
-        ov95_022476C8(SysTask_GetParam(param0->unk_78));
-        SysTask_Done(param0->unk_78);
-        param0->unk_78 = NULL;
+    if (tsPhase->task0) {
+        DeferredFree_Enqueue(SysTask_GetParam(tsPhase->task0));
+        SysTask_Done(tsPhase->task0);
+        tsPhase->task0 = NULL;
     }
 }
 
-static void ov95_022483E4(SysTask *param0, void *param1)
+static void BrightnessAnimState_Task(SysTask *task, void *param)
 {
-    UnkStruct_ov95_02248364 *v0 = param1;
-    int v1;
+    BrightnessAnimState *baState = param;
+    int brightness;
 
-    if (--(v0->unk_10) > 0) {
-        v0->unk_04 += v0->unk_0C;
-        v1 = v0->unk_04 >> 12;
-        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, v1);
+    if (--(baState->framesRemaining) > 0) {
+        baState->currentValue += baState->step;
+        brightness = baState->currentValue >> 12;
+        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, brightness);
     } else {
-        v1 = v0->unk_08 >> 12;
-        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, v1);
-        ov95_022483C4(v0->unk_00);
+        brightness = baState->targetValue >> 12;
+        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, brightness);
+        TradeSendPhase_FreeBrightnessAnimState(baState->phase);
     }
 }
 
-static void ov95_02248420(UnkStruct_ov95_02247C6C *param0)
+static void BallBounceState_Start(TradeSendPhase *tsPhase)
 {
-    UnkStruct_ov95_02248420 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_02248420));
+    BallBounceState *bbState = Heap_Alloc(HEAP_ID_58, sizeof(BallBounceState));
 
-    if (v0) {
-        v0->unk_00 = param0;
-        v0->unk_04 = param0->unk_74;
+    if (bbState) {
+        bbState->phase = tsPhase;
+        bbState->model = tsPhase->model;
 
-        ov95_02247958(v0->unk_04, &(v0->unk_08));
-        ov95_02247978(v0->unk_04, &(v0->unk_14));
+        Trade3DModel_GetPosition(bbState->model, &(bbState->position));
+        Trade3DModel_GetRotation(bbState->model, &(bbState->rotation));
 
-        v0->unk_1C = 12128;
-        v0->unk_20 = 0;
-        v0->unk_2C = 0;
-        v0->unk_24 = 0;
-        v0->unk_28 = 0;
+        bbState->velocityY = 12128;
+        bbState->bounceCount = 0;
+        bbState->spinSpeed = 0;
+        bbState->settled = 0;
+        bbState->settleTimer = 0;
 
-        param0->unk_7C = SysTask_Start(ov95_022484B0, v0, 0);
+        tsPhase->task1 = SysTask_Start(BallBounceState_Task, bbState, 0);
     }
 }
 
-static BOOL ov95_0224846C(UnkStruct_ov95_02247C6C *param0)
+static BOOL TradeSendPhase_IsBallBounceDone(TradeSendPhase *tsPhase)
 {
-    return param0->unk_7C == NULL;
+    return tsPhase->task1 == NULL;
 }
 
-static int ov95_0224847C(UnkStruct_ov95_02247C6C *param0)
+static int TradeSendPhase_GetBounceCount(TradeSendPhase *tsPhase)
 {
-    if (param0->unk_7C) {
-        UnkStruct_ov95_02248420 *v0 = SysTask_GetParam(param0->unk_7C);
-        return v0->unk_20;
+    if (tsPhase->task1) {
+        BallBounceState *bbState = SysTask_GetParam(tsPhase->task1);
+        return bbState->bounceCount;
     }
 
     return 0;
 }
 
-static void ov95_02248490(UnkStruct_ov95_02247C6C *param0)
+static void BallBounceState_Free(TradeSendPhase *tsPhase)
 {
-    if (param0->unk_7C) {
-        Heap_Free(SysTask_GetParam(param0->unk_7C));
-        SysTask_Done(param0->unk_7C);
-        param0->unk_7C = NULL;
+    if (tsPhase->task1) {
+        Heap_Free(SysTask_GetParam(tsPhase->task1));
+        SysTask_Done(tsPhase->task1);
+        tsPhase->task1 = NULL;
     }
 }
 
-static void ov95_022484B0(SysTask *param0, void *param1)
+static void BallBounceState_Task(SysTask *task, void *param)
 {
-    UnkStruct_ov95_02248420 *v0 = param1;
-    BOOL v1 = 0;
+    BallBounceState *bbState = param;
 
-    if (v0->unk_24 == 0) {
-        v0->unk_08.y += v0->unk_1C;
+    if (bbState->settled == 0) {
+        bbState->position.y += bbState->velocityY;
 
-        if (v0->unk_1C >= 0) {
-            v0->unk_1C += -1920;
+        if (bbState->velocityY >= 0) {
+            bbState->velocityY += -1920;
         } else {
-            v0->unk_1C += -1920;
+            bbState->velocityY += -1920;
 
-            if (v0->unk_08.y <= -16384) {
-                v0->unk_08.y = -16384;
-                v0->unk_1C = -((v0->unk_1C * 44) / 100);
+            if (bbState->position.y <= -16384) {
+                bbState->position.y = -16384;
+                bbState->velocityY = -((bbState->velocityY * 44) / 100);
 
-                if (v0->unk_1C < 4000) {
-                    v0->unk_24 = 1;
+                if (bbState->velocityY < 4000) {
+                    bbState->settled = 1;
                 }
 
                 Sound_PlayEffect(SEQ_SE_DP_KON);
-                v0->unk_20++;
+                bbState->bounceCount++;
 
-                switch (v0->unk_20) {
+                switch (bbState->bounceCount) {
                 case 1:
-                    v0->unk_2C = 176;
+                    bbState->spinSpeed = 176;
                     break;
                 case 3:
-                    v0->unk_2C += 80;
+                    bbState->spinSpeed += 80;
                     break;
                 }
             }
         }
     }
 
-    v0->unk_14.x += v0->unk_2C;
-    v0->unk_14.z -= v0->unk_2C;
+    bbState->rotation.x += bbState->spinSpeed;
+    bbState->rotation.z -= bbState->spinSpeed;
 
-    ov95_02247990(v0->unk_04, &(v0->unk_14));
+    Trade3DModel_SetRotation(bbState->model, &(bbState->rotation));
 
-    v0->unk_08.x += (v0->unk_2C * 5);
-    v0->unk_08.z += (v0->unk_2C * 5);
+    bbState->position.x += (bbState->spinSpeed * 5);
+    bbState->position.z += (bbState->spinSpeed * 5);
 
-    ov95_02247968(v0->unk_04, &(v0->unk_08));
+    Trade3DModel_SetPosition(bbState->model, &(bbState->position));
 
-    if (v0->unk_24) {
-        v0->unk_2C -= 14;
+    if (bbState->settled) {
+        bbState->spinSpeed -= 14;
 
-        if (++(v0->unk_28) > 30) {
-            ov95_02248490(v0->unk_00);
+        if (++(bbState->settleTimer) > 30) {
+            BallBounceState_Free(bbState->phase);
         }
     }
 }

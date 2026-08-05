@@ -25,203 +25,199 @@
 #include "unk_0202419C.h"
 
 enum {
-    UnkEnum_ov95_02249A80_00 = 0x18E3,
-    UnkEnum_ov95_02249F38_00 = 0x1150
+    CAMERA_ANGLE_X_ARRIVE = 6371,
+    CAMERA_ANGLE_X_EXIT = 4432
 };
 
 enum {
-    UnkEnum_ov95_02249C44_00 = 0x12800,
-    UnkEnum_ov95_02249C44_01 = 0x18C00,
-    UnkEnum_ov95_02249C44_02 = 0xD870,
-    UnkEnum_ov95_02249C44_03 = 0xF550,
-    UnkEnum_ov95_02249C44_04 = 0xFFF50E00,
-    UnkEnum_ov95_02249C44_05 = 0xE2000,
-    UnkEnum_ov95_02249C44_06 = 0x3D6C00,
-    UnkEnum_ov95_02249C44_07 = 0xFFE44000,
-    UnkEnum_ov95_02249C44_08 = 0x3C,
-    UnkEnum_ov95_02249C44_09 = 0x2000
+    BALL_TARGET_ORBIT_RADIUS_X = 75776,
+    BALL_TARGET_ORBIT_RADIUS_Y = 101376,
+    BALL_INITIAL_ROTATION_ANGLE = 55408,
+    BALL_ROTATION_SPEED = 62800,
+    BALL_INITIAL_CENTER_Y = 0xFFF50E00,
+    BALL_INITIAL_CENTER_Z = 925696,
+    BALL_TARGET_CENTER_Y = 4025344,
+    BALL_TARGET_CENTER_Z = 0xFFE44000,
+    BALL_FLYBY_DURATION = 60,
+    BALL_INITIAL_ROTATION_X = 8192
 };
 
 enum {
-    UnkEnum_ov95_02249E04_00 = 0x800,
-    UnkEnum_ov95_02249E04_01 = 0x800,
-    UnkEnum_ov95_02249E04_02 = 0x200,
-    UnkEnum_ov95_02249E04_03 = 0xC
+    BALL_EXIT_ORBIT_RADIUS_X = 2048,
+    BALL_EXIT_ORBIT_RADIUS_Y = 2048,
+    BALL_EXIT_SCALE = 512,
+    BALL_EXIT_TRANSITION_DURATION = 12
 };
 
 enum {
-    UnkEnum_ov95_02249B90_00 = 0x80,
-    UnkEnum_ov95_02249B90_01 = 0x60
+    SPRITE_X = 128,
+    SPRITE_Y = 96
 };
 
-typedef struct {
-    void *unk_00;
-    SysTask *unk_04;
-    UnkStruct_ov95_0224773C *unk_08;
-    UnkStruct_ov95_02247958 *unk_0C;
-    VecFx32 unk_10;
-    VecFx32 unk_1C;
-    VecFx32 unk_28;
-    VecFx16 unk_34;
-    fx32 unk_3C;
-    fx32 unk_40;
-    fx32 unk_44;
-    fx32 unk_48;
-    fx32 unk_4C;
-    fx32 unk_50;
-    fx32 unk_54;
-    fx32 unk_58;
-    int unk_5C;
-    int unk_60;
-    int unk_64;
-    int unk_68;
-    fx16 unk_6C;
-    fx16 unk_6E;
-} UnkStruct_ov95_02249C28;
+typedef struct BallOrbitState {
+    void *phase;
+    SysTask *taskHandle;
+    Trade3DScene *scene;
+    Trade3DModel *model;
+    VecFx32 center;
+    VecFx32 orbitOffset;
+    VecFx32 currentPos;
+    VecFx16 rotation;
+    fx32 centerYStep;
+    fx32 centerZStep;
+    fx32 orbitRadiusX;
+    fx32 orbitRadiusY;
+    fx32 orbitRadiusXStep;
+    fx32 orbitRadiusYStep;
+    fx32 scale;
+    fx32 scaleStep;
+    int transitionFrames;
+    int state;
+    int timer;
+    int frameCount;
+    fx16 angle;
+    fx16 angleSpeed;
+} BallOrbitState;
 
-typedef struct {
-    TradeSequenceData *unk_00;
-    int unk_04;
-    int unk_08;
-    BOOL unk_0C;
-    UnkStruct_ov95_02247568 unk_10;
-    Sprite *unk_20[1];
-    BgConfig *unk_24;
-    UnkStruct_ov95_0224773C *unk_28;
-    UnkStruct_ov95_02247958 *unk_2C;
-    SysTask *unk_30;
-    UnkStruct_ov95_02249C28 unk_34;
-} UnkStruct_ov95_022497D8;
+typedef struct TradeBallFlybyPhase {
+    TradeSequenceData *sequenceData;
+    int subStepCounter;
+    int timer;
+    BOOL screenSwapPending;
+    SpriteAnimResources animResources;
+    Sprite *sprite;
+    BgConfig *bgConfig;
+    Trade3DScene *scene;
+    Trade3DModel *model;
+    SysTask *unused_30;
+    BallOrbitState ballOrbit;
+} TradeBallFlybyPhase;
 
-static void ov95_022497D8(UnkStruct_ov95_022497D8 *param0);
-static int ov95_022497F8(UnkStruct_ov95_022497D8 *param0, int *param1);
-static int ov95_02249840(UnkStruct_ov95_022497D8 *param0, int *param1);
-static void ov95_02249910(UnkStruct_ov95_022497D8 *param0);
-static void ov95_02249A68(UnkStruct_ov95_022497D8 *param0);
-static void ov95_02249A80(UnkStruct_ov95_022497D8 *param0);
-static void ov95_02249B80(UnkStruct_ov95_022497D8 *param0);
-static void ov95_02249B90(UnkStruct_ov95_022497D8 *param0);
-static void ov95_02249C10(UnkStruct_ov95_022497D8 *param0);
-static void ov95_02249C28(UnkStruct_ov95_02249C28 *param0);
-static void ov95_02249C30(UnkStruct_ov95_02249C28 *param0);
-static void ov95_02249C44(UnkStruct_ov95_022497D8 *param0, UnkStruct_ov95_02249C28 *param1);
-static BOOL ov95_02249CF0(UnkStruct_ov95_02249C28 *param0);
-static void ov95_02249D00(UnkStruct_ov95_02249C28 *param0, fx32 param1, fx32 param2, fx32 param3, int param4);
-static void ov95_02249D38(UnkStruct_ov95_02249C28 *param0);
-static void ov95_02249E04(SysTask *param0, void *param1);
-static void ov95_02249F30(UnkStruct_ov95_022497D8 *param0);
-static void ov95_02249F38(SysTask *param0, void *param1);
+static void TradeBallFlybyPhase_Tick(TradeBallFlybyPhase *tbfPhase);
+static int TradeBallFlybyPhase_Setup(TradeBallFlybyPhase *tbfPhase, int *unused);
+static int TradeBallFlybyPhase_Animate(TradeBallFlybyPhase *tbfPhase, int *subStateCounter);
+static void TradeBallFlybyPhase_InitGraphics(TradeBallFlybyPhase *tbfPhase);
+static void TradeBallFlybyPhase_FreeGraphics(TradeBallFlybyPhase *tbfPhase);
+static void TradeBallFlybyPhase_Init3DScene(TradeBallFlybyPhase *tbfPhase);
+static void TradeBallFlybyPhase_Free3DScene(TradeBallFlybyPhase *tbfPhase);
+static void TradeBallFlybyPhase_CreateSprite(TradeBallFlybyPhase *tbfPhase);
+static void TradeBallFlybyPhase_DeleteSprite(TradeBallFlybyPhase *tbfPhase);
+static void BallOrbitState_Init(BallOrbitState *boState);
+static void BallOrbitState_Stop(BallOrbitState *boState);
+static void BallOrbitState_Start(TradeBallFlybyPhase *tbfPhase, BallOrbitState *boState);
+static BOOL BallOrbitState_IsDone(BallOrbitState *boState);
+static void BallOrbitState_SetOrbitRadius(BallOrbitState *boState, fx32 targetRadiusX, fx32 targetRadiusY, fx32 targetScale, int duration);
+static void BallOrbitState_Tick(BallOrbitState *boState);
+static void BallOrbitState_Task(SysTask *task, void *param);
+static void TradeBallFlybyPhase_OnBallExited(TradeBallFlybyPhase *tbfPhase);
+static void TradeBallFlybyPhase_ScreenSwapTask(SysTask *task, void *param);
 
-void *ov95_02249740(TradeSequenceData *param0)
+void *TradeBallFlybyPhase_New(TradeSequenceData *sequenceData)
 {
-    UnkStruct_ov95_022497D8 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_022497D8));
+    TradeBallFlybyPhase *tbfPhase = Heap_Alloc(HEAP_ID_58, sizeof(TradeBallFlybyPhase));
 
-    if (v0) {
-        int v1;
+    if (tbfPhase) {
+        tbfPhase->sequenceData = sequenceData;
+        tbfPhase->subStepCounter = 0;
+        tbfPhase->bgConfig = TradeSequence_GetBgConfig(sequenceData);
+        tbfPhase->scene = NULL;
 
-        v0->unk_00 = param0;
-        v0->unk_04 = 0;
-        v0->unk_24 = ov95_02247628(param0);
-        v0->unk_28 = NULL;
-
-        ov95_02249C28(&(v0->unk_34));
+        BallOrbitState_Init(&(tbfPhase->ballOrbit));
     }
 
-    return v0;
+    return tbfPhase;
 }
 
-void ov95_02249770(void *param0)
+void TradeBallFlybyPhase_Free(void *param)
 {
-    UnkStruct_ov95_022497D8 *v0 = param0;
+    TradeBallFlybyPhase *tbfPhase = param;
 
-    if (v0) {
-        int v1;
-
+    if (tbfPhase) {
         SetVBlankCallback(NULL, NULL);
 
-        ov95_02249A68(v0);
-        ov95_02249B80(v0);
-        ov95_02249C10(v0);
-        ov95_02249C30(&(v0->unk_34));
+        TradeBallFlybyPhase_FreeGraphics(tbfPhase);
+        TradeBallFlybyPhase_Free3DScene(tbfPhase);
+        TradeBallFlybyPhase_DeleteSprite(tbfPhase);
+        BallOrbitState_Stop(&(tbfPhase->ballOrbit));
 
-        Heap_Free(v0);
+        Heap_Free(tbfPhase);
     }
 }
 
-BOOL ov95_022497A0(void *param0, int *param1)
+BOOL TradeBallFlybyPhase_Run(void *param, int *state)
 {
-    static int (*const v0[])(UnkStruct_ov95_022497D8 *, int *) = {
-        ov95_022497F8,
-        ov95_02249840
+    static int (*const sStepFuncs[])(TradeBallFlybyPhase *, int *) = {
+        TradeBallFlybyPhase_Setup,
+        TradeBallFlybyPhase_Animate
     };
 
-    UnkStruct_ov95_022497D8 *v1 = param0;
+    TradeBallFlybyPhase *tbfPhase = param;
 
-    if ((*param1) < NELEMS(v0)) {
-        if (v0[*param1](v1, &(v1->unk_04))) {
-            (*param1)++;
-            v1->unk_04 = 0;
+    if ((*state) < NELEMS(sStepFuncs)) {
+        if (sStepFuncs[*state](tbfPhase, &(tbfPhase->subStepCounter))) {
+            (*state)++;
+            tbfPhase->subStepCounter = 0;
         }
 
-        ov95_022497D8(v1);
+        TradeBallFlybyPhase_Tick(tbfPhase);
 
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void ov95_022497D8(UnkStruct_ov95_022497D8 *param0)
+static void TradeBallFlybyPhase_Tick(TradeBallFlybyPhase *tbfPhase)
 {
-    if (param0->unk_28) {
+    if (tbfPhase->scene) {
         G3X_Reset();
 
-        ov95_02247770(param0->unk_28);
+        Trade3DScene_Render(tbfPhase->scene);
         G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 }
 
-static int ov95_022497F8(UnkStruct_ov95_022497D8 *param0, int *param1)
+static int TradeBallFlybyPhase_Setup(TradeBallFlybyPhase *tbfPhase, int *unused)
 {
-    ov95_02249910(param0);
-    ov95_02249A80(param0);
-    ov95_02249B90(param0);
+    TradeBallFlybyPhase_InitGraphics(tbfPhase);
+    TradeBallFlybyPhase_Init3DScene(tbfPhase);
+    TradeBallFlybyPhase_CreateSprite(tbfPhase);
 
-    param0->unk_0C = 0;
+    tbfPhase->screenSwapPending = 0;
 
-    SysTask_ExecuteAfterVBlank(ov95_02249F38, param0, 0);
+    SysTask_ExecuteAfterVBlank(TradeBallFlybyPhase_ScreenSwapTask, tbfPhase, 0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 3, 1, HEAP_ID_58);
 
     return 1;
 }
 
-static int ov95_02249840(UnkStruct_ov95_022497D8 *param0, int *param1)
+static int TradeBallFlybyPhase_Animate(TradeBallFlybyPhase *tbfPhase, int *subStateCounter)
 {
-    switch (*param1) {
+    switch (*subStateCounter) {
     case 0:
-        param0->unk_08 = 0;
-        (*param1)++;
+        tbfPhase->timer = 0;
+        (*subStateCounter)++;
         break;
     case 1:
-        if (++(param0->unk_08) > 10) {
+        if (++(tbfPhase->timer) > 10) {
             Sound_PlayEffect(SEQ_SE_DP_KOUKAN06);
-            ov95_02249C44(param0, &(param0->unk_34));
-            ov95_022479A8(param0->unk_2C, 1);
-            (*param1)++;
+            BallOrbitState_Start(tbfPhase, &(tbfPhase->ballOrbit));
+            Trade3DModel_SetEnabled(tbfPhase->model, 1);
+            (*subStateCounter)++;
         }
         break;
     case 2:
-        if (ov95_02249CF0(&(param0->unk_34))) {
+        if (BallOrbitState_IsDone(&(tbfPhase->ballOrbit))) {
             Sound_PlayEffect(SEQ_SE_DP_KOUKAN07);
-            Sprite_SetAnim(param0->unk_20[0], 3);
-            Sprite_SetDrawFlag(param0->unk_20[0], TRUE);
-            (*param1)++;
+            Sprite_SetAnim(tbfPhase->sprite, 3);
+            Sprite_SetDrawFlag(tbfPhase->sprite, TRUE);
+            (*subStateCounter)++;
         }
         break;
     case 3:
-        if (Sprite_IsAnimated(param0->unk_20[0]) == 0) {
+        if (Sprite_IsAnimated(tbfPhase->sprite) == 0) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_58);
-            (*param1)++;
+            (*subStateCounter)++;
         }
         break;
     case 4:
@@ -233,9 +229,9 @@ static int ov95_02249840(UnkStruct_ov95_022497D8 *param0, int *param1)
     return 0;
 }
 
-static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
+static void TradeBallFlybyPhase_InitGraphics(TradeBallFlybyPhase *tbfPhase)
 {
-    static const GXBanks v0 = {
+    static const GXBanks banks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_23_G,
         GX_VRAM_SUB_BG_128_C,
@@ -247,13 +243,13 @@ static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_0123_E
     };
-    static const GraphicsModes v1 = {
+    static const GraphicsModes modes = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_3D
     };
-    static const BgTemplate v2 = {
+    static const BgTemplate bgTemplate = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x0,
@@ -267,69 +263,69 @@ static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
         .areaOver = 1,
         .mosaic = FALSE,
     };
-    u32 v3, v4, v5, v6;
+    u32 tilemapMember, tilesMember, paletteMember, paletteOffset;
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
 
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
-    SetAllGraphicsModes(&v1);
-    Bg_InitFromTemplate(param0->unk_24, BG_LAYER_MAIN_3, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_24, BG_LAYER_SUB_3, &v2, 0);
+    SetAllGraphicsModes(&modes);
+    Bg_InitFromTemplate(tbfPhase->bgConfig, BG_LAYER_MAIN_3, &bgTemplate, 0);
+    Bg_InitFromTemplate(tbfPhase->bgConfig, BG_LAYER_SUB_3, &bgTemplate, 0);
 
-    switch (TradeSequence_GetBackground(param0->unk_00)) {
+    switch (TradeSequence_GetBackground(tbfPhase->sequenceData)) {
     case 0:
     default:
-        v3 = 15;
-        v4 = 16;
-        v5 = 17;
-        v6 = 0x0;
+        tilemapMember = 15;
+        tilesMember = 16;
+        paletteMember = 17;
+        paletteOffset = 0;
         break;
     case 1:
-        v3 = 15;
-        v4 = 16;
-        v5 = 17;
-        v6 = 0x20;
+        tilemapMember = 15;
+        tilesMember = 16;
+        paletteMember = 17;
+        paletteOffset = 32;
         break;
     case 2:
-        v3 = 15;
-        v4 = 16;
-        v5 = 17;
-        v6 = 0x40;
+        tilemapMember = 15;
+        tilesMember = 16;
+        paletteMember = 17;
+        paletteOffset = 64;
         break;
     case 3:
-        v3 = 24;
-        v4 = 25;
-        v5 = 26;
-        v6 = 0x0;
+        tilemapMember = 24;
+        tilesMember = 25;
+        paletteMember = 26;
+        paletteOffset = 0;
         break;
     }
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, v4, param0->unk_24, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, v4, param0->unk_24, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilesMember, tbfPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilesMember, tbfPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
 
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, v3, param0->unk_24, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, v3, param0->unk_24, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilemapMember, tbfPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilemapMember, tbfPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
 
-    Graphics_LoadPaletteWithSrcOffset(93, v5, 0, v6, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPaletteWithSrcOffset(93, v5, 4, v6, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPaletteWithSrcOffset(93, paletteMember, 0, paletteOffset, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPaletteWithSrcOffset(93, paletteMember, 4, paletteOffset, 0, 0x20, HEAP_ID_58);
 
-    Bg_SetOffset(param0->unk_24, BG_LAYER_MAIN_3, 3, 256);
-    Bg_SetOffset(param0->unk_24, BG_LAYER_SUB_3, 3, 0);
+    Bg_SetOffset(tbfPhase->bgConfig, BG_LAYER_MAIN_3, 3, 256);
+    Bg_SetOffset(tbfPhase->bgConfig, BG_LAYER_SUB_3, 3, 0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov95_02249A68(UnkStruct_ov95_022497D8 *param0)
+static void TradeBallFlybyPhase_FreeGraphics(TradeBallFlybyPhase *tbfPhase)
 {
-    Bg_FreeTilemapBuffer(param0->unk_24, BG_LAYER_MAIN_3);
-    Bg_FreeTilemapBuffer(param0->unk_24, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(tbfPhase->bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(tbfPhase->bgConfig, BG_LAYER_SUB_3);
 }
 
-static void ov95_02249A80(UnkStruct_ov95_022497D8 *param0)
+static void TradeBallFlybyPhase_Init3DScene(TradeBallFlybyPhase *tbfPhase)
 {
-    static const GXRgb v0[8] = {
+    static const GXRgb sEdgeColors[8] = {
         GX_RGB(4, 4, 4),
         GX_RGB(4, 4, 4),
         GX_RGB(4, 4, 4),
@@ -339,8 +335,6 @@ static void ov95_02249A80(UnkStruct_ov95_022497D8 *param0)
         GX_RGB(4, 4, 4),
         GX_RGB(4, 4, 4)
     };
-    int v1;
-
     NNS_G3dInit();
 
     G3X_InitMtxStack();
@@ -350,7 +344,7 @@ static void ov95_02249A80(UnkStruct_ov95_022497D8 *param0)
     G3X_AlphaBlend(1);
 
     G3X_EdgeMarking(1);
-    G3X_SetEdgeColorTable(v0);
+    G3X_SetEdgeColorTable(sEdgeColors);
     G3X_SetClearColor(GX_RGB(31, 31, 16), 0, 0x7fff, 63, 0);
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
     G3_ViewPort(0, 0, 255, 191);
@@ -362,245 +356,237 @@ static void ov95_02249A80(UnkStruct_ov95_022497D8 *param0)
 
     G2_SetBG0Priority(0);
 
-    param0->unk_28 = ov95_022476F0(1, 0, 0, 0);
-    param0->unk_2C = ov95_022478B4(param0->unk_28, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, 0, 0, 0);
+    tbfPhase->scene = Trade3DScene_New(1, 0, 0, 0);
+    tbfPhase->model = Trade3DModel_Load(tbfPhase->scene, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, 0, 0, 0);
 
-    {
-        CameraAngle v2;
+    CameraAngle cameraAngle;
 
-        v2.x = UnkEnum_ov95_02249A80_00;
-        v2.y = 0;
-        v2.z = 0;
+    cameraAngle.x = CAMERA_ANGLE_X_ARRIVE;
+    cameraAngle.y = 0;
+    cameraAngle.z = 0;
 
-        ov95_02247AB0(param0->unk_28, &v2);
-        ov95_02247AE0(param0->unk_28, ((22 * 0xffff) / 360) / 2);
+    Trade3DScene_SetCameraAngle(tbfPhase->scene, &cameraAngle);
+    Trade3DScene_SetFOV(tbfPhase->scene, ((22 * 0xffff) / 360) / 2);
 
-        {
-            VecFx32 v3;
-            ov95_02247A90(param0->unk_28, &v3);
-        }
+    VecFx32 vecFx;
+    Trade3DScene_GetCameraPosition(tbfPhase->scene, &vecFx);
+}
+
+static void TradeBallFlybyPhase_Free3DScene(TradeBallFlybyPhase *tbfPhase)
+{
+    if (tbfPhase->scene) {
+        Trade3DScene_Free(tbfPhase->scene);
     }
 }
 
-static void ov95_02249B80(UnkStruct_ov95_022497D8 *param0)
+static void TradeBallFlybyPhase_CreateSprite(TradeBallFlybyPhase *tbfPhase)
 {
-    if (param0->unk_28) {
-        ov95_0224773C(param0->unk_28);
+    NNSG2dImagePaletteProxy plttProxy;
+    NNSG2dImageProxy imgProxy;
+    SpriteResourcesHeader header;
+
+    SpriteAnimResources_Load(&tbfPhase->animResources, 93, 7, 8);
+
+    NNS_G2dInitImagePaletteProxy(&plttProxy);
+    NNS_G2dInitImageProxy(&imgProxy);
+
+    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &imgProxy);
+    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &plttProxy);
+    SpriteResourcesHeader_InitFromAnimResources(&header, &tbfPhase->animResources, &imgProxy, &plttProxy, 0);
+
+    tbfPhase->sprite = TradeSequence_AddSprite(tbfPhase->sequenceData, &header, SPRITE_X, SPRITE_Y, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
+
+    Sprite_SetDrawFlag(tbfPhase->sprite, FALSE);
+}
+
+static void TradeBallFlybyPhase_DeleteSprite(TradeBallFlybyPhase *tbfPhase)
+{
+    if (tbfPhase->sprite) {
+        Sprite_Delete(tbfPhase->sprite);
+    }
+
+    SpriteAnimResources_Free(&tbfPhase->animResources);
+}
+
+static void BallOrbitState_Init(BallOrbitState *boState)
+{
+    boState->taskHandle = NULL;
+}
+
+static void BallOrbitState_Stop(BallOrbitState *boState)
+{
+    if (boState->taskHandle) {
+        SysTask_Done(boState->taskHandle);
+        boState->taskHandle = NULL;
     }
 }
 
-static void ov95_02249B90(UnkStruct_ov95_022497D8 *param0)
+static void BallOrbitState_Start(TradeBallFlybyPhase *tbfPhase, BallOrbitState *boState)
 {
-    NNSG2dImagePaletteProxy v0;
-    NNSG2dImageProxy v1;
-    SpriteResourcesHeader v2;
+    boState->phase = tbfPhase;
+    boState->model = tbfPhase->model;
+    boState->scene = tbfPhase->scene;
 
-    ov95_02247568(&param0->unk_10, 93, 7, 8);
+    boState->center.x = 0;
+    boState->center.y = BALL_INITIAL_CENTER_Y;
+    boState->center.z = BALL_INITIAL_CENTER_Z;
+    boState->angle = BALL_INITIAL_ROTATION_ANGLE;
+    boState->angleSpeed = BALL_ROTATION_SPEED;
 
-    NNS_G2dInitImagePaletteProxy(&v0);
-    NNS_G2dInitImageProxy(&v1);
+    boState->centerYStep = (BALL_TARGET_CENTER_Y - BALL_INITIAL_CENTER_Y) / BALL_FLYBY_DURATION;
+    boState->centerZStep = (BALL_TARGET_CENTER_Z - BALL_INITIAL_CENTER_Z) / BALL_FLYBY_DURATION;
 
-    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
-    ov95_022475C4(&v2, &param0->unk_10, &v1, &v0, 0);
+    boState->state = 0;
+    boState->timer = 0;
+    boState->frameCount = 0;
 
-    param0->unk_20[0] = ov95_022475E4(param0->unk_00, &v2, UnkEnum_ov95_02249B90_00, UnkEnum_ov95_02249B90_01, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
+    boState->rotation.x = BALL_INITIAL_ROTATION_X;
+    boState->rotation.y = 0xe000;
+    boState->rotation.z = 0;
 
-    Sprite_SetDrawFlag(param0->unk_20[0], FALSE);
+    Trade3DModel_SetRotation(boState->model, &boState->rotation);
+
+    boState->scale = FX32_ONE;
+    boState->orbitRadiusX = BALL_TARGET_ORBIT_RADIUS_X;
+    boState->orbitRadiusY = BALL_TARGET_ORBIT_RADIUS_Y;
+    boState->transitionFrames = 0;
+
+    BallOrbitState_Tick(boState);
+    Trade3DModel_SetPosition(boState->model, &(boState->currentPos));
+    Trade3DModel_GetRotation(boState->model, &(boState->rotation));
+
+    boState->taskHandle = SysTask_Start(BallOrbitState_Task, boState, 0);
 }
 
-static void ov95_02249C10(UnkStruct_ov95_022497D8 *param0)
+static BOOL BallOrbitState_IsDone(BallOrbitState *boState)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 1; v0++) {
-        if (param0->unk_20[v0]) {
-            Sprite_Delete(param0->unk_20[v0]);
-        }
-    }
-
-    ov95_022475A0(&param0->unk_10);
+    return boState->taskHandle == NULL;
 }
 
-static void ov95_02249C28(UnkStruct_ov95_02249C28 *param0)
+static void BallOrbitState_SetOrbitRadius(BallOrbitState *boState, fx32 targetRadiusX, fx32 targetRadiusY, fx32 targetScale, int duration)
 {
-    param0->unk_04 = NULL;
-}
-
-static void ov95_02249C30(UnkStruct_ov95_02249C28 *param0)
-{
-    if (param0->unk_04) {
-        SysTask_Done(param0->unk_04);
-        param0->unk_04 = NULL;
-    }
-}
-
-static void ov95_02249C44(UnkStruct_ov95_022497D8 *param0, UnkStruct_ov95_02249C28 *param1)
-{
-    param1->unk_00 = param0;
-    param1->unk_0C = param0->unk_2C;
-    param1->unk_08 = param0->unk_28;
-
-    param1->unk_10.x = 0;
-    param1->unk_10.y = UnkEnum_ov95_02249C44_04;
-    param1->unk_10.z = UnkEnum_ov95_02249C44_05;
-    param1->unk_6C = UnkEnum_ov95_02249C44_02;
-    param1->unk_6E = UnkEnum_ov95_02249C44_03;
-
-    param1->unk_3C = (UnkEnum_ov95_02249C44_06 - UnkEnum_ov95_02249C44_04) / UnkEnum_ov95_02249C44_08;
-    param1->unk_40 = (UnkEnum_ov95_02249C44_07 - UnkEnum_ov95_02249C44_05) / UnkEnum_ov95_02249C44_08;
-
-    param1->unk_60 = 0;
-    param1->unk_64 = 0;
-    param1->unk_68 = 0;
-
-    param1->unk_34.x = UnkEnum_ov95_02249C44_09;
-    param1->unk_34.y = 0xe000;
-    param1->unk_34.z = 0;
-
-    ov95_02247990(param1->unk_0C, &param1->unk_34);
-
-    param1->unk_54 = FX32_ONE;
-    param1->unk_44 = UnkEnum_ov95_02249C44_00;
-    param1->unk_48 = UnkEnum_ov95_02249C44_01;
-    param1->unk_5C = 0;
-
-    ov95_02249D38(param1);
-    ov95_02247968(param1->unk_0C, &(param1->unk_28));
-    ov95_02247978(param1->unk_0C, &(param1->unk_34));
-
-    param1->unk_04 = SysTask_Start(ov95_02249E04, param1, 0);
-}
-
-static BOOL ov95_02249CF0(UnkStruct_ov95_02249C28 *param0)
-{
-    return param0->unk_04 == NULL;
-}
-
-static void ov95_02249D00(UnkStruct_ov95_02249C28 *param0, fx32 param1, fx32 param2, fx32 param3, int param4)
-{
-    if (param4) {
-        param0->unk_4C = (param1 - param0->unk_44) / param4;
-        param0->unk_50 = (param2 - param0->unk_48) / param4;
-        param0->unk_58 = (param3 - param0->unk_54) / param4;
-        param0->unk_5C = param4;
+    if (duration) {
+        boState->orbitRadiusXStep = (targetRadiusX - boState->orbitRadiusX) / duration;
+        boState->orbitRadiusYStep = (targetRadiusY - boState->orbitRadiusY) / duration;
+        boState->scaleStep = (targetScale - boState->scale) / duration;
+        boState->transitionFrames = duration;
     }
 }
 
-static void ov95_02249D38(UnkStruct_ov95_02249C28 *param0)
+static void BallOrbitState_Tick(BallOrbitState *boState)
 {
-    int v0 = (u16)(param0->unk_6C) / (65536 / 360);
+    int angleDegrees = (u16)(boState->angle) / (65536 / 360);
 
-    if (v0 >= 360) {
-        v0 -= 360;
+    if (angleDegrees >= 360) {
+        angleDegrees -= 360;
     }
 
-    param0->unk_6C += param0->unk_6E;
+    boState->angle += boState->angleSpeed;
 
-    if (param0->unk_5C) {
-        param0->unk_44 += param0->unk_4C;
-        param0->unk_48 += param0->unk_50;
-        param0->unk_54 += param0->unk_58;
-        ov95_022479D4(param0->unk_0C, param0->unk_54);
-        param0->unk_5C--;
+    if (boState->transitionFrames) {
+        boState->orbitRadiusX += boState->orbitRadiusXStep;
+        boState->orbitRadiusY += boState->orbitRadiusYStep;
+        boState->scale += boState->scaleStep;
+        Trade3DModel_SetScale(boState->model, boState->scale);
+        boState->transitionFrames--;
     }
 
-    param0->unk_1C.x = FX_Mul(CalcCosineDegrees(v0), param0->unk_44);
-    param0->unk_1C.y = FX_Mul(CalcSineDegrees(v0), param0->unk_48);
-    param0->unk_1C.z = 0;
-    param0->unk_34.x += 0x300;
+    boState->orbitOffset.x = FX_Mul(CalcCosineDegrees(angleDegrees), boState->orbitRadiusX);
+    boState->orbitOffset.y = FX_Mul(CalcSineDegrees(angleDegrees), boState->orbitRadiusY);
+    boState->orbitOffset.z = 0;
+    boState->rotation.x += 0x300;
 
-    ov95_02247990(param0->unk_0C, &(param0->unk_34));
-    VEC_Add(&param0->unk_1C, &param0->unk_10, &param0->unk_28);
+    Trade3DModel_SetRotation(boState->model, &(boState->rotation));
+    VEC_Add(&boState->orbitOffset, &boState->center, &boState->currentPos);
 }
 
-static void ov95_02249E04(SysTask *param0, void *param1)
+static void BallOrbitState_Task(SysTask *task, void *param)
 {
-    UnkStruct_ov95_02249C28 *v0 = param1;
+    BallOrbitState *boState = param;
 
-    if (v0->unk_68 < UnkEnum_ov95_02249C44_08) {
-        v0->unk_68++;
+    if (boState->frameCount < BALL_FLYBY_DURATION) {
+        boState->frameCount++;
     }
 
-    switch (v0->unk_60) {
+    switch (boState->state) {
     case 0:
-        v0->unk_10.y += v0->unk_3C;
-        v0->unk_10.z += v0->unk_40;
+        boState->center.y += boState->centerYStep;
+        boState->center.z += boState->centerZStep;
 
-        ov95_02249D38(v0);
-        ov95_02247968(v0->unk_0C, &(v0->unk_28));
+        BallOrbitState_Tick(boState);
+        Trade3DModel_SetPosition(boState->model, &(boState->currentPos));
 
-        if (ov95_022479DC(v0->unk_0C)) {
-            v0->unk_60++;
+        if (Trade3DModel_IsInView(boState->model)) {
+            boState->state++;
         }
         break;
     case 1:
-        if (ov95_022479DC(v0->unk_0C) == 0) {
-            ov95_02249F30(v0->unk_00);
-            v0->unk_60++;
+        if (Trade3DModel_IsInView(boState->model) == 0) {
+            TradeBallFlybyPhase_OnBallExited(boState->phase);
+            boState->state++;
         } else {
-            v0->unk_10.y += v0->unk_3C;
-            v0->unk_10.z += v0->unk_40;
-            ov95_02249D38(v0);
-            ov95_02247968(v0->unk_0C, &(v0->unk_28));
+            boState->center.y += boState->centerYStep;
+            boState->center.z += boState->centerZStep;
+            BallOrbitState_Tick(boState);
+            Trade3DModel_SetPosition(boState->model, &(boState->currentPos));
         }
         break;
     case 2:
-        v0->unk_10.y += v0->unk_3C;
-        v0->unk_10.z += v0->unk_40;
+        boState->center.y += boState->centerYStep;
+        boState->center.z += boState->centerZStep;
 
-        ov95_02249D38(v0);
-        ov95_02247968(v0->unk_0C, &(v0->unk_28));
+        BallOrbitState_Tick(boState);
+        Trade3DModel_SetPosition(boState->model, &(boState->currentPos));
 
-        if (v0->unk_68 >= UnkEnum_ov95_02249C44_08) {
-            ov95_02249D00(v0, UnkEnum_ov95_02249E04_00, UnkEnum_ov95_02249E04_01, UnkEnum_ov95_02249E04_02, UnkEnum_ov95_02249E04_03);
-            v0->unk_64 = 0;
-            v0->unk_60++;
+        if (boState->frameCount >= BALL_FLYBY_DURATION) {
+            BallOrbitState_SetOrbitRadius(boState, BALL_EXIT_ORBIT_RADIUS_X, BALL_EXIT_ORBIT_RADIUS_Y, BALL_EXIT_SCALE, BALL_EXIT_TRANSITION_DURATION);
+            boState->timer = 0;
+            boState->state++;
         }
         break;
     case 3:
-        ov95_02249D38(v0);
-        ov95_02247968(v0->unk_0C, &(v0->unk_28));
+        BallOrbitState_Tick(boState);
+        Trade3DModel_SetPosition(boState->model, &(boState->currentPos));
 
-        if (++(v0->unk_64) >= UnkEnum_ov95_02249E04_03) {
-            ov95_022479A8(v0->unk_0C, 0);
-            v0->unk_64 = 0;
-            v0->unk_60++;
+        if (++(boState->timer) >= BALL_EXIT_TRANSITION_DURATION) {
+            Trade3DModel_SetEnabled(boState->model, 0);
+            boState->timer = 0;
+            boState->state++;
         }
         break;
     case 4:
-        if (++(v0->unk_64) > 8) {
-            v0->unk_04 = NULL;
-            SysTask_Done(param0);
+        if (++(boState->timer) > 8) {
+            boState->taskHandle = NULL;
+            SysTask_Done(task);
         }
         break;
     }
 }
 
-static void ov95_02249F30(UnkStruct_ov95_022497D8 *param0)
+static void TradeBallFlybyPhase_OnBallExited(TradeBallFlybyPhase *tbfPhase)
 {
-    param0->unk_0C = 1;
+    tbfPhase->screenSwapPending = 1;
 }
 
-static void ov95_02249F38(SysTask *param0, void *param1)
+static void TradeBallFlybyPhase_ScreenSwapTask(SysTask *task, void *param)
 {
-    UnkStruct_ov95_022497D8 *v0 = param1;
+    TradeBallFlybyPhase *tbfPhase = param;
 
-    if (v0->unk_0C) {
-        CameraAngle v1;
+    if (tbfPhase->screenSwapPending) {
+        CameraAngle cameraAngle;
 
-        v0->unk_0C = 0;
+        tbfPhase->screenSwapPending = 0;
 
-        v1.x = UnkEnum_ov95_02249F38_00;
-        v1.y = 0;
-        v1.z = 0;
+        cameraAngle.x = CAMERA_ANGLE_X_EXIT;
+        cameraAngle.y = 0;
+        cameraAngle.z = 0;
 
-        Bg_SetOffset(v0->unk_24, BG_LAYER_MAIN_3, 3, 0);
-        Bg_SetOffset(v0->unk_24, BG_LAYER_SUB_3, 3, 256);
+        Bg_SetOffset(tbfPhase->bgConfig, BG_LAYER_MAIN_3, 3, 0);
+        Bg_SetOffset(tbfPhase->bgConfig, BG_LAYER_SUB_3, 3, 256);
 
-        ov95_02247AC0(v0->unk_28, &v1);
+        Trade3DScene_AdjustCameraAngle(tbfPhase->scene, &cameraAngle);
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-        SysTask_Done(param0);
+        SysTask_Done(task);
     }
 }
