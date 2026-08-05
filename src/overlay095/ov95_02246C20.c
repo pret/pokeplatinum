@@ -11,9 +11,6 @@
 #include "overlay095/ov95_0224A390.h"
 #include "overlay095/ov95_0224ABC0.h"
 #include "overlay095/ov95_0224B3D8.h"
-#include "overlay095/struct_ov95_02247004_decl.h"
-#include "overlay095/struct_ov95_022472C4_decl.h"
-#include "overlay095/struct_ov95_02247568.h"
 
 #include "bg_window.h"
 #include "character_sprite.h"
@@ -37,19 +34,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 
-struct PaletteShimmerEffect_t {
-    u16 paletteBuffer[96];
-    SysTask *vblankTask;
-    SysTask *sparkTasks[8];
-    BOOL *isAlive;
-    BOOL stopping;
-    int dirty;
-    int spawnTimer;
-    int activeSparkCount;
-    int nextSparkSlot;
-    int direction;
-};
-
 typedef struct PaletteShimmerSpark {
     PaletteShimmerEffect *shimmerEffect;
     int paletteIndex;
@@ -58,18 +42,6 @@ typedef struct PaletteShimmerSpark {
     int slotIndex;
     int direction;
 } PaletteShimmerSpark;
-
-struct BgScaleAnimation_t {
-    BgConfig *bgConfig;
-    volatile BOOL *done;
-    fx32 currentScale;
-    fx32 targetScale;
-    fx32 rate;
-    fx32 acceleration;
-    int direction;
-    int centerIndex;
-    SysTask *task;
-};
 
 typedef void *(*TradePhaseNewFunc)(TradeSequenceData *);
 typedef BOOL (*TradePhaseOverlayFunc)(void *, int *);

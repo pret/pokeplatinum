@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_OV95_02247004_DECL_H
-#define POKEPLATINUM_STRUCT_OV95_02247004_DECL_H
-
-typedef struct PaletteShimmerEffect_t PaletteShimmerEffect;
-
-#endif // POKEPLATINUM_STRUCT_OV95_02247004_DECL_H

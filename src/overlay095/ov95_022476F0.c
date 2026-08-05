@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay095/struct_ov95_0224773C_decl.h"
-#include "overlay095/struct_ov95_02247958_decl.h"
-
 #include "camera.h"
 #include "easy3d.h"
 #include "gfx_box_test.h"
@@ -13,27 +10,6 @@
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
-
-struct Trade3DModel_t {
-    void *modelData;
-    NNSG3dRenderObj renderObj;
-    NNSG3dResMdlSet *modelSet;
-    NNSG3dResMdl *model;
-    NNSG3dResTex *texture;
-    BOOL enabled;
-    VecFx32 position;
-    VecFx32 scale;
-    VecFx16 rotation;
-    int alpha;
-};
-
-struct Trade3DScene_t {
-    Camera *camera;
-    VecFx32 target;
-    CameraAngle cameraAngle;
-    Trade3DModel *models;
-    u32 modelCount;
-};
 
 static void inline inline_Trade3DModel_BuildRotationMatrix(MtxFx33 *matrix, const VecFx16 *rotation);
 static void Trade3DModel_Render(Trade3DModel *tradeModel);

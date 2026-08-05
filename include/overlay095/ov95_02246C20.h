@@ -4,9 +4,6 @@
 #include <nnsys.h>
 
 #include "overlay006/struct_npc_trade_animation_template.h"
-#include "overlay095/struct_ov95_02247004_decl.h"
-#include "overlay095/struct_ov95_022472C4_decl.h"
-#include "overlay095/struct_ov95_02247568.h"
 
 #include "bg_window.h"
 #include "message.h"
@@ -33,6 +30,38 @@ typedef struct TradeSequenceData {
     u16 receivingForm;
     void *currentPhaseData;
 } TradeSequenceData;
+
+typedef struct PaletteShimmerEffect {
+    u16 paletteBuffer[96];
+    SysTask *vblankTask;
+    SysTask *sparkTasks[8];
+    BOOL *isAlive;
+    BOOL stopping;
+    int dirty;
+    int spawnTimer;
+    int activeSparkCount;
+    int nextSparkSlot;
+    int direction;
+} PaletteShimmerEffect;
+
+typedef struct BgScaleAnimation {
+    BgConfig *bgConfig;
+    volatile BOOL *done;
+    fx32 currentScale;
+    fx32 targetScale;
+    fx32 rate;
+    fx32 acceleration;
+    int direction;
+    int centerIndex;
+    SysTask *task;
+} BgScaleAnimation;
+
+typedef struct SpriteAnimResources {
+    void *cellBuffer;
+    void *animBuffer;
+    NNSG2dCellDataBank *cellBank;
+    NNSG2dAnimBankData *animBank;
+} SpriteAnimResources;
 
 int TradeSequence_Init(ApplicationManager *appMan, int *unused);
 int TradeSequence_Exit(ApplicationManager *appMan, int *unused);

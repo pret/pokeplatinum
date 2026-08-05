@@ -5,10 +5,28 @@
 
 #include "constants/narc.h"
 
-#include "overlay095/struct_ov95_0224773C_decl.h"
-#include "overlay095/struct_ov95_02247958_decl.h"
-
 #include "camera.h"
+
+typedef struct Trade3DModel {
+    void *modelData;
+    NNSG3dRenderObj renderObj;
+    NNSG3dResMdlSet *modelSet;
+    NNSG3dResMdl *model;
+    NNSG3dResTex *texture;
+    BOOL enabled;
+    VecFx32 position;
+    VecFx32 scale;
+    VecFx16 rotation;
+    int alpha;
+} Trade3DModel;
+
+typedef struct Trade3DScene {
+    Camera *camera;
+    VecFx32 target;
+    CameraAngle cameraAngle;
+    Trade3DModel *models;
+    u32 modelCount;
+} Trade3DScene;
 
 Trade3DScene *Trade3DScene_New(u32 modelCount, fx32 targetX, fx32 targetY, fx32 targetZ);
 void Trade3DScene_Free(Trade3DScene *tradeScene);
