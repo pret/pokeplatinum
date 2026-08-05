@@ -1,6 +1,7 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/unk_0015.h"
 # include "constants/battle_frontier.h"
+# include "constants/wfc_facility_selector_functions.h"
 
     .data
 
@@ -46,9 +47,9 @@ _0014:
 _0039:
     HealParty
     PlayBGM SEQ_BF_TOWWER_sseq
-    FrontierScrCmd_AA
+    InitWFCFacilitySelector
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_B2 0, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_INIT_COMM_MANAGER, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 176
@@ -64,15 +65,15 @@ _0070:
     End
 
 _0084:
-    Message pl_msg_00000015_00000
+    Message WFCFacilitySelector_Text_WhichFacility
     InitLocalTextListMenu 31, 5, 0, 1, VAR_0x8008
     SetMenuXOriginSide 1
-    AddListMenuEntry pl_msg_00000015_00026, 255, 1
-    AddListMenuEntry pl_msg_00000015_00027, 255, 2
-    AddListMenuEntry pl_msg_00000015_00028, 255, 4
-    AddListMenuEntry pl_msg_00000015_00029, 255, 5
-    AddListMenuEntry pl_msg_00000015_00030, 255, 6
-    AddListMenuEntry pl_msg_00000015_00031, 255, 7
+    AddListMenuEntry WFCFacilitySelector_Text_BattleTower, 255, 1
+    AddListMenuEntry WFCFacilitySelector_Text_BattleFactory, 255, 2
+    AddListMenuEntry WFCFacilitySelector_Text_BattleCastle, 255, 4
+    AddListMenuEntry WFCFacilitySelector_Text_BattleHall, 255, 5
+    AddListMenuEntry WFCFacilitySelector_Text_BattleArcade, 255, 6
+    AddListMenuEntry WFCFacilitySelector_Text_Cancel, 255, 7
     ShowListMenu
     GoToIfEq VAR_0x8008, 1, _010E
     GoToIfEq VAR_0x8008, 2, _012F
@@ -83,9 +84,9 @@ _0084:
     End
 
 _010E:
-    FrontierScrCmd_B2 7, 1, 0, VAR_0x8008
-    SetVar VAR_0x8004, 0
-    SetVar VAR_0x8009, 1
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_SET_SELECTED_FACILITY, FACILITY_TOWER, 0, VAR_0x8008
+    SetVar VAR_0x8004, FALSE
+    SetVar VAR_0x8009, FACILITY_TOWER
     SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
@@ -97,12 +98,12 @@ _012F:
     End
 
 _0143:
-    Message pl_msg_00000015_00014
+    Message WFCFacilitySelector_Text_ChooseLevel50OrOpen
     InitLocalTextMenu 31, 11, 0, TRUE, VAR_0x8008
     SetMenuXOriginSide 1
-    AddMenuEntry pl_msg_00000015_00032, 0
-    AddMenuEntry pl_msg_00000015_00033, 1
-    AddMenuEntry pl_msg_00000015_00031, 2
+    AddMenuEntry WFCFacilitySelector_Text_Level50, 0
+    AddMenuEntry WFCFacilitySelector_Text_OpenLevel, 1
+    AddMenuEntry WFCFacilitySelector_Text_Cancel, 2
     ShowMenu
     GoToIfEq VAR_0x8008, 0, _0188
     GoToIfEq VAR_0x8008, 1, _01A9
@@ -110,69 +111,69 @@ _0143:
     End
 
 _0188:
-    FrontierScrCmd_B2 7, 2, 0, VAR_0x8008
-    SetVar VAR_0x8004, 0
-    SetVar VAR_0x8009, 2
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_SET_SELECTED_FACILITY, FACILITY_FACTORY, 0, VAR_0x8008
+    SetVar VAR_0x8004, FALSE
+    SetVar VAR_0x8009, FACILITY_FACTORY
     SetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 0
     GoTo _0254
     End
 
 _01A9:
-    FrontierScrCmd_B2 7, 3, 0, VAR_0x8008
-    SetVar VAR_0x8004, 0
-    SetVar VAR_0x8009, 3
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_SET_SELECTED_FACILITY, FACILITY_FACTORY_OPEN, 0, VAR_0x8008
+    SetVar VAR_0x8004, FALSE
+    SetVar VAR_0x8009, FACILITY_FACTORY_OPEN
     SetSystemVar VAR_BATTLE_FACTORY_CHALLENGE_LEVEL, 1
     GoTo _0254
     End
 
 _01CA:
-    FrontierScrCmd_B2 7, 4, 0, VAR_0x8008
-    SetVar VAR_0x8004, 0
-    SetVar VAR_0x8009, 4
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_SET_SELECTED_FACILITY, FACILITY_CASTLE, 0, VAR_0x8008
+    SetVar VAR_0x8004, FALSE
+    SetVar VAR_0x8009, FACILITY_CASTLE
     SetSystemVar VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
     SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
 _01F1:
-    FrontierScrCmd_B2 7, 5, 0, VAR_0x8008
-    SetVar VAR_0x8004, 0
-    SetVar VAR_0x8009, 5
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_SET_SELECTED_FACILITY, FACILITY_HALL, 0, VAR_0x8008
+    SetVar VAR_0x8004, FALSE
+    SetVar VAR_0x8009, FACILITY_HALL
     SetSystemVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
     SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
 _0218:
-    FrontierScrCmd_B2 7, 6, 0, VAR_0x8008
-    SetVar VAR_0x8004, 0
-    SetVar VAR_0x8009, 6
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_SET_SELECTED_FACILITY, FACILITY_ARCADE, 0, VAR_0x8008
+    SetVar VAR_0x8004, FALSE
+    SetVar VAR_0x8009, FACILITY_ARCADE
     SetSystemVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
     SetSystemVar VAR_MAP_LOCAL_0x03, 0
     GoTo _0254
     End
 
 _023F:
-    FrontierScrCmd_B2 7, 7, 0, VAR_0x8008
-    SetVar VAR_0x8004, 1
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_SET_SELECTED_FACILITY, MAX_FACILITIES, 0, VAR_0x8008
+    SetVar VAR_0x8004, TRUE
     GoTo _0254
     End
 
 _0254:
-    MessageNoSkip pl_msg_00000015_00004
+    MessageNoSkip WFCFacilitySelector_Text_PleaseWait
     GoTo _0260
     End
 
 _0260:
-    SetVar VAR_0x800A, 1
-    FrontierScrCmd_AC VAR_0x800A, VAR_0x8004, 0, VAR_0x8008
+    SetVar VAR_0x800A, WFC_SELECTOR_COMM_DID_DROP_OUT
+    WFCFacilitySelector_SendCommMessage VAR_0x800A, VAR_0x8004, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0260
-    FrontierScrCmd_AD VAR_0x800A
+    WFCFacilitySelector_WaitForCommResponses VAR_0x800A
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_B2 9, 0, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 7, _09C0
-    FrontierScrCmd_B1 VAR_0x8008
-    GoToIfEq VAR_0x8008, 1, _02B8
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_FACILITY, 0, 0, VAR_0x8008
+    GoToIfEq VAR_0x8008, MAX_FACILITIES, _09C0
+    CheckIfPartnerDroppedOut VAR_0x8008
+    GoToIfEq VAR_0x8008, TRUE, _02B8
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 170
     ClearReceivedTempDataAllPlayers
@@ -184,45 +185,45 @@ _02B8:
     End
 
 _02C0:
-    SetVar VAR_0x800A, 0
-    FrontierScrCmd_AC VAR_0x800A, 0, 0, VAR_0x8008
+    SetVar VAR_0x800A, WFC_SELECTOR_COMM_FACILITY_AND_STREAK
+    WFCFacilitySelector_SendCommMessage VAR_0x800A, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _02C0
-    FrontierScrCmd_AD VAR_0x800A
+    WFCFacilitySelector_WaitForCommResponses VAR_0x800A
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_AE VAR_0x8009, VAR_0x8008
-    GoToIfEq VAR_0x8008, 1, _0302
-    Message pl_msg_00000015_00003
+    CheckIfSameFacilityChosen VAR_0x8009, VAR_0x8008
+    GoToIfEq VAR_0x8008, TRUE, _0302
+    Message WFCFacilitySelector_Text_DifferentFacilitiesChosen
     GoTo _0084
     End
 
 _0302:
-    FrontierScrCmd_B2 9, 0, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 1, _0345
-    GoToIfEq VAR_0x8008, 5, _0345
-    GoToIfEq VAR_0x8008, 4, _0345
-    GoToIfEq VAR_0x8008, 6, _0345
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_FACILITY, 0, 0, VAR_0x8008
+    GoToIfEq VAR_0x8008, FACILITY_TOWER, _0345
+    GoToIfEq VAR_0x8008, FACILITY_HALL, _0345
+    GoToIfEq VAR_0x8008, FACILITY_CASTLE, _0345
+    GoToIfEq VAR_0x8008, FACILITY_ARCADE, _0345
     GoTo _0758
     End
 
 _0345:
-    Message pl_msg_00000015_00002
+    Message WFCFacilitySelector_Text_ChoosePokemon
     FadeScreenOut
     CloseMessage
-    FrontierScrCmd_B2 13, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CLEAR_PARTY_MENU_SELECTIONS, 0, 0, VAR_0x8008
     GoTo _037E
     End
 
 _0366:
-    FrontierScrCmd_AF VAR_0x8009, 2, VAR_0x8008
-    FrontierScrCmd_AF VAR_0x8009, 3, VAR_0x8008
+    ManageFacilitySelectorSubApp VAR_0x8009, WFC_SELECTOR_SETUP_MON_SUMMARY, VAR_0x8008
+    ManageFacilitySelectorSubApp VAR_0x8009, WFC_SELECTOR_PROCESS_MON_SUMMARY, VAR_0x8008
     GoTo _037E
     End
 
 _037E:
-    FrontierScrCmd_AF VAR_0x8009, 0, VAR_0x8008
-    FrontierScrCmd_AF VAR_0x8009, 1, VAR_0x8008
+    ManageFacilitySelectorSubApp VAR_0x8009, WFC_SELECTOR_SETUP_PARTY_MENU, VAR_0x8008
+    ManageFacilitySelectorSubApp VAR_0x8009, WFC_SELECTOR_PROCESS_PARTY_MENU, VAR_0x8008
     GoToIfEq VAR_0x8008, 2, _0366
-    FrontierScrCmd_B0 VAR_0x8002, VAR_0x8005
+    GetSelectedPartyMenuSlots VAR_0x8002, VAR_0x8005
     SetSystemVar VAR_MAP_LOCAL_0x02, VAR_0x8002
     SetSystemVar VAR_MAP_LOCAL_0x05, VAR_0x8005
     FadeScreenIn
@@ -230,34 +231,34 @@ _037E:
     End
 
 _03C1:
-    MessageNoSkip pl_msg_00000015_00004
+    MessageNoSkip WFCFacilitySelector_Text_PleaseWait
     GoTo _03CD
     End
 
 _03CD:
-    SetVar VAR_0x800A, 2
-    FrontierScrCmd_AC VAR_0x800A, VAR_0x8002, VAR_0x8005, VAR_0x8008
+    SetVar VAR_0x800A, WFC_SELECTOR_COMM_SELECTED_MONS
+    WFCFacilitySelector_SendCommMessage VAR_0x800A, VAR_0x8002, VAR_0x8005, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _03CD
-    FrontierScrCmd_AD VAR_0x800A
+    WFCFacilitySelector_WaitForCommResponses VAR_0x800A
     ClearReceivedTempDataAllPlayers
     GoToIfEq VAR_0x8002, 255, _0084
-    FrontierScrCmd_B2 1, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_PARTNERS_FIRST_PICK, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _044E
-    FrontierScrCmd_B2 9, 0, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 1, _045D
-    GoToIfEq VAR_0x8008, 5, _04F9
-    GoToIfEq VAR_0x8008, 4, _0620
-    GoToIfEq VAR_0x8008, 6, _06BC
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_FACILITY, 0, 0, VAR_0x8008
+    GoToIfEq VAR_0x8008, FACILITY_TOWER, _045D
+    GoToIfEq VAR_0x8008, FACILITY_HALL, _04F9
+    GoToIfEq VAR_0x8008, FACILITY_CASTLE, _0620
+    GoToIfEq VAR_0x8008, FACILITY_ARCADE, _06BC
     End
 
 _044E:
     BufferPartnerName 0
-    Message pl_msg_00000015_00001
+    Message WFCFacilitySelector_Text_PlayerDroppedOut
     GoTo _0084
     End
 
 _045D:
-    FrontierScrCmd_B2 2, 1, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CHECK_MON_SELECTIONS_VALID, FACILITY_TOWER, 0, VAR_0x8008
     SetVar FR_VAR_0x8010, VAR_0x8008
     GoToIfEq FR_VAR_0x8010, 1, _0499
     GoToIfEq FR_VAR_0x8010, 2, _04B4
@@ -266,85 +267,85 @@ _045D:
     End
 
 _0499:
-    FrontierScrCmd_B2 5, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 0, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
-    Message pl_msg_00000015_00006
+    Message WFCFacilitySelector_Text_SamePokemonChosen
     GoTo _0084
     End
 
 _04B4:
-    FrontierScrCmd_B2 5, 1, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 1, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
-    Message pl_msg_00000015_00006
+    Message WFCFacilitySelector_Text_SamePokemonChosen
     GoTo _0084
     End
 
 _04CF:
-    FrontierScrCmd_B2 5, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 0, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
-    FrontierScrCmd_B2 5, 1, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 1, 0, VAR_0x8008
     BufferSpeciesName 1, VAR_0x8008
-    Message pl_msg_00000015_00007
+    Message WFCFacilitySelector_Text_SameTwoPokemonChosen
     GoTo _0084
     End
 
 _04F9:
-    FrontierScrCmd_B2 2, 5, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CHECK_MON_SELECTIONS_VALID, FACILITY_HALL, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0614
     Call _081C
     GoToIfEq FR_VAR_0x800F, 0, _0766
-    FrontierScrCmd_B2 3, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CHECK_HALL_STREAK_ACTIVE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0758
-    FrontierScrCmd_B2 4, 0, 0, VAR_0x800B
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CHECK_HALL_STREAK_SPECIES, 0, 0, VAR_0x800B
     BufferSpeciesName 0, VAR_0x800B
-    FrontierScrCmd_B2 5, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 0, 0, VAR_0x8008
     BufferSpeciesName 1, VAR_0x8008
     GoToIfEq VAR_0x8008, VAR_0x800B, _0758
     GoTo _0567
     End
 
 _0567:
-    Message pl_msg_00000015_00015
+    Message WFCFacilitySelector_Text_ConfirmStreakDeletion
     InitLocalTextMenu 25, 13, 1, TRUE, VAR_0x8008
-    AddMenuEntry pl_msg_00000015_00016, 0
-    AddMenuEntry pl_msg_00000015_00017, 1
+    AddMenuEntry WFCFacilitySelector_Text_Yes, MENU_YES
+    AddMenuEntry WFCFacilitySelector_Text_No, MENU_NO
     ShowMenu
-    MessageNoSkip pl_msg_00000015_00024
+    MessageNoSkip WFCFacilitySelector_Text_WaitingForFriend
     SetVar VAR_0x800B, VAR_0x8008
     GoTo _0593
     End
 
 _0593:
-    SetVar VAR_0x800A, 4
-    FrontierScrCmd_AC VAR_0x800A, VAR_0x800B, 0, VAR_0x8008
+    SetVar VAR_0x800A, WFC_SELECTOR_COMM_STREAK_DELETION_CHOICE
+    WFCFacilitySelector_SendCommMessage VAR_0x800A, VAR_0x800B, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0593
-    FrontierScrCmd_AD VAR_0x800A
+    WFCFacilitySelector_WaitForCommResponses VAR_0x800A
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_B2 8, 0, 0, VAR_0x8008
-    GoToIfEq VAR_0x8008, 1, _05F9
-    GoToIfEq VAR_0x8008, -2, _05F9
-    GoToIfEq VAR_0x800B, 1, _05F9
-    GoToIfEq VAR_0x800B, -2, _05F9
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_PARTNERS_STREAK_DELETION_CHOICE, 0, 0, VAR_0x8008
+    GoToIfEq VAR_0x8008, MENU_NO, _05F9
+    GoToIfEq VAR_0x8008, MENU_CANCEL, _05F9
+    GoToIfEq VAR_0x800B, MENU_NO, _05F9
+    GoToIfEq VAR_0x800B, MENU_CANCEL, _05F9
     GoTo _0605
     End
 
 _05F9:
-    Message pl_msg_00000015_00018
+    Message WFCFacilitySelector_Text_RemakeSelection
     GoTo _0084
     End
 
 _0605:
-    FrontierScrCmd_B2 6, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CLEAR_ACTIVE_HALL_STREAK, 0, 0, VAR_0x8008
     GoTo _0758
     End
 
 _0614:
-    Message pl_msg_00000015_00011
+    Message WFCFacilitySelector_Text_MustChooseSamePokemon
     GoTo _0084
     End
 
 _0620:
-    FrontierScrCmd_B2 2, 4, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CHECK_MON_SELECTIONS_VALID, FACILITY_CASTLE, 0, VAR_0x8008
     SetVar FR_VAR_0x8010, VAR_0x8008
     GoToIfEq FR_VAR_0x8010, 1, _065C
     GoToIfEq FR_VAR_0x8010, 2, _0677
@@ -353,30 +354,30 @@ _0620:
     End
 
 _065C:
-    FrontierScrCmd_B2 5, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 0, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
-    Message pl_msg_00000015_00009
+    Message WFCFacilitySelector_Text_SamePokemonChosen2
     GoTo _0084
     End
 
 _0677:
-    FrontierScrCmd_B2 5, 1, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 1, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
-    Message pl_msg_00000015_00009
+    Message WFCFacilitySelector_Text_SamePokemonChosen2
     GoTo _0084
     End
 
 _0692:
-    FrontierScrCmd_B2 5, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 0, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
-    FrontierScrCmd_B2 5, 1, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 1, 0, VAR_0x8008
     BufferSpeciesName 1, VAR_0x8008
-    Message pl_msg_00000015_00010
+    Message WFCFacilitySelector_Text_SameTwoPokemonChosen2
     GoTo _0084
     End
 
 _06BC:
-    FrontierScrCmd_B2 2, 6, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CHECK_MON_SELECTIONS_VALID, FACILITY_ARCADE, 0, VAR_0x8008
     SetVar FR_VAR_0x8010, VAR_0x8008
     GoToIfEq FR_VAR_0x8010, 1, _06F8
     GoToIfEq FR_VAR_0x8010, 2, _0713
@@ -385,25 +386,25 @@ _06BC:
     End
 
 _06F8:
-    FrontierScrCmd_B2 5, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 0, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
-    Message pl_msg_00000015_00009
+    Message WFCFacilitySelector_Text_SamePokemonChosen2
     GoTo _0084
     End
 
 _0713:
-    FrontierScrCmd_B2 5, 1, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 1, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
-    Message pl_msg_00000015_00009
+    Message WFCFacilitySelector_Text_SamePokemonChosen2
     GoTo _0084
     End
 
 _072E:
-    FrontierScrCmd_B2 5, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 0, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
-    FrontierScrCmd_B2 5, 1, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_SPECIES, 1, 0, VAR_0x8008
     BufferSpeciesName 1, VAR_0x8008
-    Message pl_msg_00000015_00010
+    Message WFCFacilitySelector_Text_SameTwoPokemonChosen2
     GoTo _0084
     End
 
@@ -413,18 +414,18 @@ _0758:
     End
 
 _0766:
-    FrontierScrCmd_B2 12, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CLEAR_LATEST_STREAK, 0, 0, VAR_0x8008
     SetSystemVar VAR_WIFI_FRONTIER_CLEARED, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 175
     ClearReceivedTempDataAllPlayers
-    MessageInstant pl_msg_00000015_00019
+    MessageInstant WFCFacilitySelector_Text_Saving
     ShowSavingIcon
     FrontierScrCmd_73 VAR_0x8008
     HideSavingIcon
     PlaySoundEffect SEQ_SE_DP_SAVE_sseq
     WaitSoundEffect SEQ_SE_DP_SAVE_sseq
-    MessageNoSkip pl_msg_00000015_00020
+    MessageNoSkip WFCFacilitySelector_Text_GoodLuck
     WaitTime 10, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 171
@@ -435,65 +436,65 @@ _0766:
     FrontierScrCmd_25 2
     FrontierScrCmd_25 3
     IncrementRecordValue RECORD_TIMES_STARTED_BATTLE_FRONTIER_CHALLENGE
-    FrontierScrCmd_B2 9, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_GET_SELECTED_FACILITY, 0, 0, VAR_0x8008
     SetVar FR_VAR_0x8010, VAR_0x8008
-    GoToIfEq FR_VAR_0x8010, 1, _0842
-    GoToIfEq FR_VAR_0x8010, 2, _0879
-    GoToIfEq FR_VAR_0x8010, 3, _0879
-    GoToIfEq FR_VAR_0x8010, 5, _088D
-    GoToIfEq FR_VAR_0x8010, 4, _08A1
-    GoToIfEq FR_VAR_0x8010, 6, _08B5
+    GoToIfEq FR_VAR_0x8010, FACILITY_TOWER, _0842
+    GoToIfEq FR_VAR_0x8010, FACILITY_FACTORY, _0879
+    GoToIfEq FR_VAR_0x8010, FACILITY_FACTORY_OPEN, _0879
+    GoToIfEq FR_VAR_0x8010, FACILITY_HALL, _088D
+    GoToIfEq FR_VAR_0x8010, FACILITY_CASTLE, _08A1
+    GoToIfEq FR_VAR_0x8010, FACILITY_ARCADE, _08B5
     End
 
 _081C:
-    FrontierScrCmd_B2 11, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CLEAR_STREAK_IF_NOT_MATCHING, 0, 0, VAR_0x8008
     SetVar FR_VAR_0x800F, VAR_0x8008
     CallIfEq VAR_0x8008, 0, _0838
     Return
 
 _0838:
-    Message pl_msg_00000015_00005
-    MessageNoSkip pl_msg_00000015_00004
+    Message WFCFacilitySelector_Text_WinStreaksDontMatch
+    MessageNoSkip WFCFacilitySelector_Text_PleaseWait
     Return
 
 _0842:
-    FrontierScrCmd_B3
+    InitBattleTower
     SetSystemVar VAR_BATTLE_TOWER_MULTI_BATTLE_ROOM_LOAD_ACTION, 1
     Call _08D3
     GoTo _0858
     End
 
 _0858:
-    FrontierScrCmd_B4 VAR_0x8008
+    SendTowerTrainerIDList VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _0858
-    FrontierScrCmd_B5
+    WaitForTowerTrainerIDListResponses
     Call _08C9
     FrontierScrCmd_04 FRONTIER_SCENE_TOWER_MULTI_CORRIDOR, 0
     End
 
 _0879:
-    FrontierScrCmd_AB
+    FreeWFCFacilitySelector
     PlayBGM SEQ_PL_BF_FACTORY_sseq
     Call _08C9
     FrontierScrCmd_04 FRONTIER_SCENE_FACTORY_CORRIDOR, 0
     End
 
 _088D:
-    FrontierScrCmd_AB
+    FreeWFCFacilitySelector
     PlayBGM SEQ_PL_BF_STAGE_sseq
     Call _08C9
     FrontierScrCmd_04 FRONTIER_SCENE_HALL_CORRIDOR, 0
     End
 
 _08A1:
-    FrontierScrCmd_AB
+    FreeWFCFacilitySelector
     PlayBGM SEQ_PL_BF_CASTLE02_sseq
     Call _08C9
     FrontierScrCmd_04 FRONTIER_SCENE_CASTLE_CORRIDOR, 0
     End
 
 _08B5:
-    FrontierScrCmd_AB
+    FreeWFCFacilitySelector
     PlayBGM SEQ_PL_BF_ROULETTE_sseq
     Call _08C9
     FrontierScrCmd_04 FRONTIER_SCENE_ARCADE_CORRIDOR, 0
@@ -515,9 +516,9 @@ _08D9:
 
 _08DD:
     SetWiFiListHostFriendCurrentDate
-    FrontierScrCmd_AA
+    InitWFCFacilitySelector
     WaitTime 1, VAR_0x8008
-    FrontierScrCmd_B2 0, 0, 0, VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_INIT_COMM_MANAGER, 0, 0, VAR_0x8008
     WaitTime 1, VAR_0x8008
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 177
@@ -527,32 +528,32 @@ _08DD:
     PlayBGM SEQ_BF_TOWWER_sseq
     FadeScreenIn
     BufferPartnerName 0
-    Message pl_msg_00000015_00021
+    Message WFCFacilitySelector_Text_PlayAgain
     ShowYesNoMenu VAR_0x8008, MENU_YES
-    GoToIfEq VAR_0x8008, 0, _0939
+    GoToIfEq VAR_0x8008, MENU_YES, _0939
     GoTo _094B
     End
 
 _0939:
-    MessageNoSkip pl_msg_00000015_00024
+    MessageNoSkip WFCFacilitySelector_Text_WaitingForFriend
     SetVar VAR_0x800B, 0
     GoTo _095D
     End
 
 _094B:
-    MessageNoSkip pl_msg_00000015_00024
+    MessageNoSkip WFCFacilitySelector_Text_WaitingForFriend
     SetVar VAR_0x800B, 1
     GoTo _095D
     End
 
 _095D:
-    SetVar VAR_0x800A, 5
-    FrontierScrCmd_AC VAR_0x800A, VAR_0x800B, 0, VAR_0x8008
+    SetVar VAR_0x800A, WFC_SELECTOR_COMM_PLAY_AGAIN_CHOICE
+    WFCFacilitySelector_SendCommMessage VAR_0x800A, VAR_0x800B, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _095D
-    FrontierScrCmd_AD VAR_0x800A
+    WFCFacilitySelector_WaitForCommResponses VAR_0x800A
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_B1 VAR_0x8008
-    FrontierScrCmd_B2 10, 0, 0, VAR_0x8008
+    CheckIfPartnerDroppedOut VAR_0x8008
+    CallWFCFacilitySelectorFunction WFCFS_FUNC_CHECK_PARTNER_PLAYING_AGAIN, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _09AD
     GoToIfEq VAR_0x800B, 1, _09C0
     GoTo _0084
@@ -560,8 +561,8 @@ _095D:
 
 _09AD:
     BufferPartnerName 0
-    MessageNoSkip pl_msg_00000015_00025
-    MessageNoSkip pl_msg_00000015_00004
+    MessageNoSkip WFCFacilitySelector_Text_PlayerDroppedOut2
+    MessageNoSkip WFCFacilitySelector_Text_PleaseWait
     GoTo _09C0
     End
 
@@ -575,7 +576,7 @@ _09C0:
 
 _09D2:
     FadeScreenOut
-    FrontierScrCmd_AB
+    FreeWFCFacilitySelector
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 178
     ClearReceivedTempDataAllPlayers

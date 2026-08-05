@@ -1,13 +1,24 @@
 #ifndef POKEPLATINUM_OV104_0223C164_H
 #define POKEPLATINUM_OV104_0223C164_H
 
-#include "overlay104/struct_ov104_0223C23C_decl.h"
-
 #include "bg_window.h"
+#include "sys_task_manager.h"
 
-UnkStruct_ov104_0223C23C *ov104_0223C164(BgConfig *param0);
-void ov104_0223C23C(UnkStruct_ov104_0223C23C *param0);
-u16 ov104_0223C264(u8 param0);
-u16 ov104_0223C29C(u8 param0);
+typedef struct WFCFacilitySelectorMonitorFlicker {
+    SysTask *task;
+    BgConfig *bgConfig;
+    u16 monitorState;
+    u16 delay;
+} WFCFacilitySelectorMonitorFlicker;
+
+typedef struct WFCFacilitySelectorEffects {
+    BgConfig *unused;
+    WFCFacilitySelectorMonitorFlicker *flicker;
+} WFCFacilitySelectorEffects;
+
+WFCFacilitySelectorEffects *WFCFacilitySelectorEffects_Init(BgConfig *bgConfig);
+void WFCFacilitySelectorEffects_Free(WFCFacilitySelectorEffects *effects);
+u16 BattleFrontier_GetWFCLatestStreakIndex(u8 facility);
+u16 BattleFrontier_GetWFCStreakActiveIndex(u8 facility);
 
 #endif // POKEPLATINUM_OV104_0223C164_H

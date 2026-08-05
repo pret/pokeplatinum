@@ -1,10 +1,10 @@
 #include "overlay104/ov104_02239C58.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "constants/battle_frontier.h"
 
 #include "struct_decls/battle_frontier_decl.h"
-#include "struct_defs/struct_0209BBA4.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
@@ -24,162 +24,157 @@
 
 #include "constdata/const_020F410C.h"
 
-void ov104_02239C7C(UnkStruct_0209BBA4 *param0);
-BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 param3);
-void ov104_02239CD0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, u16 param2);
-static void ov104_02239D1C(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
-static void ov104_02239F38(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
-static void ov104_02239FB0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID);
-static void ov104_0223A090(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
+static void SetupPartyMenu(BattleFrontier *frontier, WFCFacilitySelector *selector, FieldSystem *fieldSystem, enum HeapID heapID);
+static void ProcessPartyMenuResults(BattleFrontier *frontier, WFCFacilitySelector *selector, FieldSystem *fieldSystem, enum HeapID heapID);
+static void SetupSummaryApp(BattleFrontier *frontier, WFCFacilitySelector *selector, FieldSystem *fieldSystem, enum HeapID heapID);
+static void ProcessSummaryAppResults(BattleFrontier *frontier, WFCFacilitySelector *selector, FieldSystem *fieldSystem, enum HeapID heapID);
 
-UnkStruct_0209BBA4 *ov104_02239C58(SaveData *saveData)
+WFCFacilitySelector *WFCFacilitySelector_Init(SaveData *saveData)
 {
-    static UnkStruct_0209BBA4 *v0;
+    static WFCFacilitySelector *selector;
 
-    v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0209BBA4));
-    MI_CpuClear8(v0, sizeof(UnkStruct_0209BBA4));
+    selector = Heap_Alloc(HEAP_ID_FIELD2, sizeof(WFCFacilitySelector));
+    MI_CpuClear8(selector, sizeof(WFCFacilitySelector));
 
-    v0->saveData = saveData;
-    return v0;
+    selector->saveData = saveData;
+    return selector;
 }
 
-void ov104_02239C7C(UnkStruct_0209BBA4 *param0)
+void WFCFacilitySelector_Free(WFCFacilitySelector *selector)
 {
-    if (param0 == NULL) {
+    if (selector == NULL) {
         return;
     }
 
-    Heap_Free(param0);
-    param0 = NULL;
+    Heap_Free(selector);
+    selector = NULL;
 }
 
-BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 param3)
+BOOL WFCFacilitySelector_SendCommMessage(WFCFacilitySelector *selector, u16 command, u16 arg1, u16 arg2)
 {
-    int v0;
+    int success;
 
-    switch (param1) {
-    case 0:
-        v0 = sub_0209BBA4(param0);
+    switch (command) {
+    case WFC_SELECTOR_COMM_FACILITY_AND_STREAK:
+        success = WFCFacilitySelector_SendFacilityAndLatestStreak(selector);
         break;
-    case 1:
-        v0 = sub_0209BC1C(param0, param2);
+    case WFC_SELECTOR_COMM_DID_DROP_OUT:
+        success = WFCFacilitySelector_SendDidDropOutCmd(selector, arg1);
         break;
-    case 2:
-        v0 = sub_0209BC64(param0, param2, param3);
+    case WFC_SELECTOR_COMM_SELECTED_MONS:
+        success = WFCFacilitySelector_SendSelectedMons(selector, arg1, arg2);
         break;
-    case 4:
-        v0 = sub_0209BD68(param0, param2);
+    case WFC_SELECTOR_COMM_STREAK_DELETION_CHOICE:
+        success = WFCFacilitySelector_SendStreakDeletionChoice(selector, arg1);
         break;
-    case 5:
-        v0 = sub_0209BDB0(param0, param2);
+    case WFC_SELECTOR_COMM_PLAY_AGAIN_CHOICE:
+        success = WFCFacilitySelector_SendPlayAgainChoice(selector, arg1);
         break;
     }
 
-    return v0;
+    return success;
 }
 
-void ov104_02239CD0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, u16 param2)
+void WFCFacilitySelector_ManageSubApp(BattleFrontier *frontier, WFCFacilitySelector *selector, u16 action)
 {
-    FieldSystem *fieldSystem = param1->fieldSystem;
+    FieldSystem *fieldSystem = selector->fieldSystem;
 
-    switch (param2) {
-    case 0:
-        ov104_02239D1C(param0, param1, fieldSystem, 11);
+    switch (action) {
+    case WFC_SELECTOR_SETUP_PARTY_MENU:
+        SetupPartyMenu(frontier, selector, fieldSystem, HEAP_ID_FIELD2);
         break;
-    case 1:
-        ov104_02239F38(param0, param1, fieldSystem, 11);
+    case WFC_SELECTOR_PROCESS_PARTY_MENU:
+        ProcessPartyMenuResults(frontier, selector, fieldSystem, HEAP_ID_FIELD2);
         break;
-    case 2:
-        ov104_02239FB0(param0, param1, fieldSystem, HEAP_ID_FIELD2);
+    case WFC_SELECTOR_SETUP_MON_SUMMARY:
+        SetupSummaryApp(frontier, selector, fieldSystem, HEAP_ID_FIELD2);
         break;
-    case 3:
-        ov104_0223A090(param0, param1, fieldSystem, 11);
+    case WFC_SELECTOR_PROCESS_MON_SUMMARY:
+        ProcessSummaryAppResults(frontier, selector, fieldSystem, HEAP_ID_FIELD2);
         break;
     case 4:
         return;
     }
 }
 
-static void ov104_02239D1C(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void SetupPartyMenu(BattleFrontier *frontier, WFCFacilitySelector *selector, FieldSystem *fieldSystem, enum HeapID heapID)
 {
-    u8 v0;
+    selector->partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
+    MI_CpuClearFast(selector->partyMenu, sizeof(PartyMenu));
 
-    param1->partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
-    MI_CpuClearFast(param1->partyMenu, sizeof(PartyMenu));
+    selector->partyMenu->party = SaveData_GetParty(selector->saveData);
+    selector->partyMenu->bag = SaveData_GetBag(selector->saveData);
+    selector->partyMenu->mailbox = SaveData_GetMailbox(selector->saveData);
+    selector->partyMenu->options = SaveData_GetOptions(selector->saveData);
+    selector->partyMenu->type = PARTY_MENU_TYPE_BASIC;
 
-    param1->partyMenu->party = SaveData_GetParty(param1->saveData);
-    param1->partyMenu->bag = SaveData_GetBag(param1->saveData);
-    param1->partyMenu->mailbox = SaveData_GetMailbox(param1->saveData);
-    param1->partyMenu->options = SaveData_GetOptions(param1->saveData);
-    param1->partyMenu->type = PARTY_MENU_TYPE_BASIC;
-
-    if (param1->unk_A0 == 1) {
-        param1->partyMenu->mode = PARTY_MENU_MODE_BATTLE_TOWER;
-    } else if (param1->unk_A0 == 5) {
-        param1->partyMenu->mode = PARTY_MENU_MODE_BATTLE_HALL;
-    } else if (param1->unk_A0 == 4) {
-        param1->partyMenu->mode = PARTY_MENU_MODE_BATTLE_CASTLE;
-    } else if (param1->unk_A0 == 6) {
-        param1->partyMenu->mode = PARTY_MENU_MODE_BATTLE_CASTLE;
+    if (selector->selectedFacility == FACILITY_TOWER) {
+        selector->partyMenu->mode = PARTY_MENU_MODE_BATTLE_TOWER;
+    } else if (selector->selectedFacility == FACILITY_HALL) {
+        selector->partyMenu->mode = PARTY_MENU_MODE_BATTLE_HALL;
+    } else if (selector->selectedFacility == FACILITY_CASTLE) {
+        selector->partyMenu->mode = PARTY_MENU_MODE_BATTLE_CASTLE;
+    } else if (selector->selectedFacility == FACILITY_ARCADE) {
+        selector->partyMenu->mode = PARTY_MENU_MODE_BATTLE_CASTLE;
     } else {
         GF_ASSERT(FALSE);
     }
 
-    param1->partyMenu->fieldSystem = fieldSystem;
-    param1->partyMenu->selectedMonSlot = param1->unk_9F;
+    selector->partyMenu->fieldSystem = fieldSystem;
+    selector->partyMenu->selectedMonSlot = selector->selectedMonSlot;
 
-    for (v0 = 0; v0 < 2; v0++) {
-        param1->partyMenu->selectionOrder[v0] = param1->unk_A1[v0];
+    for (u8 i = 0; i < 2; i++) {
+        selector->partyMenu->selectionOrder[i] = selector->partyMenuSelectionOrder[i];
     }
 
-    if (param1->unk_A0 == 1) {
-        param1->partyMenu->minSelectionSlots = 2;
-        param1->partyMenu->maxSelectionSlots = 2;
-        param1->partyMenu->reqLevel = 100;
-    } else if (param1->unk_A0 == 5) {
-        param1->partyMenu->minSelectionSlots = 1;
-        param1->partyMenu->maxSelectionSlots = 1;
-        param1->partyMenu->reqLevel = 30;
-    } else if (param1->unk_A0 == 4) {
-        param1->partyMenu->minSelectionSlots = 2;
-        param1->partyMenu->maxSelectionSlots = 2;
-        param1->partyMenu->reqLevel = 100;
-    } else if (param1->unk_A0 == 6) {
-        param1->partyMenu->minSelectionSlots = 2;
-        param1->partyMenu->maxSelectionSlots = 2;
-        param1->partyMenu->reqLevel = 100;
+    if (selector->selectedFacility == FACILITY_TOWER) {
+        selector->partyMenu->minSelectionSlots = 2;
+        selector->partyMenu->maxSelectionSlots = 2;
+        selector->partyMenu->reqLevel = 100;
+    } else if (selector->selectedFacility == FACILITY_HALL) {
+        selector->partyMenu->minSelectionSlots = 1;
+        selector->partyMenu->maxSelectionSlots = 1;
+        selector->partyMenu->reqLevel = 30;
+    } else if (selector->selectedFacility == FACILITY_CASTLE) {
+        selector->partyMenu->minSelectionSlots = 2;
+        selector->partyMenu->maxSelectionSlots = 2;
+        selector->partyMenu->reqLevel = 100;
+    } else if (selector->selectedFacility == FACILITY_ARCADE) {
+        selector->partyMenu->minSelectionSlots = 2;
+        selector->partyMenu->maxSelectionSlots = 2;
+        selector->partyMenu->reqLevel = 100;
     } else {
         GF_ASSERT(FALSE);
     }
 
-    sub_0209B988(param0, &gPokemonPartyAppTemplate, param1->partyMenu, 0, NULL);
+    sub_0209B988(frontier, &gPokemonPartyAppTemplate, selector->partyMenu, 0, NULL);
 }
 
-static void ov104_02239F38(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void ProcessPartyMenuResults(BattleFrontier *frontier, WFCFacilitySelector *selector, FieldSystem *fieldSystem, enum HeapID heapID)
 {
-    switch (param1->partyMenu->selectedMonSlot) {
-    case 7:
-        *param1->unk_B0 = 4;
-        param1->unk_9D = 4;
+    switch (selector->partyMenu->selectedMonSlot) {
+    case PARTY_MENU_SLOT_CANCEL:
+        *selector->subAppResult = 4;
+        selector->dummy = 4;
         return;
-    case 6:
-        *param1->unk_B0 = 4;
-        param1->unk_9D = 4;
+    case MAX_PARTY_SIZE:
+        *selector->subAppResult = 4;
+        selector->dummy = 4;
         return;
     default:
         break;
     }
 
-    MI_CpuCopy8(param1->partyMenu->selectionOrder, param1->unk_A1, 2);
-    param1->unk_9F = param1->partyMenu->selectedMonSlot;
-    Heap_Free(param1->partyMenu);
+    MI_CpuCopy8(selector->partyMenu->selectionOrder, selector->partyMenuSelectionOrder, 2);
+    selector->selectedMonSlot = selector->partyMenu->selectedMonSlot;
+    Heap_Free(selector->partyMenu);
 
-    param1->partyMenu = NULL;
-    *param1->unk_B0 = 2;
-    param1->unk_9D = 2;
+    selector->partyMenu = NULL;
+    *selector->subAppResult = 2;
+    selector->dummy = 2;
 }
 
-static void ov104_02239FB0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID)
+static void SetupSummaryApp(BattleFrontier *frontier, WFCFacilitySelector *selector, FieldSystem *fieldSystem, enum HeapID heapID)
 {
     static const u8 visiblePages[] = {
         SUMMARY_PAGE_INFO,
@@ -193,30 +188,30 @@ static void ov104_02239FB0(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, F
         SUMMARY_PAGE_MAX,
     };
 
-    param1->unk_AC = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
-    MI_CpuClear8(param1->unk_AC, sizeof(PokemonSummary));
+    selector->summaryApp = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
+    MI_CpuClear8(selector->summaryApp, sizeof(PokemonSummary));
 
-    param1->unk_AC->options = SaveData_GetOptions(param1->saveData);
-    param1->unk_AC->monData = SaveData_GetParty(param1->saveData);
-    param1->unk_AC->dexMode = SaveData_GetDexMode(param1->saveData);
-    param1->unk_AC->showContest = PokemonSummaryScreen_ShowContestData(param1->saveData);
-    param1->unk_AC->dataType = SUMMARY_DATA_PARTY_MON;
-    param1->unk_AC->monIndex = param1->unk_9F;
-    param1->unk_AC->monMax = (u8)Party_GetCurrentCount(param1->unk_AC->monData);
-    param1->unk_AC->move = 0;
-    param1->unk_AC->mode = SUMMARY_MODE_NORMAL;
-    param1->unk_AC->specialRibbons = SaveData_GetRibbons(param1->saveData);
+    selector->summaryApp->options = SaveData_GetOptions(selector->saveData);
+    selector->summaryApp->monData = SaveData_GetParty(selector->saveData);
+    selector->summaryApp->dexMode = SaveData_GetDexMode(selector->saveData);
+    selector->summaryApp->showContest = PokemonSummaryScreen_ShowContestData(selector->saveData);
+    selector->summaryApp->dataType = SUMMARY_DATA_PARTY_MON;
+    selector->summaryApp->monIndex = selector->selectedMonSlot;
+    selector->summaryApp->monMax = Party_GetCurrentCount(selector->summaryApp->monData);
+    selector->summaryApp->move = 0;
+    selector->summaryApp->mode = SUMMARY_MODE_NORMAL;
+    selector->summaryApp->specialRibbons = SaveData_GetRibbons(selector->saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(param1->unk_AC, visiblePages);
-    PokemonSummaryScreen_SetPlayerProfile(param1->unk_AC, SaveData_GetTrainerInfo(param1->saveData));
-    sub_0209B988(param0, &gPokemonSummaryScreenApp, param1->unk_AC, 0, NULL);
+    PokemonSummaryScreen_FlagVisiblePages(selector->summaryApp, visiblePages);
+    PokemonSummaryScreen_SetPlayerProfile(selector->summaryApp, SaveData_GetTrainerInfo(selector->saveData));
+    sub_0209B988(frontier, &gPokemonSummaryScreenApp, selector->summaryApp, 0, NULL);
 }
 
-static void ov104_0223A090(BattleFrontier *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
+static void ProcessSummaryAppResults(BattleFrontier *frontier, WFCFacilitySelector *selector, FieldSystem *fieldSystem, enum HeapID heapID)
 {
-    param1->unk_9F = param1->unk_AC->monIndex;
-    Heap_Free(param1->unk_AC);
-    param1->unk_AC = NULL;
-    *param1->unk_B0 = 0;
-    param1->unk_9D = 0;
+    selector->selectedMonSlot = selector->summaryApp->monIndex;
+    Heap_Free(selector->summaryApp);
+    selector->summaryApp = NULL;
+    *selector->subAppResult = 0;
+    selector->dummy = 0;
 }

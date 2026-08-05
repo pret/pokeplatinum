@@ -1412,7 +1412,7 @@ _1368:
     CallBattleFactoryFunction BF_FUNC_STOP_CORRIDOR_ANIMATION, 0, 0, VAR_0x8008
     FreeBattleRecording
     FreeBattleFactory
-    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
+    FrontierScrCmd_04 FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
     End
 
 _137B:

@@ -1,14 +1,16 @@
+#include "overlay104/ov104_022395F0.h"
+
 #include <nitro.h>
 #include <nitro/code16.h>
-#include <string.h>
 
 #include "constants/battle_tower.h"
+#include "constants/wfc_facility_selector_functions.h"
 #include "generated/battle_tower_modes.h"
 
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/struct_0209BBA4.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
+#include "global/utility.h"
 #include "overlay104/defs.h"
 #include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_context.h"
@@ -30,304 +32,283 @@
 #include "unk_0209BA80.h"
 #include "wifi_battle_tower_save.h"
 
-static BOOL ov104_02239680(FrontierScriptContext *param0);
-static BOOL ov104_02239C20(FrontierScriptContext *param0);
+static BOOL WaitForCommResponses(FrontierScriptContext *ctx);
+static BOOL WaitForTowerCommResponse(FrontierScriptContext *ctx);
 
-BOOL FrontierScrCmd_AA(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_InitWFCFacilitySelector(FrontierScriptContext *ctx)
 {
-    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
-    UnkStruct_0209BBA4 *v0 = ov104_02239C58(fieldData->saveData);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    WFCFacilitySelector *selector = WFCFacilitySelector_Init(fieldData->saveData);
 
-    BattleFrontier_SetFacilityStruct(param0->scriptMan->frontier, v0);
-    return 0;
+    BattleFrontier_SetFacilityStruct(ctx->scriptMan->frontier, selector);
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_AB(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_FreeWFCFacilitySelector(FrontierScriptContext *ctx)
 {
-    UnkStruct_0209BBA4 *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_02239C7C(v0);
+    WFCFacilitySelector *selector = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    WFCFacilitySelector_Free(selector);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_AC(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_WFCFacilitySelector_SendCommMessage(FrontierScriptContext *ctx)
 {
-    UnkStruct_0209BBA4 *v0;
-    u16 v1 = FrontierScriptContext_GetVar(param0);
-    u16 v2 = FrontierScriptContext_GetVar(param0);
-    u16 v3 = FrontierScriptContext_GetVar(param0);
-    u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 command = FrontierScriptContext_GetVar(ctx);
+    u16 arg1 = FrontierScriptContext_GetVar(ctx);
+    u16 arg2 = FrontierScriptContext_GetVar(ctx);
+    u16 *success = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    *v4 = ov104_02239C88(v0, v1, v2, v3);
+    WFCFacilitySelector *selector = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    *success = WFCFacilitySelector_SendCommMessage(selector, command, arg1, arg2);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_AD(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_WFCFacilitySelector_WaitForCommResponses(FrontierScriptContext *ctx)
 {
-    u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
+    ctx->data[0] = FrontierScriptContext_ReadHalfWord(ctx);
+    FrontierScriptContext_Pause(ctx, WaitForCommResponses);
 
-    param0->data[0] = v0;
-    FrontierScriptContext_Pause(param0, ov104_02239680);
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov104_02239680(FrontierScriptContext *param0)
+static BOOL WaitForCommResponses(FrontierScriptContext *ctx)
 {
-    UnkStruct_0209BBA4 *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
+    WFCFacilitySelector *selector = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (v0->unk_6F >= 2) {
-        v0->unk_6F = 0;
-        return 1;
+    if (selector->msgsReceived >= 2) {
+        selector->msgsReceived = 0;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_AE(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_CheckIfSameFacilityChosen(FrontierScriptContext *ctx)
 {
-    UnkStruct_0209BBA4 *v0;
-    u16 v1 = FrontierScriptContext_GetVar(param0);
-    u16 *v2 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 facility = FrontierScriptContext_GetVar(ctx);
+    u16 *returnVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
+    WFCFacilitySelector *selector = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (v1 == v0->unk_6E) {
-        *v2 = 1;
+    if (facility == selector->partnersSelectedFacility) {
+        *returnVar = TRUE;
     } else {
-        *v2 = 0;
+        *returnVar = FALSE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_AF(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_ManageFacilitySelectorSubApp(FrontierScriptContext *ctx)
 {
-    UnkStruct_0209BBA4 *v0;
-    FieldFrontierDTO *fieldData;
-    u16 v2 = FrontierScriptContext_GetVar(param0);
-    u16 v3 = FrontierScriptContext_GetVar(param0);
-    u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
+    UNUSED(FrontierScriptContext_GetVar(ctx));
+    u16 action = FrontierScriptContext_GetVar(ctx);
+    u16 *result = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
+    WFCFacilitySelector *selector = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
-    v0->fieldSystem = fieldData->fieldSystem;
-    v0->unk_B0 = v4;
+    selector->fieldSystem = fieldData->fieldSystem;
+    selector->subAppResult = result;
 
-    ov104_02239CD0(param0->scriptMan->frontier, v0, v3);
+    WFCFacilitySelector_ManageSubApp(ctx->scriptMan->frontier, selector, action);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_B0(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_GetSelectedPartyMenuSlots(FrontierScriptContext *ctx)
 {
-    int v0;
-    UnkStruct_0209BBA4 *v1;
-    u16 v2;
-    u16 *v3 = FrontierScriptContext_TryGetVarPointer(param0);
-    u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 *selectedSlot1 = FrontierScriptContext_TryGetVarPointer(ctx);
+    u16 *selectedSlot2 = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v1 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
+    WFCFacilitySelector *selector = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (v1->partyMenu->selectedMonSlot == 7) {
-        *v3 = 0xff;
+    if (selector->partyMenu->selectedMonSlot == PARTY_MENU_SLOT_CANCEL) {
+        *selectedSlot1 = 0xff;
 
-        for (v0 = 0; v0 < 2; v0++) {
-            v1->unk_A1[v0] = 0;
+        for (int i = 0; i < 2; i++) {
+            selector->partyMenuSelectionOrder[i] = 0;
         }
-    } else if (v1->partyMenu->selectedMonSlot == 6) {
-        *v3 = v1->partyMenu->selectionOrder[0];
-        *v3 -= 1;
+    } else if (selector->partyMenu->selectedMonSlot == MAX_PARTY_SIZE) {
+        *selectedSlot1 = selector->partyMenu->selectionOrder[0];
+        *selectedSlot1 -= 1;
 
-        *v4 = v1->partyMenu->selectionOrder[1];
+        *selectedSlot2 = selector->partyMenu->selectionOrder[1];
 
-        if (*v4 > 0) {
-            *v4 -= 1;
+        if (*selectedSlot2 > 0) {
+            *selectedSlot2 -= 1;
         }
     }
 
-    Heap_Free(v1->partyMenu);
-    v1->partyMenu = NULL;
+    Heap_Free(selector->partyMenu);
+    selector->partyMenu = NULL;
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_B1(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_CheckIfPartnerDroppedOut(FrontierScriptContext *ctx)
 {
-    UnkStruct_0209BBA4 *v0;
-    u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 *partnerDroppedOut = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    *v1 = v0->unk_59;
+    WFCFacilitySelector *selector = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    *partnerDroppedOut = selector->partnerDroppedOut;
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_B2(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_CallWFCFacilitySelectorFunction(FrontierScriptContext *ctx)
 {
-    int v0;
-    u16 v1, v2;
-    WifiBattleTowerRecord *record;
-    UnkStruct_0209BBA4 *v4;
-    FieldFrontierDTO *fieldData;
-    u8 v6 = FrontierScriptContext_ReadByte(param0);
-    u8 v7 = FrontierScriptContext_ReadByte(param0);
-    u8 v8 = FrontierScriptContext_ReadByte(param0);
-    u16 *v9 = FrontierScriptContext_TryGetVarPointer(param0);
+    u8 command = FrontierScriptContext_ReadByte(ctx);
+    u8 arg1 = FrontierScriptContext_ReadByte(ctx);
+    u8 arg2 = FrontierScriptContext_ReadByte(ctx);
+    u16 *returnVar = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v4 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
+    WFCFacilitySelector *selector = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
 
-    switch (v6) {
-    case 0:
-        sub_0209BA80(v4);
+    switch (command) {
+    case WFCFS_FUNC_INIT_COMM_MANAGER:
+        sub_0209BA80(selector);
         break;
-    case 1:
-        *v9 = v4->unk_86[0];
+    case WFCFS_FUNC_GET_PARTNERS_FIRST_PICK:
+        *returnVar = selector->partnersSelectedSpecies[0];
         break;
-    case 2:
-        if (v7 == 1) {
-            *v9 = 0;
+    case WFCFS_FUNC_CHECK_MON_SELECTIONS_VALID:
+        if (arg1 == FACILITY_TOWER) {
+            *returnVar = 0;
 
-            if ((v4->unk_76[0] == v4->unk_86[0]) || (v4->unk_76[0] == v4->unk_86[1])) {
-                *v9 += 1;
+            if (selector->selectedSpecies[0] == selector->partnersSelectedSpecies[0] || selector->selectedSpecies[0] == selector->partnersSelectedSpecies[1]) {
+                *returnVar += 1;
             }
 
-            if ((v4->unk_76[1] == v4->unk_86[0]) || (v4->unk_76[1] == v4->unk_86[1])) {
-                *v9 += 2;
+            if (selector->selectedSpecies[1] == selector->partnersSelectedSpecies[0] || selector->selectedSpecies[1] == selector->partnersSelectedSpecies[1]) {
+                *returnVar += 2;
             }
-        } else if (v7 == 5) {
-            if (v4->unk_76[0] == v4->unk_86[0]) {
-                *v9 = 0;
+        } else if (arg1 == FACILITY_HALL) {
+            if (selector->selectedSpecies[0] == selector->partnersSelectedSpecies[0]) {
+                *returnVar = 0;
             } else {
-                *v9 = 1;
+                *returnVar = 1;
             }
-        } else if ((v7 == 4) || (v7 == 6)) {
-            *v9 = 0;
+        } else if (arg1 == FACILITY_CASTLE || arg1 == FACILITY_ARCADE) {
+            *returnVar = 0;
 
-            if ((v4->unk_76[0] == v4->unk_86[0]) || (v4->unk_76[0] == v4->unk_86[1])) {
-                *v9 += 1;
+            if (selector->selectedSpecies[0] == selector->partnersSelectedSpecies[0] || selector->selectedSpecies[0] == selector->partnersSelectedSpecies[1]) {
+                *returnVar += 1;
             }
 
-            if ((v4->unk_76[1] == v4->unk_86[0]) || (v4->unk_76[1] == v4->unk_86[1])) {
-                *v9 += 2;
+            if (selector->selectedSpecies[1] == selector->partnersSelectedSpecies[0] || selector->selectedSpecies[1] == selector->partnersSelectedSpecies[1]) {
+                *returnVar += 2;
             }
         }
 
         break;
+    case WFCFS_FUNC_CHECK_HALL_STREAK_ACTIVE:
+        *returnVar = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(fieldData->saveData), STAT_HALL_WFC_STREAK_ACTIVE);
+        break;
+    case WFCFS_FUNC_CHECK_HALL_STREAK_SPECIES:
+        *returnVar = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(fieldData->saveData), BattleFrontierStats_GetHallLatestSpeciesIndex(FRONTIER_CHALLENGE_MULTI_WFC));
+        break;
+    case WFCFS_FUNC_GET_SELECTED_SPECIES:
+        *returnVar = selector->selectedSpecies[arg1];
+        break;
+    case WFCFS_FUNC_CLEAR_ACTIVE_HALL_STREAK:
+        BattleHall_ClearActiveStreak(fieldData->saveData, BattleHallStreakFlags_Get(fieldData->saveData), FRONTIER_CHALLENGE_MULTI_WFC);
+        break;
+    case WFCFS_FUNC_SET_SELECTED_FACILITY:
+        selector->selectedFacility = arg1;
+        break;
+    case WFCFS_FUNC_GET_PARTNERS_STREAK_DELETION_CHOICE:
+        *returnVar = selector->partnersStreakDeletionChoice;
+        break;
+    case WFCFS_FUNC_GET_SELECTED_FACILITY:
+        *returnVar = selector->selectedFacility;
+        break;
+    case WFCFS_FUNC_CHECK_PARTNER_PLAYING_AGAIN:
+        *returnVar = selector->partnerNotPlayingAgain;
+        break;
+    case WFCFS_FUNC_CLEAR_STREAK_IF_NOT_MATCHING: {
+        *returnVar = TRUE;
+        u16 index = BattleFrontier_GetWFCLatestStreakIndex(selector->selectedFacility);
+        u16 latestStreak = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(selector->saveData), index);
 
-    case 3:
-        *v9 = (u16)BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(fieldData->saveData), STAT_HALL_WFC_STREAK_ACTIVE);
-        break;
-    case 4:
-        *v9 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(fieldData->saveData), BattleFrontierStats_GetHallLatestSpeciesIndex(3));
-        break;
-    case 5:
-        *v9 = v4->unk_76[v7];
-        break;
-    case 6:
-        BattleHall_ClearActiveStreak(fieldData->saveData, BattleHallStreakFlags_Get(fieldData->saveData), 3);
-        break;
-    case 7:
-        v4->unk_A0 = v7;
-        break;
-    case 8:
-        *v9 = v4->unk_74;
-        break;
-    case 9:
-        *v9 = v4->unk_A0;
-        break;
-    case 10:
-        *v9 = v4->unk_71;
-        break;
-    case 11:
-        *v9 = 1;
-        v1 = ov104_0223C264(v4->unk_A0);
-        v2 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1);
+        if (latestStreak != selector->partnersLatestStreak) {
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(selector->saveData), index, 0);
 
-        if (v2 != v4->unk_72) {
-            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1, 0);
+            index = BattleFrontier_GetWFCStreakActiveIndex(selector->selectedFacility);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(selector->saveData), index, 0);
 
-            v1 = ov104_0223C29C(v4->unk_A0);
-            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1, 0);
-
-            *v9 = 0;
+            *returnVar = FALSE;
         }
-        break;
-    case 12:
-        v1 = ov104_0223C29C(v4->unk_A0);
-        *v9 = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1);
+    } break;
+    case WFCFS_FUNC_CLEAR_LATEST_STREAK: {
+        u16 index = BattleFrontier_GetWFCStreakActiveIndex(selector->selectedFacility);
+        *returnVar = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(selector->saveData), index);
 
-        if (*v9 == 0) {
-            v1 = ov104_0223C264(v4->unk_A0);
-            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1, 0);
+        if (*returnVar == FALSE) {
+            index = BattleFrontier_GetWFCLatestStreakIndex(selector->selectedFacility);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(selector->saveData), index, 0);
 
-            if (v4->unk_A0 == 1) {
-                record = SaveData_GetWifiBattleTowerRecord(v4->saveData);
-                WifiBattleTowerRecord_UpdateRoomNum(record, 6, 2);
+            if (selector->selectedFacility == FACILITY_TOWER) {
+                WifiBattleTowerRecord *record = SaveData_GetWifiBattleTowerRecord(selector->saveData);
+                WifiBattleTowerRecord_UpdateRoomNum(record, BATTLE_TOWER_MODE_6, 2);
             }
 
-            if (v4->unk_A0 == 4) {
-                BattleFrontierSave_SetStat(SaveData_GetBattleFrontier(v4->saveData), STAT_CASTLE_LATEST_CP_MULTI_WFC, BattleFrontierStats_GetHostFriendIdx(v1), 0);
-                BattleFrontierSave_SetStat(SaveData_GetBattleFrontier(v4->saveData), STAT_CASTLE_SPENT_CP_MULTI_WFC, BattleFrontierStats_GetHostFriendIdx(v1), 0);
+            if (selector->selectedFacility == FACILITY_CASTLE) {
+                BattleFrontierSave_SetStat(SaveData_GetBattleFrontier(selector->saveData), STAT_CASTLE_LATEST_CP_MULTI_WFC, BattleFrontierStats_GetHostFriendIdx(index), 0);
+                BattleFrontierSave_SetStat(SaveData_GetBattleFrontier(selector->saveData), STAT_CASTLE_SPENT_CP_MULTI_WFC, BattleFrontierStats_GetHostFriendIdx(index), 0);
             }
 
-            if (v4->unk_A0 == 2) {
-                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(0, 3), 0);
+            if (selector->selectedFacility == FACILITY_FACTORY) {
+                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(selector->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(FALSE, FRONTIER_CHALLENGE_MULTI_WFC), 0);
             }
 
-            if (v4->unk_A0 == 3) {
-                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(1, 3), 0);
+            if (selector->selectedFacility == FACILITY_FACTORY_OPEN) {
+                BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(selector->saveData), BattleFrontierStats_GetFactoryLatestTradeCountIndex(TRUE, FRONTIER_CHALLENGE_MULTI_WFC), 0);
             }
         } else {
-            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(v4->saveData), v1, 0);
+            BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(selector->saveData), index, 0);
         }
-        break;
-    case 13:
-        for (v0 = 0; v0 < 2; v0++) {
-            v4->unk_A1[v0] = 0;
+    } break;
+    case WFCFS_FUNC_CLEAR_PARTY_MENU_SELECTIONS:
+        for (int i = 0; i < 2; i++) {
+            selector->partyMenuSelectionOrder[i] = 0;
         }
 
-        v4->unk_9F = 0;
+        selector->selectedMonSlot = 0;
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_B3(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_InitBattleTower(FrontierScriptContext *ctx)
 {
-    int v0;
-    BattleTower *battleTower;
-    FieldFrontierDTO *fieldData;
-    UnkStruct_0209BBA4 *v3;
-    UnkStruct_0209BBA4 v4;
 
-    fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
-    v3 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    WFCFacilitySelector *selectorPtr = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    v4 = *v3;
-    ov104_02239C7C(v3);
+    WFCFacilitySelector selector = *selectorPtr;
+    WFCFacilitySelector_Free(selectorPtr);
 
-    battleTower = BattleTower_Init(fieldData->saveData, 0, BATTLE_TOWER_MODE_6);
-    BattleFrontier_SetFacilityStruct(param0->scriptMan->frontier, battleTower);
+    BattleTower *battleTower = BattleTower_Init(fieldData->saveData, 0, BATTLE_TOWER_MODE_6);
+    BattleFrontier_SetFacilityStruct(ctx->scriptMan->frontier, battleTower);
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
         BattleFrontier_FlagGeonetLinkInfo(fieldData->saveData);
     }
 
-    for (v0 = 0; v0 < battleTower->partySize; v0++) {
-        battleTower->unk_2A[v0] = v4.unk_6A[v0];
-        battleTower->unk_2E[v0] = v4.unk_76[v0];
-        battleTower->unk_36[v0] = v4.unk_7E[v0];
+    for (int i = 0; i < battleTower->partySize; i++) {
+        battleTower->unk_2A[i] = selector.selectedMonSlots[i];
+        battleTower->unk_2E[i] = selector.selectedSpecies[i];
+        battleTower->unk_36[i] = selector.selectedItems[i];
     }
 
-    battleTower->unk_16[0] = v4.unk_86[0];
-    battleTower->unk_16[1] = v4.unk_86[1];
-    battleTower->partnerGender = v4.unk_58;
+    battleTower->unk_16[0] = selector.partnersSelectedSpecies[0];
+    battleTower->unk_16[1] = selector.partnersSelectedSpecies[1];
+    battleTower->partnerGender = selector.partnerGender;
     battleTower->partnerID = BT_PARTNERS_COUNT + battleTower->partnerGender;
 
     if (CommSys_CurNetId() == 0) {
@@ -337,41 +318,40 @@ BOOL FrontierScrCmd_B3(FrontierScriptContext *param0)
     Party_HealAllMembers(SaveData_GetParty(fieldData->saveData));
     sub_0209BA80(battleTower);
 
-    battleTower->unk_8D4 = 0;
+    battleTower->msgsReceived = 0;
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_B4(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_SendTowerTrainerIDList(FrontierScriptContext *ctx)
 {
-    BattleTower *battleTower;
-    u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 *success = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    battleTower = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    *v1 = sub_0209BB08(battleTower);
+    BattleTower *battleTower = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    *success = BattleTower_SendTrainerIDListCmd(battleTower);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_B5(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_WaitForTowerTrainerIDListResponses(FrontierScriptContext *ctx)
 {
-    FrontierScriptContext_Pause(param0, ov104_02239C20);
-    return 1;
+    FrontierScriptContext_Pause(ctx, WaitForTowerCommResponse);
+    return TRUE;
 }
 
-static BOOL ov104_02239C20(FrontierScriptContext *param0)
+static BOOL WaitForTowerCommResponse(FrontierScriptContext *ctx)
 {
-    BattleTower *battleTower = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
+    BattleTower *battleTower = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (battleTower->unk_8D4 < 2) {
-        return 0;
+    if (battleTower->msgsReceived < 2) {
+        return FALSE;
     }
 
-    battleTower->unk_8D4 = 0;
-    return 1;
+    battleTower->msgsReceived = 0;
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_ClearTowerStruct(FrontierScriptContext *ctx)
+BOOL FrontierScrCmd_FreeBattleTower(FrontierScriptContext *ctx)
 {
     BattleTower *battleTower = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
     BattleTower_Free(battleTower);

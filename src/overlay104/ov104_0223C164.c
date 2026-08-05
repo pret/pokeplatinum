@@ -1,167 +1,139 @@
 #include "overlay104/ov104_0223C164.h"
 
 #include <nitro.h>
-#include <string.h>
 
-#include "overlay104/struct_ov104_0223C23C_decl.h"
+#include "constants/battle_frontier.h"
+#include "constants/battle_frontier_stats.h"
 
 #include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    SysTask *unk_00;
-    BgConfig *unk_04;
-    u16 unk_08;
-    u16 unk_0A;
-} UnkStruct_ov104_0223C188;
+#define TILESET_WIDTH      16
+#define DARK_TILES_OFFSET  12
+#define LIGHT_TILES_OFFSET 14
 
-struct UnkStruct_ov104_0223C23C_t {
-    BgConfig *unk_00;
-    UnkStruct_ov104_0223C188 *unk_04;
-};
+static WFCFacilitySelectorMonitorFlicker *WFCFacilitySelectorMonitorFlicker_Init(BgConfig *bgConfig);
+static void Task_UpdateMonitorTiles(SysTask *task, void *taskData);
+static void GetMonitorTileset(u16 *tiles, u8 tileset);
+static void WFCFacilitySelectorMonitorFlicker_Free(WFCFacilitySelectorMonitorFlicker *flicker);
 
-UnkStruct_ov104_0223C23C *ov104_0223C164(BgConfig *param0);
-static UnkStruct_ov104_0223C188 *ov104_0223C188(BgConfig *param0);
-static void ov104_0223C1BC(SysTask *param0, void *param1);
-static void ov104_0223C208(u16 *param0, u8 param1);
-
-UnkStruct_ov104_0223C23C *ov104_0223C164(BgConfig *param0)
+WFCFacilitySelectorEffects *WFCFacilitySelectorEffects_Init(BgConfig *bgConfig)
 {
-    UnkStruct_ov104_0223C23C *v0 = Heap_Alloc(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C23C));
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223C23C));
-    v0->unk_04 = ov104_0223C188(param0);
+    WFCFacilitySelectorEffects *effects = Heap_Alloc(HEAP_ID_94, sizeof(WFCFacilitySelectorEffects));
+    MI_CpuClear8(effects, sizeof(WFCFacilitySelectorEffects));
+    effects->flicker = WFCFacilitySelectorMonitorFlicker_Init(bgConfig);
 
-    return v0;
+    return effects;
 }
 
-static UnkStruct_ov104_0223C188 *ov104_0223C188(BgConfig *param0)
+static WFCFacilitySelectorMonitorFlicker *WFCFacilitySelectorMonitorFlicker_Init(BgConfig *bgConfig)
 {
-    UnkStruct_ov104_0223C188 *v0 = Heap_Alloc(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C188));
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223C188));
+    WFCFacilitySelectorMonitorFlicker *flicker = Heap_Alloc(HEAP_ID_94, sizeof(WFCFacilitySelectorMonitorFlicker));
+    MI_CpuClear8(flicker, sizeof(WFCFacilitySelectorMonitorFlicker));
 
-    v0->unk_04 = param0;
-    v0->unk_08 = 0;
-    v0->unk_00 = SysTask_Start(ov104_0223C1BC, v0, (80000 - 500));
+    flicker->bgConfig = bgConfig;
+    flicker->monitorState = 0;
+    flicker->task = SysTask_Start(Task_UpdateMonitorTiles, flicker, 80000 - 500);
 
-    return v0;
+    return flicker;
 }
 
-static void ov104_0223C1BC(SysTask *param0, void *param1)
+static void Task_UpdateMonitorTiles(SysTask *task, void *taskData)
 {
-    u32 v0;
-    u16 v1[4];
-    UnkStruct_ov104_0223C188 *v2 = param1;
+    WFCFacilitySelectorMonitorFlicker *flicker = taskData;
 
-    if (v2->unk_0A < 2) {
-        v2->unk_0A++;
+    if (flicker->delay < 2) {
+        flicker->delay++;
         return;
     }
 
-    v2->unk_0A = 0;
-    v2->unk_08 ^= 1;
+    flicker->delay = 0;
+    flicker->monitorState ^= 1;
 
-    ov104_0223C208(v1, v2->unk_08);
+    u16 tiles[4];
+    GetMonitorTileset(tiles, flicker->monitorState);
 
-    Bg_LoadToTilemapRect(v2->unk_04, 3, v1, 14, 2, 2, 2);
-    Bg_ScheduleTilemapTransfer(v2->unk_04, 3);
-
-    return;
+    Bg_LoadToTilemapRect(flicker->bgConfig, BG_LAYER_MAIN_3, tiles, 14, 2, 2, 2);
+    Bg_ScheduleTilemapTransfer(flicker->bgConfig, BG_LAYER_MAIN_3);
 }
 
-static void ov104_0223C208(u16 *param0, u8 param1)
+static void GetMonitorTileset(u16 *tiles, u8 tileset)
 {
-    u32 v0, v1, v2, v3;
+    u32 offset = tileset == 0 ? DARK_TILES_OFFSET : LIGHT_TILES_OFFSET;
 
-    if (param1 == 0) {
-        v3 = 12;
-    } else {
-        v3 = 14;
-    }
-
-    for (v0 = 0; v0 < 2; v0++) {
-        for (v1 = 0; v1 < 2; v1++) {
-            v2 = ((0x10 * 6) + v0 * 0x10) + (v3 + v1);
-
-            param0[(v0 * 2) + v1] = v2;
+    for (u32 r = 0; r < 2; r++) {
+        for (u32 c = 0; c < 2; c++) {
+            tiles[(r * 2) + c] = ((TILESET_WIDTH * 6) + r * TILESET_WIDTH) + (offset + c);
         }
     }
-
-    return;
 }
 
-void ov104_0223C23C(UnkStruct_ov104_0223C23C *param0);
-static void ov104_0223C250(UnkStruct_ov104_0223C188 *param0);
-
-void ov104_0223C23C(UnkStruct_ov104_0223C23C *param0)
+void WFCFacilitySelectorEffects_Free(WFCFacilitySelectorEffects *effects)
 {
-    ov104_0223C250(param0->unk_04);
-    Heap_Free(param0);
-
-    return;
+    WFCFacilitySelectorMonitorFlicker_Free(effects->flicker);
+    Heap_Free(effects);
 }
 
-static void ov104_0223C250(UnkStruct_ov104_0223C188 *param0)
+static void WFCFacilitySelectorMonitorFlicker_Free(WFCFacilitySelectorMonitorFlicker *flicker)
 {
-    SysTask_Done(param0->unk_00);
-    Heap_Free(param0);
-
-    return;
+    SysTask_Done(flicker->task);
+    Heap_Free(flicker);
 }
 
-u16 ov104_0223C264(u8 param0)
+u16 BattleFrontier_GetWFCLatestStreakIndex(u8 facility)
 {
-    u16 v0;
+    u16 index;
 
-    switch (param0) {
-    case 2:
-        v0 = 115;
+    switch (facility) {
+    case FACILITY_FACTORY:
+        index = STAT_FACTORY_LATEST_STREAK_50_MULTI_WFC;
         break;
-    case 3:
-        v0 = 119;
+    case FACILITY_FACTORY_OPEN:
+        index = STAT_FACTORY_LATEST_STREAK_OPEN_MULTI_WFC;
         break;
-    case 4:
-        v0 = 135;
+    case FACILITY_CASTLE:
+        index = STAT_CASTLE_LATEST_STREAK_MULTI_WFC;
         break;
-    case 5:
-        v0 = 123;
+    case FACILITY_HALL:
+        index = STAT_HALL_LATEST_STREAK_MULTI_WFC;
         break;
-    case 6:
-        v0 = 143;
+    case FACILITY_ARCADE:
+        index = STAT_ARCADE_LATEST_STREAK_MULTI_WFC;
         break;
-    case 1:
-        v0 = 113;
+    case FACILITY_TOWER:
+        index = STAT_TOWER_LATEST_STREAK_MODE_6;
         break;
     }
 
-    return v0;
+    return index;
 }
 
-u16 ov104_0223C29C(u8 param0)
+u16 BattleFrontier_GetWFCStreakActiveIndex(u8 facility)
 {
-    u16 v0;
+    u16 index;
 
-    switch (param0) {
-    case 2:
-        v0 = 102;
+    switch (facility) {
+    case FACILITY_FACTORY:
+        index = STAT_FACTORY_50_WFC_STREAK_ACTIVE;
         break;
-    case 3:
-        v0 = 104;
+    case FACILITY_FACTORY_OPEN:
+        index = STAT_FACTORY_OPEN_WFC_STREAK_ACTIVE;
         break;
-    case 4:
-        v0 = 108;
+    case FACILITY_CASTLE:
+        index = STAT_CASTLE_WFC_STREAK_ACTIVE;
         break;
-    case 5:
-        v0 = 106;
+    case FACILITY_HALL:
+        index = STAT_HALL_WFC_STREAK_ACTIVE;
         break;
-    case 6:
-        v0 = 110;
+    case FACILITY_ARCADE:
+        index = STAT_ARCADE_WFC_STREAK_ACTIVE;
         break;
-    case 1:
-        v0 = 100;
+    case FACILITY_TOWER:
+        index = STAT_TOWER_WFC_STREAK_ACTIVE;
         break;
     }
 
-    return v0;
+    return index;
 }

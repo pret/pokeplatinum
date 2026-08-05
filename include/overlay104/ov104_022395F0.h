@@ -3,18 +3,18 @@
 
 #include "overlay104/defs.h"
 
-BOOL FrontierScrCmd_AA(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_AB(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_AC(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_AD(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_AE(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_AF(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_B0(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_B1(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_B2(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_B3(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_B4(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_B5(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_ClearTowerStruct(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_InitWFCFacilitySelector(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_FreeWFCFacilitySelector(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_WFCFacilitySelector_SendCommMessage(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_WFCFacilitySelector_WaitForCommResponses(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_CheckIfSameFacilityChosen(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_ManageFacilitySelectorSubApp(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_GetSelectedPartyMenuSlots(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_CheckIfPartnerDroppedOut(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_CallWFCFacilitySelectorFunction(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_InitBattleTower(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_SendTowerTrainerIDList(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_WaitForTowerTrainerIDListResponses(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_FreeBattleTower(FrontierScriptContext *ctx);
 
 #endif // POKEPLATINUM_OV104_022395F0_H
