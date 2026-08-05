@@ -621,7 +621,6 @@ static void BallOpenState_Free(SysTask *task)
 
 static void BallOpenState_UpdateRotation(BallOpenState *boState)
 {
-
     if (boState->rotationTransitionFrames) {
         boState->rotationSpeed += boState->rotationSpeedStep;
 
