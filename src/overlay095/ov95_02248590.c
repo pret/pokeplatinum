@@ -462,8 +462,8 @@ static void TradeTubePhase_InitGraphics(TradeTubePhase *ttPhase)
 
     OSIntrMode savedInterrupts = OS_DisableInterrupts();
 
-     Bg_InitFromTemplate(ttPhase->bgConfig, BG_LAYER_MAIN_3, &template2, 2);
-     Bg_InitFromTemplate(ttPhase->bgConfig, BG_LAYER_SUB_3, &template2, 2);
+    Bg_InitFromTemplate(ttPhase->bgConfig, BG_LAYER_MAIN_3, &template2, 2);
+    Bg_InitFromTemplate(ttPhase->bgConfig, BG_LAYER_SUB_3, &template2, 2);
 
     OS_RestoreInterrupts(savedInterrupts);
 
