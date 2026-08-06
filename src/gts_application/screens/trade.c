@@ -6,7 +6,7 @@
 
 #include "gts_application/application.h"
 #include "gts_application/gts.h"
-#include "overlay095/ov95_02246C20.h"
+#include "trade_sequence/trade_sequence.h"
 
 #include "evolution.h"
 #include "global_trade.h"
@@ -18,7 +18,7 @@
 #include "poketch.h"
 #include "trainer_info.h"
 
-FS_EXTERN_OVERLAY(overlay95);
+FS_EXTERN_OVERLAY(trade_sequence);
 
 static TrainerInfo *GTSPokemonListing_GetTrainerInfo(GTSPokemonListing *listing);
 static Pokemon *GTSApplication_Trade_GetTradedPokemon(GTSApplicationState *appState, enum ScreenArgument screenArgument);
@@ -28,7 +28,7 @@ static const ApplicationManagerTemplate sTradeSequenceConfig = {
     TradeSequence_Init,
     TradeSequence_Main,
     TradeSequence_Exit,
-    FS_OVERLAY_ID(overlay95)
+    FS_OVERLAY_ID(trade_sequence)
 };
 
 int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused)
