@@ -259,7 +259,7 @@ void BattleFactory_Free(BattleFactory *factory)
 
 void BattleFactory_GetMonSelectionAppResult(BattleFactory *battleFactory, BattleFactoryAppArgs *args)
 {
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < MAX_PARTY_SIZE; i++) {
         battleFactory->selectedAppSlots[i] = GetBattleFactoryAppSelectedIndices(args, i);
     }
 }

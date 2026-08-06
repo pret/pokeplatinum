@@ -38,42 +38,222 @@ static const struct {
 };
 
 static const BattleFactoryPokemonPool sLevel50Pools[] = {
-    { .trainerIDMax = 100, .setIDMin = 1, .setIDMax = 150, .ivs = 0, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 120, .setIDMin = 151, .setIDMax = 250, .ivs = 4, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 140, .setIDMin = 251, .setIDMax = 350, .ivs = 8, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 160, .setIDMin = 351, .setIDMax = 486, .ivs = 12, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 180, .setIDMin = 487, .setIDMax = 622, .ivs = 16, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 200, .setIDMin = 623, .setIDMax = 758, .ivs = 20, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 220, .setIDMin = 759, .setIDMax = 894, .ivs = 24, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 300, .setIDMin = 351, .setIDMax = 950, .ivs = 31, .canBeUpgraded = FALSE },
-    { .trainerIDMax = 310, .setIDMin = 351, .setIDMax = 486, .ivs = 12, .canBeUpgraded = FALSE },
-    { .trainerIDMax = 311, .setIDMin = 351, .setIDMax = 486, .ivs = 31, .canBeUpgraded = FALSE }
+    {
+        .trainerIDMax = FRONTIER_TRAINER_CYCLIST_GASPAR,
+        .setIDMin = 1,
+        .setIDMax = 150,
+        .ivs = 0,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_PSYCHIC_ALPHA,
+        .setIDMin = 151,
+        .setIDMax = 250,
+        .ivs = 4,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_ACE_TRAINER_YARDLEY,
+        .setIDMin = 251,
+        .setIDMax = 350,
+        .ivs = 8,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_YOUNGSTER_KADEN,
+        .setIDMin = 351,
+        .setIDMax = 486,
+        .ivs = 12,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_JOGGER_COLT,
+        .setIDMin = 487,
+        .setIDMax = 622,
+        .ivs = 16,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_CAMPER_FREDDY,
+        .setIDMin = 623,
+        .setIDMax = 758,
+        .ivs = 20,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_ACE_TRAINER_SAWYER,
+        .setIDMin = 759,
+        .setIDMax = 894,
+        .ivs = 24,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL,
+        .setIDMin = 351,
+        .setIDMax = 950,
+        .ivs = 31,
+        .canBeUpgraded = FALSE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_FACTORY_HEAD_THORTON_GOLD,
+        .setIDMin = 351,
+        .setIDMax = 486,
+        .ivs = 12,
+        .canBeUpgraded = FALSE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_ARCADE_STAR_DAHLIA_SILVER,
+        .setIDMin = 351,
+        .setIDMax = 486,
+        .ivs = 31,
+        .canBeUpgraded = FALSE,
+    }
 };
 
 static const BattleFactoryPokemonPool sOpenLevelOpponentPools[] = {
-    { .trainerIDMax = 100, .setIDMin = 351, .setIDMax = 486, .ivs = 0, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 120, .setIDMin = 487, .setIDMax = 622, .ivs = 4, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 140, .setIDMin = 623, .setIDMax = 758, .ivs = 8, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 160, .setIDMin = 759, .setIDMax = 894, .ivs = 12, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 180, .setIDMin = 351, .setIDMax = 950, .ivs = 16, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 200, .setIDMin = 351, .setIDMax = 950, .ivs = 20, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 220, .setIDMin = 351, .setIDMax = 950, .ivs = 24, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 300, .setIDMin = 351, .setIDMax = 950, .ivs = 31, .canBeUpgraded = FALSE },
-    { .trainerIDMax = 310, .setIDMin = 759, .setIDMax = 950, .ivs = 12, .canBeUpgraded = FALSE },
-    { .trainerIDMax = 311, .setIDMin = 759, .setIDMax = 950, .ivs = 31, .canBeUpgraded = FALSE }
+    {
+        .trainerIDMax = FRONTIER_TRAINER_CYCLIST_GASPAR,
+        .setIDMin = 351,
+        .setIDMax = 486,
+        .ivs = 0,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_PSYCHIC_ALPHA,
+        .setIDMin = 487,
+        .setIDMax = 622,
+        .ivs = 4,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_ACE_TRAINER_YARDLEY,
+        .setIDMin = 623,
+        .setIDMax = 758,
+        .ivs = 8,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_YOUNGSTER_KADEN,
+        .setIDMin = 759,
+        .setIDMax = 894,
+        .ivs = 12,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_JOGGER_COLT,
+        .setIDMin = 351,
+        .setIDMax = 950,
+        .ivs = 16,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_CAMPER_FREDDY,
+        .setIDMin = 351,
+        .setIDMax = 950,
+        .ivs = 20,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_ACE_TRAINER_SAWYER,
+        .setIDMin = 351,
+        .setIDMax = 950,
+        .ivs = 24,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL,
+        .setIDMin = 351,
+        .setIDMax = 950,
+        .ivs = 31,
+        .canBeUpgraded = FALSE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_FACTORY_HEAD_THORTON_GOLD,
+        .setIDMin = 759,
+        .setIDMax = 950,
+        .ivs = 12,
+        .canBeUpgraded = FALSE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_ARCADE_STAR_DAHLIA_SILVER,
+        .setIDMin = 759,
+        .setIDMax = 950,
+        .ivs = 31,
+        .canBeUpgraded = FALSE,
+    }
 };
 
 static const BattleFactoryPokemonPool sOpenLevelPlayerPools[] = {
-    { .trainerIDMax = 100, .setIDMin = 351, .setIDMax = 486, .ivs = 0, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 120, .setIDMin = 487, .setIDMax = 622, .ivs = 4, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 140, .setIDMin = 623, .setIDMax = 758, .ivs = 8, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 160, .setIDMin = 759, .setIDMax = 894, .ivs = 12, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 180, .setIDMin = 623, .setIDMax = 950, .ivs = 16, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 200, .setIDMin = 623, .setIDMax = 950, .ivs = 20, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 220, .setIDMin = 623, .setIDMax = 950, .ivs = 24, .canBeUpgraded = TRUE },
-    { .trainerIDMax = 300, .setIDMin = 351, .setIDMax = 950, .ivs = 31, .canBeUpgraded = FALSE },
-    { .trainerIDMax = 310, .setIDMin = 759, .setIDMax = 950, .ivs = 12, .canBeUpgraded = FALSE },
-    { .trainerIDMax = 311, .setIDMin = 759, .setIDMax = 950, .ivs = 31, .canBeUpgraded = FALSE }
+    {
+        .trainerIDMax = FRONTIER_TRAINER_CYCLIST_GASPAR,
+        .setIDMin = 351,
+        .setIDMax = 486,
+        .ivs = 0,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_PSYCHIC_ALPHA,
+        .setIDMin = 487,
+        .setIDMax = 622,
+        .ivs = 4,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_ACE_TRAINER_YARDLEY,
+        .setIDMin = 623,
+        .setIDMax = 758,
+        .ivs = 8,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_YOUNGSTER_KADEN,
+        .setIDMin = 759,
+        .setIDMax = 894,
+        .ivs = 12,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_JOGGER_COLT,
+        .setIDMin = 623,
+        .setIDMax = 950,
+        .ivs = 16,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_CAMPER_FREDDY,
+        .setIDMin = 623,
+        .setIDMax = 950,
+        .ivs = 20,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_ACE_TRAINER_SAWYER,
+        .setIDMin = 623,
+        .setIDMax = 950,
+        .ivs = 24,
+        .canBeUpgraded = TRUE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_TRAINER_CHERYL_CHERYL,
+        .setIDMin = 351,
+        .setIDMax = 950,
+        .ivs = 31,
+        .canBeUpgraded = FALSE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_FACTORY_HEAD_THORTON_GOLD,
+        .setIDMin = 759,
+        .setIDMax = 950,
+        .ivs = 12,
+        .canBeUpgraded = FALSE,
+    },
+    {
+        .trainerIDMax = FRONTIER_TRAINER_ARCADE_STAR_DAHLIA_SILVER,
+        .setIDMin = 759,
+        .setIDMax = 950,
+        .ivs = 31,
+        .canBeUpgraded = FALSE,
+    }
 };
 
 static int BattleFactory_GetOpponentTrainerID(u8 challengeType, int currentRound, int trainerOffset);
@@ -197,9 +377,9 @@ BOOL BattleFactory_SelectPokemonFromPool(const u16 excludedSpecies[], const u16 
 
     while (slot != numMons) {
         if (slot >= numMons - numUpgradable && pool->canBeUpgraded == TRUE) {
-            setIDRange = (pool + 1)->setIDMax - (pool + 1)->setIDMin;
-            setID = (pool + 1)->setIDMax - (LCRNG_Next() % (setIDRange + 1));
-            ivs = (pool + 1)->ivs;
+            setIDRange = pool[1].setIDMax - pool[1].setIDMin;
+            setID = pool[1].setIDMax - (LCRNG_Next() % (setIDRange + 1));
+            ivs = pool[1].ivs;
         } else {
             setID = pool->setIDMax - (LCRNG_Next() % (setIDRange + 1));
             ivs = pool->ivs;
@@ -258,7 +438,7 @@ u8 BattleFactory_GetOpponentPartySize(u8 challengeType, BOOL includePartnersMons
         return FACTORY_PARTY_SIZE_SOLO;
     case FRONTIER_CHALLENGE_MULTI:
     case FRONTIER_CHALLENGE_MULTI_WFC:
-        if (includePartnersMons == 0) {
+        if (includePartnersMons == FALSE) {
             return FACTORY_PARTY_SIZE_MULTI;
         } else {
             return FACTORY_PARTY_SIZE_MULTI * 2;
@@ -390,7 +570,7 @@ static u32 BattleFactory_GetBattleType(u8 challengeType)
 
 u8 BattleFactory_GetPokemonLevel(BattleFactory *battleFactory)
 {
-    if (battleFactory->isOpenLevel == 0) {
+    if (battleFactory->isOpenLevel == FALSE) {
         return 50;
     }
 
