@@ -34,7 +34,7 @@
 
 #include "constdata/const_020F410C.h"
 
-typedef struct {
+typedef struct BattleCastleSpeciesCheck {
     u8 taskState;
     u8 receivedMessages;
     u16 unused;
@@ -283,9 +283,9 @@ static int SubTask_ProcessPartyMenu(BattleCastleTaskEnv *taskEnv, FieldSystem *f
     PartyMenu *partyMenu = *taskEnv->partyMenu;
 
     switch (partyMenu->selectedMonSlot) {
-    case 7:
+    case PARTY_MENU_SLOT_CANCEL:
         return SUBTASK_END_TASK;
-    case 6:
+    case MAX_PARTY_SIZE:
         return SUBTASK_END_TASK;
     default:
         break;
