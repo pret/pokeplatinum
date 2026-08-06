@@ -1,12 +1,12 @@
-#include "overlay095/ov95_0224B3D8.h"
+#include "trade_sequence/receive_phase.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/sprite_animation_frame.h"
 
-#include "overlay095/ov95_02246C20.h"
-#include "overlay095/ov95_022476F0.h"
+#include "trade_sequence/trade_3d_scene.h"
+#include "trade_sequence/trade_sequence.h"
 
 #include "bg_window.h"
 #include "enums.h"

@@ -1,16 +1,16 @@
-#include "overlay095/ov95_02246C20.h"
+#include "trade_sequence/trade_sequence.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "overlay006/struct_npc_trade_animation_template.h"
-#include "overlay095/ov95_02247B6C.h"
-#include "overlay095/ov95_02248590.h"
-#include "overlay095/ov95_02249740.h"
-#include "overlay095/ov95_02249F90.h"
-#include "overlay095/ov95_0224A390.h"
-#include "overlay095/ov95_0224ABC0.h"
-#include "overlay095/ov95_0224B3D8.h"
+#include "trade_sequence/ball_flyby_phase.h"
+#include "trade_sequence/pokemon_reveal_phase.h"
+#include "trade_sequence/receive_ball_phase.h"
+#include "trade_sequence/receive_phase.h"
+#include "trade_sequence/send_phase.h"
+#include "trade_sequence/tube_phase.h"
+#include "trade_sequence/wormhole_phase.h"
 
 #include "bg_window.h"
 #include "character_sprite.h"

@@ -1,10 +1,10 @@
-#include "overlay095/ov95_02249740.h"
+#include "trade_sequence/ball_flyby_phase.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay095/ov95_02246C20.h"
-#include "overlay095/ov95_022476F0.h"
+#include "trade_sequence/trade_3d_scene.h"
+#include "trade_sequence/trade_sequence.h"
 
 #include "bg_window.h"
 #include "camera.h"

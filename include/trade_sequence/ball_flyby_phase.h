@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV95_02249740_H
 #define POKEPLATINUM_OV95_02249740_H
 
-#include "overlay095/ov95_02246C20.h"
+#include "trade_sequence/trade_sequence.h"
 
 void *TradeBallFlybyPhase_New(TradeSequenceData *sequenceData);
 void TradeBallFlybyPhase_Free(void *param);

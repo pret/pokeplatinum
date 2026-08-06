@@ -36,7 +36,7 @@
 
 FS_EXTERN_OVERLAY(overlay65);
 FS_EXTERN_OVERLAY(game_opening);
-FS_EXTERN_OVERLAY(overlay94);
+FS_EXTERN_OVERLAY(gts_application);
 FS_EXTERN_OVERLAY(overlay98);
 
 typedef void *(*UnkFuncPtr_ov98_02249B4C)(UnkStruct_ov98_02246E88 *);
@@ -188,7 +188,7 @@ int ov98_02246DC0(ApplicationManager *appMan, int *param1)
 static void ov98_02246E08(UnkStruct_ov98_02246E88 *param0)
 {
     if (param0->unk_80 == 0) {
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay94), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(gts_application), 2);
 
         param0->unk_0C = Heap_Alloc(HEAP_ID_108, 0x20000 + 32);
         param0->unk_10 = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_0C + 31) / 32 * 32), 0x20000);
@@ -209,7 +209,7 @@ static void ov98_02246E54(UnkStruct_ov98_02246E88 *param0)
         Overlay_UnloadHttpOverlay();
         Overlay_UnloadWFCOverlay();
         WirelessDriver_Shutdown();
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay94));
+        Overlay_UnloadByID(FS_OVERLAY_ID(gts_application));
 
         param0->unk_80 = 0;
     }

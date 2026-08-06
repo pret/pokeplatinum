@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV95_02249F90_H
 #define POKEPLATINUM_OV95_02249F90_H
 
-#include "overlay095/ov95_02246C20.h"
+#include "trade_sequence/trade_sequence.h"
 
 void *TradeWormholePhase_New(TradeSequenceData *sequenceData);
 void TradeWormholePhase_Free(void *param);

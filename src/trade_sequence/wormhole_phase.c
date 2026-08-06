@@ -1,9 +1,9 @@
-#include "overlay095/ov95_02249F90.h"
+#include "trade_sequence/wormhole_phase.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay095/ov95_02246C20.h"
+#include "trade_sequence/trade_sequence.h"
 
 #include "bg_window.h"
 #include "enums.h"
