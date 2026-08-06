@@ -29794,7 +29794,7 @@
                                                  48](BattleFactoryApp_HandleTradeResultCmd,func) found in global src_applications_frontier_battle_factory_main.c.o
                                                  48](BattleFactoryApp_DummyCommCommand2,func) found in global src_applications_frontier_battle_factory_main.c.o
                                                  48](BattleFactoryApp_HandleSelectionUpdateCmd,func) found in global src_applications_frontier_battle_factory_main.c.o
-                                                  49](BattleFactory_GetPlayerPartySize,func) found in global src_overlay104_ov104_0223A7F4.c.o
+                                                  49](BattleFactory_GetPlayerPartySize,func) found in global src_overlay104_battle_factory_helpers.c.o
                                                  48](BattleFactoryApp_DummyCommCommand,func) found in global src_applications_frontier_battle_factory_main.c.o
                                                  48](ov104_0222F31C,func) found in global src_overlay104_frontier_communication.c.o
                                                  48](ov104_0222F210,func) found in global src_overlay104_frontier_communication.c.o
@@ -29861,8 +29861,8 @@
                                              44](ov63_0222D050,func) found in global src_overlay063_ov63_0222CCE4.c.o
                                               45](ov63_0222B234,func) found in global src_overlay063_ov63_0222AE60.c.o
                                              44](BattleArcade_GetEarnedBP,func) found in global src_overlay104_battle_arcade.c.o
-                                              45](sBPPerRoundSolo$19533,object) found in local src_overlay104_battle_arcade.c.o
-                                              45](sBPPerRoundWifi$19534,object) found in local src_overlay104_battle_arcade.c.o
+                                              45](sBPPerRoundSolo$19581,object) found in local src_overlay104_battle_arcade.c.o
+                                              45](sBPPerRoundWifi$19582,object) found in local src_overlay104_battle_arcade.c.o
                                              44](BattleFrontier_LoadFrontierPokemon,func) found in global src_overlay104_frontier_opponents.c.o
                                               45](BattleFrontier_LoadOpponentMonData,func) found in global src_overlay104_frontier_opponents.c.o
                                                46](FrontierPokemon_Init,func) found in local src_overlay104_frontier_opponents.c.o
@@ -30255,8 +30255,8 @@
                                               45](GetEmblemTiles,func) found in local src_overlay104_battle_castle_helpers.c.o
                                                46](CapCurrentRound,func) found in local src_overlay104_battle_castle_helpers.c.o
                                              44](BattleCastle_GetEarnedBP,func) found in global src_overlay104_battle_castle.c.o
-                                              45](sBPPerRoundSolo$19205,object) found in local src_overlay104_battle_castle.c.o
-                                              45](sBPPerRoundWifi$19206,object) found in local src_overlay104_battle_castle.c.o
+                                              45](sBPPerRoundSolo$19253,object) found in local src_overlay104_battle_castle.c.o
+                                              45](sBPPerRoundWifi$19254,object) found in local src_overlay104_battle_castle.c.o
                                              44](BattleCastle_SetupOpponentsParty,func) found in global src_overlay104_battle_castle_helpers.c.o
                                               45](BattleCastle_GetOpponentLevel,func) found in global src_overlay104_battle_castle_helpers.c.o
                                               45](BattleCastle_AddMonToParty,func) found in global src_overlay104_battle_castle_helpers.c.o
@@ -30319,8 +30319,8 @@
                                              44](BattleHall_GetPlayerPartySize,func) found in global src_overlay104_battle_hall_helpers.c.o
                                              44](BattleHall_IsMultiPlayerChallenge,func) found in global src_overlay104_battle_hall_helpers.c.o
                                              44](BattleHall_GetEarnedBP,func) found in global src_overlay104_battle_hall.c.o
-                                              45](sBPPerRoundSolo$18817,object) found in local src_overlay104_battle_hall.c.o
-                                              45](sBPPerRoundWiFi$18818,object) found in local src_overlay104_battle_hall.c.o
+                                              45](sBPPerRoundSolo$18865,object) found in local src_overlay104_battle_hall.c.o
+                                              45](sBPPerRoundWiFi$18866,object) found in local src_overlay104_battle_hall.c.o
                                              44](BattleHall_CapTypeRanks,func) found in global src_overlay104_battle_hall.c.o
                                              44](BattleHall_CalcPlayerLevelSqrt,func) found in global src_overlay104_battle_hall.c.o
                                               45](BattleHall_GetHighestLevelInParty,func) found in global src_overlay104_battle_hall_helpers.c.o
@@ -30524,11 +30524,11 @@
                                              44](ov104_02230A2C,func) found in local src_overlay104_frscrcmd.c.o
                                              44](ov104_022309DC,func) found in local src_overlay104_frscrcmd.c.o
                                             43](FrontierScrCmd_InitNewBattleRecording,func) found in local src_overlay104_frscrcmd.c.o
-                                            43](FrontierScrCmd_6B,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                            43](FrontierScrCmd_6A,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](ov104_0223394C,func) found in local src_overlay104_frscrcmd_battle_factory.c.o
-                                            43](FrontierScrCmd_69,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](ov104_022347A4,func) found in global src_overlay104_ov104_022339B4.c.o
+                                            43](FrontierScrCmd_BattleFactory_PrintTrainerIntro,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
+                                            43](FrontierScrCmd_BattleFactory_WaitForCommResponses,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
+                                             44](WaitForCommResponse,func) found in local src_overlay104_frscrcmd_battle_factory.c.o
+                                            43](FrontierScrCmd_BattleFactory_SendCommMessage,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
+                                             44](BattleFactory_SendCommMessage,func) found in global src_overlay104_battle_factory.c.o
                                               45](ov104_0222EEF8,func) found in global src_overlay104_frontier_communication.c.o
                                               45](FactoryCommunication_SendTrainers,func) found in global src_overlay104_frontier_communication.c.o
                                               45](ov104_0222EFCC,func) found in global src_overlay104_frontier_communication.c.o
@@ -30539,39 +30539,39 @@
                                             43](FrontierScrCmd_BattleFactory_CheckWonBattle,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
                                             43](FrontierScrCmd_CallBattleFactoryFunction,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
                                              44](BattleFactorySave_HasSaved,func) found in global src_battle_factory_save.c.o
-                                             44](ov104_02234148,func) found in global src_overlay104_ov104_022339B4.c.o
-                                              45](BattleFactory_GetOpponentPartySize,func) found in global src_overlay104_ov104_0223A7F4.c.o
+                                             44](BattleFactory_Save,func) found in global src_overlay104_battle_factory.c.o
+                                              45](BattleFactory_GetOpponentPartySize,func) found in global src_overlay104_battle_factory_helpers.c.o
                                               45](BattleFactorySave_SetMember,func) found in global src_battle_factory_save.c.o
                                               45](BattleFactorySave_RecordSave,func) found in global src_battle_factory_save.c.o
-                                             44](ov104_02234430,func) found in global src_overlay104_ov104_022339B4.c.o
-                                             44](BattleFactory_GetPokemonLevel,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                             44](ov104_0223AF34,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                              45](BattleFactory_IsMultiplayerChallenge,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                             44](ov104_02234440,func) found in global src_overlay104_ov104_022339B4.c.o
-                                             44](ov104_02234474,func) found in global src_overlay104_ov104_022339B4.c.o
-                                             44](ov104_02234480,func) found in global src_overlay104_ov104_022339B4.c.o
-                                             44](ov104_0223443C,func) found in global src_overlay104_ov104_022339B4.c.o
-                                             44](ov104_022347F8,func) found in global src_overlay104_ov104_022339B4.c.o
-                                              45](v2$19009,object) found in local src_overlay104_ov104_022339B4.c.o
-                                              45](v3$19010,object) found in local src_overlay104_ov104_022339B4.c.o
-                                             44](ov104_02234790,func) found in global src_overlay104_ov104_022339B4.c.o
-                                             44](ov104_0223AE30,func) found in global src_overlay104_ov104_0223A7F4.c.o
+                                             44](BattleFactory_IncrementCurrentBattle,func) found in global src_overlay104_battle_factory.c.o
+                                             44](BattleFactory_GetPokemonLevel,func) found in global src_overlay104_battle_factory_helpers.c.o
+                                             44](BattleFactory_GetCurrentRound,func) found in global src_overlay104_battle_factory_helpers.c.o
+                                              45](BattleFactory_IsMultiplayerChallenge,func) found in global src_overlay104_battle_factory_helpers.c.o
+                                             44](BattleFactory_GetNextOpponentObjectID,func) found in global src_overlay104_battle_factory.c.o
+                                             44](BattleFactory_SaveOnLoss,func) found in global src_overlay104_battle_factory.c.o
+                                             44](BattleFactory_SaveOnCompletingRound,func) found in global src_overlay104_battle_factory.c.o
+                                             44](BattleFactory_GetCurrentBattle,func) found in global src_overlay104_battle_factory.c.o
+                                             44](BattleFactory_GetEarnedBP,func) found in global src_overlay104_battle_factory.c.o
+                                              45](sBPPerRoundSolo$18981,object) found in local src_overlay104_battle_factory.c.o
+                                              45](sBPPerRoundWifi$18982,object) found in local src_overlay104_battle_factory.c.o
+                                             44](BattleFactory_IncrementTradeCount,func) found in global src_overlay104_battle_factory.c.o
+                                             44](BattleFactory_UpdatePartnersParty,func) found in global src_overlay104_battle_factory_helpers.c.o
                                               45](BattleFactory_AddRentalPokemonToParty,func) found in global src_overlay104_frontier_opponents.c.o
                                                46](SetRentalPokemonSummaryInfo,func) found in local src_overlay104_frontier_opponents.c.o
-                                             44](ov104_0223ADB0,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                             44](ov104_022338B4,func) found in local src_overlay104_frscrcmd_battle_factory.c.o
-                                            43](FrontierScrCmd_66,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](ov104_0223470C,func) found in global src_overlay104_ov104_022339B4.c.o
-                                            43](FrontierScrCmd_65,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](ov104_022346A4,func) found in global src_overlay104_ov104_022339B4.c.o
-                                            43](FrontierScrCmd_64,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](ov104_02234570,func) found in global src_overlay104_ov104_022339B4.c.o
-                                              45](ov104_0223A8A8,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                               46](Unk_ov104_0224028C,object) found in local src_overlay104_ov104_0223A7F4.c.o
-                                               46](.data,section) found in local src_overlay104_ov104_0223A7F4.c.o
-                                              45](ov104_0223A918,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                            43](FrontierScrCmd_63,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](ov104_0223449C,func) found in global src_overlay104_ov104_022339B4.c.o
+                                             44](BattleFactory_CreateInitialRentalParty,func) found in global src_overlay104_battle_factory_helpers.c.o
+                                             44](UpdateCorridorFloorBG,func) found in local src_overlay104_frscrcmd_battle_factory.c.o
+                                            43](FrontierScrCmd_BattleFactory_SetupNextOpponentsParty,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
+                                             44](BattleFactory_SetupNextOpponentsParty,func) found in global src_overlay104_battle_factory.c.o
+                                            43](FrontierScrCmd_BattleFactory_ApplyTrade,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
+                                             44](BattleFactory_ApplyTrade,func) found in global src_overlay104_battle_factory.c.o
+                                            43](FrontierScrCmd_BattleFactory_SetupNextOpponent,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
+                                             44](BattleFactory_SetupNextOpponent,func) found in global src_overlay104_battle_factory.c.o
+                                              45](BattleFactory_GetPokemonPoolForTrainer,func) found in global src_overlay104_battle_factory_helpers.c.o
+                                               46](sLevel50Pools,object) found in local src_overlay104_battle_factory_helpers.c.o
+                                               46](.data,section) found in local src_overlay104_battle_factory_helpers.c.o
+                                              45](BattleFactory_SelectPokemonFromPool,func) found in global src_overlay104_battle_factory_helpers.c.o
+                                            43](FrontierScrCmd_AddSelectedRentalsToParty,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
+                                             44](BattleFactory_AddSelectedRentalsToParty,func) found in global src_overlay104_battle_factory.c.o
                                             43](FrontierScrCmd_OpenBattleFactoryAppForTrade,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
                                              44](sBattleFactoryAppTradeTemplate$16220,object) found in local src_overlay104_frscrcmd_battle_factory.c.o
                                               45](BattleFactoryApp_Exit,func) found in global src_applications_frontier_battle_factory_main.c.o
@@ -30617,7 +30617,7 @@
                                                  48](LoadAssets,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                   49](LoadBackgrounds,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](SetGXBanks,func) found in local src_applications_frontier_battle_factory_main.c.o
-                                                    51](@19453,object) found in local src_applications_frontier_battle_factory_main.c.o
+                                                    51](@19479,object) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](InitBackgrounds,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](LoadPalette,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](LoadWheelBackground,func) found in local src_applications_frontier_battle_factory_main.c.o
@@ -30714,32 +30714,32 @@
                                                46](BattleFactoryApp_UpdateMonGraphics,func) found in global src_applications_frontier_battle_factory_helpers.c.o
                                               45](BattleFactoryApp_Init,func) found in global src_applications_frontier_battle_factory_main.c.o
                                              44](StoreBattleFactoryAppResult,func) found in local src_overlay104_frscrcmd_battle_factory.c.o
-                                              45](BattleFactory_GetMonSelectionAppResult,func) found in global src_overlay104_ov104_022339B4.c.o
-                                               46](ov104_02234130,func) found in local src_overlay104_ov104_022339B4.c.o
+                                              45](BattleFactory_GetMonSelectionAppResult,func) found in global src_overlay104_battle_factory.c.o
+                                               46](GetBattleFactoryAppSelectedIndices,func) found in local src_overlay104_battle_factory.c.o
                                             43](FrontierScrCmd_BattleFactory_StartBattle,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](FieldBattleDTO_NewBattleFactory,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                              45](BattleFactory_GetBattleType,func) found in local src_overlay104_ov104_0223A7F4.c.o
-                                              45](BattleFactory_GetAIMask,func) found in local src_overlay104_ov104_0223A7F4.c.o
+                                             44](BattleFactory_SetupBattle,func) found in global src_overlay104_battle_factory_helpers.c.o
+                                              45](BattleFactory_GetBattleType,func) found in local src_overlay104_battle_factory_helpers.c.o
+                                              45](BattleFactory_GetAIMask,func) found in local src_overlay104_battle_factory_helpers.c.o
                                             43](FrontierScrCmd_BattleFactory_CleanupBattle,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
                                             43](FrontierScrCmd_OpenBattleFactoryAppInitial,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                            43](FrontierScrCmd_5E,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](ov104_022340D0,func) found in global src_overlay104_ov104_022339B4.c.o
-                                            43](FrontierScrCmd_5D,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](ov104_02233B98,func) found in global src_overlay104_ov104_022339B4.c.o
-                                              45](ov104_02233BAC,func) found in local src_overlay104_ov104_022339B4.c.o
-                                               46](ov104_0223A860,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                                47](ov104_0223A7F4,func) found in local src_overlay104_ov104_0223A7F4.c.o
-                                               46](ov104_0223AAA0,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                                47](ov104_0223A8F4,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                               46](ov104_02233D80,func) found in local src_overlay104_ov104_022339B4.c.o
-                                               46](ov104_0223AB0C,func) found in global src_overlay104_ov104_0223A7F4.c.o
-                                              45](ov104_02233F1C,func) found in local src_overlay104_ov104_022339B4.c.o
+                                            43](FrontierScrCmd_FreeBattleFactory,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
+                                             44](BattleFactory_Free,func) found in global src_overlay104_battle_factory.c.o
+                                            43](FrontierScrCmd_BattleFactory_LoadTrainersForRound,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
+                                             44](BattleFactory_LoadTrainersAndRentalsForRound,func) found in global src_overlay104_battle_factory.c.o
+                                              45](SetupTrainersAndInitialRentalOptions,func) found in local src_overlay104_battle_factory.c.o
+                                               46](BattleFactory_PickOpponentTrainers,func) found in global src_overlay104_battle_factory_helpers.c.o
+                                                47](BattleFactory_GetOpponentTrainerID,func) found in local src_overlay104_battle_factory_helpers.c.o
+                                               46](BattleFactory_SelectInitialRentalOptions,func) found in global src_overlay104_battle_factory_helpers.c.o
+                                                47](GetPlayerPoolForRound,func) found in local src_overlay104_battle_factory_helpers.c.o
+                                               46](SwapMonIndices,func) found in local src_overlay104_battle_factory.c.o
+                                               46](BattleFactory_SelectInitialOpponentMons,func) found in global src_overlay104_battle_factory_helpers.c.o
+                                              45](LoadTrainersAndMonsFromSave,func) found in local src_overlay104_battle_factory.c.o
                                                46](BattleFactorySave_GetMember,func) found in global src_battle_factory_save.c.o
-                                            43](FrontierScrCmd_5C,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](ov104_022339B4,func) found in global src_overlay104_ov104_022339B4.c.o
+                                            43](FrontierScrCmd_InitBattleFactory,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
+                                             44](BattleFactory_Init,func) found in global src_overlay104_battle_factory.c.o
                                               45](BattleFactorySave_Get,func) found in global src_battle_factory_save.c.o
                                               45](BattleFactorySave_Init,func) found in global src_battle_factory_save.c.o
-                                              45](.bss,section) found in local src_overlay104_ov104_022339B4.c.o
+                                              45](.bss,section) found in local src_overlay104_battle_factory.c.o
                                             43](FrontierScrCmd_StopBGM,func) found in global src_overlay104_frscrcmd_sound.c.o
                                             43](FrontierScrCmd_PlayBGM,func) found in global src_overlay104_frscrcmd_sound.c.o
                                             43](FrontierScrCmd_WaitFanfare,func) found in global src_overlay104_frscrcmd_sound.c.o
@@ -132707,11 +132707,11 @@
   0223327C 00000000 .text   $t	(src_overlay104_ov104_02231F74.c.o)
   02233298 0000001A .text   FrontierMenuManager_SetVerticalAnchor	(src_overlay104_ov104_02231F74.c.o)
   02233298 00000000 .text   $t	(src_overlay104_ov104_02231F74.c.o)
-  022332B4 00000040 .text   FrontierScrCmd_5C	(src_overlay104_frscrcmd_battle_factory.c.o)
+  022332B4 00000040 .text   FrontierScrCmd_InitBattleFactory	(src_overlay104_frscrcmd_battle_factory.c.o)
   022332B4 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
-  022332F4 0000001C .text   FrontierScrCmd_5D	(src_overlay104_frscrcmd_battle_factory.c.o)
+  022332F4 0000001C .text   FrontierScrCmd_BattleFactory_LoadTrainersForRound	(src_overlay104_frscrcmd_battle_factory.c.o)
   022332F4 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
-  02233310 00000012 .text   FrontierScrCmd_5E	(src_overlay104_frscrcmd_battle_factory.c.o)
+  02233310 00000012 .text   FrontierScrCmd_FreeBattleFactory	(src_overlay104_frscrcmd_battle_factory.c.o)
   02233310 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
   02233324 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
   02233324 00000068 .text   FrontierScrCmd_OpenBattleFactoryAppInitial	(src_overlay104_frscrcmd_battle_factory.c.o)
@@ -132727,88 +132727,88 @@
   02233468 00000000 .text   $d	(src_overlay104_frscrcmd_battle_factory.c.o)
   02233478 00000014 .text   StoreBattleFactoryAppResult	(src_overlay104_frscrcmd_battle_factory.c.o)
   02233478 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
-  0223348C 00000012 .text   FrontierScrCmd_63	(src_overlay104_frscrcmd_battle_factory.c.o)
+  0223348C 00000012 .text   FrontierScrCmd_AddSelectedRentalsToParty	(src_overlay104_frscrcmd_battle_factory.c.o)
   0223348C 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
-  022334A0 00000012 .text   FrontierScrCmd_64	(src_overlay104_frscrcmd_battle_factory.c.o)
+  022334A0 00000012 .text   FrontierScrCmd_BattleFactory_SetupNextOpponent	(src_overlay104_frscrcmd_battle_factory.c.o)
   022334A0 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
-  022334B4 00000012 .text   FrontierScrCmd_65	(src_overlay104_frscrcmd_battle_factory.c.o)
+  022334B4 00000012 .text   FrontierScrCmd_BattleFactory_ApplyTrade	(src_overlay104_frscrcmd_battle_factory.c.o)
   022334B4 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
-  022334C8 00000012 .text   FrontierScrCmd_66	(src_overlay104_frscrcmd_battle_factory.c.o)
+  022334C8 00000012 .text   FrontierScrCmd_BattleFactory_SetupNextOpponentsParty	(src_overlay104_frscrcmd_battle_factory.c.o)
   022334C8 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
   022334DC 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
   022334DC 000003D8 .text   FrontierScrCmd_CallBattleFactoryFunction	(src_overlay104_frscrcmd_battle_factory.c.o)
   02233898 00000000 .text   $d	(src_overlay104_frscrcmd_battle_factory.c.o)
-  022338B4 0000002A .text   ov104_022338B4	(src_overlay104_frscrcmd_battle_factory.c.o)
+  022338B4 0000002A .text   UpdateCorridorFloorBG	(src_overlay104_frscrcmd_battle_factory.c.o)
   022338B4 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
   022338E0 0000001A .text   FrontierScrCmd_BattleFactory_CheckWonBattle	(src_overlay104_frscrcmd_battle_factory.c.o)
   022338E0 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
-  022338FC 00000030 .text   FrontierScrCmd_69	(src_overlay104_frscrcmd_battle_factory.c.o)
+  022338FC 00000030 .text   FrontierScrCmd_BattleFactory_SendCommMessage	(src_overlay104_frscrcmd_battle_factory.c.o)
   022338FC 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
   0223392C 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
-  0223392C 00000020 .text   FrontierScrCmd_6A	(src_overlay104_frscrcmd_battle_factory.c.o)
+  0223392C 00000020 .text   FrontierScrCmd_BattleFactory_WaitForCommResponses	(src_overlay104_frscrcmd_battle_factory.c.o)
   02233948 00000000 .text   $d	(src_overlay104_frscrcmd_battle_factory.c.o)
   0223394C 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
-  0223394C 00000030 .text   ov104_0223394C	(src_overlay104_frscrcmd_battle_factory.c.o)
+  0223394C 00000030 .text   WaitForCommResponse	(src_overlay104_frscrcmd_battle_factory.c.o)
   02233978 00000000 .text   $d	(src_overlay104_frscrcmd_battle_factory.c.o)
-  0223397C 00000038 .text   FrontierScrCmd_6B	(src_overlay104_frscrcmd_battle_factory.c.o)
+  0223397C 00000038 .text   FrontierScrCmd_BattleFactory_PrintTrainerIntro	(src_overlay104_frscrcmd_battle_factory.c.o)
   0223397C 00000000 .text   $t	(src_overlay104_frscrcmd_battle_factory.c.o)
-  022339B4 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  022339B4 000001E4 .text   ov104_022339B4	(src_overlay104_ov104_022339B4.c.o)
-  02233B80 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  02233B98 00000012 .text   ov104_02233B98	(src_overlay104_ov104_022339B4.c.o)
-  02233B98 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02233BAC 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02233BAC 000001D4 .text   ov104_02233BAC	(src_overlay104_ov104_022339B4.c.o)
-  02233D70 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  02233D80 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02233D80 0000019C .text   ov104_02233D80	(src_overlay104_ov104_022339B4.c.o)
-  02233F18 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  02233F1C 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02233F1C 000001B4 .text   ov104_02233F1C	(src_overlay104_ov104_022339B4.c.o)
-  022340B8 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  022340D0 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  022340D0 0000003C .text   ov104_022340D0	(src_overlay104_ov104_022339B4.c.o)
-  02234100 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  0223410C 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  0223410C 00000024 .text   BattleFactory_GetMonSelectionAppResult	(src_overlay104_ov104_022339B4.c.o)
-  0223412C 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  02234130 00000016 .text   ov104_02234130	(src_overlay104_ov104_022339B4.c.o)
-  02234130 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02234148 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02234148 000002E8 .text   ov104_02234148	(src_overlay104_ov104_022339B4.c.o)
-  02234414 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  02234430 0000000A .text   ov104_02234430	(src_overlay104_ov104_022339B4.c.o)
-  02234430 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  0223443C 00000004 .text   ov104_0223443C	(src_overlay104_ov104_022339B4.c.o)
-  0223443C 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02234440 00000034 .text   ov104_02234440	(src_overlay104_ov104_022339B4.c.o)
-  02234440 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02234474 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02234474 0000000C .text   ov104_02234474	(src_overlay104_ov104_022339B4.c.o)
-  0223447C 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  02234480 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02234480 0000001C .text   ov104_02234480	(src_overlay104_ov104_022339B4.c.o)
-  02234498 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  0223449C 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  0223449C 000000D4 .text   ov104_0223449C	(src_overlay104_ov104_022339B4.c.o)
-  0223455C 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  02234570 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02234570 00000134 .text   ov104_02234570	(src_overlay104_ov104_022339B4.c.o)
-  02234698 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  022346A4 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  022346A4 00000068 .text   ov104_022346A4	(src_overlay104_ov104_022339B4.c.o)
-  022346FC 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  0223470C 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  0223470C 00000084 .text   ov104_0223470C	(src_overlay104_ov104_022339B4.c.o)
-  02234788 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  02234790 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  02234790 00000014 .text   ov104_02234790	(src_overlay104_ov104_022339B4.c.o)
-  022347A0 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
-  022347A4 00000052 .text   ov104_022347A4	(src_overlay104_ov104_022339B4.c.o)
-  022347A4 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  022347F8 00000000 .text   $t	(src_overlay104_ov104_022339B4.c.o)
-  022347F8 00000040 .text   ov104_022347F8	(src_overlay104_ov104_022339B4.c.o)
-  02234830 00000000 .text   $d	(src_overlay104_ov104_022339B4.c.o)
+  022339B4 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  022339B4 000001E4 .text   BattleFactory_Init	(src_overlay104_battle_factory.c.o)
+  02233B80 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  02233B98 00000012 .text   BattleFactory_LoadTrainersAndRentalsForRound	(src_overlay104_battle_factory.c.o)
+  02233B98 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02233BAC 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02233BAC 000001D4 .text   SetupTrainersAndInitialRentalOptions	(src_overlay104_battle_factory.c.o)
+  02233D70 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  02233D80 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02233D80 0000019C .text   SwapMonIndices	(src_overlay104_battle_factory.c.o)
+  02233F18 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  02233F1C 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02233F1C 000001B4 .text   LoadTrainersAndMonsFromSave	(src_overlay104_battle_factory.c.o)
+  022340B8 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  022340D0 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  022340D0 0000003C .text   BattleFactory_Free	(src_overlay104_battle_factory.c.o)
+  02234100 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  0223410C 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  0223410C 00000024 .text   BattleFactory_GetMonSelectionAppResult	(src_overlay104_battle_factory.c.o)
+  0223412C 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  02234130 00000016 .text   GetBattleFactoryAppSelectedIndices	(src_overlay104_battle_factory.c.o)
+  02234130 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02234148 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02234148 000002E8 .text   BattleFactory_Save	(src_overlay104_battle_factory.c.o)
+  02234414 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  02234430 0000000A .text   BattleFactory_IncrementCurrentBattle	(src_overlay104_battle_factory.c.o)
+  02234430 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  0223443C 00000004 .text   BattleFactory_GetCurrentBattle	(src_overlay104_battle_factory.c.o)
+  0223443C 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02234440 00000034 .text   BattleFactory_GetNextOpponentObjectID	(src_overlay104_battle_factory.c.o)
+  02234440 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02234474 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02234474 0000000C .text   BattleFactory_SaveOnLoss	(src_overlay104_battle_factory.c.o)
+  0223447C 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  02234480 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02234480 0000001C .text   BattleFactory_SaveOnCompletingRound	(src_overlay104_battle_factory.c.o)
+  02234498 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  0223449C 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  0223449C 000000D4 .text   BattleFactory_AddSelectedRentalsToParty	(src_overlay104_battle_factory.c.o)
+  0223455C 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  02234570 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02234570 00000134 .text   BattleFactory_SetupNextOpponent	(src_overlay104_battle_factory.c.o)
+  02234698 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  022346A4 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  022346A4 00000068 .text   BattleFactory_ApplyTrade	(src_overlay104_battle_factory.c.o)
+  022346FC 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  0223470C 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  0223470C 00000084 .text   BattleFactory_SetupNextOpponentsParty	(src_overlay104_battle_factory.c.o)
+  02234788 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  02234790 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  02234790 00000014 .text   BattleFactory_IncrementTradeCount	(src_overlay104_battle_factory.c.o)
+  022347A0 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
+  022347A4 00000052 .text   BattleFactory_SendCommMessage	(src_overlay104_battle_factory.c.o)
+  022347A4 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  022347F8 00000000 .text   $t	(src_overlay104_battle_factory.c.o)
+  022347F8 00000040 .text   BattleFactory_GetEarnedBP	(src_overlay104_battle_factory.c.o)
+  02234830 00000000 .text   $d	(src_overlay104_battle_factory.c.o)
   02234838 00000052 .text   FrontierScrCmd_InitBattleHall	(src_overlay104_frscrcmd_battle_hall.c.o)
   02234838 00000000 .text   $t	(src_overlay104_frscrcmd_battle_hall.c.o)
   0223488C 0000001C .text   FrontierScrCmd_BattleHall_SetupNextOpponent	(src_overlay104_frscrcmd_battle_hall.c.o)
@@ -133345,49 +133345,49 @@
   0223A7A4 00000000 .text   $d	(src_overlay104_ov104_0223A0C4.c.o)
   0223A7AC 00000048 .text   BattleTower_AreAllConnectedGamesPlatinum	(src_overlay104_ov104_0223A0C4.c.o)
   0223A7AC 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
-  0223A7F4 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A7F4 0000006C .text   ov104_0223A7F4	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A848 00000000 .text   $d	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A860 00000046 .text   ov104_0223A860	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A860 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A8A8 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A8A8 0000004C .text   ov104_0223A8A8	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A8E8 00000000 .text   $d	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A8F4 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A8F4 00000024 .text   ov104_0223A8F4	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A910 00000000 .text   $d	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A918 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223A918 00000138 .text   ov104_0223A918	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AA4C 00000000 .text   $d	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AA50 00000024 .text   BattleFactory_GetPlayerPartySize	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AA50 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AA74 0000002C .text   BattleFactory_GetOpponentPartySize	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AA74 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AAA0 0000006C .text   ov104_0223AAA0	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AAA0 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AB0C 00000094 .text   ov104_0223AB0C	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AB0C 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223ABA0 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223ABA0 000001D4 .text   FieldBattleDTO_NewBattleFactory	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AD6C 00000000 .text   $d	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AD74 0000002C .text   BattleFactory_GetBattleType	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AD74 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223ADA0 0000000E .text   BattleFactory_GetPokemonLevel	(src_overlay104_ov104_0223A7F4.c.o)
-  0223ADA0 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223ADB0 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223ADB0 00000080 .text   ov104_0223ADB0	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AE28 00000000 .text   $d	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AE30 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AE30 000000A4 .text   ov104_0223AE30	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AEC8 00000000 .text   $d	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AED4 00000010 .text   BattleFactory_IsMultiplayerChallenge	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AED4 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AEE4 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AEE4 00000050 .text   BattleFactory_GetAIMask	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AF30 00000000 .text   $d	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AF34 00000000 .text   $t	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AF34 00000024 .text   ov104_0223AF34	(src_overlay104_ov104_0223A7F4.c.o)
-  0223AF54 00000000 .text   $d	(src_overlay104_ov104_0223A7F4.c.o)
+  0223A7F4 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223A7F4 0000006C .text   BattleFactory_GetOpponentTrainerID	(src_overlay104_battle_factory_helpers.c.o)
+  0223A848 00000000 .text   $d	(src_overlay104_battle_factory_helpers.c.o)
+  0223A860 00000046 .text   BattleFactory_PickOpponentTrainers	(src_overlay104_battle_factory_helpers.c.o)
+  0223A860 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223A8A8 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223A8A8 0000004C .text   BattleFactory_GetPokemonPoolForTrainer	(src_overlay104_battle_factory_helpers.c.o)
+  0223A8E8 00000000 .text   $d	(src_overlay104_battle_factory_helpers.c.o)
+  0223A8F4 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223A8F4 00000024 .text   GetPlayerPoolForRound	(src_overlay104_battle_factory_helpers.c.o)
+  0223A910 00000000 .text   $d	(src_overlay104_battle_factory_helpers.c.o)
+  0223A918 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223A918 00000138 .text   BattleFactory_SelectPokemonFromPool	(src_overlay104_battle_factory_helpers.c.o)
+  0223AA4C 00000000 .text   $d	(src_overlay104_battle_factory_helpers.c.o)
+  0223AA50 00000024 .text   BattleFactory_GetPlayerPartySize	(src_overlay104_battle_factory_helpers.c.o)
+  0223AA50 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223AA74 0000002C .text   BattleFactory_GetOpponentPartySize	(src_overlay104_battle_factory_helpers.c.o)
+  0223AA74 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223AAA0 0000006C .text   BattleFactory_SelectInitialRentalOptions	(src_overlay104_battle_factory_helpers.c.o)
+  0223AAA0 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223AB0C 00000094 .text   BattleFactory_SelectInitialOpponentMons	(src_overlay104_battle_factory_helpers.c.o)
+  0223AB0C 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223ABA0 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223ABA0 000001D4 .text   BattleFactory_SetupBattle	(src_overlay104_battle_factory_helpers.c.o)
+  0223AD6C 00000000 .text   $d	(src_overlay104_battle_factory_helpers.c.o)
+  0223AD74 0000002C .text   BattleFactory_GetBattleType	(src_overlay104_battle_factory_helpers.c.o)
+  0223AD74 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223ADA0 0000000E .text   BattleFactory_GetPokemonLevel	(src_overlay104_battle_factory_helpers.c.o)
+  0223ADA0 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223ADB0 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223ADB0 00000080 .text   BattleFactory_CreateInitialRentalParty	(src_overlay104_battle_factory_helpers.c.o)
+  0223AE28 00000000 .text   $d	(src_overlay104_battle_factory_helpers.c.o)
+  0223AE30 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223AE30 000000A4 .text   BattleFactory_UpdatePartnersParty	(src_overlay104_battle_factory_helpers.c.o)
+  0223AEC8 00000000 .text   $d	(src_overlay104_battle_factory_helpers.c.o)
+  0223AED4 00000010 .text   BattleFactory_IsMultiplayerChallenge	(src_overlay104_battle_factory_helpers.c.o)
+  0223AED4 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223AEE4 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223AEE4 00000050 .text   BattleFactory_GetAIMask	(src_overlay104_battle_factory_helpers.c.o)
+  0223AF30 00000000 .text   $d	(src_overlay104_battle_factory_helpers.c.o)
+  0223AF34 00000000 .text   $t	(src_overlay104_battle_factory_helpers.c.o)
+  0223AF34 00000024 .text   BattleFactory_GetCurrentRound	(src_overlay104_battle_factory_helpers.c.o)
+  0223AF54 00000000 .text   $d	(src_overlay104_battle_factory_helpers.c.o)
   0223AF58 00000000 .text   $t	(src_overlay104_battle_hall_helpers.c.o)
   0223AF58 0000005C .text   BattleHall_PickOpponentTrainerClasses	(src_overlay104_battle_hall_helpers.c.o)
   0223AFAC 00000000 .text   $d	(src_overlay104_battle_hall_helpers.c.o)
@@ -133835,18 +133835,18 @@
   0223FA14 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_factory.c.o)
   0223FA14 00000010 .rodata sBattleFactoryAppTemplate$16199	(src_overlay104_frscrcmd_battle_factory.c.o)
   0223FA24 00000010 .rodata sBattleFactoryAppTradeTemplate$16220	(src_overlay104_frscrcmd_battle_factory.c.o)
-  0223FA34 00000009 .rodata v2$19009	(src_overlay104_ov104_022339B4.c.o)
-  0223FA40 00000009 .rodata v3$19010	(src_overlay104_ov104_022339B4.c.o)
+  0223FA34 00000009 .rodata sBPPerRoundSolo$18981	(src_overlay104_battle_factory.c.o)
+  0223FA40 00000009 .rodata sBPPerRoundWifi$18982	(src_overlay104_battle_factory.c.o)
   0223FA4C 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_hall.c.o)
   0223FA4C 00000010 .rodata sBattleHallAppTemplate$16546	(src_overlay104_frscrcmd_battle_hall.c.o)
-  0223FA5C 00000013 .rodata sBPPerRoundSolo$18817	(src_overlay104_battle_hall.c.o)
-  0223FA70 00000013 .rodata sBPPerRoundWiFi$18818	(src_overlay104_battle_hall.c.o)
+  0223FA5C 00000013 .rodata sBPPerRoundSolo$18865	(src_overlay104_battle_hall.c.o)
+  0223FA70 00000013 .rodata sBPPerRoundWiFi$18866	(src_overlay104_battle_hall.c.o)
   0223FA84 00000010 .rodata sBattleCastleNullTemplate$18692	(src_overlay104_frscrcmd_battle_castle.c.o)
   0223FA84 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_castle.c.o)
   0223FA94 00000010 .rodata sBattleCastleSelfAppTemplate$18684	(src_overlay104_frscrcmd_battle_castle.c.o)
   0223FAA4 00000010 .rodata sBattleCastleOpponentAppTemplate$18717	(src_overlay104_frscrcmd_battle_castle.c.o)
-  0223FAB4 00000009 .rodata sBPPerRoundSolo$19205	(src_overlay104_battle_castle.c.o)
-  0223FAC0 00000009 .rodata sBPPerRoundWifi$19206	(src_overlay104_battle_castle.c.o)
+  0223FAB4 00000009 .rodata sBPPerRoundSolo$19253	(src_overlay104_battle_castle.c.o)
+  0223FAC0 00000009 .rodata sBPPerRoundWifi$19254	(src_overlay104_battle_castle.c.o)
   0223FACC 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_arcade.c.o)
   0223FACC 0000000C .rodata @18919	(src_overlay104_frscrcmd_battle_arcade.c.o)
   0223FAD8 00000010 .rodata sBattleArcadeAppTemplate$18710	(src_overlay104_frscrcmd_battle_arcade.c.o)
@@ -133864,8 +133864,8 @@
   0223FB78 0000001A .rodata sItemPoolTier2	(src_overlay104_battle_arcade.c.o)
   0223FB92 00000028 .rodata sBerryPoolTier2	(src_overlay104_battle_arcade.c.o)
   0223FBBA 000000C0 .rodata sBattleArcadeScreenAssets	(src_overlay104_battle_arcade.c.o)
-  0223FC7C 00000009 .rodata sBPPerRoundSolo$19533	(src_overlay104_battle_arcade.c.o)
-  0223FC88 00000009 .rodata sBPPerRoundWifi$19534	(src_overlay104_battle_arcade.c.o)
+  0223FC7C 00000009 .rodata sBPPerRoundSolo$19581	(src_overlay104_battle_arcade.c.o)
+  0223FC88 00000009 .rodata sBPPerRoundWifi$19582	(src_overlay104_battle_arcade.c.o)
   0223FC94 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223FC94 0000000A .rodata partnerGraphics$16513	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223FCA0 00000009 .rodata visiblePages$16928	(src_overlay104_ov104_02239C58.c.o)
@@ -133874,12 +133874,12 @@
   0223FCB4 0000002A .rodata Unk_ov104_0223FCB4	(src_overlay104_ov104_0223A0C4.c.o)
   0223FCE0 00000150 .rodata sDummyFrontierTrainers	(src_overlay104_ov104_0223A0C4.c.o)
   0223FE30 000003B8 .rodata sDummyFrontierPokemon	(src_overlay104_ov104_0223A0C4.c.o)
-  022401E8 00000000 .rodata .rodata	(src_overlay104_ov104_0223A7F4.c.o)
-  022401E8 00000014 .rodata Unk_ov104_022401E8	(src_overlay104_ov104_0223A7F4.c.o)
-  022401FC 00000040 .rodata Unk_ov104_022401FC	(src_overlay104_ov104_0223A7F4.c.o)
-  0224023C 00000050 .rodata Unk_ov104_0224023C	(src_overlay104_ov104_0223A7F4.c.o)
-  0224028C 00000050 .rodata Unk_ov104_0224028C	(src_overlay104_ov104_0223A7F4.c.o)
-  022402DC 00000050 .rodata Unk_ov104_022402DC	(src_overlay104_ov104_0223A7F4.c.o)
+  022401E8 00000000 .rodata .rodata	(src_overlay104_battle_factory_helpers.c.o)
+  022401E8 00000014 .rodata sTradeCountsNeededForUpgrades	(src_overlay104_battle_factory_helpers.c.o)
+  022401FC 00000040 .rodata sBattleFactoryOpponentPools	(src_overlay104_battle_factory_helpers.c.o)
+  0224023C 00000050 .rodata sOpenLevelPlayerPools	(src_overlay104_battle_factory_helpers.c.o)
+  0224028C 00000050 .rodata sLevel50Pools	(src_overlay104_battle_factory_helpers.c.o)
+  022402DC 00000050 .rodata sOpenLevelOpponentPools	(src_overlay104_battle_factory_helpers.c.o)
   0224032C 00000010 .rodata sMatchupGroupRanges	(src_overlay104_battle_hall_helpers.c.o)
   0224032C 00000000 .rodata .rodata	(src_overlay104_battle_hall_helpers.c.o)
   0224033C 00000028 .rodata sIVsPerTypeRank	(src_overlay104_battle_hall_helpers.c.o)
@@ -133927,8 +133927,8 @@
   02241A20 00000000 .data   .data	(src_overlay104_battle_arcade.c.o)
   02241A2C 0000000C .data   sItemPools	(src_overlay104_battle_arcade.c.o)
   02241A38 00000080 .data   sBattleArcadeEffectFunctions	(src_overlay104_battle_arcade.c.o)
-  02241AB8 00000000 .data   .data	(src_overlay104_ov104_0223A7F4.c.o)
-  02241AB8 00000004 .data   v1$17234	(src_overlay104_ov104_0223A7F4.c.o)
+  02241AB8 00000000 .data   .data	(src_overlay104_battle_factory_helpers.c.o)
+  02241AB8 00000004 .data   pools$17279	(src_overlay104_battle_factory_helpers.c.o)
 #>02241AC0          SDK_OVERLAY.overlay104.DATA_END (linker command file)
 #>02241AC0          SDK_OVERLAY.overlay104.END (linker command file)
 #>00013CC0          SDK_OVERLAY.overlay104.TEXT_SIZE (linker command file)
@@ -133937,14 +133937,14 @@
 
 # .overlay104.bss
 #>02241AC0          SDK_OVERLAY.overlay104.BSS_START (linker command file)
-  02241AC0 00000000 .bss    .bss	(src_overlay104_ov104_022339B4.c.o)
-  02241AC0 00000004 .bss    v7$18698	(src_overlay104_ov104_022339B4.c.o)
+  02241AC0 00000000 .bss    .bss	(src_overlay104_battle_factory.c.o)
+  02241AC0 00000004 .bss    factory$18671	(src_overlay104_battle_factory.c.o)
   02241AC4 00000000 .bss    .bss	(src_overlay104_battle_hall.c.o)
-  02241AC4 00000004 .bss    battleHall$18617	(src_overlay104_battle_hall.c.o)
+  02241AC4 00000004 .bss    battleHall$18665	(src_overlay104_battle_hall.c.o)
   02241AC8 00000000 .bss    .bss	(src_overlay104_battle_castle.c.o)
-  02241AC8 00000004 .bss    castle$18803	(src_overlay104_battle_castle.c.o)
+  02241AC8 00000004 .bss    castle$18851	(src_overlay104_battle_castle.c.o)
   02241ACC 00000000 .bss    .bss	(src_overlay104_battle_arcade.c.o)
-  02241ACC 00000004 .bss    arcade$18763	(src_overlay104_battle_arcade.c.o)
+  02241ACC 00000004 .bss    arcade$18811	(src_overlay104_battle_arcade.c.o)
   02241AD0 00000000 .bss    .bss	(src_overlay104_ov104_02239C58.c.o)
   02241AD0 00000004 .bss    v0$16839	(src_overlay104_ov104_02239C58.c.o)
 #>02241AE0          SDK_OVERLAY.overlay104.BSS_END (linker command file)
@@ -134285,17 +134285,17 @@
   02246308 0000000C .rodata sMonOptionsMenuCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246314 0000000C .rodata sExchangeSelectPokeballPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246320 00000010 .rodata sReceiveSelectMultiPokeballPositions	(src_applications_frontier_battle_factory_main.c.o)
-  02246330 00000010 .rodata @19459	(src_applications_frontier_battle_factory_main.c.o)
+  02246330 00000010 .rodata @19485	(src_applications_frontier_battle_factory_main.c.o)
   02246340 00000010 .rodata sExchangeSelectCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246350 00000014 .rodata sReceiveSelectCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246364 00000018 .rodata sInitialSelectionPokeballPositions	(src_applications_frontier_battle_factory_main.c.o)
   0224637C 00000018 .rodata sReceiveSelectMultiCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246394 00000018 .rodata sInitialSelectCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
-  022463AC 0000001C .rodata @19463	(src_applications_frontier_battle_factory_main.c.o)
-  022463C8 0000001C .rodata @19467	(src_applications_frontier_battle_factory_main.c.o)
-  022463E4 0000001C .rodata @19461	(src_applications_frontier_battle_factory_main.c.o)
-  02246400 0000001C .rodata @19465	(src_applications_frontier_battle_factory_main.c.o)
-  0224641C 00000028 .rodata @19453	(src_applications_frontier_battle_factory_main.c.o)
+  022463AC 0000001C .rodata @19489	(src_applications_frontier_battle_factory_main.c.o)
+  022463C8 0000001C .rodata @19493	(src_applications_frontier_battle_factory_main.c.o)
+  022463E4 0000001C .rodata @19487	(src_applications_frontier_battle_factory_main.c.o)
+  02246400 0000001C .rodata @19491	(src_applications_frontier_battle_factory_main.c.o)
+  0224641C 00000028 .rodata @19479	(src_applications_frontier_battle_factory_main.c.o)
   02246444 00000004 .rodata sCapacities	(src_applications_frontier_battle_factory_sprite_manager.c.o)
   02246448 00000000 .rodata .rodata	(src_applications_frontier_battle_factory_sprite_manager.c.o)
   02246448 00000010 .rodata @12856	(src_applications_frontier_battle_factory_sprite_manager.c.o)
