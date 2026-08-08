@@ -32,7 +32,7 @@ BattleCastle_HideBattleFrontierReporter:
     End
 
 BattleCastle_SingleAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, 0
@@ -41,7 +41,7 @@ BattleCastle_SingleAttendant:
     End
 
 BattleCastle_MultiAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, 0
@@ -276,7 +276,7 @@ BattleCastle_WalkIntoCorridor:
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleCastle_WalkToCorridorSingleChallenge
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleCastle_WalkToCorridorDoubleChallenge
     CallIfEq VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleCastle_WalkToCorridorMultiChallenge
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     GoTo BattleCastle_StartChallenge
     End
 
@@ -454,8 +454,8 @@ BattleCastle_SaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlaySE SEQ_SE_DP_SAVE
-    WaitSE SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE_sseq
+    WaitSE SEQ_SE_DP_SAVE_sseq
     Return
 
 BattleCastle_OnFrame_DidntSaveBeforeQuit:
@@ -480,7 +480,7 @@ BattleCastle_EarnedSilverPrint:
     Message BattleCastle_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleCastle_Text_SinglePrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_CASTLE_PRINT_STATE, 2
     Return
@@ -489,7 +489,7 @@ BattleCastle_EarnedGoldPrint:
     Message BattleCastle_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleCastle_Text_GoldPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_CASTLE_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained

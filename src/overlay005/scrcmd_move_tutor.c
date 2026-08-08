@@ -529,7 +529,7 @@ static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)
     ListMenu_CalcTrueCursorPos(moveTutorManager->moveSelectionMenu, &moveTutorManager->cursorPos);
 
     if (previousCursorPos != moveTutorManager->cursorPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     switch (selectedEntry) {
@@ -537,14 +537,14 @@ static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)
         break;
     case MENU_CANCEL:
         if (moveTutorManager->canExitWithB == TRUE) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             *moveTutorManager->selectedOptionPtr = MENU_CANCEL;
 
             MoveTutorManager_Delete(moveTutorManager);
         }
         break;
     default: // Player selected a move
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         *moveTutorManager->selectedOptionPtr = selectedEntry;
         MoveTutorManager_Delete(moveTutorManager);
         break;
@@ -553,7 +553,7 @@ static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)
 
 static void MoveTutorManager_Delete(MoveTutorManager *moveTutorManager)
 {
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
     ListMenu_Free(moveTutorManager->moveSelectionMenu, NULL, NULL);
     Window_EraseStandardFrame(moveTutorManager->menuTemplate.window, FALSE);
     Window_Remove(&moveTutorManager->moveSelectWindow);

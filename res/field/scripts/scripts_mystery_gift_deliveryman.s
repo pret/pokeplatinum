@@ -21,7 +21,7 @@ MysteryGiftDeliveryman_HideDeliveryman:
 
 MysteryGiftDeliveryman_Deliveryman:
     LoadMysteryGift
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckAvailableMysteryGift VAR_RESULT
@@ -50,7 +50,7 @@ MysteryGiftDeliveryman_EveningGreeting:
 MysteryGiftDeliveryman_TryGiveMysteryGift:
     CheckCanReceiveMysteryGift VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, MysteryGiftDeliveryman_CantReceiveGift
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     PrepareMysteryGiftReceivedMsg VAR_0x8005, VAR_0x8006
     MessageFromBank VAR_0x8005, VAR_0x8006
     WaitFanfare

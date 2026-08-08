@@ -365,7 +365,7 @@ static int JournalController_TurnPageLeft(JournalManager *journalManager)
         journalManager->page--;
         JournalPrinter_PrintEntry(journalManager, journalManager->unk_1060 ^ 1);
         journalManager->state = 1;
-        Sound_PlayEffect(SEQ_SE_DP_MEKURU3);
+        Sound_PlayEffect(SEQ_SE_DP_MEKURU3_sseq);
         break;
     case 1:
         if (ov81_021D14E0(journalManager) == TRUE) {
@@ -393,7 +393,7 @@ static int JournalController_TurnPageRight(JournalManager *journalManager)
         journalManager->page++;
         JournalPrinter_PrintEntry(journalManager, journalManager->unk_1060 ^ 1);
         journalManager->state = 1;
-        Sound_PlayEffect(SEQ_SE_DP_MEKURU3);
+        Sound_PlayEffect(SEQ_SE_DP_MEKURU3_sseq);
         break;
     case 1:
         if (ov81_021D156C(journalManager) == TRUE) {

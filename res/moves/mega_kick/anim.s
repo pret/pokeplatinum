@@ -10,7 +10,7 @@ L_0:
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlayDelayedSoundEffectR SEQ_SE_DP_140, 1
+    PlayDelayedSoundEffectR SEQ_SE_DP_140_sseq, 1
     Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 1
     Func_ShakeBg 5, 0, 1, 3, 0

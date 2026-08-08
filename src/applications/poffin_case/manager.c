@@ -265,14 +265,14 @@ static BOOL State_SelectPoffin(PoffinManager *app)
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         app->selectedPoffin = POFFIN_LIST_SENTINEL;
         app->givePoffin = FALSE;
         return TRUE;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         switch (menuSelection) {
         case MENU_NOTHING_CHOSEN:
@@ -306,7 +306,7 @@ static BOOL State_SelectAction(PoffinManager *app)
     u32 menuSelection = ListMenu_ProcessInput(app->actionMenu);
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         PoffinManager_FreeActionMenu(app);
         PoffinCaseApp_UpdateListSprites(app, 0);
         app->state = STATE_SELECT_POFFIN;
@@ -314,7 +314,7 @@ static BOOL State_SelectAction(PoffinManager *app)
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         switch (menuSelection) {
         case 0:
@@ -353,12 +353,12 @@ static BOOL State_ConfirmDeletePoffin(PoffinManager *app)
 {
     switch (Menu_ProcessInputAndHandleExit(app->yesNoMenu, app->heapID)) {
     case MENU_YES:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         PoffinManager_ShowThrownOutMessage(app);
         app->state = STATE_DELETE_POFFIN;
         return FALSE;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Window_EraseMessageBox(&app->windows[2], FALSE);
         app->state = STATE_INIT_ACTION_MENU;
         return FALSE;

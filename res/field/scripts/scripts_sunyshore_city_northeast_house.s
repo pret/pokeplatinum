@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 SunyshoreCityEastHouse_Julia:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DAILY_TOLD_STORY_SUNYSHORE_CITY_NORTHEAST_HOUSE, SunyshoreCityNortheastHouse_GoToTellAnotherStoryTomorrow
@@ -79,7 +79,7 @@ SunyshoreCityNortheastHouse_GiveRibbon:
     BufferPartyMonSpecies 1, VAR_0x8002
     BufferPlayerName 2
     Message SunyshoreCityNortheastHouse_Text_GiveThisToPokemon
-    PlayFanfare SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1_sseq
     Message SunyshoreCityNortheastHouse_Text_PlayerReceivedRibbon
     WaitFanfare
     Message SunyshoreCityNortheastHouse_Text_PlayerPutRibbonOnPokemon

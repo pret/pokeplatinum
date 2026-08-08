@@ -7,7 +7,6 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 #include "generated/pokemon_types.h"
-#include "generated/sdat.h"
 
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
@@ -25,6 +24,7 @@
 #include "text.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 #include "res/text/bank/poketch_move_tester.h"
 
 static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[] = {
@@ -290,7 +290,7 @@ static void Task_ButtonPressed(SysTask *task, void *taskMan)
     u32 animIdx = (moveTesterData->lastButtonPressed & 1) ? 3 : 1;
 
     PoketchAnimation_UpdateAnimationIdx(graphics->animSpriteData[moveTesterData->lastButtonPressed], animIdx);
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
     EndTask(taskMan);
 }
 

@@ -194,8 +194,8 @@ each other, resulting in the sprite permanently moving upward.
 Also update the sound effect timings to sync with the new delays:
 
 ```diff
--    PlayLoopedSoundEffectL SEQ_SE_DP_W207, 8, 6
-+    PlayLoopedSoundEffectL SEQ_SE_DP_W207, 10, 6
+-    PlayLoopedSoundEffectL SEQ_SE_DP_W207_sseq, 8, 6
++    PlayLoopedSoundEffectL SEQ_SE_DP_W207_sseq, 10, 6
 ```
 
 ### Using DynamicPunch Moves the Target's Sprite One Pixel Left

@@ -326,7 +326,7 @@ void StartMenu_OpenColosseum(FieldSystem *fieldSystem)
 
 void StartMenu_OpenFromScript(FieldSystem *fieldSystem)
 {
-    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
     StartMenu *menu = StartMenu_New();
 
     menu->inUnionRoom = FALSE;
@@ -687,7 +687,7 @@ static BOOL StartMenu_Select(FieldTask *fieldTask)
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
     u16 prevPos = Menu_GetCursorPos(menu->menu);
 
-    menu->input = Menu_ProcessInputWithSound(menu->menu, SEQ_SE_DP_SELECT78);
+    menu->input = Menu_ProcessInputWithSound(menu->menu, SEQ_SE_DP_SELECT78_sseq);
     menu->cursorPos = Menu_GetCursorPos(menu->menu);
 
     if (prevPos != menu->cursorPos) {
@@ -1761,7 +1761,7 @@ static void StartMenu_Evolve(FieldTask *fieldTask)
     if (Evolution_IsDone(menu->taskData) == TRUE) {
         Evolution_Free(menu->taskData);
         Heap_Destroy(HEAP_ID_EVOLUTION);
-        Sound_StopBGM(SEQ_SHINKA, 0);
+        Sound_StopBGM(SEQ_SHINKA_sseq, 0);
         Sound_SetScene(SOUND_SCENE_NONE);
         FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapHeaderID);
 

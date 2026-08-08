@@ -15,7 +15,7 @@ Route208House_OnTransition:
     End
 
 Route208House_OldMan:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DAILY_RECEIVED_ROUTE_208_HOUSE_RANDOM_BERRY, Route208House_FeedBerriesToPokemon
@@ -44,7 +44,7 @@ Route208House_BagIsFull:
     End
 
 Route208House_Twin:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_MAP_LOCAL_0x00, 1, Route208House_ExplainBerrySearcher
@@ -89,7 +89,7 @@ Route208House_CertainBerriesNeedLotsOfWater:
     End
 
 Route208House_PokemonBreederF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message Route208House_Text_WouldYouLikeSomeMulch
@@ -122,7 +122,7 @@ Route208House_TryBuyMulch:
     CallIfEq VAR_0x8000, 2, Route208House_SpendMoneyStableMulch
     CallIfEq VAR_0x8000, 3, Route208House_SpendMoneyGooeyMulch
     UpdateMoneyDisplay
-    PlaySE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
     AddItem VAR_0x8001, 1, VAR_RESULT
     BufferItemName 0, VAR_0x8001
     Message Route208House_Text_YouBoughtSomeMulch
@@ -197,7 +197,7 @@ Route208House_SpendMoneyGooeyMulch:
     Return
 
 Route208House_Book:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message Route208House_Text_BookMuchAdoAboutMulch

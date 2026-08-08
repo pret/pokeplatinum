@@ -774,7 +774,7 @@ void MainMenuUtil_ListMenuCursorCB(ListMenu *listMenu, u32 index, u8 onInit)
 {
     switch (onInit) {
     case FALSE:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     case TRUE:
         break;

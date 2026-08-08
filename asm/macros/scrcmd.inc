@@ -23,7 +23,7 @@
 #include "generated/poketch_apps.h"
 #include "generated/roaming_slots.h"
 #include "generated/save_types.h"
-#include "generated/sdat.h"
+#include "res/sound/pl_sound_data.naix"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
 #include "generated/time_of_day.h"
@@ -5189,7 +5189,7 @@
     .endm
 
     .macro NPCMessage messageID
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message \messageID
@@ -5199,7 +5199,7 @@
     .endm
 
     .macro EventMessage messageID
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message \messageID
     WaitButton
@@ -5208,10 +5208,10 @@
     .endm
 
     .macro PokemonCryAndMessage species, messageID, unused=0
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     PlayCry \species, \unused
     Message \messageID
     WaitCry
@@ -5221,7 +5221,7 @@
     .endm
 
     .macro PokeMartCommonWithGreeting unused=1
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Common_VendorGreeting
@@ -5231,7 +5231,7 @@
     .endm
 
     .macro PokeMartSpecialtiesWithGreeting martID
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Common_VendorGreeting

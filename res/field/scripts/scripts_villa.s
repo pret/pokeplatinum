@@ -171,7 +171,7 @@ Villa_TryShowVisitorReturn:
     Return
 
 Villa_Rival:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferRivalName 0
@@ -205,7 +205,7 @@ Villa_RivalMessage4:
     Return
 
 Villa_Counterpart:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 1
@@ -288,7 +288,7 @@ Villa_LucasMessage4:
     Return
 
 Villa_ProfRowan:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_RowanMessage0
@@ -320,7 +320,7 @@ Villa_RowanMessage4:
     Return
 
 Villa_Mom:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferRivalName 0
@@ -354,7 +354,7 @@ Villa_MomMessage4:
     Return
 
 Villa_Roark:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_RoarkMessage0
@@ -386,7 +386,7 @@ Villa_RoarkMessage4:
     Return
 
 Villa_Gardenia:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_GardeniaMessage0
@@ -418,7 +418,7 @@ Villa_GardeniaMessage4:
     Return
 
 Villa_Fantina:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_FantinaMessage0
@@ -451,7 +451,7 @@ Villa_FantinaMessage4:
 
 Villa_Maylene:
     GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MAYLENE_CANDICE, Villa_MayleneAndCandice
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 1
@@ -484,7 +484,7 @@ Villa_MayleneMessage4:
     Return
 
 Villa_CrasherWake:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_WakeMessage0
@@ -518,7 +518,7 @@ Villa_WakeMessage4:
     Return
 
 Villa_Byron:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_ByronMessage0
@@ -551,7 +551,7 @@ Villa_ByronMessage4:
 
 Villa_Candice:
     GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_MAYLENE_CANDICE, Villa_MayleneAndCandice
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_CandiceMessage0
@@ -584,7 +584,7 @@ Villa_CandiceMessage4:
 
 Villa_Volkner:
     GoToIfEq VAR_RESORT_VILLA_VISITOR, VILLA_VISITOR_FLINT_VOLKNER, Villa_FlintAndVolkner
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_VolknerMessage0
@@ -616,7 +616,7 @@ Villa_VolknerMessage4:
     Return
 
 Villa_FlintAndVolkner:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_FlintAndVolknerMessage0
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_FlintAndVolknerMessage1
@@ -669,7 +669,7 @@ Villa_Movement_FlintFaceVolkner:
     EndMovement
 
 Villa_Cynthia:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_CynthiaMessage0
@@ -701,7 +701,7 @@ Villa_CynthiaMessage4:
     Return
 
 Villa_Flint:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 0, Villa_FlintMessage0
     CallIfEq VAR_RESORT_VILLA_VISITOR_MESSAGE_NUM, 1, Villa_FlintMessage1
@@ -743,7 +743,7 @@ Villa_FlintMessage4:
     Return
 
 Villa_MayleneAndCandice:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     BufferPlayerName 1
     ApplyMovement LOCALID_CANDICE, Villa_Movement_CandiceFaceMaylene
@@ -797,13 +797,13 @@ Villa_VisitorEnd:
 
 Villa_CoordEvent_Fantina:
     LockAll
-    PlaySE SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN_sseq
     ClearFlag FLAG_HIDE_VILLA_FANTINA
     SetObjectEventPos LOCALID_FANTINA, 11, 11
     SetObjectEventMovementType LOCALID_FANTINA, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir LOCALID_FANTINA, DIR_NORTH
     AddObject LOCALID_FANTINA
-    WaitSE SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN_sseq
     ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerWatchFantinaEnter
     ApplyMovement LOCALID_FANTINA, Villa_Movement_FantinaEnter
     WaitMovement
@@ -828,13 +828,13 @@ Villa_Movement_FantinaEnter:
 
 Villa_CoordEvent_CrasherWake:
     LockAll
-    PlaySE SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN_sseq
     ClearFlag FLAG_HIDE_VILLA_CRASHER_WAKE
     SetObjectEventPos LOCALID_CRASHER_WAKE, 11, 11
     SetObjectEventMovementType LOCALID_CRASHER_WAKE, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir LOCALID_CRASHER_WAKE, DIR_NORTH
     AddObject LOCALID_CRASHER_WAKE
-    WaitSE SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN_sseq
     ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerWatchWakeEnter
     ApplyMovement LOCALID_CRASHER_WAKE, Villa_Movement_WakeEnter
     WaitMovement
@@ -857,13 +857,13 @@ Villa_Movement_PlayerWatchWakeEnter:
 
 Villa_CoordEvent_Candice:
     LockAll
-    PlaySE SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN_sseq
     ClearFlag FLAG_HIDE_VILLA_CANDICE
     SetObjectEventPos LOCALID_CANDICE, 11, 11
     SetObjectEventMovementType LOCALID_CANDICE, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir LOCALID_CANDICE, DIR_NORTH
     AddObject LOCALID_CANDICE
-    WaitSE SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN_sseq
     ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerWatchCandiceEnter
     ApplyMovement LOCALID_CANDICE, Villa_Movement_CandiceEnter
     WaitMovement
@@ -888,13 +888,13 @@ Villa_Movement_PlayerWatchCandiceEnter:
 
 Villa_CoordEvent_Cynthia:
     LockAll
-    PlaySE SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN_sseq
     ClearFlag FLAG_HIDE_VILLA_CYNTHIA
     SetObjectEventPos LOCALID_CYNTHIA, 11, 11
     SetObjectEventMovementType LOCALID_CYNTHIA, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir LOCALID_CYNTHIA, DIR_NORTH
     AddObject LOCALID_CYNTHIA
-    WaitSE SEQ_SE_DP_DOOR_OPEN
+    WaitSE SEQ_SE_DP_DOOR_OPEN_sseq
     ApplyMovement LOCALID_PLAYER, Villa_Movement_PlayerWatchCynthiaEnter
     ApplyMovement LOCALID_CYNTHIA, Villa_Movement_CynthiaEnter
     WaitMovement
@@ -917,64 +917,64 @@ Villa_Movement_PlayerWatchCynthiaEnter:
     EndMovement
 
 Villa_Furniture_Table:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionTable
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_BigSofa:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionBigSofa
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_SmallSofa:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionSmallSofa
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Bed:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionBed
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_NightTable:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionNightTable
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_TVDummy:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionTV
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_AudioSystem:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
-    PlayMusic SEQ_PL_AUDIO
+    PlayMusic SEQ_PL_AUDIO_sseq
     Message Villa_Text_DescriptionAudioSystem
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Bookshelf:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionBookshelf
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Rack:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfSet FLAG_VILLA_FURNITURE_MUSIC_BOX, Villa_StartMusicBox
     Message Villa_Text_DescriptionRack
@@ -982,14 +982,14 @@ Villa_Furniture_Rack:
     End
 
 Villa_Furniture_Houseplant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionHouseplant
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_PCDesk:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     BufferPlayerName 0
     Message Villa_Text_DescriptionPCDesk
@@ -997,7 +997,7 @@ Villa_Furniture_PCDesk:
     End
 
 Villa_Furniture_MusicBox:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoTo Villa_StartMusicBox
     End
@@ -1037,57 +1037,57 @@ Villa_Unused:
     Return
 
 Villa_Furniture_PokemonBust:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionPokemonBust
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_PokemonBustSilver:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionPokemonBustSilver
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Piano:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
-    PlayMusic SEQ_PL_PIANO
+    PlayMusic SEQ_PL_PIANO_sseq
     Message Villa_Text_DescriptionPiano
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_GuestSet:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionGuestSet
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_WallClock:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionWallClock
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Masterpiece:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionMasterpiece
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_TeaSet:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionTeaSet
     GoTo Villa_Furniture_End
     End
 
 Villa_Furniture_Chandelier:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Villa_Text_DescriptionChandelier
     GoTo Villa_Furniture_End
@@ -1123,7 +1123,7 @@ Villa_OrderTable:
     End
 
 Villa_SchoolKidM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ShowMoney 21, 1
@@ -1164,7 +1164,7 @@ Villa_ShowFurnitureListMenu:
     Return
 
 Villa_BuyFurniture:
-    PlaySE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
     CallIfEq VAR_0x8002, VILLA_FURNITURE_TABLE, Villa_BuyFurniture_Table
     CallIfEq VAR_0x8002, VILLA_FURNITURE_BIG_SOFA, Villa_BuyFurniture_BigSofa
     CallIfEq VAR_0x8002, VILLA_FURNITURE_SMALL_SOFA, Villa_BuyFurniture_SmallSofa
@@ -1186,7 +1186,7 @@ Villa_BuyFurniture:
     CallIfEq VAR_0x8002, VILLA_FURNITURE_TEA_SET, Villa_BuyFurniture_TeaSet
     CallIfEq VAR_0x8002, VILLA_FURNITURE_CHANDELIER, Villa_BuyFurniture_Chandelier
     UpdateMoneyDisplay
-    WaitSE SEQ_SE_DP_REGI
+    WaitSE SEQ_SE_DP_REGI_sseq
     HideMoney
     SaveTVSegmentHomeAndManor VAR_0x8002
     Return
@@ -1305,15 +1305,15 @@ Villa_EnterTableRival:
     CloseMessage
     ApplyMovement LOCALID_RIVAL, Villa_Movement_RivalLeave
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_RIVAL
     Return
 
 Villa_RivalEnter:
     ClearFlag FLAG_HIDE_VILLA_RIVAL
     AddObject LOCALID_RIVAL
-    PlaySE SEQ_SE_DP_DOOR_OPEN
-    WaitSE SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN_sseq
+    WaitSE SEQ_SE_DP_DOOR_OPEN_sseq
     ApplyMovement LOCALID_RIVAL, Villa_Movement_VisitorEnter
     WaitMovement
     Return
@@ -1346,8 +1346,8 @@ Villa_SmallSofaCounterpartEnd:
 Villa_CounterpartEnter:
     ClearFlag FLAG_HIDE_VILLA_COUNTERPART
     AddObject LOCALID_COUNTERPART
-    PlaySE SEQ_SE_DP_DOOR_OPEN
-    WaitSE SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN_sseq
+    WaitSE SEQ_SE_DP_DOOR_OPEN_sseq
     ApplyMovement LOCALID_COUNTERPART, Villa_Movement_VisitorEnter
     WaitMovement
     Return
@@ -1371,8 +1371,8 @@ Villa_TryRowanEnter:
 Villa_RowanEnter:
     ClearFlag FLAG_HIDE_VILLA_PROF_ROWAN
     AddObject LOCALID_PROF_ROWAN
-    PlaySE SEQ_SE_DP_DOOR_OPEN
-    WaitSE SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN_sseq
+    WaitSE SEQ_SE_DP_DOOR_OPEN_sseq
     ApplyMovement LOCALID_PROF_ROWAN, Villa_Movement_VisitorEnter
     WaitMovement
     Return
@@ -1396,8 +1396,8 @@ Villa_TryGardeniaEnter:
 Villa_GardeniaEnter:
     ClearFlag FLAG_HIDE_VILLA_GARDENIA
     AddObject LOCALID_GARDENIA
-    PlaySE SEQ_SE_DP_DOOR_OPEN
-    WaitSE SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN_sseq
+    WaitSE SEQ_SE_DP_DOOR_OPEN_sseq
     ApplyMovement LOCALID_GARDENIA, Villa_Movement_VisitorEnter
     WaitMovement
     Return
@@ -1422,8 +1422,8 @@ Villa_TryCynthiaEnter:
 Villa_CynthiaEnter:
     ClearFlag FLAG_HIDE_VILLA_CYNTHIA
     AddObject LOCALID_CYNTHIA
-    PlaySE SEQ_SE_DP_DOOR_OPEN
-    WaitSE SEQ_SE_DP_DOOR_OPEN
+    PlaySE SEQ_SE_DP_DOOR_OPEN_sseq
+    WaitSE SEQ_SE_DP_DOOR_OPEN_sseq
     ApplyMovement LOCALID_CYNTHIA, Villa_Movement_VisitorEnter
     WaitMovement
     Return
@@ -1556,7 +1556,7 @@ Villa_Movement_PlayerWalkNorth:
     EndMovement
 
 Villa_OrderForm:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     ShowMoney 21, 1
     BufferPlayerName 1

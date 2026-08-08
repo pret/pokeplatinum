@@ -320,11 +320,11 @@ static int GTSListing_HandleInput(GTSApplicationState *appState)
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         GTSListing_ShowBottomMessage(appState, GTS_Text_Selection_DoWhat, TEXT_SPEED_FAST, 0, 0xf0f, (Pokemon *)appState->receivedListing.pokemon.bytes);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTSLISTING_WAIT_FOR_MESSAGE, GTSLISTING_SHOW_ACTION_MENU);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         appState->currentScreenInstruction = GTSLISTING_BEGIN_EXIT;
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_NONE);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     return 3;

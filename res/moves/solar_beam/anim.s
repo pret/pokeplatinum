@@ -10,7 +10,7 @@ L_1:
     WaitForAnimTasks
     CreateEmitter 0, 19, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 10
-    PlaySoundEffectL SEQ_SE_DP_SHUSHU
+    PlaySoundEffectL SEQ_SE_DP_SHUSHU_sseq
     Delay 20
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 2, BATTLE_COLOR_LIGHT_YELLOW1, 10, 0
     WaitForAllEmitters
@@ -27,7 +27,7 @@ L_2:
     CreateEmitter 0, 8, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 9, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W076B, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W076B_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 15
     CreateEmitter 0, 10, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 11, EMITTER_CB_SET_POS_TO_DEFENDER

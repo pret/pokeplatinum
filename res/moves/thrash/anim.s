@@ -7,7 +7,7 @@ L_0:
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 5, 0, 0, 0
     SetExtraParams 1, 1720, -3440, 0
-    PlaySoundEffectR SEQ_SE_DP_007
+    PlaySoundEffectR SEQ_SE_DP_007_sseq
     Delay 3
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 5, 0, 0, 0
@@ -15,7 +15,7 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 5, 0, 0, 0
     SetExtraParams 1, 1720, 1720, 0
-    PlaySoundEffectR SEQ_SE_DP_030
+    PlaySoundEffectR SEQ_SE_DP_030_sseq
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 5, 0, 0, 0
     SetExtraParams 1, 1720, 1720, 0
@@ -28,7 +28,7 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 5, 0, 0, 0
     SetExtraParams 1, 344, 3440, 0
-    PlaySoundEffectR SEQ_SE_DP_W025B
+    PlaySoundEffectR SEQ_SE_DP_W025B_sseq
     Delay 3
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 5, 0, 0, 0

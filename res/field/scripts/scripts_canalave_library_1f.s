@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 CanalaveLibrary1F_Receptionist:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_LAKE_VALOR_EXPLODED, CanalaveLibrary1F_ThatWasntMeScreaming
@@ -29,7 +29,7 @@ CanalaveLibrary1F_ThatWasntMeScreaming:
     End
 
 CanalaveLibrary1F_Lass:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfSet FLAG_LAKE_VALOR_EXPLODED, CanalaveLibrary1F_ImAllAgitated
     Message CanalaveLibrary1F_Text_Ellipsis
@@ -63,7 +63,7 @@ CanalaveLibrary1F_Shelves:
     End
 
 CanalaveLibrary1F_Lucian:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message CanalaveLibrary1F_Text_BooksAreWonderful
@@ -103,9 +103,9 @@ CanalaveLibrary1F_SeeAtPokemonLeague:
     CallIfEq VAR_0x8000, DIR_NORTH, CanalaveLibrary1F_LucianLeaveNorth
     CallIfEq VAR_0x8000, DIR_WEST, CanalaveLibrary1F_LucianLeaveWest
     CallIfEq VAR_0x8000, DIR_EAST, CanalaveLibrary1F_LucianLeaveEast
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_LUCIAN
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     ReleaseAll
     End
 

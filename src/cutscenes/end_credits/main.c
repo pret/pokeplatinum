@@ -170,7 +170,7 @@ BOOL EndCreditsApp_Init(ApplicationManager *appMan, int *state)
     endCreditsApp->sysTask = SysTask_Start(EndCredits_DrawSprites, endCreditsApp, 60000);
 
     SetVBlankCallback(EndCredits_VBlankCallback, endCreditsApp);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_14, SEQ_BLD_ENDING, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_14, SEQ_BLD_ENDING_sseq, 1);
 
     BrightnessController_SetScreenBrightness(BRIGHTNESS_BLACK, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_BOTH_SCREENS);
     SetScreenMasterBrightness(DS_SCREEN_MAIN, BRIGHTNESS_NORMAL);

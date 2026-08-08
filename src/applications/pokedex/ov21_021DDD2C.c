@@ -554,7 +554,7 @@ static void ov21_021DE44C(u32 param0, enum TouchScreenButtonState param1, void *
     switch (param1) {
     case TOUCH_BUTTON_PRESSED:
         ov21_021E33B4(v1->unk_08, 1);
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
 
         v2->unk_20 = 1;
         v2->unk_08 = gSystem.touchX - v2->unk_00;

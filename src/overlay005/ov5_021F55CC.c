@@ -75,7 +75,7 @@ void ov5_021F5634(FieldSystem *fieldSystem, int x, int unused, int z)
     v3.z = ((z << 4) * FX32_ONE);
 
     FieldEffectManager_InitAnimManager(v2.unk_00, &Unk_ov5_02200B1C, &v3, 0, &v2, 0xff);
-    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2_sseq);
 }
 
 static int ov5_021F5684(OverworldAnimManager *param0, void *param1)

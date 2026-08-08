@@ -1026,7 +1026,7 @@ int ov70_0225E1C4(UnkStruct_ov70_0225DEE8 *param0)
 
     switch (v0) {
     case 0xfffffffe:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     case 1:
         return 1;
     case 0:
@@ -1751,7 +1751,7 @@ static u32 ov70_0225EED8(UnkStruct_ov70_0225EC20 *param0)
         ov70_0225EF70(param0);
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     }
 
@@ -1784,7 +1784,7 @@ static void ov70_0225EF14(UnkStruct_ov70_0225EC20 *param0, u16 *param1, u16 *par
 static void ov70_0225EF58(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 

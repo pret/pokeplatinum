@@ -7,7 +7,7 @@ L_0:
     LoadPokemonSpriteIntoBg BATTLER_ROLE_DEFENDER, FALSE
     Func_Sketch 0
     Delay 5
-    PlayLoopedSoundEffectR SEQ_SE_DP_W092, 4, 20
+    PlayLoopedSoundEffectR SEQ_SE_DP_W092_sseq, 4, 20
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

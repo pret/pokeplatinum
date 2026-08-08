@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, bug_buzz_spa
-    PlayLoopedSoundEffectL SEQ_SE_DP_W405, 16, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W405_sseq, 16, 2
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 2, 0, 0, 0
     CreateEmitter 0, 4, EMITTER_CB_GENERIC

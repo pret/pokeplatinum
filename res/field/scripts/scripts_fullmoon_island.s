@@ -14,7 +14,7 @@ FullmoonIsland_OnTransition:
     End
 
 FullmoonIsland_Sailor:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerDir VAR_0x8004
@@ -50,7 +50,7 @@ FullmoonIsland_AllRightThen:
 FullmoonIsland_SailorEnterShip:
     ApplyMovement LOCALID_SAILOR, FullmoonIsland_Movement_SailorWalkToShip
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_SAILOR, FullmoonIsland_Movement_SetInvisible
     WaitMovement
     Return
@@ -58,7 +58,7 @@ FullmoonIsland_SailorEnterShip:
 FullmoonIsland_PlayerWalkToShipSouth:
     ApplyMovement LOCALID_PLAYER, FullmoonIsland_Movement_PlayerWalkToShipSouth
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, FullmoonIsland_Movement_SetInvisible
     WaitMovement
     Return
@@ -66,7 +66,7 @@ FullmoonIsland_PlayerWalkToShipSouth:
 FullmoonIsland_PlayerWalkToShipEast:
     ApplyMovement LOCALID_PLAYER, FullmoonIsland_Movement_PlayerWalkToShipEast
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, FullmoonIsland_Movement_SetInvisible
     WaitMovement
     Return
@@ -74,7 +74,7 @@ FullmoonIsland_PlayerWalkToShipEast:
 FullmoonIsland_PlayerWalkToShipNorth:
     ApplyMovement LOCALID_PLAYER, FullmoonIsland_Movement_PlayerWalkToShipNorth
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, FullmoonIsland_Movement_SetInvisible
     WaitMovement
     Return

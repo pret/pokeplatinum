@@ -1,4 +1,4 @@
-#include "generated/sdat.h"
+#include "res/sound/pl_sound_data.naix"
 #include "constants/battle/battle_anim.h"
 #include "res/graphics/battle/moves/anim_ncer.naix"
 #include "res/graphics/battle/moves/anim_nanr.naix"
@@ -39,7 +39,7 @@
     .endm
 
     // Plays a sound effect.
-    // seqID: The ID of the sound effect to play. See build/generated/sdat.h for a list of sound effect IDs.
+    // seqID: The ID of the sound effect to play. See build/res/sound/pl_sound_data.naix for a list of sound effect IDs.
     .macro PlaySoundEffect seqID:req
     .long BTLANIMCMD_PLAYSOUNDEFFECT
     .long \seqID
@@ -158,7 +158,7 @@
     .endm
 
     // Plays a sound effect with panning
-    // seqID: The ID of the sound effect to play. See build/generated/sdat.h
+    // seqID: The ID of the sound effect to play. See build/res/sound/pl_sound_data.naix
     // pan: The pan of the sound effect. [-117, 117] See BATTLE_SOUND_PAN_*
     // Note: In most cases, using PlaySoundEffectL/C/R is preferred.
     .macro PlayPannedSoundEffect seqID:req, pan:req
@@ -188,7 +188,7 @@
     .endm
 
     // Plays a sound effect that moves from startPan to endPan over time, adjusted for attacker/defender positions
-    // seqID: The ID of the sound effect to play. See build/generated/sdat.h
+    // seqID: The ID of the sound effect to play. See build/res/sound/pl_sound_data.naix
     // startPan: The starting pan of the sound effect.
     // endPan: The ending pan of the sound effect.
     // panStep: The amount to change the pan by each interval.
@@ -205,7 +205,7 @@
     .endm
 
     // Plays a sound effect N times in a loop with panning
-    // seqID: The ID of the sound effect to play. See build/generated/sdat.h
+    // seqID: The ID of the sound effect to play. See build/res/sound/pl_sound_data.naix
     // pan: The pan of the sound effect.
     // applyInterval: The number of frames between each sound effect play.
     // repeatCount: The number of times to repeat the sound effect.
@@ -231,7 +231,7 @@
     .endm
 
     // Plays a sound effect after a delay
-    // seqID: The ID of the sound effect to play. See build/generated/sdat.h
+    // seqID: The ID of the sound effect to play. See build/res/sound/pl_sound_data.naix
     // pan: The pan of the sound effect.
     // delay: The number of frames to wait before playing the sound effect.
     .macro PlayDelayedSoundEffect seqID:req, pan:req, delay:req
@@ -311,7 +311,7 @@
     .endm
 
     // Plays a sound effect that moves from startPan to endPan over time, without adjusting for attacker/defender positions
-    // seqID: The ID of the sound effect to play. See build/generated/sdat.h
+    // seqID: The ID of the sound effect to play. See build/res/sound/pl_sound_data.naix
     // startPan: The starting pan of the sound effect.
     // endPan: The ending pan of the sound effect.
     // panStep: The amount to change the pan by each interval.
@@ -326,7 +326,7 @@
     .endm
 
     // Plays a sound effect that moves from startPan to endPan over time, adjusted for attacker/defender positions
-    // seqID: The ID of the sound effect to play. See build/generated/sdat.h
+    // seqID: The ID of the sound effect to play. See build/res/sound/pl_sound_data.naix
     // startPan: The starting pan of the sound effect.
     // endPan: The ending pan of the sound effect.
     // panStep: The amount to change the pan by each interval.
@@ -351,7 +351,7 @@
     // 43: Nop
 
     // Stops a sound effect
-    // seqID: The ID of the sound effect to stop. See build/generated/sdat.h
+    // seqID: The ID of the sound effect to stop. See build/res/sound/pl_sound_data.naix
     .macro StopSoundEffect seqID:req
     .long BTLANIMCMD_STOPSOUNDEFFECT
     .long \seqID

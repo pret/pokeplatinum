@@ -7,8 +7,8 @@ L_0:
     WaitForAnimTasks
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 6, 5, 0, 0
-    PlaySoundEffectR SEQ_SE_DP_W081B
-    PlayDelayedSoundEffectR SEQ_SE_DP_W020B, 50
+    PlaySoundEffectR SEQ_SE_DP_W081B_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_W020B_sseq, 50
     InitSpriteManager 0, 3, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, string_shot_NCGR_lz
     LoadPlttRes 0, string_shot_NCLR, 1
@@ -28,8 +28,8 @@ L_1:
     WaitForAnimTasks
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 6, 5, 0, 0
-    PlaySoundEffectR SEQ_SE_DP_W081B
-    PlayDelayedSoundEffectR SEQ_SE_DP_W020B, 50
+    PlaySoundEffectR SEQ_SE_DP_W081B_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_W020B_sseq, 50
     InitSpriteManager 0, 3, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, string_shot_NCGR_lz
     LoadPlttRes 0, string_shot_NCLR, 1

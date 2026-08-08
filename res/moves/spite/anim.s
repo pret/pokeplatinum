@@ -11,7 +11,7 @@ L_0:
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 3, BATTLE_COLOR_WHITE, 10
     Func_Spite
     LoadPokemonSpriteIntoBg BATTLER_ROLE_DEFENDER, FALSE
-    PlaySoundEffectL SEQ_SE_DP_W060
+    PlaySoundEffectL SEQ_SE_DP_W060_sseq
     WaitForAnimTasks
     RemovePokemonSpriteFromBg 0
     FreePokemonSpriteManager

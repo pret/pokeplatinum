@@ -63,7 +63,7 @@ SnowpointCity_Movement_PlayerWalkSouth:
     EndMovement
 
 SnowpointCity_TempleGuard:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetNationalDexEnabled VAR_RESULT
@@ -147,7 +147,7 @@ SnowpointCity_SnowpointNPCF2:
     End
 
 SnowpointCity_SnowpointNPCM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_SNOWPOINT_CITY_STATE, 1, SnowpointCity_PokemonDraggedCityHere
@@ -177,7 +177,7 @@ SnowpointCity_GymSignpost:
     End
 
 SnowpointCity_SailorSSSpiral:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfUnset FLAG_GAME_COMPLETED, SnowpointCity_ILookForwardToAGreatTrainer
@@ -280,7 +280,7 @@ SnowpointCity_Movement_CynthiaLeave:
 SnowpointCity_SailorEnterShip:
     ApplyMovement LOCALID_SAILOR_SS_SPIRAL, SnowpointCity_Movement_SailorSSSpiralFaceSouth
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_SAILOR_SS_SPIRAL, SnowpointCity_Movement_SetInvisible
     WaitMovement
     Return
@@ -288,7 +288,7 @@ SnowpointCity_SailorEnterShip:
 SnowpointCity_PlayerEnterShip:
     ApplyMovement LOCALID_PLAYER, SnowpointCity_Movement_PlayerWalkToShip
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, SnowpointCity_Movement_SetInvisible
     WaitMovement
     Return

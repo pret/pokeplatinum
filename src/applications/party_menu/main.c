@@ -614,7 +614,7 @@ static int WaitForPrinter(PartyMenuApplication *application)
 static int WaitABPressBeforeFadeOut(PartyMenuApplication *application)
 {
     if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return PARTY_MENU_STATE_FADE_OUT;
     }
 
@@ -1533,7 +1533,7 @@ static u8 PartyMenu_TryHandleDirectionPadInput(PartyMenuApplication *application
 
             InitAnimAndPaletteForSlot(application, v4, FALSE);
             InitAnimAndPaletteForSlot(application, application->currPartySlot, TRUE);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             if (v4 < 6) {
                 DrawMemberTouchScreenButton(application, v4, 0);
@@ -1616,7 +1616,7 @@ static u8 PartyMenu_TryHandleTouchScreenButtons(PartyMenuApplication *applicatio
         application->unk_B0C = 1;
         application->unk_B0D = application->currPartySlot;
 
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
 
         if ((prevPartySlot != 6) && (prevPartySlot != 7)) {
             application->prevPartySlot = prevPartySlot;
@@ -1686,37 +1686,37 @@ static u8 PartyMenu_HandleInput(PartyMenuApplication *application)
         if (application->currPartySlot == 6) {
             return PARTY_MENU_INPUT_4;
         } else if (application->currPartySlot == 7) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             if (application->hideCancel == FALSE) {
                 return PARTY_MENU_INPUT_CANCEL;
             }
         } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_NO_PROMPT || application->partyMenu->mode == PARTY_MENU_MODE_NPC_TRADE) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             return PARTY_MENU_INPUT_CONFIRM;
         } else if (application->partyMenu->mode == PARTY_MENU_MODE_FEED_POFFIN || application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX) {
             if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 return PARTY_MENU_INPUT_CONFIRM;
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                 return PARTY_MENU_INPUT_NONE;
             }
         } else if (application->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {
             if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 sub_0207FFC8(application);
                 return PARTY_MENU_INPUT_CONFIRM;
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                 return PARTY_MENU_INPUT_NONE;
             }
         } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             sub_0207FFC8(application);
             return PARTY_MENU_INPUT_CONFIRM;
         } else {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             sub_0207FFC8(application);
             return PARTY_MENU_INPUT_CONFIRM;
         }
@@ -1724,7 +1724,7 @@ static u8 PartyMenu_HandleInput(PartyMenuApplication *application)
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         if (application->hideCancel == FALSE) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             application->currPartySlot = 7;
             return PARTY_MENU_INPUT_CANCEL;
         }
@@ -1737,7 +1737,7 @@ static u8 PartyMenu_HandleInput(PartyMenuApplication *application)
             || application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX
             || application->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {
             if (application->partyMembers[application->currPartySlot].isEgg != FALSE) {
-                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                 return PARTY_MENU_INPUT_NONE;
             }
         }
@@ -2080,7 +2080,7 @@ u8 PartyMenu_GetMemberPanelAnim(u8 menuType, u8 slot)
 static u8 SelectSwitchSlot(PartyMenuApplication *application)
 {
     if (JOY_NEW(PAD_BUTTON_A)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (application->currPartySlot >= MAX_PARTY_SIZE || application->currPartySlot == application->selectTargetSlot) {
             PartyMenu_ResetCursor(application);
@@ -2092,7 +2092,7 @@ static u8 SelectSwitchSlot(PartyMenuApplication *application)
     }
 
     if (JOY_NEW(PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         PartyMenu_ResetCursor(application);
         return PARTY_MENU_INPUT_CANCEL;
     }
@@ -2140,7 +2140,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
             }
 
             application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_CHOOSE_MONS;
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
             return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
         }
     }
@@ -2163,17 +2163,17 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         }
             PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
             application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_CHOOSE_MONS;
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
             return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
         case BATTLE_REGULATION_VALIDATION_RESULT_DUPLICATE_SPECIES:
             PartyMenu_PrintLongMessage(application, PartyMenu_Text_IdenticalMonNotPermitted, TRUE);
             application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_CHOOSE_MONS;
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
             return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
         case BATTLE_REGULATION_VALIDATION_RESULT_DUPLICATE_ITEMS:
             PartyMenu_PrintLongMessage(application, PartyMenu_Text_SomeMonHoldingIdenticalItems, TRUE);
             application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_CHOOSE_MONS;
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
             return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
         }
     }
@@ -2185,12 +2185,12 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         case 1:
             PartyMenu_PrintLongMessage(application, PartyMenu_Text_IdenticalMonNotPermitted, TRUE);
             application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_CHOOSE_MONS;
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
             return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
         case 2:
             PartyMenu_PrintLongMessage(application, PartyMenu_Text_SomeMonHoldingIdenticalItems, TRUE);
             application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_CHOOSE_MONS;
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
             return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
         }
     }
@@ -2202,7 +2202,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         case 1:
             PartyMenu_PrintLongMessage(application, PartyMenu_Text_MustUseSameKindOfMon, TRUE);
             application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_CHOOSE_MONS;
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
             return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
         }
     }
@@ -2214,13 +2214,13 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         case 1:
             PartyMenu_PrintLongMessage(application, PartyMenu_Text_IdenticalMonNotPermitted, TRUE);
             application->stateAfterMessage = PARTY_MENU_STATE_WAIT_AB_PRESS_CHOOSE_MONS;
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
             return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
         }
     }
 
     application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
     return PARTY_MENU_STATE_FADE_OUT;
 }
 
@@ -2480,13 +2480,13 @@ static int PartyMenu_UseHPTransferFieldMove(PartyMenuApplication *application)
     case HP_TRANSFER_STATE_HANDLE_INPUT:
         if (JOY_NEW(PAD_BUTTON_A)) {
             if (application->currPartySlot >= MAX_PARTY_SIZE) { // cancel button
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 PartyMenu_ResetCursor(application);
                 return PARTY_MENU_STATE_DEFAULT;
             } else {
                 switch (CheckCanUseHPTransferFieldMove(application)) {
                 case HP_TRANSFER_VALID_TARGET:
-                    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
+                    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU_sseq);
                     Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
 
                     if (application->partyMembers[application->currPartySlot].maxHP - application->partyMembers[application->currPartySlot].curHP < application->monHpTransfer[HP_TRANSFER_HP_BUFFER]) {
@@ -2497,18 +2497,18 @@ static int PartyMenu_UseHPTransferFieldMove(PartyMenuApplication *application)
                     application->monHpTransfer[HP_TRANSFER_COUNTER] = 0;
                     break;
                 case HP_TRANSFER_INVALID_TARGET:
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     application->monHpTransfer[HP_TRANSFER_STATE] = HP_TRANSFER_STATE_SELECT_TARGET;
                     return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
                 case HP_TRANSFER_EGG_TARGET:
-                    Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                    Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                     return PARTY_MENU_STATE_HP_TRANSFER_FIELD_MOVE;
                 }
             }
         }
 
         if (JOY_NEW(PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             PartyMenu_ResetCursor(application);
             return PARTY_MENU_STATE_DEFAULT;
         }
@@ -2520,7 +2520,7 @@ static int PartyMenu_UseHPTransferFieldMove(PartyMenuApplication *application)
             } else {
                 switch (CheckCanUseHPTransferFieldMove(application)) {
                 case HP_TRANSFER_VALID_TARGET:
-                    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
+                    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU_sseq);
                     Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
 
                     if (application->partyMembers[application->currPartySlot].maxHP - application->partyMembers[application->currPartySlot].curHP < application->monHpTransfer[HP_TRANSFER_HP_BUFFER]) {
@@ -2534,7 +2534,7 @@ static int PartyMenu_UseHPTransferFieldMove(PartyMenuApplication *application)
                     application->monHpTransfer[HP_TRANSFER_STATE] = HP_TRANSFER_STATE_SELECT_TARGET;
                     return PARTY_MENU_STATE_SHOW_MESSAGE_THEN_NEXT_STATE;
                 case HP_TRANSFER_EGG_TARGET:
-                    Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                    Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                     return PARTY_MENU_STATE_HP_TRANSFER_FIELD_MOVE;
                 }
             }
@@ -2542,7 +2542,7 @@ static int PartyMenu_UseHPTransferFieldMove(PartyMenuApplication *application)
         break;
     case HP_TRANSFER_STATE_SELECT_TARGET:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             Window_EraseMessageBox(&application->windows[34], 1);
             Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
             PartyMenu_PrintShortMessage(application, PartyMenu_Text_UseOnWhichPokemon, TRUE);
@@ -2551,7 +2551,7 @@ static int PartyMenu_UseHPTransferFieldMove(PartyMenuApplication *application)
         break;
     case HP_TRANSFER_STATE_DONATE_HP:
         if (PartyMenu_HPTransferUpdateHP(application, application->selectTargetSlot, -1) == TRUE) {
-            Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
+            Sound_PlayEffect(SEQ_SE_DP_KAIFUKU_sseq);
             application->monHpTransfer[HP_TRANSFER_STATE] = HP_TRANSFER_STATE_RECEIVE_HP;
             application->monHpTransfer[HP_TRANSFER_COUNTER] = 0;
         }
@@ -2577,7 +2577,7 @@ static int PartyMenu_UseHPTransferFieldMove(PartyMenuApplication *application)
         break;
     case HP_TRANSFER_STATE_CONFIRM_DONE:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             Window_EraseMessageBox(&application->windows[34], 1);
             Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
             PartyMenu_ResetCursor(application);
@@ -2637,14 +2637,14 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
     if (JOY_NEW(PAD_BUTTON_A)) {
         if (application->currPartySlot == PARTY_MENU_SLOT_CANCEL) {
             if (!application->hideCancel) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 return PARTY_MENU_INPUT_CANCEL;
             }
         } else if (!application->partyMembers[application->currPartySlot].isEgg) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             return PARTY_MENU_INPUT_CONFIRM;
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
         }
 
         return PARTY_MENU_INPUT_NONE;
@@ -2652,7 +2652,7 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         if (!application->hideCancel) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             application->currPartySlot = PARTY_MENU_SLOT_CANCEL;
             return PARTY_MENU_INPUT_CANCEL;
         }
@@ -2664,7 +2664,7 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
 
     if (menuInput == PARTY_MENU_INPUT_TOUCH_SCREEN) {
         if (application->partyMembers[application->currPartySlot].isEgg) {
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
             return PARTY_MENU_INPUT_NONE;
         }
     }

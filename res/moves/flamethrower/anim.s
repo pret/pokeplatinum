@@ -6,7 +6,7 @@ L_0:
     WaitForAnimTasks
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 6, 1, 0, 0
-    PlaySoundEffectR SEQ_SE_DP_W053
+    PlaySoundEffectR SEQ_SE_DP_W053_sseq
     Delay 50
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 2, 0, 1, 14, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER

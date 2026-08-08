@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_system.h"
@@ -19,6 +17,7 @@
 #include "text.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 #include "res/text/bank/poketch_link_searcher.h"
 
 #define SPRITE_DS           0
@@ -225,7 +224,7 @@ static void Task_ShowIntroScreen(SysTask *task, void *taskMan)
     PoketchAnimation_HideSprite(graphics->sprites[SPRITE_CONNECTED], TRUE);
 
     PrintIntroMessage(graphics);
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
     EndTask(taskMan);
 }
 
@@ -240,7 +239,7 @@ static void Task_Searching(SysTask *task, void *taskMan)
     PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_WIFI_BARS], 1);
 
     PrintSearchingMessage(graphics);
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
     EndTask(taskMan);
 }
 
@@ -254,7 +253,7 @@ static void Task_ShowUnusableError(SysTask *task, void *taskMan)
     PoketchAnimation_HideSprite(graphics->sprites[SPRITE_CONNECTED], TRUE);
     PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_ERROR_BUBBLE], 2);
     PrintUnusableError(graphics);
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
     EndTask(taskMan);
 }
 
@@ -268,7 +267,7 @@ static void Task_ShowDontMoveError(SysTask *task, void *taskMan)
     PoketchAnimation_HideSprite(graphics->sprites[SPRITE_CONNECTED], TRUE);
     PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_ERROR_BUBBLE], 2);
     PrintDontMoveError(graphics);
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
     EndTask(taskMan);
 }
 
@@ -284,7 +283,7 @@ static void Task_ShowResults(SysTask *task, void *taskMan)
     PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_CONNECTED], 0);
 
     PrintSearchResults(graphics, results);
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
     EndTask(taskMan);
 }
 

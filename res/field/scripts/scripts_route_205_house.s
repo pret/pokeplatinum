@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 Route205House_PokefanF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message Route205House_Text_RestAWhile
@@ -20,7 +20,7 @@ Route205House_Rest:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     FadeScreenIn

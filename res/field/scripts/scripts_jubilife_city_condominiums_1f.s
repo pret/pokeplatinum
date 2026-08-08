@@ -21,7 +21,7 @@ JubilifeCityCondominiums1F_Pachirisu:
     End
 
 JubilifeCityCondominiums1F_Beauty:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_JUBILIFE_CITY_CONDOMINIUMS_1F_QUICK_CLAW, JubilifeCityCondominiums1F_ObtainedQuickClaw

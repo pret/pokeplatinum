@@ -7,7 +7,7 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 6, 1, 16, 0
     SetExtraParams 3, 0, 0, 0, 0
-    PlayLoopedSoundEffectR SEQ_SE_DP_W013, 2, 8
+    PlayLoopedSoundEffectR SEQ_SE_DP_W013_sseq, 2, 8
     Func_MoveBattlerX2 2, 8, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 10
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER

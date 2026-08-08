@@ -5,10 +5,10 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_PlayfulHops
     BeginLoop 3
-    PlaySoundEffectL SEQ_SE_DP_W204
+    PlaySoundEffectL SEQ_SE_DP_W204_sseq
     Delay 8
     EndLoop
-    PlaySoundEffectL SEQ_SE_DP_W204
+    PlaySoundEffectL SEQ_SE_DP_W204_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

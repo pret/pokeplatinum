@@ -24,7 +24,7 @@ UnionRoom_OnResume:
     End
 
 UnionRoom_Player:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ScrCmd_140 VAR_RESULT
@@ -476,7 +476,7 @@ UnionRoom_OtherPlayerDeclinedEnd:
 
 UnionRoom_PlayerContactedYou:
     LockAll
-    PlaySE SEQ_SE_DP_BUTTON9
+    PlaySE SEQ_SE_DP_BUTTON9_sseq
     DoUnionRoomGreeting 1
     MessageAutoScroll UnionRoom_Text_PlayerContactedYou
     WaitABPressTime 30
@@ -725,14 +725,14 @@ UnionRoom_Dummy6:
     End
 
 UnionRoom_PlayerBusy:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoTo UnionRoom_TrainerAppearsBusy
     End
 
 UnionRoom_Teala:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoTo UnionRoom_TealaMenu

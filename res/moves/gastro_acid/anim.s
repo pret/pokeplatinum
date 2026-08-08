@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, gastro_acid_spa
-    PlayLoopedSoundEffectR SEQ_SE_DP_W380, 2, 6
+    PlayLoopedSoundEffectR SEQ_SE_DP_W380_sseq, 2, 6
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC

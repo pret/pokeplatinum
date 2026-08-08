@@ -17,7 +17,6 @@
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 #include "generated/object_events_gfx.h"
-#include "generated/sdat.h"
 #include "generated/trainer_types.h"
 
 #include "struct_decls/map_object.h"
@@ -75,6 +74,8 @@
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
+
+#include "res/sound/pl_sound_data.naix"
 
 #define DISTORTION_WORLD_CAMERA_BASE_ANGLE_X            -10750
 #define DISTORTION_WORLD_CAMERA_BASE_ANGLE_Y            0
@@ -2889,7 +2890,7 @@ static BOOL JumpOnFloatingPlatform(FieldTask *task)
         // TODO: The following function plays the dust particle effects when
         // the player lands on the ground.
         ov5_021F3678(playerMapObj, particlesDir);
-        Sound_PlayEffect(SEQ_SE_DP_SUTYA2);
+        Sound_PlayEffect(SEQ_SE_PL_SUTYA2_sseq_3);
 
         ctx->state++;
         break;
@@ -3736,7 +3737,7 @@ static void DistWorldPlatformProp_AnimTick(OverworldAnimManager *animMan, void *
 
             if (platformProp->soundEffectState != PLATFORM_PROP_SFX_STATE_DISAPPEAR) {
                 platformProp->soundEffectState = PLATFORM_PROP_SFX_STATE_DISAPPEAR;
-                PlaySoundIfNotActive(SEQ_SE_PL_SYUWA3);
+                PlaySoundIfNotActive(SEQ_SE_PL_SYUWA3_sseq);
             }
         }
     } else if (platformProp->opacity < GHOST_PROP_OPACITY_MAX) {
@@ -3744,7 +3745,7 @@ static void DistWorldPlatformProp_AnimTick(OverworldAnimManager *animMan, void *
 
         if (platformProp->soundEffectState != PLATFORM_PROP_SFX_STATE_APPEAR) {
             platformProp->soundEffectState = PLATFORM_PROP_SFX_STATE_APPEAR;
-            PlaySoundIfNotActive(SEQ_SE_PL_SYUWA3);
+            PlaySoundIfNotActive(SEQ_SE_PL_SYUWA3_sseq);
         }
     }
 
@@ -3788,11 +3789,11 @@ static BOOL DistWorldObstacleProp_AnimInit(OverworldAnimManager *animMan, void *
     }
 
     if (ghostPropTemplate->propKind == PROP_KIND_LAND_ROCK) {
-        obstacleProp->seqIDAppear = SEQ_SE_PL_FW089_2;
-        obstacleProp->seqIDDisappear = SEQ_SE_PL_FW089_2;
+        obstacleProp->seqIDAppear = SEQ_SE_PL_FW089_2_sseq;
+        obstacleProp->seqIDDisappear = SEQ_SE_PL_FW089_2_sseq;
     } else {
-        obstacleProp->seqIDAppear = SEQ_SE_PL_MEKI;
-        obstacleProp->seqIDDisappear = SEQ_SE_PL_MEKI2;
+        obstacleProp->seqIDAppear = SEQ_SE_PL_MEKI_sseq;
+        obstacleProp->seqIDDisappear = SEQ_SE_PL_MEKI2_sseq;
     }
 
     BOOL ghostPropGroupHidden;
@@ -5271,7 +5272,7 @@ static int DistWorldElevatorPlatform_BeginMovement(DistWorldSystem *system, Dist
         elevatorPlatform->vibrationAnimDone = TRUE;
         elevatorPlatform->state = ELEVATOR_PLATFORM_STATE_VIBRATE;
 
-        Sound_PlayEffect(SEQ_SE_PL_FW089);
+        Sound_PlayEffect(SEQ_SE_PL_FW089_sseq);
     } else {
         elevatorPlatform->state = ELEVATOR_PLATFORM_STATE_MOVE_FIRST_HALF;
     }
@@ -5460,7 +5461,7 @@ static int DistWorldElevatorPlatform_MoveSecondHalf(DistWorldSystem *system, Dis
 
     if (elevatorPlatform->currPosOffset.x == elevatorPlatform->finalPosOffset.x && elevatorPlatform->currPosOffset.y == elevatorPlatform->finalPosOffset.y && elevatorPlatform->currPosOffset.z == elevatorPlatform->finalPosOffset.z) {
         if (elevatorPlatform->nextPathIndex == ELEVATOR_PLATFORM_PATH_INVALID) {
-            Sound_StopEffect(SEQ_SE_PL_FW089, 0);
+            Sound_StopEffect(SEQ_SE_PL_FW089_sseq, 0);
             elevatorPlatform->state = ELEVATOR_PLATFORM_STATE_END;
         } else {
             MapObject *playerMapObj2 = PlayerAvatar_GetMapObject(system->fieldSystem->playerAvatar);
@@ -6258,7 +6259,7 @@ static void DistWorldMovingPlatformProp_AnimTick(OverworldAnimManager *animMan, 
 
             if (movingPlatformProp->opacity < GHOST_PROP_OPACITY_MAX) {
                 if (movingPlatformProp->opacity == GHOST_PROP_OPACITY_MIN) {
-                    PlaySoundIfNotActive(SEQ_SE_PL_SYUWA3);
+                    PlaySoundIfNotActive(SEQ_SE_PL_SYUWA3_sseq);
                 }
 
                 movingPlatformProp->animStep++;
@@ -6498,7 +6499,7 @@ static int EventCmdMovePlatform_BeginMovement(DistWorldSystem *system, FieldTask
         runData->initialPlayerY = spritePosOffset.y;
     }
 
-    Sound_PlayEffect(SEQ_SE_PL_FW089B);
+    Sound_PlayEffect(SEQ_SE_PL_FW089B_sseq);
 
     *cmdState = EVENT_CMD_MOVE_PLATFORM_STATE_VIBRATE;
     return EVENT_CMD_HANDLER_RES_CONTINUE;
@@ -6646,7 +6647,7 @@ static int EventCmdMovePlatform_EndMovement(DistWorldSystem *system, FieldTask *
         }
     }
 
-    Sound_StopEffect(SEQ_SE_PL_FW089B, 0);
+    Sound_StopEffect(SEQ_SE_PL_FW089B_sseq, 0);
     return EVENT_CMD_HANDLER_RES_FINISH;
 }
 
@@ -6847,7 +6848,7 @@ static void DistWorldGiratinaShadowProp_AnimTick(OverworldAnimManager *animMan, 
         if (template->soundKind == GIRATINA_SHADOW_PROP_SFX_KIND_CRY) {
             Sound_PlayPokemonCry(SPECIES_GIRATINA, 0);
         } else if (template->soundKind == GIRATINA_SHADOW_PROP_SFX_KIND_FLEE) {
-            Sound_PlayEffect(SEQ_SE_DP_FW019);
+            Sound_PlayEffect(SEQ_SE_DP_FW019_sseq);
         }
 
         giratinaProp->state++;
@@ -7581,7 +7582,7 @@ static BOOL DistWorldFallingBoulder_TickToB6F(DistWorldFallingBoulder *boulder)
         return FALSE;
     }
 
-    Sound_PlayEffect(SEQ_SE_DP_UG_008);
+    Sound_PlayEffect(SEQ_SE_DP_UG_008_sseq);
     boulderPos.y = MAP_OBJECT_COORD_EDGE_TO_FX32(115);
     MapObject_SetPosDirFromVec(boulderMapObj, &boulderPos, MapObject_GetFacingDir(boulderMapObj));
     MapObject_SetMapHeaderID(boulderMapObj, MAP_HEADER_DISTORTION_WORLD_B6F);
@@ -7701,7 +7702,7 @@ static BOOL DistWorldFallingBoulder_TickToCorrectPit(DistWorldFallingBoulder *bo
         boulder->finalPosY = spritePosOffset.y;
         boulder->vibrationYDelta = FX32_ONE;
 
-        Sound_PlayEffect(SEQ_SE_DP_UG_008);
+        Sound_PlayEffect(SEQ_SE_DP_UG_008_sseq);
         boulder->state++;
 
         break;
@@ -8220,7 +8221,7 @@ static int EventCmdCascadeDown_Init(DistWorldSystem *system, FieldTask *task, u1
     runData->mountPosFixDelta.y = CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_Y / CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
     runData->mountPosFixDelta.z = CASCADE_DOWN_ROTATE_MOUNT_POSITION_FIX_Z / CASCADE_DOWN_INITIAL_SPRITE_ROTATION_STEPS;
 
-    Sound_PlayEffect(SEQ_SE_PL_FW463);
+    Sound_PlayEffect(SEQ_SE_PL_FW463_sseq);
 
     *cmdState = EVENT_CMD_CASCADE_DOWN_STATE_ROTATE_PLAYER;
     return EVENT_CMD_HANDLER_RES_CONTINUE;
@@ -8426,7 +8427,7 @@ static int EventCmdCascadeDown_FinishCascading(DistWorldSystem *system, FieldTas
                 | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_POS_FIX
                 | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
 
-        Sound_StopEffect(SEQ_SE_PL_FW463, 0);
+        Sound_StopEffect(SEQ_SE_PL_FW463_sseq, 0);
         *cmdState = EVENT_CMD_CASCADE_DOWN_STATE_MOVE_AWAY;
 
         SetPersistedMovingPlatformFlag(system, DIST_WORLD_PLATFORM_FLAG_B5F_1);
@@ -8542,7 +8543,7 @@ static int EventCmdCascadeUp_Init(DistWorldSystem *system, FieldTask *task, u16 
     runData->mountPosFixDelta.y = CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_Y / CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
     runData->mountPosFixDelta.z = CASCADE_UP_ROTATE_MOUNT_POSITION_FIX_Z / CASCADE_UP_INITIAL_SPRITE_ROTATION_STEPS;
 
-    Sound_PlayEffect(SEQ_SE_PL_FW463);
+    Sound_PlayEffect(SEQ_SE_PL_FW463_sseq);
 
     *cmdState = EVENT_CMD_CASCADE_UP_STATE_ROTATE_PLAYER;
     return EVENT_CMD_HANDLER_RES_CONTINUE;
@@ -8723,7 +8724,7 @@ static int EventCmdCascadeUp_FinishCascading(DistWorldSystem *system, FieldTask 
                 | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_POS_FIX
                 | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
 
-        Sound_StopEffect(SEQ_SE_PL_FW463, 0);
+        Sound_StopEffect(SEQ_SE_PL_FW463_sseq, 0);
         *cmdState = EVENT_CMD_CASCADE_UP_STATE_MOVE_AWAY;
     }
 
@@ -8920,7 +8921,7 @@ static int EventCmdPlayGiratinaArrival_InitSpriteAndSky(DistWorldSystem *system,
         SetSkyBackgroundDarknessCalculationDisabled(system, TRUE);
 
         system->skyKind = SKY_GIRATINA_ROOM_DARK;
-        Sound_PlayEffect(SEQ_SE_PL_GIRA);
+        Sound_PlayEffect(SEQ_SE_PL_GIRA_sseq);
 
         *cmdState = EVENT_CMD_PLAY_GIRATINA_ARRIVAL_STATE_DESCEND;
         return EVENT_CMD_HANDLER_RES_LOOP;
@@ -9419,7 +9420,7 @@ static int EventCmdShowGiratinaRoomPlatforms_ShowPlatforms(DistWorldSystem *syst
 
     if (runData->delay <= 0) {
         runData->delay = GIRATINA_ROOM_SHOW_PLATFORMS_DELAY;
-        Sound_StopEffect(SEQ_SE_PL_SYUWA3, 0);
+        Sound_StopEffect(SEQ_SE_PL_SYUWA3_sseq, 0);
         ShowGhostPropGroup(system, runData->ghostPropGroup);
         runData->ghostPropGroup++;
 
@@ -9455,7 +9456,7 @@ static int EventCmdHideGiratinaRoomPlatforms_HidePlatforms(DistWorldSystem *syst
     if (runData->delay <= 0) {
         if (runData->ghostPropGroup >= GIRATINA_ROOM_PLATFORMS_FIRST_GHOST_PROP_GROUP) {
             runData->delay = GIRATINA_ROOM_HIDE_PLATFORMS_DELAY;
-            Sound_StopEffect(SEQ_SE_PL_SYUWA3, 0);
+            Sound_StopEffect(SEQ_SE_PL_SYUWA3_sseq, 0);
             HideGhostPropGroup(system, runData->ghostPropGroup);
             runData->ghostPropGroup--;
         } else {

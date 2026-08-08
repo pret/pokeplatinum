@@ -5,7 +5,7 @@ L_0:
     LoadParticleResource 1, pound_spa
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlayLoopedSoundEffectR SEQ_SE_DP_W010, 8, 2
+    PlayLoopedSoundEffectR SEQ_SE_DP_W010_sseq, 8, 2
     Delay 3
     CreateEmitter 1, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 1, 0, EMITTER_CB_SET_POS_TO_DEFENDER

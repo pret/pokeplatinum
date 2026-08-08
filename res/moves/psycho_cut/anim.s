@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, psycho_cut_spa
-    PlaySoundEffectL SEQ_SE_DP_020
+    PlaySoundEffectL SEQ_SE_DP_020_sseq
     CreateEmitter 0, 5, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 1, 0, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
@@ -10,7 +10,7 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 1, 0, 0, 0
     Delay 45
-    PlayLoopedSoundEffectC SEQ_SE_DP_HURU, 2, 9
+    PlayLoopedSoundEffectC SEQ_SE_DP_HURU_sseq, 2, 9
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End
 

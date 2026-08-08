@@ -438,7 +438,7 @@ static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1)
 
     switch (v2->state) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN_sseq);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_BOX_GRAPHICS);
         v2->state++;
@@ -517,7 +517,7 @@ static void BoxGraphics_ChangeToNewBox(SysTask *param0, void *taskParams)
 
         ov19_021D7B4C(&v0->unk_494, &v1->customization, boxChangeDirection, TRUE);
         ov19_021D7D70(&v0->unk_494, &v1->customization, boxChangeDirection);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         params->state++;
     }
     case 3:
@@ -547,7 +547,7 @@ static void BoxGraphics_MoveCursor(SysTask *param0, void *param1)
 
     switch (v2->state) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         ov19_021D8F60(&(v0->unk_5E24));
         ov19_021DE7A0(v0->unk_B40C);
         v2->state++;
@@ -1022,7 +1022,7 @@ static void BoxGraphics_UpdateMenuCursor(SysTask *task, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
     BoxGraphics_DrawMenuCursorBox(&(v0->unk_6658), &(v2->boxMenu));
     BoxTaskParams_Free(v1);
 }
@@ -1037,7 +1037,7 @@ static void ov19_021D6F0C(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+    Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
     ov19_021DB790(&(v0->unk_6658), &(v2->boxMenu));
     BoxTaskParams_Free(v1);
 }
@@ -1076,7 +1076,7 @@ static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *param0, void *param1)
 
     switch (v1->state) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         ov19_021DBB70(&(v0->unk_6690));
         v1->state++;
         break;
@@ -1142,7 +1142,7 @@ static void BoxGraphics_PressBoxButton(SysTask *param0, void *param1)
 
     switch (v1->state) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         ov19_021D9690(&(v0->unk_5E24));
         v1->state++;
         break;
@@ -1188,7 +1188,7 @@ static void BoxGraphics_OpenPartyPopup(SysTask *param0, void *param1)
 
     switch (v1->state) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_OPEN7);
+        Sound_PlayEffect(SEQ_SE_DP_OPEN7_sseq);
         ov19_021D99F4(&(v0->unk_5E24));
         ov19_021DC6C8(&(v0->unk_B290));
         v1->state++;
@@ -1222,7 +1222,7 @@ static void ov19_021D7138(SysTask *param0, void *param1)
 
         v1->state++;
     case 2:
-        Sound_PlayEffect(SEQ_SE_DP_CLOSE7);
+        Sound_PlayEffect(SEQ_SE_DP_CLOSE7_sseq);
         ov19_021DC768(&(v0->unk_B290));
         v1->state++;
         break;
@@ -1513,7 +1513,7 @@ static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *task, void *param1)
 
     switch (params->state) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF_sseq);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
         params->state++;
         break;

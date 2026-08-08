@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 Route227House_ExpertF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message Route227House_Text_RestUp
@@ -20,7 +20,7 @@ Route227House_RestUp:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     FadeScreenIn

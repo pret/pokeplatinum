@@ -748,7 +748,7 @@ static BOOL ov70_02263414(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         case 0:
             v0->unk_28 = 0;
             v8 = 1;
@@ -785,7 +785,7 @@ static BOOL ov70_02263414(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
             ov70_02262E88(param0, 12);
             ov66_0222E56C(v3, v0->unk_28, v0->unk_2A);
             ov70_0225E390(param1);
-            Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+            Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
             break;
         case 1:
             ov70_0225E1F8(param1);
@@ -813,7 +813,7 @@ static BOOL ov70_02263414(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         case 0:
             v0->unk_2A = 0;
             v12 = 1;
@@ -850,7 +850,7 @@ static BOOL ov70_02263414(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
             ov70_02262E88(param0, 20);
             ov66_0222E56C(v3, v0->unk_28, v0->unk_2A);
             ov70_0225E390(param1);
-            Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+            Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
             break;
         case 1:
             ov70_0225E1F8(param1);
@@ -861,7 +861,7 @@ static BOOL ov70_02263414(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
     } break;
     case 16:
-        Sound_PlayEffect(SEQ_SE_PL_EFF03_4);
+        Sound_PlayEffect(SEQ_SE_PL_EFF03_4_sseq);
         ov70_0225E430(param1);
         ov70_0225E234(param1, param2, 0);
         ov70_0225E29C(param1, v0->unk_02, 1);
@@ -891,7 +891,7 @@ static BOOL ov70_02263414(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         v4 = ov70_0225E20C(param1, 1, 4);
         ov70_0225DF8C(param1, v4);
@@ -1383,7 +1383,7 @@ static BOOL ov70_02263CC8(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
                 if (gSystem.pressedKeys & PAD_BUTTON_X) {
                     if (ov70_0225E3F0(param1) == 0) {
                         ov70_0225E328(param1, ov66_0222E338(v11), 0);
-                        Sound_PlayEffect(SEQ_SE_CONFIRM);
+                        Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     } else {
                         u32 v25;
 
@@ -1391,7 +1391,7 @@ static BOOL ov70_02263CC8(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
 
                         if (v25 == param2) {
                             ov70_0225E3D0(param1);
-                            Sound_PlayEffect(SEQ_SE_CONFIRM);
+                            Sound_PlayEffect(SE_CONFIRM_sseq_3);
                         }
                     }
 
@@ -1434,7 +1434,7 @@ static BOOL ov70_02264150(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
     }
 
         ov66_0222E3E4(ov70_0225DEE8(param1), 11);
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
 
         {
             String *v2;
@@ -2306,7 +2306,7 @@ static BOOL ov70_02264C9C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
 
         ov70_0225DF8C(param1, v0);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         ov70_02262E8C(param0);
     } break;
     case 1:
@@ -2414,7 +2414,7 @@ static BOOL ov70_02264D38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
                 ov70_02260B3C(v3);
                 ov70_0225D030(v0->unk_0C, 0);
                 ov70_0225D06C(v0->unk_0C, 1);
-                Sound_PlayEffect(SEQ_SE_PL_DANSA5);
+                Sound_PlayEffect(SEQ_SE_PL_DANSA5_sseq);
                 ov70_0225E410(param1);
 
                 v0->unk_0A = 3;
@@ -2942,7 +2942,7 @@ static BOOL ov70_02265840(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
                 ov70_0225CCB4(v0->unk_00, v5);
             }
 
-            Sound_PlayEffect(SEQ_SE_DP_TELE2);
+            Sound_PlayEffect(SEQ_SE_DP_TELE2_sseq);
 
             ov70_0225D084(v0->unk_00, 1);
             ov70_02262E88(param0, 2);

@@ -8,7 +8,7 @@
     End
 
 PoffinCommon_PokefanF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message PoffinCommon_Text_HereYouMayCookPoffins
@@ -52,7 +52,7 @@ PoffinCommon_FadeOut:
 
 PoffinCommon_ReturnToFieldFadeIn:
     ReturnToField
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     FadeScreenIn

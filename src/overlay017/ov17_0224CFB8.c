@@ -276,7 +276,7 @@ static void ov17_0224D1E8(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 
     SysTask_Start(ov17_0224D240, v1, 30000);
     v0->unk_1078 = 0;
-    Sound_PlayBGM(SEQ_CONTEST_DRESSING_ROOM);
+    Sound_PlayBGM(CONTEST_DRESSING_ROOM_sseq);
 }
 
 static void ov17_0224D240(SysTask *param0, void *param1)
@@ -399,7 +399,7 @@ static void ov17_0224D41C(SysTask *param0, void *param1)
         G2_BlendNone();
         ov17_0224C84C();
         ov17_0224ABDC(&v0->unk_00->unk_14, 1);
-        Sound_PlayEffect(SEQ_SE_DP_CON_019);
+        Sound_PlayEffect(SEQ_SE_DP_CON_019_sseq);
         v0->unk_10++;
         break;
     case 3:
@@ -1075,7 +1075,7 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
             }
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_CON_030);
+        Sound_PlayEffect(SEQ_SE_DP_CON_030_sseq);
         v0->unk_10++;
         break;
     case 3:
@@ -1480,8 +1480,8 @@ static void ov17_0224E86C(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        Sound_PlayBGM(SEQ_CONTEST_DRESSING_ROOM);
-        Sound_PlayEffect(SEQ_SE_DP_CON_007);
+        Sound_PlayBGM(CONTEST_DRESSING_ROOM_sseq);
+        Sound_PlayEffect(SEQ_SE_DP_CON_007_sseq);
         v0->unk_4C++;
         break;
     default:

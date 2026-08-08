@@ -774,7 +774,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     LCRNG_SetSeed(battleSys->seedLCRNG);
 
     if (BattleSystem_GetRedHPSoundFlag(battleSys)) {
-        Sound_StopEffect(SEQ_SE_DP_HINSI, 0);
+        Sound_StopEffect(SEQ_SE_DP_HINSI_sseq, 0);
     }
 
     CellTransfer_Free(battleSys->cellTransferState);
@@ -1538,7 +1538,7 @@ static void SysTask_UpdateRedHPSound(SysTask *task, void *inBattleSys)
 
     if (redHPSoundFlag & 2) {
         if (redHPSoundFlag & 1) {
-            Sound_StopEffect(SEQ_SE_DP_HINSI, 0);
+            Sound_StopEffect(SEQ_SE_DP_HINSI_sseq, 0);
             BattleSystem_SetRedHPSoundFlag(battleSys, 2);
         }
 
@@ -1561,20 +1561,20 @@ static void SysTask_UpdateRedHPSound(SysTask *task, void *inBattleSys)
     }
 
     if (flags && BattleSystem_GetRedHPSoundFlag(battleSys) == FALSE) {
-        Sound_PlayEffect(SEQ_SE_DP_HINSI);
+        Sound_PlayEffect(SEQ_SE_DP_HINSI_sseq);
         BattleSystem_SetRedHPSoundFlag(battleSys, 1);
         BattleSystem_SetRedHPSoundEffectDelay(battleSys, 4);
     } else if (flags == 0 && BattleSystem_GetRedHPSoundFlag(battleSys)) {
-        Sound_StopEffect(SEQ_SE_DP_HINSI, 0);
+        Sound_StopEffect(SEQ_SE_DP_HINSI_sseq, 0);
         BattleSystem_SetRedHPSoundFlag(battleSys, 0);
     }
 
     if (BattleSystem_GetRedHPSoundFlag(battleSys)) {
         int delay = BattleSystem_GetRedHPSoundEffectDelay(battleSys);
 
-        if (Sound_IsEffectPlaying(SEQ_SE_DP_HINSI) == FALSE) {
+        if (Sound_IsEffectPlaying(SEQ_SE_DP_HINSI_sseq) == FALSE) {
             if (--delay == 0) {
-                Sound_PlayEffect(SEQ_SE_DP_HINSI);
+                Sound_PlayEffect(SEQ_SE_DP_HINSI_sseq);
                 BattleSystem_SetRedHPSoundEffectDelay(battleSys, 4);
             } else {
                 BattleSystem_SetRedHPSoundEffectDelay(battleSys, delay);
