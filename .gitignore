@@ -15,7 +15,6 @@
 /subprojects/libpng-*/
 /subprojects/zlib-*/
 /subprojects/packagecache
-/subprojects/SDATTool/
 /subprojects/metang/
 /subprojects/rapidjson-*/
 /subprojects/meson-*/
