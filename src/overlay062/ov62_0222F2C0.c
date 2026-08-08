@@ -726,9 +726,9 @@ BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0)
     }
 
     if (v1 == 0) {
-        Sound_PlayEffect(SEQ_SE_PL_BREC58);
+        Sound_PlayEffect(SEQ_SE_PL_BREC58_sseq);
     } else {
-        Sound_PlayEffect(SEQ_SE_PL_BREC57);
+        Sound_PlayEffect(SEQ_SE_PL_BREC57_sseq);
     }
 
     return v1;

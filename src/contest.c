@@ -1477,7 +1477,7 @@ static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *contestParam)
 
         if (cameraFlashTask->frameCounter > cameraFlashTask->cameraFlashFrameDelays[cameraFlashTask->flashCounter]) {
             BrightnessController_StartTransition(6, 0, 4, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_MAIN_SCREEN);
-            Sound_PlayEffect(SEQ_SE_DP_CON_014); // camera shutter sound
+            Sound_PlayEffect(SEQ_SE_DP_KATI_sseq_1); // camera shutter sound
             cameraFlashTask->flashCounter++;
             cameraFlashTask->frameCounter = 0;
 

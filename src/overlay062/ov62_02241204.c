@@ -1645,7 +1645,7 @@ static BOOL ov62_02242BB8(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
         ov62_02231B3C(param0, 117);
-        Sound_PlayEffect(SEQ_SE_PL_BREC80);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80_sseq);
         param0->unk_08++;
         break;
     case 1: {
@@ -1678,9 +1678,9 @@ static BOOL ov62_02242BB8(UnkStruct_0208C06C *param0)
     case 3:
         if (param0->unk_8B4.unk_3900 == 0) {
             ov62_02231B3C(param0, param0->unk_14.unk_4F0.unk_0C);
-            Sound_PlayEffect(SEQ_SE_PL_BREC58);
+            Sound_PlayEffect(SEQ_SE_PL_BREC58_sseq);
         } else {
-            Sound_PlayEffect(SEQ_SE_PL_BREC12);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12_sseq);
         }
 
         param0->unk_08++;
@@ -2287,7 +2287,7 @@ static BOOL ov62_0224391C(UnkStruct_0208C06C *param0)
         sub_0208BA08(param0->unk_6F0, 24, 24);
 
         v0->unk_4B8 = 0;
-        Sound_PlayEffect(SEQ_SE_PL_BREC80);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80_sseq);
         param0->unk_08++;
         break;
     case 3:
@@ -2316,7 +2316,7 @@ static BOOL ov62_0224391C(UnkStruct_0208C06C *param0)
         break;
     default:
         if (v0->unk_4B8) {
-            Sound_PlayEffect(SEQ_SE_PL_BREC12);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12_sseq);
             ov62_02231B8C(param0);
             ov62_0222FB60(param0, v0->unk_0C);
             ov62_0223381C(param0, 1);
@@ -2731,7 +2731,7 @@ static BOOL ov62_02244258(UnkStruct_0208C06C *param0)
         sub_0208BA08(param0->unk_6F4, 24, 24);
 
         v0->unk_4B8 = 0;
-        Sound_PlayEffect(SEQ_SE_PL_BREC80);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80_sseq);
         param0->unk_08++;
         break;
     case 1:
@@ -2761,7 +2761,7 @@ static BOOL ov62_02244258(UnkStruct_0208C06C *param0)
             Sound_StopEffect(1381, 0);
             param0->unk_08 = 0xFF;
             v0->unk_4B8 = 1;
-            Sound_PlayEffect(SEQ_SE_PL_BREC12);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12_sseq);
             param0->unk_878 = &param0->unk_8B4.unk_1D54;
             v0->unk_4BC = param0->unk_8B4.unk_00;
             MI_CpuCopy8(v0->unk_4BC, &param0->unk_8B4.unk_04, sizeof(UnkStruct_ov61_0222BED8));
@@ -3474,7 +3474,7 @@ static BOOL ov62_0224536C(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
         ov62_02231AAC(param0, 119);
-        Sound_PlayEffect(SEQ_SE_PL_BREC80);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80_sseq);
         param0->unk_08++;
         break;
     case 1:
@@ -3515,7 +3515,7 @@ static BOOL ov62_0224536C(UnkStruct_0208C06C *param0)
             ov62_02231AAC(param0, 119);
             ov62_022469A0(v0, param0);
             Sound_StopEffect(1381, 0);
-            Sound_PlayEffect(SEQ_SE_PL_BREC12);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12_sseq);
             param0->unk_08++;
         }
         break;
@@ -3775,7 +3775,7 @@ static void ov62_022458A0(u32 param0, enum TouchScreenButtonState param1, void *
         ov62_02234520(v0);
 
         if (v2 == 0) {
-            Sound_PlayEffect(SEQ_SE_PL_BREC58);
+            Sound_PlayEffect(SEQ_SE_PL_BREC58_sseq);
             ov62_02231B3C(v0, 128);
         } else {
             v1->unk_4C5 = param0;
@@ -3790,7 +3790,7 @@ static void ov62_022458A0(u32 param0, enum TouchScreenButtonState param1, void *
         ov62_02234520(v0);
 
         if (ov62_02241780(v0) == 0) {
-            Sound_PlayEffect(SEQ_SE_PL_BREC58);
+            Sound_PlayEffect(SEQ_SE_PL_BREC58_sseq);
             ov62_02231B3C(v0, 116);
         } else {
             ov62_0222FB60(v0, 12);
@@ -3810,7 +3810,7 @@ static void ov62_02245968(u32 param0, enum TouchScreenButtonState param1, void *
     }
 
     if (ov62_02242748(v0, param0) == 0) {
-        Sound_PlayEffect(SEQ_SE_PL_BREC58);
+        Sound_PlayEffect(SEQ_SE_PL_BREC58_sseq);
         return;
     }
 
@@ -4242,7 +4242,7 @@ static BOOL ov62_0224613C(UnkStruct_0208C06C *param0)
         ov62_02234358(param0, param0->unk_6F0, 128, 96);
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
-        Sound_PlayEffect(SEQ_SE_PL_BREC80);
+        Sound_PlayEffect(SEQ_SE_PL_BREC80_sseq);
         param0->unk_08++;
         break;
     case 4:
@@ -4270,7 +4270,7 @@ static BOOL ov62_0224613C(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         } else {
             Sound_StopEffect(1381, 0);
-            Sound_PlayEffect(SEQ_SE_PL_BREC12);
+            Sound_PlayEffect(SEQ_SE_PL_BREC12_sseq);
             param0->unk_08++;
         }
 

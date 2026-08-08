@@ -227,7 +227,7 @@ static void YesNoTouchMenu_ButtonPressedCallback(u32 buttonIndex, enum TouchScre
     if (buttonState == TOUCH_BUTTON_PRESSED) {
         menu->pressedButton = buttonIndex;
 
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
     }
 }
 

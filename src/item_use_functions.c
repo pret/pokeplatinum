@@ -51,6 +51,7 @@
 #include "save_player.h"
 #include "screen_fade.h"
 #include "script_manager.h"
+#include "sound.h"
 #include "start_menu.h"
 #include "string_gf.h"
 #include "system.h"
@@ -439,8 +440,8 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
             FieldBGM_SetOverride(fieldSystem, SEQ_NONE);
             FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID), 1);
         } else {
-            FieldBGM_SetOverride(fieldSystem, SEQ_BICYCLE);
-            FieldBGM_TryFadeOut(fieldSystem, SEQ_BICYCLE, 1);
+            FieldBGM_SetOverride(fieldSystem, SEQ_BICYCLE_sseq);
+            FieldBGM_TryFadeOut(fieldSystem, SEQ_BICYCLE_sseq, 1);
             MapObject_SetPauseMovementOff(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar));
 
             PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_CYCLING);

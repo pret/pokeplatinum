@@ -933,7 +933,7 @@ static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             if (param0->unk_81 < (param0->unk_80 - 1)) {
                 return 1;
@@ -943,14 +943,14 @@ static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             return 2;
         }
 
         return 0;
     } while (0);
 
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
     Window_FillRectWithColor(param0->unk_7C, 15, 0, 0, 16, param0->unk_7C->height * 8);
     ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param0->unk_81 * 16);
     Window_LoadTiles(param0->unk_7C);

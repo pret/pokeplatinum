@@ -89,7 +89,7 @@ void GTSAvatar_BeginLoginAnimation(GTSApplicationState *appState, int gender)
     animData->appState = appState;
 
     GTSAvatar_SetPlayerAnimation(animData, 0);
-    Sound_PlayEffect(SEQ_SE_DP_PYUU);
+    Sound_PlayEffect(SEQ_SE_DP_PYUU_sseq);
 }
 
 static void GTSAvatar_SetPlayerAnimation(AvatarAnimationData *animData, int animIndex)
@@ -130,7 +130,7 @@ static void GTSAvatar_LoginAnimTask(SysTask *task, void *param)
         GTSAvatar_SetSpritePosition(appState->avatarSprites[0], 128, animData->y);
         break;
     case AVATARANIM_FINISH:
-        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN_sseq);
         animData->appState->hasAvatarFinishedMoving = TRUE;
         SysTask_FinishAndFreeParam(task);
         break;
@@ -150,7 +150,7 @@ void GTSAvatar_BeginLogoutAnimation(GTSApplicationState *appState, int gender)
     animData->appState = appState;
 
     GTSAvatar_SetPlayerAnimation(animData, 5);
-    Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
+    Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF_sseq);
 }
 
 static void GTSAvatar_LogoutAnimTask(SysTask *task, void *param)
@@ -173,7 +173,7 @@ static void GTSAvatar_LogoutAnimTask(SysTask *task, void *param)
         if (!Sprite_IsAnimated(appState->avatarSprites[0])) {
             GTSAvatar_SetPlayerAnimation(animData, 0);
             animData->state = AVATARANIM_SECONDARY_SLIDE;
-            Sound_PlayEffect(SEQ_SE_DP_PYUU2);
+            Sound_PlayEffect(SEQ_SE_DP_PYUU2_sseq);
         }
         break;
     case AVATARANIM_SECONDARY_SLIDE:
@@ -230,7 +230,7 @@ int GTSAvatar_GetTouchedSearchResult(int resultCount)
 void GTSAvatar_ShowSearchResults(GTSApplicationState *appState, int resultCount, int showIdle)
 {
     if ((resultCount != 0) && (showIdle == 1)) {
-        Sound_PlayEffect(SEQ_SE_DP_TELE2);
+        Sound_PlayEffect(SEQ_SE_DP_TELE2_sseq);
     }
 
     for (int i = 0; i < GTS_MAX_SEARCH_RESULTS; i++) {

@@ -3,8 +3,6 @@
 #include "nitro/fx/fx.h"
 #include <nitro.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_system.h"
@@ -16,6 +14,7 @@
 #include "sys_task_manager.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 
 static void SetupSprites(ColorChangerGraphics *graphics, const ColorChangerData *colorData);
 static void UnloadSprites(ColorChangerGraphics *graphics);
@@ -150,7 +149,7 @@ static void Task_UpdateColor(SysTask *task, void *taskMan)
     ColorChangerGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     const ColorChangerData *colorData = PoketchTask_GetConstTaskData(taskMan);
 
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
     PoketchGraphics_LoadActivePalette(0, 0);
     PoketchAnimation_SetSpritePosition(graphics->sprite, (COLOR_SLIDER_LEFT_X + (COLOR_SLIDER_WIDTH * colorData->color)) << FX32_SHIFT, FX32_CONST(COLOR_SLIDER_Y));
     EndTask(taskMan);

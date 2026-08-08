@@ -536,7 +536,7 @@ static BOOL State_OperateRoulette(BattleArcadeApp *app)
         }
 
         LoadRouletteBackground(app, BG_LAYER_MAIN_3);
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2_sseq);
 
         app->subStateTimer = 24;
         app->subState = 3;
@@ -554,7 +554,7 @@ static BOOL State_OperateRoulette(BattleArcadeApp *app)
             }
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2_sseq);
         app->subStateTimer = 24;
         app->subState = 4;
         break;
@@ -571,7 +571,7 @@ static BOOL State_OperateRoulette(BattleArcadeApp *app)
             }
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2_sseq);
         app->subStateTimer = 24;
         app->subState = 5;
         break;
@@ -589,7 +589,7 @@ static BOOL State_OperateRoulette(BattleArcadeApp *app)
         }
 
         BattleArcadeAppSprite_SetDrawFlag(app->cursorSprite, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_UG_020);
+        Sound_PlayEffect(SEQ_SE_DP_UG_020_sseq);
         BattleArcadeAppSprite_SetAnim(app->buttonSprite, ANIM_ID_BUTTON_UNPRESSED);
         app->subState = 6;
         break;
@@ -1039,7 +1039,7 @@ static void UpdateCursorPosition(BattleArcadeApp *app, int unused)
             app->cursorPos++;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
 
         if (app->cursorPos >= app->gridSize) {
             app->cursorPos = 0;
@@ -1222,7 +1222,7 @@ static void SetSelectedEffect(BattleArcadeApp *app, u8 cursorPos)
     }
 
     UpdateCursorSpritePosition(app, finalCursorPos);
-    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
 }
 
 static void GetAvailableEffects(BattleArcadeApp *app)
@@ -1472,7 +1472,7 @@ static BOOL CheckStopButtonPressed(BattleArcadeApp *app)
 
 static void PressStopButton(BattleArcadeApp *app)
 {
-    Sound_StopEffect(SEQ_SE_CONFIRM, 0);
-    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+    Sound_StopEffect(SE_CONFIRM_sseq_3, 0);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
     BattleArcadeAppSprite_SetAnim(app->buttonSprite, ANIM_ID_BUTTON_PRESSED);
 }

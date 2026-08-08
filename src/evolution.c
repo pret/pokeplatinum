@@ -340,7 +340,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             && PokemonAnimManager_HasAnimCompleted(evolutionData->monAnimMan, 0) == TRUE
             && PokemonSprite_IsAnimActive(evolutionData->monSprites[0]) == FALSE) {
             sub_02015738(evolutionData->unk_58, 1);
-            Sound_PlayBasicBGM(SEQ_SHINKA);
+            Sound_PlayBasicBGM(SEQ_SHINKA_sseq);
             evolutionData->delay = 20;
             evolutionData->state = EVOLUTION_STATE_START_FADE;
         }
@@ -358,7 +358,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_StartFade(evolutionData->monSprites[1], 0, 16, 4, 0x7FFF);
 
             GF_ASSERT(HeapExp_FndGetTotalFreeSize(evolutionData->heapID) > 0x8000);
-            Sound_PlayEffect(SEQ_SE_DP_W025);
+            Sound_PlayEffect(SEQ_SE_DP_W025_sseq);
 
             evolutionData->delay = 40;
             evolutionData->state++;
@@ -377,7 +377,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             sub_0207C8C4(evolutionData->unk_30, 8);
             sub_0207C8C4(evolutionData->unk_30, 9);
             sub_0207C8C4(evolutionData->unk_30, 11);
-            Sound_PlayEffect(SEQ_SE_DP_W060C);
+            Sound_PlayEffect(SEQ_SE_DP_W060C_sseq);
             evolutionData->shrinkAndGrowState = 0x10;
             evolutionData->attributeDelta = 8;
             evolutionData->state++;
@@ -395,7 +395,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_SetAttribute(evolutionData->monSprites[0], MON_SPRITE_SCALE_Y, 0);
             PokemonSprite_SetAttribute(evolutionData->monSprites[1], MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
             PokemonSprite_SetAttribute(evolutionData->monSprites[1], MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
-            Sound_PlayEffect(SEQ_SE_DP_W062);
+            Sound_PlayEffect(SEQ_SE_DP_W062_sseq);
             evolutionData->shrinkAndGrowState = 0;
             evolutionData->delay = 8;
             evolutionData->state++;
@@ -412,7 +412,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
                 sub_0207C8C4(evolutionData->unk_30, 12);
                 PaletteData_StartFade(evolutionData->paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xC00 ^ 0xFFFF, 4, 16, 0, 0x7FFF);
                 PokemonSpriteManager_StartFadeAll(evolutionData->monSpriteMan, 16, 0, 3, 0x7FFF);
-                Sound_PlayEffect(SEQ_SE_DP_W080);
+                Sound_PlayEffect(SEQ_SE_DP_W080_sseq);
                 evolutionData->state++;
             }
         }
@@ -672,7 +672,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             evolutionData->windowRight = HW_LCD_WIDTH - 1;
             evolutionData->windowBottom = 160;
             evolutionData->shrinkAndGrowState = 0;
-            Sound_StopBGM(SEQ_SHINKA, 0);
+            Sound_StopBGM(SEQ_SHINKA_sseq, 0);
             sub_0207C8F4(evolutionData->unk_30);
             evolutionData->state++;
         }
@@ -995,13 +995,13 @@ static BOOL Evolution_TextPrinterCallback(TextPrinterTemplate *template, u16 par
         result = Sound_IsBGMPausedByFanfare();
         break;
     case 3:
-        Sound_PlayFanfare(SEQ_FANFA5);
+        Sound_PlayFanfare(SEQ_FANFA5_sseq);
         break;
     case 4:
-        Sound_PlayEffect(SEQ_SE_DP_KON);
+        Sound_PlayEffect(SEQ_SE_DP_KON_sseq);
         break;
     case 5:
-        Sound_PlayFanfare(SEQ_FANFA1);
+        Sound_PlayFanfare(SEQ_FANFA1_sseq);
         break;
     default:
         break;

@@ -224,7 +224,7 @@ void UndergroundRecords_ShowTrainerCase(BgConfig *bgConfig, TrainerInfo *trainer
     UndergroundRecords_DrawTrainerCase(&ctx->window, loader, trainerInfo, undergroundRecord);
 
     Window_ScheduleCopyToVRAM(&ctx->window);
-    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
 
     recordsEnv->trainerCaseTask = SysTask_Start(UndergroundRecords_TrainerCaseTask, ctx, 10);
     recordsEnv->trainerCaseCtx = ctx;
@@ -382,7 +382,7 @@ RecordScreenContext *UndergroundRecords_ShowCheckFlagsScreen(BgConfig *bgConfig,
     UndergroundRecord *undergroundRecord = recordsEnv->record;
     UndergroundRecords_DrawCheckFlagsScreen(&ctx->window, loader, trainerInfo, undergroundRecord, underground);
 
-    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
     Window_ScheduleCopyToVRAM(&ctx->window);
     MessageLoader_Free(loader);
 

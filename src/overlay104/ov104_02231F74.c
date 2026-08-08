@@ -364,7 +364,7 @@ static void MenuSysTaskCallback(SysTask *task, void *data)
 
 static void FreeManagerWithMenu(FrontierMenuManager *menuManager)
 {
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
     Menu_Free(menuManager->menu, NULL);
     Window_EraseStandardFrame(menuManager->menuTemplate.window, FALSE);
@@ -529,7 +529,7 @@ static void ListMenuSysTaskCallback(SysTask *task, void *data)
     ListMenu_CalcTrueCursorPos(menuManager->listMenu, &menuManager->cursorPos);
 
     if (cursorPos != menuManager->cursorPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     if (JOY_REPEAT(PAD_KEY_UP) || JOY_REPEAT(PAD_KEY_DOWN) || JOY_REPEAT(PAD_KEY_LEFT) || JOY_REPEAT(PAD_KEY_RIGHT)) {
@@ -544,7 +544,7 @@ static void ListMenuSysTaskCallback(SysTask *task, void *data)
             break;
         case MENU_CANCEL:
             if (menuManager->canExitWithB == TRUE) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 *menuManager->selectedOptionPtr = MENU_CANCEL;
 
                 FreeManagerWithListMenu(data, TRUE);
@@ -552,7 +552,7 @@ static void ListMenuSysTaskCallback(SysTask *task, void *data)
 
             break;
         default:
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             *menuManager->selectedOptionPtr = selectedEntry;
 
             FreeManagerWithListMenu(data, TRUE);
@@ -564,7 +564,7 @@ static void ListMenuSysTaskCallback(SysTask *task, void *data)
 static void FreeManagerWithListMenu(FrontierMenuManager *menuManager, u8 playSound)
 {
     if (playSound == TRUE) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     ListMenu_Free(menuManager->listMenu, NULL, NULL);

@@ -98,6 +98,6 @@ void BattleCastleAppSprite_PlaySparkleAnim(BattleCastleAppSprite *sprite, u16 x,
     BattleCastleAppSprite_SetPosition(sprite, x, y);
     BattleCastleAppSprite_SetDrawFlag(sprite, TRUE);
 
-    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
-    Sound_PlayEffect(SEQ_SE_DP_DANSA4);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
+    Sound_PlayEffect(SEQ_SE_DP_DANSA4_sseq);
 }
