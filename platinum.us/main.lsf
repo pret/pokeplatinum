@@ -212,8 +212,7 @@ Static main
 	Object main.nef.p/src_scrcmd_dummy_23F_242.c.o
 	Object main.nef.p/src_unk_0204F04C.c.o
 	Object main.nef.p/src_scrcmd_battle_hall.c.o
-	Object main.nef.p/src_unk_0204FAB4.c.o
-	Object main.nef.p/src_unk_0205001C.c.o
+	Object main.nef.p/src_scrcmd_battle_castle.c.o
 	Object main.nef.p/src_unk_0205003C.c.o
 	Object main.nef.p/src_unk_02050548.c.o
 	Object main.nef.p/src_binoculars_vista_lighthouse.c.o
@@ -1482,19 +1481,19 @@ Overlay overlay98
 	Object main.nef.p/src_overlay098_ov98_022499C8.c.o
 }
 
-Overlay overlay99
+Overlay end_credits
 {
 	After main
-	Object main.nef.p/src_overlay099_ov99_021D0D80.c.o
-	Object main.nef.p/src_overlay099_ov99_021D1A54.c.o
-	Object main.nef.p/src_overlay099_ov99_021D2C08.c.o
-	Object main.nef.p/src_overlay099_ov99_021D2E28.c.o
-	Object main.nef.p/src_overlay099_ov99_021D340C.c.o
-	Object main.nef.p/src_overlay099_ov99_021D3A40.c.o
-	Object main.nef.p/src_overlay099_ov99_021D3C18.c.o
-	Object main.nef.p/src_overlay099_ov99_021D3DE0.c.o
-	Object main.nef.p/src_overlay099_ov99_021D3E78.c.o
-	Object main.nef.p/src_overlay099_ov99_021D4134.c.o
+	Object main.nef.p/src_cutscenes_end_credits_main.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_bike_morning.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_bike_day.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_bike_night.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_memories.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_twinleaf.c.o
+	Object main.nef.p/src_cutscenes_end_credits_scenes_fin.c.o
+	Object main.nef.p/src_cutscenes_end_credits_strings.c.o
+	Object main.nef.p/src_cutscenes_end_credits_common.c.o
 }
 
 Overlay overlay100
@@ -1542,7 +1541,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_frscrcmd.c.o
 	Object main.nef.p/src_overlay104_ov104_02231F74.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_factory.c.o
-	Object main.nef.p/src_overlay104_ov104_022339B4.c.o
+	Object main.nef.p/src_overlay104_battle_factory.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_hall.c.o
 	Object main.nef.p/src_overlay104_battle_hall.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_castle.c.o
@@ -1555,7 +1554,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_022395F0.c.o
 	Object main.nef.p/src_overlay104_ov104_02239C58.c.o
 	Object main.nef.p/src_overlay104_ov104_0223A0C4.c.o
-	Object main.nef.p/src_overlay104_ov104_0223A7F4.c.o
+	Object main.nef.p/src_overlay104_battle_factory_helpers.c.o
 	Object main.nef.p/src_overlay104_battle_hall_helpers.c.o
 	Object main.nef.p/src_overlay104_battle_castle_helpers.c.o
 	Object main.nef.p/src_overlay104_battle_arcade_helpers.c.o

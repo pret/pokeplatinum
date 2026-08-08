@@ -8,7 +8,7 @@
 typedef struct BattleFactoryAppArgs {
     SaveData *saveData;
     u8 challengeType;
-    u8 unk_05;
+    u8 isOpenLevel;
     u8 isExchangeMode;
     u8 padding_07;
     Party *personalParty;

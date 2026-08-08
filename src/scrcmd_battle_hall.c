@@ -333,9 +333,9 @@ static int SubTaskProcessPartyMenu(BattleHallTaskEnv *taskEnv, FieldSystem *fiel
     PartyMenu *partyMenu = *taskEnv->partyMenu;
 
     switch (partyMenu->selectedMonSlot) {
-    case 7:
+    case PARTY_MENU_SLOT_CANCEL:
         return SUBTASK_END_TASK;
-    case 6:
+    case MAX_PARTY_SIZE:
         return SUBTASK_END_TASK;
     default:
         break;

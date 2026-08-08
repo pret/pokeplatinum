@@ -13,8 +13,8 @@
 #include "applications/frontier/battle_factory/sprite_manager.h"
 #include "applications/frontier/battle_factory/windows.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "overlay104/battle_factory_helpers.h"
 #include "overlay104/frontier_opponents.h"
-#include "overlay104/ov104_0223A7F4.h"
 
 #include "bg_window.h"
 #include "communication_information.h"
@@ -61,10 +61,6 @@
 
 FS_EXTERN_OVERLAY(overlay104);
 
-#define NUM_INITIAL_SELECT_OPTIONS 6
-#define PARTY_SIZE_SOLO            3
-#define PARTY_SIZE_MULTI           2
-
 #define MENU_OPTION_SUMMARY  0
 #define MENU_OPTION_RENT     1
 #define MENU_OPTION_CANCEL   2
@@ -102,7 +98,7 @@ typedef struct BattleFactoryApp {
     ApplicationManager *monSummaryAppMan;
     u8 subState;
     u8 challengeType;
-    u8 unk_0A;
+    u8 isOpenLevel;
     u8 isExchangeMode;
     int conveyorXOffset;
     u8 printerID;
@@ -135,12 +131,12 @@ typedef struct BattleFactoryApp {
     PaletteData *plttData;
     G3DPipelineBuffers *g3dPipeline;
     PokemonSpriteManager *monSpriteMan;
-    PokemonSprite *monSprites[MATH_MAX(PARTY_SIZE_SOLO, PARTY_SIZE_MULTI)];
+    PokemonSprite *monSprites[MATH_MAX(FACTORY_PARTY_SIZE_SOLO, FACTORY_PARTY_SIZE_MULTI)];
     Options *options;
     SaveData *saveData;
     PokemonSummary *monSummary;
     BattleFactoryAppSpriteManager spriteMan;
-    BattleFactoryAppPokeballSprite *ballSprites[NUM_INITIAL_SELECT_OPTIONS];
+    BattleFactoryAppPokeballSprite *ballSprites[FACTORY_INITIAL_RENTAL_OPTIONS];
     BattleFactoryAppCursor *monCursor;
     BattleFactoryAppCursor *menuCursor;
     BattleFactoryAppPanelSprite *bluePanelSprite;
@@ -153,8 +149,8 @@ typedef struct BattleFactoryApp {
     NARC *narc;
     u16 commPayload[60];
     u16 partnerTradedMon;
-    u16 partnerMonSpecies[PARTY_SIZE_MULTI];
-    u16 partnenMonGenders[PARTY_SIZE_MULTI];
+    u16 partnerMonSpecies[FACTORY_PARTY_SIZE_MULTI];
+    u16 partnenMonGenders[FACTORY_PARTY_SIZE_MULTI];
     u8 numTradeResultMsgReceived;
     u8 partnerListingUpdateNeeded;
     u32 unused3;
@@ -256,7 +252,7 @@ static void DummyCreatePayload(BattleFactoryApp *app, u16 cmd);
 static void CreateUpdateSelectionPayload(BattleFactoryApp *app, u16 cmd, u16 unused);
 static void CreateTradeResultPayload(BattleFactoryApp *app, u16 cmd, u16 tradedMon);
 
-static const CoordinatesU16 sInitialSelectionPokeballPositions[NUM_INITIAL_SELECT_OPTIONS] = {
+static const CoordinatesU16 sInitialSelectionPokeballPositions[FACTORY_INITIAL_RENTAL_OPTIONS] = {
     { 24, 112 },
     { 64, 112 },
     { 104, 112 },
@@ -265,25 +261,25 @@ static const CoordinatesU16 sInitialSelectionPokeballPositions[NUM_INITIAL_SELEC
     { 224, 112 }
 };
 
-static const CoordinatesU16 sExchangeSelectPokeballPositions[PARTY_SIZE_SOLO] = {
+static const CoordinatesU16 sExchangeSelectPokeballPositions[FACTORY_PARTY_SIZE_SOLO] = {
     { 64, 112 },
     { 120, 112 },
     { 176, 112 }
 };
 
-static const CoordinatesU16 sExchangeSelectMultiPokeballPositions[PARTY_SIZE_MULTI] = {
+static const CoordinatesU16 sExchangeSelectMultiPokeballPositions[FACTORY_PARTY_SIZE_MULTI] = {
     { 96, 112 },
     { 152, 112 }
 };
 
-static const CoordinatesU16 sReceiveSelectMultiPokeballPositions[PARTY_SIZE_MULTI * 2] = {
+static const CoordinatesU16 sReceiveSelectMultiPokeballPositions[FACTORY_PARTY_SIZE_MULTI * 2] = {
     { 40, 112 },
     { 96, 112 },
     { 152, 112 },
     { 208, 112 }
 };
 
-static const CoordinatesS16 sInitialSelectCursorPositions[NUM_INITIAL_SELECT_OPTIONS] = {
+static const CoordinatesS16 sInitialSelectCursorPositions[FACTORY_INITIAL_RENTAL_OPTIONS] = {
     { 24, 112 },
     { 64, 112 },
     { 104, 112 },
@@ -292,7 +288,7 @@ static const CoordinatesS16 sInitialSelectCursorPositions[NUM_INITIAL_SELECT_OPT
     { 224, 112 }
 };
 
-static const CoordinatesS16 sExchangeSelectCursorPositions[PARTY_SIZE_SOLO + 1] = {
+static const CoordinatesS16 sExchangeSelectCursorPositions[FACTORY_PARTY_SIZE_SOLO + 1] = {
     { 64, 112 },
     { 120, 112 },
     { 176, 112 },
@@ -306,7 +302,7 @@ static const u8 sExchangeSelectCursorAnimIDs[NELEMS(sExchangeSelectCursorPositio
     ANIM_ID_MENU_CURSOR
 };
 
-static const CoordinatesS16 sExchangeSelectMultiCursorPositions[PARTY_SIZE_MULTI + 1] = {
+static const CoordinatesS16 sExchangeSelectMultiCursorPositions[FACTORY_PARTY_SIZE_MULTI + 1] = {
     { 96, 112 },
     { 152, 112 },
     { 212, 144 }
@@ -318,7 +314,7 @@ static const u8 sExchangeSelectMultiCursorAnimIDs[NELEMS(sExchangeSelectMultiCur
     ANIM_ID_MENU_CURSOR
 };
 
-static const CoordinatesS16 sReceiveSelectCursorPositions[PARTY_SIZE_SOLO + 2] = {
+static const CoordinatesS16 sReceiveSelectCursorPositions[FACTORY_PARTY_SIZE_SOLO + 2] = {
     { 64, 112 },
     { 120, 112 },
     { 176, 112 },
@@ -334,7 +330,7 @@ static const u8 sReceiveSelectCursorAnimIDs[NELEMS(sReceiveSelectCursorPositions
     ANIM_ID_MENU_CURSOR
 };
 
-static const CoordinatesS16 sReceiveSelectMultiCursorPositions[PARTY_SIZE_MULTI * 2 + 2] = {
+static const CoordinatesS16 sReceiveSelectMultiCursorPositions[FACTORY_PARTY_SIZE_MULTI * 2 + 2] = {
     { 40, 112 },
     { 96, 112 },
     { 152, 112 },
@@ -389,7 +385,7 @@ int BattleFactoryApp_Init(ApplicationManager *appMan, int *state)
 
     app->saveData = args->saveData;
     app->challengeType = args->challengeType;
-    app->unk_0A = args->unk_05;
+    app->isOpenLevel = args->isOpenLevel;
     app->isExchangeMode = args->isExchangeMode;
     app->personalParty = args->personalParty;
     app->receivableParty = args->receivableParty;

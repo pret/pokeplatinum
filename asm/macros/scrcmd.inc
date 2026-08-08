@@ -4301,30 +4301,30 @@
     .short \challengeType
     .endm
 
-    .macro ScrCmd_2D2 arg0, arg1, arg2
-    .short SCRCMD_2D2
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro CallBattleCastleLobbyFunction action, arg, result
+    .short SCRCMD_CALLBATTLECASTLELOBBYFUNCTION
+    .short \action
+    .short \arg
+    .short \result
     .endm
 
-    .macro ScrCmd_2D3 arg0, arg1, arg2
-    .short SCRCMD_2D3
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro CheckBattleCastlePartnerUsesDifferentSpecies species1, species2, result
+    .short SCRCMD_CHECKBATTLECASTLEPARTNERUSESDIFFERENTSPECIES
+    .short \species1
+    .short \species2
+    .short \result
     .endm
 
-    .macro ScrCmd_2D4 arg0, arg1, arg2
-    .short SCRCMD_2D4
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro GetBattleCastleSelectedSlots selectedSlot1, selectedSlot2, selectedSlot3
+    .short SCRCMD_GETBATTLECASTLESELECTEDSLOTS
+    .short \selectedSlot1
+    .short \selectedSlot2
+    .short \selectedSlot3
     .endm
 
-    .macro ScrCmd_2D5 arg0
-    .short SCRCMD_2D5
-    .short \arg0
+    .macro DeleteActiveBattleCastleStreak challengeType
+    .short SCRCMD_DELETEACTIVEBATTLECASTLESTREAK
+    .short \challengeType
     .endm
 
     .macro SaveExtraData
