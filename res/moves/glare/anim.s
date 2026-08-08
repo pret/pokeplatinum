@@ -10,7 +10,7 @@ L_0:
     LoadAnimResObj 0, glare_anim_NANR_lz
     AddSpriteWithFunc 0, SPRITE_FUNC_SCARY_FACE, glare_NCGR_lz, glare_NCLR, glare_cell_NCER_lz, glare_anim_NANR_lz, 0, 0
     Delay 8
-    PlaySoundEffectC SEQ_SE_DP_W043D
+    PlaySoundEffectC SEQ_SE_DP_W043D_sseq
     WaitForAnimTasks
     FreeSpriteManager 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK

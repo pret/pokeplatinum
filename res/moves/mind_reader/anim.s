@@ -7,8 +7,8 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_W109
-    PlayDelayedSoundEffectR SEQ_SE_DP_W043, 30
+    PlaySoundEffectR SEQ_SE_DP_W109_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_W043_sseq, 30
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK

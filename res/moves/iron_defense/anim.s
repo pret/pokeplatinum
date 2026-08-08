@@ -8,7 +8,7 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 12, BATTLE_COLOR_WHITE
     WaitForAnimTasks
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 12, 0, BATTLE_COLOR_WHITE
-    PlayLoopedSoundEffectL SEQ_SE_DP_W231, 8, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W231_sseq, 8, 2
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1

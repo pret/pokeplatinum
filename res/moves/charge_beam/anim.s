@@ -10,9 +10,9 @@ L_0:
     CreateEmitter 0, 11, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 12, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 13, EMITTER_CB_SET_POS_TO_ATTACKER
-    PlayLoopedSoundEffectL SEQ_SE_DP_206, 4, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_206_sseq, 4, 5
     Delay 80
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_291, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_291_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterForMove 0, 1, 2, 3, 4, 5, 6, 18
     Delay 5
     Func_Shake 2, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
@@ -30,9 +30,9 @@ L_1:
     CreateEmitter 0, 11, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 12, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 13, EMITTER_CB_SET_POS_TO_ATTACKER
-    PlayLoopedSoundEffectL SEQ_SE_DP_206, 4, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_206_sseq, 4, 5
     Delay 80
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_291, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_291_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterForFriendlyFire 0, 8, 9, 8, 9, 3
     Delay 5
     Func_Shake 2, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
@@ -50,9 +50,9 @@ L_2:
     CreateEmitter 0, 11, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 12, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 13, EMITTER_CB_SET_POS_TO_ATTACKER
-    PlayLoopedSoundEffectL SEQ_SE_DP_206, 4, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_206_sseq, 4, 5
     Delay 80
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_291, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_291_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 7, EMITTER_CB_NONE
     Delay 5
     Func_Shake 2, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

@@ -11,11 +11,11 @@ L_0:
 
 L_1:
     BeginLoop 2
-    PlaySoundEffectL SEQ_SE_DP_W085B
+    PlaySoundEffectL SEQ_SE_DP_W085B_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, -8, 8
     Delay 8
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, 16, 16
-    PlaySoundEffectL SEQ_SE_DP_203
+    PlaySoundEffectL SEQ_SE_DP_203_sseq
     Delay 16
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, -8, 8
     Delay 8
@@ -26,11 +26,11 @@ L_1:
 
 L_2:
     BeginLoop 2
-    PlaySoundEffectL SEQ_SE_DP_W085B
+    PlaySoundEffectL SEQ_SE_DP_W085B_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, 8, 8
     Delay 8
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, -16, 16
-    PlaySoundEffectL SEQ_SE_DP_203
+    PlaySoundEffectL SEQ_SE_DP_203_sseq
     Delay 16
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, 8, 8
     Delay 8

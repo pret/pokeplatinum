@@ -14,7 +14,7 @@ L_1:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
-    PlaySoundEffectR SEQ_SE_DP_W030
+    PlaySoundEffectR SEQ_SE_DP_W030_sseq
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -29,7 +29,7 @@ L_2:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
-    PlaySoundEffectR SEQ_SE_DP_W030
+    PlaySoundEffectR SEQ_SE_DP_W030_sseq
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -44,7 +44,7 @@ L_3:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
-    PlaySoundEffectR SEQ_SE_DP_W030
+    PlaySoundEffectR SEQ_SE_DP_W030_sseq
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
