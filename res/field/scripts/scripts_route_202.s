@@ -359,7 +359,7 @@ Route202_Movement_PlayerWalkWestIntoTallGrass:
     EndMovement
 
 Route202_Counterpart:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -368,7 +368,7 @@ Route202_Counterpart:
     CallIfEq VAR_0x8000, GENDER_MALE, Route202_DawnLetMeShowPokeRadar
     CallIfEq VAR_0x8000, GENDER_FEMALE, Route202_LucasLetMeExplainPokeRadar
     CloseMessage
-    PlayMusic SEQ_POKERADAR
+    PlayMusic SEQ_KUSAGASA_sseq
     AddCameraOverrideObject 189, 818
     ApplyFreeCameraMovement Route202_Movement_CameraMoveEast
     WaitMovement

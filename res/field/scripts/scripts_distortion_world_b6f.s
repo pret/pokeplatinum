@@ -22,7 +22,7 @@ DistortionWorldB6F_Cynthia:
     End
 
 DistortionWorldB6F_CynthiaPuzzleFinished:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message DistortionWorldB6F_Text_LakePokemonWentHome

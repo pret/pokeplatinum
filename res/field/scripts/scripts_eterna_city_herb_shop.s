@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 EternaCityHerbShop_Vendor:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message EternaCityHerbShop_Text_Welcome

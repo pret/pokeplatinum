@@ -546,7 +546,7 @@ AmitySquare_EastReceptionist:
     End
 
 AmitySquare_Receptionist:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
@@ -905,7 +905,7 @@ AmitySquare_PrepareShowFollower:
     End
 
 AmitySquare_FollowerMon:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPartyMonNickname 0, VAR_FOLLOWER_MON_PARTY_ID
@@ -915,7 +915,7 @@ AmitySquare_FollowerMon:
     End
 
 AmitySquare_GiftMan:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DAILY_RECEIVED_AMITY_SQUARE_MAN_GIFT, AmitySquare_GiftMan_ReceivedGift
@@ -934,7 +934,7 @@ AmitySquare_GiftMan_ItemGift:
     GoToIfCannotFitItem LOCAL_VAR_ITEM_OR_ACCESSORY_ID, LOCAL_VAR_ITEM_OR_ACCESSORY_COUNT, VAR_RESULT, AmitySquare_GiftMan_CannotFitItem
     BufferPlayerName 0
     BufferItemNamePlural 1, LOCAL_VAR_ITEM_OR_ACCESSORY_ID
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     Message AmitySquare_Text_PlayerReceivedItem
     WaitFanfare
     AddItem LOCAL_VAR_ITEM_OR_ACCESSORY_ID, LOCAL_VAR_ITEM_OR_ACCESSORY_COUNT, VAR_RESULT
@@ -1121,7 +1121,7 @@ AmitySquare_DoWarp:
     ScrCmd_338
     ApplyMovement LOCALID_FOLLOWER_MON, AmitySquare_Movement_FollowerMonFaceSouthSetInvisible
     WaitMovement
-    PlaySE SEQ_SE_DP_GYURU
+    PlaySE SEQ_SE_DP_GYURU_sseq
     CallIfEq VAR_0x8003, 1, AmitySquare_SetPositionsWarp1
     CallIfEq VAR_0x8003, 2, AmitySquare_SetPositionsWarp2
     CallIfEq VAR_0x8003, 3, AmitySquare_SetPositionsWarp3

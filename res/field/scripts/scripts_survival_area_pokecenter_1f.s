@@ -14,7 +14,7 @@ SurvivalAreaPokecenter1F_Nurse:
     End
 
 SurvivalAreaPokecenter1F_AceTrainerM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_VISITED_BATTLEGROUND, SurvivalAreaPokecenter1F_ChallengeWithoutOwnPokemon

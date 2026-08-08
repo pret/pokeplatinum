@@ -26,7 +26,7 @@ MiningMuseum_AceTrainerF:
     End
 
 MiningMuseum_FossilResearcher:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_MAP_LOCAL_0x01, MiningMuseum_ExtractingPokemon
@@ -222,7 +222,7 @@ MiningMuseum_PokemonRevival:
     GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, MiningMuseum_PartyFull
     BufferSpeciesNameFromVar 1, VAR_REVIVED_POKEMON_SPECIES, 0, 0
     BufferPlayerName 0
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     Message MiningMuseum_Text_ReceivedPokemon
     WaitFanfare
     GivePokemon VAR_REVIVED_POKEMON_SPECIES, 20, ITEM_NONE, VAR_RESULT

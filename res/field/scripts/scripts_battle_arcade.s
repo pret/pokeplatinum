@@ -34,7 +34,7 @@ BattleArcade_HideBattleFrontierReporter:
     End
 
 BattleArcade_SingleAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, 0
@@ -43,7 +43,7 @@ BattleArcade_SingleAttendant:
     End
 
 BattleArcade_MultiAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, 0
@@ -278,7 +278,7 @@ BattleArcade_WalkIntoCorridor:
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleArcade_WalkToCorridorSingleChallenge
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleArcade_WalkToCorridorDoubleChallenge
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_WalkToCorridorMultiChallenge
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     GoTo BattleArcade_StartChallenge
     End
 
@@ -458,8 +458,8 @@ BattleArcade_SaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlaySE SEQ_SE_DP_SAVE
-    WaitSE SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE_sseq
+    WaitSE SEQ_SE_DP_SAVE_sseq
     Return
 
 BattleArcade_OnFrame_DidntSaveBeforeQuit:
@@ -484,7 +484,7 @@ BattleArcade_EarnedSilverPrint:
     Message BattleArcade_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleArcade_Text_SilverPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 2
     Return
@@ -493,7 +493,7 @@ BattleArcade_EarnedGoldPrint:
     Message BattleArcade_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleArcade_Text_GoldPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained

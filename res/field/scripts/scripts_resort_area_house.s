@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 ResortAreaHouse_Collector:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message ResortAreaHouse_Text_AllINeedIsTV
@@ -30,7 +30,7 @@ ResortAreaHouse_OldMan:
     End
 
 ResortAreaHouse_NinjaBoy:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerGender VAR_RESULT

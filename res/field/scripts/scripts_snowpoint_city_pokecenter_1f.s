@@ -27,7 +27,7 @@ SnowpointCityPokecenter1F_Psyduck:
     End
 
 SnowpointCityPokecenter1F_Maylene:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointCityPokecenter1F_ThatsTheIcicleBadge

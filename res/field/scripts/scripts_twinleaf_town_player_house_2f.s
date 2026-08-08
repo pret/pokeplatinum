@@ -20,14 +20,14 @@ TwinleafTownPlayerHouse2F_OnTransition:
     End
 
 TwinleafTownPlayerHouse2F_SetVolumeForTV:
-    SetInitialVolumeForSequence SEQ_TV_HOUSOU, 50
+    SetInitialVolumeForSequence SEQ_TV_HOUSOU_sseq, 50
     End
 
 TwinleafTownPlayerHouse2F_OnFrame_ConcludeSpecialProgram:
     LockAll
     SetVar VAR_PLAYER_HOUSE_SPECIAL_PROGRAM_STATE, 1
     Message TwinleafTownPlayerHouse2F_Text_ConcludesSpecialProgram
-    PlayFanfare SEQ_TV_END
+    PlayFanfare SEQ_TV_END_sseq
     Message TwinleafTownPlayerHouse2F_Text_SeeYouNextWeek
     WaitFanfare
     CloseMessage
@@ -40,7 +40,7 @@ TwinleafTownPlayerHouse2F_Wii:
     End
 
 TwinleafTownPlayerHouse2F_PC:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     BufferPlayerName 0
     Message TwinleafTownPlayerHouse2F_Text_PCPokemonBasics
@@ -120,10 +120,10 @@ TwinleafTownPlayerHouse2F_Rival:
     CallIfEq VAR_MAP_LOCAL_0x00, 1, TwinleafTownPlayerHouse2F_RivalLeaveWest
     CallIfEq VAR_MAP_LOCAL_0x00, 2, TwinleafTownPlayerHouse2F_RivalLeaveEast
     CallIfEq VAR_MAP_LOCAL_0x00, 3, TwinleafTownPlayerHouse2F_RivalLeaveSouth
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_RIVAL
     Common_FadeToDefaultMusic2
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
     SetVar VAR_PLAYER_HOUSE_RIVAL_STATE, 1
     ReleaseAll

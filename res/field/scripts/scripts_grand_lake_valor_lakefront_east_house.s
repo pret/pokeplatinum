@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 GrandLakeValorLakefrontEastHouse_Beauty:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE_WHITE_FLUTE, GrandLakeValorLakefrontEastHouse_BlowToAttractPokemon

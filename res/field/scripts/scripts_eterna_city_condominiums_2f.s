@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 EternaCityCondominiums2F_ExpertF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_2F_TM67, EternaCityCondominiums2F_LongHistory

@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 Route228NorthHouse_ExpertM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_TALKED_TO_ROUTE_228_NORTH_HOUSE_EXPERT_M, Route228NorthHouse_AskTeachUltimateMove

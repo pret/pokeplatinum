@@ -81,7 +81,7 @@ PokemonCenter2FCommon_Movement_PlayerExitThroughGate:
     EndMovement
 
 PokemonCenter2FCommon_AttendantColosseum:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -371,7 +371,7 @@ PokemonCenter2FCommon_Movement_PlayerEnterDoor:
     EndMovement
 
 PokemonCenter2FCommon_AttendantUnionRoom:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -469,7 +469,7 @@ _06A0:
     End
 
 PokemonCenter2FCommon_AttendantSignTrainerCard:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetFlag FLAG_DUMMY_0x00AA

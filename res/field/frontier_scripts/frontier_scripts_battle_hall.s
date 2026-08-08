@@ -497,8 +497,8 @@ _03A6:
     ApplyMovement 3, _0188
     ApplyMovement 10, _0144
     WaitMovement
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     FrontierScrCmd_25 0
     FrontierScrCmd_25 3
@@ -512,8 +512,8 @@ _0404:
     ApplyMovement 1, _0144
     ApplyMovement 2, _0164
     WaitMovement
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
@@ -890,7 +890,7 @@ _0AD6:
     BufferNumber 1, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     Message BattleHallScene_Text_ReceiveBP
-    PlayFanfare SEQ_PL_POINTGET3
+    PlayFanfare SEQ_PL_POINTGET3_sseq
     WaitFanfare
     FrontierScrCmd_C7
     GoTo _0B1D
@@ -904,7 +904,7 @@ _0B25:
     CallBattleHallFunction BH_FUNC_GET_PLAYERS_MONS_SPECIES, 0, 0, VAR_0x8008
     BufferSpeciesName 0, VAR_0x8008
     Message BattleHallScene_Text_FullRestore
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     GoTo _0B48
@@ -1103,7 +1103,7 @@ _0E30:
     Return
 
 _0E62:
-    PlaySoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
     BufferPlayerName 0
     Message BattleHallScene_Text_BattleSaved
     Return
@@ -1260,8 +1260,8 @@ _1087:
     ShowSavingIcon
     Call _10C2
     HideSavingIcon
-    PlaySoundEffect SEQ_SE_DP_SAVE
-    WaitSoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
+    WaitSoundEffect SEQ_SE_DP_SAVE_sseq
     Return
 
 _109F:
@@ -1270,8 +1270,8 @@ _109F:
     BattleHall_UpdateWinRecord VAR_0x8008
     CallIfEq VAR_0x8008, 0, _10C2
     HideSavingIcon
-    PlaySoundEffect SEQ_SE_DP_SAVE
-    WaitSoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
+    WaitSoundEffect SEQ_SE_DP_SAVE_sseq
     Return
 
 _10C2:
@@ -1279,7 +1279,7 @@ _10C2:
     Return
 
 _10C8:
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     CallBattleHallFunction BH_FUNC_GET_CURRENT_ROUND, 0, 0, VAR_0x8008
     GoToIfLt VAR_0x8008, 2, _10F5
     GoToIfLt VAR_0x8008, 5, _1109
@@ -1306,29 +1306,29 @@ _1125:
     CallBattleHallFunction BH_FUNC_GET_CURRENT_BATTLE, 0, 0, VAR_0x8008
     AddVar VAR_0x8008, 1
     GoToIfEq VAR_0x8008, 10, _1159
-    PlaySoundEffect SEQ_SE_DP_UG_022
+    PlaySoundEffect SEQ_SE_DP_UG_022_sseq
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_2
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_3
-    WaitSoundEffect SEQ_SE_DP_UG_022
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    WaitSoundEffect SEQ_SE_DP_UG_022_sseq
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     Return
 
 _1159:
-    PlaySoundEffect SEQ_SE_DP_UG_022
+    PlaySoundEffect SEQ_SE_DP_UG_022_sseq
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_4
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_6
-    WaitSoundEffect SEQ_SE_DP_UG_022
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    WaitSoundEffect SEQ_SE_DP_UG_022_sseq
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     Return
 
 _1173:
-    PlaySoundEffect SEQ_SE_DP_UG_022
+    PlaySoundEffect SEQ_SE_DP_UG_022_sseq
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_4
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_6
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_0
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_1
-    WaitSoundEffect SEQ_SE_DP_UG_022
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    WaitSoundEffect SEQ_SE_DP_UG_022_sseq
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     Return
 
 _1199:
@@ -1377,23 +1377,23 @@ _1207:
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_18
     ApplyMovement 98, _02C0
     WaitMovement
-    PlaySoundEffect SEQ_SE_DP_DENDOU
-    WaitSoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
+    WaitSoundEffect SEQ_SE_DP_DENDOU_sseq
     ApplyMovement 0, _01B4
     ApplyMovement 98, _0298
     WaitMovement
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_11
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_12
-    WaitSoundEffect SEQ_SE_DP_DENDOU
+    WaitSoundEffect SEQ_SE_DP_DENDOU_sseq
     FrontierScrCmd_4E 10, 160, 230, 192, 10, 0
     ApplyMovement 0, _01BC
     ApplyMovement 98, _02A4
     WaitMovement
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_11
     CreateParticleSystemEmitter 0, HALL_EMITTER_UNK_12
-    WaitSoundEffect SEQ_SE_DP_DENDOU
+    WaitSoundEffect SEQ_SE_DP_DENDOU_sseq
     ApplyMovement 0, _01C4
     ApplyMovement 98, _02B0
     WaitMovement

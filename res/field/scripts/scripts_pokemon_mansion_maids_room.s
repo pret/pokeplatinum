@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 PokemonMansionMaidsRoom_MaidMiddle:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_POKEMON_MANSION_MAIDS_ROOM_SOOTHE_BELL, PokemonMansionMaidsRoom_TrainerThatPokemonLove
@@ -40,7 +40,7 @@ PokemonMansionMaidsRoom_MaidEast:
     End
 
 PokemonMansionMaidsRoom_Bed:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message PokemonMansionMaidsRoom_Text_WantToRest
     ShowYesNoMenu VAR_RESULT
@@ -54,7 +54,7 @@ PokemonMansionMaidsRoom_Rest:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     FadeScreenIn

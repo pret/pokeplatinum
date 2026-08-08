@@ -13,7 +13,7 @@ IronIsland_OnTransition:
     End
 
 IronIsland_Sailor:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerDir VAR_0x8004
@@ -44,7 +44,7 @@ IronIsland_TellWheneverSetSail:
 IronIsland_SailorEnterShip:
     ApplyMovement LOCALID_SAILOR, IronIsland_Movement_SailorFaceWest
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_SAILOR, IronIsland_Movement_SetInvisible
     WaitMovement
     Return
@@ -52,7 +52,7 @@ IronIsland_SailorEnterShip:
 IronIsland_PlayerEnterShipSouth:
     ApplyMovement LOCALID_PLAYER, IronIsland_Movement_PlayerWalkToShipSouth
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, IronIsland_Movement_SetInvisible
     WaitMovement
     Return
@@ -60,7 +60,7 @@ IronIsland_PlayerEnterShipSouth:
 IronIsland_PlayerEnterShipWest:
     ApplyMovement LOCALID_PLAYER, IronIsland_Movement_PlayerWalkToShipWest
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, IronIsland_Movement_SetInvisible
     WaitMovement
     Return
@@ -90,7 +90,7 @@ IronIsland_Movement_PlayerWalkToShipWest:
     EndMovement
 
 IronIsland_Riley:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -117,9 +117,9 @@ IronIsland_RileyEnterIronIsland:
     CloseMessage
     ApplyMovement LOCALID_RILEY, IronIsland_Movement_RileyWalkOnSpotNorth
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_RILEY
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     ReleaseAll
     End
 

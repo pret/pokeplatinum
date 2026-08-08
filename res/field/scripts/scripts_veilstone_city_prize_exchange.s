@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 VeilstoneCityPrizeExchange_Receptionist:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x01, 19
@@ -37,8 +37,8 @@ VeilstoneCityPrizeExchange_TryBuyPrize:
     AddItem VAR_0x8000, 1, VAR_RESULT
     SubtractCoins VAR_0x8001
     UpdateCoinDisplay
-    PlaySE SEQ_SE_DP_REGI
-    WaitSE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
+    WaitSE SEQ_SE_DP_REGI_sseq
     GoTo VeilstoneCityPrizeExchange_TryBuyPrize
     End
 
@@ -95,7 +95,7 @@ VeilstoneCityPrizeExchange_FinishMenu:
     Return
 
 VeilstoneCityPrizeExchange_Guitarist:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_TALKED_TO_VEILSTONE_CITY_PRIZE_EXCHANGE_GUITARIST, VeilstoneCityPrizeExchange_AskTellHiddenPowerType

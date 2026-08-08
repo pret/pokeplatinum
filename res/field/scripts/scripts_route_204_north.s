@@ -12,7 +12,7 @@ Route204North_Youngster:
     End
 
 Route204North_AceTrainerF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_204_NORTH_TM78, Route204North_CaptivateOppositeGender
