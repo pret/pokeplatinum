@@ -8,15 +8,15 @@
 #include "ball_seal_info.h"
 #include "unk_02097B18.h"
 
-int ov12_02237E54(s16 param0, s16 param1, s16 param2, s16 param3)
+int ov12_02237E54(s16 x1, s16 y1, s16 x2, s16 y2)
 {
-    int v0;
-    s16 v1 = (param0 - param2);
-    s16 v2 = (param1 - param3) * -1;
+    int distance;
+    s16 dx = (x1 - x2);
+    s16 dy = (y1 - y2) * -1;
 
-    v0 = FX_Sqrt(((v2 * v2) + (v1 * v1)) * FX32_ONE) / FX32_ONE;
+    distance = FX_Sqrt(((dy * dy) + (dx * dx)) * FX32_ONE) / FX32_ONE;
 
-    return v0;
+    return distance;
 }
 
 int ov12_02237E80(BallSeal *param0)

@@ -1,24 +1,14 @@
-#ifndef POKEPLATINUM_OV76_0223B140_H
-#define POKEPLATINUM_OV76_0223B140_H
+#ifndef POKEPLATINUM_OV76_PLACEMENT_H
+#define POKEPLATINUM_OV76_PLACEMENT_H
 
 #include "struct_defs/seal_case.h"
 
-#include "overlay076/struct_ov76_0223DE00.h"
+#include "overlay076/defs.h"
 
 #include "sprite_system.h"
 #include "touch_screen.h"
 
 #define SEAL_OBJ_ID_OFFSET 20000
-
-typedef struct {
-    BOOL shouldRender;
-    u8 type;
-    u8 x;
-    u8 y;
-    u8 unused;
-    ManagedSprite *sprite;
-    TouchScreenRect *touchScreenRect;
-} SealRenderInfo;
 
 void ov76_0223B184(TouchScreenRect *rect, ManagedSprite *param1, BOOL param2);
 void ov76_0223B1E0(UnkStruct_ov76_0223DE00 *param0);
@@ -40,4 +30,4 @@ void ov76_0223B7D4(UnkStruct_ov76_0223DE00 *param0, int param1);
 void ov76_0223B808(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223B848(BallCapsule *param0, UnkStruct_ov76_0223DE00 *param1);
 
-#endif // POKEPLATINUM_OV76_0223B140_H
+#endif // POKEPLATINUM_OV76_PLACEMENT_H

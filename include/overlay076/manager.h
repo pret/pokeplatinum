@@ -1,13 +1,28 @@
-#ifndef POKEPLATINUM_OV76_0223D338_H
-#define POKEPLATINUM_OV76_0223D338_H
+#ifndef POKEPLATINUM_OV76_MANAGER_H
+#define POKEPLATINUM_OV76_MANAGER_H
 
 #include "struct_defs/seal_case.h"
 
-#include "overlay076/struct_ov76_0223DE00.h"
+#include "overlay076/defs.h"
+#include "overlay076/struct_ov76_0223DD88_sub1.h"
+#include "overlay076/struct_ov76_0223DD88_sub3.h"
+#include "overlay076/unk_0223B140.h"
 
 #include "bg_window.h"
+#include "narc.h"
+#include "pokemon.h"
 #include "sprite_system.h"
 #include "touch_screen.h"
+
+#define SEAL_INIT_STATE_ID              0
+#define SEAL_FADE_IN_STATE_ID           1
+#define SEAL_FADE_IN_WAIT_STATE_ID      2
+#define SEAL_CAPSULE_SELECTION_STATE_ID 3
+#define SEAL_CAPSULE_MENU_STATE_ID      4
+#define SEAL_FADE_OUT_STATE_ID          5
+#define SEAL_FADE_OUT_WAIT_STATE_ID     6
+
+typedef int (*SealMenuCallback)(SealAppManager *);
 
 void ov76_0223D338(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223D350(UnkStruct_ov76_0223DE00 *param0);
@@ -33,4 +48,4 @@ void ov76_0223EB54(int param0);
 void ov76_0223EB64(BgConfig *param0);
 void ov76_0223ECB0(void *param0);
 
-#endif // POKEPLATINUM_OV76_0223D338_H
+#endif // POKEPLATINUM_OV76_MANAGER_H

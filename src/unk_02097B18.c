@@ -10,9 +10,9 @@
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "field/field_system.h"
+#include "overlay076/graphics.h"
+#include "overlay076/manager.h"
 #include "overlay076/ov76_0223B140.h"
-#include "overlay076/ov76_0223B870.h"
-#include "overlay076/ov76_0223D338.h"
 #include "overlay076/struct_ov76_0223DE00.h"
 #include "savedata/save_table.h"
 
@@ -55,9 +55,9 @@ typedef struct {
 } UnkStruct_02097F38_sub1;
 
 typedef struct {
-    UnkStruct_ov76_0223DE00 *unk_00;
+    SealAppManager *unk_00;
     UnkStruct_02097F38_sub1 *unk_04;
-    UnkStruct_02097F18 *unk_08;
+    SealAppData *unk_08;
     PartyMenu *partyMenu;
     SaveData *saveData;
     int unk_14;
@@ -76,22 +76,22 @@ const ApplicationManagerTemplate Unk_020F64C0 = {
 
 static int sub_02097B18(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov76_0223DE00 *v0;
-    UnkStruct_02097F18 *v1;
+    SealAppManager *v0;
+    SealAppData *v1;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_53, 0x80000);
     ov76_0223EB20(53);
     ov76_0223D3A0();
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov76_0223DE00), HEAP_ID_53);
-    memset(v0, 0, sizeof(UnkStruct_ov76_0223DE00));
+    v0 = ApplicationManager_NewData(appMan, sizeof(SealAppManager), HEAP_ID_53);
+    memset(v0, 0, sizeof(SealAppManager));
 
-    v0->unk_D4.unk_15C = ov76_0223BE6C();
+    v0->graphicsMan.pipelineBuffers = SealGraphics_PipelineInit();
     v1 = ApplicationManager_Args(appMan);
     v0->unk_00 = v1;
     v0->unk_42C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_53);
     v0->unk_428 = Pokemon_New(HEAP_ID_53);
-    v0->unk_D4.unk_00 = 0xFF;
+    v0->graphicsMan.unk_00 = 0xFF;
     v0->unk_418.unk_00 = 0;
 
     int v2 = 0;
@@ -136,26 +136,26 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
         }
     }
 
-    v0->unk_D4.unk_10 = BgConfig_New(HEAP_ID_53);
+    v0->graphicsMan.unk_10 = BgConfig_New(HEAP_ID_53);
     VramTransfer_New(64, HEAP_ID_53);
-    v0->unk_D4.unk_14 = PaletteData_New(HEAP_ID_53);
-    PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, TRUE);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    v0->graphicsMan.unk_14 = PaletteData_New(HEAP_ID_53);
+    PaletteData_SetAutoTransparent(v0->graphicsMan.unk_14, TRUE);
+    PaletteData_AllocBuffer(v0->graphicsMan.unk_14, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->graphicsMan.unk_14, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->graphicsMan.unk_14, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->graphicsMan.unk_14, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
 
-    ov76_0223EB64(v0->unk_D4.unk_10);
+    ov76_0223EB64(v0->graphicsMan.unk_10);
     ov76_0223BF10();
 
-    v0->unk_D4.unk_D0 = PokemonSpriteManager_New(HEAP_ID_53);
-    v0->unk_D4.unk_188 = PokemonAnimManager_New(HEAP_ID_53, 1, FALSE);
+    v0->graphicsMan.unk_D0 = PokemonSpriteManager_New(HEAP_ID_53);
+    v0->graphicsMan.unk_188 = PokemonAnimManager_New(HEAP_ID_53, 1, FALSE);
 
     int v7 = Options_Frame(v0->unk_00->options);
-    ov76_0223C8EC(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
-    ov76_0223C974(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
+    SealGraphics_LoadMainWindow(v0->graphicsMan.unk_10, v0->graphicsMan.unk_14, v7);
+    SealGraphics_LoadSubWindow(v0->graphicsMan.unk_10, v0->graphicsMan.unk_14, v7);
 
-    ov76_0223C398(&v0->unk_D4);
+    SealGraphics_InitSpriteManager(&v0->graphicsMan);
 
     u32 v8;
 
@@ -166,9 +166,9 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
         (void)0;
     }
 
-    ov76_0223DCC0(v0);
+    SealManager_InitTouchRects(v0);
     SetVBlankCallback(ov76_0223ECB0, v0);
-    ov76_0223B8A8(v0);
+    SealGraphics_InitFontOAMManager(v0);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_59, SEQ_NONE, 0);
 
     return 1;
@@ -176,7 +176,7 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
 
 static int sub_02097D30(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov76_0223DE00 *v0 = ApplicationManager_Data(appMan);
+    SealAppManager *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -192,8 +192,8 @@ static int sub_02097D30(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        PokemonSpriteManager_DrawSprites(v0->unk_D4.unk_D0);
-        ov76_0223BF50();
+        PokemonSpriteManager_DrawSprites(v0->graphicsMan.unk_D0);
+        SealGraphics_SwapBuffers();
     } break;
     case 2:
         if (IsScreenFadeDone() == TRUE) {
@@ -207,7 +207,7 @@ static int sub_02097D30(ApplicationManager *appMan, int *param1)
 
 static int sub_02097D88(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov76_0223DE00 *v0 = ApplicationManager_Data(appMan);
+    SealAppManager *v0 = ApplicationManager_Data(appMan);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -217,29 +217,29 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 1);
-    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 2);
-    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 3);
-    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 4);
-    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 5);
-    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 6);
-    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 7);
-    Heap_Free(v0->unk_D4.unk_10);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_BG);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_BG);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_MAIN_OBJ);
-    PaletteData_FreeBuffer(v0->unk_D4.unk_14, PLTTBUF_SUB_OBJ);
-    PaletteData_Free(v0->unk_D4.unk_14);
+    Bg_FreeTilemapBuffer(v0->graphicsMan.unk_10, 1);
+    Bg_FreeTilemapBuffer(v0->graphicsMan.unk_10, 2);
+    Bg_FreeTilemapBuffer(v0->graphicsMan.unk_10, 3);
+    Bg_FreeTilemapBuffer(v0->graphicsMan.unk_10, 4);
+    Bg_FreeTilemapBuffer(v0->graphicsMan.unk_10, 5);
+    Bg_FreeTilemapBuffer(v0->graphicsMan.unk_10, 6);
+    Bg_FreeTilemapBuffer(v0->graphicsMan.unk_10, 7);
+    Heap_Free(v0->graphicsMan.unk_10);
+    PaletteData_FreeBuffer(v0->graphicsMan.unk_14, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(v0->graphicsMan.unk_14, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(v0->graphicsMan.unk_14, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(v0->graphicsMan.unk_14, PLTTBUF_SUB_OBJ);
+    PaletteData_Free(v0->graphicsMan.unk_14);
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
     Heap_Free(v0->unk_428);
     ov76_0223B678(v0);
-    TouchScreenActions_Free(v0->unk_D4.unk_F8);
-    PokemonSpriteManager_Free(v0->unk_D4.unk_D0);
-    PokemonAnimManager_Free(v0->unk_D4.unk_188);
-    ov76_0223B8C4(v0);
-    ov76_0223C424(&v0->unk_D4);
+    TouchScreenActions_Free(v0->graphicsMan.unk_F8);
+    PokemonSpriteManager_Free(v0->graphicsMan.unk_D0);
+    PokemonAnimManager_Free(v0->graphicsMan.unk_188);
+    SealGraphics_FreeFonts(v0);
+    SealGraphics_FreeSpriteSystem(&v0->graphicsMan);
     VramTransfer_Free();
-    G3DPipelineBuffers_Free(v0->unk_D4.unk_15C);
+    G3DPipelineBuffers_Free(v0->graphicsMan.unk_15C);
     ov76_0223EB54(53);
     NARC_dtor(v0->unk_42C);
     ApplicationManager_FreeData(appMan);
@@ -261,7 +261,7 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-Pokemon *sub_02097F00(UnkStruct_02097F18 *param0, int param1)
+Pokemon *sub_02097F00(SealAppData *param0, int param1)
 {
     int v0 = param1;
 
@@ -273,22 +273,22 @@ Pokemon *sub_02097F00(UnkStruct_02097F18 *param0, int param1)
     return param0->unk_04[v0];
 }
 
-u8 sub_02097F18(UnkStruct_02097F18 *param0)
+u8 sub_02097F18(SealAppData *param0)
 {
     return param0->unk_2C;
 }
 
-void sub_02097F20(UnkStruct_02097F18 *param0, u8 param1)
+void sub_02097F20(SealAppData *param0, u8 param1)
 {
     param0->unk_2C = param1;
 }
 
-u8 sub_02097F28(UnkStruct_02097F18 *param0)
+u8 sub_02097F28(SealAppData *param0)
 {
     return param0->unk_2D;
 }
 
-void sub_02097F30(UnkStruct_02097F18 *param0, u8 param1)
+void sub_02097F30(SealAppData *param0, u8 param1)
 {
     param0->unk_2D = param1;
 }
@@ -296,7 +296,7 @@ void sub_02097F30(UnkStruct_02097F18 *param0, u8 param1)
 static BOOL sub_02097F38(FieldTask *param0)
 {
     UnkStruct_02097F38 *v0 = FieldTask_GetEnv(param0);
-    UnkStruct_02097F18 *v1 = v0->unk_08;
+    SealAppData *v1 = v0->unk_08;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
     switch (v0->unk_14) {
@@ -398,8 +398,8 @@ void sub_020980DC(FieldTask *param0, SaveData *saveData)
 
     memset(v0, 0, sizeof(UnkStruct_02097F38));
     v0->saveData = saveData;
-    v0->unk_08 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_02097F18));
-    memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
+    v0->unk_08 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(SealAppData));
+    memset(v0->unk_08, 0, sizeof(SealAppData));
     v0->unk_08->options = SaveData_GetOptions(saveData);
     v0->unk_08->saveData = saveData;
     v0->partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
@@ -409,13 +409,13 @@ void sub_020980DC(FieldTask *param0, SaveData *saveData)
 }
 
 typedef struct {
-    u16 unk_00;
-    u8 unk_02;
-    u8 unk_03;
-    u8 unk_04;
-    u8 unk_05;
+    u16 memberIdx;
+    u8 index;
+    u8 unk_03; // straight up just 0x125
+    u8 unk_04; // index + 0x24
+    u8 unk_05; // this is a flag for if it is one of the letter seals but has two extras that have it
     u16 unk_06;
-    u8 unk_08;
+    u8 unk_08; // index for non letter seals
 } UnkStruct_020F64D0;
 
 static const UnkStruct_020F64D0 Unk_020F64D0[SEAL_ID_MAX] = {
@@ -502,38 +502,38 @@ static const UnkStruct_020F64D0 Unk_020F64D0[SEAL_ID_MAX] = {
     { 0x108, 0x50, 0x125, 0x74, 0x0, 0x0, 0x33 }
 };
 
-int sub_02098140(u8 param0)
+int sub_02098140(u8 index)
 {
-    GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
-    return Unk_020F64D0[param0].unk_00;
+    GF_ASSERT(index < (sizeof(Unk_020F64D0)));
+    return Unk_020F64D0[index].memberIdx;
 }
 
-int sub_02098164(u8 param0)
+int sub_02098164(u8 index)
 {
-    GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
-    return Unk_020F64D0[param0].unk_02;
+    GF_ASSERT(index < (sizeof(Unk_020F64D0)));
+    return Unk_020F64D0[index].index;
 }
 
-int sub_02098188(u8 param0)
+int sub_02098188(u8 index)
 {
-    GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
-    return Unk_020F64D0[param0].unk_04;
+    GF_ASSERT(index < (sizeof(Unk_020F64D0)));
+    return Unk_020F64D0[index].unk_04;
 }
 
-int sub_020981AC(u8 param0)
+int sub_020981AC(u8 index)
 {
-    GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
-    return Unk_020F64D0[param0].unk_05;
+    GF_ASSERT(index < (sizeof(Unk_020F64D0)));
+    return Unk_020F64D0[index].unk_05;
 }
 
-int sub_020981D0(u8 param0)
+int sub_020981D0(u8 index)
 {
-    GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
-    return Unk_020F64D0[param0].unk_06;
+    GF_ASSERT(index < (sizeof(Unk_020F64D0)));
+    return Unk_020F64D0[index].unk_06;
 }
 
-int sub_020981F4(u8 param0)
+int sub_020981F4(u8 index)
 {
-    GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
-    return Unk_020F64D0[param0].unk_08;
+    GF_ASSERT(index < (sizeof(Unk_020F64D0)));
+    return Unk_020F64D0[index].unk_08;
 }
