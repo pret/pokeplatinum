@@ -6,9 +6,8 @@
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
 
-#include "overlay005/const_ov5_021FC194.h"
+#include "overlay005/object_event_gfx_data.h"
 #include "overlay005/ov5_021ECE40.h"
-#include "overlay005/struct_ov5_021ECD10.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 
 #include "heap.h"
@@ -17,7 +16,7 @@
 
 static void ov5_021ECCA4(MapObjectManager *param0);
 static void ov5_021ECCBC(MapObjectManager *param0);
-static const UnkStruct_ov5_021ECD10 *ov5_021ECD10(int param0);
+static const ObjectEventGfxRenderDetailsEntry *ov5_021ECD10(int param0);
 
 void ov5_021ECC20(MapObjectManager *param0, int param1, int param2, const int *param3, int param4)
 {
@@ -76,25 +75,25 @@ void MapObject_Draw(MapObject *param0)
     }
 }
 
-const UnkStruct_ov5_021ECD10 *ov5_021ECD04(const MapObject *param0)
+const ObjectEventGfxRenderDetailsEntry *ov5_021ECD04(const MapObject *param0)
 {
     int v0 = MapObject_GetGraphicsID(param0);
-    const UnkStruct_ov5_021ECD10 *v1 = ov5_021ECD10(v0);
+    const ObjectEventGfxRenderDetailsEntry *v1 = ov5_021ECD10(v0);
 
     return v1;
 }
 
-static const UnkStruct_ov5_021ECD10 *ov5_021ECD10(int param0)
+static const ObjectEventGfxRenderDetailsEntry *ov5_021ECD10(int param0)
 {
-    const UnkStruct_ov5_021ECD10 *v0 = Unk_ov5_021FC194;
+    const ObjectEventGfxRenderDetailsEntry *v0 = gObjectEventGfxRenderDetailsTable;
 
     do {
-        if (v0->unk_00 == param0) {
+        if (v0->graphicsID == param0) {
             return v0;
         }
 
         v0++;
-    } while (v0->unk_00 != 0xffff);
+    } while (v0->graphicsID != 0xffff);
 
     GF_ASSERT(FALSE);
     return NULL;
