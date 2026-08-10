@@ -9,6 +9,7 @@
 #include "struct_decls/tv_broadcast.h"
 #include "struct_decls/wi_fi_list.h"
 
+#include "applications/poffin_berry_selection.h"
 #include "nintendo_wfc/main.h"
 #include "overlay083/ov83_0223C958.h"
 #include "overlay083/ov83_0223D150.h"
@@ -16,7 +17,6 @@
 #include "overlay083/ov83_0223D6A8.h"
 #include "overlay083/ov83_0223F7F4.h"
 #include "overlay083/struct_ov83_0223B784.h"
-#include "overlay083/struct_ov83_0223C344.h"
 #include "overlay083/struct_ov83_0223FCE8.h"
 #include "savedata/save_table.h"
 
@@ -43,7 +43,7 @@
 #include "vram_transfer.h"
 #include "wifi_list.h"
 
-typedef int (*UnkFuncPtr_ov83_0224024C)(UnkStruct_ov83_0223C344 *, UnkStruct_ov83_0223B784 *, int *);
+typedef int (*UnkFuncPtr_ov83_0224024C)(PoffinBerrySelectionData *, UnkStruct_ov83_0223B784 *, int *);
 
 typedef struct {
     UnkFuncPtr_ov83_0224024C unk_00;
@@ -53,17 +53,17 @@ typedef struct {
 int ov83_0223B5B0(ApplicationManager *appMan, int *param1);
 int ov83_0223B65C(ApplicationManager *appMan, int *param1);
 int ov83_0223B710(ApplicationManager *appMan, int *param1);
-static int ov83_0223C344(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
-static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
-static int ov83_0223B920(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
-static int ov83_0223B950(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
-static int ov83_0223B964(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
-static int ov83_0223B9EC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
-static int ov83_0223BB40(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
-static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
-static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
-static int ov83_0223C24C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
-static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223C344(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223B78C(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223B920(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223B950(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223B964(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223B9EC(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223BB40(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223BCEC(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223BF74(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223C24C(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
+static int ov83_0223C258(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
 static void ov83_0223C3E8(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223C480(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223C558(UnkStruct_ov83_0223B784 *param0);
@@ -72,9 +72,9 @@ static void ov83_0223C6D4(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223C758(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223C7FC(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223C90C(UnkStruct_ov83_0223B784 *param0);
-static void ov83_0223C82C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1);
-static void ov83_0223C87C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1);
-static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 *param0, Poffin *param1, int param2);
+static void ov83_0223C82C(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1);
+static void ov83_0223C87C(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1);
+static BOOL ov83_0223C8B0(PoffinBerrySelectionData *param0, Poffin *param1, int param2);
 
 static const UnkStruct_ov83_0224024C Unk_ov83_0224024C[] = {
     { ov83_0223B78C, 0x1 },
@@ -95,8 +95,8 @@ static const UnkStruct_ov83_0224024C Unk_ov83_0224024C[] = {
 
 static void ov83_0223B5A0(void *param0)
 {
-    UnkStruct_ov83_0223C344 *v0 = (UnkStruct_ov83_0223C344 *)param0;
-    UnkStruct_ov83_0223B784 *v1 = (v0->unk_18);
+    PoffinBerrySelectionData *v0 = (PoffinBerrySelectionData *)param0;
+    UnkStruct_ov83_0223B784 *v1 = v0->buffer;
 
     ov83_0223CBFC(v1);
     VramTransfer_Process();
@@ -104,32 +104,28 @@ static void ov83_0223B5A0(void *param0)
 
 int ov83_0223B5B0(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov83_0223C344 *v0 = ApplicationManager_Args(appMan);
+    PoffinBerrySelectionData *v0 = ApplicationManager_Args(appMan);
     UnkStruct_ov83_0223B784 *v1;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_56, 0x20000);
     v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov83_0223B784), HEAP_ID_56);
     memset(v1, 0, sizeof(UnkStruct_ov83_0223B784));
 
-    v0->unk_18 = v1;
+    v0->buffer = v1;
     v1->heapID = HEAP_ID_56;
 
     VramTransfer_New(16, v1->heapID);
 
-    if (v0->unk_06_0 == 1) {
-        v1->unk_1490 = 1;
-    } else {
-        v1->unk_1490 = 0;
-    }
+    v1->unk_1490 = v0->isInGroup == TRUE;
 
-    ov83_0223D150(v1, v0->unk_10->trainerInfo);
+    ov83_0223D150(v1, v0->ctx->trainerInfo);
 
     if (v0->unk_26) {
         sub_0203632C(1);
     }
 
-    v1->unk_24 = Options_Frame(v0->unk_10->options);
-    v1->unk_28 = Options_TextFrameDelay(v0->unk_10->options);
+    v1->unk_24 = Options_Frame(v0->ctx->options);
+    v1->unk_28 = Options_TextFrameDelay(v0->ctx->options);
     v1->unk_31C = 1;
 
     SetVBlankCallback(ov83_0223B5A0, v0);
@@ -142,7 +138,7 @@ int ov83_0223B5B0(ApplicationManager *appMan, int *param1)
 int ov83_0223B65C(ApplicationManager *appMan, int *param1)
 {
     int v0, v1;
-    UnkStruct_ov83_0223C344 *v2 = ApplicationManager_Args(appMan);
+    PoffinBerrySelectionData *v2 = ApplicationManager_Args(appMan);
     UnkStruct_ov83_0223B784 *v3 = (UnkStruct_ov83_0223B784 *)ApplicationManager_Data(appMan);
     const UnkStruct_ov83_0224024C *v4;
 
@@ -169,7 +165,7 @@ int ov83_0223B65C(ApplicationManager *appMan, int *param1)
 
         v3->unk_10 = 0;
 
-        if (!v2->unk_06_0) {
+        if (!v2->isInGroup) {
             break;
         }
 
@@ -207,7 +203,7 @@ int ov83_0223B65C(ApplicationManager *appMan, int *param1)
 int ov83_0223B710(ApplicationManager *appMan, int *param1)
 {
     int heapID;
-    UnkStruct_ov83_0223C344 *v1 = ApplicationManager_Args(appMan);
+    PoffinBerrySelectionData *v1 = ApplicationManager_Args(appMan);
     UnkStruct_ov83_0223B784 *v2 = (UnkStruct_ov83_0223B784 *)ApplicationManager_Data(appMan);
 
     heapID = v2->heapID;
@@ -226,7 +222,7 @@ int ov83_0223B710(ApplicationManager *appMan, int *param1)
     MI_CpuClear8(v2, sizeof(UnkStruct_ov83_0223B784));
     ApplicationManager_FreeData(appMan);
 
-    v1->unk_18 = NULL;
+    v1->buffer = NULL;
 
     Heap_Destroy(heapID);
     return 1;
@@ -249,7 +245,7 @@ void ov83_0223B784(UnkStruct_ov83_0223B784 *param0)
     param0->unk_04 = 1;
 }
 
-static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223B78C(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     switch (*param2) {
     case 0:
@@ -300,7 +296,7 @@ static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     return param1->unk_0C;
 }
 
-static int ov83_0223B920(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223B920(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     BOOL v0;
 
@@ -315,7 +311,7 @@ static int ov83_0223B920(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     return param1->unk_0C + 1;
 }
 
-static int ov83_0223B950(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223B950(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     if (param1->unk_14) {
         param1->unk_0C = param1->unk_18;
@@ -325,7 +321,7 @@ static int ov83_0223B950(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     return param1->unk_0C;
 }
 
-static int ov83_0223B964(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223B964(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     BOOL v0;
 
@@ -335,7 +331,7 @@ static int ov83_0223B964(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         (*param2)++;
         break;
     case 1:
-        param1->unk_1494.unk_00.unk_00 = param0->unk_08;
+        param1->unk_1494.unk_00.unk_00 = param0->item;
         {
             int v1;
 
@@ -363,7 +359,7 @@ static int ov83_0223B964(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     return param1->unk_0C;
 }
 
-static int ov83_0223B9EC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223B9EC(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     u32 v0;
     int v1;
@@ -436,7 +432,7 @@ static int ov83_0223B9EC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     return param1->unk_0C;
 }
 
-static int ov83_0223BB40(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223BB40(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     BOOL v0;
 
@@ -515,7 +511,7 @@ static int ov83_0223BB40(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     return param1->unk_0C;
 }
 
-static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223BCEC(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     Poffin *v0;
     BOOL v1;
@@ -559,7 +555,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         }
         break;
     case 3: {
-        GameRecords *v2 = SaveData_GetGameRecords(param0->unk_10->saveData);
+        GameRecords *v2 = SaveData_GetGameRecords(param0->ctx->saveData);
 
         if (param1->unk_1490 == 0) {
             GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_12);
@@ -571,7 +567,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     }
 
         if (param1->unk_1490 != 0) {
-            WiFiList *v3 = SaveData_GetWiFiList(param0->unk_10->saveData);
+            WiFiList *v3 = SaveData_GetWiFiList(param0->ctx->saveData);
             int v4;
             int v5, v6;
             int v7;
@@ -580,7 +576,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             for (v4 = 0; v4 < param1->unk_1488; v4++) {
                 v5 = param1->unk_1494.unk_130[v4];
                 v8 = CommInfo_DWCFriendData(v5);
-                v6 = sub_0203909C(param0->unk_10->saveData, v8, &v7);
+                v6 = sub_0203909C(param0->ctx->saveData, v8, &v7);
 
                 switch (v6) {
                 case 0:
@@ -631,7 +627,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     return param1->unk_0C;
 }
 
-static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223BF74(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     u32 v0;
     BOOL v1;
@@ -712,14 +708,14 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
         if (v0 == YES_NO_TOUCH_MENU_YES || v0 == YES_NO_TOUCH_MENU_NO) {
             if (v0 == YES_NO_TOUCH_MENU_YES) {
-                if (PoffinCase_CountFilledSlots(param0->unk_10->poffinCase) >= MAX_POFFINS) {
+                if (PoffinCase_CountFilledSlots(param0->ctx->poffinCase) >= MAX_POFFINS) {
                     ov83_0223EC8C(&param1->unk_6A0, 2);
                     (*param2) = 10;
                     param1->unk_1C = (30 * 5);
                     break;
                 }
 
-                if (Bag_HasItemsInPocket(param0->unk_10->bag, POCKET_BERRIES) == FALSE) {
+                if (Bag_HasItemsInPocket(param0->ctx->bag, POCKET_BERRIES) == FALSE) {
                     ov83_0223EC8C(&param1->unk_6A0, 5);
                     (*param2) = 10;
                     param1->unk_1C = (30 * 5);
@@ -772,20 +768,20 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     return param1->unk_0C;
 }
 
-static int ov83_0223C24C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223C24C(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     return ov83_0223CB5C(param1, param2);
 }
 
-static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223C258(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     switch (*param2) {
     case 0:
         if (param1->unk_1494.unk_145 == 1) {
             ov83_0223EC8C(&param1->unk_6A0, 3);
-            param0->unk_20 = 1;
+            param0->unk_20 = TRUE;
         } else {
-            param0->unk_20 = 0;
+            param0->unk_20 = FALSE;
 
             if (param1->unk_1488 <= 1) {
                 (*param2) = 2;
@@ -798,7 +794,7 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
             if (param1->unk_1490 == 1) {
                 journalEntryOnlineEvent = JournalEntry_CreateEventMadePoffins(param1->heapID);
-                JournalEntry_SaveData(param0->unk_10->journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
+                JournalEntry_SaveData(param0->ctx->journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
             }
         }
 
@@ -831,7 +827,7 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     return param1->unk_0C;
 }
 
-static int ov83_0223C344(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
+static int ov83_0223C344(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1, int *param2)
 {
     ov83_0223DB30(&param1->unk_3C0);
     ov83_0223DEC4(&param1->unk_5B0);
@@ -1053,7 +1049,7 @@ static void ov83_0223C7FC(UnkStruct_ov83_0223B784 *param0)
     }
 }
 
-static void ov83_0223C82C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1)
+static void ov83_0223C82C(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1)
 {
     int v0;
 
@@ -1070,7 +1066,7 @@ static void ov83_0223C82C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B7
     }
 }
 
-static void ov83_0223C87C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1)
+static void ov83_0223C87C(PoffinBerrySelectionData *param0, UnkStruct_ov83_0223B784 *param1)
 {
     GF_ASSERT(param1->unk_1494.unk_100);
 
@@ -1082,16 +1078,16 @@ static void ov83_0223C87C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B7
     }
 }
 
-static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 *param0, Poffin *param1, int param2)
+static BOOL ov83_0223C8B0(PoffinBerrySelectionData *param0, Poffin *param1, int param2)
 {
     int v0;
     u16 v1;
     int v2;
     BOOL v3 = 1;
-    TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->unk_10->saveData);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->ctx->saveData);
 
     for (v0 = 0; v0 < param2; v0++) {
-        v1 = PoffinCase_AddPoffin(param0->unk_10->poffinCase, param1);
+        v1 = PoffinCase_AddPoffin(param0->ctx->poffinCase, param1);
 
         if (v1 == POFFIN_NONE) {
             v3 = 0;

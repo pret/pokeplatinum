@@ -347,7 +347,7 @@ Static main
 	Object main.nef.p/src_poffin_sprite.c.o
 	Object main.nef.p/src_unk_02099500.c.o
 	Object main.nef.p/src_wifi_overlays.c.o
-	Object main.nef.p/src_unk_02099604.c.o
+	Object main.nef.p/src_poffin_berry_selection_context.c.o
 	Object main.nef.p/src_unk_020996D0.c.o
 	Object main.nef.p/src_move_reminder_data.c.o
 	Object main.nef.p/src_easy_chat_word_list.c.o
@@ -1323,16 +1323,16 @@ Overlay journal_display
 	Object main.nef.p/src_applications_journal_display_journal_printer.c.o
 }
 
-Overlay overlay82
+Overlay poffin_berry_selection
 {
 	After battle_anim
-	Object main.nef.p/src_overlay082_ov82_0223B140.c.o
-	Object main.nef.p/src_overlay082_ov82_0223B2E0.c.o
+	Object main.nef.p/src_applications_poffin_berry_selection_main.c.o
+	Object main.nef.p/src_applications_poffin_berry_selection_callbacks.c.o
 }
 
 Overlay overlay83
 {
-	After overlay82
+	After poffin_berry_selection
 	Object main.nef.p/src_overlay083_ov83_0223B5A0.c.o
 	Object main.nef.p/src_overlay083_ov83_0223C958.c.o
 	Object main.nef.p/src_overlay083_ov83_0223D144.c.o
@@ -1344,7 +1344,7 @@ Overlay overlay83
 
 Overlay bag
 {
-	After overlay82
+	After poffin_berry_selection
 	Object main.nef.p/src_applications_bag_main.c.o
 	Object main.nef.p/src_applications_bag_windows.c.o
 	Object main.nef.p/src_applications_bag_sprites.c.o
