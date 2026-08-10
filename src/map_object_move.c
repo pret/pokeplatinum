@@ -10,6 +10,7 @@
 #include "struct_decls/map_object_manager.h"
 
 #include "field/field_system.h"
+#include "overlay005/object_event_gfx_data.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F17B8.h"
@@ -21,7 +22,6 @@
 #include "overlay005/ov5_021F348C.h"
 #include "overlay005/ov5_021F37A8.h"
 #include "overlay005/ov5_021F3A50.h"
-#include "overlay005/struct_ov5_021ECD10.h"
 
 #include "map_object.h"
 #include "map_tile_behavior.h"
@@ -46,28 +46,28 @@ static void sub_0206363C(MapObject *mapObj);
 static void sub_020636F0(MapObject *mapObj);
 static void sub_0206375C(MapObject *mapObj);
 static void sub_020637D4(MapObject *mapObj);
-static void MapObject_SinkIntoTerrain(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063964(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_0206397C(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063994(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063A30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063A64(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063A70(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063A78(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063B20(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063BB4(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C00(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C18(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C48(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C60(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063C94(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063CC8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063CFC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063D30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void sub_02063DA8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
-static void MapObject_DetermineElevatedBridgeStatus(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *unused);
-static void MapObject_EmptyFunction(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3);
+static void MapObject_SinkIntoTerrain(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063964(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_0206397C(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063994(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063A30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063A64(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063A70(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063A78(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063B20(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063BB4(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063C00(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063C18(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063C30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063C48(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063C60(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063C94(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063CC8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063CFC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063D30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void sub_02063DA8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
+static void MapObject_DetermineElevatedBridgeStatus(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *unused);
+static void MapObject_EmptyFunction(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3);
 
 static BOOL (*const Unk_020EE76C[4])(u8);
 static BOOL (*const Unk_020EE77C[4])(u8);
@@ -80,7 +80,7 @@ void MapObject_InitMove(MapObject *mapObj)
 
 void MapObject_Move(MapObject *mapObj)
 {
-    if (MapObject_CheckManagerStatus(mapObj, (1 << 1))) {
+    if (MapObject_CheckManagerStatus(mapObj, 1 << 1)) {
         return;
     }
 
@@ -175,7 +175,7 @@ static void sub_020635AC(MapObject *mapObj)
     if (sub_02062DFC(mapObj) == TRUE) {
         u8 currTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
         u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
-        const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
+        const ObjectEventGfxRenderDetailsEntry *v2 = ov5_021ECD04(mapObj);
 
         MapObject_DetermineElevatedBridgeStatus(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063964(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -195,7 +195,7 @@ static void sub_0206363C(MapObject *mapObj)
     if (sub_02062DFC(mapObj) == TRUE) {
         u8 currTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
         u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
-        const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
+        const ObjectEventGfxRenderDetailsEntry *v2 = ov5_021ECD04(mapObj);
 
         MapObject_DetermineElevatedBridgeStatus(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_0206397C(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -219,7 +219,7 @@ static void sub_020636F0(MapObject *mapObj)
     if (sub_02062DFC(mapObj) == TRUE) {
         u8 currTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
         u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
-        const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
+        const ObjectEventGfxRenderDetailsEntry *v2 = ov5_021ECD04(mapObj);
 
         MapObject_DetermineElevatedBridgeStatus(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063A78(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -236,7 +236,7 @@ static void sub_0206375C(MapObject *mapObj)
     if (sub_02062DFC(mapObj) == TRUE) {
         u8 currTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
         u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
-        const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
+        const ObjectEventGfxRenderDetailsEntry *v2 = ov5_021ECD04(mapObj);
 
         MapObject_SinkIntoTerrain(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063C94(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -254,7 +254,7 @@ static void sub_020637D4(MapObject *mapObj)
     if (sub_02062DFC(mapObj) == TRUE) {
         u8 currTileBehavior = MapObject_GetCurrTileBehavior(mapObj);
         u8 prevTileBehavior = MapObject_GetPrevTileBehavior(mapObj);
-        const UnkStruct_ov5_021ECD10 *v2 = ov5_021ECD04(mapObj);
+        const ObjectEventGfxRenderDetailsEntry *v2 = ov5_021ECD04(mapObj);
 
         MapObject_SinkIntoTerrain(mapObj, currTileBehavior, prevTileBehavior, v2);
         sub_02063C94(mapObj, currTileBehavior, prevTileBehavior, v2);
@@ -267,7 +267,7 @@ static void sub_020637D4(MapObject *mapObj)
     }
 }
 
-static void MapObject_SinkIntoTerrain(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void MapObject_SinkIntoTerrain(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (MapObject_CheckFlagDoNotSinkIntoTerrain(mapObj) == FALSE) {
         if (TileBehavior_IsDeepMud(currTileBehavior) == TRUE || TileBehavior_IsDeepMudWithGrass(currTileBehavior) == TRUE) {
@@ -310,38 +310,38 @@ static void MapObject_SinkIntoTerrain(MapObject *mapObj, u8 currTileBehavior, u8
     MapObject_SetSpriteTerrainOffset(mapObj, &spriteOffset);
 }
 
-static void sub_02063964(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063964(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsTallGrass(currTileBehavior) == TRUE) {
         ov5_021F2EA4(mapObj, 0);
     }
 }
 
-static void sub_0206397C(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_0206397C(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsTallGrass(currTileBehavior) == TRUE) {
         ov5_021F2EA4(mapObj, 1);
     }
 }
 
-static void sub_02063994(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063994(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
-    if (param3->unk_04_6 == 0) {
+    if (param3->trackType == 0) {
         return;
     }
 
     if (TileBehavior_IsSnowWithShadows(prevTileBehavior) == TRUE) {
-        if (param3->unk_04_6 == 1) {
+        if (param3->trackType == 1) {
             ov5_021F1EBC(mapObj);
-        } else if (param3->unk_04_6 == 2) {
+        } else if (param3->trackType == 2) {
             ov5_021F1EC8(mapObj);
         }
     }
 
     if (MapObject_IsOnSand(mapObj, prevTileBehavior) == TRUE) {
-        if (param3->unk_04_6 == 1) {
+        if (param3->trackType == 1) {
             ov5_021F1E8C(mapObj);
-        } else if (param3->unk_04_6 == 2) {
+        } else if (param3->trackType == 2) {
             ov5_021F1E98(mapObj);
         }
         return;
@@ -360,7 +360,7 @@ static void sub_02063994(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
     }
 }
 
-static void sub_02063A30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063A30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsShallowWater(currTileBehavior) == TRUE) {
         if (sub_02062EC8(mapObj) == FALSE) {
@@ -372,17 +372,17 @@ static void sub_02063A30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
     }
 }
 
-static void sub_02063A64(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063A64(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     sub_02062EAC(mapObj, 0);
 }
 
-static void sub_02063A70(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063A70(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     sub_02063A78(mapObj, currTileBehavior, prevTileBehavior, param3);
 }
 
-static void sub_02063A78(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063A78(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
@@ -390,7 +390,7 @@ static void sub_02063A78(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
         return;
     }
 
-    if (param3->unk_04_4 == 0) {
+    if (param3->hasShadow == 0) {
         return;
     }
 
@@ -412,7 +412,7 @@ static void sub_02063A78(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
     }
 }
 
-static void sub_02063B20(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063B20(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
@@ -420,7 +420,7 @@ static void sub_02063B20(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
         return;
     }
 
-    if (param3->unk_04_4 == 0) {
+    if (param3->hasShadow == 0) {
         return;
     }
 
@@ -439,7 +439,7 @@ static void sub_02063B20(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
     }
 }
 
-static void sub_02063BB4(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063BB4(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (MapObject_IsOnWater(mapObj, currTileBehavior) == TRUE
         || TileBehavior_IsShallowWater(currTileBehavior) == TRUE
@@ -453,65 +453,65 @@ static void sub_02063BB4(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
     ov5_021F3638(mapObj);
 }
 
-static void sub_02063C00(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C00(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsVeryTallGrass(currTileBehavior) == TRUE) {
         ov5_021F3844(mapObj, 0);
     }
 }
 
-static void sub_02063C18(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C18(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsVeryTallGrass(currTileBehavior) == TRUE) {
         ov5_021F3844(mapObj, 1);
     }
 }
 
-static void sub_02063C30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE) {
         ov5_021F3AEC(mapObj, 0);
     }
 }
 
-static void sub_02063C48(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C48(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsMudWithGrass(currTileBehavior) == TRUE) {
         ov5_021F3AEC(mapObj, 1);
     }
 }
 
-static void sub_02063C60(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C60(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsPuddle(prevTileBehavior) == TRUE) {
         ov5_021F2AE4(mapObj, MapObject_GetXPrev(mapObj), MapObject_GetYPrev(mapObj), MapObject_GetZPrev(mapObj));
     }
 }
 
-static void sub_02063C94(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063C94(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsPuddle(currTileBehavior) == TRUE) {
         ov5_021F2AE4(mapObj, MapObject_GetX(mapObj), MapObject_GetY(mapObj), MapObject_GetZ(mapObj));
     }
 }
 
-static void sub_02063CC8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063CC8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsMud(prevTileBehavior) == TRUE) {
         ov5_021F2C38(mapObj, MapObject_GetXPrev(mapObj), MapObject_GetYPrev(mapObj), MapObject_GetZPrev(mapObj));
     }
 }
 
-static void sub_02063CFC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063CFC(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     if (TileBehavior_IsMud(currTileBehavior) == TRUE) {
         ov5_021F2C38(mapObj, MapObject_GetX(mapObj), MapObject_GetY(mapObj), MapObject_GetZ(mapObj));
     }
 }
 
-static void sub_02063D30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063D30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
-    if (param3->unk_04_10 == 0) {
+    if (param3->hasReflection == 0) {
         return;
     }
 
@@ -546,9 +546,9 @@ static void sub_02063D30(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
     }
 }
 
-static void sub_02063DA8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void sub_02063DA8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
-    if (param3->unk_04_10 == 0 || sub_02062F64(mapObj) == FALSE) {
+    if (param3->hasReflection == 0 || sub_02062F64(mapObj) == FALSE) {
         return;
     }
 
@@ -559,7 +559,7 @@ static void sub_02063DA8(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBeha
     }
 }
 
-static void MapObject_DetermineElevatedBridgeStatus(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *unused)
+static void MapObject_DetermineElevatedBridgeStatus(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *unused)
 {
     if (TileBehavior_IsBridgeStart(currTileBehavior) == TRUE) {
         MapObject_SetElevatedBridgeStatus(mapObj, TRUE);
@@ -568,7 +568,7 @@ static void MapObject_DetermineElevatedBridgeStatus(MapObject *mapObj, u8 currTi
     }
 }
 
-static void MapObject_EmptyFunction(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const UnkStruct_ov5_021ECD10 *param3)
+static void MapObject_EmptyFunction(MapObject *mapObj, u8 currTileBehavior, u8 prevTileBehavior, const ObjectEventGfxRenderDetailsEntry *param3)
 {
     return;
 }
@@ -931,7 +931,7 @@ int MapObject_RecalculateObjectHeight(MapObject *mapObj)
         pos.y = updatedPos.y;
         MapObject_SetPos(mapObj, &pos);
         MapObject_SetYPrev(mapObj, MapObject_GetY(mapObj));
-        MapObject_SetY(mapObj, (((pos.y) >> 3) / FX32_ONE));
+        MapObject_SetY(mapObj, ((pos.y) >> 3) / FX32_ONE );
         MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_12);
     } else {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_12);

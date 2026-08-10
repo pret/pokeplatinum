@@ -444,7 +444,7 @@ pokeplatinum_c = files(
     'overlay005/scrcmd_move_tutor.c',
     'overlay005/villa_furniture.c',
     'overlay005/dist_world_surf_mount_renderer.c',
-    'overlay005/ov5_021FAF40.c',
+    'overlay005/object_event_gfx_data.c',
     'overlay005/field_effect_renderer.c',
     'overlay006/ov6_0223E140.c',
     'overlay006/wild_encounters.c',
