@@ -7,24 +7,15 @@
 #include "struct_decls/map_object_manager.h"
 
 #include "overlay005/area_light.h"
-#include "overlay005/const_ov5_021FAF40.h"
-#include "overlay005/const_ov5_021FAF48.h"
-#include "overlay005/const_ov5_021FAF50.h"
-#include "overlay005/const_ov5_021FB484.h"
-#include "overlay005/const_ov5_021FB5BC.h"
-#include "overlay005/const_ov5_021FC9B4.h"
-#include "overlay005/const_ov5_021FD77C.h"
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/funcptr_ov5_021EE454.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021F17B8.h"
+#include "overlay005/ov5_021FAF40.h"
 #include "overlay005/resource_heap.h"
-#include "overlay005/struct_ov5_021ECD10.h"
 #include "overlay005/struct_ov5_021ED01C.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
-#include "overlay005/struct_ov5_021ED2D0.h"
-#include "overlay005/struct_ov5_021EDD04.h"
 #include "overlay005/struct_ov5_021EDF3C.h"
 #include "overlay005/struct_ov5_021EDFBC.h"
 #include "overlay005/struct_ov5_021EE134.h"
@@ -73,9 +64,9 @@ static void ov5_021ED1A4(UnkStruct_ov5_021ED0A4 *param0);
 static int ov5_021ED1C8(const MapObjectManager *param0, const MapObject *param1, int param2);
 static void ov5_021ED224(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2, int param3, int param4, int param5, int param6);
 static void ov5_021ED2AC(UnkStruct_ov5_021ED0A4 *param0);
-static const UnkStruct_ov5_021ED2D0 *ov5_021ED2D0(int param0, int param1, const UnkStruct_ov5_021ED2D0 *param2);
-static int ov5_021ED2E8(UnkStruct_ov5_021ED0A4 *param0, ResourceHeap *param1, int param2, int param3, const UnkStruct_ov5_021ED2D0 *param4);
-static UnkEnum_ov5_021ED334 ov5_021ED334(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2, const UnkStruct_ov5_021ED2D0 *param3);
+static const ObjectEventGfxFileEntry *ov5_021ED2D0(int param0, int param1, const ObjectEventGfxFileEntry *param2);
+static int ov5_021ED2E8(UnkStruct_ov5_021ED0A4 *param0, ResourceHeap *param1, int param2, int param3, const ObjectEventGfxFileEntry *param4);
+static UnkEnum_ov5_021ED334 ov5_021ED334(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2, const ObjectEventGfxFileEntry *param3);
 static UnkEnum_ov5_021ED334 ov5_021ED390(UnkStruct_ov5_021ED0A4 *param0, int param1);
 static UnkEnum_ov5_021ED334 ov5_021ED3A4(UnkStruct_ov5_021ED0A4 *param0, int param1);
 static void ov5_021ED3B8(UnkStruct_ov5_021ED0A4 *param0, const int *param1);
@@ -137,7 +128,7 @@ static int ov5_021EDCE8(const UnkStruct_ov5_021ED0A4 *param0);
 static void ov5_021EDCEC(UnkStruct_ov5_021ED0A4 *param0, int param1);
 static int ov5_021EDCF0(const UnkStruct_ov5_021ED0A4 *param0);
 static void *ov5_021EDCF4(UnkStruct_ov5_021ED0A4 *param0, u32 param1, int param2);
-static const UnkStruct_ov5_021EDD04 *ov5_021EDD04(int param0);
+static const ObjectEventGfxModelAnimEntry *ov5_021EDD04(int param0);
 static int ov5_021EDD2C(int param0);
 static int ov5_021EDD38(int param0);
 static const BillboardAnim *ov5_021EDD44(int param0);
@@ -174,7 +165,7 @@ void ov5_021ECE40(UnkStruct_ov5_021ED0A4 *param0, const MapObjectManager *param1
     ov5_021EE320(param0, param2, param7);
     ov5_021ED224(param0, 8, 4, 8, 4, param4, param5);
     ov5_021ED0A4(param0, param2);
-    ov5_021ED4E4(param0, param6, Unk_ov5_021FAF50, Unk_ov5_021FAF48);
+    ov5_021ED4E4(param0, param6, gPreloadedBillboardModels, gPreloadedBillboardFrameSeqs);
 }
 
 void ov5_021ECE94(UnkStruct_ov5_021ED0A4 *param0)
@@ -508,22 +499,22 @@ static void ov5_021ED2AC(UnkStruct_ov5_021ED0A4 *param0)
     TextureResourceManager_Delete(ov5_021EDCB0(param0));
 }
 
-static const UnkStruct_ov5_021ED2D0 *ov5_021ED2D0(int param0, int param1, const UnkStruct_ov5_021ED2D0 *param2)
+static const ObjectEventGfxFileEntry *ov5_021ED2D0(int param0, int param1, const ObjectEventGfxFileEntry *param2)
 {
     do {
-        if (param2->unk_00 == param0) {
+        if (param2->id == param0) {
             return param2;
         }
 
         param2++;
-    } while (param2->unk_00 != param1);
+    } while (param2->id != param1);
 
     return NULL;
 }
 
-static int ov5_021ED2E8(UnkStruct_ov5_021ED0A4 *param0, ResourceHeap *param1, int param2, int param3, const UnkStruct_ov5_021ED2D0 *param4)
+static int ov5_021ED2E8(UnkStruct_ov5_021ED0A4 *param0, ResourceHeap *param1, int param2, int param3, const ObjectEventGfxFileEntry *param4)
 {
-    const UnkStruct_ov5_021ED2D0 *v0;
+    const ObjectEventGfxFileEntry *v0;
 
     if (ResourceHeap_HasItem(param1, param2) == 1) {
         return 0;
@@ -534,13 +525,13 @@ static int ov5_021ED2E8(UnkStruct_ov5_021ED0A4 *param0, ResourceHeap *param1, in
 
     {
         NARC *v1 = MapObjectMan_GetNARC(param0->unk_104);
-        ResourceHeap_LoadMemberFromNARC(param1, param2, v1, v0->unk_04, 0);
+        ResourceHeap_LoadMemberFromNARC(param1, param2, v1, v0->narcIdx, 0);
     }
 
     return 1;
 }
 
-static UnkEnum_ov5_021ED334 ov5_021ED334(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2, const UnkStruct_ov5_021ED2D0 *param3)
+static UnkEnum_ov5_021ED334 ov5_021ED334(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2, const ObjectEventGfxFileEntry *param3)
 {
     TextureResourceManager *v0 = param0->unk_F0;
 
@@ -554,13 +545,13 @@ static UnkEnum_ov5_021ED334 ov5_021ED334(UnkStruct_ov5_021ED0A4 *param0, int par
 
     {
         TextureResource *v1;
-        const UnkStruct_ov5_021ED2D0 *v2 = ov5_021ED2D0(param2, 0xffff, param3);
+        const ObjectEventGfxFileEntry *v2 = ov5_021ED2D0(param2, 0xffff, param3);
 
         if (v2 == NULL) {
             return UnkEnum_ov5_021ED334_02;
         }
 
-        if (ov5_021EDF3C(param0, param2, v2->unk_04, param1) == 1) {
+        if (ov5_021EDF3C(param0, param2, v2->narcIdx, param1) == 1) {
             return UnkEnum_ov5_021ED334_00;
         }
 
@@ -570,12 +561,12 @@ static UnkEnum_ov5_021ED334 ov5_021ED334(UnkStruct_ov5_021ED0A4 *param0, int par
 
 static UnkEnum_ov5_021ED334 ov5_021ED390(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
-    return ov5_021ED334(param0, 0, param1, Unk_ov5_021FC9B4);
+    return ov5_021ED334(param0, 0, param1, gObjectEventGfxTexturesTable);
 }
 
 static UnkEnum_ov5_021ED334 ov5_021ED3A4(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
-    return ov5_021ED334(param0, 1, param1, Unk_ov5_021FC9B4);
+    return ov5_021ED334(param0, 1, param1, gObjectEventGfxTexturesTable);
 }
 
 static void ov5_021ED3B8(UnkStruct_ov5_021ED0A4 *param0, const int *param1)
@@ -590,7 +581,7 @@ static void ov5_021ED3DC(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     ResourceCollection *v0 = ov5_021EDC98(param0);
 
-    ov5_021ED2E8(param0, param0->unk_F8, param1, 0xffff, Unk_ov5_021FB484);
+    ov5_021ED2E8(param0, param0->unk_F8, param1, 0xffff, gObjectEventGfxModelsTable);
     ov5_021ED56C(param0, param1);
 }
 
@@ -598,7 +589,7 @@ static void ov5_021ED40C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     ResourceCollection *v0 = ov5_021EDC98(param0);
 
-    ov5_021ED2E8(param0, param0->unk_F8, param1, 0xffff, Unk_ov5_021FB484);
+    ov5_021ED2E8(param0, param0->unk_F8, param1, 0xffff, gObjectEventGfxModelsTable);
     ov5_021ED5B4(param0, param1);
 }
 
@@ -614,7 +605,7 @@ static void ov5_021ED460(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     ResourceCollection *v0 = ov5_021EDCA0(param0);
 
-    ov5_021ED2E8(param0, param0->unk_FC, param1, 0xffff, Unk_ov5_021FB5BC);
+    ov5_021ED2E8(param0, param0->unk_FC, param1, 0xffff, gObjectEventGfxFrameSeqsTable);
     ov5_021ED6A8(param0, param1);
 }
 
@@ -622,7 +613,7 @@ static void ov5_021ED490(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     ResourceCollection *v0 = ov5_021EDCA0(param0);
 
-    ov5_021ED2E8(param0, param0->unk_FC, param1, 0xffff, Unk_ov5_021FB5BC);
+    ov5_021ED2E8(param0, param0->unk_FC, param1, 0xffff, gObjectEventGfxFrameSeqsTable);
     ov5_021ED6F0(param0, param1);
 }
 
@@ -1073,9 +1064,9 @@ static int ov5_021EDAB4(const MapObjectManager *param0, int param1, const MapObj
         }
 
         {
-            const UnkStruct_ov5_021ECD10 *v3 = ov5_021ECD04(v2);
+            const ObjectEventGfxRenderDetailsEntry *v3 = ov5_021ECD04(v2);
 
-            if (v3->unk_04_0 != 1) {
+            if (v3->modelType != 1) {
                 continue;
             }
         }
@@ -1109,9 +1100,9 @@ static int ov5_021EDB3C(const MapObjectManager *param0, int param1, const MapObj
         }
 
         {
-            const UnkStruct_ov5_021ECD10 *v3 = ov5_021ECD04(v2);
+            const ObjectEventGfxRenderDetailsEntry *v3 = ov5_021ECD04(v2);
 
-            if (v3->unk_04_0 != 1) {
+            if (v3->modelType != 1) {
                 continue;
             }
         }
@@ -1282,17 +1273,17 @@ static void *ov5_021EDCF4(UnkStruct_ov5_021ED0A4 *param0, u32 param1, int param2
     return ov5_021ECD68(param0->unk_104, param1, param2);
 }
 
-static const UnkStruct_ov5_021EDD04 *ov5_021EDD04(int param0)
+static const ObjectEventGfxModelAnimEntry *ov5_021EDD04(int param0)
 {
-    const UnkStruct_ov5_021EDD04 *v0 = Unk_ov5_021FD77C;
+    const ObjectEventGfxModelAnimEntry *v0 = gObjectEventGfxModelAnimsTable;
 
     do {
-        if (v0->unk_00 == param0) {
+        if (v0->graphicsID == param0) {
             return v0;
         }
 
         v0++;
-    } while (v0->unk_00 != 0xffff);
+    } while (v0->graphicsID != 0xffff);
 
     GF_ASSERT(FALSE);
     return NULL;
@@ -1300,26 +1291,26 @@ static const UnkStruct_ov5_021EDD04 *ov5_021EDD04(int param0)
 
 static int ov5_021EDD2C(int param0)
 {
-    const UnkStruct_ov5_021EDD04 *v0 = ov5_021EDD04(param0);
-    return v0->unk_04;
+    const ObjectEventGfxModelAnimEntry *v0 = ov5_021EDD04(param0);
+    return v0->modelID;
 }
 
 static int ov5_021EDD38(int param0)
 {
-    const UnkStruct_ov5_021EDD04 *v0 = ov5_021EDD04(param0);
-    return v0->unk_06;
+    const ObjectEventGfxModelAnimEntry *v0 = ov5_021EDD04(param0);
+    return v0->frameSeqID;
 }
 
 static const BillboardAnim *ov5_021EDD44(int param0)
 {
-    const UnkStruct_ov5_021EDD04 *v0 = ov5_021EDD04(param0);
-    return v0->unk_08;
+    const ObjectEventGfxModelAnimEntry *v0 = ov5_021EDD04(param0);
+    return v0->animations;
 }
 
 static u32 ov5_021EDD50(int param0)
 {
     int v0 = ov5_021EDD2C(param0);
-    const int *v1 = Unk_ov5_021FAF40;
+    const int *v1 = gFogIgnoredModels;
 
     do {
         if (*v1 == v0) {
@@ -1869,7 +1860,7 @@ static Billboard *ov5_021EE454(MapObject *param0, int param1, UnkFuncPtr_ov5_021
     int v1, v2, v3, v4;
     TextureResource *v5;
     Billboard *v6;
-    const UnkStruct_ov5_021ED2D0 *v7;
+    const ObjectEventGfxFileEntry *v7;
     UnkStruct_ov5_021ED0A4 *v8 = ov5_021EDEA8(param0);
     BillboardList *v9 = ov5_021EDC8C(v8);
     Billboard *v10 = ov5_021EB1A0(param0);
@@ -1885,56 +1876,56 @@ static Billboard *ov5_021EE454(MapObject *param0, int param1, UnkFuncPtr_ov5_021
     {
         v1 = 0;
         v3 = ov5_021EDD2C(v2);
-        v7 = Unk_ov5_021FB484;
+        v7 = gObjectEventGfxModelsTable;
 
         do {
-            if (v7->unk_00 == v3) {
+            if (v7->id == v3) {
                 break;
             }
 
             v7++;
             v1++;
-        } while (v7->unk_00 != 0xffff);
+        } while (v7->id != 0xffff);
 
-        GF_ASSERT(v7->unk_00 != 0xffff);
-        v11->unk_08 = ov5_021EDCF4(v8, v7->unk_04, 0);
+        GF_ASSERT(v7->id != 0xffff);
+        v11->unk_08 = ov5_021EDCF4(v8, v7->narcIdx, 0);
     }
 
     {
         v1 = 0;
         v3 = ov5_021EDD38(v2);
-        v7 = Unk_ov5_021FB5BC;
+        v7 = gObjectEventGfxFrameSeqsTable;
 
         do {
-            if (v7->unk_00 == v3) {
+            if (v7->id == v3) {
                 break;
             }
 
             v7++;
             v1++;
-        } while (v7->unk_00 != 0xffff);
+        } while (v7->id != 0xffff);
 
-        GF_ASSERT(v7->unk_00 != 0xffff);
-        v11->unk_0C = ov5_021EDCF4(v8, v7->unk_04, 0);
+        GF_ASSERT(v7->id != 0xffff);
+        v11->unk_0C = ov5_021EDCF4(v8, v7->narcIdx, 0);
         BillboardGfxSequence_SetData(v11->unk_0C, &v11->unk_14);
     }
 
     {
         v1 = 0;
         v3 = v2;
-        v7 = Unk_ov5_021FC9B4;
+        v7 = gObjectEventGfxTexturesTable;
 
         do {
-            if (v7->unk_00 == v3) {
+            if (v7->id == v3) {
                 break;
             }
 
             v7++;
             v1++;
-        } while (v7->unk_00 != 0xffff);
+        } while (v7->id != 0xffff);
 
-        GF_ASSERT(v7->unk_00 != 0xffff);
-        v11->unk_10 = ov5_021EDCF4(v8, v7->unk_04, 0);
+        GF_ASSERT(v7->id != 0xffff);
+        v11->unk_10 = ov5_021EDCF4(v8, v7->narcIdx, 0);
     }
 
     BillboardResources_SetWithoutKeys(&v11->unk_28, v11->unk_08, NNS_G3dGetTex(v11->unk_10), ov5_021EDD44(v2), &v11->unk_14);

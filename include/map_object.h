@@ -15,11 +15,6 @@
 #include "functypes/funcptr_020EDF0C.h"
 #include "functypes/funcptr_020EDF0C_1.h"
 #include "functypes/funcptr_020EDF0C_2.h"
-#include "overlay005/funcptr_ov5_021FB0F0.h"
-#include "overlay005/funcptr_ov5_021FB0F0_1.h"
-#include "overlay005/funcptr_ov5_021FB0F0_2.h"
-#include "overlay005/funcptr_ov5_021FB0F0_3.h"
-#include "overlay005/funcptr_ov5_021FB0F0_4.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 
 #include "map_header_data.h"
@@ -28,6 +23,20 @@
 
 #define MAP_OBJECT_COORD_CENTER_TO_FX32(coord) (((coord) << 4) * FX32_ONE) + (MAP_OBJECT_TILE_SIZE >> 1)
 #define MAP_OBJECT_COORD_EDGE_TO_FX32(coord)   (((coord) << 4) * FX32_ONE)
+
+typedef void (*UnkFuncPtr_ov5_021FB0F0)(MapObject *);
+typedef void (*UnkFuncPtr_ov5_021FB0F0_1)(MapObject *);
+typedef void (*UnkFuncPtr_ov5_021FB0F0_2)(MapObject *);
+typedef void (*UnkFuncPtr_ov5_021FB0F0_3)(MapObject *);
+typedef void (*UnkFuncPtr_ov5_021FB0F0_4)(MapObject *);
+
+typedef struct {
+    UnkFuncPtr_ov5_021FB0F0 unk_00;
+    UnkFuncPtr_ov5_021FB0F0_1 unk_04;
+    UnkFuncPtr_ov5_021FB0F0_2 unk_08;
+    UnkFuncPtr_ov5_021FB0F0_3 unk_0C;
+    UnkFuncPtr_ov5_021FB0F0_4 unk_10;
+} UnkStruct_ov5_021FB0F0;
 
 typedef struct MapObjectSave {
     u32 status;

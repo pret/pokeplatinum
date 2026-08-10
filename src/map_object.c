@@ -13,18 +13,10 @@
 #include "functypes/funcptr_020EDF0C.h"
 #include "functypes/funcptr_020EDF0C_1.h"
 #include "functypes/funcptr_020EDF0C_2.h"
-#include "overlay005/const_ov5_021FB470.h"
-#include "overlay005/const_ov5_021FB97C.h"
-#include "overlay005/funcptr_ov5_021FB0F0.h"
-#include "overlay005/funcptr_ov5_021FB0F0_1.h"
-#include "overlay005/funcptr_ov5_021FB0F0_2.h"
-#include "overlay005/funcptr_ov5_021FB0F0_3.h"
-#include "overlay005/funcptr_ov5_021FB0F0_4.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
+#include "overlay005/ov5_021FAF40.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
-#include "overlay005/struct_ov5_021FB0F0.h"
-#include "overlay005/struct_ov5_021FB97C.h"
 
 #include "berry_patch_graphics.h"
 #include "heap.h"
@@ -760,7 +752,7 @@ static void sub_020623D4(MapObject *mapObj)
     u32 v1 = MapObject_GetGraphicsID(mapObj);
 
     if (v1 == 0x2000) {
-        v0 = &Unk_ov5_021FB470;
+        v0 = &gInvisibleObjectEventGfxRenderer;
     } else {
         v0 = sub_02063244(v1);
     }
@@ -2392,15 +2384,15 @@ static UnkFuncPtr_ov5_021FB0F0_4 sub_02063240(const UnkStruct_ov5_021FB0F0 *para
 
 static const UnkStruct_ov5_021FB0F0 *sub_02063244(u32 param0)
 {
-    const UnkStruct_ov5_021FB97C *v0 = Unk_ov5_021FB97C;
+    const ObjectEventGfxRendererEntry *v0 = gObjectEventGfxRenderersTable;
 
     do {
-        if (v0->unk_00 == param0) {
-            return v0->unk_04;
+        if (v0->graphicsID == param0) {
+            return v0->renderer;
         }
 
         v0++;
-    } while (v0->unk_00 != 0xffff);
+    } while (v0->graphicsID != 0xffff);
 
     GF_ASSERT(FALSE);
     return NULL;

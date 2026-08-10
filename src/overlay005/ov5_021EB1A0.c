@@ -3,17 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/object_events_gfx.h"
+
 #include "struct_decls/map_object.h"
 
-#include "overlay005/const_ov5_021FB51C.h"
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021ECA70.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F10E8.h"
 #include "overlay005/ov5_021F23D0.h"
-#include "overlay005/struct_ov5_021EC700.h"
-#include "overlay005/struct_ov5_021ECD10.h"
+#include "overlay005/ov5_021FAF40.h"
 #include "overlay005/struct_ov5_021ED01C.h"
 
 #include "billboard.h"
@@ -105,69 +105,69 @@ Billboard *ov5_021EB1A0(MapObject *mapObj)
     int v0 = MapObject_GetGraphicsID(mapObj);
 
     switch (v0) {
-    case 0x0:
-    case 0x61:
-    case 0x15:
-    case 0x62:
-    case 0xb0:
-    case 0xb1:
-    case 0xb2:
-    case 0xb3:
-    case 0xb4:
-    case 0xb5:
-    case 0xc6:
-    case 0xc7:
-    case 0xba:
-    case 0xbb:
-    case 0xbc:
-    case 0xbd:
-    case 0xc4:
-    case 0xc5:
-    case 0xc8:
-    case 0xc9:
-    case 0xd2:
-    case 0xd3:
-    case 0xd4:
-    case 0x107:
-    case 0x10c:
-    case 0x10d:
-    case 0x10e:
-    case 0x10f:
-    case 0x110:
-    case 0x111:
-    case 0x112:
-    case 0x113: {
+    case OBJ_EVENT_GFX_PLAYER_M:
+    case OBJ_EVENT_GFX_PLAYER_F:
+    case OBJ_EVENT_GFX_PLAYER_M_BIKE:
+    case OBJ_EVENT_GFX_PLAYER_F_BIKE:
+    case OBJ_EVENT_GFX_PLAYER_M_HOLDING_POKE_BALL:
+    case OBJ_EVENT_GFX_PLAYER_F_HOLDING_POKE_BALL:
+    case OBJ_EVENT_GFX_PLAYER_M_SURF:
+    case OBJ_EVENT_GFX_PLAYER_F_SURF:
+    case OBJ_EVENT_GFX_PLAYER_M_SPRAYDUCK:
+    case OBJ_EVENT_GFX_PLAYER_F_SPRAYDUCK:
+    case OBJ_EVENT_GFX_PLAYER_M_SAVE:
+    case OBJ_EVENT_GFX_PLAYER_F_SAVE:
+    case OBJ_EVENT_GFX_PLAYER_M_CONTEST:
+    case OBJ_EVENT_GFX_PLAYER_F_CONTEST:
+    case OBJ_EVENT_GFX_PLAYER_M_FISHING:
+    case OBJ_EVENT_GFX_PLAYER_F_FISHING:
+    case OBJ_EVENT_GFX_PLAYER_M_POKETCH:
+    case OBJ_EVENT_GFX_PLAYER_F_POKETCH:
+    case OBJ_EVENT_GFX_PLAYER_M_POKECENTER_HEAL:
+    case OBJ_EVENT_GFX_PLAYER_F_POKECENTER_HEAL:
+    case OBJ_EVENT_GFX_PLAYER_M_HEARTHOME_GYM:
+    case OBJ_EVENT_GFX_PLAYER_F_HEARTHOME_GYM:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_SAVE:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_SAVE:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_POKETCH:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_POKETCH:
+    case OBJ_EVENT_GFX_PLAYER_M_SAVE_HEARTHOME_GYM:
+    case OBJ_EVENT_GFX_PLAYER_F_SAVE_HEARTHOME_GYM:
+    case OBJ_EVENT_GFX_PLAYER_M_POKETCH_HEARTHOME_GYM:
+    case OBJ_EVENT_GFX_PLAYER_F_POKETCH_HEARTHOME_GYM: {
         UnkStruct_ov5_021EBA0C *v1;
 
         v1 = sub_02062AF0(mapObj);
         return v1->unk_04;
     }
-    case 0xc3: {
+    case OBJ_EVENT_GFX_MAGIKARP: {
         UnkStruct_ov5_021EB7F8 *v2;
 
         v2 = sub_02062AF0(mapObj);
         return v2->unk_04;
     }
-    case 0x97:
-    case 0x98:
-    case 0x99: {
+    case OBJ_EVENT_GFX_UXIE:
+    case OBJ_EVENT_GFX_MESPRIT:
+    case OBJ_EVENT_GFX_AZELF: {
         return ov5_021ECB80(mapObj);
     }
-    case 0x108: {
+    case OBJ_EVENT_GFX_DIST_WORLD_B1F_MESPRIT: {
         UnkStruct_ov5_021EC804 *v3;
 
         v3 = sub_02062AF0(mapObj);
         return v3->unk_04;
     }
-    case 0x64: {
+    case OBJ_EVENT_GFX_BERRY_SOIL: {
         return NULL;
     }
     default: {
-        const UnkStruct_ov5_021ECD10 *v4;
+        const ObjectEventGfxRenderDetailsEntry *v4;
 
         v4 = ov5_021ECD04(mapObj);
 
-        if (v4->unk_04_0 == 1) {
+        if (v4->modelType == 1) {
             UnkStruct_ov5_021EB2EC *v5;
 
             v5 = sub_02062AF0(mapObj);
@@ -181,7 +181,7 @@ Billboard *ov5_021EB1A0(MapObject *mapObj)
 
 void ov5_021EB2EC(MapObject *mapObj)
 {
-    UnkStruct_ov5_021EB2EC *v0 = sub_02062ACC(mapObj, (sizeof(UnkStruct_ov5_021EB2EC)));
+    UnkStruct_ov5_021EB2EC *v0 = sub_02062ACC(mapObj, sizeof(UnkStruct_ov5_021EB2EC));
     v0->unk_02 = -1;
 
     ov5_021ECF04(mapObj, &v0->unk_04);
@@ -300,7 +300,7 @@ void ov5_021EB438(MapObject *mapObj)
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, FX32_ONE );
     }
 
     ov5_021EDEB4(mapObj, v3);
@@ -331,7 +331,7 @@ static void ov5_021EB4AC(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, ((FX32_ONE) / 2));
+        Billboard_AdvanceAnim(param1, (FX32_ONE) / 2);
     }
 }
 
@@ -345,7 +345,7 @@ static void ov5_021EB4E8(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, (FX32_ONE));
+        Billboard_AdvanceAnim(param1, FX32_ONE );
     }
 }
 
@@ -359,7 +359,7 @@ static void ov5_021EB524(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, ((FX32_ONE) * 2));
+        Billboard_AdvanceAnim(param1, (FX32_ONE) * 2);
     }
 }
 
@@ -373,7 +373,7 @@ static void ov5_021EB560(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, ((FX32_ONE) * 4));
+        Billboard_AdvanceAnim(param1, (FX32_ONE) * 4);
     }
 }
 
@@ -395,12 +395,9 @@ static void ov5_021EB59C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (ov5_021ECD38(mapObj) == 0) {
         fx32 v1[] = {
             (FX32_ONE),
-            (FX32_ONE),
-            ((FX32_ONE) * 2),
-            (FX32_ONE),
-            (FX32_ONE),
-            ((FX32_ONE) * 2),
-            0
+            FX32_ONE , (FX32_ONE) * 2,
+            FX32_ONE ,
+            FX32_ONE , (FX32_ONE) * 2, 0
         };
 
         Billboard_AdvanceAnim(param1, v1[param2->unk_00]);
@@ -430,8 +427,8 @@ static void ov5_021EB620(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (ov5_021ECD38(mapObj) == 0) {
         fx32 v1[] = {
             ((FX32_ONE) * 3),
-            ((FX32_ONE) * 2),
-            ((FX32_ONE) * 3),
+            (FX32_ONE) * 2,
+            (FX32_ONE) * 3,
             0
         };
 
@@ -462,13 +459,12 @@ static void ov5_021EB69C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (ov5_021ECD38(mapObj) == 0) {
         fx32 v1[] = {
             ((FX32_ONE) * 2),
-            (FX32_ONE),
-            (FX32_ONE),
-            (FX32_ONE),
-            (FX32_ONE),
-            (FX32_ONE),
-            (FX32_ONE),
-            0
+            FX32_ONE ,
+            FX32_ONE ,
+            FX32_ONE ,
+            FX32_ONE ,
+            FX32_ONE ,
+            FX32_ONE , 0
         };
 
         Billboard_AdvanceAnim(param1, v1[param2->unk_00]);
@@ -545,7 +541,7 @@ static void ov5_021EB7D0(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
         Billboard_SetAnimFrameNum(param1, 0);
     }
 
-    Billboard_AdvanceAnim(param1, (FX32_ONE));
+    Billboard_AdvanceAnim(param1, FX32_ONE );
 }
 
 static void (*const Unk_ov5_021FF420[])(MapObject *, Billboard *, UnkStruct_ov5_021EB2EC *, int) = {
@@ -563,7 +559,7 @@ static void (*const Unk_ov5_021FF420[])(MapObject *, Billboard *, UnkStruct_ov5_
 
 void ov5_021EB7F8(MapObject *mapObj)
 {
-    UnkStruct_ov5_021EB7F8 *v0 = sub_02062ACC(mapObj, (sizeof(UnkStruct_ov5_021EB7F8)));
+    UnkStruct_ov5_021EB7F8 *v0 = sub_02062ACC(mapObj, sizeof(UnkStruct_ov5_021EB7F8));
 
     v0->unk_00 = -1;
     v0->unk_02 = LCRNG_Next() % 16;
@@ -636,7 +632,7 @@ void ov5_021EB8B8(MapObject *mapObj)
         v2->unk_02--;
         Billboard_AdvanceAnim(v3, 0);
     } else {
-        Billboard_AdvanceAnim(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, FX32_ONE );
         v2->unk_01++;
 
         if (v2->unk_01 >= 32) {
@@ -704,7 +700,7 @@ void ov5_021EB944(MapObject *mapObj)
             Billboard_SetAnimFrameNum(v3, 0);
         }
 
-        Billboard_AdvanceAnim(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, FX32_ONE );
     } break;
     }
 
@@ -717,7 +713,7 @@ void ov5_021EB944(MapObject *mapObj)
 
 void ov5_021EBA0C(MapObject *mapObj)
 {
-    UnkStruct_ov5_021EBA0C *v0 = sub_02062ACC(mapObj, (sizeof(UnkStruct_ov5_021EBA0C)));
+    UnkStruct_ov5_021EBA0C *v0 = sub_02062ACC(mapObj, sizeof(UnkStruct_ov5_021EBA0C));
     v0->unk_00 = -1;
 
     ov5_021ECF04(mapObj, &v0->unk_04);
@@ -834,7 +830,7 @@ static void ov5_021EBBB4(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, ((FX32_ONE) / 2));
+        Billboard_AdvanceAnim(param1, (FX32_ONE) / 2);
     }
 }
 
@@ -851,7 +847,7 @@ static void ov5_021EBC28(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, (FX32_ONE));
+        Billboard_AdvanceAnim(param1, FX32_ONE );
     }
 }
 
@@ -867,7 +863,7 @@ static void ov5_021EBC7C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, ((FX32_ONE) * 2));
+        Billboard_AdvanceAnim(param1, (FX32_ONE) * 2);
     }
 }
 
@@ -883,7 +879,7 @@ static void ov5_021EBCD0(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, ((FX32_ONE) * 4));
+        Billboard_AdvanceAnim(param1, (FX32_ONE) * 4);
     }
 }
 
@@ -906,12 +902,9 @@ static void ov5_021EBD24(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (ov5_021ECD38(mapObj) == 0) {
         fx32 v1[] = {
             (FX32_ONE),
-            (FX32_ONE),
-            ((FX32_ONE) * 2),
-            (FX32_ONE),
-            (FX32_ONE),
-            ((FX32_ONE) * 2),
-            0
+            FX32_ONE , (FX32_ONE) * 2,
+            FX32_ONE ,
+            FX32_ONE , (FX32_ONE) * 2, 0
         };
 
         Billboard_AdvanceAnim(param1, v1[param2->unk_01]);
@@ -942,8 +935,8 @@ static void ov5_021EBDC4(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (ov5_021ECD38(mapObj) == 0) {
         fx32 v1[] = {
             ((FX32_ONE) * 3),
-            ((FX32_ONE) * 2),
-            ((FX32_ONE) * 3),
+            (FX32_ONE) * 2,
+            (FX32_ONE) * 3,
             0
         };
 
@@ -975,13 +968,12 @@ static void ov5_021EBE5C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (ov5_021ECD38(mapObj) == 0) {
         fx32 v1[] = {
             ((FX32_ONE) * 2),
-            (FX32_ONE),
-            (FX32_ONE),
-            (FX32_ONE),
-            (FX32_ONE),
-            (FX32_ONE),
-            (FX32_ONE),
-            0
+            FX32_ONE ,
+            FX32_ONE ,
+            FX32_ONE ,
+            FX32_ONE ,
+            FX32_ONE ,
+            FX32_ONE , 0
         };
 
         Billboard_AdvanceAnim(param1, v1[param2->unk_01]);
@@ -1007,7 +999,7 @@ static void ov5_021EBEFC(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, (FX32_ONE));
+        Billboard_AdvanceAnim(param1, FX32_ONE );
     }
 }
 
@@ -1076,7 +1068,7 @@ static void ov5_021EBFDC(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
         Billboard_SetAnimFrameNum(param1, 0);
         param2->unk_03_0 = 0;
     } else {
-        Billboard_AdvanceAnim(param1, (FX32_ONE));
+        Billboard_AdvanceAnim(param1, FX32_ONE );
     }
 }
 
@@ -1096,7 +1088,7 @@ static void ov5_021EC068(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, ((FX32_ONE) / 2));
+        Billboard_AdvanceAnim(param1, (FX32_ONE) / 2);
     }
 }
 
@@ -1116,7 +1108,7 @@ static void ov5_021EC0E4(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(param1, (FX32_ONE));
+        Billboard_AdvanceAnim(param1, FX32_ONE );
     }
 }
 
@@ -1178,7 +1170,7 @@ static void ov5_021EC1D8(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
 
     if ((param3 != param2->unk_00) || (param2->unk_02 != 0x0)) {
         Billboard_SetAnimNum(param1, Unk_ov5_021FF34C[param3]);
-        Billboard_SetAnimFrameNum(param1, (FX32_ONE * 15));
+        Billboard_SetAnimFrameNum(param1, FX32_ONE * 15);
     }
 
     v0 = Billboard_GetAnimFrameNum(param1);
@@ -1201,7 +1193,7 @@ static void ov5_021EC228(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
         Billboard_SetAnimFrameNum(param1, 0);
     }
 
-    Billboard_AdvanceAnim(param1, (FX32_ONE));
+    Billboard_AdvanceAnim(param1, FX32_ONE );
 }
 
 static void ov5_021EC260(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021EBA0C *param2, int param3)
@@ -1210,7 +1202,7 @@ static void ov5_021EC260(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
 
     if ((param3 != param2->unk_00) || (param2->unk_02 != 0x2)) {
         Billboard_SetAnimNum(param1, Unk_ov5_021FF34C[param3]);
-        Billboard_SetAnimFrameNum(param1, (FX32_ONE * 15));
+        Billboard_SetAnimFrameNum(param1, FX32_ONE * 15);
         param2->unk_03_1 = 0;
     }
 
@@ -1251,7 +1243,7 @@ static void ov5_021EC324(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
 
     if ((param3 != param2->unk_00) || (param2->unk_02 != 0x3)) {
         Billboard_SetAnimNum(param1, Unk_ov5_021FF34C[param3]);
-        Billboard_SetAnimFrameNum(param1, (FX32_ONE * 15));
+        Billboard_SetAnimFrameNum(param1, FX32_ONE * 15);
     }
 
     v0 = Billboard_GetAnimFrameNum(param1) - (FX32_ONE);
@@ -1362,7 +1354,7 @@ void ov5_021EC454(MapObject *mapObj)
         Billboard_SetAnimFrameNum(v2, 0);
     }
 
-    Billboard_AdvanceAnim(v2, (FX32_ONE));
+    Billboard_AdvanceAnim(v2, FX32_ONE );
 
     ov5_021EDEB4(mapObj, v2);
     ov5_021EC6C0(mapObj, v2);
@@ -1394,7 +1386,7 @@ void ov5_021EC4BC(MapObject *mapObj)
             Billboard_SetAnimFrameNum(v3, 0);
         }
 
-        Billboard_AdvanceAnim(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, FX32_ONE );
         break;
     default:
         if (Billboard_GetAnimNum(v3) != 0) {
@@ -1402,7 +1394,7 @@ void ov5_021EC4BC(MapObject *mapObj)
             Billboard_SetAnimFrameNum(v3, 0);
         }
 
-        Billboard_AdvanceAnim(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, FX32_ONE );
     }
 
     v2->unk_00 = v0;
@@ -1436,7 +1428,7 @@ void ov5_021EC554(MapObject *mapObj)
         Billboard_SetAnimFrameNum(v3, 0);
     }
 
-    Billboard_AdvanceAnim(v3, (FX32_ONE));
+    Billboard_AdvanceAnim(v3, FX32_ONE );
     ov5_021EDEB4(mapObj, v3);
     ov5_021EC6C0(mapObj, v3);
 
@@ -1473,7 +1465,7 @@ void ov5_021EC5C0(MapObject *mapObj)
         Billboard_SetAnimFrameNum(v3, 0);
     }
 
-    Billboard_AdvanceAnim(v3, (FX32_ONE));
+    Billboard_AdvanceAnim(v3, FX32_ONE );
 
     v2->unk_00 = v0;
     v2->unk_02 = v1;
@@ -1542,11 +1534,11 @@ static void ov5_021EC6C0(MapObject *mapObj, Billboard *param1)
 
 static void ov5_021EC700(u32 param0, VecFx32 *param1)
 {
-    const UnkStruct_ov5_021EC700 *v0 = Unk_ov5_021FB51C;
+    const ObjectEventGfxFieldAnimsInitialPosEntry *v0 = gObjectEventGfxOverworldAnimsInitialPosTable;
 
-    while (v0->unk_00 != 0xffff) {
-        if (v0->unk_00 == param0) {
-            *param1 = v0->unk_04;
+    while (v0->graphicsID != 0xffff) {
+        if (v0->graphicsID == param0) {
+            *param1 = v0->initialPos;
             return;
         }
 
@@ -1559,7 +1551,7 @@ static void ov5_021EC700(u32 param0, VecFx32 *param1)
 void ov5_021EC734(MapObject *mapObj)
 {
     VecFx32 v0;
-    UnkStruct_ov5_021EC760 *v1 = sub_02062ACC(mapObj, (sizeof(UnkStruct_ov5_021EC760)));
+    UnkStruct_ov5_021EC760 *v1 = sub_02062ACC(mapObj, sizeof(UnkStruct_ov5_021EC760));
     ov5_021EC700(MapObject_GetEffectiveGraphicsID(mapObj), &v0);
     v1->unk_00 = ov5_021F121C(mapObj, &v0);
 }
@@ -1599,7 +1591,7 @@ void ov5_021EC790(MapObject *mapObj)
 
 void ov5_021EC7B8(MapObject *mapObj)
 {
-    UnkStruct_ov5_021EC760 *v0 = sub_02062ACC(mapObj, (sizeof(UnkStruct_ov5_021EC760)));
+    UnkStruct_ov5_021EC760 *v0 = sub_02062ACC(mapObj, sizeof(UnkStruct_ov5_021EC760));
     v0->unk_00 = ov5_021F2438(mapObj);
 }
 
@@ -1628,7 +1620,7 @@ static void ov5_021EC804(Billboard *param0, void *param1)
 
 void ov5_021EC824(MapObject *mapObj)
 {
-    UnkStruct_ov5_021EC804 *v0 = sub_02062ACC(mapObj, (sizeof(UnkStruct_ov5_021EC804)));
+    UnkStruct_ov5_021EC804 *v0 = sub_02062ACC(mapObj, sizeof(UnkStruct_ov5_021EC804));
     v0->unk_02 = -1;
 
     ov5_021ECF04(mapObj, &v0->unk_04);
@@ -1701,7 +1693,7 @@ void ov5_021EC8EC(MapObject *mapObj)
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, FX32_ONE );
     }
 
     ov5_021EDEB4(mapObj, v3);
@@ -1710,7 +1702,7 @@ void ov5_021EC8EC(MapObject *mapObj)
 
 void ov5_021EC938(MapObject *mapObj)
 {
-    UnkStruct_ov5_021EC938 *v0 = sub_02062ACC(mapObj, (sizeof(UnkStruct_ov5_021EC938)));
+    UnkStruct_ov5_021EC938 *v0 = sub_02062ACC(mapObj, sizeof(UnkStruct_ov5_021EC938));
     ov5_021ECF04(mapObj, &v0->unk_08);
 
     if (v0->unk_08 != NULL) {
@@ -1775,7 +1767,7 @@ void ov5_021EC9E8(MapObject *mapObj)
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        Billboard_AdvanceAnim(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, FX32_ONE );
     }
 
     {
