@@ -1,4 +1,4 @@
-// Copyright (c) 2021-2024 red031000
+// Copyright (c) 2021-2025 red031000
 
 #include "global.h"
 #include "cJSON.h"
@@ -36,7 +36,7 @@ struct JsonToCellOptions *ParseNCERJson(char *path)
     int fileLength;
     unsigned char *jsonString = ReadWholeFile(path, &fileLength);
 
-    cJSON *json = cJSON_Parse((const char *)jsonString);
+    cJSON *json = cJSON_ParseWithLength((const char *)jsonString, fileLength);
 
     struct JsonToCellOptions *options = malloc(sizeof(struct JsonToCellOptions));
 
@@ -83,11 +83,11 @@ struct JsonToCellOptions *ParseNCERJson(char *path)
         }
     }
 
-    if (options->vramTransferEnabled) 
+    if (options->vramTransferEnabled)
     {
         cJSON *vramTransferMaxSize = cJSON_GetObjectItemCaseSensitive(json, "vramTransferMaxSize");
         options->vramTransferMaxSize = GetInt(vramTransferMaxSize);
-        
+
         options->transferData = malloc(sizeof(struct CellVramTransferData *) * options->cellCount);
 
         cJSON *transfers = cJSON_GetObjectItemCaseSensitive(json, "transferData");
@@ -252,7 +252,7 @@ char *GetNCERJson(struct JsonToCellOptions *options)
     cJSON_AddBoolToObject(ncer, "ucatEnabled", options->ucatEnabled);
     cJSON_AddNumberToObject(ncer, "cellCount", options->cellCount);
     cJSON_AddNumberToObject(ncer, "mappingType", options->mappingType);
-    
+
     cJSON *cells = cJSON_AddArrayToObject(ncer, "cells");
 
     for (int i = 0; i < options->cellCount; i++)
@@ -328,7 +328,7 @@ char *GetNCERJson(struct JsonToCellOptions *options)
         cJSON_AddNumberToObject(ncer, "labelCount", options->labelCount);
     }
 
-    if (options->vramTransferEnabled) 
+    if (options->vramTransferEnabled)
     {
         cJSON_AddNumberToObject(ncer, "vramTransferMaxSize", options->vramTransferMaxSize);
         cJSON *transfers = cJSON_AddArrayToObject(ncer, "transferData");
@@ -362,7 +362,7 @@ struct JsonToScreenOptions *ParseNSCRJson(char *path)
     int fileLength;
     unsigned char *jsonString = ReadWholeFile(path, &fileLength);
 
-    cJSON *json = cJSON_Parse((const char *)jsonString);
+    cJSON *json = cJSON_ParseWithLength((const char *)jsonString, fileLength);
 
     struct JsonToScreenOptions *options = malloc(sizeof(struct JsonToScreenOptions));
 
@@ -427,10 +427,10 @@ struct JsonToScreenOptions *ParseNSCRJson(char *path)
 
 struct JsonToAnimationOptions *ParseNANRJson(char *path)
 {
-    int filelength;
-    unsigned char *jsonString = ReadWholeFile(path, &filelength);
+    int fileLength;
+    unsigned char *jsonString = ReadWholeFile(path, &fileLength);
 
-    cJSON *json = cJSON_Parse((const char *)jsonString);
+    cJSON *json = cJSON_ParseWithLength((const char *)jsonString, fileLength);
 
     struct JsonToAnimationOptions *options = malloc(sizeof(struct JsonToAnimationOptions));
 
@@ -525,9 +525,11 @@ struct JsonToAnimationOptions *ParseNANRJson(char *path)
         if (i > options->resultCount - 1)
             FATAL_ERROR("Animation result count is incorrect.\n");
 
+        //init padding to false, this is used in gfx.c to control padding, and is therefore checked there
+        options->animationResults[i]->padded = false;
+
         cJSON *resultType = cJSON_GetObjectItemCaseSensitive(animationResult, "resultType");
         options->animationResults[i]->resultType = GetInt(resultType);
-        options->animationResults[i]->padded = false;
         switch (options->animationResults[i]->resultType) {
             case 0: { //index
                 cJSON *index = cJSON_GetObjectItemCaseSensitive(animationResult, "index");
@@ -665,7 +667,7 @@ char *GetNANRJson(struct JsonToAnimationOptions *options)
             case 0: //index
                 cJSON_AddNumberToObject(animationResult, "index", options->animationResults[i]->index);
                 break;
-            
+
             case 1: //SRT
                 cJSON_AddNumberToObject(animationResult, "index", options->animationResults[i]->dataSrt.index);
                 cJSON_AddNumberToObject(animationResult, "rotation", options->animationResults[i]->dataSrt.rotation);
@@ -818,7 +820,7 @@ struct NtrFontMetadata *ParseNtrFontMetadataJson(char *path)
     int fileLength;
     unsigned char *jsonString = ReadWholeFile(path, &fileLength);
 
-    cJSON *json = cJSON_Parse((const char *)jsonString);
+    cJSON *json = cJSON_ParseWithLength((const char *)jsonString, fileLength);
     if (json == NULL)
     {
         const char *errorPtr = cJSON_GetErrorPtr();
