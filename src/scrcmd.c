@@ -41,6 +41,7 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 
+#include "applications/capsule_menu/main.h"
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
@@ -211,7 +212,6 @@
 #include "unk_02069BE0.h"
 #include "unk_020722AC.h"
 #include "unk_0207DA28.h"
-#include "unk_02097B18.h"
 #include "unk_020985E4.h"
 #include "unk_02099500.h"
 #include "unk_02099604.h"
@@ -3220,7 +3220,7 @@ static BOOL ScrCmd_StartLibraryTV(ScriptContext *ctx)
 
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx)
 {
-    sub_020980DC(ctx->task, ctx->fieldSystem->saveData);
+    CapsuleMenu_StartFieldTask(ctx->task, ctx->fieldSystem->saveData);
     return TRUE;
 }
 

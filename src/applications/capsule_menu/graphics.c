@@ -1,4 +1,4 @@
-#include "overlay076/graphics.h"
+#include "applications/capsule_menu/graphics.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -8,9 +8,10 @@
 #include "struct_defs/seal_case.h"
 #include "struct_defs/struct_020127E8.h"
 
+#include "applications/capsule_menu/defs.h"
+#include "applications/capsule_menu/main.h"
+#include "applications/capsule_menu/manager.h"
 #include "battle_anim/battle_anim_helpers.h"
-#include "overlay076/defs.h"
-#include "overlay076/manager.h"
 
 #include "ball_seal_info.h"
 #include "bg_window.h"
@@ -39,7 +40,48 @@
 #include "touch_screen.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
-#include "unk_02097B18.h"
+
+#define CAPSULE_ANIM_OFFSET            82
+#define CAPSULE_BASE_RES_ID            11000
+#define CAPSULE_CELL_OFFSET            174
+#define CAPSULE_CHAR_OFFSET            266
+#define CAPSULE_MON_X_OFFSET           -16
+#define CAPSULE_MON_Y_OFFSET           12
+#define CAPSULE_PALETTE_RES_ID         30000
+#define CAPSULE_PLTT_OFFSET            286
+#define CURSOR_ANIM_OFFSET             87
+#define CURSOR_CELL_OFFSET             179
+#define CURSOR_CHAR_OFFSET             275
+#define CURSOR_PLTT_OFFSET             291
+#define CUSTOM_BALL_PLTT_OFFSET        294
+#define MESSAGE_BOX_PLTT_OFFSET        15
+#define MESSAGE_BOX_TILE_OFFSET        1
+#define MON_SPRITE_ANIM_RES_ID         18000
+#define MON_SPRITE_CELL_RES_ID         17000
+#define MON_SPRITE_CHAR_RES_ID         15000
+#define MON_SPRITE_PLTT_RES_ID         16000
+#define PALETTE_MEMBER_IDX             7
+#define SEAL_ANIM_MEMBER_IDX           88
+#define SEAL_ANIM_RES_ID               28088
+#define SEAL_CELL_MEMBER_IDX           180
+#define SEAL_CELL_RES_ID               27180
+#define SEAL_CHAR_RES_ID               25000
+#define SEAL_COUNT_TEXT_XOFFSET        7
+#define SEAL_SPRITE_PALETTE_MEMBER_IDX 293
+#define SEAL_SPRITE_PALETTE_RES_ID     26292
+#define SELECTION_ANIM_MEMBER_IDX      81
+#define SELECTION_ANIM_RES_ID          48000
+#define SELECTION_CELL_MEMBER_IDX      173
+#define SELECTION_CELL_RES_ID          47000
+#define SELECTION_CHAR_MEMBER_IDX      265
+#define SELECTION_CHAR_RES_ID          45000
+#define SELECTION_PALETTE_RES_ID       26290
+#define SPRITE_SYSTEM_MAX_SPRITES      128
+#define SPRITE_SYSTEM_PLTT_CAPACITY    32
+#define STD_WINDOW_PLTT_OFFSET         13
+#define STD_WINDOW_TILE_OFFSET         31
+#define WINDOW_BGLAYER                 6
+#define WINDOW_PALETTE                 11
 
 typedef struct {
     XYTransformContext transforms[9];
@@ -115,7 +157,7 @@ void ov76_0223B98C(SealAppManager *appMan, int index, int param2, int param3, in
 
     resID = 30000;
     v3 = sub_02012898(&window, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_53);
-    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &appMan->graphicsMan.fontOAM[index]);
+    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &appMan->graphicsMan.charTransfer[index]);
 
     fontOAMManager.unk_00 = appMan->graphicsMan.fontOAMManager;
     fontOAMManager.unk_04 = &window;
@@ -192,7 +234,7 @@ void SealGraphics_LoadSealSprites(SealAppManager *appMan)
     PaletteData *paletteData = appMan->graphicsMan.paletteData;
 
     for (i = 0; i < CAPSULE_NUM; i++) {
-        memberIdx = sub_02098140(appMan->sealPages.sealIDs[i]);
+        memberIdx = CapsuleMenu_GetSealMemberIdx(appMan->sealPages.sealIDs[i]);
         SpriteSystem_LoadCharResObj(spriteSystem, spriteManager, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, memberIdx, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, i + SEAL_CHAR_RES_ID);
     }
 
@@ -204,11 +246,12 @@ void SealGraphics_LoadSealSprites(SealAppManager *appMan)
 void SealGraphics_InitSealSprites(SealAppManager *appMan)
 {
     int i;
+    CapsuleActiveSprites *sprites;
     SpriteTemplate spriteTemplate;
     SpriteSystem *spriteSystem = appMan->graphicsMan.spriteSystem;
     SpriteManager *spriteManager = appMan->graphicsMan.spriteManager;
     PaletteData *paletteData = appMan->graphicsMan.paletteData;
-    sprites = &appMan->sprites;
+    sprites = &appMan->capsuleActiveSprites;
 
     spriteTemplate.x = 0;
     spriteTemplate.y = 0;
@@ -243,9 +286,9 @@ void SealGraphics_InitSealSprites(SealAppManager *appMan)
         };
 
         for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-            ManagedSprite_SetPositionXY(appMan->sprites.sprites[i], initialXY[i][0], initalXY[i][1] - 1);
-            ManagedSprite_TickFrame(appMan->sprites.sprites[i]);
-            ManagedSprite_SetAnimationFrame(appMan->sprites.sprites[i], 0);
+            ManagedSprite_SetPositionXY(appMan->capsuleActiveSprites.sprites[i], initialXY[i][0], initialXY[i][1] - 1);
+            ManagedSprite_TickFrame(appMan->capsuleActiveSprites.sprites[i]);
+            ManagedSprite_SetAnimationFrame(appMan->capsuleActiveSprites.sprites[i], 0);
         }
     }
 }
@@ -256,37 +299,37 @@ void SealGraphics_FreeSealSprites(SealAppManager *appMan)
 
     for (i = 0; i < SEALS_PER_CAPSULE; i++) {
         SpriteManager_UnloadCharObjById(appMan->graphicsMan.spriteManager, i + 25000);
-        Sprite_DeleteAndFreeResources(appMan->sprites.sprites[i]);
+        Sprite_DeleteAndFreeResources(appMan->capsuleActiveSprites.sprites[i]);
     }
 }
 
 static void SealGraphics_TaskTick(SysTask *sysTask, void *sealSysTask)
 {
-    SealGraphicsTask *sealSysTask = (SealGraphicsTask *)sealSysTask;
+    SealGraphicsTask *sealSysTask_dupe = (SealGraphicsTask *)sealSysTask;
     BOOL result = FALSE;
     {
         int i;
 
         for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-            if (sealSysTask->sprites[i] == NULL) {
+            if (sealSysTask_dupe->sprites[i] == NULL) {
                 continue;
             }
 
-            if (PosLerpContext_UpdateAndApplyToSprite(&sealSysTask->transforms[i], sealSysTask->sprites[i]) == 1) {
+            if (PosLerpContext_UpdateAndApplyToSprite(&sealSysTask_dupe->transforms[i], sealSysTask_dupe->sprites[i]) == 1) {
                 result = FALSE;
             }
         }
 
-        if (PosLerpContext_Update(&sealSysTask->transforms[SEALS_PER_CAPSULE]) == 1) {
+        if (PosLerpContext_Update(&sealSysTask_dupe->transforms[SEALS_PER_CAPSULE]) == 1) {
             result = TRUE;
-            Bg_SetOffset(sealSysTask->bgOffset, BG_LAYER_SUB_1, 0, sealSysTask->transforms[SEALS_PER_CAPSULE].x);
-            Bg_SetOffset(sealSysTask->bgOffset, BG_LAYER_SUB_1, 3, sealSysTask->transforms[SEALS_PER_CAPSULE].y);
+            Bg_SetOffset(sealSysTask_dupe->bgOffset, BG_LAYER_SUB_1, 0, sealSysTask_dupe->transforms[SEALS_PER_CAPSULE].x);
+            Bg_SetOffset(sealSysTask_dupe->bgOffset, BG_LAYER_SUB_1, 3, sealSysTask_dupe->transforms[SEALS_PER_CAPSULE].y);
         }
     }
 
     if (result == FALSE) {
-        *(sealSysTask->result) = FALSE;
-        Heap_Free(sealSysTask);
+        *(sealSysTask_dupe->result) = FALSE;
+        Heap_Free(sealSysTask_dupe);
         SysTask_Done(sysTask);
     }
 }
@@ -308,20 +351,20 @@ void SealGraphics_TaskStart(SealAppManager *appMan, s8 scale, int steps)
 
             sealSysTask->sprites[i] = appMan->sealRenderInfo[i].sprite;
 
-            ManagedSprite_GetPositionXY(sealSysTask->sprite[i], &x, &y);
-            PosLerpContext_Init(&sealSysTask->unk_00[i], x, y + ((7 * 8) * scale), y, y + ((-2 * 8) * scale), param2);
-            PosLerpContext_UpdateAndApplyToSprite(&sealSysTask->capsules[i], sealSysTask->sprites[i]);
-            PosLerpContext_UpdateAndApplyToSprite(&sealSysTask->capsules[i], sealSysTask->sprites[i]);
+            ManagedSprite_GetPositionXY(sealSysTask->sprites[i], &x, &y);
+            PosLerpContext_Init(&sealSysTask->transforms[i], x, y + (56 * scale), y, y + (-16 * scale), steps);
+            PosLerpContext_UpdateAndApplyToSprite(&sealSysTask->transforms[i], sealSysTask->sprites[i]);
+            PosLerpContext_UpdateAndApplyToSprite(&sealSysTask->transforms[i], sealSysTask->sprites[i]);
         }
     }
 
     {
         int xOffset = Bg_GetXOffset(sealSysTask->bgConfig, 5);
         int yOffset = Bg_GetYOffset(sealSysTask->bgConfig, 5);
-        PosLerpContext_Init(&sealSysTask->capsules[SEALS_PER_CAPSULE], xOffset, xOffset + (((7 * 8) * param1) * -1), yOffset, yOffset + (((-2 * 8) * scale) * -1), steps);
+        PosLerpContext_Init(&sealSysTask->transforms[8], xOffset, xOffset + (-56 * scale), yOffset, yOffset + (-16 * scale), steps);
     }
 
-    sealSysTask->result = &appMan->graphicsMan.windows[4];
+    sealSysTask->result = &appMan->graphicsMan.unk_184;
     *(sealSysTask->result) = 1;
 
     SysTask_Start(SealGraphics_TaskTick, sealSysTask, 0x1000);
@@ -469,7 +512,7 @@ void SealGraphics_GetCapsuleGridLocation(int index, s16 *x, s16 *y)
     int tile = (index % 4);
     *x = 32 + 8 + (tile * 56);
     tile = (index >> 2);
-    *y = 27 + (v0 * 53);
+    *y = 27 + (tile * 53);
 }
 
 void ov76_0223C110(SealAppManager *appMan)
@@ -522,7 +565,7 @@ void SealGraphics_InitPokemonSprites(SealAppManager *appMan)
         spriteTemplate.resources[4] = SPRITE_RESOURCE_NONE;
         spriteTemplate.resources[5] = SPRITE_RESOURCE_NONE;
 
-        appMan->spriteSystem[i] = SpriteSystem_NewSprite(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, &spriteTemplate);
+        appMan->pokemonSprites[i] = SpriteSystem_NewSprite(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, &spriteTemplate);
 
         species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
         isEgg = Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL);
@@ -585,7 +628,7 @@ void ov76_0223C354(SealAppManager *appMan)
         appMan->capsuleSprites[i].index = appMan->capsules[i].index;
 
         if ((appMan->capsuleSprites[i].animIdx == 0) && (appMan->capsuleSprites[i].index != 0xFF)) {
-            ov76_0223E91C(appMan, i);
+            SealManager_AssignCapsuleMon(appMan, i);
         }
     }
 }
@@ -631,17 +674,17 @@ void SealGraphics_InitSpriteManager(SealGraphicsManager *graphicsMan)
     }
 }
 
-void SealGraphics_FreeSpriteSystem(UnkStruct_ov76_0223C398 *graphicsMan)
+void SealGraphics_FreeSpriteSystem(SealGraphicsManager *graphicsMan)
 {
     SpriteSystem_FreeResourcesAndManager(graphicsMan->spriteSystem, graphicsMan->spriteManager);
     SpriteSystem_Free(graphicsMan->spriteSystem);
 }
 
-void SealGraphics_LoadSelectionResources(SealAppManager *graphicsMan, NARC *narc)
+void SealGraphics_LoadSelectionResources(SealAppManager *appMan, NARC *narc)
 {
-    SpriteSystem_LoadCharResObjFromOpenNarc(graphicsMan->graphicsMan.spriteSystem, graphicsMan->graphicsMan.spriteManager, narc, SELECTION_CHAR_MEMBER_IDX, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, SELECTION_CHAR_RES_ID);
-    SpriteSystem_LoadCellResObjFromOpenNarc(graphicsMan->graphicsMan.spriteSystem, graphicsMan->graphicsMan.spriteManager, narc, SELECTION_CELL_MEMBER_IDX, TRUE, SELECTION_CELL_RES_ID);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(graphicsMan->graphicsMan.spriteSystem, graphicsMan->graphicsMan.spriteManager, narc, SELECTION_ANIM_MEMBER_IDX, TRUE, SELECTION_ANIM_RES_ID);
+    SpriteSystem_LoadCharResObjFromOpenNarc(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, narc, SELECTION_CHAR_MEMBER_IDX, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, SELECTION_CHAR_RES_ID);
+    SpriteSystem_LoadCellResObjFromOpenNarc(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, narc, SELECTION_CELL_MEMBER_IDX, TRUE, SELECTION_CELL_RES_ID);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, narc, SELECTION_ANIM_MEMBER_IDX, TRUE, SELECTION_ANIM_RES_ID);
 }
 
 void SealGraphics_InitSelectionIndicator(SealAppManager *appMan)
@@ -655,7 +698,7 @@ void SealGraphics_InitSelectionIndicator(SealAppManager *appMan)
         { 240, 128, 2 },
     };
 
-    for (i = 0; i < SELECTION_ARROWS; i++) {
+    for (i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
         spriteTemplate.x = startingStates[i][0];
         spriteTemplate.y = startingStates[i][1];
         spriteTemplate.z = 0;
@@ -685,7 +728,7 @@ void SealGraphics_TickSelectionIndicator(SealAppManager *appMan)
         return;
     }
 
-    for (i = 0; i < SELECTION_ARROWS; i++) {
+    for (i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
         ManagedSprite_TickFrame(appMan->selectionIndicator[i]);
     }
 }
@@ -694,7 +737,7 @@ void SealGraphics_SetSelectionIndicatorDrawFlags(SealAppManager *appMan, int fla
 {
     int i;
 
-    for (i = 0; i < SELECTION_ARROWS; i++) {
+    for (i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
         ManagedSprite_SetDrawFlag(appMan->selectionIndicator[i], flag);
     }
 }
@@ -703,7 +746,7 @@ void SealGraphics_FreeSelectionIndicator(SealAppManager *appMan)
 {
     int i;
 
-    for (i = 0; i < SELECTION_ARROWS; i++) {
+    for (i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
         Sprite_DeleteAndFreeResources(appMan->selectionIndicator[i]);
     }
 }
@@ -772,7 +815,7 @@ void SealGraphics_InitCapsuleSprites(SealAppManager *appMan, NARC *narc)
         {
             s16 x, y;
 
-            SealGraphics_GetCapsuleGridLocation(appMan->unk_3C4[0], &x, &y);
+            SealGraphics_GetCapsuleGridLocation(appMan->cursor[0], &x, &y);
             ManagedSprite_SetPositionXY(appMan->cursor[0], x, y);
             ManagedSprite_SetPositionXY(appMan->cursor[1], x, y);
             ManagedSprite_SetPriority(appMan->cursor[1], 25);
@@ -933,7 +976,7 @@ void SealGraphics_UpdateAllSealCountText(SealAppManager *appMan)
     String *string;
     Window *window;
 
-    for (i = 3; i < WINDOW_NUM; i++) {
+    for (i = 3; i < CAPSULE_MENU_WINDOW_NUM; i++) {
         window = &appMan->graphicsMan.windows[i];
         index = i - 3;
         sealID = appMan->sealPages.sealIDs[index];
@@ -985,7 +1028,7 @@ void SealGraphics_UpdateSealCountText(SealAppManager *appMan, int index)
 
 void SealGraphics_FreeSealCountWindows(SealAppManager *appMan)
 {
-    for (int i = 3; i < WINDOW_NUM; i++) {
+    for (int i = 3; i < CAPSULE_MENU_WINDOW_NUM; i++) {
         Window_ClearAndCopyToVRAM(&appMan->graphicsMan.windows[i]);
         Window_Remove(&appMan->graphicsMan.windows[i]);
     }
@@ -1039,7 +1082,7 @@ void ov76_0223CE84(SealAppManager *appMan, NARC *narc)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, narcTileIdx, appMan->graphicsMan.bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_53);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, narcTilemapIdx, appMan->graphicsMan.bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_53);
-    PaletteData_LoadBufferFromFileStart(appMan->graphicsMan.paletteData, narcID, narcMemberIdx, HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SZE_BYTES * 2, 0);
+    PaletteData_LoadBufferFromFileStart(appMan->graphicsMan.paletteData, narcID, narcMemberIdx, HEAP_ID_53, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, 0);
 
     narcTileIdx = 269;
     narcTilemapIdx = 285;
@@ -1098,13 +1141,13 @@ void ov76_0223CFEC(SealAppManager *appMan, NARC *narc) // these are the ui butto
 
 void ov76_0223D16C(SealAppManager *appMan)
 {
-    int index;
+    int i;
     CapsuleActiveSprites *capsuleActiveSprites;
     SpriteTemplate spriteTemplate;
     SpriteSystem *spriteSystem = appMan->graphicsMan.spriteSystem;
     SpriteManager *spriteManager = appMan->graphicsMan.spriteManager;
     PaletteData *paletteData = appMan->graphicsMan.paletteData;
-    capsuleActiveSprites = &appMan->sprites;
+    capsuleActiveSprites = &appMan->capsuleActiveSprites;
 
     spriteTemplate.x = 0;
     spriteTemplate.y = 0;
@@ -1182,10 +1225,10 @@ void ov76_0223D16C(SealAppManager *appMan)
         };
 
         for (i = 8; i < 13; i++) {
-            ManagedSprite_SetPositionXY(appMan->sprites.sprites[i], xyPos[i][0], xyPos[i][1]);
-            ManagedSprite_TickFrame(appMan->sprites.sprites[i]);
-            ManagedSprite_SetAnimationFrame(appMan->sprites.sprites[i], 0);
-            SealGraphics_OffsetSprite(&appMan->graphicsMan.touchScreenRects[i], appMan->sprites.sprites[i], xyOffset[i][0], xyOffset[i][1]);
+            ManagedSprite_SetPositionXY(appMan->capsuleActiveSprites.sprites[i], xyPos[i][0], xyPos[i][1]);
+            ManagedSprite_TickFrame(appMan->capsuleActiveSprites.sprites[i]);
+            ManagedSprite_SetAnimationFrame(appMan->capsuleActiveSprites.sprites[i], 0);
+            SealGraphics_OffsetSprite(&appMan->graphicsMan.touchScreenRects[i], appMan->capsuleActiveSprites.sprites[i], xyOffset[i][0], xyOffset[i][1]);
         }
     }
 }
@@ -1195,15 +1238,15 @@ void SealGraphics_SetSealSpritesDrawFlag(SealAppManager *appMan, int flag)
     int i;
 
     for (i = 0; i < 13; i++) {
-        if (appMan->sprites.sprites[i] == NULL) {
+        if (appMan->capsuleActiveSprites.sprites[i] == NULL) {
             continue;
         }
 
-        ManagedSprite_SetDrawFlag(appMan->sprites.sprites[i], flag);
+        ManagedSprite_SetDrawFlag(appMan->capsuleActiveSprites.sprites[i], flag);
     }
 }
 
-void SealGraphics_Unused(SealAppManager *appMan)
+void SealGraphics_Dummy(SealAppManager *appMan)
 {
     return;
 }
@@ -1213,6 +1256,6 @@ void SealGraphics_FreeUISprites(SealAppManager *appMan)
     int i;
 
     for (i = 8; i < 13; i++) {
-        Sprite_DeleteAndFreeResources(appMan->sprites.sprites[i]);
+        Sprite_DeleteAndFreeResources(appMan->capsuleActiveSprites.sprites[i]);
     }
 }

@@ -1,12 +1,14 @@
-#ifndef POKEPLATINUM_OV76_DEFS_H
-#define POKEPLATINUM_OV76_DEFS_H
+#ifndef POKEPLATINUM_APPLICATIONS_CAPSULE_MENU_DEFS_H
+#define POKEPLATINUM_APPLICATIONS_CAPSULE_MENU_DEFS_H
+
+#include "constants/pokemon.h"
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
 
+#include "applications/capsule_menu/main.h"
 #include "battle_anim/struct_ball_rotation_decl.h"
 #include "battle_anim/struct_ov12_02235FE0_decl.h"
-#include "contants/pokemon.h"
 #include "overlay022/struct_ov22_02258A48.h"
 
 #include "bg_window.h"
@@ -14,6 +16,7 @@
 #include "g3d_pipeline.h"
 #include "menu.h"
 #include "palette.h"
+#include "pokemon.h"
 #include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
@@ -21,6 +24,18 @@
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
 #include "yes_no_touch_menu.h"
+
+#define SEALS_PER_PAGE           8
+#define CAPSULE_TOUCH_RECTS      21
+#define CAPSULE_SELECTION_ARROWS 4
+#define CAPSULE_MENU_WINDOW_NUM  11
+
+typedef struct {
+    int memberIdx;
+    u32 index;
+} SealStringIndices;
+
+extern const SealStringIndices sealStringIndices[5];
 
 typedef struct {
     BOOL shouldRender;
@@ -31,6 +46,11 @@ typedef struct {
     ManagedSprite *sprite;
     TouchScreenRect *touchScreenRect;
 } SealRenderInfo;
+
+typedef struct {
+    int index;
+    BallCapsule *capsule;
+} IndexedCapsule;
 
 typedef struct {
     int index;
@@ -54,12 +74,12 @@ typedef struct {
     SpriteSystem *spriteSystem;
     SpriteManager *spriteManager;
     BgConfig *bgConfig;
-    PaletteData *palleteData;
-    Window windows[WINDOW_NUM];
+    PaletteData *paletteData;
+    Window windows[CAPSULE_MENU_WINDOW_NUM];
     StringList *stringList;
     Menu *menu;
-    PokemonSpriteManager *monSpriteManager;
-    PokemonSprite *monSprite;
+    PokemonSpriteManager *pokemonSpriteManager;
+    PokemonSprite *pokemonSprite;
     int pokemonYOffset;
     UnkStruct_ov22_02258A48 unk_DC;
     TouchScreenActions *touchScreenActions;
@@ -71,14 +91,14 @@ typedef struct {
     UnkStruct_02012744 *fontOAMManager;
     FontOAM *fontOAM[2];
     CharTransferAllocation charTransfer[2];
-    BOOL unk_184; // rendered?
+    BOOL unk_184; // systask result?
     PokemonAnimManager *pokemonAnimManager;
     BOOL unk_18C;
 } SealGraphicsManager;
 
 typedef struct {
     SealAppData *appData;
-    UnkStruct_ov76_0223DD88_sub1 capsules[CAPSULE_NUM];
+    IndexedCapsule capsules[CAPSULE_NUM];
     SealCounts *sealCount;
     BallCapsule activeCapsule;
     u8 sealCounts[SEAL_ID_MAX];
@@ -93,14 +113,14 @@ typedef struct {
     int capsuleIndex[2];
     int unk_3CC; // index for Unk_ov76_0223EE04
     u8 unused2[4];
-    int stateID; // these should all be different stateIDs
+    int stateID;
     int unk_3D8;
-    int unk_3DC;
-    int unk_3E0;
-    capsuleActiveSprites capsuleActiveSprites;
+    int throwStateID;
+    int unk_3E0; // frame counter? 895 manager, 1022 manager
+    CapsuleActiveSprites capsuleActiveSprites;
     SealPages sealPages;
     Pokemon *pokemon;
     NARC *narc;
 } SealAppManager;
 
-#endif // POKEPLATINUM_OV76_DEFS_H
+#endif // POKEPLATINUM_APPLICATIONS_CAPSULE_MENU_DEFS_H

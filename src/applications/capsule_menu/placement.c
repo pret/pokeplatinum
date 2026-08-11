@@ -1,4 +1,4 @@
-#include "overlay076/placement.h"
+#include "applications/capsule_menu/placement.h"
 
 #include <nitro.h>
 #include <nitro/sinit.h>
@@ -6,6 +6,7 @@
 
 #include "struct_defs/seal_case.h"
 
+#include "applications/capsule_menu/main.h"
 #include "battle_anim/ov12_02237E54.h"
 
 #include "ball_seal_info.h"
@@ -14,7 +15,6 @@
 #include "sprite_system.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_02097B18.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(battle_anim);
@@ -104,7 +104,7 @@ int SealPlacement_GetTouchedSeal(SealAppManager *appMan, u8 sealIndex)
             continue;
         }
 
-        appMan->sealRenderInfo[i].type = appMan->sealPages.sealID[sealIndex];
+        appMan->sealRenderInfo[i].type = appMan->sealPages.sealIDs[sealIndex];
         appMan->sealRenderInfo[i].x = 190;
         appMan->sealRenderInfo[i].y = 70;
 
@@ -171,7 +171,7 @@ void ov76_0223B36C(SealAppManager *appMan, u8 param1, u8 sealIndex)
 
     SpriteSystem_LoadPaletteBuffer(paletteData, 3, spriteSystem, spriteManager, 91, 293, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 21000 + 293);
 
-    int memberIdx = sub_02098140(param1);
+    int memberIdx = CapsuleMenu_GetSealMemberIdx(param1);
     int objID = (sealIndex + SEAL_OBJ_ID_OFFSET);
 
     SpriteSystem_LoadCharResObj(spriteSystem, spriteManager, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, memberIdx, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, objID);
@@ -282,7 +282,7 @@ BOOL ov76_0223B52C(SealAppManager *appMan, u8 sealIndex)
     spriteTemplate.resources[4] = SPRITE_RESOURCE_NONE;
     spriteTemplate.resources[5] = SPRITE_RESOURCE_NONE;
 
-    dummy = sub_02098140(sealInfo->type);
+    dummy = CapsuleMenu_GetSealMemberIdx(sealInfo->type);
     v1 = (sealIndex + SEAL_OBJ_ID_OFFSET);
 
     spriteTemplate.resources[0] = v1;
@@ -391,7 +391,7 @@ void SealPlacement_FreeSeal(SealAppManager *appMan, int sealIndex)
     int dummy;
     int objID;
 
-    dummy = sub_02098140(index->sealRenderInfo[sealIndex].type);
+    dummy = CapsuleMenu_GetSealMemberIdx(appMan->sealRenderInfo[sealIndex].type);
     objID = (sealIndex + SEAL_OBJ_ID_OFFSET);
 
     SpriteManager_UnloadCharObjById(appMan->graphicsMan.spriteManager, objID);
@@ -443,8 +443,8 @@ void SealPlacement_UpdateSealXY(SealAppManager *appMan, int sealIndex)
 
     ManagedSprite_GetPositionXY(appMan->sealRenderInfo[sealIndex].sprite, &x, &y);
 
-    appMan->sealRenderInfo[param1].x = (u8)x;
-    appMan->sealRenderInfo[param1].y = (u8)y;
+    appMan->sealRenderInfo[sealIndex].x = (u8)x;
+    appMan->sealRenderInfo[sealIndex].y = (u8)y;
 }
 
 void SealPlacement_LoadCapsuleSeals(SealAppManager *appMan)
@@ -461,13 +461,13 @@ void SealPlacement_LoadCapsuleSeals(SealAppManager *appMan)
     SealCase_CopyCapsuleFromId(appMan->appData->sealCase, &capsule, *appMan->capsuleIndex);
 }
 
-void SealPlacement_GetCapsuleSeals(BallCapsule *capsule, SealAppManager *param1)
+void SealPlacement_GetCapsuleSeals(BallCapsule *capsule, SealAppManager *appMan)
 {
     int i;
 
     for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-        capsule->seals[i].type = param1->sealRenderInfo[i].type;
-        capsule->seals[i].x = param1->sealRenderInfo[i].x;
-        capsule->seals[i].y = param1->sealRenderInfo[i].y;
+        capsule->seals[i].type = appMan->sealRenderInfo[i].type;
+        capsule->seals[i].x = appMan->sealRenderInfo[i].x;
+        capsule->seals[i].y = appMan->sealRenderInfo[i].y;
     }
 }
