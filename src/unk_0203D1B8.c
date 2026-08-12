@@ -49,6 +49,7 @@
 #include "battle/battle_main.h"
 #include "choose_starter/choose_starter_app.h"
 #include "cutscenes/boat_cutscene.h"
+#include "cutscenes/end_credits/main.h"
 #include "cutscenes/hall_of_fame.h"
 #include "dw_warp/dw_warp.h"
 #include "field/field_system.h"
@@ -66,7 +67,6 @@
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay092/ov92_021D0D80.h"
 #include "overlay095/ov95_02246C20.h"
-#include "overlay099/ov99_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
@@ -160,7 +160,7 @@ FS_EXTERN_OVERLAY(cutscenes);
 FS_EXTERN_OVERLAY(overlay94);
 FS_EXTERN_OVERLAY(overlay95);
 FS_EXTERN_OVERLAY(wifi_battle_tower);
-FS_EXTERN_OVERLAY(overlay99);
+FS_EXTERN_OVERLAY(end_credits);
 FS_EXTERN_OVERLAY(overlay101);
 FS_EXTERN_OVERLAY(frontier_records_app);
 FS_EXTERN_OVERLAY(overlay111);
@@ -1409,18 +1409,18 @@ void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem)
     return hallOfFame;
 }
 
-void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1)
+void FieldSystem_StartEndCredits(FieldSystem *fieldSystem, ClearGamePlayerInfo *clearGamePlayerInfo)
 {
-    FS_EXTERN_OVERLAY(overlay99);
+    FS_EXTERN_OVERLAY(end_credits);
 
-    static const ApplicationManagerTemplate v0 = {
-        ov99_021D0D80,
-        ov99_021D1028,
-        ov99_021D11A8,
-        FS_OVERLAY_ID(overlay99)
+    static const ApplicationManagerTemplate template = {
+        EndCreditsApp_Init,
+        EndCreditsApp_Main,
+        EndCreditsApp_Exit,
+        FS_OVERLAY_ID(end_credits)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, clearGamePlayerInfo);
 }
 
 void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData)

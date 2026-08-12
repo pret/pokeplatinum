@@ -3,8 +3,8 @@
 
 #include "overlay104/battle_arcade.h"
 #include "overlay104/battle_castle.h"
+#include "overlay104/battle_factory.h"
 #include "overlay104/battle_hall.h"
-#include "overlay104/struct_battle_factory.h"
 
 #define FRONTIER_COMMUNICATION_UNREACHABLE2     34
 #define HALL_COMMUNICATION_SEND_TRAINERS        35

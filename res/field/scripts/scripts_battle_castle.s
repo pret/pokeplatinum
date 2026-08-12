@@ -2,6 +2,7 @@
 #include "res/text/bank/battle_castle.h"
 #include "res/text/bank/menu_entries.h"
 #include "constants/battle_frontier.h"
+#include "constants/battle_castle_functions.h"
 
 
     ScriptEntry BattleCastle_SingleAttendant
@@ -88,7 +89,7 @@ BattleCastle_HopeToSeeYouAgain:
 
 BattleCastle_TryTakeSingleChallenge:
     SetVar VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE
-    ScrCmd_2D2 0, 3, VAR_RESULT
+    CallBattleCastleLobbyFunction BC_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE, 3, VAR_RESULT
     BufferNumber 0, 3
     BufferNumber 1, 3
     GoToIfEq VAR_RESULT, 0, BattleCastle_NotEnoughEligiblePokemonSingleDouble
@@ -97,7 +98,7 @@ BattleCastle_TryTakeSingleChallenge:
 
 BattleCastle_TryTakeDoubleChallenge:
     SetVar VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE
-    ScrCmd_2D2 0, 3, VAR_RESULT
+    CallBattleCastleLobbyFunction BC_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE, 3, VAR_RESULT
     BufferNumber 0, 3
     BufferNumber 1, 3
     GoToIfEq VAR_RESULT, 0, BattleCastle_NotEnoughEligiblePokemonSingleDouble
@@ -106,7 +107,7 @@ BattleCastle_TryTakeDoubleChallenge:
 
 BattleCastle_TryTakeMultiChallenge:
     SetVar VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI
-    ScrCmd_2D2 0, 2, VAR_RESULT
+    CallBattleCastleLobbyFunction BC_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE, 2, VAR_RESULT
     BufferNumber 0, 2
     BufferNumber 1, 2
     GoToIfEq VAR_RESULT, 0, BattleCastle_NotEnoughEligiblePokemonMulti
@@ -130,8 +131,8 @@ BattleCastle_SelectPokemon:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_2D2 4, VAR_BATTLE_CASTLE_CHALLENGE_TYPE, VAR_RESULT
-    ScrCmd_2D4 VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x05, VAR_MAP_LOCAL_0x06
+    CallBattleCastleLobbyFunction BC_LOBBY_FUNC_SELECT_POKEMON, VAR_BATTLE_CASTLE_CHALLENGE_TYPE, VAR_RESULT
+    GetBattleCastleSelectedSlots VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x05, VAR_MAP_LOCAL_0x06
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -222,7 +223,7 @@ BattleCastle_StartMultiChallenge:
     ScrCmd_135 136
     GetPartyMonSpecies VAR_MAP_LOCAL_0x02, VAR_0x8000
     GetPartyMonSpecies VAR_MAP_LOCAL_0x05, VAR_0x8001
-    ScrCmd_2D3 VAR_0x8000, VAR_0x8001, VAR_RESULT
+    CheckBattleCastlePartnerUsesDifferentSpecies VAR_0x8000, VAR_0x8001, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 1, BattleCastle_BothTrainerChosePokemon1
     GoToIfEq VAR_0x8008, 2, BattleCastle_BothTrainerChosePokemon2
@@ -459,7 +460,7 @@ BattleCastle_SaveGame:
 
 BattleCastle_OnFrame_DidntSaveBeforeQuit:
     Message BattleCastle_Text_DidntSaveBeforeQuit
-    ScrCmd_2D5 VAR_BATTLE_CASTLE_CHALLENGE_TYPE
+    DeleteActiveBattleCastleStreak VAR_BATTLE_CASTLE_CHALLENGE_TYPE
     GoTo BattleCastle_EndChallenge
     End
 
