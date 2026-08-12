@@ -13,6 +13,7 @@ subdir('jsoncnv')
 subdir('nitrobtx')
 subdir('nitrogfx')
 subdir('nitrosfx')
+subdir('nitrorom')
 subdir('ordergen')
 subdir('postconf')
 subdir('scripts')
@@ -26,4 +27,3 @@ arm_none_eabi_objcopy_exe = find_program('arm-none-eabi-objcopy', native: true)
 
 # Subproject tools
 makelcf_exe = find_program('makelcf', native: true)
-nitrorom_exe = find_program('nitrorom', native: true)
