@@ -724,7 +724,7 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
             MessageLoader *loader;
 
             loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0542, HEAP_ID_FIELD2);
-            string = MessageLoader_GetNewString(loader, CapsuleMenu_GetSealDescriptionIndex(index));
+            string = MessageLoader_GetNewString(loader, CapsuleMenu_GetSealNonAlphabetIndex(index));
 
             MessageLoader_Free(loader);
         }

@@ -9,23 +9,23 @@
 #include "touch_screen.h"
 
 void SealPlacement_UpdateSealTouchRect(TouchScreenRect *rect, ManagedSprite *sprite, BOOL touchingSprite);
-void ov76_0223B1E0(SealAppManager *appMan);
-void SealPlacement_UpdateSealsFromCapsule(SealAppManager *appMan);
-int SealPlacement_GetTouchedSeal(SealAppManager *appMan, u8 sealIndex);
-BOOL SealPlacement_NotMaxSeals(SealAppManager *appMan);
-void SealPlacement_SetSealRenderPriorities(SealAppManager *appMan, u8 index);
-void SealPlacement_LoadSeal(SealAppManager *appMan, u8 type, u8 sealIndex);
-void ov76_0223B400(SealAppManager *appMan);
-BOOL SealPlacement_InitSeal(SealAppManager *appMan, u8 sealIndex);
-BOOL SealPlacement_HandleTouchscreen(SealAppManager *appMan, u32 touchscreenState, u8 index);
-void SealPlacement_FreeInactiveSeals(SealAppManager *appMan);
-void SealPlacement_DrawActiveSeals(SealAppManager *appMan, int flag);
-BOOL SealPlacement_SealIsValid(SealAppManager *appMan, int index);
-void SealPlacement_FreeSeal(SealAppManager *appMan, int sealIndex);
-void SealPlacement_UpdateSealOamMode(SealAppManager *appMan, int param1);
-BOOL SealPlacement_AnySealsChanged(SealAppManager *appMan);
-void SealPlacement_UpdateSealXY(SealAppManager *appMan, int sealIndex);
-void SealPlacement_LoadCapsuleSeals(SealAppManager *appMan);
-void SealPlacement_GetCapsuleSeals(BallCapsule *capsule, SealAppManager *appMan);
+void ov76_0223B1E0(CapsuleAppManager *appMan);
+void SealPlacement_UpdateSealsFromCapsule(CapsuleAppManager *appMan);
+int SealPlacement_GetTouchedSeal(CapsuleAppManager *appMan, u8 sealIndex);
+BOOL SealPlacement_NotMaxSeals(CapsuleAppManager *appMan);
+void SealPlacement_SetSealRenderPriorities(CapsuleAppManager *appMan, u8 index);
+void SealPlacement_LoadSeal(CapsuleAppManager *appMan, u8 type, u8 sealIndex);
+void SealPlacement_UpdateSeals(CapsuleAppManager *appMan);
+BOOL SealPlacement_InitSeal(CapsuleAppManager *appMan, u8 sealIndex);
+BOOL SealPlacement_HandleTouchscreen(CapsuleAppManager *appMan, u32 touchscreenState, u8 index);
+void SealPlacement_FreeInactiveSeals(CapsuleAppManager *appMan);
+void SealPlacement_DrawActiveSeals(CapsuleAppManager *appMan, int flag);
+BOOL SealPlacement_SealIsValid(CapsuleAppManager *appMan, int index);
+void SealPlacement_FreeSeal(CapsuleAppManager *appMan, int sealIndex);
+void SealPlacement_UpdateSealOamMode(CapsuleAppManager *appMan, int param1);
+BOOL SealPlacement_AnySealsChanged(CapsuleAppManager *appMan);
+void SealPlacement_UpdateSealXY(CapsuleAppManager *appMan, int sealIndex);
+void SealPlacement_LoadCapsuleSeals(CapsuleAppManager *appMan);
+void SealPlacement_GetCapsuleSeals(BallCapsule *capsule, CapsuleAppManager *appMan);
 
 #endif // POKEPLATINUM_APPLICATIONS_CAPSULE_MENU_PLACEMENT_H

@@ -16,14 +16,6 @@
 #include "system.h"
 #include "touch_screen.h"
 
-#define SEAL_CHAR_RES_ID     20000
-#define SEAL_PLTT_RES_ID     21293
-#define SEAL_PLTT_MEMBER_IDX 293
-#define SEAL_CELL_RES_ID     22093
-#define SEAL_CELL_MEMBER_IDX 93
-#define SEAL_ANIM_RES_ID     23001
-#define SEAL_ANIM_MEMBER_IDX 1
-
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(battle_anim);
 
@@ -67,7 +59,7 @@ void SealPlacement_UpdateSealTouchRect(TouchScreenRect *rect, ManagedSprite *spr
     }
 }
 
-void ov76_0223B1E0(SealAppManager *appMan)
+void ov76_0223B1E0(CapsuleAppManager *appMan)
 {
     int i;
 
@@ -80,7 +72,7 @@ void ov76_0223B1E0(SealAppManager *appMan)
     }
 }
 
-void SealPlacement_UpdateSealsFromCapsule(SealAppManager *appMan)
+void SealPlacement_UpdateSealsFromCapsule(CapsuleAppManager *appMan)
 {
     int i;
     BallCapsule *capsule = appMan->capsules[*appMan->capsuleIndex].capsule;
@@ -102,7 +94,7 @@ void SealPlacement_UpdateSealsFromCapsule(SealAppManager *appMan)
     }
 }
 
-int SealPlacement_GetTouchedSeal(SealAppManager *appMan, u8 sealIndex)
+int SealPlacement_GetTouchedSeal(CapsuleAppManager *appMan, u8 sealIndex)
 {
     int i;
     u32 touchX, touchY;
@@ -132,7 +124,7 @@ int SealPlacement_GetTouchedSeal(SealAppManager *appMan, u8 sealIndex)
     return 0xFF;
 }
 
-BOOL SealPlacement_NotMaxSeals(SealAppManager *appMan)
+BOOL SealPlacement_NotMaxSeals(CapsuleAppManager *appMan)
 {
     int i;
     u32 unused1, unused2;
@@ -148,7 +140,7 @@ BOOL SealPlacement_NotMaxSeals(SealAppManager *appMan)
     return 0;
 }
 
-void SealPlacement_SetSealRenderPriorities(SealAppManager *appMan, u8 index)
+void SealPlacement_SetSealRenderPriorities(CapsuleAppManager *appMan, u8 index)
 {
     int i;
 
@@ -171,34 +163,34 @@ void SealPlacement_SetSealRenderPriorities(SealAppManager *appMan, u8 index)
     }
 }
 
-void SealPlacement_LoadSeal(SealAppManager *appMan, u8 type, u8 sealIndex)
+void SealPlacement_LoadSeal(CapsuleAppManager *appMan, u8 type, u8 sealIndex)
 {
     SpriteSystem *spriteSystem = appMan->graphicsMan.spriteSystem;
     SpriteManager *spriteManager = appMan->graphicsMan.spriteManager;
     PaletteData *paletteData = appMan->graphicsMan.paletteData;
 
-    SpriteSystem_LoadPaletteBuffer(paletteData, PLTTBUF_SUB_OBJ, spriteSystem, spriteManager, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, SEAL_PLTT_MEMBER_IDX, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, SEAL_PLTT_RES_ID);
+    SpriteSystem_LoadPaletteBuffer(paletteData, PLTTBUF_SUB_OBJ, spriteSystem, spriteManager, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, 293, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 21293);
 
     int memberIdx = CapsuleMenu_GetSealMemberIdx(type);
-    int objID = (sealIndex + SEAL_CHAR_RES_ID);
+    int objID = (sealIndex + 20000);
 
     SpriteSystem_LoadCharResObj(spriteSystem, spriteManager, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, memberIdx, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, objID);
-    SpriteSystem_LoadCellResObj(spriteSystem, spriteManager, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, SEAL_CELL_MEMBER_IDX, TRUE, SEAL_CELL_RES_ID);
-    SpriteSystem_LoadAnimResObj(spriteSystem, spriteManager, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, SEAL_ANIM_MEMBER_IDX, TRUE, SEAL_ANIM_RES_ID);
+    SpriteSystem_LoadCellResObj(spriteSystem, spriteManager, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, 93, TRUE, 22093);
+    SpriteSystem_LoadAnimResObj(spriteSystem, spriteManager, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, 1, TRUE, 23001);
 }
 
-void ov76_0223B400(SealAppManager *appMan)
+void SealPlacement_UpdateSeals(CapsuleAppManager *appMan)
 {
     int i, j;
     int dummy;
     int priorities[8];
     int indices[8];
 
-    if (appMan->graphicsMan.unk_18C == 0) {
+    if (appMan->graphicsMan.sealsChanged == 0) {
         return;
     }
 
-    appMan->graphicsMan.unk_18C = 0;
+    appMan->graphicsMan.sealsChanged = 0;
 
     dummy = 0;
 
@@ -260,7 +252,7 @@ void ov76_0223B400(SealAppManager *appMan)
     }
 }
 
-BOOL SealPlacement_InitSeal(SealAppManager *appMan, u8 sealIndex)
+BOOL SealPlacement_InitSeal(CapsuleAppManager *appMan, u8 sealIndex)
 {
     int dummy;
     int charID;
@@ -291,12 +283,12 @@ BOOL SealPlacement_InitSeal(SealAppManager *appMan, u8 sealIndex)
     spriteTemplate.resources[5] = SPRITE_RESOURCE_NONE;
 
     dummy = CapsuleMenu_GetSealMemberIdx(sealInfo->type);
-    charID = (sealIndex + SEAL_CHAR_RES_ID);
+    charID = (sealIndex + 20000);
 
     spriteTemplate.resources[0] = charID;
-    spriteTemplate.resources[1] = SEAL_PLTT_RES_ID;
-    spriteTemplate.resources[2] = SEAL_CELL_RES_ID;
-    spriteTemplate.resources[3] = SEAL_ANIM_RES_ID;
+    spriteTemplate.resources[1] = 21293;
+    spriteTemplate.resources[2] = 22093;
+    spriteTemplate.resources[3] = 23001;
     sealInfo->sprite = SpriteSystem_NewSprite(spriteSystem, spriteManager, &spriteTemplate);
 
     ManagedSprite_TickFrame(sealInfo->sprite);
@@ -304,7 +296,7 @@ BOOL SealPlacement_InitSeal(SealAppManager *appMan, u8 sealIndex)
     return 1;
 }
 
-BOOL SealPlacement_HandleTouchscreen(SealAppManager *appMan, u32 touchscreenState, u8 index)
+BOOL SealPlacement_HandleTouchscreen(CapsuleAppManager *appMan, u32 touchscreenState, u8 index)
 {
     if (appMan->sealRenderInfo[index].shouldRender == 0) {
         return 1;
@@ -349,7 +341,7 @@ BOOL SealPlacement_HandleTouchscreen(SealAppManager *appMan, u32 touchscreenStat
     return 1;
 }
 
-void SealPlacement_FreeInactiveSeals(SealAppManager *appMan)
+void SealPlacement_FreeInactiveSeals(CapsuleAppManager *appMan)
 {
     int i;
 
@@ -362,7 +354,7 @@ void SealPlacement_FreeInactiveSeals(SealAppManager *appMan)
     }
 }
 
-void SealPlacement_DrawActiveSeals(SealAppManager *appMan, int flag)
+void SealPlacement_DrawActiveSeals(CapsuleAppManager *appMan, int flag)
 {
     int i;
 
@@ -375,7 +367,7 @@ void SealPlacement_DrawActiveSeals(SealAppManager *appMan, int flag)
     }
 }
 
-BOOL SealPlacement_SealIsValid(SealAppManager *appMan, int index)
+BOOL SealPlacement_SealIsValid(CapsuleAppManager *appMan, int index)
 {
     int distance;
     s16 x, y;
@@ -394,13 +386,13 @@ BOOL SealPlacement_SealIsValid(SealAppManager *appMan, int index)
     return 1;
 }
 
-void SealPlacement_FreeSeal(SealAppManager *appMan, int sealIndex)
+void SealPlacement_FreeSeal(CapsuleAppManager *appMan, int sealIndex)
 {
     int dummy;
     int objID;
 
     dummy = CapsuleMenu_GetSealMemberIdx(appMan->sealRenderInfo[sealIndex].type);
-    objID = (sealIndex + SEAL_CHAR_RES_ID);
+    objID = (sealIndex + 20000);
 
     SpriteManager_UnloadCharObjById(appMan->graphicsMan.spriteManager, objID);
     Sprite_DeleteAndFreeResources(appMan->sealRenderInfo[sealIndex].sprite);
@@ -414,7 +406,7 @@ void SealPlacement_FreeSeal(SealAppManager *appMan, int sealIndex)
     SealPlacement_SealTouchRange(appMan->sealRenderInfo[sealIndex].touchScreenRect, 0, 0);
 }
 
-void SealPlacement_UpdateSealOamMode(SealAppManager *appMan, int index)
+void SealPlacement_UpdateSealOamMode(CapsuleAppManager *appMan, int index)
 {
     BOOL isValid = SealPlacement_SealIsValid(appMan, index);
 
@@ -425,7 +417,7 @@ void SealPlacement_UpdateSealOamMode(SealAppManager *appMan, int index)
     }
 }
 
-BOOL SealPlacement_AnySealsChanged(SealAppManager *appMan)
+BOOL SealPlacement_AnySealsChanged(CapsuleAppManager *appMan)
 {
     int i;
     int index;
@@ -445,7 +437,7 @@ BOOL SealPlacement_AnySealsChanged(SealAppManager *appMan)
     return 0;
 }
 
-void SealPlacement_UpdateSealXY(SealAppManager *appMan, int sealIndex)
+void SealPlacement_UpdateSealXY(CapsuleAppManager *appMan, int sealIndex)
 {
     s16 x, y;
 
@@ -455,7 +447,7 @@ void SealPlacement_UpdateSealXY(SealAppManager *appMan, int sealIndex)
     appMan->sealRenderInfo[sealIndex].y = (u8)y;
 }
 
-void SealPlacement_LoadCapsuleSeals(SealAppManager *appMan)
+void SealPlacement_LoadCapsuleSeals(CapsuleAppManager *appMan)
 {
     int i;
     BallCapsule capsule;
@@ -469,7 +461,7 @@ void SealPlacement_LoadCapsuleSeals(SealAppManager *appMan)
     SealCase_CopyCapsuleFromId(appMan->appData->sealCase, &capsule, *appMan->capsuleIndex);
 }
 
-void SealPlacement_GetCapsuleSeals(BallCapsule *capsule, SealAppManager *appMan)
+void SealPlacement_GetCapsuleSeals(BallCapsule *capsule, CapsuleAppManager *appMan)
 {
     int i;
 

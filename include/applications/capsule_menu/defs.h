@@ -25,10 +25,14 @@
 #include "touch_screen_actions.h"
 #include "yes_no_touch_menu.h"
 
-#define SEALS_PER_PAGE           8
-#define CAPSULE_TOUCH_RECTS      21
-#define CAPSULE_SELECTION_ARROWS 4
-#define CAPSULE_MENU_WINDOW_NUM  11
+#define SEALS_PER_PAGE                8
+#define CAPSULE_TOUCH_RECTS           21
+#define CAPSULE_SELECTION_ARROWS      4
+#define CAPSULE_MENU_WINDOW_NUM       11
+#define CAPSULE_MENU_EMPTY_CAPSULE    0
+#define CAPSULE_MENU_HAS_SEALS        1
+#define CAPSULE_MENU_HAS_POKEMON      2
+#define CAPSULE_MENU_UNREACHABLE_CASE 3
 
 typedef struct {
     int memberIdx;
@@ -48,12 +52,12 @@ typedef struct {
 } SealRenderInfo;
 
 typedef struct {
-    int index;
+    int pokemonIndex;
     BallCapsule *capsule;
 } IndexedCapsule;
 
 typedef struct {
-    int index;
+    int pokemonIndex;
     int animIdx;
     ManagedSprite *sprite;
 } CapsuleSprites;
@@ -91,19 +95,19 @@ typedef struct {
     UnkStruct_02012744 *fontOAMManager;
     FontOAM *fontOAM[2];
     CharTransferAllocation charTransfer[2];
-    BOOL unk_184; // systask result?
+    BOOL graphicsTaskResult;
     PokemonAnimManager *pokemonAnimManager;
-    BOOL unk_18C;
-} SealGraphicsManager;
+    BOOL sealsChanged;
+} CapsuleGraphicsManager;
 
 typedef struct {
-    SealAppData *appData;
+    CapsuleAppData *appData;
     IndexedCapsule capsules[CAPSULE_NUM];
     SealCounts *sealCount;
     BallCapsule activeCapsule;
     u8 sealCounts[SEAL_ID_MAX];
     u8 unused1[3];
-    SealGraphicsManager graphicsMan;
+    CapsuleGraphicsManager graphicsMan;
     CapsuleSprites capsuleSprites[CAPSULE_NUM];
     ManagedSprite *cursor[2];
     ManagedSprite *pokemonSprites[MAX_PARTY_SIZE];
@@ -111,16 +115,16 @@ typedef struct {
     SealRenderInfo sealRenderInfo[SEALS_PER_CAPSULE];
     int unk_3A4[SEALS_PER_CAPSULE];
     int capsuleIndex[2];
-    int unk_3CC; // index for Unk_ov76_0223EE04
+    int funcIndex;
     u8 unused2[4];
     int stateID;
-    int unk_3D8;
-    int throwStateID;
-    int unk_3E0; // frame counter? 895 manager, 1022 manager
+    int alternateState;
+    int throwStateID; // Also used for the switch when the cancel button is pressed
+    int yesNoResult; // Also used as a frame counter in one location
     CapsulePageSprites pageSprites;
     SealPages sealPages;
     Pokemon *pokemon;
     NARC *narc;
-} SealAppManager;
+} CapsuleAppManager;
 
 #endif // POKEPLATINUM_APPLICATIONS_CAPSULE_MENU_DEFS_H

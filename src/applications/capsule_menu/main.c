@@ -54,9 +54,9 @@ typedef struct {
 } UnkStruct_02097F38_sub1;
 
 typedef struct {
-    SealAppManager *sealAppMan;
+    CapsuleAppManager *capsuleAppMan;
     UnkStruct_02097F38_sub1 *unk_04;
-    SealAppData *appData;
+    CapsuleAppData *appData;
     PartyMenu *partyMenu;
     SaveData *saveData;
     int state;
@@ -75,86 +75,86 @@ const ApplicationManagerTemplate appManTemplate = {
 
 static int CapsuleMenu_Init(ApplicationManager *appMan, int *unused)
 {
-    SealAppManager *sealAppMan;
-    SealAppData *sealAppData;
+    CapsuleAppManager *capsuleAppMan;
+    CapsuleAppData *sealAppData;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_53, 0x80000);
-    SealManager_InitGraphicsPlane(HEAP_ID_53);
-    SealManager_SetNormalAlpha();
+    CapsuleManager_InitGraphicsPlane(HEAP_ID_53);
+    CapsuleManager_SetNormalAlpha();
 
-    sealAppMan = ApplicationManager_NewData(appMan, sizeof(SealAppManager), HEAP_ID_53);
-    memset(sealAppMan, 0, sizeof(SealAppManager));
+    capsuleAppMan = ApplicationManager_NewData(appMan, sizeof(CapsuleAppManager), HEAP_ID_53);
+    memset(capsuleAppMan, 0, sizeof(CapsuleAppManager));
 
-    sealAppMan->graphicsMan.pipelineBuffers = SealGraphics_PipelineInit();
+    capsuleAppMan->graphicsMan.pipelineBuffers = CapsuleGraphics_PipelineInit();
     sealAppData = ApplicationManager_Args(appMan);
-    sealAppMan->appData = sealAppData;
-    sealAppMan->narc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_53);
-    sealAppMan->pokemon = Pokemon_New(HEAP_ID_53);
-    sealAppMan->graphicsMan.index = 0xFF;
-    sealAppMan->sealPages.page = 0;
+    capsuleAppMan->appData = sealAppData;
+    capsuleAppMan->narc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_53);
+    capsuleAppMan->pokemon = Pokemon_New(HEAP_ID_53);
+    capsuleAppMan->graphicsMan.index = 0xFF;
+    capsuleAppMan->sealPages.page = 0;
 
     int offset = 0;
     int sealCount;
 
-    sealCount = (SealCase_CountUniqueSeals(sealAppMan->appData->sealCase));
+    sealCount = (SealCase_CountUniqueSeals(capsuleAppMan->appData->sealCase));
 
     if (sealCount % 8) {
         offset = 1;
     }
 
-    sealAppMan->sealPages.maxPage = (SealCase_CountUniqueSeals(sealAppMan->appData->sealCase) / 8) + offset;
+    capsuleAppMan->sealPages.maxPage = (SealCase_CountUniqueSeals(capsuleAppMan->appData->sealCase) / 8) + offset;
 
-    if (sealAppMan->sealPages.maxPage > (SEAL_ID_MAX / 8)) {
-        sealAppMan->sealPages.maxPage = (SEAL_ID_MAX / 8);
+    if (capsuleAppMan->sealPages.maxPage > (SEAL_ID_MAX / 8)) {
+        capsuleAppMan->sealPages.maxPage = (SEAL_ID_MAX / 8);
     }
 
-    sealAppMan->capsuleIndex[0] = CapsuleMenu_GetCapsuleIndex(sealAppMan->appData);
-    sealAppMan->capsuleIndex[1] = CapsuleMenu_GetCapsuleIndex(sealAppMan->appData);
+    capsuleAppMan->capsuleIndex[0] = CapsuleMenu_GetCapsuleIndex(capsuleAppMan->appData);
+    capsuleAppMan->capsuleIndex[1] = CapsuleMenu_GetCapsuleIndex(capsuleAppMan->appData);
 
     int i;
     int capsuleId;
     BallCapsule *capsule;
 
-    sealAppMan->sealCount = SealCase_GetSealsObtained(sealAppMan->appData->sealCase);
+    capsuleAppMan->sealCount = SealCase_GetSealsObtained(capsuleAppMan->appData->sealCase);
 
     for (i = 0; i < CAPSULE_NUM; i++) {
-        capsule = SealCase_GetCapsuleById(sealAppMan->appData->sealCase, i);
-        sealAppMan->capsules[i].index = 0xFF;
-        sealAppMan->capsules[i].capsule = capsule;
+        capsule = SealCase_GetCapsuleById(capsuleAppMan->appData->sealCase, i);
+        capsuleAppMan->capsules[i].pokemonIndex = 0xFF;
+        capsuleAppMan->capsules[i].capsule = capsule;
     }
 
     for (i = 0; i < 6; i++) {
-        if (sealAppMan->appData->pokemon[i] == NULL) {
+        if (capsuleAppMan->appData->pokemon[i] == NULL) {
             continue;
         }
 
-        capsuleId = Pokemon_GetValue(sealAppMan->appData->pokemon[i], MON_DATA_BALL_CAPSULE_ID, 0);
+        capsuleId = Pokemon_GetValue(capsuleAppMan->appData->pokemon[i], MON_DATA_BALL_CAPSULE_ID, 0);
 
         if (capsuleId != 0) {
-            sealAppMan->capsules[capsuleId - 1].index = i;
+            capsuleAppMan->capsules[capsuleId - 1].pokemonIndex = i;
         }
     }
 
-    sealAppMan->graphicsMan.bgConfig = BgConfig_New(HEAP_ID_53);
+    capsuleAppMan->graphicsMan.bgConfig = BgConfig_New(HEAP_ID_53);
     VramTransfer_New(64, HEAP_ID_53);
-    sealAppMan->graphicsMan.paletteData = PaletteData_New(HEAP_ID_53);
-    PaletteData_SetAutoTransparent(sealAppMan->graphicsMan.paletteData, TRUE);
-    PaletteData_AllocBuffer(sealAppMan->graphicsMan.paletteData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
-    PaletteData_AllocBuffer(sealAppMan->graphicsMan.paletteData, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
-    PaletteData_AllocBuffer(sealAppMan->graphicsMan.paletteData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
-    PaletteData_AllocBuffer(sealAppMan->graphicsMan.paletteData, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    capsuleAppMan->graphicsMan.paletteData = PaletteData_New(HEAP_ID_53);
+    PaletteData_SetAutoTransparent(capsuleAppMan->graphicsMan.paletteData, TRUE);
+    PaletteData_AllocBuffer(capsuleAppMan->graphicsMan.paletteData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(capsuleAppMan->graphicsMan.paletteData, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(capsuleAppMan->graphicsMan.paletteData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
+    PaletteData_AllocBuffer(capsuleAppMan->graphicsMan.paletteData, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_53);
 
-    SealManager_InitBgConfig(sealAppMan->graphicsMan.bgConfig);
-    ov76_0223BF10();
+    CapsuleManager_InitBgConfig(capsuleAppMan->graphicsMan.bgConfig);
+    CapsuleGraphics_AllocTexPlttVram();
 
-    sealAppMan->graphicsMan.pokemonSpriteManager = PokemonSpriteManager_New(HEAP_ID_53);
-    sealAppMan->graphicsMan.pokemonAnimManager = PokemonAnimManager_New(HEAP_ID_53, 1, FALSE);
+    capsuleAppMan->graphicsMan.pokemonSpriteManager = PokemonSpriteManager_New(HEAP_ID_53);
+    capsuleAppMan->graphicsMan.pokemonAnimManager = PokemonAnimManager_New(HEAP_ID_53, 1, FALSE);
 
-    int optionsFrame = Options_Frame(sealAppMan->appData->options);
-    SealGraphics_LoadMainWindow(sealAppMan->graphicsMan.bgConfig, sealAppMan->graphicsMan.paletteData, optionsFrame);
-    SealGraphics_LoadSubWindow(sealAppMan->graphicsMan.bgConfig, sealAppMan->graphicsMan.paletteData, optionsFrame);
+    int optionsFrame = Options_Frame(capsuleAppMan->appData->options);
+    CapsuleGraphics_LoadMainWindow(capsuleAppMan->graphicsMan.bgConfig, capsuleAppMan->graphicsMan.paletteData, optionsFrame);
+    CapsuleGraphics_LoadSubWindow(capsuleAppMan->graphicsMan.bgConfig, capsuleAppMan->graphicsMan.paletteData, optionsFrame);
 
-    SealGraphics_InitSpriteManager(&sealAppMan->graphicsMan);
+    CapsuleGraphics_InitSpriteManager(&capsuleAppMan->graphicsMan);
 
     u32 result;
 
@@ -165,9 +165,9 @@ static int CapsuleMenu_Init(ApplicationManager *appMan, int *unused)
         (void)0;
     }
 
-    SealManager_InitTouchRects(sealAppMan);
-    SetVBlankCallback(SealManager_VBlankCallback, sealAppMan);
-    SealGraphics_InitFontOAMManager(sealAppMan);
+    CapsuleManager_InitTouchRects(capsuleAppMan);
+    SetVBlankCallback(CapsuleManager_VBlankCallback, capsuleAppMan);
+    CapsuleGraphics_InitFontOAMManager(capsuleAppMan);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_59, SEQ_NONE, 0);
 
     return 1;
@@ -175,7 +175,7 @@ static int CapsuleMenu_Init(ApplicationManager *appMan, int *unused)
 
 static int CapsuleMenu_Main(ApplicationManager *appMan, int *field)
 {
-    SealAppManager *sealAppMan = ApplicationManager_Data(appMan);
+    CapsuleAppManager *capsuleAppMan = ApplicationManager_Data(appMan);
 
     switch (*field) {
     case 0:
@@ -184,15 +184,15 @@ static int CapsuleMenu_Main(ApplicationManager *appMan, int *field)
         }
         break;
     case 1: {
-        BOOL result = ov76_0223D550(sealAppMan);
+        BOOL result = CapsuleManager_CallFunction(capsuleAppMan);
 
         if (result == 0) {
             *field = 2;
             break;
         }
 
-        PokemonSpriteManager_DrawSprites(sealAppMan->graphicsMan.pokemonSpriteManager);
-        SealGraphics_SwapBuffers();
+        PokemonSpriteManager_DrawSprites(capsuleAppMan->graphicsMan.pokemonSpriteManager);
+        CapsuleGraphics_SwapBuffers();
     } break;
     case 2:
         if (IsScreenFadeDone() == TRUE) {
@@ -206,7 +206,7 @@ static int CapsuleMenu_Main(ApplicationManager *appMan, int *field)
 
 static int CapsuleMenu_Exit(ApplicationManager *appMan, int *unused)
 {
-    SealAppManager *sealAppMan = ApplicationManager_Data(appMan);
+    CapsuleAppManager *capsuleAppMan = ApplicationManager_Data(appMan);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -216,31 +216,31 @@ static int CapsuleMenu_Exit(ApplicationManager *appMan, int *unused)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    Bg_FreeTilemapBuffer(sealAppMan->graphicsMan.bgConfig, 1);
-    Bg_FreeTilemapBuffer(sealAppMan->graphicsMan.bgConfig, 2);
-    Bg_FreeTilemapBuffer(sealAppMan->graphicsMan.bgConfig, 3);
-    Bg_FreeTilemapBuffer(sealAppMan->graphicsMan.bgConfig, 4);
-    Bg_FreeTilemapBuffer(sealAppMan->graphicsMan.bgConfig, 5);
-    Bg_FreeTilemapBuffer(sealAppMan->graphicsMan.bgConfig, 6);
-    Bg_FreeTilemapBuffer(sealAppMan->graphicsMan.bgConfig, 7);
-    Heap_Free(sealAppMan->graphicsMan.bgConfig);
-    PaletteData_FreeBuffer(sealAppMan->graphicsMan.paletteData, PLTTBUF_MAIN_BG);
-    PaletteData_FreeBuffer(sealAppMan->graphicsMan.paletteData, PLTTBUF_SUB_BG);
-    PaletteData_FreeBuffer(sealAppMan->graphicsMan.paletteData, PLTTBUF_MAIN_OBJ);
-    PaletteData_FreeBuffer(sealAppMan->graphicsMan.paletteData, PLTTBUF_SUB_OBJ);
-    PaletteData_Free(sealAppMan->graphicsMan.paletteData);
-    CapsuleMenu_SetCapsuleIndex(sealAppMan->appData, sealAppMan->capsuleIndex[0]);
-    Heap_Free(sealAppMan->pokemon);
-    SealPlacement_FreeInactiveSeals(sealAppMan);
-    TouchScreenActions_Free(sealAppMan->graphicsMan.touchScreenActions);
-    PokemonSpriteManager_Free(sealAppMan->graphicsMan.pokemonSpriteManager);
-    PokemonAnimManager_Free(sealAppMan->graphicsMan.pokemonAnimManager);
-    SealGraphics_FreeFonts(sealAppMan);
-    SealGraphics_FreeSpriteSystem(&sealAppMan->graphicsMan);
+    Bg_FreeTilemapBuffer(capsuleAppMan->graphicsMan.bgConfig, 1);
+    Bg_FreeTilemapBuffer(capsuleAppMan->graphicsMan.bgConfig, 2);
+    Bg_FreeTilemapBuffer(capsuleAppMan->graphicsMan.bgConfig, 3);
+    Bg_FreeTilemapBuffer(capsuleAppMan->graphicsMan.bgConfig, 4);
+    Bg_FreeTilemapBuffer(capsuleAppMan->graphicsMan.bgConfig, 5);
+    Bg_FreeTilemapBuffer(capsuleAppMan->graphicsMan.bgConfig, 6);
+    Bg_FreeTilemapBuffer(capsuleAppMan->graphicsMan.bgConfig, 7);
+    Heap_Free(capsuleAppMan->graphicsMan.bgConfig);
+    PaletteData_FreeBuffer(capsuleAppMan->graphicsMan.paletteData, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(capsuleAppMan->graphicsMan.paletteData, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(capsuleAppMan->graphicsMan.paletteData, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(capsuleAppMan->graphicsMan.paletteData, PLTTBUF_SUB_OBJ);
+    PaletteData_Free(capsuleAppMan->graphicsMan.paletteData);
+    CapsuleMenu_SetCapsuleIndex(capsuleAppMan->appData, capsuleAppMan->capsuleIndex[0]);
+    Heap_Free(capsuleAppMan->pokemon);
+    SealPlacement_FreeInactiveSeals(capsuleAppMan);
+    TouchScreenActions_Free(capsuleAppMan->graphicsMan.touchScreenActions);
+    PokemonSpriteManager_Free(capsuleAppMan->graphicsMan.pokemonSpriteManager);
+    PokemonAnimManager_Free(capsuleAppMan->graphicsMan.pokemonAnimManager);
+    CapsuleGraphics_FreeFonts(capsuleAppMan);
+    CapsuleGraphics_FreeSpriteSystem(&capsuleAppMan->graphicsMan);
     VramTransfer_Free();
-    G3DPipelineBuffers_Free(sealAppMan->graphicsMan.pipelineBuffers);
-    SealManager_Deinit(HEAP_ID_53);
-    NARC_dtor(sealAppMan->narc);
+    G3DPipelineBuffers_Free(capsuleAppMan->graphicsMan.pipelineBuffers);
+    CapsuleManager_Deinit(HEAP_ID_53);
+    NARC_dtor(capsuleAppMan->narc);
     ApplicationManager_FreeData(appMan);
 
     {
@@ -260,7 +260,7 @@ static int CapsuleMenu_Exit(ApplicationManager *appMan, int *unused)
     return 1;
 }
 
-Pokemon *CapsuleMenu_GetPokemonIndex(SealAppData *appData, int index)
+Pokemon *CapsuleMenu_GetPokemonIndex(CapsuleAppData *appData, int index)
 {
     int index_dupe = index;
 
@@ -272,22 +272,22 @@ Pokemon *CapsuleMenu_GetPokemonIndex(SealAppData *appData, int index)
     return appData->pokemon[index_dupe];
 }
 
-u8 CapsuleMenu_GetCapsuleIndex(SealAppData *appData)
+u8 CapsuleMenu_GetCapsuleIndex(CapsuleAppData *appData)
 {
     return appData->capsuleIndex;
 }
 
-void CapsuleMenu_SetCapsuleIndex(SealAppData *appData, u8 value)
+void CapsuleMenu_SetCapsuleIndex(CapsuleAppData *appData, u8 value)
 {
     appData->capsuleIndex = value;
 }
 
-u8 CapsuleMenu_GetAction(SealAppData *appData)
+u8 CapsuleMenu_GetAction(CapsuleAppData *appData)
 {
     return appData->action;
 }
 
-void CapsuleMenu_SetAction(SealAppData *appData, u8 value)
+void CapsuleMenu_SetAction(CapsuleAppData *appData, u8 value)
 {
     appData->action = value;
 }
@@ -295,7 +295,7 @@ void CapsuleMenu_SetAction(SealAppData *appData, u8 value)
 static BOOL CapsuleMenu_FieldTaskCB(FieldTask *fieldTask)
 {
     CapsuleMenuFieldTask *capsuleFieldTask = FieldTask_GetEnv(fieldTask);
-    SealAppData *appData = capsuleFieldTask->appData;
+    CapsuleAppData *appData = capsuleFieldTask->appData;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
 
     switch (capsuleFieldTask->state) {
@@ -394,8 +394,8 @@ void CapsuleMenu_StartFieldTask(FieldTask *task, SaveData *saveData)
 
     memset(capsuleFieldTask, 0, sizeof(CapsuleMenuFieldTask));
     capsuleFieldTask->saveData = saveData;
-    capsuleFieldTask->appData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(SealAppData));
-    memset(capsuleFieldTask->appData, 0, sizeof(SealAppData));
+    capsuleFieldTask->appData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(CapsuleAppData));
+    memset(capsuleFieldTask->appData, 0, sizeof(CapsuleAppData));
     capsuleFieldTask->appData->options = SaveData_GetOptions(saveData);
     capsuleFieldTask->appData->saveData = saveData;
     capsuleFieldTask->partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
@@ -411,7 +411,7 @@ typedef struct {
     u8 particleIndex;
     u8 isAlphabetSeal;
     u16 price;
-    u8 descriptionIndex; // index, ignores alphabet seals in the count
+    u8 nonAlphabetIndex; // index, ignores alphabet seals in the count
 } SealTypeValues;
 
 static const SealTypeValues sealTypeValues[SEAL_ID_MAX] = {
@@ -528,8 +528,8 @@ int CapsuleMenu_GetSealPrice(u8 index)
     return sealTypeValues[index].price;
 }
 
-int CapsuleMenu_GetSealDescriptionIndex(u8 index)
+int CapsuleMenu_GetSealNonAlphabetIndex(u8 index)
 {
     GF_ASSERT(index < (sizeof(sealTypeValues)));
-    return sealTypeValues[index].descriptionIndex;
+    return sealTypeValues[index].nonAlphabetIndex;
 }

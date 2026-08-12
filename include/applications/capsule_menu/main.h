@@ -28,19 +28,19 @@ typedef struct {
     u8 capsuleIndex;
     u8 action;
     u8 unused[2];
-} SealAppData;
+} CapsuleAppData;
 
-Pokemon *CapsuleMenu_GetPokemonIndex(SealAppData *appData, int index);
-u8 CapsuleMenu_GetCapsuleIndex(SealAppData *appData);
-void CapsuleMenu_SetCapsuleIndex(SealAppData *appData, u8 value);
-u8 CapsuleMenu_GetAction(SealAppData *appData);
-void CapsuleMenu_SetAction(SealAppData *appData, u8 value);
+Pokemon *CapsuleMenu_GetPokemonIndex(CapsuleAppData *appData, int index);
+u8 CapsuleMenu_GetCapsuleIndex(CapsuleAppData *appData);
+void CapsuleMenu_SetCapsuleIndex(CapsuleAppData *appData, u8 value);
+u8 CapsuleMenu_GetAction(CapsuleAppData *appData);
+void CapsuleMenu_SetAction(CapsuleAppData *appData, u8 value);
 void CapsuleMenu_StartFieldTask(FieldTask *task, SaveData *saveData);
 int CapsuleMenu_GetSealMemberIdx(u8 index);
 int CapsuleMenu_GetSealNameIndex(u8 index);
 int CapsuleMenu_GetSealParticleIndex(u8 index);
 int CapsuleMenu_IsAlphabetSeal(u8 index);
 int CapsuleMenu_GetSealPrice(u8 index);
-int CapsuleMenu_GetSealDescriptionIndex(u8 index);
+int CapsuleMenu_GetSealNonAlphabetIndex(u8 index);
 
 #endif // POKEPLATINUM_APPLICATIONS_CAPSULE_MENU_MAIN_H
