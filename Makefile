@@ -23,11 +23,10 @@ ROM_REVISION ?= 1
 
 SUBPROJ_DIR := subprojects
 
-MESON_VER := 1.10.0
+MESON_VER := 1.12.0
 MESON_DIR := $(SUBPROJ_DIR)/meson-$(MESON_VER)
-MESON_SUB := $(MESON_DIR)/meson.py
 
-MESON ?= $(MESON_SUB)
+MESON ?= $(MESON_DIR)/meson.py
 NINJA ?= ninja
 GIT ?= git
 
@@ -119,12 +118,8 @@ distclean:
 
 purge: distclean
 	rm -rf $(SKREW_DIR)
-ifeq ($(MESON),$(MESON_SUB))
 	! test -f $(MESON) || $(MESON) subprojects purge --confirm
 	rm -rf $(MESON_DIR)
-else
-	$(MESON) subprojects purge --confirm
-endif
 
 update: meson skrewup
 	$(MESON) subprojects update || true
@@ -148,12 +143,9 @@ $(BUILD)/build.ninja: | $(BUILD) $(SKREW_EXE) meson
 $(BUILD):
 	mkdir -p -- $(BUILD)
 
-meson: ;
-ifeq ($(MESON),$(MESON_SUB))
-meson: $(MESON_SUB)
-endif
+meson: $(MESON)
 
-$(MESON_SUB):
+$(MESON):
 	$(GIT) clone --depth=1 -b $(MESON_VER) https://github.com/mesonbuild/meson $(@D)
 
 skrew: $(SKREW_EXE)
