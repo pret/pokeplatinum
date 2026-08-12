@@ -60,7 +60,7 @@ typedef struct {
 
 typedef struct {
     ManagedSprite *sprites[13];
-} CapsuleActiveSprites;
+} CapsulePageSprites;
 
 typedef struct {
     int page;
@@ -117,7 +117,7 @@ typedef struct {
     int unk_3D8;
     int throwStateID;
     int unk_3E0; // frame counter? 895 manager, 1022 manager
-    CapsuleActiveSprites capsuleActiveSprites;
+    CapsulePageSprites pageSprites;
     SealPages sealPages;
     Pokemon *pokemon;
     NARC *narc;

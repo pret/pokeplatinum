@@ -9,8 +9,6 @@
 #include "palette.h"
 #include "sprite_system.h"
 
-// TODO: seperate these constants into a different file (or the .c?)
-
 #define BASE_TILE_1         1 + MESSAGE_WINDOW_TILE_COUNT + SCROLLING_MESSAGE_BOX_TILE_COUNT + STANDARD_WINDOW_TILE_COUNT
 #define BASE_TILE_2         BASE_TILE_1 + BASE_TILE_INCREMENT
 #define BASE_TILE_3         BASE_TILE_2 + BASE_TILE_INCREMENT
@@ -31,9 +29,9 @@ void ov76_0223B940(SealAppManager *appMan);
 void SealGraphics_SetFontOAMDrawFlag(SealAppManager *appMan, BOOL flag);
 void ov76_0223B98C(SealAppManager *appMan, int index, int param2, int param3, int param4);
 void SealGraphics_PopulateSealPage(SealAppManager *appMan, int pageCutoff);
-void SealGraphics_LoadSealSprites(SealAppManager *appMan);
-void SealGraphics_InitSealSprites(SealAppManager *appMan);
-void SealGraphics_FreeSealSprites(SealAppManager *appMan);
+void SealGraphics_LoadPageSprites(SealAppManager *appMan);
+void SealGraphics_InitPageSprites(SealAppManager *appMan);
+void SealGraphics_FreePageSprites(SealAppManager *appMan);
 void SealGraphics_TaskStart(SealAppManager *appMan, s8 scale, int steps);
 G3DPipelineBuffers *SealGraphics_PipelineInit(void);
 void SealGraphics_G3DSetupCB(void);
@@ -77,7 +75,7 @@ void ov76_0223CF24(SealAppManager *appMan, NARC *narc);
 void ov76_0223CF88(SealAppManager *appMan, NARC *narc);
 void ov76_0223CFEC(SealAppManager *appMan, NARC *narc);
 void ov76_0223D16C(SealAppManager *appMan);
-void SealGraphics_SetSealSpritesDrawFlag(SealAppManager *appMan, int flag);
+void SealGraphics_SetPageSpritesDrawFlag(SealAppManager *appMan, int flag);
 void SealGraphics_Unused(SealAppManager *appMan);
 void SealGraphics_FreeUISprites(SealAppManager *appMan);
 

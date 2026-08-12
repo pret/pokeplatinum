@@ -337,6 +337,7 @@ Static main
 	Object main.nef.p/src_berry_data.c.o
 	Object main.nef.p/src_easy_chat_args.c.o
 	Object main.nef.p/src_applications_mail.c.o
+	Object main.nef.p/src_applications_capsule_menu_main.c.o
 	Object main.nef.p/src_egg_hatch.c.o
 	Object main.nef.p/src_unk_020985E4.c.o
 	Object main.nef.p/src_pokedex_language.c.o
@@ -1278,7 +1279,6 @@ Overlay capsule_menu
 	Object main.nef.p/src_applications_capsule_menu_placement.c.o
 	Object main.nef.p/src_applications_capsule_menu_graphics.c.o
 	Object main.nef.p/src_applications_capsule_menu_manager.c.o
-	Object main.nef.p/src_applications_capsule_menu_main.c.o
 }
 
 Overlay game_opening

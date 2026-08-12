@@ -42,6 +42,16 @@
 #include "vram_transfer.h"
 #include "yes_no_touch_menu.h"
 
+#define CAPSULE_MON_SPRITE_X              192
+#define CAPSULE_MON_SPRITE_Y_BASE         48
+#define CAPSULE_MON_SPRITE_Z              -640
+#define THROW_INIT_GFX_STATE_ID           0
+#define THROW_WAIT_INIT_THROW_STATE_ID    1
+#define THROW_SET_CAPSULE_STATE_ID        2
+#define THROW_WAIT_FOR_END_STATE_ID       3
+#define THROW_WAIT_FOR_ANIMS_END_STATE_ID 5
+#define THROW_WAIT_FREE_STATE_ID          7
+
 typedef struct {
     int frame;
     ManagedSprite *sprite;
@@ -304,7 +314,7 @@ static BOOL ov76_0223D674(SealAppManager *appMan) // this is the state for the c
         ov76_0223C354(appMan);
         SealGraphics_InitCapsuleSprites(appMan, narc);
         SealGraphics_InitMessageWindow(appMan->graphicsMan.bgConfig, appMan->graphicsMan.windows, 1, 2, 21, 27, 2, 1 + 18 + 12 + 9);
-        ov76_0223B208(appMan);
+        SealPlacement_UpdateSealsFromCapsule(appMan);
         SealPlacement_DrawActiveSeals(appMan, 1);
         ov76_0223B1E0(appMan);
         ov76_0223CFEC(appMan, narc);
@@ -314,9 +324,9 @@ static BOOL ov76_0223D674(SealAppManager *appMan) // this is the state for the c
         SealManager_CopyToActiveCapsule(appMan);
         SealManager_GetSealCounts(appMan);
         SealGraphics_PopulateSealPage(appMan, appMan->sealPages.page);
-        SealGraphics_LoadSealSprites(appMan);
-        SealGraphics_InitSealSprites(appMan);
-        SealGraphics_SetSealSpritesDrawFlag(appMan, 0);
+        SealGraphics_LoadPageSprites(appMan);
+        SealGraphics_InitPageSprites(appMan);
+        SealGraphics_SetPageSpritesDrawFlag(appMan, 0);
         SealGraphics_SetSelectionIndicatorDrawFlags(appMan, 0);
         ov76_0223B940(appMan);
         SealGraphics_SetFontOAMDrawFlag(appMan, 0);
@@ -356,7 +366,7 @@ static BOOL ov76_0223D674(SealAppManager *appMan) // this is the state for the c
         newCapsuleIndex = *appMan->capsuleIndex;
         *appMan->capsuleIndex = initialCapsuleIndex;
 
-        if (cursorMoved) {
+        if (cursorMoved == 1) {
             ov76_0223B400(appMan);
             SealPlacement_LoadCapsuleSeals(appMan);
             SealGraphics_SetCapsuleSpriteAnim(appMan);
@@ -365,7 +375,7 @@ static BOOL ov76_0223D674(SealAppManager *appMan) // this is the state for the c
 
             SealManager_MoveCursorToCapsule(appMan, 0, 1);
             SealPlacement_FreeInactiveSeals(appMan);
-            ov76_0223B208(appMan);
+            SealPlacement_UpdateSealsFromCapsule(appMan);
             SealPlacement_DrawActiveSeals(appMan, 1);
             ov76_0223B1E0(appMan);
 
@@ -422,8 +432,8 @@ static BOOL ov76_0223D674(SealAppManager *appMan) // this is the state for the c
         SealGraphics_FreePokemonSprites(appMan);
         SealGraphics_FreeUISprites(appMan);
         SealGraphics_FreeSelectionIndicator(appMan);
-        SealGraphics_FreeSealSprites(appMan);
-        CapsuleMenu_SetAction(appMan->appData, CAPSULE_MENU_SWITCH_ACTION_STATE_ID);
+        SealGraphics_FreePageSprites(appMan);
+        CapsuleMenu_SetAction(appMan->appData, CAPSULE_MENU_GO_TO_FIELD);
         return 0;
     }
 
@@ -514,29 +524,29 @@ void SealManager_HandleSpritePress(u32 field, enum TouchScreenButtonState touchS
                 appMan_dupe->sealPages.page = appMan_dupe->sealPages.maxPage - 1;
             }
 
-            SealGraphics_FreeSealSprites(appMan_dupe);
+            SealGraphics_FreePageSprites(appMan_dupe);
             SealGraphics_PopulateSealPage(appMan_dupe, appMan_dupe->sealPages.page);
-            SealGraphics_LoadSealSprites(appMan_dupe);
-            SealGraphics_InitSealSprites(appMan_dupe);
+            SealGraphics_LoadPageSprites(appMan_dupe);
+            SealGraphics_InitPageSprites(appMan_dupe);
             SealGraphics_UpdateAllSealCountText(appMan_dupe);
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM02);
         }
 
-        ov76_0223D94C(appMan_dupe->capsuleActiveSprites.sprites[8], touchScreenState);
+        ov76_0223D94C(appMan_dupe->pageSprites.sprites[8], touchScreenState);
         break;
     case 9:
         if (touchScreenState == TOUCH_BUTTON_PRESSED) {
             appMan_dupe->sealPages.page++;
             appMan_dupe->sealPages.page %= appMan_dupe->sealPages.maxPage;
 
-            SealGraphics_FreeSealSprites(appMan_dupe);
+            SealGraphics_FreePageSprites(appMan_dupe);
             SealGraphics_PopulateSealPage(appMan_dupe, appMan_dupe->sealPages.page);
-            SealGraphics_LoadSealSprites(appMan_dupe);
-            SealGraphics_InitSealSprites(appMan_dupe);
+            SealGraphics_LoadPageSprites(appMan_dupe);
+            SealGraphics_InitPageSprites(appMan_dupe);
             SealGraphics_UpdateAllSealCountText(appMan_dupe);
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM02);
         }
-        ov76_0223D94C(appMan_dupe->capsuleActiveSprites.sprites[9], touchScreenState);
+        ov76_0223D94C(appMan_dupe->pageSprites.sprites[9], touchScreenState);
         break;
     case 10:
         if (touchScreenState == TOUCH_BUTTON_PRESSED) {
@@ -545,10 +555,10 @@ void SealManager_HandleSpritePress(u32 field, enum TouchScreenButtonState touchS
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             }
 
-            SealManager_PressCapsuleUI(appMan_dupe->capsuleActiveSprites.sprites[10], NULL);
+            SealManager_PressCapsuleUI(appMan_dupe->pageSprites.sprites[10], NULL);
         }
 
-        ov76_0223D94C(appMan_dupe->capsuleActiveSprites.sprites[10], touchScreenState);
+        ov76_0223D94C(appMan_dupe->pageSprites.sprites[10], touchScreenState);
         break;
     case 11:
         if (touchScreenState == TOUCH_BUTTON_PRESSED) {
@@ -558,10 +568,10 @@ void SealManager_HandleSpritePress(u32 field, enum TouchScreenButtonState touchS
                 Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
             }
 
-            SealManager_PressCapsuleUI(appMan_dupe->capsuleActiveSprites.sprites[11], appMan_dupe->graphicsMan.fontOAM[0]);
+            SealManager_PressCapsuleUI(appMan_dupe->pageSprites.sprites[11], appMan_dupe->graphicsMan.fontOAM[0]);
         }
 
-        ov76_0223D94C(appMan_dupe->capsuleActiveSprites.sprites[11], touchScreenState);
+        ov76_0223D94C(appMan_dupe->pageSprites.sprites[11], touchScreenState);
         break;
     case 12:
         if (touchScreenState == TOUCH_BUTTON_PRESSED) {
@@ -571,10 +581,10 @@ void SealManager_HandleSpritePress(u32 field, enum TouchScreenButtonState touchS
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             }
 
-            SealManager_PressCapsuleUI(appMan_dupe->capsuleActiveSprites.sprites[12], appMan_dupe->graphicsMan.fontOAM[1]);
+            SealManager_PressCapsuleUI(appMan_dupe->pageSprites.sprites[12], appMan_dupe->graphicsMan.fontOAM[1]);
         }
 
-        ov76_0223D94C(appMan_dupe->capsuleActiveSprites.sprites[12], touchScreenState);
+        ov76_0223D94C(appMan_dupe->pageSprites.sprites[12], touchScreenState);
         break;
     case 0:
     case 1:
@@ -617,7 +627,7 @@ void SealManager_HandleSpritePress(u32 field, enum TouchScreenButtonState touchS
 
         if (touchScreenState == TOUCH_BUTTON_PRESSED) {
             renderedIndex = field - 13;
-            ov76_0223B5C4(appMan_dupe, touchScreenState, renderedIndex);
+            SealPlacement_HandleTouchscreen(appMan_dupe, touchScreenState, renderedIndex);
             sealIndex = CapsuleMenu_GetSealNameIndex(appMan_dupe->sealRenderInfo[renderedIndex].type);
 
             SealGraphics_UpdateSealNameText(appMan_dupe->graphicsMan.windows, sealIndex);
@@ -776,7 +786,7 @@ static BOOL ov76_0223DF94(SealAppManager *appMan)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
         Bg_SetPriority(BG_LAYER_SUB_3, 1);
-        SealGraphics_SetSealSpritesDrawFlag(appMan, 1);
+        SealGraphics_SetPageSpritesDrawFlag(appMan, 1);
         SealGraphics_SetSelectionIndicatorDrawFlags(appMan, 1);
         SealGraphics_SetFontOAMDrawFlag(appMan, 1);
         appMan->stateID++;
@@ -1056,7 +1066,7 @@ static BOOL ov76_0223DF94(SealAppManager *appMan)
                 SealManager_SetSealCounts(appMan);
                 SealGraphics_UpdateAllSealCountText(appMan);
                 SealPlacement_FreeInactiveSeals(appMan);
-                ov76_0223B208(appMan);
+                SealPlacement_UpdateSealsFromCapsule(appMan);
                 SealPlacement_DrawActiveSeals(appMan, 1);
                 appMan->stateID = SEAL_FADE_OUT_WAIT_STATE_ID;
                 break;
@@ -1088,7 +1098,7 @@ static BOOL ov76_0223DF94(SealAppManager *appMan)
         Bg_SetPriority(BG_LAYER_MAIN_3, 3);
         Bg_SetPriority(BG_LAYER_SUB_3, 3);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-        SealGraphics_SetSealSpritesDrawFlag(appMan, 0);
+        SealGraphics_SetPageSpritesDrawFlag(appMan, 0);
         SealGraphics_SetSelectionIndicatorDrawFlags(appMan, 0);
         SealGraphics_SetFontOAMDrawFlag(appMan, 0);
         SealGraphics_TaskStart(appMan, -1, 4);
@@ -1128,12 +1138,12 @@ static BOOL ov76_0223DF94(SealAppManager *appMan)
             sealIndex = CapsuleMenu_GetSealNameIndex(appMan->sealRenderInfo[index].type);
             SealGraphics_UpdateSealNameText(appMan->graphicsMan.windows, sealIndex);
             ManagedSprite_SetPositionXY(appMan->sealRenderInfo[index].sprite, x, y);
-            ov76_0223B758(appMan, index);
+            SealPlacement_UpdateSealOamMode(appMan, index);
             SealPlacement_UpdateSealXY(appMan, index);
         } else {
             BOOL v16;
 
-            v16 = ov76_0223B6C4(appMan, index);
+            v16 = SealPlacement_SealIsValid(appMan, index);
             SealPlacement_UpdateSealTouchRect(appMan->sealRenderInfo[index].touchScreenRect, appMan->sealRenderInfo[index].sprite, 0);
 
             if (v16 == 0) {
@@ -1175,8 +1185,8 @@ static BOOL ov76_0223E8A4(SealAppManager *appMan)
         SealGraphics_FreePokemonSprites(appMan);
         SealGraphics_FreeUISprites(appMan);
         SealGraphics_FreeSelectionIndicator(appMan);
-        SealGraphics_FreeSealSprites(appMan);
-        CapsuleMenu_SetAction(appMan->appData, CAPSULE_MENU_SWITCH_ACTION_STATE_ID);
+        SealGraphics_FreePageSprites(appMan);
+        CapsuleMenu_SetAction(appMan->appData, CAPSULE_MENU_GO_TO_PARTY_MENU);
 
         return 0;
     }
@@ -1201,7 +1211,7 @@ void SealManager_AssignCapsuleMon(SealAppManager *appMan, int capsuleIndex)
     }
 
     appMan->capsules[capsuleIndex].index = 0xFF;
-    SealGraphics_SetCapsuleSpriteAnim(capsuleIndex);
+    SealGraphics_SetCapsuleSpriteAnim(appMan);
 }
 
 static BOOL ov76_0223E950(SealAppManager *appMan) // idk what the difference is with the one above
@@ -1244,7 +1254,7 @@ static BOOL ov76_0223E9C4(SealAppManager *appMan)
 
         cursorMoved = SealManager_HandleCapsulePadMovement(&(appMan->capsuleIndex[1]));
 
-        if (cursorMoved) {
+        if (cursorMoved == 1) {
             SealManager_MoveCursorToCapsule(appMan, 1, 0);
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);

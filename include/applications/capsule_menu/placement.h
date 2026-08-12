@@ -8,23 +8,21 @@
 #include "sprite_system.h"
 #include "touch_screen.h"
 
-#define SEAL_OBJ_ID_OFFSET 20000
-
 void SealPlacement_UpdateSealTouchRect(TouchScreenRect *rect, ManagedSprite *sprite, BOOL touchingSprite);
 void ov76_0223B1E0(SealAppManager *appMan);
-void ov76_0223B208(SealAppManager *appMan);
+void SealPlacement_UpdateSealsFromCapsule(SealAppManager *appMan);
 int SealPlacement_GetTouchedSeal(SealAppManager *appMan, u8 sealIndex);
 BOOL SealPlacement_NotMaxSeals(SealAppManager *appMan);
-void ov76_0223B314(SealAppManager *appMan, u8 index);
-void ov76_0223B36C(SealAppManager *appMan, u8 param1, u8 sealIndex);
+void SealPlacement_SetSealRenderPriorities(SealAppManager *appMan, u8 index);
+void SealPlacement_LoadSeal(SealAppManager *appMan, u8 type, u8 sealIndex);
 void ov76_0223B400(SealAppManager *appMan);
-BOOL ov76_0223B52C(SealAppManager *appMan, u8 sealIndex);
-BOOL ov76_0223B5C4(SealAppManager *appMan, u32 field, u8 index);
+BOOL SealPlacement_InitSeal(SealAppManager *appMan, u8 sealIndex);
+BOOL SealPlacement_HandleTouchscreen(SealAppManager *appMan, u32 touchscreenState, u8 index);
 void SealPlacement_FreeInactiveSeals(SealAppManager *appMan);
 void SealPlacement_DrawActiveSeals(SealAppManager *appMan, int flag);
-BOOL ov76_0223B6C4(SealAppManager *appMan, int index);
+BOOL SealPlacement_SealIsValid(SealAppManager *appMan, int index);
 void SealPlacement_FreeSeal(SealAppManager *appMan, int sealIndex);
-void ov76_0223B758(SealAppManager *appMan, int param1);
+void SealPlacement_UpdateSealOamMode(SealAppManager *appMan, int param1);
 BOOL SealPlacement_AnySealsChanged(SealAppManager *appMan);
 void SealPlacement_UpdateSealXY(SealAppManager *appMan, int sealIndex);
 void SealPlacement_LoadCapsuleSeals(SealAppManager *appMan);

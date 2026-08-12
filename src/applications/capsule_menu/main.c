@@ -269,7 +269,7 @@ Pokemon *CapsuleMenu_GetPokemonIndex(SealAppData *appData, int index)
         index_dupe = 0;
     }
 
-    return appData->pokemon[index];
+    return appData->pokemon[index_dupe];
 }
 
 u8 CapsuleMenu_GetCapsuleIndex(SealAppData *appData)
@@ -363,7 +363,8 @@ static BOOL CapsuleMenu_FieldTaskCB(FieldTask *fieldTask)
             Pokemon_SetValue(pokemon, MON_DATA_BALL_CAPSULE_ID, (u8 *)&capsuleID);
             Pokemon_SetValue(pokemon, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(appData->sealCase, capsuleID - 1));
 
-            BallSeal *seal = BallCapsule_GetBallSeals(capsuleID, 0);
+            BallCapsule *capsule = SealCase_GetCapsuleById(appData->sealCase, capsuleID - 1);
+            BallSeal *seal = BallCapsule_GetBallSeals(capsule, 0);
             int sealType = BallSeal_GetSealType(seal);
             int sealIndex = CapsuleMenu_GetSealNameIndex(sealType);
             TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
