@@ -127,7 +127,7 @@ Static main
 	Object main.nef.p/src_journal.c.o
 	Object main.nef.p/src_trainer_case_save_data.c.o
 	Object main.nef.p/src_wifi_history_save_data.c.o
-	Object main.nef.p/src_unk_0202C9F4.c.o
+	Object main.nef.p/src_ball_seal_info.c.o
 	Object main.nef.p/src_play_time.c.o
 	Object main.nef.p/src_chatot_cry.c.o
 	Object main.nef.p/src_game_records.c.o
@@ -336,7 +336,7 @@ Static main
 	Object main.nef.p/src_berry_data.c.o
 	Object main.nef.p/src_easy_chat_args.c.o
 	Object main.nef.p/src_applications_mail.c.o
-	Object main.nef.p/src_unk_02097B18.c.o
+	Object main.nef.p/src_applications_capsule_menu_main.c.o
 	Object main.nef.p/src_egg_hatch.c.o
 	Object main.nef.p/src_unk_020985E4.c.o
 	Object main.nef.p/src_pokedex_language.c.o
@@ -1272,12 +1272,12 @@ Overlay mail_viewer
 	Object main.nef.p/src_applications_mail_viewer.c.o
 }
 
-Overlay overlay76
+Overlay capsule_menu
 {
 	After battle_anim
-	Object main.nef.p/src_overlay076_ov76_0223B140.c.o
-	Object main.nef.p/src_overlay076_ov76_0223B870.c.o
-	Object main.nef.p/src_overlay076_ov76_0223D338.c.o
+	Object main.nef.p/src_applications_capsule_menu_placement.c.o
+	Object main.nef.p/src_applications_capsule_menu_graphics.c.o
+	Object main.nef.p/src_applications_capsule_menu_manager.c.o
 }
 
 Overlay game_opening

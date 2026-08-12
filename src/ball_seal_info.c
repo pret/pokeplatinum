@@ -1,4 +1,4 @@
-#include "unk_0202C9F4.h"
+#include "ball_seal_info.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -30,13 +30,13 @@ SealCase *SaveData_GetSealCase(SaveData *saveData)
 
 BallCapsule *SealCase_GetCapsuleById(SealCase *sealCase, int capsuleId)
 {
-    GF_ASSERT(capsuleId < TOTAL_CAPSULES);
+    GF_ASSERT(capsuleId < CAPSULE_NUM);
     return &sealCase->capsules[capsuleId];
 }
 
 void SealCase_CopyCapsuleFromId(SealCase *sealCase, BallCapsule *dst, int capsuleId)
 {
-    GF_ASSERT(capsuleId < TOTAL_CAPSULES);
+    GF_ASSERT(capsuleId < CAPSULE_NUM);
     BallCapsule_Copy(dst, SealCase_GetCapsuleById(sealCase, capsuleId));
 }
 
@@ -89,7 +89,7 @@ int SealCase_CountSealOccurrenceInUse(const SealCase *sealCase, int sealId)
     int i, j;
     int count = 0;
 
-    for (i = 0; i < TOTAL_CAPSULES; i++) {
+    for (i = 0; i < CAPSULE_NUM; i++) {
         for (j = 0; j < SEALS_PER_CAPSULE; j++) {
             if (sealCase->capsules[i].seals[j].type == (sealId + 1)) {
                 count++;

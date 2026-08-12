@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "bag.h"
+#include "ball_seal_info.h"
 #include "battle_frontier_save.h"
 #include "battle_hall_win_records.h"
 #include "battle_regulation.h"
@@ -35,7 +36,6 @@
 #include "trainer_case_save_data.h"
 #include "underground.h"
 #include "unk_020298BC.h"
-#include "unk_0202C9F4.h"
 #include "unk_0202D778.h"
 #include "unk_0202E2CC.h"
 #include "unk_0202F1D4.h"
