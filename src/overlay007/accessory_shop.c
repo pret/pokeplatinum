@@ -69,7 +69,11 @@ static void AccessoryShop_DeleteDescBox(AccessoryShopDescBox *descBox);
 static void AccessoryShop_UpdateDescBox(AccessoryShopDescBox *descBox, u32 berryId, u32 totalAmount, u32 inBagAmount);
 static void AccessoryShop_ShowItemList(AccessoryShopItemList *itemList, BgConfig *bgConfig, enum HeapID heapID, const AccessoryShopItem *items, u32 maxItems, MessageLoader *msgLoader, void *param6, AccessoryShopUpdateFunc updateFunc, SpriteList *spriteList);
 static void AccessoryShop_DeleteItemList(AccessoryShopItemList *itemList);
+#ifdef SDK_PORT
+static u64 AccessoryShop_SelectItemListMenu(AccessoryShopItemList *itemList);
+#else
 static u32 AccessoryShop_SelectItemListMenu(AccessoryShopItemList *itemList);
+#endif
 static void AccessoryShop_UpdateItemListMenu(AccessoryShopItemList *itemList);
 static void AccessoryShop_HideScrollArrows(AccessoryShopItemList *itemList);
 static void AccessoryShop_LoadScrollArrowGfx(SpriteResourcesHeader *scrollArrowResource, AccessoryShopItemList *itemList, enum HeapID heapID);
@@ -77,7 +81,11 @@ static void AccessoryShop_UnloadScrollArrowGfx(AccessoryShopItemList *itemList);
 static void AccessoryShop_UpdateScrollArrowsVisibility(AccessoryShopItemList *itemList);
 static void AccessoryShop_ShowYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice, BgConfig *bgConfig, enum HeapID heapID);
 static void AccessoryShop_DeleteYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice);
+#ifdef SDK_PORT
+static u64 AccessoryShop_SelectYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice);
+#else
 static u32 AccessoryShop_SelectYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice);
+#endif
 static void AccessoryShop_SetDataPointers(AccessoryShopDataPtrs *dataPtr, AccessoryShopDescBox *descBox, const AccessoryShopItem *items, Bag *bag, enum HeapID heapID, BgConfig *bgConfig);
 static void AccessoryShop_Update(void *ptr, u32 cursorPos);
 static BOOL AccessoryShop_HasAllAccessories(const FashionCase *fashionCase, const AccessoryShopItem *items, u32 maxItems);
@@ -119,7 +127,11 @@ void AccessoryShop_Free(AccessoryShop *shop)
 BOOL AccessoryShop_Main(AccessoryShop *shop)
 {
     String *string;
+    #ifdef SDK_PORT
+    u64 input;
+    #else
     u32 input;
+    #endif
 
     switch (shop->state) {
     case ACCESSORY_SHOP_STATE_LOAD_GREET_MSG:
@@ -577,7 +589,11 @@ static void AccessoryShop_DeleteItemList(AccessoryShopItemList *itemList)
     itemList->active = TRUE; // a mistake?
 }
 
+#ifdef SDK_PORT
+static u64 AccessoryShop_SelectItemListMenu(AccessoryShopItemList *itemList)
+#else
 static u32 AccessoryShop_SelectItemListMenu(AccessoryShopItemList *itemList)
+#endif
 {
     u16 cursorPos;
     #ifdef SDK_BUILD_ARM
@@ -716,7 +732,11 @@ static void AccessoryShop_DeleteYesNoChoice(AccessoryShopYesNoChoice *yesNoChoic
     yesNoChoice->active = FALSE;
 }
 
+#ifdef SDK_PORT
+static u64 AccessoryShop_SelectYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice)
+#else
 static u32 AccessoryShop_SelectYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice)
+#endif
 {
     return Menu_ProcessInputAndHandleExit(yesNoChoice->menu, yesNoChoice->heapID);
 }
