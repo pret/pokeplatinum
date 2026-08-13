@@ -175,8 +175,13 @@ static void CreateParticleSystem(PartyMenuFormChange *formChanger)
 {
     ParticleSystem_ZeroAll();
 
+    #ifdef SDK_PORT
+    void *heap = Heap_Alloc(HEAP_ID_PARTY_MENU, 0x4800*2);
+    formChanger->ps = ParticleSystem_New(AllocTexVram, AllocPaletteVram, heap, 0x4800*2, TRUE, HEAP_ID_PARTY_MENU);
+    #else
     void *heap = Heap_Alloc(HEAP_ID_PARTY_MENU, 0x4800);
     formChanger->ps = ParticleSystem_New(AllocTexVram, AllocPaletteVram, heap, 0x4800, TRUE, HEAP_ID_PARTY_MENU);
+    #endif
     Camera *camera = ParticleSystem_GetCamera(formChanger->ps);
 
     Camera_SetClipping(FX32_ONE, FX32_CONST(900), camera);

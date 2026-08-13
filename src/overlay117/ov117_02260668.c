@@ -901,8 +901,13 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
 
     ParticleSystem_ZeroAll();
 
+    #ifdef SDK_PORT
+    v0 = Heap_Alloc(HEAP_ID_110, 0x4800*2);
+    param0->unk_A4 = ParticleSystem_New(ov117_02261644, ov117_02261668, v0, 0x4800*2, 1, HEAP_ID_110);
+    #else
     v0 = Heap_Alloc(HEAP_ID_110, 0x4800);
     param0->unk_A4 = ParticleSystem_New(ov117_02261644, ov117_02261668, v0, 0x4800, 1, HEAP_ID_110);
+    #endif
     camera = ParticleSystem_GetCamera(param0->unk_A4);
 
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);

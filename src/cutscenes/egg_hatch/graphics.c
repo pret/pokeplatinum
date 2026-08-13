@@ -366,8 +366,13 @@ static u32 AllocPaletteVram(u32 size, BOOL is4Pltt)
 
 static ParticleSystem *NewParticleSystem(enum HeapID heapID)
 {
+    #ifdef SDK_PORT
+    void *heap = Heap_Alloc(heapID, 0x4800*2);
+    ParticleSystem *ps = ParticleSystem_New(AllocTexVram, AllocPaletteVram, heap, 0x4800*2, TRUE, heapID);
+    #else
     void *heap = Heap_Alloc(heapID, 0x4800);
     ParticleSystem *ps = ParticleSystem_New(AllocTexVram, AllocPaletteVram, heap, 0x4800, TRUE, heapID);
+    #endif
     Camera *camera = ParticleSystem_GetCamera(ps);
 
     if (camera != NULL) {

@@ -1729,8 +1729,13 @@ static void ov10_022217CC(UnkStruct_ov10_0221FB28 *param0)
     G3X_AlphaBlend(1);
     ParticleSystem_ZeroAll();
 
+    #ifdef SDK_PORT
+    param0->unk_B54 = Heap_Alloc(param0->trainerIntroData->heapID, 0x4800*2);
+    param0->unk_B50 = ParticleSystem_New(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800*2, 1, param0->trainerIntroData->heapID);
+    #else
     param0->unk_B54 = Heap_Alloc(param0->trainerIntroData->heapID, 0x4800);
     param0->unk_B50 = ParticleSystem_New(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->trainerIntroData->heapID);
+    #endif
 
     camera = ParticleSystem_GetCamera(param0->unk_B50);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
