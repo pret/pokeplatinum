@@ -5,7 +5,6 @@ prebuilt_files = [
     'demo_trade.narc',
     'dendou_demo.narc',
     'dendou_pc.narc',
-    'ending.narc',
     'ev_pokeselect.narc',
     'f_note_gra.narc',
     'font.narc',
