@@ -166,16 +166,28 @@ ending_cell_json = files(
 
 ending_ncer = ncer_gen.process(ending_cell_json)
 
-prebuilt_files = copy_gen.process(files(
-    # 'ending_0.NCGR',
-    # 'ending_1.NCER',
-    'ending_2.NANR',
+ending_nscr = copy_gen.process(files(
     'ending_3.NSCR',
     'ending_4.NSCR',
     'ending_5.NSCR',
     'ending_6.NSCR',
     'ending_7.NSCR',
     'ending_8.NSCR',
+    'ending_24.NSCR',
+    'ending_37.NSCR',
+    'ending_86.NSCR',
+))
+
+prebuilt_files = copy_gen.process(files(
+    # 'ending_0.NCGR',
+    # 'ending_1.NCER',
+    'ending_2.NANR',
+    # 'ending_3.NSCR',
+    # 'ending_4.NSCR',
+    # 'ending_5.NSCR',
+    # 'ending_6.NSCR',
+    # 'ending_7.NSCR',
+    # 'ending_8.NSCR',
     # 'ending_9.NCGR',
     # 'ending_10.NCGR',
     # 'ending_11.NCGR',
@@ -191,7 +203,7 @@ prebuilt_files = copy_gen.process(files(
     # 'ending_21.NCLR',
     # 'ending_22.NCLR',
     # 'ending_23.NCLR',
-    'ending_24.NSCR',
+    # 'ending_24.NSCR',
     # 'ending_25.NCGR',
     # 'ending_26.NCLR',
     # 'ending_27.NCGR',
@@ -204,7 +216,7 @@ prebuilt_files = copy_gen.process(files(
     # 'ending_34.NCER',
     'ending_35.NANR',
     # 'ending_36.NCLR',
-    'ending_37.NSCR',
+    # 'ending_37.NSCR',
     # 'ending_38.NCGR',
     # 'ending_39.NCGR',
     # 'ending_40.NCGR',
@@ -253,7 +265,7 @@ prebuilt_files = copy_gen.process(files(
     'ending_83.BMD0',
     'ending_84.BMD0',
     # 'ending_85.NCLR',
-    'ending_86.NSCR',
+    # 'ending_86.NSCR',
     # 'ending_87.NCGR',
     # 'ending_88.NCGR',
     # 'ending_89.NCGR',
@@ -287,6 +299,9 @@ ending_narc = custom_target('ending.narc',
         ending_ncgr_vram,
 
         ending_ncer,
+
+        ending_nscr,
+
         prebuilt_files,
     ],
     command: [
