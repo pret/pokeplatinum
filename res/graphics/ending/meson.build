@@ -67,6 +67,97 @@ foreach pal : ending_pal_8bpp
     ending_nclr_8bpp += nclr
 endforeach
 
+ending_sprites_sopc = files(
+    'ending_9.png',
+    'ending_10.png',
+    'ending_11.png',
+    'ending_12.png',
+    'ending_13.png',
+    'ending_14.png',
+    'ending_25.png',
+)
+
+ending_ncgr_sopc = ncgr_gen.process(
+    ending_sprites_sopc,
+    extra_args: [
+        '-bitdepth', '4',
+        '-version101',
+        '-sopc',
+    ]
+)
+
+ending_sprites_sopc_8bpp = files(
+    'ending_38.png',
+    'ending_39.png',
+    'ending_40.png',
+    'ending_41.png',
+    'ending_42.png',
+    'ending_43.png',
+    'ending_44.png',
+    'ending_45.png',
+    'ending_46.png',
+    'ending_47.png',
+    'ending_58.png',
+    'ending_59.png',
+    'ending_60.png',
+    'ending_61.png',
+    'ending_62.png',
+    'ending_63.png',
+    'ending_64.png',
+    'ending_65.png',
+    'ending_66.png',
+    'ending_67.png',
+    'ending_87.png',
+    'ending_88.png',
+    'ending_89.png',
+    'ending_90.png',
+    'ending_95.png',
+    'ending_96.png',
+    'ending_97.png',
+    'ending_98.png',
+)
+
+ending_ncgr_sopc_8bpp = ncgr_gen.process(
+    ending_sprites_sopc_8bpp,
+    extra_args: [
+        '-bitdepth', '8',
+        '-version101',
+        '-sopc',
+    ]
+)
+
+ending_sprites_clobbersize = files(
+    'ending_0.png',
+    'ending_27.png',
+    'ending_32.png',
+)
+
+ending_ncgr_clobbersize = ncgr_gen.process(
+    ending_sprites_clobbersize,
+    extra_args: [
+        '-bitdepth', '4',
+        '-version101',
+        '-clobbersize',
+        '-mappingtype', '128',
+    ]
+)
+
+ending_sprites_vram = files(
+    'ending_28.png',
+    'ending_33.png',
+)
+
+ending_ncgr_vram = ncgr_gen.process(
+    ending_sprites_vram,
+    extra_args: [
+        '-bitdepth', '4',
+        '-version101',
+        '-clobbersize',
+        '-mappingtype', '128',
+        '-vram',
+    ]
+)
+
 ending_cell_json = files(
     'ending_1.json',
     'ending_29.json',
@@ -76,7 +167,7 @@ ending_cell_json = files(
 ending_ncer = ncer_gen.process(ending_cell_json)
 
 prebuilt_files = copy_gen.process(files(
-    'ending_0.NCGR',
+    # 'ending_0.NCGR',
     # 'ending_1.NCER',
     'ending_2.NANR',
     'ending_3.NSCR',
@@ -85,12 +176,12 @@ prebuilt_files = copy_gen.process(files(
     'ending_6.NSCR',
     'ending_7.NSCR',
     'ending_8.NSCR',
-    'ending_9.NCGR',
-    'ending_10.NCGR',
-    'ending_11.NCGR',
-    'ending_12.NCGR',
-    'ending_13.NCGR',
-    'ending_14.NCGR',
+    # 'ending_9.NCGR',
+    # 'ending_10.NCGR',
+    # 'ending_11.NCGR',
+    # 'ending_12.NCGR',
+    # 'ending_13.NCGR',
+    # 'ending_14.NCGR',
     # 'ending_15.NCLR',
     # 'ending_16.NCLR',
     # 'ending_17.NCLR',
@@ -101,29 +192,29 @@ prebuilt_files = copy_gen.process(files(
     # 'ending_22.NCLR',
     # 'ending_23.NCLR',
     'ending_24.NSCR',
-    'ending_25.NCGR',
+    # 'ending_25.NCGR',
     # 'ending_26.NCLR',
-    'ending_27.NCGR',
-    'ending_28.NCGR',
+    # 'ending_27.NCGR',
+    # 'ending_28.NCGR',
     # 'ending_29.NCER',
     'ending_30.NANR',
     # 'ending_31.NCLR',
-    'ending_32.NCGR',
-    'ending_33.NCGR',
+    # 'ending_32.NCGR',
+    # 'ending_33.NCGR',
     # 'ending_34.NCER',
     'ending_35.NANR',
     # 'ending_36.NCLR',
     'ending_37.NSCR',
-    'ending_38.NCGR',
-    'ending_39.NCGR',
-    'ending_40.NCGR',
-    'ending_41.NCGR',
-    'ending_42.NCGR',
-    'ending_43.NCGR',
-    'ending_44.NCGR',
-    'ending_45.NCGR',
-    'ending_46.NCGR',
-    'ending_47.NCGR',
+    # 'ending_38.NCGR',
+    # 'ending_39.NCGR',
+    # 'ending_40.NCGR',
+    # 'ending_41.NCGR',
+    # 'ending_42.NCGR',
+    # 'ending_43.NCGR',
+    # 'ending_44.NCGR',
+    # 'ending_45.NCGR',
+    # 'ending_46.NCGR',
+    # 'ending_47.NCGR',
     # 'ending_48.NCLR',
     # 'ending_49.NCLR',
     # 'ending_50.NCLR',
@@ -134,16 +225,16 @@ prebuilt_files = copy_gen.process(files(
     # 'ending_55.NCLR',
     # 'ending_56.NCLR',
     # 'ending_57.NCLR',
-    'ending_58.NCGR',
-    'ending_59.NCGR',
-    'ending_60.NCGR',
-    'ending_61.NCGR',
-    'ending_62.NCGR',
-    'ending_63.NCGR',
-    'ending_64.NCGR',
-    'ending_65.NCGR',
-    'ending_66.NCGR',
-    'ending_67.NCGR',
+    # 'ending_58.NCGR',
+    # 'ending_59.NCGR',
+    # 'ending_60.NCGR',
+    # 'ending_61.NCGR',
+    # 'ending_62.NCGR',
+    # 'ending_63.NCGR',
+    # 'ending_64.NCGR',
+    # 'ending_65.NCGR',
+    # 'ending_66.NCGR',
+    # 'ending_67.NCGR',
     # 'ending_68.NCLR',
     # 'ending_69.NCLR',
     # 'ending_70.NCLR',
@@ -163,18 +254,18 @@ prebuilt_files = copy_gen.process(files(
     'ending_84.BMD0',
     # 'ending_85.NCLR',
     'ending_86.NSCR',
-    'ending_87.NCGR',
-    'ending_88.NCGR',
-    'ending_89.NCGR',
-    'ending_90.NCGR',
+    # 'ending_87.NCGR',
+    # 'ending_88.NCGR',
+    # 'ending_89.NCGR',
+    # 'ending_90.NCGR',
     # 'ending_91.NCLR',
     # 'ending_92.NCLR',
     # 'ending_93.NCLR',
     # 'ending_94.NCLR',
-    'ending_95.NCGR',
-    'ending_96.NCGR',
-    'ending_97.NCGR',
-    'ending_98.NCGR',
+    # 'ending_95.NCGR',
+    # 'ending_96.NCGR',
+    # 'ending_97.NCGR',
+    # 'ending_98.NCGR',
     # 'ending_99.NCLR',
     # 'ending_100.NCLR',
     # 'ending_101.NCLR',
@@ -189,6 +280,12 @@ ending_narc = custom_target('ending.narc',
     input: [
         ending_nclr_4bpp,
         copy_gen.process(ending_nclr_8bpp),
+
+        ending_ncgr_sopc,
+        ending_ncgr_sopc_8bpp,
+        ending_ncgr_clobbersize,
+        ending_ncgr_vram,
+
         ending_ncer,
         prebuilt_files,
     ],
