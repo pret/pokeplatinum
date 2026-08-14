@@ -28,10 +28,10 @@
 #include "game_overlay.h"
 #include "game_records.h"
 #include "heap.h"
+#include "poffin_berry_selection_context.h"
 #include "system_flags.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_02099604.h"
 #include "vars_flags.h"
 #include "wifi_overlays.h"
 
@@ -209,7 +209,7 @@ static BOOL sub_0207DA28(FieldTask *task)
         }
         break;
     case 14:
-        v2->unk_10 = (void *)sub_020996A0(fieldSystem, HEAP_ID_FIELD2, v2->unk_14);
+        v2->unk_10 = PoffinBerrySelectionContext_CreateVoiceChat(fieldSystem, HEAP_ID_FIELD2, v2->unk_14);
         v2->unk_04++;
         break;
     case 15:

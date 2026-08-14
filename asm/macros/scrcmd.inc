@@ -2732,9 +2732,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1D7 arg0
-    .short SCRCMD_1D7
-    .short \arg0
+    .macro OpenPoffinCooking isInGroup
+    .short SCRCMD_OPENPOFFINCOOKING
+    .short \isInGroup
     .endm
 
     .macro CheckCanCookPoffin destVar

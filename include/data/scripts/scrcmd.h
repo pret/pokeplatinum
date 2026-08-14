@@ -476,7 +476,7 @@ ScriptCommand(SCRCMD_CANFITACCESSORY,                                      ScrCm
 ScriptCommand(SCRCMD_UNUSED_1D4,                                           ScrCmd_Unused_1D4)
 ScriptCommand(SCRCMD_ADDCONTESTBACKDROP,                                   ScrCmd_AddContestBackdrop)
 ScriptCommand(SCRCMD_CHECKBACKDROP,                                        ScrCmd_CheckBackdrop)
-ScriptCommand(SCRCMD_1D7,                                                  ScrCmd_1D7)
+ScriptCommand(SCRCMD_OPENPOFFINCOOKING,                                    ScrCmd_OpenPoffinCooking)
 ScriptCommand(SCRCMD_CHECKCANCOOKPOFFIN,                                   ScrCmd_CheckCanCookPoffin)
 ScriptCommand(SCRCMD_OPENBATTLETOWERRECORDSAPP,                            ScrCmd_OpenBattleTowerRecordsApp)
 ScriptCommand(SCRCMD_SETBATTLETOWERNULL,                                   ScrCmd_SetBattleTowerNull)

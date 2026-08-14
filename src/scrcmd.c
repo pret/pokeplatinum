@@ -138,6 +138,7 @@
 #include "platform_lift.h"
 #include "player_avatar.h"
 #include "poffin.h"
+#include "poffin_berry_selection_context.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "pokeradar.h"
@@ -214,7 +215,6 @@
 #include "unk_02097B18.h"
 #include "unk_020985E4.h"
 #include "unk_02099500.h"
-#include "unk_02099604.h"
 #include "unk_0209ACF4.h"
 #include "unk_0209B344.h"
 #include "unk_0209C194.h"
@@ -380,7 +380,7 @@ static BOOL ScrCmd_ContestPhotoHasData(ScriptContext *ctx);
 static BOOL ScrCmd_SetDressUpPhotoTitle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
 static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx);
-static BOOL ScrCmd_1D7(ScriptContext *ctx);
+static BOOL ScrCmd_OpenPoffinCooking(ScriptContext *ctx);
 static BOOL ScrCmd_CheckCanCookPoffin(ScriptContext *ctx);
 static BOOL ScrCmd_OpenBattleTowerRecordsApp(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPokemonStorage(ScriptContext *ctx);
@@ -3237,12 +3237,12 @@ static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1D7(ScriptContext *ctx)
+static BOOL ScrCmd_OpenPoffinCooking(ScriptContext *ctx)
 {
-    void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    void **poffinBerrySelectionCtx = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    u8 v0 = ScriptContext_ReadHalfWord(ctx);
-    *v2 = sub_02099674(ctx->fieldSystem, v0, HEAP_ID_FIELD2);
+    u8 isInGroup = ScriptContext_ReadHalfWord(ctx);
+    *poffinBerrySelectionCtx = PoffinBerrySelectionContext_Create(ctx->fieldSystem, isInGroup, HEAP_ID_FIELD2);
 
     ScriptContext_Pause(ctx, sub_02041CC8);
     return TRUE;

@@ -260,14 +260,14 @@ void sub_0203D1E4(FieldSystem *fieldSystem, BagContext *param1)
 {
     FS_EXTERN_OVERLAY(bag);
 
-    const ApplicationManagerTemplate Unk_ov84_02241130 = {
+    const ApplicationManagerTemplate gBagApplicationTemplate = {
         BagApplication_Init,
         BagApplication_Main,
         BagApplication_Exit,
         FS_OVERLAY_ID(bag)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_ov84_02241130, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gBagApplicationTemplate, param1);
 }
 
 BagContext *FieldSystem_OpenBag(FieldSystem *fieldSystem, ItemUseContext *itemUseCtx)
