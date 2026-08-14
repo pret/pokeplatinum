@@ -67,9 +67,17 @@ foreach pal : ending_pal_8bpp
     ending_nclr_8bpp += nclr
 endforeach
 
+ending_cell_json = files(
+    'ending_1.json',
+    'ending_29.json',
+    'ending_34.json',
+)
+
+ending_ncer = ncer_gen.process(ending_cell_json)
+
 prebuilt_files = copy_gen.process(files(
     'ending_0.NCGR',
-    'ending_1.NCER',
+    # 'ending_1.NCER',
     'ending_2.NANR',
     'ending_3.NSCR',
     'ending_4.NSCR',
@@ -97,12 +105,12 @@ prebuilt_files = copy_gen.process(files(
     # 'ending_26.NCLR',
     'ending_27.NCGR',
     'ending_28.NCGR',
-    'ending_29.NCER',
+    # 'ending_29.NCER',
     'ending_30.NANR',
     # 'ending_31.NCLR',
     'ending_32.NCGR',
     'ending_33.NCGR',
-    'ending_34.NCER',
+    # 'ending_34.NCER',
     'ending_35.NANR',
     # 'ending_36.NCLR',
     'ending_37.NSCR',
@@ -181,6 +189,7 @@ ending_narc = custom_target('ending.narc',
     input: [
         ending_nclr_4bpp,
         copy_gen.process(ending_nclr_8bpp),
+        ending_ncer,
         prebuilt_files,
     ],
     command: [
