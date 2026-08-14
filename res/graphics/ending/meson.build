@@ -178,10 +178,18 @@ ending_nscr = copy_gen.process(files(
     'ending_86.NSCR',
 ))
 
+ending_anim_json = files(
+    'ending_2.json',
+    'ending_30.json',
+    'ending_35.json',
+)
+
+ending_nanr = nanr_gen.process(ending_anim_json)
+
 prebuilt_files = copy_gen.process(files(
     # 'ending_0.NCGR',
     # 'ending_1.NCER',
-    'ending_2.NANR',
+    # 'ending_2.NANR',
     # 'ending_3.NSCR',
     # 'ending_4.NSCR',
     # 'ending_5.NSCR',
@@ -209,12 +217,12 @@ prebuilt_files = copy_gen.process(files(
     # 'ending_27.NCGR',
     # 'ending_28.NCGR',
     # 'ending_29.NCER',
-    'ending_30.NANR',
+    # 'ending_30.NANR',
     # 'ending_31.NCLR',
     # 'ending_32.NCGR',
     # 'ending_33.NCGR',
     # 'ending_34.NCER',
-    'ending_35.NANR',
+    # 'ending_35.NANR',
     # 'ending_36.NCLR',
     # 'ending_37.NSCR',
     # 'ending_38.NCGR',
@@ -301,6 +309,8 @@ ending_narc = custom_target('ending.narc',
         ending_ncer,
 
         ending_nscr,
+
+        ending_nanr,
 
         prebuilt_files,
     ],
