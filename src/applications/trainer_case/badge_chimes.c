@@ -133,6 +133,6 @@ static void TrainerCase_PlayBadgeChimeSoundEffect(int sfxPlayerIndex, enum Badge
 {
     int pitchModifier = 152 * (BADGE_POLISH_LEVEL_4_SPARKLES - polishLevel);
 
-    Sound_PlaySequenceWithPlayer(SOUND_HANDLE_TYPE_SFX_1 + sfxPlayerIndex, PLAYER_SE_1 + sfxPlayerIndex, SEQ_SE_DP_BADGE_C);
+    Sound_PlaySequenceWithPlayer(SOUND_HANDLE_TYPE_SFX_1 + sfxPlayerIndex, PLAYER_SE_1 + sfxPlayerIndex, SEQ_SE_DP_BADGE_C_sseq);
     Sound_SetPitchForHandle(SOUND_HANDLE_TYPE_SFX_1 + sfxPlayerIndex, SOUND_PLAYBACK_TRACK_ALL, sBadgeChimeBasePitches[badgeID] - pitchModifier);
 }

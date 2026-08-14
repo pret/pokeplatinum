@@ -10,7 +10,7 @@ L_0:
 L_1:
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 5
-    PlayDelayedSoundEffectR SEQ_SE_DP_030, 3
+    PlayDelayedSoundEffectR SEQ_SE_DP_030_sseq, 3
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 10
@@ -20,7 +20,7 @@ L_1:
 L_2:
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 5
-    PlayDelayedSoundEffectR SEQ_SE_DP_030, 3
+    PlayDelayedSoundEffectR SEQ_SE_DP_030_sseq, 3
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 10

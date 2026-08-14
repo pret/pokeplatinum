@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 Route221House_ExpertM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_COULD_NOT_RECEIVE_ROUTE_221_HOUSE_REWARD, Route221House_TryGiveReward

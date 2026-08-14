@@ -38,7 +38,10 @@ sub_seq_narc = custom_target(sub_seq_narc_name,
     input: script_bin_gen.process(
         subscript_files,
         extra_args: ['--out-dir', sub_seq_private_dir],
-        depends: [text_banks],
+        depends: [
+            text_banks,
+            pl_sound_data_sdat,
+        ],
     ),
     command: [
         nitroarc_exe,

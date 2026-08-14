@@ -9,7 +9,7 @@ L_0:
     LoadAnimResObj 0, smelling_salts_anim_NANR_lz
     AddSpriteWithFunc 0, SPRITE_FUNC_OFFSET_AND_ANIMATE, smelling_salts_NCGR_lz, smelling_salts_NCLR, smelling_salts_cell_NCER_lz, smelling_salts_anim_NANR_lz, 0, 0, 0, 24, 0
     Delay 30
-    PlayLoopedSoundEffectR SEQ_SE_DP_030C, 4, 2
+    PlayLoopedSoundEffectR SEQ_SE_DP_030C_sseq, 4, 2
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER

@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, ominous_wind_spa
-    PlaySoundEffectR SEQ_SE_DP_W466
+    PlaySoundEffectR SEQ_SE_DP_W466_sseq
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End
 

@@ -2295,10 +2295,10 @@ VisibleItems_Unused7326_Nugget:
     End
 
 VisibleItems_TryGiveItem:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     SetVar VAR_0x8004, VAR_0x8008
     SetVar VAR_0x8005, VAR_0x8009
     CanFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT

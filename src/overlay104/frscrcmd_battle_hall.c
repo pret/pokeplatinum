@@ -136,7 +136,7 @@ BOOL FrontierScrCmd_BattleHall_StartBattle(FrontierScriptContext *ctx)
     FieldBattleDTO *dto = BattleHall_SetupBattle(battleHall, fieldData);
     battleHall->dto = dto;
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_TRAINER_sseq, 1);
     sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
 
     return TRUE;

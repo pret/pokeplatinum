@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 ResortAreaRibbonSyndicate2F_Receptionist3:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DAILY_GOT_SPA_TREATMENT_RESORT_AREA_RIBBON_SYNDICATE_2F, ResortAreaRibbonSyndicate2F_OneSessionADay
@@ -62,7 +62,7 @@ ResortAreaRibbonSyndicate2F_PerfumedByAroma:
 
 ResortAreaRibbonSyndicate2F_TreatmentEnd:
     CloseMessage
-    PlaySE SEQ_SE_DP_FW367
+    PlaySE SEQ_SE_DP_FW367_sseq
     Call ResortAreaRibbonSyndicate2F_IncreaseFriendship
     WaitButton
     CloseMessage
@@ -101,7 +101,7 @@ ResortAreaRibbonSyndicate2F_LittleMoreFriendly:
     Return
 
 ResortAreaRibbonSyndicate2F_FinishTreatment:
-    WaitSE SEQ_SE_DP_FW367
+    WaitSE SEQ_SE_DP_FW367_sseq
     SetFlag FLAG_DAILY_GOT_SPA_TREATMENT_RESORT_AREA_RIBBON_SYNDICATE_2F
     SetVar VAR_MAP_LOCAL_0x0A, 1
     ApplyMovement LOCALID_RECEPTIONIST_2, ResortAreaRibbonSyndicate2F_Movement_Receptionist2MoveAside

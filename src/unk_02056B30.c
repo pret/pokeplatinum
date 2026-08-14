@@ -260,7 +260,7 @@ static BOOL sub_02056DE4(FieldTask *taskMan)
 
     switch (v1->unk_04) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2_sseq);
 
         FieldTransition_FadeOut(taskMan);
         (v1->unk_04)++;
@@ -363,7 +363,7 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
         }
         break;
     case 2:
-        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2_sseq);
         FieldMap_FadeScreen(FADE_TYPE_BRIGHTNESS_OUT);
         (v1->unk_04)++;
         break;

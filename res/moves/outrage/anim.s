@@ -15,7 +15,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 28, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    PlayLoopedSoundEffectL SEQ_SE_DP_W082, 4, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W082_sseq, 4, 2
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 3, BATTLE_COLOR_RED, 10, 10
@@ -29,7 +29,7 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 10, BATTLE_COLOR_RED
     Delay 10
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 10, 0, BATTLE_COLOR_RED
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W053B, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W053B_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 10
     WaitForAllEmitters
     UnloadParticleSystem 0

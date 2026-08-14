@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, lava_plume_spa
-    PlaySoundEffectL SEQ_SE_DP_W436
+    PlaySoundEffectL SEQ_SE_DP_W436_sseq
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER

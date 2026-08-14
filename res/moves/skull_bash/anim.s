@@ -7,7 +7,7 @@ L_0:
 
 L_1:
     BeginLoop 2
-    PlaySoundEffectL SEQ_SE_DP_W036
+    PlaySoundEffectL SEQ_SE_DP_W036_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -24, 0, 4
     WaitForAnimTasks
     Func_RotateMon DEG_TO_IDX(360), DEG_TO_IDX(375), 10, 1, 0, 64
@@ -22,14 +22,14 @@ L_1:
 L_2:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlaySoundEffectL SEQ_SE_DP_W036
+    PlaySoundEffectL SEQ_SE_DP_W036_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -24, 0, 4
     WaitForAnimTasks
     Func_RotateMon DEG_TO_IDX(360), DEG_TO_IDX(375), 10, 1
     WaitForAnimTasks
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 38, -8, 4
     WaitForAnimTasks
-    PlaySoundEffectR SEQ_SE_DP_W025B
+    PlaySoundEffectR SEQ_SE_DP_W025B_sseq
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 6, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

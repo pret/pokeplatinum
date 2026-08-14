@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 GrandLakeValorLakefrontWestHouse_GameDirector:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_MAP_LOCAL_0x01, GrandLakeValorLakefrontWestHouse_StoriesAreUnique
@@ -29,7 +29,7 @@ GrandLakeValorLakefrontWestHouse_ShowLocalDexDiploma:
     SetFlag FLAG_RECEIVED_LOCAL_DEX_DIPLOMA
     SetFlag FLAG_MAP_LOCAL_0x01
     Message GrandLakeValorLakefrontWestHouse_Text_SeenEverySinnohPokemon
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     CloseMessage
     FadeScreenOut
@@ -46,7 +46,7 @@ GrandLakeValorLakefrontWestHouse_ShowNationalDexDiploma:
     SetFlag FLAG_RECEIVED_NATIONAL_DEX_DIPLOMA
     SetFlag FLAG_MAP_LOCAL_0x01
     Message GrandLakeValorLakefrontWestHouse_Text_ObtainedEveryPokemon
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     CloseMessage
     FadeScreenOut

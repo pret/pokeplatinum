@@ -329,7 +329,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->menu && FieldSystem_IsInValidLocation(fieldSystem) == TRUE) {
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
         StartMenu_Open(fieldSystem);
         return TRUE;
     }
@@ -418,7 +418,7 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->menu) {
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
         StartMenu_OpenColosseum(fieldSystem);
         return TRUE;
     }
@@ -475,7 +475,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
     }
 
     if (input->menu && CommSys_ConnectedCount() <= 1) {
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
         StartMenu_OpenUnionRoom(fieldSystem);
         sub_0205BEA8(4);
         CommManager_PauseUnionServer();
@@ -532,7 +532,7 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
     }
 
     if (input->menu) {
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
         StartMenu_Open(fieldSystem);
         return TRUE;
     }

@@ -9,13 +9,13 @@ L_0:
     LoadAnimResObj 0, bonemerang_anim_NANR_lz
     AddSpriteWithFunc 0, SPRITE_FUNC_BONEMERANG, bonemerang_NCGR_lz, bonemerang_NCLR, bonemerang_cell_NCER_lz, bonemerang_anim_NANR_lz, 0, 0
     Delay 5
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_HURU, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_HURU_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 5
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_030
+    PlaySoundEffectR SEQ_SE_DP_030_sseq
     Func_Shake 4, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 8
-    PlaySoundEffectL SEQ_SE_DP_W091
+    PlaySoundEffectL SEQ_SE_DP_W091_sseq
     WaitForAllEmitters
     WaitForAnimTasks
     FreeSpriteManager 0

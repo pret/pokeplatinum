@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 FlowerShop_PokemonBreederF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DAILY_RECEIVED_FLOWER_SHOP_BERRY, FlowerShop_PlantBerryInSoil
@@ -37,7 +37,7 @@ FlowerShop_BagIsFull:
     End
 
 FlowerShop_Lass:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_FLOWER_SHOP_SPRAYDUCK, FlowerShop_UseSprayduckToWaterSoil
@@ -58,7 +58,7 @@ FlowerShop_UseSprayduckToWaterSoil:
     End
 
 FlowerShop_Beauty:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ShowAccessoryShop

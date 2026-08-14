@@ -115,7 +115,7 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
         break;
     case 1:
         if (param0->unk_20) {
-            Sound_PlayEffect(SEQ_SE_DP_KOUKAN03);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN03_sseq);
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_58);
             (*param1)++;
         }

@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 GreatMarsh6_AceTrainerM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DAILY_RECEIVED_GREAT_MARSH_6_RANDOM_SHARD, GreatMarsh6_IllTryFindingMore

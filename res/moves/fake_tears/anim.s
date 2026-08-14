@@ -5,7 +5,7 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_Flail FLAIL_MODE_ATTACKER
-    PlayLoopedSoundEffectL SEQ_SE_DP_W039, 8, 4
+    PlayLoopedSoundEffectL SEQ_SE_DP_W039_sseq, 8, 4
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 HearthomeCityNorthwestHouse_Bebe:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_NORTHWEST_HOUSE_EEVEE, HearthomeCityNorthwestHouse_AlreadyReceivedEevee
@@ -31,7 +31,7 @@ HearthomeCityNorthwestHouse_AcceptEevee:
     GetPartyCount VAR_RESULT
     GoToIfEq VAR_RESULT, 6, HearthomeCityNorthwestHouse_PartyIsFull
     Message HearthomeCityNorthwestHouse_Text_PleaseBeGoodToIt
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     BufferPlayerName 0
     Message HearthomeCityNorthwestHouse_Text_PlayerAcceptedTheEevee
     WaitFanfare

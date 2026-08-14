@@ -93,7 +93,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
             GreatMarshLookout_CreateMonSprite(lookout->spriteResources, species);
             GreatMarshLookout_ShowMonSprite(lookout->spriteResources);
             lookout->timer = 0;
-            Sound_PlayEffect(SEQ_SE_DP_KASYA); // binoculars switch
+            Sound_PlayEffect(SEQ_SE_DP_KASYA_sseq); // binoculars switch
             sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, HEAP_ID_FIELD2);
             lookout->state = 5;
         } else {
@@ -108,7 +108,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
         if (lookout->timer >= 60 || JOY_NEW(PAD_BUTTON_A)) {
             GreatMarshBinoculars_SetNextLocationWithCoords(lookout->numCycles, lookout->binocularsData);
             lookout->nextLocation = GreatMarshBinoculars_GetLocation(lookout->binocularsData);
-            Sound_PlayEffect(SEQ_SE_DP_KASYA);
+            Sound_PlayEffect(SEQ_SE_DP_KASYA_sseq);
             sub_02056B30(taskMan, 3, 16, 0xffff, 0x0, 6, 1, HEAP_ID_FIELD2);
             lookout->state = 6;
         }

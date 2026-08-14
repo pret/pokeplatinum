@@ -169,7 +169,7 @@ int ov67_0225C700(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_Args(appMan);
 
     v0->saveData = v1->saveData;
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY_sseq, 0);
     v1->unk_10 = 0;
 
     ov67_0225CE30(v0, 112);

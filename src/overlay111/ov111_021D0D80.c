@@ -469,7 +469,7 @@ static BOOL ov111_021D0FC8(UnkStruct_ov111_021D0F7C *param0)
         ov111_021D24D4(param0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
         param0->unk_12 = (4 - 1);
-        Sound_PlayEffect(SEQ_SE_PL_SYU03);
+        Sound_PlayEffect(SEQ_SE_PL_SYU03_sseq);
         param0->unk_08 = 1;
         break;
     case 1:
@@ -480,7 +480,7 @@ static BOOL ov111_021D0FC8(UnkStruct_ov111_021D0F7C *param0)
             if (param0->unk_12 == 0) {
                 param0->unk_08 = 2;
             } else {
-                Sound_PlayEffect(SEQ_SE_PL_SYU03);
+                Sound_PlayEffect(SEQ_SE_PL_SYU03_sseq);
                 param0->unk_12--;
                 param0->unk_10 = -256;
             }
@@ -518,7 +518,7 @@ static BOOL ov111_021D10B8(UnkStruct_ov111_021D0F7C *param0)
         if (v3 != 0xffffffff) {
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             ov111_021D345C(param0->unk_3A4, 0);
-            Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+            Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
 
             param0->unk_15[param0->unk_0E] = v3;
             param0->unk_0E++;
@@ -571,7 +571,7 @@ static BOOL ov111_021D116C(UnkStruct_ov111_021D0F7C *param0)
             param0->unk_1C.x = 0x1000;
             param0->unk_1C.y = 0x1000;
             param0->unk_1C.z = 0x1000;
-            Sound_PlayEffect(SEQ_SE_PL_SYU03);
+            Sound_PlayEffect(SEQ_SE_PL_SYU03_sseq);
             param0->unk_08 = 2;
         }
         break;
@@ -659,7 +659,7 @@ static BOOL ov111_021D1284(UnkStruct_ov111_021D0F7C *param0)
 
         ov111_021D28E8(param0, 1, param0->unk_15[param0->unk_0E] + 4, 32, 24);
         ov111_021D28E8(param0, 6, param0->unk_15[param0->unk_0E] + 1, 32, 24);
-        Sound_PlayEffect(SEQ_SE_PL_SYU03);
+        Sound_PlayEffect(SEQ_SE_PL_SYU03_sseq);
         param0->unk_08 = 2;
         break;
     case 2:
@@ -720,7 +720,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
 
         ov111_021D345C(param0->unk_3A0, 1);
         ov111_021D350C(param0->unk_3A0, 0);
-        Sound_PlayEffect(SEQ_SE_PL_UG_020);
+        Sound_PlayEffect(SEQ_SE_PL_UG_020_sseq);
         param0->unk_08 = 1;
         break;
     case 1:
@@ -753,7 +753,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
                 ov111_021D297C(param0, v1);
 
                 if (Sound_IsEffectPlaying(1358) == 0) {
-                    Sound_PlayEffect(SEQ_SE_PL_KEZURI);
+                    Sound_PlayEffect(SEQ_SE_PL_KEZURI_sseq);
                 }
             }
 
@@ -803,7 +803,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
                 ov111_021D350C(param0->unk_3A0, 1);
                 ov111_021D2494(param0);
 
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
 
                 ov111_021D34C4(param0->unk_3A0, 0);
                 ov111_021D1F70(param0);
@@ -818,7 +818,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
                 ov111_021D350C(param0->unk_3A0, 1);
                 ov111_021D2494(param0);
 
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
 
                 ov111_021D34C4(param0->unk_3A0, 1);
                 ov111_021D1F70(param0);
@@ -940,7 +940,7 @@ static BOOL ov111_021D1980(UnkStruct_ov111_021D0F7C *param0)
         param0->unk_10 = 0;
         param0->unk_12 = 0;
 
-        Sound_PlayEffect(SEQ_SE_PL_SYU03);
+        Sound_PlayEffect(SEQ_SE_PL_SYU03_sseq);
 
         param0->unk_08 = 1;
         break;
@@ -1570,7 +1570,7 @@ static u8 ov111_021D255C(UnkStruct_ov111_021D0F7C *param0)
     ov111_021D345C(param0->unk_3C0, 1);
     ov111_021D350C(param0->unk_3C0, 1);
 
-    Sound_PlayEffect(SEQ_SE_PL_CALL);
+    Sound_PlayEffect(SEQ_SE_PL_CALL_sseq);
 
     return v0;
 }
@@ -1579,7 +1579,7 @@ static u8 ov111_021D25BC(UnkStruct_ov111_021D0F7C *param0)
 {
     u8 v0;
 
-    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
     v0 = ov111_021D2424(param0, &param0->unk_5C[12], 11, 8 * 6, 1 + 4, TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
     Window_ScheduleCopyToVRAM(&param0->unk_5C[12]);
 
@@ -1907,7 +1907,7 @@ static BOOL ov111_021D2A68(UnkStruct_ov111_021D0F7C *param0, u8 param1)
 
     if (v4 >= 380) {
         if (param0->unk_411[param1] == 0) {
-            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO_sseq);
             param0->unk_40E[param0->unk_40D] = param1;
             param0->unk_40D++;
         }
@@ -2045,7 +2045,7 @@ static BOOL ov111_021D2D60(UnkStruct_ov111_021D0F7C *param0, u8 param1)
 
     if (param1 == 0) {
         if (param0->unk_14 == 0) {
-            Sound_PlayEffect(SEQ_SE_PL_W100);
+            Sound_PlayEffect(SEQ_SE_PL_W100_sseq);
         }
 
         if (param0->unk_14 < 4) {

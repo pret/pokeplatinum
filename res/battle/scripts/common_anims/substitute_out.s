@@ -5,7 +5,7 @@
 L_0:
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
-    PlayPannedSoundEffect SEQ_SE_DP_W107, BATTLE_SOUND_PAN_LEFT
+    PlayPannedSoundEffect SEQ_SE_DP_W107_sseq, BATTLE_SOUND_PAN_LEFT
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     Func_AlphaFadePokemonSprite BATTLE_ANIM_MON_SPRITE_F(0), 16, 0, 0, 16, 8
     Delay 1

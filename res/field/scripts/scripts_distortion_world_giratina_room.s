@@ -27,7 +27,7 @@ DistortionWorldGiratinaRoom_RemoveGiratina:
     End
 
 DistortionWorldGiratinaRoom_Portal:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message DistortionWorldGiratinaRoom_Text_LeapIntoPortal
     ShowYesNoMenu VAR_RESULT
@@ -42,7 +42,7 @@ DistortionWorldGiratinaRoom_GoToSendoffSpring:
     CloseMessage
     EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
     SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 1
-    PlaySE SEQ_SE_PL_SYUWA
+    PlaySE SEQ_SE_PL_SYUWA_sseq
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_SENDOFF_SPRING, 32, 17, DIR_SOUTH
@@ -59,7 +59,7 @@ DistortionWorldGiratinaRoom_CoordEvent_WarpToB7F:
     End
 
 DistortionWorldGiratinaRoom_Giratina:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     PlayCry SPECIES_GIRATINA
     Message DistortionWorldGiratinaRoom_Text_GiratinaCryGiygogagohgwooh

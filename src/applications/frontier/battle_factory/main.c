@@ -647,14 +647,14 @@ static BOOL State_FadeInApp(BattleFactoryApp *app)
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA2_sseq);
         app->animationTimer = 0;
         app->subState++;
         break;
     case 4:
         if (ConveyPokeballsOntoScreen(app) == TRUE) {
-            Sound_StopEffect(SEQ_SE_DP_ELEBETA2, 0);
-            Sound_PlayEffect(SEQ_SE_DP_KASYA);
+            Sound_StopEffect(SEQ_SE_DP_ELEBETA2_sseq, 0);
+            Sound_PlayEffect(SEQ_SE_DP_KASYA_sseq);
 
             for (int i = 0; i < app->numPokeballs; i++) {
                 BattleFactoryAppPokeballSprite_SetAnim(app->ballSprites[i], ANIM_ID_BALL_ONE_SHAKE);
@@ -871,12 +871,12 @@ static BOOL State_SelectInitialParty(BattleFactoryApp *app)
         BattleFactoryAppCursor_ProcessInput(app->monCursor);
 
         if (JOY_NEW(PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             UpdateInfoForMonUnderCursor(app, app->numMonsSelected, BattleFactoryAppCursor_GetCurrentSlot(app->monCursor), 0, app->personalParty);
         }
 
         if (JOY_NEW(PAD_BUTTON_A)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             UpdateMonCursorState(app->monCursor, TRUE);
             OpenMonOptionsMenu(app);
 
@@ -884,7 +884,7 @@ static BOOL State_SelectInitialParty(BattleFactoryApp *app)
             app->subState++;
         } else if (JOY_NEW(PAD_BUTTON_B)) {
             if (app->numMonsSelected > 0) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 RemoveLastSelectedMon(app);
 
                 if (BattleFactory_IsMultiplayerChallenge(app->challengeType) == TRUE) {
@@ -1383,12 +1383,12 @@ static BOOL State_SelectMonToExchange(BattleFactoryApp *app)
         BattleFactoryAppCursor_ProcessInput(app->monCursor);
 
         if (JOY_NEW(PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             UpdateInfoForMonUnderCursor(app, app->numMonsSelected, BattleFactoryAppCursor_GetCurrentSlot(app->monCursor), TRUE, app->personalParty);
         }
 
         if (JOY_NEW(PAD_BUTTON_A)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             if (BattleFactoryAppCursor_GetCurrentSlot(app->monCursor) == app->exchangeSelectCursorPositions - 1) {
                 SetMenuWasCancelled(app, TRUE);
@@ -1401,7 +1401,7 @@ static BOOL State_SelectMonToExchange(BattleFactoryApp *app)
                 app->subState++;
             }
         } else if (JOY_NEW(PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             SetMenuWasCancelled(app, TRUE);
             return TRUE;
         }
@@ -1589,17 +1589,17 @@ static BOOL State_SelectMonToReceive(BattleFactoryApp *app)
         BattleFactoryAppCursor_ProcessInput(app->monCursor);
 
         if (JOY_NEW(PAD_KEY_UP | PAD_KEY_DOWN)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             UpdateInfoForMonUnderCursor(app, 0, BattleFactoryAppCursor_GetCurrentSlot(app->monCursor), FALSE, app->receivableParty);
         }
 
         if (JOY_NEW(PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             UpdateInfoForMonUnderCursor(app, 0, BattleFactoryAppCursor_GetCurrentSlot(app->monCursor), FALSE, app->receivableParty);
         }
 
         if (JOY_NEW(PAD_BUTTON_A)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             if (BattleFactoryAppCursor_GetCurrentSlot(app->monCursor) == app->numReceiveSelectCursorPositions - 1) {
                 SetMenuWasCancelled(app, TRUE);
@@ -1616,7 +1616,7 @@ static BOOL State_SelectMonToReceive(BattleFactoryApp *app)
                 app->subState++;
             }
         } else if (JOY_NEW(PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             SetMenuWasCancelled(app, TRUE);
             return TRUE;
         }
@@ -1832,15 +1832,15 @@ static BOOL State_ChangeExchangeToReceiveSelect(BattleFactoryApp *app)
         LoadAppStartupBackground(app, BG_LAYER_MAIN_3);
 
         Bg_SetOffset(app->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, app->conveyorXOffset);
-        Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA2_sseq);
 
         app->animationTimer = 0;
         app->subState++;
         break;
     case 3:
         if (ConveyPokeballOffScreen(app) == TRUE) {
-            Sound_StopEffect(SEQ_SE_DP_ELEBETA2, 0);
-            Sound_PlayEffect(SEQ_SE_DP_KASYA);
+            Sound_StopEffect(SEQ_SE_DP_ELEBETA2_sseq, 0);
+            Sound_PlayEffect(SEQ_SE_DP_KASYA_sseq);
 
             app->wheelPaletteCounter = 8;
 
@@ -1863,7 +1863,7 @@ static BOOL State_ChangeExchangeToReceiveSelect(BattleFactoryApp *app)
                 BattleFactoryAppPokeballSprite_SetPositionForConveyorStart(app->ballSprites[i]);
             }
 
-            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2_sseq);
 
             app->animationTimer = 0;
             app->subState++;
@@ -1871,8 +1871,8 @@ static BOOL State_ChangeExchangeToReceiveSelect(BattleFactoryApp *app)
         break;
     case 4:
         if (ConveyPokeballsOntoScreen(app) == 1) {
-            Sound_StopEffect(SEQ_SE_DP_ELEBETA2, 0);
-            Sound_PlayEffect(SEQ_SE_DP_KASYA);
+            Sound_StopEffect(SEQ_SE_DP_ELEBETA2_sseq, 0);
+            Sound_PlayEffect(SEQ_SE_DP_KASYA_sseq);
 
             for (i = 0; i < app->numPokeballs; i++) {
                 BattleFactoryAppPokeballSprite_SetAnim(app->ballSprites[i], ANIM_ID_BALL_ONE_SHAKE);
@@ -2305,19 +2305,19 @@ static void SetPanelSpritesAnim(BattleFactoryApp *app, u32 animID)
 
     switch (animID) {
     case ANIM_ID_MON_PANEL_OPEN:
-        Sound_PlayEffect(SEQ_SE_DP_OPEN2);
+        Sound_PlayEffect(SEQ_SE_DP_OPEN2_sseq);
         greenPanelAnimID = ANIM_ID_PARTNER_PANEL_OPEN;
         break;
     case ANIM_ID_MON_PANEL_CLOSE:
-        Sound_PlayEffect(SEQ_SE_DP_CLOSE2);
+        Sound_PlayEffect(SEQ_SE_DP_CLOSE2_sseq);
         greenPanelAnimID = ANIM_ID_PARTNER_PANEL_CLOSE;
         break;
     case ANIM_ID_CONFIRM_PANEL_OPEN:
-        Sound_PlayEffect(SEQ_SE_DP_OPEN2);
+        Sound_PlayEffect(SEQ_SE_DP_OPEN2_sseq);
         greenPanelAnimID = ANIM_ID_PARTNER_PANEL_OPEN;
         break;
     case ANIM_ID_CONFIRM_PANEL_CLOSE:
-        Sound_PlayEffect(SEQ_SE_DP_CLOSE2);
+        Sound_PlayEffect(SEQ_SE_DP_CLOSE2_sseq);
         greenPanelAnimID = ANIM_ID_PARTNER_PANEL_CLOSE;
         break;
     }

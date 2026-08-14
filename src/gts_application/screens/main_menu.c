@@ -85,7 +85,7 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
     GTSApplication_InitNetworkIcon(appState);
     GTSMainMenu_RenderMenuButtons(appState);
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_23, SEQ_BLD_BLD_GTC, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_23, SEQ_BLD_BLD_GTC_sseq, 1);
 
     if (appState->hasPlayerDescended == FALSE) {
         GTSMainMenu_HideLayersAndCursor(appState);
@@ -406,19 +406,19 @@ static int GTSMainMenu_HandleInput(GTSApplicationState *appState)
             if (appState->isPokemonListed == FALSE) {
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_CHOOSE_OFFER_MON);
                 appState->currentScreenInstruction = GTS_MAINMENU_FADE_AND_EXIT;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             } else {
                 if (appState->networkTimer == 0) {
                     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_CHECK_SERVER);
                     appState->returnAfterNetworkScreen = GTS_SCREEN_LISTING;
                     appState->currentScreenInstruction = GTS_MAINMENU_FADE_AND_EXIT;
                     appState->networkTimer = (60 * 30);
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 } else {
                     Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
                     GTSMainMenu_SetBottomWindowText(appState, GTS_Text_PleaseWaitAWhile, TEXT_SPEED_FAST, 0, 0xf0f);
                     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_MAINMENU_WAIT_FOR_MESSAGE_WITH_DELAY, GTS_MAINMENU_SETUP_BOTTOM_WINDOW_QUESTION);
-                    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                     appState->frameDelay = 0;
                 }
             }
@@ -426,25 +426,25 @@ static int GTSMainMenu_HandleInput(GTSApplicationState *appState)
         case GTS_MAIN_MENU_OPTION_SEEK:
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTS_MAINMENU_FADE_AND_EXIT;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         case GTS_MAIN_MENU_OPTION_EXIT:
             GTSMainMenu_ShowConfirmationWindow(appState, GTS_Text_IsItOKToDisconnect, GTSApplication_GetTextFrameDelay(appState), 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_MAINMENU_WAIT_FOR_TEXT_PRINTER, GTS_MAINMENU_SHOW_CONFIRMATION_MENU);
             Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         }
     } else if (gSystem.pressedKeys & PAD_KEY_UP) {
         if (appState->mainMenuSelectedOption != 0) {
             appState->mainMenuSelectedOption--;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             GTSApplication_SetSpritePosition(appState->cursorSprite, sMainMenuCursorPositions[appState->mainMenuSelectedOption][0], sMainMenuCursorPositions[appState->mainMenuSelectedOption][1]);
         }
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (appState->mainMenuSelectedOption < 2) {
             appState->mainMenuSelectedOption++;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             GTSApplication_SetSpritePosition(appState->cursorSprite, sMainMenuCursorPositions[appState->mainMenuSelectedOption][0], sMainMenuCursorPositions[appState->mainMenuSelectedOption][1]);
         }
     }

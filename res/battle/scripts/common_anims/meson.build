@@ -74,6 +74,7 @@ anim_subscripts_narc = custom_target(anim_subscripts_narc_name,
             anim_nanr_narc_files,
             anim_ncgr_narc_files,
             anim_nclr_narc_files,
+            pl_sound_data_sdat,
         ],
     ),
     command: [

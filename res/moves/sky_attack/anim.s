@@ -12,7 +12,7 @@ L_1:
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER_PARTNER, 0, 1, BATTLE_COLOR_BLACK, 10, 30
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    PlayLoopedSoundEffectL SEQ_SE_DP_W360, 12, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W360_sseq, 12, 2
     Delay 25
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
@@ -32,7 +32,7 @@ L_4:
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_1, 0, 1, BATTLE_COLOR_BLACK, 10, 30
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_2, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    PlayLoopedSoundEffectL SEQ_SE_DP_W360, 12, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W360_sseq, 12, 2
     Delay 25
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
@@ -48,7 +48,7 @@ L_5:
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_1, 0, 1, BATTLE_COLOR_BLACK, 10, 30
     Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_2, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    PlayLoopedSoundEffectL SEQ_SE_DP_W360, 12, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W360_sseq, 12, 2
     Delay 25
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
     Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
@@ -80,7 +80,7 @@ L_2:
     WaitForAnimTasks
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, FALSE
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_4, FALSE
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W360C, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W360C_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     JumpIfContest L_6
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_7, L_8
     End
@@ -91,7 +91,7 @@ L_7:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
-    PlaySoundEffectR SEQ_SE_DP_186
+    PlaySoundEffectR SEQ_SE_DP_186_sseq
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 6, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAllEmitters
@@ -120,7 +120,7 @@ L_6:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
-    PlaySoundEffectR SEQ_SE_DP_186
+    PlaySoundEffectR SEQ_SE_DP_186_sseq
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 6, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAllEmitters
@@ -149,7 +149,7 @@ L_8:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 5
-    PlaySoundEffectR SEQ_SE_DP_186
+    PlaySoundEffectR SEQ_SE_DP_186_sseq
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 6, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAllEmitters

@@ -12,6 +12,7 @@ subdir('fixrom')
 subdir('jsoncnv')
 subdir('nitrobtx')
 subdir('nitrogfx')
+subdir('nitrosfx')
 subdir('nitrorom')
 subdir('ordergen')
 subdir('postconf')
@@ -26,4 +27,3 @@ arm_none_eabi_objcopy_exe = find_program('arm-none-eabi-objcopy', native: true)
 
 # Subproject tools
 makelcf_exe = find_program('makelcf', native: true)
-SDATTool_py = find_program('SDATTool_py', native: true)

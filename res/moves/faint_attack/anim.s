@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, faint_attack_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlaySoundEffectL SEQ_SE_DP_061
+    PlaySoundEffectL SEQ_SE_DP_061_sseq
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
@@ -17,7 +17,7 @@ L_0:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_030
+    PlaySoundEffectR SEQ_SE_DP_030_sseq
     Func_Shake 4, 0, 1, 1, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15
     LoadPokemonSpriteDummyResources 4

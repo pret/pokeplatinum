@@ -734,8 +734,8 @@ _0812:
     End
 
 _084E:
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0927
@@ -930,7 +930,7 @@ _0BD9:
     BufferNumber 1, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     Message BattleFactoryScene_Text_ReceiveBP
-    PlayFanfare SEQ_PL_POINTGET3
+    PlayFanfare SEQ_PL_POINTGET3_sseq
     WaitFanfare
     GoTo _0C0F
     End
@@ -941,7 +941,7 @@ _0C0F:
 
 _0C17:
     Message BattleFactoryScene_Text_WellDone
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     GoTo _0C29
     End
@@ -1254,7 +1254,7 @@ _1110:
     Return
 
 _1125:
-    PlaySoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
     BufferPlayerName 0
     Message BattleFactoryScene_Text_BattleSaved
     Return
@@ -1420,13 +1420,13 @@ _137B:
     ShowSavingIcon
     FrontierScrCmd_73 VAR_0x8008
     HideSavingIcon
-    PlaySoundEffect SEQ_SE_DP_SAVE
-    WaitSoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
+    WaitSoundEffect SEQ_SE_DP_SAVE_sseq
     Return
 
 _1391:
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     CallBattleFactoryFunction BF_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _13EA
@@ -1531,7 +1531,7 @@ _154A:
     CreateParticleSystemEmitter 0, FACTORY_EMITTER_GREEN_SMOKE
     CreateParticleSystemEmitter 0, FACTORY_EMITTER_SMOKE_CLOUDS
     CreateParticleSystemEmitter 0, FACTORY_EMITTER_RISING_BLOCKS
-    PlaySoundEffect SEQ_SE_PL_FAC01
+    PlaySoundEffect SEQ_SE_PL_FAC01_sseq
     WaitTime 36, VAR_0x8008
     FrontierScrCmd_4C 0, 3, 2, 10
     WaitTime 11, VAR_0x8008

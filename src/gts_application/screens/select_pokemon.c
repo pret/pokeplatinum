@@ -522,15 +522,15 @@ static int GTSSelectMon_HandleInput(GTSApplicationState *appState)
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (appState->partySlotIndex == 30) {
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_NONE);
                 appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             } else {
                 if (appState->partySlotIndex != 31) {
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
                     switch (GTSSelectMon_GetSlotStatus(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
                     case GTS_SLOTSTATUS_VALID_MON:
@@ -555,12 +555,12 @@ static int GTSSelectMon_HandleInput(GTSApplicationState *appState)
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_NONE);
             appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (appState->partySlotIndex == 30) {
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_NONE);
                 appState->currentScreenInstruction = GTS_SELECTMON_FADE_AND_EXIT;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             } else {
                 if (appState->partySlotIndex != 31) {
                     switch (GTSSelectMon_GetSlotStatus(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->partySlotIndex)) {
@@ -572,18 +572,18 @@ static int GTSSelectMon_HandleInput(GTSApplicationState *appState)
                                 StringTemplate_SetNickname(appState->stringTemplate, 0, boxMon);
                                 GTSSelectMon_ShowMessage(appState, pl_msg_00000671_00018, TEXT_SPEED_FAST, 0, 0xf0f, 0);
                                 GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT, GTS_SELECTMON_CREATE_TRADE_MENU);
-                                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                             } else {
                                 GTSSelectMon_ShowMessage(appState, GTS_Text_Error_PokemonCannotBeOffered, TEXT_SPEED_FAST, 0, 0xf0f, 1);
                                 GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SELECTMON_WAIT_FOR_TEXT_AND_ERASE_BOX, GTS_SELECTMON_HANDLE_INPUT);
                             }
                         } else {
-                            Sound_PlayEffect(SEQ_SE_CONFIRM);
+                            Sound_PlayEffect(SE_CONFIRM_sseq_3);
                         }
                         break;
                     case GTS_SLOTSTATUS_EGG:
                     case GTS_SLOTSTATUS_NO_SPECIES:
-                        Sound_PlayEffect(SEQ_SE_CONFIRM);
+                        Sound_PlayEffect(SE_CONFIRM_sseq_3);
                         break;
                     }
                 }
@@ -615,7 +615,7 @@ static void GTSSelectMon_HandleCursorInput(GTSApplicationState *appState)
             if ((nextSlotIndex == 99) || (nextSlotIndex == 101)) {
                 appState->selectedBoxId = GTSSelectMon_CycleBoxId(appState->selectedBoxId, MAX_PC_BOXES + 1, nextSlotIndex - 100);
                 GTSSelectMon_LoadBoxDisplay(appState, appState->selectedBoxId);
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             } else {
                 cursorMoved = 1;
                 appState->partySlotIndex = nextSlotIndex;
@@ -624,7 +624,7 @@ static void GTSSelectMon_HandleCursorInput(GTSApplicationState *appState)
     }
 
     if (cursorMoved) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         GTSApplication_SetSpritePosition(appState->cursorSprite, sPokemonSlotPositions[appState->partySlotIndex][0], sPokemonSlotPositions[appState->partySlotIndex][1]);
     }
 

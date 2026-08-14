@@ -199,7 +199,7 @@ static BOOL MailViewer_AreSentencesEmpty(MailViewerApp *mailViewerApp)
 static BOOL MailViewer_HandleInput_Read(MailViewerApp *unused)
 {
     if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+        Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
         return TRUE;
     }
 
@@ -214,15 +214,15 @@ static BOOL MailViewer_HandleInput_Write(MailViewerApp *mailViewerApp)
         if (mailViewerApp->verticalSelectionIndex == SELECTION_INDEX_CONFIRM_CANCEL) {
             if (mailViewerApp->horizontalSelectionIndex == 0) {
                 if (MailViewer_AreSentencesEmpty(mailViewerApp)) {
-                    Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                    Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                     mailViewerApp->mode = MAIL_VIEWER_MODE_CONFIRM_EMPTY;
                     return FALSE;
                 } else {
                     mailViewerApp->args->result = MAIL_VIEWER_RESULT_CONFIRM;
-                    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+                    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
                 }
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 mailViewerApp->mode = MAIL_VIEWER_MODE_CANCEL;
                 return FALSE;
             }
@@ -231,12 +231,12 @@ static BOOL MailViewer_HandleInput_Write(MailViewerApp *mailViewerApp)
         } else {
             mailViewerApp->args->result = mailViewerApp->args->sentenceIndex = mailViewerApp->verticalSelectionIndex;
             mailViewerApp->args->horizontalSelectionIndex = mailViewerApp->horizontalSelectionIndex;
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         }
 
         return TRUE;
     } else if (JOY_NEW(PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         mailViewerApp->mode = MAIL_VIEWER_MODE_CANCEL;
         return FALSE;
     }
@@ -264,7 +264,7 @@ static BOOL MailViewer_HandleInput_Write(MailViewerApp *mailViewerApp)
         return FALSE;
     }
 
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
     if (mailViewerApp->verticalSelectionIndex == SELECTION_INDEX_CONFIRM_CANCEL) {
         mailViewerApp->blendIndex = mailViewerApp->verticalSelectionIndex + mailViewerApp->horizontalSelectionIndex;

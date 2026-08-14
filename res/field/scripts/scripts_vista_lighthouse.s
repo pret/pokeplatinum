@@ -18,7 +18,7 @@ VistaLighthouse_Youngster:
     End
 
 VistaLighthouse_Binoculars:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     BufferPlayerName 0
     Message VistaLighthouse_Text_PlayerLookedThroughBinoculars
@@ -28,7 +28,7 @@ VistaLighthouse_Binoculars:
     End
 
 VistaLighthouse_Volkner:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message VistaLighthouse_Text_YoureTheLatestChallenger

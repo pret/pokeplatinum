@@ -391,27 +391,27 @@ static int GTSSearch_HandleInput(GTSApplicationState *appState)
         switch (GTSSearch_GetRequirementsCursorIndex(appState)) {
         case GTS_SEARCH_CURSOR_SPECIES:
             appState->currentScreenInstruction = GTS_SEARCH_SHOW_SPECIES_SEARCH_PROMPT;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         case GTS_SEARCH_CURSOR_GENDER:
             if (appState->searchRequirements.species != 0) {
                 appState->speciesMenuState->selectedSpeciesGenderRatio = SpeciesData_GetSpeciesValue(appState->searchRequirements.species, SPECIES_DATA_GENDER_RATIO);
 
                 if (GTSDeposit_TryAutoSetGender(&appState->searchRequirements, appState->speciesMenuState->selectedSpeciesGenderRatio)) {
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     return 3;
                 }
             }
             appState->currentScreenInstruction = GTS_SEARCH_SHOW_GENDER_SEARCH_PROMPT;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         case GTS_SEARCH_CURSOR_LEVEL:
             appState->currentScreenInstruction = GTS_SEARCH_SHOW_LEVEL_SEARCH_PROMPT;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         case GTS_SEARCH_CURSOR_LOCATION:
             appState->currentScreenInstruction = GTS_SEARCH_SHOW_COUNTRY_SEARCH_PROMPT;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         case GTS_SEARCH_CURSOR_SEARCH:
             appState->currentScreenInstruction = GTS_SEARCH_SUBMIT_SEARCH;
@@ -419,13 +419,13 @@ static int GTSSearch_HandleInput(GTSApplicationState *appState)
         case GTS_SEARCH_CURSOR_BACK:
             GTSSearch_ShowMessage(appState, 15, TEXT_SPEED_FAST, 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_CREATE_EXIT_CONFIRM_MENU);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             break;
         }
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         GTSSearch_ShowMessage(appState, 15, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_CREATE_EXIT_CONFIRM_MENU);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else {
         int result = GTSAvatar_GetTouchedSearchResult(appState->searchResultCount);
 
@@ -435,7 +435,7 @@ static int GTSSearch_HandleInput(GTSApplicationState *appState)
                 appState->currentScreenInstruction = GTS_SEARCH_FADE_AND_EXIT;
                 GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_NONE);
                 appState->selectedSearchResult = result;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         }
     }
@@ -448,14 +448,14 @@ static int GTSSearch_SubmitSearch(GTSApplicationState *appState)
     if (appState->searchRequirements.species == SPECIES_NONE) {
         GTSSearch_ShowMessage(appState, 12, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_HANDLE_INPUT);
-        Sound_PlayEffect(SEQ_SE_DP_BOX03);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
     } else {
         if (GTSSearch_RequirementsMatch(&appState->searchRequirements, &appState->submittedRequirements, appState->selectedCountryIndex, appState->submittedCountryIndex)) {
             GTSSearch_ShowMessage(appState, 33, TEXT_SPEED_FAST, 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_HANDLE_INPUT);
-            Sound_PlayEffect(SEQ_SE_DP_BOX03);
+            Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_Z_SEARCH);
+            Sound_PlayEffect(SEQ_SE_DP_Z_SEARCH_sseq);
 
             GTSSearch_ShowMessage(appState, 13, TEXT_SPEED_FAST, 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_SEND_SEARCH_REQUEST);
@@ -579,7 +579,7 @@ static int GTSSearch_ShowResultsMessage(GTSApplicationState *appState)
     if (appState->searchResultCount == 0) {
         GTSSearch_ShowMessage(appState, 14, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_HANDLE_INPUT);
-        Sound_PlayEffect(SEQ_SE_DP_BOX03);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
     } else {
         GTSSearch_ShowMessage(appState, 30, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_WAIT_FOR_RESULTS_REVEAL);
@@ -608,7 +608,7 @@ static int GTSSearch_ShowInvalidSearchMessage(GTSApplicationState *appState)
 
     GTSSearch_ShowMessage(appState, 38, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT, GTS_SEARCH_HANDLE_INPUT);
-    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
 
     return 3;
 }
@@ -618,7 +618,7 @@ static int GTSSearch_ShowServerMaintenanceMessage(GTSApplicationState *appState)
     GTSSearch_ShowMessage(appState, 147, TEXT_SPEED_NORMAL, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT_WITH_DELAY, GTS_SEARCH_DISCONNECT_AND_EXIT);
     appState->frameDelay = 0;
-    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
 
     return 3;
 }
@@ -628,7 +628,7 @@ static int GTSSearch_DisconnectAndExit(GTSApplicationState *appState)
     GTSSearch_ShowMessage(appState, 152, TEXT_SPEED_NORMAL, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCH_WAIT_FOR_TEXT_WITH_DELAY, GTS_SEARCH_FADE_AND_EXIT);
     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_NONE);
-    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
 
     return 3;
 }
@@ -652,11 +652,11 @@ static void GTSSearch_HandleRequirementsCursorInput(GTSApplicationState *appStat
         if (appState->speciesMenuState->requirementsActivePanel == 0) {
             if (appState->speciesMenuState->leftPanelCursorPos > 0) {
                 appState->speciesMenuState->leftPanelCursorPos--;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         } else {
             if (appState->speciesMenuState->rightPanelCursorPos != 0) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
 
             appState->speciesMenuState->rightPanelCursorPos = 0;
@@ -665,24 +665,24 @@ static void GTSSearch_HandleRequirementsCursorInput(GTSApplicationState *appStat
         if (appState->speciesMenuState->requirementsActivePanel == 0) {
             if (appState->speciesMenuState->leftPanelCursorPos < 3) {
                 appState->speciesMenuState->leftPanelCursorPos++;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         } else {
             if (appState->speciesMenuState->rightPanelCursorPos != 1) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
 
             appState->speciesMenuState->rightPanelCursorPos = 1;
         }
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (appState->speciesMenuState->requirementsActivePanel != 1) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
 
         appState->speciesMenuState->requirementsActivePanel = 1;
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (appState->speciesMenuState->requirementsActivePanel != 0) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
 
         appState->speciesMenuState->requirementsActivePanel = 0;
@@ -742,7 +742,7 @@ static int GTSSearch_HandleCharpadInput(GTSApplicationState *appState)
     case GTS_CHARPAD_TAB_YZ:
         ListMenu_Free(appState->activeListMenu, &appState->speciesMenuState->charpadScrollPos, &appState->speciesMenuState->charpadCursorPos);
         StringList_Free(appState->menuStringList);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->currentScreenInstruction = GTS_SEARCH_CREATE_SPECIES_MENU;
         break;
     case MENU_CANCEL:
@@ -752,7 +752,7 @@ static int GTSSearch_HandleCharpadInput(GTSApplicationState *appState)
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->menuButtonWindows[0]);
         Window_Remove(&appState->menuButtonWindows[1]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
         break;
     }
@@ -780,7 +780,7 @@ static int GTSSearch_HandleSpeciesMenuInput(GTSApplicationState *appState)
         ListMenu_Free(appState->activeListMenu, &appState->speciesMenuState->speciesListScrollPos, &appState->speciesMenuState->speciesListCursorPos);
         StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[1], 0);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->currentScreenInstruction = GTS_SEARCH_CREATE_CHARPAD;
         GTS_SaveTabScrollState(&appState->charpadScrollState, appState->speciesMenuState->charpadScrollPos + appState->speciesMenuState->charpadCursorPos, appState->speciesMenuState->speciesListScrollPos, appState->speciesMenuState->speciesListCursorPos);
         break;
@@ -795,7 +795,7 @@ static int GTSSearch_HandleSpeciesMenuInput(GTSApplicationState *appState)
         appState->searchRequirements.species = result;
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
 
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Window_FillTilemap(&appState->infoWindows[1], 0x0);
 
         GTSDeposit_DrawSpeciesText(&appState->infoWindows[1], appState->speciesMessageLoader, result, 0, 0, TEXT_COLOR(1, 2, 0));
@@ -843,7 +843,7 @@ static int GTSSearch_HandleGenderMenuInput(GTSApplicationState *appState)
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->menuButtonWindows[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
         break;
     case 0:
@@ -853,7 +853,7 @@ static int GTSSearch_HandleGenderMenuInput(GTSApplicationState *appState)
         StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_Remove(&appState->menuButtonWindows[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         appState->searchRequirements.gender = result + 1;
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
@@ -900,7 +900,7 @@ static int GTSSearch_HandleLevelMenuInput(GTSApplicationState *appState)
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->menuButtonWindows[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
         break;
     default:
@@ -908,7 +908,7 @@ static int GTSSearch_HandleLevelMenuInput(GTSApplicationState *appState)
         StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_Remove(&appState->menuButtonWindows[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         GTS_SetLevelRequirement(&appState->searchRequirements, result, 1);
 
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
@@ -953,14 +953,14 @@ static int GTSSearch_HandleCountryMenuInput(GTSApplicationState *appState)
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->menuButtonWindows[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;
     } else {
         ListMenu_Free(appState->activeListMenu, NULL, NULL);
         StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_Remove(&appState->menuButtonWindows[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         GTS_SetSelectedCountry(appState, result);
         appState->currentScreenInstruction = GTS_SEARCH_SHOW_PROMPT;

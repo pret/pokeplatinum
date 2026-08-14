@@ -404,7 +404,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 
             Window_DrawMessageBox(&(param0->unk_5C), 109, 2);
             Window_CopyToVRAM(&(param0->unk_5C));
-            Sound_PlayFanfare(SEQ_FANFA5);
+            Sound_PlayFanfare(SEQ_FANFA5_sseq);
 
             param0->unk_08 = 0;
             param0->unk_0C = 1;
@@ -690,7 +690,7 @@ static void ov95_0224BD5C(SysTask *param0, void *param1)
         ov95_02247968(v0->unk_14, &(v0->unk_24));
 
         if (v0->unk_24.y < UnkEnum_ov95_0224BD5C_02) {
-            Sound_PlayEffect(SEQ_SE_DP_KON);
+            Sound_PlayEffect(SEQ_SE_DP_KON_sseq);
             v0->unk_30 *= -1;
 
             ov95_0224BBB0(v0->unk_08, 0, 16, 8);

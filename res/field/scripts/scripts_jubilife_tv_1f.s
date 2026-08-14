@@ -27,7 +27,7 @@ JubilifeTV1F_Dummy3:
     End
 
 JubilifeTV1F_AceTrainerSnowF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfNe VAR_LOTTERY_PRIZE_ITEM, 0, JubilifeTV1F_GiveStoredLotteryPrize

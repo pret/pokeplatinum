@@ -212,10 +212,10 @@ int VisualCompetitonScoring_Init(ApplicationManager *appMan, int *param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     Sound_SetScene(SOUND_SCENE_NONE);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, SEQ_CONTEST_DRESSING_ROOM, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, CONTEST_DRESSING_ROOM_sseq, 1);
     SetLockTextWithAutoScroll(v0->unk_00->isLinkContest);
     SetVBlankCallback(ov17_0223D0C8, v0);
-    Sound_PlayEffect(SEQ_SE_DP_DOOR_OPEN);
+    Sound_PlayEffect(SEQ_SE_DP_DOOR_OPEN_sseq);
 
     return 1;
 }
@@ -234,7 +234,7 @@ int VisualCompetitionScoring_Main(ApplicationManager *appMan, int *param1)
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x2, 0xffff, 6, 16, 0, 0x7fff);
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x4, 0x3fff, 6, 16, 0, 0x7fff);
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x8, 0xffff, 6, 16, 0, 0x7fff);
-            Sound_PlayEffect(SEQ_SE_DP_CON_007);
+            Sound_PlayEffect(SEQ_SE_DP_CON_007_sseq);
             *param1 = 1;
         }
         break;

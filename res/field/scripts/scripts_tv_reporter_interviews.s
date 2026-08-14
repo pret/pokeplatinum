@@ -103,7 +103,7 @@ TVReporterInterviews_BattleFrontier:
     GoTo TVReporterInterviews_AskDoInterview
 
 TVReporterInterviews_AskDoInterview:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckTVInterviewEligible VAR_0x8000, VAR_RESULT
