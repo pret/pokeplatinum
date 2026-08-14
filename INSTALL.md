@@ -146,7 +146,7 @@ the following commands to install necessary build dependencies:
     ```bash
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
-    pacman -S bison flex gcc git make ninja python mingw-w64-x86_64-arm-none-eabi-gcc p7zip mingw-w64-x86_64-libpng
+    pacman -S bison flex gcc git make ninja python mingw-w64-ucrt-x86_64-arm-none-eabi-gcc p7zip mingw-w64-x86_64-libpng
     ```
 
     Press 'Y' when prompted to confirm the installation.
