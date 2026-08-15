@@ -15,6 +15,7 @@
 #include "brightness_controller.h"
 #include "camera.h"
 #include "easy3d_object.h"
+#include "ending.naix"
 #include "enums.h"
 #include "g3d_pipeline.h"
 #include "gx_layers.h"
@@ -644,8 +645,8 @@ static void EndCredits_InitBackgrounds2(BgConfig *bgConfig)
 
 static void EndCredits_InitPalettes(EndCreditsApp *endCreditsApp)
 {
-    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, 85, HEAP_ID_END_CREDITS, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
-    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, 85, HEAP_ID_END_CREDITS, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
+    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, text_NCLR, HEAP_ID_END_CREDITS, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
+    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, text_NCLR, HEAP_ID_END_CREDITS, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
 }
 
 static void EndCredits_Draw3DModels(EndCreditsApp *endCreditsApp)

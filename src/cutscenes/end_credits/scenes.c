@@ -15,6 +15,7 @@
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "easy3d_object.h"
+#include "ending.naix"
 #include "font.h"
 #include "genders.h"
 #include "graphics.h"
@@ -316,15 +317,15 @@ static void EndCreditsScenes_LoadPlayerSprite(EndCreditsApp *endCreditsApp)
     u8 index;
 
     if (endCreditsApp->clearGamePlayerInfo->gender == GENDER_MALE) {
-        index = SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_MAIN_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 31, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
-        SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 28, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
-        SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 29, FALSE, 10001);
-        SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 30, FALSE, 10001);
+        index = SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_MAIN_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, lucas_bike_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
+        SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, lucas_bike_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
+        SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, lucas_bike_NCER, FALSE, 10001);
+        SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, lucas_bike_NANR, FALSE, 10001);
     } else {
-        index = SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_MAIN_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 36, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
-        SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 33, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
-        SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 34, FALSE, 10001);
-        SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 35, FALSE, 10001);
+        index = SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_MAIN_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, dawn_bike_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
+        SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, dawn_bike_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
+        SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, dawn_bike_NCER, FALSE, 10001);
+        SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, dawn_bike_NANR, FALSE, 10001);
     }
 
     switch (endCreditsApp->currentScene) {
@@ -374,9 +375,9 @@ static void EndCreditsScenes_LoadPlayerAnim(EndCreditsApp *endCreditsApp, Manage
     GF_ASSERT(endCreditsApp->eyeCharData == NULL);
 
     if (endCreditsApp->clearGamePlayerInfo->gender == GENDER_MALE) {
-        entryId = 27;
+        entryId = lucas_bike_eye_NCGR;
     } else {
-        entryId = 32;
+        entryId = dawn_bike_eye_NCGR;
     }
 
     endCreditsApp->eyeCharData = Heap_Alloc(HEAP_ID_END_CREDITS, (32 * 8));
@@ -437,13 +438,13 @@ static void EndCreditsScenes_LoadBackgroundMorning(EndCreditsApp *endCreditsApp)
 {
     BgConfig *bgConfig = endCreditsApp->bgConfig;
 
-    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, 18, HEAP_ID_END_CREDITS, PLTTBUF_MAIN_BG, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, 9, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, 3, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
+    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, background_morning_bottom_NCLR, HEAP_ID_END_CREDITS, PLTTBUF_MAIN_BG, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, background_morning_bottom_NCGR, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, background_morning_bottom_NSCR, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
 
-    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, 21, HEAP_ID_END_CREDITS, PLTTBUF_SUB_BG, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, 12, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, 6, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
+    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, background_morning_top_NCLR, HEAP_ID_END_CREDITS, PLTTBUF_SUB_BG, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, background_morning_top_NCGR, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, background_morning_top_NSCR, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
 
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
@@ -489,10 +490,10 @@ static void EndCreditsScenes_UnloadPlayerAnimMorning(EndCreditsApp *endCreditsAp
 
 static void EndCreditsScenes_LoadExtraSpritesMorning(EndCreditsApp *endCreditsApp)
 {
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_SUB_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 15, FALSE, 10, NNS_G2D_VRAM_TYPE_2DSUB, 10003);
-    SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 0, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 10003);
-    SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 1, FALSE, 10003);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 2, FALSE, 10003);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_SUB_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCLR, FALSE, 10, NNS_G2D_VRAM_TYPE_2DSUB, 10003);
+    SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 10003);
+    SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCER, FALSE, 10003);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NANR, FALSE, 10003);
 }
 
 static void EndCreditsScenes_UnloadExtraSpritesMorning(EndCreditsApp *endCreditsApp)
@@ -525,14 +526,14 @@ static void EndCreditsScenes_Load3DModelsMorning(EndCreditsApp *endCreditsApp)
 {
     int i;
 
-    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[0], endCreditsApp->narc, 80, HEAP_ID_END_CREDITS);
+    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[0], endCreditsApp->narc, background_morning_tree_1_BMD0, HEAP_ID_END_CREDITS);
 
     NNS_G3dMdlUseGlbDiff(endCreditsApp->bg3DModels[0].model);
     NNS_G3dMdlUseGlbAmb(endCreditsApp->bg3DModels[0].model);
     NNS_G3dMdlUseGlbSpec(endCreditsApp->bg3DModels[0].model);
     NNS_G3dMdlUseGlbEmi(endCreditsApp->bg3DModels[0].model);
 
-    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[1], endCreditsApp->narc, 81, HEAP_ID_END_CREDITS);
+    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[1], endCreditsApp->narc, background_morning_tree_2_BMD0, HEAP_ID_END_CREDITS);
 
     NNS_G3dMdlUseGlbDiff(endCreditsApp->bg3DModels[1].model);
     NNS_G3dMdlUseGlbAmb(endCreditsApp->bg3DModels[1].model);
@@ -640,17 +641,17 @@ static void EndCreditsScenes_LoadBackgroundDay(EndCreditsApp *endCreditsApp)
 {
     BgConfig *bgConfig = endCreditsApp->bgConfig;
 
-    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, 19, HEAP_ID_END_CREDITS, PLTTBUF_MAIN_BG, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, 10, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, 4, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
+    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, background_day_bottom_NCLR, HEAP_ID_END_CREDITS, PLTTBUF_MAIN_BG, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, background_day_bottom_NCGR, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, background_day_bottom_NSCR, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
 
-    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, 22, HEAP_ID_END_CREDITS, PLTTBUF_SUB_BG, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, 13, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, 7, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
+    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, background_day_top_NCLR, HEAP_ID_END_CREDITS, PLTTBUF_SUB_BG, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, background_day_top_NCGR, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, background_day_top_NSCR, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
 
     NNSG2dPaletteData *paletteData;
 
-    void *nclrBuffer = Graphics_GetPlttDataFromOpenNARC(endCreditsApp->narc, 16, &paletteData, HEAP_ID_END_CREDITS);
+    void *nclrBuffer = Graphics_GetPlttDataFromOpenNARC(endCreditsApp->narc, background_day_top_alt_NCLR, &paletteData, HEAP_ID_END_CREDITS);
     MI_CpuCopy16(paletteData->pRawData, endCreditsApp->sceneManager.daySceneData.bgPaletteBuffers, PALETTE_SIZE_BYTES * 4);
     Heap_Free(nclrBuffer);
 
@@ -698,10 +699,10 @@ static void EndCreditsScenes_UnloadPlayerAnimDay(EndCreditsApp *endCreditsApp)
 
 static void EndCreditsScenes_LoadExtraSpritesDay(EndCreditsApp *endCreditsApp)
 {
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_SUB_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 15, FALSE, 10, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
-    SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 0, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
-    SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 1, FALSE, 10004);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 2, FALSE, 10004);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_SUB_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCLR, FALSE, 10, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
+    SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
+    SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCER, FALSE, 10004);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NANR, FALSE, 10004);
 }
 
 static void EndCreditsScenes_UnloadExtraSpritesDay(EndCreditsApp *endCreditsApp)
@@ -732,7 +733,7 @@ static void EndCreditsScenes_Load3DModelsDay(EndCreditsApp *endCreditsApp)
 {
     int i;
 
-    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[0], endCreditsApp->narc, 78, HEAP_ID_END_CREDITS);
+    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[0], endCreditsApp->narc, background_day_lamppost_BMD0, HEAP_ID_END_CREDITS);
 
     NNS_G3dMdlUseGlbDiff(endCreditsApp->bg3DModels[0].model);
     NNS_G3dMdlUseGlbAmb(endCreditsApp->bg3DModels[0].model);
@@ -771,17 +772,17 @@ static void EndCreditsScenes_LoadBackgroundNight(EndCreditsApp *endCreditsApp)
 {
     BgConfig *bgConfig = endCreditsApp->bgConfig;
 
-    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, 20, HEAP_ID_END_CREDITS, PLTTBUF_MAIN_BG, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, 11, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, 5, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
+    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, background_night_bottom_NCLR, HEAP_ID_END_CREDITS, PLTTBUF_MAIN_BG, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, background_night_bottom_NCGR, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, background_night_bottom_NSCR, endCreditsApp->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_END_CREDITS);
 
-    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, 23, HEAP_ID_END_CREDITS, PLTTBUF_SUB_BG, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, 14, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, 8, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
+    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, background_night_top_NCLR, HEAP_ID_END_CREDITS, PLTTBUF_SUB_BG, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(endCreditsApp->narc, background_night_top_NCGR, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(endCreditsApp->narc, background_night_top_NSCR, endCreditsApp->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, HEAP_ID_END_CREDITS);
 
     NNSG2dPaletteData *paletteData;
 
-    void *nclrBuffer = Graphics_GetPlttDataFromOpenNARC(endCreditsApp->narc, 17, &paletteData, HEAP_ID_END_CREDITS);
+    void *nclrBuffer = Graphics_GetPlttDataFromOpenNARC(endCreditsApp->narc, background_night_top_alt_NCLR, &paletteData, HEAP_ID_END_CREDITS);
     MI_CpuCopy16(paletteData->pRawData, endCreditsApp->sceneManager.nightSceneData.bgPaletteBuffers, PALETTE_SIZE_BYTES * 8);
     Heap_Free(nclrBuffer);
 
@@ -814,10 +815,10 @@ static void EndCreditsScenes_LoadPlayerSpriteNight(EndCreditsApp *endCreditsApp)
 {
     EndCreditsScenes_LoadPlayerSprite(endCreditsApp);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_MAIN_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 15, FALSE, 4, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
-    SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 0, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
-    SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 1, FALSE, 10002);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 2, FALSE, 10002);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_MAIN_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCLR, FALSE, 4, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
+    SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
+    SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCER, FALSE, 10002);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NANR, FALSE, 10002);
 }
 
 static void EndCreditsScenes_UnloadPlayerSpriteNight(EndCreditsApp *endCreditsApp)
@@ -849,10 +850,10 @@ static void EndCreditsScenes_UnloadPlayerAnimNight(EndCreditsApp *endCreditsApp)
 
 static void EndCreditsScenes_LoadExtraSpritesNight(EndCreditsApp *endCreditsApp)
 {
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_SUB_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 15, FALSE, 10, NNS_G2D_VRAM_TYPE_2DSUB, 10005);
-    SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 0, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 10005);
-    SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 1, FALSE, 10005);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, 2, FALSE, 10005);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(endCreditsApp->paletteData, PLTTBUF_SUB_OBJ, endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCLR, FALSE, 10, NNS_G2D_VRAM_TYPE_2DSUB, 10005);
+    SpriteSystem_LoadCharResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 10005);
+    SpriteSystem_LoadCellResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NCER, FALSE, 10005);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(endCreditsApp->spriteSystem, endCreditsApp->spriteManager, endCreditsApp->narc, bike_bg_objects_NANR, FALSE, 10005);
 }
 
 static void EndCreditsScenes_UnloadExtraSpritesNight(EndCreditsApp *endCreditsApp)
@@ -891,28 +892,28 @@ static void EndCreditsScenes_Load3DModelsNight(EndCreditsApp *endCreditsApp)
 {
     int i;
 
-    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[0], endCreditsApp->narc, 82, HEAP_ID_END_CREDITS);
+    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[0], endCreditsApp->narc, background_night_tree_1_normal_BMD0, HEAP_ID_END_CREDITS);
 
     NNS_G3dMdlUseGlbDiff(endCreditsApp->bg3DModels[0].model);
     NNS_G3dMdlUseGlbAmb(endCreditsApp->bg3DModels[0].model);
     NNS_G3dMdlUseGlbSpec(endCreditsApp->bg3DModels[0].model);
     NNS_G3dMdlUseGlbEmi(endCreditsApp->bg3DModels[0].model);
 
-    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[1], endCreditsApp->narc, 83, HEAP_ID_END_CREDITS);
+    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[1], endCreditsApp->narc, background_night_tree_1_snowy_BMD0, HEAP_ID_END_CREDITS);
 
     NNS_G3dMdlUseGlbDiff(endCreditsApp->bg3DModels[1].model);
     NNS_G3dMdlUseGlbAmb(endCreditsApp->bg3DModels[1].model);
     NNS_G3dMdlUseGlbSpec(endCreditsApp->bg3DModels[1].model);
     NNS_G3dMdlUseGlbEmi(endCreditsApp->bg3DModels[1].model);
 
-    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[2], endCreditsApp->narc, 84, HEAP_ID_END_CREDITS);
+    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[2], endCreditsApp->narc, background_night_tree_2_BMD0, HEAP_ID_END_CREDITS);
 
     NNS_G3dMdlUseGlbDiff(endCreditsApp->bg3DModels[2].model);
     NNS_G3dMdlUseGlbAmb(endCreditsApp->bg3DModels[2].model);
     NNS_G3dMdlUseGlbSpec(endCreditsApp->bg3DModels[2].model);
     NNS_G3dMdlUseGlbEmi(endCreditsApp->bg3DModels[2].model);
 
-    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[3], endCreditsApp->narc, 79, HEAP_ID_END_CREDITS);
+    Easy3DModel_LoadFrom(&endCreditsApp->bg3DModels[3], endCreditsApp->narc, background_night_lamppost_BMD0, HEAP_ID_END_CREDITS);
 
     for (i = 0; i < SNELEMS(endCreditsApp->bg3DObjects[0]); i++) {
         Easy3DObject_Init(&endCreditsApp->bg3DObjects[0][i], &endCreditsApp->bg3DModels[0]);
