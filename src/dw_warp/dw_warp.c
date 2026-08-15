@@ -117,7 +117,7 @@ BOOL DWWarp_Main(ApplicationManager *appMan, int *state)
         break;
     case DWARP_SEQ_LOOP:
         if (warp->soundEffectCnt == DWARP_SND_EFFECT_DELAY) {
-            Sound_PlayEffect(SEQ_SE_PL_SYUWA2);
+            Sound_PlayEffect(SEQ_SE_PL_SYUWA2_sseq);
         }
 
         warp->soundEffectCnt++;

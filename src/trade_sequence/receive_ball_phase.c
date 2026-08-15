@@ -184,7 +184,7 @@ static int ReceiveBall_Animate(TradeBallArrivalPhase *arrivalPhase, int *state)
         break;
     case 1:
         if (Sprite_IsAnimated(arrivalPhase->sprite) == 0) {
-            Sound_PlayEffect(SEQ_SE_DP_KOUKAN05);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN05_sseq);
             BallArrivalPathState_Start(arrivalPhase, &(arrivalPhase->bapState));
             Trade3DModel_SetEnabled(arrivalPhase->model, 1);
             (*state)++;

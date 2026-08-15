@@ -23,7 +23,7 @@
 #include "generated/poketch_apps.h"
 #include "generated/roaming_slots.h"
 #include "generated/save_types.h"
-#include "generated/sdat.h"
+#include "res/sound/pl_sound_data.naix"
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
 #include "generated/time_of_day.h"
@@ -2732,9 +2732,9 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1D7 arg0
-    .short SCRCMD_1D7
-    .short \arg0
+    .macro OpenPoffinCooking isInGroup
+    .short SCRCMD_OPENPOFFINCOOKING
+    .short \isInGroup
     .endm
 
     .macro CheckCanCookPoffin destVar
@@ -2742,10 +2742,10 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_1D9 arg0, arg1
-    .short SCRCMD_1D9
-    .short \arg0
-    .short \arg1
+    .macro OpenBattleTowerRecordsApp isRankingsScreen, resultsType
+    .short SCRCMD_OPENBATTLETOWERRECORDSAPP
+    .short \isRankingsScreen
+    .short \resultsType
     .endm
 
     .macro SetBattleTowerNull
@@ -4301,30 +4301,30 @@
     .short \challengeType
     .endm
 
-    .macro ScrCmd_2D2 arg0, arg1, arg2
-    .short SCRCMD_2D2
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro CallBattleCastleLobbyFunction action, arg, result
+    .short SCRCMD_CALLBATTLECASTLELOBBYFUNCTION
+    .short \action
+    .short \arg
+    .short \result
     .endm
 
-    .macro ScrCmd_2D3 arg0, arg1, arg2
-    .short SCRCMD_2D3
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro CheckBattleCastlePartnerUsesDifferentSpecies species1, species2, result
+    .short SCRCMD_CHECKBATTLECASTLEPARTNERUSESDIFFERENTSPECIES
+    .short \species1
+    .short \species2
+    .short \result
     .endm
 
-    .macro ScrCmd_2D4 arg0, arg1, arg2
-    .short SCRCMD_2D4
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro GetBattleCastleSelectedSlots selectedSlot1, selectedSlot2, selectedSlot3
+    .short SCRCMD_GETBATTLECASTLESELECTEDSLOTS
+    .short \selectedSlot1
+    .short \selectedSlot2
+    .short \selectedSlot3
     .endm
 
-    .macro ScrCmd_2D5 arg0
-    .short SCRCMD_2D5
-    .short \arg0
+    .macro DeleteActiveBattleCastleStreak challengeType
+    .short SCRCMD_DELETEACTIVEBATTLECASTLESTREAK
+    .short \challengeType
     .endm
 
     .macro SaveExtraData
@@ -5189,7 +5189,7 @@
     .endm
 
     .macro NPCMessage messageID
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message \messageID
@@ -5199,7 +5199,7 @@
     .endm
 
     .macro EventMessage messageID
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message \messageID
     WaitButton
@@ -5208,10 +5208,10 @@
     .endm
 
     .macro PokemonCryAndMessage species, messageID, unused=0
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     PlayCry \species, \unused
     Message \messageID
     WaitCry
@@ -5221,7 +5221,7 @@
     .endm
 
     .macro PokeMartCommonWithGreeting unused=1
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Common_VendorGreeting
@@ -5231,7 +5231,7 @@
     .endm
 
     .macro PokeMartSpecialtiesWithGreeting martID
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Common_VendorGreeting

@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_BATTLE_FACTORY_SAVE_H
 #define POKEPLATINUM_BATTLE_FACTORY_SAVE_H
 
+#include "constants/battle_frontier.h"
+
 #include "savedata.h"
 
 #define FACTORY_SAVE_OPEN_LEVEL           0
@@ -26,13 +28,13 @@ typedef struct BattleFactorySave {
     u8 didSave : 1;
     u8 currentBattleNum;
     u16 unused2;
-    u16 trainerIDs[14];
-    u16 playerPartySets[4];
-    u8 playerIVs[4];
-    u32 playerPersonality[4];
-    u16 opponentPartySets[4];
-    u8 opponentIVs[4];
-    u32 opponentPersonality[4];
+    u16 trainerIDs[FACTORY_BATTLES_PER_ROUND * 2];
+    u16 playerPartySets[FACTORY_MAX_PARTY_SIZE];
+    u8 playerIVs[FACTORY_MAX_PARTY_SIZE];
+    u32 playerPersonality[FACTORY_MAX_PARTY_SIZE];
+    u16 opponentPartySets[FACTORY_MAX_PARTY_SIZE];
+    u8 opponentIVs[FACTORY_MAX_PARTY_SIZE];
+    u32 opponentPersonality[FACTORY_MAX_PARTY_SIZE];
 } BattleFactorySave;
 
 void BattleFactorySave_Init(BattleFactorySave *save);

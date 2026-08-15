@@ -16,26 +16,26 @@ PalPark_OnTransition:
     End
 
 PalPark_OnFrame_Countdown:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     MessageInstant PalPark_Text_LetTheCountdownBegin
     WaitTime 30, VAR_RESULT
     MessageInstant PalPark_Text_Three
-    PlaySE SEQ_SE_DP_DECIDE
+    PlaySE SEQ_SE_DP_DECIDE_sseq
     WaitTime 30, VAR_RESULT
     MessageInstant PalPark_Text_Two
-    PlaySE SEQ_SE_DP_DECIDE
+    PlaySE SEQ_SE_DP_DECIDE_sseq
     WaitTime 30, VAR_RESULT
     MessageInstant PalPark_Text_One
-    PlaySE SEQ_SE_DP_DECIDE
+    PlaySE SEQ_SE_DP_DECIDE_sseq
     WaitTime 30, VAR_RESULT
     MessageInstant PalPark_Text_Start
-    PlaySE SEQ_SE_DP_CON_016
+    PlaySE SEQ_SE_DP_CON_016_sseq
     WaitTime 30, VAR_RESULT
     SetInCatchingShowFlag
     SetVar VAR_PAL_PARK_STATE, 1
     SetFlag FLAG_ALT_MUSIC_PAL_PARK
-    PlayMusic SEQ_D_SAFARI
+    PlayMusic SEQ_D_SAFARI_sseq
     CloseMessage
     ReleaseAll
     End
@@ -49,13 +49,13 @@ PalPark_Unused:
     End
 
 PalPark_CoordEvent_CaughtAllPokemon:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
-    PlaySE SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON_sseq
     BufferPlayerName 0
     Message PalPark_Text_DingDongCongratulations
-    PlayMusic SEQ_SILENCE_DUNGEON
-    PlayFanfare SEQ_FANFA4
+    PlayMusic SEQ_SILENCE_FIELD_sseq_1
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     CloseMessage
     ReleaseAll
@@ -64,7 +64,7 @@ PalPark_CoordEvent_CaughtAllPokemon:
     End
 
 PalPark_RetireFromMenu:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message PalPark_Text_WouldYouLikeToRetire
     ShowYesNoMenu VAR_RESULT
@@ -80,7 +80,7 @@ PalPark_RetireFromMenu_WarpOut:
     End
 
 PalPark_CoordEvent_RetireFromGate:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Call PalPark_AskPlayerRetireFromCatchingShow
     CloseMessage
@@ -102,7 +102,7 @@ PalPark_Movement_PlayerWalkNorth:
     EndMovement
 
 PalPark_Worker:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Call PalPark_AskPlayerRetireFromCatchingShow

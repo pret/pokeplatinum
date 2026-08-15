@@ -447,7 +447,7 @@ void ov62_0224730C(u32 param0, enum TouchScreenButtonState param1, void *param2)
                 v0->unk_29C.unk_04 = v0->unk_00[param0].unk_04;
             }
 
-            Sound_PlayEffect(SEQ_SE_PL_BREC57);
+            Sound_PlayEffect(SEQ_SE_PL_BREC57_sseq);
         } else {
             if (param0 == 22) {
                 v0->unk_188[1].unk_14.unk_00 = 0;
@@ -469,7 +469,7 @@ void ov62_0224730C(u32 param0, enum TouchScreenButtonState param1, void *param2)
                     return;
                 }
 
-                Sound_PlayEffect(SEQ_SE_PL_BREC57);
+                Sound_PlayEffect(SEQ_SE_PL_BREC57_sseq);
 
                 v1 = v0->unk_188[0].unk_00;
                 v0->unk_00[v1].unk_00 = param0 - 12 + 1;
@@ -503,10 +503,10 @@ void ov62_0224730C(u32 param0, enum TouchScreenButtonState param1, void *param2)
                 }
             } else {
                 if (param0 == 22) {
-                    Sound_PlayEffect(SEQ_SE_PL_BREC57);
+                    Sound_PlayEffect(SEQ_SE_PL_BREC57_sseq);
                     ov62_02247160(v0);
                 } else {
-                    Sound_PlayEffect(SEQ_SE_PL_BREC57);
+                    Sound_PlayEffect(SEQ_SE_PL_BREC57_sseq);
                     ov62_022470A8(v0);
                 }
             }

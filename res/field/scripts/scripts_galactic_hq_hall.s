@@ -26,18 +26,18 @@ GalacticHQHall_CoordEvent_Speech:
     AddObject LOCALID_CYRUS
     ApplyMovement LOCALID_CYRUS, GalacticHQHall_Movement_CyrusEnter
     WaitMovement
-    PlaySE SEQ_SE_DP_DENDOU
+    PlaySE SEQ_SE_DP_DENDOU_sseq
     WaitTime 30, VAR_RESULT
     Message GalacticHQHall_Text_TheWorldMustChange
     CloseMessage
-    PlaySE SEQ_SE_DP_DENDOU
+    PlaySE SEQ_SE_DP_DENDOU_sseq
     WaitTime 30, VAR_RESULT
     Message GalacticHQHall_Text_WeWillChangeIt
     CloseMessage
     WaitTime 30, VAR_RESULT
     Message GalacticHQHall_Text_LetThereBeGlory
     CloseMessage
-    PlaySE SEQ_SE_DP_DENDOU
+    PlaySE SEQ_SE_DP_DENDOU_sseq
     WaitTime 15, VAR_RESULT
     Message GalacticHQHall_Text_GruntsWroooar
     Message GalacticHQHall_Text_CyrusIsTheGreatest

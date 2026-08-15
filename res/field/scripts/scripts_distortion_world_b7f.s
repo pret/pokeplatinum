@@ -48,7 +48,7 @@ DistortionWorldB7F_CoordEvent_CynthiaCyrus:
     End
 
 DistortionWorldB7F_Cyrus:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message DistortionWorldB7F_Text_IWontLose
@@ -96,7 +96,7 @@ DistortionWorldB7F_CynthiaPlayerWalkOnSpotEastWest:
 DistortionWorldB7F_MeetGiratina:
     BufferPlayerName 0
     Message DistortionWorldB7F_Text_CynthiaFullyHealedPokemon
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     WaitMovement
@@ -124,7 +124,7 @@ DistortionWorldB7F_LostBattle:
     End
 
 DistortionWorldB7F_Cynthia:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfGe VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE, DistortionWorldB7F_YourBondIsStrong
     Message DistortionWorldB7F_Text_ThatsNoJustice

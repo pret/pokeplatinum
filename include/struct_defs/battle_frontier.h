@@ -5,10 +5,9 @@
 
 #include "struct_defs/struct_0202D080.h"
 #include "struct_defs/struct_0202FF58.h"
-#include "struct_defs/struct_020304A0.h"
-#include "struct_defs/struct_020305B8.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
+#include "battle_arcade_save.h"
 #include "battle_castle_save.h"
 #include "battle_factory_save.h"
 #include "battle_hall_save.h"
@@ -26,7 +25,7 @@ typedef struct BattleFrontierSave {
         BattleFactorySave factorySave;
         BattleHallSave hallSave;
         BattleCastleSave castleSave;
-        UnkStruct_020304A0 unk_8E0_val5;
+        BattleArcadeSave arcadeSave;
     };
     struct {
         WifiBattleTowerRecord wifiBattleTowerRecord;
@@ -43,8 +42,8 @@ typedef struct BattleFrontierSave {
         BattleCastlePersistentSave persistentSave;
     } castle;
     struct {
-        UnkStruct_020305B8 unk_00;
-    } unk_1620;
+        BattleArcadeStreakFlags streakFlags;
+    } arcade;
 } BattleFrontierSave;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_FRONTIER_H

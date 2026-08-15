@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 VeilstoneCitySoutheastHouse_Clown:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_VEILSTONE_CITY_SOUTHEAST_HOUSE_COIN_CASE, VeilstoneCitySoutheastHouse_IAmATearfulClown

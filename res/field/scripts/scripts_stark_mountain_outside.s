@@ -38,10 +38,10 @@ StarkMountainOutside_CoordEvent_Grunts:
     ApplyMovement LOCALID_GRUNT_M_1, StarkMountainOutside_Movement_GruntM1EnterStarkMountain
     ApplyMovement LOCALID_GRUNT_M_2, StarkMountainOutside_Movement_GruntM2EnterStarkMountain
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_GRUNT_M_1
     RemoveObject LOCALID_GRUNT_M_2
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetVar VAR_STARK_MOUNTAIN_OUTSIDE_STATE, 1
     ReleaseAll
     End

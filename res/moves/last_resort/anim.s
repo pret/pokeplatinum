@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, last_resort_spa
-    PlaySoundEffectR SEQ_SE_DP_W387
+    PlaySoundEffectR SEQ_SE_DP_W387_sseq
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC

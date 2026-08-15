@@ -1,7 +1,7 @@
 #include "generated/battle_tower_modes.h"
 #include "generated/fade_types.h"
 #include "generated/game_records.h"
-#include "generated/sdat.h"
+#include "res/sound/pl_sound_data.naix"
 #include "generated/trainer_score_events.h"
 #include "generated/vars_flags.h"
 #include "constants/battle_frontier_movements.h"
@@ -518,20 +518,20 @@
     .short \seqID
     .endm
 
-    .macro FrontierScrCmd_5C arg0, arg1, arg2
-    .short FRSCRCMD_5C
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro InitBattleFactory resumingFromSave, challengeType, isOpenLevel
+    .short FRSCRCMD_INITBATTLEFACTORY
+    .short \resumingFromSave
+    .short \challengeType
+    .short \isOpenLevel
     .endm
 
-    .macro FrontierScrCmd_5D arg0
-    .short FRSCRCMD_5D
-    .short \arg0
+    .macro BattleFactory_LoadTrainersForRound resumingFromSave
+    .short FRSCRCMD_BATTLEFACTORY_LOADTRAINERSFORROUND
+    .short \resumingFromSave
     .endm
 
-    .macro FrontierScrCmd_5E
-    .short FRSCRCMD_5E
+    .macro FreeBattleFactory
+    .short FRSCRCMD_FREEBATTLEFACTORY
     .endm
 
     .macro OpenBattleFactoryAppInitial
@@ -550,20 +550,20 @@
     .short FRSCRCMD_OPENBATTLEFACTORYAPPFORTRADE
     .endm
 
-    .macro FrontierScrCmd_63
-    .short FRSCRCMD_63
+    .macro AddSelectedRentalsToParty
+    .short FRSCRCMD_ADDSELECTEDRENTALSTOPARTY
     .endm
 
-    .macro FrontierScrCmd_64
-    .short FRSCRCMD_64
+    .macro BattleFactory_SetupNextOpponent
+    .short FRSCRCMD_BATTLEFACTORY_SETUPNEXTOPPONENT
     .endm
 
-    .macro FrontierScrCmd_65
-    .short FRSCRCMD_65
+    .macro BattleFactory_ApplyTrade
+    .short FRSCRCMD_BATTLEFACTORY_APPLYTRADE
     .endm
 
-    .macro FrontierScrCmd_66
-    .short FRSCRCMD_66
+    .macro BattleFactory_SetupNextOpponentsParty
+    .short FRSCRCMD_BATTLEFACTORY_SETUPNEXTOPPONENTSPARTY
     .endm
 
     .macro CallBattleFactoryFunction command, arg1, arg2, destVar
@@ -579,21 +579,21 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_69 arg0, arg1, arg2
-    .short FRSCRCMD_69
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro BattleFactory_SendCommMessage command, arg, success
+    .short FRSCRCMD_BATTLEFACTORY_SENDCOMMMESSAGE
+    .short \command
+    .short \arg
+    .short \success
     .endm
 
-    .macro FrontierScrCmd_6A arg0
-    .short FRSCRCMD_6A
-    .short \arg0
+    .macro BattleFactory_WaitForCommResponses unused
+    .short FRSCRCMD_BATTLEFACTORY_WAITFORCOMMRESPONSES
+    .short \unused
     .endm
 
-    .macro FrontierScrCmd_6B arg0
-    .short FRSCRCMD_6B
-    .byte \arg0
+    .macro BattleFactory_PrintTrainerIntro index
+    .short FRSCRCMD_BATTLEFACTORY_PRINTTRAINERINTRO
+    .byte \index
     .endm
 
     .macro InitNewBattleRecording
@@ -996,23 +996,23 @@
     .short FRSCRCMD_SETWIFILISTHOSTFRIENDCURRENTDATE
     .endm
 
-    .macro FrontierScrCmd_B8 arg0, arg1, arg2, arg3, arg4, arg5
-    .short FRSCRCMD_B8
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .macro InitBattleArcade resumingFromSave, challengeType, partySlot1, partySlot2, partySlot3, arg5
+    .short FRSCRCMD_INITBATTLEARCADE
+    .short \resumingFromSave
+    .short \challengeType
+    .short \partySlot1
+    .short \partySlot2
+    .short \partySlot3
     .short \arg5
     .endm
 
-    .macro FrontierScrCmd_B9 arg0
-    .short FRSCRCMD_B9
-    .short \arg0
+    .macro BattleArcade_LoadTrainersForRound resumingFromSave
+    .short FRSCRCMD_BATTLEARCADE_LOADTRAINERSFORROUND
+    .short \resumingFromSave
     .endm
 
-    .macro FrontierScrCmd_BA
-    .short FRSCRCMD_BA
+    .macro FreeBattleArcade
+    .short FRSCRCMD_FREEBATTLEARCADE
     .endm
 
     .macro BattleArcade_CleanupBattle
@@ -1023,12 +1023,12 @@
     .short FRSCRCMD_BATTLEARCADE_STARTBATTLE
     .endm
 
-    .macro FrontierScrCmd_BD
-    .short FRSCRCMD_BD
+    .macro BattleArcade_SetupFirstOpponent
+    .short FRSCRCMD_BATTLEARCADE_SETUPFIRSTOPPONENT
     .endm
 
-    .macro FrontierScrCmd_BE
-    .short FRSCRCMD_BE
+    .macro BattleArcade_SetupNextOpponent
+    .short FRSCRCMD_BATTLEARCADE_SETUPNEXTOPPONENT
     .endm
 
     .macro CallBattleArcadeFunction command, arg1, arg2, destVar
@@ -1044,36 +1044,36 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_C1 arg0, arg1, arg2
-    .short FRSCRCMD_C1
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro BattleArcade_SendCommMessage command, arg, successs
+    .short FRSCRCMD_BATTLEARCADE_SENDCOMMMESSAGE
+    .short \command
+    .short \arg
+    .short \successs
     .endm
 
-    .macro FrontierScrCmd_C2 arg0
-    .short FRSCRCMD_C2
-    .short \arg0
+    .macro BattleArcade_WaitForCommResponses unused
+    .short FRSCRCMD_BATTLEARCADE_WAITFORCOMMRESPONSES
+    .short \unused
     .endm
 
     .macro OpenBattleArcadeApp
     .short FRSCRCMD_OPENBATTLEARCADEAPP
     .endm
 
-    .macro FrontierScrCmd_C4 arg0
-    .short FRSCRCMD_C4
-    .byte \arg0
+    .macro BattleArcade_PrintTrainerInfo index
+    .short FRSCRCMD_BATTLEARCADE_PRINTTRAINERINFO
+    .byte \index
     .endm
 
-    .macro FrontierScrCmd_C5
-    .short FRSCRCMD_C5
+    .macro ApplyArcadeEffect
+    .short FRSCRCMD_APPLYARCADEEFFECT
     .endm
 
-    .macro FrontierScrCmd_C6 arg0, arg1, arg2
-    .short FRSCRCMD_C6
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro SetItemDrawFlag isOpponent, slot, draw
+    .short FRSCRCMD_SETITEMDRAWFLAG
+    .short \isOpponent
+    .short \slot
+    .short \draw
     .endm
 
     .macro FrontierScrCmd_C7

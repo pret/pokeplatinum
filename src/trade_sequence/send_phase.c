@@ -370,7 +370,7 @@ static int TradeSendPhase_ThrowBall(TradeSendPhase *tsPhase, int *subStepCounter
 {
     switch (*subStepCounter) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_KOUKAN01);
+        Sound_PlayEffect(SEQ_SE_DP_KOUKAN01_sseq);
         BrightnessAnimState_Start(tsPhase, 0, 16, 12);
         (*subStepCounter)++;
         break;
@@ -597,7 +597,7 @@ static void BallBounceState_Task(SysTask *task, void *param)
                     bbState->settled = 1;
                 }
 
-                Sound_PlayEffect(SEQ_SE_DP_KON);
+                Sound_PlayEffect(SEQ_SE_DP_KON_sseq);
                 bbState->bounceCount++;
 
                 switch (bbState->bounceCount) {

@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 ScratchOffCards_BattleFrontierAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ShowBattlePoints 21, 1
@@ -124,7 +124,7 @@ ScratchOffCards_BufferCard0PrizePlural:
 ScratchOffCards_TryGiveCard0Prize:
     BufferNumber 1, VAR_MAP_LOCAL_0x01
     GoToIfCannotFitItem VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01, VAR_RESULT, ScratchOffCards_NoRoomForItem
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     Message ScratchOffCards_Text_ReceivedXItems
     AddItem VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01, VAR_RESULT
     WaitFanfare
@@ -140,7 +140,7 @@ ScratchOffCards_BufferCard1PrizePlural:
 ScratchOffCards_TryGiveCard1Prize:
     BufferNumber 1, VAR_MAP_LOCAL_0x03
     GoToIfCannotFitItem VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x03, VAR_RESULT, ScratchOffCards_NoRoomForItem
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     Message ScratchOffCards_Text_ReceivedXItems
     AddItem VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x03, VAR_RESULT
     WaitFanfare
@@ -156,7 +156,7 @@ ScratchOffCards_BufferCard2PrizePlural:
 ScratchOffCards_TryGiveCard2Prize:
     BufferNumber 1, VAR_MAP_LOCAL_0x05
     GoToIfCannotFitItem VAR_MAP_LOCAL_0x04, VAR_MAP_LOCAL_0x05, VAR_RESULT, ScratchOffCards_NoRoomForItem
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     Message ScratchOffCards_Text_ReceivedXItems
     AddItem VAR_MAP_LOCAL_0x04, VAR_MAP_LOCAL_0x05, VAR_RESULT
     WaitFanfare

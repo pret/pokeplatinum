@@ -694,7 +694,7 @@ static BOOL RangerLink_Init(ApplicationManager *appMan, int *unused)
     rangerLinkMan->wirelessActive = FALSE;
 
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_NETWORK_ICON, HEAP_SIZE_NETWORK_ICON);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_9, SEQ_PRESENT, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_9, SEQ_PRESENT_sseq, 1);
 
     return TRUE;
 }
@@ -930,7 +930,7 @@ enum RangerLinkRangerCommStatus DoRangerComm(RangerLinkManager *rangerLinkMan)
         Sprite_SetDrawFlag(rangerLinkMan->downloadArrow, FALSE);
         DestroyWaitDial(rangerLinkMan->waitDial);
         rangerLinkMan->waitDial = NULL;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         rangerLinkMan->timeout = 1800;
         *state = RANGER_COMM_STATE_30;
         break;
@@ -953,7 +953,7 @@ enum RangerLinkRangerCommStatus DoRangerComm(RangerLinkManager *rangerLinkMan)
             *state = RANGER_COMM_STATE_WAIT_RANGER_RESPONSE;
             rangerLinkMan->timeout = 3200;
             MainMenuUtil_ShowWindowAtPos(rangerLinkMan->bgConfig, &rangerLinkMan->messageBox, 2, 19, MysteryGiftMenu_Text_PleaseTouchRangerGameScreen);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             rangerLinkMan->waitDial = NULL;
 
             return RANGER_COMM_STATUS_AWAITING_RANGER;
@@ -1061,7 +1061,7 @@ enum RangerLinkRangerCommStatus DoRangerComm(RangerLinkManager *rangerLinkMan)
 
             Sprite_SetDrawFlag(rangerLinkMan->downloadArrow, FALSE);
             DestroyWaitDial(rangerLinkMan->waitDial);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             rangerLinkMan->waitDial = NULL;
         }

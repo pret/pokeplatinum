@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/calculator/value.h"
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_system.h"
@@ -15,6 +13,7 @@
 #include "sys_task_manager.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 
 #define CALCULATOR_NCGR_WIDTH_TILES 40
 
@@ -326,7 +325,7 @@ static void Task_PressButton(SysTask *task, void *taskMan)
     CalculatorGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     u32 button = calcState->pressedButton;
 
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
 
     Bg_LoadToTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, sPressedButtonTiles[button], sButtonPositions[button].x, sButtonPositions[button].y, sButtonPositions[button].width, sButtonPositions[button].height);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);

@@ -6,7 +6,6 @@
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_02230DBC.h"
 #include "overlay066/struct_ov66_02230E68.h"
 #include "overlay066/struct_ov66_02230F50.h"
@@ -293,8 +292,8 @@ static void ov66_02230DBC(UnkStruct_ov66_02230DBC *param0)
 
 static void ov66_02230DD8(UnkStruct_ov66_02230DBC *param0, UnkStruct_ov66_0222DFF8 *param1, u32 param2)
 {
-    const UnkStruct_ov66_0222E71C *v0;
-    const UnkStruct_ov66_0222E71C *v1;
+    const WiFiPlazaProfile *v0;
+    const WiFiPlazaProfile *v1;
     int v2;
 
     v0 = ov66_0222E3BC(param1);

@@ -184,7 +184,7 @@ Restaurant_Waiter:
     End
 
 Restaurant_ArtistIsmael:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_ARTIST_ISMAEL
     GoToIfDefeated TRAINER_ARTIST_ISMAEL, Restaurant_IsmaelDefeated
@@ -306,7 +306,7 @@ Restaurant_IsmaelFaceEast:
     Return
 
 Restaurant_BeautyHarley:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_BEAUTY_HARLEY
     GoToIfDefeated TRAINER_BEAUTY_HARLEY, Restaurant_HarleyDefeated
@@ -428,7 +428,7 @@ Restaurant_HarleyFaceWest:
     Return
 
 Restaurant_RichBoyRoman:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_RICH_BOY_ROMAN
     GoToIfDefeated TRAINER_RICH_BOY_ROMAN, Restaurant_RomanDefeated
@@ -550,7 +550,7 @@ Restaurant_RomanFaceEast:
     Return
 
 Restaurant_LadyKylie:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_LADY_KYLIE
     GoToIfDefeated TRAINER_LADY_KYLIE, Restaurant_KylieDefeated
@@ -672,7 +672,7 @@ Restaurant_KylieFaceWest:
     Return
 
 Restaurant_GentlemanLeonardo:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     GoToIfDefeated TRAINER_GENTLEMAN_LEONARDO, Restaurant_LeonardoDefeated
@@ -794,7 +794,7 @@ Restaurant_LeonardoFaceEast:
     Return
 
 Restaurant_SocialiteRebecca:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_SOCIALITE_REBECCA
     GoToIfDefeated TRAINER_SOCIALITE_REBECCA, Restaurant_RebeccaDefeated
@@ -916,7 +916,7 @@ Restaurant_RebeccaFaceWest:
     Return
 
 Restaurant_CollectorEugene:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_COLLECTOR_EUGENE
     GoToIfDefeated TRAINER_COLLECTOR_EUGENE, Restaurant_EugeneDefeated
@@ -1038,7 +1038,7 @@ Restaurant_EugeneFaceEast:
     Return
 
 Restaurant_AromaLadyAlison:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_AROMA_LADY_ALISON
     GoToIfDefeated TRAINER_AROMA_LADY_ALISON, Restaurant_AlisonDefeated
@@ -1160,7 +1160,7 @@ Restaurant_AlisonFaceWest:
     Return
 
 Restaurant_SchoolKidEsteban:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     GoToIfDefeated TRAINER_SCHOOL_KID_ESTEBAN, Restaurant_EstebanDefeated
@@ -1282,7 +1282,7 @@ Restaurant_EstebanFaceEast:
     Return
 
 Restaurant_PokefanMeredith:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_POKEFAN_MEREDITH
     GoToIfDefeated TRAINER_POKEFAN_MEREDITH, Restaurant_MeredithDefeated
@@ -1404,7 +1404,7 @@ Restaurant_MeredithFaceWest:
     Return
 
 Restaurant_VeteranEmanuel:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_VETERAN_EMANUEL
     GoToIfDefeated TRAINER_VETERAN_EMANUEL, Restaurant_EmanuelDefeated
@@ -1526,7 +1526,7 @@ Restaurant_EmanuelFaceEast:
     Return
 
 Restaurant_LassBlythe:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_LASS_BLYTHE
     GoToIfDefeated TRAINER_LASS_BLYTHE, Restaurant_BlytheDefeated
@@ -1648,7 +1648,7 @@ Restaurant_BlytheFaceWest:
     Return
 
 Restaurant_CameramanDarryl:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_CAMERAMAN_DARRYL
     GoToIfDefeated TRAINER_CAMERAMAN_DARRYL, Restaurant_DarrylDefeated
@@ -1770,7 +1770,7 @@ Restaurant_DarrylFaceEast:
     Return
 
 Restaurant_ReporterValerie:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_REPORTER_VALERIE
     GoToIfDefeated TRAINER_REPORTER_VALERIE, Restaurant_ValerieDefeated
@@ -1892,7 +1892,7 @@ Restaurant_ValerieFaceWest:
     Return
 
 Restaurant_PIKendrick:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_PI_KENDRICK
     GoToIfDefeated TRAINER_PI_KENDRICK, Restaurant_KendrickDefeated
@@ -2014,7 +2014,7 @@ Restaurant_KendrickFaceEast:
     Return
 
 Restaurant_BeautyGabriella:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_BEAUTY_GABRIELLA
     GoToIfDefeated TRAINER_BEAUTY_GABRIELLA, Restaurant_GabriellaDefeated
@@ -2136,7 +2136,7 @@ Restaurant_GabriellaFaceWest:
     Return
 
 Restaurant_ScientistEmilio:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_SCIENTIST_EMILIO
     GoToIfDefeated TRAINER_SCIENTIST_EMILIO, Restaurant_EmilioDefeated
@@ -2258,7 +2258,7 @@ Restaurant_EmilioFaceEast:
     Return
 
 Restaurant_BreederKaylee:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckTrainerFlag TRAINER_BREEDER_KAYLEE
     GoToIfDefeated TRAINER_BREEDER_KAYLEE, Restaurant_KayleeDefeated

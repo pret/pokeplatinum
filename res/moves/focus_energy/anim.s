@@ -6,7 +6,7 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_Shake 1, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 2, BATTLE_COLOR_WHITE, 10, 0
-    PlaySoundEffectL SEQ_SE_DP_W082
+    PlaySoundEffectL SEQ_SE_DP_W082_sseq
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

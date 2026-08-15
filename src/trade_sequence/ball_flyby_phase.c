@@ -197,7 +197,7 @@ static int TradeBallFlybyPhase_Animate(TradeBallFlybyPhase *tbfPhase, int *subSt
         break;
     case 1:
         if (++(tbfPhase->timer) > 10) {
-            Sound_PlayEffect(SEQ_SE_DP_KOUKAN06);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN06_sseq);
             BallOrbitState_Start(tbfPhase, &(tbfPhase->ballOrbit));
             Trade3DModel_SetEnabled(tbfPhase->model, 1);
             (*subStateCounter)++;
@@ -205,7 +205,7 @@ static int TradeBallFlybyPhase_Animate(TradeBallFlybyPhase *tbfPhase, int *subSt
         break;
     case 2:
         if (BallOrbitState_IsDone(&(tbfPhase->ballOrbit))) {
-            Sound_PlayEffect(SEQ_SE_DP_KOUKAN07);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN07_sseq);
             Sprite_SetAnim(tbfPhase->sprite, 3);
             Sprite_SetDrawFlag(tbfPhase->sprite, TRUE);
             (*subStateCounter)++;

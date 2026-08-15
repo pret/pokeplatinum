@@ -266,14 +266,14 @@ static u8 BattleBagTask_MenuScreen(BattleBag *battleBag)
     case BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET:
     case BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET:
     case BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         battleBag->currentBattlePocket = menuButtonPressed;
         battleBag->queuedState = TASK_STATE_SETUP_POCKET_MENU_SCREEN;
         BattleBagButtons_PressButton(battleBag, menuButtonPressed, 0);
         return TASK_STATE_SCREEN_TRANSITION;
     case BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM:
         if (battleBag->context->lastUsedItem != ITEM_NONE) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             battleBag->currentBattlePocket = battleBag->context->lastUsedItemPocket;
             battleBag->queuedState = TASK_STATE_SETUP_USE_ITEM_SCREEN;
             BattleBag_SetLastUsedPocket(battleBag);
@@ -282,7 +282,7 @@ static u8 BattleBagTask_MenuScreen(BattleBag *battleBag)
         }
         break;
     case BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         battleBag->context->selectedBattleBagItem = ITEM_NONE;
         battleBag->context->selectedBattleBagPocket = BATTLE_POCKET_INDEX_NONE;
         BattleBagButtons_PressButton(battleBag, BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL, 0);
@@ -314,7 +314,7 @@ static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
     case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5:
     case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6:
         if (BattleBag_GetItem(battleBag, pocketMenuScreenButtonPressed) != ITEM_NONE) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket] = pocketMenuScreenButtonPressed;
             battleBag->queuedState = TASK_STATE_SETUP_USE_ITEM_SCREEN;
             BattleBagButtons_PressButton(battleBag, BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + pocketMenuScreenButtonPressed, 0);
@@ -323,7 +323,7 @@ static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
         break;
     case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE:
         if (battleBag->numBattlePocketPages[battleBag->currentBattlePocket] != 0) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             battleBag->queuedState = TASK_STATE_CHANGE_POCKET_PAGE;
             battleBag->queuedBattlePocketPageChange = POCKET_PREV_PAGE;
             BattleBagButtons_PressButton(battleBag, BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE, 0);
@@ -332,7 +332,7 @@ static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
         break;
     case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE:
         if (battleBag->numBattlePocketPages[battleBag->currentBattlePocket] != 0) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             battleBag->queuedState = TASK_STATE_CHANGE_POCKET_PAGE;
             battleBag->queuedBattlePocketPageChange = POCKET_NEXT_PAGE;
             BattleBagButtons_PressButton(battleBag, BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE, 0);
@@ -340,7 +340,7 @@ static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
         }
         break;
     case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         battleBag->queuedState = TASK_STATE_SETUP_MENU_SCREEN;
         BattleBagButtons_PressButton(battleBag, BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL, 0);
         return TASK_STATE_SCREEN_TRANSITION;
@@ -388,13 +388,13 @@ static u8 BattleBagTask_UseItemScreen(BattleBag *battleBag)
 
     switch (useItemScreenButtonPressed) {
     case BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         battleBag->context->selectedBattleBagItem = BattleBag_GetItem(battleBag, battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket]);
         battleBag->context->selectedBattleBagPocket = battleBag->currentBattlePocket;
         BattleBagButtons_PressButton(battleBag, BATTLE_BAG_USE_ITEM_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE, 0);
         return TryUseItem(battleBag);
     case BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         battleBag->queuedState = TASK_STATE_SETUP_POCKET_MENU_SCREEN;
         BattleBagButtons_PressButton(battleBag, BATTLE_BAG_USE_ITEM_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL, 0);
         return TASK_STATE_SCREEN_TRANSITION;
@@ -584,7 +584,7 @@ static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
     switch (battleBag->catchTutorialState) {
     case CATCH_TUTORIAL_STATE_MENU_SCREEN:
         if (Indicator_GetHasDropped(battleBag->catchTutorialCursor) == TRUE) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             battleBag->currentBattlePocket = BATTLE_POCKET_INDEX_POKE_BALLS;
             battleBag->queuedState = TASK_STATE_CATCH_TUTORIAL;
             BattleBagButtons_PressButton(battleBag, BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET, 0);
@@ -601,7 +601,7 @@ static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
         break;
     case CATCH_TUTORIAL_STATE_POCKET_MENU_SCREEN:
         if (Indicator_GetHasDropped(battleBag->catchTutorialCursor) == TRUE) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket] = 0;
             battleBag->queuedState = TASK_STATE_CATCH_TUTORIAL;
             BattleBagButtons_PressButton(battleBag, BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1, 0);
@@ -618,7 +618,7 @@ static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
         break;
     case CATCH_TUTORIAL_STATE_USE_ITEM_SCREEN:
         if (Indicator_GetHasDropped(battleBag->catchTutorialCursor) == TRUE) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             battleBag->context->selectedBattleBagItem = BattleBag_GetItem(battleBag, battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket]);
             battleBag->context->selectedBattleBagPocket = battleBag->currentBattlePocket;
             BattleBagButtons_PressButton(battleBag, BATTLE_BAG_USE_ITEM_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE, 0);

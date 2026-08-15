@@ -3,17 +3,18 @@
 #include <nitro.h>
 
 #include "constants/battle_factory_functions.h"
+#include "constants/battle_frontier.h"
 #include "constants/heap.h"
 
 #include "applications/frontier/battle_factory/main.h"
+#include "global/utility.h"
+#include "overlay104/battle_factory.h"
+#include "overlay104/battle_factory_helpers.h"
 #include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frontier_script_manager.h"
 #include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_02231F74.h"
-#include "overlay104/ov104_022339B4.h"
-#include "overlay104/ov104_0223A7F4.h"
-#include "overlay104/struct_battle_factory.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "battle_factory_save.h"
@@ -34,43 +35,40 @@ FS_EXTERN_OVERLAY(battle_factory_app);
 
 #include <nitro/code16.h>
 
-static BOOL ov104_0223394C(FrontierScriptContext *param0);
-static void ov104_022338B4(SysTask *param0, void *param1);
+static BOOL WaitForCommResponse(FrontierScriptContext *ctx);
+static void UpdateCorridorFloorBG(SysTask *task, void *data);
 static void StoreBattleFactoryAppResult(void *data);
 
-BOOL FrontierScrCmd_5C(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_InitBattleFactory(FrontierScriptContext *ctx)
 {
-    BattleFactory *v0;
-    FieldFrontierDTO *fieldData;
-    u16 v2 = FrontierScriptContext_GetVar(param0);
-    u16 v3 = FrontierScriptContext_GetVar(param0);
-    u16 v4 = FrontierScriptContext_GetVar(param0);
+    u16 resumingFromSave = FrontierScriptContext_GetVar(ctx);
+    u16 challengeType = FrontierScriptContext_GetVar(ctx);
+    u16 isOpenLevel = FrontierScriptContext_GetVar(ctx);
 
-    fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
-    v0 = ov104_022339B4(fieldData->saveData, v2, v3, v4);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    BattleFactory *factory = BattleFactory_Init(fieldData->saveData, resumingFromSave, challengeType, isOpenLevel);
 
-    BattleFrontier_SetFacilityStruct(param0->scriptMan->frontier, v0);
+    BattleFrontier_SetFacilityStruct(ctx->scriptMan->frontier, factory);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_5D(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleFactory_LoadTrainersForRound(FrontierScriptContext *ctx)
 {
-    BattleFactory *v0;
-    u16 v1 = FrontierScriptContext_GetVar(param0);
+    u16 resumingFromSave = FrontierScriptContext_GetVar(ctx);
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_02233B98(v0, v1);
+    BattleFactory *factory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleFactory_LoadTrainersAndRentalsForRound(factory, resumingFromSave);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_5E(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_FreeBattleFactory(FrontierScriptContext *ctx)
 {
-    BattleFactory *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_022340D0(v0);
+    BattleFactory *factory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleFactory_Free(factory);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_OpenBattleFactoryAppInitial(FrontierScriptContext *ctx)
@@ -93,7 +91,7 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppInitial(FrontierScriptContext *ctx)
 
     args->saveData = fieldData->saveData;
     args->challengeType = battleFactory->challengeType;
-    args->unk_05 = battleFactory->isOpenLevel;
+    args->isOpenLevel = battleFactory->isOpenLevel;
     args->isExchangeMode = FALSE;
     args->personalParty = battleFactory->playersParty;
     args->receivableParty = battleFactory->opponentsParty;
@@ -119,7 +117,7 @@ BOOL FrontierScrCmd_BattleFactory_StartBattle(FrontierScriptContext *ctx)
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     BattleFactory *battleFactory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    FieldBattleDTO *dto = FieldBattleDTO_NewBattleFactory(battleFactory, fieldData);
+    FieldBattleDTO *dto = BattleFactory_SetupBattle(battleFactory, fieldData);
     battleFactory->dto = dto;
 
     sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
@@ -143,7 +141,7 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppForTrade(FrontierScriptContext *ctx)
     BattleFactory *battleFactory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
     for (int i = 0; i < 6; i++) {
-        battleFactory->unk_4DC[i] = 0;
+        battleFactory->selectedAppSlots[i] = 0;
     }
 
     BattleFactoryAppArgs *args = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleFactoryAppArgs));
@@ -151,7 +149,7 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppForTrade(FrontierScriptContext *ctx)
 
     args->saveData = fieldData->saveData;
     args->challengeType = battleFactory->challengeType;
-    args->unk_05 = battleFactory->isOpenLevel;
+    args->isOpenLevel = battleFactory->isOpenLevel;
     args->isExchangeMode = TRUE;
     args->personalParty = battleFactory->playersParty;
     args->receivableParty = battleFactory->opponentsParty;
@@ -168,36 +166,36 @@ static void StoreBattleFactoryAppResult(void *data)
     Heap_Free(data);
 }
 
-BOOL FrontierScrCmd_63(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_AddSelectedRentalsToParty(FrontierScriptContext *ctx)
 {
-    BattleFactory *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_0223449C(v0);
+    BattleFactory *factory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleFactory_AddSelectedRentalsToParty(factory);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_64(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleFactory_SetupNextOpponent(FrontierScriptContext *ctx)
 {
-    BattleFactory *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_02234570(v0);
+    BattleFactory *factory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleFactory_SetupNextOpponent(factory);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_65(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleFactory_ApplyTrade(FrontierScriptContext *ctx)
 {
-    BattleFactory *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_022346A4(v0);
+    BattleFactory *factory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleFactory_ApplyTrade(factory);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_66(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleFactory_SetupNextOpponentsParty(FrontierScriptContext *ctx)
 {
-    BattleFactory *v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    ov104_0223470C(v0);
+    BattleFactory *factory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    BattleFactory_SetupNextOpponentsParty(factory);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
@@ -213,16 +211,16 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
 
     switch (command) {
     case BF_FUNC_UNK_0:
-        battleFactory->unk_07 = arg1;
+        battleFactory->unused2 = arg1;
         break;
-    case BF_FUNC_UNK_1:
+    case BF_FUNC_SET_IS_OPEN_LEVEL:
         battleFactory->isOpenLevel = arg1;
         break;
     case BF_FUNC_SET_CHALLENGE_TYPE:
         battleFactory->challengeType = arg1;
         break;
-    case BF_FUNC_UNK_3:
-        *returnVar = battleFactory->unk_4DC[arg1];
+    case BF_FUNC_GET_SELECTED_APP_SLOT:
+        *returnVar = battleFactory->selectedAppSlots[arg1];
         break;
     case BF_FUNC_GET_CURRENT_STREAK:
         *returnVar = battleFactory->currentStreak;
@@ -235,84 +233,84 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
     case BF_FUNC_RESET_SYSTEM:
         OS_ResetSystem(0);
         break;
-    case BF_FUNC_UNK_9:
+    case BF_FUNC_HAS_SAVED:
         *returnVar = BattleFactorySave_HasSaved(battleFactory->factorySave);
         break;
-    case BF_FUNC_UNK_10:
-        ov104_02234148(battleFactory, 2);
+    case BF_FUNC_QUICKSAVE:
+        BattleFactory_Save(battleFactory, 2);
         break;
-    case BF_FUNC_UNK_14:
-        *returnVar = ov104_02234430(battleFactory);
+    case BF_FUNC_INCREMENT_CURRENT_BATTLE:
+        *returnVar = BattleFactory_IncrementCurrentBattle(battleFactory);
         break;
-    case BF_FUNC_UNK_15:
-        *returnVar = battleFactory->unk_3F0[arg1].species;
+    case BF_FUNC_GET_MONS_SPECIES:
+        *returnVar = battleFactory->opponentMons[arg1].species;
         break;
-    case BF_FUNC_UNK_16:
-        *returnVar = battleFactory->unk_3F0[arg1].moves[arg2];
+    case BF_FUNC_GET_MONS_MOVE:
+        *returnVar = battleFactory->opponentMons[arg1].moves[arg2];
         break;
-    case BF_FUNC_UNK_17: {
-        Pokemon *v3 = Pokemon_New(HEAP_ID_FIELD2);
-        FrontierPokemon_InitPokemon(&battleFactory->unk_3F0[arg1], v3, BattleFactory_GetPokemonLevel(battleFactory));
-        *returnVar = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
-        Heap_Free(v3);
+    case BF_FUNC_GET_MONS_TYPE: {
+        Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
+        FrontierPokemon_InitPokemon(&battleFactory->opponentMons[arg1], mon, BattleFactory_GetPokemonLevel(battleFactory));
+        *returnVar = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
+        Heap_Free(mon);
     } break;
-    case BF_FUNC_UNK_18: {
-        int v0[18];
-        u8 v5 = BattleFactory_GetOpponentPartySize(battleFactory->challengeType, 1);
+    case BF_FUNC_GET_COMMON_TYPE: {
+        int typeCounts[NUM_POKEMON_TYPES];
+        u8 partySize = BattleFactory_GetOpponentPartySize(battleFactory->challengeType, TRUE);
 
-        for (i = 0; i < (17 + 1); i++) {
-            v0[i] = 0;
+        for (i = 0; i < NUM_POKEMON_TYPES; i++) {
+            typeCounts[i] = 0;
         }
 
-        Pokemon *v3 = Pokemon_New(HEAP_ID_FIELD2);
+        Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
 
-        for (i = 0; i < v5; i++) {
-            FrontierPokemon_InitPokemon(&battleFactory->unk_3F0[i], v3, BattleFactory_GetPokemonLevel(battleFactory));
+        for (i = 0; i < partySize; i++) {
+            FrontierPokemon_InitPokemon(&battleFactory->opponentMons[i], mon, BattleFactory_GetPokemonLevel(battleFactory));
 
-            u32 v7 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
-            u32 v8 = Pokemon_GetValue(v3, MON_DATA_TYPE_2, NULL);
+            u32 type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
+            u32 type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
 
-            if (v7 == v8) {
-                v8 = 0xff;
+            if (type1 == type2) {
+                type2 = 0xff;
             }
 
-            v0[v7]++;
+            typeCounts[type1]++;
 
-            if (v8 != 0xff) {
-                v0[v8]++;
-            }
-        }
-
-        Heap_Free(v3);
-
-        u32 v9 = 0;
-
-        for (i = 0; i < (17 + 1); i++) {
-            if (v0[v9] < v0[i]) {
-                v9 = i;
+            if (type2 != 0xff) {
+                typeCounts[type2]++;
             }
         }
 
-        if (v0[v9] <= 1) {
+        Heap_Free(mon);
+
+        u32 commonType = 0;
+
+        for (i = 0; i < NUM_POKEMON_TYPES; i++) {
+            if (typeCounts[commonType] < typeCounts[i]) {
+                commonType = i;
+            }
+        }
+
+        if (typeCounts[commonType] <= 1) {
             *returnVar = 0xff;
         } else {
-            *returnVar = v9;
+            *returnVar = commonType;
         }
     } break;
-    case BF_FUNC_UNK_19:
-        *returnVar = ov104_0223AF34(battleFactory);
+    case BF_FUNC_GET_CURRENT_ROUND:
+        *returnVar = BattleFactory_GetCurrentRound(battleFactory);
         break;
-    case BF_FUNC_UNK_20:
-        *returnVar = ov104_02234440(battleFactory, arg1);
+    case BF_FUNC_GET_OPPONENT_OBJECT_ID:
+        *returnVar = BattleFactory_GetNextOpponentObjectID(battleFactory, arg1);
         break;
-    case BF_FUNC_UNK_21:
-        ov104_02234474(battleFactory);
+    case BF_FUNC_SAVE_ON_LOSS:
+        BattleFactory_SaveOnLoss(battleFactory);
         break;
-    case BF_FUNC_UNK_22:
-        ov104_02234480(battleFactory);
+    case BF_FUNC_SAVE_ON_COMPLETING_ROUND:
+        BattleFactory_SaveOnCompletingRound(battleFactory);
         break;
-    case BF_FUNC_UNK_23:
-        *returnVar = ov104_0223443C(battleFactory);
+    case BF_FUNC_GET_CURRENT_BATTLE:
+        *returnVar = BattleFactory_GetCurrentBattle(battleFactory);
         break;
     case BF_FUNC_UNK_24:
         *returnVar = battleFactory->unk_57C;
@@ -320,7 +318,7 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
     case BF_FUNC_UNK_26:
         *returnVar = battleFactory->unk_57D;
         break;
-    case BF_FUNC_UNK_27:
+    case BF_FUNC_INIT_COMM_MANAGER:
         sub_0209BA80(battleFactory);
         break;
     case BF_FUNC_IS_MULTIPLAYER_CHALLENGE:
@@ -329,80 +327,77 @@ BOOL FrontierScrCmd_CallBattleFactoryFunction(FrontierScriptContext *ctx)
     case BF_FUNC_GET_CHALLENGE_TYPE:
         *returnVar = battleFactory->challengeType;
         break;
-    case BF_FUNC_UNK_30:
-        Bg_ChangeTilemapRectPalette(graphics->bgConfig, 3, 3, 10, 26, 11, arg1);
-        Bg_ScheduleTilemapTransfer(graphics->bgConfig, 3);
+    case BF_FUNC_UPDATE_BACKGROUND:
+        Bg_ChangeTilemapRectPalette(graphics->bgConfig, BG_LAYER_MAIN_3, 3, 10, 26, 11, arg1);
+        Bg_ScheduleTilemapTransfer(graphics->bgConfig, BG_LAYER_MAIN_3);
         break;
-    case BF_FUNC_UNK_31:
-        battleFactory->unk_500 = SysTask_Start(ov104_022338B4, FrontierScriptManager_GetGraphics(ctx->scriptMan), 5);
+    case BF_FUNC_START_CORRIDOR_ANIMATION:
+        battleFactory->corridorAnimation = SysTask_Start(UpdateCorridorFloorBG, FrontierScriptManager_GetGraphics(ctx->scriptMan), 5);
         break;
-    case BF_FUNC_UNK_32:
-        if (battleFactory->unk_500 != NULL) {
-            SysTask_Done(battleFactory->unk_500);
-            battleFactory->unk_500 = NULL;
+    case BF_FUNC_STOP_CORRIDOR_ANIMATION:
+        if (battleFactory->corridorAnimation != NULL) {
+            SysTask_Done(battleFactory->corridorAnimation);
+            battleFactory->corridorAnimation = NULL;
         }
         break;
-    case BF_FUNC_UNK_33:
-        BattleFrontier_LoadTrainer(&(battleFactory->unk_34[0]), battleFactory->trainerIDs[battleFactory->unk_06], HEAP_ID_FIELD2, 178);
-        BattleFrontier_LoadTrainer(&(battleFactory->unk_34[1]), battleFactory->trainerIDs[battleFactory->unk_06 + 7], HEAP_ID_FIELD2, 178);
+    case BF_FUNC_LOAD_TRAINERS:
+        BattleFrontier_LoadTrainer(&battleFactory->opponents[0], battleFactory->trainerIDs[battleFactory->currentBattle], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+        BattleFrontier_LoadTrainer(&battleFactory->opponents[1], battleFactory->trainerIDs[battleFactory->currentBattle + FACTORY_BATTLES_PER_ROUND], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         break;
-    case BF_FUNC_UNK_34: {
-        u8 v6 = BattleFactory_GetPlayerPartySize(battleFactory->challengeType);
+    case BF_FUNC_SET_RENTED_MONS_IN_STRING: {
+        u8 partySize = BattleFactory_GetPlayerPartySize(battleFactory->challengeType);
 
-        for (i = 0; i < v6; i++) {
-            Pokemon *v3 = Party_GetPokemonBySlotIndex(battleFactory->playersParty, i);
-            StringTemplate_SetSpeciesName(ctx->scriptMan->strTemplate, i, Pokemon_GetBoxPokemon(v3));
+        for (i = 0; i < partySize; i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(battleFactory->playersParty, i);
+            StringTemplate_SetSpeciesName(ctx->scriptMan->strTemplate, i, Pokemon_GetBoxPokemon(mon));
         }
     } break;
-    case BF_FUNC_UNK_35:
-        *returnVar = ov104_022347F8(battleFactory);
+    case BF_FUNC_GET_EARNED_BP:
+        *returnVar = BattleFactory_GetEarnedBP(battleFactory);
         break;
-    case BF_FUNC_UNK_36:
-        ov104_02234790(battleFactory);
+    case BF_FUNC_INCREMENT_TRADE_COUNT:
+        BattleFactory_IncrementTradeCount(battleFactory);
         break;
-    case BF_FUNC_UNK_37:
-        *returnVar = 0;
+    case BF_FUNC_GET_NEXT_BATTLE_TYPE:
+        *returnVar = FRONTIER_NEXT_BATTLE_NORMAL;
 
-        if (battleFactory->challengeType == 0) {
-            if ((battleFactory->currentStreak + 1) == 21) {
-                *returnVar = 1;
-            } else if ((battleFactory->currentStreak + 1) == 49) {
-                *returnVar = 2;
+        if (battleFactory->challengeType == FRONTIER_CHALLENGE_SINGLE) {
+            if (battleFactory->currentStreak + 1 == FACTORY_STREAK_SILVER_BATTLE) {
+                *returnVar = FRONTIER_NEXT_BATTLE_SILVER;
+            } else if (battleFactory->currentStreak + 1 == FACTORY_STREAK_GOLD_BATTLE) {
+                *returnVar = FRONTIER_NEXT_BATTLE_GOLD;
             }
         }
         break;
-    case BF_FUNC_UNK_38:
-        ov104_0223AE30(battleFactory);
+    case BF_FUNC_UPDATE_PARTNERS_PARTY:
+        BattleFactory_UpdatePartnersParty(battleFactory);
         break;
-    case BF_FUNC_UNK_39:
-        BattleFrontier_LoadFrontierPokemon(battleFactory->unk_3F0, battleFactory->unk_3D2, battleFactory->unk_3DA, battleFactory->unk_3E0, NULL, 4, 11, 179);
+    case BF_FUNC_CREATE_OPPONENT_MONS:
+        BattleFrontier_LoadFrontierPokemon(battleFactory->opponentMons, battleFactory->opponentMonSetIDs, battleFactory->opponentMonIVs, battleFactory->opponentMonPersonalities, NULL, FACTORY_MAX_PARTY_SIZE, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
         break;
-    case BF_FUNC_UNK_40:
-        ov104_0223ADB0(battleFactory);
+    case BF_FUNC_CREATE_INITAL_PARTY:
+        BattleFactory_CreateInitialRentalParty(battleFactory);
         break;
-    case BF_FUNC_UNK_41:
-        *returnVar = battleFactory->unk_0B;
-        battleFactory->unk_0B = 1;
+    case BF_FUNC_CHECK_SEEN_HEAD_INTRO:
+        *returnVar = battleFactory->seenFactoryHeadIntro;
+        battleFactory->seenFactoryHeadIntro = TRUE;
         break;
     }
 
     return FALSE;
 }
 
-void ov104_022338B4(SysTask *param0, void *param1)
+void UpdateCorridorFloorBG(SysTask *task, void *data)
 {
-    int v0;
-    FrontierGraphics *v1 = param1;
+    FrontierGraphics *graphics = data;
 
-    v0 = Bg_GetYOffset(v1->bgConfig, 2);
+    int offset = Bg_GetYOffset(graphics->bgConfig, BG_LAYER_MAIN_2);
 
-    if (v0 >= 255) {
-        Bg_ScheduleScroll(v1->bgConfig, 2, 3, 0);
+    if (offset >= 255) {
+        Bg_ScheduleScroll(graphics->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
     } else {
-        Bg_ScheduleScroll(v1->bgConfig, 2, 4, 1);
+        Bg_ScheduleScroll(graphics->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_ADD_Y, 1);
     }
-
-    return;
 }
 
 BOOL FrontierScrCmd_BattleFactory_CheckWonBattle(FrontierScriptContext *ctx)
@@ -415,59 +410,53 @@ BOOL FrontierScrCmd_BattleFactory_CheckWonBattle(FrontierScriptContext *ctx)
     return FALSE;
 }
 
-BOOL FrontierScrCmd_69(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleFactory_SendCommMessage(FrontierScriptContext *ctx)
 {
-    BattleFactory *v0;
-    u16 v1 = FrontierScriptContext_GetVar(param0);
-    u16 v2 = FrontierScriptContext_GetVar(param0);
-    u16 *v3 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 command = FrontierScriptContext_GetVar(ctx);
+    u16 arg = FrontierScriptContext_GetVar(ctx);
+    u16 *success = FrontierScriptContext_TryGetVarPointer(ctx);
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
-    *v3 = ov104_022347A4(v0, v1, v2);
+    BattleFactory *factory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
+    *success = BattleFactory_SendCommMessage(factory, command, arg);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL FrontierScrCmd_6A(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleFactory_WaitForCommResponses(FrontierScriptContext *ctx)
 {
-    u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
+    ctx->data[0] = FrontierScriptContext_ReadHalfWord(ctx);
+    FrontierScriptContext_Pause(ctx, WaitForCommResponse);
 
-    param0->data[0] = v0;
-    FrontierScriptContext_Pause(param0, ov104_0223394C);
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov104_0223394C(FrontierScriptContext *param0)
+static BOOL WaitForCommResponse(FrontierScriptContext *ctx)
 {
-    BattleFactory *v0;
-    u16 v1 = FrontierScriptContext_TryGetVar(param0, param0->data[0]);
+    UNUSED(FrontierScriptContext_TryGetVar(ctx, ctx->data[0]));
 
-    v0 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
+    BattleFactory *factory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (v0->unk_702 >= 2) {
-        v0->unk_702 = 0;
-        return 1;
+    if (factory->msgsReceived >= 2) {
+        factory->msgsReceived = 0;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL FrontierScrCmd_6B(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_BattleFactory_PrintTrainerIntro(FrontierScriptContext *ctx)
 {
-    u16 *v0;
-    BattleFactory *v1;
-    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(param0->scriptMan->frontier);
-    u16 v3 = FrontierScriptContext_ReadByte(param0);
+    FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
+    u16 index = FrontierScriptContext_ReadByte(ctx);
 
-    v1 = BattleFrontier_GetFacilityStruct(param0->scriptMan->frontier);
+    BattleFactory *factory = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (v1 == NULL) {
-        return 0;
+    if (factory == NULL) {
+        return FALSE;
     }
 
-    v0 = v1->unk_34[v3].trainer.introMsg;
+    u16 *introMsg = factory->opponents[index].trainer.introMsg;
 
-    BattleFrontier_PrintNormalTrainerMessage(param0, v0);
-    return 1;
+    BattleFrontier_PrintNormalTrainerMessage(ctx, introMsg);
+    return TRUE;
 }

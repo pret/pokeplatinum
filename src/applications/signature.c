@@ -664,7 +664,7 @@ static void SignatureApp_HandleTouchInput(SignatureApp *signatureApp)
                 SignatureApp_PrintMessage(signatureApp, Drawing_Text_IsThisOK);
                 signatureApp->subState = SIGNATURE_APP_SUBSTATE_DONE_PRESSED;
                 SignatureApp_AnimateDoneButton(signatureApp->sprite, TRUE);
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             }
         } else {
             // impossible to hit this case
@@ -1138,14 +1138,14 @@ static void SignatureApp_HandleDrawingSoundEffects(SignatureApp *signatureApp)
 static void SignatureApp_PlayDrawingSoundEffect(DrawingState *drawingState)
 {
     if (drawingState->previousXDirection == 0 && drawingState->previousYDirection == 0) {
-        if (!Sound_IsEffectPlaying(SEQ_SE_DP_KYU01)) {
-            Sound_PlayEffect(SEQ_SE_DP_KYU01);
+        if (!Sound_IsEffectPlaying(SEQ_SE_DP_KYU01_sseq)) {
+            Sound_PlayEffect(SEQ_SE_DP_KYU01_sseq);
         }
     }
 
     if (drawingState->previousXDirection * drawingState->currentXDirection < 0 || drawingState->previousYDirection * drawingState->currentYDirection < 0) {
-        if (!Sound_IsEffectPlaying(SEQ_SE_DP_KYU01)) {
-            Sound_PlayEffect(SEQ_SE_DP_KYU01);
+        if (!Sound_IsEffectPlaying(SEQ_SE_DP_KYU01_sseq)) {
+            Sound_PlayEffect(SEQ_SE_DP_KYU01_sseq);
         }
     }
 

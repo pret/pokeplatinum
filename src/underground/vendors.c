@@ -656,12 +656,12 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->listMenuPos);
 
         if (prevPos != menu->listMenuPos) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
 
         switch (input) {
         case MENU_CANCEL:
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             UndergroundVendors_EraseCurrentMenu(menu, FALSE);
             menu->state = SHOP_MENU_STATE_EXIT_MESSAGE;
             break;
@@ -675,10 +675,10 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
                 menu->isSelling = input;
 
                 if (input == 0) {
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     menu->state = SHOP_MENU_STATE_INIT_BUY_MENU;
                 } else {
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     menu->state = SHOP_MENU_STATE_INIT_SELL_MENU;
                 }
             }
@@ -699,7 +699,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->listMenuPos);
 
         if (prevPos != menu->listMenuPos) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
 
         // make sure we have the right type of -2
@@ -713,14 +713,14 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
 
         switch (input) {
         case MENU_CANCEL:
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             UndergroundVendors_EraseCurrentMenu(menu, TRUE);
             menu->state = SHOP_MENU_STATE_INIT_OPTIONS_MENU;
             break;
         case MENU_NOTHING_CHOSEN:
             break;
         default:
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             menu->shopSelection = input;
 
             if (menu->vendorType == VENDOR_TYPE_TRAPS) {
@@ -812,7 +812,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
                 }
 
                 UndergroundVendors_PrintNPCMessage(UndergroundNPCs_Text_ItemWasObtained);
-                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
 
                 menu->state = SHOP_MENU_STATE_END_TRANSACTION;
             }
@@ -906,7 +906,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
                 UndergroundVendors_SetTreasureNameForPrinter(2, menu->shopPriceTypes[0]);
                 UndergroundVendors_PrintNPCMessage(UndergroundNPCs_Text_YouObtainedSphere);
 
-                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
 
                 menu->state = SHOP_MENU_STATE_END_TRANSACTION;
             }
@@ -954,7 +954,7 @@ void UndergroundVendors_StartShopMenuTask(FieldSystem *fieldSystem)
     menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
     menu->state = SHOP_MENU_STATE_INTRO_MESSAGE;
 
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
     menu->sysTask = SysTask_Start(UndergroundVendors_ShopMenuTask, menu, 10000);
     UndergroundMan_SetCurrentSysTask(menu, menu->sysTask, UndergroundMenu_ResetBrightnessAndExit);
 

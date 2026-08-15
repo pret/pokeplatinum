@@ -179,24 +179,24 @@ static int ProcessListMenuInputRegulations(BattleRegulationMenu *menu)
     ListMenu_CalcTrueCursorPos(menu->listMenuRegulations, &menu->unk_80);
 
     if (v1 != menu->unk_80) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     switch (input) {
     case MENU_NOTHING_CHOSEN:
         return 0;
     case 12:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         menu->fieldSystem->battleRegulation = NULL;
         RemoveListMenuRegulations(menu);
         return 2;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         menu->fieldSystem->battleRegulation = NULL;
         RemoveListMenuRegulations(menu);
         return -1;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         menu->fieldSystem->battleRegulation = BattleRegulation_GetByIndex(menu->fieldSystem->saveData, input);
         break;
     }
@@ -249,18 +249,18 @@ static int ProcessListMenuInputConfirm(BattleRegulationMenu *menu)
     ListMenu_CalcTrueCursorPos(menu->listMenuConfirm, &menu->unk_82);
 
     if (v1 != menu->unk_82) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     switch (input) {
     case MENU_NOTHING_CHOSEN:
         return 0;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         input = -1;
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         RemoveListMenuRegulations(menu);
         break;
     }
@@ -417,7 +417,7 @@ static BOOL HandleBattleRegulationValidationResult(BattleRegulationMenu *menu)
     case BATTLE_REGULATION_VALIDATION_RESULT_SUCCESS:
         return TRUE;
     case BATTLE_REGULATION_VALIDATION_RESULT_INVALID_TEAM_SIZE:
-        Sound_PlayEffect(SEQ_SE_DP_BOX03);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
         GetBattleRegulationName(menu, menu->cursorPosRegulations - 1);
         ruleValue = BattleRegulation_GetRuleValue(menu->fieldSystem->battleRegulation, BATTLE_REGULATION_RULE_TEAM_SIZE);
         StringTemplate_SetNumber(menu->strTemplate, 1, ruleValue, 1, PADDING_MODE_SPACES, CHARSET_MODE_EN);
@@ -425,7 +425,7 @@ static BOOL HandleBattleRegulationValidationResult(BattleRegulationMenu *menu)
         break;
     default:
     case BATTLE_REGULATION_VALIDATION_RESULT_TOTAL_LEVEL_EXCEEDED:
-        Sound_PlayEffect(SEQ_SE_DP_BOX03);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
         GetBattleRegulationName(menu, menu->cursorPosRegulations - 1);
         ruleValue = BattleRegulation_GetRuleValue(menu->fieldSystem->battleRegulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
         StringTemplate_SetNumber(menu->strTemplate, 1, ruleValue, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);

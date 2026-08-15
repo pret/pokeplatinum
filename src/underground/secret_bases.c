@@ -1634,7 +1634,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         FinishScreenFade();
         StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_TOP_HALF_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         UndergroundTopScreen_EndTask(fieldSystem->ugTopScreenCtx);
-        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2_sseq);
         ctx->state++;
         break;
     case MOVE_STATE_WAIT_FOR_FADE_OUT:
@@ -1719,7 +1719,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         PlayerAvatar_SetMapObjMovement(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(DIR_SOUTH, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH), 1);
         CommPlayer_SetDir(DIR_SOUTH);
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_BlockedEntranceToDecorate, FALSE, NULL);
-        Sound_PlayEffect(SEQ_SE_DP_DOOR);
+        Sound_PlayEffect(SEQ_SE_DP_DOOR_sseq);
         ctx->state = MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT;
         break;
     case MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT:
@@ -1800,7 +1800,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
 
         CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_SetUndergroundTrapName(UndergroundMan_GetCommonTextPrinter(), TRAP_DIGGER_DRILL);
-        Sound_PlayEffect(SEQ_SE_DP_DORIRU);
+        Sound_PlayEffect(SEQ_SE_DP_DORIRU_sseq);
 
         ov5_021F58FC(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar), 0, 0, 0);
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_ItemWasUsed, FALSE, NULL);
@@ -2392,7 +2392,7 @@ static void SecretBases_FlagRankUpTask(SysTask *sysTask, void *data)
     case FLAG_RANK_UP_STATE_PRINT_FLAG_REGISTERED:
         CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_ObtainedFlagWasRegistered, FALSE, NULL);
-        Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+        Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
         ctx->state = FLAG_RANK_UP_STATE_PRINT_RANK_UP;
         break;
     case FLAG_RANK_UP_STATE_PRINT_RANK_UP:

@@ -374,7 +374,7 @@ static int TradeTubePhase_Exit(TradeTubePhase *ttPhase, int *subStepCounter)
     case 3:
         if (ttPhase->timer < 40) {
             if (++(ttPhase->timer) == 40) {
-                Sound_PlayEffect(SEQ_SE_DP_KOUKAN10);
+                Sound_PlayEffect(SEQ_SE_DP_KOUKAN10_sseq);
             }
         }
 

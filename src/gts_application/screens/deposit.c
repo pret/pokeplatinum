@@ -538,7 +538,7 @@ static int GTSDeposit_HandleCharpadInput(GTSApplicationState *appState)
         ListMenu_Free(appState->activeListMenu, &appState->speciesMenuState->charpadScrollPos, &appState->speciesMenuState->charpadCursorPos);
         StringList_Free(appState->menuStringList);
         appState->currentScreenInstruction = GTSDEPOSIT_SHOW_SPECIES_MENU;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     case MENU_CANCEL:
         ListMenu_Free(appState->activeListMenu, &appState->speciesMenuState->charpadScrollPos, &appState->speciesMenuState->charpadCursorPos);
@@ -549,7 +549,7 @@ static int GTSDeposit_HandleCharpadInput(GTSApplicationState *appState)
         Window_Remove(&appState->menuButtonWindows[1]);
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_CHOOSE_OFFER_MON);
         appState->currentScreenInstruction = GTSDEPOSIT_BEGIN_EXIT;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     }
 
@@ -595,7 +595,7 @@ static int GTSDeposit_HandleSpeciesInput(GTSApplicationState *appState)
         Window_Remove(&appState->menuButtonWindows[0]);
         Window_Remove(&appState->menuButtonWindows[1]);
         appState->currentScreenInstruction = GTSDEPOSIT_WAIT_FADE_IN;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         GTS_SaveTabScrollState(&appState->charpadScrollState, appState->speciesMenuState->charpadScrollPos + appState->speciesMenuState->charpadCursorPos, appState->speciesMenuState->speciesListScrollPos, appState->speciesMenuState->speciesListCursorPos);
         break;
     default:
@@ -608,7 +608,7 @@ static int GTSDeposit_HandleSpeciesInput(GTSApplicationState *appState)
         Window_Remove(&appState->menuButtonWindows[0]);
         Window_Remove(&appState->menuButtonWindows[1]);
         appState->depositRequirements.species = input;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->speciesMenuState->selectedSpeciesGenderRatio = SpeciesData_GetSpeciesValue(input, SPECIES_DATA_GENDER_RATIO);
 
         if (GTSDeposit_TryAutoSetGender(&appState->depositRequirements, appState->speciesMenuState->selectedSpeciesGenderRatio)) {
@@ -658,7 +658,7 @@ static int GTSDeposit_HandleGenderInput(GTSApplicationState *appState)
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->menuButtonWindows[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->currentScreenInstruction = GTSDEPOSIT_WAIT_FADE_IN;
         break;
 
@@ -669,7 +669,7 @@ static int GTSDeposit_HandleGenderInput(GTSApplicationState *appState)
         StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_Remove(&appState->menuButtonWindows[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         appState->depositRequirements.gender = input + 1;
         appState->currentScreenInstruction = GTSDEPOSIT_SHOW_LEVEL_PROMPT;
         GTSDeposit_DrawWantedCriteria(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->infoWindows[0], appState->depositRequirements.species, appState->depositRequirements.gender, -1);
@@ -713,7 +713,7 @@ static int GTSDeposit_HandleLevelInput(GTSApplicationState *appState)
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->menuButtonWindows[0]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (GTSDeposit_TryAutoSetGender(&appState->depositRequirements, appState->speciesMenuState->selectedSpeciesGenderRatio)) {
             appState->currentScreenInstruction = GTSDEPOSIT_WAIT_FADE_IN;
@@ -722,7 +722,7 @@ static int GTSDeposit_HandleLevelInput(GTSApplicationState *appState)
         }
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         ListMenu_Free(appState->activeListMenu, NULL, NULL);
         StringList_Free(appState->menuStringList);
         Window_EraseStandardFrame(&appState->menuButtonWindows[0], 0);
@@ -1249,7 +1249,7 @@ u32 GTS_ProcessListMenuInput(ListMenu *menu, u16 *input)
 
     if (*input != pos) {
         if (*input != 0xffff) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
 
         *input = pos;

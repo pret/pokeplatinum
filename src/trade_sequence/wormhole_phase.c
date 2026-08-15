@@ -111,7 +111,7 @@ static int TradeWormholePhase_Animate(TradeWormholePhase *twPhase, int *subStepC
         break;
     case 1:
         if (twPhase->scrollDone) {
-            Sound_PlayEffect(SEQ_SE_DP_KOUKAN03);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN03_sseq);
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_58);
             (*subStepCounter)++;
         }

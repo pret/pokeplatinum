@@ -1045,7 +1045,7 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endE
 static void RowanIntro_ListMenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
 {
     if (onInit == FALSE) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 
@@ -1133,7 +1133,7 @@ static BOOL RowanIntro_ChoiceBox(RowanIntro *manager, enum ChoicesCase choicesCa
         Window_Remove(&manager->choiceBoxWindow);
         ListMenu_Free(manager->listMenu, NULL, NULL);
         StringList_Free(manager->choices);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         manager->choiceBoxState = 0;
         isFinished = TRUE;
@@ -1240,7 +1240,7 @@ static BOOL RowanIntro_DisplayTextBlock(
         break;
     case DTB_STATE_WAIT_FOR_INPUT:
         if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             manager->displayTextBlockState = DTB_STATE_FADE_OUT_TEXT;
         }
         break;
@@ -2026,8 +2026,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
 
     switch (manager->state) {
     case RI_STATE_FIRST_FADE_BLACK_START:
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_2, SEQ_OPENING, 1);
-        Sound_StopBGM(SEQ_OPENING, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_2, SEQ_OPENING_sseq, 1);
+        Sound_StopBGM(SEQ_OPENING_sseq, 0);
         Bg_ToggleLayer(BG_LAYER_MAIN_0, TRUE);
         Bg_ToggleLayer(BG_LAYER_SUB_3, TRUE);
         StartScreenFade(
@@ -2056,7 +2056,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_FADE_IN_ROWAN_START:
-        Sound_PlayBGM(SEQ_OPENING);
+        Sound_PlayBGM(SEQ_OPENING_sseq);
         manager->bgLayer1TilemapIndex = 1;
         manager->bgLayer2TilemapIndex = 0;
         RowanIntro_LoadTilemap(manager);
@@ -2444,7 +2444,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 int pokeballTextureNARCIndices[] = { 33, 34, 0xffff };
 
                 if (pokeballTextureNARCIndices[manager->animData.progressCounter] == 0xffff) {
-                    Sound_PlayEffect(SEQ_SE_DP_BOWA2);
+                    Sound_PlayEffect(SEQ_SE_DP_SLOT01_sseq_1);
 
                     manager->state = RI_STATE_PKBL_ANIM_FLASH_0;
                 } else {
@@ -2623,7 +2623,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 manager->playerGender = GENDER_MALE;
             }
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
 
         RowanIntro_AnimateAvatarRun(manager);

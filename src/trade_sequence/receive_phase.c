@@ -393,7 +393,7 @@ static int TradeReceivePhase_ShowMessage(TradeReceivePhase *trPhase, int *subSte
 
             Window_DrawMessageBox(&(trPhase->window), 109, 2);
             Window_CopyToVRAM(&(trPhase->window));
-            Sound_PlayFanfare(SEQ_FANFA5);
+            Sound_PlayFanfare(SEQ_FANFA5_sseq);
 
             trPhase->timer = 0;
             trPhase->fanfarePlaying = 1;
@@ -673,7 +673,7 @@ static void BallOpenState_Task(SysTask *task, void *param)
         Trade3DModel_SetPosition(boState->model, &(boState->position));
 
         if (boState->position.y < BALL_FLOOR_Y) {
-            Sound_PlayEffect(SEQ_SE_DP_KON);
+            Sound_PlayEffect(SEQ_SE_DP_KON_sseq);
             boState->velocityY *= -1;
 
             BrightnessAnimState_Start(boState->phase, 0, 16, 8);

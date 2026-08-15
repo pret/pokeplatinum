@@ -9,8 +9,8 @@
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/battle_hall.h"
 #include "overlay104/battle_hall_helpers.h"
+#include "overlay104/frontier_communication.h"
 #include "overlay104/frontier_opponents.h"
-#include "overlay104/ov104_0222ECE8.h"
 
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
@@ -317,19 +317,19 @@ BOOL BattleHall_SendCommMessage(BattleHall *battleHall, u16 command, u16 arg)
 
     switch (command) {
     case 0:
-        success = ov104_0222ED00(battleHall);
+        success = FrontierCommunication_Unreachable2(battleHall);
         break;
     case 1:
-        success = ov104_0222ED44(battleHall);
+        success = HallCommunication_SendTrainers(battleHall);
         break;
     case 2:
-        success = ov104_0222EDA8(battleHall);
+        success = HallCommunication_SendOpponentMons(battleHall);
         break;
     case 3:
         success = ov104_0222EE14(battleHall, arg);
         break;
     case 7:
-        success = ov104_0222EE60(battleHall);
+        success = HallCommunication_SendPlayersPokemon(battleHall);
         break;
     }
 

@@ -31,7 +31,7 @@ BattleFactory_HideBattleFrontierReporter:
     End
 
 BattleFactory_SingleAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, 0
@@ -40,7 +40,7 @@ BattleFactory_SingleAttendant:
     End
 
 BattleFactory_MultiAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, 0
@@ -227,7 +227,7 @@ BattleFactory_WalkIntoCorridor:
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleFactory_WalkToCorridorSingleChallenge
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleFactory_WalkToCorridorDoubleChallenge
     CallIfEq VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleFactory_WalkToCorridorMultiChallenge
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     GoTo BattleFactory_StartChallenge
     End
 
@@ -410,8 +410,8 @@ BattleFactory_SaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlaySE SEQ_SE_DP_SAVE
-    WaitSE SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE_sseq
+    WaitSE SEQ_SE_DP_SAVE_sseq
     Return
 
 BattleFactory_OnFrame_DidntSaveBeforeQuit:
@@ -436,7 +436,7 @@ BattleFactory_EarnedSilverPrint:
     Message BattleFactory_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleFactory_Text_SilverPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_FACTORY_PRINT_STATE, 2
     Return
@@ -445,7 +445,7 @@ BattleFactory_EarnedGoldPrint:
     Message BattleFactory_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleFactory_Text_GoldPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_FACTORY_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained

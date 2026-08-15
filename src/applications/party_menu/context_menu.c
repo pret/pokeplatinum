@@ -535,7 +535,7 @@ BOOL PartyMenu_DoSwitch(PartyMenuApplication *application)
 
     switch (orderSwitch->state) {
     case SWITCHSTATE_SCROLL_OUT_SOUND:
-        Sound_PlayEffect(SEQ_SE_DP_POKELIST_001);
+        Sound_PlayEffect(SEQ_SE_DP_POKELIST_001_sseq);
         orderSwitch->state = SWITCHSTATE_SCROLL_OUT;
         break;
 
@@ -556,7 +556,7 @@ BOOL PartyMenu_DoSwitch(PartyMenuApplication *application)
 
     case SWITCHSTATE_SCROLL_IN_SOUND:
         SwapSwitchedSlots(application);
-        Sound_PlayEffect(SEQ_SE_DP_POKELIST_001);
+        Sound_PlayEffect(SEQ_SE_DP_POKELIST_001_sseq);
         orderSwitch->state = SWITCHSTATE_SCROLL_IN;
         break;
 

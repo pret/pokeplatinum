@@ -30,7 +30,7 @@ BattlePark_CoordEvent_PalmerRival:
     ApplyMovement LOCALID_PALMER, BattlePark_Movement_PalmerRivalEnter
     ApplyMovement LOCALID_PLAYER, BattlePark_Movement_PlayerGetPushedBack
     WaitMovement
-    PlaySE SEQ_SE_DP_WALL_HIT2
+    PlaySE SEQ_SE_DP_WALL_HIT2_sseq
     BufferPlayerName 1
     Message BattlePark_Text_BigThudPalmer
     CloseMessage
@@ -58,7 +58,7 @@ BattlePark_CoordEvent_PalmerRival:
     ApplyMovement LOCALID_RIVAL, BattlePark_Movement_PalmerRivalEnter
     ApplyMovement LOCALID_PLAYER, BattlePark_Movement_PlayerGetPushedBack
     WaitMovement
-    PlaySE SEQ_SE_DP_WALL_HIT2
+    PlaySE SEQ_SE_DP_WALL_HIT2_sseq
     BufferRivalName 0
     BufferPlayerName 1
     Message BattlePark_Text_BigThudRival

@@ -2,11 +2,11 @@
 
 L_0:
     LoadParticleResource 0, take_down_spa
-    PlaySoundEffectL SEQ_SE_DP_W029
+    PlaySoundEffectL SEQ_SE_DP_W029_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -16, 8, 4
     WaitForAnimTasks
     Delay 15
-    PlaySoundEffectR SEQ_SE_DP_140
+    PlaySoundEffectR SEQ_SE_DP_140_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 32, -16, 4
     WaitForAnimTasks
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER

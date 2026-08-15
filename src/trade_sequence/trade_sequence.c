@@ -82,7 +82,7 @@ int TradeSequence_Init(ApplicationManager *appMan, int *unused)
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_57, 98304);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_58, 98304);
         DeferredFree_Init();
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN_sseq, 1);
 
         sequenceData = ApplicationManager_NewData(appMan, sizeof(TradeSequenceData), HEAP_ID_57);
 
@@ -283,7 +283,7 @@ static void PaletteShimmerEffect_VBlankTask(SysTask *task, void *param)
 
     if (shimmerEffect->stopping == 0) {
         if (--(shimmerEffect->spawnTimer) <= 0) {
-            Sound_PlayEffect(SEQ_SE_DP_KOUKAN08);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN08_sseq);
             shimmerEffect->spawnTimer = 30;
             PaletteShimmerEffect_SpawnSpark(shimmerEffect);
         }

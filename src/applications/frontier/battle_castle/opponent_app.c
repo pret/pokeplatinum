@@ -530,7 +530,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
         UpdateSelectedMon(app, gSystem.pressedKeys);
 
         if (JOY_NEW(PAD_BUTTON_A)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             if (app->selectedMonSlot >= app->exitSlot) {
                 return TRUE;
@@ -541,7 +541,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
             }
         } else if (JOY_NEW(PAD_BUTTON_B)) {
             if (app->selectedMonSlot != app->exitSlot) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 app->selectedMonSlot = app->exitSlot;
                 UpdateCursorPosition(app);
             }
@@ -549,7 +549,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
         break;
     case MAIN_SUBSTATE_MON_OPTIONS_MENU:
         input = ListMenu_ProcessInput(app->listMenu);
-        BattleCastleApp_PlaySound(input, SEQ_SE_CONFIRM);
+        BattleCastleApp_PlaySound(input, SE_CONFIRM_sseq_3);
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
@@ -731,7 +731,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
         break;
     case MAIN_SUBSTATE_SUMMARY_MENU:
         input = ListMenu_ProcessInput(app->listMenu);
-        BattleCastleApp_PlaySound(input, SEQ_SE_CONFIRM);
+        BattleCastleApp_PlaySound(input, SE_CONFIRM_sseq_3);
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
@@ -785,8 +785,8 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_OPPONENT_SUMMARY);
 
             if (rank == 2) {
-                Sound_StopEffect(SEQ_SE_CONFIRM, 0);
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_StopEffect(SE_CONFIRM_sseq_3, 0);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             } else {
                 app->selectedMenuEntry = input;
                 FreeListMenu2(app);
@@ -904,14 +904,14 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
         break;
     case MAIN_SUBSTATE_WAIT_RETURN_TO_SUMMARY_MENU:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             OpenSummaryMenu(app);
             app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
         }
         break;
     case MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
             PrintMonSelectionStrings(app);
             app->subState = MAIN_SUBSTATE_INIT;
@@ -923,7 +923,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
         } else if (JOY_NEW(PAD_KEY_RIGHT)) {
             ChangeSelectedMonOnSummaryDisplay(app, 1);
         } else if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             CloseSummaryScreen(app);
             OpenMonOptionsMenu(app);
             app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
@@ -935,7 +935,7 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
         } else if (JOY_NEW(PAD_KEY_RIGHT)) {
             ChangeSelectedMonOnMoveDisplay(app, 1);
         } else if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             CloseSummaryScreen(app);
             OpenMonOptionsMenu(app);
             app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
@@ -1733,7 +1733,7 @@ static void UpdateMonMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit)
     BattleCastleOpponentApp *app = (BattleCastleOpponentApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (!onInit) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     u16 pos;
@@ -1788,7 +1788,7 @@ static void UpdateSummaryMenuEntryDescription(ListMenu *menu, u32 item, u8 onIni
     BattleCastleOpponentApp *app = (BattleCastleOpponentApp *)ListMenu_GetAttribute(menu, 19);
 
     if (!onInit) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     u16 pos;
@@ -2008,7 +2008,7 @@ static void UpdateSelectedMon(BattleCastleOpponentApp *app, int unused)
 
 static void UpdateCursorPosition(BattleCastleOpponentApp *app)
 {
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
     if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
         SendCommMessage(app, COMM_CMD_UPDATE_CURSOR, app->selectedMonSlot);
@@ -2123,7 +2123,7 @@ static BOOL UpdateAfterPurchase(BattleCastleOpponentApp *app, u8 selectedSlot, u
     case MENU_ENTRY_STATS:
         if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 ShowMonSummary(app, selectedSlot);
                 app->arrowSpriteVisible = FALSE;
                 return TRUE;
@@ -2136,7 +2136,7 @@ static BOOL UpdateAfterPurchase(BattleCastleOpponentApp *app, u8 selectedSlot, u
     case MENU_ENTRY_MOVES:
         if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 ShowMovesList(app, selectedSlot);
                 app->arrowSpriteVisible = FALSE;
                 return TRUE;
@@ -2468,7 +2468,7 @@ static void BuyStatsDisplay(BattleCastleOpponentApp *app, u8 slot)
     UnlockStatsForSlot(app, slot);
     UpdateAllFlagSprites(app);
 
-    Sound_PlayEffect(SEQ_SE_DP_UG_020);
+    Sound_PlayEffect(SEQ_SE_DP_UG_020_sseq);
 }
 
 static void ShowMovesList(BattleCastleOpponentApp *app, u8 slot)
@@ -2500,7 +2500,7 @@ static void BuyMovesListDisplay(BattleCastleOpponentApp *app, u8 slot)
     UnlockMovesForSlot(app, slot);
     UpdateAllFlagSprites(app);
 
-    Sound_PlayEffect(SEQ_SE_DP_UG_020);
+    Sound_PlayEffect(SEQ_SE_DP_UG_020_sseq);
 }
 
 static void FreeSimpleMenu(BattleCastleOpponentApp *app)
@@ -2604,7 +2604,7 @@ static void PrintPlayersAndPartnersNames(BattleCastleOpponentApp *app, Window *w
 
 static void SpendCastlePointsInSync(BattleCastleOpponentApp *app, u8 slotID, u8 menuOption)
 {
-    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
 
     u8 slot, exitSlot;
     exitSlot = app->exitSlot;
@@ -2680,7 +2680,7 @@ static void RevealPokemonInSlot(BattleCastleOpponentApp *app, u8 slot)
     PrintAllMonsLevelAndGender(app, &app->windows[OPPONENT_APP_WINDOW_LEVELS]);
     BattleCastleAppSprite_SetDrawFlag(app->barSprites[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)], TRUE);
 
-    Sound_PlayEffect(SEQ_SE_DP_UG_020);
+    Sound_PlayEffect(SEQ_SE_DP_UG_020_sseq);
 }
 
 static void UpdateLevelAdjustment(BattleCastleOpponentApp *app, u8 slot, u8 adjustment)
@@ -2691,10 +2691,10 @@ static void UpdateLevelAdjustment(BattleCastleOpponentApp *app, u8 slot, u8 adju
 
     if (adjustment == LEVEL_ADJUSTMENT_UP_5) {
         app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_LevelBoostedBy5, FONT_MESSAGE);
-        Sound_PlayEffect(SEQ_SE_DP_OPEN7);
+        Sound_PlayEffect(SEQ_SE_DP_OPEN7_sseq);
     } else {
         app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_LevelLoweredBy5, FONT_MESSAGE);
-        Sound_PlayEffect(SEQ_SE_DP_CLOSE7);
+        Sound_PlayEffect(SEQ_SE_DP_CLOSE7_sseq);
     }
 
     if (app->levelAdjustmentForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)] == LEVEL_ADJUSTMENT_NONE) {

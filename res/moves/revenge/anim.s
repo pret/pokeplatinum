@@ -5,9 +5,9 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
-    PlaySoundEffectL SEQ_SE_DP_W036
+    PlaySoundEffectL SEQ_SE_DP_W036_sseq
     Delay 45
-    PlaySoundEffectR SEQ_SE_DP_030
+    PlaySoundEffectR SEQ_SE_DP_030_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 16, -8, 2
     Delay 2
     Func_Shake 8, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

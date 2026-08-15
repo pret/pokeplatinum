@@ -11,7 +11,7 @@ Route218GateToJubilifeCity_Policeman:
     End
 
 Route218GateToJubilifeCity_Fisherman:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_0x8004, ITEM_OLD_ROD

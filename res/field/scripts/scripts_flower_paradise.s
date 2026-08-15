@@ -36,7 +36,7 @@ FlowerParadise_RemoveShaymin:
     End
 
 FlowerParadise_Shaymin:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     PlayCry SPECIES_SHAYMIN

@@ -67,7 +67,7 @@ static void ov5_021F007C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     Bg_SetPriority(BG_LAYER_MAIN_2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
-    Sound_PlayEffect(SEQ_SE_DP_FW230);
+    Sound_PlayEffect(SEQ_SE_DP_FW230_sseq);
 }
 
 static void ov5_021F00BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
@@ -120,7 +120,7 @@ static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     Bg_SetPriority(BG_LAYER_MAIN_2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
-    Sound_PlayEffect(SEQ_SE_DP_FW230);
+    Sound_PlayEffect(SEQ_SE_DP_FW230_sseq);
 }
 
 static void ov5_021F0188(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)

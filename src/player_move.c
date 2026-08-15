@@ -298,28 +298,28 @@ static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
         }
 
         if (MapObject_IsOnSnow(mapObj, nextTile) == TRUE || TileBehavior_IsSnowWithShadows(nextTile) == TRUE) {
-            Sound_PlayEffect(SEQ_SE_PL_YUKI);
+            Sound_PlayEffect(SEQ_SE_PL_YUKI_sseq);
         }
 
         if (TileBehavior_IsPuddle(nextTile) == TRUE) {
-            Sound_PlayEffect(SEQ_SE_DP_FOOT3_0);
+            Sound_PlayEffect(SEQ_SE_DP_FOOT3_0_sseq);
         }
 
         if (TileBehavior_IsShallowWater(nextTile) == TRUE) {
-            Sound_PlayEffect(SEQ_SE_DP_FOOT3_1);
+            Sound_PlayEffect(SEQ_SE_DP_FOOT3_1_sseq);
         }
 
         UNUSED(TileBehavior_IsSand(nextTile));
 
         if (TileBehavior_IsMud(nextTile) == TRUE && TileBehavior_IsDeepMud(nextTile) != TRUE) {
-            Sound_PlayEffect(SEQ_SE_DP_MARSH_WALK);
+            Sound_PlayEffect(SEQ_SE_DP_MARSH_WALK_sseq);
         }
 
         int code = MapObject_GetMovementAction(mapObj);
 
         if (!MovementAction_IsWalkOnSpotSlow(code)) {
             if (TileBehavior_IsVeryTallGrass(nextTile) == TRUE || TileBehavior_IsVeryTallGrass(curTile) == TRUE) {
-                Sound_PlayEffect(SEQ_SE_DP_KUSA);
+                Sound_PlayEffect(SEQ_SE_DP_KUSA_sseq);
             }
         }
     }
@@ -608,7 +608,7 @@ static BOOL PlayerAvatar_TileMove_BikeSlope(PlayerAvatar *playerAvatar, int dir)
     MapObject *mapObj = PlayerAvatar_GetMapObject(playerAvatar);
     int moveDir = MapObject_GetMovingDir(mapObj);
 
-    Sound_PlayEffect(SEQ_SE_DP_SUNA);
+    Sound_PlayEffect(SEQ_SE_DP_SUNA_sseq);
 
     if (moveDir == DIR_NORTH) {
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_AVATAR_CYCLING && PlayerAvatar_GetSpeed(playerAvatar) >= AVATAR_MOVE_SPEED_3) {
@@ -668,7 +668,7 @@ static BOOL PlayerAvatar_TileMove_BikeRampEast(PlayerAvatar *playerAvatar, int d
     int moveDir = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_GetCyclingGear(playerAvatar) == 1) {
-        Sound_PlayEffect(SEQ_SE_DP_DANSA4);
+        Sound_PlayEffect(SEQ_SE_DP_DANSA4_sseq);
         PlayerAvatar_SetMovement(playerAvatar, mapObj, MOVEMENT_ACTION_JUMP_FARTHER_EAST, PLAYER_ACTION_SPEED_SLOWER);
     } else {
         PlayerAvatar_SetMovement(playerAvatar, mapObj, MOVEMENT_ACTION_JUMP_NEAR_SLOW_EAST, PLAYER_ACTION_SPEED_SLOW);
@@ -689,7 +689,7 @@ static BOOL PlayerAvatar_TileMove_BikeRampWest(PlayerAvatar *playerAvatar, int d
     int moveDir = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_GetCyclingGear(playerAvatar) == 1) {
-        Sound_PlayEffect(SEQ_SE_DP_DANSA4);
+        Sound_PlayEffect(SEQ_SE_DP_DANSA4_sseq);
         PlayerAvatar_SetMovement(playerAvatar, mapObj, MOVEMENT_ACTION_JUMP_FARTHER_WEST, PLAYER_ACTION_SPEED_SLOWER);
     } else {
         PlayerAvatar_SetMovement(playerAvatar, mapObj, MOVEMENT_ACTION_JUMP_NEAR_SLOW_WEST, PLAYER_ACTION_SPEED_SLOWER);
@@ -1032,7 +1032,7 @@ static void PlayerAvatar_SetMovement_NormalOverworld(PlayerAvatar *playerAvatar,
             speed = PLAYER_ACTION_SPEED_NOT_MOVING;
 
             if ((collision & PLAYER_COLLISION_WARP) == 0) {
-                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
             }
 
             MapObject_Turn(mapObj, dir);
@@ -1067,7 +1067,7 @@ static void PlayerAvatar_SetMovement_NormalOverworld(PlayerAvatar *playerAvatar,
             speed = PLAYER_ACTION_SPEED_NOT_MOVING;
 
             if ((collision & PLAYER_COLLISION_WARP) == 0) {
-                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
             }
 
             MapObject_Turn(mapObj, dir);
@@ -1114,7 +1114,7 @@ static void PlayerAvatar_SetMovement_DistortionFloor(PlayerAvatar *playerAvatar,
         } else if (collision != PLAYER_COLLISION_NONE) {
             movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
             speed = PLAYER_ACTION_SPEED_NOT_MOVING;
-            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
             MapObject_Turn(mapObject, dir);
         } else {
             movementAction = MOVEMENT_ACTION_WALK_NORMAL_NORTH;
@@ -1138,7 +1138,7 @@ static void PlayerAvatar_SetMovement_DistortionFloor(PlayerAvatar *playerAvatar,
         } else {
             movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
             speed = PLAYER_ACTION_SPEED_NOT_MOVING;
-            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
             MapObject_Turn(mapObject, dir);
         }
     }
@@ -1161,7 +1161,7 @@ static void PlayerAvatar_UpdateMovement_NormalDistortion(PlayerAvatar *playerAva
         if (collision != PLAYER_COLLISION_NONE) {
             movementAction = collisionActionTable[dir];
             actionSpeed = PLAYER_ACTION_SPEED_NOT_MOVING;
-            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
             MapObject_Turn(mapObj, turnDirTable[dir]);
         } else {
             actionSpeed = PLAYER_ACTION_SPEED_NORMAL;
@@ -1186,7 +1186,7 @@ static void PlayerAvatar_UpdateMovement_NormalDistortion(PlayerAvatar *playerAva
             movementAction = collisionActionTable[dir];
             actionSpeed = PLAYER_ACTION_SPEED_NOT_MOVING;
 
-            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
             MapObject_Turn(mapObj, turnDirTable[dir]);
         }
     }
@@ -1303,9 +1303,9 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pa
         PlayerAvatar_SetCyclingGear(playerAvatar, gear);
 
         if (gear == 0) {
-            Sound_PlayEffect(SEQ_SE_DP_GEAR2);
+            Sound_PlayEffect(SEQ_SE_DP_GEAR2_sseq);
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_GEAR);
+            Sound_PlayEffect(SEQ_SE_DP_GEAR_sseq);
         }
     }
 }
@@ -1520,7 +1520,7 @@ static void PlayerAvatar_SetMovement_BikeThirdGearMoving(PlayerAvatar *playerAva
             actionSpeed = PLAYER_ACTION_SPEED_NOT_MOVING;
 
             if ((collision & PLAYER_COLLISION_WARP) == 0) {
-                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
             }
 
             MapObject_Turn(mapObj, dir);
@@ -1589,7 +1589,7 @@ static void PlayerAvatar_SetMovement_BikeThirdGearBrake(PlayerAvatar *playerAvat
         actionSpeed = PLAYER_ACTION_SPEED_NOT_MOVING;
 
         if ((collision & PLAYER_COLLISION_WARP) == 0) {
-            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
         }
 
         MapObject_Turn(mapObj, dir);
@@ -1744,7 +1744,7 @@ static void PlayerAvatar_SetMovement_BikeFourthGearMoving(PlayerAvatar *playerAv
             actionSpeed = PLAYER_ACTION_SPEED_NOT_MOVING;
 
             if ((collision & PLAYER_COLLISION_WARP) == 0) {
-                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
             }
 
             MapObject_Turn(mapObj, dir);
@@ -1763,7 +1763,7 @@ static void PlayerAvatar_SetMovement_BikeFourthGearMoving(PlayerAvatar *playerAv
             actionSpeed = PLAYER_ACTION_SPEED_NOT_MOVING;
 
             if ((collision & PLAYER_COLLISION_WARP) == 0) {
-                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
             }
 
             MapObject_Turn(mapObj, dir);
@@ -1831,7 +1831,7 @@ static void PlayerAvatar_SetMovement_BikeFourthGearBrake(PlayerAvatar *playerAva
         movementAction = MovementAction_TurnActionTowardsDir(dir, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
 
         if ((collision & PLAYER_COLLISION_WARP) == 0) {
-            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
         }
 
         MapObject_Turn(mapObj, dir);
@@ -2558,7 +2558,7 @@ u32 PlayerAvatar_GetMovementActionAnimCode(PlayerAvatar *playerAvatar, u16 press
         movementAction = MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH;
 
         if ((collision & PLAYER_COLLISION_WARP) == 0) {
-            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT_sseq);
         }
     } else {
         switch (actionSpeed) {

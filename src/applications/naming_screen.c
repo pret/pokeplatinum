@@ -1225,7 +1225,7 @@ static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state)
             break;
         case NMS_STATE_WAIT_BATTLE_MESSAGE:
             if (Text_IsPrinterActive(namingScreen->battleMessagePrinter) == 0) {
-                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO_sseq);
                 namingScreen->spritesToUpdate[NMS_SPRITE_OK_BUTTON]++;
                 namingScreen->delayUpdateCounter = 0;
                 namingScreen->state.main = NMS_STATE_START_FADE_OUT;
@@ -1298,7 +1298,7 @@ static enum NamingScreenAppState NamingScreen_ProcessInputs(
             namingScreen->spritesToUpdate[namingScreen->currentCharsIdx]++;
 
             NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, namingScreen->currentCharsIdx);
-            Sound_PlayEffect(SEQ_SE_DP_SYU03);
+            Sound_PlayEffect(SEQ_SE_DP_SYU03_sseq);
 
             namingScreen->keyboardCursor.hasCharacterBeenEntered = TRUE;
         }
@@ -1306,7 +1306,7 @@ static enum NamingScreenAppState NamingScreen_ProcessInputs(
         namingScreen->spritesToUpdate[namingScreen->currentCharsIdx]++;
 
         NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, namingScreen->currentCharsIdx);
-        Sound_PlayEffect(SEQ_SE_DP_SYU03);
+        Sound_PlayEffect(SEQ_SE_DP_SYU03_sseq);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         appState = NamingScreen_ProcessCharacterInput(
             namingScreen,
@@ -2260,7 +2260,7 @@ static void NamingScreen_AnimateChangeChars(
             (*statePtr)++;
             (*bgLayerPtr) ^= 1;
             NamingScreen_UpdateCharsPriorities(bgConfig, *bgLayerPtr, charsPosition);
-            Sound_PlayEffect(SEQ_SE_DP_NAMEIN_01);
+            Sound_PlayEffect(SEQ_SE_DP_NAMEIN_01_sseq);
         }
         break;
     case CC_STATE_NOTHING:
@@ -2536,28 +2536,28 @@ static void NamingScreen_ProcessDirectionInputs(NamingScreen *namingScreen)
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_UP;
         didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_DOWN;
         didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_LEFT;
         didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_RIGHT;
         didInput++;
@@ -2565,7 +2565,7 @@ static void NamingScreen_ProcessDirectionInputs(NamingScreen *namingScreen)
 
     // start counts as a direction input, because it moves the cursor.
     if (gSystem.pressedKeys & PAD_BUTTON_START) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         namingScreen->keyboardCursor.x = 12;
         namingScreen->keyboardCursor.y = 0;
@@ -2875,7 +2875,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
                 TEXT_SPEED_INSTANT,
                 TEXT_COLOR(14, 15, 1),
                 NULL);
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
         }
         break;
     case NMS_CONTROL_HANDAKU:
@@ -2896,7 +2896,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
                 TEXT_SPEED_INSTANT,
                 TEXT_COLOR(14, 15, 1),
                 NULL);
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
         }
         break;
     case NMS_BUTTON_PAGE_JP_UNUSED_2:
@@ -2916,7 +2916,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
                 TEXT_COLOR(14, 15, 1),
                 NULL);
             namingScreen->spritesToUpdate[NMS_SPRITE_JP_UNUSED_2_BUTTON]++;
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
         }
         break;
     case NMS_BUTTON_PAGE_UPPER:
@@ -2928,7 +2928,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
             namingScreen->currentCharsIdx = charCode - NMS_BUTTON_PAGE_UPPER;
             NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, namingScreen->currentCharsIdx);
             namingScreen->spritesToUpdate[charCode - NMS_BUTTON_PAGE_UPPER]++;
-            Sound_PlayEffect(SEQ_SE_DP_SYU03);
+            Sound_PlayEffect(SEQ_SE_DP_SYU03_sseq);
             Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], isButtonInput);
         }
         break;
@@ -2967,7 +2967,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
 
             namingScreen->spritesToUpdate[NMS_SPRITE_BACK_BUTTON]++;
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], isButtonInput);
         }
         break;
@@ -2976,7 +2976,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], isButtonInput);
 
         if (!namingScreen->printedFromBattleGMM) {
-            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO_sseq);
             namingScreen->spritesToUpdate[NMS_SPRITE_OK_BUTTON]++;
             StartScreenFade(
                 FADE_SUB_THEN_MAIN,
@@ -3016,7 +3016,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
                 namingScreen->textCursorSprites,
                 namingScreen->textCursorPos,
                 namingScreen->maxChars);
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
             Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
             Sprite_SetExplicitOAMMode(namingScreen->uiSprites[NMS_SPRITE_CURSOR], GX_OAM_MODE_XLU);
 

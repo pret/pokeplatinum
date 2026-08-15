@@ -34,6 +34,8 @@
 species_data_files = []
 poke_icon_files = []
 pokegra_files = []
+cry_banks = []
+cry_waves = []
 otherpoke_index = {} # otherpoke uses a unique, non-uniform structure
 
 pokemon_data_root = meson.current_source_dir()
@@ -102,6 +104,10 @@ form_sprites_order = form_registry[2]
 # 3. Walk species subdirectories; `species_dirnames` is the authority.
 foreach species : species_dirnames
     subdir(species)
+    if species not in ['none', 'egg', 'bad_egg']
+        cry_banks += files(species / 'cry.txt')
+        cry_waves += files(species / 'cry.wav')
+    endif
 endforeach
 
 # Stash the listing of species in an environment so that other processes can make

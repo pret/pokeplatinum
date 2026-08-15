@@ -216,7 +216,7 @@ BOOL ScrCmd_SetInitialVolumeForSequence(ScriptContext *ctx)
 
 BOOL ScrCmd_SetScenePlayBGMMusicBox(ScriptContext *ctx)
 {
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_VILLA_MUSIC_BOX, SEQ_PL_TOWN02, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_VILLA_MUSIC_BOX, SEQ_PL_TOWN02_sseq, 1);
     return TRUE;
 }
 

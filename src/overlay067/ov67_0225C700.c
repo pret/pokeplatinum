@@ -10,7 +10,6 @@
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"
-#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_02231024.h"
 #include "overlay066/struct_ov66_02231300.h"
 
@@ -170,7 +169,7 @@ int ov67_0225C700(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_Args(appMan);
 
     v0->saveData = v1->saveData;
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY_sseq, 0);
     v1->unk_10 = 0;
 
     ov67_0225CE30(v0, 112);
@@ -225,7 +224,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         }
     } break;
     case 4: {
-        UnkStruct_ov66_0222E71C *v3;
+        WiFiPlazaProfile *v3;
 
         v3 = ov66_0222E3BC(v1->unk_04);
         CommManager_LoginWifiPlaza(v0->saveData, v3);

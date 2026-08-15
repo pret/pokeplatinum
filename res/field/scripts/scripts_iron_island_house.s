@@ -22,7 +22,7 @@ IronIslandHouse_ShowByron:
     Return
 
 IronIslandHouse_Byron:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message IronIslandHouse_Text_TakeApology
@@ -49,20 +49,20 @@ IronIslandHouse_BagIsFull:
 IronIslandHouse_ByronLeaveNorthWest:
     ApplyMovement LOCALID_BYRON, IronIslandHouse_Movement_ByronLeaveNorthWest
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_BYRON
-    WaitSE SEQ_SE_DP_KAIDAN2
-    StopSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
+    StopSE SEQ_SE_DP_KAIDAN2_sseq
     ReleaseAll
     End
 
 IronIslandHouse_ByronLeaveSouthEast:
     ApplyMovement LOCALID_BYRON, IronIslandHouse_Movement_ByronLeaveSouthEast
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_BYRON
-    WaitSE SEQ_SE_DP_KAIDAN2
-    StopSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
+    StopSE SEQ_SE_DP_KAIDAN2_sseq
     ReleaseAll
     End
 

@@ -296,24 +296,24 @@ static int GTSSearchListing_HandleInput(GTSApplicationState *appState)
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         GTSSearchListing_ShowMessage(appState, Gts_Text_TradeForThisPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, GTS_SEARCHLISTING_WAIT_FOR_TEXT, GTS_SEARCHLISTING_SHOW_CONFIRMATION_MENU);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         appState->currentScreenInstruction = GTS_SEARCHLISTING_FADE_AND_EXIT;
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_NONE);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (appState->selectedInfoTab == 0) {
             appState->selectedInfoTab = 1;
             appState->currentScreenInstruction = GTS_SEARCHLISTING_HANDLE_UPDATE_INFO_PANEL;
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (appState->selectedInfoTab != 0) {
             appState->selectedInfoTab = 0;
             appState->currentScreenInstruction = GTS_SEARCHLISTING_HANDLE_UPDATE_INFO_PANEL;
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
     } else {
         int newSelectedResult = GTSAvatar_GetTouchedSearchResult(appState->searchResultCount);
@@ -323,7 +323,7 @@ static int GTSSearchListing_HandleInput(GTSApplicationState *appState)
             appState->currentScreenInstruction = GTS_SEARCHLISTING_FADE_AND_EXIT;
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_NONE);
             appState->selectedSearchResult = newSelectedResult;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
     }
 
