@@ -954,7 +954,7 @@ static void EndCreditsScenes_LoadTwinleaf(EndCreditsApp *endCreditsApp)
 
     EndCredits_InitFinalScenes(endCreditsApp);
 
-    endCreditsApp->currentMemory = END_CREDITS_MEMORY_ROUTE_201_STARTER;
+    endCreditsApp->currentMemory = END_CREDITS_MEMORY_1;
     EndCreditsCommon_LoadMemoryImage(endCreditsApp, endCreditsApp->currentMemory, BG_LAYER_MAIN_2, TRUE);
     endCreditsApp->currentMemory++;
 
