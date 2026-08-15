@@ -1,199 +1,180 @@
-ending_pal_4bpp = files(
-    'ending_15.pal',
-    'ending_16.pal',
-    'ending_17.pal',
-    'ending_18.pal',
-    'ending_19.pal',
-    'ending_20.pal',
-    'ending_21.pal',
-    'ending_22.pal',
-    'ending_23.pal',
-    'ending_26.pal',
-    'ending_31.pal',
-    'ending_36.pal',
-    'ending_85.pal',
-)
+ending_ncgr = []
+ending_nclr = []
+ending_ncer = []
+ending_nanr = []
 
-ending_nclr_4bpp = nclr_gen.process(
-    ending_pal_4bpp,
-    extra_args: [
-        '-bitdepth', '4',
-        '-nopad',
-        '-pcmp',
-    ]
-)
-
-ending_pal_8bpp = [
-    ['ending_48_0.pal', '1'],
-    ['ending_49_0.pal', '16'],
-    ['ending_50_0.pal', '16'],
-    ['ending_51_0.pal', '16'],
-    ['ending_52_0.pal', '16'],
-    ['ending_53_0.pal', '16'],
-    ['ending_54_0.pal', '16'],
-    ['ending_55_0.pal', '16'],
-    ['ending_56_0.pal', '16'],
-    ['ending_57_0.pal', '16'],
-    ['ending_68_0.pal', '16'],
-    ['ending_69_0.pal', '16'],
-    ['ending_70_0.pal', '16'],
-    ['ending_71_0.pal', '16'],
-    ['ending_72_0.pal', '16'],
-    ['ending_73_0.pal', '16'],
-    ['ending_74_0.pal', '16'],
-    ['ending_75_0.pal', '16'],
-    ['ending_76_0.pal', '16'],
-    ['ending_77_0.pal', '16'],
-    ['ending_91_0.pal', '1'],
-    ['ending_92_0.pal', '1'],
-    ['ending_93_0.pal', '1'],
-    ['ending_94_0.pal', '1'],
-    ['ending_99_0.pal', '1'],
-    ['ending_100_0.pal', '1'],
-    ['ending_101_0.pal', '1'],
-    ['ending_102_0.pal', '1'],
+ending_png_ncgr = [
+    ['background_morning_bottom_tiles.png', ['-bitdepth', '4', '-version101', '-sopc']],
+    ['background_day_bottom_tiles.png', ['-bitdepth', '4', '-version101', '-sopc']],
+    ['background_night_bottom_tiles.png', ['-bitdepth', '4', '-version101', '-sopc']],
+    ['background_morning_top_tiles.png', ['-bitdepth', '4', '-version101', '-sopc']],
+    ['background_day_top_tiles.png', ['-bitdepth', '4', '-version101', '-sopc']],
+    ['background_night_top_tiles.png', ['-bitdepth', '4', '-version101', '-sopc']],
+    ['bike_bg_objects.png', ['-convertTo4Bpp', '-version101', '-clobbersize', '-mappingtype', '128', '-cell', files('bike_bg_objects_cell.json')[0]]],
+    ['unused_all_rights_reserved_tiles.png', ['-bitdepth', '4', '-version101', '-sopc']],
+    ['lucas_bike_eye_tiles.png', ['-bitdepth', '4', '-version101', '-clobbersize', '-mappingtype', '128']],
+    ['lucas_bike.png', ['-bitdepth', '4', '-version101', '-clobbersize', '-mappingtype', '128', '-vram', '-cell', files('lucas_bike_cell.json')[0]]],
+    ['dawn_bike_eye_tiles.png', ['-bitdepth', '4', '-version101', '-clobbersize', '-mappingtype', '128']],
+    ['dawn_bike_tiles.png', ['-bitdepth', '4', '-version101', '-clobbersize', '-mappingtype', '128', '-vram']],
+    ['memories/lucas/memory_lucas_route_201_starter.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/lucas/memory_lucas_rowans_lab.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/lucas/memory_lucas_pokemon_center.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/lucas/memory_lucas_valley_windworks.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/lucas/memory_lucas_route_210_psyduck.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/lucas/memory_lucas_eterna_forest.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/lucas/memory_lucas_pastoria_great_marsh.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/lucas/memory_lucas_canalave_barry.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/lucas/memory_lucas_lake_acuity.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/lucas/memory_lucas_spear_pillar.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/dawn/memory_dawn_route_201_starter.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/dawn/memory_dawn_jubilife_looker.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/dawn/memory_dawn_pokemon_mart.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/dawn/memory_dawn_eterna_cyrus.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/dawn/memory_dawn_hearthome_contest_hall.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/dawn/memory_dawn_solaceon_town.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/dawn/memory_dawn_route_216.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/dawn/memory_dawn_lake_valor.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/dawn/memory_dawn_galactic_hq.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['memories/dawn/memory_dawn_spear_pillar.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['twinleaf_lucas_1.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['twinleaf_lucas_2.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['twinleaf_lucas_3.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['twinleaf_lucas_4.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['twinleaf_dawn_1.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['twinleaf_dawn_2.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['twinleaf_dawn_3.png', ['-bitdepth', '8', '-version101', '-sopc']],
+    ['twinleaf_dawn_4.png', ['-bitdepth', '8', '-version101', '-sopc']],
 ]
+foreach file : ending_png_ncgr
+    basename = file[0].split('.')[0].split('/')[-1].replace('_tiles', '')
 
-ending_nclr_8bpp = []
-foreach pal : ending_pal_8bpp
-    basename = pal[0].split('.')[0].replace('_0', '')
-    extended = pal[1]
+    ncgr = custom_target(basename + '.NCGR',
+        output: basename + '.NCGR',
+        input: file[0],
+        command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT@', file[1] ]
+        )
+    ending_ncgr += ncgr
+endforeach
+
+ending_png_nclr = [
+    ['bike_bg_objects.pal', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['background_day_top_alt.pal', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['background_night_top_alt.pal', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['background_morning_bottom.pal', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['background_day_bottom.pal', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['background_night_bottom.pal', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['background_morning_top.pal', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['background_day_top.pal', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['background_night_top.pal', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['unused_all_rights_reserved_tiles.png', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['lucas_bike.png', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['dawn_bike_tiles.png', ['-bitdepth', '4', '-nopad', '-pcmp']],
+    ['text.pal', ['-bitdepth', '4', '-nopad', '-pcmp']],
+]
+foreach file : ending_png_nclr
+    basename = file[0].split('.')[0].split('/')[-1].replace('_tiles', '')
 
     nclr = custom_target(basename + '.NCLR',
         output: basename + '.NCLR',
-        input: pal[0],
-        command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT@', '-extended', extended, '-pcmp', '-nopad', '-bitdepth', '8']
+        input: file[0],
+        command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT@', file[1] ]
         )
-    ending_nclr_8bpp += nclr
+    ending_nclr += nclr
 endforeach
 
-ending_sprites_sopc = files(
-    'ending_9.png',
-    'ending_10.png',
-    'ending_11.png',
-    'ending_12.png',
-    'ending_13.png',
-    'ending_14.png',
-    'ending_25.png',
-)
+ending_png_extended_nclr = [
+    ['memories/lucas/memory_lucas_route_201_starter_0.pal', ['-bitdepth', '8', '-extended', '1', '-pcmp', '-nopad']],
+    ['memories/lucas/memory_lucas_rowans_lab_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/lucas/memory_lucas_pokemon_center_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/lucas/memory_lucas_valley_windworks_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/lucas/memory_lucas_route_210_psyduck_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/lucas/memory_lucas_eterna_forest_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/lucas/memory_lucas_pastoria_great_marsh_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/lucas/memory_lucas_canalave_barry_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/lucas/memory_lucas_lake_acuity_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/lucas/memory_lucas_spear_pillar_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/dawn/memory_dawn_route_201_starter_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/dawn/memory_dawn_jubilife_looker_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/dawn/memory_dawn_pokemon_mart_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/dawn/memory_dawn_eterna_cyrus_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/dawn/memory_dawn_hearthome_contest_hall_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/dawn/memory_dawn_solaceon_town_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/dawn/memory_dawn_route_216_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/dawn/memory_dawn_lake_valor_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/dawn/memory_dawn_galactic_hq_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['memories/dawn/memory_dawn_spear_pillar_0.pal', ['-bitdepth', '8', '-extended', '16', '-pcmp', '-nopad']],
+    ['twinleaf_lucas_1_0.pal', ['-bitdepth', '8', '-extended', '1', '-pcmp', '-nopad']],
+    ['twinleaf_lucas_2_0.pal', ['-bitdepth', '8', '-extended', '1', '-pcmp', '-nopad']],
+    ['twinleaf_lucas_3_0.pal', ['-bitdepth', '8', '-extended', '1', '-pcmp', '-nopad']],
+    ['twinleaf_lucas_4_0.pal', ['-bitdepth', '8', '-extended', '1', '-pcmp', '-nopad']],
+    ['twinleaf_dawn_1_0.pal', ['-bitdepth', '8', '-extended', '1', '-pcmp', '-nopad']],
+    ['twinleaf_dawn_2_0.pal', ['-bitdepth', '8', '-extended', '1', '-pcmp', '-nopad']],
+    ['twinleaf_dawn_3_0.pal', ['-bitdepth', '8', '-extended', '1', '-pcmp', '-nopad']],
+    ['twinleaf_dawn_4_0.pal', ['-bitdepth', '8', '-extended', '1', '-pcmp', '-nopad']],
+]
+foreach file : ending_png_extended_nclr
+    basename = file[0].split('.')[0].split('/')[-1].replace('_0', '')
 
-ending_ncgr_sopc = ncgr_gen.process(
-    ending_sprites_sopc,
-    extra_args: [
-        '-bitdepth', '4',
-        '-version101',
-        '-sopc',
-    ]
-)
+    nclr = custom_target(basename + '.NCLR',
+        output: basename + '.NCLR',
+        input: file[0],
+        command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT@', file[1] ]
+        )
+    ending_nclr += nclr
+endforeach
 
-ending_sprites_sopc_8bpp = files(
-    'ending_38.png',
-    'ending_39.png',
-    'ending_40.png',
-    'ending_41.png',
-    'ending_42.png',
-    'ending_43.png',
-    'ending_44.png',
-    'ending_45.png',
-    'ending_46.png',
-    'ending_47.png',
-    'ending_58.png',
-    'ending_59.png',
-    'ending_60.png',
-    'ending_61.png',
-    'ending_62.png',
-    'ending_63.png',
-    'ending_64.png',
-    'ending_65.png',
-    'ending_66.png',
-    'ending_67.png',
-    'ending_87.png',
-    'ending_88.png',
-    'ending_89.png',
-    'ending_90.png',
-    'ending_95.png',
-    'ending_96.png',
-    'ending_97.png',
-    'ending_98.png',
-)
+ending_cell_json = [
+    'bike_bg_objects_cell.json',
+    'lucas_bike_cell.json',
+    'dawn_bike_cell.json',
+]
+foreach file : ending_cell_json
+    basename = file.split('.')[0].replace('_cell', '')
 
-ending_ncgr_sopc_8bpp = ncgr_gen.process(
-    ending_sprites_sopc_8bpp,
-    extra_args: [
-        '-bitdepth', '8',
-        '-version101',
-        '-sopc',
-    ]
-)
+    ncer = custom_target(basename + '.NCER',
+        output: basename + '.NCER',
+        input: basename + '_cell.json',
+        command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT@' ]
+        )
+    ending_ncer += ncer
+endforeach
 
-ending_sprites_clobbersize = files(
-    'ending_0.png',
-    'ending_27.png',
-    'ending_32.png',
-)
+ending_anim_json = [
+    'bike_bg_objects_anim.json',
+    'lucas_bike_anim.json',
+    'dawn_bike_anim.json',
+]
+foreach file : ending_anim_json
+    basename = file.split('.')[0].replace('_anim', '')
 
-ending_ncgr_clobbersize = ncgr_gen.process(
-    ending_sprites_clobbersize,
-    extra_args: [
-        '-bitdepth', '4',
-        '-version101',
-        '-clobbersize',
-        '-mappingtype', '128',
-    ]
-)
-
-ending_sprites_vram = files(
-    'ending_28.png',
-    'ending_33.png',
-)
-
-ending_ncgr_vram = ncgr_gen.process(
-    ending_sprites_vram,
-    extra_args: [
-        '-bitdepth', '4',
-        '-version101',
-        '-clobbersize',
-        '-mappingtype', '128',
-        '-vram',
-    ]
-)
-
-ending_cell_json = files(
-    'ending_1.json',
-    'ending_29.json',
-    'ending_34.json',
-)
-
-ending_ncer = ncer_gen.process(ending_cell_json)
+    nanr = custom_target(basename + '.NANR',
+        output: basename + '.NANR',
+        input: basename + '_anim.json',
+        command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT@' ]
+        )
+    ending_nanr += nanr
+endforeach
 
 ending_nscr = copy_gen.process(files(
-    'ending_3.NSCR',
-    'ending_4.NSCR',
-    'ending_5.NSCR',
-    'ending_6.NSCR',
-    'ending_7.NSCR',
-    'ending_8.NSCR',
-    'ending_24.NSCR',
-    'ending_37.NSCR',
-    'ending_86.NSCR',
+    'background_morning_bottom.NSCR',
+    'background_day_bottom.NSCR',
+    'background_night_bottom.NSCR',
+    'background_morning_top.NSCR',
+    'background_day_top.NSCR',
+    'background_night_top.NSCR',
+    'unused_all_rights_reserved.NSCR',
+    'memory_shared.NSCR',
+    'twinleaf_shared.NSCR',
 ))
 
-ending_anim_json = files(
-    'ending_2.json',
-    'ending_30.json',
-    'ending_35.json',
-)
-
-ending_nanr = nanr_gen.process(ending_anim_json)
-
 ending_bmd0 = copy_gen.process(files(
-    'ending_78.BMD0',
-    'ending_79.BMD0',
-    'ending_80.BMD0',
-    'ending_81.BMD0',
-    'ending_82.BMD0',
-    'ending_83.BMD0',
-    'ending_84.BMD0',
+    'background_day_lamppost.BMD0',
+    'background_night_lamppost.BMD0',
+    'background_morning_tree_1.BMD0',
+    'background_morning_tree_2.BMD0',
+    'background_night_tree_1_normal.BMD0',
+    'background_night_tree_1_snowy.BMD0',
+    'background_night_tree_2.BMD0',
 ))
 
 ending_narc = custom_target('ending.narc',
@@ -202,20 +183,11 @@ ending_narc = custom_target('ending.narc',
         'ending.naix',
     ],
     input: [
-        ending_nclr_4bpp,
-        copy_gen.process(ending_nclr_8bpp),
-
-        ending_ncgr_sopc,
-        ending_ncgr_sopc_8bpp,
-        ending_ncgr_clobbersize,
-        ending_ncgr_vram,
-
-        ending_ncer,
-
+        copy_gen.process(ending_ncgr),
+        copy_gen.process(ending_nclr),
+        copy_gen.process(ending_ncer),
+        copy_gen.process(ending_nanr),
         ending_nscr,
-
-        ending_nanr,
-
         ending_bmd0,
     ],
     command: [
