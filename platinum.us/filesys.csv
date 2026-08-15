@@ -195,7 +195,7 @@ res/graphics/options_menu/config_gra.narc,/graphic/config_gra.narc
 res/prebuilt/graphic/demo_trade.narc,/graphic/demo_trade.narc
 res/prebuilt/graphic/dendou_demo.narc,/graphic/dendou_demo.narc
 res/prebuilt/graphic/dendou_pc.narc,/graphic/dendou_pc.narc
-res/graphics/ending/ending.narc,/graphic/ending.narc
+res/graphics/end_credits/ending.narc,/graphic/ending.narc
 res/prebuilt/graphic/ev_pokeselect.narc,/graphic/ev_pokeselect.narc
 res/prebuilt/graphic/f_note_gra.narc,/graphic/f_note_gra.narc
 res/graphics/signposts/field_board.narc,/graphic/field_board.narc
