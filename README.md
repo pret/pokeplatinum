@@ -14,11 +14,11 @@ Project goals:
 
 ## Setup Guide (Windows)
 To run the pre-built binaries found in the releases tab, **you MUST dump and extract your own US ROM of Pokémon Platinum.**
-* Create a new folder with your own ROM.
+* Download the latest release from the releases tab, and extract the contents to a new folder on your PC. This contains **main.exe,** which is used to run the game.
 * Download [the latest release of Tinke](https://github.com/pleonex/tinke/releases/download/v0.9.2/Tinke-v0.9.2.zip).
-* Run Tinke, then select your ROM of Pokémon Platinum.
+* Run Tinke, then select your own ROM of Pokémon Platinum.
 * In the file tree that appears, click the **root** folder, then hit **Extract** at the bottom right to dump Platinum's files to any location on your PC, which should be labeled **root**.
-* Take everything in that newly created **root** folder (note, not the **root** folder itself, just its contents) and copy it into the folder with your Platinum ROM.
+* Take everything in that newly created **root** folder (note, not the **root** folder itself, just its contents) and copy it into the folder with **main.exe**.
 * Run **main.exe** and you're good to go!
 
 ## Building on Linux
