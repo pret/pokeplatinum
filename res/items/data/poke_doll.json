@@ -25,6 +25,6 @@
   "fieldPocket": "POCKET_BATTLE_ITEMS",
   "battlePocket": "BATTLE_POCKET_MASK_BATTLE_ITEMS",
   "fieldUseFunc": "ITEM_USE_FUNC_NONE",
-  "battleUseFunc": 3,
+  "battleUseCategory": "BATTLE_USE_CATEGORY_ESCAPING",
   "itemUseParams": {}
 }

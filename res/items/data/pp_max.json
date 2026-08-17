@@ -25,7 +25,7 @@
   "fieldPocket": "POCKET_MEDICINE",
   "battlePocket": "BATTLE_POCKET_MASK_NONE",
   "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
-  "battleUseFunc": 0,
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": {
     "ppMax": true,
     "friendshipLow": 5,
