@@ -13,13 +13,11 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-enum {
-    BG2_SCROLL_START = 80,
-    BG2_SCROLL_END = -48,
-    BG1_SCROLL_START = -384,
-    BG1_SCROLL_END = -48,
-    SCROLL_DURATION = 60
-};
+#define BG2_SCROLL_START 80
+#define BG2_SCROLL_END   -48
+#define BG1_SCROLL_START -384
+#define BG1_SCROLL_END   -48
+#define SCROLL_DURATION  60
 
 typedef struct TradeWormholePhase {
     TradeSequenceData *sequenceData;

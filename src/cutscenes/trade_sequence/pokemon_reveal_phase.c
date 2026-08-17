@@ -15,37 +15,23 @@
 #include "sys_task_manager.h"
 #include "unk_0202419C.h"
 
-enum {
-    MAIN_BG2_START_Y = -384
-};
+#define MAIN_BG2_START_Y -384
 
-enum {
-    MAIN_BG2_END_Y = 0,
-    BG_SLIDE_DURATION = 40
-};
+#define MAIN_BG2_END_Y    0
+#define BG_SLIDE_DURATION 40
 
-enum {
-    SUB_BG2_START_Y = -192
-};
+#define SUB_BG2_START_Y -192
 
-enum {
-    SUB_BG2_END_Y = 192
-};
+#define SUB_BG2_END_Y 192
 
-enum {
-    MODEL_Y_POSITION = 140 << FX32_SHIFT
-};
+#define MODEL_Y_POSITION (140 << FX32_SHIFT)
 
-enum {
-    MODEL_SLIDE_TARGET_Y = 204800,
-    MODEL_SLIDE_DURATION = 16
-};
+#define MODEL_SLIDE_TARGET_Y 204800
+#define MODEL_SLIDE_DURATION 16
 
-enum {
-    BG_SCALE_END = 1024,
-    BG_SCALE_RATE = 1,
-    BG_SCALE_ACCELERATION = 296
-};
+#define BG_SCALE_END          1024
+#define BG_SCALE_RATE         1
+#define BG_SCALE_ACCELERATION 296
 
 typedef struct TradePokemonRevealPhase {
     TradeSequenceData *sequenceData;

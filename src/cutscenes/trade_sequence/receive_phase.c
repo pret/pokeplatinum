@@ -28,20 +28,14 @@
 
 #include "res/text/bank/trade.h"
 
-enum {
-    BALL_GRAVITY = -1920,
-    BALL_ROTATION_SPEED = 384,
-    BALL_FLOOR_Y = 0xffff5000
-};
+#define BALL_GRAVITY        -1920
+#define BALL_ROTATION_SPEED 384
+#define BALL_FLOOR_Y        (int)0xffff5000
 
-enum {
-    BALL_INITIAL_ROTATION_SPEED = 4096,
-    BALL_FADE_IN_DURATION = 20
-};
+#define BALL_INITIAL_ROTATION_SPEED 4096
+#define BALL_FADE_IN_DURATION       20
 
-enum {
-    BALL_REST_Y = 77824,
-};
+#define BALL_REST_Y 77824
 
 typedef struct TradeReceivePhase {
     TradeSequenceData *sequenceData;
