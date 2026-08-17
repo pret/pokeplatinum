@@ -51,6 +51,7 @@
 #include "cutscenes/boat_cutscene.h"
 #include "cutscenes/end_credits/main.h"
 #include "cutscenes/hall_of_fame.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 #include "dw_warp/dw_warp.h"
 #include "field/field_system.h"
 #include "gts_application/application.h"
@@ -69,7 +70,6 @@
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
-#include "cutscenes/trade_sequence/trade_sequence.h"
 #include "wifi_battle_tower/application.h"
 
 #include "bag.h"

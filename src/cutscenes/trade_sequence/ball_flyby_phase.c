@@ -1,5 +1,3 @@
-#include "cutscenes/trade_sequence/trade_sequence.h"
-
 #include <nitro.h>
 #include <string.h>
 
