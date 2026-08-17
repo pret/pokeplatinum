@@ -34,7 +34,7 @@ BOOL EndCreditsMemoriesScene_Run1(EndCreditsApp *endCreditsApp, EndCreditsSceneM
         break;
     case END_CREDITS_MEMORIES_SCENE_STATE_FADE_OUT:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) {
-            if (endCreditsApp->currentMemory < END_CREDITS_MEMORY_CANALAVE_BARRY) {
+            if (endCreditsApp->currentMemory < END_CREDITS_MEMORY_8) {
                 sceneManager->state = END_CREDITS_MEMORIES_SCENE_STATE_COOLDOWN;
             } else {
                 sceneManager->state = END_CREDITS_MEMORIES_SCENE_STATE_END;
