@@ -69,7 +69,7 @@
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
-#include "trade_sequence/trade_sequence.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 #include "wifi_battle_tower/application.h"
 
 #include "bag.h"

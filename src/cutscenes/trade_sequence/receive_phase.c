@@ -1,12 +1,12 @@
-#include "trade_sequence/receive_phase.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/sprite_animation_frame.h"
 
-#include "trade_sequence/trade_3d_scene.h"
-#include "trade_sequence/trade_sequence.h"
+#include "cutscenes/trade_sequence/trade_3d_scene.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 
 #include "bg_window.h"
 #include "enums.h"
@@ -115,20 +115,20 @@ static void BallOpenState_Task(SysTask *task, void *param);
 
 void *TradeReceivePhase_New(TradeSequenceData *sequenceData)
 {
-    TradeReceivePhase *trPhase = Heap_Alloc(HEAP_ID_58, sizeof(TradeReceivePhase));
+    TradeReceivePhase *trPhase = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(TradeReceivePhase));
 
     if (trPhase) {
         trPhase->sequenceData = sequenceData;
         trPhase->subStepCounter = 0;
         trPhase->bgConfig = TradeSequence_GetBgConfig(sequenceData);
-        trPhase->spriteManager = PokemonSpriteManager_New(HEAP_ID_58);
+        trPhase->spriteManager = PokemonSpriteManager_New(HEAP_ID_TRADE_SEQUENCE_PHASE);
         trPhase->pokemonSprite = NULL;
-        trPhase->string0 = String_Init(300, HEAP_ID_58);
-        trPhase->string1 = String_Init(300, HEAP_ID_58);
+        trPhase->string0 = String_Init(300, HEAP_ID_TRADE_SEQUENCE_PHASE);
+        trPhase->string1 = String_Init(300, HEAP_ID_TRADE_SEQUENCE_PHASE);
         trPhase->task0 = NULL;
         trPhase->task1 = NULL;
         trPhase->scene = NULL;
-        trPhase->pokeDataNarc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_58);
+        trPhase->pokeDataNarc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_TRADE_SEQUENCE_PHASE);
     }
 
     return trPhase;
@@ -270,16 +270,16 @@ static int TradeReceivePhase_InitGraphics(TradeReceivePhase *trPhase, int *unuse
 
     Bg_FillTilesRange(trPhase->bgConfig, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(trPhase->bgConfig, 1, 0x0, 0, 0, 32, 32, 0);
-    LoadMessageBoxGraphics(trPhase->bgConfig, BG_LAYER_MAIN_1, 109, 2, TradeSequence_GetOptionsFrame(trPhase->sequenceData), HEAP_ID_58);
+    LoadMessageBoxGraphics(trPhase->bgConfig, BG_LAYER_MAIN_1, 109, 2, TradeSequence_GetOptionsFrame(trPhase->sequenceData), HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     Window_Add(trPhase->bgConfig, &(trPhase->window), 1, 2, 19, 27, 4, 1, 1);
     Window_FillTilemap(&(trPhase->window), 0xf);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 7, 0, 1 * 0x20, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 7, 0, 1 * 0x20, 0x20, HEAP_ID_TRADE_SEQUENCE_PHASE);
     Bg_CopyTilemapBufferToVRAM(trPhase->bgConfig, 1);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, trPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, trPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 23, 0, 0 * 0x20, 0x20, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, trPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, trPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 23, 0, 0 * 0x20, 0x20, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     TradeReceivePhase_Init3DScene(trPhase);
 
@@ -299,7 +299,7 @@ static int TradeReceivePhase_InitGraphics(TradeReceivePhase *trPhase, int *unuse
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2, 16, 0);
-    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_58);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     return 1;
 }
@@ -423,7 +423,7 @@ static int TradeReceivePhase_ShowMessage(TradeReceivePhase *trPhase, int *subSte
         break;
     case 4:
         if (++(trPhase->timer) > 10) {
-            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_58);
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
             (*subStepCounter)++;
         }
         break;
@@ -530,7 +530,7 @@ static void TradeReceivePhase_DeleteBallSprites(TradeReceivePhase *trPhase)
 
 static void BrightnessAnimState_Start(TradeReceivePhase *trPhase, int startValue, int targetValue, int duration)
 {
-    BrightnessAnimState *baState = Heap_Alloc(HEAP_ID_58, sizeof(BrightnessAnimState));
+    BrightnessAnimState *baState = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(BrightnessAnimState));
 
     if (baState) {
         baState->phase = trPhase;
@@ -576,7 +576,7 @@ static void BrightnessAnimState_Task(SysTask *unused, void *param)
 
 static void BallOpenState_Start(TradeReceivePhase *trPhase, SysTask **task)
 {
-    BallOpenState *boState = Heap_Alloc(HEAP_ID_58, sizeof(BallOpenState));
+    BallOpenState *boState = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(BallOpenState));
 
     if (boState) {
         boState->subState = 0;

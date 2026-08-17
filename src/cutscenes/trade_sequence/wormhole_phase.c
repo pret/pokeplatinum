@@ -1,9 +1,9 @@
-#include "trade_sequence/wormhole_phase.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "trade_sequence/trade_sequence.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 
 #include "bg_window.h"
 #include "enums.h"
@@ -44,7 +44,7 @@ static void TradeWormholePhase_SetBgScroll(BgConfig *bgConfig, int bg1Scroll, in
 
 void *TradeWormholePhase_New(TradeSequenceData *sequenceData)
 {
-    TradeWormholePhase *twPhase = Heap_Alloc(HEAP_ID_58, sizeof(TradeWormholePhase));
+    TradeWormholePhase *twPhase = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(TradeWormholePhase));
 
     if (twPhase) {
         twPhase->sequenceData = sequenceData;
@@ -89,7 +89,7 @@ BOOL TradeWormholePhase_Run(void *param, int *state)
 static int TradeWormholePhase_Setup(TradeWormholePhase *twPhase, int *unused)
 {
     TradeWormholePhase_InitGraphics(twPhase);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     return 1;
 }
@@ -112,7 +112,7 @@ static int TradeWormholePhase_Animate(TradeWormholePhase *twPhase, int *subStepC
     case 1:
         if (twPhase->scrollDone) {
             Sound_PlayEffect(SEQ_SE_DP_KOUKAN03_sseq);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
             (*subStepCounter)++;
         }
         break;
@@ -216,13 +216,13 @@ static void TradeWormholePhase_InitGraphics(TradeWormholePhase *twPhase)
     Bg_InitFromTemplate(twPhase->bgConfig, BG_LAYER_MAIN_3, &bgTemplate3, 0);
     Bg_InitFromTemplate(twPhase->bgConfig, BG_LAYER_SUB_3, &bgTemplate3, 0);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, twPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, twPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, twPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, twPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, twPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, twPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, twPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, twPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 20, 0, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 20, 4, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 20, 0, 0, 0x20, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 20, 4, 0, 0x20, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     Bg_FillTilesRange(twPhase->bgConfig, 1, 0x0, 1, 200);
     Bg_FillTilesRange(twPhase->bgConfig, 5, 0x0, 1, 200);

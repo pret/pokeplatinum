@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV95_022476F0_H
-#define POKEPLATINUM_OV95_022476F0_H
+#ifndef POKEPLATINUM_TRADE_3D_PHASE_H
+#define POKEPLATINUM_TRADE_3D_PHASE_H
 
 #include <nitro/fx/fx.h>
 
@@ -46,4 +46,4 @@ void Trade3DScene_AdjustCameraAngle(Trade3DScene *tradeScene, const CameraAngle 
 void Trade3DScene_ComputeProjection(Trade3DScene *tradeScene, u8 projectionType);
 void Trade3DScene_SetFOV(Trade3DScene *tradeScene, u16 fov);
 
-#endif // POKEPLATINUM_OV95_022476F0_H
+#endif // POKEPLATINUM_TRADE_3D_PHASE_H

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV95_02246C20_H
-#define POKEPLATINUM_OV95_02246C20_H
+#ifndef POKEPLATINUM_TRADE_SEQUENCE_H
+#define POKEPLATINUM_TRADE_SEQUENCE_H
 
 #include <nnsys.h>
 
@@ -63,6 +63,34 @@ typedef struct SpriteAnimResources {
     NNSG2dAnimBankData *animBank;
 } SpriteAnimResources;
 
+void *TradeBallFlybyPhase_New(TradeSequenceData *sequenceData);
+void TradeBallFlybyPhase_Free(void *param);
+BOOL TradeBallFlybyPhase_Run(void *param, int *state);
+
+void *TradePokemonRevealPhase_New(TradeSequenceData *sequenceData);
+void TradePokemonRevealPhase_Free(void *param);
+BOOL TradePokemonRevealPhase_Run(void *param, int *state);
+
+void *ReceiveBall_New(TradeSequenceData *sequenceData);
+void ReceiveBall_Free(void *param);
+BOOL ReceiveBall_Run(void *param, int *state);
+
+void *TradeReceivePhase_New(TradeSequenceData *sequenceData);
+void TradeReceivePhase_Free(void *param);
+BOOL TradeReceivePhase_Run(void *param, int *state);
+
+void *TradeSendPhase_New(TradeSequenceData *sequenceData);
+void TradeSendPhase_Free(void *param);
+BOOL TradeSendPhase_Run(void *param, int *state);
+
+void *TradeTubePhase_New(TradeSequenceData *sequenceData);
+void TradeTubePhase_Free(void *param);
+BOOL TradeTubePhase_Run(void *param, int *state);
+
+void *TradeWormholePhase_New(TradeSequenceData *sequenceData);
+void TradeWormholePhase_Free(void *param);
+BOOL TradeWormholePhase_Run(void *param, int *state);
+
 int TradeSequence_Init(ApplicationManager *appMan, int *unused);
 int TradeSequence_Exit(ApplicationManager *appMan, int *unused);
 int TradeSequence_Main(ApplicationManager *appMan, int *state);
@@ -90,4 +118,4 @@ int TradeSequence_GetOptionsFrame(TradeSequenceData *sequenceData);
 enum TradeType TradeSequence_GetTradeType(TradeSequenceData *sequenceData);
 void DeferredFree_Enqueue(void *param);
 
-#endif // POKEPLATINUM_OV95_02246C20_H
+#endif // POKEPLATINUM_TRADE_SEQUENCE_H

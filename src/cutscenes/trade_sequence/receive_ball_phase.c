@@ -1,10 +1,10 @@
-#include "trade_sequence/receive_ball_phase.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "trade_sequence/trade_3d_scene.h"
-#include "trade_sequence/trade_sequence.h"
+#include "cutscenes/trade_sequence/trade_3d_scene.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -108,7 +108,7 @@ static BOOL sOrbitEnabled = TRUE;
 
 void *ReceiveBall_New(TradeSequenceData *sequenceData)
 {
-    TradeBallArrivalPhase *arrivalPhase = Heap_Alloc(HEAP_ID_58, sizeof(TradeBallArrivalPhase));
+    TradeBallArrivalPhase *arrivalPhase = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(TradeBallArrivalPhase));
 
     if (arrivalPhase) {
         arrivalPhase->sequenceData = sequenceData;
@@ -167,7 +167,7 @@ static int ReceiveBall_Setup(TradeBallArrivalPhase *arrivalPhase, int *unused)
     ReceiveBall_Init3DScene(arrivalPhase);
     ReceiveBall_CreateSprite(arrivalPhase);
 
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     return 1;
 }
@@ -192,7 +192,7 @@ static int ReceiveBall_Animate(TradeBallArrivalPhase *arrivalPhase, int *state)
         break;
     case 2:
         if (BallArrivalPathState_IsDone(&(arrivalPhase->bapState))) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
             (*state)++;
         }
         break;
@@ -277,14 +277,14 @@ static void ReceiveBall_InitGraphics(TradeBallArrivalPhase *arrivalPhase)
         break;
     }
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilesIdx, arrivalPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilesIdx, arrivalPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilesIdx, arrivalPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilesIdx, arrivalPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilemapIdx, arrivalPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilemapIdx, arrivalPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilemapIdx, arrivalPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, tilemapIdx, arrivalPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
-    Graphics_LoadPaletteWithSrcOffset(93, paletteIdx, 0, paletteOffset, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPaletteWithSrcOffset(93, paletteIdx, 4, paletteOffset, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPaletteWithSrcOffset(93, paletteIdx, 0, paletteOffset, 0, 0x20, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadPaletteWithSrcOffset(93, paletteIdx, 4, paletteOffset, 0, 0x20, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     Bg_SetOffset(arrivalPhase->bgConfig, BG_LAYER_MAIN_3, 3, 0);
     Bg_SetOffset(arrivalPhase->bgConfig, BG_LAYER_SUB_3, 3, 256);
@@ -293,7 +293,7 @@ static void ReceiveBall_InitGraphics(TradeBallArrivalPhase *arrivalPhase)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     NetworkIcon_Init();
-    NetworkIcon_CreateOnSubScreen(1, HEAP_ID_57);
+    NetworkIcon_CreateOnSubScreen(1, HEAP_ID_TRADE_SEQUENCE);
 }
 
 static void ReceiveBall_FreeGraphics(TradeBallArrivalPhase *arrivalPhase)

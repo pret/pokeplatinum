@@ -1,10 +1,10 @@
-#include "trade_sequence/tube_phase.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "trade_sequence/trade_3d_scene.h"
-#include "trade_sequence/trade_sequence.h"
+#include "cutscenes/trade_sequence/trade_3d_scene.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -20,62 +20,42 @@
 #include "sys_task_manager.h"
 #include "unk_0202419C.h"
 
-enum {
-    BG_SCALE_START = 1152,
-    BG_SCALE_RATE = 1,
-    BG_SCALE_DURATION = 296
-};
+#define BG_SCALE_START    1152
+#define BG_SCALE_RATE     1
+#define BG_SCALE_DURATION 296
 
-enum {
-    TUBE_MODEL_SCALE = 7168,
-    TUBE_MODEL_Y_OFFSET = 0xFFFE6800,
-    TUBE_CAMERA_ANGLE_X = 60384
-};
+#define TUBE_MODEL_SCALE    7168
+#define TUBE_MODEL_Y_OFFSET 0xFFFE6800
+#define TUBE_CAMERA_ANGLE_X 60384
 
-enum {
-    BALL_ORBIT_RADIUS_Z = 81920,
-    BALL_ORBIT_RADIUS_X = 167936,
-    BALL_ENTRY_TARGET_Y = -8 << 12,
-    BALL_ENTRY_DURATION = 30,
-    BALL_INITIAL_ROTATION_SPEED = 16384,
-    BALL_TARGET_ROTATION_SPEED = 3328
-};
+#define BALL_ORBIT_RADIUS_Z         81920
+#define BALL_ORBIT_RADIUS_X         167936
+#define BALL_ENTRY_TARGET_Y         (-8 << 12)
+#define BALL_ENTRY_DURATION         30
+#define BALL_INITIAL_ROTATION_SPEED 16384
+#define BALL_TARGET_ROTATION_SPEED  3328
 
-enum {
-    BALL_EXIT_Y_ACCEL = 512
-};
+#define BALL_EXIT_Y_ACCEL 512
 
-enum {
-    BALL_RETURN_START_Y = -128 << 12,
-    BALL_RETURN_TARGET_Y = 0xFFFEF000,
-    BALL_RETURN_ENTRY_DURATION = 20,
-    BALL_RETURN_SCALE = 8192
-};
+#define BALL_RETURN_START_Y        (-128 << 12)
+#define BALL_RETURN_TARGET_Y       0xFFFEF000
+#define BALL_RETURN_ENTRY_DURATION 20
+#define BALL_RETURN_SCALE          8192
 
-enum {
-    BALL_RETURN_COAST_DURATION = 110,
-    BALL_RETURN_FINAL_TARGET_Y = 0xFFFC5800,
-    BALL_RETURN_FINAL_APPROACH_DURATION = 53,
-};
+#define BALL_RETURN_COAST_DURATION          110
+#define BALL_RETURN_FINAL_TARGET_Y          (int)0xFFFC5800
+#define BALL_RETURN_FINAL_APPROACH_DURATION 53
 
-enum {
-    BALL_RETURN_COAST2_DURATION = 1,
-    BALL_RETURN_EXIT_Y_STEP = 131072
-};
+#define BALL_RETURN_COAST2_DURATION 1
+#define BALL_RETURN_EXIT_Y_STEP     131072
 
-enum {
-    BG_SCROLL_ACCEL = 288,
-    BG_SCROLL_MAX = 512 << 12
-};
+#define BG_SCROLL_ACCEL 288
+#define BG_SCROLL_MAX   (512 << 12)
 
-enum {
-    PARTICLE_ACTIVATE_INTERVAL = 12
-};
+#define PARTICLE_ACTIVATE_INTERVAL 12
 
-enum {
-    PARTICLE_SCROLL_SPEED = 135168,
-    SPRITE_RNG_SEED = 56182737
-};
+#define PARTICLE_SCROLL_SPEED 135168
+#define SPRITE_RNG_SEED       56182737
 
 typedef struct AxisRotAnimator {
     fx16 currentValue;
@@ -199,7 +179,7 @@ static void BallPathState_ReturnExitTask(SysTask *task, void *param);
 
 void *TradeTubePhase_New(TradeSequenceData *sequenceData)
 {
-    TradeTubePhase *ttPhase = Heap_Alloc(HEAP_ID_58, sizeof(TradeTubePhase));
+    TradeTubePhase *ttPhase = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(TradeTubePhase));
 
     if (ttPhase) {
         ttPhase->sequenceData = sequenceData;
@@ -285,7 +265,7 @@ static int TradeTubePhase_Setup(TradeTubePhase *ttPhase, int *unused)
     TradeTubePhase_InitGraphics(ttPhase);
     TradeTubePhase_Init3DScene(ttPhase);
     TradeTubePhase_CreateSprites(ttPhase);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     return 1;
 }
@@ -379,7 +359,7 @@ static int TradeTubePhase_Exit(TradeTubePhase *ttPhase, int *subStepCounter)
         }
 
         if (BallPathState_IsDone(ttPhase->task0)) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 4, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 4, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
             (*subStepCounter)++;
         }
         break;
@@ -462,24 +442,24 @@ static void TradeTubePhase_InitGraphics(TradeTubePhase *ttPhase)
 
     OS_RestoreInterrupts(savedInterrupts);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, ttPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, ttPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 0, ttPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 0, ttPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, ttPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, ttPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 0, ttPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 0, ttPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     backgroundIndex = TradeSequence_GetBackground(ttPhase->sequenceData);
 
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 0, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 4, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, sPaletteOffsets[backgroundIndex], 0x20, 0x40, HEAP_ID_58);
-    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, sPaletteOffsets[backgroundIndex], 0x20, 0x40, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 0, 0, 0x20, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 4, 0, 0x20, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, sPaletteOffsets[backgroundIndex], 0x20, 0x40, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, sPaletteOffsets[backgroundIndex], 0x20, 0x40, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, ttPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, ttPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, ttPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, ttPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, ttPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, ttPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, ttPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, ttPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
-    u8 *clearBuf = Heap_Alloc(HEAP_ID_58, 96);
+    u8 *clearBuf = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, 96);
 
     if (clearBuf) {
         MI_CpuClear32(clearBuf, 96);
@@ -705,7 +685,7 @@ static void TubeParticleScrollState_Stop(SysTask *task)
 
 static void TubeBgScrollState_Start(TradeTubePhase *ttPhase, SysTask **task)
 {
-    TubeBgScrollState *tbsState = Heap_Alloc(HEAP_ID_58, sizeof(TubeBgScrollState));
+    TubeBgScrollState *tbsState = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(TubeBgScrollState));
 
     if (tbsState) {
         tbsState->phase = ttPhase;
@@ -758,7 +738,7 @@ static void TubeBgScrollState_Stop(SysTask *task)
 
 static void ModelFadeState_Start(Trade3DModel *model, int currentValue, int targetValue, int framesRemaining)
 {
-    ModelFadeState *mfState = Heap_Alloc(HEAP_ID_58, sizeof(ModelFadeState));
+    ModelFadeState *mfState = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(ModelFadeState));
 
     if (mfState) {
         mfState->currentValue = currentValue << 12;

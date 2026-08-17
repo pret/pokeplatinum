@@ -1,4 +1,4 @@
-#include "trade_sequence/trade_3d_scene.h"
+#include "cutscenes/trade_sequence/trade_3d_scene.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -20,12 +20,12 @@ static void Trade3DScene_DestroyCamera(Trade3DScene *tradeScene);
 
 Trade3DScene *Trade3DScene_New(u32 modelCount, fx32 targetX, fx32 targetY, fx32 targetZ)
 {
-    Trade3DScene *tradeScene = Heap_Alloc(HEAP_ID_58, sizeof(Trade3DScene));
+    Trade3DScene *tradeScene = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(Trade3DScene));
 
     if (tradeScene) {
         Trade3DScene_InitCamera(tradeScene, targetX, targetY, targetZ);
 
-        tradeScene->models = Heap_Alloc(HEAP_ID_58, sizeof(Trade3DModel) * modelCount);
+        tradeScene->models = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(Trade3DModel) * modelCount);
         tradeScene->modelCount = modelCount;
 
         for (int i = 0; i < modelCount; i++) {
@@ -109,7 +109,7 @@ Trade3DModel *Trade3DModel_Load(Trade3DScene *tradeScene, int modelIndex, enum N
 {
     Trade3DModel *tradeModel = &tradeScene->models[modelIndex];
 
-    tradeModel->modelData = LoadMemberFromNARC(narcID, memberIndex, 0, HEAP_ID_58, 1);
+    tradeModel->modelData = LoadMemberFromNARC(narcID, memberIndex, 0, HEAP_ID_TRADE_SEQUENCE_PHASE, 1);
     DC_FlushRange(tradeModel->modelData, NARC_GetMemberSizeByIndexPair(narcID, memberIndex));
 
     if (tradeModel->modelData) {
@@ -221,7 +221,7 @@ static void Trade3DScene_InitCamera(Trade3DScene *tradeScene, fx32 targetX, fx32
 {
     VecFx32 upVector;
 
-    tradeScene->camera = Camera_Alloc(HEAP_ID_58);
+    tradeScene->camera = Camera_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE);
     tradeScene->target.x = targetX;
     tradeScene->target.y = targetY;
     tradeScene->target.z = targetZ;

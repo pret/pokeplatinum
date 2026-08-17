@@ -1,10 +1,10 @@
-#include "trade_sequence/pokemon_reveal_phase.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "trade_sequence/trade_3d_scene.h"
-#include "trade_sequence/trade_sequence.h"
+#include "cutscenes/trade_sequence/trade_3d_scene.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -115,7 +115,7 @@ static void ModelFadeState_Free(SysTask *task);
 
 void *TradePokemonRevealPhase_New(TradeSequenceData *sequenceData)
 {
-    TradePokemonRevealPhase *tprPhase = Heap_Alloc(HEAP_ID_58, sizeof(TradePokemonRevealPhase));
+    TradePokemonRevealPhase *tprPhase = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(TradePokemonRevealPhase));
 
     if (tprPhase) {
         tprPhase->sequenceData = sequenceData;
@@ -197,7 +197,7 @@ static int TradePokemonRevealPhase_Setup(TradePokemonRevealPhase *tprPhase, int 
 {
     TradePokemonRevealPhase_InitGraphics(tprPhase);
     TradePokemonRevealPhase_Init3DScene(tprPhase);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     return 1;
 }
@@ -260,7 +260,7 @@ static int TradePokemonRevealPhase_Exit(TradePokemonRevealPhase *tprPhase, int *
         break;
     case 1:
         if (++(tprPhase->timer) > 13) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
             (*subStepCounter)++;
         }
         break;
@@ -343,24 +343,24 @@ static void TradePokemonRevealPhase_InitGraphics(TradePokemonRevealPhase *tprPha
 
     OS_RestoreInterrupts(savedInterrupts);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, tprPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, tprPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 1, tprPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 1, tprPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, tprPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, tprPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 1, tprPhase->bgConfig, 2, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 1, tprPhase->bgConfig, 6, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
     background = TradeSequence_GetBackground(tprPhase->sequenceData);
 
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 0, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 4, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, sPaletteOffsets[background], 0x20, 0x40, HEAP_ID_58);
-    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, sPaletteOffsets[background], 0x20, 0x40, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 0, 0, 0x20, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 4, 0, 0x20, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, sPaletteOffsets[background], 0x20, 0x40, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, sPaletteOffsets[background], 0x20, 0x40, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, tprPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, tprPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, tprPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, tprPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, tprPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, tprPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, tprPhase->bgConfig, 3, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, tprPhase->bgConfig, 7, 0, 0, 1, HEAP_ID_TRADE_SEQUENCE_PHASE);
 
-    u8 *clearBuf = Heap_Alloc(HEAP_ID_58, 96);
+    u8 *clearBuf = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, 96);
 
     if (clearBuf) {
         MI_CpuClear32(clearBuf, 96);
@@ -456,7 +456,7 @@ static void TradePokemonRevealPhase_Free3DScene(TradePokemonRevealPhase *tprPhas
 
 static void BgSlideState_Start(TradePokemonRevealPhase *tprPhase, SysTask **task)
 {
-    BgSlideState *bgSlideState = Heap_Alloc(HEAP_ID_58, sizeof(BgSlideState));
+    BgSlideState *bgSlideState = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(BgSlideState));
 
     if (bgSlideState) {
         bgSlideState->phase = tprPhase;
@@ -504,7 +504,7 @@ static void BgSlideState_Free(SysTask *task)
 
 static void ModelSlideState_Start(TradePokemonRevealPhase *tprPhase, SysTask **task)
 {
-    ModelSlideState *msState = Heap_Alloc(HEAP_ID_58, sizeof(ModelSlideState));
+    ModelSlideState *msState = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(ModelSlideState));
 
     if (msState) {
         msState->taskHandle = task;
@@ -551,7 +551,7 @@ static void ModelSlideState_Free(SysTask *task)
 
 static void ModelFadeState_Start(Trade3DModel *model, int startValue, int targetValue, int duration, SysTask **task)
 {
-    ModelFadeState *mfState = Heap_Alloc(HEAP_ID_58, sizeof(ModelFadeState));
+    ModelFadeState *mfState = Heap_Alloc(HEAP_ID_TRADE_SEQUENCE_PHASE, sizeof(ModelFadeState));
 
     if (mfState) {
         mfState->taskHandle = task;
