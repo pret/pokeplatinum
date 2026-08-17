@@ -51,6 +51,7 @@
 #include "cutscenes/boat_cutscene.h"
 #include "cutscenes/end_credits/main.h"
 #include "cutscenes/hall_of_fame.h"
+#include "cutscenes/trade_sequence/trade_sequence.h"
 #include "dw_warp/dw_warp.h"
 #include "field/field_system.h"
 #include "gts_application/application.h"
@@ -66,7 +67,6 @@
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay092/ov92_021D0D80.h"
-#include "overlay095/ov95_02246C20.h"
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
@@ -157,8 +157,8 @@ FS_EXTERN_OVERLAY(overlay88);
 FS_EXTERN_OVERLAY(battle_tower_records_app);
 FS_EXTERN_OVERLAY(overlay92);
 FS_EXTERN_OVERLAY(cutscenes);
-FS_EXTERN_OVERLAY(overlay94);
-FS_EXTERN_OVERLAY(overlay95);
+FS_EXTERN_OVERLAY(gts_application);
+FS_EXTERN_OVERLAY(trade_sequence);
 FS_EXTERN_OVERLAY(wifi_battle_tower);
 FS_EXTERN_OVERLAY(end_credits);
 FS_EXTERN_OVERLAY(overlay101);
@@ -959,7 +959,7 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
         TradeSequence_Init,
         TradeSequence_Main,
         TradeSequence_Exit,
-        FS_OVERLAY_ID(overlay95)
+        FS_OVERLAY_ID(trade_sequence)
     };
 
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
@@ -1301,13 +1301,13 @@ void FieldSystem_LaunchSignatureApp(FieldSystem *fieldSystem)
 
 void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi)
 {
-    FS_EXTERN_OVERLAY(overlay94);
+    FS_EXTERN_OVERLAY(gts_application);
 
     const ApplicationManagerTemplate gtsTemplate = {
         GTSApplication_Init,
         GTSApplication_Main,
         GTSApplication_Exit,
-        FS_OVERLAY_ID(overlay94)
+        FS_OVERLAY_ID(gts_application)
     };
 
     GTSPlayerData *playerData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(GTSPlayerData));
