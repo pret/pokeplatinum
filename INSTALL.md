@@ -40,7 +40,7 @@ develop on it with VSCode on Windows while it is stored in the Linux filesystem.
 1. Open powershell terminal as administrator. Yes, even if you're the admin already.
 
 2. Install a new distro:
-    ```
+    ```bash
     wsl --install -d Ubuntu
     ```
     If this is your first time installing a WSL distro, your computer would have to set up some stuff
@@ -51,51 +51,32 @@ develop on it with VSCode on Windows while it is stored in the Linux filesystem.
     called `Ubuntu`.
 
 3. Check that `Ubuntu` (or whatever name you gave it) is installed in the list:
-    ```
+    ```bash
     wsl -l -v
     ```
     If the new distro you just made is not version 2, convert to version 2:
-    ```
+    ```bash
     wsl --set-version Ubuntu 2
     ```
 
 4. Once the new distro is set up, enter it:
-    ```
+    ```bash
     wsl -d Ubuntu
     ```
 
 5. Right now, you'll probably see your file system begin with `/mnt/c/`. That's the Windows file system.
     Go to the Linux filesystem:
-    ```
+    ```bash
     cd ~
     ```
 
-6. Clone the pokeplatinum project:
-    ```
-    git clone https://github.com/pret/pokeplatinum.git
-    ```
-
-7. Move into the pokeplatinum directory:
-    ```
-    cd pokeplatinum
-    ```
-
-8. Install the pokeplatinum dependencies:
-    ```
+6. Install the pokeplatinum dependencies:
+    ```bash
     sudo dpkg --add-architecture i386 && sudo apt update
     sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386 libpng-dev
     ```
 
-9. Build pokeplatinum:
-    ```
-    make -j 8
-    ```
-    This will build pokeplatinum using 8 CPU cores in your computer. You may want more or less depending on
-    hardware or user preference. `nproc` will show you how many CPU cores your computer has which matches how
-    many jobs it can do at once. More (if your computer has the cores) is generally faster but hogs more cores
-    meaning your computer is slower at performing other tasks while the command runs.
-
-10. You should have a successful build!
+7. Once that is done successfully, go to [Downloading the Repository](#2-downloading-the-repository) and continue from there.
 
 ##### Developing in WSL2 from Windows
 
@@ -104,7 +85,7 @@ With VSCode, you can modify files stored in Linux just like modifying files stor
 1. Open VSCode in Windows (assuming you have downloaded it already). Go to extensions and find the WSL extension. Install it and make sure it's enabled.
 
 2. Back to your powershell terminal where you're running WSL2, run this command in the pokeplatinum directory to open it in VSCode on Windows:
-    ```
+    ```bash
     code .
     ```
     The first time using it will download some VSCode for Linux stuff. Let it work its magic.
@@ -340,8 +321,12 @@ cd pokeplatinum
 To build the ROM, run:
 
 ```bash
-make
+make -j 8
 ```
+This will build pokeplatinum using 8 CPU cores in your computer. You may want more or less depending on
+hardware or user preference. `nproc` will show you how many CPU cores your computer has which matches how
+many jobs it can do at once. More (if your computer has the cores) is generally faster but hogs more cores
+meaning your computer is slower at performing other tasks while the command runs.
 
 If everything works, then the following ROM should be built:
 
