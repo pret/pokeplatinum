@@ -1427,7 +1427,7 @@ JubilifeCity_GivePoketch:
     RemoveItem ITEM_COUPON_1, 1, VAR_RESULT
     RemoveItem ITEM_COUPON_2, 1, VAR_RESULT
     RemoveItem ITEM_COUPON_3, 1, VAR_RESULT
-    ScrCmd_131
+    EnablePoketch
     SetVar VAR_JUBILIFE_CITY_STATE, 2
     RegisterPoketchApp POKETCH_APPID_DIGITALWATCH
     RegisterPoketchApp POKETCH_APPID_CALCULATOR

@@ -1,7 +1,6 @@
-#include "overlay005/ov5_021DDAE4.h"
+#include "overlay005/enable_poketch_task.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "applications/poketch/poketch_system.h"
 #include "applications/poketch/unavailable/graphics.h"
@@ -19,23 +18,23 @@ FS_EXTERN_OVERLAY(poketch_unavailable);
 FS_EXTERN_OVERLAY(poketch);
 
 typedef struct {
-    int unk_00;
-} UnkStruct_ov5_021DDBC8;
+    int state;
+} EnablePoketchTask;
 
-static BOOL ov5_021DDAE4(FieldTask *param0)
+static BOOL FieldTask_EnablePoketch(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_ov5_021DDBC8 *v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    EnablePoketchTask *taskData = FieldTask_GetEnv(task);
 
-    switch (v1->unk_00) {
+    switch (taskData->state) {
     case 0:
         BrightnessController_StartTransition(2, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
-        v1->unk_00++;
+        taskData->state++;
         break;
     case 1:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             PoketchUnavailableScreen_Exit(fieldSystem->bgConfig);
-            v1->unk_00++;
+            taskData->state++;
         }
         break;
     case 2:
@@ -43,31 +42,31 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
             Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
 
             Overlay_UnloadByID(FS_OVERLAY_ID(poketch_unavailable));
-            Overlay_LoadByID(FS_OVERLAY_ID(poketch), 2);
+            Overlay_LoadByID(FS_OVERLAY_ID(poketch), OVERLAY_LOAD_ASYNC);
             Poketch_Enable(poketch);
-            PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, RenderOam_GetScreenOam(1));
-            v1->unk_00++;
+            PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, RenderOam_GetScreenOam(DS_SCREEN_SUB));
+            taskData->state++;
         }
         break;
     case 3:
         BrightnessController_StartTransition(4, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
-        v1->unk_00++;
+        taskData->state++;
         break;
     case 4:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
-            Heap_Free(v1);
-            return 1;
+            Heap_Free(taskData);
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov5_021DDBC8(FieldTask *param0)
+void FieldSystem_EnablePoketch(FieldTask *task)
 {
-    UnkStruct_ov5_021DDBC8 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov5_021DDBC8));
+    EnablePoketchTask *taskState = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(EnablePoketchTask));
 
-    v0->unk_00 = 0;
-    FieldTask_InitCall(param0, ov5_021DDAE4, v0);
+    taskState->state = 0;
+    FieldTask_InitCall(task, FieldTask_EnablePoketch, taskState);
 }

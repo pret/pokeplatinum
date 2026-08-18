@@ -1834,8 +1834,8 @@
     .short \word
     .endm
 
-    .macro ScrCmd_131
-    .short SCRCMD_131
+    .macro EnablePoketch
+    .short SCRCMD_ENABLEPOKETCH
     .endm
 
     .macro CheckPoketchEnabled destVar
