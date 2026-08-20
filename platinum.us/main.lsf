@@ -1551,14 +1551,14 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_frscrcmd_sound.c.o
 	Object main.nef.p/src_overlay104_frscrcmd_battle_tower.c.o
 	Object main.nef.p/src_overlay104_ov104_022394A4.c.o
-	Object main.nef.p/src_overlay104_ov104_022395F0.c.o
-	Object main.nef.p/src_overlay104_ov104_02239C58.c.o
+	Object main.nef.p/src_overlay104_frscrcmd_wfc_facility_selector.c.o
+	Object main.nef.p/src_overlay104_wfc_facility_selector.c.o
 	Object main.nef.p/src_overlay104_ov104_0223A0C4.c.o
 	Object main.nef.p/src_overlay104_battle_factory_helpers.c.o
 	Object main.nef.p/src_overlay104_battle_hall_helpers.c.o
 	Object main.nef.p/src_overlay104_battle_castle_helpers.c.o
 	Object main.nef.p/src_overlay104_battle_arcade_helpers.c.o
-	Object main.nef.p/src_overlay104_ov104_0223C164.c.o
+	Object main.nef.p/src_overlay104_wfc_facility_selector_helpers.c.o
 	Object main.nef.p/src_overlay104_frontier_graphics.c.o
 	Object main.nef.p/src_overlay104_frontier_particle_system.c.o
 	Object main.nef.p/src_overlay104_ov104_0223D768.c.o

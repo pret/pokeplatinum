@@ -3,7 +3,7 @@
 
 #include "struct_defs/battle_tower.h"
 
-#include "overlay104/ov104_02239C58.h"
+#include "overlay104/wfc_facility_selector.h"
 
 void sub_0209BA80(void *param0);
 BOOL BattleTower_SendTrainerIDListCmd(BattleTower *battleTower);

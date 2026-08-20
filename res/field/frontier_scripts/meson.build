@@ -19,7 +19,7 @@ fr_script_narc = custom_target('fr_script.narc',
                 'frontier_scripts_battle_tower_corridor_multi.s',
                 'frontier_scripts_battle_tower_battle_room.s',
                 'frontier_scripts_battle_tower_multi_battle_room.s',
-                'frontier_scripts_unknown_10.s',
+                'frontier_scripts_wfc_facility_selector.s',
             ),
             extra_args: ['--out-dir', fr_script_private_dir],
             depends: [

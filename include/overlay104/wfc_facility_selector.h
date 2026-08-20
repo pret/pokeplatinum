@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV104_02239C58_H
-#define POKEPLATINUM_OV104_02239C58_H
+#ifndef POKEPLATINUM_WFC_FACILITY_SELECTOR_H
+#define POKEPLATINUM_WFC_FACILITY_SELECTOR_H
 
 #include "struct_decls/battle_frontier_decl.h"
 
@@ -44,4 +44,4 @@ void WFCFacilitySelector_Free(WFCFacilitySelector *selector);
 BOOL WFCFacilitySelector_SendCommMessage(WFCFacilitySelector *selector, u16 command, u16 arg1, u16 arg2);
 void WFCFacilitySelector_ManageSubApp(BattleFrontier *frontier, WFCFacilitySelector *selector, u16 action);
 
-#endif // POKEPLATINUM_OV104_02239C58_H
+#endif // POKEPLATINUM_WFC_FACILITY_SELECTOR_H

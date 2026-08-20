@@ -6,8 +6,8 @@
 #include "generated/text_banks.h"
 
 #include "graphics/frontier/backgrounds/frontier_backgrounds.naix"
-#include "overlay104/ov104_0223C164.h"
 #include "overlay104/ov104_0223D9E4.h"
+#include "overlay104/wfc_facility_selector_helpers.h"
 
 #include "bg_window.h"
 #include "gx_layers.h"
@@ -312,8 +312,8 @@ static const FrontierScene sFrontierScenes[] = {
         .bgMode = GX_BGMODE_5,
         .setupFunc = WFCFacilitySelectorSceneSetup,
         .destroyFunc = WFCFacilitySelectorSceneDestroy,
-        .scriptID = frontier_scripts_unknown_10,
-        .textBankID = TEXT_BANK_UNK_0015,
+        .scriptID = frontier_scripts_wfc_facility_selector,
+        .textBankID = TEXT_BANK_WFC_FACILITY_SELECTOR,
         .bgmID = SEQ_BF_TOWWER_sseq,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,

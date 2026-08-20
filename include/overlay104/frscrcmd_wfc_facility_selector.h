@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV104_022395F0_H
-#define POKEPLATINUM_OV104_022395F0_H
+#ifndef POKEPLATINUM_FRSCRCMD_WFC_FACILITY_SELECTOR_H
+#define POKEPLATINUM_FRSCRCMD_WFC_FACILITY_SELECTOR_H
 
 #include "overlay104/defs.h"
 
@@ -17,4 +17,4 @@ BOOL FrontierScrCmd_SendTowerTrainerIDList(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_WaitForTowerTrainerIDListResponses(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_FreeBattleTower(FrontierScriptContext *ctx);
 
-#endif // POKEPLATINUM_OV104_022395F0_H
+#endif // POKEPLATINUM_FRSCRCMD_WFC_FACILITY_SELECTOR_H

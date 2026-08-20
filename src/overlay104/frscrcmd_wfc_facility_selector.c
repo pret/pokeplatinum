@@ -1,4 +1,4 @@
-#include "overlay104/ov104_022395F0.h"
+#include "overlay104/frscrcmd_wfc_facility_selector.h"
 
 #include <nitro.h>
 #include <nitro/code16.h>
@@ -15,9 +15,9 @@
 #include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frscrcmd.h"
-#include "overlay104/ov104_02239C58.h"
-#include "overlay104/ov104_0223C164.h"
 #include "overlay104/struct_ov104_02230BE4.h"
+#include "overlay104/wfc_facility_selector.h"
+#include "overlay104/wfc_facility_selector_helpers.h"
 
 #include "battle_frontier.h"
 #include "battle_frontier_save.h"

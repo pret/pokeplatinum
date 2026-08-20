@@ -13,7 +13,7 @@
 #include "applications/frontier/battle_factory/main.h"
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/frontier_communication.h"
-#include "overlay104/ov104_0223C164.h"
+#include "overlay104/wfc_facility_selector_helpers.h"
 
 #include "battle_frontier_save.h"
 #include "communication_system.h"
