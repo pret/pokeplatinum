@@ -450,13 +450,13 @@ static void ov56_022567FC(UnkStruct_ov56_02256468 *param0, int param1, UnkStruct
     Window_FillTilemap(&param0->unk_22C[param1].unk_00, 0x0);
     Window_FillTilemap(&param0->unk_22C[param1].unk_10, 0x0);
     Window_FillTilemap(&param0->unk_22C[param1].unk_20, 0x0);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_00, FONT_MESSAGE, param2->unk_00, 0, 1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_10, FONT_MESSAGE, param2->unk_04, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_00, FONT_MESSAGE, param2->unk_00, 0, 1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_10, FONT_MESSAGE, param2->unk_04, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_22C[param1].unk_00);
     Window_ScheduleCopyToVRAM(&param0->unk_22C[param1].unk_10);
 
     if (param2->unk_08) {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_20, FONT_MESSAGE, param2->unk_08, 0, 1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_20, FONT_MESSAGE, param2->unk_08, 0, 1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 
     Window_ScheduleCopyToVRAM(&param0->unk_22C[param1].unk_20);

@@ -138,7 +138,7 @@ int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3,
     }
 
     Window_FillTilemap(param0, 15);
-    v1 = Text_AddPrinterWithParamsAndColor(param0, param2, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+    v1 = Text_AddPrinterWithParamsAndColor(param0, param2, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     String_Free(v0);
 
     return v1;

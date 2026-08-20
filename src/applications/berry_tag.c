@@ -637,7 +637,7 @@ static void BerryTag_PrintDescription(BerryTag *berryTag)
 
     String *string = BerryData_AllocAndGetDescription(berryTag->outsideData->currentBerryID, HEAP_ID_BERRY_TAG);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }

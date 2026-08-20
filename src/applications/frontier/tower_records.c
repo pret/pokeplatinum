@@ -709,20 +709,20 @@ static void PrintLabeledWinStreak(BattleTowerRecordsApp *app, Window *window, u8
     u16 latestStat = BattleFrontierSave_GetStat(app->frontier, statIndex + 1, 0xff);
     u16 streakIsActive = WifiBattleTowerRecord_UpdateBitFlag(app->towerRecord, 8 + challengeMode, 0);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->strMan.resultStrs[streakIsActive], 4, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->strMan.resultStrs[streakIsActive], 4, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLUE, NULL);
     StringTemplate_SetNumber(app->strMan.strTemplate, 0, latestStat, 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(app->strMan.strTemplate, app->strMan.string, app->strMan.resultStrs[4]);
 
     int xOffset = 168 - Font_CalcStringWidth(FONT_SYSTEM, app->strMan.string, 0) - 4;
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->strMan.string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->strMan.string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
     yOffset += 24;
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->strMan.resultStrs[2], 4, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->strMan.resultStrs[2], 4, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLUE, NULL);
     StringTemplate_SetNumber(app->strMan.strTemplate, 0, recordStat, 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(app->strMan.strTemplate, app->strMan.string, app->strMan.resultStrs[4]);
 
     xOffset = 168 - Font_CalcStringWidth(FONT_SYSTEM, app->strMan.string, 0) - 4;
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->strMan.string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->strMan.string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     Window_CopyToVRAM(window);
 }
 
@@ -733,9 +733,9 @@ static void PrintRecordsScreen(BattleTowerRecordsApp *app)
     int xOffset = 192 - Font_CalcStringWidth(FONT_SYSTEM, app->strMan.string, 0);
     Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RESULTS_HEADER], FONT_SYSTEM, app->strMan.string, xOffset / 2, 8, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 2, 0), NULL);
     MessageLoader_GetString(app->strMan.msgLoader, BattleTowerRecordsApp_Text_SingleRecord + app->resultsType, app->strMan.string);
-    Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RESULTS_FIRST_LABEL], FONT_SYSTEM, app->strMan.string, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RESULTS_FIRST_LABEL], FONT_SYSTEM, app->strMan.string, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLUE, NULL);
     MessageLoader_GetString(app->strMan.msgLoader, BattleTowerRecordsApp_Text_DoubleRecord + app->resultsType, app->strMan.string);
-    Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RESULTS_FIRST_VALUE], FONT_SYSTEM, app->strMan.string, 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RESULTS_FIRST_VALUE], FONT_SYSTEM, app->strMan.string, 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR_BLUE, NULL);
 
     switch (app->resultsType) {
     case TOWER_RECORDS_RESULTS_SOLO:
@@ -748,14 +748,14 @@ static void PrintRecordsScreen(BattleTowerRecordsApp *app)
         break;
     case TOWER_RECORDS_RESULTS_WIFI:
         MessageLoader_GetString(app->strMan.msgLoader, BattleTowerRecordsApp_Text_Rank, app->strMan.string);
-        Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RESULTS_SECOND_LABEL], FONT_SYSTEM, app->strMan.string, 4, 10, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RESULTS_SECOND_LABEL], FONT_SYSTEM, app->strMan.string, 4, 10, TEXT_SPEED_INSTANT, TEXT_COLOR_BLUE, NULL);
         StringTemplate_SetNumber(app->strMan.strTemplate, 0, WifiBattleTowerRecord_UpdateRank(app->towerRecord, 0), 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
         StringTemplate_Format(app->strMan.strTemplate, app->strMan.string, app->strMan.resultStrs[5]);
 
         xOffset = 64 - Font_CalcStringWidth(FONT_SYSTEM, app->strMan.string, 0);
         xOffset = xOffset / 2 + 64;
 
-        Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RESULTS_SECOND_LABEL], FONT_SYSTEM, app->strMan.string, xOffset, 10, TEXT_SPEED_INSTANT, TEXT_COLOR(5, 6, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RESULTS_SECOND_LABEL], FONT_SYSTEM, app->strMan.string, xOffset, 10, TEXT_SPEED_INSTANT, TEXT_COLOR_RED, NULL);
         PrintLabeledWinStreak(app, &app->windows[WINDOW_RESULTS_SECOND_VALUE], BATTLE_TOWER_MODE_WIFI, STAT_TOWER_RECORD_STREAK_WIFI, 3);
         break;
     }
@@ -802,7 +802,7 @@ static void PrintWifiTrainersList(BattleTowerRecordsWifiTrainer *app, Window *wi
     if (topRow >= RANKING_SCREEN_ROWS - 2) {
         numRows = 2;
         xOffset = (40 - Font_CalcStringWidth(FONT_SYSTEM, cancelStr, 0)) / 2;
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, cancelStr, 160 + xOffset, 52, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, cancelStr, 160 + xOffset, 52, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     } else {
         numRows = 3;
     }
@@ -844,16 +844,16 @@ static void PrintSelectedWifiTrainersHomeCountry(BattleTowerRecordsApp *app)
     Window_FillTilemap(&app->windows[WINDOW_RANKINGS_MESSAGE], PIXEL_FILL(0));
 
     if (trainer->country == 0) {
-        Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RANKINGS_MESSAGE], FONT_SYSTEM, app->strMan.noCountryStr, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RANKINGS_MESSAGE], FONT_SYSTEM, app->strMan.noCountryStr, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     } else if (trainer->region == 0) {
         StringTemplate_SetCountryName(app->strMan.strTemplate, 0, trainer->country);
         StringTemplate_Format(app->strMan.strTemplate, app->strMan.string, app->strMan.countryStr);
-        Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RANKINGS_MESSAGE], FONT_SYSTEM, app->strMan.string, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RANKINGS_MESSAGE], FONT_SYSTEM, app->strMan.string, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     } else {
         StringTemplate_SetCountryName(app->strMan.strTemplate, 0, trainer->country);
         StringTemplate_SetCityName(app->strMan.strTemplate, 1, trainer->country, trainer->region);
         StringTemplate_Format(app->strMan.strTemplate, app->strMan.string, app->strMan.countryAndCityStr);
-        Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RANKINGS_MESSAGE], FONT_SYSTEM, app->strMan.string, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RANKINGS_MESSAGE], FONT_SYSTEM, app->strMan.string, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     }
 
     Window_CopyToVRAM(&app->windows[WINDOW_RANKINGS_MESSAGE]);
@@ -867,7 +867,7 @@ static void PrintSelectedWifiTrainersMessage(BattleTowerRecordsApp *app)
     String *message = EasyChatSentence_ToString(&trainerInfo->message, app->heapID);
 
     Window_FillTilemap(&app->windows[WINDOW_RANKINGS_MESSAGE], PIXEL_FILL(0));
-    Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RANKINGS_MESSAGE], FONT_SYSTEM, message, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&app->windows[WINDOW_RANKINGS_MESSAGE], FONT_SYSTEM, message, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     String_Free(message);
 }
 

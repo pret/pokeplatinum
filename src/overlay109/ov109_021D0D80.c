@@ -2120,10 +2120,10 @@ static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, String *param1, int
 
 static void ov109_021D2874(UnkStruct_ov109_021D0F70 *param0, String *param1, int param2, int param3)
 {
-    TextColor v0 = TEXT_COLOR(1, 2, 0);
+    TextColor v0 = TEXT_COLOR_BLACK;
 
     if (param3 == CommSys_CurNetId()) {
-        v0 = TEXT_COLOR(3, 4, 0);
+        v0 = TEXT_COLOR_BLUE;
     }
 
     ov109_021D2820(param0, param1, param2, v0);

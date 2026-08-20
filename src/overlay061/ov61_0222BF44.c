@@ -447,7 +447,7 @@ static void ov61_0222C664(UnkStruct_ov61_0222C664 *param0)
     Window_Add(param0->unk_04, &param0->unk_54, 0, 4, 1, 24, 2, 13, (((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16);
     Window_FillTilemap(&param0->unk_54, 0x0);
 
-    ov61_0222C760(&param0->unk_54, param0->unk_38, 0, 1, 1, TEXT_COLOR(15, 14, 0));
+    ov61_0222C760(&param0->unk_54, param0->unk_38, 0, 1, 1, TEXT_COLOR_WHITE);
 
     Window_Add(param0->unk_04, &param0->unk_44, 0, 2, 19, 27, 4, 13, (1 + (18 + 12)) + 9);
     Window_FillTilemap(&param0->unk_44, 0x0);

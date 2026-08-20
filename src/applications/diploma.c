@@ -390,17 +390,17 @@ static void Diploma_LoadText(Diploma *data)
     MessageLoader_GetString(data->messageLoader, Diploma_Text_Player, formatString);
     StringTemplate_SetPlayerName(data->stringTemplate, 0, data->trainerInfo);
     StringTemplate_Format(data->stringTemplate, string, formatString);
-    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(6), TILES_TO_PIXELS(4), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(6), TILES_TO_PIXELS(4), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(6), TILES_TO_PIXELS(4), TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(6), TILES_TO_PIXELS(4), TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     String_Free(formatString);
 
     MessageLoader_GetString(data->messageLoader, (data->isNatDex == FALSE) ? Diploma_Text_Sinnoh : Diploma_Text_NationalDex, string);
-    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(8), TILES_TO_PIXELS(8), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(8), TILES_TO_PIXELS(8), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(8), TILES_TO_PIXELS(8), TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(8), TILES_TO_PIXELS(8), TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     MessageLoader_GetString(data->messageLoader, Diploma_Text_GameFreak, string);
-    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(17.25), TILES_TO_PIXELS(18), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(17.25), TILES_TO_PIXELS(18), TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&data->mainWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(17.25), TILES_TO_PIXELS(18), TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
+    Text_AddPrinterWithParamsAndColor(&data->subWindow, FONT_SYSTEM, string, TILES_TO_PIXELS(17.25), TILES_TO_PIXELS(18), TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     String_Free(string);
 }

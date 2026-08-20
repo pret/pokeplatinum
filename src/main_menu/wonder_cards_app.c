@@ -313,7 +313,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 12,
         .height = TEXT_LINES_TILES(1),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .fontAttribute = -1 },
         .entryID = MysteryGiftMenu_Text_WonderCard,
         .setup = DoNothing,
@@ -342,7 +342,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 28,
         .height = TEXT_LINES_TILES(2),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .fontAttribute = -1 },
         .entryID = NULL,
         .setup = DetermineGiftStatus,
@@ -370,7 +370,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 11,
         .height = TEXT_LINES_TILES(1),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .fontAttribute = -1 },
         .entryID = MysteryGiftMenu_Text_DateTemplate,
         .setup = SetupDateString,
@@ -384,7 +384,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 28,
         .height = TEXT_LINES_TILES(5),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .fontAttribute = -1 },
         .entryID = NULL,
         .setup = PrintWondercardDescription,
@@ -398,7 +398,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 28,
         .height = TEXT_LINES_TILES(2),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .fontAttribute = -1 },
         .entryID = MysteryGiftMenu_Text_CanBeDistributedNTimes,
         .setup = SetupRemainingSharesCount,
@@ -412,7 +412,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 27,
         .height = TEXT_LINES_TILES(2),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .colorIndex = 0xF },
         .entryID = MysteryGiftMenu_Text_WonderCard,
         .setup = DoNothing,
@@ -426,7 +426,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 12,
         .height = TEXT_LINES_TILES(4),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .colorIndex = 0x5 },
         .entryID = NULL,
         .setup = InitWondercardActionsMenu,
@@ -440,7 +440,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 6,
         .height = TEXT_LINES_TILES(2),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .colorIndex = 0x5 },
         .entryID = NULL,
         .setup = InitConfirmWondercardDeleteMenu,
@@ -454,7 +454,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 6,
         .height = TEXT_LINES_TILES(2),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .colorIndex = 0x5 },
         .entryID = NULL,
         .setup = InitConfirmWondercardShareMenu,
@@ -524,7 +524,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 4,
         .height = TEXT_LINES_TILES(1),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .fontAttribute = -1 },
         .entryID = MysteryGiftMenu_Text_EntriesCountTemplate,
         .setup = SetupEntriesCount,
@@ -539,7 +539,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 19,
         .height = TEXT_LINES_WITH_SPACING_TILES(4, 1),
         .font = FONT_SYSTEM,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .fontAttribute = -1 },
         .entryID = NULL,
         .setup = DoNothing,
@@ -553,7 +553,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 27,
         .height = TEXT_LINES_TILES(2),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .colorIndex = 0xE },
         .entryID = MysteryGiftMenu_Text_GiftDistributionUnderWay,
         .setup = DoNothing,
@@ -567,7 +567,7 @@ static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] =
         .width = 27,
         .height = TEXT_LINES_TILES(2),
         .font = FONT_MESSAGE,
-        .textColor = TEXT_COLOR(1, 2, 0),
+        .textColor = TEXT_COLOR_BLACK,
         .bgColor = { .colorIndex = 0xE },
         .entryID = MysteryGiftMenu_Text_GiftDistributionSuccessful,
         .setup = DoNothing,
@@ -715,7 +715,7 @@ static void PrintTextEntryToWindow(Window *window, int textEntryID)
     Window_FillTilemap(window, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
     String *string = MessageUtil_ExpandedString(strTemplate, msgLoader, textEntryID, HEAP_ID_WONDER_CARDS_APP);
-    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     Window_CopyToVRAM(window);
 
     String_Free(string);
@@ -1031,7 +1031,7 @@ static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *wind
     appData->messageBoxBaseTile = baseTile;
     appData->messageBoxTemplate = windowTemplate;
 
-    windowTemplate->setup(appData, window, TEXT_COLOR(1, 2, 0));
+    windowTemplate->setup(appData, window, TEXT_COLOR_BLACK);
 
     if (windowTemplate->entryID) {
         String *string = MessageUtil_ExpandedString(appData->strTemplate, appData->msgLoader, windowTemplate->entryID, HEAP_ID_WONDER_CARDS_APP);
@@ -1523,7 +1523,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         ProcessStateTransitionMenuInput(appMan, state, ReturnToWcActionsMenu);
         break;
     case WC_APP_STATE_ASK_START_WIRELESS_TO_SHARE_WC:
-        AskConfirmStartWireless(appData, &appData->standardWindow, TEXT_COLOR(1, 2, 0));
+        AskConfirmStartWireless(appData, &appData->standardWindow, TEXT_COLOR_BLACK);
         *state = WC_APP_STATE_WAIT_CONFIRM_START_WIRELESS;
         break;
     case WC_APP_STATE_START_TRANSITION_TO_WC_SHARE_SCREEN:
@@ -1751,9 +1751,9 @@ static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window)
             string = MessageUtil_ExpandedString(strTemplate, msgLoader, MysteryGiftMenu_Text_TrainerNameTemplate, HEAP_ID_WONDER_CARDS_APP);
 
             if (TrainerInfo_Gender(tmpTrainerInfo) == GENDER_MALE) {
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_RED, NULL);
             } else {
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLUE, NULL);
             }
 
             String_Free(string);
@@ -1791,7 +1791,7 @@ static void UpdateConnectedPlayersCount(WonderCardsAppData *appData, Window *win
 
     string = MessageUtil_ExpandedString(appData->strTemplate, appData->msgLoader, MysteryGiftMenu_Text_EntriesCountTemplate, HEAP_ID_WONDER_CARDS_APP);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     Window_CopyToVRAM(window);
 
     String_Free(string);

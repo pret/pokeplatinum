@@ -811,11 +811,11 @@ static void ov65_02236C7C(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     MessageLoader_GetString(param0->unk_08, Unk_ov65_02239E5C[param1->unk_00], param0->unk_10);
     StringTemplate_Format(param0->unk_04, param0->unk_0C, param0->unk_10);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_200, FONT_SYSTEM, param0->unk_0C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_200, FONT_SYSTEM, param0->unk_0C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_200);
     Window_ScheduleCopyToVRAM(&param0->unk_220);
     MessageLoader_GetString(param0->unk_08, 128, param0->unk_0C);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_210, FONT_SYSTEM, param0->unk_0C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_210, FONT_SYSTEM, param0->unk_0C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_210);
     Window_ScheduleCopyToVRAM(&param0->unk_1F0);
 }
@@ -893,7 +893,7 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     MessageLoader_GetString(param0->unk_08, param2, v0);
     StringTemplate_Format(param0->unk_04, param0->unk_0C, v0);
 
-    param0->unk_14 = Text_AddPrinterWithParamsAndColor(&param0->unk_1F0, FONT_MESSAGE, param0->unk_0C, 0, 0, param0->unk_16, TEXT_COLOR(1, 2, 15), NULL);
+    param0->unk_14 = Text_AddPrinterWithParamsAndColor(&param0->unk_1F0, FONT_MESSAGE, param0->unk_0C, 0, 0, param0->unk_16, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 
     Window_ScheduleCopyToVRAM(&param0->unk_1F0);
     String_Free(v0);
@@ -955,7 +955,7 @@ static void ov65_02236F70(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     StringTemplate_Format(param0->unk_04, v1, v0);
 
     Window_FillTilemap(&param0->unk_230, 15);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_230, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_230, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_DrawStandardFrame(&param0->unk_230, 1, 1 + (18 + 12), 3);
     Window_ScheduleCopyToVRAM(&param0->unk_230);
 
@@ -1006,13 +1006,13 @@ static void ov65_0223709C(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_022368
     MessageLoader_GetString(param1->unk_08, 129, v0);
     StringTemplate_Format(param1->unk_04, v1, v0);
     Window_FillRectWithColor(&param1->unk_220, 15, 0, param3 * (2 * 8), 20 * 8, 2 * 8);
-    Text_AddPrinterWithParamsAndColor(&param1->unk_220, FONT_SYSTEM, v1, 0, param3 * (2 * 8), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param1->unk_220, FONT_SYSTEM, v1, 0, param3 * (2 * 8), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 
     ov65_02237284(param1, param2, param3, 0, heapID);
 
     MessageLoader_GetString(param1->unk_08, 130, v0);
     StringTemplate_Format(param1->unk_04, v1, v0);
-    Text_AddPrinterWithParamsAndColor(&param1->unk_220, FONT_SYSTEM, v1, 72, param3 * (2 * 8), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param1->unk_220, FONT_SYSTEM, v1, 72, param3 * (2 * 8), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_ScheduleCopyToVRAM(&param1->unk_220);
 
     if (param3 == CommSys_CurNetId()) {

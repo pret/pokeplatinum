@@ -1516,7 +1516,7 @@ static void ov70_0225EA44(UnkStruct_ov70_0225E9C8 *param0, const String *param1)
     Window_FillTilemap(&param0->unk_00, 15);
     String_Copy(param0->unk_18, param1);
 
-    param0->unk_10 = Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_14, TEXT_COLOR(1, 2, 15), NULL);
+    param0->unk_10 = Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_14, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_00, 1, 1, 1);
 }
@@ -1529,7 +1529,7 @@ static void ov70_0225EAA4(UnkStruct_ov70_0225E9C8 *param0, const String *param1)
 
     Window_FillTilemap(&param0->unk_00, 15);
     String_Copy(param0->unk_18, param1);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_00, 1, 1, 1);
     Window_ScheduleCopyToVRAM(&param0->unk_00);
 }
@@ -1847,7 +1847,7 @@ static void ov70_0225F024(UnkStruct_ov70_0225EFD4 *param0)
 
 static void ov70_0225F048(UnkStruct_ov70_0225EFD4 *param0, const String *param1, u8 param2, u8 param3)
 {
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, param1, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, param1, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_00);
 }
 
@@ -1894,7 +1894,7 @@ static void ov70_0225F144(UnkStruct_ov70_0225F114 *param0)
 
 static void ov70_0225F14C(UnkStruct_ov70_0225F114 *param0, const String *param1)
 {
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_DrawStandardFrame(&param0->unk_00, 1, (1 + (18 + 12)) + ((18 + 12) + 24), 3);
     Window_ScheduleCopyToVRAM(&param0->unk_00);
 }
@@ -2497,7 +2497,7 @@ static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
             ov70_0225F940(param0, param3, 88, heapID);
         }
     } else {
-        v0 = TEXT_COLOR(3, 4, 0);
+        v0 = TEXT_COLOR_BLUE;
 
         if (param10 == 0) {
             ov70_0225F940(param0, param3, 87, heapID);
@@ -2521,10 +2521,10 @@ static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
 
         ov70_022602DC(param2, param4, 0, 44, 0, 0, v0);
         ov70_0225F2A8(param4, TrainerInfo_ID_LowHalf(v1), 5, 0, 2);
-        ov70_02260314(param2, param4, 0, 49, 122, 0, TEXT_COLOR(1, 2, 0));
+        ov70_02260314(param2, param4, 0, 49, 122, 0, TEXT_COLOR_BLACK);
         ov70_022602DC(param2, param4, 0, 45, 0, 16, v0);
         ov70_02260370(param2, param4, v1);
-        ov70_02260314(param2, param4, 0, 50, 122, 16, TEXT_COLOR(1, 2, 0));
+        ov70_02260314(param2, param4, 0, 50, 122, 16, TEXT_COLOR_BLACK);
         ov70_02260360(param2, 0);
     }
 
@@ -2532,10 +2532,10 @@ static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
         ov70_022602DC(param2, param4, 1, 46, 0, 0, v0);
 
         if (ov66_0222E880(param8) == 0) {
-            ov70_022602DC(param2, param4, 1, 55, 32, 16, TEXT_COLOR(1, 2, 0));
+            ov70_022602DC(param2, param4, 1, 55, 32, 16, TEXT_COLOR_BLACK);
         } else {
             ov70_02260380(param2, param4, param8);
-            ov70_022602DC(param2, param4, 1, 51, 32, 16, TEXT_COLOR(1, 2, 0));
+            ov70_022602DC(param2, param4, 1, 51, 32, 16, TEXT_COLOR_BLACK);
         }
 
         ov70_02260360(param2, 1);
@@ -2547,10 +2547,10 @@ static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
         ov70_02260370(param2, param4, v1);
         ov70_022602DC(param2, param4, 4, 56, 8, 0, v0);
         ov70_022603B0(param2, param4, param12);
-        ov70_022602DC(param2, param4, 4, 59, 6, 24, TEXT_COLOR(1, 2, 0));
-        ov70_022602DC(param2, param4, 4, 60, 90, 24, TEXT_COLOR(1, 2, 0));
-        ov70_022602DC(param2, param4, 4, 61, 6, 44, TEXT_COLOR(1, 2, 0));
-        ov70_022602DC(param2, param4, 4, 62, 90, 44, TEXT_COLOR(1, 2, 0));
+        ov70_022602DC(param2, param4, 4, 59, 6, 24, TEXT_COLOR_BLACK);
+        ov70_022602DC(param2, param4, 4, 60, 90, 24, TEXT_COLOR_BLACK);
+        ov70_022602DC(param2, param4, 4, 61, 6, 44, TEXT_COLOR_BLACK);
+        ov70_022602DC(param2, param4, 4, 62, 90, 44, TEXT_COLOR_BLACK);
         ov70_02260360(param2, 4);
     } else {
         param2->unk_00 = 0;
@@ -3103,7 +3103,7 @@ static void ov70_02260870(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
         v0 = ov70_0225F288(param2, 1, 63);
 
         Window_FillTilemap(&param0->unk_0C, 0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v0, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 14, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v0, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR_WHITE, NULL);
     }
 
     if (param0->unk_02 == 0) {

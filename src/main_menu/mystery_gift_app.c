@@ -942,7 +942,7 @@ static void ShowMessageBox(ApplicationManager *appMan, Window *window, u32 entry
 
     String *string = appData->string ? appData->string : MessageUtil_ExpandedString(appData->strTemplate, appData->msgLoader, entryId, HEAP_ID_MYSTERY_GIFT_APP);
 
-    appData->textPrinterId = Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, appData->msgBoxPrinterDelay, TEXT_COLOR(1, 2, 15), NULL);
+    appData->textPrinterId = Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, appData->msgBoxPrinterDelay, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 
     if (appData->string == NULL) {
         String_Free(string);
@@ -963,7 +963,7 @@ static void ShowWonderCardTitle(ApplicationManager *appMann, Window *window, cha
 
     String_CopyNumChars(string, title, WONDERCARD_TITLE_LENGTH);
     Window_FillTilemap(window, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_DrawStandardFrame(window, FALSE, BASE_TILE_MG_WINDOW_FRAME, 3);
     String_Free(string);
 }

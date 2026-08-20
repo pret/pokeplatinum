@@ -1271,7 +1271,7 @@ static void HallOfFame_PrintTextAtRow(HallOfFamePokemonTextAdder *textAdder, int
     for (i = 0; i < numLines; i++) {
         String_CopyLineNum(textAdder->string_18, textAdder->string_1C, i);
         xOffset = (136 - Font_CalcStringWidth(FONT_SYSTEM, textAdder->string_18, 0)) / 2;
-        Text_AddPrinterWithParamsAndColor(textAdder->window, FONT_SYSTEM, textAdder->string_18, textAdder->xPosition + xOffset, yOffset + i * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(textAdder->window, FONT_SYSTEM, textAdder->string_18, textAdder->xPosition + xOffset, yOffset + i * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 }
 
@@ -1404,7 +1404,7 @@ static void HallOfFame_ShowPlayerText(HallOfFameMan *hallOfFameMan)
     MessageLoader_GetString(hallOfFameMan->msgLoaderHallOfFame, HallOfFame_Text_LeagueChampionCongratulations, hallOfFameMan->string_1C30);
 
     xOffset = (256 - Font_CalcStringWidth(FONT_SYSTEM, hallOfFameMan->string_1C30, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&hallOfFameMan->window, FONT_SYSTEM, hallOfFameMan->string_1C30, xOffset, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&hallOfFameMan->window, FONT_SYSTEM, hallOfFameMan->string_1C30, xOffset, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     StringTemplate_SetPlayerName(hallOfFameMan->strTemplate, 0, hallOfFameMan->displayData->trainerInfo);
 
     StringTemplate_SetNumber(hallOfFameMan->strTemplate, 1, TrainerInfo_ID_LowHalf(hallOfFameMan->displayData->trainerInfo), 5, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
@@ -1414,7 +1414,7 @@ static void HallOfFame_ShowPlayerText(HallOfFameMan *hallOfFameMan)
     StringTemplate_Format(hallOfFameMan->strTemplate, hallOfFameMan->string_1C30, hallOfFameMan->string_1C4C);
 
     xOffset = (256 - Font_CalcStringWidth(FONT_SYSTEM, hallOfFameMan->string_1C30, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&hallOfFameMan->window, FONT_SYSTEM, hallOfFameMan->string_1C30, xOffset, 172, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&hallOfFameMan->window, FONT_SYSTEM, hallOfFameMan->string_1C30, xOffset, 172, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     Window_LoadTiles(&hallOfFameMan->window);
 }
 

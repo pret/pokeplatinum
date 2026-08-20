@@ -293,7 +293,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v1 = 128 - (v3 / 2);
     v2 = 7;
 
-    Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v7, v1, v2, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v7, v1, v2, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     String_Free(v7);
 
     word = DressUpPhoto_GetTitleWord(param0->photo);
@@ -307,7 +307,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v1 = 128 - (v3 / 2);
     v2 = 27;
 
-    Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v7, v1, v2, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v7, v1, v2, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
     String_Free(v7);
     String_Free(v6);
     MessageLoader_Free(v8);
@@ -355,7 +355,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     v10 = Font_CalcStringWidth(FONT_SYSTEM, v2, 0);
     v8 = 128 - (v10 / 2);
     v9 = 7;
-    Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v2, v8, v9, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v2, v8, v9, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     v3 = MessageLoader_GetNewString(v7, 44);
     StringTemplate_Format(v1, v2, v3);
@@ -363,7 +363,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     v10 = Font_CalcStringWidth(FONT_SYSTEM, v2, 0);
     v8 = 128 - (v10 / 2);
     v9 = 27;
-    Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v2, v8, v9, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v2, v8, v9, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
 
     String_Free(v2);
     MessageLoader_Free(v7);

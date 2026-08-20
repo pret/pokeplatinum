@@ -530,7 +530,7 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
             if (v10) {
                 Text_AddPrinterWithParamsColorAndSpacing(v3, FONT_SYSTEM, v11, v12, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(5, 6, 15), 0, 0, NULL);
             } else {
-                Text_AddPrinterWithParamsColorAndSpacing(v3, FONT_SYSTEM, v11, v12, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), 0, 0, NULL);
+                Text_AddPrinterWithParamsColorAndSpacing(v3, FONT_SYSTEM, v11, v12, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK_DARK_SHADOW, 0, 0, NULL);
             }
 
             String_Free(v11);

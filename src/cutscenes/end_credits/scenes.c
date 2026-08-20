@@ -1035,7 +1035,7 @@ static void EndCreditsScenes_LoadFin(EndCreditsApp *endCreditsApp)
     String *finalString = MessageLoader_GetNewString(endCreditsApp->messageLoader, EndCreditsStrings_GetLastMessageID());
     int xOffset = (256 - Font_CalcStringWidth(FONT_SYSTEM, finalString, 0)) / 2;
 
-    Text_AddPrinterWithParamsColorAndSpacing(endCreditsApp->window, FONT_SYSTEM, finalString, xOffset, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), 3, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(endCreditsApp->window, FONT_SYSTEM, finalString, xOffset, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, 3, 0, NULL);
     Window_LoadTiles(endCreditsApp->window);
     String_Free(finalString);
 

@@ -715,7 +715,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     param0->unk_160 = ListMenu_New(&(param0->unk_140), param0->unk_13C, param0->unk_13E, param0->heapID);
 
     Window_DrawStandardFrame(&param0->unk_174, 0, 1024 - (18 + 12) - 9, 11);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_194, FONT_SYSTEM, param0->unk_110.unk_0C, 2, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_194, FONT_SYSTEM, param0->unk_110.unk_0C, 2, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_DrawStandardFrame(&param0->unk_194, 0, 1024 - (18 + 12) - 9, 11);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 
@@ -1075,7 +1075,7 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
         v0 = param0->unk_110.unk_10[param1];
     }
 
-    param0->unk_138 = Text_AddPrinterWithParamsAndColor(&param0->unk_184, FONT_MESSAGE, v0, 0, 0, param2, TEXT_COLOR(1, 2, 15), NULL);
+    param0->unk_138 = Text_AddPrinterWithParamsAndColor(&param0->unk_184, FONT_MESSAGE, v0, 0, 0, param2, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_CopyToVRAM(&param0->unk_184);
     param0->unk_139 = param3;
 }

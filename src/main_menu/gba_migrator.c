@@ -1177,7 +1177,7 @@ static void ov97_02234A2C(GBAMigrator *migrator, int boxNum)
     v0.unk_1C = 0;
     v0.bgLayer = BG_LAYER_MAIN_1;
     v0.unk_28 = 1;
-    v0.unk_2C = TEXT_COLOR(1, 2, 0);
+    v0.unk_2C = TEXT_COLOR_BLACK;
     v0.unk_20 = 0xA0;
 
     GBA_ConvertStringToDS(migrator->pokemonStorage->boxNames[boxNum], boxName, GBA_BOX_NAME_LEN + 1, GBACart_GetLanguage());
@@ -1478,7 +1478,7 @@ static void ov97_02234ECC(GBAMigrator *migrator)
     migrator->unk_490.bgLayer = BG_LAYER_MAIN_0;
     migrator->unk_490.unk_28 = 1;
     migrator->unk_490.unk_20 = 0 + 1;
-    migrator->unk_490.unk_2C = TEXT_COLOR(1, 2, 15);
+    migrator->unk_490.unk_2C = TEXT_COLOR_BLACK_DARK_SHADOW;
     migrator->unk_490.unk_30 = TEXT_COLOR(15, 2, 15);
     migrator->unk_490.unk_38 = NULL;
     migrator->unk_490.unk_3C = NULL;

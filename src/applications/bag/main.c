@@ -1163,7 +1163,7 @@ static void ItemListMenuPrintCB(ListMenu *menu, u32 index, u8 yOffset)
             if (controller->isMovingItem == 1 && controller->movedItemID == index) {
                 BagUI_PrintItemCount(controller, pocket->items[index].quantity, yOffset, TEXT_COLOR(8, 9, 0));
             } else {
-                BagUI_PrintItemCount(controller, pocket->items[index].quantity, yOffset, TEXT_COLOR(1, 2, 0));
+                BagUI_PrintItemCount(controller, pocket->items[index].quantity, yOffset, TEXT_COLOR_BLACK);
             }
         }
     }

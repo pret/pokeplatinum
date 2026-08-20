@@ -1328,7 +1328,7 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     v1 = MessageLoader_GetNewString(v0, param1);
 
-    Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     String_Free(v1);
     MessageLoader_Free(v0);
     Window_CopyToVRAM(param0->unk_718);
@@ -1347,7 +1347,7 @@ static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
     v1 = String_Init(256, HEAP_ID_13);
 
     StringTemplate_Format(param0->unk_744, v1, v2);
-    Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     String_Free(v1);
     String_Free(v2);
     MessageLoader_Free(v0);
@@ -1377,7 +1377,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
         v2 = TEXT_SPEED_FAST;
     }
 
-    v0 = Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, param0->unk_740, 0, 0, v2, TEXT_COLOR(1, 2, 15), NULL);
+    v0 = Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, param0->unk_740, 0, 0, v2, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 
     String_Free(v3);
     MessageLoader_Free(v1);

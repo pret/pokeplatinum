@@ -333,11 +333,11 @@ BOOL EndCreditsStrings_ScrollCredits(EndCreditsStringsManager *manager, int scro
                 }
 
                 yOffset = sEndCreditStringProps[manager->entryToDraw].yOffset & 0xff;
-                Text_AddPrinterWithParamsAndColor(manager->window, FONT_SYSTEM, manager->string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(manager->window, FONT_SYSTEM, manager->string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
                 if (yOffset > (256 - 16)) {
                     Window_FillTilemap(manager->window2, 0x0);
-                    Text_AddPrinterWithParamsAndColor(manager->window2, FONT_SYSTEM, manager->string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+                    Text_AddPrinterWithParamsAndColor(manager->window2, FONT_SYSTEM, manager->string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
                     yOffset = 16 - (yOffset - (256 - 16));
                     Window_BlitBitmapRect(manager->window, manager->window2->pixels, 0, yOffset, manager->window2->width * 8, manager->window2->height * 8, 0, 0, TILE_SIZE_4BPP * 8, (16 - yOffset));

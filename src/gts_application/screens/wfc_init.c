@@ -1,4 +1,4 @@
-﻿#include "gts_application/screens/wfc_init.h"
+#include "gts_application/screens/wfc_init.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -287,7 +287,7 @@ static void GTSWFCInit_InitText(GTSApplicationState *appState)
     Window_Add(appState->bgConfig, &appState->titleWindow, BG_LAYER_MAIN_0, 4, 1, 24, 2, 13, (TITLE_WINDOW_BASE_TILE + 27 * 4) + 23 * 16);
     Window_FillTilemap(&appState->titleWindow, 0);
 
-    Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 1, TEXT_COLOR(15, 14, 0));
+    Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 1, TEXT_COLOR_WHITE);
 
     Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, BG_LAYER_MAIN_0, 2, 19, 27, 4, 13, TITLE_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0);

@@ -480,12 +480,12 @@ static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0)
     case COMPARE_BATTLE_STATS:
         for (v2 = 0; v2 < NELEMS(compareMessages); v2++) {
             MessageLoader_GetString(param0->unk_6C, compareMessages[v2], param0->boxDisplayText);
-            Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v1, 0, param0->boxDisplayText), 0 + 16 * v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v1, 0, param0->boxDisplayText), 0 + 16 * v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
         }
         break;
     case COMPARE_MOVES:
         MessageLoader_GetString(param0->unk_6C, BoxText_Move, param0->boxDisplayText);
-        Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v1, 0, param0->boxDisplayText), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v1, 0, param0->boxDisplayText), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
         break;
     }
 
@@ -520,17 +520,17 @@ static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
         if (compareMon->isEgg == FALSE) {
             const u16 *v6 = &compareMon->level;
 
-            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->nature, inline_ov19_021DF3AC(window, 0, compareMon->nature), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->nature, inline_ov19_021DF3AC(window, 0, compareMon->nature), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
 
             for (v5 = 0; v5 < 7; v5++) {
                 String_FormatInt(param0->boxDisplayText, v6[v5], 3, 0, 1);
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(window, 0, param0->boxDisplayText), (1 + v5) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(window, 0, param0->boxDisplayText), (1 + v5) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
             }
         } else {
             MessageLoader_GetString(param0->unk_6C, 44, param0->boxDisplayText);
 
             for (v5 = 0; v5 < 8; v5++) {
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(window, 0, param0->boxDisplayText), v5 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(window, 0, param0->boxDisplayText), v5 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
             }
         }
     }
@@ -559,14 +559,14 @@ static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
             for (i = 0; i < LEARNED_MOVES_MAX; i++) {
                 if (compareMon->moves[i]) {
                     MessageLoader_GetString(param0->unk_70, compareMon->moves[i], param0->boxDisplayText);
-                    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v0, 0, param0->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+                    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v0, 0, param0->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
                 }
             }
         } else {
             MessageLoader_GetString(param0->unk_6C, 44, param0->boxDisplayText);
 
             for (i = 0; i < 4; i++) {
-                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v0, 0, param0->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v0, 0, param0->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
             }
         }
     }
@@ -699,7 +699,7 @@ static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
 
     if (BoxApp_IsMonUnderCursor(param0->unk_08)) {
         const PCCompareMon *compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->monName, inline_ov19_021DF3AC(window, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->monName, inline_ov19_021DF3AC(window, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     }
 
     Window_LoadTiles(window);

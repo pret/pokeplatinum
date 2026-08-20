@@ -1402,7 +1402,7 @@ static void ov64_0222EC94(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E0
         MessageLoader_GetString(param2->unk_218, entryIDs[i], fmtString);
         StringTemplate_Format(param2->unk_214, string, fmtString);
         u32 xOffset = xOffsets[i] + Font_CalcCenterAlignment(FONT_SYSTEM, string, 0, 208);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, string, xOffset, yOffsets[i], TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, string, xOffset, yOffsets[i], TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 
     String_Free(string);
@@ -1519,7 +1519,7 @@ static void ov64_0222EFBC(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E2
     MessageLoader_GetString(param1->unk_218, param2, v0);
     StringTemplate_Format(param1->unk_214, param0->unk_38, v0);
 
-    param0->unk_30 = Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_MESSAGE, param0->unk_38, 0, 0, param0->unk_34, TEXT_COLOR(1, 2, 0), NULL);
+    param0->unk_30 = Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_MESSAGE, param0->unk_38, 0, 0, param0->unk_34, TEXT_COLOR_BLACK, NULL);
 
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 1, 1 + 9, 8);
     Window_ScheduleCopyToVRAM(&param0->unk_1C);
@@ -1798,7 +1798,7 @@ static void ov64_0222F414(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E0
 
     String *string = String_Init(128, heapID);
     MessageLoader_GetString(param2->unk_218, 7, string);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_B4, FONT_SYSTEM, string, Font_CalcCenterAlignment(FONT_SYSTEM, string, 0, 64), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_B4, FONT_SYSTEM, string, Font_CalcCenterAlignment(FONT_SYSTEM, string, 0, 64), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 
     Window_Init(&param0->unk_E0);
@@ -2236,7 +2236,7 @@ static void ov64_0222FE70(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E2
     MessageLoader_GetString(param1->unk_218, param2, v0);
     StringTemplate_Format(param1->unk_214, param0->unk_D4, v0);
 
-    param0->unk_D8 = Text_AddPrinterWithParamsAndColor(&param0->unk_C4, FONT_MESSAGE, param0->unk_D4, 0, 0, param0->unk_DC, TEXT_COLOR(1, 2, 0), NULL);
+    param0->unk_D8 = Text_AddPrinterWithParamsAndColor(&param0->unk_C4, FONT_MESSAGE, param0->unk_D4, 0, 0, param0->unk_DC, TEXT_COLOR_BLACK, NULL);
 
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_C4, 1, 1 + 9, 8);
     Window_ScheduleCopyToVRAM(&param0->unk_C4);
@@ -2421,7 +2421,7 @@ static void ov64_022302EC(UnkStruct_ov64_02230074 *param0, UnkStruct_ov63_0222AE
     UnkStruct_ov64_022302EC v2;
     String *v3;
     int v4, v5;
-    static const u32 v6[] = { TEXT_COLOR(5, 6, 0), TEXT_COLOR(3, 4, 0), TEXT_COLOR(1, 2, 0) };
+    static const u32 v6[] = { TEXT_COLOR_RED, TEXT_COLOR_BLUE, TEXT_COLOR_BLACK };
 
     v1 = sub_0202AD2C(param5, param6, 7);
     v0 = sub_0202AD2C(param5, param6, 8);
@@ -2619,16 +2619,16 @@ static void ov64_02230680(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E0
     if (friendCode) {
         MessageLoader_GetString(param2->unk_218, 47, string);
         u32 xOffset = (184 - Font_CalcMaxLineWidth(FONT_SYSTEM, string, 0)) / 2;
-        Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
         ov64_0222E7F8(param2, friendCode);
         MessageLoader_GetString(param2->unk_218, 51, fmtString);
         StringTemplate_Format(param2->unk_214, string, fmtString);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_10, FONT_SYSTEM, string, Font_CalcCenterAlignment(FONT_SYSTEM, string, 0, 120), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_10, FONT_SYSTEM, string, Font_CalcCenterAlignment(FONT_SYSTEM, string, 0, 120), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     } else {
         MessageLoader_GetString(param2->unk_218, 48, string);
         u32 xOffset = (184 - Font_CalcMaxLineWidth(FONT_SYSTEM, string, 0)) / 2;
-        Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     }
 
     String_Free(string);
@@ -3113,29 +3113,29 @@ static void ov64_02231164(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
 
-    ov64_022320B8(param0, 0, 0, param1, param2, 14, 0, 4, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 0, 0, param1, param2, 14, 0, 4, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E8C0(param2, param1->saveData, param1->unk_08.unk_04[param1->unk_07], heapID);
-    ov64_022320B8(param0, 0, 0, param1, param2, 61, 128, 4, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 0, 0, param1, param2, 61, 128, 4, TEXT_COLOR_BLACK, string, fmtString, 2);
 
-    ov64_022320B8(param0, 0, 0, param1, param2, 15, 0, 28, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 0, 0, param1, param2, 15, 0, 28, TEXT_COLOR_BLACK, string, fmtString, 0);
 
-    ov64_022320B8(param0, 0, 1, param1, param2, 16, 0, 4, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 0, 1, param1, param2, 16, 0, 4, TEXT_COLOR_BLACK, string, fmtString, 0);
     ov64_0222E970(param2, sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 1));
-    ov64_022320B8(param0, 0, 1, param1, param2, 18, 64, 4, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 0, 1, param1, param2, 18, 64, 4, TEXT_COLOR_BLACK, string, fmtString, 2);
 
-    ov64_022320B8(param0, 0, 1, param1, param2, 17, 0, 20, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 0, 1, param1, param2, 17, 0, 20, TEXT_COLOR_BLACK, string, fmtString, 0);
     ov64_0222E970(param2, sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 2));
-    ov64_022320B8(param0, 0, 1, param1, param2, 18, 64, 20, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 0, 1, param1, param2, 18, 64, 20, TEXT_COLOR_BLACK, string, fmtString, 2);
 
-    ov64_022320B8(param0, 0, 2, param1, param2, 19, 0, 4, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 0, 2, param1, param2, 19, 0, 4, TEXT_COLOR_BLACK, string, fmtString, 0);
     ov64_0222E970(param2, sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 3));
-    ov64_022320B8(param0, 0, 2, param1, param2, 20, 128, 4, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 0, 2, param1, param2, 20, 128, 4, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     if (ov64_0223217C(param1, heapID)) {
-        ov64_022320B8(param0, 0, 2, param1, param2, 21, 0, 20, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+        ov64_022320B8(param0, 0, 2, param1, param2, 21, 0, 20, TEXT_COLOR_BLACK, string, fmtString, 0);
         ov64_0222E970(param2, sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 9));
-        ov64_022320B8(param0, 0, 2, param1, param2, 22, 128, 20, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+        ov64_022320B8(param0, 0, 2, param1, param2, 22, 128, 20, TEXT_COLOR_BLACK, string, fmtString, 2);
     }
 
     ov64_022320B8(param0, 0, 3, param1, param2, 23, 0, 6, TEXT_COLOR(15, 2, 0), string, fmtString, 0);
@@ -3158,11 +3158,11 @@ static void ov64_02231164(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 
     TextColor color;
     if (v0 == 0) {
-        color = TEXT_COLOR(5, 6, 0);
+        color = TEXT_COLOR_RED;
     } else if (v0 == 1) {
-        color = TEXT_COLOR(3, 4, 0);
+        color = TEXT_COLOR_BLUE;
     } else {
-        color = TEXT_COLOR(1, 2, 0);
+        color = TEXT_COLOR_BLACK;
     }
 
     ov64_0222E880(param2, param1->saveData, param1->unk_08.unk_04[param1->unk_07], heapID);
@@ -3185,7 +3185,7 @@ static void ov64_02231528(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
 
-    ov64_022320B8(param0, 2, 0, param1, param2, 25, 0, 8, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 2, 0, param1, param2, 25, 0, 8, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     u32 entryID;
     if (BattleFrontierSave_GetStat(frontier, STAT_TOWER_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
@@ -3194,13 +3194,13 @@ static void ov64_02231528(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
         entryID = 31;
     }
 
-    ov64_022320B8(param0, 2, 0, param1, param2, entryID, 0, 32, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 2, 0, param1, param2, entryID, 0, 32, TEXT_COLOR_BLACK, string, fmtString, 0);
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_TOWER_LATEST_STREAK_MODE_6, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 2, 0, param1, param2, 38, 160, 32, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 2, 0, param1, param2, 38, 160, 32, TEXT_COLOR_BLACK, string, fmtString, 2);
 
-    ov64_022320B8(param0, 2, 0, param1, param2, 32, 0, 56, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 2, 0, param1, param2, 32, 0, 56, TEXT_COLOR_BLACK, string, fmtString, 0);
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_TOWER_RECORD_STREAK_MODE_6, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 2, 0, param1, param2, 38, 160, 56, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 2, 0, param1, param2, 38, 160, 56, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     ov64_02231080(param0, 2);
 
@@ -3215,10 +3215,10 @@ static void ov64_02231664(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
 
-    ov64_022320B8(param0, 3, 0, param1, param2, 26, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 3, 0, param1, param2, 26, 0, 0, TEXT_COLOR_BLACK, string, fmtString, 0);
 
-    ov64_022320B8(param0, 3, 1, param1, param2, 33, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
-    ov64_022320B8(param0, 3, 1, param1, param2, 35, 224, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 3, 1, param1, param2, 33, 0, 0, TEXT_COLOR_BLACK, string, fmtString, 0);
+    ov64_022320B8(param0, 3, 1, param1, param2, 35, 224, 0, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     u32 entryID;
     if (BattleFrontierSave_GetStat(frontier, STAT_FACTORY_50_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
@@ -3227,24 +3227,24 @@ static void ov64_02231664(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
         entryID = 31;
     }
 
-    ov64_022320B8(param0, 3, 2, param1, param2, entryID, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 3, 2, param1, param2, entryID, 0, 0, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_LATEST_STREAK_50_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 3, 2, param1, param2, 38, 112, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
+    ov64_022320B8(param0, 3, 2, param1, param2, 38, 112, 0, TEXT_COLOR_BLACK, string, fmtString, 1);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_LATEST_TRADE_COUNT_50_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 3, 2, param1, param2, 39, 224, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 3, 2, param1, param2, 39, 224, 0, TEXT_COLOR_BLACK, string, fmtString, 2);
 
-    ov64_022320B8(param0, 3, 2, param1, param2, 32, 0, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 3, 2, param1, param2, 32, 0, 16, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_RECORD_STREAK_50_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 3, 2, param1, param2, 38, 112, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
+    ov64_022320B8(param0, 3, 2, param1, param2, 38, 112, 16, TEXT_COLOR_BLACK, string, fmtString, 1);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_RECORD_TRADE_COUNT_50_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 3, 2, param1, param2, 39, 224, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 3, 2, param1, param2, 39, 224, 16, TEXT_COLOR_BLACK, string, fmtString, 2);
 
-    ov64_022320B8(param0, 3, 3, param1, param2, 34, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
-    ov64_022320B8(param0, 3, 3, param1, param2, 35, 224, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 3, 3, param1, param2, 34, 0, 0, TEXT_COLOR_BLACK, string, fmtString, 0);
+    ov64_022320B8(param0, 3, 3, param1, param2, 35, 224, 0, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     if (BattleFrontierSave_GetStat(frontier, STAT_FACTORY_OPEN_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
         entryID = 30;
@@ -3252,21 +3252,21 @@ static void ov64_02231664(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
         entryID = 31;
     }
 
-    ov64_022320B8(param0, 3, 4, param1, param2, entryID, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 3, 4, param1, param2, entryID, 0, 0, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_LATEST_STREAK_OPEN_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 3, 4, param1, param2, 38, 112, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
+    ov64_022320B8(param0, 3, 4, param1, param2, 38, 112, 0, TEXT_COLOR_BLACK, string, fmtString, 1);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_LATEST_TRADE_COUNT_OPEN_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 3, 4, param1, param2, 39, 224, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 3, 4, param1, param2, 39, 224, 0, TEXT_COLOR_BLACK, string, fmtString, 2);
 
-    ov64_022320B8(param0, 3, 4, param1, param2, 32, 0, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 3, 4, param1, param2, 32, 0, 16, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_RECORD_STREAK_OPEN_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 3, 4, param1, param2, 38, 112, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
+    ov64_022320B8(param0, 3, 4, param1, param2, 38, 112, 16, TEXT_COLOR_BLACK, string, fmtString, 1);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_FACTORY_RECORD_TRADE_COUNT_OPEN_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 3, 4, param1, param2, 39, 224, 16, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 3, 4, param1, param2, 39, 224, 16, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     ov64_02231080(param0, 3);
 
@@ -3281,8 +3281,8 @@ static void ov64_02231A00(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
 
-    ov64_022320B8(param0, 4, 0, param1, param2, 27, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
-    ov64_022320B8(param0, 4, 0, param1, param2, 36, 224, 20, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 4, 0, param1, param2, 27, 0, 0, TEXT_COLOR_BLACK, string, fmtString, 0);
+    ov64_022320B8(param0, 4, 0, param1, param2, 36, 224, 20, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     u32 entryID;
     if (BattleFrontierSave_GetStat(frontier, STAT_CASTLE_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
@@ -3291,21 +3291,21 @@ static void ov64_02231A00(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
         entryID = 31;
     }
 
-    ov64_022320B8(param0, 4, 0, param1, param2, entryID, 0, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 4, 0, param1, param2, entryID, 0, 48, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_CASTLE_LATEST_STREAK_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 4, 0, param1, param2, 41, 112, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
+    ov64_022320B8(param0, 4, 0, param1, param2, 41, 112, 48, TEXT_COLOR_BLACK, string, fmtString, 1);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_CASTLE_LATEST_CP_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 4, 0, param1, param2, 40, 224, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 4, 0, param1, param2, 40, 224, 48, TEXT_COLOR_BLACK, string, fmtString, 2);
 
-    ov64_022320B8(param0, 4, 0, param1, param2, 32, 0, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 4, 0, param1, param2, 32, 0, 72, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_CASTLE_RECORD_STREAK_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 4, 0, param1, param2, 41, 112, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 1);
+    ov64_022320B8(param0, 4, 0, param1, param2, 41, 112, 72, TEXT_COLOR_BLACK, string, fmtString, 1);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_CASTLE_RECORD_CP_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 4, 0, param1, param2, 40, 224, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 4, 0, param1, param2, 40, 224, 72, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     ov64_02231080(param0, 4);
 
@@ -3320,10 +3320,10 @@ static void ov64_02231BE0(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
 
-    ov64_022320B8(param0, 5, 0, param1, param2, 28, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 5, 0, param1, param2, 28, 0, 0, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     String *speciesName = MessageUtil_SpeciesName(BattleFrontierSave_GetStat(frontier, STAT_HALL_LATEST_SPECIES_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]), heapID);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_0C[5][0], FONT_SYSTEM, speciesName, 0, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_0C[5][0], FONT_SYSTEM, speciesName, 0, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(speciesName);
 
     u32 entryID;
@@ -3333,15 +3333,15 @@ static void ov64_02231BE0(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
         entryID = 31;
     }
 
-    ov64_022320B8(param0, 5, 0, param1, param2, entryID, 0, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 5, 0, param1, param2, entryID, 0, 48, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_HALL_LATEST_STREAK_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 5, 0, param1, param2, 38, 160, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 5, 0, param1, param2, 38, 160, 48, TEXT_COLOR_BLACK, string, fmtString, 2);
 
-    ov64_022320B8(param0, 5, 0, param1, param2, 32, 0, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 5, 0, param1, param2, 32, 0, 72, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, 122, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 5, 0, param1, param2, 38, 160, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 5, 0, param1, param2, 38, 160, 72, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     ov64_02231080(param0, 5);
 
@@ -3356,7 +3356,7 @@ static void ov64_02231D58(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
 
-    ov64_022320B8(param0, 6, 0, param1, param2, 29, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 6, 0, param1, param2, 29, 0, 0, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     u32 entryID;
     if (BattleFrontierSave_GetStat(frontier, STAT_ARCADE_WFC_STREAK_ACTIVE, param1->unk_08.unk_04[param1->unk_07]) == 0) {
@@ -3365,15 +3365,15 @@ static void ov64_02231D58(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
         entryID = 31;
     }
 
-    ov64_022320B8(param0, 6, 0, param1, param2, entryID, 0, 24, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 6, 0, param1, param2, entryID, 0, 24, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_ARCADE_LATEST_STREAK_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 6, 0, param1, param2, 42, 160, 24, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 6, 0, param1, param2, 42, 160, 24, TEXT_COLOR_BLACK, string, fmtString, 2);
 
-    ov64_022320B8(param0, 6, 0, param1, param2, 32, 0, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 6, 0, param1, param2, 32, 0, 48, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, BattleFrontierSave_GetStat(frontier, STAT_ARCADE_RECORD_STREAK_MULTI_WFC, param1->unk_08.unk_04[param1->unk_07]));
-    ov64_022320B8(param0, 6, 0, param1, param2, 42, 160, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 6, 0, param1, param2, 42, 160, 48, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     ov64_02231080(param0, 6);
 
@@ -3389,25 +3389,25 @@ static void ov64_02231E94(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     String *string = String_Init(128, heapID);
     String *fmtString = String_Init(128, heapID);
 
-    ov64_022320B8(param0, 1, 0, param1, param2, 43, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 1, 0, param1, param2, 43, 0, 0, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E990(param2, 0);
-    ov64_022320B8(param0, 1, 0, param1, param2, 44, 0, 24, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 1, 0, param1, param2, 44, 0, 24, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 10));
-    ov64_022320B8(param0, 1, 0, param1, param2, 45, 160, 24, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 1, 0, param1, param2, 45, 160, 24, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     ov64_0222E990(param2, 1);
-    ov64_022320B8(param0, 1, 0, param1, param2, 44, 0, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 1, 0, param1, param2, 44, 0, 48, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 11));
-    ov64_022320B8(param0, 1, 0, param1, param2, 45, 160, 48, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 1, 0, param1, param2, 45, 160, 48, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     ov64_0222E990(param2, 2);
-    ov64_022320B8(param0, 1, 0, param1, param2, 44, 0, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
+    ov64_022320B8(param0, 1, 0, param1, param2, 44, 0, 72, TEXT_COLOR_BLACK, string, fmtString, 0);
 
     ov64_0222E970(param2, sub_0202AD2C(wifiList, param1->unk_08.unk_04[param1->unk_07], 12));
-    ov64_022320B8(param0, 1, 0, param1, param2, 45, 160, 72, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
+    ov64_022320B8(param0, 1, 0, param1, param2, 45, 160, 72, TEXT_COLOR_BLACK, string, fmtString, 2);
 
     ov64_02231080(param0, 1);
 

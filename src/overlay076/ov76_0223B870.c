@@ -990,7 +990,7 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
         v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
         String_FormatInt(v4, v3, 3, 1, 1);
-        Text_AddPrinterWithParamsAndColor(v5, FONT_SYSTEM, v4, -1 + 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(v5, FONT_SYSTEM, v4, -1 + 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
         Window_CopyToVRAM(v5);
         String_Free(v4);
     }
@@ -1019,7 +1019,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
     v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
     String_FormatInt(v4, v3, 3, 1, 1);
-    Text_AddPrinterWithParamsAndColor(v5, FONT_MESSAGE, v4, -1 + 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(v5, FONT_MESSAGE, v4, -1 + 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     Window_CopyToVRAM(v5);
     String_Free(v4);
 }

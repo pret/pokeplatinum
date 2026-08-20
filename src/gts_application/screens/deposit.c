@@ -1,4 +1,4 @@
-﻿#include "gts_application/screens/deposit.h"
+#include "gts_application/screens/deposit.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -441,7 +441,7 @@ static void GTSDeposit_InitWindows(GTSApplicationState *appState)
     Window_Add(appState->bgConfig, &appState->titleWindow, 0, 1, 1, TITLE_WINDOW_TILE_WIDTH, TITLE_WINDOW_TILE_HEIGHT, 13, TITLE_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->titleWindow, 0);
 
-    Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
+    Window_DrawAlignedMessageText(&appState->titleWindow, appState->title, 0, 1, 0, TEXT_COLOR_WHITE);
 
     Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, BOTTOM_WINDOW_TILE_WIDTH, BOTTOM_WINDOW_TILE_HEIGHT, 13, BOTTOM_WINDOW_BASE_TILE);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0);
@@ -795,8 +795,8 @@ static int GTSDeposit_WaitForText(GTSApplicationState *appState)
 }
 
 static TextColor sGenderTextColors[] = {
-    TEXT_COLOR(5, 6, 0),
-    TEXT_COLOR(3, 4, 0)
+    TEXT_COLOR_RED,
+    TEXT_COLOR_BLUE
 };
 
 void GTSDeposit_DrawSpeciesText(Window *window, MessageLoader *speciesMessageLoader, int messageId, int centered, int y, TextColor textColor)

@@ -364,7 +364,7 @@ static void WifiBattleTower_CreateWindows(WifiBattleTowerAppState *appState)
     Window_FillTilemap(&appState->rankWindow, 0xf0f);
     Window_Add(appState->bgConfig, &appState->titleWindow, 0, 4, 1, 24, 2, 13, (((((SCROLLING_MESSAGE_BOX_TILE_COUNT + 1) + 9) + 27 * 4) + 4 * 2) + 4 * 2) + 23 * 16);
     Window_FillTilemap(&appState->titleWindow, 0x0);
-    Window_DrawTextAligned(&appState->titleWindow, appState->titleString, 0, 1, 1, TEXT_COLOR(15, 14, 0));
+    Window_DrawTextAligned(&appState->titleWindow, appState->titleString, 0, 1, 1, TEXT_COLOR_WHITE);
     Window_Add(appState->bgConfig, &appState->msgWindow, 0, 2, 19, 27, 4, 13, (SCROLLING_MESSAGE_BOX_TILE_COUNT + 1) + 9);
     Window_FillTilemap(&appState->msgWindow, 0xf0f);
 }
@@ -1607,7 +1607,7 @@ static void Window_DrawNumber(Window *window, String *string, int num, int maxDi
 {
     Window_FillTilemap(window, 0xf0f);
     String_FormatInt(string, num, maxDigits, 2, 1);
-    Window_DrawSystemTextAligned(window, string, 0, 1, 1, TEXT_COLOR(1, 2, 0));
+    Window_DrawSystemTextAligned(window, string, 0, 1, 1, TEXT_COLOR_BLACK);
 }
 
 void WifiBattleTower_InitNetworkIcon(WifiBattleTowerAppState *unused)

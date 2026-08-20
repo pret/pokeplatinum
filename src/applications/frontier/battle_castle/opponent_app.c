@@ -1856,7 +1856,7 @@ static void PrintPlayerName(BattleCastleOpponentApp *app, Window *window, u32 xO
     if (TrainerInfo_Gender(player) == GENDER_MALE) {
         color = TEXT_COLOR(7, 8, 0);
     } else {
-        color = TEXT_COLOR(3, 4, 0);
+        color = TEXT_COLOR_BLUE;
     }
 
     Text_AddPrinterWithParamsAndColor(window, font, playerName, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
@@ -1871,7 +1871,7 @@ static void PrintPartnersName(BattleCastleOpponentApp *app, Window *window, u32 
     if (TrainerInfo_Gender(partnerInfo) == GENDER_MALE) {
         textColor = TEXT_COLOR(7, 8, 0);
     } else {
-        textColor = TEXT_COLOR(3, 4, 0);
+        textColor = TEXT_COLOR_BLUE;
     }
 
     StringTemplate_SetPlayerName(app->strTemplate, 0, partnerInfo);

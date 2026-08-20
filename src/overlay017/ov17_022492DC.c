@@ -522,8 +522,8 @@ static void ov17_02249828(UnkStruct_ov17_022492DC *param0)
     v0 = MessageLoader_GetNewString(contestTextMessageLoader, v2);
     v1 = MessageLoader_GetNewString(contestTextMessageLoader, v3);
 
-    ov17_02249BC4(param0, &param0->unk_1C[0], v0, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, 8 * 0x10 - 1, 1);
-    ov17_02249BC4(param0, &param0->unk_1C[1], v1, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, 8 * 0x14 - 1, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[0], v0, FONT_SYSTEM, TEXT_COLOR_BLACK, 0, 33003, 128, 8 * 0x10 - 1, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[1], v1, FONT_SYSTEM, TEXT_COLOR_BLACK, 0, 33003, 128, 8 * 0x14 - 1, 1);
 
     String_Free(v0);
     String_Free(v1);

@@ -850,13 +850,13 @@ static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
     Window_FillTilemap(&param0->unk_00[0], 0);
 
     v0 = ov68_0225DC58(&param0->unk_2C, param1, 0);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00[0], FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00[0], FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
     v0 = ov68_0225DC58(&param0->unk_2C, param1, 1);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00[0], FONT_MESSAGE, v0, 0, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00[0], FONT_MESSAGE, v0, 0, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
     v0 = ov68_0225DC58(&param0->unk_2C, param1, 2);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00[0], FONT_MESSAGE, v0, 0, 48, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00[0], FONT_MESSAGE, v0, 0, 48, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_00[0]);
 }
 
@@ -902,7 +902,7 @@ static void ov68_0225D1B4(UnkStruct_ov68_0225D128 *param0, const String *param1)
 
     Window_FillTilemap(&param0->unk_08, 15);
     String_Copy(param0->unk_18, param1);
-    param0->unk_00 = Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_04, TEXT_COLOR(1, 2, 15), NULL);
+    param0->unk_00 = Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_04, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_08, 1, 1, 5);
 }
 
@@ -914,7 +914,7 @@ static void ov68_0225D218(UnkStruct_ov68_0225D128 *param0, const String *param1)
 
     Window_FillTilemap(&param0->unk_08, 15);
     String_Copy(param0->unk_18, param1);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_08, 1, 1, 5);
     Window_ScheduleCopyToVRAM(&param0->unk_08);
 }
@@ -1010,7 +1010,7 @@ static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         }
     }
 
-    ov68_0225D89C(param0, param1, 109, TEXT_COLOR(3, 4, 0));
+    ov68_0225D89C(param0, param1, 109, TEXT_COLOR_BLUE);
 
     {
         param0->unk_80 = Graphics_GetCharDataFromOpenNARC(param2->unk_1A4, 200, 0, &param0->unk_84, heapID);
@@ -1198,7 +1198,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         v7.unk_04 = sub_02030ED4(v8);
         v9 = ov66_0222E924(param4->unk_04, ov66_0222E338(param4->unk_04));
 
-        ov68_0225D8F0(param0, &param0->unk_A8, param1, param2, &v7, heapID, TEXT_COLOR(11, 12, 0), TEXT_COLOR(15, 14, 0), v9);
+        ov68_0225D8F0(param0, &param0->unk_A8, param1, param2, &v7, heapID, TEXT_COLOR(11, 12, 0), TEXT_COLOR_WHITE, v9);
         ov68_0225DA30(param0, &param0->unk_DC, param2, 2);
         Sound_PlayEffect(SEQ_SE_PL_PINPON2_sseq);
     }
@@ -1398,7 +1398,7 @@ static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         }
     }
 
-    ov68_0225D89C(param0, param1, 119, TEXT_COLOR(5, 6, 0));
+    ov68_0225D89C(param0, param1, 119, TEXT_COLOR_RED);
 }
 
 static void ov68_0225DB8C(UnkStruct_ov68_0225DB8C *param0, BOOL param1, enum HeapID heapID)

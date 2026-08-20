@@ -1462,7 +1462,7 @@ static void ov114_0225D190(UnkStruct_ov114_0225D084 *param0, String *param1, u32
 
 static void ov114_0225D1AC(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4)
 {
-    ov114_0225D254(param0, param1, param2, param3, param4, TEXT_COLOR(15, 14, 0));
+    ov114_0225D254(param0, param1, param2, param3, param4, TEXT_COLOR_WHITE);
 }
 
 static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4)
@@ -1480,7 +1480,7 @@ static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
         v1 = 0;
     }
 
-    Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_08, v1, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_08, v1, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
 }
 
 static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, String *param3, u32 param4)
@@ -1488,7 +1488,7 @@ static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *
     MessageLoader_GetString(param0->unk_00, param1, param0->unk_0C);
     StringTemplate_Format(param0->unk_04, param3, param0->unk_0C);
 
-    return Text_AddPrinterWithParamsAndColor(param2, FONT_MESSAGE, param3, 0, 0, param4, TEXT_COLOR(1, 2, 15), NULL);
+    return Text_AddPrinterWithParamsAndColor(param2, FONT_MESSAGE, param3, 0, 0, param4, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 }
 
 static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, TextColor param5)
@@ -1971,7 +1971,7 @@ static void ov114_0225DC44(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_022
     ov114_0225D104(param1, param2);
 
     if (param5 == 1) {
-        ov114_0225D254(param1, 10, &param0->unk_00, param3, param4, TEXT_COLOR(5, 6, 0));
+        ov114_0225D254(param1, 10, &param0->unk_00, param3, param4, TEXT_COLOR_RED);
     } else {
         ov114_0225D1AC(param1, 10, &param0->unk_00, param3, param4);
     }

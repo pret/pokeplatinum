@@ -2018,7 +2018,7 @@ static u8 PrintItemName(BattleCastleSelfApp *app, Window *window, u16 entryID)
     MessageLoader_GetString(app->itemMsgLoader, entryID, app->fmtStr);
     StringTemplate_Format(app->strTemplate, app->displayStr, app->fmtStr);
 
-    u8 printerID = Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->displayStr, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    u8 printerID = Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->displayStr, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
     Window_ScheduleCopyToVRAM(window);
     return printerID;
@@ -2546,7 +2546,7 @@ static void PrintPlayerName(BattleCastleSelfApp *app, Window *window, u32 xOffse
     if (TrainerInfo_Gender(player) == GENDER_MALE) {
         color = TEXT_COLOR(7, 8, 0);
     } else {
-        color = TEXT_COLOR(3, 4, 0);
+        color = TEXT_COLOR_BLUE;
     }
 
     Text_AddPrinterWithParamsAndColor(window, font, playerName, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
@@ -2562,7 +2562,7 @@ static void PrintPartnersName(BattleCastleSelfApp *app, Window *window, u32 xOff
     if (TrainerInfo_Gender(partnerInfo) == GENDER_MALE) {
         textColor = TEXT_COLOR(7, 8, 0);
     } else {
-        textColor = TEXT_COLOR(3, 4, 0);
+        textColor = TEXT_COLOR_BLUE;
     }
 
     StringTemplate_SetPlayerName(app->strTemplate, 0, partnerInfo);

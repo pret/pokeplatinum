@@ -98,7 +98,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     if (ov66_0222E924(param3, v8) == 1) {
         v9 = TEXT_COLOR(7, 8, 0);
     } else {
-        v9 = TEXT_COLOR(1, 2, 0);
+        v9 = TEXT_COLOR_BLACK;
     }
 
     Text_AddPrinterWithParamsAndColor(&param2[v7], FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, v9, NULL);

@@ -308,12 +308,6 @@ enum SummaryPokerusState {
 #define RIBBONS_PER_ROW  4
 #define RIBBONS_PER_PAGE 12
 
-#define SUMMARY_TEXT_BLACK             TEXT_COLOR(1, 2, 0)
-#define SUMMARY_TEXT_WHITE             TEXT_COLOR(15, 14, 0)
-#define SUMMARY_TEXT_BLUE              TEXT_COLOR(3, 4, 0)
-#define SUMMARY_TEXT_RED               TEXT_COLOR(5, 6, 0)
-#define SUMMARY_TEXT_BLACK_DARK_SHADOW TEXT_COLOR(1, 2, 15)
-
 typedef struct ConditionRectangle {
     VecFx16 topLeft;
     VecFx16 topRight;

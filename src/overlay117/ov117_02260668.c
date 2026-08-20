@@ -820,7 +820,7 @@ static void ov117_02261368(UnkStruct_ov117_02261280 *param0)
     Window_DrawStandardFrame(&param0->unk_30[4], 1, (((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2), 6);
 
     v0 = MessageLoader_GetNewString(param0->unk_80, 3);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_30[4], FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_30[4], FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
     String_Free(v0);
 
     Window_ScheduleCopyToVRAM(&param0->unk_30[4]);
@@ -852,7 +852,7 @@ static void ov117_022613EC(UnkStruct_ov117_02261280 *param0)
             if (ov114_0225C7A4(&param0->unk_00->unk_00, param0->unk_00->unk_2C[v0]) == 1) {
                 v5 = TEXT_COLOR(7, 8, 15);
             } else {
-                v5 = TEXT_COLOR(1, 2, 15);
+                v5 = TEXT_COLOR_BLACK_DARK_SHADOW;
             }
 
             v6 = Font_CalcStringWidth(FONT_SYSTEM, v3, 0);

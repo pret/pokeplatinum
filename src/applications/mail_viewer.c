@@ -285,7 +285,7 @@ static BOOL MailViewer_HandleConfirmEmpty(MailViewerApp *mailViewerApp)
         String *string = String_Init(38 * 2, mailViewerApp->heapID);
 
         MessageLoader_GetString(mailViewerApp->loader, Mail_Text_EnterPhraseOrWord, string);
-        Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[MAIL_VIEWER_WINDOW_MESSAGE], FONT_MESSAGE, string, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+        Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[MAIL_VIEWER_WINDOW_MESSAGE], FONT_MESSAGE, string, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
         String_Free(string);
         break;
     case 1:
@@ -344,7 +344,7 @@ static BOOL MailViewer_HandleCancel(MailViewerApp *mailViewerApp)
 
         String *string = String_Init(38 * 2, mailViewerApp->heapID);
         MessageLoader_GetString(mailViewerApp->loader, Mail_Text_StopGivingMailPrompt, string);
-        mailViewerApp->printerID = Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[MAIL_VIEWER_WINDOW_MESSAGE], FONT_MESSAGE, string, 0, 0, mailViewerApp->textFrameDelay, TEXT_COLOR(1, 2, 15), NULL);
+        mailViewerApp->printerID = Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[MAIL_VIEWER_WINDOW_MESSAGE], FONT_MESSAGE, string, 0, 0, mailViewerApp->textFrameDelay, TEXT_COLOR_BLACK_DARK_SHADOW, NULL);
 
         String_Free(string);
         PaletteData_Blend(mailViewerApp->paletteData, PLTTBUF_MAIN_BG, MAIL_OPTION_PALETTE_SLOT_START + mailViewerApp->prevBlendIndex, 1, 0, COLOR_WHITE);
@@ -821,7 +821,7 @@ static void MailViewer_PrintText(MailViewerApp *mailViewerApp)
 
         String *sentenceStr = EasyChatSentence_ToString(&mailViewerApp->args->sentences[i], mailViewerApp->heapID);
 
-        Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[i], FONT_MESSAGE, sentenceStr, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[i], FONT_MESSAGE, sentenceStr, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
         String_Free(sentenceStr);
         Window_CopyToVRAM(&mailViewerApp->windows[i]);
     }
@@ -838,13 +838,13 @@ static void MailViewer_PrintText(MailViewerApp *mailViewerApp)
             int xOffset = 8 * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_MESSAGE, string, 0);
             xOffset /= 2;
 
-            Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[MAIL_VIEWER_WINDOW_CONFIRM + i], FONT_MESSAGE, string, xOffset, 2, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[MAIL_VIEWER_WINDOW_CONFIRM + i], FONT_MESSAGE, string, xOffset, 2, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
             Window_CopyToVRAM(&mailViewerApp->windows[MAIL_VIEWER_WINDOW_CONFIRM + i]);
         }
 
         String_Free(string);
     } else {
-        Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[MAIL_VIEWER_WINDOW_CONFIRM], FONT_MESSAGE, mailViewerApp->args->trainerName, 0, 2, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&mailViewerApp->windows[MAIL_VIEWER_WINDOW_CONFIRM], FONT_MESSAGE, mailViewerApp->args->trainerName, 0, 2, TEXT_SPEED_INSTANT, TEXT_COLOR_BLACK, NULL);
         Window_CopyToVRAM(&mailViewerApp->windows[MAIL_VIEWER_WINDOW_CONFIRM]);
     }
 }

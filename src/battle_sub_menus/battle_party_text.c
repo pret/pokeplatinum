@@ -1175,7 +1175,7 @@ static void PrintPokemonNameHeader(BattleParty *battleParty, u32 windowIndex, en
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
 
     if (font == FONT_SYSTEM) {
-        Text_AddPrinterWithParamsAndColor(window, font, formattedString, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(window, font, formattedString, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     } else {
         Text_AddPrinterWithParamsAndColor(window, font, formattedString, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(7, 8, 9), NULL);
     }
@@ -1201,7 +1201,7 @@ static void PrintPokemonNameHeader(BattleParty *battleParty, u32 windowIndex, en
             genderIconXOffset = Window_GetWidth(window) * 8 - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
             if (font == FONT_SYSTEM) {
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, genderIconXOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, genderIconXOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLUE, NULL);
             } else {
                 Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, genderIconXOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(12, 13, 0), NULL);
             }
@@ -1267,7 +1267,7 @@ static void PrintPokemonAbilityName(BattleParty *battleParty, u32 windowIndex, u
 
     StringTemplate_SetAbilityName(battleParty->stringTemplate, 0, pokemon->ability);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[windowIndex], FONT_SYSTEM, formattedString, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[windowIndex], FONT_SYSTEM, formattedString, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(&battleParty->windows[windowIndex]);
@@ -1289,7 +1289,7 @@ static void PrintPokemonHeldItem(BattleParty *battleParty, u32 windowIndex, u32 
         String_Free(string);
     }
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[windowIndex], FONT_SYSTEM, formattedString, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[windowIndex], FONT_SYSTEM, formattedString, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(&battleParty->windows[windowIndex]);
 }
@@ -1320,7 +1320,7 @@ static void PrintPPLabel(BattleParty *battleParty, u16 windowIndex, u8 xOffset, 
 {
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonPPLabel);
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[windowIndex], FONT_SYSTEM, string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[windowIndex], FONT_SYSTEM, string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(&battleParty->windows[windowIndex]);
 }
@@ -1334,7 +1334,7 @@ static void PrintSelectOptionText(BattleParty *battleParty, u32 textID)
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, textID);
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->messageBoxWindows[BATTLE_PARTY_MESSAGE_BOX_SELECT_OPTION], FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->messageBoxWindows[BATTLE_PARTY_MESSAGE_BOX_SELECT_OPTION], FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(&battleParty->messageBoxWindows[BATTLE_PARTY_MESSAGE_BOX_SELECT_OPTION]);
 }
@@ -1358,7 +1358,7 @@ static void PrintSelectedPokemonLevel(BattleParty *battleParty, u32 partyIndex)
     String *formattedString;
     u16 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonLevelValue);
@@ -1366,13 +1366,13 @@ static void PrintSelectedPokemonLevel(BattleParty *battleParty, u32 partyIndex)
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->level, POKEMON_LEVEL_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL + windowIndexOffset], FONT_SYSTEM, formattedString, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL + windowIndexOffset], FONT_SYSTEM, formattedString, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
     String_Free(formattedString);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonExpToNextLevelLabel);
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonExpToNextLevelValue);
@@ -1390,7 +1390,7 @@ static void PrintSelectedPokemonLevel(BattleParty *battleParty, u32 partyIndex)
 
     xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset]) * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL]);
@@ -1408,7 +1408,7 @@ static void PrintPokemonAttackStat(BattleParty *battleParty, u32 partyIndex)
     u8 stringWidth;
     u8 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonAttackStatValue);
@@ -1420,7 +1420,7 @@ static void PrintPokemonAttackStat(BattleParty *battleParty, u32 partyIndex)
     stringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
     xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset]) * TILE_WIDTH_PIXELS - stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL]);
@@ -1436,7 +1436,7 @@ static void PrintPokemonDefenseStat(BattleParty *battleParty, u32 partyIndex)
     u8 stringWidth;
     u8 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonDefenseStatValue);
@@ -1448,7 +1448,7 @@ static void PrintPokemonDefenseStat(BattleParty *battleParty, u32 partyIndex)
     stringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
     xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset]) * TILE_WIDTH_PIXELS - stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL]);
@@ -1464,7 +1464,7 @@ static void PrintPokemonSpeedStat(BattleParty *battleParty, u32 partyIndex)
     u8 stringWidth;
     u8 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonSpeedStatValue);
@@ -1476,7 +1476,7 @@ static void PrintPokemonSpeedStat(BattleParty *battleParty, u32 partyIndex)
     stringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
     xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset]) * TILE_WIDTH_PIXELS - stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL]);
@@ -1492,7 +1492,7 @@ static void PrintPokemonSpAtkStat(BattleParty *battleParty, u32 partyIndex)
     u8 stringWidth;
     u8 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonSpAtkStatValue);
@@ -1504,7 +1504,7 @@ static void PrintPokemonSpAtkStat(BattleParty *battleParty, u32 partyIndex)
     stringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
     xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset]) * TILE_WIDTH_PIXELS - stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL]);
@@ -1520,7 +1520,7 @@ static void PrintPokemonSpDefStat(BattleParty *battleParty, u32 partyIndex)
     u8 stringWidth;
     u8 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonSpDefStatValue);
@@ -1532,7 +1532,7 @@ static void PrintPokemonSpDefStat(BattleParty *battleParty, u32 partyIndex)
     stringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
     xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset]) * TILE_WIDTH_PIXELS - stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL]);
@@ -1548,14 +1548,14 @@ static void PrintPokemonHPStat(BattleParty *battleParty, u32 partyIndex)
     u32 stringWidth, formattedStringWidth;
     u16 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonHPStatDivider);
     stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
     xOffset = (Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP]) * TILE_WIDTH_PIXELS - stringWidth) / 2;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonHPStatValue);
@@ -1566,7 +1566,7 @@ static void PrintPokemonHPStat(BattleParty *battleParty, u32 partyIndex)
 
     formattedStringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset - formattedStringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset - formattedStringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     String_Free(formattedString);
 
@@ -1575,7 +1575,7 @@ static void PrintPokemonHPStat(BattleParty *battleParty, u32 partyIndex)
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->maxHP, POKEMON_HP_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset + stringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, formattedString, xOffset + stringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL]);
@@ -1589,7 +1589,7 @@ static void PrintPokemonAbilityDescription(BattleParty *battleParty, u32 partyIn
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_DESCRIPTIONS, battleParty->context->heapID);
     String *string = MessageLoader_GetNewString(messageLoader, pokemon->ability);
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC + windowIndexOffset], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC + windowIndexOffset], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     MessageLoader_Free(messageLoader);
     Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC + windowIndexOffset]);
@@ -1600,7 +1600,7 @@ static void PrintMoveAccuracyLabel(BattleParty *battleParty, u32 windowIndex)
     Window *window = &battleParty->windows[windowIndex];
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MoveAccuracyLabel);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
@@ -1614,7 +1614,7 @@ static void PrintMoveAccuracyValue(BattleParty *battleParty, u32 windowIndex, u3
         u16 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
         u16 xOffset = Window_GetWidth(window) * TILE_WIDTH_PIXELS - stringWidth;
 
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
         String_Free(string);
     } else {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MoveAccuracyValue);
@@ -1628,7 +1628,7 @@ static void PrintMoveAccuracyValue(BattleParty *battleParty, u32 windowIndex, u3
         stringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
         xOffset = Window_GetWidth(window) * TILE_WIDTH_PIXELS - stringWidth;
 
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
         String_Free(string);
         String_Free(formattedString);
     }
@@ -1641,7 +1641,7 @@ static void PrintMovePowerLabel(BattleParty *battleParty, u32 windowIndex)
     Window *window = &battleParty->windows[windowIndex];
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MovePowerLabel);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
@@ -1655,7 +1655,7 @@ static void PrintMovePowerValue(BattleParty *battleParty, u32 windowIndex, u32 m
         u16 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
         u16 xOffset = Window_GetWidth(window) * 8 - stringWidth;
 
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
         String_Free(string);
     } else {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MovePowerValue);
@@ -1669,7 +1669,7 @@ static void PrintMovePowerValue(BattleParty *battleParty, u32 windowIndex, u32 m
         stringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
         xOffset = Window_GetWidth(window) * TILE_WIDTH_PIXELS - stringWidth;
 
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
         String_Free(string);
         String_Free(formattedString);
     }
@@ -1683,7 +1683,7 @@ static void PrintMoveDescription(BattleParty *battleParty, u32 windowIndex, u32 
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_DESCRIPTIONS, battleParty->context->heapID);
     String *string = MessageLoader_GetNewString(messageLoader, textID);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     MessageLoader_Free(messageLoader);
     Window_ScheduleCopyToVRAM(window);
@@ -1696,7 +1696,7 @@ static void PrintMoveContestEffect(BattleParty *battleParty, u32 windowIndex, en
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, battleParty->context->heapID);
     String *string = MessageLoader_GetNewString(messageLoader, textID);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
 
     MessageLoader_Free(messageLoader);
@@ -1710,7 +1710,7 @@ static void PrintMoveCategoryLabel(BattleParty *battleParty, u32 windowIndex)
     u16 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
     u16 xOffset = (Window_GetWidth(window) * TILE_WIDTH_PIXELS - stringWidth) / 2;
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
@@ -1733,7 +1733,7 @@ static void PrintMoveCategory(BattleParty *battleParty, u32 windowIndex, u32 mov
     }
 
     xOffset = Font_CalcCenterAlignment(FONT_SYSTEM, string, 0, 56);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
 
     String_Free(string);
     Window_ScheduleCopyToVRAM(window);
@@ -1748,7 +1748,7 @@ static void PrintSummaryScreenMovePPStats(BattleParty *battleParty, u32 windowIn
     String *formattedString;
     u32 formattedStringWidth;
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MoveCurrentPP);
@@ -1759,7 +1759,7 @@ static void PrintSummaryScreenMovePPStats(BattleParty *battleParty, u32 windowIn
 
     formattedStringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, xOffset - formattedStringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, xOffset - formattedStringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
     String_Free(formattedString);
 
@@ -1768,7 +1768,7 @@ static void PrintSummaryScreenMovePPStats(BattleParty *battleParty, u32 windowIn
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, maxPP, SUMMARY_SCREEN_MOVE_PP_STAT_DIGIT, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, xOffset + stringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, xOffset + stringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(window);
@@ -1808,7 +1808,7 @@ void BattlePartyText_PrintHMMovesCantBeForgottenText(BattleParty *battleParty)
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_HMMovesCantBeForgotten);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_BLACK, NULL);
     String_Free(string);
     Window_ScheduleCopyToVRAM(window);
 }
@@ -1820,20 +1820,20 @@ static void PrintMovesScreenMovePPStats(BattleParty *battleParty, BattlePartyPok
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MovePPLabel);
     u32 stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 40, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 40, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MovePPDivider);
     stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 80, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 80, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MoveMaxPP);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, move->maxPP, MOVE_PP_STAT_DIGIT, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, 80 + stringWidth, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, 80 + stringWidth, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MoveCurrentPP);
@@ -1843,7 +1843,7 @@ static void PrintMovesScreenMovePPStats(BattleParty *battleParty, BattlePartyPok
 
     stringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, 80 - stringWidth, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, 80 - stringWidth, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(window);
@@ -1866,7 +1866,7 @@ static void PrintMoveCurrentPP(BattleParty *battleParty, BattlePartyPokemonMove 
 
     stringWidth = Font_CalcStringWidth(FONT_SYSTEM, formattedString, 0);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, 80 - stringWidth, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, formattedString, 80 - stringWidth, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
     String_Free(string);
     String_Free(formattedString);
     Window_ScheduleCopyToVRAM(window);
@@ -2092,7 +2092,7 @@ static void RenderMoveSummaryScreen(BattleParty *battleParty)
 
     PrintPokemonNameHeader(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
     PrintPPLabel(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_PP_LABEL, 0, 0);
-    PrintMoveName(battleParty, move->move, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_MOVE_NAME + windowIndexOffset, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
+    PrintMoveName(battleParty, move->move, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_MOVE_NAME + windowIndexOffset, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR_WHITE);
     PrintMoveAccuracyLabel(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY_LABEL);
     PrintMoveAccuracyValue(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY + windowIndexOffset, move->accuracy);
     PrintMovePowerLabel(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POWER_LABEL);
@@ -2167,7 +2167,7 @@ static void RenderConfirmLearnMoveScreen(BattleParty *battleParty)
     if (battleParty->context->selectedMoveSlot < MOVE_TO_LEARN_SLOT) {
         BattlePartyPokemonMove *move = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[battleParty->context->selectedMoveSlot];
 
-        PrintMoveName(battleParty, move->move, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
+        PrintMoveName(battleParty, move->move, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR_WHITE);
         PrintMoveAccuracyValue(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY, move->accuracy);
         PrintMovePowerValue(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER, move->power);
         PrintMoveDescription(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION, move->move);
@@ -2176,7 +2176,7 @@ static void RenderConfirmLearnMoveScreen(BattleParty *battleParty)
     } else {
         u32 pp = MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_PP);
 
-        PrintMoveName(battleParty, battleParty->context->moveToLearn, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[4], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
+        PrintMoveName(battleParty, battleParty->context->moveToLearn, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[4], FONT_SYSTEM, 0, TEXT_COLOR_WHITE);
         PrintMoveDescription(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION, battleParty->context->moveToLearn);
         PrintMoveAccuracyValue(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY, MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_ACCURACY));
         PrintMovePowerValue(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER, MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_POWER));
@@ -2242,7 +2242,7 @@ static void RenderConfirmLearnMoveContestStatsScreen(BattleParty *battleParty)
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_AppealPtsLabel);
     xOffset = Font_CalcCenterAlignment(FONT_SYSTEM, string, 0, 96);
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR_WHITE, NULL);
 
     String_Free(string);
     Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS]);
@@ -2250,13 +2250,13 @@ static void RenderConfirmLearnMoveContestStatsScreen(BattleParty *battleParty)
     if (battleParty->context->selectedMoveSlot < MOVE_TO_LEARN_SLOT) {
         BattlePartyPokemonMove *move = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[battleParty->context->selectedMoveSlot];
 
-        PrintMoveName(battleParty, move->move, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
+        PrintMoveName(battleParty, move->move, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR_WHITE);
         PrintMoveContestEffect(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT, move->move);
         PrintSummaryScreenMovePPStats(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP, move->currentPP, move->maxPP);
     } else {
         u32 pp = MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_PP);
 
-        PrintMoveName(battleParty, battleParty->context->moveToLearn, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[4], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
+        PrintMoveName(battleParty, battleParty->context->moveToLearn, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[4], FONT_SYSTEM, 0, TEXT_COLOR_WHITE);
         PrintMoveContestEffect(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT, battleParty->context->moveToLearn);
         PrintSummaryScreenMovePPStats(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP, pp, pp);
     }
