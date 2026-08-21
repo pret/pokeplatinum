@@ -125,8 +125,8 @@ battle_frontier_records_app.NSCR.lz
 frontier_records_app.NCGR.lz
 battle_frontier_app_sub.NCGR.lz
 battle_frontier_app_sub.NSCR.lz
-unknown_10.NCGR.lz
-unknown_10.NSCR.lz
+wfc_facility_selector.NCGR.lz
+wfc_facility_selector.NSCR.lz
 battle_factory.NCLR
 battle_factory_app.NCLR
 battle_hall_battle_room.NCLR
@@ -170,4 +170,4 @@ battle_arcade_app_sub.NCLR
 battle_arcade_screen_default.NCLR
 frontier_records_app.NCLR
 battle_frontier_app_sub.NCLR
-unknown_10.NCLR
+wfc_facility_selector.NCLR

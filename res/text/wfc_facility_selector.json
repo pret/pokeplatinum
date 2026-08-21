@@ -2,25 +2,25 @@
   "key": 24832,
   "messages": [
     {
-      "id": "pl_msg_00000015_00000",
+      "id": "WFCFacilitySelector_Text_WhichFacility",
       "en_US": [
         "Which facility would you like to\n",
         "challenge?"
       ]
     },
     {
-      "id": "pl_msg_00000015_00001",
+      "id": "WFCFacilitySelector_Text_PlayerDroppedOut",
       "en_US": "{STRVAR_1 3, 0, 0} has dropped out.\r"
     },
     {
-      "id": "pl_msg_00000015_00002",
+      "id": "WFCFacilitySelector_Text_ChoosePokemon",
       "en_US": [
         "Please choose the Pokémon you wish to\n",
         "enter with."
       ]
     },
     {
-      "id": "pl_msg_00000015_00003",
+      "id": "WFCFacilitySelector_Text_DifferentFacilitiesChosen",
       "en_US": [
         "You have chosen a different facility\n",
         "and/or level setting from your friend.\f",
@@ -28,11 +28,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000015_00004",
+      "id": "WFCFacilitySelector_Text_PleaseWait",
       "en_US": "Please wait a moment."
     },
     {
-      "id": "pl_msg_00000015_00005",
+      "id": "WFCFacilitySelector_Text_WinStreaksDontMatch",
       "en_US": [
         "Your win-streak record does not match\n",
         "your friend’s record.\r",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000015_00006",
+      "id": "WFCFacilitySelector_Text_SamePokemonChosen",
       "en_US": [
         "Both you and your friend have chosen\n",
         "{STRVAR_1 0, 0, 0}.\r",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000015_00007",
+      "id": "WFCFacilitySelector_Text_SameTwoPokemonChosen",
       "en_US": [
         "Both you and your friend have chosen\n",
         "{STRVAR_1 0, 0, 0} and {STRVAR_1 0, 1, 0}.\r",
@@ -59,11 +59,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000015_00008",
+      "id": "WFCFacilitySelector_Text_Dummy",
       "garbage": 50
     },
     {
-      "id": "pl_msg_00000015_00009",
+      "id": "WFCFacilitySelector_Text_SamePokemonChosen2",
       "en_US": [
         "Both you and your friend have chosen\n",
         "{STRVAR_1 0, 0, 0}.\r",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000015_00010",
+      "id": "WFCFacilitySelector_Text_SameTwoPokemonChosen2",
       "en_US": [
         "Both you and your friend have chosen\n",
         "{STRVAR_1 0, 0, 0} and {STRVAR_1 0, 1, 0}.\r",
@@ -81,29 +81,29 @@
       ]
     },
     {
-      "id": "pl_msg_00000015_00011",
+      "id": "WFCFacilitySelector_Text_MustChooseSamePokemon",
       "en_US": [
         "You and your friend must choose the\n",
         "same kind of Pokémon to battle.\r"
       ]
     },
     {
-      "id": "pl_msg_00000015_00012",
+      "id": "WFCFacilitySelector_Text_Dummy2",
       "garbage": 54
     },
     {
-      "id": "pl_msg_00000015_00013",
+      "id": "WFCFacilitySelector_Text_Dummy3",
       "garbage": 60
     },
     {
-      "id": "pl_msg_00000015_00014",
+      "id": "WFCFacilitySelector_Text_ChooseLevel50OrOpen",
       "en_US": [
         "Which would you like to challenge,\n",
         "Level 50 cap or Open Level?"
       ]
     },
     {
-      "id": "pl_msg_00000015_00015",
+      "id": "WFCFacilitySelector_Text_ConfirmStreakDeletion",
       "en_US": [
         "There is already an ongoing winning\n",
         "streak by {STRVAR_1 0, 0, 0}.\r",
@@ -113,84 +113,84 @@
       ]
     },
     {
-      "id": "pl_msg_00000015_00016",
+      "id": "WFCFacilitySelector_Text_Yes",
       "en_US": "YES"
     },
     {
-      "id": "pl_msg_00000015_00017",
+      "id": "WFCFacilitySelector_Text_No",
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000015_00018",
+      "id": "WFCFacilitySelector_Text_RemakeSelection",
       "en_US": "Please make your selection again.\r"
     },
     {
-      "id": "pl_msg_00000015_00019",
+      "id": "WFCFacilitySelector_Text_Saving",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "pl_msg_00000015_00020",
+      "id": "WFCFacilitySelector_Text_GoodLuck",
       "en_US": "Good luck!"
     },
     {
-      "id": "pl_msg_00000015_00021",
+      "id": "WFCFacilitySelector_Text_PlayAgain",
       "en_US": [
         "Would you like to play with {STRVAR_1 3, 0, 0}\n",
         "again?"
       ]
     },
     {
-      "id": "pl_msg_00000015_00022",
+      "id": "WFCFacilitySelector_Text_Dummy4",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000015_00023",
+      "id": "WFCFacilitySelector_Text_Dummy5",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000015_00024",
+      "id": "WFCFacilitySelector_Text_WaitingForFriend",
       "en_US": [
         "Awaiting your friend’s selection.\n",
         "Please wait a moment."
       ]
     },
     {
-      "id": "pl_msg_00000015_00025",
+      "id": "WFCFacilitySelector_Text_PlayerDroppedOut2",
       "en_US": "{STRVAR_1 3, 0, 0} has dropped out.\r"
     },
     {
-      "id": "pl_msg_00000015_00026",
+      "id": "WFCFacilitySelector_Text_BattleTower",
       "en_US": "BATTLE TOWER"
     },
     {
-      "id": "pl_msg_00000015_00027",
+      "id": "WFCFacilitySelector_Text_BattleFactory",
       "en_US": "BATTLE FACTORY"
     },
     {
-      "id": "pl_msg_00000015_00028",
+      "id": "WFCFacilitySelector_Text_BattleCastle",
       "en_US": "BATTLE CASTLE"
     },
     {
-      "id": "pl_msg_00000015_00029",
+      "id": "WFCFacilitySelector_Text_BattleHall",
       "en_US": "BATTLE HALL"
     },
     {
-      "id": "pl_msg_00000015_00030",
+      "id": "WFCFacilitySelector_Text_BattleArcade",
       "en_US": "BATTLE ARCADE"
     },
     {
-      "id": "pl_msg_00000015_00031",
+      "id": "WFCFacilitySelector_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000015_00032",
+      "id": "WFCFacilitySelector_Text_Level50",
       "en_US": "LEVEL 50"
     },
     {
-      "id": "pl_msg_00000015_00033",
+      "id": "WFCFacilitySelector_Text_OpenLevel",
       "en_US": "OPEN LEVEL"
     }
   ]

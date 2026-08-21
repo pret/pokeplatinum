@@ -6,8 +6,8 @@
 #include "generated/text_banks.h"
 
 #include "graphics/frontier/backgrounds/frontier_backgrounds.naix"
-#include "overlay104/ov104_0223C164.h"
 #include "overlay104/ov104_0223D9E4.h"
+#include "overlay104/wfc_facility_selector_helpers.h"
 
 #include "bg_window.h"
 #include "gx_layers.h"
@@ -50,8 +50,8 @@ static void BattleFactoryCorridorSceneSetup(FrontierGraphics *graphics, void **s
 static void BattleFactoryCorridorSceneDestroy(FrontierGraphics *graphics, void **sceneData);
 static void BattleFactoryBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData);
 static void BattleFactoryBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData);
-static void ov104_0222EC90(FrontierGraphics *graphics, void **sceneData);
-static void ov104_0222ECA0(FrontierGraphics *graphics, void **sceneData);
+static void WFCFacilitySelectorSceneSetup(FrontierGraphics *graphics, void **sceneData);
+static void WFCFacilitySelectorSceneDestroy(FrontierGraphics *graphics, void **sceneData);
 static void BattleCastleBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData);
 static void BattleCastleBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData);
 
@@ -308,18 +308,18 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    [FRONTIER_SCENE_14] = {
+    [FRONTIER_SCENE_WFC_FACILITY_SELECTOR] = {
         .bgMode = GX_BGMODE_5,
-        .setupFunc = ov104_0222EC90,
-        .destroyFunc = ov104_0222ECA0,
-        .scriptID = frontier_scripts_unknown_10,
-        .textBankID = TEXT_BANK_UNK_0015,
+        .setupFunc = WFCFacilitySelectorSceneSetup,
+        .destroyFunc = WFCFacilitySelectorSceneDestroy,
+        .scriptID = frontier_scripts_wfc_facility_selector,
+        .textBankID = TEXT_BANK_WFC_FACILITY_SELECTOR,
         .bgmID = SEQ_BF_TOWWER_sseq,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
-        .tilemapIdx = unknown_10_NSCR_lz,
-        .tilesIdx = unknown_10_NCGR_lz,
-        .plttIdx = unknown_10_NCLR,
+        .tilemapIdx = wfc_facility_selector_NSCR_lz,
+        .tilesIdx = wfc_facility_selector_NCGR_lz,
+        .plttIdx = wfc_facility_selector_NCLR,
         .subTilemapIdx = -1,
         .subTilesIdx = -1,
         .subPlttIdx = -1,
@@ -481,14 +481,14 @@ static void BattleFactoryBattleRoomSceneDestroy(FrontierGraphics *graphics, void
 {
 }
 
-static void ov104_0222EC90(FrontierGraphics *graphics, void **sceneData)
+static void WFCFacilitySelectorSceneSetup(FrontierGraphics *graphics, void **sceneData)
 {
-    *sceneData = ov104_0223C164(graphics->bgConfig);
+    *sceneData = WFCFacilitySelectorEffects_Init(graphics->bgConfig);
 }
 
-static void ov104_0222ECA0(FrontierGraphics *graphics, void **sceneData)
+static void WFCFacilitySelectorSceneDestroy(FrontierGraphics *graphics, void **sceneData)
 {
-    ov104_0223C23C(*sceneData);
+    WFCFacilitySelectorEffects_Free(*sceneData);
 }
 
 static void BattleCastleBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData)
