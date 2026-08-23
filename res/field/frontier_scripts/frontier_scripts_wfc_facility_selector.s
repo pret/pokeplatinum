@@ -1,5 +1,5 @@
 # include "macros/frscrcmd.inc"
-# include "res/text/bank/unk_0015.h"
+# include "res/text/bank/wfc_facility_selector.h"
 # include "constants/battle_frontier.h"
 # include "constants/wfc_facility_selector_functions.h"
 
