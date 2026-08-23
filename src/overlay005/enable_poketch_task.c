@@ -17,7 +17,7 @@
 FS_EXTERN_OVERLAY(poketch_unavailable);
 FS_EXTERN_OVERLAY(poketch);
 
-typedef struct {
+typedef struct EnablePoketchTask {
     int state;
 } EnablePoketchTask;
 
@@ -28,7 +28,7 @@ static BOOL FieldTask_EnablePoketch(FieldTask *task)
 
     switch (taskData->state) {
     case 0:
-        BrightnessController_StartTransition(2, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
+        BrightnessController_StartTransition(2, -16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_SUB_SCREEN);
         taskData->state++;
         break;
     case 1:
@@ -49,7 +49,7 @@ static BOOL FieldTask_EnablePoketch(FieldTask *task)
         }
         break;
     case 3:
-        BrightnessController_StartTransition(4, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
+        BrightnessController_StartTransition(4, 0, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_SUB_SCREEN);
         taskData->state++;
         break;
     case 4:
