@@ -130,7 +130,7 @@ static inline void PoketchMap_GetPlayerLocation(FieldSystem *fieldSystem, int *x
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location *location = FieldOverworldState_GetExitLocation(fieldState);
 
-    if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
+    if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapHeaderID)) {
         *x = fieldSystem->location->x;
         *z = fieldSystem->location->z;
     } else {

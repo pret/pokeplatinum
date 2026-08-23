@@ -49,6 +49,7 @@
 #include "party.h"
 #include "persisted_map_features_init.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "pokemon.h"
 #include "pokeradar.h"
 #include "save_player.h"
@@ -66,7 +67,6 @@
 #include "unk_02056B30.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
-#include "unk_0205F180.h"
 #include "vars_flags.h"
 #include "wireless_manager.h"
 
@@ -189,7 +189,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             || (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE
                 && HearthomeGym_CheckIfPlayerSeesTrainer(fieldSystem) == TRUE)) {
 
-            sub_0205F56C(fieldSystem->playerAvatar);
+            PlayerAvatar_ClearMoveState(fieldSystem->playerAvatar);
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
             return TRUE;
         }
@@ -263,8 +263,8 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         }
 
         if (validInteraction == TRUE) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             if (MapObject_GetTrainerType(object) != 0x9) {
@@ -329,7 +329,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->menu && FieldSystem_IsInValidLocation(fieldSystem) == TRUE) {
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
         StartMenu_Open(fieldSystem);
         return TRUE;
     }
@@ -403,8 +403,8 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
         MapObject *object;
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE && MapObject_GetMovementType(object) != 0x1) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             ScriptManager_Set(fieldSystem, MapObject_GetScript(object), object);
@@ -418,7 +418,7 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->menu) {
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
         StartMenu_OpenColosseum(fieldSystem);
         return TRUE;
     }
@@ -458,8 +458,8 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
         MapObject *object;
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             CommManager_PauseUnionClient();
@@ -475,7 +475,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
     }
 
     if (input->menu && CommSys_ConnectedCount() <= 1) {
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
         StartMenu_OpenUnionRoom(fieldSystem);
         sub_0205BEA8(4);
         CommManager_PauseUnionServer();
@@ -495,8 +495,8 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
         MapObject *object;
 
         if (sub_0203CA40(fieldSystem, &object) == TRUE) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+            if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == TRUE) {
+                PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
             }
 
             if (MapObject_GetTrainerType(object) != 0x9) {
@@ -532,7 +532,7 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
     }
 
     if (input->menu) {
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
         StartMenu_Open(fieldSystem);
         return TRUE;
     }
@@ -555,7 +555,7 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
         }
     }
 
-    return MapHeader_HasWildEncounters(fieldSystem->location->mapId) && WildEncounters_TryWildEncounter(fieldSystem) == TRUE;
+    return MapHeader_HasWildEncounters(fieldSystem->location->mapHeaderID) && WildEncounters_TryWildEncounter(fieldSystem) == TRUE;
 }
 
 static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput *input)
@@ -588,7 +588,7 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
                 HearthomeGym_CheckIfEnteredIncorrectDoor(fieldSystem, playerX, playerZ, &transitionDir);
             }
 
-            sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, transitionDir, 1);
+            sub_02056BDC(fieldSystem, nextMap.mapHeaderID, nextMap.warpId, 0, 0, transitionDir, 1);
 
             return TRUE;
         }
@@ -635,14 +635,14 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
     } else if (TileBehavior_IsWarpEntranceEast(tileBehavior) || TileBehavior_IsWarpEast(tileBehavior)
         || TileBehavior_IsWarpEntranceWest(tileBehavior) || TileBehavior_IsWarpWest(tileBehavior)
         || TileBehavior_IsWarpEntranceSouth(tileBehavior) || TileBehavior_IsWarpSouth(tileBehavior)) {
-        sub_02056C18(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, input->transitionDir);
+        sub_02056C18(fieldSystem, nextMap.mapHeaderID, nextMap.warpId, 0, 0, input->transitionDir);
         return TRUE;
     } else {
         return FALSE;
     }
 
     // these statements are unreachable, but required for matching
-    sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, input->transitionDir, transitionType);
+    sub_02056BDC(fieldSystem, nextMap.mapHeaderID, nextMap.warpId, 0, 0, input->transitionDir, transitionType);
 
     return TRUE;
 }
@@ -796,7 +796,7 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
             return FALSE;
         }
 
-        sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, playerDir, 2);
+        sub_02056BDC(fieldSystem, nextMap.mapHeaderID, nextMap.warpId, 0, 0, playerDir, 2);
         return TRUE;
     } else if (TileBehavior_IsEscalator(curTileBehavior) == TRUE) {
         int playerDir = PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar);
@@ -806,17 +806,17 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
             return FALSE;
         }
 
-        sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, playerDir, 2);
+        sub_02056BDC(fieldSystem, nextMap.mapHeaderID, nextMap.warpId, 0, 0, playerDir, 2);
         return TRUE;
     }
 
     if (TileBehavior_IsWarpEntranceNorth(curTileBehavior) || TileBehavior_IsWarpNorth(curTileBehavior)) {
-        sub_02056C18(fieldSystem, nextMap.mapId, nextMap.warpId, 0, 0, 0);
+        sub_02056C18(fieldSystem, nextMap.mapHeaderID, nextMap.warpId, 0, 0, 0);
         return TRUE;
     }
 
     if (TileBehavior_IsWarpPanel(curTileBehavior)) {
-        FieldSystem_StartMapChangeWarpTask(fieldSystem, nextMap.mapId, nextMap.warpId);
+        FieldSystem_StartMapChangeWarpTask(fieldSystem, nextMap.mapHeaderID, nextMap.warpId);
         return TRUE;
     }
 
@@ -883,7 +883,7 @@ static void Field_CalculateFriendship(FieldSystem *fieldSystem)
     // C99-style declarations don't match
     int i, partyCount;
     Party *party = SaveData_GetParty(fieldSystem->saveData);
-    u16 mapID = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
+    u16 mapID = MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID);
 
     partyCount = Party_GetCurrentCount(party);
 
@@ -905,7 +905,7 @@ static BOOL Field_UpdatePoison(FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    switch (Pokemon_DoPoisonDamage(party, MapHeader_GetMapLabelTextID(fieldSystem->location->mapId))) {
+    switch (Pokemon_DoPoisonDamage(party, MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID))) {
     case FLDPSN_NONE:
         return FALSE;
     case FLDPSN_POISONED:
@@ -994,28 +994,27 @@ static u8 Field_NextTileBehavior(const FieldSystem *fieldSystem)
 
 static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap)
 {
-    const WarpEvent *v0;
-    int v1 = MapHeaderData_GetIndexOfWarpEventAtPos(fieldSystem, playerX, playerZ);
+    int eventIndex = MapHeaderData_GetIndexOfWarpEventAtPos(fieldSystem, playerX, playerZ);
 
-    if (v1 == -1) {
+    if (eventIndex == -1) {
         return FALSE;
     }
 
-    v0 = MapHeaderData_GetWarpEventByIndex(fieldSystem, v1);
+    const WarpEvent *warpEvent = MapHeaderData_GetWarpEventByIndex(fieldSystem, eventIndex);
 
-    if (v0 == NULL) {
+    if (warpEvent == NULL) {
         return FALSE;
     }
 
-    if (v0->destWarpID == 0x100) {
-        GF_ASSERT(v0->destHeaderID == 0xfff);
+    if (warpEvent->destWarpID == 0x100) {
+        GF_ASSERT(warpEvent->destHeaderID == 0xfff);
         *nextMap = *(FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData)));
     } else {
-        Location_Set(nextMap, v0->destHeaderID, v0->destWarpID, v0->x, v0->z, 1);
+        Location_Set(nextMap, warpEvent->destHeaderID, warpEvent->destWarpID, warpEvent->x, warpEvent->z, 1);
     }
 
-    Location *v2 = FieldOverworldState_GetEntranceLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    Location_Set(v2, fieldSystem->location->mapId, v1, playerX, playerZ, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+    Location *entrance = FieldOverworldState_GetEntranceLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    Location_Set(entrance, fieldSystem->location->mapHeaderID, eventIndex, playerX, playerZ, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
 
     return TRUE;
 }
@@ -1034,7 +1033,7 @@ static void Field_SetMapConnection(FieldSystem *fieldSystem, const int playerX, 
         (nextMap->z)++;
     }
 
-    nextMap->mapId = fieldSystem->location->mapId;
+    nextMap->mapHeaderID = fieldSystem->location->mapHeaderID;
     nextMap->warpId = WARP_ID_NONE;
 }
 
@@ -1046,15 +1045,15 @@ static void Field_TrySetMapConnection(FieldSystem *fieldSystem)
     Location nextMap;
 
     if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap)) {
-        if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == TRUE && MapHeader_IsOnMainMatrix(nextMap.mapId) == FALSE) {
+        if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapHeaderID) == TRUE && MapHeader_IsOnMainMatrix(nextMap.mapHeaderID) == FALSE) {
             Field_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
         }
     } else {
         Field_Step(fieldSystem, &playerX, &playerZ);
 
         if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap)
-            && MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == TRUE
-            && MapHeader_IsOnMainMatrix(nextMap.mapId) == FALSE) {
+            && MapHeader_IsOnMainMatrix(fieldSystem->location->mapHeaderID) == TRUE
+            && MapHeader_IsOnMainMatrix(nextMap.mapHeaderID) == FALSE) {
 
             Field_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
         }
@@ -1066,7 +1065,7 @@ static BOOL Field_DistortionInteract(FieldSystem *fieldSystem, MapObject **objec
     int objectIndex = 0;
     int playerX, playerY, playerZ, objectX, objectY, objectZ;
 
-    sub_020617BC(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
+    PlayerAvatar_GetFacingDistortionWorldPos(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
 
     while (MapObjectMan_FindObjectWithStatus(fieldSystem->mapObjMan, object, &objectIndex, 1 << 0)) {
         objectX = MapObject_GetX(*object);

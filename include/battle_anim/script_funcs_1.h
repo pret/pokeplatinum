@@ -6,7 +6,7 @@
 #include "sprite_system.h"
 
 void BattleAnimScriptFunc_ShadowPunch(BattleAnimSystem *system);
-void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
+void BattleAnimSpriteFunc_FrenzyPlant(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_RolePlay(BattleAnimSystem *system);
 void BattleAnimScriptFunc_Snatch(BattleAnimSystem *system);
 void BattleAnimScriptFunc_Sketch(BattleAnimSystem *system);

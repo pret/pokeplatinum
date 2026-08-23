@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 CycleShop_PokefanM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_BICYCLE, CycleShop_IllReadOperatingManual
@@ -36,7 +36,7 @@ CycleShop_Clefairy:
     End
 
 CycleShop_Youngster:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, CycleShop_WhatWasTeamGalacticTrying

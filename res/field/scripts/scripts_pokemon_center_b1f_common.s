@@ -69,7 +69,7 @@ PokemonCenterB1FCommon_Movement_PlayerWalkToAttendantEast:
     EndMovement
 
 PokemonCenterB1FCommon_AttendantInfo:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message PokemonCenterB1FCommon_Text_MayIHelpWithAnything
@@ -112,7 +112,7 @@ PokemonCenterB1FCommon_ExplainRegisterAFriend:
     End
 
 PokemonCenterB1FCommon_AttendantWiFiClub:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -339,7 +339,7 @@ PokemonCenterB1FCommon_OnLoad:
     End
 
 PokemonCenterB1FCommon_AttendantWifiPlaza:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckNoWiFiPlazaCooldown VAR_RESULT

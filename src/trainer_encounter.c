@@ -8,6 +8,7 @@
 #include "constants/map_object.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
+#include "generated/trainers.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
@@ -93,7 +94,7 @@ BOOL FieldSystem_CheckForTrainersWantingBattle(FieldSystem *fieldSystem, BOOL ha
     if (!trainer.isDoubleBattle) {
         ApproachingTrainerTemplate trainerTwo;
 
-        ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), trainer.trainerMapObj);
+        ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, MAX_TRAINERS), trainer.trainerMapObj);
 
         if (!hasTwoAliveMons || !FindUndefeatedTrainerInSight(fieldSystem, mapObjMan, playerAvatar, trainer.trainerMapObj, &trainerTwo)) {
             ScriptManager_SetApproachingTrainer(fieldSystem, trainer.trainerMapObj, trainer.distance, trainer.direction, trainer.script, trainer.trainerID, APPROACH_TYPE_SINGLES, 0);
@@ -117,7 +118,7 @@ BOOL FieldSystem_CheckForTrainersWantingBattle(FieldSystem *fieldSystem, BOOL ha
         trainerTwoMapObj = FindTrainerPartner(fieldSystem, mapObjMan, trainer.trainerMapObj, trainer.trainerID);
 
         ApproachingTrainer_Init(&trainerTwo, trainerTwoMapObj, trainer.distance, trainer.direction);
-        ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), trainer.trainerMapObj);
+        ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, MAX_TRAINERS), trainer.trainerMapObj);
         ScriptManager_SetApproachingTrainer(fieldSystem, trainer.trainerMapObj, trainer.distance, trainer.direction, trainer.script, trainer.trainerID, APPROACH_TYPE_DOUBLES, 0);
         ScriptManager_SetApproachingTrainer(fieldSystem, trainerTwo.trainerMapObj, trainerTwo.distance, trainerTwo.direction, trainerTwo.script, trainerTwo.trainerID, APPROACH_TYPE_DOUBLES, 1);
 

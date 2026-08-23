@@ -951,7 +951,7 @@ static BOOL IsSelectionMade(ChooseStarterApp *app, enum HeapID heapID)
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             AdvanceChoiceStep(app, 1);
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
         break;
     case CHOICE_STEP_CONFIRM_POKEBALL:
@@ -980,7 +980,7 @@ static void UpdateGraphics(ChooseStarterApp *app, enum HeapID heapID)
 
         if (app->delayFrameCount < 0) {
             AdvanceChoiceStep(app, 1);
-            Sound_PlayEffect(SEQ_SE_DP_BAG_030);
+            Sound_PlayEffect(SEQ_SE_DP_BAG_030_sseq);
         }
         break;
     case CHOICE_STEP_SHOW_3D_GRAPHICS:
@@ -1121,14 +1121,14 @@ static void ChangePokeballChoice(ChooseStarterApp *app)
     if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (app->cursorPosition - 1 >= 0) {
             app->cursorPosition -= 1;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
     }
 
     if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (app->cursorPosition + 1 < 3) {
             app->cursorPosition += 1;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
     }
 }
@@ -1324,7 +1324,7 @@ static void MakeConfirmationWindow(ChooseStarterApp *app, enum HeapID heapID)
     app->confirmationMenuWindowTemplate.baseTile = ((18 + 12) + 9 + 128);
 
     LoadStandardWindowGraphics(app->bgConfig, BG_LAYER_MAIN_1, 512 + (18 + 12) + 128, 1, 0, heapID);
-    Font_LoadTextPalette(0, 3 * 32, heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(3), heapID);
 }
 
 static void SetupStarterMovement(ChooseStarterMovement *starterMovement, s32 start, s32 end, s32 frameCountMax)

@@ -260,12 +260,12 @@ static void sub_02072390(SysTask *param0, void *param1)
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072518, sub_02072364);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         switch (v1) {
         case MENU_NOTHING_CHOSEN:
@@ -318,12 +318,12 @@ static void sub_02072470(SysTask *param0, void *param1)
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072534, sub_02072370);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         switch (v1) {
         case MENU_NOTHING_CHOSEN:
@@ -771,7 +771,7 @@ static void sub_02072C0C(ListMenu *param0, u64 param1, u8 param2)
     v2 = ListMenu_GetAttribute(param0, 2);
 
     if (!param2) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     if (v0 == 0) {
@@ -834,7 +834,7 @@ static void sub_02072DA4(ListMenu *param0, u64 param1, u8 param2)
 #endif
 {
     if (!param2) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 
@@ -1066,8 +1066,8 @@ static void sub_020731F4(UnkStruct_02072334 *param0)
     LoadMessageBoxGraphics(param0->unk_170, BG_LAYER_MAIN_3, 1024 - (18 + 12), 10, param0->unk_14, param0->heapID);
     LoadStandardWindowGraphics(param0->unk_170, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 0, param0->heapID);
 
-    Font_LoadTextPalette(0, 13 * 32, param0->heapID);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), param0->heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), param0->heapID);
 
     Window_Add(param0->unk_170, &param0->unk_184, 3, 2, 19, 27, 4, 12, (1024 - (18 + 12) - 9) - 27 * 4);
     Window_FillTilemap(&param0->unk_184, 0);

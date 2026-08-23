@@ -8,15 +8,17 @@
 #include "struct_defs/struct_0202D080.h"
 #include "struct_defs/struct_0202D63C.h"
 #include "struct_defs/wifi_battle_tower_data.h"
+#include "struct_defs/wifi_player_profile.h"
 
-#include "overlay096/struct_wifi_player_profile.h"
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "easy_chat_sentence.h"
 #include "heap.h"
 #include "inlines.h"
 #include "message.h"
 #include "savedata.h"
+
+#include "res/text/bank/battle_tower_records_app.h"
 
 int WifiPlayerProfile_Size(void)
 {
@@ -220,28 +222,27 @@ u8 WifiBattleTowerRecord_UpdateRank(WifiBattleTowerRecord *record, int op)
     return record->rank;
 }
 
-void WifiBattleTowerRecord_SetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemonDataDTO *monDataDTO)
+void WifiBattleTowerRecord_SetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemon *mons)
 {
     if (teamIdx == 0) {
-        MI_CpuCopy8(monDataDTO, record->team0, sizeof(FrontierPokemonDataDTO) * 3);
+        MI_CpuCopy8(mons, record->team0, sizeof(FrontierPokemon) * 3);
     } else {
-        MI_CpuCopy8(monDataDTO, record->team1, sizeof(FrontierPokemonDataDTO) * 3);
+        MI_CpuCopy8(mons, record->team1, sizeof(FrontierPokemon) * 3);
     }
 }
 
-void WifiBattleTowerRecord_GetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemonDataDTO *outBuf)
+void WifiBattleTowerRecord_GetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemon *outBuf)
 {
     if (teamIdx == 0) {
-        MI_CpuCopy8(record->team0, outBuf, sizeof(FrontierPokemonDataDTO) * 3);
+        MI_CpuCopy8(record->team0, outBuf, sizeof(FrontierPokemon) * 3);
     } else {
-        MI_CpuCopy8(record->team1, outBuf, sizeof(FrontierPokemonDataDTO) * 3);
+        MI_CpuCopy8(record->team1, outBuf, sizeof(FrontierPokemon) * 3);
     }
 }
 
 u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, WifiBattleTowerSave *save)
 {
     u16 progressScore, penaltyA, penaltyB, efficiencyBonus, performanceScore;
-    u16 ratingScore = 0;
 
     progressScore = (save->nextOpponentNum - 1) * 1000;
     penaltyA = save->unk_04 * 10;
@@ -259,7 +260,7 @@ u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, WifiBat
         efficiencyBonus = (1000 - save->unk_06) / 30;
     }
 
-    ratingScore = progressScore + performanceScore + efficiencyBonus;
+    u16 ratingScore = progressScore + performanceScore + efficiencyBonus;
     record->ratingScore = ratingScore;
 
     return ratingScore;
@@ -272,9 +273,7 @@ u16 WifiBattleTowerRecord_GetRatingScore(WifiBattleTowerRecord *record)
 
 u8 WifiBattleTowerRecord_GetRatingTier(WifiBattleTowerRecord *record)
 {
-    u8 ratingTier = 0;
-
-    ratingTier = (record->ratingScore) / 1000;
+    u8 ratingTier = (record->ratingScore) / 1000;
     return ratingTier;
 }
 
@@ -326,7 +325,6 @@ u16 WifiBattleTowerRecord_SetRoomNum(WifiBattleTowerRecord *record, u16 challeng
 
 BOOL WifiBattleTowerRecord_UpdateBitFlag(WifiBattleTowerRecord *record, u16 bitIdx, int op)
 {
-    u16 i;
     u16 mask = 1;
 
     if (bitIdx >= 16) {
@@ -334,7 +332,7 @@ BOOL WifiBattleTowerRecord_UpdateBitFlag(WifiBattleTowerRecord *record, u16 bitI
         return FALSE;
     }
 
-    for (i = 0; i < bitIdx; i++) {
+    for (u16 i = 0; i < bitIdx; i++) {
         mask <<= 1;
     }
 
@@ -479,28 +477,28 @@ void WifiBattleTowerDownloadData_GetIndices(WifiBattleTowerDownloadData *downloa
     outIndices->opponentIdx = downloadData->storedOpponentIdx;
 }
 
-void WifiBattleTowerDownloadData_BuildOpponentDTO(WifiBattleTowerDownloadData *downloadData, FrontierDataDTO *dto, const u8 opponentNum)
+void WifiBattleTowerDownloadData_BuildOpponent(WifiBattleTowerDownloadData *downloadData, FrontierOpponent *opponent, const u8 opponentNum)
 {
-    FrontierTrainerDataDTO *trDataDTO = &(dto->trDataDTO);
-    FrontierPokemonDataDTO *monDataDTO = dto->monDataDTO;
-    WifiTrainerRecord *record = &(downloadData->trainerRecords[opponentNum]);
+    FrontierTrainer *trainer = &opponent->trainer;
+    FrontierPokemon *mons = opponent->pokemon;
+    WifiTrainerRecord *record = &downloadData->trainerRecords[opponentNum];
 
-    trDataDTO->trainerID = 10000;
-    trDataDTO->trainerType = record->trainerType;
+    trainer->trainerID = 10000;
+    trainer->trainerType = record->trainerType;
 
     if (record->isAnonymous) {
-        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELD2);
+        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_TOWER_RECORDS_APP, HEAP_ID_FIELD2);
 
-        MessageLoader_Get(msgLoader, 22 + record->anonymousNameIdx, trDataDTO->trainerName);
+        MessageLoader_Get(msgLoader, BattleTowerRecordsApp_Text_Plato + record->anonymousNameIdx, trainer->trainerName);
         MessageLoader_Free(msgLoader);
     } else {
-        MI_CpuCopy8(record->trainerName, trDataDTO->trainerName, 16);
+        MI_CpuCopy8(record->trainerName, trainer->trainerName, 16);
     }
 
-    MI_CpuCopy8(record->introMsg, trDataDTO->introMsg, 8);
-    MI_CpuCopy8(record->winMsg, trDataDTO->winMsg, 8);
-    MI_CpuCopy8(record->loseMsg, trDataDTO->loseMsg, 8);
-    MI_CpuCopy8(record->monDataDTO, monDataDTO, sizeof(FrontierPokemonDataDTO) * 3);
+    MI_CpuCopy8(record->introMsg, trainer->introMsg, 8);
+    MI_CpuCopy8(record->winMsg, trainer->winMsg, 8);
+    MI_CpuCopy8(record->loseMsg, trainer->loseMsg, 8);
+    MI_CpuCopy8(record->mons, mons, sizeof(FrontierPokemon) * 3);
 }
 
 void WifiBattleTowerDownloadData_StoreMatchList(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerMatchCandidate *matchCandidates, u8 rank, u8 opponentIdx)

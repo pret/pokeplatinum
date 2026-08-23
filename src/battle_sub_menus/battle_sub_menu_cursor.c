@@ -84,7 +84,7 @@ static u8 IsCursorVisible(BattleSubMenuCursor *cursor)
         cursor->isVisible = TRUE;
 
         CursorRenderer_DrawOnSubscreen(cursor->sprites, cursor->positions[cursor->currentPositionIndex].xCoord1, cursor->positions[cursor->currentPositionIndex].xCoord2, cursor->positions[cursor->currentPositionIndex].yCoord1, cursor->positions[cursor->currentPositionIndex].yCoord2);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     return FALSE;
@@ -187,7 +187,7 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
             cursor->currentPositionIndex = nextPositionIndex;
 
             CursorRenderer_DrawOnSubscreen(cursor->sprites, x1, x2, y1, y2);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
 
         return BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX;
@@ -198,7 +198,7 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
     }
 
     if (JOY_NEW(PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         return BATTLE_SUB_MENU_CURSOR_BACK_INDEX;
     }
 

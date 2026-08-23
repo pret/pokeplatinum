@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, spacial_rend_spa
-    PlaySoundEffectL SEQ_SE_DP_W460
+    PlaySoundEffectL SEQ_SE_DP_CLIMAX03_sseq_1
     CreateEmitter 0, 5, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_ATTACKER
@@ -13,7 +13,7 @@ L_0:
     SwitchBg 41, BATTLE_BG_SWITCH_MODE_FADE
     Delay 10
     Func_ShakeBg 0, 3, 0, 10, 0
-    PlaySoundEffectR SEQ_SE_PL_W460B
+    PlaySoundEffectR SEQ_SE_PL_W460B_sseq
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 2, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

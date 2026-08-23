@@ -2,7 +2,6 @@
 #include <nitro/sinit.h>
 
 #include "constants/pokemon.h"
-#include "generated/sdat.h"
 
 #include "applications/poketch/matchup_checker/graphics.h"
 #include "applications/poketch/poketch_button.h"
@@ -17,6 +16,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
+
+#include "res/sound/pl_sound_data.naix"
 
 #define BUTTON_CHECK_MATCHUP    0
 #define BUTTON_CHANGE_LEFT_MON  1
@@ -234,7 +235,7 @@ static BOOL State_UpdateApp(PoketchMatchupChecker *appData)
                     PoketchMatchupCheckerGraphics_StartTask(appData->graphics, MATCHUP_CHECKER_GRAPHICS_PRESS_BUTTON);
                     appData->subState = 2;
                 } else {
-                    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+                    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
                 }
                 break;
             }

@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 BerryTree_Main:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetBerryItemID VAR_0x8000
@@ -144,7 +144,7 @@ BerryTree_ShowMultipleBerriesPickedMessage:
     BufferItemNamePlural 0, VAR_0x8000
     Message BerryTrees_Text_YouPickedTheBerries
 BerryTree_HarvestBerries:
-    PlayFanfare SEQ_KINOMI
+    PlayFanfare SEQ_KINOMI_sseq
     WaitFanfare
     HarvestBerry
     BufferPlayerName 0
@@ -305,7 +305,7 @@ BerryTree_ShowMulchExistsMessage:
     GoTo BerryTree_CloseAndEnd
 
 BerryTree_PlantBerry:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferItemName 0, VAR_0x8000

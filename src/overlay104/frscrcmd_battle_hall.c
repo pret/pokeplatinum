@@ -12,9 +12,9 @@
 #include "overlay104/battle_hall.h"
 #include "overlay104/battle_hall_helpers.h"
 #include "overlay104/defs.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frscrcmd.h"
-#include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
@@ -136,7 +136,7 @@ BOOL FrontierScrCmd_BattleHall_StartBattle(FrontierScriptContext *ctx)
     FieldBattleDTO *dto = BattleHall_SetupBattle(battleHall, fieldData);
     battleHall->dto = dto;
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_TRAINER_sseq, 1);
     sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
 
     return TRUE;
@@ -263,13 +263,13 @@ BOOL FrontierScrCmd_CallBattleHallFunction(FrontierScriptContext *ctx)
         BattleHall_CalcPlayerLevelSqrt(battleHall);
         break;
     case BH_FUNC_GET_NEXT_BATTLE_TYPE:
-        *returnVar = HALL_NEXT_BATTLE_NORMAL;
+        *returnVar = FRONTIER_NEXT_BATTLE_NORMAL;
 
         if (battleHall->challengeType == FRONTIER_CHALLENGE_SINGLE) {
             if (battleHall->currentStreak + 1 == HALL_STREAK_SILVER_BATTLE) {
-                *returnVar = HALL_NEXT_BATTLE_SILVER;
+                *returnVar = FRONTIER_NEXT_BATTLE_SILVER;
             } else if (battleHall->currentStreak + 1 == HALL_STREAK_GOLD_BATTLE) {
-                *returnVar = HALL_NEXT_BATTLE_GOLD;
+                *returnVar = FRONTIER_NEXT_BATTLE_GOLD;
             }
         }
         break;
@@ -318,8 +318,8 @@ static BOOL ov104_02234CEC(FrontierScriptContext *ctx)
 
     BattleHall *battleHall = BattleFrontier_GetFacilityStruct(ctx->scriptMan->frontier);
 
-    if (battleHall->unk_D90 >= 2) {
-        battleHall->unk_D90 = 0;
+    if (battleHall->msgsReceived >= 2) {
+        battleHall->msgsReceived = 0;
         return TRUE;
     }
 
@@ -337,7 +337,7 @@ BOOL FrontierScrCmd_BattleHall_PrintTrainerIntro(FrontierScriptContext *ctx)
         return 0;
     }
 
-    u16 *introMsg = battleHall->opponents[index].trDataDTO.introMsg;
+    u16 *introMsg = battleHall->opponents[index].trainer.introMsg;
 
     BattleFrontier_PrintNormalTrainerMessage(ctx, introMsg);
     return TRUE;

@@ -73,7 +73,7 @@ static void SysTask_StopRecording(SysTask *sysTask, void *srtDataPtr)
     case 2:
         if (BattleSystem_IsPlaybackActive(srtData->battleSys) == 1) {
             if (BattleSystem_MenuInput(btlSubscreen) == 1) {
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 srtData->step++;
             }
         }

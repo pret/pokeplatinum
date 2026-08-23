@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <nitro/sinit.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/poketch_button.h"
 #include "applications/poketch/poketch_system.h"
 #include "applications/poketch/roulette/graphics.h"
@@ -12,6 +10,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
+
+#include "res/sound/pl_sound_data.naix"
 
 #define ROULETTE_BUTTON_START 0
 #define ROULETTE_BUTTON_STOP  1
@@ -208,16 +208,16 @@ static BOOL State_UpdateApp(PoketchRoulette *appData)
                 appData->rouletteData.clearButtonPressed = TRUE;
                 PoketchRouletteGraphics_StartTask(appData->graphics, ROULETTE_GRAPHICS_UPDATE_BUTTONS);
                 PoketchRouletteGraphics_StartTask(appData->graphics, ROULETTE_GRAPHICS_RUN_SPINNER);
-                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
                 appData->subState = 1;
                 break;
             case ROULETTE_BUTTON_STOP:
-                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
                 break;
             case ROULETTE_BUTTON_CLEAR:
                 appData->rouletteData.clearButtonPressed = TRUE;
                 PoketchRouletteGraphics_StartTask(appData->graphics, ROULETTE_GRAPHICS_UPDATE_BUTTONS);
-                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
                 appData->subState = 3;
                 break;
             }
@@ -245,7 +245,7 @@ static BOOL State_UpdateApp(PoketchRoulette *appData)
             switch (appData->button) {
             case ROULETTE_BUTTON_CLEAR:
             case ROULETTE_BUTTON_START:
-                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
                 break;
             case ROULETTE_BUTTON_STOP:
                 appData->rouletteData.playButtonPressed = TRUE;
@@ -253,7 +253,7 @@ static BOOL State_UpdateApp(PoketchRoulette *appData)
                 appData->rouletteData.clearButtonPressed = TRUE;
                 PoketchRouletteGraphics_StartTask(appData->graphics, ROULETTE_GRAPHICS_UPDATE_BUTTONS);
                 PoketchRouletteGraphics_StartTask(appData->graphics, ROULETTE_GRAPHICS_STOP_SPINNER);
-                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
                 appData->subState = 2;
                 break;
             }

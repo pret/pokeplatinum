@@ -46,6 +46,7 @@
 #include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "render_window.h"
 #include "savedata.h"
 #include "screen_fade.h"
@@ -60,7 +61,6 @@
 #include "trainer_info.h"
 #include "underground.h"
 #include "unk_02033200.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 #include "wireless_manager.h"
@@ -229,7 +229,7 @@ typedef struct BaseTransitionContext {
     SysTask *sysTask;
     int state;
     int subState;
-    int mapID;
+    enum MapHeaderID mapHeaderID;
     int warpID;
     int x;
     int z;
@@ -1023,7 +1023,7 @@ static void SecretBases_StartExitBasePromptTask(FieldSystem *fieldSystem, int x,
     ctx->z = z;
     ctx->netID = netID;
     ctx->baseOwnerNetID = baseOwnerNetID;
-    ctx->mapID = MAP_HEADER_UNDERGROUND;
+    ctx->mapHeaderID = MAP_HEADER_UNDERGROUND;
     ctx->dir = dir;
     ctx->fieldSystem = fieldSystem;
     ctx->sysTask = SysTask_Start(SecretBases_ExitBasePromptTask, ctx, 100);
@@ -1046,9 +1046,9 @@ static BaseTransitionContext *BaseTransitionContext_New(FieldSystem *fieldSystem
         ctx->netID = netID;
         ctx->baseOwnerNetID = baseOwnerNetID;
 
-        GF_ASSERT(fieldSystem->location->mapId == MAP_HEADER_UNDERGROUND);
+        GF_ASSERT(fieldSystem->location->mapHeaderID == MAP_HEADER_UNDERGROUND);
 
-        ctx->mapID = MAP_HEADER_UNDERGROUND;
+        ctx->mapHeaderID = MAP_HEADER_UNDERGROUND;
         ctx->dir = dir;
     }
 
@@ -1252,7 +1252,7 @@ static void SecretBases_StartEnterBasePromptTask(FieldSystem *fieldSystem, int x
     ctx->z = z;
     ctx->netID = netID;
     ctx->baseOwnerNetID = baseOwnerNetID;
-    ctx->mapID = MAP_HEADER_UNDERGROUND;
+    ctx->mapHeaderID = MAP_HEADER_UNDERGROUND;
     ctx->dir = dir;
     ctx->fieldSystem = fieldSystem;
     ctx->timer = 0;
@@ -1638,7 +1638,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         FinishScreenFade();
         StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_TOP_HALF_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         UndergroundTopScreen_EndTask(fieldSystem->ugTopScreenCtx);
-        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2_sseq);
         ctx->state++;
         break;
     case MOVE_STATE_WAIT_FOR_FADE_OUT:
@@ -1655,7 +1655,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         break;
     case MOVE_STATE_UPDATE_LOCATION:
         Location nextLocation;
-        nextLocation.mapId = ctx->mapID;
+        nextLocation.mapHeaderID = ctx->mapHeaderID;
         nextLocation.warpId = ctx->warpID;
         nextLocation.x = ctx->x;
         nextLocation.z = ctx->z;
@@ -1720,10 +1720,10 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         break;
     case MOVE_STATE_BLOCK_ENTRANCE:
         CommPlayerMan_ForceDir();
-        PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(DIR_SOUTH, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH), 1);
+        PlayerAvatar_SetMapObjMovement(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(DIR_SOUTH, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH), 1);
         CommPlayer_SetDir(DIR_SOUTH);
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_BlockedEntranceToDecorate, FALSE, NULL);
-        Sound_PlayEffect(SEQ_SE_DP_DOOR);
+        Sound_PlayEffect(SEQ_SE_DP_DOOR_sseq);
         ctx->state = MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT;
         break;
     case MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT:
@@ -1804,7 +1804,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
 
         CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_SetUndergroundTrapName(UndergroundMan_GetCommonTextPrinter(), TRAP_DIGGER_DRILL);
-        Sound_PlayEffect(SEQ_SE_DP_DORIRU);
+        Sound_PlayEffect(SEQ_SE_DP_DORIRU_sseq);
 
         ov5_021F58FC(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar), 0, 0, 0);
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_ItemWasUsed, FALSE, NULL);
@@ -2400,7 +2400,7 @@ static void SecretBases_FlagRankUpTask(SysTask *sysTask, void *data)
     case FLAG_RANK_UP_STATE_PRINT_FLAG_REGISTERED:
         CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_ObtainedFlagWasRegistered, FALSE, NULL);
-        Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+        Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
         ctx->state = FLAG_RANK_UP_STATE_PRINT_RANK_UP;
         break;
     case FLAG_RANK_UP_STATE_PRINT_RANK_UP:

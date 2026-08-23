@@ -7,6 +7,7 @@
 #include "constants/overworld_weather.h"
 #include "constants/tv_broadcast.h"
 #include "generated/first_arrival_to_zones.h"
+#include "generated/map_headers.h"
 #include "generated/natures.h"
 #include "generated/pokemon_stats.h"
 
@@ -341,7 +342,10 @@ typedef struct TVProgramType {
     const TVSegment *segments;
 } TVProgramType;
 
-#define TV_PROGRAM_SEGMENT_NULL { NULL, NULL }
+#define TV_PROGRAM_SEGMENT_NULL \
+    {                           \
+        NULL, NULL              \
+    }
 
 static const TVSegment sTrainerSightingsSegments[TV_PROGRAM_TYPE_TRAINER_SIGHTINGS_NUM_SEGMENTS];
 static const TVSegment sRecordsSegments[TV_PROGRAM_TYPE_RECORDS_NUM_SEGMENTS];
@@ -872,7 +876,7 @@ void FieldSystem_SaveTVSegment_HiddenItemBreakingNews(FieldSystem *fieldSystem, 
     TVSegment_HiddenItemBreakingNews *hiddenItemBreakingNews = &segments.hiddenItemBreakingNews;
 
     hiddenItemBreakingNews->item = item;
-    hiddenItemBreakingNews->location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
+    hiddenItemBreakingNews->location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID);
 
     FieldSystem_SaveTVSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_HIDDEN_ITEM_BREAKING_NEWS, hiddenItemBreakingNews);
 }
@@ -923,7 +927,7 @@ void FieldSystem_SaveTVSegment_HappyHappyEggClub(FieldSystem *fieldSystem, Pokem
     TVSegment_HappyHappyEggClub *happyHappyEggClub = &segments.happyHappyEggClub;
 
     TVSegment_CopyPokemonValues(mon, &happyHappyEggClub->species, &happyHappyEggClub->gender, &happyHappyEggClub->language, &happyHappyEggClub->metGame);
-    happyHappyEggClub->location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
+    happyHappyEggClub->location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID);
     FieldSystem_SaveTVSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_HAPPY_HAPPY_EGG_CLUB, happyHappyEggClub);
 }
 
@@ -2166,64 +2170,64 @@ static BOOL FieldSystem_AlwaysTrue(FieldSystem *fieldSystem, TVEpisode *episode)
 static int TVSegment_LoadMessage_YourTownsBestThree(FieldSystem *fieldSystem, StringTemplate *template, TVEpisode *episode)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
-    int mapID = fieldSystem->location->mapId;
+    enum MapHeaderID mapHeaderID = fieldSystem->location->mapHeaderID;
 
-    if (mapID == MAP_HEADER_TWINLEAF_TOWN || (mapID >= MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F && mapID <= MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE)) {
+    if (mapHeaderID == MAP_HEADER_TWINLEAF_TOWN || (mapHeaderID >= MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F && mapHeaderID <= MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE)) {
         StringTemplate_SetPlayerName(template, 0, trainerInfo);
         StringTemplate_SetRivalName(template, 1, fieldSystem->saveData);
         return TVProgramSinnohNow_Text_YourTownsBestThree_TwinleafTown;
     }
 
-    if (mapID == MAP_HEADER_SANDGEM_TOWN || (mapID >= MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB && mapID <= MAP_HEADER_SANDGEM_TOWN_HOUSE)) {
+    if (mapHeaderID == MAP_HEADER_SANDGEM_TOWN || (mapHeaderID >= MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB && mapHeaderID <= MAP_HEADER_SANDGEM_TOWN_HOUSE)) {
         StringTemplate_SetCounterpartName(template, 1, fieldSystem->saveData);
         return TVProgramSinnohNow_Text_YourTownsBestThree_SandgemTown;
     }
 
-    if (mapID == MAP_HEADER_FLOAROMA_TOWN || (mapID >= MAP_HEADER_FLOWER_SHOP && mapID <= MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE) || mapID == MAP_HEADER_FLOAROMA_MEADOW_HOUSE) {
+    if (mapHeaderID == MAP_HEADER_FLOAROMA_TOWN || (mapHeaderID >= MAP_HEADER_FLOWER_SHOP && mapHeaderID <= MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE) || mapHeaderID == MAP_HEADER_FLOAROMA_MEADOW_HOUSE) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_FloaromaTown;
     }
 
-    if (mapID == MAP_HEADER_SOLACEON_TOWN || (mapID >= MAP_HEADER_POKEMON_DAY_CARE && mapID <= MAP_HEADER_SOLACEON_TOWN_EAST_HOUSE)) {
+    if (mapHeaderID == MAP_HEADER_SOLACEON_TOWN || (mapHeaderID >= MAP_HEADER_POKEMON_DAY_CARE && mapHeaderID <= MAP_HEADER_SOLACEON_TOWN_EAST_HOUSE)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_SolaceonTown;
     }
 
-    if (mapID == MAP_HEADER_CELESTIC_TOWN || (mapID >= MAP_HEADER_CELESTIC_TOWN_NORTH_HOUSE && mapID <= MAP_HEADER_CELESTIC_TOWN_CAVE)) {
+    if (mapHeaderID == MAP_HEADER_CELESTIC_TOWN || (mapHeaderID >= MAP_HEADER_CELESTIC_TOWN_NORTH_HOUSE && mapHeaderID <= MAP_HEADER_CELESTIC_TOWN_CAVE)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_CelesticTown;
     }
 
-    if (mapID == MAP_HEADER_JUBILIFE_CITY || (mapID >= MAP_HEADER_POKETCH_CO_1F && mapID <= MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_4)) {
+    if (mapHeaderID == MAP_HEADER_JUBILIFE_CITY || (mapHeaderID >= MAP_HEADER_POKETCH_CO_1F && mapHeaderID <= MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_4)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_JubilifeCity;
     }
 
-    if (mapID == MAP_HEADER_CANALAVE_CITY || (mapID >= MAP_HEADER_CANALAVE_LIBRARY_1F && mapID <= MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE) || mapID == MAP_HEADER_CANALAVE_CITY_WEST_HOUSE) {
+    if (mapHeaderID == MAP_HEADER_CANALAVE_CITY || (mapHeaderID >= MAP_HEADER_CANALAVE_LIBRARY_1F && mapHeaderID <= MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE) || mapHeaderID == MAP_HEADER_CANALAVE_CITY_WEST_HOUSE) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_CanalaveCity;
     }
 
-    if (mapID == MAP_HEADER_OREBURGH_CITY || (mapID >= MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F && mapID <= MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE)) {
+    if (mapHeaderID == MAP_HEADER_OREBURGH_CITY || (mapHeaderID >= MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F && mapHeaderID <= MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_OreburghCity;
     }
 
-    if (mapID == MAP_HEADER_ETERNA_CITY || (mapID >= MAP_HEADER_CYCLE_SHOP && mapID <= MAP_HEADER_UNUSED_ETERNA_CITY_HOUSE)) {
+    if (mapHeaderID == MAP_HEADER_ETERNA_CITY || (mapHeaderID >= MAP_HEADER_CYCLE_SHOP && mapHeaderID <= MAP_HEADER_UNUSED_ETERNA_CITY_HOUSE)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_EternaCity;
     }
 
-    if (mapID == MAP_HEADER_HEARTHOME_CITY || (mapID >= MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F && mapID <= MAP_HEADER_FOREIGN_BUILDING)) {
+    if (mapHeaderID == MAP_HEADER_HEARTHOME_CITY || (mapHeaderID >= MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F && mapHeaderID <= MAP_HEADER_FOREIGN_BUILDING)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_HearthomeCity;
     }
 
-    if (mapID == MAP_HEADER_PASTORIA_CITY || (mapID >= MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F && mapID <= MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE)) {
+    if (mapHeaderID == MAP_HEADER_PASTORIA_CITY || (mapHeaderID >= MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F && mapHeaderID <= MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_PastoriaCity;
     }
 
-    if (mapID == MAP_HEADER_VEILSTONE_CITY || (mapID >= MAP_HEADER_GAME_CORNER && mapID <= MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY) || (mapID >= MAP_HEADER_GALACTIC_HQ_1F && mapID <= MAP_HEADER_GALACTIC_HQ_B2F)) {
+    if (mapHeaderID == MAP_HEADER_VEILSTONE_CITY || (mapHeaderID >= MAP_HEADER_GAME_CORNER && mapHeaderID <= MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY) || (mapHeaderID >= MAP_HEADER_GALACTIC_HQ_1F && mapHeaderID <= MAP_HEADER_GALACTIC_HQ_B2F)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_VeilstoneCity;
     }
 
-    if (mapID == MAP_HEADER_SUNYSHORE_CITY || (mapID >= MAP_HEADER_SUNYSHORE_MARKET && mapID <= MAP_HEADER_VISTA_LIGHTHOUSE) || mapID == MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR) {
+    if (mapHeaderID == MAP_HEADER_SUNYSHORE_CITY || (mapHeaderID >= MAP_HEADER_SUNYSHORE_MARKET && mapHeaderID <= MAP_HEADER_VISTA_LIGHTHOUSE) || mapHeaderID == MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_SunyshoreCity;
     }
 
-    if (mapID == MAP_HEADER_SNOWPOINT_CITY || (mapID >= MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE && mapID <= MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE)) {
+    if (mapHeaderID == MAP_HEADER_SNOWPOINT_CITY || (mapHeaderID >= MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE && mapHeaderID <= MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE)) {
         return TVProgramSinnohNow_Text_YourTownsBestThree_SnowpointCity;
     }
 

@@ -356,7 +356,7 @@ static int RankingsMachine_HandleRecordsListInput(RankingsMachineManager *machin
     #endif
 
     if (JOY_NEW(PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         RankingsMachine_RemoveRecordsList(machineMan);
         return STATE_FREE;
     }
@@ -365,7 +365,7 @@ static int RankingsMachine_HandleRecordsListInput(RankingsMachineManager *machin
         return STATE_HANDLE_RECORDS_LIST_INPUT;
     }
 
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
     switch (input) {
     case MENU_NOTHING_CHOSEN:
@@ -392,13 +392,13 @@ static int RankingsMachine_StateShowRankingList(RankingsMachineManager *machineM
 static int RankingsMachine_HandleRankingListInput(RankingsMachineManager *machineMan)
 {
     if (JOY_NEW(PAD_BUTTON_B | PAD_BUTTON_A)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         RankingsMachine_RemoveRankingList(machineMan);
         return STATE_PRINT_RECORD_TITLES;
     }
 
     if (JOY_NEW(PAD_BUTTON_SELECT)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         RankingsMachine_PrepareForDeletingRecord(machineMan);
         return STATE_HANDLE_DELETE_RANKINGS_INPUT;
     }
@@ -409,13 +409,13 @@ static int RankingsMachine_HandleRankingListInput(RankingsMachineManager *machin
 static int RankingsMachine_HandleDeleteRankingInput(RankingsMachineManager *machineMan)
 {
     if (JOY_NEW(PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         RankingsMachine_PrintRecordExplanation(machineMan);
         return STATE_HANDLE_RANKINGS_LIST_INPUT;
     }
 
     if (JOY_NEW(PAD_BUTTON_A)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         machineMan->deleteState = 0;
         machineMan->rankingToDelete = &(machineMan->machineRankings[machineMan->selectedRecordID].rankingsInfo[machineMan->rankingIDs[machineMan->cursorPos]]);
 
@@ -428,7 +428,7 @@ static int RankingsMachine_HandleDeleteRankingInput(RankingsMachineManager *mach
 
     if (JOY_NEW(PAD_KEY_UP)) {
         if (machineMan->cursorPos > 0) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             --machineMan->cursorPos;
             ManagedSprite_SetPositionXY(machineMan->managedSprites[MANAGED_SPRITE_CURSOR], 126, 16 + 16 * machineMan->cursorPos);
         }
@@ -436,7 +436,7 @@ static int RankingsMachine_HandleDeleteRankingInput(RankingsMachineManager *mach
 
     if (JOY_NEW(PAD_KEY_DOWN)) {
         if (machineMan->cursorPos < machineMan->lastRankingID - 1) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             ++machineMan->cursorPos;
             ManagedSprite_SetPositionXY(machineMan->managedSprites[MANAGED_SPRITE_CURSOR], 126, 16 + 16 * machineMan->cursorPos);
         }
@@ -453,7 +453,7 @@ static void RankingsMachine_MakeYesNoMenu(RankingsMachineManager *machineMan)
         .tilemapTop = 13,
         .width = 6,
         .height = 4,
-        .palette = PLTT_13,
+        .palette = 13,
         .baseTile = 0x355,
     };
 
@@ -507,7 +507,7 @@ static int RankingsMachine_CantDeleteOwnRanking(RankingsMachineManager *machineM
 {
     switch (machineMan->deleteState) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
         Window_FillTilemap(&machineMan->msgBoxWindow, PIXEL_FILL(15));
         machineMan->printerID = Text_AddPrinterWithParamsAndColor(&machineMan->msgBoxWindow, FONT_MESSAGE, machineMan->text.deleteInstructions[2], 0, 0, machineMan->textDelay, TEXT_COLOR(1, 2, 15), NULL);
         ManagedSprite_SetExplicitPalette(machineMan->managedSprites[MANAGED_SPRITE_CURSOR], 2);
@@ -525,7 +525,7 @@ static int RankingsMachine_CantDeleteOwnRanking(RankingsMachineManager *machineM
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         RankingsMachine_PrintDeleteInstruction(machineMan);
         ManagedSprite_SetExplicitPalette(machineMan->managedSprites[MANAGED_SPRITE_CURSOR], 1);
         machineMan->deleteState = 0;
@@ -665,8 +665,8 @@ static void RankingsMachine_InitBg(RankingsMachineManager *machineMan)
     LoadMessageBoxGraphics(machineMan->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_SCROLLING_MESSAGE_BOX, 10, machineMan->frame, machineMan->heapID);
     LoadStandardWindowGraphics(machineMan->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, 11, 0, machineMan->heapID);
     LoadStandardWindowGraphics(machineMan->bgConfig, BG_LAYER_MAIN_1, BASE_TILE_STANDARD_WINDOW_FRAME, 11, 0, machineMan->heapID);
-    Font_LoadTextPalette(0, 13 * PALETTE_SIZE_BYTES, machineMan->heapID);
-    Font_LoadScreenIndicatorsPalette(0, 12 * PALETTE_SIZE_BYTES, machineMan->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), machineMan->heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), machineMan->heapID);
     Window_Add(machineMan->bgConfig, &machineMan->msgBoxWindow, BG_LAYER_MAIN_3, 2, 19, 27, 4, 12, BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT);
     Window_FillTilemap(&machineMan->msgBoxWindow, PIXEL_FILL(15));
 }
@@ -818,7 +818,7 @@ static void RankingsMachine_SetCursorPos(ListMenu *listMenu, u64 unused, u8 mute
     RankingsMachineManager *machineMan = (RankingsMachineManager *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
 
     if (mute == 0) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     ListMenu_GetListAndCursorPos(listMenu, &listPos, &cursorPos);

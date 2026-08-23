@@ -113,7 +113,7 @@ BOOL ov100_021D14A8(void *param0)
             break;
         }
 
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_18, SEQ_D_RYAYHY, 0);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_18, SEQ_D_RYAYHY_sseq, 0);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
         v0->unk_00 = 2;
         break;
@@ -126,7 +126,7 @@ BOOL ov100_021D14A8(void *param0)
         break;
     case 3:
         if (v0->unk_04 == v3[v0->unk_08]) {
-            Sound_PlayEffect(SEQ_SE_PL_W392);
+            Sound_PlayEffect(SEQ_SE_PL_W392_sseq);
         }
 
         if (v0->unk_04 == v2[v0->unk_08]) {
@@ -247,7 +247,7 @@ static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 70, v1, 5, 0, 0, 0, HEAP_ID_111);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 72, v1, 5, 0, 0, 0, HEAP_ID_111);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 73, v1, 4, 0, 0, 0, HEAP_ID_111);
-    PaletteData_LoadBufferFromFileStart(v4, 172, 71, 111, 1, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_ARC__DEMO_TENGAN_GRA, 71, HEAP_ID_111, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 2, 0);
 
     {
         const u16 v6[] = { 0x421 };

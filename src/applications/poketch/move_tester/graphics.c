@@ -7,7 +7,6 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 #include "generated/pokemon_types.h"
-#include "generated/sdat.h"
 
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
@@ -25,6 +24,7 @@
 #include "text.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 #include "res/text/bank/poketch_move_tester.h"
 
 static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[] = {
@@ -247,16 +247,16 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
 
 static void AddWindows(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData, u32 baseTile)
 {
-    Window_Add(graphics->bgConfig, &(graphics->windowAttackType), BG_LAYER_SUB_2, 6, 15, 6, 2, PLTT_0, baseTile);
+    Window_Add(graphics->bgConfig, &(graphics->windowAttackType), BG_LAYER_SUB_2, 6, 15, 6, 2, 0, baseTile);
     baseTile += 12;
 
-    Window_Add(graphics->bgConfig, &(graphics->windowDefenderType1), BG_LAYER_SUB_2, 16, 4, 6, 2, PLTT_0, baseTile);
+    Window_Add(graphics->bgConfig, &(graphics->windowDefenderType1), BG_LAYER_SUB_2, 16, 4, 6, 2, 0, baseTile);
     baseTile += 12;
 
-    Window_Add(graphics->bgConfig, &(graphics->windowDefenderType2), BG_LAYER_SUB_2, 16, 8, 6, 2, PLTT_0, baseTile);
+    Window_Add(graphics->bgConfig, &(graphics->windowDefenderType2), BG_LAYER_SUB_2, 16, 8, 6, 2, 0, baseTile);
     baseTile += 12;
 
-    Window_Add(graphics->bgConfig, &(graphics->windowExclamations), BG_LAYER_SUB_2, 3, 19, 22, 2, PLTT_0, baseTile);
+    Window_Add(graphics->bgConfig, &(graphics->windowExclamations), BG_LAYER_SUB_2, 3, 19, 22, 2, 0, baseTile);
 
     Window_PutToTilemap(&graphics->windowAttackType);
     Window_PutToTilemap(&graphics->windowDefenderType1);
@@ -290,7 +290,7 @@ static void Task_ButtonPressed(SysTask *task, void *taskMan)
     u32 animIdx = (moveTesterData->lastButtonPressed & 1) ? 3 : 1;
 
     PoketchAnimation_UpdateAnimationIdx(graphics->animSpriteData[moveTesterData->lastButtonPressed], animIdx);
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
     EndTask(taskMan);
 }
 

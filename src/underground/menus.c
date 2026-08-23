@@ -469,7 +469,7 @@ BOOL UndergroundInventory_TryAddGoodBag(enum Good goodID)
 
 void UndergroundMenu_Start(ExitCallback exitCallback, FieldSystem *fieldSystem)
 {
-    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
     UndergroundMan_SetStoredPosKey(UNDERGROUND_STORED_POS_KEY_START_MENU);
 
     UndergroundMenu *menu = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UndergroundMenu));
@@ -640,7 +640,7 @@ static BOOL UndergroundMenu_HandleStartMenu(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
     u16 prevPos = Menu_GetCursorPos(menu->menu);
-    menu->startMenuInput = Menu_ProcessInputWithSound(menu->menu, SEQ_SE_DP_SELECT78);
+    menu->startMenuInput = Menu_ProcessInputWithSound(menu->menu, SEQ_SE_DP_SELECT78_sseq);
     menu->menuCursorPos = Menu_GetCursorPos(menu->menu);
 
     if (prevPos != menu->menuCursorPos) {
@@ -956,14 +956,14 @@ static BOOL UndergroundMenu_HandleTrapSelectedMenu(SysTask *sysTask, void *data)
     ListMenu_CalcTrueCursorPos(menu->itemSelectedMenu, &menu->itemSelectedMenuPos);
 
     if (prevPos != menu->itemSelectedMenuPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     switch (input) {
     case MENU_NOTHING_CHOSEN:
         return FALSE;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         UndergroundMenu_CloseItemSelectedMenu(menu);
         UndergroundMenu_OpenTrapsMenu(menu);
         menu->state = UNDERGROUND_MENU_STATE_TRAPS;
@@ -973,10 +973,10 @@ static BOOL UndergroundMenu_HandleTrapSelectedMenu(SysTask *sysTask, void *data)
 
         if (input == UNDERGROUND_MENU_OPTION_BURY) {
             Underground_SendPlacedTrap(UndergroundMenu_GetTrapAtSlot(ctx->selectedSlot, menu));
-            Sound_PlayEffect(SEQ_SE_DP_SUTYA);
+            Sound_PlayEffect(SEQ_SE_PL_SUTYA2_sseq_2);
             menu->state = UNDERGROUND_MENU_STATE_CLOSE_LEAVE_PAUSED;
         } else if (input == UNDERGROUND_MENU_OPTION_TRASH) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             UndergroundMenu_RemoveSelectedTrap(ctx->selectedID);
             UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundMan_GetCommonTextPrinter(), 2, ctx->selectedID);
@@ -1139,14 +1139,14 @@ static BOOL UndergroundMenu_HandleSphereSelectedMenu(SysTask *sysTask, void *dat
     ListMenu_CalcTrueCursorPos(menu->itemSelectedMenu, &menu->itemSelectedMenuPos);
 
     if (prevPos != menu->itemSelectedMenuPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     switch (input) {
     case MENU_NOTHING_CHOSEN:
         return FALSE;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         UndergroundMenu_CloseItemSelectedMenu(menu);
         UndergroundMenu_OpenSpheresMenu(menu);
         menu->state = UNDERGROUND_MENU_STATE_SPHERES;
@@ -1162,7 +1162,7 @@ static BOOL UndergroundMenu_HandleSphereSelectedMenu(SysTask *sysTask, void *dat
             UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
             Spheres_TryBurySphere(ctx->selectedID, UndergroundMenu_GetSphereSizeAtSlot(ctx->selectedSlot, menu), x, z);
         } else if (input == UNDERGROUND_MENU_OPTION_TRASH) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             UndergroundMenu_RemoveSelectedSphere(ctx->selectedID);
             UndergroundTextPrinter_SetUndergroundItemName(UndergroundMan_GetCommonTextPrinter(), 2, ctx->selectedID);
             UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_ThrewAwayTheItem, FALSE, NULL);
@@ -1315,14 +1315,14 @@ static BOOL UndergroundMenu_HandleTreasureSelectedMenu(SysTask *sysTask, void *d
     ListMenu_CalcTrueCursorPos(menu->itemSelectedMenu, &menu->itemSelectedMenuPos);
 
     if (prevPos != menu->itemSelectedMenuPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     switch (input) {
     case MENU_NOTHING_CHOSEN:
         return FALSE;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         UndergroundMenu_CloseItemSelectedMenu(menu);
         UndergroundMenu_OpenTreasuresMenu(menu);
         menu->state = UNDERGROUND_MENU_STATE_TREASURES;
@@ -1334,7 +1334,7 @@ static BOOL UndergroundMenu_HandleTreasureSelectedMenu(SysTask *sysTask, void *d
             int item = Underground_ConvertTreasureToBagItem(ctx->selectedID);
             Bag *bag = SaveData_GetBag(menu->fieldSystem->saveData);
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             if (Bag_TryAddItem(bag, item, 1, HEAP_ID_FIELD1)) {
                 Underground_RemoveTreasureAtSlot(ctx->underground, ctx->selectedSlot);
@@ -1350,7 +1350,7 @@ static BOOL UndergroundMenu_HandleTreasureSelectedMenu(SysTask *sysTask, void *d
                 UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_BagIsFullCouldntPutAway, FALSE, NULL);
             }
         } else if (input == UNDERGROUND_MENU_OPTION_TRASH) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             Underground_RemoveTreasureAtSlot(ctx->underground, ctx->selectedSlot);
 
             UndergroundTextPrinter_SetUndergroundItemName(UndergroundMan_GetCommonTextPrinter(), 2, ctx->selectedID);
@@ -1686,7 +1686,7 @@ static BOOL UndergroundMenu_HandleGoodsMenu(SysTask *sysTask, void *data)
         UndergroundMenu_UpdateScrollPrompts(menu, listPos, ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_COUNT), UNDERGROUND_MENU_MAX_DISPLAY);
         return FALSE;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         UndergroundMenu_ReturnToStartMenu(menu);
         break;
     default:
@@ -1723,14 +1723,14 @@ static BOOL UndergroundMenu_HandleGoodSelectedMenu(SysTask *sysTask, void *data)
     ListMenu_CalcTrueCursorPos(menu->itemSelectedMenu, &menu->itemSelectedMenuPos);
 
     if (prevPos != menu->itemSelectedMenuPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     switch (input) {
     case MENU_NOTHING_CHOSEN:
         return FALSE;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         UndergroundMenu_CloseItemSelectedMenu(menu);
         UndergroundMenu_OpenGoodsMenu(menu);
         menu->state = UNDERGROUND_MENU_STATE_GOODS;
@@ -1739,7 +1739,7 @@ static BOOL UndergroundMenu_HandleGoodSelectedMenu(SysTask *sysTask, void *data)
         UndergroundMenu_CloseItemSelectedMenu(menu);
 
         if (input == UNDERGROUND_MENU_OPTION_TRASH) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             Underground_RemoveGoodAtSlotBag(ctx->underground, ctx->selectedSlot);
             UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundMan_GetCommonTextPrinter(), 2, ctx->selectedID);
             UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_ThrewAwayTheItem, FALSE, NULL);

@@ -29,6 +29,7 @@
 #include "applications/diploma.h"
 #include "applications/easy_chat/main.h"
 #include "applications/frontier/records/main.h"
+#include "applications/frontier/tower_records.h"
 #include "applications/journal_display/journal_controller.h"
 #include "applications/mail.h"
 #include "applications/move_reminder.h"
@@ -48,9 +49,11 @@
 #include "battle/battle_main.h"
 #include "choose_starter/choose_starter_app.h"
 #include "cutscenes/boat_cutscene.h"
+#include "cutscenes/end_credits/main.h"
 #include "cutscenes/hall_of_fame.h"
 #include "dw_warp/dw_warp.h"
 #include "field/field_system.h"
+#include "gts_application/application.h"
 #include "library_tv/library_tv.h"
 #include "overlay005/daycare.h"
 #include "overlay006/struct_npc_trade_animation_template.h"
@@ -62,16 +65,12 @@
 #include "overlay064/ov64_0222DCE0.h"
 #include "overlay088/ov88_0223B140.h"
 #include "overlay088/struct_ov88_0223C370.h"
-#include "overlay090/ov90_021D0D80.h"
-#include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay092/ov92_021D0D80.h"
-#include "overlay094/application.h"
 #include "overlay095/ov95_02246C20.h"
-#include "overlay096/ov96_0223B6A0.h"
-#include "overlay099/ov99_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
+#include "wifi_battle_tower/application.h"
 
 #include "bag.h"
 #include "bag_context.h"
@@ -158,13 +157,13 @@ FS_EXTERN_OVERLAY(berry_tag);
 FS_EXTERN_OVERLAY(hall_of_fame);
 FS_EXTERN_OVERLAY(pc_hall_of_fame);
 FS_EXTERN_OVERLAY(overlay88);
-FS_EXTERN_OVERLAY(overlay90);
+FS_EXTERN_OVERLAY(battle_tower_records_app);
 FS_EXTERN_OVERLAY(overlay92);
 FS_EXTERN_OVERLAY(cutscenes);
 FS_EXTERN_OVERLAY(overlay94);
 FS_EXTERN_OVERLAY(overlay95);
-FS_EXTERN_OVERLAY(overlay96);
-FS_EXTERN_OVERLAY(overlay99);
+FS_EXTERN_OVERLAY(wifi_battle_tower);
+FS_EXTERN_OVERLAY(end_credits);
 FS_EXTERN_OVERLAY(overlay101);
 FS_EXTERN_OVERLAY(frontier_records_app);
 FS_EXTERN_OVERLAY(overlay111);
@@ -264,14 +263,14 @@ void sub_0203D1E4(FieldSystem *fieldSystem, BagContext *param1)
 {
     FS_EXTERN_OVERLAY(bag);
 
-    const ApplicationManagerTemplate Unk_ov84_02241130 = {
+    const ApplicationManagerTemplate gBagApplicationTemplate = {
         BagApplication_Init,
         BagApplication_Main,
         BagApplication_Exit,
         FS_OVERLAY_ID(bag)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_ov84_02241130, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gBagApplicationTemplate, param1);
 }
 
 BagContext *FieldSystem_OpenBag(FieldSystem *fieldSystem, ItemUseContext *itemUseCtx)
@@ -804,18 +803,18 @@ PoffinCaseAppData *FieldSystem_LaunchPoffinCaseApp(FieldSystem *fieldSystem, enu
     return appData;
 }
 
-void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1)
+void FieldSystem_OpenBattleTowerRecordsApp(FieldSystem *fieldSystem, BattleTowerRecordsAppArgs *args)
 {
-    FS_EXTERN_OVERLAY(overlay90);
+    FS_EXTERN_OVERLAY(battle_tower_records_app);
 
-    const ApplicationManagerTemplate appTemplate = {
-        ov90_021D0D80,
-        ov90_021D0E04,
-        ov90_021D0DE8,
-        FS_OVERLAY_ID(overlay90)
+    const ApplicationManagerTemplate template = {
+        BattleTowerRecordsApp_Init,
+        BattleTowerRecordsApp_Main,
+        BattleTowerRecordsApp_Free,
+        FS_OVERLAY_ID(battle_tower_records_app)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, args);
 }
 
 static UnkStruct_0203DA00 *sub_0203DA00(enum HeapID heapID, SaveData *saveData, int slot, BOOL *param3, BOOL param4)
@@ -1339,25 +1338,25 @@ void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi)
 
 void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
 {
-    FS_EXTERN_OVERLAY(overlay96);
+    FS_EXTERN_OVERLAY(wifi_battle_tower);
 
     const ApplicationManagerTemplate appTemplate = {
-        ov96_0223B6A0,
-        ov96_0223B7F8,
-        ov96_0223B8CC,
-        FS_OVERLAY_ID(overlay96)
+        WifiBattleTower_AppInit,
+        WifiBattleTower_AppMain,
+        WifiBattleTower_AppExit,
+        FS_OVERLAY_ID(wifi_battle_tower)
     };
 
     UnkStruct_0206BC70 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206BC70));
 
-    v0->unk_00 = SaveData_GetWifiBattleTowerRecord(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetWifiBattleTowerDownloadData(fieldSystem->saveData);
+    v0->record = SaveData_GetWifiBattleTowerRecord(fieldSystem->saveData);
+    v0->downloadData = SaveData_GetWifiBattleTowerDownloadData(fieldSystem->saveData);
     v0->systemData = SaveData_GetSystemData(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->userData = WiFiList_GetUserData(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->saveData = fieldSystem->saveData;
     v0->profileId = WiFiList_GetUserGsProfileId(SaveData_GetWiFiList(fieldSystem->saveData));
-    v0->unk_18 = param1;
+    v0->mode = param1;
     v0->unk_24 = param2;
     v0->unk_20 = 1;
 
@@ -1416,18 +1415,18 @@ void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem)
     return hallOfFame;
 }
 
-void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1)
+void FieldSystem_StartEndCredits(FieldSystem *fieldSystem, ClearGamePlayerInfo *clearGamePlayerInfo)
 {
-    FS_EXTERN_OVERLAY(overlay99);
+    FS_EXTERN_OVERLAY(end_credits);
 
-    static const ApplicationManagerTemplate v0 = {
-        ov99_021D0D80,
-        ov99_021D1028,
-        ov99_021D11A8,
-        FS_OVERLAY_ID(overlay99)
+    static const ApplicationManagerTemplate template = {
+        EndCreditsApp_Init,
+        EndCreditsApp_Main,
+        EndCreditsApp_Exit,
+        FS_OVERLAY_ID(end_credits)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, clearGamePlayerInfo);
 }
 
 void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData)
@@ -1484,7 +1483,7 @@ void FieldSystem_HatchEgg(FieldSystem *fieldSystem)
     args.mon = eggMon;
     args.options = SaveData_GetOptions(fieldSystem->saveData);
     args.trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    args.bgmID = FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId);
+    args.bgmID = FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID);
 
     EggHatch_HatchEgg(fieldSystem->task, &args);
 }

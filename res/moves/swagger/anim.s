@@ -7,14 +7,14 @@ L_0:
     LoadCellResObj 0, angry_cell_NCER_lz
     LoadAnimResObj 0, angry_anim_NANR_lz
     Func_Swagger
-    PlaySoundEffectL SEQ_SE_DP_W207D
+    PlaySoundEffectL SEQ_SE_DP_W207D_sseq
     Delay 30
     WaitForAnimTasks
-    AddSpriteWithFunc 0, 10, angry_NCGR_lz, angry_NCLR, angry_cell_NCER_lz, angry_anim_NANR_lz, 0, 0
+    AddSpriteWithFunc 0, SPRITE_FUNC_SWAGGER, angry_NCGR_lz, angry_NCLR, angry_cell_NCER_lz, angry_anim_NANR_lz, 0, 0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
-    PlaySoundEffectR SEQ_SE_DP_W207B
+    PlaySoundEffectR SEQ_SE_DP_W207B_sseq
     Delay 8
-    PlaySoundEffectR SEQ_SE_DP_W207B
+    PlaySoundEffectR SEQ_SE_DP_W207B_sseq
     WaitForAnimTasks
     FreeSpriteManager 0
     End

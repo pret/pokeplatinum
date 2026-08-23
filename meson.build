@@ -1,6 +1,6 @@
 project('pokeplatinum', ['c', 'cpp', 'nasm'],
     version: '1.0',
-    meson_version: '>=1.10.0',
+    meson_version: '>=1.12.0',
     default_options : [
         'buildtype=plain',
         'warning_level=0'
@@ -522,14 +522,6 @@ endif
 ichneumon_sub = []
 ichneumon_sub_defs = []
 
-if(build_target == 'arm')
-    ichneumon_sub = subproject('libntr'
-        ).get_variable('ichneumon_sub')
-
-    ichneumon_sub_defs = subproject('libntr'
-        ).get_variable('ichneumon_sub_defs')
-endif
-
 
 ############################################################
 ###                        DS ROM                        ###
@@ -542,7 +534,6 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         rom_header_template,
         icon_png,
         ichneumon_sub,
-        ichneumon_sub_defs,
         nitrofs_files,
     ],
     command : [
@@ -550,8 +541,7 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         'pack',
         '-DHEADER_TEMPLATE=@INPUT1@', # rom_header_template
         '-DICON_PNG=@INPUT2@',        # icon_png
-        '-DARM7_STATIC=@INPUT3@',     # ichneumon_sub
-        '-DARM7_DEFINE=@INPUT4@',     # ichneumon_sub_defs
+        '-DARM7_NEF=@INPUT3@',        # ichneumon_sub
         '--output=@OUTPUT0@',         # pokeplatinum.us.nds
         rom_ini,
         filesys_csv,

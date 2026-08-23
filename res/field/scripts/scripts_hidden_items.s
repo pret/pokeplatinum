@@ -4,7 +4,7 @@
 
 
 HiddenItems_Item:
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     SetVar VAR_0x8004, VAR_0x8000
     SetVar VAR_0x8005, VAR_0x8001
     SetVar VAR_0x8006, VAR_0x8002

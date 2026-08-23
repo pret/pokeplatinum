@@ -289,9 +289,9 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, enum HeapID heapID)
         sub_02005464(1);
 
         if (sub_0208BE80(param0->unk_10->trainer[1].header.trainerType) == 1) {
-            Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_FRONTIER_BRAIN, 1);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_FRONTIER_BRAIN_sseq, 1);
         } else {
-            Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_TRAINER_sseq, 1);
         }
     }
         param0->appMan = ApplicationManager_New(&gBattleApplicationTemplate, param0->unk_10, heapID);
@@ -320,9 +320,9 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, enum HeapID heapID)
             sub_02005464(0);
             Sound_SetScene(SOUND_SCENE_NONE);
 
-            bgmID = FieldBGM_GetEffective(param0->fieldSystem, param0->fieldSystem->location->mapId);
+            bgmID = FieldBGM_GetEffective(param0->fieldSystem, param0->fieldSystem->location->mapHeaderID);
 
-            Sound_SetFieldBGM(FieldBGM_GetForMapHeader(param0->fieldSystem, param0->fieldSystem->location->mapId));
+            Sound_SetFieldBGM(FieldBGM_GetForMapHeader(param0->fieldSystem, param0->fieldSystem->location->mapHeaderID));
             Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
         }
 

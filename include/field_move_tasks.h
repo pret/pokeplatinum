@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_FIELD_MOVE_TASKS_H
 #define POKEPLATINUM_FIELD_MOVE_TASKS_H
 
+#include "generated/map_headers.h"
+
 #include "struct_decls/map_object.h"
 
 #include "field/field_system_decl.h"
@@ -9,7 +11,7 @@
 #include "pokemon.h"
 
 typedef struct FieldMoveContext {
-    u32 mapId;
+    enum MapHeaderID mapHeaderID;
     FieldSystem *fieldSystem;
     MapObject *mapObj;
     u16 usableMoves;

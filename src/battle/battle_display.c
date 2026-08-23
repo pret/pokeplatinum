@@ -1703,13 +1703,13 @@ void BattleDisplay_FlyMoveHitSoundEffect(BattleSystem *battleSys, BattlerData *b
 
     switch (message->effectiveness) {
     case 0:
-        Sound_PlayPannedEffect(SEQ_SE_DP_KOUKA_M, pan);
+        Sound_PlayPannedEffect(SEQ_SE_DP_KOUKA_M_sseq, pan);
         break;
     case 2:
-        Sound_PlayPannedEffect(SEQ_SE_DP_KOUKA_H, pan);
+        Sound_PlayPannedEffect(SEQ_SE_DP_KOUKA_H_sseq, pan);
         break;
     case 1:
-        Sound_PlayPannedEffect(SEQ_SE_DP_KOUKA_L, pan);
+        Sound_PlayPannedEffect(SEQ_SE_DP_KOUKA_L_sseq, pan);
         break;
     }
 
@@ -2063,9 +2063,9 @@ static void Task_ShowEncounter(SysTask *task, void *data)
             ov12_022363B4(monShowData->ballCapsuleSealEffect);
 
             if (monShowData->face == FACE_FRONT) {
-                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, BATTLE_SOUND_PAN_RIGHT);
+                Sound_PlayPannedEffect(SEQ_SE_DP_SLOT01_sseq_1, BATTLE_SOUND_PAN_RIGHT);
             } else {
-                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, BATTLE_SOUND_PAN_LEFT);
+                Sound_PlayPannedEffect(SEQ_SE_DP_SLOT01_sseq_1, BATTLE_SOUND_PAN_LEFT);
             }
 
             if (monShowData->btlMonObjData) {
@@ -2315,9 +2315,9 @@ static void Task_ShowPokemon(SysTask *task, void *data)
             ov12_022363B4(monShowData->ballCapsuleSealEffect);
 
             if (monShowData->face == FACE_FRONT) {
-                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, BATTLE_SOUND_PAN_RIGHT);
+                Sound_PlayPannedEffect(SEQ_SE_DP_SLOT01_sseq_1, BATTLE_SOUND_PAN_RIGHT);
             } else {
-                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, BATTLE_SOUND_PAN_LEFT);
+                Sound_PlayPannedEffect(SEQ_SE_DP_SLOT01_sseq_1, BATTLE_SOUND_PAN_LEFT);
             }
 
             monShowData->state++;
@@ -2580,12 +2580,12 @@ static void Task_ReturnPokemon(SysTask *task, void *data)
         case 0:
         case 2:
         case 4:
-            Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, BATTLE_SOUND_PAN_LEFT);
+            Sound_PlayPannedEffect(SEQ_SE_DP_SLOT01_sseq_1, BATTLE_SOUND_PAN_LEFT);
             break;
         case 1:
         case 3:
         case 5:
-            Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, BATTLE_SOUND_PAN_RIGHT);
+            Sound_PlayPannedEffect(SEQ_SE_DP_SLOT01_sseq_1, BATTLE_SOUND_PAN_RIGHT);
             break;
         }
         break;
@@ -3015,7 +3015,7 @@ static void Task_ThrowTrainerBall(SysTask *task, void *data)
                     ov12_02237E30(trainerThrowBallData->battlerData->ballRotation, 1);
 
                     if (trainerThrowBallData->ballTargetState != 3) {
-                        Sound_PlayEffect(SEQ_SE_DP_NAGERU);
+                        Sound_PlayEffect(SEQ_SE_DP_NAGERU_sseq);
                     }
                 }
             }
@@ -3350,7 +3350,7 @@ static void Task_PlayerSetCommandSelection(SysTask *task, void *data)
 
         if (commandSetData->input != 0xFFFFFFFF) {
             commandSetData->unused_0B = 10; // set but never used
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             commandSetData->state = 6;
         }
         break;
@@ -3579,7 +3579,7 @@ static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
         moveSelectMenuData->input = BattleSystem_MenuInput(btlSubscreen);
 
         if (moveSelectMenuData->input != 0xFFFFFFFF) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             moveSelectMenuData->state++;
         }
         break;
@@ -3729,7 +3729,7 @@ static void Task_PlayerShowTargetSelectMenu(SysTask *task, void *data)
         targetSelectMenuData->input = BattleSystem_MenuInput(btlSubscreen);
 
         if (targetSelectMenuData->input != 0xFFFFFFFF) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             targetSelectMenuData->state++;
         }
         break;
@@ -3985,14 +3985,14 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
                             if (BattleSystem_AreAnimationsOn(bagMenuData->battleSys) == TRUE) {
                                 bagMenuData->stateAfterDelay = 17;
                             } else {
-                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU, BATTLE_SOUND_PAN_LEFT);
+                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU_sseq, BATTLE_SOUND_PAN_LEFT);
                                 bagMenuData->stateAfterDelay = 21;
                             }
                         } else {
                             if (BattleSystem_AreAnimationsOn(bagMenuData->battleSys) == TRUE) {
                                 bagMenuData->stateAfterDelay = 25;
                             } else {
-                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU, BATTLE_SOUND_PAN_LEFT);
+                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU_sseq, BATTLE_SOUND_PAN_LEFT);
                                 bagMenuData->stateAfterDelay = 29;
                             }
                         }
@@ -4007,7 +4007,7 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
                         if (BattleSystem_AreAnimationsOn(bagMenuData->battleSys) == TRUE) {
                             bagMenuData->stateAfterDelay = 17;
                         } else {
-                            Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU, BATTLE_SOUND_PAN_LEFT);
+                            Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU_sseq, BATTLE_SOUND_PAN_LEFT);
                             bagMenuData->stateAfterDelay = 21;
                         }
                     } else {
@@ -4022,14 +4022,14 @@ static void Task_PlayerShowBagMenu(SysTask *task, void *data)
                             if (BattleSystem_AreAnimationsOn(bagMenuData->battleSys) == TRUE) {
                                 bagMenuData->stateAfterDelay = 13;
                             } else {
-                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU, BATTLE_SOUND_PAN_LEFT);
+                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU_sseq, BATTLE_SOUND_PAN_LEFT);
                                 bagMenuData->stateAfterDelay = 15;
                             }
                         } else {
                             if (BattleSystem_AreAnimationsOn(bagMenuData->battleSys) == TRUE) {
                                 bagMenuData->stateAfterDelay = 11;
                             } else {
-                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU, BATTLE_SOUND_PAN_LEFT);
+                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU_sseq, BATTLE_SOUND_PAN_LEFT);
                                 bagMenuData->stateAfterDelay = 15;
                             }
                         }
@@ -4753,7 +4753,7 @@ static void Task_PlayerShowYesNoMenu(SysTask *task, void *data)
         yesNoMenuData->input = BattleSystem_MenuInput(btlSubscreen);
 
         if (yesNoMenuData->input != 0xFFFFFFFF) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             yesNoMenuData->state = 3;
         }
         break;
@@ -4997,7 +4997,7 @@ static void Task_UpdateExpGauge(SysTask *task, void *data)
     switch (healthbox->state) {
     case 0:
         healthbox->expSoundTimer = 0;
-        Sound_PlayEffect(SEQ_SE_DP_EXP);
+        Sound_PlayEffect(SEQ_SE_DP_EXP_sseq);
         HealthBox_CalcExp(healthbox, healthbox->expReward);
         healthbox->state++;
     case 1:
@@ -5009,7 +5009,7 @@ static void Task_UpdateExpGauge(SysTask *task, void *data)
 
         if (result == -1) {
             if (healthbox->expSoundTimer >= 8) {
-                Sound_StopEffect(SEQ_SE_DP_EXP, 0);
+                Sound_StopEffect(SEQ_SE_DP_EXP_sseq, 0);
                 healthbox->state = 100;
             } else {
                 healthbox->state++;
@@ -5020,7 +5020,7 @@ static void Task_UpdateExpGauge(SysTask *task, void *data)
         healthbox->expSoundTimer++;
 
         if (healthbox->expSoundTimer >= 8) {
-            Sound_StopEffect(SEQ_SE_DP_EXP, 0);
+            Sound_StopEffect(SEQ_SE_DP_EXP_sseq, 0);
             healthbox->state = 100;
         }
         break;
@@ -5107,9 +5107,9 @@ static void Task_PlayFaintingSequence(SysTask *task, void *data)
         break;
     case 6:
         if (faintingSequenceData->face == FACE_FRONT) {
-            Sound_PlayPannedEffect(SEQ_SE_DP_POKE_DEAD3, BATTLE_SOUND_PAN_RIGHT);
+            Sound_PlayPannedEffect(SEQ_SE_DP_POKE_DEAD3_sseq, BATTLE_SOUND_PAN_RIGHT);
         } else {
-            Sound_PlayPannedEffect(SEQ_SE_DP_POKE_DEAD3, BATTLE_SOUND_PAN_LEFT);
+            Sound_PlayPannedEffect(SEQ_SE_DP_POKE_DEAD3_sseq, BATTLE_SOUND_PAN_LEFT);
         }
 
         if (PokemonSprite_GetAttribute(faintingSequenceData->monSprite, MON_SPRITE_SHADOW_HEIGHT) > 0) {
@@ -5265,7 +5265,7 @@ static void Task_PlayLevelUpAnimation(SysTask *task, void *data)
     switch (playLevelUpAnimationData->state) {
     case 0:
         Healthbox_StartLevelUpFlash(playLevelUpAnimationData->healthbox, &playLevelUpAnimationData->flashComplete);
-        Sound_PlayEffect(SEQ_SE_DP_EXPMAX);
+        Sound_PlayEffect(SEQ_SE_DP_EXPMAX_sseq);
         playLevelUpAnimationData->state++;
         break;
     case 1:
@@ -5396,7 +5396,7 @@ static void SysTask_SetupUI(SysTask *task, void *data)
         uiSetupTaskData->animObjects[1] = ov12_02237F38(uiSetupTaskData->animContext, &particleEffectTemplate);
 
         ov12_02238004(uiSetupTaskData->animObjects[0]);
-        Sound_PlayEffect(SEQ_SE_DP_PASA2);
+        Sound_PlayEffect(SEQ_SE_DP_PASA2_sseq);
 
         uiSetupTaskData->step = 1;
     case 1:
@@ -5428,7 +5428,7 @@ static void SysTask_SetupUI(SysTask *task, void *data)
         }
 
         if (uiSetupTaskData->frameCount == 23) {
-            Sound_PlayEffect(SEQ_SE_DP_PASA3);
+            Sound_PlayEffect(SEQ_SE_DP_PASA3_sseq);
         }
 
         if (uiSetupTaskData->frameCount == 28) {

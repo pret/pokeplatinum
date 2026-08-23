@@ -240,6 +240,6 @@ static void ov88_0223EE14(ListMenu *param0, u64 param1, u8 param2)
 #endif
 {
     if (param2 == 0) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }

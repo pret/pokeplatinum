@@ -318,10 +318,10 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     NetworkIcon_Init();
 
     if (IsNight() == FALSE) {
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PC_01, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PC_01_sseq, 1);
         Sound_AdjustVolumeForVoiceChat(1085);
     } else {
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PC_02, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PC_02_sseq, 1);
         Sound_AdjustVolumeForVoiceChat(1086);
     }
 
@@ -1188,19 +1188,19 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 9 * 2, HEAP_ID_26);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_26);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_26);
 
     ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_26);
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, HEAP_ID_26);
-    Font_LoadScreenIndicatorsPalette(0, 2 * 32, HEAP_ID_26);
-    Font_LoadTextPalette(0, 3 * 32, HEAP_ID_26);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(2), HEAP_ID_26);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(3), HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 5, 0, 16 * 4 * 0x20, 1, HEAP_ID_26);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_26);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, HEAP_ID_26);
-    Font_LoadScreenIndicatorsPalette(4, 2 * 32, HEAP_ID_26);
-    Font_LoadTextPalette(4, 3 * 32, HEAP_ID_26);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(2), HEAP_ID_26);
+    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(3), HEAP_ID_26);
     Bg_ClearTilemap(v0, BG_LAYER_SUB_0);
 }
 
@@ -1585,7 +1585,7 @@ static int ov88_0223CFF4(u32 *param0, int *param1, Sprite *param2, UnkStruct_ov8
             ov88_0223CF68(v1, param2, param4);
 
             if (*param1 != v1) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 *param1 = v1;
                 v2 = 1;
             }
@@ -1669,7 +1669,7 @@ static void ov88_0223D140(ChatotCry *param0)
 static int ov88_0223D150(UnkStruct_02095E80 *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         param0->unk_88[0] = 12;
         ov88_0223BE28(param0);
         ov88_0223CF68(param0->unk_88[0], param0->unk_39C[0], 0);
@@ -1851,14 +1851,14 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
     case MENU_NOTHING_CHOSEN:
         return 0;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         param0->unk_36C8 = v0;
 
         TrainerInfo *v2 = TrainerInfo_New(HEAP_ID_26);
@@ -2080,7 +2080,7 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
 
     ov88_0223ED80(&param0->unk_49C[24]);
 
-    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
+    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_26, PAD_BUTTON_B);
     param0->unk_226C = ov88_0223DB48;
 
     return 0;
@@ -2428,7 +2428,7 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
 
     ov88_0223ED80(&param0->unk_49C[25]);
 
-    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
+    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_26, PAD_BUTTON_B);
     param0->unk_226C = ov88_0223E5B8;
 
     return 0;

@@ -196,16 +196,16 @@ static void DecorationMenu_HandleInput(DecorationMenu *menu)
     case MENU_NOTHING_CHOSEN:
         return;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         menu->lastInput = input;
         menu->state = DECORATION_MENU_STATE_OPTION_SELECTED;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         menu->lastInput = input;
         menu->state = DECORATION_MENU_STATE_OPTION_SELECTED;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     }
 }
@@ -312,12 +312,12 @@ static void DecorationGoodsMenu_HandleInput(DecorationGoodsMenu *menu)
     case MENU_CANCEL:
         menu->lastInput = MENU_CANCEL;
         menu->state = DECORATION_GOODS_MENU_STATE_OPTION_SELECTED;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     default:
         menu->lastInput = trueInput;
         menu->state = DECORATION_GOODS_MENU_STATE_OPTION_SELECTED;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     }
 }
@@ -467,6 +467,6 @@ static void DecorationMenu_UpdateCursorPos(DecorationMenu *menu)
     ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->cursorPos);
 
     if (prevPos != menu->cursorPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }

@@ -321,14 +321,14 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
     case MENU_NOTHING_CHOSEN:
         return 0;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         v0 = CommInfo_TrainerInfo(param0->unk_8C);
         StringTemplate_SetPlayerName(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         param0->unk_90 = v1;
 
         WiFiList *v2 = SaveData_GetWiFiList(param0->saveData);
@@ -508,6 +508,6 @@ static void ov5_021EAF90(ListMenu *param0, u64 param1, u8 param2)
 #endif
 {
     if (param2 == 0) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }

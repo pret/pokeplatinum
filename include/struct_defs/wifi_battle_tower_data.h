@@ -4,9 +4,9 @@
 #include "constants/battle_tower.h"
 
 #include "struct_defs/struct_0202D63C.h"
+#include "struct_defs/wifi_player_profile.h"
 
-#include "overlay096/struct_wifi_player_profile.h"
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 typedef struct WifiBattleTowerIndices {
     u8 rank;
@@ -20,15 +20,8 @@ typedef struct WifiBattleTowerMatchCandidate {
     u8 region;
     u8 padding_14[4];
     u16 trainerKey[4];
-    union {
-        struct {
-            u8 isAnonymous : 1;
-            u8 anonymousNameIdx : 1;
-            u8 : 6;
-        };
-        u8 unk_20_val2;
-    };
-    u8 padding_21;
+    u8 isAnonymous : 1;
+    u8 anonymousNameIdx : 1;
 } WifiBattleTowerMatchCandidate;
 
 typedef struct WifiBattleTowerDownloadBuffer {
@@ -76,8 +69,8 @@ typedef struct WifiBattleTowerRecord {
     };
     u16 roomNums[6];
     u16 ratingScore;
-    FrontierPokemonDataDTO team1[3];
-    FrontierPokemonDataDTO team0[3];
+    FrontierPokemon team1[3];
+    FrontierPokemon team0[3];
 } WifiBattleTowerRecord;
 
 typedef struct BattleTowerPartnerData {

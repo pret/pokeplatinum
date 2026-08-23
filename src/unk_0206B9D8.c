@@ -499,7 +499,7 @@ u32 sub_0206C068(SaveData *saveData)
 
 BOOL FieldSystem_IsInBattleTowerSalon(FieldSystem *fieldSystem)
 {
-    if (fieldSystem->location->mapId == MAP_HEADER_BATTLE_TOWER_BATTLE_SALON) {
+    if (fieldSystem->location->mapHeaderID == MAP_HEADER_BATTLE_TOWER_BATTLE_SALON) {
         return TRUE;
     }
 

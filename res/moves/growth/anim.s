@@ -2,6 +2,6 @@
 
 L_0:
     Func_Growth
-    PlaySoundEffectL SEQ_SE_DP_W036
+    PlaySoundEffectL SEQ_SE_DP_W036_sseq
     WaitForAnimTasks
     End

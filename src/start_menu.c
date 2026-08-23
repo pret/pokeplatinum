@@ -56,6 +56,7 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "poketch.h"
@@ -82,7 +83,6 @@
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
 
@@ -260,7 +260,7 @@ static const u8 sOnlyMovePages[] = {
 
 BOOL FieldSystem_IsInValidLocation(FieldSystem *fieldSystem)
 {
-    return MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != LocationNames_Text_MysteryZone;
+    return MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID) != LocationNames_Text_MysteryZone;
 }
 
 #define HIDE_OPTION_POKEDEX      (1 << 0)
@@ -289,8 +289,8 @@ void StartMenu_Open(FieldSystem *fieldSystem)
 
     menu->inUnionRoom = FALSE;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, StartMenu_Main, menu);
@@ -303,8 +303,8 @@ void StartMenu_OpenUnionRoom(FieldSystem *fieldSystem)
     menu->hideOptionFlags = StartMenu_GetUnionRoomHiddenOptions(fieldSystem);
     menu->inUnionRoom = TRUE;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, StartMenu_Main, menu);
@@ -317,8 +317,8 @@ void StartMenu_OpenColosseum(FieldSystem *fieldSystem)
     menu->hideOptionFlags = StartMenu_GetColosseumHiddenOptions(fieldSystem);
     menu->inUnionRoom = FALSE;
 
-    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
+    if (PlayerAvatar_CheckForceStopMovement(fieldSystem->playerAvatar) == 1) {
+        PlayerAvatar_ForceStopMovement(fieldSystem->playerAvatar, PlayerAvatar_GetFacingDir(fieldSystem->playerAvatar));
     }
 
     FieldSystem_CreateTask(fieldSystem, StartMenu_Main, menu);
@@ -326,7 +326,7 @@ void StartMenu_OpenColosseum(FieldSystem *fieldSystem)
 
 void StartMenu_OpenFromScript(FieldSystem *fieldSystem)
 {
-    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
     StartMenu *menu = StartMenu_New();
 
     menu->inUnionRoom = FALSE;
@@ -376,7 +376,7 @@ static u32 StartMenu_GetNormalHiddenOptions(FieldSystem *fieldSystem)
         hideFlags |= HIDE_OPTION_BAG;
     }
 
-    if (MapHeader_IsAmitySquare(fieldSystem->location->mapId) == TRUE) {
+    if (MapHeader_IsAmitySquare(fieldSystem->location->mapHeaderID) == TRUE) {
         hideFlags |= HIDE_OPTION_POKEMON;
         hideFlags |= HIDE_OPTION_BAG;
     }
@@ -687,7 +687,7 @@ static BOOL StartMenu_Select(FieldTask *fieldTask)
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
     u16 prevPos = Menu_GetCursorPos(menu->menu);
 
-    menu->input = Menu_ProcessInputWithSound(menu->menu, SEQ_SE_DP_SELECT78);
+    menu->input = Menu_ProcessInputWithSound(menu->menu, SEQ_SE_DP_SELECT78_sseq);
     menu->cursorPos = Menu_GetCursorPos(menu->menu);
 
     if (prevPos != menu->cursorPos) {
@@ -1081,7 +1081,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *fieldTask)
     case PARTY_MENU_EXIT_CODE_EVOLVE_BY_LEVEL:
         evoData = Heap_Alloc(HEAP_ID_FIELD2, sizeof(MenuEvolutionData));
 
-        evoData->dummy = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
+        evoData->dummy = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapHeaderID);
         evoData->class = EVO_CLASS_BY_LEVEL;
         evoData->slot = partyMenu->selectedMonSlot;
         evoData->targetSpecies = partyMenu->evoTargetSpecies;
@@ -1761,9 +1761,9 @@ static void StartMenu_Evolve(FieldTask *fieldTask)
     if (Evolution_IsDone(menu->taskData) == TRUE) {
         Evolution_Free(menu->taskData);
         Heap_Destroy(HEAP_ID_EVOLUTION);
-        Sound_StopBGM(SEQ_SHINKA, 0);
+        Sound_StopBGM(SEQ_SHINKA_sseq, 0);
         Sound_SetScene(SOUND_SCENE_NONE);
-        FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapId);
+        FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapHeaderID);
 
         menu->taskData = FieldSystem_OpenBag(fieldSystem, &menu->itemUseCtx);
 

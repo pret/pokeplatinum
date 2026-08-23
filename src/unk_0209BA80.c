@@ -14,7 +14,7 @@
 #include "applications/frontier/battle_castle/self_app.h"
 #include "applications/frontier/battle_factory/main.h"
 #include "applications/frontier/battle_hall/main.h"
-#include "overlay104/ov104_0222ECE8.h"
+#include "overlay104/frontier_communication.h"
 #include "overlay104/ov104_0223C164.h"
 
 #include "battle_frontier_save.h"
@@ -40,7 +40,7 @@ void sub_0209BDD0(int param0, int param1, void *param2, void *param3);
 
 static const CommCmdTable Unk_020F8BF0[] = {
     { ov104_0222EF30, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222EF94, CommPacketSizeOf_Variable, NULL },
+    { FactoryCommunication_ReceiveTrainers, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F03C, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F124, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F1C4, CommPacketSizeOf_Variable, NULL },
@@ -50,22 +50,22 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { BattleFactoryApp_HandleSelectionUpdateCmd, CommPacketSizeOf_Variable, NULL },
     { BattleFactoryApp_DummyCommCommand2, CommPacketSizeOf_Variable, NULL },
     { BattleFactoryApp_HandleTradeResultCmd, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222ECE8, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222ED2C, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222ED74, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222EDDC, CommPacketSizeOf_Variable, NULL },
+    { FrontierCommunication_Unreachable1, CommPacketSizeOf_Variable, NULL },
+    { FrontierCommunication_Unreachable3, CommPacketSizeOf_Variable, NULL },
+    { HallCommunication_ReceiveTrainers, CommPacketSizeOf_Variable, NULL },
+    { HallCommunication_ReceiveOpponentMons, CommPacketSizeOf_Variable, NULL },
     { ov104_0222EE38, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222EEA8, CommPacketSizeOf_Variable, ov104_0222EED8 },
+    { HallCommunication_ReceivePartnersPokemon, CommPacketSizeOf_Variable, HallCommunication_VerifyPacketSize },
     { BattleHall_DummyCommCommand, CommPacketSizeOf_Variable, NULL },
     { BattleHall_HandleTypeSelectionMsg, CommPacketSizeOf_Variable, NULL },
     { BattleHall_HandlePartnerDecisionCmd, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222F418, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222F480, CommPacketSizeOf_Variable, NULL },
+    { CastleCommunication_ReceivePartnersCP, CommPacketSizeOf_Variable, NULL },
+    { CastleCommunications_ReceiveTrainers, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F530, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F650, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F6E8, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222F730, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222F7BC, CommPacketSizeOf_Variable, ov104_0222F84C },
+    { FrontierCommunication_Unreachable5, CommPacketSizeOf_Variable, NULL },
+    { CastleCommunication_ReceivePartnersParty, CommPacketSizeOf_Variable, CastleCommunication_VerifyPacketSize },
     { BattleCastleSelfApp_HandlePlayerInfoCmd, CommPacketSizeOf_Variable, NULL },
     { BattleCastleSelfApp_HandlePurchaseInfoCmd, CommPacketSizeOf_Variable, NULL },
     { BattleCastleSelfApp_HandleUpdateCursorCmd, CommPacketSizeOf_Variable, NULL },
@@ -83,11 +83,11 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { sub_0209BB34, CommPacketSizeOf_Variable, NULL },
     { sub_0209BB68, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F8A0, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222F908, CommPacketSizeOf_Variable, NULL },
+    { ArcadeCommunication_ReceiveTrainers, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F9C0, CommPacketSizeOf_Variable, NULL },
     { ov104_0222FA5C, CommPacketSizeOf_Variable, NULL },
     { ov104_0222FAA8, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222FB34, CommPacketSizeOf_Variable, ov104_0222FBC4 },
+    { ArcadeCommunication_ReceivePartnersParty, CommPacketSizeOf_Variable, ArcadeCommunication_VerifyPacketSize },
     { BattleArcadeApp_HandleInitialLayoutCmd, CommPacketSizeOf_Variable, NULL },
     { BattleArcadeApp_HandleResultCmd, CommPacketSizeOf_Variable, NULL },
     { BattleArcadeApp_HandleUnusedCmd, CommPacketSizeOf_Variable, NULL }

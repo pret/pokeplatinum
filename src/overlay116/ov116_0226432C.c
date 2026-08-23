@@ -487,7 +487,7 @@ static void ov116_022649E4(SysTask *param0, void *param1)
         if (v0->unk_08 == 0) {
             v0->unk_08++;
             ov116_02261E0C(v0->unk_00, 1, 0);
-            Sound_PlayEffect(SEQ_SE_PL_140_2_2);
+            Sound_PlayEffect(SEQ_SE_PL_140_2_2_sseq);
         }
 
         if (v0->unk_08 > 30) {
@@ -626,8 +626,8 @@ static void ov116_0226501C(UnkStruct_ov116_02265470 *param0)
             param0->unk_00++;
         }
 
-        PaletteData_BlendMulti(v3, 0, 0x1, *v1 + *v2, 0x0);
-        PaletteData_BlendMulti(v3, 1, 0x1, *v1 + *v2, 0x0);
+        PaletteData_BlendMulti(v3, PLTTBUF_MAIN_BG, 0x1, *v1 + *v2, 0x0);
+        PaletteData_BlendMulti(v3, PLTTBUF_SUB_BG, 0x1, *v1 + *v2, 0x0);
         break;
 
     case 1:
@@ -653,8 +653,8 @@ static void ov116_0226501C(UnkStruct_ov116_02265470 *param0)
             param0->unk_00++;
         }
 
-        PaletteData_BlendMulti(v3, 0, 0x1, *v1 + *v2, 0x0);
-        PaletteData_BlendMulti(v3, 1, 0x1, *v1 + *v2, 0x0);
+        PaletteData_BlendMulti(v3, PLTTBUF_MAIN_BG, 0x1, *v1 + *v2, 0x0);
+        PaletteData_BlendMulti(v3, PLTTBUF_SUB_BG, 0x1, *v1 + *v2, 0x0);
         break;
 
     default:
@@ -841,7 +841,7 @@ static void ov116_0226534C(SysTask *param0, void *param1)
         }
     case 4:
         if (v0->unk_08[3].unk_04 == 0) {
-            Sound_PlayEffect(SEQ_SE_DP_DENDOU);
+            Sound_PlayEffect(SEQ_SE_DP_DENDOU_sseq);
             v0->unk_08[3].unk_04 = 1;
             v0->unk_08[3].unk_50[0] = 0;
         }
@@ -852,7 +852,7 @@ static void ov116_0226534C(SysTask *param0, void *param1)
         }
     case 2:
         if (v0->unk_08[1].unk_04 == 0) {
-            Sound_PlayEffect(SEQ_SE_PL_HAND);
+            Sound_PlayEffect(SEQ_SE_PL_HAND_sseq);
             v0->unk_08[1].unk_04 = 1;
             v0->unk_08[1].unk_50[0] = 0;
         }
@@ -991,8 +991,8 @@ static void ov116_022655DC(UnkStruct_ov116_022660A8 *param0)
         *v1 = 6;
     }
 
-    PaletteData_BlendMulti(param0->unk_30->unk_14, 0, 0x1, *v0 + *v1, 0x0);
-    PaletteData_BlendMulti(param0->unk_30->unk_14, 1, 0x1, *v0 + *v1, 0x0);
+    PaletteData_BlendMulti(param0->unk_30->unk_14, PLTTBUF_MAIN_BG, 0x1, *v0 + *v1, 0x0);
+    PaletteData_BlendMulti(param0->unk_30->unk_14, PLTTBUF_SUB_BG, 0x1, *v0 + *v1, 0x0);
 }
 
 static void ov116_02265754(UnkStruct_ov116_022660A8 *param0)
@@ -1037,8 +1037,8 @@ static void ov116_02265754(UnkStruct_ov116_022660A8 *param0)
         *v1 = 0;
     }
 
-    PaletteData_BlendMulti(param0->unk_30->unk_14, 0, 0x1, *v0 + *v1, 0x0);
-    PaletteData_BlendMulti(param0->unk_30->unk_14, 1, 0x1, *v0 + *v1, 0x0);
+    PaletteData_BlendMulti(param0->unk_30->unk_14, PLTTBUF_MAIN_BG, 0x1, *v0 + *v1, 0x0);
+    PaletteData_BlendMulti(param0->unk_30->unk_14, PLTTBUF_SUB_BG, 0x1, *v0 + *v1, 0x0);
 }
 
 static int ov116_022658C8(int param0)

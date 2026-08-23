@@ -273,7 +273,7 @@ static int ov5_021F5C70(OverworldAnimManager *param0, void *param1)
     ov5_021F5A7C(v1->unk_30.unk_08, v1->unk_30.unk_00);
 
     if (OverworldAnimManager_GetUserInt(param0) == 1) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
     }
 
     return 1;
@@ -381,7 +381,7 @@ static int ov5_021F5DE4(OverworldAnimManager *param0, void *param1)
 
     v1->unk_30 = *v2;
     v1->unk_08 = MapObject_GetLocalID(v1->unk_30.unk_0C);
-    v1->unk_0C = MapObject_GetMapID(v1->unk_30.unk_0C);
+    v1->unk_0C = MapObject_GetMapHeaderID(v1->unk_30.unk_0C);
     v1->unk_24.y = (FX32_ONE * 6);
 
     ov5_021F5BF0(v1->unk_30.unk_08, v1->unk_30.unk_00);
@@ -391,7 +391,7 @@ static int ov5_021F5DE4(OverworldAnimManager *param0, void *param1)
     ov5_021F5A7C(v1->unk_30.unk_08, v1->unk_30.unk_00);
 
     if (OverworldAnimManager_GetUserInt(param0) == 1) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
     }
 
     return 1;
@@ -450,7 +450,7 @@ static int ov5_021F5EE0(OverworldAnimManager *param0, void *param1)
 
     v1->unk_30 = *v2;
     v1->unk_08 = MapObject_GetLocalID(v1->unk_30.unk_0C);
-    v1->unk_0C = MapObject_GetMapID(v1->unk_30.unk_0C);
+    v1->unk_0C = MapObject_GetMapHeaderID(v1->unk_30.unk_0C);
     v1->unk_24.y = (FX32_ONE * 6);
     v1->unk_10 = 1;
 
@@ -490,7 +490,7 @@ static void ov5_021F5F24(OverworldAnimManager *param0, void *param1)
         v0->unk_10 = 0;
 
         if (OverworldAnimManager_GetUserInt(param0) == 1) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         }
 
         v0->unk_00++;

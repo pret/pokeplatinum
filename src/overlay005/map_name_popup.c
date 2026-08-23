@@ -267,13 +267,13 @@ void MapNamePopUp_Hide(MapNamePopUp *mapPopUp)
 
 void FieldSystem_RequestLocationName(FieldSystem *fieldSystem)
 {
-    if (MapHeader_GetMapLabelWindowID(fieldSystem->location->mapId) == 0) {
+    if (MapHeader_GetMapLabelWindowID(fieldSystem->location->mapHeaderID) == 0) {
         return;
     }
 
-    if (!MapHeader_IsBuilding(fieldSystem->location->mapId)) {
-        u32 mapLabelTextID = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
-        u32 mapLabelWindowID = MapHeader_GetMapLabelWindowID(fieldSystem->location->mapId);
+    if (!MapHeader_IsBuilding(fieldSystem->location->mapHeaderID)) {
+        u32 mapLabelTextID = MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID);
+        u32 mapLabelWindowID = MapHeader_GetMapLabelWindowID(fieldSystem->location->mapHeaderID);
 
         if (mapLabelWindowID != 0) {
             mapLabelWindowID--;

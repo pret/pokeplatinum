@@ -58,7 +58,8 @@ static void BattleAnimTask_Mimic(SysTask *task, void *param)
             ctx->defenderHeight,
             ctx->scale.data[XY_PARAM_CUR_Y],
             BATTLE_ANIM_ANCHOR_BOTTOM);
-    } break;
+        break;
+    }
     default:
         return;
     }

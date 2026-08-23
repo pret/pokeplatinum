@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "applications/frontier/battle_castle/sprite_manager.h"
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "heap.h"
 #include "pokemon_icon.h"
@@ -98,6 +98,6 @@ void BattleCastleAppSprite_PlaySparkleAnim(BattleCastleAppSprite *sprite, u16 x,
     BattleCastleAppSprite_SetPosition(sprite, x, y);
     BattleCastleAppSprite_SetDrawFlag(sprite, TRUE);
 
-    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
-    Sound_PlayEffect(SEQ_SE_DP_DANSA4);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
+    Sound_PlayEffect(SEQ_SE_DP_DANSA4_sseq);
 }

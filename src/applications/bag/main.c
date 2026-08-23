@@ -852,9 +852,9 @@ static void LoadGraphics(BagController *controller)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, item_list_border_NSCR, controller->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_BAG);
     Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, bag_ui_main_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 0, HEAP_ID_BAG);
     Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, pocket_selector_icons_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), PALETTE_SIZE_BYTES, HEAP_ID_BAG);
-    Font_LoadScreenIndicatorsPalette(0, PLTT_OFFSET(11), HEAP_ID_BAG);
-    LoadStandardWindowGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14, STANDARD_WINDOW_SYSTEM, HEAP_ID_BAG);
-    LoadMessageBoxGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MSG_BOX_FRAME, PLTT_12, Options_Frame(controller->options), HEAP_ID_BAG);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(11), HEAP_ID_BAG);
+    LoadStandardWindowGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_BAG_WINDOW_FRAME, 14, STANDARD_WINDOW_SYSTEM, HEAP_ID_BAG);
+    LoadMessageBoxGraphics(controller->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MSG_BOX_FRAME, 12, Options_Frame(controller->options), HEAP_ID_BAG);
     Graphics_LoadTilesToBgLayerFromOpenNARC(controller->bagGraphicsNARC, pokeball_borders_tileset_NCGR, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_BAG);
     Graphics_LoadPaletteFromOpenNARC(controller->bagGraphicsNARC, pokeball_borders_NCLR, PAL_LOAD_SUB_BG, PLTT_OFFSET(0), 0, HEAP_ID_BAG);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(controller->bagGraphicsNARC, pokeball_borders_NSCR, controller->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_BAG);
@@ -1115,13 +1115,13 @@ static void ItemListMenuCursorCB(ListMenu *menu, u64 index, u8 onInit)
     if (onInit != TRUE) {
         switch (controller->cursorSoundIdx) {
         case 0:
-            Sound_PlayEffect(SEQ_SE_DP_GASA01);
+            Sound_PlayEffect(SEQ_SE_DP_GASA01_sseq);
             break;
         case 1:
-            Sound_PlayEffect(SEQ_SE_DP_GASA02);
+            Sound_PlayEffect(SEQ_SE_DP_GASA02_sseq);
             break;
         default:
-            Sound_PlayEffect(SEQ_SE_DP_GASA03);
+            Sound_PlayEffect(SEQ_SE_DP_GASA03_sseq);
         }
 
         controller->cursorSoundIdx = (controller->cursorSoundIdx + 1) % 3;
@@ -1225,7 +1225,7 @@ static int ProcessItemListInput_Normal(BagController *controller)
     u8 input = ProcessItemListMenuInput(controller);
 
     if (input == ITEM_LIST_INPUT_SELECT_ITEM) {
-        BagUI_SetHighlightSpritesPalette(controller, PLTT_2);
+        BagUI_SetHighlightSpritesPalette(controller, 2);
         Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], 0);
         Window_ClearAndCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
         MakeItemActionsMenu(controller);
@@ -1253,7 +1253,7 @@ static u8 ProcessItemListMenuInput(BagController *interface)
 
     if (JOY_NEW(PAD_BUTTON_SELECT)) {
         if (CanMoveSelectedEntry(interface) == TRUE) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             return ITEM_LIST_INPUT_MOVE_ITEM;
         }
     }
@@ -1296,13 +1296,13 @@ static u8 ProcessItemListMenuInput(BagController *interface)
             return ITEM_LIST_INPUT_NONE;
         }
 
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         interface->bagCtx->selectedItem = ITEM_NONE;
         interface->bagCtx->exitCode = BAG_EXIT_CODE_DONE;
         App_StartScreenFade(TRUE, HEAP_ID_BAG);
         return ITEM_LIST_INPUT_EXIT_BAG;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         interface->bagCtx->selectedItem = (u16)pocket->items[selectedItem].item;
         interface->selectedItemCountLimit = (u16)pocket->items[selectedItem].quantity;
         return ITEM_LIST_INPUT_SELECT_ITEM;
@@ -1324,7 +1324,7 @@ static u8 CheckPocketChange_DPad(BagController *controller)
             return FALSE;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BAG_030);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_030_sseq);
 
         if (controller->bagCtx->currPocketIdx != 0) {
             controller->pocketSelector.nextPocket = controller->bagCtx->currPocketIdx - 1;
@@ -1346,7 +1346,7 @@ static u8 CheckPocketChange_DPad(BagController *controller)
             return FALSE;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BAG_030);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_030_sseq);
 
         if (controller->bagCtx->currPocketIdx + 1 < controller->numPockets) {
             controller->pocketSelector.nextPocket = controller->bagCtx->currPocketIdx + 1;
@@ -1477,7 +1477,7 @@ static u8 DoDPadPocketSwitch(BagController *controller)
             return TRUE;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BAG_030);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_030_sseq);
         ManagedSprite_SetAnim(controller->sprites[BAG_SPRITE_BAG], controller->bagCtx->accessiblePockets[pocketSelector->nextPocket].pocketType);
         DrawPocketButton(controller, pocketSelector->nextPocket, 0);
         Bg_ScheduleTilemapTransfer(controller->bgConfig, BG_LAYER_SUB_0);
@@ -1510,7 +1510,7 @@ static u8 DoDPadPocketSwitch(BagController *controller)
             return TRUE;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BAG_030);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_030_sseq);
         ManagedSprite_SetAnim(controller->sprites[BAG_SPRITE_BAG], controller->bagCtx->accessiblePockets[pocketSelector->nextPocket].pocketType);
         DrawPocketButton(controller, pocketSelector->nextPocket, 0);
         Bg_ScheduleTilemapTransfer(controller->bgConfig, BG_LAYER_SUB_0);
@@ -1660,7 +1660,7 @@ static u8 StepPocketSwitchPressedButtonAnim(BagController *controller)
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
         DrawPocketButton(controller, pocketSelector->pressedPocketBtnIdx, 2);
         Bg_ScheduleTilemapTransfer(controller->bgConfig, BG_LAYER_SUB_0);
         BagUI_DrawBtnShockwave(controller, sPocketButtonCoordLists[controller->numPockets].buttonSprite[pocketSelector->pressedPocketBtnIdx * 2] * TILE_WIDTH_PIXELS + (5 * TILE_WIDTH_PIXELS) / 2, sPocketButtonCoordLists[controller->numPockets].buttonSprite[pocketSelector->pressedPocketBtnIdx * 2 + 1] * TILE_HEIGHT_PIXELS + (5 * TILE_HEIGHT_PIXELS) / 2);
@@ -1720,7 +1720,7 @@ static void StepDialButtonPressedAnim(BagController *controller)
         break;
     case 1:
         BagUI_DrawBtnShockwave(controller, DIAL_CENTER_X, DIAL_CENTER_Y);
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
         DrawDialButton(controller, 2);
 
         controller->dialButtonAnimFrame = 0;
@@ -1857,7 +1857,7 @@ static u8 ProcessItemListInput_MovingItem(BagController *controller)
     ListMenu_GetListAndCursorPos(controller->itemList, &pocket->cursorScroll, &pocket->cursorPos);
 
     if (CheckDialButtonPressed(controller) == TRUE) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         MoveItemToCurrentPosition(controller);
         controller->dialButtonAnimStep = 1;
 
@@ -1865,7 +1865,7 @@ static u8 ProcessItemListInput_MovingItem(BagController *controller)
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         MoveItemToCurrentPosition(controller);
         return TRUE;
     }
@@ -1896,7 +1896,7 @@ static u8 ProcessItemListInput_MovingItem(BagController *controller)
         }
     } break;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             MoveItemToCurrentPosition(controller);
@@ -1906,7 +1906,7 @@ static u8 ProcessItemListInput_MovingItem(BagController *controller)
 
         return TRUE;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         MoveItemToCurrentPosition(controller);
         return TRUE;
     }
@@ -2074,7 +2074,7 @@ static int ProcessMenuInput_SelectAction(BagController *controller)
         }
     } break;
     case MENU_CANCEL:
-        BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
+        BagUI_SetHighlightSpritesPalette(controller, 1);
         BagUI_CloseItemActionsMenu(controller);
 
         if (controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_TMHMS) {
@@ -2126,7 +2126,7 @@ static int ItemActionFunc_Use(BagController *controller)
         if (checkResult != 0) {
             BagContext_FormatErrorMessage(controller->trainerInfo, controller->stringBuffer, controller->bagCtx->selectedItem, checkResult, HEAP_ID_BAG);
             Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
-            Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
+            Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, 12);
             controller->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(controller);
 
             return BAG_APP_STATE_SHOWING_ITEM_USE_MSG;
@@ -2142,7 +2142,7 @@ static int CheckPlayerDismissedItemUseMsg(BagController *interface)
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B) || gSystem.touchPressed) {
             Window_EraseMessageBox(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);
             Window_ScheduleCopyToVRAM(&interface->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-            BagUI_SetHighlightSpritesPalette(interface, PLTT_1);
+            BagUI_SetHighlightSpritesPalette(interface, 1);
 
             if (interface->bagCtx->mode == BAG_MODE_GARDENING) {
                 return BAG_APP_STATE_SELECT_ITEM_GARDENING;
@@ -2168,7 +2168,7 @@ static int HandleItemUsed(BagController *interface)
 
     if (BagContext_FormatUsageMessage(interface->bagCtx->saveData, interface->stringBuffer, interface->bagCtx->selectedItem, HEAP_ID_BAG) == TRUE) {
         Window_FillTilemap(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
-        Window_DrawMessageBoxWithScrollCursor(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
+        Window_DrawMessageBoxWithScrollCursor(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, 12);
         interface->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(interface);
         return BAG_APP_STATE_SHOWING_ITEM_USE_MSG;
     }
@@ -2204,7 +2204,7 @@ static int TMHMUseTask(BagController *controller)
         }
     }
         Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
-        Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
+        Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, 12);
 
         controller->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(controller);
         controller->itemUseTaskState = 1;
@@ -2269,7 +2269,7 @@ static int TMHMUseTask(BagController *controller)
         case MENU_CANCEL:
             Window_EraseMessageBox(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);
             Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-            BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
+            BagUI_SetHighlightSpritesPalette(controller, 1);
             ToggleHideItemSprite(controller, FALSE);
             return BAG_APP_STATE_WAIT_SELECT_ITEM_GENERAL;
         }
@@ -2314,7 +2314,7 @@ static String *TryUseRepel(BagController *controller, u16 item)
     u32 stepCount = Item_LoadParam(item, ITEM_PARAM_EFFECT_PARAM, HEAP_ID_BAG);
     SetRepelSteps(controller, stepCount);
     controller->selectedItemCount = 1;
-    Sound_PlayEffect(SEQ_SE_DP_CARD2);
+    Sound_PlayEffect(SEQ_SE_DP_CARD2_sseq);
 
     return MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_UsedRepel);
 }
@@ -2336,7 +2336,7 @@ static int InBagItemUseTask(BagController *controller)
     switch (controller->itemUseTaskState) {
     case 0:
         Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
-        Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 0, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
+        Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 0, BASE_TILE_MSG_BOX_FRAME, 12);
         controller->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(controller);
         controller->itemUseTaskState = 1;
         break;
@@ -2357,7 +2357,7 @@ static int InBagItemUseTask(BagController *controller)
         }
 
         Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-        BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
+        BagUI_SetHighlightSpritesPalette(controller, 1);
 
         return BAG_APP_STATE_WAIT_SELECT_ITEM_GENERAL;
     }
@@ -2419,25 +2419,25 @@ static int ProcessItemCountInput_TrashCount(BagController *controller)
     case 1:
         RotateDial(controller, 18);
         BagUI_PrintItemTrashCount(controller);
-        Sound_PlayEffect(SEQ_SE_DP_BAG_004);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_004_sseq);
         return BAG_APP_STATE_SELECT_ITEM_TRASH_COUNT;
     case 2:
         RotateDial(controller, -18);
         BagUI_PrintItemTrashCount(controller);
-        Sound_PlayEffect(SEQ_SE_DP_BAG_004);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_004_sseq);
         return BAG_APP_STATE_SELECT_ITEM_TRASH_COUNT;
     }
     if (JOY_NEW(PAD_BUTTON_A)) {
         BagUI_PrintConfirmItemTrashMsg(controller);
         BagUI_ToggleItemCountArrows(controller, FALSE);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return BAG_APP_STATE_SHOW_CONFIRM_TRASH_MSG;
     }
     if (JOY_NEW(PAD_BUTTON_B)) {
         BagUI_CloseItemTrashWindows(controller);
         BagUI_ToggleItemCountArrows(controller, FALSE);
-        BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        BagUI_SetHighlightSpritesPalette(controller, 1);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return BAG_APP_STATE_WAIT_SELECT_ITEM_GENERAL;
     }
 
@@ -2502,7 +2502,7 @@ static int ProcessMenuInput_ConfirmTrash(BagController *controller)
     case MENU_CANCEL:
         Window_EraseMessageBox(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);
         Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-        BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
+        BagUI_SetHighlightSpritesPalette(controller, 1);
         return BAG_APP_STATE_WAIT_SELECT_ITEM_GENERAL;
     }
 
@@ -2529,7 +2529,7 @@ static int CheckPlayerDismissedTrashedMsg(BagController *controller)
             controller->hideDescription = FALSE;
             Window_EraseMessageBox(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);
             Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-            BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
+            BagUI_SetHighlightSpritesPalette(controller, 1);
 
             return BAG_APP_STATE_WAIT_SELECT_ITEM_GENERAL;
         }
@@ -2544,7 +2544,7 @@ static int ItemActionFunc_Register(BagController *controller)
     ListMenu_Draw(controller->itemList);
     BagUI_CloseItemActionsMenu(controller);
     Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-    BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
+    BagUI_SetHighlightSpritesPalette(controller, 1);
 
     return BAG_APP_STATE_WAIT_SELECT_ITEM_GENERAL;
 }
@@ -2555,7 +2555,7 @@ static int ItemActionFunc_Deselect(BagController *controller)
     ListMenu_Draw(controller->itemList);
     BagUI_CloseItemActionsMenu(controller);
     Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-    BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
+    BagUI_SetHighlightSpritesPalette(controller, 1);
 
     return BAG_APP_STATE_WAIT_SELECT_ITEM_GENERAL;
 }
@@ -2593,7 +2593,7 @@ static int ProcessItemListInput_GiveToMon(BagController *controller)
                 String *string;
 
                 Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
-                Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
+                Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE, BASE_TILE_MSG_BOX_FRAME, 12);
 
                 StringTemplate_SetItemName(controller->strTemplate, 0, controller->bagCtx->selectedItem);
 
@@ -2602,7 +2602,7 @@ static int ProcessItemListInput_GiveToMon(BagController *controller)
                 StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
                 String_Free(string);
                 controller->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(controller);
-                BagUI_SetHighlightSpritesPalette(controller, PLTT_2);
+                BagUI_SetHighlightSpritesPalette(controller, 2);
 
                 return BAG_APP_STATE_SHOWING_ITEM_CANT_BE_HELD_MSG;
             }
@@ -2625,7 +2625,7 @@ static int CheckPlayerDismissedItemCantBeHeldMsg(BagController *controller)
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B) || gSystem.touchPressed) {
             Window_EraseMessageBox(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);
             Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-            BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
+            BagUI_SetHighlightSpritesPalette(controller, 1);
 
             return BAG_APP_STATE_SELECT_ITEM_TO_GIVE;
         }
@@ -2743,12 +2743,12 @@ static int ProcessItemCountInput_SellCount(BagController *interface)
     case 1:
         RotateDial(interface, 18);
         BagUI_PrintSellCountAndValue(interface, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_BAG_004);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_004_sseq);
         return BAG_APP_STATE_SELECT_ITEM_SELL_COUNT;
     case 2:
         RotateDial(interface, -18);
         BagUI_PrintSellCountAndValue(interface, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_BAG_004);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_004_sseq);
         return BAG_APP_STATE_SELECT_ITEM_SELL_COUNT;
     }
     if (JOY_NEW(PAD_BUTTON_A)) {
@@ -2764,7 +2764,7 @@ static int ProcessItemCountInput_SellCount(BagController *interface)
         StringTemplate_Format(interface->strTemplate, interface->stringBuffer, string);
         String_Free(string);
         interface->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(interface);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         return BAG_APP_STATE_PRINT_CONFIRM_SALE_MSG;
     }
@@ -2776,8 +2776,8 @@ static int ProcessItemCountInput_SellCount(BagController *interface)
         Window_EraseStandardFrame(&interface->windows[BAG_UI_WINDOW_SELL_COUNT_VALUE], TRUE);
         Window_EraseMessageBox(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);
         Window_ScheduleCopyToVRAM(&interface->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-        BagUI_SetHighlightSpritesPalette(interface, PLTT_1);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        BagUI_SetHighlightSpritesPalette(interface, 1);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         return BAG_APP_STATE_SELECT_ITEM_TO_SELL;
     }
@@ -2845,7 +2845,7 @@ static int ProcessMenuInput_ConfirmSale(BagController *interface)
         Window_EraseStandardFrame(&interface->windows[BAG_UI_WINDOW_MONEY], TRUE);
         Window_EraseMessageBox(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);
         Window_ScheduleCopyToVRAM(&interface->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-        BagUI_SetHighlightSpritesPalette(interface, PLTT_1);
+        BagUI_SetHighlightSpritesPalette(interface, 1);
 
         return BAG_APP_STATE_SELECT_ITEM_TO_SELL;
     }
@@ -2859,7 +2859,7 @@ static int ResolveSale(BagController *interface)
         return BAG_APP_STATE_RESOLVE_SALE;
     }
 
-    Sound_PlayEffect(SEQ_SE_DP_REGI);
+    Sound_PlayEffect(SEQ_SE_DP_REGI_sseq);
     TrainerInfo_GiveMoney(interface->trainerInfo, interface->selectedItemCount * interface->soldItemPrice);
 
     if (interface->selectedItemCount == 1) {
@@ -2888,7 +2888,7 @@ static int CheckPlayerDismissedItemsSoldMsg(BagController *interface)
             Window_EraseStandardFrame(&interface->windows[BAG_UI_WINDOW_MONEY], TRUE);
             Window_EraseMessageBox(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);
             Window_ScheduleCopyToVRAM(&interface->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-            BagUI_SetHighlightSpritesPalette(interface, PLTT_1);
+            BagUI_SetHighlightSpritesPalette(interface, 1);
 
             return BAG_APP_STATE_SELECT_ITEM_TO_SELL;
         }
@@ -2922,7 +2922,7 @@ static int ProcessItemListInput_Gardening(BagController *controller)
 
                 BagContext_FormatErrorMessage(controller->trainerInfo, controller->stringBuffer, controller->bagCtx->selectedItem, ITEM_USE_CANNOT_USE_GENERIC, HEAP_ID_BAG);
                 Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
-                Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 0, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
+                Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 0, BASE_TILE_MSG_BOX_FRAME, 12);
 
                 controller->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(controller);
                 return BAG_APP_STATE_SHOWING_ITEM_USE_MSG;
@@ -3170,7 +3170,7 @@ static BOOL CheckDialItemAmountChange(BagController *controller, s16 *amount, u1
             return FALSE;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BAG_004);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_004_sseq);
         return TRUE;
     } else if (controller->queuedScroll < 0) {
         controller->queuedScroll++;
@@ -3184,7 +3184,7 @@ static BOOL CheckDialItemAmountChange(BagController *controller, s16 *amount, u1
             return FALSE;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BAG_004);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_004_sseq);
         return TRUE;
     }
 

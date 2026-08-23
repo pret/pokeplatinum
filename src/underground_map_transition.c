@@ -271,7 +271,7 @@ static void UndergroundMapTransition_EnterArriveTask(SysTask *sysTask, void *dat
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, FALSE);
         UndergroundMapTransition_InitAnim(ctx, &ctx->animManagers[UndergroundMapTransition_Template_Player], UG_MAP_TRANSITION_ANIM_DESCEND);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
-        Sound_PlayEffect(SEQ_SE_DP_PYUU);
+        Sound_PlayEffect(SEQ_SE_DP_PYUU_sseq);
         ctx->activeAnimCount = 1;
         ctx->state++;
         break;
@@ -279,7 +279,7 @@ static void UndergroundMapTransition_EnterArriveTask(SysTask *sysTask, void *dat
         int animateResult = ctx->animManagers[UndergroundMapTransition_Template_Player].animateFunc(&ctx->animManagers[UndergroundMapTransition_Template_Player]);
 
         if (animateResult == ANIMATE_RESULT_DONE && IsScreenFadeDone()) {
-            Sound_PlayEffect(SEQ_SE_DP_SUTYA);
+            Sound_PlayEffect(SEQ_SE_PL_SUTYA2_sseq_2);
             ctx->state++;
             ctx->timer = -255;
         }
@@ -318,7 +318,7 @@ static void UndergroundMapTransition_ExitStartTask(SysTask *sysTask, void *data)
         break;
     case EXIT_START_STATE_INIT_ANIM:
         UndergroundMapTransition_InitAnim(ctx, &ctx->animManagers[UndergroundMapTransition_Template_Player], UG_MAP_TRANSITION_ANIM_ASCEND);
-        Sound_PlayEffect(SEQ_SE_DP_PYUU2);
+        Sound_PlayEffect(SEQ_SE_DP_PYUU2_sseq);
         ctx->activeAnimCount = 1;
         ctx->state++;
         break;
@@ -384,7 +384,7 @@ static void UndergroundMapTransition_ExitArriveTask(SysTask *sysTask, void *data
         break;
     case EXIT_ARRIVE_STATE_WAIT_FOR_FADE:
         if (IsScreenFadeDone()) {
-            Sound_PlayEffect(SEQ_SE_DP_GYURU);
+            Sound_PlayEffect(SEQ_SE_DP_GYURU_sseq);
             ctx->state++;
         }
         break;

@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_system.h"
@@ -15,6 +13,7 @@
 #include "sys_task_manager.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 
 static void SetupSprites(CounterGraphics *graphics, const CounterData *counterData);
 static void UnloadSprites(CounterGraphics *graphics);
@@ -180,7 +179,7 @@ static void Task_UpdateButtonSprite(SysTask *task, void *taskMan)
 
     switch (graphics->counterData->buttonPosition) {
     case COUNTER_BUTTON_PRESSED:
-        PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010);
+        PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010_sseq);
         PoketchAnimation_UpdateAnimationIdx(graphics->buttonAnimation, 1);
         break;
     case COUNTER_BUTTON_UNPRESSED:

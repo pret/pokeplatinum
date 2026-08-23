@@ -209,7 +209,7 @@ void PersistedMapFeatures_InitForPlatformLift(FieldSystem *fieldSystem)
     data->notUsedWhenEnteredMap = TRUE;
     data->kind = PLATFORM_LIFT_KIND_IRON_ISLAND;
 
-    switch (fieldSystem->location->mapId) {
+    switch (fieldSystem->location->mapHeaderID) {
     case MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM:
         if (fieldSystem->location->z == IRON_ISLAND_B1F_RIGHT_ROOM_BOTTOM_FLOOR_WARP_Z) {
             data->floorID = PLATFORM_LIFT_BOTTOM_FLOOR;
@@ -406,7 +406,7 @@ static BOOL FieldTask_PlatformLiftGoUp(FieldTask *taskMan)
     case PLATFORM_LIFT_STATE_FINISH_MOVING:
         DynamicTerrainHeightManager_SetHeight(PLATFORM_LIFT_DYNAMIC_HEIGHT_PLATE_ID, taskEnv->targetHeight, fieldSystem->dynamicTerrainHeightMan);
         PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN_sseq);
 
         taskEnv->state++;
         break;
@@ -468,7 +468,7 @@ static BOOL FieldTask_PlatformLiftGoDown(FieldTask *taskMan)
     case PLATFORM_LIFT_STATE_FINISH_MOVING:
         DynamicTerrainHeightManager_SetHeight(PLATFORM_LIFT_DYNAMIC_HEIGHT_PLATE_ID, taskEnv->targetHeight, fieldSystem->dynamicTerrainHeightMan);
         PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN_sseq);
 
         taskEnv->state++;
         break;
@@ -484,17 +484,17 @@ static BOOL FieldTask_PlatformLiftGoDown(FieldTask *taskMan)
 static void PlatformLift_PlaySoundEffect(const int platformLiftKind)
 {
     if (platformLiftKind == PLATFORM_LIFT_KIND_IRON_ISLAND) {
-        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA_sseq);
     } else {
-        Sound_PlayEffect(SEQ_SE_DP_ELEBETA4);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA4_sseq);
     }
 }
 
 static void PlatformLift_StopSoundEffect(const int platformLiftKind)
 {
     if (platformLiftKind == PLATFORM_LIFT_KIND_IRON_ISLAND) {
-        Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+        Sound_StopEffect(SEQ_SE_DP_ELEBETA_sseq, 0);
     } else {
-        Sound_StopEffect(SEQ_SE_DP_ELEBETA4, 0);
+        Sound_StopEffect(SEQ_SE_DP_ELEBETA4_sseq, 0);
     }
 }

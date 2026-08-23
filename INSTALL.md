@@ -117,7 +117,7 @@ install to a more recent version of `Ubuntu`:
 registry:
 
     ```bash
-    sudo apt install bison flex g++ gcc-arm-none-eabi git lib32z1 make ninja-build pkg-config python3 p7zip
+    sudo apt install bison flex g++ gcc-arm-none-eabi git lib32z1 make ninja-build pkg-config python3 p7zip libpng-dev
     ```
 
 2. [Download the repository](#2-downloading-the-repository).
@@ -146,7 +146,7 @@ the following commands to install necessary build dependencies:
     ```bash
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
-    pacman -S bison flex gcc git make ninja python mingw-w64-x86_64-arm-none-eabi-gcc p7zip
+    pacman -S bison flex gcc git make ninja python mingw-w64-ucrt-x86_64-arm-none-eabi-gcc p7zip mingw-w64-x86_64-libpng
     ```
 
     Press 'Y' when prompted to confirm the installation.
@@ -227,7 +227,7 @@ the repository](#2-downloading-the-repository).
 2. Install the following packages via `apt`:
 
     ```bash
-    sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386
+    sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386 libpng-dev
     ```
 
 #### Arch Linux (and derivatives, e.g., Manjaro, Endeavour)
@@ -237,13 +237,13 @@ the repository](#2-downloading-the-repository).
 2. Install dependencies via `pacman`:
 
     ```bash
-    sudo pacman -S arm-none-eabi-gcc bison flex gcc git make ninja python wget xz lib32-glibc
+    sudo pacman -S arm-none-eabi-gcc bison flex gcc git make ninja python wget xz lib32-glibc libpng
     ```
 
 #### Fedora (and derivatives, e.g., AlmaLinux, Red Hat Enterprise Linux)
 
 ```bash
-sudo dnf install arm-none-eabi-gcc-cs bison flex gcc-c++ git make ninja-build python3 wget2 xz glibc32
+sudo dnf install arm-none-eabi-gcc-cs bison flex gcc-c++ git make ninja-build python3 wget2 xz glibc32 libpng
 ```
 
 ## 2. Downloading the Repository

@@ -14,8 +14,8 @@
     ScriptEntry BattleTower_Teala
     ScriptEntry BattleTower_OnFrame_QuitBattleSalon
     ScriptEntry BattleTower_Dummy9
-    ScriptEntry BattleTower_ResultsMachine0_Unused
-    ScriptEntry BattleTower_ResultsMachine1_Unused
+    ScriptEntry BattleTower_MachineSoloResults
+    ScriptEntry BattleTower_MachineMultiResults
     ScriptEntry BattleTower_MachineWiFiResults
     ScriptEntry BattleTower_MachineWiFiLeaders
     ScriptEntry BattleTower_ParasolLady
@@ -112,7 +112,7 @@ BattleTower_SetVarsResumeChallenge:
     Return
 
 BattleTower_Teala:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x01, 0
@@ -175,7 +175,7 @@ BattleTower_GiveTrophy:
 
 BattleTower_SingleAttendant:
     LockAll
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     SetBattleTowerNull
     Message BattleTower_Text_WelcomeToSingleDoubleBattleRooms
     GoTo BattleTower_AskTakeChallenge
@@ -437,8 +437,8 @@ BattleTower_TrySaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlaySE SEQ_SE_DP_SAVE
-    WaitSE SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE_sseq
+    WaitSE SEQ_SE_DP_SAVE_sseq
     Return
 
 BattleTower_WarpToElevator:
@@ -490,7 +490,7 @@ BattleTower_ResetBattleTowerVars:
 
 BattleTower_WiFiAttendant:
     LockAll
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     SetBattleTowerNull
     CallBattleTowerFunction BT_FUNC_UNK_12, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, BattleTower_AskSendPreviousResults
@@ -657,7 +657,7 @@ BattleTower_PlayerFaceEast:
 
 BattleTower_MultiAttendant:
     LockAll
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     SetBattleTowerNull
     Message BattleTower_Text_WelcomeToMultiBattleRooms
     GoTo BattleTower_AskTakeMultiChallenge
@@ -907,7 +907,7 @@ BattleTower_SaveAndEnd:
 
 BattleTower_RibbonsFor50WinStreak:
     Message BattleTower_Text_WonRibbonsFor50WinStreak
-    PlayFanfare SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1_sseq
     WaitFanfare
     Return
 
@@ -926,7 +926,7 @@ _0F7E:
 _0FD6:
     Message BattleTower_Text_BeatenAllSevenTrainers
     Message BattleTower_Text_WonRibbonsFor50WinStreak
-    PlayFanfare SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1_sseq
     WaitFanfare
     GoTo BattleTower_SaveGameClearCommunication
     End
@@ -956,7 +956,7 @@ _102B:
 _1048:
     BufferNumber 0, VAR_MAP_LOCAL_0x00
     Message BattleTower_Text_RibbonsForAchievingRank
-    PlayFanfare SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1_sseq
     WaitFanfare
     GoTo _11F5
     End
@@ -970,7 +970,7 @@ _105E:
 _107B:
     BufferNumber 0, VAR_MAP_LOCAL_0x00
     Message BattleTower_Text_AwardRibbonToParticipatingPokemon
-    PlayFanfare SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1_sseq
     WaitFanfare
     GoTo _11F5
     End
@@ -1005,7 +1005,7 @@ _10F5:
     CallBattleTowerFunction BT_FUNC_UNK_48, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _10BC
     Message BattleTower_Text_RibbonsForDefeatingTycoon
-    PlayFanfare SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1_sseq
     WaitFanfare
     GoTo _10BC
     End
@@ -1014,7 +1014,7 @@ _1135:
     Message BattleTower_Text_CommemorativePrint
     BufferPlayerName 0
     Message BattleTower_Text_SilverPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 2
     Return
@@ -1023,7 +1023,7 @@ _114C:
     Message BattleTower_Text_CommemorativePrint
     BufferPlayerName 0
     Message BattleTower_Text_GoldPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained
@@ -1117,37 +1117,37 @@ BattleTower_Movement_PlayerFaceEast:
     FaceEast
     EndMovement
 
-BattleTower_ResultsMachine0_Unused:
-    PlaySE SEQ_SE_CONFIRM
+BattleTower_MachineSoloResults: // Unused, leftover from DP
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
-    SetVar VAR_0x8000, 0
-    SetVar VAR_0x8001, 0
+    SetVar VAR_0x8000, FALSE
+    SetVar VAR_0x8001, TOWER_RECORDS_RESULTS_SOLO
     Call BattleTower_ResultsMachine
     End
 
-BattleTower_ResultsMachine1_Unused:
-    PlaySE SEQ_SE_CONFIRM
+BattleTower_MachineMultiResults: // Unused, leftover from DP
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
-    SetVar VAR_0x8000, 0
-    SetVar VAR_0x8001, 1
+    SetVar VAR_0x8000, FALSE
+    SetVar VAR_0x8001, TOWER_RECORDS_RESULTS_MULTI
     Call BattleTower_ResultsMachine
     End
 
 BattleTower_MachineWiFiResults:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
-    SetVar VAR_0x8000, 0
-    SetVar VAR_0x8001, 2
+    SetVar VAR_0x8000, FALSE
+    SetVar VAR_0x8001, TOWER_RECORDS_RESULTS_WIFI
     Call BattleTower_ResultsMachine
     End
 
 BattleTower_MachineWiFiLeaders:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     ScrCmd_1E4 VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleTower_NoDataYet
-    SetVar VAR_0x8000, 1
-    SetVar VAR_0x8001, 0
+    SetVar VAR_0x8000, TRUE
+    SetVar VAR_0x8001, TOWER_RECORDS_RESULTS_SOLO
     Call BattleTower_ResultsMachine
     End
 
@@ -1161,7 +1161,7 @@ BattleTower_NoDataYet:
 BattleTower_ResultsMachine:
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_1D9 VAR_0x8000, VAR_0x8001
+    OpenBattleTowerRecordsApp VAR_0x8000, VAR_0x8001
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -1210,7 +1210,7 @@ BattleTower_GriseousOrbCouldNotBeRemoved:
     End
 
 BattleTower_StatsJudge:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CallIfUnset FLAG_TALKED_TO_STATS_JUDGE, BattleTower_JudgeExplanation

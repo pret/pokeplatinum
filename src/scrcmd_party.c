@@ -28,7 +28,7 @@
 
 BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
 {
-    int metLocation = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapId);
+    int metLocation = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapHeaderID);
     int metTerrain = TERRAIN_MAX;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 species = ScriptContext_GetVar(ctx);
@@ -280,7 +280,7 @@ BOOL ScrCmd_IncreasePartyMonFriendship(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 value = ScriptContext_GetVar(ctx);
     u16 slot = ScriptContext_GetVar(ctx);
-    u32 location = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapId);
+    u32 location = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapHeaderID);
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
     u16 friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);

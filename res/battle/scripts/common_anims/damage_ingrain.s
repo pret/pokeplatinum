@@ -9,13 +9,13 @@ L_0:
     LoadPlttRes 0, 25, 1
     LoadCellResObj 0, 26
     LoadAnimResObj 0, 26
-    AddSpriteWithFunc 0, 23, 26, 25, 26, 26, 0, 0, 4
-    PlayDelayedSoundEffect SEQ_SE_DP_W010, BATTLE_SOUND_PAN_LEFT, 10
-    PlayDelayedSoundEffect SEQ_SE_DP_W010, BATTLE_SOUND_PAN_LEFT, 28
-    PlayDelayedSoundEffect SEQ_SE_DP_W010, BATTLE_SOUND_PAN_LEFT, 98
-    PlayDelayedSoundEffect SEQ_SE_DP_W010, BATTLE_SOUND_PAN_LEFT, 108
+    AddSpriteWithFunc 0, SPRITE_FUNC_INGRAIN, 26, 25, 26, 26, 0, 0, 4
+    PlayDelayedSoundEffect SEQ_SE_DP_W010_sseq, BATTLE_SOUND_PAN_LEFT, 10
+    PlayDelayedSoundEffect SEQ_SE_DP_W010_sseq, BATTLE_SOUND_PAN_LEFT, 28
+    PlayDelayedSoundEffect SEQ_SE_DP_W010_sseq, BATTLE_SOUND_PAN_LEFT, 98
+    PlayDelayedSoundEffect SEQ_SE_DP_W010_sseq, BATTLE_SOUND_PAN_LEFT, 108
     Delay 35
-    PlayLoopedSoundEffect SEQ_SE_DP_W145C, BATTLE_SOUND_PAN_LEFT, 2, 12
+    PlayLoopedSoundEffect SEQ_SE_DP_W145C_sseq, BATTLE_SOUND_PAN_LEFT, 2, 12
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     WaitForAnimTasks
     FreeSpriteManager 0

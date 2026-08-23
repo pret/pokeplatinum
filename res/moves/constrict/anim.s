@@ -6,14 +6,14 @@ L_0:
     LoadPlttRes 0, constrict_NCLR, 1
     LoadCellResObj 0, constrict_cell_NCER_lz
     LoadAnimResObj 0, constrict_anim_NANR_lz
-    AddSpriteWithFunc 0, 5, constrict_NCGR_lz, constrict_NCLR, constrict_cell_NCER_lz, constrict_anim_NANR_lz, 0, 0
+    AddSpriteWithFunc 0, SPRITE_FUNC_CONSTRICT, constrict_NCGR_lz, constrict_NCLR, constrict_cell_NCER_lz, constrict_anim_NANR_lz, 0, 0
     BeginLoop 5
     Delay 2
-    PlaySoundEffectR SEQ_SE_DP_W020
+    PlaySoundEffectR SEQ_SE_DP_W020_sseq
     EndLoop
     BeginLoop 2
     Delay 6
-    PlaySoundEffectR SEQ_SE_DP_W030
+    PlaySoundEffectR SEQ_SE_DP_W030_sseq
     EndLoop
     WaitForAnimTasks
     FreeSpriteManager 0

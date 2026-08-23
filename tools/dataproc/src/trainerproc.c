@@ -15,6 +15,7 @@
 #include "constants/pokemon.h"
 #include "generated/trainers.h"
 #include "generated/trainer_classes.h"
+#include "generated/vars_flags.h"
 
 #include "struct_defs/trainer_data.h"
 
@@ -98,6 +99,13 @@ int main(int argc, char *argv[]) {
         .headers     = headers,
         .textbanks   = textbanks,
     );
+
+    size_t trainer_flags_count = TRAINER_DEFEATED_FLAGS_END - TRAINER_DEFEATED_FLAGS_START + 1;
+
+    if (trainers.size > trainer_flags_count) {
+        fprintf(stderr, "fatal: more trainers defined (%zu) than there are trainer flags (%zu)\n", trainers.size, trainer_flags_count);
+        return EXIT_FAILURE;
+    }
 
     // The primary processing loop here handles all trainer headers and parties, and also
     // emits the name of each trainer to a text-bank. It does not actually emit any of the

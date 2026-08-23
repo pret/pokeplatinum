@@ -26,7 +26,7 @@ Route208_TrainerTipsSignpost:
     End
 
 Route208_BlackBelt:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_208_ODD_KEYSTONE, Route208_GoToRoute209

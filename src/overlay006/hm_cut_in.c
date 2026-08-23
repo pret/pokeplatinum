@@ -1464,7 +1464,7 @@ static BOOL HMCutIn_PlaySwooshSound(HMCutIn *cutIn)
         return FALSE;
     }
 
-    Sound_PlayEffect(SEQ_SE_DP_FW019);
+    Sound_PlayEffect(SEQ_SE_DP_FW019_sseq);
 
     cutIn->windowDelta = FX32_CONST(0.5);
     cutIn->windParticlesAnimState = 2;
@@ -1756,13 +1756,13 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
 
     // Palette Index 0: White Clouds
     for (i = 0; i < 1; i++) {
-        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, sCutInWindParticlePalette[i].memberIdx, FALSE, sCutInWindParticlePalette[i].resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD1);
+        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, sCutInWindParticlePalette[i].memberIdx, FALSE, sCutInWindParticlePalette[i].resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD1);
     }
 
     // Palette Index 1: Player Female
     if (cutIn->playerGender == 0) {
     } else {
-        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 4, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD1);
+        cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 4, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD1);
         i++;
     }
 
@@ -1977,7 +1977,7 @@ static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData *
 
     NNS_G2dGetUnpackedPaletteData(nclrFile, paletteData);
 
-    Bg_LoadPalette(BG_LAYER_MAIN_3, (*paletteData)->pRawData, 32 * 1, 32 * 12);
+    Bg_LoadPalette(BG_LAYER_MAIN_3, (*paletteData)->pRawData, PALETTE_SIZE_BYTES, 32 * 12);
     Heap_Free(nclrFile);
 }
 

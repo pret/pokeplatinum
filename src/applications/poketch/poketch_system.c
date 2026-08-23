@@ -619,7 +619,7 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
 
     if (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_SCREEN) {
         if (PoketechSystem_IsRunningTask(poketchSys) && touchEvent == BUTTON_TOUCH_PRESSED) {
-            Sound_PlayEffect(SEQ_SE_DP_BEEP);
+            Sound_PlayEffect(SEQ_SE_DP_BEEP_sseq);
         }
     } else {
         u32 taskId = POKETCH_EMPTY_TASK;

@@ -1225,7 +1225,7 @@ static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state)
             break;
         case NMS_STATE_WAIT_BATTLE_MESSAGE:
             if (Text_IsPrinterActive(namingScreen->battleMessagePrinter) == 0) {
-                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO_sseq);
                 namingScreen->spritesToUpdate[NMS_SPRITE_OK_BUTTON]++;
                 namingScreen->delayUpdateCounter = 0;
                 namingScreen->state.main = NMS_STATE_START_FADE_OUT;
@@ -1298,7 +1298,7 @@ static enum NamingScreenAppState NamingScreen_ProcessInputs(
             namingScreen->spritesToUpdate[namingScreen->currentCharsIdx]++;
 
             NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, namingScreen->currentCharsIdx);
-            Sound_PlayEffect(SEQ_SE_DP_SYU03);
+            Sound_PlayEffect(SEQ_SE_DP_SYU03_sseq);
 
             namingScreen->keyboardCursor.hasCharacterBeenEntered = TRUE;
         }
@@ -1306,7 +1306,7 @@ static enum NamingScreenAppState NamingScreen_ProcessInputs(
         namingScreen->spritesToUpdate[namingScreen->currentCharsIdx]++;
 
         NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, namingScreen->currentCharsIdx);
-        Sound_PlayEffect(SEQ_SE_DP_SYU03);
+        Sound_PlayEffect(SEQ_SE_DP_SYU03_sseq);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         appState = NamingScreen_ProcessCharacterInput(
             namingScreen,
@@ -1841,7 +1841,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         32 * 14 * 2,
         TRUE,
         HEAP_ID_NAMING_SCREEN_APP);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, 12 * 32, HEAP_ID_NAMING_SCREEN_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_NAMING_SCREEN_APP);
     LoadMessageBoxGraphics(
         namingScreen->bgConfig,
         BG_LAYER_SUB_0,
@@ -1849,7 +1849,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         10,
         Options_Frame(namingScreen->options),
         HEAP_ID_NAMING_SCREEN_APP);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, 12 * 32, HEAP_ID_NAMING_SCREEN_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(12), HEAP_ID_NAMING_SCREEN_APP);
 
     namingScreen->charDataAlloc = Graphics_GetCharDataFromOpenNARC(
         narc,
@@ -2260,7 +2260,7 @@ static void NamingScreen_AnimateChangeChars(
             (*statePtr)++;
             (*bgLayerPtr) ^= 1;
             NamingScreen_UpdateCharsPriorities(bgConfig, *bgLayerPtr, charsPosition);
-            Sound_PlayEffect(SEQ_SE_DP_NAMEIN_01);
+            Sound_PlayEffect(SEQ_SE_DP_NAMEIN_01_sseq);
         }
         break;
     case CC_STATE_NOTHING:
@@ -2270,7 +2270,7 @@ static void NamingScreen_AnimateChangeChars(
 
 static void NamingScreen_PrintMessageOnWindowLeftAlign(Window *window, int unused, String *str)
 {
-    Window_DrawMessageBoxWithScrollCursor(window, FALSE, 32 * 8, PLTT_10);
+    Window_DrawMessageBoxWithScrollCursor(window, FALSE, 32 * 8, 10);
     Text_AddPrinterWithParams(window, FONT_MESSAGE, str, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Window_CopyToVRAM(window);
 }
@@ -2307,7 +2307,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         1,
         26,
         12,
-        PLTT_1,
+        1,
         32 * 8);
     Window_Add(
         namingScreen->bgConfig,
@@ -2317,7 +2317,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         1,
         26,
         12,
-        PLTT_1,
+        1,
         (32 * 8) + (26 * 12));
 
     if (namingScreen->type == NAMING_SCREEN_TYPE_UNK4) {
@@ -2357,7 +2357,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         2,
         22,
         2,
-        PLTT_0,
+        0,
         ((32 * 8) + (26 * 12)) + (26 * 12));
 
     int width = ((namingScreen->maxChars * 12) / 8) + 1;
@@ -2370,7 +2370,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         3,
         width,
         2,
-        PLTT_0,
+        0,
         (((32 * 8) + (26 * 12)) + (26 * 12)) + 44);
     Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_ENTERED_TEXT], 0x01);
     Window_Add(
@@ -2381,7 +2381,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         3,
         7,
         2,
-        PLTT_0,
+        0,
         ((((32 * 8) + (26 * 12)) + (26 * 12)) + 44) + 36);
     Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_GROUP_TEXT], 0x01);
 
@@ -2401,7 +2401,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         19,
         27,
         4,
-        PLTT_12,
+        12,
         120 + (2 * 2 * 3));
     Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_PROMPT], 15);
     NamingScreen_PrintMessageOnWindowLeftAlign(
@@ -2433,7 +2433,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
             0,
             2,
             2,
-            PLTT_0,
+            0,
             120);
         Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_UNK_0 + i], 0);
     }
@@ -2446,7 +2446,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
         0,
         16,
         2,
-        PLTT_0,
+        0,
         120 + (2 * 2 * 3));
     Window_FillTilemap(&namingScreen->windows[NMS_WINDOW_UNK_3], 0);
 }
@@ -2536,28 +2536,28 @@ static void NamingScreen_ProcessDirectionInputs(NamingScreen *namingScreen)
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_UP;
         didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_DOWN;
         didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_LEFT;
         didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_RIGHT;
         didInput++;
@@ -2565,7 +2565,7 @@ static void NamingScreen_ProcessDirectionInputs(NamingScreen *namingScreen)
 
     // start counts as a direction input, because it moves the cursor.
     if (gSystem.pressedKeys & PAD_BUTTON_START) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         namingScreen->keyboardCursor.x = 12;
         namingScreen->keyboardCursor.y = 0;
@@ -2875,7 +2875,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
                 TEXT_SPEED_INSTANT,
                 TEXT_COLOR(14, 15, 1),
                 NULL);
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
         }
         break;
     case NMS_CONTROL_HANDAKU:
@@ -2896,7 +2896,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
                 TEXT_SPEED_INSTANT,
                 TEXT_COLOR(14, 15, 1),
                 NULL);
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
         }
         break;
     case NMS_BUTTON_PAGE_JP_UNUSED_2:
@@ -2916,7 +2916,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
                 TEXT_COLOR(14, 15, 1),
                 NULL);
             namingScreen->spritesToUpdate[NMS_SPRITE_JP_UNUSED_2_BUTTON]++;
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
         }
         break;
     case NMS_BUTTON_PAGE_UPPER:
@@ -2928,7 +2928,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
             namingScreen->currentCharsIdx = charCode - NMS_BUTTON_PAGE_UPPER;
             NamingScreen_LoadKeyboardLayout(namingScreen->keyboardChars, namingScreen->currentCharsIdx);
             namingScreen->spritesToUpdate[charCode - NMS_BUTTON_PAGE_UPPER]++;
-            Sound_PlayEffect(SEQ_SE_DP_SYU03);
+            Sound_PlayEffect(SEQ_SE_DP_SYU03_sseq);
             Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], isButtonInput);
         }
         break;
@@ -2967,7 +2967,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
 
             namingScreen->spritesToUpdate[NMS_SPRITE_BACK_BUTTON]++;
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], isButtonInput);
         }
         break;
@@ -2976,7 +2976,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], isButtonInput);
 
         if (!namingScreen->printedFromBattleGMM) {
-            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO_sseq);
             namingScreen->spritesToUpdate[NMS_SPRITE_OK_BUTTON]++;
             StartScreenFade(
                 FADE_SUB_THEN_MAIN,
@@ -3016,7 +3016,7 @@ static int NamingScreen_ProcessCharacterInput(NamingScreen *namingScreen, charco
                 namingScreen->textCursorSprites,
                 namingScreen->textCursorPos,
                 namingScreen->maxChars);
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
             Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
             Sprite_SetExplicitOAMMode(namingScreen->uiSprites[NMS_SPRITE_CURSOR], GX_OAM_MODE_XLU);
 

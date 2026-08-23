@@ -1281,30 +1281,30 @@ void ov17_0224B20C(UnkStruct_ov17_0224DF54 *param0, const UnkStruct_ov17_0224EDE
     }
 
     if (param1->unk_08_0 == 1) {
-        Sound_PlayEffect(SEQ_SE_DP_CON_028);
+        Sound_PlayEffect(SEQ_SE_DP_CON_028_sseq);
     } else {
-        Sound_PlayEffect(SEQ_SE_DP_CON_027_3);
+        Sound_PlayEffect(SEQ_SE_DP_CON_027_3_sseq);
     }
 
     if ((param0->unk_14.unk_A2C == 0) || ((param0->unk_14.unk_A2C > 0) && ((param1->unk_07 == 0) || (param1->unk_02 == param0->unk_00->unk_00.playerContestantID)))) {
         switch (param1->unk_04) {
         case 0:
             if (param0->unk_14.unk_A1D[param1->unk_02] == param0->unk_A3C.unk_2E) {
-                Sound_PlayEffect(SEQ_SE_DP_CON_023);
+                Sound_PlayEffect(SEQ_SE_DP_CON_023_sseq);
             } else if (param0->unk_14.unk_A1D[param1->unk_02] == param0->unk_A3C.unk_2E - 1) {
-                Sound_PlayEffect(SEQ_SE_DP_CON_022);
+                Sound_PlayEffect(SEQ_SE_DP_CON_022_sseq);
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_CON_021);
+                Sound_PlayEffect(SEQ_SE_DP_CON_021_sseq);
             }
             break;
         case 1:
-            Sound_PlayEffect(SEQ_SE_DP_CON_024);
+            Sound_PlayEffect(SEQ_SE_DP_CON_024_sseq);
             break;
         case 2:
             if (param1->unk_08_1 == 1) {
-                Sound_PlayEffect(SEQ_SE_DP_CON_026);
+                Sound_PlayEffect(SEQ_SE_DP_CON_026_sseq);
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_CARD10);
+                Sound_PlayEffect(SEQ_SE_DP_CARD10_sseq);
             }
             break;
         }
@@ -2326,7 +2326,7 @@ void ov17_0224C9F0(UnkStruct_ov17_0224DF54 *param0, int param1)
     v0->unk_0B = 1;
     v0->unk_08 = (10 << 8);
 
-    Sound_PlayEffect(SEQ_SE_DP_CON_031);
+    Sound_PlayEffect(SEQ_SE_DP_CON_031_sseq);
 }
 
 static void ov17_0224CA28(SysTask *param0, void *param1)
@@ -2420,7 +2420,7 @@ static void ov17_0224CB80(UnkStruct_ov17_0224DF54 *param0, int param1)
     G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 16);
 
     SysTask_Start(ov17_0224CD60, param0, 1000);
-    Sound_PlayEffect(SEQ_SE_DP_CON_007);
+    Sound_PlayEffect(SEQ_SE_DP_CON_007_sseq);
 }
 
 static void ov17_0224CD60(SysTask *param0, void *param1)
@@ -2466,7 +2466,7 @@ void ov17_0224CDC0(UnkStruct_ov17_0224DF54 *param0, int param1, int param2)
         }
     }
 
-    Sound_PlayEffect(SEQ_SE_DP_CON_019);
+    Sound_PlayEffect(SEQ_SE_DP_CON_019_sseq);
 }
 
 void ov17_0224CE08(UnkStruct_ov17_0224DF54 *param0)

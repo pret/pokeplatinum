@@ -9,8 +9,8 @@
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/battle_hall.h"
 #include "overlay104/battle_hall_helpers.h"
-#include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0222ECE8.h"
+#include "overlay104/frontier_communication.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
@@ -128,7 +128,7 @@ void BattleHall_SetupNextOpponent(BattleHall *battleHall, u16 unused)
 
 static void SetupNextOpponent(BattleHall *battleHall)
 {
-    u8 battleType = HALL_NEXT_BATTLE_NORMAL;
+    u8 battleType = FRONTIER_NEXT_BATTLE_NORMAL;
 
     u8 numOppTrainers = 1;
     if (battleHall->challengeType != FRONTIER_CHALLENGE_SINGLE) {
@@ -148,11 +148,11 @@ static void SetupNextOpponent(BattleHall *battleHall)
     }
 
     if (battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_SILVER) {
-        battleType = HALL_NEXT_BATTLE_SILVER;
+        battleType = FRONTIER_NEXT_BATTLE_SILVER;
     }
 
     if (battleHall->trainerIDs[offset] == FRONTIER_TRAINER_HALL_MATRON_ARGENTA_GOLD) {
-        battleType = HALL_NEXT_BATTLE_GOLD;
+        battleType = FRONTIER_NEXT_BATTLE_GOLD;
     }
 
     Pokemon *playersMon = Party_GetPokemonBySlotIndex(battleHall->party, 0);
@@ -285,12 +285,12 @@ u16 BattleHall_GetCurrentBattle(BattleHall *battleHall)
 
 u16 BattleHall_GetNextOpponentObjectID(BattleHall *battleHall, u8 trainerSlot)
 {
-    FrontierTrainerDataDTO trainer;
+    FrontierTrainer trainer;
     u8 offset = (battleHall->currentBattle * 2) + trainerSlot;
 
-    Heap_Free(BattleFrontier_GetTrainerData(&trainer, battleHall->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleFrontier_GetTrainer(&trainer, battleHall->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return BattleTower_GetObjectIDFromTrainerClass(trainer.trainerType);
+    return BattleFrontier_GetObjectIDFromTrainerClass(trainer.trainerType);
 }
 
 void BattleHall_SaveOnLoss(BattleHall *battleHall)
@@ -317,19 +317,19 @@ BOOL BattleHall_SendCommMessage(BattleHall *battleHall, u16 command, u16 arg)
 
     switch (command) {
     case 0:
-        success = ov104_0222ED00(battleHall);
+        success = FrontierCommunication_Unreachable2(battleHall);
         break;
     case 1:
-        success = ov104_0222ED44(battleHall);
+        success = HallCommunication_SendTrainers(battleHall);
         break;
     case 2:
-        success = ov104_0222EDA8(battleHall);
+        success = HallCommunication_SendOpponentMons(battleHall);
         break;
     case 3:
         success = ov104_0222EE14(battleHall, arg);
         break;
     case 7:
-        success = ov104_0222EE60(battleHall);
+        success = HallCommunication_SendPlayersPokemon(battleHall);
         break;
     }
 

@@ -12,6 +12,7 @@
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 #include "generated/object_events_gfx.h"
+#include "generated/trainers.h"
 
 #include "struct_decls/map_object.h"
 #include "struct_decls/map_object_manager.h"
@@ -46,6 +47,7 @@
 #include "overworld_anim_manager.h"
 #include "persisted_map_features.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata_misc.h"
@@ -60,7 +62,6 @@
 #include "trainer_encounter.h"
 #include "trainer_info.h"
 #include "trainer_types.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 
@@ -79,7 +80,10 @@
 #define ETERNA_GYM_FOUNTAIN_Z       19
 #define ETERNA_GYM_WIDTH            21
 
-#define ETERNA_CLOCK_NO_HOUR_HAND_JUMP { -1, -1, 2 }
+#define ETERNA_CLOCK_NO_HOUR_HAND_JUMP \
+    {                                  \
+        -1, -1, 2                      \
+    }
 
 // 0x1559 is close to, but not the closest integer to 1/12 of 0x10000. It is
 // used for the hour-positions of the clock hand expect for 3, 6, 9 and 12
@@ -331,7 +335,7 @@ typedef struct VeilstoneGym_BagAnimation {
 typedef int (*VeilstoneGymAnimationStateFunc)(VeilstoneGym_BagAnimation *);
 
 typedef struct HearthomeGymTrainerRoomLayout {
-    int mapID;
+    enum MapHeaderID mapHeaderID;
     int firstDoorID;
     int numExitDoors;
     int offsetX;
@@ -513,7 +517,7 @@ static BOOL PastoriaGym_PressOrangeButton(FieldTask *taskMan)
     } break;
     case 2:
         DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, PASTORIA_WATER_HEIGHT_LOW, fieldSystem->dynamicTerrainHeightMan);
-        Sound_StopEffect(SEQ_SE_DP_FW056, 0);
+        Sound_StopEffect(SEQ_SE_DP_FW056_sseq, 0);
         (*state)++;
         break;
     case 3:
@@ -587,7 +591,7 @@ static BOOL PastoriaGym_PressGreenButton(FieldTask *taskMan)
     } break;
     case 4:
         DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, PASTORIA_WATER_HEIGHT_MIDDLE, fieldSystem->dynamicTerrainHeightMan);
-        Sound_StopEffect(SEQ_SE_DP_FW056, 0);
+        Sound_StopEffect(SEQ_SE_DP_FW056_sseq, 0);
         (*state)++;
         break;
     case 5:
@@ -630,7 +634,7 @@ static BOOL PastoriaGym_PressBlueButton(FieldTask *taskMan)
     } break;
     case 2:
         DynamicTerrainHeightManager_SetHeight(PASTORIA_WATER_PLATE_INDEX, PASTORIA_WATER_HEIGHT_HIGH, fieldSystem->dynamicTerrainHeightMan);
-        Sound_StopEffect(SEQ_SE_DP_FW056, 0);
+        Sound_StopEffect(SEQ_SE_DP_FW056_sseq, 0);
         (*state)++;
         break;
     case 3:
@@ -761,7 +765,7 @@ static void PastoriaGym_UpdateButtonAnimations(const u8 pressedButton, MapPropAn
     MapPropAnimation_SetAnimationPaused(mapPropAnimation, FALSE);
     MapPropAnimation_StartLoop(mapPropAnimation);
 
-    Sound_PlayEffect(SEQ_SE_DP_FW056);
+    Sound_PlayEffect(SEQ_SE_DP_FW056_sseq);
 }
 
 void GymDummy(void)
@@ -797,7 +801,7 @@ static BOOL HearthomeGymDP_RaiseLift(FieldTask *taskMan)
     switch (*state) {
     case 0:
         PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
-        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA_sseq);
         (*state)++;
         break;
     case 1: {
@@ -810,7 +814,7 @@ static BOOL HearthomeGymDP_RaiseLift(FieldTask *taskMan)
         if (liftPosition.y >= HEARTHOME_DP_LIFT_HEIGHT_UP) {
             liftPosition.y = HEARTHOME_DP_LIFT_HEIGHT_UP;
 
-            Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+            Sound_StopEffect(SEQ_SE_DP_ELEBETA_sseq, 0);
             (*state)++;
         }
 
@@ -820,7 +824,7 @@ static BOOL HearthomeGymDP_RaiseLift(FieldTask *taskMan)
     case 2:
         DynamicTerrainHeightManager_SetHeight(HEARTHOME_DP_LIFT_PLATE_INDEX, HEARTHOME_DP_LIFT_HEIGHT_UP, fieldSystem->dynamicTerrainHeightMan);
         PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN_sseq);
         (*state)++;
         break;
     case 3:
@@ -839,7 +843,7 @@ static BOOL HearthomeGymDP_LowerLift(FieldTask *taskMan)
     switch (*state) {
     case 0:
         PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
-        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA_sseq);
         (*state)++;
         break;
     case 1: {
@@ -851,7 +855,7 @@ static BOOL HearthomeGymDP_LowerLift(FieldTask *taskMan)
 
         if (liftPosition.y <= HEARTHOME_DP_LIFT_HEIGHT_DOWN) {
             liftPosition.y = HEARTHOME_DP_LIFT_HEIGHT_DOWN;
-            Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+            Sound_StopEffect(SEQ_SE_DP_ELEBETA_sseq, 0);
             (*state)++;
         }
 
@@ -861,7 +865,7 @@ static BOOL HearthomeGymDP_LowerLift(FieldTask *taskMan)
     case 2:
         DynamicTerrainHeightManager_SetHeight(HEARTHOME_DP_LIFT_PLATE_INDEX, HEARTHOME_DP_LIFT_HEIGHT_DOWN, fieldSystem->dynamicTerrainHeightMan);
         PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN_sseq);
         (*state)++;
         break;
     case 3:
@@ -1339,7 +1343,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformUpDown(FieldTask *taskMan)
     switch (*state) {
     case 0:
         PlayerAvatar_SetHeightCalculationEnabled(fieldSystem->playerAvatar, FALSE);
-        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA_sseq);
         (*state)++;
         break;
     case 1: {
@@ -1355,7 +1359,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformUpDown(FieldTask *taskMan)
             if (platformPos.y >= gymSystem->destination) {
                 platformPos.y = gymSystem->destination;
                 gymSystem->platformCurrentFloors[gymSystem->movingPlatform] = sCanalavePlatformPaths[gymSystem->movingPlatform].floorB;
-                Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+                Sound_StopEffect(SEQ_SE_DP_ELEBETA_sseq, 0);
                 (*state)++;
             }
         } else if (gymSystem->movementDir == CANALAVE_PLATFORM_MOVE_DOWN) {
@@ -1363,7 +1367,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformUpDown(FieldTask *taskMan)
 
             if (platformPos.y <= gymSystem->destination) {
                 platformPos.y = gymSystem->destination;
-                Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+                Sound_StopEffect(SEQ_SE_DP_ELEBETA_sseq, 0);
                 (*state)++;
             }
         } else {
@@ -1377,7 +1381,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformUpDown(FieldTask *taskMan)
     } break;
     case 2:
         PlayerAvatar_SetHeightCalculationEnabledAndUpdate(fieldSystem->playerAvatar, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN_sseq);
         (*state)++;
         break;
     case 3:
@@ -1400,7 +1404,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
         if (LocalMapObj_IsAnimationSet(playerObj) == TRUE) {
             LocalMapObj_SetAnimationCode(playerObj, MOVEMENT_ACTION_PAUSE_ANIMATION);
 
-            Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA_sseq);
             (*state)++;
         }
         break;
@@ -1417,7 +1421,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
             if (platformPos.x >= gymSystem->destination) {
                 platformPos.x = gymSystem->destination;
 
-                Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+                Sound_StopEffect(SEQ_SE_DP_ELEBETA_sseq, 0);
                 (*state)++;
             } else {
                 if (LocalMapObj_IsAnimationSet(playerObj) == TRUE) {
@@ -1428,7 +1432,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
             if (platformPos.x <= gymSystem->destination) {
                 platformPos.x = gymSystem->destination;
 
-                Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+                Sound_StopEffect(SEQ_SE_DP_ELEBETA_sseq, 0);
                 (*state)++;
             } else {
                 if (LocalMapObj_IsAnimationSet(playerObj) == TRUE) {
@@ -1449,7 +1453,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformEastWest(FieldTask *taskMan)
     case 3:
         if (LocalMapObj_CheckAnimationFinished(playerObj) == TRUE) {
             sub_020656AC(playerObj);
-            Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
+            Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN_sseq);
             (*state)++;
         }
         break;
@@ -1473,7 +1477,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
         if (LocalMapObj_IsAnimationSet(playerObj) == TRUE) {
             LocalMapObj_SetAnimationCode(playerObj, MOVEMENT_ACTION_PAUSE_ANIMATION);
 
-            Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA_sseq);
             (*state)++;
         }
         break;
@@ -1490,7 +1494,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
             if (platformPos.z >= gymSystem->destination) {
                 platformPos.z = gymSystem->destination;
 
-                Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+                Sound_StopEffect(SEQ_SE_DP_ELEBETA_sseq, 0);
                 (*state)++;
             } else {
                 if (LocalMapObj_IsAnimationSet(playerObj) == TRUE) {
@@ -1501,7 +1505,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
             if (platformPos.z <= gymSystem->destination) {
                 platformPos.z = gymSystem->destination;
 
-                Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
+                Sound_StopEffect(SEQ_SE_DP_ELEBETA_sseq, 0);
                 (*state)++;
             } else {
                 if (LocalMapObj_IsAnimationSet(playerObj) == TRUE) {
@@ -1525,7 +1529,7 @@ static BOOL FieldTask_CanalaveGym_MovePlatformNorthSouth(FieldTask *taskMan)
 
         if (LocalMapObj_CheckAnimationFinished(playerObj) == TRUE) {
             sub_020656AC(playerObj);
-            Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
+            Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN_sseq);
             (*state)++;
         }
     } break;
@@ -2177,7 +2181,7 @@ void SunyshoreGym_PressButton(FieldSystem *fieldSystem, const u8 buttonType)
     feature->rotationState = rotationState;
     gymSystem->rotationState = rotationState;
 
-    Sound_PlayEffect(SEQ_SE_DP_GAGAGA);
+    Sound_PlayEffect(SEQ_SE_DP_GAGAGA_sseq);
     FieldTask_InitCall(fieldSystem->task, FieldTask_SunyshoreGym_RotateGears, state);
 }
 
@@ -2592,7 +2596,7 @@ static void EternaGym_SetupCameraMoveAwayFromPlayer(FieldSystem *fieldSystem, Et
         cameraMan->moveXFirst = TRUE;
     }
 
-    cameraMan->cameraObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, playerX, playerZ, 0, OBJ_EVENT_GFX_INVISIBLE, 0x0, fieldSystem->location->mapId);
+    cameraMan->cameraObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, playerX, playerZ, 0, OBJ_EVENT_GFX_INVISIBLE, 0x0, fieldSystem->location->mapHeaderID);
 
     MapObject_RecalculateObjectHeight(cameraMan->cameraObj);
     MapObject_SetHidden(cameraMan->cameraObj, TRUE);
@@ -2762,7 +2766,7 @@ static BOOL FieldTask_EternaGym_AdvanceClockState(FieldTask *task)
         }
 
         clockMan->stateDelay = 0;
-        Sound_PlayEffect(SEQ_SE_PL_TOKEI21);
+        Sound_PlayEffect(SEQ_SE_PL_TOKEI21_sseq);
         clockMan->state++;
     case 3:
         if (eternaClockPersisted->state == ETERNA_CLOCK_DEFEATED_GYM_LEADER) {
@@ -2790,8 +2794,8 @@ static BOOL FieldTask_EternaGym_AdvanceClockState(FieldTask *task)
         EternaGym_UpdateClockHandPositions(gymSystem);
 
         if (isMovementFinished == TRUE) {
-            Sound_StopEffect(SEQ_SE_PL_TOKEI21, 0);
-            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+            Sound_StopEffect(SEQ_SE_PL_TOKEI21_sseq, 0);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
             clockMan->state++;
         }
         break;
@@ -2853,7 +2857,7 @@ static BOOL FieldTask_EternaGym_AdvanceClockState(FieldTask *task)
                 ov5_021F416C(fieldSystem, 0);
             }
 
-            Sound_PlayEffect(SEQ_SE_DP_T_AME);
+            Sound_PlayEffect(SEQ_SE_DP_T_AME_sseq);
             clockMan->state++;
         }
         break;
@@ -2864,7 +2868,7 @@ static BOOL FieldTask_EternaGym_AdvanceClockState(FieldTask *task)
             clockMan->stateDelay = 0;
             clockMan->state++;
 
-            Sound_StopEffect(SEQ_SE_DP_T_AME, 0);
+            Sound_StopEffect(SEQ_SE_DP_T_AME_sseq, 0);
             MessageLoader_GetString(clockMan->msgLoader, EternaGym_Text_FountainWaterLevelDropped, clockMan->msgBuf);
             FieldMessage_AddWindow(fieldSystem->bgConfig, clockMan->window, BG_LAYER_MAIN_3);
             Window_EraseMessageBox(clockMan->window, FALSE);
@@ -3060,7 +3064,7 @@ BOOL VeilstoneGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, con
 
 static MapObject *VeilstoneGym_CreateObject(FieldSystem *fieldSystem, int x, int z, BOOL isPunchingBag)
 {
-    MapObject *mapObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, x, z, 0, OBJ_EVENT_GFX_INVISIBLE, MOVEMENT_TYPE_NONE, fieldSystem->location->mapId);
+    MapObject *mapObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, x, z, 0, OBJ_EVENT_GFX_INVISIBLE, MOVEMENT_TYPE_NONE, fieldSystem->location->mapHeaderID);
 
     MapObject_SetLocalID(mapObj, VEILSTONE_GYM_OBJECT_LOCALID);
     MapObject_SetDataAt(mapObj, isPunchingBag, 0);
@@ -3260,7 +3264,7 @@ static BOOL FieldTask_VeilstoneGym_HitPunchingBagNoMovement(FieldTask *taskMan)
         if (LocalMapObj_IsAnimationSet(playerObj) == TRUE) {
             LocalMapObj_SetAnimationCode(playerObj, MovementAction_TurnActionTowardsDir(bagAnim->direction, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH));
             VeilstoneGymObjectRenderer_StartPunchingBagAnimation(bagAnim->punchingBag->obj.animManager, bagAnim->direction, FALSE);
-            Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
+            Sound_PlayEffect(SEQ_SE_PL_SUTYA2_sseq);
             bagAnim->state++;
         }
         break;
@@ -3327,7 +3331,7 @@ static int VeilstoneGym_AnimationState_KickBag(VeilstoneGym_BagAnimation *bagAni
         VeilstoneGym_PrepareForCameraMovement(bagAnim, FALSE);
     }
 
-    Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
+    Sound_PlayEffect(SEQ_SE_PL_SUTYA2_sseq);
 
     bagAnim->state = VEILSTONE_ANIM_STATE_START_MOVEMENT;
     return VEILSTONE_STATE_RESULT_CONTINUE;
@@ -3348,7 +3352,7 @@ static int VeilstoneGym_AnimationState_StartMovement(VeilstoneGym_BagAnimation *
         frameDelta /= bagAnim->distanceToTravel * 16 / 2;
         VeilstoneGymObjectRenderer_UpdateBagFrameDelta(bagAnim->punchingBag->obj.animManager, frameDelta);
         bagAnim->state = VEILSTONE_ANIM_STATE_MOVE_BAG;
-        Sound_PlayEffect(SEQ_SE_PL_GYM01);
+        Sound_PlayEffect(SEQ_SE_PL_GYM01_sseq);
     }
 
     return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
@@ -3390,9 +3394,9 @@ static int VeilstoneGym_AnimationState_MovePunchingBag(VeilstoneGym_BagAnimation
             MapObject_SetZ(punchingBag->obj.mapObj, punchingBag->obj.z);
             MapObject_UpdateCoords(punchingBag->obj.mapObj);
             VeilstoneGymObjectRenderer_UpdateBagFrameDelta(punchingBag->obj.animManager, FX32_ONE);
-            Sound_StopEffect(SEQ_SE_PL_GYM01, 0);
-            Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
-            Sound_PlayEffect(SEQ_SE_PL_GYM02);
+            Sound_StopEffect(SEQ_SE_PL_GYM01_sseq, 0);
+            Sound_PlayEffect(SEQ_SE_PL_SUTYA2_sseq);
+            Sound_PlayEffect(SEQ_SE_PL_GYM02_sseq);
 
             if (!(tileFlags & VEILSTONE_TILE_FLAG_TIRE_STACK_PRESENT)) {
                 if (bagAnim->moveCamera == TRUE) {
@@ -3421,7 +3425,7 @@ static int VeilstoneGym_AnimationState_ToppleTireStack(VeilstoneGym_BagAnimation
         bagAnim->elapsedFrames = 0;
         bagAnim->state = VEILSTONE_ANIM_STATE_REMOVE_STACK;
         VeilstoneGymObjectRenderer_PlayToppleTireStackAnim(bagAnim->tireStack->obj.animManager);
-        Sound_PlayEffect(SEQ_SE_DP_UG_026);
+        Sound_PlayEffect(SEQ_SE_DP_UG_026_sseq);
     }
 
     return VEILSTONE_STATE_RESULT_ADVANCE_FRAME;
@@ -3592,7 +3596,7 @@ static void VeilstoneGym_InitCameraManager(FieldSystem *fieldSystem, VeilstoneGy
 
     cameraMan->playerX = x;
     cameraMan->playerZ = z;
-    cameraMan->cameraObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, x, z, 0, OBJ_EVENT_GFX_INVISIBLE, MOVEMENT_TYPE_NONE, fieldSystem->location->mapId);
+    cameraMan->cameraObj = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, x, z, 0, OBJ_EVENT_GFX_INVISIBLE, MOVEMENT_TYPE_NONE, fieldSystem->location->mapHeaderID);
 
     MapObject_RecalculateObjectHeight(cameraMan->cameraObj);
     MapObject_SetHidden(cameraMan->cameraObj, TRUE);
@@ -3687,7 +3691,7 @@ static void VeilstoneGym_UpdateCamera(VeilstoneGym_BagAnimation *bagAnim, fx32 s
 
 static const HearthomeGymTrainerRoomLayout sTrainerRoomLayouts[HEARTHOME_NUM_TRAINER_ROOMS] = {
     {
-        .mapID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_1,
+        .mapHeaderID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_1,
         .firstDoorID = HEARTHOME_DOOR_ID_CIRCLE,
         .numExitDoors = 3,
         .offsetX = 1,
@@ -3696,7 +3700,7 @@ static const HearthomeGymTrainerRoomLayout sTrainerRoomLayouts[HEARTHOME_NUM_TRA
         .sizeZ = HEARTHOME_ROOM_1_SIZE_Z,
     },
     {
-        .mapID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2,
+        .mapHeaderID = MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2,
         .firstDoorID = HEARTHOME_DOOR_ID_SUN,
         .numExitDoors = 5,
         .offsetX = 1,
@@ -3800,11 +3804,11 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     HearthomeGym_InitTrainers(gymSystem);
 
     int i = 0;
-    int mapID = fieldSystem->location->mapId;
+    enum MapHeaderID mapHeaderID = fieldSystem->location->mapHeaderID;
     const HearthomeGymTrainerRoomLayout *room = sTrainerRoomLayouts;
 
     do {
-        if (room->mapID == mapID) {
+        if (room->mapHeaderID == mapHeaderID) {
             break;
         }
 
@@ -3888,7 +3892,7 @@ static void HearthomeGym_InitFog(HearthomeGymSystem *gymSystem)
     char fogDensity = 109;
     if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(gymSystem->fieldSystem->saveData), BADGE_ID_RELIC) == TRUE) {
         fogDensity = 91;
-    } else if (gymSystem->fieldSystem->location->mapId == MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2) {
+    } else if (gymSystem->fieldSystem->location->mapHeaderID == MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2) {
         fogDensity = 119;
     }
 
@@ -3975,7 +3979,7 @@ BOOL HearthomeGym_CheckIfPlayerSeesTrainer(FieldSystem *fieldSystem)
             if (trainerDistance != DISTANCE_INVALID) {
                 int scriptID = MapObject_GetScript(trainerObj);
 
-                ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), trainerObj);
+                ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, MAX_TRAINERS), trainerObj);
                 ScriptManager_SetApproachingTrainer(fieldSystem, trainerObj, trainerDistance, playerDirOpposite, scriptID, Script_GetTrainerID(scriptID), APPROACH_TYPE_SINGLES, 0);
                 return TRUE;
             }
@@ -4019,11 +4023,11 @@ BOOL HearthomeGym_CheckIfEnteredIncorrectDoor(FieldSystem *fieldSystem, int play
     }
 
     int i = 0;
-    int mapID = fieldSystem->location->mapId;
+    enum MapHeaderID mapHeaderID = fieldSystem->location->mapHeaderID;
     const HearthomeGymTrainerRoomLayout *room = sTrainerRoomLayouts;
 
     do {
-        if (room->mapID == mapID) {
+        if (room->mapHeaderID == mapHeaderID) {
             break;
         }
 

@@ -44,12 +44,14 @@
 #include "map_tile_behavior.h"
 #include "party.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "pokedex.h"
 #include "pokeradar.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "screen_fade.h"
 #include "script_manager.h"
+#include "sound.h"
 #include "start_menu.h"
 #include "string_gf.h"
 #include "system.h"
@@ -58,7 +60,6 @@
 #include "terrain_collision_manager.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
-#include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
 
@@ -200,7 +201,7 @@ void ItemUseContext_Init(FieldSystem *fieldSystem, ItemUseContext *ctxOut)
     }
 
     ctxOut->fieldSystem = fieldSystem;
-    ctxOut->mapHeaderID = fieldSystem->location->mapId;
+    ctxOut->mapHeaderID = fieldSystem->location->mapHeaderID;
     ctxOut->hasPartner = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     ctxOut->playerState = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
 
@@ -237,7 +238,7 @@ void ItemUseContext_Init(FieldSystem *fieldSystem, ItemUseContext *ctxOut)
 static void ItemUseContext_InitForDistortionWorld(FieldSystem *fieldSystem, ItemUseContext *ctxOut)
 {
     ctxOut->fieldSystem = fieldSystem;
-    ctxOut->mapHeaderID = fieldSystem->location->mapId;
+    ctxOut->mapHeaderID = fieldSystem->location->mapHeaderID;
     ctxOut->hasPartner = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     ctxOut->playerState = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     ctxOut->currTileBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
@@ -453,10 +454,10 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
             FieldBGM_SetOverride(fieldSystem, SEQ_NONE);
-            FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapId), 1);
+            FieldBGM_TryFadeOut(fieldSystem, FieldBGM_GetEffective(fieldSystem, fieldSystem->location->mapHeaderID), 1);
         } else {
-            FieldBGM_SetOverride(fieldSystem, SEQ_BICYCLE);
-            FieldBGM_TryFadeOut(fieldSystem, SEQ_BICYCLE, 1);
+            FieldBGM_SetOverride(fieldSystem, SEQ_BICYCLE_sseq);
+            FieldBGM_TryFadeOut(fieldSystem, SEQ_BICYCLE_sseq, 1);
             MapObject_SetPauseMovementOff(PlayerAvatar_GetMapObject(fieldSystem->playerAvatar));
 
             PlayerAvatar_SetTransitionState(fieldSystem->playerAvatar, PLAYER_TRANSITION_CYCLING);

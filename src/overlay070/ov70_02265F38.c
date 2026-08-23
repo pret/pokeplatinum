@@ -185,7 +185,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         ov70_02262E8C(param0);
         break;
     case 2:
@@ -345,7 +345,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
 
         if (v0->unk_14 == 0) {
             if (gSystem.pressedKeys & PAD_BUTTON_B) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
                 if (ov66_02233374() == 0) {
                     v1->unk_00 = 6;

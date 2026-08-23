@@ -82,23 +82,23 @@ static const WindowTemplate sYesNoMenuTemplate = {
     .tilemapTop = 13,
     .width = YES_NO_WINDOW_WIDTH,
     .height = YES_NO_WINDOW_HEIGHT,
-    .palette = PLTT_3,
+    .palette = 3,
     .baseTile = BASE_TILE_YES_NO
 };
 
 void BagUI_CreateWindows(BagController *controller)
 {
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_ITEM_LIST], BG_LAYER_MAIN_2, 14, 0, ITEM_LIST_WINDOW_WIDTH, ITEM_LIST_WINDOW_HEIGHT, PLTT_3, BASE_TILE_ITEM_LIST);
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], BG_LAYER_MAIN_0, 0, 18, ITEM_DESCRIPTION_WINDOW_WIDTH, ITEM_DESCRIPTION_WINDOW_HEIGHT, PLTT_3, BASE_TILE_ITEM_DESCRIPTION);
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_POCKET_NAMES], BG_LAYER_MAIN_2, 0, 13, POCKET_NAMES_WINDOW_WIDTH, POCKET_NAMES_WINDOW_HEIGHT, PLTT_3, BASE_TILE_POCKET_NAMES);
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_MSG_BOX], BG_LAYER_MAIN_0, 6, 19, MSG_BOX_WINDOW_WIDTH, MSG_BOX_WINDOW_HEIGHT, PLTT_11, BASE_TILE_MSG_BOX);
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_MSG_BOX_NARROW], BG_LAYER_MAIN_0, 6, 19, MSG_BOX_NARROW_WINDOW_WIDTH, MSG_BOX_WINDOW_HEIGHT, PLTT_11, BASE_TILE_MSG_BOX_NARROW);
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_POCKET_INDICATOR], BG_LAYER_MAIN_0, 0, 11, POCKET_SELECTOR_WINDOW_WIDTH, POCKET_SELECTOR_WINDOW_HEIGHT, PLTT_13, BASE_TILE_POCKET_SELECTOR);
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], BG_LAYER_MAIN_0, 2, 19, MSG_BOX_WIDE_WINDOW_WIDTH, MSG_BOX_WINDOW_HEIGHT, PLTT_11, BASE_TILE_MSG_BOX_WIDE);
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_SELL_COUNT_VALUE], BG_LAYER_MAIN_0, 19, 13, SELL_WINDOW_WIDTH, SELL_WINDOW_HEIGHT, PLTT_3, BASE_TILE_SELL_COUNT_VALUE);
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_MONEY], BG_LAYER_MAIN_0, 1, 1, MONEY_WINDOW_WIDTH, TEXT_LINES_TILES(2), PLTT_3, BASE_TILE_MONEY);
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_THROW_AWAY_COUNT], BG_LAYER_MAIN_0, 24, 19, 7, 4, PLTT_3, BASE_TILE_THROW_AWAY_COUNT);
-    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_POFFIN_COUNT], BG_LAYER_MAIN_0, 1, 12, POFFIN_COUNT_WINDOW_WIDTH, TEXT_LINES_TILES(2), PLTT_3, BASE_TILE_POFFIN_COUNT);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_ITEM_LIST], BG_LAYER_MAIN_2, 14, 0, ITEM_LIST_WINDOW_WIDTH, ITEM_LIST_WINDOW_HEIGHT, 3, BASE_TILE_ITEM_LIST);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], BG_LAYER_MAIN_0, 0, 18, ITEM_DESCRIPTION_WINDOW_WIDTH, ITEM_DESCRIPTION_WINDOW_HEIGHT, 3, BASE_TILE_ITEM_DESCRIPTION);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_POCKET_NAMES], BG_LAYER_MAIN_2, 0, 13, POCKET_NAMES_WINDOW_WIDTH, POCKET_NAMES_WINDOW_HEIGHT, 3, BASE_TILE_POCKET_NAMES);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_MSG_BOX], BG_LAYER_MAIN_0, 6, 19, MSG_BOX_WINDOW_WIDTH, MSG_BOX_WINDOW_HEIGHT, 11, BASE_TILE_MSG_BOX);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_MSG_BOX_NARROW], BG_LAYER_MAIN_0, 6, 19, MSG_BOX_NARROW_WINDOW_WIDTH, MSG_BOX_WINDOW_HEIGHT, 11, BASE_TILE_MSG_BOX_NARROW);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_POCKET_INDICATOR], BG_LAYER_MAIN_0, 0, 11, POCKET_SELECTOR_WINDOW_WIDTH, POCKET_SELECTOR_WINDOW_HEIGHT, 13, BASE_TILE_POCKET_SELECTOR);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], BG_LAYER_MAIN_0, 2, 19, MSG_BOX_WIDE_WINDOW_WIDTH, MSG_BOX_WINDOW_HEIGHT, 11, BASE_TILE_MSG_BOX_WIDE);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_SELL_COUNT_VALUE], BG_LAYER_MAIN_0, 19, 13, SELL_WINDOW_WIDTH, SELL_WINDOW_HEIGHT, 3, BASE_TILE_SELL_COUNT_VALUE);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_MONEY], BG_LAYER_MAIN_0, 1, 1, MONEY_WINDOW_WIDTH, TEXT_LINES_TILES(2), 3, BASE_TILE_MONEY);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_THROW_AWAY_COUNT], BG_LAYER_MAIN_0, 24, 19, 7, 4, 3, BASE_TILE_THROW_AWAY_COUNT);
+    Window_Add(controller->bgConfig, &controller->windows[BAG_UI_WINDOW_POFFIN_COUNT], BG_LAYER_MAIN_0, 1, 12, POFFIN_COUNT_WINDOW_WIDTH, TEXT_LINES_TILES(2), 3, BASE_TILE_POFFIN_COUNT);
 }
 
 void BagUI_DeleteWindows(Window windows[NUM_BAG_UI_WINDOWS])
@@ -129,8 +129,8 @@ void BagUI_FreePocketNames(BagController *controller)
 void BagUI_ClearPocketNameBox(BagController *controller)
 {
     for (u16 i = 0; i < 12; i++) {
-        Bg_FillTilemapRect(controller->bgConfig, BG_LAYER_MAIN_2, BASE_TILE_POCKET_NAMES + 12 + i, i, 13, 1, 1, PLTT_3);
-        Bg_FillTilemapRect(controller->bgConfig, BG_LAYER_MAIN_2, BASE_TILE_POCKET_NAMES + POCKET_NAMES_WINDOW_WIDTH + 12 + i, i, 13 + 1, 1, 1, PLTT_3);
+        Bg_FillTilemapRect(controller->bgConfig, BG_LAYER_MAIN_2, BASE_TILE_POCKET_NAMES + 12 + i, i, 13, 1, 1, 3);
+        Bg_FillTilemapRect(controller->bgConfig, BG_LAYER_MAIN_2, BASE_TILE_POCKET_NAMES + POCKET_NAMES_WINDOW_WIDTH + 12 + i, i, 13 + 1, 1, 1, 3);
     }
 }
 
@@ -404,10 +404,10 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
 {
     u16 msgBoxWindowIdx;
     if (controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_BERRIES) {
-        Window_Add(controller->bgConfig, &controller->itemActionsWindow, BG_LAYER_MAIN_0, 23, 23 - TEXT_LINES_TILES(numActions), 8, TEXT_LINES_TILES(numActions), PLTT_3, BASE_TILE_ITEM_ACTIONS_MENU);
+        Window_Add(controller->bgConfig, &controller->itemActionsWindow, BG_LAYER_MAIN_0, 23, 23 - TEXT_LINES_TILES(numActions), 8, TEXT_LINES_TILES(numActions), 3, BASE_TILE_ITEM_ACTIONS_MENU);
         msgBoxWindowIdx = BAG_UI_WINDOW_MSG_BOX_NARROW;
     } else {
-        Window_Add(controller->bgConfig, &controller->itemActionsWindow, BG_LAYER_MAIN_0, 23 + 1, 23 - TEXT_LINES_TILES(numActions), 8 - 1, TEXT_LINES_TILES(numActions), PLTT_3, BASE_TILE_ITEM_ACTIONS_MENU);
+        Window_Add(controller->bgConfig, &controller->itemActionsWindow, BG_LAYER_MAIN_0, 23 + 1, 23 - TEXT_LINES_TILES(numActions), 8 - 1, TEXT_LINES_TILES(numActions), 3, BASE_TILE_ITEM_ACTIONS_MENU);
         msgBoxWindowIdx = BAG_UI_WINDOW_MSG_BOX;
     }
 
@@ -440,7 +440,7 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
         Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
         BagUI_UpdateTypeAndCategoryIcons(controller, controller->bagCtx->selectedItem, TRUE);
     } else {
-        Window_DrawMessageBoxWithScrollCursor(&controller->windows[msgBoxWindowIdx], TRUE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
+        Window_DrawMessageBoxWithScrollCursor(&controller->windows[msgBoxWindowIdx], TRUE, BASE_TILE_MSG_BOX_FRAME, 12);
         Window_FillTilemap(&controller->windows[msgBoxWindowIdx], 15);
 
         String *template = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ItemIsSelected);
@@ -455,7 +455,7 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
         Window_ScheduleCopyToVRAM(&controller->windows[msgBoxWindowIdx]);
     }
 
-    Window_DrawStandardFrame(&controller->itemActionsWindow, TRUE, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
+    Window_DrawStandardFrame(&controller->itemActionsWindow, TRUE, BASE_TILE_BAG_WINDOW_FRAME, 14);
     Window_ScheduleCopyToVRAM(&controller->itemActionsWindow);
 }
 
@@ -502,9 +502,9 @@ void BagUI_PrintMovingItemMsg(BagController *controller)
 
 void BagUI_ShowItemTrashWindows(BagController *controller)
 {
-    Window_DrawStandardFrame(&controller->windows[BAG_UI_WINDOW_THROW_AWAY_COUNT], 1, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
+    Window_DrawStandardFrame(&controller->windows[BAG_UI_WINDOW_THROW_AWAY_COUNT], 1, BASE_TILE_BAG_WINDOW_FRAME, 14);
     BagUI_PrintItemTrashCount(controller);
-    Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 1, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
+    Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 1, BASE_TILE_MSG_BOX_FRAME, 12);
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 15);
 
     String *template = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ThrowAwayHowMany);
@@ -545,7 +545,7 @@ void BagUI_CloseItemTrashWindows(BagController *controller)
 void BagUI_PrintConfirmItemTrashMsg(BagController *controller)
 {
 
-    Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], TRUE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
+    Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], TRUE, BASE_TILE_MSG_BOX_FRAME, 12);
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
 
     String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ThrowAwayOK);
@@ -581,10 +581,10 @@ static BOOL BagUITextPrinterCallback(TextPrinterTemplate *template, u16 param1)
     case 2:
         return Sound_IsBGMPausedByFanfare();
     case 3:
-        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN_sseq);
         break;
     case 4:
-        return Sound_IsEffectPlaying(SEQ_SE_DP_PC_LOGIN);
+        return Sound_IsEffectPlaying(SEQ_SE_DP_PC_LOGIN_sseq);
     }
 
     return FALSE;
@@ -592,7 +592,7 @@ static BOOL BagUITextPrinterCallback(TextPrinterTemplate *template, u16 param1)
 
 void BagUI_ShowYesNoMenu(BagController *controller)
 {
-    controller->menu = Menu_MakeYesNoChoice(controller->bgConfig, &sYesNoMenuTemplate, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14, HEAP_ID_BAG);
+    controller->menu = Menu_MakeYesNoChoice(controller->bgConfig, &sYesNoMenuTemplate, BASE_TILE_BAG_WINDOW_FRAME, 14, HEAP_ID_BAG);
 }
 
 void BagUI_PrintSellCountAndValue(BagController *controller, u8 skipFrame)
@@ -600,7 +600,7 @@ void BagUI_PrintSellCountAndValue(BagController *controller, u8 skipFrame)
     Window *window = &controller->windows[BAG_UI_WINDOW_SELL_COUNT_VALUE];
 
     if (skipFrame == FALSE) {
-        Window_DrawStandardFrame(window, TRUE, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
+        Window_DrawStandardFrame(window, TRUE, BASE_TILE_BAG_WINDOW_FRAME, 14);
     }
 
     Window_FillTilemap(window, 15);
@@ -630,7 +630,7 @@ void BagUI_PrintMoney(BagController *controller, u8 skipLabel)
 
     if (skipLabel == FALSE) {
         Window_FillTilemap(window, 15);
-        Window_DrawStandardFrame(window, 1, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
+        Window_DrawStandardFrame(window, 1, BASE_TILE_BAG_WINDOW_FRAME, 14);
 
         String *label = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_MoneyLabel);
 
@@ -656,7 +656,7 @@ void BagUI_DrawPoffinCountMsgBox(BagController *controller)
 {
     Window *window = &controller->windows[BAG_UI_WINDOW_POFFIN_COUNT];
     Window_FillTilemap(window, 15);
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_BAG_WINDOW_FRAME, 14);
 
     String *label = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_PoffinCountLabel);
     Text_AddPrinterWithParams(window, FONT_SYSTEM, label, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);

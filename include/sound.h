@@ -6,9 +6,10 @@
 #include <nnsys.h>
 
 #include "constants/sound_volume.h"
-#include "generated/sdat.h"
 
 #include "sound_system.h"
+
+#include "res/sound/pl_sound_data.naix"
 
 #define FIELD_BGM_BANK_STATE_IDLE   0
 #define FIELD_BGM_BANK_STATE_SWITCH 1
@@ -31,6 +32,8 @@
 #define SOUND_PLAYBACK_TRACK_ALL    0xFFFF
 
 #define NUM_SE_PLAYERS PLAYER_SE_4 - PLAYER_SE_1 + 1
+
+#define SEQ_NONE 0
 
 enum SoundScene {
     SOUND_SCENE_NONE = 0,

@@ -254,7 +254,7 @@ void Spheres_ProcessRetrieveBuriedSphereRequest(int unused, int unused2, void *d
 
             if (UndergroundInventory_TryAddSphere(sphere->type, sphere->initialSize + sphere->growth)) {
                 spheresEnv->retrievedSpheres[curNetID] = sphere->type;
-                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
                 numberToPrint = MAX_SPHERE_SIZE;
 
                 if (sphere->initialSize + sphere->growth < MAX_SPHERE_SIZE) {
@@ -381,7 +381,7 @@ void Spheres_TryBurySphere(enum SphereType sphereType, int sphereSize, int x, in
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_SphereWasBuried, FALSE, NULL);
         UndergroundMenu_RemoveSelectedSphere(sphereType);
 
-        Sound_PlayEffect(SEQ_SE_DP_SUTYA);
+        Sound_PlayEffect(SEQ_SE_PL_SUTYA2_sseq_2);
         SystemFlag_SetSphereAcquired(SaveData_GetVarsFlags(spheresEnv->fieldSystem->saveData));
         GameRecords_IncrementRecordValue(SaveData_GetGameRecords(spheresEnv->fieldSystem->saveData), RECORD_SPHERES_BURIED);
 
@@ -526,7 +526,7 @@ static void SphereRadar_TimerTask(SysTask *sysTask, void *data)
     ctx->timer++;
 
     if (ctx->timer > MAX_BURIED_SPHERES) {
-        Sound_PlayEffect(SEQ_SE_PL_UG_006);
+        Sound_PlayEffect(SEQ_SE_PL_UG_006_sseq);
         ctx->timer = 0;
     }
 }

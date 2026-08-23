@@ -327,7 +327,7 @@ void UndergroundTalk_Start(int linkNetID, ExitCallback exitCallback, FieldSystem
     menu->sentGift.goodID = UG_GOOD_NONE;
     menu->sentGift.recipientNetID = menu->linkNetID;
 
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
     UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_HeyThere);
 
     menu->sysTask = SysTask_Start(UndergroundTalk_Main, menu, 10000);
@@ -451,7 +451,7 @@ static BOOL UndergroundTalk_HandleQuestionsMenu(SysTask *sysTask, void *data)
         return FALSE;
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         TalkMessage message;
 
         message.index = input;
@@ -519,7 +519,7 @@ static BOOL UndergroundTalk_HandleAnswersMenu(SysTask *sysTask, void *data)
     case MENU_CANCEL:
         return FALSE;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         UndergroundTalk_CloseTalkMenu(sysTask, menu);
         TalkMessage message;
         message.index = menu->questionIndex * ANSWERS_PER_QUESTION + input;
@@ -551,7 +551,7 @@ static void UndergroundTalk_RemoveGiftedGood(TalkMenu *menu)
 
     UndergroundRecord_IncrementGiftsGiven(SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(menu->fieldSystem)));
     UndergroundMenu_RemoveSelectedGoodBag(menu->sentGift.goodID);
-    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
 }
 
 static void UndergroundTalk_PrintGiftConfirmPrompt(TalkMenu *unused, enum Good goodID)
@@ -602,12 +602,12 @@ static BOOL UndergroundTalk_HandleTalkMenu(SysTask *sysTask, void *data)
     case MENU_NOTHING_CHOSEN:
         return FALSE;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         UndergroundTalk_CancelTalk(menu);
         UndergroundTalk_CloseTalkMenu(sysTask, menu);
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         SelectedOptionCallback callback = (SelectedOptionCallback)input;
         callback(menu);
 
@@ -995,7 +995,7 @@ static void UndergroundTalkResponse_HandleAcceptGiftMenu(SysTask *unused, Respon
     if (input == MENU_YES) {
         if (UndergroundInventory_TryAddGoodBag(menu->receivedGift.goodID)) {
             UndergroundRecord_IncrementGiftsReceived(SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(menu->fieldSystem)));
-            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
             UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_MENU_STATE_GIFT_ACCEPTED);
 
             menu->state = RESPONSE_MENU_STATE_GIFT_ACCEPTED;
@@ -1106,7 +1106,7 @@ static BOOL UndergroundTalkResponse_HandleAnswersMenu(SysTask *sysTask, void *da
     ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->cursorPos);
 
     if (prevPos != menu->cursorPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     if (CommSys_CheckError()) {
@@ -1119,7 +1119,7 @@ static BOOL UndergroundTalkResponse_HandleAnswersMenu(SysTask *sysTask, void *da
     case MENU_CANCEL:
         input = ANSWER_INDEX_CANCEL;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         UndergroundTalkResponse_CloseTalkMenu(sysTask, menu);
 
         if (input != ANSWER_INDEX_CANCEL) {
@@ -1499,6 +1499,6 @@ static void UndergroundTalk_UpdateCursorPos(TalkMenu *menu)
     ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->cursorPos);
 
     if (prevPos != menu->cursorPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }

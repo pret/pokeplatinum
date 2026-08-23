@@ -21,7 +21,7 @@ L_0:
     WaitForAnimTasks
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, FALSE
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_4, FALSE
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W360C, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W360C_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     JumpIfContest L_1
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
     End
@@ -31,7 +31,7 @@ L_2:
     SetExtraParams 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 15
-    PlaySoundEffectR SEQ_SE_DP_186
+    PlaySoundEffectR SEQ_SE_DP_186_sseq
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
     CreateEmitter 0, 8, EMITTER_CB_GENERIC
@@ -69,7 +69,7 @@ L_1:
     SetExtraParams 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 15
-    PlaySoundEffectR SEQ_SE_DP_186
+    PlaySoundEffectR SEQ_SE_DP_186_sseq
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
     CreateEmitter 0, 8, EMITTER_CB_GENERIC
@@ -107,7 +107,7 @@ L_3:
     SetExtraParams 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 15
-    PlaySoundEffectR SEQ_SE_DP_186
+    PlaySoundEffectR SEQ_SE_DP_186_sseq
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
     CreateEmitter 0, 8, EMITTER_CB_GENERIC

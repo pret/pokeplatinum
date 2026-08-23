@@ -263,7 +263,7 @@ void ov117_02262798(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022626B0 *
                 if (v1 == 1) {
                     param1->unk_268 = 8;
                     param1->unk_275 = 0;
-                    Sound_PlayEffect(SEQ_SE_PL_BALLOON01);
+                    Sound_PlayEffect(SEQ_SE_PL_BALLOON01_sseq);
                 }
             } else {
                 ov117_02262CE8(param1);
@@ -328,16 +328,16 @@ static void ov117_022629E0(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
 {
     if ((param3 == 1) && (param1->unk_244 >= 98)) {
         ov117_02261600(param0, 0);
-        Sound_PlayEffect(SEQ_SE_PL_BALLOON04);
+        Sound_PlayEffect(SEQ_SE_PL_BALLOON04_sseq);
     } else if (param1->unk_244 >= 98) {
         (void)0;
     } else {
         if (param1->unk_0C[0].unk_00.unk_04 < param1->unk_0C[0].unk_10.unk_04) {
             ov117_02261600(param0, 2);
-            Sound_PlayEffect(SEQ_SE_PL_BALLOON03);
+            Sound_PlayEffect(SEQ_SE_PL_BALLOON03_sseq);
         } else if (param1->unk_0C[0].unk_00.unk_04 > param1->unk_0C[0].unk_10.unk_04) {
             ov117_02261600(param0, 1);
-            Sound_PlayEffect(SEQ_SE_PL_BALLOON03);
+            Sound_PlayEffect(SEQ_SE_PL_BALLOON03_sseq);
         }
     }
 }
@@ -676,7 +676,7 @@ static int ov117_0226334C(UnkStruct_ov117_022626B0 *param0)
         }
 
         if ((param0->unk_23C != -1) && (param0->unk_210 > param0->unk_23C) && (Sound_IsEffectPlaying(1399) == 0)) {
-            Sound_PlayEffect(SEQ_SE_PL_BALLOON02);
+            Sound_PlayEffect(SEQ_SE_PL_BALLOON02_sseq);
             param0->unk_274 = 1;
         }
 

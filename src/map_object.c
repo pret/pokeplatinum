@@ -54,7 +54,7 @@ typedef struct MapObject {
     u32 status;
     u32 unk_04;
     u32 localID;
-    u32 mapID;
+    enum MapHeaderID mapHeaderID;
     u32 graphicsID;
     u32 movementType;
     u32 trainerType;
@@ -135,8 +135,8 @@ static int MapObject_GetFieldSystemGraphicsID(FieldSystem *fieldSystem, int para
 static void sub_02062648(MapObject *mapObj);
 static void sub_02062660(MapObject *mapObj);
 static void sub_02062670(MapObject *mapObj);
-static void sub_020626D0(MapObject *mapObj, const ObjectEvent *objectEvent, int mapID);
-static void sub_02062714(MapObject *mapObj, int mapID, const ObjectEvent *objectEvent);
+static void sub_020626D0(MapObject *mapObj, const ObjectEvent *objectEvent, enum MapHeaderID mapHeaderID);
+static void sub_02062714(MapObject *mapObj, enum MapHeaderID mapHeaderID, const ObjectEvent *objectEvent);
 static void MapObjectTask_Move(SysTask *task, void *param1);
 static void MapObjectTask_Draw(MapObject *mapObj);
 static MapObjectManager *MapObjectMan_Deconst(const MapObjectManager *mapObjMan);
@@ -176,18 +176,18 @@ void MapObjectMan_Delete(MapObjectManager *mapObjMan)
     Heap_FreeExplicit(HEAP_ID_FIELD2, mapObjMan);
 }
 
-void sub_0206184C(MapObjectManager *mapObjMan, int mapID, int param2, int objEventCount, const ObjectEvent *objectEvent)
+void sub_0206184C(MapObjectManager *mapObjMan, enum MapHeaderID oldMapHeaderID, enum MapHeaderID newMapHeaderID, int objEventCount, const ObjectEvent *objectEvent)
 {
-    int v0, maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
+    int maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
     MapObject *mapObj = MapObjectMan_GetMapObject(mapObjMan);
 
     while (maxObjects) {
         if (sub_02062CF8(mapObj) == TRUE) {
-            v0 = sub_0206244C(mapObj, param2, objEventCount, objectEvent);
+            int v0 = sub_0206244C(mapObj, newMapHeaderID, objEventCount, objectEvent);
 
             switch (v0) {
             case 0:
-                if (MapObject_GetMapID(mapObj) != param2 && !MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_PERSISTENT)) {
+                if (MapObject_GetMapHeaderID(mapObj) != newMapHeaderID && !MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_PERSISTENT)) {
                     MapObject_Delete(mapObj);
                 }
                 break;
@@ -225,7 +225,7 @@ static MapObjectManager *MapObjectMan_Alloc(int maxObjs)
     return mapObjMan;
 }
 
-MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan, const ObjectEvent *objectEvent, int mapID)
+MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan, const ObjectEvent *objectEvent, enum MapHeaderID mapHeaderID)
 {
     MapObject *mapObj;
     ObjectEvent v1 = *objectEvent;
@@ -234,10 +234,10 @@ MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan
     int localID = ObjectEvent_GetLocalID(v2);
 
     if (ObjectEvent_HasNoScript(v2) == FALSE) {
-        mapObj = sub_02062154(mapObjMan, localID, mapID);
+        mapObj = sub_02062154(mapObjMan, localID, mapHeaderID);
 
         if (mapObj != NULL) {
-            sub_020626D0(mapObj, v2, mapID);
+            sub_020626D0(mapObj, v2, mapHeaderID);
 
             return mapObj;
         }
@@ -245,7 +245,7 @@ MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan
         mapObj = sub_020624CC(mapObjMan, localID, ObjectEvent_GetHiddenFlagNoScript(v2));
 
         if (mapObj != NULL) {
-            sub_02062714(mapObj, mapID, v2);
+            sub_02062714(mapObj, mapHeaderID, v2);
             return mapObj;
         }
     }
@@ -258,7 +258,7 @@ MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan
 
     sub_020621E8(mapObj, v2, MapObjectMan_FieldSystem(mapObjMan));
     sub_0206234C(mapObj, mapObjMan);
-    MapObject_SetMapID(mapObj, mapID);
+    MapObject_SetMapHeaderID(mapObj, mapHeaderID);
     sub_02062660(mapObj);
     sub_02062670(mapObj);
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT);
@@ -268,7 +268,7 @@ MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan
     return mapObj;
 }
 
-MapObject *MapObjectMan_AddMapObject(const MapObjectManager *mapObjMan, int x, int z, int initialDir, int graphicsID, int movementType, int mapID)
+MapObject *MapObjectMan_AddMapObject(const MapObjectManager *mapObjMan, int x, int z, int initialDir, int graphicsID, int movementType, enum MapHeaderID mapHeaderID)
 {
     ObjectEvent objectEvent;
     MapObject *mapObj;
@@ -289,12 +289,12 @@ MapObject *MapObjectMan_AddMapObject(const MapObjectManager *mapObjMan, int x, i
     ObjectEvent_SetZ(&objectEvent, z);
     ObjectEvent_SetY(&objectEvent, 0);
 
-    mapObj = MapObjectMan_AddMapObjectFromHeader(mapObjMan, &objectEvent, mapID);
+    mapObj = MapObjectMan_AddMapObjectFromHeader(mapObjMan, &objectEvent, mapHeaderID);
 
     return mapObj;
 }
 
-MapObject *MapObjectMan_AddMapObjectFromLocalID(const MapObjectManager *mapObjMan, int localID, int objEventCount, int mapID, const ObjectEvent *objectEvent)
+MapObject *MapObjectMan_AddMapObjectFromLocalID(const MapObjectManager *mapObjMan, int localID, int objEventCount, enum MapHeaderID mapHeaderID, const ObjectEvent *objectEvent)
 {
     MapObject *mapObj = NULL;
     const ObjectEvent *v1 = sub_020631A4(localID, objEventCount, objectEvent);
@@ -304,7 +304,7 @@ MapObject *MapObjectMan_AddMapObjectFromLocalID(const MapObjectManager *mapObjMa
         FieldSystem *fieldSystem = MapObjectMan_FieldSystem(mapObjMan);
 
         if (!FieldSystem_CheckFlag(fieldSystem, hiddenFlag)) {
-            mapObj = MapObjectMan_AddMapObjectFromHeader(mapObjMan, v1, mapID);
+            mapObj = MapObjectMan_AddMapObjectFromHeader(mapObjMan, v1, mapHeaderID);
         }
     }
 
@@ -470,7 +470,7 @@ static void MapObject_Save(FieldSystem *fieldSystem, MapObject *mapObj, MapObjec
     mapObjSave->status = MapObject_GetStatus(mapObj);
     mapObjSave->unk_04 = sub_020628EC(mapObj);
     mapObjSave->localID = MapObject_GetLocalID(mapObj);
-    mapObjSave->mapID = MapObject_GetMapID(mapObj);
+    mapObjSave->mapID = MapObject_GetMapHeaderID(mapObj);
     mapObjSave->graphicsID = MapObject_GetGraphicsID(mapObj);
     mapObjSave->movementType = MapObject_GetMovementType(mapObj);
     mapObjSave->trainerType = MapObject_GetTrainerType(mapObj);
@@ -519,7 +519,7 @@ static void MapObject_LoadSave(MapObject *mapObj, MapObjectSave *mapObjSave)
     MapObject_SetStatus(mapObj, mapObjSave->status);
     sub_020628E8(mapObj, mapObjSave->unk_04);
     MapObject_SetLocalID(mapObj, mapObjSave->localID);
-    MapObject_SetMapID(mapObj, mapObjSave->mapID);
+    MapObject_SetMapHeaderID(mapObj, mapObjSave->mapID);
     MapObject_SetGraphicsID(mapObj, mapObjSave->graphicsID);
     MapObject_SetMovementType(mapObj, mapObjSave->movementType);
     MapObject_SetTrainerType(mapObj, mapObjSave->trainerType);
@@ -590,25 +590,21 @@ static void sub_02062010(MapObject *mapObj)
     MapObject_SetPos(mapObj, &v1);
 }
 
-void sub_02062068(const MapObjectManager *mapObjMan, int param1, int param2, const ObjectEvent *objectEvent)
+void sub_02062068(const MapObjectManager *mapObjMan, enum MapHeaderID mapHeaderID, u32 numObjectEvents, const ObjectEvent *objectEvent)
 {
-    int v0;
-    ObjectEvent *v1;
-    UnkStruct_020620C4 *v2;
+    GF_ASSERT(numObjectEvents);
 
-    GF_ASSERT(param2);
-
-    v0 = sizeof(ObjectEvent) * param2;
-    v1 = Heap_AllocAtEnd(HEAP_ID_FIELD2, v0);
+    int v0 = sizeof(ObjectEvent) * numObjectEvents;
+    ObjectEvent *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD2, v0);
 
     GF_ASSERT(v1 != NULL);
     memcpy(v1, objectEvent, v0);
 
-    v2 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_020620C4));
+    UnkStruct_020620C4 *v2 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_020620C4));
     GF_ASSERT(v2 != NULL);
 
-    v2->unk_00 = param1;
-    v2->unk_04 = param2;
+    v2->unk_00 = mapHeaderID;
+    v2->unk_04 = numObjectEvents;
     v2->unk_08 = 0;
     v2->mapObjMan = mapObjMan;
     v2->objectEvent = v1;
@@ -797,7 +793,7 @@ static int sub_0206244C(const MapObject *mapObj, int param1, int objEventCount, 
                     if (sub_02062C18(mapObj) == flag) {
                         return 1;
                     }
-                } else if (MapObject_GetMapID(mapObj) == flag) {
+                } else if (MapObject_GetMapHeaderID(mapObj) == flag) {
                     return 2;
                 }
             } else if (sub_02062E94(mapObj) == TRUE && sub_02062C18(mapObj) == param1) {
@@ -818,7 +814,7 @@ static MapObject *sub_020624CC(const MapObjectManager *mapObjMan, int localID, i
     MapObject *mapObj;
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &mapObj, &v0, MAP_OBJ_STATUS_0) == TRUE) {
-        if (MapObject_GetLocalID(mapObj) == localID && MapObject_GetMapID(mapObj) == flag) {
+        if (MapObject_GetLocalID(mapObj) == localID && MapObject_GetMapHeaderID(mapObj) == flag) {
             return mapObj;
         }
     }
@@ -961,24 +957,24 @@ int MapObject_HasNoScript(const MapObject *mapObj)
     return FALSE;
 }
 
-static void sub_020626D0(MapObject *mapObj, const ObjectEvent *objectEvent, int mapID)
+static void sub_020626D0(MapObject *mapObj, const ObjectEvent *objectEvent, enum MapHeaderID mapHeaderID)
 {
     GF_ASSERT(sub_02062E94(mapObj) == TRUE);
 
     sub_02062E78(mapObj, 0);
-    MapObject_SetMapID(mapObj, mapID);
+    MapObject_SetMapHeaderID(mapObj, mapHeaderID);
     MapObject_SetScript(mapObj, ObjectEvent_GetScript(objectEvent));
     MapObject_SetFlag(mapObj, ObjectEvent_GetHiddenFlag(objectEvent));
 }
 
-static void sub_02062714(MapObject *mapObj, int mapID, const ObjectEvent *objectEvent)
+static void sub_02062714(MapObject *mapObj, enum MapHeaderID mapHeaderID, const ObjectEvent *objectEvent)
 {
     GF_ASSERT(ObjectEvent_HasNoScript(objectEvent) == TRUE);
 
     sub_02062E78(mapObj, 1);
     MapObject_SetScript(mapObj, ObjectEvent_GetScript(objectEvent));
     MapObject_SetFlag(mapObj, ObjectEvent_GetHiddenFlagNoScript(objectEvent));
-    MapObject_SetMapID(mapObj, mapID);
+    MapObject_SetMapHeaderID(mapObj, mapHeaderID);
 }
 
 int MapObject_CalculateTaskPriority(const MapObject *mapObj, int priority)
@@ -989,7 +985,7 @@ int MapObject_CalculateTaskPriority(const MapObject *mapObj, int priority)
     return result;
 }
 
-int sub_02062764(const MapObject *mapObj, int param1, int param2)
+int sub_02062764(const MapObject *mapObj, int param1, enum MapHeaderID param2)
 {
     if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_0)) {
         return FALSE;
@@ -999,7 +995,7 @@ int sub_02062764(const MapObject *mapObj, int param1, int param2)
         return FALSE;
     }
 
-    if (MapObject_GetMapID(mapObj) != param2) {
+    if (MapObject_GetMapHeaderID(mapObj) != param2) {
         if (sub_02062E94(mapObj) == FALSE) {
             return FALSE;
         }
@@ -1012,7 +1008,7 @@ int sub_02062764(const MapObject *mapObj, int param1, int param2)
     return TRUE;
 }
 
-int sub_020627B4(const MapObject *mapObj, int param1, int param2, int param3)
+int sub_020627B4(const MapObject *mapObj, int param1, int param2, enum MapHeaderID param3)
 {
     if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_0)) {
         return 0;
@@ -1217,14 +1213,14 @@ u32 MapObject_GetLocalID(const MapObject *mapObj)
     return mapObj->localID;
 }
 
-void MapObject_SetMapID(MapObject *mapObj, int mapID)
+void MapObject_SetMapHeaderID(MapObject *mapObj, enum MapHeaderID mapHeaderID)
 {
-    mapObj->mapID = mapID;
+    mapObj->mapHeaderID = mapHeaderID;
 }
 
-int MapObject_GetMapID(const MapObject *mapObj)
+enum MapHeaderID MapObject_GetMapHeaderID(const MapObject *mapObj)
 {
-    return mapObj->mapID;
+    return mapObj->mapHeaderID;
 }
 
 void MapObject_SetGraphicsID(MapObject *mapObj, u32 graphicsID)

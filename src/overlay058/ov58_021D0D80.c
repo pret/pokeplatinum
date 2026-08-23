@@ -578,8 +578,8 @@ static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1)
 
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 2, HEAP_ID_DRAWING);
     Graphics_LoadPaletteFromOpenNARC(param1, 1, 4, 0, 16 * 2 * 2, HEAP_ID_DRAWING);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_DRAWING);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_DRAWING);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_DRAWING);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(13), HEAP_ID_DRAWING);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, 32 * 8 * 0x20, 1, HEAP_ID_DRAWING);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_DRAWING);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, HEAP_ID_DRAWING);
@@ -811,14 +811,14 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
             if (param0->unk_43DA != v0) {
                 param0->unk_43DA = v0;
                 ov58_021D1CAC(param0->unk_2AC, v0);
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
             break;
         case 8:
             if (param0->unk_368 == 4) {
                 if (CommSys_CurNetId() == 0) {
                     if (param0->unk_380 != WirelessManager_GetConnectedBitmap()) {
-                        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                         break;
                     }
 
@@ -828,16 +828,16 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
                     ov58_021D2CB0(param0, 5);
                     ov58_021D1CDC(param0->unk_2AC, 1);
                     v2 = 1;
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 } else {
                     if (param0->unk_43E6[0].unk_09 == 2) {
-                        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                        Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                     } else {
                         ov58_021D2A98(param0, 1, TEXT_SPEED_FAST);
                         ov58_021D2CB0(param0, 5);
                         ov58_021D1CDC(param0->unk_2AC, 1);
                         v2 = 1;
-                        Sound_PlayEffect(SEQ_SE_CONFIRM);
+                        Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     }
                 }
             }
@@ -857,7 +857,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
 
             if (param0->unk_43DB != (0 + v0 - 9)) {
                 param0->unk_43DB = 0 + v0 - 9;
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
             }
         } break;
         }
@@ -940,7 +940,7 @@ static int ov58_021D1D64(UnkStruct_02095EAC *param0, int param1)
     }
 
     ov58_021D2CB0(param0, 2);
-    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
 
     G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, -6);
 
@@ -1001,7 +1001,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
         ov58_021D1D40(param0);
 
         if (ov58_021D2D30(param0)) {
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
         }
 
         return param1;
@@ -1273,7 +1273,7 @@ static int ov58_021D2320(UnkStruct_02095EAC *param0, int param1)
 
     ov58_021D2A98(param0, 2, TEXT_SPEED_FAST);
     ov58_021D2CB0(param0, 22);
-    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
 
     if (CommSys_CurNetId() == 0) {
         ov58_021D2B3C(param0, 0);

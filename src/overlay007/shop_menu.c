@@ -461,9 +461,9 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
         StringTemplate_Free(shopMenu->strTemplate);
         String_Free(shopMenu->string);
 
-        if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != LocationNames_Text_VeilstoneStore
-            && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_HERB_SHOP
-            && fieldSystem->location->mapId != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
+        if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID) != LocationNames_Text_VeilstoneStore
+            && fieldSystem->location->mapHeaderID != MAP_HEADER_ETERNA_CITY_HERB_SHOP
+            && fieldSystem->location->mapHeaderID != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
             if (shopMenu->itemPurchaseCount != 0 && shopMenu->itemSoldCount != 0) {
                 journalEntryLocationEvent = JournalEntry_CreateEventBusinessAtMart(HEAP_ID_FIELD2);
                 JournalEntry_SaveData(shopMenu->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
@@ -709,7 +709,7 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u64 index, u8 onInit)
     ShopMenu *shopMenu = (ShopMenu *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (onInit != TRUE) {
-        Sound_PlayEffect(SEQ_SE_DP_BAG_004);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_004_sseq);
     }
 
     Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION], 0);
@@ -895,7 +895,7 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
         Shop_DestroyStaticWindows(shopMenu);
         Shop_RestoreBgPriorities(shopMenu);
         Bg_ClearTilemap(shopMenu->bgConfig, BG_LAYER_MAIN_1);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return SHOP_STATE_MOVE_CAMERA_BACK;
     default: {
         String *string;
@@ -934,7 +934,7 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
         }
 
         if (shopMenu->martType == MART_TYPE_DECOR) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             return Shop_ShowPurchaseMessage(shopMenu);
         }
 
@@ -958,7 +958,7 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
         shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->string, shopMenu->options, 1);
 
         Shop_SetScrollSpritesPositionXY(shopMenu, TRUE);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         return SHOP_STATE_SHOW_PURCHASE_MENU;
     }
@@ -1014,7 +1014,7 @@ static void Shop_ShowQtyWithinInventory(ShopMenu *shopMenu)
 static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu)
 {
     if (sub_0208C15C(&shopMenu->itemAmount, shopMenu->itemAmountMax) != FALSE) {
-        Sound_PlayEffect(SEQ_SE_DP_BAG_004);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_004_sseq);
         Shop_ShowQtyTotalItemPurchase(shopMenu, TRUE);
         return SHOP_STATE_SELECT_PURCHASE_MENU;
     }
@@ -1025,7 +1025,7 @@ static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu)
         Window_EraseStandardFrame(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG], TRUE);
         Window_EraseStandardFrame(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], TRUE);
         Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_MESSAGE], 15);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         return Shop_ShowPurchaseMessage(shopMenu);
     }
@@ -1043,7 +1043,7 @@ static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu)
         Shop_SetCursorSpritePalette(shopMenu, FALSE);
 
         Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         return SHOP_STATE_SELECT_BUY_MENU;
     }
@@ -1210,7 +1210,7 @@ static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu)
         String_Free(string);
         Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_MESSAGE], 15);
         shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->string, shopMenu->options, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_REGI);
+        Sound_PlayEffect(SEQ_SE_DP_REGI_sseq);
         return SHOP_STATE_CONFIRM_PURCHASE;
     }
     case MENU_CANCEL:

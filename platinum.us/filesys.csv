@@ -212,7 +212,7 @@ res/graphics/mail/mail.narc,/graphic/mail_gra.narc
 res/graphics/start_menu/start_menu.narc,/graphic/menu_gra.narc
 res/graphics/signature_interface/signature_interface.narc,/graphic/mysign.narc
 res/graphics/main_menu/main_menu_graphics.narc,/graphic/mystery.narc
-res/prebuilt/graphic/ntag_gra.narc,/graphic/ntag_gra.narc
+res/graphics/berry_tag/berry_tag.narc,/graphic/ntag_gra.narc
 res/prebuilt/graphic/nutmixer.narc,/graphic/nutmixer.narc
 res/prebuilt/graphic/oekaki.narc,/graphic/oekaki.narc
 res/prebuilt/graphic/opening.narc,/graphic/opening.narc
@@ -252,7 +252,7 @@ res/items/pl_item_data.narc,/itemtool/itemdata/pl_item_data.narc
 res/pokemon/pl_poke_icon.narc,/poketool/icongra/pl_poke_icon.narc
 res/prebuilt/poketool/icongra/poke_icon.narc,/poketool/icongra/poke_icon.narc
 res/pokemon/pokefoot.narc,/poketool/pokefoot/pokefoot.narc
-res/prebuilt/data/mmodel/mmodel.narc,/data/mmodel/mmodel.narc
+res/graphics/field_sprites/field_sprites.narc,/data/mmodel/mmodel.narc
 res/prebuilt/data/mmodel/fldeff.narc,/data/mmodel/fldeff.narc
 res/graphics/battle/particles/pokeballs/ball_particles.narc,/wazaeffect/effectdata/ball_particle.narc
 res/graphics/battle/particles/battle_particles.narc,/wazaeffect/effectdata/waza_particle.narc

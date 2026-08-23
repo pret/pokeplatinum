@@ -211,7 +211,7 @@
       "en_US": "The Mail was sent to your PC."
     },
     {
-      "id": "PartyMenu_Text_IfmailIsRemovedMessageWillBeLostConfirm",
+      "id": "PartyMenu_Text_IfMailIsRemovedMessageWillBeLostConfirm",
       "en_US": [
         "If the Mail is removed, its written\n",
         "message will be lost. Is that OK?"

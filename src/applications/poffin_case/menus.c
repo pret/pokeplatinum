@@ -251,7 +251,7 @@ void PoffinManager_UpdateFilterButton(PoffinManager *app, u8 poffinType, u8 butt
 
 void PoffinManager_UpdatePoffinFilter(PoffinManager *app, u8 poffinType)
 {
-    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
 
     if (app->buttonHeld != 0xffff) {
         if (poffinType == app->flavorFilter) {
@@ -323,7 +323,7 @@ static void UpdateSelectedPoffin(ListMenu *menu, u64 index, u8 onInit)
     PoffinManager *app = (PoffinManager *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (!onInit) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     u16 listPos, cursorPos;
@@ -408,7 +408,7 @@ static void PlaySound(ListMenu *menu, u64 index, u8 onInit)
 #endif
 {
     if (!onInit) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 

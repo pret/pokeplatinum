@@ -169,13 +169,13 @@ static enum FieldWarpStateResult StartWarpOutSpinning(FieldTask *task, FieldSyst
 
     switch (fieldWarp->warpType) {
     case FIELD_WARP_TYPE_ESCAPE_ROPE:
-        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2_sseq);
         break;
     case FIELD_WARP_TYPE_DIG:
-        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2_sseq);
         break;
     case FIELD_WARP_TYPE_TELEPORT:
-        Sound_PlayEffect(SEQ_SE_DP_TELE);
+        Sound_PlayEffect(SEQ_SE_DP_TELE_sseq);
         break;
     }
 
@@ -280,7 +280,7 @@ static void CreateJournalEntryForTeleport(FieldSystem *fieldSystem, FieldWarp *f
         return;
     }
 
-    void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(FIELD_MOVE_TELEPORT, fieldSystem->location->mapId, HEAP_ID_FIELD1);
+    void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(FIELD_MOVE_TELEPORT, fieldSystem->location->mapHeaderID, HEAP_ID_FIELD1);
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 }
 

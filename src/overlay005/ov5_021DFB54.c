@@ -5,6 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/map_object.h"
+#include "constants/player_avatar.h"
 #include "generated/game_records.h"
 #include "generated/movement_actions.h"
 
@@ -39,12 +40,13 @@
 #include "party.h"
 #include "persisted_map_features_init.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "pokemon.h"
+#include "sound.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 
 typedef struct MonRideTask {
@@ -292,7 +294,7 @@ static void PlayerAvatar_RequestStateCycle(PlayerAvatar *playerAvatar)
         PlayerAvatar_SetSurfMountAnimManager(playerAvatar, NULL);
     }
 
-    Sound_PlayEffect(SEQ_SE_DP_JITENSYA);
+    Sound_PlayEffect(SEQ_SE_DP_JITENSYA_sseq);
 }
 
 static void PlayerAvatar_RequestStateSurf(PlayerAvatar *playerAvatar)
@@ -453,7 +455,7 @@ int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, enum Face
 
 static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
 {
-    int v0 = sub_02061434(playerAvatar, param2);
+    int v0 = PlayerAvatar_GetMoveStateFromPlayerAvatarState(playerAvatar, param2);
 
     if (param3 & 1 << 2) {
         if (DistWorld_HandlePlayerMoved(fieldSystem, param2) == 1) {
@@ -486,7 +488,7 @@ static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
 
 static int ov5_021DFEF4(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
 {
-    int v0 = sub_02061434(playerAvatar, param2);
+    int v0 = PlayerAvatar_GetMoveStateFromPlayerAvatarState(playerAvatar, param2);
 
     if (FieldSystem_TryGetStuckInDeepMud(fieldSystem, playerAvatar, param2, v0) == TRUE) {
         return 1;
@@ -574,7 +576,7 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
 
         v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_NORTH);
         LocalMapObj_SetAnimationCode(v1, v3);
-        Sound_PlayEffect(SEQ_SE_DP_UG_023);
+        Sound_PlayEffect(SEQ_SE_DP_UG_023_sseq);
 
         v0->unk_00++;
         break;
@@ -661,7 +663,7 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
     case 0:
         if (PlayerAvatar_MapDistortionState(taskEnv->playerAvatar) == AVATAR_DISTORTION_STATE_NONE) {
             FieldBGM_SetOverride(taskEnv->fieldSystem, SEQ_NONE);
-            FieldBGM_TryFadeOut(taskEnv->fieldSystem, SEQ_NAMINORI, 1);
+            FieldBGM_TryFadeOut(taskEnv->fieldSystem, SEQ_NAMINORI_sseq, 1);
         }
 
         if (taskEnv->monRideTask.playCutIn == TRUE) {
@@ -687,7 +689,7 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
             int mountZPos = MapObject_GetZ(taskEnv->playerObject);
             enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(taskEnv->playerAvatar);
 
-            sub_02061674(taskEnv->playerAvatar, taskEnv->direction, &mountXPos, &mountYPos, &mountZPos);
+            PlayerAvatar_GetStepDistortionWorldPos(taskEnv->playerAvatar, taskEnv->direction, &mountXPos, &mountYPos, &mountZPos);
             taskEnv->unk_28 = DistWorldSurfMountRenderer_HandleSurfBegin(taskEnv->playerAvatar, mountXPos, mountYPos, mountZPos, taskEnv->direction, 0, distortionState);
         }
 
@@ -752,22 +754,22 @@ static int ov5_021E032C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     }
 
     {
-        u32 v0;
+        u32 collision;
         MapObject *v1 = PlayerAvatar_GetMapObject(playerAvatar);
 
         if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
-            v0 = sub_02060B7C(playerAvatar, v1, param2);
+            collision = PlayerAvatar_CheckCollision(playerAvatar, v1, param2);
         } else {
-            v0 = sub_020611FC(playerAvatar, v1, param2);
+            collision = PlayerAvatar_CheckDistortionCollision(playerAvatar, v1, param2);
         }
 
-        if (v0 == (1 << 5)) {
+        if (collision == PLAYER_COLLISION_WATER) {
             return 0;
         }
 
-        v0 &= ~(1 << 5);
+        collision &= ~PLAYER_COLLISION_WATER;
 
-        if (v0 != 0) {
+        if (collision != PLAYER_COLLISION_NONE) {
             return 0;
         }
     }
@@ -831,7 +833,7 @@ static BOOL ov5_021E03C8(FieldTask *param0)
 
         PlayerAvatar_SetSurfMountAnimManager(v0->playerAvatar, NULL);
         PlayerAvatar_SetPlayerState(v0->playerAvatar, 0x0);
-        FieldBGM_TryFadeOut(v0->fieldSystem, FieldBGM_GetForMapHeader(v0->fieldSystem, v0->fieldSystem->location->mapId), 1);
+        FieldBGM_TryFadeOut(v0->fieldSystem, FieldBGM_GetForMapHeader(v0->fieldSystem, v0->fieldSystem->location->mapHeaderID), 1);
         MonRideTaskEnv_Free(v0);
         return 1;
     }
@@ -846,7 +848,7 @@ static int ov5_021E04A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     }
 
     {
-        u8 v0 = sub_0206156C(playerAvatar, param2);
+        u8 v0 = PlayerAvatar_GetTileBehaviorFromDir(playerAvatar, param2);
 
         if (TileBehavior_IsWaterfall(v0) == 0) {
             return 0;
@@ -892,7 +894,7 @@ static BOOL FieldTask_StuckInDeepMud(FieldTask *fieldTaskEnv)
 
     switch (stuckInDeepMudTaskEnv->state) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_ZUPO);
+        Sound_PlayEffect(SEQ_SE_DP_ZUPO_sseq);
         stuckInDeepMudTaskEnv->state++;
     case 1:
         if (!LocalMapObj_IsAnimationSet(playerMapObject)) {
@@ -902,7 +904,7 @@ static BOOL FieldTask_StuckInDeepMud(FieldTask *fieldTaskEnv)
         }
 
         if (stuckInDeepMudTaskEnv->stepCounter >= 5) {
-            Sound_PlayEffect(SEQ_SE_DP_ZUPO2);
+            Sound_PlayEffect(SEQ_SE_DP_ZUPO2_sseq);
             PlayerAvatar_SetEscapedFromDeepMud(stuckInDeepMudTaskEnv->playerAvatar, TRUE);
             MonRideTaskEnv_Free(stuckInDeepMudTaskEnv);
             return TRUE;
@@ -945,7 +947,7 @@ static BOOL FieldTask_StuckInDeepMud(FieldTask *fieldTaskEnv)
         }
 
         movementAction = MovementAction_TurnActionTowardsDir(playerNewDirection, movementAction);
-        PlayerAvatar_SetAnimationCode(stuckInDeepMudTaskEnv->playerAvatar, movementAction, 1);
+        PlayerAvatar_SetMapObjMovement(stuckInDeepMudTaskEnv->playerAvatar, movementAction, 1);
     } break;
     }
 
@@ -991,7 +993,7 @@ static int ov5_021E06A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
 
         ov5_021EC7F0(v1);
         MapObject_Delete(v1);
-        Sound_PlayEffect(SEQ_SE_DP_FW291);
+        Sound_PlayEffect(SEQ_SE_DP_FW291_sseq);
     }
 
     return 0;
@@ -1081,7 +1083,7 @@ static int SubTask_RockClimb_CreateMount(RockClimbTaskEnv *taskEnv)
     taskEnv->unk_18 = ov5_021F28F4(taskEnv->playerObject, xPos, zPos, taskEnv->direction, 0);
     taskEnv->unk_2C = ov6_0224892C(taskEnv->fieldSystem);
 
-    Sound_PlayEffect(SEQ_SE_DP_UG_023);
+    Sound_PlayEffect(SEQ_SE_DP_UG_023_sseq);
     taskEnv->state++;
 
     return 0;
@@ -1231,7 +1233,7 @@ static int SubTask_Waterfall_PlayAscentCutIn(WaterfallTaskEnv *taskEnv)
 static int SubTask_Waterfall_WaitForAscentCutIn(WaterfallTaskEnv *taskEnv)
 {
     if (CheckMonRideCutInFinished(&taskEnv->monRideTask) == TRUE) {
-        Sound_PlayEffect(SEQ_SE_DP_FW463);
+        Sound_PlayEffect(SEQ_SE_DP_FW463_sseq);
         taskEnv->state++;
     }
 
@@ -1348,7 +1350,7 @@ static int SubTask_Waterfall_PlayDescentCutIn(WaterfallTaskEnv *taskEnv)
 static int SubTask_Waterfall_WaitForDescentCutIn(WaterfallTaskEnv *taskEnv)
 {
     if (CheckMonRideCutInFinished(&taskEnv->monRideTask) == TRUE) {
-        Sound_PlayEffect(SEQ_SE_DP_FW463);
+        Sound_PlayEffect(SEQ_SE_DP_FW463_sseq);
         taskEnv->state++;
     }
 

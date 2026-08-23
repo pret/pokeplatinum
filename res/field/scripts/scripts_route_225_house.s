@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 Route225House_Worker:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_225_HOUSE_FRESH_WATER, Route225House_WellspringOfLife

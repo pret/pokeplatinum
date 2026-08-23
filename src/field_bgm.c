@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/map_headers.h"
 #include "generated/trainer_classes.h"
 
 #include "field/field_system.h"
@@ -22,89 +23,89 @@
 // clang-format off
 // Class, Eyes meet theme
 const static u16 sTrainerEncounterBGMs[][2] = {
-    { TRAINER_CLASS_AROMA_LADY,              SEQ_EYE_LADY },
-    { TRAINER_CLASS_RUIN_MANIAC,             SEQ_EYE_MOUNT },
-    { TRAINER_CLASS_INTERVIEWERS,            SEQ_EYE_FUN },
-    { TRAINER_CLASS_TUBER_FEMALE,            SEQ_EYE_KID },
-    { TRAINER_CLASS_TUBER_MALE,              SEQ_EYE_KID },
-    { TRAINER_CLASS_SIS_AND_BRO,             SEQ_EYE_SPORT },
-    { TRAINER_CLASS_ACE_TRAINER_FEMALE,      SEQ_EYE_ELITE },
-    { TRAINER_CLASS_ACE_TRAINER_MALE,        SEQ_EYE_ELITE },
-    { TRAINER_CLASS_LADY,                    SEQ_EYE_RICH },
-    { TRAINER_CLASS_BEAUTY,                  SEQ_EYE_LADY },
-    { TRAINER_CLASS_RICH_BOY,                SEQ_EYE_RICH },
-    { TRAINER_CLASS_SWIMMER_MALE,            SEQ_EYE_SPORT },
-    { TRAINER_CLASS_BLACK_BELT,              SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_GUITARIST,               SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_CAMPER,                  SEQ_EYE_BOY },
-    { TRAINER_CLASS_PSYCHIC_FEMALE,          SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_PSYCHIC_MALE,            SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_GENTLEMAN,               SEQ_EYE_RICH },
-    { TRAINER_CLASS_SCHOOL_KID_FEMALE,       SEQ_EYE_GIRL },
-    { TRAINER_CLASS_SCHOOL_KID_MALE,         SEQ_EYE_BOY },
-    { TRAINER_CLASS_POKEFAN_FEMALE,          SEQ_EYE_FUN },
-    { TRAINER_CLASS_POKEFAN_MALE,            SEQ_EYE_FUN },
-    { TRAINER_CLASS_YOUNGSTER,               SEQ_EYE_BOY },
-    { TRAINER_CLASS_FISHERMAN,               SEQ_EYE_ENKA },
-    { TRAINER_CLASS_DRAGON_TAMER,            SEQ_EYE_ELITE },
-    { TRAINER_CLASS_BIRD_KEEPER,             SEQ_EYE_SPORT },
-    { TRAINER_CLASS_NINJA_BOY,               SEQ_EYE_KID },
-    { TRAINER_CLASS_BATTLE_GIRL,             SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_PARASOL_LADY,            SEQ_EYE_LADY },
-    { TRAINER_CLASS_SWIMMER_FEMALE,          SEQ_EYE_LADY },
-    { TRAINER_CLASS_PICNICKER,               SEQ_EYE_GIRL },
-    { TRAINER_CLASS_TWINS,                   SEQ_EYE_KID },
-    { TRAINER_CLASS_SAILOR,                  SEQ_EYE_ENKA },
-    { TRAINER_CLASS_COLLECTOR,               SEQ_EYE_MYS },
-    { TRAINER_CLASS_BREEDER_FEMALE,          SEQ_EYE_LADY },
-    { TRAINER_CLASS_BREEDER_MALE,            SEQ_EYE_BOY },
-    { TRAINER_CLASS_RANGER_FEMALE,           SEQ_EYE_ELITE },
-    { TRAINER_CLASS_RANGER_MALE,             SEQ_EYE_ELITE },
-    { TRAINER_CLASS_LASS,                    SEQ_EYE_GIRL },
-    { TRAINER_CLASS_BUG_CATCHER,             SEQ_EYE_BOY },
-    { TRAINER_CLASS_HIKER,                   SEQ_EYE_MOUNT },
-    { TRAINER_CLASS_YOUNG_COUPLE,            SEQ_EYE_FUN },
-    { TRAINER_CLASS_CYCLIST_MALE,            SEQ_EYE_SPORT },
-    { TRAINER_CLASS_CYCLIST_FEMALE,          SEQ_EYE_SPORT },
-    { TRAINER_CLASS_GALACTIC_GRUNT_MALE,     SEQ_EYE_GINGA },
-    { TRAINER_CLASS_GALACTIC_GRUNT_FEMALE,   SEQ_EYE_GINGA },
-    { TRAINER_CLASS_COMMANDER_MARS,          SEQ_EYE_GINGA },
-    { TRAINER_CLASS_COMMANDER_JUPITER,       SEQ_EYE_GINGA },
-    { TRAINER_CLASS_COMMANDER_SATURN,        SEQ_EYE_GINGA },
-    { TRAINER_CLASS_SOCIALITE,               SEQ_EYE_RICH },
-    { TRAINER_CLASS_WAITER,                  SEQ_EYE_FUN },
-    { TRAINER_CLASS_WAITRESS,                SEQ_EYE_FUN },
-    { TRAINER_CLASS_WORKER,                  SEQ_EYE_FUN },
-    { TRAINER_CLASS_RANCHER,                 SEQ_EYE_MOUNT },
-    { TRAINER_CLASS_COWGIRL,                 SEQ_EYE_MOUNT },
-    { TRAINER_CLASS_BELLE_AND_PA,            SEQ_EYE_MOUNT },
-    { TRAINER_CLASS_CLOWN,                   SEQ_EYE_FUN },
-    { TRAINER_CLASS_IDOL,                    SEQ_EYE_GIRL },
-    { TRAINER_CLASS_ARTIST,                  SEQ_EYE_FUN },
-    { TRAINER_CLASS_POKE_KID,                SEQ_EYE_KID },
-    { TRAINER_CLASS_POLICEMAN,               SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_DOUBLE_TEAM,             SEQ_EYE_ELITE },
-    { TRAINER_CLASS_SKIER_MALE,              SEQ_EYE_SPORT },
-    { TRAINER_CLASS_SKIER_FEMALE,            SEQ_EYE_SPORT },
-    { TRAINER_CLASS_ROUGHNECK,               SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_SCIENTIST,               SEQ_EYE_MYS },
-    { TRAINER_CLASS_JOGGER,                  SEQ_EYE_SPORT },
-    { TRAINER_CLASS_VETERAN,                 SEQ_EYE_ELITE },
-    { TRAINER_CLASS_CAMERAMAN,               SEQ_EYE_FUN },
-    { TRAINER_CLASS_REPORTER,                SEQ_EYE_FUN },
-    { TRAINER_CLASS_PI,                      SEQ_EYE_RICH },
-    { TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE, SEQ_EYE_ELITE },
-    { TRAINER_CLASS_ACE_TRAINER_SNOW_MALE,   SEQ_EYE_ELITE },
-    { TRAINER_CLASS_ELITE_FOUR_AARON,        SEQ_EYE_TENNO },
-    { TRAINER_CLASS_ELITE_FOUR_BERTHA,       SEQ_EYE_TENNO },
-    { TRAINER_CLASS_ELITE_FOUR_FLINT,        SEQ_EYE_TENNO },
-    { TRAINER_CLASS_ELITE_FOUR_LUCIAN,       SEQ_EYE_TENNO },
-    { TRAINER_CLASS_CHAMPION_CYNTHIA,        SEQ_EYE_CHAMP },
-    { TRAINER_CLASS_MAID,                    SEQ_EYE_FUN }
+    { TRAINER_CLASS_AROMA_LADY,              SEQ_EYE_LADY_sseq },
+    { TRAINER_CLASS_RUIN_MANIAC,             SEQ_EYE_MOUNT_sseq },
+    { TRAINER_CLASS_INTERVIEWERS,            SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_TUBER_FEMALE,            SEQ_EYE_KID_sseq },
+    { TRAINER_CLASS_TUBER_MALE,              SEQ_EYE_KID_sseq },
+    { TRAINER_CLASS_SIS_AND_BRO,             SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_ACE_TRAINER_FEMALE,      SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_ACE_TRAINER_MALE,        SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_LADY,                    SEQ_EYE_RICH_sseq },
+    { TRAINER_CLASS_BEAUTY,                  SEQ_EYE_LADY_sseq },
+    { TRAINER_CLASS_RICH_BOY,                SEQ_EYE_RICH_sseq },
+    { TRAINER_CLASS_SWIMMER_MALE,            SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_BLACK_BELT,              SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_GUITARIST,               SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_CAMPER,                  SEQ_EYE_BOY_sseq },
+    { TRAINER_CLASS_PSYCHIC_FEMALE,          SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_PSYCHIC_MALE,            SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_GENTLEMAN,               SEQ_EYE_RICH_sseq },
+    { TRAINER_CLASS_SCHOOL_KID_FEMALE,       SEQ_EYE_GIRL_sseq },
+    { TRAINER_CLASS_SCHOOL_KID_MALE,         SEQ_EYE_BOY_sseq },
+    { TRAINER_CLASS_POKEFAN_FEMALE,          SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_POKEFAN_MALE,            SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_YOUNGSTER,               SEQ_EYE_BOY_sseq },
+    { TRAINER_CLASS_FISHERMAN,               SEQ_EYE_ENKA_sseq },
+    { TRAINER_CLASS_DRAGON_TAMER,            SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_BIRD_KEEPER,             SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_NINJA_BOY,               SEQ_EYE_KID_sseq },
+    { TRAINER_CLASS_BATTLE_GIRL,             SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_PARASOL_LADY,            SEQ_EYE_LADY_sseq },
+    { TRAINER_CLASS_SWIMMER_FEMALE,          SEQ_EYE_LADY_sseq },
+    { TRAINER_CLASS_PICNICKER,               SEQ_EYE_GIRL_sseq },
+    { TRAINER_CLASS_TWINS,                   SEQ_EYE_KID_sseq },
+    { TRAINER_CLASS_SAILOR,                  SEQ_EYE_ENKA_sseq },
+    { TRAINER_CLASS_COLLECTOR,               SEQ_EYE_MYS_sseq },
+    { TRAINER_CLASS_BREEDER_FEMALE,          SEQ_EYE_LADY_sseq },
+    { TRAINER_CLASS_BREEDER_MALE,            SEQ_EYE_BOY_sseq },
+    { TRAINER_CLASS_RANGER_FEMALE,           SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_RANGER_MALE,             SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_LASS,                    SEQ_EYE_GIRL_sseq },
+    { TRAINER_CLASS_BUG_CATCHER,             SEQ_EYE_BOY_sseq },
+    { TRAINER_CLASS_HIKER,                   SEQ_EYE_MOUNT_sseq },
+    { TRAINER_CLASS_YOUNG_COUPLE,            SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_CYCLIST_MALE,            SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_CYCLIST_FEMALE,          SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_GALACTIC_GRUNT_MALE,     SEQ_EYE_GINGA_sseq },
+    { TRAINER_CLASS_GALACTIC_GRUNT_FEMALE,   SEQ_EYE_GINGA_sseq },
+    { TRAINER_CLASS_COMMANDER_MARS,          SEQ_EYE_GINGA_sseq },
+    { TRAINER_CLASS_COMMANDER_JUPITER,       SEQ_EYE_GINGA_sseq },
+    { TRAINER_CLASS_COMMANDER_SATURN,        SEQ_EYE_GINGA_sseq },
+    { TRAINER_CLASS_SOCIALITE,               SEQ_EYE_RICH_sseq },
+    { TRAINER_CLASS_WAITER,                  SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_WAITRESS,                SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_WORKER,                  SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_RANCHER,                 SEQ_EYE_MOUNT_sseq },
+    { TRAINER_CLASS_COWGIRL,                 SEQ_EYE_MOUNT_sseq },
+    { TRAINER_CLASS_BELLE_AND_PA,            SEQ_EYE_MOUNT_sseq },
+    { TRAINER_CLASS_CLOWN,                   SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_IDOL,                    SEQ_EYE_GIRL_sseq },
+    { TRAINER_CLASS_ARTIST,                  SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_POKE_KID,                SEQ_EYE_KID_sseq },
+    { TRAINER_CLASS_POLICEMAN,               SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_DOUBLE_TEAM,             SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_SKIER_MALE,              SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_SKIER_FEMALE,            SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_ROUGHNECK,               SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_SCIENTIST,               SEQ_EYE_MYS_sseq },
+    { TRAINER_CLASS_JOGGER,                  SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_VETERAN,                 SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_CAMERAMAN,               SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_REPORTER,                SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_PI,                      SEQ_EYE_RICH_sseq },
+    { TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE, SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_ACE_TRAINER_SNOW_MALE,   SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_ELITE_FOUR_AARON,        SEQ_EYE_TENNO_sseq },
+    { TRAINER_CLASS_ELITE_FOUR_BERTHA,       SEQ_EYE_TENNO_sseq },
+    { TRAINER_CLASS_ELITE_FOUR_FLINT,        SEQ_EYE_TENNO_sseq },
+    { TRAINER_CLASS_ELITE_FOUR_LUCIAN,       SEQ_EYE_TENNO_sseq },
+    { TRAINER_CLASS_CHAMPION_CYNTHIA,        SEQ_EYE_CHAMP_sseq },
+    { TRAINER_CLASS_MAID,                    SEQ_EYE_FUN_sseq }
 };
 // clang-format on
 
-static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID);
+static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID);
 static void FieldBGM_GetFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames);
 
 void FieldBGM_Stop()
@@ -134,13 +135,13 @@ void FieldBGM_ClearOverride(FieldSystem *fieldSystem)
     *bgm = SEQ_NONE;
 }
 
-u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapID)
+u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
 
     if (playerState == PLAYER_AVATAR_SURFING) {
-        switch (mapID) {
+        switch (mapHeaderID) {
         case MAP_HEADER_DISTORTION_WORLD_1F:
         case MAP_HEADER_DISTORTION_WORLD_B1F:
         case MAP_HEADER_DISTORTION_WORLD_B2F:
@@ -153,15 +154,15 @@ u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapID)
         case MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM:
             break;
         default:
-            return SEQ_NAMINORI;
+            return SEQ_NAMINORI_sseq;
         }
     }
 
     if (GetRadarChainActive(fieldSystem->chain) == TRUE) {
-        return SEQ_POKERADAR;
+        return SEQ_KUSAGASA_sseq;
     }
 
-    u16 bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapID);
+    u16 bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapHeaderID);
 
     if (FieldBGM_GetOverride(fieldSystem) != SEQ_NONE) {
         bgmID = FieldBGM_GetOverride(fieldSystem);
@@ -170,23 +171,23 @@ u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapID)
     return bgmID;
 }
 
-u16 FieldBGM_GetForMapHeader(FieldSystem *fieldSystem, int mapID)
+u16 FieldBGM_GetForMapHeader(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
     u16 sdatID;
 
     if (IsNight() == FALSE) {
-        sdatID = MapHeader_GetDayMusicID(mapID);
+        sdatID = MapHeader_GetDayMusicID(mapHeaderID);
     } else {
-        sdatID = MapHeader_GetNightMusicID(mapID);
+        sdatID = MapHeader_GetNightMusicID(mapHeaderID);
     }
 
-    u16 altSdatID = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), mapID);
+    u16 altSdatID = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), mapHeaderID);
 
     if (altSdatID != SEQ_NONE) {
         sdatID = altSdatID;
     }
 
-    altSdatID = FieldBGM_GetAltMusicForCyclingRoad(fieldSystem, mapID);
+    altSdatID = FieldBGM_GetAltMusicForCyclingRoad(fieldSystem, mapHeaderID);
 
     if (altSdatID != SEQ_NONE) {
         sdatID = altSdatID;
@@ -195,20 +196,19 @@ u16 FieldBGM_GetForMapHeader(FieldSystem *fieldSystem, int mapID)
     return sdatID;
 }
 
-static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID)
+static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
-    int x, y;
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location *location = FieldOverworldState_GetPrevLocation(fieldState);
 
-    x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
-    y = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
+    int x = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int y = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
 
-    if (headerID != MAP_HEADER_ROUTE_206) {
+    if (mapHeaderID != MAP_HEADER_ROUTE_206) {
         return SEQ_NONE;
     }
 
-    if ((location->mapId == MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE) || (location->mapId == MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE)) {
+    if ((location->mapHeaderID == MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE) || (location->mapHeaderID == MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE)) {
         if (x < 299) {
             return 0;
         }
@@ -218,7 +218,7 @@ static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int head
         }
 
         if ((y == 576) || (y == 681)) {
-            return SEQ_PL_BICYCLE;
+            return SEQ_BICYCLE_sseq_1;
         }
     }
 
@@ -279,7 +279,7 @@ static void FieldBGM_GetFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode,
 u16 FieldBGM_GetEyesMeetForTrainer(enum TrainerID trainerID)
 {
     u8 class = (u8)Trainer_LoadParam(trainerID, TRDATA_CLASS);
-    u16 i, bgmID = SEQ_EYE_KID;
+    u16 i, bgmID = SEQ_EYE_KID_sseq;
 
     for (i = 0; i < NELEMS(sTrainerEncounterBGMs); i++) {
         if (sTrainerEncounterBGMs[i][0] == class) {
@@ -291,37 +291,35 @@ u16 FieldBGM_GetEyesMeetForTrainer(enum TrainerID trainerID)
     return bgmID;
 }
 
-void FieldBGM_TryFadeIn(FieldSystem *fieldSystem, int mapID)
+void FieldBGM_TryFadeIn(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
     if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
-    if (Sound_GetCurrentBGM() != FieldBGM_GetForMapHeader(fieldSystem, mapID)) {
+    if (Sound_GetCurrentBGM() != FieldBGM_GetForMapHeader(fieldSystem, mapHeaderID)) {
         Sound_FadeOutBGM(0, 40);
     }
 }
 
-void FieldBGM_PlayForMapHeader(FieldSystem *fieldSystem, int mapID)
+void FieldBGM_PlayForMapHeader(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
-    u16 bgmID;
-
     if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
     Sound_SetScene(SOUND_SCENE_NONE);
 
-    bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapID);
+    u16 bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapHeaderID);
 
     Sound_SetFieldBGM(bgmID);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }
 
-void FieldBGM_PlayEffectiveForMapHeader(FieldSystem *fieldSystem, int mapID)
+void FieldBGM_PlayEffectiveForMapHeader(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID)
 {
-    u16 bgmID = FieldBGM_GetEffective(fieldSystem, mapID);
+    u16 bgmID = FieldBGM_GetEffective(fieldSystem, mapHeaderID);
 
-    Sound_SetFieldBGM(FieldBGM_GetForMapHeader(fieldSystem, mapID));
+    Sound_SetFieldBGM(FieldBGM_GetForMapHeader(fieldSystem, mapHeaderID));
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }

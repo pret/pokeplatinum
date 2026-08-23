@@ -40,7 +40,7 @@ PastoriaGym_YellowButton:
     End
 
 PastoriaGym_Wake:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_WakeAlreadyHaveFenBadge
@@ -53,7 +53,7 @@ PastoriaGym_Wake:
     Message PastoriaGym_Text_BeatWake
     BufferPlayerName 0
     Message PastoriaGym_Text_WakeReveiveFenBadge
-    PlayFanfare SEQ_BADGE
+    PlayFanfare SEQ_BADGE_sseq
     WaitFanfare
     GiveBadge BADGE_ID_FEN
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
@@ -105,7 +105,7 @@ PastoriaGym_LostBattle:
     End
 
 PastoriaGym_GymGuide:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_GymGuideAfterBadge
@@ -124,7 +124,7 @@ PastoriaGym_GymGuideAfterBadge:
     End
 
 PastoriaGym_GymStatue:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaGym_GymStatueAfterBadge
     BufferRivalName 0

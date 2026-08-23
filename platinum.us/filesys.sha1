@@ -211,7 +211,7 @@ e7266bd8b7095861b6e1fdaf4f13cb648a9c325d *res/prebuilt/graphic/footprint_board.n
 1d70dd8856d2f85beb2d4e461cfaf7179153640a *res/graphics/start_menu/start_menu.narc
 5ccc879d6b89822eff8adeb0637af9f06c7d640d *res/graphics/signature_interface/signature_interface.narc
 0f05587c988da3072761675d31b6bf94c9928d65 *res/graphics/main_menu/main_menu_graphics.narc
-0de1d0a92bf3c1cf90b4522b11fb397dfdf9d533 *res/prebuilt/graphic/ntag_gra.narc
+0de1d0a92bf3c1cf90b4522b11fb397dfdf9d533 *res/graphics/berry_tag/berry_tag.narc
 46742a8665062b1fa4fe576491fa2ad67ca83f49 *res/prebuilt/graphic/nutmixer.narc
 e22f0296444ce01e0b7619f73a8cf2016b2307b4 *res/prebuilt/graphic/oekaki.narc
 917f25f4e5bb3f5e1837471d2a90225e9e95363d *res/prebuilt/graphic/opening.narc
@@ -251,7 +251,7 @@ a2eca9df316b9cad191ace16d08a90603966e892 *res/prebuilt/graphic/worldtrade.narc
 6d861f9f35d1b267cd7b84368a1b7dc76b4e9669 *res/pokemon/pl_poke_icon.narc
 0622e95a5dc830735e711852032b829ead7d21e6 *res/prebuilt/poketool/icongra/poke_icon.narc
 7fb44c0bcde2ac5ae042835146c21b84159f5693 *res/pokemon/pokefoot.narc
-21bd9b9e352c828de0a93979589f7ea487c846d6 *res/prebuilt/data/mmodel/mmodel.narc
+21bd9b9e352c828de0a93979589f7ea487c846d6 *res/graphics/field_sprites/field_sprites.narc
 70d483c69d9f83dc52de91f2451c6cdfba6a046c *res/prebuilt/data/mmodel/fldeff.narc
 5de52d02105237dc02fb4c87c9b8378a5da93217 *res/graphics/battle/particles/pokeballs/ball_particles.narc
 bd80949f0ab84fe4b4963a41063088b2e2d6df92 *res/graphics/battle/particles/battle_particles.narc

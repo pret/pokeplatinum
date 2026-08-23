@@ -75,10 +75,10 @@ static BOOL EggHatch_Init(ApplicationManager *appMan, int *state)
     eggHatch->graphics.plttData = PaletteData_New(HEAP_ID_EGG_HATCH);
 
     PaletteData_SetAutoTransparent(eggHatch->graphics.plttData, TRUE);
-    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_MAIN_BG, 0x200, HEAP_ID_EGG_HATCH);
-    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_MAIN_OBJ, 0x200, HEAP_ID_EGG_HATCH);
-    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_SUB_BG, 0x200, HEAP_ID_EGG_HATCH);
-    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_SUB_OBJ, 0x200, HEAP_ID_EGG_HATCH);
+    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_EGG_HATCH);
+    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_EGG_HATCH);
+    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_EGG_HATCH);
+    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_EGG_HATCH);
 
     EggHatch_InitGraphicsPlane();
     EggHatch_SetBlendAlphas();
@@ -191,7 +191,7 @@ static BOOL FieldTask_HatchEgg(FieldTask *fieldTask)
 
         Pokemon *mon = app->args.mon;
         TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
-        int location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
+        int location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapHeaderID);
         int isEgg = FALSE;
 
         Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);

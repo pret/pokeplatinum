@@ -118,9 +118,6 @@ enum ScriptContextType {
 #define SCRIPT_ID_OFFSET_BATTLE_FRONTIER_RECORDS       10450
 #define SCRIPT_ID_OFFSET_SCRATCH_OFF_CARDS             10490
 
-#define FLAG_OFFSET_HIDDEN_ITEMS     730
-#define FLAG_OFFSET_TRAINER_DEFEATED 1360
-
 #define SCRIPT_MANAGER_MAGIC_NUMBER 0x3643F
 
 typedef void (*FieldSysFunc)(FieldSystem *);

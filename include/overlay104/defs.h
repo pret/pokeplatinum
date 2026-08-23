@@ -97,8 +97,8 @@ struct FrontierScriptManager {
     u16 *unused3;
     void *savingIcon;
     int unused4[10];
-    Window *unk_A8;
-    Window *unk_AC;
+    Window *castleHostInfoWin;
+    Window *castlePlayer2InfoWin;
     u16 unk_B0;
     u16 unk_B2;
     u16 unk_B4;

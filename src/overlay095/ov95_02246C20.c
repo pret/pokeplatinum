@@ -110,12 +110,12 @@ int TradeSequence_Init(ApplicationManager *appMan, int *param1)
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_57, 98304);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_58, 98304);
         ov95_02247688();
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN_sseq, 1);
 
         tradeData = ApplicationManager_NewData(appMan, sizeof(TradeSequenceData), HEAP_ID_57);
 
         if (tradeData) {
-            tradeData->animationConfig = ApplicationManager_Args(appMan); // this is overlay094's unk_E8
+            tradeData->animationConfig = ApplicationManager_Args(appMan);
             tradeData->unk_04 = 0;
             tradeData->unk_08 = BgConfig_New(HEAP_ID_57);
             tradeData->unk_14 = String_Init(400, HEAP_ID_57);
@@ -142,7 +142,7 @@ int TradeSequence_Init(ApplicationManager *appMan, int *param1)
 
             RenderOam_Init(0, 128, 0, 32, 1, 127, 0, 32, 57);
             tradeData->unk_18 = SpriteList_InitRendering(64, &tradeData->unk_1C, HEAP_ID_57);
-            SetSubScreenViewRect(&(tradeData->unk_1C), 0, (192 + 40 << FX32_SHIFT));
+            SetSubScreenViewRect(&(tradeData->unk_1C), 0, 192 + 40 << FX32_SHIFT);
 
             tradeData->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_SPECIES, NULL);
             tradeData->unk_1B2 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_FORM, NULL);
@@ -315,7 +315,7 @@ static void ov95_02247060(SysTask *param0, void *param1)
 
     if (v0->unk_E8 == 0) {
         if (--(v0->unk_F0) <= 0) {
-            Sound_PlayEffect(SEQ_SE_DP_KOUKAN08);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN08_sseq);
             v0->unk_F0 = 30;
             ov95_02247170(v0);
         }
@@ -575,7 +575,7 @@ void ov95_022474D4(TradeSequenceData *param0, int param1, u32 param2, u32 param3
         v2 = (param0->unk_1AC) ? 263 : 262;
     }
 
-    v0 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v2, 0, &v1, 57);
+    v0 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v2, FALSE, &v1, HEAP_ID_57);
 
     if (v0) {
         Bg_CopyToTilemapRect(param0->unk_08, param2, param4, param5, 10, 10, v1->rawData, 0, 0, 32, 32);

@@ -54,7 +54,7 @@ typedef struct BoatCutscene {
     int goalDistance;
     fx32 bridgeDistance;
     fx32 distanceTraveled;
-    int mapID;
+    enum MapHeaderID mapHeaderID;
     int x;
     int z;
     VecFx32 cameraPos;
@@ -71,25 +71,22 @@ static BOOL BoatCutscene_CheckBridgeReached(const fx32 *distanceTraveled, const 
 static void FieldSystem_LoadCanalaveBridgeAnimation(FieldSystem *fieldSystem);
 static void BoatCutscene_PanStartingCamera(BoatCutscene *boatCutscene);
 
-void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, const u8 exitDir, const int mapID, const int x, const int z)
+void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, const u8 exitDir, const enum MapHeaderID mapHeaderID, const int x, const int z)
 {
-    BoatCutscene *boatCutscene;
-    BOOL moveBeforeFadeOut;
-    BOOL boatFound;
     TerrainCollisionHitbox hitbox;
     int targetMapPropModelID;
     int goalDistance;
 
-    boatCutscene = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(BoatCutscene));
+    BoatCutscene *boatCutscene = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(BoatCutscene));
 
     boatCutscene->travelDir = travelDir;
     boatCutscene->exitDir = exitDir;
-    boatCutscene->mapID = mapID;
+    boatCutscene->mapHeaderID = mapHeaderID;
     boatCutscene->x = x;
     boatCutscene->z = z;
     boatCutscene->areaModelAttrs = *(fieldSystem->areaModelAttrs);
 
-    moveBeforeFadeOut = FALSE;
+    BOOL moveBeforeFadeOut = FALSE;
 
     boatCutscene->bridgeDistance = 0xffffffff;
     boatCutscene->dummy = 0;
@@ -111,7 +108,7 @@ void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, 
     }
 
     if (moveBeforeFadeOut) {
-        boatFound = FieldSystem_FindCollidingLoadedMapPropByModelID(fieldSystem, targetMapPropModelID, &hitbox, &boatCutscene->boat);
+        BOOL boatFound = FieldSystem_FindCollidingLoadedMapPropByModelID(fieldSystem, targetMapPropModelID, &hitbox, &boatCutscene->boat);
 
         if (boatFound) {
             boatCutscene->goalDistance = goalDistance;
@@ -128,7 +125,7 @@ void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, 
                 boatCutscene->state = BOAT_CUTSCENE_STATE_START_WITH_BRIDGE;
 
                 FieldSystem_LoadCanalaveBridgeAnimation(fieldSystem);
-                Sound_PlayEffect(SEQ_SE_DP_SHIP02);
+                Sound_PlayEffect(SEQ_SE_DP_SHIP02_sseq);
             } else {
                 boatCutscene->state = BOAT_CUTSCENE_STATE_START_WITHOUT_BRIDGE;
             }
@@ -205,7 +202,7 @@ static BOOL FieldSystem_PlayBoatCutsceneStep(FieldTask *taskMan)
             if (BoatCutscene_CheckBridgeReached(&boatCutscene->bridgeDistance, &boatCutscene->distanceTraveled, &boatCutscene->bridgeReached)) {
                 MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_LEFT, 0);
                 MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_RIGHT, 0);
-                Sound_PlayEffect(SEQ_SE_DP_SHIP03);
+                Sound_PlayEffect(SEQ_SE_DP_SHIP03_sseq);
             }
         } else {
             if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_LEFT)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_RIGHT)) && goalReached) {
@@ -236,11 +233,11 @@ static BOOL FieldSystem_PlayBoatCutsceneStep(FieldTask *taskMan)
         boatCutscene->state = BOAT_CUTSCENE_STATE_MAP_TRANSITION;
         break;
     case BOAT_CUTSCENE_STATE_MAP_TRANSITION:
-        FieldTask_ChangeMapToLocation(taskMan, boatCutscene->mapID, -1, boatCutscene->x, boatCutscene->z, boatCutscene->exitDir);
+        FieldTask_ChangeMapToLocation(taskMan, boatCutscene->mapHeaderID, -1, boatCutscene->x, boatCutscene->z, boatCutscene->exitDir);
         boatCutscene->state = BOAT_CUTSCENE_STATE_FADE_IN;
         break;
     case BOAT_CUTSCENE_STATE_FADE_IN:
-        FieldBGM_PlayForMapHeader(fieldSystem, boatCutscene->mapID);
+        FieldBGM_PlayForMapHeader(fieldSystem, boatCutscene->mapHeaderID);
         FieldTransition_StartMapAndFadeIn(taskMan);
         boatCutscene->state = BOAT_CUTSCENE_STATE_CLEAN_UP;
         break;

@@ -120,7 +120,7 @@ typedef struct FieldSystem_t {
     BattleTower *battleTower;
     const BattleRegulation *battleRegulation;
     PokedexMemory *pokedexMemory;
-    BOOL unk_B8;
+    BOOL temporaryMapChange;
     u8 *battleSubscreenCursorOn;
     u32 unk_C0;
     UnkStruct_ov66_0222DCE0_sub1 unk_C4;

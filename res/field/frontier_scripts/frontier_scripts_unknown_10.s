@@ -45,7 +45,7 @@ _0014:
 
 _0039:
     HealParty
-    PlayBGM SEQ_BF_TOWWER
+    PlayBGM SEQ_BF_TOWWER_sseq
     FrontierScrCmd_AA
     WaitTime 1, VAR_0x8008
     FrontierScrCmd_B2 0, 0, 0, VAR_0x8008
@@ -422,8 +422,8 @@ _0766:
     ShowSavingIcon
     FrontierScrCmd_73 VAR_0x8008
     HideSavingIcon
-    PlaySoundEffect SEQ_SE_DP_SAVE
-    WaitSoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
+    WaitSoundEffect SEQ_SE_DP_SAVE_sseq
     MessageNoSkip pl_msg_00000015_00020
     WaitTime 10, VAR_0x8008
     ClearReceivedTempDataAllPlayers
@@ -473,28 +473,28 @@ _0858:
 
 _0879:
     FrontierScrCmd_AB
-    PlayBGM SEQ_PL_BF_FACTORY
+    PlayBGM SEQ_PL_BF_FACTORY_sseq
     Call _08C9
     FrontierScrCmd_04 FRONTIER_SCENE_FACTORY_CORRIDOR, 0
     End
 
 _088D:
     FrontierScrCmd_AB
-    PlayBGM SEQ_PL_BF_STAGE
+    PlayBGM SEQ_PL_BF_STAGE_sseq
     Call _08C9
     FrontierScrCmd_04 FRONTIER_SCENE_HALL_CORRIDOR, 0
     End
 
 _08A1:
     FrontierScrCmd_AB
-    PlayBGM SEQ_PL_BF_CASTLE02
+    PlayBGM SEQ_PL_BF_CASTLE02_sseq
     Call _08C9
     FrontierScrCmd_04 FRONTIER_SCENE_CASTLE_CORRIDOR, 0
     End
 
 _08B5:
     FrontierScrCmd_AB
-    PlayBGM SEQ_PL_BF_ROULETTE
+    PlayBGM SEQ_PL_BF_ROULETTE_sseq
     Call _08C9
     FrontierScrCmd_04 FRONTIER_SCENE_ARCADE_CORRIDOR, 0
     End
@@ -524,7 +524,7 @@ _08DD:
     ClearReceivedTempDataAllPlayers
     FrontierScrCmd_22 _000C
     FrontierScrCmd_24 _0014
-    PlayBGM SEQ_BF_TOWWER
+    PlayBGM SEQ_BF_TOWWER_sseq
     FadeScreenIn
     BufferPartnerName 0
     Message pl_msg_00000015_00021

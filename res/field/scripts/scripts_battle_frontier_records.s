@@ -2,6 +2,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/menu.h"
 #include "res/text/bank/battle_frontier_records.h"
+#include "constants/battle_hall_functions.h"
 
 
     ScriptEntry FrontierRecords_BattleTower
@@ -13,7 +14,7 @@
     ScriptEntryEnd
 
 FrontierRecords_BattleTower:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_TOWER
     GoTo FrontierRecords_BattleTowerMenus
@@ -30,7 +31,7 @@ FrontierRecords_BattleTowerMenus:
     End
 
 FrontierRecords_BattleTowerDupe:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_TOWER
     GoTo FrontierRecords_BattleTowerMenusDupe
@@ -47,7 +48,7 @@ FrontierRecords_BattleTowerMenusDupe:
     End
 
 FrontierRecords_BattleFactory:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_FACTORY
     GoTo FrontierRecords_BattleFactoryMenus
@@ -64,7 +65,7 @@ FrontierRecords_BattleFactoryMenus:
     End
 
 FrontierRecords_BattleHall:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_HALL
     GoTo FrontierRecords_BattleHallMenus
@@ -76,9 +77,9 @@ FrontierRecords_BattleHallMenus:
     SetVar VAR_0x8008, VAR_0x8001
     GoToIfEq VAR_0x8008, 3, FrontierRecords_CloseAndExit
     GoToIfEq VAR_0x8008, MENU_CANCEL, FrontierRecords_CloseAndExit
-    ScrCmd_2CC 1, VAR_0x8001, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_CHECK_STREAK_ACTIVE, VAR_0x8001, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, FrontierRecords_WhichPokemon
-    ScrCmd_2CC 2, VAR_0x8001, VAR_RESULT
+    CallBattleHallLobbyFunction BH_LOBBY_FUNC_GET_CURRENT_STREAK_SPECIES, VAR_0x8001, VAR_RESULT
     BufferSpeciesNameFromVar 0, VAR_RESULT, 0, 0
     Message BattleFrontierRecords_Text_OnChallengeNow
     GoTo FrontierRecords_InitVarsSelectStartingLetters
@@ -115,7 +116,7 @@ FrontierRecords_SelectPokemonWithStartingLetter:
     End
 
 FrontierRecords_BattleCastle:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_CASTLE
     GoTo FrontierRecords_BattleCastleMenus
@@ -132,7 +133,7 @@ FrontierRecords_BattleCastleMenus:
     End
 
 FrontierRecords_BattleArcade:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8000, FRONTIER_RECORDS_APP_ARCADE
     GoTo FrontierRecords_BattleArcadeMenus

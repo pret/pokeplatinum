@@ -85,7 +85,7 @@ u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
             UndergroundItemListMenu_DrawColoredArrow(listPos, cursorPos, menu);
 
             if (JOY_NEW(PAD_BUTTON_A) || JOY_NEW(PAD_BUTTON_SELECT)) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
                 if (listPos + cursorPos == count - 1) {
                     return MENU_NOTHING_CHOSEN;
@@ -137,7 +137,7 @@ u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
             }
         } else {
             if (JOY_NEW(PAD_BUTTON_SELECT)) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
                 if (listPos + cursorPos == count - 1) {
                     return MENU_NOTHING_CHOSEN;
@@ -164,17 +164,17 @@ u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
     ListMenu_CalcTrueCursorPos(listMenu, &menu->trueCursorPos);
 
     if (prevPos != menu->trueCursorPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     switch (input) {
     case MENU_NOTHING_CHOSEN:
         break;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         break;
     }
 

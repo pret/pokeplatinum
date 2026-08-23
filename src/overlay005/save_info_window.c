@@ -50,7 +50,7 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
     Location *curLocation = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(saveData));
     Pokedex *pokedex = SaveData_GetPokedex(saveData);
 
-    saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
+    saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapHeaderID);
 
     if (Pokedex_IsObtained(pokedex)) {
         saveInfo->pokedexCount = Pokedex_CountSeen(pokedex);
@@ -209,7 +209,7 @@ void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem)
         return;
     }
 
-    switch (fieldSystem->location->mapId) {
+    switch (fieldSystem->location->mapHeaderID) {
     case MAP_HEADER_UNION_ROOM:
     case MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_2P:
     case MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_4P:

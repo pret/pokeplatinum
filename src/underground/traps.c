@@ -1389,7 +1389,7 @@ void Traps_ProcessPlaceTrapResult(int unused0, int unused1, void *data, void *un
             UndergroundMenu_RemoveSelectedTrap(placeResult->trap.trapID);
             UndergroundTextPrinter_SetUndergroundTrapName(UndergroundMan_GetCommonTextPrinter(), placeResult->trap.trapID);
             UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_TrapWasSetInGround, TRUE, Traps_ResumeFieldSystem);
-            Sound_PlayEffect(SEQ_SE_DP_UG_008);
+            Sound_PlayEffect(SEQ_SE_DP_UG_008_sseq);
         } else if (placeResult->result == PLACE_TRAP_NOT_IN_SECRET_BASE) {
             UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CantPutTrapInSecretBase, TRUE, Traps_ResumeFieldSystem);
         } else if (placeResult->result == PLACE_TRAP_PERSON_IN_WAY) {
@@ -1559,7 +1559,7 @@ void Traps_ProcessDisengagedTrap(int unused0, int unused1, void *data, void *unu
                 }
             }
 
-            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
 
             UndergroundTextPrinter_SetPlayerNameIndex1(UndergroundMan_GetCommonTextPrinter(), CommInfo_TrainerInfo(retrievedTrap->victimNetID));
             UndergroundTextPrinter_SetUndergroundTrapNameWithArticle(UndergroundMan_GetCommonTextPrinter(), 2, retrievedTrap->trap.trapID);
@@ -1705,7 +1705,7 @@ void Traps_HandleTriggeredTrap(int unused0, int unused1, void *data, void *unuse
 
     UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
 
-    Sound_PlayEffect(SEQ_SE_DP_UG_007);
+    Sound_PlayEffect(SEQ_SE_DP_UG_007_sseq);
     MI_CpuCopy8(trap, &trapsEnv->triggeredTraps[trap->victimNetID], sizeof(TriggeredTrap));
 
     switch (trap->trap.trapID) {
@@ -1919,7 +1919,7 @@ void Traps_ForceEndCurrentTrapEffectClient(int netID, BOOL allowToolStepBack)
         }
 
         CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_TRAPS);
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2_sseq);
 
         trapsEnv->unused = NULL;
 
@@ -2185,7 +2185,7 @@ static void Traps_MoveTrapClientTask(SysTask *sysTask, void *data)
             BrightnessController_StartTransition(1, -4, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
             UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             CommPlayer_StartSlideAnimation(ctx->netID, ctx->dir, ctx->isHurlTrap);
-            Sound_PlayEffect(SEQ_SE_DP_F007);
+            Sound_PlayEffect(SEQ_SE_DP_F007_sseq);
             ctx->state = MOVE_TRAP_STATE_FRAME_DELAY_2;
         }
         break;
@@ -2202,7 +2202,7 @@ static void Traps_MoveTrapClientTask(SysTask *sysTask, void *data)
         trapsEnv->trapEffectTask = NULL;
         trapsEnv->currentTrapContext = NULL;
 
-        Sound_StopEffect(SEQ_SE_DP_F007, 0);
+        Sound_StopEffect(SEQ_SE_DP_F007_sseq, 0);
         break;
     }
 }
@@ -2234,7 +2234,7 @@ static void Traps_EndMoveTrapEffectClient(int netID, BOOL unused)
         ctx->state = MOVE_TRAP_STATE_END;
         trapsEnv->currentTrapContext = NULL;
 
-        Sound_StopEffect(SEQ_SE_DP_F007, 0);
+        Sound_StopEffect(SEQ_SE_DP_F007_sseq, 0);
     }
 }
 
@@ -2252,7 +2252,7 @@ static void Traps_ForceEndMoveTrapEffectClient(int netID, BOOL unused)
         trapsEnv->trapEffectTask = NULL;
         trapsEnv->currentTrapContext = NULL;
 
-        Sound_StopEffect(SEQ_SE_DP_F007, 0);
+        Sound_StopEffect(SEQ_SE_DP_F007_sseq, 0);
     }
 }
 
@@ -2331,8 +2331,8 @@ static void Traps_HandleSmokeTouch(int touchX, int touchY, int prevTouchX, int p
     }
 
     if (smokeCleared) {
-        if (!Sound_IsEffectPlaying(SEQ_SE_DP_UG_025)) {
-            Sound_PlayEffect(SEQ_SE_DP_UG_025);
+        if (!Sound_IsEffectPlaying(SEQ_SE_DP_UG_025_sseq)) {
+            Sound_PlayEffect(SEQ_SE_DP_UG_025_sseq);
         }
     }
 }
@@ -2505,7 +2505,7 @@ static void Traps_SmokeTrapClientTask(SysTask *sysTask, void *data)
             ctx->state = SMOKE_TRAP_STATE_MAIN;
             UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_RemoveTrapByTouch, FALSE, NULL);
             ctx->messageTimer = 0;
-            Sound_PlayEffect(SEQ_SE_DP_FPASA2);
+            Sound_PlayEffect(SEQ_SE_DP_FPASA2_sseq);
         }
         break;
     case SMOKE_TRAP_STATE_MAIN:
@@ -2737,7 +2737,7 @@ static void TrapRadar_TimerTask(SysTask *sysTask, void *data)
     ctx->timer++;
 
     if (ctx->timer > (MAX_PLACED_TRAPS + MAX_SPAWNED_TRAPS) * 2) {
-        Sound_PlayEffect(SEQ_SE_PL_UG_006);
+        Sound_PlayEffect(SEQ_SE_PL_UG_006_sseq);
         ctx->timer = 0;
     }
 }
@@ -2981,7 +2981,7 @@ static void EscapeHole(int netID)
         if (trapsEnv->currentTrapContext) {
             HoleTrapContext *ctx = trapsEnv->currentTrapContext;
             ctx->state = HOLE_TRAP_STATE_ESCAPE_HOLE;
-            Sound_PlayEffect(SEQ_SE_DP_DANSA);
+            Sound_PlayEffect(SEQ_SE_DP_DANSA_sseq);
         }
     }
 }
@@ -3061,7 +3061,7 @@ static void Traps_HoleTrapClientTask(SysTask *sysTask, void *data)
         int dir = PlayerAvatar_GetFacingDir(trapsEnv->fieldSystem->playerAvatar);
 
         if (ctx->lastDir != dir) {
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
         }
 
         ctx->lastDir = dir;
@@ -3676,14 +3676,14 @@ static void Traps_BubbleTrapClientTask(SysTask *sysTask, void *data)
             ctx->state = BUBBLE_TRAP_STATE_MAIN;
             UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_RemoveTrapByTouch, FALSE, NULL);
             ctx->messageTimer = 0;
-            Sound_PlayEffect(SEQ_SE_DP_FAWA);
+            Sound_PlayEffect(SEQ_SE_DP_FAWA_sseq);
         }
         break;
     case BUBBLE_TRAP_STATE_MAIN:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 14, 7);
 
         if (Traps_ProcessBubbles(trapsEnv->fieldSystem->bgConfig, ctx)) {
-            Sound_StopEffect(SEQ_SE_DP_FAWA, 0);
+            Sound_StopEffect(SEQ_SE_DP_FAWA_sseq, 0);
 
             if (ctx->isTool) {
                 ctx->state = BUBBLE_TRAP_STATE_TOOL_STEP_BACK;
@@ -3702,7 +3702,7 @@ static void Traps_BubbleTrapClientTask(SysTask *sysTask, void *data)
         }
         break;
     case BUBBLE_TRAP_STATE_WAIT_FOR_END:
-        Sound_StopEffect(SEQ_SE_DP_FAWA, 0);
+        Sound_StopEffect(SEQ_SE_DP_FAWA_sseq, 0);
         UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         break;
     case BUBBLE_TRAP_STATE_END_UNUSED:
@@ -3845,7 +3845,7 @@ static BOOL Traps_ProcessBubbles(BgConfig *unused, BubbleTrapContext *ctx)
             distance = FX_Sqrt(FX_Mul(xDistance, xDistance) + FX_Mul(yDistance, yDistance));
 
             if (sBubbleSizeRadii[ctx->bubbleSizes[i]] * FX32_ONE > distance) {
-                Sound_PlayEffect(SEQ_SE_DP_UG_022);
+                Sound_PlayEffect(SEQ_SE_DP_UG_022_sseq);
                 Sprite_SetAnim(trapsEnv->sprites[i], ctx->bubbleSizes[i] * 2 + 1);
                 ctx->isBubblePopped[i] = TRUE;
                 break;
@@ -3902,7 +3902,7 @@ static void Traps_EndBubbleTrapEffectClient(int netID, BOOL allowToolStepBack)
     if (trapsEnv->currentTrapContext) {
         BubbleTrapContext *ctx = trapsEnv->currentTrapContext;
 
-        Sound_StopEffect(SEQ_SE_DP_FAWA, 0);
+        Sound_StopEffect(SEQ_SE_DP_FAWA_sseq, 0);
 
         if (ctx->isTool && allowToolStepBack) {
             Traps_StepBackFromTool(ctx->toolInitialDir);
@@ -4048,7 +4048,7 @@ static BOOL Traps_ProcessBoulder(BgConfig *unused, RockTrapContext *ctx)
         int z = PlayerAvatar_GetZPos(trapsEnv->fieldSystem->playerAvatar);
         ctx->shadowManager = ov5_DrawGrowingFloorTexture(trapsEnv->fieldSystem, x, z, 5, FLOOR_TEXTURE_BLACK_CIRCLE);
         ctx->subState = ROCK_TRAP_SUBSTATE_INIT_BOULDER_FALL;
-        Sound_PlayEffect(SEQ_SE_DP_FW466);
+        Sound_PlayEffect(SEQ_SE_DP_FW466_sseq);
         break;
     case ROCK_TRAP_SUBSTATE_INIT_BOULDER_FALL:
         ctx->timer++;
@@ -4069,7 +4069,7 @@ static BOOL Traps_ProcessBoulder(BgConfig *unused, RockTrapContext *ctx)
 
         if (ctx->boulderYPos > 65) {
             ctx->subState = ROCK_TRAP_SUBSTATE_MAIN;
-            Sound_PlayEffect(SEQ_SE_DP_FW452);
+            Sound_PlayEffect(SEQ_SE_DP_FW452_sseq);
 
             if (trapsEnv->triggeredTrapIDClient == TRAP_ROCKFALL) {
                 ctx->boulderDamage = -1;
@@ -4095,7 +4095,7 @@ static BOOL Traps_ProcessBoulder(BgConfig *unused, RockTrapContext *ctx)
 
             if (distance < BOULDER_RADIUS * FX32_ONE) {
                 ctx->boulderShakeDisplacement = 3;
-                Sound_PlayEffect(SEQ_SE_DP_UG_023);
+                Sound_PlayEffect(SEQ_SE_DP_UG_023_sseq);
                 ctx->boulderDamage++;
 
                 if (ctx->boulderDamage % 3 == 2) {
@@ -4153,7 +4153,7 @@ static BOOL Traps_ProcessBoulder(BgConfig *unused, RockTrapContext *ctx)
         break;
     case ROCK_TRAP_SUBSTATE_BOULDER_COLLAPSE:
         if (ctx->timer == 0) {
-            Sound_PlayEffect(SEQ_SE_DP_UG_026);
+            Sound_PlayEffect(SEQ_SE_DP_UG_026_sseq);
             SpriteTransfer_ReplaceCharData(ctx->boulderSpriteResources[0], ctx->boulderSpriteResources[6]);
 
             for (int i = 1; i < 9; i++) {
@@ -4471,7 +4471,7 @@ static BOOL Traps_ProcessFlame(BgConfig *unused, FireTrapContext *ctx)
 
         if (micBlowIntensity > 500) {
             ctx->timer++;
-            Sound_PlayEffect(SEQ_SE_DP_UG_024);
+            Sound_PlayEffect(SEQ_SE_DP_UG_024_sseq);
         } else {
             ctx->subState = FIRE_TRAP_SUBSTATE_INIT;
         }
@@ -4927,7 +4927,7 @@ static void TouchRadar_Task(SysTask *sysTask, void *data)
         GX_SetVisibleWnd(GX_WNDMASK_W0);
 
         CommPlayerMan_PauseFieldSystem();
-        Sound_PlayEffect(SEQ_SE_PL_UG_006);
+        Sound_PlayEffect(SEQ_SE_PL_UG_006_sseq);
 
         trapsEnv->spriteList = SpriteList_InitRendering(MAX_TRAP_EFFECT_SPRITES, &trapsEnv->g2dRenderer, HEAP_ID_FIELD1);
         SetSubScreenViewRect(&trapsEnv->g2dRenderer, 0, (HW_LCD_HEIGHT << FX32_SHIFT) * 2);

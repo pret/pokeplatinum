@@ -733,7 +733,7 @@ static void LoadWcShareScreenBackground(BgConfig *bgConfig)
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_bg_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_WONDER_CARDS_APP);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_bg_NSCR_lz, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILEMAP_HEIGHT * WC_SHARE_SCREEN_TILEMAP_WIDTH * 2, TRUE, HEAP_ID_WONDER_CARDS_APP);
-    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_1, 0, 0, WC_SHARE_SCREEN_TILEMAP_WIDTH, WC_SHARE_SCREEN_TILEMAP_HEIGHT, PLTT_12);
+    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_1, 0, 0, WC_SHARE_SCREEN_TILEMAP_WIDTH, WC_SHARE_SCREEN_TILEMAP_HEIGHT, 12);
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 }
 
@@ -914,7 +914,7 @@ static BOOL InitWondercardActionsMenu(WonderCardsAppData *appData, Window *windo
 
     Window_ClearAndCopyToVRAM(window);
     Window_Remove(window);
-    Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_2, windowTemplate->tilemapLeft, windowTemplate->tilemapTop + TEXT_LINES_TILES(NUM_WC_ACTIONS - numOptions), windowTemplate->width, windowTemplate->height - TEXT_LINES_TILES(NUM_WC_ACTIONS - numOptions), PLTT_15, appData->messageBoxBaseTile);
+    Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_2, windowTemplate->tilemapLeft, windowTemplate->tilemapTop + TEXT_LINES_TILES(NUM_WC_ACTIONS - numOptions), windowTemplate->width, windowTemplate->height - TEXT_LINES_TILES(NUM_WC_ACTIONS - numOptions), 15, appData->messageBoxBaseTile);
     MakeStateChangeListMenuFromEntryTemplates(appData, entries, numOptions, window, 0);
 
     return TRUE;
@@ -985,7 +985,7 @@ static void ShowWindowsForScreen(WonderCardsAppData *appData, BOOL unused, enum 
         if (windowTemplates[i].screen == screen) {
             if (appData->windows[i].bgConfig == NULL) {
                 appData->windowBasetiles[i] = baseTile;
-                Window_Add(appData->bgConfig, &appData->windows[i], BG_LAYER_MAIN_0, windowTemplates[i].tilemapLeft, windowTemplates[i].tilemapTop, windowTemplates[i].width, windowTemplates[i].height, PLTT_15, baseTile);
+                Window_Add(appData->bgConfig, &appData->windows[i], BG_LAYER_MAIN_0, windowTemplates[i].tilemapLeft, windowTemplates[i].tilemapTop, windowTemplates[i].width, windowTemplates[i].height, 15, baseTile);
             }
 
             Window_FillTilemap(&appData->windows[i], Font_GetAttribute(windowTemplates[i].font, windowTemplates[i].bgColor.fontAttribute));
@@ -1022,7 +1022,7 @@ static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *wind
     WonderCardsAppWindowTemplate *windowTemplate = &sWonderCardsAppWindows[windowTemplateIdx];
 
     if (window->bgConfig == NULL) {
-        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_2, windowTemplate->tilemapLeft, windowTemplate->tilemapTop, windowTemplate->width, windowTemplate->height, PLTT_15, baseTile);
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_2, windowTemplate->tilemapLeft, windowTemplate->tilemapTop, windowTemplate->width, windowTemplate->height, 15, baseTile);
     }
 
     Window_FillTilemap(window, windowTemplate->bgColor.colorIndex);
@@ -1047,9 +1047,9 @@ static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *wind
     }
 
     if (window == &appData->messageBox) {
-        Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10);
+        Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, 10);
     } else {
-        Window_DrawStandardFrame(window, FALSE, BASE_TILE_FIELD_WINDOW_FRAME, PLTT_14);
+        Window_DrawStandardFrame(window, FALSE, BASE_TILE_FIELD_WINDOW_FRAME, 14);
     }
 
     return baseTile + windowTemplate->width * windowTemplate->height;
@@ -1114,7 +1114,7 @@ static void LoadWondercardGraphics(WonderCardsAppData *appData, enum WonderCards
 
     LoadTilemapBufferFromNarc(appData, mystery_gift_bg_NSCR_lz, BG_LAYER_MAIN_3, WC_APP_BG_TILEMAP_WIDTH * WC_APP_BG_TILEMAP_HEIGHT * 2);
 
-    Bg_ChangeTilemapRectPalette(appData->bgConfig, BG_LAYER_MAIN_3, 0, 0, WC_APP_BG_TILEMAP_WIDTH, WC_APP_BG_TILEMAP_HEIGHT, PLTT_11);
+    Bg_ChangeTilemapRectPalette(appData->bgConfig, BG_LAYER_MAIN_3, 0, 0, WC_APP_BG_TILEMAP_WIDTH, WC_APP_BG_TILEMAP_HEIGHT, 11);
     Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_3);
 }
 
@@ -1134,7 +1134,7 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Won
     case MENU_NOTHING_CHOSEN:
         break;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (onCancelStateTransition) {
             nextState = onCancelStateTransition(appMan);
@@ -1145,7 +1145,7 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Won
         }
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (input) {
             if (input < NUM_WC_APP_STATES) {
@@ -1334,7 +1334,7 @@ static void WonderCardsAppCallbackSaveGame(WonderCardsAppData *appData)
     int saveStatus = MainMenuUtil_SaveState();
 
     if (saveStatus == SAVE_RESULT_OK || saveStatus == SAVE_RESULT_CORRUPT) {
-        Sound_PlayEffect(SEQ_SE_DP_SAVE);
+        Sound_PlayEffect(SEQ_SE_DP_SAVE_sseq);
         appData->mainCallback = NULL;
     }
 }
@@ -1388,7 +1388,7 @@ static void HandleWCShareScreenInput(WonderCardsAppData *appData, int playerCoun
     }
 
     if (nextAction == WC_SHARE_ACTION_SEND) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         CommTiming_StartSync(0xAB);
 
         appData->shouldSendWc = TRUE;
@@ -1398,12 +1398,12 @@ static void HandleWCShareScreenInput(WonderCardsAppData *appData, int playerCoun
     }
 
     if (nextAction == WC_SHARE_ACTION_EXIT) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         StopWirelessCommunication(appData, state, WC_APP_STATE_RETURN_AFTER_COMM_MAN_EXIT);
     }
 
     if (nextAction == WC_SHARE_ACTION_PLAY_SOUND) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 
@@ -1434,9 +1434,9 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         Text_ResetAllPrinters();
         LoadWondercardGraphics(appData, WC_SCREEN_WONDERCARD_FRONT);
         Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_WONDER_CARDS_APP);
-        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_SYSTEM_WINDOW_FRAME, PLTT_13, STANDARD_WINDOW_SYSTEM, HEAP_ID_WONDER_CARDS_APP);
-        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_FIELD_WINDOW_FRAME, PLTT_14, STANDARD_WINDOW_FIELD, HEAP_ID_WONDER_CARDS_APP);
-        LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10, appData->msgBoxFrame, HEAP_ID_WONDER_CARDS_APP);
+        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_SYSTEM_WINDOW_FRAME, 13, STANDARD_WINDOW_SYSTEM, HEAP_ID_WONDER_CARDS_APP);
+        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_FIELD_WINDOW_FRAME, 14, STANDARD_WINDOW_FIELD, HEAP_ID_WONDER_CARDS_APP);
+        LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, 10, appData->msgBoxFrame, HEAP_ID_WONDER_CARDS_APP);
 
         ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
         DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_IN, WC_APP_STATE_SELECT_WONDERCARD, state);
@@ -1449,15 +1449,15 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         } else if (JOY_NEW(PAD_KEY_DOWN)) {
             selectedWcSlot = GetNextOccupiedWcSlot(appData, appData->selectedWondercardSlot, DIRECTION_NEXT);
         } else if (JOY_NEW(PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_OUT, WC_APP_STATE_EXIT, state);
         } else if (JOY_NEW(PAD_BUTTON_A)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             *state = WC_APP_STATE_SHOW_WONDERCARD_ACTIONS;
         }
 
         if (appData->selectedWondercardSlot != selectedWcSlot) {
-            Sound_PlayEffect(SEQ_SE_DP_CARD2);
+            Sound_PlayEffect(SEQ_SE_DP_CARD2_sseq);
             appData->selectedWondercardSlot = selectedWcSlot;
             ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
         }
@@ -1472,12 +1472,12 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         ProcessStateTransitionMenuInput(appMan, state, NULL);
 
         if (JOY_NEW(PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             *state = WC_APP_STATE_CLOSE_WINDOWS;
         }
         break;
     case WC_APP_STATE_START_FLIP_WC_TO_BACK:
-        Sound_PlayEffect(SEQ_SE_DP_CARD2);
+        Sound_PlayEffect(SEQ_SE_DP_CARD2_sseq);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, FALSE);
         EraseMessageBoxIfInUse(&appData->messageBox, FALSE);
         EraseStandardWindowIfInUse(&appData->standardWindow, FALSE);
@@ -1495,7 +1495,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         RunFlipAnimFrame(appData);
 
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_DP_CARD2);
+            Sound_PlayEffect(SEQ_SE_DP_CARD2_sseq);
             StartFlipAnim(appData, WC_FLIP_STAGE_SHRINKING, 1 * FX32_ONE, 0.025 * FX32_ONE);
             *state = WC_APP_STATE_START_FLIP_WC_TO_FRONT;
         }
@@ -1510,8 +1510,8 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         break;
     case WC_APP_STATE_WAIT_WC_FLIP_TO_FRONT_HALFWAY:
         if (RunFlipAnimFrame(appData)) {
-            Window_DrawMessageBoxWithScrollCursor(&appData->messageBox, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10);
-            Window_DrawStandardFrame(&appData->standardWindow, FALSE, BASE_TILE_FIELD_WINDOW_FRAME, PLTT_14);
+            Window_DrawMessageBoxWithScrollCursor(&appData->messageBox, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, 10);
+            Window_DrawStandardFrame(&appData->standardWindow, FALSE, BASE_TILE_FIELD_WINDOW_FRAME, 14);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
             CancelFlipAnim(appData);
             *state = WC_APP_STATE_WAIT_FOR_MENU_CHOICE;

@@ -210,7 +210,7 @@ void HTTP_Init(void)
 int HTTP_PrepareRequest(const u8 *url, int dwcProfileID, const void *data, int dataSize, u8 *response, int maxResponseLength)
 {
     if (sHttpData.readyState != 2) {
-        return 1;
+        return HTTP_PREPARE_STATUS_NOT_READY;
     }
 
     sHttpData.dwcProfileID = dwcProfileID;
@@ -221,7 +221,7 @@ int HTTP_PrepareRequest(const u8 *url, int dwcProfileID, const void *data, int d
     sHttpData.url = (char *)DWC_Alloc((DWCAllocType)10, strlen((const char *)url) + (2 * HASH_SIZE) + 28 + HTTPB64_CalcEncodedSize(8 + (u32)dataSize) + 1);
 
     if (sHttpData.url == NULL) {
-        return 2;
+        return HTTP_PREPARE_STATUS_ALLOC_FAILED;
     }
 
     sprintf(sHttpData.url, "%s?pid=%d", url, dwcProfileID);
@@ -231,7 +231,7 @@ int HTTP_PrepareRequest(const u8 *url, int dwcProfileID, const void *data, int d
     sHttpData.encodedDataSize = (int)(HTTPB64_CalcEncodedSize(8 + (u32)dataSize) + 1);
     sHttpData.readyState = 3;
 
-    return 0;
+    return HTTP_PREPARE_STATUS_SUCCESS;
 }
 
 int HTTP_GetRequestStatus(void)
@@ -239,13 +239,13 @@ int HTTP_GetRequestStatus(void)
     BOOL v0;
 
     switch (sHttpData.readyState) {
-    case 0:
+    case HTTP_STATUS_NONE:
         break;
-    case 1:
+    case HTTP_STATUS_IDLE:
         break;
-    case 2:
+    case HTTP_STATUS_INITIALIZED:
         break;
-    case 3:
+    case HTTP_STATUS_TOKEN_READY:
         sHttpData.requestHandle = DWC_GetGHTTPData(sHttpData.url, HTTP_RequestCompletedCallback, &sHttpData);
         HTTP_SetErrorCode(sHttpData.requestHandle);
 
@@ -255,7 +255,7 @@ int HTTP_GetRequestStatus(void)
             sHttpData.readyState = 1;
         }
         break;
-    case 4:
+    case HTTP_STATUS_TOKEN_PENDING:
         v0 = DWC_ProcessGHTTP();
 
         if (!v0) {
@@ -263,7 +263,7 @@ int HTTP_GetRequestStatus(void)
             break;
         }
         break;
-    case 5:
+    case HTTP_STATUS_REQUEST_READY:
         sHttpData.requestHandle = DWC_GetGHTTPData(sHttpData.url, HTTP_RequestCompletedCallback, &sHttpData);
         HTTP_SetErrorCode(sHttpData.requestHandle);
 
@@ -273,7 +273,7 @@ int HTTP_GetRequestStatus(void)
             sHttpData.readyState = 1;
         }
         break;
-    case 6:
+    case HTTP_STATUS_REQUEST_PENDING:
         v0 = DWC_ProcessGHTTP();
 
         if (!v0) {
@@ -281,7 +281,7 @@ int HTTP_GetRequestStatus(void)
             break;
         }
         break;
-    case 7:
+    case HTTP_STATUS_COMPLETE:
         break;
     }
 

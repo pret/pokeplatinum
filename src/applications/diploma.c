@@ -293,7 +293,7 @@ static void Diploma_InitWindows(Diploma *data)
         .tilemapTop = 0,
         .width = TILES_TO_PIXELS(4),
         .height = TILES_TO_PIXELS(3),
-        .palette = PLTT_2,
+        .palette = 2,
         .baseTile = 1,
     };
 
@@ -360,26 +360,26 @@ static void Diploma_LoadGraphics(Diploma *data)
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, blankNscr, data->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, data->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, blankNcgr, data->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, data->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, blankNclr, PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_0), PALETTE_SIZE_BYTES, data->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, blankNclr, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), PALETTE_SIZE_BYTES, data->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, blankNscr, data->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, data->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, blankNcgr, data->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, data->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, blankNclr, PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_0), PALETTE_SIZE_BYTES, data->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, blankNclr, PAL_LOAD_SUB_BG, PLTT_OFFSET(0), PALETTE_SIZE_BYTES, data->heapID);
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, documentNscr, data->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, data->heapID);
-    Bg_ChangeTilemapRectPalette(data->bgConfig, BG_LAYER_MAIN_1, 0, 0, TILES_TO_PIXELS(4), TILES_TO_PIXELS(3), PLTT_1);
+    Bg_ChangeTilemapRectPalette(data->bgConfig, BG_LAYER_MAIN_1, 0, 0, TILES_TO_PIXELS(4), TILES_TO_PIXELS(3), 1);
     Bg_CopyTilemapBufferToVRAM(data->bgConfig, BG_LAYER_MAIN_1);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, documentNcgr, data->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, data->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, documentNclr, PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_1), PALETTE_SIZE_BYTES, data->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, documentNclr, PAL_LOAD_MAIN_BG, PLTT_OFFSET(1), PALETTE_SIZE_BYTES, data->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, documentNscr, data->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, data->heapID);
-    Bg_ChangeTilemapRectPalette(data->bgConfig, BG_LAYER_SUB_1, 0, 0, TILES_TO_PIXELS(4), TILES_TO_PIXELS(3), PLTT_1);
+    Bg_ChangeTilemapRectPalette(data->bgConfig, BG_LAYER_SUB_1, 0, 0, TILES_TO_PIXELS(4), TILES_TO_PIXELS(3), 1);
     Bg_CopyTilemapBufferToVRAM(data->bgConfig, BG_LAYER_SUB_1);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, documentNcgr, data->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, data->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, documentNclr, PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_1), PALETTE_SIZE_BYTES, data->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, documentNclr, PAL_LOAD_SUB_BG, PLTT_OFFSET(1), PALETTE_SIZE_BYTES, data->heapID);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, data->heapID);
     Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, data->heapID);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_2), data->heapID);
-    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(PLTT_2), data->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(2), data->heapID);
+    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(2), data->heapID);
 }
 
 static void Diploma_LoadText(Diploma *data)

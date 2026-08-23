@@ -245,7 +245,7 @@ BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
             if (ChangesWereMade(menuData) == TRUE) {
                 menuData->state = STATE_CONFIRM_NEW_SETTINGS;
             } else {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 menuData->saveSelections = 2;
                 menuData->state = STATE_START_VISUAL_TEARDOWN;
             }
@@ -275,8 +275,8 @@ BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
 
         if (choiceYesNo != MENU_NOTHING_CHOSEN) {
             if (choiceYesNo == 0) {
-                Sound_StopEffect(SEQ_SE_CONFIRM, 0);
-                Sound_PlayEffect(SEQ_SE_DP_SAVE);
+                Sound_StopEffect(SE_CONFIRM_sseq_3, 0);
+                Sound_PlayEffect(SEQ_SE_DP_SAVE_sseq);
                 menuData->saveSelections = 1;
             } else {
                 menuData->saveSelections = 2;
@@ -899,11 +899,11 @@ static void ProcessMainInput(OptionsMenuData *menuData)
         if (JOY_NEW(PAD_KEY_RIGHT)) {
             entry->selected = (entry->selected + 1) % entry->numChoices;
             PrintEntryChoices(menuData, menuData->cursor);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (JOY_NEW(PAD_KEY_LEFT)) {
             entry->selected = (entry->selected + entry->numChoices - 1) % entry->numChoices;
             PrintEntryChoices(menuData, menuData->cursor);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
     }
 
@@ -915,7 +915,7 @@ static void ProcessMainInput(OptionsMenuData *menuData)
             -(menuData->cursor * SINGLE_ENTRY_HEIGHT + FIRST_ENTRY_OFFSET));
 
         PrintEntryDescription(menuData, menuData->cursor, TRUE);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (JOY_NEW(PAD_KEY_DOWN)) {
         menuData->cursor = (menuData->cursor + 1) % 7;
         Bg_ScheduleScroll(menuData->bgConfig,
@@ -924,7 +924,7 @@ static void ProcessMainInput(OptionsMenuData *menuData)
             -(menuData->cursor * SINGLE_ENTRY_HEIGHT + FIRST_ENTRY_OFFSET));
 
         PrintEntryDescription(menuData, menuData->cursor, TRUE);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 

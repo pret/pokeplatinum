@@ -73,7 +73,7 @@ u64 Menu_ProcessInput(Menu *menu)
     menu->lastAction = MENU_ACTION_NONE;
 
     if (JOY_NEW(PAD_BUTTON_A)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         #ifdef SDK_BUILD_ARM
         return menu->template.choices[menu->cursorPos].callbackFunction;
         #else
@@ -82,12 +82,12 @@ u64 Menu_ProcessInput(Menu *menu)
     }
 
     if (JOY_NEW(menu->cancelKeys)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return MENU_CANCEL;
     }
 
     if (JOY_NEW(PAD_KEY_UP)) {
-        if (TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_UP, SEQ_SE_CONFIRM) == TRUE) {
+        if (TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_UP, SE_CONFIRM_sseq_3) == TRUE) {
             menu->lastAction = MENU_ACTION_MOVE_UP;
         }
 
@@ -95,7 +95,7 @@ u64 Menu_ProcessInput(Menu *menu)
     }
 
     if (JOY_NEW(PAD_KEY_DOWN)) {
-        if (TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_DOWN, SEQ_SE_CONFIRM) == TRUE) {
+        if (TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_DOWN, SE_CONFIRM_sseq_3) == TRUE) {
             menu->lastAction = MENU_ACTION_MOVE_DOWN;
         }
 
@@ -103,7 +103,7 @@ u64 Menu_ProcessInput(Menu *menu)
     }
 
     if (JOY_NEW(PAD_KEY_LEFT)) {
-        if (TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_LEFT, SEQ_SE_CONFIRM) == TRUE) {
+        if (TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_LEFT, SE_CONFIRM_sseq_3) == TRUE) {
             menu->lastAction = MENU_ACTION_MOVE_LEFT;
         }
 
@@ -111,7 +111,7 @@ u64 Menu_ProcessInput(Menu *menu)
     }
 
     if (JOY_NEW(PAD_KEY_RIGHT)) {
-        if (TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_RIGHT, SEQ_SE_CONFIRM) == TRUE) {
+        if (TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_RIGHT, SE_CONFIRM_sseq_3) == TRUE) {
             menu->lastAction = MENU_ACTION_MOVE_RIGHT;
         }
 
@@ -130,12 +130,12 @@ u64 Menu_ProcessInputWithSound(Menu *menu, u16 sdatID)
     menu->lastAction = MENU_ACTION_NONE;
 
     if (JOY_NEW(PAD_BUTTON_A)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return menu->template.choices[menu->cursorPos].index;
     }
 
     if (JOY_NEW(menu->cancelKeys)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return MENU_CANCEL;
     }
 
@@ -182,27 +182,27 @@ u64 Menu_ProcessExternalInput(Menu *menu, u8 input)
 {
     switch (input) {
     case MENU_INPUT_CONFIRM:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return menu->template.choices[menu->cursorPos].index;
 
     case MENU_INPUT_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return MENU_CANCEL;
 
     case MENU_INPUT_MOVE_UP:
-        TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_UP, SEQ_SE_CONFIRM);
+        TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_UP, SE_CONFIRM_sseq_3);
         return MENU_NOTHING_CHOSEN;
 
     case MENU_INPUT_MOVE_DOWN:
-        TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_DOWN, SEQ_SE_CONFIRM);
+        TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_DOWN, SE_CONFIRM_sseq_3);
         return MENU_NOTHING_CHOSEN;
 
     case MENU_INPUT_MOVE_LEFT:
-        TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_LEFT, SEQ_SE_CONFIRM);
+        TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_LEFT, SE_CONFIRM_sseq_3);
         return MENU_NOTHING_CHOSEN;
 
     case MENU_INPUT_MOVE_RIGHT:
-        TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_RIGHT, SEQ_SE_CONFIRM);
+        TryMovingCursorAndPlaySound(menu, SCROLL_DIRECTION_RIGHT, SE_CONFIRM_sseq_3);
         return MENU_NOTHING_CHOSEN;
     }
 

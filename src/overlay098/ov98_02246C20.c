@@ -7,8 +7,8 @@
 #include "struct_defs/struct_02089438.h"
 
 #include "game_opening/const_ov77_021D742C.h"
+#include "gts_application/networking.h"
 #include "overlay065/ov65_0222DCE0.h"
-#include "overlay094/networking.h"
 #include "overlay098/ov98_022471C8.h"
 #include "overlay098/ov98_022499C8.h"
 #include "overlay098/struct_ov98_02246E88.h"
@@ -107,7 +107,7 @@ int ov98_02246C20(ApplicationManager *appMan, int *param1)
     v0->options = SaveData_GetOptions(v0->saveData);
     v0->unk_114 = String_Init(100, HEAP_ID_108);
     v0->unk_118 = String_Init(100, HEAP_ID_108);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_17, SEQ_WIFILOBBY, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_17, SEQ_WIFILOBBY_sseq, 1);
     v0->unk_8C = 0;
 
     return 1;

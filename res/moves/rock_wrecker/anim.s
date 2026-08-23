@@ -10,13 +10,13 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_BLEND_TYPE, 0
     SwitchBg 39, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    PlaySoundEffectL SEQ_SE_DP_W082
+    PlaySoundEffectL SEQ_SE_DP_W082_sseq
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 4, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 1, 1, 0, 0
     Delay 30
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W120, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W120_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER

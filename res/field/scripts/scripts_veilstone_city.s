@@ -449,7 +449,7 @@ VeilstoneCity_Movement_CrasherWakeLeaveX684:
     EndMovement
 
 VeilstoneCity_Counterpart:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerGender VAR_0x8004
@@ -611,7 +611,7 @@ VeilstoneCity_WarpToWarehouse:
     SetFlag FLAG_HIDE_VEILSTONE_CITY_LOOKER
     ClearFlag FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER
     SetVar VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE, 1
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE, 8, 11, DIR_NORTH
@@ -958,7 +958,7 @@ VeilstoneCity_Roughneck1:
     End
 
 VeilstoneCity_Roughneck2:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_VEILSTONE_CITY_TM63, VeilstoneCity_EmbargoMakesItemsUnusable
@@ -1030,7 +1030,7 @@ VeilstoneCity_Movement_PlayerGetPushed:
     EndMovement
 
 VeilstoneCity_GruntMWarehouseNorth:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneCity_YouveBroughtYourBuddy
@@ -1048,7 +1048,7 @@ VeilstoneCity_YouveBroughtYourBuddy:
     End
 
 VeilstoneCity_GruntMWarehouseSouth:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COBBLE, VeilstoneCity_WellTakeYouOn
@@ -1066,7 +1066,7 @@ VeilstoneCity_WellTakeYouOn:
     End
 
 VeilstoneCity_GruntMStorageKey:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message VeilstoneCity_Text_LookAtThoseAntennae
     CloseMessage
@@ -1224,7 +1224,7 @@ VeilstoneCity_Movement_LookerEnterWest:
     EndMovement
 
 VeilstoneCity_Looker:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ApplyMovement LOCALID_LOOKER, VeilstoneCity_Movement_LookerNoticePlayer
@@ -1280,7 +1280,7 @@ VeilstoneCity_SignboardLakeValor:
     End
 
 VeilstoneCity_DeoxysMeteoriteSpeed:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
@@ -1294,7 +1294,7 @@ VeilstoneCity_DeoxysMeteoriteSpeed:
     End
 
 VeilstoneCity_DeoxysMeteoriteDefense:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
@@ -1308,7 +1308,7 @@ VeilstoneCity_DeoxysMeteoriteDefense:
     End
 
 VeilstoneCity_DeoxysMeteoriteAttack:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
@@ -1322,7 +1322,7 @@ VeilstoneCity_DeoxysMeteoriteAttack:
     End
 
 VeilstoneCity_DeoxysMeteoriteNormal:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     CheckPartyHasSpecies2 SPECIES_DEOXYS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_MeteoriteFromTheStars
@@ -1384,7 +1384,7 @@ VeilstoneCity_Movement_CounterpartLeaveNeedsHelp:
     EndMovement
 
 VeilstoneCity_Guitarist3:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message VeilstoneCity_Text_FrenchDoYouLikePokemon

@@ -338,7 +338,7 @@ static void PoketchGraphics_SetupBackgroundTask(SysTask *task, void *taskMan)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, poketch_border_NSCR_lz, taskData->bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_MAIN);
     Graphics_LoadPaletteWithSrcOffset(NARC_INDEX_GRAPHIC__POKETCH, poketch_border_NCLR, PAL_LOAD_SUB_BG, PLTT_OFFSET(PoketchSystem_GetBorderColor(taskData->poketchSys)), PLTT_OFFSET(15), PALETTE_SIZE_BYTES, HEAP_ID_POKETCH_MAIN);
 
-    Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164, 0, 0, 32, 24, PLTT_15);
+    Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164, 0, 0, 32, 24, 15);
     Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, BG_LAYER_SUB_1);
 
     GXS_SetVisiblePlane(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ);
@@ -373,11 +373,11 @@ static void PoketchGraphics_screenRevealAnimationTask(SysTask *task, void *taskM
             heightRemainder = extraTaskData->heightCounter % 4;
             y = 12 - height;
 
-            Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64, 2, y, 24, height * 2, PLTT_15);
+            Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64, 2, y, 24, height * 2, 15);
 
             if (heightRemainder) {
-                Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164 + heightRemainder, 2, y - 1, 24, 1, PLTT_15);
-                Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164 - heightRemainder, 2, y + height * 2, 24, 1, PLTT_15);
+                Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164 + heightRemainder, 2, y - 1, 24, 1, 15);
+                Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164 - heightRemainder, 2, y + height * 2, 24, 1, 15);
             }
 
             Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, BG_LAYER_SUB_1);
@@ -418,14 +418,14 @@ static void PoketchGraphics_screenConcealAnimationTask(SysTask *task, void *task
             heightRemainder = extraTaskData->heightCounter % 4;
             y = 22 - height;
 
-            Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164, 2, 2, 24, height, PLTT_15);
-            Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164, 2, y, 24, height, PLTT_15);
+            Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164, 2, 2, 24, height, 15);
+            Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164, 2, y, 24, height, 15);
 
             if (heightRemainder) {
                 heightRemainder--;
 
-                Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 167 - heightRemainder, 2, 0, 24, 1, PLTT_15);
-                Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 161 + heightRemainder, 2, y - 1, 24, 1, PLTT_15);
+                Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 167 - heightRemainder, 2, 0, 24, 1, 15);
+                Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 161 + heightRemainder, 2, y - 1, 24, 1, 15);
             }
 
             Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, BG_LAYER_SUB_1);
@@ -447,7 +447,7 @@ static void PoketchGraphics_UnusedTask_1(SysTask *task, void *taskMan)
     u32 state = PoketchTask_GetState(taskMan);
 
     if (state < 4) {
-        Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164 - state - 1, 2, 2, 24, 20, PLTT_15);
+        Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 164 - state - 1, 2, 2, 24, 20, 15);
         Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, BG_LAYER_SUB_1);
         PoketchTask_IncrementState(taskMan);
     } else {
@@ -462,7 +462,7 @@ static void PoketchGraphics_UnusedTask_2(SysTask *task, void *taskMan)
     u32 state = PoketchTask_GetState(taskMan);
 
     if (state < 4) {
-        Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 167 - state, 2, 2, 24, 20, PLTT_15);
+        Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 167 - state, 2, 2, 24, 20, 15);
         Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, BG_LAYER_SUB_1);
         PoketchTask_IncrementState(taskMan);
     } else {
@@ -494,7 +494,7 @@ static void PoketchGraphics_UpBtnHalfPressed_Task(SysTask *task, void *taskMan)
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapUpBtnHalfPressed, BUTTON_UP);
-    Sound_PlayEffect(SEQ_SE_DP_DENSI04);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI04_sseq);
 }
 
 static void PoketchGraphics_DownBtnHalfPressed_Task(SysTask *task, void *taskMan)
@@ -502,7 +502,7 @@ static void PoketchGraphics_DownBtnHalfPressed_Task(SysTask *task, void *taskMan
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapDownBtnHalfPressed, BUTTON_DOWN);
-    Sound_PlayEffect(SEQ_SE_DP_DENSI04);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI04_sseq);
 }
 
 static void PoketchGraphics_UpBtnPressed_Task(SysTask *task, void *taskMan)
@@ -524,7 +524,7 @@ static void PoketchGraphics_UpBtnReleased_Task(SysTask *task, void *taskMan)
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapUpBtn, BUTTON_UP);
-    Sound_PlayEffect(SEQ_SE_DP_DENSI01);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI01_sseq);
 }
 
 static void PoketchGraphics_DownBtnReleased_Task(SysTask *task, void *taskMan)
@@ -532,7 +532,7 @@ static void PoketchGraphics_DownBtnReleased_Task(SysTask *task, void *taskMan)
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapDownBtn, BUTTON_DOWN);
-    Sound_PlayEffect(SEQ_SE_DP_DENSI01);
+    Sound_PlayEffect(SEQ_SE_DP_DENSI01_sseq);
 }
 
 static void PoketchGraphics_LoadAppCounterTask(SysTask *task, void *taskMan)
@@ -612,15 +612,15 @@ static void PoketchGraphics_LoadAppCounterPalette(PoketchGraphics_TaskData *task
     PoketchGraphics_CopyActivePalette(taskData->palette);
 
     {
-        u16 paletteTmp = taskData->palette[PLTT_1];
-        taskData->palette[PLTT_1] = (taskData->palette[PLTT_4]);
-        taskData->palette[PLTT_4] = paletteTmp;
+        u16 paletteTmp = taskData->palette[1];
+        taskData->palette[1] = (taskData->palette[4]);
+        taskData->palette[4] = paletteTmp;
     }
 
     {
-        u16 paletteTmp = (taskData->palette[PLTT_8]);
-        taskData->palette[PLTT_8] = taskData->palette[PLTT_15];
-        taskData->palette[PLTT_15] = paletteTmp;
+        u16 paletteTmp = (taskData->palette[8]);
+        taskData->palette[8] = taskData->palette[15];
+        taskData->palette[15] = paletteTmp;
     }
 
     DC_FlushRange(taskData->palette, sizeof(taskData->palette));
@@ -667,7 +667,7 @@ static void PoketchGraphics_UnusedTask_3(SysTask *task, void *taskMan)
     case 1:
     case 2:
     case 3:
-        Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 167 - state, 2, 2, 24, 20, PLTT_15);
+        Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64 + 167 - state, 2, 2, 24, 20, 15);
         Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, BG_LAYER_SUB_1);
 
         if (state == 3) {
@@ -683,7 +683,7 @@ static void PoketchGraphics_UnusedTask_4(SysTask *task, void *taskMan)
 {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
-    Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64, 2, 2, 24, 20, PLTT_15);
+    Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64, 2, 2, 24, 20, 15);
     Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, BG_LAYER_SUB_0);
     Bg_CopyTilemapBufferToVRAM(taskData->bgConfig, BG_LAYER_SUB_1);
 

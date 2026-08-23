@@ -1502,7 +1502,7 @@ static void ov5_021D6D84(UnkStruct_ov5_021D6594 *param0, int param1)
 
         NNS_G2dGetUnpackedPaletteData(v0.unk_00, &v0.unk_14);
 
-        Bg_LoadPalette(2, v0.unk_14->pRawData, 32, 32 * 6);
+        Bg_LoadPalette(BG_LAYER_MAIN_2, v0.unk_14->pRawData, PALETTE_SIZE_BYTES, PLTT_OFFSET(6));
         Heap_Free(v0.unk_00);
 
         v0.unk_00 = NULL;
@@ -4684,11 +4684,11 @@ static void ov5_021DA748(SysTask *param0, void *param1)
                 if ((MTRNG_Next() % 3) != 0) {
                     v1[2] = 36;
 
-                    Sound_PlayEffect(SEQ_SE_DP_T_KAMI2);
+                    Sound_PlayEffect(SEQ_SE_DP_T_KAMI2_sseq);
                 } else {
                     v1[2] = 200;
 
-                    Sound_PlayEffect(SEQ_SE_DP_T_KAMI);
+                    Sound_PlayEffect(SEQ_SE_DP_T_KAMI_sseq);
                 }
                 break;
             case 1:

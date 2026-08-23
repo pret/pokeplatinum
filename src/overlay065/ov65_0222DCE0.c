@@ -1440,8 +1440,8 @@ static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     Graphics_LoadPaletteFromOpenNARC(param1, 3, 0, 0, 0, HEAP_ID_54);
     Graphics_LoadPaletteFromOpenNARC(param1, 3, 4, 0, 0, HEAP_ID_54);
 
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_54);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, HEAP_ID_54);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_54);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_54);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 0, 0, 0, 0, HEAP_ID_54);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 0, 0, 0, 0, HEAP_ID_54);
@@ -1606,7 +1606,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3A8 = 61;
         }
     } else {
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY_sseq, 1);
         ov65_0222EE98(param0);
 
         if (!DWC_CheckHasProfile(WiFiList_GetUserData(param0->unk_00))) {
@@ -2308,7 +2308,7 @@ static void ov65_0222FED8(ListMenu *param0, u64 param1, u8 param2)
 #endif
 {
     if (param2 == 0) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 
@@ -2487,9 +2487,9 @@ static int ov65_02230164(UnkStruct_ov65_0222EBE0 *param0)
         ov65_022336C4(param0);
 
         if (v6 == 1) {
-            Sound_PlayEffect(SEQ_SE_DP_TELE2);
+            Sound_PlayEffect(SEQ_SE_DP_TELE2_sseq);
         } else if (v7 == 1) {
-            Sound_PlayEffect(SEQ_SE_DP_TELE2);
+            Sound_PlayEffect(SEQ_SE_DP_TELE2_sseq);
         }
     }
 
@@ -2554,7 +2554,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
                     ov65_02232B58(param0, 91, 0);
                 }
 
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 ov65_0222FD70(param0);
                 param0->unk_3A8 = 20;
                 ov65_02232F90(param0, HEAP_ID_54);
@@ -2579,7 +2579,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     v1 = ov65_0223012C(param0);
 
     if ((0 != v1) && (param0->unk_3D0 != -1)) {
-        Sound_PlayEffect(SEQ_SE_DP_UG_020);
+        Sound_PlayEffect(SEQ_SE_DP_UG_020_sseq);
         param0->unk_3A8 = 48;
         return param1;
     }
@@ -2608,7 +2608,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (param0->unk_3D0 == -1) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             if (ov65_0222DDFC(v4)) {
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 param0->unk_3A8 = 39;
                 ov65_02232F90(param0, HEAP_ID_54);
                 return param1;
@@ -2623,7 +2623,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     case 0:
         return param1;
     case 1:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
 
         if (ov65_0222DDFC(v4)) {
             param0->unk_3A8 = 39;
@@ -2638,7 +2638,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02232F90(param0, HEAP_ID_54);
         return param1;
     case 3:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
 
         if (ov65_0222DDFC(v4)) {
             ov65_022355B0(&param0->unk_3EC);
@@ -2656,7 +2656,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
         break;
     case 2:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
 
         if (ov65_0222DDFC(v4)) {
             param0->unk_3A8 = 39;
@@ -3298,10 +3298,10 @@ static int ov65_02230FBC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     case MENU_CANCEL:
         param0->unk_3A8 = 19;
         ov65_02232DFC(param0);
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
 
         if ((v0 == 19) && (v2 != 0)) {
             if (v2 == 1) {
@@ -3485,11 +3485,11 @@ static int ov65_02231440(UnkStruct_ov65_0222EBE0 *param0, int param1)
     case MENU_NOTHING_CHOSEN:
         return param1;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         param0->unk_3A8 = 36;
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         ov65_02232E58(param0, v0);
         param0->unk_3A8 = 19;
         ov65_02232DFC(param0);
@@ -3778,9 +3778,9 @@ static void ov65_02231A0C(void)
 
     if (ov65_02231A54() == 0) {
         if (IsNight() == FALSE) {
-            bgmID = SEQ_PC_01;
+            bgmID = SEQ_PC_01_sseq;
         } else {
-            bgmID = SEQ_PC_02;
+            bgmID = SEQ_PC_02_sseq;
         }
 
         Sound_SetScene(SOUND_SCENE_NONE);
@@ -3872,11 +3872,11 @@ static int ov65_02231A98(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
 
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         param0->unk_3A8 = 19;
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
 
         if (v0 == 1) {
             param0->unk_3A8 = 19;
@@ -4974,7 +4974,7 @@ static u32 ov65_022330C0(UnkStruct_ov65_0222EBE0 *param0, enum HeapID heapID)
         if (param0->unk_BE0.unk_70 != (v0 - 3)) {
             param0->unk_BE0.unk_70 = (v0 - 3);
 
-            Sound_PlayEffect(SEQ_SE_DP_SELECT5);
+            Sound_PlayEffect(SEQ_SE_DP_SELECT5_sseq);
             ov65_022336D4(param0);
 
             param0->unk_BE0.unk_75 = 1;
@@ -5013,10 +5013,10 @@ static u32 ov65_022330C0(UnkStruct_ov65_0222EBE0 *param0, enum HeapID heapID)
             param0->unk_BE0.unk_73 = 0;
 
             ov65_02234DA0(param0);
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         } else {
             if (v2 != 0) {
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 ov65_0223327C(param0, v2);
                 ov65_02233874(param0, heapID);
             }
@@ -5105,7 +5105,7 @@ static void ov65_022332C4(u32 param0, enum TouchScreenButtonState param1, void *
     switch (param1) {
     case TOUCH_BUTTON_PRESSED:
         v0->unk_BE0.unk_71 = v1;
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         break;
     default:
         break;
@@ -5136,7 +5136,7 @@ static void ov65_022332FC(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, enum He
     param0->unk_BE0.unk_44 = Graphics_GetScrnDataFromOpenNARC(param1, 28, 0, &param0->unk_BE0.unk_48, heapID);
 
     ov65_022335F8(param0->unk_BE0.unk_48, 0 + 48);
-    Font_LoadScreenIndicatorsPalette(4, 15 * 32, heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(15), heapID);
 
     for (v0 = 0; v0 < 8; v0++) {
         v2 = v0 / 4;

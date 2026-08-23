@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <nitro/sinit.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/kitchen_timer/graphics.h"
 #include "applications/poketch/poketch_button.h"
 #include "applications/poketch/poketch_system.h"
@@ -14,6 +12,8 @@
 #include "sys_task_manager.h"
 #include "timer.h"
 #include "touch_screen.h"
+
+#include "res/sound/pl_sound_data.naix"
 
 #define BUTTON_START             0
 #define BUTTON_STOP              1
@@ -373,10 +373,10 @@ static BOOL State_EditTimer(PoketchKitchenTimer *appData)
         case BUTTON_RESET:
             ResetTimer(appData);
             PoketchKitchenTimerGraphics_StartTask(appData->graphics, KITCHEN_TIMER_GRAPHICS_UPDATE_DIGITS);
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
             break;
         case BUTTON_START:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
 
             if (StartTimer(appData)) {
                 UpdateButtonPosition(appData, BUTTON_START, FALSE);
@@ -386,7 +386,7 @@ static BOOL State_EditTimer(PoketchKitchenTimer *appData)
             }
             break;
         case BUTTON_STOP:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
             break;
         }
 
@@ -469,10 +469,10 @@ static BOOL State_TimerRunning(PoketchKitchenTimer *appData)
 
         switch (appData->pressedButton) {
         case BUTTON_START:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
             break;
         case BUTTON_STOP:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
             UpdateButtonPosition(appData, BUTTON_STOP, FALSE);
             UpdateButtonPosition(appData, BUTTON_START, TRUE);
             PauseTimer(appData);
@@ -480,7 +480,7 @@ static BOOL State_TimerRunning(PoketchKitchenTimer *appData)
             ChangeState(appData, STATE_TIMER_PAUSED);
             break;
         case BUTTON_RESET:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
             UpdateButtonPosition(appData, BUTTON_START, TRUE);
             UpdateButtonPosition(appData, BUTTON_STOP, FALSE);
             ResetTimer(appData);
@@ -507,17 +507,17 @@ static BOOL State_TimerPaused(PoketchKitchenTimer *appData)
 
         switch (appData->pressedButton) {
         case BUTTON_START:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
             UpdateButtonPosition(appData, BUTTON_STOP, TRUE);
             UpdateButtonPosition(appData, BUTTON_START, FALSE);
             ResumeTimer(appData);
             ChangeState(appData, STATE_TIMER_RUNNING);
             break;
         case BUTTON_STOP:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
             break;
         case BUTTON_RESET:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
             UpdateButtonPosition(appData, BUTTON_START, TRUE);
             UpdateButtonPosition(appData, BUTTON_STOP, FALSE);
             ResetTimer(appData);
@@ -544,10 +544,10 @@ static BOOL State_TimerSounding(PoketchKitchenTimer *appData)
 
         switch (appData->pressedButton) {
         case BUTTON_START:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
             break;
         case BUTTON_STOP:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
             UpdateButtonPosition(appData, BUTTON_START, TRUE);
             UpdateButtonPosition(appData, BUTTON_STOP, FALSE);
             PoketchKitchenTimerGraphics_StartTask(appData->graphics, KITCHEN_TIMER_GRAPHICS_STOP_HANDS);
@@ -555,7 +555,7 @@ static BOOL State_TimerSounding(PoketchKitchenTimer *appData)
             appData->subState++;
             break;
         case BUTTON_RESET:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
             UpdateButtonPosition(appData, BUTTON_START, TRUE);
             UpdateButtonPosition(appData, BUTTON_STOP, FALSE);
             PoketchKitchenTimerGraphics_StartTask(appData->graphics, KITCHEN_TIMER_GRAPHICS_STOP_HANDS);
@@ -580,17 +580,17 @@ static BOOL State_SoundingPaused(PoketchKitchenTimer *appData)
 
         switch (appData->pressedButton) {
         case BUTTON_START:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
             UpdateButtonPosition(appData, BUTTON_START, FALSE);
             UpdateButtonPosition(appData, BUTTON_STOP, TRUE);
             PoketchKitchenTimerGraphics_StartTask(appData->graphics, KITCHEN_TIMER_GRAPHICS_BEAT_HANDS);
             ChangeState(appData, STATE_TIMER_SOUNDING);
             break;
         case BUTTON_STOP:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
             break;
         case BUTTON_RESET:
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
             UpdateButtonPosition(appData, BUTTON_START, TRUE);
             UpdateButtonPosition(appData, BUTTON_STOP, FALSE);
             ResetTimer(appData);

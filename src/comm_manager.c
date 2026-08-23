@@ -7,6 +7,7 @@
 #include "constants/communication/comm_available_connections.h"
 #include "constants/communication/comm_error.h"
 #include "constants/communication/comm_type.h"
+#include "constants/net.h"
 
 #include "nintendo_wfc/main.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
@@ -2769,10 +2770,10 @@ static void CommTask_StartWifiBattleServer(void)
     );
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        NintendoWFC_Init(sCommMan->saveData, HEAP_ID_NINTENDO_WFC, (0x2B000 + 0x1400), CommLocal_MaxMachines(sCommMan->commType) + 1);
+        NintendoWFC_Init(sCommMan->saveData, HEAP_ID_NINTENDO_WFC, 0x2B000 + 0x1400, CommLocal_MaxMachines(sCommMan->commType) + 1);
         NintendoWFC_SetFatalErrorCallback(NetworkError_DisplayFatalError);
         CommSys_SwitchTransitionTypeToParallel();
-        CommManager_SetTask(CommTask_ConnectingWifiBattle, (30 * 60 * 2));
+        CommManager_SetTask(CommTask_ConnectingWifiBattle, NETWORK_TIMEOUT_FRAMES);
     }
 }
 
@@ -3242,7 +3243,7 @@ static void CommTask_StartWifiPlaza(void)
         CommSys_SwitchTransitionTypeToParallel();
         NintendoWFC_SetVoiceChatEnabled(0);
         sub_0203632C(0);
-        CommManager_SetTask(CommTask_ConnectingWifiBattle, (30 * 60 * 2));
+        CommManager_SetTask(CommTask_ConnectingWifiBattle, NETWORK_TIMEOUT_FRAMES);
     }
 }
 

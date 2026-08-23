@@ -133,7 +133,7 @@ static BOOL FieldTask_DoClearGameSequence(FieldTask *task)
     } break;
     case 5:
         if (ClearGame_FieldMessageFinishedPrinting(clearGameStruct)) {
-            Sound_PlayEffect(SEQ_SE_DP_SAVE);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE_sseq);
             clearGameStruct->delay = 18;
             (*state)++;
         }
@@ -152,7 +152,7 @@ static BOOL FieldTask_DoClearGameSequence(FieldTask *task)
     case 8:
         if (IsScreenFadeDone()) {
             ClearGame_FreeStringRemoveWindowFreeTilemapBuffer(fieldSystem, clearGameStruct);
-            sub_0203E274(fieldSystem, &(clearGameStruct->playerInfo));
+            FieldSystem_StartEndCredits(fieldSystem, &(clearGameStruct->playerInfo));
             (*state)++;
         }
         break;

@@ -380,7 +380,7 @@ static inline BOOL BoxAppMan_RegisterBoxTouchActionOrTryTouchCompareButton(BoxAp
                 if (BoxApp_GetBoxMode(&boxAppMan->boxApp) != PC_MODE_MOVE_ITEMS) {
                     BoxAppMan_RegisterBoxApplicationAction(boxAppMan, BoxAppMan_MarkingsFilterAction);
                 } else {
-                    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 }
                 break;
             }
@@ -388,24 +388,24 @@ static inline BOOL BoxAppMan_RegisterBoxTouchActionOrTryTouchCompareButton(BoxAp
             switch (boxAppMan->touchScreenButtonPressed) {
             case MAIN_PC_LEFT_BUTTON_ID:
                 if (BoxApp_GetCompareMonSlot(&boxAppMan->boxApp) == 0 && BoxApp_IsMonUnderCursor(&boxAppMan->boxApp) == TRUE) {
-                    Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                    Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                     BoxAppMan_PreviewCompareMon(boxAppMan);
                     return TRUE;
                 } else {
-                    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 }
                 break;
             case MAIN_PC_RIGHT_BUTTON_ID:
                 if (BoxApp_GetCompareMonSlot(&boxAppMan->boxApp) == 1 && BoxApp_IsMonUnderCursor(&boxAppMan->boxApp) == TRUE) {
-                    Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                    Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                     BoxAppMan_PreviewCompareMon(boxAppMan);
                     return TRUE;
                 } else {
-                    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 }
                 break;
             case COMPARE_MON_PC_BUTTON_ID:
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 BoxApp_NextCompareMode(&boxAppMan->boxApp);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D7424);
                 return TRUE;
@@ -564,7 +564,7 @@ static int BoxAppMan_CursorInPartyInputHandler(BoxApplicationManager *boxAppMan)
             int messageID;
 
             if (BoxApp_GetPreviewMonSource(&boxAppMan->boxApp) != PREVIEW_MON_UNDER_CURSOR && BoxAppMan_IsPreviewedMonHoldingMailOrHasBallCapsule(boxAppMan, &messageID)) {
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, messageID);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
                 boxAppMan->cursorLocationHandlerState = CURSOR_IN_PARTY_CONFIRM_MESSAGE;
@@ -743,7 +743,7 @@ static int BoxAppMan_CursorOnPartyButtonInputHandler(BoxApplicationManager *boxA
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_PressBoxButton);
                 boxAppMan->cursorLocationHandlerState = CURSOR_ON_PARTY_BUTTON_ANIMATE_PRESS_BUTTON;
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_PickOne);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
                 boxAppMan->cursorLocationHandlerState = CURSOR_ON_PARTY_BUTTON_CONFIRM_MESSAGE;
@@ -906,7 +906,7 @@ static void BoxAppMan_CloseBoxAction(BoxApplicationManager *boxAppMan, u32 *stat
         }
 
         if (BoxApp_GetPreviewMonSource(&boxAppMan->boxApp) != PREVIEW_MON_UNDER_CURSOR) {
-            Sound_PlayEffect(SEQ_SE_DP_BOX03);
+            Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_HoldingMon);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
             *state = CLOSE_BOX_CANNOT_CLOSE;
@@ -920,7 +920,7 @@ static void BoxAppMan_CloseBoxAction(BoxApplicationManager *boxAppMan, u32 *stat
 
     case CLOSE_BOX_SHOW_MENU:
         if (BoxGraphics_IsSysTaskDone(boxAppMan->unk_114, FUNC_BoxGraphics_PressBoxButton)) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_ConfirmExit);
             BoxMenu_FillYesNo(&boxAppMan->boxApp, 1);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_ShowMenu);
@@ -934,7 +934,7 @@ static void BoxAppMan_CloseBoxAction(BoxApplicationManager *boxAppMan, u32 *stat
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_NO:
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_CloseMessageBox);
             *state = CLOSE_BOX_END;
             break;
@@ -977,7 +977,7 @@ static void BoxAppMan_ContinueBoxOperationsAction(BoxApplicationManager *boxAppM
     switch (*state) {
     case CONTINUE_OPERATIONS_START:
         if (BoxApp_GetPreviewMonSource(&boxAppMan->boxApp) != PREVIEW_MON_UNDER_CURSOR) {
-            Sound_PlayEffect(SEQ_SE_DP_BOX03);
+            Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_HoldingMon);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
             *state = CONTINUE_OPERATIONS_WAIT_FOR_MESSAGE;
@@ -986,7 +986,7 @@ static void BoxAppMan_ContinueBoxOperationsAction(BoxApplicationManager *boxAppM
             BoxAppMan_RegisterBoxApplicationAction(boxAppMan, BoxAppMan_PutAwayItemAction);
             break;
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_ConfirmContinue);
             BoxMenu_FillYesNo(&boxAppMan->boxApp, 0);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_ShowMenu);
@@ -1049,7 +1049,7 @@ static void BoxAppMan_MonCursorMenuAction(BoxApplicationManager *boxAppMan, u32 
             boxAppMan->menuItem = BoxMenu_GetDefaultMenuItem(&boxAppMan->boxApp);
             *state = MON_CURSOR_MENU_ITEM_SELECTED;
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_ShowMenu);
             *state = MON_CURSOR_MENU_SHOW_MENU;
         }
@@ -1070,7 +1070,7 @@ static void BoxAppMan_MonCursorMenuAction(BoxApplicationManager *boxAppMan, u32 
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_CANCEL:
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_CloseMessageBox);
             *state = MON_CURSOR_MENU_END_WHEN_READY;
             break;
@@ -1126,7 +1126,7 @@ static void BoxAppMan_MonCursorMenuAction(BoxApplicationManager *boxAppMan, u32 
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_CloseMessageBox);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D73EC);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_PreviewMon);
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             *state = MON_CURSOR_MENU_END;
             break;
         }
@@ -1178,7 +1178,7 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
         BoxMenu_FillItemsMenu(&boxAppMan->boxApp);
 
         if (BoxApp_IsPreviewedMonEgg(&boxAppMan->boxApp)) {
-            Sound_PlayEffect(SEQ_SE_DP_BOX03);
+            Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_EggsCantHoldItems);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
             *state = MON_ITEM_MENU_CONFIRM_MESSAGE;
@@ -1186,7 +1186,7 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
             boxAppMan->menuItem = BoxMenu_GetDefaultMenuItem(&boxAppMan->boxApp);
             *state = MON_ITEM_MENU_SELECTED;
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_ShowMenu);
             *state = MON_ITEM_MENU_WAIT_FOR_MENU;
         }
@@ -1207,12 +1207,12 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_ITEMS_CANCEL:
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_CloseMessageBox);
             *state = MON_ITEM_MENU_END_WHEN_READY;
             break;
         default:
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             *state = MON_ITEM_MENU_SELECTED;
             break;
         }
@@ -1229,7 +1229,7 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
                 BoxApp_GiveItemFromCursor(&boxAppMan->boxApp, boxAppMan);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_CloseMessageBox);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D6CF8);
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 *state = MON_ITEM_MENU_WAIT_FOR_ANIMATIONS;
             } else {
                 BoxAppMan_RegisterBoxApplicationAction(boxAppMan, BoxAppMan_GiveItemFromBagAction);
@@ -1238,7 +1238,7 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
             break;
         case BOX_MENU_TAKE:
             if (Item_IsMail(BoxApp_GetPreviewedMonHeldItem(&boxAppMan->boxApp))) {
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_CantTakeMail);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
                 *state = MON_ITEM_MENU_CONFIRM_MESSAGE;
@@ -1247,7 +1247,7 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
                 BoxAppMan_FlagRecordBoxUseInJournal(boxAppMan);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_CloseMessageBox);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D6CB0);
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 *state = MON_ITEM_MENU_WAIT_FOR_ANIMATIONS;
             }
             break;
@@ -1256,7 +1256,7 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
             break;
         case BOX_MENU_SWITCH:
             if (Item_IsMail(BoxApp_GetPreviewedMonHeldItem(&boxAppMan->boxApp))) {
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_CantTakeMail);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
                 *state = MON_ITEM_MENU_CONFIRM_MESSAGE;
@@ -1269,7 +1269,7 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
                 BoxApp_SwapMonAndCursorItems(&boxAppMan->boxApp, boxAppMan);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_CloseMessageBox);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D6D40);
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 *state = MON_ITEM_MENU_WAIT_FOR_ANIMATIONS;
             }
             break;
@@ -1323,11 +1323,11 @@ static void BoxAppMan_BoxHeaderMenuAction(BoxApplicationManager *boxAppMan, u32 
         BoxMenu_FillHeaderMenu(&boxAppMan->boxApp);
 
         if (BoxApp_IsCursorFastMode(&boxAppMan->boxApp)) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             boxAppMan->menuItem = BoxMenu_GetDefaultMenuItem(&boxAppMan->boxApp);
             *state = BOX_HEADER_MENU_ITEM_SELECTED;
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_ShowMenu);
             *state = BOX_HEADER_MENU_SHOW_MENU;
         }
@@ -1598,7 +1598,7 @@ static void BoxAppMan_MultiSelectAction(BoxApplicationManager *boxAppMan, u32 *s
         if (JOY_HELD(PAD_BUTTON_A)) {
             BoxAppMan_ResetMultiSelectLocation(boxAppMan, &boxAppMan->boxApp);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_StartDrawMultiSelect);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             *state = MULTI_MOVE_DEFINE_SELECTION;
         } else {
             BoxAppMan_RegisterBoxApplicationAction(boxAppMan, BoxAppMan_PickUpMonAction);
@@ -1610,7 +1610,7 @@ static void BoxAppMan_MultiSelectAction(BoxApplicationManager *boxAppMan, u32 *s
             switch (BoxAppMan_TryMoveSelectionFromUserInput(gSystem.heldKeys, boxAppMan)) {
             case CURSOR_STOP:
                 if (JOY_HELD(PAD_PLUS_KEY_MASK) == JOY_NEW(PAD_PLUS_KEY_MASK)) {
-                    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 }
                 break;
 
@@ -1629,7 +1629,7 @@ static void BoxAppMan_MultiSelectAction(BoxApplicationManager *boxAppMan, u32 *s
             } else {
                 BoxAppMan_PickUpMultiSelectedMons(boxAppMan, &boxAppMan->boxApp);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D73B0);
-                Sound_PlayEffect(SEQ_SE_DP_BOX02);
+                Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
                 *state = MULTI_MOVE_SELECTED_MONS;
             }
         }
@@ -1643,7 +1643,7 @@ static void BoxAppMan_MultiSelectAction(BoxApplicationManager *boxAppMan, u32 *s
         switch (BoxAppMan_TryMoveSelectionFromUserInput(gSystem.heldKeys, boxAppMan)) {
         case CURSOR_STOP:
             if (JOY_HELD(PAD_PLUS_KEY_MASK) == JOY_NEW(PAD_PLUS_KEY_MASK)) {
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             }
             break;
 
@@ -1673,15 +1673,15 @@ static void BoxAppMan_MultiSelectAction(BoxApplicationManager *boxAppMan, u32 *s
                 if (BoxApp_IsBoxUnderSelectedMonsEmpty(&boxAppMan->boxApp)) {
                     BoxAppMan_PutDownSelectedMons(boxAppMan, &boxAppMan->boxApp);
                     BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_PlaceMonDownFromCursor);
-                    Sound_PlayEffect(SEQ_SE_DP_BOX01);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX01_sseq);
                     *state = MULTI_MOVE_END;
                 } else {
-                    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 }
                 break;
             }
             if (JOY_NEW(PAD_BUTTON_B)) {
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             }
             break;
         }
@@ -1746,18 +1746,18 @@ static void BoxAppMan_PickUpMonAction(BoxApplicationManager *boxAppMan, u32 *sta
     case PICK_UP_MON_START:
         if (BoxApp_GetCursorLocation(&boxAppMan->boxApp) == CURSOR_IN_PARTY) {
             if (BoxAppMan_OnLastAliveMon(boxAppMan) == FALSE) {
-                Sound_PlayEffect(SEQ_SE_DP_BOX02);
+                Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
                 BoxAppMan_PickUpMon(boxAppMan, &boxAppMan->boxApp);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_PickUpMonIntoCursor);
                 *state = PICK_UP_PARTY_MON;
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_LastMon);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
                 *state = PICK_UP_MON_CONFIRM_LAST_MON;
             }
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
             BoxAppMan_PickUpMon(boxAppMan, &boxAppMan->boxApp);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_PickUpMonIntoCursor);
             *state = PICK_UP_MON_DONE;
@@ -1796,7 +1796,7 @@ static void BoxAppMan_PlaceMonAction(BoxApplicationManager *boxAppMan, u32 *stat
     case PLACE_MON_DOWN:
         BoxAppMan_PutDownCursorMon(boxAppMan, &boxAppMan->boxApp);
         BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_PlaceMonDownFromCursor);
-        Sound_PlayEffect(SEQ_SE_DP_BOX01);
+        Sound_PlayEffect(SEQ_SE_DP_BOX01_sseq);
 
         if (BoxApp_GetCursorLocation(&boxAppMan->boxApp) == CURSOR_IN_PARTY) {
             u32 cursorPosition = BoxApp_GetCursorPartyPosition(&boxAppMan->boxApp);
@@ -1859,13 +1859,13 @@ static void BoxAppMan_ShiftMonAction(BoxApplicationManager *boxAppMan, u32 *stat
         u32 messageID;
 
         if (BoxAppMan_CheckLastAliveMonReason(boxAppMan, &messageID)) {
-            Sound_PlayEffect(SEQ_SE_DP_BOX03);
+            Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             BoxApp_SetBoxMessage(&boxAppMan->boxApp, messageID);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
             *state = SHIFT_CONFIRM_MESSAGE;
         } else {
             BoxAppMan_SwapMonInCursor(boxAppMan, &boxAppMan->boxApp);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D6AB0);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_PreviewMon);
             *state = SHIFT_END;
@@ -1913,7 +1913,7 @@ static void BoxAppMan_WithdrawMonAction(BoxApplicationManager *boxAppMan, u32 *s
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_OpenPartyPopup);
                 *state = WITHDRAW_WAIT_FOR_PARTY_POPUP;
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_BOX02);
+                Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
                 BoxAppMan_PickUpMon(boxAppMan, &boxAppMan->boxApp);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_PickUpMonIntoCursor);
                 *state = WITHDRAW_WAIT_FOR_PICK_UP_MON;
@@ -1994,7 +1994,7 @@ static void BoxAppMan_StoreMonAction(BoxApplicationManager *boxAppMan, u32 *stat
     switch (*state) {
     case STORE_MON_CHECK_CAN_STORE_MON:
         if (BoxApp_GetPreviewMonSource(&boxAppMan->boxApp) == PREVIEW_MON_UNDER_CURSOR && BoxAppMan_OnLastAliveMon(boxAppMan) == TRUE) {
-            Sound_PlayEffect(SEQ_SE_DP_BOX03);
+            Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_LastMon);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D6EC0);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
@@ -2003,7 +2003,7 @@ static void BoxAppMan_StoreMonAction(BoxApplicationManager *boxAppMan, u32 *stat
             int boxMessageID;
 
             if (BoxAppMan_IsPreviewedMonHoldingMailOrHasBallCapsule(boxAppMan, &boxMessageID)) {
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, boxMessageID);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D6EC0);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
@@ -2047,7 +2047,7 @@ static void BoxAppMan_StoreMonAction(BoxApplicationManager *boxAppMan, u32 *stat
             }
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BOX03);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
         BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_BoxFull);
         BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
         *state = STORE_MON_BOX_FULL;
@@ -2183,7 +2183,7 @@ static void BoxAppMan_ReleaseMonAction(BoxApplicationManager *boxAppMan, u32 *st
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_ShowMenu);
             *state = RELEASE_MON_CONFIRM;
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_BOX03);
+            Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             BoxApp_SetBoxMessage(&boxAppMan->boxApp, boxMessageID);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D6EC0);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
@@ -2640,7 +2640,7 @@ static void BoxAppMan_GiveItemFromBagAction(BoxApplicationManager *boxAppMan, u3
     case GIVE_FROM_BAG_CONFIRM_MESSAGE:
         if (BoxGraphics_IsSysTaskDone(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage)) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_CloseMessageBox);
                 (*state)++;
             }
@@ -2672,7 +2672,7 @@ static void BoxAppMan_MonItemHeldAction(BoxApplicationManager *boxAppMan, u32 *s
         item = BoxApp_GetPreviewedMonHeldItem(&boxAppMan->boxApp);
 
         if (Item_IsMail(item)) {
-            Sound_PlayEffect(SEQ_SE_DP_BOX03);
+            Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_CantTakeMail);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
             *state = ITEM_HELD_CONFIRM_MESSAGE;
@@ -2726,7 +2726,7 @@ static void BoxAppMan_MonItemHeldAction(BoxApplicationManager *boxAppMan, u32 *s
     case ITEM_HELD_CONFIRM_MESSAGE:
         if (BoxGraphics_IsSysTaskDone(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage)) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_CloseMessageBox);
                 *state = ITEM_HELD_END;
             }
@@ -2759,7 +2759,7 @@ static void BoxAppMan_PutAwayItemAction(BoxApplicationManager *boxAppMan, u32 *s
         item = BoxApp_GetCursorOrPreviewedItem(&boxAppMan->boxApp);
 
         if (Item_IsMail(item)) {
-            Sound_PlayEffect(SEQ_SE_DP_BOX03);
+            Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_CantTakeMail);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
             *state = PUT_AWAY_ITEM_CONFIRM_MESSAGE;
@@ -2825,7 +2825,7 @@ static void BoxAppMan_PutAwayItemAction(BoxApplicationManager *boxAppMan, u32 *s
     case PUT_AWAY_ITEM_CONFIRM_MESSAGE:
         if (BoxGraphics_IsSysTaskDone(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage)) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_CloseMessageBox);
                 *state = PUT_AWAY_ITEM_END;
             }
@@ -2953,12 +2953,12 @@ static BOOL BoxAppMan_TrySelectBoxFromPopup(BoxApplicationManager *boxAppMan)
         }
 
         if (JOY_NEW(PAD_BUTTON_A)) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             return TRUE;
         }
 
         if (JOY_NEW(PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             boxSelector->boxID = -1;
             return TRUE;
         }
@@ -3014,7 +3014,7 @@ static void BoxAppMan_TouchScreenBoxJump(BoxApplicationManager *boxAppMan, u32 *
 {
     switch (*state) {
     case TOUCH_BOX_JUMP_START:
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
         BoxApp_SetTouchDialSelected(&boxAppMan->boxApp, TOUCH_DIALS_BOX_JUMP);
         BoxApp_SetTouchDialOffset(&boxAppMan->boxApp, BoxApp_GetCurrentBox(&boxAppMan->boxApp));
         BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_OpenOrCloseSelectedTouchDial);
@@ -3033,14 +3033,14 @@ static void BoxAppMan_TouchScreenBoxJump(BoxApplicationManager *boxAppMan, u32 *
                 if (BoxApp_GetBoxMode(&boxAppMan->boxApp) != PC_MODE_MOVE_ITEMS) {
                     BoxAppMan_RegisterBoxApplicationAction(boxAppMan, BoxAppMan_MarkingsFilterAction);
                 } else {
-                    Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                    Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
                 }
                 break;
             }
         }
 
         if (JOY_NEW(PAD_PLUS_KEY_MASK | PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxApp_SetTouchDialSelected(&boxAppMan->boxApp, TOUCH_DIALS_NONE);
             BoxApp_SetTouchDialOffset(&boxAppMan->boxApp, BoxApp_GetCurrentBox(&boxAppMan->boxApp));
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_OpenOrCloseSelectedTouchDial);
@@ -3094,7 +3094,7 @@ static void BoxAppMan_TouchScreenBoxJump(BoxApplicationManager *boxAppMan, u32 *
                 BoxApp_SetTouchDialOffset(&boxAppMan->boxApp, newOffset);
                 BoxApp_SetTouchDialScrollDelta(&boxAppMan->boxApp, scrollDelta);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D72E8);
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 *state = TOUCH_BOX_JUMP_END_SCROLL;
             }
         } break;
@@ -3158,7 +3158,7 @@ static void BoxAppMan_MarkingsFilterAction(BoxApplicationManager *boxAppMan, u32
 {
     switch (*state) {
     case TOUCH_MARKINGS_START:
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
         BoxApp_SetTouchDialSelected(&boxAppMan->boxApp, TOUCH_DIALS_MARKINGS);
         BoxApp_SetMarkingsButtonsScrollOffset(&boxAppMan->boxApp, 0);
         BoxApp_SetTouchDialOffset(&boxAppMan->boxApp, 0);
@@ -3181,14 +3181,14 @@ static void BoxAppMan_MarkingsFilterAction(BoxApplicationManager *boxAppMan, u32
         }
 
         if (JOY_NEW(PAD_PLUS_KEY_MASK | PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxApp_SetTouchDialSelected(&boxAppMan->boxApp, TOUCH_DIALS_NONE);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_OpenOrCloseSelectedTouchDial);
             *state = TOUCH_MARKINGS_END;
         }
 
         if (BoxAppMan_TryPressMarkingsButton(boxAppMan)) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_UpdateMarkingsTouchButton);
             BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_SetMonMarkingsTransparency);
             break;
@@ -3220,7 +3220,7 @@ static void BoxAppMan_MarkingsFilterAction(BoxApplicationManager *boxAppMan, u32
                 BoxApp_SetMarkingsButtonsScrollOffset(&boxAppMan->boxApp, newOffset);
                 BoxApp_SetTouchDialScrollDelta(&boxAppMan->boxApp, scrollDelta);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D72E8);
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 *state = TOUCH_MARKINGS_END_SCROLL;
             }
         } break;

@@ -10,6 +10,7 @@
 
 #include "camera.h"
 #include "field_map_change.h"
+#include "field_map_change_flags.h"
 #include "field_task.h"
 #include "field_transition.h"
 #include "heap.h"
@@ -21,7 +22,6 @@
 #include "system.h"
 #include "system_flags.h"
 #include "unk_02056B30.h"
-#include "unk_02070428.h"
 #include "vars_flags.h"
 
 typedef struct VistaLighthouseBinoculars {
@@ -54,7 +54,7 @@ static BOOL Task_UseVistaLighthouseBinoculars(FieldTask *taskMan)
     case 0:
         binoculars->xPos = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
         binoculars->zPos = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
-        sub_02070428(fieldSystem, 1);
+        FieldSystem_SetTemporaryMapChange(fieldSystem, TRUE);
         FieldTransition_FadeOut(taskMan);
         binoculars->state++;
         break;
@@ -79,7 +79,7 @@ static BOOL Task_UseVistaLighthouseBinoculars(FieldTask *taskMan)
         VistaLighthouseBinoculars_SetPlayerHidden(fieldSystem->playerAvatar, TRUE);
         VistaLighthouseBinoculars_SetCamera(fieldSystem);
         sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, HEAP_ID_FIELD2);
-        Sound_PlayEffect(SEQ_SE_DP_KASYA);
+        Sound_PlayEffect(SEQ_SE_DP_KASYA_sseq);
         binoculars->state++;
         break;
     case 5:
@@ -89,7 +89,7 @@ static BOOL Task_UseVistaLighthouseBinoculars(FieldTask *taskMan)
         break;
     case 6:
         sub_02056B30(taskMan, 3, 16, 0xffff, 0x0, 6, 1, HEAP_ID_FIELD2);
-        Sound_PlayEffect(SEQ_SE_DP_KASYA);
+        Sound_PlayEffect(SEQ_SE_DP_KASYA_sseq);
         binoculars->state++;
         break;
     case 7:
@@ -116,7 +116,7 @@ static BOOL Task_UseVistaLighthouseBinoculars(FieldTask *taskMan)
         break;
     case 11:
         Heap_Free(binoculars);
-        sub_02070428(fieldSystem, 0);
+        FieldSystem_SetTemporaryMapChange(fieldSystem, FALSE);
         return TRUE;
     }
 

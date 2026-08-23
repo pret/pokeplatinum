@@ -549,16 +549,16 @@ static void InitAndLoadGraphics(RangerLinkManager *param0)
     MainMenuUtil_InitBGLayer(param0->bgConfig, BG_LAYER_SUB_1, BG_SCREEN_SIZE_256x256, GX_BG_SCRBASE_0x7000 * 0x800, GX_BG_CHARBASE_0x04000 * 0x4000);
 
     Text_ResetAllPrinters();
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_0, param0->heapID);
-    LoadStandardWindowGraphics(param0->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_1, STANDARD_WINDOW_SYSTEM, param0->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), param0->heapID);
+    LoadStandardWindowGraphics(param0->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_STANDARD_WINDOW_FRAME, 1, STANDARD_WINDOW_SYSTEM, param0->heapID);
 
     int frameType = Options_Frame(param0->options);
 
-    LoadMessageBoxGraphics(param0->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_2, frameType, param0->heapID);
+    LoadMessageBoxGraphics(param0->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, 2, frameType, param0->heapID);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, param0->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, param0->bgConfig, BG_LAYER_MAIN_1, 0, 160 * TILE_SIZE_4BPP, TRUE, param0->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_NSCR_lz, param0->bgConfig, BG_LAYER_MAIN_1, 0, SCREEN_WIDTH_TILES * SCREEN_HEIGHT_TILES * sizeof(u16), TRUE, param0->heapID);
-    Bg_ChangeTilemapRectPalette(param0->bgConfig, BG_LAYER_MAIN_1, 0, 0, SCREEN_WIDTH_TILES, SCREEN_HEIGHT_TILES, PLTT_8);
+    Bg_ChangeTilemapRectPalette(param0->bgConfig, BG_LAYER_MAIN_1, 0, 0, SCREEN_WIDTH_TILES, SCREEN_HEIGHT_TILES, 8);
     Bg_CopyTilemapBufferToVRAM(param0->bgConfig, BG_LAYER_MAIN_1);
 
     LoadBottomScreenBGGraphics(param0);
@@ -569,7 +569,7 @@ static void LoadBottomScreenBGGraphics(RangerLinkManager *param0)
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, PAL_LOAD_SUB_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, param0->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, param0->bgConfig, BG_LAYER_SUB_0, 0, 160 * TILE_SIZE_4BPP, TRUE, param0->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_NSCR_lz, param0->bgConfig, BG_LAYER_SUB_0, 0, SCREEN_WIDTH_TILES * SCREEN_HEIGHT_TILES * sizeof(u16), TRUE, param0->heapID);
-    Bg_ChangeTilemapRectPalette(param0->bgConfig, BG_LAYER_SUB_0, 0, 0, SCREEN_WIDTH_TILES, SCREEN_HEIGHT_TILES, PLTT_8);
+    Bg_ChangeTilemapRectPalette(param0->bgConfig, BG_LAYER_SUB_0, 0, 0, SCREEN_WIDTH_TILES, SCREEN_HEIGHT_TILES, 8);
     Bg_CopyTilemapBufferToVRAM(param0->bgConfig, BG_LAYER_SUB_0);
 }
 
@@ -578,7 +578,7 @@ static BOOL ShowDexRequiredAlert(RangerLinkManager *param0)
 
     if (Window_IsInUse(&param0->stdWindow) == FALSE) {
         MainMenuWindow tmpWindow;
-        MainMenuUtil_InitWindow(&tmpWindow, &param0->stdWindow, PLTT_0, TEXT_BANK_MAIN_MENU_ALERTS, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_1);
+        MainMenuUtil_InitWindow(&tmpWindow, &param0->stdWindow, 0, TEXT_BANK_MAIN_MENU_ALERTS, BASE_TILE_STANDARD_WINDOW_FRAME, 1);
         MainMenuWindow_SetDimensionsAndBasetile(&tmpWindow, 22, TEXT_LINES_TILES(8), param0->nextWindowBasetile);
         MainMenuUtil_ShowWindowAtPos(param0->bgConfig, &tmpWindow, 5, 4, MainMenuAlerts_Text_RangerLinkNoDex);
         return TRUE;
@@ -595,14 +595,14 @@ static BOOL ShowDexRequiredAlert(RangerLinkManager *param0)
 
 static void ShowWindowsAndDownloadArrow(RangerLinkManager *param0)
 {
-    MainMenuUtil_InitWindow(&param0->messageBox, &param0->messageBoxWindow, PLTT_0, TEXT_BANK_MYSTERY_GIFT_MENU, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_2);
+    MainMenuUtil_InitWindow(&param0->messageBox, &param0->messageBoxWindow, 0, TEXT_BANK_MYSTERY_GIFT_MENU, BASE_TILE_MESSAGE_BOX_FRAME, 2);
     MainMenuWindow_SetDimensionsAndBasetile(&param0->messageBox, 27, TEXT_LINES_TILES(2), param0->nextWindowBasetile);
     MainMenuWindow_SetScrollableAndFont(&param0->messageBox, TRUE, FONT_MESSAGE);
     MainMenuUtil_ShowWindowAtPos(param0->bgConfig, &param0->messageBox, 2, 19, MysteryGiftMenu_Text_ReceivingRecruitmentMsgFromRanger);
 
     param0->nextWindowBasetile += MainMenuWindow_GetSize(&param0->messageBox);
 
-    MainMenuUtil_InitWindow(&param0->manaphyEggTransferWindow, &param0->stdWindow, PLTT_0, TEXT_BANK_MYSTERY_GIFT_MENU, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_1);
+    MainMenuUtil_InitWindow(&param0->manaphyEggTransferWindow, &param0->stdWindow, 0, TEXT_BANK_MYSTERY_GIFT_MENU, BASE_TILE_STANDARD_WINDOW_FRAME, 1);
     MainMenuWindow_SetDimensionsAndBasetile(&param0->manaphyEggTransferWindow, 30, TEXT_LINES_TILES(2), param0->nextWindowBasetile);
     MainMenuWindow_SetScrollableAndFont(&param0->manaphyEggTransferWindow, FALSE, FONT_MESSAGE);
     MainMenuUtil_ShowWindowAtPos(param0->bgConfig, &param0->manaphyEggTransferWindow, 1, 1, MysteryGiftMenu_Text_PokemonRangerManaphyEggTransfer);
@@ -622,7 +622,7 @@ static void ShowPlayerCommsDetails(RangerLinkManager *param0)
 {
     StringTemplate *strTemplate = StringTemplate_Default(param0->heapID);
 
-    MainMenuUtil_InitWindow(&param0->playerCommsDetails, &param0->appNumberStdWindow, PLTT_0, TEXT_BANK_MYSTERY_GIFT_MENU, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_1);
+    MainMenuUtil_InitWindow(&param0->playerCommsDetails, &param0->appNumberStdWindow, 0, TEXT_BANK_MYSTERY_GIFT_MENU, BASE_TILE_STANDARD_WINDOW_FRAME, 1);
     MainMenuWindow_SetDimensionsAndBasetile(&param0->playerCommsDetails, 26, TEXT_LINES_TILES(2), param0->nextWindowBasetile);
     MainMenuWindow_SetScrollableAndFont(&param0->playerCommsDetails, FALSE, FONT_MESSAGE);
 
@@ -694,7 +694,7 @@ static BOOL RangerLink_Init(ApplicationManager *appMan, int *unused)
     rangerLinkMan->wirelessActive = FALSE;
 
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_NETWORK_ICON, HEAP_SIZE_NETWORK_ICON);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_9, SEQ_PRESENT, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_9, SEQ_PRESENT_sseq, 1);
 
     return TRUE;
 }
@@ -930,7 +930,7 @@ enum RangerLinkRangerCommStatus DoRangerComm(RangerLinkManager *rangerLinkMan)
         Sprite_SetDrawFlag(rangerLinkMan->downloadArrow, FALSE);
         DestroyWaitDial(rangerLinkMan->waitDial);
         rangerLinkMan->waitDial = NULL;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         rangerLinkMan->timeout = 1800;
         *state = RANGER_COMM_STATE_30;
         break;
@@ -953,7 +953,7 @@ enum RangerLinkRangerCommStatus DoRangerComm(RangerLinkManager *rangerLinkMan)
             *state = RANGER_COMM_STATE_WAIT_RANGER_RESPONSE;
             rangerLinkMan->timeout = 3200;
             MainMenuUtil_ShowWindowAtPos(rangerLinkMan->bgConfig, &rangerLinkMan->messageBox, 2, 19, MysteryGiftMenu_Text_PleaseTouchRangerGameScreen);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             rangerLinkMan->waitDial = NULL;
 
             return RANGER_COMM_STATUS_AWAITING_RANGER;
@@ -1061,7 +1061,7 @@ enum RangerLinkRangerCommStatus DoRangerComm(RangerLinkManager *rangerLinkMan)
 
             Sprite_SetDrawFlag(rangerLinkMan->downloadArrow, FALSE);
             DestroyWaitDial(rangerLinkMan->waitDial);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             rangerLinkMan->waitDial = NULL;
         }

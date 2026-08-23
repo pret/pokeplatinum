@@ -1449,7 +1449,7 @@ static void ov97_02234DFC(GBAMigrator *migrator)
     GXLayers_SwapDisplay();
     Text_ResetAllPrinters();
 
-    Font_LoadTextPalette(0, 15 * 32, HEAP_ID_MIGRATE_FROM_GBA);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_MIGRATE_FROM_GBA);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_bg_tiles_NCLR, 0, 0, 32 * 6, HEAP_ID_MIGRATE_FROM_GBA);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_bg_tiles_NCGR_lz, migrator->bgConfig, 2, 0, 10 * 16 * 0x20, 1, HEAP_ID_MIGRATE_FROM_GBA);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_MIGRATE_FROM_GBA);
@@ -1464,7 +1464,7 @@ static void ov97_02234E7C(GBAMigrator *migrator)
 
 static void ov97_02234ECC(GBAMigrator *migrator)
 {
-    Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(14), HEAP_ID_MIGRATE_FROM_GBA);
     LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
     LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0 - (18 + 12), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
@@ -1528,7 +1528,7 @@ static void ov97_02234F88(GBAMigrator *migrator)
     Bg_ChangeTilemapRectPalette(migrator->bgConfig, BG_LAYER_MAIN_2, 0, 0, 32, 24, sGBAGameRectPalettes[migrator->gbaVersion]);
     Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, BG_LAYER_MAIN_2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(14), HEAP_ID_MIGRATE_FROM_GBA);
     LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
     LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0 - (18 + 12), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
@@ -1791,7 +1791,7 @@ static BOOL ov97_02235590(GBAMigrator *migrator, int param1)
         migrator->unk_490.unk_44 = param1;
         ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
         migrator->messageEntryID = -1;
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else {
         if (param1) {
             if (Text_IsPrinterActive(migrator->unk_490.unk_48) == 0) {
@@ -1801,7 +1801,7 @@ static BOOL ov97_02235590(GBAMigrator *migrator, int param1)
         } else {
             if (gSystem.touchPressed || gSystem.pressedKeys) {
                 RenderControlFlags_SetSpeedUpOnTouch(FALSE);
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 return TRUE;
             }
         }
@@ -1832,7 +1832,7 @@ static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
     migrator->unk_12668 = String_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_1266C = String_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_9, SEQ_PRESENT, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_9, SEQ_PRESENT_sseq, 1);
 
     if (OS_IsTickAvailable() == 0) {
         OS_InitTick();
@@ -2051,7 +2051,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
                     }
 
                     ov97_022343A8(migrator);
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     break;
                 case (GBA_MAX_MONS_PER_BOX + 2):
                     if (++migrator->currentBox == GBA_MAX_PC_BOXES) {
@@ -2059,11 +2059,11 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
                     }
 
                     ov97_022343A8(migrator);
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     break;
                 case (GBA_MAX_MONS_PER_BOX + 0):
                     ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
-                    Sound_PlayEffect(SEQ_SE_CONFIRM);
+                    Sound_PlayEffect(SE_CONFIRM_sseq_3);
                     break;
                 }
             }
@@ -2108,7 +2108,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         ov97_02233DD0(migrator, &migrator->unk_490, 0);
         ov97_02235310(migrator);
 
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         *state = GBA_MIGRATOR_STATE_19;
     } break;
     case GBA_MIGRATOR_STATE_19:
@@ -2139,7 +2139,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
 
         if (v2 != 10) {
             DestroyWaitDial(migrator->unk_E8F0.unk_08);
-            Sound_PlayEffect(SEQ_SE_DP_SAVE);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE_sseq);
 
             if (v2 == 11) {
                 migrator->unk_490.messageEntryID = MigrateFromGBA_Text_SafelyMigratedToPlatinum;
@@ -2155,7 +2155,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
     case GBA_MIGRATOR_STATE_22:
         if (gSystem.touchPressed || gSystem.pressedKeys) {
             ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
         break;
     case GBA_MIGRATOR_STATE_FADE_OUT_TO_SELECTED_MON:

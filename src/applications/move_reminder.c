@@ -171,7 +171,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 0,
         .width = 11,
         .height = 2,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0x28,
     },
     [MOVE_REMINDER_WIN_LABEL_CONTEST_MOVES] = {
@@ -180,7 +180,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 0,
         .width = 11,
         .height = 2,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0x3E,
     },
     [MOVE_REMINDER_WIN_LABEL_CATEGORY] = {
@@ -189,7 +189,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 0,
         .width = 6,
         .height = 2,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0x54,
     },
     [MOVE_REMINDER_WIN_LABEL_POWER] = {
@@ -198,7 +198,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 2,
         .width = 6,
         .height = 2,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0x60,
     },
     [MOVE_REMINDER_WIN_LABEL_ACCURACY] = {
@@ -207,7 +207,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 4,
         .width = 8,
         .height = 2,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0x6C,
     },
     [MOVE_REMINDER_WIN_LABEL_PP] = {
@@ -216,7 +216,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 6,
         .width = 3,
         .height = 2,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0x7C,
     },
     [MOVE_REMINDER_WIN_LABEL_APPEAL_PTS] = {
@@ -225,7 +225,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 2,
         .width = 12,
         .height = 2,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0x82,
     },
     [MOVE_REMINDER_WIN_MOVE_POWER] = {
@@ -234,7 +234,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 2,
         .width = 3,
         .height = 2,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0x9A,
     },
     [MOVE_REMINDER_WIN_MOVE_ACCURACY] = {
@@ -243,7 +243,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 4,
         .width = 3,
         .height = 2,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0xA0,
     },
     [MOVE_REMINDER_WIN_MOVE_PP] = {
@@ -252,7 +252,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 6,
         .width = 5,
         .height = 2,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0xA6,
     },
     [MOVE_REMINDER_WIN_MOVE_BATTLE_DESCRIPTION] = {
@@ -261,7 +261,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 8,
         .width = 15,
         .height = 10,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0xB0,
     },
     [MOVE_REMINDER_WIN_MOVE_CONTEST_DESCRIPTION] = {
@@ -270,7 +270,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 9,
         .width = 15,
         .height = 6,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0x146,
     },
     [MOVE_REMINDER_WIN_MESSAGE_BOX] = {
@@ -279,7 +279,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 19,
         .width = 27,
         .height = 4,
-        .palette = PLTT_14,
+        .palette = 14,
         .baseTile = 0x1A0,
     },
     [MOVE_REMINDER_WIN_MOVES_NAMES] = {
@@ -288,7 +288,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 3,
         .width = 11,
         .height = 14,
-        .palette = PLTT_15,
+        .palette = 15,
         .baseTile = 0x20C,
     },
     [MOVE_REMINDER_WIN_YES_NO_MENU] = {
@@ -297,7 +297,7 @@ static const WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 13,
         .width = 7,
         .height = 4,
-        .palette = PLTT_14,
+        .palette = 14,
         .baseTile = 0x2A6,
     }
 };
@@ -802,9 +802,9 @@ static void MoveReminder_LoadBgResources(MoveReminderController *controller, NAR
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 10, controller->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_MOVE_REMINDER);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 11, controller->bgConfig, BG_LAYER_MAIN_2, 0, 0, 0, HEAP_ID_MOVE_REMINDER);
     Graphics_LoadPaletteFromOpenNARC(narc, 12, 0, 0, 0, HEAP_ID_MOVE_REMINDER);
-    Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_MOVE_REMINDER);
-    LoadStandardWindowGraphics(controller->bgConfig, BG_LAYER_MAIN_0, 1, PLTT_12, 0, HEAP_ID_MOVE_REMINDER);
-    LoadMessageBoxGraphics(controller->bgConfig, BG_LAYER_MAIN_0, 1 + 9, PLTT_13, Options_Frame(controller->data->options), HEAP_ID_MOVE_REMINDER);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(14), HEAP_ID_MOVE_REMINDER);
+    LoadStandardWindowGraphics(controller->bgConfig, BG_LAYER_MAIN_0, 1, 12, 0, HEAP_ID_MOVE_REMINDER);
+    LoadMessageBoxGraphics(controller->bgConfig, BG_LAYER_MAIN_0, 1 + 9, 13, Options_Frame(controller->data->options), HEAP_ID_MOVE_REMINDER);
 }
 
 static void MoveReminder_InitWindows(MoveReminderController *controller)
@@ -817,7 +817,7 @@ static void MoveReminder_InitWindows(MoveReminderController *controller)
     MoveReminder_DrawLabelText(controller);
 
     Window_FillTilemap(&controller->windows[MOVE_REMINDER_WIN_MESSAGE_BOX], 15);
-    Window_DrawMessageBoxWithScrollCursor(&controller->windows[MOVE_REMINDER_WIN_MESSAGE_BOX], 0, 10, PLTT_13);
+    Window_DrawMessageBoxWithScrollCursor(&controller->windows[MOVE_REMINDER_WIN_MESSAGE_BOX], 0, 10, 13);
 }
 
 static void MoveReminder_FreeWindows(MoveReminderController *controller)
@@ -853,7 +853,7 @@ static int MoveReminder_State_Init(MoveReminderController *controller)
 static int MoveReminder_State_ProcessMainInput(MoveReminderController *controller)
 {
     if (JOY_NEW(PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         controller->data->showingContest ^= 1;
         MoveReminder_DrawMovesInfo(controller);
         return MOVE_REMINDER_STATE_PROCESS_MAIN_INPUT;
@@ -880,7 +880,7 @@ static int MoveReminder_State_ProcessMainInput(MoveReminderController *controlle
         break;
 
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         MoveReminder_DrawMoveSelector(controller, controller->data->cursorPos, 1);
         MoveReminder_HideScrollArrows(controller);
         MoveReminder_SetMessageBoxText(controller, MOVE_REMINDER_STR_ASK_GIVE_UP_TEACHING_MON);
@@ -889,7 +889,7 @@ static int MoveReminder_State_ProcessMainInput(MoveReminderController *controlle
         return MOVE_REMINDER_STATE_PRINT_MESSAGE_BOX_TEXT;
 
     default:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         MoveReminder_DrawMoveSelector(controller, controller->data->cursorPos, 1);
         MoveReminder_HideScrollArrows(controller);
         if (MoveReminder_GetEmptyMoveSlot(controller) < LEARNED_MOVES_MAX) {
@@ -918,7 +918,7 @@ static int MoveReminder_State_PrintMessageBoxText(MoveReminderController *contro
 
 static int MoveReminder_State_DrawYesNoMenu(MoveReminderController *controller)
 {
-    controller->yesNoMenu = Menu_MakeYesNoChoice(controller->bgConfig, &sWindowTemplates[MOVE_REMINDER_WIN_YES_NO_MENU], 1, PLTT_12, HEAP_ID_MOVE_REMINDER);
+    controller->yesNoMenu = Menu_MakeYesNoChoice(controller->bgConfig, &sWindowTemplates[MOVE_REMINDER_WIN_YES_NO_MENU], 1, 12, HEAP_ID_MOVE_REMINDER);
     return MOVE_REMINDER_STATE_PROCESS_YES_NO_INPUT;
 }
 
@@ -1135,7 +1135,7 @@ static void MoveReminder_ListMenuCursorCallback(ListMenu *menu, u64 move, u8 onI
     MoveReminderController *controller = (MoveReminderController *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (onInit != TRUE) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
     }
 
     if (controller->data->showingContest == 0) {
@@ -1348,15 +1348,15 @@ static BOOL MoveReminder_TextPrinterCallback(TextPrinterTemplate *printer, u16 p
         return Sound_IsBGMPausedByFanfare();
 
     case 3:
-        Sound_PlayEffect(SEQ_SE_DP_KON);
+        Sound_PlayEffect(SEQ_SE_DP_KON_sseq);
         break;
 
     case 4:
-        Sound_PlayFanfare(SEQ_FANFA1);
+        Sound_PlayFanfare(SEQ_FANFA1_sseq);
         break;
 
     case 5:
-        return Sound_IsEffectPlaying(SEQ_SE_DP_KON);
+        return Sound_IsEffectPlaying(SEQ_SE_DP_KON_sseq);
     }
 
     return FALSE;

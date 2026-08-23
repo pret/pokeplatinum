@@ -35,6 +35,7 @@
 #include "map_object.h"
 #include "map_object_move.h"
 #include "player_avatar.h"
+#include "player_move.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -42,7 +43,6 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_0205F180.h"
 #include "unk_020655F4.h"
 
 static int CommPlayerMan_GetSlideMovementSpeed(int param0, int param1);
@@ -1050,7 +1050,7 @@ static void CommPlayer_MoveClient(int netId)
         if (sCommPlayerManager->forceDirTimer && (netId == CommSys_CurNetId())) {
             sCommPlayerManager->forceDirTimer--;
         } else if (!CommSys_IsSendingMovementData() && sCommPlayerManager->isUnderground && (netId == CommSys_CurNetId())) {
-            animCode = sub_0206147C(playerAvatar, pad, pad, v10, 1, 0);
+            animCode = PlayerAvatar_GetMovementActionAnimCode(playerAvatar, pad, pad, v10, 1, 0);
         } else if (((pad & ~PAD_BUTTON_B) == 0) && (playerLocation->collisionFlag)) {
             moveSpeed = 3;
 
@@ -1072,17 +1072,17 @@ static void CommPlayer_MoveClient(int netId)
         } else if (((pad & ~PAD_BUTTON_B) == 0) && (playerLocation->dir != dir)) {
             animCode = MovementAction_TurnActionTowardsDir(playerLocation->dir, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH);
         } else {
-            animCode = sub_0206147C(playerAvatar, pad, pad, v10, 1, 0);
+            animCode = PlayerAvatar_GetMovementActionAnimCode(playerAvatar, pad, pad, v10, 1, 0);
         }
 
-        if (sub_02061544(playerAvatar) == 0) {
+        if (PlayerAvatar_IsMapObjectAnimationSet(playerAvatar) == 0) {
             if (!PlayerAvatar_IsAnimationSetOrWalkOnSpotSlow(playerAvatar)) {
                 return;
             }
         }
 
         if (animCode != 0xff) {
-            PlayerAvatar_SetAnimationCode(playerAvatar, animCode, 1);
+            PlayerAvatar_SetMapObjMovement(playerAvatar, animCode, 1);
 
             if (pad & ~PAD_BUTTON_B) {
                 if (sCommPlayerManager->moveTimer[netId] == 0) {
@@ -1558,7 +1558,7 @@ void CommPlayer_SetBattleDir(void)
         code = MovementAction_TurnActionTowardsDir(DIR_EAST, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH);
     }
 
-    PlayerAvatar_SetAnimationCode(sCommPlayerManager->playerAvatar[netId], code, 1);
+    PlayerAvatar_SetMapObjMovement(sCommPlayerManager->playerAvatar[netId], code, 1);
     CommPlayerMan_ForceDir();
 }
 

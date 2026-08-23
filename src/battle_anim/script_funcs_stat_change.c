@@ -1,8 +1,6 @@
 #include "battle_anim/script_funcs_stat_change.h"
 
-#include "nitro/os/common/emulator.h"
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"

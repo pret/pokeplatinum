@@ -1,7 +1,0 @@
-[wrap-git]
-url = https://github.com/cybervisi0n/nitrorom.git
-revision = main
-depth = 1
-
-[provide]
-program_names = nitrorom

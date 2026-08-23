@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, explosion_spa
-    PlaySoundEffectL SEQ_SE_DP_SHUSHU
+    PlaySoundEffectL SEQ_SE_DP_SHUSHU_sseq
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
@@ -14,9 +14,9 @@ L_0:
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_WHITE, 15, 20
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_WHITE, 15, 20
     Delay 1
-    PlaySoundEffectC SEQ_SE_DP_186
+    PlaySoundEffectC SEQ_SE_DP_186_sseq
     Delay 14
-    PlayLoopedSoundEffectL SEQ_SE_DP_W436, 3, 4
+    PlayLoopedSoundEffectL SEQ_SE_DP_W436_sseq, 3, 4
     Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITES | BATTLE_ANIM_ALL_BATTLERS
     Delay 15
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 15, 0, BATTLE_COLOR_WHITE

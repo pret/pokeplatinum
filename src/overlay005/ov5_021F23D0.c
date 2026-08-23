@@ -112,7 +112,7 @@ static int ov5_021F2488(OverworldAnimManager *param0, void *param1)
     Simple3D_CreateRenderObjectWithAnim(&v0->unk_40, &v0->unk_10.unk_04->unk_04, &v0->unk_1C);
 
     v0->unk_04 = MapObject_GetLocalID(v0->unk_10.unk_08);
-    v0->unk_08 = MapObject_GetMapID(v0->unk_10.unk_08);
+    v0->unk_08 = MapObject_GetMapHeaderID(v0->unk_10.unk_08);
 
     {
         VecFx32 v2, v3;

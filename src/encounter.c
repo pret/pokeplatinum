@@ -743,8 +743,8 @@ void Encounter_NewVsTrainer(FieldTask *taskMan, int enemyTrainer1ID, int enemyTr
     dto = FieldBattleDTO_New(HEAP_ID_FIELD2, battleType);
     FieldBattleDTO_Init(dto, fieldSystem);
 
-    if (fieldSystem->location->mapId >= MAP_HEADER_DISTORTION_WORLD_1F
-        && fieldSystem->location->mapId <= MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM) {
+    if (fieldSystem->location->mapHeaderID >= MAP_HEADER_DISTORTION_WORLD_1F
+        && fieldSystem->location->mapHeaderID <= MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM) {
         dto->battleStatusMask |= BATTLE_STATUS_DISTORTION;
     }
 
@@ -962,7 +962,7 @@ static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto)
         }
     } else if ((battleType & BATTLE_TYPE_TRAINER) || (battleType & BATTLE_TYPE_TAG)) {
         if (resultMask == BATTLE_RESULT_WIN) {
-            JournalEntry_CreateAndSaveEventTrainer(fieldSystem->journalEntry, fieldSystem->location->mapId, dto->trainerIDs[BATTLER_ENEMY_1], HEAP_ID_FIELD2);
+            JournalEntry_CreateAndSaveEventTrainer(fieldSystem->journalEntry, fieldSystem->location->mapHeaderID, dto->trainerIDs[BATTLER_ENEMY_1], HEAP_ID_FIELD2);
         }
     }
 }

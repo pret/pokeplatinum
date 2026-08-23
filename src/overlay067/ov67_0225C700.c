@@ -10,7 +10,6 @@
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"
-#include "overlay066/struct_ov66_0222E71C.h"
 #include "overlay066/struct_ov66_02231024.h"
 #include "overlay066/struct_ov66_02231300.h"
 
@@ -170,7 +169,7 @@ int ov67_0225C700(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_Args(appMan);
 
     v0->saveData = v1->saveData;
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 0);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY_sseq, 0);
     v1->unk_10 = 0;
 
     ov67_0225CE30(v0, 112);
@@ -229,7 +228,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
         }
     } break;
     case 4: {
-        UnkStruct_ov66_0222E71C *v3;
+        WiFiPlazaProfile *v3;
 
         v3 = ov66_0222E3BC(v1->unk_04);
         CommManager_LoginWifiPlaza(v0->saveData, v3);
@@ -568,8 +567,8 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, enum HeapID heapID)
         Options *options = SaveData_GetOptions(param0->saveData);
         u8 v2 = Options_Frame(options);
 
-        Font_LoadTextPalette(0, 12 * 32, heapID);
-        Font_LoadScreenIndicatorsPalette(0, 11 * 32, heapID);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), heapID);
+        Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(11), heapID);
         LoadStandardWindowGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], 1 + (18 + 12), 14, 0, heapID);
         LoadMessageBoxGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, heapID);
     }
