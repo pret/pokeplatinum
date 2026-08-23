@@ -519,11 +519,16 @@ endif
 ############################################################
 ###                    ARM7 BINARIES                     ###
 ############################################################
-ichneumon_sub = subproject('libntr'
-    ).get_variable('ichneumon_sub')
+ichneumon_sub = []
+ichneumon_sub_defs = []
 
-ichneumon_sub_defs = subproject('libntr'
-    ).get_variable('ichneumon_sub_defs')
+if(build_target == 'arm')
+    ichneumon_sub = subproject('libntr'
+        ).get_variable('ichneumon_sub')
+
+    ichneumon_sub_defs = subproject('libntr'
+        ).get_variable('ichneumon_sub_defs')
+endif
 
 
 ############################################################
