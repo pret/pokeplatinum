@@ -1119,7 +1119,11 @@ ListMenu *GTS_CreateSpeciesMenu(GTSApplicationState *appState, StringList **stri
     return ListMenu_New(&template, appState->charpadScrollState.cursorPos[charpad], appState->charpadScrollState.scrollPos[charpad], HEAP_ID_62);
 }
 
-static sGenderSelectionOptions[][2] = {
+static 
+#ifdef SDK_PORT
+int
+#endif
+sGenderSelectionOptions[][2] = {
     { GTS_Text_Either, 2 },
     { GTS_Text_MaleIcon, 0 },
     { GTS_Text_FemaleIcon, 1 },

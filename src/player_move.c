@@ -143,6 +143,9 @@ static const DistortionWorldStepDirection sDistortionStepDirectionCeiling[4] = {
     { 0x1, 0x0, 0x0 }
 };
 
+#ifdef SDK_PORT
+static
+#endif
 const TileBehaviorCheck sTileBehaviorCheckTable[];
 static int (*const sTileMovementFunctions[6])(PlayerAvatar *, int);
 

@@ -86,7 +86,9 @@ static G3DPipelineBuffers *EndCredits_InitG3DPipeline(enum HeapID heapID);
 static void EndCredits_G3DPipelineCallback(void);
 static void EndCredits_FreeG3DPipeline(G3DPipelineBuffers *g3dPipeline);
 static void EndCredits_InitPalettes(EndCreditsApp *endCreditsApp);
+#ifdef SDK_BUILD_ARM
 static void EndCredits_FreeAppResources(EndCreditsApp *endCreditsApp);
+#endif
 static void EndCredits_FreeTilemapBuffers(EndCreditsApp *endCreditsApp);
 static void EndCredits_InitBackgrounds2(BgConfig *bgConfig);
 
@@ -300,7 +302,10 @@ static void EndCredits_DrawSprites(SysTask *sysTask, void *pEndCreditsApp)
     SpriteSystem_UpdateTransfer();
 }
 
-static void EndCredits_FreeAppResources(EndCreditsApp *endCreditsApp)
+#ifdef SDK_BUILD_ARM
+static 
+#endif
+void EndCredits_FreeAppResources(EndCreditsApp *endCreditsApp)
 {
     GF_ASSERT(endCreditsApp->subScreenStringsManager != NULL);
 

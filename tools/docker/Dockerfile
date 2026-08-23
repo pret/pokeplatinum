@@ -17,7 +17,7 @@ RUN dpkg --add-architecture i386
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential libsdl2-2.0-0 libsdl2-dev libenet7 libenet-dev xvfb \
     python3 gcc-arm-none-eabi wine wine32 wine64 libnss-unknown fuse file \
-    ninja-build nasm flex bison wget ca-certificates git clangd
+    ninja-build nasm flex bison wget ca-certificates git clangd libpng-dev libpng-tools
 
 # Install DevkitPro
 RUN if [ "$USE_DEVKITPRO" = "1" ]; then \

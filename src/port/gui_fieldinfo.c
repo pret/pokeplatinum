@@ -27,7 +27,7 @@ void GUI_FieldInfo_Main(bool * p_open) {
     igBegin("FieldInfo", p_open, 0);
     igColumns(2, "infoColumns", true);
     igText("Location");
-    igText("Map: %d", s_fieldSys->location->mapId);
+    igText("Map: %d", s_fieldSys->location->mapHeaderID);
     igText("Coords: (%d, %d)", s_fieldSys->location->x, s_fieldSys->location->z);
 
     igEnd();
