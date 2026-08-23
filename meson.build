@@ -519,7 +519,7 @@ endif
 ############################################################
 ###                    ARM7 BINARIES                     ###
 ############################################################
-ichneumon_sub = []
+ichneumon_sub = subproject('libntr').get_variable('ichneumon_sub')
 ichneumon_sub_defs = []
 
 
