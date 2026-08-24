@@ -33090,9 +33090,9 @@
                                         39](Poketch_IsAppRegistered,func) found in global src_poketch.c.o
                                        38](ScrCmd_RegisterPoketchApp,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_CheckPoketchEnabled,func) found in local src_scrcmd.c.o
-                                       38](ScrCmd_131,func) found in local src_scrcmd.c.o
-                                        39](ov5_021DDBC8,func) found in global src_overlay005_ov5_021DDAE4.c.o
-                                         40](ov5_021DDAE4,func) found in local src_overlay005_ov5_021DDAE4.c.o
+                                       38](ScrCmd_EnablePoketch,func) found in local src_scrcmd.c.o
+                                        39](FieldSystem_EnablePoketch,func) found in global src_overlay005_enable_poketch_task.c.o
+                                         40](FieldTask_EnablePoketch,func) found in local src_overlay005_enable_poketch_task.c.o
                                           41](Poketch_Enable,func) found in global src_poketch.c.o
                                        38](ScrCmd_SetDressUpPhotoTitle,func) found in local src_scrcmd.c.o
                                         39](DressUpPhoto_SetTitle,func) found in global src_unk_020298BC.c.o
@@ -50013,7 +50013,7 @@
   02043568 00000000 .text   $t	(src_scrcmd.c.o)
   02043578 00000026 .text   ScrCmd_CheckIsMiscSaveInit	(src_scrcmd.c.o)
   02043578 00000000 .text   $t	(src_scrcmd.c.o)
-  020435A0 0000000C .text   ScrCmd_131	(src_scrcmd.c.o)
+  020435A0 0000000C .text   ScrCmd_EnablePoketch	(src_scrcmd.c.o)
   020435A0 00000000 .text   $t	(src_scrcmd.c.o)
   020435AC 0000002E .text   ScrCmd_CheckPoketchEnabled	(src_scrcmd.c.o)
   020435AC 00000000 .text   $t	(src_scrcmd.c.o)
@@ -75357,12 +75357,12 @@
   021DDA78 00000000 .text   $t	(src_overlay005_map_name_popup.c.o)
   021DDAA4 00000040 .text   FieldSystem_RequestLocationName	(src_overlay005_map_name_popup.c.o)
   021DDAA4 00000000 .text   $t	(src_overlay005_map_name_popup.c.o)
-  021DDAE4 00000000 .text   $t	(src_overlay005_ov5_021DDAE4.c.o)
-  021DDAE4 000000E4 .text   ov5_021DDAE4	(src_overlay005_ov5_021DDAE4.c.o)
-  021DDBC0 00000000 .text   $d	(src_overlay005_ov5_021DDAE4.c.o)
-  021DDBC8 00000000 .text   $t	(src_overlay005_ov5_021DDAE4.c.o)
-  021DDBC8 00000020 .text   ov5_021DDBC8	(src_overlay005_ov5_021DDAE4.c.o)
-  021DDBE4 00000000 .text   $d	(src_overlay005_ov5_021DDAE4.c.o)
+  021DDAE4 00000000 .text   $t	(src_overlay005_enable_poketch_task.c.o)
+  021DDAE4 000000E4 .text   FieldTask_EnablePoketch	(src_overlay005_enable_poketch_task.c.o)
+  021DDBC0 00000000 .text   $d	(src_overlay005_enable_poketch_task.c.o)
+  021DDBC8 00000000 .text   $t	(src_overlay005_enable_poketch_task.c.o)
+  021DDBC8 00000020 .text   FieldSystem_EnablePoketch	(src_overlay005_enable_poketch_task.c.o)
+  021DDBE4 00000000 .text   $d	(src_overlay005_enable_poketch_task.c.o)
   021DDBE8 00000000 .text   $t	(src_overlay005_encounter_effect.c.o)
   021DDBE8 00000040 .text   EncounterEffect_Start	(src_overlay005_encounter_effect.c.o)
   021DDC24 00000000 .text   $d	(src_overlay005_encounter_effect.c.o)
