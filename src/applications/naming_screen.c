@@ -506,7 +506,7 @@ static const charcode_t sCharCodesUpper4[] = {
     CHAR_EOS,
 };
 
-static const u16 sCharCodesLower0[] = {
+static const charcode_t sCharCodesLower0[] = {
     CHAR_a,
     CHAR_b,
     CHAR_c,
