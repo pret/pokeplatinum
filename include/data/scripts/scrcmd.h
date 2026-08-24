@@ -310,7 +310,7 @@ ScriptCommand(SCRCMD_TRYSAVEGAME,                                          ScrCm
 ScriptCommand(SCRCMD_DRESSUPPHOTOHASDATA,                                  ScrCmd_DressUpPhotoHasData)
 ScriptCommand(SCRCMD_CONTESTPHOTOHASDATA,                                  ScrCmd_ContestPhotoHasData)
 ScriptCommand(SCRCMD_SETDRESSUPPHOTOTITLE,                                 ScrCmd_SetDressUpPhotoTitle)
-ScriptCommand(SCRCMD_131,                                                  ScrCmd_131)
+ScriptCommand(SCRCMD_ENABLEPOKETCH,                                        ScrCmd_EnablePoketch)
 ScriptCommand(SCRCMD_CHECKPOKETCHENABLED,                                  ScrCmd_CheckPoketchEnabled)
 ScriptCommand(SCRCMD_REGISTERPOKETCHAPP,                                   ScrCmd_RegisterPoketchApp)
 ScriptCommand(SCRCMD_CHECKPOKETCHAPPREGISTERED,                            ScrCmd_CheckPoketchAppRegistered)

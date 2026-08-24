@@ -49,6 +49,7 @@
 #include "cutscenes/boat_cutscene.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/enable_poketch_task.h"
 #include "overlay005/field_menu.h"
 #include "overlay005/footprint_type.h"
 #include "overlay005/honey_tree.h"
@@ -56,7 +57,6 @@
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021D5EB8.h"
-#include "overlay005/ov5_021DDAE4.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021EA874.h"
 #include "overlay005/ov5_021ECC20.h"
@@ -449,7 +449,7 @@ static BOOL ScrCmd_StopHoneyTreeShaking(ScriptContext *ctx);
 static BOOL ScrCmd_StartSignatureApp(ScriptContext *ctx);
 static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx);
 static BOOL ScrCmd_TrySaveGame(ScriptContext *ctx);
-static BOOL ScrCmd_131(ScriptContext *ctx);
+static BOOL ScrCmd_EnablePoketch(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPoketchEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPoketchAppRegistered(ScriptContext *ctx);
@@ -4132,9 +4132,9 @@ static BOOL ScrCmd_CheckIsMiscSaveInit(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_131(ScriptContext *ctx)
+static BOOL ScrCmd_EnablePoketch(ScriptContext *ctx)
 {
-    ov5_021DDBC8(ctx->task);
+    FieldSystem_EnablePoketch(ctx->task);
     return TRUE;
 }
 
