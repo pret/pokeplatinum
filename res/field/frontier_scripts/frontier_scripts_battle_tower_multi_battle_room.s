@@ -393,8 +393,8 @@ _04D1:
     Return
 
 _04D5:
-    ClearTowerStruct
-    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
+    FreeBattleTower
+    FrontierScrCmd_04 FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
     End
 
 _04DF:

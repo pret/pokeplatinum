@@ -3125,7 +3125,7 @@ _2E86:
 _2E90:
     FreeBattleRecording
     FreeBattleArcade
-    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
+    FrontierScrCmd_04 FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
     End
 
 _2E9C:

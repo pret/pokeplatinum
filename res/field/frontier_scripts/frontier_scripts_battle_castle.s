@@ -1829,7 +1829,7 @@ _1948:
 _1952:
     FreeBattleRecording
     FreeBattleCastle
-    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
+    FrontierScrCmd_04 FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
     End
 
 _195E:

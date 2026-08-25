@@ -320,8 +320,8 @@ static BOOL sub_02049A20(ScriptContext *ctx)
         v0 = 2;
     }
 
-    if (battleTower->unk_8D4 == v0) {
-        battleTower->unk_8D4 = 0;
+    if (battleTower->msgsReceived == v0) {
+        battleTower->msgsReceived = 0;
         *v2 = battleTower->unk_8D8;
 
         return TRUE;
