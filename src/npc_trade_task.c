@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "cutscenes/trade_sequence/trade_sequence.h"
+#include "cutscenes/trade_sequence/main.h"
 #include "field/field_system.h"
 #include "overlay006/npc_trade.h"
 #include "overlay006/struct_npc_trade_animation_template.h"

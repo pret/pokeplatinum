@@ -1,4 +1,4 @@
-#include "cutscenes/trade_sequence/trade_3d_scene.h"
+#include "cutscenes/trade_sequence/3d_scene.h"
 
 #include <nitro.h>
 #include <string.h>

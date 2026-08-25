@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "cutscenes/trade_sequence/trade_sequence.h"
+#include "cutscenes/trade_sequence/main.h"
 
 #include "bg_window.h"
 #include "enums.h"

@@ -51,7 +51,7 @@
 #include "cutscenes/boat_cutscene.h"
 #include "cutscenes/end_credits/main.h"
 #include "cutscenes/hall_of_fame.h"
-#include "cutscenes/trade_sequence/trade_sequence.h"
+#include "cutscenes/trade_sequence/main.h"
 #include "dw_warp/dw_warp.h"
 #include "field/field_system.h"
 #include "gts_application/application.h"

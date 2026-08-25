@@ -1427,8 +1427,8 @@ Overlay gts_application
 Overlay trade_sequence
 {
 	After gts_application
-	Object main.nef.p/src_cutscenes_trade_sequence_trade_sequence.c.o
-	Object main.nef.p/src_cutscenes_trade_sequence_trade_3d_scene.c.o
+	Object main.nef.p/src_cutscenes_trade_sequence_main.c.o
+	Object main.nef.p/src_cutscenes_trade_sequence_3d_scene.c.o
 	Object main.nef.p/src_cutscenes_trade_sequence_send_phase.c.o
 	Object main.nef.p/src_cutscenes_trade_sequence_tube_phase.c.o
 	Object main.nef.p/src_cutscenes_trade_sequence_ball_flyby_phase.c.o

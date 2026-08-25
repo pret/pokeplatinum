@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "cutscenes/trade_sequence/trade_sequence.h"
+#include "cutscenes/trade_sequence/main.h"
 #include "gts_application/application.h"
 #include "gts_application/gts.h"
 

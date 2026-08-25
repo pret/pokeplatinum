@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_TRADE_SEQUENCE_H
-#define POKEPLATINUM_TRADE_SEQUENCE_H
+#ifndef POKEPLATINUM_CUTSCENES_TRADE_SEQUENCE_MAIN_H
+#define POKEPLATINUM_CUTSCENES_TRADE_SEQUENCE_MAIN_H
 
 #include <nnsys.h>
 
@@ -118,4 +118,4 @@ int TradeSequence_GetOptionsFrame(TradeSequenceData *sequenceData);
 enum TradeType TradeSequence_GetTradeType(TradeSequenceData *sequenceData);
 void DeferredFree_Enqueue(void *param);
 
-#endif // POKEPLATINUM_TRADE_SEQUENCE_H
+#endif // POKEPLATINUM_CUTSCENES_TRADE_SEQUENCE_MAIN_H
