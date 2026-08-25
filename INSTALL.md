@@ -28,27 +28,26 @@ This document details the steps necessary to build a copy of Pokémon Platinum
 
 ### Windows Subsystem for Linux
 
-It's recommended to use [WSL2](#windows-wsl2) rather than WSL1 as your development environment as
-future support for WSL1 from major parties is looking dubious. If you still want to use it, go
-[here](#windows-wsl1).
+It's recommended to use [WSL2](#windows-wsl2) rather than WSL1 as your development environment. 
+If you still want to use WSL1, go [here](#windows-wsl1).
 
 #### Windows WSL2
 
 These instructions will enable you to build pokeplatinum using the more up-to-date WSL2 and
 develop on it with VSCode on Windows while it is stored in the Linux filesystem.
 
-1. Open powershell terminal as administrator. Yes, even if you're the admin already.
+1. Open the Windows PowerShell terminal as administrator by right-clicking on it and selecting `Run as administrator`. 
+   Yes, even if you're the admin already.
 
 2. Install a new distro:
     ```bash
     wsl --install -d Ubuntu
     ```
-    If this is your first time installing a WSL distro, your computer would have to set up some stuff
-    to make it work and prompt you to restart once finished. Allow your computer to restart.
-    On reboot, open powershell again.
+    If this is your first time installing a WSL distro, then your computer will prompt
+    you to restart once finished. Do so, then open PowerShell as administrator again.
 
-    You can add `--name` with a name on the end to pick what name you'd like. By default it would be
-    called `Ubuntu`.
+    You can add `--name ` with a name on the end to the command to pick what name you'd like. 
+    By default it would be called `Ubuntu`.
 
 3. Check that `Ubuntu` (or whatever name you gave it) is installed in the list:
     ```bash
@@ -82,13 +81,15 @@ develop on it with VSCode on Windows while it is stored in the Linux filesystem.
 
 With VSCode, you can modify files stored in Linux just like modifying files stored in Windows.
 
-1. Open VSCode in Windows (assuming you have downloaded it already). Go to extensions and find the WSL extension. Install it and make sure it's enabled.
+1. Once you have cloned the pokeplatinum repo in your Linux filesystem and ensured that it is capable of building successfully, open VSCode in Windows (assuming you have downloaded it already). 
 
-2. Back to your powershell terminal where you're running WSL2, run this command in the pokeplatinum directory to open it in VSCode on Windows:
+   Go to extensions and find the WSL extension. Install it and make sure it's enabled.
+
+2. Back to your PowerShell terminal where you're running WSL2, run this command in the pokeplatinum directory to open it in VSCode on Windows:
     ```bash
     code .
     ```
-    The first time using it will download some VSCode for Linux stuff. Let it work its magic.
+    The first-time setup should automatically download the necessary extensions to develop against the Linux filesystem.
 
 3. You should now have pokeplatinum in Linux loaded in VSCode on Windows, standing by and ready for work!
 
@@ -321,12 +322,12 @@ cd pokeplatinum
 To build the ROM, run:
 
 ```bash
-make -j 8
+make
 ```
-This will build pokeplatinum using 8 CPU cores in your computer. You may want more or less depending on
-hardware or user preference. `nproc` will show you how many CPU cores your computer has which matches how
-many jobs it can do at once. More (if your computer has the cores) is generally faster but hogs more cores
-meaning your computer is slower at performing other tasks while the command runs.
+or to skip the checksum if you want to modify the code:
+```
+make rom
+```
 
 If everything works, then the following ROM should be built:
 
