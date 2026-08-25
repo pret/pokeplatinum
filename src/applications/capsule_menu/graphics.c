@@ -266,9 +266,7 @@ void CapsuleGraphics_InitPageSprites(CapsuleAppManager *appMan)
 
 void CapsuleGraphics_FreePageSprites(CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 0; i < SEALS_PER_PAGE; i++) {
+    for (int i = 0; i < SEALS_PER_PAGE; i++) {
         SpriteManager_UnloadCharObjById(appMan->graphicsMan.spriteManager, i + 25000);
         Sprite_DeleteAndFreeResources(appMan->pageSprites.sprites[i]);
     }
@@ -278,9 +276,8 @@ static void CapsuleGraphics_TaskTick(SysTask *sysTask, void *capsuleSysTask)
 {
     CapsuleGraphicsTask *capsuleSysTask_dupe = (CapsuleGraphicsTask *)capsuleSysTask;
     BOOL result = FALSE;
-    int i;
 
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         if (capsuleSysTask_dupe->sprites[i] == NULL) {
             continue;
         }
@@ -308,9 +305,8 @@ void CapsuleGraphics_TaskStart(CapsuleAppManager *appMan, s8 scale, int steps)
     CapsuleGraphicsTask *capsuleSysTask = Heap_Alloc(HEAP_ID_53, sizeof(CapsuleGraphicsTask));
     capsuleSysTask->bgConfig = appMan->graphicsMan.bgConfig;
 
-    int i;
     s16 x, y;
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         if (appMan->sealRenderInfo[i].shouldRender == 0) {
             capsuleSysTask->sprites[i] = NULL;
             continue;
@@ -442,11 +438,10 @@ void CapsuleGraphics_OpenCapsuleSelectionMenu(BgConfig *bgConfig, Window *window
 
     appMan->graphicsMan.stringList = StringList_New(ySize, HEAP_ID_53);
 
-    int i;
     String *string;
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0008, HEAP_ID_53);
 
-    for (i = 0; i < ySize; i++) {
+    for (int i = 0; i < ySize; i++) {
         string = MessageLoader_GetNewString(messageLoader, gSealListMenuEntries[stringIDs[i]].index);
 
         StringList_AddFromString(appMan->graphicsMan.stringList, string, gSealListMenuEntries[stringIDs[i]].func);
@@ -493,7 +488,6 @@ void CapsuleGraphics_LoadPokemonIcons(CapsuleAppManager *appMan)
 
 void CapsuleGraphics_InitPokemonIcons(CapsuleAppManager *appMan)
 {
-    int i;
     int isEgg;
     int species;
     int paletteIndex;
@@ -501,7 +495,7 @@ void CapsuleGraphics_InitPokemonIcons(CapsuleAppManager *appMan)
     Pokemon *pokemon;
     SpriteTemplate spriteTemplate;
 
-    for (i = 0; i < appMan->appData->partySize; i++) {
+    for (int i = 0; i < appMan->appData->partySize; i++) {
         pokemon = appMan->appData->pokemon[i];
 
         SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(pokemon), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, i + 15000);
@@ -557,29 +551,24 @@ void CapsuleGraphics_SetPokemonSpritesPosition(CapsuleAppManager *appMan)
 
 void CapsuleGraphics_TickPokemonSprites(CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 0; i < appMan->appData->partySize; i++) {
+    for (int i = 0; i < appMan->appData->partySize; i++) {
         ManagedSprite_TickFrame(appMan->pokemonSprites[i]);
     }
 }
 
 void CapsuleGraphics_FreePokemonSprites(CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 0; i < appMan->appData->partySize; i++) {
+    for (int i = 0; i < appMan->appData->partySize; i++) {
         Sprite_DeleteAndFreeResources(appMan->pokemonSprites[i]);
     }
 }
 
 void CapsuleGraphics_AssignCapsules(CapsuleAppManager *appMan)
 {
-    int i;
     int dummy = 0;
     BallCapsule *capsule;
 
-    for (i = 0; i < CAPSULE_NUM; i++) {
+    for (int i = 0; i < CAPSULE_NUM; i++) {
         capsule = appMan->capsules[i].capsule;
         appMan->capsuleSprites[i].animIdx = CapsuleManager_AnySealsOnCapsule(capsule);
         appMan->capsuleSprites[i].pokemonIndex = appMan->capsules[i].pokemonIndex;
@@ -642,7 +631,6 @@ void CapsuleGraphics_LoadSelectionResources(CapsuleAppManager *appMan, NARC *nar
 
 void CapsuleGraphics_InitSelectionIndicator(CapsuleAppManager *appMan)
 {
-    int i;
     SpriteTemplate spriteTemplate;
     int startingStates[][3] = {
         { 136, 16, 1 },
@@ -651,7 +639,7 @@ void CapsuleGraphics_InitSelectionIndicator(CapsuleAppManager *appMan)
         { 240, 128, 2 },
     };
 
-    for (i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
+    for (int i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
         spriteTemplate.x = startingStates[i][0];
         spriteTemplate.y = startingStates[i][1];
         spriteTemplate.z = 0;
@@ -675,31 +663,25 @@ void CapsuleGraphics_InitSelectionIndicator(CapsuleAppManager *appMan)
 
 void CapsuleGraphics_TickSelectionIndicator(CapsuleAppManager *appMan)
 {
-    int i;
-
     if (appMan->graphicsMan.selectedCapsule == 0) {
         return;
     }
 
-    for (i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
+    for (int i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
         ManagedSprite_TickFrame(appMan->selectionIndicator[i]);
     }
 }
 
 void CapsuleGraphics_SetSelectionIndicatorDrawFlags(CapsuleAppManager *appMan, int flag)
 {
-    int i;
-
-    for (i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
+    for (int i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
         ManagedSprite_SetDrawFlag(appMan->selectionIndicator[i], flag);
     }
 }
 
 void CapsuleGraphics_FreeSelectionIndicator(CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
+    for (int i = 0; i < CAPSULE_SELECTION_ARROWS; i++) {
         Sprite_DeleteAndFreeResources(appMan->selectionIndicator[i]);
     }
 }
@@ -716,10 +698,9 @@ void CapsuleGraphics_InitCapsuleSprites(CapsuleAppManager *appMan, NARC *narc)
 {
     CapsuleGraphics_LoadCapsuleSprites(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, appMan->graphicsMan.paletteData, 266, 286, 174, 82, NNS_G2D_VRAM_TYPE_2DMAIN, 2, 1, narc);
     CapsuleGraphics_LoadCapsuleSprites(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, appMan->graphicsMan.paletteData, 275, 291, 179, 87, NNS_G2D_VRAM_TYPE_2DMAIN, 2, 1, narc);
-    int i;
     SpriteTemplate spriteTemplate;
 
-    for (i = 0; i < CAPSULE_NUM; i++) {
+    for (int i = 0; i < CAPSULE_NUM; i++) {
         spriteTemplate.x = 0;
         spriteTemplate.y = 0;
         spriteTemplate.z = 0;
@@ -774,12 +755,10 @@ void CapsuleGraphics_InitCapsuleSprites(CapsuleAppManager *appMan, NARC *narc)
 
 void CapsuleGraphics_SetCapsuleSpriteAnim(CapsuleAppManager *appMan)
 {
-    int i;
-
     CapsuleGraphics_AssignCapsules(appMan);
     CapsuleGraphics_SetPokemonSpritesPosition(appMan);
 
-    for (i = 0; i < CAPSULE_NUM; i++) {
+    for (int i = 0; i < CAPSULE_NUM; i++) {
         if (appMan->capsuleSprites[i].sprite == NULL) {
             continue;
         }
@@ -822,9 +801,7 @@ void CapsuleGraphics_SwapCapsules(CapsuleAppManager *appMan, int capsuleIdx1, in
 
 void CapsuleGraphics_TickCursor(CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 0; i < CAPSULE_NUM; i++) {
+    for (int i = 0; i < CAPSULE_NUM; i++) {
         ManagedSprite_TickFrame(appMan->capsuleSprites[i].sprite);
     }
 
@@ -834,9 +811,7 @@ void CapsuleGraphics_TickCursor(CapsuleAppManager *appMan)
 
 void CapsuleGraphics_FreeCapsuleSprites(CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 0; i < CAPSULE_NUM; i++) {
+    for (int i = 0; i < CAPSULE_NUM; i++) {
         Sprite_DeleteAndFreeResources(appMan->capsuleSprites[i].sprite);
     }
 
@@ -916,14 +891,13 @@ void CapsuleGraphics_InitWindows(CapsuleAppManager *appMan)
 
 void CapsuleGraphics_UpdateAllSealCountText(CapsuleAppManager *appMan)
 {
-    int i;
     int index;
     int sealID;
     int sealCount;
     String *string;
     Window *window;
 
-    for (i = 3; i < CAPSULE_MENU_WINDOW_NUM; i++) {
+    for (int i = 3; i < CAPSULE_MENU_WINDOW_NUM; i++) {
         window = &appMan->graphicsMan.windows[i];
         index = i - 3;
         sealID = appMan->sealPages.sealIDs[index];
@@ -1180,9 +1154,7 @@ void CapsuleGraphics_InitCapsuleUI(CapsuleAppManager *appMan)
 
 void CapsuleGraphics_SetPageSpritesDrawFlag(CapsuleAppManager *appMan, int flag)
 {
-    int i;
-
-    for (i = 0; i < 13; i++) {
+    for (int i = 0; i < 13; i++) {
         if (appMan->pageSprites.sprites[i] == NULL) {
             continue;
         }
@@ -1198,9 +1170,7 @@ void CapsuleGraphics_Dummy(CapsuleAppManager *appMan)
 
 void CapsuleGraphics_FreeUISprites(CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 8; i < 13; i++) {
+    for (int i = 8; i < 13; i++) {
         Sprite_DeleteAndFreeResources(appMan->pageSprites.sprites[i]);
     }
 }

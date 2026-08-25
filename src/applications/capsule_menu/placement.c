@@ -61,9 +61,7 @@ void SealPlacement_UpdateSealTouchRect(TouchScreenRect *rect, ManagedSprite *spr
 
 void SealPlacement_OffsetSeals(CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         if (appMan->sealRenderInfo[i].sprite == NULL) {
             continue;
         }
@@ -74,10 +72,9 @@ void SealPlacement_OffsetSeals(CapsuleAppManager *appMan)
 
 void SealPlacement_UpdateSealsFromCapsule(CapsuleAppManager *appMan)
 {
-    int i;
     BallCapsule *capsule = appMan->capsules[*appMan->capsuleIndex].capsule;
 
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         if (capsule->seals[i].type != SEAL_DUMMY) {
             appMan->sealRenderInfo[i].type = capsule->seals[i].type;
             appMan->sealRenderInfo[i].x = capsule->seals[i].x;
@@ -96,10 +93,9 @@ void SealPlacement_UpdateSealsFromCapsule(CapsuleAppManager *appMan)
 
 int SealPlacement_GetTouchedSeal(CapsuleAppManager *appMan, u8 sealIndex)
 {
-    int i;
     u32 touchX, touchY;
 
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         if (appMan->sealRenderInfo[i].shouldRender == 1) {
             continue;
         }
@@ -126,9 +122,7 @@ int SealPlacement_GetTouchedSeal(CapsuleAppManager *appMan, u8 sealIndex)
 
 BOOL SealPlacement_NotMaxSeals(CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         if (appMan->sealRenderInfo[i].shouldRender == 1) {
             continue;
         }
@@ -141,9 +135,7 @@ BOOL SealPlacement_NotMaxSeals(CapsuleAppManager *appMan)
 
 void SealPlacement_SetSealRenderPriorities(CapsuleAppManager *appMan, u8 index)
 {
-    int i;
-
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         if (appMan->sealRenderInfo[i].shouldRender != 1) {
             continue;
         }
@@ -340,9 +332,7 @@ BOOL SealPlacement_HandleTouchscreen(CapsuleAppManager *appMan, u32 touchscreenS
 
 void SealPlacement_FreeInactiveSeals(CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         if (appMan->sealRenderInfo[i].shouldRender != 1) {
             continue;
         }
@@ -353,9 +343,7 @@ void SealPlacement_FreeInactiveSeals(CapsuleAppManager *appMan)
 
 void SealPlacement_DrawActiveSeals(CapsuleAppManager *appMan, int flag)
 {
-    int i;
-
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         if (appMan->sealRenderInfo[i].shouldRender != 1) {
             continue;
         }
@@ -416,14 +404,13 @@ void SealPlacement_UpdateSealOamMode(CapsuleAppManager *appMan, int index)
 
 BOOL SealPlacement_AnySealsChanged(CapsuleAppManager *appMan)
 {
-    int i;
     int index;
     BallCapsule *capsule;
 
     index = *appMan->capsuleIndex;
     capsule = appMan->capsules[index].capsule;
 
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         if ((appMan->sealRenderInfo[i].type != capsule->seals[i].type)
             || (appMan->sealRenderInfo[i].x != capsule->seals[i].x)
             || (appMan->sealRenderInfo[i].y != capsule->seals[i].y)) {
@@ -446,10 +433,9 @@ void SealPlacement_UpdateSealXY(CapsuleAppManager *appMan, int sealIndex)
 
 void SealPlacement_LoadCapsuleSeals(CapsuleAppManager *appMan)
 {
-    int i;
     BallCapsule capsule;
 
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         capsule.seals[i].type = appMan->sealRenderInfo[i].type;
         capsule.seals[i].x = appMan->sealRenderInfo[i].x;
         capsule.seals[i].y = appMan->sealRenderInfo[i].y;
@@ -460,9 +446,7 @@ void SealPlacement_LoadCapsuleSeals(CapsuleAppManager *appMan)
 
 void SealPlacement_GetCapsuleSeals(BallCapsule *capsule, CapsuleAppManager *appMan)
 {
-    int i;
-
-    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+    for (int i = 0; i < SEALS_PER_CAPSULE; i++) {
         capsule->seals[i].type = appMan->sealRenderInfo[i].type;
         capsule->seals[i].x = appMan->sealRenderInfo[i].x;
         capsule->seals[i].y = appMan->sealRenderInfo[i].y;

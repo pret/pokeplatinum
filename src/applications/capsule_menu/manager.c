@@ -112,7 +112,6 @@ void CapsuleManager_SetNormalAlpha(void)
 
 void CapsuleManager_LoadLeadingPokemon(CapsuleAppManager *appMan)
 {
-    int i;
     int isEgg;
     Pokemon *pokemon;
 
@@ -123,7 +122,7 @@ void CapsuleManager_LoadLeadingPokemon(CapsuleAppManager *appMan)
         return;
     }
 
-    for (i = 0; i < appMan->appData->partySize; i++) {
+    for (int i = 0; i < appMan->appData->partySize; i++) {
         pokemon = appMan->appData->pokemon[i];
         isEgg = Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL);
 
