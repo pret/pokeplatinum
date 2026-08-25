@@ -5288,7 +5288,7 @@
                   17](sFullConfirmationMessage,object) found in local src_comm_manager.c.o
                  16](CommManager_ValidateConfirmationMessage,func) found in global src_comm_manager.c.o
                   17](sFreakConfirmationMessage,object) found in local src_comm_manager.c.o
-                 16](CommunicatitonInformaion_FinishReading,func) found in global src_communication_information.c.o
+                 16](CommInfo_FinishReading,func) found in global src_communication_information.c.o
                  16](CommPlayerInfo_Size,func) found in global src_communication_information.c.o
                  16](CommInfo_RecvPlayerDataArray,func) found in global src_communication_information.c.o
                   17](TrainerInfo_HasNoName,func) found in global src_trainer_info.c.o
@@ -10404,7 +10404,7 @@
                                                         55](Resource_Init,func) found in local src_resource_collection.c.o
                                                       53](SpriteResourceList_New,func) found in global src_sprite_resource.c.o
                                                       53](SpriteResourceCollection_Extend,func) found in global src_sprite_resource.c.o
-                                                       54](SpriteResoureCollection_ExtendEx,func) found in global src_sprite_resource.c.o
+                                                       54](SpriteResourceCollection_ExtendEx,func) found in global src_sprite_resource.c.o
                                                         55](SpriteResourceCollection_AddFromTable,func) found in global src_sprite_resource.c.o
                                                          56](SpriteResourceCollection_AllocResource,func) found in local src_sprite_resource.c.o
                                                          56](SpriteResourceCollection_IsIDUnused,func) found in global src_sprite_resource.c.o
@@ -17596,7 +17596,7 @@
                                                                       69](sGymsInfo,object) found in local src_journal.c.o
                                                                      68](JournalEntry_CreateEventGymTooTough,func) found in global src_journal.c.o
                                                                    66](SystemFlag_HandleForceBikingInGate,func) found in global src_system_flags.c.o
-                                                                   66](SystemFlag_CheckOnCyclingRoad,func) found in global src_system_flags.c.o
+                                                                   66](SystemFlag_ClearOnCyclingRoad,func) found in global src_system_flags.c.o
                                                                    66](SystemFlag_HandleStrengthActive,func) found in global src_system_flags.c.o
                                                                    66](TryUnlockFlyLocationByMap,func) found in global src_spawn_locations.c.o
                                                                    66](SpecialEncounter_SetFluteFactor,func) found in global src_special_encounter.c.o
@@ -33344,7 +33344,7 @@
                                               45](ov17_02252A70,func) found in global src_overlay017_ov17_02252A70.c.o
                                                46](sub_0202A580,func) found in global src_unk_020298BC.c.o
                                              44](ov17_0223F374,func) found in global src_overlay017_ov17_0223F118.c.o
-                                          41](VisualCompetitonScoring_Init,func) found in global src_overlay017_ov17_0223CB1C.c.o
+                                          41](VisualCompetitionScoring_Init,func) found in global src_overlay017_ov17_0223CB1C.c.o
                                            42](ov17_0223D390,func) found in local src_overlay017_ov17_0223CB1C.c.o
                                             43](ov17_02247A48,func) found in global src_overlay017_ov17_02247A48.c.o
                                              44](Unk_ov17_02254488,object) found in local src_overlay017_ov17_02247A48.c.o
@@ -40294,7 +40294,7 @@
   02009C14 00000000 .text   $t	(src_sprite_resource.c.o)
   02009C80 00000032 .text   SpriteResourceCollection_Extend	(src_sprite_resource.c.o)
   02009C80 00000000 .text   $t	(src_sprite_resource.c.o)
-  02009CB4 00000048 .text   SpriteResoureCollection_ExtendEx	(src_sprite_resource.c.o)
+  02009CB4 00000048 .text   SpriteResourceCollection_ExtendEx	(src_sprite_resource.c.o)
   02009CB4 00000000 .text   $t	(src_sprite_resource.c.o)
   02009CFC 00000024 .text   SpriteResourceList_New	(src_sprite_resource.c.o)
   02009CFC 00000000 .text   $t	(src_sprite_resource.c.o)
@@ -47242,7 +47242,7 @@
   02032BC0 00000004 .text   CommPlayerInfo_Size	(src_communication_information.c.o)
   02032BC0 00000000 .text   $t	(src_communication_information.c.o)
   02032BC4 00000000 .text   $t	(src_communication_information.c.o)
-  02032BC4 00000018 .text   CommunicatitonInformaion_FinishReading	(src_communication_information.c.o)
+  02032BC4 00000018 .text   CommInfo_FinishReading	(src_communication_information.c.o)
   02032BD8 00000000 .text   $d	(src_communication_information.c.o)
   02032BDC 00000000 .text   $t	(src_communication_information.c.o)
   02032BDC 00000010 .text   CommInfo_IsDataFinishedReading	(src_communication_information.c.o)
@@ -56110,7 +56110,7 @@
   0206AE8C 00000010 .text   SystemFlag_CheckInPalPark	(src_system_flags.c.o)
   0206AE94 00000000 .text   $d	(src_system_flags.c.o)
   0206AE9C 00000000 .text   $t	(src_system_flags.c.o)
-  0206AE9C 00000010 .text   SystemFlag_CheckOnCyclingRoad	(src_system_flags.c.o)
+  0206AE9C 00000010 .text   SystemFlag_ClearOnCyclingRoad	(src_system_flags.c.o)
   0206AEA4 00000000 .text   $d	(src_system_flags.c.o)
   0206AEAC 00000000 .text   $t	(src_system_flags.c.o)
   0206AEAC 00000010 .text   SystemFlag_HandleStrengthActive	(src_system_flags.c.o)
@@ -90839,7 +90839,7 @@
   0223CA30 000000EC .text   ov17_0223CA30	(src_overlay017_ov17_0223B140.c.o)
   0223CB0C 00000000 .text   $d	(src_overlay017_ov17_0223B140.c.o)
   0223CB1C 00000000 .text   $t	(src_overlay017_ov17_0223CB1C.c.o)
-  0223CB1C 000002C0 .text   VisualCompetitonScoring_Init	(src_overlay017_ov17_0223CB1C.c.o)
+  0223CB1C 000002C0 .text   VisualCompetitionScoring_Init	(src_overlay017_ov17_0223CB1C.c.o)
   0223CD9C 00000000 .text   $d	(src_overlay017_ov17_0223CB1C.c.o)
   0223CDDC 00000000 .text   $t	(src_overlay017_ov17_0223CB1C.c.o)
   0223CDDC 000001B0 .text   VisualCompetitionScoring_Main	(src_overlay017_ov17_0223CB1C.c.o)
