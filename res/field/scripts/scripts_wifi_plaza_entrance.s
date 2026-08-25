@@ -60,7 +60,7 @@ WifiPlazaEntrance_TakeWarpPanel:
     ApplyMovement LOCALID_PLAYER, WifiPlazaEntrance_Movement_PlayerEnterWarpPanelAndSpin
     ApplyMovement LOCALID_ATTENDANT_F, WifiPlazaEntrance_Movement_AttendantFWalkOnSpotNorth
     WaitMovement
-    PlaySE SEQ_SE_DP_TELE2
+    PlaySE SEQ_SE_DP_TELE2_sseq
     ApplyMovement LOCALID_PLAYER, WifiPlazaEntrance_Movement_PlayerWarpOut
     WaitMovement
     FadeScreenOut

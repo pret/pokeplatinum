@@ -13,14 +13,14 @@ GrandLakeRoute213Lobby_OnTransition:
     End
 
 GrandLakeRoute213Lobby_Policeman:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message GrandLakeRoute213Lobby_Text_YouMayRest
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     FadeScreenIn
@@ -36,7 +36,7 @@ GrandLakeRoute213Lobby_AceTrainerF:
     End
 
 GrandLakeRoute213Lobby_Looker:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfSet FLAG_TALKED_TO_GRAND_LAKE_ROUTE_213_LOBBY_LOOKER, GrandLakeRoute213Lobby_IWillSearchInside
     SetFlag FLAG_TALKED_TO_GRAND_LAKE_ROUTE_213_LOBBY_LOOKER

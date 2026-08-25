@@ -11,7 +11,7 @@ SolaceonRuinsRoom1_OnTransition:
     End
 
 SolaceonRuinsRoom1_Inscription:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     MessageUnown SolaceonRuinsRoom1_Text_Directions
     WaitButton

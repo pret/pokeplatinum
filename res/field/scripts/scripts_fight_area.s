@@ -131,8 +131,8 @@ FightArea_PostBattleVolknerFlint:
     Message FightArea_Text_ImOffToTheFronti
     ClearFlag FLAG_HIDE_FIGHT_AREA_PALMER
     AddObject LOCALID_PALMER
-    StopSE SEQ_SE_CONFIRM
-    PlaySE SEQ_SE_DP_WALL_HIT2
+    StopSE SE_CONFIRM_sseq_3
+    PlaySE SEQ_SE_DP_WALL_HIT2_sseq
     MessageInstant FightArea_Text_BigThud
     ApplyMovement LOCALID_PALMER, FightArea_Movement_PalmerEnter
     ApplyMovement LOCALID_RIVAL, FightArea_Movement_RivalGetPushedBack
@@ -154,9 +154,9 @@ FightArea_PostBattleVolknerFlint:
     CloseMessage
     ApplyMovement LOCALID_PALMER, FightArea_Movement_PalmerLeave
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_PALMER
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     BufferRivalName 0
     Message FightArea_Text_DadIsTowerTycoon
     Message FightArea_Text_WhatToDo
@@ -420,7 +420,7 @@ FightArea_Sailor1:
     End
 
 FightArea_Fisherman:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferItemName 0, ITEM_SUPER_ROD
@@ -466,7 +466,7 @@ FightArea_ArrowSignpostRt225:
     End
 
 FightArea_Sailor2:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     FacePlayer
@@ -498,7 +498,7 @@ FightArea_SailToSnowpointCity:
 FightArea_SailorEnterShip:
     ApplyMovement LOCALID_SAILOR_2, FightArea_Movement_Sailor2WalkToShip
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_SAILOR_2, FightArea_Movement_SetInvisible
     WaitMovement
     Return
@@ -506,7 +506,7 @@ FightArea_SailorEnterShip:
 FightArea_PlayerEnterShipSouth:
     ApplyMovement LOCALID_PLAYER, FightArea_Movement_PlayerWalkToShipSouth
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, FightArea_Movement_SetInvisible
     WaitMovement
     Return
@@ -514,7 +514,7 @@ FightArea_PlayerEnterShipSouth:
 FightArea_PlayerEnterShipEast:
     ApplyMovement LOCALID_PLAYER, FightArea_Movement_PlayerWalkToShipEast
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, FightArea_Movement_SetInvisible
     WaitMovement
     Return
@@ -522,7 +522,7 @@ FightArea_PlayerEnterShipEast:
 FightArea_PlayerEnterShipWest:
     ApplyMovement LOCALID_PLAYER, FightArea_Movement_PlayerWalkToShipWest
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_PLAYER, FightArea_Movement_SetInvisible
     WaitMovement
     Return
@@ -559,7 +559,7 @@ FightArea_Movement_PlayerWalkToShipWest:
     EndMovement
 
 FightArea_Rival:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ApplyMovement LOCALID_RIVAL, FightArea_Movement_RivalWalkOnSpotNorth
@@ -638,7 +638,7 @@ FightArea_BlackBelt2:
     End
 
 FightArea_Flint:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message FightArea_Text_UpToTheChallenge
@@ -650,7 +650,7 @@ FightArea_Flint:
     End
 
 FightArea_Volkner:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message FightArea_Text_SorryAboutMyFriend
@@ -662,7 +662,7 @@ FightArea_Volkner:
     End
 
 FightArea_Buck:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message FightArea_Text_WhoAreYouGuys

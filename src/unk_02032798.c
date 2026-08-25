@@ -34,7 +34,7 @@ static const CommCmdTable Unk_020E5D64[] = {
     { sub_0203619C, CommPacketSizeOf_Nothing, NULL },
     { CommInfo_RecvPlayerData, CommPlayerInfo_Size, NULL },
     { CommInfo_RecvPlayerDataArray, CommPlayerInfo_Size, NULL },
-    { CommunicatitonInformaion_FinishReading, CommPacketSizeOf_Nothing, NULL },
+    { CommInfo_FinishReading, CommPacketSizeOf_Nothing, NULL },
     { CommManager_ValidateConfirmationMessage, CommManager_ConfirmationMessage_sizeof, NULL },
     { CommManager_ValidateConfirmationResponseMessage, CommManager_ConfirmationMessage_sizeof, NULL },
     { NULL, NULL, NULL },

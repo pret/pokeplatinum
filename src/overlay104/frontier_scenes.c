@@ -3,18 +3,18 @@
 #include <nitro.h>
 
 #include "constants/battle_frontier.h"
-#include "generated/sdat.h"
 #include "generated/text_banks.h"
 
 #include "graphics/frontier/backgrounds/frontier_backgrounds.naix"
-#include "overlay104/ov104_0223C164.h"
 #include "overlay104/ov104_0223D9E4.h"
+#include "overlay104/wfc_facility_selector_helpers.h"
 
 #include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
 
 #include "res/field/frontier_scripts/fr_script.naix"
+#include "res/sound/pl_sound_data.naix"
 
 typedef void (*FrontierSceneSetupDestroyFunc)(FrontierGraphics *, void **);
 
@@ -50,8 +50,8 @@ static void BattleFactoryCorridorSceneSetup(FrontierGraphics *graphics, void **s
 static void BattleFactoryCorridorSceneDestroy(FrontierGraphics *graphics, void **sceneData);
 static void BattleFactoryBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData);
 static void BattleFactoryBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData);
-static void ov104_0222EC90(FrontierGraphics *graphics, void **sceneData);
-static void ov104_0222ECA0(FrontierGraphics *graphics, void **sceneData);
+static void WFCFacilitySelectorSceneSetup(FrontierGraphics *graphics, void **sceneData);
+static void WFCFacilitySelectorSceneDestroy(FrontierGraphics *graphics, void **sceneData);
 static void BattleCastleBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData);
 static void BattleCastleBattleRoomSceneDestroy(FrontierGraphics *graphics, void **sceneData);
 
@@ -62,7 +62,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = ov104_0222EBCC,
         0x4,
         .textBankID = 204,
-        .bgmID = SEQ_BF_TOWWER,
+        .bgmID = SEQ_BF_TOWWER_sseq,
         .screenSize = BG_SCREEN_SIZE_512x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_factory_battle_room_NSCR_lz,
@@ -80,7 +80,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = NULL,
         0x0,
         .textBankID = 0xCC,
-        .bgmID = SEQ_BF_TOWWER,
+        .bgmID = SEQ_BF_TOWWER_sseq,
         .screenSize = BG_SCREEN_SIZE_512x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_factory_corridor_NSCR_lz,
@@ -98,7 +98,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = NULL,
         0x5,
         .textBankID = 206,
-        .bgmID = SEQ_BF_TOWWER,
+        .bgmID = SEQ_BF_TOWWER_sseq,
         .screenSize = BG_SCREEN_SIZE_512x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_factory_battle_room_NSCR_lz,
@@ -116,7 +116,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = BattleFactoryCorridorSceneDestroy,
         .scriptID = frontier_scripts_battle_factory,
         .textBankID = TEXT_BANK_BATTLE_FACTORY_SCENE,
-        .bgmID = SEQ_PL_BF_FACTORY,
+        .bgmID = SEQ_PL_BF_FACTORY_sseq,
         .screenSize = BG_SCREEN_SIZE_512x512,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_factory_corridor_NSCR_lz,
@@ -134,7 +134,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = BattleFactoryBattleRoomSceneDestroy,
         .scriptID = frontier_scripts_battle_factory,
         .textBankID = TEXT_BANK_BATTLE_FACTORY_SCENE,
-        .bgmID = SEQ_PL_BF_FACTORY,
+        .bgmID = SEQ_PL_BF_FACTORY_sseq,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_factory_battle_room_NSCR_lz,
@@ -152,7 +152,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_tower_corridor,
         .textBankID = TEXT_BANK_BATTLE_TOWER,
-        .bgmID = SEQ_BF_TOWWER,
+        .bgmID = SEQ_BF_TOWWER_sseq,
         .screenSize = BG_SCREEN_SIZE_512x512,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_tower_corridor_NSCR_lz,
@@ -170,7 +170,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_tower_corridor_multi,
         .textBankID = TEXT_BANK_BATTLE_TOWER,
-        .bgmID = SEQ_BF_TOWWER,
+        .bgmID = SEQ_BF_TOWWER_sseq,
         .screenSize = BG_SCREEN_SIZE_512x512,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_tower_multi_corridor_NSCR_lz,
@@ -188,7 +188,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_tower_battle_room,
         .textBankID = TEXT_BANK_BATTLE_TOWER_BATTLE_ROOM,
-        .bgmID = SEQ_BF_TOWWER,
+        .bgmID = SEQ_BF_TOWWER_sseq,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_tower_battle_room_NSCR_lz,
@@ -206,7 +206,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_tower_multi_battle_room,
         .textBankID = TEXT_BANK_BATTLE_TOWER_MULTI_BATTLE_ROOM,
-        .bgmID = SEQ_BF_TOWWER,
+        .bgmID = SEQ_BF_TOWWER_sseq,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_tower_multi_battle_room_NSCR_lz,
@@ -224,7 +224,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_hall,
         .textBankID = TEXT_BANK_BATTLE_HALL_SCENE,
-        .bgmID = SEQ_PL_BF_STAGE,
+        .bgmID = SEQ_PL_BF_STAGE_sseq,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_hall_corridor_NSCR_lz,
@@ -242,7 +242,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = BattleHallBattleRoomSceneDestroy,
         .scriptID = frontier_scripts_battle_hall,
         .textBankID = TEXT_BANK_BATTLE_HALL_SCENE,
-        .bgmID = SEQ_PL_BF_STAGE,
+        .bgmID = SEQ_PL_BF_STAGE_sseq,
         .screenSize = BG_SCREEN_SIZE_512x512,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_hall_battle_room_NSCR_lz,
@@ -260,7 +260,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_castle,
         .textBankID = TEXT_BANK_BATTLE_CASTLE_SCENE,
-        .bgmID = SEQ_PL_BF_CASTLE,
+        .bgmID = SEQ_PL_BF_CASTLE_sseq,
         .screenSize = BG_SCREEN_SIZE_512x512,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_castle_corridor_NSCR_lz,
@@ -278,7 +278,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = BattleCastleBattleRoomSceneDestroy,
         .scriptID = frontier_scripts_battle_castle,
         .textBankID = TEXT_BANK_BATTLE_CASTLE_SCENE,
-        .bgmID = SEQ_PL_BF_CASTLE,
+        .bgmID = SEQ_PL_BF_CASTLE_sseq,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_castle_battle_room_NSCR_lz,
@@ -296,7 +296,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = NULL,
         .scriptID = frontier_scripts_battle_castle,
         .textBankID = TEXT_BANK_BATTLE_CASTLE_SCENE,
-        .bgmID = SEQ_PL_BF_CASTLE,
+        .bgmID = SEQ_PL_BF_CASTLE_sseq,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_castle_unknown_NSCR_lz,
@@ -308,18 +308,18 @@ static const FrontierScene sFrontierScenes[] = {
         .unk_22 = 1,
         .unk_23 = 1,
     },
-    [FRONTIER_SCENE_14] = {
+    [FRONTIER_SCENE_WFC_FACILITY_SELECTOR] = {
         .bgMode = GX_BGMODE_5,
-        .setupFunc = ov104_0222EC90,
-        .destroyFunc = ov104_0222ECA0,
-        .scriptID = frontier_scripts_unknown_10,
-        .textBankID = TEXT_BANK_UNK_0015,
-        .bgmID = SEQ_BF_TOWWER,
+        .setupFunc = WFCFacilitySelectorSceneSetup,
+        .destroyFunc = WFCFacilitySelectorSceneDestroy,
+        .scriptID = frontier_scripts_wfc_facility_selector,
+        .textBankID = TEXT_BANK_WFC_FACILITY_SELECTOR,
+        .bgmID = SEQ_BF_TOWWER_sseq,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
-        .tilemapIdx = unknown_10_NSCR_lz,
-        .tilesIdx = unknown_10_NCGR_lz,
-        .plttIdx = unknown_10_NCLR,
+        .tilemapIdx = wfc_facility_selector_NSCR_lz,
+        .tilesIdx = wfc_facility_selector_NCGR_lz,
+        .plttIdx = wfc_facility_selector_NCLR,
         .subTilemapIdx = -1,
         .subTilesIdx = -1,
         .subPlttIdx = -1,
@@ -332,7 +332,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = BattleArcadeCorridorSceneDestroy,
         .scriptID = frontier_scripts_battle_arcade,
         .textBankID = TEXT_BANK_BATTLE_ARCADE_SCENE,
-        .bgmID = SEQ_PL_BF_ROULETTE,
+        .bgmID = SEQ_PL_BF_ROULETTE_sseq,
         .screenSize = BG_SCREEN_SIZE_256x256,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_arcade_corridor_NSCR_lz,
@@ -350,7 +350,7 @@ static const FrontierScene sFrontierScenes[] = {
         .destroyFunc = BattleArcadeBattleRoomSceneDestroy,
         .scriptID = frontier_scripts_battle_arcade,
         .textBankID = TEXT_BANK_BATTLE_ARCADE_SCENE,
-        .bgmID = SEQ_PL_BF_ROULETTE,
+        .bgmID = SEQ_PL_BF_ROULETTE_sseq,
         .screenSize = BG_SCREEN_SIZE_512x512,
         .narcID = NARC_INDEX_FRONTIER_BACKGROUNDS,
         .tilemapIdx = battle_arcade_battle_room_NSCR_lz,
@@ -481,14 +481,14 @@ static void BattleFactoryBattleRoomSceneDestroy(FrontierGraphics *graphics, void
 {
 }
 
-static void ov104_0222EC90(FrontierGraphics *graphics, void **sceneData)
+static void WFCFacilitySelectorSceneSetup(FrontierGraphics *graphics, void **sceneData)
 {
-    *sceneData = ov104_0223C164(graphics->bgConfig);
+    *sceneData = WFCFacilitySelectorEffects_Init(graphics->bgConfig);
 }
 
-static void ov104_0222ECA0(FrontierGraphics *graphics, void **sceneData)
+static void WFCFacilitySelectorSceneDestroy(FrontierGraphics *graphics, void **sceneData)
 {
-    ov104_0223C23C(*sceneData);
+    WFCFacilitySelectorEffects_Free(*sceneData);
 }
 
 static void BattleCastleBattleRoomSceneSetup(FrontierGraphics *graphics, void **sceneData)

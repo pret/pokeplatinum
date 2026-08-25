@@ -15,6 +15,7 @@
 #include "brightness_controller.h"
 #include "camera.h"
 #include "easy3d_object.h"
+#include "ending.naix"
 #include "enums.h"
 #include "g3d_pipeline.h"
 #include "gx_layers.h"
@@ -170,7 +171,7 @@ BOOL EndCreditsApp_Init(ApplicationManager *appMan, int *state)
     endCreditsApp->sysTask = SysTask_Start(EndCredits_DrawSprites, endCreditsApp, 60000);
 
     SetVBlankCallback(EndCredits_VBlankCallback, endCreditsApp);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_14, SEQ_BLD_ENDING, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_14, SEQ_BLD_ENDING_sseq, 1);
 
     BrightnessController_SetScreenBrightness(BRIGHTNESS_BLACK, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_BOTH_SCREENS);
     SetScreenMasterBrightness(DS_SCREEN_MAIN, BRIGHTNESS_NORMAL);
@@ -644,8 +645,8 @@ static void EndCredits_InitBackgrounds2(BgConfig *bgConfig)
 
 static void EndCredits_InitPalettes(EndCreditsApp *endCreditsApp)
 {
-    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, 85, HEAP_ID_END_CREDITS, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
-    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, 85, HEAP_ID_END_CREDITS, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
+    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, text_NCLR, HEAP_ID_END_CREDITS, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
+    PaletteData_LoadBufferFromFileStart(endCreditsApp->paletteData, NARC_INDEX_GRAPHIC__ENDING, text_NCLR, HEAP_ID_END_CREDITS, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
 }
 
 static void EndCredits_Draw3DModels(EndCreditsApp *endCreditsApp)

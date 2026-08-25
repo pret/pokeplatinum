@@ -21,7 +21,7 @@ CanalaveLibrary2F_ShowHiker:
     Return
 
 CanalaveLibrary2F_SchoolKidM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_LAKE_VALOR_EXPLODED, CanalaveLibrary2F_TremorWasWicked
@@ -39,7 +39,7 @@ CanalaveLibrary2F_TremorWasWicked:
     End
 
 CanalaveLibrary2F_Bookshelves:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfGe VAR_ARCEUS_EVENT_STATE, 3, CanalaveLibrary2F_SinnohAsToldOnPlates
     Message CanalaveLibrary2F_Text_BookshelvesAreCrammed

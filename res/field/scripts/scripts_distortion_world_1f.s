@@ -13,7 +13,7 @@ DistortionWorld1F_OnTransition:
     End
 
 DistortionWorld1F_Portal:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message DistortionWorld1F_Text_ReturnToSpearPillar
     ShowYesNoMenu VAR_RESULT
@@ -26,7 +26,7 @@ DistortionWorld1F_ReturnToSpearPillar:
     BufferPlayerName 0
     Message DistortionWorld1F_Text_PlayerHeadedForSpearPillar
     CloseMessage
-    PlaySE SEQ_SE_PL_SYUWA
+    PlaySE SEQ_SE_PL_SYUWA_sseq
     SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     FadeScreenOut
     WaitFadeScreen

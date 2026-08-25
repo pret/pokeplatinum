@@ -355,7 +355,7 @@ static void BattleHallRecordSelector_Process(SysTask *task, void *context)
     ListMenu_CalcTrueCursorPos(selector->listMenu, &selector->menuPos);
 
     if (oldPos != selector->menuPos) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     switch (input) {
@@ -363,13 +363,13 @@ static void BattleHallRecordSelector_Process(SysTask *task, void *context)
         break;
     case MENU_CANCEL:
         if (selector->alwaysTrue == TRUE) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             *selector->resultPtr = MENU_CANCEL;
             BattleHallRecordSelector_Free(selector);
         }
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         *selector->resultPtr = input;
         BattleHallRecordSelector_Free(selector);
         break;
@@ -378,7 +378,7 @@ static void BattleHallRecordSelector_Process(SysTask *task, void *context)
 
 static void BattleHallRecordSelector_Free(BattleHallRecordSelector *selector)
 {
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
     ListMenu_Free(selector->listMenu, NULL, NULL);
     Window_EraseStandardFrame(selector->menuTemplate.window, FALSE);
     Window_Remove(&selector->window);
@@ -874,7 +874,7 @@ BOOL ScrCmd_ActivateRegiRuinsDot(ScriptContext *ctx)
 
         for (i = 0; i < NELEMS(sDotCoordinatesIronRuins); i++) {
             if (x == sDotCoordinatesIronRuins[i].x && z == sDotCoordinatesIronRuins[i].z) {
-                Sound_PlayEffect(SEQ_SE_PL_JUMP2);
+                Sound_PlayEffect(SEQ_SE_PL_JUMP2_sseq);
                 *destVar |= (1 << i);
                 break;
             }
@@ -885,7 +885,7 @@ BOOL ScrCmd_ActivateRegiRuinsDot(ScriptContext *ctx)
 
         for (i = 0; i < NELEMS(sDotCoordinatesIcebergRuins); i++) {
             if (x == sDotCoordinatesIcebergRuins[i].x && z == sDotCoordinatesIcebergRuins[i].z) {
-                Sound_PlayEffect(SEQ_SE_PL_JUMP2);
+                Sound_PlayEffect(SEQ_SE_PL_JUMP2_sseq);
                 *destVar |= (1 << i);
                 break;
             }
@@ -896,7 +896,7 @@ BOOL ScrCmd_ActivateRegiRuinsDot(ScriptContext *ctx)
 
         for (i = 0; i < NELEMS(sDotCoordinatesRockPeakRuins); i++) {
             if (x == sDotCoordinatesRockPeakRuins[i].x && z == sDotCoordinatesRockPeakRuins[i].z) {
-                Sound_PlayEffect(SEQ_SE_PL_JUMP2);
+                Sound_PlayEffect(SEQ_SE_PL_JUMP2_sseq);
                 *destVar |= (1 << i);
                 break;
             }

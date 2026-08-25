@@ -3,7 +3,6 @@
 #include <nitro.h>
 
 #include "constants/graphics.h"
-#include "generated/sdat.h"
 
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
@@ -17,6 +16,7 @@
 #include "sys_task_manager.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 
 #define WINDOW_WIDTH_TILES  20
 #define WINDOW_HEIGHT_TILES 19
@@ -211,7 +211,7 @@ static void Task_ChangeActiveDrawingTool(SysTask *task, void *taskMan)
         PoketchAnimation_UpdateAnimationIdx(graphics->sprites[1], PENCIL_UNPRESSED);
     }
 
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
     EndTask(taskMan);
 }
 

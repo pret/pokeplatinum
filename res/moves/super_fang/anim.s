@@ -6,8 +6,8 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_W044
-    PlayDelayedSoundEffectR SEQ_SE_DP_185, 5
+    PlaySoundEffectR SEQ_SE_DP_W044_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_185_sseq, 5
     Delay 5
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters

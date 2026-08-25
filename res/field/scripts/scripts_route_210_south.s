@@ -29,7 +29,7 @@ Route210South_SetJoggerNoBattle:
     End
 
 Route210South_Psyduck:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckItem ITEM_SECRETPOTION, 1, VAR_RESULT
@@ -221,7 +221,7 @@ Route210South_Dummy2:
     End
 
 Route210South_AceTrainerF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_210_SOUTH_TM51, Route210South_BirdPokemonWouldCrash

@@ -48,7 +48,7 @@ VeilstoneStoreB1F_RageCandyBarVendor:
     End
 
 VeilstoneStoreB1F_ProfRowan:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfSet FLAG_TALKED_TO_VEILSTONE_STORE_B1F_PROF_ROWAN, VeilstoneStoreB1F_ProfRowanAfterSpokenTo
     SetFlag FLAG_TALKED_TO_VEILSTONE_STORE_B1F_PROF_ROWAN
@@ -78,7 +78,7 @@ VeilstoneStoreB1F_BerryVendor:
     End
 
 VeilstoneStoreB1F_LavaCookieVendor:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ShowMoney 20, 2
@@ -117,11 +117,11 @@ VeilstoneStoreB1F_LavaCookieVendorBuyTen:
 
 VeilstoneStoreB1F_LavaCookieVendorReceiveCookies:
     AddItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT
-    PlaySE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
     AddToGameRecord RECORD_MONEY_SPENT, VAR_0x8005
     RemoveMoney2 VAR_0x8005
     UpdateMoneyDisplay
-    WaitSE SEQ_SE_DP_REGI
+    WaitSE SEQ_SE_DP_REGI_sseq
     CallIfLt VAR_DEPARTMENT_STORE_REGULAR_COUNTER, 10000, VeilstoneStoreB1F_IncrementDepartmentStoreRegularCounter
     GoTo VeilstoneStoreB1F_LavaCookieVendorClose
     End
@@ -149,7 +149,7 @@ VeilstoneStoreB1F_LavaCookieVendorClose:
     End
 
 VeilstoneStoreB1F_PoffinVendor:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ShowMoney 20, 2
@@ -275,7 +275,7 @@ VeilstoneStoreB1F_PoffinVendorGivePoffin:
     End
 
 VeilstoneStoreB1F_PoffinVendorThankYou:
-    PlaySE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
     UpdateMoneyDisplay
     CallIfLt VAR_DEPARTMENT_STORE_REGULAR_COUNTER, 10000, VeilstoneStoreB1F_IncrementDepartmentStoreRegularCounter
     Message VeilstoneStoreB1F_Text_ThankYouVeryMuch

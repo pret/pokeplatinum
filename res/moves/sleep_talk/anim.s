@@ -6,7 +6,7 @@ L_0:
     SetExtraParams 0, 2, 1, 1, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 1, 1, 0, 0
-    PlayLoopedSoundEffectL SEQ_SE_DP_W173B, 8, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W173B_sseq, 8, 2
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

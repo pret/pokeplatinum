@@ -175,7 +175,7 @@ static BOOL PCHallOfFame_Close(PCHallOfFameApp *pcHallOfFameApp, int *state)
 {
     switch (*state) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF_sseq);
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_PC_HALL_OF_FAME);
         (*state)++;
         break;
@@ -241,7 +241,7 @@ static BOOL PCHallOfFame_DrawNewEntry(PCHallOfFameApp *pcHallOfFameApp, int *sta
 
 static BOOL PCHallOfFame_LoadCurrentTextState(PCHallOfFameApp *pcHallOfFameApp, int *state)
 {
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
     PCHallOfFame_PrintCurrentTextState(pcHallOfFameApp);
     return TRUE;
 }

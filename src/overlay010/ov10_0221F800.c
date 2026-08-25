@@ -750,9 +750,9 @@ static u8 ov10_02220014(UnkStruct_ov10_0221FB28 *param0)
 
     if (param0->unk_B76 == 0) {
         if (param0->trainerIntroData->mode == 1) {
-            Sound_PlayEffect(SEQ_SE_DP_VSDEMO01);
+            Sound_PlayEffect(SEQ_SE_DP_VSDEMO01_sseq);
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_GASHIN);
+            Sound_PlayEffect(SEQ_SE_DP_GASHIN_sseq);
         }
     }
 
@@ -819,7 +819,7 @@ static u8 ov10_02220228(UnkStruct_ov10_0221FB28 *param0)
     }
 
     if (param0->unk_B76 == 0) {
-        Sound_PlayEffect(SEQ_SE_DP_VSDEMO05);
+        Sound_PlayEffect(SEQ_SE_DP_VSDEMO05_sseq);
     }
 
     Bg_ScheduleScroll(param0->unk_0C, 3, 1, 16);
@@ -888,7 +888,7 @@ static u8 ov10_022203BC(UnkStruct_ov10_0221FB28 *param0)
     ov10_02221440(param0, 3, Unk_ov10_02222A7C[param0->unk_B76][1], 0);
 
     if (param0->unk_B76 == 0) {
-        Sound_PlayEffect(SEQ_SE_DP_DODON);
+        Sound_PlayEffect(SEQ_SE_DP_DODON_sseq);
     }
 
     if (param0->unk_B76 == 5) {
@@ -916,7 +916,7 @@ static u8 ov10_022204C0(UnkStruct_ov10_0221FB28 *param0)
     ov10_02221440(param0, 3, -Unk_ov10_02222A7C[param0->unk_B76][1], 0);
 
     if (param0->unk_B76 == 0) {
-        Sound_PlayEffect(SEQ_SE_DP_DODON);
+        Sound_PlayEffect(SEQ_SE_DP_DODON_sseq);
     }
 
     if (param0->unk_B76 == 5) {
@@ -960,7 +960,7 @@ static u8 ov10_02220604(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_02220698(UnkStruct_ov10_0221FB28 *param0)
 {
-    Sound_PlayEffect(SEQ_SE_DP_VSDEMO06);
+    Sound_PlayEffect(SEQ_SE_DP_VSDEMO06_sseq);
     ManagedSprite_SetDrawFlag(param0->unk_198[12], 1);
     ManagedSprite_SetDrawFlag(param0->unk_198[13], 1);
     ManagedSprite_SetAnim(param0->unk_198[12], 0);
@@ -970,7 +970,7 @@ static u8 ov10_02220698(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_022206D8(UnkStruct_ov10_0221FB28 *param0)
 {
-    Sound_PlayEffect(SEQ_SE_DP_VSDEMO06);
+    Sound_PlayEffect(SEQ_SE_DP_VSDEMO06_sseq);
     ManagedSprite_SetDrawFlag(param0->unk_198[12], 1);
     param0->unk_B75 = 64;
     return 1;
@@ -1011,7 +1011,7 @@ static u8 ov10_02220700(UnkStruct_ov10_0221FB28 *param0)
 
         if (v0 == 2) {
             MessageLoader_GetString(param0->unk_BA0, 6, param0->unk_BA8);
-            Sound_PlayEffect(SEQ_SE_DP_SAVE);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE_sseq);
         } else if (v0 == 3) {
             MessageLoader_GetString(param0->unk_BA0, 7, param0->unk_BA8);
         } else {
@@ -1094,7 +1094,7 @@ static u8 ov10_0222094C(UnkStruct_ov10_0221FB28 *param0)
     }
 
     PaletteData_SelectAll(param0->unk_08, 1);
-    Sound_PlayEffect(SEQ_SE_DP_VSDEMO07);
+    Sound_PlayEffect(SEQ_SE_DP_VSDEMO07_sseq);
     param0->unk_B75 = 64;
     return 1;
 }
@@ -1102,7 +1102,7 @@ static u8 ov10_0222094C(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_022209E0(UnkStruct_ov10_0221FB28 *param0)
 {
     if (param0->unk_B76 == 0) {
-        Sound_PlayEffect(SEQ_SE_DP_VSDEMO05);
+        Sound_PlayEffect(SEQ_SE_DP_VSDEMO05_sseq);
     }
 
     if (param0->unk_B76 == 16) {

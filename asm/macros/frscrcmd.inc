@@ -1,7 +1,7 @@
 #include "generated/battle_tower_modes.h"
 #include "generated/fade_types.h"
 #include "generated/game_records.h"
-#include "generated/sdat.h"
+#include "res/sound/pl_sound_data.naix"
 #include "generated/trainer_score_events.h"
 #include "generated/vars_flags.h"
 #include "constants/battle_frontier_movements.h"
@@ -922,74 +922,74 @@
     .byte \index
     .endm
 
-    .macro FrontierScrCmd_AA
-    .short FRSCRCMD_AA
+    .macro InitWFCFacilitySelector
+    .short FRSCRCMD_INITWFCFACILITYSELECTOR
     .endm
 
-    .macro FrontierScrCmd_AB
-    .short FRSCRCMD_AB
+    .macro FreeWFCFacilitySelector
+    .short FRSCRCMD_FREEWFCFACILITYSELECTOR
     .endm
 
-    .macro FrontierScrCmd_AC arg0, arg1, arg2, arg3
-    .short FRSCRCMD_AC
-    .short \arg0
+    .macro WFCFacilitySelector_SendCommMessage command, arg1, arg2, success
+    .short FRSCRCMD_WFCFACILITYSELECTOR_SENDCOMMMESSAGE
+    .short \command
     .short \arg1
     .short \arg2
-    .short \arg3
+    .short \success
     .endm
 
-    .macro FrontierScrCmd_AD arg0
-    .short FRSCRCMD_AD
-    .short \arg0
+    .macro WFCFacilitySelector_WaitForCommResponses unused
+    .short FRSCRCMD_WFCFACILITYSELECTOR_WAITFORCOMMRESPONSES
+    .short \unused
     .endm
 
-    .macro FrontierScrCmd_AE arg0, arg1
-    .short FRSCRCMD_AE
-    .short \arg0
-    .short \arg1
+    .macro CheckIfSameFacilityChosen facility, result
+    .short FRSCRCMD_CHECKIFSAMEFACILITYCHOSEN
+    .short \facility
+    .short \result
     .endm
 
-    .macro FrontierScrCmd_AF arg0, arg1, arg2
-    .short FRSCRCMD_AF
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro ManageFacilitySelectorSubApp unused, action, result
+    .short FRSCRCMD_MANAGEFACILITYSELECTORSUBAPP
+    .short \unused
+    .short \action
+    .short \result
     .endm
 
-    .macro FrontierScrCmd_B0 arg0, arg1
-    .short FRSCRCMD_B0
-    .short \arg0
-    .short \arg1
+    .macro GetSelectedPartyMenuSlots selectedSlot1, selectedSlot2
+    .short FRSCRCMD_GETSELECTEDPARTYMENUSLOTS
+    .short \selectedSlot1
+    .short \selectedSlot2
     .endm
 
-    .macro FrontierScrCmd_B1 arg0
-    .short FRSCRCMD_B1
-    .short \arg0
+    .macro CheckIfPartnerDroppedOut didDropOut
+    .short FRSCRCMD_CHECKIFPARTNERDROPPEDOUT
+    .short \didDropOut
     .endm
 
-    .macro FrontierScrCmd_B2 arg0, arg1, arg2, arg3
-    .short FRSCRCMD_B2
-    .byte \arg0
+    .macro CallWFCFacilitySelectorFunction command, arg1, arg2, returnVar
+    .short FRSCRCMD_CALLWFCFACILITYSELECTORFUNCTION
+    .byte \command
     .byte \arg1
     .byte \arg2
-    .short \arg3
+    .short \returnVar
     .endm
 
-    .macro FrontierScrCmd_B3
-    .short FRSCRCMD_B3
+    .macro InitBattleTower
+    .short FRSCRCMD_INITBATTLETOWER
     .endm
 
-    .macro FrontierScrCmd_B4 arg0
-    .short FRSCRCMD_B4
-    .short \arg0
+    .macro SendTowerTrainerIDList success
+    .short FRSCRCMD_SENDTOWERTRAINERIDLIST
+    .short \success
     .endm
 
-    .macro FrontierScrCmd_B5
-    .short FRSCRCMD_B5
+    .macro WaitForTowerTrainerIDListResponses
+    .short FRSCRCMD_WAITFORTOWERTRAINERIDLISTRESPONSES
     .endm
 
-    .macro ClearTowerStruct
-    .short FRSCRCMD_CLEARTOWERSTRUCT
+    .macro FreeBattleTower
+    .short FRSCRCMD_FREEBATTLETOWER
     .endm
 
     .macro SetWiFiListHostFriendCurrentDate

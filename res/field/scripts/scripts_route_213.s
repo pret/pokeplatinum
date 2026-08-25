@@ -38,7 +38,7 @@ Route213_SetGruntMPositionNearPastoria:
     Return
 
 Route213_GruntM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfSet FLAG_TALKED_TO_ROUTE_213_GRUNT_M, Route213_GruntMEast
     Message Route213_Text_WeNeededEnergy
@@ -145,7 +145,7 @@ Route213_Looker:
     End
 
 _0261:
-    PlaySE SEQ_SE_DP_T_AME
+    PlaySE SEQ_SE_DP_T_AME_sseq
     Return
 
 Route213_LookerEnterWest:

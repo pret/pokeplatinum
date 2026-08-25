@@ -6,7 +6,7 @@ L_0:
     End
 
 L_1:
-    PlaySoundEffectL SEQ_SE_DP_W467
+    PlaySoundEffectL SEQ_SE_DP_W467_sseq
     Func_BlinkAttacker 5, 0
     Delay 2
     Func_SetBgGrayscale TRUE
@@ -21,17 +21,17 @@ L_1:
 
 L_2:
     Func_SetBgGrayscale TRUE
-    PlaySoundEffectR SEQ_SE_DP_186
+    PlaySoundEffectR SEQ_SE_DP_186_sseq
     WaitForAnimTasks
     Delay 20
-    PlaySoundEffectR SEQ_SE_DP_W007
+    PlaySoundEffectR SEQ_SE_DP_W007_sseq
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 5
-    PlayDelayedSoundEffectR SEQ_SE_DP_W109, 8
-    PlayDelayedSoundEffectR SEQ_SE_DP_W109, 13
+    PlayDelayedSoundEffectR SEQ_SE_DP_W109_sseq, 8
+    PlayDelayedSoundEffectR SEQ_SE_DP_W109_sseq, 13
     Func_BlinkAttacker 5, 0
     WaitForAnimTasks
     Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE

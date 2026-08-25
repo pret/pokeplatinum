@@ -6,7 +6,7 @@ L_0:
     CreateEmitterEx 1, 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BParabolic 0, 0, -2, 0, 13, 64
     Delay 2
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_001, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_001_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 1, 1, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BParabolic 1, -20, -2, 0, 13, 64
     Delay 2
@@ -42,7 +42,7 @@ L_0:
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 5, 0, 0, 0
     SetExtraParams 1, 3440, -344, 0
-    PlaySoundEffectR SEQ_SE_DP_080
+    PlaySoundEffectR SEQ_SE_DP_080_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

@@ -50,7 +50,7 @@ Unused397_Dummy6:
     End
 
 Unused397_Dummy7:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_0x8005, 0
@@ -58,7 +58,7 @@ Unused397_Dummy7:
     End
 
 Unused397_Dummy8:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_0x8005, 1

@@ -57,7 +57,7 @@ enum HeapID {
     HEAP_ID_52,
     HEAP_ID_53,
     HEAP_ID_54,
-    HEAP_ID_55,
+    HEAP_ID_POFFIN_BERRY_SELECTION,
     HEAP_ID_56,
     HEAP_ID_57,
     HEAP_ID_58,

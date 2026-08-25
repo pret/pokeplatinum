@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, fire_spin_spa
-    PlaySoundEffectR SEQ_SE_DP_W221B
+    PlaySoundEffectR SEQ_SE_DP_W221B_sseq
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_RED, 10, 10

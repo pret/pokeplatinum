@@ -322,7 +322,7 @@ static void VBlankCallback(void *data)
 static BOOL CheckIfAOrBPressed(BattleTowerRecordsApp *app)
 {
     if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return TRUE;
     }
 
@@ -368,12 +368,12 @@ static BOOL ProcessRankScreenInput(BattleTowerRecordsApp *app)
     BOOL updateScreen = FALSE;
 
     if (JOY_NEW(PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return TRUE;
     }
 
     if (JOY_NEW(PAD_BUTTON_A)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (app->selectedRow >= RANKING_SCREEN_ROWS) {
             return TRUE;
@@ -386,27 +386,27 @@ static BOOL ProcessRankScreenInput(BattleTowerRecordsApp *app)
             updateScreen = ProcessUpButton(app);
 
             if (updateScreen) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         } else if (JOY_REPEAT(PAD_KEY_DOWN)) {
             updateScreen = ProcessDownButton(app);
 
             if (updateScreen) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         } else if (JOY_REPEAT(PAD_KEY_LEFT)) {
             app->selectedCol = (app->selectedCol + TRAINERS_PER_ROW - 1) % TRAINERS_PER_ROW;
             updateScreen = TRUE;
 
             if (app->selectedRow != RANKING_SCREEN_ROWS) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         } else if (JOY_REPEAT(PAD_KEY_RIGHT)) {
             app->selectedCol = (app->selectedCol + 1) % TRAINERS_PER_ROW;
             updateScreen = TRUE;
 
             if (app->selectedRow != RANKING_SCREEN_ROWS) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         }
 

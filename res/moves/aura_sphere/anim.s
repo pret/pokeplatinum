@@ -11,7 +11,7 @@ L_0:
     WaitForBgSwitch
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlaySoundEffectL SEQ_SE_DP_131
+    PlaySoundEffectL SEQ_SE_DP_131_sseq
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 1, 0, 0, 0
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
@@ -22,7 +22,7 @@ L_0:
     SetExtraParams 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 80
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_140, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_140_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

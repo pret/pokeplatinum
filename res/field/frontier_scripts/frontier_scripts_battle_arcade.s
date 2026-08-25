@@ -916,8 +916,8 @@ _06DC:
     ApplyMovement 20, _0274
     ApplyMovement 4, _0238
     WaitMovement
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     FrontierScrCmd_25 0
     FrontierScrCmd_25 20
@@ -931,8 +931,8 @@ _0742:
     ApplyMovement 1, _0238
     ApplyMovement 2, _0254
     WaitMovement
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
@@ -1114,7 +1114,7 @@ _0A8F:
     ApplyMovement 3, _05E8
     WaitMovement
     Message BattleArcadeScene_Text_Welcome
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     CallBattleArcadeFunction BA_FUNC_GET_CURRENT_BATTLE, 0, 0, VAR_0x8008
     CallIfEq VAR_0x8008, 0, _0B1A
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
@@ -1247,7 +1247,7 @@ _0CD0:
 _0CD6:
     InitParticleSystem 0, battle_arcade_1_spa
     CallBattleArcadeFunction BA_FUNC_GET_ACTIVE_EFFECT, 0, 0, VAR_0x8008
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     SetVar FR_VAR_0x8010, VAR_0x8008
     GoToIfEq FR_VAR_0x8010, 0, _0E93
     GoToIfEq FR_VAR_0x8010, 1, _0F5F
@@ -1302,7 +1302,7 @@ _0EC8:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _0F53
     CallIfEq VAR_0x8006, 1, _0F59
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1341,7 +1341,7 @@ _0F5F:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _0FC8
     CallIfEq VAR_0x8006, 1, _0FE4
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1380,7 +1380,7 @@ _100C:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _107F
     CallIfEq VAR_0x8006, 1, _109B
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1417,7 +1417,7 @@ _10C3:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _112C
     CallIfEq VAR_0x8006, 1, _1148
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1456,7 +1456,7 @@ _1170:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _11E3
     CallIfEq VAR_0x8006, 1, _11FF
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1493,7 +1493,7 @@ _1227:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1290
     CallIfEq VAR_0x8006, 1, _12AC
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1535,7 +1535,7 @@ _12D4:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1358
     CallIfEq VAR_0x8006, 1, _135E
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1566,7 +1566,7 @@ _136D:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _13F1
     CallIfEq VAR_0x8006, 1, _13F7
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1596,7 +1596,7 @@ _143B:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _14BC
     CallIfEq VAR_0x8006, 1, _14C2
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1639,7 +1639,7 @@ _14FD:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _157E
     CallIfEq VAR_0x8006, 1, _1584
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1680,7 +1680,7 @@ _158A:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _15FD
     CallIfEq VAR_0x8006, 1, _1619
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1717,7 +1717,7 @@ _1641:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _16AA
     CallIfEq VAR_0x8006, 1, _16C6
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1756,7 +1756,7 @@ _16EE:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1761
     CallIfEq VAR_0x8006, 1, _177D
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1793,7 +1793,7 @@ _17A5:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _180E
     CallIfEq VAR_0x8006, 1, _182A
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1832,7 +1832,7 @@ _1852:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _18C5
     CallIfEq VAR_0x8006, 1, _18E1
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1874,7 +1874,7 @@ _1909:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _198D
     CallIfEq VAR_0x8006, 1, _1993
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1905,7 +1905,7 @@ _19A2:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1A26
     CallIfEq VAR_0x8006, 1, _1A2C
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1937,7 +1937,7 @@ _1A70:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1AFB
     CallIfEq VAR_0x8006, 1, _1B01
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1971,7 +1971,7 @@ _1B07:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_SunnyCondition
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1983,7 +1983,7 @@ _1B37:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_RainCondition
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -1994,7 +1994,7 @@ _1B67:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_SandyCondition
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -2006,7 +2006,7 @@ _1B91:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_HailCondition
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -2017,7 +2017,7 @@ _1BC1:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_FoggyCondition
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -2028,7 +2028,7 @@ _1BEB:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_TrickRoomCondition
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -2042,7 +2042,7 @@ _1C15:
     FrontierScrCmd_31 5, 6
     FrontierScrCmd_31 6, 3
     FrontierScrCmd_31 7, 7
-    PlaySoundEffect SEQ_SE_DP_Z_SEARCH
+    PlaySoundEffect SEQ_SE_DP_Z_SEARCH_sseq
     CallBattleArcadeFunction BA_FUNC_SET_DRAW_FLAG_PLAYER_MON, 0, 3, VAR_0x8008
     CallBattleArcadeFunction BA_FUNC_SET_DRAW_FLAG_OPPONENT_MON, 0, 3, VAR_0x8008
     SetItemDrawFlag 0, 3, 0
@@ -2064,7 +2064,7 @@ _1C15:
     SetItemDrawFlag 1, 0, 0
     WaitTime 14, VAR_0x8008
     CallBattleArcadeFunction BA_FUNC_SWAP_MON_SPRITES, 0, 0, VAR_0x8008
-    PlaySoundEffect SEQ_SE_DP_Z_SEARCH
+    PlaySoundEffect SEQ_SE_DP_Z_SEARCH_sseq
     CallBattleArcadeFunction BA_FUNC_SET_DRAW_FLAG_PLAYER_MON, 1, 0, VAR_0x8008
     CallBattleArcadeFunction BA_FUNC_SET_DRAW_FLAG_OPPONENT_MON, 1, 0, VAR_0x8008
     SetItemDrawFlag 0, 0, 1
@@ -2088,11 +2088,11 @@ _1C15:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_PokemonSwap
-    StopSoundEffect SEQ_SE_DP_Z_SEARCH
+    StopSoundEffect SEQ_SE_DP_Z_SEARCH_sseq
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1E24
     CallIfEq VAR_0x8006, 1, _1E38
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -2131,7 +2131,7 @@ _1E5C:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_SpeedUpBoard
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -2142,7 +2142,7 @@ _1E86:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_SlowDownBoard
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -2153,7 +2153,7 @@ _1EB0:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_RandomizeBoard
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -2168,8 +2168,8 @@ _1EDA:
     AddToRecordValue RECORD_UNK_067, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     BufferNumber 2, VAR_0x8008
-    StopSoundEffect SEQ_SE_DP_DENDOU
-    PlayFanfare SEQ_PL_DON2
+    StopSoundEffect SEQ_SE_DP_DENDOU_sseq
+    PlayFanfare SEQ_PL_DON2_sseq
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1F65
     CallIfEq VAR_0x8006, 1, _1F6B
@@ -2179,7 +2179,7 @@ _1EDA:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_AreYouReady2
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -2202,8 +2202,8 @@ _1F71:
     AddToRecordValue RECORD_UNK_067, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     BufferNumber 2, VAR_0x8008
-    StopSoundEffect SEQ_SE_DP_DENDOU
-    PlayFanfare SEQ_PL_DON2
+    StopSoundEffect SEQ_SE_DP_DENDOU_sseq
+    PlayFanfare SEQ_PL_DON2_sseq
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8006
     CallIfEq VAR_0x8006, 0, _1F65
     CallIfEq VAR_0x8006, 1, _1F6B
@@ -2213,7 +2213,7 @@ _1F71:
     ApplyMovement 3, _05E0
     WaitMovement
     Message BattleArcadeScene_Text_AreYouReady2
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     GoTo _2357
     End
 
@@ -2259,7 +2259,7 @@ _2086:
 
 _2092:
     Call _0CAE
-    PlaySoundEffect SEQ_SE_PL_FR05
+    PlaySoundEffect SEQ_SE_PL_FR05_sseq
     WaitTime 45, VAR_0x8008
     Call _0CCA
     Return
@@ -2267,7 +2267,7 @@ _2092:
 _20AA:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8005
     Call _0CBC
-    PlaySoundEffect SEQ_SE_PL_FR05
+    PlaySoundEffect SEQ_SE_PL_FR05_sseq
     WaitTime 45, VAR_0x8008
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8005
     Call _0CD0
@@ -2277,79 +2277,79 @@ _20D4:
     CallBattleArcadeFunction BA_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8005
     Call _0CAE
     Call _0CBC
-    PlaySoundEffect SEQ_SE_PL_FR05
+    PlaySoundEffect SEQ_SE_PL_FR05_sseq
     WaitTime 45, VAR_0x8008
     Call _0CCA
     Call _0CD0
     Return
 
 _2101:
-    PlaySoundEffect SEQ_SE_PL_FR04
+    PlaySoundEffect SEQ_SE_PL_FR04_sseq
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_6
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_7
     WaitTime 60, VAR_0x8008
-    WaitSoundEffect SEQ_SE_PL_FR04
+    WaitSoundEffect SEQ_SE_PL_FR04_sseq
     Return
 
 _211D:
-    PlaySoundEffect SEQ_SE_PL_FR04
+    PlaySoundEffect SEQ_SE_PL_FR04_sseq
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_8
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_9
     WaitTime 60, VAR_0x8008
-    WaitSoundEffect SEQ_SE_PL_FR04
+    WaitSoundEffect SEQ_SE_PL_FR04_sseq
     Return
 
 _2139:
-    PlaySoundEffect SEQ_SE_PL_FR04
+    PlaySoundEffect SEQ_SE_PL_FR04_sseq
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_10
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_11
     WaitTime 60, VAR_0x8008
-    WaitSoundEffect SEQ_SE_PL_FR04
+    WaitSoundEffect SEQ_SE_PL_FR04_sseq
     Return
 
 _2155:
-    PlaySoundEffect SEQ_SE_PL_FR03
+    PlaySoundEffect SEQ_SE_PL_FR03_sseq
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_0
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_1
     WaitTime 60, VAR_0x8008
-    WaitSoundEffect SEQ_SE_PL_FR03
+    WaitSoundEffect SEQ_SE_PL_FR03_sseq
     Return
 
 _2171:
-    PlaySoundEffect SEQ_SE_PL_FR03
+    PlaySoundEffect SEQ_SE_PL_FR03_sseq
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_2
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_3
     WaitTime 60, VAR_0x8008
-    WaitSoundEffect SEQ_SE_PL_FR03
+    WaitSoundEffect SEQ_SE_PL_FR03_sseq
     Return
 
 _218D:
-    PlaySoundEffect SEQ_SE_PL_FR03
+    PlaySoundEffect SEQ_SE_PL_FR03_sseq
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_4
     CreateParticleSystemEmitter 0, ARCADE_EMITTERS_UNK_5
     WaitTime 60, VAR_0x8008
-    WaitSoundEffect SEQ_SE_PL_FR03
+    WaitSoundEffect SEQ_SE_PL_FR03_sseq
     Return
 
 _21A9:
-    PlaySoundEffect SEQ_SE_PL_FR04
+    PlaySoundEffect SEQ_SE_PL_FR04_sseq
     CreateParticleSystemEmitter 0, VAR_0x8005
     CreateParticleSystemEmitter 0, VAR_0x8006
     WaitTime 60, VAR_0x8008
-    WaitSoundEffect SEQ_SE_PL_FR04
+    WaitSoundEffect SEQ_SE_PL_FR04_sseq
     Return
 
 _21C5:
-    PlaySoundEffect SEQ_SE_PL_FR04
+    PlaySoundEffect SEQ_SE_PL_FR04_sseq
     CreateParticleSystemEmitter 0, VAR_0x8005
     CreateParticleSystemEmitter 0, VAR_0x8006
     CreateParticleSystemEmitter 0, FR_VAR_0x800E
     WaitTime 60, VAR_0x8008
-    WaitSoundEffect SEQ_SE_PL_FR04
+    WaitSoundEffect SEQ_SE_PL_FR04_sseq
     Return
 
 _21E7:
-    PlaySoundEffect SEQ_SE_PL_FR05
+    PlaySoundEffect SEQ_SE_PL_FR05_sseq
     Return
 
 _21ED:
@@ -2702,7 +2702,7 @@ _279A:
     BufferNumber 1, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     Message BattleArcadeScene_Text_ReceiveBP
-    PlayFanfare SEQ_PL_POINTGET3
+    PlayFanfare SEQ_PL_POINTGET3_sseq
     WaitFanfare
     GoTo _27D4
     End
@@ -2732,7 +2732,7 @@ _2821:
 
 _283B:
     Message BattleArcadeScene_Text_HealingMons
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     CloseMessage
     HealParty
@@ -2966,7 +2966,7 @@ _2C0D:
     Return
 
 _2C41:
-    PlaySoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
     BufferPlayerName 0
     Message BattleArcadeScene_Text_BattleSaved
     Return
@@ -3125,7 +3125,7 @@ _2E86:
 _2E90:
     FreeBattleRecording
     FreeBattleArcade
-    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
+    FrontierScrCmd_04 FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
     End
 
 _2E9C:
@@ -3133,8 +3133,8 @@ _2E9C:
     ShowSavingIcon
     FrontierScrCmd_73 VAR_0x8008
     HideSavingIcon
-    PlaySoundEffect SEQ_SE_DP_SAVE
-    WaitSoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
+    WaitSoundEffect SEQ_SE_DP_SAVE_sseq
     Return
 
 _2EB2:
@@ -3225,7 +3225,7 @@ _2FF2:
     Call _249F
     ApplyMovement 98, _0320
     WaitMovement
-    PlaySoundEffect SEQ_SE_PL_FR04
+    PlaySoundEffect SEQ_SE_PL_FR04_sseq
     InitParticleSystem 3, battle_arcade_2_spa
     CreateParticleSystemEmitter 3, ARCADE_2_EMITTER_UNK_0
     CreateParticleSystemEmitter 3, ARCADE_2_EMITTER_UNK_1
@@ -3245,10 +3245,10 @@ _2FF2:
     ApplyMovement 17, _04DC
     ApplyMovement 18, _04E8
     WaitMovement
-    PlaySoundEffect SEQ_SE_DP_DENDOU
+    PlaySoundEffect SEQ_SE_DP_DENDOU_sseq
     ApplyMovement 98, _0330
     WaitMovement
-    WaitSoundEffect SEQ_SE_DP_DENDOU
+    WaitSoundEffect SEQ_SE_DP_DENDOU_sseq
     ApplyMovement 98, _0344
     ApplyMovement 4, _03D8
     ApplyMovement 0, _03BC

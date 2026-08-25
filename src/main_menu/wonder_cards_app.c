@@ -1126,7 +1126,7 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Won
     case MENU_NOTHING_CHOSEN:
         break;
     case MENU_CANCEL:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (onCancelStateTransition) {
             nextState = onCancelStateTransition(appMan);
@@ -1137,7 +1137,7 @@ static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum Won
         }
         break;
     default:
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         if (input) {
             if (input < NUM_WC_APP_STATES) {
@@ -1326,7 +1326,7 @@ static void WonderCardsAppCallbackSaveGame(WonderCardsAppData *appData)
     int saveStatus = MainMenuUtil_SaveState();
 
     if (saveStatus == SAVE_RESULT_OK || saveStatus == SAVE_RESULT_CORRUPT) {
-        Sound_PlayEffect(SEQ_SE_DP_SAVE);
+        Sound_PlayEffect(SEQ_SE_DP_SAVE_sseq);
         appData->mainCallback = NULL;
     }
 }
@@ -1380,7 +1380,7 @@ static void HandleWCShareScreenInput(WonderCardsAppData *appData, int playerCoun
     }
 
     if (nextAction == WC_SHARE_ACTION_SEND) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         CommTiming_StartSync(0xAB);
 
         appData->shouldSendWc = TRUE;
@@ -1390,12 +1390,12 @@ static void HandleWCShareScreenInput(WonderCardsAppData *appData, int playerCoun
     }
 
     if (nextAction == WC_SHARE_ACTION_EXIT) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         StopWirelessCommunication(appData, state, WC_APP_STATE_RETURN_AFTER_COMM_MAN_EXIT);
     }
 
     if (nextAction == WC_SHARE_ACTION_PLAY_SOUND) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 
@@ -1441,15 +1441,15 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         } else if (JOY_NEW(PAD_KEY_DOWN)) {
             selectedWcSlot = GetNextOccupiedWcSlot(appData, appData->selectedWondercardSlot, DIRECTION_NEXT);
         } else if (JOY_NEW(PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_OUT, WC_APP_STATE_EXIT, state);
         } else if (JOY_NEW(PAD_BUTTON_A)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             *state = WC_APP_STATE_SHOW_WONDERCARD_ACTIONS;
         }
 
         if (appData->selectedWondercardSlot != selectedWcSlot) {
-            Sound_PlayEffect(SEQ_SE_DP_CARD2);
+            Sound_PlayEffect(SEQ_SE_DP_CARD2_sseq);
             appData->selectedWondercardSlot = selectedWcSlot;
             ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
         }
@@ -1464,12 +1464,12 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         ProcessStateTransitionMenuInput(appMan, state, NULL);
 
         if (JOY_NEW(PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             *state = WC_APP_STATE_CLOSE_WINDOWS;
         }
         break;
     case WC_APP_STATE_START_FLIP_WC_TO_BACK:
-        Sound_PlayEffect(SEQ_SE_DP_CARD2);
+        Sound_PlayEffect(SEQ_SE_DP_CARD2_sseq);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, FALSE);
         EraseMessageBoxIfInUse(&appData->messageBox, FALSE);
         EraseStandardWindowIfInUse(&appData->standardWindow, FALSE);
@@ -1487,7 +1487,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         RunFlipAnimFrame(appData);
 
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_DP_CARD2);
+            Sound_PlayEffect(SEQ_SE_DP_CARD2_sseq);
             StartFlipAnim(appData, WC_FLIP_STAGE_SHRINKING, 1 * FX32_ONE, 0.025 * FX32_ONE);
             *state = WC_APP_STATE_START_FLIP_WC_TO_FRONT;
         }

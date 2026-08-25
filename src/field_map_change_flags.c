@@ -63,7 +63,7 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     }
 
     SystemFlag_HandleForceBikingInGate(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
-    SystemFlag_CheckOnCyclingRoad(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemFlag_ClearOnCyclingRoad(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 

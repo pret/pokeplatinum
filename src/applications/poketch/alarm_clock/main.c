@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <nitro/sinit.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/alarm_clock/graphics.h"
 #include "applications/poketch/poketch_button.h"
 #include "applications/poketch/poketch_system.h"
@@ -14,6 +12,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
+
+#include "res/sound/pl_sound_data.naix"
 
 #define BUTTON_SET_ALARM   0
 #define BUTTON_EDIT_ALARM  1
@@ -254,7 +254,7 @@ static BOOL State_EditingAlarm(PoketchAlarmClock *appData)
 
         if (appData->buttonState == BUTTON_MANAGER_STATE_TOUCH && appData->pressedButton == BUTTON_EDIT_ALARM) {
             appData->buttonState = BUTTON_MANAGER_STATE_NULL;
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
             break;
         }
 
@@ -320,7 +320,7 @@ static BOOL State_AlarmSet(PoketchAlarmClock *appData)
         }
 
         if (appData->buttonState == BUTTON_MANAGER_STATE_TOUCH && appData->pressedButton == BUTTON_SET_ALARM) {
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
             break;
         }
 

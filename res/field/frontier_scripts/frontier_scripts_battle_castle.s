@@ -1008,8 +1008,8 @@ _0B0C:
     End
 
 _0B36:
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0BBA
@@ -1024,8 +1024,8 @@ _0B36:
     FadeScreenIn
     ApplyMovement 4, _02D8
     WaitMovement
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     Call _19E8
     GoTo _0C1E
@@ -1044,8 +1044,8 @@ _0BBA:
     ApplyMovement 1, _02D8
     ApplyMovement 2, _02EC
     WaitMovement
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     Call _19E8
     GoTo _0C1E
@@ -1084,8 +1084,8 @@ _0C7F:
     End
 
 _0CAD:
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     CallIfEq FR_VAR_0x800E, 0, _0E64
     CallBattleCastleFunction BC_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
@@ -1298,8 +1298,8 @@ _1084:
     End
 
 _1098:
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     FrontierScrCmd_25 5
     FrontierScrCmd_23 219
@@ -1372,7 +1372,7 @@ _11D0:
     End
 
 _11EC:
-    PlayFanfare SEQ_PL_FRO
+    PlayFanfare SEQ_PL_FRO_sseq
     WaitFanfare
     CloseMessage
     ApplyMovement 6, _03B0
@@ -1433,7 +1433,7 @@ _12D3:
     BufferNumber 1, VAR_0x8008
     GiveBattlePoints VAR_0x8008
     Message BattleCastleScene_Text_ReceiveBP
-    PlayFanfare SEQ_PL_POINTGET3
+    PlayFanfare SEQ_PL_POINTGET3_sseq
     WaitFanfare
     GoTo _130C
     End
@@ -1447,8 +1447,8 @@ _1314:
     CallBattleCastleFunction BC_FUNC_CHECK_IF_MON_FAINTED, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 0, _1349
     Message BattleCastleScene_Text_RevivePokemon
-    PlaySoundEffect SEQ_SE_DP_UG_020
-    WaitSoundEffect SEQ_SE_DP_UG_020
+    PlaySoundEffect SEQ_SE_DP_UG_020_sseq
+    WaitSoundEffect SEQ_SE_DP_UG_020_sseq
     GoTo _1349
     End
 
@@ -1670,7 +1670,7 @@ _16C7:
     Return
 
 _1707:
-    PlaySoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
     BufferPlayerName 0
     Message BattleCastleScene_Text_BattleSaved
     Return
@@ -1747,8 +1747,8 @@ _1806:
     End
 
 _180E:
-    PlaySoundEffect SEQ_SE_DP_KAIDAN2
-    WaitSoundEffect SEQ_SE_DP_KAIDAN2
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2_sseq
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     FrontierScrCmd_25 5
     FrontierScrCmd_23 219
@@ -1829,7 +1829,7 @@ _1948:
 _1952:
     FreeBattleRecording
     FreeBattleCastle
-    FrontierScrCmd_04 FRONTIER_SCENE_14, 1
+    FrontierScrCmd_04 FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
     End
 
 _195E:
@@ -1837,8 +1837,8 @@ _195E:
     ShowSavingIcon
     FrontierScrCmd_73 VAR_0x8008
     HideSavingIcon
-    PlaySoundEffect SEQ_SE_DP_SAVE
-    WaitSoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
+    WaitSoundEffect SEQ_SE_DP_SAVE_sseq
     Return
 
 _1974:

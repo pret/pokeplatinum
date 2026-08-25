@@ -10,7 +10,7 @@
     ScriptEntry HearthomeCityDPGymLeaderRoom_BlackOut
 
 HearthomeCityDPGymLeaderRoom_Fantina:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerDir VAR_RESULT
@@ -51,7 +51,7 @@ HearthomeCityDPGymLeaderRoom_FantinaBattle:
     Message HearthomeCityDPGymLeaderRoom_Text_Dummy1
     BufferPlayerName 0
     Message HearthomeCityDPGymLeaderRoom_Text_Dummy2
-    PlayFanfare SEQ_BADGE
+    PlayFanfare SEQ_BADGE_sseq
     WaitFanfare
     GiveBadge BADGE_ID_RELIC
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED

@@ -9,7 +9,7 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 2, 0, 4
     WaitForAnimTasks
-    PlaySoundEffectL SEQ_SE_DP_W100
+    PlaySoundEffectL SEQ_SE_PL_W100_sseq_1
     Func_PixelatePokemonSprite BATTLE_ANIM_MON_SPRITE_0, 1, 0, 0
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0

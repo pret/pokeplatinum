@@ -17,7 +17,7 @@ OreburghCityNorthwestHouse2F_SchoolKidF:
     End
 
 OreburghCityNorthwestHouse2F_Lass:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_NORTHWEST_HOUSE_2F_DUSK_BALL, OreburghCityNorthwestHouse2F_DuskBallIsDesignedForDarkness

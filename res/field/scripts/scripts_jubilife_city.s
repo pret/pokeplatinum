@@ -439,7 +439,7 @@ JubilifeCity_Movement_LookerLeaveFistArrival:
     EndMovement
 
 JubilifeCity_ExpertM2:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_COAL, JubilifeCity_HaveYouVisitedTVStation
@@ -749,7 +749,7 @@ JubilifeCity_Movement_LookerWalkBackZ760:
     EndMovement
 
 JubilifeCity_Looker:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_POKETCH, JubilifeCity_HaveYouNotObtainedAGymBadge
@@ -1214,7 +1214,7 @@ JubilifeCity_Movement_PlayerWalkToGrunt:
     EndMovement
 
 JubilifeCity_SchoolKidM1:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message JubilifeCity_Text_CanYouTellTypePreference
@@ -1260,7 +1260,7 @@ JubilifeCity_AceTrainerF:
     End
 
 JubilifeCity_ExpertM1:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message JubilifeCity_Text_DoYouKnowMuchAboutPokemon
@@ -1400,7 +1400,7 @@ JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX176:
     EndMovement
 
 JubilifeCity_PoketchCoPresident:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_0x8004, 0
@@ -1427,7 +1427,7 @@ JubilifeCity_GivePoketch:
     RemoveItem ITEM_COUPON_1, 1, VAR_RESULT
     RemoveItem ITEM_COUPON_2, 1, VAR_RESULT
     RemoveItem ITEM_COUPON_3, 1, VAR_RESULT
-    ScrCmd_131
+    EnablePoketch
     SetVar VAR_JUBILIFE_CITY_STATE, 2
     RegisterPoketchApp POKETCH_APPID_DIGITALWATCH
     RegisterPoketchApp POKETCH_APPID_CALCULATOR
@@ -1435,7 +1435,7 @@ JubilifeCity_GivePoketch:
     RegisterPoketchApp POKETCH_APPID_PARTYSTATUS
     BufferPlayerName 0
     Message JubilifeCity_Text_PlayerReceivedAPoketch
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     Message JubilifeCity_Text_AddAppsToPoketch
     CloseMessage
@@ -1494,7 +1494,7 @@ JubilifeCity_Movement_PlayerWatchPoketchCoPresidentLeaveNorthWestEast:
     EndMovement
 
 JubilifeCity_Clown1:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_COUPON_1, JubilifeCity_Clown1ObtainedCoupon
@@ -1505,7 +1505,7 @@ JubilifeCity_Clown1:
     End
 
 JubilifeCity_Clown1CorrectAnswer:
-    PlaySE SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON_sseq
     Message JubilifeCity_Text_AbsolutelyCorrect1
     Message JubilifeCity_Text_GrowStrongerByDefeatingOthers
     Message JubilifeCity_Text_HeresPoketchCoupon1
@@ -1518,7 +1518,7 @@ JubilifeCity_Clown1CorrectAnswer:
     End
 
 JubilifeCity_Clown1WrongAnswer:
-    PlaySE SEQ_SE_DP_BOX03
+    PlaySE SEQ_SE_DP_BOX03_sseq
     Message JubilifeCity_Text_WrongAnswer1
     WaitButton
     CloseMessage
@@ -1533,7 +1533,7 @@ JubilifeCity_Clown1ObtainedCoupon:
     End
 
 JubilifeCity_Clown2:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_COUPON_2, JubilifeCity_Clown2ObtainedCoupon
@@ -1544,7 +1544,7 @@ JubilifeCity_Clown2:
     End
 
 JubilifeCity_Clown2CorrectAnswer:
-    PlaySE SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON_sseq
     Message JubilifeCity_Text_AbsolutelyCorrect2
     Message JubilifeCity_Text_IfPokemonMatchTypeMoveMorePowerful
     Message JubilifeCity_Text_HeresPoketchCoupon2
@@ -1557,7 +1557,7 @@ JubilifeCity_Clown2CorrectAnswer:
     End
 
 JubilifeCity_Clown2WrongAnswer:
-    PlaySE SEQ_SE_DP_BOX03
+    PlaySE SEQ_SE_DP_BOX03_sseq
     Message JubilifeCity_Text_WrongAnswer2
     WaitButton
     CloseMessage
@@ -1572,7 +1572,7 @@ JubilifeCity_Clown2ObtainedCoupon:
     End
 
 JubilifeCity_Clown3:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfLt VAR_POKETCH_CAMPAIGN_STATE, 2, JubilifeCity_YouShouldStickAround
@@ -1584,7 +1584,7 @@ JubilifeCity_Clown3:
     End
 
 JubilifeCity_Clown3CorrectAnswer:
-    PlaySE SEQ_SE_DP_PINPON
+    PlaySE SEQ_SE_DP_PINPON_sseq
     Message JubilifeCity_Text_AbsolutelyCorrect3
     Message JubilifeCity_Text_PokemonMayHoldSingleItem
     Message JubilifeCity_Text_HeresPoketchCoupon3
@@ -1598,7 +1598,7 @@ JubilifeCity_Clown3CorrectAnswer:
     End
 
 JubilifeCity_Clown3WrongAnswer:
-    PlaySE SEQ_SE_DP_BOX03
+    PlaySE SEQ_SE_DP_BOX03_sseq
     Message JubilifeCity_Text_WrongAnswer3
     WaitButton
     CloseMessage

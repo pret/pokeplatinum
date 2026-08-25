@@ -381,7 +381,7 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_KOUKAN01);
+        Sound_PlayEffect(SEQ_SE_DP_KOUKAN01_sseq);
         ov95_02248364(param0, 0, 16, 12);
         (*param1)++;
         break;
@@ -611,7 +611,7 @@ static void ov95_022484B0(SysTask *param0, void *param1)
                     v0->unk_24 = 1;
                 }
 
-                Sound_PlayEffect(SEQ_SE_DP_KON);
+                Sound_PlayEffect(SEQ_SE_DP_KON_sseq);
                 v0->unk_20++;
 
                 switch (v0->unk_20) {

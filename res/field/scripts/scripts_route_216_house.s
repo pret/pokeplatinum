@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 Route216House_Hiker:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message Route216House_Text_MakeYourselfAtHome
@@ -21,7 +21,7 @@ Route216House_HikerRest:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     FadeScreenIn
@@ -44,7 +44,7 @@ Route216House_SnowpointNPCF:
     End
 
 Route216House_Bed:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message Route216House_Text_WantToRest
     ShowYesNoMenu VAR_RESULT
@@ -58,7 +58,7 @@ Route216House_RestInBed:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     FadeScreenIn

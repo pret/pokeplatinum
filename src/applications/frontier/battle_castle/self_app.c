@@ -729,7 +729,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         UpdateSelectedMon(app, gSystem.pressedKeys);
 
         if (JOY_NEW(PAD_BUTTON_A)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
             if (app->selectedMonSlot >= app->exitSlot) {
                 return TRUE;
@@ -741,7 +741,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
             }
         } else if (JOY_NEW(PAD_BUTTON_B)) {
             if (app->selectedMonSlot != app->exitSlot) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 app->selectedMonSlot = app->exitSlot;
                 UpdateCursorPosition(app);
             }
@@ -750,7 +750,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         break;
     case MAIN_SUBSTATE_MON_OPTIONS_MENU:
         input = ListMenu_ProcessInput(app->listMenu);
-        BattleCastleApp_PlaySound(input, SEQ_SE_CONFIRM);
+        BattleCastleApp_PlaySound(input, SE_CONFIRM_sseq_3);
 
         switch (input) {
         case MENU_NOTHING_CHOSEN:
@@ -794,7 +794,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
             if (app->menuPos == 0) {
                 ListMenu_TestInput(app->listMenu, &app->listTemplate, 0, NELEMS(sHealMenuEntries) - 1, 1, PAD_KEY_DOWN, NULL, NULL);
                 ListMenu_Draw(app->listMenu);
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 PrintLeftAlignedMessageWithBg(app, &app->windows[SELF_APP_WINDOW_MSG_BOX], BattleCastleSelfApp_Text_ReturnToPrevious, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return FALSE;
             }
@@ -802,7 +802,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
             if (app->menuPos == NELEMS(sHealMenuEntries) - 1) {
                 ListMenu_TestInput(app->listMenu, &app->listTemplate, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
                 ListMenu_Draw(app->listMenu);
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
                 PrintLeftAlignedMessageWithBg(app, &app->windows[SELF_APP_WINDOW_MSG_BOX], BattleCastleSelfApp_Text_WhichToUse, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return FALSE;
             }
@@ -810,7 +810,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
 
         input = ListMenu_ProcessInput(app->listMenu);
 
-        BattleCastleApp_PlaySound(input, SEQ_SE_CONFIRM);
+        BattleCastleApp_PlaySound(input, SE_CONFIRM_sseq_3);
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
@@ -845,8 +845,8 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_HEALING);
 
             if (rank == 3) {
-                Sound_StopEffect(SEQ_SE_CONFIRM, 0);
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_StopEffect(SE_CONFIRM_sseq_3, 0);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             } else {
                 app->selectedMenuEntry = input;
                 FreeListMenu2(app);
@@ -972,7 +972,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         break;
     case MAIN_SUBSTATE_WAIT_AFTER_RANK_UP_HEALING:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             CloseYesNoMenu(app);
             OpenHealMenu(app);
             BattleCastleAppSprite_PlaySparkleAnim(app->bigSparkles, 204, 100);
@@ -981,7 +981,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         break;
     case MAIN_SUBSTATE_WAIT_AFTER_HEAL_FAILURE:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             CloseMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
             OpenHealMenu(app);
             app->subState = MAIN_SUBSTATE_HEAL_MENU;
@@ -990,7 +990,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
     case MAIN_SUBSTATE_RENTAL_MENU:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
         input = ListMenu_ProcessInput(app->listMenu);
-        BattleCastleApp_PlaySound(input, SEQ_SE_CONFIRM);
+        BattleCastleApp_PlaySound(input, SE_CONFIRM_sseq_3);
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
@@ -1031,8 +1031,8 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
             rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_RENTALS);
 
             if (rank == 3) {
-                Sound_StopEffect(SEQ_SE_CONFIRM, 0);
-                Sound_PlayEffect(SEQ_SE_DP_BOX03);
+                Sound_StopEffect(SE_CONFIRM_sseq_3, 0);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
             } else {
                 app->selectedMenuEntry = input;
                 FreeListMenu3(app);
@@ -1046,7 +1046,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         break;
     case MAIN_SUBSTATE_SELECT_ITEM_OR_BERRY:
         input = ListMenu_ProcessInput(app->listMenu);
-        BattleCastleApp_PlaySound(input, SEQ_SE_CONFIRM);
+        BattleCastleApp_PlaySound(input, SE_CONFIRM_sseq_3);
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
@@ -1167,7 +1167,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         break;
     case MAIN_SUBSTATE_WAIT_AFTER_RANK_UP_RENTAL:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             CloseYesNoMenu(app);
             OpenRentalMenu(app);
             BattleCastleAppSprite_PlaySparkleAnim(app->bigSparkles, 211, 106);
@@ -1176,7 +1176,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         break;
     case MAIN_SUBSTATE_WAIT_AFTER_CANT_OPEN_ITEM_SELECT:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             CloseMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
             OpenRentalMenu(app);
             app->subState = MAIN_SUBSTATE_RENTAL_MENU;
@@ -1184,14 +1184,14 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         break;
     case MAIN_SUBSTATE_WAIT_AFTER_RENTAL_FAILURE:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             RefreshItemSelectMenu(app);
             app->subState = MAIN_SUBSTATE_SELECT_ITEM_OR_BERRY;
         }
         break;
     case MAIN_SUBSTATE_SWITCH_ITEMS_PROMPT:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleSelfApp_Text_WantToSwitchItems, FONT_MESSAGE);
             OpenYesNoMenu(app);
             app->subState = MAIN_SUBSTATE_SWITCH_ITEMS_YES_NO;
@@ -1238,7 +1238,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         break;
     case MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             CloseMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
             PrintMonSelectionStrings(app);
             app->subState = MAIN_SUBSTATE_SELECT_MON;
@@ -1250,7 +1250,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         } else if (JOY_NEW(PAD_KEY_RIGHT)) {
             ChangeSelectedMonOnSummaryDisplay(app, 1);
         } else if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             CloseSummaryScreen(app);
             OpenMonOptionsMenu(app);
             app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
@@ -1262,7 +1262,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         } else if (JOY_NEW(PAD_KEY_RIGHT)) {
             ChangeSelectedMonOnMoveDisplay(app, 1);
         } else if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             CloseSummaryScreen(app);
             OpenMonOptionsMenu(app);
             app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
@@ -2223,7 +2223,7 @@ static void UpdateItemSelectMenuDisplay(ListMenu *menu, u32 item, u8 onInit)
     BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (!onInit) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         ListMenu_CalcTrueCursorPos(app->listMenu, &pos);
     } else {
         pos = 0;
@@ -2302,7 +2302,7 @@ static void UpdateHealMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit)
     BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (!onInit) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     u8 rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_HEALING);
@@ -2404,7 +2404,7 @@ static void UpdateRentalMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit
     BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (!onInit) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     u8 rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_RENTALS);
@@ -2512,7 +2512,7 @@ static void UpdateMonMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit)
     BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (!onInit) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 
     u16 pos;
@@ -2657,7 +2657,7 @@ static void UpdateSelectedMon(BattleCastleSelfApp *app, int unused)
 
 static void UpdateCursorPosition(BattleCastleSelfApp *app)
 {
-    Sound_PlayEffect(SEQ_SE_CONFIRM);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
     if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
         SendCommMessage(app, COMM_CMD_UPDATE_CURSOR, app->selectedMonSlot);
@@ -3219,7 +3219,7 @@ static void HealPokemon(BattleCastleSelfApp *app, u8 slot, u8 menuOption)
         GF_ASSERT(FALSE);
     }
 
-    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
+    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU_sseq);
 }
 
 static void RentItem(BattleCastleSelfApp *app, u8 slot, u16 itemID)
@@ -3233,7 +3233,7 @@ static void RentItem(BattleCastleSelfApp *app, u8 slot, u16 itemID)
 
     StringTemplate_SetItemName(app->strTemplate, 1, itemID);
     app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleSelfApp_Text_ItemGivenToMon, FONT_MESSAGE);
-    Sound_PlayEffect(SEQ_SE_DP_UG_020);
+    Sound_PlayEffect(SEQ_SE_DP_UG_020_sseq);
 }
 
 static void CloseYesNoMenu(BattleCastleSelfApp *app)
@@ -3341,7 +3341,7 @@ static void PrintPlayersAndPartnersCastlePoints(BattleCastleSelfApp *app, Window
 
 static void SpendCastlePointsInSync(BattleCastleSelfApp *app, u8 slotID, u8 menuOption)
 {
-    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
 
     u8 slot, exitSlot;
     exitSlot = app->exitSlot;

@@ -20,7 +20,7 @@ BattleParkExchangeServiceCorner_MaidSouth:
     GoTo BattleParkExchangeServiceCorner_PokeMartFrontierRight
 
 BattleParkExchangeServiceCorner_PokeMartFrontierRight:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message BattleParkExchangeServiceCorner_Text_TradeBPForPrizes
@@ -30,7 +30,7 @@ BattleParkExchangeServiceCorner_PokeMartFrontierRight:
     End
 
 BattleParkExchangeServiceCorner_PokeMartFrontierLeft:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message BattleParkExchangeServiceCorner_Text_TradeBPForPrizes
@@ -40,7 +40,7 @@ BattleParkExchangeServiceCorner_PokeMartFrontierLeft:
     End
 
 BattleParkExchangeServiceCorner_PrizeExchange_Unused:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ShowBattlePoints 21, 1
@@ -130,7 +130,7 @@ BattleParkExchangeServiceCorner_Clown:
     End
 
 BattleParkExchangeServiceCorner_TwinAndExpertF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message BattleParkExchangeServiceCorner_Text_HaveThisGrandma
     Message BattleParkExchangeServiceCorner_Text_ThankYouDear

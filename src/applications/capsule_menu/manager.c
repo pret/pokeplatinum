@@ -394,15 +394,15 @@ static BOOL CapsuleManager_SelectionActions(CapsuleAppManager *appMan)
             SealPlacement_DrawActiveSeals(appMan, 1);
             SealPlacement_OffsetSeals(appMan);
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             appMan->stateID++;
             CapsuleGraphics_PrintMessage(appMan->graphicsMan.windows, 8);
             CapsuleGraphics_OpenCapsuleSelectionMenu(appMan->graphicsMan.bgConfig, &appMan->graphicsMan.windows[1], 1, appMan, *appMan->capsuleIndex);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             appMan->stateID = CAPSULE_FADE_OUT_STATE_ID;
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         }
     } break;
     case CAPSULE_CAPSULE_MENU_STATE_ID: {
@@ -544,7 +544,7 @@ void CapsuleManager_HandleSpritePress(u32 field, enum TouchScreenButtonState tou
             CapsuleGraphics_LoadPageSprites(appMan_dupe);
             CapsuleGraphics_InitPageSprites(appMan_dupe);
             CapsuleGraphics_UpdateAllSealCountText(appMan_dupe);
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM02);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM02_sseq);
         }
 
         CapsuleManager_SetUIAnimationFromTouch(appMan_dupe->pageSprites.sprites[8], touchScreenState);
@@ -559,7 +559,7 @@ void CapsuleManager_HandleSpritePress(u32 field, enum TouchScreenButtonState tou
             CapsuleGraphics_LoadPageSprites(appMan_dupe);
             CapsuleGraphics_InitPageSprites(appMan_dupe);
             CapsuleGraphics_UpdateAllSealCountText(appMan_dupe);
-            Sound_PlayEffect(SEQ_SE_DP_CUSTOM02);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM02_sseq);
         }
         CapsuleManager_SetUIAnimationFromTouch(appMan_dupe->pageSprites.sprites[9], touchScreenState);
         break;
@@ -567,7 +567,7 @@ void CapsuleManager_HandleSpritePress(u32 field, enum TouchScreenButtonState tou
         if (touchScreenState == TOUCH_BUTTON_PRESSED) {
             if (appMan_dupe->stateID != CAPSULE_FADE_OUT_STATE_ID) {
                 appMan_dupe->stateID = CAPSULE_FADE_OUT_STATE_ID;
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             }
 
             CapsuleManager_PressCapsuleUI(appMan_dupe->pageSprites.sprites[10], NULL);
@@ -580,7 +580,7 @@ void CapsuleManager_HandleSpritePress(u32 field, enum TouchScreenButtonState tou
             if (appMan_dupe->stateID != CAPSULE_FADE_OUT_WAIT_STATE_ID) {
                 appMan_dupe->stateID = CAPSULE_FADE_OUT_WAIT_STATE_ID;
                 CapsuleManager_SetSelectedCapsule(appMan_dupe, 0);
-                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO_sseq);
             }
 
             CapsuleManager_PressCapsuleUI(appMan_dupe->pageSprites.sprites[11], appMan_dupe->graphicsMan.fontOAM[0]);
@@ -593,7 +593,7 @@ void CapsuleManager_HandleSpritePress(u32 field, enum TouchScreenButtonState tou
             if (appMan_dupe->stateID != CAPSULE_CANCEL_PRESSED_STATE_ID) {
                 appMan_dupe->stateID = CAPSULE_CANCEL_PRESSED_STATE_ID;
                 CapsuleManager_SetSelectedCapsule(appMan_dupe, 0);
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             }
 
             CapsuleManager_PressCapsuleUI(appMan_dupe->pageSprites.sprites[12], appMan_dupe->graphicsMan.fontOAM[1]);
@@ -613,7 +613,7 @@ void CapsuleManager_HandleSpritePress(u32 field, enum TouchScreenButtonState tou
 
         if (touchScreenState == TOUCH_BUTTON_PRESSED) {
             if (SealPlacement_NotMaxSeals(appMan_dupe) == FALSE) {
-                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                 CapsuleGraphics_PrintMessage(appMan_dupe->graphicsMan.windows, 15);
             } else if ((appMan_dupe->sealPages.sealIDs[field] != 0) && (SealCase_GetSealCount(appMan_dupe->sealCount, appMan_dupe->sealPages.sealIDs[field] - 1) != 0)) {
                 appMan_dupe->graphicsMan.index = SealPlacement_GetTouchedSeal(appMan_dupe, field);
@@ -622,9 +622,9 @@ void CapsuleManager_HandleSpritePress(u32 field, enum TouchScreenButtonState tou
                 CapsuleGraphics_UpdateSealNameText(appMan_dupe->graphicsMan.windows, sealIdx);
                 GiveOrTakeSeal(appMan_dupe->appData->sealCase, appMan_dupe->sealPages.sealIDs[field], -1);
                 CapsuleGraphics_UpdateSealCountText(appMan_dupe, field);
-                Sound_PlayEffect(SEQ_SE_DP_BOX02);
+                Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
             } else if (appMan_dupe->sealPages.sealIDs[field] != 0) {
-                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06_sseq);
                 CapsuleGraphics_PrintMessage(appMan_dupe->graphicsMan.windows, 16);
             }
         }
@@ -646,7 +646,7 @@ void CapsuleManager_HandleSpritePress(u32 field, enum TouchScreenButtonState tou
             sealIndex = CapsuleMenu_GetSealNameIndex(appMan_dupe->sealRenderInfo[renderedIndex].type);
 
             CapsuleGraphics_UpdateSealNameText(appMan_dupe->graphicsMan.windows, sealIndex);
-            Sound_PlayEffect(SEQ_SE_DP_BOX02);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
         }
     } break;
     default:
@@ -888,7 +888,7 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
                 ov12_022363B4(appMan->graphicsMan.sealEffect);
                 CapsuleManager_SetThrownMonSpriteHidden(appMan, 0);
                 CapsuleManager_ZeroThrownMonScale(appMan);
-                Sound_PlayEffect(SEQ_SE_DP_CUSTOM05);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM05_sseq);
                 appMan->throwStateID++;
             }
             break;
@@ -1167,7 +1167,7 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
                 SealPlacement_FreeSeal(appMan, index);
             }
 
-            Sound_PlayEffect(SEQ_SE_DP_BOX01);
+            Sound_PlayEffect(SEQ_SE_DP_BOX01_sseq);
             appMan->graphicsMan.index = 0xFF;
             CapsuleGraphics_UpdateSealNameText(appMan->graphicsMan.windows, 0xFFFF);
         }
@@ -1271,18 +1271,18 @@ static BOOL CapsuleManager_HandleSpritesAndInputs(CapsuleAppManager *appMan)
         if (cursorMoved == 1) {
             CapsuleManager_MoveCursorToCapsule(appMan, 1, 0);
 
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             CapsuleGraphics_SwapCapsules(appMan, *appMan->capsuleIndex, appMan->capsuleIndex[1]);
             CapsuleManager_MoveCursorToCapsule(appMan, 1, 1);
             CapsuleGraphics_PrintMessage(appMan->graphicsMan.windows, 11);
             appMan->stateID = CAPSULE_FADE_IN_WAIT_STATE_ID;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ManagedSprite_SetDrawFlag(appMan->cursor[1], 0);
             CapsuleManager_MoveCursorToCapsule(appMan, 0, 1);
             appMan->stateID = CAPSULE_CAPSULE_SELECTION_STATE_ID;
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         }
     } break;
     case CAPSULE_FADE_IN_WAIT_STATE_ID:
