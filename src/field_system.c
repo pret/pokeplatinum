@@ -9,8 +9,8 @@
 #include "generated/signpost_commands.h"
 
 #include "applications/poketch/poketch_system.h"
+#include "applications/title_screen.h"
 #include "field/field_system_sub2_t.h"
-#include "game_opening/const_ov77_021D742C.h"
 #include "overlay005/field_control.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/map_name_popup.h"
