@@ -59,7 +59,7 @@ void SealPlacement_UpdateSealTouchRect(TouchScreenRect *rect, ManagedSprite *spr
     }
 }
 
-void ov76_0223B1E0(CapsuleAppManager *appMan)
+void SealPlacement_OffsetSeals(CapsuleAppManager *appMan)
 {
     int i;
 
@@ -127,7 +127,6 @@ int SealPlacement_GetTouchedSeal(CapsuleAppManager *appMan, u8 sealIndex)
 BOOL SealPlacement_NotMaxSeals(CapsuleAppManager *appMan)
 {
     int i;
-    u32 unused1, unused2;
 
     for (i = 0; i < SEALS_PER_CAPSULE; i++) {
         if (appMan->sealRenderInfo[i].shouldRender == 1) {
@@ -310,8 +309,6 @@ BOOL SealPlacement_HandleTouchscreen(CapsuleAppManager *appMan, u32 touchscreenS
         }
         break;
     case TOUCH_BUTTON_HELD: {
-        s16 unused1, unused2;
-
         if (appMan->graphicsMan.index == index) {
             SealPlacement_UpdateSealTouchRect(appMan->sealRenderInfo[index].touchScreenRect, appMan->sealRenderInfo[index].sprite, 1);
             SealPlacement_UpdateSealOamMode(appMan, index);
@@ -377,7 +374,7 @@ BOOL SealPlacement_SealIsValid(CapsuleAppManager *appMan, int index)
     }
 
     ManagedSprite_GetPositionXY(appMan->sealRenderInfo[index].sprite, &x, &y);
-    distance = ov12_02237E54(x, y, 190, 70);
+    distance = SealAnim_GetDistance(x, y, 190, 70);
 
     if (distance > 60) {
         return 0;

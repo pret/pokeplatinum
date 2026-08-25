@@ -3,7 +3,7 @@
 
 #include "struct_defs/seal_case.h"
 
-int ov12_02237E54(s16 param0, s16 param1, s16 param2, s16 param3);
+int SealAnim_GetDistance(s16 x1, s16 x2, s16 y1, s16 y2);
 int ov12_02237E80(BallSeal *param0);
 int ov12_02237EA0(BallSeal *param0);
 

@@ -234,15 +234,15 @@ static int ov76_0223D540(CapsuleAppManager *appMan)
     return 0;
 }
 
-const SealStringIndices sealStringIndices[] = {
-    { 0, (const u32)ov76_0223D4FC },
-    { 1, (const u32)CapsuleManager_FreeMenuWindow },
-    { 2, (const u32)ov76_0223D50C },
-    { 3, (const u32)ov76_0223D530 },
-    { 4, (const u32)ov76_0223D540 },
+const SealListMenuEntry gSealListMenuEntries[] = {
+    { 0, ov76_0223D4FC },
+    { 1, CapsuleManager_FreeMenuWindow },
+    { 2, ov76_0223D50C },
+    { 3, ov76_0223D530 },
+    { 4, ov76_0223D540 },
 };
 
-static BOOL (*const CapsuleFunctions[])(CapsuleAppManager *appMan) = {
+static BOOL (*const sCapsuleFunctions[])(CapsuleAppManager *appMan) = {
     CapsuleManager_SelectionActions,
     CapsuleManager_HandleCancelUpdateSeals,
     CapsuleManager_HandleFades,
@@ -253,7 +253,7 @@ static BOOL (*const CapsuleFunctions[])(CapsuleAppManager *appMan) = {
 
 BOOL CapsuleManager_CallFunction(CapsuleAppManager *appMan)
 {
-    BOOL result = CapsuleFunctions[appMan->funcIndex](appMan);
+    BOOL result = sCapsuleFunctions[appMan->funcIndex](appMan);
     SpriteSystem_DrawSprites(appMan->graphicsMan.spriteManager);
 
     return result;
@@ -331,7 +331,7 @@ static BOOL CapsuleManager_SelectionActions(CapsuleAppManager *appMan)
         CapsuleGraphics_InitMessageWindow(appMan->graphicsMan.bgConfig, appMan->graphicsMan.windows, 1, 2, 21, 27, 2, 1 + 18 + 12 + 9);
         SealPlacement_UpdateSealsFromCapsule(appMan);
         SealPlacement_DrawActiveSeals(appMan, 1);
-        ov76_0223B1E0(appMan);
+        SealPlacement_OffsetSeals(appMan);
         CapsuleGraphics_LoadCapsuleUI(appMan, narc);
         CapsuleGraphics_InitCapsuleUI(appMan);
         CapsuleGraphics_LoadSelectionResources(appMan, narc);
@@ -392,7 +392,7 @@ static BOOL CapsuleManager_SelectionActions(CapsuleAppManager *appMan)
             SealPlacement_FreeInactiveSeals(appMan);
             SealPlacement_UpdateSealsFromCapsule(appMan);
             SealPlacement_DrawActiveSeals(appMan, 1);
-            ov76_0223B1E0(appMan);
+            SealPlacement_OffsetSeals(appMan);
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
@@ -666,19 +666,19 @@ void CapsuleManager_SetSelectedCapsule(CapsuleAppManager *appMan, BOOL value)
 }
 
 static const TouchScreenRect CapsuleUIRects[] = {
-    { 16, 32, 8, 24 },
-    { 16, 32, 64, 80 },
-    { 40, 56, 8, 24 },
-    { 40, 56, 64, 80 },
-    { 64, 80, 8, 24 },
-    { 64, 80, 64, 80 },
-    { 88, 104, 8, 24 },
-    { 88, 104, 64, 80 },
-    { 104, 128, 8, 48 },
-    { 104, 128, 56, 96 },
-    { 168, 188, 18, 77 },
-    { 168, 188, 97, 156 },
-    { 168, 188, 178, 237 },
+    { .rect = { .top = 16, .bottom = 32, .left = 8, .right = 24 } },
+    { .rect = { .top = 16, .bottom = 32, .left = 64, .right = 80 } },
+    { .rect = { .top = 40, .bottom = 56, .left = 8, .right = 24 } },
+    { .rect = { .top = 40, .bottom = 56, .left = 64, .right = 80 } },
+    { .rect = { .top = 64, .bottom = 80, .left = 8, .right = 24 } },
+    { .rect = { .top = 64, .bottom = 80, .left = 64, .right = 80 } },
+    { .rect = { .top = 88, .bottom = 104, .left = 8, .right = 24 } },
+    { .rect = { .top = 88, .bottom = 104, .left = 64, .right = 80 } },
+    { .rect = { .top = 104, .bottom = 128, .left = 8, .right = 48 } },
+    { .rect = { .top = 104, .bottom = 128, .left = 56, .right = 96 } },
+    { .rect = { .top = 168, .bottom = 188, .left = 18, .right = 77 } },
+    { .rect = { .top = 168, .bottom = 188, .left = 97, .right = 156 } },
+    { .rect = { .top = 168, .bottom = 188, .left = 178, .right = 237 } },
 };
 
 void CapsuleManager_InitTouchRects(CapsuleAppManager *appMan)
@@ -924,7 +924,7 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
             appMan->throwStateID++;
             break;
         case THROW_WAIT_AFTER_ANIMS_END_STATE_ID:
-            if ((++appMan->yesNoResult) < 30) {
+            if ((++appMan->frameCounter) < 30) {
                 break;
             }
 
@@ -1003,7 +1003,7 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
         appMan->stateID = CAPSULE_EXIT_FADE_OUT_STATE_ID;
         break;
     case CAPSULE_CANCEL_PRESSED_STATE_ID: {
-        switch (appMan->throwStateID) {
+        switch (appMan->cancelStateID) {
         case CANCEL_FADE_IN_STATE_ID:
             if (SealPlacement_AnySealsChanged(appMan) == 0) {
                 appMan->stateID = CAPSULE_EXIT_FADE_OUT_STATE_ID;
@@ -1014,7 +1014,7 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
             PaletteData_StartFade(appMan->graphicsMan.paletteData, 8, 0xFFFF, 0, 0, 10, 0);
             CapsuleManager_SetSelectedCapsule(appMan, 0);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-            appMan->throwStateID++;
+            appMan->cancelStateID++;
             break;
         case CANCEL_WAIT_MENU_STATE_ID:
             if (PaletteData_GetSelectedBuffersMask(appMan->graphicsMan.paletteData) != 0) {
@@ -1039,11 +1039,11 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
             }
 
             CapsuleGraphics_PrintMessage(&appMan->graphicsMan.windows[2], 14);
-            appMan->throwStateID++;
+            appMan->cancelStateID++;
             break;
         case CANCEL_TOGGLE_BG0_STATE_ID:
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-            appMan->throwStateID++;
+            appMan->cancelStateID++;
         case CANCEL_GET_INPUT_STATE_ID: {
             u32 yesNoInput;
             yesNoInput = YesNoTouchMenu_ProcessInput(appMan->graphicsMan.yesNoTouchMenu);
@@ -1058,7 +1058,7 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
                 Window_EraseMessageBox(&appMan->graphicsMan.windows[2], 1);
                 Window_ClearAndCopyToVRAM(&appMan->graphicsMan.windows[2]);
                 Window_Remove(&appMan->graphicsMan.windows[2]);
-                appMan->throwStateID++;
+                appMan->cancelStateID++;
                 break;
             case YES_NO_TOUCH_MENU_NOTHING_CHOSEN:
             default:
@@ -1068,7 +1068,7 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
         case CANCEL_FADE_OUT_STATE_ID:
             PaletteData_StartFade(appMan->graphicsMan.paletteData, 2, 0x80B, 0, 10, 0, 0);
             PaletteData_StartFade(appMan->graphicsMan.paletteData, 8, 0xFFFF, 0, 10, 0, 0);
-            appMan->throwStateID++;
+            appMan->cancelStateID++;
             break;
         case CANCEL_PROCESS_INPUT_STATE_ID:
             if (PaletteData_GetSelectedBuffersMask(appMan->graphicsMan.paletteData) != 0) {
@@ -1094,7 +1094,7 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
             }
 
             CapsuleManager_SetSelectedCapsule(appMan, 1);
-            appMan->throwStateID = CANCEL_FADE_IN_STATE_ID;
+            appMan->cancelStateID = CANCEL_FADE_IN_STATE_ID;
         }
     } break;
     case CAPSULE_EXIT_FADE_OUT_STATE_ID:
@@ -1214,7 +1214,6 @@ static BOOL CapsuleManager_HandleFades(CapsuleAppManager *appMan)
 
 void CapsuleManager_AssignCapsuleMon(CapsuleAppManager *appMan, int capsuleIndex)
 {
-    int unused;
     int index;
     int capsuleID = 0;
     BallCapsule capsule;

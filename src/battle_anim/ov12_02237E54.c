@@ -9,7 +9,7 @@
 
 #include "ball_seal_info.h"
 
-int ov12_02237E54(s16 x1, s16 y1, s16 x2, s16 y2)
+int SealAnim_GetDistance(s16 x1, s16 y1, s16 x2, s16 y2)
 {
     int distance;
     s16 dx = (x1 - x2);
@@ -25,7 +25,7 @@ int ov12_02237E80(BallSeal *param0)
     int v0;
     s16 v1 = BallSeal_GetX(param0);
     s16 v2 = BallSeal_GetY(param0);
-    v0 = ov12_02237E54(v1, v2, 190, 70);
+    v0 = SealAnim_GetDistance(v1, v2, 190, 70);
 
     return v0;
 }

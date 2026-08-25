@@ -124,11 +124,9 @@ void ov76_0223B98C(CapsuleAppManager *appMan, int index, int param2, int param3,
     messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0008, HEAP_ID_53);
     string = MessageLoader_GetNewString(messageLoader, 5 + index);
 
-    {
-        Window_Init(&window);
-        Window_AddToTopLeftCorner(appMan->graphicsMan.bgConfig, &window, 10, 2, 0, 0);
-        Text_AddPrinterWithParamsAndColor(&window, FONT_SUBSCREEN, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 2), NULL);
-    }
+    Window_Init(&window);
+    Window_AddToTopLeftCorner(appMan->graphicsMan.bgConfig, &window, 10, 2, 0, 0);
+    Text_AddPrinterWithParamsAndColor(&window, FONT_SUBSCREEN, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 2), NULL);
 
     resID = 30000;
     v3 = sub_02012898(&window, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_53);
@@ -248,23 +246,21 @@ void CapsuleGraphics_InitPageSprites(CapsuleAppManager *appMan)
         pageSprites->sprites[i] = SpriteSystem_NewSprite(spriteSystem, spriteManager, &spriteTemplate);
     }
 
-    {
-        const s16 initialXY[][2] = {
-            { 19, 23 },
-            { 75, 23 },
-            { 19, 47 },
-            { 75, 47 },
-            { 19, 71 },
-            { 75, 71 },
-            { 19, 95 },
-            { 75, 95 },
-        };
+    const s16 initialXY[][2] = {
+        { 19, 23 },
+        { 75, 23 },
+        { 19, 47 },
+        { 75, 47 },
+        { 19, 71 },
+        { 75, 71 },
+        { 19, 95 },
+        { 75, 95 },
+    };
 
-        for (i = 0; i < SEALS_PER_PAGE; i++) {
-            ManagedSprite_SetPositionXY(appMan->pageSprites.sprites[i], initialXY[i][0], initialXY[i][1] - 1);
-            ManagedSprite_TickFrame(appMan->pageSprites.sprites[i]);
-            ManagedSprite_SetAnimationFrame(appMan->pageSprites.sprites[i], 0);
-        }
+    for (i = 0; i < SEALS_PER_PAGE; i++) {
+        ManagedSprite_SetPositionXY(appMan->pageSprites.sprites[i], initialXY[i][0], initialXY[i][1] - 1);
+        ManagedSprite_TickFrame(appMan->pageSprites.sprites[i]);
+        ManagedSprite_SetAnimationFrame(appMan->pageSprites.sprites[i], 0);
     }
 }
 
@@ -282,24 +278,22 @@ static void CapsuleGraphics_TaskTick(SysTask *sysTask, void *capsuleSysTask)
 {
     CapsuleGraphicsTask *capsuleSysTask_dupe = (CapsuleGraphicsTask *)capsuleSysTask;
     BOOL result = FALSE;
-    {
-        int i;
+    int i;
 
-        for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-            if (capsuleSysTask_dupe->sprites[i] == NULL) {
-                continue;
-            }
-
-            if (PosLerpContext_UpdateAndApplyToSprite(&capsuleSysTask_dupe->transforms[i], capsuleSysTask_dupe->sprites[i]) == 1) {
-                result = TRUE;
-            }
+    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+        if (capsuleSysTask_dupe->sprites[i] == NULL) {
+            continue;
         }
 
-        if (PosLerpContext_Update(&capsuleSysTask_dupe->transforms[8]) == 1) {
+        if (PosLerpContext_UpdateAndApplyToSprite(&capsuleSysTask_dupe->transforms[i], capsuleSysTask_dupe->sprites[i]) == 1) {
             result = TRUE;
-            Bg_SetOffset(capsuleSysTask_dupe->bgConfig, BG_LAYER_SUB_1, 0, capsuleSysTask_dupe->transforms[8].x);
-            Bg_SetOffset(capsuleSysTask_dupe->bgConfig, BG_LAYER_SUB_1, 3, capsuleSysTask_dupe->transforms[8].y);
         }
+    }
+
+    if (PosLerpContext_Update(&capsuleSysTask_dupe->transforms[8]) == 1) {
+        result = TRUE;
+        Bg_SetOffset(capsuleSysTask_dupe->bgConfig, BG_LAYER_SUB_1, 0, capsuleSysTask_dupe->transforms[8].x);
+        Bg_SetOffset(capsuleSysTask_dupe->bgConfig, BG_LAYER_SUB_1, 3, capsuleSysTask_dupe->transforms[8].y);
     }
 
     if (result == FALSE) {
@@ -314,29 +308,25 @@ void CapsuleGraphics_TaskStart(CapsuleAppManager *appMan, s8 scale, int steps)
     CapsuleGraphicsTask *capsuleSysTask = Heap_Alloc(HEAP_ID_53, sizeof(CapsuleGraphicsTask));
     capsuleSysTask->bgConfig = appMan->graphicsMan.bgConfig;
 
-    {
-        int i;
-        s16 x, y;
-        for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-            if (appMan->sealRenderInfo[i].shouldRender == 0) {
-                capsuleSysTask->sprites[i] = NULL;
-                continue;
-            }
-
-            capsuleSysTask->sprites[i] = appMan->sealRenderInfo[i].sprite;
-
-            ManagedSprite_GetPositionXY(capsuleSysTask->sprites[i], &x, &y);
-            PosLerpContext_Init(&capsuleSysTask->transforms[i], x, x + (56 * scale), y, y + (-16 * scale), steps);
-            PosLerpContext_UpdateAndApplyToSprite(&capsuleSysTask->transforms[i], capsuleSysTask->sprites[i]);
-            PosLerpContext_UpdateAndApplyToSprite(&capsuleSysTask->transforms[i], capsuleSysTask->sprites[i]);
+    int i;
+    s16 x, y;
+    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+        if (appMan->sealRenderInfo[i].shouldRender == 0) {
+            capsuleSysTask->sprites[i] = NULL;
+            continue;
         }
+
+        capsuleSysTask->sprites[i] = appMan->sealRenderInfo[i].sprite;
+
+        ManagedSprite_GetPositionXY(capsuleSysTask->sprites[i], &x, &y);
+        PosLerpContext_Init(&capsuleSysTask->transforms[i], x, x + (56 * scale), y, y + (-16 * scale), steps);
+        PosLerpContext_UpdateAndApplyToSprite(&capsuleSysTask->transforms[i], capsuleSysTask->sprites[i]);
+        PosLerpContext_UpdateAndApplyToSprite(&capsuleSysTask->transforms[i], capsuleSysTask->sprites[i]);
     }
 
-    {
-        int xOffset = Bg_GetXOffset(capsuleSysTask->bgConfig, 5);
-        int yOffset = Bg_GetYOffset(capsuleSysTask->bgConfig, 5);
-        PosLerpContext_Init(&capsuleSysTask->transforms[8], xOffset, xOffset + (-56 * scale), yOffset, yOffset + (16 * scale), steps);
-    }
+    int xOffset = Bg_GetXOffset(capsuleSysTask->bgConfig, 5);
+    int yOffset = Bg_GetYOffset(capsuleSysTask->bgConfig, 5);
+    PosLerpContext_Init(&capsuleSysTask->transforms[8], xOffset, xOffset + (-56 * scale), yOffset, yOffset + (16 * scale), steps);
 
     capsuleSysTask->result = &appMan->graphicsMan.graphicsTaskResult;
     *(capsuleSysTask->result) = 1;
@@ -385,7 +375,6 @@ void CapsuleGraphics_AllocTexPlttVram(void)
 void CapsuleGraphics_SwapBuffers(void)
 {
     int result;
-    const MtxFx43 *unused;
 
     G3_ResetG3X();
 
@@ -453,20 +442,18 @@ void CapsuleGraphics_OpenCapsuleSelectionMenu(BgConfig *bgConfig, Window *window
 
     appMan->graphicsMan.stringList = StringList_New(ySize, HEAP_ID_53);
 
-    {
-        int i;
-        String *string;
-        MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0008, HEAP_ID_53);
+    int i;
+    String *string;
+    MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0008, HEAP_ID_53);
 
-        for (i = 0; i < ySize; i++) {
-            string = MessageLoader_GetNewString(messageLoader, sealStringIndices[stringIDs[i]].memberIdx);
+    for (i = 0; i < ySize; i++) {
+        string = MessageLoader_GetNewString(messageLoader, gSealListMenuEntries[stringIDs[i]].index);
 
-            StringList_AddFromString(appMan->graphicsMan.stringList, string, sealStringIndices[stringIDs[i]].index);
-            String_Free(string);
-        }
-
-        MessageLoader_Free(messageLoader);
+        StringList_AddFromString(appMan->graphicsMan.stringList, string, gSealListMenuEntries[stringIDs[i]].func);
+        String_Free(string);
     }
+
+    MessageLoader_Free(messageLoader);
 
     menuTemplate.choices = appMan->graphicsMan.stringList;
     menuTemplate.fontID = FONT_SYSTEM;
@@ -497,15 +484,11 @@ void CapsuleGraphics_LoadPokemonIcons(CapsuleAppManager *appMan)
 
     SpriteSystem_LoadPaletteBuffer(paletteData, 2, spriteSystem, spriteManager, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 16000);
 
-    {
-        int iconIndex = PokeIcon64KCellsFileIndex();
-        SpriteSystem_LoadCellResObj(spriteSystem, spriteManager, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, iconIndex, 0, 17000);
-    }
+    int iconIndex = PokeIcon64KCellsFileIndex();
+    SpriteSystem_LoadCellResObj(spriteSystem, spriteManager, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, iconIndex, 0, 17000);
 
-    {
-        int iconIndex = PokeIcon64KAnimationFileIndex();
-        SpriteSystem_LoadAnimResObj(spriteSystem, spriteManager, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, iconIndex, 0, 18000);
-    }
+    iconIndex = PokeIcon64KAnimationFileIndex();
+    SpriteSystem_LoadAnimResObj(spriteSystem, spriteManager, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, iconIndex, 0, 18000);
 }
 
 void CapsuleGraphics_InitPokemonIcons(CapsuleAppManager *appMan)
@@ -610,42 +593,38 @@ void CapsuleGraphics_AssignCapsules(CapsuleAppManager *appMan)
 void CapsuleGraphics_InitSpriteManager(CapsuleGraphicsManager *graphicsMan)
 {
     graphicsMan->spriteSystem = SpriteSystem_Alloc(HEAP_ID_53);
-    {
-        const RenderOamTemplate renderOAMTemplate = {
-            0,
-            128,
-            0,
-            32,
-            0,
-            128,
-            0,
-            32,
-        };
-        const CharTransferTemplateWithModes transferTemplate = {
-            48 + 48, 1024 * 0x40, 512 * 0x20, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K
-        };
+    const RenderOamTemplate renderOAMTemplate = {
+        0,
+        128,
+        0,
+        32,
+        0,
+        128,
+        0,
+        32,
+    };
+    const CharTransferTemplateWithModes transferTemplate = {
+        48 + 48, 1024 * 0x40, 512 * 0x20, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K
+    };
 
-        SpriteSystem_Init(graphicsMan->spriteSystem, &renderOAMTemplate, &transferTemplate, SPRITE_SYSTEM_PLTT_CAPACITY);
-    }
+    SpriteSystem_Init(graphicsMan->spriteSystem, &renderOAMTemplate, &transferTemplate, SPRITE_SYSTEM_PLTT_CAPACITY);
 
-    {
-        BOOL result;
-        const SpriteResourceCapacities spriteResourceCapacities = {
-            48 + 48,
-            16 + 16,
-            64,
-            64,
-            16,
-            16,
-        };
+    BOOL result;
+    const SpriteResourceCapacities spriteResourceCapacities = {
+        48 + 48,
+        16 + 16,
+        64,
+        64,
+        16,
+        16,
+    };
 
-        graphicsMan->spriteManager = SpriteManager_New(graphicsMan->spriteSystem);
-        result = SpriteSystem_InitSprites(graphicsMan->spriteSystem, graphicsMan->spriteManager, 128);
-        GF_ASSERT(result);
+    graphicsMan->spriteManager = SpriteManager_New(graphicsMan->spriteSystem);
+    result = SpriteSystem_InitSprites(graphicsMan->spriteSystem, graphicsMan->spriteManager, 128);
+    GF_ASSERT(result);
 
-        result = SpriteSystem_InitManagerWithCapacities(graphicsMan->spriteSystem, graphicsMan->spriteManager, &spriteResourceCapacities);
-        GF_ASSERT(result);
-    }
+    result = SpriteSystem_InitManagerWithCapacities(graphicsMan->spriteSystem, graphicsMan->spriteManager, &spriteResourceCapacities);
+    GF_ASSERT(result);
 }
 
 void CapsuleGraphics_FreeSpriteSystem(CapsuleGraphicsManager *graphicsMan)
@@ -737,66 +716,60 @@ void CapsuleGraphics_InitCapsuleSprites(CapsuleAppManager *appMan, NARC *narc)
 {
     CapsuleGraphics_LoadCapsuleSprites(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, appMan->graphicsMan.paletteData, 266, 286, 174, 82, NNS_G2D_VRAM_TYPE_2DMAIN, 2, 1, narc);
     CapsuleGraphics_LoadCapsuleSprites(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, appMan->graphicsMan.paletteData, 275, 291, 179, 87, NNS_G2D_VRAM_TYPE_2DMAIN, 2, 1, narc);
-    {
-        int i;
-        SpriteTemplate spriteTemplate;
+    int i;
+    SpriteTemplate spriteTemplate;
 
-        for (i = 0; i < CAPSULE_NUM; i++) {
-            spriteTemplate.x = 0;
-            spriteTemplate.y = 0;
-            spriteTemplate.z = 0;
-            spriteTemplate.animIdx = appMan->capsuleSprites[i].animIdx;
-            spriteTemplate.priority = 40 - i;
-            spriteTemplate.plttIdx = 0;
-            spriteTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-            spriteTemplate.bgPriority = 2;
-            spriteTemplate.vramTransfer = FALSE;
-            spriteTemplate.resources[0] = 11266;
-            spriteTemplate.resources[1] = 11286;
-            spriteTemplate.resources[2] = 11174;
-            spriteTemplate.resources[3] = 11082;
-            spriteTemplate.resources[4] = SPRITE_RESOURCE_NONE;
-            spriteTemplate.resources[5] = SPRITE_RESOURCE_NONE;
-
-            appMan->capsuleSprites[i].sprite = SpriteSystem_NewSprite(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, &spriteTemplate);
-            {
-                s16 x, y;
-
-                CapsuleGraphics_GetCapsuleGridLocation(i, &x, &y);
-                ManagedSprite_SetPositionXY(appMan->capsuleSprites[i].sprite, x, y);
-            }
-        }
-
+    for (i = 0; i < CAPSULE_NUM; i++) {
         spriteTemplate.x = 0;
         spriteTemplate.y = 0;
         spriteTemplate.z = 0;
-        spriteTemplate.animIdx = 0;
-        spriteTemplate.priority = 20;
+        spriteTemplate.animIdx = appMan->capsuleSprites[i].animIdx;
+        spriteTemplate.priority = 40 - i;
         spriteTemplate.plttIdx = 0;
         spriteTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         spriteTemplate.bgPriority = 2;
         spriteTemplate.vramTransfer = FALSE;
-        spriteTemplate.resources[0] = 11275;
-        spriteTemplate.resources[1] = 11291;
-        spriteTemplate.resources[2] = 11179;
-        spriteTemplate.resources[3] = 11087;
+        spriteTemplate.resources[0] = 11266;
+        spriteTemplate.resources[1] = 11286;
+        spriteTemplate.resources[2] = 11174;
+        spriteTemplate.resources[3] = 11082;
         spriteTemplate.resources[4] = SPRITE_RESOURCE_NONE;
         spriteTemplate.resources[5] = SPRITE_RESOURCE_NONE;
 
-        appMan->cursor[0] = SpriteSystem_NewSprite(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, &spriteTemplate);
-        appMan->cursor[1] = SpriteSystem_NewSprite(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, &spriteTemplate);
+        appMan->capsuleSprites[i].sprite = SpriteSystem_NewSprite(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, &spriteTemplate);
+        s16 x, y;
 
-        {
-            s16 x, y;
-
-            CapsuleGraphics_GetCapsuleGridLocation(*appMan->capsuleIndex, &x, &y);
-            ManagedSprite_SetPositionXY(appMan->cursor[0], x, y);
-            ManagedSprite_SetPositionXY(appMan->cursor[1], x, y);
-            ManagedSprite_SetPriority(appMan->cursor[1], 25);
-            ManagedSprite_SetAnim(appMan->cursor[0], 0);
-            ManagedSprite_SetAnim(appMan->cursor[1], 0);
-        }
+        CapsuleGraphics_GetCapsuleGridLocation(i, &x, &y);
+        ManagedSprite_SetPositionXY(appMan->capsuleSprites[i].sprite, x, y);
     }
+
+    spriteTemplate.x = 0;
+    spriteTemplate.y = 0;
+    spriteTemplate.z = 0;
+    spriteTemplate.animIdx = 0;
+    spriteTemplate.priority = 20;
+    spriteTemplate.plttIdx = 0;
+    spriteTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    spriteTemplate.bgPriority = 2;
+    spriteTemplate.vramTransfer = FALSE;
+    spriteTemplate.resources[0] = 11275;
+    spriteTemplate.resources[1] = 11291;
+    spriteTemplate.resources[2] = 11179;
+    spriteTemplate.resources[3] = 11087;
+    spriteTemplate.resources[4] = SPRITE_RESOURCE_NONE;
+    spriteTemplate.resources[5] = SPRITE_RESOURCE_NONE;
+
+    appMan->cursor[0] = SpriteSystem_NewSprite(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, &spriteTemplate);
+    appMan->cursor[1] = SpriteSystem_NewSprite(appMan->graphicsMan.spriteSystem, appMan->graphicsMan.spriteManager, &spriteTemplate);
+
+    s16 x, y;
+
+    CapsuleGraphics_GetCapsuleGridLocation(*appMan->capsuleIndex, &x, &y);
+    ManagedSprite_SetPositionXY(appMan->cursor[0], x, y);
+    ManagedSprite_SetPositionXY(appMan->cursor[1], x, y);
+    ManagedSprite_SetPriority(appMan->cursor[1], 25);
+    ManagedSprite_SetAnim(appMan->cursor[0], 0);
+    ManagedSprite_SetAnim(appMan->cursor[1], 0);
 }
 
 void CapsuleGraphics_SetCapsuleSpriteAnim(CapsuleAppManager *appMan)
@@ -1166,44 +1139,42 @@ void CapsuleGraphics_InitCapsuleUI(CapsuleAppManager *appMan)
     pageSprites->sprites[i++] = SpriteSystem_NewSprite(spriteSystem, spriteManager, &spriteTemplate);
     pageSprites->sprites[i++] = SpriteSystem_NewSprite(spriteSystem, spriteManager, &spriteTemplate);
 
-    {
-        const s16 xyPos[][2] = {
-            { 20, 23 },
-            { 20, 47 },
-            { 20, 71 },
-            { 20, 95 },
-            { 76, 23 },
-            { 76, 47 },
-            { 76, 71 },
-            { 76, 95 },
-            { 27, 124 },
-            { 67, 124 },
-            { 32, 171 },
-            { 104, 171 },
-            { 192, 171 },
-        };
-        const s16 xyOffset[][2] = {
-            { 0xFF, 0xFF },
-            { 0xFF, 0xFF },
-            { 0xFF, 0xFF },
-            { 0xFF, 0xFF },
-            { 0xFF, 0xFF },
-            { 0xFF, 0xFF },
-            { 0xFF, 0xFF },
-            { 0xFF, 0xFF },
-            { 13, 10 },
-            { 13, 10 },
-            { 16, 12 },
-            { 28, 12 },
-            { 28, 12 },
-        };
+    const s16 xyPos[][2] = {
+        { 20, 23 },
+        { 20, 47 },
+        { 20, 71 },
+        { 20, 95 },
+        { 76, 23 },
+        { 76, 47 },
+        { 76, 71 },
+        { 76, 95 },
+        { 27, 124 },
+        { 67, 124 },
+        { 32, 171 },
+        { 104, 171 },
+        { 192, 171 },
+    };
+    const s16 xyOffset[][2] = {
+        { 0xFF, 0xFF },
+        { 0xFF, 0xFF },
+        { 0xFF, 0xFF },
+        { 0xFF, 0xFF },
+        { 0xFF, 0xFF },
+        { 0xFF, 0xFF },
+        { 0xFF, 0xFF },
+        { 0xFF, 0xFF },
+        { 13, 10 },
+        { 13, 10 },
+        { 16, 12 },
+        { 28, 12 },
+        { 28, 12 },
+    };
 
-        for (i = 8; i < 13; i++) {
-            ManagedSprite_SetPositionXY(appMan->pageSprites.sprites[i], xyPos[i][0], xyPos[i][1]);
-            ManagedSprite_TickFrame(appMan->pageSprites.sprites[i]);
-            ManagedSprite_SetAnimationFrame(appMan->pageSprites.sprites[i], 0);
-            CapsuleGraphics_OffsetSprite(&appMan->graphicsMan.touchScreenRects[i], appMan->pageSprites.sprites[i], xyOffset[i][0], xyOffset[i][1]);
-        }
+    for (i = 8; i < 13; i++) {
+        ManagedSprite_SetPositionXY(appMan->pageSprites.sprites[i], xyPos[i][0], xyPos[i][1]);
+        ManagedSprite_TickFrame(appMan->pageSprites.sprites[i]);
+        ManagedSprite_SetAnimationFrame(appMan->pageSprites.sprites[i], 0);
+        CapsuleGraphics_OffsetSprite(&appMan->graphicsMan.touchScreenRects[i], appMan->pageSprites.sprites[i], xyOffset[i][0], xyOffset[i][1]);
     }
 }
 

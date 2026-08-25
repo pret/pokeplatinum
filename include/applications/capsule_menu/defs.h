@@ -34,14 +34,14 @@
 #define CAPSULE_MENU_HAS_POKEMON      2
 #define CAPSULE_MENU_UNREACHABLE_CASE 3
 
-typedef struct {
-    int memberIdx;
-    u32 index;
-} SealStringIndices;
+typedef struct SealListMenuEntry {
+    int index;
+    void *func;
+} SealListMenuEntry;
 
-extern const SealStringIndices sealStringIndices[5];
+extern const SealListMenuEntry gSealListMenuEntries[5];
 
-typedef struct {
+typedef struct SealRenderInfo {
     BOOL shouldRender;
     u8 type;
     u8 x;
@@ -51,28 +51,28 @@ typedef struct {
     TouchScreenRect *touchScreenRect;
 } SealRenderInfo;
 
-typedef struct {
+typedef struct IndexedCapsule {
     int pokemonIndex;
     BallCapsule *capsule;
 } IndexedCapsule;
 
-typedef struct {
+typedef struct CapsuleSprites {
     int pokemonIndex;
     int animIdx;
     ManagedSprite *sprite;
 } CapsuleSprites;
 
-typedef struct {
+typedef struct CapsulePageSprites {
     ManagedSprite *sprites[13];
 } CapsulePageSprites;
 
-typedef struct {
+typedef struct SealPages {
     int page;
     int maxPage;
     u8 sealIDs[SEALS_PER_PAGE];
 } SealPages;
 
-typedef struct {
+typedef struct CapsuleGraphicsManager {
     int index;
     BOOL selectedCapsule;
     SpriteSystem *spriteSystem;
@@ -100,7 +100,7 @@ typedef struct {
     BOOL sealsChanged;
 } CapsuleGraphicsManager;
 
-typedef struct {
+typedef struct CapsuleAppManager {
     CapsuleAppData *appData;
     IndexedCapsule capsules[CAPSULE_NUM];
     SealCounts *sealCount;
@@ -119,8 +119,14 @@ typedef struct {
     u8 unused2[4];
     int stateID;
     int alternateState;
-    int throwStateID; // Also used for the switch when the cancel button is pressed
-    int yesNoResult; // Also used as a frame counter in one location
+    union {
+        int throwStateID;
+        int cancelStateID;
+    };
+    union {
+        int yesNoResult;
+        int frameCounter;
+    };
     CapsulePageSprites pageSprites;
     SealPages sealPages;
     Pokemon *pokemon;

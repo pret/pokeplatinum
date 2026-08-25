@@ -9,7 +9,7 @@
 #include "touch_screen.h"
 
 void SealPlacement_UpdateSealTouchRect(TouchScreenRect *rect, ManagedSprite *sprite, BOOL touchingSprite);
-void ov76_0223B1E0(CapsuleAppManager *appMan);
+void SealPlacement_OffsetSeals(CapsuleAppManager *appMan);
 void SealPlacement_UpdateSealsFromCapsule(CapsuleAppManager *appMan);
 int SealPlacement_GetTouchedSeal(CapsuleAppManager *appMan, u8 sealIndex);
 BOOL SealPlacement_NotMaxSeals(CapsuleAppManager *appMan);
