@@ -430,7 +430,7 @@ BOOL SystemFlag_CheckInPalPark(VarsFlags *varsFlags)
     return CheckFlag(varsFlags, FLAG_IN_PAL_PARK);
 }
 
-void SystemFlag_CheckOnCyclingRoad(VarsFlags *varsFlags)
+void SystemFlag_ClearOnCyclingRoad(VarsFlags *varsFlags)
 {
     ClearFlag(varsFlags, FLAG_ON_CYCLING_ROAD);
 }

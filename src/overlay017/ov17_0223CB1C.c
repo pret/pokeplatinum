@@ -115,7 +115,7 @@ static const SpriteResourceCapacities Unk_ov17_02252EC8 = {
     0x8
 };
 
-int VisualCompetitonScoring_Init(ApplicationManager *appMan, int *param1)
+int VisualCompetitionScoring_Init(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_02247A48 *v0;
 

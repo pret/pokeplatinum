@@ -102,7 +102,7 @@ const ApplicationManagerTemplate DanceCompetitionAppTemplate = {
 };
 
 const ApplicationManagerTemplate VisualCompetitionScoringAppTemplate = {
-    VisualCompetitonScoring_Init,
+    VisualCompetitionScoring_Init,
     VisualCompetitionScoring_Main,
     VisualCompetitionScoring_Exit,
     FS_OVERLAY_ID(overlay17)
