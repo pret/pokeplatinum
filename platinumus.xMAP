@@ -29445,14 +29445,14 @@
                                               45](BattleArcadeBattleRoomSceneSetup,func) found in local src_overlay104_frontier_scenes.c.o
                                               45](BattleArcadeCorridorSceneDestroy,func) found in local src_overlay104_frontier_scenes.c.o
                                               45](BattleArcadeCorridorSceneSetup,func) found in local src_overlay104_frontier_scenes.c.o
-                                              45](ov104_0222ECA0,func) found in local src_overlay104_frontier_scenes.c.o
-                                               46](ov104_0223C23C,func) found in global src_overlay104_ov104_0223C164.c.o
-                                                47](ov104_0223C250,func) found in local src_overlay104_ov104_0223C164.c.o
-                                              45](ov104_0222EC90,func) found in local src_overlay104_frontier_scenes.c.o
-                                               46](ov104_0223C164,func) found in global src_overlay104_ov104_0223C164.c.o
-                                                47](ov104_0223C188,func) found in local src_overlay104_ov104_0223C164.c.o
-                                                 48](ov104_0223C1BC,func) found in local src_overlay104_ov104_0223C164.c.o
-                                                  49](ov104_0223C208,func) found in local src_overlay104_ov104_0223C164.c.o
+                                              45](WFCFacilitySelectorSceneDestroy,func) found in local src_overlay104_frontier_scenes.c.o
+                                               46](WFCFacilitySelectorEffects_Free,func) found in global src_overlay104_wfc_facility_selector_helpers.c.o
+                                                47](WFCFacilitySelectorMonitorFlicker_Free,func) found in local src_overlay104_wfc_facility_selector_helpers.c.o
+                                              45](WFCFacilitySelectorSceneSetup,func) found in local src_overlay104_frontier_scenes.c.o
+                                               46](WFCFacilitySelectorEffects_Init,func) found in global src_overlay104_wfc_facility_selector_helpers.c.o
+                                                47](WFCFacilitySelectorMonitorFlicker_Init,func) found in local src_overlay104_wfc_facility_selector_helpers.c.o
+                                                 48](Task_UpdateMonitorTiles,func) found in local src_overlay104_wfc_facility_selector_helpers.c.o
+                                                  49](GetMonitorTileset,func) found in local src_overlay104_wfc_facility_selector_helpers.c.o
                                               45](BattleCastleBattleRoomSceneDestroy,func) found in local src_overlay104_frontier_scenes.c.o
                                               45](BattleCastleBattleRoomSceneSetup,func) found in local src_overlay104_frontier_scenes.c.o
                                               45](BattleHallBattleRoomSceneDestroy,func) found in local src_overlay104_frontier_scenes.c.o
@@ -29673,7 +29673,7 @@
                                              44](StoreBattleArcadeAppResults,func) found in local src_overlay104_frscrcmd_battle_arcade.c.o
                                               45](BattleArcade_StoreAppResults,func) found in global src_overlay104_battle_arcade.c.o
                                                46](GetBattleArcadeAppCursorPos,func) found in local src_overlay104_battle_arcade.c.o
-                                             44](sBattleArcadeAppTemplate$18902,object) found in local src_overlay104_frscrcmd_battle_arcade.c.o
+                                             44](sBattleArcadeAppTemplate$19811,object) found in local src_overlay104_frscrcmd_battle_arcade.c.o
                                               45](BattleArcadeApp_Exit,func) found in global src_applications_frontier_battle_arcade_main.c.o
                                                46](FreeAssets,func) found in local src_applications_frontier_battle_arcade_main.c.o
                                                 47](BattleArcadeAppSprite_Free,func) found in global src_applications_frontier_battle_arcade_sprites.c.o
@@ -29750,13 +29750,13 @@
                                                  48](ArcadeCommunication_ReceiveTrainers,func) found in global src_overlay104_frontier_communication.c.o
                                                  48](ov104_0222F8A0,func) found in global src_overlay104_frontier_communication.c.o
                                                  48](sub_0209BB68,func) found in local src_unk_0209BA80.c.o
-                                                 48](sub_0209BB34,func) found in local src_unk_0209BA80.c.o
+                                                 48](BattleTower_HandleTrainerIDListCmd,func) found in local src_unk_0209BA80.c.o
                                                  48](sub_0209BA94,func) found in local src_unk_0209BA80.c.o
-                                                 48](sub_0209BDD0,func) found in global src_unk_0209BA80.c.o
-                                                 48](sub_0209BD88,func) found in global src_unk_0209BA80.c.o
-                                                 48](sub_0209BD28,func) found in global src_unk_0209BA80.c.o
-                                                 48](sub_0209BC3C,func) found in global src_unk_0209BA80.c.o
-                                                 48](sub_0209BBEC,func) found in global src_unk_0209BA80.c.o
+                                                 48](WFCFacilitySelector_HandlePlayAgainCmd,func) found in local src_unk_0209BA80.c.o
+                                                 48](WFCFacilitySelector_HandleStreakDeletionChoiceCmd,func) found in local src_unk_0209BA80.c.o
+                                                 48](WFCFacilitySelector_HandleSelectedMonsCmd,func) found in local src_unk_0209BA80.c.o
+                                                 48](WFCFacilitySelector_HandleDidDropOutCmd,func) found in local src_unk_0209BA80.c.o
+                                                 48](WFCFacilitySelector_HandleFacilityAndStreakCmd,func) found in local src_unk_0209BA80.c.o
                                                  48](BattleCastleOpponentApp_HandleExitAppCmd,func) found in global src_applications_frontier_battle_castle_opponent_app.c.o
                                                  48](BattleCastleOpponentApp_HandleUpdateCursorCmd,func) found in global src_applications_frontier_battle_castle_opponent_app.c.o
                                                   49](UpdateCursorSprite,func) found in local src_applications_frontier_battle_castle_opponent_app.c.o
@@ -29912,14 +29912,14 @@
                                               45](.bss,section) found in local src_overlay104_battle_arcade.c.o
                                              44](BattleFrontier_SetFacilityStruct,func) found in global src_battle_frontier.c.o
                                             43](FrontierScrCmd_SetWiFiListHostFriendCurrentDate,func) found in local src_overlay104_frscrcmd.c.o
-                                            43](FrontierScrCmd_ClearTowerStruct,func) found in global src_overlay104_ov104_022395F0.c.o
+                                            43](FrontierScrCmd_FreeBattleTower,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
                                              44](BattleTower_Free,func) found in global src_unk_02049D08.c.o
-                                            43](FrontierScrCmd_B5,func) found in global src_overlay104_ov104_022395F0.c.o
-                                             44](ov104_02239C20,func) found in local src_overlay104_ov104_022395F0.c.o
-                                            43](FrontierScrCmd_B4,func) found in global src_overlay104_ov104_022395F0.c.o
-                                             44](sub_0209BB08,func) found in global src_unk_0209BA80.c.o
-                                            43](FrontierScrCmd_B3,func) found in global src_overlay104_ov104_022395F0.c.o
-                                             44](ov104_02239C7C,func) found in global src_overlay104_ov104_02239C58.c.o
+                                            43](FrontierScrCmd_WaitForTowerTrainerIDListResponses,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                             44](WaitForTowerCommResponse,func) found in local src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                            43](FrontierScrCmd_SendTowerTrainerIDList,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                             44](BattleTower_SendTrainerIDListCmd,func) found in global src_unk_0209BA80.c.o
+                                            43](FrontierScrCmd_InitBattleTower,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                             44](WFCFacilitySelector_Free,func) found in global src_overlay104_wfc_facility_selector.c.o
                                              44](BattleTower_Init,func) found in global src_unk_02049D08.c.o
                                               45](SaveData_GetWifiBattleTowerSave,func) found in global src_wifi_battle_tower_save.c.o
                                               45](WifiBattleTowerSave_SetIsInProgress,func) found in global src_wifi_battle_tower_save.c.o
@@ -29941,32 +29941,32 @@
                                              44](sub_0204A4C8,func) found in global src_unk_02049D08.c.o
                                               45](BattleTower_GetTrainerIDForRoomAndOpponentNum,func) found in global src_unk_0204AEE8.c.o
                                               45](BattleTower_IsTrainerAlreadyUsed,func) found in local src_unk_02049D08.c.o
-                                            43](FrontierScrCmd_B2,func) found in global src_overlay104_ov104_022395F0.c.o
-                                             44](ov104_0223C264,func) found in global src_overlay104_ov104_0223C164.c.o
-                                             44](ov104_0223C29C,func) found in global src_overlay104_ov104_0223C164.c.o
-                                            43](FrontierScrCmd_B1,func) found in global src_overlay104_ov104_022395F0.c.o
-                                            43](FrontierScrCmd_B0,func) found in global src_overlay104_ov104_022395F0.c.o
-                                            43](FrontierScrCmd_AF,func) found in global src_overlay104_ov104_022395F0.c.o
-                                             44](ov104_02239CD0,func) found in global src_overlay104_ov104_02239C58.c.o
-                                              45](ov104_02239D1C,func) found in local src_overlay104_ov104_02239C58.c.o
-                                              45](ov104_02239F38,func) found in local src_overlay104_ov104_02239C58.c.o
-                                              45](ov104_02239FB0,func) found in local src_overlay104_ov104_02239C58.c.o
-                                               46](visiblePages$17120,object) found in local src_overlay104_ov104_02239C58.c.o
-                                              45](ov104_0223A090,func) found in local src_overlay104_ov104_02239C58.c.o
-                                            43](FrontierScrCmd_AE,func) found in global src_overlay104_ov104_022395F0.c.o
-                                            43](FrontierScrCmd_AD,func) found in global src_overlay104_ov104_022395F0.c.o
-                                             44](ov104_02239680,func) found in local src_overlay104_ov104_022395F0.c.o
-                                            43](FrontierScrCmd_AC,func) found in global src_overlay104_ov104_022395F0.c.o
-                                             44](ov104_02239C88,func) found in global src_overlay104_ov104_02239C58.c.o
-                                              45](sub_0209BBA4,func) found in global src_unk_0209BA80.c.o
-                                              45](sub_0209BC1C,func) found in global src_unk_0209BA80.c.o
-                                              45](sub_0209BC64,func) found in global src_unk_0209BA80.c.o
-                                              45](sub_0209BD68,func) found in global src_unk_0209BA80.c.o
-                                              45](sub_0209BDB0,func) found in global src_unk_0209BA80.c.o
-                                            43](FrontierScrCmd_AB,func) found in global src_overlay104_ov104_022395F0.c.o
-                                            43](FrontierScrCmd_AA,func) found in global src_overlay104_ov104_022395F0.c.o
-                                             44](ov104_02239C58,func) found in global src_overlay104_ov104_02239C58.c.o
-                                              45](.bss,section) found in local src_overlay104_ov104_02239C58.c.o
+                                            43](FrontierScrCmd_CallWFCFacilitySelectorFunction,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                             44](BattleFrontier_GetWFCLatestStreakIndex,func) found in global src_overlay104_wfc_facility_selector_helpers.c.o
+                                             44](BattleFrontier_GetWFCStreakActiveIndex,func) found in global src_overlay104_wfc_facility_selector_helpers.c.o
+                                            43](FrontierScrCmd_CheckIfPartnerDroppedOut,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                            43](FrontierScrCmd_GetSelectedPartyMenuSlots,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                            43](FrontierScrCmd_ManageFacilitySelectorSubApp,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                             44](WFCFacilitySelector_ManageSubApp,func) found in global src_overlay104_wfc_facility_selector.c.o
+                                              45](SetupPartyMenu,func) found in local src_overlay104_wfc_facility_selector.c.o
+                                              45](ProcessPartyMenuResults,func) found in local src_overlay104_wfc_facility_selector.c.o
+                                              45](SetupSummaryApp,func) found in local src_overlay104_wfc_facility_selector.c.o
+                                               46](visiblePages$17112,object) found in local src_overlay104_wfc_facility_selector.c.o
+                                              45](ProcessSummaryAppResults,func) found in local src_overlay104_wfc_facility_selector.c.o
+                                            43](FrontierScrCmd_CheckIfSameFacilityChosen,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                            43](FrontierScrCmd_WFCFacilitySelector_WaitForCommResponses,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                             44](WaitForCommResponses,func) found in local src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                            43](FrontierScrCmd_WFCFacilitySelector_SendCommMessage,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                             44](WFCFacilitySelector_SendCommMessage,func) found in global src_overlay104_wfc_facility_selector.c.o
+                                              45](WFCFacilitySelector_SendFacilityAndLatestStreak,func) found in global src_unk_0209BA80.c.o
+                                              45](WFCFacilitySelector_SendDidDropOutCmd,func) found in global src_unk_0209BA80.c.o
+                                              45](WFCFacilitySelector_SendSelectedMons,func) found in global src_unk_0209BA80.c.o
+                                              45](WFCFacilitySelector_SendStreakDeletionChoice,func) found in global src_unk_0209BA80.c.o
+                                              45](WFCFacilitySelector_SendPlayAgainChoice,func) found in global src_unk_0209BA80.c.o
+                                            43](FrontierScrCmd_FreeWFCFacilitySelector,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                            43](FrontierScrCmd_InitWFCFacilitySelector,func) found in global src_overlay104_frscrcmd_wfc_facility_selector.c.o
+                                             44](WFCFacilitySelector_Init,func) found in global src_overlay104_wfc_facility_selector.c.o
+                                              45](.bss,section) found in local src_overlay104_wfc_facility_selector.c.o
                                             43](FrontierScrCmd_BattleCastle_PrintTrainerIntro,func) found in global src_overlay104_frscrcmd_battle_castle.c.o
                                             43](FrontierScrCmd_ReceiveCastlePoints,func) found in global src_overlay104_frscrcmd_battle_castle.c.o
                                              44](BattleCastle_ReceiveCastlePoints,func) found in global src_overlay104_battle_castle.c.o
@@ -29983,7 +29983,7 @@
                                              44](StoreBattleCastleAppResult,func) found in local src_overlay104_frscrcmd_battle_castle.c.o
                                               45](BattleCastle_StoreAppResults,func) found in global src_overlay104_battle_castle.c.o
                                                46](GetBattleCastleAppSelectedSlot,func) found in local src_overlay104_battle_castle.c.o
-                                             44](sBattleCastleNullTemplate$18884,object) found in local src_overlay104_frscrcmd_battle_castle.c.o
+                                             44](sBattleCastleNullTemplate$19793,object) found in local src_overlay104_frscrcmd_battle_castle.c.o
                                               45](BattleCastleSelfApp_Exit,func) found in global src_applications_frontier_battle_castle_self_app.c.o
                                                46](FreeAssets,func) found in local src_applications_frontier_battle_castle_self_app.c.o
                                                 47](BattleCastleAppSprite_Free,func) found in global src_applications_frontier_battle_castle_sprites.c.o
@@ -30343,7 +30343,7 @@
                                                46](GetBattleHallAppSelectedCell,func) found in local src_overlay104_battle_hall.c.o
                                                46](BattleHall_CursorPosToType,func) found in global src_overlay104_battle_hall_helpers.c.o
                                                 47](sBattleHallAppGridOrder,object) found in local src_overlay104_battle_hall_helpers.c.o
-                                             44](sBattleHallAppTemplate$16738,object) found in local src_overlay104_frscrcmd_battle_hall.c.o
+                                             44](sBattleHallAppTemplate$17634,object) found in local src_overlay104_frscrcmd_battle_hall.c.o
                                               45](BattleHallApp_Exit,func) found in global src_applications_frontier_battle_hall_main.c.o
                                                46](FreeAssets,func) found in local src_applications_frontier_battle_hall_main.c.o
                                                 47](BattleHallAppSprite_Free,func) found in global src_applications_frontier_battle_hall_sprites.c.o
@@ -30359,7 +30359,7 @@
                                                  48](LoadAssets,func) found in local src_applications_frontier_battle_hall_main.c.o
                                                   49](LoadBackgrounds,func) found in local src_applications_frontier_battle_hall_main.c.o
                                                    50](SetGXBanks,func) found in local src_applications_frontier_battle_hall_main.c.o
-                                                    51](@16854,object) found in local src_applications_frontier_battle_hall_main.c.o
+                                                    51](@17750,object) found in local src_applications_frontier_battle_hall_main.c.o
                                                    50](InitBackgrounds,func) found in local src_applications_frontier_battle_hall_main.c.o
                                                    50](LoadMainScreenBackground,func) found in local src_applications_frontier_battle_hall_main.c.o
                                                    50](LoadPalette,func) found in local src_applications_frontier_battle_hall_main.c.o
@@ -30573,7 +30573,7 @@
                                             43](FrontierScrCmd_AddSelectedRentalsToParty,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
                                              44](BattleFactory_AddSelectedRentalsToParty,func) found in global src_overlay104_battle_factory.c.o
                                             43](FrontierScrCmd_OpenBattleFactoryAppForTrade,func) found in global src_overlay104_frscrcmd_battle_factory.c.o
-                                             44](sBattleFactoryAppTradeTemplate$16412,object) found in local src_overlay104_frscrcmd_battle_factory.c.o
+                                             44](sBattleFactoryAppTradeTemplate$17308,object) found in local src_overlay104_frscrcmd_battle_factory.c.o
                                               45](BattleFactoryApp_Exit,func) found in global src_applications_frontier_battle_factory_main.c.o
                                                46](CheckAppIsInInitialSelectionMode,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                46](GetNumMonToSelect,func) found in local src_applications_frontier_battle_factory_main.c.o
@@ -30617,7 +30617,7 @@
                                                  48](LoadAssets,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                   49](LoadBackgrounds,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](SetGXBanks,func) found in local src_applications_frontier_battle_factory_main.c.o
-                                                    51](@19671,object) found in local src_applications_frontier_battle_factory_main.c.o
+                                                    51](@20567,object) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](InitBackgrounds,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](LoadPalette,func) found in local src_applications_frontier_battle_factory_main.c.o
                                                    50](LoadWheelBackground,func) found in local src_applications_frontier_battle_factory_main.c.o
@@ -31106,7 +31106,7 @@
                                        38](ScrCmd_CalculateTrainerInfoAppearance,func) found in local src_scrcmd.c.o
                                         39](Appearance_CalculateFromTrainerInfo,func) found in global src_appearance.c.o
                                        38](ScrCmd_GetExchangeServiceCornerItemAndCost,func) found in global src_unk_020494DC.c.o
-                                        39](prizeList$18406,object) found in local src_unk_020494DC.c.o
+                                        39](prizeList$18415,object) found in local src_unk_020494DC.c.o
                                        38](ScrCmd_CheckBattlePoints,func) found in global src_unk_020494DC.c.o
                                        38](ScrCmd_RemoveBattlePoints,func) found in global src_unk_020494DC.c.o
                                        38](ScrCmd_GiveBattlePoints,func) found in global src_unk_020494DC.c.o
@@ -36690,7 +36690,7 @@
                                               45](ov65_0222E5E0,func) found in local src_overlay065_ov65_0222DCE0.c.o
                                           41](sub_0207DE40,func) found in local src_unk_0207DA28.c.o
                                           41](PoffinBerrySelectionContext_CreateVoiceChat,func) found in global src_poffin_berry_selection_context.c.o
-                                          41](sub_0209BA18,func) found in global src_battle_frontier.c.o
+                                          41](BattleFrontier_LaunchWFCFacilitySelector,func) found in global src_battle_frontier.c.o
                                           41](sub_0207DF9C,func) found in local src_unk_0207DA28.c.o
                                           41](sub_0207DE90,func) found in local src_unk_0207DA28.c.o
                                           41](sub_0207DED8,func) found in local src_unk_0207DA28.c.o
@@ -61094,7 +61094,7 @@
   0209B9EC 0000002C .text   sub_0209B9EC	(src_battle_frontier.c.o)
   0209BA10 00000000 .text   $d	(src_battle_frontier.c.o)
   0209BA18 00000000 .text   $t	(src_battle_frontier.c.o)
-  0209BA18 00000068 .text   sub_0209BA18	(src_battle_frontier.c.o)
+  0209BA18 00000068 .text   BattleFrontier_LaunchWFCFacilitySelector	(src_battle_frontier.c.o)
   0209BA7C 00000000 .text   $d	(src_battle_frontier.c.o)
   0209BA80 00000000 .text   $t	(src_unk_0209BA80.c.o)
   0209BA80 00000014 .text   sub_0209BA80	(src_unk_0209BA80.c.o)
@@ -61103,33 +61103,33 @@
   0209BA94 00000074 .text   sub_0209BA94	(src_unk_0209BA80.c.o)
   0209BB00 00000000 .text   $d	(src_unk_0209BA80.c.o)
   0209BB08 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BB08 0000002C .text   sub_0209BB08	(src_unk_0209BA80.c.o)
+  0209BB08 0000002C .text   BattleTower_SendTrainerIDListCmd	(src_unk_0209BA80.c.o)
   0209BB30 00000000 .text   $d	(src_unk_0209BA80.c.o)
   0209BB34 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BB34 00000034 .text   sub_0209BB34	(src_unk_0209BA80.c.o)
+  0209BB34 00000034 .text   BattleTower_HandleTrainerIDListCmd	(src_unk_0209BA80.c.o)
   0209BB64 00000000 .text   $d	(src_unk_0209BA80.c.o)
   0209BB68 00000000 .text   $t	(src_unk_0209BA80.c.o)
   0209BB68 0000003C .text   sub_0209BB68	(src_unk_0209BA80.c.o)
   0209BBA0 00000000 .text   $d	(src_unk_0209BA80.c.o)
-  0209BBA4 00000048 .text   sub_0209BBA4	(src_unk_0209BA80.c.o)
+  0209BBA4 00000048 .text   WFCFacilitySelector_SendFacilityAndLatestStreak	(src_unk_0209BA80.c.o)
   0209BBA4 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BBEC 0000002E .text   sub_0209BBEC	(src_unk_0209BA80.c.o)
+  0209BBEC 0000002E .text   WFCFacilitySelector_HandleFacilityAndStreakCmd	(src_unk_0209BA80.c.o)
   0209BBEC 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BC1C 0000001E .text   sub_0209BC1C	(src_unk_0209BA80.c.o)
+  0209BC1C 0000001E .text   WFCFacilitySelector_SendDidDropOutCmd	(src_unk_0209BA80.c.o)
   0209BC1C 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BC3C 00000026 .text   sub_0209BC3C	(src_unk_0209BA80.c.o)
+  0209BC3C 00000026 .text   WFCFacilitySelector_HandleDidDropOutCmd	(src_unk_0209BA80.c.o)
   0209BC3C 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BC64 000000C2 .text   sub_0209BC64	(src_unk_0209BA80.c.o)
+  0209BC64 000000C2 .text   WFCFacilitySelector_SendSelectedMons	(src_unk_0209BA80.c.o)
   0209BC64 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BD28 0000003E .text   sub_0209BD28	(src_unk_0209BA80.c.o)
+  0209BD28 0000003E .text   WFCFacilitySelector_HandleSelectedMonsCmd	(src_unk_0209BA80.c.o)
   0209BD28 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BD68 0000001E .text   sub_0209BD68	(src_unk_0209BA80.c.o)
+  0209BD68 0000001E .text   WFCFacilitySelector_SendStreakDeletionChoice	(src_unk_0209BA80.c.o)
   0209BD68 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BD88 00000026 .text   sub_0209BD88	(src_unk_0209BA80.c.o)
+  0209BD88 00000026 .text   WFCFacilitySelector_HandleStreakDeletionChoiceCmd	(src_unk_0209BA80.c.o)
   0209BD88 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BDB0 0000001E .text   sub_0209BDB0	(src_unk_0209BA80.c.o)
+  0209BDB0 0000001E .text   WFCFacilitySelector_SendPlayAgainChoice	(src_unk_0209BA80.c.o)
   0209BDB0 00000000 .text   $t	(src_unk_0209BA80.c.o)
-  0209BDD0 00000026 .text   sub_0209BDD0	(src_unk_0209BA80.c.o)
+  0209BDD0 00000026 .text   WFCFacilitySelector_HandlePlayAgainCmd	(src_unk_0209BA80.c.o)
   0209BDD0 00000000 .text   $t	(src_unk_0209BA80.c.o)
   0209BDF8 00000000 .text   $t	(src_unk_0209BDF8.c.o)
   0209BDF8 00000040 .text   sub_0209BDF8	(src_unk_0209BDF8.c.o)
@@ -66613,8 +66613,8 @@
   020EBB48 00000000 .rodata .rodata	(src_scrcmd_tv_broadcast.c.o)
   020EBB48 00000130 .rodata sInterviews	(src_scrcmd_tv_broadcast.c.o)
   020EBC78 00000000 .rodata .rodata	(src_unk_020494DC.c.o)
-  020EBC78 0000000A .rodata partnerGraphics$18330	(src_unk_020494DC.c.o)
-  020EBC82 000000A4 .rodata prizeList$18406	(src_unk_020494DC.c.o)
+  020EBC78 0000000A .rodata partnerGraphics$18339	(src_unk_020494DC.c.o)
+  020EBC82 000000A4 .rodata prizeList$18415	(src_unk_020494DC.c.o)
   020EBD28 00000008 .rodata linkMultiBattlePoints$21465	(src_unk_02049D08.c.o)
   020EBD30 00000008 .rodata soloBattlePoints$21464	(src_unk_02049D08.c.o)
   020EBD38 0000000A .rodata v3$21512	(src_unk_02049D08.c.o)
@@ -132079,10 +132079,10 @@
   0222EC88 00000000 .text   $d	(src_overlay104_frontier_scenes.c.o)
   0222EC8C 00000002 .text   BattleFactoryBattleRoomSceneDestroy	(src_overlay104_frontier_scenes.c.o)
   0222EC8C 00000000 .text   $t	(src_overlay104_frontier_scenes.c.o)
-  0222EC90 0000000E .text   ov104_0222EC90	(src_overlay104_frontier_scenes.c.o)
+  0222EC90 0000000E .text   WFCFacilitySelectorSceneSetup	(src_overlay104_frontier_scenes.c.o)
   0222EC90 00000000 .text   $t	(src_overlay104_frontier_scenes.c.o)
   0222ECA0 00000000 .text   $t	(src_overlay104_frontier_scenes.c.o)
-  0222ECA0 0000000C .text   ov104_0222ECA0	(src_overlay104_frontier_scenes.c.o)
+  0222ECA0 0000000C .text   WFCFacilitySelectorSceneDestroy	(src_overlay104_frontier_scenes.c.o)
   0222ECA8 00000000 .text   $d	(src_overlay104_frontier_scenes.c.o)
   0222ECAC 00000000 .text   $t	(src_overlay104_frontier_scenes.c.o)
   0222ECAC 00000038 .text   BattleCastleBattleRoomSceneSetup	(src_overlay104_frontier_scenes.c.o)
@@ -133260,59 +133260,59 @@
   022395D8 00000000 .text   $t	(src_overlay104_ov104_022394A4.c.o)
   022395D8 00000018 .text   ov104_022395D8	(src_overlay104_ov104_022394A4.c.o)
   022395EC 00000000 .text   $d	(src_overlay104_ov104_022394A4.c.o)
-  022395F0 00000020 .text   FrontierScrCmd_AA	(src_overlay104_ov104_022395F0.c.o)
-  022395F0 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239610 00000012 .text   FrontierScrCmd_AB	(src_overlay104_ov104_022395F0.c.o)
-  02239610 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239624 0000003A .text   FrontierScrCmd_AC	(src_overlay104_ov104_022395F0.c.o)
-  02239624 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239660 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239660 00000020 .text   FrontierScrCmd_AD	(src_overlay104_ov104_022395F0.c.o)
-  0223967C 00000000 .text   $d	(src_overlay104_ov104_022395F0.c.o)
-  02239680 00000022 .text   ov104_02239680	(src_overlay104_ov104_022395F0.c.o)
-  02239680 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  022396A4 0000002E .text   FrontierScrCmd_AE	(src_overlay104_ov104_022395F0.c.o)
-  022396A4 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  022396D4 00000048 .text   FrontierScrCmd_AF	(src_overlay104_ov104_022395F0.c.o)
-  022396D4 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  0223971C 00000078 .text   FrontierScrCmd_B0	(src_overlay104_ov104_022395F0.c.o)
-  0223971C 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239794 0000001C .text   FrontierScrCmd_B1	(src_overlay104_ov104_022395F0.c.o)
-  02239794 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  022397B0 00000364 .text   FrontierScrCmd_B2	(src_overlay104_ov104_022395F0.c.o)
-  022397B0 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239B14 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239B14 000000E0 .text   FrontierScrCmd_B3	(src_overlay104_ov104_022395F0.c.o)
-  02239BF0 00000000 .text   $d	(src_overlay104_ov104_022395F0.c.o)
-  02239BF4 0000001C .text   FrontierScrCmd_B4	(src_overlay104_ov104_022395F0.c.o)
-  02239BF4 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239C10 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239C10 00000010 .text   FrontierScrCmd_B5	(src_overlay104_ov104_022395F0.c.o)
-  02239C1C 00000000 .text   $d	(src_overlay104_ov104_022395F0.c.o)
-  02239C20 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239C20 00000024 .text   ov104_02239C20	(src_overlay104_ov104_022395F0.c.o)
-  02239C40 00000000 .text   $d	(src_overlay104_ov104_022395F0.c.o)
-  02239C44 00000012 .text   FrontierScrCmd_ClearTowerStruct	(src_overlay104_ov104_022395F0.c.o)
-  02239C44 00000000 .text   $t	(src_overlay104_ov104_022395F0.c.o)
-  02239C58 00000000 .text   $t	(src_overlay104_ov104_02239C58.c.o)
-  02239C58 00000024 .text   ov104_02239C58	(src_overlay104_ov104_02239C58.c.o)
-  02239C78 00000000 .text   $d	(src_overlay104_ov104_02239C58.c.o)
-  02239C7C 0000000C .text   ov104_02239C7C	(src_overlay104_ov104_02239C58.c.o)
-  02239C7C 00000000 .text   $t	(src_overlay104_ov104_02239C58.c.o)
-  02239C88 00000046 .text   ov104_02239C88	(src_overlay104_ov104_02239C58.c.o)
-  02239C88 00000000 .text   $t	(src_overlay104_ov104_02239C58.c.o)
-  02239CD0 0000004A .text   ov104_02239CD0	(src_overlay104_ov104_02239C58.c.o)
-  02239CD0 00000000 .text   $t	(src_overlay104_ov104_02239C58.c.o)
-  02239D1C 00000000 .text   $t	(src_overlay104_ov104_02239C58.c.o)
-  02239D1C 0000021C .text   ov104_02239D1C	(src_overlay104_ov104_02239C58.c.o)
-  02239F34 00000000 .text   $d	(src_overlay104_ov104_02239C58.c.o)
-  02239F38 00000076 .text   ov104_02239F38	(src_overlay104_ov104_02239C58.c.o)
-  02239F38 00000000 .text   $t	(src_overlay104_ov104_02239C58.c.o)
-  02239FB0 00000000 .text   $t	(src_overlay104_ov104_02239C58.c.o)
-  02239FB0 000000E0 .text   ov104_02239FB0	(src_overlay104_ov104_02239C58.c.o)
-  0223A088 00000000 .text   $d	(src_overlay104_ov104_02239C58.c.o)
-  0223A090 00000032 .text   ov104_0223A090	(src_overlay104_ov104_02239C58.c.o)
-  0223A090 00000000 .text   $t	(src_overlay104_ov104_02239C58.c.o)
+  022395F0 00000020 .text   FrontierScrCmd_InitWFCFacilitySelector	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  022395F0 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239610 00000012 .text   FrontierScrCmd_FreeWFCFacilitySelector	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239610 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239624 0000003A .text   FrontierScrCmd_WFCFacilitySelector_SendCommMessage	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239624 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239660 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239660 00000020 .text   FrontierScrCmd_WFCFacilitySelector_WaitForCommResponses	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  0223967C 00000000 .text   $d	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239680 00000022 .text   WaitForCommResponses	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239680 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  022396A4 0000002E .text   FrontierScrCmd_CheckIfSameFacilityChosen	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  022396A4 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  022396D4 00000048 .text   FrontierScrCmd_ManageFacilitySelectorSubApp	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  022396D4 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  0223971C 00000078 .text   FrontierScrCmd_GetSelectedPartyMenuSlots	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  0223971C 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239794 0000001C .text   FrontierScrCmd_CheckIfPartnerDroppedOut	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239794 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  022397B0 00000364 .text   FrontierScrCmd_CallWFCFacilitySelectorFunction	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  022397B0 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239B14 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239B14 000000E0 .text   FrontierScrCmd_InitBattleTower	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239BF0 00000000 .text   $d	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239BF4 0000001C .text   FrontierScrCmd_SendTowerTrainerIDList	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239BF4 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239C10 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239C10 00000010 .text   FrontierScrCmd_WaitForTowerTrainerIDListResponses	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239C1C 00000000 .text   $d	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239C20 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239C20 00000024 .text   WaitForTowerCommResponse	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239C40 00000000 .text   $d	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239C44 00000012 .text   FrontierScrCmd_FreeBattleTower	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239C44 00000000 .text   $t	(src_overlay104_frscrcmd_wfc_facility_selector.c.o)
+  02239C58 00000000 .text   $t	(src_overlay104_wfc_facility_selector.c.o)
+  02239C58 00000024 .text   WFCFacilitySelector_Init	(src_overlay104_wfc_facility_selector.c.o)
+  02239C78 00000000 .text   $d	(src_overlay104_wfc_facility_selector.c.o)
+  02239C7C 0000000C .text   WFCFacilitySelector_Free	(src_overlay104_wfc_facility_selector.c.o)
+  02239C7C 00000000 .text   $t	(src_overlay104_wfc_facility_selector.c.o)
+  02239C88 00000046 .text   WFCFacilitySelector_SendCommMessage	(src_overlay104_wfc_facility_selector.c.o)
+  02239C88 00000000 .text   $t	(src_overlay104_wfc_facility_selector.c.o)
+  02239CD0 0000004A .text   WFCFacilitySelector_ManageSubApp	(src_overlay104_wfc_facility_selector.c.o)
+  02239CD0 00000000 .text   $t	(src_overlay104_wfc_facility_selector.c.o)
+  02239D1C 00000000 .text   $t	(src_overlay104_wfc_facility_selector.c.o)
+  02239D1C 0000021C .text   SetupPartyMenu	(src_overlay104_wfc_facility_selector.c.o)
+  02239F34 00000000 .text   $d	(src_overlay104_wfc_facility_selector.c.o)
+  02239F38 00000076 .text   ProcessPartyMenuResults	(src_overlay104_wfc_facility_selector.c.o)
+  02239F38 00000000 .text   $t	(src_overlay104_wfc_facility_selector.c.o)
+  02239FB0 00000000 .text   $t	(src_overlay104_wfc_facility_selector.c.o)
+  02239FB0 000000E0 .text   SetupSummaryApp	(src_overlay104_wfc_facility_selector.c.o)
+  0223A088 00000000 .text   $d	(src_overlay104_wfc_facility_selector.c.o)
+  0223A090 00000032 .text   ProcessSummaryAppResults	(src_overlay104_wfc_facility_selector.c.o)
+  0223A090 00000000 .text   $t	(src_overlay104_wfc_facility_selector.c.o)
   0223A0C4 00000052 .text   BattleTower_CreateTrainerParty	(src_overlay104_ov104_0223A0C4.c.o)
   0223A0C4 00000000 .text   $t	(src_overlay104_ov104_0223A0C4.c.o)
   0223A118 000001F2 .text   BattleTower_CreateRandomTrainerParty	(src_overlay104_ov104_0223A0C4.c.o)
@@ -133509,23 +133509,23 @@
   0223C144 00000000 .text   $d	(src_overlay104_battle_arcade_helpers.c.o)
   0223C148 0000001C .text   BattleArcade_GetCategoryFromEffect	(src_overlay104_battle_arcade_helpers.c.o)
   0223C148 00000000 .text   $t	(src_overlay104_battle_arcade_helpers.c.o)
-  0223C164 00000022 .text   ov104_0223C164	(src_overlay104_ov104_0223C164.c.o)
-  0223C164 00000000 .text   $t	(src_overlay104_ov104_0223C164.c.o)
-  0223C188 00000000 .text   $t	(src_overlay104_ov104_0223C164.c.o)
-  0223C188 00000034 .text   ov104_0223C188	(src_overlay104_ov104_0223C164.c.o)
-  0223C1B4 00000000 .text   $d	(src_overlay104_ov104_0223C164.c.o)
-  0223C1BC 0000004C .text   ov104_0223C1BC	(src_overlay104_ov104_0223C164.c.o)
-  0223C1BC 00000000 .text   $t	(src_overlay104_ov104_0223C164.c.o)
-  0223C208 00000034 .text   ov104_0223C208	(src_overlay104_ov104_0223C164.c.o)
-  0223C208 00000000 .text   $t	(src_overlay104_ov104_0223C164.c.o)
-  0223C23C 00000012 .text   ov104_0223C23C	(src_overlay104_ov104_0223C164.c.o)
-  0223C23C 00000000 .text   $t	(src_overlay104_ov104_0223C164.c.o)
-  0223C250 00000012 .text   ov104_0223C250	(src_overlay104_ov104_0223C164.c.o)
-  0223C250 00000000 .text   $t	(src_overlay104_ov104_0223C164.c.o)
-  0223C264 00000036 .text   ov104_0223C264	(src_overlay104_ov104_0223C164.c.o)
-  0223C264 00000000 .text   $t	(src_overlay104_ov104_0223C164.c.o)
-  0223C29C 00000036 .text   ov104_0223C29C	(src_overlay104_ov104_0223C164.c.o)
-  0223C29C 00000000 .text   $t	(src_overlay104_ov104_0223C164.c.o)
+  0223C164 00000022 .text   WFCFacilitySelectorEffects_Init	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C164 00000000 .text   $t	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C188 00000000 .text   $t	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C188 00000034 .text   WFCFacilitySelectorMonitorFlicker_Init	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C1B4 00000000 .text   $d	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C1BC 0000004C .text   Task_UpdateMonitorTiles	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C1BC 00000000 .text   $t	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C208 00000034 .text   GetMonitorTileset	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C208 00000000 .text   $t	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C23C 00000012 .text   WFCFacilitySelectorEffects_Free	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C23C 00000000 .text   $t	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C250 00000012 .text   WFCFacilitySelectorMonitorFlicker_Free	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C250 00000000 .text   $t	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C264 00000036 .text   BattleFrontier_GetWFCLatestStreakIndex	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C264 00000000 .text   $t	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C29C 00000036 .text   BattleFrontier_GetWFCStreakActiveIndex	(src_overlay104_wfc_facility_selector_helpers.c.o)
+  0223C29C 00000000 .text   $t	(src_overlay104_wfc_facility_selector_helpers.c.o)
   0223C2D4 00000000 .text   $t	(src_overlay104_frontier_graphics.c.o)
   0223C2D4 000001F8 .text   FrontierGraphics_New	(src_overlay104_frontier_graphics.c.o)
   0223C49C 00000000 .text   $d	(src_overlay104_frontier_graphics.c.o)
@@ -133833,23 +133833,23 @@
   0223F9AC 00000034 .rodata sItemSpriteTemplate	(src_overlay104_ov104_02231F74.c.o)
   0223F9E0 00000034 .rodata sMonSpriteTemplate	(src_overlay104_ov104_02231F74.c.o)
   0223FA14 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_factory.c.o)
-  0223FA14 00000010 .rodata sBattleFactoryAppTemplate$16391	(src_overlay104_frscrcmd_battle_factory.c.o)
-  0223FA24 00000010 .rodata sBattleFactoryAppTradeTemplate$16412	(src_overlay104_frscrcmd_battle_factory.c.o)
+  0223FA14 00000010 .rodata sBattleFactoryAppTemplate$17287	(src_overlay104_frscrcmd_battle_factory.c.o)
+  0223FA24 00000010 .rodata sBattleFactoryAppTradeTemplate$17308	(src_overlay104_frscrcmd_battle_factory.c.o)
   0223FA34 00000009 .rodata sBPPerRoundSolo$19173	(src_overlay104_battle_factory.c.o)
   0223FA40 00000009 .rodata sBPPerRoundWifi$19174	(src_overlay104_battle_factory.c.o)
   0223FA4C 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_hall.c.o)
-  0223FA4C 00000010 .rodata sBattleHallAppTemplate$16738	(src_overlay104_frscrcmd_battle_hall.c.o)
+  0223FA4C 00000010 .rodata sBattleHallAppTemplate$17634	(src_overlay104_frscrcmd_battle_hall.c.o)
   0223FA5C 00000013 .rodata sBPPerRoundSolo$19057	(src_overlay104_battle_hall.c.o)
   0223FA70 00000013 .rodata sBPPerRoundWiFi$19058	(src_overlay104_battle_hall.c.o)
-  0223FA84 00000010 .rodata sBattleCastleNullTemplate$18884	(src_overlay104_frscrcmd_battle_castle.c.o)
+  0223FA84 00000010 .rodata sBattleCastleNullTemplate$19793	(src_overlay104_frscrcmd_battle_castle.c.o)
   0223FA84 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_castle.c.o)
-  0223FA94 00000010 .rodata sBattleCastleSelfAppTemplate$18876	(src_overlay104_frscrcmd_battle_castle.c.o)
-  0223FAA4 00000010 .rodata sBattleCastleOpponentAppTemplate$18909	(src_overlay104_frscrcmd_battle_castle.c.o)
+  0223FA94 00000010 .rodata sBattleCastleSelfAppTemplate$19785	(src_overlay104_frscrcmd_battle_castle.c.o)
+  0223FAA4 00000010 .rodata sBattleCastleOpponentAppTemplate$19818	(src_overlay104_frscrcmd_battle_castle.c.o)
   0223FAB4 00000009 .rodata sBPPerRoundSolo$19445	(src_overlay104_battle_castle.c.o)
   0223FAC0 00000009 .rodata sBPPerRoundWifi$19446	(src_overlay104_battle_castle.c.o)
   0223FACC 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_arcade.c.o)
-  0223FACC 0000000C .rodata @19111	(src_overlay104_frscrcmd_battle_arcade.c.o)
-  0223FAD8 00000010 .rodata sBattleArcadeAppTemplate$18902	(src_overlay104_frscrcmd_battle_arcade.c.o)
+  0223FACC 0000000C .rodata @20020	(src_overlay104_frscrcmd_battle_arcade.c.o)
+  0223FAD8 00000010 .rodata sBattleArcadeAppTemplate$19811	(src_overlay104_frscrcmd_battle_arcade.c.o)
   0223FAE8 00000005 .rodata sPerformanceByNumFainted	(src_overlay104_battle_arcade.c.o)
   0223FAF0 00000005 .rodata sPerformanceByNumWithStatus	(src_overlay104_battle_arcade.c.o)
   0223FAF8 00000006 .rodata sRouletteSpeedByRound	(src_overlay104_battle_arcade.c.o)
@@ -133868,7 +133868,7 @@
   0223FC88 00000009 .rodata sBPPerRoundWifi$19774	(src_overlay104_battle_arcade.c.o)
   0223FC94 00000000 .rodata .rodata	(src_overlay104_frscrcmd_battle_tower.c.o)
   0223FC94 0000000A .rodata partnerGraphics$16705	(src_overlay104_frscrcmd_battle_tower.c.o)
-  0223FCA0 00000009 .rodata visiblePages$17120	(src_overlay104_ov104_02239C58.c.o)
+  0223FCA0 00000009 .rodata visiblePages$17112	(src_overlay104_wfc_facility_selector.c.o)
   0223FCAC 00000000 .rodata .rodata	(src_overlay104_ov104_0223A0C4.c.o)
   0223FCAC 00000008 .rodata sBattleTowerReservedItems	(src_overlay104_ov104_0223A0C4.c.o)
   0223FCB4 0000002A .rodata Unk_ov104_0223FCB4	(src_overlay104_ov104_0223A0C4.c.o)
@@ -133945,8 +133945,8 @@
   02241AC8 00000004 .bss    castle$19043	(src_overlay104_battle_castle.c.o)
   02241ACC 00000000 .bss    .bss	(src_overlay104_battle_arcade.c.o)
   02241ACC 00000004 .bss    arcade$19003	(src_overlay104_battle_arcade.c.o)
-  02241AD0 00000000 .bss    .bss	(src_overlay104_ov104_02239C58.c.o)
-  02241AD0 00000004 .bss    v0$17031	(src_overlay104_ov104_02239C58.c.o)
+  02241AD0 00000000 .bss    .bss	(src_overlay104_wfc_facility_selector.c.o)
+  02241AD0 00000004 .bss    selector$17023	(src_overlay104_wfc_facility_selector.c.o)
 #>02241AE0          SDK_OVERLAY.overlay104.BSS_END (linker command file)
 #>00000020          SDK_OVERLAY.overlay104.BSS_SIZE (linker command file)
 
@@ -134285,17 +134285,17 @@
   02246308 0000000C .rodata sMonOptionsMenuCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246314 0000000C .rodata sExchangeSelectPokeballPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246320 00000010 .rodata sReceiveSelectMultiPokeballPositions	(src_applications_frontier_battle_factory_main.c.o)
-  02246330 00000010 .rodata @19677	(src_applications_frontier_battle_factory_main.c.o)
+  02246330 00000010 .rodata @20573	(src_applications_frontier_battle_factory_main.c.o)
   02246340 00000010 .rodata sExchangeSelectCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246350 00000014 .rodata sReceiveSelectCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246364 00000018 .rodata sInitialSelectionPokeballPositions	(src_applications_frontier_battle_factory_main.c.o)
   0224637C 00000018 .rodata sReceiveSelectMultiCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
   02246394 00000018 .rodata sInitialSelectCursorPositions	(src_applications_frontier_battle_factory_main.c.o)
-  022463AC 0000001C .rodata @19681	(src_applications_frontier_battle_factory_main.c.o)
-  022463C8 0000001C .rodata @19685	(src_applications_frontier_battle_factory_main.c.o)
-  022463E4 0000001C .rodata @19679	(src_applications_frontier_battle_factory_main.c.o)
-  02246400 0000001C .rodata @19683	(src_applications_frontier_battle_factory_main.c.o)
-  0224641C 00000028 .rodata @19671	(src_applications_frontier_battle_factory_main.c.o)
+  022463AC 0000001C .rodata @20577	(src_applications_frontier_battle_factory_main.c.o)
+  022463C8 0000001C .rodata @20581	(src_applications_frontier_battle_factory_main.c.o)
+  022463E4 0000001C .rodata @20575	(src_applications_frontier_battle_factory_main.c.o)
+  02246400 0000001C .rodata @20579	(src_applications_frontier_battle_factory_main.c.o)
+  0224641C 00000028 .rodata @20567	(src_applications_frontier_battle_factory_main.c.o)
   02246444 00000004 .rodata sCapacities	(src_applications_frontier_battle_factory_sprite_manager.c.o)
   02246448 00000000 .rodata .rodata	(src_applications_frontier_battle_factory_sprite_manager.c.o)
   02246448 00000010 .rodata @13048	(src_applications_frontier_battle_factory_sprite_manager.c.o)
@@ -134480,12 +134480,12 @@
   02243794 00000000 .text   $d	(src_applications_frontier_battle_hall_windows.c.o)
   02243798 00000009 .rodata sSummaryPages	(src_applications_frontier_battle_hall_main.c.o)
   022437A4 00000000 .rodata .rodata	(src_applications_frontier_battle_hall_main.c.o)
-  022437A4 00000010 .rodata @16860	(src_applications_frontier_battle_hall_main.c.o)
-  022437B4 0000001C .rodata @16868	(src_applications_frontier_battle_hall_main.c.o)
-  022437D0 0000001C .rodata @16862	(src_applications_frontier_battle_hall_main.c.o)
-  022437EC 0000001C .rodata @16864	(src_applications_frontier_battle_hall_main.c.o)
-  02243808 0000001C .rodata @16866	(src_applications_frontier_battle_hall_main.c.o)
-  02243824 00000028 .rodata @16854	(src_applications_frontier_battle_hall_main.c.o)
+  022437A4 00000010 .rodata @17756	(src_applications_frontier_battle_hall_main.c.o)
+  022437B4 0000001C .rodata @17764	(src_applications_frontier_battle_hall_main.c.o)
+  022437D0 0000001C .rodata @17758	(src_applications_frontier_battle_hall_main.c.o)
+  022437EC 0000001C .rodata @17760	(src_applications_frontier_battle_hall_main.c.o)
+  02243808 0000001C .rodata @17762	(src_applications_frontier_battle_hall_main.c.o)
+  02243824 00000028 .rodata @17750	(src_applications_frontier_battle_hall_main.c.o)
   0224384C 00000004 .rodata sCapacities	(src_applications_frontier_battle_hall_sprite_manager.c.o)
   02243850 00000000 .rodata .rodata	(src_applications_frontier_battle_hall_sprite_manager.c.o)
   02243850 00000010 .rodata @14132	(src_applications_frontier_battle_hall_sprite_manager.c.o)
@@ -135097,16 +135097,16 @@
   02249E0C 00000006 .rodata sHealingCosts	(src_applications_frontier_battle_castle_self_app.c.o)
   02249E12 00000006 .rodata sBerriesAvailableByRank	(src_applications_frontier_battle_castle_self_app.c.o)
   02249E18 0000000A .rodata sMonMenuDescriptions	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249E24 00000010 .rodata @19764	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249E24 00000010 .rodata @20660	(src_applications_frontier_battle_castle_self_app.c.o)
   02249E34 00000012 .rodata sRankUpMessages	(src_applications_frontier_battle_castle_self_app.c.o)
   02249E46 00000012 .rodata sRankUpCosts	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249E58 0000001C .rodata @19772	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249E74 0000001C .rodata @19770	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249E90 0000001C .rodata @19774	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249EAC 0000001C .rodata @19766	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249EC8 0000001C .rodata @19768	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249E58 0000001C .rodata @20668	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249E74 0000001C .rodata @20666	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249E90 0000001C .rodata @20670	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249EAC 0000001C .rodata @20662	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249EC8 0000001C .rodata @20664	(src_applications_frontier_battle_castle_self_app.c.o)
   02249EE4 00000020 .rodata sDefaultListTemplate	(src_applications_frontier_battle_castle_self_app.c.o)
-  02249F04 00000028 .rodata @19758	(src_applications_frontier_battle_castle_self_app.c.o)
+  02249F04 00000028 .rodata @20654	(src_applications_frontier_battle_castle_self_app.c.o)
   02249F2C 00000028 .rodata sMonMenuEntries	(src_applications_frontier_battle_castle_self_app.c.o)
   02249F54 00000030 .rodata sRentalMenuEntries	(src_applications_frontier_battle_castle_self_app.c.o)
   02249F84 00000036 .rodata sItemsForRent	(src_applications_frontier_battle_castle_self_app.c.o)
@@ -135116,18 +135116,18 @@
   0224A06C 00000040 .rodata sBerryPrices	(src_applications_frontier_battle_castle_self_app.c.o)
   0224A0AC 00000000 .rodata .rodata	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A0AC 00000010 .rodata sSummaryMenuDescriptions	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A0BC 00000010 .rodata @19648	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A0BC 00000010 .rodata @20544	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A0CC 00000010 .rodata sMonMenuDescriptions	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A0DC 00000012 .rodata sRankUpMessages	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A0F0 0000001C .rodata @19650	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A10C 0000001C .rodata @19658	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A128 0000001C .rodata @19652	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A144 0000001C .rodata @19654	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A160 0000001C .rodata @19656	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A0F0 0000001C .rodata @20546	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A10C 0000001C .rodata @20554	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A128 0000001C .rodata @20548	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A144 0000001C .rodata @20550	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A160 0000001C .rodata @20552	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A17C 00000020 .rodata sDefaultListMenuTemplate	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A19C 00000020 .rodata sSummaryMenuEntries	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A1BC 00000020 .rodata sMonMenuEntries	(src_applications_frontier_battle_castle_opponent_app.c.o)
-  0224A1DC 00000028 .rodata @19642	(src_applications_frontier_battle_castle_opponent_app.c.o)
+  0224A1DC 00000028 .rodata @20538	(src_applications_frontier_battle_castle_opponent_app.c.o)
   0224A204 00000004 .rodata sCapacities	(src_applications_frontier_battle_castle_sprite_manager.c.o)
   0224A208 00000000 .rodata .rodata	(src_applications_frontier_battle_castle_sprite_manager.c.o)
   0224A208 00000010 .rodata @15739	(src_applications_frontier_battle_castle_sprite_manager.c.o)
@@ -135303,13 +135303,13 @@
   02243680 00000007 .rodata sEffectAvailabilityByBattle	(src_applications_frontier_battle_arcade_main.c.o)
   02243687 00000008 .rodata sStopButtonHitBox	(src_applications_frontier_battle_arcade_main.c.o)
   0224368F 00000010 .rodata sCursorMoveFrames	(src_applications_frontier_battle_arcade_main.c.o)
-  022436A0 00000010 .rodata @19281	(src_applications_frontier_battle_arcade_main.c.o)
+  022436A0 00000010 .rodata @20177	(src_applications_frontier_battle_arcade_main.c.o)
   022436B0 00000014 .rodata sCategoryWeights	(src_applications_frontier_battle_arcade_main.c.o)
-  022436C4 0000001C .rodata @19287	(src_applications_frontier_battle_arcade_main.c.o)
-  022436E0 0000001C .rodata @19283	(src_applications_frontier_battle_arcade_main.c.o)
-  022436FC 0000001C .rodata @19285	(src_applications_frontier_battle_arcade_main.c.o)
+  022436C4 0000001C .rodata @20183	(src_applications_frontier_battle_arcade_main.c.o)
+  022436E0 0000001C .rodata @20179	(src_applications_frontier_battle_arcade_main.c.o)
+  022436FC 0000001C .rodata @20181	(src_applications_frontier_battle_arcade_main.c.o)
   02243718 00000020 .rodata sEffectAvailabilityByRound	(src_applications_frontier_battle_arcade_main.c.o)
-  02243738 00000028 .rodata @19275	(src_applications_frontier_battle_arcade_main.c.o)
+  02243738 00000028 .rodata @20171	(src_applications_frontier_battle_arcade_main.c.o)
   02243760 00000004 .rodata sCapacities	(src_applications_frontier_battle_arcade_sprite_manager.c.o)
   02243764 00000000 .rodata .rodata	(src_applications_frontier_battle_arcade_sprite_manager.c.o)
   02243764 00000010 .rodata @15681	(src_applications_frontier_battle_arcade_sprite_manager.c.o)
