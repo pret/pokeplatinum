@@ -8,6 +8,7 @@
 
 #include "bg_window.h"
 #include "easy3d_object.h"
+#include "ending.naix"
 #include "genders.h"
 #include "graphics.h"
 #include "heap.h"
@@ -41,43 +42,43 @@ static const Bg3DModelAnim sEndCredits3DModelAnims[][2] = {
 };
 
 static const MemoryImageData sEndCreditsMaleMemories[] = {
-    { .tiles = 38, .tileMap = 37, .palette = 48, .xOffset = 0, .yOffset = 0 },
-    { .tiles = 39, .tileMap = 37, .palette = 49, .xOffset = -32, .yOffset = -48 },
-    { .tiles = 40, .tileMap = 37, .palette = 50, .xOffset = -16, .yOffset = -30 },
-    { .tiles = 41, .tileMap = 37, .palette = 51, .xOffset = -42, .yOffset = -2 },
-    { .tiles = 42, .tileMap = 37, .palette = 52, .xOffset = -8, .yOffset = -20 },
-    { .tiles = 43, .tileMap = 37, .palette = 53, .xOffset = -50, .yOffset = -16 },
-    { .tiles = 44, .tileMap = 37, .palette = 54, .xOffset = -40, .yOffset = -34 },
-    { .tiles = 45, .tileMap = 37, .palette = 55, .xOffset = -16, .yOffset = -1 },
-    { .tiles = 46, .tileMap = 37, .palette = 56, .xOffset = -44, .yOffset = -15 },
-    { .tiles = 47, .tileMap = 37, .palette = 57, .xOffset = -30, .yOffset = -30 }
+    { .tiles = memory_lucas_route_201_starter_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_lucas_route_201_starter_NCLR, .xOffset = 0, .yOffset = 0 },
+    { .tiles = memory_lucas_rowans_lab_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_lucas_rowans_lab_NCLR, .xOffset = -32, .yOffset = -48 },
+    { .tiles = memory_lucas_pokemon_center_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_lucas_pokemon_center_NCLR, .xOffset = -16, .yOffset = -30 },
+    { .tiles = memory_lucas_valley_windworks_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_lucas_valley_windworks_NCLR, .xOffset = -42, .yOffset = -2 },
+    { .tiles = memory_lucas_route_210_psyduck_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_lucas_route_210_psyduck_NCLR, .xOffset = -8, .yOffset = -20 },
+    { .tiles = memory_lucas_eterna_forest_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_lucas_eterna_forest_NCLR, .xOffset = -50, .yOffset = -16 },
+    { .tiles = memory_lucas_pastoria_great_marsh_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_lucas_pastoria_great_marsh_NCLR, .xOffset = -40, .yOffset = -34 },
+    { .tiles = memory_lucas_canalave_barry_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_lucas_canalave_barry_NCLR, .xOffset = -16, .yOffset = -1 },
+    { .tiles = memory_lucas_lake_acuity_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_lucas_lake_acuity_NCLR, .xOffset = -44, .yOffset = -15 },
+    { .tiles = memory_lucas_spear_pillar_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_lucas_spear_pillar_NCLR, .xOffset = -30, .yOffset = -30 }
 };
 
 static const MemoryImageData sEndCreditsFemaleMemories[] = {
-    { .tiles = 58, .tileMap = 37, .palette = 68, .xOffset = 0, .yOffset = 0 },
-    { .tiles = 59, .tileMap = 37, .palette = 69, .xOffset = -32, .yOffset = -48 },
-    { .tiles = 60, .tileMap = 37, .palette = 70, .xOffset = -16, .yOffset = -30 },
-    { .tiles = 61, .tileMap = 37, .palette = 71, .xOffset = -42, .yOffset = -2 },
-    { .tiles = 62, .tileMap = 37, .palette = 72, .xOffset = -8, .yOffset = -20 },
-    { .tiles = 63, .tileMap = 37, .palette = 73, .xOffset = -50, .yOffset = -16 },
-    { .tiles = 64, .tileMap = 37, .palette = 74, .xOffset = -40, .yOffset = -34 },
-    { .tiles = 65, .tileMap = 37, .palette = 75, .xOffset = -16, .yOffset = -1 },
-    { .tiles = 66, .tileMap = 37, .palette = 76, .xOffset = -44, .yOffset = -15 },
-    { .tiles = 67, .tileMap = 37, .palette = 77, .xOffset = -30, .yOffset = -30 }
+    { .tiles = memory_dawn_route_201_starter_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_dawn_route_201_starter_NCLR, .xOffset = 0, .yOffset = 0 },
+    { .tiles = memory_dawn_jubilife_looker_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_dawn_jubilife_looker_NCLR, .xOffset = -32, .yOffset = -48 },
+    { .tiles = memory_dawn_pokemon_mart_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_dawn_pokemon_mart_NCLR, .xOffset = -16, .yOffset = -30 },
+    { .tiles = memory_dawn_eterna_cyrus_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_dawn_eterna_cyrus_NCLR, .xOffset = -42, .yOffset = -2 },
+    { .tiles = memory_dawn_hearthome_contest_hall_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_dawn_hearthome_contest_hall_NCLR, .xOffset = -8, .yOffset = -20 },
+    { .tiles = memory_dawn_solaceon_town_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_dawn_solaceon_town_NCLR, .xOffset = -50, .yOffset = -16 },
+    { .tiles = memory_dawn_route_216_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_dawn_route_216_NCLR, .xOffset = -40, .yOffset = -34 },
+    { .tiles = memory_dawn_lake_valor_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_dawn_lake_valor_NCLR, .xOffset = -16, .yOffset = -1 },
+    { .tiles = memory_dawn_galactic_hq_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_dawn_galactic_hq_NCLR, .xOffset = -44, .yOffset = -15 },
+    { .tiles = memory_dawn_spear_pillar_NCGR, .tileMap = memory_shared_NSCR, .palette = memory_dawn_spear_pillar_NCLR, .xOffset = -30, .yOffset = -30 }
 };
 
 static const MemoryImageData sEndCreditsMaleTwinleaf[] = {
-    { .tiles = 87, .tileMap = 86, .palette = 91, .xOffset = 0, .yOffset = 0 },
-    { .tiles = 88, .tileMap = 86, .palette = 92, .xOffset = 0, .yOffset = 0 },
-    { .tiles = 89, .tileMap = 86, .palette = 93, .xOffset = 0, .yOffset = 0 },
-    { .tiles = 90, .tileMap = 86, .palette = 94, .xOffset = 0, .yOffset = 0 }
+    { .tiles = twinleaf_lucas_1_NCGR, .tileMap = twinleaf_shared_NSCR, .palette = twinleaf_lucas_1_NCLR, .xOffset = 0, .yOffset = 0 },
+    { .tiles = twinleaf_lucas_2_NCGR, .tileMap = twinleaf_shared_NSCR, .palette = twinleaf_lucas_2_NCLR, .xOffset = 0, .yOffset = 0 },
+    { .tiles = twinleaf_lucas_3_NCGR, .tileMap = twinleaf_shared_NSCR, .palette = twinleaf_lucas_3_NCLR, .xOffset = 0, .yOffset = 0 },
+    { .tiles = twinleaf_lucas_4_NCGR, .tileMap = twinleaf_shared_NSCR, .palette = twinleaf_lucas_4_NCLR, .xOffset = 0, .yOffset = 0 }
 };
 
 static const MemoryImageData sEndCreditsFemaleTwinleaf[] = {
-    { .tiles = 95, .tileMap = 86, .palette = 99, .xOffset = 0, .yOffset = 0 },
-    { .tiles = 96, .tileMap = 86, .palette = 100, .xOffset = 0, .yOffset = 0 },
-    { .tiles = 97, .tileMap = 86, .palette = 101, .xOffset = 0, .yOffset = 0 },
-    { .tiles = 98, .tileMap = 86, .palette = 102, .xOffset = 0, .yOffset = 0 }
+    { .tiles = twinleaf_dawn_1_NCGR, .tileMap = twinleaf_shared_NSCR, .palette = twinleaf_dawn_1_NCLR, .xOffset = 0, .yOffset = 0 },
+    { .tiles = twinleaf_dawn_2_NCGR, .tileMap = twinleaf_shared_NSCR, .palette = twinleaf_dawn_2_NCLR, .xOffset = 0, .yOffset = 0 },
+    { .tiles = twinleaf_dawn_3_NCGR, .tileMap = twinleaf_shared_NSCR, .palette = twinleaf_dawn_3_NCLR, .xOffset = 0, .yOffset = 0 },
+    { .tiles = twinleaf_dawn_4_NCGR, .tileMap = twinleaf_shared_NSCR, .palette = twinleaf_dawn_4_NCLR, .xOffset = 0, .yOffset = 0 }
 };
 
 void EndCreditsCommon_Load3DModelStartingPositions(EndCreditsApp *endCreditsApp, int bikeSceneIndex)
