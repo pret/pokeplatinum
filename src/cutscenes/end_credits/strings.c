@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "text/bank/end_credits.h"
-
 #include "bg_window.h"
 #include "font.h"
 #include "heap.h"
@@ -15,6 +13,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
+
+#include "res/text/bank/end_credits.h"
 
 enum EndCreditsStringsState {
     END_CREDITS_STRINGS_STATE_PRINTING = 0,
