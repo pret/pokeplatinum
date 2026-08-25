@@ -14860,59 +14860,59 @@
                                              44](sub_02095EAC,func) found in global src_unk_02095E98.c.o
                                              44](sub_020961E0,func) found in local src_unk_02095E98.c.o
                                            42](ov58_021D115C,func) found in local src_overlay058_ov58_021D0D80.c.o
-                                          41](TradeSequence_Exit,func) found in global src_overlay095_ov95_02246C20.c.o
-                                          41](TradeSequence_Main,func) found in global src_overlay095_ov95_02246C20.c.o
-                                           42](ov95_02247694,func) found in local src_overlay095_ov95_02246C20.c.o
-                                            43](.bss,section) found in local src_overlay095_ov95_02246C20.c.o
-                                           42](Unk_ov95_0224BE8C,object) found in local src_overlay095_ov95_02246C20.c.o
-                                            43](ov95_0224B438,func) found in global src_overlay095_ov95_0224B3D8.c.o
-                                             44](ov95_0224BC10,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                              45](ov95_022476C8,func) found in global src_overlay095_ov95_02246C20.c.o
-                                             44](ov95_0224BB8C,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                              45](ov95_022475A0,func) found in global src_overlay095_ov95_02246C20.c.o
-                                             44](ov95_0224BCE8,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                             44](ov95_0224773C,func) found in global src_overlay095_ov95_022476F0.c.o
-                                              45](ov95_0224789C,func) found in local src_overlay095_ov95_022476F0.c.o
-                                              45](ov95_02247B5C,func) found in local src_overlay095_ov95_022476F0.c.o
+                                          41](TradeSequence_Exit,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                          41](TradeSequence_Main,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                           42](DeferredFree_Flush,func) found in local src_cutscenes_trade_sequence_main.c.o
+                                            43](.bss,section) found in local src_cutscenes_trade_sequence_main.c.o
+                                           42](sTradePhaseTable,object) found in local src_cutscenes_trade_sequence_main.c.o
+                                            43](TradeReceivePhase_Free,func) found in global src_cutscenes_trade_sequence_receive_phase.c.o
+                                             44](TradeReceivePhase_FreeBrightnessAnimState,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                              45](DeferredFree_Enqueue,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                             44](TradeReceivePhase_DeleteBallSprites,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                              45](SpriteAnimResources_Free,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                             44](BallOpenState_Free,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                             44](Trade3DScene_Free,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                              45](Trade3DModel_Unload,func) found in local src_cutscenes_trade_sequence_3d_scene.c.o
+                                              45](Trade3DScene_DestroyCamera,func) found in local src_cutscenes_trade_sequence_3d_scene.c.o
                                                46](Camera_ClearActive,func) found in global src_camera.c.o
-                                            43](ov95_0224B49C,func) found in global src_overlay095_ov95_0224B3D8.c.o
-                                             44](ov95_0224B4D4,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                              45](ov95_02247770,func) found in global src_overlay095_ov95_022476F0.c.o
-                                               46](ov95_022477B8,func) found in local src_overlay095_ov95_022476F0.c.o
-                                             44](v0$15476,object) found in local src_overlay095_ov95_0224B3D8.c.o
-                                              45](ov95_0224B81C,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                               46](ov95_02247630,func) found in global src_overlay095_ov95_02246C20.c.o
-                                               46](ov95_0224762C,func) found in global src_overlay095_ov95_02246C20.c.o
-                                               46](TradeSequence_GetTradeType,func) found in global src_overlay095_ov95_02246C20.c.o
-                                               46](ov95_0224B990,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                              45](ov95_0224B71C,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                               46](ov95_0224BC6C,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                                47](ov95_022479AC,func) found in global src_overlay095_ov95_022476F0.c.o
-                                                47](ov95_022479A8,func) found in global src_overlay095_ov95_022476F0.c.o
-                                                47](ov95_02247958,func) found in global src_overlay095_ov95_022476F0.c.o
-                                                47](ov95_02247978,func) found in global src_overlay095_ov95_022476F0.c.o
-                                                47](ov95_0224BD5C,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                                 48](ov95_0224BD04,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                                  49](ov95_02247990,func) found in global src_overlay095_ov95_022476F0.c.o
-                                                 48](ov95_0224BD40,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                                 48](ov95_02247968,func) found in global src_overlay095_ov95_022476F0.c.o
-                                                 48](ov95_0224BBB0,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                                  49](ov95_0224BC30,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                                 48](ov95_0224BC00,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                               46](TradeSequence_GetReceivingPokemon,func) found in global src_overlay095_ov95_02246C20.c.o
-                                               46](ov95_02247660,func) found in global src_overlay095_ov95_02246C20.c.o
-                                               46](ov95_02247668,func) found in global src_overlay095_ov95_02246C20.c.o
-                                              45](ov95_0224B6F0,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                              45](ov95_0224B520,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                               46](ov95_02247674,func) found in global src_overlay095_ov95_02246C20.c.o
-                                               46](ov95_0224B9C0,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                               46](ov95_022476F0,func) found in global src_overlay095_ov95_022476F0.c.o
-                                                47](ov95_02247AF0,func) found in local src_overlay095_ov95_022476F0.c.o
-                                                47](ov95_02247868,func) found in local src_overlay095_ov95_022476F0.c.o
-                                               46](ov95_0224BA8C,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                               46](ov95_022478B4,func) found in global src_overlay095_ov95_022476F0.c.o
-                                               46](ov95_0224BAE8,func) found in local src_overlay095_ov95_0224B3D8.c.o
-                                                47](ov95_02247568,func) found in global src_overlay095_ov95_02246C20.c.o
+                                            43](TradeReceivePhase_Run,func) found in global src_cutscenes_trade_sequence_receive_phase.c.o
+                                             44](TradeReceivePhase_Tick,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                              45](Trade3DScene_Render,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                               46](Trade3DModel_Render,func) found in local src_cutscenes_trade_sequence_3d_scene.c.o
+                                             44](sStepFuncs$15495,object) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                              45](TradeReceivePhase_ShowMessage,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                               46](TradeSequence_GetMsgLoader,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                               46](TradeSequence_GetStrTemplate,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                               46](TradeSequence_GetTradeType,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                               46](TradeReceivePhase_IsTimerAndFanfareDone,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                              45](TradeReceivePhase_RevealPokemon,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                               46](BallOpenState_Start,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                                47](Trade3DModel_SetAlpha,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                                47](Trade3DModel_SetEnabled,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                                47](Trade3DModel_GetPosition,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                                47](Trade3DModel_GetRotation,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                                47](BallOpenState_Task,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                                 48](BallOpenState_UpdateRotation,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                                  49](Trade3DModel_SetRotation,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                                 48](BallOpenState_SetRotationTarget,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                                 48](Trade3DModel_SetPosition,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                                 48](BrightnessAnimState_Start,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                                  49](BrightnessAnimState_Task,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                                 48](TradeReceivePhase_IsBrightnessAnimDone,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                               46](TradeSequence_GetReceivingPokemon,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                               46](TradeSequence_GetReceivingSpecies,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                               46](TradeSequence_GetReceivingForm,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                              45](TradeReceivePhase_Animate,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                              45](TradeReceivePhase_InitGraphics,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                               46](TradeSequence_GetOptionsFrame,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                               46](TradeReceivePhase_Init3DScene,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                               46](Trade3DScene_New,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                                47](Trade3DScene_InitCamera,func) found in local src_cutscenes_trade_sequence_3d_scene.c.o
+                                                47](Trade3DModel_Init,func) found in local src_cutscenes_trade_sequence_3d_scene.c.o
+                                               46](TradeReceivePhase_CreatePokemonSprite,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                               46](Trade3DModel_Load,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                               46](TradeReceivePhase_CreateBallSprites,func) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                                47](SpriteAnimResources_Load,func) found in global src_cutscenes_trade_sequence_main.c.o
                                                 47](Graphics_LoadImageMapping,func) found in global src_graphics.c.o
                                                  48](LoadImageMapping,func) found in local src_graphics.c.o
                                                 47](Graphics_LoadPartialPalette,func) found in global src_graphics.c.o
@@ -14920,192 +14920,192 @@
                                                   49](NNS_G2dGetUnpackedPaletteCompressInfo,func) found in global libnnsg2d.a
                                                    50](NNSi_G2dUnpackNCLCmpInfo,func) found in global libnnsg2d.a
                                                   49](NNS_G2dLoadPaletteEx,func) found in global libnnsg2d.a
-                                                47](ov95_022475C4,func) found in global src_overlay095_ov95_02246C20.c.o
-                                                47](ov95_022475E4,func) found in global src_overlay095_ov95_02246C20.c.o
-                                               46](v0$15493,object) found in local src_overlay095_ov95_0224B3D8.c.o
-                                            43](ov95_0224B3D8,func) found in global src_overlay095_ov95_0224B3D8.c.o
-                                             44](ov95_02247628,func) found in global src_overlay095_ov95_02246C20.c.o
-                                            43](ov95_0224ABF4,func) found in global src_overlay095_ov95_0224ABC0.c.o
-                                             44](ov95_0224B050,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                              45](ov95_02247018,func) found in global src_overlay095_ov95_02246C20.c.o
-                                               46](ov95_02247224,func) found in local src_overlay095_ov95_02246C20.c.o
-                                             44](ov95_0224B194,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                             44](ov95_0224B308,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                             44](ov95_0224B258,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                             44](ov95_0224B3BC,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                            43](ov95_0224AC2C,func) found in global src_overlay095_ov95_0224ABC0.c.o
-                                             44](ov95_0224AC64,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                             44](v0$15255,object) found in local src_overlay095_ov95_0224ABC0.c.o
-                                              45](ov95_0224AD98,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                               46](ov95_022472C4,func) found in global src_overlay095_ov95_02246C20.c.o
-                                                47](ov95_0224732C,func) found in local src_overlay095_ov95_02246C20.c.o
-                                                 48](ov95_022473A0,func) found in local src_overlay095_ov95_02246C20.c.o
-                                                  49](v0$15555,object) found in local src_overlay095_ov95_02246C20.c.o
-                                              45](ov95_0224ACC8,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                               46](ov95_0224B274,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                                47](ov95_0224B2C8,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                               46](ov95_0224B1A8,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                                47](ov95_0224B1F8,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                               46](ov95_02246F30,func) found in global src_overlay095_ov95_02246C20.c.o
-                                                47](ov95_02247060,func) found in local src_overlay095_ov95_02246C20.c.o
-                                                 48](ov95_02247170,func) found in local src_overlay095_ov95_02246C20.c.o
-                                                  49](ov95_02247254,func) found in local src_overlay095_ov95_02246C20.c.o
-                                                   50](ov95_02247148,func) found in local src_overlay095_ov95_02246C20.c.o
-                                               46](ov95_0224B324,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                                47](ov95_0224B388,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                               46](ov95_02247004,func) found in global src_overlay095_ov95_02246C20.c.o
-                                              45](ov95_0224AC98,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                               46](ov95_0224AE1C,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                                47](TradeSequence_GetBackground,func) found in global src_overlay095_ov95_02246C20.c.o
-                                                47](v0$15316,object) found in local src_overlay095_ov95_0224ABC0.c.o
-                                               46](ov95_0224B084,func) found in local src_overlay095_ov95_0224ABC0.c.o
-                                                47](ov95_02247AB0,func) found in global src_overlay095_ov95_022476F0.c.o
-                                                47](ov95_02247AD0,func) found in global src_overlay095_ov95_022476F0.c.o
-                                                47](ov95_022479D4,func) found in global src_overlay095_ov95_022476F0.c.o
-                                                47](.bss,section) found in local src_overlay095_ov95_0224ABC0.c.o
-                                            43](ov95_0224ABC0,func) found in global src_overlay095_ov95_0224ABC0.c.o
-                                            43](ov95_0224A3CC,func) found in global src_overlay095_ov95_0224A390.c.o
-                                             44](ov95_0224A678,func) found in local src_overlay095_ov95_0224A390.c.o
-                                             44](ov95_0224A7A0,func) found in local src_overlay095_ov95_0224A390.c.o
-                                             44](ov95_0224A830,func) found in local src_overlay095_ov95_0224A390.c.o
-                                             44](ov95_0224A850,func) found in local src_overlay095_ov95_0224A390.c.o
-                                            43](ov95_0224A3FC,func) found in global src_overlay095_ov95_0224A390.c.o
-                                             44](v0$15339,object) found in local src_overlay095_ov95_0224A390.c.o
-                                              45](ov95_0224A464,func) found in local src_overlay095_ov95_0224A390.c.o
-                                               46](ov95_0224A864,func) found in local src_overlay095_ov95_0224A390.c.o
-                                                47](ov95_0224A934,func) found in local src_overlay095_ov95_0224A390.c.o
-                                                47](ov95_0224A978,func) found in local src_overlay095_ov95_0224A390.c.o
-                                                 48](.data,section) found in local src_overlay095_ov95_0224A390.c.o
-                                                47](ov95_0224AA70,func) found in local src_overlay095_ov95_0224A390.c.o
-                                                 48](ov95_022479DC,func) found in global src_overlay095_ov95_022476F0.c.o
+                                                47](SpriteResourcesHeader_InitFromAnimResources,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                                47](TradeSequence_AddSprite,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                               46](banks$15512,object) found in local src_cutscenes_trade_sequence_receive_phase.c.o
+                                            43](TradeReceivePhase_New,func) found in global src_cutscenes_trade_sequence_receive_phase.c.o
+                                             44](TradeSequence_GetBgConfig,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                            43](TradePokemonRevealPhase_Free,func) found in global src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                             44](TradePokemonRevealPhase_FreeGraphics,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                              45](PaletteShimmerEffect_Free,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                               46](PaletteShimmerEffect_FreeSpark,func) found in local src_cutscenes_trade_sequence_main.c.o
+                                             44](TradePokemonRevealPhase_Free3DScene,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                             44](ModelSlideState_Free,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                             44](BgSlideState_Free,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                             44](ModelFadeState_Free,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                            43](TradePokemonRevealPhase_Run,func) found in global src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                             44](TradePokemonRevealPhase_Tick,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                             44](sStepFuncs$15270,object) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                              45](TradePokemonRevealPhase_Exit,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                               46](BgScaleAnimation_New,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                                47](BgScaleAnimation_Task,func) found in local src_cutscenes_trade_sequence_main.c.o
+                                                 48](BgScaleAnimation_Apply,func) found in local src_cutscenes_trade_sequence_main.c.o
+                                                  49](sCenterY$15554,object) found in local src_cutscenes_trade_sequence_main.c.o
+                                              45](TradePokemonRevealPhase_Animate,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                               46](ModelSlideState_Start,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                                47](ModelSlideState_Task,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                               46](BgSlideState_Start,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                                47](BgSlideState_Task,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                               46](PaletteShimmerEffect_New,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                                47](PaletteShimmerEffect_VBlankTask,func) found in local src_cutscenes_trade_sequence_main.c.o
+                                                 48](PaletteShimmerEffect_SpawnSpark,func) found in local src_cutscenes_trade_sequence_main.c.o
+                                                  49](PaletteShimmerEffect_SparkTask,func) found in local src_cutscenes_trade_sequence_main.c.o
+                                                   50](PaletteShimmerEffect_SetEntry,func) found in local src_cutscenes_trade_sequence_main.c.o
+                                               46](ModelFadeState_Start,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                                47](ModelFadeState_Task,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                               46](PaletteShimmerEffect_Stop,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                              45](TradePokemonRevealPhase_Setup,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                               46](TradePokemonRevealPhase_InitGraphics,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                                47](TradeSequence_GetBackground,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                                47](banks$15331,object) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                               46](TradePokemonRevealPhase_Init3DScene,func) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                                47](Trade3DScene_SetCameraAngle,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                                47](Trade3DScene_ComputeProjection,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                                47](Trade3DModel_SetScale,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
+                                                47](.bss,section) found in local src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                            43](TradePokemonRevealPhase_New,func) found in global src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o
+                                            43](ReceiveBall_Free,func) found in global src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                             44](ReceiveBall_FreeGraphics,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                             44](ReceiveBall_Free3DScene,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                             44](ReceiveBall_DeleteSprite,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                             44](BallArrivalPathState_Stop,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                            43](ReceiveBall_Run,func) found in global src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                             44](sSubSteps$15359,object) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                              45](ReceiveBall_Animate,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                               46](BallArrivalPathState_Start,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                                47](BallArrivalPathState_BeginTransition,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                                47](BallArrivalPathState_Tick,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                                 48](.data,section) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                                47](BallArrivalPathState_Task,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                                 48](Trade3DModel_IsInView,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
                                                   49](GFXBoxTest_IsModelInView,func) found in global src_gfx_box_test.c.o
                                                    50](SetBoxTestParams,func) found in local src_gfx_box_test.c.o
                                                    50](PerformBoxTest,func) found in local src_gfx_box_test.c.o
                                                     51](G3X_GetBoxTestResult,func) found in global libgx.a
-                                                 48](ov95_0224AB48,func) found in local src_overlay095_ov95_0224A390.c.o
-                                               46](ov95_0224A924,func) found in local src_overlay095_ov95_0224A390.c.o
-                                              45](ov95_0224A42C,func) found in local src_overlay095_ov95_0224A390.c.o
-                                               46](ov95_0224A518,func) found in local src_overlay095_ov95_0224A390.c.o
-                                                47](v0$15372,object) found in local src_overlay095_ov95_0224A390.c.o
-                                               46](ov95_0224A690,func) found in local src_overlay095_ov95_0224A390.c.o
-                                                47](ov95_02247AC0,func) found in global src_overlay095_ov95_022476F0.c.o
+                                                 48](ReceiveBall_ScreenSwapPending,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                               46](BallArrivalPathState_IsDone,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                              45](ReceiveBall_Setup,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                               46](ReceiveBall_InitGraphics,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                                47](banks$15392,object) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                               46](ReceiveBall_Init3DScene,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                                47](Trade3DScene_AdjustCameraAngle,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
                                                  48](Camera_AdjustAngleAroundSelf,func) found in global src_camera.c.o
-                                                47](ov95_02247AE0,func) found in global src_overlay095_ov95_022476F0.c.o
+                                                47](Trade3DScene_SetFOV,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
                                                  48](Camera_SetFOV,func) found in global src_camera.c.o
-                                                47](ov95_02247A90,func) found in global src_overlay095_ov95_022476F0.c.o
+                                                47](Trade3DScene_GetCameraPosition,func) found in global src_cutscenes_trade_sequence_3d_scene.c.o
                                                  48](Camera_GetPosition,func) found in global src_camera.c.o
-                                               46](ov95_0224A7B0,func) found in local src_overlay095_ov95_0224A390.c.o
-                                            43](ov95_0224A390,func) found in global src_overlay095_ov95_0224A390.c.o
-                                             44](ov95_0224A848,func) found in local src_overlay095_ov95_0224A390.c.o
-                                             44](ov95_0224AB50,func) found in local src_overlay095_ov95_0224A390.c.o
-                                            43](ov95_02249FB4,func) found in global src_overlay095_ov95_02249F90.c.o
-                                             44](ov95_0224A320,func) found in local src_overlay095_ov95_02249F90.c.o
-                                            43](ov95_02249FC8,func) found in global src_overlay095_ov95_02249F90.c.o
-                                             44](v0$15176,object) found in local src_overlay095_ov95_02249F90.c.o
-                                              45](ov95_0224A020,func) found in local src_overlay095_ov95_02249F90.c.o
-                                               46](ov95_0224A0C4,func) found in local src_overlay095_ov95_02249F90.c.o
-                                                47](ov95_0224A358,func) found in local src_overlay095_ov95_02249F90.c.o
-                                              45](ov95_02249FF8,func) found in local src_overlay095_ov95_02249F90.c.o
-                                               46](ov95_0224A10C,func) found in local src_overlay095_ov95_02249F90.c.o
-                                                47](ov95_022473E8,func) found in global src_overlay095_ov95_02246C20.c.o
-                                                47](ov95_022474D4,func) found in global src_overlay095_ov95_02246C20.c.o
-                                                47](v0$15215,object) found in local src_overlay095_ov95_02249F90.c.o
-                                            43](ov95_02249F90,func) found in global src_overlay095_ov95_02249F90.c.o
-                                            43](ov95_02249770,func) found in global src_overlay095_ov95_02249740.c.o
-                                             44](ov95_02249A68,func) found in local src_overlay095_ov95_02249740.c.o
-                                             44](ov95_02249B80,func) found in local src_overlay095_ov95_02249740.c.o
-                                             44](ov95_02249C10,func) found in local src_overlay095_ov95_02249740.c.o
-                                             44](ov95_02249C30,func) found in local src_overlay095_ov95_02249740.c.o
-                                            43](ov95_022497A0,func) found in global src_overlay095_ov95_02249740.c.o
-                                             44](ov95_022497D8,func) found in local src_overlay095_ov95_02249740.c.o
-                                             44](v0$15339,object) found in local src_overlay095_ov95_02249740.c.o
-                                              45](ov95_02249840,func) found in local src_overlay095_ov95_02249740.c.o
-                                               46](ov95_02249C44,func) found in local src_overlay095_ov95_02249740.c.o
-                                                47](ov95_02249D38,func) found in local src_overlay095_ov95_02249740.c.o
-                                                47](ov95_02249E04,func) found in local src_overlay095_ov95_02249740.c.o
-                                                 48](ov95_02249F30,func) found in local src_overlay095_ov95_02249740.c.o
-                                                 48](ov95_02249D00,func) found in local src_overlay095_ov95_02249740.c.o
-                                               46](ov95_02249CF0,func) found in local src_overlay095_ov95_02249740.c.o
-                                              45](ov95_022497F8,func) found in local src_overlay095_ov95_02249740.c.o
-                                               46](ov95_02249910,func) found in local src_overlay095_ov95_02249740.c.o
-                                                47](v0$15379,object) found in local src_overlay095_ov95_02249740.c.o
-                                               46](ov95_02249A80,func) found in local src_overlay095_ov95_02249740.c.o
-                                               46](ov95_02249B90,func) found in local src_overlay095_ov95_02249740.c.o
-                                               46](ov95_02249F38,func) found in local src_overlay095_ov95_02249740.c.o
-                                            43](ov95_02249740,func) found in global src_overlay095_ov95_02249740.c.o
-                                             44](ov95_02249C28,func) found in local src_overlay095_ov95_02249740.c.o
-                                            43](ov95_022485FC,func) found in global src_overlay095_ov95_02248590.c.o
-                                             44](ov95_02248B3C,func) found in local src_overlay095_ov95_02248590.c.o
-                                             44](ov95_02248C98,func) found in local src_overlay095_ov95_02248590.c.o
-                                             44](ov95_02248DC4,func) found in local src_overlay095_ov95_02248590.c.o
-                                             44](ov95_022490A4,func) found in local src_overlay095_ov95_02248590.c.o
-                                              45](ov95_02248F94,func) found in local src_overlay095_ov95_02248590.c.o
-                                            43](ov95_02248650,func) found in global src_overlay095_ov95_02248590.c.o
-                                             44](ov95_02248688,func) found in local src_overlay095_ov95_02248590.c.o
-                                             44](v0$15385,object) found in local src_overlay095_ov95_02248590.c.o
-                                              45](ov95_022487D4,func) found in local src_overlay095_ov95_02248590.c.o
-                                               46](ov95_0224950C,func) found in local src_overlay095_ov95_02248590.c.o
-                                                47](ov95_02249268,func) found in local src_overlay095_ov95_02248590.c.o
-                                                47](ov95_022492A4,func) found in local src_overlay095_ov95_02248590.c.o
-                                                47](ov95_0224959C,func) found in local src_overlay095_ov95_02248590.c.o
-                                                 48](ov95_022492DC,func) found in local src_overlay095_ov95_02248590.c.o
-                                                 48](ov95_022495F8,func) found in local src_overlay095_ov95_02248590.c.o
-                                                  49](ov95_02249658,func) found in local src_overlay095_ov95_02248590.c.o
-                                                   50](ov95_022496B4,func) found in local src_overlay095_ov95_02248590.c.o
-                                                    51](ov95_02249700,func) found in local src_overlay095_ov95_02248590.c.o
-                                               46](ov95_02248FAC,func) found in local src_overlay095_ov95_02248590.c.o
-                                                47](ov95_02249020,func) found in local src_overlay095_ov95_02248590.c.o
-                                                 48](ov95_02248E5C,func) found in local src_overlay095_ov95_02248590.c.o
-                                                  49](ov95_02248EC4,func) found in local src_overlay095_ov95_02248590.c.o
-                                               46](ov95_022494F4,func) found in local src_overlay095_ov95_02248590.c.o
-                                              45](ov95_02248728,func) found in local src_overlay095_ov95_02248590.c.o
-                                               46](ov95_022490D0,func) found in local src_overlay095_ov95_02248590.c.o
-                                                47](ov95_02249118,func) found in local src_overlay095_ov95_02248590.c.o
-                                               46](ov95_02249154,func) found in local src_overlay095_ov95_02248590.c.o
-                                                47](ov95_0224922C,func) found in local src_overlay095_ov95_02248590.c.o
-                                                47](ov95_02249424,func) found in local src_overlay095_ov95_02248590.c.o
-                                                 48](ov95_022494A8,func) found in local src_overlay095_ov95_02248590.c.o
-                                               46](ov95_02249500,func) found in local src_overlay095_ov95_02248590.c.o
-                                               46](ov95_02248DF4,func) found in local src_overlay095_ov95_02248590.c.o
-                                              45](ov95_022486E0,func) found in local src_overlay095_ov95_02248590.c.o
-                                               46](.bss,section) found in local src_overlay095_ov95_02248590.c.o
-                                              45](ov95_022486AC,func) found in local src_overlay095_ov95_02248590.c.o
-                                               46](ov95_022488A4,func) found in local src_overlay095_ov95_02248590.c.o
-                                                47](v0$15461,object) found in local src_overlay095_ov95_02248590.c.o
-                                               46](ov95_02248B84,func) found in local src_overlay095_ov95_02248590.c.o
-                                               46](ov95_02248CA8,func) found in local src_overlay095_ov95_02248590.c.o
-                                            43](ov95_02248590,func) found in global src_overlay095_ov95_02248590.c.o
-                                             44](ov95_02248E00,func) found in local src_overlay095_ov95_02248590.c.o
-                                            43](ov95_02247BC8,func) found in global src_overlay095_ov95_02247B6C.c.o
-                                             44](ov95_022483C4,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                             44](ov95_02248490,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                             44](ov95_02248340,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                            43](ov95_02247C34,func) found in global src_overlay095_ov95_02247B6C.c.o
-                                             44](ov95_02247C6C,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                             44](v0$15470,object) found in local src_overlay095_ov95_02247B6C.c.o
-                                              45](ov95_02248090,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                               46](ov95_02248364,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                                47](ov95_022483E4,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                               46](ov95_022483B4,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                               46](ov95_02248420,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                                47](ov95_022484B0,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                               46](ov95_0224847C,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                               46](ov95_0224846C,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                              45](ov95_02247F04,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                               46](TradeSequence_GetSendingPokemon,func) found in global src_overlay095_ov95_02246C20.c.o
-                                               46](ov95_0224764C,func) found in global src_overlay095_ov95_02246C20.c.o
-                                               46](ov95_02247654,func) found in global src_overlay095_ov95_02246C20.c.o
-                                              45](ov95_02247ED8,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                              45](ov95_02247CB4,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                               46](ov95_02248174,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                               46](ov95_02248240,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                               46](ov95_0224829C,func) found in local src_overlay095_ov95_02247B6C.c.o
-                                               46](v0$15485,object) found in local src_overlay095_ov95_02247B6C.c.o
-                                            43](ov95_02247B6C,func) found in global src_overlay095_ov95_02247B6C.c.o
-                                          41](TradeSequence_Init,func) found in global src_overlay095_ov95_02246C20.c.o
-                                           42](ov95_02247688,func) found in local src_overlay095_ov95_02246C20.c.o
-                                           42](DoesMonSpeciesFlipsSprite,func) found in local src_overlay095_ov95_02246C20.c.o
-                                           42](ov95_02246F0C,func) found in local src_overlay095_ov95_02246C20.c.o
+                                               46](ReceiveBall_CreateSprite,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                            43](ReceiveBall_New,func) found in global src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                             44](BallArrivalPathState_Init,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                             44](ReceiveBall_VBlankCallback,func) found in local src_cutscenes_trade_sequence_receive_ball_phase.c.o
+                                            43](TradeWormholePhase_Free,func) found in global src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                             44](TradeWormholePhase_FreeGraphics,func) found in local src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                            43](TradeWormholePhase_Run,func) found in global src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                             44](sStepFuncs$15197,object) found in local src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                              45](TradeWormholePhase_Animate,func) found in local src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                               46](TradeWormholePhase_ScrollTask,func) found in local src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                                47](TradeWormholePhase_SetBgScroll,func) found in local src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                              45](TradeWormholePhase_Setup,func) found in local src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                               46](TradeWormholePhase_InitGraphics,func) found in local src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                                47](TradeSequence_LoadPokemonBGTiles,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                                47](TradeSequence_LoadPokemonPlatform,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                                47](banks$15236,object) found in local src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                            43](TradeWormholePhase_New,func) found in global src_cutscenes_trade_sequence_wormhole_phase.c.o
+                                            43](TradeBallFlybyPhase_Free,func) found in global src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                             44](TradeBallFlybyPhase_FreeGraphics,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                             44](TradeBallFlybyPhase_Free3DScene,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                             44](TradeBallFlybyPhase_DeleteSprite,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                             44](BallOrbitState_Stop,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                            43](TradeBallFlybyPhase_Run,func) found in global src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                             44](TradeBallFlybyPhase_Tick,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                             44](sStepFuncs$15357,object) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                              45](TradeBallFlybyPhase_Animate,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                               46](BallOrbitState_Start,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                                47](BallOrbitState_Tick,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                                47](BallOrbitState_Task,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                                 48](TradeBallFlybyPhase_OnBallExited,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                                 48](BallOrbitState_SetOrbitRadius,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                               46](BallOrbitState_IsDone,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                              45](TradeBallFlybyPhase_Setup,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                               46](TradeBallFlybyPhase_InitGraphics,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                                47](banks$15397,object) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                               46](TradeBallFlybyPhase_Init3DScene,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                               46](TradeBallFlybyPhase_CreateSprite,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                               46](TradeBallFlybyPhase_ScreenSwapTask,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                            43](TradeBallFlybyPhase_New,func) found in global src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                             44](BallOrbitState_Init,func) found in local src_cutscenes_trade_sequence_ball_flyby_phase.c.o
+                                            43](TradeTubePhase_Free,func) found in global src_cutscenes_trade_sequence_tube_phase.c.o
+                                             44](TradeTubePhase_FreeGraphics,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                             44](TradeTubePhase_Free3DScene,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                             44](TradeTubePhase_DeleteSprites,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                             44](TubeBgScrollState_Stop,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                              45](TubeParticleScrollState_Stop,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                            43](TradeTubePhase_Run,func) found in global src_cutscenes_trade_sequence_tube_phase.c.o
+                                             44](TradeTubePhase_Tick,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                             44](sStepFuncs$15397,object) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                              45](TradeTubePhase_Exit,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](BallPathState_StartReturn,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                47](BallPathState_SetOrbitRadius,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                47](BallPathState_SetAxisRotStep,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                47](BallPathState_ReturnApproachTask,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                 48](BallPathState_Tick,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                 48](BallPathState_ReturnCoastTask,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                  49](BallPathState_ReturnFinalApproachTask,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                   50](BallPathState_ReturnCoast2Task,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                    51](BallPathState_ReturnExitTask,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](TubeBgScrollState_Start,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                47](TubeBgScrollState_Task,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                 48](TubeParticleScrollState_Start,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                  49](TubeParticleScrollState_Task,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](BallPathState_IsDone,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                              45](TradeTubePhase_AnimateBall,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](ModelFadeState_Start,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                47](ModelFadeState_Task,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](BallPathState_Start,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                47](BallPathState_SetRotationSpeed,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                47](BallPathState_EntryTask,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                 48](BallPathState_ExitTask,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](BallPathState_IsAtMidpoint,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](TradeTubePhase_RequestScreenSwap,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                              45](TradeTubePhase_WaitForAnimation,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](.bss,section) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                              45](TradeTubePhase_Setup,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](TradeTubePhase_InitGraphics,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                                47](banks$15473,object) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](TradeTubePhase_Init3DScene,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                               46](TradeTubePhase_CreateSprites,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                            43](TradeTubePhase_New,func) found in global src_cutscenes_trade_sequence_tube_phase.c.o
+                                             44](TradeTubePhase_ScreenSwapTask,func) found in local src_cutscenes_trade_sequence_tube_phase.c.o
+                                            43](TradeSendPhase_Free,func) found in global src_cutscenes_trade_sequence_send_phase.c.o
+                                             44](TradeSendPhase_FreeBrightnessAnimState,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                             44](BallBounceState_Free,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                             44](TradeSendPhase_DeleteBallSprites,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                            43](TradeSendPhase_Run,func) found in global src_cutscenes_trade_sequence_send_phase.c.o
+                                             44](TradeSendPhase_Tick,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                             44](sStepFuncs$15492,object) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                              45](TradeSendPhase_ThrowBall,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                               46](BrightnessAnimState_Start,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                                47](BrightnessAnimState_Task,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                               46](TradeSendPhase_IsBrightnessAnimDone,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                               46](BallBounceState_Start,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                                47](BallBounceState_Task,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                               46](TradeSendPhase_GetBounceCount,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                               46](TradeSendPhase_IsBallBounceDone,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                              45](TradeSendPhase_ShowPokemonInfo,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                               46](TradeSequence_GetSendingPokemon,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                               46](TradeSequence_GetSendingSpecies,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                               46](TradeSequence_GetSendingForm,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                              45](TradeSendPhase_RevealSprite,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                              45](TradeSendPhase_InitGraphics,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                               46](TradeSendPhase_Init3DScene,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                               46](TradeSendPhase_CreatePokemonSprite,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                               46](TradeSendPhase_CreateBallSprites,func) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                               46](banks$15507,object) found in local src_cutscenes_trade_sequence_send_phase.c.o
+                                            43](TradeSendPhase_New,func) found in global src_cutscenes_trade_sequence_send_phase.c.o
+                                          41](TradeSequence_Init,func) found in global src_cutscenes_trade_sequence_main.c.o
+                                           42](DeferredFree_Init,func) found in local src_cutscenes_trade_sequence_main.c.o
+                                           42](DoesMonSpeciesFlipsSprite,func) found in local src_cutscenes_trade_sequence_main.c.o
+                                           42](TradeSequence_VBlankCallback,func) found in local src_cutscenes_trade_sequence_main.c.o
                                           41](BattleTowerRecordsApp_Free,func) found in global src_applications_frontier_tower_records.c.o
                                           41](BattleTowerRecordsApp_Main,func) found in global src_applications_frontier_tower_records.c.o
                                            42](LoadAssets,func) found in local src_applications_frontier_tower_records.c.o
@@ -28294,7 +28294,7 @@
                                        38](ScrCmd_2E3,func) found in global src_scrcmd.c.o
                                        38](ScrCmd_2E2,func) found in global src_scrcmd.c.o
                                         39](sub_0203E608,func) found in global src_unk_0203D1B8.c.o
-                                         40](v1$22896,object) found in local src_unk_0203D1B8.c.o
+                                         40](v1$22924,object) found in local src_unk_0203D1B8.c.o
                                           41](BattleFrontierRecordsApp_Exit,func) found in global src_applications_frontier_records_main.c.o
                                            42](GetWindowGroup,func) found in local src_applications_frontier_records_main.c.o
                                            42](FrontierRecordsApp_FreeWindows,func) found in global src_applications_frontier_records_windows.c.o
@@ -29423,7 +29423,7 @@
                                             43](FieldSystem_OpenPartyMenu_SelectForSpinTrade,func) found in global src_unk_0203D1B8.c.o
                                            42](sub_0209C2C0,func) found in local src_unk_0209C194.c.o
                                             43](sub_0203D670,func) found in global src_unk_0203D1B8.c.o
-                                             44](visiblePages$22378,object) found in local src_unk_0203D1B8.c.o
+                                             44](visiblePages$22406,object) found in local src_unk_0203D1B8.c.o
                                             43](Unk_020F950C,object) found in local src_unk_0209C194.c.o
                                            42](sub_0209C280,func) found in local src_unk_0209C194.c.o
                                             43](sub_0209C1E8,func) found in global src_unk_0209C194.c.o
@@ -31234,7 +31234,7 @@
                                        38](ScrCmd_267,func) found in local src_scrcmd.c.o
                                         39](sub_0203E414,func) found in global src_unk_0203D1B8.c.o
                                          40](sub_0203E484,func) found in local src_unk_0203D1B8.c.o
-                                          41](v0$22835,object) found in local src_unk_0203D1B8.c.o
+                                          41](v0$22863,object) found in local src_unk_0203D1B8.c.o
                                          40](sub_0203E35C,func) found in local src_unk_0203D1B8.c.o
                                           41](sub_0203E348,func) found in global src_unk_0203D1B8.c.o
                                           41](TimeElapsed,func) found in global src_rtc.c.o
@@ -32485,7 +32485,7 @@
                                         39](PokemonSummary_GetSelectedMoveSlot,func) found in global src_unk_0203D1B8.c.o
                                        38](ScrCmd_SelectPartyMonMove,func) found in global src_scrcmd_party_mon_moves.c.o
                                         39](FieldSystem_OpenSummaryScreenSelectMove,func) found in global src_unk_0203D1B8.c.o
-                                         40](visiblePages$22387,object) found in local src_unk_0203D1B8.c.o
+                                         40](visiblePages$22415,object) found in local src_unk_0203D1B8.c.o
                                        38](ScrCmd_InitSizeContestRecord,func) found in local src_scrcmd.c.o
                                         39](SystemVars_SetSizeContestRecord,func) found in global src_system_vars.c.o
                                        38](ScrCmd_BufferSizeContestRecord,func) found in local src_scrcmd.c.o
@@ -32826,8 +32826,8 @@
                                         39](BagContext_GetSelectedItem,func) found in global src_unk_0203D1B8.c.o
                                        38](ScrCmd_OpenBag,func) found in local src_scrcmd.c.o
                                         39](FieldSystem_CreateBagContext,func) found in global src_unk_0203D1B8.c.o
-                                         40](itemsPockets$22237,object) found in local src_unk_0203D1B8.c.o
-                                         40](berriesPockets$22236,object) found in local src_unk_0203D1B8.c.o
+                                         40](itemsPockets$22265,object) found in local src_unk_0203D1B8.c.o
+                                         40](berriesPockets$22264,object) found in local src_unk_0203D1B8.c.o
                                        38](ScrCmd_GetPartyCount,func) found in global src_scrcmd_party.c.o
                                        38](ScrCmd_PressSunyshoreGymButton,func) found in local src_scrcmd.c.o
                                         39](SunyshoreGym_PressButton,func) found in global src_overlay008_gym_features.c.o
@@ -66527,42 +66527,42 @@
   020EA12C 00000000 .rodata .rodata	(src_location.c.o)
   020EA12C 00000014 .rodata sPlayerStartLocation	(src_location.c.o)
   020EA140 00000014 .rodata sPlayerFirstRespawnLocation	(src_location.c.o)
-  020EA154 00000002 .rodata itemsPockets$22237	(src_unk_0203D1B8.c.o)
-  020EA158 00000002 .rodata berriesPockets$22236	(src_unk_0203D1B8.c.o)
+  020EA154 00000002 .rodata itemsPockets$22265	(src_unk_0203D1B8.c.o)
+  020EA158 00000002 .rodata berriesPockets$22264	(src_unk_0203D1B8.c.o)
   020EA15C 00000003 .rodata sTeachMoveSummaryPages	(src_unk_0203D1B8.c.o)
-  020EA160 00000003 .rodata visiblePages$22387	(src_unk_0203D1B8.c.o)
+  020EA160 00000003 .rodata visiblePages$22415	(src_unk_0203D1B8.c.o)
   020EA164 00000009 .rodata Unk_020EA164	(src_unk_0203D1B8.c.o)
-  020EA170 00000009 .rodata visiblePages$22378	(src_unk_0203D1B8.c.o)
-  020EA17C 0000000C .rodata v0$22835	(src_unk_0203D1B8.c.o)
+  020EA170 00000009 .rodata visiblePages$22406	(src_unk_0203D1B8.c.o)
+  020EA17C 0000000C .rodata v0$22863	(src_unk_0203D1B8.c.o)
   020EA188 00000000 .rodata .rodata	(src_unk_0203D1B8.c.o)
-  020EA188 00000010 .rodata template$22872	(src_unk_0203D1B8.c.o)
-  020EA198 00000010 .rodata @22776	(src_unk_0203D1B8.c.o)
-  020EA1A8 00000010 .rodata template$22769	(src_unk_0203D1B8.c.o)
-  020EA1B8 00000010 .rodata template$22759	(src_unk_0203D1B8.c.o)
-  020EA1C8 00000010 .rodata template$22754	(src_unk_0203D1B8.c.o)
-  020EA1D8 00000010 .rodata @22913	(src_unk_0203D1B8.c.o)
-  020EA1E8 00000010 .rodata @22783	(src_unk_0203D1B8.c.o)
-  020EA1F8 00000010 .rodata template$22720	(src_unk_0203D1B8.c.o)
-  020EA208 00000010 .rodata @22790	(src_unk_0203D1B8.c.o)
-  020EA218 00000010 .rodata template$22714	(src_unk_0203D1B8.c.o)
-  020EA228 00000010 .rodata template$22708	(src_unk_0203D1B8.c.o)
+  020EA188 00000010 .rodata template$22900	(src_unk_0203D1B8.c.o)
+  020EA198 00000010 .rodata @22804	(src_unk_0203D1B8.c.o)
+  020EA1A8 00000010 .rodata template$22797	(src_unk_0203D1B8.c.o)
+  020EA1B8 00000010 .rodata template$22787	(src_unk_0203D1B8.c.o)
+  020EA1C8 00000010 .rodata template$22782	(src_unk_0203D1B8.c.o)
+  020EA1D8 00000010 .rodata @22941	(src_unk_0203D1B8.c.o)
+  020EA1E8 00000010 .rodata @22811	(src_unk_0203D1B8.c.o)
+  020EA1F8 00000010 .rodata template$22748	(src_unk_0203D1B8.c.o)
+  020EA208 00000010 .rodata @22818	(src_unk_0203D1B8.c.o)
+  020EA218 00000010 .rodata template$22742	(src_unk_0203D1B8.c.o)
+  020EA228 00000010 .rodata template$22736	(src_unk_0203D1B8.c.o)
   020EA238 00000010 .rodata Unk_020EA238	(src_unk_0203D1B8.c.o)
   020EA248 00000010 .rodata Unk_020EA248	(src_unk_0203D1B8.c.o)
   020EA258 00000010 .rodata Unk_020EA258	(src_unk_0203D1B8.c.o)
-  020EA268 00000010 .rodata appTemplate2$22580	(src_unk_0203D1B8.c.o)
-  020EA278 00000010 .rodata @22511	(src_unk_0203D1B8.c.o)
-  020EA288 00000010 .rodata template$22455	(src_unk_0203D1B8.c.o)
-  020EA298 00000010 .rodata @22727	(src_unk_0203D1B8.c.o)
-  020EA2A8 00000010 .rodata @22734	(src_unk_0203D1B8.c.o)
-  020EA2B8 00000010 .rodata appTemplate$22803	(src_unk_0203D1B8.c.o)
-  020EA2C8 00000010 .rodata boxAppManTemplate$22398	(src_unk_0203D1B8.c.o)
-  020EA2D8 00000010 .rodata @22743	(src_unk_0203D1B8.c.o)
-  020EA2E8 00000010 .rodata @22265	(src_unk_0203D1B8.c.o)
-  020EA2F8 00000010 .rodata @22258	(src_unk_0203D1B8.c.o)
-  020EA308 00000010 .rodata appTemplate$22437	(src_unk_0203D1B8.c.o)
-  020EA318 00000010 .rodata @22444	(src_unk_0203D1B8.c.o)
+  020EA268 00000010 .rodata appTemplate2$22608	(src_unk_0203D1B8.c.o)
+  020EA278 00000010 .rodata @22539	(src_unk_0203D1B8.c.o)
+  020EA288 00000010 .rodata template$22483	(src_unk_0203D1B8.c.o)
+  020EA298 00000010 .rodata @22755	(src_unk_0203D1B8.c.o)
+  020EA2A8 00000010 .rodata @22762	(src_unk_0203D1B8.c.o)
+  020EA2B8 00000010 .rodata appTemplate$22831	(src_unk_0203D1B8.c.o)
+  020EA2C8 00000010 .rodata boxAppManTemplate$22426	(src_unk_0203D1B8.c.o)
+  020EA2D8 00000010 .rodata @22771	(src_unk_0203D1B8.c.o)
+  020EA2E8 00000010 .rodata @22293	(src_unk_0203D1B8.c.o)
+  020EA2F8 00000010 .rodata @22286	(src_unk_0203D1B8.c.o)
+  020EA308 00000010 .rodata appTemplate$22465	(src_unk_0203D1B8.c.o)
+  020EA318 00000010 .rodata @22472	(src_unk_0203D1B8.c.o)
   020EA328 00000010 .rodata Unk_020EA328	(src_unk_0203D1B8.c.o)
-  020EA338 00000010 .rodata @22220	(src_unk_0203D1B8.c.o)
+  020EA338 00000010 .rodata @22248	(src_unk_0203D1B8.c.o)
   020EA348 00000010 .rodata LibraryTV_template	(src_unk_0203D1B8.c.o)
   020EA358 00000010 .rodata gBattleApplicationTemplate	(src_unk_0203D1B8.c.o)
   020EA368 00000010 .rodata sDWWarpTemplate	(src_unk_0203D1B8.c.o)
@@ -67908,12 +67908,12 @@
   02100A5C 00000012 .data   @13779	(src_network_icon.c.o)
   02100A70 00000010 .data   @13780	(src_network_icon.c.o)
   02100A80 00000000 .data   .data	(src_unk_0203D1B8.c.o)
-  02100A80 00000004 .data   pocketList$22235	(src_unk_0203D1B8.c.o)
-  02100A84 00000010 .data   template$22882	(src_unk_0203D1B8.c.o)
-  02100A94 00000010 .data   v1$22896	(src_unk_0203D1B8.c.o)
-  02100AA4 00000010 .data   appTemplate1$22579	(src_unk_0203D1B8.c.o)
-  02100AB4 00000010 .data   appTemplate$22559	(src_unk_0203D1B8.c.o)
-  02100AC4 00000010 .data   appTemplate$22553	(src_unk_0203D1B8.c.o)
+  02100A80 00000004 .data   pocketList$22263	(src_unk_0203D1B8.c.o)
+  02100A84 00000010 .data   template$22910	(src_unk_0203D1B8.c.o)
+  02100A94 00000010 .data   v1$22924	(src_unk_0203D1B8.c.o)
+  02100AA4 00000010 .data   appTemplate1$22607	(src_unk_0203D1B8.c.o)
+  02100AB4 00000010 .data   appTemplate$22587	(src_unk_0203D1B8.c.o)
+  02100AC4 00000010 .data   appTemplate$22581	(src_unk_0203D1B8.c.o)
   02100AD4 00000000 .data   .data	(src_script_manager.c.o)
   02100AD4 0000000C .data   sFloaromaMeadowHiddenItemFlags	(src_script_manager.c.o)
   02100AE0 00000010 .data   sIronIslandHiddenItemFlags	(src_script_manager.c.o)
@@ -125917,11 +125917,11 @@
 #>021D1600          SDK_OVERLAY.cutscenes.BSS_END (linker command file)
 #>00000000          SDK_OVERLAY.cutscenes.BSS_SIZE (linker command file)
 
-# .overlay94
-#>0000005E          SDK_OVERLAY_overlay94_ID (linker command file)
-#>0000005E          SDK_OVERLAY.overlay94.ID (linker command file)
-#>0223B140          SDK_OVERLAY.overlay94.START (linker command file)
-#>0223B140          SDK_OVERLAY.overlay94.TEXT_START (linker command file)
+# .gts_application
+#>0000005E          SDK_OVERLAY_gts_application_ID (linker command file)
+#>0000005E          SDK_OVERLAY.gts_application.ID (linker command file)
+#>0223B140          SDK_OVERLAY.gts_application.START (linker command file)
+#>0223B140          SDK_OVERLAY.gts_application.TEXT_START (linker command file)
   0223B140 00000000 .text   $t	(src_gts_application_networking.c.o)
   0223B140 0000001C .text   GTSNetworking_InitCredentials	(src_gts_application_networking.c.o)
   0223B158 00000000 .text   $d	(src_gts_application_networking.c.o)
@@ -127128,10 +127128,10 @@
   02246394 0000001C .rodata @20431	(src_gts_application_screens_wfc_init.c.o)
   022463B0 0000001C .rodata @20429	(src_gts_application_screens_wfc_init.c.o)
   022463CC 0000001C .rodata @20433	(src_gts_application_screens_wfc_init.c.o)
-#>022463E8          SDK_OVERLAY.overlay94.SINIT_START (linker command file)
-#>022463EC          SDK_OVERLAY.overlay94.SINIT_END (linker command file)
-#>02246400          SDK_OVERLAY.overlay94.TEXT_END (linker command file)
-#>02246400          SDK_OVERLAY.overlay94.DATA_START (linker command file)
+#>022463E8          SDK_OVERLAY.gts_application.SINIT_START (linker command file)
+#>022463EC          SDK_OVERLAY.gts_application.SINIT_END (linker command file)
+#>02246400          SDK_OVERLAY.gts_application.TEXT_END (linker command file)
+#>02246400          SDK_OVERLAY.gts_application.DATA_START (linker command file)
   02246400 00000049 .data   @18745	(src_gts_application_networking.c.o)
   0224644C 00000050 .data   @18751	(src_gts_application_networking.c.o)
   0224649C 00000048 .data   @18756	(src_gts_application_networking.c.o)
@@ -127166,613 +127166,613 @@
   022469A0 000000A0 .data   sGTSNetworkHandlerScreenStates	(src_gts_application_screens_network_handler.c.o)
   02246A40 00000000 .data   .data	(src_gts_application_screens_wfc_init.c.o)
   02246A40 00000064 .data   sGTSWFCInitScreenStates	(src_gts_application_screens_wfc_init.c.o)
-#>02246AC0          SDK_OVERLAY.overlay94.DATA_END (linker command file)
-#>02246AC0          SDK_OVERLAY.overlay94.END (linker command file)
-#>0000B2C0          SDK_OVERLAY.overlay94.TEXT_SIZE (linker command file)
-#>000006C0          SDK_OVERLAY.overlay94.DATA_SIZE (linker command file)
-#>0000B980          SDK_OVERLAY.overlay94.SIZE (linker command file)
+#>02246AC0          SDK_OVERLAY.gts_application.DATA_END (linker command file)
+#>02246AC0          SDK_OVERLAY.gts_application.END (linker command file)
+#>0000B2C0          SDK_OVERLAY.gts_application.TEXT_SIZE (linker command file)
+#>000006C0          SDK_OVERLAY.gts_application.DATA_SIZE (linker command file)
+#>0000B980          SDK_OVERLAY.gts_application.SIZE (linker command file)
 
-# .overlay94.bss
-#>02246AC0          SDK_OVERLAY.overlay94.BSS_START (linker command file)
+# .gts_application.bss
+#>02246AC0          SDK_OVERLAY.gts_application.BSS_START (linker command file)
   02246AC0 00000000 .bss    .bss	(src_gts_application_networking.c.o)
   02246AC0 00000144 .bss    sGTSNetworkingState	(src_gts_application_networking.c.o)
   02246C04 00000000 .bss    .bss	(src_gts_application_application.c.o)
   02246C04 00000004 .bss    sGTSHeapHandle	(src_gts_application_application.c.o)
   02246C08 00000004 .bss    unused_GTSApplicationState	(src_gts_application_application.c.o)
-#>02246C20          SDK_OVERLAY.overlay94.BSS_END (linker command file)
-#>00000160          SDK_OVERLAY.overlay94.BSS_SIZE (linker command file)
+#>02246C20          SDK_OVERLAY.gts_application.BSS_END (linker command file)
+#>00000160          SDK_OVERLAY.gts_application.BSS_SIZE (linker command file)
 
-# .overlay95
-#>0000005F          SDK_OVERLAY_overlay95_ID (linker command file)
-#>0000005F          SDK_OVERLAY.overlay95.ID (linker command file)
-#>02246C20          SDK_OVERLAY.overlay95.START (linker command file)
-#>02246C20          SDK_OVERLAY.overlay95.TEXT_START (linker command file)
-  02246C20 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02246C20 000001CC .text   TradeSequence_Init	(src_overlay095_ov95_02246C20.c.o)
-  02246DD0 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02246DEC 0000002E .text   DoesMonSpeciesFlipsSprite	(src_overlay095_ov95_02246C20.c.o)
-  02246DEC 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02246E1C 0000005E .text   TradeSequence_Exit	(src_overlay095_ov95_02246C20.c.o)
-  02246E1C 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02246E7C 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02246E7C 00000090 .text   TradeSequence_Main	(src_overlay095_ov95_02246C20.c.o)
-  02246EFC 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02246F0C 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02246F0C 00000024 .text   ov95_02246F0C	(src_overlay095_ov95_02246C20.c.o)
-  02246F28 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02246F30 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02246F30 000000D4 .text   ov95_02246F30	(src_overlay095_ov95_02246C20.c.o)
-  02246FF4 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02247004 00000014 .text   ov95_02247004	(src_overlay095_ov95_02246C20.c.o)
-  02247004 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247018 00000048 .text   ov95_02247018	(src_overlay095_ov95_02246C20.c.o)
-  02247018 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247060 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247060 000000E8 .text   ov95_02247060	(src_overlay095_ov95_02246C20.c.o)
-  02247144 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02247148 00000026 .text   ov95_02247148	(src_overlay095_ov95_02246C20.c.o)
-  02247148 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247170 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247170 000000B4 .text   ov95_02247170	(src_overlay095_ov95_02246C20.c.o)
-  02247220 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02247224 00000030 .text   ov95_02247224	(src_overlay095_ov95_02246C20.c.o)
-  02247224 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247254 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247254 00000070 .text   ov95_02247254	(src_overlay095_ov95_02246C20.c.o)
-  022472C0 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  022472C4 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  022472C4 00000068 .text   ov95_022472C4	(src_overlay095_ov95_02246C20.c.o)
-  02247324 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  0224732C 00000072 .text   ov95_0224732C	(src_overlay095_ov95_02246C20.c.o)
-  0224732C 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  022473A0 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  022473A0 00000048 .text   ov95_022473A0	(src_overlay095_ov95_02246C20.c.o)
-  022473E4 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  022473E8 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  022473E8 000000EC .text   ov95_022473E8	(src_overlay095_ov95_02246C20.c.o)
-  022474D0 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  022474D4 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  022474D4 00000094 .text   ov95_022474D4	(src_overlay095_ov95_02246C20.c.o)
-  02247564 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02247568 00000036 .text   ov95_02247568	(src_overlay095_ov95_02246C20.c.o)
-  02247568 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  022475A0 00000022 .text   ov95_022475A0	(src_overlay095_ov95_02246C20.c.o)
-  022475A0 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  022475C4 00000020 .text   ov95_022475C4	(src_overlay095_ov95_02246C20.c.o)
-  022475C4 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  022475E4 00000042 .text   ov95_022475E4	(src_overlay095_ov95_02246C20.c.o)
-  022475E4 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247628 00000004 .text   ov95_02247628	(src_overlay095_ov95_02246C20.c.o)
-  02247628 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  0224762C 00000004 .text   ov95_0224762C	(src_overlay095_ov95_02246C20.c.o)
-  0224762C 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247630 00000004 .text   ov95_02247630	(src_overlay095_ov95_02246C20.c.o)
-  02247630 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247634 00000006 .text   TradeSequence_GetSendingPokemon	(src_overlay095_ov95_02246C20.c.o)
-  02247634 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  0224763C 00000006 .text   TradeSequence_GetReceivingPokemon	(src_overlay095_ov95_02246C20.c.o)
-  0224763C 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247644 00000006 .text   TradeSequence_GetBackground	(src_overlay095_ov95_02246C20.c.o)
-  02247644 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  0224764C 00000008 .text   ov95_0224764C	(src_overlay095_ov95_02246C20.c.o)
-  0224764C 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247654 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247654 0000000C .text   ov95_02247654	(src_overlay095_ov95_02246C20.c.o)
-  0224765C 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02247660 00000008 .text   ov95_02247660	(src_overlay095_ov95_02246C20.c.o)
-  02247660 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247668 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247668 0000000C .text   ov95_02247668	(src_overlay095_ov95_02246C20.c.o)
-  02247670 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02247674 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247674 0000000C .text   ov95_02247674	(src_overlay095_ov95_02246C20.c.o)
-  0224767C 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02247680 00000006 .text   TradeSequence_GetTradeType	(src_overlay095_ov95_02246C20.c.o)
-  02247680 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247688 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247688 0000000C .text   ov95_02247688	(src_overlay095_ov95_02246C20.c.o)
-  02247690 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  02247694 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  02247694 00000034 .text   ov95_02247694	(src_overlay095_ov95_02246C20.c.o)
-  022476C0 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  022476C8 00000000 .text   $t	(src_overlay095_ov95_02246C20.c.o)
-  022476C8 00000028 .text   ov95_022476C8	(src_overlay095_ov95_02246C20.c.o)
-  022476E8 00000000 .text   $d	(src_overlay095_ov95_02246C20.c.o)
-  022476F0 0000004A .text   ov95_022476F0	(src_overlay095_ov95_022476F0.c.o)
-  022476F0 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  0224773C 00000034 .text   ov95_0224773C	(src_overlay095_ov95_022476F0.c.o)
-  0224773C 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247770 00000046 .text   ov95_02247770	(src_overlay095_ov95_022476F0.c.o)
-  02247770 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  022477B8 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  022477B8 000000B0 .text   ov95_022477B8	(src_overlay095_ov95_022476F0.c.o)
-  02247864 00000000 .text   $d	(src_overlay095_ov95_022476F0.c.o)
-  02247868 00000032 .text   ov95_02247868	(src_overlay095_ov95_022476F0.c.o)
-  02247868 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  0224789C 00000016 .text   ov95_0224789C	(src_overlay095_ov95_022476F0.c.o)
-  0224789C 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  022478B4 000000A2 .text   ov95_022478B4	(src_overlay095_ov95_022476F0.c.o)
-  022478B4 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247958 00000010 .text   ov95_02247958	(src_overlay095_ov95_022476F0.c.o)
-  02247958 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247968 00000010 .text   ov95_02247968	(src_overlay095_ov95_022476F0.c.o)
-  02247968 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247978 00000018 .text   ov95_02247978	(src_overlay095_ov95_022476F0.c.o)
-  02247978 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247990 00000018 .text   ov95_02247990	(src_overlay095_ov95_022476F0.c.o)
-  02247990 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  022479A8 00000004 .text   ov95_022479A8	(src_overlay095_ov95_022476F0.c.o)
-  022479A8 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  022479AC 00000026 .text   ov95_022479AC	(src_overlay095_ov95_022476F0.c.o)
-  022479AC 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  022479D4 00000008 .text   ov95_022479D4	(src_overlay095_ov95_022476F0.c.o)
-  022479D4 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  022479DC 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  022479DC 000000B4 .text   ov95_022479DC	(src_overlay095_ov95_022476F0.c.o)
-  02247A8C 00000000 .text   $d	(src_overlay095_ov95_022476F0.c.o)
-  02247A90 0000001E .text   ov95_02247A90	(src_overlay095_ov95_022476F0.c.o)
-  02247A90 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247AB0 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247AB0 00000010 .text   ov95_02247AB0	(src_overlay095_ov95_022476F0.c.o)
-  02247ABC 00000000 .text   $d	(src_overlay095_ov95_022476F0.c.o)
-  02247AC0 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247AC0 00000010 .text   ov95_02247AC0	(src_overlay095_ov95_022476F0.c.o)
-  02247ACC 00000000 .text   $d	(src_overlay095_ov95_022476F0.c.o)
-  02247AD0 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247AD0 00000010 .text   ov95_02247AD0	(src_overlay095_ov95_022476F0.c.o)
-  02247ADC 00000000 .text   $d	(src_overlay095_ov95_022476F0.c.o)
-  02247AE0 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247AE0 00000010 .text   ov95_02247AE0	(src_overlay095_ov95_022476F0.c.o)
-  02247AEC 00000000 .text   $d	(src_overlay095_ov95_022476F0.c.o)
-  02247AF0 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247AF0 0000006C .text   ov95_02247AF0	(src_overlay095_ov95_022476F0.c.o)
-  02247B58 00000000 .text   $d	(src_overlay095_ov95_022476F0.c.o)
-  02247B5C 00000010 .text   ov95_02247B5C	(src_overlay095_ov95_022476F0.c.o)
-  02247B5C 00000000 .text   $t	(src_overlay095_ov95_022476F0.c.o)
-  02247B6C 0000005A .text   ov95_02247B6C	(src_overlay095_ov95_02247B6C.c.o)
-  02247B6C 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02247BC8 0000006A .text   ov95_02247BC8	(src_overlay095_ov95_02247B6C.c.o)
-  02247BC8 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02247C34 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02247C34 00000038 .text   ov95_02247C34	(src_overlay095_ov95_02247B6C.c.o)
-  02247C68 00000000 .text   $d	(src_overlay095_ov95_02247B6C.c.o)
-  02247C6C 00000046 .text   ov95_02247C6C	(src_overlay095_ov95_02247B6C.c.o)
-  02247C6C 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02247CB4 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02247CB4 00000224 .text   ov95_02247CB4	(src_overlay095_ov95_02247B6C.c.o)
-  02247EB0 00000000 .text   $d	(src_overlay095_ov95_02247B6C.c.o)
-  02247ED8 0000002A .text   ov95_02247ED8	(src_overlay095_ov95_02247B6C.c.o)
-  02247ED8 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02247F04 0000018A .text   ov95_02247F04	(src_overlay095_ov95_02247B6C.c.o)
-  02247F04 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02248090 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02248090 000000E4 .text   ov95_02248090	(src_overlay095_ov95_02247B6C.c.o)
-  02248170 00000000 .text   $d	(src_overlay095_ov95_02247B6C.c.o)
-  02248174 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02248174 000000CC .text   ov95_02248174	(src_overlay095_ov95_02247B6C.c.o)
-  0224821C 00000000 .text   $d	(src_overlay095_ov95_02247B6C.c.o)
-  02248240 0000005C .text   ov95_02248240	(src_overlay095_ov95_02247B6C.c.o)
-  02248240 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  0224829C 000000A4 .text   ov95_0224829C	(src_overlay095_ov95_02247B6C.c.o)
-  0224829C 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02248340 00000024 .text   ov95_02248340	(src_overlay095_ov95_02247B6C.c.o)
-  02248340 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02248364 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02248364 00000050 .text   ov95_02248364	(src_overlay095_ov95_02247B6C.c.o)
-  022483AC 00000000 .text   $d	(src_overlay095_ov95_02247B6C.c.o)
-  022483B4 0000000E .text   ov95_022483B4	(src_overlay095_ov95_02247B6C.c.o)
-  022483B4 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  022483C4 0000001E .text   ov95_022483C4	(src_overlay095_ov95_02247B6C.c.o)
-  022483C4 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  022483E4 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  022483E4 0000003C .text   ov95_022483E4	(src_overlay095_ov95_02247B6C.c.o)
-  0224841C 00000000 .text   $d	(src_overlay095_ov95_02247B6C.c.o)
-  02248420 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02248420 0000004C .text   ov95_02248420	(src_overlay095_ov95_02247B6C.c.o)
-  02248464 00000000 .text   $d	(src_overlay095_ov95_02247B6C.c.o)
-  0224846C 0000000E .text   ov95_0224846C	(src_overlay095_ov95_02247B6C.c.o)
-  0224846C 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  0224847C 00000014 .text   ov95_0224847C	(src_overlay095_ov95_02247B6C.c.o)
-  0224847C 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  02248490 0000001E .text   ov95_02248490	(src_overlay095_ov95_02247B6C.c.o)
-  02248490 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  022484B0 00000000 .text   $t	(src_overlay095_ov95_02247B6C.c.o)
-  022484B0 000000E0 .text   ov95_022484B0	(src_overlay095_ov95_02247B6C.c.o)
-  02248588 00000000 .text   $d	(src_overlay095_ov95_02247B6C.c.o)
-  02248590 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248590 0000006C .text   ov95_02248590	(src_overlay095_ov95_02248590.c.o)
-  022485F8 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  022485FC 00000054 .text   ov95_022485FC	(src_overlay095_ov95_02248590.c.o)
-  022485FC 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248650 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248650 00000038 .text   ov95_02248650	(src_overlay095_ov95_02248590.c.o)
-  02248684 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02248688 00000022 .text   ov95_02248688	(src_overlay095_ov95_02248590.c.o)
-  02248688 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022486AC 00000032 .text   ov95_022486AC	(src_overlay095_ov95_02248590.c.o)
-  022486AC 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022486E0 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022486E0 00000048 .text   ov95_022486E0	(src_overlay095_ov95_02248590.c.o)
-  02248724 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02248728 000000AA .text   ov95_02248728	(src_overlay095_ov95_02248590.c.o)
-  02248728 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022487D4 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022487D4 000000D0 .text   ov95_022487D4	(src_overlay095_ov95_02248590.c.o)
-  022488A0 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  022488A4 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022488A4 00000298 .text   ov95_022488A4	(src_overlay095_ov95_02248590.c.o)
-  02248B20 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02248B3C 00000046 .text   ov95_02248B3C	(src_overlay095_ov95_02248590.c.o)
-  02248B3C 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248B84 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248B84 00000114 .text   ov95_02248B84	(src_overlay095_ov95_02248590.c.o)
-  02248C64 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02248C98 00000010 .text   ov95_02248C98	(src_overlay095_ov95_02248590.c.o)
-  02248C98 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248CA8 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248CA8 0000011C .text   ov95_02248CA8	(src_overlay095_ov95_02248590.c.o)
-  02248DC0 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02248DC4 0000002E .text   ov95_02248DC4	(src_overlay095_ov95_02248590.c.o)
-  02248DC4 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248DF4 0000000A .text   ov95_02248DF4	(src_overlay095_ov95_02248590.c.o)
-  02248DF4 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248E00 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248E00 0000005C .text   ov95_02248E00	(src_overlay095_ov95_02248590.c.o)
-  02248E58 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02248E5C 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248E5C 00000068 .text   ov95_02248E5C	(src_overlay095_ov95_02248590.c.o)
-  02248EC0 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02248EC4 000000CE .text   ov95_02248EC4	(src_overlay095_ov95_02248590.c.o)
-  02248EC4 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248F94 00000018 .text   ov95_02248F94	(src_overlay095_ov95_02248590.c.o)
-  02248F94 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248FAC 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02248FAC 00000074 .text   ov95_02248FAC	(src_overlay095_ov95_02248590.c.o)
-  0224901C 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02249020 00000084 .text   ov95_02249020	(src_overlay095_ov95_02248590.c.o)
-  02249020 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022490A4 0000002C .text   ov95_022490A4	(src_overlay095_ov95_02248590.c.o)
-  022490A4 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022490D0 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022490D0 00000048 .text   ov95_022490D0	(src_overlay095_ov95_02248590.c.o)
-  02249114 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02249118 0000003A .text   ov95_02249118	(src_overlay095_ov95_02248590.c.o)
-  02249118 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02249154 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02249154 000000D8 .text   ov95_02249154	(src_overlay095_ov95_02248590.c.o)
-  02249224 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  0224922C 0000003C .text   ov95_0224922C	(src_overlay095_ov95_02248590.c.o)
-  0224922C 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02249268 0000003C .text   ov95_02249268	(src_overlay095_ov95_02248590.c.o)
-  02249268 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022492A4 00000036 .text   ov95_022492A4	(src_overlay095_ov95_02248590.c.o)
-  022492A4 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022492DC 00000148 .text   ov95_022492DC	(src_overlay095_ov95_02248590.c.o)
-  022492DC 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02249424 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02249424 00000084 .text   ov95_02249424	(src_overlay095_ov95_02248590.c.o)
-  022494A0 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  022494A8 0000004C .text   ov95_022494A8	(src_overlay095_ov95_02248590.c.o)
-  022494A8 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022494F4 0000000A .text   ov95_022494F4	(src_overlay095_ov95_02248590.c.o)
-  022494F4 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02249500 0000000A .text   ov95_02249500	(src_overlay095_ov95_02248590.c.o)
-  02249500 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  0224950C 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  0224950C 00000090 .text   ov95_0224950C	(src_overlay095_ov95_02248590.c.o)
-  02249594 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  0224959C 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  0224959C 0000005C .text   ov95_0224959C	(src_overlay095_ov95_02248590.c.o)
-  022495F4 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  022495F8 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022495F8 00000060 .text   ov95_022495F8	(src_overlay095_ov95_02248590.c.o)
-  02249650 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02249658 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02249658 0000005C .text   ov95_02249658	(src_overlay095_ov95_02248590.c.o)
-  022496B0 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  022496B4 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  022496B4 0000004C .text   ov95_022496B4	(src_overlay095_ov95_02248590.c.o)
-  022496FC 00000000 .text   $d	(src_overlay095_ov95_02248590.c.o)
-  02249700 0000003E .text   ov95_02249700	(src_overlay095_ov95_02248590.c.o)
-  02249700 00000000 .text   $t	(src_overlay095_ov95_02248590.c.o)
-  02249740 0000002E .text   ov95_02249740	(src_overlay095_ov95_02249740.c.o)
-  02249740 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249770 00000030 .text   ov95_02249770	(src_overlay095_ov95_02249740.c.o)
-  02249770 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  022497A0 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  022497A0 00000038 .text   ov95_022497A0	(src_overlay095_ov95_02249740.c.o)
-  022497D4 00000000 .text   $d	(src_overlay095_ov95_02249740.c.o)
-  022497D8 0000001E .text   ov95_022497D8	(src_overlay095_ov95_02249740.c.o)
-  022497D8 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  022497F8 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  022497F8 00000048 .text   ov95_022497F8	(src_overlay095_ov95_02249740.c.o)
-  02249838 00000000 .text   $d	(src_overlay095_ov95_02249740.c.o)
-  02249840 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249840 000000D0 .text   ov95_02249840	(src_overlay095_ov95_02249740.c.o)
-  02249904 00000000 .text   $d	(src_overlay095_ov95_02249740.c.o)
-  02249910 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249910 00000158 .text   ov95_02249910	(src_overlay095_ov95_02249740.c.o)
-  02249A54 00000000 .text   $d	(src_overlay095_ov95_02249740.c.o)
-  02249A68 00000016 .text   ov95_02249A68	(src_overlay095_ov95_02249740.c.o)
-  02249A68 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249A80 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249A80 00000100 .text   ov95_02249A80	(src_overlay095_ov95_02249740.c.o)
-  02249B54 00000000 .text   $d	(src_overlay095_ov95_02249740.c.o)
-  02249B80 0000000E .text   ov95_02249B80	(src_overlay095_ov95_02249740.c.o)
-  02249B80 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249B90 0000007E .text   ov95_02249B90	(src_overlay095_ov95_02249740.c.o)
-  02249B90 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249C10 00000018 .text   ov95_02249C10	(src_overlay095_ov95_02249740.c.o)
-  02249C10 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249C28 00000006 .text   ov95_02249C28	(src_overlay095_ov95_02249740.c.o)
-  02249C28 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249C30 00000014 .text   ov95_02249C30	(src_overlay095_ov95_02249740.c.o)
-  02249C30 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249C44 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249C44 000000AC .text   ov95_02249C44	(src_overlay095_ov95_02249740.c.o)
-  02249CD4 00000000 .text   $d	(src_overlay095_ov95_02249740.c.o)
-  02249CF0 0000000E .text   ov95_02249CF0	(src_overlay095_ov95_02249740.c.o)
-  02249CF0 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249D00 00000038 .text   ov95_02249D00	(src_overlay095_ov95_02249740.c.o)
-  02249D00 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249D38 000000CA .text   ov95_02249D38	(src_overlay095_ov95_02249740.c.o)
-  02249D38 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249E04 0000012C .text   ov95_02249E04	(src_overlay095_ov95_02249740.c.o)
-  02249E04 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249F30 00000006 .text   ov95_02249F30	(src_overlay095_ov95_02249740.c.o)
-  02249F30 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249F38 00000000 .text   $t	(src_overlay095_ov95_02249740.c.o)
-  02249F38 00000058 .text   ov95_02249F38	(src_overlay095_ov95_02249740.c.o)
-  02249F88 00000000 .text   $d	(src_overlay095_ov95_02249740.c.o)
-  02249F90 00000022 .text   ov95_02249F90	(src_overlay095_ov95_02249F90.c.o)
-  02249F90 00000000 .text   $t	(src_overlay095_ov95_02249F90.c.o)
-  02249FB4 00000012 .text   ov95_02249FB4	(src_overlay095_ov95_02249F90.c.o)
-  02249FB4 00000000 .text   $t	(src_overlay095_ov95_02249F90.c.o)
-  02249FC8 00000000 .text   $t	(src_overlay095_ov95_02249F90.c.o)
-  02249FC8 00000030 .text   ov95_02249FC8	(src_overlay095_ov95_02249F90.c.o)
-  02249FF4 00000000 .text   $d	(src_overlay095_ov95_02249F90.c.o)
-  02249FF8 00000000 .text   $t	(src_overlay095_ov95_02249F90.c.o)
-  02249FF8 00000028 .text   ov95_02249FF8	(src_overlay095_ov95_02249F90.c.o)
-  0224A01C 00000000 .text   $d	(src_overlay095_ov95_02249F90.c.o)
-  0224A020 00000000 .text   $t	(src_overlay095_ov95_02249F90.c.o)
-  0224A020 000000A4 .text   ov95_0224A020	(src_overlay095_ov95_02249F90.c.o)
-  0224A0AC 00000000 .text   $d	(src_overlay095_ov95_02249F90.c.o)
-  0224A0C4 00000046 .text   ov95_0224A0C4	(src_overlay095_ov95_02249F90.c.o)
-  0224A0C4 00000000 .text   $t	(src_overlay095_ov95_02249F90.c.o)
-  0224A10C 00000000 .text   $t	(src_overlay095_ov95_02249F90.c.o)
-  0224A10C 00000214 .text   ov95_0224A10C	(src_overlay095_ov95_02249F90.c.o)
-  0224A304 00000000 .text   $d	(src_overlay095_ov95_02249F90.c.o)
-  0224A320 00000036 .text   ov95_0224A320	(src_overlay095_ov95_02249F90.c.o)
-  0224A320 00000000 .text   $t	(src_overlay095_ov95_02249F90.c.o)
-  0224A358 00000000 .text   $t	(src_overlay095_ov95_02249F90.c.o)
-  0224A358 00000038 .text   ov95_0224A358	(src_overlay095_ov95_02249F90.c.o)
-  0224A38C 00000000 .text   $d	(src_overlay095_ov95_02249F90.c.o)
-  0224A390 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A390 0000003C .text   ov95_0224A390	(src_overlay095_ov95_0224A390.c.o)
-  0224A3C8 00000000 .text   $d	(src_overlay095_ov95_0224A390.c.o)
-  0224A3CC 00000030 .text   ov95_0224A3CC	(src_overlay095_ov95_0224A390.c.o)
-  0224A3CC 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A3FC 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A3FC 00000030 .text   ov95_0224A3FC	(src_overlay095_ov95_0224A390.c.o)
-  0224A428 00000000 .text   $d	(src_overlay095_ov95_0224A390.c.o)
-  0224A42C 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A42C 00000038 .text   ov95_0224A42C	(src_overlay095_ov95_0224A390.c.o)
-  0224A460 00000000 .text   $d	(src_overlay095_ov95_0224A390.c.o)
-  0224A464 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A464 000000B4 .text   ov95_0224A464	(src_overlay095_ov95_0224A390.c.o)
-  0224A510 00000000 .text   $d	(src_overlay095_ov95_0224A390.c.o)
-  0224A518 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A518 00000160 .text   ov95_0224A518	(src_overlay095_ov95_0224A390.c.o)
-  0224A668 00000000 .text   $d	(src_overlay095_ov95_0224A390.c.o)
-  0224A678 00000016 .text   ov95_0224A678	(src_overlay095_ov95_0224A390.c.o)
-  0224A678 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A690 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A690 00000110 .text   ov95_0224A690	(src_overlay095_ov95_0224A390.c.o)
-  0224A770 00000000 .text   $d	(src_overlay095_ov95_0224A390.c.o)
-  0224A7A0 0000000E .text   ov95_0224A7A0	(src_overlay095_ov95_0224A390.c.o)
-  0224A7A0 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A7B0 0000007E .text   ov95_0224A7B0	(src_overlay095_ov95_0224A390.c.o)
-  0224A7B0 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A830 00000018 .text   ov95_0224A830	(src_overlay095_ov95_0224A390.c.o)
-  0224A830 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A848 00000006 .text   ov95_0224A848	(src_overlay095_ov95_0224A390.c.o)
-  0224A848 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A850 00000014 .text   ov95_0224A850	(src_overlay095_ov95_0224A390.c.o)
-  0224A850 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A864 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A864 000000C0 .text   ov95_0224A864	(src_overlay095_ov95_0224A390.c.o)
-  0224A904 00000000 .text   $d	(src_overlay095_ov95_0224A390.c.o)
-  0224A924 0000000E .text   ov95_0224A924	(src_overlay095_ov95_0224A390.c.o)
-  0224A924 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A934 00000042 .text   ov95_0224A934	(src_overlay095_ov95_0224A390.c.o)
-  0224A934 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A978 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224A978 000000F8 .text   ov95_0224A978	(src_overlay095_ov95_0224A390.c.o)
-  0224AA6C 00000000 .text   $d	(src_overlay095_ov95_0224A390.c.o)
-  0224AA70 000000D6 .text   ov95_0224AA70	(src_overlay095_ov95_0224A390.c.o)
-  0224AA70 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224AB48 00000006 .text   ov95_0224AB48	(src_overlay095_ov95_0224A390.c.o)
-  0224AB48 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224AB50 00000000 .text   $t	(src_overlay095_ov95_0224A390.c.o)
-  0224AB50 00000070 .text   ov95_0224AB50	(src_overlay095_ov95_0224A390.c.o)
-  0224ABB4 00000000 .text   $d	(src_overlay095_ov95_0224A390.c.o)
-  0224ABC0 00000032 .text   ov95_0224ABC0	(src_overlay095_ov95_0224ABC0.c.o)
-  0224ABC0 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224ABF4 00000036 .text   ov95_0224ABF4	(src_overlay095_ov95_0224ABC0.c.o)
-  0224ABF4 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AC2C 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AC2C 00000038 .text   ov95_0224AC2C	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AC60 00000000 .text   $d	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AC64 00000034 .text   ov95_0224AC64	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AC64 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AC98 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AC98 00000030 .text   ov95_0224AC98	(src_overlay095_ov95_0224ABC0.c.o)
-  0224ACC4 00000000 .text   $d	(src_overlay095_ov95_0224ABC0.c.o)
-  0224ACC8 000000CE .text   ov95_0224ACC8	(src_overlay095_ov95_0224ABC0.c.o)
-  0224ACC8 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AD98 00000084 .text   ov95_0224AD98	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AD98 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AE1C 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224AE1C 00000234 .text   ov95_0224AE1C	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B034 00000000 .text   $d	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B050 00000032 .text   ov95_0224B050	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B050 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B084 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B084 00000110 .text   ov95_0224B084	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B168 00000000 .text   $d	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B194 00000014 .text   ov95_0224B194	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B194 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B1A8 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B1A8 00000050 .text   ov95_0224B1A8	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B1EC 00000000 .text   $d	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B1F8 00000060 .text   ov95_0224B1F8	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B1F8 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B258 0000001C .text   ov95_0224B258	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B258 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B274 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B274 00000054 .text   ov95_0224B274	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B2C4 00000000 .text   $d	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B2C8 0000003E .text   ov95_0224B2C8	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B2C8 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B308 0000001C .text   ov95_0224B308	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B308 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B324 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B324 00000064 .text   ov95_0224B324	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B384 00000000 .text   $d	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B388 00000032 .text   ov95_0224B388	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B388 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B3BC 0000001C .text   ov95_0224B3BC	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B3BC 00000000 .text   $t	(src_overlay095_ov95_0224ABC0.c.o)
-  0224B3D8 00000060 .text   ov95_0224B3D8	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B3D8 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B438 00000062 .text   ov95_0224B438	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B438 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B49C 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B49C 00000038 .text   ov95_0224B49C	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B4D0 00000000 .text   $d	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B4D4 0000004A .text   ov95_0224B4D4	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B4D4 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B520 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B520 000001D0 .text   ov95_0224B520	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B6D0 00000000 .text   $d	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B6F0 0000002A .text   ov95_0224B6F0	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B6F0 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B71C 00000100 .text   ov95_0224B71C	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B71C 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B81C 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B81C 00000174 .text   ov95_0224B81C	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B98C 00000000 .text   $d	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B990 0000002E .text   ov95_0224B990	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B990 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B9C0 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224B9C0 000000CC .text   ov95_0224B9C0	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BA68 00000000 .text   $d	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BA8C 0000005C .text   ov95_0224BA8C	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BA8C 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BAE8 000000A4 .text   ov95_0224BAE8	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BAE8 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BB8C 00000024 .text   ov95_0224BB8C	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BB8C 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BBB0 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BBB0 00000050 .text   ov95_0224BBB0	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BBF8 00000000 .text   $d	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BC00 0000000E .text   ov95_0224BC00	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BC00 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BC10 0000001E .text   ov95_0224BC10	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BC10 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BC30 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BC30 0000003C .text   ov95_0224BC30	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BC68 00000000 .text   $d	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BC6C 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BC6C 0000007C .text   ov95_0224BC6C	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BCE0 00000000 .text   $d	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BCE8 0000001C .text   ov95_0224BCE8	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BCE8 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BD04 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BD04 0000003C .text   ov95_0224BD04	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BD3C 00000000 .text   $d	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BD40 0000001A .text   ov95_0224BD40	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BD40 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BD5C 00000000 .text   $t	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BD5C 00000118 .text   ov95_0224BD5C	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BE6C 00000000 .text   $d	(src_overlay095_ov95_0224B3D8.c.o)
-  0224BE74 00000008 .rodata v0$15555	(src_overlay095_ov95_02246C20.c.o)
-  0224BE74 00000000 .rodata .rodata	(src_overlay095_ov95_02246C20.c.o)
-  0224BE7C 00000010 .rodata @15572	(src_overlay095_ov95_02246C20.c.o)
-  0224BE8C 00000070 .rodata Unk_ov95_0224BE8C	(src_overlay095_ov95_02246C20.c.o)
-  0224BEFC 00000000 .rodata .rodata	(src_overlay095_ov95_02247B6C.c.o)
-  0224BEFC 00000006 .rodata @15490	(src_overlay095_ov95_02247B6C.c.o)
-  0224BF04 00000010 .rodata v0$15470	(src_overlay095_ov95_02247B6C.c.o)
-  0224BF14 00000010 .rodata v1$15486	(src_overlay095_ov95_02247B6C.c.o)
-  0224BF24 0000001C .rodata v2$15487	(src_overlay095_ov95_02247B6C.c.o)
-  0224BF40 0000001C .rodata v3$15488	(src_overlay095_ov95_02247B6C.c.o)
-  0224BF5C 00000028 .rodata v0$15485	(src_overlay095_ov95_02247B6C.c.o)
-  0224BF84 00000008 .rodata v4$15465	(src_overlay095_ov95_02248590.c.o)
-  0224BF84 00000000 .rodata .rodata	(src_overlay095_ov95_02248590.c.o)
-  0224BF8C 00000010 .rodata v1$15462	(src_overlay095_ov95_02248590.c.o)
-  0224BF9C 00000010 .rodata v0$15385	(src_overlay095_ov95_02248590.c.o)
-  0224BFAC 00000010 .rodata v0$15481	(src_overlay095_ov95_02248590.c.o)
-  0224BFBC 0000001C .rodata v2$15463	(src_overlay095_ov95_02248590.c.o)
-  0224BFD8 0000001C .rodata v3$15464	(src_overlay095_ov95_02248590.c.o)
-  0224BFF4 00000028 .rodata v0$15461	(src_overlay095_ov95_02248590.c.o)
-  0224C01C 00000000 .rodata .rodata	(src_overlay095_ov95_02249740.c.o)
-  0224C01C 00000008 .rodata v0$15339	(src_overlay095_ov95_02249740.c.o)
-  0224C024 00000010 .rodata v1$15380	(src_overlay095_ov95_02249740.c.o)
-  0224C034 00000010 .rodata v0$15400	(src_overlay095_ov95_02249740.c.o)
-  0224C044 0000001C .rodata v2$15381	(src_overlay095_ov95_02249740.c.o)
-  0224C060 00000028 .rodata v0$15379	(src_overlay095_ov95_02249740.c.o)
-  0224C088 00000000 .rodata .rodata	(src_overlay095_ov95_02249F90.c.o)
-  0224C088 00000008 .rodata v0$15176	(src_overlay095_ov95_02249F90.c.o)
-  0224C090 00000010 .rodata v1$15216	(src_overlay095_ov95_02249F90.c.o)
-  0224C0A0 0000001C .rodata v2$15217	(src_overlay095_ov95_02249F90.c.o)
-  0224C0BC 0000001C .rodata v3$15218	(src_overlay095_ov95_02249F90.c.o)
-  0224C0D8 0000001C .rodata v4$15219	(src_overlay095_ov95_02249F90.c.o)
-  0224C0F4 00000028 .rodata v0$15215	(src_overlay095_ov95_02249F90.c.o)
-  0224C11C 00000000 .rodata .rodata	(src_overlay095_ov95_0224A390.c.o)
-  0224C11C 00000008 .rodata v0$15339	(src_overlay095_ov95_0224A390.c.o)
-  0224C124 00000010 .rodata v1$15373	(src_overlay095_ov95_0224A390.c.o)
-  0224C134 00000010 .rodata v0$15393	(src_overlay095_ov95_0224A390.c.o)
-  0224C144 0000001C .rodata v2$15374	(src_overlay095_ov95_0224A390.c.o)
-  0224C160 00000028 .rodata v0$15372	(src_overlay095_ov95_0224A390.c.o)
-  0224C188 00000008 .rodata v4$15320	(src_overlay095_ov95_0224ABC0.c.o)
-  0224C188 00000000 .rodata .rodata	(src_overlay095_ov95_0224ABC0.c.o)
-  0224C190 0000000C .rodata v0$15255	(src_overlay095_ov95_0224ABC0.c.o)
-  0224C19C 00000010 .rodata v1$15317	(src_overlay095_ov95_0224ABC0.c.o)
-  0224C1AC 00000010 .rodata v0$15336	(src_overlay095_ov95_0224ABC0.c.o)
-  0224C1BC 0000001C .rodata v2$15318	(src_overlay095_ov95_0224ABC0.c.o)
-  0224C1D8 0000001C .rodata v3$15319	(src_overlay095_ov95_0224ABC0.c.o)
-  0224C1F4 00000028 .rodata v0$15316	(src_overlay095_ov95_0224ABC0.c.o)
-  0224C21C 00000000 .rodata .rodata	(src_overlay095_ov95_0224B3D8.c.o)
-  0224C21C 00000006 .rodata @15498	(src_overlay095_ov95_0224B3D8.c.o)
-  0224C224 00000010 .rodata v0$15476	(src_overlay095_ov95_0224B3D8.c.o)
-  0224C234 00000010 .rodata v1$15494	(src_overlay095_ov95_0224B3D8.c.o)
-  0224C244 0000001C .rodata v2$15495	(src_overlay095_ov95_0224B3D8.c.o)
-  0224C260 0000001C .rodata v3$15496	(src_overlay095_ov95_0224B3D8.c.o)
-  0224C27C 00000028 .rodata v0$15493	(src_overlay095_ov95_0224B3D8.c.o)
-#>0224C2A4          SDK_OVERLAY.overlay95.SINIT_START (linker command file)
-#>0224C2A8          SDK_OVERLAY.overlay95.SINIT_END (linker command file)
-#>0224C2C0          SDK_OVERLAY.overlay95.TEXT_END (linker command file)
-#>0224C2C0          SDK_OVERLAY.overlay95.DATA_START (linker command file)
-  0224C2C0 00000000 .data   .data	(src_overlay095_ov95_0224A390.c.o)
-  0224C2C0 00000004 .data   Unk_ov95_0224C2C0	(src_overlay095_ov95_0224A390.c.o)
-#>0224C2E0          SDK_OVERLAY.overlay95.DATA_END (linker command file)
-#>0224C2E0          SDK_OVERLAY.overlay95.END (linker command file)
-#>000056A0          SDK_OVERLAY.overlay95.TEXT_SIZE (linker command file)
-#>00000020          SDK_OVERLAY.overlay95.DATA_SIZE (linker command file)
-#>000056C0          SDK_OVERLAY.overlay95.SIZE (linker command file)
+# .trade_sequence
+#>0000005F          SDK_OVERLAY_trade_sequence_ID (linker command file)
+#>0000005F          SDK_OVERLAY.trade_sequence.ID (linker command file)
+#>02246C20          SDK_OVERLAY.trade_sequence.START (linker command file)
+#>02246C20          SDK_OVERLAY.trade_sequence.TEXT_START (linker command file)
+  02246C20 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02246C20 000001CC .text   TradeSequence_Init	(src_cutscenes_trade_sequence_main.c.o)
+  02246DD0 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02246DEC 0000002E .text   DoesMonSpeciesFlipsSprite	(src_cutscenes_trade_sequence_main.c.o)
+  02246DEC 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02246E1C 0000005E .text   TradeSequence_Exit	(src_cutscenes_trade_sequence_main.c.o)
+  02246E1C 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02246E7C 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02246E7C 00000090 .text   TradeSequence_Main	(src_cutscenes_trade_sequence_main.c.o)
+  02246EFC 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02246F0C 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02246F0C 00000024 .text   TradeSequence_VBlankCallback	(src_cutscenes_trade_sequence_main.c.o)
+  02246F28 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02246F30 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02246F30 000000D4 .text   PaletteShimmerEffect_New	(src_cutscenes_trade_sequence_main.c.o)
+  02246FF4 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02247004 00000014 .text   PaletteShimmerEffect_Stop	(src_cutscenes_trade_sequence_main.c.o)
+  02247004 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247018 00000048 .text   PaletteShimmerEffect_Free	(src_cutscenes_trade_sequence_main.c.o)
+  02247018 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247060 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247060 000000E8 .text   PaletteShimmerEffect_VBlankTask	(src_cutscenes_trade_sequence_main.c.o)
+  02247144 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02247148 00000026 .text   PaletteShimmerEffect_SetEntry	(src_cutscenes_trade_sequence_main.c.o)
+  02247148 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247170 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247170 000000B4 .text   PaletteShimmerEffect_SpawnSpark	(src_cutscenes_trade_sequence_main.c.o)
+  02247220 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02247224 00000030 .text   PaletteShimmerEffect_FreeSpark	(src_cutscenes_trade_sequence_main.c.o)
+  02247224 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247254 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247254 00000070 .text   PaletteShimmerEffect_SparkTask	(src_cutscenes_trade_sequence_main.c.o)
+  022472C0 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  022472C4 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  022472C4 00000068 .text   BgScaleAnimation_New	(src_cutscenes_trade_sequence_main.c.o)
+  02247324 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  0224732C 00000072 .text   BgScaleAnimation_Task	(src_cutscenes_trade_sequence_main.c.o)
+  0224732C 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  022473A0 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  022473A0 00000048 .text   BgScaleAnimation_Apply	(src_cutscenes_trade_sequence_main.c.o)
+  022473E4 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  022473E8 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  022473E8 000000EC .text   TradeSequence_LoadPokemonBGTiles	(src_cutscenes_trade_sequence_main.c.o)
+  022474D0 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  022474D4 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  022474D4 00000094 .text   TradeSequence_LoadPokemonPlatform	(src_cutscenes_trade_sequence_main.c.o)
+  02247564 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02247568 00000036 .text   SpriteAnimResources_Load	(src_cutscenes_trade_sequence_main.c.o)
+  02247568 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  022475A0 00000022 .text   SpriteAnimResources_Free	(src_cutscenes_trade_sequence_main.c.o)
+  022475A0 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  022475C4 00000020 .text   SpriteResourcesHeader_InitFromAnimResources	(src_cutscenes_trade_sequence_main.c.o)
+  022475C4 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  022475E4 00000042 .text   TradeSequence_AddSprite	(src_cutscenes_trade_sequence_main.c.o)
+  022475E4 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247628 00000004 .text   TradeSequence_GetBgConfig	(src_cutscenes_trade_sequence_main.c.o)
+  02247628 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  0224762C 00000004 .text   TradeSequence_GetStrTemplate	(src_cutscenes_trade_sequence_main.c.o)
+  0224762C 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247630 00000004 .text   TradeSequence_GetMsgLoader	(src_cutscenes_trade_sequence_main.c.o)
+  02247630 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247634 00000006 .text   TradeSequence_GetSendingPokemon	(src_cutscenes_trade_sequence_main.c.o)
+  02247634 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  0224763C 00000006 .text   TradeSequence_GetReceivingPokemon	(src_cutscenes_trade_sequence_main.c.o)
+  0224763C 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247644 00000006 .text   TradeSequence_GetBackground	(src_cutscenes_trade_sequence_main.c.o)
+  02247644 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  0224764C 00000008 .text   TradeSequence_GetSendingSpecies	(src_cutscenes_trade_sequence_main.c.o)
+  0224764C 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247654 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247654 0000000C .text   TradeSequence_GetSendingForm	(src_cutscenes_trade_sequence_main.c.o)
+  0224765C 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02247660 00000008 .text   TradeSequence_GetReceivingSpecies	(src_cutscenes_trade_sequence_main.c.o)
+  02247660 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247668 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247668 0000000C .text   TradeSequence_GetReceivingForm	(src_cutscenes_trade_sequence_main.c.o)
+  02247670 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02247674 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247674 0000000C .text   TradeSequence_GetOptionsFrame	(src_cutscenes_trade_sequence_main.c.o)
+  0224767C 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02247680 00000006 .text   TradeSequence_GetTradeType	(src_cutscenes_trade_sequence_main.c.o)
+  02247680 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247688 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247688 0000000C .text   DeferredFree_Init	(src_cutscenes_trade_sequence_main.c.o)
+  02247690 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  02247694 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  02247694 00000034 .text   DeferredFree_Flush	(src_cutscenes_trade_sequence_main.c.o)
+  022476C0 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  022476C8 00000000 .text   $t	(src_cutscenes_trade_sequence_main.c.o)
+  022476C8 00000028 .text   DeferredFree_Enqueue	(src_cutscenes_trade_sequence_main.c.o)
+  022476E8 00000000 .text   $d	(src_cutscenes_trade_sequence_main.c.o)
+  022476F0 0000004A .text   Trade3DScene_New	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022476F0 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  0224773C 00000034 .text   Trade3DScene_Free	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  0224773C 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247770 00000046 .text   Trade3DScene_Render	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247770 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022477B8 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022477B8 000000B0 .text   Trade3DModel_Render	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247864 00000000 .text   $d	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247868 00000032 .text   Trade3DModel_Init	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247868 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  0224789C 00000016 .text   Trade3DModel_Unload	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  0224789C 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022478B4 000000A2 .text   Trade3DModel_Load	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022478B4 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247958 00000010 .text   Trade3DModel_GetPosition	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247958 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247968 00000010 .text   Trade3DModel_SetPosition	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247968 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247978 00000018 .text   Trade3DModel_GetRotation	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247978 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247990 00000018 .text   Trade3DModel_SetRotation	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247990 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022479A8 00000004 .text   Trade3DModel_SetEnabled	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022479A8 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022479AC 00000026 .text   Trade3DModel_SetAlpha	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022479AC 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022479D4 00000008 .text   Trade3DModel_SetScale	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022479D4 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022479DC 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  022479DC 000000B4 .text   Trade3DModel_IsInView	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247A8C 00000000 .text   $d	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247A90 0000001E .text   Trade3DScene_GetCameraPosition	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247A90 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AB0 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AB0 00000010 .text   Trade3DScene_SetCameraAngle	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247ABC 00000000 .text   $d	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AC0 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AC0 00000010 .text   Trade3DScene_AdjustCameraAngle	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247ACC 00000000 .text   $d	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AD0 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AD0 00000010 .text   Trade3DScene_ComputeProjection	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247ADC 00000000 .text   $d	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AE0 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AE0 00000010 .text   Trade3DScene_SetFOV	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AEC 00000000 .text   $d	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AF0 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247AF0 0000006C .text   Trade3DScene_InitCamera	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247B58 00000000 .text   $d	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247B5C 00000010 .text   Trade3DScene_DestroyCamera	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247B5C 00000000 .text   $t	(src_cutscenes_trade_sequence_3d_scene.c.o)
+  02247B6C 0000005A .text   TradeSendPhase_New	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247B6C 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247BC8 0000006A .text   TradeSendPhase_Free	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247BC8 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247C34 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247C34 00000038 .text   TradeSendPhase_Run	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247C68 00000000 .text   $d	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247C6C 00000046 .text   TradeSendPhase_Tick	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247C6C 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247CB4 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247CB4 00000224 .text   TradeSendPhase_InitGraphics	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247EB0 00000000 .text   $d	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247ED8 0000002A .text   TradeSendPhase_RevealSprite	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247ED8 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247F04 0000018A .text   TradeSendPhase_ShowPokemonInfo	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02247F04 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248090 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248090 000000E4 .text   TradeSendPhase_ThrowBall	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248170 00000000 .text   $d	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248174 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248174 000000CC .text   TradeSendPhase_Init3DScene	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224821C 00000000 .text   $d	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248240 0000005C .text   TradeSendPhase_CreatePokemonSprite	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248240 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224829C 000000A4 .text   TradeSendPhase_CreateBallSprites	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224829C 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248340 00000024 .text   TradeSendPhase_DeleteBallSprites	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248340 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248364 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248364 00000050 .text   BrightnessAnimState_Start	(src_cutscenes_trade_sequence_send_phase.c.o)
+  022483AC 00000000 .text   $d	(src_cutscenes_trade_sequence_send_phase.c.o)
+  022483B4 0000000E .text   TradeSendPhase_IsBrightnessAnimDone	(src_cutscenes_trade_sequence_send_phase.c.o)
+  022483B4 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  022483C4 0000001E .text   TradeSendPhase_FreeBrightnessAnimState	(src_cutscenes_trade_sequence_send_phase.c.o)
+  022483C4 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  022483E4 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  022483E4 0000003C .text   BrightnessAnimState_Task	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224841C 00000000 .text   $d	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248420 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248420 0000004C .text   BallBounceState_Start	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248464 00000000 .text   $d	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224846C 0000000E .text   TradeSendPhase_IsBallBounceDone	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224846C 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224847C 00000014 .text   TradeSendPhase_GetBounceCount	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224847C 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248490 0000001E .text   BallBounceState_Free	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248490 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  022484B0 00000000 .text   $t	(src_cutscenes_trade_sequence_send_phase.c.o)
+  022484B0 000000E0 .text   BallBounceState_Task	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248588 00000000 .text   $d	(src_cutscenes_trade_sequence_send_phase.c.o)
+  02248590 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248590 0000006C .text   TradeTubePhase_New	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022485F8 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022485FC 00000054 .text   TradeTubePhase_Free	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022485FC 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248650 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248650 00000038 .text   TradeTubePhase_Run	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248684 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248688 00000022 .text   TradeTubePhase_Tick	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248688 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022486AC 00000032 .text   TradeTubePhase_Setup	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022486AC 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022486E0 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022486E0 00000048 .text   TradeTubePhase_WaitForAnimation	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248724 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248728 000000AA .text   TradeTubePhase_AnimateBall	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248728 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022487D4 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022487D4 000000D0 .text   TradeTubePhase_Exit	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022488A0 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022488A4 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022488A4 00000298 .text   TradeTubePhase_InitGraphics	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248B20 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248B3C 00000046 .text   TradeTubePhase_FreeGraphics	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248B3C 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248B84 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248B84 00000114 .text   TradeTubePhase_Init3DScene	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248C64 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248C98 00000010 .text   TradeTubePhase_Free3DScene	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248C98 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248CA8 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248CA8 0000011C .text   TradeTubePhase_CreateSprites	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248DC0 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248DC4 0000002E .text   TradeTubePhase_DeleteSprites	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248DC4 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248DF4 0000000A .text   TradeTubePhase_RequestScreenSwap	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248DF4 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248E00 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248E00 0000005C .text   TradeTubePhase_ScreenSwapTask	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248E58 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248E5C 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248E5C 00000068 .text   TubeParticleScrollState_Start	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248EC0 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248EC4 000000CE .text   TubeParticleScrollState_Task	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248EC4 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248F94 00000018 .text   TubeParticleScrollState_Stop	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248F94 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248FAC 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02248FAC 00000074 .text   TubeBgScrollState_Start	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224901C 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249020 00000084 .text   TubeBgScrollState_Task	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249020 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022490A4 0000002C .text   TubeBgScrollState_Stop	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022490A4 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022490D0 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022490D0 00000048 .text   ModelFadeState_Start	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249114 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249118 0000003A .text   ModelFadeState_Task	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249118 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249154 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249154 000000D8 .text   BallPathState_Start	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249224 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224922C 0000003C .text   BallPathState_SetRotationSpeed	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224922C 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249268 0000003C .text   BallPathState_SetOrbitRadius	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249268 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022492A4 00000036 .text   BallPathState_SetAxisRotStep	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022492A4 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022492DC 00000148 .text   BallPathState_Tick	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022492DC 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249424 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249424 00000084 .text   BallPathState_EntryTask	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022494A0 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022494A8 0000004C .text   BallPathState_ExitTask	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022494A8 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022494F4 0000000A .text   BallPathState_IsDone	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022494F4 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249500 0000000A .text   BallPathState_IsAtMidpoint	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249500 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224950C 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224950C 00000090 .text   BallPathState_StartReturn	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249594 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224959C 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224959C 0000005C .text   BallPathState_ReturnApproachTask	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022495F4 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022495F8 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022495F8 00000060 .text   BallPathState_ReturnCoastTask	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249650 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249658 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249658 0000005C .text   BallPathState_ReturnFinalApproachTask	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022496B0 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022496B4 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022496B4 0000004C .text   BallPathState_ReturnCoast2Task	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  022496FC 00000000 .text   $d	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249700 0000003E .text   BallPathState_ReturnExitTask	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249700 00000000 .text   $t	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  02249740 0000002E .text   TradeBallFlybyPhase_New	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249740 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249770 00000030 .text   TradeBallFlybyPhase_Free	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249770 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  022497A0 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  022497A0 00000038 .text   TradeBallFlybyPhase_Run	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  022497D4 00000000 .text   $d	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  022497D8 0000001E .text   TradeBallFlybyPhase_Tick	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  022497D8 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  022497F8 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  022497F8 00000048 .text   TradeBallFlybyPhase_Setup	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249838 00000000 .text   $d	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249840 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249840 000000D0 .text   TradeBallFlybyPhase_Animate	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249904 00000000 .text   $d	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249910 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249910 00000158 .text   TradeBallFlybyPhase_InitGraphics	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249A54 00000000 .text   $d	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249A68 00000016 .text   TradeBallFlybyPhase_FreeGraphics	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249A68 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249A80 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249A80 00000100 .text   TradeBallFlybyPhase_Init3DScene	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249B54 00000000 .text   $d	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249B80 0000000E .text   TradeBallFlybyPhase_Free3DScene	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249B80 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249B90 0000007E .text   TradeBallFlybyPhase_CreateSprite	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249B90 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249C10 00000018 .text   TradeBallFlybyPhase_DeleteSprite	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249C10 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249C28 00000006 .text   BallOrbitState_Init	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249C28 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249C30 00000014 .text   BallOrbitState_Stop	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249C30 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249C44 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249C44 000000AC .text   BallOrbitState_Start	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249CD4 00000000 .text   $d	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249CF0 0000000E .text   BallOrbitState_IsDone	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249CF0 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249D00 00000038 .text   BallOrbitState_SetOrbitRadius	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249D00 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249D38 000000CA .text   BallOrbitState_Tick	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249D38 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249E04 0000012C .text   BallOrbitState_Task	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249E04 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249F30 00000006 .text   TradeBallFlybyPhase_OnBallExited	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249F30 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249F38 00000000 .text   $t	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249F38 00000058 .text   TradeBallFlybyPhase_ScreenSwapTask	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249F88 00000000 .text   $d	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  02249F90 00000022 .text   TradeWormholePhase_New	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  02249F90 00000000 .text   $t	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  02249FB4 00000012 .text   TradeWormholePhase_Free	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  02249FB4 00000000 .text   $t	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  02249FC8 00000000 .text   $t	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  02249FC8 00000030 .text   TradeWormholePhase_Run	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  02249FF4 00000000 .text   $d	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  02249FF8 00000000 .text   $t	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  02249FF8 00000028 .text   TradeWormholePhase_Setup	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A01C 00000000 .text   $d	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A020 00000000 .text   $t	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A020 000000A4 .text   TradeWormholePhase_Animate	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A0AC 00000000 .text   $d	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A0C4 00000046 .text   TradeWormholePhase_ScrollTask	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A0C4 00000000 .text   $t	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A10C 00000000 .text   $t	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A10C 00000214 .text   TradeWormholePhase_InitGraphics	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A304 00000000 .text   $d	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A320 00000036 .text   TradeWormholePhase_FreeGraphics	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A320 00000000 .text   $t	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A358 00000000 .text   $t	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A358 00000038 .text   TradeWormholePhase_SetBgScroll	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A38C 00000000 .text   $d	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224A390 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A390 0000003C .text   ReceiveBall_New	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A3C8 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A3CC 00000030 .text   ReceiveBall_Free	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A3CC 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A3FC 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A3FC 00000030 .text   ReceiveBall_Run	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A428 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A42C 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A42C 00000038 .text   ReceiveBall_Setup	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A460 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A464 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A464 000000B4 .text   ReceiveBall_Animate	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A510 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A518 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A518 00000160 .text   ReceiveBall_InitGraphics	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A668 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A678 00000016 .text   ReceiveBall_FreeGraphics	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A678 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A690 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A690 00000110 .text   ReceiveBall_Init3DScene	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A770 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A7A0 0000000E .text   ReceiveBall_Free3DScene	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A7A0 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A7B0 0000007E .text   ReceiveBall_CreateSprite	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A7B0 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A830 00000018 .text   ReceiveBall_DeleteSprite	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A830 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A848 00000006 .text   BallArrivalPathState_Init	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A848 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A850 00000014 .text   BallArrivalPathState_Stop	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A850 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A864 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A864 000000C0 .text   BallArrivalPathState_Start	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A904 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A924 0000000E .text   BallArrivalPathState_IsDone	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A924 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A934 00000042 .text   BallArrivalPathState_BeginTransition	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A934 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A978 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224A978 000000F8 .text   BallArrivalPathState_Tick	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224AA6C 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224AA70 000000D6 .text   BallArrivalPathState_Task	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224AA70 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224AB48 00000006 .text   ReceiveBall_ScreenSwapPending	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224AB48 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224AB50 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224AB50 00000070 .text   ReceiveBall_VBlankCallback	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224ABB4 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224ABC0 00000032 .text   TradePokemonRevealPhase_New	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224ABC0 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224ABF4 00000036 .text   TradePokemonRevealPhase_Free	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224ABF4 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AC2C 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AC2C 00000038 .text   TradePokemonRevealPhase_Run	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AC60 00000000 .text   $d	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AC64 00000034 .text   TradePokemonRevealPhase_Tick	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AC64 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AC98 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AC98 00000030 .text   TradePokemonRevealPhase_Setup	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224ACC4 00000000 .text   $d	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224ACC8 000000CE .text   TradePokemonRevealPhase_Animate	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224ACC8 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AD98 00000084 .text   TradePokemonRevealPhase_Exit	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AD98 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AE1C 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224AE1C 00000234 .text   TradePokemonRevealPhase_InitGraphics	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B034 00000000 .text   $d	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B050 00000032 .text   TradePokemonRevealPhase_FreeGraphics	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B050 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B084 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B084 00000110 .text   TradePokemonRevealPhase_Init3DScene	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B168 00000000 .text   $d	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B194 00000014 .text   TradePokemonRevealPhase_Free3DScene	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B194 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B1A8 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B1A8 00000050 .text   BgSlideState_Start	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B1EC 00000000 .text   $d	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B1F8 00000060 .text   BgSlideState_Task	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B1F8 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B258 0000001C .text   BgSlideState_Free	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B258 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B274 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B274 00000054 .text   ModelSlideState_Start	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B2C4 00000000 .text   $d	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B2C8 0000003E .text   ModelSlideState_Task	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B2C8 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B308 0000001C .text   ModelSlideState_Free	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B308 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B324 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B324 00000064 .text   ModelFadeState_Start	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B384 00000000 .text   $d	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B388 00000032 .text   ModelFadeState_Task	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B388 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B3BC 0000001C .text   ModelFadeState_Free	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B3BC 00000000 .text   $t	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224B3D8 00000060 .text   TradeReceivePhase_New	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B3D8 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B438 00000062 .text   TradeReceivePhase_Free	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B438 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B49C 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B49C 00000038 .text   TradeReceivePhase_Run	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B4D0 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B4D4 0000004A .text   TradeReceivePhase_Tick	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B4D4 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B520 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B520 000001D0 .text   TradeReceivePhase_InitGraphics	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B6D0 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B6F0 0000002A .text   TradeReceivePhase_Animate	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B6F0 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B71C 00000100 .text   TradeReceivePhase_RevealPokemon	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B71C 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B81C 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B81C 00000174 .text   TradeReceivePhase_ShowMessage	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B98C 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B990 0000002E .text   TradeReceivePhase_IsTimerAndFanfareDone	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B990 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B9C0 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224B9C0 000000CC .text   TradeReceivePhase_Init3DScene	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BA68 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BA8C 0000005C .text   TradeReceivePhase_CreatePokemonSprite	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BA8C 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BAE8 000000A4 .text   TradeReceivePhase_CreateBallSprites	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BAE8 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BB8C 00000024 .text   TradeReceivePhase_DeleteBallSprites	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BB8C 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BBB0 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BBB0 00000050 .text   BrightnessAnimState_Start	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BBF8 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BC00 0000000E .text   TradeReceivePhase_IsBrightnessAnimDone	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BC00 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BC10 0000001E .text   TradeReceivePhase_FreeBrightnessAnimState	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BC10 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BC30 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BC30 0000003C .text   BrightnessAnimState_Task	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BC68 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BC6C 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BC6C 0000007C .text   BallOpenState_Start	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BCE0 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BCE8 0000001C .text   BallOpenState_Free	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BCE8 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BD04 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BD04 0000003C .text   BallOpenState_UpdateRotation	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BD3C 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BD40 0000001A .text   BallOpenState_SetRotationTarget	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BD40 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BD5C 00000000 .text   $t	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BD5C 00000118 .text   BallOpenState_Task	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BE6C 00000000 .text   $d	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224BE74 00000008 .rodata sCenterY$15554	(src_cutscenes_trade_sequence_main.c.o)
+  0224BE74 00000000 .rodata .rodata	(src_cutscenes_trade_sequence_main.c.o)
+  0224BE7C 00000010 .rodata @15571	(src_cutscenes_trade_sequence_main.c.o)
+  0224BE8C 00000070 .rodata sTradePhaseTable	(src_cutscenes_trade_sequence_main.c.o)
+  0224BEFC 00000000 .rodata .rodata	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224BEFC 00000006 .rodata @15512	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224BF04 00000010 .rodata sStepFuncs$15492	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224BF14 00000010 .rodata modes$15508	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224BF24 0000001C .rodata bgTemplate1$15509	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224BF40 0000001C .rodata bgTemplate2$15510	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224BF5C 00000028 .rodata banks$15507	(src_cutscenes_trade_sequence_send_phase.c.o)
+  0224BF84 00000008 .rodata sPaletteOffsets$15477	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224BF84 00000000 .rodata .rodata	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224BF8C 00000010 .rodata modes$15474	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224BF9C 00000010 .rodata sStepFuncs$15397	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224BFAC 00000010 .rodata sEdgeColors$15493	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224BFBC 0000001C .rodata template1$15475	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224BFD8 0000001C .rodata template2$15476	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224BFF4 00000028 .rodata banks$15473	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224C01C 00000000 .rodata .rodata	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  0224C01C 00000008 .rodata sStepFuncs$15357	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  0224C024 00000010 .rodata modes$15398	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  0224C034 00000010 .rodata sEdgeColors$15418	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  0224C044 0000001C .rodata bgTemplate$15399	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  0224C060 00000028 .rodata banks$15397	(src_cutscenes_trade_sequence_ball_flyby_phase.c.o)
+  0224C088 00000000 .rodata .rodata	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224C088 00000008 .rodata sStepFuncs$15197	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224C090 00000010 .rodata modes$15237	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224C0A0 0000001C .rodata bgTemplate1$15238	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224C0BC 0000001C .rodata bgTemplate2$15239	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224C0D8 0000001C .rodata bgTemplate3$15240	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224C0F4 00000028 .rodata banks$15236	(src_cutscenes_trade_sequence_wormhole_phase.c.o)
+  0224C11C 00000000 .rodata .rodata	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224C11C 00000008 .rodata sSubSteps$15359	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224C124 00000010 .rodata modes$15393	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224C134 00000010 .rodata sEdgeColors$15413	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224C144 0000001C .rodata template$15394	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224C160 00000028 .rodata banks$15392	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224C188 00000008 .rodata sPaletteOffsets$15335	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224C188 00000000 .rodata .rodata	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224C190 0000000C .rodata sStepFuncs$15270	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224C19C 00000010 .rodata modes$15332	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224C1AC 00000010 .rodata sEdgeColors$15351	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224C1BC 0000001C .rodata bgTemplate1$15333	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224C1D8 0000001C .rodata bgTemplate2$15334	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224C1F4 00000028 .rodata banks$15331	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224C21C 00000000 .rodata .rodata	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224C21C 00000006 .rodata @15517	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224C224 00000010 .rodata sStepFuncs$15495	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224C234 00000010 .rodata modes$15513	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224C244 0000001C .rodata bgTemplate1$15514	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224C260 0000001C .rodata bgTemplate2$15515	(src_cutscenes_trade_sequence_receive_phase.c.o)
+  0224C27C 00000028 .rodata banks$15512	(src_cutscenes_trade_sequence_receive_phase.c.o)
+#>0224C2A4          SDK_OVERLAY.trade_sequence.SINIT_START (linker command file)
+#>0224C2A8          SDK_OVERLAY.trade_sequence.SINIT_END (linker command file)
+#>0224C2C0          SDK_OVERLAY.trade_sequence.TEXT_END (linker command file)
+#>0224C2C0          SDK_OVERLAY.trade_sequence.DATA_START (linker command file)
+  0224C2C0 00000000 .data   .data	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+  0224C2C0 00000004 .data   sOrbitEnabled	(src_cutscenes_trade_sequence_receive_ball_phase.c.o)
+#>0224C2E0          SDK_OVERLAY.trade_sequence.DATA_END (linker command file)
+#>0224C2E0          SDK_OVERLAY.trade_sequence.END (linker command file)
+#>000056A0          SDK_OVERLAY.trade_sequence.TEXT_SIZE (linker command file)
+#>00000020          SDK_OVERLAY.trade_sequence.DATA_SIZE (linker command file)
+#>000056C0          SDK_OVERLAY.trade_sequence.SIZE (linker command file)
 
-# .overlay95.bss
-#>0224C2E0          SDK_OVERLAY.overlay95.BSS_START (linker command file)
-  0224C2E0 00000000 .bss    .bss	(src_overlay095_ov95_02246C20.c.o)
-  0224C2E0 00000004 .bss    Unk_ov95_0224C2E0	(src_overlay095_ov95_02246C20.c.o)
-  0224C2E4 00000080 .bss    Unk_ov95_0224C2E4	(src_overlay095_ov95_02246C20.c.o)
-  0224C364 00000000 .bss    .bss	(src_overlay095_ov95_02248590.c.o)
-  0224C364 00000004 .bss    v0$15407	(src_overlay095_ov95_02248590.c.o)
-  0224C368 00000008 .bss    v2$15483	(src_overlay095_ov95_02248590.c.o)
-  0224C370 00000000 .bss    .bss	(src_overlay095_ov95_0224ABC0.c.o)
-  0224C370 00000008 .bss    v2$15338	(src_overlay095_ov95_0224ABC0.c.o)
-#>0224C380          SDK_OVERLAY.overlay95.BSS_END (linker command file)
-#>000000A0          SDK_OVERLAY.overlay95.BSS_SIZE (linker command file)
+# .trade_sequence.bss
+#>0224C2E0          SDK_OVERLAY.trade_sequence.BSS_START (linker command file)
+  0224C2E0 00000000 .bss    .bss	(src_cutscenes_trade_sequence_main.c.o)
+  0224C2E0 00000004 .bss    sDeferredFreeCount	(src_cutscenes_trade_sequence_main.c.o)
+  0224C2E4 00000080 .bss    sDeferredFreeQueue	(src_cutscenes_trade_sequence_main.c.o)
+  0224C364 00000000 .bss    .bss	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224C364 00000004 .bss    frameCount$15419	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224C368 00000008 .bss    cameraAngle$15494	(src_cutscenes_trade_sequence_tube_phase.c.o)
+  0224C370 00000000 .bss    .bss	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+  0224C370 00000008 .bss    cameraAngle$15352	(src_cutscenes_trade_sequence_pokemon_reveal_phase.c.o)
+#>0224C380          SDK_OVERLAY.trade_sequence.BSS_END (linker command file)
+#>000000A0          SDK_OVERLAY.trade_sequence.BSS_SIZE (linker command file)
 
 # .wifi_battle_tower
 #>00000060          SDK_OVERLAY_wifi_battle_tower_ID (linker command file)
@@ -139420,7 +139420,7 @@
   027E0060 027E0060 00000020 DTCM
   00000000 00000000 00000018 binary.AUTOLOAD_INFO
   00000000 00000000 0000000C binary.STATIC_FOOTER
-  021D0D80 021D0D80 000008F6 main_defs
+  021D0D80 021D0D80 00000901 main_defs
   021D0D80 021D0D80 00000F40 main_table
   021D0D80 021D0D80 00000020 dummy1
   021D0DA0 021D0DA0 00000000 dummy1
@@ -139610,10 +139610,10 @@
   021D2AC0 021D2AC0 00000000 overlay92
   021D0D80 021D0D80 00000880 cutscenes
   021D1600 021D1600 00000000 cutscenes
-  0223B140 0223B140 0000B980 overlay94
-  02246AC0 02246AC0 00000160 overlay94
-  02246C20 02246C20 000056C0 overlay95
-  0224C2E0 0224C2E0 000000A0 overlay95
+  0223B140 0223B140 0000B980 gts_application
+  02246AC0 02246AC0 00000160 gts_application
+  02246C20 02246C20 000056C0 trade_sequence
+  0224C2E0 0224C2E0 000000A0 trade_sequence
   0223B140 0223B140 00002CA0 wifi_battle_tower
   0223DDE0 0223DDE0 00000120 wifi_battle_tower
   0222AE60 0222AE60 00014320 main_menu
