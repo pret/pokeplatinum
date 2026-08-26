@@ -4,7 +4,7 @@
 
 #include "util.h"
 
-enum SseqCommands: uint8_t
+enum SseqCommands
 {
     // command < 0x80 = note
     SSEQ_COMMAND_WAIT = 0x80,
@@ -60,14 +60,14 @@ enum SseqCommands: uint8_t
     SSEQ_COMMAND_END = 0xFF,
 };
 
-enum MidiFormat: uint16_t
+enum MidiFormat
 {
     SINGLE_MULIT_CHANNEL = 0,
     SIMULTANEOUS_TRACKS,
     SINGLE_TRACK_PATTERNS,
 };
 
-enum MidiEvents: uint8_t // upper nibble, with 4th bit = 1
+enum MidiEvents // upper nibble, with 4th bit = 1
 {
     MIDI_EVENT_NOTE_OFF = 8,
     MIDI_EVENT_NOTE_ON,
@@ -80,7 +80,7 @@ enum MidiEvents: uint8_t // upper nibble, with 4th bit = 1
 };
 
 // after MIDI_EVENT_CONTROLLER
-enum MidiControllers: uint8_t // 8th bit always 0 (0 - 127)
+enum MidiControllers // 8th bit always 0 (0 - 127)
 {
     // High resolution continuous controllers (MSB)
     MIDI_CONTROLLER_BANK_SELECT = 0,
@@ -183,7 +183,7 @@ enum MidiControllers: uint8_t // 8th bit always 0 (0 - 127)
 #define MIDI_META_EVENT 0xFF
 
 // after MIDI_META_EVENT
-enum MidiMetaEvents: uint8_t // 8th bit always 0 (0 - 127)
+enum MidiMetaEvents // 8th bit always 0 (0 - 127)
 {
     MIDI_META_SEQUENCE_NUMBER = 0X00, // size = 2
     MIDI_META_TEXT = 0X01,
@@ -1221,7 +1221,7 @@ struct MidiChunk_MThd // Header Chunk
 {
     uint32_t chunkID;
     uint32_t size; // does not include chunkID and size
-    enum MidiFormat format;
+    uint16_t format;
     uint16_t nTracks;
     uint16_t tickDiv;
 };
