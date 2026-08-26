@@ -243,14 +243,12 @@ static int CapsuleMenu_Exit(ApplicationManager *appMan, int *unused)
     NARC_dtor(capsuleAppMan->narc);
     ApplicationManager_FreeData(appMan);
 
-    {
-        u32 result;
+    u32 result;
 
-        result = DisableTouchPad();
+    result = DisableTouchPad();
 
-        if (result != 1) {
-            (void)0;
-        }
+    if (result != 1) {
+        (void)0;
     }
 
     Heap_Destroy(HEAP_ID_53);
