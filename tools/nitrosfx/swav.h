@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-enum SWAV_ENCODE: uint8_t
+enum SWAV_ENCODE
 {
     SWAV_SIGNED_PCM8 = 0,
     SWAV_SIGNED_PCM16,
@@ -41,7 +41,7 @@ struct SwavChunk_DATA
 {
     uint32_t chunkID;
     uint32_t size;
-    enum SWAV_ENCODE encodeType;
+    uint8_t encodeType;
     uint8_t loop;
     uint16_t samplingRate;
     uint16_t clockTime;

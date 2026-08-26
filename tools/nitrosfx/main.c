@@ -102,30 +102,30 @@ int main(int argc, char **argv)
     {
         if (strcmp(argv[i], "-h") == 0)
         {
-            FATAL_ERROR(main_help);
+            FATAL_ERROR("%s", main_help);
         }
         else if (strcmp(argv[i], "-h-sseq") == 0)
         {
-            FATAL_ERROR(sseq_help);
+            FATAL_ERROR("%s", sseq_help);
         }
         else if (strcmp(argv[i], "-h-swav") == 0)
         {
-            FATAL_ERROR(swav_help);
+            FATAL_ERROR("%s", swav_help);
         }
         else if (strcmp(argv[i], "-h-sbnk") == 0)
         {
-            FATAL_ERROR(sbnk_help);
+            FATAL_ERROR("%s", sbnk_help);
         }
         else if (strcmp(argv[i], "-h-swar") == 0)
         {
-            FATAL_ERROR(swar_help);
+            FATAL_ERROR("%s", swar_help);
         }
         else if (strcmp(argv[i], "-h-sdat") == 0)
         {
-            FATAL_ERROR(sdat_help);
+            FATAL_ERROR("%s", sdat_help);
         }
     }
-    if (argc < 3) FATAL_ERROR(main_help);
+    if (argc < 3) FATAL_ERROR("%s", main_help);
 
     struct CommandHandler handlers[] =
     {
