@@ -36,8 +36,8 @@ If you still want to use WSL1, go [here](#windows-wsl1).
 These instructions will enable you to build pokeplatinum using the more up-to-date WSL2 and
 develop on it with VSCode on Windows while it is stored in the Linux filesystem.
 
-1. Open the Windows PowerShell terminal as administrator by right-clicking on it and selecting `Run as administrator`. 
-   Yes, even if you're the admin already.
+1. In your start menu, search for `Windows PowerShell`. Open the Windows PowerShell app as administrator by right-clicking on it and selecting `Run as administrator`. 
+   Even if you're on an admin Windows profile, you always have to run it as admin.
 
 2. Install a new distro:
     ```bash
