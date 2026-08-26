@@ -154,7 +154,7 @@ void ov76_0223B98C(CapsuleAppManager *appMan, int index, int param2, int param3,
 
 void CapsuleGraphics_PopulateSealPage(CapsuleAppManager *appMan, int pageCutoff)
 {
-    int i, j;
+    int i;
     int sealIndex;
     int uniqueSeals;
     int maxSeals;
@@ -171,7 +171,7 @@ void CapsuleGraphics_PopulateSealPage(CapsuleAppManager *appMan, int pageCutoff)
     }
 
     for (i = 0; i < SEAL_ID_MAX; i++) {
-        for (j = 0; j < CAPSULE_NUM; j++) {
+        for (int j = 0; j < CAPSULE_NUM; j++) {
             sealOnCapsule = SealIsOnCapsule(appMan->capsules[j].capsule, i);
 
             if (sealOnCapsule) {

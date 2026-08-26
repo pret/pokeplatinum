@@ -172,7 +172,7 @@ void SealPlacement_LoadSeal(CapsuleAppManager *appMan, u8 type, u8 sealIndex)
 
 void SealPlacement_UpdateSeals(CapsuleAppManager *appMan)
 {
-    int i, j;
+    int i;
     int dummy;
     int priorities[8];
     int indices[8];
@@ -200,7 +200,7 @@ void SealPlacement_UpdateSeals(CapsuleAppManager *appMan)
     int tmp2;
 
     for (i = 0; i < SEALS_PER_CAPSULE - 1; i++) {
-        for (j = SEALS_PER_CAPSULE - 1; j > i; j--) {
+        for (int j = SEALS_PER_CAPSULE - 1; j > i; j--) {
             if (priorities[j - 1] >= priorities[j]) {
                 tmp1 = priorities[j];
                 tmp2 = indices[j];

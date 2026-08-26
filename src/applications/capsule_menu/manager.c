@@ -983,22 +983,20 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
 
         SealPlacement_LoadCapsuleSeals(appMan);
         CapsuleGraphics_SetCapsuleSpriteAnim(appMan);
-        {
-            GameRecords *gameRecords;
-            gameRecords = SaveData_GetGameRecords(appMan->appData->saveData);
 
-            GameRecords_IncrementTrainerScore(gameRecords, TRAINER_SCORE_EVENT_UNK_06);
+        GameRecords *gameRecords;
+        gameRecords = SaveData_GetGameRecords(appMan->appData->saveData);
+
+        GameRecords_IncrementTrainerScore(gameRecords, TRAINER_SCORE_EVENT_UNK_06);
+
+        Pokemon *pokemon;
+
+        if (appMan->capsuleSprites[*appMan->capsuleIndex].pokemonIndex != 0xFF) {
+            pokemon = appMan->appData->pokemon[appMan->capsuleSprites[*appMan->capsuleIndex].pokemonIndex];
+
+            Pokemon_SetValue(pokemon, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(appMan->appData->sealCase, *appMan->capsuleIndex));
         }
 
-        {
-            Pokemon *pokemon;
-
-            if (appMan->capsuleSprites[*appMan->capsuleIndex].pokemonIndex != 0xFF) {
-                pokemon = appMan->appData->pokemon[appMan->capsuleSprites[*appMan->capsuleIndex].pokemonIndex];
-
-                Pokemon_SetValue(pokemon, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(appMan->appData->sealCase, *appMan->capsuleIndex));
-            }
-        }
         appMan->stateID = CAPSULE_EXIT_FADE_OUT_STATE_ID;
         break;
     case CAPSULE_CANCEL_PRESSED_STATE_ID: {
@@ -1023,19 +1021,17 @@ static BOOL CapsuleManager_HandleCancelUpdateSeals(CapsuleAppManager *appMan)
             PaletteData_SetAutoTransparent(appMan->graphicsMan.paletteData, FALSE);
             CapsuleGraphics_InitMessageWindow(appMan->graphicsMan.bgConfig, &appMan->graphicsMan.windows[2], CAPSULE_WINDOW_WIDTH, CAPSULE_WINDOW_HEIGHT, 1, 27, 4, CAPSULE_BASE_TILE_1 - MESSAGE_WINDOW_TILE_COUNT);
 
-            {
-                YesNoTouchMenuParams yesNoParams;
+            YesNoTouchMenuParams yesNoParams;
 
-                yesNoParams.bgConfig = appMan->graphicsMan.bgConfig;
-                yesNoParams.bgLayer = BG_LAYER_SUB_0;
-                yesNoParams.baseTile = CAPSULE_BASE_TILE_9;
-                yesNoParams.palette = 5;
-                yesNoParams.tilemapLeft = 25;
-                yesNoParams.tilemapTop = 6;
+            yesNoParams.bgConfig = appMan->graphicsMan.bgConfig;
+            yesNoParams.bgLayer = BG_LAYER_SUB_0;
+            yesNoParams.baseTile = CAPSULE_BASE_TILE_9;
+            yesNoParams.palette = 5;
+            yesNoParams.tilemapLeft = 25;
+            yesNoParams.tilemapTop = 6;
 
-                appMan->graphicsMan.yesNoTouchMenu = YesNoTouchMenu_New(HEAP_ID_53);
-                YesNoTouchMenu_InitWithParams(appMan->graphicsMan.yesNoTouchMenu, &yesNoParams);
-            }
+            appMan->graphicsMan.yesNoTouchMenu = YesNoTouchMenu_New(HEAP_ID_53);
+            YesNoTouchMenu_InitWithParams(appMan->graphicsMan.yesNoTouchMenu, &yesNoParams);
 
             CapsuleGraphics_PrintMessage(&appMan->graphicsMan.windows[2], 14);
             appMan->cancelStateID++;
@@ -1330,166 +1326,158 @@ void CapsuleManager_InitBgConfig(BgConfig *bgConfig)
 {
     GXLayers_DisableEngineALayers();
 
-    {
-        GXBanks gxBanks = {
-            GX_VRAM_BG_128_A,
-            GX_VRAM_BGEXTPLTT_NONE,
-            GX_VRAM_SUB_BG_32_H,
-            GX_VRAM_SUB_BGEXTPLTT_NONE,
-            GX_VRAM_OBJ_64_E,
-            GX_VRAM_OBJEXTPLTT_NONE,
-            GX_VRAM_SUB_OBJ_16_I,
-            GX_VRAM_SUB_OBJEXTPLTT_NONE,
-            GX_VRAM_TEX_01_BC,
-            GX_VRAM_TEXPLTT_01_FG
-        };
+    GXBanks gxBanks = {
+        GX_VRAM_BG_128_A,
+        GX_VRAM_BGEXTPLTT_NONE,
+        GX_VRAM_SUB_BG_32_H,
+        GX_VRAM_SUB_BGEXTPLTT_NONE,
+        GX_VRAM_OBJ_64_E,
+        GX_VRAM_OBJEXTPLTT_NONE,
+        GX_VRAM_SUB_OBJ_16_I,
+        GX_VRAM_SUB_OBJEXTPLTT_NONE,
+        GX_VRAM_TEX_01_BC,
+        GX_VRAM_TEXPLTT_01_FG
+    };
 
-        GXLayers_SetBanks(&gxBanks);
+    GXLayers_SetBanks(&gxBanks);
 
-        MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
-    }
+    MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 
-    {
-        GraphicsModes graphicsModes = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_3D,
-        };
+    GraphicsModes graphicsModes = {
+        GX_DISPMODE_GRAPHICS,
+        GX_BGMODE_0,
+        GX_BGMODE_0,
+        GX_BG0_AS_3D,
+    };
 
-        SetAllGraphicsModes(&graphicsModes);
-    }
+    SetAllGraphicsModes(&graphicsModes);
 
-    {
-        BgTemplate bgTemplates[] = {
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x0000,
-                .charBase = GX_BG_CHARBASE_0x04000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 0,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x2000,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x1000,
-                .charBase = GX_BG_CHARBASE_0x0c000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 2,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x1000,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x3000,
-                .charBase = GX_BG_CHARBASE_0x10000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 3,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-        };
+    BgTemplate bgMainTemplates[] = {
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x2000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x1000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x3000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgTemplates[0], 0);
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgTemplates[1], 0);
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgTemplates[2], 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgMainTemplates[0], 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgMainTemplates[1], 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgMainTemplates[2], 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
 
-        G2_SetBG0Priority(1);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    }
+    G2_SetBG0Priority(1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
-    {
-        BgTemplate bgTemplates[] = {
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x6800,
-                .charBase = GX_BG_CHARBASE_0x00000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 0,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x7000,
-                .charBase = GX_BG_CHARBASE_0x04000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 2,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x6000,
-                .charBase = GX_BG_CHARBASE_0x00000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 1,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x7800,
-                .charBase = GX_BG_CHARBASE_0x04000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 3,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-        };
+    BgTemplate bgSubTemplates[] = {
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x6800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x7000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x6000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x7800,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &bgTemplates[0], 0);
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &bgTemplates[1], 0);
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_2, &bgTemplates[2], 0);
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_3, &bgTemplates[3], 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_1);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_2);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_3);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &bgSubTemplates[0], 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &bgSubTemplates[1], 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_2, &bgSubTemplates[2], 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_3, &bgSubTemplates[3], 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_1);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_2);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_3);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
 void CapsuleManager_VBlankCallback(void *appMan)
