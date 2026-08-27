@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV88_0223E9C4_H
-#define POKEPLATINUM_OV88_0223E9C4_H
+#ifndef POKEPLATINUM_TRADE_ROOM_HELPERS_H
+#define POKEPLATINUM_TRADE_ROOM_HELPERS_H
 
 #include "bg_window.h"
 #include "game_options.h"
@@ -18,4 +18,4 @@ u32 TradeRoom_ProcessYesNoChoice(BgConfig *bgConfig, Menu **menu, int *step);
 void TradeRoom_DrawActionMenuFrame(Window *window);
 ListMenu *TradeRoom_NewFriendListMenu(StringList *strList, int friendCount, Window *window, BgConfig *bgConfig);
 
-#endif // POKEPLATINUM_OV88_0223E9C4_H
+#endif // POKEPLATINUM_TRADE_ROOM_HELPERS_H

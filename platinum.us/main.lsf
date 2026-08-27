@@ -328,7 +328,7 @@ Static main
 	Object main.nef.p/src_contest.c.o
 	Object main.nef.p/src_unk_02094EDC.c.o
 	Object main.nef.p/src_unk_02095AF0.c.o
-	Object main.nef.p/src_unk_02095CD4.c.o
+	Object main.nef.p/src_trade_room_comm.c.o
 	Object main.nef.p/src_unk_02095E98.c.o
 	Object main.nef.p/src_unk_020961E8.c.o
 	Object main.nef.p/src_item_use_pokemon.c.o
@@ -1369,11 +1369,11 @@ Overlay pc_hall_of_fame
 	Object main.nef.p/src_applications_pc_hall_of_fame_display.c.o
 }
 
-Overlay overlay88
+Overlay trade_room
 {
 	After battle_anim
-	Object main.nef.p/src_overlay088_ov88_0223B140.c.o
-	Object main.nef.p/src_overlay088_ov88_0223E9C4.c.o
+	Object main.nef.p/src_trade_room_application.c.o
+	Object main.nef.p/src_trade_room_helpers.c.o
 }
 
 Overlay dummy6

@@ -1,14 +1,13 @@
-#include "unk_02095CD4.h"
+#include "trade_room/comm.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/comm_cmd_table.h"
-#include "struct_defs/struct_02095E80_t.h"
+#include "struct_defs/trade_room.h"
 
 #include "field/field_system.h"
-#include "overlay088/ov88_0223B140.h"
+#include "trade_room/application.h"
 
 #include "communication_system.h"
 #include "pal_pad.h"
@@ -28,17 +27,17 @@ static int TradeRoom_ChatotCryPacketSize(void);
 static int TradeRoom_RibbonPacketSize(void);
 
 static const CommCmdTable sTradeRoomCommHandlers[] = {
-    { TradeRoom_ReceivePartyChunk, TradeRoom_PartyPacketSize, TradeRoom_GetHugeTransferBuffer },   // TRADE_CMD_SEND_PARTY
-    { TradeRoom_ReceiveCursorSync, CommPacketSizeOf_NetId },                                       // TRADE_CMD_SYNC_CURSOR
-    { TradeRoom_ReceiveStatusSync, CommPacketSizeOf_NetId },                                       // TRADE_CMD_SYNC_STATUS
-    { TradeRoom_ReceiveUnusedCmd25, CommPacketSizeOf_NetId },                                      // unused
-    { TradeRoom_ReceiveUnusedCmd26, CommPacketSizeOf_NetId },                                      // unused
-    { TradeRoom_ReceivePartyAck, CommPacketSizeOf_NetId },                                         // TRADE_CMD_PARTY_RECEIVED_ACK
-    { TradeRoom_ReceivePalPad, TradeRoom_PalPadPacketSize, TradeRoom_GetHugeTransferBuffer },      // TRADE_CMD_SEND_PALPAD
+    { TradeRoom_ReceivePartyChunk, TradeRoom_PartyPacketSize, TradeRoom_GetHugeTransferBuffer }, // TRADE_CMD_SEND_PARTY
+    { TradeRoom_ReceiveCursorSync, CommPacketSizeOf_NetId }, // TRADE_CMD_SYNC_CURSOR
+    { TradeRoom_ReceiveStatusSync, CommPacketSizeOf_NetId }, // TRADE_CMD_SYNC_STATUS
+    { TradeRoom_ReceiveUnusedCmd25, CommPacketSizeOf_NetId }, // unused
+    { TradeRoom_ReceiveUnusedCmd26, CommPacketSizeOf_NetId }, // unused
+    { TradeRoom_ReceivePartyAck, CommPacketSizeOf_NetId }, // TRADE_CMD_PARTY_RECEIVED_ACK
+    { TradeRoom_ReceivePalPad, TradeRoom_PalPadPacketSize, TradeRoom_GetHugeTransferBuffer }, // TRADE_CMD_SEND_PALPAD
     { TradeRoom_ReceiveChatotCry, TradeRoom_ChatotCryPacketSize, TradeRoom_GetHugeTransferBuffer }, // TRADE_CMD_SEND_CHATOT_CRY
-    { TradeRoom_ReceiveUnusedCmd30, CommPacketSizeOf_Nothing },                                    // unused
-    { TradeRoom_ReceiveStaggerDelay, CommPacketSizeOf_NetId },                                     // TRADE_CMD_STAGGER_DELAY
-    { TradeRoom_ReceiveRibbonData, TradeRoom_RibbonPacketSize }                                    // TRADE_CMD_SEND_RIBBONS
+    { TradeRoom_ReceiveUnusedCmd30, CommPacketSizeOf_Nothing }, // unused
+    { TradeRoom_ReceiveStaggerDelay, CommPacketSizeOf_NetId }, // TRADE_CMD_STAGGER_DELAY
+    { TradeRoom_ReceiveRibbonData, TradeRoom_RibbonPacketSize } // TRADE_CMD_SEND_RIBBONS
 };
 
 void TradeRoom_RegisterCommHandlers(void *fieldSystem)

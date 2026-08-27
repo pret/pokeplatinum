@@ -1,12 +1,11 @@
-#ifndef POKEPLATINUM_OV88_0223B140_H
-#define POKEPLATINUM_OV88_0223B140_H
-
-#include "struct_decls/struct_02095E80_decl.h"
+#ifndef POKEPLATINUM_TRADE_ROOM_APPLICATION_H
+#define POKEPLATINUM_TRADE_ROOM_APPLICATION_H
 
 #include "overlay_manager.h"
 #include "party.h"
 
-// shared with unk_02095CD4.c's comm-receive handlers
+typedef struct TradeRoom TradeRoom;
+
 enum TradeRoomCommCmd {
     TRADE_CMD_SEND_PARTY = 22,
     TRADE_CMD_SYNC_CURSOR = 23,
@@ -18,7 +17,6 @@ enum TradeRoomCommCmd {
     TRADE_CMD_SEND_RIBBONS = 32,
 };
 
-// values tradeRoom->commMilestone is set to as each handshake step's data arrives
 enum TradeRoomCommMilestone {
     TRADE_MILESTONE_PARTY_ACKED = 2,
     TRADE_MILESTONE_PALPAD_RECEIVED = 3,
@@ -32,4 +30,4 @@ void TradeRoom_SendCommByte(int unused, int cmd, int value);
 void TradeRoom_SyncValueToPartner(TradeRoom *tradeRoom, int cmd, int value);
 void TradeRoom_SendParty(int netId, Party *party, int index);
 
-#endif // POKEPLATINUM_OV88_0223B140_H
+#endif // POKEPLATINUM_TRADE_ROOM_APPLICATION_H

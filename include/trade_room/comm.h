@@ -1,7 +1,7 @@
-#ifndef POKEPLATINUM_UNK_02095CD4_H
-#define POKEPLATINUM_UNK_02095CD4_H
+#ifndef POKEPLATINUM_TRADE_ROOM_COMM_H
+#define POKEPLATINUM_TRADE_ROOM_COMM_H
 
-#include "struct_decls/struct_02095E80_decl.h"
+#include "struct_defs/trade_room.h"
 
 #include "field/field_system_decl.h"
 
@@ -16,4 +16,4 @@ void TradeRoom_ReceiveUnusedCmd30(int senderNetId, int unused, void *data, void 
 void TradeRoom_ReceivePalPad(int senderNetId, int unused, void *data, void *fieldSystem);
 void TradeRoom_AttachToFieldSystem(FieldSystem *fieldSystem, TradeRoom *tradeRoom);
 
-#endif // POKEPLATINUM_UNK_02095CD4_H
+#endif // POKEPLATINUM_TRADE_ROOM_COMM_H

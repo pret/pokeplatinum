@@ -23,6 +23,7 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_0206BC70.h"
+#include "struct_defs/trade_room.h"
 
 #include "applications/bag/application.h"
 #include "applications/berry_tag.h"
@@ -64,12 +65,11 @@
 #include "overlay058/ov58_021D0D80.h"
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay064/ov64_0222DCE0.h"
-#include "overlay088/ov88_0223B140.h"
-#include "overlay088/struct_ov88_0223C370.h"
 #include "overlay092/ov92_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
+#include "trade_room/application.h"
 #include "wifi_battle_tower/application.h"
 
 #include "bag.h"
@@ -153,7 +153,7 @@ FS_EXTERN_OVERLAY(bag);
 FS_EXTERN_OVERLAY(berry_tag);
 FS_EXTERN_OVERLAY(hall_of_fame);
 FS_EXTERN_OVERLAY(pc_hall_of_fame);
-FS_EXTERN_OVERLAY(overlay88);
+FS_EXTERN_OVERLAY(trade_room);
 FS_EXTERN_OVERLAY(battle_tower_records_app);
 FS_EXTERN_OVERLAY(overlay92);
 FS_EXTERN_OVERLAY(cutscenes);
@@ -952,7 +952,7 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
         TradeRoom_Init,
         TradeRoom_Main,
         TradeRoom_Exit,
-        FS_OVERLAY_ID(overlay88)
+        FS_OVERLAY_ID(trade_room)
     };
 
     static const ApplicationManagerTemplate appTemplate2 = {

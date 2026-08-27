@@ -1,26 +1,29 @@
-#ifndef POKEPLATINUM_STRUCT_02095E80_T_H
-#define POKEPLATINUM_STRUCT_02095E80_T_H
+#ifndef POKEPLATINUM_STRUCT_TRADE_ROOM_H
+#define POKEPLATINUM_STRUCT_TRADE_ROOM_H
 
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_02095E80_decl.h"
 #include "struct_decls/wi_fi_list.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02095E80_sub1.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system_decl.h"
-#include "overlay088/struct_ov88_0223C370.h"
-#include "overlay088/struct_ov88_0223C8AC.h"
 
 #include "bg_window.h"
+#include "game_options.h"
+#include "game_records.h"
+#include "journal.h"
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "pal_pad.h"
 #include "party.h"
+#include "pokedex.h"
+#include "pokemon.h"
 #include "savedata.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -29,9 +32,43 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "trainer_info.h"
 #include "wifi_list.h"
 
-struct UnkStruct_02095E80_t {
+typedef struct TradeRoomMonDisplayData {
+    u16 species;
+    u16 heldItemType;
+    u8 pokeBall;
+    u8 isEgg;
+    u8 form;
+    u16 gender;
+    u16 iconShouldFlip;
+    int ballCapsuleId;
+} TradeRoomMonDisplayData;
+
+typedef struct TradeRoomArgs {
+    FieldSystem *fieldSystem;
+    TrainerInfo *trainerInfo;
+    Party *party;
+    PalPad *palPad;
+    SaveData *saveData;
+    WiFiHistory *wiFiHistory;
+    Options *options;
+    JournalEntry *journalEntry;
+    GameRecords *records;
+    Pokedex *pokedex;
+    int tradeCompleted;
+    int receivingPartySlot;
+    int dexMode;
+    int tradeCount;
+    TrainerInfo *partnerTrainerInfoCopy;
+    Pokemon *sendingMon;
+    Pokemon *receivingMon;
+} TradeRoomArgs;
+
+typedef struct TradeRoom TradeRoom;
+
+struct TradeRoom {
     FieldSystem *fieldSystem;
     SaveData *saveData;
     TradeRoomArgs *args;
@@ -137,4 +174,4 @@ struct UnkStruct_02095E80_t {
     int connectionTimeoutFrames;
 };
 
-#endif // POKEPLATINUM_STRUCT_02095E80_T_H
+#endif // POKEPLATINUM_STRUCT_TRADE_ROOM_H

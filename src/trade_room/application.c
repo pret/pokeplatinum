@@ -1,4 +1,4 @@
-#include "overlay088/ov88_0223B140.h"
+#include "trade_room/application.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -8,15 +8,13 @@
 #include "generated/species.h"
 #include "generated/species_data_params.h"
 
-#include "struct_decls/struct_02095E80_decl.h"
 #include "struct_decls/wi_fi_list.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_02095E80_t.h"
+#include "struct_defs/trade_room.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "overlay088/ov88_0223E9C4.h"
-#include "overlay088/struct_ov88_0223C370.h"
-#include "overlay088/struct_ov88_0223C8AC.h"
+#include "trade_room/comm.h"
+#include "trade_room/helpers.h"
 
 #include "bag.h"
 #include "battle_frontier_save.h"
@@ -78,7 +76,6 @@
 #include "unk_02038F8C.h"
 #include "unk_0203909C.h"
 #include "unk_02092494.h"
-#include "unk_02095CD4.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 #include "wifi_list.h"
@@ -188,7 +185,7 @@ enum TradeRoomConnectStep {
     TRADE_CONNECT_WAIT_SUB_FADE_AND_FINISH = 19,
 };
 
-#define TRADE_SLOT_QUIT (MAX_PARTY_SIZE * 2)
+#define TRADE_SLOT_QUIT              (MAX_PARTY_SIZE * 2)
 #define TRADE_FRIENDSHIP_RESET_VALUE 70
 
 static void TradeRoom_LoadPartyIconGraphics(NNSG2dCharacterData *charData, int species, int form, int isEgg, int slotIdx, Sprite *sprite);
