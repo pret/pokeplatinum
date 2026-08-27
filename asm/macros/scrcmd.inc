@@ -4341,30 +4341,30 @@
     .byte \martID
     .endm
 
-    .macro ScrCmd_2D9 arg0, arg1, arg2
-    .short SCRCMD_2D9
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro CallBattleArcadeLobbyFunction action, arg, result
+    .short SCRCMD_CALLBATTLEARCADELOBBYFUNCTION
+    .short \action
+    .short \arg
+    .short \result
     .endm
 
-    .macro ScrCmd_2DA arg0, arg1, arg2
-    .short SCRCMD_2DA
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro CheckBattleArcadePartnerUsesDifferentSpecies species1, species2, result
+    .short SCRCMD_CHECKBATTLEARCADEPARTNERUSESDIFFERENTSPECIES
+    .short \species1
+    .short \species2
+    .short \result
     .endm
 
-    .macro ScrCmd_2DB arg0, arg1, arg2
-    .short SCRCMD_2DB
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro GetBattleArcadeSelectedSlots selectedSlot1, selectedSlot2, selectedSlot3
+    .short SCRCMD_GETBATTLEARCADESELECTEDSLOTS
+    .short \selectedSlot1
+    .short \selectedSlot2
+    .short \selectedSlot3
     .endm
 
-    .macro ScrCmd_2DC arg0
-    .short SCRCMD_2DC
-    .short \arg0
+    .macro DeleteActiveBattleArcadeStreak challengeType
+    .short SCRCMD_DELETEACTIVEBATTLEARCADESTREAK
+    .short \challengeType
     .endm
 
     .macro FindPartySlotWithSpecies destVarID, species

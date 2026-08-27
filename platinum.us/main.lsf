@@ -213,8 +213,7 @@ Static main
 	Object main.nef.p/src_unk_0204F04C.c.o
 	Object main.nef.p/src_scrcmd_battle_hall.c.o
 	Object main.nef.p/src_scrcmd_battle_castle.c.o
-	Object main.nef.p/src_unk_0205003C.c.o
-	Object main.nef.p/src_unk_02050548.c.o
+	Object main.nef.p/src_scrcmd_battle_arcade.c.o
 	Object main.nef.p/src_binoculars_vista_lighthouse.c.o
 	Object main.nef.p/src_vars_flags.c.o
 	Object main.nef.p/src_field_task.c.o
