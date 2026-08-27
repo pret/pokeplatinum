@@ -6,6 +6,7 @@
 #include "constants/communication/comm_error.h"
 #include "generated/game_records.h"
 #include "generated/species.h"
+#include "generated/species_data_params.h"
 
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_decls/wi_fi_list.h"
@@ -84,194 +85,300 @@
 
 #include "constdata/const_020F410C.h"
 
-static void ov88_0223B2F0(NNSG2dCharacterData *param0, int param1, int param2, int param3, int param4, Sprite *param5);
-static void ov88_0223B320(UnkStruct_02095E80 *param0);
-static void ov88_0223C0E0(void *param0);
-static void ov88_0223C15C(void);
-static void ov88_0223C17C(BgConfig *param0);
-static void ov88_0223C63C(void);
-static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan);
-static void ov88_0223C44C(BgConfig *param0);
-static void ov88_0223C4E0(BgConfig *param0, int param1, int param2);
-static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1);
-static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1);
-static void ov88_0223CBA0(UnkStruct_02095E80 *param0);
-static void ov88_0223CE34(u32 *param0);
-static void ov88_0223CE74(UnkStruct_02095E80 *param0);
-static void ov88_0223CEF0(u16 *param0);
-static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC *param2);
-static void ov88_0223CF68(int param0, Sprite *param1, int param2);
-static int ov88_0223CFF4(u32 *param0, int *param1, Sprite *param2, UnkStruct_ov88_0223C8AC *param3, int param4);
-static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3);
-static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon);
-static void ov88_0223D140(ChatotCry *param0);
-static void ov88_0223E894(UnkStruct_02095E80 *param0);
-static void ov88_0223E8B4(UnkStruct_02095E80 *param0);
-static int ov88_0223E8D0(UnkStruct_02095E80 *param0);
-static int ov88_0223E914(UnkStruct_02095E80 *param0);
-static void ov88_0223E984(UnkStruct_02095E80 *param0);
-static void ov88_0223E998(UnkStruct_02095E80 *param0);
-static void ov88_0223B710(StringTemplate *param0, Party *param1, int param2);
-static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader *param2, Party *param3, int param4);
-static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3, UnkStruct_02095E80 *param4);
-static void ov88_0223E694(Party *sender, Party *receiver, int senderSlot, int receiverSlot, UnkStruct_ov88_0223C370 *senderData);
-static void ov88_0223BF7C(UnkStruct_02095E80 *param0);
-static void ov88_0223B4F0(UnkStruct_02095E80 *param0);
-static void ov88_0223BFD8(UnkStruct_02095E80 *param0);
-static void ov88_0223BE28(UnkStruct_02095E80 *param0);
-static void ov88_0223CB34(Window *param0, int param1, UnkStruct_02095E80 *param2);
-static void ov88_0223BD18(Pokemon *param0, UnkStruct_ov88_0223C8AC *param1);
-static void ov88_0223E87C(Sprite *param0, int param1, int param2);
-static int ov88_0223C8AC(UnkStruct_ov88_0223C8AC *param0, Party *param1, int param2, int param3);
-static void ov88_0223D0C0(SaveData *saveData);
-static int ov88_0223B914(UnkStruct_02095E80 *param0);
-static int ov88_0223BED8(UnkStruct_02095E80 *param0);
-static void ov88_0223B7A0(Party *param0, int param1, UnkStruct_02095E80 *param2);
-static int ov88_0223D150(UnkStruct_02095E80 *param0);
-static int ov88_0223DA00(UnkStruct_02095E80 *param0);
-static int ov88_0223DA3C(UnkStruct_02095E80 *param0);
-static int ov88_0223E4BC(UnkStruct_02095E80 *param0);
-static int ov88_0223D318(UnkStruct_02095E80 *param0);
-static int ov88_0223D2C4(UnkStruct_02095E80 *param0);
-static int ov88_0223DB48(UnkStruct_02095E80 *param0);
-static int ov88_0223DC84(UnkStruct_02095E80 *param0);
-static int ov88_0223DCE0(UnkStruct_02095E80 *param0);
-static int ov88_0223E5B8(UnkStruct_02095E80 *param0);
-static int ov88_0223D434(UnkStruct_02095E80 *param0);
-static int ov88_0223D3E0(UnkStruct_02095E80 *param0);
-static int ov88_0223E110(UnkStruct_02095E80 *param0);
-static int ov88_0223E20C(UnkStruct_02095E80 *param0);
-static int ov88_0223E41C(UnkStruct_02095E80 *param0);
-static int ov88_0223E478(UnkStruct_02095E80 *param0);
-static int ov88_0223DD1C(UnkStruct_02095E80 *param0);
-static int ov88_0223DF00(UnkStruct_02095E80 *param0);
-static int ov88_0223E384(UnkStruct_02095E80 *param0);
-static int ov88_0223E330(UnkStruct_02095E80 *param0);
-static void ov88_0223DFF4(UnkStruct_02095E80 *param0);
-static void ov88_0223E1AC(UnkStruct_02095E80 *param0);
-static void ov88_0223E1C0(UnkStruct_02095E80 *param0, int param1, int param2);
-static void ov88_0223DE68(VecFx32 param0[], int param1, int param2, int param3, int param4);
-static void ov88_0223DE7C(Sprite *param0, Sprite *param1, Sprite *param2, int param3, VecFx32 param4[], UnkStruct_ov88_0223C8AC *param5);
-static void ov88_0223BDA4(UnkStruct_02095E80 *param0, int param1);
-static void ov88_0223E848(UnkStruct_02095E80 *param0);
-static void ov88_0223C860(Window *param0, Party *param1, int param2, int param3, int param4);
-static int ov88_0223D740(UnkStruct_02095E80 *param0);
-static int ov88_0223D7AC(UnkStruct_02095E80 *param0);
-static int ov88_0223D854(UnkStruct_02095E80 *param0);
-static int ov88_0223D69C(UnkStruct_02095E80 *param0);
-static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1);
-static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2);
-
-static const int Unk_ov88_0223EF9C[][2] = {
-    { 0x0, 0x20 },
-    { 0x40, 0x20 },
-    { 0x0, 0x48 },
-    { 0x40, 0x48 },
-    { 0x0, 0x70 },
-    { 0x40, 0x70 },
-    { 0x80, 0x20 },
-    { 0xC0, 0x20 },
-    { 0x80, 0x48 },
-    { 0xC0, 0x48 },
-    { 0x80, 0x70 },
-    { 0xC0, 0x70 },
-    { 0xC0, 0xA0 }
+enum TradeRoomMsg {
+    TRADE_MSG_CHOOSE_POKEMON = 15,
+    TRADE_MSG_MON_SELECTED = 16,
+    TRADE_MSG_SUMMARY_OPTION = 17,
+    TRADE_MSG_TRADE_OPTION = 18,
+    TRADE_MSG_CANCEL_OPTION = 19,
+    TRADE_MSG_COMMUNICATING = 20,
+    TRADE_MSG_CONFIRM_TRADE = 21,
+    TRADE_MSG_TRADE_CANCELED = 24,
+    TRADE_MSG_CANCEL_TRADING = 25,
+    TRADE_MSG_WAITING_FOR_FRIEND = 28,
+    TRADE_MSG_FRIEND_WANTS_TO_TRADE = 29,
+    TRADE_MSG_WOULD_GET_STUCK = 34,
+    TRADE_MSG_BALL_CAPSULE_WARNING = 36,
+    TRADE_MSG_YOUR_MON_UNTRADEABLE = 37,
+    TRADE_MSG_PARTNER_MON_UNTRADEABLE = 38,
+    TRADE_MSG_LEVEL_LABEL = 41,
+    TRADE_MSG_ITEM_LABEL = 42,
+    TRADE_MSG_QUIT = 50,
 };
 
-static const int Unk_ov88_0223EF54[][3] = {
-    { 0x3F, 0x58, 0x0 },
-    { 0xC0, 0x58, 0x1 },
-    { 0x10, 0x8, 0x6 },
-    { 0x90, 0x8, 0x6 },
-    { 0x63, 0x8, 0x16 },
-    { 0xE3, 0x8, 0x16 }
+enum TradeRoomPalPadMsg {
+    PALPAD_MSG_CANCEL = 11,
+    PALPAD_MSG_REGISTER_FRIEND = 57,
+    PALPAD_MSG_ROSTER_FULL = 58,
+    PALPAD_MSG_ABANDON_REGISTRATION = 59,
+    PALPAD_MSG_DELETE_FRIEND = 60,
 };
 
-static const u8 Unk_ov88_0223F004[][4][6] = {
+enum TradeRoomSyncStatus {
+    TRADE_STATUS_QUIT = 1,
+    TRADE_STATUS_CHOSE_TRADE = 2,
+    TRADE_STATUS_CONFIRMED = 3,
+    TRADE_STATUS_DECLINED = 4,
+};
+
+enum TradeRoomMenuInputSentinel {
+    MENU_INPUT_PENDING = 0xffffffff,
+    MENU_INPUT_CANCELLED = 0xfffffffe,
+};
+
+enum TradeRoomMonActionChoice {
+    MON_ACTION_SUMMARY = 0,
+    MON_ACTION_TRADE = 1,
+    MON_ACTION_CANCEL = 2,
+};
+
+enum TradeRoomPartnerMonActionChoice {
+    PARTNER_MON_ACTION_SUMMARY = 0,
+    PARTNER_MON_ACTION_CANCEL = 1,
+};
+
+enum TradeRoomYesNoChoice {
+    YES_NO_CHOICE_YES = 0,
+    YES_NO_CHOICE_NO = 0xfffffffe,
+};
+
+enum TradeRoomChecksumResult {
+    TRADE_CHECKSUM_OK = 0,
+    TRADE_CHECKSUM_YOUR_MON_INVALID = 1,
+    TRADE_CHECKSUM_PARTNER_MON_INVALID = 2,
+};
+
+enum TradeRoomState {
+    TRADE_STATE_FADE_IN = 0,
+    TRADE_STATE_RUNNING = 1,
+    TRADE_STATE_CLOSING = 2,
+};
+
+enum TradeRoomPhase {
+    TRADE_PHASE_CONNECTING = 0,
+    TRADE_PHASE_BROWSING = 1,
+    TRADE_PHASE_CLOSING = 2,
+    TRADE_PHASE_START_SUMMARY_TRANSITION = 3,
+    TRADE_PHASE_WAIT_FADE_OUT_FOR_SUMMARY = 4,
+    TRADE_PHASE_WAIT_SUMMARY_SCREEN = 5,
+    TRADE_PHASE_FADE_IN_AFTER_SUMMARY = 6,
+    TRADE_PHASE_WAIT_FADE_IN_AFTER_SUMMARY = 7,
+};
+
+enum TradeRoomConnectStep {
+    TRADE_CONNECT_LOCK_SHAYMIN_FORM = 0,
+    TRADE_CONNECT_WAIT_INITIAL_SYNC = 1,
+    TRADE_CONNECT_WAIT_STAGGER_START = 2,
+    TRADE_CONNECT_STAGGER_COUNTDOWN = 3,
+    TRADE_CONNECT_INIT_SYNC_SAVE = 4,
+    TRADE_CONNECT_SYNC_SAVE = 5,
+    TRADE_CONNECT_START_SYNC_2 = 6,
+    TRADE_CONNECT_WAIT_SYNC_2 = 7,
+    TRADE_CONNECT_SEND_PARTY = 8,
+    TRADE_CONNECT_WAIT_PARTY_RECEIVED = 9,
+    TRADE_CONNECT_DISPLAY_NICKNAMES = 10,
+    TRADE_CONNECT_CACHE_MON_DISPLAY_DATA = 11,
+    TRADE_CONNECT_CREATE_PALPAD_OBJECT = 12,
+    TRADE_CONNECT_WAIT_PALPAD_SENT = 13,
+    TRADE_CONNECT_SEND_CHATOT_CRY = 14,
+    TRADE_CONNECT_WAIT_CHATOT_CRY_AND_SHOW_ICONS = 15,
+    TRADE_CONNECT_FADE_IN_MAIN_SCREEN = 16,
+    TRADE_CONNECT_WAIT_MAIN_FADE_AND_SHOW_DETAILS = 17,
+    TRADE_CONNECT_FADE_IN_SUB_SCREEN = 18,
+    TRADE_CONNECT_WAIT_SUB_FADE_AND_FINISH = 19,
+};
+
+#define TRADE_SLOT_QUIT (MAX_PARTY_SIZE * 2)
+#define TRADE_FRIENDSHIP_RESET_VALUE 70
+
+static void TradeRoom_LoadPartyIconGraphics(NNSG2dCharacterData *charData, int species, int form, int isEgg, int slotIdx, Sprite *sprite);
+static void TradeRoom_PrintHeaderLabels(TradeRoom *tradeRoom);
+static void TradeRoom_VBlankCallback(void *param);
+static void TradeRoom_ConfigureVRAMBanks(void);
+static void TradeRoom_InitBackgrounds(BgConfig *bgConfig);
+static void TradeRoom_InitTransferSystems(void);
+static void TradeRoom_InitState(TradeRoom *tradeRoom, ApplicationManager *appMan);
+static void TradeRoom_FreeBackgrounds(BgConfig *bgConfig);
+static void TradeRoom_CopyPartyGridTilemapToVRAM(BgConfig *bgConfig, int unused1, int unused2);
+static void TradeRoom_LoadBgGraphics(TradeRoom *tradeRoom, NARC *narc);
+static void TradeRoom_InitSpriteRendering(TradeRoom *tradeRoom, NARC *narc);
+static void TradeRoom_CreateSprites(TradeRoom *tradeRoom);
+static void TradeRoom_PollDPadDirection(u32 *direction);
+static void TradeRoom_PlayTouchedMonCry(TradeRoom *tradeRoom);
+static void TradeRoom_UpdateCursorGlowColor(u16 *angle);
+static int TradeRoom_ResolveCursorMoveTarget(int currentSlot, int direction, TradeRoomMonDisplayData *displayData);
+static void TradeRoom_MoveCursorSprite(int slot, Sprite *sprite, int cursorIdx);
+static int TradeRoom_UpdateCursor(u32 *directionFlag, int *slotIdx, Sprite *sprite, TradeRoomMonDisplayData *displayData, int side);
+static int TradeRoom_LoadMonPreviewSprite(int side, Pokemon *mon, u8 *destination, PokemonSpriteTemplate *psTemplate);
+static void TradeRoom_RecordTradeInJournal(JournalEntry *journalEntry, Pokemon *mon);
+static void TradeRoom_SendChatotCry(ChatotCry *chatotCryData);
+static void TradeRoom_AddWaitDialHandle(TradeRoom *tradeRoom);
+static void TradeRoom_HideWaitDial(TradeRoom *tradeRoom);
+static BOOL TradeRoom_HasUsablePartyAfterTrade(TradeRoom *tradeRoom);
+static int TradeRoom_ValidatePartyChecksums(TradeRoom *tradeRoom);
+static void TradeRoom_ArmConnectionTimeout(TradeRoom *tradeRoom);
+static void TradeRoom_CheckConnectionTimeout(TradeRoom *tradeRoom);
+static void TradeRoom_SetPartyNicknames(StringTemplate *strTemplate, Party *party, int templateSlotBase);
+static void TradeRoom_PrintPartyNicknames(Window *window, StringTemplate *strTemplate, MessageLoader *msgLoader, Party *party, int templateSlotBase);
+static void TradeRoom_ShowMonDetailCard(Window *window, int side, Party *party, int slot, TradeRoom *tradeRoom);
+static void TradeRoom_ExecuteTrade(Party *sender, Party *receiver, int senderSlot, int receiverSlot, TradeRoomArgs *trArgs);
+static void TradeRoom_FreeSpriteRendering(TradeRoom *tradeRoom);
+static void TradeRoom_DisplayPartyNicknames(TradeRoom *tradeRoom);
+static void TradeRoom_FreePartyIconGraphics(TradeRoom *tradeRoom);
+static void TradeRoom_RefreshFocusedMonDetails(TradeRoom *tradeRoom);
+static void TradeRoom_HideMonDetailCard(Window *window, int side, TradeRoom *tradeRoom);
+static void TradeRoom_CachePokemonDisplayData(Pokemon *mon, TradeRoomMonDisplayData *displayData);
+static void TradeRoom_SetSpritePosition(Sprite *sprite, int x, int y);
+static int TradeRoom_ResolveGenderIconState(TradeRoomMonDisplayData *displayData, Party *party, int slot, int genderValue);
+static void TradeRoom_SendRibbonData(SaveData *saveData);
+static int TradeRoom_ConnectAndSyncParties(TradeRoom *tradeRoom);
+static int TradeRoom_UpdateMainLoop(TradeRoom *tradeRoom);
+static void TradeRoom_LoadPartyIconSprites(Party *party, int templateSlotBase, TradeRoom *tradeRoom);
+static int TradeRoom_HandleBrowseInput(TradeRoom *tradeRoom);
+static int TradeRoom_HandleMutualQuitSync(TradeRoom *tradeRoom);
+static int TradeRoom_ShowMonActionMenu(TradeRoom *tradeRoom);
+static int TradeRoom_ShowPartnerMonActionMenu(TradeRoom *tradeRoom);
+static int TradeRoom_HandleQuitConfirm(TradeRoom *tradeRoom);
+static int TradeRoom_PromptQuitConfirm(TradeRoom *tradeRoom);
+static int TradeRoom_HandleMonActionInput(TradeRoom *tradeRoom);
+static int TradeRoom_AnnounceTradeChoice(TradeRoom *tradeRoom);
+static int TradeRoom_HandleMutualTradeSync(TradeRoom *tradeRoom);
+static int TradeRoom_HandleShowPartnerMonConfirm(TradeRoom *tradeRoom);
+static int TradeRoom_WaitForNotificationDismiss(TradeRoom *tradeRoom);
+static int TradeRoom_ShowNotification(TradeRoom *tradeRoom);
+static int TradeRoom_PromptTradeConfirm(TradeRoom *tradeRoom);
+static int TradeRoom_HandleTradeConfirm(TradeRoom *tradeRoom);
+static int TradeRoom_HandleMutualTradeConfirmSync(TradeRoom *tradeRoom);
+static int TradeRoom_CompleteTrade(TradeRoom *tradeRoom);
+static int TradeRoom_PrepareMonSlideAnimation(TradeRoom *tradeRoom);
+static int TradeRoom_UpdateSlideAnimation(TradeRoom *tradeRoom);
+static int TradeRoom_HandleBallCapsuleWarningConfirm(TradeRoom *tradeRoom);
+static int TradeRoom_WarnBallCapsuleDetach(TradeRoom *tradeRoom);
+static void TradeRoom_RestoreFullPartyGrid(TradeRoom *tradeRoom);
+static void TradeRoom_AnnounceTradeConfirmed(TradeRoom *tradeRoom);
+static void TradeRoom_ClearAndPrintMessage(TradeRoom *tradeRoom, int windowIdx, int msgID);
+static void TradeRoom_SetSlideAnimPath(VecFx32 path[], int startX, int startY, int endX, int endY);
+static void TradeRoom_ApplySlideAnimStep(Sprite *iconSprite, Sprite *itemSprite, Sprite *capsuleSprite, int step, VecFx32 path[], TradeRoomMonDisplayData *displayData);
+static void TradeRoom_ShowPartnerMonDetails(TradeRoom *tradeRoom, int slotIdx);
+static void TradeRoom_ScrollBackground(TradeRoom *tradeRoom);
+static void TradeRoom_PrintMonNickname(Window *window, Party *party, int slot, int unused, int xOrCenter);
+static int TradeRoom_HandleRosterFullConfirm(TradeRoom *tradeRoom);
+static int TradeRoom_HandleRegisterFriendConfirm(TradeRoom *tradeRoom);
+static int TradeRoom_ProcessPendingFriendRegistration(TradeRoom *tradeRoom);
+static int TradeRoom_BuildFriendListMenu(TradeRoom *tradeRoom);
+static void TradeRoom_OpenMonSummary(TradeRoom *tradeRoom, int side);
+static void TradeRoom_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source, PalPad *destination);
+
+static const int sSlotScreenPositions[][2] = {
+    { 0, 32 },
+    { 64, 32 },
+    { 0, 72 },
+    { 64, 72 },
+    { 0, 112 },
+    { 64, 112 },
+    { 128, 32 },
+    { 192, 32 },
+    { 128, 72 },
+    { 192, 72 },
+    { 128, 112 },
+    { 192, 112 },
+    { 192, 160 }
+};
+
+static const int sDetailCardSpriteLayout[][3] = {
+    { 63, 88, 0 },
+    { 192, 88, 1 },
+    { 16, 8, 6 },
+    { 144, 8, 6 },
+    { 99, 8, 22 },
+    { 227, 8, 22 }
+};
+
+static const u8 sCursorMoveCandidates[][4][6] = {
     {
-        { 0x4, 0x2, 0xC, 0xC },
-        { 0x2, 0x4, 0xC, 0xC },
-        { 0x7, 0x6, 0x1, 0x0 },
-        { 0x1, 0x6, 0x7, 0x0 },
+        { 4, 2, 12, 12 },
+        { 2, 4, 12, 12 },
+        { 7, 6, 1, 0 },
+        { 1, 6, 7, 0 },
     },
     {
-        { 0x5, 0x3, 0xC, 0xC },
-        { 0x3, 0x5, 0xC, 0xC },
-        { 0x0, 0x7, 0x6, 0x1 },
-        { 0x6, 0x7, 0x0, 0x1 },
+        { 5, 3, 12, 12 },
+        { 3, 5, 12, 12 },
+        { 0, 7, 6, 1 },
+        { 6, 7, 0, 1 },
     },
     {
-        { 0x0, 0x0, 0x0, 0x0 },
-        { 0x4, 0x0, 0x0, 0x0 },
-        { 0x9, 0x8, 0x7, 0x6 },
-        { 0x3, 0x1 },
+        { 0, 0, 0, 0 },
+        { 4, 0, 0, 0 },
+        { 9, 8, 7, 6 },
+        { 3, 1 },
     },
     {
-        { 0x1, 0x1, 0x1, 0x1 },
-        { 0x5, 0x1, 0x1, 0x1 },
-        { 0x2, 0x9, 0x8, 0x7 },
-        { 0x8, 0x9, 0x6, 0x6 },
+        { 1, 1, 1, 1 },
+        { 5, 1, 1, 1 },
+        { 2, 9, 8, 7 },
+        { 8, 9, 6, 6 },
     },
     {
-        { 0x2, 0x2, 0x2, 0x2 },
-        { 0x0, 0x0, 0x0, 0x0 },
-        { 0xB, 0xA, 0x9, 0x8, 0x7, 0x6 },
-        { 0x5, 0x3, 0x1 },
+        { 2, 2, 2, 2 },
+        { 0, 0, 0, 0 },
+        { 11, 10, 9, 8, 7, 6 },
+        { 5, 3, 1 },
     },
     {
-        { 0x3, 0x3, 0x3, 0x3 },
-        { 0x1, 0x1, 0x1, 0x1 },
-        { 0x4, 0x4, 0x4, 0x4 },
-        { 0xA, 0x8, 0x6 },
+        { 3, 3, 3, 3 },
+        { 1, 1, 1, 1 },
+        { 4, 4, 4, 4 },
+        { 10, 8, 6 },
     },
     {
-        { 0xA, 0x8, 0xC },
-        { 0x8, 0xA, 0xC },
-        { 0x1, 0x0 },
-        { 0x7, 0x0, 0x1 },
+        { 10, 8, 12 },
+        { 8, 10, 12 },
+        { 1, 0 },
+        { 7, 0, 1 },
     },
     {
-        { 0xC },
-        { 0x9, 0xC },
-        { 0x6 },
-        { 0x0 },
+        { 12 },
+        { 9, 12 },
+        { 6 },
+        { 0 },
     },
     {
-        { 0x6 },
-        { 0xA, 0x6 },
-        { 0x3, 0x2, 0x1, 0x0 },
-        { 0x9, 0x7 },
+        { 6 },
+        { 10, 6 },
+        { 3, 2, 1, 0 },
+        { 9, 7 },
     },
     {
-        { 0x7 },
-        { 0xB, 0xC },
-        { 0x8 },
-        { 0x2, 0x0, 0x1 },
+        { 7 },
+        { 11, 12 },
+        { 8 },
+        { 2, 0, 1 },
     },
     {
-        { 0x8 },
-        { 0x6 },
-        { 0x5, 0x4, 0x3, 0x2, 0x1, 0x0 },
-        { 0xB, 0x9, 0x7 },
+        { 8 },
+        { 6 },
+        { 5, 4, 3, 2, 1, 0 },
+        { 11, 9, 7 },
     },
     {
-        { 0x9 },
-        { 0xC },
-        { 0xA },
-        { 0x4, 0x2, 0x0 },
+        { 9 },
+        { 12 },
+        { 10 },
+        { 4, 2, 0 },
     },
     {
-        { 0xB, 0x9, 0x7, 0x6 },
-        { 0x7, 0x6 },
-        { 0xC },
-        { 0xC },
+        { 11, 9, 7, 6 },
+        { 7, 6 },
+        { 12 },
+        { 12 },
     },
 };
 
-int ov88_0223B140(ApplicationManager *appMan, int *param1)
+int TradeRoom_Init(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_02095E80 *v0;
-    NARC *v1;
+    TradeRoom *tradeRoom;
+    NARC *narc;
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -281,40 +388,40 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x50000 + 0x20000 + 2000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_TRADE_ROOM, 0x50000 + 0x20000 + 2000);
 
-    v1 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, HEAP_ID_26);
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02095E80), HEAP_ID_26);
+    narc = NARC_ctor(NARC_INDEX_DATA__TRADELIST, HEAP_ID_TRADE_ROOM);
+    tradeRoom = ApplicationManager_NewData(appMan, sizeof(TradeRoom), HEAP_ID_TRADE_ROOM);
 
-    MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
+    MI_CpuClearFast(tradeRoom, sizeof(TradeRoom));
 
-    v0->unk_174 = BgConfig_New(HEAP_ID_26);
-    v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, HEAP_ID_26);
-    v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
-    v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
-    v0->unk_184 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
-    v0->appMan = NULL;
+    tradeRoom->bgConfig = BgConfig_New(HEAP_ID_TRADE_ROOM);
+    tradeRoom->strTemplate = StringTemplate_New(12, (10 + 1) * 2, HEAP_ID_TRADE_ROOM);
+    tradeRoom->strTemplate2 = StringTemplate_Default(HEAP_ID_TRADE_ROOM);
+    tradeRoom->unread_180 = StringTemplate_Default(HEAP_ID_TRADE_ROOM);
+    tradeRoom->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_TRADE_ROOM);
+    tradeRoom->appMan = NULL;
 
-    ov88_0223C370(v0, appMan);
+    TradeRoom_InitState(tradeRoom, appMan);
     SetAutorepeat(4, 8);
-    ov88_0223C15C();
-    ov88_0223C17C(v0->unk_174);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_26);
-    ov88_0223C504(v0, v1);
-    SetVBlankCallback(ov88_0223C0E0, v0);
-    ov88_0223C63C();
-    ov88_0223C66C(v0, v1);
-    ov88_0223CBA0(v0);
-    ov88_0223E9C4(v0->unk_174, v0->unk_49C, v0->unk_08->options);
+    TradeRoom_ConfigureVRAMBanks();
+    TradeRoom_InitBackgrounds(tradeRoom->bgConfig);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_TRADE_ROOM);
+    TradeRoom_LoadBgGraphics(tradeRoom, narc);
+    SetVBlankCallback(TradeRoom_VBlankCallback, tradeRoom);
+    TradeRoom_InitTransferSystems();
+    TradeRoom_InitSpriteRendering(tradeRoom, narc);
+    TradeRoom_CreateSprites(tradeRoom);
+    TradeRoom_InitWindows(tradeRoom->bgConfig, tradeRoom->windows, tradeRoom->args->options);
 
-    v0->fieldSystem = v0->unk_08->fieldSystem;
+    tradeRoom->fieldSystem = tradeRoom->args->fieldSystem;
 
-    sub_02095E60(v0->fieldSystem, v0);
-    ov88_0223ECBC(&v0->unk_49C[23], 20, FONT_MESSAGE, v0->unk_184, v0->unk_178);
-    sub_02095CD4(v0->fieldSystem);
+    TradeRoom_AttachToFieldSystem(tradeRoom->fieldSystem, tradeRoom);
+    TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_COMMUNICATING, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+    TradeRoom_RegisterCommHandlers(tradeRoom->fieldSystem);
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    CommManager_Dummy_02038A1C(26, v0->unk_174);
+    CommManager_Dummy_02038A1C(26, tradeRoom->bgConfig);
     NetworkIcon_Init();
 
     if (IsNight() == FALSE) {
@@ -325,53 +432,51 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
         Sound_AdjustVolumeForVoiceChat(1086);
     }
 
-    NARC_dtor(v1);
+    NARC_dtor(narc);
 
     return 1;
 }
 
-static void ov88_0223B2F0(NNSG2dCharacterData *param0, int param1, int param2, int param3, int param4, Sprite *param5)
+static void TradeRoom_LoadPartyIconGraphics(NNSG2dCharacterData *charData, int species, int form, int isEgg, int slotIdx, Sprite *sprite)
 {
-    u8 *v0;
-
-    GX_LoadOBJ(param0->pRawData, ((4 * 32 + 18) + param4 * (4 * 4)) * 0x20, (4 * 4) * 0x20);
-    Sprite_SetExplicitPaletteOffset(param5, PokeIconPaletteIndex(param1, param2, param3) + 10);
+    GX_LoadOBJ(charData->pRawData, ((4 * 32 + 18) + slotIdx * (4 * 4)) * 0x20, (4 * 4) * 0x20);
+    Sprite_SetExplicitPaletteOffset(sprite, PokeIconPaletteIndex(species, form, isEgg) + 10);
 }
 
-static void ov88_0223B320(UnkStruct_02095E80 *param0)
+static void TradeRoom_PrintHeaderLabels(TradeRoom *tradeRoom)
 {
-    String *v0, *v1, *v2;
-    TrainerInfo *v3, *v4;
+    String *ownName, *partnerName, *quitMsg;
+    TrainerInfo *ownTrainerInfo, *partnerTrainerInfo;
 
-    v3 = CommInfo_TrainerInfo(CommSys_CurNetId());
-    v4 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
-    v0 = TrainerInfo_NameNewString(v3, 26);
-    v1 = TrainerInfo_NameNewString(v4, 26);
-    v2 = MessageLoader_GetNewString(param0->unk_184, 50);
+    ownTrainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId());
+    partnerTrainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    ownName = TrainerInfo_NameNewString(ownTrainerInfo, 26);
+    partnerName = TrainerInfo_NameNewString(partnerTrainerInfo, 26);
+    quitMsg = MessageLoader_GetNewString(tradeRoom->msgLoader, TRADE_MSG_QUIT);
 
-    ov88_0223EC78(&param0->unk_49C[0], v0, 10, TEXT_SPEED_INSTANT, 1, 1);
-    ov88_0223EC78(&param0->unk_49C[1], v1, 10, TEXT_SPEED_INSTANT, 1, 1);
-    ov88_0223EC78(&param0->unk_49C[6], v2, 5, TEXT_SPEED_INSTANT, 1, 1);
+    TradeRoom_PrintStringInWindow(&tradeRoom->windows[0], ownName, 10, TEXT_SPEED_INSTANT, 1, 1);
+    TradeRoom_PrintStringInWindow(&tradeRoom->windows[1], partnerName, 10, TEXT_SPEED_INSTANT, 1, 1);
+    TradeRoom_PrintStringInWindow(&tradeRoom->windows[6], quitMsg, 5, TEXT_SPEED_INSTANT, 1, 1);
 
-    String_Free(v2);
-    String_Free(v1);
-    String_Free(v0);
+    String_Free(quitMsg);
+    String_Free(partnerName);
+    String_Free(ownName);
 }
 
-static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
+static void TradeRoom_RestoreScreenAfterSummary(TradeRoom *tradeRoom)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, HEAP_ID_26);
+    NARC *narc = NARC_ctor(NARC_INDEX_DATA__TRADELIST, HEAP_ID_TRADE_ROOM);
 
-    ov88_0223C15C();
-    ov88_0223C17C(param0->unk_174);
-    ov88_0223C504(param0, v0);
-    ov88_0223B4F0(param0);
-    ov88_0223B320(param0);
+    TradeRoom_ConfigureVRAMBanks();
+    TradeRoom_InitBackgrounds(tradeRoom->bgConfig);
+    TradeRoom_LoadBgGraphics(tradeRoom, narc);
+    TradeRoom_DisplayPartyNicknames(tradeRoom);
+    TradeRoom_PrintHeaderLabels(tradeRoom);
 
-    LoadMessageBoxGraphics(param0->unk_174, BG_LAYER_MAIN_0, 512 - (9 + (18 + 12)), 10, Options_Frame(param0->unk_08->options), HEAP_ID_26);
-    LoadStandardWindowGraphics(param0->unk_174, BG_LAYER_MAIN_0, 512 - 9, 11, 0, HEAP_ID_26);
+    LoadMessageBoxGraphics(tradeRoom->bgConfig, BG_LAYER_MAIN_0, 512 - (9 + (18 + 12)), 10, Options_Frame(tradeRoom->args->options), HEAP_ID_TRADE_ROOM);
+    LoadStandardWindowGraphics(tradeRoom->bgConfig, BG_LAYER_MAIN_0, 512 - 9, 11, 0, HEAP_ID_TRADE_ROOM);
 
-    ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
+    TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
 
     Bg_ToggleLayer(BG_LAYER_SUB_0, 1);
     Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
@@ -384,185 +489,179 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    ov88_0223C63C();
-    ov88_0223C66C(param0, v0);
-    ov88_0223CBA0(param0);
-    ov88_0223B7A0(param0->unk_2270, 0, param0);
-    ov88_0223B7A0(param0->unk_2274, 6, param0);
+    TradeRoom_InitTransferSystems();
+    TradeRoom_InitSpriteRendering(tradeRoom, narc);
+    TradeRoom_CreateSprites(tradeRoom);
+    TradeRoom_LoadPartyIconSprites(tradeRoom->playerParty, 0, tradeRoom);
+    TradeRoom_LoadPartyIconSprites(tradeRoom->partnerParty, MAX_PARTY_SIZE, tradeRoom);
 
-    Sprite_SetDrawFlag(param0->unk_39C[0], TRUE);
-    Sprite_SetDrawFlag(param0->unk_39C[1], TRUE);
-    SetVBlankCallback(ov88_0223C0E0, param0);
-    NARC_dtor(v0);
+    Sprite_SetDrawFlag(tradeRoom->cursorSprites[0], TRUE);
+    Sprite_SetDrawFlag(tradeRoom->cursorSprites[1], TRUE);
+    SetVBlankCallback(TradeRoom_VBlankCallback, tradeRoom);
+    NARC_dtor(narc);
 }
 
-static void ov88_0223B4F0(UnkStruct_02095E80 *param0)
+static void TradeRoom_DisplayPartyNicknames(TradeRoom *tradeRoom)
 {
-    ov88_0223B710(param0->unk_178, param0->unk_2270, 0);
-    ov88_0223B710(param0->unk_178, param0->unk_2274, 6);
-    ov88_0223B748(&param0->unk_49C[7], param0->unk_178, param0->unk_184, param0->unk_2270, 0);
-    ov88_0223B748(&param0->unk_49C[13], param0->unk_178, param0->unk_184, param0->unk_2274, 6);
-    ov88_0223C4E0(param0->unk_174, Party_GetCurrentCount(param0->unk_2270), Party_GetCurrentCount(param0->unk_2274));
+    TradeRoom_SetPartyNicknames(tradeRoom->strTemplate, tradeRoom->playerParty, 0);
+    TradeRoom_SetPartyNicknames(tradeRoom->strTemplate, tradeRoom->partnerParty, MAX_PARTY_SIZE);
+    TradeRoom_PrintPartyNicknames(&tradeRoom->windows[7], tradeRoom->strTemplate, tradeRoom->msgLoader, tradeRoom->playerParty, 0);
+    TradeRoom_PrintPartyNicknames(&tradeRoom->windows[13], tradeRoom->strTemplate, tradeRoom->msgLoader, tradeRoom->partnerParty, MAX_PARTY_SIZE);
+    TradeRoom_CopyPartyGridTilemapToVRAM(tradeRoom->bgConfig, Party_GetCurrentCount(tradeRoom->playerParty), Party_GetCurrentCount(tradeRoom->partnerParty));
 }
 
-int ov88_0223B57C(ApplicationManager *appMan, int *param1)
+int TradeRoom_Main(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_02095E80 *v0 = ApplicationManager_Data(appMan);
-    int v1 = 0;
+    TradeRoom *tradeRoom = ApplicationManager_Data(appMan);
+    int isDone = 0;
 
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case TRADE_STATE_FADE_IN:
         if (IsScreenFadeDone()) {
-            *param1 = 1;
+            *state = TRADE_STATE_RUNNING;
 
-            ov88_0223B320(v0);
+            TradeRoom_PrintHeaderLabels(tradeRoom);
         }
         break;
-    case 1:
-        switch (v0->unk_48) {
-        case 0:
-            v0->unk_48 = ov88_0223B914(v0);
+    case TRADE_STATE_RUNNING:
+        switch (tradeRoom->phase) {
+        case TRADE_PHASE_CONNECTING:
+            tradeRoom->phase = TradeRoom_ConnectAndSyncParties(tradeRoom);
             break;
-        case 1:
-            v0->unk_48 = ov88_0223BED8(v0);
-            ov88_0223CE74(v0);
+        case TRADE_PHASE_BROWSING:
+            tradeRoom->phase = TradeRoom_UpdateMainLoop(tradeRoom);
+            TradeRoom_PlayTouchedMonCry(tradeRoom);
             break;
-        case 2:
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_26);
-            *param1 = 2;
+        case TRADE_PHASE_CLOSING:
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_TRADE_ROOM);
+            *state = TRADE_STATE_CLOSING;
             break;
-        case 3:
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_26);
-            v0->unk_48 = 4;
+        case TRADE_PHASE_START_SUMMARY_TRANSITION:
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_TRADE_ROOM);
+            tradeRoom->phase = TRADE_PHASE_WAIT_FADE_OUT_FOR_SUMMARY;
             break;
-        case 4:
+        case TRADE_PHASE_WAIT_FADE_OUT_FOR_SUMMARY:
             if (IsScreenFadeDone()) {
-                ov88_0223BFD8(v0);
-                ov88_0223BF7C(v0);
-                ov88_0223C44C(v0->unk_174);
+                TradeRoom_FreePartyIconGraphics(tradeRoom);
+                TradeRoom_FreeSpriteRendering(tradeRoom);
+                TradeRoom_FreeBackgrounds(tradeRoom->bgConfig);
 
-                v0->unk_44 = 1;
-                v0->unk_48 = 5;
+                tradeRoom->subAppActive = 1;
+                tradeRoom->phase = TRADE_PHASE_WAIT_SUMMARY_SCREEN;
 
-                ov88_0223D1EC(v0, v0->unk_88[0] / 6);
+                TradeRoom_OpenMonSummary(tradeRoom, tradeRoom->selectedSlot[0] / MAX_PARTY_SIZE);
             }
             break;
-        case 5:
-            if (ApplicationManager_Exec(v0->appMan)) {
-                ApplicationManager_Free(v0->appMan);
-                ov88_0223B3C0(v0);
+        case TRADE_PHASE_WAIT_SUMMARY_SCREEN:
+            if (ApplicationManager_Exec(tradeRoom->appMan)) {
+                ApplicationManager_Free(tradeRoom->appMan);
+                TradeRoom_RestoreScreenAfterSummary(tradeRoom);
 
-                v0->unk_44 = 0;
-                v0->unk_88[0] = v0->unk_0C.monIndex + v0->unk_3C * 6;
+                tradeRoom->subAppActive = 0;
+                tradeRoom->selectedSlot[0] = tradeRoom->summaryArgs.monIndex + tradeRoom->summarySide * MAX_PARTY_SIZE;
 
-                ov88_0223BE28(v0);
-                ov88_0223CF68(v0->unk_88[0], v0->unk_39C[0], 0);
+                TradeRoom_RefreshFocusedMonDetails(tradeRoom);
+                TradeRoom_MoveCursorSprite(tradeRoom->selectedSlot[0], tradeRoom->cursorSprites[0], 0);
                 NetworkIcon_Init();
 
-                v0->unk_48 = 6;
+                tradeRoom->phase = TRADE_PHASE_FADE_IN_AFTER_SUMMARY;
             }
             break;
-        case 6:
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_26);
-            v0->unk_48 = 7;
+        case TRADE_PHASE_FADE_IN_AFTER_SUMMARY:
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_TRADE_ROOM);
+            tradeRoom->phase = TRADE_PHASE_WAIT_FADE_IN_AFTER_SUMMARY;
             break;
-        case 7:
+        case TRADE_PHASE_WAIT_FADE_IN_AFTER_SUMMARY:
             if (IsScreenFadeDone()) {
-                v0->unk_48 = 1;
+                tradeRoom->phase = TRADE_PHASE_BROWSING;
             }
             break;
         }
         break;
-    case 2:
+    case TRADE_STATE_CLOSING:
         if (IsScreenFadeDone()) {
-            v1 = 1;
+            isDone = 1;
         }
         break;
     }
 
-    if (!v0->unk_44) {
-        ov88_0223E848(v0);
-        SpriteList_Update(v0->unk_194);
+    if (!tradeRoom->subAppActive) {
+        TradeRoom_ScrollBackground(tradeRoom);
+        SpriteList_Update(tradeRoom->spriteList);
     }
 
-    CommManager_Dummy_02038A1C(26, v0->unk_174);
+    CommManager_Dummy_02038A1C(26, tradeRoom->bgConfig);
 
-    return v1;
+    return isDone;
 }
 
-static void ov88_0223B710(StringTemplate *param0, Party *param1, int param2)
+static void TradeRoom_SetPartyNicknames(StringTemplate *strTemplate, Party *party, int templateSlotBase)
 {
-    int v0;
-
-    for (v0 = 0; v0 < Party_GetCurrentCount(param1); v0++) {
-        StringTemplate_SetNickname(param0, v0 + param2, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param1, v0)));
+    for (int i = 0; i < Party_GetCurrentCount(party); i++) {
+        StringTemplate_SetNickname(strTemplate, i + templateSlotBase, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(party, i)));
     }
 }
 
-static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader *param2, Party *param3, int param4)
+static void TradeRoom_PrintPartyNicknames(Window *window, StringTemplate *strTemplate, MessageLoader *msgLoader, Party *party, int templateSlotBase)
 {
-    int v0;
+    for (int i = 0; i < Party_GetCurrentCount(party); i++) {
+        String *str = MessageUtil_ExpandedString(strTemplate, msgLoader, 1 + templateSlotBase + i, HEAP_ID_TRADE_ROOM);
 
-    for (v0 = 0; v0 < Party_GetCurrentCount(param3); v0++) {
-        String *v1 = MessageUtil_ExpandedString(param1, param2, 1 + param4 + v0, HEAP_ID_26);
-
-        ov88_0223EC78(&param0[v0], v1, 8, TEXT_SPEED_INSTANT, 1, 0);
-        String_Free(v1);
+        TradeRoom_PrintStringInWindow(&window[i], str, 8, TEXT_SPEED_INSTANT, 1, 0);
+        String_Free(str);
     }
 }
 
-static void ov88_0223B7A0(Party *param0, int param1, UnkStruct_02095E80 *param2)
+static void TradeRoom_LoadPartyIconSprites(Party *party, int templateSlotBase, TradeRoom *tradeRoom)
 {
-    int i;
-    int v1;
+    int i, slot;
 
-    for (i = 0; i < Party_GetCurrentCount(param0); i++) {
-        v1 = i + param1;
+    for (i = 0; i < Party_GetCurrentCount(party); i++) {
+        slot = i + templateSlotBase;
 
-        param2->unk_7E8[v1] = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], HEAP_ID_26);
+        tradeRoom->iconGraphicsBuffers[slot] = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(tradeRoom->monDisplayData[slot].species, tradeRoom->monDisplayData[slot].isEgg, tradeRoom->monDisplayData[slot].form), 0, &tradeRoom->iconCharacterData[slot], HEAP_ID_TRADE_ROOM);
 
-        DC_FlushRange(param2->unk_818[v1]->pRawData, 0x20 * 4 * 4);
+        DC_FlushRange(tradeRoom->iconCharacterData[slot]->pRawData, 0x20 * 4 * 4);
 
-        ov88_0223B2F0(param2->unk_818[v1], param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_06, param2->unk_6F4[v1].unk_05, v1, param2->unk_3D4[v1]);
-        Sprite_SetDrawFlag(param2->unk_3D4[v1], TRUE);
+        TradeRoom_LoadPartyIconGraphics(tradeRoom->iconCharacterData[slot], tradeRoom->monDisplayData[slot].species, tradeRoom->monDisplayData[slot].form, tradeRoom->monDisplayData[slot].isEgg, slot, tradeRoom->iconSprites[slot]);
+        Sprite_SetDrawFlag(tradeRoom->iconSprites[slot], TRUE);
 
-        if (param2->unk_6F4[v1].unk_02 == 0) {
-            Sprite_SetDrawFlag(param2->unk_404[v1], FALSE);
+        if (tradeRoom->monDisplayData[slot].heldItemType == 0) {
+            Sprite_SetDrawFlag(tradeRoom->itemIconSprites[slot], FALSE);
         } else {
-            Sprite_SetDrawFlag(param2->unk_404[v1], TRUE);
-            Sprite_SetAnim(param2->unk_404[v1], 3 + param2->unk_6F4[v1].unk_02 - 1);
+            Sprite_SetDrawFlag(tradeRoom->itemIconSprites[slot], TRUE);
+            Sprite_SetAnim(tradeRoom->itemIconSprites[slot], 3 + tradeRoom->monDisplayData[slot].heldItemType - 1);
         }
 
-        if (param2->unk_6F4[v1].unk_0C == 0) {
-            Sprite_SetDrawFlag(param2->unk_434[v1], FALSE);
+        if (tradeRoom->monDisplayData[slot].ballCapsuleId == 0) {
+            Sprite_SetDrawFlag(tradeRoom->capsuleIconSprites[slot], FALSE);
         } else {
-            Sprite_SetDrawFlag(param2->unk_434[v1], TRUE);
-            Sprite_SetAnim(param2->unk_434[v1], 21);
+            Sprite_SetDrawFlag(tradeRoom->capsuleIconSprites[slot], TRUE);
+            Sprite_SetAnim(tradeRoom->capsuleIconSprites[slot], 21);
         }
     }
 
-    for (; i < 6; i++) {
-        Sprite_SetDrawFlag(param2->unk_3D4[i + param1], FALSE);
-        Sprite_SetDrawFlag(param2->unk_404[i + param1], FALSE);
-        Sprite_SetDrawFlag(param2->unk_434[i + param1], FALSE);
+    for (; i < MAX_PARTY_SIZE; i++) {
+        Sprite_SetDrawFlag(tradeRoom->iconSprites[i + templateSlotBase], FALSE);
+        Sprite_SetDrawFlag(tradeRoom->itemIconSprites[i + templateSlotBase], FALSE);
+        Sprite_SetDrawFlag(tradeRoom->capsuleIconSprites[i + templateSlotBase], FALSE);
     }
 }
 
-static int ov88_0223B914(UnkStruct_02095E80 *param0)
+static int TradeRoom_ConnectAndSyncParties(TradeRoom *tradeRoom)
 {
-    ov88_0223E998(param0);
+    TradeRoom_CheckConnectionTimeout(tradeRoom);
 
-    switch (param0->unk_4C) {
-    case 0:
+    switch (tradeRoom->connectStep) {
+    case TRADE_CONNECT_LOCK_SHAYMIN_FORM:
         CommTiming_StartSync(80);
         ResetLock(RESET_LOCK_0x2);
-        ov88_0223E894(param0);
+        TradeRoom_AddWaitDialHandle(tradeRoom);
 
         int i, form, species;
 
-        for (i = 0; i < Party_GetCurrentCount(param0->unk_08->party); i++) {
-            Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_08->party, i);
-
+        for (i = 0; i < Party_GetCurrentCount(tradeRoom->args->party); i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(tradeRoom->args->party, i);
             species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if (species == SPECIES_SHAYMIN) {
@@ -574,332 +673,323 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
             }
         }
 
-        param0->unk_4C++;
+        tradeRoom->connectStep++;
         break;
-    case 1:
+    case TRADE_CONNECT_WAIT_INITIAL_SYNC:
         if (CommTiming_IsSyncState(80)) {
-            if (param0->unk_08->unk_34 == 0) {
-                param0->unk_4C = 6;
+            if (tradeRoom->args->tradeCount == 0) {
+                tradeRoom->connectStep = TRADE_CONNECT_START_SYNC_2;
             } else {
-                param0->unk_4C = 2;
+                tradeRoom->connectStep = TRADE_CONNECT_WAIT_STAGGER_START;
             }
 
             if (CommSys_CurNetId() == 0) {
-                ov88_0223D044(CommSys_CurNetId(), 31, LCRNG_RandMod(60) + 3);
+                TradeRoom_SendCommByte(CommSys_CurNetId(), TRADE_CMD_STAGGER_DELAY, LCRNG_RandMod(60) + 3);
             }
 
-            ov88_0223D0C0(param0->saveData);
-            ov88_0223E984(param0);
+            TradeRoom_SendRibbonData(tradeRoom->saveData);
+            TradeRoom_ArmConnectionTimeout(tradeRoom);
         }
         break;
-    case 2:
-        if (param0->unk_2318 != 0) {
-            param0->unk_4C++;
+    case TRADE_CONNECT_WAIT_STAGGER_START:
+        if (tradeRoom->staggerCountdown != 0) {
+            tradeRoom->connectStep++;
         }
         break;
-    case 3:
-        param0->unk_2318--;
+    case TRADE_CONNECT_STAGGER_COUNTDOWN:
+        tradeRoom->staggerCountdown--;
 
-        if (param0->unk_2318 == 0) {
-            param0->unk_4C = 4;
+        if (tradeRoom->staggerCountdown == 0) {
+            tradeRoom->connectStep = TRADE_CONNECT_INIT_SYNC_SAVE;
         }
         break;
-    case 4:
-        sub_02038ED4(&param0->unk_36F4);
-        param0->unk_4C++;
+    case TRADE_CONNECT_INIT_SYNC_SAVE:
+        sub_02038ED4(&tradeRoom->syncSaveState);
+        tradeRoom->connectStep++;
         break;
-    case 5:
-        if (sub_02038EDC(param0->saveData, 2, &param0->unk_36F4)) {
-            param0->unk_4C++;
+    case TRADE_CONNECT_SYNC_SAVE:
+        if (sub_02038EDC(tradeRoom->saveData, 2, &tradeRoom->syncSaveState)) {
+            tradeRoom->connectStep++;
         }
         break;
-    case 6:
+    case TRADE_CONNECT_START_SYNC_2:
         sub_0203632C(1);
         CommTiming_StartSync(81);
-        param0->unk_4C++;
+        tradeRoom->connectStep++;
         break;
-    case 7:
+    case TRADE_CONNECT_WAIT_SYNC_2:
         if (CommTiming_IsSyncState(81)) {
-            param0->unk_4C++;
+            tradeRoom->connectStep++;
         }
         break;
-    case 8:
-        param0->unk_50 = 0;
-        param0->unk_54 = 0;
-        param0->unk_58 = 0;
+    case TRADE_CONNECT_SEND_PARTY:
+        tradeRoom->partySendCount = 0;
+        tradeRoom->commMilestone = 0;
+        tradeRoom->partyReceiveCount = 0;
 
         if (CommSys_CurNetId() == 1) {
-            ov88_0223D098(CommSys_CurNetId(), param0->unk_2270, param0->unk_50);
-            param0->unk_50++;
+            TradeRoom_SendParty(CommSys_CurNetId(), tradeRoom->playerParty, tradeRoom->partySendCount);
+            tradeRoom->partySendCount++;
         }
 
-        param0->unk_4C++;
+        tradeRoom->connectStep++;
         break;
-    case 9:
-        if (param0->unk_54 != 0) {
-            param0->unk_4C = 10;
+    case TRADE_CONNECT_WAIT_PARTY_RECEIVED:
+        if (tradeRoom->commMilestone != 0) {
+            tradeRoom->connectStep = TRADE_CONNECT_DISPLAY_NICKNAMES;
         }
         break;
-    case 10:
-        param0->unk_4C++;
-        ov88_0223B4F0(param0);
+    case TRADE_CONNECT_DISPLAY_NICKNAMES:
+        tradeRoom->connectStep++;
+        TradeRoom_DisplayPartyNicknames(tradeRoom);
         break;
-    case 11: {
-        int v5, v6;
+    case TRADE_CONNECT_CACHE_MON_DISPLAY_DATA: {
+        int i;
 
-        for (v5 = 0; v5 < 13; v5++) {
-            param0->unk_6F4[v5].unk_00 = 0;
+        for (i = 0; i < TRADE_SLOT_QUIT + 1; i++) {
+            tradeRoom->monDisplayData[i].species = 0;
         }
 
-        for (v5 = 0; v5 < Party_GetCurrentCount(param0->unk_2270); v5++) {
-            Pokemon *v7 = Party_GetPokemonBySlotIndex(param0->unk_2270, v5);
-            ov88_0223BD18(v7, &param0->unk_6F4[v5]);
+        for (i = 0; i < Party_GetCurrentCount(tradeRoom->playerParty); i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(tradeRoom->playerParty, i);
+            TradeRoom_CachePokemonDisplayData(mon, &tradeRoom->monDisplayData[i]);
         }
 
-        for (v5 = 0; v5 < Party_GetCurrentCount(param0->unk_2274); v5++) {
-            Pokemon *v8 = Party_GetPokemonBySlotIndex(param0->unk_2274, v5);
-            ov88_0223BD18(v8, &param0->unk_6F4[v5 + 6]);
+        for (i = 0; i < Party_GetCurrentCount(tradeRoom->partnerParty); i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(tradeRoom->partnerParty, i);
+            TradeRoom_CachePokemonDisplayData(mon, &tradeRoom->monDisplayData[i + MAX_PARTY_SIZE]);
         }
 
-        param0->unk_6F4[12].unk_00 = 1;
+        tradeRoom->monDisplayData[12].species = 1;
     }
-        param0->unk_4C++;
+        tradeRoom->connectStep++;
         break;
-    case 12:
-        ov88_0223D0D4(CommInfo_TrainerInfo(CommSys_CurNetId()), param0->unk_227C, &param0->unk_2280);
-        param0->unk_4C++;
+    case TRADE_CONNECT_CREATE_PALPAD_OBJECT:
+        TradeRoom_CreateNetworkObject(CommInfo_TrainerInfo(CommSys_CurNetId()), tradeRoom->palPad, &tradeRoom->palPadNetworkObject);
+        tradeRoom->connectStep++;
         break;
-    case 13:
-        if (param0->unk_54 == 3) {
-            param0->unk_4C++;
+    case TRADE_CONNECT_WAIT_PALPAD_SENT:
+        if (tradeRoom->commMilestone == TRADE_MILESTONE_PALPAD_RECEIVED) {
+            tradeRoom->connectStep++;
         }
         break;
-    case 14:
-        ov88_0223D140(SaveData_GetChatotCry(param0->saveData));
-        param0->unk_4C++;
+    case TRADE_CONNECT_SEND_CHATOT_CRY:
+        TradeRoom_SendChatotCry(SaveData_GetChatotCry(tradeRoom->saveData));
+        tradeRoom->connectStep++;
         break;
-    case 15:
-        if (param0->unk_54 == 4) {
-            param0->unk_4C++;
+    case TRADE_CONNECT_WAIT_CHATOT_CRY_AND_SHOW_ICONS:
+        if (tradeRoom->commMilestone == TRADE_MILESTONE_CHATOT_CRY_RECEIVED) {
+            tradeRoom->connectStep++;
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
-            ov88_0223B7A0(param0->unk_2270, 0, param0);
-            ov88_0223B7A0(param0->unk_2274, 6, param0);
+            TradeRoom_LoadPartyIconSprites(tradeRoom->playerParty, 0, tradeRoom);
+            TradeRoom_LoadPartyIconSprites(tradeRoom->partnerParty, MAX_PARTY_SIZE, tradeRoom);
 
-            {
-                int v9;
-
-                for (v9 = 0; v9 < 2; v9++) {
-                    Sprite_SetDrawFlag(param0->unk_39C[v9], TRUE);
-                }
+            for (int i = 0; i < 2; i++) {
+                Sprite_SetDrawFlag(tradeRoom->cursorSprites[i], TRUE);
             }
         }
         break;
-    case 16:
+    case TRADE_CONNECT_FADE_IN_MAIN_SCREEN:
         BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_MAIN_SCREEN);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        param0->unk_4C++;
+        tradeRoom->connectStep++;
         break;
-    case 17:
+    case TRADE_CONNECT_WAIT_MAIN_FADE_AND_SHOW_DETAILS:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
-            Pokemon *v10 = Party_GetPokemonBySlotIndex(param0->unk_2270, 0);
+            Pokemon *mon = Party_GetPokemonBySlotIndex(tradeRoom->playerParty, 0);
 
-            param0->unk_2168 = ov88_0223C800(0, v10, param0->unk_848[0], &param0->unk_2148[0]);
-            ov88_0223C8D8(param0->unk_49C, 0, param0->unk_2270, 0, param0);
-            param0->unk_4C++;
+            tradeRoom->pendingPreviewLoadSide = TradeRoom_LoadMonPreviewSprite(0, mon, tradeRoom->previewSpritePixelBuf[0], &tradeRoom->previewSpriteTemplate[0]);
+            TradeRoom_ShowMonDetailCard(tradeRoom->windows, 0, tradeRoom->playerParty, 0, tradeRoom);
+            tradeRoom->connectStep++;
         }
         break;
-    case 18:
+    case TRADE_CONNECT_FADE_IN_SUB_SCREEN:
         BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_SUB_SCREEN);
         Bg_ToggleLayer(BG_LAYER_SUB_0, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        param0->unk_4C++;
-        ov88_0223E8B4(param0);
+        tradeRoom->connectStep++;
+        TradeRoom_HideWaitDial(tradeRoom);
         break;
-    case 19:
+    case TRADE_CONNECT_WAIT_SUB_FADE_AND_FINISH:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
-            Window_EraseMessageBox(&param0->unk_49C[23], 0);
-            Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-            ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
+            Window_EraseMessageBox(&tradeRoom->windows[23], 0);
+            Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+            TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
             ResetUnlock(RESET_LOCK_0x2);
 
-            return 1;
+            return TRADE_PHASE_BROWSING;
         }
 
         break;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static void ov88_0223BD18(Pokemon *param0, UnkStruct_ov88_0223C8AC *param1)
+static void TradeRoom_CachePokemonDisplayData(Pokemon *mon, TradeRoomMonDisplayData *displayData)
 {
-    int v0, v1;
+    int wasDecrypted, item;
 
-    v0 = Pokemon_EnterDecryptionContext(param0);
+    wasDecrypted = Pokemon_EnterDecryptionContext(mon);
 
-    param1->unk_04 = Pokemon_GetValue(param0, MON_DATA_POKEBALL, NULL);
-    param1->unk_00 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
-    param1->unk_06 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
-    param1->unk_05 = Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL);
-    param1->unk_08 = Pokemon_GetValue(param0, MON_DATA_GENDER, NULL);
-    param1->unk_0C = Pokemon_GetValue(param0, MON_DATA_BALL_CAPSULE_ID, NULL);
+    displayData->pokeBall = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
+    displayData->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    displayData->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    displayData->isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+    displayData->gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
+    displayData->ballCapsuleId = Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL);
 
-    v1 = Pokemon_GetValue(param0, MON_DATA_HELD_ITEM, NULL);
+    item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
-    Pokemon_ExitDecryptionContext(param0, v0);
+    Pokemon_ExitDecryptionContext(mon, wasDecrypted);
 
-    if (param1->unk_00 != 0) {
-        param1->unk_0A = SpeciesData_GetFormValue(param1->unk_00, param1->unk_06, 28);
+    if (displayData->species != 0) {
+        displayData->iconShouldFlip = SpeciesData_GetFormValue(displayData->species, displayData->form, SPECIES_DATA_FLIP_SPRITE);
     }
 
-    if (v1 != 0) {
-        param1->unk_02 = Item_IsMail(v1) + 1;
+    if (item != 0) {
+        displayData->heldItemType = Item_IsMail(item) + 1;
     }
 }
 
-static void ov88_0223BDA4(UnkStruct_02095E80 *param0, int param1)
+static void TradeRoom_ShowPartnerMonDetails(TradeRoom *tradeRoom, int slotIdx)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_2274, param1 % 6);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(tradeRoom->partnerParty, slotIdx % MAX_PARTY_SIZE);
 
-    param0->unk_2168 = ov88_0223C800(1, v0, param0->unk_848[param1 / 6], &param0->unk_2148[param1 / 6]);
+    tradeRoom->pendingPreviewLoadSide = TradeRoom_LoadMonPreviewSprite(1, mon, tradeRoom->previewSpritePixelBuf[slotIdx / MAX_PARTY_SIZE], &tradeRoom->previewSpriteTemplate[slotIdx / MAX_PARTY_SIZE]);
 
-    ov88_0223C8D8(param0->unk_49C, 1, param0->unk_2274, param1 % 6, param0);
-    Sprite_SetAnim(param0->unk_464[3], param0->unk_6F4[param1].unk_04 + 6 - 1);
+    TradeRoom_ShowMonDetailCard(tradeRoom->windows, 1, tradeRoom->partnerParty, slotIdx % MAX_PARTY_SIZE, tradeRoom);
+    Sprite_SetAnim(tradeRoom->detailCardSprites[3], tradeRoom->monDisplayData[slotIdx].pokeBall + 6 - 1);
 }
 
-static void ov88_0223BE28(UnkStruct_02095E80 *param0)
+static void TradeRoom_RefreshFocusedMonDetails(TradeRoom *tradeRoom)
 {
-    if (param0->unk_88[0] != 12) {
-        if (param0->unk_88[0] < 6) {
-            Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0]);
+    if (tradeRoom->selectedSlot[0] != TRADE_SLOT_QUIT) {
+        if (tradeRoom->selectedSlot[0] < MAX_PARTY_SIZE) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(tradeRoom->playerParty, tradeRoom->selectedSlot[0]);
 
-            param0->unk_2168 = ov88_0223C800(0, v0, param0->unk_848[param0->unk_88[0] / 6], &param0->unk_2148[param0->unk_88[0] / 6]);
+            tradeRoom->pendingPreviewLoadSide = TradeRoom_LoadMonPreviewSprite(0, mon, tradeRoom->previewSpritePixelBuf[tradeRoom->selectedSlot[0] / MAX_PARTY_SIZE], &tradeRoom->previewSpriteTemplate[tradeRoom->selectedSlot[0] / MAX_PARTY_SIZE]);
 
-            ov88_0223C8D8(param0->unk_49C, 0, param0->unk_2270, param0->unk_88[0], param0);
-            ov88_0223CB34(param0->unk_49C, 1, param0);
-            Sprite_SetDrawFlag(param0->unk_464[3], FALSE);
+            TradeRoom_ShowMonDetailCard(tradeRoom->windows, 0, tradeRoom->playerParty, tradeRoom->selectedSlot[0], tradeRoom);
+            TradeRoom_HideMonDetailCard(tradeRoom->windows, 1, tradeRoom);
+            Sprite_SetDrawFlag(tradeRoom->detailCardSprites[3], FALSE);
         } else {
-            ov88_0223BDA4(param0, param0->unk_88[0]);
-            ov88_0223CB34(param0->unk_49C, 0, param0);
-            Sprite_SetDrawFlag(param0->unk_464[2], FALSE);
+            TradeRoom_ShowPartnerMonDetails(tradeRoom, tradeRoom->selectedSlot[0]);
+            TradeRoom_HideMonDetailCard(tradeRoom->windows, 0, tradeRoom);
+            Sprite_SetDrawFlag(tradeRoom->detailCardSprites[2], FALSE);
         }
     }
 }
 
-static int ov88_0223BED8(UnkStruct_02095E80 *param0)
+static int TradeRoom_UpdateMainLoop(TradeRoom *tradeRoom)
 {
-    if (param0->unk_226C != NULL) {
-        param0->unk_140 = param0->unk_226C(param0);
+    if (tradeRoom->subStepCallback != NULL) {
+        tradeRoom->subStepResult = tradeRoom->subStepCallback(tradeRoom);
     }
 
-    switch (param0->unk_140) {
-    case 0:
+    switch (tradeRoom->subStepResult) {
+    case TRADE_PHASE_CONNECTING:
         break;
-    case 2:
-        return 2;
+    case TRADE_PHASE_CLOSING:
+        return TRADE_PHASE_CLOSING;
         break;
-    case 1:
+    case TRADE_PHASE_BROWSING:
         break;
-    case 3:
-        return 3;
+    case TRADE_PHASE_START_SUMMARY_TRANSITION:
+        return TRADE_PHASE_START_SUMMARY_TRANSITION;
         break;
     }
 
-    if (ov88_0223CFF4(&param0->unk_14C[0], &param0->unk_88[0], param0->unk_39C[0], param0->unk_6F4, 0)) {
-        ov88_0223BE28(param0);
+    if (TradeRoom_UpdateCursor(&tradeRoom->pendingDirection[0], &tradeRoom->selectedSlot[0], tradeRoom->cursorSprites[0], tradeRoom->monDisplayData, 0)) {
+        TradeRoom_RefreshFocusedMonDetails(tradeRoom);
     }
 
-    ov88_0223CFF4(&param0->unk_14C[1], &param0->unk_88[1], param0->unk_39C[1], param0->unk_6F4, 1);
-    ov88_0223CEF0(&param0->unk_90);
-    ov88_0223D058(param0, 23, param0->unk_88[0]);
+    TradeRoom_UpdateCursor(&tradeRoom->pendingDirection[1], &tradeRoom->selectedSlot[1], tradeRoom->cursorSprites[1], tradeRoom->monDisplayData, 1);
+    TradeRoom_UpdateCursorGlowColor(&tradeRoom->cursorGlowAngle);
+    TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_SYNC_CURSOR, tradeRoom->selectedSlot[0]);
 
-    return 1;
+    return TRADE_PHASE_BROWSING;
 }
 
-static void ov88_0223BF7C(UnkStruct_02095E80 *param0)
+static void TradeRoom_FreeSpriteRendering(TradeRoom *tradeRoom)
 {
-    int v0;
+    SpriteTransfer_ResetCharTransfer(tradeRoom->spriteResources[0][0]);
+    SpriteTransfer_ResetCharTransfer(tradeRoom->spriteResources[1][0]);
 
-    SpriteTransfer_ResetCharTransfer(param0->unk_334[0][0]);
-    SpriteTransfer_ResetCharTransfer(param0->unk_334[1][0]);
+    SpriteTransfer_ResetPlttTransfer(tradeRoom->spriteResources[0][1]);
+    SpriteTransfer_ResetPlttTransfer(tradeRoom->spriteResources[1][1]);
 
-    SpriteTransfer_ResetPlttTransfer(param0->unk_334[0][1]);
-    SpriteTransfer_ResetPlttTransfer(param0->unk_334[1][1]);
-
-    for (v0 = 0; v0 < 4; v0++) {
-        SpriteResourceCollection_Delete(param0->unk_324[v0]);
+    for (int i = 0; i < 4; i++) {
+        SpriteResourceCollection_Delete(tradeRoom->spriteResourceCollections[i]);
     }
 
-    SpriteList_Delete(param0->unk_194);
+    SpriteList_Delete(tradeRoom->spriteList);
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 }
 
-static void ov88_0223BFD8(UnkStruct_02095E80 *param0)
+static void TradeRoom_FreePartyIconGraphics(TradeRoom *tradeRoom)
 {
-    int v0;
-
-    for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_2270); v0++) {
-        Heap_Free(param0->unk_7E8[v0]);
+    for (int i = 0; i < Party_GetCurrentCount(tradeRoom->playerParty); i++) {
+        Heap_Free(tradeRoom->iconGraphicsBuffers[i]);
     }
 
-    for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_2274); v0++) {
-        Heap_Free(param0->unk_7E8[v0 + 6]);
+    for (int i = 0; i < Party_GetCurrentCount(tradeRoom->partnerParty); i++) {
+        Heap_Free(tradeRoom->iconGraphicsBuffers[i + MAX_PARTY_SIZE]);
     }
 }
 
-int ov88_0223C03C(ApplicationManager *appMan, int *param1)
+int TradeRoom_Exit(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_02095E80 *v0 = ApplicationManager_Data(appMan);
-    UnkStruct_ov88_0223C370 *v1 = ApplicationManager_Args(appMan);
-    int v2;
+    TradeRoom *tradeRoom = ApplicationManager_Data(appMan);
+    TradeRoomArgs *trArgs = ApplicationManager_Args(appMan);
 
-    v1->unk_28 = v0->unk_5C;
+    trArgs->tradeCompleted = tradeRoom->didConfirmTrade;
 
-    ov88_0223BFD8(v0);
+    TradeRoom_FreePartyIconGraphics(tradeRoom);
 
-    String_Free(v0->unk_190);
-    Heap_Free(v0->unk_2274);
+    String_Free(tradeRoom->itemLabelStr);
+    Heap_Free(tradeRoom->partnerParty);
 
-    ov88_0223BF7C(v0);
-    ov88_0223EC04(v0->unk_49C);
-    ov88_0223C44C(v0->unk_174);
+    TradeRoom_FreeSpriteRendering(tradeRoom);
+    TradeRoom_FreeWindows(tradeRoom->windows);
+    TradeRoom_FreeBackgrounds(tradeRoom->bgConfig);
 
-    Heap_FreeExplicit(HEAP_ID_26, v0->unk_174);
-    MessageLoader_Free(v0->unk_184);
-    StringTemplate_Free(v0->unk_180);
-    StringTemplate_Free(v0->unk_17C);
-    StringTemplate_Free(v0->unk_178);
-    String_Free(v0->unk_18C);
+    Heap_FreeExplicit(HEAP_ID_TRADE_ROOM, tradeRoom->bgConfig);
+    MessageLoader_Free(tradeRoom->msgLoader);
+    StringTemplate_Free(tradeRoom->unread_180);
+    StringTemplate_Free(tradeRoom->strTemplate2);
+    StringTemplate_Free(tradeRoom->strTemplate);
+    String_Free(tradeRoom->playerNameStr);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(HEAP_ID_26);
+    Heap_Destroy(HEAP_ID_TRADE_ROOM);
 
     return 1;
 }
 
-static void ov88_0223C0E0(void *param0)
+static void TradeRoom_VBlankCallback(void *param)
 {
-    UnkStruct_02095E80 *v0 = (UnkStruct_02095E80 *)param0;
+    TradeRoom *tradeRoom = (TradeRoom *)param;
 
-    Bg_RunScheduledUpdates(v0->unk_174);
+    Bg_RunScheduledUpdates(tradeRoom->bgConfig);
 
-    if (v0->unk_2168) {
-        int v1 = v0->unk_2168 - 1;
+    if (tradeRoom->pendingPreviewLoadSide) {
+        int side = tradeRoom->pendingPreviewLoadSide - 1;
 
-        GXS_LoadOBJ(v0->unk_848[v1], 0 + v1 * (0x20 * 10 * 10), 0x20 * 10 * 10);
-        Graphics_LoadPalette(v0->unk_2148[v1].narcID, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, HEAP_ID_26);
+        GXS_LoadOBJ(tradeRoom->previewSpritePixelBuf[side], 0 + side * (0x20 * 10 * 10), 0x20 * 10 * 10);
+        Graphics_LoadPalette(tradeRoom->previewSpriteTemplate[side].narcID, tradeRoom->previewSpriteTemplate[side].palette, 5, 0x20 * (2 + side), 32, HEAP_ID_TRADE_ROOM);
 
-        v0->unk_2168 = 0;
+        tradeRoom->pendingPreviewLoadSide = 0;
     }
 
     VramTransfer_Process();
@@ -908,9 +998,9 @@ static void ov88_0223C0E0(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov88_0223C15C(void)
+static void TradeRoom_ConfigureVRAMBanks(void)
 {
-    GXBanks v0 = {
+    GXBanks banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -923,172 +1013,152 @@ static void ov88_0223C15C(void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
 }
 
-static void ov88_0223C17C(BgConfig *param0)
+static void TradeRoom_InitBackgrounds(BgConfig *bgConfig)
 {
-    {
-        GraphicsModes v0 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D,
-        };
+    GraphicsModes modes = {
+        GX_DISPMODE_GRAPHICS,
+        GX_BGMODE_0,
+        GX_BGMODE_0,
+        GX_BG0_AS_2D,
+    };
 
-        SetAllGraphicsModes(&v0);
-    }
+    SetAllGraphicsModes(&modes);
 
-    {
-        BgTemplate v1 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBg0Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &mainBg0Template, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
-    {
-        BgTemplate v2 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf800,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBg1Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &mainBg1Template, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
 
-    {
-        BgTemplate v3 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xe000,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBg2Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &mainBg2Template, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
 
-    {
-        BgTemplate v4 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xe800,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 3,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBg3Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v4, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &mainBg3Template, 0);
 
-    {
-        BgTemplate v5 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf800,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate subBg0Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v5, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &subBg0Template, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 
-    {
-        BgTemplate v6 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate subBg1Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v6, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &subBg1Template, 0);
 
-    {
-        BgTemplate v7 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xd800,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate subBg2Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v7, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_2, &subBg2Template, 0);
 
-    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_26);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_26);
-    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_26);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_TRADE_ROOM);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_TRADE_ROOM);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_TRADE_ROOM);
 
-    {
-        int v8;
-
-        for (v8 = 0; v8 < 4; v8++) {
-            Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v8, 0, 0);
-            Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v8, 3, 0);
-            Bg_SetOffset(param0, BG_LAYER_SUB_0 + v8, 0, 0);
-            Bg_SetOffset(param0, BG_LAYER_SUB_0 + v8, 3, 0);
-        }
+    for (int i = 0; i < 4; i++) {
+        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_0 + i, 0, 0);
+        Bg_SetOffset(bgConfig, BG_LAYER_MAIN_0 + i, 3, 0);
+        Bg_SetOffset(bgConfig, BG_LAYER_SUB_0 + i, 0, 0);
+        Bg_SetOffset(bgConfig, BG_LAYER_SUB_0 + i, 3, 0);
     }
 
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
@@ -1102,590 +1172,575 @@ static void ov88_0223C17C(BgConfig *param0)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 }
 
-static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan)
+static void TradeRoom_InitState(TradeRoom *tradeRoom, ApplicationManager *appMan)
 {
-    UnkStruct_ov88_0223C370 *v0 = ApplicationManager_Args(appMan);
+    TradeRoomArgs *trArgs = ApplicationManager_Args(appMan);
 
-    param0->unk_08 = v0;
-    param0->unk_6CC = 4;
-    param0->unk_44 = 0;
-    param0->unk_6C8 = 0;
-    param0->unk_16C = 6;
-    param0->unk_170 = 6;
-    param0->unk_88[0] = 0;
-    param0->unk_88[1] = 6;
-    param0->unk_140 = 0;
-    param0->unk_48 = 0;
-    param0->unk_4C = 0;
-    param0->unk_226C = ov88_0223D150;
-    param0->unk_60[0] = 0;
-    param0->unk_60[1] = 0;
-    param0->unk_5C = 0;
-    param0->unk_2168 = 0;
-    param0->unk_36F8 = -1;
-    param0->unk_36FC = -1;
-    param0->unk_2318 = 0;
-    param0->unk_3704 = 0;
-    param0->unk_3708 = 0;
-    param0->unk_2270 = v0->party;
-    param0->unk_227C = v0->palPad;
-    param0->saveData = v0->saveData;
-    param0->unk_2274 = Heap_Alloc(HEAP_ID_26, Party_SaveSize());
+    tradeRoom->args = trArgs;
+    tradeRoom->unk_6CC = 4;
+    tradeRoom->subAppActive = 0;
+    tradeRoom->yesNoMenuStep = 0;
+    tradeRoom->unk_16C = MAX_PARTY_SIZE;
+    tradeRoom->unk_170 = MAX_PARTY_SIZE;
+    tradeRoom->selectedSlot[0] = 0;
+    tradeRoom->selectedSlot[1] = MAX_PARTY_SIZE;
+    tradeRoom->subStepResult = TRADE_PHASE_CONNECTING;
+    tradeRoom->phase = TRADE_PHASE_CONNECTING;
+    tradeRoom->connectStep = TRADE_CONNECT_LOCK_SHAYMIN_FORM;
+    tradeRoom->subStepCallback = TradeRoom_HandleBrowseInput;
+    tradeRoom->partnerSyncStatus[0] = 0;
+    tradeRoom->partnerSyncStatus[1] = 0;
+    tradeRoom->didConfirmTrade = 0;
+    tradeRoom->pendingPreviewLoadSide = 0;
+    tradeRoom->lastSyncedValue = -1;
+    tradeRoom->lastSyncedCmd = -1;
+    tradeRoom->staggerCountdown = 0;
+    tradeRoom->connectionTimeoutArmed = 0;
+    tradeRoom->connectionTimeoutFrames = 0;
+    tradeRoom->playerParty = trArgs->party;
+    tradeRoom->palPad = trArgs->palPad;
+    tradeRoom->saveData = trArgs->saveData;
+    tradeRoom->partnerParty = Heap_Alloc(HEAP_ID_TRADE_ROOM, Party_SaveSize());
 
-    Party_InitWithCapacity(param0->unk_2274, 6);
-    memset(param0->unk_2274, 0xff, Party_SaveSize());
+    Party_InitWithCapacity(tradeRoom->partnerParty, MAX_PARTY_SIZE);
+    memset(tradeRoom->partnerParty, 0xff, Party_SaveSize());
 
-    param0->unk_18C = TrainerInfo_NameNewString(v0->trainerInfo, 26);
-    param0->unk_190 = MessageLoader_GetNewString(param0->unk_184, 42);
+    tradeRoom->playerNameStr = TrainerInfo_NameNewString(trArgs->trainerInfo, 26);
+    tradeRoom->itemLabelStr = MessageLoader_GetNewString(tradeRoom->msgLoader, TRADE_MSG_ITEM_LABEL);
 
-    WiFiHistory_FlagGeonetLinkInfo(v0->wiFiHistory);
+    WiFiHistory_FlagGeonetLinkInfo(trArgs->wiFiHistory);
 }
 
-static void ov88_0223C44C(BgConfig *param0)
+static void TradeRoom_FreeBackgrounds(BgConfig *bgConfig)
 {
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
 
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 heapID)
+static void TradeRoom_LoadTilemapMember(NARC *narc, u32 narcMemberIdx, BgConfig *bgConfig, u32 bgLayer, u32 unused, u32 size, BOOL compressed, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, heapID, 1);
+    void *rawMember = LoadMemberFromOpenNARC(narc, narcMemberIdx, compressed, heapID, 1);
 
-    if (v0 != NULL) {
-        NNSG2dScreenData *v1;
+    if (rawMember != NULL) {
+        NNSG2dScreenData *screenData;
 
-        if (NNS_G2dGetUnpackedScreenData(v0, &v1)) {
-            if (param5 == 0) {
-                param5 = v1->szByte;
+        if (NNS_G2dGetUnpackedScreenData(rawMember, &screenData)) {
+            if (size == 0) {
+                size = screenData->szByte;
             }
 
-            if (Bg_GetTilemapBuffer(param2, param3) != NULL) {
-                Bg_LoadTilemapBuffer(param2, param3, v1->rawData, param5);
+            if (Bg_GetTilemapBuffer(bgConfig, bgLayer) != NULL) {
+                Bg_LoadTilemapBuffer(bgConfig, bgLayer, screenData->rawData, size);
             }
         }
 
-        Heap_Free(v0);
+        Heap_Free(rawMember);
     }
 }
 
-static void ov88_0223C4E0(BgConfig *param0, int param1, int param2)
+static void TradeRoom_CopyPartyGridTilemapToVRAM(BgConfig *bgConfig, int unused1, int unused2)
 {
-    int v0;
-    Bg_CopyTilemapBufferRangeToVRAM(param0, 2, Bg_GetTilemapBuffer(param0, 2), 32 * 24 * 2, 0);
+    Bg_CopyTilemapBufferRangeToVRAM(bgConfig, 2, Bg_GetTilemapBuffer(bgConfig, 2), 32 * 24 * 2, 0);
 }
 
-static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
+static void TradeRoom_LoadBgGraphics(TradeRoom *tradeRoom, NARC *narc)
 {
-    BgConfig *v0 = param0->unk_174;
+    BgConfig *bgConfig = tradeRoom->bgConfig;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 4, 0, 16 * 9 * 2, HEAP_ID_26);
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 9 * 2, HEAP_ID_26);
+    Graphics_LoadPaletteFromOpenNARC(narc, 0, 4, 0, 16 * 9 * 2, HEAP_ID_TRADE_ROOM);
+    Graphics_LoadPaletteFromOpenNARC(narc, 0, 0, 0, 16 * 9 * 2, HEAP_ID_TRADE_ROOM);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_26);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_26);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_TRADE_ROOM);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 1, bgConfig, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_TRADE_ROOM);
 
-    ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_26);
+    TradeRoom_LoadTilemapMember(narc, 3, bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_TRADE_ROOM);
 
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, HEAP_ID_26);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(2), HEAP_ID_26);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(3), HEAP_ID_26);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 5, 0, 16 * 4 * 0x20, 1, HEAP_ID_26);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_26);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, HEAP_ID_26);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(2), HEAP_ID_26);
-    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(3), HEAP_ID_26);
-    Bg_ClearTilemap(v0, BG_LAYER_SUB_0);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 4, bgConfig, 3, 0, 32 * 24 * 2, 1, HEAP_ID_TRADE_ROOM);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(2), HEAP_ID_TRADE_ROOM);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(3), HEAP_ID_TRADE_ROOM);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 2, bgConfig, 5, 0, 16 * 4 * 0x20, 1, HEAP_ID_TRADE_ROOM);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 5, bgConfig, 5, 0, 32 * 24 * 2, 1, HEAP_ID_TRADE_ROOM);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 6, bgConfig, 6, 0, 32 * 24 * 2, 1, HEAP_ID_TRADE_ROOM);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(2), HEAP_ID_TRADE_ROOM);
+    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(3), HEAP_ID_TRADE_ROOM);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 }
 
-static void ov88_0223C63C(void)
+static void TradeRoom_InitTransferSystems(void)
 {
-    {
-        CharTransferTemplate v0 = {
-            20, 2048, 2048, HEAP_ID_26
-        };
+    CharTransferTemplate ctTemplate = {
+        20, 2048, 2048, HEAP_ID_TRADE_ROOM
+    };
 
-        CharTransfer_Init(&v0);
-    }
+    CharTransfer_Init(&ctTemplate);
 
-    PlttTransfer_Init(20, HEAP_ID_26);
+    PlttTransfer_Init(20, HEAP_ID_TRADE_ROOM);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
 
-static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
+static void TradeRoom_InitSpriteRendering(TradeRoom *tradeRoom, NARC *narc)
 {
-    int v0;
-
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 127, 0, 32, 0, 127, 0, 32, 26);
 
-    param0->unk_194 = SpriteList_InitRendering(2 + 12 + 12 + 12 + 2 + 2 + 2 + 1, &param0->unk_198, HEAP_ID_26);
+    tradeRoom->spriteList = SpriteList_InitRendering(2 + 12 + 12 + 12 + 2 + 2 + 2 + 1, &tradeRoom->spriteRenderer, HEAP_ID_TRADE_ROOM);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_324[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_26);
+    for (int i = 0; i < 4; i++) {
+        tradeRoom->spriteResourceCollections[i] = SpriteResourceCollection_New(2, i, HEAP_ID_TRADE_ROOM);
     }
 
-    param0->unk_334[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_324[0], param1, 7, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_26);
-    param0->unk_334[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_324[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAP_ID_26);
-    param0->unk_334[0][2] = SpriteResourceCollection_AddFrom(param0->unk_324[2], param1, 8, 1, 0, 2, HEAP_ID_26);
-    param0->unk_334[0][3] = SpriteResourceCollection_AddFrom(param0->unk_324[3], param1, 9, 1, 0, 3, HEAP_ID_26);
-    param0->unk_334[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_324[0], param1, 10, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_26);
-    param0->unk_334[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_324[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 10, HEAP_ID_26);
-    param0->unk_334[1][2] = SpriteResourceCollection_AddFrom(param0->unk_324[2], param1, 11, 1, 1, 2, HEAP_ID_26);
-    param0->unk_334[1][3] = SpriteResourceCollection_AddFrom(param0->unk_324[3], param1, 12, 1, 1, 3, HEAP_ID_26);
+    tradeRoom->spriteResources[0][0] = SpriteResourceCollection_AddTilesFrom(tradeRoom->spriteResourceCollections[0], narc, 7, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_TRADE_ROOM);
+    tradeRoom->spriteResources[0][1] = SpriteResourceCollection_AddPaletteFrom(tradeRoom->spriteResourceCollections[1], narc, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAP_ID_TRADE_ROOM);
+    tradeRoom->spriteResources[0][2] = SpriteResourceCollection_AddFrom(tradeRoom->spriteResourceCollections[2], narc, 8, 1, 0, 2, HEAP_ID_TRADE_ROOM);
+    tradeRoom->spriteResources[0][3] = SpriteResourceCollection_AddFrom(tradeRoom->spriteResourceCollections[3], narc, 9, 1, 0, 3, HEAP_ID_TRADE_ROOM);
+    tradeRoom->spriteResources[1][0] = SpriteResourceCollection_AddTilesFrom(tradeRoom->spriteResourceCollections[0], narc, 10, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_TRADE_ROOM);
+    tradeRoom->spriteResources[1][1] = SpriteResourceCollection_AddPaletteFrom(tradeRoom->spriteResourceCollections[1], narc, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 10, HEAP_ID_TRADE_ROOM);
+    tradeRoom->spriteResources[1][2] = SpriteResourceCollection_AddFrom(tradeRoom->spriteResourceCollections[2], narc, 11, 1, 1, 2, HEAP_ID_TRADE_ROOM);
+    tradeRoom->spriteResources[1][3] = SpriteResourceCollection_AddFrom(tradeRoom->spriteResourceCollections[3], narc, 12, 1, 1, 3, HEAP_ID_TRADE_ROOM);
 
-    SpriteTransfer_RequestChar(param0->unk_334[0][0]);
-    SpriteTransfer_RequestChar(param0->unk_334[1][0]);
-    SpriteTransfer_RequestPlttWholeRange(param0->unk_334[0][1]);
-    SpriteTransfer_RequestPlttWholeRange(param0->unk_334[1][1]);
-    Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
+    SpriteTransfer_RequestChar(tradeRoom->spriteResources[0][0]);
+    SpriteTransfer_RequestChar(tradeRoom->spriteResources[1][0]);
+    SpriteTransfer_RequestPlttWholeRange(tradeRoom->spriteResources[0][1]);
+    SpriteTransfer_RequestPlttWholeRange(tradeRoom->spriteResources[1][1]);
+    Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_TRADE_ROOM);
 }
 
-static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3)
+static int TradeRoom_LoadMonPreviewSprite(int side, Pokemon *mon, u8 *destination, PokemonSpriteTemplate *psTemplate)
 {
-    Pokemon_BuildSpriteTemplate(param3, param1, 2);
+    Pokemon_BuildSpriteTemplate(psTemplate, mon, 2);
 
-    {
-        int personality = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-        enum Species species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    int personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+    enum Species species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-        CharacterSprite_LoadPokemonSpriteRect(param3->narcID, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, personality, FALSE, FACE_FRONT, species);
-    }
+    CharacterSprite_LoadPokemonSpriteRect(psTemplate->narcID, psTemplate->character, HEAP_ID_TRADE_ROOM, 0, 0, 10, 10, destination, personality, FALSE, FACE_FRONT, species);
 
-    DC_FlushRange(param2, 0x20 * 10 * 10);
+    DC_FlushRange(destination, 0x20 * 10 * 10);
 
-    return param0 + 1;
+    return side + 1;
 }
 
-static void ov88_0223C860(Window *param0, Party *param1, int param2, int param3, int param4)
+static void TradeRoom_PrintMonNickname(Window *window, Party *party, int slot, int unused, int xOrCenter)
 {
-    String *v0 = String_Init(20, HEAP_ID_26);
+    String *str = String_Init(20, HEAP_ID_TRADE_ROOM);
 
-    Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRING, v0);
-    Window_FillTilemap(param0, 0);
-    ov88_0223EC78(param0, v0, param3, TEXT_SPEED_INSTANT, param4, 1);
-    String_Free(v0);
+    Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, slot), MON_DATA_NICKNAME_STRING, str);
+    Window_FillTilemap(window, 0);
+    TradeRoom_PrintStringInWindow(window, str, unused, TEXT_SPEED_INSTANT, xOrCenter, 1);
+    String_Free(str);
 }
 
-static int ov88_0223C8AC(UnkStruct_ov88_0223C8AC *param0, Party *param1, int param2, int param3)
+static int TradeRoom_ResolveGenderIconState(TradeRoomMonDisplayData *displayData, Party *party, int slot, int genderValue)
 {
-    if ((param0->unk_00 == 29) || (param0->unk_00 == 32)) {
-        Pokemon *v0 = Party_GetPokemonBySlotIndex(param1, param2);
-        int v1 = Pokemon_GetValue(v0, MON_DATA_HAS_NICKNAME, NULL);
+    if ((displayData->species == SPECIES_NIDORAN_F) || (displayData->species == SPECIES_NIDORAN_M)) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
+        int hasNickname = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
 
-        if (v1 == 0) {
-            return 2;
+        if (hasNickname == FALSE) {
+            return GENDER_NONE;
         }
     }
 
-    return param3;
+    return genderValue;
 }
 
-static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3, UnkStruct_02095E80 *param4)
+static void TradeRoom_ShowMonDetailCard(Window *window, int side, Party *party, int slot, TradeRoom *tradeRoom)
 {
-    String *v0, *v1;
-    u16 item, v3;
-    int v4;
-    Pokemon *v5 = Party_GetPokemonBySlotIndex(param2, param3);
-    v4 = Pokemon_SpriteYOffset(v5, 2);
+    String *str, *itemNameStr;
+    u16 item, level;
+    int yOffset;
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
+    yOffset = Pokemon_SpriteYOffset(mon, 2);
 
-    Sprite_SetDrawFlag(param4->unk_464[param1], TRUE);
-    ov88_0223E87C(param4->unk_464[param1], Unk_ov88_0223EF54[param1][0], Unk_ov88_0223EF54[param1][1] + v4 + 192);
+    Sprite_SetDrawFlag(tradeRoom->detailCardSprites[side], TRUE);
+    TradeRoom_SetSpritePosition(tradeRoom->detailCardSprites[side], sDetailCardSpriteLayout[side][0], sDetailCardSpriteLayout[side][1] + yOffset + 192);
 
-    if (param1 == 0) {
-        Sprite_SetFlipMode(param4->unk_464[param1], param4->unk_6F4[param3].unk_0A);
+    if (side == 0) {
+        Sprite_SetFlipMode(tradeRoom->detailCardSprites[side], tradeRoom->monDisplayData[slot].iconShouldFlip);
     }
 
-    Sprite_SetAnim(param4->unk_464[2 + param1], param4->unk_6F4[param3].unk_04 + 6 - 1);
-    Sprite_SetDrawFlag(param4->unk_464[2 + param1], TRUE);
-    ov88_0223C860(&param0[26 + param1], param2, param3, 9, 6);
+    Sprite_SetAnim(tradeRoom->detailCardSprites[2 + side], tradeRoom->monDisplayData[slot].pokeBall + 6 - 1);
+    Sprite_SetDrawFlag(tradeRoom->detailCardSprites[2 + side], TRUE);
+    TradeRoom_PrintMonNickname(&window[26 + side], party, slot, 9, 6);
 
-    {
-        int v6 = param4->unk_6F4[param1 * 6 + param3].unk_08;
+    int genderIconState = tradeRoom->monDisplayData[side * MAX_PARTY_SIZE + slot].gender;
 
-        v6 = ov88_0223C8AC(&param4->unk_6F4[param1 * 6 + param3], param2, param3, v6);
+    genderIconState = TradeRoom_ResolveGenderIconState(&tradeRoom->monDisplayData[side * MAX_PARTY_SIZE + slot], party, slot, genderIconState);
 
-        if (param4->unk_6F4[param1 * 6 + param3].unk_05) {
-            v6 = 2;
-        }
-
-        switch (v6) {
-        case 2:
-            Sprite_SetDrawFlag(param4->unk_464[4 + param1], FALSE);
-            break;
-        case 0:
-            Sprite_SetDrawFlag(param4->unk_464[4 + param1], TRUE);
-            Sprite_SetAnim(param4->unk_464[4 + param1], 22 + 1);
-            break;
-        case 1:
-            Sprite_SetDrawFlag(param4->unk_464[4 + param1], TRUE);
-            Sprite_SetAnim(param4->unk_464[4 + param1], 22);
-            break;
-        }
+    if (tradeRoom->monDisplayData[side * MAX_PARTY_SIZE + slot].isEgg) {
+        genderIconState = GENDER_NONE;
     }
 
-    if (!param4->unk_6F4[param1 * 6 + param3].unk_05) {
-        v0 = String_Init(10, HEAP_ID_26);
-        Window_FillTilemap(&param0[28 + param1], 0);
-        MessageLoader_GetString(param4->unk_184, 41, v0);
-        ov88_0223EC78(&param0[28 + param1], v0, 9, TEXT_SPEED_NO_TRANSFER, 6, 0);
+    switch (genderIconState) {
+    case GENDER_NONE:
+        Sprite_SetDrawFlag(tradeRoom->detailCardSprites[4 + side], FALSE);
+        break;
+    case GENDER_MALE:
+        Sprite_SetDrawFlag(tradeRoom->detailCardSprites[4 + side], TRUE);
+        Sprite_SetAnim(tradeRoom->detailCardSprites[4 + side], 22 + 1);
+        break;
+    case GENDER_FEMALE:
+        Sprite_SetDrawFlag(tradeRoom->detailCardSprites[4 + side], TRUE);
+        Sprite_SetAnim(tradeRoom->detailCardSprites[4 + side], 22);
+        break;
+    }
 
-        v3 = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_LEVEL, NULL);
-        String_FormatInt(v0, v3, 3, 0, 1);
-        ov88_0223EC78(&param0[28 + param1], v0, 9, TEXT_SPEED_INSTANT, 24 + 6, 0);
-        String_Free(v0);
+    if (!tradeRoom->monDisplayData[side * MAX_PARTY_SIZE + slot].isEgg) {
+        str = String_Init(10, HEAP_ID_TRADE_ROOM);
+        Window_FillTilemap(&window[28 + side], 0);
+        MessageLoader_GetString(tradeRoom->msgLoader, TRADE_MSG_LEVEL_LABEL, str);
+        TradeRoom_PrintStringInWindow(&window[28 + side], str, 9, TEXT_SPEED_NO_TRANSFER, 6, 0);
+
+        level = Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, slot), MON_DATA_LEVEL, NULL);
+        String_FormatInt(str, level, 3, 0, 1);
+        TradeRoom_PrintStringInWindow(&window[28 + side], str, 9, TEXT_SPEED_INSTANT, 24 + 6, 0);
+        String_Free(str);
     } else {
-        Window_ClearAndCopyToVRAM(&param0[28 + param1]);
+        Window_ClearAndCopyToVRAM(&window[28 + side]);
     }
 
-    ov88_0223EC78(&param0[30 + param1], param4->unk_190, 7, TEXT_SPEED_INSTANT, 3, 0);
+    TradeRoom_PrintStringInWindow(&window[30 + side], tradeRoom->itemLabelStr, 7, TEXT_SPEED_INSTANT, 3, 0);
 
-    item = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_HELD_ITEM, NULL);
-    Window_FillTilemap(&param0[32 + param1], 0);
+    item = Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, slot), MON_DATA_HELD_ITEM, NULL);
+    Window_FillTilemap(&window[32 + side], 0);
 
-    v1 = String_Init(20, HEAP_ID_26);
-    Item_LoadName(v1, item, HEAP_ID_26);
-    ov88_0223EC78(&param0[32 + param1], v1, 9, TEXT_SPEED_INSTANT, 3, 0);
-    String_Free(v1);
+    itemNameStr = String_Init(20, HEAP_ID_TRADE_ROOM);
+    Item_LoadName(itemNameStr, item, HEAP_ID_TRADE_ROOM);
+    TradeRoom_PrintStringInWindow(&window[32 + side], itemNameStr, 9, TEXT_SPEED_INSTANT, 3, 0);
+    String_Free(itemNameStr);
 }
 
-static void ov88_0223CB34(Window *param0, int param1, UnkStruct_02095E80 *param2)
+static void TradeRoom_HideMonDetailCard(Window *window, int side, TradeRoom *tradeRoom)
 {
-    Sprite_SetDrawFlag(param2->unk_464[param1], FALSE);
-    Sprite_SetDrawFlag(param2->unk_464[2 + param1], FALSE);
-    Sprite_SetDrawFlag(param2->unk_464[4 + param1], FALSE);
-    Window_ClearAndCopyToVRAM(&param0[26 + param1]);
-    Window_ClearAndCopyToVRAM(&param0[28 + param1]);
-    Window_ClearAndCopyToVRAM(&param0[30 + param1]);
-    Window_ClearAndCopyToVRAM(&param0[32 + param1]);
+    Sprite_SetDrawFlag(tradeRoom->detailCardSprites[side], FALSE);
+    Sprite_SetDrawFlag(tradeRoom->detailCardSprites[2 + side], FALSE);
+    Sprite_SetDrawFlag(tradeRoom->detailCardSprites[4 + side], FALSE);
+    Window_ClearAndCopyToVRAM(&window[26 + side]);
+    Window_ClearAndCopyToVRAM(&window[28 + side]);
+    Window_ClearAndCopyToVRAM(&window[30 + side]);
+    Window_ClearAndCopyToVRAM(&window[32 + side]);
 }
 
-static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
+static void TradeRoom_CreateSprites(TradeRoom *tradeRoom)
 {
-    SpriteResourcesHeader_Init(&param0->unk_354, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 2, param0->unk_324[0], param0->unk_324[1], param0->unk_324[2], param0->unk_324[3], NULL, NULL);
-    SpriteResourcesHeader_Init(&param0->unk_378, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_324[0], param0->unk_324[1], param0->unk_324[2], param0->unk_324[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&tradeRoom->mainSpriteResourcesHeader, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 2, tradeRoom->spriteResourceCollections[0], tradeRoom->spriteResourceCollections[1], tradeRoom->spriteResourceCollections[2], tradeRoom->spriteResourceCollections[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&tradeRoom->subSpriteResourcesHeader, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, tradeRoom->spriteResourceCollections[0], tradeRoom->spriteResourceCollections[1], tradeRoom->spriteResourceCollections[2], tradeRoom->spriteResourceCollections[3], NULL, NULL);
 
-    {
-        AffineSpriteListTemplate v0;
-        int v1;
+    AffineSpriteListTemplate aslTemplate;
 
-        v0.list = param0->unk_194;
-        v0.resourceData = &param0->unk_354;
-        v0.position.x = FX32_CONST(32);
-        v0.position.y = FX32_CONST(96);
-        v0.position.z = 0;
-        v0.affineScale.x = FX32_ONE;
-        v0.affineScale.y = FX32_ONE;
-        v0.affineScale.z = FX32_ONE;
-        v0.affineZRotation = 0;
-        v0.priority = 0;
-        v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.heapID = HEAP_ID_26;
+    aslTemplate.list = tradeRoom->spriteList;
+    aslTemplate.resourceData = &tradeRoom->mainSpriteResourcesHeader;
+    aslTemplate.position.x = FX32_CONST(32);
+    aslTemplate.position.y = FX32_CONST(96);
+    aslTemplate.position.z = 0;
+    aslTemplate.affineScale.x = FX32_ONE;
+    aslTemplate.affineScale.y = FX32_ONE;
+    aslTemplate.affineScale.z = FX32_ONE;
+    aslTemplate.affineZRotation = 0;
+    aslTemplate.priority = 0;
+    aslTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    aslTemplate.heapID = HEAP_ID_TRADE_ROOM;
 
-        for (v1 = 0; v1 < 2; v1++) {
-            v0.position.x = FX32_ONE * Unk_ov88_0223EF9C[v1][0];
-            v0.position.y = FX32_ONE * Unk_ov88_0223EF9C[v1][1];
-            param0->unk_39C[v1] = SpriteList_AddAffine(&v0);
-            Sprite_SetAnimateFlag(param0->unk_39C[v1], 1);
-            ov88_0223CF68(param0->unk_88[v1], param0->unk_39C[v1], v1);
-            Sprite_SetPriority(param0->unk_39C[v1], 100);
-            Sprite_SetDrawFlag(param0->unk_39C[v1], FALSE);
-        }
+    for (int i = 0; i < 2; i++) {
+        aslTemplate.position.x = FX32_ONE * sSlotScreenPositions[i][0];
+        aslTemplate.position.y = FX32_ONE * sSlotScreenPositions[i][1];
+        tradeRoom->cursorSprites[i] = SpriteList_AddAffine(&aslTemplate);
+        Sprite_SetAnimateFlag(tradeRoom->cursorSprites[i], 1);
+        TradeRoom_MoveCursorSprite(tradeRoom->selectedSlot[i], tradeRoom->cursorSprites[i], i);
+        Sprite_SetPriority(tradeRoom->cursorSprites[i], 100);
+        Sprite_SetDrawFlag(tradeRoom->cursorSprites[i], FALSE);
+    }
 
-        for (v1 = 0; v1 < 12; v1++) {
-            v0.position.x = FX32_ONE * (Unk_ov88_0223EF9C[v1][0] + 16);
-            v0.position.y = FX32_ONE * (Unk_ov88_0223EF9C[v1][1] - 6);
-            param0->unk_3D4[v1] = SpriteList_AddAffine(&v0);
-            Sprite_SetAnimateFlag(param0->unk_3D4[v1], 1);
-            Sprite_SetAnim(param0->unk_3D4[v1], 5 + v1);
-            Sprite_SetPriority(param0->unk_3D4[v1], 5);
-            Sprite_SetDrawFlag(param0->unk_3D4[v1], FALSE);
-        }
+    for (int i = 0; i < TRADE_SLOT_QUIT; i++) {
+        aslTemplate.position.x = FX32_ONE * (sSlotScreenPositions[i][0] + 16);
+        aslTemplate.position.y = FX32_ONE * (sSlotScreenPositions[i][1] - 6);
+        tradeRoom->iconSprites[i] = SpriteList_AddAffine(&aslTemplate);
+        Sprite_SetAnimateFlag(tradeRoom->iconSprites[i], 1);
+        Sprite_SetAnim(tradeRoom->iconSprites[i], 5 + i);
+        Sprite_SetPriority(tradeRoom->iconSprites[i], 5);
+        Sprite_SetDrawFlag(tradeRoom->iconSprites[i], FALSE);
+    }
 
-        for (v1 = 0; v1 < 12; v1++) {
-            v0.position.x = FX32_ONE * (Unk_ov88_0223EF9C[v1][0] + 16 + 20);
-            v0.position.y = FX32_ONE * (Unk_ov88_0223EF9C[v1][1] + 16);
-            v0.priority = 0;
-            param0->unk_404[v1] = SpriteList_AddAffine(&v0);
-            Sprite_SetPriority(param0->unk_404[v1], 3);
-            Sprite_SetDrawFlag(param0->unk_404[v1], FALSE);
-        }
+    for (int i = 0; i < TRADE_SLOT_QUIT; i++) {
+        aslTemplate.position.x = FX32_ONE * (sSlotScreenPositions[i][0] + 16 + 20);
+        aslTemplate.position.y = FX32_ONE * (sSlotScreenPositions[i][1] + 16);
+        aslTemplate.priority = 0;
+        tradeRoom->itemIconSprites[i] = SpriteList_AddAffine(&aslTemplate);
+        Sprite_SetPriority(tradeRoom->itemIconSprites[i], 3);
+        Sprite_SetDrawFlag(tradeRoom->itemIconSprites[i], FALSE);
+    }
 
-        for (v1 = 0; v1 < 12; v1++) {
-            v0.position.x = FX32_ONE * (Unk_ov88_0223EF9C[v1][0] + 16 + 20 + 9);
-            v0.position.y = FX32_ONE * (Unk_ov88_0223EF9C[v1][1] + 16);
-            v0.priority = 0;
-            param0->unk_434[v1] = SpriteList_AddAffine(&v0);
-            Sprite_SetPriority(param0->unk_434[v1], 3);
-            Sprite_SetDrawFlag(param0->unk_434[v1], FALSE);
-        }
+    for (int i = 0; i < TRADE_SLOT_QUIT; i++) {
+        aslTemplate.position.x = FX32_ONE * (sSlotScreenPositions[i][0] + 16 + 20 + 9);
+        aslTemplate.position.y = FX32_ONE * (sSlotScreenPositions[i][1] + 16);
+        aslTemplate.priority = 0;
+        tradeRoom->capsuleIconSprites[i] = SpriteList_AddAffine(&aslTemplate);
+        Sprite_SetPriority(tradeRoom->capsuleIconSprites[i], 3);
+        Sprite_SetDrawFlag(tradeRoom->capsuleIconSprites[i], FALSE);
+    }
 
-        v0.position.x = FX32_ONE * (128 - 4 * 8);
-        v0.position.y = FX32_ONE * (8 * 8 + 2);
-        param0->unk_47C = SpriteList_AddAffine(&v0);
-        Sprite_SetAnimateFlag(param0->unk_47C, 1);
-        Sprite_SetAnim(param0->unk_47C, 20);
-        Sprite_SetDrawFlag(param0->unk_47C, FALSE);
+    aslTemplate.position.x = FX32_ONE * (128 - 4 * 8);
+    aslTemplate.position.y = FX32_ONE * (8 * 8 + 2);
+    tradeRoom->convergeIndicatorSprite = SpriteList_AddAffine(&aslTemplate);
+    Sprite_SetAnimateFlag(tradeRoom->convergeIndicatorSprite, 1);
+    Sprite_SetAnim(tradeRoom->convergeIndicatorSprite, 20);
+    Sprite_SetDrawFlag(tradeRoom->convergeIndicatorSprite, FALSE);
 
-        for (v1 = 0; v1 < 6; v1++) {
-            v0.resourceData = &param0->unk_378;
-            v0.position.x = FX32_ONE * Unk_ov88_0223EF54[v1][0];
-            v0.position.y = FX32_ONE * (Unk_ov88_0223EF54[v1][1]) + (192 << FX32_SHIFT);
-            v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-            param0->unk_464[v1] = SpriteList_AddAffine(&v0);
-            Sprite_SetDrawFlag(param0->unk_464[v1], FALSE);
-            Sprite_SetAnimateFlag(param0->unk_464[v1], 0);
-            Sprite_SetAnim(param0->unk_464[v1], Unk_ov88_0223EF54[v1][2]);
-        }
+    for (int i = 0; i < 6; i++) {
+        aslTemplate.resourceData = &tradeRoom->subSpriteResourcesHeader;
+        aslTemplate.position.x = FX32_ONE * sDetailCardSpriteLayout[i][0];
+        aslTemplate.position.y = FX32_ONE * (sDetailCardSpriteLayout[i][1]) + (192 << FX32_SHIFT);
+        aslTemplate.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+        tradeRoom->detailCardSprites[i] = SpriteList_AddAffine(&aslTemplate);
+        Sprite_SetDrawFlag(tradeRoom->detailCardSprites[i], FALSE);
+        Sprite_SetAnimateFlag(tradeRoom->detailCardSprites[i], 0);
+        Sprite_SetAnim(tradeRoom->detailCardSprites[i], sDetailCardSpriteLayout[i][2]);
     }
 }
 
-static void ov88_0223CE34(u32 *param0)
+static void TradeRoom_PollDPadDirection(u32 *direction)
 {
-    int v0 = 0;
-    int v1 = 0;
+    int pressedCount = 0;
+    int dir = 0;
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
-        v1 = 1;
-        v0++;
+        dir = 1;
+        pressedCount++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
-        v1 = 2;
-        v0++;
+        dir = 2;
+        pressedCount++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
-        v1 = 3;
-        v0++;
+        dir = 3;
+        pressedCount++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
-        v1 = 4;
-        v0++;
+        dir = 4;
+        pressedCount++;
     }
 
-    if (v0) {
-        *param0 = v1;
+    if (pressedCount) {
+        *direction = dir;
     }
 }
 
-static const TouchScreenRect Unk_ov88_0223EE28[] = {
-    { 0x38, 0x88, 0x18, 0x68 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+static const TouchScreenRect sMonCryTouchRect[] = {
+    { 56, 136, 24, 104 },
+    { 255, 0, 0, 0 }
 };
 
-static void ov88_0223CE74(UnkStruct_02095E80 *param0)
+static void TradeRoom_PlayTouchedMonCry(TradeRoom *tradeRoom)
 {
     u16 species, form;
-    int v2 = -1, v3;
+    int touchedRectIndex = -1;
 
-    if (param0->unk_88[0] >= 6) {
+    if (tradeRoom->selectedSlot[0] >= MAX_PARTY_SIZE) {
         return;
     }
 
-    v2 = TouchScreen_CheckRectanglePressed(Unk_ov88_0223EE28);
+    touchedRectIndex = TouchScreen_CheckRectanglePressed(sMonCryTouchRect);
 
-    if (v2 != 0xffffffff) {
-        if (param0->unk_6F4[param0->unk_88[0]].unk_05) {
+    if (touchedRectIndex != 0xffffffff) {
+        if (tradeRoom->monDisplayData[tradeRoom->selectedSlot[0]].isEgg) {
             return;
         }
 
-        species = param0->unk_6F4[param0->unk_88[0]].unk_00;
-        form = param0->unk_6F4[param0->unk_88[0]].unk_06;
+        species = tradeRoom->monDisplayData[tradeRoom->selectedSlot[0]].species;
+        form = tradeRoom->monDisplayData[tradeRoom->selectedSlot[0]].form;
 
         if (species == SPECIES_CHATOT) {
-            Sound_PlayChatotCry(SaveData_GetChatotCry(param0->saveData), 0, 100, 0);
+            Sound_PlayChatotCry(SaveData_GetChatotCry(tradeRoom->saveData), 0, 100, 0);
         } else {
             Sound_PlayPokemonCry(species, form);
         }
 
-        Sprite_SetAnimateFlag(param0->unk_464[v2], 1);
-        Sprite_SetAnim(param0->unk_464[v2], 4 + v2);
+        Sprite_SetAnimateFlag(tradeRoom->detailCardSprites[touchedRectIndex], 1);
+        Sprite_SetAnim(tradeRoom->detailCardSprites[touchedRectIndex], 4 + touchedRectIndex);
     }
 }
 
-static void ov88_0223CEF0(u16 *param0)
+static void TradeRoom_UpdateCursorGlowColor(u16 *angle)
 {
-    fx32 v0;
-    GXRgb v1;
-    int v2, v3, v4;
+    fx32 sinVal;
+    GXRgb color;
+    int green;
 
-    *param0 += 20;
+    *angle += 20;
 
-    if (*param0 > 360) {
-        *param0 = 0;
+    if (*angle > 360) {
+        *angle = 0;
     }
 
-    v0 = CalcSineDegrees_Wraparound(*param0);
-    v3 = 15 + (v0 * 10) / FX32_ONE;
-    v1 = GX_RGB(29, v3, 0);
+    sinVal = CalcSineDegrees_Wraparound(*angle);
+    green = 15 + (sinVal * 10) / FX32_ONE;
+    color = GX_RGB(29, green, 0);
 
-    GX_LoadOBJPltt((u16 *)&v1, (16 + 13) * 2, 2);
+    GX_LoadOBJPltt((u16 *)&color, (16 + 13) * 2, 2);
 }
 
-static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC *param2)
+static int TradeRoom_ResolveCursorMoveTarget(int currentSlot, int direction, TradeRoomMonDisplayData *displayData)
 {
-    int v0, v1 = 0;
+    int i, targetSlot = 0;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (param2[Unk_ov88_0223F004[param0][param1][v0]].unk_00 != 0) {
-            v1 = Unk_ov88_0223F004[param0][param1][v0];
+    for (i = 0; i < 6; i++) {
+        if (displayData[sCursorMoveCandidates[currentSlot][direction][i]].species != 0) {
+            targetSlot = sCursorMoveCandidates[currentSlot][direction][i];
             break;
         }
     }
 
-    return v1;
+    return targetSlot;
 }
 
-static const int Unk_ov88_0223EE50[][3] = {
-    { 0x0, 0x1, 0x2 },
-    { 0x11, 0x12, 0x13 }
+static const int sCursorZoneAnimFrames[][3] = {
+    { 0, 1, 2 },
+    { 17, 18, 19 }
 };
 
-static void ov88_0223CF68(int param0, Sprite *param1, int param2)
+static void TradeRoom_MoveCursorSprite(int slot, Sprite *sprite, int cursorIdx)
 {
-    VecFx32 v0;
+    VecFx32 pos;
 
-    GF_ASSERT(param0 < 13);
+    GF_ASSERT(slot < TRADE_SLOT_QUIT + 1);
 
-    v0.x = FX32_ONE * Unk_ov88_0223EF9C[param0][0];
-    v0.y = FX32_ONE * Unk_ov88_0223EF9C[param0][1];
+    pos.x = FX32_ONE * sSlotScreenPositions[slot][0];
+    pos.y = FX32_ONE * sSlotScreenPositions[slot][1];
 
-    if (param0 == 12) {
-        Sprite_SetPosition(param1, &v0);
-        Sprite_SetAnim(param1, Unk_ov88_0223EE50[param2][2]);
+    if (slot == TRADE_SLOT_QUIT) {
+        Sprite_SetPosition(sprite, &pos);
+        Sprite_SetAnim(sprite, sCursorZoneAnimFrames[cursorIdx][2]);
     } else {
-        Sprite_SetPosition(param1, &v0);
+        Sprite_SetPosition(sprite, &pos);
 
-        if (param0 < 6) {
-            Sprite_SetAnim(param1, Unk_ov88_0223EE50[param2][0]);
+        if (slot < MAX_PARTY_SIZE) {
+            Sprite_SetAnim(sprite, sCursorZoneAnimFrames[cursorIdx][0]);
         } else {
-            Sprite_SetAnim(param1, Unk_ov88_0223EE50[param2][1]);
+            Sprite_SetAnim(sprite, sCursorZoneAnimFrames[cursorIdx][1]);
         }
     }
 }
 
-static int ov88_0223CFF4(u32 *param0, int *param1, Sprite *param2, UnkStruct_ov88_0223C8AC *param3, int param4)
+static int TradeRoom_UpdateCursor(u32 *directionFlag, int *slotIdx, Sprite *sprite, TradeRoomMonDisplayData *displayData, int side)
 {
-    int v0 = *param0 - 1;
-    int v1 = 0;
-    int v2 = 0;
+    int direction = *directionFlag - 1;
+    int targetSlot = 0;
+    int didMove = 0;
 
-    if (param4 == 0) {
-        if (*param0) {
-            v1 = ov88_0223CF30(*param1, v0, param3);
-            ov88_0223CF68(v1, param2, param4);
+    if (side == 0) {
+        if (*directionFlag) {
+            targetSlot = TradeRoom_ResolveCursorMoveTarget(*slotIdx, direction, displayData);
+            TradeRoom_MoveCursorSprite(targetSlot, sprite, side);
 
-            if (*param1 != v1) {
+            if (*slotIdx != targetSlot) {
                 Sound_PlayEffect(SE_CONFIRM_sseq_3);
-                *param1 = v1;
-                v2 = 1;
+                *slotIdx = targetSlot;
+                didMove = 1;
             }
         }
 
-        *param0 = 0;
+        *directionFlag = 0;
     } else {
-        ov88_0223CF68(*param1, param2, param4);
+        TradeRoom_MoveCursorSprite(*slotIdx, sprite, side);
     }
 
-    return v2;
+    return didMove;
 }
 
-void ov88_0223D044(int param0, int param1, int param2)
+void TradeRoom_SendCommByte(int unused, int cmd, int value)
 {
-    u8 v0 = param2;
-    CommSys_SendData(param1, &v0, 1);
+    u8 byteValue = value;
+    CommSys_SendData(cmd, &byteValue, 1);
 }
 
-void ov88_0223D058(UnkStruct_02095E80 *param0, int param1, int param2)
+void TradeRoom_SyncValueToPartner(TradeRoom *tradeRoom, int cmd, int value)
 {
-    if ((param2 != param0->unk_36F8) || (param1 != param0->unk_36FC)) {
-        ov88_0223D044(CommSys_CurNetId(), param1, param2);
-        param0->unk_36F8 = param2;
-        param0->unk_36FC = param1;
-    }
-}
-
-static void *ov88_0223D08C(Party *param0, int param1)
-{
-    u32 v0 = (u32)param0;
-
-    return (void *)(v0 + param1 * (236 * 6 + 4 * 2));
-}
-
-void ov88_0223D098(int param0, Party *param1, int param2)
-{
-    if (CommSys_IsPlayerConnected(param0)) {
-        CommSys_SendDataHuge(22, ov88_0223D08C(param1, param2), 236 * 6 + 4 * 2);
+    if ((value != tradeRoom->lastSyncedValue) || (cmd != tradeRoom->lastSyncedCmd)) {
+        TradeRoom_SendCommByte(CommSys_CurNetId(), cmd, value);
+        tradeRoom->lastSyncedValue = value;
+        tradeRoom->lastSyncedCmd = cmd;
     }
 }
 
-static void ov88_0223D0C0(SaveData *saveData)
+static void *TradeRoom_OffsetPartyPtr(Party *party, int index)
 {
-    u8 *v0 = SaveData_GetRibbons(saveData);
+    u32 base = (u32)party;
 
-    CommSys_SendData(32, v0, 14);
+    return (void *)(base + index * (236 * MAX_PARTY_SIZE + 4 * 2));
 }
 
-static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
+void TradeRoom_SendParty(int netId, Party *party, int index)
 {
-    // this is the exact same as PalPad_CreateNetworkObject ?
-    int v0;
+    if (CommSys_IsPlayerConnected(netId)) {
+        CommSys_SendDataHuge(TRADE_CMD_SEND_PARTY, TradeRoom_OffsetPartyPtr(party, index), 236 * MAX_PARTY_SIZE + 4 * 2);
+    }
+}
 
-    CharCode_Copy(param2->trainerName, TrainerInfo_Name(param0));
+static void TradeRoom_SendRibbonData(SaveData *saveData)
+{
+    u8 *ribbonData = SaveData_GetRibbons(saveData);
 
-    param2->trainerId = TrainerInfo_ID(param0);
-    param2->language = TrainerInfo_Language(param0);
-    param2->gameCode = TrainerInfo_GameCode(param0);
-    param2->gender = TrainerInfo_Gender(param0);
+    CommSys_SendData(TRADE_CMD_SEND_RIBBONS, ribbonData, 14);
+}
 
-    for (v0 = 0; v0 < 16; v0++) {
-        param2->associatedTrainerIds[v0] = param1[v0].trainerId;
-        param2->associatedTrainerGameCodes[v0] = param1[v0].gameCode;
-        param2->associatedTrainerLanguages[v0] = param1[v0].language;
-        param2->associatedTrainerGenders[v0] = param1[v0].gender;
+static void TradeRoom_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source, PalPad *destination) // nearly identical to PalPad_CreateNetworkObject
+{
+    CharCode_Copy(destination->trainerName, TrainerInfo_Name(trainerInfo));
+
+    destination->trainerId = TrainerInfo_ID(trainerInfo);
+    destination->language = TrainerInfo_Language(trainerInfo);
+    destination->gameCode = TrainerInfo_GameCode(trainerInfo);
+    destination->gender = TrainerInfo_Gender(trainerInfo);
+
+    for (int i = 0; i < 16; i++) {
+        destination->associatedTrainerIds[i] = source[i].trainerId;
+        destination->associatedTrainerGameCodes[i] = source[i].gameCode;
+        destination->associatedTrainerLanguages[i] = source[i].language;
+        destination->associatedTrainerGenders[i] = source[i].gender;
     }
 
-    CommSys_SendDataHuge(28, param2, sizeof(PalPad));
+    CommSys_SendDataHuge(TRADE_CMD_SEND_PALPAD, destination, sizeof(PalPad));
 }
 
-static void ov88_0223D140(ChatotCry *param0)
+static void TradeRoom_SendChatotCry(ChatotCry *chatotCryData)
 {
-    CommSys_SendDataHuge(29, param0, 1000);
+    CommSys_SendDataHuge(TRADE_CMD_SEND_CHATOT_CRY, chatotCryData, 1000);
 }
 
-static int ov88_0223D150(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleBrowseInput(TradeRoom *tradeRoom)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
-        param0->unk_88[0] = 12;
-        ov88_0223BE28(param0);
-        ov88_0223CF68(param0->unk_88[0], param0->unk_39C[0], 0);
+        tradeRoom->selectedSlot[0] = TRADE_SLOT_QUIT;
+        TradeRoom_RefreshFocusedMonDetails(tradeRoom);
+        TradeRoom_MoveCursorSprite(tradeRoom->selectedSlot[0], tradeRoom->cursorSprites[0], 0);
     } else {
-        ov88_0223CE34(&param0->unk_14C[0]);
+        TradeRoom_PollDPadDirection(&tradeRoom->pendingDirection[0]);
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            if (param0->unk_14C[0] == 0) {
-                if (param0->unk_88[0] == 12) {
-                    param0->unk_226C = ov88_0223D2C4;
-                } else if (param0->unk_88[0] < 6) {
-                    param0->unk_226C = ov88_0223DA3C;
-                } else if ((param0->unk_88[0] >= 6) && (param0->unk_88[0] < 12)) {
-                    param0->unk_226C = ov88_0223E4BC;
+            if (tradeRoom->pendingDirection[0] == 0) {
+                if (tradeRoom->selectedSlot[0] == TRADE_SLOT_QUIT) {
+                    tradeRoom->subStepCallback = TradeRoom_PromptQuitConfirm;
+                } else if (tradeRoom->selectedSlot[0] < MAX_PARTY_SIZE) {
+                    tradeRoom->subStepCallback = TradeRoom_ShowMonActionMenu;
+                } else if ((tradeRoom->selectedSlot[0] >= MAX_PARTY_SIZE) && (tradeRoom->selectedSlot[0] < TRADE_SLOT_QUIT)) {
+                    tradeRoom->subStepCallback = TradeRoom_ShowPartnerMonActionMenu;
                 }
             }
         }
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
 static const u8 visiblePages[] = {
@@ -1700,768 +1755,749 @@ static const u8 visiblePages[] = {
     SUMMARY_PAGE_MAX,
 };
 
-static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
+static void TradeRoom_OpenMonSummary(TradeRoom *tradeRoom, int side)
 {
-    if (param1 == 0) {
-        param0->unk_0C.monData = param0->unk_2270;
-        param0->unk_0C.monMax = Party_GetCurrentCount(param0->unk_08->party);
+    if (side == 0) {
+        tradeRoom->summaryArgs.monData = tradeRoom->playerParty;
+        tradeRoom->summaryArgs.monMax = Party_GetCurrentCount(tradeRoom->args->party);
 
-        param0->unk_0C.chatotCry = NULL;
-        PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId()));
+        tradeRoom->summaryArgs.chatotCry = NULL;
+        PokemonSummaryScreen_SetPlayerProfile(&tradeRoom->summaryArgs, CommInfo_TrainerInfo(CommSys_CurNetId()));
     } else {
-        param0->unk_0C.monData = param0->unk_2274;
-        param0->unk_0C.monMax = Party_GetCurrentCount(param0->unk_2274);
-        param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[CommSys_CurNetId() ^ 1];
-        PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
+        tradeRoom->summaryArgs.monData = tradeRoom->partnerParty;
+        tradeRoom->summaryArgs.monMax = Party_GetCurrentCount(tradeRoom->partnerParty);
+        tradeRoom->summaryArgs.chatotCry = (ChatotCry *)tradeRoom->chatotCryBuffer[CommSys_CurNetId() ^ 1];
+        PokemonSummaryScreen_SetPlayerProfile(&tradeRoom->summaryArgs, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
     }
 
-    param0->unk_0C.dataType = SUMMARY_DATA_PARTY_MON;
-    param0->unk_0C.monIndex = param0->unk_88[0] % 6;
-    param0->unk_0C.mode = SUMMARY_MODE_LOCK_MOVES;
-    param0->unk_0C.move = 0;
-    param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->saveData);
-    param0->unk_0C.dexMode = param0->unk_08->dexMode;
-    param0->unk_0C.options = param0->unk_08->options;
-    param0->unk_0C.specialRibbons = SaveData_GetRibbons(param0->unk_08->saveData);
+    tradeRoom->summaryArgs.dataType = SUMMARY_DATA_PARTY_MON;
+    tradeRoom->summaryArgs.monIndex = tradeRoom->selectedSlot[0] % MAX_PARTY_SIZE;
+    tradeRoom->summaryArgs.mode = SUMMARY_MODE_LOCK_MOVES;
+    tradeRoom->summaryArgs.move = 0;
+    tradeRoom->summaryArgs.showContest = PokemonSummaryScreen_ShowContestData(tradeRoom->args->saveData);
+    tradeRoom->summaryArgs.dexMode = tradeRoom->args->dexMode;
+    tradeRoom->summaryArgs.options = tradeRoom->args->options;
+    tradeRoom->summaryArgs.specialRibbons = SaveData_GetRibbons(tradeRoom->args->saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, visiblePages);
+    PokemonSummaryScreen_FlagVisiblePages(&tradeRoom->summaryArgs, visiblePages);
 
-    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, HEAP_ID_26);
-    param0->unk_3C = param1;
+    tradeRoom->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &tradeRoom->summaryArgs, HEAP_ID_TRADE_ROOM);
+    tradeRoom->summarySide = side;
 }
 
-static int ov88_0223D2C4(UnkStruct_02095E80 *param0)
+static int TradeRoom_PromptQuitConfirm(TradeRoom *tradeRoom)
 {
-    Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[23], 25, FONT_MESSAGE, param0->unk_184, param0->unk_178);
+    Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+    TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_CANCEL_TRADING, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
 
-    param0->unk_226C = ov88_0223D318;
+    tradeRoom->subStepCallback = TradeRoom_HandleQuitConfirm;
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D318(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleQuitConfirm(TradeRoom *tradeRoom)
 {
-    switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
-    case 0:
-        Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        ov88_0223D058(param0, 24, 1);
-        param0->unk_226C = ov88_0223DA00;
-        param0->unk_5C = 0;
+    switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
+    case YES_NO_CHOICE_YES:
+        Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+        TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_WAITING_FOR_FRIEND, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_SYNC_STATUS, TRADE_STATUS_QUIT);
+        tradeRoom->subStepCallback = TradeRoom_HandleMutualQuitSync;
+        tradeRoom->didConfirmTrade = 0;
         break;
-    case 0xfffffffe:
-        Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        param0->unk_226C = ov88_0223D150;
+    case YES_NO_CHOICE_NO:
+        Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+        TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        tradeRoom->subStepCallback = TradeRoom_HandleBrowseInput;
         break;
     default:
         break;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D3E0(UnkStruct_02095E80 *param0)
+static int TradeRoom_ShowNotification(TradeRoom *tradeRoom)
 {
-    Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[23], param0->unk_68, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-    param0->unk_226C = ov88_0223D434;
+    Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+    TradeRoom_PrintMessage(&tradeRoom->windows[23], tradeRoom->notificationMsgId, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+    tradeRoom->subStepCallback = TradeRoom_WaitForNotificationDismiss;
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D434(UnkStruct_02095E80 *param0)
+static int TradeRoom_WaitForNotificationDismiss(TradeRoom *tradeRoom)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        param0->unk_226C = ov88_0223D150;
-        ov88_0223DFF4(param0);
+        Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+        TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        tradeRoom->subStepCallback = TradeRoom_HandleBrowseInput;
+        TradeRoom_RestoreFullPartyGrid(tradeRoom);
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static void ov88_0223D49C(UnkStruct_02095E80 *param0, int param1)
+static void TradeRoom_PrintPalPadMessage(TradeRoom *tradeRoom, int entryId)
 {
-    ov88_0223ECBC(&param0->unk_49C[23], param1, FONT_MESSAGE, param0->unk_36D0, param0->unk_36CC);
+    TradeRoom_PrintMessage(&tradeRoom->windows[23], entryId, FONT_MESSAGE, tradeRoom->palPadMsgLoader, tradeRoom->palPadStrTemplate);
 }
 
-static int ov88_0223D4C4(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleAbandonRegistrationConfirm(TradeRoom *tradeRoom)
 {
-    int v0;
-
-    switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
-    case 0:
-        param0->unk_226C = ov88_0223D854;
+    switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
+    case YES_NO_CHOICE_YES:
+        tradeRoom->subStepCallback = TradeRoom_ProcessPendingFriendRegistration;
         break;
-    case 0xfffffffe:
-        ov88_0223D49C(param0, 58);
-        param0->unk_226C = ov88_0223D740;
+    case YES_NO_CHOICE_NO:
+        TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_ROSTER_FULL);
+        tradeRoom->subStepCallback = TradeRoom_HandleRosterFullConfirm;
         break;
     default:
         break;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D514(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleDeleteFriendConfirm(TradeRoom *tradeRoom)
 {
-    TrainerInfo *v0;
-    int v1;
+    TrainerInfo *trainerInfo;
 
-    switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
-    case 0:
-        BattleFrontierSave_ClearFriendStatsAndShift(SaveData_GetBattleFrontier(param0->saveData), param0->unk_36C8);
-        sub_0202AFD4(param0->unk_36EC, param0->unk_36C8);
-        sub_02039298(param0->saveData, param0->unk_36C4, 32 - 1, HEAP_ID_26, 0);
-        param0->unk_226C = ov88_0223D854;
+    switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
+    case YES_NO_CHOICE_YES:
+        BattleFrontierSave_ClearFriendStatsAndShift(SaveData_GetBattleFrontier(tradeRoom->saveData), tradeRoom->friendToDeleteSlot);
+        sub_0202AFD4(tradeRoom->wifiList, tradeRoom->friendToDeleteSlot);
+        sub_02039298(tradeRoom->saveData, tradeRoom->registrationTargetNetId, 32 - 1, HEAP_ID_TRADE_ROOM, 0);
+        tradeRoom->subStepCallback = TradeRoom_ProcessPendingFriendRegistration;
         break;
-    case 0xfffffffe:
-        v0 = CommInfo_TrainerInfo(param0->unk_36C4);
-        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v0);
-        ov88_0223D49C(param0, 59);
-        param0->unk_226C = ov88_0223D4C4;
+    case YES_NO_CHOICE_NO:
+        trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
+        StringTemplate_SetPlayerName(tradeRoom->palPadStrTemplate, 0, trainerInfo);
+        TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_ABANDON_REGISTRATION);
+        tradeRoom->subStepCallback = TradeRoom_HandleAbandonRegistrationConfirm;
         break;
     default:
         break;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleFriendListMenuInput(TradeRoom *tradeRoom)
 {
-    int v0;
-    TrainerInfo *v1;
+    int input;
+    TrainerInfo *trainerInfo;
 
-    v0 = ListMenu_ProcessInput(param0->unk_36D8);
+    input = ListMenu_ProcessInput(tradeRoom->friendListMenu);
 
-    switch (v0) {
-    case 0xffffffff:
-        return 0;
-    case 0xfffffffe:
+    switch (input) {
+    case MENU_INPUT_PENDING:
+        return TRADE_PHASE_CONNECTING;
+    case MENU_INPUT_CANCELLED:
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
-        v1 = CommInfo_TrainerInfo(param0->unk_36C4);
-        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
-        ov88_0223D49C(param0, 59);
-        param0->unk_226C = ov88_0223D4C4;
+        trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
+        StringTemplate_SetPlayerName(tradeRoom->palPadStrTemplate, 0, trainerInfo);
+        TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_ABANDON_REGISTRATION);
+        tradeRoom->subStepCallback = TradeRoom_HandleAbandonRegistrationConfirm;
         break;
     default:
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
-        param0->unk_36C8 = v0;
+        tradeRoom->friendToDeleteSlot = input;
 
-        TrainerInfo *v2 = TrainerInfo_New(HEAP_ID_26);
+        TrainerInfo *trainerInfo = TrainerInfo_New(HEAP_ID_TRADE_ROOM);
 
-        TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
-        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v2);
-        Heap_Free(v2);
+        TrainerInfo_SetName(trainerInfo, sub_0202AEF0(tradeRoom->wifiList, input));
+        StringTemplate_SetPlayerName(tradeRoom->palPadStrTemplate, 0, trainerInfo);
+        Heap_Free(trainerInfo);
 
-        ov88_0223D49C(param0, 60);
-        param0->unk_226C = ov88_0223D514;
+        TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_DELETE_FRIEND);
+        tradeRoom->subStepCallback = TradeRoom_HandleDeleteFriendConfirm;
         break;
     }
 
-    Window_EraseStandardFrame(&param0->unk_36DC, 0);
-    Window_Remove(&param0->unk_36DC);
-    ListMenu_Free(param0->unk_36D8, NULL, NULL);
-    StringList_Free(param0->unk_36D4);
+    Window_EraseStandardFrame(&tradeRoom->friendListWindow, 0);
+    Window_Remove(&tradeRoom->friendListWindow);
+    ListMenu_Free(tradeRoom->friendListMenu, NULL, NULL);
+    StringList_Free(tradeRoom->friendListChoices);
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D69C(UnkStruct_02095E80 *param0)
+static int TradeRoom_BuildFriendListMenu(TradeRoom *tradeRoom)
 {
-    ListMenuTemplate v0;
-    int v1 = WiFiList_GetValidFriendsCount(param0->unk_36EC);
-    int v2 = 5;
+    int friendCount = WiFiList_GetValidFriendsCount(tradeRoom->wifiList);
+    tradeRoom->friendListChoices = StringList_New(friendCount + 1, HEAP_ID_TRADE_ROOM);
 
-    param0->unk_36D4 = StringList_New(v1 + 1, HEAP_ID_26);
+    String *str = String_Init(100, HEAP_ID_TRADE_ROOM);
 
-    {
-        MessageLoader *v3;
-        String *v4 = String_Init(100, HEAP_ID_26);
-        int v5 = 0;
-
-        for (v5 = 0; v5 < 32; v5++) {
-            if (WiFiList_IsValidFriendData(param0->unk_36EC, v5)) {
-                String_CopyChars(v4, sub_0202AEF0(param0->unk_36EC, v5));
-                StringList_AddFromString(param0->unk_36D4, v4, v5);
-            }
+    for (int i = 0; i < MAX_FRIENDS; i++) {
+        if (WiFiList_IsValidFriendData(tradeRoom->wifiList, i)) {
+            String_CopyChars(str, sub_0202AEF0(tradeRoom->wifiList, i));
+            StringList_AddFromString(tradeRoom->friendListChoices, str, i);
         }
-
-        StringList_AddFromMessageBank(param0->unk_36D4, param0->unk_36D0, 11, 0xfffffffe);
-        String_Free(v4);
     }
 
-    param0->unk_36D8 = ov88_0223ED94(param0->unk_36D4, v1, &param0->unk_36DC, param0->unk_174);
-    param0->unk_226C = ov88_0223D5B8;
+    StringList_AddFromMessageBank(tradeRoom->friendListChoices, tradeRoom->palPadMsgLoader, PALPAD_MSG_CANCEL, MENU_INPUT_CANCELLED);
+    String_Free(str);
 
-    return 0;
+    tradeRoom->friendListMenu = TradeRoom_NewFriendListMenu(tradeRoom->friendListChoices, friendCount, &tradeRoom->friendListWindow, tradeRoom->bgConfig);
+    tradeRoom->subStepCallback = TradeRoom_HandleFriendListMenuInput;
+
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D740(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleRosterFullConfirm(TradeRoom *tradeRoom)
 {
-    TrainerInfo *v0;
-    int v1;
+    TrainerInfo *trainerInfo;
 
-    switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
-    case 0:
-        param0->unk_226C = ov88_0223D69C;
+    switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
+    case YES_NO_CHOICE_YES:
+        tradeRoom->subStepCallback = TradeRoom_BuildFriendListMenu;
         break;
-    case 0xfffffffe:
-        v0 = CommInfo_TrainerInfo(param0->unk_36C4);
-        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v0);
-        ov88_0223D49C(param0, 59);
-        param0->unk_226C = ov88_0223D4C4;
+    case YES_NO_CHOICE_NO:
+        trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
+        StringTemplate_SetPlayerName(tradeRoom->palPadStrTemplate, 0, trainerInfo);
+        TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_ABANDON_REGISTRATION);
+        tradeRoom->subStepCallback = TradeRoom_HandleAbandonRegistrationConfirm;
         break;
     default:
         break;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D7AC(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleRegisterFriendConfirm(TradeRoom *tradeRoom)
 {
-    int v0;
+    int i;
 
-    switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
-    case 0:
-        param0->unk_226C = ov88_0223D854;
+    switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
+    case YES_NO_CHOICE_YES:
+        tradeRoom->subStepCallback = TradeRoom_ProcessPendingFriendRegistration;
 
-        for (v0 = 0; v0 < 32; v0++) {
-            if (!WiFiList_IsValidFriendData(param0->unk_36EC, v0)) {
-                sub_02039298(param0->saveData, param0->unk_36C4, v0, HEAP_ID_26, 0);
+        for (i = 0; i < MAX_FRIENDS; i++) {
+            if (!WiFiList_IsValidFriendData(tradeRoom->wifiList, i)) {
+                sub_02039298(tradeRoom->saveData, tradeRoom->registrationTargetNetId, i, HEAP_ID_TRADE_ROOM, 0);
                 break;
             }
         }
 
-        if (v0 == 32) {
-            ov88_0223D49C(param0, 58);
-            param0->unk_226C = ov88_0223D740;
-            return 0;
+        if (i == 32) {
+            TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_ROSTER_FULL);
+            tradeRoom->subStepCallback = TradeRoom_HandleRosterFullConfirm;
+            return TRADE_PHASE_CONNECTING;
         }
 
         break;
-    case 0xfffffffe:
-        param0->unk_226C = ov88_0223D854;
+    case YES_NO_CHOICE_NO:
+        tradeRoom->subStepCallback = TradeRoom_ProcessPendingFriendRegistration;
         break;
     default:
         break;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D840(UnkStruct_02095E80 *param0)
+static int TradeRoom_WaitForCancelSync(TradeRoom *unused)
 {
     if (CommTiming_IsSyncState(19)) {
-        return 2;
+        return TRADE_PHASE_CLOSING;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D854(UnkStruct_02095E80 *param0)
+static int TradeRoom_ProcessPendingFriendRegistration(TradeRoom *tradeRoom)
 {
-    int v0;
-    TrainerInfo *v1;
+    TrainerInfo *trainerInfo;
 
-    param0->unk_36C4 = -1;
+    tradeRoom->registrationTargetNetId = -1;
 
-    for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
-        if (param0->unk_3644[v0] == 2) {
-            param0->unk_36C4 = v0;
-            param0->unk_3644[v0] = 0;
+    for (int i = 0; i < CommSys_ConnectedCount(); i++) {
+        if (tradeRoom->pendingRegistrationFlags[i] == 2) {
+            tradeRoom->registrationTargetNetId = i;
+            tradeRoom->pendingRegistrationFlags[i] = 0;
             break;
         }
     }
 
-    if (param0->unk_36C4 == -1) {
-        MessageLoader_Free(param0->unk_36D0);
-        StringTemplate_Free(param0->unk_36CC);
+    if (tradeRoom->registrationTargetNetId == -1) {
+        MessageLoader_Free(tradeRoom->palPadMsgLoader);
+        StringTemplate_Free(tradeRoom->palPadStrTemplate);
         CommTiming_StartSync(19);
-        ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        param0->unk_226C = ov88_0223D840;
-        return 0;
+        TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_WAITING_FOR_FRIEND, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        tradeRoom->subStepCallback = TradeRoom_WaitForCancelSync;
+        return TRADE_PHASE_CONNECTING;
     }
 
-    if (Bag_CanRemoveItem(SaveData_GetBag(param0->saveData), ITEM_PAL_PAD, 1, HEAP_ID_26) == TRUE) {
-        v1 = CommInfo_TrainerInfo(param0->unk_36C4);
-        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
-        ov88_0223D49C(param0, 57);
-        param0->unk_226C = ov88_0223D7AC;
-        return 0;
+    if (Bag_CanRemoveItem(SaveData_GetBag(tradeRoom->saveData), ITEM_PAL_PAD, 1, HEAP_ID_TRADE_ROOM) == TRUE) {
+        trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
+        StringTemplate_SetPlayerName(tradeRoom->palPadStrTemplate, 0, trainerInfo);
+        TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_REGISTER_FRIEND);
+        tradeRoom->subStepCallback = TradeRoom_HandleRegisterFriendConfirm;
+        return TRADE_PHASE_CONNECTING;
     }
 
-    {
-        WiFiList *v2 = SaveData_GetWiFiList(param0->saveData);
+    WiFiList *wifiList = SaveData_GetWiFiList(tradeRoom->saveData);
 
-        for (v0 = 0; v0 < 32; v0++) {
-            if (!WiFiList_IsValidFriendData(v2, v0)) {
-                sub_02039298(param0->saveData, param0->unk_36C4, v0, HEAP_ID_26, 0);
-                break;
-            }
+    for (int i = 0; i < MAX_FRIENDS; i++) {
+        if (!WiFiList_IsValidFriendData(wifiList, i)) {
+            sub_02039298(tradeRoom->saveData, tradeRoom->registrationTargetNetId, i, HEAP_ID_TRADE_ROOM, 0);
+            break;
         }
     }
 
-    param0->unk_226C = ov88_0223D854;
-    return 0;
+    tradeRoom->subStepCallback = TradeRoom_ProcessPendingFriendRegistration;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223D96C(UnkStruct_02095E80 *param0)
+static int TradeRoom_CheckForFriendRegistration(TradeRoom *tradeRoom)
 {
-    if (0 == sub_020391DC(param0->saveData, param0->unk_3644, HEAP_ID_26)) {
+    if (0 == sub_020391DC(tradeRoom->saveData, tradeRoom->pendingRegistrationFlags, HEAP_ID_TRADE_ROOM)) {
         CommTiming_StartSync(19);
-        ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        param0->unk_226C = ov88_0223D840;
-        return 0;
+        TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_WAITING_FOR_FRIEND, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        tradeRoom->subStepCallback = TradeRoom_WaitForCancelSync;
+        return TRADE_PHASE_CONNECTING;
     }
 
-    param0->unk_36CC = StringTemplate_Default(HEAP_ID_26);
-    param0->unk_36D0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
-    param0->unk_36EC = SaveData_GetWiFiList(param0->saveData);
-    param0->unk_226C = ov88_0223D854;
+    tradeRoom->palPadStrTemplate = StringTemplate_Default(HEAP_ID_TRADE_ROOM);
+    tradeRoom->palPadMsgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_TRADE_ROOM);
+    tradeRoom->wifiList = SaveData_GetWiFiList(tradeRoom->saveData);
+    tradeRoom->subStepCallback = TradeRoom_ProcessPendingFriendRegistration;
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223DA00(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleMutualQuitSync(TradeRoom *tradeRoom)
 {
-    if ((param0->unk_60[0] != 0) && (param0->unk_60[1] != 0)) {
-        if ((param0->unk_60[0] == 1) && (param0->unk_60[1] == 1)) {
-            param0->unk_226C = ov88_0223D96C;
+    if ((tradeRoom->partnerSyncStatus[0] != 0) && (tradeRoom->partnerSyncStatus[1] != 0)) {
+        if ((tradeRoom->partnerSyncStatus[0] == TRADE_STATUS_QUIT) && (tradeRoom->partnerSyncStatus[1] == TRADE_STATUS_QUIT)) {
+            tradeRoom->subStepCallback = TradeRoom_CheckForFriendRegistration;
         } else {
-            param0->unk_226C = ov88_0223D3E0;
+            tradeRoom->subStepCallback = TradeRoom_ShowNotification;
         }
 
-        param0->unk_60[0] = 0;
-        param0->unk_60[1] = 0;
-        param0->unk_68 = 29;
+        tradeRoom->partnerSyncStatus[0] = 0;
+        tradeRoom->partnerSyncStatus[1] = 0;
+        tradeRoom->notificationMsgId = TRADE_MSG_FRIEND_WANTS_TO_TRADE;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
+static int TradeRoom_ShowMonActionMenu(TradeRoom *tradeRoom)
 {
-    MenuTemplate v0;
+    MenuTemplate menuTemplate;
 
-    v0.fontID = FONT_SYSTEM;
-    v0.xSize = 1;
-    v0.ySize = 3;
-    v0.lineSpacing = 0;
-    v0.suppressCursor = FALSE;
-    v0.loopAround = FALSE;
+    menuTemplate.fontID = FONT_SYSTEM;
+    menuTemplate.xSize = 1;
+    menuTemplate.ySize = 3;
+    menuTemplate.lineSpacing = 0;
+    menuTemplate.suppressCursor = FALSE;
+    menuTemplate.loopAround = FALSE;
 
-    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
-    Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
+    StringTemplate_SetNickname(tradeRoom->strTemplate2, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(tradeRoom->playerParty, tradeRoom->selectedSlot[0])));
+    Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+    TradeRoom_PrintMessage(&tradeRoom->windows[22], TRADE_MSG_MON_SELECTED, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate2);
 
-    param0->unk_6C0 = StringList_New(3, HEAP_ID_26);
+    tradeRoom->actionMenuChoices = StringList_New(3, HEAP_ID_TRADE_ROOM);
 
-    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
-    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 18, 1);
-    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 2);
+    StringList_AddFromMessageBank(tradeRoom->actionMenuChoices, tradeRoom->msgLoader, TRADE_MSG_SUMMARY_OPTION, MON_ACTION_SUMMARY);
+    StringList_AddFromMessageBank(tradeRoom->actionMenuChoices, tradeRoom->msgLoader, TRADE_MSG_TRADE_OPTION, MON_ACTION_TRADE);
+    StringList_AddFromMessageBank(tradeRoom->actionMenuChoices, tradeRoom->msgLoader, TRADE_MSG_CANCEL_OPTION, MON_ACTION_CANCEL);
 
-    v0.choices = param0->unk_6C0;
-    v0.window = &param0->unk_49C[24];
+    menuTemplate.choices = tradeRoom->actionMenuChoices;
+    menuTemplate.window = &tradeRoom->windows[24];
 
-    ov88_0223ED80(&param0->unk_49C[24]);
+    TradeRoom_DrawActionMenuFrame(&tradeRoom->windows[24]);
 
-    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_26, PAD_BUTTON_B);
-    param0->unk_226C = ov88_0223DB48;
+    tradeRoom->actionMenu = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, HEAP_ID_TRADE_ROOM, PAD_BUTTON_B);
+    tradeRoom->subStepCallback = TradeRoom_HandleMonActionInput;
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223DB48(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleMonActionInput(TradeRoom *tradeRoom)
 {
-    switch (Menu_ProcessInput(param0->unk_6C4)) {
-    case 0:
-        Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        Menu_Free(param0->unk_6C4, NULL);
-        StringList_Free(param0->unk_6C0);
-        param0->unk_226C = ov88_0223D150;
-        return 3;
+    switch (Menu_ProcessInput(tradeRoom->actionMenu)) {
+    case MON_ACTION_SUMMARY:
+        Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+        TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        Menu_Free(tradeRoom->actionMenu, NULL);
+        StringList_Free(tradeRoom->actionMenuChoices);
+        tradeRoom->subStepCallback = TradeRoom_HandleBrowseInput;
+        return TRADE_PHASE_START_SUMMARY_TRANSITION;
         break;
-    case 1:
-        Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        Menu_Free(param0->unk_6C4, NULL);
-        StringList_Free(param0->unk_6C0);
-        param0->unk_226C = ov88_0223DC84;
+    case MON_ACTION_TRADE:
+        Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+        TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_COMMUNICATING, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        Menu_Free(tradeRoom->actionMenu, NULL);
+        StringList_Free(tradeRoom->actionMenuChoices);
+        tradeRoom->subStepCallback = TradeRoom_AnnounceTradeChoice;
         break;
-    case 2:
-    case 0xfffffffe:
-        Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        Menu_Free(param0->unk_6C4, NULL);
-        StringList_Free(param0->unk_6C0);
-        param0->unk_226C = ov88_0223D150;
+    case MON_ACTION_CANCEL:
+    case MENU_INPUT_CANCELLED:
+        Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+        TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        Menu_Free(tradeRoom->actionMenu, NULL);
+        StringList_Free(tradeRoom->actionMenuChoices);
+        tradeRoom->subStepCallback = TradeRoom_HandleBrowseInput;
         break;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223DC84(UnkStruct_02095E80 *param0)
+static int TradeRoom_AnnounceTradeChoice(TradeRoom *tradeRoom)
 {
-    Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-    ov88_0223D058(param0, 24, 2);
+    Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+    TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_COMMUNICATING, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+    TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_SYNC_STATUS, TRADE_STATUS_CHOSE_TRADE);
 
-    param0->unk_226C = ov88_0223DCE0;
+    tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeSync;
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223DCE0(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleMutualTradeSync(TradeRoom *tradeRoom)
 {
-    if ((param0->unk_60[0] != 0) && (param0->unk_60[1] != 0)) {
-        if ((param0->unk_60[0] == 2) && (param0->unk_60[1] == 2)) {
-            param0->unk_226C = ov88_0223DD1C;
+    if ((tradeRoom->partnerSyncStatus[0] != 0) && (tradeRoom->partnerSyncStatus[1] != 0)) {
+        if ((tradeRoom->partnerSyncStatus[0] == TRADE_STATUS_CHOSE_TRADE) && (tradeRoom->partnerSyncStatus[1] == TRADE_STATUS_CHOSE_TRADE)) {
+            tradeRoom->subStepCallback = TradeRoom_PrepareMonSlideAnimation;
         } else {
-            param0->unk_226C = ov88_0223D3E0;
+            tradeRoom->subStepCallback = TradeRoom_ShowNotification;
         }
 
-        param0->unk_68 = 24;
-        param0->unk_60[0] = 0;
-        param0->unk_60[1] = 0;
+        tradeRoom->notificationMsgId = TRADE_MSG_TRADE_CANCELED;
+        tradeRoom->partnerSyncStatus[0] = 0;
+        tradeRoom->partnerSyncStatus[1] = 0;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223DD1C(UnkStruct_02095E80 *param0)
+static int TradeRoom_PrepareMonSlideAnimation(TradeRoom *tradeRoom)
 {
-    int v0;
+    for (int i = 0; i < MAX_PARTY_SIZE; i++) {
+        if (i != tradeRoom->selectedSlot[0]) {
+            Sprite_SetDrawFlag(tradeRoom->iconSprites[i], FALSE);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (v0 != param0->unk_88[0]) {
-            Sprite_SetDrawFlag(param0->unk_3D4[v0], FALSE);
-
-            if (param0->unk_6F4[v0].unk_02) {
-                Sprite_SetDrawFlag(param0->unk_404[v0], FALSE);
+            if (tradeRoom->monDisplayData[i].heldItemType) {
+                Sprite_SetDrawFlag(tradeRoom->itemIconSprites[i], FALSE);
             }
 
-            if (param0->unk_6F4[v0].unk_0C) {
-                Sprite_SetDrawFlag(param0->unk_434[v0], FALSE);
-            }
-        }
-
-        Window_ClearAndScheduleCopyToVRAM(&param0->unk_49C[7 + v0]);
-
-        if (v0 != (param0->unk_88[1] - 6)) {
-            Sprite_SetDrawFlag(param0->unk_3D4[v0 + 6], FALSE);
-
-            if (param0->unk_6F4[v0 + 6].unk_02) {
-                Sprite_SetDrawFlag(param0->unk_404[v0 + 6], FALSE);
-            }
-
-            if (param0->unk_6F4[v0 + 6].unk_0C) {
-                Sprite_SetDrawFlag(param0->unk_434[v0 + 6], FALSE);
+            if (tradeRoom->monDisplayData[i].ballCapsuleId) {
+                Sprite_SetDrawFlag(tradeRoom->capsuleIconSprites[i], FALSE);
             }
         }
 
-        Window_ClearAndScheduleCopyToVRAM(&param0->unk_49C[13 + v0]);
-    }
+        Window_ClearAndScheduleCopyToVRAM(&tradeRoom->windows[7 + i]);
 
-    Sprite_SetDrawFlag(param0->unk_39C[0], FALSE);
-    Sprite_SetDrawFlag(param0->unk_39C[1], FALSE);
+        if (i != (tradeRoom->selectedSlot[1] - MAX_PARTY_SIZE)) {
+            Sprite_SetDrawFlag(tradeRoom->iconSprites[i + MAX_PARTY_SIZE], FALSE);
 
-    ov88_0223DE68(param0->unk_231C, Unk_ov88_0223EF9C[param0->unk_88[0]][0] + 16, Unk_ov88_0223EF9C[param0->unk_88[0]][1] + -6, 6 * 8, 6 * 8);
-    ov88_0223DE68(param0->unk_2334, Unk_ov88_0223EF9C[param0->unk_88[1]][0] + 16, Unk_ov88_0223EF9C[param0->unk_88[1]][1] + -6, 22 * 8, 6 * 8);
-
-    param0->unk_2314 = 0;
-    param0->unk_226C = ov88_0223DF00;
-
-    return 0;
-}
-
-static void ov88_0223DE68(VecFx32 param0[], int param1, int param2, int param3, int param4)
-{
-    param0[0].x = FX32_ONE * param1;
-    param0[0].y = FX32_ONE * param2;
-    param0[1].x = FX32_ONE * param3;
-    param0[1].y = FX32_ONE * param4;
-}
-
-static void ov88_0223DE7C(Sprite *param0, Sprite *param1, Sprite *param2, int param3, VecFx32 param4[], UnkStruct_ov88_0223C8AC *param5)
-{
-    VecFx32 v0, v1, v2;
-
-    v0.x = param4[0].x + ((param4[1].x - param4[0].x) / 20) * param3;
-    v0.y = param4[0].y + ((param4[1].y - param4[0].y) / 20) * param3;
-
-    Sprite_SetPosition(param0, &v0);
-
-    if (param5->unk_02) {
-        v1.x = v0.x + 20 * FX32_ONE;
-        v1.y = v0.y + (16 + 6) * FX32_ONE;
-        Sprite_SetPosition(param1, &v1);
-    }
-
-    if (param5->unk_0C) {
-        v2.x = v0.x + (20 + 8) * FX32_ONE;
-        v2.y = v0.y + (16 + 6) * FX32_ONE;
-        Sprite_SetPosition(param2, &v2);
-    }
-}
-
-static int ov88_0223DF00(UnkStruct_02095E80 *param0)
-{
-    param0->unk_2314++;
-
-    ov88_0223DE7C(param0->unk_3D4[param0->unk_88[0]], param0->unk_404[param0->unk_88[0]], param0->unk_434[param0->unk_88[0]], param0->unk_2314, param0->unk_231C, &param0->unk_6F4[param0->unk_88[0]]);
-    ov88_0223DE7C(param0->unk_3D4[param0->unk_88[1]], param0->unk_404[param0->unk_88[1]], param0->unk_434[param0->unk_88[1]], param0->unk_2314, param0->unk_2334, &param0->unk_6F4[param0->unk_88[1]]);
-
-    if (param0->unk_2314 == 20 + 1) {
-        ov88_0223C860(&param0->unk_49C[19], param0->unk_2270, param0->unk_88[0], 8, 1);
-        ov88_0223C860(&param0->unk_49C[20], param0->unk_2274, param0->unk_88[1] - 6, 8, 1);
-        ov88_0223BDA4(param0, param0->unk_88[1]);
-        param0->unk_226C = ov88_0223E110;
-        Sprite_SetDrawFlag(param0->unk_47C, TRUE);
-    }
-
-    return 0;
-}
-
-static void ov88_0223DFF4(UnkStruct_02095E80 *param0)
-{
-    int v0;
-    VecFx32 v1;
-
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_49C[19]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_49C[20]);
-
-    for (v0 = 0; v0 < 12; v0++) {
-        if (param0->unk_6F4[v0].unk_00 != 0) {
-            ov88_0223E87C(param0->unk_3D4[v0], Unk_ov88_0223EF9C[v0][0] + 16, Unk_ov88_0223EF9C[v0][1] + -6);
-            Sprite_SetDrawFlag(param0->unk_3D4[v0], TRUE);
-
-            if (param0->unk_6F4[v0].unk_02) {
-                ov88_0223E87C(param0->unk_404[v0], Unk_ov88_0223EF9C[v0][0] + (16 + 20), Unk_ov88_0223EF9C[v0][1] + 16);
-                Sprite_SetDrawFlag(param0->unk_404[v0], TRUE);
+            if (tradeRoom->monDisplayData[i + MAX_PARTY_SIZE].heldItemType) {
+                Sprite_SetDrawFlag(tradeRoom->itemIconSprites[i + MAX_PARTY_SIZE], FALSE);
             }
 
-            if (param0->unk_6F4[v0].unk_0C) {
-                ov88_0223E87C(param0->unk_434[v0], Unk_ov88_0223EF9C[v0][0] + (16 + 20 + 8), Unk_ov88_0223EF9C[v0][1] + 16);
-                Sprite_SetDrawFlag(param0->unk_434[v0], TRUE);
+            if (tradeRoom->monDisplayData[i + MAX_PARTY_SIZE].ballCapsuleId) {
+                Sprite_SetDrawFlag(tradeRoom->capsuleIconSprites[i + MAX_PARTY_SIZE], FALSE);
+            }
+        }
+
+        Window_ClearAndScheduleCopyToVRAM(&tradeRoom->windows[13 + i]);
+    }
+
+    Sprite_SetDrawFlag(tradeRoom->cursorSprites[0], FALSE);
+    Sprite_SetDrawFlag(tradeRoom->cursorSprites[1], FALSE);
+
+    TradeRoom_SetSlideAnimPath(tradeRoom->playerSlidePath, sSlotScreenPositions[tradeRoom->selectedSlot[0]][0] + 16, sSlotScreenPositions[tradeRoom->selectedSlot[0]][1] + -6, 6 * 8, 6 * 8);
+    TradeRoom_SetSlideAnimPath(tradeRoom->partnerSlidePath, sSlotScreenPositions[tradeRoom->selectedSlot[1]][0] + 16, sSlotScreenPositions[tradeRoom->selectedSlot[1]][1] + -6, 22 * 8, 6 * 8);
+
+    tradeRoom->slideAnimFrame = 0;
+    tradeRoom->subStepCallback = TradeRoom_UpdateSlideAnimation;
+
+    return TRADE_PHASE_CONNECTING;
+}
+
+static void TradeRoom_SetSlideAnimPath(VecFx32 path[], int startX, int startY, int endX, int endY)
+{
+    path[0].x = FX32_ONE * startX;
+    path[0].y = FX32_ONE * startY;
+    path[1].x = FX32_ONE * endX;
+    path[1].y = FX32_ONE * endY;
+}
+
+static void TradeRoom_ApplySlideAnimStep(Sprite *iconSprite, Sprite *itemSprite, Sprite *capsuleSprite, int step, VecFx32 path[], TradeRoomMonDisplayData *displayData)
+{
+    VecFx32 iconPos, itemPos, capsulePos;
+
+    iconPos.x = path[0].x + ((path[1].x - path[0].x) / 20) * step;
+    iconPos.y = path[0].y + ((path[1].y - path[0].y) / 20) * step;
+
+    Sprite_SetPosition(iconSprite, &iconPos);
+
+    if (displayData->heldItemType) {
+        itemPos.x = iconPos.x + 20 * FX32_ONE;
+        itemPos.y = iconPos.y + (16 + 6) * FX32_ONE;
+        Sprite_SetPosition(itemSprite, &itemPos);
+    }
+
+    if (displayData->ballCapsuleId) {
+        capsulePos.x = iconPos.x + (20 + 8) * FX32_ONE;
+        capsulePos.y = iconPos.y + (16 + 6) * FX32_ONE;
+        Sprite_SetPosition(capsuleSprite, &capsulePos);
+    }
+}
+
+static int TradeRoom_UpdateSlideAnimation(TradeRoom *tradeRoom)
+{
+    tradeRoom->slideAnimFrame++;
+
+    TradeRoom_ApplySlideAnimStep(tradeRoom->iconSprites[tradeRoom->selectedSlot[0]], tradeRoom->itemIconSprites[tradeRoom->selectedSlot[0]], tradeRoom->capsuleIconSprites[tradeRoom->selectedSlot[0]], tradeRoom->slideAnimFrame, tradeRoom->playerSlidePath, &tradeRoom->monDisplayData[tradeRoom->selectedSlot[0]]);
+    TradeRoom_ApplySlideAnimStep(tradeRoom->iconSprites[tradeRoom->selectedSlot[1]], tradeRoom->itemIconSprites[tradeRoom->selectedSlot[1]], tradeRoom->capsuleIconSprites[tradeRoom->selectedSlot[1]], tradeRoom->slideAnimFrame, tradeRoom->partnerSlidePath, &tradeRoom->monDisplayData[tradeRoom->selectedSlot[1]]);
+
+    if (tradeRoom->slideAnimFrame == 20 + 1) {
+        TradeRoom_PrintMonNickname(&tradeRoom->windows[19], tradeRoom->playerParty, tradeRoom->selectedSlot[0], 8, 1);
+        TradeRoom_PrintMonNickname(&tradeRoom->windows[20], tradeRoom->partnerParty, tradeRoom->selectedSlot[1] - MAX_PARTY_SIZE, 8, 1);
+        TradeRoom_ShowPartnerMonDetails(tradeRoom, tradeRoom->selectedSlot[1]);
+        tradeRoom->subStepCallback = TradeRoom_PromptTradeConfirm;
+        Sprite_SetDrawFlag(tradeRoom->convergeIndicatorSprite, TRUE);
+    }
+
+    return TRADE_PHASE_CONNECTING;
+}
+
+static void TradeRoom_RestoreFullPartyGrid(TradeRoom *tradeRoom)
+{
+    Window_ClearAndScheduleCopyToVRAM(&tradeRoom->windows[19]);
+    Window_ClearAndScheduleCopyToVRAM(&tradeRoom->windows[20]);
+
+    for (int i = 0; i < TRADE_SLOT_QUIT; i++) {
+        if (tradeRoom->monDisplayData[i].species != 0) {
+            TradeRoom_SetSpritePosition(tradeRoom->iconSprites[i], sSlotScreenPositions[i][0] + 16, sSlotScreenPositions[i][1] + -6);
+            Sprite_SetDrawFlag(tradeRoom->iconSprites[i], TRUE);
+
+            if (tradeRoom->monDisplayData[i].heldItemType) {
+                TradeRoom_SetSpritePosition(tradeRoom->itemIconSprites[i], sSlotScreenPositions[i][0] + (16 + 20), sSlotScreenPositions[i][1] + 16);
+                Sprite_SetDrawFlag(tradeRoom->itemIconSprites[i], TRUE);
             }
 
-            Window_ScheduleCopyToVRAM(&param0->unk_49C[7 + v0]);
+            if (tradeRoom->monDisplayData[i].ballCapsuleId) {
+                TradeRoom_SetSpritePosition(tradeRoom->capsuleIconSprites[i], sSlotScreenPositions[i][0] + (16 + 20 + 8), sSlotScreenPositions[i][1] + 16);
+                Sprite_SetDrawFlag(tradeRoom->capsuleIconSprites[i], TRUE);
+            }
+
+            Window_ScheduleCopyToVRAM(&tradeRoom->windows[7 + i]);
         }
     }
 
-    Sprite_SetDrawFlag(param0->unk_39C[0], TRUE);
-    Sprite_SetDrawFlag(param0->unk_39C[1], TRUE);
-    ov88_0223CB34(param0->unk_49C, 1, param0);
-    Sprite_SetDrawFlag(param0->unk_464[3], FALSE);
-    Sprite_SetDrawFlag(param0->unk_47C, FALSE);
+    Sprite_SetDrawFlag(tradeRoom->cursorSprites[0], TRUE);
+    Sprite_SetDrawFlag(tradeRoom->cursorSprites[1], TRUE);
+    TradeRoom_HideMonDetailCard(tradeRoom->windows, 1, tradeRoom);
+    Sprite_SetDrawFlag(tradeRoom->detailCardSprites[3], FALSE);
+    Sprite_SetDrawFlag(tradeRoom->convergeIndicatorSprite, FALSE);
 }
 
-static int ov88_0223E110(UnkStruct_02095E80 *param0)
+static int TradeRoom_PromptTradeConfirm(TradeRoom *tradeRoom)
 {
-    Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
-    StringTemplate_SetNickname(param0->unk_17C, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[1] - 6)));
+    Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+    StringTemplate_SetNickname(tradeRoom->strTemplate2, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(tradeRoom->playerParty, tradeRoom->selectedSlot[0])));
+    StringTemplate_SetNickname(tradeRoom->strTemplate2, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(tradeRoom->partnerParty, tradeRoom->selectedSlot[1] - MAX_PARTY_SIZE)));
 
-    ov88_0223ECBC(&param0->unk_49C[23], 21, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
-    param0->unk_226C = ov88_0223E20C;
+    TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_CONFIRM_TRADE, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate2);
+    tradeRoom->subStepCallback = TradeRoom_HandleTradeConfirm;
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static void ov88_0223E1AC(UnkStruct_02095E80 *param0)
+static void TradeRoom_AnnounceTradeConfirmed(TradeRoom *tradeRoom)
 {
-    ov88_0223D058(param0, 24, 3);
-    param0->unk_5C = 1;
+    TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_SYNC_STATUS, TRADE_STATUS_CONFIRMED);
+    tradeRoom->didConfirmTrade = 1;
 }
 
-static void ov88_0223E1C0(UnkStruct_02095E80 *param0, int param1, int param2)
+static void TradeRoom_ClearAndPrintMessage(TradeRoom *tradeRoom, int windowIdx, int msgID)
 {
-    Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[param1], param2, FONT_MESSAGE, param0->unk_184, param0->unk_178);
+    Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+    TradeRoom_PrintMessage(&tradeRoom->windows[windowIdx], msgID, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
 }
 
-static int ov88_0223E20C(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleTradeConfirm(TradeRoom *tradeRoom)
 {
-    switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
-    case 0:
-        if (ov88_0223E8D0(param0)) {
-            switch (ov88_0223E914(param0)) {
-            case 0:
-                if (param0->unk_6F4[param0->unk_88[0]].unk_0C == 0) {
-                    ov88_0223E1AC(param0);
-                    ov88_0223E1C0(param0, 23, 20);
-                    param0->unk_226C = ov88_0223E41C;
+    switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
+    case YES_NO_CHOICE_YES:
+        if (TradeRoom_HasUsablePartyAfterTrade(tradeRoom)) {
+            switch (TradeRoom_ValidatePartyChecksums(tradeRoom)) {
+            case TRADE_CHECKSUM_OK:
+                if (tradeRoom->monDisplayData[tradeRoom->selectedSlot[0]].ballCapsuleId == 0) {
+                    TradeRoom_AnnounceTradeConfirmed(tradeRoom);
+                    TradeRoom_ClearAndPrintMessage(tradeRoom, 23, TRADE_MSG_COMMUNICATING);
+                    tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeConfirmSync;
                 } else {
-                    param0->unk_226C = ov88_0223E330;
+                    tradeRoom->subStepCallback = TradeRoom_WarnBallCapsuleDetach;
                 }
 
                 break;
-            case 1:
-                ov88_0223E1C0(param0, 23, 37);
-                param0->unk_226C = ov88_0223E41C;
-                ov88_0223D058(param0, 24, 4);
+            case TRADE_CHECKSUM_YOUR_MON_INVALID:
+                TradeRoom_ClearAndPrintMessage(tradeRoom, 23, TRADE_MSG_YOUR_MON_UNTRADEABLE);
+                tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeConfirmSync;
+                TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_SYNC_STATUS, TRADE_STATUS_DECLINED);
                 break;
-            case 2:
-                ov88_0223E1C0(param0, 23, 38);
-                param0->unk_226C = ov88_0223E41C;
-                ov88_0223D058(param0, 24, 4);
+            case TRADE_CHECKSUM_PARTNER_MON_INVALID:
+                TradeRoom_ClearAndPrintMessage(tradeRoom, 23, TRADE_MSG_PARTNER_MON_UNTRADEABLE);
+                tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeConfirmSync;
+                TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_SYNC_STATUS, TRADE_STATUS_DECLINED);
                 break;
             }
         } else {
-            param0->unk_226C = ov88_0223E41C;
-            ov88_0223D058(param0, 24, 4);
+            tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeConfirmSync;
+            TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_SYNC_STATUS, TRADE_STATUS_DECLINED);
         }
 
         break;
-    case 0xfffffffe:
-        Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        param0->unk_226C = ov88_0223E41C;
-        ov88_0223D058(param0, 24, 4);
+    case YES_NO_CHOICE_NO:
+        Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+        TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_COMMUNICATING, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeConfirmSync;
+        TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_SYNC_STATUS, TRADE_STATUS_DECLINED);
         break;
     default:
         break;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223E330(UnkStruct_02095E80 *param0)
+static int TradeRoom_WarnBallCapsuleDetach(TradeRoom *tradeRoom)
 {
-    Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[23], 36, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
-    param0->unk_226C = ov88_0223E384;
-    return 0;
+    Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+    TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_BALL_CAPSULE_WARNING, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate2);
+    tradeRoom->subStepCallback = TradeRoom_HandleBallCapsuleWarningConfirm;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223E384(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleBallCapsuleWarningConfirm(TradeRoom *tradeRoom)
 {
-    switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
-    case 0:
-        ov88_0223E1AC(param0);
-        ov88_0223E1C0(param0, 23, 20);
-        param0->unk_226C = ov88_0223E41C;
+    switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
+    case YES_NO_CHOICE_YES:
+        TradeRoom_AnnounceTradeConfirmed(tradeRoom);
+        TradeRoom_ClearAndPrintMessage(tradeRoom, 23, TRADE_MSG_COMMUNICATING);
+        tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeConfirmSync;
         break;
-    case 0xfffffffe:
-        Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        param0->unk_226C = ov88_0223E41C;
-        ov88_0223D058(param0, 24, 4);
+    case YES_NO_CHOICE_NO:
+        Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+        TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_COMMUNICATING, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeConfirmSync;
+        TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_SYNC_STATUS, TRADE_STATUS_DECLINED);
         break;
     default:
         break;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223E41C(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleMutualTradeConfirmSync(TradeRoom *tradeRoom)
 {
-    if ((param0->unk_60[0] != 0) && (param0->unk_60[1] != 0)) {
-        if ((param0->unk_60[0] == 3) && (param0->unk_60[1] == 3)) {
-            param0->unk_36F0++;
-            param0->unk_226C = ov88_0223E478;
+    if ((tradeRoom->partnerSyncStatus[0] != 0) && (tradeRoom->partnerSyncStatus[1] != 0)) {
+        if ((tradeRoom->partnerSyncStatus[0] == TRADE_STATUS_CONFIRMED) && (tradeRoom->partnerSyncStatus[1] == TRADE_STATUS_CONFIRMED)) {
+            tradeRoom->tradeCompletedCount++;
+            tradeRoom->subStepCallback = TradeRoom_CompleteTrade;
         } else {
-            param0->unk_226C = ov88_0223D3E0;
+            tradeRoom->subStepCallback = TradeRoom_ShowNotification;
         }
 
-        param0->unk_60[0] = 0;
-        param0->unk_60[1] = 0;
+        tradeRoom->partnerSyncStatus[0] = 0;
+        tradeRoom->partnerSyncStatus[1] = 0;
 
-        if (ov88_0223E8D0(param0)) {
-            param0->unk_68 = 24;
+        if (TradeRoom_HasUsablePartyAfterTrade(tradeRoom)) {
+            tradeRoom->notificationMsgId = TRADE_MSG_TRADE_CANCELED;
         } else {
-            param0->unk_68 = 34;
+            tradeRoom->notificationMsgId = TRADE_MSG_WOULD_GET_STUCK;
         }
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223E478(UnkStruct_02095E80 *param0)
+static int TradeRoom_CompleteTrade(TradeRoom *tradeRoom)
 {
-    CommInfo_SetTradeResult(param0->saveData, 1);
-    ov88_0223E694(param0->unk_2270, param0->unk_2274, param0->unk_88[0], param0->unk_88[1] - 6, param0->unk_08);
-    param0->unk_226C = ov88_0223D3E0;
+    CommInfo_SetTradeResult(tradeRoom->saveData, 1);
+    TradeRoom_ExecuteTrade(tradeRoom->playerParty, tradeRoom->partnerParty, tradeRoom->selectedSlot[0], tradeRoom->selectedSlot[1] - MAX_PARTY_SIZE, tradeRoom->args);
+    tradeRoom->subStepCallback = TradeRoom_ShowNotification;
     return 2;
 }
 
-static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
+static int TradeRoom_ShowPartnerMonActionMenu(TradeRoom *tradeRoom)
 {
-    MenuTemplate v0;
+    MenuTemplate menuTemplate;
 
-    v0.fontID = FONT_SYSTEM;
-    v0.xSize = 1;
-    v0.ySize = 2;
-    v0.lineSpacing = 0;
-    v0.suppressCursor = FALSE;
-    v0.loopAround = FALSE;
+    menuTemplate.fontID = FONT_SYSTEM;
+    menuTemplate.xSize = 1;
+    menuTemplate.ySize = 2;
+    menuTemplate.lineSpacing = 0;
+    menuTemplate.suppressCursor = FALSE;
+    menuTemplate.loopAround = FALSE;
 
-    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
-    Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
+    StringTemplate_SetNickname(tradeRoom->strTemplate2, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(tradeRoom->partnerParty, tradeRoom->selectedSlot[0] - MAX_PARTY_SIZE)));
+    Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+    TradeRoom_PrintMessage(&tradeRoom->windows[22], TRADE_MSG_MON_SELECTED, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate2);
 
-    param0->unk_6C0 = StringList_New(2, HEAP_ID_26);
+    tradeRoom->actionMenuChoices = StringList_New(2, HEAP_ID_TRADE_ROOM);
 
-    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
-    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 1);
+    StringList_AddFromMessageBank(tradeRoom->actionMenuChoices, tradeRoom->msgLoader, TRADE_MSG_SUMMARY_OPTION, PARTNER_MON_ACTION_SUMMARY);
+    StringList_AddFromMessageBank(tradeRoom->actionMenuChoices, tradeRoom->msgLoader, TRADE_MSG_CANCEL_OPTION, PARTNER_MON_ACTION_CANCEL);
 
-    v0.choices = param0->unk_6C0;
-    v0.window = &param0->unk_49C[25];
+    menuTemplate.choices = tradeRoom->actionMenuChoices;
+    menuTemplate.window = &tradeRoom->windows[25];
 
-    ov88_0223ED80(&param0->unk_49C[25]);
+    TradeRoom_DrawActionMenuFrame(&tradeRoom->windows[25]);
 
-    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_26, PAD_BUTTON_B);
-    param0->unk_226C = ov88_0223E5B8;
+    tradeRoom->actionMenu = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, HEAP_ID_TRADE_ROOM, PAD_BUTTON_B);
+    tradeRoom->subStepCallback = TradeRoom_HandleShowPartnerMonConfirm;
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
+static int TradeRoom_HandleShowPartnerMonConfirm(TradeRoom *tradeRoom)
 {
-    switch (Menu_ProcessInput(param0->unk_6C4)) {
-    case 0:
-        Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        param0->unk_226C = ov88_0223D150;
-        Menu_Free(param0->unk_6C4, NULL);
-        StringList_Free(param0->unk_6C0);
-        return 3;
+    switch (Menu_ProcessInput(tradeRoom->actionMenu)) {
+    case PARTNER_MON_ACTION_SUMMARY:
+        Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+        TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        tradeRoom->subStepCallback = TradeRoom_HandleBrowseInput;
+        Menu_Free(tradeRoom->actionMenu, NULL);
+        StringList_Free(tradeRoom->actionMenuChoices);
+        return TRADE_PHASE_START_SUMMARY_TRANSITION;
         break;
 
-    case 1:
-    case 0xfffffffe:
-        Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        Menu_Free(param0->unk_6C4, NULL);
-        StringList_Free(param0->unk_6C0);
-        param0->unk_226C = ov88_0223D150;
+    case PARTNER_MON_ACTION_CANCEL:
+    case MENU_INPUT_CANCELLED:
+        Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
+        TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
+        Menu_Free(tradeRoom->actionMenu, NULL);
+        StringList_Free(tradeRoom->actionMenuChoices);
+        tradeRoom->subStepCallback = TradeRoom_HandleBrowseInput;
         break;
     }
 
-    return 0;
+    return TRADE_PHASE_CONNECTING;
 }
 
-static void ov88_0223E694(Party *sender, Party *receiver, int senderSlot, int receiverSlot, UnkStruct_ov88_0223C370 *senderData)
+static void TradeRoom_ExecuteTrade(Party *sender, Party *receiver, int senderSlot, int receiverSlot, TradeRoomArgs *trArgs)
 {
-    Pokemon *sendingMon = Pokemon_New(HEAP_ID_26);
-    Pokemon *receivingMon = Pokemon_New(HEAP_ID_26);
+    Pokemon *sendingMon = Pokemon_New(HEAP_ID_TRADE_ROOM);
+    Pokemon *receivingMon = Pokemon_New(HEAP_ID_TRADE_ROOM);
 
     Pokemon_Copy(Party_GetPokemonBySlotIndex(sender, senderSlot), sendingMon);
     Pokemon_Copy(Party_GetPokemonBySlotIndex(receiver, receiverSlot), receivingMon);
 
     if (Pokemon_GetValue(receivingMon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(receivingMon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || Pokemon_GetValue(receivingMon, MON_DATA_MET_LOCATION, NULL) == 86 && Pokemon_GetValue(receivingMon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0) {
-            VarsFlags *varsFlag = SaveData_GetVarsFlags(senderData->saveData);
+            VarsFlags *varsFlag = SaveData_GetVarsFlags(trArgs->saveData);
 
             if (SystemVars_GetArceusEventState(varsFlag) == 0) {
                 SystemVars_SetArceusEventState(varsFlag, 1);
@@ -2472,33 +2508,33 @@ static void ov88_0223E694(Party *sender, Party *receiver, int senderSlot, int re
     Pokemon_SetValue(receivingMon, MON_DATA_GENDER, NULL);
 
     if (Pokemon_GetValue(receivingMon, MON_DATA_IS_EGG, NULL) == 0) {
-        u8 friendship = 70;
+        u8 friendship = TRADE_FRIENDSHIP_RESET_VALUE;
         Pokemon_SetValue(receivingMon, MON_DATA_FRIENDSHIP, &friendship);
     }
 
     UpdateMonStatusAndTrainerInfo(receivingMon, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELD2);
     Pokemon_ClearBallCapsuleData(receivingMon);
-    Pokemon_Copy(sendingMon, senderData->sendingMon);
-    Pokemon_Copy(receivingMon, senderData->receivingMon);
-    TrainerInfo_Copy(CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1), senderData->trainerInfoSize);
+    Pokemon_Copy(sendingMon, trArgs->sendingMon);
+    Pokemon_Copy(receivingMon, trArgs->receivingMon);
+    TrainerInfo_Copy(CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1), trArgs->partnerTrainerInfoCopy);
 
-    senderData->unk_2C = senderSlot;
+    trArgs->receivingPartySlot = senderSlot;
 
     if (!Party_HasSpecies(sender, SPECIES_CHATOT)) {
-        ChatotCry *chatotCry = SaveData_GetChatotCry(senderData->saveData);
+        ChatotCry *chatotCry = SaveData_GetChatotCry(trArgs->saveData);
         ChatotCry_ResetStatus(chatotCry);
     }
 
-    SaveData_UpdateCatchRecords(senderData->saveData, receivingMon);
+    SaveData_UpdateCatchRecords(trArgs->saveData, receivingMon);
     Pokemon_Copy(receivingMon, Party_GetPokemonBySlotIndex(sender, senderSlot));
     Pokemon_Copy(sendingMon, Party_GetPokemonBySlotIndex(receiver, receiverSlot));
-    ov88_0223E7F0(senderData->journalEntry, receivingMon);
-    GameRecords_IncrementRecordValue(senderData->records, RECORD_LOCAL_LINK_TRADES);
+    TradeRoom_RecordTradeInJournal(trArgs->journalEntry, receivingMon);
+    GameRecords_IncrementRecordValue(trArgs->records, RECORD_LOCAL_LINK_TRADES);
     Heap_Free(sendingMon);
     Heap_Free(receivingMon);
 }
 
-static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon)
+static void TradeRoom_RecordTradeInJournal(JournalEntry *journalEntry, Pokemon *mon)
 {
     TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     u16 nickname[MON_NAME_LEN + 1];
@@ -2508,92 +2544,92 @@ static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon)
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
-static void ov88_0223E848(UnkStruct_02095E80 *param0)
+static void TradeRoom_ScrollBackground(TradeRoom *tradeRoom)
 {
-    param0->unk_2310 += 2;
-    Bg_SetOffset(param0->unk_174, BG_LAYER_SUB_2, 0, param0->unk_2310);
-    Bg_SetOffset(param0->unk_174, BG_LAYER_MAIN_3, 0, param0->unk_2310);
+    tradeRoom->bgScrollOffset += 2;
+    Bg_SetOffset(tradeRoom->bgConfig, BG_LAYER_SUB_2, 0, tradeRoom->bgScrollOffset);
+    Bg_SetOffset(tradeRoom->bgConfig, BG_LAYER_MAIN_3, 0, tradeRoom->bgScrollOffset);
 }
 
-static void ov88_0223E87C(Sprite *param0, int param1, int param2)
+static void TradeRoom_SetSpritePosition(Sprite *sprite, int x, int y)
 {
-    VecFx32 v0;
+    VecFx32 pos;
 
-    v0.x = FX32_ONE * param1;
-    v0.y = FX32_ONE * param2;
+    pos.x = FX32_ONE * x;
+    pos.y = FX32_ONE * y;
 
-    Sprite_SetPosition(param0, &v0);
+    Sprite_SetPosition(sprite, &pos);
 }
 
-static void ov88_0223E894(UnkStruct_02095E80 *param0)
+static void TradeRoom_AddWaitDialHandle(TradeRoom *tradeRoom)
 {
-    param0->unk_3700 = Window_AddWaitDial(&param0->unk_49C[23], 512 - (9 + (18 + 12)));
+    tradeRoom->waitDialHandle = Window_AddWaitDial(&tradeRoom->windows[23], 512 - (9 + (18 + 12)));
 }
 
-static void ov88_0223E8B4(UnkStruct_02095E80 *param0)
+static void TradeRoom_HideWaitDial(TradeRoom *tradeRoom)
 {
-    if (param0->unk_3700 != NULL) {
-        DestroyWaitDial(param0->unk_3700);
-        param0->unk_3700 = NULL;
+    if (tradeRoom->waitDialHandle != NULL) {
+        DestroyWaitDial(tradeRoom->waitDialHandle);
+        tradeRoom->waitDialHandle = NULL;
     }
 }
 
-static int ov88_0223E8D0(UnkStruct_02095E80 *param0)
+static BOOL TradeRoom_HasUsablePartyAfterTrade(TradeRoom *tradeRoom)
 {
-    int v1 = 0;
-    int v2 = Party_GetCurrentCount(param0->unk_2270);
+    int otherEggCount = 0;
+    int partyCount = Party_GetCurrentCount(tradeRoom->playerParty);
 
-    for (int i = 0; i < v2; i++) {
-        if (i != param0->unk_88[0]) {
-            v1 += param0->unk_6F4[i].unk_05;
+    for (int i = 0; i < partyCount; i++) {
+        if (i != tradeRoom->selectedSlot[0]) {
+            otherEggCount += tradeRoom->monDisplayData[i].isEgg;
         }
     }
 
-    if (v1 == (v2 - 1)) {
-        return 0;
+    if (otherEggCount == (partyCount - 1)) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static int ov88_0223E914(UnkStruct_02095E80 *param0)
+static int TradeRoom_ValidatePartyChecksums(TradeRoom *tradeRoom)
 {
-    Pokemon *v2;
-    int v1 = Party_GetCurrentCount(param0->unk_2270);
+    Pokemon *mon;
+    int partyCount = Party_GetCurrentCount(tradeRoom->playerParty);
 
-    for (int i = 0; i < v1; i++) {
-        v2 = Party_GetPokemonBySlotIndex(param0->unk_2270, i);
+    for (int i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(tradeRoom->playerParty, i);
 
-        if (Pokemon_GetValue(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
-            return 1;
+        if (Pokemon_GetValue(mon, MON_DATA_CHECKSUM_FAILED, NULL)) {
+            return TRADE_CHECKSUM_YOUR_MON_INVALID;
         }
     }
 
-    v1 = Party_GetCurrentCount(param0->unk_2274);
+    partyCount = Party_GetCurrentCount(tradeRoom->partnerParty);
 
-    for (int i = 0; i < v1; i++) {
-        v2 = Party_GetPokemonBySlotIndex(param0->unk_2274, i);
+    for (int i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(tradeRoom->partnerParty, i);
 
-        if (Pokemon_GetValue(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
-            return 2;
+        if (Pokemon_GetValue(mon, MON_DATA_CHECKSUM_FAILED, NULL)) {
+            return TRADE_CHECKSUM_PARTNER_MON_INVALID;
         }
     }
 
-    return 0;
+    return TRADE_CHECKSUM_OK;
 }
 
-static void ov88_0223E984(UnkStruct_02095E80 *param0)
+static void TradeRoom_ArmConnectionTimeout(TradeRoom *tradeRoom)
 {
-    param0->unk_3704 = 1;
-    param0->unk_3708 = 0;
+    tradeRoom->connectionTimeoutArmed = 1;
+    tradeRoom->connectionTimeoutFrames = 0;
 }
 
-static void ov88_0223E998(UnkStruct_02095E80 *param0)
+static void TradeRoom_CheckConnectionTimeout(TradeRoom *tradeRoom)
 {
-    if (param0->unk_3704) {
-        param0->unk_3708++;
+    if (tradeRoom->connectionTimeoutArmed) {
+        tradeRoom->connectionTimeoutFrames++;
 
-        if (param0->unk_3708 > (30 * 60)) {
+        if (tradeRoom->connectionTimeoutFrames > (30 * 60)) {
             CommManager_SetCommError(COMM_ERROR_4);
         }
     }

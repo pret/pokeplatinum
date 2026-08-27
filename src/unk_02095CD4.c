@@ -16,188 +16,187 @@
 #include "unk_0202D778.h"
 #include "unk_02032798.h"
 
-void sub_02095DFC(int param0, int param1, void *param2, void *param3);
-void sub_02095E28(int param0, int param1, void *param2, void *param3);
-void sub_02095DBC(int param0, int param1, void *param2, void *param3);
-void sub_02095DCC(int param0, int param1, void *param2, void *param3);
-static int sub_02095CE8(u8 param0);
-static int sub_02095E78(void);
-static int sub_02095E74(void);
-static u8 *sub_02095E80(int param0, void *param1, int param2);
-static int sub_02095E68(void);
-static int sub_02095E70(void);
+void TradeRoom_ReceivePalPad(int senderNetId, int unused, void *data, void *fieldSystem);
+void TradeRoom_ReceiveChatotCry(int senderNetId, int unused, void *data, void *fieldSystem);
+void TradeRoom_ReceiveStaggerDelay(int senderNetId, int unused, void *data, void *fieldSystem);
+void TradeRoom_ReceiveRibbonData(int senderNetId, int unused, void *data, void *fieldSystem);
+static int TradeRoom_MirrorPartnerSlot(u8 slot);
+static int TradeRoom_PartyPacketSize(void);
+static int TradeRoom_PalPadPacketSize(void);
+static u8 *TradeRoom_GetHugeTransferBuffer(int side, void *fieldSystem, int requestedSize);
+static int TradeRoom_ChatotCryPacketSize(void);
+static int TradeRoom_RibbonPacketSize(void);
 
-static const CommCmdTable Unk_020F59BC[] = {
-    { sub_02095CFC, sub_02095E78, sub_02095E80 },
-    { sub_02095D74, CommPacketSizeOf_NetId },
-    { sub_02095D94, CommPacketSizeOf_NetId },
-    { sub_02095DA4, CommPacketSizeOf_NetId },
-    { sub_02095DA8, CommPacketSizeOf_NetId },
-    { sub_02095DAC, CommPacketSizeOf_NetId },
-    { sub_02095DFC, sub_02095E74, sub_02095E80 },
-    { sub_02095E28, sub_02095E68, sub_02095E80 },
-    { sub_02095DB8, CommPacketSizeOf_Nothing },
-    { sub_02095DBC, CommPacketSizeOf_NetId },
-    { sub_02095DCC, sub_02095E70 }
+static const CommCmdTable sTradeRoomCommHandlers[] = {
+    { TradeRoom_ReceivePartyChunk, TradeRoom_PartyPacketSize, TradeRoom_GetHugeTransferBuffer },   // TRADE_CMD_SEND_PARTY
+    { TradeRoom_ReceiveCursorSync, CommPacketSizeOf_NetId },                                       // TRADE_CMD_SYNC_CURSOR
+    { TradeRoom_ReceiveStatusSync, CommPacketSizeOf_NetId },                                       // TRADE_CMD_SYNC_STATUS
+    { TradeRoom_ReceiveUnusedCmd25, CommPacketSizeOf_NetId },                                      // unused
+    { TradeRoom_ReceiveUnusedCmd26, CommPacketSizeOf_NetId },                                      // unused
+    { TradeRoom_ReceivePartyAck, CommPacketSizeOf_NetId },                                         // TRADE_CMD_PARTY_RECEIVED_ACK
+    { TradeRoom_ReceivePalPad, TradeRoom_PalPadPacketSize, TradeRoom_GetHugeTransferBuffer },      // TRADE_CMD_SEND_PALPAD
+    { TradeRoom_ReceiveChatotCry, TradeRoom_ChatotCryPacketSize, TradeRoom_GetHugeTransferBuffer }, // TRADE_CMD_SEND_CHATOT_CRY
+    { TradeRoom_ReceiveUnusedCmd30, CommPacketSizeOf_Nothing },                                    // unused
+    { TradeRoom_ReceiveStaggerDelay, CommPacketSizeOf_NetId },                                     // TRADE_CMD_STAGGER_DELAY
+    { TradeRoom_ReceiveRibbonData, TradeRoom_RibbonPacketSize }                                    // TRADE_CMD_SEND_RIBBONS
 };
 
-void sub_02095CD4(void *param0)
+void TradeRoom_RegisterCommHandlers(void *fieldSystem)
 {
-    int v0 = sizeof(Unk_020F59BC) / sizeof(CommCmdTable);
-    CommCmd_Init(Unk_020F59BC, v0, param0);
+    int handlerCount = sizeof(sTradeRoomCommHandlers) / sizeof(CommCmdTable);
+    CommCmd_Init(sTradeRoomCommHandlers, handlerCount, fieldSystem);
 }
 
-static int sub_02095CE8(u8 param0)
+static int TradeRoom_MirrorPartnerSlot(u8 slot)
 {
-    if (param0 == 12) {
-        return 12;
+    if (slot == MAX_PARTY_SIZE * 2) {
+        return MAX_PARTY_SIZE * 2;
     }
 
-    if (param0 < 6) {
-        return param0 + 6;
+    if (slot < MAX_PARTY_SIZE) {
+        return slot + MAX_PARTY_SIZE;
     }
 
-    return param0 - 6;
+    return slot - MAX_PARTY_SIZE;
 }
 
-void sub_02095CFC(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceivePartyChunk(int senderNetId, int unused, void *data, void *fieldSystemPtr)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param3;
-    UnkStruct_02095E80 *v1 = fieldSystem->unk_88;
+    FieldSystem *fieldSystem = (FieldSystem *)fieldSystemPtr;
+    TradeRoom *tradeRoom = fieldSystem->tradeRoom;
 
-    if (param0 != CommSys_CurNetId()) {
-        memcpy((void *)v1->unk_2274, param2, (236 * 6 + 4 * 2));
-        v1->unk_58++;
+    if (senderNetId != CommSys_CurNetId()) {
+        memcpy((void *)tradeRoom->partnerParty, data, (236 * 6 + 4 * 2));
+        tradeRoom->partyReceiveCount++;
 
-        if ((v1->unk_58) * (236 * 6 + 4 * 2) >= Party_SaveSize()) {
+        if ((tradeRoom->partyReceiveCount) * (236 * 6 + 4 * 2) >= Party_SaveSize()) {
             if (CommSys_CurNetId() == 1) {
-                ov88_0223D058(v1, 27, 0);
+                TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_PARTY_RECEIVED_ACK, 0);
             } else {
-                ov88_0223D098(CommSys_CurNetId(), v1->unk_2270, v1->unk_50);
+                TradeRoom_SendParty(CommSys_CurNetId(), tradeRoom->playerParty, tradeRoom->partySendCount);
             }
         } else {
-            ov88_0223D098(CommSys_CurNetId(), v1->unk_2270, v1->unk_50);
+            TradeRoom_SendParty(CommSys_CurNetId(), tradeRoom->playerParty, tradeRoom->partySendCount);
         }
 
-        v1->unk_50++;
+        tradeRoom->partySendCount++;
     }
 }
 
-void sub_02095D74(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceiveCursorSync(int senderNetId, int unused, void *data, void *fieldSystem)
 {
-    UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
-    u8 *v1 = (u8 *)param2;
+    TradeRoom *tradeRoom = ((FieldSystem *)fieldSystem)->tradeRoom;
+    u8 *receivedSlot = (u8 *)data;
 
-    if (param0 != CommSys_CurNetId()) {
-        v0->unk_88[1] = sub_02095CE8(*v1);
+    if (senderNetId != CommSys_CurNetId()) {
+        tradeRoom->selectedSlot[1] = TradeRoom_MirrorPartnerSlot(*receivedSlot);
     }
 }
 
-void sub_02095D94(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceiveStatusSync(int senderNetId, int unused, void *data, void *fieldSystem)
 {
-    UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
-    u8 *v1 = (u8 *)param2;
+    TradeRoom *tradeRoom = ((FieldSystem *)fieldSystem)->tradeRoom;
+    u8 *receivedStatus = (u8 *)data;
 
-    v0->unk_60[param0] = *v1;
+    tradeRoom->partnerSyncStatus[senderNetId] = *receivedStatus;
 }
 
-void sub_02095DA4(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceiveUnusedCmd25(int senderNetId, int unused, void *data, void *fieldSystem)
 {
     return;
 }
 
-void sub_02095DA8(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceiveUnusedCmd26(int senderNetId, int unused, void *data, void *fieldSystem)
 {
     return;
 }
 
-void sub_02095DAC(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceivePartyAck(int senderNetId, int unused, void *data, void *fieldSystem)
 {
-    UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
-    v0->unk_54 = 2;
+    TradeRoom *tradeRoom = ((FieldSystem *)fieldSystem)->tradeRoom;
+    tradeRoom->commMilestone = TRADE_MILESTONE_PARTY_ACKED;
 }
 
-void sub_02095DB8(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceiveUnusedCmd30(int senderNetId, int unused, void *data, void *fieldSystem)
 {
     return;
 }
 
-void sub_02095DBC(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceiveStaggerDelay(int senderNetId, int unused, void *data, void *fieldSystemPtr)
 {
-    UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
-    u8 *v1 = (u8 *)param2;
+    TradeRoom *tradeRoom = ((FieldSystem *)fieldSystemPtr)->tradeRoom;
+    u8 *receivedDelay = (u8 *)data;
 
-    v0->unk_2318 = *v1;
+    tradeRoom->staggerCountdown = *receivedDelay;
 }
 
-void sub_02095DCC(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceiveRibbonData(int senderNetId, int unused, void *data, void *fieldSystemPtr)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param3;
-    int v1;
-    u8 *v2 = SaveData_GetRibbons(fieldSystem->saveData);
-    u8 *v3 = (u8 *)param2;
+    FieldSystem *fieldSystem = (FieldSystem *)fieldSystemPtr;
+    u8 *localRibbons = SaveData_GetRibbons(fieldSystem->saveData);
+    u8 *partnerRibbons = (u8 *)data;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == senderNetId) {
         return;
     }
 
-    for (v1 = 0; v1 < 14; v1++) {
-        if (v3[v1] != 0) {
-            if (v2[v1] != v3[v1]) {
-                v2[v1] = v3[v1];
+    for (int i = 0; i < 14; i++) {
+        if (partnerRibbons[i] != 0) {
+            if (localRibbons[i] != partnerRibbons[i]) {
+                localRibbons[i] = partnerRibbons[i];
             }
         }
     }
 }
 
-void sub_02095DFC(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceivePalPad(int senderNetId, int unused, void *data, void *fieldSystemPtr)
 {
-    UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
+    TradeRoom *tradeRoom = ((FieldSystem *)fieldSystemPtr)->tradeRoom;
 
-    if (CommSys_CurNetId() != param0) {
-        PalPad_PushEntries(v0->unk_227C, (PalPad *)param2, 1, HEAP_ID_26);
-        v0->unk_54 = 3;
+    if (CommSys_CurNetId() != senderNetId) {
+        PalPad_PushEntries(tradeRoom->palPad, (PalPad *)data, 1, HEAP_ID_TRADE_ROOM);
+        tradeRoom->commMilestone = TRADE_MILESTONE_PALPAD_RECEIVED;
     }
 }
 
-void sub_02095E28(int param0, int param1, void *param2, void *param3)
+void TradeRoom_ReceiveChatotCry(int senderNetId, int unused, void *data, void *fieldSystemPtr)
 {
-    UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
+    TradeRoom *tradeRoom = ((FieldSystem *)fieldSystemPtr)->tradeRoom;
 
-    if (CommSys_CurNetId() != param0) {
-        MI_CpuCopyFast(param2, v0->unk_2E6C[param0], 1000);
-        v0->unk_54 = 4;
+    if (CommSys_CurNetId() != senderNetId) {
+        MI_CpuCopyFast(data, tradeRoom->chatotCryBuffer[senderNetId], 1000);
+        tradeRoom->commMilestone = TRADE_MILESTONE_CHATOT_CRY_RECEIVED;
         sub_0203632C(0);
     }
 }
 
-void sub_02095E60(FieldSystem *fieldSystem, UnkStruct_02095E80 *param1)
+void TradeRoom_AttachToFieldSystem(FieldSystem *fieldSystem, TradeRoom *tradeRoom)
 {
-    fieldSystem->unk_88 = param1;
+    fieldSystem->tradeRoom = tradeRoom;
 }
 
-static int sub_02095E68(void)
+static int TradeRoom_ChatotCryPacketSize(void)
 {
     return 1000 + 4;
 }
 
-static int sub_02095E70(void)
+static int TradeRoom_RibbonPacketSize(void)
 {
     return 14;
 }
 
-static int sub_02095E74(void)
+static int TradeRoom_PalPadPacketSize(void)
 {
     return sizeof(PalPad);
 }
 
-static int sub_02095E78(void)
+static int TradeRoom_PartyPacketSize(void)
 {
     return 236 * 6 + 4 * 2;
 }
 
-static u8 *sub_02095E80(int param0, void *param1, int param2)
+static u8 *TradeRoom_GetHugeTransferBuffer(int side, void *fieldSystem, int requestedSize)
 {
-    UnkStruct_02095E80 *v0 = ((FieldSystem *)param1)->unk_88;
-    return (u8 *)v0->unk_234C[param0];
+    TradeRoom *tradeRoom = ((FieldSystem *)fieldSystem)->tradeRoom;
+    return (u8 *)tradeRoom->partyTransferBuffer[side];
 }

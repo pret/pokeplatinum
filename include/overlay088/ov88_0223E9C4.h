@@ -10,12 +10,12 @@
 #include "string_list.h"
 #include "string_template.h"
 
-void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *options);
-void ov88_0223EC04(Window *param0);
-void ov88_0223EC78(Window *param0, String *param1, int param2, u32 param3, int param4, int param5);
-int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3, StringTemplate *param4);
-u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2);
-void ov88_0223ED80(Window *param0);
-ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig *param3);
+void TradeRoom_InitWindows(BgConfig *bgConfig, Window *windows, Options *options);
+void TradeRoom_FreeWindows(Window *window);
+void TradeRoom_PrintStringInWindow(Window *window, String *str, int unused, u32 textSpeed, int xOrCenter, int yOffset);
+int TradeRoom_PrintMessage(Window *window, int entryId, int fontId, MessageLoader *msgLoader, StringTemplate *strTemplate);
+u32 TradeRoom_ProcessYesNoChoice(BgConfig *bgConfig, Menu **menu, int *step);
+void TradeRoom_DrawActionMenuFrame(Window *window);
+ListMenu *TradeRoom_NewFriendListMenu(StringList *strList, int friendCount, Window *window, BgConfig *bgConfig);
 
 #endif // POKEPLATINUM_OV88_0223E9C4_H

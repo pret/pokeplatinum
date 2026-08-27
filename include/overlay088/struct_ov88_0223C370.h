@@ -15,7 +15,7 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
-typedef struct {
+typedef struct TradeRoomArgs {
     FieldSystem *fieldSystem;
     TrainerInfo *trainerInfo;
     Party *party;
@@ -26,13 +26,13 @@ typedef struct {
     JournalEntry *journalEntry;
     GameRecords *records;
     Pokedex *pokedex;
-    int unk_28;
-    int unk_2C;
+    int tradeCompleted;
+    int receivingPartySlot;
     int dexMode;
-    int unk_34;
-    TrainerInfo *trainerInfoSize;
+    int tradeCount;
+    TrainerInfo *partnerTrainerInfoCopy;
     Pokemon *sendingMon;
     Pokemon *receivingMon;
-} UnkStruct_ov88_0223C370;
+} TradeRoomArgs;
 
 #endif // POKEPLATINUM_STRUCT_OV88_0223C370_H

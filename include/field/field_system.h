@@ -108,7 +108,7 @@ typedef struct FieldSystem_t {
     UnkStruct_0205B43C *unk_7C;
     UnkStruct_0205C22C *unk_80;
     UnkStruct_ov56_02256468 *unk_84;
-    UnkStruct_02095E80 *unk_88;
+    TradeRoom *tradeRoom;
     UnkStruct_ov5_021EB0E0 *unk_8C;
     int menuCursorPos;
     RadarChain *chain;

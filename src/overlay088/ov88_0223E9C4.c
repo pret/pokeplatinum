@@ -16,214 +16,215 @@
 #include "string_list.h"
 #include "text.h"
 
-static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2);
+static void TradeRoom_PlayCursorMoveSound(ListMenu *listMenu, u32 unused, u8 onInit);
 
-static const u16 Unk_ov88_0223F1A8[][5] = {
-    { 0x4, 0x1, 0x9, 0x2, 0x1 },
-    { 0x14, 0x1, 0x9, 0x2, 0x13 },
-    { 0x4, 0x3, 0x8, 0x2, 0x25 },
-    { 0x14, 0x3, 0x8, 0x2, 0x35 },
-    { 0x2, 0x13, 0x7, 0x2, 0x45 },
-    { 0x12, 0x13, 0x7, 0x2, 0x53 },
-    { 0x2, 0x15, 0xC, 0x2, 0x61 },
-    { 0x12, 0x15, 0xC, 0x2, 0x79 }
+enum TradeRoomYesNoStep {
+    YES_NO_STEP_CREATE_MENU = 0,
+    YES_NO_STEP_POLL_INPUT = 1,
 };
 
-static const u16 Unk_ov88_0223F170[][2] = {
-    { 0x0, 0x7 },
-    { 0x8, 0x7 },
-    { 0x0, 0xC },
-    { 0x8, 0xC },
-    { 0x0, 0x11 },
-    { 0x8, 0x11 },
-    { 0x10, 0x7 },
-    { 0x18, 0x7 },
-    { 0x10, 0xC },
-    { 0x18, 0xC },
-    { 0x10, 0x11 },
-    { 0x18, 0x11 },
-    { 0x4, 0xA },
-    { 0x14, 0xA }
+static const u16 sTradePreviewDetailWindowLayouts[][5] = {
+    { 4, 1, 9, 2, 1 },
+    { 20, 1, 9, 2, 19 },
+    { 4, 3, 8, 2, 37 },
+    { 20, 3, 8, 2, 53 },
+    { 2, 19, 7, 2, 69 },
+    { 18, 19, 7, 2, 83 },
+    { 2, 21, 12, 2, 97 },
+    { 18, 21, 12, 2, 121 }
 };
 
-void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *options)
+static const u16 sPartyGridWindowPositions[][2] = {
+    { 0, 7 },
+    { 8, 7 },
+    { 0, 12 },
+    { 8, 12 },
+    { 0, 17 },
+    { 8, 17 },
+    { 16, 7 },
+    { 24, 7 },
+    { 16, 12 },
+    { 24, 12 },
+    { 16, 17 },
+    { 24, 17 },
+    { 4, 10 },
+    { 20, 10 }
+};
+
+void TradeRoom_InitWindows(BgConfig *bgConfig, Window *windows, Options *options)
 {
-    int v0;
+    Window_Add(bgConfig, &windows[0], 1, 2, 1, 10, 2, 8, 1);
+    Window_FillTilemap(&windows[0], 0);
 
-    Window_Add(param0, &param1[0], 1, 2, 1, 10, 2, 8, 1);
-    Window_FillTilemap(&param1[0], 0);
+    Window_Add(bgConfig, &windows[1], 1, 20, 1, 10, 2, 8, (1 + (10 * 2)));
+    Window_FillTilemap(&windows[1], 0);
 
-    Window_Add(param0, &param1[1], 1, 20, 1, 10, 2, 8, (1 + (10 * 2)));
-    Window_FillTilemap(&param1[1], 0);
+    Window_Add(bgConfig, &windows[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
+    Window_FillTilemap(&windows[6], 0);
 
-    Window_Add(param0, &param1[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
-    Window_FillTilemap(&param1[6], 0);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, (512 - (9 + (18 + 12))), 10, Options_Frame(options), HEAP_ID_TRADE_ROOM);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, (512 - 9), 11, 0, HEAP_ID_TRADE_ROOM);
 
-    LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_0, (512 - (9 + (18 + 12))), 10, Options_Frame(options), HEAP_ID_26);
-    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_0, (512 - 9), 11, 0, HEAP_ID_26);
+    Window_Add(bgConfig, &windows[21], 0, 2, 21, 20, 2, 13, 1);
+    Window_FillTilemap(&windows[21], 0);
+    Window_Add(bgConfig, &windows[22], 0, 2, 19, 14, 4, 13, (20 * 2));
+    Window_FillTilemap(&windows[22], 0);
+    Window_Add(bgConfig, &windows[23], 0, 2, 19, 27, 4, 13, (14 * 4));
+    Window_FillTilemap(&windows[23], 0);
 
-    Window_Add(param0, &param1[21], 0, 2, 21, 20, 2, 13, 1);
-    Window_FillTilemap(&param1[21], 0);
-    Window_Add(param0, &param1[22], 0, 2, 19, 14, 4, 13, (20 * 2));
-    Window_FillTilemap(&param1[22], 0);
-    Window_Add(param0, &param1[23], 0, 2, 19, 27, 4, 13, (14 * 4));
-    Window_FillTilemap(&param1[23], 0);
+    Window_Add(bgConfig, &windows[24], 0, 20, 17, 11, 6, 13, ((14 * 4) + (27 * 4)));
+    Window_FillTilemap(&windows[24], 0);
+    Window_Add(bgConfig, &windows[25], 0, 20, 19, 11, 4, 13, (((14 * 4) + (27 * 4)) + (11 * 6)));
+    Window_FillTilemap(&windows[25], 0);
 
-    Window_Add(param0, &param1[24], 0, 20, 17, 11, 6, 13, ((14 * 4) + (27 * 4)));
-    Window_FillTilemap(&param1[24], 0);
-    Window_Add(param0, &param1[25], 0, 20, 19, 11, 4, 13, (((14 * 4) + (27 * 4)) + (11 * 6)));
-    Window_FillTilemap(&param1[25], 0);
-
-    for (v0 = 0; v0 < 14; v0++) {
-        Window_Add(param0, &param1[7 + v0], 1, Unk_ov88_0223F170[v0][0], Unk_ov88_0223F170[v0][1], 8, 2, 8, (((1 + (10 * 2)) + (10 * 2)) + (5 * 2)) + v0 * (8 * 2));
-        Window_FillTilemap(&param1[7 + v0], 0);
+    for (int i = 0; i < 14; i++) {
+        Window_Add(bgConfig, &windows[7 + i], 1, sPartyGridWindowPositions[i][0], sPartyGridWindowPositions[i][1], 8, 2, 8, (((1 + (10 * 2)) + (10 * 2)) + (5 * 2)) + i * (8 * 2));
+        Window_FillTilemap(&windows[7 + i], 0);
     }
 
-    for (v0 = 0; v0 < 8; v0++) {
-        Window_Add(param0, &param1[26 + v0], 4, Unk_ov88_0223F1A8[v0][0], Unk_ov88_0223F1A8[v0][1], Unk_ov88_0223F1A8[v0][2], Unk_ov88_0223F1A8[v0][3], 8, Unk_ov88_0223F1A8[v0][4]);
-        Window_FillTilemap(&param1[26 + v0], 0);
+    for (int i = 0; i < 8; i++) {
+        Window_Add(bgConfig, &windows[26 + i], 4, sTradePreviewDetailWindowLayouts[i][0], sTradePreviewDetailWindowLayouts[i][1], sTradePreviewDetailWindowLayouts[i][2], sTradePreviewDetailWindowLayouts[i][3], 8, sTradePreviewDetailWindowLayouts[i][4]);
+        Window_FillTilemap(&windows[26 + i], 0);
     }
 }
 
-void ov88_0223EC04(Window *param0)
+void TradeRoom_FreeWindows(Window *window)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 14; v0++) {
-        Window_Remove(&param0[7 + v0]);
+    for (int i = 0; i < 14; i++) {
+        Window_Remove(&window[7 + i]);
     }
 
-    for (v0 = 0; v0 < 8; v0++) {
-        Window_Remove(&param0[26 + v0]);
+    for (int i = 0; i < 8; i++) {
+        Window_Remove(&window[26 + i]);
     }
 
-    Window_Remove(&param0[0]);
-    Window_Remove(&param0[1]);
-    Window_Remove(&param0[6]);
+    Window_Remove(&window[0]);
+    Window_Remove(&window[1]);
+    Window_Remove(&window[6]);
 
-    Window_Remove(&param0[21]);
-    Window_Remove(&param0[22]);
-    Window_Remove(&param0[23]);
-    Window_Remove(&param0[24]);
-    Window_Remove(&param0[25]);
+    Window_Remove(&window[21]);
+    Window_Remove(&window[22]);
+    Window_Remove(&window[23]);
+    Window_Remove(&window[24]);
+    Window_Remove(&window[25]);
 }
 
-void ov88_0223EC78(Window *param0, String *param1, int param2, u32 param3, int param4, int param5)
+void TradeRoom_PrintStringInWindow(Window *window, String *str, int unused, u32 textSpeed, int xOrCenter, int yOffset)
 {
-    int v0 = 0;
+    int xOffset = 0;
 
-    if (param4 == 1) {
-        int v1;
+    if (xOrCenter == 1) {
+        int strWidth;
 
-        v1 = Font_CalcStringWidth(FONT_SYSTEM, param1, 0);
-        v0 = ((param0->width * 8) - v1) / 2;
+        strWidth = Font_CalcStringWidth(FONT_SYSTEM, str, 0);
+        xOffset = ((window->width * 8) - strWidth) / 2;
     } else {
-        v0 = param4;
+        xOffset = xOrCenter;
     }
 
-    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param1, v0, param5, param3, TEXT_COLOR(11, 12, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, str, xOffset, yOffset, textSpeed, TEXT_COLOR(11, 12, 0), NULL);
 }
 
-int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3, StringTemplate *param4)
+int TradeRoom_PrintMessage(Window *window, int entryId, int fontId, MessageLoader *msgLoader, StringTemplate *strTemplate)
 {
-    String *v0;
-    int v1;
+    String *str;
+    int unused;
 
-    v0 = MessageUtil_ExpandedString(param4, param3, param1, HEAP_ID_26);
+    str = MessageUtil_ExpandedString(strTemplate, msgLoader, entryId, HEAP_ID_TRADE_ROOM);
 
-    if (param2 == 1) {
-        Window_DrawMessageBoxWithScrollCursor(param0, 0, (512 - (9 + (18 + 12))), 10);
+    if (fontId == FONT_MESSAGE) {
+        Window_DrawMessageBoxWithScrollCursor(window, 0, (512 - (9 + (18 + 12))), 10);
     } else {
-        Window_DrawStandardFrame(param0, 0, (512 - 9), 11);
+        Window_DrawStandardFrame(window, 0, (512 - 9), 11);
     }
 
-    Window_FillTilemap(param0, 15);
-    v1 = Text_AddPrinterWithParamsAndColor(param0, param2, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    String_Free(v0);
+    Window_FillTilemap(window, 15);
+    unused = Text_AddPrinterWithParamsAndColor(window, fontId, str, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+    String_Free(str);
 
-    return v1;
+    return unused;
 }
 
-static const WindowTemplate Unk_ov88_0223F148 = {
-    0x0,
-    0x19,
-    0xD,
-    0x6,
-    0x4,
-    0x3,
-    0x112
+static const WindowTemplate yesNoWindowTemplate = {
+    0,
+    25,
+    13,
+    6,
+    4,
+    3,
+    274
 };
 
-u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2)
+u32 TradeRoom_ProcessYesNoChoice(BgConfig *bgConfig, Menu **menu, int *step)
 {
-    u32 v0 = 0xffffffff;
+    u32 input = 0xffffffff;
 
-    switch (*param2) {
-    case 0:
-        *param1 = Menu_MakeYesNoChoice(param0, &Unk_ov88_0223F148, (512 - 9), 11, 26);
-        (*param2)++;
+    switch (*step) {
+    case YES_NO_STEP_CREATE_MENU:
+        *menu = Menu_MakeYesNoChoice(bgConfig, &yesNoWindowTemplate, (512 - 9), 11, HEAP_ID_TRADE_ROOM);
+        (*step)++;
         break;
-    case 1:
-        v0 = Menu_ProcessInputAndHandleExit(*param1, 26);
+    case YES_NO_STEP_POLL_INPUT:
+        input = Menu_ProcessInputAndHandleExit(*menu, HEAP_ID_TRADE_ROOM);
 
-        if (v0 != 0xffffffff) {
-            (*param2) = 0;
+        if (input != 0xffffffff) {
+            (*step) = YES_NO_STEP_CREATE_MENU;
         }
     }
 
-    return v0;
+    return input;
 }
 
-void ov88_0223ED80(Window *param0)
+void TradeRoom_DrawActionMenuFrame(Window *window)
 {
-    Window_DrawStandardFrame(param0, 0, (512 - 9), 11);
+    Window_DrawStandardFrame(window, 0, (512 - 9), 11);
 }
 
-static const ListMenuTemplate Unk_ov88_0223F150 = {
+static const ListMenuTemplate friendListMenuTemplate = {
     NULL,
     NULL,
     NULL,
     NULL,
-    0x20,
-    0x20,
-    0x0,
-    0x8,
-    0x0,
-    0x0,
-    0x1,
-    0xF,
-    0x2,
-    0x0,
-    0x10,
-    0x1,
-    0x0,
-    0x0,
+    32,
+    32,
+    0,
+    8,
+    0,
+    0,
+    1,
+    15,
+    2,
+    0,
+    16,
+    1,
+    0,
+    0,
     NULL
 };
 
-ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig *param3)
+ListMenu *TradeRoom_NewFriendListMenu(StringList *strList, int friendCount, Window *window, BgConfig *bgConfig)
 {
-    ListMenu *v0;
-    ListMenuTemplate v1;
-    int v2 = 5;
+    ListMenu *listMenu;
+    ListMenuTemplate lmTemplate;
+    int maxDisplayHeight = 5;
 
-    Window_Add(param3, param2, 0, 19, 1, 12, v2 * 2, 13, (512 - (9 + (18 + 12))) - (10 * (v2 + 2) * 2));
-    Window_DrawStandardFrame(param2, 0, (512 - 9), 11);
+    Window_Add(bgConfig, window, 0, 19, 1, 12, maxDisplayHeight * 2, 13, (512 - (9 + (18 + 12))) - (10 * (maxDisplayHeight + 2) * 2));
+    Window_DrawStandardFrame(window, 0, (512 - 9), 11);
 
-    v1 = Unk_ov88_0223F150;
-    v1.count = param1 + 1;
-    v1.maxDisplay = v2;
-    v1.choices = param0;
-    v1.window = param2;
-    v1.cursorCallback = ov88_0223EE14;
-    v0 = ListMenu_New(&v1, 0, 0, HEAP_ID_26);
+    lmTemplate = friendListMenuTemplate;
+    lmTemplate.count = friendCount + 1;
+    lmTemplate.maxDisplay = maxDisplayHeight;
+    lmTemplate.choices = strList;
+    lmTemplate.window = window;
+    lmTemplate.cursorCallback = TradeRoom_PlayCursorMoveSound;
+    listMenu = ListMenu_New(&lmTemplate, 0, 0, HEAP_ID_TRADE_ROOM);
 
-    return v0;
+    return listMenu;
 }
 
-static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2)
+static void TradeRoom_PlayCursorMoveSound(ListMenu *listMenu, u32 unused, u8 onInit)
 {
-    if (param2 == 0) {
+    if (onInit == 0) {
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
