@@ -4,7 +4,6 @@
 #include "constants/battle_frontier_stats.h"
 
 #include "struct_defs/struct_0202D080.h"
-#include "struct_defs/struct_0202FF58.h"
 #include "struct_defs/wifi_battle_tower_data.h"
 
 #include "battle_arcade_save.h"

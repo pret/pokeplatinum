@@ -416,7 +416,7 @@ BattleFactory_SaveGame:
 
 BattleFactory_OnFrame_DidntSaveBeforeQuit:
     Message BattleFactory_Text_DidntSaveBeforeQuit
-    ScrCmd_2C5 VAR_BATTLE_FACTORY_CHALLENGE_TYPE, VAR_BATTLE_FACTORY_CHALLENGE_LEVEL
+    DeleteActiveBattleFactoryStreak VAR_BATTLE_FACTORY_CHALLENGE_TYPE, VAR_BATTLE_FACTORY_CHALLENGE_LEVEL
     GoTo BattleFactory_EndChallenge
     End
 

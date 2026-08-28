@@ -210,7 +210,7 @@ Static main
 	Object main.nef.p/src_scrcmd_underground_inventory.c.o
 	Object main.nef.p/src_scrcmd_party_mon_moves.c.o
 	Object main.nef.p/src_scrcmd_dummy_23F_242.c.o
-	Object main.nef.p/src_unk_0204F04C.c.o
+	Object main.nef.p/src_scrcmd_battle_factory.c.o
 	Object main.nef.p/src_scrcmd_battle_hall.c.o
 	Object main.nef.p/src_scrcmd_battle_castle.c.o
 	Object main.nef.p/src_scrcmd_battle_arcade.c.o

@@ -4233,10 +4233,10 @@
     .byte \sceneID
     .endm
 
-    .macro ScrCmd_2C5 arg0, arg1
-    .short SCRCMD_2C5
-    .short \arg0
-    .short \arg1
+    .macro DeleteActiveBattleFactoryStreak challengeType, isOpenLevel
+    .short SCRCMD_DELETEACTIVEBATTLEFACTORYSTREAK
+    .short \challengeType
+    .short \isOpenLevel
     .endm
 
     .macro ScrCmd_2C6
