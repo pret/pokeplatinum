@@ -650,7 +650,7 @@ static void sub_0207ADB4(int param0, int param1, void *param2, void *param3)
     BattleSystem_SetCommandIsEndWait(battleSys, 1);
 }
 
-void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source, PalPad *destination)
+static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source, PalPad *destination)
 {
     CharCode_Copy(destination->trainerName, TrainerInfo_Name(trainerInfo));
 
