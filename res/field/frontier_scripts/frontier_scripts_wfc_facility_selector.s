@@ -5,9 +5,9 @@
 
     .data
 
-    .long _0039 - 4
-    .long _08D9 - 4
-    .short 0xFD13
+    ScriptEntry _0039
+    ScriptEntry _08D9
+    ScriptEntryEnd
 
     .balign 4, 0
 _000C:
@@ -469,35 +469,35 @@ _0858:
     GoToIfEq VAR_0x8008, 0, _0858
     WaitForTowerTrainerIDListResponses
     Call _08C9
-    FrontierScrCmd_04 FRONTIER_SCENE_TOWER_MULTI_CORRIDOR, 0
+    ChangeScript FRONTIER_SCENE_TOWER_MULTI_CORRIDOR, 0
     End
 
 _0879:
     FreeWFCFacilitySelector
     PlayBGM SEQ_PL_BF_FACTORY_sseq
     Call _08C9
-    FrontierScrCmd_04 FRONTIER_SCENE_FACTORY_CORRIDOR, 0
+    ChangeScript FRONTIER_SCENE_FACTORY_CORRIDOR, 0
     End
 
 _088D:
     FreeWFCFacilitySelector
     PlayBGM SEQ_PL_BF_STAGE_sseq
     Call _08C9
-    FrontierScrCmd_04 FRONTIER_SCENE_HALL_CORRIDOR, 0
+    ChangeScript FRONTIER_SCENE_HALL_CORRIDOR, 0
     End
 
 _08A1:
     FreeWFCFacilitySelector
     PlayBGM SEQ_PL_BF_CASTLE02_sseq
     Call _08C9
-    FrontierScrCmd_04 FRONTIER_SCENE_CASTLE_CORRIDOR, 0
+    ChangeScript FRONTIER_SCENE_CASTLE_CORRIDOR, 0
     End
 
 _08B5:
     FreeWFCFacilitySelector
     PlayBGM SEQ_PL_BF_ROULETTE_sseq
     Call _08C9
-    FrontierScrCmd_04 FRONTIER_SCENE_ARCADE_CORRIDOR, 0
+    ChangeScript FRONTIER_SCENE_ARCADE_CORRIDOR, 0
     End
 
 _08C9:
@@ -580,6 +580,6 @@ _09D2:
     ClearReceivedTempDataAllPlayers
     SyncConnectedPlayers 178
     ClearReceivedTempDataAllPlayers
-    FrontierScrCmd_02
+    ExitFrontier
 
     .balign 4, 0

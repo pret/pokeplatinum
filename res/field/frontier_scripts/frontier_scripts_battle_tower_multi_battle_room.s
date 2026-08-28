@@ -5,8 +5,8 @@
 
     .data
 
-    .long _0172 - 4
-    .short 0xFD13
+    ScriptEntry _0172
+    ScriptEntryEnd
 
     .balign 4, 0
 _0008:
@@ -357,7 +357,7 @@ _03DD:
     FrontierScrCmd_25 6
     FrontierScrCmd_23 FR_VAR_0x800F
     FrontierScrCmd_23 VAR_0x800A
-    FrontierScrCmd_02
+    ExitFrontier
 
 _0437:
     FrontierScrCmd_C8 1
@@ -386,7 +386,7 @@ _0443:
     FrontierScrCmd_23 VAR_0x800A
     CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_6, _04D5
-    FrontierScrCmd_02
+    ExitFrontier
 
 _04D1:
     CloseMessage
@@ -394,7 +394,7 @@ _04D1:
 
 _04D5:
     FreeBattleTower
-    FrontierScrCmd_04 FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
+    ChangeScript FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
     End
 
 _04DF:
