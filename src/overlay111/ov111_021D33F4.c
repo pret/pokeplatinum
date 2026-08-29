@@ -5,133 +5,108 @@
 
 #include "overlay111/ov111_021D2F80.h"
 #include "overlay111/struct_ov111_021D2F80.h"
-#include "overlay111/struct_ov111_021D33F4_decl.h"
 
 #include "heap.h"
 #include "sprite.h"
 
-struct UnkStruct_ov111_021D33F4_t {
-    u16 unk_00;
-    u8 unk_02;
-    u8 unk_03;
-    u32 unk_04;
-    u32 unk_08;
-    Sprite *unk_0C;
-};
-
-UnkStruct_ov111_021D33F4 *ov111_021D33F4(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2, u16 param3, u16 param4, u8 param5, u32 param6, u32 param7);
-void *ov111_021D3448(UnkStruct_ov111_021D33F4 *param0);
-void ov111_021D345C(UnkStruct_ov111_021D33F4 *param0, int param1);
-void ov111_021D3468(UnkStruct_ov111_021D33F4 *param0, u32 param1);
-void ov111_021D3474(UnkStruct_ov111_021D33F4 *param0, int param1, int param2);
-void ov111_021D349C(UnkStruct_ov111_021D33F4 *param0, int *param1, int *param2);
-void ov111_021D34C4(UnkStruct_ov111_021D33F4 *param0, u32 param1);
-void ov111_021D34E0(UnkStruct_ov111_021D33F4 *param0, u32 param1);
-void ov111_021D34F4(UnkStruct_ov111_021D33F4 *param0, VecFx32 *param1);
-void ov111_021D3500(UnkStruct_ov111_021D33F4 *param0, u32 param1);
-void ov111_021D350C(UnkStruct_ov111_021D33F4 *param0, int param1);
-void ov111_021D3530(UnkStruct_ov111_021D33F4 *param0, BOOL param1);
-BOOL ov111_021D353C(UnkStruct_ov111_021D33F4 *param0);
-
-UnkStruct_ov111_021D33F4 *ov111_021D33F4(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2, u16 param3, u16 param4, u8 param5, u32 param6, u32 param7)
+ScratchOffCardsAppSprite *ScratchOffCardsAppSprite_New(ScratchOffCardsAppSpriteManager *spriteMan, u32 resourceID, u32 animID, u16 x, u16 y, u8 onSubScreen, u32 resourcePriority, u32 priority)
 {
-    UnkStruct_ov111_021D33F4 *v0 = Heap_Alloc(HEAP_ID_115, sizeof(UnkStruct_ov111_021D33F4));
-    memset(v0, 0, sizeof(UnkStruct_ov111_021D33F4));
-    v0->unk_0C = ov111_021D3280(param0, param1, param2, param6, param7, param5);
-    v0->unk_02 = param5;
+    ScratchOffCardsAppSprite *appSprite = Heap_Alloc(HEAP_ID_SCRATCH_OFF_CARD_APP, sizeof(ScratchOffCardsAppSprite));
+    memset(appSprite, 0, sizeof(ScratchOffCardsAppSprite));
+    appSprite->sprite = ScratchOffCardsApp_InitSprite(spriteMan, resourceID, animID, resourcePriority, priority, onSubScreen);
+    appSprite->onSubScreen = onSubScreen;
 
-    ov111_021D3474(v0, param3, param4);
+    ScratchOffCardsAppSprite_SetPosition(appSprite, x, y);
 
-    return v0;
+    return appSprite;
 }
 
-void *ov111_021D3448(UnkStruct_ov111_021D33F4 *param0)
+void *ScratchOffCardsAppSprite_Free(ScratchOffCardsAppSprite *appSprite)
 {
-    Sprite_Delete(param0->unk_0C);
-    Heap_Free(param0);
+    Sprite_Delete(appSprite->sprite);
+    Heap_Free(appSprite);
     return NULL;
 }
 
-void ov111_021D345C(UnkStruct_ov111_021D33F4 *param0, int param1)
+void ScratchOffCardsAppSprite_SetDrawFlag(ScratchOffCardsAppSprite *appSprite, int draw)
 {
-    Sprite_SetDrawFlag(param0->unk_0C, param1);
+    Sprite_SetDrawFlag(appSprite->sprite, draw);
 }
 
-void ov111_021D3468(UnkStruct_ov111_021D33F4 *param0, u32 param1)
+void ScratchOffCardsAppSprite_SetPriority(ScratchOffCardsAppSprite *appSprite, u32 priority)
 {
-    Sprite_SetPriority(param0->unk_0C, param1);
+    Sprite_SetPriority(appSprite->sprite, priority);
 }
 
-void ov111_021D3474(UnkStruct_ov111_021D33F4 *param0, int param1, int param2)
+void ScratchOffCardsAppSprite_SetPosition(ScratchOffCardsAppSprite *appSprite, int x, int y)
 {
-    VecFx32 v0;
+    VecFx32 pos;
+    pos.x = x * FX32_ONE;
+    pos.y = y * FX32_ONE;
 
-    v0.x = (param1 * FX32_ONE);
-    v0.y = (param2 * FX32_ONE);
-
-    if (param0->unk_02 == 1) {
-        v0.y += (512 * FX32_ONE);
+    if (appSprite->onSubScreen == TRUE) {
+        pos.y += FX32_CONST(512);
     }
 
-    Sprite_SetPosition(param0->unk_0C, &v0);
+    Sprite_SetPosition(appSprite->sprite, &pos);
 }
 
-void ov111_021D349C(UnkStruct_ov111_021D33F4 *param0, int *param1, int *param2)
+void ScratchOffCardsAppSprite_GetPosition(ScratchOffCardsAppSprite *appSprite, int *x, int *y)
 {
-    const VecFx32 *v0 = Sprite_GetPosition(param0->unk_0C);
+    const VecFx32 *pos = Sprite_GetPosition(appSprite->sprite);
 
-    *param1 = (v0->x / FX32_ONE);
-    *param2 = (v0->y / FX32_ONE);
+    *x = pos->x / FX32_ONE;
+    *y = pos->y / FX32_ONE;
 }
 
-void ov111_021D34C4(UnkStruct_ov111_021D33F4 *param0, u32 param1)
+void ScratchOffCardsAppSprite_SetAnim(ScratchOffCardsAppSprite *appSprite, u32 animID)
 {
-    Sprite_SetAnimSpeed(param0->unk_0C, FX32_ONE);
-    Sprite_SetAnimNoRestart(param0->unk_0C, param1);
+    Sprite_SetAnimSpeed(appSprite->sprite, FX32_ONE);
+    Sprite_SetAnimNoRestart(appSprite->sprite, animID);
 }
 
-static const VecFx32 Unk_ov111_021D3834[] = {
+static const VecFx32 sCardScaleFactors[] = {
     { FX32_ONE, FX32_ONE, FX32_ONE },
-    { FX32_ONE + (FX32_ONE / 5), FX32_ONE + (FX32_ONE / 5), FX32_ONE + (FX32_ONE / 5) },
-    { FX32_ONE + (FX32_ONE / 4), FX32_ONE + (FX32_ONE / 4), FX32_ONE + (FX32_ONE / 4) },
-    { FX32_ONE + (FX32_ONE / 3), FX32_ONE + (FX32_ONE / 3), FX32_ONE + (FX32_ONE / 3) },
-    { FX32_ONE + (FX32_ONE / 2), FX32_ONE + (FX32_ONE / 2), FX32_ONE + (FX32_ONE / 2) },
-    { FX32_ONE + (FX32_ONE) - (FX32_ONE / 5), FX32_ONE + (FX32_ONE) - (FX32_ONE / 5), FX32_ONE + (FX32_ONE) - (FX32_ONE / 5) },
-    { FX32_ONE + (FX32_ONE / 7), FX32_ONE + (FX32_ONE / 7), FX32_ONE + (FX32_ONE / 7) },
-    { FX32_ONE - (FX32_ONE / 2), FX32_ONE - (FX32_ONE / 2), FX32_ONE - (FX32_ONE / 2) },
-    { FX32_ONE - (FX32_ONE / 4), FX32_ONE - (FX32_ONE / 4), FX32_ONE - (FX32_ONE / 4) },
-    { FX32_ONE - (FX32_ONE / 5), FX32_ONE - (FX32_ONE / 5), FX32_ONE - (FX32_ONE / 5) },
-    { FX32_ONE - (FX32_ONE / 7), FX32_ONE - (FX32_ONE / 7), FX32_ONE - (FX32_ONE / 7) }
+    { FX32_CONST(1.2), FX32_CONST(1.2), FX32_CONST(1.2) },
+    { FX32_CONST(1.25), FX32_CONST(1.25), FX32_CONST(1.25) },
+    { FX32_CONST(1.3333), FX32_CONST(1.3333), FX32_CONST(1.3333) },
+    { FX32_CONST(1.5), FX32_CONST(1.5), FX32_CONST(1.5) },
+    { FX32_CONST(1.8), FX32_CONST(1.8), FX32_CONST(1.8) },
+    { FX32_CONST(1.142857), FX32_CONST(1.142857), FX32_CONST(1.142857) },
+    { FX32_CONST(0.5), FX32_CONST(0.5), FX32_CONST(0.5) },
+    { FX32_CONST(0.75), FX32_CONST(0.75), FX32_CONST(0.75) },
+    { FX32_CONST(0.8), FX32_CONST(0.8), FX32_CONST(0.8) },
+    { FX32_CONST(0.857142), FX32_CONST(0.857142), FX32_CONST(0.857142) }
 };
 
-void ov111_021D34E0(UnkStruct_ov111_021D33F4 *param0, u32 param1)
+void ScratchOffCardsSprite_SetAffineScaleNormal(ScratchOffCardsAppSprite *appSprite, u32 unused)
 {
-    Sprite_SetAffineScaleEx(param0->unk_0C, &Unk_ov111_021D3834[0], 1);
+    Sprite_SetAffineScaleEx(appSprite->sprite, &sCardScaleFactors[0], AFFINE_OVERWRITE_MODE_NORMAL);
 }
 
-void ov111_021D34F4(UnkStruct_ov111_021D33F4 *param0, VecFx32 *param1)
+void ScratchOffCardsSprite_SetAffineScaleDouble(ScratchOffCardsAppSprite *appSprite, VecFx32 *scale)
 {
-    Sprite_SetAffineScaleEx(param0->unk_0C, param1, 2);
+    Sprite_SetAffineScaleEx(appSprite->sprite, scale, AFFINE_OVERWRITE_MODE_DOUBLE);
 }
 
-void ov111_021D3500(UnkStruct_ov111_021D33F4 *param0, u32 param1)
+void ScratchOffCardsAppSprite_UpdatePalette(ScratchOffCardsAppSprite *appSprite, u32 palette)
 {
-    Sprite_SetExplicitPaletteWithOffset(param0->unk_0C, param1);
+    Sprite_SetExplicitPaletteWithOffset(appSprite->sprite, palette);
 }
 
-void ov111_021D350C(UnkStruct_ov111_021D33F4 *param0, int param1)
+void ScratchOffCardsAppSprite_SetAnimateFlag(ScratchOffCardsAppSprite *sprite, BOOL animate)
 {
-    Sprite_SetAnimateFlag(param0->unk_0C, param1);
-    Sprite_SetAnimSpeed(param0->unk_0C, FX32_ONE);
-    Sprite_SetAnim(param0->unk_0C, Sprite_GetActiveAnim(param0->unk_0C));
+    Sprite_SetAnimateFlag(sprite->sprite, animate);
+    Sprite_SetAnimSpeed(sprite->sprite, FX32_ONE);
+    Sprite_SetAnim(sprite->sprite, Sprite_GetActiveAnim(sprite->sprite));
 }
 
-void ov111_021D3530(UnkStruct_ov111_021D33F4 *param0, BOOL param1)
+void ScratchOffCardsAppSprite_SetMosaicFlag(ScratchOffCardsAppSprite *appSprite, BOOL mosaic)
 {
-    Sprite_SetMosaicFlag(param0->unk_0C, param1);
+    Sprite_SetMosaicFlag(appSprite->sprite, mosaic);
 }
 
-BOOL ov111_021D353C(UnkStruct_ov111_021D33F4 *param0)
+BOOL ScratchOffCardsAppSprite_IsAnimated(ScratchOffCardsAppSprite *appSprite)
 {
-    return Sprite_IsAnimated(param0->unk_0C);
+    return Sprite_IsAnimated(appSprite->sprite);
 }

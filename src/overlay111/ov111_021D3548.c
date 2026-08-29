@@ -1,72 +1,187 @@
 #include "overlay111/ov111_021D3548.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "constants/field_base_tiles.h"
 
 #include "bg_window.h"
 #include "render_window.h"
 
-static const WindowTemplate Unk_ov111_021D38B8[] = {
-    { 0x2, 0x2, 0x1, 0x1B, 0x4, 0xC, 0x1 },
-    { 0x4, 0x18, 0xD, 0x7, 0x4, 0xD, 0x6D },
-    { 0x4, 0x11, 0x3, 0xB, 0x5, 0xD, 0x89 },
-    { 0x4, 0x11, 0x8, 0xB, 0x5, 0xD, 0xC0 },
-    { 0x4, 0x11, 0xE, 0xB, 0x5, 0xD, 0xF7 },
-    { 0x4, 0x11, 0x13, 0xB, 0x5, 0xD, 0x12E },
-    { 0x4, 0xA, 0x3, 0x5, 0x3, 0xD, 0x165 },
-    { 0x4, 0xA, 0x8, 0x5, 0x3, 0xD, 0x174 },
-    { 0x4, 0xA, 0xE, 0x5, 0x3, 0xD, 0x183 },
-    { 0x4, 0xA, 0x13, 0x5, 0x3, 0xD, 0x192 },
-    { 0x2, 0xA, 0x9, 0xC, 0x4, 0xD, 0x1A1 },
-    { 0x2, 0xA, 0x9, 0xC, 0x4, 0xD, 0x1A1 },
-    { 0x2, 0xA, 0x9, 0xC, 0x4, 0xD, 0x1A1 },
-    { 0x2, 0xA, 0x15, 0xD, 0x3, 0xD, 0x1D1 },
-    { 0x2, 0xD, 0x15, 0xD, 0x3, 0xD, 0x1D1 },
-    { 0x4, 0x2, 0x13, 0x1B, 0x4, 0xC, 0x1 }
+#define BASE_TILE_WINDOW_FRAME (1024 - STANDARD_WINDOW_TILE_COUNT)
+
+static const WindowTemplate sWinTemplates[NUM_SCRATCH_WINDOWS] = {
+    [SCRATCH_WINDOW_STOP_SCRATCH] = {
+        .bgLayer = BG_LAYER_MAIN_2,
+        .tilemapLeft = 2,
+        .tilemapTop = 1,
+        .width = 27,
+        .height = 4,
+        .palette = 12,
+        .baseTile = 1,
+    },
+    [SCRATCH_WINDOW_UNUSED_1] = {
+        .bgLayer = BG_LAYER_SUB_0,
+        .tilemapLeft = 24,
+        .tilemapTop = 13,
+        .width = 7,
+        .height = 4,
+        .palette = 13,
+        .baseTile = 109,
+    },
+    [SCRATCH_WINDOW_ITEM_NAME_1] = {
+        .bgLayer = BG_LAYER_SUB_0,
+        .tilemapLeft = 17,
+        .tilemapTop = 3,
+        .width = 11,
+        .height = 5,
+        .palette = 13,
+        .baseTile = 137,
+    },
+    [SCRATCH_WINDOW_ITEM_NAME_2] = {
+        .bgLayer = BG_LAYER_SUB_0,
+        .tilemapLeft = 17,
+        .tilemapTop = 8,
+        .width = 11,
+        .height = 5,
+        .palette = 13,
+        .baseTile = 192,
+    },
+    [SCRATCH_WINDOW_ITEM_NAME_3] = {
+        .bgLayer = BG_LAYER_SUB_0,
+        .tilemapLeft = 17,
+        .tilemapTop = 14,
+        .width = 11,
+        .height = 5,
+        .palette = 13,
+        .baseTile = 247,
+    },
+    [SCRATCH_WINDOW_ITEM_NAME_4] = {
+        .bgLayer = BG_LAYER_SUB_0,
+        .tilemapLeft = 17,
+        .tilemapTop = 19,
+        .width = 11,
+        .height = 5,
+        .palette = 13,
+        .baseTile = 302,
+    },
+    [SCRATCH_WINDOW_MON_1] = {
+        .bgLayer = BG_LAYER_SUB_0,
+        .tilemapLeft = 10,
+        .tilemapTop = 3,
+        .width = 5,
+        .height = 3,
+        .palette = 13,
+        .baseTile = 357,
+    },
+    [SCRATCH_WINDOW_MON_2] = {
+        .bgLayer = BG_LAYER_SUB_0,
+        .tilemapLeft = 10,
+        .tilemapTop = 8,
+        .width = 5,
+        .height = 3,
+        .palette = 13,
+        .baseTile = 372,
+    },
+    [SCRATCH_WINDOW_MON_3] = {
+        .bgLayer = BG_LAYER_SUB_0,
+        .tilemapLeft = 10,
+        .tilemapTop = 14,
+        .width = 5,
+        .height = 3,
+        .palette = 13,
+        .baseTile = 387,
+    },
+    [SCRATCH_WINDOW_MON_4] = {
+        .bgLayer = BG_LAYER_SUB_0,
+        .tilemapLeft = 10,
+        .tilemapTop = 19,
+        .width = 5,
+        .height = 3,
+        .palette = 13,
+        .baseTile = 402,
+    },
+    [SCRATCH_WINDOW_START_CARD] = {
+        .bgLayer = BG_LAYER_MAIN_2,
+        .tilemapLeft = 10,
+        .tilemapTop = 9,
+        .width = 12,
+        .height = 4,
+        .palette = 13,
+        .baseTile = 417,
+    },
+    [SCRATCH_WINDOW_UNUSED_11] = {
+        .bgLayer = BG_LAYER_MAIN_2,
+        .tilemapLeft = 10,
+        .tilemapTop = 9,
+        .width = 12,
+        .height = 4,
+        .palette = 13,
+        .baseTile = 417,
+    },
+    [SCRATCH_WINDOW_TOO_BAD] = {
+        .bgLayer = BG_LAYER_MAIN_2,
+        .tilemapLeft = 10,
+        .tilemapTop = 9,
+        .width = 12,
+        .height = 4,
+        .palette = 13,
+        .baseTile = 417,
+    },
+    [SCRATCH_WINDOW_NEXT_CARD] = {
+        .bgLayer = BG_LAYER_MAIN_2,
+        .tilemapLeft = 10,
+        .tilemapTop = 21,
+        .width = 13,
+        .height = 3,
+        .palette = 13,
+        .baseTile = 465,
+    },
+    [SCRATCH_WINDOW_CANCEL] = {
+        .bgLayer = BG_LAYER_MAIN_2,
+        .tilemapLeft = 13,
+        .tilemapTop = 21,
+        .width = 13,
+        .height = 3,
+        .palette = 13,
+        .baseTile = 465,
+    },
+    [SCRATCH_WINDOW_SELECT_CARD] = {
+        .bgLayer = BG_LAYER_SUB_0,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 27,
+        .height = 4,
+        .palette = 12,
+        .baseTile = 1,
+    }
 };
 
-void ov111_021D3548(BgConfig *param0, Window *param1);
-void ov111_021D3578(Window *param0);
-void ov111_021D3594(BgConfig *param0, Window *param1);
-void ov111_021D35C0(Window *param0, int param1);
-
-void ov111_021D3548(BgConfig *param0, Window *param1)
+void ScratchOffCardsApp_InitWindows(BgConfig *bgConfig, Window *windows)
 {
-    u8 v0;
-    const WindowTemplate *v1 = Unk_ov111_021D38B8;
+    const WindowTemplate *templates = sWinTemplates;
 
-    for (v0 = 0; v0 < 16; v0++) {
-        Window_AddFromTemplate(param0, &param1[v0], &v1[v0]);
-        Window_FillTilemap(&param1[v0], 0);
+    for (u8 i = 0; i < NELEMS(sWinTemplates); i++) {
+        Window_AddFromTemplate(bgConfig, &windows[i], &templates[i]);
+        Window_FillTilemap(&windows[i], 0);
     }
-
-    return;
 }
 
-void ov111_021D3578(Window *param0)
+void ScratchOffCardsApp_FreeWindows(Window *windows)
 {
-    u16 v0;
-
-    for (v0 = 0; v0 < 16; v0++) {
-        Window_Remove(&param0[v0]);
+    for (u16 i = 0; i < NELEMS(sWinTemplates); i++) {
+        Window_Remove(&windows[i]);
     }
-
-    return;
 }
 
-void ov111_021D3594(BgConfig *param0, Window *param1)
+void ScratchOffCardsApp_DrawWindow(BgConfig *bgConfig, Window *window)
 {
-    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_2, (1024 - 9), 11, 0, HEAP_ID_115);
-    Window_DrawStandardFrame(param1, 1, (1024 - 9), 11);
-
-    return;
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_2, BASE_TILE_WINDOW_FRAME, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_WINDOW_FRAME, 11);
 }
 
-void ov111_021D35C0(Window *param0, int param1)
+void ScratchOffCardsApp_DrawMessageBox(Window *window, int frame)
 {
-    LoadMessageBoxGraphics(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, HEAP_ID_115);
-    Window_FillTilemap(param0, 15);
-    Window_DrawMessageBoxWithScrollCursor(param0, 0, ((1024 - 9) - (18 + 12)), 10);
-
-    return;
+    LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), BASE_TILE_STANDARD_WINDOW_FRAME, 10, frame, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Window_FillTilemap(window, 15);
+    Window_DrawMessageBoxWithScrollCursor(window, 0, BASE_TILE_STANDARD_WINDOW_FRAME, 10);
 }

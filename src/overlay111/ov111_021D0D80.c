@@ -1,7 +1,11 @@
 #include "overlay111/ov111_021D0D80.h"
 
+#include "nitro/hw/common/lcd.h"
 #include <nitro.h>
 #include <string.h>
+
+#include "constants/graphics.h"
+#include "generated/items.h"
 
 #include "struct_defs/struct_0203E608.h"
 
@@ -10,10 +14,9 @@
 #include "overlay111/ov111_021D3548.h"
 #include "overlay111/struct_ov111_021D0F7C_decl.h"
 #include "overlay111/struct_ov111_021D2F80.h"
-#include "overlay111/struct_ov111_021D33F4_decl.h"
-#include "overlay111/struct_ov111_021D3620.h"
 
 #include "bg_window.h"
+#include "coordinates.h"
 #include "font.h"
 #include "font_special_chars.h"
 #include "game_options.h"
@@ -43,1085 +46,1044 @@
 #include "vram_transfer.h"
 #include "yes_no_touch_menu.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-} UnkStruct_ov111_021D3728;
+#include "res/text/bank/unk_0540.h"
+
+#define NUM_SCRATCH_CELLS    9
+#define NUM_CARDS_TO_PICK    4
+#define NUM_CARDS_TO_PLAY    3
+#define NUM_WINNABLE_ITEMS   4
+#define NUM_CELLS_TO_SCRATCH 3
+
+#define SCRATCH_REGION_WIDTH  240
+#define SCRATCH_REGION_HEIGHT 160
+
+#define WILDCARD_CELL_VALUE NUM_WINNABLE_ITEMS
+
+#define ANIM_ID_CANCEL_BUTTON     0
+#define ANIM_ID_NEXT_CARD         1
+#define ANIM_ID_MATCHING_CELL_BOX 2
+#define ANIM_ID_CENTER_MESSAGE    3
 
 struct UnkStruct_ov111_021D0F7C_t {
-    ApplicationManager *unk_00;
-    ApplicationManager *unk_04;
-    u8 unk_08;
-    u8 unk_09;
-    u8 unk_0A;
-    u8 unk_0B;
-    u8 unk_0C;
-    u8 unk_0D;
-    u8 unk_0E;
-    u8 unk_0F;
-    s16 unk_10;
-    s16 unk_12;
-    u8 unk_14;
-    u8 unk_15[4];
-    u8 unk_19[3];
-    VecFx32 unk_1C;
-    VecFx32 unk_28;
-    PaletteAnimator *unk_34;
-    MessageLoader *unk_38;
-    StringTemplate *unk_3C;
-    String *unk_40;
-    String *unk_44;
-    u16 unk_48[8];
-    BgConfig *unk_58;
-    Window unk_5C[16];
-    PaletteData *unk_15C;
-    FontSpecialCharsContext *unk_160;
+    ApplicationManager *appMan;
+    ApplicationManager *unused;
+    u8 subState;
+    u8 dummy;
+    u8 unused2[2];
+    u8 dummy2;
+    u8 fadeOutDelay;
+    u8 currentCard;
+    u8 subStateTimer;
+    s16 xOffset;
+    s16 xOffset2;
+    u8 mosaicSize;
+    u8 selectedCardIdxs[NUM_CARDS_TO_PICK];
+    u8 dummy3[3];
+    VecFx32 cardScaleFactor;
+    VecFx32 unused3;
+    PaletteAnimator *paletteAnimator;
+    MessageLoader *msgLoader;
+    StringTemplate *strTemplate;
+    String *displayStr;
+    String *fmtStr;
+    u16 unused4[8];
+    BgConfig *bgConfig;
+    Window windows[NUM_SCRATCH_WINDOWS];
+    PaletteData *plttData;
+    FontSpecialCharsContext *specialChars;
     Options *options;
     SaveData *saveData;
-    UnkStruct_ov111_021D2F80 unk_16C;
-    UnkStruct_ov111_021D33F4 *unk_35C[4];
-    UnkStruct_ov111_021D33F4 *unk_36C[9];
-    UnkStruct_ov111_021D33F4 *unk_390[4];
-    UnkStruct_ov111_021D33F4 *unk_3A0;
-    UnkStruct_ov111_021D33F4 *unk_3A4;
-    UnkStruct_ov111_021D33F4 *unk_3A8[3];
-    UnkStruct_ov111_021D33F4 *unk_3B4[3];
-    UnkStruct_ov111_021D33F4 *unk_3C0;
-    u8 unk_3C4[9];
-    u16 unk_3CE[4];
-    u16 *unk_3D8;
-    u16 *unk_3DC;
-    u16 *unk_3E0;
-    NARC *unk_3E4;
-    u8 padding_3E8[8];
-    void *unk_3F0;
-    NNSG2dCharacterData *unk_3F4;
-    u8 *unk_3F8;
-    YesNoTouchMenu *unk_3FC;
-    u8 unk_400[9];
-    u8 unk_409;
-    u8 unk_40A;
-    u8 unk_40B;
-    u8 unk_40C_0 : 1;
-    u8 unk_40C_1 : 7;
-    u8 unk_40D;
-    u8 unk_40E[3];
-    u8 unk_411[9];
-    u32 unk_41C;
-    u32 unk_420;
-    TouchPadDataBuffer unk_424;
-    u8 unk_466[38400];
+    ScratchOffCardsAppSpriteManager spriteMan;
+    ScratchOffCardsAppSprite *topScreenMonSprites[NUM_WINNABLE_ITEMS];
+    ScratchOffCardsAppSprite *scratchMonSprites[NUM_SCRATCH_CELLS];
+    ScratchOffCardsAppSprite *cardSprites[NUM_CARDS_TO_PICK];
+    ScratchOffCardsAppSprite *skipCardButtonSprite;
+    ScratchOffCardsAppSprite *centerMessageBoxSprite;
+    ScratchOffCardsAppSprite *matchingCellBoxSprites[NUM_CELLS_TO_SCRATCH];
+    ScratchOffCardsAppSprite *winMonSprites[NUM_CELLS_TO_SCRATCH];
+    ScratchOffCardsAppSprite *winPopupSprite;
+    u8 scratchCellValues[NUM_SCRATCH_CELLS];
+    u16 winnableItems[NUM_WINNABLE_ITEMS];
+    u16 *dummy4;
+    u16 *wonItems;
+    u16 *wonItemsCount;
+    NARC *narc;
+    u8 unused7[8];
+    void *scratchCellsRawCharData;
+    NNSG2dCharacterData *scratchCellsCharData;
+    u8 *scratchCellsDataBackup;
+    YesNoTouchMenu *yesNoMenu;
+    u8 cellIsScratched[NUM_SCRATCH_CELLS];
+    u8 highlightPairPalette;
+    u8 highlightPairCounter;
+    u8 winningCellValue;
+    u8 pairFound : 1;
+    u8 centeringStep : 7;
+    u8 numRevealedCells;
+    u8 scratchedOffCellIdxs[NUM_CELLS_TO_SCRATCH];
+    u8 cellIsRevealed[NUM_SCRATCH_CELLS];
+    u32 unused6[2];
+    TouchPadDataBuffer tpBuffer;
+    u8 scratchedPixels[SCRATCH_REGION_WIDTH * SCRATCH_REGION_HEIGHT];
 };
 
-int ov111_021D0D80(ApplicationManager *appMan, int *param1);
-int ov111_021D0E34(ApplicationManager *appMan, int *param1);
-int ov111_021D0F40(ApplicationManager *appMan, int *param1);
-static BOOL ov111_021D0F7C(UnkStruct_ov111_021D0F7C *param0);
-static BOOL ov111_021D0FC8(UnkStruct_ov111_021D0F7C *param0);
-static BOOL ov111_021D10B8(UnkStruct_ov111_021D0F7C *param0);
-static BOOL ov111_021D116C(UnkStruct_ov111_021D0F7C *param0);
-static BOOL ov111_021D1284(UnkStruct_ov111_021D0F7C *param0);
-static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0);
-static BOOL ov111_021D1980(UnkStruct_ov111_021D0F7C *param0);
-static BOOL ov111_021D1A88(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D1AF4(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D1B44(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D1B90(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D1BEC(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D1C0C(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D1D30(void);
-static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D1F70(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D1F84(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D1FB4(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2034(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D1FC4(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2044(BgConfig *param0);
-static void ov111_021D2090(void *param0);
-static void ov111_021D20CC(void);
-static void ov111_021D20EC(BgConfig *param0);
-static void ov111_021D2248(UnkStruct_ov111_021D0F7C *param0, u32 param1);
-static void ov111_021D22D0(void);
-static void ov111_021D228C(UnkStruct_ov111_021D0F7C *param0, u32 param1);
-static void ov111_021D233C(UnkStruct_ov111_021D0F7C *param0, u32 param1);
-static void ov111_021D2304(void);
-static void ov111_021D2380(UnkStruct_ov111_021D0F7C *param0, u32 param1);
-static u8 ov111_021D23C4(UnkStruct_ov111_021D0F7C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-static u8 ov111_021D2424(UnkStruct_ov111_021D0F7C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-static u8 ov111_021D2494(UnkStruct_ov111_021D0F7C *param0);
-static u8 ov111_021D24D4(UnkStruct_ov111_021D0F7C *param0);
-static u8 ov111_021D2518(UnkStruct_ov111_021D0F7C *param0);
-static u8 ov111_021D255C(UnkStruct_ov111_021D0F7C *param0);
-static u8 ov111_021D25BC(UnkStruct_ov111_021D0F7C *param0);
-static u8 ov111_021D2604(UnkStruct_ov111_021D0F7C *param0);
-static u8 ov111_021D263C(UnkStruct_ov111_021D0F7C *param0);
-static u8 ov111_021D2674(UnkStruct_ov111_021D0F7C *param0, u8 param1);
-static void ov111_021D26CC(UnkStruct_ov111_021D0F7C *param0, u32 param1, s32 param2);
-static void ov111_021D26E4(UnkStruct_ov111_021D0F7C *param0, int *param1, int param2);
-static void ov111_021D26EC(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D271C(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D27AC(UnkStruct_ov111_021D0F7C *param0, u8 param1);
-static void ov111_021D27BC(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D27D4(UnkStruct_ov111_021D0F7C *param0, u8 param1);
-static BOOL ov111_021D2868(UnkStruct_ov111_021D0F7C *param0, u8 param1);
-static void ov111_021D28E8(UnkStruct_ov111_021D0F7C *param0, u32 param1, u8 param2, u8 param3, u8 param4);
-static u8 ov111_021D2918(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2940(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D295C(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D297C(UnkStruct_ov111_021D0F7C *param0, int param1);
-static void ov111_021D29D8(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2A18(UnkStruct_ov111_021D0F7C *param0, int param1, int param2);
-static BOOL ov111_021D2A68(UnkStruct_ov111_021D0F7C *param0, u8 param1);
-static void ov111_021D2B20(UnkStruct_ov111_021D0F7C *param0);
-static BOOL ov111_021D2BBC(UnkStruct_ov111_021D0F7C *param0);
-static BOOL ov111_021D2D14(UnkStruct_ov111_021D0F7C *param0);
-static BOOL ov111_021D2D60(UnkStruct_ov111_021D0F7C *param0, u8 param1);
-static void ov111_021D2E18(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2E20(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2E28(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2E4C(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2E8C(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2EB4(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2ECC(UnkStruct_ov111_021D0F7C *param0, int param1, int param2);
-static void ov111_021D2F38(UnkStruct_ov111_021D0F7C *param0, u32 param1, u32 param2);
+static BOOL State_FadeInApp(ScratchOffCardApp *app);
+static BOOL State_BringInSelectableCards(ScratchOffCardApp *app);
+static BOOL State_SelectCard(ScratchOffCardApp *app);
+static BOOL State_PullOutSelectedCard(ScratchOffCardApp *app);
+static BOOL State_SetupScratchCard(ScratchOffCardApp *app);
+static BOOL State_ScratchCard(ScratchOffCardApp *app);
+static BOOL State_SlideAwayScratchCard(ScratchOffCardApp *app);
+static BOOL State_FadeOutApp(ScratchOffCardApp *app);
+static void InitMatchingCellBoxSprites(ScratchOffCardApp *app);
+static void InitWinningPopupMonSprites(ScratchOffCardApp *app);
+static void InitBottomScreenBoxSprites(ScratchOffCardApp *app);
+static void FreeCardSprites(ScratchOffCardApp *app);
+static void FreeAssets(ScratchOffCardApp *app);
+static void InitGraphicsPlane(void);
+static void LoadAssets(ScratchOffCardApp *app);
+static void NewYesNoMenu(ScratchOffCardApp *app);
+static void InitYesNoMenu(ScratchOffCardApp *app);
+static void FreeYesNoMenu(ScratchOffCardApp *app);
+static void InitSpriteManager(ScratchOffCardApp *app);
+static void LoadBackgrounds(ScratchOffCardApp *app);
+static void FreeBackgrounds(BgConfig *bgConfig);
+static void VBlankCallback(void *data);
+static void SetGXBanks(void);
+static void InitBackgrounds(BgConfig *bgConfig);
+static void LoadDefaultTopScreenBackground(ScratchOffCardApp *app, u32 bgLayer);
+static void LoadTopScreenPalette(void);
+static void LoadCardTopScreenBackground(ScratchOffCardApp *app, u32 bgLayer);
+static void LoadCardBottomScreenBackground(ScratchOffCardApp *app, u32 bgLayer);
+static void LoadBottomScreenPalette(void);
+static void LoadScratchCellsBackground(ScratchOffCardApp *app, u32 bgLayer);
+static u8 PrintMessage(ScratchOffCardApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 fontID);
+static u8 PrintCenteredMessage(ScratchOffCardApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 fontID);
+static u8 PrintStopScratchingMessage(ScratchOffCardApp *app);
+static u8 PrintSelectCardMessage(ScratchOffCardApp *app);
+static u8 PrintStartCardMessage(ScratchOffCardApp *app);
+static u8 ShowWinPopup(ScratchOffCardApp *app);
+static u8 PrintTooBadMessage(ScratchOffCardApp *app);
+static u8 PrintNextCardButton(ScratchOffCardApp *app);
+static u8 PrintCancelButton(ScratchOffCardApp *app);
+static u8 PrintItemNameOnTopScreen(ScratchOffCardApp *app, u8 idx);
+static void SetNumberInTemplate(ScratchOffCardApp *app, u32 idx, s32 num);
+static void ChangeState(ScratchOffCardApp *app, int *state, int newState);
+static void PlaceDittosInCells(ScratchOffCardApp *app);
+static void PlaceRemainingValuesInCells(ScratchOffCardApp *app);
+static void PlaceValuesInScratchCells(ScratchOffCardApp *app, u8 unused);
+static void ClearScratchCellValues(ScratchOffCardApp *app);
+static void SelectItemsWinnableOnCard(ScratchOffCardApp *app, u8 unused);
+static BOOL CenterSelectedCardOnScreen(ScratchOffCardApp *app, u8 selectedIdx);
+static void UpdateBackgroundPalette(ScratchOffCardApp *app, u32 bgLayer, u8 palette, u8 width, u8 height);
+static u8 GetNumCellsScratched(ScratchOffCardApp *app);
+static void MarkAllCellsAsUnscratched(ScratchOffCardApp *app);
+static void MarkAllCellsAsUnrevealed(ScratchOffCardApp *app);
+static void RemoveScratchedOffPixelsOnCell(ScratchOffCardApp *app, int cellIdx);
+static void MarkScratchedOffPixels(ScratchOffCardApp *app);
+static void MarkScratchedPixelsAtPoint(ScratchOffCardApp *app, int touchX, int touchY);
+static BOOL CheckIfCellIsRevealed(ScratchOffCardApp *app, u8 cellIdx);
+static void HighlightMatchingPair(ScratchOffCardApp *app);
+static BOOL CheckIfThreeOfAKindFound(ScratchOffCardApp *app);
+static BOOL CheckIfDittoTransformNeeded(ScratchOffCardApp *app);
+static BOOL UpdateTransformingDitto(ScratchOffCardApp *app, u8 decreaseMosaic);
+static void IncrementCurrentCard(ScratchOffCardApp *app);
+static void IncrementCurrentCard2(ScratchOffCardApp *app);
+static void HideCenterMessageBox(ScratchOffCardApp *app);
+static void LoadScratchCellsCharData(ScratchOffCardApp *app);
+static void InitScratchCellsBackup(ScratchOffCardApp *app);
+static void MakeCopyOfScratchCellsData(ScratchOffCardApp *app);
+static void RemoveScratchedOffPixels(ScratchOffCardApp *app, int touchX, int touchY);
+static void ScratchPixelsAtPosition(ScratchOffCardApp *app, u32 x, u32 y);
 
-static const UnkStruct_ov111_021D3620 Unk_ov111_021D3620[3] = {
-    { 0x34, 0x44 },
-    { 0x6C, 0x44 },
-    { 0xA4, 0x44 }
+static const CoordinatesS16 sWinningPopupMonSpritePositions[NUM_CELLS_TO_SCRATCH] = {
+    { .x = 52, .y = 68 },
+    { .x = 108, .y = 68 },
+    { .x = 164, .y = 68 }
 };
 
-static const UnkStruct_ov111_021D3620 Unk_ov111_021D3608 = {
-    0x26,
-    0x38
+static const CoordinatesS16 sWinPopupSpritePosition = { .x = 38, .y = 56 };
+
+static const CoordinatesS16 sScratchMonPositions[NUM_SCRATCH_CELLS] = {
+    { .x = 57, .y = 18 },
+    { .x = 124, .y = 18 },
+    { .x = 191, .y = 18 },
+    { .x = 57, .y = 66 },
+    { .x = 124, .y = 66 },
+    { .x = 191, .y = 66 },
+    { .x = 57, .y = 114 },
+    { .x = 124, .y = 114 },
+    { .x = 191, .y = 114 }
 };
 
-static const UnkStruct_ov111_021D3620 Unk_ov111_021D3770[9] = {
-    { 0x39, 0x12 },
-    { 0x7C, 0x12 },
-    { 0xBF, 0x12 },
-    { 0x39, 0x42 },
-    { 0x7C, 0x42 },
-    { 0xBF, 0x42 },
-    { 0x39, 0x72 },
-    { 0x7C, 0x72 },
-    { 0xBF, 0x72 }
+static const CoordinatesS16 sSelectableCardPositions[NUM_CARDS_TO_PICK] = {
+    { .x = 0, .y = 36 },
+    { .x = 56, .y = 36 },
+    { .x = 112, .y = 36 },
+    { .x = 168, .y = 36 }
 };
 
-static const UnkStruct_ov111_021D3620 Unk_ov111_021D362C[4] = {
-    { 0x0, 0x24 },
-    { 0x38, 0x24 },
-    { 0x70, 0x24 },
-    { 0xA8, 0x24 }
+static const CoordinatesS16 sNextCardButtonPosition = { .x = 68, .y = 160 };
+
+static const CoordinatesS16 sCancelButtonPosition = { .x = 88, .y = 160 };
+
+static const CoordinatesS16 sCenterMessageBoxPosition = { .x = 68, .y = 68 };
+
+static const u16 sAvailableItems[] = {
+    ITEM_POMEG_BERRY,
+    ITEM_KELPSY_BERRY,
+    ITEM_QUALOT_BERRY,
+    ITEM_HONDEW_BERRY,
+    ITEM_GREPA_BERRY,
+    ITEM_TAMATO_BERRY,
+    ITEM_OCCA_BERRY,
+    ITEM_PASSHO_BERRY,
+    ITEM_WACAN_BERRY,
+    ITEM_RINDO_BERRY,
+    ITEM_YACHE_BERRY,
+    ITEM_CHOPLE_BERRY,
+    ITEM_KEBIA_BERRY,
+    ITEM_SHUCA_BERRY,
+    ITEM_COBA_BERRY,
+    ITEM_PAYAPA_BERRY,
+    ITEM_TANGA_BERRY,
+    ITEM_CHARTI_BERRY,
+    ITEM_KASIB_BERRY,
+    ITEM_HABAN_BERRY,
+    ITEM_COLBUR_BERRY,
+    ITEM_BABIRI_BERRY,
+    ITEM_CHILAN_BERRY
 };
 
-static const UnkStruct_ov111_021D3620 Unk_ov111_021D3604 = {
-    0x44,
-    0xA0
+static const TouchScreenRect sSelectableCardHitBoxes[NUM_CARDS_TO_PICK + 1] = {
+    { .rect = { .top = 42, .bottom = 154, .left = 0, .right = 80 } },
+    { .rect = { .top = 42, .bottom = 154, .left = 88, .right = 138 } },
+    { .rect = { .top = 42, .bottom = 154, .left = 144, .right = 195 } },
+    { .rect = { .top = 42, .bottom = 154, .left = 204, .right = 254 } },
+    { TOUCHSCREEN_TABLE_TERMINATOR }
 };
 
-static const UnkStruct_ov111_021D3620 Unk_ov111_021D3600 = {
-    0x58,
-    0xA0
+static const TouchScreenRect sNextCardButtonHitbox[] = {
+    { .rect = { .top = 164, .bottom = 191, .left = 76, .right = 180 } },
+    { TOUCHSCREEN_TABLE_TERMINATOR }
 };
 
-static const UnkStruct_ov111_021D3620 Unk_ov111_021D360C = {
-    0x44,
-    0x44
+static const TouchScreenRect sCancelButtonHitbox[] = {
+    { .rect = { .top = 164, .bottom = 191, .left = 94, .right = 164 } },
+    { TOUCHSCREEN_TABLE_TERMINATOR }
 };
 
-static const u16 Unk_ov111_021D37E4[] = {
-    0xA9,
-    0xAA,
-    0xAB,
-    0xAC,
-    0xAD,
-    0xAE,
-    0xB8,
-    0xB9,
-    0xBA,
-    0xBB,
-    0xBC,
-    0xBD,
-    0xBE,
-    0xBF,
-    0xC0,
-    0xC1,
-    0xC2,
-    0xC3,
-    0xC4,
-    0xC5,
-    0xC6,
-    0xC7,
-    0xC8
+static const TouchScreenRect sScratchCellHitboxes[NUM_SCRATCH_CELLS + 1] = {
+    { .rect = { .top = 21, .bottom = 54, .left = 32, .right = 89 } },
+    { .rect = { .top = 21, .bottom = 54, .left = 102, .right = 157 } },
+    { .rect = { .top = 21, .bottom = 54, .left = 170, .right = 227 } },
+    { .rect = { .top = 68, .bottom = 100, .left = 32, .right = 89 } },
+    { .rect = { .top = 68, .bottom = 100, .left = 102, .right = 157 } },
+    { .rect = { .top = 68, .bottom = 100, .left = 170, .right = 227 } },
+    { .rect = { .top = 114, .bottom = 148, .left = 32, .right = 89 } },
+    { .rect = { .top = 114, .bottom = 148, .left = 102, .right = 157 } },
+    { .rect = { .top = 114, .bottom = 148, .left = 170, .right = 227 } },
+    { TOUCHSCREEN_TABLE_TERMINATOR }
 };
 
-static const TouchScreenRect Unk_ov111_021D364C[5] = {
-    { 0x2A, 0x9A, 0x0, 0x50 },
-    { 0x2A, 0x9A, 0x58, 0x8A },
-    { 0x2A, 0x9A, 0x90, 0xC3 },
-    { 0x2A, 0x9A, 0xCC, 0xFE },
-    { 0xFF, 0x0, 0x0, 0x0 }
+static const struct {
+    u8 top;
+    u8 bottom;
+    u8 left;
+    u8 right;
+} sScratchCellScreenPixelRegions[NUM_SCRATCH_CELLS] = {
+    { .top = 21, .bottom = 54, .left = 32, .right = 89 },
+    { .top = 21, .bottom = 54, .left = 102, .right = 157 },
+    { .top = 21, .bottom = 54, .left = 170, .right = 227 },
+    { .top = 68, .bottom = 100, .left = 32, .right = 89 },
+    { .top = 68, .bottom = 100, .left = 102, .right = 157 },
+    { .top = 68, .bottom = 100, .left = 170, .right = 227 },
+    { .top = 114, .bottom = 148, .left = 32, .right = 89 },
+    { .top = 114, .bottom = 148, .left = 102, .right = 157 },
+    { .top = 114, .bottom = 148, .left = 170, .right = 227 }
 };
 
-static const TouchScreenRect Unk_ov111_021D3618[] = {
-    { 0xA4, 0xBF, 0x4C, 0xB4 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+static const CoordinatesS16 sScratchCellPixelRegions[NUM_SCRATCH_CELLS] = {
+    { .x = 42, .y = 27 },
+    { .x = 117, .y = 27 },
+    { .x = 189, .y = 27 },
+    { .x = 42, .y = 74 },
+    { .x = 117, .y = 74 },
+    { .x = 189, .y = 74 },
+    { .x = 42, .y = 120 },
+    { .x = 117, .y = 120 },
+    { .x = 189, .y = 120 }
 };
 
-static const TouchScreenRect Unk_ov111_021D3610[] = {
-    { 0xA4, 0xBF, 0x5E, 0xA4 },
-    { 0xFF, 0x0, 0x0, 0x0 }
-};
-
-static const TouchScreenRect Unk_ov111_021D3794[] = {
-    { 0x15, 0x36, 0x20, 0x59 },
-    { 0x15, 0x36, 0x66, 0x9D },
-    { 0x15, 0x36, 0xAA, 0xE3 },
-    { 0x44, 0x64, 0x20, 0x59 },
-    { 0x44, 0x64, 0x66, 0x9D },
-    { 0x44, 0x64, 0xAA, 0xE3 },
-    { 0x72, 0x94, 0x20, 0x59 },
-    { 0x72, 0x94, 0x66, 0x9D },
-    { 0x72, 0x94, 0xAA, 0xE3 },
-    { 0xFF, 0x0, 0x0, 0x0 }
-};
-
-static const UnkStruct_ov111_021D3728 Unk_ov111_021D3728[] = {
-    { 0x15, 0x36, 0x20, 0x59 },
-    { 0x15, 0x36, 0x66, 0x9D },
-    { 0x15, 0x36, 0xAA, 0xE3 },
-    { 0x44, 0x64, 0x20, 0x59 },
-    { 0x44, 0x64, 0x66, 0x9D },
-    { 0x44, 0x64, 0xAA, 0xE3 },
-    { 0x72, 0x94, 0x20, 0x59 },
-    { 0x72, 0x94, 0x66, 0x9D },
-    { 0x72, 0x94, 0xAA, 0xE3 }
-};
-
-static const UnkStruct_ov111_021D3620 Unk_ov111_021D374C[9] = {
-    { 0x2A, 0x1B },
-    { 0x75, 0x1B },
-    { 0xBD, 0x1B },
-    { 0x2A, 0x4A },
-    { 0x75, 0x4A },
-    { 0xBD, 0x4A },
-    { 0x2A, 0x78 },
-    { 0x75, 0x78 },
-    { 0xBD, 0x78 }
-};
-
-int ov111_021D0D80(ApplicationManager *appMan, int *param1)
+BOOL ScratchOffCardApp_Init(ApplicationManager *appMan, int *state)
 {
-    int v0;
-    UnkStruct_ov111_021D0F7C *v1;
-    UnkStruct_0203E608 *v2;
+    InitGraphicsPlane();
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_SCRATCH_OFF_CARD_APP, 0x48000);
 
-    ov111_021D1D30();
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_115, 0x48000);
+    ScratchOffCardApp *app = ApplicationManager_NewData(appMan, sizeof(ScratchOffCardApp), HEAP_ID_SCRATCH_OFF_CARD_APP);
+    memset(app, 0, sizeof(ScratchOffCardApp));
 
-    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov111_021D0F7C), HEAP_ID_115);
-    memset(v1, 0, sizeof(UnkStruct_ov111_021D0F7C));
+    app->bgConfig = BgConfig_New(HEAP_ID_SCRATCH_OFF_CARD_APP);
+    app->appMan = appMan;
 
-    v1->unk_58 = BgConfig_New(HEAP_ID_115);
-    v1->unk_00 = appMan;
-    v2 = (UnkStruct_0203E608 *)ApplicationManager_Args(appMan);
-    v1->saveData = v2->saveData;
-    v1->unk_09 = v2->unk_04;
-    v1->unk_3D8 = &v2->unk_14;
-    v1->options = SaveData_GetOptions(v1->saveData);
-    v1->unk_3DC = &v2->unk_08[0];
-    v1->unk_3E0 = &v2->unk_0E[0];
+    ScratchOffCardsAppArgs *args = ApplicationManager_Args(appMan);
+    app->saveData = args->saveData;
+    app->dummy = args->dummy;
+    app->dummy4 = &args->dummy2;
+    app->options = SaveData_GetOptions(app->saveData);
+    app->wonItems = &args->wonItems[0];
+    app->wonItemsCount = &args->wonItemsCount[0];
 
-    ov111_021D27BC(v1);
+    ClearScratchCellValues(app);
 
-    for (v0 = 0; v0 < 3; v0++) {
-        v1->unk_3DC[v0] = 0;
-        v1->unk_3E0[v0] = 0;
+    for (int i = 0; i < NUM_CARDS_TO_PLAY; i++) {
+        app->wonItems[i] = 0;
+        app->wonItemsCount[i] = 0;
     }
 
-    v1->unk_409 = 0;
+    app->highlightPairPalette = 0;
 
-    ov111_021D1D68(v1);
-    (*param1) = 0;
+    LoadAssets(app);
+    *state = 0;
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_68, SEQ_NONE, 0);
 
-    return 1;
+    return TRUE;
 }
 
-int ov111_021D0E34(ApplicationManager *appMan, int *param1)
+BOOL ScratchOffCardApp_Main(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_ov111_021D0F7C *v0 = ApplicationManager_Data(appMan);
+    ScratchOffCardApp *app = ApplicationManager_Data(appMan);
 
-    switch (*param1) {
+    switch (*state) {
     case 0:
-        if (ov111_021D0F7C(v0) == 1) {
-            ov111_021D26E4(v0, param1, 1);
+        if (State_FadeInApp(app) == TRUE) {
+            ChangeState(app, state, 1);
         }
         break;
     case 1:
-        if (ov111_021D0FC8(v0) == 1) {
-            ov111_021D26E4(v0, param1, 2);
+        if (State_BringInSelectableCards(app) == TRUE) {
+            ChangeState(app, state, 2);
         }
         break;
     case 2:
-        if (ov111_021D10B8(v0) == 1) {
-            ov111_021D26E4(v0, param1, 3);
+        if (State_SelectCard(app) == TRUE) {
+            ChangeState(app, state, 3);
         }
         break;
     case 3:
-        if (ov111_021D116C(v0) == 1) {
-            if (v0->unk_0E >= 3) {
-                v0->unk_0E = 0;
+        if (State_PullOutSelectedCard(app) == TRUE) {
+            if (app->currentCard >= NUM_CARDS_TO_PLAY) {
+                app->currentCard = 0;
 
-                ov111_021D1BEC(v0);
-                ov111_021D1AF4(v0);
-                ov111_021D1B44(v0);
-                ov111_021D26E4(v0, param1, 4);
+                FreeCardSprites(app);
+                InitMatchingCellBoxSprites(app);
+                InitWinningPopupMonSprites(app);
+                ChangeState(app, state, 4);
             } else {
-                ov111_021D26E4(v0, param1, 1);
+                ChangeState(app, state, 1);
             }
         }
         break;
     case 4:
-        if (ov111_021D1284(v0) == 1) {
-            ov111_021D26E4(v0, param1, 5);
+        if (State_SetupScratchCard(app) == TRUE) {
+            ChangeState(app, state, 5);
         }
         break;
     case 5:
-        if (ov111_021D1508(v0) == 1) {
-            if (v0->unk_0E >= 3) {
-                ov111_021D26E4(v0, param1, 7);
+        if (State_ScratchCard(app) == TRUE) {
+            if (app->currentCard >= NUM_CARDS_TO_PLAY) {
+                ChangeState(app, state, 7);
             } else {
-                ov111_021D26E4(v0, param1, 6);
+                ChangeState(app, state, 6);
             }
         }
         break;
     case 6:
-        if (ov111_021D1980(v0) == 1) {
-            ov111_021D26E4(v0, param1, 4);
+        if (State_SlideAwayScratchCard(app) == TRUE) {
+            ChangeState(app, state, 4);
         }
         break;
     case 7:
-        if (ov111_021D1A88(v0) == 1) {
-            return 1;
+        if (State_FadeOutApp(app) == TRUE) {
+            return TRUE;
         }
         break;
     }
 
-    SpriteList_Update(v0->unk_16C.unk_00);
+    SpriteList_Update(app->spriteMan.spriteList);
 
-    return 0;
+    return FALSE;
 }
 
-int ov111_021D0F40(ApplicationManager *appMan, int *param1)
+BOOL ScratchOffCardApp_Exit(ApplicationManager *appMan, int *state)
 {
-    int v0;
-    UnkStruct_ov111_021D0F7C *v1 = ApplicationManager_Data(appMan);
+    ScratchOffCardApp *app = ApplicationManager_Data(appMan);
 
     DisableTouchPad();
-    *(v1->unk_3D8) = v1->unk_0C;
+    *app->dummy4 = app->dummy2;
     VramTransfer_Free();
 
-    ov111_021D1C0C(v1);
+    FreeAssets(app);
 
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(HEAP_ID_115);
+    Heap_Destroy(HEAP_ID_SCRATCH_OFF_CARD_APP);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov111_021D0F7C(UnkStruct_ov111_021D0F7C *param0)
+static BOOL State_FadeInApp(ScratchOffCardApp *app)
 {
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_115);
-        param0->unk_08++;
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 3, HEAP_ID_SCRATCH_OFF_CARD_APP);
+        app->subState++;
         break;
     case 1:
         if (IsScreenFadeDone() == TRUE) {
-            param0->unk_0E = 0;
-            return 1;
+            app->currentCard = 0;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov111_021D0FC8(UnkStruct_ov111_021D0F7C *param0)
+static BOOL State_BringInSelectableCards(ScratchOffCardApp *app)
 {
-    int v0;
-
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
-        param0->unk_10 = -256;
+        app->xOffset = -HW_LCD_WIDTH;
 
-        for (v0 = 0; v0 < 4; v0++) {
-            ov111_021D3474(param0->unk_390[v0], Unk_ov111_021D362C[v0].unk_00 + param0->unk_10, Unk_ov111_021D362C[v0].unk_02);
-            ov111_021D3468(param0->unk_390[v0], 20 + v0);
+        for (int i = 0; i < NUM_CARDS_TO_PICK; i++) {
+            ScratchOffCardsAppSprite_SetPosition(app->cardSprites[i], sSelectableCardPositions[i].x + app->xOffset, sSelectableCardPositions[i].y);
+            ScratchOffCardsAppSprite_SetPriority(app->cardSprites[i], 20 + i);
         }
 
-        ov111_021D35C0(&param0->unk_5C[15], Options_Frame(param0->options));
-        ov111_021D24D4(param0);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-        param0->unk_12 = (4 - 1);
+        ScratchOffCardsApp_DrawMessageBox(&app->windows[SCRATCH_WINDOW_SELECT_CARD], Options_Frame(app->options));
+        PrintSelectCardMessage(app);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, TRUE);
+        app->xOffset2 = NUM_CARDS_TO_PICK - 1;
         Sound_PlayEffect(SEQ_SE_PL_SYU03_sseq);
-        param0->unk_08 = 1;
+        app->subState = 1;
         break;
     case 1:
-        param0->unk_10 += 32;
-        ov111_021D3474(param0->unk_390[param0->unk_12], Unk_ov111_021D362C[param0->unk_12].unk_00 + param0->unk_10, Unk_ov111_021D362C[param0->unk_12].unk_02);
+        app->xOffset += 32;
+        ScratchOffCardsAppSprite_SetPosition(app->cardSprites[app->xOffset2], sSelectableCardPositions[app->xOffset2].x + app->xOffset, sSelectableCardPositions[app->xOffset2].y);
 
-        if (param0->unk_10 >= 0) {
-            if (param0->unk_12 == 0) {
-                param0->unk_08 = 2;
+        if (app->xOffset >= 0) {
+            if (app->xOffset2 == 0) {
+                app->subState = 2;
             } else {
                 Sound_PlayEffect(SEQ_SE_PL_SYU03_sseq);
-                param0->unk_12--;
-                param0->unk_10 = -256;
+                app->xOffset2--;
+                app->xOffset = -HW_LCD_WIDTH;
             }
         }
         break;
     case 2:
-        param0->unk_10 = 0;
-        return 1;
+        app->xOffset = 0;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov111_021D10B8(UnkStruct_ov111_021D0F7C *param0)
+static BOOL State_SelectCard(ScratchOffCardApp *app)
 {
-    u32 v0, v1;
-    int v2, v3;
-
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        param0->unk_0F = 30;
-        param0->unk_08 = 1;
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, TRUE);
+        app->subStateTimer = 30;
+        app->subState = 1;
         break;
     case 1:
-        if (param0->unk_0F == 0) {
-            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-            ov111_021D345C(param0->unk_3A4, 0);
+        if (app->subStateTimer == 0) {
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
+            ScratchOffCardsAppSprite_SetDrawFlag(app->centerMessageBoxSprite, FALSE);
         } else {
-            param0->unk_0F--;
+            app->subStateTimer--;
         }
 
-        v3 = TouchScreen_CheckRectangleHeld((const TouchScreenRect *)Unk_ov111_021D364C);
+        int selectedCard = TouchScreen_CheckRectangleHeld(sSelectableCardHitBoxes);
 
-        if (v3 != 0xffffffff) {
-            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-            ov111_021D345C(param0->unk_3A4, 0);
+        if (selectedCard != TOUCHSCREEN_INPUT_NONE) {
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
+            ScratchOffCardsAppSprite_SetDrawFlag(app->centerMessageBoxSprite, FALSE);
             Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
 
-            param0->unk_15[param0->unk_0E] = v3;
-            param0->unk_0E++;
+            app->selectedCardIdxs[app->currentCard] = selectedCard;
+            app->currentCard++;
 
-            TouchScreen_GetHoldState(&v0, &v1);
-            Window_EraseMessageBox(&param0->unk_5C[15], 0);
-            GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-            param0->unk_08 = 2;
+            u32 x, y;
+            TouchScreen_GetHoldState(&x, &y);
+            Window_EraseMessageBox(&app->windows[SCRATCH_WINDOW_SELECT_CARD], FALSE);
+            GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, FALSE);
+            app->subState = 2;
         }
         break;
     case 2:
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov111_021D116C(UnkStruct_ov111_021D0F7C *param0)
+static BOOL State_PullOutSelectedCard(ScratchOffCardApp *app)
 {
-    int v0, v1, v2, v3;
+    int selectedIdx = app->selectedCardIdxs[app->currentCard - 1];
 
-    v1 = param0->unk_15[param0->unk_0E - 1];
-
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
-        param0->unk_1C.x = 0x1000;
-        param0->unk_1C.y = 0x1000;
-        param0->unk_1C.z = 0x1000;
-        param0->unk_10 = 0;
-        param0->unk_40C_1 = 0;
-        ov111_021D3468(param0->unk_390[v1], 0);
-        param0->unk_08 = 1;
+        app->cardScaleFactor.x = 0x1000;
+        app->cardScaleFactor.y = 0x1000;
+        app->cardScaleFactor.z = 0x1000;
+        app->xOffset = 0;
+        app->centeringStep = 0;
+        ScratchOffCardsAppSprite_SetPriority(app->cardSprites[selectedIdx], 0);
+        app->subState = 1;
         break;
     case 1:
-        if (ov111_021D2868(param0, v1) == 1) {
-            (void)0;
+        CenterSelectedCardOnScreen(app, selectedIdx);
+
+        app->cardScaleFactor.x += 0x100;
+        app->cardScaleFactor.y += 0x100;
+        app->cardScaleFactor.z += 0x100;
+        app->xOffset++;
+
+        if (app->xOffset % 1 == 0) {
+            ScratchOffCardsSprite_SetAffineScaleDouble(app->cardSprites[selectedIdx], &app->cardScaleFactor);
         }
 
-        param0->unk_1C.x += 0x100;
-        param0->unk_1C.y += 0x100;
-        param0->unk_1C.z += 0x100;
-        param0->unk_10++;
-
-        if ((param0->unk_10 % 1) == 0) {
-            ov111_021D34F4(param0->unk_390[v1], &param0->unk_1C);
-        }
-
-        if (param0->unk_1C.x == 0x1800) {
-            param0->unk_10 = 0;
-            param0->unk_1C.x = 0x1000;
-            param0->unk_1C.y = 0x1000;
-            param0->unk_1C.z = 0x1000;
+        if (app->cardScaleFactor.x == 0x1800) {
+            app->xOffset = 0;
+            app->cardScaleFactor.x = 0x1000;
+            app->cardScaleFactor.y = 0x1000;
+            app->cardScaleFactor.z = 0x1000;
             Sound_PlayEffect(SEQ_SE_PL_SYU03_sseq);
-            param0->unk_08 = 2;
+            app->subState = 2;
         }
         break;
     case 2:
-        param0->unk_10 += 16;
+        app->xOffset += 16;
 
-        for (v0 = 0; v0 < 4; v0++) {
-            ov111_021D349C(param0->unk_390[v0], &v2, &v3);
-            ov111_021D3474(param0->unk_390[v0], v2 + 16, v3);
+        int x, y;
+        for (int i = 0; i < NUM_CARDS_TO_PICK; i++) {
+            ScratchOffCardsAppSprite_GetPosition(app->cardSprites[i], &x, &y);
+            ScratchOffCardsAppSprite_SetPosition(app->cardSprites[i], x + 16, y);
         }
 
-        if (param0->unk_10 >= 256) {
-            ov111_021D34E0(param0->unk_390[v1], 0);
-            param0->unk_08 = 3;
+        if (app->xOffset >= HW_LCD_WIDTH) {
+            ScratchOffCardsSprite_SetAffineScaleNormal(app->cardSprites[selectedIdx], 0);
+            app->subState = 3;
         }
         break;
     case 3:
-        param0->unk_10 = 0;
-        return 1;
+        app->xOffset = 0;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov111_021D1284(UnkStruct_ov111_021D0F7C *param0)
+static BOOL State_SetupScratchCard(ScratchOffCardApp *app)
 {
-    int v0, v1;
-
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
-        ov111_021D2EB4(param0);
+        MakeCopyOfScratchCellsData(app);
 
-        Bg_LoadTiles(param0->unk_58, 0, param0->unk_3F8, param0->unk_3F4->szByte, 0);
-        Bg_CopyTilemapBufferToVRAM(param0->unk_58, 0);
+        Bg_LoadTiles(app->bgConfig, BG_LAYER_MAIN_0, app->scratchCellsDataBackup, app->scratchCellsCharData->szByte, 0);
+        Bg_CopyTilemapBufferToVRAM(app->bgConfig, BG_LAYER_MAIN_0);
 
-        param0->unk_12 = 256;
+        app->xOffset2 = HW_LCD_WIDTH;
 
-        Bg_SetOffset(param0->unk_58, BG_LAYER_SUB_2, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_0, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_1, 0, param0->unk_12);
+        Bg_SetOffset(app->bgConfig, BG_LAYER_SUB_2, BG_OFFSET_UPDATE_SET_X, app->xOffset2);
+        Bg_SetOffset(app->bgConfig, BG_LAYER_MAIN_0, BG_OFFSET_UPDATE_SET_X, app->xOffset2);
+        Bg_SetOffset(app->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, app->xOffset2);
 
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, TRUE);
 
-        param0->unk_10 = -256;
-        param0->unk_19[param0->unk_0E] = 0;
+        app->xOffset = -HW_LCD_WIDTH;
+        app->dummy3[app->currentCard] = 0;
 
-        for (v0 = 0; v0 < (240 * 160); v0++) {
-            param0->unk_466[v0] = 0;
+        for (int i = 0; i < SCRATCH_REGION_WIDTH * SCRATCH_REGION_HEIGHT; i++) {
+            app->scratchedPixels[i] = 0;
         }
 
-        param0->unk_40D = 0;
+        app->numRevealedCells = 0;
 
-        ov111_021D27BC(param0);
-        ov111_021D27AC(param0, param0->unk_19[param0->unk_0E]);
-        ov111_021D27D4(param0, param0->unk_19[param0->unk_0E]);
-        ov111_021D2940(param0);
-        ov111_021D295C(param0);
+        ClearScratchCellValues(app);
+        PlaceValuesInScratchCells(app, app->dummy3[app->currentCard]);
+        SelectItemsWinnableOnCard(app, app->dummy3[app->currentCard]);
+        MarkAllCellsAsUnscratched(app);
+        MarkAllCellsAsUnrevealed(app);
 
-        param0->unk_08 = 1;
+        app->subState = 1;
         break;
     case 1:
-
-        for (v0 = 0; v0 < 4; v0++) {
-            ov111_021D3474(param0->unk_35C[v0], 60 + param0->unk_10, 26 + (v0 * 42));
-            ov111_021D345C(param0->unk_35C[v0], 1);
+        for (int i = 0; i < NUM_CARDS_TO_PICK; i++) {
+            ScratchOffCardsAppSprite_SetPosition(app->topScreenMonSprites[i], 60 + app->xOffset, 26 + (i * 42));
+            ScratchOffCardsAppSprite_SetDrawFlag(app->topScreenMonSprites[i], TRUE);
         }
 
-        for (v0 = 0; v0 < 3; v0++) {
-            ov111_021D3500(param0->unk_3A8[v0], 1);
+        for (int i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+            ScratchOffCardsAppSprite_UpdatePalette(app->matchingCellBoxSprites[i], 1);
         }
 
-        param0->unk_409 = 0;
-        param0->unk_40C_0 = 0;
-        param0->unk_40E[0] = 177;
-        param0->unk_40E[1] = 178;
-        param0->unk_40E[2] = 179;
+        app->highlightPairPalette = 0;
+        app->pairFound = FALSE;
+        app->scratchedOffCellIdxs[0] = 177;
+        app->scratchedOffCellIdxs[1] = 178;
+        app->scratchedOffCellIdxs[2] = 179;
 
-        for (v0 = 0; v0 < 9; v0++) {
-            ov111_021D3474(param0->unk_36C[v0], Unk_ov111_021D3770[v0].unk_00 + param0->unk_10, Unk_ov111_021D3770[v0].unk_02);
-            ov111_021D345C(param0->unk_36C[v0], 1);
-            ov111_021D34C4(param0->unk_36C[v0], param0->unk_3C4[v0]);
+        for (int i = 0; i < NUM_SCRATCH_CELLS; i++) {
+            ScratchOffCardsAppSprite_SetPosition(app->scratchMonSprites[i], sScratchMonPositions[i].x + app->xOffset, sScratchMonPositions[i].y);
+            ScratchOffCardsAppSprite_SetDrawFlag(app->scratchMonSprites[i], TRUE);
+            ScratchOffCardsAppSprite_SetAnim(app->scratchMonSprites[i], app->scratchCellValues[i]);
         }
 
-        ov111_021D28E8(param0, 1, param0->unk_15[param0->unk_0E] + 4, 32, 24);
-        ov111_021D28E8(param0, 6, param0->unk_15[param0->unk_0E] + 1, 32, 24);
+        UpdateBackgroundPalette(app, BG_LAYER_MAIN_1, app->selectedCardIdxs[app->currentCard] + 4, 32, 24);
+        UpdateBackgroundPalette(app, BG_LAYER_SUB_2, app->selectedCardIdxs[app->currentCard] + 1, 32, 24);
         Sound_PlayEffect(SEQ_SE_PL_SYU03_sseq);
-        param0->unk_08 = 2;
+        app->subState = 2;
         break;
     case 2:
-        Bg_SetOffset(param0->unk_58, BG_LAYER_SUB_2, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_0, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_1, 0, param0->unk_12);
+        Bg_SetOffset(app->bgConfig, BG_LAYER_SUB_2, BG_OFFSET_UPDATE_SET_X, app->xOffset2);
+        Bg_SetOffset(app->bgConfig, BG_LAYER_MAIN_0, BG_OFFSET_UPDATE_SET_X, app->xOffset2);
+        Bg_SetOffset(app->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, app->xOffset2);
 
-        param0->unk_12 += -16;
+        app->xOffset2 += -16;
 
-        if (param0->unk_10 >= 0) {
-            param0->unk_08 = 3;
+        if (app->xOffset >= 0) {
+            app->subState = 3;
         } else {
-            for (v0 = 0; v0 < 4; v0++) {
-                ov111_021D3474(param0->unk_35C[v0], 60 + param0->unk_10, 26 + (v0 * 42));
+            for (int i = 0; i < NUM_WINNABLE_ITEMS; i++) {
+                ScratchOffCardsAppSprite_SetPosition(app->topScreenMonSprites[i], 60 + app->xOffset, 26 + (i * 42));
             }
 
-            for (v0 = 0; v0 < 9; v0++) {
-                ov111_021D3474(param0->unk_36C[v0], Unk_ov111_021D3770[v0].unk_00 + param0->unk_10, Unk_ov111_021D3770[v0].unk_02);
+            for (int i = 0; i < NUM_SCRATCH_CELLS; i++) {
+                ScratchOffCardsAppSprite_SetPosition(app->scratchMonSprites[i], sScratchMonPositions[i].x + app->xOffset, sScratchMonPositions[i].y);
             }
         }
 
-        param0->unk_10 += 16;
+        app->xOffset += 16;
         break;
     case 3:
-        param0->unk_10 = 0;
-        param0->unk_12 = 0;
-        return 1;
+        app->xOffset = 0;
+        app->xOffset2 = 0;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
+static BOOL State_ScratchCard(ScratchOffCardApp *app)
 {
-    int v0, v1;
-    u32 v2, v3;
-
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
-        if (param0->unk_0E == (3 - 1)) {
-            Window_ClearAndCopyToVRAM(&param0->unk_5C[13]);
-            ov111_021D263C(param0);
-            ov111_021D3474(param0->unk_3A0, Unk_ov111_021D3600.unk_00, Unk_ov111_021D3600.unk_02);
-            ov111_021D34C4(param0->unk_3A0, 0);
+        if (app->currentCard == NUM_CARDS_TO_PLAY - 1) {
+            Window_ClearAndCopyToVRAM(&app->windows[SCRATCH_WINDOW_NEXT_CARD]);
+            PrintCancelButton(app);
+            ScratchOffCardsAppSprite_SetPosition(app->skipCardButtonSprite, sCancelButtonPosition.x, sCancelButtonPosition.y);
+            ScratchOffCardsAppSprite_SetAnim(app->skipCardButtonSprite, ANIM_ID_CANCEL_BUTTON);
         } else {
-            Window_ClearAndCopyToVRAM(&param0->unk_5C[14]);
-            ov111_021D2604(param0);
+            Window_ClearAndCopyToVRAM(&app->windows[SCRATCH_WINDOW_CANCEL]);
+            PrintNextCardButton(app);
         }
 
-        param0->unk_0F = 30;
+        app->subStateTimer = 30;
 
-        ov111_021D345C(param0->unk_3A4, 1);
-        ov111_021D2518(param0);
+        ScratchOffCardsAppSprite_SetDrawFlag(app->centerMessageBoxSprite, TRUE);
+        PrintStartCardMessage(app);
 
-        for (v0 = 0; v0 < 4; v0++) {
-            ov111_021D2674(param0, v0);
+        for (int i = 0; i < NUM_WINNABLE_ITEMS; i++) {
+            PrintItemNameOnTopScreen(app, i);
         }
 
-        ov111_021D345C(param0->unk_3A0, 1);
-        ov111_021D350C(param0->unk_3A0, 0);
+        ScratchOffCardsAppSprite_SetDrawFlag(app->skipCardButtonSprite, TRUE);
+        ScratchOffCardsAppSprite_SetAnimateFlag(app->skipCardButtonSprite, FALSE);
         Sound_PlayEffect(SEQ_SE_PL_UG_020_sseq);
-        param0->unk_08 = 1;
+        app->subState = 1;
         break;
     case 1:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-        param0->unk_08 = 2;
+        app->subState = 2;
         break;
     case 2:
-        if (param0->unk_0F == 0) {
-            ov111_021D345C(param0->unk_3A4, 0);
-            Window_FillTilemap(&param0->unk_5C[10], 0);
-            Window_ScheduleCopyToVRAM(&param0->unk_5C[10]);
-            param0->unk_08 = 3;
+        if (app->subStateTimer == 0) {
+            ScratchOffCardsAppSprite_SetDrawFlag(app->centerMessageBoxSprite, FALSE);
+            Window_FillTilemap(&app->windows[SCRATCH_WINDOW_START_CARD], 0);
+            Window_ScheduleCopyToVRAM(&app->windows[SCRATCH_WINDOW_START_CARD]);
+            app->subState = 3;
         } else {
-            param0->unk_0F--;
+            app->subStateTimer--;
         }
         break;
     case 3:
-        WriteAutoSamplingDataToBuffer(&param0->unk_424, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITHOUT_WRAPPING, 2);
-        v1 = TouchScreen_CheckRectangleHeld((const TouchScreenRect *)Unk_ov111_021D3794);
+        WriteAutoSamplingDataToBuffer(&app->tpBuffer, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITHOUT_WRAPPING, 2);
+        int touchedCell = TouchScreen_CheckRectangleHeld(sScratchCellHitboxes);
 
-        if (v1 != 0xffffffff) {
-            if (ov111_021D2918(param0) < 3) {
-                param0->unk_400[v1] = 1;
+        if (touchedCell != TOUCHSCREEN_INPUT_NONE) {
+            if (GetNumCellsScratched(app) < NUM_CELLS_TO_SCRATCH) {
+                app->cellIsScratched[touchedCell] = TRUE;
             }
 
-            if (param0->unk_400[v1] == 1) {
-                ov111_021D29D8(param0);
-                ov111_021D2A68(param0, v1);
-                ov111_021D297C(param0, v1);
+            if (app->cellIsScratched[touchedCell] == TRUE) {
+                MarkScratchedOffPixels(app);
+                CheckIfCellIsRevealed(app, touchedCell);
+                RemoveScratchedOffPixelsOnCell(app, touchedCell);
 
-                if (Sound_IsEffectPlaying(1358) == 0) {
+                if (!Sound_IsEffectPlaying(SEQ_SE_PL_KEZURI_sseq)) {
                     Sound_PlayEffect(SEQ_SE_PL_KEZURI_sseq);
                 }
             }
 
-            if (ov111_021D2BBC(param0) == 1) {
-                Sound_StopEffect(1358, 0);
-                ov111_021D345C(param0->unk_3A4, 1);
+            if (CheckIfThreeOfAKindFound(app) == TRUE) {
+                Sound_StopEffect(SEQ_SE_PL_KEZURI_sseq, 0);
+                ScratchOffCardsAppSprite_SetDrawFlag(app->centerMessageBoxSprite, TRUE);
 
-                param0->unk_3DC[param0->unk_0E] = param0->unk_3CE[param0->unk_40B];
+                app->wonItems[app->currentCard] = app->winnableItems[app->winningCellValue];
 
-                if (param0->unk_3CE[param0->unk_40B] == 92) {
-                    param0->unk_3E0[param0->unk_0E] = 1;
+                if (app->winnableItems[app->winningCellValue] == ITEM_NUGGET) {
+                    app->wonItemsCount[app->currentCard] = 1;
                 } else {
-                    param0->unk_3E0[param0->unk_0E] = 3;
+                    app->wonItemsCount[app->currentCard] = 3;
                 }
 
-                if (ov111_021D2D14(param0) == 1) {
-                    param0->unk_0F = 30;
+                if (CheckIfDittoTransformNeeded(app) == TRUE) {
+                    app->subStateTimer = 30;
                 } else {
-                    param0->unk_0F = 0;
+                    app->subStateTimer = 0;
                 }
 
-                ov111_021D255C(param0);
-                param0->unk_08 = 4;
-                return 0;
+                ShowWinPopup(app);
+                app->subState = 4;
+                return FALSE;
             }
 
-            if (param0->unk_40D >= 3) {
-                Sound_StopEffect(1358, 0);
-                param0->unk_0F = 60;
-                ov111_021D345C(param0->unk_3A4, 1);
-                ov111_021D25BC(param0);
-                param0->unk_08 = 7;
-                return 0;
+            if (app->numRevealedCells >= NUM_CELLS_TO_SCRATCH) {
+                Sound_StopEffect(SEQ_SE_PL_KEZURI_sseq, 0);
+                app->subStateTimer = 60;
+                ScratchOffCardsAppSprite_SetDrawFlag(app->centerMessageBoxSprite, TRUE);
+                PrintTooBadMessage(app);
+                app->subState = 7;
+                return FALSE;
             }
         } else {
-            Sound_StopEffect(1358, 0);
+            Sound_StopEffect(SEQ_SE_PL_KEZURI_sseq, 0);
         }
 
-        if (param0->unk_40C_0 == 1) {
-            ov111_021D2B20(param0);
+        if (app->pairFound == TRUE) {
+            HighlightMatchingPair(app);
         }
 
-        if (param0->unk_0E == (3 - 1)) {
-            v1 = TouchScreen_CheckRectanglePressed((const TouchScreenRect *)Unk_ov111_021D3610);
+        if (app->currentCard == NUM_CARDS_TO_PLAY - 1) {
+            touchedCell = TouchScreen_CheckRectanglePressed(sCancelButtonHitbox);
 
-            if (v1 != 0xffffffff) {
-                ov111_021D350C(param0->unk_3A0, 1);
-                ov111_021D2494(param0);
+            if (touchedCell != TOUCHSCREEN_INPUT_NONE) {
+                ScratchOffCardsAppSprite_SetAnimateFlag(app->skipCardButtonSprite, TRUE);
+                PrintStopScratchingMessage(app);
 
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
 
-                ov111_021D34C4(param0->unk_3A0, 0);
-                ov111_021D1F70(param0);
-                ov111_021D1F84(param0);
-                param0->unk_08 = 10;
+                ScratchOffCardsAppSprite_SetAnim(app->skipCardButtonSprite, ANIM_ID_CANCEL_BUTTON);
+                NewYesNoMenu(app);
+                InitYesNoMenu(app);
+                app->subState = 10;
                 break;
             }
         } else {
-            v1 = TouchScreen_CheckRectanglePressed((const TouchScreenRect *)Unk_ov111_021D3618);
+            touchedCell = TouchScreen_CheckRectanglePressed(sNextCardButtonHitbox);
 
-            if (v1 != 0xffffffff) {
-                ov111_021D350C(param0->unk_3A0, 1);
-                ov111_021D2494(param0);
+            if (touchedCell != TOUCHSCREEN_INPUT_NONE) {
+                ScratchOffCardsAppSprite_SetAnimateFlag(app->skipCardButtonSprite, TRUE);
+                PrintStopScratchingMessage(app);
 
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
 
-                ov111_021D34C4(param0->unk_3A0, 1);
-                ov111_021D1F70(param0);
-                ov111_021D1F84(param0);
-                param0->unk_08 = 9;
+                ScratchOffCardsAppSprite_SetAnim(app->skipCardButtonSprite, ANIM_ID_NEXT_CARD);
+                NewYesNoMenu(app);
+                InitYesNoMenu(app);
+                app->subState = 9;
                 break;
             }
         }
         break;
     case 4:
-        if (param0->unk_0F == 0) {
-            if (ov111_021D2D60(param0, 0) == 0) {
-                param0->unk_08 = 5;
+        if (app->subStateTimer == 0) {
+            if (!UpdateTransformingDitto(app, FALSE)) {
+                app->subState = 5;
             }
         } else {
-            param0->unk_0F--;
+            app->subStateTimer--;
         }
         break;
     case 5:
-        if (ov111_021D2D60(param0, 1) == 0) {
-            param0->unk_0F = 0;
-            param0->unk_08 = 6;
+        if (!UpdateTransformingDitto(app, TRUE)) {
+            app->subStateTimer = 0;
+            app->subState = 6;
         }
         break;
     case 6:
-        if (ov111_021D353C(param0->unk_3C0) == 1) {
+        if (ScratchOffCardsAppSprite_IsAnimated(app->winPopupSprite) == TRUE) {
             break;
         }
 
-        if (param0->unk_0F == 0) {
-            for (v0 = 0; v0 < 3; v0++) {
-                ov111_021D345C(param0->unk_3B4[v0], 0);
+        if (app->subStateTimer == 0) {
+            for (int i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+                ScratchOffCardsAppSprite_SetDrawFlag(app->winMonSprites[i], FALSE);
             }
 
-            ov111_021D345C(param0->unk_3C0, 0);
-            ov111_021D2E20(param0);
-            ov111_021D2E28(param0);
-            return 1;
+            ScratchOffCardsAppSprite_SetDrawFlag(app->winPopupSprite, FALSE);
+            IncrementCurrentCard2(app);
+            HideCenterMessageBox(app);
+            return TRUE;
         } else {
-            param0->unk_0F--;
+            app->subStateTimer--;
         }
         break;
     case 7:
-        if (param0->unk_0F == 0) {
+        if (app->subStateTimer == 0) {
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-            ov111_021D2E20(param0);
-            ov111_021D2E28(param0);
-            param0->unk_0F = 30;
-            param0->unk_08 = 8;
+            IncrementCurrentCard2(app);
+            HideCenterMessageBox(app);
+            app->subStateTimer = 30;
+            app->subState = 8;
         } else {
-            param0->unk_0F--;
+            app->subStateTimer--;
         }
         break;
     case 8:
-        if (param0->unk_0F == 0) {
-            return 1;
+        if (app->subStateTimer == 0) {
+            return TRUE;
         } else {
-            param0->unk_0F--;
+            app->subStateTimer--;
         }
         break;
-    case 9:
-        v2 = YesNoTouchMenu_ProcessInputInstant(param0->unk_3FC);
+    case 9: {
+        u32 input = YesNoTouchMenu_ProcessInputInstant(app->yesNoMenu);
 
-        if (v2 == YES_NO_TOUCH_MENU_YES) {
-            ov111_021D350C(param0->unk_3A0, 0);
-            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
-            Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
-            ov111_021D2E20(param0);
-            ov111_021D1FB4(param0);
-            return 1;
-        } else if (v2 == YES_NO_TOUCH_MENU_NO) {
-            ov111_021D350C(param0->unk_3A0, 0);
-            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
-            Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
-            ov111_021D1FB4(param0);
-            param0->unk_08 = 11;
+        if (input == YES_NO_TOUCH_MENU_YES) {
+            ScratchOffCardsAppSprite_SetAnimateFlag(app->skipCardButtonSprite, FALSE);
+            Window_EraseStandardFrame(&app->windows[SCRATCH_WINDOW_STOP_SCRATCH], FALSE);
+            Window_ClearAndCopyToVRAM(&app->windows[SCRATCH_WINDOW_STOP_SCRATCH]);
+            IncrementCurrentCard2(app);
+            FreeYesNoMenu(app);
+            return TRUE;
+        } else if (input == YES_NO_TOUCH_MENU_NO) {
+            ScratchOffCardsAppSprite_SetAnimateFlag(app->skipCardButtonSprite, FALSE);
+            Window_EraseStandardFrame(&app->windows[SCRATCH_WINDOW_STOP_SCRATCH], FALSE);
+            Window_ClearAndCopyToVRAM(&app->windows[SCRATCH_WINDOW_STOP_SCRATCH]);
+            FreeYesNoMenu(app);
+            app->subState = 11;
         }
-        break;
-    case 10:
-        v2 = YesNoTouchMenu_ProcessInputInstant(param0->unk_3FC);
+    } break;
+    case 10: {
+        u32 input = YesNoTouchMenu_ProcessInputInstant(app->yesNoMenu);
 
-        if (v2 == YES_NO_TOUCH_MENU_YES) {
-            ov111_021D350C(param0->unk_3A0, 0);
-            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
-            Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
-            ov111_021D2E18(param0);
-            ov111_021D1FB4(param0);
-            return 1;
-        } else if (v2 == YES_NO_TOUCH_MENU_NO) {
-            ov111_021D350C(param0->unk_3A0, 0);
-            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
-            Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
-            ov111_021D1FB4(param0);
-            param0->unk_08 = 11;
+        if (input == YES_NO_TOUCH_MENU_YES) {
+            ScratchOffCardsAppSprite_SetAnimateFlag(app->skipCardButtonSprite, FALSE);
+            Window_EraseStandardFrame(&app->windows[SCRATCH_WINDOW_STOP_SCRATCH], FALSE);
+            Window_ClearAndCopyToVRAM(&app->windows[SCRATCH_WINDOW_STOP_SCRATCH]);
+            IncrementCurrentCard(app);
+            FreeYesNoMenu(app);
+            return TRUE;
+        } else if (input == YES_NO_TOUCH_MENU_NO) {
+            ScratchOffCardsAppSprite_SetAnimateFlag(app->skipCardButtonSprite, FALSE);
+            Window_EraseStandardFrame(&app->windows[SCRATCH_WINDOW_STOP_SCRATCH], FALSE);
+            Window_ClearAndCopyToVRAM(&app->windows[SCRATCH_WINDOW_STOP_SCRATCH]);
+            FreeYesNoMenu(app);
+            app->subState = 11;
         }
-        break;
+    } break;
     case 11:
-        if (TouchScreen_Touched() == 0) {
-            param0->unk_08 = 3;
+        if (!TouchScreen_Touched()) {
+            app->subState = 3;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov111_021D1980(UnkStruct_ov111_021D0F7C *param0)
+static BOOL State_SlideAwayScratchCard(ScratchOffCardApp *app)
 {
-    int v0, v1;
-
-    v1 = param0->unk_15[param0->unk_0E - 1];
-
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-        ov111_021D345C(param0->unk_3A0, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, FALSE);
+        ScratchOffCardsAppSprite_SetDrawFlag(app->skipCardButtonSprite, FALSE);
 
-        param0->unk_10 = 0;
-        param0->unk_12 = 0;
+        app->xOffset = 0;
+        app->xOffset2 = 0;
 
         Sound_PlayEffect(SEQ_SE_PL_SYU03_sseq);
 
-        param0->unk_08 = 1;
+        app->subState = 1;
         break;
-
     case 1:
-        Bg_SetOffset(param0->unk_58, BG_LAYER_SUB_2, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_0, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_1, 0, param0->unk_12);
-        param0->unk_12 += -16;
+        Bg_SetOffset(app->bgConfig, BG_LAYER_SUB_2, BG_OFFSET_UPDATE_SET_X, app->xOffset2);
+        Bg_SetOffset(app->bgConfig, BG_LAYER_MAIN_0, BG_OFFSET_UPDATE_SET_X, app->xOffset2);
+        Bg_SetOffset(app->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, app->xOffset2);
+        app->xOffset2 += -16;
 
-        if (param0->unk_10 >= 256) {
-            param0->unk_08 = 2;
+        if (app->xOffset >= HW_LCD_WIDTH) {
+            app->subState = 2;
         } else {
-            for (v0 = 0; v0 < 4; v0++) {
-                ov111_021D3474(param0->unk_35C[v0], 60 + param0->unk_10, 26 + (v0 * 42));
+            for (int i = 0; i < NUM_WINNABLE_ITEMS; i++) {
+                ScratchOffCardsAppSprite_SetPosition(app->topScreenMonSprites[i], 60 + app->xOffset, 26 + (i * 42));
             }
 
-            for (v0 = 0; v0 < 3; v0++) {
-                ov111_021D345C(param0->unk_3A8[v0], 0);
+            for (int i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+                ScratchOffCardsAppSprite_SetDrawFlag(app->matchingCellBoxSprites[i], FALSE);
             }
 
-            for (v0 = 0; v0 < 9; v0++) {
-                ov111_021D3474(param0->unk_36C[v0], Unk_ov111_021D3770[v0].unk_00 + param0->unk_10, Unk_ov111_021D3770[v0].unk_02);
+            for (int i = 0; i < NUM_SCRATCH_CELLS; i++) {
+                ScratchOffCardsAppSprite_SetPosition(app->scratchMonSprites[i], sScratchMonPositions[i].x + app->xOffset, sScratchMonPositions[i].y);
             }
         }
 
-        param0->unk_10 += 16;
+        app->xOffset += 16;
         break;
-
     case 2:
-        param0->unk_10 = 0;
-        param0->unk_12 = 0;
-        return 1;
+        app->xOffset = 0;
+        app->xOffset2 = 0;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov111_021D1A88(UnkStruct_ov111_021D0F7C *param0)
+static BOOL State_FadeOutApp(ScratchOffCardApp *app)
 {
-    int v0;
-
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
-        param0->unk_0D = 10;
-        param0->unk_08++;
+        app->fadeOutDelay = 10;
+        app->subState++;
         break;
     case 1:
-        param0->unk_0D--;
+        app->fadeOutDelay--;
 
-        if (param0->unk_0D == 0) {
-            Window_EraseMessageBox(&param0->unk_5C[0], 0);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_115);
-            param0->unk_08++;
+        if (app->fadeOutDelay == 0) {
+            Window_EraseMessageBox(&app->windows[SCRATCH_WINDOW_STOP_SCRATCH], 0);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_SCRATCH_OFF_CARD_APP);
+            app->subState++;
         }
         break;
     case 2:
         if (IsScreenFadeDone() == TRUE) {
-            return 1;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov111_021D1AF4(UnkStruct_ov111_021D0F7C *param0)
+static void InitMatchingCellBoxSprites(ScratchOffCardApp *app)
 {
-    int v0;
+    for (int i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+        app->matchingCellBoxSprites[i] = ScratchOffCardsAppSprite_New(&app->spriteMan, RESOURCE_ID_BOX_SPRITES, ANIM_ID_MATCHING_CELL_BOX, sScratchMonPositions[i].x, sScratchMonPositions[i].y, FALSE, 2, 11);
 
-    for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_3A8[v0] = ov111_021D33F4(&param0->unk_16C, 3, 2, Unk_ov111_021D3770[v0].unk_00, Unk_ov111_021D3770[v0].unk_02, 0, 2, 10 + 1);
-
-        ov111_021D345C(param0->unk_3A8[v0], 0);
+        ScratchOffCardsAppSprite_SetDrawFlag(app->matchingCellBoxSprites[i], FALSE);
     }
-
-    return;
 }
 
-static void ov111_021D1B44(UnkStruct_ov111_021D0F7C *param0)
+static void InitWinningPopupMonSprites(ScratchOffCardApp *app)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_3B4[v0] = ov111_021D33F4(&param0->unk_16C, 1, 0, Unk_ov111_021D3620[v0].unk_00, Unk_ov111_021D3620[v0].unk_02, 0, 0, 0);
-        ov111_021D345C(param0->unk_3B4[v0], 0);
+    for (int i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+        app->winMonSprites[i] = ScratchOffCardsAppSprite_New(&app->spriteMan, RESOURCE_ID_MON_SPRITES_MAIN, 0, sWinningPopupMonSpritePositions[i].x, sWinningPopupMonSpritePositions[i].y, FALSE, 0, 0);
+        ScratchOffCardsAppSprite_SetDrawFlag(app->winMonSprites[i], FALSE);
     }
-
-    return;
 }
 
-static void ov111_021D1B90(UnkStruct_ov111_021D0F7C *param0)
+static void InitBottomScreenBoxSprites(ScratchOffCardApp *app)
 {
-    param0->unk_3A0 = ov111_021D33F4(&param0->unk_16C, 3, 1, Unk_ov111_021D3604.unk_00, Unk_ov111_021D3604.unk_02, 0, 1, 0);
-    ov111_021D345C(param0->unk_3A0, 0);
+    app->skipCardButtonSprite = ScratchOffCardsAppSprite_New(&app->spriteMan, RESOURCE_ID_BOX_SPRITES, ANIM_ID_NEXT_CARD, sNextCardButtonPosition.x, sNextCardButtonPosition.y, FALSE, 1, 0);
+    ScratchOffCardsAppSprite_SetDrawFlag(app->skipCardButtonSprite, FALSE);
 
-    param0->unk_3A4 = ov111_021D33F4(&param0->unk_16C, 3, 3, Unk_ov111_021D360C.unk_00, Unk_ov111_021D360C.unk_02, 0, 1, 0);
-    ov111_021D345C(param0->unk_3A4, 0);
-
-    return;
+    app->centerMessageBoxSprite = ScratchOffCardsAppSprite_New(&app->spriteMan, RESOURCE_ID_BOX_SPRITES, ANIM_ID_CENTER_MESSAGE, sCenterMessageBoxPosition.x, sCenterMessageBoxPosition.y, FALSE, 1, 0);
+    ScratchOffCardsAppSprite_SetDrawFlag(app->centerMessageBoxSprite, FALSE);
 }
 
-static void ov111_021D1BEC(UnkStruct_ov111_021D0F7C *param0)
+static void FreeCardSprites(ScratchOffCardApp *app)
 {
-    int v0;
+    for (int i = 0; i < NUM_CARDS_TO_PICK; i++) {
+        if (app->cardSprites[i] != NULL) {
+            ScratchOffCardsAppSprite_Free(app->cardSprites[i]);
+        }
+    }
+}
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_390[v0] != NULL) {
-            ov111_021D3448(param0->unk_390[v0]);
+static void FreeAssets(ScratchOffCardApp *app)
+{
+    int i;
+
+    for (i = 0; i < NUM_WINNABLE_ITEMS; i++) {
+        if (app->topScreenMonSprites[i] != NULL) {
+            ScratchOffCardsAppSprite_Free(app->topScreenMonSprites[i]);
         }
     }
 
-    return;
-}
-
-static void ov111_021D1C0C(UnkStruct_ov111_021D0F7C *param0)
-{
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_35C[v0] != NULL) {
-            ov111_021D3448(param0->unk_35C[v0]);
+    for (i = 0; i < NUM_SCRATCH_CELLS; i++) {
+        if (app->scratchMonSprites[i] != NULL) {
+            ScratchOffCardsAppSprite_Free(app->scratchMonSprites[i]);
         }
     }
 
-    for (v0 = 0; v0 < 9; v0++) {
-        if (param0->unk_36C[v0] != NULL) {
-            ov111_021D3448(param0->unk_36C[v0]);
+    if (app->skipCardButtonSprite != NULL) {
+        ScratchOffCardsAppSprite_Free(app->skipCardButtonSprite);
+    }
+
+    if (app->centerMessageBoxSprite != NULL) {
+        ScratchOffCardsAppSprite_Free(app->centerMessageBoxSprite);
+    }
+
+    for (i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+        if (app->matchingCellBoxSprites[i] != NULL) {
+            ScratchOffCardsAppSprite_Free(app->matchingCellBoxSprites[i]);
         }
     }
 
-    if (param0->unk_3A0 != NULL) {
-        ov111_021D3448(param0->unk_3A0);
-    }
-
-    if (param0->unk_3A4 != NULL) {
-        ov111_021D3448(param0->unk_3A4);
-    }
-
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_3A8[v0] != NULL) {
-            ov111_021D3448(param0->unk_3A8[v0]);
+    for (i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+        if (app->winMonSprites[i] != NULL) {
+            ScratchOffCardsAppSprite_Free(app->winMonSprites[i]);
         }
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_3B4[v0] != NULL) {
-            ov111_021D3448(param0->unk_3B4[v0]);
-        }
-    }
-
-    if (param0->unk_3C0 != NULL) {
-        ov111_021D3448(param0->unk_3C0);
+    if (app->winPopupSprite != NULL) {
+        ScratchOffCardsAppSprite_Free(app->winPopupSprite);
     }
 
     Font_Free(FONT_SUBSCREEN);
-    PaletteData_FreeBuffer(param0->unk_15C, PLTTBUF_MAIN_OBJ);
-    PaletteData_FreeBuffer(param0->unk_15C, PLTTBUF_MAIN_BG);
-    PaletteData_Free(param0->unk_15C);
+    PaletteData_FreeBuffer(app->plttData, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(app->plttData, PLTTBUF_MAIN_BG);
+    PaletteData_Free(app->plttData);
 
-    param0->unk_15C = NULL;
+    app->plttData = NULL;
 
-    ov111_021D3320(&param0->unk_16C);
+    ScratchOffCardsApp_FreeSprites(&app->spriteMan);
 
-    sub_02015760(param0->unk_34);
-    MessageLoader_Free(param0->unk_38);
-    StringTemplate_Free(param0->unk_3C);
-    String_Free(param0->unk_40);
-    String_Free(param0->unk_44);
-    FontSpecialChars_Free(param0->unk_160);
-    Heap_Free(param0->unk_3F0);
-    Heap_Free(param0->unk_3F8);
+    sub_02015760(app->paletteAnimator);
+    MessageLoader_Free(app->msgLoader);
+    StringTemplate_Free(app->strTemplate);
+    String_Free(app->displayStr);
+    String_Free(app->fmtStr);
+    FontSpecialChars_Free(app->specialChars);
+    Heap_Free(app->scratchCellsRawCharData);
+    Heap_Free(app->scratchCellsDataBackup);
 
-    ov111_021D3578(param0->unk_5C);
-    ov111_021D2044(param0->unk_58);
+    ScratchOffCardsApp_FreeWindows(app->windows);
+    FreeBackgrounds(app->bgConfig);
 
-    NARC_dtor(param0->unk_3E4);
-    return;
+    NARC_dtor(app->narc);
 }
 
-static void ov111_021D1D30(void)
+static void InitGraphicsPlane(void)
 {
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
@@ -1130,165 +1092,150 @@ static void ov111_021D1D30(void)
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
-
-    return;
 }
 
-static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
+static void LoadAssets(ScratchOffCardApp *app)
 {
-    int v0, v1;
+    app->narc = NARC_ctor(NARC_INDEX_SCRATCH_OFF_CARDS, HEAP_ID_SCRATCH_OFF_CARD_APP);
 
-    param0->unk_3E4 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__SCRATCH__SCRATCH, HEAP_ID_115);
+    LoadBackgrounds(app);
+    InitSpriteManager(app);
 
-    ov111_021D1FC4(param0);
-    ov111_021D2034(param0);
+    app->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0540, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    app->strTemplate = StringTemplate_Default(HEAP_ID_SCRATCH_OFF_CARD_APP);
+    app->displayStr = String_Init(600, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    app->fmtStr = String_Init(600, HEAP_ID_SCRATCH_OFF_CARD_APP);
 
-    param0->unk_38 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0540, HEAP_ID_115);
-    param0->unk_3C = StringTemplate_Default(HEAP_ID_115);
-    param0->unk_40 = String_Init(600, HEAP_ID_115);
-    param0->unk_44 = String_Init(600, HEAP_ID_115);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(13), HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(12), HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_SCRATCH_OFF_CARD_APP);
 
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_115);
-    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(13), HEAP_ID_115);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_115);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(12), HEAP_ID_115);
-    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_115);
+    app->specialChars = FontSpecialChars_Init(15, 14, 0, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    ScratchOffCardsApp_InitWindows(app->bgConfig, app->windows);
+    app->paletteAnimator = sub_0201567C(NULL, 1, 12, HEAP_ID_SCRATCH_OFF_CARD_APP);
 
-    param0->unk_160 = FontSpecialChars_Init(15, 14, 0, HEAP_ID_115);
-    ov111_021D3548(param0->unk_58, param0->unk_5C);
-    param0->unk_34 = sub_0201567C(NULL, 1, 12, HEAP_ID_115);
-
-    ov111_021D2E4C(param0);
-    ov111_021D2E8C(param0);
-    ov111_021D2EB4(param0);
+    LoadScratchCellsCharData(app);
+    InitScratchCellsBackup(app);
+    MakeCopyOfScratchCellsData(app);
 
     GXLayers_TurnBothDispOn();
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_35C[v0] = ov111_021D33F4(&param0->unk_16C, 0, 0 + v0, 60, 26 + (v0 * 42), 1, 0, 0);
-        ov111_021D345C(param0->unk_35C[v0], 0);
+    for (int i = 0; i < NUM_WINNABLE_ITEMS; i++) {
+        app->topScreenMonSprites[i] = ScratchOffCardsAppSprite_New(&app->spriteMan, RESOURCE_ID_MON_SPRITES_SUB, i, 60, 26 + (i * 42), TRUE, 0, 0);
+        ScratchOffCardsAppSprite_SetDrawFlag(app->topScreenMonSprites[i], FALSE);
     }
 
-    for (v0 = 0; v0 < 9; v0++) {
-        param0->unk_36C[v0] = ov111_021D33F4(&param0->unk_16C, 1, 0, Unk_ov111_021D3770[v0].unk_00, Unk_ov111_021D3770[v0].unk_02, 0, 2, 10);
-        ov111_021D345C(param0->unk_36C[v0], 0);
+    for (int i = 0; i < NUM_SCRATCH_CELLS; i++) {
+        app->scratchMonSprites[i] = ScratchOffCardsAppSprite_New(&app->spriteMan, RESOURCE_ID_MON_SPRITES_MAIN, 0, sScratchMonPositions[i].x, sScratchMonPositions[i].y, FALSE, 2, 10);
+        ScratchOffCardsAppSprite_SetDrawFlag(app->scratchMonSprites[i], FALSE);
     }
 
-    ov111_021D1B90(param0);
+    InitBottomScreenBoxSprites(app);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_390[v0] = ov111_021D33F4(&param0->unk_16C, 2, 0 + v0, Unk_ov111_021D362C[v0].unk_00, Unk_ov111_021D362C[v0].unk_02, 0, 1, 0);
+    for (int i = 0; i < NUM_CARDS_TO_PICK; i++) {
+        app->cardSprites[i] = ScratchOffCardsAppSprite_New(&app->spriteMan, RESOURCE_ID_CARD_SPRITES, 0 + i, sSelectableCardPositions[i].x, sSelectableCardPositions[i].y, FALSE, 1, 0);
 
-        ov111_021D3474(param0->unk_390[v0], Unk_ov111_021D362C[v0].unk_00 + -256, Unk_ov111_021D362C[v0].unk_02);
-        ov111_021D3468(param0->unk_390[v0], 20 + v0);
+        ScratchOffCardsAppSprite_SetPosition(app->cardSprites[i], sSelectableCardPositions[i].x + -HW_LCD_WIDTH, sSelectableCardPositions[i].y);
+        ScratchOffCardsAppSprite_SetPriority(app->cardSprites[i], 20 + i);
     }
 
-    param0->unk_3C0 = ov111_021D33F4(&param0->unk_16C, 4, 0, Unk_ov111_021D3608.unk_00, Unk_ov111_021D3608.unk_02, 0, 0, 10);
-    ov111_021D345C(param0->unk_3C0, 0);
+    app->winPopupSprite = ScratchOffCardsAppSprite_New(&app->spriteMan, RESOURCE_ID_WIN_POPUP_SPRITE, 0, sWinPopupSpritePosition.x, sWinPopupSpritePosition.y, FALSE, 0, 10);
+    ScratchOffCardsAppSprite_SetDrawFlag(app->winPopupSprite, FALSE);
 
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
     EnableTouchPad();
     InitializeTouchPad(1);
-    SetVBlankCallback(ov111_021D2090, (void *)param0);
-
-    return;
+    SetVBlankCallback(VBlankCallback, app);
 }
 
-static void ov111_021D1F70(UnkStruct_ov111_021D0F7C *param0)
+static void NewYesNoMenu(ScratchOffCardApp *app)
 {
-    param0->unk_3FC = YesNoTouchMenu_New(HEAP_ID_115);
-    return;
+    app->yesNoMenu = YesNoTouchMenu_New(HEAP_ID_SCRATCH_OFF_CARD_APP);
 }
 
-static void ov111_021D1F84(UnkStruct_ov111_021D0F7C *param0)
+static void InitYesNoMenu(ScratchOffCardApp *app)
 {
-    YesNoTouchMenuParams v0;
+    YesNoTouchMenuParams menuParams;
 
-    v0.bgConfig = param0->unk_58;
-    v0.bgLayer = BG_LAYER_MAIN_2;
-    v0.baseTile = (1024 - 128);
-    v0.palette = 10;
-    v0.tilemapLeft = 24;
-    v0.tilemapTop = 8;
+    menuParams.bgConfig = app->bgConfig;
+    menuParams.bgLayer = BG_LAYER_MAIN_2;
+    menuParams.baseTile = 1024 - 128;
+    menuParams.palette = 10;
+    menuParams.tilemapLeft = 24;
+    menuParams.tilemapTop = 8;
 
-    YesNoTouchMenu_InitWithParams(param0->unk_3FC, &v0);
-
-    return;
+    YesNoTouchMenu_InitWithParams(app->yesNoMenu, &menuParams);
 }
 
-static void ov111_021D1FB4(UnkStruct_ov111_021D0F7C *param0)
+static void FreeYesNoMenu(ScratchOffCardApp *app)
 {
-    YesNoTouchMenu_Free(param0->unk_3FC);
-    return;
+    YesNoTouchMenu_Free(app->yesNoMenu);
 }
 
-static void ov111_021D1FC4(UnkStruct_ov111_021D0F7C *param0)
+static void LoadBackgrounds(ScratchOffCardApp *app)
 {
-    ov111_021D20CC();
-    ov111_021D20EC(param0->unk_58);
+    SetGXBanks();
+    InitBackgrounds(app->bgConfig);
 
-    param0->unk_15C = PaletteData_New(HEAP_ID_115);
+    app->plttData = PaletteData_New(HEAP_ID_SCRATCH_OFF_CARD_APP);
 
-    PaletteData_AllocBuffer(param0->unk_15C, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 16, HEAP_ID_115);
-    PaletteData_AllocBuffer(param0->unk_15C, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, HEAP_ID_115);
+    PaletteData_AllocBuffer(app->plttData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    PaletteData_AllocBuffer(app->plttData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE, HEAP_ID_SCRATCH_OFF_CARD_APP);
 
-    ov111_021D2248(param0, 7);
-    ov111_021D22D0();
-    ov111_021D228C(param0, 6);
-    ov111_021D233C(param0, 1);
-    ov111_021D2304();
-    ov111_021D2380(param0, 0);
+    LoadDefaultTopScreenBackground(app, BG_LAYER_SUB_3);
+    LoadTopScreenPalette();
+    LoadCardTopScreenBackground(app, BG_LAYER_SUB_2);
+    LoadCardBottomScreenBackground(app, BG_LAYER_MAIN_1);
+    LoadBottomScreenPalette();
+    LoadScratchCellsBackground(app, BG_LAYER_MAIN_0);
 
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-
-    return;
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, FALSE);
 }
 
-static void ov111_021D2034(UnkStruct_ov111_021D0F7C *param0)
+static void InitSpriteManager(ScratchOffCardApp *app)
 {
-    ov111_021D2F80(&param0->unk_16C);
-    return;
+    ScratchOffCardsApp_InitSpriteManager(&app->spriteMan);
 }
 
-static void ov111_021D2044(BgConfig *param0)
+static void FreeBackgrounds(BgConfig *bgConfig)
 {
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_3);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
-    Heap_Free(param0);
-
-    return;
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, FALSE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, FALSE);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
+    Heap_Free(bgConfig);
 }
 
-static void ov111_021D2090(void *param0)
+static void VBlankCallback(void *data)
 {
-    UnkStruct_ov111_021D0F7C *v0 = param0;
+    ScratchOffCardApp *app = data;
 
-    if (v0->unk_04 != NULL) {
+    if (app->unused != NULL) {
         return;
     }
 
-    if (v0->unk_15C != NULL) {
-        PaletteData_CommitFadedBuffers(v0->unk_15C);
+    if (app->plttData != NULL) {
+        PaletteData_CommitFadedBuffers(app->plttData);
     }
 
-    Bg_RunScheduledUpdates(v0->unk_58);
+    Bg_RunScheduledUpdates(app->bgConfig);
     VramTransfer_Process();
     RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov111_021D20CC(void)
+static void SetGXBanks(void)
 {
-    GXBanks v0 = {
+    GXBanks banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -1301,396 +1248,337 @@ static void ov111_021D20CC(void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GXLayers_SetBanks(&v0);
-    return;
+    GXLayers_SetBanks(&banks);
 }
 
-static void ov111_021D20EC(BgConfig *param0)
+static void InitBackgrounds(BgConfig *bgConfig)
 {
-    {
-        GraphicsModes v0 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D,
-        };
+    GraphicsModes graphicsModes = {
+        GX_DISPMODE_GRAPHICS,
+        GX_BGMODE_0,
+        GX_BGMODE_0,
+        GX_BG0_AS_2D,
+    };
 
-        SetAllGraphicsModes(&v0);
+    SetAllGraphicsModes(&graphicsModes);
+
+    BgTemplate bgTemplateSub0 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x0000,
+        .charBase = GX_BG_CHARBASE_0x04000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
+
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &bgTemplateSub0, BG_TYPE_STATIC);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
+
+    BgTemplate bgTemplateSub3 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x1000,
+        .charBase = GX_BG_CHARBASE_0x0c000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
+
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_3, &bgTemplateSub3, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_3);
+
+    BgTemplate bgTemplateSub2 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x3000,
+        .charBase = GX_BG_CHARBASE_0x14000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
+
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_2, &bgTemplateSub2, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_2);
+
+    BgTemplate bgTemplateMain1 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x0000,
+        .charBase = GX_BG_CHARBASE_0x04000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
+
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgTemplateMain1, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
+
+    BgTemplate bgTemplateMain0 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x1000,
+        .charBase = GX_BG_CHARBASE_0x0c000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
+
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &bgTemplateMain0, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
+
+    BgTemplate bgTemplateMain2 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x2000,
+        .charBase = GX_BG_CHARBASE_0x14000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
+
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgTemplateMain2, BG_TYPE_STATIC);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
+
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, FALSE);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, FALSE);
+}
+
+static void LoadDefaultTopScreenBackground(ScratchOffCardApp *app, u32 bgLayer)
+{
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, 35, app->bgConfig, bgLayer, 0, 0, FALSE, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, 37, app->bgConfig, bgLayer, 0, 0, FALSE, HEAP_ID_SCRATCH_OFF_CARD_APP);
+}
+
+static void LoadCardTopScreenBackground(ScratchOffCardApp *app, u32 bgLayer)
+{
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, 38, app->bgConfig, bgLayer, 0, 0, FALSE, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, 40, app->bgConfig, bgLayer, 0, 0, FALSE, HEAP_ID_SCRATCH_OFF_CARD_APP);
+}
+
+static void LoadTopScreenPalette(void)
+{
+    NNSG2dPaletteData *plttData;
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_SCRATCH_OFF_CARDS, 34, &plttData, HEAP_ID_SCRATCH_OFF_CARD_APP);
+
+    DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 5);
+    GXS_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 5);
+    Heap_Free(pltt);
+}
+
+static void LoadBottomScreenPalette(void)
+{
+    NNSG2dPaletteData *plttData;
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_SCRATCH_OFF_CARDS, 0, &plttData, HEAP_ID_SCRATCH_OFF_CARD_APP);
+
+    DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 9);
+    GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 10);
+    Heap_Free(pltt);
+}
+
+static void LoadCardBottomScreenBackground(ScratchOffCardApp *app, u32 bgLayer)
+{
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, 4, app->bgConfig, bgLayer, 0, 0, FALSE, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, 6, app->bgConfig, bgLayer, 0, 0, FALSE, HEAP_ID_SCRATCH_OFF_CARD_APP);
+}
+
+static void LoadScratchCellsBackground(ScratchOffCardApp *app, u32 bgLayer)
+{
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, 7, app->bgConfig, bgLayer, 0, 0, FALSE, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, 9, app->bgConfig, bgLayer, 0, 0, FALSE, HEAP_ID_SCRATCH_OFF_CARD_APP);
+}
+
+static u8 PrintMessage(ScratchOffCardApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 fontID)
+{
+    Window_FillTilemap(window, bgColor);
+    MessageLoader_GetString(app->msgLoader, entryID, app->fmtStr);
+    StringTemplate_Format(app->strTemplate, app->displayStr, app->fmtStr);
+
+    return Text_AddPrinterWithParamsAndColor(window, fontID, app->displayStr, xOffset, yOffset, renderDelay, TEXT_COLOR(fgColor, shadowColor, bgColor), NULL);
+}
+
+static u8 PrintCenteredMessage(ScratchOffCardApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 fontID)
+{
+    Window_FillTilemap(window, bgColor);
+    MessageLoader_GetString(app->msgLoader, entryID, app->fmtStr);
+    StringTemplate_Format(app->strTemplate, app->displayStr, app->fmtStr);
+    xOffset -= (Font_CalcStringWidth(fontID, app->displayStr, 0) + 1) / 2;
+    return Text_AddPrinterWithParamsAndColor(window, fontID, app->displayStr, xOffset, yOffset, renderDelay, TEXT_COLOR(fgColor, shadowColor, bgColor), NULL);
+}
+
+static u8 PrintStopScratchingMessage(ScratchOffCardApp *app)
+{
+    ScratchOffCardsApp_DrawWindow(app->bgConfig, &app->windows[SCRATCH_WINDOW_STOP_SCRATCH]);
+    u8 printerID = PrintMessage(app, &app->windows[SCRATCH_WINDOW_STOP_SCRATCH], ScratchOffCardsApp_Text_StopScratching, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, FONT_SYSTEM);
+    Window_ScheduleCopyToVRAM(&app->windows[SCRATCH_WINDOW_STOP_SCRATCH]);
+
+    return printerID;
+}
+
+static u8 PrintSelectCardMessage(ScratchOffCardApp *app)
+{
+    SetNumberInTemplate(app, 0, app->currentCard + 1);
+    u8 printerID = PrintMessage(app, &app->windows[SCRATCH_WINDOW_SELECT_CARD], ScratchOffCardsApp_Text_SelectCard, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, FONT_MESSAGE);
+    Window_ScheduleCopyToVRAM(&app->windows[SCRATCH_WINDOW_SELECT_CARD]);
+
+    return printerID;
+}
+
+static u8 PrintStartCardMessage(ScratchOffCardApp *app)
+{
+    SetNumberInTemplate(app, 0, app->currentCard + 1);
+    u8 printerID = PrintCenteredMessage(app, &app->windows[SCRATCH_WINDOW_START_CARD], ScratchOffCardsApp_Text_StartCard, 8 * 6, 1 + 4, TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
+    Window_ScheduleCopyToVRAM(&app->windows[SCRATCH_WINDOW_START_CARD]);
+
+    return printerID;
+}
+
+static u8 ShowWinPopup(ScratchOffCardApp *app)
+{
+    for (u8 i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+        ScratchOffCardsAppSprite_SetAnim(app->winMonSprites[i], app->scratchCellValues[app->scratchedOffCellIdxs[i]]);
+        ScratchOffCardsAppSprite_SetDrawFlag(app->winMonSprites[i], TRUE);
     }
 
-    {
-        BgTemplate v1 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x1000,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0x0000,
-            .charBase = GX_BG_CHARBASE_0x04000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
-
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v1, 0);
-        Bg_ClearTilesRange(4, 32, 0, HEAP_ID_115);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
-    }
-
-    {
-        BgTemplate v2 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x1000,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0x1000,
-            .charBase = GX_BG_CHARBASE_0x0c000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 3,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
-
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v2, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
-    }
-
-    {
-        BgTemplate v3 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x1000,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_512x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0x3000,
-            .charBase = GX_BG_CHARBASE_0x14000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
-
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v3, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
-    }
-
-    {
-        BgTemplate v4 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x1000,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_512x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0x0000,
-            .charBase = GX_BG_CHARBASE_0x04000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
-
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v4, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
-    }
-
-    {
-        BgTemplate v5 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x1000,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_512x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0x1000,
-            .charBase = GX_BG_CHARBASE_0x0c000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
-
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v5, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
-    }
-
-    {
-        BgTemplate v6 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0x2000,
-            .charBase = GX_BG_CHARBASE_0x14000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
-
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v6, 0);
-        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_115);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
-    }
-
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-
-    return;
-}
-
-static void ov111_021D2248(UnkStruct_ov111_021D0F7C *param0, u32 param1)
-{
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3E4, 35, param0->unk_58, param1, 0, 0, 0, HEAP_ID_115);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3E4, 37, param0->unk_58, param1, 0, 0, 0, HEAP_ID_115);
-
-    return;
-}
-
-static void ov111_021D228C(UnkStruct_ov111_021D0F7C *param0, u32 param1)
-{
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3E4, 38, param0->unk_58, param1, 0, 0, 0, HEAP_ID_115);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3E4, 40, param0->unk_58, param1, 0, 0, 0, HEAP_ID_115);
-
-    return;
-}
-
-static void ov111_021D22D0(void)
-{
-    void *v0;
-    NNSG2dPaletteData *v1;
-
-    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__SCRATCH__SCRATCH, 34, &v1, HEAP_ID_115);
-
-    DC_FlushRange(v1->pRawData, sizeof(u16) * 16 * 5);
-    GXS_LoadBGPltt(v1->pRawData, 0, sizeof(u16) * 16 * 5);
-    Heap_Free(v0);
-
-    return;
-}
-
-static void ov111_021D2304(void)
-{
-    void *v0;
-    NNSG2dPaletteData *v1;
-
-    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__SCRATCH__SCRATCH, 0, &v1, HEAP_ID_115);
-
-    DC_FlushRange(v1->pRawData, sizeof(u16) * 16 * 9);
-    GX_LoadBGPltt(v1->pRawData, 0, sizeof(u16) * 16 * 10);
-    Heap_Free(v0);
-
-    return;
-}
-
-static void ov111_021D233C(UnkStruct_ov111_021D0F7C *param0, u32 param1)
-{
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3E4, 4, param0->unk_58, param1, 0, 0, 0, HEAP_ID_115);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3E4, 6, param0->unk_58, param1, 0, 0, 0, HEAP_ID_115);
-
-    return;
-}
-
-static void ov111_021D2380(UnkStruct_ov111_021D0F7C *param0, u32 param1)
-{
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3E4, 7, param0->unk_58, param1, 0, 0, 0, HEAP_ID_115);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3E4, 9, param0->unk_58, param1, 0, 0, 0, HEAP_ID_115);
-
-    return;
-}
-
-static u8 ov111_021D23C4(UnkStruct_ov111_021D0F7C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
-{
-    Window_FillTilemap(param1, param8);
-    MessageLoader_GetString(param0->unk_38, param2, param0->unk_44);
-    StringTemplate_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
-
-    return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_40, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
-}
-
-static u8 ov111_021D2424(UnkStruct_ov111_021D0F7C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
-{
-    Window_FillTilemap(param1, param8);
-    MessageLoader_GetString(param0->unk_38, param2, param0->unk_44);
-    StringTemplate_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
-    param3 -= (Font_CalcStringWidth(param9, param0->unk_40, 0) + 1) / 2;
-    return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_40, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
-}
-
-static u8 ov111_021D2494(UnkStruct_ov111_021D0F7C *param0)
-{
-    u8 v0;
-
-    ov111_021D3594(param0->unk_58, &param0->unk_5C[0]);
-    v0 = ov111_021D23C4(param0, &param0->unk_5C[0], 6, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, FONT_SYSTEM);
-    Window_ScheduleCopyToVRAM(&param0->unk_5C[0]);
-
-    return v0;
-}
-
-static u8 ov111_021D24D4(UnkStruct_ov111_021D0F7C *param0)
-{
-    u8 v0;
-
-    ov111_021D26CC(param0, 0, param0->unk_0E + 1);
-    v0 = ov111_021D23C4(param0, &param0->unk_5C[15], 12, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, FONT_MESSAGE);
-    Window_ScheduleCopyToVRAM(&param0->unk_5C[15]);
-
-    return v0;
-}
-
-static u8 ov111_021D2518(UnkStruct_ov111_021D0F7C *param0)
-{
-    u8 v0;
-
-    ov111_021D26CC(param0, 0, param0->unk_0E + 1);
-    v0 = ov111_021D2424(param0, &param0->unk_5C[10], 9, 8 * 6, 1 + 4, TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
-    Window_ScheduleCopyToVRAM(&param0->unk_5C[10]);
-
-    return v0;
-}
-
-static u8 ov111_021D255C(UnkStruct_ov111_021D0F7C *param0)
-{
-    u8 v0 = 0, v1;
-
-    for (v1 = 0; v1 < 3; v1++) {
-        ov111_021D34C4(param0->unk_3B4[v1], param0->unk_3C4[param0->unk_40E[v1]]);
-        ov111_021D345C(param0->unk_3B4[v1], 1);
-    }
-
-    ov111_021D345C(param0->unk_3C0, 1);
-    ov111_021D350C(param0->unk_3C0, 1);
+    ScratchOffCardsAppSprite_SetDrawFlag(app->winPopupSprite, TRUE);
+    ScratchOffCardsAppSprite_SetAnimateFlag(app->winPopupSprite, TRUE);
 
     Sound_PlayEffect(SEQ_SE_PL_CALL_sseq);
 
-    return v0;
+    return 0;
 }
 
-static u8 ov111_021D25BC(UnkStruct_ov111_021D0F7C *param0)
+static u8 PrintTooBadMessage(ScratchOffCardApp *app)
 {
-    u8 v0;
-
     Sound_PlayEffect(SEQ_SE_DP_BOX03_sseq);
-    v0 = ov111_021D2424(param0, &param0->unk_5C[12], 11, 8 * 6, 1 + 4, TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
-    Window_ScheduleCopyToVRAM(&param0->unk_5C[12]);
+    u8 printerID = PrintCenteredMessage(app, &app->windows[SCRATCH_WINDOW_TOO_BAD], ScratchOffCardsApp_Text_TooBad, 8 * 6, 1 + 4, TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
+    Window_ScheduleCopyToVRAM(&app->windows[SCRATCH_WINDOW_TOO_BAD]);
 
-    return v0;
+    return printerID;
 }
 
-static u8 ov111_021D2604(UnkStruct_ov111_021D0F7C *param0)
+static u8 PrintNextCardButton(ScratchOffCardApp *app)
 {
-    u8 v0 = ov111_021D2424(param0, &param0->unk_5C[13], 4, 8 * 6, 1, TEXT_SPEED_INSTANT, 1, 1, 0, FONT_SUBSCREEN);
-    Window_ScheduleCopyToVRAM(&param0->unk_5C[13]);
+    u8 printerID = PrintCenteredMessage(app, &app->windows[SCRATCH_WINDOW_NEXT_CARD], ScratchOffCardsApp_Text_NextCard, 8 * 6, 1, TEXT_SPEED_INSTANT, 1, 1, 0, FONT_SUBSCREEN);
+    Window_ScheduleCopyToVRAM(&app->windows[SCRATCH_WINDOW_NEXT_CARD]);
 
-    return v0;
+    return printerID;
 }
 
-static u8 ov111_021D263C(UnkStruct_ov111_021D0F7C *param0)
+static u8 PrintCancelButton(ScratchOffCardApp *app)
 {
-    u8 v0 = ov111_021D2424(param0, &param0->unk_5C[14], 5, 8 * 3, 1, TEXT_SPEED_INSTANT, 1, 1, 0, FONT_SUBSCREEN);
-    Window_ScheduleCopyToVRAM(&param0->unk_5C[14]);
+    u8 printerID = PrintCenteredMessage(app, &app->windows[SCRATCH_WINDOW_CANCEL], ScratchOffCardsApp_Text_Cancel, 8 * 3, 1, TEXT_SPEED_INSTANT, 1, 1, 0, FONT_SUBSCREEN);
+    Window_ScheduleCopyToVRAM(&app->windows[SCRATCH_WINDOW_CANCEL]);
 
-    return v0;
+    return printerID;
 }
 
-static const u8 Unk_ov111_021D3814[4] = {
-    0xA,
-    0xC,
-    0x6,
-    0x8
-};
+static const u8 sItemNameYOffsets[NUM_WINNABLE_ITEMS] = { 10, 12, 6, 8 };
 
-static u8 ov111_021D2674(UnkStruct_ov111_021D0F7C *param0, u8 param1)
+static u8 PrintItemNameOnTopScreen(ScratchOffCardApp *app, u8 idx)
 {
-    u8 v0;
+    StringTemplate_SetItemName(app->strTemplate, 0, app->winnableItems[idx]);
+    u8 printerID = PrintCenteredMessage(app, &app->windows[SCRATCH_WINDOW_ITEM_NAME_1 + idx], ScratchOffCardsApp_Text_ItemNameTemplate, 8 * 6 - 4, sItemNameYOffsets[idx], TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
+    Window_ScheduleCopyToVRAM(&app->windows[SCRATCH_WINDOW_ITEM_NAME_1 + idx]);
 
-    StringTemplate_SetItemName(param0->unk_3C, 0, param0->unk_3CE[param1]);
-    v0 = ov111_021D2424(param0, &param0->unk_5C[2 + param1], 1, 8 * 6 - 4, Unk_ov111_021D3814[param1], TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
-    Window_ScheduleCopyToVRAM(&param0->unk_5C[2 + param1]);
-
-    return v0;
+    return printerID;
 }
 
-static void ov111_021D26CC(UnkStruct_ov111_021D0F7C *param0, u32 param1, s32 param2)
+static void SetNumberInTemplate(ScratchOffCardApp *app, u32 idx, s32 num)
 {
-    StringTemplate_SetNumber(param0->unk_3C, param1, param2, 1, 0, 1);
-    return;
+    StringTemplate_SetNumber(app->strTemplate, idx, num, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
 }
 
-static void ov111_021D26E4(UnkStruct_ov111_021D0F7C *param0, int *param1, int param2)
+static void ChangeState(ScratchOffCardApp *app, int *state, int newState)
 {
-    param0->unk_08 = 0;
-    *param1 = param2;
-
-    return;
+    app->subState = 0;
+    *state = newState;
 }
 
-static void ov111_021D26EC(UnkStruct_ov111_021D0F7C *param0)
+static void PlaceDittosInCells(ScratchOffCardApp *app)
 {
-    int v0;
-    u8 v1;
-
-    for (v0 = 0; v0 < 2; v0++) {
+    for (int i = 0; i < 2; i++) {
         while (TRUE) {
-            v1 = (LCRNG_Next() % 9);
+            u8 index = LCRNG_Next() % NUM_SCRATCH_CELLS;
 
-            if (param0->unk_3C4[v1] == 176) {
-                param0->unk_3C4[v1] = 4;
+            if (app->scratchCellValues[index] == 176) {
+                app->scratchCellValues[index] = WILDCARD_CELL_VALUE;
                 break;
             }
         }
     }
-
-    return;
 }
 
-static void ov111_021D271C(UnkStruct_ov111_021D0F7C *param0)
+static void PlaceRemainingValuesInCells(ScratchOffCardApp *app)
 {
-    int v0, v1, v2, v3, v4;
-    u8 v5 = (LCRNG_Next() % 4);
-    v3 = 0;
+    u8 cellValue = LCRNG_Next() % NUM_WINNABLE_ITEMS;
+    int retries = 0;
 
-    for (v0 = 0; v0 < 9; v0++) {
+    for (int i = 0; i < NUM_SCRATCH_CELLS; i++) {
         while (TRUE) {
-            v4 = (LCRNG_Next() % 9);
+            int cellIdx = LCRNG_Next() % NUM_SCRATCH_CELLS;
 
-            if (param0->unk_3C4[v4] == 176) {
-                v3 = 0;
-                param0->unk_3C4[v4] = v5;
+            if (app->scratchCellValues[cellIdx] == 176) {
+                retries = 0;
+                app->scratchCellValues[cellIdx] = cellValue;
 
-                if ((v0 == 2) || (v0 == 4) || (v0 == 6)) {
-                    v5++;
+                if ((i == 2) || (i == 4) || (i == 6)) {
+                    cellValue++;
 
-                    if (v5 == (5 - 1)) {
-                        v5 = 0;
+                    if (cellValue == (5 - 1)) {
+                        cellValue = 0;
                     }
                 }
                 break;
             }
 
-            v3++;
+            retries++;
 
-            if (v3 >= 30) {
-                v3 = 0;
+            if (retries >= 30) {
+                retries = 0;
 
-                for (v2 = 0; v2 < 9; v2++) {
-                    if (param0->unk_3C4[v2] == 176) {
-                        param0->unk_3C4[v2] = v5;
+                for (int j = 0; j < NUM_SCRATCH_CELLS; j++) {
+                    if (app->scratchCellValues[j] == 176) {
+                        app->scratchCellValues[j] = cellValue;
 
-                        if ((v0 == 2) || (v0 == 4) || (v0 == 6)) {
-                            v5++;
+                        if ((i == 2) || (i == 4) || (i == 6)) {
+                            cellValue++;
 
-                            if (v5 == (5 - 1)) {
-                                v5 = 0;
+                            if (cellValue == NUM_WINNABLE_ITEMS) {
+                                cellValue = 0;
                             }
                         }
                         break;
@@ -1700,473 +1588,405 @@ static void ov111_021D271C(UnkStruct_ov111_021D0F7C *param0)
             }
         }
     }
-
-    for (v0 = 0; v0 < 9; v0++) {
-        (void)0;
-    }
-
-    return;
 }
 
-static void ov111_021D27AC(UnkStruct_ov111_021D0F7C *param0, u8 param1)
+static void PlaceValuesInScratchCells(ScratchOffCardApp *app, u8 unused)
 {
-    ov111_021D26EC(param0);
-    ov111_021D271C(param0);
-
-    return;
+    PlaceDittosInCells(app);
+    PlaceRemainingValuesInCells(app);
 }
 
-static void ov111_021D27BC(UnkStruct_ov111_021D0F7C *param0)
+static void ClearScratchCellValues(ScratchOffCardApp *app)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 9; v0++) {
-        param0->unk_3C4[v0] = 176;
+    for (int i = 0; i < NUM_SCRATCH_CELLS; i++) {
+        app->scratchCellValues[i] = 176;
     }
-
-    return;
 }
 
-static void ov111_021D27D4(UnkStruct_ov111_021D0F7C *param0, u8 param1)
+static void SelectItemsWinnableOnCard(ScratchOffCardApp *app, u8 unused)
 {
-    int v0, v1;
-    u16 v2[4];
-    u16 v3;
+    int i;
+    u16 indices[NUM_WINNABLE_ITEMS];
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v2[v0] = 0xff;
+    for (i = 0; i < NUM_WINNABLE_ITEMS; i++) {
+        indices[i] = 0xff;
     }
 
-    v3 = (LCRNG_Next() % 4);
+    u16 nuggetIdx = LCRNG_Next() % NUM_WINNABLE_ITEMS;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (v0 == v3) {
-            param0->unk_3CE[v0] = 92;
+    for (i = 0; i < NUM_WINNABLE_ITEMS; i++) {
+        if (i == nuggetIdx) {
+            app->winnableItems[i] = ITEM_NUGGET;
         } else {
             while (TRUE) {
-                v2[v0] = (LCRNG_Next() % (NELEMS(Unk_ov111_021D37E4)));
+                indices[i] = LCRNG_Next() % NELEMS(sAvailableItems);
 
-                for (v1 = 0; v1 < v0; v1++) {
-                    if (v2[v1] == v2[v0]) {
+                int j;
+                for (j = 0; j < i; j++) {
+                    if (indices[j] == indices[i]) {
                         break;
                     }
                 }
 
-                if (v1 == v0) {
-                    param0->unk_3CE[v0] = Unk_ov111_021D37E4[v2[v0]];
+                if (j == i) {
+                    app->winnableItems[i] = sAvailableItems[indices[i]];
                     break;
                 }
             }
         }
     }
-
-    return;
 }
 
-static const s8 Unk_ov111_021D3708[4][8] = {
-    { 0x9, 0x9, 0x9, 0x8, 0x7, 0x6, 0x5, 0x4 },
-    { 0x2, 0x2, 0x2, 0x1, 0x1, 0x1, 0x1, 0x1 },
-    { 0xFFFFFFFFFFFFFFF8, 0xFFFFFFFFFFFFFFF8, 0xFFFFFFFFFFFFFFF8, 0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFFA, 0xFFFFFFFFFFFFFFFB, 0xFFFFFFFFFFFFFFFC },
-    { 0xFFFFFFFFFFFFFFEE, 0xFFFFFFFFFFFFFFF0, 0xFFFFFFFFFFFFFFF1, 0xFFFFFFFFFFFFFFF2, 0xFFFFFFFFFFFFFFF3, 0xFFFFFFFFFFFFFFF4, 0xFFFFFFFFFFFFFFF6, 0xFFFFFFFFFFFFFFF8 }
+static const s8 xCardCenteringSteps[NUM_CARDS_TO_PICK][8] = {
+    { 9, 9, 9, 8, 7, 6, 5, 4 },
+    { 2, 2, 2, 1, 1, 1, 1, 1 },
+    { -8, -8, -8, -7, -7, -6, -5, -4 },
+    { -18, -16, -15, -14, -13, -12, -10, -8 }
 };
 
-static const s8 Unk_ov111_021D3818[8] = {
-    0xFFFFFFFFFFFFFFFC,
-    0xFFFFFFFFFFFFFFFC,
-    0xFFFFFFFFFFFFFFFC,
-    0xFFFFFFFFFFFFFFFC,
-    0xFFFFFFFFFFFFFFFC,
-    0xFFFFFFFFFFFFFFFC,
-    0xFFFFFFFFFFFFFFFC,
-    0xFFFFFFFFFFFFFFFC
+static const s8 yCardCenteringSteps[8] = {
+    -4, -4, -4, -4, -4, -4, -4, -4
 };
 
-static BOOL ov111_021D2868(UnkStruct_ov111_021D0F7C *param0, u8 param1)
+static BOOL CenterSelectedCardOnScreen(ScratchOffCardApp *app, u8 selectedIdx)
 {
-    int v0, v1, v2, v3;
-
-    if (param0->unk_40C_1 >= 8) {
-        return 1;
+    if (app->centeringStep >= 8) {
+        return TRUE;
     }
 
-    ov111_021D349C(param0->unk_390[param1], &v0, &v1);
+    int x, y;
+    ScratchOffCardsAppSprite_GetPosition(app->cardSprites[selectedIdx], &x, &y);
 
-    v2 = (v0 + Unk_ov111_021D3708[param1][param0->unk_40C_1]);
-    v3 = (v1 + Unk_ov111_021D3818[param0->unk_40C_1]);
-    param0->unk_40C_1++;
+    int newX = x + xCardCenteringSteps[selectedIdx][app->centeringStep];
+    int newY = y + yCardCenteringSteps[app->centeringStep];
+    app->centeringStep++;
 
-    ov111_021D3474(param0->unk_390[param1], v2, v3);
+    ScratchOffCardsAppSprite_SetPosition(app->cardSprites[selectedIdx], newX, newY);
 
-    return 0;
+    return FALSE;
 }
 
-static void ov111_021D28E8(UnkStruct_ov111_021D0F7C *param0, u32 param1, u8 param2, u8 param3, u8 param4)
+static void UpdateBackgroundPalette(ScratchOffCardApp *app, u32 bgLayer, u8 palette, u8 width, u8 height)
 {
-    Bg_ChangeTilemapRectPalette(param0->unk_58, param1, 0, 0, param3, param4, param2);
-    Bg_ScheduleTilemapTransfer(param0->unk_58, param1);
-
-    return;
+    Bg_ChangeTilemapRectPalette(app->bgConfig, bgLayer, 0, 0, width, height, palette);
+    Bg_ScheduleTilemapTransfer(app->bgConfig, bgLayer);
 }
 
-static u8 ov111_021D2918(UnkStruct_ov111_021D0F7C *param0)
+static u8 GetNumCellsScratched(ScratchOffCardApp *app)
 {
-    u8 v0, v1 = 0;
-
-    for (v0 = 0; v0 < 9; v0++) {
-        if (param0->unk_400[v0] == 1) {
-            v1++;
+    u8 i, count = 0;
+    for (i = 0; i < NUM_SCRATCH_CELLS; i++) {
+        if (app->cellIsScratched[i] == TRUE) {
+            count++;
         }
     }
 
-    return v1;
+    return count;
 }
 
-static void ov111_021D2940(UnkStruct_ov111_021D0F7C *param0)
+static void MarkAllCellsAsUnscratched(ScratchOffCardApp *app)
 {
-    u8 v0;
-
-    for (v0 = 0; v0 < 9; v0++) {
-        param0->unk_400[v0] = 0;
+    for (u8 i = 0; i < NUM_SCRATCH_CELLS; i++) {
+        app->cellIsScratched[i] = FALSE;
     }
-
-    return;
 }
 
-static void ov111_021D295C(UnkStruct_ov111_021D0F7C *param0)
+static void MarkAllCellsAsUnrevealed(ScratchOffCardApp *app)
 {
-    u8 v0;
-
-    for (v0 = 0; v0 < 9; v0++) {
-        param0->unk_411[v0] = 0;
+    for (u8 i = 0; i < NUM_SCRATCH_CELLS; i++) {
+        app->cellIsRevealed[i] = FALSE;
     }
-
-    return;
 }
 
-static void ov111_021D297C(UnkStruct_ov111_021D0F7C *param0, int param1)
+static void RemoveScratchedOffPixelsOnCell(ScratchOffCardApp *app, int cellIdx)
 {
-    int v0, v1, v2, v3;
+    for (int i = 0; i < app->tpBuffer.bufferSize; i++) {
+        int x = app->tpBuffer.buffer[i].x;
+        int y = app->tpBuffer.buffer[i].y;
 
-    for (v0 = 0; v0 < param0->unk_424.bufferSize; v0++) {
-        v2 = param0->unk_424.buffer[v0].x;
-        v3 = param0->unk_424.buffer[v0].y;
-
-        if ((Unk_ov111_021D3728[param1].unk_02 <= v2) && (v2 <= Unk_ov111_021D3728[param1].unk_03) && (Unk_ov111_021D3728[param1].unk_00 <= v3) && (v3 <= Unk_ov111_021D3728[param1].unk_01)) {
-            ov111_021D2ECC(param0, v2, v3);
+        if (sScratchCellScreenPixelRegions[cellIdx].left <= x && x <= sScratchCellScreenPixelRegions[cellIdx].right && sScratchCellScreenPixelRegions[cellIdx].top <= y && y <= sScratchCellScreenPixelRegions[cellIdx].bottom) {
+            RemoveScratchedOffPixels(app, x, y);
         }
     }
-
-    return;
 }
 
-static void ov111_021D29D8(UnkStruct_ov111_021D0F7C *param0)
+static void MarkScratchedOffPixels(ScratchOffCardApp *app)
 {
-    int v0;
-    u8 v1, v2;
+    for (int i = 0; i < app->tpBuffer.bufferSize; i++) {
+        u8 x = app->tpBuffer.buffer[i].x;
+        u8 y = app->tpBuffer.buffer[i].y;
 
-    for (v0 = 0; v0 < param0->unk_424.bufferSize; v0++) {
-        v1 = param0->unk_424.buffer[v0].x;
-        v2 = param0->unk_424.buffer[v0].y;
-
-        ov111_021D2A18(param0, v1, v2);
+        MarkScratchedPixelsAtPoint(app, x, y);
     }
-
-    return;
 }
 
-static void ov111_021D2A18(UnkStruct_ov111_021D0F7C *param0, int param1, int param2)
+static void MarkScratchedPixelsAtPoint(ScratchOffCardApp *app, int touchX, int touchY)
 {
-    int v0, v1;
+    for (int y = -3; y < 3; y++) {
+        for (int x = -3; x < 3; x++) {
+            if (touchX + x > 0 && touchX + x < SCRATCH_REGION_WIDTH && touchY + y > 0 && touchY + y < SCRATCH_REGION_HEIGHT) {
+                app->scratchedPixels[(touchX + x) + ((touchY + y) * SCRATCH_REGION_WIDTH)] = TRUE;
+            }
+        }
+    }
+}
 
-    for (v1 = -3; v1 < 3; v1++) {
-        for (v0 = -3; v0 < 3; v0++) {
-            if (((param1 + v0) > 0) && ((param1 + v0) < 240) && ((param2 + v1) > 0) && ((param2 + v1) < 160)) {
-                param0->unk_466[(param1 + v0) + ((param2 + v1) * 240)] = 1;
+static BOOL CheckIfCellIsRevealed(ScratchOffCardApp *app, u8 cellIdx)
+{
+    int x;
+
+    int revealedPixels = 0;
+    int left = sScratchCellPixelRegions[cellIdx].x;
+    int top = sScratchCellPixelRegions[cellIdx].y;
+
+    for (int y = top; y < (top + 20); y++) {
+        for (x = left; x < (left + 25); x++) {
+            if (app->scratchedPixels[y * SCRATCH_REGION_WIDTH + x] == TRUE) {
+                revealedPixels++;
             }
         }
     }
 
-    return;
-}
-
-static BOOL ov111_021D2A68(UnkStruct_ov111_021D0F7C *param0, u8 param1)
-{
-    int v0, v1, v2, v3, v4;
-
-    v4 = 0;
-    v2 = Unk_ov111_021D374C[param1].unk_00;
-    v3 = Unk_ov111_021D374C[param1].unk_02;
-
-    for (v0 = v3; v0 < (v3 + 20); v0++) {
-        for (v1 = v2; v1 < (v2 + 25); v1++) {
-            if (param0->unk_466[v0 * 240 + v1] == 1) {
-                v4++;
-            }
-        }
-    }
-
-    if (v4 >= 380) {
-        if (param0->unk_411[param1] == 0) {
+    if (revealedPixels >= 380) {
+        if (!app->cellIsRevealed[cellIdx]) {
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO_sseq);
-            param0->unk_40E[param0->unk_40D] = param1;
-            param0->unk_40D++;
+            app->scratchedOffCellIdxs[app->numRevealedCells] = cellIdx;
+            app->numRevealedCells++;
         }
 
-        param0->unk_411[param1] = 1;
-        return 1;
+        app->cellIsRevealed[cellIdx] = TRUE;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov111_021D2B20(UnkStruct_ov111_021D0F7C *param0)
+static void HighlightMatchingPair(ScratchOffCardApp *app)
 {
-    int v0;
+    app->highlightPairCounter++;
 
-    param0->unk_40A++;
+    if (app->highlightPairCounter >= 1) {
+        app->highlightPairCounter = 0;
 
-    if (param0->unk_40A >= 1) {
-        param0->unk_40A = 0;
+        app->highlightPairPalette++;
 
-        param0->unk_409++;
-
-        if (param0->unk_409 >= 8) {
-            param0->unk_409 = 0;
+        if (app->highlightPairPalette >= 8) {
+            app->highlightPairPalette = 0;
         }
 
-        if (param0->unk_40D == 2) {
-            for (v0 = 0; v0 < 2; v0++) {
-                ov111_021D3500(param0->unk_3A8[v0], 3);
-                ov111_021D345C(param0->unk_3A8[v0], 1);
-                ov111_021D3474(param0->unk_3A8[v0], Unk_ov111_021D3770[param0->unk_40E[v0]].unk_00 + -36, Unk_ov111_021D3770[param0->unk_40E[v0]].unk_02 + -10);
+        if (app->numRevealedCells == 2) {
+            for (int i = 0; i < 2; i++) {
+                ScratchOffCardsAppSprite_UpdatePalette(app->matchingCellBoxSprites[i], 3);
+                ScratchOffCardsAppSprite_SetDrawFlag(app->matchingCellBoxSprites[i], TRUE);
+                ScratchOffCardsAppSprite_SetPosition(app->matchingCellBoxSprites[i], sScratchMonPositions[app->scratchedOffCellIdxs[i]].x + -36, sScratchMonPositions[app->scratchedOffCellIdxs[i]].y + -10);
             }
         }
 
-        ov111_021D33B0(&param0->unk_16C, param0->unk_409);
+        ScratchOffCardsApp_UpdateBoxPalettes(&app->spriteMan, app->highlightPairPalette);
     }
-
-    return;
 }
 
-static BOOL ov111_021D2BBC(UnkStruct_ov111_021D0F7C *param0)
+static BOOL CheckIfThreeOfAKindFound(ScratchOffCardApp *app)
 {
-    int v0, v1 = 0;
+    int threeOfAKind = FALSE;
 
-    if (param0->unk_40D <= 1) {
-        return 0;
+    if (app->numRevealedCells <= 1) {
+        return FALSE;
     }
 
-    if (param0->unk_3C4[param0->unk_40E[0]] == param0->unk_3C4[param0->unk_40E[1]]) {
-        param0->unk_40C_0 = 1;
-    } else if (param0->unk_3C4[param0->unk_40E[0]] == 4) {
-        param0->unk_40C_0 = 1;
-    } else if (param0->unk_3C4[param0->unk_40E[1]] == 4) {
-        param0->unk_40C_0 = 1;
+    if (app->scratchCellValues[app->scratchedOffCellIdxs[0]] == app->scratchCellValues[app->scratchedOffCellIdxs[1]]) {
+        app->pairFound = TRUE;
+    } else if (app->scratchCellValues[app->scratchedOffCellIdxs[0]] == WILDCARD_CELL_VALUE) {
+        app->pairFound = TRUE;
+    } else if (app->scratchCellValues[app->scratchedOffCellIdxs[1]] == WILDCARD_CELL_VALUE) {
+        app->pairFound = TRUE;
     }
 
-    if (param0->unk_40D <= 2) {
-        return 0;
+    if (app->numRevealedCells <= 2) {
+        return FALSE;
     }
 
-    if ((param0->unk_3C4[param0->unk_40E[0]] == param0->unk_3C4[param0->unk_40E[1]]) && (param0->unk_3C4[param0->unk_40E[0]] == param0->unk_3C4[param0->unk_40E[2]])) {
-        v1 = 1;
+    if (app->scratchCellValues[app->scratchedOffCellIdxs[0]] == app->scratchCellValues[app->scratchedOffCellIdxs[1]] && app->scratchCellValues[app->scratchedOffCellIdxs[0]] == app->scratchCellValues[app->scratchedOffCellIdxs[2]]) {
+        threeOfAKind = TRUE;
     }
 
-    if ((param0->unk_3C4[param0->unk_40E[0]] == 4) && (param0->unk_3C4[param0->unk_40E[1]] == 4)) {
-        v1 = 1;
+    if (app->scratchCellValues[app->scratchedOffCellIdxs[0]] == WILDCARD_CELL_VALUE && app->scratchCellValues[app->scratchedOffCellIdxs[1]] == WILDCARD_CELL_VALUE) {
+        threeOfAKind = TRUE;
     }
 
-    if ((param0->unk_3C4[param0->unk_40E[0]] == 4) && (param0->unk_3C4[param0->unk_40E[2]] == 4)) {
-        v1 = 1;
+    if (app->scratchCellValues[app->scratchedOffCellIdxs[0]] == WILDCARD_CELL_VALUE && app->scratchCellValues[app->scratchedOffCellIdxs[2]] == WILDCARD_CELL_VALUE) {
+        threeOfAKind = TRUE;
     }
 
-    if ((param0->unk_3C4[param0->unk_40E[1]] == 4) && (param0->unk_3C4[param0->unk_40E[2]] == 4)) {
-        v1 = 1;
+    if (app->scratchCellValues[app->scratchedOffCellIdxs[1]] == WILDCARD_CELL_VALUE && app->scratchCellValues[app->scratchedOffCellIdxs[2]] == WILDCARD_CELL_VALUE) {
+        threeOfAKind = TRUE;
     }
 
-    if ((param0->unk_3C4[param0->unk_40E[0]] == 4) && (param0->unk_3C4[param0->unk_40E[1]] == param0->unk_3C4[param0->unk_40E[2]])) {
-        v1 = 1;
+    if (app->scratchCellValues[app->scratchedOffCellIdxs[0]] == WILDCARD_CELL_VALUE && app->scratchCellValues[app->scratchedOffCellIdxs[1]] == app->scratchCellValues[app->scratchedOffCellIdxs[2]]) {
+        threeOfAKind = TRUE;
     }
 
-    if ((param0->unk_3C4[param0->unk_40E[1]] == 4) && (param0->unk_3C4[param0->unk_40E[0]] == param0->unk_3C4[param0->unk_40E[2]])) {
-        v1 = 1;
+    if (app->scratchCellValues[app->scratchedOffCellIdxs[1]] == WILDCARD_CELL_VALUE && app->scratchCellValues[app->scratchedOffCellIdxs[0]] == app->scratchCellValues[app->scratchedOffCellIdxs[2]]) {
+        threeOfAKind = TRUE;
     }
 
-    if ((param0->unk_3C4[param0->unk_40E[2]] == 4) && (param0->unk_3C4[param0->unk_40E[0]] == param0->unk_3C4[param0->unk_40E[1]])) {
-        v1 = 1;
+    if (app->scratchCellValues[app->scratchedOffCellIdxs[2]] == WILDCARD_CELL_VALUE && app->scratchCellValues[app->scratchedOffCellIdxs[0]] == app->scratchCellValues[app->scratchedOffCellIdxs[1]]) {
+        threeOfAKind = TRUE;
     }
 
-    if (v1 == 1) {
-        for (v0 = 0; v0 < 3; v0++) {
-            if (param0->unk_3C4[param0->unk_40E[v0]] != 4) {
-                param0->unk_40B = param0->unk_3C4[param0->unk_40E[v0]];
+    if (threeOfAKind == TRUE) {
+        for (int i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+            if (app->scratchCellValues[app->scratchedOffCellIdxs[i]] != WILDCARD_CELL_VALUE) {
+                app->winningCellValue = app->scratchCellValues[app->scratchedOffCellIdxs[i]];
                 break;
             }
         }
-
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov111_021D2D14(UnkStruct_ov111_021D0F7C *param0)
+static BOOL CheckIfDittoTransformNeeded(ScratchOffCardApp *app)
 {
-    int v0;
-    BOOL v1 = 0;
+    BOOL transformNeeded = FALSE;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_3C4[param0->unk_40E[v0]] == 4) {
-            ov111_021D3530(param0->unk_3B4[v0], 1);
-            v1 = 1;
+    for (int i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+        if (app->scratchCellValues[app->scratchedOffCellIdxs[i]] == WILDCARD_CELL_VALUE) {
+            ScratchOffCardsAppSprite_SetMosaicFlag(app->winMonSprites[i], TRUE);
+            transformNeeded = TRUE;
         }
     }
 
-    param0->unk_14 = 0;
+    app->mosaicSize = 0;
 
-    G2_SetOBJMosaicSize(param0->unk_14, param0->unk_14);
+    G2_SetOBJMosaicSize(app->mosaicSize, app->mosaicSize);
 
-    return v1;
+    return transformNeeded;
 }
 
-static BOOL ov111_021D2D60(UnkStruct_ov111_021D0F7C *param0, u8 param1)
+static BOOL UpdateTransformingDitto(ScratchOffCardApp *app, u8 decreaseMosaic)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_3C4[param0->unk_40E[v0]] == 4) {
+    for (i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+        if (app->scratchCellValues[app->scratchedOffCellIdxs[i]] == WILDCARD_CELL_VALUE) {
             break;
         }
     }
 
-    if (v0 == 3) {
-        return 0;
+    if (i == NUM_CELLS_TO_SCRATCH) {
+        return FALSE;
     }
 
-    if (param1 == 0) {
-        if (param0->unk_14 == 0) {
+    if (!decreaseMosaic) {
+        if (app->mosaicSize == 0) {
             Sound_PlayEffect(SEQ_SE_PL_W100_sseq);
         }
 
-        if (param0->unk_14 < 4) {
-            param0->unk_14++;
+        if (app->mosaicSize < 4) {
+            app->mosaicSize++;
         } else {
-            for (v0 = 0; v0 < 3; v0++) {
-                if (param0->unk_3C4[param0->unk_40E[v0]] == 4) {
-                    ov111_021D34C4(param0->unk_3B4[v0], param0->unk_40B);
+            for (i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+                if (app->scratchCellValues[app->scratchedOffCellIdxs[i]] == WILDCARD_CELL_VALUE) {
+                    ScratchOffCardsAppSprite_SetAnim(app->winMonSprites[i], app->winningCellValue);
                 }
             }
 
-            return 0;
+            return FALSE;
         }
     } else {
-        if (param0->unk_14 > 0) {
-            param0->unk_14--;
+        if (app->mosaicSize > 0) {
+            app->mosaicSize--;
         } else {
-            for (v0 = 0; v0 < 3; v0++) {
-                ov111_021D3530(param0->unk_3B4[v0], 0);
+            for (i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+                ScratchOffCardsAppSprite_SetMosaicFlag(app->winMonSprites[i], FALSE);
             }
 
-            return 0;
+            return FALSE;
         }
     }
 
-    G2_SetOBJMosaicSize(param0->unk_14, param0->unk_14);
+    G2_SetOBJMosaicSize(app->mosaicSize, app->mosaicSize);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov111_021D2E18(UnkStruct_ov111_021D0F7C *param0)
+static void IncrementCurrentCard(ScratchOffCardApp *app)
 {
-    param0->unk_0E++;
-    return;
+    app->currentCard++;
 }
 
-static void ov111_021D2E20(UnkStruct_ov111_021D0F7C *param0)
+static void IncrementCurrentCard2(ScratchOffCardApp *app)
 {
-    param0->unk_0E++;
-    return;
+    app->currentCard++;
 }
 
-static void ov111_021D2E28(UnkStruct_ov111_021D0F7C *param0)
+static void HideCenterMessageBox(ScratchOffCardApp *app)
 {
-    ov111_021D345C(param0->unk_3A4, 0);
-    Window_FillTilemap(&param0->unk_5C[10], 0);
-    Window_ScheduleCopyToVRAM(&param0->unk_5C[10]);
-    return;
+    ScratchOffCardsAppSprite_SetDrawFlag(app->centerMessageBoxSprite, FALSE);
+    Window_FillTilemap(&app->windows[SCRATCH_WINDOW_START_CARD], 0);
+    Window_ScheduleCopyToVRAM(&app->windows[SCRATCH_WINDOW_START_CARD]);
 }
 
-static void ov111_021D2E4C(UnkStruct_ov111_021D0F7C *param0)
+static void LoadScratchCellsCharData(ScratchOffCardApp *app)
 {
-    param0->unk_3F0 = Graphics_GetCharData(NARC_INDEX_RESOURCE__ENG__SCRATCH__SCRATCH, 7, 0, &param0->unk_3F4, HEAP_ID_115);
+    app->scratchCellsRawCharData = Graphics_GetCharData(NARC_INDEX_SCRATCH_OFF_CARDS, 7, FALSE, &app->scratchCellsCharData, HEAP_ID_SCRATCH_OFF_CARD_APP);
 
-    Bg_LoadTiles(param0->unk_58, 0, param0->unk_3F4->pRawData, param0->unk_3F4->szByte, 0);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_58, 0);
-
-    return;
+    Bg_LoadTiles(app->bgConfig, BG_LAYER_MAIN_0, app->scratchCellsCharData->pRawData, app->scratchCellsCharData->szByte, 0);
+    Bg_CopyTilemapBufferToVRAM(app->bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void ov111_021D2E8C(UnkStruct_ov111_021D0F7C *param0)
+static void InitScratchCellsBackup(ScratchOffCardApp *app)
 {
-    param0->unk_3F8 = Heap_Alloc(HEAP_ID_115, param0->unk_3F4->szByte);
+    app->scratchCellsDataBackup = Heap_Alloc(HEAP_ID_SCRATCH_OFF_CARD_APP, app->scratchCellsCharData->szByte);
 
-    if (param0->unk_3F8 == NULL) {
-        GF_ASSERT(param0->unk_3F8 != NULL);
+    if (app->scratchCellsDataBackup == NULL) {
+        GF_ASSERT(app->scratchCellsDataBackup != NULL);
     }
-
-    return;
 }
 
-static void ov111_021D2EB4(UnkStruct_ov111_021D0F7C *param0)
+static void MakeCopyOfScratchCellsData(ScratchOffCardApp *app)
 {
-    memcpy(param0->unk_3F8, param0->unk_3F4->pRawData, param0->unk_3F4->szByte);
-    return;
+    memcpy(app->scratchCellsDataBackup, app->scratchCellsCharData->pRawData, app->scratchCellsCharData->szByte);
 }
 
-static void ov111_021D2ECC(UnkStruct_ov111_021D0F7C *param0, int param1, int param2)
+static void RemoveScratchedOffPixels(ScratchOffCardApp *app, int touchX, int touchY)
 {
-    int v0, v1;
-
-    for (v1 = -3; v1 < 3; v1++) {
-        for (v0 = -3; v0 < 3; v0++) {
-            if (((param1 + v0) > 0) && ((param1 + v0) < 256) && ((param2 + v1) > 0) && ((param2 + v1) < 192)) {
-                ov111_021D2F38(param0, param1 + v0, param2 + v1);
+    for (int y = -3; y < 3; y++) {
+        for (int x = -3; x < 3; x++) {
+            if (touchX + x > 0 && touchX + x < HW_LCD_WIDTH && touchY + y > 0 && touchY + y < HW_LCD_HEIGHT) {
+                ScratchPixelsAtPosition(app, touchX + x, touchY + y);
             }
         }
     }
 
-    Bg_LoadTiles(param0->unk_58, 0, param0->unk_3F8, param0->unk_3F4->szByte, 0);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_58, 0);
-
-    return;
+    Bg_LoadTiles(app->bgConfig, BG_TYPE_STATIC, app->scratchCellsDataBackup, app->scratchCellsCharData->szByte, 0);
+    Bg_CopyTilemapBufferToVRAM(app->bgConfig, BG_TYPE_STATIC);
 }
 
-static void ov111_021D2F38(UnkStruct_ov111_021D0F7C *param0, u32 param1, u32 param2)
+static void ScratchPixelsAtPosition(ScratchOffCardApp *app, u32 x, u32 y)
 {
-    u8 v0;
-    u32 v1, v2, v3, v4, v5;
+    u8 clearMask = 0xff;
 
-    v0 = 0xff;
-
-    if ((param1 % 2) == 0) {
-        v0 ^= 0xf;
+    if (x % 2 == 0) {
+        clearMask ^= 0xf;
     } else {
-        v0 ^= 0xf0;
+        clearMask ^= 0xf0;
     }
 
-    v1 = (param1 / 8 * 0x20);
-    v2 = (param2 / 8 * 0x20 * 32);
-    v3 = (param1 % 8 / 2);
+    u32 tileX = x / TILE_WIDTH_PIXELS * 32;
+    u32 tileY = y / TILE_WIDTH_PIXELS * 32 * 32;
+    u32 offsetX = x % 8 / 2;
 
-    if (param2 < 8) {
-        v4 = (param2 * 4);
+    u32 offsetY;
+    if (y < 8) {
+        offsetY = y * 4;
     } else {
-        v4 = (param2 % 8);
-        v4 = (v4 * 4);
+        offsetY = y % 8;
+        offsetY = offsetY * 4;
     }
 
-    v5 = (v2 + v1 + v3 + v4);
-    param0->unk_3F8[v5] &= v0;
-
-    return;
+    u32 pos = tileY + tileX + offsetX + offsetY;
+    app->scratchCellsDataBackup[pos] &= clearMask;
 }

@@ -6705,9 +6705,9 @@ static BOOL ScrCmd_OpenFrontierRecordsApp(ScriptContext *ctx)
 
 BOOL ScrCmd_2E2(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    void **args = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v0 = sub_0203E608(ctx->fieldSystem, HEAP_ID_FIELD3);
+    *args = sub_0203E608(ctx->fieldSystem, HEAP_ID_FIELD3);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
@@ -6717,9 +6717,9 @@ BOOL ScrCmd_2E3(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    Heap_Free(*v0);
-    *v0 = NULL;
+    void **args = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    Heap_Free(*args);
+    *args = NULL;
 
     return TRUE;
 }
@@ -6727,14 +6727,14 @@ BOOL ScrCmd_2E3(ScriptContext *ctx)
 BOOL ScrCmd_2E4(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
-    u16 *v5 = ScriptContext_GetVarPointer(ctx);
+    u16 cardIdx = ScriptContext_GetVar(ctx);
+    u16 *item = ScriptContext_GetVarPointer(ctx);
+    u16 *count = ScriptContext_GetVarPointer(ctx);
 
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    UnkStruct_0203E608 *v1 = (UnkStruct_0203E608 *)*v0;
-    *v4 = v1->unk_08[v3];
-    *v5 = v1->unk_0E[v3];
+    void **argsPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    ScratchOffCardsAppArgs *args = *argsPtr;
+    *item = args->wonItems[cardIdx];
+    *count = args->wonItemsCount[cardIdx];
 
     return FALSE;
 }

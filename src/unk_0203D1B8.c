@@ -1695,19 +1695,19 @@ void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID)
     FS_EXTERN_OVERLAY(overlay111);
 
     static ApplicationManagerTemplate v1 = {
-        ov111_021D0D80,
-        ov111_021D0E34,
-        ov111_021D0F40,
+        ScratchOffCardApp_Init,
+        ScratchOffCardApp_Main,
+        ScratchOffCardApp_Exit,
         FS_OVERLAY_ID(overlay111)
     };
 
-    UnkStruct_0203E608 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E608));
-    memset(v0, 0, sizeof(UnkStruct_0203E608));
+    ScratchOffCardsAppArgs *args = Heap_Alloc(heapID, sizeof(ScratchOffCardsAppArgs));
+    memset(args, 0, sizeof(ScratchOffCardsAppArgs));
 
-    v0->saveData = fieldSystem->saveData;
-    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
+    args->saveData = fieldSystem->saveData;
+    FieldSystem_StartChildProcess(fieldSystem, &v1, args);
 
-    return v0;
+    return args;
 }
 
 static const u8 sTeachMoveSummaryPages[] = {

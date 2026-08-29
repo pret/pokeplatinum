@@ -3,8 +3,8 @@
 
 #include "overlay_manager.h"
 
-int ov111_021D0D80(ApplicationManager *appMan, int *param1);
-int ov111_021D0E34(ApplicationManager *appMan, int *param1);
-int ov111_021D0F40(ApplicationManager *appMan, int *param1);
+BOOL ScratchOffCardApp_Init(ApplicationManager *appMan, int *state);
+BOOL ScratchOffCardApp_Main(ApplicationManager *appMan, int *state);
+BOOL ScratchOffCardApp_Exit(ApplicationManager *appMan, int *state);
 
 #endif // POKEPLATINUM_OV111_021D0D80_H

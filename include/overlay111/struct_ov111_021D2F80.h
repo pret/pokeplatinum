@@ -6,10 +6,10 @@
 #include "sprite_util.h"
 
 typedef struct {
-    SpriteList *unk_00;
-    G2dRenderer unk_04;
-    SpriteResourceCollection *unk_190[4];
-    SpriteResource *unk_1A0[5][4];
-} UnkStruct_ov111_021D2F80;
+    SpriteList *spriteList;
+    G2dRenderer g2dRenderer;
+    SpriteResourceCollection *resourceCollections[4];
+    SpriteResource *resources[5][4];
+} ScratchOffCardsAppSpriteManager;
 
 #endif // POKEPLATINUM_STRUCT_OV111_021D2F80_H
