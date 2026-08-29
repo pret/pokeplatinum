@@ -1,8 +1,6 @@
-#include "overlay111/ov111_021D2F80.h"
+#include "applications/scratch_off_cards/sprite_manager.h"
 
 #include <nitro.h>
-
-#include "overlay111/struct_ov111_021D2F80.h"
 
 #include "char_transfer.h"
 #include "gx_layers.h"

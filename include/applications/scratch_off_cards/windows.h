@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV111_021D3548_H
-#define POKEPLATINUM_OV111_021D3548_H
+#ifndef POKEPLATINUM_SCRATCH_OFF_CARDS_WINDOWS_H
+#define POKEPLATINUM_SCRATCH_OFF_CARDS_WINDOWS_H
 
 #include "bg_window.h"
 
@@ -28,4 +28,4 @@ void ScratchOffCardsApp_FreeWindows(Window *windows);
 void ScratchOffCardsApp_DrawWindow(BgConfig *bgConfig, Window *window);
 void ScratchOffCardsApp_DrawMessageBox(Window *window, int frame);
 
-#endif // POKEPLATINUM_OV111_021D3548_H
+#endif // POKEPLATINUM_SCRATCH_OFF_CARDS_WINDOWS_H

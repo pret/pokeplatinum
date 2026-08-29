@@ -1,10 +1,9 @@
-#include "overlay111/ov111_021D33F4.h"
+#include "applications/scratch_off_cards/sprites.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay111/ov111_021D2F80.h"
-#include "overlay111/struct_ov111_021D2F80.h"
+#include "applications/scratch_off_cards/sprite_manager.h"
 
 #include "heap.h"
 #include "sprite.h"

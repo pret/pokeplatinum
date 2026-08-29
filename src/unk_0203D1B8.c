@@ -20,7 +20,6 @@
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_0203E348.h"
-#include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_0206BC70.h"
 
@@ -43,6 +42,7 @@
 #include "applications/poffin_case/main.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/scratch_off_cards/main.h"
 #include "applications/signature.h"
 #include "applications/town_map/main.h"
 #include "applications/trainer_case/main.h"
@@ -68,7 +68,6 @@
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay092/ov92_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
-#include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
 #include "wifi_battle_tower/application.h"
 
@@ -163,7 +162,7 @@ FS_EXTERN_OVERLAY(wifi_battle_tower);
 FS_EXTERN_OVERLAY(end_credits);
 FS_EXTERN_OVERLAY(overlay101);
 FS_EXTERN_OVERLAY(frontier_records_app);
-FS_EXTERN_OVERLAY(overlay111);
+FS_EXTERN_OVERLAY(scratch_off_cards);
 FS_EXTERN_OVERLAY(dw_warp);
 
 #include <nitro/code16.h>
@@ -1690,22 +1689,22 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem
     return partyMenu;
 }
 
-void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID)
+void *FieldSystem_OpenScratchOffCardsApp(FieldSystem *fieldSystem, enum HeapID heapID)
 {
-    FS_EXTERN_OVERLAY(overlay111);
+    FS_EXTERN_OVERLAY(scratch_off_cards);
 
-    static ApplicationManagerTemplate v1 = {
+    static ApplicationManagerTemplate template = {
         ScratchOffCardApp_Init,
         ScratchOffCardApp_Main,
         ScratchOffCardApp_Exit,
-        FS_OVERLAY_ID(overlay111)
+        FS_OVERLAY_ID(scratch_off_cards)
     };
 
     ScratchOffCardsAppArgs *args = Heap_Alloc(heapID, sizeof(ScratchOffCardsAppArgs));
     memset(args, 0, sizeof(ScratchOffCardsAppArgs));
 
     args->saveData = fieldSystem->saveData;
-    FieldSystem_StartChildProcess(fieldSystem, &v1, args);
+    FieldSystem_StartChildProcess(fieldSystem, &template, args);
 
     return args;
 }

@@ -1623,13 +1623,13 @@ Overlay frontier_records_app
 	Object main.nef.p/src_applications_frontier_records_windows.c.o
 }
 
-Overlay overlay111
+Overlay scratch_off_cards
 {
 	After main
-	Object main.nef.p/src_overlay111_ov111_021D0D80.c.o
-	Object main.nef.p/src_overlay111_ov111_021D2F80.c.o
-	Object main.nef.p/src_overlay111_ov111_021D33F4.c.o
-	Object main.nef.p/src_overlay111_ov111_021D3548.c.o
+	Object main.nef.p/src_applications_scratch_off_cards_main.c.o
+	Object main.nef.p/src_applications_scratch_off_cards_sprite_manager.c.o
+	Object main.nef.p/src_applications_scratch_off_cards_sprites.c.o
+	Object main.nef.p/src_applications_scratch_off_cards_windows.c.o
 }
 
 Overlay overlay112

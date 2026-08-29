@@ -1,9 +1,16 @@
-#ifndef POKEPLATINUM_OV111_021D2F80_H
-#define POKEPLATINUM_OV111_021D2F80_H
-
-#include "overlay111/struct_ov111_021D2F80.h"
+#ifndef POKEPLATINUM_SCRATCH_OFF_CARDS_SPRITE_MANAGER_H
+#define POKEPLATINUM_SCRATCH_OFF_CARDS_SPRITE_MANAGER_H
 
 #include "sprite.h"
+#include "sprite_resource.h"
+#include "sprite_util.h"
+
+typedef struct {
+    SpriteList *spriteList;
+    G2dRenderer g2dRenderer;
+    SpriteResourceCollection *resourceCollections[4];
+    SpriteResource *resources[5][4];
+} ScratchOffCardsAppSpriteManager;
 
 #define RESOURCE_ID_MON_SPRITES_SUB  0
 #define RESOURCE_ID_MON_SPRITES_MAIN 1
@@ -16,4 +23,4 @@ Sprite *ScratchOffCardsApp_InitSprite(ScratchOffCardsAppSpriteManager *spriteMan
 void ScratchOffCardsApp_FreeSprites(ScratchOffCardsAppSpriteManager *spriteMan);
 void ScratchOffCardsApp_UpdateBoxPalettes(ScratchOffCardsAppSpriteManager *spriteMan, int index);
 
-#endif // POKEPLATINUM_OV111_021D2F80_H
+#endif // POKEPLATINUM_SCRATCH_OFF_CARDS_SPRITE_MANAGER_H

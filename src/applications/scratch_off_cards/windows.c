@@ -1,4 +1,4 @@
-#include "overlay111/ov111_021D3548.h"
+#include "applications/scratch_off_cards/windows.h"
 
 #include <nitro.h>
 

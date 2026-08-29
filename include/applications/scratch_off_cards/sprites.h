@@ -1,9 +1,11 @@
-#ifndef POKEPLATINUM_OV111_021D33F4_H
-#define POKEPLATINUM_OV111_021D33F4_H
+#ifndef POKEPLATINUM_SCRATCH_OFF_CARDS_SPRITES_H
+#define POKEPLATINUM_SCRATCH_OFF_CARDS_SPRITES_H
 
 #include <nitro/fx/fx.h>
 
-#include "overlay111/struct_ov111_021D2F80.h"
+#include "applications/scratch_off_cards/sprite_manager.h"
+
+#include "sprite.h"
 
 typedef struct ScratchOffCardsAppSprite {
     u16 unused;
@@ -26,4 +28,4 @@ void ScratchOffCardsAppSprite_SetAnimateFlag(ScratchOffCardsAppSprite *sprite, B
 void ScratchOffCardsAppSprite_SetMosaicFlag(ScratchOffCardsAppSprite *appSprite, BOOL mosaic);
 BOOL ScratchOffCardsAppSprite_IsAnimated(ScratchOffCardsAppSprite *appSprite);
 
-#endif // POKEPLATINUM_OV111_021D33F4_H
+#endif // POKEPLATINUM_SCRATCH_OFF_CARDS_SPRITES_H

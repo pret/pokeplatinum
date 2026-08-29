@@ -1,4 +1,4 @@
-#include "overlay111/ov111_021D0D80.h"
+#include "applications/scratch_off_cards/main.h"
 
 #include "nitro/hw/common/lcd.h"
 #include <nitro.h>
@@ -7,13 +7,9 @@
 #include "constants/graphics.h"
 #include "generated/items.h"
 
-#include "struct_defs/struct_0203E608.h"
-
-#include "overlay111/ov111_021D2F80.h"
-#include "overlay111/ov111_021D33F4.h"
-#include "overlay111/ov111_021D3548.h"
-#include "overlay111/struct_ov111_021D0F7C_decl.h"
-#include "overlay111/struct_ov111_021D2F80.h"
+#include "applications/scratch_off_cards/sprite_manager.h"
+#include "applications/scratch_off_cards/sprites.h"
+#include "applications/scratch_off_cards/windows.h"
 
 #include "bg_window.h"
 #include "coordinates.h"
@@ -31,7 +27,6 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
-#include "savedata.h"
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -64,7 +59,7 @@
 #define ANIM_ID_MATCHING_CELL_BOX 2
 #define ANIM_ID_CENTER_MESSAGE    3
 
-struct UnkStruct_ov111_021D0F7C_t {
+typedef struct ScratchOffCardApp {
     ApplicationManager *appMan;
     ApplicationManager *unused;
     u8 subState;
@@ -125,7 +120,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     u32 unused6[2];
     TouchPadDataBuffer tpBuffer;
     u8 scratchedPixels[SCRATCH_REGION_WIDTH * SCRATCH_REGION_HEIGHT];
-};
+} ScratchOffCardApp;
 
 static BOOL State_FadeInApp(ScratchOffCardApp *app);
 static BOOL State_BringInSelectableCards(ScratchOffCardApp *app);

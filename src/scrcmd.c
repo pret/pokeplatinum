@@ -38,7 +38,6 @@
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_02029C88.h"
-#include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 
 #include "applications/capsule_menu/main.h"
@@ -46,6 +45,7 @@
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "applications/scratch_off_cards/main.h"
 #include "applications/town_map/main.h"
 #include "cutscenes/boat_cutscene.h"
 #include "field/field_system.h"
@@ -712,9 +712,9 @@ static BOOL ScrCmd_SaveExtraData(ScriptContext *ctx);
 static BOOL ScrCmd_CheckIsMiscSaveInit(ScriptContext *ctx);
 static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx);
 static BOOL ScrCmd_OpenFrontierRecordsApp(ScriptContext *ctx);
-BOOL ScrCmd_2E2(ScriptContext *ctx);
-BOOL ScrCmd_2E3(ScriptContext *ctx);
-BOOL ScrCmd_2E4(ScriptContext *ctx);
+BOOL ScrCmd_OpenScratchOffCardsApp(ScriptContext *ctx);
+BOOL ScrCmd_FreeScratchOffCardsArgs(ScriptContext *ctx);
+BOOL ScrCmd_GetScratchOffCardsWonItem(ScriptContext *ctx);
 BOOL ScrCmd_GetRandomBattlegroundTrainers(ScriptContext *ctx);
 static u8 GetRandomBattlegroundGymLeaderID(u16 trainer1ID, u16 trainer2ID, u16 trainer3ID, u16 trainer4ID);
 static u8 GetRandomBattlegroundStatTrainerID(u16 trainer1ID, u16 trainer2ID, u16 trainer3ID, u16 trainer4ID);
@@ -6703,17 +6703,17 @@ static BOOL ScrCmd_OpenFrontierRecordsApp(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_2E2(ScriptContext *ctx)
+BOOL ScrCmd_OpenScratchOffCardsApp(ScriptContext *ctx)
 {
     void **args = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *args = sub_0203E608(ctx->fieldSystem, HEAP_ID_FIELD3);
+    *args = FieldSystem_OpenScratchOffCardsApp(ctx->fieldSystem, HEAP_ID_FIELD3);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
 }
 
-BOOL ScrCmd_2E3(ScriptContext *ctx)
+BOOL ScrCmd_FreeScratchOffCardsArgs(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -6724,7 +6724,7 @@ BOOL ScrCmd_2E3(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_2E4(ScriptContext *ctx)
+BOOL ScrCmd_GetScratchOffCardsWonItem(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 cardIdx = ScriptContext_GetVar(ctx);
