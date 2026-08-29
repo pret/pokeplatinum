@@ -647,6 +647,12 @@
     .long (\jump_no_sticky-.) / 4 - 1
     .endm
 
+    .macro CheckElectricTerrain battler, jump_no_et
+    .long BTLCMD_CHECKELECTRICTERRAIN
+    .long \battler
+    .long (\jump_no_et-.) / 4 - 1
+    .endm
+
     .macro TryPerishSong jump_if_fail
     .long BTLCMD_TRYPERISHSONG
     .long (\jump_if_fail-.) / 4 - 1

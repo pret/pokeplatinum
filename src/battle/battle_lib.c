@@ -3701,6 +3701,10 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     subscript = subscript_overworld_sticky_web;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
+                case OVERWORLD_WEATHER_ELECTRIC_TERRAIN:
+                    subscript = subscript_overworld_electric_terrain;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
 
                 default:
                     break;
@@ -7075,6 +7079,9 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             }
         }
     }
+    if(fieldConditions & FIELD_CONDITION_ELECTRIC_TERRAIN && moveType == TYPE_ELECTRIC) {
+        damage = damage * 13 / 10;
+    }
 
     if (BattleMon_Get(battleCtx, attacker, BATTLEMON_FLASH_FIRE, NULL) && moveType == TYPE_FIRE) {
         damage = damage * 15 / 10;
@@ -7315,6 +7322,7 @@ static const enum BattleSubAnimation sEffectsAlwaysShown[] = {
     BATTLE_ANIMATION_WEATHER_HAIL,
     BATTLE_ANIMATION_WEATHER_SAND,
     BATTLE_ANIMATION_WEATHER_SUN,
+    BATTLE_ANIMATION_WEATHER_ELECTRIC_TERRAIN,
     BATTLE_ANIMATION_SUBSTITUTE_IN,
     BATTLE_ANIMATION_SUBSTITUTE_OUT,
 };

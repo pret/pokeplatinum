@@ -191,6 +191,7 @@ static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySpikes(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckSpikes(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckElectricTerrain(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryPerishSong(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_GetMonBySpeedOrder(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_GoToIfValidMon(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -5468,6 +5469,41 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
         battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SPEED_DOWN_1_STAGE;
         battleCtx->sideEffectMon = battler;
     } else {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Check whether Electric Terrain should wake the given battler on switch-in.
+ *
+ * Electric Terrain keeps grounded Pokemon alert: a battler that switches in while
+ * the terrain is active is immediately roused from sleep. This command only tests
+ * the condition; the calling subscript is responsible for clearing the sleep
+ * status and printing the wake-up message when the command falls through.
+ *
+ * Inputs:
+ * 1. The battler to check (typically the mon that just switched in).
+ * 2. The distance to jump if the battler is not woken (no terrain, fainted, or
+ *    already awake).
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_CheckElectricTerrain(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+
+    if ((WEATHER_IS_ELECTRIC_TERRAIN
+            && battleCtx->battleMons[battler].curHP
+            && (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP))
+        == FALSE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     }
 

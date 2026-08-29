@@ -299,4 +299,5 @@ subscript_files = files(
     'subscript_overworld_trick_room.s',
     'subscript_giratina_form_change.s',
     'subscript_overworld_sticky_web.s',
+    'subscript_overworld_electric_terrain.s',
 )

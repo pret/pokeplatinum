@@ -21,7 +21,7 @@ weather_rain
 weather_hail
 weather_sandstorm
 weather_sun
-dummy23
+weather_electric_terrain
 dummy24
 substitute_in
 substitute_out

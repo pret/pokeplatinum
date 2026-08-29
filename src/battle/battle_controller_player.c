@@ -44,6 +44,7 @@
 #include "trainer_info.h"
 
 #include "res/battle/scripts/sub_seq.naix"
+#include "res/text/bank/battle_strings.h"
 
 enum BattleControllerState {
     STATE_PROCESSING = 0,
@@ -911,6 +912,7 @@ enum FieldCondCheckState {
     FIELD_COND_CHECK_STATE_DEEP_FOG,
     FIELD_COND_CHECK_STATE_GRAVITY,
     FIELD_COND_CHECK_STATE_STICKY_WEB,
+    FIELD_COND_CHECK_STATE_ELECTRIC_TERRAIN,
 
     FIELD_COND_CHECK_END
 };
@@ -1063,6 +1065,17 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
         case FIELD_COND_CHECK_STATE_STICKY_WEB:
             if (battleCtx->fieldConditionsMask & FIELD_CONDITION_STICKY_WEB) {
                 PrepareSubroutineSequence(battleCtx, subscript_weather_continues);
+                state = STATE_BREAK_OUT;
+            }
+            battleCtx->fieldConditionCheckState++;
+            break;
+
+        case FIELD_COND_CHECK_STATE_ELECTRIC_TERRAIN:
+            if (battleCtx->fieldConditionsMask & FIELD_CONDITION_ELECTRIC_TERRAIN) {
+                battleCtx->msgBuffer.id = BattleStrings_Text_TheTerrainIsElectric;
+                battleCtx->msgBuffer.tags = TAG_NONE;
+                PrepareSubroutineSequence(battleCtx, subscript_weather_continues);
+                battleCtx->scriptTemp = BATTLE_ANIMATION_WEATHER_ELECTRIC_TERRAIN;
                 state = STATE_BREAK_OUT;
             }
             battleCtx->fieldConditionCheckState++;
