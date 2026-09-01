@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_TRADE_ROOM_H
-#define POKEPLATINUM_STRUCT_TRADE_ROOM_H
+#ifndef POKEPLATINUM_TRADE_ROOM_DEFS_H
+#define POKEPLATINUM_TRADE_ROOM_DEFS_H
 
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
@@ -174,4 +174,4 @@ struct TradeRoom {
     int connectionTimeoutFrames;
 };
 
-#endif // POKEPLATINUM_STRUCT_TRADE_ROOM_H
+#endif // POKEPLATINUM_TRADE_ROOM_DEFS_H

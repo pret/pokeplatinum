@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_TRADE_ROOM_COMM_H
 #define POKEPLATINUM_TRADE_ROOM_COMM_H
 
-#include "struct_defs/trade_room.h"
-
+#include "applications/trade_room/defs.h"
 #include "field/field_system_decl.h"
 
 void TradeRoom_RegisterCommHandlers(void *fieldSystem);

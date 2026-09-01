@@ -23,7 +23,6 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/trade_room.h"
 
 #include "applications/bag/application.h"
 #include "applications/berry_tag.h"
@@ -46,6 +45,8 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/signature.h"
 #include "applications/town_map/main.h"
+#include "applications/trade_room/application.h"
+#include "applications/trade_room/defs.h"
 #include "applications/trainer_case/main.h"
 #include "battle/battle_main.h"
 #include "choose_starter/choose_starter_app.h"
@@ -69,7 +70,6 @@
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
-#include "trade_room/application.h"
 #include "wifi_battle_tower/application.h"
 
 #include "bag.h"

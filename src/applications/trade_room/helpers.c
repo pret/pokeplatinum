@@ -1,4 +1,4 @@
-#include "trade_room/helpers.h"
+#include "applications/trade_room/helpers.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -19,8 +19,8 @@
 static void TradeRoom_PlayCursorMoveSound(ListMenu *listMenu, u32 unused, u8 onInit);
 
 enum TradeRoomYesNoStep {
-    YES_NO_STEP_CREATE_MENU = 0,
-    YES_NO_STEP_POLL_INPUT = 1,
+    YES_NO_STEP_CREATE_MENU,
+    YES_NO_STEP_POLL_INPUT,
 };
 
 static const u16 sTradePreviewDetailWindowLayouts[][5] = {
@@ -114,9 +114,7 @@ void TradeRoom_PrintStringInWindow(Window *window, String *str, int unused, u32 
     int xOffset = 0;
 
     if (xOrCenter == 1) {
-        int strWidth;
-
-        strWidth = Font_CalcStringWidth(FONT_SYSTEM, str, 0);
+        int strWidth = Font_CalcStringWidth(FONT_SYSTEM, str, 0);
         xOffset = ((window->width * 8) - strWidth) / 2;
     } else {
         xOffset = xOrCenter;
@@ -127,10 +125,7 @@ void TradeRoom_PrintStringInWindow(Window *window, String *str, int unused, u32 
 
 int TradeRoom_PrintMessage(Window *window, int entryId, int fontId, MessageLoader *msgLoader, StringTemplate *strTemplate)
 {
-    String *str;
-    int unused;
-
-    str = MessageUtil_ExpandedString(strTemplate, msgLoader, entryId, HEAP_ID_TRADE_ROOM);
+    String *str = MessageUtil_ExpandedString(strTemplate, msgLoader, entryId, HEAP_ID_TRADE_ROOM);
 
     if (fontId == FONT_MESSAGE) {
         Window_DrawMessageBoxWithScrollCursor(window, 0, (512 - (9 + (18 + 12))), 10);
@@ -139,7 +134,7 @@ int TradeRoom_PrintMessage(Window *window, int entryId, int fontId, MessageLoade
     }
 
     Window_FillTilemap(window, 15);
-    unused = Text_AddPrinterWithParamsAndColor(window, fontId, str, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
+    int unused = Text_AddPrinterWithParamsAndColor(window, fontId, str, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     String_Free(str);
 
     return unused;
@@ -204,20 +199,19 @@ static const ListMenuTemplate friendListMenuTemplate = {
 
 ListMenu *TradeRoom_NewFriendListMenu(StringList *strList, int friendCount, Window *window, BgConfig *bgConfig)
 {
-    ListMenu *listMenu;
-    ListMenuTemplate lmTemplate;
     int maxDisplayHeight = 5;
 
     Window_Add(bgConfig, window, 0, 19, 1, 12, maxDisplayHeight * 2, 13, (512 - (9 + (18 + 12))) - (10 * (maxDisplayHeight + 2) * 2));
     Window_DrawStandardFrame(window, 0, (512 - 9), 11);
 
-    lmTemplate = friendListMenuTemplate;
+    ListMenuTemplate lmTemplate = friendListMenuTemplate;
     lmTemplate.count = friendCount + 1;
     lmTemplate.maxDisplay = maxDisplayHeight;
     lmTemplate.choices = strList;
     lmTemplate.window = window;
     lmTemplate.cursorCallback = TradeRoom_PlayCursorMoveSound;
-    listMenu = ListMenu_New(&lmTemplate, 0, 0, HEAP_ID_TRADE_ROOM);
+
+    ListMenu *listMenu = ListMenu_New(&lmTemplate, 0, 0, HEAP_ID_TRADE_ROOM);
 
     return listMenu;
 }

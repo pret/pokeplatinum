@@ -1,13 +1,13 @@
-#include "trade_room/comm.h"
+#include "applications/trade_room/comm.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/comm_cmd_table.h"
-#include "struct_defs/trade_room.h"
 
+#include "applications/trade_room/application.h"
+#include "applications/trade_room/defs.h"
 #include "field/field_system.h"
-#include "trade_room/application.h"
 
 #include "communication_system.h"
 #include "pal_pad.h"
@@ -26,19 +26,21 @@ static u8 *TradeRoom_GetHugeTransferBuffer(int side, void *fieldSystem, int requ
 static int TradeRoom_ChatotCryPacketSize(void);
 static int TradeRoom_RibbonPacketSize(void);
 
+// clang-format off
 static const CommCmdTable sTradeRoomCommHandlers[] = {
-    { TradeRoom_ReceivePartyChunk, TradeRoom_PartyPacketSize, TradeRoom_GetHugeTransferBuffer }, // TRADE_CMD_SEND_PARTY
-    { TradeRoom_ReceiveCursorSync, CommPacketSizeOf_NetId }, // TRADE_CMD_SYNC_CURSOR
-    { TradeRoom_ReceiveStatusSync, CommPacketSizeOf_NetId }, // TRADE_CMD_SYNC_STATUS
-    { TradeRoom_ReceiveUnusedCmd25, CommPacketSizeOf_NetId }, // unused
-    { TradeRoom_ReceiveUnusedCmd26, CommPacketSizeOf_NetId }, // unused
-    { TradeRoom_ReceivePartyAck, CommPacketSizeOf_NetId }, // TRADE_CMD_PARTY_RECEIVED_ACK
-    { TradeRoom_ReceivePalPad, TradeRoom_PalPadPacketSize, TradeRoom_GetHugeTransferBuffer }, // TRADE_CMD_SEND_PALPAD
-    { TradeRoom_ReceiveChatotCry, TradeRoom_ChatotCryPacketSize, TradeRoom_GetHugeTransferBuffer }, // TRADE_CMD_SEND_CHATOT_CRY
-    { TradeRoom_ReceiveUnusedCmd30, CommPacketSizeOf_Nothing }, // unused
-    { TradeRoom_ReceiveStaggerDelay, CommPacketSizeOf_NetId }, // TRADE_CMD_STAGGER_DELAY
-    { TradeRoom_ReceiveRibbonData, TradeRoom_RibbonPacketSize } // TRADE_CMD_SEND_RIBBONS
+    [TRADE_CMD_SEND_PARTY - TRADE_CMD_SEND_PARTY]         = { TradeRoom_ReceivePartyChunk, TradeRoom_PartyPacketSize, TradeRoom_GetHugeTransferBuffer },
+    [TRADE_CMD_SYNC_CURSOR - TRADE_CMD_SEND_PARTY]        = { TradeRoom_ReceiveCursorSync, CommPacketSizeOf_NetId },
+    [TRADE_CMD_SYNC_STATUS - TRADE_CMD_SEND_PARTY]        = { TradeRoom_ReceiveStatusSync, CommPacketSizeOf_NetId },
+    [25 - TRADE_CMD_SEND_PARTY]                           = { TradeRoom_ReceiveUnusedCmd25, CommPacketSizeOf_NetId },
+    [26 - TRADE_CMD_SEND_PARTY]                           = { TradeRoom_ReceiveUnusedCmd26, CommPacketSizeOf_NetId },
+    [TRADE_CMD_PARTY_RECEIVED_ACK - TRADE_CMD_SEND_PARTY] = { TradeRoom_ReceivePartyAck, CommPacketSizeOf_NetId },
+    [TRADE_CMD_SEND_PALPAD - TRADE_CMD_SEND_PARTY]        = { TradeRoom_ReceivePalPad, TradeRoom_PalPadPacketSize, TradeRoom_GetHugeTransferBuffer },
+    [TRADE_CMD_SEND_CHATOT_CRY - TRADE_CMD_SEND_PARTY]    = { TradeRoom_ReceiveChatotCry, TradeRoom_ChatotCryPacketSize, TradeRoom_GetHugeTransferBuffer },
+    [30 - TRADE_CMD_SEND_PARTY]                           = { TradeRoom_ReceiveUnusedCmd30, CommPacketSizeOf_Nothing },
+    [TRADE_CMD_STAGGER_DELAY - TRADE_CMD_SEND_PARTY]      = { TradeRoom_ReceiveStaggerDelay, CommPacketSizeOf_NetId },
+    [TRADE_CMD_SEND_RIBBONS - TRADE_CMD_SEND_PARTY]       = { TradeRoom_ReceiveRibbonData, TradeRoom_RibbonPacketSize },
 };
+// clang-format on
 
 void TradeRoom_RegisterCommHandlers(void *fieldSystem)
 {
@@ -65,7 +67,7 @@ void TradeRoom_ReceivePartyChunk(int senderNetId, int unused, void *data, void *
     TradeRoom *tradeRoom = fieldSystem->tradeRoom;
 
     if (senderNetId != CommSys_CurNetId()) {
-        memcpy((void *)tradeRoom->partnerParty, data, (236 * 6 + 4 * 2));
+        memcpy((void *)tradeRoom->partnerParty, data, sizeof(Party));
         tradeRoom->partyReceiveCount++;
 
         if ((tradeRoom->partyReceiveCount) * (236 * 6 + 4 * 2) >= Party_SaveSize()) {
@@ -163,7 +165,7 @@ void TradeRoom_ReceiveChatotCry(int senderNetId, int unused, void *data, void *f
     TradeRoom *tradeRoom = ((FieldSystem *)fieldSystemPtr)->tradeRoom;
 
     if (CommSys_CurNetId() != senderNetId) {
-        MI_CpuCopyFast(data, tradeRoom->chatotCryBuffer[senderNetId], 1000);
+        MI_CpuCopyFast(data, tradeRoom->chatotCryBuffer[senderNetId], CHATOT_CRY_SIZE);
         tradeRoom->commMilestone = TRADE_MILESTONE_CHATOT_CRY_RECEIVED;
         sub_0203632C(0);
     }
@@ -176,7 +178,7 @@ void TradeRoom_AttachToFieldSystem(FieldSystem *fieldSystem, TradeRoom *tradeRoo
 
 static int TradeRoom_ChatotCryPacketSize(void)
 {
-    return 1000 + 4;
+    return sizeof(ChatotCry);
 }
 
 static int TradeRoom_RibbonPacketSize(void)
@@ -191,7 +193,7 @@ static int TradeRoom_PalPadPacketSize(void)
 
 static int TradeRoom_PartyPacketSize(void)
 {
-    return 236 * 6 + 4 * 2;
+    return sizeof(Party);
 }
 
 static u8 *TradeRoom_GetHugeTransferBuffer(int side, void *fieldSystem, int requestedSize)

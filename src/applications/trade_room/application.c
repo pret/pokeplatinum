@@ -1,4 +1,4 @@
-#include "trade_room/application.h"
+#include "applications/trade_room/application.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -10,11 +10,11 @@
 
 #include "struct_decls/wi_fi_list.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/trade_room.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "trade_room/comm.h"
-#include "trade_room/helpers.h"
+#include "applications/trade_room/comm.h"
+#include "applications/trade_room/defs.h"
+#include "applications/trade_room/helpers.h"
 
 #include "bag.h"
 #include "battle_frontier_save.h"
@@ -113,76 +113,66 @@ enum TradeRoomPalPadMsg {
 
 enum TradeRoomSyncStatus {
     TRADE_STATUS_QUIT = 1,
-    TRADE_STATUS_CHOSE_TRADE = 2,
-    TRADE_STATUS_CONFIRMED = 3,
-    TRADE_STATUS_DECLINED = 4,
-};
-
-enum TradeRoomMenuInputSentinel {
-    MENU_INPUT_PENDING = 0xffffffff,
-    MENU_INPUT_CANCELLED = 0xfffffffe,
+    TRADE_STATUS_CHOSE_TRADE,
+    TRADE_STATUS_CONFIRMED,
+    TRADE_STATUS_DECLINED,
 };
 
 enum TradeRoomMonActionChoice {
-    MON_ACTION_SUMMARY = 0,
-    MON_ACTION_TRADE = 1,
-    MON_ACTION_CANCEL = 2,
+    MON_ACTION_SUMMARY,
+    MON_ACTION_TRADE,
+    MON_ACTION_CANCEL,
 };
 
 enum TradeRoomPartnerMonActionChoice {
-    PARTNER_MON_ACTION_SUMMARY = 0,
-    PARTNER_MON_ACTION_CANCEL = 1,
-};
-
-enum TradeRoomYesNoChoice {
-    YES_NO_CHOICE_YES = 0,
-    YES_NO_CHOICE_NO = 0xfffffffe,
+    PARTNER_MON_ACTION_SUMMARY,
+    PARTNER_MON_ACTION_CANCEL,
 };
 
 enum TradeRoomChecksumResult {
-    TRADE_CHECKSUM_OK = 0,
-    TRADE_CHECKSUM_YOUR_MON_INVALID = 1,
-    TRADE_CHECKSUM_PARTNER_MON_INVALID = 2,
+    TRADE_CHECKSUM_OK,
+    TRADE_CHECKSUM_YOUR_MON_INVALID,
+    TRADE_CHECKSUM_PARTNER_MON_INVALID,
 };
 
 enum TradeRoomState {
-    TRADE_STATE_FADE_IN = 0,
-    TRADE_STATE_RUNNING = 1,
-    TRADE_STATE_CLOSING = 2,
+    TRADE_STATE_FADE_IN,
+    TRADE_STATE_RUNNING,
+    TRADE_STATE_CLOSING,
 };
 
 enum TradeRoomPhase {
-    TRADE_PHASE_CONNECTING = 0,
-    TRADE_PHASE_BROWSING = 1,
-    TRADE_PHASE_CLOSING = 2,
-    TRADE_PHASE_START_SUMMARY_TRANSITION = 3,
-    TRADE_PHASE_WAIT_FADE_OUT_FOR_SUMMARY = 4,
-    TRADE_PHASE_WAIT_SUMMARY_SCREEN = 5,
-    TRADE_PHASE_FADE_IN_AFTER_SUMMARY = 6,
-    TRADE_PHASE_WAIT_FADE_IN_AFTER_SUMMARY = 7,
+    TRADE_PHASE_CONNECTING,
+    TRADE_PHASE_BROWSING,
+    TRADE_PHASE_CLOSING,
+    TRADE_PHASE_START_SUMMARY_TRANSITION,
+    TRADE_PHASE_WAIT_FADE_OUT_FOR_SUMMARY,
+    TRADE_PHASE_WAIT_SUMMARY_SCREEN,
+    TRADE_PHASE_FADE_IN_AFTER_SUMMARY,
+    TRADE_PHASE_WAIT_FADE_IN_AFTER_SUMMARY,
 };
 
 enum TradeRoomConnectStep {
-    TRADE_CONNECT_LOCK_SHAYMIN_FORM = 0,
-    TRADE_CONNECT_WAIT_INITIAL_SYNC = 1,
-    TRADE_CONNECT_WAIT_STAGGER_START = 2,
-    TRADE_CONNECT_STAGGER_COUNTDOWN = 3,
-    TRADE_CONNECT_INIT_SYNC_SAVE = 4,
-    TRADE_CONNECT_SYNC_SAVE = 5,
-    TRADE_CONNECT_START_SYNC_2 = 6,
-    TRADE_CONNECT_WAIT_SYNC_2 = 7,
-    TRADE_CONNECT_SEND_PARTY = 8,
-    TRADE_CONNECT_WAIT_PARTY_RECEIVED = 9,
-    TRADE_CONNECT_DISPLAY_NICKNAMES = 10,
-    TRADE_CONNECT_CACHE_MON_DISPLAY_DATA = 11,
-    TRADE_CONNECT_CREATE_PALPAD_OBJECT = 12,
-    TRADE_CONNECT_WAIT_PALPAD_SENT = 13,
-    TRADE_CONNECT_SEND_CHATOT_CRY = 14,
-    TRADE_CONNECT_WAIT_CHATOT_CRY_AND_SHOW_ICONS = 15,
-    TRADE_CONNECT_FADE_IN_MAIN_SCREEN = 16,
-    TRADE_CONNECT_WAIT_MAIN_FADE_AND_SHOW_DETAILS = 17,
-    TRADE_CONNECT_FADE_IN_SUB_SCREEN = 18,
-    TRADE_CONNECT_WAIT_SUB_FADE_AND_FINISH = 19,
+    TRADE_CONNECT_LOCK_SHAYMIN_FORM,
+    TRADE_CONNECT_WAIT_INITIAL_SYNC,
+    TRADE_CONNECT_WAIT_STAGGER_START,
+    TRADE_CONNECT_STAGGER_COUNTDOWN,
+    TRADE_CONNECT_INIT_SYNC_SAVE,
+    TRADE_CONNECT_SYNC_SAVE,
+    TRADE_CONNECT_START_SYNC_2,
+    TRADE_CONNECT_WAIT_SYNC_2,
+    TRADE_CONNECT_SEND_PARTY,
+    TRADE_CONNECT_WAIT_PARTY_RECEIVED,
+    TRADE_CONNECT_DISPLAY_NICKNAMES,
+    TRADE_CONNECT_CACHE_MON_DISPLAY_DATA,
+    TRADE_CONNECT_CREATE_PALPAD_OBJECT,
+    TRADE_CONNECT_WAIT_PALPAD_SENT,
+    TRADE_CONNECT_SEND_CHATOT_CRY,
+    TRADE_CONNECT_WAIT_CHATOT_CRY_AND_SHOW_ICONS,
+    TRADE_CONNECT_FADE_IN_MAIN_SCREEN,
+    TRADE_CONNECT_WAIT_MAIN_FADE_AND_SHOW_DETAILS,
+    TRADE_CONNECT_FADE_IN_SUB_SCREEN,
+    TRADE_CONNECT_WAIT_SUB_FADE_AND_FINISH,
 };
 
 #define TRADE_SLOT_QUIT              (MAX_PARTY_SIZE * 2)
@@ -374,9 +364,6 @@ static const u8 sCursorMoveCandidates[][4][6] = {
 
 int TradeRoom_Init(ApplicationManager *appMan, int *unused)
 {
-    TradeRoom *tradeRoom;
-    NARC *narc;
-
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
@@ -387,8 +374,8 @@ int TradeRoom_Init(ApplicationManager *appMan, int *unused)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_TRADE_ROOM, 0x50000 + 0x20000 + 2000);
 
-    narc = NARC_ctor(NARC_INDEX_DATA__TRADELIST, HEAP_ID_TRADE_ROOM);
-    tradeRoom = ApplicationManager_NewData(appMan, sizeof(TradeRoom), HEAP_ID_TRADE_ROOM);
+    NARC *narc = NARC_ctor(NARC_INDEX_DATA__TRADELIST, HEAP_ID_TRADE_ROOM);
+    TradeRoom *tradeRoom = ApplicationManager_NewData(appMan, sizeof(TradeRoom), HEAP_ID_TRADE_ROOM);
 
     MI_CpuClearFast(tradeRoom, sizeof(TradeRoom));
 
@@ -442,14 +429,11 @@ static void TradeRoom_LoadPartyIconGraphics(NNSG2dCharacterData *charData, int s
 
 static void TradeRoom_PrintHeaderLabels(TradeRoom *tradeRoom)
 {
-    String *ownName, *partnerName, *quitMsg;
-    TrainerInfo *ownTrainerInfo, *partnerTrainerInfo;
-
-    ownTrainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId());
-    partnerTrainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
-    ownName = TrainerInfo_NameNewString(ownTrainerInfo, 26);
-    partnerName = TrainerInfo_NameNewString(partnerTrainerInfo, 26);
-    quitMsg = MessageLoader_GetNewString(tradeRoom->msgLoader, TRADE_MSG_QUIT);
+    TrainerInfo *ownTrainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId());
+    TrainerInfo *partnerTrainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    String *ownName = TrainerInfo_NameNewString(ownTrainerInfo, 26);
+    String *partnerName = TrainerInfo_NameNewString(partnerTrainerInfo, 26);
+    String *quitMsg = MessageLoader_GetNewString(tradeRoom->msgLoader, TRADE_MSG_QUIT);
 
     TradeRoom_PrintStringInWindow(&tradeRoom->windows[0], ownName, 10, TEXT_SPEED_INSTANT, 1, 1);
     TradeRoom_PrintStringInWindow(&tradeRoom->windows[1], partnerName, 10, TEXT_SPEED_INSTANT, 1, 1);
@@ -611,10 +595,10 @@ static void TradeRoom_PrintPartyNicknames(Window *window, StringTemplate *strTem
 
 static void TradeRoom_LoadPartyIconSprites(Party *party, int templateSlotBase, TradeRoom *tradeRoom)
 {
-    int i, slot;
+    int i;
 
     for (i = 0; i < Party_GetCurrentCount(party); i++) {
-        slot = i + templateSlotBase;
+        int slot = i + templateSlotBase;
 
         tradeRoom->iconGraphicsBuffers[slot] = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(tradeRoom->monDisplayData[slot].species, tradeRoom->monDisplayData[slot].isEgg, tradeRoom->monDisplayData[slot].form), 0, &tradeRoom->iconCharacterData[slot], HEAP_ID_TRADE_ROOM);
 
@@ -655,14 +639,12 @@ static int TradeRoom_ConnectAndSyncParties(TradeRoom *tradeRoom)
         ResetLock(RESET_LOCK_0x2);
         TradeRoom_AddWaitDialHandle(tradeRoom);
 
-        int i, form, species;
-
-        for (i = 0; i < Party_GetCurrentCount(tradeRoom->args->party); i++) {
+        for (int i = 0; i < Party_GetCurrentCount(tradeRoom->args->party); i++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(tradeRoom->args->party, i);
-            species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
+            int species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if (species == SPECIES_SHAYMIN) {
-                form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+                int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
                 if (form != SHAYMIN_FORM_LAND) {
                     Pokemon_SetShayminForm(mon, SHAYMIN_FORM_LAND);
@@ -833,9 +815,7 @@ static int TradeRoom_ConnectAndSyncParties(TradeRoom *tradeRoom)
 
 static void TradeRoom_CachePokemonDisplayData(Pokemon *mon, TradeRoomMonDisplayData *displayData)
 {
-    int wasDecrypted, item;
-
-    wasDecrypted = Pokemon_EnterDecryptionContext(mon);
+    int wasDecrypted = Pokemon_EnterDecryptionContext(mon);
 
     displayData->pokeBall = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
     displayData->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -844,7 +824,7 @@ static void TradeRoom_CachePokemonDisplayData(Pokemon *mon, TradeRoomMonDisplayD
     displayData->gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
     displayData->ballCapsuleId = Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL);
 
-    item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+    int item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
     Pokemon_ExitDecryptionContext(mon, wasDecrypted);
 
@@ -1350,11 +1330,8 @@ static int TradeRoom_ResolveGenderIconState(TradeRoomMonDisplayData *displayData
 
 static void TradeRoom_ShowMonDetailCard(Window *window, int side, Party *party, int slot, TradeRoom *tradeRoom)
 {
-    String *str, *itemNameStr;
-    u16 item, level;
-    int yOffset;
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
-    yOffset = Pokemon_SpriteYOffset(mon, 2);
+    int yOffset = Pokemon_SpriteYOffset(mon, 2);
 
     Sprite_SetDrawFlag(tradeRoom->detailCardSprites[side], TRUE);
     TradeRoom_SetSpritePosition(tradeRoom->detailCardSprites[side], sDetailCardSpriteLayout[side][0], sDetailCardSpriteLayout[side][1] + yOffset + 192);
@@ -1390,12 +1367,12 @@ static void TradeRoom_ShowMonDetailCard(Window *window, int side, Party *party, 
     }
 
     if (!tradeRoom->monDisplayData[side * MAX_PARTY_SIZE + slot].isEgg) {
-        str = String_Init(10, HEAP_ID_TRADE_ROOM);
+        String *str = String_Init(10, HEAP_ID_TRADE_ROOM);
         Window_FillTilemap(&window[28 + side], 0);
         MessageLoader_GetString(tradeRoom->msgLoader, TRADE_MSG_LEVEL_LABEL, str);
         TradeRoom_PrintStringInWindow(&window[28 + side], str, 9, TEXT_SPEED_NO_TRANSFER, 6, 0);
 
-        level = Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, slot), MON_DATA_LEVEL, NULL);
+        u16 level = Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, slot), MON_DATA_LEVEL, NULL);
         String_FormatInt(str, level, 3, 0, 1);
         TradeRoom_PrintStringInWindow(&window[28 + side], str, 9, TEXT_SPEED_INSTANT, 24 + 6, 0);
         String_Free(str);
@@ -1405,10 +1382,10 @@ static void TradeRoom_ShowMonDetailCard(Window *window, int side, Party *party, 
 
     TradeRoom_PrintStringInWindow(&window[30 + side], tradeRoom->itemLabelStr, 7, TEXT_SPEED_INSTANT, 3, 0);
 
-    item = Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, slot), MON_DATA_HELD_ITEM, NULL);
+    u16 item = Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, slot), MON_DATA_HELD_ITEM, NULL);
     Window_FillTilemap(&window[32 + side], 0);
 
-    itemNameStr = String_Init(20, HEAP_ID_TRADE_ROOM);
+    String *itemNameStr = String_Init(20, HEAP_ID_TRADE_ROOM);
     Item_LoadName(itemNameStr, item, HEAP_ID_TRADE_ROOM);
     TradeRoom_PrintStringInWindow(&window[32 + side], itemNameStr, 9, TEXT_SPEED_INSTANT, 3, 0);
     String_Free(itemNameStr);
@@ -1507,22 +1484,22 @@ static void TradeRoom_PollDPadDirection(u32 *direction)
     int pressedCount = 0;
     int dir = 0;
 
-    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (JOY_REPEAT(PAD_KEY_UP)) {
         dir = 1;
         pressedCount++;
     }
 
-    if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    if (JOY_REPEAT(PAD_KEY_DOWN)) {
         dir = 2;
         pressedCount++;
     }
 
-    if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
+    if (JOY_REPEAT(PAD_KEY_LEFT)) {
         dir = 3;
         pressedCount++;
     }
 
-    if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+    if (JOY_REPEAT(PAD_KEY_RIGHT)) {
         dir = 4;
         pressedCount++;
     }
@@ -1539,22 +1516,19 @@ static const TouchScreenRect sMonCryTouchRect[] = {
 
 static void TradeRoom_PlayTouchedMonCry(TradeRoom *tradeRoom)
 {
-    u16 species, form;
-    int touchedRectIndex = -1;
-
     if (tradeRoom->selectedSlot[0] >= MAX_PARTY_SIZE) {
         return;
     }
 
-    touchedRectIndex = TouchScreen_CheckRectanglePressed(sMonCryTouchRect);
+    int touchedRectIndex = TouchScreen_CheckRectanglePressed(sMonCryTouchRect);
 
     if (touchedRectIndex != 0xffffffff) {
         if (tradeRoom->monDisplayData[tradeRoom->selectedSlot[0]].isEgg) {
             return;
         }
 
-        species = tradeRoom->monDisplayData[tradeRoom->selectedSlot[0]].species;
-        form = tradeRoom->monDisplayData[tradeRoom->selectedSlot[0]].form;
+        u16 species = tradeRoom->monDisplayData[tradeRoom->selectedSlot[0]].species;
+        u16 form = tradeRoom->monDisplayData[tradeRoom->selectedSlot[0]].form;
 
         if (species == SPECIES_CHATOT) {
             Sound_PlayChatotCry(SaveData_GetChatotCry(tradeRoom->saveData), 0, 100, 0);
@@ -1795,14 +1769,14 @@ static int TradeRoom_PromptQuitConfirm(TradeRoom *tradeRoom)
 static int TradeRoom_HandleQuitConfirm(TradeRoom *tradeRoom)
 {
     switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
-    case YES_NO_CHOICE_YES:
+    case MENU_YES:
         Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
         TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_WAITING_FOR_FRIEND, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
         TradeRoom_SyncValueToPartner(tradeRoom, TRADE_CMD_SYNC_STATUS, TRADE_STATUS_QUIT);
         tradeRoom->subStepCallback = TradeRoom_HandleMutualQuitSync;
         tradeRoom->didConfirmTrade = 0;
         break;
-    case YES_NO_CHOICE_NO:
+    case MENU_CANCEL:
         Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
         TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
         tradeRoom->subStepCallback = TradeRoom_HandleBrowseInput;
@@ -1843,10 +1817,10 @@ static void TradeRoom_PrintPalPadMessage(TradeRoom *tradeRoom, int entryId)
 static int TradeRoom_HandleAbandonRegistrationConfirm(TradeRoom *tradeRoom)
 {
     switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
-    case YES_NO_CHOICE_YES:
+    case MENU_YES:
         tradeRoom->subStepCallback = TradeRoom_ProcessPendingFriendRegistration;
         break;
-    case YES_NO_CHOICE_NO:
+    case MENU_CANCEL:
         TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_ROSTER_FULL);
         tradeRoom->subStepCallback = TradeRoom_HandleRosterFullConfirm;
         break;
@@ -1859,21 +1833,20 @@ static int TradeRoom_HandleAbandonRegistrationConfirm(TradeRoom *tradeRoom)
 
 static int TradeRoom_HandleDeleteFriendConfirm(TradeRoom *tradeRoom)
 {
-    TrainerInfo *trainerInfo;
-
     switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
-    case YES_NO_CHOICE_YES:
+    case MENU_YES:
         BattleFrontierSave_ClearFriendStatsAndShift(SaveData_GetBattleFrontier(tradeRoom->saveData), tradeRoom->friendToDeleteSlot);
         sub_0202AFD4(tradeRoom->wifiList, tradeRoom->friendToDeleteSlot);
         sub_02039298(tradeRoom->saveData, tradeRoom->registrationTargetNetId, 32 - 1, HEAP_ID_TRADE_ROOM, 0);
         tradeRoom->subStepCallback = TradeRoom_ProcessPendingFriendRegistration;
         break;
-    case YES_NO_CHOICE_NO:
-        trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
+    case MENU_CANCEL: {
+        TrainerInfo *trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
         StringTemplate_SetPlayerName(tradeRoom->palPadStrTemplate, 0, trainerInfo);
         TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_ABANDON_REGISTRATION);
         tradeRoom->subStepCallback = TradeRoom_HandleAbandonRegistrationConfirm;
         break;
+    }
     default:
         break;
     }
@@ -1883,21 +1856,20 @@ static int TradeRoom_HandleDeleteFriendConfirm(TradeRoom *tradeRoom)
 
 static int TradeRoom_HandleFriendListMenuInput(TradeRoom *tradeRoom)
 {
-    int input;
-    TrainerInfo *trainerInfo;
-
-    input = ListMenu_ProcessInput(tradeRoom->friendListMenu);
+    int input = ListMenu_ProcessInput(tradeRoom->friendListMenu);
 
     switch (input) {
-    case MENU_INPUT_PENDING:
+    case MENU_NOTHING_CHOSEN:
         return TRADE_PHASE_CONNECTING;
-    case MENU_INPUT_CANCELLED:
+    case MENU_CANCEL: {
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
-        trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
+
+        TrainerInfo *trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
         StringTemplate_SetPlayerName(tradeRoom->palPadStrTemplate, 0, trainerInfo);
         TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_ABANDON_REGISTRATION);
         tradeRoom->subStepCallback = TradeRoom_HandleAbandonRegistrationConfirm;
         break;
+    }
     default:
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
         tradeRoom->friendToDeleteSlot = input;
@@ -1935,7 +1907,7 @@ static int TradeRoom_BuildFriendListMenu(TradeRoom *tradeRoom)
         }
     }
 
-    StringList_AddFromMessageBank(tradeRoom->friendListChoices, tradeRoom->palPadMsgLoader, PALPAD_MSG_CANCEL, MENU_INPUT_CANCELLED);
+    StringList_AddFromMessageBank(tradeRoom->friendListChoices, tradeRoom->palPadMsgLoader, PALPAD_MSG_CANCEL, MENU_CANCEL);
     String_Free(str);
 
     tradeRoom->friendListMenu = TradeRoom_NewFriendListMenu(tradeRoom->friendListChoices, friendCount, &tradeRoom->friendListWindow, tradeRoom->bgConfig);
@@ -1946,18 +1918,17 @@ static int TradeRoom_BuildFriendListMenu(TradeRoom *tradeRoom)
 
 static int TradeRoom_HandleRosterFullConfirm(TradeRoom *tradeRoom)
 {
-    TrainerInfo *trainerInfo;
-
     switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
-    case YES_NO_CHOICE_YES:
+    case MENU_YES:
         tradeRoom->subStepCallback = TradeRoom_BuildFriendListMenu;
         break;
-    case YES_NO_CHOICE_NO:
-        trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
+    case MENU_CANCEL: {
+        TrainerInfo *trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
         StringTemplate_SetPlayerName(tradeRoom->palPadStrTemplate, 0, trainerInfo);
         TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_ABANDON_REGISTRATION);
         tradeRoom->subStepCallback = TradeRoom_HandleAbandonRegistrationConfirm;
         break;
+    }
     default:
         break;
     }
@@ -1970,7 +1941,7 @@ static int TradeRoom_HandleRegisterFriendConfirm(TradeRoom *tradeRoom)
     int i;
 
     switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
-    case YES_NO_CHOICE_YES:
+    case MENU_YES:
         tradeRoom->subStepCallback = TradeRoom_ProcessPendingFriendRegistration;
 
         for (i = 0; i < MAX_FRIENDS; i++) {
@@ -1987,7 +1958,7 @@ static int TradeRoom_HandleRegisterFriendConfirm(TradeRoom *tradeRoom)
         }
 
         break;
-    case YES_NO_CHOICE_NO:
+    case MENU_CANCEL:
         tradeRoom->subStepCallback = TradeRoom_ProcessPendingFriendRegistration;
         break;
     default:
@@ -2008,8 +1979,6 @@ static int TradeRoom_WaitForCancelSync(TradeRoom *unused)
 
 static int TradeRoom_ProcessPendingFriendRegistration(TradeRoom *tradeRoom)
 {
-    TrainerInfo *trainerInfo;
-
     tradeRoom->registrationTargetNetId = -1;
 
     for (int i = 0; i < CommSys_ConnectedCount(); i++) {
@@ -2030,7 +1999,7 @@ static int TradeRoom_ProcessPendingFriendRegistration(TradeRoom *tradeRoom)
     }
 
     if (Bag_CanRemoveItem(SaveData_GetBag(tradeRoom->saveData), ITEM_PAL_PAD, 1, HEAP_ID_TRADE_ROOM) == TRUE) {
-        trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
+        TrainerInfo *trainerInfo = CommInfo_TrainerInfo(tradeRoom->registrationTargetNetId);
         StringTemplate_SetPlayerName(tradeRoom->palPadStrTemplate, 0, trainerInfo);
         TradeRoom_PrintPalPadMessage(tradeRoom, PALPAD_MSG_REGISTER_FRIEND);
         tradeRoom->subStepCallback = TradeRoom_HandleRegisterFriendConfirm;
@@ -2135,7 +2104,7 @@ static int TradeRoom_HandleMonActionInput(TradeRoom *tradeRoom)
         tradeRoom->subStepCallback = TradeRoom_AnnounceTradeChoice;
         break;
     case MON_ACTION_CANCEL:
-    case MENU_INPUT_CANCELLED:
+    case MENU_CANCEL:
         Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
         TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
         Menu_Free(tradeRoom->actionMenu, NULL);
@@ -2229,7 +2198,7 @@ static void TradeRoom_SetSlideAnimPath(VecFx32 path[], int startX, int startY, i
 
 static void TradeRoom_ApplySlideAnimStep(Sprite *iconSprite, Sprite *itemSprite, Sprite *capsuleSprite, int step, VecFx32 path[], TradeRoomMonDisplayData *displayData)
 {
-    VecFx32 iconPos, itemPos, capsulePos;
+    VecFx32 iconPos;
 
     iconPos.x = path[0].x + ((path[1].x - path[0].x) / 20) * step;
     iconPos.y = path[0].y + ((path[1].y - path[0].y) / 20) * step;
@@ -2237,12 +2206,14 @@ static void TradeRoom_ApplySlideAnimStep(Sprite *iconSprite, Sprite *itemSprite,
     Sprite_SetPosition(iconSprite, &iconPos);
 
     if (displayData->heldItemType) {
+        VecFx32 itemPos;
         itemPos.x = iconPos.x + 20 * FX32_ONE;
         itemPos.y = iconPos.y + (16 + 6) * FX32_ONE;
         Sprite_SetPosition(itemSprite, &itemPos);
     }
 
     if (displayData->ballCapsuleId) {
+        VecFx32 capsulePos;
         capsulePos.x = iconPos.x + (20 + 8) * FX32_ONE;
         capsulePos.y = iconPos.y + (16 + 6) * FX32_ONE;
         Sprite_SetPosition(capsuleSprite, &capsulePos);
@@ -2325,7 +2296,7 @@ static void TradeRoom_ClearAndPrintMessage(TradeRoom *tradeRoom, int windowIdx, 
 static int TradeRoom_HandleTradeConfirm(TradeRoom *tradeRoom)
 {
     switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
-    case YES_NO_CHOICE_YES:
+    case MENU_YES:
         if (TradeRoom_HasUsablePartyAfterTrade(tradeRoom)) {
             switch (TradeRoom_ValidatePartyChecksums(tradeRoom)) {
             case TRADE_CHECKSUM_OK:
@@ -2355,7 +2326,7 @@ static int TradeRoom_HandleTradeConfirm(TradeRoom *tradeRoom)
         }
 
         break;
-    case YES_NO_CHOICE_NO:
+    case MENU_CANCEL:
         Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
         TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_COMMUNICATING, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
         tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeConfirmSync;
@@ -2379,12 +2350,12 @@ static int TradeRoom_WarnBallCapsuleDetach(TradeRoom *tradeRoom)
 static int TradeRoom_HandleBallCapsuleWarningConfirm(TradeRoom *tradeRoom)
 {
     switch (TradeRoom_ProcessYesNoChoice(tradeRoom->bgConfig, &tradeRoom->yesNoMenu, &tradeRoom->yesNoMenuStep)) {
-    case YES_NO_CHOICE_YES:
+    case MENU_YES:
         TradeRoom_AnnounceTradeConfirmed(tradeRoom);
         TradeRoom_ClearAndPrintMessage(tradeRoom, 23, TRADE_MSG_COMMUNICATING);
         tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeConfirmSync;
         break;
-    case YES_NO_CHOICE_NO:
+    case MENU_CANCEL:
         Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
         TradeRoom_PrintMessage(&tradeRoom->windows[23], TRADE_MSG_COMMUNICATING, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
         tradeRoom->subStepCallback = TradeRoom_HandleMutualTradeConfirmSync;
@@ -2472,7 +2443,7 @@ static int TradeRoom_HandleShowPartnerMonConfirm(TradeRoom *tradeRoom)
         break;
 
     case PARTNER_MON_ACTION_CANCEL:
-    case MENU_INPUT_CANCELLED:
+    case MENU_CANCEL:
         Bg_FillTilemapRect(tradeRoom->bgConfig, 0, 0, 0, 0, 32, 24, 0);
         TradeRoom_PrintMessage(&tradeRoom->windows[21], TRADE_MSG_CHOOSE_POKEMON, FONT_MESSAGE, tradeRoom->msgLoader, tradeRoom->strTemplate);
         Menu_Free(tradeRoom->actionMenu, NULL);
@@ -2591,11 +2562,10 @@ static BOOL TradeRoom_HasUsablePartyAfterTrade(TradeRoom *tradeRoom)
 
 static int TradeRoom_ValidatePartyChecksums(TradeRoom *tradeRoom)
 {
-    Pokemon *mon;
     int partyCount = Party_GetCurrentCount(tradeRoom->playerParty);
 
     for (int i = 0; i < partyCount; i++) {
-        mon = Party_GetPokemonBySlotIndex(tradeRoom->playerParty, i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(tradeRoom->playerParty, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_CHECKSUM_FAILED, NULL)) {
             return TRADE_CHECKSUM_YOUR_MON_INVALID;
@@ -2605,7 +2575,7 @@ static int TradeRoom_ValidatePartyChecksums(TradeRoom *tradeRoom)
     partyCount = Party_GetCurrentCount(tradeRoom->partnerParty);
 
     for (int i = 0; i < partyCount; i++) {
-        mon = Party_GetPokemonBySlotIndex(tradeRoom->partnerParty, i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(tradeRoom->partnerParty, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_CHECKSUM_FAILED, NULL)) {
             return TRADE_CHECKSUM_PARTNER_MON_INVALID;

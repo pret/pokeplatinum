@@ -6,8 +6,8 @@
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/map_load_mode.h"
-#include "struct_defs/trade_room.h"
 
+#include "applications/trade_room/defs.h"
 #include "field/field_system_sub2_decl.h"
 #include "overlay005/area_data.h"
 #include "overlay005/area_light.h"

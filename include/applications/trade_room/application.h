@@ -19,8 +19,8 @@ enum TradeRoomCommCmd {
 
 enum TradeRoomCommMilestone {
     TRADE_MILESTONE_PARTY_ACKED = 2,
-    TRADE_MILESTONE_PALPAD_RECEIVED = 3,
-    TRADE_MILESTONE_CHATOT_CRY_RECEIVED = 4,
+    TRADE_MILESTONE_PALPAD_RECEIVED,
+    TRADE_MILESTONE_CHATOT_CRY_RECEIVED,
 };
 
 int TradeRoom_Init(ApplicationManager *appMan, int *unused);

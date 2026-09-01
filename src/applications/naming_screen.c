@@ -2535,28 +2535,28 @@ static void NamingScreen_ProcessDirectionInputs(NamingScreen *namingScreen)
         buttonInputIsTransition = TRUE;
     }
 
-    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (JOY_REPEAT(PAD_KEY_UP)) {
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_UP;
         didInput++;
     }
 
-    if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    if (JOY_REPEAT(PAD_KEY_DOWN)) {
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_DOWN;
         didInput++;
     }
 
-    if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
+    if (JOY_REPEAT(PAD_KEY_LEFT)) {
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_LEFT;
         didInput++;
     }
 
-    if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+    if (JOY_REPEAT(PAD_KEY_RIGHT)) {
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
         Sprite_SetDrawFlag(namingScreen->uiSprites[NMS_SPRITE_CURSOR], TRUE);
         dpadMovement = NMS_DPAD_MOVEMENT_RIGHT;
