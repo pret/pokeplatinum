@@ -18,7 +18,7 @@ typedef struct SealCounts {
 } SealCounts;
 
 typedef struct SealCase {
-    BallCapsule capsules[TOTAL_CAPSULES];
+    BallCapsule capsules[CAPSULE_NUM];
     SealCounts seals;
 } SealCase;
 

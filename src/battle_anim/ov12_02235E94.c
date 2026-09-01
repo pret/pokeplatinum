@@ -5,6 +5,7 @@
 
 #include "struct_defs/seal_case.h"
 
+#include "applications/capsule_menu/main.h"
 #include "battle_anim/battle_anim_helpers.h"
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
@@ -15,6 +16,7 @@
 #include "battle_anim/struct_ov12_02236690.h"
 #include "battle_anim/struct_ov12_02237728.h"
 
+#include "ball_seal_info.h"
 #include "heap.h"
 #include "math_util.h"
 #include "narc.h"
@@ -28,8 +30,6 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0202C9F4.h"
-#include "unk_02097B18.h"
 
 #include "res/graphics/battle/sprites.naix"
 
@@ -416,7 +416,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
                 continue;
             }
 
-            v3 = sub_02098188(v2);
+            v3 = CapsuleMenu_GetSealParticleIndex(v2);
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
@@ -450,7 +450,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
                 continue;
             }
 
-            v3 = sub_02098188(v2);
+            v3 = CapsuleMenu_GetSealParticleIndex(v2);
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
@@ -484,7 +484,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
                 continue;
             }
 
-            v3 = sub_02098188(v2);
+            v3 = CapsuleMenu_GetSealParticleIndex(v2);
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
@@ -518,7 +518,7 @@ static void ov12_022360A0(SysTask *param0, void *ballCapSealEffPtr)
                 continue;
             }
 
-            v3 = sub_02098188(v2);
+            v3 = CapsuleMenu_GetSealParticleIndex(v2);
 
             ballCapSealEff->seals[ballCapSealEff->sealCount] = v5;
             GF_ASSERT(ballCapSealEff->sealParticleSystems[ballCapSealEff->sealCount] == NULL);
@@ -770,7 +770,7 @@ static void ov12_022365D4(SPLEmitter *param0)
 
         v4 = BallSeal_GetSealType(v3->unk_14);
 
-        if (sub_020981AC(v4) == 1) {
+        if (CapsuleMenu_IsAlphabetSeal(v4) == 1) {
             v5 = BallSeal_GetX(v3->unk_14);
             v6 = BallSeal_GetY(v3->unk_14);
             v7 = (v5 - 190);

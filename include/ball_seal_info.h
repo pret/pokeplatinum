@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0202C9F4_H
-#define POKEPLATINUM_UNK_0202C9F4_H
+#ifndef POKEPLATINUM_BALL_SEAL_INFO_H
+#define POKEPLATINUM_BALL_SEAL_INFO_H
 
 #include "struct_defs/seal_case.h"
 
@@ -26,4 +26,4 @@ BOOL SealCase_CheckSealCount(SealCase *sealCase, int sealId, s16 quantity);
 int SealCase_CountUniqueSeals(const SealCase *sealCase);
 int SealCase_CountSealOccurrenceAnywhere(const SealCase *sealCase, int sealId);
 
-#endif // POKEPLATINUM_UNK_0202C9F4_H
+#endif // POKEPLATINUM_BALL_SEAL_INFO_H
