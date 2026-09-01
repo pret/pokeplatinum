@@ -271,7 +271,6 @@ static int SubTask_SetupPartyMenu(BattleArcadeTaskEnv *taskEnv, FieldSystem *fie
 
 static int SubTask_ProcessPartyMenu(BattleArcadeTaskEnv *taskEnv, FieldSystem *fieldSystem)
 {
-
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return SUBTASK_PROCESS_PARTY_MENU;
     }
