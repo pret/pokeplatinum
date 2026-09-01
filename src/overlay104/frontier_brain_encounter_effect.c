@@ -87,7 +87,7 @@ typedef struct FrontierBrainVsSpriteAnimation {
     LinearInterpolationTaskFX32 tasks[4];
 } FrontierBrainVsSpriteAnimation;
 
-typedef struct {
+typedef struct FrontierBrainEncounterEffectAnimations {
     LinearInterpolationTaskFX32 unused;
     FrontierBrainVsSpriteAnimation vsSpriteAnimation;
     s32 stateDelay;
