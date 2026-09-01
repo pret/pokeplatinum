@@ -5,7 +5,6 @@
 #include "constants/battle_frontier.h"
 #include "generated/text_banks.h"
 
-#include "graphics/frontier/backgrounds/frontier_backgrounds.naix"
 #include "overlay104/ov104_0223D9E4.h"
 #include "overlay104/wfc_facility_selector_helpers.h"
 
@@ -14,6 +13,7 @@
 #include "heap.h"
 
 #include "res/field/frontier_scripts/fr_script.naix"
+#include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
 #include "res/sound/pl_sound_data.naix"
 
 typedef void (*FrontierSceneSetupDestroyFunc)(FrontierGraphics *, void **);

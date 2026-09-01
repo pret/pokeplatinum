@@ -10,7 +10,6 @@
 #include "constants/string.h"
 
 #include "battle/battle_system.h"
-#include "graphics/battle/sprites.naix"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -31,6 +30,7 @@
 #include "text.h"
 #include "unk_0208C098.h"
 
+#include "res/graphics/battle/sprites.naix"
 #include "res/text/bank/battle_strings.h"
 
 #define HEALTHBOX_SCROLL_SPEED      24

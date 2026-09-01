@@ -6,7 +6,7 @@
 
 #include "struct_defs/struct_02089438.h"
 
-#include "game_opening/const_ov77_021D742C.h"
+#include "applications/title_screen.h"
 #include "gts_application/networking.h"
 #include "overlay065/ov65_0222DCE0.h"
 #include "overlay098/ov98_022471C8.h"

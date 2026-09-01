@@ -11,7 +11,7 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 
-#include "game_opening/const_ov77_021D742C.h"
+#include "applications/title_screen.h"
 #include "main_menu/gba_convert_string.h"
 #include "main_menu/gba_player.h"
 #include "main_menu/gba_pokemon.h"

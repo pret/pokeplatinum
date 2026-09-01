@@ -1,4 +1,4 @@
-#include "text/bank/title_screen.h"
+#include "applications/title_screen.h"
 
 #include <nitro/gx/g3.h>
 #include <nitro/types.h>
@@ -6,8 +6,6 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/species.h"
-
-#include "game_opening/const_ov77_021D742C.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -34,6 +32,7 @@
 #include "unk_0202419C.h"
 
 #include "res/graphics/title_screen/titledemo.naix"
+#include "res/text/bank/title_screen.h"
 
 FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(main_menu);

@@ -9,7 +9,7 @@
 #include "constants/string.h"
 #include "generated/text_banks.h"
 
-#include "game_opening/const_ov77_021D742C.h"
+#include "applications/title_screen.h"
 #include "main_menu/distribution_cartridge.h"
 #include "main_menu/main_menu_util.h"
 #include "main_menu/ov97_0222D04C.h"
