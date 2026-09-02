@@ -45,6 +45,8 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/signature.h"
 #include "applications/town_map/main.h"
+#include "applications/trade_room/application.h"
+#include "applications/trade_room/defs.h"
 #include "applications/trainer_case/main.h"
 #include "battle/battle_main.h"
 #include "choose_starter/choose_starter_app.h"
@@ -64,8 +66,6 @@
 #include "overlay058/ov58_021D0D80.h"
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay064/ov64_0222DCE0.h"
-#include "overlay088/ov88_0223B140.h"
-#include "overlay088/struct_ov88_0223C370.h"
 #include "overlay092/ov92_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
@@ -153,7 +153,7 @@ FS_EXTERN_OVERLAY(bag);
 FS_EXTERN_OVERLAY(berry_tag);
 FS_EXTERN_OVERLAY(hall_of_fame);
 FS_EXTERN_OVERLAY(pc_hall_of_fame);
-FS_EXTERN_OVERLAY(overlay88);
+FS_EXTERN_OVERLAY(trade_room);
 FS_EXTERN_OVERLAY(battle_tower_records_app);
 FS_EXTERN_OVERLAY(overlay92);
 FS_EXTERN_OVERLAY(cutscenes);
@@ -190,7 +190,7 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    UnkStruct_ov88_0223C370 unk_04;
+    TradeRoomArgs trArgs;
     TradeAnimationTemplate unk_48;
     EvolutionData *unk_60;
     int unused;
@@ -909,50 +909,50 @@ BOOL sub_0203DB24(FieldSystem *fieldSystem, void *param1)
     return 1;
 }
 
-static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSystem)
+static void sub_0203DB38(TradeRoomArgs *trArgs, FieldSystem *fieldSystem)
 {
-    param0->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    param0->party = SaveData_GetParty(fieldSystem->saveData);
-    param0->palPad = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
-    param0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
-    param0->options = SaveData_GetOptions(fieldSystem->saveData);
-    param0->pokedex = SaveData_GetPokedex(fieldSystem->saveData);
-    param0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
-    param0->saveData = fieldSystem->saveData;
-    param0->journalEntry = fieldSystem->journalEntry;
-    param0->records = SaveData_GetGameRecords(fieldSystem->saveData);
-    param0->trainerInfoSize = Heap_Alloc(HEAP_ID_FIELD3, TrainerInfo_Size());
-    param0->sendingMon = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
-    param0->receivingMon = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
-    param0->fieldSystem = fieldSystem;
-    param0->unk_34 = 0;
+    trArgs->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    trArgs->party = SaveData_GetParty(fieldSystem->saveData);
+    trArgs->palPad = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
+    trArgs->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
+    trArgs->options = SaveData_GetOptions(fieldSystem->saveData);
+    trArgs->pokedex = SaveData_GetPokedex(fieldSystem->saveData);
+    trArgs->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
+    trArgs->saveData = fieldSystem->saveData;
+    trArgs->journalEntry = fieldSystem->journalEntry;
+    trArgs->records = SaveData_GetGameRecords(fieldSystem->saveData);
+    trArgs->partnerTrainerInfoCopy = Heap_Alloc(HEAP_ID_FIELD3, TrainerInfo_Size());
+    trArgs->sendingMon = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
+    trArgs->receivingMon = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
+    trArgs->fieldSystem = fieldSystem;
+    trArgs->tradeCount = 0;
 }
 
-static void sub_0203DBC0(UnkStruct_ov88_0223C370 *param0)
+static void sub_0203DBC0(TradeRoomArgs *trArgs)
 {
-    if (param0->trainerInfoSize) {
-        Heap_Free(param0->trainerInfoSize);
-        param0->trainerInfoSize = NULL;
+    if (trArgs->partnerTrainerInfoCopy) {
+        Heap_Free(trArgs->partnerTrainerInfoCopy);
+        trArgs->partnerTrainerInfoCopy = NULL;
     }
 
-    if (param0->sendingMon) {
-        Heap_Free(param0->sendingMon);
-        param0->sendingMon = NULL;
+    if (trArgs->sendingMon) {
+        Heap_Free(trArgs->sendingMon);
+        trArgs->sendingMon = NULL;
     }
 
-    if (param0->receivingMon) {
-        Heap_Free(param0->receivingMon);
-        param0->receivingMon = NULL;
+    if (trArgs->receivingMon) {
+        Heap_Free(trArgs->receivingMon);
+        trArgs->receivingMon = NULL;
     }
 }
 
 BOOL sub_0203DBF0(FieldTask *taskMan)
 {
     static ApplicationManagerTemplate appTemplate1 = {
-        ov88_0223B140,
-        ov88_0223B57C,
-        ov88_0223C03C,
-        FS_OVERLAY_ID(overlay88)
+        TradeRoom_Init,
+        TradeRoom_Main,
+        TradeRoom_Exit,
+        FS_OVERLAY_ID(trade_room)
     };
 
     static const ApplicationManagerTemplate appTemplate2 = {
@@ -974,15 +974,15 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
         taskEnv->unk_00++;
         break;
     case 1:
-        sub_0203DB38(&(taskEnv->unk_04), fieldSystem);
+        sub_0203DB38(&(taskEnv->trArgs), fieldSystem);
         taskEnv->unk_00++;
     case 2:
-        FieldTask_RunApplication(taskMan, &appTemplate1, &taskEnv->unk_04);
+        FieldTask_RunApplication(taskMan, &appTemplate1, &taskEnv->trArgs);
         taskEnv->unk_00++;
         break;
     case 3:
-        if (taskEnv->unk_04.unk_28 == 0) {
-            sub_0203DBC0(&(taskEnv->unk_04));
+        if (taskEnv->trArgs.tradeCompleted == 0) {
+            sub_0203DBC0(&(taskEnv->trArgs));
             Heap_Free(taskEnv);
             return 1;
         }
@@ -990,9 +990,9 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
         taskEnv->unk_00++;
         break;
     case 4:
-        taskEnv->unk_48.otherTrainer = taskEnv->unk_04.trainerInfoSize;
-        taskEnv->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(taskEnv->unk_04.sendingMon);
-        taskEnv->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(taskEnv->unk_04.receivingMon);
+        taskEnv->unk_48.otherTrainer = taskEnv->trArgs.partnerTrainerInfoCopy;
+        taskEnv->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(taskEnv->trArgs.sendingMon);
+        taskEnv->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(taskEnv->trArgs.receivingMon);
         taskEnv->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
         taskEnv->unk_48.tradeType = TRADE_TYPE_NORMAL;
 
@@ -1019,13 +1019,13 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
         taskEnv->unk_00 = 5;
         break;
     case 5: {
-        int v3 = Pokemon_GetValue(taskEnv->unk_04.receivingMon, MON_DATA_HELD_ITEM, NULL);
+        int v3 = Pokemon_GetValue(taskEnv->trArgs.receivingMon, MON_DATA_HELD_ITEM, NULL);
         int v4;
         int v5;
 
-        if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, taskEnv->unk_04.receivingMon, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x30000);
-            taskEnv->unk_60 = Evolution_Begin(NULL, taskEnv->unk_04.receivingMon, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
+        if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, taskEnv->trArgs.receivingMon, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_TRADE_ROOM, 0x30000);
+            taskEnv->unk_60 = Evolution_Begin(NULL, taskEnv->trArgs.receivingMon, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_TRADE_ROOM);
             taskEnv->unk_00 = 6;
         } else {
             taskEnv->unk_00 = 7;
@@ -1033,14 +1033,14 @@ BOOL sub_0203DBF0(FieldTask *taskMan)
     } break;
     case 6:
         if (Evolution_IsDone(taskEnv->unk_60)) {
-            Pokemon_Copy(taskEnv->unk_04.receivingMon, Party_GetPokemonBySlotIndex(taskEnv->unk_04.party, taskEnv->unk_04.unk_2C));
+            Pokemon_Copy(taskEnv->trArgs.receivingMon, Party_GetPokemonBySlotIndex(taskEnv->trArgs.party, taskEnv->trArgs.receivingPartySlot));
             Evolution_Free(taskEnv->unk_60);
-            Heap_Destroy(HEAP_ID_26);
+            Heap_Destroy(HEAP_ID_TRADE_ROOM);
             taskEnv->unk_00 = 7;
         }
         break;
     case 7:
-        taskEnv->unk_04.unk_34++;
+        taskEnv->trArgs.tradeCount++;
         taskEnv->unk_00 = 2;
 
         {

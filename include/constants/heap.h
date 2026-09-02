@@ -28,7 +28,7 @@ enum HeapID {
     HEAP_ID_23,
     HEAP_ID_24,
     HEAP_ID_TRAINER_CASE,
-    HEAP_ID_26,
+    HEAP_ID_TRADE_ROOM,
     HEAP_ID_27,
     HEAP_ID_28,
     HEAP_ID_MINING,

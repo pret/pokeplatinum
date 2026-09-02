@@ -36,7 +36,7 @@ BOOL CommSys_SendDataHugeServer(int cmd, const void *data, int size);
 BOOL CommSys_SendDataServer(int cmd, const void *data, int size);
 BOOL CommSys_SendDataFixedSizeServer(int cmd, const void *data);
 int CommSys_SendRingRemainingSize(void);
-BOOL CommSys_IsPlayerConnected(u16 param0);
+BOOL CommSys_IsPlayerConnected(u16 netId);
 int CommSys_ConnectedCount(void);
 BOOL CommSys_IsInitialized(void);
 void CommSys_SetSendSpeed(u8 param0);

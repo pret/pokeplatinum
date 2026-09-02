@@ -1,0 +1,177 @@
+#ifndef POKEPLATINUM_TRADE_ROOM_DEFS_H
+#define POKEPLATINUM_TRADE_ROOM_DEFS_H
+
+#include <nitro/fx/fx.h>
+#include <nnsys.h>
+
+#include "struct_decls/wi_fi_list.h"
+#include "struct_defs/chatot_cry.h"
+#include "struct_defs/struct_02095E80_sub1.h"
+#include "struct_defs/wi_fi_history.h"
+
+#include "applications/pokemon_summary_screen/main.h"
+#include "field/field_system_decl.h"
+
+#include "bg_window.h"
+#include "game_options.h"
+#include "game_records.h"
+#include "journal.h"
+#include "list_menu.h"
+#include "menu.h"
+#include "message.h"
+#include "overlay_manager.h"
+#include "pal_pad.h"
+#include "party.h"
+#include "pokedex.h"
+#include "pokemon.h"
+#include "savedata.h"
+#include "sprite.h"
+#include "sprite_resource.h"
+#include "sprite_util.h"
+#include "string_gf.h"
+#include "string_list.h"
+#include "string_template.h"
+#include "sys_task_manager.h"
+#include "trainer_info.h"
+#include "wifi_list.h"
+
+typedef struct TradeRoomMonDisplayData {
+    u16 species;
+    u16 heldItemType;
+    u8 pokeBall;
+    u8 isEgg;
+    u8 form;
+    u16 gender;
+    u16 iconShouldFlip;
+    int ballCapsuleId;
+} TradeRoomMonDisplayData;
+
+typedef struct TradeRoomArgs {
+    FieldSystem *fieldSystem;
+    TrainerInfo *trainerInfo;
+    Party *party;
+    PalPad *palPad;
+    SaveData *saveData;
+    WiFiHistory *wiFiHistory;
+    Options *options;
+    JournalEntry *journalEntry;
+    GameRecords *records;
+    Pokedex *pokedex;
+    int tradeCompleted;
+    int receivingPartySlot;
+    int dexMode;
+    int tradeCount;
+    TrainerInfo *partnerTrainerInfoCopy;
+    Pokemon *sendingMon;
+    Pokemon *receivingMon;
+} TradeRoomArgs;
+
+typedef struct TradeRoom TradeRoom;
+
+struct TradeRoom {
+    FieldSystem *fieldSystem;
+    SaveData *saveData;
+    TradeRoomArgs *args;
+    PokemonSummary summaryArgs;
+    int summarySide;
+    ApplicationManager *appMan;
+    int subAppActive;
+    int phase;
+    int connectStep;
+    int partySendCount;
+    int commMilestone;
+    int partyReceiveCount;
+    int didConfirmTrade;
+    int partnerSyncStatus[2];
+    int notificationMsgId;
+    BOOL unk_6C;
+    UnkStruct_02095E80_sub1 unk_70;
+    int selectedSlot[2];
+    u16 cursorGlowAngle;
+    u16 unk_92[5][17];
+    u16 unk_13C;
+    u16 unk_13E;
+    int subStepResult;
+    u16 unk_144[3];
+    u32 pendingDirection[2];
+    u32 unk_154[2][3];
+    int unk_16C;
+    int unk_170;
+    BgConfig *bgConfig;
+    StringTemplate *strTemplate;
+    StringTemplate *strTemplate2;
+    StringTemplate *unread_180;
+    MessageLoader *msgLoader;
+    String *unk_188;
+    String *playerNameStr;
+    String *itemLabelStr;
+    SpriteList *spriteList;
+    G2dRenderer spriteRenderer;
+    SpriteResourceCollection *spriteResourceCollections[4];
+    SpriteResource *spriteResources[2][4];
+    SpriteResourcesHeader mainSpriteResourcesHeader;
+    SpriteResourcesHeader subSpriteResourcesHeader;
+    Sprite *cursorSprites[14];
+    Sprite *iconSprites[12];
+    Sprite *itemIconSprites[12];
+    Sprite *capsuleIconSprites[12];
+    Sprite *detailCardSprites[6];
+    Sprite *convergeIndicatorSprite;
+    SysTask *unk_480[7];
+    Window windows[34];
+    Menu *yesNoMenu;
+    StringList *actionMenuChoices;
+    Menu *actionMenu;
+    int yesNoMenuStep;
+    int unk_6CC;
+    int unk_6D0;
+    int unk_6D4;
+    VecFx32 unk_6D8[2];
+    int unk_6F0;
+    TradeRoomMonDisplayData monDisplayData[13];
+    int unk_7B8;
+    int unk_7BC;
+    int unk_7C0;
+    int unk_7C4[7];
+    void *unk_7E0;
+    NNSG2dCharacterData *unk_7E4;
+    void *iconGraphicsBuffers[12];
+    NNSG2dCharacterData *iconCharacterData[12];
+    u8 previewSpritePixelBuf[2][3200];
+    PokemonSpriteTemplate previewSpriteTemplate[2];
+    int pendingPreviewLoadSide;
+    u8 unk_216C[256];
+    int (*subStepCallback)(TradeRoom *);
+    Party *playerParty;
+    Party *partnerParty;
+    ChatotCry *unk_2278;
+    PalPad *palPad;
+    PalPad palPadNetworkObject;
+    int unk_2308;
+    int unk_230C;
+    int bgScrollOffset;
+    int slideAnimFrame;
+    int staggerCountdown;
+    VecFx32 playerSlidePath[2];
+    VecFx32 partnerSlidePath[2];
+    u8 partyTransferBuffer[2][1424];
+    u8 chatotCryBuffer[2][1004];
+    int pendingRegistrationFlags[MAX_FRIENDS];
+    int registrationTargetNetId;
+    int friendToDeleteSlot;
+    StringTemplate *palPadStrTemplate;
+    MessageLoader *palPadMsgLoader;
+    StringList *friendListChoices;
+    ListMenu *friendListMenu;
+    Window friendListWindow;
+    WiFiList *wifiList;
+    int tradeCompletedCount;
+    int syncSaveState;
+    int lastSyncedValue;
+    int lastSyncedCmd;
+    void *waitDialHandle;
+    int connectionTimeoutArmed;
+    int connectionTimeoutFrames;
+};
+
+#endif // POKEPLATINUM_TRADE_ROOM_DEFS_H

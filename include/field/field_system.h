@@ -4,10 +4,10 @@
 #include "struct_decls/map_object_manager.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
-#include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/map_load_mode.h"
 
+#include "applications/trade_room/defs.h"
 #include "field/field_system_sub2_decl.h"
 #include "overlay005/area_data.h"
 #include "overlay005/area_light.h"
@@ -108,7 +108,7 @@ typedef struct FieldSystem_t {
     UnkStruct_0205B43C *unk_7C;
     UnkStruct_0205C22C *unk_80;
     UnkStruct_ov56_02256468 *unk_84;
-    UnkStruct_02095E80 *unk_88;
+    TradeRoom *tradeRoom;
     UnkStruct_ov5_021EB0E0 *unk_8C;
     int menuCursorPos;
     RadarChain *chain;
