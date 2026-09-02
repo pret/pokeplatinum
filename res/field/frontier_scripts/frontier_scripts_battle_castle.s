@@ -1230,7 +1230,7 @@ _0F2E:
 
 _0F73:
     IncrementRecordValue RECORD_UNK_059
-    FrontierScrCmd_47 4
+    PlayFrontierBrainEncounterEffect FACILITY_CASTLE
     GoTo _0F99
     End
 

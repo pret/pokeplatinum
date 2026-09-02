@@ -1,6 +1,7 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/battle_tower_battle_room.h"
 # include "res/text/bank/menu_entries.h"
+# include "constants/battle_frontier.h"
 
     .data
 
@@ -572,7 +573,7 @@ _086E:
     CloseMessage
     Call _04C8
     IncrementRecordValue RECORD_UNK_059
-    FrontierScrCmd_47 1
+    PlayFrontierBrainEncounterEffect FACILITY_TOWER
     BattleTower_StartBattle
     BattleTower_CheckWonBattle VAR_0x800C
     FadeScreenIn

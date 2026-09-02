@@ -2545,7 +2545,7 @@ _24AD:
 _24F2:
     FreeParticleSystem 0
     IncrementRecordValue RECORD_UNK_059
-    FrontierScrCmd_47 6
+    PlayFrontierBrainEncounterEffect FACILITY_ARCADE
     GoTo _251C
     End
 

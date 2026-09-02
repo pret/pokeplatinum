@@ -948,7 +948,7 @@ pokeplatinum_c = files(
     'overlay104/ov104_0223D768.c',
     'overlay104/ov104_0223D860.c',
     'overlay104/ov104_0223D9E4.c',
-    'overlay104/ov104_0223DC7C.c',
+    'overlay104/frontier_brain_encounter_effect.c',
     'overlay104/ov104_0223E894.c',
     'applications/frontier/battle_factory/main.c',
     'applications/frontier/battle_factory/sprite_manager.c',
