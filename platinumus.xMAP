@@ -20292,7 +20292,7 @@
                                                              60](CommFieldCmd_Init,func) found in global src_unk_02099500.c.o
                                                               61](Unk_020F68A4,object) found in local src_unk_02099500.c.o
                                                                62](CommPacketSizeOf_Variable,func) found in global src_unk_02032798.c.o
-                                                               62](sub_02050548,func) found in global src_unk_02050548.c.o
+                                                               62](BattleArcade_ProcessSpeciesCheckMsg,func) found in global src_scrcmd_battle_arcade.c.o
                                                                62](BattleCastle_ProcessSpeciesCheckMsg,func) found in global src_scrcmd_battle_castle.c.o
                                                                62](BattleHall_ProcessSelectedSpeciesMsg,func) found in global src_scrcmd_battle_hall.c.o
                                                                62](sub_02099508,func) found in local src_unk_02099500.c.o
@@ -28907,27 +28907,27 @@
                                         39](sAlphabeticalSpeciesLists,object) found in local src_overlay005_ov5_021F6454.c.o
                                         39](BattleHallRecordSelector_WaitForSelection,func) found in local src_overlay005_ov5_021F6454.c.o
                                        38](ScrCmd_FindPartySlotWithSpecies,func) found in global src_scrcmd_party.c.o
-                                       38](ScrCmd_2DC,func) found in global src_unk_0205003C.c.o
-                                        39](sub_02050174,func) found in local src_unk_0205003C.c.o
+                                       38](ScrCmd_DeleteActiveBattleArcadeStreak,func) found in global src_scrcmd_battle_arcade.c.o
+                                        39](BattleArcade_ClearActiveStreak,func) found in local src_scrcmd_battle_arcade.c.o
                                          40](BattleArcadeStreakFlags_SetFlag,func) found in global src_battle_arcade_save.c.o
-                                       38](ScrCmd_2DB,func) found in local src_scrcmd.c.o
+                                       38](ScrCmd_GetBattleArcadeSelectedSlots,func) found in local src_scrcmd.c.o
                                         39](PartyMenu_GetSelectedSlot,func) found in global src_unk_0203D1B8.c.o
-                                       38](ScrCmd_2DA,func) found in global src_unk_0205003C.c.o
-                                        39](sub_02050224,func) found in global src_unk_0205003C.c.o
-                                         40](sub_02050264,func) found in local src_unk_0205003C.c.o
-                                       38](ScrCmd_2D9,func) found in global src_unk_0205003C.c.o
+                                       38](ScrCmd_CheckBattleArcadePartnerUsesDifferentSpecies,func) found in global src_scrcmd_battle_arcade.c.o
+                                        39](CheckPartnerUsesDifferentSpecies,func) found in local src_scrcmd_battle_arcade.c.o
+                                         40](CheckPartnerUsesDifferentSpeciesTask,func) found in local src_scrcmd_battle_arcade.c.o
+                                       38](ScrCmd_CallBattleArcadeLobbyFunction,func) found in global src_scrcmd_battle_arcade.c.o
                                         39](BattleArcadeSave_Get,func) found in global src_battle_arcade_save.c.o
                                         39](sub_02049EC4,func) found in global src_unk_02049D08.c.o
                                          40](sub_02049D38,func) found in local src_unk_02049D08.c.o
                                          40](sub_02049DB4,func) found in local src_unk_02049D08.c.o
                                           41](sub_02049D64,func) found in local src_unk_02049D08.c.o
-                                        39](sub_020502E0,func) found in global src_unk_0205003C.c.o
-                                         40](sub_02050314,func) found in local src_unk_0205003C.c.o
-                                          41](sub_0205037C,func) found in local src_unk_0205003C.c.o
-                                          41](sub_02050448,func) found in local src_unk_0205003C.c.o
-                                          41](sub_02050498,func) found in local src_unk_0205003C.c.o
-                                           42](visiblePages$20567,object) found in local src_unk_0205003C.c.o
-                                          41](sub_02050520,func) found in local src_unk_0205003C.c.o
+                                        39](SelectBattleArcadeChallengers,func) found in local src_scrcmd_battle_arcade.c.o
+                                         40](BattleArcadeSelectChallengersTask,func) found in local src_scrcmd_battle_arcade.c.o
+                                          41](SubTask_SetupPartyMenu,func) found in local src_scrcmd_battle_arcade.c.o
+                                          41](SubTask_ProcessPartyMenu,func) found in local src_scrcmd_battle_arcade.c.o
+                                          41](SubTask_SetupMonSummary,func) found in local src_scrcmd_battle_arcade.c.o
+                                           42](visiblePages$20566,object) found in local src_scrcmd_battle_arcade.c.o
+                                          41](SubTask_ProcessMonSummary,func) found in local src_scrcmd_battle_arcade.c.o
                                        38](ScrCmd_PokeMartFrontier,func) found in local src_scrcmd.c.o
                                         39](Shop_Start,func) found in global src_overlay007_shop_menu.c.o
                                          40](Shop_Alloc,func) found in local src_overlay007_shop_menu.c.o
@@ -29010,7 +29010,7 @@
                                            42](JournalEntry_CreateEventSoldALot,func) found in global src_journal.c.o
                                            42](JournalEntry_CreateEventShoppedAtMart,func) found in global src_journal.c.o
                                            42](JournalEntry_CreateEventSoldALittle,func) found in global src_journal.c.o
-                                        39](BattleFrontierExchangeServiceCorners$28445,object) found in local src_scrcmd.c.o
+                                        39](BattleFrontierExchangeServiceCorners$28449,object) found in local src_scrcmd.c.o
                                        38](ScrCmd_CheckIsMiscSaveInit,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_SaveExtraData,func) found in local src_scrcmd.c.o
                                         39](SaveDataExtra_Init,func) found in global src_savedata.c.o
@@ -49725,7 +49725,7 @@
   02041860 00000000 .text   $t	(src_scrcmd.c.o)
   020418E0 000000A4 .text   ScrCmd_GetBattleCastleSelectedSlots	(src_scrcmd.c.o)
   020418E0 00000000 .text   $t	(src_scrcmd.c.o)
-  02041984 000000A4 .text   ScrCmd_2DB	(src_scrcmd.c.o)
+  02041984 000000A4 .text   ScrCmd_GetBattleArcadeSelectedSlots	(src_scrcmd.c.o)
   02041984 00000000 .text   $t	(src_scrcmd.c.o)
   02041A28 00000000 .text   $t	(src_scrcmd.c.o)
   02041A28 00000088 .text   ScrCmd_OpenPartyMenuForContest	(src_scrcmd.c.o)
@@ -51637,36 +51637,36 @@
   0204FFF4 00000000 .text   $t	(src_scrcmd_battle_castle.c.o)
   0205001C 00000020 .text   BattleCastle_ProcessSpeciesCheckMsg	(src_scrcmd_battle_castle.c.o)
   0205001C 00000000 .text   $t	(src_scrcmd_battle_castle.c.o)
-  0205003C 000000FE .text   ScrCmd_2D9	(src_unk_0205003C.c.o)
-  0205003C 00000000 .text   $t	(src_unk_0205003C.c.o)
-  0205013C 00000036 .text   ScrCmd_2DC	(src_unk_0205003C.c.o)
-  0205013C 00000000 .text   $t	(src_unk_0205003C.c.o)
-  02050174 00000062 .text   sub_02050174	(src_unk_0205003C.c.o)
-  02050174 00000000 .text   $t	(src_unk_0205003C.c.o)
-  020501D8 0000004C .text   ScrCmd_2DA	(src_unk_0205003C.c.o)
-  020501D8 00000000 .text   $t	(src_unk_0205003C.c.o)
-  02050224 00000000 .text   $t	(src_unk_0205003C.c.o)
-  02050224 00000040 .text   sub_02050224	(src_unk_0205003C.c.o)
-  02050260 00000000 .text   $d	(src_unk_0205003C.c.o)
-  02050264 0000007A .text   sub_02050264	(src_unk_0205003C.c.o)
-  02050264 00000000 .text   $t	(src_unk_0205003C.c.o)
-  020502E0 00000000 .text   $t	(src_unk_0205003C.c.o)
-  020502E0 00000034 .text   sub_020502E0	(src_unk_0205003C.c.o)
-  02050310 00000000 .text   $d	(src_unk_0205003C.c.o)
-  02050314 00000066 .text   sub_02050314	(src_unk_0205003C.c.o)
-  02050314 00000000 .text   $t	(src_unk_0205003C.c.o)
-  0205037C 00000000 .text   $t	(src_unk_0205003C.c.o)
-  0205037C 000000CC .text   sub_0205037C	(src_unk_0205003C.c.o)
-  02050444 00000000 .text   $d	(src_unk_0205003C.c.o)
-  02050448 00000050 .text   sub_02050448	(src_unk_0205003C.c.o)
-  02050448 00000000 .text   $t	(src_unk_0205003C.c.o)
-  02050498 00000000 .text   $t	(src_unk_0205003C.c.o)
-  02050498 00000088 .text   sub_02050498	(src_unk_0205003C.c.o)
-  02050518 00000000 .text   $d	(src_unk_0205003C.c.o)
-  02050520 00000026 .text   sub_02050520	(src_unk_0205003C.c.o)
-  02050520 00000000 .text   $t	(src_unk_0205003C.c.o)
-  02050548 00000020 .text   sub_02050548	(src_unk_02050548.c.o)
-  02050548 00000000 .text   $t	(src_unk_02050548.c.o)
+  0205003C 000000FE .text   ScrCmd_CallBattleArcadeLobbyFunction	(src_scrcmd_battle_arcade.c.o)
+  0205003C 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  0205013C 00000036 .text   ScrCmd_DeleteActiveBattleArcadeStreak	(src_scrcmd_battle_arcade.c.o)
+  0205013C 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  02050174 00000062 .text   BattleArcade_ClearActiveStreak	(src_scrcmd_battle_arcade.c.o)
+  02050174 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  020501D8 0000004C .text   ScrCmd_CheckBattleArcadePartnerUsesDifferentSpecies	(src_scrcmd_battle_arcade.c.o)
+  020501D8 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  02050224 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  02050224 00000040 .text   CheckPartnerUsesDifferentSpecies	(src_scrcmd_battle_arcade.c.o)
+  02050260 00000000 .text   $d	(src_scrcmd_battle_arcade.c.o)
+  02050264 0000007A .text   CheckPartnerUsesDifferentSpeciesTask	(src_scrcmd_battle_arcade.c.o)
+  02050264 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  020502E0 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  020502E0 00000034 .text   SelectBattleArcadeChallengers	(src_scrcmd_battle_arcade.c.o)
+  02050310 00000000 .text   $d	(src_scrcmd_battle_arcade.c.o)
+  02050314 00000066 .text   BattleArcadeSelectChallengersTask	(src_scrcmd_battle_arcade.c.o)
+  02050314 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  0205037C 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  0205037C 000000CC .text   SubTask_SetupPartyMenu	(src_scrcmd_battle_arcade.c.o)
+  02050444 00000000 .text   $d	(src_scrcmd_battle_arcade.c.o)
+  02050448 00000050 .text   SubTask_ProcessPartyMenu	(src_scrcmd_battle_arcade.c.o)
+  02050448 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  02050498 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  02050498 00000088 .text   SubTask_SetupMonSummary	(src_scrcmd_battle_arcade.c.o)
+  02050518 00000000 .text   $d	(src_scrcmd_battle_arcade.c.o)
+  02050520 00000026 .text   SubTask_ProcessMonSummary	(src_scrcmd_battle_arcade.c.o)
+  02050520 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
+  02050548 00000020 .text   BattleArcade_ProcessSpeciesCheckMsg	(src_scrcmd_battle_arcade.c.o)
+  02050548 00000000 .text   $t	(src_scrcmd_battle_arcade.c.o)
   02050568 00000000 .text   $t	(src_binoculars_vista_lighthouse.c.o)
   02050568 00000038 .text   UseVistaLighthouseBinoculars	(src_binoculars_vista_lighthouse.c.o)
   0205059C 00000000 .text   $d	(src_binoculars_vista_lighthouse.c.o)
@@ -66574,10 +66574,10 @@
   020EAB8C 0000000A .rodata sBattlegroundStatTrainers	(src_scrcmd.c.o)
   020EAB96 00000010 .rodata sBattlegroundGymLeaders	(src_scrcmd.c.o)
   020EABA6 00000012 .rodata sConditionTable	(src_scrcmd.c.o)
-  020EABB8 00000020 .rodata BattleFrontierRightExchangeServiceCorner$28443	(src_scrcmd.c.o)
-  020EABD8 00000024 .rodata unused$28125	(src_scrcmd.c.o)
-  020EABFC 00000024 .rodata pillarRooms$28138	(src_scrcmd.c.o)
-  020EAC20 00000036 .rodata BattleFrontierLeftExchangeServiceCorner$28444	(src_scrcmd.c.o)
+  020EABB8 00000020 .rodata BattleFrontierRightExchangeServiceCorner$28447	(src_scrcmd.c.o)
+  020EABD8 00000024 .rodata unused$28129	(src_scrcmd.c.o)
+  020EABFC 00000024 .rodata pillarRooms$28142	(src_scrcmd.c.o)
+  020EAC20 00000036 .rodata BattleFrontierLeftExchangeServiceCorner$28448	(src_scrcmd.c.o)
   020EAC58 00000D20 .rodata gFieldScriptCommands	(src_scrcmd.c.o)
   020EB978 00000006 .rodata JubilifeMartSpecialties	(src_scrcmd_shop.c.o)
   020EB978 00000000 .rodata .rodata	(src_scrcmd_shop.c.o)
@@ -66638,7 +66638,7 @@
   020EC078 00000000 .rodata .rodata	(src_scrcmd_battle_hall.c.o)
   020EC078 00000178 .rodata sBattleHallRecordMilestones	(src_scrcmd_battle_hall.c.o)
   020EC1F0 00000009 .rodata visiblePages$20572	(src_scrcmd_battle_castle.c.o)
-  020EC1FC 00000009 .rodata visiblePages$20567	(src_unk_0205003C.c.o)
+  020EC1FC 00000009 .rodata visiblePages$20566	(src_scrcmd_battle_arcade.c.o)
   020EC208 00000000 .rodata .rodata	(src_enc_effects.c.o)
   020EC208 0000008C .rodata sEncEffectsTable	(src_enc_effects.c.o)
   020EC294 00000000 .rodata .rodata	(src_field_battle_data_transfer.c.o)
@@ -67918,7 +67918,7 @@
   02100AD4 0000000C .data   sFloaromaMeadowHiddenItemFlags	(src_script_manager.c.o)
   02100AE0 00000010 .data   sIronIslandHiddenItemFlags	(src_script_manager.c.o)
   02100AF0 00000000 .data   .data	(src_scrcmd.c.o)
-  02100AF0 00000008 .data   BattleFrontierExchangeServiceCorners$28445	(src_scrcmd.c.o)
+  02100AF0 00000008 .data   BattleFrontierExchangeServiceCorners$28449	(src_scrcmd.c.o)
   02100AF8 00000000 .data   .data	(src_scrcmd_shop.c.o)
   02100AF8 00000008 .data   VeilstoneDeptStoreDecorationStocks	(src_scrcmd_shop.c.o)
   02100B00 0000001C .data   SunyshoreMarketDailyStocks	(src_scrcmd_shop.c.o)
