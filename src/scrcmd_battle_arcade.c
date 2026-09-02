@@ -1,10 +1,10 @@
-#include "scrcmd_battle_castle.h"
+#include "scrcmd_battle_arcade.h"
 
 #include <nitro.h>
 #include <nitro/code16.h>
 #include <string.h>
 
-#include "constants/battle_castle_functions.h"
+#include "constants/battle_arcade_functions.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
@@ -13,7 +13,7 @@
 #include "global/utility.h"
 
 #include "bag.h"
-#include "battle_castle_save.h"
+#include "battle_arcade_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "communication_system.h"
@@ -34,24 +34,24 @@
 
 #include "constdata/const_020F410C.h"
 
-typedef struct BattleCastleSpeciesCheck {
+typedef struct BattleArcadeSpeciesCheck {
     u8 taskState;
     u8 receivedMessages;
     u16 unused;
-    u16 species[CASTLE_PARTY_SIZE_MULTI];
-    u16 partnersSpecies[CASTLE_PARTY_SIZE_MULTI];
+    u16 species[ARCADE_PARTY_SIZE_MULTI];
+    u16 partnerSpecies[ARCADE_PARTY_SIZE_MULTI];
     u16 *conflicts;
-} BattleCastleSpeciesCheck;
+} BattleArcadeSpeciesCheck;
 
-typedef struct BattleCastleTaskEnv {
+typedef struct BattleArcadeTaskEnv {
     int subTask;
     u8 challengeType;
     u8 selectedMonSlot;
-    u8 selectedChallengers[CASTLE_PARTY_SIZE_SOLO];
+    u8 selectedChallengers[3];
     void **partyMenu;
-} BattleCastleTaskEnv;
+} BattleArcadeTaskEnv;
 
-enum BattleCastleSelectionSubTask {
+enum BattleArcadeSelectionSubTask {
     SUBTASK_OPEN_PARTY_MENU,
     SUBTASK_PROCESS_PARTY_MENU,
     SUBTASK_OPEN_MON_SUMMARY,
@@ -59,42 +59,42 @@ enum BattleCastleSelectionSubTask {
     SUBTASK_END_TASK,
 };
 
-static void BattleCastle_ClearActiveStreak(SaveData *saveData, BattleCastlePersistentSave *persistentSave, u8 challengeType);
-static void SelectBattleCastleChallengers(FieldTask *taskMan, void **partySelect, u8 challengeType);
-static BOOL BattleCastleSelectChallengersTask(FieldTask *taskMan);
-static int SubTask_SetupPartyMenu(BattleCastleTaskEnv *taskEnv, FieldSystem *fieldSystem, int unused);
-static int SubTask_ProcessPartyMenu(BattleCastleTaskEnv *taskEnv, FieldSystem *fieldSystem);
-static int SubTask_SetupMonSummary(BattleCastleTaskEnv *taskEnv, FieldSystem *fieldSystem, enum HeapID heapID);
-static int SubTask_ProcessMonSummary(BattleCastleTaskEnv *taskEnv, FieldSystem *fieldSystem);
+static void BattleArcade_ClearActiveStreak(SaveData *saveData, BattleArcadeStreakFlags *flags, u8 challengeType);
+static void SelectBattleArcadeChallengers(FieldTask *taskMan, void **partySelect, u8 challengeType);
+static BOOL BattleArcadeSelectChallengersTask(FieldTask *taskMan);
+static int SubTask_SetupPartyMenu(BattleArcadeTaskEnv *taskEnv, FieldSystem *fieldSystem, int unused);
+static int SubTask_ProcessPartyMenu(BattleArcadeTaskEnv *taskEnv, FieldSystem *fieldSystem);
+static int SubTask_SetupMonSummary(BattleArcadeTaskEnv *taskEnv, FieldSystem *fieldSystem, enum HeapID heapID);
+static int SubTask_ProcessMonSummary(BattleArcadeTaskEnv *taskEnv, FieldSystem *fieldSystem);
 static void CheckPartnerUsesDifferentSpecies(FieldTask *task, u16 species1, u16 species2, u16 *speciesConflict);
 static BOOL CheckPartnerUsesDifferentSpeciesTask(FieldTask *task);
 
-BOOL ScrCmd_CallBattleCastleLobbyFunction(ScriptContext *ctx)
+BOOL ScrCmd_CallBattleArcadeLobbyFunction(ScriptContext *ctx)
 {
     u16 action = ScriptContext_ReadHalfWord(ctx);
     u16 arg = ScriptContext_GetVar(ctx);
     u16 *result = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    UNUSED(BattleCastleSave_Get(ctx->fieldSystem->saveData));
-    BattleCastlePersistentSave *persistentSave = BattleCastlePersistentSave_Get(ctx->fieldSystem->saveData);
+    UNUSED(BattleArcadeSave_Get(ctx->fieldSystem->saveData));
+    BattleArcadeStreakFlags *flags = BattleArcadeStreakFlags_Get(ctx->fieldSystem->saveData);
     void **partySelect = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    u8 challengeType;
 
     switch (action) {
-    case BC_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE:
+    case BA_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE:
         *result = sub_02049EC4(arg, ctx->fieldSystem->saveData, FALSE);
         break;
-    case BC_LOBBY_FUNC_CHECK_STREAK_ACTIVE:
+    case BA_LOBBY_FUNC_CHECK_STREAK_ACTIVE:
         if (arg == FRONTIER_CHALLENGE_MULTI_WFC) {
-            *result = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData), STAT_CASTLE_WFC_STREAK_ACTIVE);
+            *result = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(ctx->fieldSystem->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE);
         } else {
-            *result = BattleCastlePersistentSave_GetFlag(persistentSave, CASTLE_SAVE_STREAK_FLAGS, arg, 0, NULL);
+            *result = BattleArcadeStreakFlags_GetFlag(flags, ARCADE_SAVE_STREAK_FLAGS, arg, 0, NULL);
         }
         break;
-    case BC_LOBBY_FUNC_DELETE_ACTIVE_STREAK:
-        BattleCastle_ClearActiveStreak(ctx->fieldSystem->saveData, persistentSave, arg);
+    case BA_LOBBY_FUNC_DELETE_ACTIVE_STREAK:
+        BattleArcade_ClearActiveStreak(ctx->fieldSystem->saveData, flags, arg);
         break;
-    case BC_LOBBY_FUNC_SELECT_POKEMON:
+    case BA_LOBBY_FUNC_SELECT_POKEMON: {
+        u8 challengeType;
         if (arg == FRONTIER_CHALLENGE_SINGLE) {
             challengeType = FRONTIER_CHALLENGE_SINGLE;
         } else if (arg == FRONTIER_CHALLENGE_DOUBLE) {
@@ -105,8 +105,9 @@ BOOL ScrCmd_CallBattleCastleLobbyFunction(ScriptContext *ctx)
             challengeType = FRONTIER_CHALLENGE_MULTI;
         }
 
-        SelectBattleCastleChallengers(ctx->task, partySelect, challengeType);
+        SelectBattleArcadeChallengers(ctx->task, partySelect, challengeType);
         return TRUE;
+    }
     default:
         GF_ASSERT(FALSE);
         *result = 0;
@@ -116,34 +117,29 @@ BOOL ScrCmd_CallBattleCastleLobbyFunction(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_DeleteActiveBattleCastleStreak(ScriptContext *ctx)
+BOOL ScrCmd_DeleteActiveBattleArcadeStreak(ScriptContext *ctx)
 {
     u16 challengeType = ScriptContext_GetVar(ctx);
-    BattleCastlePersistentSave *persistentSave = BattleCastlePersistentSave_Get(ctx->fieldSystem->saveData);
+    BattleArcadeStreakFlags *flags = BattleArcadeStreakFlags_Get(ctx->fieldSystem->saveData);
 
-    BattleCastle_ClearActiveStreak(ctx->fieldSystem->saveData, persistentSave, challengeType);
+    BattleArcade_ClearActiveStreak(ctx->fieldSystem->saveData, flags, challengeType);
     return FALSE;
 }
 
-static void BattleCastle_ClearActiveStreak(SaveData *saveData, BattleCastlePersistentSave *persistentSave, u8 challengeType)
+static void BattleArcade_ClearActiveStreak(SaveData *saveData, BattleArcadeStreakFlags *flags, u8 challengeType)
 {
     u8 value[4];
     value[0] = FALSE;
-    BattleCastlePersistentSave_SetFlag(persistentSave, CASTLE_SAVE_STREAK_FLAGS, challengeType, 0, value);
+    BattleArcadeStreakFlags_SetFlag(flags, ARCADE_SAVE_STREAK_FLAGS, challengeType, 0, value);
 
     if (challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
-        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_CASTLE_WFC_STREAK_ACTIVE, 0);
+        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), STAT_ARCADE_WFC_STREAK_ACTIVE, 0);
     }
 
-    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestStreakIndex(challengeType), 0);
-    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleLatestCPIndex(challengeType), 0);
-
-    for (int i = 0; i < BATTLE_CASTLE_NUM_RANK_TYPES; i++) {
-        BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetCastleRankIndex(challengeType, i), 1);
-    }
+    BattleFrontierSave_SetStatAutoHostIdx(SaveData_GetBattleFrontier(saveData), BattleFrontierStats_GetArcadeLatestStreakIndex(challengeType), 0);
 }
 
-BOOL ScrCmd_CheckBattleCastlePartnerUsesDifferentSpecies(ScriptContext *ctx)
+BOOL ScrCmd_CheckBattleArcadePartnerUsesDifferentSpecies(ScriptContext *ctx)
 {
     u16 species1 = ScriptContext_GetVar(ctx);
     u16 species2 = ScriptContext_GetVar(ctx);
@@ -155,8 +151,8 @@ BOOL ScrCmd_CheckBattleCastlePartnerUsesDifferentSpecies(ScriptContext *ctx)
 
 static void CheckPartnerUsesDifferentSpecies(FieldTask *task, u16 species1, u16 species2, u16 *speciesConflict)
 {
-    BattleCastleSpeciesCheck *speciesCheck = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleCastleSpeciesCheck));
-    memset(speciesCheck, 0, sizeof(BattleCastleSpeciesCheck));
+    BattleArcadeSpeciesCheck *speciesCheck = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleArcadeSpeciesCheck));
+    memset(speciesCheck, 0, sizeof(BattleArcadeSpeciesCheck));
 
     speciesCheck->species[0] = species1;
     speciesCheck->species[1] = species2;
@@ -168,11 +164,11 @@ static void CheckPartnerUsesDifferentSpecies(FieldTask *task, u16 species1, u16 
 
 static BOOL CheckPartnerUsesDifferentSpeciesTask(FieldTask *task)
 {
-    BattleCastleSpeciesCheck *data = FieldTask_GetEnv(task);
+    BattleArcadeSpeciesCheck *data = FieldTask_GetEnv(task);
 
     switch (data->taskState) {
     case 0:
-        if (CommSys_SendData(133, data, sizeof(BattleCastleSpeciesCheck)) == TRUE) {
+        if (CommSys_SendData(134, data, sizeof(BattleArcadeSpeciesCheck)) == TRUE) {
             data->taskState++;
         }
         break;
@@ -180,11 +176,11 @@ static BOOL CheckPartnerUsesDifferentSpeciesTask(FieldTask *task)
         if (data->receivedMessages >= 2) {
             *data->conflicts = 0;
 
-            if (data->species[0] == data->partnersSpecies[0] || data->species[0] == data->partnersSpecies[1]) {
+            if (data->species[0] == data->partnerSpecies[0] || data->species[0] == data->partnerSpecies[1]) {
                 *data->conflicts += 1;
             }
 
-            if (data->species[1] == data->partnersSpecies[0] || data->species[1] == data->partnersSpecies[1]) {
+            if (data->species[1] == data->partnerSpecies[0] || data->species[1] == data->partnerSpecies[1]) {
                 *data->conflicts += 2;
             }
 
@@ -199,23 +195,23 @@ static BOOL CheckPartnerUsesDifferentSpeciesTask(FieldTask *task)
     return FALSE;
 }
 
-static void SelectBattleCastleChallengers(FieldTask *taskMan, void **partySelect, u8 challengeType)
+static void SelectBattleArcadeChallengers(FieldTask *taskMan, void **partySelect, u8 challengeType)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    BattleCastleTaskEnv *taskEnv = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleCastleTaskEnv));
+    BattleArcadeTaskEnv *taskEnv = Heap_Alloc(HEAP_ID_FIELD2, sizeof(BattleArcadeTaskEnv));
 
-    MI_CpuClear8(taskEnv, sizeof(BattleCastleTaskEnv));
+    MI_CpuClear8(taskEnv, sizeof(BattleArcadeTaskEnv));
 
     taskEnv->challengeType = challengeType;
     taskEnv->partyMenu = partySelect;
 
-    FieldTask_InitCall(fieldSystem->task, BattleCastleSelectChallengersTask, taskEnv);
+    FieldTask_InitCall(fieldSystem->task, BattleArcadeSelectChallengersTask, taskEnv);
 }
 
-static BOOL BattleCastleSelectChallengersTask(FieldTask *taskMan)
+static BOOL BattleArcadeSelectChallengersTask(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    BattleCastleTaskEnv *taskEnv = FieldTask_GetEnv(taskMan);
+    BattleArcadeTaskEnv *taskEnv = FieldTask_GetEnv(taskMan);
 
     switch (taskEnv->subTask) {
     case SUBTASK_OPEN_PARTY_MENU:
@@ -238,7 +234,7 @@ static BOOL BattleCastleSelectChallengersTask(FieldTask *taskMan)
     return FALSE;
 }
 
-static int SubTask_SetupPartyMenu(BattleCastleTaskEnv *taskEnv, FieldSystem *fieldSystem, int unused)
+static int SubTask_SetupPartyMenu(BattleArcadeTaskEnv *taskEnv, FieldSystem *fieldSystem, int unused)
 {
     PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
@@ -254,13 +250,13 @@ static int SubTask_SetupPartyMenu(BattleCastleTaskEnv *taskEnv, FieldSystem *fie
     partyMenu->fieldSystem = fieldSystem;
     partyMenu->selectedMonSlot = taskEnv->selectedMonSlot;
 
-    for (u8 i = 0; i < CASTLE_PARTY_SIZE_SOLO; i++) {
+    for (u8 i = 0; i < ARCADE_PARTY_SIZE_SOLO; i++) {
         partyMenu->selectionOrder[i] = taskEnv->selectedChallengers[i];
     }
 
     partyMenu->reqLevel = 100;
-    partyMenu->minSelectionSlots = CASTLE_PARTY_SIZE_SOLO;
-    partyMenu->maxSelectionSlots = CASTLE_PARTY_SIZE_SOLO;
+    partyMenu->minSelectionSlots = ARCADE_PARTY_SIZE_SOLO;
+    partyMenu->maxSelectionSlots = ARCADE_PARTY_SIZE_SOLO;
 
     if (taskEnv->challengeType == FRONTIER_CHALLENGE_MULTI) {
         partyMenu->minSelectionSlots = CASTLE_PARTY_SIZE_MULTI;
@@ -268,13 +264,12 @@ static int SubTask_SetupPartyMenu(BattleCastleTaskEnv *taskEnv, FieldSystem *fie
     }
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
-
     *taskEnv->partyMenu = partyMenu;
 
     return SUBTASK_PROCESS_PARTY_MENU;
 }
 
-static int SubTask_ProcessPartyMenu(BattleCastleTaskEnv *taskEnv, FieldSystem *fieldSystem)
+static int SubTask_ProcessPartyMenu(BattleArcadeTaskEnv *taskEnv, FieldSystem *fieldSystem)
 {
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return SUBTASK_PROCESS_PARTY_MENU;
@@ -291,15 +286,15 @@ static int SubTask_ProcessPartyMenu(BattleCastleTaskEnv *taskEnv, FieldSystem *f
         break;
     }
 
-    MI_CpuCopy8(partyMenu->selectionOrder, taskEnv->selectedChallengers, CASTLE_PARTY_SIZE_SOLO);
+    MI_CpuCopy8(partyMenu->selectionOrder, taskEnv->selectedChallengers, ARCADE_PARTY_SIZE_SOLO);
     taskEnv->selectedMonSlot = partyMenu->selectedMonSlot;
     Heap_Free(partyMenu);
-
     *taskEnv->partyMenu = NULL;
+
     return SUBTASK_OPEN_MON_SUMMARY;
 }
 
-static int SubTask_SetupMonSummary(BattleCastleTaskEnv *taskEnv, FieldSystem *fieldSystem, enum HeapID heapID)
+static int SubTask_SetupMonSummary(BattleArcadeTaskEnv *taskEnv, FieldSystem *fieldSystem, enum HeapID heapID)
 {
     static const u8 visiblePages[] = {
         SUMMARY_PAGE_INFO,
@@ -337,9 +332,8 @@ static int SubTask_SetupMonSummary(BattleCastleTaskEnv *taskEnv, FieldSystem *fi
     return SUBTASK_PROCESS_MON_SUMMARY;
 }
 
-static int SubTask_ProcessMonSummary(BattleCastleTaskEnv *taskEnv, FieldSystem *fieldSystem)
+static int SubTask_ProcessMonSummary(BattleArcadeTaskEnv *taskEnv, FieldSystem *fieldSystem)
 {
-
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return SUBTASK_PROCESS_MON_SUMMARY;
     }
@@ -352,10 +346,10 @@ static int SubTask_ProcessMonSummary(BattleCastleTaskEnv *taskEnv, FieldSystem *
     return SUBTASK_OPEN_PARTY_MENU;
 }
 
-void BattleCastle_ProcessSpeciesCheckMsg(int netID, int unused, void *data, void *context)
+void BattleArcade_ProcessSpeciesCheckMsg(int netID, int unused, void *data, void *context)
 {
-    BattleCastleSpeciesCheck *myData = context;
-    const BattleCastleSpeciesCheck *partnersData = data;
+    BattleArcadeSpeciesCheck *myData = context;
+    const BattleArcadeSpeciesCheck *partnersData = data;
 
     myData->receivedMessages++;
 
@@ -363,6 +357,6 @@ void BattleCastle_ProcessSpeciesCheckMsg(int netID, int unused, void *data, void
         return;
     }
 
-    myData->partnersSpecies[0] = partnersData->species[0];
-    myData->partnersSpecies[1] = partnersData->species[1];
+    myData->partnerSpecies[0] = partnersData->species[0];
+    myData->partnerSpecies[1] = partnersData->species[1];
 }
