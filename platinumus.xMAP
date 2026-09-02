@@ -30775,30 +30775,30 @@
                                             43](FrontierScrCmd_IncrementTrainerScore,func) found in local src_overlay104_frscrcmd.c.o
                                             43](FrontierScrCmd_AddToRecordValue,func) found in local src_overlay104_frscrcmd.c.o
                                             43](FrontierScrCmd_IncrementRecordValue,func) found in local src_overlay104_frscrcmd.c.o
-                                            43](FrontierScrCmd_47,func) found in local src_overlay104_frscrcmd.c.o
+                                            43](FrontierScrCmd_PlayFrontierBrainEncounterEffect,func) found in local src_overlay104_frscrcmd.c.o
                                              44](ov104_0223D554,func) found in global src_overlay104_frontier_graphics.c.o
-                                             44](ov104_0223DC7C,func) found in global src_overlay104_ov104_0223DC7C.c.o
-                                              45](ov104_0223E5A8,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                               46](ov104_0223E6BC,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                              45](ov104_0223DDB4,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                               46](ov104_0223DDE4,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                47](ov104_0223E29C,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                 48](ov104_0223E3CC,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                47](ov104_0223E3FC,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                 48](ov104_0223E534,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                 48](Unk_ov104_022418E8,object) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                47](ov104_0223E6F0,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                 48](ov104_0223E740,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                 48](ov104_0223E7A4,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                47](ov104_0223E4A4,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                 48](ov104_0223E544,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                 48](ov104_0223E58C,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                47](ov104_0223E804,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                47](ov104_0223E3B8,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                                47](ov104_0223E48C,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                               46](ov104_0223DD30,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                              45](ov104_0223DD5C,func) found in local src_overlay104_ov104_0223DC7C.c.o
-                                             44](ov104_02231E14,func) found in local src_overlay104_frscrcmd.c.o
+                                             44](BattleFrontier_PlayFrontierBrainEncounterEffect,func) found in global src_overlay104_frontier_brain_encounter_effect.c.o
+                                              45](SetupBannerAndBannerTask,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                               46](UpdateBannerPalette,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                              45](Task_PlayEncounterEffect,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                               46](FrontierBrainEncounterEffect_MainLoop,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                47](CreateFrontierBrainNameObject,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                 48](CalculateStringWidth,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                47](CreateVsSprites,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                 48](LinearInterpolationTaskFX32_Init,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                 48](sVsSpriteTemplate,object) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                47](StartBannerTask,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                 48](Task_OpenEncounterBanner,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                 48](Task_CloseEncounterBanner,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                47](UpdateVsSprites,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                 48](LinearInterpolationTaskFX32_Update,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                 48](CreateScaleVector,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                47](UpdateMugshotSpritePosition,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                47](FreeFrontierBrainNameObject,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                                47](FreeVsSprites,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                               46](FrontierBrainEncounterEffect_FreeAndEnd,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                              45](UpdateWindowPositions,func) found in local src_overlay104_frontier_brain_encounter_effect.c.o
+                                             44](WaitForFrontierBrainEncounterEffectFinished,func) found in local src_overlay104_frscrcmd.c.o
                                             43](FrontierScrCmd_46,func) found in local src_overlay104_frscrcmd.c.o
                                              44](ov104_02232E80,func) found in global src_overlay104_ov104_02231F74.c.o
                                             43](FrontierScrCmd_45,func) found in local src_overlay104_frscrcmd.c.o
@@ -132561,9 +132561,9 @@
   02231D8C 0000001E .text   FrontierScrCmd_46	(src_overlay104_frscrcmd.c.o)
   02231D8C 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
   02231DAC 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
-  02231DAC 00000068 .text   FrontierScrCmd_47	(src_overlay104_frscrcmd.c.o)
+  02231DAC 00000068 .text   FrontierScrCmd_PlayFrontierBrainEncounterEffect	(src_overlay104_frscrcmd.c.o)
   02231E0C 00000000 .text   $d	(src_overlay104_frscrcmd.c.o)
-  02231E14 0000001C .text   ov104_02231E14	(src_overlay104_frscrcmd.c.o)
+  02231E14 0000001C .text   WaitForFrontierBrainEncounterEffectFinished	(src_overlay104_frscrcmd.c.o)
   02231E14 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
   02231E30 00000022 .text   FrontierScrCmd_IncrementRecordValue	(src_overlay104_frscrcmd.c.o)
   02231E30 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
@@ -133692,55 +133692,55 @@
   0223DC04 00000000 .text   $t	(src_overlay104_ov104_0223D9E4.c.o)
   0223DC18 00000062 .text   ov104_0223DC18	(src_overlay104_ov104_0223D9E4.c.o)
   0223DC18 00000000 .text   $t	(src_overlay104_ov104_0223D9E4.c.o)
-  0223DC7C 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DC7C 000000B4 .text   ov104_0223DC7C	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DD24 00000000 .text   $d	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DD30 0000002C .text   ov104_0223DD30	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DD30 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DD5C 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DD5C 00000058 .text   ov104_0223DD5C	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DDAC 00000000 .text   $d	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DDB4 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DDB4 00000030 .text   ov104_0223DDB4	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DDE0 00000000 .text   $d	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DDE4 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223DDE4 000004B8 .text   ov104_0223DDE4	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E17C 00000000 .text   $d	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E1A4 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E298 00000000 .text   $d	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E29C 0000011C .text   ov104_0223E29C	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E29C 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E3B8 00000012 .text   ov104_0223E3B8	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E3B8 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E3CC 0000002E .text   ov104_0223E3CC	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E3CC 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E3FC 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E3FC 00000090 .text   ov104_0223E3FC	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E488 00000000 .text   $d	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E48C 00000016 .text   ov104_0223E48C	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E48C 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E4A4 00000090 .text   ov104_0223E4A4	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E4A4 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E534 00000010 .text   ov104_0223E534	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E534 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E544 00000046 .text   ov104_0223E544	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E544 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E58C 0000001C .text   ov104_0223E58C	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E58C 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E5A8 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E5A8 00000114 .text   ov104_0223E5A8	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E6AC 00000000 .text   $d	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E6BC 00000034 .text   ov104_0223E6BC	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E6BC 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E6F0 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E6F0 00000050 .text   ov104_0223E6F0	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E738 00000000 .text   $d	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E740 00000062 .text   ov104_0223E740	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E740 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E7A4 0000005E .text   ov104_0223E7A4	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E7A4 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E804 00000090 .text   ov104_0223E804	(src_overlay104_ov104_0223DC7C.c.o)
-  0223E804 00000000 .text   $t	(src_overlay104_ov104_0223DC7C.c.o)
+  0223DC7C 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DC7C 000000B4 .text   BattleFrontier_PlayFrontierBrainEncounterEffect	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DD24 00000000 .text   $d	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DD30 0000002C .text   FrontierBrainEncounterEffect_FreeAndEnd	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DD30 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DD5C 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DD5C 00000058 .text   UpdateWindowPositions	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DDAC 00000000 .text   $d	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DDB4 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DDB4 00000030 .text   Task_PlayEncounterEffect	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DDE0 00000000 .text   $d	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DDE4 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223DDE4 000004B8 .text   FrontierBrainEncounterEffect_MainLoop	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E17C 00000000 .text   $d	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E1A4 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E298 00000000 .text   $d	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E29C 0000011C .text   CreateFrontierBrainNameObject	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E29C 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E3B8 00000012 .text   FreeFrontierBrainNameObject	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E3B8 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E3CC 0000002E .text   CalculateStringWidth	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E3CC 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E3FC 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E3FC 00000090 .text   CreateVsSprites	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E488 00000000 .text   $d	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E48C 00000016 .text   FreeVsSprites	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E48C 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E4A4 00000090 .text   UpdateVsSprites	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E4A4 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E534 00000010 .text   LinearInterpolationTaskFX32_Init	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E534 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E544 00000046 .text   LinearInterpolationTaskFX32_Update	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E544 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E58C 0000001C .text   CreateScaleVector	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E58C 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E5A8 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E5A8 00000114 .text   SetupBannerAndBannerTask	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E6AC 00000000 .text   $d	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E6BC 00000034 .text   UpdateBannerPalette	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E6BC 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E6F0 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E6F0 00000050 .text   StartBannerTask	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E738 00000000 .text   $d	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E740 00000062 .text   Task_OpenEncounterBanner	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E740 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E7A4 0000005E .text   Task_CloseEncounterBanner	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E7A4 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E804 00000090 .text   UpdateMugshotSpritePosition	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0223E804 00000000 .text   $t	(src_overlay104_frontier_brain_encounter_effect.c.o)
   0223E894 00000000 .text   $t	(src_overlay104_ov104_0223E894.c.o)
   0223E894 00000044 .text   ov104_0223E894	(src_overlay104_ov104_0223E894.c.o)
   0223E8D4 00000000 .text   $d	(src_overlay104_ov104_0223E894.c.o)
@@ -133910,10 +133910,10 @@
   022418A8 00000008 .rodata Unk_ov104_022418A8	(src_overlay104_ov104_0223D860.c.o)
   022418B0 00000000 .rodata .rodata	(src_overlay104_ov104_0223D9E4.c.o)
   022418B0 00000004 .rodata Unk_ov104_022418B0	(src_overlay104_ov104_0223D9E4.c.o)
-  022418B4 00000034 .rodata Unk_ov104_022418B4	(src_overlay104_ov104_0223DC7C.c.o)
-  022418B4 00000000 .rodata .rodata	(src_overlay104_ov104_0223DC7C.c.o)
-  022418E8 00000034 .rodata Unk_ov104_022418E8	(src_overlay104_ov104_0223DC7C.c.o)
-  0224191C 00000048 .rodata sFrontierBrainsEncounterParams	(src_overlay104_ov104_0223DC7C.c.o)
+  022418B4 00000034 .rodata sMugshotSpriteTemplate	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  022418B4 00000000 .rodata .rodata	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  022418E8 00000034 .rodata sVsSpriteTemplate	(src_overlay104_frontier_brain_encounter_effect.c.o)
+  0224191C 00000048 .rodata sFrontierBrainsEncounterParams	(src_overlay104_frontier_brain_encounter_effect.c.o)
   02241964 00000000 .rodata .rodata	(src_overlay104_ov104_0223E894.c.o)
   02241964 0000000C .rodata Unk_ov104_02241964	(src_overlay104_ov104_0223E894.c.o)
   02241970 00000020 .rodata Unk_ov104_02241970	(src_overlay104_ov104_0223E894.c.o)
