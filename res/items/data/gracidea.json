@@ -25,6 +25,6 @@
   "fieldPocket": "POCKET_KEY_ITEMS",
   "battlePocket": "BATTLE_POCKET_MASK_NONE",
   "fieldUseFunc": "ITEM_USE_FUNC_GRACIDEA",
-  "battleUseFunc": 0,
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": null
 }
