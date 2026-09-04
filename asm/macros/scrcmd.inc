@@ -4404,19 +4404,19 @@
     .short \destBerryOrAccessoryID
     .endm
 
-    .macro ScrCmd_2E2
-    .short SCRCMD_2E2
+    .macro OpenScratchOffCardsApp
+    .short SCRCMD_OPENSCRATCHOFFCARDSAPP
     .endm
 
-    .macro ScrCmd_2E3
-    .short SCRCMD_2E3
+    .macro FreeScratchOffCardsArgs
+    .short SCRCMD_FREESCRATCHOFFCARDSARGS
     .endm
 
-    .macro ScrCmd_2E4 arg0, arg1, arg2
-    .short SCRCMD_2E4
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro GetScratchOffCardsWonItem index, resultItem, resultCount
+    .short SCRCMD_GETSCRATCHOFFCARDSWONITEM
+    .short \index
+    .short \resultItem
+    .short \resultCount
     .endm
 
     // destVarID will be set to TRUE if the pokemon has at least one move it can learn at the given location and doesn't know yet

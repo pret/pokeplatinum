@@ -2,55 +2,55 @@
   "key": 20832,
   "messages": [
     {
-      "id": "pl_msg_00000540_00000",
+      "id": "ScratchOffCardsApp_Text_Dummy1",
       "garbage": 8
     },
     {
-      "id": "pl_msg_00000540_00001",
+      "id": "ScratchOffCardsApp_Text_ItemNameTemplate",
       "en_US": "{STRVAR_1 8, 0, 0}"
     },
     {
-      "id": "pl_msg_00000540_00002",
+      "id": "ScratchOffCardsApp_Text_Dummy2",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000540_00003",
+      "id": "ScratchOffCardsApp_Text_Dummy3",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000540_00004",
+      "id": "ScratchOffCardsApp_Text_NextCard",
       "en_US": "NEXT CARD"
     },
     {
-      "id": "pl_msg_00000540_00005",
+      "id": "ScratchOffCardsApp_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000540_00006",
+      "id": "ScratchOffCardsApp_Text_StopScratching",
       "en_US": "Stop scratching this card?"
     },
     {
-      "id": "pl_msg_00000540_00007",
+      "id": "ScratchOffCardsApp_Text_Dummy4",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000540_00008",
+      "id": "ScratchOffCardsApp_Text_Dummy5",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000540_00009",
+      "id": "ScratchOffCardsApp_Text_StartCard",
       "en_US": "Start card no. {STRVAR_1 50, 0, 0}!"
     },
     {
-      "id": "pl_msg_00000540_00010",
+      "id": "ScratchOffCardsApp_Text_Dummy6",
       "garbage": 7
     },
     {
-      "id": "pl_msg_00000540_00011",
+      "id": "ScratchOffCardsApp_Text_TooBad",
       "en_US": "Too bad!"
     },
     {
-      "id": "pl_msg_00000540_00012",
+      "id": "ScratchOffCardsApp_Text_SelectCard",
       "en_US": "Please select card no. {STRVAR_1 50, 0, 0}.{YESNO 0}"
     }
   ]
