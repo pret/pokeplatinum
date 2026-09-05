@@ -19,28 +19,24 @@
 
 #include "res/text/bank/rankings_machine.h"
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    RankingEntry *unk_0C[11];
-    RankingEntry *unk_38[6];
+typedef struct RankingSortBuffer {
+    int savedEntryCount;
+    int mixedEntryCount;
+    int totalEntryCount;
+    RankingEntry *sortedEntries[MAX_RANKINGS_ENTRIES * 2 - 1];
+    RankingEntry *savedEntries[MAX_RANKINGS_ENTRIES];
     RankingList list;
-} UnkStruct_0202EABC;
-
-typedef struct RankingsEntries {
-    RankingEntry entries[RECORDS_WITH_RANKINGS_COUNT];
-} RankingsEntries;
+} RankingSortBuffer;
 
 typedef struct RecordListInfo {
     u8 length;
-    u8 firstRecord;
+    u8 firstStat;
 } RecordListInfo;
 
 static const RecordListInfo sRecordsListsInfo[] = {
-    { 6, 0 },
-    { 4, 6 },
-    { 3, 10 }
+    { RANKING_STAT_BATTLE_TOWER_COUNT, RANKING_STAT_BATTLE_TOWER_SINGLE_WINS },
+    { RANKING_STAT_POKEMON_COUNT, RANKING_STAT_POKEMON_DEFEATED },
+    { RANKING_STAT_CONTEST_COUNT, RANKING_STAT_CONTEST_WINS }
 };
 
 u8 GetRecordsListLength(int listID)
@@ -50,7 +46,7 @@ u8 GetRecordsListLength(int listID)
 
 u8 GetRecordsListFirstRecord(int listID)
 {
-    return sRecordsListsInfo[listID].firstRecord;
+    return sRecordsListsInfo[listID].firstStat;
 }
 
 void RankingEntry_Clear(RankingEntry *entry)
@@ -76,7 +72,7 @@ void Rankings_Init(Rankings *rankings)
 {
     MI_CpuClear8(rankings, sizeof(Rankings));
 
-    for (int listID = 0; listID < RECORDS_WITH_RANKINGS_COUNT * 2; listID++) {
+    for (int listID = 0; listID < RANKING_STAT_MAX * 2; listID++) {
         for (int entryID = 0; entryID < MAX_RANKINGS_ENTRIES; entryID++) {
             RankingEntry_Clear(&(rankings->lists[listID].entries[entryID]));
         }
@@ -135,11 +131,11 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
 
     GameRecords *gameRecords = SaveData_GetGameRecords(saveData);
     BattleFrontierSave *frontier = SaveData_GetBattleFrontier(saveData);
-    u32 *recordValues = Heap_AllocAtEnd(heapID, sizeof(u32) * RECORDS_WITH_RANKINGS_COUNT);
+    u32 *recordValues = Heap_AllocAtEnd(heapID, sizeof(u32) * RANKING_STAT_MAX);
 
-    for (i = 0; i < RECORDS_WITH_RANKINGS_COUNT; i++) {
+    for (i = 0; i < RANKING_STAT_MAX; i++) {
         switch (i) {
-        case 5:
+        case RANKING_STAT_BATTLE_TOWER_AVG_WIN_STREAK:
             recordValue = GameRecords_GetRecordValue(gameRecords, RECORD_BATTLE_TOWER_CHALLENGES);
 
             if (recordValue > 0) {
@@ -148,23 +144,23 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
 
             recordValues[i] = recordValue;
             break;
-        case 10:
+        case RANKING_STAT_CONTEST_WINS:
             recordValue = GameRecords_GetRecordValue(gameRecords, RECORD_OFFICIAL_CONTEST_WINS);
             recordValue += GameRecords_GetRecordValue(gameRecords, RECORD_LINK_CONTEST_WINS);
             recordValues[i] = recordValue;
             break;
-        case 11:
+        case RANKING_STAT_CONTEST_ENTRIES:
             recordValue = GameRecords_GetRecordValue(gameRecords, RECORD_SUPER_CONTEST_PARTICIPATIONS);
             recordValue += GameRecords_GetRecordValue(gameRecords, RECORD_LINK_CONTEST_PARTICIPATIONS);
 
             if (recordValue > 0) {
-                recordValue = (recordValues[10] * 100) / recordValue;
+                recordValue = (recordValues[RANKING_STAT_CONTEST_WINS] * 100) / recordValue;
             }
 
             recordValues[i] = recordValue;
             break;
         default:
-            if (i >= 0 && i <= 4) {
+            if (i >= RANKING_STAT_BATTLE_TOWER_SINGLE_WINS && i <= RANKING_STAT_BATTLE_TOWER_WIFI_WINS) {
                 recordValues[i] = BattleFrontierSave_GetStat(frontier, recordIDs[i], 0xFF);
             } else {
                 recordValues[i] = GameRecords_GetRecordValue(gameRecords, recordIDs[i]);
@@ -177,23 +173,19 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
     return recordValues;
 }
 
-void *sub_0202E9FC(SaveData *saveData, enum HeapID heapID)
+RankingsEntries *SaveData_GetRankingEntries(SaveData *saveData, enum HeapID heapID)
 {
-    int i;
     u32 seed, unused;
-    RankingsEntries *rankingsEntries;
-    String *string;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
-    u32 *recordValues;
 
-    rankingsEntries = Heap_AllocAtEnd(heapID, sizeof(RankingsEntries));
+    RankingsEntries *rankingsEntries = Heap_AllocAtEnd(heapID, sizeof(RankingsEntries));
     MI_CpuClear8(rankingsEntries, sizeof(RankingsEntries));
 
     seed = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(saveData), RECORD_MIXED_RNG_PLAYER_OVERRIDE);
-    string = TrainerInfo_NameNewString(trainerInfo, heapID);
-    recordValues = GetRecordValues(saveData, heapID);
+    String *string = TrainerInfo_NameNewString(trainerInfo, heapID);
+    u32 *recordValues = GetRecordValues(saveData, heapID);
 
-    for (i = 0; i < RECORDS_WITH_RANKINGS_COUNT; i++) {
+    for (int i = 0; i < RANKING_STAT_MAX; i++) {
         unused = 0;
 
         rankingsEntries->entries[i].seed = seed;
@@ -228,10 +220,10 @@ static BOOL CompareEntriesSeedsAndNames(const RankingEntry *entry0, const Rankin
     return TRUE;
 }
 
-static BOOL sub_0202EABC(UnkStruct_0202EABC *param0, const RankingEntry *entry)
+static BOOL RankingEntryExists(RankingSortBuffer *sortBuffer, const RankingEntry *entry)
 {
-    for (int i = 0; i < param0->unk_04; i++) {
-        if (CompareEntriesSeedsAndNames(param0->unk_0C[i], entry)) {
+    for (int i = 0; i < sortBuffer->mixedEntryCount; i++) {
+        if (CompareEntriesSeedsAndNames(sortBuffer->sortedEntries[i], entry)) {
             return TRUE;
         }
     }
@@ -239,114 +231,113 @@ static BOOL sub_0202EABC(UnkStruct_0202EABC *param0, const RankingEntry *entry)
     return FALSE;
 }
 
-static void sub_0202EAEC(Rankings *rankings, UnkStruct_0202EABC *param1, u32 param2, u8 param3, u8 param4, RankingsEntries **rankingsEntries, u8 param6, enum HeapID heapID)
+static void SortRankings(Rankings *rankings, RankingSortBuffer *sortBuffer, u32 seed, u8 statIndex, u8 scope, RankingsEntries **rankingsEntries, u8 playerCount, enum HeapID heapID)
 {
-    int i, v1;
-    RankingEntry *v2;
+    int i;
     RankingList *list;
 
-    MI_CpuClear8(param1, sizeof(UnkStruct_0202EABC));
+    MI_CpuClear8(sortBuffer, sizeof(RankingSortBuffer));
 
-    if (param4 == 0) {
-        list = &(rankings->lists[param3]);
+    if (scope == RANKING_SCOPE_GLOBAL) {
+        list = &(rankings->lists[statIndex]);
 
-        MI_CpuCopy8(list, &(param1->list), sizeof(RankingList));
+        MI_CpuCopy8(list, &(sortBuffer->list), sizeof(RankingList));
 
-        for (i = 0; i < param6; i++) {
-            param1->unk_0C[param1->unk_04++] = &(rankingsEntries[i]->entries[param3]);
+        for (i = 0; i < playerCount; i++) {
+            sortBuffer->sortedEntries[sortBuffer->mixedEntryCount++] = &(rankingsEntries[i]->entries[statIndex]);
         }
 
         for (i = 0; i < MAX_RANKINGS_ENTRIES; i++) {
-            if (!RankingEntry_HasPlayerName(&(param1->list.entries[i]))) {
+            if (!RankingEntry_HasPlayerName(&(sortBuffer->list.entries[i]))) {
                 continue;
             }
 
-            if (sub_0202EABC(param1, &(param1->list.entries[i]))) {
+            if (RankingEntryExists(sortBuffer, &(sortBuffer->list.entries[i]))) {
                 continue;
             }
 
-            param1->unk_38[param1->unk_00++] = &(param1->list.entries[i]);
+            sortBuffer->savedEntries[sortBuffer->savedEntryCount++] = &(sortBuffer->list.entries[i]);
         }
     } else {
-        list = &(rankings->lists[param3 + RECORDS_WITH_RANKINGS_COUNT]);
-        MI_CpuCopy8(list, &(param1->list), sizeof(RankingList));
+        list = &(rankings->lists[statIndex + RANKING_STAT_MAX]);
+        MI_CpuCopy8(list, &(sortBuffer->list), sizeof(RankingList));
 
-        for (i = 0; i < param6; i++) {
-            if ((rankingsEntries[i]->entries[param3].seed == 0) || (rankingsEntries[i]->entries[param3].seed != param2)) {
+        for (i = 0; i < playerCount; i++) {
+            if ((rankingsEntries[i]->entries[statIndex].seed == 0) || (rankingsEntries[i]->entries[statIndex].seed != seed)) {
                 continue;
             }
 
-            param1->unk_0C[param1->unk_04++] = &(rankingsEntries[i]->entries[param3]);
+            sortBuffer->sortedEntries[sortBuffer->mixedEntryCount++] = &(rankingsEntries[i]->entries[statIndex]);
         }
 
         for (i = 0; i < MAX_RANKINGS_ENTRIES; i++) {
-            if (!RankingEntry_HasPlayerName(&(param1->list.entries[i]))) {
+            if (!RankingEntry_HasPlayerName(&(sortBuffer->list.entries[i]))) {
                 continue;
             }
 
-            if (param1->list.entries[i].seed != param2) {
+            if (sortBuffer->list.entries[i].seed != seed) {
                 continue;
             }
 
-            if (sub_0202EABC(param1, &(param1->list.entries[i]))) {
+            if (RankingEntryExists(sortBuffer, &(sortBuffer->list.entries[i]))) {
                 continue;
             }
 
-            param1->unk_38[param1->unk_00++] = &(param1->list.entries[i]);
+            sortBuffer->savedEntries[sortBuffer->savedEntryCount++] = &(sortBuffer->list.entries[i]);
         }
     }
 
-    param1->unk_08 = param1->unk_04 + param1->unk_00;
+    sortBuffer->totalEntryCount = sortBuffer->mixedEntryCount + sortBuffer->savedEntryCount;
 
-    for (i = 0; i < param1->unk_00; i++) {
-        param1->unk_0C[i + param1->unk_04] = param1->unk_38[i];
+    for (i = 0; i < sortBuffer->savedEntryCount; i++) {
+        sortBuffer->sortedEntries[i + sortBuffer->mixedEntryCount] = sortBuffer->savedEntries[i];
     }
 
-    for (i = 0; i < (param1->unk_08 - 1); i++) {
-        for (v1 = (param1->unk_08 - 1); v1 > i; v1--) {
-            if (param1->unk_0C[i]->recordValue >= param1->unk_0C[v1]->recordValue) {
+    for (i = 0; i < (sortBuffer->totalEntryCount - 1); i++) {
+        for (int j = (sortBuffer->totalEntryCount - 1); j > i; j--) {
+            if (sortBuffer->sortedEntries[i]->recordValue >= sortBuffer->sortedEntries[j]->recordValue) {
                 continue;
             }
 
-            v2 = param1->unk_0C[i];
+            RankingEntry *tempEntry = sortBuffer->sortedEntries[i];
 
-            param1->unk_0C[i] = param1->unk_0C[v1];
-            param1->unk_0C[v1] = v2;
+            sortBuffer->sortedEntries[i] = sortBuffer->sortedEntries[j];
+            sortBuffer->sortedEntries[j] = tempEntry;
         }
     }
 
     RankingList_ClearEntries(list);
 
-    for (i = 0; (i < MAX_RANKINGS_ENTRIES && i < param1->unk_08); i++) {
-        list->entries[i] = *(param1->unk_0C[i]);
+    for (i = 0; (i < MAX_RANKINGS_ENTRIES && i < sortBuffer->totalEntryCount); i++) {
+        list->entries[i] = *(sortBuffer->sortedEntries[i]);
     }
 }
 
-static void sub_0202ECB0(Rankings *rankings, u32 param1, u8 param2, RankingsEntries **rankingsEntries, u8 param4, enum HeapID heapID)
+static void SortRankingsForStat(Rankings *rankings, u32 seed, u8 statIndex, RankingsEntries **rankingsEntries, u8 playerCount, enum HeapID heapID)
 {
-    UnkStruct_0202EABC *v2 = Heap_AllocAtEnd(heapID, sizeof(UnkStruct_0202EABC));
+    RankingSortBuffer *sortBuffer = Heap_AllocAtEnd(heapID, sizeof(RankingSortBuffer));
 
-    sub_0202EAEC(rankings, v2, param1, param2, 0, rankingsEntries, param4, heapID);
+    SortRankings(rankings, sortBuffer, seed, statIndex, RANKING_SCOPE_GLOBAL, rankingsEntries, playerCount, heapID);
 
-    if (param1 != 0) {
-        sub_0202EAEC(rankings, v2, param1, param2, 1, rankingsEntries, param4, heapID);
+    if (seed != 0) {
+        SortRankings(rankings, sortBuffer, seed, statIndex, RANKING_SCOPE_GROUP, rankingsEntries, playerCount, heapID);
     }
 
-    Heap_Free(v2);
+    Heap_Free(sortBuffer);
 }
 
-void sub_0202ED0C(SaveData *saveData, int param1, u8 param2, const void **inRankingsEntries, enum HeapID heapID)
+void SaveData_UpdateRankings(SaveData *saveData, int playerIndex, u8 inEntryCount, const void **inRankingsEntries, enum HeapID heapID)
 {
-    u8 i, v1;
-    u32 v2;
-    RankingsEntries *rankingsEntries[5];
+    u8 i;
+    u32 seed;
+    RankingsEntries *rankingsEntries[MAX_RANKINGS_ENTRIES - 1];
     Rankings *rankings = SaveData_GetRankings(saveData);
 
-    v2 = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(saveData), RECORD_MIXED_RNG_PLAYER_OVERRIDE);
-    v1 = 0;
+    seed = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(saveData), RECORD_MIXED_RNG_PLAYER_OVERRIDE);
+    u8 playerCount = 0;
 
-    for (i = 0; i < param2; i++) {
-        if (i == param1) {
+    for (i = 0; i < inEntryCount; i++) {
+        if (i == playerIndex) {
             continue;
         }
 
@@ -354,15 +345,15 @@ void sub_0202ED0C(SaveData *saveData, int param1, u8 param2, const void **inRank
             continue;
         }
 
-        rankingsEntries[v1++] = (RankingsEntries *)inRankingsEntries[i];
+        rankingsEntries[playerCount++] = (RankingsEntries *)inRankingsEntries[i];
     }
 
-    if (v1 == 0) {
+    if (playerCount == 0) {
         return;
     }
 
-    for (i = 0; i < 13; i++) {
-        sub_0202ECB0(rankings, v2, i, rankingsEntries, v1, heapID);
+    for (i = 0; i < RANKING_STAT_MAX; i++) {
+        SortRankingsForStat(rankings, seed, i, rankingsEntries, playerCount, heapID);
     }
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
@@ -372,21 +363,19 @@ void sub_0202ED0C(SaveData *saveData, int param1, u8 param2, const void **inRank
 
 RecordPlayersInfo *Rankings_GetCurrentPlayerInfo(SaveData *saveData, int listID, enum HeapID heapID)
 {
-    int i, firstRecordID;
     u32 seed;
-    RecordPlayersInfo *playersInfo;
     u32 *recordValues;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
-    playersInfo = Heap_Alloc(heapID, sizeof(RecordPlayersInfo));
+    RecordPlayersInfo *playersInfo = Heap_Alloc(heapID, sizeof(RecordPlayersInfo));
 
     MI_CpuClear8(playersInfo, sizeof(RecordPlayersInfo));
 
     seed = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(saveData), RECORD_MIXED_RNG_PLAYER_OVERRIDE);
     recordValues = GetRecordValues(saveData, heapID);
     playersInfo->count = GetRecordsListLength(listID);
-    firstRecordID = GetRecordsListFirstRecord(listID);
+    u8 firstRecordID = GetRecordsListFirstRecord(listID);
 
-    for (i = 0; i < playersInfo->count; i++) {
+    for (int i = 0; i < playersInfo->count; i++) {
         playersInfo->players[i].seed = seed;
         playersInfo->players[i].recordValue = recordValues[i + firstRecordID];
         playersInfo->players[i].playerName = TrainerInfo_NameNewString(trainerInfo, heapID);
@@ -398,14 +387,12 @@ RecordPlayersInfo *Rankings_GetCurrentPlayerInfo(SaveData *saveData, int listID,
 
 RecordPlayersInfo *Rankings_GetConnectedPlayersInfo(Rankings *rankings, int listID, enum HeapID heapID)
 {
-    int i;
     RecordPlayersInfo *playersInfo = Heap_Alloc(heapID, sizeof(RecordPlayersInfo));
-    RankingList *list;
 
     MI_CpuClear8(playersInfo, sizeof(RecordPlayersInfo));
-    list = &rankings->lists[listID];
+    RankingList *list = &rankings->lists[listID];
 
-    for (i = 0; i < MAX_RANKINGS_ENTRIES; i++) {
+    for (int i = 0; i < MAX_RANKINGS_ENTRIES; i++) {
         if (!RankingEntry_HasPlayerName(&list->entries[i])) {
             continue;
         }
@@ -422,9 +409,7 @@ RecordPlayersInfo *Rankings_GetConnectedPlayersInfo(Rankings *rankings, int list
 
 void RecordPlayersInfo_Free(RecordPlayersInfo *playersInfo)
 {
-    int i;
-
-    for (i = 0; i < MAX_RANKINGS_ENTRIES; i++) {
+    for (int i = 0; i < MAX_RANKINGS_ENTRIES; i++) {
         if (playersInfo->players[i].playerName != NULL) {
             String_Free(playersInfo->players[i].playerName);
         }
