@@ -315,6 +315,11 @@ test('SBIN Checksums - For Revision',
     args: ['-c', '--quiet', sbins_for_rev_sha1]
 )
 
+test('SBIN Checksums - ARM7',
+    sha1sum,
+    args: ['-c', '--quiet', sbins_arm7_sha1]
+)
+
 test('Filesystem Checksums',
     sha1sum,
     args: ['-c', '--quiet', filesys_sha1]

@@ -14,6 +14,7 @@ filesys_csv = files('filesys.csv')
 filesys_sha1 = files('filesys.sha1')
 icon_png = files('icon.png')
 sbins_sha1 = files('sbins_shared.sha1')
+sbins_arm7_sha1 = files('sbins_arm7.sha1')
 
 if get_option('revision') == '0'
     rom_header_template = files('rom_header_template_rev0.sbin')
