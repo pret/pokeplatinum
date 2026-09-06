@@ -29430,7 +29430,7 @@
                                            42](sub_0209C25C,func) found in local src_unk_0209C194.c.o
                                             43](sub_0209C194,func) found in global src_unk_0209C194.c.o
                                              44](sub_0209BDF8,func) found in global src_unk_0209BDF8.c.o
-                                       38](ScrCmd_2C5,func) found in global src_unk_0204F04C.c.o
+                                       38](ScrCmd_DeleteActiveBattleFactoryStreak,func) found in global src_scrcmd_battle_factory.c.o
                                         39](BattleFactoryStreakFlags_SetFlag,func) found in global src_battle_factory_save.c.o
                                        38](ScrCmd_LaunchBattleFrontierScene,func) found in local src_scrcmd.c.o
                                         39](gBattleFrontierAppTemplate,object) found in global src_battle_frontier.c.o
@@ -51562,8 +51562,8 @@
   0204F044 00000000 .text   $t	(src_scrcmd_dummy_23F_242.c.o)
   0204F048 00000004 .text   ScrCmd_Dummy242	(src_scrcmd_dummy_23F_242.c.o)
   0204F048 00000000 .text   $t	(src_scrcmd_dummy_23F_242.c.o)
-  0204F04C 000000F0 .text   ScrCmd_2C5	(src_unk_0204F04C.c.o)
-  0204F04C 00000000 .text   $t	(src_unk_0204F04C.c.o)
+  0204F04C 000000F0 .text   ScrCmd_DeleteActiveBattleFactoryStreak	(src_scrcmd_battle_factory.c.o)
+  0204F04C 00000000 .text   $t	(src_scrcmd_battle_factory.c.o)
   0204F13C 0000012C .text   ScrCmd_CallBattleHallLobbyFunction	(src_scrcmd_battle_hall.c.o)
   0204F13C 00000000 .text   $t	(src_scrcmd_battle_hall.c.o)
   0204F268 000000F6 .text   CheckPartyIsBattleHallEligible	(src_scrcmd_battle_hall.c.o)
