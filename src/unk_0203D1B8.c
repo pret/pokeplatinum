@@ -104,7 +104,7 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "record_mixed_rng.h"
-#include "ribbon_save.h"
+#include "ribbon_save_data.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"

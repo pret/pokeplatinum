@@ -23,7 +23,7 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "ribbon.h"
-#include "ribbon_save.h"
+#include "ribbon_save_data.h"
 #include "save_catchrecords.h"
 #include "save_player.h"
 #include "script_manager.h"

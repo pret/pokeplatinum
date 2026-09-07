@@ -51,7 +51,7 @@
 #include "pokemon_icon.h"
 #include "render_oam.h"
 #include "render_window.h"
-#include "ribbon_save.h"
+#include "ribbon_save_data.h"
 #include "rtc.h"
 #include "save_catchrecords.h"
 #include "savedata.h"

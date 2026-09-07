@@ -28,7 +28,7 @@
 #include "poketch.h"
 #include "rankings.h"
 #include "record_mixed_rng.h"
-#include "ribbon_save.h"
+#include "ribbon_save_data.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"

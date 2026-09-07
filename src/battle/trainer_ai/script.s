@@ -1714,7 +1714,10 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MIRROR_COAT, Expert_MirrorCoat
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_DEF_UP, Expert_ChargeTurnNoInvuln
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, Expert_ChargeTurnNoInvuln
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, Expert_UnusedSolarbeam
+
+    // BUG: Thunder is not properly scored. This is supposed to check for BATTLE_EFFECT_THUNDER.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, Expert_Thunder
+
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLY, Expert_ChargeTurnWithInvuln
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_157, Expert_Recovery
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY, Expert_FakeOut
@@ -3969,21 +3972,21 @@ Expert_ChargeTurnNoInvuln_ScoreMinus2:
 Expert_ChargeTurnNoInvuln_End:
     PopOrEnd 
 
-Expert_UnusedSolarbeam:
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_UnusedSolarbeam_TryScoreMinus3
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_UnusedSolarbeam_TryScoreMinus3
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_UnusedSolarbeam_TryScoreMinus3
+Expert_Thunder:
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_Thunder_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_Thunder_TryScoreMinus3
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_Thunder_TryScoreMinus3
     LoadCurrentWeather 
-    IfLoadedEqualTo AI_WEATHER_SUNNY, Expert_UnusedSolarbeam_TryScoreMinus3
-    IfLoadedNotEqualTo AI_WEATHER_RAINING, Expert_UnusedSolarbeam_End
+    IfLoadedEqualTo AI_WEATHER_SUNNY, Expert_Thunder_TryScoreMinus3
+    IfLoadedNotEqualTo AI_WEATHER_RAINING, Expert_Thunder_End
     AddToMoveScore 1
-    GoTo Expert_UnusedSolarbeam_End
+    GoTo Expert_Thunder_End
 
-Expert_UnusedSolarbeam_TryScoreMinus3:
-    IfRandomLessThan 50, Expert_UnusedSolarbeam_End
+Expert_Thunder_TryScoreMinus3:
+    IfRandomLessThan 50, Expert_Thunder_End
     AddToMoveScore -3
 
-Expert_UnusedSolarbeam_End:
+Expert_Thunder_End:
     PopOrEnd 
 
 Expert_ChargeTurnWithInvuln:

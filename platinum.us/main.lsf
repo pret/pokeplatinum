@@ -132,7 +132,7 @@ Static main
 	Object main.nef.p/src_chatot_cry.c.o
 	Object main.nef.p/src_game_records.c.o
 	Object main.nef.p/src_wifi_battle_tower_save.c.o
-	Object main.nef.p/src_ribbon_save.c.o
+	Object main.nef.p/src_ribbon_save_data.c.o
 	Object main.nef.p/src_special_encounter.c.o
 	Object main.nef.p/src_global_trade.c.o
 	Object main.nef.p/src_mystery_gift.c.o

@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "party.h"
 #include "record_mixed_rng.h"
-#include "ribbon_save.h"
+#include "ribbon_save_data.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
