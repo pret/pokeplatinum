@@ -7211,8 +7211,8 @@
         7](GlobalTrade_SaveSize,func) found in global src_global_trade.c.o
         7](SpecialEncounter_Init,func) found in global src_special_encounter.c.o
         7](SpecialEncounter_SaveSize,func) found in global src_special_encounter.c.o
-        7](Ribbons_Init,func) found in global src_unk_0202D778.c.o
-        7](Ribbons_SaveSize,func) found in global src_unk_0202D778.c.o
+        7](Ribbons_Init,func) found in global src_ribbon_save_data.c.o
+        7](Ribbons_SaveSize,func) found in global src_ribbon_save_data.c.o
         7](BattleFrontier_Init,func) found in global src_battle_frontier_save.c.o
          8](WifiBattleTowerRecord_Init,func) found in global src_wifi_battle_tower_save.c.o
          8](FrontierEasyChatMessages_Init,func) found in global src_wifi_battle_tower_save.c.o
@@ -15493,7 +15493,7 @@
                                               45](PCBoxes_GetBoxMonAt,func) found in global src_pc_boxes.c.o
                                              44](PokemonSummaryScreen_ShowContestData,func) found in global src_applications_pokemon_summary_screen_main.c.o
                                               45](SystemFlag_CheckContestHallVisited,func) found in global src_system_flags.c.o
-                                             44](SaveData_GetRibbons,func) found in global src_unk_0202D778.c.o
+                                             44](SaveData_GetRibbons,func) found in global src_ribbon_save_data.c.o
                                              44](PokemonSummaryScreen_SetPlayerProfile,func) found in global src_applications_pokemon_summary_screen_main.c.o
                                              44](sAllSummaryPages,object) found in local src_gts_application_screens_pokemon_summary.c.o
                                             43](GTSApplication_NetworkHandler_Exit,func) found in global src_gts_application_screens_network_handler.c.o
@@ -46221,13 +46221,13 @@
   0202D764 00000000 .text   $t	(src_wifi_battle_tower_save.c.o)
   0202D764 00000014 .text   SaveData_GetWifiBattleTowerDownloadData	(src_wifi_battle_tower_save.c.o)
   0202D774 00000000 .text   $d	(src_wifi_battle_tower_save.c.o)
-  0202D778 00000004 .text   Ribbons_SaveSize	(src_unk_0202D778.c.o)
-  0202D778 00000000 .text   $t	(src_unk_0202D778.c.o)
-  0202D77C 00000020 .text   Ribbons_Init	(src_unk_0202D778.c.o)
-  0202D77C 00000000 .text   $t	(src_unk_0202D778.c.o)
-  0202D79C 00000000 .text   $t	(src_unk_0202D778.c.o)
-  0202D79C 0000000C .text   SaveData_GetRibbons	(src_unk_0202D778.c.o)
-  0202D7A4 00000000 .text   $d	(src_unk_0202D778.c.o)
+  0202D778 00000004 .text   Ribbons_SaveSize	(src_ribbon_save_data.c.o)
+  0202D778 00000000 .text   $t	(src_ribbon_save_data.c.o)
+  0202D77C 00000020 .text   Ribbons_Init	(src_ribbon_save_data.c.o)
+  0202D77C 00000000 .text   $t	(src_ribbon_save_data.c.o)
+  0202D79C 00000000 .text   $t	(src_ribbon_save_data.c.o)
+  0202D79C 0000000C .text   SaveData_GetRibbons	(src_ribbon_save_data.c.o)
+  0202D7A4 00000000 .text   $d	(src_ribbon_save_data.c.o)
   0202D7A8 00000006 .text   SpecialEncounter_SaveSize	(src_special_encounter.c.o)
   0202D7A8 00000000 .text   $t	(src_special_encounter.c.o)
   0202D7B0 00000000 .text   $t	(src_special_encounter.c.o)
