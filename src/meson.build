@@ -121,7 +121,7 @@ pokeplatinum_c = files(
     'chatot_cry.c',
     'game_records.c',
     'wifi_battle_tower_save.c',
-    'unk_0202D778.c',
+    'ribbon_save_data.c',
     'special_encounter.c',
     'global_trade.c',
     'mystery_gift.c',
