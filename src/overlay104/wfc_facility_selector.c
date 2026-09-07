@@ -19,7 +19,7 @@
 #include "party.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "unk_0202D778.h"
+#include "ribbon_save_data.h"
 #include "unk_0209BA80.h"
 
 #include "constdata/const_020F410C.h"

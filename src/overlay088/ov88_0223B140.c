@@ -71,7 +71,7 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0202D778.h"
+#include "ribbon_save_data.h"
 #include "unk_020363E8.h"
 #include "unk_02038ED4.h"
 #include "unk_02038F8C.h"

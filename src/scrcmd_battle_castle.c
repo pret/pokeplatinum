@@ -28,7 +28,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
-#include "unk_0202D778.h"
+#include "ribbon_save_data.h"
 #include "unk_02049D08.h"
 #include "unk_02099500.h"
 

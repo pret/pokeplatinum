@@ -33,7 +33,7 @@
 #include "savedata.h"
 #include "script_manager.h"
 #include "string_template.h"
-#include "unk_0202D778.h"
+#include "ribbon_save_data.h"
 #include "unk_0205DFC4.h"
 #include "unk_02099500.h"
 #include "wifi_battle_tower_save.h"

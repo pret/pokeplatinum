@@ -13,7 +13,7 @@
 #include "communication_system.h"
 #include "pal_pad.h"
 #include "party.h"
-#include "unk_0202D778.h"
+#include "ribbon_save_data.h"
 #include "unk_02032798.h"
 
 void sub_02095DFC(int param0, int param1, void *param2, void *param3);

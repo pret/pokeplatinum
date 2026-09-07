@@ -27,7 +27,7 @@
 #include "savedata.h"
 #include "script_manager.h"
 #include "underground.h"
-#include "unk_0202D778.h"
+#include "ribbon_save_data.h"
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"

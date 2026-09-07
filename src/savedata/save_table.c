@@ -36,7 +36,7 @@
 #include "trainer_case_save_data.h"
 #include "underground.h"
 #include "unk_020298BC.h"
-#include "unk_0202D778.h"
+#include "ribbon_save_data.h"
 #include "unk_0202E2CC.h"
 #include "unk_0202F1D4.h"
 #include "unk_02030CE8.h"

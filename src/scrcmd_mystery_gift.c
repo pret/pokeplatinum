@@ -33,7 +33,7 @@
 #include "underground.h"
 #include "unk_02017038.h"
 #include "unk_020298BC.h"
-#include "unk_0202D778.h"
+#include "ribbon_save_data.h"
 #include "unk_02054884.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"

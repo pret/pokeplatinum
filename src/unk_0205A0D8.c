@@ -40,7 +40,7 @@
 #include "text.h"
 #include "trainer_case.h"
 #include "trainer_info.h"
-#include "unk_0202D778.h"
+#include "ribbon_save_data.h"
 #include "unk_020363E8.h"
 #include "unk_0203D1B8.h"
 #include "unk_020655F4.h"
