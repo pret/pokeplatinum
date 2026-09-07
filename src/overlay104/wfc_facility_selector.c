@@ -17,9 +17,9 @@
 #include "heap.h"
 #include "mail.h"
 #include "party.h"
+#include "ribbon_save_data.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "ribbon_save_data.h"
 #include "unk_0209BA80.h"
 
 #include "constdata/const_020F410C.h"

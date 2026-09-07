@@ -25,10 +25,10 @@
 #include "inlines.h"
 #include "mail.h"
 #include "party.h"
+#include "ribbon_save_data.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
-#include "ribbon_save_data.h"
 #include "unk_02049D08.h"
 #include "unk_02099500.h"
 

@@ -10,8 +10,8 @@
 #include "gts_application/screens/select_pokemon.h"
 
 #include "overlay_manager.h"
-#include "start_menu.h"
 #include "ribbon_save_data.h"
+#include "start_menu.h"
 
 #include "constdata/const_020F410C.h"
 

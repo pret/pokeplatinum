@@ -44,6 +44,7 @@
 #include "party.h"
 #include "pc_boxes.h"
 #include "pokemon.h"
+#include "ribbon_save_data.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sound_playback.h"
@@ -54,7 +55,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "ribbon_save_data.h"
 
 #include "constdata/const_020F410C.h"
 #include "res/text/bank/box_messages.h"
