@@ -5,7 +5,7 @@
 #include "sprite_resource.h"
 #include "sprite_util.h"
 
-typedef struct {
+typedef struct ScratchOffCardsAppSpriteManager {
     SpriteList *spriteList;
     G2dRenderer g2dRenderer;
     SpriteResourceCollection *resourceCollections[4];

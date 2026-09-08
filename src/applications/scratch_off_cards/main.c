@@ -1,6 +1,5 @@
 #include "applications/scratch_off_cards/main.h"
 
-#include "nitro/hw/common/lcd.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -41,7 +40,7 @@
 #include "vram_transfer.h"
 #include "yes_no_touch_menu.h"
 
-#include "res/text/bank/unk_0540.h"
+#include "res/text/bank/scratch_off_cards_app.h"
 
 #define NUM_SCRATCH_CELLS    9
 #define NUM_CARDS_TO_PICK    4
@@ -1096,7 +1095,7 @@ static void LoadAssets(ScratchOffCardApp *app)
     LoadBackgrounds(app);
     InitSpriteManager(app);
 
-    app->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0540, HEAP_ID_SCRATCH_OFF_CARD_APP);
+    app->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SCRATCH_OFF_CARDS_APP, HEAP_ID_SCRATCH_OFF_CARD_APP);
     app->strTemplate = StringTemplate_Default(HEAP_ID_SCRATCH_OFF_CARD_APP);
     app->displayStr = String_Init(600, HEAP_ID_SCRATCH_OFF_CARD_APP);
     app->fmtStr = String_Init(600, HEAP_ID_SCRATCH_OFF_CARD_APP);
@@ -1553,7 +1552,7 @@ static void PlaceRemainingValuesInCells(ScratchOffCardApp *app)
                 if ((i == 2) || (i == 4) || (i == 6)) {
                     cellValue++;
 
-                    if (cellValue == (5 - 1)) {
+                    if (cellValue == 4) {
                         cellValue = 0;
                     }
                 }
@@ -1569,7 +1568,7 @@ static void PlaceRemainingValuesInCells(ScratchOffCardApp *app)
                     if (app->scratchCellValues[j] == 176) {
                         app->scratchCellValues[j] = cellValue;
 
-                        if ((i == 2) || (i == 4) || (i == 6)) {
+                        if (i == 2 || i == 4 || i == 6) {
                             cellValue++;
 
                             if (cellValue == NUM_WINNABLE_ITEMS) {
@@ -1890,16 +1889,14 @@ static BOOL UpdateTransformingDitto(ScratchOffCardApp *app, u8 decreaseMosaic)
 
             return FALSE;
         }
+    } else if (app->mosaicSize > 0) {
+        app->mosaicSize--;
     } else {
-        if (app->mosaicSize > 0) {
-            app->mosaicSize--;
-        } else {
-            for (i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
-                ScratchOffCardsAppSprite_SetMosaicFlag(app->winMonSprites[i], FALSE);
-            }
-
-            return FALSE;
+        for (i = 0; i < NUM_CELLS_TO_SCRATCH; i++) {
+            ScratchOffCardsAppSprite_SetMosaicFlag(app->winMonSprites[i], FALSE);
         }
+
+        return FALSE;
     }
 
     G2_SetOBJMosaicSize(app->mosaicSize, app->mosaicSize);
