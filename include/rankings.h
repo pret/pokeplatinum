@@ -14,28 +14,36 @@
 #define RANKING_STAT_CONTEST_COUNT      3
 
 enum RankingStat {
-    RANKING_STAT_BATTLE_TOWER_SINGLE_WINS     = 0,
-    RANKING_STAT_BATTLE_TOWER_DOUBLE_WINS     = 1,
-    RANKING_STAT_BATTLE_TOWER_MULTI_NPC_WINS  = 2,
+    RANKING_STAT_BATTLE_TOWER_SINGLE_WINS = 0,
+    RANKING_STAT_BATTLE_TOWER_DOUBLE_WINS = 1,
+    RANKING_STAT_BATTLE_TOWER_MULTI_NPC_WINS = 2,
     RANKING_STAT_BATTLE_TOWER_MULTI_COMM_WINS = 3,
-    RANKING_STAT_BATTLE_TOWER_WIFI_WINS       = 4,
-    RANKING_STAT_BATTLE_TOWER_AVG_WIN_STREAK  = 5,
+    RANKING_STAT_BATTLE_TOWER_WIFI_WINS = 4,
+    RANKING_STAT_BATTLE_TOWER_AVG_WIN_STREAK = 5,
 
     RANKING_STAT_POKEMON_DEFEATED = 6,
-    RANKING_STAT_POKEMON_CAUGHT   = 7,
-    RANKING_STAT_POKEMON_HATCHED  = 8,
-    RANKING_STAT_POKEMON_FISHED   = 9,
+    RANKING_STAT_POKEMON_CAUGHT = 7,
+    RANKING_STAT_POKEMON_HATCHED = 8,
+    RANKING_STAT_POKEMON_FISHED = 9,
 
-    RANKING_STAT_CONTEST_WINS    = 10,
+    RANKING_STAT_CONTEST_WINS = 10,
     RANKING_STAT_CONTEST_ENTRIES = 11,
-    RANKING_STAT_RIBBONS_EARNED  = 12,
+    RANKING_STAT_RIBBONS_EARNED = 12,
 
     RANKING_STAT_MAX = 13
 };
 
-enum RankingScope {
-    RANKING_SCOPE_GLOBAL = 0,
-    RANKING_SCOPE_GROUP
+enum RankingMode {
+    RANKING_MODE_GLOBAL = 0,
+    RANKING_MODE_GROUP
+};
+
+enum RankingCategory {
+    RANKING_CATEGORY_BATTLE_TOWER = 0,
+    RANKING_CATEGORY_POKEMON,
+    RANKING_CATEGORY_CONTEST,
+
+    RANKING_CATEGORY_MAX
 };
 
 typedef struct RankingEntry {
@@ -67,18 +75,18 @@ typedef struct RankingsEntries {
     RankingEntry entries[RANKING_STAT_MAX];
 } RankingsEntries;
 
-u8 GetRecordsListLength(int listID);
-u8 GetRecordsListFirstRecord(int listID);
-void sub_0202E858(RankingEntry *entry);
-BOOL sub_0202E870(RankingEntry *entry);
+u8 Rankings_GetCategoryStatCount(int category);
+u8 Rankings_GetCategoryFirstStat(int category);
+void RankingEntry_Clear(RankingEntry *entry);
+BOOL RankingEntry_HasPlayerName(RankingEntry *entry);
 int Rankings_SaveSize(void);
 void Rankings_Init(Rankings *rankings);
 Rankings *SaveData_GetRankings(SaveData *saveData);
 void Rankings_RemoveEntry(Rankings *rankings, int listID, u8 entryID);
 int RankingsEntries_Size(void);
 RankingsEntries *SaveData_GetRankingEntries(SaveData *saveData, enum HeapID heapID);
-void SaveData_UpdateRankings(SaveData *saveData, int playerIndex, u8 inEntryCount, const void **inRankingsEntries, enum HeapID heapID);
-RecordPlayersInfo *Rankings_GetCurrentPlayerInfo(SaveData *saveData, int listID, enum HeapID heapID);
+void SaveData_UpdateRankings(SaveData *saveData, int participantIndex, u8 participantCount, const void **rankingData, enum HeapID heapID);
+RecordPlayersInfo *Rankings_GetCurrentPlayerInfo(SaveData *saveData, int category, enum HeapID heapID);
 RecordPlayersInfo *Rankings_GetConnectedPlayersInfo(Rankings *rankings, int listID, enum HeapID heapID);
 void RecordPlayersInfo_Free(RecordPlayersInfo *entry);
 

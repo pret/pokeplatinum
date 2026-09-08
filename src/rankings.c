@@ -28,25 +28,25 @@ typedef struct RankingSortBuffer {
     RankingList list;
 } RankingSortBuffer;
 
-typedef struct RecordListInfo {
-    u8 length;
+typedef struct RankingCategoryInfo {
+    u8 statCount;
     u8 firstStat;
-} RecordListInfo;
+} RankingCategoryInfo;
 
-static const RecordListInfo sRecordsListsInfo[] = {
-    { RANKING_STAT_BATTLE_TOWER_COUNT, RANKING_STAT_BATTLE_TOWER_SINGLE_WINS },
-    { RANKING_STAT_POKEMON_COUNT, RANKING_STAT_POKEMON_DEFEATED },
-    { RANKING_STAT_CONTEST_COUNT, RANKING_STAT_CONTEST_WINS }
+static const RankingCategoryInfo sRankingCategories[RANKING_CATEGORY_MAX] = {
+    [RANKING_CATEGORY_BATTLE_TOWER] = { RANKING_STAT_BATTLE_TOWER_COUNT, RANKING_STAT_BATTLE_TOWER_SINGLE_WINS },
+    [RANKING_CATEGORY_POKEMON] = { RANKING_STAT_POKEMON_COUNT, RANKING_STAT_POKEMON_DEFEATED },
+    [RANKING_CATEGORY_CONTEST] = { RANKING_STAT_CONTEST_COUNT, RANKING_STAT_CONTEST_WINS }
 };
 
-u8 GetRecordsListLength(int listID)
+u8 Rankings_GetCategoryStatCount(int category)
 {
-    return sRecordsListsInfo[listID].length;
+    return sRankingCategories[category].statCount;
 }
 
-u8 GetRecordsListFirstRecord(int listID)
+u8 Rankings_GetCategoryFirstStat(int category)
 {
-    return sRecordsListsInfo[listID].firstStat;
+    return sRankingCategories[category].firstStat;
 }
 
 void RankingEntry_Clear(RankingEntry *entry)
@@ -113,12 +113,12 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
 {
     int i;
     u32 recordValue;
-    static const int recordIDs[] = {
-        0,
-        2,
-        4,
-        6,
-        8,
+    static const int statAndRecordIDs[] = {
+        STAT_TOWER_RECORD_STREAK_SINGLE,
+        STAT_TOWER_RECORD_STREAK_DOUBLE,
+        STAT_TOWER_RECORD_STREAK_MULTI,
+        STAT_TOWER_RECORD_STREAK_LINK_MULTI,
+        STAT_TOWER_RECORD_STREAK_WIFI,
         RECORD_BATTLE_TOWER_VICTORIES,
         RECORD_FAINTED_IN_BATTLE,
         RECORD_CAUGHT_POKEMON,
@@ -161,9 +161,9 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
             break;
         default:
             if (i >= RANKING_STAT_BATTLE_TOWER_SINGLE_WINS && i <= RANKING_STAT_BATTLE_TOWER_WIFI_WINS) {
-                recordValues[i] = BattleFrontierSave_GetStat(frontier, recordIDs[i], 0xFF);
+                recordValues[i] = BattleFrontierSave_GetStat(frontier, statAndRecordIDs[i], 0xFF);
             } else {
-                recordValues[i] = GameRecords_GetRecordValue(gameRecords, recordIDs[i]);
+                recordValues[i] = GameRecords_GetRecordValue(gameRecords, statAndRecordIDs[i]);
             }
         }
     }
@@ -231,14 +231,14 @@ static BOOL RankingEntryExists(RankingSortBuffer *sortBuffer, const RankingEntry
     return FALSE;
 }
 
-static void SortRankings(Rankings *rankings, RankingSortBuffer *sortBuffer, u32 seed, u8 statIndex, u8 scope, RankingsEntries **rankingsEntries, u8 playerCount, enum HeapID heapID)
+static void SortRankings(Rankings *rankings, RankingSortBuffer *sortBuffer, u32 seed, u8 statIndex, u8 mode, RankingsEntries **rankingsEntries, u8 playerCount, enum HeapID heapID)
 {
     int i;
     RankingList *list;
 
     MI_CpuClear8(sortBuffer, sizeof(RankingSortBuffer));
 
-    if (scope == RANKING_SCOPE_GLOBAL) {
+    if (mode == RANKING_MODE_GLOBAL) {
         list = &(rankings->lists[statIndex]);
 
         MI_CpuCopy8(list, &(sortBuffer->list), sizeof(RankingList));
@@ -317,43 +317,43 @@ static void SortRankingsForStat(Rankings *rankings, u32 seed, u8 statIndex, Rank
 {
     RankingSortBuffer *sortBuffer = Heap_AllocAtEnd(heapID, sizeof(RankingSortBuffer));
 
-    SortRankings(rankings, sortBuffer, seed, statIndex, RANKING_SCOPE_GLOBAL, rankingsEntries, playerCount, heapID);
+    SortRankings(rankings, sortBuffer, seed, statIndex, RANKING_MODE_GLOBAL, rankingsEntries, playerCount, heapID);
 
     if (seed != 0) {
-        SortRankings(rankings, sortBuffer, seed, statIndex, RANKING_SCOPE_GROUP, rankingsEntries, playerCount, heapID);
+        SortRankings(rankings, sortBuffer, seed, statIndex, RANKING_MODE_GROUP, rankingsEntries, playerCount, heapID);
     }
 
     Heap_Free(sortBuffer);
 }
 
-void SaveData_UpdateRankings(SaveData *saveData, int playerIndex, u8 inEntryCount, const void **inRankingsEntries, enum HeapID heapID)
+void SaveData_UpdateRankings(SaveData *saveData, int participantIndex, u8 participantCount, const void **rankingData, enum HeapID heapID)
 {
     u8 i;
     u32 seed;
-    RankingsEntries *rankingsEntries[MAX_RANKINGS_ENTRIES - 1];
+    RankingsEntries *mixedRankings[MAX_RANKINGS_ENTRIES - 1];
     Rankings *rankings = SaveData_GetRankings(saveData);
 
     seed = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(saveData), RECORD_MIXED_RNG_PLAYER_OVERRIDE);
-    u8 playerCount = 0;
+    u8 mixedPlayerCount = 0;
 
-    for (i = 0; i < inEntryCount; i++) {
-        if (i == playerIndex) {
+    for (i = 0; i < participantCount; i++) {
+        if (i == participantIndex) {
             continue;
         }
 
-        if (inRankingsEntries[i] == NULL) {
+        if (rankingData[i] == NULL) {
             continue;
         }
 
-        rankingsEntries[playerCount++] = (RankingsEntries *)inRankingsEntries[i];
+        mixedRankings[mixedPlayerCount++] = (RankingsEntries *)rankingData[i];
     }
 
-    if (playerCount == 0) {
+    if (mixedPlayerCount == 0) {
         return;
     }
 
     for (i = 0; i < RANKING_STAT_MAX; i++) {
-        SortRankingsForStat(rankings, seed, i, rankingsEntries, playerCount, heapID);
+        SortRankingsForStat(rankings, seed, i, mixedRankings, mixedPlayerCount, heapID);
     }
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
@@ -361,7 +361,7 @@ void SaveData_UpdateRankings(SaveData *saveData, int playerIndex, u8 inEntryCoun
     return;
 }
 
-RecordPlayersInfo *Rankings_GetCurrentPlayerInfo(SaveData *saveData, int listID, enum HeapID heapID)
+RecordPlayersInfo *Rankings_GetCurrentPlayerInfo(SaveData *saveData, int category, enum HeapID heapID)
 {
     u32 seed;
     u32 *recordValues;
@@ -372,12 +372,12 @@ RecordPlayersInfo *Rankings_GetCurrentPlayerInfo(SaveData *saveData, int listID,
 
     seed = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(saveData), RECORD_MIXED_RNG_PLAYER_OVERRIDE);
     recordValues = GetRecordValues(saveData, heapID);
-    playersInfo->count = GetRecordsListLength(listID);
-    u8 firstRecordID = GetRecordsListFirstRecord(listID);
+    playersInfo->count = Rankings_GetCategoryStatCount(category);
+    u8 firstStat = Rankings_GetCategoryFirstStat(category);
 
     for (int i = 0; i < playersInfo->count; i++) {
         playersInfo->players[i].seed = seed;
-        playersInfo->players[i].recordValue = recordValues[i + firstRecordID];
+        playersInfo->players[i].recordValue = recordValues[i + firstStat];
         playersInfo->players[i].playerName = TrainerInfo_NameNewString(trainerInfo, heapID);
     }
 
