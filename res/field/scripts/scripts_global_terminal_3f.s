@@ -65,7 +65,7 @@ GlobalTerminal3F_Dummy1:
     End
 
 GlobalTerminal3F_BattleVideosMachine:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8005, 2
     GoTo GlobalTerminal3F_BattleVideosMenu

@@ -55,7 +55,7 @@ BOOL SystemFlag_CheckSafariGameActive(VarsFlags *varsFlags);
 void SystemFlag_SetInPalPark(VarsFlags *varsFlags);
 void SystemFlag_ClearInPalPark(VarsFlags *varsFlags);
 BOOL SystemFlag_CheckInPalPark(VarsFlags *varsFlags);
-void SystemFlag_CheckOnCyclingRoad(VarsFlags *varsFlags);
+void SystemFlag_ClearOnCyclingRoad(VarsFlags *varsFlags);
 BOOL SystemFlag_HandleStrengthActive(VarsFlags *varsFlags, enum HandleFlagOp op);
 void SystemFlag_SetFlashActive(VarsFlags *varsFlags);
 void SystemFlag_ClearFlashActive(VarsFlags *varsFlags);

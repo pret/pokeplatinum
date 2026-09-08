@@ -11,7 +11,7 @@ Route213GateToPastoriaCity_PokefanM:
     End
 
 Route213GateToPastoriaCity_SchoolKidF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message Route213GateToPastoriaCity_Text_DoYouKnowBattleFrontier

@@ -57,7 +57,7 @@ CanalaveCityHarborInn_OnFrame_Sleep:
     BufferPlayerName 0
     Message CanalaveCityHarborInn_Text_PlayerLayDown
     CloseMessage
-    PlaySE SEQ_SE_DP_MAZYO2
+    PlaySE SEQ_SE_DP_MAZYO2_sseq
     SetFlag FLAG_TRAVELED_TO_NEWMOON_ISLAND
     SetFlag FLAG_HIDE_CANALAVE_CITY_HARBOR_INN_GYM_GUIDE
     SetVar VAR_DARKRAI_EVENT_STATE, 2
@@ -100,7 +100,7 @@ CanalaveCityHarborInn_OnFrame_Awaken:
     LockAll
     Call CanalaveCityHarborInn_ResetOrFinishDarkraiEvent
     ScrCmd_2B5 MAP_HEADER_CANALAVE_CITY, 58, 714
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     BufferPlayerName 0
     Message CanalaveCityHarborInn_Text_PlayerAwakened

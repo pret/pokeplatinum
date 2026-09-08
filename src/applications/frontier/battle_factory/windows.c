@@ -119,13 +119,13 @@ void BattleFactoryApp_FreeWindows(Window *windows)
 
 void BattleFactoryApp_DrawWindow(BgConfig *bgConfig, Window *window)
 {
-    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_1, BASE_TILE_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_BATTLE_FACTORY_APP);
-    Window_DrawStandardFrame(window, TRUE, BASE_TILE_WINDOW_FRAME, PLTT_11);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_1, BASE_TILE_WINDOW_FRAME, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_BATTLE_FACTORY_APP);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_WINDOW_FRAME, 11);
 }
 
 void BattleFactoryApp_DrawMessageBox(Window *window, int frame)
 {
-    LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_10, frame, HEAP_ID_BATTLE_FACTORY_APP);
+    LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), BASE_TILE_STANDARD_WINDOW_FRAME, 10, frame, HEAP_ID_BATTLE_FACTORY_APP);
     Window_FillTilemap(window, 15);
-    Window_DrawMessageBoxWithScrollCursor(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_10);
+    Window_DrawMessageBoxWithScrollCursor(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 10);
 }

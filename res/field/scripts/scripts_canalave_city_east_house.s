@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 CanalaveCityEastHouse_MoveDeleter:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_MAP_LOCAL_0x01, CanalaveCityEastHouse_AskForgetSomeMoves
@@ -60,7 +60,7 @@ CanalaveCityEastHouse_TryForgetMove:
 CanalaveCityEastHouse_ForgotMoveCompletely:
     ClearPartyMonMoveSlot VAR_0x8002, VAR_0x8001
     Message CanalaveCityEastHouse_Text_ForgotMoveCompletely
-    PlayFanfare SEQ_WASURE
+    PlayFanfare SEQ_WASURE_sseq
     WaitFanfare
     WaitButton
     CloseMessage

@@ -43,7 +43,7 @@ VeilstoneStore1F_Directory:
     End
 
 VeilstoneStore1F_Socialite:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK, VeilstoneStore1F_Socialite_AfterMaskGiven

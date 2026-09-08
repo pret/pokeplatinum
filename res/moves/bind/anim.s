@@ -11,7 +11,7 @@ L_0:
     Delay 1
     Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 100, 70, 100, 100, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     WaitForAnimTasks
-    PlaySoundEffectR SEQ_SE_DP_W020B
+    PlaySoundEffectR SEQ_SE_DP_W020B_sseq
     EndLoop
     WaitForAllEmitters
     UnloadParticleSystem 0

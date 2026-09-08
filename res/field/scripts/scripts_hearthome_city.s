@@ -78,7 +78,7 @@ HearthomeCity_Pachirisu:
     End
 
 HearthomeCity_Fisherman:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_MAP_LOCAL_0x01, HearthomeCity_ItMakesMeHappy
@@ -222,7 +222,7 @@ HearthomeCity_BabyInPram1:
     End
 
 HearthomeCity_MrGoods:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message HearthomeCity_Text_TheyCallMeMrGoods

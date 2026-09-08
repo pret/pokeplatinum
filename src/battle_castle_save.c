@@ -63,27 +63,27 @@ void BattleCastleSave_SetMember(BattleCastleSave *save, u8 field, u8 index, u8 i
     }
 }
 
-u32 BattleCastleSave_GetMember(BattleCastleSave *svae, u8 field, u8 index, u8 unused, void *unused2)
+u32 BattleCastleSave_GetMember(BattleCastleSave *save, u8 field, u8 index, u8 unused, void *unused2)
 {
     switch (field) {
     case CASTLE_SAVE_CHALLENGE_TYPE:
-        return svae->challengeType;
+        return save->challengeType;
     case CASTLE_SAVE_CURRENT_BATTLE:
-        return svae->currentBattleNum;
+        return save->currentBattleNum;
     case CASTLE_SAVE_MON_HP:
-        return svae->monHP[index];
+        return save->monHP[index];
     case CASTLE_SAVE_MON_PP:
-        return svae->monPP[index][unused];
+        return save->monPP[index][unused];
     case CASTLE_SAVE_MON_STATUS:
-        return svae->monStatus[index];
+        return save->monStatus[index];
     case CASTLE_SAVE_HELD_ITEMS:
-        return svae->heldItems[index];
+        return save->heldItems[index];
     case CASTLE_SAVE_TRAINER_IDS:
-        return svae->trainerIDs[index];
+        return save->trainerIDs[index];
     case CASTLE_SAVE_PARTY_SLOTS:
-        return svae->partySlots[index];
+        return save->partySlots[index];
     case CASTLE_SAVE_MON_SET_IDS:
-        return svae->monSetIDs[index];
+        return save->monSetIDs[index];
     default:
         GF_ASSERT(FALSE);
         break;

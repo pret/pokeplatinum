@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 PastoriaCityEastHouse_MoveManiac:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferItemNameWithArticle 4, ITEM_HEART_SCALE

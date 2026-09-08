@@ -344,7 +344,7 @@ static BOOL FormMainGraphicsUpdate(void *graphics, PokedexGraphicsManager *graph
             InitBoxTransform(formDisplayBox, formMainGraphics);
             ResetArrow(formDisplayBox);
             formMainGraphics->boxMoving = TRUE;
-            Sound_PlayEffect(SEQ_SE_DP_DENSI06);
+            Sound_PlayEffect(SEQ_SE_DP_DENSI06_sseq);
             graphicsMan->state++;
         }
         break;

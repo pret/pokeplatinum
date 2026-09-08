@@ -2,10 +2,11 @@
 #define POKEPLATINUM_FIELD_BGM_H
 
 #include "generated/map_headers.h"
-#include "generated/sdat.h"
 #include "generated/trainers.h"
 
 #include "field/field_system_decl.h"
+
+#include "res/sound/pl_sound_data.naix"
 
 void FieldBGM_Stop(void);
 void FieldBGM_SetOverride(FieldSystem *fieldSystem, u16 bgmID);

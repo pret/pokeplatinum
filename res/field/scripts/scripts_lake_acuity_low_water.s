@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 LakeAcuityLowWater_Rival:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_TALKED_TO_LAKE_ACUITY_LOW_WATER_RIVAL, LakeAcuityLowWater_ChallengeSunyshoreGym

@@ -125,7 +125,7 @@ void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, 
                 boatCutscene->state = BOAT_CUTSCENE_STATE_START_WITH_BRIDGE;
 
                 FieldSystem_LoadCanalaveBridgeAnimation(fieldSystem);
-                Sound_PlayEffect(SEQ_SE_DP_SHIP02);
+                Sound_PlayEffect(SEQ_SE_DP_SHIP02_sseq);
             } else {
                 boatCutscene->state = BOAT_CUTSCENE_STATE_START_WITHOUT_BRIDGE;
             }
@@ -202,7 +202,7 @@ static BOOL FieldSystem_PlayBoatCutsceneStep(FieldTask *taskMan)
             if (BoatCutscene_CheckBridgeReached(&boatCutscene->bridgeDistance, &boatCutscene->distanceTraveled, &boatCutscene->bridgeReached)) {
                 MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_LEFT, 0);
                 MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_RIGHT, 0);
-                Sound_PlayEffect(SEQ_SE_DP_SHIP03);
+                Sound_PlayEffect(SEQ_SE_DP_SHIP03_sseq);
             }
         } else {
             if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_LEFT)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_RIGHT)) && goalReached) {

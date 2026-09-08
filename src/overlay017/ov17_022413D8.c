@@ -458,7 +458,7 @@ static void ov17_022414C0(SysTask *param0, void *param1)
         return;
     }
 
-    PaletteData_Blend(v0->unk_00, 0, Unk_ov17_022536B4[v0->unk_0A] * 16 + 1, 4, v0->unk_08 >> 8, 0x7fff);
+    PaletteData_Blend(v0->unk_00, PLTTBUF_MAIN_BG, Unk_ov17_022536B4[v0->unk_0A] * 16 + 1, 4, v0->unk_08 >> 8, 0x7fff);
 
     if (v0->unk_08 == 0) {
         v0->unk_0B = 0;
@@ -705,16 +705,16 @@ void ov17_02241A8C(UnkStruct_ov17_0223F88C *param0, int param1, int param2)
 
     switch (param2) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_CON_003);
+        Sound_PlayEffect(SEQ_SE_DP_CON_003_sseq);
         break;
     case 1:
-        Sound_PlayEffect(SEQ_SE_DP_CON_001);
+        Sound_PlayEffect(SEQ_SE_DP_CON_001_sseq);
         break;
     case 2:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         break;
     case 3:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         break;
     }
 }
@@ -951,7 +951,7 @@ void ov17_02241F34(UnkStruct_ov17_0223F88C *param0, int param1, int param2, int 
         }
     }
 
-    Sound_PlayEffect(SEQ_SE_DP_CON_003);
+    Sound_PlayEffect(SEQ_SE_DP_CON_003_sseq);
     Sound_SetPitchForSequence(1761, 0xffff, 64 * (v0 - 1));
 }
 
@@ -1130,7 +1130,7 @@ static void ov17_022422B8(SysTask *param0, void *param1)
     default:
         Sprite_DeleteAndFreeResources(v0->unk_04);
         ManagedSprite_SetDrawFlag(v0->unk_08, 1);
-        Sound_PlayEffect(SEQ_SE_DP_CON_002);
+        Sound_PlayEffect(SEQ_SE_DP_CON_002_sseq);
         Heap_Free(param1);
         SysTask_Done(param0);
         return;
@@ -1714,7 +1714,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_CON_007);
+        Sound_PlayEffect(SEQ_SE_DP_CON_007_sseq);
         Sound_SetInitialVolumeForSequence(1765, v0->unk_04);
         v0->unk_08++;
     case 1: {
@@ -1761,7 +1761,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
                     v0->unk_0F = v2;
                 }
 
-                PaletteData_Blend(v0->unk_00->unk_0C.unk_50, 0, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
+                PaletteData_Blend(v0->unk_00->unk_0C.unk_50, PLTTBUF_MAIN_BG, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
             }
         }
         break;
@@ -1774,7 +1774,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
                     v0->unk_0F = 0;
                 }
 
-                PaletteData_Blend(v0->unk_00->unk_0C.unk_50, 0, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
+                PaletteData_Blend(v0->unk_00->unk_0C.unk_50, PLTTBUF_MAIN_BG, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
                 break;
             }
         }
@@ -1891,7 +1891,7 @@ static void ov17_022434E0(SysTask *param0, void *param1)
         break;
     default:
         ManagedSprite_SetDrawFlag(v0->unk_08, 0);
-        Sound_PlayEffect(SEQ_SE_DP_SELECT5);
+        Sound_PlayEffect(SEQ_SE_DP_SELECT5_sseq);
         ov17_022414B0(v0->unk_04);
 
         (*(v0->unk_0C))--;
@@ -1984,7 +1984,7 @@ static void ov17_02243750(SysTask *param0, void *param1)
         v0->unk_1C = v1 << 8;
         v0->unk_20 = v2 << 8;
 
-        Sound_PlayEffect(SEQ_SE_DP_W234);
+        Sound_PlayEffect(SEQ_SE_DP_W234_sseq);
         v0->unk_0E++;
     case 1:
         v0->unk_0C += 0x800;
@@ -2018,7 +2018,7 @@ static void ov17_02243750(SysTask *param0, void *param1)
                     v0->unk_18 = -v0->unk_18;
                 }
             }
-            Sound_PlayEffect(SEQ_SE_DP_CON_013);
+            Sound_PlayEffect(SEQ_SE_DP_CON_013_sseq);
             v0->unk_0E++;
         }
         break;
@@ -2035,7 +2035,7 @@ static void ov17_02243750(SysTask *param0, void *param1)
         break;
     default:
         ManagedSprite_SetDrawFlag(v0->unk_04, 0);
-        Sound_PlayEffect(SEQ_SE_DP_SELECT5);
+        Sound_PlayEffect(SEQ_SE_DP_SELECT5_sseq);
         (*(v0->unk_08))--;
         Heap_Free(param1);
         SysTask_Done(param0);

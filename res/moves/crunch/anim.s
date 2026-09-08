@@ -8,9 +8,9 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 10
-    PlaySoundEffectR SEQ_SE_DP_W044
+    PlaySoundEffectR SEQ_SE_DP_W044_sseq
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlayDelayedSoundEffectR SEQ_SE_DP_W088, 4
+    PlayDelayedSoundEffectR SEQ_SE_DP_W088_sseq, 4
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

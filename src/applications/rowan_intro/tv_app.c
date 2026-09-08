@@ -113,8 +113,8 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
         if (tv->delayUpdateCounter) {
             tv->delayUpdateCounter--;
         } else {
-            Sound_SetFieldBGM(SEQ_TV_HOUSOU);
-            Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_TV_HOUSOU, 1);
+            Sound_SetFieldBGM(SEQ_TV_HOUSOU_sseq);
+            Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_TV_HOUSOU_sseq, 1);
 
             tv->delayUpdateCounter = 3 * 30;
             *state = RIT_APP_STATE_WAIT_AND_START_FADE_IN;
@@ -379,7 +379,7 @@ static void RowanIntroTv_InitGraphics(RowanIntroTv *tv)
         0x20 * 2,
         0x20 * 14,
         tv->heapID);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), tv->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(1), tv->heapID);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 

@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, defog_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlaySoundEffectC SEQ_SE_DP_BFBRADE
+    PlaySoundEffectC SEQ_SE_DP_BFBRADE_sseq
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_GENERIC

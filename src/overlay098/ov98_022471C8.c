@@ -9,9 +9,9 @@
 
 #include "struct_decls/wi_fi_list.h"
 
+#include "gts_application/networking.h"
 #include "nintendo_wfc/main.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay094/networking.h"
 #include "overlay098/ov98_02246C20.h"
 #include "overlay098/ov98_022499C8.h"
 #include "overlay098/struct_ov98_02246E88.h"
@@ -628,8 +628,8 @@ static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
 
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, HEAP_ID_109);
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_109);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_109);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_109);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_109);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(13), HEAP_ID_109);
     LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_109);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_109);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_2, 1 + (18 + 12), 11, 0, HEAP_ID_109);
@@ -770,13 +770,13 @@ static int ov98_02247B98(UnkStruct_ov98_02247704 *param0)
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             ov98_02246E88(param0->unk_00, 6, 0);
             param0->unk_9C = 29;
             param0->unk_94++;
             break;
         default:
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             param0->unk_9C = v0;
             param0->unk_94++;
             break;
@@ -1025,21 +1025,21 @@ static int ov98_02248350(UnkStruct_ov98_02247704 *param0)
         if (JOY_REPEAT(PAD_KEY_UP)) {
             if (param0->unk_AC != 0) {
                 param0->unk_AC--;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         } else if (JOY_REPEAT(PAD_KEY_DOWN)) {
             if (param0->unk_AC + 6 < param0->unk_B4) {
                 param0->unk_AC++;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
 
             if (param0->unk_AC + 6 == param0->unk_B4) {
                 ov98_02247F08(param0);
                 param0->unk_A8++;
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
             }
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             param0->unk_B8 = 2;
             param0->unk_A8 = 0xFF;
         }
@@ -1052,19 +1052,19 @@ static int ov98_02248350(UnkStruct_ov98_02247704 *param0)
     case 2:
         if (gSystem.pressedKeys & PAD_KEY_RIGHT || gSystem.pressedKeys & PAD_KEY_LEFT) {
             param0->unk_B0 ^= 1;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             ov98_02247F08(param0);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             param0->unk_B8 = 2 - param0->unk_B0;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             param0->unk_A8++;
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             param0->unk_B8 = 2;
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             param0->unk_A8++;
         } else if (gSystem.pressedKeys & PAD_KEY_UP) {
             ov98_02247FA4(param0);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             param0->unk_A8--;
             param0->unk_AC--;
             ov98_022482CC(param0);
@@ -1258,7 +1258,7 @@ static int ov98_0224897C(UnkStruct_ov98_02247704 *param0)
     SleepUnlock(4);
 
     if (param0->unk_00->unk_11C == 1) {
-        ov94_0223B7AC();
+        GTSNetworking_Reset();
         param0->unk_00->unk_11C = 0;
     }
 
@@ -1327,7 +1327,7 @@ static int ov98_02248A68(UnkStruct_ov98_02247704 *param0)
             SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
-                ov94_0223B7AC();
+                GTSNetworking_Reset();
                 param0->unk_00->unk_11C = 0;
             }
 
@@ -1403,7 +1403,7 @@ static int ov98_02248B24(UnkStruct_ov98_02247704 *param0)
             SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
-                ov94_0223B7AC();
+                GTSNetworking_Reset();
                 param0->unk_00->unk_11C = 0;
             }
 
@@ -1456,7 +1456,7 @@ static int ov98_02248BFC(UnkStruct_ov98_02247704 *param0)
 
     v1 = SystemData_GetDWCProfileId(v2);
 
-    ov94_0223B140(v1, DWC_CreateFriendKey(v0));
+    GTSNetworking_InitCredentials(v1, DWC_CreateFriendKey(v0));
 
     param0->unk_00->unk_11C = 1;
     param0->unk_08 = 17;
@@ -1562,7 +1562,7 @@ static int ov98_02248C88(UnkStruct_ov98_02247704 *param0)
     } else {
         param0->unk_E8++;
 
-        if (param0->unk_E8 == (30 * 60 * 2)) {
+        if (param0->unk_E8 == NETWORK_TIMEOUT_FRAMES) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
@@ -1735,7 +1735,7 @@ static int ov98_02248F7C(UnkStruct_ov98_02247704 *param0)
         } else {
             param0->unk_E8++;
 
-            if (param0->unk_E8 == (30 * 60 * 2)) {
+            if (param0->unk_E8 == NETWORK_TIMEOUT_FRAMES) {
                 NetworkError_DisplayGTSCriticalError();
             }
         }
@@ -1813,7 +1813,7 @@ static int ov98_02249238(UnkStruct_ov98_02247704 *param0)
         if (v0 == 2) {
             StringTemplate_SetPlayerName(param0->unk_20, 0, SaveData_GetTrainerInfo(param0->unk_00->saveData));
             ov98_02249714(param0, param0->unk_34, 33, TEXT_SPEED_INSTANT, 0xf0f);
-            Sound_PlayEffect(SEQ_SE_DP_SAVE);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE_sseq);
         } else {
             ov98_02249714(param0, param0->unk_34, 34, TEXT_SPEED_INSTANT, 0xf0f);
         }
@@ -1859,7 +1859,7 @@ static int ov98_02249320(UnkStruct_ov98_02247704 *param0)
         SleepUnlock(4);
 
         if (param0->unk_00->unk_11C == 1) {
-            ov94_0223B7AC();
+            GTSNetworking_Reset();
             param0->unk_00->unk_11C = 0;
         }
 
@@ -2022,7 +2022,7 @@ static int ov98_022495C4(UnkStruct_ov98_02247704 *param0)
             SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {
-                ov94_0223B7AC();
+                GTSNetworking_Reset();
                 param0->unk_00->unk_11C = 0;
             }
 
@@ -2221,13 +2221,13 @@ static void ov98_02249964(UnkStruct_ov98_02247704 *param0, int param1, int param
 static void ov98_022499A0(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 
 static void ov98_022499B4(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }

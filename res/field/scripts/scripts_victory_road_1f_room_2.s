@@ -66,7 +66,7 @@ VictoryRoad1FRoom2_MarleyStartFollowing:
     CallIfUnset FLAG_TALKED_TO_VICTORY_ROAD_1F_ROOM_2_MARLEY, VictoryRoad1FRoom2_LetMeGoWithYou
     CallIfSet FLAG_TALKED_TO_VICTORY_ROAD_1F_ROOM_2_MARLEY, VictoryRoad1FRoom2_YouTookSoLong
     BufferPlayerName 0
-    PlayFanfare SEQ_GONIN
+    PlayFanfare SEQ_GONIN_sseq
     Message VictoryRoad1FRoom2_Text_DecidedToGoWithMarley
     WaitFanfare
     SetFlag FLAG_TALKED_TO_VICTORY_ROAD_1F_ROOM_2_MARLEY

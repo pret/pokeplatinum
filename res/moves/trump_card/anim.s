@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, trump_card_spa
-    PlaySoundEffectR SEQ_SE_DP_W376
+    PlaySoundEffectR SEQ_SE_DP_W376_sseq
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
@@ -12,9 +12,9 @@ L_0:
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
     Delay 43
-    PlaySoundEffectR SEQ_SE_DP_W013
+    PlaySoundEffectR SEQ_SE_DP_W013_sseq
     Delay 3
-    PlaySoundEffectR SEQ_SE_DP_W376B
+    PlaySoundEffectR SEQ_SE_DP_W376B_sseq
     Delay 4
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters

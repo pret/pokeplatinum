@@ -18,7 +18,7 @@ GalacticHQ1F_OnTransition:
     End
 
 GalacticHQ1F_GruntF1:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, GalacticHQ1F_WeHaveNoPlansNow
@@ -36,7 +36,7 @@ GalacticHQ1F_WeHaveNoPlansNow:
     End
 
 GalacticHQ1F_GruntM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, GalacticHQ1F_NothingLeftNow
@@ -54,7 +54,7 @@ GalacticHQ1F_NothingLeftNow:
     End
 
 GalacticHQ1F_GruntF2:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, GalacticHQ1F_IWonderWhereBossWent
@@ -72,7 +72,7 @@ GalacticHQ1F_IWonderWhereBossWent:
     End
 
 GalacticHQ1F_ScientistM1:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, GalacticHQ1F_ThisIsWhereWeWork
@@ -94,7 +94,7 @@ GalacticHQ1F_Saturn:
     End
 
 GalacticHQ1F_Door:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
@@ -116,8 +116,8 @@ GalacticHQ1F_UseGalacticKey:
     BufferPlayerName 0
     Message GalacticHQ1F_Text_TheDoorOpened
     WaitButton
-    WaitSE SEQ_SE_CONFIRM
-    PlaySE SEQ_SE_DP_DOOR10
+    WaitSE SE_CONFIRM_sseq_3
+    PlaySE SEQ_SE_DP_DOOR10_sseq
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_WEST, GalacticHQ1F_Movement_DoorWestMoveWest
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_EAST, GalacticHQ1F_Movement_DoorEastMoveEast
     WaitMovement

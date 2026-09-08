@@ -8,7 +8,7 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 0, 0, 0, 0, 8
     Delay 5
-    PlaySoundEffectR SEQ_SE_DP_W239
+    PlaySoundEffectR SEQ_SE_DP_W239_sseq
     Delay 15
     Func_Shake 3, 0, 1, 15, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters

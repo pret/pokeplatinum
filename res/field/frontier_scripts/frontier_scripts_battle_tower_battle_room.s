@@ -1,6 +1,7 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/battle_tower_battle_room.h"
 # include "res/text/bank/menu_entries.h"
+# include "constants/battle_frontier.h"
 
     .data
 
@@ -262,7 +263,7 @@ _0330:
     BufferNumber 1, VAR_0x8008
     BufferPlayerName 0
     Message BattleTowerBattleRoom_Text_ReceiveBP
-    PlayFanfare SEQ_PL_POINTGET3
+    PlayFanfare SEQ_PL_POINTGET3_sseq
     WaitFanfare
     Return
 
@@ -281,7 +282,7 @@ _0360:
 
 _0374:
     Message BattleTowerBattleRoom_Text_HealPokemon
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     Return
@@ -462,7 +463,7 @@ _0667:
     Return
 
 _069A:
-    PlaySoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
     BufferPlayerName 0
     Message BattleTowerBattleRoom_Text_BattleSaved
     Return
@@ -491,8 +492,8 @@ _06D3:
     ShowSavingIcon
     FrontierScrCmd_72 VAR_0x8008
     HideSavingIcon
-    PlaySoundEffect SEQ_SE_DP_SAVE
-    WaitSoundEffect SEQ_SE_DP_SAVE
+    PlaySoundEffect SEQ_SE_DP_SAVE_sseq
+    WaitSoundEffect SEQ_SE_DP_SAVE_sseq
     FadeScreenOut
     CloseMessage
     FreeBattleRecording
@@ -572,7 +573,7 @@ _086E:
     CloseMessage
     Call _04C8
     IncrementRecordValue RECORD_UNK_059
-    FrontierScrCmd_47 1
+    PlayFrontierBrainEncounterEffect FACILITY_TOWER
     BattleTower_StartBattle
     BattleTower_CheckWonBattle VAR_0x800C
     FadeScreenIn

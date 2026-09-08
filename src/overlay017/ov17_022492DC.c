@@ -357,19 +357,19 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[2], 6 * 12 * 0x20 * 3);
     Heap_Free(v2);
 
-    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 7, 1, &v1, HEAP_ID_23);
+    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 7, TRUE, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[0], 0x800);
     Heap_Free(v2);
 
-    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 8, 1, &v1, HEAP_ID_23);
+    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 8, TRUE, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[1], 0x800);
     Heap_Free(v2);
 
-    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 17, 1, &v1, HEAP_ID_23);
+    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 17, TRUE, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[2], 0x800);
     Heap_Free(v2);
 
-    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 28, 1, &v1, HEAP_ID_23);
+    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 28, TRUE, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[3], 0x800);
     Heap_Free(v2);
 
@@ -430,7 +430,7 @@ void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void
     }
 
     if ((v0->unk_02 != 0xffff) && ((param2 == 1) || (v0->unk_02 != v1->unk_02))) {
-        PaletteData_LoadBuffer(param0->unk_04->unk_90, param0->unk_E0[v0->unk_02], 1, 0, 0x200);
+        PaletteData_LoadBuffer(param0->unk_04->unk_90, param0->unk_E0[v0->unk_02], PLTTBUF_SUB_BG, 0, PALETTE_SIZE_BYTES * 16);
     }
 
     for (v2 = 0; v2 < 4; v2++) {
@@ -931,5 +931,5 @@ static void ov17_0224A0C8(SysTask *param0, void *param1)
 
 void ov17_0224A0E0(UnkStruct_ov17_022492DC *param0, u16 param1, u8 param2)
 {
-    PaletteData_Blend(param0->unk_04->unk_90, 1, 0 * 16, 16 * 4, param2, param1);
+    PaletteData_Blend(param0->unk_04->unk_90, PLTTBUF_SUB_BG, 0 * 16, 16 * 4, param2, param1);
 }

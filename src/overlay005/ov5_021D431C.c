@@ -139,11 +139,11 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         }
 
         if (DoorAnimation_GetSoundEffectType(v9) == DOOR_SOUND_EFFECT_TYPE_SLIDING) {
-            v10 = SEQ_SE_DP_DOOR10;
+            v10 = SEQ_SE_DP_DOOR10_sseq;
         } else if (DoorAnimation_GetSoundEffectType(v9) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
-            v10 = SEQ_SE_PL_DOOR_OPEN5;
+            v10 = SEQ_SE_PL_DOOR_OPEN5_sseq;
         } else {
-            v10 = SEQ_SE_DP_DOOR_OPEN;
+            v10 = SEQ_SE_DP_DOOR_OPEN_sseq;
         }
 
         if (param1->unk_1E == 2) {
@@ -191,7 +191,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
                 } else if (DoorAnimation_GetSoundEffectType(v13) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
                     v14 = 0;
                 } else {
-                    v14 = SEQ_SE_DP_DOOR_CLOSE2;
+                    v14 = SEQ_SE_DP_DOOR_CLOSE2_sseq;
                 }
 
                 if (param1->unk_1E == 2) {
@@ -307,11 +307,11 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
             }
 
             if (DoorAnimation_GetSoundEffectType(v9) == DOOR_SOUND_EFFECT_TYPE_SLIDING) {
-                v10 = SEQ_SE_DP_DOOR10;
+                v10 = SEQ_SE_DP_DOOR10_sseq;
             } else if (DoorAnimation_GetSoundEffectType(v9) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
-                v10 = SEQ_SE_PL_DOOR_OPEN5;
+                v10 = SEQ_SE_PL_DOOR_OPEN5_sseq;
             } else {
-                v10 = SEQ_SE_DP_DOOR_OPEN;
+                v10 = SEQ_SE_DP_DOOR_OPEN_sseq;
             }
 
             if (param1->unk_1E == 2) {
@@ -768,11 +768,11 @@ void DoorAnimation_PlayOpenAnimation(FieldSystem *fieldSystem, const u8 tag)
     animationCount = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, doorModelID);
 
     if (DoorAnimation_GetSoundEffectType(doorModelID) == DOOR_SOUND_EFFECT_TYPE_SLIDING) {
-        soundEffectID = SEQ_SE_DP_DOOR10;
+        soundEffectID = SEQ_SE_DP_DOOR10_sseq;
     } else if (DoorAnimation_GetSoundEffectType(doorModelID) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
-        soundEffectID = SEQ_SE_PL_DOOR_OPEN5;
+        soundEffectID = SEQ_SE_PL_DOOR_OPEN5_sseq;
     } else {
-        soundEffectID = SEQ_SE_DP_DOOR_OPEN;
+        soundEffectID = SEQ_SE_DP_DOOR_OPEN_sseq;
     }
 
     if (animationCount == 2) {
@@ -802,7 +802,7 @@ void DoorAnimation_PlayCloseAnimation(FieldSystem *fieldSystem, const u8 tag)
     } else if (DoorAnimation_GetSoundEffectType(doorModelID) == DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME) {
         soundEffectID = 0;
     } else {
-        soundEffectID = SEQ_SE_DP_DOOR_CLOSE2;
+        soundEffectID = SEQ_SE_DP_DOOR_CLOSE2_sseq;
     }
 
     if (animationCount == 2) {
@@ -946,7 +946,7 @@ BOOL ov5_021D4F14(FieldTask *param0)
         v1->unk_08 = 0;
         v1->unk_04 = 0;
 
-        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2_sseq);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, HEAP_ID_FIELD2);
 
         v1->unk_08 = 1;
@@ -977,7 +977,7 @@ BOOL ov5_021D4FA0(FieldTask *param0)
         v1->unk_08 = 0;
         v1->unk_04 = 0;
 
-        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2_sseq);
         sub_02056B30(param0, 0, 16, 0, 0x0, 6, 1, HEAP_ID_FIELD2);
 
         v1->unk_08 = 1;

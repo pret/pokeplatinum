@@ -81,9 +81,9 @@ static BOOL FieldTask_PlayElevatorAnimation(FieldTask *fieldTask)
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, ELEVATOR_ANIMATION_TAG, animation->direction);
 
         if (animation->direction == ELEVATOR_DIR_UP) {
-            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2_sseq);
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2_sseq);
         }
 
         (animation->state)++;
@@ -91,18 +91,18 @@ static BOOL FieldTask_PlayElevatorAnimation(FieldTask *fieldTask)
     case ELEVATOR_ANIMATION_STATE_WAIT_FOR_ANIMATION:
         if (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, ELEVATOR_ANIMATION_TAG)) {
             if (animation->direction == ELEVATOR_DIR_UP) {
-                Sound_StopEffect(SEQ_SE_DP_ELEBETA2, 0);
+                Sound_StopEffect(SEQ_SE_DP_ELEBETA2_sseq, 0);
             } else {
-                Sound_StopEffect(SEQ_SE_DP_ELEBETA2, 0);
+                Sound_StopEffect(SEQ_SE_DP_ELEBETA2_sseq, 0);
             }
 
-            Sound_PlayEffect(SEQ_SE_DP_PINPON);
+            Sound_PlayEffect(SEQ_SE_DP_PINPON_sseq);
             MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, ELEVATOR_ANIMATION_TAG);
             (animation->state)++;
         }
         break;
     case ELEVATOR_ANIMATION_STATE_WAIT_FOR_END_SOUND:
-        if (!Sound_IsEffectPlaying(SEQ_SE_DP_PINPON)) {
+        if (!Sound_IsEffectPlaying(SEQ_SE_DP_PINPON_sseq)) {
             (animation->state)++;
         }
         break;

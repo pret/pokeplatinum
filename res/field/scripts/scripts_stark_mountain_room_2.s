@@ -25,7 +25,7 @@ StarkMountainRoom2_CoordEvent_BuckStartFollowing:
     CallIfUnset FLAG_TALKED_TO_STARK_MOUNTAIN_ROOM_2_BUCK, StarkMountainRoom2_BuckEnterStartFollowing
     CallIfSet FLAG_TALKED_TO_STARK_MOUNTAIN_ROOM_2_BUCK, StarkMountainRoom2_BuckStartFollowing
     BufferPlayerName 0
-    PlayFanfare SEQ_GONIN
+    PlayFanfare SEQ_GONIN_sseq
     Message StarkMountainRoom2_Text_DecidedToGoWithBuck
     WaitFanfare
     SetFlag FLAG_TALKED_TO_STARK_MOUNTAIN_ROOM_2_BUCK
@@ -150,10 +150,10 @@ StarkMountainRoom2_HereWeAre:
     CloseMessage
     ApplyMovement LOCALID_BUCK, StarkMountainRoom2_Movement_BuckEnterRoom3
     WaitMovement
-    WaitSE SEQ_SE_CONFIRM
-    PlaySE SEQ_SE_DP_KAIDAN2
+    WaitSE SE_CONFIRM_sseq_3
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_BUCK
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetVar VAR_STARK_MOUNTAIN_ROOM_2_FOLLOWER_BUCK_STATE, 2
     ReleaseAll
     End

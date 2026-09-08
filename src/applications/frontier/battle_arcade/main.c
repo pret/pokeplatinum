@@ -7,15 +7,14 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 
-#include "struct_decls/struct_020304A0_decl.h"
-#include "struct_decls/struct_020305B8_decl.h"
 #include "struct_defs/battle_frontier.h"
 
 #include "applications/frontier/battle_arcade/sprite_manager.h"
 #include "applications/frontier/battle_arcade/sprites.h"
 #include "applications/frontier/battle_arcade/windows.h"
-#include "overlay104/ov104_0223BCBC.h"
+#include "overlay104/battle_arcade_helpers.h"
 
+#include "battle_arcade_save.h"
 #include "battle_frontier_save.h"
 #include "bg_window.h"
 #include "communication_system.h"
@@ -45,7 +44,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02030494.h"
 #include "unk_020363E8.h"
 #include "unk_0209BA80.h"
 #include "vram_transfer.h"
@@ -144,7 +142,7 @@ static const struct {
     u8 battle5 : 1;
     u8 battle6 : 1;
     u8 battle7 : 1;
-} sEffectAvailabilityByBattle[BATTLES_PER_ROUND_ARCADE] = {
+} sEffectAvailabilityByBattle[ARCADE_BATTLES_PER_ROUND] = {
     { 1, 1, 1, 1, 1, 1, 0 }, // ARCADE_EFFECT_SWAP_MONS
     { 1, 1, 1, 1, 1, 1, 0 }, // ARCADE_EFFECT_SPEED_UP
     { 1, 1, 1, 1, 1, 1, 0 }, // ARCADE_EFFECT_SLOW_DOWN
@@ -164,7 +162,7 @@ static const u8 sCategoryWeights[][NUM_ARCADE_EFFECT_CATEGORIES] = {
     { 10, 75, 10, 5 }, // tier 4
 };
 
-static const u8 sCategoryTierFitnessThresholds[] = {
+static const u8 sCategoryTierPerformanceThresholds[] = {
     21,
     16,
     10,
@@ -189,7 +187,7 @@ typedef struct BattleArcadeApp {
     //
     // Higher fitness scores are more likely to yield environmental and bonus effects. Lower
     // fitness scores are more likely to yield ally effects.
-    u8 fitnessScore;
+    u8 performance;
     u8 unusedFlag : 1;
     u8 pointlessTimer : 7;
     u8 resultCursorPos;
@@ -198,7 +196,7 @@ typedef struct BattleArcadeApp {
     int rouletteTimer;
     u8 *rouletteSpeed;
     u8 *selectedEffect;
-    u16 *unk_24;
+    u16 *randomIndex;
     u16 battleStreak;
     u16 round;
     u8 gridWidth;
@@ -222,8 +220,8 @@ typedef struct BattleArcadeApp {
     PaletteData *plttData;
     Options *options;
     SaveData *saveData;
-    UnkStruct_020304A0 *unk_E0;
-    UnkStruct_020305B8 *unk_E4;
+    BattleArcadeSave *unk_E0;
+    BattleArcadeStreakFlags *unk_E4;
     BattleArcadeAppSpriteManager spriteMan;
     BattleArcadeAppSprite *cursorSprite;
     BattleArcadeAppSprite *tileSprites[GRID_SIZE];
@@ -305,23 +303,23 @@ BOOL BattleArcadeApp_Init(ApplicationManager *appMan, int *state)
     BattleArcadeAppArgs *args = ApplicationManager_Args(appMan);
 
     app->saveData = args->saveData;
-    app->unk_E0 = sub_020304A0(app->saveData);
-    app->unk_E4 = sub_020305B8(app->saveData);
+    app->unk_E0 = BattleArcadeSave_Get(app->saveData);
+    app->unk_E4 = BattleArcadeStreakFlags_Get(app->saveData);
     app->challengeType = args->challengeType;
     app->round = args->round;
     app->battleStreak = args->currentStreak;
     app->partnerBattleStreak = args->partnersStreak;
-    app->fitnessScore = args->fitnessScore;
+    app->performance = args->performance;
     app->cursorPosPtr = &args->cursorPos;
     app->options = SaveData_GetOptions(app->saveData);
     app->party = args->party;
     app->opponentsParty = args->opponentsParty;
     app->cursorPosID = 0xff;
     app->frontier = SaveData_GetBattleFrontier(app->saveData);
-    app->unused6 = args->unk_08;
+    app->unused6 = args->weather;
     app->rouletteSpeed = args->rouletteSpeed;
     app->selectedEffect = args->selectedEffect;
-    app->unk_24 = args->unk_14;
+    app->randomIndex = args->randomIndex;
     app->rouletteTimer = 30 * 30; // 30 Seconds at 30FPS
     app->randomizeCursorMovement = args->randomizeCursorMovement;
 
@@ -334,7 +332,7 @@ BOOL BattleArcadeApp_Init(ApplicationManager *appMan, int *state)
     app->gridSize = GRID_SIZE;
     app->partnerCursorPos = 0;
 
-    *app->unk_24 = GetRandomNumber(app);
+    *app->randomIndex = GetRandomNumber(app);
 
     app->startingCursorPos = LCRNG_Next() % GRID_SIZE;
 
@@ -538,7 +536,7 @@ static BOOL State_OperateRoulette(BattleArcadeApp *app)
         }
 
         LoadRouletteBackground(app, BG_LAYER_MAIN_3);
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2_sseq);
 
         app->subStateTimer = 24;
         app->subState = 3;
@@ -556,7 +554,7 @@ static BOOL State_OperateRoulette(BattleArcadeApp *app)
             }
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2_sseq);
         app->subStateTimer = 24;
         app->subState = 4;
         break;
@@ -573,7 +571,7 @@ static BOOL State_OperateRoulette(BattleArcadeApp *app)
             }
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2_sseq);
         app->subStateTimer = 24;
         app->subState = 5;
         break;
@@ -591,7 +589,7 @@ static BOOL State_OperateRoulette(BattleArcadeApp *app)
         }
 
         BattleArcadeAppSprite_SetDrawFlag(app->cursorSprite, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_UG_020);
+        Sound_PlayEffect(SEQ_SE_DP_UG_020_sseq);
         BattleArcadeAppSprite_SetAnim(app->buttonSprite, ANIM_ID_BUTTON_UNPRESSED);
         app->subState = 6;
         break;
@@ -809,8 +807,8 @@ static void LoadAssets(BattleArcadeApp *app)
         app->unusedStrs[i] = String_Init(32, HEAP_ID_BATTLE_ARCADE_APP);
     }
 
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 13 * PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_ARCADE_APP);
-    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, 12 * PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_ARCADE_APP);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_BATTLE_ARCADE_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_BATTLE_ARCADE_APP);
 
     BattleArcadeApp_InitWindows(app->bgConfig, app->windows);
     app->cursorSprite = BattleArcadeAppSprite_New(&app->spriteMan, RESOURCE_ID_MAIN_SPRITES, RESOURCE_ID_MAIN_SPRITES, RESOURCE_ID_MAIN_SPRITES, ANIM_ID_CURSOR, 68, 36, 0, 2, FALSE);
@@ -1041,7 +1039,7 @@ static void UpdateCursorPosition(BattleArcadeApp *app, int unused)
             app->cursorPos++;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
 
         if (app->cursorPos >= app->gridSize) {
             app->cursorPos = 0;
@@ -1159,7 +1157,7 @@ static void CreateResultPayload(BattleArcadeApp *app, u16 cmd, u16 resultCursorP
     }
 
     app->commPayload[2] = app->cursorPosID;
-    app->commPayload[3] = *app->unk_24;
+    app->commPayload[3] = *app->randomIndex;
 }
 
 static u16 GetRandomNumber(BattleArcadeApp *app)
@@ -1188,7 +1186,7 @@ void BattleArcadeApp_HandleResultCmd(int netID, int unused, void *data, void *co
         }
     } else {
         app->cursorPosID = payload[2];
-        *app->unk_24 = payload[3];
+        *app->randomIndex = payload[3];
     }
 }
 
@@ -1224,7 +1222,7 @@ static void SetSelectedEffect(BattleArcadeApp *app, u8 cursorPos)
     }
 
     UpdateCursorSpritePosition(app, finalCursorPos);
-    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
 }
 
 static void GetAvailableEffects(BattleArcadeApp *app)
@@ -1284,7 +1282,7 @@ static void GetAvailableEffects(BattleArcadeApp *app)
             }
 
             u16 battleNum = GetBattleNumber(app);
-            u16 normalizedBattleNum = battleNum % BATTLES_PER_ROUND_ARCADE;
+            u16 normalizedBattleNum = battleNum % ARCADE_BATTLES_PER_ROUND;
 
             if (battleNum >= 9999) {
                 normalizedBattleNum = 6;
@@ -1334,8 +1332,8 @@ static void GetAvailableEffects(BattleArcadeApp *app)
 static void GetEffectCategoryCounts(BattleArcadeApp *app)
 {
     int i;
-    for (i = 0; i < NELEMS(sCategoryTierFitnessThresholds); i++) {
-        if (app->fitnessScore >= sCategoryTierFitnessThresholds[i]) {
+    for (i = 0; i < NELEMS(sCategoryTierPerformanceThresholds); i++) {
+        if (app->performance >= sCategoryTierPerformanceThresholds[i]) {
             break;
         }
     }
@@ -1474,7 +1472,7 @@ static BOOL CheckStopButtonPressed(BattleArcadeApp *app)
 
 static void PressStopButton(BattleArcadeApp *app)
 {
-    Sound_StopEffect(SEQ_SE_CONFIRM, 0);
-    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+    Sound_StopEffect(SE_CONFIRM_sseq_3, 0);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
     BattleArcadeAppSprite_SetAnim(app->buttonSprite, ANIM_ID_BUTTON_PRESSED);
 }

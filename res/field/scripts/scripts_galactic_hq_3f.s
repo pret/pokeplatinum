@@ -13,7 +13,7 @@ GalacticHQ3F_GruntM:
     End
 
 GalacticHQ3F_Door:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
@@ -35,8 +35,8 @@ GalacticHQ3F_UseGalacticKey:
     BufferPlayerName 0
     Message GalacticHQ3F_Text_DoorOpened
     WaitButton
-    WaitSE SEQ_SE_CONFIRM
-    PlaySE SEQ_SE_DP_DOOR10
+    WaitSE SE_CONFIRM_sseq_3
+    PlaySE SEQ_SE_DP_DOOR10_sseq
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_WEST, GalacticHQ3F_Movement_DoorWestMoveWest
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_EAST, GalacticHQ3F_Movement_DoorEastMoveEast
     WaitMovement

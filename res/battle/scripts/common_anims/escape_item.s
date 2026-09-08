@@ -8,7 +8,7 @@ L_0:
     LoadPlttRes 0, 31, 1
     LoadCellResObj 0, 31
     LoadAnimResObj 0, 31
-    PlayPannedSoundEffect SEQ_SE_DP_W104, BATTLE_SOUND_PAN_LEFT
+    PlayPannedSoundEffect SEQ_SE_DP_W104_sseq, BATTLE_SOUND_PAN_LEFT
     AddSpriteWithFunc 0, SPRITE_FUNC_ESCAPE_ITEM, 31, 31, 31, 31, 0, 0
     WaitForAnimTasks
     End

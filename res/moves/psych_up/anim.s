@@ -4,7 +4,7 @@ L_0:
     LoadParticleResource 0, psych_up_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlaySoundEffectL SEQ_SE_DP_W060B
+    PlaySoundEffectL SEQ_SE_DP_W060B_sseq
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     WaitForAllEmitters
     UnloadParticleSystem 0

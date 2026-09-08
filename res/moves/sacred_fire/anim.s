@@ -14,15 +14,15 @@ L_0:
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_W221B
+    PlaySoundEffectR SEQ_SE_DP_W221B_sseq
     Delay 40
-    PlaySoundEffectR SEQ_SE_DP_W053
+    PlaySoundEffectR SEQ_SE_DP_W053_sseq
     Delay 10
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 10, 0
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0
-    StopSoundEffect SEQ_SE_DP_W053
+    StopSoundEffect SEQ_SE_DP_W053_sseq
     ResetVars
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0

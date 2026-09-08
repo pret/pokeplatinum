@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 VeilstoneStoreElevator_Receptionist:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetFloorsAbove VAR_ELEVATOR_FLOORS_ABOVE
@@ -148,7 +148,7 @@ VeilstoneStoreElevator_ElevatorAnimation:
     CloseMessage
     ApplyMovement LOCALID_RECEPTIONIST, VeilstoneStoreElevator_Movement_ReceptionistWalkOnSpotSouth
     WaitMovement
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     PlayElevatorAnimation VAR_0x8004, 4
     Return
 

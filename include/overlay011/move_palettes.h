@@ -6,6 +6,6 @@
 #include "palette.h"
 
 const u16 *GetMoveTypePalette(int moveType);
-void LoadMoveSelectPltt(PaletteData *paletteSys, enum PokemonType moveType, int unused, enum PaletteBufferID bufferID, enum Palette paletteDest);
+void LoadMoveSelectPltt(PaletteData *paletteSys, enum PokemonType moveType, int unused, enum PaletteBufferID bufferID, int paletteDest);
 
 #endif // POKEPLATINUM_MOVE_PALETTES_H

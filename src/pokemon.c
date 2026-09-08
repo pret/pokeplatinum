@@ -26,6 +26,7 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02078B40.h"
 
+#include "ball_seal_info.h"
 #include "charcode_util.h"
 #include "flags.h"
 #include "heap.h"
@@ -50,7 +51,6 @@
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
-#include "unk_0202C9F4.h"
 #include "unk_02092494.h"
 
 #include "res/pokemon/regional_pokedex_size.h"

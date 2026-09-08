@@ -1,6 +1,6 @@
 [wrap-git]
 url = https://github.com/ntrtwl/NitroSDK.git
-revision = e6fbeba60332e660639ad664eda2dc85c0e14649
+revision = eaae40f199c0a8827947afbc33227b6ba2f9d45c
 depth = 1
 directory = NitroSDK-4.2.30001
 

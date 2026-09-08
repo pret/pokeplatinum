@@ -9,7 +9,7 @@ L_1:
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 8
-    PlaySoundEffectL SEQ_SE_DP_W100
+    PlaySoundEffectL SEQ_SE_PL_W100_sseq_1
     Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
     WaitForAnimTasks
     WaitForAllEmitters
@@ -19,9 +19,9 @@ L_1:
 L_2:
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 10
-    PlaySoundEffectR SEQ_SE_DP_W029
+    PlaySoundEffectR SEQ_SE_DP_W029_sseq
     Delay 10
-    PlaySoundEffectR SEQ_SE_DP_143
+    PlaySoundEffectR SEQ_SE_DP_143_sseq
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     WaitForAnimTasks

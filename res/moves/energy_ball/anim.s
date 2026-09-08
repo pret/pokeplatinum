@@ -6,13 +6,13 @@ L_0:
     WaitForAnimTasks
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 2, 0, 0, 0
-    PlaySoundEffectL SEQ_SE_DP_211
+    PlaySoundEffectL SEQ_SE_DP_211_sseq
     Delay 30
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W145, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W145_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 17, 64
     Delay 16
-    PlaySoundEffectR SEQ_SE_DP_402
+    PlaySoundEffectR SEQ_SE_DP_402_sseq
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_LIGHT_GREEN, 14, 0

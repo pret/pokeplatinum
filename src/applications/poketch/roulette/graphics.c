@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_system.h"
@@ -17,6 +15,7 @@
 #include "sys_task_manager.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 
 #define WINDOW_WIDTH_TILES  20
 #define WINDOW_HEIGHT_TILES 19
@@ -385,7 +384,7 @@ static void Task_StopSpinner(SysTask *task, void *taskMan)
         break;
     case 1:
         if (PoketchRouletteGraphics_TaskIsNotActive(graphics, ROULETTE_GRAPHICS_RUN_SPINNER)) {
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_011);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_011_sseq);
             EndTask(taskMan);
         }
         break;

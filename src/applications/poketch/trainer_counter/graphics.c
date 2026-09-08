@@ -352,7 +352,7 @@ static void SetupSprites(TrainerCounterGraphics *graphics, const TrainerCounterD
                 PoketchAnimation_HideSprite(graphics->sprites[index], TRUE);
             }
         } else {
-            PoketchAnimation_SetCParam(graphics->sprites[i], PLTT_1 + PokeIconPaletteIndex(chainMons[i], 0, FALSE));
+            PoketchAnimation_SetCParam(graphics->sprites[i], 1 + PokeIconPaletteIndex(chainMons[i], 0, FALSE));
             UpdateChainCountDigits(&graphics->sprites[NUM_POKE_ICONS + i * DIGITS_PER_CHAIN], (i == 0) ? chainData->activeChain : chainData->bestChains[i - 1]);
         }
     }

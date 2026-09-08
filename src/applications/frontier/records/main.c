@@ -11,7 +11,9 @@
 
 #include "applications/frontier/records/windows.h"
 
+#include "battle_arcade_save.h"
 #include "battle_castle_save.h"
+#include "battle_factory_save.h"
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "battle_hall_win_records.h"
@@ -33,8 +35,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202FF4C.h"
-#include "unk_02030494.h"
 #include "wifi_battle_tower_save.h"
 
 #include "res/graphics/frontier/backgrounds/frontier_backgrounds.naix"
@@ -125,8 +125,8 @@ int BattleFrontierRecordsApp_Init(ApplicationManager *appMan, int *state)
     app->displayStr = String_Init(800, HEAP_ID_FRONTIER_RECORD_APP);
     app->fmtStr = String_Init(800, HEAP_ID_FRONTIER_RECORD_APP);
 
-    Font_LoadTextPalette(0, 13 * PALETTE_SIZE_BYTES, HEAP_ID_FRONTIER_RECORD_APP);
-    Font_LoadScreenIndicatorsPalette(0, 12 * PALETTE_SIZE_BYTES, HEAP_ID_FRONTIER_RECORD_APP);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_FRONTIER_RECORD_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_FRONTIER_RECORD_APP);
     FrontierRecordsApp_InitWindows(app->bgConfig, app->windows, GetWindowGroup(app->facility));
     SetVBlankCallback(VBlankCallback, app);
     *state = 0;
@@ -379,20 +379,20 @@ static u8 GetWindowGroup(u8 facility)
     u8 windowGroup = 0;
 
     switch (facility) {
-    case FRONTIER_RECORDS_APP_FACTORY:
-    case 3:
+    case FACILITY_FACTORY:
+    case FACILITY_FACTORY_OPEN:
         windowGroup = WINDOW_GROUP_FACTORY;
         break;
-    case FRONTIER_RECORDS_APP_HALL:
+    case FACILITY_HALL:
         windowGroup = WINDOW_GROUP_HALL;
         break;
-    case FRONTIER_RECORDS_APP_CASTLE:
+    case FACILITY_CASTLE:
         windowGroup = WINDOW_GROUP_CASTLE;
         break;
-    case FRONTIER_RECORDS_APP_ARCADE:
+    case FACILITY_ARCADE:
         windowGroup = WINDOW_GROUP_ARCADE;
         break;
-    case FRONTIER_RECORDS_APP_TOWER:
+    case FACILITY_TOWER:
         windowGroup = WINDOW_GROUP_TOWER;
         break;
     }
@@ -462,21 +462,21 @@ static void SetStringTemplateNumber(FrontierRecordsApp *app, u32 idx, s32 num)
 static void DisplayRecords(FrontierRecordsApp *app)
 {
     switch (app->facility) {
-    case FRONTIER_RECORDS_APP_FACTORY:
-    case 3:
+    case FACILITY_FACTORY:
+    case FACILITY_FACTORY_OPEN:
         DisplayBattleFactoryLevel50Record(app);
         DisplayBattleFactoryOpenLevelRecord(app);
         break;
-    case FRONTIER_RECORDS_APP_HALL:
+    case FACILITY_HALL:
         DisplayBattleHallRecord(app);
         break;
-    case FRONTIER_RECORDS_APP_CASTLE:
+    case FACILITY_CASTLE:
         DisplayBattleCastleRecord(app);
         break;
-    case FRONTIER_RECORDS_APP_ARCADE:
+    case FACILITY_ARCADE:
         DisplayBattleArcadeRecord(app);
         break;
-    case FRONTIER_RECORDS_APP_TOWER:
+    case FACILITY_TOWER:
         if (app->challengeType == FRONTIER_CHALLENGE_SINGLE || app->challengeType == FRONTIER_CHALLENGE_DOUBLE) {
             DisplayBattleTowerSoloRecord(app);
         } else {
@@ -557,7 +557,7 @@ static u32 GetBattleFactoryLatestStreakEntryID(FrontierRecordsApp *app, u8 openL
     if (app->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
         streakIsActive = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(app->saveData), v1);
     } else {
-        streakIsActive = sub_020300E0(sub_020300F4(app->saveData), 10, (openLevel * 4) + app->challengeType, NULL);
+        streakIsActive = BattleFactoryStreakFlags_GetFlag(BattleFactoryStreakFlags_Get(app->saveData), 10, (openLevel * 4) + app->challengeType, NULL);
     }
 
     if (streakIsActive == TRUE) {
@@ -727,7 +727,7 @@ static u32 GetBattleArcadeLatestStreakEntryID(FrontierRecordsApp *app)
     if (app->challengeType == FRONTIER_CHALLENGE_MULTI_WFC) {
         isActive = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(app->saveData), STAT_ARCADE_WFC_STREAK_ACTIVE);
     } else {
-        isActive = sub_02030600(sub_020305B8(app->saveData), 8, app->challengeType, 0, NULL);
+        isActive = BattleArcadeStreakFlags_GetFlag(BattleArcadeStreakFlags_Get(app->saveData), 8, app->challengeType, 0, NULL);
     }
 
     if (isActive == 1) {

@@ -75,7 +75,7 @@ static const WindowTemplate sYesNowWindowTemplate = {
     .tilemapTop = 13,
     .width = 7,
     .height = 4,
-    .palette = PLTT_11,
+    .palette = 11,
     .baseTile = 10,
 };
 
@@ -106,11 +106,11 @@ EvolutionData *Evolution_Begin(Party *party, Pokemon *mon, int targetSpecies, Op
 
     evolutionData->paletteData = PaletteData_New(heapID);
 
-    PaletteData_SetAutoTransparent(evolutionData->paletteData, 1);
-    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_MAIN_BG, 0x200, heapID);
-    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_SUB_BG, 0x200, heapID);
-    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_MAIN_OBJ, ((16 - 2) * 16) * sizeof(u16), heapID);
-    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_SUB_OBJ, 0x200, heapID);
+    PaletteData_SetAutoTransparent(evolutionData->paletteData, TRUE);
+    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 16, heapID);
+    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, heapID);
+    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * 14, heapID);
+    PaletteData_AllocBuffer(evolutionData->paletteData, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES * 16, heapID);
 
     evolutionData->bgConfig = BgConfig_New(heapID);
     evolutionData->window = Window_New(heapID, 1);
@@ -121,9 +121,9 @@ EvolutionData *Evolution_Begin(Party *party, Pokemon *mon, int targetSpecies, Op
     sub_0207C664();
     sub_0207C730();
     Evolution_InitGraphics(evolutionData, evolutionData->bgConfig);
-    Window_Add(evolutionData->bgConfig, evolutionData->window, BG_LAYER_MAIN_1, 2, 19, 27, 4, PLTT_11, (18 + 12) + 1);
+    Window_Add(evolutionData->bgConfig, evolutionData->window, BG_LAYER_MAIN_1, 2, 19, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(evolutionData->window, 0xFF);
-    Window_DrawMessageBoxWithScrollCursor(evolutionData->window, 0, 1, PLTT_10);
+    Window_DrawMessageBoxWithScrollCursor(evolutionData->window, 0, 1, 10);
 
     evolutionData->monSpriteMan = PokemonSpriteManager_New(heapID);
     evolutionData->monAnimMan = PokemonAnimManager_New(heapID, 1, FALSE);
@@ -340,7 +340,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             && PokemonAnimManager_HasAnimCompleted(evolutionData->monAnimMan, 0) == TRUE
             && PokemonSprite_IsAnimActive(evolutionData->monSprites[0]) == FALSE) {
             sub_02015738(evolutionData->unk_58, 1);
-            Sound_PlayBasicBGM(SEQ_SHINKA);
+            Sound_PlayBasicBGM(SEQ_SHINKA_sseq);
             evolutionData->delay = 20;
             evolutionData->state = EVOLUTION_STATE_START_FADE;
         }
@@ -358,7 +358,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_StartFade(evolutionData->monSprites[1], 0, 16, 4, 0x7FFF);
 
             GF_ASSERT(HeapExp_FndGetTotalFreeSize(evolutionData->heapID) > 0x8000);
-            Sound_PlayEffect(SEQ_SE_DP_W025);
+            Sound_PlayEffect(SEQ_SE_DP_W025_sseq);
 
             evolutionData->delay = 40;
             evolutionData->state++;
@@ -377,7 +377,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             sub_0207C8C4(evolutionData->unk_30, 8);
             sub_0207C8C4(evolutionData->unk_30, 9);
             sub_0207C8C4(evolutionData->unk_30, 11);
-            Sound_PlayEffect(SEQ_SE_DP_W060C);
+            Sound_PlayEffect(SEQ_SE_DP_W060C_sseq);
             evolutionData->shrinkAndGrowState = 0x10;
             evolutionData->attributeDelta = 8;
             evolutionData->state++;
@@ -395,7 +395,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_SetAttribute(evolutionData->monSprites[0], MON_SPRITE_SCALE_Y, 0);
             PokemonSprite_SetAttribute(evolutionData->monSprites[1], MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
             PokemonSprite_SetAttribute(evolutionData->monSprites[1], MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
-            Sound_PlayEffect(SEQ_SE_DP_W062);
+            Sound_PlayEffect(SEQ_SE_DP_W062_sseq);
             evolutionData->shrinkAndGrowState = 0;
             evolutionData->delay = 8;
             evolutionData->state++;
@@ -412,7 +412,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
                 sub_0207C8C4(evolutionData->unk_30, 12);
                 PaletteData_StartFade(evolutionData->paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xC00 ^ 0xFFFF, 4, 16, 0, 0x7FFF);
                 PokemonSpriteManager_StartFadeAll(evolutionData->monSpriteMan, 16, 0, 3, 0x7FFF);
-                Sound_PlayEffect(SEQ_SE_DP_W080);
+                Sound_PlayEffect(SEQ_SE_DP_W080_sseq);
                 evolutionData->state++;
             }
         }
@@ -551,7 +551,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
         if (ApplicationManager_Exec(evolutionData->summaryScreenAppMan)) {
             ApplicationManager_Free(evolutionData->summaryScreenAppMan);
             Evolution_InitGraphics(evolutionData, evolutionData->bgConfig);
-            Window_DrawMessageBoxWithScrollCursor(evolutionData->window, 0, 1, PLTT_10);
+            Window_DrawMessageBoxWithScrollCursor(evolutionData->window, 0, 1, 10);
             PokemonSprite_SetAttribute(evolutionData->monSprites[0], MON_SPRITE_HIDE, 0);
             PokemonSprite_SetAttribute(evolutionData->monSprites[1], MON_SPRITE_HIDE, 0);
             PokemonSprite_ScheduleReloadFromNARC(evolutionData->monSprites[0]);
@@ -672,7 +672,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             evolutionData->windowRight = HW_LCD_WIDTH - 1;
             evolutionData->windowBottom = 160;
             evolutionData->shrinkAndGrowState = 0;
-            Sound_StopBGM(SEQ_SHINKA, 0);
+            Sound_StopBGM(SEQ_SHINKA_sseq, 0);
             sub_0207C8F4(evolutionData->unk_30);
             evolutionData->state++;
         }
@@ -901,15 +901,15 @@ static void Evolution_InitGraphics(EvolutionData *evolutionData, BgConfig *bgCon
     ReplaceTransparentTiles(bgConfig, BG_LAYER_MAIN_1, 1, 10, frame, evolutionData->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, sinnoh_document_NCGR, bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, evolutionData->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, national_dex_document_NCGR, bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, evolutionData->heapID);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, sinnoh_document_NSCR, evolutionData->heapID, PLTTBUF_MAIN_BG, 0x20 * 2, 0);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), evolutionData->heapID, PLTTBUF_MAIN_BG, 0x20, 10 * 0x10);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, national_dex_blank_NCLR, evolutionData->heapID, PLTTBUF_MAIN_BG, 0x20, 0xb * 0x10);
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, sinnoh_document_NSCR, evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, PLTT_DEST(0));
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(10));
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, national_dex_blank_NCLR, evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(11));
     LoadStandardWindowTiles(evolutionData->bgConfig, BG_LAYER_MAIN_2, 1, 0, evolutionData->heapID);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), evolutionData->heapID, PLTTBUF_MAIN_BG, 0x20, 8 * 0x10);
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), evolutionData->heapID, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(8));
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, sinnoh_blank_NSCR, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, evolutionData->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, national_dex_blank_NSCR, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, evolutionData->heapID);
-    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__POKETCH, 12, evolutionData->heapID, PLTTBUF_SUB_BG, 0x20 * 1, 0);
+    PaletteData_LoadBufferFromFileStart(evolutionData->paletteData, NARC_INDEX_GRAPHIC__POKETCH, 12, evolutionData->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(0));
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -995,13 +995,13 @@ static BOOL Evolution_TextPrinterCallback(TextPrinterTemplate *template, u16 par
         result = Sound_IsBGMPausedByFanfare();
         break;
     case 3:
-        Sound_PlayFanfare(SEQ_FANFA5);
+        Sound_PlayFanfare(SEQ_FANFA5_sseq);
         break;
     case 4:
-        Sound_PlayEffect(SEQ_SE_DP_KON);
+        Sound_PlayEffect(SEQ_SE_DP_KON_sseq);
         break;
     case 5:
-        Sound_PlayFanfare(SEQ_FANFA1);
+        Sound_PlayFanfare(SEQ_FANFA1_sseq);
         break;
     default:
         break;

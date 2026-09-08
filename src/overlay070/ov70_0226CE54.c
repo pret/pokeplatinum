@@ -73,41 +73,41 @@ static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
         .unk_00 = SPECIES_TORCHIC,
         .unk_02 = SPECIES_CHARIZARD,
         .unk_04 = 0xFFFE,
-        .unk_06 = SEQ_SE_PL_FLOAT10,
-        .unk_08 = SEQ_SE_PL_FIRE,
-        .unk_0A = SEQ_SE_PL_FLOAT03,
+        .unk_06 = SEQ_SE_PL_FLOAT10_sseq,
+        .unk_08 = SEQ_SE_PL_FIRE_sseq,
+        .unk_0A = SEQ_SE_PL_FLOAT03_sseq,
     },
     {
         .unk_00 = SPECIES_PIPLUP,
         .unk_02 = SPECIES_GYARADOS,
-        .unk_04 = SEQ_SE_PL_FLOAT10,
-        .unk_06 = SEQ_SE_PL_FLOAT12,
-        .unk_08 = SEQ_SE_PL_WATER,
-        .unk_0A = SEQ_SE_PL_FLOAT10,
+        .unk_04 = SEQ_SE_PL_FLOAT10_sseq,
+        .unk_06 = SEQ_SE_PL_FLOAT12_sseq,
+        .unk_08 = SEQ_SE_PL_WATER_sseq,
+        .unk_0A = SEQ_SE_PL_FLOAT10_sseq,
     },
     {
         .unk_00 = SPECIES_PIKACHU,
         .unk_02 = SPECIES_MAGNEZONE,
         .unk_04 = 0xFFFE,
-        .unk_06 = SEQ_SE_PL_FLOAT10,
+        .unk_06 = SEQ_SE_PL_FLOAT10_sseq,
         .unk_08 = 0xFFFE,
-        .unk_0A = SEQ_SE_PL_ELECTRO,
+        .unk_0A = SEQ_SE_PL_ELECTRO_sseq,
     },
     {
         .unk_00 = SPECIES_BULBASAUR,
         .unk_02 = SPECIES_CARNIVINE,
-        .unk_04 = SEQ_SE_PL_WHIP,
-        .unk_06 = SEQ_SE_PL_FLOAT11,
-        .unk_08 = SEQ_SE_PL_FLOAT03,
-        .unk_0A = SEQ_SE_PL_FLOAT10,
+        .unk_04 = SEQ_SE_PL_WHIP_sseq,
+        .unk_06 = SEQ_SE_PL_FLOAT11_sseq,
+        .unk_08 = SEQ_SE_PL_FLOAT03_sseq,
+        .unk_0A = SEQ_SE_PL_FLOAT10_sseq,
     },
     {
         .unk_00 = SPECIES_MEW,
         .unk_02 = SPECIES_MEW,
         .unk_04 = 0xFFFE,
-        .unk_06 = SEQ_SE_PL_FLOAT10,
-        .unk_08 = SEQ_SE_PL_KIRAKIRA4,
-        .unk_0A = SEQ_SE_PL_FLOAT10,
+        .unk_06 = SEQ_SE_PL_FLOAT10_sseq,
+        .unk_08 = SEQ_SE_PL_KIRAKIRA4_sseq,
+        .unk_0A = SEQ_SE_PL_FLOAT10_sseq,
     },
 };
 
@@ -291,7 +291,7 @@ static void ov70_0226D0E8(UnkStruct_ov70_0226CF38 *param0, u32 param1, BOOL para
 
                 if (v2 == 1) {
                     ov66_0222EBF4(param0->unk_04, (param1 * 3) + v0);
-                    ov70_0226D24C(param2, param3, v5, SEQ_SE_PL_FLOAT13);
+                    ov70_0226D24C(param2, param3, v5, SEQ_SE_PL_FLOAT13_sseq);
                 }
             } break;
             case 2:

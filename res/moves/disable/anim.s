@@ -7,11 +7,11 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 5, 0, 0, 0
     SetExtraParams 0, -4128, 0, 0
-    PlaySoundEffectL SEQ_SE_DP_081
+    PlaySoundEffectL SEQ_SE_DP_081_sseq
     Delay 5
     Func_SetBgGrayscale TRUE
     Delay 5
-    PlaySoundEffectR SEQ_SE_DP_061
+    PlaySoundEffectR SEQ_SE_DP_061_sseq
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
@@ -36,11 +36,11 @@ L_2:
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 5, 0, 0, 0
     SetExtraParams 1, 4128, 6192, 0
-    PlaySoundEffectL SEQ_SE_DP_081
+    PlaySoundEffectL SEQ_SE_DP_081_sseq
     Delay 5
     Func_SetBgGrayscale TRUE
     Delay 5
-    PlaySoundEffectR SEQ_SE_DP_061
+    PlaySoundEffectR SEQ_SE_DP_061_sseq
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
@@ -65,11 +65,11 @@ L_3:
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 5, 0, 0, 0
     SetExtraParams 1, -4128, 6192, 0
-    PlaySoundEffectL SEQ_SE_DP_081
+    PlaySoundEffectL SEQ_SE_DP_081_sseq
     Delay 5
     Func_SetBgGrayscale TRUE
     Delay 5
-    PlaySoundEffectR SEQ_SE_DP_061
+    PlaySoundEffectR SEQ_SE_DP_061_sseq
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
@@ -94,11 +94,11 @@ L_1:
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 5, 0, 0, 0
     SetExtraParams 1, -4128, 6192, 0
-    PlaySoundEffectL SEQ_SE_DP_081
+    PlaySoundEffectL SEQ_SE_DP_081_sseq
     Delay 5
     Func_SetBgGrayscale TRUE
     Delay 5
-    PlaySoundEffectR SEQ_SE_DP_061
+    PlaySoundEffectR SEQ_SE_DP_061_sseq
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0

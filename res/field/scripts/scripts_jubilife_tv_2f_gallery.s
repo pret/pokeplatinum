@@ -20,7 +20,7 @@
     ScriptEntryEnd
 
 JubilifeTV2FGallery_Hiker:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_0x8007, 0
@@ -285,7 +285,7 @@ JubilifeTV2FGallery_Movement_HikerFaceSouth:
     EndMovement
 
 JubilifeTV2FGallery_Frame0:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 0, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait
@@ -299,7 +299,7 @@ JubilifeTV2FGallery_Frame0:
     End
 
 JubilifeTV2FGallery_Frame1:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait
@@ -313,7 +313,7 @@ JubilifeTV2FGallery_Frame1:
     End
 
 JubilifeTV2FGallery_Frame2:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 2, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait
@@ -327,7 +327,7 @@ JubilifeTV2FGallery_Frame2:
     End
 
 JubilifeTV2FGallery_Frame3:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 3, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait
@@ -341,7 +341,7 @@ JubilifeTV2FGallery_Frame3:
     End
 
 JubilifeTV2FGallery_Frame4:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 4, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait
@@ -355,7 +355,7 @@ JubilifeTV2FGallery_Frame4:
     End
 
 JubilifeTV2FGallery_Frame5:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 5, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait
@@ -369,7 +369,7 @@ JubilifeTV2FGallery_Frame5:
     End
 
 JubilifeTV2FGallery_Frame6:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 6, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait
@@ -383,7 +383,7 @@ JubilifeTV2FGallery_Frame6:
     End
 
 JubilifeTV2FGallery_Frame7:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 7, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait
@@ -397,7 +397,7 @@ JubilifeTV2FGallery_Frame7:
     End
 
 JubilifeTV2FGallery_Frame8:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 8, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait
@@ -411,7 +411,7 @@ JubilifeTV2FGallery_Frame8:
     End
 
 JubilifeTV2FGallery_Frame9:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 9, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait
@@ -425,7 +425,7 @@ JubilifeTV2FGallery_Frame9:
     End
 
 JubilifeTV2FGallery_Frame10:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     DressUpPhotoHasData 10, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_FrameForHoldingPortrait

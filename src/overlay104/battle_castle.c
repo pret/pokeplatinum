@@ -12,9 +12,9 @@
 #include "global/utility.h"
 #include "overlay104/battle_castle_helpers.h"
 #include "overlay104/defs.h"
+#include "overlay104/frontier_communication.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/frontier_script_manager.h"
-#include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0222ECE8.h"
 
 #include "battle_castle_save.h"
 #include "battle_frontier_save.h"
@@ -114,7 +114,7 @@ BattleCastle *BattleCastle_Init(SaveData *saveData, u16 resumingFromSave, u8 cha
     }
 
     Party *fieldParty = SaveData_GetParty(castle->saveData);
-    u8 partySize = BattleCastle_GetPlayerPartySize(castle->challengeType, 0);
+    u8 partySize = BattleCastle_GetPlayerPartySize(castle->challengeType, FALSE);
 
     for (u16 i = 0; i < partySize; i++) {
         Party_AddPokemon(castle->playersParty, Party_GetPokemonBySlotIndex(fieldParty, castle->partySlots[i]));
@@ -162,12 +162,12 @@ static void SelectTrainersAndFirstBattlesMons(BattleCastle *castle)
 
     BattleCastle_PickOpponentTrainers(castle->challengeType, BattleCastle_GetCurrentRound(castle), castle->trainerIDs, CASTLE_BATTLES_PER_ROUND * 2);
 
-    ov104_0222E4BC(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE), castle->trainerIDs[castle->currentBattle], castle->trainerIDs[castle->currentBattle + CASTLE_BATTLES_PER_ROUND], castle->monSetIDs, castle->opponentMons, castle->opponentMonIVs, castle->opponentMonPersonalities, BattleCastle_IsMultiPlayerChallenge(castle->challengeType));
+    BattleFrontier_GetPokemonForTrainers(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE), castle->trainerIDs[castle->currentBattle], castle->trainerIDs[castle->currentBattle + CASTLE_BATTLES_PER_ROUND], castle->monSetIDs, castle->opponentMons, castle->opponentMonIVs, castle->opponentMonPersonalities, BattleCastle_IsMultiPlayerChallenge(castle->challengeType));
 }
 
 static void LoadTrainersAndMonsFromSave(BattleCastle *castle)
 {
-    FrontierPokemonDataDTO mons[MAX_PARTY_SIZE];
+    FrontierPokemon mons[MAX_PARTY_SIZE];
     u8 ivs[MAX_PARTY_SIZE];
     u16 setIDs[MAX_PARTY_SIZE];
     u32 personalities[MAX_PARTY_SIZE];
@@ -183,11 +183,11 @@ static void LoadTrainersAndMonsFromSave(BattleCastle *castle)
         castle->monSetIDs[i] = setIDs[i];
     }
 
-    ov104_0222E330(mons, setIDs, ivs, NULL, personalities, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+    BattleFrontier_LoadFrontierPokemon(mons, setIDs, ivs, NULL, personalities, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
     for (int i = 0; i < CASTLE_PARTY_SIZE_MULTI * 2; i++) {
-        FrontierPokemonDataDTO_InitPokemon(&mons[i], mon, BattleCastle_GetOpponentLevel(castle));
+        FrontierPokemon_InitPokemon(&mons[i], mon, BattleCastle_GetOpponentLevel(castle));
         BattleCastle_AddMonToParty(castle, castle->opponentsParty, mon);
     }
 
@@ -375,12 +375,12 @@ u16 BattleCastle_GetCurrentBattle(BattleCastle *castle)
 
 u16 BattleCastle_GetNextOpponentObjectID(BattleCastle *castle, u8 trainerSlot)
 {
-    FrontierTrainerDataDTO trainer;
+    FrontierTrainer trainer;
     u8 offset = castle->currentBattle + (trainerSlot * CASTLE_BATTLES_PER_ROUND);
 
-    Heap_Free(BattleFrontier_GetTrainerData(&trainer, castle->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleFrontier_GetTrainer(&trainer, castle->trainerIDs[offset], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return BattleTower_GetObjectIDFromTrainerClass(trainer.trainerType);
+    return BattleFrontier_GetObjectIDFromTrainerClass(trainer.trainerType);
 }
 
 void BattleCastle_SaveOnLoss(BattleCastle *castle)
@@ -411,7 +411,7 @@ void BattleCastle_SetupFirstOpponentsParty(BattleCastle *castle)
 
 void BattleCastle_SetupNextOpponentsParty(BattleCastle *castle)
 {
-    ov104_0222E4BC(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE), castle->trainerIDs[castle->currentBattle], castle->trainerIDs[castle->currentBattle + CASTLE_BATTLES_PER_ROUND], castle->monSetIDs, castle->opponentMons, castle->opponentMonIVs, castle->opponentMonPersonalities, BattleCastle_IsMultiPlayerChallenge(castle->challengeType));
+    BattleFrontier_GetPokemonForTrainers(BattleCastle_GetOpponentPartySize(castle->challengeType, TRUE), castle->trainerIDs[castle->currentBattle], castle->trainerIDs[castle->currentBattle + CASTLE_BATTLES_PER_ROUND], castle->monSetIDs, castle->opponentMons, castle->opponentMonIVs, castle->opponentMonPersonalities, BattleCastle_IsMultiPlayerChallenge(castle->challengeType));
 
     BattleCastle_SetupOpponentsParty(castle);
 }
@@ -565,25 +565,25 @@ BOOL BattleCastle_SendCommMessage(BattleCastle *castle, u16 command, u16 arg)
 
     switch (command) {
     case 0:
-        success = ov104_0222F3B8(castle);
+        success = CastleCommunication_SendPlayersCP(castle);
         break;
     case 1:
-        success = ov104_0222F44C(castle);
+        success = CastleCommunication_SendTrainers(castle);
         break;
     case 2:
         success = ov104_0222F4B8(castle);
         break;
     case 3:
-        success = ov104_0222F5D4(castle);
+        success = CastleCommunication_SendOpponentMons(castle);
         break;
     case 4:
         success = ov104_0222F6C8(castle, arg);
         break;
     case 5:
-        success = ov104_0222F710(castle, arg);
+        success = FrontierCommunication_Unreachable4(castle, arg);
         break;
     case 6:
-        success = ov104_0222F758(castle);
+        success = CastleCommunication_SendPlayersParty(castle);
         break;
     }
 

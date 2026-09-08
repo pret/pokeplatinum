@@ -17,7 +17,7 @@ Cafe_Rancher:
     End
 
 Cafe_Waitress:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ShowMoney 20, 2
@@ -59,8 +59,8 @@ Cafe_GiveMoomooMilk:
     AddToGameRecord RECORD_MONEY_SPENT, VAR_0x8006
     RemoveMoney2 VAR_0x8006
     UpdateMoneyDisplay
-    PlaySE SEQ_SE_DP_REGI
-    WaitSE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
+    WaitSE SEQ_SE_DP_REGI_sseq
     CallIfEq VAR_0x8006, 500, Cafe_HeresYourMoomooMilk
     CallIfEq VAR_0x8006, 6000, Cafe_GetMoomooMilkByDozen
     Common_GiveItemQuantityNoLineFeed
@@ -102,7 +102,7 @@ Cafe_AllRightThen:
     End
 
 Cafe_OldMan:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_USED_SECRETPOTION, Cafe_RelievedPsyduckOfHeadaches

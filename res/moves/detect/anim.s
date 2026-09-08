@@ -8,11 +8,11 @@ L_0:
     WaitForAnimTasks
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
     Delay 2
-    PlaySoundEffectL SEQ_SE_DP_081
+    PlaySoundEffectL SEQ_SE_DP_081_sseq
     Delay 8
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
-    PlaySoundEffectL SEQ_SE_DP_W197
+    PlaySoundEffectL SEQ_SE_DP_W197_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK
@@ -24,11 +24,11 @@ L_2:
     WaitForAnimTasks
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
     Delay 2
-    PlaySoundEffectL SEQ_SE_DP_081
+    PlaySoundEffectL SEQ_SE_DP_081_sseq
     Delay 8
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
-    PlaySoundEffectL SEQ_SE_DP_W197
+    PlaySoundEffectL SEQ_SE_DP_W197_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK
@@ -40,7 +40,7 @@ L_3:
     WaitForAnimTasks
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
     Delay 2
-    PlaySoundEffectL SEQ_SE_DP_081
+    PlaySoundEffectL SEQ_SE_DP_081_sseq
     Delay 8
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 5, 0, 0, 0
@@ -48,7 +48,7 @@ L_3:
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 5, 0, 0, 0
     SetExtraParams 1, -6880, 0, 0
-    PlaySoundEffectL SEQ_SE_DP_W197
+    PlaySoundEffectL SEQ_SE_DP_W197_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK
@@ -60,7 +60,7 @@ L_1:
     WaitForAnimTasks
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
     Delay 2
-    PlaySoundEffectL SEQ_SE_DP_081
+    PlaySoundEffectL SEQ_SE_DP_081_sseq
     Delay 8
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 5, 0, 0, 0
@@ -68,7 +68,7 @@ L_1:
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 5, 0, 0, 0
     SetExtraParams 1, -8256, 0, 0
-    PlaySoundEffectL SEQ_SE_DP_W197
+    PlaySoundEffectL SEQ_SE_DP_W197_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK

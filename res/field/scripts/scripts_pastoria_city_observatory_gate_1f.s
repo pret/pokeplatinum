@@ -39,7 +39,7 @@ PastoriaCityObservatoryGate1F_CheckRoomForPokemon:
 PastoriaCityObservatoryGate1F_TryStartSafariGame:
     Message PastoriaCityObservatoryGate1F_Text_ThatWillBe500
     GoToIfNotEnoughMoney 500, PastoriaCityObservatoryGate1F_NotEnoughMoney
-    PlaySE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
     RemoveMoney 500
     UpdateMoneyDisplay
     Message PastoriaCityObservatoryGate1F_Text_HereAreSafariBalls
@@ -67,7 +67,7 @@ PastoriaCityObservatoryGate1F_StartSafariGame:
     SetVar VAR_SAFARI_GAME_STATE, 1
     StartSafariGame
     SetSpecialLocation MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 2, 5, 2, DIR_SOUTH
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_GREAT_MARSH_6, 68, 116, DIR_NORTH
@@ -207,7 +207,7 @@ PastoriaCityObservatoryGate1F_OnFrame_GameEnded:
     End
 
 PastoriaCityObservatoryGate1F_CashierF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message PastoriaCityObservatoryGate1F_Text_IsThisFirstSafariGame
@@ -231,7 +231,7 @@ PastoriaCityObservatoryGate1F_EnjoySafariGame:
     End
 
 PastoriaCityObservatoryGate1F_Cowgirl:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_PASTORIA_CITY_OBSERVATORY_GATE_1F_MATCHUPCHECKER, PastoriaCityObservatoryGate1F_ExplainMatchupChecker

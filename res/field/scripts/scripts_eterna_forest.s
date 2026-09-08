@@ -46,7 +46,7 @@ EternaForest_CherylStartFollowing:
     CallIfUnset FLAG_TALKED_TO_ETERNA_FOREST_CHERYL, EternaForest_MayIGoWithYou
     CallIfSet FLAG_TALKED_TO_ETERNA_FOREST_CHERYL, EternaForest_LetsGetThroughForestTogether
     BufferPlayerName 0
-    PlayFanfare SEQ_GONIN
+    PlayFanfare SEQ_GONIN_sseq
     Message EternaForest_Text_PlayerDecidedToGoWithCheryl
     WaitFanfare
     SetFlag FLAG_TALKED_TO_ETERNA_FOREST_CHERYL
@@ -205,10 +205,10 @@ EternaForest_CherylLeave:
     CloseMessage
     ApplyMovement LOCALID_CHERYL, EternaForest_Movement_CherylLeave
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ClearHasPartner
     RemoveObject LOCALID_CHERYL
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetFlag FLAG_TRAVELED_WITH_CHERYL
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 2
     ReleaseAll
@@ -338,7 +338,7 @@ EternaForest_BugCatcher:
     End
 
 EternaForest_Gardenia:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message EternaForest_Text_WereYouIngriguedByRumors

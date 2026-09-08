@@ -1084,7 +1084,7 @@ static BOOL ov77_021D30D0(UnkStruct_ov77_021D2F38 *param0, const int param1)
         param0->unk_06 = 0;
         param0->unk_08 = 0;
         param0->unk_10 = SysTask_Start(ov77_021D32A4, param0, 0);
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_TITLE_SCREEN, SEQ_TITLE00, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_TITLE_SCREEN, SEQ_TITLE00_sseq, 1);
         (*v0)++;
         break;
     case 1:
@@ -1703,7 +1703,7 @@ static void ov77_021D3F24(UnkStruct_ov77_021D37C0 *param0, int param1, int param
 
 static void ov77_021D4044(UnkStruct_ov77_021D37C0 *param0, int param1)
 {
-    param0->unk_20.camera = Camera_Alloc(76);
+    param0->unk_20.camera = Camera_Alloc(HEAP_ID_76);
 
     {
         VecFx32 v0 = { 0, 0, FX32_ONE * 16 * 6 };

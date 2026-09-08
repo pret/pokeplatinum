@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_system.h"
@@ -17,6 +15,7 @@
 #include "sys_task_manager.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 
 #define ANIM_COMMAND_END           -1
 #define ANIM_COMMAND_MOVE_FORWARD  -2
@@ -251,7 +250,7 @@ static void Task_PressButton(SysTask *task, void *taskMan)
     MatchupCheckerGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     const MatchupCheckerData *matchupData = PoketchTask_GetConstTaskData(taskMan);
 
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010_sseq);
     PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_BUTTON], 10);
     EndTask(taskMan);
 }
@@ -349,34 +348,34 @@ static const int sCommandsIncompatible[] = {
     ANIM_COMMAND_MOVE_FORWARD, 16, 16,
     ANIM_COMMAND_WAIT, 16,
     ANIM_COMMAND_FLIP_LUVDISCS,
-    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_013,
+    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_013_sseq,
     ANIM_COMMAND_MOVE_BACKWARD, 16, 16,
     ANIM_COMMAND_END
 };
 
 static const int sCommandsLowCompatibility[] = {
     ANIM_COMMAND_MOVE_FORWARD, 16, 16,
-    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012,
+    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012_sseq,
     ANIM_COMMAND_END
 };
 
 static const int sCommandsMedCompatibility[] = {
     ANIM_COMMAND_MOVE_FORWARD, 16, 16,
-    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012,
+    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012_sseq,
     ANIM_COMMAND_MOVE_FORWARD, 16, 16,
-    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012,
+    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012_sseq,
     ANIM_COMMAND_END
 };
 
 static const int sCommandsMaxCompatibility[] = {
     ANIM_COMMAND_MOVE_FORWARD, 16, 16,
-    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012,
+    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012_sseq,
     ANIM_COMMAND_MOVE_FORWARD, 16, 16,
-    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012,
+    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012_sseq,
     ANIM_COMMAND_MOVE_FORWARD, 16, 16,
-    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012,
+    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_012_sseq,
     ANIM_COMMAND_WAIT, 16,
-    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_014,
+    ANIM_COMMAND_PLAY_SOUND, SEQ_SE_DP_POKETCH_014_sseq,
     ANIM_COMMAND_UPDATE_SPRITE, SPRITE_LUVDISC_LEFT, 7,
     ANIM_COMMAND_UPDATE_SPRITE, SPRITE_LUVDISC_RIGHT, 8,
     ANIM_COMMAND_UPDATE_SPRITE, SPRITE_HEART_METER, 4,

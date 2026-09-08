@@ -36,8 +36,8 @@ NewmoonIslandForest_RemoveDarkrai:
 
 NewmoonIslandForest_Darkrai:
     LockAll
-    PlaySE SEQ_SE_CONFIRM
-    WaitSE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
+    WaitSE SE_CONFIRM_sseq_3
     Message NewmoonIslandForest_Text_Ellipses
     CloseMessage
     SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT

@@ -98,7 +98,7 @@ BOOL WifiBattleTower_AppInit(ApplicationManager *appMan, int *state)
         appState->dwcHeapBuffer = Heap_Alloc(HEAP_ID_68, 0x20000 + 32);
         appState->dwcHeap = NNS_FndCreateExpHeap((void *)(((u32)appState->dwcHeapBuffer + 31) / 32 * 32), 0x20000);
 
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY_sseq, 1);
 
         *state = BT_LOOP_STATE_INIT;
         break;

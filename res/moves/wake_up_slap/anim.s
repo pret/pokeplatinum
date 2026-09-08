@@ -6,11 +6,11 @@ L_0:
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlayLoopedSoundEffectR SEQ_SE_DP_030C, 6, 4
-    PlayDelayedSoundEffectR SEQ_SE_DP_W092, 4
-    PlayDelayedSoundEffectR SEQ_SE_DP_W092, 8
-    PlayDelayedSoundEffectR SEQ_SE_DP_W092, 16
-    PlayDelayedSoundEffectR SEQ_SE_DP_W092, 25
+    PlayLoopedSoundEffectR SEQ_SE_DP_030C_sseq, 6, 4
+    PlayDelayedSoundEffectR SEQ_SE_DP_W092_sseq, 4
+    PlayDelayedSoundEffectR SEQ_SE_DP_W092_sseq, 8
+    PlayDelayedSoundEffectR SEQ_SE_DP_W092_sseq, 16
+    PlayDelayedSoundEffectR SEQ_SE_DP_W092_sseq, 25
     Func_Shake 2, 0, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

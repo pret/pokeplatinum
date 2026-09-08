@@ -6,9 +6,9 @@ L_0:
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
-    PlaySoundEffectL SEQ_SE_DP_W029
+    PlaySoundEffectL SEQ_SE_DP_W029_sseq
     Delay 17
-    PlayLoopedSoundEffectL SEQ_SE_DP_W145C, 3, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_W145C_sseq, 3, 5
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

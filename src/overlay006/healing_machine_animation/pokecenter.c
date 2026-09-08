@@ -107,7 +107,7 @@ static BOOL FieldTask_PlayHealingAnimation_Pokecenter(FieldTask *param0)
         pokeballPosition.y = animation->position.y + PokecenterHealingAnimation_PokeballOffsets[animation->currentPokeballIndex].y;
         pokeballPosition.z = animation->position.z + PokecenterHealingAnimation_PokeballOffsets[animation->currentPokeballIndex].z;
 
-        Sound_PlayEffect(SEQ_SE_DP_BOWA);
+        Sound_PlayEffect(SEQ_SE_DP_BOWA_sseq);
 
         animation->pokeballLoadedPropIDs[animation->currentPokeballIndex] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, pokecenter_healing_machine_mini_pokeball_nsbmd, &pokeballPosition, &pokeballRotation, fieldSystem->mapPropAnimMan);
 
@@ -137,7 +137,7 @@ static BOOL FieldTask_PlayHealingAnimation_Pokecenter(FieldTask *param0)
     case HEALING_MACHINE_ANIMATION_STATE_PLAY_FINAL_ANIMATION:
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, HEALING_MACHINE_ANIMATION_POKEBALL_TAG, 0);
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, HEALING_MACHINE_ANIMATION_SCREEN_TAG, 0);
-        Sound_PlayFanfare(SEQ_ASA);
+        Sound_PlayFanfare(SEQ_ASA_sseq);
         (animation->state)++;
         break;
     case HEALING_MACHINE_ANIMATION_STATE_WAIT_FOR_FINAL_ANIMATION:

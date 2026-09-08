@@ -13,23 +13,23 @@ L_0:
     CreateEmitter 0, 5, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
     Delay 2
-    PlaySoundEffectR SEQ_SE_DP_W419
+    PlaySoundEffectR SEQ_SE_DP_W419_sseq
     Delay 12
-    PlaySoundEffectR SEQ_SE_DP_W070
+    PlaySoundEffectR SEQ_SE_DP_W070_sseq
     Delay 2
-    PlaySoundEffectR SEQ_SE_DP_W070
+    PlaySoundEffectR SEQ_SE_DP_W070_sseq
     Delay 2
-    PlaySoundEffectR SEQ_SE_DP_W070
+    PlaySoundEffectR SEQ_SE_DP_W070_sseq
     Delay 2
-    PlaySoundEffectR SEQ_SE_DP_W070
+    PlaySoundEffectR SEQ_SE_DP_W070_sseq
     Delay 2
-    PlaySoundEffectR SEQ_SE_DP_W070
+    PlaySoundEffectR SEQ_SE_DP_W070_sseq
     Delay 2
-    PlaySoundEffectR SEQ_SE_DP_W070
+    PlaySoundEffectR SEQ_SE_DP_W070_sseq
     Delay 2
-    PlaySoundEffectR SEQ_SE_DP_W070
+    PlaySoundEffectR SEQ_SE_DP_W070_sseq
     Delay 2
-    PlaySoundEffectR SEQ_SE_DP_W070
+    PlaySoundEffectR SEQ_SE_DP_W070_sseq
     Delay 2
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_WHITE, 10, 10
     CreateEmitter 0, 0, EMITTER_CB_GENERIC

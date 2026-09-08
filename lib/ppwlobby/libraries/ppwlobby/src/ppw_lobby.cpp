@@ -4,7 +4,7 @@
 // clang-format off
 #include "ilobby/dwci_lobbybase.h"
 #include "ilobby/ov66_022364B0.h"
-#include "overlay066/struct_ov66_0222E71C.h"
+#include "overlay066/ov66_0222DDF0.h"
 #include "ppwlobby/ov66_0225B6C4.h"
 #include "ppwlobby/ppw_parser.h"
 #include "ppwlobby/dwci_encsession.h"
@@ -113,11 +113,11 @@ public:
     EncCommonRequest()
     {
         const UnkClass_ov66_02241BD8::UnkClass_ov66_02241BD8_SubStruct2 &v0 = Unk_ov66_0225B6C4->UnkClass_ov66_0225B6C4_InlineFunc26().UnkClass_ov66_02241C44_InlineFunc1().UnkClass_ov66_02241BD8_InlineFunc2();
-        const UnkStruct_ov66_0222E71C *v1 = (const UnkStruct_ov66_0222E71C *)ov66_022364B0(v0.unk_00);
+        const WiFiPlazaProfile *v1 = (const WiFiPlazaProfile *)ov66_022364B0(v0.unk_00);
 
         pid = Unk_ov66_0225B6C4->UnkClass_ov66_0225B6C4_InlineFunc3();
         requestVersion = PPW_LOBBY_ENC_REQUEST_VERSION;
-        romVersion = v1->unk_42;
+        romVersion = v1->gameVersion;
         language = v1->language;
         OS_GetMacAddress(macAddr);
     }
@@ -670,7 +670,7 @@ PPW_LOBBY_RESULT PPW_LobbySubmitQuestionnaire(s32 answerNo)
     }
 
     const UnkClass_ov66_02241BD8::UnkClass_ov66_02241BD8_SubStruct2 &v1 = Unk_ov66_0225B6C4->UnkClass_ov66_0225B6C4_InlineFunc26().UnkClass_ov66_02241C44_InlineFunc1().UnkClass_ov66_02241BD8_InlineFunc2();
-    const UnkStruct_ov66_0222E71C *v2 = (const UnkStruct_ov66_0222E71C *)ov66_022364B0(v1.unk_00);
+    const WiFiPlazaProfile *v2 = (const WiFiPlazaProfile *)ov66_022364B0(v1.unk_00);
 
     struct UnkStruct_ov66_02236D74 {
         EncCommonRequest unk_00;
@@ -686,10 +686,10 @@ PPW_LOBBY_RESULT PPW_LobbySubmitQuestionnaire(s32 answerNo)
         v0.currentQuestionnaireRecord.questionSerialNo,
         v0.currentQuestionnaireRecord.questionNo,
         answerNo,
-        v2->unk_04,
-        v2->unk_38,
-        v2->unk_3C,
-        v2->unk_3E
+        v2->trainerID,
+        v2->trainerGender,
+        v2->country,
+        v2->region
     };
 
     UnkClass_ov66_0225B6D4::UnkClass_ov66_0225B6D4_InlineFunc3(Unk_ov66_0225B6C4->UnkClass_ov66_0225B6C4_InlineFunc4(), Unk_ov66_02258E64, Unk_ov66_02258E5C, Unk_ov66_0225B6C4->UnkClass_ov66_0225B6C4_InlineFunc3(), (u8 *)&v3, sizeof(v3), 3, ov66_022393C0, NULL);
@@ -800,11 +800,11 @@ PPW_LOBBY_RESULT ov66_02237348(s32 param0, PPW_LOBBY_CHANNEL_KIND param1, const 
 static void ov66_022374B4()
 {
     const UnkClass_ov66_02241BD8::UnkClass_ov66_02241BD8_SubStruct2 &v0 = Unk_ov66_0225B6C4->UnkClass_ov66_0225B6C4_InlineFunc26().UnkClass_ov66_02241C44_InlineFunc1().UnkClass_ov66_02241BD8_InlineFunc2();
-    const UnkStruct_ov66_0222E71C *v1 = (const UnkStruct_ov66_0222E71C *)ov66_022364B0(v0.unk_00);
+    const WiFiPlazaProfile *v1 = (const WiFiPlazaProfile *)ov66_022364B0(v0.unk_00);
 
     struct UnkStruct_ov66_022374B4 {
         EncCommonRequest unk_00;
-        UnkStruct_ov66_0222E71C unk_14;
+        WiFiPlazaProfile unk_14;
     } v2;
     v2.unk_14 = *v1;
 
@@ -1134,7 +1134,7 @@ static void ov66_0223899C(BOOL param0, const u8 *param1, u32 param2, void *param
     u32 v1 = 0;
     PPW_LOBBY_STATS_RESULT v2 = ov66_02238938(param0, param1, param2, &v0, &v1);
 
-    if (v2 == PPW_LOBBY_STATS_RESULT_SUCCESS && v1 != sizeof(UnkStruct_ov66_0222E71C)) {
+    if (v2 == PPW_LOBBY_STATS_RESULT_SUCCESS && v1 != sizeof(WiFiPlazaProfile)) {
         v2 = PPW_LOBBY_STATS_RESULT_SERVER_ERROR;
     }
 
@@ -1184,14 +1184,14 @@ static void ov66_02238C7C(BOOL param0, const u8 *param1, u32 param2, void *param
     }
 
     const UnkClass_ov66_02241BD8::UnkClass_ov66_02241BD8_SubStruct2 &v4 = Unk_ov66_0225B6C4->UnkClass_ov66_0225B6C4_InlineFunc26().UnkClass_ov66_02241C44_InlineFunc1().UnkClass_ov66_02241BD8_InlineFunc2();
-    const UnkStruct_ov66_0222E71C *v5 = (const UnkStruct_ov66_0222E71C *)ov66_022364B0(v4.unk_00);
+    const WiFiPlazaProfile *v5 = (const WiFiPlazaProfile *)ov66_022364B0(v4.unk_00);
 
     struct UnkStruct_ov66_02238C7C {
         EncCommonRequest unk_00;
         u32 unk_14;
     } v6 = {
         EncCommonRequest(),
-        v5->unk_04
+        v5->trainerID
     };
     ;
 

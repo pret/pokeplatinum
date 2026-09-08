@@ -426,7 +426,7 @@ const u16 *GetMoveTypePalette(int moveType)
     return paletteSourceAdr;
 }
 
-void LoadMoveSelectPltt(PaletteData *paletteSys, enum PokemonType moveType, int unused, enum PaletteBufferID bufferID, enum Palette paletteDest)
+void LoadMoveSelectPltt(PaletteData *paletteSys, enum PokemonType moveType, int unused, enum PaletteBufferID bufferID, int paletteDest)
 {
     const u16 *paletteSource = GetMoveTypePalette(moveType);
     PaletteData_LoadBuffer(paletteSys, paletteSource, bufferID, PLTT_DEST(paletteDest), PALETTE_SIZE_BYTES);

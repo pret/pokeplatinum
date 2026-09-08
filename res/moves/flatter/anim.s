@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, flatter_spa
-    PlaySoundEffectC SEQ_SE_DP_W227B
+    PlaySoundEffectC SEQ_SE_DP_W227B_sseq
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
@@ -11,7 +11,7 @@ L_0:
 L_1:
     Delay 15
     BeginLoop 2
-    PlaySoundEffectR SEQ_SE_DP_001
+    PlaySoundEffectR SEQ_SE_DP_001_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 8, 4
     Delay 4
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, -8, 4
@@ -25,7 +25,7 @@ L_1:
 L_2:
     Delay 15
     BeginLoop 2
-    PlaySoundEffectR SEQ_SE_DP_001
+    PlaySoundEffectR SEQ_SE_DP_001_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, -8, 4
     Delay 4
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 8, 4

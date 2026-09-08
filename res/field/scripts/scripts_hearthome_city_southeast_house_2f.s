@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 HearthomeCitySoutheastHouse2F_AceTrainerF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_SOUTHEAST_HOUSE_2F_SHELL_BELL, HearthomeCitySoutheastHouse2F_ExplainShellBell

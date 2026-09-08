@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_POKEMON_ANIM_H
 #define POKEPLATINUM_POKEMON_ANIM_H
 
-#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "sys_task_manager.h"
 

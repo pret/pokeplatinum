@@ -180,7 +180,7 @@ void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEnt
 
     if (activePalette) {
         static const u8 paletteEntries[] = {
-            PLTT_1, PLTT_8, PLTT_15, PLTT_4
+            1, 8, 15, 4
         };
         u32 activePaletteEntrie, redData, blueData, greenData, luminance;
 

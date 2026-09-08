@@ -398,12 +398,12 @@ static u8 BattlePartyTask_PartyPokemonScreen(BattleParty *battleParty)
     if (CheckPartyPokemonScreenButtonPressed(battleParty) == TRUE) {
         if (battleParty->context->selectedPartyIndex == NO_SELECTION_PARTY_SLOT) {
             if (battleParty->context->battlePartyMode != BATTLE_PARTY_MODE_SELECT_POKEMON_NO_CANCEL) {
-                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
                 BattlePartyButtons_PressButton(battleParty, NO_SELECTION_PARTY_SLOT);
                 return TASK_STATE_EXIT;
             }
         } else {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
             BattlePartyButtons_PressButton(battleParty, battleParty->context->selectedPartyIndex);
 
             if (battleParty->context->battlePartyMode == BATTLE_PARTY_MODE_USE_ITEM) {
@@ -472,7 +472,7 @@ static u8 BattlePartyTask_SelectPokemonScreen(BattleParty *battleParty)
 
     switch (selectPokemonScreenButtonPressed) {
     case BATTLE_POKEMON_SELECT_POKEMON_SCREEN_BUTTON_SHIFT:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_SELECT_POKEMON_SCREEN_BUTTON_OFFSET + BATTLE_POKEMON_SELECT_POKEMON_SCREEN_BUTTON_SHIFT);
 
         if (CheckCanSwitchPokemon(battleParty) == TRUE) {
@@ -486,7 +486,7 @@ static u8 BattlePartyTask_SelectPokemonScreen(BattleParty *battleParty)
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_SELECT_POKEMON_SCREEN_BUTTON_OFFSET + BATTLE_POKEMON_SELECT_POKEMON_SCREEN_BUTTON_SUMMARY);
         battleParty->queuedState = TASK_STATE_SETUP_POKEMON_SUMMARY_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
@@ -495,12 +495,12 @@ static u8 BattlePartyTask_SelectPokemonScreen(BattleParty *battleParty)
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CHECK_MOVES_BUTTON_OFFSET);
         battleParty->queuedState = TASK_STATE_SETUP_POKEMON_MOVES_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
     case BATTLE_POKEMON_SELECT_POKEMON_SCREEN_BUTTON_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CANCEL_BUTTON_OFFSET);
         battleParty->queuedState = TASK_STATE_SETUP_PARTY_POKEMON_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
@@ -523,7 +523,7 @@ static u8 BattlePartyTask_PokemonSummaryScreen(BattleParty *battleParty)
 
         battleParty->context->selectedPartyIndex = newPartyIndex;
     }
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_POKEMON_PREV_NEXT_BUTTON_OFFSET);
         battleParty->queuedState = TASK_STATE_REFRESH_POKEMON_DETAILS_SCREENS;
         return TASK_STATE_SCREEN_TRANSITION;
@@ -536,17 +536,17 @@ static u8 BattlePartyTask_PokemonSummaryScreen(BattleParty *battleParty)
 
         battleParty->context->selectedPartyIndex = newPartyIndex;
     }
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_POKEMON_PREV_NEXT_BUTTON_OFFSET + 1);
         battleParty->queuedState = TASK_STATE_REFRESH_POKEMON_DETAILS_SCREENS;
         return TASK_STATE_SCREEN_TRANSITION;
     case BATTLE_POKEMON_SUMMARY_SCREEN_BUTTON_CHECK_MOVES:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CHECK_MOVES_BUTTON_OFFSET + 1);
         battleParty->queuedState = TASK_STATE_SETUP_POKEMON_MOVES_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
     case BATTLE_POKEMON_SUMMARY_SCREEN_BUTTON_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CANCEL_BUTTON_OFFSET);
         battleParty->selectPokemonPreviousScreenButton = BATTLE_POKEMON_SELECT_POKEMON_SCREEN_BUTTON_SUMMARY;
         battleParty->queuedState = TASK_STATE_SETUP_SELECT_POKEMON_SCREEN;
@@ -569,7 +569,7 @@ static u8 BattlePartyTask_PokemonMovesScreen(BattleParty *battleParty)
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_POKEMON_MOVES_SCREEN_BUTTON_OFFSET + pokemonMovesScreenButtonPressed);
         battleParty->context->selectedMoveSlot = pokemonMovesScreenButtonPressed;
         battleParty->queuedState = TASK_STATE_SETUP_MOVE_SUMMARY_SCREEN;
@@ -583,7 +583,7 @@ static u8 BattlePartyTask_PokemonMovesScreen(BattleParty *battleParty)
 
         battleParty->context->selectedPartyIndex = newPartyIndex;
     }
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_POKEMON_PREV_NEXT_BUTTON_OFFSET);
         battleParty->queuedState = TASK_STATE_REFRESH_POKEMON_DETAILS_SCREENS;
         return TASK_STATE_SCREEN_TRANSITION;
@@ -597,17 +597,17 @@ static u8 BattlePartyTask_PokemonMovesScreen(BattleParty *battleParty)
 
         battleParty->context->selectedPartyIndex = newPartyIndex;
     }
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_POKEMON_PREV_NEXT_BUTTON_OFFSET + 1);
         battleParty->queuedState = TASK_STATE_REFRESH_POKEMON_DETAILS_SCREENS;
         return TASK_STATE_SCREEN_TRANSITION;
     case BATTLE_POKEMON_MOVES_SCREEN_BUTTON_SUMMARY:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_SUMMARY_BUTTON_OFFSET + 1);
         battleParty->queuedState = TASK_STATE_SETUP_POKEMON_SUMMARY_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
     case BATTLE_POKEMON_MOVES_SCREEN_BUTTON_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CANCEL_BUTTON_OFFSET);
         battleParty->selectPokemonPreviousScreenButton = BATTLE_POKEMON_SELECT_POKEMON_SCREEN_BUTTON_CHECK_MOVES;
         battleParty->queuedState = TASK_STATE_SETUP_SELECT_POKEMON_SCREEN;
@@ -630,11 +630,11 @@ static u8 BattlePartyTask_MoveSummaryScreen(BattleParty *battleParty)
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         battleParty->context->selectedMoveSlot = moveSummaryScreenButtonPressed;
         return TASK_STATE_SETUP_MOVE_SUMMARY_SCREEN;
     case BATTLE_MOVE_SUMMARY_SCREEN_BUTTON_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CANCEL_BUTTON_OFFSET);
         battleParty->queuedState = TASK_STATE_SETUP_POKEMON_MOVES_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
@@ -665,7 +665,7 @@ static u8 BattlePartyTask_LearnMoveScreen(BattleParty *battleParty)
     case BATTLE_LEARN_MOVE_SCREEN_BUTTON_MOVE_TO_LEARN:
         battleParty->context->selectedMoveSlot = (u8)learnMoveScreenButtonPressed;
         battleParty->learnMovePreviousScreenButton = (u8)learnMoveScreenButtonPressed;
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_LEARN_MOVE_SCREEN_BUTTON_OFFSET + learnMoveScreenButtonPressed);
         battleParty->queuedState = TASK_STATE_SETUP_CONFIRM_LEARN_MOVE_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
@@ -676,13 +676,13 @@ static u8 BattlePartyTask_LearnMoveScreen(BattleParty *battleParty)
 
         battleParty->displayingContestStats ^= TRUE;
         battleParty->learnMovePreviousScreenButton = (u8)learnMoveScreenButtonPressed;
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CONTEST_STATS_BUTTON_OFFSET);
         battleParty->queuedState = TASK_STATE_SETUP_LEARN_MOVE_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
     case BATTLE_LEARN_MOVE_SCREEN_BUTTON_CANCEL:
         battleParty->context->selectedMoveSlot = MOVE_TO_LEARN_SLOT;
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CANCEL_BUTTON_OFFSET);
         battleParty->queuedState = TASK_STATE_EXIT;
         return TASK_STATE_SCREEN_TRANSITION;
@@ -707,7 +707,7 @@ static u8 BattlePartyTask_ConfirmLearnMoveScreen(BattleParty *battleParty)
 
     switch (confirmLearnMovesScreenButtonPressed) {
     case BATTLE_CONFIRM_LEARN_MOVE_SCREEN_BUTTON_CONFIRM:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
 
         if (battleParty->displayingContestStats == FALSE) {
             BattlePartyButtons_PressButton(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_BUTTON_OFFSET);
@@ -735,14 +735,14 @@ static u8 BattlePartyTask_ConfirmLearnMoveScreen(BattleParty *battleParty)
             break;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CONTEST_STATS_BUTTON_OFFSET);
         battleParty->displayingContestStats ^= TRUE;
         battleParty->confirmLearnMovePreviousScreenButton = (u8)confirmLearnMovesScreenButtonPressed;
         battleParty->queuedState = TASK_STATE_SETUP_CONFIRM_LEARN_MOVE_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
     case BATTLE_CONFIRM_LEARN_MOVE_SCREEN_BUTTON_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CANCEL_BUTTON_OFFSET);
         battleParty->confirmLearnMovePreviousScreenButton = 0;
         battleParty->queuedState = TASK_STATE_SETUP_LEARN_MOVE_SCREEN;
@@ -777,7 +777,7 @@ static u8 BattlePartyTask_RestoreMovePPScreen(BattleParty *battleParty)
         }
 
         battleParty->context->selectedMoveSlot = (u8)restoreMovePPScreenButtonPressed;
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_RESTORE_MOVE_PP_SCREEN_BUTTON_OFFSET + restoreMovePPScreenButtonPressed);
 
         if (BattleSystem_UseBagItem(context->battleSys, context->battler, context->pokemonPartySlots[context->selectedPartyIndex], restoreMovePPScreenButtonPressed, context->selectedBattleBagItem) == TRUE) {
@@ -793,7 +793,7 @@ static u8 BattlePartyTask_RestoreMovePPScreen(BattleParty *battleParty)
         }
         break;
     case BATTLE_RESTORE_MOVE_PP_SCREEN_BUTTON_CANCEL:
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         BattlePartyButtons_PressButton(battleParty, BATTLE_PARTY_CANCEL_BUTTON_OFFSET);
         battleParty->queuedState = TASK_STATE_SETUP_PARTY_POKEMON_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
@@ -945,7 +945,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
             battleParty->useItemState = BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_START_RESTORING_HP;
         }
 
-        Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
+        Sound_PlayEffect(SEQ_SE_DP_KAIFUKU_sseq);
         break;
     case BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_RESTORING_HP:
         if (battleParty->partyPokemon[context->selectedPartyIndex].curHP != battleParty->selectedPokemonCurrentHP) {
@@ -1001,7 +1001,7 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
         }
 
         BattlePartyText_PrintUseItemEffect(battleParty);
-        Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
+        Sound_PlayEffect(SEQ_SE_DP_KAIFUKU_sseq);
         battleParty->useItemState = BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_RESTORING_PP;
         break;
     case BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_RESTORING_PP: {
@@ -1186,19 +1186,19 @@ static void LoadGraphicsData(BattleParty *battleParty)
     BattlePartyButtons_InitializeAdditionalButtonData(battleParty, (u16 *)screenData->rawData);
     Heap_Free(buffer);
 
-    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 23, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, 0);
+    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 23, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, PLTT_DEST(0));
     NARC_dtor(narc);
 
     u16 *swappedPaletteData = PaletteData_GetUnfadedBuffer(battleParty->palette, PLTTBUF_SUB_BG);
     memcpy(battleParty->screenPaletteData, &swappedPaletteData[192], PALETTE_SIZE_BYTES * 2);
 
-    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_FONT, 6, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 208);
-    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_FONT, 7, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 240);
+    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_FONT, 6, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
+    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_FONT, 7, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(15));
 
     int optionsFrame = BattleSystem_GetOptionsFrame(battleParty->context->battleSys);
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxTilesNARCMember(optionsFrame), battleParty->background, BG_LAYER_SUB_0, 1, 0, FALSE, battleParty->context->heapID);
-    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 224);
+    PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
 
     u16 *rawPaletteData = PaletteData_GetUnfadedBuffer(battleParty->palette, PLTTBUF_SUB_BG);
     u16 *paletteData = Heap_Alloc(battleParty->context->heapID, PALETTE_SIZE_BYTES);
@@ -1207,7 +1207,7 @@ static void LoadGraphicsData(BattleParty *battleParty)
     memcpy(&paletteData[7], &rawPaletteData[154], 4);
     memcpy(&paletteData[3], &rawPaletteData[156], 4);
 
-    PaletteData_LoadBuffer(battleParty->palette, paletteData, PLTTBUF_SUB_BG, 208, PALETTE_SIZE_BYTES);
+    PaletteData_LoadBuffer(battleParty->palette, paletteData, PLTTBUF_SUB_BG, PLTT_DEST(13), PALETTE_SIZE_BYTES);
     Heap_Free(paletteData);
 }
 

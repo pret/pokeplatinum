@@ -7,7 +7,7 @@ L_0:
     CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlayLoopedSoundEffectR SEQ_SE_DP_W015, 2, 7
+    PlayLoopedSoundEffectR SEQ_SE_DP_W015_sseq, 2, 7
     Delay 30
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks

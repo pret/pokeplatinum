@@ -1,0 +1,20 @@
+#ifndef POKEPLATINUM_FRSCRCMD_WFC_FACILITY_SELECTOR_H
+#define POKEPLATINUM_FRSCRCMD_WFC_FACILITY_SELECTOR_H
+
+#include "overlay104/defs.h"
+
+BOOL FrontierScrCmd_InitWFCFacilitySelector(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_FreeWFCFacilitySelector(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_WFCFacilitySelector_SendCommMessage(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_WFCFacilitySelector_WaitForCommResponses(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_CheckIfSameFacilityChosen(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_ManageFacilitySelectorSubApp(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_GetSelectedPartyMenuSlots(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_CheckIfPartnerDroppedOut(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_CallWFCFacilitySelectorFunction(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_InitBattleTower(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_SendTowerTrainerIDList(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_WaitForTowerTrainerIDListResponses(FrontierScriptContext *ctx);
+BOOL FrontierScrCmd_FreeBattleTower(FrontierScriptContext *ctx);
+
+#endif // POKEPLATINUM_FRSCRCMD_WFC_FACILITY_SELECTOR_H

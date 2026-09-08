@@ -13,7 +13,7 @@ VeilstoneCityPokecenter1F_Nurse:
     End
 
 VeilstoneCityPokecenter1F_Socialite:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferTMHMMoveName 0, ITEM_HM03

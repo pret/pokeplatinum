@@ -14,7 +14,7 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
-    PlayPannedSoundEffect SEQ_SE_DP_W250, BATTLE_SOUND_PAN_LEFT
+    PlayPannedSoundEffect SEQ_SE_DP_W250_sseq, BATTLE_SOUND_PAN_LEFT
     Delay 5
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAllEmitters

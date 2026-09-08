@@ -72,8 +72,8 @@ StarkMountainRoom3_Buck_Unused:
 
 StarkMountainRoom3_Heatran:
     LockAll
-    PlaySE SEQ_SE_CONFIRM
-    WaitSE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
+    WaitSE SE_CONFIRM_sseq_3
     CallIfUnset FLAG_BATTLED_STARK_MOUNTAIN_ROOM_3_HEATRAN, StarkMountainRoom3_SetFlagBattledHeatran
     SetVar VAR_STARK_MOUNTAIN_ROOM_3_STATE, 2
     PlayCry SPECIES_HEATRAN
@@ -134,10 +134,10 @@ StarkMountainRoom3_OnFrame_Charon:
     LockAll
     Message StarkMountainRoom3_Text_MagmaStoneWillBeMine
     CloseMessage
-    WaitSE SEQ_SE_CONFIRM
-    PlaySE SEQ_SE_DP_FW089
+    WaitSE SE_CONFIRM_sseq_3
+    PlaySE SEQ_SE_DP_FW089_sseq
     ScrCmd_29F 0
-    StopSE SEQ_SE_DP_FW089
+    StopSE SEQ_SE_DP_FW089_sseq
     ApplyMovement LOCALID_BUCK, StarkMountainRoom3_Movement_BuckWalkNorth
     ApplyMovement LOCALID_PLAYER, StarkMountainRoom3_Movement_PlayerWalkNorth
     WaitMovement

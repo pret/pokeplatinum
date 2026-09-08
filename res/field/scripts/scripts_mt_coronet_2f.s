@@ -129,7 +129,7 @@ MtCoronet2F_Movement_PlayerFaceLooker:
     EndMovement
 
 MtCoronet2F_Looker:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfUnset FLAG_RECEIVED_MT_CORONET_2F_BLACK_FLUTE, MtCoronet2F_TryAgainGiveBlackFlute

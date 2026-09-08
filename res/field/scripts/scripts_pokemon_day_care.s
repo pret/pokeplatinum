@@ -16,7 +16,7 @@ PokemonDayCare_ShowGymGuide:
     Return
 
 PokemonDayCare_GymGuide:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_DAYCARECHECKER, VAR_RESULT

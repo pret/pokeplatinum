@@ -1,5 +1,5 @@
 #ifndef POKEPLATINUM_TRAINER_CASE_SAVE_DATA_H
-#define POKEPLATINUM_TRAINER_CASE_SAVEDATA_H
+#define POKEPLATINUM_TRAINER_CASE_SAVE_DATA_H
 
 #include "constants/graphics.h"
 
@@ -24,4 +24,4 @@ TrainerCaseSaveDataBadge *TrainerCaseSaveData_GetTrainerCaseSaveDataBadges(Train
 int TrainerCaseSaveDataBadge_GetPolish(u8 badgeID, TrainerCaseSaveDataBadge badges[]);
 void TrainerCaseSaveDataBadge_SetPolish(u8 badgeID, int polish, TrainerCaseSaveDataBadge badges[]);
 
-#endif // POKEPLATINUM_TRAINER_CASE_SAVEDATA_H
+#endif // POKEPLATINUM_TRAINER_CASE_SAVE_DATA_H

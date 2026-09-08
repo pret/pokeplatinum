@@ -94,7 +94,7 @@ Battleground_SetTrainersGraphics:
     Return
 
 Battleground_ExpertM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_BATTLED_STARK_MOUNTAIN_ROOM_3_HEATRAN, Battleground_MakeYourselfAtHome
@@ -112,7 +112,7 @@ Battleground_MakeYourselfAtHome:
     End
 
 Battleground_Buck:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetFlag FLAG_TALKED_TO_BATTLEGROUND_BUCK
@@ -122,7 +122,7 @@ Battleground_Buck:
     CallIfEq VAR_0x8005, 7, Battleground_BuckLeaveZ7
     CallIfEq VAR_0x8005, 8, Battleground_BuckLeaveZ8
     CallIfEq VAR_0x8005, 9, Battleground_BuckLeaveZ9
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_BUCK
     SetFlag FLAG_BUCK_LEFT_BATTLEGROUND
     SetFlag FLAG_HIDE_BATTLEGROUND_BUCK
@@ -215,7 +215,7 @@ Battleground_Movement_PlayerWalkToExpertF:
     EndMovement
 
 Battleground_Trainer1:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -290,7 +290,7 @@ Battleground_ByronDefeatRoarkPresent:
     Return
 
 Battleground_Trainer2:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -316,7 +316,7 @@ Battleground_DeclinedBattleTrainer2:
     End
 
 Battleground_Trainer3:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -342,7 +342,7 @@ Battleground_DeclinedBattleTrainer3:
     End
 
 Battleground_Trainer4:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0

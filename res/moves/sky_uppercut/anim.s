@@ -6,7 +6,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32
     SwitchBg 55, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
-    PlaySoundEffectC SEQ_SE_DP_W327
+    PlaySoundEffectC SEQ_SE_DP_W327_sseq
     WaitForBgSwitch
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
@@ -23,7 +23,7 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 5, 0, 0, 0
     SetExtraParams 1, 0, 2000, 0
-    PlaySoundEffectR SEQ_SE_DP_W025B
+    PlaySoundEffectR SEQ_SE_DP_W025B_sseq
     Delay 1
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 5, 0, 0, 0
@@ -36,7 +36,7 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 5, 0, 0, 0
     SetExtraParams 1, 0, 8000, 0
-    PlaySoundEffectR SEQ_SE_DP_W025B
+    PlaySoundEffectR SEQ_SE_DP_W025B_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVars

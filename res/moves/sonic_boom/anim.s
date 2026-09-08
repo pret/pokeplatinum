@@ -8,7 +8,7 @@ L_0:
 L_1:
     LoadParticleResource 0, sonic_boom_spa
     LoadParticleResource 1, sonic_boom_spa
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_146, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_146_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 0, 1, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BLinear 1, 0, 0, 0, 13, 64
     Delay 4
@@ -31,7 +31,7 @@ L_1:
 L_2:
     LoadParticleResource 0, sonic_boom_spa
     LoadParticleResource 1, sonic_boom_spa
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_146, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_146_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 0, 1, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BLinear 1, 0, 0, 0, 13, 64
     Delay 4
@@ -54,7 +54,7 @@ L_2:
 L_3:
     LoadParticleResource 0, sonic_boom_spa
     LoadParticleResource 1, sonic_boom_spa
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_146, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_146_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 0, 1, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BLinear 1, 0, 0, 0, 13, 64
     Delay 4

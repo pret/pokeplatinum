@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, heal_bell_spa
-    PlaySoundEffectL SEQ_SE_DP_W234
+    PlaySoundEffectL SEQ_SE_DP_W234_sseq
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER_SIDE
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER_SIDE
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER_SIDE

@@ -9,10 +9,10 @@ L_0:
     AddSpriteWithFunc 0, SPRITE_FUNC_LOCK_ON, lock_on_NCGR_lz, lock_on_NCLR, lock_on_cell_NCER_lz, lock_on_anim_NANR_lz, 0, 0
     Delay 16
     BeginLoop 4
-    PlaySoundEffectR SEQ_SE_DP_GETTING
+    PlaySoundEffectR SEQ_SE_DP_GETTING_sseq
     Delay 8
     EndLoop
-    PlaySoundEffectR SEQ_SE_DP_081
+    PlaySoundEffectR SEQ_SE_DP_081_sseq
     WaitForAnimTasks
     FreeSpriteManager 0
     End

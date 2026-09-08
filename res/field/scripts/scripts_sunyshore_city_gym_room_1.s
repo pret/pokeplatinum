@@ -19,7 +19,7 @@ SunyshoreGymRoom1_Button:
     End
 
 SunyshoreGymRoom1_GymGuide:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom1_GymGuideAfterbadge
@@ -38,7 +38,7 @@ SunyshoreGymRoom1_GymGuideAfterbadge:
     End
 
 SunyshoreGymRoom1_GymStatue:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfBadgeAcquired BADGE_ID_BEACON, SunyshoreGymRoom1_GymStatue_AfterBadge
     Message SunyshoreGymRoom1_Text_GymStatue_BeforeBadge

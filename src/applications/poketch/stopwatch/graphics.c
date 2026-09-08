@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_system.h"
@@ -16,6 +14,7 @@
 #include "sys_task_manager.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 
 #define BUTTON_WIDTH_TILES  5
 #define BUTTON_HEIGHT_TILES 11
@@ -361,7 +360,7 @@ static void Task_HandleTimerTransition(SysTask *task, void *taskMan)
 
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
 
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010_sseq);
     EndTask(taskMan);
 }
 
@@ -408,7 +407,7 @@ static void Task_HandleBeginButtonBlinking(SysTask *task, void *taskMan)
         PoketchTask_IncrementState(taskMan);
     case 1:
         if (UpdateBlinkState(blinkManager, 6)) {
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010_sseq);
             UpdateButtonTiles(graphics->bgConfig, blinkManager->buttonTileGroup);
             Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
         }
@@ -437,7 +436,7 @@ static void Task_HandleSpeedUpButtonBlinking(SysTask *task, void *taskMan)
         PoketchTask_IncrementState(taskMan);
     case 1:
         if (UpdateBlinkState(blinkManager, 3)) {
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_010_sseq);
             UpdateButtonTiles(graphics->bgConfig, blinkManager->buttonTileGroup);
             Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
         }
@@ -463,7 +462,7 @@ static void Task_BeginExplosion(SysTask *task, void *taskMan)
         PoketchAnimation_UpdateAnimationIdx(graphics->animSpriteData[BUTTON_SPRITES], 15);
         UpdateButtonTiles(graphics->bgConfig, BUTTON_EXPLODING_PRESSED);
         Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
-        PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_006);
+        PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_006_sseq);
         PoketchTask_IncrementState(taskMan);
     case 1:
         if (++(blinkManager->frameCount) > 2) {

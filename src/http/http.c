@@ -210,7 +210,7 @@ void HTTP_Init(void)
 int HTTP_PrepareRequest(const u8 *url, int dwcProfileID, const void *data, int dataSize, u8 *response, int maxResponseLength)
 {
     if (sHttpData.readyState != 2) {
-        return 1;
+        return HTTP_PREPARE_STATUS_NOT_READY;
     }
 
     sHttpData.dwcProfileID = dwcProfileID;
@@ -221,7 +221,7 @@ int HTTP_PrepareRequest(const u8 *url, int dwcProfileID, const void *data, int d
     sHttpData.url = (char *)DWC_Alloc((DWCAllocType)10, strlen((const char *)url) + (2 * HASH_SIZE) + 28 + HTTPB64_CalcEncodedSize(8 + (u32)dataSize) + 1);
 
     if (sHttpData.url == NULL) {
-        return 2;
+        return HTTP_PREPARE_STATUS_ALLOC_FAILED;
     }
 
     sprintf(sHttpData.url, "%s?pid=%d", url, dwcProfileID);
@@ -231,7 +231,7 @@ int HTTP_PrepareRequest(const u8 *url, int dwcProfileID, const void *data, int d
     sHttpData.encodedDataSize = (int)(HTTPB64_CalcEncodedSize(8 + (u32)dataSize) + 1);
     sHttpData.readyState = 3;
 
-    return 0;
+    return HTTP_PREPARE_STATUS_SUCCESS;
 }
 
 int HTTP_GetRequestStatus(void)

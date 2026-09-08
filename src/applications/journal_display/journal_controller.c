@@ -292,7 +292,7 @@ static void JournalController_LoadGraphics(JournalManager *journalManager)
     MI_CpuCopy16(tilemapBuffer, journalManager->tilemapBuffer_5C, 0x800);
     Bg_LoadTilemapBuffer(journalManager->bgConfig, 3, journalManager->tilemapBuffer_5C, 0x800);
 
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 15 * 32, HEAP_ID_JOURNAL);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_JOURNAL);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 }
 
@@ -365,7 +365,7 @@ static int JournalController_TurnPageLeft(JournalManager *journalManager)
         journalManager->page--;
         JournalPrinter_PrintEntry(journalManager, journalManager->unk_1060 ^ 1);
         journalManager->state = 1;
-        Sound_PlayEffect(SEQ_SE_DP_MEKURU3);
+        Sound_PlayEffect(SEQ_SE_DP_MEKURU3_sseq);
         break;
     case 1:
         if (ov81_021D14E0(journalManager) == TRUE) {
@@ -393,7 +393,7 @@ static int JournalController_TurnPageRight(JournalManager *journalManager)
         journalManager->page++;
         JournalPrinter_PrintEntry(journalManager, journalManager->unk_1060 ^ 1);
         journalManager->state = 1;
-        Sound_PlayEffect(SEQ_SE_DP_MEKURU3);
+        Sound_PlayEffect(SEQ_SE_DP_MEKURU3_sseq);
         break;
     case 1:
         if (ov81_021D156C(journalManager) == TRUE) {

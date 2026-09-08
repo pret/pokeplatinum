@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 TwinleafTownRivalHouse1F_RivalsMom:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_HAS_POKEDEX, TwinleafTownRivalHouse1F_TookOffLikeUsual

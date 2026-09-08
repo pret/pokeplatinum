@@ -286,7 +286,7 @@ static BOOL BaseDecoration_DecorationMenuTask(FieldTask *task)
         }
         break;
     case DECORATION_STATE_FADE_OUT:
-        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF_sseq);
         StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CLAMP_OUT, FADE_TYPE_CLAMP_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         BaseDecoration_UpdateState(DECORATION_STATE_EXIT, ctx);
         break;
@@ -476,7 +476,7 @@ static BOOL BaseDecoration_DecorateTask(FieldTask *task)
                 u32 slot = DecorationGoodsMenu_GetLastInput(ctx->decorationGoodsMenu);
 
                 Underground_AddPlacedGood(underground, slot, index);
-                Sound_PlayEffect(SEQ_SE_DP_BOWA);
+                Sound_PlayEffect(SEQ_SE_DP_BOWA_sseq);
 
                 SecretBases_SetGoodNameForPrinter(ctx->heldGood.goodID);
                 ctx->printerID = SecretBases_PrintBaseDecorationMessage(UndergroundBaseDecoration_Text_GoodWasPlaced);
@@ -487,7 +487,7 @@ static BOOL BaseDecoration_DecorateTask(FieldTask *task)
                 ctx->subState = DECORATE_SUBSTATE_EXIT_AFTER_TEXT;
                 break;
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT2);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT2_sseq);
 
                 ctx->printerID = SecretBases_PrintBaseDecorationMessage(UndergroundBaseDecoration_Text_CantPlaceHere);
                 ctx->timer = 0;
@@ -564,22 +564,22 @@ static BOOL BaseDecoration_PutAwayTask(FieldTask *task)
 
         if (!touchInput) {
             if (JOY_REPEAT(PAD_KEY_LEFT)) {
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
                 cursorModelX -= MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minX--;
                 cursorPosition.maxX--;
             } else if (JOY_REPEAT(PAD_KEY_RIGHT)) {
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
                 cursorModelX += MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minX++;
                 cursorPosition.maxX++;
             } else if (JOY_REPEAT(PAD_KEY_UP)) {
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
                 cursorModelZ -= MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minZ--;
                 cursorPosition.maxZ--;
             } else if (JOY_REPEAT(PAD_KEY_DOWN)) {
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
                 cursorModelZ += MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minZ++;
                 cursorPosition.maxZ++;
@@ -646,7 +646,7 @@ static BOOL BaseDecoration_PutAwayTask(FieldTask *task)
                             ctx->subState = PUT_AWAY_SUBSTATE_PICK_GOOD_AFTER_TEXT;
                             break;
                         } else {
-                            Sound_PlayEffect(SEQ_SE_DP_F017);
+                            Sound_PlayEffect(SEQ_SE_DP_F017_sseq);
 
                             ctx->printerID = SecretBases_PrintBaseDecorationMessage(UndergroundBaseDecoration_Text_BigBoulderRemoved);
                             GF_ASSERT(ctx->boulderCount > 0);
@@ -657,7 +657,7 @@ static BOOL BaseDecoration_PutAwayTask(FieldTask *task)
                     } else {
                         Underground *underground = SaveData_GetUnderground(ctx->fieldSystem->saveData);
 
-                        Sound_PlayEffect(SEQ_SE_DP_BOX02);
+                        Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
                         Underground_RemovePlacedGood(underground, index);
 
                         ctx->printerID = SecretBases_PrintBaseDecorationMessage(UndergroundBaseDecoration_Text_GoodReturnedToPC);
@@ -781,22 +781,22 @@ static BOOL BaseDecoration_SelectGoodToMoveTask(FieldTask *task)
 
         if (!touchInput) {
             if (JOY_REPEAT(PAD_KEY_LEFT)) {
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
                 cursorModelX -= MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minX--;
                 cursorPosition.maxX--;
             } else if (JOY_REPEAT(PAD_KEY_RIGHT)) {
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
                 cursorModelX += MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minX++;
                 cursorPosition.maxX++;
             } else if (JOY_REPEAT(PAD_KEY_UP)) {
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
                 cursorModelZ -= MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minZ--;
                 cursorPosition.maxZ--;
             } else if (JOY_REPEAT(PAD_KEY_DOWN)) {
-                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3_sseq);
                 cursorModelZ += MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minZ++;
                 cursorPosition.maxZ++;
@@ -857,7 +857,7 @@ static BOOL BaseDecoration_SelectGoodToMoveTask(FieldTask *task)
                         BaseDecoration_SetHeldGood(index, ctx);
                         BaseDecoration_SetMovedGood(index, ctx);
                         BaseDecoration_RemoveGood(index, ctx->goodSlots);
-                        Sound_PlayEffect(SEQ_SE_DP_BOX02);
+                        Sound_PlayEffect(SEQ_SE_DP_BOX02_sseq);
                         DecorateCursor_Hide(ctx->cursor);
                         BaseDecoration_UpdateState(DECORATION_STATE_MOVE_SELECTED_GOOD, ctx);
                         return TRUE;
@@ -957,14 +957,14 @@ static BOOL BaseDecoration_MoveSelectedGoodTask(FieldTask *task)
         if (selectionMade) {
             if (BaseDecoration_CanPlaceGood(&ctx->heldGood, ctx->goodSlots)) {
                 BaseDecoration_SetGoodAtIndex(&ctx->heldGood, ctx->movedGood.index, ctx->goodSlots);
-                Sound_PlayEffect(SEQ_SE_DP_BOWA);
+                Sound_PlayEffect(SEQ_SE_DP_BOWA_sseq);
                 DecorateCursor_SetPosition(ctx->heldGood.position.minX, ctx->heldGood.position.minZ, ctx->cursor);
                 PropBlinkContext_ShowProp(fieldSystem, &ctx->propBlinkCtx);
                 ctx->timer = 0;
                 ctx->subState = MOVE_GOOD_SUBSTATE_EXIT_AFTER_TEXT;
                 break;
             } else {
-                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT2);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT2_sseq);
 
                 ctx->printerID = SecretBases_PrintBaseDecorationMessage(UndergroundBaseDecoration_Text_CantPlaceHere);
                 ctx->timer = 0;

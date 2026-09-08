@@ -45,7 +45,7 @@ SurvivalArea_RuinManiac:
     End
 
 SurvivalArea_Cameraman:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_BATTLED_STARK_MOUNTAIN_ROOM_3_HEATRAN, SurvivalArea_AllSetToProduce
@@ -67,7 +67,7 @@ SurvivalArea_MapSignpost:
     End
 
 SurvivalArea_Buck:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -103,7 +103,7 @@ SurvivalArea_Door:
     End
 
 SurvivalArea_Rival:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetDayOfWeek VAR_MAP_LOCAL_0x00

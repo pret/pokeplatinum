@@ -3,7 +3,7 @@
 
 #include "generated/seals.h"
 
-#define TOTAL_CAPSULES     12
+#define CAPSULE_NUM        12
 #define SEALS_PER_CAPSULE  8
 #define MAX_SEALS_PER_TYPE 99
 

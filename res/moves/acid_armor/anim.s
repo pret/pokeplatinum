@@ -5,11 +5,11 @@ L_0:
     LoadParticleResource 0, acid_armor_spa
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_AcidArmor
-    PlaySoundEffectL SEQ_SE_DP_154
-    PlayDelayedSoundEffectL SEQ_SE_DP_W152, 35
-    PlayDelayedSoundEffectL SEQ_SE_DP_W152, 40
-    PlayDelayedSoundEffectL SEQ_SE_DP_W152, 50
-    PlayDelayedSoundEffectL SEQ_SE_DP_W152, 55
+    PlaySoundEffectL SEQ_SE_DP_154_sseq
+    PlayDelayedSoundEffectL SEQ_SE_DP_W152_sseq, 35
+    PlayDelayedSoundEffectL SEQ_SE_DP_W152_sseq, 40
+    PlayDelayedSoundEffectL SEQ_SE_DP_W152_sseq, 50
+    PlayDelayedSoundEffectL SEQ_SE_DP_W152_sseq, 55
     WaitForAnimTasks
     RemovePokemonSpriteFromBg 0
     End

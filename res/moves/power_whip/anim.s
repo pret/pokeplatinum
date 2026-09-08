@@ -5,14 +5,14 @@ L_0:
     ResetVars
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 7, BATTLE_BG_SWITCH_MODE_FADE
-    PlaySoundEffectR SEQ_SE_DP_W104
-    PlayDelayedSoundEffectR SEQ_SE_DP_MUCHI, 10
+    PlaySoundEffectR SEQ_SE_DP_W104_sseq
+    PlayDelayedSoundEffectR SEQ_SE_PL_WHIP_sseq_1, 10
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 10
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_186
+    PlaySoundEffectR SEQ_SE_DP_186_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVars

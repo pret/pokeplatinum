@@ -413,7 +413,7 @@ SunyshoreCity_Movement_PlayerWalkOnSpotNorth:
     EndMovement
 
 SunyshoreCity_Jasmine:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_SUNYSHORE_CITY_HM07, SunyshoreCity_ICameToGetStronger
@@ -572,7 +572,7 @@ SunyshoreCity_SignboardPokemonRock:
     End
 
 SunyshoreCity_SealMerchant_Unused:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Common_VendorGreeting
@@ -621,7 +621,7 @@ SunyshoreCity_SealMerchantEnd_Unused:
     End
 
 SunyshoreCity_Flint:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_VOLKNER_RETURNED_TO_GYM, SunyshoreCity_VolknerFinallyCameBack

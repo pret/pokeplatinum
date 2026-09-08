@@ -37,7 +37,7 @@ SandgemTownLab_SetProfRowanAndCounterpartPositions:
     Return
 
 SandgemTownLab_ProfRowan:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Call SandgemTownLab_SetVarIfArrivedInSunyshoreCity
@@ -228,7 +228,7 @@ SandgemTownLab_RecordDataOnAllPokemon:
     WaitMovement
     WaitTime 35, VAR_RESULT
     SetFlag FLAG_ALT_MUSIC_ROWANS_LAB
-    PlayMusic SEQ_OPENING2
+    PlayMusic SEQ_OPENING_sseq_1
     Message SandgemTownLab_Text_SomethingIWantYouToDo
     Message SandgemTownLab_Text_RecordDataOnAllPokemon
     ShowYesNoMenu VAR_RESULT
@@ -250,7 +250,7 @@ SandgemTownLab_ObtainPokedex:
     SetFlag FLAG_HAS_POKEDEX
     BufferPlayerName 0
     Message SandgemTownLab_Text_PlayerObtainedThePokedex
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     BufferPlayerName 0
     Message SandgemTownLab_Text_MeetEveryKindOfPokemon
@@ -384,7 +384,7 @@ SandgemTownLab_Movement_PlayerReceive:
     EndMovement
 
 SandgemTownLab_ScientistM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Call SandgemTownLab_SetVarIfArrivedInSunyshoreCity
@@ -414,7 +414,7 @@ SandgemTownLab_StunnedByGreatness:
     End
 
 SandgemTownLab_ScientistF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Call SandgemTownLab_SetVarIfArrivedInSunyshoreCity
@@ -538,7 +538,7 @@ SandgemTownLab_EnableNationalDex:
     CallIfGe VAR_FIGHT_AREA_STATE, 2, SandgemTownLab_HideFightAreaBlockade
     SetNationalDexEnabled
     BufferPlayerName 0
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     Message SandgemTownLab_Text_PokedexUpgradedWithNationalMode
     WaitFanfare
     Message SandgemTownLab_Text_WontBeEasyToComplete

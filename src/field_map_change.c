@@ -628,7 +628,7 @@ static BOOL FieldTask_ChangeMap(FieldTask *task)
 
     switch (mapChangeData->state) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2_sseq);
         FieldBGM_TryFadeIn(fieldSystem, location->mapHeaderID);
         FieldTransition_FadeOutAndFinishMap(task);
         mapChangeData->state++;
@@ -1513,7 +1513,7 @@ static BOOL FieldTask_ChangeMapColosseum(FieldTask *task)
 
     switch (mapChangeData->state) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2_sseq);
         FieldBGM_TryFadeIn(fieldSystem, location->mapHeaderID);
         FieldTransition_FadeOutAndFinishMap(task);
         mapChangeData->state++;

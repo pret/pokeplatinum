@@ -6,8 +6,8 @@ L_0:
     WaitForAnimTasks
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
-    PlaySoundEffectL SEQ_SE_DP_W118
-    PlayDelayedSoundEffectL SEQ_SE_DP_W145B, 18
+    PlaySoundEffectL SEQ_SE_DP_W118_sseq
+    PlayDelayedSoundEffectL SEQ_SE_DP_W145B_sseq, 18
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK

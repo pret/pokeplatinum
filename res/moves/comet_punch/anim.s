@@ -6,7 +6,7 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     BeginLoop 4
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_030
+    PlaySoundEffectR SEQ_SE_DP_030_sseq
     Delay 6
     EndLoop
     WaitForAllEmitters

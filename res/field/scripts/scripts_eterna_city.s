@@ -62,7 +62,7 @@ EternaCity_RatherFetching_Unused:
     End
 
 EternaCity_PokemonBreederF1:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCity_WhatWillHappenToGalacticBuilding
@@ -80,7 +80,7 @@ EternaCity_WhatWillHappenToGalacticBuilding:
     End
 
 EternaCity_BugCatcher1:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, EternaCity_DoYouUseKickstand
@@ -543,7 +543,7 @@ EternaCity_Movement_PlayerWalkNorth:
     EndMovement
 
 EternaCity_BugCatcher2:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfUnset FLAG_RECEIVED_BICYCLE, EternaCity_FeelsGreatRidingABike
@@ -672,7 +672,7 @@ EternaCity_Movement_BugCatcher2PushPlayerAndMoveBackZ534:
     EndMovement
 
 EternaCity_Gardenia:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferRivalName 0
@@ -738,7 +738,7 @@ EternaCity_RivalRunIntoPlayerZ525:
     End
 
 EternaCity_YouCameToSeeStatue:
-    PlaySE SEQ_SE_DP_WALL_HIT2
+    PlaySE SEQ_SE_DP_WALL_HIT2_sseq
     Message EternaCity_Text_BigThud
     CloseMessage
     Common_SetRivalBGM
@@ -1081,7 +1081,7 @@ EternaCity_CynthiaTryGiveEgg:
     End
 
 EternaCity_GiveTogepiEgg:
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     Message EternaCity_Text_ThatsWonderful
     Message EternaCity_Text_KeepEggInYourParty
@@ -1125,7 +1125,7 @@ EternaCity_Movement_PlayerWalkOnSpotWestToFaceCynthia:
     EndMovement
 
 EternaCity_Cynthia:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_ETERNA_CITY_STATE, 4, EternaCity_CynthiaTryAgainGiveEgg

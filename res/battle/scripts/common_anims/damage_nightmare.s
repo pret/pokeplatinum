@@ -12,7 +12,7 @@ L_0:
     WaitForBgSwitch
     Delay 45
     Func_Nightmare TRUE
-    PlayLoopedSoundEffect SEQ_SE_DP_W171, BATTLE_SOUND_PAN_LEFT, 2, 4
+    PlayLoopedSoundEffect SEQ_SE_DP_W171_sseq, BATTLE_SOUND_PAN_LEFT, 2, 4
     Delay 15
     Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 15

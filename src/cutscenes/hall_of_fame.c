@@ -344,7 +344,7 @@ BOOL HallOfFameManager_Init(ApplicationManager *appMan, int *state)
     hallOfFameMan->state = 0;
     hallOfFameMan->task_1C28 = HallOfFame_ExecuteSysTaskOnVBlank(ov86_0223B6CC, hallOfFameMan, 6);
 
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_8, SEQ_BLD_EV_DENDO2, 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_8, SEQ_BLD_EV_DENDO2_sseq, 1);
 
     return TRUE;
 }

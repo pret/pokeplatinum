@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_DISTORTION_WORLD_PROGRESS, 7, 3
+    InitScriptGoToIfEqual VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_FINISHED_BOULDER_PUZZLE, 3
     InitScriptFrameTableEnd
 
     InitScriptEnd

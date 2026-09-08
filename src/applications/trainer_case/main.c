@@ -231,7 +231,7 @@ BOOL TrainerCaseApp_Init(ApplicationManager *appMan, int *state)
     InitializeTouchPad(4);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_56, SEQ_NONE, 0);
     TrainerCaseApp_InitBadgeChimeState(&trainerCaseApp->badgeChimeState);
-    Sound_PlayEffect(SEQ_SE_DP_CARD3);
+    Sound_PlayEffect(SEQ_SE_DP_CARD3_sseq);
     TrainerCaseApp_InitSpriteData(&trainerCaseApp->spriteData, narc);
 
     u8 badgesObtained[MAX_BADGES];
@@ -360,7 +360,7 @@ BOOL TrainerCaseApp_Main(ApplicationManager *appMan, int *state)
                 trainerCaseApp->subState = FLIP_SUBSTATE_INITIAL;
                 *state = TRAINER_CASE_STATE_FLIP_CARD;
             } else if (input == INPUT_B_BUTTON) {
-                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
                 StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UPWARD_OUT, FADE_TYPE_UPWARD_OUT, COLOR_BLACK, 6, 1, HEAP_ID_TRAINER_CASE);
                 *state = TRAINER_CASE_STATE_EXIT;
@@ -777,7 +777,7 @@ static BOOL TrainerCase_FlipTrainerCard(TrainerCaseApp *trainerCaseApp)
         trainerCaseApp->cardXScale += 2 << (FX32_SHIFT - 6);
         trainerCaseApp->cardYScale += 2 << (FX32_SHIFT - 6);
 
-        Sound_PlayEffect(SEQ_SE_DP_CARD5);
+        Sound_PlayEffect(SEQ_SE_DP_CARD5_sseq);
 
         trainerCaseApp->subState++;
         break;
@@ -1213,11 +1213,11 @@ static void TrainerCase_ResetBadgePolishingState(BadgePolishingState *badgePolis
 static void TrainerCase_PlayPolishingSoundEffects(BadgePolishingState *badgePolishingState)
 {
     int soundEffects[2] = {
-        SEQ_SE_DP_MIGAKU01, SEQ_SE_DP_MIGAKU02
+        SEQ_SE_DP_MIGAKU01_sseq, SEQ_SE_DP_MIGAKU02_sseq
     };
 
     if (badgePolishingState->previousXDirection == 0 && badgePolishingState->previousYDirection == 0) {
-        Sound_PlayEffect(SEQ_SE_DP_MIGAKU01);
+        Sound_PlayEffect(SEQ_SE_DP_MIGAKU01_sseq);
     }
 
     if (badgePolishingState->previousXDirection * badgePolishingState->currentXDirection < 0 || badgePolishingState->previousYDirection * badgePolishingState->currentYDirection < 0) {
@@ -1263,7 +1263,7 @@ static void TrainerCase_DisplaySignature(BgConfig *bgConfig, enum BgLayer bgLaye
 
 static void TrainerCase_PlayOpenCloseBadgeCaseSoundEffect(int unused)
 {
-    Sound_PlayEffect(SEQ_SE_DP_CARD11);
+    Sound_PlayEffect(SEQ_SE_DP_CARD11_sseq);
 }
 
 static void TrainerCase_UpdatePlayTime(TrainerCaseApp *trainerCaseApp, u8 liveTimeDisplay)

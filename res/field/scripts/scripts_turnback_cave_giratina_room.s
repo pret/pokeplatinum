@@ -26,8 +26,8 @@ TurnbackCaveGiratinaRoom_RemoveGiratina:
 
 TurnbackCaveGiratinaRoom_Giratina:
     LockAll
-    PlaySE SEQ_SE_CONFIRM
-    WaitSE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
+    WaitSE SE_CONFIRM_sseq_3
     PlayCry SPECIES_GIRATINA
     Message TurnbackCaveGiratinaRoom_Text_GiratinaCry
     CloseMessage
@@ -61,7 +61,7 @@ TurnbackCaveGiratinaRoom_BlackOut:
     End
 
 TurnbackCaveGiratinaRoom_Item:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfEq VAR_TURNBACK_CAVE_ROOMS_VISITED, 3, TurnbackCaveGiratinaRoom_SetItemReaperCloth
     GoToIfLt VAR_TURNBACK_CAVE_ROOMS_VISITED, 15, TurnbackCaveGiratinaRoom_SetItemRareBone
@@ -94,7 +94,7 @@ TurnbackCaveGiratinaRoom_Inscription:
     End
 
 TurnbackCaveGiratinaRoom_Portal:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message TurnbackCaveGiratinaRoom_Text_GoToDistortionWorld
     ShowYesNoMenu VAR_RESULT
@@ -106,7 +106,7 @@ TurnbackCaveGiratinaRoom_GoToDistortionWorld:
     BufferPlayerName 0
     Message TurnbackCaveGiratinaRoom_Text_PlayerLeaptIntoPortal
     CloseMessage
-    PlaySE SEQ_SE_PL_SYUWA
+    PlaySE SEQ_SE_PL_SYUWA_sseq
     SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
     FadeScreenOut
     WaitFadeScreen

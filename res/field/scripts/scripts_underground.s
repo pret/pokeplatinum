@@ -179,7 +179,7 @@ Underground_OnFrame_RoarkIntro:
     CloseUndergroundNPCMessage
     ApplyMovement LOCALID_ROARK, Underground_Movement_RoarkFaceForward
     WaitMovement
-    PlaySE SEQ_SE_DP_PYUU2
+    PlaySE SEQ_SE_DP_PYUU2_sseq
     ApplyMovement LOCALID_ROARK, Underground_Movement_RoarkExitUnderground
     WaitMovement
     RemoveObject LOCALID_ROARK

@@ -12,7 +12,7 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 2, 0, 4
     Func_DoubleTeam 0
-    PlayLoopedSoundEffectL SEQ_SE_DP_053, 4, 14
+    PlayLoopedSoundEffectL SEQ_SE_DP_053_sseq, 4, 14
     Func_BlinkAttacker 50, 0
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0

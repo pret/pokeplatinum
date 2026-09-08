@@ -21,10 +21,10 @@ L_0:
     SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
-    PlaySoundEffectR SEQ_SE_DP_161
+    PlaySoundEffectR SEQ_SE_DP_161_sseq
     Func_FadePokemonSprite BATTLE_ANIM_DEFENDER, 0, 1, 0, 10, BATTLE_COLOR_PURPLE
     Delay 8
-    PlayLoopedSoundEffectR SEQ_SE_DP_W092D, 2, 7
+    PlayLoopedSoundEffectR SEQ_SE_DP_W092D_sseq, 2, 7
     Delay 12
     Func_FadePokemonSprite BATTLE_ANIM_DEFENDER, 0, 1, 10, 0, BATTLE_COLOR_PURPLE
     Func_HideBattler BATTLE_ANIM_DEFENDER, FALSE

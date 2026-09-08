@@ -27,7 +27,7 @@ PokemonMansion_InitFiveMaidKnockoutChallenge:
     End
 
 PokemonMansion_MaidOffice:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message PokemonMansion_Text_MrBacklotOffice
@@ -39,7 +39,7 @@ PokemonMansion_MaidOffice:
     End
 
 PokemonMansion_MaidTrophyGarden:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message PokemonMansion_Text_ThisWayTrophyGarden
@@ -51,7 +51,7 @@ PokemonMansion_MaidTrophyGarden:
     End
 
 PokemonMansion_MaidWest:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfDefeated TRAINER_RICH_BOY_LIAM, PokemonMansion_VisitAgainTomorrow
@@ -323,7 +323,7 @@ PokemonMansion_BlackOut:
     End
 
 PokemonMansion_MaidFarEast:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message PokemonMansion_Text_StrictlyOffLimits

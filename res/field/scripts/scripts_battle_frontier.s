@@ -143,7 +143,7 @@ BattleFrontier_TuberM:
     End
 
 BattleFrontier_AttendantSouthwest:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message BattleFrontier_Text_TradeBPForPrizes
@@ -153,7 +153,7 @@ BattleFrontier_AttendantSouthwest:
     End
 
 BattleFrontier_ScratchOffCards_Unused:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     FadeScreenOut
@@ -166,7 +166,7 @@ BattleFrontier_ScratchOffCards_Unused:
     End
 
 BattleFrontier_AttendantSoutheast:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message BattleFrontier_Text_TradeBPForPrizes2
@@ -211,7 +211,7 @@ BattleFrontier_CoordEvent_EnterBattleHall:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleHall
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_HALL, 25, 9, DIR_WEST
@@ -228,7 +228,7 @@ BattleFrontier_CoordEvent_EnterBattleCastle:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleCastle
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_CASTLE, 21, 9, DIR_WEST
@@ -245,7 +245,7 @@ BattleFrontier_CoordEvent_EnterBattleArcade:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleArcade
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_ARCADE, 1, 6, DIR_EAST
@@ -262,7 +262,7 @@ BattleFrontier_CoordEvent_EnterBattleFactory:
     LockAll
     ApplyMovement LOCALID_PLAYER, BattleFrontier_Movement_PlayerEnterBattleFactory
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_FACTORY, 1, 7, DIR_EAST

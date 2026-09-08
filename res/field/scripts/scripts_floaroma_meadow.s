@@ -155,7 +155,7 @@ FloaromaMeadow_Grunt_Unused:
     End
 
 FloaromaMeadow_PokefanM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message FloaromaMeadow_Text_BuySomeHoney
@@ -196,8 +196,8 @@ FloaromaMeadow_TryGiveHoney:
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, FloaromaMeadow_CantBuyHoneyBagIsFull
     RemoveMoney2 VAR_0x8006
     UpdateMoneyDisplay
-    PlaySE SEQ_SE_DP_REGI
-    WaitSE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
+    WaitSE SEQ_SE_DP_REGI_sseq
     Common_GiveItemQuantityNoLineFeed
     HideMoney
     CloseMessage
@@ -233,7 +233,7 @@ FloaromaMeadow_Dummy6:
     End
 
 FloaromaMeadow_ItemWorksKey:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_0x8004, ITEM_WORKS_KEY

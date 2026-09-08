@@ -1,9 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_1f.h"
 
-// NOTE: These constants must mirror those in ov9_02249960.c
-#define LOCALID_CYNTHIA 128
-
     ScriptEntry DistortionWorld1F_OnTransition
     ScriptEntry DistortionWorld1F_Portal
     ScriptEntry DistortionWorld1F_OnFrame_FirstEntry
@@ -16,7 +13,7 @@ DistortionWorld1F_OnTransition:
     End
 
 DistortionWorld1F_Portal:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message DistortionWorld1F_Text_ReturnToSpearPillar
     ShowYesNoMenu VAR_RESULT
@@ -29,7 +26,7 @@ DistortionWorld1F_ReturnToSpearPillar:
     BufferPlayerName 0
     Message DistortionWorld1F_Text_PlayerHeadedForSpearPillar
     CloseMessage
-    PlaySE SEQ_SE_PL_SYUWA
+    PlaySE SEQ_SE_PL_SYUWA_sseq
     SetPartyGiratinaForm GIRATINA_FORM_ALTERED
     FadeScreenOut
     WaitFadeScreen
@@ -44,25 +41,25 @@ DistortionWorld1F_OnFrame_FirstEntry:
     WaitMovement
     ApplyMovement LOCALID_PLAYER, DistortionWorld1F_Movement_PlayerWalkOnSpotEast
     WaitMovement
-    AddDistortionWorldMapObject LOCALID_CYNTHIA
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorld1F_Movement_CynthiaLookAround
+    AddDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_PORTAL
+    ApplyMovement DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_PORTAL, DistortionWorld1F_Movement_CynthiaLookAround
     WaitMovement
     Message DistortionWorld1F_Text_ThisPlace
     CloseMessageWithoutErasing
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorld1F_Movement_CynthiaWalkOnSpotSouth
+    ApplyMovement DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_PORTAL, DistortionWorld1F_Movement_CynthiaWalkOnSpotSouth
     WaitMovement
     Message DistortionWorld1F_Text_SpaceCalledDistortionWorld
     CloseMessageWithoutErasing
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorld1F_Movement_CynthiaWalkOnSpotWest
+    ApplyMovement DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_PORTAL, DistortionWorld1F_Movement_CynthiaWalkOnSpotWest
     WaitMovement
     Message DistortionWorld1F_Text_LetsFindGiratina
     CloseMessage
     ApplyMovement LOCALID_PLAYER, DistortionWorld1F_Movement_PlayerWatchCynthiaWalkSouth
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorld1F_Movement_CynthiaWalkSouth
+    ApplyMovement DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_PORTAL, DistortionWorld1F_Movement_CynthiaWalkSouth
     WaitMovement
     StartDistortionWorldGiratinaShadowEvent 0
     ApplyMovement LOCALID_PLAYER, DistortionWorld1F_Movement_PlayerNoticeGiratina
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorld1F_Movement_CynthiaNoticeGiratina
+    ApplyMovement DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_PORTAL, DistortionWorld1F_Movement_CynthiaNoticeGiratina
     WaitMovement
     WaitTime 30, VAR_RESULT
     FinishDistortionWorldGiratinaShadowEvent
@@ -70,14 +67,14 @@ DistortionWorld1F_OnFrame_FirstEntry:
     WaitButton
     CloseMessage
     ApplyMovement LOCALID_PLAYER, DistortionWorld1F_Movement_PlayerWalkOnSpotSouth
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorld1F_Movement_CynthiaWalkOnSpotNorth
+    ApplyMovement DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_PORTAL, DistortionWorld1F_Movement_CynthiaWalkOnSpotNorth
     WaitMovement
     Message DistortionWorld1F_Text_WeHaveToHurry
     CloseMessage
-    ApplyMovement LOCALID_CYNTHIA, DistortionWorld1F_Movement_CynthiaLeave
+    ApplyMovement DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_PORTAL, DistortionWorld1F_Movement_CynthiaLeave
     WaitMovement
-    DeleteDistortionWorldMapObject LOCALID_CYNTHIA
-    SetVar VAR_DISTORTION_WORLD_PROGRESS, 1
+    DeleteDistortionWorldMapObject DIST_WORLD_MAP_OBJECT_1F_CYNTHIA_PORTAL
+    SetVar VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_ENTERED_1F
     ReleaseAll
     End
 

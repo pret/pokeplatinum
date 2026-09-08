@@ -60,7 +60,7 @@ PastoriaCity_Beauty:
     End
 
 PastoriaCity_BlackBelt:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaCity_GymLeaderWrestles
@@ -78,7 +78,7 @@ PastoriaCity_GymLeaderWrestles:
     End
 
 PastoriaCity_ParasolLady:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK, PastoriaCity_ICookedPoffins
@@ -131,7 +131,7 @@ PastoriaCity_Clefairy:
     End
 
 PastoriaCity_GruntM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfSet FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST, PastoriaCity_StopChasingMe
     Message PastoriaCity_Text_PackageHasntArrived
@@ -183,7 +183,7 @@ PastoriaCity_GruntMLeaveSouth:
     End
 
 PastoriaCity_RemoveGruntM:
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_GRUNT_M
     SetFlag FLAG_TALKED_TO_PASTORIA_CITY_GRUNT_M
     ReleaseAll
@@ -320,7 +320,7 @@ PastoriaCity_SignboardSafariGame:
     End
 
 PastoriaCity_Rival:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_PASTORIA_CITY_STATE, 5, PastoriaCity_WhyArentYouGone
@@ -651,10 +651,10 @@ PastoriaCity_Explosion:
     Message PastoriaCity_Text_WheresThisGalac
     ApplyMovement LOCALID_RIVAL, PastoriaCity_Movement_RivalWalkOnSpotNorth
     WaitMovement
-    PlaySE SEQ_SE_DP_FW291
+    PlaySE SEQ_SE_DP_FW291_sseq
     WaitTime 4, VAR_RESULT
     Message PastoriaCity_Text_BigExplosion
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     ScrCmd_29F 1
     CloseMessage
     ClearFlag FLAG_HIDE_PASTORIA_CITY_GRUNT_M
@@ -723,7 +723,7 @@ PastoriaCity_Movement_PlayerWatchCrasherWakeEnterGreatMarsh:
     EndMovement
 
 PastoriaCity_CrasherWake:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Call PastoriaCity_Explosion
@@ -962,9 +962,9 @@ PastoriaCity_CroagunkScene:
     WaitTime 30, VAR_RESULT
     ApplyMovement LOCALID_CROAGUNK, PastoriaCity_Movement_CroagunkLeave
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_CROAGUNK
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     ReleaseAll
     End
 

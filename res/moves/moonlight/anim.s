@@ -7,7 +7,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 1
     SwitchBg 54, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    PlaySoundEffectC SEQ_SE_DP_W236
+    PlaySoundEffectC SEQ_SE_DP_W236_sseq
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

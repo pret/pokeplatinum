@@ -10,9 +10,9 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     BtlAnimCmd_082 2, 1, 1
     Func_NightShadeAttacker
-    PlaySoundEffectL SEQ_SE_DP_W109
+    PlaySoundEffectL SEQ_SE_DP_W109_sseq
     Delay 16
-    PlaySoundEffectR SEQ_SE_DP_201
+    PlaySoundEffectR SEQ_SE_DP_201_sseq
     Func_NightShadeDefender
     WaitForAnimTasks
     FreePokemonSpriteManager

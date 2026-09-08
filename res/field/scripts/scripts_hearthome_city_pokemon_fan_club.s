@@ -21,7 +21,7 @@ HearthomeCityPokemonFanClub_HideReporter:
     End
 
 HearthomeCityPokemonFanClub_Gentleman:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_HEARTHOME_CITY_POKEMON_FAN_CLUB_POFFIN_CASE, HearthomeCityPokemonFanClub_WeAreNumberOneFanClub
@@ -51,7 +51,7 @@ HearthomeCityPokemonFanClub_BagIsFull:
     End
 
 HearthomeCityPokemonFanClub_Beauty:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetFirstNonEggInParty VAR_0x8000

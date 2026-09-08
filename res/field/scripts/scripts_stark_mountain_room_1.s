@@ -54,16 +54,16 @@ StarkMountainOutside_OnFrame_TeamGalactic:
     ApplyMovement LOCALID_MARS, StarkMountainRoom1_Movement_MarsLeave
     ApplyMovement LOCALID_PLAYER, StarkMountainRoom1_Movement_PlayerMoveAside
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
-    WaitSE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_JUPITER, StarkMountainRoom1_Movement_JupiterWalkOnSpotEast
     WaitMovement
     Message StarkMountainRoom1_Text_NotOrdinaryGirl
     CloseMessage
     ApplyMovement LOCALID_JUPITER, StarkMountainRoom1_Movement_JupiterLeave
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
-    WaitSE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     ApplyMovement LOCALID_CHARON, StarkMountainRoom1_Movement_CharonWalkOnSpotSouth
     ApplyMovement LOCALID_PLAYER, StarkMountainRoom1_Movement_PlayerWalkOnSpotNorth
     WaitMovement

@@ -8,10 +8,10 @@ L_0:
     LoadCellResObj 0, vines_cell_NCER_lz
     LoadAnimResObj 0, vines_anim_NANR_lz
     AddSpriteWithFunc 0, SPRITE_FUNC_INGRAIN, vines_NCGR_lz, vines_NCLR, vines_cell_NCER_lz, vines_anim_NANR_lz, 0, 0, 4
-    PlayDelayedSoundEffectL SEQ_SE_DP_W010, 10
-    PlayDelayedSoundEffectL SEQ_SE_DP_W010, 28
+    PlayDelayedSoundEffectL SEQ_SE_DP_W010_sseq, 10
+    PlayDelayedSoundEffectL SEQ_SE_DP_W010_sseq, 28
     Delay 35
-    PlayLoopedSoundEffectL SEQ_SE_DP_W145C, 2, 12
+    PlayLoopedSoundEffectL SEQ_SE_DP_W145C_sseq, 2, 12
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     WaitForAnimTasks
     FreeSpriteManager 0

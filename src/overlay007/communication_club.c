@@ -299,7 +299,7 @@ static void ov7_02249C44(ListMenu *param0, u32 param1, u8 param2)
     sCommClubMan->unk_98 = 1;
 
     if (param2 == 0) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
     }
 }
 
@@ -461,13 +461,13 @@ static void ov7_02249FFC(SysTask *task, void *param1)
             ov7_0224A0C8(commClubMan);
             break;
         case 0xfffffffe:
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
             CommClubMan_Disconnect();
             CommClubMan_DestroyList(task, commClubMan);
             break;
         default:
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             ListMenu_CalcTrueCursorPos(commClubMan->unk_5C, &commClubMan->connectIndex);
 
             if (sub_02033808() > commClubMan->connectIndex) {
@@ -886,7 +886,7 @@ static void ov7_0224A7D0(SysTask *task, void *param1)
 
     if (CommInfo_NewNetworkId() != 0xff) {
         commClubMan->unk_95 = CommInfo_NewNetworkId();
-        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN_sseq);
         CommClubMan_PrintPlayerContactMsg(commClubMan->unk_95, commClubMan);
         CommClubMan_SetTask(ov7_0224AF84);
         return;

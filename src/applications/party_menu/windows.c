@@ -8,9 +8,9 @@
 #include "generated/species.h"
 
 #include "applications/party_menu/callbacks.h"
+#include "applications/party_menu/context_menu.h"
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
-#include "applications/party_menu/unk_02083370.h"
 #include "applications/pokemon_summary_screen/main.h"
 
 #include "bg_window.h"
@@ -1229,13 +1229,13 @@ static BOOL TextPrinter_HandleSound(TextPrinterTemplate *printer, u16 param)
     case 2:
         return Sound_IsBGMPausedByFanfare();
     case 3:
-        Sound_PlayEffect(SEQ_SE_DP_KON);
+        Sound_PlayEffect(SEQ_SE_DP_KON_sseq);
         break;
     case 4:
-        Sound_PlayFanfare(SEQ_FANFA1);
+        Sound_PlayFanfare(SEQ_FANFA1_sseq);
         break;
     case 5:
-        return Sound_IsEffectPlaying(SEQ_SE_DP_KON);
+        return Sound_IsEffectPlaying(SEQ_SE_DP_KON_sseq);
     }
 
     return FALSE;

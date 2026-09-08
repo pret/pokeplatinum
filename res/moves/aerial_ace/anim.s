@@ -7,8 +7,8 @@ L_0:
     LoadPokemonSpriteDummyResources 1
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 8, BATTLE_COLOR_BLACK
     Delay 15
-    PlaySoundEffectR SEQ_SE_DP_W013B
-    PlayDelayedSoundEffectR SEQ_SE_DP_W013, 10
+    PlaySoundEffectR SEQ_SE_DP_W013B_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_W013_sseq, 10
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     LoadPokemonSpriteDummyResources 4

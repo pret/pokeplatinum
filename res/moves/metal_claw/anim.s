@@ -1,7 +1,7 @@
 #include "macros/btlanimcmd.inc"
 
 L_0:
-    PlayLoopedSoundEffectL SEQ_SE_DP_W231, 8, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W231_sseq, 8, 2
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1
@@ -23,7 +23,7 @@ L_0:
     AddSpriteWithFunc 0, SPRITE_FUNC_METAL_CLAW, claw_NCGR_lz, claw_NCLR, claw_cell_NCER_lz, claw_anim_NANR_lz, 0, 0, 4
     Delay 1
     BeginLoop 2
-    PlaySoundEffectR SEQ_SE_DP_W013
+    PlaySoundEffectR SEQ_SE_DP_W013_sseq
     Func_MoveBattlerX2 3, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 2
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

@@ -5,16 +5,16 @@ L_0:
     JumpIfContest L_1
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
-    PlaySoundEffectR SEQ_SE_DP_W030
-    PlayDelayedSoundEffectR SEQ_SE_DP_145, 5
+    PlaySoundEffectR SEQ_SE_DP_W030_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_145_sseq, 5
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
     End
 
 L_1:
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
-    PlaySoundEffectR SEQ_SE_DP_W030
-    PlayDelayedSoundEffectR SEQ_SE_DP_145, 5
+    PlaySoundEffectR SEQ_SE_DP_W030_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_145_sseq, 5
     CreateEmitter 0, 5, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 8, EMITTER_CB_SET_POS_TO_DEFENDER

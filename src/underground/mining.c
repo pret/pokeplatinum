@@ -1344,13 +1344,13 @@ static void Mining_PlayHitAnimationsAndSoundEffects(int x, int y, BOOL pickaxeSe
 
     if (hitRock) {
         Sprite_SetAnim(sMiningEnv->sprites[MINING_SPRITE_IMPACT], MINING_ANIM_HIT_ROCK_IMPACT);
-        Sound_PlayEffect(SEQ_SE_DP_UG_004);
+        Sound_PlayEffect(SEQ_SE_DP_UG_004_sseq);
     } else if (pickaxeSelected) {
         Sprite_SetAnim(sMiningEnv->sprites[MINING_SPRITE_IMPACT], MINING_ANIM_PICKAXE_IMPACT);
-        Sound_PlayEffect(SEQ_SE_DP_UG_002);
+        Sound_PlayEffect(SEQ_SE_DP_UG_002_sseq);
     } else {
         Sprite_SetAnim(sMiningEnv->sprites[MINING_SPRITE_IMPACT], MINING_ANIM_HAMMER_IMPACT);
-        Sound_PlayEffect(SEQ_SE_DP_UG_003);
+        Sound_PlayEffect(SEQ_SE_DP_UG_003_sseq);
     }
 
     Sprite_SetAnimateFlag(sMiningEnv->sprites[MINING_SPRITE_TOOL], TRUE);
@@ -1513,7 +1513,7 @@ static void Mining_GameTask(SysTask *sysTask, void *data)
     case MINING_STATE_WAIT_FOR_FADE_IN_START:
         if (IsScreenFadeDone()) {
             ctx->timer = 0;
-            Sound_PlayEffect(SEQ_SE_PL_UG_006);
+            Sound_PlayEffect(SEQ_SE_PL_UG_006_sseq);
             ctx->state = MINING_STATE_WAIT;
         }
         break;
@@ -1572,7 +1572,7 @@ static void Mining_GameTask(SysTask *sysTask, void *data)
 
         if (ctx->timer == 0) {
             sMiningEnv->printerID = UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_EverythingDugUp, FALSE, NULL);
-            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2_sseq);
             ctx->textTimer = 60;
             ctx->state = MINING_STATE_WAIT_FOR_TEXT;
         }
@@ -1682,7 +1682,7 @@ static void Mining_GameTask(SysTask *sysTask, void *data)
     case MINING_STATE_COLLAPSE_FADE_OUT:
         SpriteList_Update(sMiningEnv->spriteList);
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_DOWNWARD_OUT, FADE_TYPE_DOWNWARD_OUT, COLOR_BLACK, 15, 1, HEAP_ID_MINING);
-        Sound_PlayEffect(SEQ_SE_DP_UG_001);
+        Sound_PlayEffect(SEQ_SE_DP_UG_001_sseq);
         ctx->state = MINING_STATE_COLLAPSE_WAIT_FOR_FADE;
         break;
     case MINING_STATE_COLLAPSE_WAIT_FOR_FADE:
@@ -2042,7 +2042,7 @@ static void Mining_DrawUncoveredItemShines(MiningGameContext *ctx)
 {
     for (int i = 0; i < MAX_BURIED_ITEMS; i++) {
         if (ctx->itemShineAnimIndices[i] == 1) {
-            Sound_PlayEffect(SEQ_SE_DP_KIRAKIRA4);
+            Sound_PlayEffect(SEQ_SE_DP_KIRAKIRA4_sseq);
 
             for (int j = 0; j < 3; j++) {
                 int x = MATH_Rand32(&sMiningEnv->rand, sMiningEnv->buriedObjects[i].miningObject->width * 8);
@@ -2405,7 +2405,7 @@ static void Mining_ButtonTouchCheck(BgConfig *bgConfig, int touchX, int touchY, 
         if (sidebarTouchState == SIDEBAR_TOUCH_START) {
             Mining_DrawButton(tileMapBuffer, &sHammerButtonRectangle, MINING_BASE_TILE_HAMMER_BUTTON_TRANSITION, BUTTON_ROW_GAP_LENGTH);
             Mining_DrawButton(tileMapBuffer, &sPickaxeButtonRectangle, MINING_BASE_TILE_PICKAXE_BUTTON_UNPRESSED, BUTTON_ROW_GAP_LENGTH);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (sidebarTouchState == SIDEBAR_TOUCH_START + 1) {
             Mining_DrawButton(tileMapBuffer, &sHammerButtonRectangle, MINING_BASE_TILE_HAMMER_BUTTON_PRESSED, BUTTON_ROW_GAP_LENGTH);
         }
@@ -2425,7 +2425,7 @@ static void Mining_ButtonTouchCheck(BgConfig *bgConfig, int touchX, int touchY, 
         if (sidebarTouchState == SIDEBAR_TOUCH_START) {
             Mining_DrawButton(tileMapBuffer, &sHammerButtonRectangle, MINING_BASE_TILE_HAMMER_BUTTON_UNPRESSED, BUTTON_ROW_GAP_LENGTH);
             Mining_DrawButton(tileMapBuffer, &sPickaxeButtonRectangle, MINING_BASE_TILE_PICKAXE_BUTTON_TRANSITION, BUTTON_ROW_GAP_LENGTH);
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
         } else if (sidebarTouchState == SIDEBAR_TOUCH_START + 1) {
             Mining_DrawButton(tileMapBuffer, &sPickaxeButtonRectangle, MINING_BASE_TILE_PICKAXE_BUTTON_PRESSED, BUTTON_ROW_GAP_LENGTH);
         }
@@ -2752,7 +2752,7 @@ static BOOL Mining_MainGameLoop(MiningGameContext *ctx)
         ctx->soundEffectTimer--;
 
         if (ctx->soundEffectTimer == 0) {
-            Sound_PlayEffect(SEQ_SE_DP_KIRAKIRA3);
+            Sound_PlayEffect(SEQ_SE_DP_KIRAKIRA3_sseq);
         }
     }
 
@@ -2967,7 +2967,7 @@ static void TreasureRadar_TimerTask(SysTask *unused, void *data)
     ctx->timer++;
 
     if (ctx->timer > MAX_MINING_SPOTS / 3) {
-        Sound_PlayEffect(SEQ_SE_PL_UG_006);
+        Sound_PlayEffect(SEQ_SE_PL_UG_006_sseq);
         ctx->timer = 0;
     }
 }

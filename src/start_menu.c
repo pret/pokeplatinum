@@ -61,6 +61,7 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "render_window.h"
+#include "ribbon_save_data.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "screen_fade.h"
@@ -77,7 +78,6 @@
 #include "text.h"
 #include "trainer_case.h"
 #include "trainer_info.h"
-#include "unk_0202D778.h"
 #include "unk_02033200.h"
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
@@ -326,7 +326,7 @@ void StartMenu_OpenColosseum(FieldSystem *fieldSystem)
 
 void StartMenu_OpenFromScript(FieldSystem *fieldSystem)
 {
-    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN_sseq);
     StartMenu *menu = StartMenu_New();
 
     menu->inUnionRoom = FALSE;
@@ -687,7 +687,7 @@ static BOOL StartMenu_Select(FieldTask *fieldTask)
     StartMenu *menu = FieldTask_GetEnv(fieldTask);
     u16 prevPos = Menu_GetCursorPos(menu->menu);
 
-    menu->input = Menu_ProcessInputWithSound(menu->menu, SEQ_SE_DP_SELECT78);
+    menu->input = Menu_ProcessInputWithSound(menu->menu, SEQ_SE_DP_SELECT78_sseq);
     menu->cursorPos = Menu_GetCursorPos(menu->menu);
 
     if (prevPos != menu->cursorPos) {
@@ -1761,7 +1761,7 @@ static void StartMenu_Evolve(FieldTask *fieldTask)
     if (Evolution_IsDone(menu->taskData) == TRUE) {
         Evolution_Free(menu->taskData);
         Heap_Destroy(HEAP_ID_EVOLUTION);
-        Sound_StopBGM(SEQ_SHINKA, 0);
+        Sound_StopBGM(SEQ_SHINKA_sseq, 0);
         Sound_SetScene(SOUND_SCENE_NONE);
         FieldBGM_PlayEffectiveForMapHeader(fieldSystem, fieldSystem->location->mapHeaderID);
 

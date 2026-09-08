@@ -280,7 +280,7 @@ ValleyWindworksBuilding_Movement_CharonWalkOnSpotSouth:
     EndMovement
 
 ValleyWindworksBuilding_ScientistPapa:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3, ValleyWindworksBuilding_ValleyWindworksUsesTurbines
@@ -298,7 +298,7 @@ ValleyWindworksBuilding_ValleyWindworksUsesTurbines:
     End
 
 ValleyWindworksBuilding_Twin:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 3, ValleyWindworksBuilding_BlowBalloonPokemonAway
@@ -324,7 +324,7 @@ ValleyWindworksBuilding_PCEast:
     End
 
 ValleyWindworksBuilding_PC:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 2, ValleyWindworksBuilding_PCScreenFilledWithNumbers
     Message ValleyWindworksBuilding_Text_BringersAndTargetsTeamGalactic

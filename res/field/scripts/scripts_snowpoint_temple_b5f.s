@@ -19,8 +19,8 @@ SnowpointTempleB5F_RemoveRegigigas:
 
 SnowpointTempleB5F_Regigigas:
     LockAll
-    PlaySE SEQ_SE_CONFIRM
-    WaitSE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
+    WaitSE SE_CONFIRM_sseq_3
     GoToIfSet FLAG_AWAKENED_REGIGIGAS, SnowpointTempleB5F_EncounterRegigigas
     CheckHasAllLegendaryTitansInParty VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, SnowpointTempleB5F_GatherThreePokemon

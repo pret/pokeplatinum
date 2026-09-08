@@ -2,6 +2,7 @@
 #include "res/text/bank/battle_arcade.h"
 #include "res/text/bank/menu_entries.h"
 #include "constants/battle_frontier.h"
+#include "constants/battle_arcade_functions.h"
 
 
     ScriptEntry BattleArcade_SingleAttendant
@@ -34,7 +35,7 @@ BattleArcade_HideBattleFrontierReporter:
     End
 
 BattleArcade_SingleAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, 0
@@ -43,7 +44,7 @@ BattleArcade_SingleAttendant:
     End
 
 BattleArcade_MultiAttendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, 0
@@ -91,7 +92,7 @@ BattleArcade_HopeToSeeYouAgain:
 
 BattleArcade_TryTakeSingleChallenge:
     SetVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE
-    ScrCmd_2D9 0, 3, VAR_RESULT
+    CallBattleArcadeLobbyFunction BA_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE, 3, VAR_RESULT
     BufferNumber 0, 3
     BufferNumber 1, 3
     GoToIfEq VAR_RESULT, 0, BattleArcade_NotEnoughEligiblePokemonSingleDouble
@@ -100,7 +101,7 @@ BattleArcade_TryTakeSingleChallenge:
 
 BattleArcade_TryTakeDoubleChallenge:
     SetVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE
-    ScrCmd_2D9 0, 3, VAR_RESULT
+    CallBattleArcadeLobbyFunction BA_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE, 3, VAR_RESULT
     BufferNumber 0, 3
     BufferNumber 1, 3
     GoToIfEq VAR_RESULT, 0, BattleArcade_NotEnoughEligiblePokemonSingleDouble
@@ -109,7 +110,7 @@ BattleArcade_TryTakeDoubleChallenge:
 
 BattleArcade_TryTakeMultiChallenge:
     SetVar VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI
-    ScrCmd_2D9 0, 2, VAR_RESULT
+    CallBattleArcadeLobbyFunction BA_LOBBY_FUNC_CHECK_PARTY_ELIGIBLE, 2, VAR_RESULT
     BufferNumber 0, 2
     BufferNumber 1, 2
     GoToIfEq VAR_RESULT, 0, BattleArcade_NotEnoughEligiblePokemonMulti
@@ -133,8 +134,8 @@ BattleArcade_SelectPokemon:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_2D9 4, VAR_BATTLE_ARCADE_CHALLENGE_TYPE, VAR_RESULT
-    ScrCmd_2DB VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x05, VAR_MAP_LOCAL_0x06
+    CallBattleArcadeLobbyFunction BA_LOBBY_FUNC_SELECT_POKEMON, VAR_BATTLE_ARCADE_CHALLENGE_TYPE, VAR_RESULT
+    GetBattleArcadeSelectedSlots VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x05, VAR_MAP_LOCAL_0x06
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -225,7 +226,7 @@ BattleArcade_StartMultiChallenge:
     ScrCmd_135 154
     GetPartyMonSpecies VAR_MAP_LOCAL_0x02, VAR_0x8000
     GetPartyMonSpecies VAR_MAP_LOCAL_0x05, VAR_0x8001
-    ScrCmd_2DA VAR_0x8000, VAR_0x8001, VAR_RESULT
+    CheckBattleArcadePartnerUsesDifferentSpecies VAR_0x8000, VAR_0x8001, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 1, BattleArcade_BothTrainerChosePokemon1
     GoToIfEq VAR_0x8008, 2, BattleArcade_BothTrainerChosePokemon2
@@ -278,7 +279,7 @@ BattleArcade_WalkIntoCorridor:
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleArcade_WalkToCorridorSingleChallenge
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleArcade_WalkToCorridorDoubleChallenge
     CallIfEq VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleArcade_WalkToCorridorMultiChallenge
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     GoTo BattleArcade_StartChallenge
     End
 
@@ -458,13 +459,13 @@ BattleArcade_SaveGame:
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
-    PlaySE SEQ_SE_DP_SAVE
-    WaitSE SEQ_SE_DP_SAVE
+    PlaySE SEQ_SE_DP_SAVE_sseq
+    WaitSE SEQ_SE_DP_SAVE_sseq
     Return
 
 BattleArcade_OnFrame_DidntSaveBeforeQuit:
     Message BattleArcade_Text_DidntSaveBeforeQuit
-    ScrCmd_2DC VAR_BATTLE_ARCADE_CHALLENGE_TYPE
+    DeleteActiveBattleArcadeStreak VAR_BATTLE_ARCADE_CHALLENGE_TYPE
     GoTo BattleArcade_EndChallenge
     End
 
@@ -484,7 +485,7 @@ BattleArcade_EarnedSilverPrint:
     Message BattleArcade_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleArcade_Text_SilverPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 2
     Return
@@ -493,7 +494,7 @@ BattleArcade_EarnedGoldPrint:
     Message BattleArcade_Text_PrintForVictory
     BufferPlayerName 0
     Message BattleArcade_Text_GoldPrintAdded
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 4
     Common_CheckAllFrontierGoldPrintsObtained

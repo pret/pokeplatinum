@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 SnowpointCityWestHouse_AceTrainerM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_TRADED_FOR_GASPAR_HAUNTER, SnowpointCityWestHouse_MyGirlsHappy
@@ -26,7 +26,7 @@ SnowpointCityWestHouse_MyGirlsHappy:
     End
 
 SnowpointCityWestHouse_Mindy:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_TRADED_FOR_GASPAR_HAUNTER, SnowpointCityWestHouse_WeGotToBeFriends

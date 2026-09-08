@@ -8,17 +8,17 @@ L_0:
     LoadAnimResObj 0, torment_anim_NANR_lz
     AddSpriteWithFunc 0, SPRITE_FUNC_TORMENT, torment_NCGR_lz, torment_NCLR, torment_cell_NCER_lz, torment_anim_NANR_lz, 0, 0
     BeginLoop 2
-    PlaySoundEffectL SEQ_SE_DP_W029
+    PlaySoundEffectL SEQ_SE_DP_W029_sseq
     Delay 16
     EndLoop
     BeginLoop 2
     Delay 4
-    PlaySoundEffectL SEQ_SE_DP_W029
+    PlaySoundEffectL SEQ_SE_DP_W029_sseq
     Delay 4
     EndLoop
     BeginLoop 2
     Delay 4
-    PlaySoundEffectL SEQ_SE_DP_W029
+    PlaySoundEffectL SEQ_SE_DP_W029_sseq
     EndLoop
     WaitForAnimTasks
     LoadCharResObj 0, angry_NCGR_lz
@@ -28,7 +28,7 @@ L_0:
     AddSpriteWithFunc 0, SPRITE_FUNC_SWAGGER, angry_NCGR_lz, angry_NCLR, angry_cell_NCER_lz, angry_anim_NANR_lz, 0, 0
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
     Delay 4
-    PlayLoopedSoundEffectR SEQ_SE_DP_W207B, 10, 2
+    PlayLoopedSoundEffectR SEQ_SE_DP_W207B_sseq, 10, 2
     Delay 10
     WaitForAnimTasks
     FreeSpriteManager 0

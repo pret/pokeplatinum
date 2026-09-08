@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 CounterpartTalk_Counterpart:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerGender VAR_0x8004

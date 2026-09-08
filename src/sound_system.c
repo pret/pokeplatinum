@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/sdat.h"
-
 #include "struct_defs/chatot_cry.h"
 
 #include "game_options.h"
@@ -12,6 +10,8 @@
 #include "sound_chatot.h"
 #include "sound_playback.h"
 #include "sys_task_manager.h"
+
+#include "res/sound/pl_sound_data.naix"
 
 static void SoundSystem_InitHeapStates(SoundSystem *soundSys);
 static void SoundSystem_InitSoundHandles(SoundSystem *soundSys);

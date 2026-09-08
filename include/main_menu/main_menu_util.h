@@ -51,10 +51,10 @@ typedef struct MainMenuWindow {
     int textYOffset;
     int baseTile;
     enum BgLayer bgLayer;
-    enum Palette textPltt;
+    int textPltt;
     int textBank;
     int frameBaseTile;
-    enum Palette framePltt;
+    int framePltt;
     enum Font font;
     TextColor textColor;
     u8 backgroundColorIdx;
@@ -68,7 +68,7 @@ void MainMenuUtil_InitBGLayer(BgConfig *bgConfig, enum BgLayer bgLayer, u8 scree
 void MainMenuUtil_SetFadeToWhite(BOOL enable);
 void MainMenuUtil_StartScreenFadeToState(enum FadeType fadeType, int destState, int *state, int waitState);
 void MainMenuUtil_CheckScreenFadeDone(int *state);
-void MainMenuUtil_InitWindow(MainMenuWindow *mainMenuWindow, Window *window, enum Palette textPalette, enum TextBank textBank, int baseTile, enum Palette framePalette);
+void MainMenuUtil_InitWindow(MainMenuWindow *mainMenuWindow, Window *window, int textPalette, enum TextBank textBank, int baseTile, int framePalette);
 void MainMenuWindow_SetDimensionsAndBasetile(MainMenuWindow *window, int width, int height, int baseTile);
 void MainMenuWindow_SetScrollableAndFont(MainMenuWindow *window, BOOL scrollable, enum Font font);
 void MainMenuWindow_SetTextOffsets(MainMenuWindow *window, int xOffset, int yOffset);

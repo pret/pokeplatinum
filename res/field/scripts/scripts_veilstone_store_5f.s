@@ -26,7 +26,7 @@ VeilstoneStore5F_MiddleAgedWoman:
     End
 
 VeilstoneStore5F_Collector1:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_VEILSTONE_STORE_5F_STICKY_BARB, VeilstoneStore5F_Collector1AfterItemGiven
@@ -61,7 +61,7 @@ VeilstoneStore5F_Directory:
     End
 
 VeilstoneStore5F_VendingMachine:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message VeilstoneStore5F_Text_WhichDrinkWouldYouLike
     ShowMoney 20, 2
@@ -131,7 +131,7 @@ VeilstoneStore5F_VendingMachineDispenseDrink:
     CallIfEq LOCAL_VAR_DRINK_CHOICE, 2, VeilstoneStore5F_VendingMachineBuyLemonade
     UpdateMoneyDisplay
     BufferItemName 0, LOCAL_VAR_DRINK_ID
-    PlaySE SEQ_SE_DP_JIHANKI
+    PlaySE SEQ_SE_DP_JIHANKI_sseq
     BufferItemName 0, LOCAL_VAR_DRINK_ID
     Message VeilstoneStore5F_Text_ACanDroppedDown
     SetVar LOCAL_VAR_ITEM_ID, LOCAL_VAR_DRINK_ID
@@ -141,7 +141,7 @@ VeilstoneStore5F_VendingMachineDispenseDrink:
     GetRandom VAR_RESULT, 64
     GoToIfNe VAR_RESULT, 0, VeilstoneStore5F_VendingMachineBuyAnotherDrink
     GoToIfCannotFitItem LOCAL_VAR_DRINK_ID, 1, VAR_RESULT, VeilstoneStore5F_VendingMachineBagIsFull
-    PlaySE SEQ_SE_DP_JIHANKI
+    PlaySE SEQ_SE_DP_JIHANKI_sseq
     BufferItemName 0, LOCAL_VAR_DRINK_ID
     Message VeilstoneStore5F_Text_ABonusCanDroppedDown
     SetVar LOCAL_VAR_ITEM_ID, LOCAL_VAR_DRINK_ID

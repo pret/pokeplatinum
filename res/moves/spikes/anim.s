@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, spikes_spa
-    PlayLoopedSoundEffectR SEQ_SE_DP_W026, 6, 5
+    PlayLoopedSoundEffectR SEQ_SE_DP_W026_sseq, 6, 5
     CreateEmitterEx 0, 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BParabolic 0, 8, -3, 0, 12, 64
     Delay 5

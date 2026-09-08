@@ -352,12 +352,12 @@ void WorldExchange_SetProfile(const WorldExchangeTrainer *weTrainer, WorldExchan
 static BOOL BattleTowerNetworking_PrepareRequest(const u8 *url, const void *data, int dataSize, void *response, int maxResponseLength)
 {
     switch (HTTP_PrepareRequest(url, httpState.profileId, data, dataSize, (u8 *)response, maxResponseLength)) {
-    case 0:
+    case HTTP_PREPARE_STATUS_SUCCESS:
         return TRUE;
         break;
-    case 1:
+    case HTTP_PREPARE_STATUS_NOT_READY:
         break;
-    case 2:
+    case HTTP_PREPARE_STATUS_ALLOC_FAILED:
         break;
     }
 

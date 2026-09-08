@@ -9,12 +9,14 @@
 #include "constants/map_object.h"
 #include "generated/game_records.h"
 
+#include "applications/capsule_menu/main.h"
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/sprite_resource_manager.h"
 
 #include "bag.h"
 #include "bag_context.h"
+#include "ball_seal_info.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "field_message.h"
@@ -54,10 +56,8 @@
 #include "trainer_info.h"
 #include "tv_segment.h"
 #include "underground.h"
-#include "unk_0202C9F4.h"
 #include "unk_0203D1B8.h"
 #include "unk_0208C098.h"
-#include "unk_02097B18.h"
 #include "vars_flags.h"
 #include "wifi_battle_tower_save.h"
 
@@ -625,7 +625,7 @@ static u32 Shop_GetItemId(ShopMenu *shopMenu, u16 itemId)
     if (shopMenu->martType == MART_TYPE_DECOR) {
         return itemId;
     } else if (shopMenu->martType == MART_TYPE_SEAL) {
-        return sub_02098164(itemId);
+        return CapsuleMenu_GetSealNameIndex(itemId);
     }
 
     return itemId;
@@ -700,7 +700,7 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
     ShopMenu *shopMenu = (ShopMenu *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (onInit != TRUE) {
-        Sound_PlayEffect(SEQ_SE_DP_BAG_004);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_004_sseq);
     }
 
     Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION], 0);
@@ -724,7 +724,7 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
             MessageLoader *loader;
 
             loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0542, HEAP_ID_FIELD2);
-            string = MessageLoader_GetNewString(loader, sub_020981F4(index));
+            string = MessageLoader_GetNewString(loader, CapsuleMenu_GetSealNonAlphabetIndex(index));
 
             MessageLoader_Free(loader);
         }
@@ -878,7 +878,7 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
         Shop_DestroyStaticWindows(shopMenu);
         Shop_RestoreBgPriorities(shopMenu);
         Bg_ClearTilemap(shopMenu->bgConfig, BG_LAYER_MAIN_1);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         return SHOP_STATE_MOVE_CAMERA_BACK;
     default: {
         String *string;
@@ -917,7 +917,7 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
         }
 
         if (shopMenu->martType == MART_TYPE_DECOR) {
-            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
             return Shop_ShowPurchaseMessage(shopMenu);
         }
 
@@ -941,7 +941,7 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
         shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->string, shopMenu->options, 1);
 
         Shop_SetScrollSpritesPositionXY(shopMenu, TRUE);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         return SHOP_STATE_SHOW_PURCHASE_MENU;
     }
@@ -997,7 +997,7 @@ static void Shop_ShowQtyWithinInventory(ShopMenu *shopMenu)
 static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu)
 {
     if (sub_0208C15C(&shopMenu->itemAmount, shopMenu->itemAmountMax) != FALSE) {
-        Sound_PlayEffect(SEQ_SE_DP_BAG_004);
+        Sound_PlayEffect(SEQ_SE_DP_BAG_004_sseq);
         Shop_ShowQtyTotalItemPurchase(shopMenu, TRUE);
         return SHOP_STATE_SELECT_PURCHASE_MENU;
     }
@@ -1008,7 +1008,7 @@ static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu)
         Window_EraseStandardFrame(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG], TRUE);
         Window_EraseStandardFrame(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], TRUE);
         Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_MESSAGE], 15);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         return Shop_ShowPurchaseMessage(shopMenu);
     }
@@ -1026,7 +1026,7 @@ static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu)
         Shop_SetCursorSpritePalette(shopMenu, FALSE);
 
         Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION]);
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
 
         return SHOP_STATE_SELECT_BUY_MENU;
     }
@@ -1180,9 +1180,9 @@ static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu)
                 string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00011);
             } else {
                 if (shopMenu->itemAmount == 1) {
-                    StringTemplate_SetBallSealName(shopMenu->strTemplate, 0, sub_02098164(shopMenu->itemId));
+                    StringTemplate_SetBallSealName(shopMenu->strTemplate, 0, CapsuleMenu_GetSealNameIndex(shopMenu->itemId));
                 } else {
-                    StringTemplate_SetBallSealNamePlural(shopMenu->strTemplate, 0, sub_02098164(shopMenu->itemId));
+                    StringTemplate_SetBallSealNamePlural(shopMenu->strTemplate, 0, CapsuleMenu_GetSealNameIndex(shopMenu->itemId));
                 }
 
                 string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00013);
@@ -1193,7 +1193,7 @@ static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu)
         String_Free(string);
         Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_MESSAGE], 15);
         shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->string, shopMenu->options, TRUE);
-        Sound_PlayEffect(SEQ_SE_DP_REGI);
+        Sound_PlayEffect(SEQ_SE_DP_REGI_sseq);
         return SHOP_STATE_CONFIRM_PURCHASE;
     }
     case MENU_CANCEL:
@@ -1318,7 +1318,7 @@ static void Shop_SetItemNameToIndex(ShopMenu *shopMenu, u16 itemId, u16 idx)
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
         StringTemplate_SetUndergroundGoodsName(shopMenu->strTemplate, idx, itemId);
     } else {
-        StringTemplate_SetBallSealName(shopMenu->strTemplate, idx, sub_02098164(itemId));
+        StringTemplate_SetBallSealName(shopMenu->strTemplate, idx, CapsuleMenu_GetSealNameIndex(itemId));
     }
 }
 
@@ -1332,7 +1332,7 @@ static u32 Shop_GetItemPrice(ShopMenu *shopMenu, u16 itemId)
         return Good_GetMoneyPrice(itemId);
     }
 
-    return sub_020981D0(itemId);
+    return CapsuleMenu_GetSealPrice(itemId);
 }
 
 static u16 Shop_GetItemBPPrice(ShopMenu *shopMenu, u16 itemId)

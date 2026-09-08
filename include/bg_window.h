@@ -13,6 +13,8 @@
 #define TILEMAP_FILL_VAL_INCLUDES_PALETTE 17
 
 #define TILEMAP_PALETTE_SHIFT(i) (i << 12)
+#define TILEMAP_MASK_PALETTE     0xF000
+#define TILEMAP_MASK_INDEX       0x0FFF
 
 #define PIXEL_FILL(color) (((color) << 4) | (color))
 

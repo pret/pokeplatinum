@@ -46,7 +46,7 @@ BgEvents_MartShelf3:
     End
 
 BgEvents_TownMap:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FadeScreenOut
     WaitFadeScreen

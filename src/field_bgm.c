@@ -23,85 +23,85 @@
 // clang-format off
 // Class, Eyes meet theme
 const static u16 sTrainerEncounterBGMs[][2] = {
-    { TRAINER_CLASS_AROMA_LADY,              SEQ_EYE_LADY },
-    { TRAINER_CLASS_RUIN_MANIAC,             SEQ_EYE_MOUNT },
-    { TRAINER_CLASS_INTERVIEWERS,            SEQ_EYE_FUN },
-    { TRAINER_CLASS_TUBER_FEMALE,            SEQ_EYE_KID },
-    { TRAINER_CLASS_TUBER_MALE,              SEQ_EYE_KID },
-    { TRAINER_CLASS_SIS_AND_BRO,             SEQ_EYE_SPORT },
-    { TRAINER_CLASS_ACE_TRAINER_FEMALE,      SEQ_EYE_ELITE },
-    { TRAINER_CLASS_ACE_TRAINER_MALE,        SEQ_EYE_ELITE },
-    { TRAINER_CLASS_LADY,                    SEQ_EYE_RICH },
-    { TRAINER_CLASS_BEAUTY,                  SEQ_EYE_LADY },
-    { TRAINER_CLASS_RICH_BOY,                SEQ_EYE_RICH },
-    { TRAINER_CLASS_SWIMMER_MALE,            SEQ_EYE_SPORT },
-    { TRAINER_CLASS_BLACK_BELT,              SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_GUITARIST,               SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_CAMPER,                  SEQ_EYE_BOY },
-    { TRAINER_CLASS_PSYCHIC_FEMALE,          SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_PSYCHIC_MALE,            SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_GENTLEMAN,               SEQ_EYE_RICH },
-    { TRAINER_CLASS_SCHOOL_KID_FEMALE,       SEQ_EYE_GIRL },
-    { TRAINER_CLASS_SCHOOL_KID_MALE,         SEQ_EYE_BOY },
-    { TRAINER_CLASS_POKEFAN_FEMALE,          SEQ_EYE_FUN },
-    { TRAINER_CLASS_POKEFAN_MALE,            SEQ_EYE_FUN },
-    { TRAINER_CLASS_YOUNGSTER,               SEQ_EYE_BOY },
-    { TRAINER_CLASS_FISHERMAN,               SEQ_EYE_ENKA },
-    { TRAINER_CLASS_DRAGON_TAMER,            SEQ_EYE_ELITE },
-    { TRAINER_CLASS_BIRD_KEEPER,             SEQ_EYE_SPORT },
-    { TRAINER_CLASS_NINJA_BOY,               SEQ_EYE_KID },
-    { TRAINER_CLASS_BATTLE_GIRL,             SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_PARASOL_LADY,            SEQ_EYE_LADY },
-    { TRAINER_CLASS_SWIMMER_FEMALE,          SEQ_EYE_LADY },
-    { TRAINER_CLASS_PICNICKER,               SEQ_EYE_GIRL },
-    { TRAINER_CLASS_TWINS,                   SEQ_EYE_KID },
-    { TRAINER_CLASS_SAILOR,                  SEQ_EYE_ENKA },
-    { TRAINER_CLASS_COLLECTOR,               SEQ_EYE_MYS },
-    { TRAINER_CLASS_BREEDER_FEMALE,          SEQ_EYE_LADY },
-    { TRAINER_CLASS_BREEDER_MALE,            SEQ_EYE_BOY },
-    { TRAINER_CLASS_RANGER_FEMALE,           SEQ_EYE_ELITE },
-    { TRAINER_CLASS_RANGER_MALE,             SEQ_EYE_ELITE },
-    { TRAINER_CLASS_LASS,                    SEQ_EYE_GIRL },
-    { TRAINER_CLASS_BUG_CATCHER,             SEQ_EYE_BOY },
-    { TRAINER_CLASS_HIKER,                   SEQ_EYE_MOUNT },
-    { TRAINER_CLASS_YOUNG_COUPLE,            SEQ_EYE_FUN },
-    { TRAINER_CLASS_CYCLIST_MALE,            SEQ_EYE_SPORT },
-    { TRAINER_CLASS_CYCLIST_FEMALE,          SEQ_EYE_SPORT },
-    { TRAINER_CLASS_GALACTIC_GRUNT_MALE,     SEQ_EYE_GINGA },
-    { TRAINER_CLASS_GALACTIC_GRUNT_FEMALE,   SEQ_EYE_GINGA },
-    { TRAINER_CLASS_COMMANDER_MARS,          SEQ_EYE_GINGA },
-    { TRAINER_CLASS_COMMANDER_JUPITER,       SEQ_EYE_GINGA },
-    { TRAINER_CLASS_COMMANDER_SATURN,        SEQ_EYE_GINGA },
-    { TRAINER_CLASS_SOCIALITE,               SEQ_EYE_RICH },
-    { TRAINER_CLASS_WAITER,                  SEQ_EYE_FUN },
-    { TRAINER_CLASS_WAITRESS,                SEQ_EYE_FUN },
-    { TRAINER_CLASS_WORKER,                  SEQ_EYE_FUN },
-    { TRAINER_CLASS_RANCHER,                 SEQ_EYE_MOUNT },
-    { TRAINER_CLASS_COWGIRL,                 SEQ_EYE_MOUNT },
-    { TRAINER_CLASS_BELLE_AND_PA,            SEQ_EYE_MOUNT },
-    { TRAINER_CLASS_CLOWN,                   SEQ_EYE_FUN },
-    { TRAINER_CLASS_IDOL,                    SEQ_EYE_GIRL },
-    { TRAINER_CLASS_ARTIST,                  SEQ_EYE_FUN },
-    { TRAINER_CLASS_POKE_KID,                SEQ_EYE_KID },
-    { TRAINER_CLASS_POLICEMAN,               SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_DOUBLE_TEAM,             SEQ_EYE_ELITE },
-    { TRAINER_CLASS_SKIER_MALE,              SEQ_EYE_SPORT },
-    { TRAINER_CLASS_SKIER_FEMALE,            SEQ_EYE_SPORT },
-    { TRAINER_CLASS_ROUGHNECK,               SEQ_EYE_FIGHT },
-    { TRAINER_CLASS_SCIENTIST,               SEQ_EYE_MYS },
-    { TRAINER_CLASS_JOGGER,                  SEQ_EYE_SPORT },
-    { TRAINER_CLASS_VETERAN,                 SEQ_EYE_ELITE },
-    { TRAINER_CLASS_CAMERAMAN,               SEQ_EYE_FUN },
-    { TRAINER_CLASS_REPORTER,                SEQ_EYE_FUN },
-    { TRAINER_CLASS_PI,                      SEQ_EYE_RICH },
-    { TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE, SEQ_EYE_ELITE },
-    { TRAINER_CLASS_ACE_TRAINER_SNOW_MALE,   SEQ_EYE_ELITE },
-    { TRAINER_CLASS_ELITE_FOUR_AARON,        SEQ_EYE_TENNO },
-    { TRAINER_CLASS_ELITE_FOUR_BERTHA,       SEQ_EYE_TENNO },
-    { TRAINER_CLASS_ELITE_FOUR_FLINT,        SEQ_EYE_TENNO },
-    { TRAINER_CLASS_ELITE_FOUR_LUCIAN,       SEQ_EYE_TENNO },
-    { TRAINER_CLASS_CHAMPION_CYNTHIA,        SEQ_EYE_CHAMP },
-    { TRAINER_CLASS_MAID,                    SEQ_EYE_FUN }
+    { TRAINER_CLASS_AROMA_LADY,              SEQ_EYE_LADY_sseq },
+    { TRAINER_CLASS_RUIN_MANIAC,             SEQ_EYE_MOUNT_sseq },
+    { TRAINER_CLASS_INTERVIEWERS,            SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_TUBER_FEMALE,            SEQ_EYE_KID_sseq },
+    { TRAINER_CLASS_TUBER_MALE,              SEQ_EYE_KID_sseq },
+    { TRAINER_CLASS_SIS_AND_BRO,             SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_ACE_TRAINER_FEMALE,      SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_ACE_TRAINER_MALE,        SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_LADY,                    SEQ_EYE_RICH_sseq },
+    { TRAINER_CLASS_BEAUTY,                  SEQ_EYE_LADY_sseq },
+    { TRAINER_CLASS_RICH_BOY,                SEQ_EYE_RICH_sseq },
+    { TRAINER_CLASS_SWIMMER_MALE,            SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_BLACK_BELT,              SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_GUITARIST,               SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_CAMPER,                  SEQ_EYE_BOY_sseq },
+    { TRAINER_CLASS_PSYCHIC_FEMALE,          SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_PSYCHIC_MALE,            SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_GENTLEMAN,               SEQ_EYE_RICH_sseq },
+    { TRAINER_CLASS_SCHOOL_KID_FEMALE,       SEQ_EYE_GIRL_sseq },
+    { TRAINER_CLASS_SCHOOL_KID_MALE,         SEQ_EYE_BOY_sseq },
+    { TRAINER_CLASS_POKEFAN_FEMALE,          SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_POKEFAN_MALE,            SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_YOUNGSTER,               SEQ_EYE_BOY_sseq },
+    { TRAINER_CLASS_FISHERMAN,               SEQ_EYE_ENKA_sseq },
+    { TRAINER_CLASS_DRAGON_TAMER,            SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_BIRD_KEEPER,             SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_NINJA_BOY,               SEQ_EYE_KID_sseq },
+    { TRAINER_CLASS_BATTLE_GIRL,             SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_PARASOL_LADY,            SEQ_EYE_LADY_sseq },
+    { TRAINER_CLASS_SWIMMER_FEMALE,          SEQ_EYE_LADY_sseq },
+    { TRAINER_CLASS_PICNICKER,               SEQ_EYE_GIRL_sseq },
+    { TRAINER_CLASS_TWINS,                   SEQ_EYE_KID_sseq },
+    { TRAINER_CLASS_SAILOR,                  SEQ_EYE_ENKA_sseq },
+    { TRAINER_CLASS_COLLECTOR,               SEQ_EYE_MYS_sseq },
+    { TRAINER_CLASS_BREEDER_FEMALE,          SEQ_EYE_LADY_sseq },
+    { TRAINER_CLASS_BREEDER_MALE,            SEQ_EYE_BOY_sseq },
+    { TRAINER_CLASS_RANGER_FEMALE,           SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_RANGER_MALE,             SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_LASS,                    SEQ_EYE_GIRL_sseq },
+    { TRAINER_CLASS_BUG_CATCHER,             SEQ_EYE_BOY_sseq },
+    { TRAINER_CLASS_HIKER,                   SEQ_EYE_MOUNT_sseq },
+    { TRAINER_CLASS_YOUNG_COUPLE,            SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_CYCLIST_MALE,            SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_CYCLIST_FEMALE,          SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_GALACTIC_GRUNT_MALE,     SEQ_EYE_GINGA_sseq },
+    { TRAINER_CLASS_GALACTIC_GRUNT_FEMALE,   SEQ_EYE_GINGA_sseq },
+    { TRAINER_CLASS_COMMANDER_MARS,          SEQ_EYE_GINGA_sseq },
+    { TRAINER_CLASS_COMMANDER_JUPITER,       SEQ_EYE_GINGA_sseq },
+    { TRAINER_CLASS_COMMANDER_SATURN,        SEQ_EYE_GINGA_sseq },
+    { TRAINER_CLASS_SOCIALITE,               SEQ_EYE_RICH_sseq },
+    { TRAINER_CLASS_WAITER,                  SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_WAITRESS,                SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_WORKER,                  SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_RANCHER,                 SEQ_EYE_MOUNT_sseq },
+    { TRAINER_CLASS_COWGIRL,                 SEQ_EYE_MOUNT_sseq },
+    { TRAINER_CLASS_BELLE_AND_PA,            SEQ_EYE_MOUNT_sseq },
+    { TRAINER_CLASS_CLOWN,                   SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_IDOL,                    SEQ_EYE_GIRL_sseq },
+    { TRAINER_CLASS_ARTIST,                  SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_POKE_KID,                SEQ_EYE_KID_sseq },
+    { TRAINER_CLASS_POLICEMAN,               SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_DOUBLE_TEAM,             SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_SKIER_MALE,              SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_SKIER_FEMALE,            SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_ROUGHNECK,               SEQ_EYE_FIGHT_sseq },
+    { TRAINER_CLASS_SCIENTIST,               SEQ_EYE_MYS_sseq },
+    { TRAINER_CLASS_JOGGER,                  SEQ_EYE_SPORT_sseq },
+    { TRAINER_CLASS_VETERAN,                 SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_CAMERAMAN,               SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_REPORTER,                SEQ_EYE_FUN_sseq },
+    { TRAINER_CLASS_PI,                      SEQ_EYE_RICH_sseq },
+    { TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE, SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_ACE_TRAINER_SNOW_MALE,   SEQ_EYE_ELITE_sseq },
+    { TRAINER_CLASS_ELITE_FOUR_AARON,        SEQ_EYE_TENNO_sseq },
+    { TRAINER_CLASS_ELITE_FOUR_BERTHA,       SEQ_EYE_TENNO_sseq },
+    { TRAINER_CLASS_ELITE_FOUR_FLINT,        SEQ_EYE_TENNO_sseq },
+    { TRAINER_CLASS_ELITE_FOUR_LUCIAN,       SEQ_EYE_TENNO_sseq },
+    { TRAINER_CLASS_CHAMPION_CYNTHIA,        SEQ_EYE_CHAMP_sseq },
+    { TRAINER_CLASS_MAID,                    SEQ_EYE_FUN_sseq }
 };
 // clang-format on
 
@@ -154,12 +154,12 @@ u16 FieldBGM_GetEffective(FieldSystem *fieldSystem, enum MapHeaderID mapHeaderID
         case MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM:
             break;
         default:
-            return SEQ_NAMINORI;
+            return SEQ_NAMINORI_sseq;
         }
     }
 
     if (GetRadarChainActive(fieldSystem->chain) == TRUE) {
-        return SEQ_POKERADAR;
+        return SEQ_KUSAGASA_sseq;
     }
 
     u16 bgmID = FieldBGM_GetForMapHeader(fieldSystem, mapHeaderID);
@@ -218,7 +218,7 @@ static u16 FieldBGM_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, enum Map
         }
 
         if ((y == 576) || (y == 681)) {
-            return SEQ_PL_BICYCLE;
+            return SEQ_BICYCLE_sseq_1;
         }
     }
 
@@ -279,7 +279,7 @@ static void FieldBGM_GetFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode,
 u16 FieldBGM_GetEyesMeetForTrainer(enum TrainerID trainerID)
 {
     u8 class = (u8)Trainer_LoadParam(trainerID, TRDATA_CLASS);
-    u16 i, bgmID = SEQ_EYE_KID;
+    u16 i, bgmID = SEQ_EYE_KID_sseq;
 
     for (i = 0; i < NELEMS(sTrainerEncounterBGMs); i++) {
         if (sTrainerEncounterBGMs[i][0] == class) {

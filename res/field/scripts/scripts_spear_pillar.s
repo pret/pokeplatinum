@@ -180,7 +180,7 @@ SpearPillar_CoordEvent_MarsJupiter:
     BufferRivalName 0
     BufferPlayerName 1
     Message SpearPillar_Text_IllHelpYou
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     HealParty
     Message SpearPillar_Text_FullyHealedPokemon
@@ -372,9 +372,9 @@ SpearPillar_Cyrus:
     FadeOutBGM 0, 30
     ScrCmd_20D 0, VAR_RESULT
     WaitTime 10, VAR_RESULT
-    PlaySE SEQ_SE_PL_KUSARI
+    PlaySE SEQ_SE_PL_KUSARI_sseq
     WaitTime 20, VAR_RESULT
-    PlayMusic SEQ_THE_EVENT02
+    PlayMusic SEQ_THE_EVENT02_sseq
     SetSubScene63
     GoTo SpearPillar_WaitThenWarpToSpearPillarDistorted
     End

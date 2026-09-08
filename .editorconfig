@@ -16,3 +16,6 @@ charset = utf-16le
 
 [*.{clang-format,yaml}]
 indent_size = 2
+
+[res/text/*.json]
+indent_size = 2

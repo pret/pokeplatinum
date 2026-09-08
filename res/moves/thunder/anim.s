@@ -21,7 +21,7 @@ L_0:
     Func_ShakeBg 3, 0, 1, 1, 0, SHAKE_BG_TARGET_BASE
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_BLACK, 15, 0
     Func_FadeBg FADE_BG_TYPE_EFFECT, -4, 0, 12, BATTLE_COLOR_WHITE
-    PlaySoundEffectR SEQ_SE_DP_W161B
+    PlaySoundEffectR SEQ_SE_DP_W161B_sseq
     Delay 10
     Func_FadeBg FADE_BG_TYPE_EFFECT, -4, 12, 0, BATTLE_COLOR_WHITE
     Func_Shake 0, 1, 1, 8, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER

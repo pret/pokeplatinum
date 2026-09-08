@@ -32,7 +32,7 @@ BattleFrontierGateToFightArea_OnFrame_FirstEntry:
     Call BattleFrontierGateToFightArea_PlayerWalkToAttendant
     Message BattleFrontierGateToFightArea_Text_BorrowVsRecorder
     BufferPlayerName 0
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     Message BattleFrontierGateToFightArea_Text_VsRecorderWasUpgraded
     WaitFanfare
     Message BattleFrontierGateToFightArea_Text_AnyQuestions
@@ -44,7 +44,7 @@ BattleFrontierGateToFightArea_OnFrame_FirstEntry:
     End
 
 BattleFrontierGateToFightArea_AttendantGeneral:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message BattleFrontierGateToFightArea_Text_ExplainWhichTopic
@@ -108,7 +108,7 @@ BattleFrontierGateToFightArea_ExplainBasicRules:
     End
 
 BattleFrontierGateToFightArea_AttendantBattleTower:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message BattleFrontierGateToFightArea_Text_ShouldIExplainBattleTower
@@ -134,7 +134,7 @@ BattleFrontierGateToFightArea_AttendantBattleTowerEnd:
     End
 
 BattleFrontierGateToFightArea_AttendantBattleFactory:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message BattleFrontierGateToFightArea_Text_ShouldIExplainBattleFactory
@@ -160,7 +160,7 @@ BattleFrontierGateToFightArea_AttendantBattleFactoryEnd:
     End
 
 BattleFrontierGateToFightArea_AttendantBattleHall:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message BattleFrontierGateToFightArea_Text_ShouldIExplainBattleHall
@@ -186,7 +186,7 @@ BattleFrontierGateToFightArea_AttendantBattleHallEnd:
     End
 
 BattleFrontierGateToFightArea_AttendantBattleCastle:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message BattleFrontierGateToFightArea_Text_ShouldIExplainBattleCastle
@@ -212,7 +212,7 @@ BattleFrontierGateToFightArea_AttendantBattleCastleEnd:
     End
 
 BattleFrontierGateToFightArea_AttendantBattleArcade:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message BattleFrontierGateToFightArea_Text_ShouldIExplainBattleArcade

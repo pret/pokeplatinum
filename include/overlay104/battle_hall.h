@@ -5,7 +5,7 @@
 
 #include "struct_defs/pokemon.h"
 
-#include "overlay104/frontier_data_transfer.h"
+#include "overlay104/frontier_opponents.h"
 
 #include "battle_hall_save.h"
 #include "field_battle_data_transfer.h"
@@ -24,11 +24,11 @@ typedef struct BattleHall {
     u32 unk_10;
     int wonBattle;
     u16 trainerIDs[HALL_BATTLES_PER_ROUND * 2];
-    FrontierDataDTO opponents[2];
+    FrontierOpponent opponents[2];
     u8 partySlots[2];
     Party *party;
     u16 monIndices[HALL_BATTLES_PER_ROUND * 2];
-    FrontierPokemonDataDTO opponentMons[HALL_BATTLES_PER_ROUND * 2];
+    FrontierPokemon opponentMons[HALL_BATTLES_PER_ROUND * 2];
     u16 unk_6F0;
     u16 selectedTypeIdx2;
     u8 selectedType;
@@ -38,13 +38,13 @@ typedef struct BattleHall {
     FieldBattleDTO *dto;
     u8 typeRanks[4][9];
     u16 heldItems[2];
-    u16 unk_72C[44];
-    u8 unk_784[512];
+    u16 commBuffer[44];
+    u8 commHugeBuffer[512];
     u8 unk_984[2][512];
     u16 unk_D84[2];
     u8 unk_D88;
     Pokemon *partnersMon;
-    u8 unk_D90;
+    u8 msgsReceived;
     u32 unk_D94;
 } BattleHall;
 

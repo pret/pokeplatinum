@@ -43,7 +43,7 @@ ValorLakefront_RemoveWarpsLakeValorDrained:
     End
 
 ValorLakefront_GruntM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfSet FLAG_TALKED_TO_VALOR_LAKEFRONT_GRUNT_M, ValorLakefront_GruntMNorth
     Message ValorLakefront_Text_WhyAmIRunning
@@ -464,7 +464,7 @@ ValorLakefront_CameramanNorth:
     End
 
 ValorLakefront_Beauty:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckItem ITEM_SUITE_KEY, 1, VAR_RESULT

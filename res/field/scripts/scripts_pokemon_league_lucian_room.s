@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 PokemonLeagueLucianRoom_Lucian:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DEFEATED_LUCIAN, PokemonLeagueLucianRoom_LucianPostBattle
@@ -20,7 +20,7 @@ PokemonLeagueLucianRoom_Lucian:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, PokemonLeagueLucianRoom_BlackOut
     SetFlag FLAG_DEFEATED_LUCIAN
-    PlaySE SEQ_SE_DP_KI_GASYAN
+    PlaySE SEQ_SE_DP_KI_GASYAN_sseq
     RemoveObject LOCALID_EXIT_DOOR
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_CreateJournalEventDefeatedLucian
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_CreateJournalEventDefeatedRematchLucian
@@ -62,7 +62,7 @@ PokemonLeagueLucianRoom_OnFrame_EnterRoom:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueLucianRoom_Movement_PlayerEnterRoom
     WaitMovement
-    PlaySE SEQ_SE_DP_KI_GASYAN
+    PlaySE SEQ_SE_DP_KI_GASYAN_sseq
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_LUCIAN_ROOM_ENTRANCE_DOOR
     AddObject LOCALID_ENTRANCE_DOOR
     SetVar VAR_MAP_LOCAL_0x01, 1

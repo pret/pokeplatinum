@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 PastoriaCitySouthwestHouse_PokemonBreederF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DAILY_RECEIVED_PASTORIA_CITY_SOUTHWEST_HOUSE_RANDOM_BERRY, PastoriaCitySouthwestHouse_PlantingIsGood

@@ -187,7 +187,7 @@ void sub_0209621C(int param0, int param1, void *param2, void *param3)
     ov59_021D2204(v0, 25, param0);
 
     CommManager_SetErrorHandling(1, 1);
-    Sound_PlayEffect(SEQ_SE_DP_F209);
+    Sound_PlayEffect(SEQ_SE_DP_F209_sseq);
 }
 
 void sub_02096264(int param0, int param1, void *param2, void *param3)

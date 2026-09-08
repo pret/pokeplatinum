@@ -102,7 +102,7 @@ GalacticHQ4F_Movement_CyrusLeave:
     EndMovement
 
 GalacticHQ4F_Door:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
@@ -124,8 +124,8 @@ GalacticHQ4F_UseGalacticKey:
     BufferPlayerName 0
     Message GalacticHQ4F_Text_DoorOpened
     WaitButton
-    WaitSE SEQ_SE_CONFIRM
-    PlaySE SEQ_SE_DP_DOOR10
+    WaitSE SE_CONFIRM_sseq_3
+    PlaySE SEQ_SE_DP_DOOR10_sseq
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_WEST, GalacticHQ4F_Movement_DoorWestMoveWest
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_EAST, GalacticHQ4F_Movement_DoorEastMoveEast
     WaitMovement
@@ -156,7 +156,7 @@ GalacticHQ4F_BgSignWarpPanels:
     End
 
 GalacticHQ4F_Report:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message GalacticHQ4F_Text_TeamGalacticReport
     GoTo GalacticHQ4F_ReadWhichReport

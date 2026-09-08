@@ -21,7 +21,7 @@ VeilstoneCityGalacticWarehouse_SetLookerPosition:
     Return
 
 VeilstoneCityGalacticWarehouse_GalacticHQDoor:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckItem ITEM_STORAGE_KEY, 1, VAR_RESULT
@@ -45,8 +45,8 @@ VeilstoneCityGalacticWarehouse_UseTheStorageKey:
     BufferPlayerName 0
     Message VeilstoneCityGalacticWarehouse_Text_PlayerUsedTheStorageKey
     WaitButton
-    WaitSE SEQ_SE_CONFIRM
-    PlaySE SEQ_SE_DP_DOOR10
+    WaitSE SE_CONFIRM_sseq_3
+    PlaySE SEQ_SE_DP_DOOR10_sseq
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_WEST, VeilstoneCityGalacticWarehouse_Movement_GalacticHQDoorWestOpen
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_EAST, VeilstoneCityGalacticWarehouse_Movement_GalacticHQDoorEastOpen
     WaitMovement
@@ -152,8 +152,8 @@ VeilstoneCityGalacticWarehouse_CoordEvent_LookerOpenDoor:
     Message VeilstoneCityGalacticWarehouse_Text_IWillUseTheStorageKey
     CloseMessage
     SetFlag FLAG_USED_STORAGE_KEY
-    WaitSE SEQ_SE_CONFIRM
-    PlaySE SEQ_SE_DP_DOOR10
+    WaitSE SE_CONFIRM_sseq_3
+    PlaySE SEQ_SE_DP_DOOR10_sseq
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_WEST, VeilstoneCityGalacticWarehouse_Movement_GalacticHQDoorWestOpen
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_EAST, VeilstoneCityGalacticWarehouse_Movement_GalacticHQDoorEastOpen
     WaitMovement

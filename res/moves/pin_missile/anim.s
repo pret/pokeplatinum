@@ -9,10 +9,10 @@ L_2:
     LoadParticleResource 0, pin_missile_spa
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
-    PlayLoopedSoundEffectL SEQ_SE_DP_W026, 4, 3
-    PlayDelayedSoundEffectR SEQ_SE_DP_W030, 13
-    PlayDelayedSoundEffectR SEQ_SE_DP_W030, 20
-    PlayDelayedSoundEffectR SEQ_SE_DP_W030, 28
+    PlayLoopedSoundEffectL SEQ_SE_DP_W026_sseq, 4, 3
+    PlayDelayedSoundEffectR SEQ_SE_DP_W030_sseq, 13
+    PlayDelayedSoundEffectR SEQ_SE_DP_W030_sseq, 20
+    PlayDelayedSoundEffectR SEQ_SE_DP_W030_sseq, 28
     CreateEmitterEx 0, 1, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 13, 64
     Delay 4
@@ -43,10 +43,10 @@ L_1:
     LoadParticleResource 0, pin_missile_spa
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
-    PlayLoopedSoundEffectL SEQ_SE_DP_W026, 4, 3
-    PlayDelayedSoundEffectR SEQ_SE_DP_W030, 13
-    PlayDelayedSoundEffectR SEQ_SE_DP_W030, 20
-    PlayDelayedSoundEffectR SEQ_SE_DP_W030, 28
+    PlayLoopedSoundEffectL SEQ_SE_DP_W026_sseq, 4, 3
+    PlayDelayedSoundEffectR SEQ_SE_DP_W030_sseq, 13
+    PlayDelayedSoundEffectR SEQ_SE_DP_W030_sseq, 20
+    PlayDelayedSoundEffectR SEQ_SE_DP_W030_sseq, 28
     CreateEmitterEx 0, 1, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 13, 64
     Delay 4

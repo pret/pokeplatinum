@@ -270,12 +270,12 @@ enum BoxMenuItem BoxMenu_GetMenuNavigation(BoxApplication *boxApp)
     }
 
     if (JOY_NEW(PAD_BUTTON_B)) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         return BOX_MENU_NAVIGATION_B;
     }
 
     if (JOY_NEW(PAD_BUTTON_A)) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         return menu->menuItems[menu->selectedMenuItemIndex];
     }
 

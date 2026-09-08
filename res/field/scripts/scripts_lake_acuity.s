@@ -31,9 +31,9 @@ LakeAcuity_CoordEvent_JupiterRival:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 14, LakeAcuity_JupiterLeaveX14
     CallIfEq VAR_0x8004, 15, LakeAcuity_JupiterLeaveX15
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_JUPITER
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 14, LakeAcuity_PlayerWalkToRivalX14
     CallIfEq VAR_0x8004, 15, LakeAcuity_PlayerWalkToRivalX15
@@ -54,9 +54,9 @@ LakeAcuity_CoordEvent_JupiterRival:
     ApplyMovement LOCALID_RIVAL, LakeAcuity_Movement_RivalLeave
     ApplyMovement LOCALID_PLAYER, LakeAcuity_Movement_PlayerWatchRivalLeave
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_RIVAL
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetFlag FLAG_ALT_MUSIC_LAKE_ACUITY
     ClearFlag FLAG_HIDE_VEILSTONE_CITY_GRUNT_M_STORAGE_KEY
     SetVar VAR_LAKE_ACUITY_STATE, 2

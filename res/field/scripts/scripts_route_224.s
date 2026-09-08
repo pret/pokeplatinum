@@ -48,7 +48,7 @@ Route224_IncreaseVars:
     Return
 
 Route224_Tablet:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_NameWhomIThank
@@ -68,7 +68,7 @@ Route224_NameWhomIThank:
 
 Route224_ProfOak:
     GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_WhatWasThatPokemon2Return2
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_ROUTE_224_PROF_OAK_STATE, 1
@@ -446,7 +446,7 @@ Route224_Movement_MarleyWalkOnSpotEast:
     EndMovement
 
 Route224_Marley:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_ThankYouToo

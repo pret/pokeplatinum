@@ -32,7 +32,7 @@ Route218GateToCanalaveCity_UpgradePokdex:
     CloseMessage
     TurnOnPokedexFormDetection
     Call Route218GateToCanalaveCity_ScientistMLeave
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     SetFlag FLAG_HIDE_ROUTE_218_GATE_TO_CANALAVE_CITY_SCIENTIST_M
     RemoveObject LOCALID_SCIENTIST_M
     SetVar VAR_ROUTE_218_GATE_TO_CANALAVE_CITY_STATE, 1

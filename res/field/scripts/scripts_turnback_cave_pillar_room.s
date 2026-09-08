@@ -17,7 +17,7 @@ TurnbackCavePillarRoom_IncrementVars:
     Return
 
 TurnbackCavePillarRoom_Pillar:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8004, VAR_TURNBACK_CAVE_PILLARS_SEEN
     SetVar VAR_0x8005, VAR_TURNBACK_CAVE_ROOMS_VISITED

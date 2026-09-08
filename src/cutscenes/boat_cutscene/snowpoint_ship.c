@@ -140,7 +140,7 @@ BOOL BoatCutscene_SnowpointShip_Main(ApplicationManager *appMan, int *state)
 
     switch (*state) {
     case BOAT_TRAVEL_CUTSCENE_STATE_SFX:
-        Sound_PlayEffect(SEQ_SE_DP_SHIP01);
+        Sound_PlayEffect(SEQ_SE_DP_SHIP01_sseq);
         (*state)++;
         break;
     case BOAT_TRAVEL_CUTSCENE_STATE_FADE_OUT:

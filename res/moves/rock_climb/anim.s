@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, rock_climb_spa
-    PlaySoundEffectL SEQ_SE_DP_W088
+    PlaySoundEffectL SEQ_SE_DP_W088_sseq
     BeginLoop 3
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 0, 8, 4
     CreateEmitter 0, 4, EMITTER_CB_GENERIC
@@ -13,12 +13,12 @@ L_0:
     Delay 4
     EndLoop
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -16, 8, 4
-    PlaySoundEffectL SEQ_SE_DP_W036
+    PlaySoundEffectL SEQ_SE_DP_W036_sseq
     WaitForAnimTasks
     Delay 10
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 32, -16, 4
     WaitForAnimTasks
-    PlaySoundEffectR SEQ_SE_DP_W085
+    PlaySoundEffectR SEQ_SE_DP_W085_sseq
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 0, EMITTER_CB_GENERIC

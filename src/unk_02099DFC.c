@@ -98,7 +98,7 @@ int sub_02099E38(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        Sound_StopBGM(SEQ_TITLE01, 0);
+        Sound_StopBGM(SEQ_TITLE01_sseq, 0);
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
         Sound_SetScene(SOUND_SCENE_NONE);
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
@@ -211,7 +211,7 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
 
     LoadMessageBoxGraphics(param0->unk_14, BG_LAYER_MAIN_0, 512 - (18 + 12), 2, 0, param0->heapID);
     LoadStandardWindowGraphics(param0->unk_14, BG_LAYER_MAIN_0, 512 - (18 + 12) - 9, 3, 0, param0->heapID);
-    Font_LoadTextPalette(0, 1 * (2 * 16), param0->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(1), param0->heapID);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, param0->heapID);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);

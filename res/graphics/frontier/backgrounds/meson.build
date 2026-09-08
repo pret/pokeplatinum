@@ -83,7 +83,7 @@ frontier_tilemaps = lz_gen.process(files(
     'battle_arcade_app_sub.NSCR',
     'battle_frontier_records_app.NSCR',
     'battle_frontier_app_sub.NSCR',
-    'unknown_10.NSCR',
+    'wfc_facility_selector.NSCR',
 ))
 
 frontier_background_tiles = ncgr_lz_gen.process(
@@ -141,7 +141,7 @@ arcade_screen_tiles = ncgr_lz_gen.process(
         'battle_arcade_screen_get_1_bp.png',
         'battle_arcade_screen_no_event.png',
         'battle_arcade_screen_get_3_bp.png',
-        'unknown_10.png',
+        'wfc_facility_selector.png',
     ),
     extra_args: [
         '-sopc',
@@ -200,7 +200,7 @@ extended_palettes = [
     ['battle_arcade_screen_no_event_0.pal', '1', '1'],
     ['battle_arcade_screen_get_3_bp_0.pal', '1', '1'],
     ['battle_arcade_screen_default_0.pal', '2', '0'],
-    ['unknown_10_0.pal', '4', '0'],
+    ['wfc_facility_selector_0.pal', '4', '0'],
 ]
 
 extended_nclrs = []

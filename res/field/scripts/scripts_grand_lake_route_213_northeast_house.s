@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 GrandLakeRoute213NortheastHouse_RichBoy:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, VAR_RESULT
@@ -28,7 +28,7 @@ GrandLakeRoute213NortheastHouse_CoinTossForDecisions:
     End
 
 GrandLakeRoute213NortheastHouse_Lady:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, VAR_RESULT

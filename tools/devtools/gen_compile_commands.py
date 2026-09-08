@@ -253,6 +253,7 @@ c_commands = [
             f"-I{homedir}/lib/crypto/include",
             f"-I{homedir}/lib/gds/include",
             f"-I{homedir}/lib/spl/include",
+            f"-I{homedir}/lib/ppwlobby/include",
             f"-iquote{homedir}",
             f"-iquote{homedir}/include",
             f"-iquote{homedir}/build",  # Meson includes this implicitly

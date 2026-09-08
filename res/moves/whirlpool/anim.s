@@ -12,7 +12,7 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_W250
+    PlaySoundEffectR SEQ_SE_DP_W250_sseq
     Delay 5
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_LIGHT_CYAN, 14, 0

@@ -95,18 +95,18 @@ TeamGalacticEternaBuilding1F_WallBlockingRotomsRoom:
     CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, TeamGalacticEternaBuilding1F_WallBlockingRotomsRoomEnd
     GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, TeamGalacticEternaBuilding1F_WallBlockingRotomsRoomEnd
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
     BufferItemName 1, ITEM_SECRET_KEY
     Message TeamGalacticEternaBuilding1F_Text_PlayerUsedTheSecretKey
     CloseMessage
-    PlaySE SEQ_SE_DP_W062
+    PlaySE SEQ_SE_DP_W062_sseq
     FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
     WaitFadeScreen
     RemoveObject LOCALID_WALL_BLOCKING_ROTOMS_ROOM
-    WaitSE SEQ_SE_DP_W062
+    WaitSE SEQ_SE_DP_W062_sseq
     FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
     WaitFadeScreen
     Message TeamGalacticEternaBuilding1F_Text_EntranceToASecretRoom

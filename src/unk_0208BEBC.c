@@ -53,7 +53,7 @@ static int sub_0208BEBC(ApplicationManager *appMan, int *param1, int param2)
     Sound_SetPlayerVolume(1, (127 / 3));
 
     if (param2 != 0) {
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PL_WIFITOWER, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_PL_WIFITOWER_sseq, 1);
     }
 
     if (param2 == 0) {

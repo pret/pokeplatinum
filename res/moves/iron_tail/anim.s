@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, iron_tail_spa
-    PlayLoopedSoundEffectL SEQ_SE_DP_W231, 8, 2
+    PlayLoopedSoundEffectL SEQ_SE_DP_W231_sseq, 8, 2
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
@@ -17,8 +17,8 @@ L_0:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_2
     FreePokemonSpriteManager
     Delay 30
-    PlaySoundEffectR SEQ_SE_DP_BRADE
-    PlayDelayedSoundEffectR SEQ_SE_DP_W025B, 6
+    PlaySoundEffectR SEQ_SE_DP_BRADE_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_W025B_sseq, 6
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER

@@ -37,7 +37,7 @@ ValorCavern_RemoveAzelf:
     Return
 
 ValorCavern_Azelf:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     PlayCry SPECIES_AZELF
@@ -67,7 +67,7 @@ ValorCavern_LostBattleAzelf:
     End
 
 ValorCavern_Saturn:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message ValorCavern_Text_SaturnMissionIsProceeding
     CloseMessage

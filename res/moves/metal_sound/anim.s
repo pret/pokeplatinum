@@ -4,13 +4,13 @@ L_0:
     LoadParticleResource 0, metal_sound_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlayDelayedSoundEffectC SEQ_SE_DP_W103, 1
-    PlayDelayedSoundEffectC SEQ_SE_DP_W103, 3
-    PlayDelayedSoundEffectC SEQ_SE_DP_W103, 5
-    PlayDelayedSoundEffectC SEQ_SE_DP_W103, 7
-    PlayDelayedSoundEffectC SEQ_SE_DP_W103, 10
-    PlayDelayedSoundEffectC SEQ_SE_DP_W103, 15
-    PlayDelayedSoundEffectC SEQ_SE_DP_W103, 20
+    PlayDelayedSoundEffectC SEQ_SE_DP_W103_sseq, 1
+    PlayDelayedSoundEffectC SEQ_SE_DP_W103_sseq, 3
+    PlayDelayedSoundEffectC SEQ_SE_DP_W103_sseq, 5
+    PlayDelayedSoundEffectC SEQ_SE_DP_W103_sseq, 7
+    PlayDelayedSoundEffectC SEQ_SE_DP_W103_sseq, 10
+    PlayDelayedSoundEffectC SEQ_SE_DP_W103_sseq, 15
+    PlayDelayedSoundEffectC SEQ_SE_DP_W103_sseq, 20
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 20, 64
@@ -18,5 +18,5 @@ L_0:
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    StopSoundEffect SEQ_SE_DP_W103
+    StopSoundEffect SEQ_SE_DP_W103_sseq
     End

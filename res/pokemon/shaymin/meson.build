@@ -19,3 +19,6 @@ otherpoke_index += {
 }
 
 pokefoot_files += files('footprint.png')
+
+cry_banks += files('forms/sky/cry.txt')
+cry_waves += files('forms/sky/cry.wav')

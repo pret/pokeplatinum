@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 PokemonLeagueBerthaRoom_Bertha:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DEFEATED_BERTHA, PokemonLeagueBerthaRoom_BerthaPostBattle
@@ -20,7 +20,7 @@ PokemonLeagueBerthaRoom_Bertha:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, PokemonLeagueBerthaRoom_BlackOut
     SetFlag FLAG_DEFEATED_BERTHA
-    PlaySE SEQ_SE_DP_KI_GASYAN
+    PlaySE SEQ_SE_DP_KI_GASYAN_sseq
     RemoveObject LOCALID_EXIT_DOOR
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueBerthaRoom_CreateJournalEventDefeatedBertha
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueBerthaRoom_CreateJournalEventDefeatedRematchBertha
@@ -62,7 +62,7 @@ PokemonLeagueBerthaRoom_OnFrame_EnterRoom:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueBerthaRoom_Movement_PlayerEnterRoom
     WaitMovement
-    PlaySE SEQ_SE_DP_KI_GASYAN
+    PlaySE SEQ_SE_DP_KI_GASYAN_sseq
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_BERTHA_ROOM_ENTRANCE_DOOR
     AddObject LOCALID_ENTRANCE_DOOR
     SetVar VAR_MAP_LOCAL_0x01, 1

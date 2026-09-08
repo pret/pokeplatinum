@@ -59,7 +59,7 @@ ValleyWindworksOutside_RemoveWarpValleyWindworksBuilding:
     Return
 
 ValleyWindworksOutside_GruntM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message ValleyWindworksOutside_Text_BattleMeForIt
@@ -102,7 +102,7 @@ ValleyWindworksOutside_Movement_GruntMEnterBuilding:
     EndMovement
 
 ValleyWindworksOutside_Door:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfSet FLAG_OBTAINED_FLOAROMA_MEADOW_WORKS_KEY, ValleyWindworksOutside_AskOpenDoor
     Message ValleyWindworksOutside_Text_ItsLockedFromInside
@@ -135,7 +135,7 @@ ValleyWindworksOutside_SignboardValleyWindworks:
     End
 
 ValleyWindworksOutside_Drifloon:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     PlayCry SPECIES_DRIFLOON

@@ -273,7 +273,7 @@ static int ov5_021F5C70(OverworldAnimManager *param0, void *param1)
     ov5_021F5A7C(v1->unk_30.unk_08, v1->unk_30.unk_00);
 
     if (OverworldAnimManager_GetUserInt(param0) == 1) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
     }
 
     return 1;
@@ -391,7 +391,7 @@ static int ov5_021F5DE4(OverworldAnimManager *param0, void *param1)
     ov5_021F5A7C(v1->unk_30.unk_08, v1->unk_30.unk_00);
 
     if (OverworldAnimManager_GetUserInt(param0) == 1) {
-        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
     }
 
     return 1;
@@ -490,7 +490,7 @@ static void ov5_021F5F24(OverworldAnimManager *param0, void *param1)
         v0->unk_10 = 0;
 
         if (OverworldAnimManager_GetUserInt(param0) == 1) {
-            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
         }
 
         v0->unk_00++;

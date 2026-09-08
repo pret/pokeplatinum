@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_system.h"
@@ -15,6 +13,7 @@
 #include "sys_task_manager.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 
 #define ANIM_INDEX_SPINNING 0
 #define ANIM_INDEX_HEADS    1
@@ -170,7 +169,7 @@ static void Task_TossCoin(SysTask *task, void *taskMan)
 
     switch (PoketchTask_GetState(taskMan)) {
     case 0:
-        PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI09);
+        PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI09_sseq);
         PoketchAnimation_UpdateAnimationIdx(graphics->sprite, ANIM_INDEX_SPINNING);
         graphics->coinY = FX32_CONST(COIN_REST_POSITION_Y);
         graphics->coinSpeed = sInitalSpeed;
@@ -189,10 +188,10 @@ static void Task_TossCoin(SysTask *task, void *taskMan)
             graphics->coinSpeed = -((graphics->coinSpeed * 56) / 100);
 
             if (graphics->coinSpeed < FX32_CONST(-2)) {
-                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI10);
+                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI10_sseq);
                 graphics->coinY = FX32_CONST(COIN_REST_POSITION_Y);
             } else {
-                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI10);
+                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI10_sseq);
                 PoketchAnimation_UpdateAnimationIdx(graphics->sprite, coin->isHeads ? ANIM_INDEX_HEADS : ANIM_INDEX_TAILS);
                 graphics->coinY = FX32_CONST(COIN_REST_POSITION_Y);
                 PoketchTask_IncrementState(taskMan);

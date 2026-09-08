@@ -8,6 +8,12 @@ void HTTP_Shutdown(void);
 int HTTP_GetErrorCode(void);
 int HTTP_GetResponseLength(void);
 
+enum HttpPrepareRequestStatus {
+    HTTP_PREPARE_STATUS_SUCCESS,
+    HTTP_PREPARE_STATUS_NOT_READY,
+    HTTP_PREPARE_STATUS_ALLOC_FAILED,
+};
+
 enum HttpRequestStatus {
     HTTP_STATUS_NONE,
     HTTP_STATUS_IDLE,

@@ -2,15 +2,15 @@
 
 L_0:
     LoadParticleResource 0, iron_head_spa
-    PlaySoundEffectL SEQ_SE_DP_W029
-    PlaySoundEffectR SEQ_SE_DP_030
+    PlaySoundEffectL SEQ_SE_DP_W029_sseq
+    PlaySoundEffectR SEQ_SE_DP_030_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, -8, 2
     WaitForAnimTasks
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 5
-    PlaySoundEffectR SEQ_SE_DP_W088
+    PlaySoundEffectR SEQ_SE_DP_W088_sseq
     Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, -14, 8, 2
     WaitForAnimTasks

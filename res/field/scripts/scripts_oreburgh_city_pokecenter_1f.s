@@ -26,7 +26,7 @@ OreburghCityPokecenter1F_AceTrainerF:
     End
 
 OreburghCityPokecenter1F_Psychic:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_CHOSE_UNION_ROOM_APPEARANCE, OreburghCityPokecenter1F_WhatKindOfTrainerDoYouLike
@@ -76,7 +76,7 @@ OreburghCityPokecenter1F_SetTrainerClass:
     GoTo OreburghCityPokecenter1F_IllJustTalkToYouLater
 
 OreburghCityPokecenter1F_Gentleman:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_GAME_COMPLETED, OreburghCityPokecenter1F_WhatOrWhoIsTeamGalactic

@@ -1,21 +1,19 @@
 #include "unk_0209BA80.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle_tower.h"
 
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/comm_cmd_table.h"
-#include "struct_defs/struct_0209BBA4.h"
 
 #include "applications/frontier/battle_arcade/main.h"
 #include "applications/frontier/battle_castle/opponent_app.h"
 #include "applications/frontier/battle_castle/self_app.h"
 #include "applications/frontier/battle_factory/main.h"
 #include "applications/frontier/battle_hall/main.h"
-#include "overlay104/ov104_0222ECE8.h"
-#include "overlay104/ov104_0223C164.h"
+#include "overlay104/frontier_communication.h"
+#include "overlay104/wfc_facility_selector_helpers.h"
 
 #include "battle_frontier_save.h"
 #include "communication_system.h"
@@ -24,23 +22,17 @@
 #include "unk_02032798.h"
 
 static void sub_0209BA94(int param0, int param1, void *param2, void *param3);
-BOOL sub_0209BB08(BattleTower *battleTower);
-static void sub_0209BB34(int param0, int param1, void *param2, void *param3);
+static void BattleTower_HandleTrainerIDListCmd(int netID, int unused, void *data, void *context);
 static void sub_0209BB68(int param0, int param1, void *param2, void *param3);
-BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0);
-void sub_0209BBEC(int param0, int param1, void *param2, void *param3);
-BOOL sub_0209BC1C(UnkStruct_0209BBA4 *param0, u16 param1);
-void sub_0209BC3C(int param0, int param1, void *param2, void *param3);
-BOOL sub_0209BC64(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2);
-void sub_0209BD28(int param0, int param1, void *param2, void *param3);
-BOOL sub_0209BD68(UnkStruct_0209BBA4 *param0, u16 param1);
-void sub_0209BD88(int param0, int param1, void *param2, void *param3);
-BOOL sub_0209BDB0(UnkStruct_0209BBA4 *param0, u16 param1);
-void sub_0209BDD0(int param0, int param1, void *param2, void *param3);
+static void WFCFacilitySelector_HandleFacilityAndStreakCmd(int netID, int unused, void *data, void *context);
+static void WFCFacilitySelector_HandleDidDropOutCmd(int netID, int unused, void *data, void *context);
+static void WFCFacilitySelector_HandleSelectedMonsCmd(int netID, int unused, void *data, void *context);
+static void WFCFacilitySelector_HandleStreakDeletionChoiceCmd(int netID, int unused, void *data, void *context);
+static void WFCFacilitySelector_HandlePlayAgainCmd(int netID, int unused, void *data, void *context);
 
 static const CommCmdTable Unk_020F8BF0[] = {
     { ov104_0222EF30, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222EF94, CommPacketSizeOf_Variable, NULL },
+    { FactoryCommunication_ReceiveTrainers, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F03C, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F124, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F1C4, CommPacketSizeOf_Variable, NULL },
@@ -50,22 +42,22 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { BattleFactoryApp_HandleSelectionUpdateCmd, CommPacketSizeOf_Variable, NULL },
     { BattleFactoryApp_DummyCommCommand2, CommPacketSizeOf_Variable, NULL },
     { BattleFactoryApp_HandleTradeResultCmd, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222ECE8, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222ED2C, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222ED74, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222EDDC, CommPacketSizeOf_Variable, NULL },
+    { FrontierCommunication_Unreachable1, CommPacketSizeOf_Variable, NULL },
+    { FrontierCommunication_Unreachable3, CommPacketSizeOf_Variable, NULL },
+    { HallCommunication_ReceiveTrainers, CommPacketSizeOf_Variable, NULL },
+    { HallCommunication_ReceiveOpponentMons, CommPacketSizeOf_Variable, NULL },
     { ov104_0222EE38, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222EEA8, CommPacketSizeOf_Variable, ov104_0222EED8 },
+    { HallCommunication_ReceivePartnersPokemon, CommPacketSizeOf_Variable, HallCommunication_VerifyPacketSize },
     { BattleHall_DummyCommCommand, CommPacketSizeOf_Variable, NULL },
     { BattleHall_HandleTypeSelectionMsg, CommPacketSizeOf_Variable, NULL },
     { BattleHall_HandlePartnerDecisionCmd, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222F418, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222F480, CommPacketSizeOf_Variable, NULL },
+    { CastleCommunication_ReceivePartnersCP, CommPacketSizeOf_Variable, NULL },
+    { CastleCommunications_ReceiveTrainers, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F530, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F650, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F6E8, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222F730, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222F7BC, CommPacketSizeOf_Variable, ov104_0222F84C },
+    { FrontierCommunication_Unreachable5, CommPacketSizeOf_Variable, NULL },
+    { CastleCommunication_ReceivePartnersParty, CommPacketSizeOf_Variable, CastleCommunication_VerifyPacketSize },
     { BattleCastleSelfApp_HandlePlayerInfoCmd, CommPacketSizeOf_Variable, NULL },
     { BattleCastleSelfApp_HandlePurchaseInfoCmd, CommPacketSizeOf_Variable, NULL },
     { BattleCastleSelfApp_HandleUpdateCursorCmd, CommPacketSizeOf_Variable, NULL },
@@ -74,20 +66,20 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { BattleCastleOpponentApp_HandlePurchaseInfoCmd, CommPacketSizeOf_Variable, NULL },
     { BattleCastleOpponentApp_HandleUpdateCursorCmd, CommPacketSizeOf_Variable, NULL },
     { BattleCastleOpponentApp_HandleExitAppCmd, CommPacketSizeOf_Variable, NULL },
-    { sub_0209BBEC, CommPacketSizeOf_Variable, NULL },
-    { sub_0209BC3C, CommPacketSizeOf_Variable, NULL },
-    { sub_0209BD28, CommPacketSizeOf_Variable, NULL },
-    { sub_0209BD88, CommPacketSizeOf_Variable, NULL },
-    { sub_0209BDD0, CommPacketSizeOf_Variable, NULL },
+    { WFCFacilitySelector_HandleFacilityAndStreakCmd, CommPacketSizeOf_Variable, NULL },
+    { WFCFacilitySelector_HandleDidDropOutCmd, CommPacketSizeOf_Variable, NULL },
+    { WFCFacilitySelector_HandleSelectedMonsCmd, CommPacketSizeOf_Variable, NULL },
+    { WFCFacilitySelector_HandleStreakDeletionChoiceCmd, CommPacketSizeOf_Variable, NULL },
+    { WFCFacilitySelector_HandlePlayAgainCmd, CommPacketSizeOf_Variable, NULL },
     { sub_0209BA94, CommPacketSizeOf_Variable, NULL },
-    { sub_0209BB34, CommPacketSizeOf_Variable, NULL },
+    { BattleTower_HandleTrainerIDListCmd, CommPacketSizeOf_Variable, NULL },
     { sub_0209BB68, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F8A0, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222F908, CommPacketSizeOf_Variable, NULL },
+    { ArcadeCommunication_ReceiveTrainers, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F9C0, CommPacketSizeOf_Variable, NULL },
     { ov104_0222FA5C, CommPacketSizeOf_Variable, NULL },
     { ov104_0222FAA8, CommPacketSizeOf_Variable, NULL },
-    { ov104_0222FB34, CommPacketSizeOf_Variable, ov104_0222FBC4 },
+    { ArcadeCommunication_ReceivePartnersParty, CommPacketSizeOf_Variable, ArcadeCommunication_VerifyPacketSize },
     { BattleArcadeApp_HandleInitialLayoutCmd, CommPacketSizeOf_Variable, NULL },
     { BattleArcadeApp_HandleResultCmd, CommPacketSizeOf_Variable, NULL },
     { BattleArcadeApp_HandleUnusedCmd, CommPacketSizeOf_Variable, NULL }
@@ -108,7 +100,7 @@ static void sub_0209BA94(int param0, int param1, void *param2, void *param3)
 
     v0 = 0;
     v1 = 0;
-    battleTower->unk_8D4++;
+    battleTower->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -132,33 +124,22 @@ static void sub_0209BA94(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL sub_0209BB08(BattleTower *battleTower)
+BOOL BattleTower_SendTrainerIDListCmd(BattleTower *battleTower)
 {
-    int v0, v1;
+    int dataSize = BT_OPPONENTS_COUNT * 2 * sizeof(u16);
+    MI_CpuCopy8(battleTower->trainerIDs, battleTower->unk_83E, dataSize);
 
-    v1 = (14 * 2);
-
-    MI_CpuCopy8(battleTower->trainerIDs, battleTower->unk_83E, v1);
-
-    if (CommSys_SendData(63, battleTower->unk_83E, v1) == 1) {
-        v0 = 1;
-    } else {
-        v0 = 0;
-    }
-
-    return v0;
+    return CommSys_SendData(63, battleTower->unk_83E, dataSize) == TRUE;
 }
 
-static void sub_0209BB34(int param0, int param1, void *param2, void *param3)
+static void BattleTower_HandleTrainerIDListCmd(int netID, int unused, void *data, void *context)
 {
-    int v0;
-    BattleTower *battleTower = param3;
-    const u16 *v2 = param2;
+    BattleTower *battleTower = context;
+    const u16 *trainerIDs = data;
 
-    v0 = 0;
-    battleTower->unk_8D4++;
+    battleTower->msgsReceived++;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netID) {
         return;
     }
 
@@ -166,8 +147,7 @@ static void sub_0209BB34(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    MI_CpuCopy8(v2, battleTower->trainerIDs, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
-    return;
+    MI_CpuCopy8(trainerIDs, battleTower->trainerIDs, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
 }
 
 static void sub_0209BB68(int param0, int param1, void *param2, void *param3)
@@ -179,7 +159,7 @@ static void sub_0209BB68(int param0, int param1, void *param2, void *param3)
     v0 = 0;
 
     battleTower->unk_8D8 = 0;
-    battleTower->unk_8D4++;
+    battleTower->msgsReceived++;
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -192,195 +172,136 @@ static void sub_0209BB68(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0)
+BOOL WFCFacilitySelector_SendFacilityAndLatestStreak(WFCFacilitySelector *selector)
 {
-    int v0, v1, v2;
+    selector->commBuffer[0] = selector->selectedFacility;
 
-    v1 = 40;
-    param0->unk_08[0] = param0->unk_A0;
+    int streakIndex = BattleFrontier_GetWFCLatestStreakIndex(selector->selectedFacility);
+    selector->commBuffer[1] = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(selector->saveData), streakIndex);
 
-    v2 = ov104_0223C264(param0->unk_A0);
-    param0->unk_08[1] = BattleFrontierSave_GetStatAutoHostIdx(SaveData_GetBattleFrontier(param0->saveData), v2);
-
-    if (CommSys_SendData(57, param0->unk_08, v1) == 1) {
-        v0 = 1;
-    } else {
-        v0 = 0;
-    }
-
-    return v0;
+    return CommSys_SendData(57, selector->commBuffer, 40) == TRUE;
 }
 
-void sub_0209BBEC(int param0, int param1, void *param2, void *param3)
+static void WFCFacilitySelector_HandleFacilityAndStreakCmd(int netID, int unused, void *data, void *context)
 {
-    u16 v0;
-    UnkStruct_0209BBA4 *v1 = param3;
-    const u16 *v2 = param2;
+    WFCFacilitySelector *selector = context;
+    const u16 *payload = data;
 
-    v1->unk_6F++;
+    selector->msgsReceived++;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netID) {
         return;
     }
 
-    v1->unk_6E = (u8)v2[0];
-    v1->unk_72 = v2[1];
-
-    return;
+    selector->partnersSelectedFacility = payload[0];
+    selector->partnersLatestStreak = payload[1];
 }
 
-BOOL sub_0209BC1C(UnkStruct_0209BBA4 *param0, u16 param1)
+BOOL WFCFacilitySelector_SendDidDropOutCmd(WFCFacilitySelector *selector, u16 didDropOut)
 {
-    int v0, v1 = 40;
-    param0->unk_08[0] = param1;
-
-    if (CommSys_SendData(58, param0->unk_08, v1) == 1) {
-        v0 = 1;
-    } else {
-        v0 = 0;
-    }
-
-    return v0;
+    selector->commBuffer[0] = didDropOut;
+    return CommSys_SendData(58, selector->commBuffer, 40) == TRUE;
 }
 
-void sub_0209BC3C(int param0, int param1, void *param2, void *param3)
+static void WFCFacilitySelector_HandleDidDropOutCmd(int netID, int unused, void *data, void *context)
 {
-    int v0;
-    UnkStruct_0209BBA4 *v1 = param3;
-    const u16 *v2 = param2;
+    WFCFacilitySelector *selector = context;
+    const u16 *payload = data;
 
-    v0 = 0;
-    v1->unk_6F++;
+    selector->msgsReceived++;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netID) {
         return;
     }
 
-    v1->unk_59 = (u8)v2[0];
-    return;
+    selector->partnerDroppedOut = payload[0];
 }
 
-BOOL sub_0209BC64(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2)
+BOOL WFCFacilitySelector_SendSelectedMons(WFCFacilitySelector *selector, u16 selectedSlot1, u16 selectedSlot2)
 {
-    int v0, v1;
-    Pokemon *v2;
-    Party *v3;
+    Party *party = SaveData_GetParty(selector->saveData);
 
-    v1 = 40;
-    v3 = SaveData_GetParty(param0->saveData);
+    selector->selectedMonSlots[0] = selectedSlot1;
+    selector->selectedMonSlots[1] = selectedSlot2;
 
-    param0->unk_6A[0] = param1;
-    param0->unk_6A[1] = param2;
-
-    if (param1 == 0xff) {
-        param0->unk_76[0] = 0;
-        param0->unk_7E[0] = 0;
-        param0->unk_76[1] = 0;
-        param0->unk_7E[1] = 0;
+    if (selectedSlot1 == 0xff) {
+        selector->selectedSpecies[0] = 0;
+        selector->selectedItems[0] = 0;
+        selector->selectedSpecies[1] = 0;
+        selector->selectedItems[1] = 0;
     } else {
-        v2 = Party_GetPokemonBySlotIndex(v3, param1);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, selectedSlot1);
 
-        param0->unk_76[0] = Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL);
-        param0->unk_7E[0] = Pokemon_GetValue(v2, MON_DATA_HELD_ITEM, NULL);
+        selector->selectedSpecies[0] = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        selector->selectedItems[0] = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
-        v2 = Party_GetPokemonBySlotIndex(v3, param2);
+        mon = Party_GetPokemonBySlotIndex(party, selectedSlot2);
 
-        param0->unk_76[1] = Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL);
-        param0->unk_7E[1] = Pokemon_GetValue(v2, MON_DATA_HELD_ITEM, NULL);
+        selector->selectedSpecies[1] = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        selector->selectedItems[1] = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     }
 
-    param0->unk_08[0] = param0->unk_76[0];
-    param0->unk_08[1] = param0->unk_7E[0];
-    param0->unk_08[2] = param0->unk_76[1];
-    param0->unk_08[3] = param0->unk_7E[1];
+    selector->commBuffer[0] = selector->selectedSpecies[0];
+    selector->commBuffer[1] = selector->selectedItems[0];
+    selector->commBuffer[2] = selector->selectedSpecies[1];
+    selector->commBuffer[3] = selector->selectedItems[1];
 
-    if (CommSys_SendData(59, param0->unk_08, v1) == 1) {
-        v0 = 1;
-    } else {
-        v0 = 0;
-    }
-
-    return v0;
+    return CommSys_SendData(59, selector->commBuffer, 40) == TRUE;
 }
 
-void sub_0209BD28(int param0, int param1, void *param2, void *param3)
+static void WFCFacilitySelector_HandleSelectedMonsCmd(int netID, int unused, void *data, void *context)
 {
-    UnkStruct_0209BBA4 *v0 = param3;
-    const u16 *v1 = param2;
+    WFCFacilitySelector *selector = context;
+    const u16 *payload = data;
 
-    v0->unk_6F++;
+    selector->msgsReceived++;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netID) {
         return;
     }
 
-    v0->unk_86[0] = v1[0];
-    v0->unk_8E[0] = v1[1];
-    v0->unk_86[1] = v1[2];
-    v0->unk_8E[1] = v1[3];
-
-    return;
+    selector->partnersSelectedSpecies[0] = payload[0];
+    selector->partnersSelectedItems[0] = payload[1];
+    selector->partnersSelectedSpecies[1] = payload[2];
+    selector->partnersSelectedItems[1] = payload[3];
 }
 
-BOOL sub_0209BD68(UnkStruct_0209BBA4 *param0, u16 param1)
+BOOL WFCFacilitySelector_SendStreakDeletionChoice(WFCFacilitySelector *selector, u16 streakDeletionChoice)
 {
-    int v0, v1 = 40;
-
-    param0->unk_08[0] = param1;
-
-    if (CommSys_SendData(60, param0->unk_08, v1) == 1) {
-        v0 = 1;
-    } else {
-        v0 = 0;
-    }
-
-    return v0;
+    selector->commBuffer[0] = streakDeletionChoice;
+    return CommSys_SendData(60, selector->commBuffer, 40) == TRUE;
 }
 
-void sub_0209BD88(int param0, int param1, void *param2, void *param3)
+static void WFCFacilitySelector_HandleStreakDeletionChoiceCmd(int netID, int unused, void *data, void *context)
 {
-    int v0;
-    UnkStruct_0209BBA4 *v1 = param3;
-    const u16 *v2 = param2;
+    WFCFacilitySelector *selector = context;
+    const u16 *payload = data;
 
-    v0 = 0;
-    v1->unk_6F++;
+    selector->msgsReceived++;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netID) {
         return;
     }
 
-    v1->unk_74 = v2[0];
-    return;
+    selector->partnersStreakDeletionChoice = payload[0];
 }
 
-BOOL sub_0209BDB0(UnkStruct_0209BBA4 *param0, u16 param1)
+BOOL WFCFacilitySelector_SendPlayAgainChoice(WFCFacilitySelector *selector, u16 notPlayingAgain)
 {
-    int v0, v1 = 40;
-    param0->unk_08[0] = param1;
-
-    if (CommSys_SendData(61, param0->unk_08, v1) == 1) {
-        v0 = 1;
-    } else {
-        v0 = 0;
-    }
-
-    return v0;
+    selector->commBuffer[0] = notPlayingAgain;
+    return CommSys_SendData(61, selector->commBuffer, 40) == TRUE;
 }
 
-void sub_0209BDD0(int param0, int param1, void *param2, void *param3)
+static void WFCFacilitySelector_HandlePlayAgainCmd(int netID, int unused, void *data, void *context)
 {
-    int v0;
-    UnkStruct_0209BBA4 *v1 = param3;
-    const u16 *v2 = param2;
+    WFCFacilitySelector *selector = context;
+    const u16 *payload = data;
 
-    v0 = 0;
-    v1->unk_6F++;
+    selector->msgsReceived++;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netID) {
         return;
     }
 
-    v1->unk_71 = (u8)v2[0];
-    return;
+    selector->partnerNotPlayingAgain = payload[0];
 }

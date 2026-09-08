@@ -7,8 +7,8 @@ L_0:
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_BASI
-    PlayDelayedSoundEffectR SEQ_SE_DP_W280, 5
+    PlaySoundEffectR SEQ_SE_DP_BASI_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_W280_sseq, 5
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_LIGHT_BLUE, 14, 0
     WaitForAllEmitters
     UnloadParticleSystem 0

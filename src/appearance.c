@@ -9,9 +9,6 @@
 #include "heap.h"
 #include "string_template.h"
 
-#define APPEARANCES_COUNT 8
-#define VARIANTS_COUNT    4
-
 typedef struct Appearance {
     int index;
     int class1;

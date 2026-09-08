@@ -28,9 +28,9 @@ Route218_Fisherman:
     End
 
 Route218_ClefairySouth:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     PlayCry SPECIES_CLEFAIRY
     Message Route218_Text_ClefairyCryPippiih
     WaitCry
@@ -40,9 +40,9 @@ Route218_ClefairySouth:
     End
 
 Route218_ClefairyNorth:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     PlayCry SPECIES_CLEFAIRY
     Message Route218_Text_ClefairyCryPippippiih
     WaitCry
@@ -52,9 +52,9 @@ Route218_ClefairyNorth:
     End
 
 Route218_Pikachu:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     PlayCry SPECIES_PIKACHU
     Message Route218_Text_PikachuCry
     WaitCry

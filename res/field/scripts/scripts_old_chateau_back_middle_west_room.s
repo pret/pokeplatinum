@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 OldChateauBackMiddleWestRoom_TV:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfSet FLAG_CAUGHT_OLD_CHATEAU_ROTOM, OldChateauBackMiddleWestRoom_TVHasMalevolentFeel
     GoToIfSet FLAG_DAILY_BATTLED_OLD_CHATEAU_ROTOM, OldChateauBackMiddleWestRoom_TVHasMalevolentFeel

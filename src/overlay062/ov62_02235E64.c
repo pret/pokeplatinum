@@ -109,9 +109,9 @@ static BOOL ov62_02235EBC(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_08, param0->unk_14.unk_44);
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0x2, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 1:
         ov62_02234540(param0, 1);
@@ -198,7 +198,7 @@ static BOOL ov62_0223604C(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     default:
         ov62_0222FB60(param0, 3);
@@ -357,7 +357,7 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 2:
         ov62_022362B8(param0);
@@ -376,7 +376,7 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 4:
         if (TouchScreen_LocationPressed(&Unk_ov62_02248C14[0])) {
@@ -414,7 +414,7 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     default:
         if (v0->unk_198 == 1) {
@@ -544,7 +544,7 @@ static BOOL ov62_022367B4(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 2:
         ov62_0223376C(param0, 1);
@@ -565,13 +565,13 @@ static BOOL ov62_022367B4(UnkStruct_0208C06C *param0)
         if (ov62_02231664(&v0->unk_08, 0)) {
             ov62_022318E8(param0);
             ov62_02231688(&v0->unk_08);
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_MAIN_OBJ, 0xC, 16, param0->unk_14.unk_44);
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
             Heap_Free(v0);
         } else {
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
-            PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC, v0->unk_08, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_BG, 0x2, v0->unk_08, param0->unk_14.unk_44);
         }
 
         break;
@@ -626,7 +626,7 @@ static BOOL ov62_02236920(UnkStruct_0208C06C *param0)
             v0->unk_198 = 0;
         }
 
-        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, PLTTBUF_SUB_OBJ, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 4:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_102);

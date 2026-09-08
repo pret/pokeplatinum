@@ -2,14 +2,15 @@
 #define POKEPLATINUM_UNK_0209BA80_H
 
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/struct_0209BBA4.h"
+
+#include "overlay104/wfc_facility_selector.h"
 
 void sub_0209BA80(void *param0);
-BOOL sub_0209BB08(BattleTower *battleTower);
-BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0);
-BOOL sub_0209BC1C(UnkStruct_0209BBA4 *param0, u16 param1);
-BOOL sub_0209BC64(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2);
-BOOL sub_0209BD68(UnkStruct_0209BBA4 *param0, u16 param1);
-BOOL sub_0209BDB0(UnkStruct_0209BBA4 *param0, u16 param1);
+BOOL BattleTower_SendTrainerIDListCmd(BattleTower *battleTower);
+BOOL WFCFacilitySelector_SendFacilityAndLatestStreak(WFCFacilitySelector *selector);
+BOOL WFCFacilitySelector_SendDidDropOutCmd(WFCFacilitySelector *selector, u16 didDropOut);
+BOOL WFCFacilitySelector_SendSelectedMons(WFCFacilitySelector *selector, u16 selectedSlot1, u16 selectedSlot2);
+BOOL WFCFacilitySelector_SendStreakDeletionChoice(WFCFacilitySelector *selector, u16 streakDeletionChoice);
+BOOL WFCFacilitySelector_SendPlayAgainChoice(WFCFacilitySelector *selector, u16 notPlayingAgain);
 
 #endif // POKEPLATINUM_UNK_0209BA80_H

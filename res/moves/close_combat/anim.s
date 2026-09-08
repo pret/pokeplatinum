@@ -12,8 +12,8 @@ L_0:
     SetExtraParams 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
-    PlayLoopedSoundEffectR SEQ_SE_DP_003, 4, 5
-    PlayLoopedSoundEffectR SEQ_SE_DP_030, 5, 5
+    PlayLoopedSoundEffectR SEQ_SE_DP_003_sseq, 4, 5
+    PlayLoopedSoundEffectR SEQ_SE_DP_030_sseq, 5, 5
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAllEmitters
     UnloadParticleSystem 0

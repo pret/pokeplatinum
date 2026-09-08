@@ -697,15 +697,15 @@ static void ov21_021E9828(SysTask *param0, void *param1)
 
 static void ov21_021E98D8(PaletteData *param0, PokemonSprite *param1)
 {
-    PaletteData_LoadBufferFromHardware(param0, 0, 0, 32 * 0x10);
-    PaletteData_LoadBufferFromHardware(param0, 2, 0, ((16 - 2) * 16) * sizeof(u16));
+    PaletteData_LoadBufferFromHardware(param0, PLTTBUF_MAIN_BG, 0, PALETTE_SIZE_BYTES * 16);
+    PaletteData_LoadBufferFromHardware(param0, PLTTBUF_MAIN_OBJ, 0, PALETTE_SIZE_BYTES * 14);
 }
 
 static void ov21_021E98F8(PaletteData *param0, PokemonSprite *param1, int param2, int param3, int param4, int param5, int param6)
 {
     PokemonSprite_StartFade(param1, param2, param4, param5, param6);
     PaletteData_StartFade(param0, 0x1 | 0x4, 0xffff, param5, param3, param4, param6);
-    PaletteData_SetAutoTransparent(param0, 0);
+    PaletteData_SetAutoTransparent(param0, FALSE);
 }
 
 static BOOL ov21_021E9948(PaletteData *param0, PokemonSprite *param1)

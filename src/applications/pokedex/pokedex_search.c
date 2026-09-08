@@ -374,7 +374,7 @@ static int UpdateScreenState(PokedexDataManager *dataMan, void *data)
             searchSettings->screenState = SS_LOADING;
             searchSettings->screenTimer = 32;
 
-            Sound_PlayEffect(SEQ_SE_DP_Z_SEARCH);
+            Sound_PlayEffect(SEQ_SE_DP_Z_SEARCH_sseq);
         }
         break;
     case 2:

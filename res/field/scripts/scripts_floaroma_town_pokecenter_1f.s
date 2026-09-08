@@ -22,7 +22,7 @@ FloaromaTownPokecenter1F_BattleGirl:
     End
 
 FloaromaTownPokecenter1F_AceTrainerF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, FloaromaTownPokecenter1F_LongWayToEternaCity

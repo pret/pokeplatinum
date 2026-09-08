@@ -8,7 +8,7 @@ L_1:
     LoadParticleResource 0, curse_spa
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     BeginLoop 1
-    PlaySoundEffectL SEQ_SE_DP_W185
+    PlaySoundEffectL SEQ_SE_DP_W185_sseq
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_RED, 10, 10
     Func_MoveBattlerX2 10, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Delay 10
@@ -26,7 +26,7 @@ L_2:
     LoadParticleResource 0, curse_spa
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    PlayLoopedSoundEffectL SEQ_SE_DP_032, 12, 3
+    PlayLoopedSoundEffectL SEQ_SE_DP_032_sseq, 12, 3
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_ATTACKER

@@ -381,7 +381,7 @@ static BOOL TextPrinter_Continue(TextPrinter *printer)
 {
     if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)
         || (gSystem.touchPressed && sRenderControlFlags.speedUpOnTouch)) {
-        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
         sRenderControlFlags.waitBattle = TRUE;
         return TRUE;
     }

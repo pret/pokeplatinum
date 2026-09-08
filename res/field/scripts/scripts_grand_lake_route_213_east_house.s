@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 GrandLakeRoute213EastHouse_MiddleAgedMan:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message GrandLakeRoute213EastHouse_Text_YoureATraveler

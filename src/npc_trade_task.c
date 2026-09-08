@@ -3,17 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "cutscenes/trade_sequence/main.h"
 #include "field/field_system.h"
 #include "overlay006/npc_trade.h"
 #include "overlay006/struct_npc_trade_animation_template.h"
-#include "overlay095/ov95_02246C20.h"
 
 #include "field_task.h"
 #include "field_transition.h"
 #include "heap.h"
 #include "pokemon.h"
 
-FS_EXTERN_OVERLAY(overlay95);
+FS_EXTERN_OVERLAY(trade_sequence);
 
 typedef struct NPCTradeTaskEnv {
     NPCTradeData *npcTradeData;
@@ -28,7 +28,7 @@ static const ApplicationManagerTemplate tradeSequenceAppMan = {
     TradeSequence_Init,
     TradeSequence_Main,
     TradeSequence_Exit,
-    FS_OVERLAY_ID(overlay95),
+    FS_OVERLAY_ID(trade_sequence),
 };
 
 static BOOL FieldTask_ProcessNPCTrade(FieldTask *task);
@@ -39,7 +39,7 @@ void StartTradeApplication(FieldTask *task)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     NPCTradeTaskEnv *taskEnv = FieldTask_GetEnv(task);
 
-    FS_EXTERN_OVERLAY(overlay95);
+    FS_EXTERN_OVERLAY(trade_sequence);
 
     FieldTask_RunApplication(task, &tradeSequenceAppMan, &taskEnv->tradeAnimTemplate);
 }

@@ -5,7 +5,7 @@
 
 #include "struct_defs/battle_tower.h"
 
-#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/frontier_opponents.h"
 #include "overlay104/ov104_0223A0C4.h"
 
 #include "savedata.h"
@@ -32,8 +32,8 @@ void BattleTower_CreateOpponentParties(BattleTower *battleTower, SaveData *saveD
         u16 items[2];
 
         for (int v0 = 0; v0 < battleTower->partySize; v0++) {
-            species[v0] = battleTower->opponentsDataDTO[0].monDataDTO[v0].species;
-            items[v0] = battleTower->opponentsDataDTO[0].monDataDTO[v0].item;
+            species[v0] = battleTower->opponentsDataDTO[0].pokemon[v0].species;
+            items[v0] = battleTower->opponentsDataDTO[0].pokemon[v0].item;
         }
 
         BattleTower_CreateTrainerParty(battleTower, &(battleTower->opponentsDataDTO[1]), battleTower->trainerIDs[(battleTower->nextOpponentNum - 1) * 2 + 1], battleTower->partySize, species, items, NULL, battleTower->heapID);
@@ -48,7 +48,7 @@ void BattleTower_CreateOpponentParties(BattleTower *battleTower, SaveData *saveD
 
 u16 BattleTower_GetObjectIDFromOpponentIDInFrontierScript(BattleTower *battleTower, u16 opponentID)
 {
-    return BattleTower_GetObjectIDFromTrainerClass(battleTower->opponentsDataDTO[opponentID].trDataDTO.trainerType);
+    return BattleFrontier_GetObjectIDFromTrainerClass(battleTower->opponentsDataDTO[opponentID].trainer.trainerType);
 }
 
 void BattleTower_SetBeatPalmer(BattleTower *battleTower, u16 value)

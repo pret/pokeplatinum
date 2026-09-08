@@ -299,13 +299,13 @@ void sub_0209B9EC(BattleFrontier *frontier)
     }
 }
 
-FieldFrontierDTO *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
+FieldFrontierDTO *BattleFrontier_LaunchWFCFacilitySelector(FieldSystem *fieldSystem, void *data)
 {
     FieldFrontierDTO *fieldData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(FieldFrontierDTO));
 
     MI_CpuClear8(fieldData, sizeof(FieldFrontierDTO));
 
-    fieldData->facilityData = param1;
+    fieldData->facilityData = data;
     fieldData->options = SaveData_GetOptions(fieldSystem->saveData);
     fieldData->saveData = fieldSystem->saveData;
     fieldData->journalEntry = fieldSystem->journalEntry;
@@ -314,7 +314,7 @@ FieldFrontierDTO *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
     fieldData->unk_14 = 0;
     fieldData->unk_18 = 0;
     fieldData->mapHeaderID = fieldSystem->location->mapHeaderID;
-    fieldData->sceneID = FRONTIER_SCENE_14;
+    fieldData->sceneID = FRONTIER_SCENE_WFC_FACILITY_SELECTOR;
     fieldData->fieldSystem = fieldSystem;
 
     FieldSystem_StartChildProcess(fieldSystem, &gBattleFrontierAppTemplate, fieldData);

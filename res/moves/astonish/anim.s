@@ -4,14 +4,14 @@ L_0:
     LoadParticleResource 0, astonish_spa
     Func_MoveBattlerX2 3, 24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     WaitForAnimTasks
-    PlaySoundEffectR SEQ_SE_DP_W280B
+    PlaySoundEffectR SEQ_SE_DP_W280B_sseq
     Func_ScaleBattlerSprite BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 100, 90, 100, 140, 100, CYCLES(1), SCALE_F(5) | RESTORE_F(5)
     Delay 1
     Func_MoveBattlerX2 3, -24, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     WaitForAnimTasks
-    PlaySoundEffectR SEQ_SE_DP_W166
+    PlaySoundEffectR SEQ_SE_DP_W166_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

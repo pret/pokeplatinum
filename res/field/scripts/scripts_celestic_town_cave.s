@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 CelesticTownCave_Painting:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, CelesticTownCave_PaintingCynthia
     GoTo CelesticTownCave_ExaminePainting
@@ -413,7 +413,7 @@ CelesticTownCave_Movement_ElderLeaveX11:
     EndMovement
 
 CelesticTownCave_Cyrus:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message CelesticTownCave_Text_WellChallengeMe

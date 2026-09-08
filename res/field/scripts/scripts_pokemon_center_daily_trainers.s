@@ -164,7 +164,7 @@ PokemonCenterDailyTrainers_SetNPCArturo:
     Return
 
 PokemonCenterDailyTrainers_FirstNPC:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_IS_NPC_2, FALSE
@@ -180,7 +180,7 @@ PokemonCenterDailyTrainers_FirstNPC:
     End
 
 PokemonCenterDailyTrainers_SecondNPC:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_IS_NPC_2, TRUE

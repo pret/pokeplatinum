@@ -20,7 +20,7 @@ TeamGalacticEternaBuilding4F_Unused:
     End
 
 TeamGalacticEternaBuilding4F_Jupiter:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ApplyMovement LOCALID_POKEFAN_M, TeamGalacticEternaBuilding4F_Movement_PokefanMWalkOnSpotNorth
@@ -143,7 +143,7 @@ TeamGalacticEternaBuilding4F_Buneary:
     End
 
 TeamGalacticEternaBuilding4F_PokefanM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, TeamGalacticEternaBuilding4F_ThankYouCruiseByCycleShop

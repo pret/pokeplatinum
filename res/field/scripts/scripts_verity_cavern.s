@@ -12,7 +12,7 @@ VerityCavern_OnTransition:
     End
 
 VerityCavern_Mesprit:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     DrawPokemonPreview SPECIES_MESPRIT, GENDER_MALE

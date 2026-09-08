@@ -9,6 +9,12 @@
 #include "billboard_gfx_sequence.h"
 #include "billboard_vram_transfer.h"
 
+enum BillboardAnimType {
+    BILLBOARD_ANIM_TYPE_LOOP = 0,
+    BILLBOARD_ANIM_TYPE_ONESHOT,
+    BILLBOARD_ANIM_TYPE_TABLE_END, // used as the anim type for the dummy entry at the end of anim tables
+};
+
 typedef struct Billboard Billboard;
 typedef struct BillboardList BillboardList;
 typedef void (*BillboardCallback)(Billboard *, void *);

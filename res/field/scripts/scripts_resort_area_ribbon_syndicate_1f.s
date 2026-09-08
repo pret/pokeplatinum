@@ -64,7 +64,7 @@ ResortAreaRibbonSyndicate1F_Beauty:
     End
 
 ResortAreaRibbonSyndicate1F_CashierF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetFirstNonEggInParty VAR_0x8000
@@ -87,8 +87,8 @@ ResortAreaRibbonSyndicate1F_OfferGorgeousRibbon:
     AddToGameRecord RECORD_MONEY_SPENT, 10000
     RemoveMoney 10000
     UpdateMoneyDisplay
-    PlaySE SEQ_SE_DP_REGI
-    WaitSE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
+    WaitSE SEQ_SE_DP_REGI_sseq
     Message ResortAreaRibbonSyndicate1F_Text_BoughtGorgeousRibbon
     Message ResortAreaRibbonSyndicate1F_Text_PutGorgeousRibbonOnPokemon
     WaitButton
@@ -107,8 +107,8 @@ ResortAreaRibbonSyndicate1F_OfferRoyalRibbon:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 100000
     RemoveMoney 100000
     UpdateMoneyDisplay
-    PlaySE SEQ_SE_DP_REGI
-    WaitSE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
+    WaitSE SEQ_SE_DP_REGI_sseq
     Message ResortAreaRibbonSyndicate1F_Text_BoughtRoyalRibbon
     Message ResortAreaRibbonSyndicate1F_Text_PutRoyalRibbonOnPokemon
     WaitButton
@@ -127,8 +127,8 @@ ResortAreaRibbonSyndicate1F_OfferGorgeousRoyalRibbon:
     AddToGameRecordBigValue RECORD_MONEY_SPENT, 999999
     RemoveMoney 999999
     UpdateMoneyDisplay
-    PlaySE SEQ_SE_DP_REGI
-    WaitSE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
+    WaitSE SEQ_SE_DP_REGI_sseq
     Message ResortAreaRibbonSyndicate1F_Text_BoughtGorgeousRoyalRibbon
     Message ResortAreaRibbonSyndicate1F_Text_PutRoyalGorgeousRibbonOnPokemon
     WaitButton
@@ -166,7 +166,7 @@ ResortAreaRibbonSyndicate1F_MiddleAgedWoman:
     End
 
 ResortAreaRibbonSyndicate1F_Lady:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerGender VAR_RESULT

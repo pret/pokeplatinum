@@ -176,7 +176,7 @@ Contests_Dummy9805:
     End
 
 Contests_ReceptionistOfficialContest:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, CONTEST_MODE_OFFICIAL
@@ -186,7 +186,7 @@ Contests_ReceptionistOfficialContest:
     End
 
 Contests_ReceptionistLinkContest:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, CONTEST_MODE_LINK
@@ -673,7 +673,7 @@ Contest_DoContest:
     ClearFlag FLAG_HIDE_HEARTHOME_CITY_HIKER_3
     SetVar VAR_ONGOING_CONTEST, TRUE
     Call Contests_GetContestantsGFX
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_1
     ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_2
     ClearFlag FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_3
@@ -689,7 +689,7 @@ Contest_DoContest:
     StartHBlank
     StartContestCommSync 3
     WaitForCommSyncState 3
-    PlaySE SEQ_SE_DP_CON_F007
+    PlaySE SEQ_SE_DP_CON_F007_sseq
     ApplyMovement LOCALID_ONGOING_CONTEST_MCDEXTER, Contests_Movement_DexterLookAround
     WaitMovement
     BufferContestRank 0
@@ -742,7 +742,7 @@ Contest_DoContest:
     CloseMessage
     StartContestCommSync 4
     WaitForCommSyncState 4
-    PlaySE SEQ_SE_DP_CON_F007
+    PlaySE SEQ_SE_DP_CON_F007_sseq
     WaitTime 30, VAR_RESULT
     StopHBlank
     FadeScreen FADE_SCREEN_CMD_STEPS, FADE_SCREEN_SPEED_FAST, FADE_TYPE_UNK_20, COLOR_BLACK
@@ -780,7 +780,7 @@ Contests_AwardCeremony:
     ApplyMovement LOCALID_ONGOING_CONTEST_CONTESTANT_WINNER, Contests_Movement_DexterLookWest
     WaitMovement
     WaitTime 15, VAR_RESULT
-    PlayFanfare SEQ_FANFA1
+    PlayFanfare SEQ_FANFA1_sseq
     WaitFanfare
     ApplyMovement LOCALID_ONGOING_CONTEST_MCDEXTER, Contests_Movement_DexterLookSouth
     ApplyMovement LOCALID_ONGOING_CONTEST_CONTESTANT_WINNER, Contests_Movement_DexterLookSouth
@@ -788,7 +788,7 @@ Contests_AwardCeremony:
 Contests_EndContest:
     MessageSynchronized ContestCommon_Text_LookForwardToNextChallenge
     CloseMessage
-    PlaySE SEQ_SE_DP_CON_F007
+    PlaySE SEQ_SE_DP_CON_F007_sseq
     GetWinningContestantEntryNum VAR_RESULT
     StartContestCameraFlashTask VAR_RESULT
     GetContestantMonContestFame VAR_RESULT, VAR_RESULT
@@ -840,7 +840,7 @@ Contests_End:
     End
 
 Contests_PlayApplause:
-    PlaySE SEQ_SE_DP_CON_F007
+    PlaySE SEQ_SE_DP_CON_F007_sseq
     CallIfEq VAR_RESULT, 1, Contests_PlayApplauseMinimum
     CallIfEq VAR_RESULT, 2, Contests_PlayApplauseSmall
     CallIfEq VAR_RESULT, 3, Contests_PlayApplauseMedium
@@ -849,48 +849,48 @@ Contests_PlayApplause:
     Return
 
 Contests_PlayApplauseMinimum:
-    PlaySE SEQ_SE_DP_CON_015
-    WaitSE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
+    WaitSE SEQ_SE_DP_CON_015_sseq
     Return
 
 Contests_PlayApplauseSmall:
-    PlaySE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
     WaitTime 5, VAR_RESULT
-    PlaySE SEQ_SE_DP_CON_015
-    WaitSE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
+    WaitSE SEQ_SE_DP_CON_015_sseq
     Return
 
 Contests_PlayApplauseMedium:
-    PlaySE SEQ_SE_DP_CON_015
-    WaitSE SEQ_SE_DP_CON_015
-    PlaySE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
+    WaitSE SEQ_SE_DP_CON_015_sseq
+    PlaySE SEQ_SE_DP_CON_015_sseq
     WaitTime 5, VAR_RESULT
-    PlaySE SEQ_SE_DP_CON_015
-    WaitSE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
+    WaitSE SEQ_SE_DP_CON_015_sseq
     Return
 
 Contests_PlayApplauseLarge:
-    PlaySE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
     WaitTime 5, VAR_RESULT
-    PlaySE SEQ_SE_DP_CON_015
-    WaitSE SEQ_SE_DP_CON_015
-    PlaySE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
+    WaitSE SEQ_SE_DP_CON_015_sseq
+    PlaySE SEQ_SE_DP_CON_015_sseq
     WaitTime 5, VAR_RESULT
-    PlaySE SEQ_SE_DP_CON_015
-    WaitSE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
+    WaitSE SEQ_SE_DP_CON_015_sseq
     Return
 
 Contests_PlayApplauseMaximum:
-    PlaySE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
     WaitTime 5, VAR_RESULT
-    PlaySE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
     WaitTime 5, VAR_RESULT
-    PlaySE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
     WaitTime 10, VAR_RESULT
-    PlaySE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
     WaitTime 5, VAR_RESULT
-    PlaySE SEQ_SE_DP_CON_015
-    WaitSE SEQ_SE_DP_CON_015
+    PlaySE SEQ_SE_DP_CON_015_sseq
+    WaitSE SEQ_SE_DP_CON_015_sseq
     Return
 
 Contests_GetContestantsGFX:
@@ -1020,7 +1020,7 @@ Contests_Movement_DexterLookSouth:
     EndMovement
 
 Contests_ReceptionistPracticeContest:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     SetVar VAR_MAP_LOCAL_0x03, CONTEST_MODE_PRACTICE
@@ -1394,7 +1394,7 @@ Contests_ReceptionistsEnd:
     End
 
 Contests_LinkContestRecordsDisplay:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     ShowLinkContestRecords
     ReleaseAll

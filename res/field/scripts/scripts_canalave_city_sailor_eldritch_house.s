@@ -73,7 +73,7 @@ CanalaveCitySailorEldritchHouse_BoyThrashingInSleep:
     GoToIfUnset FLAG_MET_CRESSELIA, CanalaveCitySailorEldritchHouse_ThrashingInSleep
     CheckItem ITEM_LUNAR_WING, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, CanalaveCitySailorEldritchHouse_ThrashingInSleep
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetFlag FLAG_WOKE_UP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY
     SetVar VAR_LUNAR_WING_EVENT_STATE, 3
@@ -81,7 +81,7 @@ CanalaveCitySailorEldritchHouse_BoyThrashingInSleep:
     BufferPlayerName 0
     Message CanalaveCitySailorEldritchHouse_Text_LunarWingGlows
     Message CanalaveCitySailorEldritchHouse_Text_LittleBoyWokeUp
-    PlayFanfare SEQ_ASA
+    PlayFanfare SEQ_ASA_sseq
     WaitFanfare
     CloseMessage
     WaitTime 15, VAR_RESULT
@@ -107,8 +107,8 @@ CanalaveCitySailorEldritchHouse_FirstTimeBoyThrashingInSleep:
     End
 
 CanalaveCitySailorEldritchHouse_SailorEldritchEnter:
-    PlaySE SEQ_SE_DP_KAIDAN2
-    WaitSE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     ClearFlag FLAG_HIDE_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_SAILOR_ELDRITCH
     AddObject LOCALID_SAILOR_ELDRITCH
     WaitTime 5, VAR_RESULT
@@ -142,8 +142,8 @@ CanalaveCitySailorEldritchHouse_SailorEldritchLeave:
     WaitMovement
     SetFlag FLAG_HIDE_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_SAILOR_ELDRITCH
     RemoveObject LOCALID_SAILOR_ELDRITCH
-    PlaySE SEQ_SE_DP_KAIDAN2
-    WaitSE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     Return
 
     .balign 4, 0

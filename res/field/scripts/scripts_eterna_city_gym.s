@@ -17,7 +17,7 @@ EternaGym_InitFeatures:
     End
 
 EternaGym_GymGuide:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_GymGuideAfterBadge
@@ -36,7 +36,7 @@ EternaGym_GymGuideAfterBadge:
     End
 
 EternaGym_GymStatue:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_GymStatueAfterBadge
     BufferRivalName 0
@@ -58,7 +58,7 @@ EternaGym_GymStatueAfterBadge:
     End
 
 EternaGym_Gardenia:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfBadgeAcquired BADGE_ID_FOREST, EternaGym_Gardenia_AlreadyHaveForestbadge
@@ -71,7 +71,7 @@ EternaGym_Gardenia:
     Message EternaGym_Text_BeatGardenia
     BufferPlayerName 0
     Message EternaGym_Text_GardeniaReceiveForestBadge
-    PlayFanfare SEQ_BADGE
+    PlayFanfare SEQ_BADGE_sseq
     WaitFanfare
     GiveBadge BADGE_ID_FOREST
     IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
@@ -141,7 +141,7 @@ EternaGym_LostBattle:
     End
 
 EternaGym_LassCaroline:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 1, EternaGym_LassCarolineBeaten
@@ -167,7 +167,7 @@ EternaGym_LassCarolineBeaten:
     End
 
 EternaGym_AromaLadyJenna:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 2, EternaGym_AromaLadyJennaBeaten
@@ -195,7 +195,7 @@ EternaGym_AromaLadyJennaBeaten:
     End
 
 EternaGym_AromaLadyAngela:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfGe VAR_ETERNA_GYM_TRAINERS_BEATEN, 3, EternaGym_AromaLadyAngelaBeaten

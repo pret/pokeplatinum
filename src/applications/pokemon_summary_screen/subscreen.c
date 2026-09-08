@@ -189,7 +189,7 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
 
     switch (summaryScreen->buttonState) {
     case SUMMARY_BUTTON_STATE_INIT_ANIM:
-        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9_sseq);
         PokemonSummaryScreen_UpdateSubscreenButtonGfx(summaryScreen);
         UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonCurrent], 2);
         Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_SUB_0);

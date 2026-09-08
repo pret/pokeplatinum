@@ -17,7 +17,7 @@ GalacticHQB2F_ScientistM:
     End
 
 GalacticHQB2F_Door:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckItem ITEM_GALACTIC_KEY, 1, VAR_RESULT
@@ -39,8 +39,8 @@ GalacticHQB2F_UseGalacticKey:
     BufferPlayerName 0
     Message GalacticHQB2F_Text_DoorOpened
     WaitButton
-    WaitSE SEQ_SE_CONFIRM
-    PlaySE SEQ_SE_DP_DOOR10
+    WaitSE SE_CONFIRM_sseq_3
+    PlaySE SEQ_SE_DP_DOOR10_sseq
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_WEST, GalacticHQB2F_Movement_DoorWestMoveWest
     ApplyMovement LOCALID_GALACTIC_HQ_DOOR_EAST, GalacticHQB2F_Movement_DoorEastMoveEast
     WaitMovement

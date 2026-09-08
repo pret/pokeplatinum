@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 SandgemTownCounterpartHouse2F_PC:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     BufferPlayerName 0
     Message SandgemTownCounterpartHouse2F_Text_PlayerCheckedPCScreen

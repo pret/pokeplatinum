@@ -7,6 +7,7 @@
 #include "comm_manager.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"

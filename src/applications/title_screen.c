@@ -1,4 +1,4 @@
-#include "text/bank/title_screen.h"
+#include "applications/title_screen.h"
 
 #include <nitro/gx/g3.h>
 #include <nitro/types.h>
@@ -6,8 +6,6 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/species.h"
-
-#include "game_opening/const_ov77_021D742C.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -34,6 +32,7 @@
 #include "unk_0202419C.h"
 
 #include "res/graphics/title_screen/titledemo.naix"
+#include "res/text/bank/title_screen.h"
 
 FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(main_menu);
@@ -363,7 +362,7 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
         break;
     case TITLE_SCREEN_APP_STATE_INIT_SOUND:
         Sound_SetScene(SOUND_SCENE_NONE);
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_TITLE_SCREEN, SEQ_TITLE01, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_TITLE_SCREEN, SEQ_TITLE01_sseq, 1);
         *state = TITLE_SCREEN_APP_STATE_MAIN;
         break;
     case TITLE_SCREEN_APP_STATE_MAIN:
@@ -415,7 +414,7 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
         }
 
         if (Sound_IsPokemonCryPlaying() == FALSE && IsScreenFadeDone() == TRUE && appData->exitFadeTimer >= TITLE_SCREEN_EXIT_FADE_DELAY_FRAMES) {
-            Sound_StopBGM(SEQ_TITLE01, 0);
+            Sound_StopBGM(SEQ_TITLE01_sseq, 0);
 
             DisableAllLayers();
 
@@ -428,7 +427,7 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
         TitleScreen_RenderMain(&appData->titleScreen, appData->bgConfig, appData->heapID);
 
         if (Sound_IsFadeActive() == FALSE) {
-            Sound_StopBGM(SEQ_TITLE01, 0);
+            Sound_StopBGM(SEQ_TITLE01_sseq, 0);
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, appData->heapID);
             *state = TITLE_SCREEN_APP_STATE_CLEANUP;
         }

@@ -7,9 +7,9 @@ L_0:
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_W227B
+    PlaySoundEffectR SEQ_SE_DP_W227B_sseq
     BeginLoop 5
-    PlaySoundEffectR SEQ_SE_DP_W227
+    PlaySoundEffectR SEQ_SE_DP_W227_sseq
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 8, 4
     Delay 4
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, -8, 4

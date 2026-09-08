@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 SurvivalAreaSouthHouse_BlackBelt:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42, SurvivalAreaSouthHouse_ExplainFacade

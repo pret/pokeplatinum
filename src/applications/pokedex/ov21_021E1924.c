@@ -518,7 +518,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 0);
-                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06_sseq);
                 }
             }
             break;
@@ -533,7 +533,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 1);
-                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06_sseq);
                 }
             }
             break;
@@ -548,7 +548,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 2);
-                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06_sseq);
                 }
             }
             break;
@@ -563,7 +563,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 3);
-                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06_sseq);
                 }
             }
             break;
@@ -578,7 +578,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 4);
-                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06_sseq);
                 }
             }
             break;
@@ -593,7 +593,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 5);
-                    Sound_PlayEffect(SEQ_SE_DP_DENSI06);
+                    Sound_PlayEffect(SEQ_SE_DP_DENSI06_sseq);
                 }
             }
             break;
@@ -1052,7 +1052,7 @@ static void ov21_021E2864(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
         if (v0 == 1) {
             ov21_021E275C(param0, param1, param0->unk_10);
             ov21_021E2968(param0, param1);
-            Sound_PlayEffect(SEQ_SE_DP_DENSI06);
+            Sound_PlayEffect(SEQ_SE_DP_DENSI06_sseq);
         }
     }
 }

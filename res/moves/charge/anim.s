@@ -9,9 +9,9 @@ L_0:
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 15
-    PlayLoopedSoundEffectL SEQ_SE_DP_W360, 12, 5
+    PlayLoopedSoundEffectL SEQ_SE_DP_W360_sseq, 12, 5
     Delay 77
-    PlaySoundEffectL SEQ_SE_DP_W085C
+    PlaySoundEffectL SEQ_SE_DP_W085C_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 12, 0, BATTLE_COLOR_BLACK

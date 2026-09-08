@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_DISTORTION_WORLD_PROGRESS, 0, 3
+    InitScriptGoToIfEqual VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_NONE, 3
     InitScriptFrameTableEnd
 
     InitScriptEnd

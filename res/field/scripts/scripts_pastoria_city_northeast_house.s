@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 PastoriaCityNortheastHouse_AceTrainerM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetFirstNonEggInParty VAR_0x8000

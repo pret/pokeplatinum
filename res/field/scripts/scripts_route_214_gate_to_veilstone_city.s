@@ -24,7 +24,7 @@ Route214GateToVeilstoneCity_HideReporter:
     End
 
 Route214GateToVeilstoneCity_MiddleAgedMan:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetUnownFormsSeenCount VAR_MAP_LOCAL_0x00

@@ -209,12 +209,12 @@ static BOOL MoveTram(FieldTask *taskMan)
     }
     case 1:
         if (task->movementType == GREAT_MARSH_TRAM_MOVEMENT_RIDE) {
-            Sound_PlayEffect(SEQ_SE_DP_TRAIN04);
+            Sound_PlayEffect(SEQ_SE_DP_TRAIN04_sseq);
         }
 
         task->state++;
     case 2:
-        if (!Sound_IsEffectPlaying(SEQ_SE_DP_TRAIN04)) {
+        if (!Sound_IsEffectPlaying(SEQ_SE_DP_TRAIN04_sseq)) {
             task->state++;
         }
         break;
@@ -250,7 +250,7 @@ static BOOL CallTramToPlayer(FieldSystem *fieldSystem, GreatMarshTramMovementTas
         if (task->speedLevel < NELEMS(sCalledTramFramesPerSpeedLevel) - 1 && (tramPosition->z - FX32_CONST(8)) / FX32_CONST(16) <= task->slowDownZ) {
             if (++task->calledTramElapsedFrames >= sCalledTramFramesPerSpeedLevel[task->speedLevel]) {
                 if (task->speedLevel == 0) {
-                    Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
+                    Sound_PlayEffect(SEQ_SE_DP_TRAIN03_sseq);
                 }
 
                 task->speedLevel++;
@@ -263,7 +263,7 @@ static BOOL CallTramToPlayer(FieldSystem *fieldSystem, GreatMarshTramMovementTas
         if (task->speedLevel < NELEMS(sCalledTramFramesPerSpeedLevel) - 1 && (tramPosition->z - FX32_CONST(8)) / FX32_CONST(16) >= task->slowDownZ) {
             if (++task->calledTramElapsedFrames >= sCalledTramFramesPerSpeedLevel[task->speedLevel]) {
                 if (task->speedLevel == 0) {
-                    Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
+                    Sound_PlayEffect(SEQ_SE_DP_TRAIN03_sseq);
                 }
 
                 task->speedLevel++;
@@ -291,14 +291,14 @@ static BOOL RideTramToArea(FieldSystem *fieldSystem, GreatMarshTramMovementTask 
 
             if (task->speedLevel < NELEMS(sRidingTramNorthMovements) - 1 && PlayerAvatar_GetZPos(fieldSystem->playerAvatar) > task->slowDownZ) {
                 if (task->speedLevel == 0) {
-                    Sound_PlayEffect(SEQ_SE_DP_TRAIN02);
+                    Sound_PlayEffect(SEQ_SE_DP_TRAIN02_sseq);
                 }
 
                 task->speedLevel++;
             } else if (PlayerAvatar_GetZPos(fieldSystem->playerAvatar) <= task->slowDownZ) {
                 if (task->speedLevel != 0) {
                     if (task->speedLevel == NELEMS(sRidingTramNorthMovements) - 1) {
-                        Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
+                        Sound_PlayEffect(SEQ_SE_DP_TRAIN03_sseq);
                     }
 
                     task->speedLevel--;
@@ -310,14 +310,14 @@ static BOOL RideTramToArea(FieldSystem *fieldSystem, GreatMarshTramMovementTask 
 
         if (task->speedLevel < NELEMS(sRidingTramSouthMovements) - 1 && PlayerAvatar_GetZPos(fieldSystem->playerAvatar) < task->slowDownZ) {
             if (task->speedLevel == 0) {
-                Sound_PlayEffect(SEQ_SE_DP_TRAIN02);
+                Sound_PlayEffect(SEQ_SE_DP_TRAIN02_sseq);
             }
 
             task->speedLevel++;
         } else if (PlayerAvatar_GetZPos(fieldSystem->playerAvatar) >= task->slowDownZ) {
             if (task->speedLevel != 0) {
                 if (task->speedLevel == NELEMS(sRidingTramSouthMovements) - 1) {
-                    Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
+                    Sound_PlayEffect(SEQ_SE_DP_TRAIN03_sseq);
                 }
 
                 task->speedLevel--;

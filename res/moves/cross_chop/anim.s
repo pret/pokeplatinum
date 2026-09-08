@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, cross_chop_spa
-    PlaySoundEffectR SEQ_SE_DP_W025
+    PlaySoundEffectR SEQ_SE_DP_W025_sseq
     CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 4, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 10
@@ -12,7 +12,7 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
-    PlaySoundEffectR SEQ_SE_DP_W013
+    PlaySoundEffectR SEQ_SE_DP_W013_sseq
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

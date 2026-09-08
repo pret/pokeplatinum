@@ -8,10 +8,10 @@ L_0:
     LoadCellResObj 0, baton_pass_cell_NCER_lz
     LoadAnimResObj 0, baton_pass_anim_NANR_lz
     AddSpriteWithFunc 0, SPRITE_FUNC_BATON_PASS, baton_pass_NCGR_lz, baton_pass_NCLR, baton_pass_cell_NCER_lz, baton_pass_anim_NANR_lz, 0, 0
-    PlaySoundEffectL SEQ_SE_DP_SUIKOMU
+    PlaySoundEffectL SEQ_SE_DP_SLOT02_sseq_1
     Delay 32
-    PlaySoundEffectL SEQ_SE_DP_BOWA2
-    PlayDelayedSoundEffectL SEQ_SE_DP_W100, 40
+    PlaySoundEffectL SEQ_SE_DP_SLOT01_sseq_1
+    PlayDelayedSoundEffectL SEQ_SE_PL_W100_sseq_1, 40
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 0, 30, 0, 0, 0
     CreateEmitter 0, 1, EMITTER_CB_GENERIC

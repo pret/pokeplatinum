@@ -21,7 +21,7 @@ L_2:
     CreateEmitter 0, 3, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 13, 0, 0, 0
     SetExtraParams 1, 0, -1720, 0
-    PlaySoundEffectR SEQ_SE_DP_W464
+    PlaySoundEffectR SEQ_SE_DP_W464_sseq
     SetCameraProjection 1, 0
     CreateEmitter 1, 1, EMITTER_CB_GENERIC
     SetExtraParams 2, 2, 13, 0, 0, 0
@@ -41,7 +41,7 @@ L_2:
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER, 0, 8, 1
     Delay 2
     Delay 5
-    PlayDelayedSoundEffectR SEQ_SE_DP_290, 15
+    PlayDelayedSoundEffectR SEQ_SE_DP_290_sseq, 15
     BeginLoop 16
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, 0, 4, 1
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER, 0, 4, 1
@@ -72,7 +72,7 @@ L_1:
     Delay 1
     Func_HideBattler BATTLE_ANIM_DEFENDER, TRUE
     Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
-    PlaySoundEffectR SEQ_SE_DP_W464
+    PlaySoundEffectR SEQ_SE_DP_W464_sseq
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 13, 0, 0, 0
     SetExtraParams 1, 0, -1720, 0
@@ -88,7 +88,7 @@ L_1:
     CreateEmitter 1, 2, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 13, 0, 0, 0
     SetExtraParams 1, 0, -1720, 0
-    PlayDelayedSoundEffectR SEQ_SE_DP_290, 35
+    PlayDelayedSoundEffectR SEQ_SE_DP_290_sseq, 35
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1

@@ -14,7 +14,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 0
     SwitchBg 53, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch
-    PlaySoundEffectC SEQ_SE_DP_W090
+    PlaySoundEffectC SEQ_SE_DP_W090_sseq
     Func_Shake 4, 0, 1, 30, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_ShakeBg 8, 0, 0, 31, 0
     AddSpriteWithFunc 0, SPRITE_FUNC_FISSURE, fissure_NCGR_lz, fissure_NCLR, fissure_cell_NCER_lz, fissure_anim_NANR_lz, 0, 0

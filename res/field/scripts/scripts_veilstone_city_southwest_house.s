@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 VeilstoneCitySouthwestHouse_Beauty:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DAILY_GOT_MASSAGE_VEILSTONE_CITY_SOUTHWEST_HOUSE, VeilstoneCitySouthwestHouse_ComeBackTomorrow
@@ -31,8 +31,8 @@ VeilstoneCitySouthwestHouse_Beauty:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    PlaySE SEQ_SE_DP_FW367
-    WaitSE SEQ_SE_DP_FW367
+    PlaySE SEQ_SE_DP_FW367_sseq
+    WaitSE SEQ_SE_DP_FW367_sseq
     FadeScreenIn
     WaitFadeScreen
     BufferPartyMonNickname 0, VAR_MAP_LOCAL_0x00

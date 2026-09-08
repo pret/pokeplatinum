@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 DayCareCommon_Man:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferDaycareMonNicknames
@@ -51,7 +51,7 @@ DayCareCommon_TryGiveEgg:
 DayCareCommon_GiveEgg:
     BufferPlayerName 0
     Message DayCareCommon_Text_PlayerReceivedEgg
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
     WaitABPress
     Message DayCareCommon_Text_TakeGoodCareOfIt
@@ -100,7 +100,7 @@ DayCareCommon_Incompatible:
     Return
 
 DayCareCommon_Lady:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     ShowMoney 20, 2
@@ -289,8 +289,8 @@ DayCareCommon_GetPokemonBack:
     MoveMonToPartyFromDaycareSlot VAR_0x8002, VAR_0x8001
     RemoveMoney2 VAR_0x8004
     UpdateMoneyDisplay
-    PlaySE SEQ_SE_DP_REGI
-    WaitSE SEQ_SE_DP_REGI
+    PlaySE SEQ_SE_DP_REGI_sseq
+    WaitSE SEQ_SE_DP_REGI_sseq
     Message DayCareCommon_Text_HeresYourPokemon
     PlayCry VAR_0x8002
     BufferPlayerName 1
@@ -347,7 +347,7 @@ DayCareCommon_LadyTwoMons:
     End
 
 DayCareCommon_Unused:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message DayCareCommon_Text_Huh
     HatchEgg

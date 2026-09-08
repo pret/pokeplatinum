@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <nitro/sinit.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/poketch_button.h"
 #include "applications/poketch/poketch_system.h"
 #include "applications/poketch/unused/2/graphics.h"
@@ -12,6 +10,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
+
+#include "res/sound/pl_sound_data.naix"
 
 typedef struct PoketchUnusedApp2 {
     u8 state;
@@ -178,10 +178,10 @@ static BOOL State_UpdateApp(PoketchUnusedApp2 *appData)
             if (appData->data.buttonUnlocked[appData->pressedButton]) {
                 appData->data.pressedButtonID = appData->pressedButton;
                 PoketchUnusedApp2Graphics_StartTask(appData->graphics, 2);
-                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
                 appData->subState++;
             } else {
-                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP);
+                PoketchSystem_PlaySoundEffect(SEQ_SE_DP_BEEP_sseq);
             }
         }
         break;

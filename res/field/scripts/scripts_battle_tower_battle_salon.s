@@ -103,7 +103,7 @@ BattleTowerBattleSalon_OnFrame_EnterBattleSalon:
     End
 
 BattleTowerBattleSalon_Attendant:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -151,7 +151,7 @@ BattleTowerBattleSalon_BufferSpeciesAndMoveNames:
     Return
 
 BattleTowerBattleSalon_Cheryl:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_CherylDontTeamUp
@@ -183,7 +183,7 @@ BattleTowerBattleSalon_CherylTeamUp:
     End
 
 BattleTowerBattleSalon_Mira:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_MiraDontTeamUp
@@ -212,7 +212,7 @@ BattleTowerBattleSalon_MiraTeamUp:
     End
 
 BattleTowerBattleSalon_Riley:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_RileyDontTeamUp
@@ -239,7 +239,7 @@ BattleTowerBattleSalon_RileyTeamUp:
     End
 
 BattleTowerBattleSalon_Marley:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_MarleyDontTeamUp
@@ -266,7 +266,7 @@ BattleTowerBattleSalon_MarleyTeamUp:
     End
 
 BattleTowerBattleSalon_Buck:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_BATTLE_TOWER_BATTLE_SALON_STATE, 2, BattleTowerBattleSalon_BuckDontTeamUp

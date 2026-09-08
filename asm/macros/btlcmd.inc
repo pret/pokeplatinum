@@ -11,7 +11,7 @@
 #include "generated/move_attributes.h"
 #include "generated/moves.h"
 #include "generated/pokemon_types.h"
-#include "generated/sdat.h"
+#include "res/sound/pl_sound_data.naix"
 #include "generated/species_data_params.h"
 #include "battle/btlcmd.h"
 #include "res/text/bank/battle_strings.h"

@@ -44,7 +44,7 @@ PalParkLobby_BufferRivalRecord:
     Return
 
 PalParkLobby_Worker:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GetPlayerGender VAR_RESULT
@@ -160,7 +160,7 @@ PalParkLobby_WalkInAndWarp:
     WaitMovement
     ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_PlayerEnterPalPark
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_PAL_PARK, 24, 47, DIR_NORTH
@@ -295,7 +295,7 @@ PalParkLobby_Record_Unused:
     End
 
 PalParkLobby_Daughter:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
@@ -376,9 +376,9 @@ PalParkLobby_PokemonFromAroundTheCountry:
     WaitMovement
     ApplyMovement LOCALID_PROF_OAK, PalParkLobby_Movement_ProfOakLeave
     WaitMovement
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_PROF_OAK
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetVar VAR_PAL_PARK_LOBBY_STATE, 1
     ReleaseAll
     End
@@ -409,7 +409,7 @@ PalParkLobby_Movement_PlayerMoveAside:
     EndMovement
 
 PalParkLobby_PoketchAppLady:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_MAP_LOCAL_0x0A, 1, PalParkLobby_PoketchAppLady_JustReceivedKitchenTimer
@@ -476,7 +476,7 @@ PalParkLobby_PoketchAppLady_ReceivedAllPoketchApps:
     End
 
 PalParkLobby_GBASlotGiftLady:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_MAP_LOCAL_0x09, 1, PalParkLobby_GBASlotGiftLady_JustReceivedGift

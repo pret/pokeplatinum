@@ -317,7 +317,7 @@ static void Task_ShowCurrentTime(SysTask *task, void *taskMan)
     AlarmClockGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     const AlarmClockData *clockData = PoketchTask_GetConstTaskData(taskMan);
 
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
 
     PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_ALARM_SET_BUTTON], 3);
     PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_EYE_LEFT], 5);
@@ -338,7 +338,7 @@ static void Task_EnterEditMode(SysTask *task, void *taskMan)
     AlarmClockGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     const AlarmClockData *clockData = PoketchTask_GetConstTaskData(taskMan);
 
-    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+    PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
 
     PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_ALARM_SET_BUTTON], 2);
     PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_EYE_LEFT], 5);
@@ -380,7 +380,7 @@ static void Task_SoundAlarm(SysTask *task, void *taskMan)
         PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_EYE_RIGHT], 4);
         PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_EAR_LEFT], 1);
         PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_EAR_RIGHT], 1);
-        PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
+        PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003_sseq);
         PoketchSystem_PlayCry(SPECIES_LOUDRED, 0);
         graphics->digitBlinkTimer = 0;
         graphics->showDigits = FALSE;

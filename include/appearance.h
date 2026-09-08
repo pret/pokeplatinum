@@ -30,6 +30,9 @@ enum TrainerAppearance {
     TRAINER_APPEARANCE_LADY,
 };
 
+#define APPEARANCES_COUNT 8
+#define VARIANTS_COUNT    4
+
 #define TRAINER_APPEARANCE_DEFAULT -1
 
 void Appearance_LoadVariants(u32 trainerId, int trainerGender, StringTemplate *stringTemplate);

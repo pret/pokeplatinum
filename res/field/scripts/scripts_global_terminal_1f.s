@@ -88,7 +88,7 @@ GlobalTerminal1F_Dummy2:
     End
 
 GlobalTerminal1F_ReceptionistGTS:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -296,7 +296,7 @@ GlobalTerminal1F_Youngster:
     End
 
 GlobalTerminal1F_BattleVideoRankingsMachine:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8005, 3
     GoTo GlobalTerminal1F_BattleVideoRankingsMenu
@@ -336,7 +336,7 @@ GlobalTerminal1F_ExplainBattleVideoRankings:
     End
 
 GlobalTerminal1F_TrainerRankingsMachine:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     SetVar VAR_0x8005, 4
     GoTo GlobalTerminal1F_TrainerRankingsMenu
@@ -384,7 +384,7 @@ GlobalTerminal1F_RepectionistEntrySouth:
     End
 
 GlobalTerminal1F_PokemonBreederF:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckPartyHasBadEgg VAR_RESULT
@@ -437,7 +437,7 @@ GlobalTerminal1F_PokemonBreederFEnd:
     End
 
 GlobalTerminal1F_PokemonBreederM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message GlobalTerminal1F_Text_TellMeYo
@@ -462,7 +462,7 @@ GlobalTerminal1F_NothingToSay:
     End
 
 GlobalTerminal1F_Beauty2:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     CheckItem ITEM_FASHION_CASE, 1, VAR_RESULT

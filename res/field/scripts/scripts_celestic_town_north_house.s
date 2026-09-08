@@ -14,7 +14,7 @@ CelesticTownNorthHouse_OnTransition:
     End
 
 CelesticTownNorthHouse_ExpertM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message CelesticTownNorthHouse_Text_LikeToKnowMesprit
@@ -36,7 +36,7 @@ CelesticTownNorthHouse_ExpertMEnd:
     End
 
 CelesticTownNorthHouse_Elder:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_GAME_COMPLETED, CelesticTownNorthHouse_IDidSomeResearch

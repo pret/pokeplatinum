@@ -19,13 +19,13 @@
     ScriptEntryEnd
 
 TrainersSchool_Rival:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
     BufferRivalName 1
     Message TrainersSchool_Text_GotSomethingForMe
-    PlayFanfare SEQ_FANFA4
+    PlayFanfare SEQ_FANFA4_sseq
     BufferPlayerName 0
     Message TrainersSchool_Text_PlayerDeliveredTheParcel
     WaitFanfare
@@ -68,9 +68,9 @@ TrainersSchool_RivalLeaveEast:
     End
 
 TrainersSchool_RivalEnd:
-    PlaySE SEQ_SE_DP_KAIDAN2
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
     RemoveObject LOCALID_RIVAL
-    WaitSE SEQ_SE_DP_KAIDAN2
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetVar VAR_POKETCH_CAMPAIGN_STATE, 1
     SetFlag FLAG_TALKED_TO_TRAINERS_SCHOOL_RIVAL
     ClearFlag FLAG_HIDE_JUBILIFE_CITY_POKETCH_CO_PRESIDENT
@@ -132,7 +132,7 @@ TrainersSchool_Dummy8:
     End
 
 TrainersSchool_SchoolKidHarrison:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_TRAINERS_SCHOOL_POTION, TrainersSchool_PotionRestoresHP
@@ -226,7 +226,7 @@ TrainersSchool_LostBattleHarrison:
     End
 
 TrainersSchool_SchoolKidChristine:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_DEFEATED_TRAINERS_SCHOOL_SCHOOL_KID_CHRISTINE, TrainersSchool_PostBattleChristine
@@ -303,7 +303,7 @@ TrainersSchool_LostBattleChristine:
     End
 
 TrainersSchool_Blackboard:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     Message TrainersSchool_Text_BlackboardListsStatusChanges
     GoTo TrainersSchool_StatusMenu

@@ -13,7 +13,7 @@ L_0:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 3, 0, 4
-    PlayLoopedSoundEffectR SEQ_SE_DP_480, 4, 2
+    PlayLoopedSoundEffectR SEQ_SE_DP_480_sseq, 4, 2
     Func_Confusion
     WaitForAnimTasks
     FreePokemonSpriteManager

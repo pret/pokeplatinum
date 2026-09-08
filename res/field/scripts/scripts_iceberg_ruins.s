@@ -22,7 +22,7 @@ IcebergRuins_ResetState:
     End
 
 IcebergRuins_Statue:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, IcebergRuins_CaughtRegiceStatueStoppedEmanatingPower
@@ -32,7 +32,7 @@ IcebergRuins_Statue:
     GoToIfEq VAR_RESULT, 0, IcebergRuins_ItsAStatueOfAPokemon
     GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, IcebergRuins_EncounterRegice
     GoToIfLt VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_ALL_DOTS, IcebergRuins_ItsAStatueOfAPokemon
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     ScrCmd_29F 1
     SetVar VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
     Message IcebergRuins_Text_SomethingChangedInTheAir
@@ -140,7 +140,7 @@ IcebergRuins_DotEnd:
 
 IcebergRuins_ActivateStatue:
     GoToIfUnset FLAG_GAME_COMPLETED, IcebergRuins_DotEnd
-    WaitSE SEQ_SE_CONFIRM
+    WaitSE SE_CONFIRM_sseq_3
     ScrCmd_29F 1
     SetVar VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE
     Message IcebergRuins_Text_SomethingChangedInTheAir

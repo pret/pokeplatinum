@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 Route228SouthHouse_Gentleman:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     Message Route228SouthHouse_Text_LendAnEar

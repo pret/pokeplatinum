@@ -10,6 +10,7 @@
 #include "struct_defs/hall_of_fame_display_data.h"
 #include "struct_defs/struct_0203E348.h"
 
+#include "applications/frontier/tower_records.h"
 #include "applications/mail.h"
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
@@ -19,7 +20,6 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
 #include "field/field_system_decl.h"
-#include "overlay090/struct_ov90_021D0D80.h"
 
 #include "bag_context.h"
 #include "easy_chat_args.h"
@@ -67,7 +67,7 @@ MailAppArgs *FieldSystem_LaunchMailApp_Write(FieldSystem *fieldSystem, enum Mail
 MailAppArgs *FieldSystem_LaunchMailApp_Read(FieldSystem *fieldSystem, enum MailContext context, u8 mailType, enum HeapID heapID);
 MailAppArgs *FieldSystem_LaunchMailApp_ReadHeld(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID);
 PoffinCaseAppData *FieldSystem_LaunchPoffinCaseApp(FieldSystem *fieldSystem, enum HeapID heapID);
-void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1);
+void FieldSystem_OpenBattleTowerRecordsApp(FieldSystem *fieldSystem, BattleTowerRecordsAppArgs *param1);
 void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *saveData, u16 param3, u16 param4);
 BOOL sub_0203DB10(FieldSystem *fieldSystem, void *param1);
 BOOL sub_0203DB24(FieldSystem *fieldSystem, void *param1);
@@ -95,7 +95,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2);
 void sub_0203E224(FieldSystem *fieldSystem);
 void FieldTask_StartHallOfFame(FieldSystem *fieldSystem, HallOfFameDisplayData *displayData);
 void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem);
-void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1);
+void FieldSystem_StartEndCredits(FieldSystem *fieldSystem, ClearGamePlayerInfo *clearGamePlayerInfo);
 void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData);
 void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv);
 void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv);

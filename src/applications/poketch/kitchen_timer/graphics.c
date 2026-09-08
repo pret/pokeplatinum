@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "generated/sdat.h"
-
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_system.h"
@@ -15,6 +13,7 @@
 #include "sys_task_manager.h"
 
 #include "res/graphics/poketch/poketch.naix"
+#include "res/sound/pl_sound_data.naix"
 
 #define ANIM_HAND_RIGHT_UP     0
 #define ANIM_HAND_RIGHT_DOWN   1
@@ -420,7 +419,7 @@ static void Task_BeatSnorlaxHands(SysTask *task, void *taskMan)
                 PoketchAnimation_UpdateAnimationIdx(graphics->sprites[SPRITE_HAND_RIGHT], ANIM_HAND_RIGHT_UP);
             }
 
-            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI11);
+            PoketchSystem_PlaySoundEffect(SEQ_SE_DP_DENSI11_sseq);
             graphics->beatingHandTimer = 0;
         }
         break;

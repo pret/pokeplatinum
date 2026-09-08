@@ -10,7 +10,6 @@
 #include "constants/string.h"
 
 #include "battle/battle_system.h"
-#include "graphics/battle/sprites.naix"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -31,6 +30,7 @@
 #include "text.h"
 #include "unk_0208C098.h"
 
+#include "res/graphics/battle/sprites.naix"
 #include "res/text/bank/battle_strings.h"
 
 #define HEALTHBOX_SCROLL_SPEED      24
@@ -1765,7 +1765,7 @@ static void Healthbox_Task_LevelUpFlashAnimation(SysTask *task, void *param1)
             flashState->state++;
         }
 
-        PaletteData_Blend(paletteData, 2, flashState->paletteOffset * 16 + 0, 16, flashState->blendIntensity, 0x73a5);
+        PaletteData_Blend(paletteData, PLTTBUF_MAIN_OBJ, flashState->paletteOffset * PALETTE_SIZE, 16, flashState->blendIntensity, 0x73a5);
         break;
     case 2:
         flashState->blendIntensity -= 2;
@@ -1775,7 +1775,7 @@ static void Healthbox_Task_LevelUpFlashAnimation(SysTask *task, void *param1)
             flashState->state++;
         }
 
-        PaletteData_Blend(paletteData, 2, flashState->paletteOffset * 16 + 0, 16, flashState->blendIntensity, 0x73a5);
+        PaletteData_Blend(paletteData, PLTTBUF_MAIN_OBJ, flashState->paletteOffset * PALETTE_SIZE, 16, flashState->blendIntensity, 0x73a5);
         break;
     default:
         plttOffset = SpriteManager_FindPlttResourceOffset(spriteManager, HEALTHBOX_MAIN_PALETTE_RESID, NNS_G2D_VRAM_TYPE_2DMAIN);

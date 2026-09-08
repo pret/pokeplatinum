@@ -481,7 +481,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         break;
     case 2:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_24);
-        Sound_StopBGM(SEQ_CONTEST_DRESSING_ROOM, 30);
+        Sound_StopBGM(CONTEST_DRESSING_ROOM_sseq, 30);
         v0->unk_10++;
         break;
     case 3:
@@ -522,7 +522,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         break;
     case 6:
         if (IsScreenFadeDone() == TRUE) {
-            Sound_PlayBGM(SEQ_CO_KEKKA);
+            Sound_PlayBGM(SEQ_CO_KEKKA_sseq);
             v0->unk_10++;
         }
         break;
@@ -629,8 +629,8 @@ static void ov17_0225266C(SysTask *param0, void *param1)
     case 0:
         ov17_02250FE4(v0->unk_00);
         ov17_02251598(v0->unk_00, 0, &v0->unk_12);
-        Sound_PlayBGM(SEQ_CO_FANFA);
-        Sound_PlayEffect(SEQ_SE_DP_CON_007);
+        Sound_PlayBGM(SEQ_CO_FANFA_sseq);
+        Sound_PlayEffect(SEQ_SE_DP_CON_007_sseq);
         v0->unk_10++;
         break;
     case 1:
@@ -728,7 +728,7 @@ static void ov17_02252858(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        Sound_PlayEffect(SEQ_SE_DP_CON_033);
+        Sound_PlayEffect(SEQ_SE_DP_CON_033_sseq);
         v0->unk_10++;
         break;
     case 1:
@@ -742,7 +742,7 @@ static void ov17_02252858(SysTask *param0, void *param1)
     case 2:
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_14[v1] > 0) {
-                Sound_PlayEffect(SEQ_SE_DP_CON_034);
+                Sound_PlayEffect(SEQ_SE_PL_CON_034_sseq_1);
                 break;
             }
         }
@@ -776,7 +776,7 @@ static void ov17_02252858(SysTask *param0, void *param1)
     case 4:
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_14[v1] > 0) {
-                Sound_PlayEffect(SEQ_SE_DP_CON_032);
+                Sound_PlayEffect(SEQ_SE_DP_CON_032_sseq);
                 break;
             }
         }
@@ -820,7 +820,7 @@ static void ov17_022529C8(SysTask *param0, void *param1)
     switch (v0->unk_10) {
     case 0:
         BrightnessController_StartTransition(90, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
-        Sound_StopBGM(SEQ_CO_FANFA, 90);
+        Sound_StopBGM(SEQ_CO_FANFA_sseq, 90);
         v0->unk_10++;
         break;
     case 1:

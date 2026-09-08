@@ -6,7 +6,7 @@ L_0:
 
 L_1:
     LoadParticleResource 0, sweet_scent_spa
-    PlaySoundEffectC SEQ_SE_DP_W230
+    PlaySoundEffectC SEQ_SE_DP_W230_sseq
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 3, 0, 0, 0
     SetExtraParams 1, -2000, 8000, 0
@@ -20,7 +20,7 @@ L_1:
 
 L_2:
     LoadParticleResource 0, sweet_scent_spa
-    PlaySoundEffectC SEQ_SE_DP_W230
+    PlaySoundEffectC SEQ_SE_DP_W230_sseq
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 3, 0, 0, 0
     SetExtraParams 1, -2000, 8000, 0

@@ -195,7 +195,7 @@ res/graphics/options_menu/config_gra.narc,/graphic/config_gra.narc
 res/prebuilt/graphic/demo_trade.narc,/graphic/demo_trade.narc
 res/prebuilt/graphic/dendou_demo.narc,/graphic/dendou_demo.narc
 res/prebuilt/graphic/dendou_pc.narc,/graphic/dendou_pc.narc
-res/prebuilt/graphic/ending.narc,/graphic/ending.narc
+res/graphics/end_credits/ending.narc,/graphic/ending.narc
 res/prebuilt/graphic/ev_pokeselect.narc,/graphic/ev_pokeselect.narc
 res/prebuilt/graphic/f_note_gra.narc,/graphic/f_note_gra.narc
 res/graphics/signposts/field_board.narc,/graphic/field_board.narc
@@ -252,7 +252,7 @@ res/items/pl_item_data.narc,/itemtool/itemdata/pl_item_data.narc
 res/pokemon/pl_poke_icon.narc,/poketool/icongra/pl_poke_icon.narc
 res/prebuilt/poketool/icongra/poke_icon.narc,/poketool/icongra/poke_icon.narc
 res/pokemon/pokefoot.narc,/poketool/pokefoot/pokefoot.narc
-res/prebuilt/data/mmodel/mmodel.narc,/data/mmodel/mmodel.narc
+res/graphics/field_sprites/field_sprites.narc,/data/mmodel/mmodel.narc
 res/prebuilt/data/mmodel/fldeff.narc,/data/mmodel/fldeff.narc
 res/graphics/battle/particles/pokeballs/ball_particles.narc,/wazaeffect/effectdata/ball_particle.narc
 res/graphics/battle/particles/battle_particles.narc,/wazaeffect/effectdata/waza_particle.narc

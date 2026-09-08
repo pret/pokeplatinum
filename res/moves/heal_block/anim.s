@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, heal_block_spa
-    PlaySoundEffectR SEQ_SE_DP_W377
+    PlaySoundEffectR SEQ_SE_DP_W377_sseq
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     Delay 30
     Func_SetBgGrayscale TRUE

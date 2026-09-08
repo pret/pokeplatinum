@@ -70,7 +70,7 @@ Route206CyclingRoadNorthGate_CoordEvent_ClearFlagForceBikingInGate:
     End
 
 Route206CyclingRoadNorthGate_ScientistM:
-    PlaySE SEQ_SE_CONFIRM
+    PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_NORTH_GATE_EXP_SHARE, Route206CyclingRoadNorthGate_HoldingExpShareGetExpPoints

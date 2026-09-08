@@ -10,15 +10,15 @@ L_0:
     CreateEmitter 0, 1, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 1, 0, 0, 0
     Delay 5
-    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W026, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W026_sseq, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Func_ShadowPunch 0
     CreateEmitter 0, 2, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
     Delay 5
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 2, 2, 0, 0, 0
-    PlaySoundEffectR SEQ_SE_DP_W025B
-    PlayDelayedSoundEffectR SEQ_SE_DP_W104, 3
+    PlaySoundEffectR SEQ_SE_DP_W025B_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_W104_sseq, 3
     Func_Shake 3, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     WaitForAllEmitters

@@ -240,12 +240,12 @@ static void LoadSpriteResources(BagController *controller)
     SpriteSystem_LoadCharResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
     TypeIcon_LoadChar(controller->spriteSystem, controller->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, TYPE_NORMAL, 49409);
     CategoryIcon_LoadChar(controller->spriteSystem, controller->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, CLASS_PHYSICAL, 49410);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, bagPaletteIdx, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, ui_elements_NCLR, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
-    SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_PALETTE), FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
-    SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, sprites_NCLR, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, bagPaletteIdx, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, ui_elements_NCLR, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
+    SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_PALETTE), FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
+    SpriteSystem_LoadPlttResObj(controller->spriteSystem, controller->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, sprites_NCLR, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
     TypeIcon_LoadPlttSrc(controller->spriteSystem, controller->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, 49406);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, button_shockwave_NCLR, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, button_shockwave_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
     SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, bag_sprite_cell_NCER, FALSE, 49401);
     SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, pocket_highlight_cell_NCER, FALSE, 49402);
     SpriteSystem_LoadCellResObjFromOpenNarc(controller->spriteSystem, controller->spriteMan, controller->bagGraphicsNARC, item_highlight_cell_NCER, FALSE, 49403);

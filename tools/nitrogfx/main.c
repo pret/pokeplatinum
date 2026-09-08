@@ -1,4 +1,4 @@
-// Copyright (c) 2015 YamaArashi, 2021-2024 red031000
+// Copyright (c) 2015 YamaArashi, 2021-2025 red031000
 
 #include <ctype.h>
 #include <stdio.h>
@@ -133,23 +133,25 @@ void ConvertPngToNtr(char *inputPath, char *outputPath, struct PngToNtrOptions *
     if (options->handleEmpty)
     {
         FILE *fp = fopen(inputPath, "rb");
+        uint32_t size = 0;
         if (fp != NULL)
         {
             fseek(fp, 0, SEEK_END);
-            uint32_t size = ftell(fp);
+            size = ftell(fp);
             rewind(fp);
-            if (size == 0)
+        }
+
+        if (size == 0)
+        {
+            FILE *out = fopen(outputPath, "wb+");
+            if (out != NULL)
             {
-                FILE *out = fopen(outputPath, "wb+");
-                if (out != NULL)
-                {
-                    fclose(out);
-                }
-                fclose(fp);
-                return;
+                fclose(out);
             }
             fclose(fp);
+            return;
         }
+        fclose(fp);
     }
 
     struct Image image;
@@ -286,10 +288,11 @@ void HandleNtrToPngCommand(char *inputPath, char *outputPath, int argc, char **a
     options.rowsPerChunk = 1;
     options.palIndex = 1;
     options.handleEmpty = false;
-    options.noSkip = false;
+    options.encodeMode = 0;
     options.convertTo8Bpp = false;
     options.verbose = false;
-    options.encodeMode = 0;
+    options.noSkip = false;
+    options.bitDepth = 0;
 
     for (int i = 3; i < argc; i++)
     {
@@ -389,6 +392,13 @@ void HandleNtrToPngCommand(char *inputPath, char *outputPath, int argc, char **a
 
             if (options.rowsPerChunk < 1)
                 FATAL_ERROR("rows per chunk must be positive.\n");
+        }
+        else if (strcmp(option, "-scanfronttoback") == 0)
+        {
+            // maintained for compatibility
+            if (options.encodeMode != 0)
+                FATAL_ERROR("Encode mode specified more than once.\n-encodebacktofront goes back to front as in DP, -encodefronttoback goes front to back as in PtHGSS\n");
+            options.encodeMode = 2;
         }
         else if (strcmp(option, "-encodebacktofront") == 0)
         {
@@ -527,13 +537,15 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
     options.version101 = false;
     options.sopc = false;
     options.scan = false;
-    options.encodeMode = 0;
     options.handleEmpty = false;
     options.vramTransfer = false;
     options.mappingType = 0;
+    options.encodeMode = 0;
     options.convertTo4Bpp = false;
     options.rotate = 0;
     options.noSkip = false;
+
+    bool freeCellPath = false;
 
     for (int i = 3; i < argc; i++)
     {
@@ -563,6 +575,7 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
 
             if (strcmp(options.cellFilePath, "-preservepath") == 0)
             {
+                freeCellPath = true;
                 const char *suffix = "_cell.json";
                 size_t inputStemSize = strlen(inputPath) - strlen(".png");
                 options.cellFilePath = calloc(inputStemSize + strlen(suffix) + 1, sizeof(char));
@@ -661,6 +674,22 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
         {
             options.scan = true;
         }
+        else if (strcmp(option, "-scanned") == 0)
+        {
+            // maintained for compatibility
+            if (options.encodeMode != 0)
+                FATAL_ERROR("Encode mode specified more than once.\n-encodebacktofront goes back to front as in DP, -encodefronttoback goes front to back as in PtHGSS\n");
+            options.encodeMode = 1;
+            options.scan = true;
+        }
+        else if (strcmp(option, "-scanfronttoback") == 0)
+        {
+            // maintained for compatibility
+            if (options.encodeMode != 0)
+                FATAL_ERROR("Encode mode specified more than once.\n-encodebacktofront goes back to front as in DP, -encodefronttoback goes front to back as in PtHGSS\n");
+            options.encodeMode = 2;
+            options.scan = true;
+        }
         else if (strcmp(option, "-encodebacktofront") == 0)
         {
             if (options.encodeMode != 0)
@@ -720,6 +749,10 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
     }
 
     ConvertPngToNtr(inputPath, outputPath, &options);
+
+    if (freeCellPath) {
+        free(options.cellFilePath);
+    }
 }
 
 void HandlePngToNtrLzCommand(char *inputPath, char *outputPath, int argc, char **argv)
@@ -1049,6 +1082,8 @@ void HandleJascToNtrPaletteCommand(char *inputPath, char *outputPath, int argc, 
             snprintf(extendedInputPath, pathLen + 4, "%.*s_%d.pal", pathLen - 6, inputPath, i);
             ReadJascPalette(extendedInputPath, &palette, i);
         }
+        free(extendedInputPath);
+
         if (nopad)
         {
             palette.numColors *= extendedLength;
@@ -1334,6 +1369,7 @@ static void HandleLZCompressCommand(char *inputPath, char *outputPath, int argc,
     int overflowSize = 0;
     int minDistance = 2; // default, for compatibility with LZ77UnCompVram()
     bool forwardIteration = true;
+    bool extFormat = false;
     bool nopad = false;
 
     for (int i = 3; i < argc; i++)
@@ -1369,6 +1405,10 @@ static void HandleLZCompressCommand(char *inputPath, char *outputPath, int argc,
         else if (strcmp(option, "-reverse") == 0)
         {
             forwardIteration = false;
+        } 
+        else if (strcmp(option, "-extfmt") == 0)
+        {
+            extFormat = true;
         }
         else if (strcmp(option, "-nopad") == 0)
         {
@@ -1390,7 +1430,7 @@ static void HandleLZCompressCommand(char *inputPath, char *outputPath, int argc,
     unsigned char *buffer = ReadWholeFileZeroPadded(inputPath, &fileSize, overflowSize);
 
     int compressedSize;
-    unsigned char *compressedData = LZCompress(buffer, fileSize + overflowSize, &compressedSize, minDistance, forwardIteration, !nopad);
+    unsigned char *compressedData = LZCompress(buffer, fileSize + overflowSize, &compressedSize, minDistance, forwardIteration, !nopad, extFormat);
 
     compressedData[1] = (unsigned char)fileSize;
     compressedData[2] = (unsigned char)(fileSize >> 8);

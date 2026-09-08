@@ -3,12 +3,12 @@
 L_0:
     LoadParticleResource 0, skill_swap_spa
     LoadParticleResource 1, skill_swap_spa
-    PlayDelayedSoundEffectC SEQ_SE_DP_W179, 1
-    PlayDelayedSoundEffectC SEQ_SE_DP_W179, 15
-    PlayDelayedSoundEffectC SEQ_SE_DP_W179, 30
-    PlayDelayedSoundEffectC SEQ_SE_DP_W179, 45
-    PlayDelayedSoundEffectC SEQ_SE_DP_W179, 60
-    PlayDelayedSoundEffectC SEQ_SE_DP_W179, 75
+    PlayDelayedSoundEffectC SEQ_SE_DP_W179_sseq, 1
+    PlayDelayedSoundEffectC SEQ_SE_DP_W179_sseq, 15
+    PlayDelayedSoundEffectC SEQ_SE_DP_W179_sseq, 30
+    PlayDelayedSoundEffectC SEQ_SE_DP_W179_sseq, 45
+    PlayDelayedSoundEffectC SEQ_SE_DP_W179_sseq, 60
+    PlayDelayedSoundEffectC SEQ_SE_DP_W179_sseq, 75
     BeginLoop 3
     CreateEmitterEx 0, 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BParabolic 0, 0, 0, 0, 12, -32, EMITTER_ANIMATION_MODE_DEF_TO_ATK
