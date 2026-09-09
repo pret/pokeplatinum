@@ -46,7 +46,7 @@
       "en_US": "DELETE"
     },
     {
-      "id": "pl_msg_00000675_00011",
+      "id": "PalPad_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
@@ -256,28 +256,28 @@
       "en_US": "CHECK FRIEND CODE"
     },
     {
-      "id": "pl_msg_00000675_00057",
+      "id": "PalPad_Text_RegisterFriend",
       "en_US": [
         "Register {STRVAR_1 3, 0, 0} in your\n",
         "Pal Pad?"
       ]
     },
     {
-      "id": "pl_msg_00000675_00058",
+      "id": "PalPad_Text_RosterFull",
       "en_US": [
         "Your Friend Roster is full.\n",
         "Will you delete someone?"
       ]
     },
     {
-      "id": "pl_msg_00000675_00059",
+      "id": "PalPad_Text_AbandonRegistration",
       "en_US": [
         "Give up on registering\n",
         "{STRVAR_1 3, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000675_00060",
+      "id": "PalPad_Text_DeleteFriend",
       "en_US": [
         "Delete {STRVAR_1 3, 0, 0}’s data from\n",
         "your Friend Roster?"

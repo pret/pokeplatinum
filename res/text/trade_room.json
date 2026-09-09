@@ -62,34 +62,34 @@
       "en_US": "{STRVAR_1 1, 13, 0}"
     },
     {
-      "id": "pl_msg_00000354_00015",
+      "id": "TradeRoom_Text_ChoosePokemon",
       "en_US": "Choose a Pokémon."
     },
     {
-      "id": "pl_msg_00000354_00016",
+      "id": "TradeRoom_Text_MonSelected",
       "en_US": [
         "{STRVAR_1 1, 0, 0} is\n",
         "selected."
       ]
     },
     {
-      "id": "pl_msg_00000354_00017",
+      "id": "TradeRoom_Text_SummaryOption",
       "en_US": "SUMMARY"
     },
     {
-      "id": "pl_msg_00000354_00018",
+      "id": "TradeRoom_Text_TradeOption",
       "en_US": "TRADE"
     },
     {
-      "id": "pl_msg_00000354_00019",
+      "id": "TradeRoom_Text_CancelOption",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000354_00020",
+      "id": "TradeRoom_Text_Communicating",
       "en_US": "Communicating. Please stand by..."
     },
     {
-      "id": "pl_msg_00000354_00021",
+      "id": "TradeRoom_Text_ConfirmTrade",
       "en_US": [
         "Trade {STRVAR_1 1, 0, 0} in return for\n",
         "{STRVAR_1 1, 1, 0}?"
@@ -104,14 +104,14 @@
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000354_00024",
+      "id": "TradeRoom_Text_TradeCanceled",
       "en_US": [
         "The trade has\n",
         "been canceled."
       ]
     },
     {
-      "id": "pl_msg_00000354_00025",
+      "id": "TradeRoom_Text_CancelTrading",
       "en_US": "Cancel trading?"
     },
     {
@@ -123,11 +123,11 @@
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000354_00028",
+      "id": "TradeRoom_Text_WaitingForFriend",
       "en_US": "Waiting for your friend to finish..."
     },
     {
-      "id": "pl_msg_00000354_00029",
+      "id": "TradeRoom_Text_FriendWantsToTrade",
       "en_US": [
         "Your friend apparently wants to\n",
         "trade a Pokémon with you."
@@ -156,7 +156,7 @@
       "en_US": "Take good care of {STRVAR_1 1, 0, 0}!"
     },
     {
-      "id": "pl_msg_00000354_00034",
+      "id": "TradeRoom_Text_WouldGetStuck",
       "en_US": [
         "If you trade that Pokémon, you’ll\n",
         "get stuck in your adventure!"
@@ -167,21 +167,21 @@
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000354_00036",
+      "id": "TradeRoom_Text_BallCapsuleWarning",
       "en_US": [
         "The Ball Capsule will become detached.\n",
         "Is that OK?"
       ]
     },
     {
-      "id": "pl_msg_00000354_00037",
+      "id": "TradeRoom_Text_YourMonUntradeable",
       "en_US": [
         "There is a Pokémon that cannot be\n",
         "traded in your party."
       ]
     },
     {
-      "id": "pl_msg_00000354_00038",
+      "id": "TradeRoom_Text_PartnerMonUntradeable",
       "en_US": [
         "There is a Pokémon that cannot be\n",
         "traded in the other Trainer’s party."
@@ -196,11 +196,11 @@
       "en_US": "♀"
     },
     {
-      "id": "pl_msg_00000354_00041",
+      "id": "TradeRoom_Text_LevelLabel",
       "en_US": "Lv."
     },
     {
-      "id": "pl_msg_00000354_00042",
+      "id": "TradeRoom_Text_ItemLabel",
       "en_US": "ITEM"
     },
     {
@@ -232,7 +232,7 @@
       "en_US": "None"
     },
     {
-      "id": "pl_msg_00000354_00050",
+      "id": "TradeRoom_Text_Quit",
       "en_US": "Quit"
     }
   ]
