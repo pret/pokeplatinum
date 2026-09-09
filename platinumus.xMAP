@@ -28290,11 +28290,11 @@
                                         39](ScriptContextShouldResume,func) found in local src_overlay005_scrcmd_move_tutor.c.o
                                        38](ScrCmd_CheckHasLearnableTutorMoves,func) found in global src_overlay005_scrcmd_move_tutor.c.o
                                         39](Pokemon_HasLearnableMovesAt,func) found in local src_overlay005_scrcmd_move_tutor.c.o
-                                       38](ScrCmd_2E4,func) found in global src_scrcmd.c.o
-                                       38](ScrCmd_2E3,func) found in global src_scrcmd.c.o
-                                       38](ScrCmd_2E2,func) found in global src_scrcmd.c.o
-                                        39](sub_0203E608,func) found in global src_unk_0203D1B8.c.o
-                                         40](v1$22924,object) found in local src_unk_0203D1B8.c.o
+                                       38](ScrCmd_GetScratchOffCardsWonItem,func) found in global src_scrcmd.c.o
+                                       38](ScrCmd_FreeScratchOffCardsArgs,func) found in global src_scrcmd.c.o
+                                       38](ScrCmd_OpenScratchOffCardsApp,func) found in global src_scrcmd.c.o
+                                        39](FieldSystem_OpenScratchOffCardsApp,func) found in global src_unk_0203D1B8.c.o
+                                         40](template$22924,object) found in local src_unk_0203D1B8.c.o
                                           41](BattleFrontierRecordsApp_Exit,func) found in global src_applications_frontier_records_main.c.o
                                            42](GetWindowGroup,func) found in local src_applications_frontier_records_main.c.o
                                            42](FrontierRecordsApp_FreeWindows,func) found in global src_applications_frontier_records_windows.c.o
@@ -28352,112 +28352,112 @@
                                             43](LoadSubBackground,func) found in local src_applications_frontier_records_main.c.o
                                            42](FrontierRecordsApp_InitWindows,func) found in global src_applications_frontier_records_windows.c.o
                                            42](VBlankCallback,func) found in local src_applications_frontier_records_main.c.o
-                                          41](ov111_021D0F40,func) found in global src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D1C0C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D3448,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                            43](ov111_021D3320,func) found in global src_overlay111_ov111_021D2F80.c.o
-                                            43](ov111_021D3578,func) found in global src_overlay111_ov111_021D3548.c.o
-                                            43](ov111_021D2044,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                          41](ov111_021D0E34,func) found in global src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D0F7C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D26E4,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D0FC8,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D3474,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                            43](ov111_021D3468,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                            43](ov111_021D35C0,func) found in global src_overlay111_ov111_021D3548.c.o
-                                            43](ov111_021D24D4,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D26CC,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D23C4,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](Unk_ov111_021D362C,object) found in local src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D10B8,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D345C,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                           42](ov111_021D116C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2868,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D349C,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                             44](Unk_ov111_021D3818,object) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D34F4,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                            43](ov111_021D34E0,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                             44](Unk_ov111_021D3834,object) found in local src_overlay111_ov111_021D33F4.c.o
-                                           42](ov111_021D1BEC,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D1AF4,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D33F4,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                             44](ov111_021D3280,func) found in global src_overlay111_ov111_021D2F80.c.o
-                                           42](ov111_021D1B44,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D1284,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2EB4,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D27BC,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D27AC,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D26EC,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D271C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D27D4,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2940,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D295C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D3500,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                            43](ov111_021D34C4,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                            43](ov111_021D28E8,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D1508,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D263C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D2424,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2604,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2518,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2674,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](Unk_ov111_021D3814,object) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D350C,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                            43](ov111_021D2918,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D29D8,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D2A18,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2A68,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D297C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D2ECC,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                              45](ov111_021D2F38,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2BBC,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2D14,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D3530,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                            43](ov111_021D255C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D25BC,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2B20,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D33B0,func) found in global src_overlay111_ov111_021D2F80.c.o
-                                              45](Unk_ov111_021D3940,object) found in local src_overlay111_ov111_021D2F80.c.o
-                                            43](ov111_021D2494,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D3594,func) found in global src_overlay111_ov111_021D3548.c.o
-                                            43](ov111_021D1F70,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D1F84,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2D60,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D353C,func) found in global src_overlay111_ov111_021D33F4.c.o
-                                            43](ov111_021D2E20,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2E28,func) found in local src_overlay111_ov111_021D0D80.c.o
+                                          41](ScratchOffCardApp_Exit,func) found in global src_applications_scratch_off_cards_main.c.o
+                                           42](FreeAssets,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](ScratchOffCardsAppSprite_Free,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                            43](ScratchOffCardsApp_FreeSprites,func) found in global src_applications_scratch_off_cards_sprite_manager.c.o
+                                            43](ScratchOffCardsApp_FreeWindows,func) found in global src_applications_scratch_off_cards_windows.c.o
+                                            43](FreeBackgrounds,func) found in local src_applications_scratch_off_cards_main.c.o
+                                          41](ScratchOffCardApp_Main,func) found in global src_applications_scratch_off_cards_main.c.o
+                                           42](State_FadeInApp,func) found in local src_applications_scratch_off_cards_main.c.o
+                                           42](ChangeState,func) found in local src_applications_scratch_off_cards_main.c.o
+                                           42](State_BringInSelectableCards,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](ScratchOffCardsAppSprite_SetPosition,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                            43](ScratchOffCardsAppSprite_SetPriority,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                            43](ScratchOffCardsApp_DrawMessageBox,func) found in global src_applications_scratch_off_cards_windows.c.o
+                                            43](PrintSelectCardMessage,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](SetNumberInTemplate,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](PrintMessage,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](sSelectableCardPositions,object) found in local src_applications_scratch_off_cards_main.c.o
+                                           42](State_SelectCard,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](ScratchOffCardsAppSprite_SetDrawFlag,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                           42](State_PullOutSelectedCard,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](CenterSelectedCardOnScreen,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](ScratchOffCardsAppSprite_GetPosition,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                             44](yCardCenteringSteps,object) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](ScratchOffCardsSprite_SetAffineScaleDouble,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                            43](ScratchOffCardsSprite_SetAffineScaleNormal,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                             44](sCardScaleFactors,object) found in local src_applications_scratch_off_cards_sprites.c.o
+                                           42](FreeCardSprites,func) found in local src_applications_scratch_off_cards_main.c.o
+                                           42](InitMatchingCellBoxSprites,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](ScratchOffCardsAppSprite_New,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                             44](ScratchOffCardsApp_InitSprite,func) found in global src_applications_scratch_off_cards_sprite_manager.c.o
+                                           42](InitWinningPopupMonSprites,func) found in local src_applications_scratch_off_cards_main.c.o
+                                           42](State_SetupScratchCard,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](MakeCopyOfScratchCellsData,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](ClearScratchCellValues,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](PlaceValuesInScratchCells,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](PlaceDittosInCells,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](PlaceRemainingValuesInCells,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](SelectItemsWinnableOnCard,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](MarkAllCellsAsUnscratched,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](MarkAllCellsAsUnrevealed,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](ScratchOffCardsAppSprite_UpdatePalette,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                            43](ScratchOffCardsAppSprite_SetAnim,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                            43](UpdateBackgroundPalette,func) found in local src_applications_scratch_off_cards_main.c.o
+                                           42](State_ScratchCard,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](PrintCancelButton,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](PrintCenteredMessage,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](PrintNextCardButton,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](PrintStartCardMessage,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](PrintItemNameOnTopScreen,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](sItemNameYOffsets,object) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](ScratchOffCardsAppSprite_SetAnimateFlag,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                            43](GetNumCellsScratched,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](MarkScratchedOffPixels,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](MarkScratchedPixelsAtPoint,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](CheckIfCellIsRevealed,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](RemoveScratchedOffPixelsOnCell,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](RemoveScratchedOffPixels,func) found in local src_applications_scratch_off_cards_main.c.o
+                                              45](ScratchPixelsAtPosition,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](CheckIfThreeOfAKindFound,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](CheckIfDittoTransformNeeded,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](ScratchOffCardsAppSprite_SetMosaicFlag,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                            43](ShowWinPopup,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](PrintTooBadMessage,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](HighlightMatchingPair,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](ScratchOffCardsApp_UpdateBoxPalettes,func) found in global src_applications_scratch_off_cards_sprite_manager.c.o
+                                              45](sBoxSpritePalettes,object) found in local src_applications_scratch_off_cards_sprite_manager.c.o
+                                            43](PrintStopScratchingMessage,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](ScratchOffCardsApp_DrawWindow,func) found in global src_applications_scratch_off_cards_windows.c.o
+                                            43](NewYesNoMenu,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](InitYesNoMenu,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](UpdateTransformingDitto,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](ScratchOffCardsAppSprite_IsAnimated,func) found in global src_applications_scratch_off_cards_sprites.c.o
+                                            43](IncrementCurrentCard2,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](HideCenterMessageBox,func) found in local src_applications_scratch_off_cards_main.c.o
                                             43](YesNoTouchMenu_ProcessInputInstant,func) found in global src_yes_no_touch_menu.c.o
-                                            43](ov111_021D1FB4,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2E18,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D1980,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D1A88,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                          41](ov111_021D0D80,func) found in global src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D1D30,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                           42](ov111_021D1D68,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D1FC4,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D20CC,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D20EC,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D2248,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D22D0,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D228C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D233C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D2304,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D2380,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2034,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                             44](ov111_021D2F80,func) found in global src_overlay111_ov111_021D2F80.c.o
-                                              45](ov111_021D3378,func) found in local src_overlay111_ov111_021D2F80.c.o
-                                               46](@13108,object) found in local src_overlay111_ov111_021D2F80.c.o
-                                              45](ov111_021D304C,func) found in local src_overlay111_ov111_021D2F80.c.o
-                                              45](ov111_021D30D8,func) found in local src_overlay111_ov111_021D2F80.c.o
-                                              45](ov111_021D3168,func) found in local src_overlay111_ov111_021D2F80.c.o
-                                              45](ov111_021D31F4,func) found in local src_overlay111_ov111_021D2F80.c.o
-                                              45](Unk_ov111_021D3820,object) found in local src_overlay111_ov111_021D2F80.c.o
-                                            43](ov111_021D3548,func) found in global src_overlay111_ov111_021D3548.c.o
-                                             44](Unk_ov111_021D38B8,object) found in local src_overlay111_ov111_021D3548.c.o
-                                            43](ov111_021D2E4C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2E8C,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D1B90,func) found in local src_overlay111_ov111_021D0D80.c.o
-                                            43](ov111_021D2090,func) found in local src_overlay111_ov111_021D0D80.c.o
+                                            43](FreeYesNoMenu,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](IncrementCurrentCard,func) found in local src_applications_scratch_off_cards_main.c.o
+                                           42](State_SlideAwayScratchCard,func) found in local src_applications_scratch_off_cards_main.c.o
+                                           42](State_FadeOutApp,func) found in local src_applications_scratch_off_cards_main.c.o
+                                          41](ScratchOffCardApp_Init,func) found in global src_applications_scratch_off_cards_main.c.o
+                                           42](InitGraphicsPlane,func) found in local src_applications_scratch_off_cards_main.c.o
+                                           42](LoadAssets,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](LoadBackgrounds,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](SetGXBanks,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](InitBackgrounds,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](LoadDefaultTopScreenBackground,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](LoadTopScreenPalette,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](LoadCardTopScreenBackground,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](LoadCardBottomScreenBackground,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](LoadBottomScreenPalette,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](LoadScratchCellsBackground,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](InitSpriteManager,func) found in local src_applications_scratch_off_cards_main.c.o
+                                             44](ScratchOffCardsApp_InitSpriteManager,func) found in global src_applications_scratch_off_cards_sprite_manager.c.o
+                                              45](InitCharPlttTransferBuffers,func) found in local src_applications_scratch_off_cards_sprite_manager.c.o
+                                               46](@13098,object) found in local src_applications_scratch_off_cards_sprite_manager.c.o
+                                              45](InitCardSpriteResources,func) found in local src_applications_scratch_off_cards_sprite_manager.c.o
+                                              45](InitPokemonSpriteResources,func) found in local src_applications_scratch_off_cards_sprite_manager.c.o
+                                              45](InitBoxSpriteResources,func) found in local src_applications_scratch_off_cards_sprite_manager.c.o
+                                              45](InitWinPopupSpriteResources,func) found in local src_applications_scratch_off_cards_sprite_manager.c.o
+                                              45](sCapacities,object) found in local src_applications_scratch_off_cards_sprite_manager.c.o
+                                            43](ScratchOffCardsApp_InitWindows,func) found in global src_applications_scratch_off_cards_windows.c.o
+                                             44](sWinTemplates,object) found in local src_applications_scratch_off_cards_windows.c.o
+                                            43](LoadScratchCellsCharData,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](InitScratchCellsBackup,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](InitBottomScreenBoxSprites,func) found in local src_applications_scratch_off_cards_main.c.o
+                                            43](VBlankCallback,func) found in local src_applications_scratch_off_cards_main.c.o
                                           41](ov88_0223C03C,func) found in global src_overlay088_ov88_0223B140.c.o
                                            42](ov88_0223BFD8,func) found in local src_overlay088_ov88_0223B140.c.o
                                            42](ov88_0223BF7C,func) found in local src_overlay088_ov88_0223B140.c.o
@@ -29010,7 +29010,7 @@
                                            42](JournalEntry_CreateEventSoldALot,func) found in global src_journal.c.o
                                            42](JournalEntry_CreateEventShoppedAtMart,func) found in global src_journal.c.o
                                            42](JournalEntry_CreateEventSoldALittle,func) found in global src_journal.c.o
-                                        39](BattleFrontierExchangeServiceCorners$28449,object) found in local src_scrcmd.c.o
+                                        39](BattleFrontierExchangeServiceCorners$28455,object) found in local src_scrcmd.c.o
                                        38](ScrCmd_CheckIsMiscSaveInit,func) found in local src_scrcmd.c.o
                                        38](ScrCmd_SaveExtraData,func) found in local src_scrcmd.c.o
                                         39](SaveDataExtra_Init,func) found in global src_savedata.c.o
@@ -49234,7 +49234,7 @@
   0203E598 00000070 .text   FieldSystem_OpenPartyMenu_SelectForItemUsage	(src_unk_0203D1B8.c.o)
   0203E604 00000000 .text   $d	(src_unk_0203D1B8.c.o)
   0203E608 00000000 .text   $t	(src_unk_0203D1B8.c.o)
-  0203E608 00000034 .text   sub_0203E608	(src_unk_0203D1B8.c.o)
+  0203E608 00000034 .text   FieldSystem_OpenScratchOffCardsApp	(src_unk_0203D1B8.c.o)
   0203E638 00000000 .text   $d	(src_unk_0203D1B8.c.o)
   0203E63C 00000000 .text   $t	(src_unk_0203D1B8.c.o)
   0203E63C 00000084 .text   FieldSystem_OpenSummaryScreenTeachMove	(src_unk_0203D1B8.c.o)
@@ -50484,11 +50484,11 @@
   02046340 00000074 .text   ScrCmd_OpenFrontierRecordsApp	(src_scrcmd.c.o)
   020463B0 00000000 .text   $d	(src_scrcmd.c.o)
   020463B4 00000000 .text   $t	(src_scrcmd.c.o)
-  020463B4 00000030 .text   ScrCmd_2E2	(src_scrcmd.c.o)
+  020463B4 00000030 .text   ScrCmd_OpenScratchOffCardsApp	(src_scrcmd.c.o)
   020463E0 00000000 .text   $d	(src_scrcmd.c.o)
-  020463E4 0000001C .text   ScrCmd_2E3	(src_scrcmd.c.o)
+  020463E4 0000001C .text   ScrCmd_FreeScratchOffCardsArgs	(src_scrcmd.c.o)
   020463E4 00000000 .text   $t	(src_scrcmd.c.o)
-  02046400 0000005A .text   ScrCmd_2E4	(src_scrcmd.c.o)
+  02046400 0000005A .text   ScrCmd_GetScratchOffCardsWonItem	(src_scrcmd.c.o)
   02046400 00000000 .text   $t	(src_scrcmd.c.o)
   0204645C 00000000 .text   $t	(src_scrcmd.c.o)
   0204645C 000000C8 .text   ScrCmd_GetRandomBattlegroundTrainers	(src_scrcmd.c.o)
@@ -66574,10 +66574,10 @@
   020EAB8C 0000000A .rodata sBattlegroundStatTrainers	(src_scrcmd.c.o)
   020EAB96 00000010 .rodata sBattlegroundGymLeaders	(src_scrcmd.c.o)
   020EABA6 00000012 .rodata sConditionTable	(src_scrcmd.c.o)
-  020EABB8 00000020 .rodata BattleFrontierRightExchangeServiceCorner$28447	(src_scrcmd.c.o)
-  020EABD8 00000024 .rodata unused$28129	(src_scrcmd.c.o)
-  020EABFC 00000024 .rodata pillarRooms$28142	(src_scrcmd.c.o)
-  020EAC20 00000036 .rodata BattleFrontierLeftExchangeServiceCorner$28448	(src_scrcmd.c.o)
+  020EABB8 00000020 .rodata BattleFrontierRightExchangeServiceCorner$28453	(src_scrcmd.c.o)
+  020EABD8 00000024 .rodata unused$28135	(src_scrcmd.c.o)
+  020EABFC 00000024 .rodata pillarRooms$28148	(src_scrcmd.c.o)
+  020EAC20 00000036 .rodata BattleFrontierLeftExchangeServiceCorner$28454	(src_scrcmd.c.o)
   020EAC58 00000D20 .rodata gFieldScriptCommands	(src_scrcmd.c.o)
   020EB978 00000006 .rodata JubilifeMartSpecialties	(src_scrcmd_shop.c.o)
   020EB978 00000000 .rodata .rodata	(src_scrcmd_shop.c.o)
@@ -67910,7 +67910,7 @@
   02100A80 00000000 .data   .data	(src_unk_0203D1B8.c.o)
   02100A80 00000004 .data   pocketList$22263	(src_unk_0203D1B8.c.o)
   02100A84 00000010 .data   template$22910	(src_unk_0203D1B8.c.o)
-  02100A94 00000010 .data   v1$22924	(src_unk_0203D1B8.c.o)
+  02100A94 00000010 .data   template$22924	(src_unk_0203D1B8.c.o)
   02100AA4 00000010 .data   appTemplate1$22607	(src_unk_0203D1B8.c.o)
   02100AB4 00000010 .data   appTemplate$22587	(src_unk_0203D1B8.c.o)
   02100AC4 00000010 .data   appTemplate$22581	(src_unk_0203D1B8.c.o)
@@ -67918,7 +67918,7 @@
   02100AD4 0000000C .data   sFloaromaMeadowHiddenItemFlags	(src_script_manager.c.o)
   02100AE0 00000010 .data   sIronIslandHiddenItemFlags	(src_script_manager.c.o)
   02100AF0 00000000 .data   .data	(src_scrcmd.c.o)
-  02100AF0 00000008 .data   BattleFrontierExchangeServiceCorners$28449	(src_scrcmd.c.o)
+  02100AF0 00000008 .data   BattleFrontierExchangeServiceCorners$28455	(src_scrcmd.c.o)
   02100AF8 00000000 .data   .data	(src_scrcmd_shop.c.o)
   02100AF8 00000008 .data   VeilstoneDeptStoreDecorationStocks	(src_scrcmd_shop.c.o)
   02100B00 0000001C .data   SunyshoreMarketDailyStocks	(src_scrcmd_shop.c.o)
@@ -136148,298 +136148,298 @@
 #>021D2340          SDK_OVERLAY.frontier_records_app.BSS_END (linker command file)
 #>00000000          SDK_OVERLAY.frontier_records_app.BSS_SIZE (linker command file)
 
-# .overlay111
-#>0000006F          SDK_OVERLAY_overlay111_ID (linker command file)
-#>0000006F          SDK_OVERLAY.overlay111.ID (linker command file)
-#>021D0D80          SDK_OVERLAY.overlay111.START (linker command file)
-#>021D0D80          SDK_OVERLAY.overlay111.TEXT_START (linker command file)
-  021D0D80 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D0D80 000000B4 .text   ov111_021D0D80	(src_overlay111_ov111_021D0D80.c.o)
-  021D0E2C 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D0E34 0000010C .text   ov111_021D0E34	(src_overlay111_ov111_021D0D80.c.o)
-  021D0E34 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D0F40 0000003A .text   ov111_021D0F40	(src_overlay111_ov111_021D0D80.c.o)
-  021D0F40 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D0F7C 0000004A .text   ov111_021D0F7C	(src_overlay111_ov111_021D0D80.c.o)
-  021D0F7C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D0FC8 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D0FC8 000000F0 .text   ov111_021D0FC8	(src_overlay111_ov111_021D0D80.c.o)
-  021D10AC 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D10B8 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D10B8 000000B4 .text   ov111_021D10B8	(src_overlay111_ov111_021D0D80.c.o)
-  021D1164 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D116C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D116C 00000118 .text   ov111_021D116C	(src_overlay111_ov111_021D0D80.c.o)
-  021D1280 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D1284 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1284 00000284 .text   ov111_021D1284	(src_overlay111_ov111_021D0D80.c.o)
-  021D14F4 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D1508 00000478 .text   ov111_021D1508	(src_overlay111_ov111_021D0D80.c.o)
-  021D1508 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D187C 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D189C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1980 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1980 00000108 .text   ov111_021D1980	(src_overlay111_ov111_021D0D80.c.o)
-  021D1A80 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D1A88 0000006C .text   ov111_021D1A88	(src_overlay111_ov111_021D0D80.c.o)
-  021D1A88 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1AF4 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1AF4 00000050 .text   ov111_021D1AF4	(src_overlay111_ov111_021D0D80.c.o)
-  021D1B40 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D1B44 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1B44 0000004C .text   ov111_021D1B44	(src_overlay111_ov111_021D0D80.c.o)
-  021D1B8C 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D1B90 0000005C .text   ov111_021D1B90	(src_overlay111_ov111_021D0D80.c.o)
-  021D1B90 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1BEC 0000001E .text   ov111_021D1BEC	(src_overlay111_ov111_021D0D80.c.o)
-  021D1BEC 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1C0C 00000124 .text   ov111_021D1C0C	(src_overlay111_ov111_021D0D80.c.o)
-  021D1C0C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1D30 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1D30 00000038 .text   ov111_021D1D30	(src_overlay111_ov111_021D0D80.c.o)
-  021D1D60 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D1D68 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1D68 00000208 .text   ov111_021D1D68	(src_overlay111_ov111_021D0D80.c.o)
-  021D1F5C 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D1F70 00000012 .text   ov111_021D1F70	(src_overlay111_ov111_021D0D80.c.o)
-  021D1F70 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1F84 0000002E .text   ov111_021D1F84	(src_overlay111_ov111_021D0D80.c.o)
-  021D1F84 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1FB4 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D1FB4 00000010 .text   ov111_021D1FB4	(src_overlay111_ov111_021D0D80.c.o)
-  021D1FC0 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D1FC4 00000070 .text   ov111_021D1FC4	(src_overlay111_ov111_021D0D80.c.o)
-  021D1FC4 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2034 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2034 00000010 .text   ov111_021D2034	(src_overlay111_ov111_021D0D80.c.o)
-  021D2040 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2044 0000004C .text   ov111_021D2044	(src_overlay111_ov111_021D0D80.c.o)
-  021D2044 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2090 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2090 0000003C .text   ov111_021D2090	(src_overlay111_ov111_021D0D80.c.o)
-  021D20C4 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D20CC 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D20CC 00000020 .text   ov111_021D20CC	(src_overlay111_ov111_021D0D80.c.o)
-  021D20E8 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D20EC 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D20EC 0000015C .text   ov111_021D20EC	(src_overlay111_ov111_021D0D80.c.o)
-  021D222C 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2248 00000044 .text   ov111_021D2248	(src_overlay111_ov111_021D0D80.c.o)
-  021D2248 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D228C 00000044 .text   ov111_021D228C	(src_overlay111_ov111_021D0D80.c.o)
-  021D228C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D22D0 00000032 .text   ov111_021D22D0	(src_overlay111_ov111_021D0D80.c.o)
-  021D22D0 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2304 00000036 .text   ov111_021D2304	(src_overlay111_ov111_021D0D80.c.o)
-  021D2304 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D233C 00000044 .text   ov111_021D233C	(src_overlay111_ov111_021D0D80.c.o)
-  021D233C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2380 00000044 .text   ov111_021D2380	(src_overlay111_ov111_021D0D80.c.o)
-  021D2380 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D23C4 00000060 .text   ov111_021D23C4	(src_overlay111_ov111_021D0D80.c.o)
-  021D23C4 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2424 00000070 .text   ov111_021D2424	(src_overlay111_ov111_021D0D80.c.o)
-  021D2424 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2494 00000040 .text   ov111_021D2494	(src_overlay111_ov111_021D0D80.c.o)
-  021D2494 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D24D4 00000044 .text   ov111_021D24D4	(src_overlay111_ov111_021D0D80.c.o)
-  021D24D4 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2518 00000042 .text   ov111_021D2518	(src_overlay111_ov111_021D0D80.c.o)
-  021D2518 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D255C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D255C 00000060 .text   ov111_021D255C	(src_overlay111_ov111_021D0D80.c.o)
-  021D25B8 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D25BC 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D25BC 00000048 .text   ov111_021D25BC	(src_overlay111_ov111_021D0D80.c.o)
-  021D2600 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2604 00000038 .text   ov111_021D2604	(src_overlay111_ov111_021D0D80.c.o)
-  021D2604 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D263C 00000038 .text   ov111_021D263C	(src_overlay111_ov111_021D0D80.c.o)
-  021D263C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2674 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2674 00000058 .text   ov111_021D2674	(src_overlay111_ov111_021D0D80.c.o)
-  021D26C4 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D26CC 00000016 .text   ov111_021D26CC	(src_overlay111_ov111_021D0D80.c.o)
-  021D26CC 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D26E4 00000008 .text   ov111_021D26E4	(src_overlay111_ov111_021D0D80.c.o)
-  021D26E4 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D26EC 00000030 .text   ov111_021D26EC	(src_overlay111_ov111_021D0D80.c.o)
-  021D26EC 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D271C 00000090 .text   ov111_021D271C	(src_overlay111_ov111_021D0D80.c.o)
-  021D271C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D27AC 00000010 .text   ov111_021D27AC	(src_overlay111_ov111_021D0D80.c.o)
-  021D27AC 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D27BC 00000018 .text   ov111_021D27BC	(src_overlay111_ov111_021D0D80.c.o)
-  021D27BC 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D27D4 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D27D4 00000094 .text   ov111_021D27D4	(src_overlay111_ov111_021D0D80.c.o)
-  021D2860 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2868 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2868 00000080 .text   ov111_021D2868	(src_overlay111_ov111_021D0D80.c.o)
-  021D28E0 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D28E8 0000002E .text   ov111_021D28E8	(src_overlay111_ov111_021D0D80.c.o)
-  021D28E8 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2918 00000028 .text   ov111_021D2918	(src_overlay111_ov111_021D0D80.c.o)
-  021D2918 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2940 0000001C .text   ov111_021D2940	(src_overlay111_ov111_021D0D80.c.o)
-  021D2940 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D295C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D295C 00000020 .text   ov111_021D295C	(src_overlay111_ov111_021D0D80.c.o)
-  021D2978 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D297C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D297C 0000005C .text   ov111_021D297C	(src_overlay111_ov111_021D0D80.c.o)
-  021D29D0 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D29D8 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D29D8 00000040 .text   ov111_021D29D8	(src_overlay111_ov111_021D0D80.c.o)
-  021D2A14 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2A18 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2A18 00000050 .text   ov111_021D2A18	(src_overlay111_ov111_021D0D80.c.o)
-  021D2A64 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2A68 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2A68 000000B8 .text   ov111_021D2A68	(src_overlay111_ov111_021D0D80.c.o)
-  021D2B08 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2B20 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2B20 0000009C .text   ov111_021D2B20	(src_overlay111_ov111_021D0D80.c.o)
-  021D2BA8 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2BBC 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2BBC 00000158 .text   ov111_021D2BBC	(src_overlay111_ov111_021D0D80.c.o)
-  021D2D08 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2D14 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2D14 0000004C .text   ov111_021D2D14	(src_overlay111_ov111_021D0D80.c.o)
-  021D2D58 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2D60 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2D60 000000B8 .text   ov111_021D2D60	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E08 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E18 00000008 .text   ov111_021D2E18	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E18 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E20 00000008 .text   ov111_021D2E20	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E20 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E28 00000024 .text   ov111_021D2E28	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E28 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E4C 0000003E .text   ov111_021D2E4C	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E4C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E8C 00000026 .text   ov111_021D2E8C	(src_overlay111_ov111_021D0D80.c.o)
-  021D2E8C 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2EB4 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2EB4 00000018 .text   ov111_021D2EB4	(src_overlay111_ov111_021D0D80.c.o)
-  021D2EC8 00000000 .text   $d	(src_overlay111_ov111_021D0D80.c.o)
-  021D2ECC 0000006A .text   ov111_021D2ECC	(src_overlay111_ov111_021D0D80.c.o)
-  021D2ECC 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2F38 00000046 .text   ov111_021D2F38	(src_overlay111_ov111_021D0D80.c.o)
-  021D2F38 00000000 .text   $t	(src_overlay111_ov111_021D0D80.c.o)
-  021D2F80 00000000 .text   $t	(src_overlay111_ov111_021D2F80.c.o)
-  021D2F80 000000CC .text   ov111_021D2F80	(src_overlay111_ov111_021D2F80.c.o)
-  021D3048 00000000 .text   $d	(src_overlay111_ov111_021D2F80.c.o)
-  021D304C 0000008C .text   ov111_021D304C	(src_overlay111_ov111_021D2F80.c.o)
-  021D304C 00000000 .text   $t	(src_overlay111_ov111_021D2F80.c.o)
-  021D30D8 00000090 .text   ov111_021D30D8	(src_overlay111_ov111_021D2F80.c.o)
-  021D30D8 00000000 .text   $t	(src_overlay111_ov111_021D2F80.c.o)
-  021D3168 0000008C .text   ov111_021D3168	(src_overlay111_ov111_021D2F80.c.o)
-  021D3168 00000000 .text   $t	(src_overlay111_ov111_021D2F80.c.o)
-  021D31F4 0000008C .text   ov111_021D31F4	(src_overlay111_ov111_021D2F80.c.o)
-  021D31F4 00000000 .text   $t	(src_overlay111_ov111_021D2F80.c.o)
-  021D3280 000000A0 .text   ov111_021D3280	(src_overlay111_ov111_021D2F80.c.o)
-  021D3280 00000000 .text   $t	(src_overlay111_ov111_021D2F80.c.o)
-  021D3320 00000056 .text   ov111_021D3320	(src_overlay111_ov111_021D2F80.c.o)
-  021D3320 00000000 .text   $t	(src_overlay111_ov111_021D2F80.c.o)
-  021D3378 00000000 .text   $t	(src_overlay111_ov111_021D2F80.c.o)
-  021D3378 00000038 .text   ov111_021D3378	(src_overlay111_ov111_021D2F80.c.o)
-  021D33A8 00000000 .text   $d	(src_overlay111_ov111_021D2F80.c.o)
-  021D33B0 00000000 .text   $t	(src_overlay111_ov111_021D2F80.c.o)
-  021D33B0 00000044 .text   ov111_021D33B0	(src_overlay111_ov111_021D2F80.c.o)
-  021D33F0 00000000 .text   $d	(src_overlay111_ov111_021D2F80.c.o)
-  021D33F4 00000052 .text   ov111_021D33F4	(src_overlay111_ov111_021D33F4.c.o)
-  021D33F4 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D3448 00000014 .text   ov111_021D3448	(src_overlay111_ov111_021D33F4.c.o)
-  021D3448 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D345C 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D345C 0000000C .text   ov111_021D345C	(src_overlay111_ov111_021D33F4.c.o)
-  021D3464 00000000 .text   $d	(src_overlay111_ov111_021D33F4.c.o)
-  021D3468 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D3468 0000000C .text   ov111_021D3468	(src_overlay111_ov111_021D33F4.c.o)
-  021D3470 00000000 .text   $d	(src_overlay111_ov111_021D33F4.c.o)
-  021D3474 00000026 .text   ov111_021D3474	(src_overlay111_ov111_021D33F4.c.o)
-  021D3474 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D349C 00000026 .text   ov111_021D349C	(src_overlay111_ov111_021D33F4.c.o)
-  021D349C 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D34C4 0000001A .text   ov111_021D34C4	(src_overlay111_ov111_021D33F4.c.o)
-  021D34C4 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D34E0 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D34E0 00000014 .text   ov111_021D34E0	(src_overlay111_ov111_021D33F4.c.o)
-  021D34EC 00000000 .text   $d	(src_overlay111_ov111_021D33F4.c.o)
-  021D34F4 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D34F4 0000000C .text   ov111_021D34F4	(src_overlay111_ov111_021D33F4.c.o)
-  021D34FC 00000000 .text   $d	(src_overlay111_ov111_021D33F4.c.o)
-  021D3500 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D3500 0000000C .text   ov111_021D3500	(src_overlay111_ov111_021D33F4.c.o)
-  021D3508 00000000 .text   $d	(src_overlay111_ov111_021D33F4.c.o)
-  021D350C 00000024 .text   ov111_021D350C	(src_overlay111_ov111_021D33F4.c.o)
-  021D350C 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D3530 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D3530 0000000C .text   ov111_021D3530	(src_overlay111_ov111_021D33F4.c.o)
-  021D3538 00000000 .text   $d	(src_overlay111_ov111_021D33F4.c.o)
-  021D353C 00000000 .text   $t	(src_overlay111_ov111_021D33F4.c.o)
-  021D353C 0000000C .text   ov111_021D353C	(src_overlay111_ov111_021D33F4.c.o)
-  021D3544 00000000 .text   $d	(src_overlay111_ov111_021D33F4.c.o)
-  021D3548 00000000 .text   $t	(src_overlay111_ov111_021D3548.c.o)
-  021D3548 00000030 .text   ov111_021D3548	(src_overlay111_ov111_021D3548.c.o)
-  021D3574 00000000 .text   $d	(src_overlay111_ov111_021D3548.c.o)
-  021D3578 0000001A .text   ov111_021D3578	(src_overlay111_ov111_021D3548.c.o)
-  021D3578 00000000 .text   $t	(src_overlay111_ov111_021D3548.c.o)
-  021D3594 00000000 .text   $t	(src_overlay111_ov111_021D3548.c.o)
-  021D3594 0000002C .text   ov111_021D3594	(src_overlay111_ov111_021D3548.c.o)
-  021D35BC 00000000 .text   $d	(src_overlay111_ov111_021D3548.c.o)
-  021D35C0 00000000 .text   $t	(src_overlay111_ov111_021D3548.c.o)
-  021D35C0 00000040 .text   ov111_021D35C0	(src_overlay111_ov111_021D3548.c.o)
-  021D35FC 00000000 .text   $d	(src_overlay111_ov111_021D3548.c.o)
-  021D3600 00000000 .rodata .rodata	(src_overlay111_ov111_021D0D80.c.o)
-  021D3600 00000004 .rodata Unk_ov111_021D3600	(src_overlay111_ov111_021D0D80.c.o)
-  021D3604 00000004 .rodata Unk_ov111_021D3604	(src_overlay111_ov111_021D0D80.c.o)
-  021D3608 00000004 .rodata Unk_ov111_021D3608	(src_overlay111_ov111_021D0D80.c.o)
-  021D360C 00000004 .rodata Unk_ov111_021D360C	(src_overlay111_ov111_021D0D80.c.o)
-  021D3610 00000008 .rodata Unk_ov111_021D3610	(src_overlay111_ov111_021D0D80.c.o)
-  021D3618 00000008 .rodata Unk_ov111_021D3618	(src_overlay111_ov111_021D0D80.c.o)
-  021D3620 0000000C .rodata Unk_ov111_021D3620	(src_overlay111_ov111_021D0D80.c.o)
-  021D362C 00000010 .rodata Unk_ov111_021D362C	(src_overlay111_ov111_021D0D80.c.o)
-  021D363C 00000010 .rodata @16126	(src_overlay111_ov111_021D0D80.c.o)
-  021D364C 00000014 .rodata Unk_ov111_021D364C	(src_overlay111_ov111_021D0D80.c.o)
-  021D3660 0000001C .rodata @16132	(src_overlay111_ov111_021D0D80.c.o)
-  021D367C 0000001C .rodata @16134	(src_overlay111_ov111_021D0D80.c.o)
-  021D3698 0000001C .rodata @16136	(src_overlay111_ov111_021D0D80.c.o)
-  021D36B4 0000001C .rodata @16128	(src_overlay111_ov111_021D0D80.c.o)
-  021D36D0 0000001C .rodata @16138	(src_overlay111_ov111_021D0D80.c.o)
-  021D36EC 0000001C .rodata @16130	(src_overlay111_ov111_021D0D80.c.o)
-  021D3708 00000020 .rodata Unk_ov111_021D3708	(src_overlay111_ov111_021D0D80.c.o)
-  021D3728 00000024 .rodata Unk_ov111_021D3728	(src_overlay111_ov111_021D0D80.c.o)
-  021D374C 00000024 .rodata Unk_ov111_021D374C	(src_overlay111_ov111_021D0D80.c.o)
-  021D3770 00000024 .rodata Unk_ov111_021D3770	(src_overlay111_ov111_021D0D80.c.o)
-  021D3794 00000028 .rodata Unk_ov111_021D3794	(src_overlay111_ov111_021D0D80.c.o)
-  021D37BC 00000028 .rodata @16120	(src_overlay111_ov111_021D0D80.c.o)
-  021D37E4 0000002E .rodata Unk_ov111_021D37E4	(src_overlay111_ov111_021D0D80.c.o)
-  021D3814 00000004 .rodata Unk_ov111_021D3814	(src_overlay111_ov111_021D0D80.c.o)
-  021D3818 00000008 .rodata Unk_ov111_021D3818	(src_overlay111_ov111_021D0D80.c.o)
-  021D3820 00000004 .rodata Unk_ov111_021D3820	(src_overlay111_ov111_021D2F80.c.o)
-  021D3824 00000000 .rodata .rodata	(src_overlay111_ov111_021D2F80.c.o)
-  021D3824 00000010 .rodata @13108	(src_overlay111_ov111_021D2F80.c.o)
-  021D3834 00000000 .rodata .rodata	(src_overlay111_ov111_021D33F4.c.o)
-  021D3834 00000084 .rodata Unk_ov111_021D3834	(src_overlay111_ov111_021D33F4.c.o)
-  021D38B8 00000000 .rodata .rodata	(src_overlay111_ov111_021D3548.c.o)
-  021D38B8 00000080 .rodata Unk_ov111_021D38B8	(src_overlay111_ov111_021D3548.c.o)
-#>021D3938          SDK_OVERLAY.overlay111.SINIT_START (linker command file)
-#>021D393C          SDK_OVERLAY.overlay111.SINIT_END (linker command file)
-#>021D3940          SDK_OVERLAY.overlay111.TEXT_END (linker command file)
-#>021D3940          SDK_OVERLAY.overlay111.DATA_START (linker command file)
-  021D3940 00000008 .data   Unk_ov111_021D3940	(src_overlay111_ov111_021D2F80.c.o)
-#>021D3960          SDK_OVERLAY.overlay111.DATA_END (linker command file)
-#>021D3960          SDK_OVERLAY.overlay111.END (linker command file)
-#>00002BC0          SDK_OVERLAY.overlay111.TEXT_SIZE (linker command file)
-#>00000020          SDK_OVERLAY.overlay111.DATA_SIZE (linker command file)
-#>00002BE0          SDK_OVERLAY.overlay111.SIZE (linker command file)
+# .scratch_off_cards
+#>0000006F          SDK_OVERLAY_scratch_off_cards_ID (linker command file)
+#>0000006F          SDK_OVERLAY.scratch_off_cards.ID (linker command file)
+#>021D0D80          SDK_OVERLAY.scratch_off_cards.START (linker command file)
+#>021D0D80          SDK_OVERLAY.scratch_off_cards.TEXT_START (linker command file)
+  021D0D80 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D0D80 000000B4 .text   ScratchOffCardApp_Init	(src_applications_scratch_off_cards_main.c.o)
+  021D0E2C 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D0E34 0000010C .text   ScratchOffCardApp_Main	(src_applications_scratch_off_cards_main.c.o)
+  021D0E34 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D0F40 0000003A .text   ScratchOffCardApp_Exit	(src_applications_scratch_off_cards_main.c.o)
+  021D0F40 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D0F7C 0000004A .text   State_FadeInApp	(src_applications_scratch_off_cards_main.c.o)
+  021D0F7C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D0FC8 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D0FC8 000000F0 .text   State_BringInSelectableCards	(src_applications_scratch_off_cards_main.c.o)
+  021D10AC 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D10B8 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D10B8 000000B4 .text   State_SelectCard	(src_applications_scratch_off_cards_main.c.o)
+  021D1164 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D116C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D116C 00000118 .text   State_PullOutSelectedCard	(src_applications_scratch_off_cards_main.c.o)
+  021D1280 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D1284 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1284 00000284 .text   State_SetupScratchCard	(src_applications_scratch_off_cards_main.c.o)
+  021D14F4 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D1508 00000478 .text   State_ScratchCard	(src_applications_scratch_off_cards_main.c.o)
+  021D1508 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D187C 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D189C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1980 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1980 00000108 .text   State_SlideAwayScratchCard	(src_applications_scratch_off_cards_main.c.o)
+  021D1A80 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D1A88 0000006C .text   State_FadeOutApp	(src_applications_scratch_off_cards_main.c.o)
+  021D1A88 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1AF4 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1AF4 00000050 .text   InitMatchingCellBoxSprites	(src_applications_scratch_off_cards_main.c.o)
+  021D1B40 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D1B44 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1B44 0000004C .text   InitWinningPopupMonSprites	(src_applications_scratch_off_cards_main.c.o)
+  021D1B8C 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D1B90 0000005C .text   InitBottomScreenBoxSprites	(src_applications_scratch_off_cards_main.c.o)
+  021D1B90 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1BEC 0000001E .text   FreeCardSprites	(src_applications_scratch_off_cards_main.c.o)
+  021D1BEC 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1C0C 00000124 .text   FreeAssets	(src_applications_scratch_off_cards_main.c.o)
+  021D1C0C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1D30 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1D30 00000038 .text   InitGraphicsPlane	(src_applications_scratch_off_cards_main.c.o)
+  021D1D60 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D1D68 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1D68 00000208 .text   LoadAssets	(src_applications_scratch_off_cards_main.c.o)
+  021D1F5C 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D1F70 00000012 .text   NewYesNoMenu	(src_applications_scratch_off_cards_main.c.o)
+  021D1F70 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1F84 0000002E .text   InitYesNoMenu	(src_applications_scratch_off_cards_main.c.o)
+  021D1F84 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1FB4 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D1FB4 00000010 .text   FreeYesNoMenu	(src_applications_scratch_off_cards_main.c.o)
+  021D1FC0 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D1FC4 00000070 .text   LoadBackgrounds	(src_applications_scratch_off_cards_main.c.o)
+  021D1FC4 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2034 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2034 00000010 .text   InitSpriteManager	(src_applications_scratch_off_cards_main.c.o)
+  021D2040 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2044 0000004C .text   FreeBackgrounds	(src_applications_scratch_off_cards_main.c.o)
+  021D2044 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2090 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2090 0000003C .text   VBlankCallback	(src_applications_scratch_off_cards_main.c.o)
+  021D20C4 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D20CC 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D20CC 00000020 .text   SetGXBanks	(src_applications_scratch_off_cards_main.c.o)
+  021D20E8 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D20EC 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D20EC 0000015C .text   InitBackgrounds	(src_applications_scratch_off_cards_main.c.o)
+  021D222C 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2248 00000044 .text   LoadDefaultTopScreenBackground	(src_applications_scratch_off_cards_main.c.o)
+  021D2248 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D228C 00000044 .text   LoadCardTopScreenBackground	(src_applications_scratch_off_cards_main.c.o)
+  021D228C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D22D0 00000032 .text   LoadTopScreenPalette	(src_applications_scratch_off_cards_main.c.o)
+  021D22D0 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2304 00000036 .text   LoadBottomScreenPalette	(src_applications_scratch_off_cards_main.c.o)
+  021D2304 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D233C 00000044 .text   LoadCardBottomScreenBackground	(src_applications_scratch_off_cards_main.c.o)
+  021D233C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2380 00000044 .text   LoadScratchCellsBackground	(src_applications_scratch_off_cards_main.c.o)
+  021D2380 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D23C4 00000060 .text   PrintMessage	(src_applications_scratch_off_cards_main.c.o)
+  021D23C4 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2424 00000070 .text   PrintCenteredMessage	(src_applications_scratch_off_cards_main.c.o)
+  021D2424 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2494 00000040 .text   PrintStopScratchingMessage	(src_applications_scratch_off_cards_main.c.o)
+  021D2494 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D24D4 00000044 .text   PrintSelectCardMessage	(src_applications_scratch_off_cards_main.c.o)
+  021D24D4 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2518 00000042 .text   PrintStartCardMessage	(src_applications_scratch_off_cards_main.c.o)
+  021D2518 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D255C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D255C 00000060 .text   ShowWinPopup	(src_applications_scratch_off_cards_main.c.o)
+  021D25B8 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D25BC 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D25BC 00000048 .text   PrintTooBadMessage	(src_applications_scratch_off_cards_main.c.o)
+  021D2600 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2604 00000038 .text   PrintNextCardButton	(src_applications_scratch_off_cards_main.c.o)
+  021D2604 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D263C 00000038 .text   PrintCancelButton	(src_applications_scratch_off_cards_main.c.o)
+  021D263C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2674 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2674 00000058 .text   PrintItemNameOnTopScreen	(src_applications_scratch_off_cards_main.c.o)
+  021D26C4 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D26CC 00000016 .text   SetNumberInTemplate	(src_applications_scratch_off_cards_main.c.o)
+  021D26CC 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D26E4 00000008 .text   ChangeState	(src_applications_scratch_off_cards_main.c.o)
+  021D26E4 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D26EC 00000030 .text   PlaceDittosInCells	(src_applications_scratch_off_cards_main.c.o)
+  021D26EC 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D271C 00000090 .text   PlaceRemainingValuesInCells	(src_applications_scratch_off_cards_main.c.o)
+  021D271C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D27AC 00000010 .text   PlaceValuesInScratchCells	(src_applications_scratch_off_cards_main.c.o)
+  021D27AC 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D27BC 00000018 .text   ClearScratchCellValues	(src_applications_scratch_off_cards_main.c.o)
+  021D27BC 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D27D4 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D27D4 00000094 .text   SelectItemsWinnableOnCard	(src_applications_scratch_off_cards_main.c.o)
+  021D2860 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2868 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2868 00000080 .text   CenterSelectedCardOnScreen	(src_applications_scratch_off_cards_main.c.o)
+  021D28E0 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D28E8 0000002E .text   UpdateBackgroundPalette	(src_applications_scratch_off_cards_main.c.o)
+  021D28E8 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2918 00000028 .text   GetNumCellsScratched	(src_applications_scratch_off_cards_main.c.o)
+  021D2918 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2940 0000001C .text   MarkAllCellsAsUnscratched	(src_applications_scratch_off_cards_main.c.o)
+  021D2940 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D295C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D295C 00000020 .text   MarkAllCellsAsUnrevealed	(src_applications_scratch_off_cards_main.c.o)
+  021D2978 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D297C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D297C 0000005C .text   RemoveScratchedOffPixelsOnCell	(src_applications_scratch_off_cards_main.c.o)
+  021D29D0 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D29D8 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D29D8 00000040 .text   MarkScratchedOffPixels	(src_applications_scratch_off_cards_main.c.o)
+  021D2A14 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2A18 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2A18 00000050 .text   MarkScratchedPixelsAtPoint	(src_applications_scratch_off_cards_main.c.o)
+  021D2A64 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2A68 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2A68 000000B8 .text   CheckIfCellIsRevealed	(src_applications_scratch_off_cards_main.c.o)
+  021D2B08 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2B20 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2B20 0000009C .text   HighlightMatchingPair	(src_applications_scratch_off_cards_main.c.o)
+  021D2BA8 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2BBC 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2BBC 00000158 .text   CheckIfThreeOfAKindFound	(src_applications_scratch_off_cards_main.c.o)
+  021D2D08 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2D14 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2D14 0000004C .text   CheckIfDittoTransformNeeded	(src_applications_scratch_off_cards_main.c.o)
+  021D2D58 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2D60 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2D60 000000B8 .text   UpdateTransformingDitto	(src_applications_scratch_off_cards_main.c.o)
+  021D2E08 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2E18 00000008 .text   IncrementCurrentCard	(src_applications_scratch_off_cards_main.c.o)
+  021D2E18 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2E20 00000008 .text   IncrementCurrentCard2	(src_applications_scratch_off_cards_main.c.o)
+  021D2E20 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2E28 00000024 .text   HideCenterMessageBox	(src_applications_scratch_off_cards_main.c.o)
+  021D2E28 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2E4C 0000003E .text   LoadScratchCellsCharData	(src_applications_scratch_off_cards_main.c.o)
+  021D2E4C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2E8C 00000026 .text   InitScratchCellsBackup	(src_applications_scratch_off_cards_main.c.o)
+  021D2E8C 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2EB4 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2EB4 00000018 .text   MakeCopyOfScratchCellsData	(src_applications_scratch_off_cards_main.c.o)
+  021D2EC8 00000000 .text   $d	(src_applications_scratch_off_cards_main.c.o)
+  021D2ECC 0000006A .text   RemoveScratchedOffPixels	(src_applications_scratch_off_cards_main.c.o)
+  021D2ECC 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2F38 00000046 .text   ScratchPixelsAtPosition	(src_applications_scratch_off_cards_main.c.o)
+  021D2F38 00000000 .text   $t	(src_applications_scratch_off_cards_main.c.o)
+  021D2F80 00000000 .text   $t	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D2F80 000000CC .text   ScratchOffCardsApp_InitSpriteManager	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3048 00000000 .text   $d	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D304C 0000008C .text   InitCardSpriteResources	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D304C 00000000 .text   $t	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D30D8 00000090 .text   InitPokemonSpriteResources	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D30D8 00000000 .text   $t	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3168 0000008C .text   InitBoxSpriteResources	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3168 00000000 .text   $t	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D31F4 0000008C .text   InitWinPopupSpriteResources	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D31F4 00000000 .text   $t	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3280 000000A0 .text   ScratchOffCardsApp_InitSprite	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3280 00000000 .text   $t	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3320 00000056 .text   ScratchOffCardsApp_FreeSprites	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3320 00000000 .text   $t	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3378 00000000 .text   $t	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3378 00000038 .text   InitCharPlttTransferBuffers	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D33A8 00000000 .text   $d	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D33B0 00000000 .text   $t	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D33B0 00000044 .text   ScratchOffCardsApp_UpdateBoxPalettes	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D33F0 00000000 .text   $d	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D33F4 00000052 .text   ScratchOffCardsAppSprite_New	(src_applications_scratch_off_cards_sprites.c.o)
+  021D33F4 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3448 00000014 .text   ScratchOffCardsAppSprite_Free	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3448 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D345C 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D345C 0000000C .text   ScratchOffCardsAppSprite_SetDrawFlag	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3464 00000000 .text   $d	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3468 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3468 0000000C .text   ScratchOffCardsAppSprite_SetPriority	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3470 00000000 .text   $d	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3474 00000026 .text   ScratchOffCardsAppSprite_SetPosition	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3474 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D349C 00000026 .text   ScratchOffCardsAppSprite_GetPosition	(src_applications_scratch_off_cards_sprites.c.o)
+  021D349C 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D34C4 0000001A .text   ScratchOffCardsAppSprite_SetAnim	(src_applications_scratch_off_cards_sprites.c.o)
+  021D34C4 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D34E0 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D34E0 00000014 .text   ScratchOffCardsSprite_SetAffineScaleNormal	(src_applications_scratch_off_cards_sprites.c.o)
+  021D34EC 00000000 .text   $d	(src_applications_scratch_off_cards_sprites.c.o)
+  021D34F4 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D34F4 0000000C .text   ScratchOffCardsSprite_SetAffineScaleDouble	(src_applications_scratch_off_cards_sprites.c.o)
+  021D34FC 00000000 .text   $d	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3500 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3500 0000000C .text   ScratchOffCardsAppSprite_UpdatePalette	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3508 00000000 .text   $d	(src_applications_scratch_off_cards_sprites.c.o)
+  021D350C 00000024 .text   ScratchOffCardsAppSprite_SetAnimateFlag	(src_applications_scratch_off_cards_sprites.c.o)
+  021D350C 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3530 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3530 0000000C .text   ScratchOffCardsAppSprite_SetMosaicFlag	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3538 00000000 .text   $d	(src_applications_scratch_off_cards_sprites.c.o)
+  021D353C 00000000 .text   $t	(src_applications_scratch_off_cards_sprites.c.o)
+  021D353C 0000000C .text   ScratchOffCardsAppSprite_IsAnimated	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3544 00000000 .text   $d	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3548 00000000 .text   $t	(src_applications_scratch_off_cards_windows.c.o)
+  021D3548 00000030 .text   ScratchOffCardsApp_InitWindows	(src_applications_scratch_off_cards_windows.c.o)
+  021D3574 00000000 .text   $d	(src_applications_scratch_off_cards_windows.c.o)
+  021D3578 0000001A .text   ScratchOffCardsApp_FreeWindows	(src_applications_scratch_off_cards_windows.c.o)
+  021D3578 00000000 .text   $t	(src_applications_scratch_off_cards_windows.c.o)
+  021D3594 00000000 .text   $t	(src_applications_scratch_off_cards_windows.c.o)
+  021D3594 0000002C .text   ScratchOffCardsApp_DrawWindow	(src_applications_scratch_off_cards_windows.c.o)
+  021D35BC 00000000 .text   $d	(src_applications_scratch_off_cards_windows.c.o)
+  021D35C0 00000000 .text   $t	(src_applications_scratch_off_cards_windows.c.o)
+  021D35C0 00000040 .text   ScratchOffCardsApp_DrawMessageBox	(src_applications_scratch_off_cards_windows.c.o)
+  021D35FC 00000000 .text   $d	(src_applications_scratch_off_cards_windows.c.o)
+  021D3600 00000000 .rodata .rodata	(src_applications_scratch_off_cards_main.c.o)
+  021D3600 00000004 .rodata sCancelButtonPosition	(src_applications_scratch_off_cards_main.c.o)
+  021D3604 00000004 .rodata sNextCardButtonPosition	(src_applications_scratch_off_cards_main.c.o)
+  021D3608 00000004 .rodata sWinPopupSpritePosition	(src_applications_scratch_off_cards_main.c.o)
+  021D360C 00000004 .rodata sCenterMessageBoxPosition	(src_applications_scratch_off_cards_main.c.o)
+  021D3610 00000008 .rodata sCancelButtonHitbox	(src_applications_scratch_off_cards_main.c.o)
+  021D3618 00000008 .rodata sNextCardButtonHitbox	(src_applications_scratch_off_cards_main.c.o)
+  021D3620 0000000C .rodata sWinningPopupMonSpritePositions	(src_applications_scratch_off_cards_main.c.o)
+  021D362C 00000010 .rodata sSelectableCardPositions	(src_applications_scratch_off_cards_main.c.o)
+  021D363C 00000010 .rodata @16125	(src_applications_scratch_off_cards_main.c.o)
+  021D364C 00000014 .rodata sSelectableCardHitBoxes	(src_applications_scratch_off_cards_main.c.o)
+  021D3660 0000001C .rodata @16131	(src_applications_scratch_off_cards_main.c.o)
+  021D367C 0000001C .rodata @16133	(src_applications_scratch_off_cards_main.c.o)
+  021D3698 0000001C .rodata @16135	(src_applications_scratch_off_cards_main.c.o)
+  021D36B4 0000001C .rodata @16127	(src_applications_scratch_off_cards_main.c.o)
+  021D36D0 0000001C .rodata @16137	(src_applications_scratch_off_cards_main.c.o)
+  021D36EC 0000001C .rodata @16129	(src_applications_scratch_off_cards_main.c.o)
+  021D3708 00000020 .rodata xCardCenteringSteps	(src_applications_scratch_off_cards_main.c.o)
+  021D3728 00000024 .rodata sScratchCellScreenPixelRegions	(src_applications_scratch_off_cards_main.c.o)
+  021D374C 00000024 .rodata sScratchCellPixelRegions	(src_applications_scratch_off_cards_main.c.o)
+  021D3770 00000024 .rodata sScratchMonPositions	(src_applications_scratch_off_cards_main.c.o)
+  021D3794 00000028 .rodata sScratchCellHitboxes	(src_applications_scratch_off_cards_main.c.o)
+  021D37BC 00000028 .rodata @16119	(src_applications_scratch_off_cards_main.c.o)
+  021D37E4 0000002E .rodata sAvailableItems	(src_applications_scratch_off_cards_main.c.o)
+  021D3814 00000004 .rodata sItemNameYOffsets	(src_applications_scratch_off_cards_main.c.o)
+  021D3818 00000008 .rodata yCardCenteringSteps	(src_applications_scratch_off_cards_main.c.o)
+  021D3820 00000004 .rodata sCapacities	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3824 00000000 .rodata .rodata	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3824 00000010 .rodata @13098	(src_applications_scratch_off_cards_sprite_manager.c.o)
+  021D3834 00000000 .rodata .rodata	(src_applications_scratch_off_cards_sprites.c.o)
+  021D3834 00000084 .rodata sCardScaleFactors	(src_applications_scratch_off_cards_sprites.c.o)
+  021D38B8 00000000 .rodata .rodata	(src_applications_scratch_off_cards_windows.c.o)
+  021D38B8 00000080 .rodata sWinTemplates	(src_applications_scratch_off_cards_windows.c.o)
+#>021D3938          SDK_OVERLAY.scratch_off_cards.SINIT_START (linker command file)
+#>021D393C          SDK_OVERLAY.scratch_off_cards.SINIT_END (linker command file)
+#>021D3940          SDK_OVERLAY.scratch_off_cards.TEXT_END (linker command file)
+#>021D3940          SDK_OVERLAY.scratch_off_cards.DATA_START (linker command file)
+  021D3940 00000008 .data   sBoxSpritePalettes	(src_applications_scratch_off_cards_sprite_manager.c.o)
+#>021D3960          SDK_OVERLAY.scratch_off_cards.DATA_END (linker command file)
+#>021D3960          SDK_OVERLAY.scratch_off_cards.END (linker command file)
+#>00002BC0          SDK_OVERLAY.scratch_off_cards.TEXT_SIZE (linker command file)
+#>00000020          SDK_OVERLAY.scratch_off_cards.DATA_SIZE (linker command file)
+#>00002BE0          SDK_OVERLAY.scratch_off_cards.SIZE (linker command file)
 
-# .overlay111.bss
-#>021D3960          SDK_OVERLAY.overlay111.BSS_START (linker command file)
-#>021D3960          SDK_OVERLAY.overlay111.BSS_END (linker command file)
-#>00000000          SDK_OVERLAY.overlay111.BSS_SIZE (linker command file)
+# .scratch_off_cards.bss
+#>021D3960          SDK_OVERLAY.scratch_off_cards.BSS_START (linker command file)
+#>021D3960          SDK_OVERLAY.scratch_off_cards.BSS_END (linker command file)
+#>00000000          SDK_OVERLAY.scratch_off_cards.BSS_SIZE (linker command file)
 
 # .overlay112
 #>00000070          SDK_OVERLAY_overlay112_ID (linker command file)
@@ -139420,7 +139420,7 @@
   027E0060 027E0060 00000020 DTCM
   00000000 00000000 00000018 binary.AUTOLOAD_INFO
   00000000 00000000 0000000C binary.STATIC_FOOTER
-  021D0D80 021D0D80 00000904 main_defs
+  021D0D80 021D0D80 0000090B main_defs
   021D0D80 021D0D80 00000F40 main_table
   021D0D80 021D0D80 00000020 dummy1
   021D0DA0 021D0DA0 00000000 dummy1
@@ -139644,8 +139644,8 @@
   021D5F60 021D5F60 00000000 overlay109
   021D0D80 021D0D80 000015C0 frontier_records_app
   021D2340 021D2340 00000000 frontier_records_app
-  021D0D80 021D0D80 00002BE0 overlay111
-  021D3960 021D3960 00000000 overlay111
+  021D0D80 021D0D80 00002BE0 scratch_off_cards
+  021D3960 021D3960 00000000 scratch_off_cards
   0225C700 0225C700 00001280 overlay112
   0225D980 0225D980 00000000 overlay112
   0225C700 0225C700 00004E80 overlay113
