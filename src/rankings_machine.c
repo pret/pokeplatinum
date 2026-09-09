@@ -85,10 +85,10 @@ typedef struct RankingsMachineManager {
     u16 bgMain0Priority;
     u16 bgMain1Priority;
     u16 unused_14;
-    u8 listID;
+    u8 category;
     u8 mode;
-    u8 recordsCount;
-    u8 firstRecord;
+    u8 statCount;
+    u8 firstStat;
     u16 textDelay;
     u16 frame;
     u8 printerID;
@@ -263,19 +263,18 @@ static const RecordPrintingData *const sRecordsPrintingData[] = {
 
 static int RankingsMachine_InitManager(RankingsMachine *rankingsMachine, FieldSystem *fieldSystem, u16 machineID)
 {
-    RankingsMachineManager *machineMan;
     SaveData *saveData = fieldSystem->saveData;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_RANKINGS_MACHINE, HEAP_SIZE_RECORD_LIST);
 
-    machineMan = Heap_Alloc(HEAP_ID_RANKINGS_MACHINE, sizeof(RankingsMachineManager));
+    RankingsMachineManager *machineMan = Heap_Alloc(HEAP_ID_RANKINGS_MACHINE, sizeof(RankingsMachineManager));
     MI_CpuClear8(machineMan, sizeof(RankingsMachineManager));
 
     machineMan->heapID = HEAP_ID_RANKINGS_MACHINE;
-    machineMan->listID = machineID % 3;
+    machineMan->category = machineID % 3;
     machineMan->mode = machineID / 3;
-    machineMan->recordsCount = GetRecordsListLength(machineMan->listID);
-    machineMan->firstRecord = GetRecordsListFirstRecord(machineMan->listID);
+    machineMan->statCount = Rankings_GetCategoryStatCount(machineMan->category);
+    machineMan->firstStat = Rankings_GetCategoryFirstStat(machineMan->category);
     machineMan->fieldSystem = fieldSystem;
     machineMan->bgConfig = fieldSystem->bgConfig;
     machineMan->rankings = SaveData_GetRankings(saveData);
@@ -293,7 +292,7 @@ static int RankingsMachine_FreeManager(RankingsMachine *rankingsMachine)
     MachineRankingInfo *rankingInfo;
     RankingsMachineManager *machineMan = rankingsMachine->manager;
 
-    for (recordID = 0; recordID < machineMan->recordsCount; recordID++) {
+    for (recordID = 0; recordID < machineMan->statCount; recordID++) {
         entryIDOffset = 0;
 
         for (rankingID = 0; rankingID < machineMan->machineRankings[recordID].rankingsCount; rankingID++) {
@@ -303,7 +302,7 @@ static int RankingsMachine_FreeManager(RankingsMachine *rankingsMachine)
                 continue;
             }
 
-            Rankings_RemoveEntry(machineMan->rankings, (machineMan->mode * 13) + machineMan->firstRecord + recordID, rankingInfo->playerID - entryIDOffset);
+            Rankings_RemoveEntry(machineMan->rankings, (machineMan->mode * RANKING_STAT_MAX) + machineMan->firstStat + recordID, rankingInfo->playerID - entryIDOffset);
             ++entryIDOffset;
         }
     }
@@ -532,12 +531,12 @@ static void RankingsMachine_NewRankings(RankingsMachineManager *machineMan, Save
     int recordID, playerID, rankingID, addedOwnPlayerID;
     RecordPlayersInfo *playersInfo;
 
-    machineMan->machineRankings = Heap_Alloc(machineMan->heapID, sizeof(MachineRankings) * machineMan->recordsCount);
-    MI_CpuClear8(machineMan->machineRankings, sizeof(MachineRankings) * machineMan->recordsCount);
-    machineMan->recordsPlayersInfo[0] = Rankings_GetCurrentPlayerInfo(saveData, machineMan->listID, machineMan->heapID);
+    machineMan->machineRankings = Heap_Alloc(machineMan->heapID, sizeof(MachineRankings) * machineMan->statCount);
+    MI_CpuClear8(machineMan->machineRankings, sizeof(MachineRankings) * machineMan->statCount);
+    machineMan->recordsPlayersInfo[0] = Rankings_GetCurrentPlayerInfo(saveData, machineMan->category, machineMan->heapID);
 
-    for (recordID = 0; recordID < machineMan->recordsCount; recordID++) {
-        machineMan->recordsPlayersInfo[recordID + 1] = Rankings_GetConnectedPlayersInfo(machineMan->rankings, (machineMan->mode * 13) + machineMan->firstRecord + recordID, machineMan->heapID);
+    for (recordID = 0; recordID < machineMan->statCount; recordID++) {
+        machineMan->recordsPlayersInfo[recordID + 1] = Rankings_GetConnectedPlayersInfo(machineMan->rankings, (machineMan->mode * RANKING_STAT_MAX) + machineMan->firstStat + recordID, machineMan->heapID);
 
         playersInfo = machineMan->recordsPlayersInfo[recordID + 1];
         rankingID = 0;
@@ -583,7 +582,7 @@ static void RankingsMachine_FreeRankings(RankingsMachineManager *machineMan)
 {
     int i;
 
-    for (i = 0; i < machineMan->recordsCount + 1; i++) {
+    for (i = 0; i < machineMan->statCount + 1; i++) {
         RecordPlayersInfo_Free(machineMan->recordsPlayersInfo[i]);
     }
 
@@ -602,9 +601,9 @@ static void RankingsMachine_InitStrings(RankingsMachineManager *machineMan)
     machineMan->text.deleteRecord = MessageLoader_GetNewString(machineMan->text.msgLoader, RankingsMachine_Text_DeleteRecord);
     machineMan->text.recordEntryInfo = MessageLoader_GetNewString(machineMan->text.msgLoader, RankingsMachine_Text_RecordEntryInfo);
 
-    for (i = 0; i < machineMan->recordsCount; i++) {
-        machineMan->text.titles[i] = MessageLoader_GetNewString(machineMan->text.msgLoader, RankingsMachine_Text_SingleBattlesRecordTitle + machineMan->firstRecord + i);
-        machineMan->text.explanations[i] = MessageLoader_GetNewString(machineMan->text.msgLoader, RankingsMachine_Text_SingleBattlesRecordExplanation + machineMan->firstRecord + i);
+    for (i = 0; i < machineMan->statCount; i++) {
+        machineMan->text.titles[i] = MessageLoader_GetNewString(machineMan->text.msgLoader, RankingsMachine_Text_SingleBattlesRecordTitle + machineMan->firstStat + i);
+        machineMan->text.explanations[i] = MessageLoader_GetNewString(machineMan->text.msgLoader, RankingsMachine_Text_SingleBattlesRecordExplanation + machineMan->firstStat + i);
     }
 
     for (i = 0; i < VALUE_STRINGS_COUNT; i++) {
@@ -628,7 +627,7 @@ static void RankingsMachine_FreeStrings(RankingsMachineManager *machineMan)
         String_Free(machineMan->text.values[i]);
     }
 
-    for (i = 0; i < machineMan->recordsCount; i++) {
+    for (i = 0; i < machineMan->statCount; i++) {
         String_Free(machineMan->text.titles[i]);
         String_Free(machineMan->text.explanations[i]);
     }
@@ -758,13 +757,13 @@ static void RankingsMachine_ShowRecordsList(RankingsMachineManager *machineMan, 
 {
     int i, listEntriesCount;
 
-    listEntriesCount = machineMan->recordsCount + 1;
+    listEntriesCount = machineMan->statCount + 1;
     machineMan->stringList = StringList_New(listEntriesCount, machineMan->heapID);
 
     Window_Add(machineMan->bgConfig, &machineMan->listWindow, 1, 4, 1, 24, listEntriesCount * 2, 13, 1);
     Window_FillTilemap(&machineMan->listWindow, PIXEL_FILL(15));
 
-    for (i = 0; i < machineMan->recordsCount; i++) {
+    for (i = 0; i < machineMan->statCount; i++) {
         StringList_AddFromString(machineMan->stringList, machineMan->text.titles[i], i);
     }
 
@@ -842,7 +841,7 @@ static void RankingsMachine_PrintRecordRankings(RankingsMachineManager *machineM
     const RecordPrintingData *printingData;
 
     machineRankings = &(machineMan->machineRankings[machineMan->selectedRecordID]);
-    printingData = &(sRecordsPrintingData[machineMan->listID][machineMan->selectedRecordID]);
+    printingData = &(sRecordsPrintingData[machineMan->category][machineMan->selectedRecordID]);
 
     Window_FillTilemap(&machineMan->listWindow, PIXEL_FILL(15));
 

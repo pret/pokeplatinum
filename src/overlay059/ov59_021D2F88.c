@@ -109,14 +109,14 @@ static void ov59_021D3068(const UnkStruct_ov59_021D2FBC *param0)
 
 static void *ov59_021D3088(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
-    return sub_0202E9FC(saveData, heapID);
+    return SaveData_GetRankingEntries(saveData, heapID);
 }
 
 static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)
 {
     Rankings *v0 = SaveData_GetRankings(param0->saveData);
 
-    sub_0202ED0C(param0->saveData, param0->unk_0C, param0->unk_08, param0->unk_10, param0->heapID);
+    SaveData_UpdateRankings(param0->saveData, param0->unk_0C, param0->unk_08, param0->unk_10, param0->heapID);
 }
 
 static void *ov59_021D30B4(SaveData *saveData, enum HeapID heapID, u32 param2)
