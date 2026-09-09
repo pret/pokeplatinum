@@ -1010,7 +1010,7 @@ static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0)
 static void ov64_0222E5D8(UnkStruct_ov64_0222E21C *param0, enum HeapID heapID)
 {
     param0->unk_214 = StringTemplate_Default(heapID);
-    param0->unk_218 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, heapID);
+    param0->unk_218 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PAL_PAD, heapID);
 }
 
 static void ov64_0222E604(UnkStruct_ov64_0222E21C *param0)

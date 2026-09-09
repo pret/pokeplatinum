@@ -5,8 +5,6 @@
 
 #include "savedata.h"
 
-#define RIBBONS_SAVE_SIZE 14
-
 int Ribbons_SaveSize(void)
 {
     return RIBBONS_SAVE_SIZE;

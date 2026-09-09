@@ -1535,7 +1535,7 @@ static void CommSys_RecvDataServer(void)
     }
 }
 
-BOOL CommSys_IsPlayerConnected(u16 param0)
+BOOL CommSys_IsPlayerConnected(u16 netId)
 {
     if (!sCommunicationSystem) {
         return FALSE;
@@ -1545,7 +1545,7 @@ BOOL CommSys_IsPlayerConnected(u16 param0)
         if (sCommunicationSystem->wifiConnected) {
             u16 v0 = DWC_GetAIDBitmap();
 
-            if (v0 & (1 << param0)) {
+            if (v0 & (1 << netId)) {
                 return TRUE;
             }
         }
@@ -1561,15 +1561,15 @@ BOOL CommSys_IsPlayerConnected(u16 param0)
         return FALSE;
     }
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netId) {
         return TRUE;
     } else if (CommSys_CurNetId() == 0) {
         u16 v1 = WirelessManager_GetConnectedBitmap();
 
-        if (v1 & (1 << param0)) {
+        if (v1 & (1 << netId)) {
             return TRUE;
         }
-    } else if (sCommunicationSystem->unk_68C & (1 << param0)) {
+    } else if (sCommunicationSystem->unk_68C & (1 << netId)) {
         return TRUE;
     }
 
