@@ -51,11 +51,11 @@ ScratchOffCards_TryBuyCards:
     WaitFadeScreen
     HideBattlePoints
     CloseMessage
-    ScrCmd_2E2
-    ScrCmd_2E4 0, VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01
-    ScrCmd_2E4 1, VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x03
-    ScrCmd_2E4 2, VAR_MAP_LOCAL_0x04, VAR_MAP_LOCAL_0x05
-    ScrCmd_2E3
+    OpenScratchOffCardsApp
+    GetScratchOffCardsWonItem 0, VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01
+    GetScratchOffCardsWonItem 1, VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x03
+    GetScratchOffCardsWonItem 2, VAR_MAP_LOCAL_0x04, VAR_MAP_LOCAL_0x05
+    FreeScratchOffCardsArgs
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

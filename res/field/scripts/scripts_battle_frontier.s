@@ -158,7 +158,7 @@ BattleFrontier_ScratchOffCards_Unused:
     FacePlayer
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_2E2
+    OpenScratchOffCardsApp
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
