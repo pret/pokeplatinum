@@ -141,13 +141,13 @@ int TradeRoom_PrintMessage(Window *window, int entryId, int fontId, MessageLoade
 }
 
 static const WindowTemplate yesNoWindowTemplate = {
-    0,
-    25,
-    13,
-    6,
-    4,
-    3,
-    274
+    .bgLayer = 0,
+    .tilemapLeft = 25,
+    .tilemapTop = 13,
+    .width = 6,
+    .height = 4,
+    .palette = 3,
+    .baseTile = 274,
 };
 
 u32 TradeRoom_ProcessYesNoChoice(BgConfig *bgConfig, Menu **menu, int *step)
@@ -176,25 +176,25 @@ void TradeRoom_DrawActionMenuFrame(Window *window)
 }
 
 static const ListMenuTemplate friendListMenuTemplate = {
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    32,
-    32,
-    0,
-    8,
-    0,
-    0,
-    1,
-    15,
-    2,
-    0,
-    16,
-    1,
-    0,
-    0,
-    NULL
+    .choices = NULL,
+    .cursorCallback = NULL,
+    .printCallback = NULL,
+    .window = NULL,
+    .count = 32,
+    .maxDisplay = 32,
+    .headerXOffset = 0,
+    .textXOffset = 8,
+    .cursorXOffset = 0,
+    .yOffset = 0,
+    .textColorFg = 1,
+    .textColorBg = 15,
+    .textColorShadow = 2,
+    .letterSpacing = 0,
+    .lineSpacing = 16,
+    .pagerMode = 1,
+    .fontID = 0,
+    .cursorType = 0,
+    .parent = NULL,
 };
 
 ListMenu *TradeRoom_NewFriendListMenu(StringList *strList, int friendCount, Window *window, BgConfig *bgConfig)

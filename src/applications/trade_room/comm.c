@@ -141,7 +141,7 @@ void TradeRoom_ReceiveRibbonData(int senderNetId, int unused, void *data, void *
         return;
     }
 
-    for (int i = 0; i < 14; i++) {
+    for (int i = 0; i < RIBBONS_SAVE_SIZE; i++) {
         if (partnerRibbons[i] != 0) {
             if (localRibbons[i] != partnerRibbons[i]) {
                 localRibbons[i] = partnerRibbons[i];
