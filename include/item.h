@@ -67,7 +67,7 @@ typedef struct ItemData {
     u16 fieldPocket : 4;
     u16 battlePocket : 5;
     u8 fieldUseFunc;
-    u8 battleUseFunc;
+    u8 battleUseCategory;
     u8 partyUse;
     u8 padding_0D;
     union {
@@ -91,7 +91,7 @@ enum ItemDataParam {
     ITEM_PARAM_CAN_REGISTER,
     ITEM_PARAM_FIELD_POCKET,
     ITEM_PARAM_FIELD_USE_FUNC,
-    ITEM_PARAM_BATTLE_USE_FUNC,
+    ITEM_PARAM_BATTLE_USE_CATEGORY,
     ITEM_PARAM_PLUCK_EFFECT,
     ITEM_PARAM_FLING_EFFECT,
     ITEM_PARAM_FLING_POWER,

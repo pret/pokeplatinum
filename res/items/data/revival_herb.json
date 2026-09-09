@@ -25,7 +25,7 @@
   "fieldPocket": "POCKET_MEDICINE",
   "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
   "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
-  "battleUseFunc": 2,
+  "battleUseCategory": "BATTLE_USE_CATEGORY_HEALING",
   "itemUseParams": {
     "revive": true,
     "hpRestored": -1,

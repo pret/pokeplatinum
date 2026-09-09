@@ -167,8 +167,8 @@ s32 Item_Get(ItemData *itemData, enum ItemDataParam param)
         return (s32)itemData->fieldPocket;
     case ITEM_PARAM_FIELD_USE_FUNC:
         return (s32)itemData->fieldUseFunc;
-    case ITEM_PARAM_BATTLE_USE_FUNC:
-        return (s32)itemData->battleUseFunc;
+    case ITEM_PARAM_BATTLE_USE_CATEGORY:
+        return (s32)itemData->battleUseCategory;
     case ITEM_PARAM_PLUCK_EFFECT:
         return (s32)itemData->pluckEffect;
     case ITEM_PARAM_FLING_EFFECT:
