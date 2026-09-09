@@ -14630,18 +14630,18 @@
                                                46](WifiPlayerProfile_Size,func) found in global src_wifi_battle_tower_save.c.o
                                                46](ov59_021D3090,func) found in local src_overlay059_ov59_021D2F88.c.o
                                                 47](SaveData_GetRankings,func) found in global src_rankings.c.o
-                                                47](sub_0202ED0C,func) found in global src_rankings.c.o
+                                                47](SaveData_UpdateRankings,func) found in global src_rankings.c.o
                                                  48](RecordMixedRNG_GetEntrySeed,func) found in global src_record_mixed_rng.c.o
-                                                 48](sub_0202ECB0,func) found in local src_rankings.c.o
-                                                  49](sub_0202EAEC,func) found in local src_rankings.c.o
+                                                 48](SortRankingsForStat,func) found in local src_rankings.c.o
+                                                  49](SortRankings,func) found in local src_rankings.c.o
                                                    50](RankingEntry_HasPlayerName,func) found in global src_rankings.c.o
-                                                   50](sub_0202EABC,func) found in local src_rankings.c.o
+                                                   50](RankingEntryExists,func) found in local src_rankings.c.o
                                                     51](CompareEntriesSeedsAndNames,func) found in local src_rankings.c.o
                                                    50](RankingList_ClearEntries,func) found in local src_rankings.c.o
                                                46](ov59_021D3088,func) found in local src_overlay059_ov59_021D2F88.c.o
-                                                47](sub_0202E9FC,func) found in global src_rankings.c.o
+                                                47](SaveData_GetRankingEntries,func) found in global src_rankings.c.o
                                                  48](GetRecordValues,func) found in local src_rankings.c.o
-                                                  49](recordIDs$17440,object) found in local src_rankings.c.o
+                                                  49](statAndRecordIDs$17440,object) found in local src_rankings.c.o
                                                46](RankingsEntries_Size,func) found in global src_rankings.c.o
                                                46](ov59_021D2C28,func) found in global src_overlay059_ov59_021D2B44.c.o
                                                46](ov59_021D2CB4,func) found in global src_overlay059_ov59_021D2B44.c.o
@@ -32524,8 +32524,8 @@
                                         39](RankingsMachine_InitFieldTask,func) found in global src_rankings_machine.c.o
                                          40](RankingsMachine_Show,func) found in local src_rankings_machine.c.o
                                           41](RankingsMachine_InitManager,func) found in local src_rankings_machine.c.o
-                                           42](GetRecordsListLength,func) found in global src_rankings.c.o
-                                           42](GetRecordsListFirstRecord,func) found in global src_rankings.c.o
+                                           42](Rankings_GetCategoryStatCount,func) found in global src_rankings.c.o
+                                           42](Rankings_GetCategoryFirstStat,func) found in global src_rankings.c.o
                                           41](RankingsMachine_Init,func) found in local src_rankings_machine.c.o
                                            42](RankingsMachine_NewRankings,func) found in local src_rankings_machine.c.o
                                             43](Rankings_GetCurrentPlayerInfo,func) found in global src_rankings.c.o
@@ -46512,10 +46512,10 @@
   0202E834 0000000C .text   sub_0202E834	(src_unk_0202E2CC.c.o)
   0202E83C 00000000 .text   $d	(src_unk_0202E2CC.c.o)
   0202E840 00000000 .text   $t	(src_rankings.c.o)
-  0202E840 0000000C .text   GetRecordsListLength	(src_rankings.c.o)
+  0202E840 0000000C .text   Rankings_GetCategoryStatCount	(src_rankings.c.o)
   0202E848 00000000 .text   $d	(src_rankings.c.o)
   0202E84C 00000000 .text   $t	(src_rankings.c.o)
-  0202E84C 0000000C .text   GetRecordsListFirstRecord	(src_rankings.c.o)
+  0202E84C 0000000C .text   Rankings_GetCategoryFirstStat	(src_rankings.c.o)
   0202E854 00000000 .text   $d	(src_rankings.c.o)
   0202E858 00000018 .text   RankingEntry_Clear	(src_rankings.c.o)
   0202E858 00000000 .text   $t	(src_rankings.c.o)
@@ -46534,19 +46534,19 @@
   0202E924 00000000 .text   $t	(src_rankings.c.o)
   0202E924 000000D8 .text   GetRecordValues	(src_rankings.c.o)
   0202E9F8 00000000 .text   $d	(src_rankings.c.o)
-  0202E9FC 00000082 .text   sub_0202E9FC	(src_rankings.c.o)
+  0202E9FC 00000082 .text   SaveData_GetRankingEntries	(src_rankings.c.o)
   0202E9FC 00000000 .text   $t	(src_rankings.c.o)
   0202EA80 00000016 .text   RankingList_ClearEntries	(src_rankings.c.o)
   0202EA80 00000000 .text   $t	(src_rankings.c.o)
   0202EA98 00000022 .text   CompareEntriesSeedsAndNames	(src_rankings.c.o)
   0202EA98 00000000 .text   $t	(src_rankings.c.o)
-  0202EABC 0000002E .text   sub_0202EABC	(src_rankings.c.o)
+  0202EABC 0000002E .text   RankingEntryExists	(src_rankings.c.o)
   0202EABC 00000000 .text   $t	(src_rankings.c.o)
-  0202EAEC 000001C4 .text   sub_0202EAEC	(src_rankings.c.o)
+  0202EAEC 000001C4 .text   SortRankings	(src_rankings.c.o)
   0202EAEC 00000000 .text   $t	(src_rankings.c.o)
-  0202ECB0 0000005C .text   sub_0202ECB0	(src_rankings.c.o)
+  0202ECB0 0000005C .text   SortRankingsForStat	(src_rankings.c.o)
   0202ECB0 00000000 .text   $t	(src_rankings.c.o)
-  0202ED0C 0000007E .text   sub_0202ED0C	(src_rankings.c.o)
+  0202ED0C 0000007E .text   SaveData_UpdateRankings	(src_rankings.c.o)
   0202ED0C 00000000 .text   $t	(src_rankings.c.o)
   0202ED8C 00000082 .text   Rankings_GetCurrentPlayerInfo	(src_rankings.c.o)
   0202ED8C 00000000 .text   $t	(src_rankings.c.o)
@@ -66472,8 +66472,8 @@
   020E5C68 00000000 .rodata .rodata	(src_game_records.c.o)
   020E5C68 00000066 .rodata sTrainerScoreIncrements	(src_game_records.c.o)
   020E5CD0 00000000 .rodata .rodata	(src_rankings.c.o)
-  020E5CD0 00000006 .rodata sRecordsListsInfo	(src_rankings.c.o)
-  020E5CD8 00000034 .rodata recordIDs$17440	(src_rankings.c.o)
+  020E5CD0 00000006 .rodata sRankingCategories	(src_rankings.c.o)
+  020E5CD8 00000034 .rodata statAndRecordIDs$17440	(src_rankings.c.o)
   020E5D0C 00000000 .rodata .rodata	(src_unk_0202F1D4.c.o)
   020E5D0C 00000004 .rodata @14965	(src_unk_0202F1D4.c.o)
   020E5D10 00000008 .rodata @14963	(src_unk_0202F1D4.c.o)
