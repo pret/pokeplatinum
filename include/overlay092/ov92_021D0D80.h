@@ -4,10 +4,10 @@
 #include "overlay_manager.h"
 #include "string_gf.h"
 
-int ov92_021D0D80(ApplicationManager *appMan, int *param1);
-int ov92_021D0EB8(ApplicationManager *appMan, int *param1);
-int ov92_021D1478(ApplicationManager *appMan, int *param1);
-BOOL ov92_021D27E8(int param0, int param1, String *param2, String *param3, enum HeapID heapID);
-BOOL ov92_021D2854(int param0);
+int WiFiEarth_Init(ApplicationManager *appMan, int *unused);
+int WiFiEarth_Main(ApplicationManager *appMan, int *state);
+int WiFiEarth_Exit(ApplicationManager *appMan, int *unused);
+BOOL WiFiEarth_GetLocationNames(int country, int region, String *countryName, String *regionName, enum HeapID heapID);
+BOOL WiFiEarth_CountryHasRegions(int country);
 
 #endif // POKEPLATINUM_OV92_021D0D80_H

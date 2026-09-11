@@ -1362,9 +1362,9 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
 }
 
 static const ApplicationManagerTemplate Unk_020EA328 = {
-    ov92_021D0D80,
-    ov92_021D0EB8,
-    ov92_021D1478,
+    WiFiEarth_Init,
+    WiFiEarth_Main,
+    WiFiEarth_Exit,
     FS_OVERLAY_ID(overlay92)
 };
 

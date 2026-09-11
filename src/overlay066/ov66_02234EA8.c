@@ -77,7 +77,7 @@ static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 
         u32 v7, v8;
         int v9, v10;
 
-        v9 = sub_020996D4(param2);
+        v9 = GetCountryTableIndex(param2);
         v8 = sub_02099764(v9);
         v5 = LoadMemberFromOpenNARC_OutFileSize(param0, v8, 0, param1, 0, &v7);
         v6 = (UnkStruct_ov69_0225C980 *)v5;

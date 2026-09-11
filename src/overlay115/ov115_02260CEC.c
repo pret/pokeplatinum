@@ -616,7 +616,7 @@ static const u16 Unk_ov115_02265C5C[4][4] = {
     { 0x7FFF, 0x0, 0xBFFF, 0x3FFF },
 };
 
-static const UnkStruct_ov92_021D28C0 Unk_ov115_02265CA4[4][4][4] = {
+static const Vec2s32 Unk_ov115_02265CA4[4][4][4] = {
     {
         { 0x0 },
         {
@@ -1091,7 +1091,7 @@ static BOOL ov115_02261364(UnkStruct_ov115_02261304 *param0)
 
 static void ov115_022613CC(u32 param0, u32 param1, u32 param2, s32 *param3, s32 *param4)
 {
-    static const UnkStruct_ov92_021D28C0 v0[4][4][4] = {
+    static const Vec2s32 v0[4][4][4] = {
         {
             { 0 },
             {
@@ -1162,8 +1162,8 @@ static void ov115_022613CC(u32 param0, u32 param1, u32 param2, s32 *param3, s32 
         },
     };
 
-    *param3 = v0[param1][param0 - 1][param2].unk_00;
-    *param4 = v0[param1][param0 - 1][param2].unk_04;
+    *param3 = v0[param1][param0 - 1][param2].x;
+    *param4 = v0[param1][param0 - 1][param2].y;
 }
 
 static void ov115_022613F8(UnkStruct_ov115_02260D78 *param0, u16 param1, u16 param2, u16 param3, u16 param4, u32 param5)
@@ -1442,8 +1442,8 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
 
         for (v2 = 0; v2 < param3; v2++) {
             if (v2 != param4) {
-                v3 = Unk_ov115_02265CA4[param4][param3 - 1][v2].unk_00;
-                v4 = Unk_ov115_02265CA4[param4][param3 - 1][v2].unk_04;
+                v3 = Unk_ov115_02265CA4[param4][param3 - 1][v2].x;
+                v4 = Unk_ov115_02265CA4[param4][param3 - 1][v2].y;
 
                 Bg_ChangeTilemapRectPalette(param1->unk_00, 2, v3 - 1, v4 - 1, 10, 4, 0 + v2);
                 Window_FillTilemap(&v5, 15);
