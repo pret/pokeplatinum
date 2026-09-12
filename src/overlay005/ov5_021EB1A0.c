@@ -3,17 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/object_events_gfx.h"
+
 #include "struct_decls/map_object.h"
 
-#include "overlay005/const_ov5_021FB51C.h"
 #include "overlay005/field_effect_manager.h"
+#include "overlay005/object_event_gfx_data.h"
 #include "overlay005/ov5_021ECA70.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F10E8.h"
 #include "overlay005/ov5_021F23D0.h"
-#include "overlay005/struct_ov5_021EC700.h"
-#include "overlay005/struct_ov5_021ECD10.h"
 #include "overlay005/struct_ov5_021ED01C.h"
 
 #include "billboard.h"
@@ -105,69 +105,69 @@ Billboard *ov5_021EB1A0(MapObject *mapObj)
     int v0 = MapObject_GetGraphicsID(mapObj);
 
     switch (v0) {
-    case 0x0:
-    case 0x61:
-    case 0x15:
-    case 0x62:
-    case 0xb0:
-    case 0xb1:
-    case 0xb2:
-    case 0xb3:
-    case 0xb4:
-    case 0xb5:
-    case 0xc6:
-    case 0xc7:
-    case 0xba:
-    case 0xbb:
-    case 0xbc:
-    case 0xbd:
-    case 0xc4:
-    case 0xc5:
-    case 0xc8:
-    case 0xc9:
-    case 0xd2:
-    case 0xd3:
-    case 0xd4:
-    case 0x107:
-    case 0x10c:
-    case 0x10d:
-    case 0x10e:
-    case 0x10f:
-    case 0x110:
-    case 0x111:
-    case 0x112:
-    case 0x113: {
+    case OBJ_EVENT_GFX_PLAYER_M:
+    case OBJ_EVENT_GFX_PLAYER_F:
+    case OBJ_EVENT_GFX_PLAYER_M_BIKE:
+    case OBJ_EVENT_GFX_PLAYER_F_BIKE:
+    case OBJ_EVENT_GFX_PLAYER_M_HOLDING_POKE_BALL:
+    case OBJ_EVENT_GFX_PLAYER_F_HOLDING_POKE_BALL:
+    case OBJ_EVENT_GFX_PLAYER_M_SURF:
+    case OBJ_EVENT_GFX_PLAYER_F_SURF:
+    case OBJ_EVENT_GFX_PLAYER_M_SPRAYDUCK:
+    case OBJ_EVENT_GFX_PLAYER_F_SPRAYDUCK:
+    case OBJ_EVENT_GFX_PLAYER_M_SAVE:
+    case OBJ_EVENT_GFX_PLAYER_F_SAVE:
+    case OBJ_EVENT_GFX_PLAYER_M_CONTEST:
+    case OBJ_EVENT_GFX_PLAYER_F_CONTEST:
+    case OBJ_EVENT_GFX_PLAYER_M_FISHING:
+    case OBJ_EVENT_GFX_PLAYER_F_FISHING:
+    case OBJ_EVENT_GFX_PLAYER_M_POKETCH:
+    case OBJ_EVENT_GFX_PLAYER_F_POKETCH:
+    case OBJ_EVENT_GFX_PLAYER_M_POKECENTER_HEAL:
+    case OBJ_EVENT_GFX_PLAYER_F_POKECENTER_HEAL:
+    case OBJ_EVENT_GFX_PLAYER_M_HEARTHOME_GYM:
+    case OBJ_EVENT_GFX_PLAYER_F_HEARTHOME_GYM:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_SAVE:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_SAVE:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_M_POKETCH:
+    case OBJ_EVENT_GFX_DIST_WORLD_PLAYER_F_POKETCH:
+    case OBJ_EVENT_GFX_PLAYER_M_SAVE_HEARTHOME_GYM:
+    case OBJ_EVENT_GFX_PLAYER_F_SAVE_HEARTHOME_GYM:
+    case OBJ_EVENT_GFX_PLAYER_M_POKETCH_HEARTHOME_GYM:
+    case OBJ_EVENT_GFX_PLAYER_F_POKETCH_HEARTHOME_GYM: {
         UnkStruct_ov5_021EBA0C *v1;
 
         v1 = sub_02062AF0(mapObj);
         return v1->unk_04;
     }
-    case 0xc3: {
+    case OBJ_EVENT_GFX_MAGIKARP: {
         UnkStruct_ov5_021EB7F8 *v2;
 
         v2 = sub_02062AF0(mapObj);
         return v2->unk_04;
     }
-    case 0x97:
-    case 0x98:
-    case 0x99: {
+    case OBJ_EVENT_GFX_UXIE:
+    case OBJ_EVENT_GFX_MESPRIT:
+    case OBJ_EVENT_GFX_AZELF: {
         return ov5_021ECB80(mapObj);
     }
-    case 0x108: {
+    case OBJ_EVENT_GFX_DIST_WORLD_B1F_MESPRIT: {
         UnkStruct_ov5_021EC804 *v3;
 
         v3 = sub_02062AF0(mapObj);
         return v3->unk_04;
     }
-    case 0x64: {
+    case OBJ_EVENT_GFX_BERRY_SOIL: {
         return NULL;
     }
     default: {
-        const UnkStruct_ov5_021ECD10 *v4;
+        const ObjectEventGfxRenderDetailsEntry *v4;
 
         v4 = ov5_021ECD04(mapObj);
 
-        if (v4->unk_04_0 == 1) {
+        if (v4->modelType == 1) {
             UnkStruct_ov5_021EB2EC *v5;
 
             v5 = sub_02062AF0(mapObj);
@@ -704,7 +704,7 @@ void ov5_021EB944(MapObject *mapObj)
             Billboard_SetAnimFrameNum(v3, 0);
         }
 
-        Billboard_AdvanceAnim(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, FX32_ONE );
     } break;
     }
 
@@ -1542,11 +1542,11 @@ static void ov5_021EC6C0(MapObject *mapObj, Billboard *param1)
 
 static void ov5_021EC700(u32 param0, VecFx32 *param1)
 {
-    const UnkStruct_ov5_021EC700 *v0 = Unk_ov5_021FB51C;
+    const ObjectEventGfxFieldAnimsInitialPosEntry *v0 = gObjectEventGfxOverworldAnimsInitialPosTable;
 
-    while (v0->unk_00 != 0xffff) {
-        if (v0->unk_00 == param0) {
-            *param1 = v0->unk_04;
+    while (v0->graphicsID != 0xffff) {
+        if (v0->graphicsID == param0) {
+            *param1 = v0->initialPos;
             return;
         }
 
@@ -1628,7 +1628,7 @@ static void ov5_021EC804(Billboard *param0, void *param1)
 
 void ov5_021EC824(MapObject *mapObj)
 {
-    UnkStruct_ov5_021EC804 *v0 = sub_02062ACC(mapObj, (sizeof(UnkStruct_ov5_021EC804)));
+    UnkStruct_ov5_021EC804 *v0 = sub_02062ACC(mapObj, sizeof(UnkStruct_ov5_021EC804));
     v0->unk_02 = -1;
 
     ov5_021ECF04(mapObj, &v0->unk_04);
