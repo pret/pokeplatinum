@@ -151,7 +151,7 @@ Static main
 	Object main.nef.p/src_battle_hall_win_records.c.o
 	Object main.nef.p/src_unk_02030A80.c.o
 	Object main.nef.p/src_unk_02030CE8.c.o
-	Object main.nef.p/src_unk_02030EA4.c.o
+	Object main.nef.p/src_wifi_plaza_question_data.c.o
 	Object main.nef.p/src_wireless_manager.c.o
 	Object main.nef.p/src_comm_ring.c.o
 	Object main.nef.p/src_unk_020322D8.c.o

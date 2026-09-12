@@ -140,7 +140,7 @@ pokeplatinum_c = files(
     'battle_hall_win_records.c',
     'unk_02030A80.c',
     'unk_02030CE8.c',
-    'unk_02030EA4.c',
+    'wifi_plaza_question_data.c',
     'wireless_manager.c',
     'comm_ring.c',
     'unk_020322D8.c',
