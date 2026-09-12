@@ -62,9 +62,9 @@
 #include "string_gf.h"
 #include "system_data.h"
 #include "trainer_info.h"
-#include "unk_02030EA4.h"
 #include "unk_0207E060.h"
 #include "wifi_history_save_data.h"
+#include "wifi_plaza_question_data.h"
 
 #include "res/text/bank/unk_0673.h"
 
@@ -438,15 +438,15 @@ UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, enum HeapID heapID)
 void ov66_0222DEEC(UnkStruct_ov66_0222DFF8 *param0)
 {
     {
-        WiFiQuestions *v0;
+        WiFiPlazaQuestion *v0;
         UnkStruct_ov66_0222E908 v1;
 
         ov66_0222E908(&param0->unk_108.profile, &v1);
 
-        v0 = SaveData_GetWiFiQuestions(param0->saveData);
+        v0 = SaveData_GetWiFiPlazaQuestion(param0->saveData);
 
-        sub_02030ED8(v0, v1.unk_00);
-        sub_02030EDC(v0, v1.unk_04);
+        WiFiPlazaQuestion_SetQuestionNumber(v0, v1.unk_00);
+        WiFiPlazaQuestion_SetSelectedAnswer(v0, v1.unk_04);
     }
 
     ov66_0222FC00(&param0->unk_508);

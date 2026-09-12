@@ -43,8 +43,8 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02030EA4.h"
 #include "vram_transfer.h"
+#include "wifi_plaza_question_data.h"
 
 typedef struct {
     u32 unk_00;
@@ -1190,12 +1190,12 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         break;
     case 17: {
         UnkStruct_ov66_0222E908 v7;
-        WiFiQuestions *v8;
+        WiFiPlazaQuestion *v8;
         BOOL v9;
 
-        v8 = SaveData_GetWiFiQuestions(param4->saveData);
-        v7.unk_00 = sub_02030ED0(v8);
-        v7.unk_04 = sub_02030ED4(v8);
+        v8 = SaveData_GetWiFiPlazaQuestion(param4->saveData);
+        v7.unk_00 = WiFiPlazaQuestion_GetQuestionNumber(v8);
+        v7.unk_04 = WiFiPlazaQuestion_GetSelectedAnswer(v8);
         v9 = ov66_0222E924(param4->unk_04, ov66_0222E338(param4->unk_04));
 
         ov68_0225D8F0(param0, &param0->unk_A8, param1, param2, &v7, heapID, TEXT_COLOR(11, 12, 0), TEXT_COLOR(15, 14, 0), v9);
