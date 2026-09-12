@@ -48,6 +48,7 @@
 #include "applications/trade_room/application.h"
 #include "applications/trade_room/defs.h"
 #include "applications/trainer_case/main.h"
+#include "applications/wifi_earth.h"
 #include "battle/battle_main.h"
 #include "choose_starter/choose_starter_app.h"
 #include "cutscenes/boat_cutscene.h"
@@ -66,7 +67,6 @@
 #include "overlay058/ov58_021D0D80.h"
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay064/ov64_0222DCE0.h"
-#include "overlay092/ov92_021D0D80.h"
 #include "overlay101/ov101_021D0D80.h"
 #include "savedata/save_table.h"
 #include "wifi_battle_tower/application.h"
@@ -154,7 +154,7 @@ FS_EXTERN_OVERLAY(hall_of_fame);
 FS_EXTERN_OVERLAY(pc_hall_of_fame);
 FS_EXTERN_OVERLAY(trade_room);
 FS_EXTERN_OVERLAY(battle_tower_records_app);
-FS_EXTERN_OVERLAY(overlay92);
+FS_EXTERN_OVERLAY(wifi_earth);
 FS_EXTERN_OVERLAY(cutscenes);
 FS_EXTERN_OVERLAY(gts_application);
 FS_EXTERN_OVERLAY(trade_sequence);
@@ -1362,10 +1362,10 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
 }
 
 static const ApplicationManagerTemplate Unk_020EA328 = {
-    ov92_021D0D80,
-    ov92_021D0EB8,
-    ov92_021D1478,
-    FS_OVERLAY_ID(overlay92)
+    WiFiEarth_Init,
+    WiFiEarth_Main,
+    WiFiEarth_Exit,
+    FS_OVERLAY_ID(wifi_earth)
 };
 
 void sub_0203E224(FieldSystem *fieldSystem)

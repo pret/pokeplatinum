@@ -726,13 +726,11 @@ u32 sub_020996D0(void)
     return NELEMS(Unk_020F6FB0);
 }
 
-u32 sub_020996D4(u32 param0)
+u32 GetCountryTableIndex(u32 country)
 {
-    u32 v0;
-
-    for (v0 = 0; v0 < NELEMS(Unk_020F6FB0); v0++) {
-        if (Unk_020F6FB0[v0].unk_00 == param0) {
-            return v0;
+    for (int i = 0; i < NELEMS(Unk_020F6FB0); i++) {
+        if (Unk_020F6FB0[i].unk_00 == country) {
+            return i;
         }
     }
 
@@ -754,7 +752,7 @@ u32 sub_020996F4(u32 param0)
 
 u32 sub_02099720(u32 param0)
 {
-    u32 v0 = sub_020996D4(param0);
+    u32 v0 = GetCountryTableIndex(param0);
     return sub_0209972C(v0);
 }
 
