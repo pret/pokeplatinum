@@ -7171,8 +7171,8 @@
           9](BoxPokemon_Init,func) found in global src_pokemon.c.o
          8](SaveData_SetFullSaveRequired,func) found in global src_savedata.c.o
         7](PCBoxes_SaveSize,func) found in global src_pc_boxes.c.o
-        7](WiFiQuestion_Init,func) found in global src_unk_02030EA4.c.o
-         8](WiFiQuestion_SaveSize,func) found in global src_unk_02030EA4.c.o
+        7](WiFiPlazaQuestion_Init,func) found in global src_wifi_plaza_question_data.c.o
+         8](WiFiPlazaQuestion_SaveSize,func) found in global src_wifi_plaza_question_data.c.o
         7](Email_Init,func) found in global src_unk_02030CE8.c.o
          8](SaveData_SetChecksum,func) found in global src_savedata.c.o
           9](CalcCRC16Checksum,func) found in global src_math_util.c.o
@@ -26176,9 +26176,9 @@
                                                      52](ov68_0225D330,func) found in local src_overlay068_ov68_0225C700.c.o
                                                      52](ov68_0225DB3C,func) found in local src_overlay068_ov68_0225C700.c.o
                                                       53](ov68_0225D89C,func) found in local src_overlay068_ov68_0225C700.c.o
-                                                     52](SaveData_GetWiFiQuestions,func) found in global src_unk_02030EA4.c.o
-                                                     52](sub_02030ED0,func) found in global src_unk_02030EA4.c.o
-                                                     52](sub_02030ED4,func) found in global src_unk_02030EA4.c.o
+                                                     52](SaveData_GetWiFiPlazaQuestion,func) found in global src_wifi_plaza_question_data.c.o
+                                                     52](WiFiPlazaQuestion_GetQuestionNumber,func) found in global src_wifi_plaza_question_data.c.o
+                                                     52](WiFiPlazaQuestion_GetSelectedAnswer,func) found in global src_wifi_plaza_question_data.c.o
                                                      52](ov68_0225D2CC,func) found in local src_overlay068_ov68_0225C700.c.o
                                                      52](ov68_0225D2B4,func) found in local src_overlay068_ov68_0225C700.c.o
                                                    50](ov68_0225CCB4,func) found in local src_overlay068_ov68_0225C700.c.o
@@ -28141,8 +28141,8 @@
                                                46](ov66_02230F7C,func) found in local src_overlay066_ov66_02230C44.c.o
                                                46](ov66_02230E90,func) found in local src_overlay066_ov66_02230C44.c.o
                                             43](ov66_0222DEEC,func) found in global src_overlay066_ov66_0222DDF0.c.o
-                                             44](sub_02030ED8,func) found in global src_unk_02030EA4.c.o
-                                             44](sub_02030EDC,func) found in global src_unk_02030EA4.c.o
+                                             44](WiFiPlazaQuestion_SetQuestionNumber,func) found in global src_wifi_plaza_question_data.c.o
+                                             44](WiFiPlazaQuestion_SetSelectedAnswer,func) found in global src_wifi_plaza_question_data.c.o
                                              44](ov66_0222FC00,func) found in local src_overlay066_ov66_0222DDF0.c.o
                                              44](ov66_022308BC,func) found in local src_overlay066_ov66_0222DDF0.c.o
                                               45](PasswordWordBank_Free,func) found in global src_password_word_bank.c.o
@@ -46893,21 +46893,21 @@
   02030E74 00000000 .text   $d	(src_unk_02030CE8.c.o)
   02030E78 0000002C .text   WorldExchange_GetTrainerObject	(src_unk_02030CE8.c.o)
   02030E78 00000000 .text   $t	(src_unk_02030CE8.c.o)
-  02030EA4 00000004 .text   WiFiQuestion_SaveSize	(src_unk_02030EA4.c.o)
-  02030EA4 00000000 .text   $t	(src_unk_02030EA4.c.o)
-  02030EA8 0000001A .text   WiFiQuestion_Init	(src_unk_02030EA4.c.o)
-  02030EA8 00000000 .text   $t	(src_unk_02030EA4.c.o)
-  02030EC4 00000000 .text   $t	(src_unk_02030EA4.c.o)
-  02030EC4 0000000C .text   SaveData_GetWiFiQuestions	(src_unk_02030EA4.c.o)
-  02030ECC 00000000 .text   $d	(src_unk_02030EA4.c.o)
-  02030ED0 00000004 .text   sub_02030ED0	(src_unk_02030EA4.c.o)
-  02030ED0 00000000 .text   $t	(src_unk_02030EA4.c.o)
-  02030ED4 00000004 .text   sub_02030ED4	(src_unk_02030EA4.c.o)
-  02030ED4 00000000 .text   $t	(src_unk_02030EA4.c.o)
-  02030ED8 00000004 .text   sub_02030ED8	(src_unk_02030EA4.c.o)
-  02030ED8 00000000 .text   $t	(src_unk_02030EA4.c.o)
-  02030EDC 00000004 .text   sub_02030EDC	(src_unk_02030EA4.c.o)
-  02030EDC 00000000 .text   $t	(src_unk_02030EA4.c.o)
+  02030EA4 00000004 .text   WiFiPlazaQuestion_SaveSize	(src_wifi_plaza_question_data.c.o)
+  02030EA4 00000000 .text   $t	(src_wifi_plaza_question_data.c.o)
+  02030EA8 0000001A .text   WiFiPlazaQuestion_Init	(src_wifi_plaza_question_data.c.o)
+  02030EA8 00000000 .text   $t	(src_wifi_plaza_question_data.c.o)
+  02030EC4 00000000 .text   $t	(src_wifi_plaza_question_data.c.o)
+  02030EC4 0000000C .text   SaveData_GetWiFiPlazaQuestion	(src_wifi_plaza_question_data.c.o)
+  02030ECC 00000000 .text   $d	(src_wifi_plaza_question_data.c.o)
+  02030ED0 00000004 .text   WiFiPlazaQuestion_GetQuestionNumber	(src_wifi_plaza_question_data.c.o)
+  02030ED0 00000000 .text   $t	(src_wifi_plaza_question_data.c.o)
+  02030ED4 00000004 .text   WiFiPlazaQuestion_GetSelectedAnswer	(src_wifi_plaza_question_data.c.o)
+  02030ED4 00000000 .text   $t	(src_wifi_plaza_question_data.c.o)
+  02030ED8 00000004 .text   WiFiPlazaQuestion_SetQuestionNumber	(src_wifi_plaza_question_data.c.o)
+  02030ED8 00000000 .text   $t	(src_wifi_plaza_question_data.c.o)
+  02030EDC 00000004 .text   WiFiPlazaQuestion_SetSelectedAnswer	(src_wifi_plaza_question_data.c.o)
+  02030EDC 00000000 .text   $t	(src_wifi_plaza_question_data.c.o)
   02030EE0 00000000 .text   $t	(src_wireless_manager.c.o)
   02030EE0 00000014 .text   WirelessManager_SetState	(src_wireless_manager.c.o)
   02030EEC 00000000 .text   $d	(src_wireless_manager.c.o)
