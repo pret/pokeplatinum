@@ -1,4 +1,4 @@
-#include "overlay092/ov92_021D0D80.h"
+#include "applications/wifi_earth.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -8,8 +8,6 @@
 #include "constants/versions.h"
 
 #include "struct_defs/wi_fi_history.h"
-
-#include "overlay092/struct_ov92_021D28C0.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -41,7 +39,7 @@
 #include "wifi_history_save_data.h"
 
 #include "res/text/bank/country_names.h"
-#include "res/text/bank/unk_0356.h"
+#include "res/text/bank/wifi_earth.h"
 
 #define WIFI_EARTH_BASE_TILE_SCROLLING_MESSAGE_BOX (512 - SCROLLING_MESSAGE_BOX_TILE_COUNT)
 #define WIFI_EARTH_BASE_TILE_STANDARD_WINDOW_FRAME (WIFI_EARTH_BASE_TILE_SCROLLING_MESSAGE_BOX - STANDARD_WINDOW_TILE_COUNT)
@@ -416,7 +414,7 @@ int WiFiEarth_Main(ApplicationManager *appMan, int *state)
 
     switch (*state) {
     case WIFI_EARTH_STATE_INIT:
-        wifiEarth->messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0356, wifiEarth->heapID);
+        wifiEarth->messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_WIFI_EARTH, wifiEarth->heapID);
         narc = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH, wifiEarth->heapID);
 
         WiFiEarth_Load3DModels(wifiEarth, narc);

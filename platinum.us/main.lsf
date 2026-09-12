@@ -1392,10 +1392,10 @@ Overlay move_reminder
 	Object main.nef.p/src_applications_move_reminder.c.o
 }
 
-Overlay overlay92
+Overlay wifi_earth
 {
 	After main
-	Object main.nef.p/src_overlay092_ov92_021D0D80.c.o
+	Object main.nef.p/src_applications_wifi_earth.c.o
 }
 
 Overlay cutscenes
