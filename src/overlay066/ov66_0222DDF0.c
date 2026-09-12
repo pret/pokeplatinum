@@ -438,15 +438,15 @@ UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, enum HeapID heapID)
 void ov66_0222DEEC(UnkStruct_ov66_0222DFF8 *param0)
 {
     {
-        WiFiPlazaQuestion *v0;
+        WiFiPlazaQuestion *wiFiPlazaQuestion;
         UnkStruct_ov66_0222E908 v1;
 
         ov66_0222E908(&param0->unk_108.profile, &v1);
 
-        v0 = SaveData_GetWiFiPlazaQuestion(param0->saveData);
+        wiFiPlazaQuestion = SaveData_GetWiFiPlazaQuestion(param0->saveData);
 
-        WiFiPlazaQuestion_SetQuestionNumber(v0, v1.unk_00);
-        WiFiPlazaQuestion_SetSelectedAnswer(v0, v1.unk_04);
+        WiFiPlazaQuestion_SetQuestionNumber(wiFiPlazaQuestion, v1.questionNumber);
+        WiFiPlazaQuestion_SetSelectedAnswer(wiFiPlazaQuestion, v1.selectedAnswer);
     }
 
     ov66_0222FC00(&param0->unk_508);
@@ -950,8 +950,8 @@ void ov66_0222E5D8(UnkStruct_ov66_0222DFF8 *param0, u32 param1, u32 param2)
         return;
     }
 
-    param0->unk_108.profile.unk_8C.unk_00 = param1;
-    param0->unk_108.profile.unk_8C.unk_04 = param2;
+    param0->unk_108.profile.unk_8C.questionNumber = param1;
+    param0->unk_108.profile.unk_8C.selectedAnswer = param2;
     param0->unk_1FC.unk_0F_0 = 1;
 
     ov66_0222F040(param0, 6);
@@ -2286,8 +2286,8 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, e
         param0->profile.unk_88[i] = TYPE_NORMAL;
     }
 
-    param0->profile.unk_8C.unk_00 = 0xffffffff;
-    param0->profile.unk_8C.unk_04 = 3;
+    param0->profile.unk_8C.questionNumber = 0xffffffff;
+    param0->profile.unk_8C.selectedAnswer = 3;
 
     ov66_0222F9EC(param0, saveData);
 }

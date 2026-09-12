@@ -18,7 +18,7 @@ void WiFiPlazaQuestion_Init(WiFiPlazaQuestion *wiFiPlazaQuestion)
 
 WiFiPlazaQuestion *SaveData_GetWiFiPlazaQuestion(SaveData *saveData)
 {
-    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_WIFI_QUESTIONS);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_WIFI_PLAZA_QUESTIONS);
 }
 
 u32 WiFiPlazaQuestion_GetQuestionNumber(const WiFiPlazaQuestion *wiFiPlazaQuestion)
