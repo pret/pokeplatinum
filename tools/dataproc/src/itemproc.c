@@ -176,19 +176,19 @@ static void proc_params(datafile_t *df, ItemData *item);
 
 static void proc_item(datafile_t *df, const char *member) {
     ItemData item = {
-        .price            = u16(".price"),
-        .effectParam      = u8(".effectParam"),
-        .holdEffect       = enum_u8(".holdEffect", enum ItemHoldEffect),
-        .pluckEffect      = enum_u8(".pluckEffect", PLUCK_EFFECT),
-        .flingEffect      = enum_u8(".flingEffect", FLING_EFFECT),
-        .flingPower       = u8(".flingPower"),
-        .naturalGiftPower = u8(".naturalGiftPower"),
-        .preventToss      = boolean(".preventToss"),
-        .canRegister      = boolean(".canRegister"),
-        .fieldPocket      = towidth(enum_u8(".fieldPocket", POCKET), 4),
-        .battlePocket     = towidth(enum_u8(".battlePocket", BATTLE_POCKET_MASK), 5),
-        .fieldUseFunc     = enum_u8(".fieldUseFunc", ITEM_USE_FUNC),
-        .battleUseCategory     = enum_u8(".battleUseCategory", BATTLE_USE_CATEGORY),
+        .price             = u16(".price"),
+        .effectParam       = u8(".effectParam"),
+        .holdEffect        = enum_u8(".holdEffect", enum ItemHoldEffect),
+        .pluckEffect       = enum_u8(".pluckEffect", PLUCK_EFFECT),
+        .flingEffect       = enum_u8(".flingEffect", FLING_EFFECT),
+        .flingPower        = u8(".flingPower"),
+        .naturalGiftPower  = u8(".naturalGiftPower"),
+        .preventToss       = boolean(".preventToss"),
+        .canRegister       = boolean(".canRegister"),
+        .fieldPocket       = towidth(enum_u8(".fieldPocket", POCKET), 4),
+        .battlePocket      = towidth(enum_u8(".battlePocket", BATTLE_POCKET_MASK), 5),
+        .fieldUseFunc      = enum_u8(".fieldUseFunc", ITEM_USE_FUNC),
+        .battleUseCategory = enum_u8(".battleUseCategory", BATTLE_USE_CATEGORY),
     };
 
     datanode_t nat_gift_type = dp_get(df, ".naturalGiftType");
