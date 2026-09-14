@@ -24,7 +24,7 @@
   "fieldPocket": "POCKET_BERRIES",
   "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
   "fieldUseFunc": "ITEM_USE_FUNC_BERRY",
-  "battleUseFunc": 0,
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": {
     "healFreeze": true
   },
