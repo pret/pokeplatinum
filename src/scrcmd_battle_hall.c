@@ -18,6 +18,7 @@
 #include "battle_frontier_stats.h"
 #include "battle_hall_save.h"
 #include "battle_hall_win_records.h"
+#include "battle_tower_save.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "field_script_context.h"
@@ -36,7 +37,6 @@
 #include "string_template.h"
 #include "unk_0205DFC4.h"
 #include "unk_02099500.h"
-#include "wifi_battle_tower_save.h"
 
 #include "constdata/const_020F410C.h"
 

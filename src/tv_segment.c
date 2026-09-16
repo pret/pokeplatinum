@@ -581,13 +581,13 @@ void sub_0206CFCC(TVBroadcast *broadcast, int param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206CFE4(TVBroadcast *broadcast, BOOL param1, u16 param2)
+void sub_0206CFE4(TVBroadcast *broadcast, BOOL didWin, u16 streak)
 {
     UnkStruct_0202E7FC *v0 = sub_0202E7FC(broadcast);
 
     v0->unk_00 = 1;
-    v0->win = param1;
-    v0->winStreak = param2;
+    v0->win = didWin;
+    v0->winStreak = streak;
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
@@ -1282,14 +1282,14 @@ static BOOL TVSegment_IsEligible_HomeAndManor(FieldSystem *fieldSystem, TVEpisod
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_RESORT_AREA);
 }
 
-void sub_0206DBB0(SaveData *saveData, u32 param1, Pokemon *param2, BOOL param3)
+void sub_0206DBB0(SaveData *saveData, u32 streak, Pokemon *mon, BOOL param3)
 {
     TVSegmentData segments;
     UnkStruct_0206DBE8 *v1 = &segments.val18;
 
-    TVSegment_CopyPokemonValues(param2, &v1->unk_02, &v1->unk_04, &v1->language, &v1->unk_06);
+    TVSegment_CopyPokemonValues(mon, &v1->unk_02, &v1->unk_04, &v1->language, &v1->unk_06);
 
-    v1->unk_00 = param1;
+    v1->unk_00 = streak;
     v1->unk_07 = param3;
 
     sub_0206CD58(saveData, 3, 1, v1);

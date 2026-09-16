@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/field/events/events_battle_tower_corridor_multi.h"
 #include "constants/map_object.h"
+#include "constants/battle_tower_functions.h"
 
 
     ScriptEntry BattleTowerCorridorMulti_OnTransition

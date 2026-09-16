@@ -1,4 +1,4 @@
-#include "wifi_battle_tower_save.h"
+#include "battle_tower_save.h"
 
 #include <nitro.h>
 
@@ -12,6 +12,7 @@
 
 #include "overlay104/frontier_opponents.h"
 
+#include "battle_tower_modes.h"
 #include "easy_chat_sentence.h"
 #include "heap.h"
 #include "inlines.h"
@@ -25,9 +26,9 @@ int WifiPlayerProfile_Size(void)
     return sizeof(WifiPlayerProfile);
 }
 
-void WifiBattleTowerSave_Init(WifiBattleTowerSave *save)
+void BattleTowerSave_Init(BattleTowerSave *save)
 {
-    MI_CpuClear8(save, sizeof(WifiBattleTowerSave));
+    MI_CpuClear8(save, sizeof(BattleTowerSave));
 }
 
 void WifiBattleTowerRecord_Init(WifiBattleTowerRecord *record)
@@ -49,15 +50,15 @@ void WifiBattleTowerDownloadData_Init(WifiBattleTowerDownloadData *downloadData)
     MI_CpuClear8(downloadData, sizeof(WifiBattleTowerDownloadData));
 }
 
-u32 WifiBattleTowerSave_GetField(WifiBattleTowerSave *save, int fieldId, void *outBuf)
+u32 BattleTowerSave_GetField(BattleTowerSave *save, int fieldId, void *outBuf)
 {
     switch (fieldId) {
     case BT_WIFI_SAVE_FIELD_CHALLENGE_MODE:
-        return (u32)save->challengeMode;
+        return save->challengeMode;
     case BT_WIFI_SAVE_FIELD_NEXT_OPPONENT_NUM:
-        return (u32)save->nextOpponentNum;
+        return save->nextOpponentNum;
     case BT_WIFI_SAVE_FIELD_UNK_03:
-        return (u32)save->unk_03;
+        return save->unk_03;
     case BT_WIFI_SAVE_FIELD_UNK_04:
         return save->unk_04;
     case BT_WIFI_SAVE_FIELD_UNK_06:
@@ -82,7 +83,7 @@ u32 WifiBattleTowerSave_GetField(WifiBattleTowerSave *save, int fieldId, void *o
     return 0;
 }
 
-void WifiBattleTowerSave_SetField(WifiBattleTowerSave *save, int fieldId, const void *inBuf)
+void BattleTowerSave_SetField(BattleTowerSave *save, int fieldId, const void *inBuf)
 {
     u32 *inBuf32 = (u32 *)inBuf;
     u16 *inBuf16 = (u16 *)inBuf;
@@ -125,29 +126,29 @@ void WifiBattleTowerSave_SetField(WifiBattleTowerSave *save, int fieldId, const 
     }
 }
 
-void WifiBattleTowerSave_AddCounters(WifiBattleTowerSave *save, u8 param1, u16 param2, u16 param3)
+void BattleTowerSave_AddCounters(BattleTowerSave *save, u8 param1, u16 param2, u16 param3)
 {
-    if (save->unk_03 + param1 < (u8)(-1)) {
+    if (save->unk_03 + param1 < (u8)-1) {
         save->unk_03 += param1;
     }
 
-    if (save->unk_04 + param2 < (u16)(-1)) {
+    if (save->unk_04 + param2 < (u16)-1) {
         save->unk_04 += param2;
     }
 
-    if (save->unk_06 + param3 < (u16)(-1)) {
+    if (save->unk_06 + param3 < (u16)-1) {
         save->unk_06 += param3;
     }
 }
 
-BOOL WifiBattleTowerSave_GetIsInProgress(WifiBattleTowerSave *save)
+BOOL BattleTowerSave_HasSaved(BattleTowerSave *save)
 {
-    return save->isInProgress;
+    return save->didSave;
 }
 
-void WifiBattleTowerSave_SetIsInProgress(WifiBattleTowerSave *save, BOOL isInProgress)
+void BattleTowerSave_RecordSave(BattleTowerSave *save, BOOL didSave)
 {
-    save->isInProgress = isInProgress;
+    save->didSave = didSave;
 }
 
 u16 WifiBattleTowerRecord_UpdateBattlePoints(WifiBattleTowerRecord *record, u16 value, int func)
@@ -240,7 +241,7 @@ void WifiBattleTowerRecord_GetTeam(WifiBattleTowerRecord *record, int teamIdx, F
     }
 }
 
-u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, WifiBattleTowerSave *save)
+u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, BattleTowerSave *save)
 {
     u16 progressScore, penaltyA, penaltyB, efficiencyBonus, performanceScore;
 
@@ -281,11 +282,11 @@ u16 WifiBattleTowerRecord_UpdateRoomNum(WifiBattleTowerRecord *record, u16 chall
 {
     u16 modeIdx;
 
-    if (challengeMode == 5) {
+    if (challengeMode == BATTLE_TOWER_MODE_5) {
         return 0;
     }
 
-    if (challengeMode == 6) {
+    if (challengeMode == BATTLE_TOWER_MODE_6) {
         modeIdx = 5;
     } else {
         modeIdx = challengeMode;
@@ -337,15 +338,15 @@ BOOL WifiBattleTowerRecord_UpdateBitFlag(WifiBattleTowerRecord *record, u16 bitI
     }
 
     switch (op) {
-    case 2:
-        mask = (mask ^ 0xFFFF);
+    case 2: // Clear
+        mask = mask ^ 0xFFFF;
         record->flags &= mask;
         break;
-    case 1:
+    case 1: // Set
         record->flags |= mask;
         break;
-    case 0:
-        return (BOOL)((record->flags >> bitIdx) & 0x1);
+    case 0: // Get
+        return (record->flags >> bitIdx) & 0x1;
     }
 
     return FALSE;
@@ -524,10 +525,10 @@ WifiBattleTowerMatchCandidate *WifiBattleTowerDownloadData_AllocMatchList(WifiBa
     return candidates;
 }
 
-WifiBattleTowerSave *SaveData_GetWifiBattleTowerSave(SaveData *saveData)
+BattleTowerSave *SaveData_GetBattleTowerSave(SaveData *saveData)
 {
     BattleFrontierSave *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
-    return &frontier->wifiBattleTowerSave;
+    return &frontier->towerSave;
 }
 
 WifiBattleTowerRecord *SaveData_GetWifiBattleTowerRecord(SaveData *saveData)

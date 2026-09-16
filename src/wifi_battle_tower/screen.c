@@ -14,6 +14,7 @@
 #include "wifi_battle_tower/application.h"
 #include "wifi_battle_tower/http.h"
 
+#include "battle_tower_save.h"
 #include "bg_window.h"
 #include "comm_manager.h"
 #include "font.h"
@@ -37,7 +38,6 @@
 #include "text.h"
 #include "unk_02030CE8.h"
 #include "unk_02073700.h"
-#include "wifi_battle_tower_save.h"
 
 #define POPUP_TILEMAP_TOP 13
 

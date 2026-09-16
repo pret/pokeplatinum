@@ -23,14 +23,14 @@
 #include "battle_frontier_save.h"
 #include "battle_frontier_stats.h"
 #include "battle_hall_save.h"
+#include "battle_tower.h"
+#include "battle_tower_save.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "item_use_pokemon.h"
 #include "party.h"
 #include "scrcmd_battle_hall.h"
-#include "unk_02049D08.h"
 #include "unk_0209BA80.h"
-#include "wifi_battle_tower_save.h"
 
 static BOOL WaitForCommResponses(FrontierScriptContext *ctx);
 static BOOL WaitForTowerCommResponse(FrontierScriptContext *ctx);
@@ -293,7 +293,7 @@ BOOL FrontierScrCmd_InitBattleTower(FrontierScriptContext *ctx)
     WFCFacilitySelector selector = *selectorPtr;
     WFCFacilitySelector_Free(selectorPtr);
 
-    BattleTower *battleTower = BattleTower_Init(fieldData->saveData, 0, BATTLE_TOWER_MODE_6);
+    BattleTower *battleTower = BattleTower_Init(fieldData->saveData, FALSE, BATTLE_TOWER_MODE_6);
     BattleFrontier_SetFacilityStruct(ctx->scriptMan->frontier, battleTower);
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
@@ -301,9 +301,9 @@ BOOL FrontierScrCmd_InitBattleTower(FrontierScriptContext *ctx)
     }
 
     for (int i = 0; i < battleTower->partySize; i++) {
-        battleTower->unk_2A[i] = selector.selectedMonSlots[i];
-        battleTower->unk_2E[i] = selector.selectedSpecies[i];
-        battleTower->unk_36[i] = selector.selectedItems[i];
+        battleTower->partySlots[i] = selector.selectedMonSlots[i];
+        battleTower->selectedSpecies[i] = selector.selectedSpecies[i];
+        battleTower->selectedItems[i] = selector.selectedItems[i];
     }
 
     battleTower->unk_16[0] = selector.partnersSelectedSpecies[0];
@@ -312,7 +312,7 @@ BOOL FrontierScrCmd_InitBattleTower(FrontierScriptContext *ctx)
     battleTower->partnerID = BT_PARTNERS_COUNT + battleTower->partnerGender;
 
     if (CommSys_CurNetId() == 0) {
-        sub_0204A4C8(battleTower, fieldData->saveData);
+        BattleTower_PickOpponentTrainers(battleTower, fieldData->saveData);
     }
 
     Party_HealAllMembers(SaveData_GetParty(fieldData->saveData));

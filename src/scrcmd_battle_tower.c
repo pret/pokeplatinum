@@ -1,7 +1,6 @@
-#include "unk_020494DC.h"
+#include "scrcmd_battle_tower.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/battle_tower.h"
 #include "constants/battle_tower_functions.h"
@@ -18,6 +17,8 @@
 
 #include "battle_frontier_stats.h"
 #include "battle_tower.h"
+#include "battle_tower_save.h"
+#include "battle_tower_trainers.h"
 #include "bg_window.h"
 #include "communication_system.h"
 #include "field_script_context.h"
@@ -26,21 +27,19 @@
 #include "inlines.h"
 #include "savedata.h"
 #include "script_manager.h"
-#include "trainer_info.h"
 #include "unk_020363E8.h"
-#include "unk_02049D08.h"
 #include "unk_0206B9D8.h"
 #include "unk_0209BA80.h"
-#include "wifi_battle_tower_save.h"
 
 static u16 BattleTower_GetPartnerParam(BattleTower *battleTower, u8 param1);
+static BOOL sub_02049A20(ScriptContext *ctx);
 
 BOOL ScrCmd_InitBattleTower(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 resumingFromSave = ScriptContext_ReadHalfWord(ctx);
     u16 challengeMode = ScriptContext_ReadHalfWord(ctx);
 
-    ctx->fieldSystem->battleTower = BattleTower_Init(FieldSystem_GetSaveData(ctx->fieldSystem), v0, challengeMode);
+    ctx->fieldSystem->battleTower = BattleTower_Init(FieldSystem_GetSaveData(ctx->fieldSystem), resumingFromSave, challengeMode);
     return FALSE;
 }
 
@@ -69,21 +68,21 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
     switch (functionIndex) {
-    case BT_FUNC_CHECK_ENOUGH_VALID_POKEMON: // enough pokemon?
+    case BT_FUNC_CHECK_ENOUGH_VALID_POKEMON:
         if (functionArgument == 0) {
-            *destVar = sub_02049EC4(battleTower->partySize, ctx->fieldSystem->saveData, 1);
+            *destVar = BattleTower_CheckIfPartyIsEligible(battleTower->partySize, ctx->fieldSystem->saveData, TRUE);
         } else {
-            *destVar = sub_02049EC4(functionArgument, ctx->fieldSystem->saveData, 1);
+            *destVar = BattleTower_CheckIfPartyIsEligible(functionArgument, ctx->fieldSystem->saveData, TRUE);
         }
         break;
     case BT_FUNC_RESET_SYSTEM:
         BattleTower_ResetSystem();
         break;
-    case BT_FUNC_UNK_03:
-        sub_02049F98(SaveData_GetWifiBattleTowerSave(ctx->fieldSystem->saveData));
+    case BT_FUNC_CLEAR_SAVE:
+        BattleTower_ClearSave(SaveData_GetBattleTowerSave(ctx->fieldSystem->saveData));
         break;
-    case BT_FUNC_UNK_04:
-        *destVar = sub_02049FA0(SaveData_GetWifiBattleTowerSave(ctx->fieldSystem->saveData));
+    case BT_FUNC_CHECK_RUN_IN_PROGRESS:
+        *destVar = BattleTower_CheckRunInProgress(SaveData_GetBattleTowerSave(ctx->fieldSystem->saveData));
         break;
     case BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE:
         BattleTower_SetCommunicationClubAccessible(ctx->fieldSystem);
@@ -91,14 +90,14 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     case BT_FUNC_CLEAR_COMMUNICATION_CLUB_ACCESSIBLE:
         BattleTower_ClearCommunicationClubAccessible(ctx->fieldSystem);
         break;
-    case BT_FUNC_UNK_08:
-        *destVar = sub_02049FF8(ctx->fieldSystem->saveData, functionArgument);
+    case BT_FUNC_GET_LATEST_STREAK:
+        *destVar = BattleTower_GetLatestStreak(ctx->fieldSystem->saveData, functionArgument);
         break;
-    case BT_FUNC_UNK_09:
-        *destVar = sub_0204AABC(NULL, ctx->fieldSystem->saveData, 2);
+    case BT_FUNC_INCREMENT_WIFI_LOSS_STREAK:
+        *destVar = BattleTower_WifiRankOperation(NULL, ctx->fieldSystem->saveData, 2);
         break;
-    case BT_FUNC_UNK_10:
-        *destVar = sub_0204AABC(NULL, ctx->fieldSystem->saveData, 0);
+    case BT_FUNC_GET_WIFI_RANK:
+        *destVar = BattleTower_WifiRankOperation(NULL, ctx->fieldSystem->saveData, 0);
         break;
     case BT_FUNC_UNK_11:
         sub_0204A030(ctx->fieldSystem->saveData, functionArgument);
@@ -109,19 +108,19 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     case BT_FUNC_UNK_14:
         *destVar = sub_0204A064(ctx->fieldSystem->saveData);
         break;
-    case BT_FUNC_UNK_15:
-        *destVar = sub_0204A100(ctx->fieldSystem->saveData);
+    case BT_FUNC_CHECK_HAVE_WIFI_DATA:
+        *destVar = BattleTower_CheckHaveWifiDownloadData(ctx->fieldSystem->saveData);
         break;
     case BT_FUNC_UNK_16:
         sub_0206BCE4(ctx->task, functionArgument, varID, *destVar);
         return TRUE;
-    case BT_FUNC_UNK_30:
+    case BT_FUNC_SELECT_POKEMON:
         partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-        sub_0204A358(battleTower, ctx->task, partyMenu);
+        BattleTower_SelectPokemonFromPartyMenu(battleTower, ctx->task, partyMenu);
         return TRUE;
-    case BT_FUNC_UNK_31:
+    case BT_FUNC_STORE_SELECTION_RESULT:
         partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-        *destVar = sub_0204A378(battleTower, partyMenu, ctx->fieldSystem->saveData);
+        *destVar = BattleTower_StorePartySelectionResults(battleTower, partyMenu, ctx->fieldSystem->saveData);
         break;
     case BT_FUNC_CHECK_DUPLICATE_SPECIES_AND_HELD_ITEMS:
         *destVar = BattleTower_CheckDuplicateSpeciesAndHeldItems(battleTower, ctx->fieldSystem->saveData);
@@ -135,17 +134,17 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     case BT_FUNC_UPDATE_GAME_RECORDS_AND_JOURNAL:
         BattleTower_UpdateGameRecordsAndJournal(battleTower, ctx->fieldSystem->saveData, ctx->fieldSystem->journalEntry);
         break;
-    case BT_FUNC_UNK_39:
-        sub_0204A8C8(battleTower);
+    case BT_FUNC_QUICKSAVE:
+        BattleTower_Save(battleTower);
         break;
-    case BT_FUNC_UNK_56:
-        sub_0204A97C(battleTower);
+    case BT_FUNC_INIT_STAT_TRAINERS:
+        BattleTower_InitAllStatTrainers(battleTower);
         break;
     case BT_FUNC_GET_OPPONENT_OBJECT_ID:
         *destVar = BattleTower_GetObjectIDFromOpponentID(battleTower, functionArgument);
         break;
     case BT_FUNC_GET_CHALLENGE_MODE:
-        *destVar = (u16)BattleTower_GetChallengeMode(battleTower);
+        *destVar = BattleTower_GetChallengeMode(battleTower);
         break;
     case BT_FUNC_GET_BEAT_PALMER:
         *destVar = BattleTower_GetBeatPalmer(battleTower);
@@ -153,11 +152,11 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     case BT_FUNC_UNK_47:
         sub_0204AA7C(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BT_FUNC_UNK_48:
-        *destVar = sub_0204AB68(battleTower, ctx->fieldSystem->saveData);
+    case BT_FUNC_GIVE_SINGLES_RIBBON:
+        *destVar = BattleTower_GiveBeatTycoonRibbon(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BT_FUNC_UNK_49:
-        *destVar = sub_0204ABA0(battleTower, ctx->fieldSystem->saveData);
+    case BT_FUNC_TRY_GIVE_ABILITY_RIBBONS:
+        *destVar = BattleTower_TryGive50WinsRibbons(battleTower, ctx->fieldSystem->saveData);
         break;
     case BT_FUNC_SET_PARTNER_ID:
         battleTower->partnerID = functionArgument;
@@ -165,20 +164,20 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     case BT_FUNC_GET_PARTNER_ID:
         *destVar = battleTower->partnerID;
         break;
-    case BT_FUNC_UNK_52:
-        sub_0204A4C8(battleTower, ctx->fieldSystem->saveData);
+    case BT_FUNC_PICK_OPPONENT_TRAINERS:
+        BattleTower_PickOpponentTrainers(battleTower, ctx->fieldSystem->saveData);
         break;
     case BT_FUNC_GET_SLOT_INDEX:
-        *destVar = battleTower->unk_2A[functionArgument];
+        *destVar = battleTower->partySlots[functionArgument];
         break;
-    case BT_FUNC_UNK_54:
-        *destVar = sub_0204AABC(battleTower, ctx->fieldSystem->saveData, 1);
+    case BT_FUNC_INCREMENT_WIFI_RANK:
+        *destVar = BattleTower_WifiRankOperation(battleTower, ctx->fieldSystem->saveData, 1);
         break;
     case BT_FUNC_GET_PARTNER_PARAM:
         *destVar = BattleTower_GetPartnerParam(battleTower, functionArgument);
         break;
-    case BT_FUNC_UNK_57:
-        *destVar = sub_0204ABF4(battleTower, ctx->fieldSystem->saveData);
+    case BT_FUNC_SET_RNG_SEEDS:
+        *destVar = BattleTower_SetRngSeeds(battleTower, ctx->fieldSystem->saveData);
         break;
     case BT_FUNC_CHECK_IS_NULL:
         if (battleTower == NULL) {
@@ -187,8 +186,8 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
             *destVar = FALSE;
         }
         break;
-    case BT_FUNC_UNK_58:
-        MI_CpuClear8(battleTower->unk_884, 70);
+    case BT_FUNC_CLEAR_BUFFER:
+        MI_CpuClear8(battleTower->commBuffer, 35 * sizeof(u16));
         break;
     default:
         GF_ASSERT(FALSE);
@@ -210,19 +209,16 @@ BOOL ScrCmd_GetBattleTowerPartnerSpeciesAndMove(ScriptContext *ctx)
     destVar1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
     destVar2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    *destVar1 = battleTower->partnersDataDTO[partnerID].pokemon[monID].species;
-    *destVar2 = battleTower->partnersDataDTO[partnerID].pokemon[monID].moves[0];
+    *destVar1 = battleTower->partners[partnerID].pokemon[monID].species;
+    *destVar2 = battleTower->partners[partnerID].pokemon[monID].moves[0];
 
     return FALSE;
 }
 
 BOOL ScrCmd_1DF(ScriptContext *ctx)
 {
-    u16 v0, v1, v2;
-    u16 *v3;
-
-    v0 = ScriptContext_ReadHalfWord(ctx);
-    v3 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
+    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 *v3 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
     *v3 = sub_0206BDBC(ctx->fieldSystem->saveData);
 
     return FALSE;
@@ -230,28 +226,24 @@ BOOL ScrCmd_1DF(ScriptContext *ctx)
 
 BOOL ScrCmd_1E0(ScriptContext *ctx)
 {
-    u16 v0, v1, v2;
-    u16 *v3;
-
-    v0 = ScriptContext_ReadHalfWord(ctx);
-    v3 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
+    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 *v3 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
     *v3 = sub_0206BF04(ctx->fieldSystem->saveData);
 
     return FALSE;
 }
 
-BOOL ScrCmd_1E1(ScriptContext *ctx)
+BOOL ScrCmd_BattleTower_SendCommMessage(ScriptContext *ctx)
 {
-    int cmd, v1;
-    const TrainerInfo *v2;
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 v4 = ScriptContext_GetVar(ctx);
+    int cmd;
+    u16 command = ScriptContext_GetVar(ctx);
+    u16 shouldRetire = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
     *destVar = 0;
 
-    switch (v3) {
+    switch (command) {
     case 0:
         cmd = 62;
         BattleTower_SendPlayerData(ctx->fieldSystem->battleTower, ctx->fieldSystem->saveData);
@@ -262,12 +254,12 @@ BOOL ScrCmd_1E1(ScriptContext *ctx)
         break;
     case 2:
         cmd = 64;
-        BattleTower_SendShouldRetire(ctx->fieldSystem->battleTower, v4);
+        BattleTower_SendShouldRetire(ctx->fieldSystem->battleTower, shouldRetire);
         break;
     }
 
-    if (sub_0205E6D8(ctx->fieldSystem->saveData) == 1) {
-        if (sub_02036614(CommSys_CurNetId(), battleTower->unk_83E) == 1) {
+    if (sub_0205E6D8(ctx->fieldSystem->saveData) == TRUE) {
+        if (sub_02036614(CommSys_CurNetId(), battleTower->commPayload) == 1) {
             *destVar = 1;
         } else {
             return TRUE;
@@ -275,9 +267,7 @@ BOOL ScrCmd_1E1(ScriptContext *ctx)
     } else {
         sub_0209BA80(battleTower);
 
-        v1 = 70;
-
-        if (CommSys_SendData(cmd, battleTower->unk_83E, v1) == 1) {
+        if (CommSys_SendData(cmd, battleTower->commPayload, 70) == TRUE) {
             *destVar = 1;
         }
     }
@@ -285,16 +275,12 @@ BOOL ScrCmd_1E1(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL sub_02049A20(ScriptContext *ctx);
-
 BOOL ScrCmd_1E2(ScriptContext *ctx)
 {
-    u16 v0;
-    u16 destVarID;
     BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
-    destVarID = ScriptContext_GetVar(ctx);
-    v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 destVarID = ScriptContext_GetVar(ctx);
+    u16 v0 = ScriptContext_ReadHalfWord(ctx);
 
     if (sub_0205E6D8(ctx->fieldSystem->saveData) == 1) {
         sub_0206BD88(ctx->fieldSystem->task, destVarID, v0);
@@ -314,7 +300,7 @@ static BOOL sub_02049A20(ScriptContext *ctx)
     BattleTower *battleTower = ctx->fieldSystem->battleTower;
     u16 *v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, battleTower->unk_8DA);
 
-    if (battleTower->unk_8D5 == 1) {
+    if (battleTower->unk_8D5 == TRUE) {
         v0 = 1;
     } else {
         v0 = 2;
@@ -330,21 +316,21 @@ static BOOL sub_02049A20(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_1E3(ScriptContext *ctx)
+BOOL ScrCmd_GetBattleTowerMatchIndices(ScriptContext *ctx)
 {
     WifiBattleTowerIndices indices;
-    u16 *v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
-    u16 *v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 *rank = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 *opponentIdx = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
     WifiBattleTowerDownloadData_GetMatchIndices(SaveData_GetWifiBattleTowerDownloadData(ctx->fieldSystem->saveData), &indices);
 
-    *v1 = indices.rank;
-    *v2 = indices.opponentIdx;
+    *rank = indices.rank;
+    *opponentIdx = indices.opponentIdx;
 
     return FALSE;
 }
 
-BOOL ScrCmd_1E4(ScriptContext *ctx)
+BOOL ScrCmd_BattleTower_CheckHasMatchListData(ScriptContext *ctx)
 {
     u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 

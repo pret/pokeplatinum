@@ -19,7 +19,7 @@
 typedef struct FrontierTrainer {
     u32 trainerID;
     u16 trainerType;
-    u16 unk_06;
+    u16 objectID;
     u16 trainerName[TRAINER_NAME_LEN + 1];
     u16 introMsg[4];
     u16 winMsg[4];

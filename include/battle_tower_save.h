@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_WIFI_BATTLE_TOWER_SAVE_H
-#define POKEPLATINUM_WIFI_BATTLE_TOWER_SAVE_H
+#ifndef POKEPLATINUM_BATTLE_TOWER_SAVE_H
+#define POKEPLATINUM_BATTLE_TOWER_SAVE_H
 
 #include <nitro/rtc.h>
 
@@ -20,21 +20,21 @@
 #define BATTLE_POINTS_FUNC_SUB  6
 
 int WifiPlayerProfile_Size(void);
-void WifiBattleTowerSave_Init(WifiBattleTowerSave *save);
+void BattleTowerSave_Init(BattleTowerSave *save);
 void WifiBattleTowerRecord_Init(WifiBattleTowerRecord *record);
 void FrontierEasyChatMessages_Init(FrontierEasyChatMessages *easyChatMsgs);
 void WifiBattleTowerDownloadData_Init(WifiBattleTowerDownloadData *downloadData);
-u32 WifiBattleTowerSave_GetField(WifiBattleTowerSave *save, int fieldId, void *outBuf);
-void WifiBattleTowerSave_SetField(WifiBattleTowerSave *save, int fieldId, const void *inBuf);
-void WifiBattleTowerSave_AddCounters(WifiBattleTowerSave *save, u8 param1, u16 param2, u16 param3);
-BOOL WifiBattleTowerSave_GetIsInProgress(WifiBattleTowerSave *save);
-void WifiBattleTowerSave_SetIsInProgress(WifiBattleTowerSave *save, BOOL isInProgress);
+u32 BattleTowerSave_GetField(BattleTowerSave *save, int fieldId, void *outBuf);
+void BattleTowerSave_SetField(BattleTowerSave *save, int fieldId, const void *inBuf);
+void BattleTowerSave_AddCounters(BattleTowerSave *save, u8 param1, u16 param2, u16 param3);
+BOOL BattleTowerSave_HasSaved(BattleTowerSave *save);
+void BattleTowerSave_RecordSave(BattleTowerSave *save, BOOL isInProgress);
 u16 WifiBattleTowerRecord_UpdateBattlePoints(WifiBattleTowerRecord *record, u16 value, int func);
 u8 WifiBattleTowerRecord_UpdateLossStreak(WifiBattleTowerRecord *record, int op);
 u8 WifiBattleTowerRecord_UpdateRank(WifiBattleTowerRecord *record, int op);
 void WifiBattleTowerRecord_SetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemon *mons);
 void WifiBattleTowerRecord_GetTeam(WifiBattleTowerRecord *record, int teamIdx, FrontierPokemon *outBuf);
-u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, WifiBattleTowerSave *save);
+u16 WifiBattleTowerRecord_CalcRatingScore(WifiBattleTowerRecord *record, BattleTowerSave *save);
 u16 WifiBattleTowerRecord_GetRatingScore(WifiBattleTowerRecord *record);
 u8 WifiBattleTowerRecord_GetRatingTier(WifiBattleTowerRecord *record);
 u16 WifiBattleTowerRecord_UpdateRoomNum(WifiBattleTowerRecord *record, u16 challengeMode, int op);
@@ -55,8 +55,8 @@ void WifiBattleTowerDownloadData_BuildOpponent(WifiBattleTowerDownloadData *down
 void WifiBattleTowerDownloadData_StoreMatchList(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerMatchCandidate *matchCandidates, u8 rank, u8 opponentIdx);
 void WifiBattleTowerDownloadData_GetMatchIndices(WifiBattleTowerDownloadData *downloadData, WifiBattleTowerIndices *outIndices);
 WifiBattleTowerMatchCandidate *WifiBattleTowerDownloadData_AllocMatchList(WifiBattleTowerDownloadData *downloadData, enum HeapID heapID);
-WifiBattleTowerSave *SaveData_GetWifiBattleTowerSave(SaveData *saveData);
+BattleTowerSave *SaveData_GetBattleTowerSave(SaveData *saveData);
 WifiBattleTowerRecord *SaveData_GetWifiBattleTowerRecord(SaveData *saveData);
 WifiBattleTowerDownloadData *SaveData_GetWifiBattleTowerDownloadData(SaveData *saveData);
 
-#endif // POKEPLATINUM_WIFI_BATTLE_TOWER_SAVE_H
+#endif // POKEPLATINUM_BATTLE_TOWER_SAVE_H

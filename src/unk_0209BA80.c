@@ -112,11 +112,11 @@ static void sub_0209BA94(int param0, int param1, void *param2, void *param3)
     battleTower->unk_14 = v3[3];
     battleTower->partnerID = BT_PARTNERS_COUNT + battleTower->partnerGender;
 
-    if ((battleTower->unk_2E[0] == battleTower->unk_16[0]) || (battleTower->unk_2E[0] == battleTower->unk_16[1])) {
+    if ((battleTower->selectedSpecies[0] == battleTower->unk_16[0]) || (battleTower->selectedSpecies[0] == battleTower->unk_16[1])) {
         v0 += 1;
     }
 
-    if ((battleTower->unk_2E[1] == battleTower->unk_16[0]) || (battleTower->unk_2E[1] == battleTower->unk_16[1])) {
+    if ((battleTower->selectedSpecies[1] == battleTower->unk_16[0]) || (battleTower->selectedSpecies[1] == battleTower->unk_16[1])) {
         v0 += 2;
     }
 
@@ -127,9 +127,9 @@ static void sub_0209BA94(int param0, int param1, void *param2, void *param3)
 BOOL BattleTower_SendTrainerIDListCmd(BattleTower *battleTower)
 {
     int dataSize = BT_OPPONENTS_COUNT * 2 * sizeof(u16);
-    MI_CpuCopy8(battleTower->trainerIDs, battleTower->unk_83E, dataSize);
+    MI_CpuCopy8(battleTower->trainerIDs, battleTower->commPayload, dataSize);
 
-    return CommSys_SendData(63, battleTower->unk_83E, dataSize) == TRUE;
+    return CommSys_SendData(63, battleTower->commPayload, dataSize) == TRUE;
 }
 
 static void BattleTower_HandleTrainerIDListCmd(int netID, int unused, void *data, void *context)
@@ -165,7 +165,7 @@ static void sub_0209BB68(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (battleTower->unk_10_3 || v2[0]) {
+    if (battleTower->isRetiring || v2[0]) {
         battleTower->unk_8D8 = 1;
     }
 

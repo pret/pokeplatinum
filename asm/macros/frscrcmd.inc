@@ -747,9 +747,9 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_85 arg0
-    .short FRSCRCMD_85
-    .byte \arg0
+    .macro BattleTower_PrintTrainerIntro index
+    .short FRSCRCMD_BATTLETOWER_PRINTTRAINERINTRO
+    .byte \index
     .endm
 
     .macro FreeTowerStruct
@@ -765,17 +765,17 @@
     .short \destVar
     .endm
 
-    .macro FrontierScrCmd_89 arg0, arg1, arg2
-    .short FRSCRCMD_89
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .macro BattleTower_SendRetireMessage command, isRetiring, success
+    .short FRSCRCMD_BATTLETOWER_SENDRETIREMESSAGE
+    .short \command
+    .short \isRetiring
+    .short \success
     .endm
 
-    .macro FrontierScrCmd_8A arg0, arg1
-    .short FRSCRCMD_8A
-    .short \arg0
-    .short \arg1
+    .macro BattleTower_WaitForRetireMessage cmd, destVar
+    .short FRSCRCMD_BATTLETOWER_WAITFORRETIREMESSAGE
+    .short \cmd
+    .short \destVar
     .endm
 
     .macro InitBattleHall resumingFromSave, challengeType, partySlot1, partySlot2
