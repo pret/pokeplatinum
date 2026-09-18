@@ -13,6 +13,26 @@
 
 #include "data/scripts/frscrcmd.h"
 
+    /*
+     * This flag is used by ScriptEntry and ScriptEntryEnd to control where
+     * a user can add ScriptEntry commands (i.e., only at the start of the
+     * input file). It is NOT meant for direct usage.
+     */
+    .set F_ACCEPT_SCRIPT_ENTRIES, TRUE
+
+    .macro ScriptEntry name
+    .if F_ACCEPT_SCRIPT_ENTRIES == TRUE
+        .long \name - 4
+    .else
+        .error "cannot specify ScriptEntry after ScriptEntryEnd"
+    .endif
+    .endm
+
+    .macro ScriptEntryEnd
+    .set F_ACCEPT_SCRIPT_ENTRIES, FALSE
+    .short 0xFD13
+    .endm
+
     .set FALSE, 0
     .set TRUE, 1
 
@@ -24,19 +44,19 @@
     .short FRSCRCMD_END
     .endm
 
-    .macro FrontierScrCmd_02
-    .short FRSCRCMD_02
+    .macro ExitFrontier
+    .short FRSCRCMD_EXITFRONTIER
     .endm
 
-    .macro FrontierScrCmd_03 sceneID
-    .short FRSCRCMD_03
+    .macro ChangeSceneWithinScript sceneID
+    .short FRSCRCMD_CHANGESCENEWITHINSCRIPT
     .short \sceneID
     .endm
 
-    .macro FrontierScrCmd_04 sceneID, arg1
-    .short FRSCRCMD_04
+    .macro ChangeScript sceneID, entryPointOffset
+    .short FRSCRCMD_CHANGESCRIPT
     .short \sceneID
-    .short \arg1
+    .short \entryPointOffset
     .endm
 
     .macro WaitTime frames, countdownVarID

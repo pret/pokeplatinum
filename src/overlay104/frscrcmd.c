@@ -128,7 +128,7 @@ u16 FrontierScriptContext_TryGetVar(FrontierScriptContext *ctx, u16 varID);
 u16 *FrontierScriptContext_GetVarPointer(FrontierScriptContext *ctx, u16 varID);
 static BOOL FrontierScrCmd_Noop(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_End(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_02(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_ExitFrontier(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_WaitTime(FrontierScriptContext *ctx);
 static BOOL DecrementTimer(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_MessageInstant(FrontierScriptContext *ctx);
@@ -201,8 +201,8 @@ u16 FrontierScriptContext_GetVar(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_Call(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_Return(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_CallIf(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_03(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_04(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_ChangeSceneWithinScript(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_ChangeScript(FrontierScriptContext *ctx);
 static BOOL Resume(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_26(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_Dummy27(FrontierScriptContext *ctx);
@@ -362,20 +362,20 @@ static BOOL FrontierScrCmd_End(FrontierScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL FrontierScrCmd_02(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_ExitFrontier(FrontierScriptContext *ctx)
 {
     FrontierScriptContext_Stop(ctx);
-    sub_0209B9B4(ctx->scriptMan->frontier);
+    BattleFrontier_ExitFrontier(ctx->scriptMan->frontier);
 
     return FALSE;
 }
 
-static BOOL FrontierScrCmd_03(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_ChangeSceneWithinScript(FrontierScriptContext *ctx)
 {
-    FrontierScriptManager *v0 = ctx->scriptMan;
+    FrontierScriptManager *scriptMan = ctx->scriptMan;
     u16 sceneID = FrontierScriptContext_GetVar(ctx);
 
-    sub_0209B9BC(v0->frontier, sceneID, 0xFFFF);
+    BattleFrontier_ChangeScene(scriptMan->frontier, sceneID, NO_NEW_ENTRY_POINT);
     FrontierScriptContext_Pause(ctx, Resume);
 
     return TRUE;
@@ -386,13 +386,13 @@ static BOOL Resume(FrontierScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL FrontierScrCmd_04(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_ChangeScript(FrontierScriptContext *ctx)
 {
-    FrontierScriptManager *v0 = ctx->scriptMan;
+    FrontierScriptManager *scriptMan = ctx->scriptMan;
     u16 sceneID = FrontierScriptContext_GetVar(ctx);
-    u16 v2 = FrontierScriptContext_GetVar(ctx);
+    u16 offsetID = FrontierScriptContext_GetVar(ctx);
 
-    sub_0209B9BC(v0->frontier, sceneID, v2);
+    BattleFrontier_ChangeScene(scriptMan->frontier, sceneID, offsetID);
     FrontierScriptContext_Stop(ctx);
 
     return FALSE;
@@ -1166,7 +1166,7 @@ static BOOL FrontierScrCmd_34(FrontierScriptContext *ctx)
     FieldFrontierDTO *fieldData = BattleFrontier_GetFieldData(ctx->scriptMan->frontier);
     void *namingScreenArgs = NamingScreenArgs_Init(HEAP_ID_FIELD2, NAMING_SCREEN_TYPE_PLAYER, 0, 8, (void *)fieldData->options);
 
-    sub_0209B988(ctx->scriptMan->frontier, &gNamingScreenAppTemplate, namingScreenArgs, 0, ov104_02230950);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &gNamingScreenAppTemplate, namingScreenArgs, 0, ov104_02230950);
 
     return TRUE;
 }
@@ -1354,7 +1354,7 @@ static BOOL FrontierScrCmd_6E(FrontierScriptContext *ctx)
 
     sub_0202F298(fieldData->saveData, 11, &v0, dto, 0);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_TRAINER_sseq, 1);
-    sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 1, NULL);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 1, NULL);
 
     return TRUE;
 }

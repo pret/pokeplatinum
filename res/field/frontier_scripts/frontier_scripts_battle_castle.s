@@ -7,8 +7,8 @@
 
     .data
 
-    .long _03C2 - 4
-    .short 0xFD13
+    ScriptEntry _03C2
+    ScriptEntryEnd
 
     .balign 4, 0
 _0008:
@@ -1017,7 +1017,7 @@ _0B36:
     FrontierScrCmd_25 3
     FrontierScrCmd_25 4
     FrontierScrCmd_23 217
-    FrontierScrCmd_03 FRONTIER_SCENE_13
+    ChangeSceneWithinScript FRONTIER_SCENE_13
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _019C
     FrontierScrCmd_24 _01B0
@@ -1036,7 +1036,7 @@ _0BBA:
     FrontierScrCmd_25 2
     FrontierScrCmd_25 3
     FrontierScrCmd_23 217
-    FrontierScrCmd_03 FRONTIER_SCENE_13
+    ChangeSceneWithinScript FRONTIER_SCENE_13
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _01A4
     FrontierScrCmd_24 _01C8
@@ -1094,7 +1094,7 @@ _0CAD:
     FrontierScrCmd_25 3
     FrontierScrCmd_25 4
     FrontierScrCmd_23 217
-    FrontierScrCmd_03 FRONTIER_SCENE_CASTLE_BATTLE_ROOM
+    ChangeSceneWithinScript FRONTIER_SCENE_CASTLE_BATTLE_ROOM
     Call _0E74
     FrontierScrCmd_22 _00DC
     FrontierScrCmd_24 _0100
@@ -1131,7 +1131,7 @@ _0DA3:
     FrontierScrCmd_25 2
     FrontierScrCmd_25 3
     FrontierScrCmd_23 217
-    FrontierScrCmd_03 FRONTIER_SCENE_CASTLE_BATTLE_ROOM
+    ChangeSceneWithinScript FRONTIER_SCENE_CASTLE_BATTLE_ROOM
     Call _0E74
     FrontierScrCmd_22 _00E8
     FrontierScrCmd_24 _0124
@@ -1814,7 +1814,7 @@ _18F4:
     GoToIfEq VAR_0x8008, 3, _1952
     FreeBattleRecording
     FreeBattleCastle
-    FrontierScrCmd_02
+    ExitFrontier
 
 _1942:
     FrontierScrCmd_C8 4
@@ -1829,7 +1829,7 @@ _1948:
 _1952:
     FreeBattleRecording
     FreeBattleCastle
-    FrontierScrCmd_04 FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
+    ChangeScript FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
     End
 
 _195E:
@@ -1868,7 +1868,7 @@ _19E8:
     GoToIfEq VAR_0x8008, 1, _1A30
     FrontierScrCmd_25 0
     FrontierScrCmd_25 4
-    FrontierScrCmd_03 FRONTIER_SCENE_CASTLE_CORRIDOR
+    ChangeSceneWithinScript FRONTIER_SCENE_CASTLE_CORRIDOR
     GetPlayerObjEventGfx VAR_0x8007
     SetVar FR_VAR_0x800F, 231
     FrontierScrCmd_22 _0008
@@ -1879,7 +1879,7 @@ _19E8:
 _1A30:
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
-    FrontierScrCmd_03 FRONTIER_SCENE_CASTLE_CORRIDOR
+    ChangeSceneWithinScript FRONTIER_SCENE_CASTLE_CORRIDOR
     GetPlayerObjEventGfx VAR_0x8007
     SetVar FR_VAR_0x800F, 232
     FrontierScrCmd_22 _0010
