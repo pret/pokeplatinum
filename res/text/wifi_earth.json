@@ -2,18 +2,18 @@
   "key": 37436,
   "messages": [
     {
-      "id": "pl_msg_00000356_00000",
+      "id": "WiFiEarth_Text_Welcome",
       "en_US": [
         "Welcome to Geonet, the high-tech\n",
         "globe!\r"
       ]
     },
     {
-      "id": "pl_msg_00000356_00001",
+      "id": "WiFiEarth_Text_MenuPrompt",
       "en_US": "What would you like to do?"
     },
     {
-      "id": "pl_msg_00000356_00002",
+      "id": "WiFiEarth_Text_RegisterPrompt",
       "en_US": [
         "Here, you may register the location\n",
         "of where you live.\r",
@@ -26,21 +26,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000356_00003",
+      "id": "WiFiEarth_Text_SelectCountry",
       "en_US": [
         "Please select the location in which\n",
         "you live."
       ]
     },
     {
-      "id": "pl_msg_00000356_00004",
+      "id": "WiFiEarth_Text_SelectRegion",
       "en_US": [
         "Please select the area in which\n",
         "you live."
       ]
     },
     {
-      "id": "pl_msg_00000356_00005",
+      "id": "WiFiEarth_Text_ConfirmRegister",
       "en_US": [
         "Once registered, you may not change\n",
         "your registered location data.\r",
@@ -49,35 +49,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000356_00006",
+      "id": "WiFiEarth_Text_CountryName",
       "en_US": "{STRVAR_1 36, 0, 0}"
     },
     {
-      "id": "pl_msg_00000356_00007",
+      "id": "WiFiEarth_Text_RegionName",
       "en_US": "{STRVAR_1 37, 0, 0}"
     },
     {
-      "id": "pl_msg_00000356_00008",
+      "id": "WiFiEarth_Text_Yes",
       "en_US": "YES"
     },
     {
-      "id": "pl_msg_00000356_00009",
+      "id": "WiFiEarth_Text_No",
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000356_00010",
+      "id": "WiFiEarth_Text_SeeList",
       "en_US": "SEE LIST"
     },
     {
-      "id": "pl_msg_00000356_00011",
+      "id": "WiFiEarth_Text_Register",
       "en_US": "REGISTER"
     },
     {
-      "id": "pl_msg_00000356_00012",
+      "id": "WiFiEarth_Text_Exit",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000356_00013",
+      "id": "WiFiEarth_Text_RegisteredLocation",
       "en_US": [
         "Your registered location:\n",
         "{STRVAR_1 36, 0, 0}\n",
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000356_00014",
+      "id": "WiFiEarth_Text_InspectHint",
       "en_US": [
         "To display registered locations, line up\n",
         "the cursor, and press the X Button."
