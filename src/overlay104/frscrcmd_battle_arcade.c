@@ -104,7 +104,7 @@ BOOL FrontierScrCmd_OpenBattleArcadeApp(FrontierScriptContext *ctx)
     args->saveData = fieldData->saveData;
 
     SetupBattleArcadeAppArgs(args, battleArcade);
-    sub_0209B988(ctx->scriptMan->frontier, &sBattleArcadeAppTemplate, args, 0, StoreBattleArcadeAppResults);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &sBattleArcadeAppTemplate, args, 0, StoreBattleArcadeAppResults);
 
     return TRUE;
 }
@@ -187,7 +187,7 @@ BOOL FrontierScrCmd_BattleArcade_StartBattle(FrontierScriptContext *ctx)
     FieldBattleDTO *dto = BattleArcade_SetupBattle(battleArcade, fieldData);
     battleArcade->dto = dto;
 
-    sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
     return TRUE;
 }
 

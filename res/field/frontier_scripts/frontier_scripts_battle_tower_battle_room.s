@@ -5,8 +5,8 @@
 
     .data
 
-    .long _00E2 - 4
-    .short 0xFD13
+    ScriptEntry _00E2
+    ScriptEntryEnd
 
     .balign 4, 0
 _0008:
@@ -326,14 +326,14 @@ _03EF:
     FrontierScrCmd_25 3
     FrontierScrCmd_25 1
     FrontierScrCmd_23 FR_VAR_0x800F
-    FrontierScrCmd_02
+    ExitFrontier
 
 _043F:
     FadeScreenOut
     FrontierScrCmd_25 3
     FrontierScrCmd_25 1
     FrontierScrCmd_23 FR_VAR_0x800F
-    FrontierScrCmd_02
+    ExitFrontier
 
 _0459:
     SetSystemVar VAR_BATTLE_TOWER_BATTLE_ROOM_LOAD_ACTION, 0

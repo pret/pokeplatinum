@@ -97,7 +97,7 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppInitial(FrontierScriptContext *ctx)
     args->receivableParty = battleFactory->opponentsParty;
     args->battleFactory = battleFactory;
 
-    sub_0209B988(ctx->scriptMan->frontier, &sBattleFactoryAppTemplate, args, 0, StoreBattleFactoryAppResult);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &sBattleFactoryAppTemplate, args, 0, StoreBattleFactoryAppResult);
     return TRUE;
 }
 
@@ -120,7 +120,7 @@ BOOL FrontierScrCmd_BattleFactory_StartBattle(FrontierScriptContext *ctx)
     FieldBattleDTO *dto = BattleFactory_SetupBattle(battleFactory, fieldData);
     battleFactory->dto = dto;
 
-    sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
 
     return TRUE;
 }
@@ -155,7 +155,7 @@ BOOL FrontierScrCmd_OpenBattleFactoryAppForTrade(FrontierScriptContext *ctx)
     args->receivableParty = battleFactory->opponentsParty;
     args->battleFactory = battleFactory;
 
-    sub_0209B988(ctx->scriptMan->frontier, &sBattleFactoryAppTradeTemplate, args, 0, StoreBattleFactoryAppResult);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &sBattleFactoryAppTradeTemplate, args, 0, StoreBattleFactoryAppResult);
     return TRUE;
 }
 

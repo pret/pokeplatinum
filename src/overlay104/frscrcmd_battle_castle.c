@@ -95,7 +95,7 @@ BOOL FrontierScrCmd_OpenBattleCastleSelfApp(FrontierScriptContext *ctx)
     args->saveData = fieldData->saveData;
 
     SetupBattleCastleAppArgs(args, battleCastle);
-    sub_0209B988(ctx->scriptMan->frontier, &sBattleCastleSelfAppTemplate, args, 0, StoreBattleCastleAppResult);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &sBattleCastleSelfAppTemplate, args, 0, StoreBattleCastleAppResult);
     return TRUE;
 }
 
@@ -119,7 +119,7 @@ BOOL FrontierScrCmd_DummyOpenBattleCastleApp(FrontierScriptContext *ctx)
     args->saveData = fieldData->saveData;
 
     SetupBattleCastleAppArgs(args, battleCastle);
-    sub_0209B988(ctx->scriptMan->frontier, &sBattleCastleNullTemplate, args, 0, StoreBattleCastleAppResult);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &sBattleCastleNullTemplate, args, 0, StoreBattleCastleAppResult);
 
     return TRUE;
 }
@@ -159,7 +159,7 @@ BOOL FrontierScrCmd_BattleCastle_StartBattle(FrontierScriptContext *ctx)
     FieldBattleDTO *dto = BattleCastle_SetupBattle(battleCastle, fieldData);
     battleCastle->dto = dto;
 
-    sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
     return TRUE;
 }
 
@@ -183,7 +183,7 @@ BOOL FrontierScrCmd_OpenBattleCastleOpponentApp(FrontierScriptContext *ctx)
     args->saveData = fieldData->saveData;
 
     SetupBattleCastleAppArgs(args, battleCastle);
-    sub_0209B988(ctx->scriptMan->frontier, &sBattleCastleOpponentAppTemplate, args, 0, StoreBattleCastleAppResult);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &sBattleCastleOpponentAppTemplate, args, 0, StoreBattleCastleAppResult);
     return TRUE;
 }
 
