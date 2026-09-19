@@ -29669,7 +29669,7 @@
                                                46](WaitForFinishedPrinting,func) found in local src_overlay104_ov104_02231F74.c.o
                                             43](FrontierScrCmd_OpenBattleArcadeApp,func) found in global src_overlay104_frscrcmd_battle_arcade.c.o
                                              44](SetupBattleArcadeAppArgs,func) found in local src_overlay104_frscrcmd_battle_arcade.c.o
-                                             44](sub_0209B988,func) found in global src_battle_frontier.c.o
+                                             44](BattleFrontier_RunSubApp,func) found in global src_battle_frontier.c.o
                                              44](StoreBattleArcadeAppResults,func) found in local src_overlay104_frscrcmd_battle_arcade.c.o
                                               45](BattleArcade_StoreAppResults,func) found in global src_overlay104_battle_arcade.c.o
                                                46](GetBattleArcadeAppCursorPos,func) found in local src_overlay104_battle_arcade.c.o
@@ -30977,13 +30977,13 @@
                                             43](FrontierScrCmd_SetVarFromValue,func) found in local src_overlay104_frscrcmd.c.o
                                             43](FrontierScrCmd_WaitTime,func) found in local src_overlay104_frscrcmd.c.o
                                              44](DecrementTimer,func) found in local src_overlay104_frscrcmd.c.o
-                                            43](FrontierScrCmd_04,func) found in local src_overlay104_frscrcmd.c.o
-                                             44](sub_0209B9BC,func) found in global src_battle_frontier.c.o
+                                            43](FrontierScrCmd_ChangeScript,func) found in local src_overlay104_frscrcmd.c.o
+                                             44](BattleFrontier_ChangeScene,func) found in global src_battle_frontier.c.o
                                              44](FrontierScriptContext_Stop,func) found in global src_overlay104_frontier_script_context.c.o
-                                            43](FrontierScrCmd_03,func) found in local src_overlay104_frscrcmd.c.o
+                                            43](FrontierScrCmd_ChangeSceneWithinScript,func) found in local src_overlay104_frscrcmd.c.o
                                              44](Resume,func) found in local src_overlay104_frscrcmd.c.o
-                                            43](FrontierScrCmd_02,func) found in local src_overlay104_frscrcmd.c.o
-                                             44](sub_0209B9B4,func) found in global src_battle_frontier.c.o
+                                            43](FrontierScrCmd_ExitFrontier,func) found in local src_overlay104_frscrcmd.c.o
+                                             44](BattleFrontier_ExitFrontier,func) found in global src_battle_frontier.c.o
                                             43](FrontierScrCmd_End,func) found in local src_overlay104_frscrcmd.c.o
                                             43](FrontierScrCmd_Noop,func) found in local src_overlay104_frscrcmd.c.o
                                           41](ov104_0222E8E8,func) found in global src_overlay104_frontier_script_manager.c.o
@@ -61075,11 +61075,11 @@
   0209B978 00000000 .text   $t	(src_battle_frontier.c.o)
   0209B980 00000006 .text   BattleFrontier_SetFacilityStruct	(src_battle_frontier.c.o)
   0209B980 00000000 .text   $t	(src_battle_frontier.c.o)
-  0209B988 0000002A .text   sub_0209B988	(src_battle_frontier.c.o)
+  0209B988 0000002A .text   BattleFrontier_RunSubApp	(src_battle_frontier.c.o)
   0209B988 00000000 .text   $t	(src_battle_frontier.c.o)
-  0209B9B4 00000008 .text   sub_0209B9B4	(src_battle_frontier.c.o)
+  0209B9B4 00000008 .text   BattleFrontier_ExitFrontier	(src_battle_frontier.c.o)
   0209B9B4 00000000 .text   $t	(src_battle_frontier.c.o)
-  0209B9BC 0000000E .text   sub_0209B9BC	(src_battle_frontier.c.o)
+  0209B9BC 0000000E .text   BattleFrontier_ChangeScene	(src_battle_frontier.c.o)
   0209B9BC 00000000 .text   $t	(src_battle_frontier.c.o)
   0209B9CC 00000004 .text   sub_0209B9CC	(src_battle_frontier.c.o)
   0209B9CC 00000000 .text   $t	(src_battle_frontier.c.o)
@@ -132254,14 +132254,14 @@
   0222FCA0 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
   0222FCA4 0000000A .text   FrontierScrCmd_End	(src_overlay104_frscrcmd.c.o)
   0222FCA4 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
-  0222FCB0 00000014 .text   FrontierScrCmd_02	(src_overlay104_frscrcmd.c.o)
+  0222FCB0 00000014 .text   FrontierScrCmd_ExitFrontier	(src_overlay104_frscrcmd.c.o)
   0222FCB0 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
   0222FCC4 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
-  0222FCC4 00000028 .text   FrontierScrCmd_03	(src_overlay104_frscrcmd.c.o)
+  0222FCC4 00000028 .text   FrontierScrCmd_ChangeSceneWithinScript	(src_overlay104_frscrcmd.c.o)
   0222FCE4 00000000 .text   $d	(src_overlay104_frscrcmd.c.o)
   0222FCEC 00000004 .text   Resume	(src_overlay104_frscrcmd.c.o)
   0222FCEC 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
-  0222FCF0 00000026 .text   FrontierScrCmd_04	(src_overlay104_frscrcmd.c.o)
+  0222FCF0 00000026 .text   FrontierScrCmd_ChangeScript	(src_overlay104_frscrcmd.c.o)
   0222FCF0 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
   0222FD18 00000000 .text   $t	(src_overlay104_frscrcmd.c.o)
   0222FD18 00000034 .text   FrontierScrCmd_WaitTime	(src_overlay104_frscrcmd.c.o)
