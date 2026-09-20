@@ -25,7 +25,7 @@
   "fieldPocket": "POCKET_TMHMS",
   "battlePocket": "BATTLE_POCKET_MASK_NONE",
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
-  "battleUseFunc": 0,
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": null,
   "teachesMove": "MOVE_STEEL_WING"
 }

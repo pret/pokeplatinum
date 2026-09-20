@@ -25,6 +25,6 @@
   "fieldPocket": "POCKET_BALLS",
   "battlePocket": "BATTLE_POCKET_MASK_POKE_BALLS",
   "fieldUseFunc": "ITEM_USE_FUNC_NONE",
-  "battleUseFunc": 1,
+  "battleUseCategory": "BATTLE_USE_CATEGORY_POKE_BALL",
   "itemUseParams": null
 }
