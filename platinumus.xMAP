@@ -8908,8 +8908,8 @@
                                        38](ov5_021EDD78,func) found in global src_overlay005_ov5_021ECE40.c.o
                                        38](sub_020623D4,func) found in local src_map_object.c.o
                                         39](sub_02063244,func) found in local src_map_object.c.o
-                                         40](Unk_ov5_021FB97C,object) found in global src_overlay005_ov5_021FAF40.c.o
-                                          41](Unk_ov5_021FB0DC,object) found in local src_overlay005_ov5_021FAF40.c.o
+                                         40](gObjectEventGfxRenderersTable,object) found in global src_overlay005_object_event_gfx_data.c.o
+                                          41](Unk_ov5_021FB0DC,object) found in local src_overlay005_object_event_gfx_data.c.o
                                            42](ov5_021EBA8C,func) found in global src_overlay005_ov5_021EB1A0.c.o
                                             43](sub_02062AF0,func) found in global src_map_object.c.o
                                             43](ov5_021EDD94,func) found in global src_overlay005_ov5_021ECE40.c.o
@@ -8940,14 +8940,14 @@
                                                    50](ov5_021ED7E4,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                     51](ov5_021ED50C,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                    50](ov5_021ED858,func) found in local src_overlay005_ov5_021ECE40.c.o
-                                                47](Unk_ov5_021FC9B4,object) found in global src_overlay005_ov5_021FAF40.c.o
+                                                47](gObjectEventGfxTexturesTable,object) found in global src_overlay005_object_event_gfx_data.c.o
                                                46](ov5_021ECF1C,func) found in global src_overlay005_ov5_021ECE40.c.o
                                                 47](ov5_021EDC8C,func) found in global src_overlay005_ov5_021ECE40.c.o
                                                 47](ov5_021EDA0C,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                  48](ov5_021EDD2C,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                   49](ov5_021EDD04,func) found in local src_overlay005_ov5_021ECE40.c.o
-                                                   50](Unk_ov5_021FD77C,object) found in global src_overlay005_ov5_021FAF40.c.o
-                                                    51](Unk_ov5_021FB248,object) found in local src_overlay005_ov5_021FAF40.c.o
+                                                   50](gObjectEventGfxModelAnimsTable,object) found in global src_overlay005_object_event_gfx_data.c.o
+                                                    51](sPoketchBillboardAnims,object) found in local src_overlay005_object_event_gfx_data.c.o
                                                  48](ov5_021ED9DC,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                   49](ov5_021ED974,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                    50](ov5_021ED598,func) found in local src_overlay005_ov5_021ECE40.c.o
@@ -8960,7 +8960,7 @@
                                                    50](ov5_021ED2E8,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                     51](ResourceHeap_HasItem,func) found in global src_overlay005_resource_heap.c.o
                                                    50](ov5_021ED5B4,func) found in local src_overlay005_ov5_021ECE40.c.o
-                                                   50](Unk_ov5_021FB484,object) found in global src_overlay005_ov5_021FAF40.c.o
+                                                   50](gObjectEventGfxModelsTable,object) found in global src_overlay005_object_event_gfx_data.c.o
                                                  48](ov5_021EDD38,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                  48](ov5_021ED9F4,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                   49](ov5_021ED99C,func) found in local src_overlay005_ov5_021ECE40.c.o
@@ -8972,14 +8972,14 @@
                                                   49](ov5_021ED490,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                    50](ov5_021EDCA0,func) found in global src_overlay005_ov5_021ECE40.c.o
                                                    50](ov5_021ED6F0,func) found in local src_overlay005_ov5_021ECE40.c.o
-                                                   50](Unk_ov5_021FB5BC,object) found in global src_overlay005_ov5_021FAF40.c.o
+                                                   50](gObjectEventGfxFrameSeqsTable,object) found in global src_overlay005_object_event_gfx_data.c.o
                                                  48](ov5_021ED9C4,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                 47](ov5_021ED110,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                  48](ov5_021EDE3C,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                   49](ov5_021EDCB0,func) found in global src_overlay005_ov5_021ECE40.c.o
                                                   49](ov5_021EDD44,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                 47](ov5_021EDD50,func) found in local src_overlay005_ov5_021ECE40.c.o
-                                                 48](Unk_ov5_021FAF40,object) found in global src_overlay005_ov5_021FAF40.c.o
+                                                 48](gFogIgnoredModels,object) found in global src_overlay005_object_event_gfx_data.c.o
                                                 47](ov5_021EDDDC,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                  48](Billboard_SetAnimNum,func) found in global src_billboard.c.o
                                                  48](Billboard_SetAnimFrameNum,func) found in global src_billboard.c.o
@@ -9036,7 +9036,7 @@
                                             43](BerryPatches_GetBerryID,func) found in global src_berry_patch_manager.c.o
                                              44](BerryPatches_GetPatchBerryID,func) found in global src_berry_patches.c.o
                                             43](BerryPatchGraphics_GetGraphicsResourceID,func) found in local src_berry_patch_graphics.c.o
-                                             44](gBerryGraphicsTable,object) found in global src_overlay005_ov5_021FAF40.c.o
+                                             44](gBerryGraphicsTable,object) found in global src_overlay005_object_event_gfx_data.c.o
                                             43](BerryPatchGraphics_NewSparkleEffect,func) found in global src_overlay005_berry_patch_effects.c.o
                                             43](ov5_021ECD38,func) found in global src_overlay005_ov5_021ECC20.c.o
                                              44](MapObject_IsMovementPaused,func) found in global src_map_object.c.o
@@ -9108,7 +9108,7 @@
                                            42](ov5_021EC790,func) found in global src_overlay005_ov5_021EB1A0.c.o
                                             43](MapObject_GetEffectiveGraphicsID,func) found in global src_map_object.c.o
                                             43](ov5_021EC700,func) found in local src_overlay005_ov5_021EB1A0.c.o
-                                             44](Unk_ov5_021FB51C,object) found in global src_overlay005_ov5_021FAF40.c.o
+                                             44](gObjectEventGfxOverworldAnimsInitialPosTable,object) found in global src_overlay005_object_event_gfx_data.c.o
                                             43](ov5_021F121C,func) found in global src_overlay005_ov5_021F10E8.c.o
                                              44](Unk_ov5_0220021C,object) found in local src_overlay005_ov5_021F10E8.c.o
                                               45](ov5_021F1310,func) found in local src_overlay005_ov5_021F10E8.c.o
@@ -9248,7 +9248,7 @@
                                         39](sub_02062B88,func) found in global src_map_object.c.o
                                         39](sub_02063240,func) found in local src_map_object.c.o
                                         39](sub_02062B9C,func) found in global src_map_object.c.o
-                                        39](Unk_ov5_021FB470,object) found in global src_overlay005_ov5_021FAF40.c.o
+                                        39](gInvisibleObjectEventGfxRenderer,object) found in global src_overlay005_object_event_gfx_data.c.o
                                          40](ov5_021ECE3C,func) found in global src_overlay005_ov5_021ECC20.c.o
                                          40](ov5_021ECE38,func) found in global src_overlay005_ov5_021ECC20.c.o
                                          40](ov5_021ECE34,func) found in global src_overlay005_ov5_021ECC20.c.o
@@ -9273,7 +9273,7 @@
                                            42](MapObject_GetPrevTileBehavior,func) found in global src_map_object.c.o
                                            42](ov5_021ECD04,func) found in global src_overlay005_ov5_021ECC20.c.o
                                             43](ov5_021ECD10,func) found in local src_overlay005_ov5_021ECC20.c.o
-                                             44](Unk_ov5_021FC194,object) found in global src_overlay005_ov5_021FAF40.c.o
+                                             44](gObjectEventGfxRenderDetailsTable,object) found in global src_overlay005_object_event_gfx_data.c.o
                                            42](MapObject_DetermineElevatedBridgeStatus,func) found in local src_map_object_move.c.o
                                             43](TileBehavior_IsBridgeStart,func) found in global src_map_tile_behavior.c.o
                                             43](MapObject_SetElevatedBridgeStatus,func) found in global src_map_object.c.o
@@ -18206,8 +18206,8 @@
                                                                     67](ov5_021ED4C0,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                                      68](ov5_021ED460,func) found in local src_overlay005_ov5_021ECE40.c.o
                                                                       69](ov5_021ED6A8,func) found in local src_overlay005_ov5_021ECE40.c.o
-                                                                   66](Unk_ov5_021FAF50,object) found in global src_overlay005_ov5_021FAF40.c.o
-                                                                   66](Unk_ov5_021FAF48,object) found in global src_overlay005_ov5_021FAF40.c.o
+                                                                   66](gPreloadedBillboardModels,object) found in global src_overlay005_object_event_gfx_data.c.o
+                                                                   66](gPreloadedBillboardFrameSeqs,object) found in global src_overlay005_object_event_gfx_data.c.o
                                                                  64](FieldEffect_InitRenderObject,func) found in global src_overlay005_ov5_021F10E8.c.o
                                                                   65](ov5_021F1188,func) found in global src_overlay005_ov5_021F10E8.c.o
                                                                   65](ov5_021F11C0,func) found in global src_overlay005_ov5_021F10E8.c.o
@@ -78801,59 +78801,59 @@
   021FAF28 00000000 .rodata .rodata	(src_overlay005_ov5_021EAFA4.c.o)
   021FAF28 0000000C .rodata @12668	(src_overlay005_ov5_021EAFA4.c.o)
   021FAF34 0000000C .rodata @12691	(src_overlay005_ov5_021EAFA4.c.o)
-  021FAF40 00000008 .rodata Unk_ov5_021FAF40	(src_overlay005_ov5_021FAF40.c.o)
-  021FAF48 00000008 .rodata Unk_ov5_021FAF48	(src_overlay005_ov5_021FAF40.c.o)
-  021FAF50 00000010 .rodata Unk_ov5_021FAF50	(src_overlay005_ov5_021FAF40.c.o)
-  021FAF60 00000000 .rodata .rodata	(src_overlay005_ov5_021FAF40.c.o)
-  021FAF60 00000014 .rodata Unk_ov5_021FAF60	(src_overlay005_ov5_021FAF40.c.o)
-  021FAF74 00000014 .rodata BerryPatchRenderer	(src_overlay005_ov5_021FAF40.c.o)
-  021FAF88 00000014 .rodata Unk_ov5_021FAF88	(src_overlay005_ov5_021FAF40.c.o)
-  021FAF9C 00000014 .rodata Unk_ov5_021FAF9C	(src_overlay005_ov5_021FAF40.c.o)
-  021FAFB0 00000014 .rodata Unk_ov5_021FAFB0	(src_overlay005_ov5_021FAF40.c.o)
-  021FAFC4 00000014 .rodata Unk_ov5_021FAFC4	(src_overlay005_ov5_021FAF40.c.o)
-  021FAFD8 00000014 .rodata Unk_ov5_021FAFD8	(src_overlay005_ov5_021FAF40.c.o)
-  021FAFEC 00000014 .rodata Unk_ov5_021FAFEC	(src_overlay005_ov5_021FAF40.c.o)
-  021FB000 00000014 .rodata Unk_ov5_021FB000	(src_overlay005_ov5_021FAF40.c.o)
-  021FB014 00000014 .rodata Unk_ov5_021FB014	(src_overlay005_ov5_021FAF40.c.o)
-  021FB028 00000014 .rodata Unk_ov5_021FB028	(src_overlay005_ov5_021FAF40.c.o)
-  021FB03C 00000014 .rodata Unk_ov5_021FB03C	(src_overlay005_ov5_021FAF40.c.o)
-  021FB050 00000014 .rodata Unk_ov5_021FB050	(src_overlay005_ov5_021FAF40.c.o)
-  021FB064 00000014 .rodata Unk_ov5_021FB064	(src_overlay005_ov5_021FAF40.c.o)
-  021FB078 00000014 .rodata Unk_ov5_021FB078	(src_overlay005_ov5_021FAF40.c.o)
-  021FB08C 00000014 .rodata Unk_ov5_021FB08C	(src_overlay005_ov5_021FAF40.c.o)
-  021FB0A0 00000014 .rodata Unk_ov5_021FB0A0	(src_overlay005_ov5_021FAF40.c.o)
-  021FB0B4 00000014 .rodata Unk_ov5_021FB0B4	(src_overlay005_ov5_021FAF40.c.o)
-  021FB0C8 00000014 .rodata Unk_ov5_021FB0C8	(src_overlay005_ov5_021FAF40.c.o)
-  021FB0DC 00000014 .rodata Unk_ov5_021FB0DC	(src_overlay005_ov5_021FAF40.c.o)
-  021FB0F0 00000014 .rodata Unk_ov5_021FB0F0	(src_overlay005_ov5_021FAF40.c.o)
-  021FB104 00000018 .rodata Unk_ov5_021FB104	(src_overlay005_ov5_021FAF40.c.o)
-  021FB11C 00000018 .rodata Unk_ov5_021FB11C	(src_overlay005_ov5_021FAF40.c.o)
-  021FB134 00000018 .rodata Unk_ov5_021FB134	(src_overlay005_ov5_021FAF40.c.o)
-  021FB14C 00000018 .rodata Unk_ov5_021FB14C	(src_overlay005_ov5_021FAF40.c.o)
-  021FB164 00000018 .rodata Unk_ov5_021FB164	(src_overlay005_ov5_021FAF40.c.o)
-  021FB17C 00000018 .rodata Unk_ov5_021FB17C	(src_overlay005_ov5_021FAF40.c.o)
-  021FB194 00000018 .rodata Unk_ov5_021FB194	(src_overlay005_ov5_021FAF40.c.o)
-  021FB1AC 00000018 .rodata Unk_ov5_021FB1AC	(src_overlay005_ov5_021FAF40.c.o)
-  021FB1C4 00000018 .rodata Unk_ov5_021FB1C4	(src_overlay005_ov5_021FAF40.c.o)
-  021FB1DC 00000024 .rodata Unk_ov5_021FB1DC	(src_overlay005_ov5_021FAF40.c.o)
-  021FB200 00000024 .rodata Unk_ov5_021FB200	(src_overlay005_ov5_021FAF40.c.o)
-  021FB224 00000024 .rodata Unk_ov5_021FB224	(src_overlay005_ov5_021FAF40.c.o)
-  021FB248 0000003C .rodata Unk_ov5_021FB248	(src_overlay005_ov5_021FAF40.c.o)
-  021FB284 0000003C .rodata Unk_ov5_021FB284	(src_overlay005_ov5_021FAF40.c.o)
-  021FB2C0 0000003C .rodata Unk_ov5_021FB2C0	(src_overlay005_ov5_021FAF40.c.o)
-  021FB2FC 0000003C .rodata Unk_ov5_021FB2FC	(src_overlay005_ov5_021FAF40.c.o)
-  021FB338 00000048 .rodata Unk_ov5_021FB338	(src_overlay005_ov5_021FAF40.c.o)
-  021FB380 0000006C .rodata Unk_ov5_021FB380	(src_overlay005_ov5_021FAF40.c.o)
-  021FB3EC 00000084 .rodata Unk_ov5_021FB3EC	(src_overlay005_ov5_021FAF40.c.o)
-  021FB470 00000014 .rodata Unk_ov5_021FB470	(src_overlay005_ov5_021FAF40.c.o)
-  021FB484 00000098 .rodata Unk_ov5_021FB484	(src_overlay005_ov5_021FAF40.c.o)
-  021FB51C 000000A0 .rodata Unk_ov5_021FB51C	(src_overlay005_ov5_021FAF40.c.o)
-  021FB5BC 000000C0 .rodata Unk_ov5_021FB5BC	(src_overlay005_ov5_021FAF40.c.o)
-  021FB67C 00000300 .rodata gBerryGraphicsTable	(src_overlay005_ov5_021FAF40.c.o)
-  021FB97C 00000818 .rodata Unk_ov5_021FB97C	(src_overlay005_ov5_021FAF40.c.o)
-  021FC194 00000820 .rodata Unk_ov5_021FC194	(src_overlay005_ov5_021FAF40.c.o)
-  021FC9B4 00000DC8 .rodata Unk_ov5_021FC9B4	(src_overlay005_ov5_021FAF40.c.o)
-  021FD77C 00001B90 .rodata Unk_ov5_021FD77C	(src_overlay005_ov5_021FAF40.c.o)
+  021FAF40 00000008 .rodata gFogIgnoredModels	(src_overlay005_object_event_gfx_data.c.o)
+  021FAF48 00000008 .rodata gPreloadedBillboardFrameSeqs	(src_overlay005_object_event_gfx_data.c.o)
+  021FAF50 00000010 .rodata gPreloadedBillboardModels	(src_overlay005_object_event_gfx_data.c.o)
+  021FAF60 00000000 .rodata .rodata	(src_overlay005_object_event_gfx_data.c.o)
+  021FAF60 00000014 .rodata Unk_ov5_021FAF60	(src_overlay005_object_event_gfx_data.c.o)
+  021FAF74 00000014 .rodata sBerryPatchRenderer	(src_overlay005_object_event_gfx_data.c.o)
+  021FAF88 00000014 .rodata Unk_ov5_021FAF88	(src_overlay005_object_event_gfx_data.c.o)
+  021FAF9C 00000014 .rodata Unk_ov5_021FAF9C	(src_overlay005_object_event_gfx_data.c.o)
+  021FAFB0 00000014 .rodata Unk_ov5_021FAFB0	(src_overlay005_object_event_gfx_data.c.o)
+  021FAFC4 00000014 .rodata Unk_ov5_021FAFC4	(src_overlay005_object_event_gfx_data.c.o)
+  021FAFD8 00000014 .rodata Unk_ov5_021FAFD8	(src_overlay005_object_event_gfx_data.c.o)
+  021FAFEC 00000014 .rodata Unk_ov5_021FAFEC	(src_overlay005_object_event_gfx_data.c.o)
+  021FB000 00000014 .rodata Unk_ov5_021FB000	(src_overlay005_object_event_gfx_data.c.o)
+  021FB014 00000014 .rodata Unk_ov5_021FB014	(src_overlay005_object_event_gfx_data.c.o)
+  021FB028 00000014 .rodata Unk_ov5_021FB028	(src_overlay005_object_event_gfx_data.c.o)
+  021FB03C 00000014 .rodata Unk_ov5_021FB03C	(src_overlay005_object_event_gfx_data.c.o)
+  021FB050 00000014 .rodata Unk_ov5_021FB050	(src_overlay005_object_event_gfx_data.c.o)
+  021FB064 00000014 .rodata Unk_ov5_021FB064	(src_overlay005_object_event_gfx_data.c.o)
+  021FB078 00000014 .rodata Unk_ov5_021FB078	(src_overlay005_object_event_gfx_data.c.o)
+  021FB08C 00000014 .rodata Unk_ov5_021FB08C	(src_overlay005_object_event_gfx_data.c.o)
+  021FB0A0 00000014 .rodata Unk_ov5_021FB0A0	(src_overlay005_object_event_gfx_data.c.o)
+  021FB0B4 00000014 .rodata Unk_ov5_021FB0B4	(src_overlay005_object_event_gfx_data.c.o)
+  021FB0C8 00000014 .rodata Unk_ov5_021FB0C8	(src_overlay005_object_event_gfx_data.c.o)
+  021FB0DC 00000014 .rodata Unk_ov5_021FB0DC	(src_overlay005_object_event_gfx_data.c.o)
+  021FB0F0 00000014 .rodata Unk_ov5_021FB0F0	(src_overlay005_object_event_gfx_data.c.o)
+  021FB104 00000018 .rodata sMagikarpBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB11C 00000018 .rodata sSaveBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB134 00000018 .rodata sHoldingPokeballBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB14C 00000018 .rodata sSlowAlternatingBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB164 00000018 .rodata sGiratinaOriginBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB17C 00000018 .rodata sBerryTreeBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB194 00000018 .rodata sVSSeekerBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB1AC 00000018 .rodata sDialgaPalkiaBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB1C4 00000018 .rodata sLakeGuardiansBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB1DC 00000024 .rodata sPokecenterHealBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB200 00000024 .rodata sSprayDuckBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB224 00000024 .rodata sStarlyBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB248 0000003C .rodata sPoketchBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB284 0000003C .rodata sSurfBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB2C0 0000003C .rodata sWalkBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB2FC 0000003C .rodata sFishingBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB338 00000048 .rodata sPokecenterNurseBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB380 0000006C .rodata sWalkRunBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB3EC 00000084 .rodata sPlayerBikeBillboardAnims	(src_overlay005_object_event_gfx_data.c.o)
+  021FB470 00000014 .rodata gInvisibleObjectEventGfxRenderer	(src_overlay005_object_event_gfx_data.c.o)
+  021FB484 00000098 .rodata gObjectEventGfxModelsTable	(src_overlay005_object_event_gfx_data.c.o)
+  021FB51C 000000A0 .rodata gObjectEventGfxOverworldAnimsInitialPosTable	(src_overlay005_object_event_gfx_data.c.o)
+  021FB5BC 000000C0 .rodata gObjectEventGfxFrameSeqsTable	(src_overlay005_object_event_gfx_data.c.o)
+  021FB67C 00000300 .rodata gBerryGraphicsTable	(src_overlay005_object_event_gfx_data.c.o)
+  021FB97C 00000818 .rodata gObjectEventGfxRenderersTable	(src_overlay005_object_event_gfx_data.c.o)
+  021FC194 00000820 .rodata gObjectEventGfxRenderDetailsTable	(src_overlay005_object_event_gfx_data.c.o)
+  021FC9B4 00000DC8 .rodata gObjectEventGfxTexturesTable	(src_overlay005_object_event_gfx_data.c.o)
+  021FD77C 00001B90 .rodata gObjectEventGfxModelAnimsTable	(src_overlay005_object_event_gfx_data.c.o)
   021FF30C 00000000 .rodata .rodata	(src_overlay005_ov5_021EB1A0.c.o)
   021FF30C 00000010 .rodata @16190	(src_overlay005_ov5_021EB1A0.c.o)
   021FF31C 00000010 .rodata Unk_ov5_021FF31C	(src_overlay005_ov5_021EB1A0.c.o)
