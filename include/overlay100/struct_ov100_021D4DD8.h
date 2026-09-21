@@ -5,12 +5,12 @@
 
 #include "overlay100/struct_ov100_021D46C8.h"
 
-typedef struct {
-    BOOL unk_00;
-    int unk_04;
-    void *unk_08;
-    UnkStruct_ov100_021D46C8 unk_0C;
-    UnkStruct_020985E4 *unk_D0;
-} UnkStruct_ov100_021D4DD8;
+typedef struct SpearPillarCutsceneData {
+    BOOL unused_00;
+    int stageIndex;
+    void *stageContext;
+    CutsceneGraphics scene;
+    SpearPillarCutsceneArgs *args;
+} SpearPillarCutsceneData;
 
 #endif // POKEPLATINUM_STRUCT_OV100_021D4DD8_H

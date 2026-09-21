@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV100_021D4F9C_DECL_H
 #define POKEPLATINUM_STRUCT_OV100_021D4F9C_DECL_H
 
-typedef struct UnkStruct_ov100_021D4F9C_t UnkStruct_ov100_021D4F9C;
+typedef struct ScreenCapture ScreenCapture;
 
 #endif // POKEPLATINUM_STRUCT_OV100_021D4F9C_DECL_H

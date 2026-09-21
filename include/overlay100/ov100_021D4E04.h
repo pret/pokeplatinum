@@ -7,10 +7,10 @@
 #include "overlay100/struct_ov100_021D4EBC.h"
 #include "overlay100/struct_ov100_021D4F9C_decl.h"
 
-void ov100_021D4E3C(UnkStruct_ov100_021D4E3C *param0, u32 heapID);
-void ov100_021D4E58(UnkStruct_ov100_021D4E3C *param0);
-void ov100_021D4E70(UnkStruct_ov100_021D4E3C *param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8, int param9);
-UnkStruct_ov100_021D4F9C *ov100_021D4EBC(UnkStruct_ov100_021D4EBC *param0);
-void ov100_021D4F0C(UnkStruct_ov100_021D4F9C **param0, GXDispMode param1, GXBGMode param2, GXBG0As param3);
+void ScreenScrollTask_Init(ScreenScrollTask *ssTask, u32 heapID);
+void ScreenScrollTask_Free(ScreenScrollTask *ssTask);
+void ScreenScrollTask_Scroll(ScreenScrollTask *ssTask, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bg, u32 initValue, u32 priority, int axis);
+ScreenCapture *ScreenCapture_Start(ScreenCaptureTemplate *template);
+void ScreenCapture_End(ScreenCapture **capture, GXDispMode dispMode, GXBGMode bgMode, GXBG0As bg0As);
 
 #endif // POKEPLATINUM_OV100_021D4E04_H
