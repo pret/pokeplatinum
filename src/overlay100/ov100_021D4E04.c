@@ -17,107 +17,82 @@
 #include "sys_task_extensions.h"
 #include "sys_task_manager.h"
 
-typedef void (*UnkFuncPtr_ov104_0223F174)(void *);
+typedef struct ScreenCapture {
+    GXVRamLCDC savedBank;
+    ScreenCaptureTemplate template;
+    BOOL active;
+    SysTask *task;
+} ScreenCapture;
 
-typedef struct {
-    SysTask *unk_00;
-    SysTask *unk_04;
-    BOOL unk_08;
-    BOOL unk_0C;
-    UnkFuncPtr_ov104_0223F174 unk_10;
-    UnkFuncPtr_ov104_0223F174 unk_14;
-    void *unk_18;
-} UnkStruct_ov104_0223F174_sub1;
+static SysTask *ScreenScrollTask_Start(ScreenScrollTask *ssTask);
+static void ScreenScrollTask_Update(SysTask *unused, void *param);
+static void ScreenCapture_Activate(SysTask *task, void *param);
+static void ScreenCapture_Update(SysTask *unused, void *param);
+static void ScreenCapture_Prime(ScreenCaptureTemplate *template);
 
-typedef struct UnkStruct_ov104_0223F174_t {
-    UnkStruct_ov104_0223F174_sub1 unk_00;
-    BufferManager *bufferManager;
-    u32 unk_20[192];
-    u32 unk_320[192];
-    u32 unk_620;
-} UnkStruct_ov104_0223F174;
-
-typedef struct UnkStruct_ov100_021D4F9C_t {
-    GXVRamLCDC unk_00;
-    UnkStruct_ov100_021D4EBC unk_04;
-    BOOL unk_30;
-    SysTask *unk_34;
-} UnkStruct_ov100_021D4F9C;
-
-static SysTask *ov100_021D4E04(UnkStruct_ov100_021D4E3C *param0);
-static void ov100_021D4E18(SysTask *param0, void *param1);
-static void ov100_021D4FDC(SysTask *param0, void *param1);
-static void ov100_021D4F9C(SysTask *param0, void *param1);
-static void ov100_021D503C(UnkStruct_ov100_021D4EBC *param0);
-
-static const u8 Unk_ov104_02241964[][6] = {
-    { 0x0, 0x1, 0x2, 0x3, 0x4, 0x5 },
-    { 0x5, 0x4, 0x3, 0x2, 0x1, 0x0 }
-};
-
-static SysTask *ov100_021D4E04(UnkStruct_ov100_021D4E3C *param0)
+static SysTask *ScreenScrollTask_Start(ScreenScrollTask *ssTask)
 {
-    return SysTask_ExecuteOnVBlank(ov100_021D4E18, param0, 1024);
+    return SysTask_ExecuteOnVBlank(ScreenScrollTask_Update, ssTask, 1024);
 }
 
-static void ov100_021D4E18(SysTask *param0, void *param1)
+static void ScreenScrollTask_Update(SysTask *unused, void *param)
 {
-    UnkStruct_ov100_021D4E3C *v0 = param1;
+    ScreenScrollTask *ssTask = param;
 
-    if (v0->unk_08 >= 2) {
-        ScreenScrollManager_SwapBuffers(v0->screenScrollMgr);
-        v0->unk_08 = 0;
+    if (ssTask->swapCounter >= 2) {
+        ScreenScrollManager_SwapBuffers(ssTask->screenScrollMgr);
+        ssTask->swapCounter = 0;
     }
 
-    ScreenScrollManager_RestartDMA(v0->screenScrollMgr);
-    v0->unk_08++;
+    ScreenScrollManager_RestartDMA(ssTask->screenScrollMgr);
+    ssTask->swapCounter++;
 }
 
-void ov100_021D4E3C(UnkStruct_ov100_021D4E3C *param0, u32 heapID)
+void ScreenScrollTask_Init(ScreenScrollTask *ssTask, u32 heapID)
 {
-    param0->screenScrollMgr = ScreenScrollManager_New(heapID);
-    param0->unk_08 = 0;
-    param0->unk_04 = ov100_021D4E04(param0);
+    ssTask->screenScrollMgr = ScreenScrollManager_New(heapID);
+    ssTask->swapCounter = 0;
+    ssTask->task = ScreenScrollTask_Start(ssTask);
 }
 
-void ov100_021D4E58(UnkStruct_ov100_021D4E3C *param0)
+void ScreenScrollTask_Free(ScreenScrollTask *ssTask)
 {
-    SysTask_Done(param0->unk_04);
-    ScreenScrollManager_Stop(param0->screenScrollMgr);
-    ScreenScrollManager_Delete(param0->screenScrollMgr);
+    SysTask_Done(ssTask->task);
+    ScreenScrollManager_Stop(ssTask->screenScrollMgr);
+    ScreenScrollManager_Delete(ssTask->screenScrollMgr);
 }
 
-void ov100_021D4E70(UnkStruct_ov100_021D4E3C *param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8, int param9)
+void ScreenScrollTask_Scroll(ScreenScrollTask *ssTask, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bg, u32 initValue, u32 priority, int axis)
 {
-    if (param9 == 0) {
-        ScreenScrollManager_ScrollX(param0->screenScrollMgr, param1, param2, param3, param4, param5, param6, param7, param8);
+    if (axis == 0) {
+        ScreenScrollManager_ScrollX(ssTask->screenScrollMgr, start, end, angleIncrement, amplitude, speed, bg, initValue, priority);
     } else {
-        ScreenScrollManager_ScrollY(param0->screenScrollMgr, param1, param2, param3, param4, param5, param6, param7, param8);
+        ScreenScrollManager_ScrollY(ssTask->screenScrollMgr, start, end, angleIncrement, amplitude, speed, bg, initValue, priority);
     }
 }
 
-UnkStruct_ov100_021D4F9C *ov100_021D4EBC(UnkStruct_ov100_021D4EBC *param0)
+ScreenCapture *ScreenCapture_Start(ScreenCaptureTemplate *template)
 {
-    SysTask *v0 = SysTask_StartAndAllocateParam(ov100_021D4F9C, sizeof(UnkStruct_ov100_021D4F9C), 5, param0->unk_28);
-    UnkStruct_ov100_021D4F9C *v1 = SysTask_GetParam(v0);
+    SysTask *task = SysTask_StartAndAllocateParam(ScreenCapture_Update, sizeof(ScreenCapture), 5, template->heapID);
+    ScreenCapture *capture = SysTask_GetParam(task);
 
-    v1->unk_04 = *param0;
-    v1->unk_34 = v0;
-    v1->unk_30 = 0;
-    v1->unk_00 = GX_GetBankForLCDC();
+    capture->template = *template;
+    capture->task = task;
+    capture->active = 0;
+    capture->savedBank = GX_GetBankForLCDC();
 
-    ov100_021D503C(&v1->unk_04);
-    SysTask_ExecuteAfterVBlank(ov100_021D4FDC, v1, 0);
+    ScreenCapture_Prime(&capture->template);
+    SysTask_ExecuteAfterVBlank(ScreenCapture_Activate, capture, 0);
 
-    return v1;
+    return capture;
 }
 
-void ov100_021D4F0C(UnkStruct_ov100_021D4F9C **param0, GXDispMode param1, GXBGMode param2, GXBG0As param3)
+void ScreenCapture_End(ScreenCapture **capture, GXDispMode dispMode, GXBGMode bgMode, GXBG0As bg0As)
 {
-    GX_SetGraphicsMode(param1, param2, param3);
-    GX_SetBankForLCDC((*param0)->unk_00);
+    GX_SetGraphicsMode(dispMode, bgMode, bg0As);
+    GX_SetBankForLCDC((*capture)->savedBank);
 
-    switch ((*param0)->unk_04.unk_00) {
+    switch ((*capture)->template.displayMode) {
     case GX_DISPMODE_VRAM_A:
         MI_CpuClearFast((void *)HW_LCDC_VRAM_A, HW_VRAM_A_SIZE);
         break;
@@ -135,24 +110,24 @@ void ov100_021D4F0C(UnkStruct_ov100_021D4F9C **param0, GXDispMode param1, GXBGMo
         break;
     }
 
-    SysTask_FinishAndFreeParam((*param0)->unk_34);
-    *param0 = NULL;
+    SysTask_FinishAndFreeParam((*capture)->task);
+    *capture = NULL;
 }
 
-static void ov100_021D4F9C(SysTask *param0, void *param1)
+static void ScreenCapture_Update(SysTask *unused, void *param)
 {
-    UnkStruct_ov100_021D4F9C *v0 = param1;
+    ScreenCapture *capture = param;
 
-    if (v0->unk_30) {
-        GX_SetCapture(v0->unk_04.unk_0C, v0->unk_04.unk_10, v0->unk_04.unk_14, v0->unk_04.unk_18, v0->unk_04.unk_1C, v0->unk_04.unk_20, v0->unk_04.unk_24);
+    if (capture->active) {
+        GX_SetCapture(capture->template.captureSize, capture->template.captureMode, capture->template.captureSrcA, capture->template.captureSrcB, capture->template.captureDest, capture->template.captureEva, capture->template.captureEvb);
     }
 }
 
-static void ov100_021D4FDC(SysTask *param0, void *param1)
+static void ScreenCapture_Activate(SysTask *task, void *param)
 {
-    UnkStruct_ov100_021D4F9C *v0 = (UnkStruct_ov100_021D4F9C *)param1;
+    ScreenCapture *capture = param;
 
-    switch (v0->unk_04.unk_00) {
+    switch (capture->template.displayMode) {
     case GX_DISPMODE_VRAM_A:
         GX_SetBankForLCDC(GX_VRAM_LCDC_A);
         break;
@@ -170,15 +145,15 @@ static void ov100_021D4FDC(SysTask *param0, void *param1)
         break;
     }
 
-    GX_SetGraphicsMode(v0->unk_04.unk_00, v0->unk_04.unk_04, v0->unk_04.unk_08);
+    GX_SetGraphicsMode(capture->template.displayMode, capture->template.bgMode, capture->template.bg0As);
 
-    v0->unk_30 = 1;
-    SysTask_Done(param0);
+    capture->active = 1;
+    SysTask_Done(task);
 }
 
-static void ov100_021D503C(UnkStruct_ov100_021D4EBC *param0)
+static void ScreenCapture_Prime(ScreenCaptureTemplate *template)
 {
-    switch (param0->unk_00) {
+    switch (template->displayMode) {
     case GX_DISPMODE_VRAM_A:
         MI_CpuClearFast((void *)HW_LCDC_VRAM_A, HW_VRAM_A_SIZE);
         break;
@@ -195,5 +170,5 @@ static void ov100_021D503C(UnkStruct_ov100_021D4EBC *param0)
         break;
     }
 
-    GX_SetCapture(param0->unk_0C, param0->unk_10, param0->unk_14, param0->unk_18, param0->unk_1C, 16, 0);
+    GX_SetCapture(template->captureSize, template->captureMode, template->captureSrcA, template->captureSrcB, template->captureDest, 16, 0);
 }

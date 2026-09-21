@@ -30,738 +30,741 @@
 #include "trainer_info.h"
 #include "unk_0202419C.h"
 
-static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0);
-static void ov100_021D2324(UnkStruct_ov100_021D1C98 *param0);
-static void ov100_021D2250(UnkStruct_ov100_021D1C98 *param0);
-static void ov100_021D2E0C(UnkStruct_ov100_021D1C98 *param0);
-static void ov100_021D1C44(Camera *camera, VecFx32 *param1);
-
-static UnkStruct_ov100_021D54D0 Unk_ov100_021D54D0[] = {
-    { 0x6, 0x4, 0x0 },
-    { 0x0, 0x1 }
+enum GiratinaInterventionStep {
+    GIRATINA_INTERVENTION_STEP_FADE_IN,
+    GIRATINA_INTERVENTION_STEP_WAIT_FADE_IN,
+    GIRATINA_INTERVENTION_STEP_PAN_ANGLE_DOWN,
+    GIRATINA_INTERVENTION_STEP_WAIT_PAN_ANGLE_DOWN,
+    GIRATINA_INTERVENTION_STEP_WAIT_LAKE_TRIO_DIALOGUE,
+    GIRATINA_INTERVENTION_STEP_PAN_TO_PLAYER,
+    GIRATINA_INTERVENTION_STEP_WAIT_PAN_TO_PLAYER,
+    GIRATINA_INTERVENTION_STEP_WAIT_DISMISSAL_DIALOGUE,
+    GIRATINA_INTERVENTION_STEP_DARKEN_SCREEN,
+    GIRATINA_INTERVENTION_STEP_PAN_TO_GIRATINA,
+    GIRATINA_INTERVENTION_STEP_WAIT_PAN_TO_GIRATINA,
+    GIRATINA_INTERVENTION_STEP_PLAY_GIRATINA_BGM,
+    GIRATINA_INTERVENTION_STEP_GIRATINA_SHADOW_RISES,
+    GIRATINA_INTERVENTION_STEP_GIRATINA_RISE_MOVEMENT,
+    GIRATINA_INTERVENTION_STEP_GIRATINA_RISE_COMPLETE,
+    GIRATINA_INTERVENTION_STEP_DIALGA_PALKIA_STEP_BACK,
+    GIRATINA_INTERVENTION_STEP_WAIT_SHADOW_POKEMON_DIALOGUE,
+    GIRATINA_INTERVENTION_STEP_GIRATINA_TRANSFORM,
+    GIRATINA_INTERVENTION_STEP_WAIT_HARNESSED_POWERS_DIALOGUE,
+    GIRATINA_INTERVENTION_STEP_GIRATINA_ATTACKS_CYRUS,
+    GIRATINA_INTERVENTION_STEP_FADE_OUT,
+    GIRATINA_INTERVENTION_STEP_WAIT_FADE_OUT,
 };
 
-static UnkStruct_ov100_021D54D0 Unk_ov100_021D54E8[] = {
-    { 0x6, 0x4, 0x0 },
-    { 0x5, 0x4, 0x0 },
-    { 0x0, 0x1 }
+enum GiratinaInterventionExitStep {
+    GIRATINA_INTERVENTION_EXIT_STEP_FREE_LIGHTS,
+    GIRATINA_INTERVENTION_EXIT_STEP_RELEASE_MODELS,
 };
 
-static UnkStruct_ov100_021D54D0 Unk_ov100_021D54B8[] = {
-    { 0x1, 0x2, -(FX32_HALF >> 1) },
-    { 0x0, 0x1 }
+static void GiratinaIntervention_InitSpriteSystem(GiratinaInterventionContext *context);
+static void SpearPillarCutscene_FreeLakeGuardianLights(GiratinaInterventionContext *context);
+static void GiratinaIntervention_InitLakeGuardianLights(GiratinaInterventionContext *context);
+static void GiratinaIntervention_UpdateScene(GiratinaInterventionContext *context);
+static void GiratinaIntervention_InitCamera(Camera *camera, VecFx32 *target);
+
+static PoseStep sCyrusDismissalPose[] = {
+    { .pose = CUTSCENE_MODEL_POSE_TURN_SOUTH, .repeatCount = 4, .stepDistance = 0 },
+    { .pose = CUTSCENE_MODEL_POSE_NONE, .repeatCount = 1 }
 };
 
-static UnkStruct_ov100_021D54D0 Unk_ov100_021D54A0[] = {
-    { 0x9, 0x2, -(FX32_HALF >> 1) },
-    { 0x0, 0x1 }
+static PoseStep sCyrusPanToGiratinaPose[] = {
+    { .pose = CUTSCENE_MODEL_POSE_TURN_SOUTH, .repeatCount = 4, .stepDistance = 0 },
+    { .pose = CUTSCENE_MODEL_POSE_TURN_NORTH, .repeatCount = 4, .stepDistance = 0 },
+    { .pose = CUTSCENE_MODEL_POSE_NONE, .repeatCount = 1 }
 };
 
-static void ov100_021D1C44(Camera *camera, VecFx32 *param1)
+static PoseStep sCyrusShadowRisesPose[] = {
+    { .pose = CUTSCENE_MODEL_POSE_WALK_BACKWARD, .repeatCount = 2, .stepDistance = -(FX32_HALF >> 1) },
+    { .pose = CUTSCENE_MODEL_POSE_NONE, .repeatCount = 1 }
+};
+
+static PoseStep sCyrusPushBackPose[] = {
+    { .pose = CUTSCENE_MODEL_POSE_PUSHED_BACK, .repeatCount = 2, .stepDistance = -(FX32_HALF >> 1) },
+    { .pose = CUTSCENE_MODEL_POSE_NONE, .repeatCount = 1 }
+};
+
+static void GiratinaIntervention_InitCamera(Camera *camera, VecFx32 *target)
 {
-    CameraAngle v0 = { -0x29fe, 0, 0 };
+    CameraAngle cameraAngle = { .x = -0x29fe, .y = 0, .z = 0 };
 
-    Camera_InitWithTarget(param1, 0x13c805, &v0, 0xc01, 0, 1, camera);
+    Camera_InitWithTarget(target, 0x13c805, &cameraAngle, 0xc01, 0, 1, camera);
     Camera_SetAsActive(camera);
     Camera_SetClipping(FX32_ONE * 10, FX32_ONE * 1008, camera);
 }
 
-static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0)
+static void GiratinaIntervention_InitSpriteSystem(GiratinaInterventionContext *context)
 {
-    NARC *v0 = param0->unk_1EBC->unk_00;
-    BgConfig *v1 = param0->unk_1EBC->unk_0C;
-    SpriteSystem *v2 = param0->unk_1EBC->unk_04;
-    SpriteManager *v3 = param0->unk_1EBC->unk_08;
-    PaletteData *v4 = param0->unk_1EBC->unk_10;
-    int v5 = 50000;
+    NARC *narc = context->graphics->narc;
+    BgConfig *bgConfig = context->graphics->bgConfig;
+    SpriteSystem *spriteSystem = context->graphics->spriteSystem;
+    SpriteManager *spriteMan = context->graphics->spriteManager;
+    PaletteData *plttdata = context->graphics->paletteData;
+    int resourceId = 50000;
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 18, v1, 5, 0, 0, 0, HEAP_ID_111);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 20, v1, 5, 0, 0, 0, HEAP_ID_111);
-    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_ARC__DEMO_TENGAN_GRA, 19, HEAP_ID_111, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 2, 0);
-    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_ARC__DEMO_TENGAN_GRA, 19, HEAP_ID_111, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 18, bgConfig, 5, 0, 0, 0, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 20, bgConfig, 5, 0, 0, 0, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    PaletteData_LoadBufferFromFileStart(plttdata, NARC_INDEX_ARC__DEMO_TENGAN_GRA, 19, HEAP_ID_SPEAR_PILLAR_CUTSCENE, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 2, 0);
+    PaletteData_LoadBufferFromFileStart(plttdata, NARC_INDEX_ARC__DEMO_TENGAN_GRA, 19, HEAP_ID_SPEAR_PILLAR_CUTSCENE, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, 0);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, PLTTBUF_SUB_OBJ, v2, v3, v0, 50, FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, FALSE, v5);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 47, FALSE, v5);
-    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 49, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, v5);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(plttdata, PLTTBUF_SUB_OBJ, spriteSystem, spriteMan, narc, 50, FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, resourceId);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSystem, spriteMan, narc, 48, FALSE, resourceId);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSystem, spriteMan, narc, 47, FALSE, resourceId);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, spriteMan, narc, 49, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, resourceId);
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_04, 46, param0->unk_1EBC->unk_00);
+    CutsceneModel_LoadMesh(&context->models.unk_04, 46, context->graphics->narc);
 
-    {
-        int v6;
-
-        for (v6 = 0; v6 < 4; v6++) {
-            ov100_021D4AC8(&param0->unk_1A0.unk_16FC[v6], 65, param0->unk_1EBC->unk_00);
-            Easy3DObject_SetScale(&param0->unk_1A0.unk_16FC[v6].unk_00, FX32_CONST(1.2), FX32_CONST(1.0), FX32_CONST(1.2));
-        }
+    for (int i = 0; i < 4; i++) {
+        CutsceneModel_LoadMesh(&context->models.shadow[i], 65, context->graphics->narc);
+        Easy3DObject_SetScale(&context->models.shadow[i].object, FX32_CONST(1.2), FX32_CONST(1.0), FX32_CONST(1.2));
     }
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_314, 24, param0->unk_1EBC->unk_00);
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_314, 22, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A0.unk_314, 23, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.shockwave, 24, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.shockwave, 22, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.shockwave, 23, context->graphics->narc, &context->graphics->allocator);
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_49C, 53, param0->unk_1EBC->unk_00);
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_49C, 51, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A0.unk_49C, 52, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.dropletSplash, 53, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.dropletSplash, 51, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.dropletSplash, 52, context->graphics->narc, &context->graphics->allocator);
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_18C, 55, param0->unk_1EBC->unk_00);
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_18C, 54, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A0.unk_18C, 56, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.distortionRipple, 55, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.distortionRipple, 54, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.distortionRipple, 56, context->graphics->narc, &context->graphics->allocator);
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_624[0], 66, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetPosition(&param0->unk_1A0.unk_624[0].unk_00, FX32_CONST(-50), FX32_CONST(+0), FX32_CONST(-50));
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_624[0], 67, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.summonBubble[0], 66, context->graphics->narc);
+    Easy3DObject_SetPosition(&context->models.summonBubble[0].object, FX32_CONST(-50), FX32_CONST(+0), FX32_CONST(-50));
+    CutsceneModel_LoadAnim(0, &context->models.summonBubble[0], 67, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_1A0.unk_624[0].unk_160 = 1;
-    param0->unk_1A0.unk_624[0].unk_164 = 1;
-    param0->unk_1A0.unk_624[0].unk_154 = FX32_HALF;
+    context->models.summonBubble[0].playing = 1;
+    context->models.summonBubble[0].looping = 1;
+    context->models.summonBubble[0].animSpeed = FX32_HALF;
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_624[1], 68, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetPosition(&param0->unk_1A0.unk_624[1].unk_00, FX32_CONST(+50), FX32_CONST(+0), FX32_CONST(-50));
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_624[1], 69, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.summonBubble[1], 68, context->graphics->narc);
+    Easy3DObject_SetPosition(&context->models.summonBubble[1].object, FX32_CONST(+50), FX32_CONST(+0), FX32_CONST(-50));
+    CutsceneModel_LoadAnim(0, &context->models.summonBubble[1], 69, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_1A0.unk_624[1].unk_160 = 1;
-    param0->unk_1A0.unk_624[1].unk_164 = 1;
-    param0->unk_1A0.unk_624[1].unk_154 = FX32_HALF;
+    context->models.summonBubble[1].playing = 1;
+    context->models.summonBubble[1].looping = 1;
+    context->models.summonBubble[1].animSpeed = FX32_HALF;
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_934[0], 26, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetPosition(&param0->unk_1A0.unk_934[0].unk_00, FX32_CONST(0), FX32_CONST(-90), FX32_CONST(0));
-    Easy3DObject_SetVisible(&param0->unk_1A0.unk_934[0].unk_00, 0);
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_934[0], 25, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A0.unk_934[0], 27, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.unk_934[0], 26, context->graphics->narc);
+    Easy3DObject_SetPosition(&context->models.unk_934[0].object, FX32_CONST(0), FX32_CONST(-90), FX32_CONST(0));
+    Easy3DObject_SetVisible(&context->models.unk_934[0].object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.unk_934[0], 25, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.unk_934[0], 27, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_1A0.unk_934[0].unk_168 = 1;
+    context->models.unk_934[0].loopSecondaryAnim = 1;
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_934[1], 29, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisible(&param0->unk_1A0.unk_934[1].unk_00, 0);
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_934[1], 28, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A0.unk_934[1], 30, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.unk_934[1], 29, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.unk_934[1].object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.unk_934[1], 28, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.unk_934[1], 30, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_1A0.unk_934[1].unk_168 = 1;
+    context->models.unk_934[1].loopSecondaryAnim = 1;
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_934[2], 32, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisible(&param0->unk_1A0.unk_934[2].unk_00, 0);
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_934[2], 31, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A0.unk_934[2], 33, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.unk_934[2], 32, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.unk_934[2].object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.unk_934[2], 31, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.unk_934[2], 33, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_1A0.unk_934[2].unk_168 = 1;
+    context->models.unk_934[2].loopSecondaryAnim = 1;
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_934[3], 35, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisible(&param0->unk_1A0.unk_934[3].unk_00, 0);
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_934[3], 34, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A0.unk_934[3], 36, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.unk_934[3], 35, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.unk_934[3].object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.unk_934[3], 34, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.unk_934[3], 36, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_1A0.unk_934[3].unk_168 = 1;
+    context->models.unk_934[3].loopSecondaryAnim = 1;
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_934[4], 38, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisible(&param0->unk_1A0.unk_934[4].unk_00, 0);
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_934[4], 37, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A0.unk_934[4], 39, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.unk_934[4], 38, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.unk_934[4].object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.unk_934[4], 37, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.unk_934[4], 39, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_1A0.unk_934[4].unk_168 = 1;
+    context->models.unk_934[4].loopSecondaryAnim = 1;
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_10DC[0], 41, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisible(&param0->unk_1A0.unk_10DC[0].unk_00, 0);
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_10DC[0], 40, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
-    ov100_021D4AC8(&param0->unk_1A0.unk_10DC[1], 42, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisible(&param0->unk_1A0.unk_10DC[1].unk_00, 0);
+    CutsceneModel_LoadMesh(&context->models.unk_10DC[0], 41, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.unk_10DC[0].object, 0);
+    CutsceneModel_LoadAnim(0, &context->models.unk_10DC[0], 40, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadMesh(&context->models.unk_10DC[1], 42, context->graphics->narc);
+    Easy3DObject_SetVisible(&context->models.unk_10DC[1].object, 0);
 
-    if (TrainerInfo_Gender(param0->unk_1EC0->unk_08) != 1) {
-        ov100_021D4AC8(&param0->unk_1A0.unk_13EC[0], 61, param0->unk_1EBC->unk_00);
-        ov100_021D4B4C(0, &param0->unk_1A0.unk_13EC[0], 62, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    if (TrainerInfo_Gender(context->args->trainerInfo) != 1) {
+        CutsceneModel_LoadMesh(&context->models.trainers[0], 61, context->graphics->narc);
+        CutsceneModel_LoadAnim(0, &context->models.trainers[0], 62, context->graphics->narc, &context->graphics->allocator);
     } else {
-        ov100_021D4AC8(&param0->unk_1A0.unk_13EC[0], 63, param0->unk_1EBC->unk_00);
-        ov100_021D4B4C(0, &param0->unk_1A0.unk_13EC[0], 64, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+        CutsceneModel_LoadMesh(&context->models.trainers[0], 63, context->graphics->narc);
+        CutsceneModel_LoadAnim(0, &context->models.trainers[0], 64, context->graphics->narc, &context->graphics->allocator);
     }
 
-    Easy3DObject_SetPosition(&param0->unk_1A0.unk_13EC[0].unk_00, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+140));
+    Easy3DObject_SetPosition(&context->models.trainers[0].object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+140));
 
-    param0->unk_1A0.unk_13EC[0].unk_164 = 1;
-    param0->unk_1A0.unk_13EC[0].unk_154 = (FX32_HALF >> 1);
-    param0->unk_1A0.unk_13EC[0].unk_158 = 2;
+    context->models.trainers[0].looping = 1;
+    context->models.trainers[0].animSpeed = (FX32_HALF >> 1);
+    context->models.trainers[0].pose = 2;
 
-    ov100_021D4AC8(&param0->unk_1A0.unk_13EC[1], 13, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetPosition(&param0->unk_1A0.unk_13EC[1].unk_00, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+60));
-    ov100_021D4B4C(0, &param0->unk_1A0.unk_13EC[1], 14, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.trainers[1], 13, context->graphics->narc);
+    Easy3DObject_SetPosition(&context->models.trainers[1].object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+60));
+    CutsceneModel_LoadAnim(0, &context->models.trainers[1], 14, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_1A0.unk_13EC[1].unk_164 = 1;
-    param0->unk_1A0.unk_13EC[1].unk_154 = (FX32_HALF >> 1);
-    param0->unk_1A0.unk_13EC[1].unk_158 = 2;
+    context->models.trainers[1].looping = 1;
+    context->models.trainers[1].animSpeed = (FX32_HALF >> 1);
+    context->models.trainers[1].pose = 2;
 }
 
-static void ov100_021D2250(UnkStruct_ov100_021D1C98 *param0)
+static void GiratinaIntervention_InitLakeGuardianLights(GiratinaInterventionContext *context)
 {
-    int v0;
-    NARC *v1 = param0->unk_1EBC->unk_00;
-    BgConfig *v2 = param0->unk_1EBC->unk_0C;
-    SpriteSystem *v3 = param0->unk_1EBC->unk_04;
-    SpriteManager *v4 = param0->unk_1EBC->unk_08;
-    PaletteData *v5 = param0->unk_1EBC->unk_10;
-    SpriteTemplate v6;
+    SpriteSystem *spriteSys = context->graphics->spriteSystem;
+    SpriteManager *spriteMan = context->graphics->spriteManager;
+    SpriteTemplate template;
 
-    v6.x = 0;
-    v6.y = 0;
-    v6.z = 0;
-    v6.animIdx = 0;
-    v6.priority = 0;
-    v6.plttIdx = 0;
-    v6.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-    v6.bgPriority = 0;
-    v6.vramTransfer = FALSE;
+    template.x = 0;
+    template.y = 0;
+    template.z = 0;
+    template.animIdx = 0;
+    template.priority = 0;
+    template.plttIdx = 0;
+    template.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    template.bgPriority = 0;
+    template.vramTransfer = FALSE;
 
-    v6.resources[4] = SPRITE_RESOURCE_NONE;
-    v6.resources[5] = SPRITE_RESOURCE_NONE;
+    template.resources[4] = SPRITE_RESOURCE_NONE;
+    template.resources[5] = SPRITE_RESOURCE_NONE;
 
-    v6.resources[0] = 50000;
-    v6.resources[1] = 50000;
-    v6.resources[2] = 50000;
-    v6.resources[3] = 50000;
+    template.resources[0] = 50000;
+    template.resources[1] = 50000;
+    template.resources[2] = 50000;
+    template.resources[3] = 50000;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_08.unk_0C[v0].unk_00 = SpriteSystem_NewSprite(v3, v4, &v6);
+    for (int i = 0; i < 3; i++) {
+        context->lights.guardianLights[i].sprite = SpriteSystem_NewSprite(spriteSys, spriteMan, &template);
 
-        ManagedSprite_TickFrame(param0->unk_08.unk_0C[v0].unk_00);
-        ManagedSprite_SetAffineOverwriteMode(param0->unk_08.unk_0C[v0].unk_00, AFFINE_OVERWRITE_MODE_DOUBLE);
-        ManagedSprite_SetAffineScale(param0->unk_08.unk_0C[v0].unk_00, 0.5f, 0.5f);
-        ManagedSprite_SetExplicitPaletteOffset(param0->unk_08.unk_0C[v0].unk_00, v0);
-        ManagedSprite_SetPositionXY(param0->unk_08.unk_0C[v0].unk_00, 16 + (v0 * 64), 64);
+        ManagedSprite_TickFrame(context->lights.guardianLights[i].sprite);
+        ManagedSprite_SetAffineOverwriteMode(context->lights.guardianLights[i].sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetAffineScale(context->lights.guardianLights[i].sprite, 0.5f, 0.5f);
+        ManagedSprite_SetExplicitPaletteOffset(context->lights.guardianLights[i].sprite, i);
+        ManagedSprite_SetPositionXY(context->lights.guardianLights[i].sprite, 16 + (i * 64), 64);
 
-        param0->unk_08.unk_0C[v0].unk_0C = 1;
-        param0->unk_08.unk_0C[v0].unk_08 = v0;
-        param0->unk_08.unk_0C[v0].unk_14 = 50;
-        param0->unk_08.unk_0C[v0].unk_1C = v0 * 120;
-        param0->unk_08.unk_0C[v0].unk_20 = param0->unk_08.unk_0C[v0].unk_1C;
-        param0->unk_08.unk_0C[v0].unk_24 = v0;
-        param0->unk_08.unk_0C[v0].unk_28[0] = 1;
-        param0->unk_08.unk_0C[v0].unk_28[1] = 1;
-        param0->unk_08.unk_0C[v0].unk_28[2] = LCRNG_Next() % 10;
-        param0->unk_08.unk_0C[v0].unk_28[3] = 0;
-        param0->unk_08.unk_0C[v0].unk_40 = SysTask_Start(ov100_021D4414, &param0->unk_08.unk_0C[v0], 4096);
+        context->lights.guardianLights[i].state = 1;
+        context->lights.guardianLights[i].index = i;
+        context->lights.guardianLights[i].depth = 50;
+        context->lights.guardianLights[i].orbitAngle = i * 120;
+        context->lights.guardianLights[i].driftAngle = context->lights.guardianLights[i].orbitAngle;
+        context->lights.guardianLights[i].jitterIntensity = i;
+        context->lights.guardianLights[i].stateParams[0] = 1;
+        context->lights.guardianLights[i].stateParams[1] = 1;
+        context->lights.guardianLights[i].stateParams[2] = LCRNG_Next() % 10;
+        context->lights.guardianLights[i].stateParams[3] = 0;
+        context->lights.guardianLights[i].task = SysTask_Start(LightBall_Update, &context->lights.guardianLights[i], 4096);
     }
 }
 
-static void ov100_021D2324(UnkStruct_ov100_021D1C98 *param0)
+static void SpearPillarCutscene_FreeLakeGuardianLights(GiratinaInterventionContext *context)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        SysTask_Done(param0->unk_08.unk_0C[v0].unk_40);
-        Sprite_DeleteAndFreeResources(param0->unk_08.unk_0C[v0].unk_00);
+    for (int i = 0; i < 3; i++) {
+        SysTask_Done(context->lights.guardianLights[i].task);
+        Sprite_DeleteAndFreeResources(context->lights.guardianLights[i].sprite);
     }
 }
 
-void *ov100_021D2340(UnkStruct_ov100_021D4DD8 *param0)
+void *GiratinaIntervention_Init(SpearPillarCutsceneData *cutscene)
 {
-    UnkStruct_ov100_021D1C98 *v0 = Heap_Alloc(HEAP_ID_111, sizeof(UnkStruct_ov100_021D1C98));
+    GiratinaInterventionContext *context = Heap_Alloc(HEAP_ID_SPEAR_PILLAR_CUTSCENE, sizeof(GiratinaInterventionContext));
 
-    memset(v0, 0, sizeof(UnkStruct_ov100_021D1C98));
+    memset(context, 0, sizeof(GiratinaInterventionContext));
 
-    v0->unk_1EBC = &param0->unk_0C;
-    v0->unk_1EC0 = param0->unk_D0;
+    context->graphics = &cutscene->scene;
+    context->args = cutscene->args;
 
-    ov100_021D1C98(v0);
-    ov100_021D2250(v0);
+    GiratinaIntervention_InitSpriteSystem(context);
+    GiratinaIntervention_InitLakeGuardianLights(context);
 
-    {
-        ov100_021D4E3C(&v0->unk_08.unk_00, HEAP_ID_111);
-        ov100_021D4E70(&v0->unk_08.unk_00, 0, 191, (0xffff / 192) * 2, FX32_CONST(4), 1 * 100, REG_DB_BG1HOFS_ADDR, 0, 0x1000, 1);
-    }
+    ScreenScrollTask_Init(&context->lights.scroll, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    ScreenScrollTask_Scroll(&context->lights.scroll, 0, 191, (0xffff / 192) * 2, FX32_CONST(4), 1 * 100, REG_DB_BG1HOFS_ADDR, 0, 0x1000, 1);
 
-    {
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 7, 8);
-        G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 10);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 7, 8);
+    G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 10);
 
-        {
-            static const GXRgb v1[8] = {
-                GX_RGB(2, 2, 2),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-            };
+    static const GXRgb edgeColors[8] = {
+        GX_RGB(2, 2, 2),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+    };
 
-            G3X_EdgeMarking(1);
-            G3X_SetEdgeColorTable(v1);
-        }
-    }
+    G3X_EdgeMarking(1);
+    G3X_SetEdgeColorTable(edgeColors);
 
-    ov100_021D1C44(v0->unk_1EBC->camera, &v0->unk_1EBC->unk_44);
-    v0->unk_1EBC->unk_44.y = FX32_CONST(0);
+    GiratinaIntervention_InitCamera(context->graphics->camera, &context->graphics->cameraTarget);
+    context->graphics->cameraTarget.y = FX32_CONST(0);
 
-    ov100_021D4DC8(1);
-    ov100_021D4DD8(param0, +16);
+    SpearPillarCutscene_SwapDisplay(1);
+    SpearPillarCutscene_SetBrightness(cutscene, +16);
 
-    return v0;
+    return context;
 }
 
-BOOL ov100_021D2428(void *param0)
+BOOL GiratinaIntervention_Update(void *param)
 {
-    UnkStruct_ov100_021D1C98 *v0 = (UnkStruct_ov100_021D1C98 *)param0;
+    GiratinaInterventionContext *context = (GiratinaInterventionContext *)param;
 
-    switch (v0->unk_00) {
-    case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 6, 1, HEAP_ID_111);
-        v0->unk_1EBC->unk_50.unk_03 = 0;
-        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
-        G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
-        v0->unk_00++;
-    case 1:
+    switch (context->step) {
+    case GIRATINA_INTERVENTION_STEP_FADE_IN:
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 6, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+        context->graphics->tint.brightness = 0;
+        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
+        G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
+        context->step++;
+    case GIRATINA_INTERVENTION_STEP_WAIT_FADE_IN:
         if (IsScreenFadeDone() == FALSE) {
             break;
         }
-        v0->unk_00++;
+        context->step++;
         break;
-    case 2: {
-        v0->unk_1EBC->unk_58.unk_0C = 20;
-        v0->unk_1EBC->unk_58.unk_10 = 0;
-        v0->unk_1EBC->unk_58.unk_14 = 0;
-        v0->unk_1EBC->unk_58.unk_08 = 60;
-        v0->unk_1EBC->unk_58.camera = v0->unk_1EBC->camera;
-        v0->unk_1EBC->unk_58.unk_18 = 0;
-        v0->unk_1EBC->unk_58.unk_1C = 0;
-        v0->unk_1EBC->unk_58.unk_20 = 0;
-        v0->unk_1EBC->unk_58.unk_04 = &v0->unk_1EBC->unk_44;
+    case GIRATINA_INTERVENTION_STEP_PAN_ANGLE_DOWN: {
+        context->graphics->cameraPan.angleDeltaX = 20;
+        context->graphics->cameraPan.angleDeltaY = 0;
+        context->graphics->cameraPan.angleDeltaZ = 0;
+        context->graphics->cameraPan.durationFrames = 60;
+        context->graphics->cameraPan.camera = context->graphics->camera;
+        context->graphics->cameraPan.positionDeltaX = 0;
+        context->graphics->cameraPan.positionDeltaY = 0;
+        context->graphics->cameraPan.positionDeltaZ = 0;
+        context->graphics->cameraPan.target = &context->graphics->cameraTarget;
 
-        ov100_021D4890(&v0->unk_1EBC->unk_58);
-        v0->unk_00++;
-    } break;
-    case 3:
-        if (ov100_021D4920(&v0->unk_1EBC->unk_58)) {
-            ov100_021D46C8(v0->unk_1EBC, v0->unk_1EC0, 20);
-            v0->unk_00++;
+        CameraPan_Start(&context->graphics->cameraPan);
+        context->step++;
+        break;
+    }
+    case GIRATINA_INTERVENTION_STEP_WAIT_PAN_ANGLE_DOWN:
+        if (CameraPan_Update(&context->graphics->cameraPan)) {
+            SpearPillarCutscene_ShowMessage(context->graphics, context->args, 20);
+            context->step++;
         }
         break;
-    case 4:
-        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
+    case GIRATINA_INTERVENTION_STEP_WAIT_LAKE_TRIO_DIALOGUE:
+        if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
             break;
         }
 
-        ov100_021D4788(v0->unk_1EBC);
-        v0->unk_00++;
+        SpearPillarCutscene_ClearMessage(context->graphics);
+        context->step++;
         break;
-    case 5: {
-        v0->unk_1EBC->unk_58.unk_0C = 0;
-        v0->unk_1EBC->unk_58.unk_10 = 0;
-        v0->unk_1EBC->unk_58.unk_14 = 0;
-        v0->unk_1EBC->unk_58.unk_08 = 60;
-        v0->unk_1EBC->unk_58.camera = v0->unk_1EBC->camera;
-        v0->unk_1EBC->unk_58.unk_18 = 0;
-        v0->unk_1EBC->unk_58.unk_1C = 0;
-        v0->unk_1EBC->unk_58.unk_20 = FX32_CONST(70);
-        v0->unk_1EBC->unk_58.unk_04 = &v0->unk_1EBC->unk_44;
-        ov100_021D4890(&v0->unk_1EBC->unk_58);
-        v0->unk_00++;
-    } break;
-    case 6:
-        if (ov100_021D4920(&v0->unk_1EBC->unk_58) == 0) {
-            break;
-        }
-
-        if (++v0->unk_04 < 10) {
-            break;
-        }
-
-        ov100_021D46C8(v0->unk_1EBC, v0->unk_1EC0, 21);
-        ov100_021D44C0(&v0->unk_1A0.unk_13EC[1], Unk_ov100_021D54D0);
-
-        v0->unk_00++;
-        v0->unk_04 = 0;
+    case GIRATINA_INTERVENTION_STEP_PAN_TO_PLAYER: {
+        context->graphics->cameraPan.angleDeltaX = 0;
+        context->graphics->cameraPan.angleDeltaY = 0;
+        context->graphics->cameraPan.angleDeltaZ = 0;
+        context->graphics->cameraPan.durationFrames = 60;
+        context->graphics->cameraPan.camera = context->graphics->camera;
+        context->graphics->cameraPan.positionDeltaX = 0;
+        context->graphics->cameraPan.positionDeltaY = 0;
+        context->graphics->cameraPan.positionDeltaZ = FX32_CONST(70);
+        context->graphics->cameraPan.target = &context->graphics->cameraTarget;
+        CameraPan_Start(&context->graphics->cameraPan);
+        context->step++;
         break;
-    case 7:
-        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
+    }
+    case GIRATINA_INTERVENTION_STEP_WAIT_PAN_TO_PLAYER:
+        if (CameraPan_Update(&context->graphics->cameraPan) == 0) {
             break;
         }
 
-        ov100_021D4788(v0->unk_1EBC);
-        ov100_021D46C8(v0->unk_1EBC, v0->unk_1EC0, 22);
+        if (++context->timer < 10) {
+            break;
+        }
+
+        SpearPillarCutscene_ShowMessage(context->graphics, context->args, 21);
+        PoseSequence_Start(&context->models.trainers[1], sCyrusDismissalPose);
+
+        context->step++;
+        context->timer = 0;
+        break;
+    case GIRATINA_INTERVENTION_STEP_WAIT_DISMISSAL_DIALOGUE:
+        if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
+            break;
+        }
+
+        SpearPillarCutscene_ClearMessage(context->graphics);
+        SpearPillarCutscene_ShowMessage(context->graphics, context->args, 22);
         Sound_FadeOutBGM(0, 10);
-        v0->unk_00++;
+        context->step++;
         break;
-    case 8:
-        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
+    case GIRATINA_INTERVENTION_STEP_DARKEN_SCREEN:
+        if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
             break;
         }
 
-        ov100_021D4788(v0->unk_1EBC);
-        v0->unk_04++;
+        SpearPillarCutscene_ClearMessage(context->graphics);
+        context->timer++;
 
-        if (v0->unk_04 == 15) {
-            {
-                int v1;
-
-                for (v1 = 0; v1 < 3; v1++) {
-                    v0->unk_08.unk_0C[v1].unk_0C %= 2;
-                    v0->unk_08.unk_0C[v1].unk_0C += 2;
-                }
+        if (context->timer == 15) {
+            for (int i = 0; i < 3; i++) {
+                context->lights.guardianLights[i].state %= 2;
+                context->lights.guardianLights[i].state += 2;
             }
         }
 
-        if (v0->unk_04 < 30) {
+        if (context->timer < 30) {
             break;
         }
 
-        if (v0->unk_04 == 31) {
+        if (context->timer == 31) {
             (void)0;
         }
 
-        if (v0->unk_1EBC->unk_50.unk_03 > -6) {
-            if (v0->unk_04 % 2) {
-                v0->unk_1EBC->unk_50.unk_03--;
+        if (context->graphics->tint.brightness > -6) {
+            if (context->timer % 2) {
+                context->graphics->tint.brightness--;
             }
 
-            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
-            G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
+            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
+            G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
         } else {
-            ov100_021D46C8(v0->unk_1EBC, v0->unk_1EC0, 23);
+            SpearPillarCutscene_ShowMessage(context->graphics, context->args, 23);
 
-            v0->unk_04 = 0;
-            v0->unk_00++;
+            context->timer = 0;
+            context->step++;
         }
         break;
-    case 9:
-        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
+    case GIRATINA_INTERVENTION_STEP_PAN_TO_GIRATINA:
+        if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
             break;
         }
 
-        ov100_021D4788(v0->unk_1EBC);
-        ov100_021D44C0(&v0->unk_1A0.unk_13EC[1], Unk_ov100_021D54E8);
+        SpearPillarCutscene_ClearMessage(context->graphics);
+        PoseSequence_Start(&context->models.trainers[1], sCyrusPanToGiratinaPose);
 
-        {
-            v0->unk_1EBC->unk_58.unk_0C = 0;
-            v0->unk_1EBC->unk_58.unk_10 = 0;
-            v0->unk_1EBC->unk_58.unk_14 = 0;
-            v0->unk_1EBC->unk_58.unk_08 = 90;
-            v0->unk_1EBC->unk_58.camera = v0->unk_1EBC->camera;
-            v0->unk_1EBC->unk_58.unk_18 = 0;
-            v0->unk_1EBC->unk_58.unk_1C = 0;
-            v0->unk_1EBC->unk_58.unk_20 = -FX32_CONST(80);
-            v0->unk_1EBC->unk_58.unk_04 = &v0->unk_1EBC->unk_44;
-            ov100_021D4890(&v0->unk_1EBC->unk_58);
-            v0->unk_00++;
-        }
+        context->graphics->cameraPan.angleDeltaX = 0;
+        context->graphics->cameraPan.angleDeltaY = 0;
+        context->graphics->cameraPan.angleDeltaZ = 0;
+        context->graphics->cameraPan.durationFrames = 90;
+        context->graphics->cameraPan.camera = context->graphics->camera;
+        context->graphics->cameraPan.positionDeltaX = 0;
+        context->graphics->cameraPan.positionDeltaY = 0;
+        context->graphics->cameraPan.positionDeltaZ = -FX32_CONST(80);
+        context->graphics->cameraPan.target = &context->graphics->cameraTarget;
+        CameraPan_Start(&context->graphics->cameraPan);
+        context->step++;
         break;
-    case 10:
-        if (ov100_021D4920(&v0->unk_1EBC->unk_58) == 0) {
+    case GIRATINA_INTERVENTION_STEP_WAIT_PAN_TO_GIRATINA:
+        if (CameraPan_Update(&context->graphics->cameraPan) == 0) {
             break;
         }
 
-        v0->unk_00++;
-        v0->unk_04 = 0;
+        context->step++;
+        context->timer = 0;
         break;
-    case 11:
-        v0->unk_1A0.unk_10DC[0].unk_160 = 1;
-        Easy3DObject_SetVisible(&v0->unk_1A0.unk_10DC[0].unk_00, 1);
+    case GIRATINA_INTERVENTION_STEP_PLAY_GIRATINA_BGM:
+        context->models.unk_10DC[0].playing = 1;
+        Easy3DObject_SetVisible(&context->models.unk_10DC[0].object, 1);
         Sound_PlayBGM(SEQ_PL_EV_GIRA_sseq);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
-        v0->unk_00++;
+        context->step++;
         break;
-    case 12:
-        if ((++v0->unk_04) == 60) {
-            ov100_021D44C0(&v0->unk_1A0.unk_13EC[1], Unk_ov100_021D54B8);
+    case GIRATINA_INTERVENTION_STEP_GIRATINA_SHADOW_RISES:
+        if ((++context->timer) == 60) {
+            PoseSequence_Start(&context->models.trainers[1], sCyrusShadowRisesPose);
         }
 
-        if ((v0->unk_04 == 15) || (v0->unk_04 == 45) || (v0->unk_04 == 75) || (v0->unk_04 == 95) || (v0->unk_04 == 115) || (v0->unk_04 == 130) || (v0->unk_04 == 145)) {
+        if ((context->timer == 15) || (context->timer == 45) || (context->timer == 75) || (context->timer == 95) || (context->timer == 115) || (context->timer == 130) || (context->timer == 145)) {
             Sound_PlayEffect(SEQ_SE_PL_W060_sseq);
-            Sound_SetPitchForSequence(1477, 0xffff, (v0->unk_04 / 30 * 32) + (v0->unk_04 % 32 * 10));
+            Sound_SetPitchForSequence(1477, 0xffff, (context->timer / 30 * 32) + (context->timer % 32 * 10));
         }
 
-        if (v0->unk_1A0.unk_10DC[0].unk_160 == 0) {
-            Easy3DObject_SetVisible(&v0->unk_1A0.unk_10DC[0].unk_00, 0);
-            Easy3DObject_SetVisible(&v0->unk_1A0.unk_10DC[1].unk_00, 1);
-            Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[0].unk_00, 1);
+        if (context->models.unk_10DC[0].playing == 0) {
+            Easy3DObject_SetVisible(&context->models.unk_10DC[0].object, 0);
+            Easy3DObject_SetVisible(&context->models.unk_10DC[1].object, 1);
+            Easy3DObject_SetVisible(&context->models.unk_934[0].object, 1);
 
-            v0->unk_1A0.unk_934[0].unk_160 = 1;
-            v0->unk_04 = 0;
-            v0->unk_00++;
+            context->models.unk_934[0].playing = 1;
+            context->timer = 0;
+            context->step++;
         }
         break;
-    case 13:
-        if (v0->unk_1A0.unk_934[0].unk_00.position.y < FX32_CONST(-50)) {
-            v0->unk_1A0.unk_934[0].unk_00.position.y += FX32_HALF;
+    case GIRATINA_INTERVENTION_STEP_GIRATINA_RISE_MOVEMENT:
+        if (context->models.unk_934[0].object.position.y < FX32_CONST(-50)) {
+            context->models.unk_934[0].object.position.y += FX32_HALF;
         } else {
-            v0->unk_04 = 0;
-            v0->unk_00++;
+            context->timer = 0;
+            context->step++;
         }
         break;
-    case 14:
-        if (v0->unk_1A0.unk_934[0].unk_160 == 0) {
-            v0->unk_1A0.unk_934[1].unk_00.position.y = v0->unk_1A0.unk_934[0].unk_00.position.y;
-            v0->unk_1A0.unk_934[1].unk_160 = 1;
-            v0->unk_1A0.unk_934[1].unk_164 = 1;
-            v0->unk_1A0.unk_314.unk_160 = 1;
-            v0->unk_1A0.unk_314.unk_16C = 1;
-            v0->unk_1A0.unk_18C.unk_160 = 1;
-            v0->unk_1A0.unk_18C.unk_168 = 1;
+    case GIRATINA_INTERVENTION_STEP_GIRATINA_RISE_COMPLETE:
+        if (context->models.unk_934[0].playing == 0) {
+            context->models.unk_934[1].object.position.y = context->models.unk_934[0].object.position.y;
+            context->models.unk_934[1].playing = 1;
+            context->models.unk_934[1].looping = 1;
+            context->models.shockwave.playing = 1;
+            context->models.shockwave.playSecondaryAnim = 1;
+            context->models.distortionRipple.playing = 1;
+            context->models.distortionRipple.loopSecondaryAnim = 1;
 
-            Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[0].unk_00, 0);
-            Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[1].unk_00, 1);
+            Easy3DObject_SetVisible(&context->models.unk_934[0].object, 0);
+            Easy3DObject_SetVisible(&context->models.unk_934[1].object, 1);
 
-            v0->unk_00++;
+            context->step++;
         }
         break;
-    case 15:
-        v0->unk_04++;
+    case GIRATINA_INTERVENTION_STEP_DIALGA_PALKIA_STEP_BACK:
+        context->timer++;
 
-        if (v0->unk_04 == 1) {
+        if (context->timer == 1) {
             Sound_PlayEffect(SEQ_SE_PL_W082C_sseq);
         }
 
-        if (v0->unk_04 == 20) {
-            ov100_021D44C0(&v0->unk_1A0.unk_13EC[1], Unk_ov100_021D54A0);
+        if (context->timer == 20) {
+            PoseSequence_Start(&context->models.trainers[1], sCyrusPushBackPose);
         }
 
-        if (v0->unk_04 == 15 + 25) {
-            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_DIALGA, -80, 40, HEAP_ID_111, 0);
+        if (context->timer == 15 + 25) {
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_DIALGA, -80, 40, HEAP_ID_SPEAR_PILLAR_CUTSCENE, 0);
         }
 
-        if (v0->unk_04 == 40 + 25) {
-            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_PALKIA, +80, 40, HEAP_ID_111, 0);
+        if (context->timer == 40 + 25) {
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_PALKIA, +80, 40, HEAP_ID_SPEAR_PILLAR_CUTSCENE, 0);
         }
 
-        if (v0->unk_04 < 15 + 25) {
-            v0->unk_1A0.unk_624[0].unk_00.position.z -= FX32_HALF >> 1;
+        if (context->timer < 15 + 25) {
+            context->models.summonBubble[0].object.position.z -= FX32_HALF >> 1;
         } else {
-            v0->unk_1A0.unk_624[0].unk_00.position.z -= FX32_HALF;
+            context->models.summonBubble[0].object.position.z -= FX32_HALF;
         }
 
-        if (v0->unk_04 < 40 + 25) {
-            v0->unk_1A0.unk_624[1].unk_00.position.z -= FX32_HALF >> 1;
+        if (context->timer < 40 + 25) {
+            context->models.summonBubble[1].object.position.z -= FX32_HALF >> 1;
         } else {
-            v0->unk_1A0.unk_624[1].unk_00.position.z -= FX32_HALF;
+            context->models.summonBubble[1].object.position.z -= FX32_HALF;
         }
 
-        if (v0->unk_1A0.unk_934[1].unk_00.position.y < FX32_CONST(0)) {
-            v0->unk_1A0.unk_934[1].unk_00.position.y += FX32_HALF;
+        if (context->models.unk_934[1].object.position.y < FX32_CONST(0)) {
+            context->models.unk_934[1].object.position.y += FX32_HALF;
         } else {
-            v0->unk_1A0.unk_934[1].unk_00.position.y = FX32_CONST(0);
-            v0->unk_04 = 0;
-            ov100_021D46C8(v0->unk_1EBC, v0->unk_1EC0, 24);
-            v0->unk_00++;
+            context->models.unk_934[1].object.position.y = FX32_CONST(0);
+            context->timer = 0;
+            SpearPillarCutscene_ShowMessage(context->graphics, context->args, 24);
+            context->step++;
         }
         break;
-    case 16:
-        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
+    case GIRATINA_INTERVENTION_STEP_WAIT_SHADOW_POKEMON_DIALOGUE:
+        if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
             break;
         }
 
-        ov100_021D4788(v0->unk_1EBC);
+        SpearPillarCutscene_ClearMessage(context->graphics);
 
-        v0->unk_1A0.unk_49C.unk_160 = 1;
-        v0->unk_1A0.unk_49C.unk_164 = 0;
-        v0->unk_1A0.unk_49C.unk_16C = 1;
-        v0->unk_1A0.unk_934[2].unk_160 = 1;
+        context->models.dropletSplash.playing = 1;
+        context->models.dropletSplash.looping = 0;
+        context->models.dropletSplash.playSecondaryAnim = 1;
+        context->models.unk_934[2].playing = 1;
 
-        Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[1].unk_00, 0);
-        Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[2].unk_00, 1);
-        Sound_PlayPokemonCryEx(POKECRY_FIELD_EVENT, SPECIES_GIRATINA, 0, 127, HEAP_ID_111, 0);
+        Easy3DObject_SetVisible(&context->models.unk_934[1].object, 0);
+        Easy3DObject_SetVisible(&context->models.unk_934[2].object, 1);
+        Sound_PlayPokemonCryEx(POKECRY_FIELD_EVENT, SPECIES_GIRATINA, 0, 127, HEAP_ID_SPEAR_PILLAR_CUTSCENE, 0);
 
-        v0->unk_04 = 0;
-        v0->unk_00++;
+        context->timer = 0;
+        context->step++;
         break;
-    case 17:
-        if (v0->unk_1A0.unk_934[2].unk_160 == 0) {
-            ov100_021D46C8(v0->unk_1EBC, v0->unk_1EC0, 25);
+    case GIRATINA_INTERVENTION_STEP_GIRATINA_TRANSFORM:
+        if (context->models.unk_934[2].playing == 0) {
+            SpearPillarCutscene_ShowMessage(context->graphics, context->args, 25);
 
-            v0->unk_1A0.unk_934[3].unk_160 = 1;
-            v0->unk_1A0.unk_934[3].unk_164 = 1;
-            v0->unk_1A0.unk_49C.unk_160 = 0;
+            context->models.unk_934[3].playing = 1;
+            context->models.unk_934[3].looping = 1;
+            context->models.dropletSplash.playing = 0;
 
-            Easy3DObject_SetVisible(&v0->unk_1A0.unk_49C.unk_00, 0);
-            Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[2].unk_00, 0);
-            Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[3].unk_00, 1);
+            Easy3DObject_SetVisible(&context->models.dropletSplash.object, 0);
+            Easy3DObject_SetVisible(&context->models.unk_934[2].object, 0);
+            Easy3DObject_SetVisible(&context->models.unk_934[3].object, 1);
 
-            v0->unk_00++;
+            context->step++;
         }
         break;
-    case 18:
-        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
+    case GIRATINA_INTERVENTION_STEP_WAIT_HARNESSED_POWERS_DIALOGUE:
+        if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
             break;
         }
 
-        if (v0->unk_04 == 0) {
-            ov100_021D4788(v0->unk_1EBC);
+        if (context->timer == 0) {
+            SpearPillarCutscene_ClearMessage(context->graphics);
         }
 
         Sound_PlayBGM(SEQ_PL_EV_GIRA2_sseq);
 
-        v0->unk_1A0.unk_934[4].unk_160 = 1;
+        context->models.unk_934[4].playing = 1;
 
-        Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[3].unk_00, 0);
-        Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[4].unk_00, 1);
-        v0->unk_04 = 0;
-        v0->unk_00++;
+        Easy3DObject_SetVisible(&context->models.unk_934[3].object, 0);
+        Easy3DObject_SetVisible(&context->models.unk_934[4].object, 1);
+        context->timer = 0;
+        context->step++;
         break;
-    case 19:
-        if ((++v0->unk_04) == 238) {
-            Sound_PlayPokemonCryEx(POKECRY_FIELD_EVENT, SPECIES_GIRATINA, 0, 127, HEAP_ID_111, 0);
+    case GIRATINA_INTERVENTION_STEP_GIRATINA_ATTACKS_CYRUS:
+        if ((++context->timer) == 238) {
+            Sound_PlayPokemonCryEx(POKECRY_FIELD_EVENT, SPECIES_GIRATINA, 0, 127, HEAP_ID_SPEAR_PILLAR_CUTSCENE, 0);
         }
 
-        if (v0->unk_04 == 170) {
-            ov100_021D46C8(v0->unk_1EBC, v0->unk_1EC0, 26);
+        if (context->timer == 170) {
+            SpearPillarCutscene_ShowMessage(context->graphics, context->args, 26);
         }
 
-        if (v0->unk_04 == 180) {
+        if (context->timer == 180) {
             (void)0;
         }
 
-        if (v0->unk_04 == 210) {
+        if (context->timer == 210) {
             (void)0;
         }
 
-        if (v0->unk_04 == 220) {
+        if (context->timer == 220) {
             (void)0;
         }
 
-        if (v0->unk_04 == 230) {
+        if (context->timer == 230) {
             (void)0;
         }
 
-        if (v0->unk_1A0.unk_934[4].unk_160 == 0) {
-            if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
-                Text_RemovePrinter(v0->unk_1EBC->unk_40);
+        if (context->models.unk_934[4].playing == 0) {
+            if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
+                Text_RemovePrinter(context->graphics->messagePrinter);
             }
 
-            v0->unk_1EBC->unk_50.unk_03 = -16;
+            context->graphics->tint.brightness = -16;
 
-            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
-            G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
+            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
+            G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
 
-            {
-                u16 currentBGM = Sound_GetCurrentBGM();
+            u16 currentBGM = Sound_GetCurrentBGM();
+            Sound_StopBGM(currentBGM, 0);
 
-                Sound_StopBGM(currentBGM, 0);
-            }
+            SpearPillarCutscene_ClearMessage(context->graphics);
 
-            ov100_021D4788(v0->unk_1EBC);
-
-            v0->unk_00++;
-            v0->unk_04 = 0;
+            context->step++;
+            context->timer = 0;
         }
         break;
-    case 20:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 1, 1, HEAP_ID_111);
-        v0->unk_00++;
-    case 21:
+    case GIRATINA_INTERVENTION_STEP_FADE_OUT:
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 1, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+        context->step++;
+    case GIRATINA_INTERVENTION_STEP_WAIT_FADE_OUT:
         if (IsScreenFadeDone() == FALSE) {
             break;
         }
 
-        v0->unk_1EBC->unk_50.unk_03 = 0;
-        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
-        G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1EBC->unk_50.unk_03);
-        v0->unk_00++;
+        context->graphics->tint.brightness = 0;
+        G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
+        G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
+        context->step++;
         break;
     default:
-        if ((++v0->unk_04) >= 60) {
-            v0->unk_00 = 0;
+        if ((++context->timer) >= 60) {
+            context->step = 0;
             return 0;
         }
 
         break;
     }
 
-    v0->unk_1A0.unk_16FC[0].unk_00.position = v0->unk_1A0.unk_624[0].unk_00.position;
-    v0->unk_1A0.unk_16FC[1].unk_00.position = v0->unk_1A0.unk_624[1].unk_00.position;
-    v0->unk_1A0.unk_16FC[2].unk_00.position = v0->unk_1A0.unk_13EC[0].unk_00.position;
-    v0->unk_1A0.unk_16FC[3].unk_00.position = v0->unk_1A0.unk_13EC[1].unk_00.position;
-    v0->unk_1A0.unk_16FC[0].unk_00.position.z -= (FX32_ONE * 2);
-    v0->unk_1A0.unk_16FC[1].unk_00.position.z -= (FX32_ONE * 2);
-    v0->unk_1A0.unk_16FC[2].unk_00.position.z -= (FX32_ONE * 2);
-    v0->unk_1A0.unk_16FC[3].unk_00.position.z -= (FX32_ONE * 2);
-    v0->unk_1A0.unk_16FC[2].unk_00.position.x -= FX32_ONE;
-    v0->unk_1A0.unk_16FC[3].unk_00.position.x -= FX32_ONE;
+    context->models.shadow[0].object.position = context->models.summonBubble[0].object.position;
+    context->models.shadow[1].object.position = context->models.summonBubble[1].object.position;
+    context->models.shadow[2].object.position = context->models.trainers[0].object.position;
+    context->models.shadow[3].object.position = context->models.trainers[1].object.position;
+    context->models.shadow[0].object.position.z -= (FX32_ONE * 2);
+    context->models.shadow[1].object.position.z -= (FX32_ONE * 2);
+    context->models.shadow[2].object.position.z -= (FX32_ONE * 2);
+    context->models.shadow[3].object.position.z -= (FX32_ONE * 2);
+    context->models.shadow[2].object.position.x -= FX32_ONE;
+    context->models.shadow[3].object.position.x -= FX32_ONE;
 
-    ov100_021D2E0C(v0);
-    ov100_021D4BF0(v0->unk_1EBC);
+    GiratinaIntervention_UpdateScene(context);
+    SpearPillarCutscene_UpdateBackgroundPulse(context->graphics);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL ov100_021D2C8C(void *param0)
+BOOL GiratinaIntervention_Exit(void *param)
 {
-    UnkStruct_ov100_021D1C98 *v0 = (UnkStruct_ov100_021D1C98 *)param0;
+    GiratinaInterventionContext *context = (GiratinaInterventionContext *)param;
 
-    switch (v0->unk_00) {
-    case 0:
-        ov100_021D2324(v0);
-        ov100_021D4E58(&v0->unk_08.unk_00);
-        v0->unk_00++;
+    switch (context->step) {
+    case GIRATINA_INTERVENTION_EXIT_STEP_FREE_LIGHTS:
+        SpearPillarCutscene_FreeLakeGuardianLights(context);
+        ScreenScrollTask_Free(&context->lights.scroll);
+        context->step++;
         break;
-    case 1:
-        ov100_021D4AA4(&v0->unk_1A0.unk_04, &v0->unk_1EBC->unk_1C, 0);
+    case GIRATINA_INTERVENTION_EXIT_STEP_RELEASE_MODELS:
+        CutsceneModel_Release(&context->models.unk_04, &context->graphics->allocator, 0);
 
-        {
-            int v1;
-
-            for (v1 = 0; v1 < 4; v1++) {
-                ov100_021D4AA4(&v0->unk_1A0.unk_16FC[v1], &v0->unk_1EBC->unk_1C, 0);
-            }
+        for (int i = 0; i < 4; i++) {
+            CutsceneModel_Release(&context->models.shadow[i], &context->graphics->allocator, 0);
         }
 
-        ov100_021D4AA4(&v0->unk_1A0.unk_314, &v0->unk_1EBC->unk_1C, 2);
-        ov100_021D4AA4(&v0->unk_1A0.unk_49C, &v0->unk_1EBC->unk_1C, 2);
-        ov100_021D4AA4(&v0->unk_1A0.unk_18C, &v0->unk_1EBC->unk_1C, 2);
+        CutsceneModel_Release(&context->models.shockwave, &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.dropletSplash, &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.distortionRipple, &context->graphics->allocator, 2);
 
-        ov100_021D4AA4(&v0->unk_1A0.unk_624[0], &v0->unk_1EBC->unk_1C, 1);
-        ov100_021D4AA4(&v0->unk_1A0.unk_624[1], &v0->unk_1EBC->unk_1C, 1);
+        CutsceneModel_Release(&context->models.summonBubble[0], &context->graphics->allocator, 1);
+        CutsceneModel_Release(&context->models.summonBubble[1], &context->graphics->allocator, 1);
 
-        ov100_021D4AA4(&v0->unk_1A0.unk_934[0], &v0->unk_1EBC->unk_1C, 2);
-        ov100_021D4AA4(&v0->unk_1A0.unk_934[1], &v0->unk_1EBC->unk_1C, 2);
-        ov100_021D4AA4(&v0->unk_1A0.unk_934[2], &v0->unk_1EBC->unk_1C, 2);
-        ov100_021D4AA4(&v0->unk_1A0.unk_934[3], &v0->unk_1EBC->unk_1C, 2);
-        ov100_021D4AA4(&v0->unk_1A0.unk_934[4], &v0->unk_1EBC->unk_1C, 2);
+        CutsceneModel_Release(&context->models.unk_934[0], &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.unk_934[1], &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.unk_934[2], &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.unk_934[3], &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.unk_934[4], &context->graphics->allocator, 2);
 
-        ov100_021D4AA4(&v0->unk_1A0.unk_10DC[0], &v0->unk_1EBC->unk_1C, 1);
-        ov100_021D4AA4(&v0->unk_1A0.unk_10DC[1], &v0->unk_1EBC->unk_1C, 0);
+        CutsceneModel_Release(&context->models.unk_10DC[0], &context->graphics->allocator, 1);
+        CutsceneModel_Release(&context->models.unk_10DC[1], &context->graphics->allocator, 0);
 
-        ov100_021D4AA4(&v0->unk_1A0.unk_13EC[0], &v0->unk_1EBC->unk_1C, 1);
-        ov100_021D4AA4(&v0->unk_1A0.unk_13EC[1], &v0->unk_1EBC->unk_1C, 1);
+        CutsceneModel_Release(&context->models.trainers[0], &context->graphics->allocator, 1);
+        CutsceneModel_Release(&context->models.trainers[1], &context->graphics->allocator, 1);
 
-        v0->unk_00++;
+        context->step++;
         break;
     default:
-        Heap_Free(v0);
-        return 0;
+        Heap_Free(context);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void ov100_021D2E0C(UnkStruct_ov100_021D1C98 *param0)
+static void GiratinaIntervention_UpdateScene(GiratinaInterventionContext *context)
 {
     G3_ResetG3X();
     Camera_ComputeViewMatrix();
 
-    ov100_021D47A0(param0->unk_1EBC);
-    ov100_021D4844(param0->unk_1EBC);
+    SpearPillarCutscene_InitLighting(context->graphics);
+    SpearPillarCutscene_UpdateCamera(context->graphics);
 
-    ov100_021D49B4(&param0->unk_1A0.unk_04);
-    ov100_021D49B4(&param0->unk_1A0.unk_314);
-    ov100_021D49B4(&param0->unk_1A0.unk_49C);
-    ov100_021D49B4(&param0->unk_1A0.unk_18C);
+    CutsceneModel_Update(&context->models.unk_04);
+    CutsceneModel_Update(&context->models.shockwave);
+    CutsceneModel_Update(&context->models.dropletSplash);
+    CutsceneModel_Update(&context->models.distortionRipple);
 
-    ov100_021D49B4(&param0->unk_1A0.unk_10DC[0]);
-    ov100_021D49B4(&param0->unk_1A0.unk_10DC[1]);
+    CutsceneModel_Update(&context->models.unk_10DC[0]);
+    CutsceneModel_Update(&context->models.unk_10DC[1]);
 
-    ov100_021D49B4(&param0->unk_1A0.unk_934[0]);
-    ov100_021D49B4(&param0->unk_1A0.unk_934[1]);
-    ov100_021D49B4(&param0->unk_1A0.unk_934[2]);
-    ov100_021D49B4(&param0->unk_1A0.unk_934[3]);
-    ov100_021D49B4(&param0->unk_1A0.unk_934[4]);
+    CutsceneModel_Update(&context->models.unk_934[0]);
+    CutsceneModel_Update(&context->models.unk_934[1]);
+    CutsceneModel_Update(&context->models.unk_934[2]);
+    CutsceneModel_Update(&context->models.unk_934[3]);
+    CutsceneModel_Update(&context->models.unk_934[4]);
 
-    ov100_021D49B4(&param0->unk_1A0.unk_624[0]);
-    ov100_021D49B4(&param0->unk_1A0.unk_624[1]);
+    CutsceneModel_Update(&context->models.summonBubble[0]);
+    CutsceneModel_Update(&context->models.summonBubble[1]);
 
-    ov100_021D49B4(&param0->unk_1A0.unk_13EC[0]);
-    ov100_021D49B4(&param0->unk_1A0.unk_13EC[1]);
+    CutsceneModel_Update(&context->models.trainers[0]);
+    CutsceneModel_Update(&context->models.trainers[1]);
 
-    ov100_021D49B4(&param0->unk_1A0.unk_16FC[0]);
-    ov100_021D49B4(&param0->unk_1A0.unk_16FC[1]);
-    ov100_021D49B4(&param0->unk_1A0.unk_16FC[2]);
-    ov100_021D49B4(&param0->unk_1A0.unk_16FC[3]);
+    CutsceneModel_Update(&context->models.shadow[0]);
+    CutsceneModel_Update(&context->models.shadow[1]);
+    CutsceneModel_Update(&context->models.shadow[2]);
+    CutsceneModel_Update(&context->models.shadow[3]);
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 }

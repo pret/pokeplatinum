@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "overlay100/ov100_021D400C.h"
 #include "overlay100/ov100_021D46C8.h"
 #include "overlay100/ov100_021D4E04.h"
@@ -26,345 +28,348 @@
 #include "sys_task.h"
 #include "unk_0202419C.h"
 
-static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0);
-static void ov100_021D1A24(UnkStruct_ov100_021D1808 *param0);
-static void ov100_021D1A54(UnkStruct_ov100_021D1808 *param0);
-static void ov100_021D17B4(UnkStruct_ov100_021D1808 *param0);
-static void ov100_021D1758(Camera *camera, VecFx32 *param1);
+static void LakeGuardiansArrival_InitGraphics(LakeGuardiansArrivalContext *context);
+static void LakeGuardiansArrival_FreeLights(LakeGuardiansArrivalContext *context);
+static void LakeGuardiansArrival_InitLights(LakeGuardiansArrivalContext *context);
+static void LakeGuardiansArrival_UpdateScene(LakeGuardiansArrivalContext *context);
+static void LakeGuardiansArrival_InitCamera(Camera *camera, VecFx32 *target);
 
-void *ov100_021D13E4(UnkStruct_ov100_021D4DD8 *param0)
+void *LakeGuardiansArrival_Init(SpearPillarCutsceneData *cutscene)
 {
-    UnkStruct_ov100_021D1808 *v0 = Heap_Alloc(HEAP_ID_111, sizeof(UnkStruct_ov100_021D1808));
+    LakeGuardiansArrivalContext *context = Heap_Alloc(HEAP_ID_SPEAR_PILLAR_CUTSCENE, sizeof(LakeGuardiansArrivalContext));
 
-    memset(v0, 0, sizeof(UnkStruct_ov100_021D1808));
+    memset(context, 0, sizeof(LakeGuardiansArrivalContext));
 
-    v0->unk_7C4 = &param0->unk_0C;
-    v0->unk_7C8 = param0->unk_D0;
+    context->graphics = &cutscene->scene;
+    context->args = cutscene->args;
 
-    ov100_021D1808(v0);
-    ov100_021D1A54(v0);
+    LakeGuardiansArrival_InitGraphics(context);
+    LakeGuardiansArrival_InitLights(context);
 
-    {
-        ov100_021D4E3C(&v0->unk_0C.unk_00, HEAP_ID_111);
-        ov100_021D4E70(&v0->unk_0C.unk_00, 0, 191, (0xffff / 192) * 2, FX32_CONST(2), 1 * 100, REG_DB_BG1HOFS_ADDR, 0, 0x1000, 1);
-    }
-    {
-        UnkStruct_ov100_021D4EBC v1 = {
-            GX_DISPMODE_VRAM_C,
-            GX_BGMODE_0,
-            GX_BG0_AS_3D,
-            GX_CAPTURE_SIZE_256x192,
-            GX_CAPTURE_MODE_AB,
-            GX_CAPTURE_SRCA_3D,
-            GX_CAPTURE_SRCB_VRAM_0x00000,
-            GX_CAPTURE_DEST_VRAM_C_0x00000,
-            4,
-            12,
-            111
-        };
-    }
+    ScreenScrollTask_Init(&context->lights.scroll, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    ScreenScrollTask_Scroll(&context->lights.scroll, 0, 191, (0xffff / 192) * 2, FX32_CONST(2), 1 * 100, REG_DB_BG1HOFS_ADDR, 0, 0x1000, 1);
 
-    ov100_021D1758(v0->unk_7C4->camera, &v0->unk_7C4->unk_44);
-    v0->unk_7C4->unk_44.y += FX32_CONST(25);
+    ScreenCaptureTemplate unused = { // not used, but removing it causes checksum error.
+        .displayMode = GX_DISPMODE_VRAM_C,
+        .bgMode = GX_BGMODE_0,
+        .bg0As = GX_BG0_AS_3D,
+        .captureSize = GX_CAPTURE_SIZE_256x192,
+        .captureMode = GX_CAPTURE_MODE_AB,
+        .captureSrcA = GX_CAPTURE_SRCA_3D,
+        .captureSrcB = GX_CAPTURE_SRCB_VRAM_0x00000,
+        .captureDest = GX_CAPTURE_DEST_VRAM_C_0x00000,
+        .captureEva = 4,
+        .captureEvb = 12,
+        .heapID = HEAP_ID_SPEAR_PILLAR_CUTSCENE
+    };
+
+    LakeGuardiansArrival_InitCamera(context->graphics->camera, &context->graphics->cameraTarget);
+    context->graphics->cameraTarget.y += FX32_CONST(25);
 
     G2S_BlendNone();
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 7, 8);
 
-    ov100_021D4DC8(1);
+    SpearPillarCutscene_SwapDisplay(1);
     Sound_FadeOutBGM(0, 10);
 
-    return v0;
+    return context;
 }
 
-BOOL ov100_021D14A8(void *param0)
+enum LakeGuardiansArrivalState {
+    LAKE_GUARDIANS_ARRIVAL_STATE_FADE_IN,
+    LAKE_GUARDIANS_ARRIVAL_STATE_WAIT_FADE_IN,
+    LAKE_GUARDIANS_ARRIVAL_STATE_REVEAL_GUARDIAN,
+    LAKE_GUARDIANS_ARRIVAL_STATE_WAIT_GUARDIAN_CRY,
+    LAKE_GUARDIANS_ARRIVAL_STATE_FLASH_GUARDIAN,
+    LAKE_GUARDIANS_ARRIVAL_STATE_WAIT_FLASH_FADE,
+    LAKE_GUARDIANS_ARRIVAL_STATE_FLASH_MAIN_SCREEN,
+};
+
+enum LakeGuardiansArrivalExitState {
+    LAKE_GUARDIANS_ARRIVAL_EXIT_STATE_FREE_LIGHTS,
+    LAKE_GUARDIANS_ARRIVAL_EXIT_STATE_RELEASE_MODELS,
+};
+
+BOOL LakeGuardiansArrival_Update(void *param)
 {
-    UnkStruct_ov100_021D1808 *v0 = param0;
-    static const u16 v1[] = {
+    LakeGuardiansArrivalContext *context = param;
+    static const u16 revealDuration[] = {
         210,
         120,
         120,
     };
-    static const u16 v2[] = {
+    static const u16 cryFrame[] = {
         145,
         119,
         100,
     };
-    static const u16 v3[] = {
+    static const u16 sfxFrame[] = {
         100,
         19,
         18,
     };
-    static const u32 v4[] = {
-        480,
-        481,
-        482,
+    static const u32 guardianSpecies[] = {
+        SPECIES_UXIE,
+        SPECIES_MESPRIT,
+        SPECIES_AZELF,
     };
 
-    switch (v0->unk_00) {
-    case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_111);
-        v0->unk_00++;
-    case 1:
+    switch (context->state) {
+    case LAKE_GUARDIANS_ARRIVAL_STATE_FADE_IN:
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+        context->state++;
+    case LAKE_GUARDIANS_ARRIVAL_STATE_WAIT_FADE_IN:
         if (IsScreenFadeDone() == FALSE) {
             break;
         }
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_18, SEQ_D_RYAYHY_sseq, 0);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
-        v0->unk_00 = 2;
+        context->state = LAKE_GUARDIANS_ARRIVAL_STATE_REVEAL_GUARDIAN;
         break;
-    case 2:
-        Easy3DObject_SetVisible(&v0->unk_1A4.unk_00[v0->unk_08].unk_00, 1);
-        v0->unk_1A4.unk_00[v0->unk_08].unk_160 = 1;
-        v0->unk_1A4.unk_00[v0->unk_08].unk_16C = 1;
-        v0->unk_00++;
-        v0->unk_04 = 0;
+    case LAKE_GUARDIANS_ARRIVAL_STATE_REVEAL_GUARDIAN:
+        Easy3DObject_SetVisible(&context->models.guardians[context->guardianIndex].object, 1);
+        context->models.guardians[context->guardianIndex].playing = 1;
+        context->models.guardians[context->guardianIndex].playSecondaryAnim = 1;
+        context->state++;
+        context->timer = 0;
         break;
-    case 3:
-        if (v0->unk_04 == v3[v0->unk_08]) {
+    case LAKE_GUARDIANS_ARRIVAL_STATE_WAIT_GUARDIAN_CRY:
+        if (context->timer == sfxFrame[context->guardianIndex]) {
             Sound_PlayEffect(SEQ_SE_PL_W392_sseq);
         }
 
-        if (v0->unk_04 == v2[v0->unk_08]) {
-            Sound_PlayPokemonCryEx(POKECRY_NORMAL, v4[v0->unk_08], 0, 100, HEAP_ID_111, 0);
+        if (context->timer == cryFrame[context->guardianIndex]) {
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, guardianSpecies[context->guardianIndex], 0, 100, HEAP_ID_SPEAR_PILLAR_CUTSCENE, 0);
         }
 
-        if ((++v0->unk_04) >= v1[v0->unk_08]) {
-            v0->unk_7C4->unk_50.unk_03 = 0;
-            v0->unk_04 = 0;
-            v0->unk_00++;
+        if ((++context->timer) >= revealDuration[context->guardianIndex]) {
+            context->graphics->tint.brightness = 0;
+            context->timer = 0;
+            context->state++;
         }
         break;
-    case 4:
-        if ((++v0->unk_7C4->unk_50.unk_03) != (+16)) {
-            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_7C4->unk_50.unk_03);
+    case LAKE_GUARDIANS_ARRIVAL_STATE_FLASH_GUARDIAN:
+        if ((++context->graphics->tint.brightness) != (+16)) {
+            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
         } else {
-            v0->unk_0C.unk_0C[v0->unk_08].unk_3C = 1;
-            Easy3DObject_SetVisible(&v0->unk_1A4.unk_00[v0->unk_08].unk_00, 0);
-            v0->unk_00++;
+            context->lights.guardianLights[context->guardianIndex].followTarget = 1;
+            Easy3DObject_SetVisible(&context->models.guardians[context->guardianIndex].object, 0);
+            context->state++;
 
-            v0->unk_08++;
+            context->guardianIndex++;
 
-            if (v0->unk_08 >= 3) {
-                v0->unk_7C4->unk_50.unk_03 = 0;
-                v0->unk_00 = 6;
+            if (context->guardianIndex >= 3) {
+                context->graphics->tint.brightness = 0;
+                context->state = LAKE_GUARDIANS_ARRIVAL_STATE_FLASH_MAIN_SCREEN;
             }
         }
         break;
-    case 5:
-        if ((--v0->unk_7C4->unk_50.unk_03) > 0) {
-            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_7C4->unk_50.unk_03);
+    case LAKE_GUARDIANS_ARRIVAL_STATE_WAIT_FLASH_FADE:
+        if ((--context->graphics->tint.brightness) > 0) {
+            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
         } else {
-            v0->unk_00 = 2;
+            context->state = LAKE_GUARDIANS_ARRIVAL_STATE_REVEAL_GUARDIAN;
         }
         break;
-    case 6:
-        if ((++v0->unk_04) < 30 * 4) {
+    case LAKE_GUARDIANS_ARRIVAL_STATE_FLASH_MAIN_SCREEN:
+        if ((++context->timer) < 30 * 4) {
             break;
         }
 
-        if ((++v0->unk_7C4->unk_50.unk_03) != (+16)) {
-            G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_7C4->unk_50.unk_03);
+        if ((++context->graphics->tint.brightness) != (+16)) {
+            G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
         } else {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 1, 1, HEAP_ID_111);
-            v0->unk_00 = 0;
-            return 0;
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 1, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+            context->state = 0;
+            return FALSE;
         }
     }
 
-    ov100_021D17B4(v0);
-    ov100_021D4C94(v0->unk_7C4, v0->unk_08);
+    LakeGuardiansArrival_UpdateScene(context);
+    SpearPillarCutscene_UpdateGuardianFlash(context->graphics, context->guardianIndex);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL ov100_021D16C4(void *param0)
+BOOL LakeGuardiansArrival_Exit(void *param)
 {
-    UnkStruct_ov100_021D1808 *v0 = param0;
+    LakeGuardiansArrivalContext *context = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        ov100_021D4E58(&v0->unk_0C.unk_00);
-        ov100_021D1A24(v0);
-
-        v0->unk_00++;
+    switch (context->state) {
+    case LAKE_GUARDIANS_ARRIVAL_EXIT_STATE_FREE_LIGHTS:
+        ScreenScrollTask_Free(&context->lights.scroll);
+        LakeGuardiansArrival_FreeLights(context);
+        context->state++;
         break;
-    case 1:
-        ov100_021D4AA4(&v0->unk_1A4.unk_00[0], &v0->unk_7C4->unk_1C, 2);
-        ov100_021D4AA4(&v0->unk_1A4.unk_00[1], &v0->unk_7C4->unk_1C, 2);
-        ov100_021D4AA4(&v0->unk_1A4.unk_00[2], &v0->unk_7C4->unk_1C, 2);
-        ov100_021D4AA4(&v0->unk_1A4.unk_498, &v0->unk_7C4->unk_1C, 0);
+    case LAKE_GUARDIANS_ARRIVAL_EXIT_STATE_RELEASE_MODELS:
+        CutsceneModel_Release(&context->models.guardians[0], &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.guardians[1], &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.guardians[2], &context->graphics->allocator, 2);
+        CutsceneModel_Release(&context->models.backlight, &context->graphics->allocator, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-        v0->unk_00++;
+        context->state++;
         break;
     default:
-        Heap_Free(v0);
-        return 0;
+        Heap_Free(context);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void ov100_021D1758(Camera *camera, VecFx32 *param1)
+static void LakeGuardiansArrival_InitCamera(Camera *camera, VecFx32 *target)
 {
-    CameraAngle v0 = { 1274, 0, 0 };
+    CameraAngle cameraAngle = { .x = 1274, .y = 0, .z = 0 };
 
-    Camera_InitWithTarget(param1, FX32_CONST(200), &v0, 0xa66, 0, 1, camera);
+    Camera_InitWithTarget(target, FX32_CONST(200), &cameraAngle, 0xa66, 0, 1, camera);
     Camera_ComputeProjectionMatrix(0, camera);
     Camera_SetAsActive(camera);
     Camera_SetClipping(FX32_CONST(0.1), FX32_CONST(2048), camera);
 }
 
-static void ov100_021D17B4(UnkStruct_ov100_021D1808 *param0)
+static void LakeGuardiansArrival_UpdateScene(LakeGuardiansArrivalContext *context)
 {
     G3_ResetG3X();
     Camera_ComputeViewMatrix();
 
-    ov100_021D47A0(param0->unk_7C4);
-    ov100_021D4844(param0->unk_7C4);
+    SpearPillarCutscene_InitLighting(context->graphics);
+    SpearPillarCutscene_UpdateCamera(context->graphics);
 
-    ov100_021D49B4(&param0->unk_1A4.unk_00[0]);
-    ov100_021D49B4(&param0->unk_1A4.unk_00[1]);
-    ov100_021D49B4(&param0->unk_1A4.unk_00[2]);
-    ov100_021D49B4(&param0->unk_1A4.unk_498);
+    CutsceneModel_Update(&context->models.guardians[0]);
+    CutsceneModel_Update(&context->models.guardians[1]);
+    CutsceneModel_Update(&context->models.guardians[2]);
+    CutsceneModel_Update(&context->models.backlight);
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 }
 
-static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
+static void LakeGuardiansArrival_InitGraphics(LakeGuardiansArrivalContext *context)
 {
-    NARC *v0 = param0->unk_7C4->unk_00;
-    BgConfig *v1 = param0->unk_7C4->unk_0C;
-    SpriteSystem *v2 = param0->unk_7C4->unk_04;
-    SpriteManager *v3 = param0->unk_7C4->unk_08;
-    PaletteData *v4 = param0->unk_7C4->unk_10;
-    int v5 = 50000;
+    NARC *narc = context->graphics->narc;
+    BgConfig *bgConfig = context->graphics->bgConfig;
+    SpriteSystem *spriteSys = context->graphics->spriteSystem;
+    SpriteManager *spriteMan = context->graphics->spriteManager;
+    PaletteData *plttData = context->graphics->paletteData;
+    int resourceId = 50000;
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 70, v1, 5, 0, 0, 0, HEAP_ID_111);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 72, v1, 5, 0, 0, 0, HEAP_ID_111);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 73, v1, 4, 0, 0, 0, HEAP_ID_111);
-    PaletteData_LoadBufferFromFileStart(v4, NARC_INDEX_ARC__DEMO_TENGAN_GRA, 71, HEAP_ID_111, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 2, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 70, bgConfig, 5, 0, 0, 0, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 72, bgConfig, 5, 0, 0, 0, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 73, bgConfig, 4, 0, 0, 0, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_ARC__DEMO_TENGAN_GRA, 71, HEAP_ID_SPEAR_PILLAR_CUTSCENE, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 2, 0);
 
-    {
-        const u16 v6[] = { 0x421 };
-        PaletteData_LoadBuffer(v4, &v6, 0, 0, 0x2);
-    }
+    const GXRgb skyColor[] = { GX_RGB(1, 1, 1) };
+    PaletteData_LoadBuffer(plttData, &skyColor, PLTTBUF_MAIN_BG, 0, sizeof(skyColor));
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, PLTTBUF_SUB_OBJ, v2, v3, v0, 50, FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, FALSE, v5);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 47, FALSE, v5);
-    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 49, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, v5);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(plttData, PLTTBUF_SUB_OBJ, spriteSys, spriteMan, narc, 50, FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, resourceId);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, narc, 48, FALSE, resourceId);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, narc, 47, FALSE, resourceId);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, narc, 49, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, resourceId);
 
-    ov100_021D4AC8(&param0->unk_1A4.unk_498, 60, param0->unk_7C4->unk_00);
+    CutsceneModel_LoadMesh(&context->models.backlight, 60, context->graphics->narc);
 
-    ov100_021D4AC8(&param0->unk_1A4.unk_00[0], 59, param0->unk_7C4->unk_00);
-    ov100_021D4B4C(0, &param0->unk_1A4.unk_00[0], 57, param0->unk_7C4->unk_00, &param0->unk_7C4->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A4.unk_00[0], 58, param0->unk_7C4->unk_00, &param0->unk_7C4->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.guardians[0], 59, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.guardians[0], 57, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.guardians[0], 58, context->graphics->narc, &context->graphics->allocator);
 
-    ov100_021D4AC8(&param0->unk_1A4.unk_00[1], 45, param0->unk_7C4->unk_00);
-    ov100_021D4B4C(0, &param0->unk_1A4.unk_00[1], 43, param0->unk_7C4->unk_00, &param0->unk_7C4->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A4.unk_00[1], 44, param0->unk_7C4->unk_00, &param0->unk_7C4->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.guardians[1], 45, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.guardians[1], 43, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.guardians[1], 44, context->graphics->narc, &context->graphics->allocator);
 
-    ov100_021D4AC8(&param0->unk_1A4.unk_00[2], 17, param0->unk_7C4->unk_00);
-    ov100_021D4B4C(0, &param0->unk_1A4.unk_00[2], 15, param0->unk_7C4->unk_00, &param0->unk_7C4->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_1A4.unk_00[2], 16, param0->unk_7C4->unk_00, &param0->unk_7C4->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.guardians[2], 17, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.guardians[2], 15, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.guardians[2], 16, context->graphics->narc, &context->graphics->allocator);
 
-    Easy3DObject_SetVisible(&param0->unk_1A4.unk_00[0].unk_00, 1);
-    Easy3DObject_SetVisible(&param0->unk_1A4.unk_00[1].unk_00, 0);
-    Easy3DObject_SetVisible(&param0->unk_1A4.unk_00[2].unk_00, 0);
+    Easy3DObject_SetVisible(&context->models.guardians[0].object, 1);
+    Easy3DObject_SetVisible(&context->models.guardians[1].object, 0);
+    Easy3DObject_SetVisible(&context->models.guardians[2].object, 0);
 }
 
-static void ov100_021D1A24(UnkStruct_ov100_021D1808 *param0)
+static void LakeGuardiansArrival_FreeLights(LakeGuardiansArrivalContext *context)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        SysTask_Done(param0->unk_0C.unk_0C[v0].unk_40);
-        SysTask_Done(param0->unk_0C.unk_D4[v0].unk_40);
-        Sprite_DeleteAndFreeResources(param0->unk_0C.unk_0C[v0].unk_00);
-        Sprite_DeleteAndFreeResources(param0->unk_0C.unk_D4[v0].unk_00);
+    for (int i = 0; i < 3; i++) {
+        SysTask_Done(context->lights.guardianLights[i].task);
+        SysTask_Done(context->lights.orbitLights[i].task);
+        Sprite_DeleteAndFreeResources(context->lights.guardianLights[i].sprite);
+        Sprite_DeleteAndFreeResources(context->lights.orbitLights[i].sprite);
     }
 }
 
-static void ov100_021D1A54(UnkStruct_ov100_021D1808 *param0)
+static void LakeGuardiansArrival_InitLights(LakeGuardiansArrivalContext *context)
 {
-    int v0;
-    NARC *v1 = param0->unk_7C4->unk_00;
-    BgConfig *v2 = param0->unk_7C4->unk_0C;
-    SpriteSystem *v3 = param0->unk_7C4->unk_04;
-    SpriteManager *v4 = param0->unk_7C4->unk_08;
-    PaletteData *v5 = param0->unk_7C4->unk_10;
-    SpriteTemplate v6;
+    SpriteSystem *spriteSys = context->graphics->spriteSystem;
+    SpriteManager *spriteMan = context->graphics->spriteManager;
+    SpriteTemplate template;
 
-    v6.x = 0;
-    v6.y = 0;
-    v6.z = 0;
-    v6.animIdx = 0;
-    v6.priority = 0;
-    v6.plttIdx = 0;
-    v6.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-    v6.bgPriority = 2;
-    v6.vramTransfer = FALSE;
+    template.x = 0;
+    template.y = 0;
+    template.z = 0;
+    template.animIdx = 0;
+    template.priority = 0;
+    template.plttIdx = 0;
+    template.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    template.bgPriority = 2;
+    template.vramTransfer = FALSE;
 
-    v6.resources[4] = SPRITE_RESOURCE_NONE;
-    v6.resources[5] = SPRITE_RESOURCE_NONE;
+    template.resources[4] = SPRITE_RESOURCE_NONE;
+    template.resources[5] = SPRITE_RESOURCE_NONE;
 
-    v6.resources[0] = 50000;
-    v6.resources[1] = 50000;
-    v6.resources[2] = 50000;
-    v6.resources[3] = 50000;
+    template.resources[0] = 50000;
+    template.resources[1] = 50000;
+    template.resources[2] = 50000;
+    template.resources[3] = 50000;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_0C.unk_D4[v0].unk_00 = SpriteSystem_NewSprite(v3, v4, &v6);
+    for (int i = 0; i < 3; i++) {
+        context->lights.orbitLights[i].sprite = SpriteSystem_NewSprite(spriteSys, spriteMan, &template);
 
-        ManagedSprite_TickFrame(param0->unk_0C.unk_D4[v0].unk_00);
-        ManagedSprite_SetDrawFlag(param0->unk_0C.unk_D4[v0].unk_00, 0);
-        ManagedSprite_SetExplicitPaletteOffset(param0->unk_0C.unk_D4[v0].unk_00, v0);
-        ManagedSprite_SetPositionXY(param0->unk_0C.unk_D4[v0].unk_00, 0, 0);
+        ManagedSprite_TickFrame(context->lights.orbitLights[i].sprite);
+        ManagedSprite_SetDrawFlag(context->lights.orbitLights[i].sprite, 0);
+        ManagedSprite_SetExplicitPaletteOffset(context->lights.orbitLights[i].sprite, i);
+        ManagedSprite_SetPositionXY(context->lights.orbitLights[i].sprite, 0, 0);
 
-        param0->unk_0C.unk_D4[v0].unk_0C = 1;
-        param0->unk_0C.unk_D4[v0].unk_08 = v0;
-        param0->unk_0C.unk_D4[v0].unk_14 = 50;
-        param0->unk_0C.unk_D4[v0].unk_1C = v0 * 120;
-        param0->unk_0C.unk_D4[v0].unk_20 = param0->unk_0C.unk_D4[v0].unk_1C;
-        param0->unk_0C.unk_D4[v0].unk_24 = 0;
-        param0->unk_0C.unk_D4[v0].unk_28[0] = 1;
-        param0->unk_0C.unk_D4[v0].unk_28[1] = 1;
-        param0->unk_0C.unk_D4[v0].unk_28[2] = LCRNG_Next() % 10;
-        param0->unk_0C.unk_D4[v0].unk_28[3] = 0;
-        param0->unk_0C.unk_D4[v0].unk_40 = SysTask_Start(ov100_021D4438, &param0->unk_0C.unk_D4[v0], 4096 - 1);
+        context->lights.orbitLights[i].state = 1;
+        context->lights.orbitLights[i].index = i;
+        context->lights.orbitLights[i].depth = 50;
+        context->lights.orbitLights[i].orbitAngle = i * 120;
+        context->lights.orbitLights[i].driftAngle = context->lights.orbitLights[i].orbitAngle;
+        context->lights.orbitLights[i].jitterIntensity = 0;
+        context->lights.orbitLights[i].stateParams[0] = 1;
+        context->lights.orbitLights[i].stateParams[1] = 1;
+        context->lights.orbitLights[i].stateParams[2] = LCRNG_Next() % 10;
+        context->lights.orbitLights[i].stateParams[3] = 0;
+        context->lights.orbitLights[i].task = SysTask_Start(LightBall_UpdateOrbitOrApproach, &context->lights.orbitLights[i], 4096 - 1);
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        s16 v7[] = { 180, -20, 280 };
-        s16 v8[] = { 128, 190, 150 };
-        f32 v9[] = { 0.1f, 0.3f, 0.2f };
+    for (int i = 0; i < 3; i++) {
+        s16 startX[] = { 180, -20, 280 };
+        s16 startY[] = { 128, 190, 150 };
+        f32 startScale[] = { 0.1f, 0.3f, 0.2f };
 
-        if (v0 == 1) {
-            v6.bgPriority = 0;
+        if (i == 1) {
+            template.bgPriority = 0;
         } else {
-            v6.bgPriority = 2;
+            template.bgPriority = 2;
         }
 
-        param0->unk_0C.unk_0C[v0].unk_00 = SpriteSystem_NewSprite(v3, v4, &v6);
-        param0->unk_0C.unk_0C[v0].unk_04 = param0->unk_0C.unk_D4[v0].unk_00;
+        context->lights.guardianLights[i].sprite = SpriteSystem_NewSprite(spriteSys, spriteMan, &template);
+        context->lights.guardianLights[i].targetSprite = context->lights.orbitLights[i].sprite;
 
-        ManagedSprite_TickFrame(param0->unk_0C.unk_0C[v0].unk_00);
-        ManagedSprite_SetAffineOverwriteMode(param0->unk_0C.unk_0C[v0].unk_00, AFFINE_OVERWRITE_MODE_DOUBLE);
-        ManagedSprite_SetAffineScale(param0->unk_0C.unk_0C[v0].unk_00, v9[v0], v9[v0]);
-        ManagedSprite_SetExplicitPaletteOffset(param0->unk_0C.unk_0C[v0].unk_00, v0);
-        ManagedSprite_SetPositionXY(param0->unk_0C.unk_0C[v0].unk_00, v7[v0], v8[v0]);
+        ManagedSprite_TickFrame(context->lights.guardianLights[i].sprite);
+        ManagedSprite_SetAffineOverwriteMode(context->lights.guardianLights[i].sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetAffineScale(context->lights.guardianLights[i].sprite, startScale[i], startScale[i]);
+        ManagedSprite_SetExplicitPaletteOffset(context->lights.guardianLights[i].sprite, i);
+        ManagedSprite_SetPositionXY(context->lights.guardianLights[i].sprite, startX[i], startY[i]);
 
-        param0->unk_0C.unk_0C[v0].unk_0C = 0;
-        param0->unk_0C.unk_0C[v0].unk_08 = v0;
-        param0->unk_0C.unk_0C[v0].unk_14 = 50;
-        param0->unk_0C.unk_0C[v0].unk_1C = v0 * 120;
-        param0->unk_0C.unk_0C[v0].unk_20 = param0->unk_0C.unk_0C[v0].unk_1C;
-        param0->unk_0C.unk_0C[v0].unk_24 = 0;
-        param0->unk_0C.unk_0C[v0].unk_28[0] = 1;
-        param0->unk_0C.unk_0C[v0].unk_28[1] = 1;
-        param0->unk_0C.unk_0C[v0].unk_28[2] = LCRNG_Next() % 10;
-        param0->unk_0C.unk_0C[v0].unk_28[3] = 0;
-        param0->unk_0C.unk_0C[v0].unk_40 = SysTask_Start(ov100_021D4438, &param0->unk_0C.unk_0C[v0], 4096);
+        context->lights.guardianLights[i].state = 0;
+        context->lights.guardianLights[i].index = i;
+        context->lights.guardianLights[i].depth = 50;
+        context->lights.guardianLights[i].orbitAngle = i * 120;
+        context->lights.guardianLights[i].driftAngle = context->lights.guardianLights[i].orbitAngle;
+        context->lights.guardianLights[i].jitterIntensity = 0;
+        context->lights.guardianLights[i].stateParams[0] = 1;
+        context->lights.guardianLights[i].stateParams[1] = 1;
+        context->lights.guardianLights[i].stateParams[2] = LCRNG_Next() % 10;
+        context->lights.guardianLights[i].stateParams[3] = 0;
+        context->lights.guardianLights[i].task = SysTask_Start(LightBall_UpdateOrbitOrApproach, &context->lights.guardianLights[i], 4096);
     }
 }

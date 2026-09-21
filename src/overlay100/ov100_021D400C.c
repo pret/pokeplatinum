@@ -9,127 +9,127 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-static BOOL ov100_021D400C(s16 param0, s16 param1, f32 param2, f32 param3, f32 *param4, f32 *param5, f32 param6, s16 param7);
-static BOOL ov100_021D4104(UnkStruct_ov100_021D4104 *param0, s16 param1, s16 param2, f32 param3, int param4);
-static void ov100_021D41FC(UnkStruct_ov100_021D4104 *param0);
-static void ov100_021D4214(UnkStruct_ov100_021D4104 *param0);
-static void ov100_021D4264(UnkStruct_ov100_021D4104 *param0, int param1, int param2, int param3, int param4);
-static void ov100_021D42B0(UnkStruct_ov100_021D4104 *param0);
-static void ov100_021D4318(UnkStruct_ov100_021D4104 *param0);
-static void ov100_021D43BC(UnkStruct_ov100_021D4104 *param0);
+static BOOL LightBall_ComputeApproachStep(s16 targetX, s16 targetY, f32 x, f32 y, f32 *outStepX, f32 *outStepY, f32 stepSize, s16 stopDistance);
+static BOOL LightBall_ApproachTarget(LightBall *lightBall, s16 targetX, s16 targetY, f32 stepSize, int stopDistance);
+static void LightBall_ApproachStartPosition(LightBall *lightBall);
+static void LightBall_Orbit(LightBall *lightBall);
+static void LightBall_OrbitAt(LightBall *lightBall, int centerX, int centerY, int radiusX, int radiusY);
+static void LightBall_Wander(LightBall *lightBall);
+static void LightBall_Jitter(LightBall *lightBall);
+static void LightBall_UpdateDepth(LightBall *lightBall);
 
-static void (*const Unk_ov100_021D5334[])(UnkStruct_ov100_021D4104 *) = {
-    ov100_021D41FC,
-    ov100_021D4214,
-    ov100_021D42B0,
-    ov100_021D4318
+static void (*const sLightBallStateHandlers[])(LightBall *) = {
+    LightBall_ApproachStartPosition,
+    LightBall_Orbit,
+    LightBall_Wander,
+    LightBall_Jitter
 };
 
-static BOOL ov100_021D400C(s16 param0, s16 param1, f32 param2, f32 param3, f32 *param4, f32 *param5, f32 param6, s16 param7)
+static BOOL LightBall_ComputeApproachStep(s16 targetX, s16 targetY, f32 x, f32 y, f32 *outStepX, f32 *outStepY, f32 stepSize, s16 stopDistance)
 {
-    f32 v0;
-    f32 v1;
-    Vec2F32 v2;
-    Vec2F32 v3;
-    Vec2F32 v4;
+    f32 distance;
+    f32 distanceSquared;
+    Vec2F32 step;
+    Vec2F32 delta;
+    Vec2F32 offset;
 
-    v4.x = 0;
-    v4.y = 0;
+    offset.x = 0;
+    offset.y = 0;
 
-    v3.x = (param0 - param2);
-    v3.y = (param1 - param3);
+    delta.x = (targetX - x);
+    delta.y = (targetY - y);
 
-    v2.x = 0;
-    v2.y = 0;
+    step.x = 0;
+    step.y = 0;
 
-    v1 = (v3.x * v3.x) + (v3.y * v3.y);
-    v0 = FX_Sqrt(FX_F32_TO_FX32(v1));
-    v0 = FX_FX32_TO_F32(v0);
+    distanceSquared = (delta.x * delta.x) + (delta.y * delta.y);
+    distance = FX_Sqrt(FX_F32_TO_FX32(distanceSquared));
+    distance = FX_FX32_TO_F32(distance);
 
-    if ((v0 < param6) || (param7 > v0) || (v0 == 0)) {
-        return 0;
+    if ((distance < stepSize) || (stopDistance > distance) || (distance == 0)) {
+        return FALSE;
     }
 
-    v2.x = (v3.x * param6) / v0;
-    v2.y = (v3.y * param6) / v0;
+    step.x = (delta.x * stepSize) / distance;
+    step.y = (delta.y * stepSize) / distance;
 
-    *param4 = (v2.x + v4.x);
-    *param5 = (v2.y + v4.y);
+    *outStepX = (step.x + offset.x);
+    *outStepY = (step.y + offset.y);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov100_021D4104(UnkStruct_ov100_021D4104 *param0, s16 param1, s16 param2, f32 param3, int param4)
+static BOOL LightBall_ApproachTarget(LightBall *lightBall, s16 targetX, s16 targetY, f32 stepSize, int stopDistance)
 {
-    f32 v0;
-    f32 v1;
-    fx32 v2;
-    fx32 v3;
-    f32 v4;
-    f32 v5;
-    BOOL v6;
-    fx32 v7, v8;
+    f32 x;
+    f32 y;
+    fx32 posX;
+    fx32 posY;
+    f32 stepX;
+    f32 stepY;
+    BOOL moved;
+    fx32 offsetX, offsetY;
 
-    ManagedSprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v2, &v3, FX32_CONST(192));
+    ManagedSprite_GetPositionFxXYWithSubscreenOffset(lightBall->sprite, &posX, &posY, FX32_CONST(192));
 
-    v0 = FX_FX32_TO_F32(v2);
-    v1 = FX_FX32_TO_F32(v3);
+    x = FX_FX32_TO_F32(posX);
+    y = FX_FX32_TO_F32(posY);
 
-    v6 = ov100_021D400C(param1, param2, v0, v1, &v4, &v5, param3, param4);
+    moved = LightBall_ComputeApproachStep(targetX, targetY, x, y, &stepX, &stepY, stepSize, stopDistance);
 
-    if (v6) {
-        v7 = FX_F32_TO_FX32(v4);
-        v8 = FX_F32_TO_FX32(v5);
+    if (moved) {
+        offsetX = FX_F32_TO_FX32(stepX);
+        offsetY = FX_F32_TO_FX32(stepY);
 
-        param0->unk_20 += 8;
-        param0->unk_20 %= 360;
+        lightBall->driftAngle += 8;
+        lightBall->driftAngle %= 360;
 
-        v7 += (CalcSineDegrees_Wraparound(param0->unk_20) * 1);
-        v8 += (CalcCosineDegrees_Wraparound(param0->unk_20) * 1);
+        offsetX += (CalcSineDegrees_Wraparound(lightBall->driftAngle) * 1);
+        offsetY += (CalcCosineDegrees_Wraparound(lightBall->driftAngle) * 1);
 
-        ManagedSprite_OffsetPositionFxXY(param0->unk_00, v7, v8);
+        ManagedSprite_OffsetPositionFxXY(lightBall->sprite, offsetX, offsetY);
     }
 
-    return v6;
+    return moved;
 }
 
-static void ov100_021D41FC(UnkStruct_ov100_021D4104 *param0)
+static void LightBall_ApproachStartPosition(LightBall *lightBall)
 {
-    BOOL v0 = ov100_021D4104(param0, 128, 40, 5.0f, 32);
+    LightBall_ApproachTarget(lightBall, 128, 40, 5.0f, 32);
 }
 
-static void ov100_021D4214(UnkStruct_ov100_021D4104 *param0)
+static void LightBall_Orbit(LightBall *lightBall)
 {
-    fx32 v0, v1;
+    fx32 posX, posY;
 
-    param0->unk_1C += 8;
-    param0->unk_1C %= 360;
+    lightBall->orbitAngle += 8;
+    lightBall->orbitAngle %= 360;
 
-    v0 = (128 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(param0->unk_1C) * 64);
-    v1 = (48 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(param0->unk_1C) * 24);
+    posX = (128 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(lightBall->orbitAngle) * 64);
+    posY = (48 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(lightBall->orbitAngle) * 24);
 
-    ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v0, v1, FX32_CONST(192));
+    ManagedSprite_SetPositionFxXYWithSubscreenOffset(lightBall->sprite, posX, posY, FX32_CONST(192));
 
-    param0->unk_14 = v1 / FX32_ONE;
+    lightBall->depth = posY / FX32_ONE;
 }
 
-static void ov100_021D4264(UnkStruct_ov100_021D4104 *param0, int param1, int param2, int param3, int param4)
+static void LightBall_OrbitAt(LightBall *lightBall, int centerX, int centerY, int radiusX, int radiusY)
 {
-    fx32 v0, v1;
+    fx32 posX, posY;
 
-    param0->unk_1C += 8;
-    param0->unk_1C %= 360;
+    lightBall->orbitAngle += 8;
+    lightBall->orbitAngle %= 360;
 
-    v0 = (param1 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(param0->unk_1C) * param3);
-    v1 = (param2 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(param0->unk_1C) * param4);
+    posX = (centerX << FX32_SHIFT) + (CalcSineDegrees_Wraparound(lightBall->orbitAngle) * radiusX);
+    posY = (centerY << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(lightBall->orbitAngle) * radiusY);
 
-    ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v0, v1, FX32_CONST(192));
+    ManagedSprite_SetPositionFxXYWithSubscreenOffset(lightBall->sprite, posX, posY, FX32_CONST(192));
 }
 
-static void ov100_021D42B0(UnkStruct_ov100_021D4104 *param0)
+static void LightBall_Wander(LightBall *lightBall)
 {
-    fx32 v0, v1;
-    static s16 v2[][2] = {
+    fx32 posX, posY;
+    static s16 wanderPoints[][2] = {
         { 97, 80 },
         { 87, 106 },
         { 102, 94 },
@@ -141,103 +141,97 @@ static void ov100_021D42B0(UnkStruct_ov100_021D4104 *param0)
         { 168, 123 },
         { 108, 93 },
     };
-    BOOL v3 = ov100_021D4104(param0, v2[param0->unk_28[2]][0], v2[param0->unk_28[2]][1], 3.0f, 10);
+    BOOL moved = LightBall_ApproachTarget(lightBall, wanderPoints[lightBall->stateParams[2]][0], wanderPoints[lightBall->stateParams[2]][1], 3.0f, 10);
 
-    if (v3 == 0) {
-        param0->unk_28[2]++;
-        param0->unk_28[2] %= NELEMS(v2);
-        param0->unk_28[2] = LCRNG_Next() % NELEMS(v2);
-        param0->unk_0C = 3;
+    if (moved == 0) {
+        lightBall->stateParams[2]++;
+        lightBall->stateParams[2] %= NELEMS(wanderPoints);
+        lightBall->stateParams[2] = LCRNG_Next() % NELEMS(wanderPoints);
+        lightBall->state = 3;
     }
 
-    ManagedSprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v0, &v1, FX32_CONST(192));
+    ManagedSprite_GetPositionFxXYWithSubscreenOffset(lightBall->sprite, &posX, &posY, FX32_CONST(192));
 
-    param0->unk_14 = (v1 / FX32_ONE);
+    lightBall->depth = (posY / FX32_ONE);
 }
 
-static void ov100_021D4318(UnkStruct_ov100_021D4104 *param0)
+static void LightBall_Jitter(LightBall *lightBall)
 {
-    fx32 v0, v1;
+    fx32 posX, posY;
 
-    param0->unk_20 += 8;
-    param0->unk_20 %= 360;
+    lightBall->driftAngle += 8;
+    lightBall->driftAngle %= 360;
 
-    if (param0->unk_20 < 12) {
-        param0->unk_24++;
-        param0->unk_24 %= 3;
-        param0->unk_28[0] = (LCRNG_Next() % param0->unk_24) + 1;
-        param0->unk_28[1] = (LCRNG_Next() % param0->unk_24) + 1;
-        param0->unk_0C = 2;
+    if (lightBall->driftAngle < 12) {
+        lightBall->jitterIntensity++;
+        lightBall->jitterIntensity %= 3;
+        lightBall->stateParams[0] = (LCRNG_Next() % lightBall->jitterIntensity) + 1;
+        lightBall->stateParams[1] = (LCRNG_Next() % lightBall->jitterIntensity) + 1;
+        lightBall->state = 2;
     }
 
-    ManagedSprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v0, &v1, FX32_CONST(192));
+    ManagedSprite_GetPositionFxXYWithSubscreenOffset(lightBall->sprite, &posX, &posY, FX32_CONST(192));
 
-    v0 += (CalcSineDegrees_Wraparound(param0->unk_20) * (3 * param0->unk_28[0]));
-    v1 += (CalcCosineDegrees_Wraparound(param0->unk_20) * (3 * param0->unk_28[1]));
+    posX += (CalcSineDegrees_Wraparound(lightBall->driftAngle) * (3 * lightBall->stateParams[0]));
+    posY += (CalcCosineDegrees_Wraparound(lightBall->driftAngle) * (3 * lightBall->stateParams[1]));
 
-    ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v0, v1, FX32_CONST(192));
+    ManagedSprite_SetPositionFxXYWithSubscreenOffset(lightBall->sprite, posX, posY, FX32_CONST(192));
 
-    param0->unk_14 = v1 / FX32_ONE;
+    lightBall->depth = posY / FX32_ONE;
 }
 
-static void ov100_021D43BC(UnkStruct_ov100_021D4104 *param0)
+static void LightBall_UpdateDepth(LightBall *lightBall)
 {
-    f32 v0;
+    f32 scale;
 
-    v0 = param0->unk_14;
-    v0 /= 100.0f;
-    v0 = 0.8f - v0;
+    scale = lightBall->depth;
+    scale /= 100.0f;
+    scale = 0.8f - scale;
 
-    if (v0 <= 0.2f) {
-        v0 = 0.2f;
+    if (scale <= 0.2f) {
+        scale = 0.2f;
     }
 
-    if (v0 >= 0.6f) {
-        v0 = 0.6f;
+    if (scale >= 0.6f) {
+        scale = 0.6f;
     }
 
-    ManagedSprite_SetAffineScale(param0->unk_00, v0, v0);
-    ManagedSprite_SetPriority(param0->unk_00, param0->unk_14);
+    ManagedSprite_SetAffineScale(lightBall->sprite, scale, scale);
+    ManagedSprite_SetPriority(lightBall->sprite, lightBall->depth);
 }
 
-void ov100_021D4414(SysTask *param0, void *param1)
+void LightBall_Update(SysTask *unused, void *param)
 {
-    UnkStruct_ov100_021D4104 *v0 = param1;
+    LightBall *lightBall = param;
 
-    Unk_ov100_021D5334[v0->unk_0C](v0);
-
-    ov100_021D43BC(v0);
-    ManagedSprite_TickTwoFrames(v0->unk_00);
+    sLightBallStateHandlers[lightBall->state](lightBall);
+    LightBall_UpdateDepth(lightBall);
+    ManagedSprite_TickTwoFrames(lightBall->sprite);
 }
 
-void ov100_021D4438(SysTask *param0, void *param1)
+void LightBall_UpdateOrbitOrApproach(SysTask *unused, void *param)
 {
-    UnkStruct_ov100_021D4104 *v0 = param1;
+    LightBall *lightBall = param;
 
-    if (v0->unk_0C) {
-        ov100_021D4264(v0, 128, 48 - 12, 32, 12);
+    if (lightBall->state) {
+        LightBall_OrbitAt(lightBall, 128, 48 - 12, 32, 12);
     } else {
-        s16 v1, v2;
-        BOOL v3;
+        s16 targetX, targetY;
+        BOOL moved;
 
-        if (v0->unk_04 && v0->unk_3C) {
-            ManagedSprite_GetPositionXY(v0->unk_04, &v1, &v2);
+        if (lightBall->targetSprite && lightBall->followTarget) {
+            ManagedSprite_GetPositionXY(lightBall->targetSprite, &targetX, &targetY);
+            moved = LightBall_ApproachTarget(lightBall, targetX, targetY, 3.0f, 1);
+            f32 scaleX, scaleY;
+            ManagedSprite_GetAffineScale(lightBall->sprite, &scaleX, &scaleY);
 
-            v3 = ov100_021D4104(v0, v1, v2, 3.0f, 1);
-
-            {
-                f32 v4, v5;
-
-                ManagedSprite_GetAffineScale(v0->unk_00, &v4, &v5);
-
-                if (v4 > 0.10f) {
-                    v4 = v4 - 0.002f;
-                }
-
-                ManagedSprite_SetAffineScale(v0->unk_00, v4, v4);
+            if (scaleX > 0.10f) {
+                scaleX = scaleX - 0.002f;
             }
+
+            ManagedSprite_SetAffineScale(lightBall->sprite, scaleX, scaleX);
         }
     }
 
-    ManagedSprite_TickTwoFrames(v0->unk_00);
+    ManagedSprite_TickTwoFrames(lightBall->sprite);
 }

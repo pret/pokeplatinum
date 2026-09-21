@@ -3,17 +3,17 @@
 
 #include "overlay100/struct_ov100_021D49B4.h"
 
-typedef struct {
-    int unk_00;
-    UnkStruct_ov100_021D49B4 unk_04;
-    UnkStruct_ov100_021D49B4 unk_18C;
-    UnkStruct_ov100_021D49B4 unk_314;
-    UnkStruct_ov100_021D49B4 unk_49C;
-    UnkStruct_ov100_021D49B4 unk_624[2];
-    UnkStruct_ov100_021D49B4 unk_934[5];
-    UnkStruct_ov100_021D49B4 unk_10DC[2];
-    UnkStruct_ov100_021D49B4 unk_13EC[2];
-    UnkStruct_ov100_021D49B4 unk_16FC[4];
-} UnkStruct_ov100_021D1C98_sub1;
+typedef struct CastModels {
+    int unused_00;
+    CutsceneModel unk_04; // static background prop, unidentified; present and untouched in both stages
+    CutsceneModel distortionRipple;
+    CutsceneModel shockwave;
+    CutsceneModel dropletSplash;
+    CutsceneModel summonBubble[2];
+    CutsceneModel unk_934[5]; // Dialga/Palkia stage: [0]/[1] are the twin whirlpools; Giratina stage: [0..4] are its 5-stage rise/transform sequence
+    CutsceneModel unk_10DC[2]; // Dialga/Palkia stage: the falling summon balls; Giratina stage: the shadow pool's growth + eyes-appearing effect
+    CutsceneModel trainers[2]; // 0 = player, 1 = Cyrus
+    CutsceneModel shadow[4];
+} CastModels;
 
 #endif // POKEPLATINUM_STRUCT_OV100_021D1C98_SUB1_H

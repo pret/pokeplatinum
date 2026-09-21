@@ -8,114 +8,110 @@
 
 #include "easy3d_object.h"
 
-void ov100_021D44C0(UnkStruct_ov100_021D49B4 *param0, UnkStruct_ov100_021D54D0 *param1);
-void ov100_021D4510(UnkStruct_ov100_021D49B4 *param0);
-void ov100_021D45A4(UnkStruct_ov100_021D49B4 *param0);
-
-static const int Unk_ov100_021D5344[][5] = {
-    { 0x1, 0x2, 0x3, 0x2, 0xFF },
-    { 0x5, 0x6, 0x7, 0x6, 0xFF },
-    { 0x9, 0xA, 0xB, 0xA, 0xFF },
-    { 0xD, 0xE, 0xF, 0xE, 0xFF },
-    { 0x0, 0x0, 0x0, 0x0, 0xFF },
-    { 0x4, 0x4, 0x4, 0x4, 0xFF },
-    { 0xA, 0xA, 0xA, 0xA, 0xFF },
-    { 0xE, 0xE, 0xE, 0xE, 0xFF },
-    { 0x0, 0x0, 0x0, 0x0, 0xFF },
-    { 0x0, 0x1, 0x2, 0x3, 0xFF },
-    { 0x4, 0x5, 0x6, 0x7, 0xFF },
-    { 0x8, 0x9, 0xA, 0xB, 0xFF },
-    { 0xC, 0xD, 0xE, 0xF, 0xFF }
+static const int sPoseAnimFrames[][5] = {
+    { 1, 2, 3, 2, 0xFF },
+    { 5, 6, 7, 6, 0xFF },
+    { 9, 10, 11, 10, 0xFF },
+    { 13, 14, 15, 14, 0xFF },
+    { 0, 0, 0, 0, 0xFF },
+    { 4, 4, 4, 4, 0xFF },
+    { 10, 10, 10, 10, 0xFF },
+    { 14, 14, 14, 14, 0xFF },
+    { 0, 0, 0, 0, 0xFF },
+    { 0, 1, 2, 3, 0xFF },
+    { 4, 5, 6, 7, 0xFF },
+    { 8, 9, 10, 11, 0xFF },
+    { 12, 13, 14, 15, 0xFF }
 };
 
-void ov100_021D44C0(UnkStruct_ov100_021D49B4 *param0, UnkStruct_ov100_021D54D0 *param1)
+void PoseSequence_Start(CutsceneModel *model, PoseStep *step)
 {
-    param0->unk_160 = 1;
-    param0->unk_184 = param1;
-    param0->unk_180 = 0;
-    param0->unk_178 = param1[param0->unk_180].unk_04;
-    param0->unk_17C = param1[param0->unk_180].unk_04;
-    param0->unk_158 = param1[param0->unk_180].unk_00;
+    model->playing = 1;
+    model->poseSteps = step;
+    model->poseStepIndex = 0;
+    model->poseRepeatsLeft = step[model->poseStepIndex].repeatCount;
+    model->poseRepeatCount = step[model->poseStepIndex].repeatCount;
+    model->pose = step[model->poseStepIndex].pose;
 }
 
-void ov100_021D4510(UnkStruct_ov100_021D49B4 *param0)
+void PoseSequence_UpdateAnimFrame(CutsceneModel *model)
 {
-    int v0;
-    int v1;
-    int v2;
-    fx32 v3;
-    fx32 v4 = Easy3DAnim_GetFrame(&param0->unk_88[0]);
-    fx32 v5;
+    int currentFrameIndex;
+    int nextFrameIndex;
+    int targetAnimFrame;
+    fx32 newFrame;
+    fx32 currentFrame = Easy3DAnim_GetFrame(&model->anims[0]);
+    fx32 nextFrame;
 
-    v0 = v4 >> FX32_SHIFT;
-    v0 %= 4;
-    v5 = v4 + param0->unk_154;
-    v1 = v5 >> FX32_SHIFT;
-    v1 %= 4;
-    v2 = Unk_ov100_021D5344[param0->unk_158 - 1][param0->unk_15C];
+    currentFrameIndex = currentFrame >> FX32_SHIFT;
+    currentFrameIndex %= 4;
+    nextFrame = currentFrame + model->animSpeed;
+    nextFrameIndex = nextFrame >> FX32_SHIFT;
+    nextFrameIndex %= 4;
+    targetAnimFrame = sPoseAnimFrames[model->pose - 1][model->poseFrame];
 
-    if (v2 == 0xFF) {
+    if (targetAnimFrame == 0xFF) {
         return;
     }
 
-    if (v1 != v0) {
-        param0->unk_15C++;
-        v3 = FX32_CONST(v2 * 4);
+    if (nextFrameIndex != currentFrameIndex) {
+        model->poseFrame++;
+        newFrame = FX32_CONST(targetAnimFrame * 4);
     } else {
-        v3 = v5;
+        newFrame = nextFrame;
     }
 
-    Easy3DAnim_SetFrame(&param0->unk_88[0], v3);
+    Easy3DAnim_SetFrame(&model->anims[0], newFrame);
 }
 
-void ov100_021D45A4(UnkStruct_ov100_021D49B4 *param0)
+void PoseSequence_UpdateMovement(CutsceneModel *model)
 {
-    int v0;
-    UnkStruct_ov100_021D54D0 *v1 = param0->unk_184;
+    int stepPose;
+    PoseStep *step = model->poseSteps;
 
-    if ((param0->unk_178 == 0xFF) || (param0->unk_180 == 0xFF)) {
+    if ((model->poseRepeatsLeft == 0xFF) || (model->poseStepIndex == 0xFF)) {
         return;
     }
 
-    v0 = v1[param0->unk_180].unk_00;
+    stepPose = step[model->poseStepIndex].pose;
 
-    if (v0 == 0) {
-        param0->unk_160 = 0;
-        param0->unk_180 = 0xFF;
-        param0->unk_178 = 0xFF;
-        param0->unk_17C = 0xFF;
+    if (stepPose == CUTSCENE_MODEL_POSE_NONE) {
+        model->playing = 0;
+        model->poseStepIndex = 0xFF;
+        model->poseRepeatsLeft = 0xFF;
+        model->poseRepeatCount = 0xFF;
     } else {
-        if (param0->unk_15C >= 4) {
-            param0->unk_178--;
-            param0->unk_15C = 0;
+        if (model->poseFrame >= 4) {
+            model->poseRepeatsLeft--;
+            model->poseFrame = 0;
 
-            if (param0->unk_178 == 0) {
-                param0->unk_180++;
-                param0->unk_158 = v1[param0->unk_180].unk_00;
-                param0->unk_178 = v1[param0->unk_180].unk_04;
-                param0->unk_17C = v1[param0->unk_180].unk_04;
+            if (model->poseRepeatsLeft == 0) {
+                model->poseStepIndex++;
+                model->pose = step[model->poseStepIndex].pose;
+                model->poseRepeatsLeft = step[model->poseStepIndex].repeatCount;
+                model->poseRepeatCount = step[model->poseStepIndex].repeatCount;
 
-                if (param0->unk_158 == 0) {
-                    param0->unk_160 = 0;
-                    param0->unk_180 = 0xFF;
-                    param0->unk_178 = 0xFF;
-                    param0->unk_17C = 0xFF;
+                if (model->pose == CUTSCENE_MODEL_POSE_NONE) {
+                    model->playing = 0;
+                    model->poseStepIndex = 0xFF;
+                    model->poseRepeatsLeft = 0xFF;
+                    model->poseRepeatCount = 0xFF;
                 }
             }
         } else {
-            if ((param0->unk_15C == 0) && (param0->unk_178 == param0->unk_17C)) {
+            if ((model->poseFrame == 0) && (model->poseRepeatsLeft == model->poseRepeatCount)) {
                 return;
             }
 
-            switch (param0->unk_158) {
-            case 1:
-            case 2:
-            case 9:
-                param0->unk_00.position.z -= v1[param0->unk_180].unk_08;
+            switch (model->pose) {
+            case CUTSCENE_MODEL_POSE_WALK_BACKWARD:
+            case CUTSCENE_MODEL_POSE_STEP_BACK_2:
+            case CUTSCENE_MODEL_POSE_PUSHED_BACK:
+                model->object.position.z -= step[model->poseStepIndex].stepDistance;
                 break;
-            case 4:
-            case 3:
-                param0->unk_00.position.x += v1[param0->unk_180].unk_08;
+            case CUTSCENE_MODEL_POSE_STEP_SIDE_2:
+            case CUTSCENE_MODEL_POSE_STEP_SIDE_1:
+                model->object.position.x += step[model->poseStepIndex].stepDistance;
                 break;
             }
         }

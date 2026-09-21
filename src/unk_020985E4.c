@@ -23,11 +23,11 @@ FS_EXTERN_OVERLAY(overlay100);
 void sub_020985E4(FieldTask *param0, SaveData *saveData)
 {
     UnkStruct_0209862C *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0209862C));
-    UnkStruct_020985E4 *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_020985E4));
+    SpearPillarCutsceneArgs *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(SpearPillarCutsceneArgs));
 
     v1->options = SaveData_GetOptions(saveData);
-    v1->unk_08 = SaveData_GetTrainerInfo(saveData);
-    v1->unk_00 = TrainerInfo_Gender(v1->unk_08);
+    v1->trainerInfo = SaveData_GetTrainerInfo(saveData);
+    v1->playerGender = TrainerInfo_Gender(v1->trainerInfo);
 
     v0->unk_00 = 0;
     v0->unk_04 = v1;
@@ -51,9 +51,9 @@ BOOL sub_0209862C(FieldTask *param0)
 
         {
             static const ApplicationManagerTemplate v2 = {
-                ov100_021D0D80,
-                ov100_021D0EA8,
-                ov100_021D0F44,
+                SpearPillarCutscene_Init,
+                SpearPillarCutscene_Main,
+                SpearPillarCutscene_Exit,
                 FS_OVERLAY_ID(overlay100)
             };
 

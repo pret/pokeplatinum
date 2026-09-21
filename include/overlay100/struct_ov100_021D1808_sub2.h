@@ -3,9 +3,9 @@
 
 #include "overlay100/struct_ov100_021D49B4.h"
 
-typedef struct {
-    UnkStruct_ov100_021D49B4 unk_00[3];
-    UnkStruct_ov100_021D49B4 unk_498;
-} UnkStruct_ov100_021D1808_sub2;
+typedef struct LakeGuardianModels {
+    CutsceneModel guardians[3];
+    CutsceneModel backlight;
+} LakeGuardianModels;
 
 #endif // POKEPLATINUM_STRUCT_OV100_021D1808_SUB2_H

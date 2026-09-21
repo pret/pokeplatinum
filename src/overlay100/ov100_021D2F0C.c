@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/species.h"
 
 #include "overlay100/ov100_021D46C8.h"
 #include "overlay100/ov100_021D4E04.h"
@@ -30,320 +31,327 @@
 #include "trainer_info.h"
 #include "unk_0202419C.h"
 
-static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0);
-static void ov100_021D3400(UnkStruct_ov100_021D3084 *param0);
-static void ov100_021D34C0(UnkStruct_ov100_021D3084 *param0);
-static void ov100_021D3504(Camera *camera, VecFx32 *param1);
-static void ov100_021D3558(UnkStruct_ov100_021D3084 *param0);
-void *ov100_021D3620(UnkStruct_ov100_021D4DD8 *param0);
-BOOL ov100_021D39E4(void *param0);
-BOOL ov100_021D3FD4(void *param0);
+enum DialgaPalkiaArrivalState {
+    DIALGA_PALKIA_ARRIVAL_STATE_WAIT_FADE_IN,
+    DIALGA_PALKIA_ARRIVAL_STATE_PAN_CAMERA,
+    DIALGA_PALKIA_ARRIVAL_STATE_WAIT_PAN_CAMERA,
+    DIALGA_PALKIA_ARRIVAL_STATE_WAIT_INTRODUCE_DIALGA,
+    DIALGA_PALKIA_ARRIVAL_STATE_WAIT_INTRODUCE_PALKIA,
+    DIALGA_PALKIA_ARRIVAL_STATE_WAIT_PALKIA_BALL_DELAY,
+    DIALGA_PALKIA_ARRIVAL_STATE_WAIT_DIALGA_BALL_LAND,
+    DIALGA_PALKIA_ARRIVAL_STATE_WAIT_PALKIA_BALL_LAND,
+    DIALGA_PALKIA_ARRIVAL_STATE_WAIT_SUMMON_BUBBLE_DELAY,
+    DIALGA_PALKIA_ARRIVAL_STATE_FLASH_PULSE_1,
+    DIALGA_PALKIA_ARRIVAL_STATE_FLASH_PULSE_2,
+    DIALGA_PALKIA_ARRIVAL_STATE_FLASH_PULSE_3,
+    DIALGA_PALKIA_ARRIVAL_STATE_FADE_FROM_FLASH,
+    DIALGA_PALKIA_ARRIVAL_STATE_GROW_WHIRLPOOL,
+    DIALGA_PALKIA_ARRIVAL_STATE_WAIT_CREATION_SPEECH,
+    DIALGA_PALKIA_ARRIVAL_STATE_SHRINK_WHIRLPOOL,
+    DIALGA_PALKIA_ARRIVAL_STATE_WAIT_FADE_OUT,
+    DIALGA_PALKIA_ARRIVAL_STATE_DONE,
+};
 
-static void ov100_021D2F0C(BgConfig *param0, PaletteData *param1)
+enum DialgaPalkiaArrivalCameraShakeStep {
+    DIALGA_PALKIA_ARRIVAL_CAMERA_SHAKE_STEP_START_PAN,
+    DIALGA_PALKIA_ARRIVAL_CAMERA_SHAKE_STEP_WAIT_PAN,
+};
+
+enum DialgaPalkiaArrivalSummonBubbleStep {
+    DIALGA_PALKIA_ARRIVAL_SUMMON_BUBBLE_STEP_REVEAL,
+    DIALGA_PALKIA_ARRIVAL_SUMMON_BUBBLE_STEP_GROW,
+};
+
+enum DialgaPalkiaArrivalExitState {
+    DIALGA_PALKIA_ARRIVAL_EXIT_STATE_RELEASE_MODELS,
+};
+
+static void DialgaPalkiaArrival_InitCastModels(DialgaPalkiaArrivalContext *context);
+static void DialgaPalkiaArrival_ReleaseModels(DialgaPalkiaArrivalContext *context);
+static void DialgaPalkiaArrival_ReleaseFallingBalls(DialgaPalkiaArrivalContext *context);
+static void DialgaPalkiaArrival_InitCamera(Camera *camera, VecFx32 *target);
+static void DialgaPalkiaArrival_UpdateScene(DialgaPalkiaArrivalContext *context);
+
+static void DialgaPalkiaArrival_InitSubScreenBackground(BgConfig *bgConfig, PaletteData *plttData)
 {
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, param0, 4, 0, 0, 1, HEAP_ID_111);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, param0, 4, 0, 0, 1, HEAP_ID_111);
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__POKETCH, 12, HEAP_ID_111, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, bgConfig, 4, 0, 0, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, bgConfig, 4, 0, 0, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__POKETCH, 12, HEAP_ID_SPEAR_PILLAR_CUTSCENE, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 0);
 }
 
-static void ov100_021D2F64(UnkStruct_ov100_021D3084 *param0)
+static void DialgaPalkiaArrival_InitWhirlpool(DialgaPalkiaArrivalContext *context)
 {
-    NARC *v0 = param0->unk_1D28->unk_00;
-    BgConfig *v1 = param0->unk_1D28->unk_0C;
-    SpriteSystem *v2 = param0->unk_1D28->unk_04;
-    SpriteManager *v3 = param0->unk_1D28->unk_08;
-    PaletteData *v4 = param0->unk_1D28->unk_10;
+    CutsceneModel_LoadMesh(&context->models.unk_934[0], 84, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.unk_934[0], 82, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.unk_934[0], 83, context->graphics->narc, &context->graphics->allocator);
+    Easy3DObject_SetPosition(&context->models.unk_934[0].object, FX32_CONST(-48), FX32_CONST(-5), FX32_CONST(-70));
 
-    ov100_021D4AC8(&param0->unk_0C.unk_934[0], 84, param0->unk_1D28->unk_00);
-    ov100_021D4B4C(0, &param0->unk_0C.unk_934[0], 82, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_0C.unk_934[0], 83, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    Easy3DObject_SetPosition(&param0->unk_0C.unk_934[0].unk_00, FX32_CONST(-48), FX32_CONST(-5), FX32_CONST(-70));
+    context->models.unk_934[0].playing = 0;
 
-    param0->unk_0C.unk_934[0].unk_160 = 0;
+    CutsceneModel_CloneMesh(&context->models.unk_934[0], &context->models.unk_934[1], 84, context->graphics->narc);
+    CutsceneModel_CloneAnim(0, &context->models.unk_934[0], &context->models.unk_934[1], 82, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_CloneAnim(1, &context->models.unk_934[0], &context->models.unk_934[1], 83, context->graphics->narc, &context->graphics->allocator);
+    Easy3DObject_SetPosition(&context->models.unk_934[1].object, FX32_CONST(+48), FX32_CONST(-5), FX32_CONST(-70));
 
-    ov100_021D4B10(&param0->unk_0C.unk_934[0], &param0->unk_0C.unk_934[1], 84, param0->unk_1D28->unk_00);
-    ov100_021D4BA0(0, &param0->unk_0C.unk_934[0], &param0->unk_0C.unk_934[1], 82, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    ov100_021D4BA0(1, &param0->unk_0C.unk_934[0], &param0->unk_0C.unk_934[1], 83, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    Easy3DObject_SetPosition(&param0->unk_0C.unk_934[1].unk_00, FX32_CONST(+48), FX32_CONST(-5), FX32_CONST(-70));
+    context->models.unk_934[1].playing = 0;
+    context->models.unk_934[0].scale = FX32_CONST(0.1);
+    context->models.unk_934[1].scale = FX32_CONST(0.1);
 
-    param0->unk_0C.unk_934[1].unk_160 = 0;
-    param0->unk_0C.unk_934[0].unk_150 = FX32_CONST(0.1);
-    param0->unk_0C.unk_934[1].unk_150 = FX32_CONST(0.1);
-
-    Easy3DObject_SetScale(&param0->unk_0C.unk_934[0].unk_00, param0->unk_0C.unk_934[0].unk_150, FX32_CONST(1.0), param0->unk_0C.unk_934[0].unk_150);
-    Easy3DObject_SetScale(&param0->unk_0C.unk_934[1].unk_00, param0->unk_0C.unk_934[1].unk_150, FX32_CONST(1.0), param0->unk_0C.unk_934[1].unk_150);
+    Easy3DObject_SetScale(&context->models.unk_934[0].object, context->models.unk_934[0].scale, FX32_CONST(1.0), context->models.unk_934[0].scale);
+    Easy3DObject_SetScale(&context->models.unk_934[1].object, context->models.unk_934[1].scale, FX32_CONST(1.0), context->models.unk_934[1].scale);
 }
 
-static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0)
+static void DialgaPalkiaArrival_InitCastModels(DialgaPalkiaArrivalContext *context)
 {
-    NARC *v0 = param0->unk_1D28->unk_00;
-    BgConfig *v1 = param0->unk_1D28->unk_0C;
-    SpriteSystem *v2 = param0->unk_1D28->unk_04;
-    SpriteManager *v3 = param0->unk_1D28->unk_08;
-    PaletteData *v4 = param0->unk_1D28->unk_10;
+    CutsceneModel_LoadMesh(&context->models.unk_04, 46, context->graphics->narc);
+    CutsceneModel_LoadMesh(&context->models.shockwave, 24, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.shockwave, 22, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.shockwave, 23, context->graphics->narc, &context->graphics->allocator);
 
-    ov100_021D4AC8(&param0->unk_0C.unk_04, 46, param0->unk_1D28->unk_00);
-    ov100_021D4AC8(&param0->unk_0C.unk_314, 24, param0->unk_1D28->unk_00);
-    ov100_021D4B4C(0, &param0->unk_0C.unk_314, 22, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_0C.unk_314, 23, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.unk_10DC[0], 79, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.unk_10DC[0], 77, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.unk_10DC[0], 78, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(2, &context->models.unk_10DC[0], 80, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(3, &context->models.unk_10DC[0], 81, context->graphics->narc, &context->graphics->allocator);
+    Easy3DObject_SetPosition(&context->models.unk_10DC[0].object, FX32_CONST(-48), FX32_CONST(-10), FX32_CONST(-70));
 
-    ov100_021D4AC8(&param0->unk_0C.unk_10DC[0], 79, param0->unk_1D28->unk_00);
-    ov100_021D4B4C(0, &param0->unk_0C.unk_10DC[0], 77, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_0C.unk_10DC[0], 78, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    ov100_021D4B4C(2, &param0->unk_0C.unk_10DC[0], 80, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    ov100_021D4B4C(3, &param0->unk_0C.unk_10DC[0], 81, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    Easy3DObject_SetPosition(&param0->unk_0C.unk_10DC[0].unk_00, FX32_CONST(-48), FX32_CONST(-10), FX32_CONST(-70));
+    context->models.unk_10DC[0].playing = 0;
+    context->models.unk_10DC[0].useAllAnimTracks = 0;
 
-    param0->unk_0C.unk_10DC[0].unk_160 = 0;
-    param0->unk_0C.unk_10DC[0].unk_170 = 0;
+    CutsceneModel_LoadMesh(&context->models.unk_10DC[1], 79, context->graphics->narc);
+    CutsceneModel_LoadAnim(0, &context->models.unk_10DC[1], 77, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(1, &context->models.unk_10DC[1], 78, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(2, &context->models.unk_10DC[1], 80, context->graphics->narc, &context->graphics->allocator);
+    CutsceneModel_LoadAnim(3, &context->models.unk_10DC[1], 81, context->graphics->narc, &context->graphics->allocator);
+    Easy3DObject_SetPosition(&context->models.unk_10DC[1].object, FX32_CONST(+48), FX32_CONST(-10), FX32_CONST(-70));
 
-    ov100_021D4AC8(&param0->unk_0C.unk_10DC[1], 79, param0->unk_1D28->unk_00);
-    ov100_021D4B4C(0, &param0->unk_0C.unk_10DC[1], 77, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    ov100_021D4B4C(1, &param0->unk_0C.unk_10DC[1], 78, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    ov100_021D4B4C(2, &param0->unk_0C.unk_10DC[1], 80, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    ov100_021D4B4C(3, &param0->unk_0C.unk_10DC[1], 81, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
-    Easy3DObject_SetPosition(&param0->unk_0C.unk_10DC[1].unk_00, FX32_CONST(+48), FX32_CONST(-10), FX32_CONST(-70));
+    context->models.unk_10DC[1].playing = 0;
+    context->models.unk_10DC[1].useAllAnimTracks = 0;
 
-    param0->unk_0C.unk_10DC[1].unk_160 = 0;
-    param0->unk_0C.unk_10DC[1].unk_170 = 0;
-
-    {
-        int v5;
-
-        for (v5 = 0; v5 < 4; v5++) {
-            ov100_021D4AC8(&param0->unk_0C.unk_16FC[v5], 65, param0->unk_1D28->unk_00);
-
-            Easy3DObject_SetScale(&param0->unk_0C.unk_16FC[v5].unk_00, FX32_CONST(1.2), FX32_CONST(1.0), FX32_CONST(1.2));
-        }
+    for (int i = 0; i < 4; i++) {
+        CutsceneModel_LoadMesh(&context->models.shadow[i], 65, context->graphics->narc);
+        Easy3DObject_SetScale(&context->models.shadow[i].object, FX32_CONST(1.2), FX32_CONST(1.0), FX32_CONST(1.2));
     }
 
-    ov100_021D4AC8(&param0->unk_0C.unk_624[0], 66, param0->unk_1D28->unk_00);
-    Easy3DObject_SetPosition(&param0->unk_0C.unk_624[0].unk_00, FX32_CONST(-50), FX32_CONST(+0), FX32_CONST(-50));
-    ov100_021D4B4C(0, &param0->unk_0C.unk_624[0], 67, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.summonBubble[0], 66, context->graphics->narc);
+    Easy3DObject_SetPosition(&context->models.summonBubble[0].object, FX32_CONST(-50), FX32_CONST(+0), FX32_CONST(-50));
+    CutsceneModel_LoadAnim(0, &context->models.summonBubble[0], 67, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_0C.unk_624[0].unk_160 = 1;
-    param0->unk_0C.unk_624[0].unk_164 = 1;
-    param0->unk_0C.unk_624[0].unk_154 = FX32_HALF;
+    context->models.summonBubble[0].playing = 1;
+    context->models.summonBubble[0].looping = 1;
+    context->models.summonBubble[0].animSpeed = FX32_HALF;
 
-    Easy3DObject_SetVisible(&param0->unk_0C.unk_624[0].unk_00, 0);
-    Easy3DObject_SetVisible(&param0->unk_0C.unk_16FC[0].unk_00, 0);
+    Easy3DObject_SetVisible(&context->models.summonBubble[0].object, 0);
+    Easy3DObject_SetVisible(&context->models.shadow[0].object, 0);
 
-    ov100_021D4AC8(&param0->unk_0C.unk_624[1], 68, param0->unk_1D28->unk_00);
-    Easy3DObject_SetPosition(&param0->unk_0C.unk_624[1].unk_00, FX32_CONST(+50), FX32_CONST(+0), FX32_CONST(-50));
-    ov100_021D4B4C(0, &param0->unk_0C.unk_624[1], 69, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.summonBubble[1], 68, context->graphics->narc);
+    Easy3DObject_SetPosition(&context->models.summonBubble[1].object, FX32_CONST(+50), FX32_CONST(+0), FX32_CONST(-50));
+    CutsceneModel_LoadAnim(0, &context->models.summonBubble[1], 69, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_0C.unk_624[1].unk_160 = 1;
-    param0->unk_0C.unk_624[1].unk_164 = 1;
-    param0->unk_0C.unk_624[1].unk_154 = FX32_HALF;
+    context->models.summonBubble[1].playing = 1;
+    context->models.summonBubble[1].looping = 1;
+    context->models.summonBubble[1].animSpeed = FX32_HALF;
 
-    Easy3DObject_SetVisible(&param0->unk_0C.unk_624[1].unk_00, 0);
-    Easy3DObject_SetVisible(&param0->unk_0C.unk_16FC[1].unk_00, 0);
+    Easy3DObject_SetVisible(&context->models.summonBubble[1].object, 0);
+    Easy3DObject_SetVisible(&context->models.shadow[1].object, 0);
 
-    if (TrainerInfo_Gender(param0->unk_1D2C->unk_08) != 1) {
-        ov100_021D4AC8(&param0->unk_0C.unk_13EC[0], 61, param0->unk_1D28->unk_00);
-        ov100_021D4B4C(0, &param0->unk_0C.unk_13EC[0], 62, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
+    if (TrainerInfo_Gender(context->args->trainerInfo) != 1) {
+        CutsceneModel_LoadMesh(&context->models.trainers[0], 61, context->graphics->narc);
+        CutsceneModel_LoadAnim(0, &context->models.trainers[0], 62, context->graphics->narc, &context->graphics->allocator);
     } else {
-        ov100_021D4AC8(&param0->unk_0C.unk_13EC[0], 63, param0->unk_1D28->unk_00);
-        ov100_021D4B4C(0, &param0->unk_0C.unk_13EC[0], 64, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
+        CutsceneModel_LoadMesh(&context->models.trainers[0], 63, context->graphics->narc);
+        CutsceneModel_LoadAnim(0, &context->models.trainers[0], 64, context->graphics->narc, &context->graphics->allocator);
     }
 
-    Easy3DObject_SetPosition(&param0->unk_0C.unk_13EC[0].unk_00, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+140));
+    Easy3DObject_SetPosition(&context->models.trainers[0].object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+140));
 
-    param0->unk_0C.unk_13EC[0].unk_164 = 1;
-    param0->unk_0C.unk_13EC[0].unk_154 = (FX32_HALF >> 1);
-    param0->unk_0C.unk_13EC[0].unk_158 = 2;
+    context->models.trainers[0].looping = 1;
+    context->models.trainers[0].animSpeed = (FX32_HALF >> 1);
+    context->models.trainers[0].pose = 2;
 
-    ov100_021D4AC8(&param0->unk_0C.unk_13EC[1], 13, param0->unk_1D28->unk_00);
-    Easy3DObject_SetPosition(&param0->unk_0C.unk_13EC[1].unk_00, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+60));
-    ov100_021D4B4C(0, &param0->unk_0C.unk_13EC[1], 14, param0->unk_1D28->unk_00, &param0->unk_1D28->unk_1C);
+    CutsceneModel_LoadMesh(&context->models.trainers[1], 13, context->graphics->narc);
+    Easy3DObject_SetPosition(&context->models.trainers[1].object, FX32_CONST(1), FX32_CONST(+0), FX32_CONST(+60));
+    CutsceneModel_LoadAnim(0, &context->models.trainers[1], 14, context->graphics->narc, &context->graphics->allocator);
 
-    param0->unk_0C.unk_13EC[1].unk_164 = 1;
-    param0->unk_0C.unk_13EC[1].unk_154 = (FX32_HALF >> 1);
-    param0->unk_0C.unk_13EC[1].unk_158 = 2;
+    context->models.trainers[1].looping = 1;
+    context->models.trainers[1].animSpeed = (FX32_HALF >> 1);
+    context->models.trainers[1].pose = 2;
 }
 
-static void ov100_021D3400(UnkStruct_ov100_021D3084 *param0)
+static void DialgaPalkiaArrival_ReleaseModels(DialgaPalkiaArrivalContext *context)
 {
-    ov100_021D4AA4(&param0->unk_0C.unk_04, &param0->unk_1D28->unk_1C, 0);
+    CutsceneModel_Release(&context->models.unk_04, &context->graphics->allocator, 0);
 
-    {
-        int v0;
-
-        for (v0 = 0; v0 < 4; v0++) {
-            ov100_021D4AA4(&param0->unk_0C.unk_16FC[v0], &param0->unk_1D28->unk_1C, 0);
-        }
+    for (int i = 0; i < 4; i++) {
+        CutsceneModel_Release(&context->models.shadow[i], &context->graphics->allocator, 0);
     }
 
-    ov100_021D4AA4(&param0->unk_0C.unk_314, &param0->unk_1D28->unk_1C, 2);
+    CutsceneModel_Release(&context->models.shockwave, &context->graphics->allocator, 2);
 
-    ov100_021D4AA4(&param0->unk_0C.unk_624[0], &param0->unk_1D28->unk_1C, 1);
-    ov100_021D4AA4(&param0->unk_0C.unk_624[1], &param0->unk_1D28->unk_1C, 1);
+    CutsceneModel_Release(&context->models.summonBubble[0], &context->graphics->allocator, 1);
+    CutsceneModel_Release(&context->models.summonBubble[1], &context->graphics->allocator, 1);
 
-    ov100_021D4AA4(&param0->unk_0C.unk_934[0], &param0->unk_1D28->unk_1C, 2);
-    ov100_021D4AA4(&param0->unk_0C.unk_934[1], &param0->unk_1D28->unk_1C, 2);
+    CutsceneModel_Release(&context->models.unk_934[0], &context->graphics->allocator, 2);
+    CutsceneModel_Release(&context->models.unk_934[1], &context->graphics->allocator, 2);
 
-    ov100_021D4AA4(&param0->unk_0C.unk_13EC[0], &param0->unk_1D28->unk_1C, 1);
-    ov100_021D4AA4(&param0->unk_0C.unk_13EC[1], &param0->unk_1D28->unk_1C, 1);
+    CutsceneModel_Release(&context->models.trainers[0], &context->graphics->allocator, 1);
+    CutsceneModel_Release(&context->models.trainers[1], &context->graphics->allocator, 1);
 }
 
-static void ov100_021D34C0(UnkStruct_ov100_021D3084 *param0)
+static void DialgaPalkiaArrival_ReleaseFallingBalls(DialgaPalkiaArrivalContext *context)
 {
-    ov100_021D4AA4(&param0->unk_0C.unk_10DC[0], &param0->unk_1D28->unk_1C, 4);
-    ov100_021D4AA4(&param0->unk_0C.unk_10DC[1], &param0->unk_1D28->unk_1C, 4);
+    CutsceneModel_Release(&context->models.unk_10DC[0], &context->graphics->allocator, 4);
+    CutsceneModel_Release(&context->models.unk_10DC[1], &context->graphics->allocator, 4);
 
-    param0->unk_0C.unk_10DC[0].unk_174 = 0;
-    param0->unk_0C.unk_10DC[1].unk_174 = 0;
+    context->models.unk_10DC[0].loaded = 0;
+    context->models.unk_10DC[1].loaded = 0;
 }
 
-static void ov100_021D3504(Camera *camera, VecFx32 *param1)
+static void DialgaPalkiaArrival_InitCamera(Camera *camera, VecFx32 *target)
 {
-    CameraAngle v0 = { -0x29fe, 0, 0 };
+    CameraAngle cameraAngle = { .x = -0x29fe, .y = 0, .z = 0 };
 
-    Camera_InitWithTarget(param1, 0x13c805, &v0, 0xc01, 0, 1, camera);
+    Camera_InitWithTarget(target, 0x13c805, &cameraAngle, 0xc01, 0, 1, camera);
     Camera_SetAsActive(camera);
     Camera_SetClipping(FX32_ONE * 10, FX32_ONE * 1008, camera);
 }
 
-static void ov100_021D3558(UnkStruct_ov100_021D3084 *param0)
+static void DialgaPalkiaArrival_UpdateScene(DialgaPalkiaArrivalContext *context)
 {
     G3_ResetG3X();
     Camera_ComputeViewMatrix();
 
-    ov100_021D47A0(param0->unk_1D28);
-    ov100_021D4844(param0->unk_1D28);
+    SpearPillarCutscene_InitLighting(context->graphics);
+    SpearPillarCutscene_UpdateCamera(context->graphics);
 
-    ov100_021D49B4(&param0->unk_0C.unk_04);
-    ov100_021D49B4(&param0->unk_0C.unk_314);
+    CutsceneModel_Update(&context->models.unk_04);
+    CutsceneModel_Update(&context->models.shockwave);
 
-    ov100_021D49B4(&param0->unk_0C.unk_624[0]);
-    ov100_021D49B4(&param0->unk_0C.unk_624[1]);
+    CutsceneModel_Update(&context->models.summonBubble[0]);
+    CutsceneModel_Update(&context->models.summonBubble[1]);
 
-    ov100_021D49B4(&param0->unk_0C.unk_10DC[0]);
-    ov100_021D49B4(&param0->unk_0C.unk_10DC[1]);
+    CutsceneModel_Update(&context->models.unk_10DC[0]);
+    CutsceneModel_Update(&context->models.unk_10DC[1]);
 
-    ov100_021D49B4(&param0->unk_0C.unk_934[0]);
-    ov100_021D49B4(&param0->unk_0C.unk_934[1]);
+    CutsceneModel_Update(&context->models.unk_934[0]);
+    CutsceneModel_Update(&context->models.unk_934[1]);
 
-    ov100_021D49B4(&param0->unk_0C.unk_13EC[0]);
-    ov100_021D49B4(&param0->unk_0C.unk_13EC[1]);
+    CutsceneModel_Update(&context->models.trainers[0]);
+    CutsceneModel_Update(&context->models.trainers[1]);
 
-    ov100_021D49B4(&param0->unk_0C.unk_16FC[0]);
-    ov100_021D49B4(&param0->unk_0C.unk_16FC[1]);
-    ov100_021D49B4(&param0->unk_0C.unk_16FC[2]);
-    ov100_021D49B4(&param0->unk_0C.unk_16FC[3]);
+    CutsceneModel_Update(&context->models.shadow[0]);
+    CutsceneModel_Update(&context->models.shadow[1]);
+    CutsceneModel_Update(&context->models.shadow[2]);
+    CutsceneModel_Update(&context->models.shadow[3]);
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 }
 
-void *ov100_021D3620(UnkStruct_ov100_021D4DD8 *param0)
+void *DialgaPalkiaArrival_Init(SpearPillarCutsceneData *cutscene)
 {
-    UnkStruct_ov100_021D3084 *v0 = Heap_Alloc(HEAP_ID_111, sizeof(UnkStruct_ov100_021D3084));
+    DialgaPalkiaArrivalContext *context = Heap_Alloc(HEAP_ID_SPEAR_PILLAR_CUTSCENE, sizeof(DialgaPalkiaArrivalContext));
 
-    memset(v0, 0, sizeof(UnkStruct_ov100_021D3084));
+    memset(context, 0, sizeof(DialgaPalkiaArrivalContext));
 
-    v0->unk_1D28 = &param0->unk_0C;
-    v0->unk_1D2C = param0->unk_D0;
+    context->graphics = &cutscene->scene;
+    context->args = cutscene->args;
 
-    ov100_021D3084(v0);
-    ov100_021D2F0C(v0->unk_1D28->unk_0C, v0->unk_1D28->unk_10);
+    DialgaPalkiaArrival_InitCastModels(context);
+    DialgaPalkiaArrival_InitSubScreenBackground(context->graphics->bgConfig, context->graphics->paletteData);
 
-    {
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 7, 8);
-        G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 10);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 7, 8);
+    G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 10);
 
-        {
-            static const GXRgb v1[8] = {
-                GX_RGB(2, 2, 2),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-                GX_RGB(10, 10, 10),
-            };
+    static const GXRgb edgeColorTable[8] = {
+        GX_RGB(2, 2, 2),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+        GX_RGB(10, 10, 10),
+    };
 
-            G3X_EdgeMarking(1);
-            G3X_SetEdgeColorTable(v1);
-        }
-    }
+    G3X_EdgeMarking(1);
+    G3X_SetEdgeColorTable(edgeColorTable);
 
-    v0->unk_1D28->unk_44.z = FX32_CONST(34);
+    context->graphics->cameraTarget.z = FX32_CONST(34);
 
-    ov100_021D3504(v0->unk_1D28->camera, &v0->unk_1D28->unk_44);
+    DialgaPalkiaArrival_InitCamera(context->graphics->camera, &context->graphics->cameraTarget);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
 
-    return v0;
+    return context;
 }
 
-static void ov100_021D36CC(SysTask *param0, void *param1)
+static void DialgaPalkiaArrival_UpdateCameraShake(SysTask *task, void *param)
 {
-    UnkStruct_ov100_021D36CC *v0 = param1;
+    CameraShakeTask *shakeTask = param;
 
-    switch (v0->unk_04) {
-    case 0:
-        v0->unk_10->unk_08 = 2;
+    switch (shakeTask->step) {
+    case DIALGA_PALKIA_ARRIVAL_CAMERA_SHAKE_STEP_START_PAN:
+        shakeTask->cameraPan->durationFrames = 2;
 
-        if (v0->unk_08) {
-            if ((v0->unk_00 == 4) || (v0->unk_00 == 6)) {
-                v0->unk_10->unk_18 = +FX32_CONST(2);
-            } else if (v0->unk_00 == 5) {
-                v0->unk_10->unk_18 = +FX32_CONST(4);
-            } else if (v0->unk_00 == 0xFF) {
-                v0->unk_10->unk_18 = +FX32_CONST(6);
-            } else if (v0->unk_00 == 7) {
-                v0->unk_10->unk_18 = +FX32_CONST(2);
-                v0->unk_10->unk_08 = 4;
+        if (shakeTask->direction) {
+            if ((shakeTask->intensity == 4) || (shakeTask->intensity == 6)) {
+                shakeTask->cameraPan->positionDeltaX = +FX32_CONST(2);
+            } else if (shakeTask->intensity == 5) {
+                shakeTask->cameraPan->positionDeltaX = +FX32_CONST(4);
+            } else if (shakeTask->intensity == 0xFF) {
+                shakeTask->cameraPan->positionDeltaX = +FX32_CONST(6);
+            } else if (shakeTask->intensity == 7) {
+                shakeTask->cameraPan->positionDeltaX = +FX32_CONST(2);
+                shakeTask->cameraPan->durationFrames = 4;
             }
         } else {
-            if ((v0->unk_00 == 4) || (v0->unk_00 == 6)) {
-                v0->unk_10->unk_18 = -FX32_CONST(2);
-            } else if (v0->unk_00 == 5) {
-                v0->unk_10->unk_18 = -FX32_CONST(4);
-            } else if (v0->unk_00 == 0xFF) {
-                v0->unk_10->unk_18 = -FX32_CONST(6);
-            } else if (v0->unk_00 == 7) {
-                v0->unk_10->unk_18 = -FX32_CONST(2);
-                v0->unk_10->unk_08 = 4;
+            if ((shakeTask->intensity == 4) || (shakeTask->intensity == 6)) {
+                shakeTask->cameraPan->positionDeltaX = -FX32_CONST(2);
+            } else if (shakeTask->intensity == 5) {
+                shakeTask->cameraPan->positionDeltaX = -FX32_CONST(4);
+            } else if (shakeTask->intensity == 0xFF) {
+                shakeTask->cameraPan->positionDeltaX = -FX32_CONST(6);
+            } else if (shakeTask->intensity == 7) {
+                shakeTask->cameraPan->positionDeltaX = -FX32_CONST(2);
+                shakeTask->cameraPan->durationFrames = 4;
             }
         }
 
-        v0->unk_08 ^= 1;
-        v0->unk_10->unk_1C = 0;
-        v0->unk_10->unk_20 = 0;
-        ov100_021D4890(v0->unk_10);
-        v0->unk_04++;
-    case 1:
-        if (ov100_021D4920(v0->unk_10)) {
-            if (v0->unk_00 == 8) {
-                v0->unk_04++;
+        shakeTask->direction ^= 1;
+        shakeTask->cameraPan->positionDeltaY = 0;
+        shakeTask->cameraPan->positionDeltaZ = 0;
+        CameraPan_Start(shakeTask->cameraPan);
+        shakeTask->step++;
+    case DIALGA_PALKIA_ARRIVAL_CAMERA_SHAKE_STEP_WAIT_PAN:
+        if (CameraPan_Update(shakeTask->cameraPan)) {
+            if (shakeTask->intensity == 8) {
+                shakeTask->step++;
             } else {
-                v0->unk_04--;
+                shakeTask->step--;
             }
         }
         break;
     default:
-        SysTask_Done(param0);
+        SysTask_Done(task);
         break;
     }
 }
 
-static void ov100_021D37B0(UnkStruct_ov100_021D3084 *param0)
+static void DialgaPalkiaArrival_InitCameraShake(DialgaPalkiaArrivalContext *context)
 {
-    param0->unk_1D28->unk_58.unk_0C = 0;
-    param0->unk_1D28->unk_58.unk_10 = 0;
-    param0->unk_1D28->unk_58.unk_14 = 0;
-    param0->unk_1D28->unk_58.unk_04 = &param0->unk_1D28->unk_44;
-    param0->unk_1D28->unk_AC.unk_10 = &param0->unk_1D28->unk_58;
-    param0->unk_1D28->unk_AC.unk_00 = 0;
+    context->graphics->cameraPan.angleDeltaX = 0;
+    context->graphics->cameraPan.angleDeltaY = 0;
+    context->graphics->cameraPan.angleDeltaZ = 0;
+    context->graphics->cameraPan.target = &context->graphics->cameraTarget;
+    context->graphics->cameraShake.cameraPan = &context->graphics->cameraPan;
+    context->graphics->cameraShake.intensity = 0;
 
-    SysTask_Start(ov100_021D36CC, &param0->unk_1D28->unk_AC, 0x1000);
+    SysTask_Start(DialgaPalkiaArrival_UpdateCameraShake, &context->graphics->cameraShake, 0x1000);
 }
 
-static void ov100_021D37F4(SysTask *param0, void *param1)
+static void DialgaPalkiaArrival_UpdateSummonBubble(SysTask *task, void *param)
 {
-    UnkStruct_ov100_021D37F4 *v0 = param1;
-    f32 v1[] = {
+    SummonBubbleTask *sbtask = param;
+    f32 scaleSteps[] = {
         0.0f,
         0.3f,
         0.6f,
@@ -353,344 +361,350 @@ static void ov100_021D37F4(SysTask *param0, void *param1)
         1.0f,
     };
 
-    switch (v0->unk_00) {
-    case 0:
-        Easy3DObject_SetScale(&v0->unk_10->unk_00, FX32_CONST(v1[v0->unk_04]), FX32_CONST(1.00f), FX32_CONST(1.00f));
-        Easy3DObject_SetScale(&v0->unk_14->unk_00, FX32_CONST(v1[v0->unk_04]), FX32_CONST(1.00f), FX32_CONST(1.00f));
+    switch (sbtask->step) {
+    case DIALGA_PALKIA_ARRIVAL_SUMMON_BUBBLE_STEP_REVEAL:
+        Easy3DObject_SetScale(&sbtask->summonBubble->object, FX32_CONST(scaleSteps[sbtask->scaleIndex]), FX32_CONST(1.00f), FX32_CONST(1.00f));
+        Easy3DObject_SetScale(&sbtask->shadow->object, FX32_CONST(scaleSteps[sbtask->scaleIndex]), FX32_CONST(1.00f), FX32_CONST(1.00f));
 
-        v0->unk_04++;
+        sbtask->scaleIndex++;
 
-        Easy3DObject_SetVisible(&v0->unk_10->unk_00, 1);
-        Easy3DObject_SetVisible(&v0->unk_14->unk_00, 1);
+        Easy3DObject_SetVisible(&sbtask->summonBubble->object, 1);
+        Easy3DObject_SetVisible(&sbtask->shadow->object, 1);
 
-        v0->unk_00++;
+        sbtask->step++;
         break;
-    case 1:
-        if ((++v0->unk_04) >= NELEMS(v1)) {
-            Sound_PlayPokemonCryEx(POKECRY_NORMAL, v0->unk_08, v0->unk_0C, 80, HEAP_ID_111, 0);
-            v0->unk_00++;
+    case DIALGA_PALKIA_ARRIVAL_SUMMON_BUBBLE_STEP_GROW:
+        if ((++sbtask->scaleIndex) >= NELEMS(scaleSteps)) {
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, sbtask->speciesID, sbtask->pan, 80, HEAP_ID_SPEAR_PILLAR_CUTSCENE, 0);
+            sbtask->step++;
         } else {
-            Easy3DObject_SetScale(&v0->unk_10->unk_00, FX32_CONST(v1[v0->unk_04]), FX32_CONST(1.00f), FX32_CONST(1.00f));
-            Easy3DObject_SetScale(&v0->unk_14->unk_00, FX32_CONST(v1[v0->unk_04]), FX32_CONST(1.00f), FX32_CONST(1.00f));
+            Easy3DObject_SetScale(&sbtask->summonBubble->object, FX32_CONST(scaleSteps[sbtask->scaleIndex]), FX32_CONST(1.00f), FX32_CONST(1.00f));
+            Easy3DObject_SetScale(&sbtask->shadow->object, FX32_CONST(scaleSteps[sbtask->scaleIndex]), FX32_CONST(1.00f), FX32_CONST(1.00f));
         }
         break;
     default:
-        SysTask_Done(param0);
+        SysTask_Done(task);
         break;
     }
 }
 
-static void ov100_021D398C(UnkStruct_ov100_021D3084 *param0, int param1, int param2)
+static void DialgaPalkiaArrival_InitSummonBubble(DialgaPalkiaArrivalContext *context, int index, int speciesID)
 {
-    UnkStruct_ov100_021D37F4 *v0 = &param0->unk_1D30[param1];
+    SummonBubbleTask *sbTask = &context->summonBubbleTasks[index];
 
-    v0->unk_00 = 0;
-    v0->unk_04 = 0;
-    v0->unk_08 = param2;
-    v0->unk_10 = &param0->unk_0C.unk_624[param1];
-    v0->unk_14 = &param0->unk_0C.unk_16FC[param1];
+    sbTask->step = 0;
+    sbTask->scaleIndex = 0;
+    sbTask->speciesID = speciesID;
+    sbTask->summonBubble = &context->models.summonBubble[index];
+    sbTask->shadow = &context->models.shadow[index];
 
-    if (param1 == 0) {
-        v0->unk_0C = -80;
+    if (index == 0) {
+        sbTask->pan = -80;
     } else {
-        v0->unk_0C = +80;
+        sbTask->pan = +80;
     }
 
-    SysTask_Start(ov100_021D37F4, v0, 0x1000);
+    SysTask_Start(DialgaPalkiaArrival_UpdateSummonBubble, sbTask, 0x1000);
 }
 
-BOOL ov100_021D39E4(void *param0)
+BOOL DialgaPalkiaArrival_Update(void *param)
 {
-    UnkStruct_ov100_021D3084 *v0 = param0;
+    DialgaPalkiaArrivalContext *context = param;
 
-    switch (v0->unk_00) {
-    case 0:
+    switch (context->state) {
+    case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_FADE_IN:
         if (IsScreenFadeDone() == FALSE) {
             break;
         }
 
-        v0->unk_00++;
-    case 1: {
-        v0->unk_1D28->unk_58.unk_0C = 0;
-        v0->unk_1D28->unk_58.unk_10 = 0;
-        v0->unk_1D28->unk_58.unk_14 = 0;
-        v0->unk_1D28->unk_58.unk_08 = 60;
-        v0->unk_1D28->unk_58.camera = v0->unk_1D28->camera;
-        v0->unk_1D28->unk_58.unk_18 = 0;
-        v0->unk_1D28->unk_58.unk_1C = 0;
-        v0->unk_1D28->unk_58.unk_20 = -FX32_CONST(80 - 34);
-        v0->unk_1D28->unk_58.unk_04 = &v0->unk_1D28->unk_44;
-        ov100_021D4890(&v0->unk_1D28->unk_58);
-        v0->unk_00++;
+        context->state++;
+    case DIALGA_PALKIA_ARRIVAL_STATE_PAN_CAMERA: {
+        context->graphics->cameraPan.angleDeltaX = 0;
+        context->graphics->cameraPan.angleDeltaY = 0;
+        context->graphics->cameraPan.angleDeltaZ = 0;
+        context->graphics->cameraPan.durationFrames = 60;
+        context->graphics->cameraPan.camera = context->graphics->camera;
+        context->graphics->cameraPan.positionDeltaX = 0;
+        context->graphics->cameraPan.positionDeltaY = 0;
+        context->graphics->cameraPan.positionDeltaZ = -FX32_CONST(80 - 34);
+        context->graphics->cameraPan.target = &context->graphics->cameraTarget;
+        CameraPan_Start(&context->graphics->cameraPan);
+        context->state++;
     }
-    case 2:
-        if (ov100_021D4920(&v0->unk_1D28->unk_58)) {
-            v0->unk_04 = 0;
-            v0->unk_00++;
-            ov100_021D46C8(v0->unk_1D28, v0->unk_1D2C, 14);
+    case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_PAN_CAMERA:
+        if (CameraPan_Update(&context->graphics->cameraPan)) {
+            context->timer = 0;
+            context->state++;
+            SpearPillarCutscene_ShowMessage(context->graphics, context->args, 14);
         }
         break;
-    case 3:
-        if (Text_IsPrinterActive(v0->unk_1D28->unk_40)) {
+    case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_INTRODUCE_DIALGA:
+        if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
             break;
         }
 
-        ov100_021D4788(v0->unk_1D28);
-        ov100_021D46C8(v0->unk_1D28, v0->unk_1D2C, 16);
-        v0->unk_00++;
-    case 4:
-        if (Text_IsPrinterActive(v0->unk_1D28->unk_40)) {
+        SpearPillarCutscene_ClearMessage(context->graphics);
+        SpearPillarCutscene_ShowMessage(context->graphics, context->args, 16);
+        context->state++;
+    case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_INTRODUCE_PALKIA:
+        if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
             break;
         }
 
-        {
-            UnkStruct_ov100_021D4EBC v1 = {
-                GX_DISPMODE_VRAM_C,
-                GX_BGMODE_0,
-                GX_BG0_AS_3D,
-                GX_CAPTURE_SIZE_256x192,
-                GX_CAPTURE_MODE_AB,
-                GX_CAPTURE_SRCA_2D3D,
-                GX_CAPTURE_SRCB_VRAM_0x00000,
-                GX_CAPTURE_DEST_VRAM_C_0x00000,
-                4,
-                12,
-                111
-            };
+        ScreenCaptureTemplate captureTemplate = {
+            .displayMode = GX_DISPMODE_VRAM_C,
+            .bgMode = GX_BGMODE_0,
+            .bg0As = GX_BG0_AS_3D,
+            .captureSize = GX_CAPTURE_SIZE_256x192,
+            .captureMode = GX_CAPTURE_MODE_AB,
+            .captureSrcA = GX_CAPTURE_SRCA_2D3D,
+            .captureSrcB = GX_CAPTURE_SRCB_VRAM_0x00000,
+            .captureDest = GX_CAPTURE_DEST_VRAM_C_0x00000,
+            .captureEva = 4,
+            .captureEvb = 12,
+            .heapID = HEAP_ID_SPEAR_PILLAR_CUTSCENE
+        };
 
-            v0->unk_1D28->unk_54 = ov100_021D4EBC(&v1);
-        }
+        context->graphics->screenCapture = ScreenCapture_Start(&captureTemplate);
 
-        ov100_021D37B0(v0);
-        ov100_021D4788(v0->unk_1D28);
+        DialgaPalkiaArrival_InitCameraShake(context);
+        SpearPillarCutscene_ClearMessage(context->graphics);
 
-        v0->unk_0C.unk_10DC[0].unk_160 = 1;
-        v0->unk_0C.unk_10DC[0].unk_170 = 1;
-        v0->unk_00++;
-    case 5:
-        if ((++v0->unk_04) >= 60) {
-            v0->unk_1D28->unk_AC.unk_00 = 4;
-            v0->unk_0C.unk_10DC[1].unk_160 = 1;
-            v0->unk_0C.unk_10DC[1].unk_170 = 1;
-            v0->unk_00++;
+        context->models.unk_10DC[0].playing = 1;
+        context->models.unk_10DC[0].useAllAnimTracks = 1;
+        context->state++;
+    case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_PALKIA_BALL_DELAY:
+        if ((++context->timer) >= 60) {
+            context->graphics->cameraShake.intensity = 4;
+            context->models.unk_10DC[1].playing = 1;
+            context->models.unk_10DC[1].useAllAnimTracks = 1;
+            context->state++;
         }
         break;
-    case 6:
-        v0->unk_04++;
+    case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_DIALGA_BALL_LAND:
+        context->timer++;
 
-        if (v0->unk_04 == 80) {
+        if (context->timer == 80) {
             Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX01_sseq, -70);
         }
 
-        if (v0->unk_04 == 135) {
+        if (context->timer == 135) {
             Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX01_sseq, +70);
         }
 
-        if ((v0->unk_04 == 310) || (v0->unk_04 == 375) || (v0->unk_04 == 432)) {
+        if ((context->timer == 310) || (context->timer == 375) || (context->timer == 432)) {
             Sound_PlayEffect(SEQ_SE_DP_CLIMAX06_sseq);
         }
 
-        if ((v0->unk_04 == 284) || (v0->unk_04 == 338) || (v0->unk_04 == 406)) {
+        if ((context->timer == 284) || (context->timer == 338) || (context->timer == 406)) {
             Sound_PlayEffect(SEQ_SE_DP_CLIMAX09_sseq);
         }
 
-        if (v0->unk_04 == 165) {
+        if (context->timer == 165) {
             Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX03_sseq, -70);
         }
 
-        if (v0->unk_04 == 220) {
+        if (context->timer == 220) {
             Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX03_sseq, +70);
         }
 
-        if (v0->unk_04 == 470) {
+        if (context->timer == 470) {
             Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX10_sseq, -70);
         }
 
-        if (v0->unk_04 == 520) {
+        if (context->timer == 520) {
             Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX10_sseq, +70);
         }
 
-        if (v0->unk_04 == 120) {
-            v0->unk_1D28->unk_AC.unk_00 = 5;
+        if (context->timer == 120) {
+            context->graphics->cameraShake.intensity = 5;
         }
 
-        if (v0->unk_04 == 210) {
-            v0->unk_1D28->unk_AC.unk_00 = 0xFF;
+        if (context->timer == 210) {
+            context->graphics->cameraShake.intensity = 0xFF;
         }
 
-        if (v0->unk_0C.unk_10DC[0].unk_160 == 0) {
-            v0->unk_1D28->unk_AC.unk_00 = 6;
-            ov100_021D398C(v0, 0, 483);
+        if (context->models.unk_10DC[0].playing == 0) {
+            context->graphics->cameraShake.intensity = 6;
+            DialgaPalkiaArrival_InitSummonBubble(context, 0, SPECIES_DIALGA);
             Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX12_sseq, -70);
-            v0->unk_00++;
+            context->state++;
         }
         break;
-    case 7:
-        if (v0->unk_0C.unk_10DC[1].unk_160 == 0) {
-            v0->unk_1D28->unk_AC.unk_00 = 7;
-            ov100_021D398C(v0, 1, 484);
+    case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_PALKIA_BALL_LAND:
+        if (context->models.unk_10DC[1].playing == 0) {
+            context->graphics->cameraShake.intensity = 7;
+            DialgaPalkiaArrival_InitSummonBubble(context, 1, SPECIES_PALKIA);
             Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX12_sseq, +70);
-            v0->unk_00++;
-            v0->unk_04 = 0;
+            context->state++;
+            context->timer = 0;
         }
         break;
-    case 8:
-        if ((++v0->unk_04) >= 30) {
-            v0->unk_04 = 0;
-            v0->unk_00++;
+    case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_SUMMON_BUBBLE_DELAY:
+        if ((++context->timer) >= 30) {
+            context->timer = 0;
+            context->state++;
         }
         break;
-    case 9:
-        v0->unk_1D28->unk_AC.unk_00 = 8;
+    case DIALGA_PALKIA_ARRIVAL_STATE_FLASH_PULSE_1:
+        context->graphics->cameraShake.intensity = 8;
 
-        if (v0->unk_08 == 0) {
-            if (v0->unk_1D28->unk_50.unk_03 < 8) {
-                v0->unk_1D28->unk_50.unk_03 += 1;
-                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
+        if (context->flashState == 0) {
+            if (context->graphics->tint.brightness < 8) {
+                context->graphics->tint.brightness += 1;
+                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
             } else {
-                v0->unk_08 = 1;
+                context->flashState = 1;
             }
         } else {
-            if (v0->unk_1D28->unk_50.unk_03 > 0) {
-                v0->unk_1D28->unk_50.unk_03 -= 2;
-                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
+            if (context->graphics->tint.brightness > 0) {
+                context->graphics->tint.brightness -= 2;
+                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
             } else {
-                v0->unk_00++;
-                v0->unk_08 = 0;
+                context->state++;
+                context->flashState = 0;
             }
         }
         break;
-    case 10:
-        if (v0->unk_08 == 0) {
-            if (v0->unk_1D28->unk_50.unk_03 < 12) {
-                v0->unk_1D28->unk_50.unk_03 += 1;
-                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
+    case DIALGA_PALKIA_ARRIVAL_STATE_FLASH_PULSE_2:
+        if (context->flashState == 0) {
+            if (context->graphics->tint.brightness < 12) {
+                context->graphics->tint.brightness += 1;
+                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
             } else {
-                v0->unk_08 = 1;
+                context->flashState = 1;
             }
         } else {
-            if (v0->unk_1D28->unk_50.unk_03 > 0) {
-                v0->unk_1D28->unk_50.unk_03 -= 2;
-                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
+            if (context->graphics->tint.brightness > 0) {
+                context->graphics->tint.brightness -= 2;
+                G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
             } else {
-                v0->unk_00++;
-                v0->unk_08 = 0;
+                context->state++;
+                context->flashState = 0;
             }
         }
         break;
-    case 11:
-        if (v0->unk_1D28->unk_50.unk_03 < (+16)) {
-            v0->unk_1D28->unk_50.unk_03 += 2;
-            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
+    case DIALGA_PALKIA_ARRIVAL_STATE_FLASH_PULSE_3:
+        if (context->graphics->tint.brightness < (+16)) {
+            context->graphics->tint.brightness += 2;
+            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
         } else {
-            ov100_021D34C0(v0);
-            ov100_021D2F64(v0);
-            v0->unk_00++;
+            DialgaPalkiaArrival_ReleaseFallingBalls(context);
+            DialgaPalkiaArrival_InitWhirlpool(context);
+            context->state++;
         }
         break;
-    case 12:
-        if (v0->unk_1D28->unk_50.unk_03 != 0) {
-            v0->unk_1D28->unk_50.unk_03--;
-            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, v0->unk_1D28->unk_50.unk_03);
+    case DIALGA_PALKIA_ARRIVAL_STATE_FADE_FROM_FLASH:
+        if (context->graphics->tint.brightness != 0) {
+            context->graphics->tint.brightness--;
+            G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, context->graphics->tint.brightness);
         } else {
-            {
-                UnkStruct_ov100_021D4EBC v2 = {
-                    GX_DISPMODE_VRAM_C, GX_BGMODE_0, GX_BG0_AS_3D, GX_CAPTURE_SIZE_256x192, GX_CAPTURE_MODE_AB, GX_CAPTURE_SRCA_2D3D, GX_CAPTURE_SRCB_VRAM_0x00000, GX_CAPTURE_DEST_VRAM_C_0x00000, 4, 12, 111
-                };
-            }
+            ScreenCaptureTemplate unused = { // not used, but removing it causes checksum error.
+                .displayMode = GX_DISPMODE_VRAM_C,
+                .bgMode = GX_BGMODE_0,
+                .bg0As = GX_BG0_AS_3D,
+                .captureSize = GX_CAPTURE_SIZE_256x192,
+                .captureMode = GX_CAPTURE_MODE_AB,
+                .captureSrcA = GX_CAPTURE_SRCA_2D3D,
+                .captureSrcB = GX_CAPTURE_SRCB_VRAM_0x00000,
+                .captureDest = GX_CAPTURE_DEST_VRAM_C_0x00000,
+                .captureEva = 4,
+                .captureEvb = 12,
+                .heapID = HEAP_ID_SPEAR_PILLAR_CUTSCENE
+            };
 
-            v0->unk_0C.unk_934[0].unk_160 = 1;
-            v0->unk_0C.unk_934[0].unk_164 = 1;
-            v0->unk_0C.unk_934[0].unk_16C = 1;
-            v0->unk_0C.unk_934[1].unk_160 = 1;
-            v0->unk_0C.unk_934[1].unk_164 = 1;
-            v0->unk_0C.unk_934[1].unk_16C = 1;
-            v0->unk_00++;
+            context->models.unk_934[0].playing = 1;
+            context->models.unk_934[0].looping = 1;
+            context->models.unk_934[0].playSecondaryAnim = 1;
+            context->models.unk_934[1].playing = 1;
+            context->models.unk_934[1].looping = 1;
+            context->models.unk_934[1].playSecondaryAnim = 1;
+            context->state++;
         }
         break;
-    case 13:
-        if (v0->unk_0C.unk_934[0].unk_150 < FX32_CONST(0.80)) {
-            v0->unk_0C.unk_934[0].unk_150 += FX32_CONST(0.02);
-            v0->unk_0C.unk_934[1].unk_150 += FX32_CONST(0.02);
-            Easy3DObject_SetScale(&v0->unk_0C.unk_934[0].unk_00, v0->unk_0C.unk_934[0].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[0].unk_150);
-            Easy3DObject_SetScale(&v0->unk_0C.unk_934[1].unk_00, v0->unk_0C.unk_934[1].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[1].unk_150);
+    case DIALGA_PALKIA_ARRIVAL_STATE_GROW_WHIRLPOOL:
+        if (context->models.unk_934[0].scale < FX32_CONST(0.80)) {
+            context->models.unk_934[0].scale += FX32_CONST(0.02);
+            context->models.unk_934[1].scale += FX32_CONST(0.02);
+            Easy3DObject_SetScale(&context->models.unk_934[0].object, context->models.unk_934[0].scale, FX32_CONST(1.0), context->models.unk_934[0].scale);
+            Easy3DObject_SetScale(&context->models.unk_934[1].object, context->models.unk_934[1].scale, FX32_CONST(1.0), context->models.unk_934[1].scale);
         } else {
-            ov100_021D46C8(v0->unk_1D28, v0->unk_1D2C, 18);
-            v0->unk_00++;
+            SpearPillarCutscene_ShowMessage(context->graphics, context->args, 18);
+            context->state++;
         }
         break;
-    case 14:
-        if (Text_IsPrinterActive(v0->unk_1D28->unk_40)) {
+    case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_CREATION_SPEECH:
+        if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
             break;
         }
 
-        ov100_021D4788(v0->unk_1D28);
-        ov100_021D46C8(v0->unk_1D28, v0->unk_1D2C, 19);
+        SpearPillarCutscene_ClearMessage(context->graphics);
+        SpearPillarCutscene_ShowMessage(context->graphics, context->args, 19);
 
-        v0->unk_00++;
+        context->state++;
         break;
-    case 15:
-        if (Text_IsPrinterActive(v0->unk_1D28->unk_40)) {
+    case DIALGA_PALKIA_ARRIVAL_STATE_SHRINK_WHIRLPOOL:
+        if (Text_IsPrinterActive(context->graphics->messagePrinter)) {
             break;
         }
 
-        if (v0->unk_0C.unk_934[0].unk_150 > FX32_CONST(0.10)) {
-            v0->unk_0C.unk_934[0].unk_150 -= FX32_CONST(0.02);
-            v0->unk_0C.unk_934[1].unk_150 -= FX32_CONST(0.02);
-            Easy3DObject_SetScale(&v0->unk_0C.unk_934[0].unk_00, v0->unk_0C.unk_934[0].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[0].unk_150);
-            Easy3DObject_SetScale(&v0->unk_0C.unk_934[1].unk_00, v0->unk_0C.unk_934[1].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[1].unk_150);
+        if (context->models.unk_934[0].scale > FX32_CONST(0.10)) {
+            context->models.unk_934[0].scale -= FX32_CONST(0.02);
+            context->models.unk_934[1].scale -= FX32_CONST(0.02);
+            Easy3DObject_SetScale(&context->models.unk_934[0].object, context->models.unk_934[0].scale, FX32_CONST(1.0), context->models.unk_934[0].scale);
+            Easy3DObject_SetScale(&context->models.unk_934[1].object, context->models.unk_934[1].scale, FX32_CONST(1.0), context->models.unk_934[1].scale);
         } else {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_111);
-            v0->unk_00++;
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_SPEAR_PILLAR_CUTSCENE);
+            context->state++;
         }
         break;
-    case 16:
+    case DIALGA_PALKIA_ARRIVAL_STATE_WAIT_FADE_OUT:
         if (IsScreenFadeDone() == FALSE) {
             break;
         }
 
-        ov100_021D4788(v0->unk_1D28);
-        v0->unk_00++;
+        SpearPillarCutscene_ClearMessage(context->graphics);
+        context->state++;
         break;
-    case 17:
-        v0->unk_00 = 0;
-        v0->unk_04 = 0;
-        return 0;
+    case DIALGA_PALKIA_ARRIVAL_STATE_DONE:
+        context->state = 0;
+        context->timer = 0;
+        return FALSE;
         break;
     }
 
-    v0->unk_0C.unk_16FC[0].unk_00.position = v0->unk_0C.unk_624[0].unk_00.position;
-    v0->unk_0C.unk_16FC[1].unk_00.position = v0->unk_0C.unk_624[1].unk_00.position;
-    v0->unk_0C.unk_16FC[2].unk_00.position = v0->unk_0C.unk_13EC[0].unk_00.position;
-    v0->unk_0C.unk_16FC[3].unk_00.position = v0->unk_0C.unk_13EC[1].unk_00.position;
+    context->models.shadow[0].object.position = context->models.summonBubble[0].object.position;
+    context->models.shadow[1].object.position = context->models.summonBubble[1].object.position;
+    context->models.shadow[2].object.position = context->models.trainers[0].object.position;
+    context->models.shadow[3].object.position = context->models.trainers[1].object.position;
 
-    v0->unk_0C.unk_16FC[0].unk_00.position.z -= (FX32_ONE * 2);
-    v0->unk_0C.unk_16FC[1].unk_00.position.z -= (FX32_ONE * 2);
-    v0->unk_0C.unk_16FC[2].unk_00.position.z -= (FX32_ONE * 2);
-    v0->unk_0C.unk_16FC[3].unk_00.position.z -= (FX32_ONE * 2);
+    context->models.shadow[0].object.position.z -= (FX32_ONE * 2);
+    context->models.shadow[1].object.position.z -= (FX32_ONE * 2);
+    context->models.shadow[2].object.position.z -= (FX32_ONE * 2);
+    context->models.shadow[3].object.position.z -= (FX32_ONE * 2);
 
-    v0->unk_0C.unk_16FC[2].unk_00.position.x -= FX32_ONE;
-    v0->unk_0C.unk_16FC[3].unk_00.position.x -= FX32_ONE;
+    context->models.shadow[2].object.position.x -= FX32_ONE;
+    context->models.shadow[3].object.position.x -= FX32_ONE;
 
-    ov100_021D3558(v0);
+    DialgaPalkiaArrival_UpdateScene(context);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL ov100_021D3FD4(void *param0)
+BOOL DialgaPalkiaArrival_Exit(void *param)
 {
-    UnkStruct_ov100_021D3084 *v0 = param0;
+    DialgaPalkiaArrivalContext *context = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        ov100_021D3400(v0);
-        ov100_021D4F0C(&v0->unk_1D28->unk_54, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
-        v0->unk_00++;
+    switch (context->state) {
+    case DIALGA_PALKIA_ARRIVAL_EXIT_STATE_RELEASE_MODELS:
+        DialgaPalkiaArrival_ReleaseModels(context);
+        ScreenCapture_End(&context->graphics->screenCapture, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
+        context->state++;
         break;
     default:
-        Heap_Free(v0);
-        return 0;
+        Heap_Free(context);
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
