@@ -46,8 +46,8 @@ typedef struct {
 
 typedef struct UnkStruct_ov5_021F0468_t {
     UnkStruct_ov5_021D1BEC *unk_00;
-    BOOL unk_04;
-    BOOL unk_08;
+    BOOL unk_04; // isLowFog?
+    BOOL unk_08; // isForestShadows?
     u16 unk_0C;
     s16 unk_0E;
 } UnkStruct_ov5_021F0468;
@@ -318,90 +318,87 @@ static void ov5_021F0374(FieldSystem *fieldSystem)
     ov5_021F02F4(fieldSystem);
 }
 
+// possible check for forest shadows
 static BOOL ov5_021F03D8(FieldSystem *fieldSystem)
 {
     static const u32 v0[] = {
-        23,
+        OVERWORLD_WEATHER_FOREST_SHADOWS,
     };
-    u32 v1;
-    int v2;
 
     if (fieldSystem->unk_04->unk_0C == NULL) {
-        return 0;
+        return FALSE;
     }
 
-    v1 = ov5_021D5FE0(fieldSystem->unk_04->unk_0C);
+    u32 weather = ov5_Get_unk_weather_04(fieldSystem->unk_04->unk_0C);
 
-    for (v2 = 0; v2 < NELEMS(v0); v2++) {
-        if (v1 == v0[v2]) {
-            return 1;
+    for (int i = 0; i < NELEMS(v0); i++) {
+        if (weather == v0[i]) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
+// possible check for low fog
 static BOOL ov5_021F0408(FieldSystem *fieldSystem)
 {
     static const u32 v0[1] = {
-        8,
+        OVERWORLD_WEATHER_LOW_FOG,
     };
-    u32 v1;
-    int v2;
 
     if (fieldSystem->unk_04->unk_0C == NULL) {
-        return 0;
+        return FALSE;
     }
 
-    v1 = ov5_021D5FE0(fieldSystem->unk_04->unk_0C);
+    u32 weather = ov5_Get_unk_weather_04(fieldSystem->unk_04->unk_0C);
 
-    for (v2 = 0; v2 < 1; v2++) {
-        if (v1 == v0[v2]) {
-            return 1;
+    for (int i = 0; i < 1; i++) {
+        if (weather == v0[i]) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
+#define thisWeatherArrayLength 18
 static BOOL ov5_021F0438(FieldSystem *fieldSystem)
 {
-    static const u32 v0[18] = {
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        10,
-        21,
-        22,
-        14,
-        15,
-        16,
-        1,
-        9,
-        13,
-        17,
-        24,
-        25
+    static const u32 v0[thisWeatherArrayLength] = {
+        OVERWORLD_WEATHER_RAINING,
+        OVERWORLD_WEATHER_HEAVY_RAIN,
+        OVERWORLD_WEATHER_THUNDERSTORM,
+        OVERWORLD_WEATHER_SNOWING,
+        OVERWORLD_WEATHER_HEAVY_SNOW,
+        OVERWORLD_WEATHER_BLIZZARD,
+        OVERWORLD_WEATHER_SANDSTORM,
+        OVERWORLD_WEATHER_HEAVY_SNOW_UNUSED,
+        OVERWORLD_WEATHER_22,
+        OVERWORLD_WEATHER_FOG,
+        OVERWORLD_WEATHER_DEEP_FOG,
+        OVERWORLD_WEATHER_DARK_FLASH,
+        OVERWORLD_WEATHER_CLOUDY,
+        OVERWORLD_WEATHER_SLOW_ASHFALL,
+        OVERWORLD_WEATHER_SPEAR_PILLAR,
+        OVERWORLD_WEATHER_17,
+        OVERWORLD_WEATHER_24,
+        OVERWORLD_WEATHER_25
     };
-    u32 v1;
-    int v2;
 
     if (fieldSystem->unk_04->unk_0C == NULL) {
-        return 0;
+        return FALSE;
     }
 
-    v1 = ov5_021D5FE0(fieldSystem->unk_04->unk_0C);
+    u32 weather = ov5_Get_unk_weather_04(fieldSystem->unk_04->unk_0C);
 
-    for (v2 = 0; v2 < 18; v2++) {
-        if (v1 == v0[v2]) {
-            return 0;
+    for (int i = 0; i < thisWeatherArrayLength; i++) {
+        if (weather == v0[i]) {
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
 static void ov5_021F0468(UnkStruct_ov5_021F0468 *param0)
