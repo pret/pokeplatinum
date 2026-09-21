@@ -7,10 +7,12 @@
 #include "constants/menu.h"
 #include "constants/versions.h"
 
+#include "struct_defs/place_record.h"
 #include "struct_defs/wi_fi_history.h"
 
 #include "bg_window.h"
 #include "camera.h"
+#include "coordinates.h"
 #include "easy3d.h"
 #include "font.h"
 #include "game_options.h"
@@ -44,27 +46,15 @@
 #define WIFI_EARTH_BASE_TILE_SCROLLING_MESSAGE_BOX (512 - SCROLLING_MESSAGE_BOX_TILE_COUNT)
 #define WIFI_EARTH_BASE_TILE_STANDARD_WINDOW_FRAME (WIFI_EARTH_BASE_TILE_SCROLLING_MESSAGE_BOX - STANDARD_WINDOW_TILE_COUNT)
 
-typedef struct WiFiEarthPlaceRecord_t {
-    u16 type;
-    s16 x;
-    s16 y;
-} WiFiEarthPlaceRecord;
-
-typedef struct WiFiEarthRegionRecord_t {
-    s16 x;
-    s16 y;
-} WiFiEarthRegionRecord;
-
-typedef struct {
-    s16 x;
-    s16 y;
+typedef struct WiFiEarthMarker {
+    CoordinatesS16 position;
     MtxFx33 transform;
     u16 recency;
     u16 country;
     u16 region;
 } WiFiEarthMarker;
 
-typedef struct {
+typedef struct WiFiEarthMarkerList {
     u32 count;
     WiFiEarthMarker markers[1024];
 } WiFiEarthMarkerList;
@@ -121,7 +111,7 @@ typedef struct WiFiEarthData {
     BOOL inspectMode;
 } WiFiEarthData;
 
-typedef struct {
+typedef struct WiFiEarthMenuItem {
     u32 messageId;
     u32 value;
 } WiFiEarthMenuItem;
@@ -178,10 +168,6 @@ enum WiFiEarthMarkerRecency {
     WIFI_EARTH_RECENCY_SELF,
 };
 
-BOOL WiFiEarth_CountryHasRegions(int country);
-int WiFiEarth_Init(ApplicationManager *appMan, int *unused);
-int WiFiEarth_Main(ApplicationManager *appMan, int *state);
-int WiFiEarth_Exit(ApplicationManager *appMan, int *unused);
 static void WiFiEarth_SetupGXBanks(void);
 static void WiFiEarth_SetupGraphicsModes(void);
 static void WiFiEarth_LoadGraphics(WiFiEarthData *wifiEarth, NARC *narc);
@@ -245,114 +231,116 @@ static const BgTemplate sBackgroundBgTemplate = {
 };
 
 static const WindowTemplate sMessageWindowTemplate = {
-    6,
-    2,
-    19,
-    27,
-    4,
-    4,
-    365
+    .bgLayer = 6,
+    .tilemapLeft = 2,
+    .tilemapTop = 19,
+    .width = 27,
+    .height = 4,
+    .palette = 4,
+    .baseTile = 365,
 };
 
 static const WindowTemplate sYesNoWindowTemplate = {
-    6,
-    25,
-    13,
-    6,
-    4,
-    4,
-    341
+    .bgLayer = 6,
+    .tilemapLeft = 25,
+    .tilemapTop = 13,
+    .width = 6,
+    .height = 4,
+    .palette = 4,
+    .baseTile = 341,
 };
 
 static const WindowTemplate sMainMenuWindowTemplate = {
-    6,
-    19,
-    11,
-    12,
-    6,
-    4,
-    293
+    .bgLayer = 6,
+    .tilemapLeft = 19,
+    .tilemapTop = 11,
+    .width = 12,
+    .height = 6,
+    .palette = 4,
+    .baseTile = 293,
 };
 
 static const WindowTemplate sSelectionListWindowTemplate = {
-    6,
-    3,
-    2,
-    26,
-    14,
-    4,
-    1
+    .bgLayer = 6,
+    .tilemapLeft = 3,
+    .tilemapTop = 2,
+    .width = 26,
+    .height = 14,
+    .palette = 4,
+    .baseTile = 1,
 };
 
 static const WindowTemplate sLocationInfoWindowTemplate = {
-    6,
-    2,
-    1,
-    27,
-    6,
-    4,
-    179
+    .bgLayer = 6,
+    .tilemapLeft = 2,
+    .tilemapTop = 1,
+    .width = 27,
+    .height = 6,
+    .palette = 4,
+    .baseTile = 179,
 };
 
 static const WindowTemplate sExitButtonWindowTemplate = {
-    2,
-    25,
-    21,
-    6,
-    2,
-    4,
-    461
+    .bgLayer = 2,
+    .tilemapLeft = 25,
+    .tilemapTop = 21,
+    .width = 6,
+    .height = 2,
+    .palette = 4,
+    .baseTile = 461,
 };
 
 static const WiFiEarthMenuItem sMainMenuItems[] = {
-    { WiFiEarth_Text_SeeList, WIFI_EARTH_MENU_VIEW },
-    { WiFiEarth_Text_Register, WIFI_EARTH_MENU_REGISTER },
-    { WiFiEarth_Text_Exit, WIFI_EARTH_MENU_CANCEL }
+    { .messageId = WiFiEarth_Text_SeeList, .value = WIFI_EARTH_MENU_VIEW },
+    { .messageId = WiFiEarth_Text_Register, .value = WIFI_EARTH_MENU_REGISTER },
+    { .messageId = WiFiEarth_Text_Exit, .value = WIFI_EARTH_MENU_CANCEL }
 };
 
 static const ListMenuTemplate sMainMenuListTemplate = {
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NELEMS(sMainMenuItems),
-    NELEMS(sMainMenuItems),
-    0,
-    12,
-    0,
-    0,
-    1,
-    15,
-    2,
-    0,
-    16,
-    0,
-    0,
-    0
+    .choices = NULL,
+    .cursorCallback = NULL,
+    .printCallback = NULL,
+    .window = NULL,
+    .count = NELEMS(sMainMenuItems),
+    .maxDisplay = NELEMS(sMainMenuItems),
+    .headerXOffset = 0,
+    .textXOffset = 12,
+    .cursorXOffset = 0,
+    .yOffset = 0,
+    .textColorFg = 1,
+    .textColorBg = 15,
+    .textColorShadow = 2,
+    .letterSpacing = 0,
+    .lineSpacing = 16,
+    .pagerMode = PAGER_MODE_NONE,
+    .fontID = FONT_SYSTEM,
+    .cursorType = 0,
+    .parent = NULL
 };
 
 static const ListMenuTemplate sSelectionListTemplate = {
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    0,
-    7,
-    0,
-    12,
-    0,
-    0,
-    1,
-    15,
-    2,
-    0,
-    16,
-    1,
-    0,
-    0
+    .choices = NULL,
+    .cursorCallback = NULL,
+    .printCallback = NULL,
+    .window = NULL,
+    .count = 0,
+    .maxDisplay = 7,
+    .headerXOffset = 0,
+    .textXOffset = 12,
+    .cursorXOffset = 0,
+    .yOffset = 0,
+    .textColorFg = 1,
+    .textColorBg = 15,
+    .textColorShadow = 2,
+    .letterSpacing = 0,
+    .lineSpacing = 16,
+    .pagerMode = PAGER_MODE_LEFT_RIGHT_PAD,
+    .fontID = FONT_SYSTEM,
+    .cursorType = 0,
+    .parent = NULL
 };
 
-int WiFiEarth_Init(ApplicationManager *appMan, int *unused)
+BOOL WiFiEarth_Init(ApplicationManager *appMan, int *unused)
 {
     enum HeapID heapID = HEAP_ID_50;
 
@@ -403,10 +391,10 @@ int WiFiEarth_Init(ApplicationManager *appMan, int *unused)
 
     WiFiEarth_LoadLocationMarkers(wifiEarth);
 
-    return 1;
+    return TRUE;
 }
 
-int WiFiEarth_Main(ApplicationManager *appMan, int *state)
+BOOL WiFiEarth_Main(ApplicationManager *appMan, int *state)
 {
     WiFiEarthData *wifiEarth = ApplicationManager_Data(appMan);
     BOOL done = FALSE;
@@ -473,7 +461,8 @@ int WiFiEarth_Main(ApplicationManager *appMan, int *state)
             *state = WIFI_EARTH_STATE_FADE_OUT;
             break;
         }
-    } break;
+        break;
+    }
     case WIFI_EARTH_STATE_SHOW_JAPAN_PROMPT:
         if (WiFiEarth_ShowMessage(wifiEarth, WiFiEarth_Text_RegisterPrompt, TRUE) == 1) {
             wifiEarth->menu = Menu_MakeYesNoChoice(wifiEarth->bgConfig, &sYesNoWindowTemplate, WIFI_EARTH_BASE_TILE_STANDARD_WINDOW_FRAME, 7, wifiEarth->heapID);
@@ -496,7 +485,8 @@ int WiFiEarth_Main(ApplicationManager *appMan, int *state)
             *state = WIFI_EARTH_STATE_SHOW_MENU_PROMPT;
             break;
         }
-    } break;
+        break;
+    }
     case WIFI_EARTH_STATE_SHOW_COUNTRY_PROMPT:
         if (WiFiEarth_ShowMessage(wifiEarth, WiFiEarth_Text_SelectCountry, TRUE) == 1) {
             wifiEarth->country2 = 0;
@@ -529,13 +519,15 @@ int WiFiEarth_Main(ApplicationManager *appMan, int *state)
                 wifiEarth->region2 = 0;
                 *state = WIFI_EARTH_STATE_SHOW_LOCATION_INFO;
             }
-        } break;
+            break;
+        }
         case MENU_CANCEL:
 
             *state = WIFI_EARTH_STATE_SHOW_MENU_PROMPT;
             break;
         }
-    } break;
+        break;
+    }
     case WIFI_EARTH_STATE_SHOW_REGION_PROMPT:
         if (WiFiEarth_ShowMessage(wifiEarth, WiFiEarth_Text_SelectRegion, TRUE) == TRUE) {
             wifiEarth->region2 = 0;
@@ -574,7 +566,8 @@ int WiFiEarth_Main(ApplicationManager *appMan, int *state)
                 *state = WIFI_EARTH_STATE_SHOW_COUNTRY_PROMPT;
             }
         }
-    } break;
+        break;
+    }
     case WIFI_EARTH_STATE_SHOW_LOCATION_INFO:
         WiFiEarth_ShowLocationInfo(wifiEarth, wifiEarth->country2, wifiEarth->region2);
         *state = WIFI_EARTH_STATE_SHOW_CONFIRM_PROMPT;
@@ -602,7 +595,8 @@ int WiFiEarth_Main(ApplicationManager *appMan, int *state)
             *state = WIFI_EARTH_STATE_SHOW_MENU_PROMPT;
             break;
         }
-    } break;
+        break;
+    }
     case WIFI_EARTH_STATE_ENTER_GLOBE_VIEW:
         if (wifiEarth->isJapanese == TRUE && !wifiEarth->hasInteractedOutsideJapan) {
             wifiEarth->canRotateFreely = FALSE;
@@ -682,14 +676,16 @@ int WiFiEarth_Main(ApplicationManager *appMan, int *state)
                 }
             }
         }
-    } break;
+        break;
+    }
     case WIFI_EARTH_STATE_ZOOM_TRANSITION: {
         BOOL zoomDone = WiFiEarth_UpdateZoomTransition(wifiEarth);
 
         if (zoomDone == 1) {
             *state = WIFI_EARTH_STATE_GLOBE_VIEW;
         }
-    } break;
+        break;
+    }
     case WIFI_EARTH_STATE_FADE_OUT:
         wifiEarth->unread_BAEC = 0;
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, wifiEarth->heapID);
@@ -713,7 +709,7 @@ int WiFiEarth_Main(ApplicationManager *appMan, int *state)
     return done;
 }
 
-int WiFiEarth_Exit(ApplicationManager *appMan, int *unused)
+BOOL WiFiEarth_Exit(ApplicationManager *appMan, int *unused)
 {
     WiFiEarthData *wifiEarth = ApplicationManager_Data(appMan);
     enum HeapID heapID = wifiEarth->heapID;
@@ -732,7 +728,7 @@ int WiFiEarth_Exit(ApplicationManager *appMan, int *unused)
 
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
-    return 1;
+    return TRUE;
 }
 
 static void WiFiEarth_SetupGXBanks(void)
@@ -756,10 +752,10 @@ static void WiFiEarth_SetupGXBanks(void)
 static void WiFiEarth_SetupGraphicsModes(void)
 {
     GraphicsModes modes = {
-        GX_DISPMODE_GRAPHICS,
-        GX_BGMODE_0,
-        GX_BGMODE_0,
-        GX_BG0_AS_3D
+        .displayMode = GX_DISPMODE_GRAPHICS,
+        .mainBgMode = GX_BGMODE_0,
+        .subBgMode = GX_BGMODE_0,
+        .bg0As2DOr3D = GX_BG0_AS_3D
     };
 
     SetAllGraphicsModes(&modes);
@@ -771,12 +767,12 @@ static void WiFiEarth_LoadLocationMarkers(WiFiEarthData *wifiEarth)
 
     wifiEarth->markers.count = 0;
 
-    WiFiEarthPlaceRecord *record;
+    PlaceRecord *record;
     u32 byteSize;
 
     void *placeBuffer = LoadMemberFromOpenNARC_OutFileSize(narc, 18, 0, wifiEarth->heapID, 0, &byteSize);
-    record = (WiFiEarthPlaceRecord *)placeBuffer;
-    int recordCount = byteSize / sizeof(WiFiEarthPlaceRecord);
+    record = (PlaceRecord *)placeBuffer;
+    int recordCount = byteSize / sizeof(PlaceRecord);
 
     record++;
 
@@ -791,7 +787,7 @@ static void WiFiEarth_LoadLocationMarkers(WiFiEarthData *wifiEarth)
     Heap_Free(placeBuffer);
 
     void *regionBuffer;
-    WiFiEarthRegionRecord *regionRecord;
+    CoordinatesS16 *regionRecord;
     u32 regionByteSize, narcMemberIndex;
     int countryCount, regionRecordCount;
 
@@ -801,8 +797,8 @@ static void WiFiEarth_LoadLocationMarkers(WiFiEarthData *wifiEarth)
     while (countryIndex < countryCount) {
         narcMemberIndex = sub_02099764(countryIndex);
         regionBuffer = LoadMemberFromOpenNARC_OutFileSize(narc, narcMemberIndex, 0, wifiEarth->heapID, 0, &regionByteSize);
-        regionRecord = (WiFiEarthRegionRecord *)regionBuffer;
-        regionRecordCount = regionByteSize / sizeof(WiFiEarthRegionRecord);
+        regionRecord = (CoordinatesS16 *)regionBuffer;
+        regionRecordCount = regionByteSize / sizeof(CoordinatesS16);
 
         regionRecord++;
 
@@ -824,8 +820,8 @@ static void WiFiEarth_AddLocationMarker(WiFiEarthData *wifiEarth, u32 index, s16
     MtxFx33 transform = { FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE };
     VecFx32 position;
 
-    wifiEarth->markers.markers[index].x = x;
-    wifiEarth->markers.markers[index].y = y;
+    wifiEarth->markers.markers[index].position.x = x;
+    wifiEarth->markers.markers[index].position.y = y;
 
     position.x = x;
     position.y = y;
@@ -844,8 +840,8 @@ static void WiFiEarth_FocusPlayerLocation(WiFiEarthData *wifiEarth)
     for (int i = 0; i < wifiEarth->markers.count; i++) {
         if (wifiEarth->markers.markers[i].country == wifiEarth->country1 && wifiEarth->markers.markers[i].region == wifiEarth->region1) {
             wifiEarth->markers.markers[i].recency = WIFI_EARTH_RECENCY_SELF;
-            wifiEarth->rotationAngle.x = wifiEarth->markers.markers[i].x;
-            wifiEarth->rotationAngle.y = wifiEarth->markers.markers[i].y;
+            wifiEarth->rotationAngle.x = wifiEarth->markers.markers[i].position.x;
+            wifiEarth->rotationAngle.y = wifiEarth->markers.markers[i].position.y;
         }
     }
 }
@@ -981,10 +977,10 @@ static void WiFiEarth_LoadGraphics(WiFiEarthData *wifiEarth, NARC *narc)
     String *exitLabel = String_Init(16, wifiEarth->heapID);
     Font_InitManager(FONT_SUBSCREEN, wifiEarth->heapID);
 
-    u16 textColor = 0x4e56;
-    u16 shadowColor = 0x3571;
-    u16 accentColor = 0x208c;
-    u16 frameColor = 0x7fff;
+    u16 textColor = GX_RGB(22, 18, 19);
+    u16 shadowColor = GX_RGB(17, 11, 13);
+    u16 accentColor = GX_RGB(12, 4, 8);
+    u16 frameColor = GX_RGB(31, 31, 31);
 
     Bg_LoadPalette(BG_LAYER_MAIN_2, &textColor, sizeof(u16), PLTT_OFFSET(4) + 1 * sizeof(u16));
     Bg_LoadPalette(BG_LAYER_MAIN_2, &shadowColor, sizeof(u16), PLTT_OFFSET(4) + 2 * sizeof(u16));
@@ -995,9 +991,7 @@ static void WiFiEarth_LoadGraphics(WiFiEarthData *wifiEarth, NARC *narc)
     Window_FillRectWithColor(&wifiEarth->exitButtonWindow, 15, 0, 0, 27 * 8, 4 * 8);
     MessageLoader_GetString(wifiEarth->messageLoader, WiFiEarth_Text_Exit, exitLabel);
 
-    u32 exitLabelX;
-
-    exitLabelX = Font_CalcCenterAlignment(FONT_SUBSCREEN, exitLabel, 0, 6 * 8);
+    u32 exitLabelX = Font_CalcCenterAlignment(FONT_SUBSCREEN, exitLabel, 0, 6 * 8);
     Text_AddPrinterWithParams(&wifiEarth->exitButtonWindow, FONT_SUBSCREEN, exitLabel, exitLabelX, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
     String_Free(exitLabel);
@@ -1183,9 +1177,9 @@ static void WiFiEarth_ShowNearestMarker(WiFiEarthData *wifiEarth)
         WiFiEarth_NormalizeAngle(&center);
 
         for (int i = 0; i < wifiEarth->markers.count; i++) {
-            if ((wifiEarth->markers.markers[i].x > xMin) && (wifiEarth->markers.markers[i].x < xMax) && (wifiEarth->markers.markers[i].y > yMin) && (wifiEarth->markers.markers[i].y < yMax) && (wifiEarth->markers.markers[i].recency != WIFI_EARTH_RECENCY_NONE)) {
-                point.x = wifiEarth->markers.markers[i].x;
-                point.y = wifiEarth->markers.markers[i].y;
+            if ((wifiEarth->markers.markers[i].position.x > xMin) && (wifiEarth->markers.markers[i].position.x < xMax) && (wifiEarth->markers.markers[i].position.y > yMin) && (wifiEarth->markers.markers[i].position.y < yMax) && (wifiEarth->markers.markers[i].recency != WIFI_EARTH_RECENCY_NONE)) {
+                point.x = wifiEarth->markers.markers[i].position.x;
+                point.y = wifiEarth->markers.markers[i].position.y;
 
                 WiFiEarth_NormalizeAngle(&point);
 
@@ -1213,8 +1207,8 @@ static void WiFiEarth_ShowNearestMarker(WiFiEarthData *wifiEarth)
             String_Free(regionName);
             String_Free(countryName);
 
-            wifiEarth->rotationAngle.x = wifiEarth->markers.markers[bestIndex].x;
-            wifiEarth->rotationAngle.y = wifiEarth->markers.markers[bestIndex].y;
+            wifiEarth->rotationAngle.x = wifiEarth->markers.markers[bestIndex].position.x;
+            wifiEarth->rotationAngle.y = wifiEarth->markers.markers[bestIndex].position.y;
 
             found = TRUE;
         }
@@ -1258,17 +1252,17 @@ static void WiFiEarth_ResetGlobeTransform(WiFiEarthData *wifiEarth)
     wifiEarth->renderOrigin.y = 0;
     wifiEarth->renderOrigin.z = 0;
 
-    wifiEarth->globeScale.x = (FX32_ONE);
-    wifiEarth->globeScale.y = (FX32_ONE);
-    wifiEarth->globeScale.z = (FX32_ONE);
+    wifiEarth->globeScale.x = FX32_ONE;
+    wifiEarth->globeScale.y = FX32_ONE;
+    wifiEarth->globeScale.z = FX32_ONE;
 
     wifiEarth->rotationAngle.x = 0x1A40;
     wifiEarth->rotationAngle.y = 0x7C00;
     wifiEarth->rotationAngle.z = 0;
 
-    wifiEarth->markerScale.x = (FX32_ONE);
-    wifiEarth->markerScale.y = (FX32_ONE);
-    wifiEarth->markerScale.z = (FX32_ONE);
+    wifiEarth->markerScale.x = FX32_ONE;
+    wifiEarth->markerScale.y = FX32_ONE;
+    wifiEarth->markerScale.z = FX32_ONE;
 }
 
 static void WiFiEarth_InitCamera(WiFiEarthData *wifiEarth)
