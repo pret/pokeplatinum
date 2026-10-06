@@ -87,6 +87,11 @@ endif
 
 export NINJA_STATUS := [%p %f/%t] 
 
+PYTHON ?= python3
+LSF_IN := platinum.us/main.lsf.in
+LSFGEN := tools/scripts/lsfgen.py
+LSFGEN_OUT := platinum.us/main.lsf src/meson.build
+
 # Modders can delete the `check` dependency here after their first build.
 all: release check
 
@@ -132,13 +137,23 @@ setup_debug: $(BUILD)/build.ninja
 
 configure: $(BUILD)/build.ninja
 
-$(BUILD)/build.ninja: | $(BUILD) $(SKREW_EXE) meson
+$(BUILD)/build.ninja: | $(BUILD) $(SKREW_EXE) meson $(LSFGEN_OUT)
 	$(MESON) setup \
 		-Drevision=$(ROM_REVISION) \
 		--wrap-mode=nopromote \
 		--native-file=meson/$(NATIVE) \
 		--cross-file=meson/$(CROSS) \
 		-- $(BUILD)
+
+# macOS's default Make does not support grouped targets, so we have to generate
+# a stamp file as a stand-in.
+$(LSFGEN_OUT): $(BUILD)/lsfgen.stamp ;
+
+$(BUILD)/lsfgen.stamp: $(LSF_IN) $(LSFGEN) | $(BUILD)
+	$(PYTHON) $(LSFGEN) $(LSF_IN) --prefix-dir main.nef.p/ \
+		--dest-lsf platinum.us/main.lsf \
+		--dest-c src/meson.build
+	@touch $@
 
 $(BUILD):
 	mkdir -p -- $(BUILD)
