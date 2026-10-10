@@ -11755,7 +11755,7 @@
                                                        54](StringTemplate_SetCountryName,func) found in global src_string_template.c.o
                                                        54](StringTemplate_SetCityName,func) found in global src_string_template.c.o
                                                         55](sub_02099720,func) found in global src_unk_020996D0.c.o
-                                                         56](sub_020996D4,func) found in global src_unk_020996D0.c.o
+                                                         56](GetCountryTableIndex,func) found in global src_unk_020996D0.c.o
                                                          56](sub_0209972C,func) found in global src_unk_020996D0.c.o
                                                        54](sub_02030C28,func) found in global src_unk_02030A80.c.o
                                                         55](EasyChatWord_GetLoaderIndexAndEntry,func) found in global src_easy_chat_words.c.o
@@ -22201,47 +22201,47 @@
                                              44](TownMap_FreeBlocks,func) found in global src_applications_town_map_map_blocks.c.o
                                              44](MainMapMatrixData_Free,func) found in global src_map_matrix.c.o
                                           41](TownMap_Init,func) found in global src_applications_town_map_main.c.o
-                                          41](ov92_021D1478,func) found in global src_overlay092_ov92_021D0D80.c.o
-                                          41](ov92_021D0EB8,func) found in global src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D2150,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1888,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                            43](Unk_ov92_021D2970,object) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1B70,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1C4C,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                            43](ov92_021D1C38,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1DB4,func) found in local src_overlay092_ov92_021D0D80.c.o
+                                          41](WiFiEarth_Exit,func) found in global src_applications_wifi_earth.c.o
+                                          41](WiFiEarth_Main,func) found in global src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_Load3DModels,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_LoadGraphics,func) found in local src_applications_wifi_earth.c.o
+                                            43](sWindowBgTemplate,object) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_ShowMessage,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_CreateListMenu,func) found in local src_applications_wifi_earth.c.o
+                                            43](WiFiEarth_SetCursorPos,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_FreeListMenu,func) found in local src_applications_wifi_earth.c.o
                                            42](sub_02099780,func) found in global src_unk_020996D0.c.o
                                            42](sub_0209979C,func) found in global src_unk_020996D0.c.o
-                                           42](ov92_021D1CF4,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D2854,func) found in global src_overlay092_ov92_021D0D80.c.o
-                                            43](ov92_021D16F8,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1EBC,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                            43](ov92_021D27E8,func) found in global src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1F74,func) found in local src_overlay092_ov92_021D0D80.c.o
+                                           42](WiFiEarth_CreateListMenuFromBank,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_CountryHasRegions,func) found in global src_applications_wifi_earth.c.o
+                                            43](WiFiEarth_GetCountryIndex,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_ShowLocationInfo,func) found in local src_applications_wifi_earth.c.o
+                                            43](WiFiEarth_GetLocationNames,func) found in global src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_FreeLocationInfo,func) found in local src_applications_wifi_earth.c.o
                                            42](WiFiHistory_SetCountryAndRegion,func) found in global src_wifi_history_save_data.c.o
-                                           42](ov92_021D2254,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D16A8,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D22B0,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                            43](ov92_021D2644,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D2334,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1DEC,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1F90,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                            43](ov92_021D2868,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                            43](ov92_021D28C0,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1700,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                            43](ov92_021D1818,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D2460,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1B24,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D2210,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D26D0,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                            43](ov92_021D2370,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                          41](ov92_021D0D80,func) found in global src_overlay092_ov92_021D0D80.c.o
+                                           42](WiFiEarth_ResetGlobeTransform,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_FocusPlayerLocation,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_InitCamera,func) found in local src_applications_wifi_earth.c.o
+                                            43](WiFiEarth_UpdateZoomTransition,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_InitLighting,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_ShowPlayerLocation,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_ShowNearestMarker,func) found in local src_applications_wifi_earth.c.o
+                                            43](WiFiEarth_NormalizeAngle,func) found in local src_applications_wifi_earth.c.o
+                                            43](WiFiEarth_GetAngularDistance,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_UpdateTouchInput,func) found in local src_applications_wifi_earth.c.o
+                                            43](WiFiEarth_GetTouchDragDelta,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_HandleRotationInput,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_FreeGraphics,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_Free3DModels,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_Draw3DScene,func) found in local src_applications_wifi_earth.c.o
+                                            43](WiFiEarth_BuildViewRotationMatrix,func) found in local src_applications_wifi_earth.c.o
+                                          41](WiFiEarth_Init,func) found in global src_applications_wifi_earth.c.o
                                            42](WiFiHistory_HasInteractedOutsideJapan,func) found in global src_wifi_history_save_data.c.o
-                                           42](ov92_021D14F0,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1510,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                           42](ov92_021D1530,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                            43](ov92_021D1634,func) found in local src_overlay092_ov92_021D0D80.c.o
-                                             44](ov92_021D23E8,func) found in local src_overlay092_ov92_021D0D80.c.o
+                                           42](WiFiEarth_SetupGXBanks,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_SetupGraphicsModes,func) found in local src_applications_wifi_earth.c.o
+                                           42](WiFiEarth_LoadLocationMarkers,func) found in local src_applications_wifi_earth.c.o
+                                            43](WiFiEarth_AddLocationMarker,func) found in local src_applications_wifi_earth.c.o
+                                             44](WiFiEarth_BuildMarkerOrientationMatrix,func) found in local src_applications_wifi_earth.c.o
                                             43](sub_020996D0,func) found in global src_unk_020996D0.c.o
                                             43](sub_02099764,func) found in global src_unk_020996D0.c.o
                                             43](sub_02099748,func) found in global src_unk_020996D0.c.o
@@ -60830,7 +60830,7 @@
   020996D0 00000004 .text   sub_020996D0	(src_unk_020996D0.c.o)
   020996D0 00000000 .text   $t	(src_unk_020996D0.c.o)
   020996D4 00000000 .text   $t	(src_unk_020996D0.c.o)
-  020996D4 00000020 .text   sub_020996D4	(src_unk_020996D0.c.o)
+  020996D4 00000020 .text   GetCountryTableIndex	(src_unk_020996D0.c.o)
   020996F0 00000000 .text   $d	(src_unk_020996D0.c.o)
   020996F4 00000000 .text   $t	(src_unk_020996D0.c.o)
   020996F4 0000002C .text   sub_020996F4	(src_unk_020996D0.c.o)
@@ -125700,152 +125700,152 @@
 #>021D2BC0          SDK_OVERLAY.move_reminder.BSS_END (linker command file)
 #>00000000          SDK_OVERLAY.move_reminder.BSS_SIZE (linker command file)
 
-# .overlay92
-#>0000005C          SDK_OVERLAY_overlay92_ID (linker command file)
-#>0000005C          SDK_OVERLAY.overlay92.ID (linker command file)
-#>021D0D80          SDK_OVERLAY.overlay92.START (linker command file)
-#>021D0D80          SDK_OVERLAY.overlay92.TEXT_START (linker command file)
-  021D0D80 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D0D80 00000138 .text   ov92_021D0D80	(src_overlay092_ov92_021D0D80.c.o)
-  021D0E88 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D0EB8 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D0EB8 000005C0 .text   ov92_021D0EB8	(src_overlay092_ov92_021D0D80.c.o)
-  021D1220 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D126C 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1438 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1478 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1478 00000078 .text   ov92_021D1478	(src_overlay092_ov92_021D0D80.c.o)
-  021D14E0 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D14F0 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D14F0 00000020 .text   ov92_021D14F0	(src_overlay092_ov92_021D0D80.c.o)
-  021D150C 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1510 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1510 00000020 .text   ov92_021D1510	(src_overlay092_ov92_021D0D80.c.o)
-  021D152C 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1530 00000104 .text   ov92_021D1530	(src_overlay092_ov92_021D0D80.c.o)
-  021D1530 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1634 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1634 00000074 .text   ov92_021D1634	(src_overlay092_ov92_021D0D80.c.o)
-  021D16A4 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D16A8 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D16A8 00000050 .text   ov92_021D16A8	(src_overlay092_ov92_021D0D80.c.o)
-  021D16EC 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D16F8 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D16F8 00000008 .text   ov92_021D16F8	(src_overlay092_ov92_021D0D80.c.o)
-  021D16FC 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1700 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1700 00000118 .text   ov92_021D1700	(src_overlay092_ov92_021D0D80.c.o)
-  021D1808 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1818 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1818 00000070 .text   ov92_021D1818	(src_overlay092_ov92_021D0D80.c.o)
-  021D1880 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1888 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1888 0000029C .text   ov92_021D1888	(src_overlay092_ov92_021D0D80.c.o)
-  021D1AE4 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1B24 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1B24 0000004C .text   ov92_021D1B24	(src_overlay092_ov92_021D0D80.c.o)
-  021D1B64 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1B70 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1B70 000000C8 .text   ov92_021D1B70	(src_overlay092_ov92_021D0D80.c.o)
-  021D1C24 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1C38 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1C38 00000014 .text   ov92_021D1C38	(src_overlay092_ov92_021D0D80.c.o)
-  021D1C48 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1C4C 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1C4C 000000A8 .text   ov92_021D1C4C	(src_overlay092_ov92_021D0D80.c.o)
-  021D1CDC 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1CF4 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1CF4 000000C0 .text   ov92_021D1CF4	(src_overlay092_ov92_021D0D80.c.o)
-  021D1DA0 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1DB4 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1DB4 00000038 .text   ov92_021D1DB4	(src_overlay092_ov92_021D0D80.c.o)
-  021D1DE0 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1DEC 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1DEC 000000D0 .text   ov92_021D1DEC	(src_overlay092_ov92_021D0D80.c.o)
-  021D1EA0 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1EBC 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1EBC 000000B8 .text   ov92_021D1EBC	(src_overlay092_ov92_021D0D80.c.o)
-  021D1F64 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1F74 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1F74 0000001C .text   ov92_021D1F74	(src_overlay092_ov92_021D0D80.c.o)
-  021D1F8C 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D1F90 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D1F90 000001C0 .text   ov92_021D1F90	(src_overlay092_ov92_021D0D80.c.o)
-  021D2140 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D2150 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D2150 000000C0 .text   ov92_021D2150	(src_overlay092_ov92_021D0D80.c.o)
-  021D21F4 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D2210 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D2210 00000044 .text   ov92_021D2210	(src_overlay092_ov92_021D0D80.c.o)
-  021D2240 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D2254 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D2254 0000005C .text   ov92_021D2254	(src_overlay092_ov92_021D0D80.c.o)
-  021D22AC 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D22B0 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D22B0 00000084 .text   ov92_021D22B0	(src_overlay092_ov92_021D0D80.c.o)
-  021D2324 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D2334 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D2334 0000003C .text   ov92_021D2334	(src_overlay092_ov92_021D0D80.c.o)
-  021D2368 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D2370 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D2370 00000078 .text   ov92_021D2370	(src_overlay092_ov92_021D0D80.c.o)
-  021D23E4 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D23E8 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D23E8 00000078 .text   ov92_021D23E8	(src_overlay092_ov92_021D0D80.c.o)
-  021D245C 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D2460 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D2460 000001E4 .text   ov92_021D2460	(src_overlay092_ov92_021D0D80.c.o)
-  021D2624 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D2644 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D2644 0000008C .text   ov92_021D2644	(src_overlay092_ov92_021D0D80.c.o)
-  021D26C8 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D26D0 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D26D0 00000118 .text   ov92_021D26D0	(src_overlay092_ov92_021D0D80.c.o)
-  021D27C0 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D27E8 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D27E8 0000006C .text   ov92_021D27E8	(src_overlay092_ov92_021D0D80.c.o)
-  021D2850 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D2854 00000012 .text   ov92_021D2854	(src_overlay092_ov92_021D0D80.c.o)
-  021D2854 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D2868 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D2868 00000058 .text   ov92_021D2868	(src_overlay092_ov92_021D0D80.c.o)
-  021D28BC 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D28C0 00000000 .text   $t	(src_overlay092_ov92_021D0D80.c.o)
-  021D28C0 0000004C .text   ov92_021D28C0	(src_overlay092_ov92_021D0D80.c.o)
-  021D2908 00000000 .text   $d	(src_overlay092_ov92_021D0D80.c.o)
-  021D290C 00000000 .rodata .rodata	(src_overlay092_ov92_021D0D80.c.o)
-  021D290C 00000008 .rodata Unk_ov92_021D290C	(src_overlay092_ov92_021D0D80.c.o)
-  021D2914 00000008 .rodata Unk_ov92_021D2914	(src_overlay092_ov92_021D0D80.c.o)
-  021D291C 00000008 .rodata Unk_ov92_021D291C	(src_overlay092_ov92_021D0D80.c.o)
-  021D2924 00000008 .rodata Unk_ov92_021D2924	(src_overlay092_ov92_021D0D80.c.o)
-  021D292C 00000008 .rodata Unk_ov92_021D292C	(src_overlay092_ov92_021D0D80.c.o)
-  021D2934 00000008 .rodata Unk_ov92_021D2934	(src_overlay092_ov92_021D0D80.c.o)
-  021D293C 0000000C .rodata @16026	(src_overlay092_ov92_021D0D80.c.o)
-  021D2948 00000010 .rodata @15752	(src_overlay092_ov92_021D0D80.c.o)
-  021D2958 00000018 .rodata Unk_ov92_021D2958	(src_overlay092_ov92_021D0D80.c.o)
-  021D2970 0000001C .rodata Unk_ov92_021D2970	(src_overlay092_ov92_021D0D80.c.o)
-  021D298C 0000001C .rodata Unk_ov92_021D298C	(src_overlay092_ov92_021D0D80.c.o)
-  021D29A8 00000020 .rodata Unk_ov92_021D29A8	(src_overlay092_ov92_021D0D80.c.o)
-  021D29C8 00000020 .rodata Unk_ov92_021D29C8	(src_overlay092_ov92_021D0D80.c.o)
-  021D29E8 00000024 .rodata @16141	(src_overlay092_ov92_021D0D80.c.o)
-  021D2A0C 00000024 .rodata @16149	(src_overlay092_ov92_021D0D80.c.o)
-  021D2A30 00000024 .rodata @15798	(src_overlay092_ov92_021D0D80.c.o)
-  021D2A54 00000024 .rodata @16147	(src_overlay092_ov92_021D0D80.c.o)
-  021D2A78 00000028 .rodata @15747	(src_overlay092_ov92_021D0D80.c.o)
-#>021D2AA0          SDK_OVERLAY.overlay92.SINIT_START (linker command file)
-#>021D2AA4          SDK_OVERLAY.overlay92.SINIT_END (linker command file)
-#>021D2AC0          SDK_OVERLAY.overlay92.TEXT_END (linker command file)
-#>021D2AC0          SDK_OVERLAY.overlay92.DATA_START (linker command file)
-#>021D2AC0          SDK_OVERLAY.overlay92.DATA_END (linker command file)
-#>021D2AC0          SDK_OVERLAY.overlay92.END (linker command file)
-#>00001D40          SDK_OVERLAY.overlay92.TEXT_SIZE (linker command file)
-#>00000000          SDK_OVERLAY.overlay92.DATA_SIZE (linker command file)
-#>00001D40          SDK_OVERLAY.overlay92.SIZE (linker command file)
+# .wifi_earth
+#>0000005C          SDK_OVERLAY_wifi_earth_ID (linker command file)
+#>0000005C          SDK_OVERLAY.wifi_earth.ID (linker command file)
+#>021D0D80          SDK_OVERLAY.wifi_earth.START (linker command file)
+#>021D0D80          SDK_OVERLAY.wifi_earth.TEXT_START (linker command file)
+  021D0D80 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D0D80 00000138 .text   WiFiEarth_Init	(src_applications_wifi_earth.c.o)
+  021D0E88 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D0EB8 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D0EB8 000005C0 .text   WiFiEarth_Main	(src_applications_wifi_earth.c.o)
+  021D1220 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D126C 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1438 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1478 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1478 00000078 .text   WiFiEarth_Exit	(src_applications_wifi_earth.c.o)
+  021D14E0 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D14F0 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D14F0 00000020 .text   WiFiEarth_SetupGXBanks	(src_applications_wifi_earth.c.o)
+  021D150C 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1510 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1510 00000020 .text   WiFiEarth_SetupGraphicsModes	(src_applications_wifi_earth.c.o)
+  021D152C 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1530 00000104 .text   WiFiEarth_LoadLocationMarkers	(src_applications_wifi_earth.c.o)
+  021D1530 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1634 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1634 00000074 .text   WiFiEarth_AddLocationMarker	(src_applications_wifi_earth.c.o)
+  021D16A4 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D16A8 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D16A8 00000050 .text   WiFiEarth_FocusPlayerLocation	(src_applications_wifi_earth.c.o)
+  021D16EC 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D16F8 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D16F8 00000008 .text   WiFiEarth_GetCountryIndex	(src_applications_wifi_earth.c.o)
+  021D16FC 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1700 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1700 00000118 .text   WiFiEarth_UpdateTouchInput	(src_applications_wifi_earth.c.o)
+  021D1808 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1818 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1818 00000070 .text   WiFiEarth_GetTouchDragDelta	(src_applications_wifi_earth.c.o)
+  021D1880 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1888 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1888 0000029C .text   WiFiEarth_LoadGraphics	(src_applications_wifi_earth.c.o)
+  021D1AE4 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1B24 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1B24 0000004C .text   WiFiEarth_FreeGraphics	(src_applications_wifi_earth.c.o)
+  021D1B64 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1B70 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1B70 000000C8 .text   WiFiEarth_ShowMessage	(src_applications_wifi_earth.c.o)
+  021D1C24 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1C38 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1C38 00000014 .text   WiFiEarth_SetCursorPos	(src_applications_wifi_earth.c.o)
+  021D1C48 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1C4C 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1C4C 000000A8 .text   WiFiEarth_CreateListMenu	(src_applications_wifi_earth.c.o)
+  021D1CDC 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1CF4 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1CF4 000000C0 .text   WiFiEarth_CreateListMenuFromBank	(src_applications_wifi_earth.c.o)
+  021D1DA0 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1DB4 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1DB4 00000038 .text   WiFiEarth_FreeListMenu	(src_applications_wifi_earth.c.o)
+  021D1DE0 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1DEC 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1DEC 000000D0 .text   WiFiEarth_ShowPlayerLocation	(src_applications_wifi_earth.c.o)
+  021D1EA0 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1EBC 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1EBC 000000B8 .text   WiFiEarth_ShowLocationInfo	(src_applications_wifi_earth.c.o)
+  021D1F64 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1F74 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1F74 0000001C .text   WiFiEarth_FreeLocationInfo	(src_applications_wifi_earth.c.o)
+  021D1F8C 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D1F90 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D1F90 000001C0 .text   WiFiEarth_ShowNearestMarker	(src_applications_wifi_earth.c.o)
+  021D2140 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D2150 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D2150 000000C0 .text   WiFiEarth_Load3DModels	(src_applications_wifi_earth.c.o)
+  021D21F4 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D2210 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D2210 00000044 .text   WiFiEarth_Free3DModels	(src_applications_wifi_earth.c.o)
+  021D2240 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D2254 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D2254 0000005C .text   WiFiEarth_ResetGlobeTransform	(src_applications_wifi_earth.c.o)
+  021D22AC 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D22B0 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D22B0 00000084 .text   WiFiEarth_InitCamera	(src_applications_wifi_earth.c.o)
+  021D2324 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D2334 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D2334 0000003C .text   WiFiEarth_InitLighting	(src_applications_wifi_earth.c.o)
+  021D2368 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D2370 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D2370 00000078 .text   WiFiEarth_BuildViewRotationMatrix	(src_applications_wifi_earth.c.o)
+  021D23E4 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D23E8 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D23E8 00000078 .text   WiFiEarth_BuildMarkerOrientationMatrix	(src_applications_wifi_earth.c.o)
+  021D245C 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D2460 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D2460 000001E4 .text   WiFiEarth_HandleRotationInput	(src_applications_wifi_earth.c.o)
+  021D2624 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D2644 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D2644 0000008C .text   WiFiEarth_UpdateZoomTransition	(src_applications_wifi_earth.c.o)
+  021D26C8 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D26D0 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D26D0 00000118 .text   WiFiEarth_Draw3DScene	(src_applications_wifi_earth.c.o)
+  021D27C0 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D27E8 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D27E8 0000006C .text   WiFiEarth_GetLocationNames	(src_applications_wifi_earth.c.o)
+  021D2850 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D2854 00000012 .text   WiFiEarth_CountryHasRegions	(src_applications_wifi_earth.c.o)
+  021D2854 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D2868 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D2868 00000058 .text   WiFiEarth_NormalizeAngle	(src_applications_wifi_earth.c.o)
+  021D28BC 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D28C0 00000000 .text   $t	(src_applications_wifi_earth.c.o)
+  021D28C0 0000004C .text   WiFiEarth_GetAngularDistance	(src_applications_wifi_earth.c.o)
+  021D2908 00000000 .text   $d	(src_applications_wifi_earth.c.o)
+  021D290C 00000000 .rodata .rodata	(src_applications_wifi_earth.c.o)
+  021D290C 00000008 .rodata sMainMenuWindowTemplate	(src_applications_wifi_earth.c.o)
+  021D2914 00000008 .rodata sSelectionListWindowTemplate	(src_applications_wifi_earth.c.o)
+  021D291C 00000008 .rodata sLocationInfoWindowTemplate	(src_applications_wifi_earth.c.o)
+  021D2924 00000008 .rodata sExitButtonWindowTemplate	(src_applications_wifi_earth.c.o)
+  021D292C 00000008 .rodata sYesNoWindowTemplate	(src_applications_wifi_earth.c.o)
+  021D2934 00000008 .rodata sMessageWindowTemplate	(src_applications_wifi_earth.c.o)
+  021D293C 0000000C .rodata @16022	(src_applications_wifi_earth.c.o)
+  021D2948 00000010 .rodata @15748	(src_applications_wifi_earth.c.o)
+  021D2958 00000018 .rodata sMainMenuItems	(src_applications_wifi_earth.c.o)
+  021D2970 0000001C .rodata sWindowBgTemplate	(src_applications_wifi_earth.c.o)
+  021D298C 0000001C .rodata sBackgroundBgTemplate	(src_applications_wifi_earth.c.o)
+  021D29A8 00000020 .rodata sMainMenuListTemplate	(src_applications_wifi_earth.c.o)
+  021D29C8 00000020 .rodata sSelectionListTemplate	(src_applications_wifi_earth.c.o)
+  021D29E8 00000024 .rodata @16137	(src_applications_wifi_earth.c.o)
+  021D2A0C 00000024 .rodata @16145	(src_applications_wifi_earth.c.o)
+  021D2A30 00000024 .rodata @15794	(src_applications_wifi_earth.c.o)
+  021D2A54 00000024 .rodata @16143	(src_applications_wifi_earth.c.o)
+  021D2A78 00000028 .rodata @15743	(src_applications_wifi_earth.c.o)
+#>021D2AA0          SDK_OVERLAY.wifi_earth.SINIT_START (linker command file)
+#>021D2AA4          SDK_OVERLAY.wifi_earth.SINIT_END (linker command file)
+#>021D2AC0          SDK_OVERLAY.wifi_earth.TEXT_END (linker command file)
+#>021D2AC0          SDK_OVERLAY.wifi_earth.DATA_START (linker command file)
+#>021D2AC0          SDK_OVERLAY.wifi_earth.DATA_END (linker command file)
+#>021D2AC0          SDK_OVERLAY.wifi_earth.END (linker command file)
+#>00001D40          SDK_OVERLAY.wifi_earth.TEXT_SIZE (linker command file)
+#>00000000          SDK_OVERLAY.wifi_earth.DATA_SIZE (linker command file)
+#>00001D40          SDK_OVERLAY.wifi_earth.SIZE (linker command file)
 
-# .overlay92.bss
-#>021D2AC0          SDK_OVERLAY.overlay92.BSS_START (linker command file)
-#>021D2AC0          SDK_OVERLAY.overlay92.BSS_END (linker command file)
-#>00000000          SDK_OVERLAY.overlay92.BSS_SIZE (linker command file)
+# .wifi_earth.bss
+#>021D2AC0          SDK_OVERLAY.wifi_earth.BSS_START (linker command file)
+#>021D2AC0          SDK_OVERLAY.wifi_earth.BSS_END (linker command file)
+#>00000000          SDK_OVERLAY.wifi_earth.BSS_SIZE (linker command file)
 
 # .cutscenes
 #>0000005D          SDK_OVERLAY_cutscenes_ID (linker command file)
@@ -139420,7 +139420,7 @@
   027E0060 027E0060 00000020 DTCM
   00000000 00000000 00000018 binary.AUTOLOAD_INFO
   00000000 00000000 0000000C binary.STATIC_FOOTER
-  021D0D80 021D0D80 0000090C main_defs
+  021D0D80 021D0D80 0000090D main_defs
   021D0D80 021D0D80 00000F40 main_table
   021D0D80 021D0D80 00000020 dummy1
   021D0DA0 021D0DA0 00000000 dummy1
@@ -139606,8 +139606,8 @@
   021D1FC0 021D1FC0 00000000 battle_tower_records_app
   021D0D80 021D0D80 00001E40 move_reminder
   021D2BC0 021D2BC0 00000000 move_reminder
-  021D0D80 021D0D80 00001D40 overlay92
-  021D2AC0 021D2AC0 00000000 overlay92
+  021D0D80 021D0D80 00001D40 wifi_earth
+  021D2AC0 021D2AC0 00000000 wifi_earth
   021D0D80 021D0D80 00000880 cutscenes
   021D1600 021D1600 00000000 cutscenes
   0223B140 0223B140 0000B980 gts_application
