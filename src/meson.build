@@ -840,7 +840,7 @@ pokeplatinum_c = files(
     'applications/trade_room/helpers.c',
     'applications/frontier/tower_records.c',
     'applications/move_reminder.c',
-    'overlay092/ov92_021D0D80.c',
+    'applications/wifi_earth.c',
     'cutscenes/boat_cutscene/canalave_ship.c',
     'cutscenes/boat_cutscene/snowpoint_ship.c',
     'gts_application/networking.c',

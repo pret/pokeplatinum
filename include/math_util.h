@@ -31,6 +31,11 @@ typedef struct Point2D {
     s16 y;
 } Point2D;
 
+typedef struct Vec2s32 {
+    s32 x;
+    s32 y;
+} Vec2s32;
+
 fx32 CalcSineDegrees(u16 degrees);
 fx32 CalcCosineDegrees(u16 degrees);
 fx32 CalcSineDegrees_Wraparound(u16 degrees);
