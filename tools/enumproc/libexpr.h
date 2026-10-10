@@ -46,6 +46,11 @@ struct scope {
  * On return, if `endptr` is not `NULL`, the address of the last-processed
  * character will be stored in `*endptr`. That is, the expression is valid if
  * `*endptr` points to the zero-terminator for `expr`.
+ *
+ * If the expression is malformed (e.g., a dangling operator, an unclosed
+ * parenthesis, or nesting too deep to evaluate) or its result is undefined in C
+ * (division by zero, signed overflow, an out-of-range shift or literal), then 0
+ * is returned and `*endptr` points to the offending token.
  */
 long libexpr_eval(const char *expr, char **endptr, scope_t *scope);
 

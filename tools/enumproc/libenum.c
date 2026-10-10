@@ -143,8 +143,11 @@ enum_seq_t libenum_load(const char *str, size_t size, char **endptr) {
                 lexer.p++
             );
 
+            if (lexer.p == lexer.s) return_error(LIBENUM_E_TOKEN); // empty initializer
+
             p_pool = poolpush(&result.members[result.size].expr, p_pool,
                                lexer.s, lexer.p - lexer.s);
+            result.members[result.size].expr_src = lexer.s;
             expect = EXPECT_COMMA;
             break;
 
@@ -473,6 +476,7 @@ enum_seq_t libenum_loadcpp(const char *str, size_t size, const char *prefix,
         enum_member_t *memb = &result.members[result.size++];
         p_pool = poolpush(&memb->name, p_pool, sym_beg, sym_len);
         p_pool = poolpush(&memb->expr, p_pool, expr_beg, expr_len);
+        memb->expr_src = expr_beg;
     }
 
     if (result.size == 0) free(result.members); // unlike enums, this is valid

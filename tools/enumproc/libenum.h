@@ -42,6 +42,7 @@ typedef struct enum_seq    enum_seq_t;
 struct enum_member {
     const char *name;
     const char *expr;
+    const char *expr_src; // start of `expr` within the input string
 };
 
 struct enum_seq {
@@ -64,8 +65,9 @@ struct enum_seq {
  * Each member's `name` field points to a zero-terminated string. If the value
  * of a member is assigned by an integer-constant expression rather than as a
  * natural successor, then the member's `expr` field points to a zero-terminated
- * string for that expression. When natural succession is used, `expr` is set to
- * `NULL`.
+ * string for that expression, and `expr_src` points to where that expression
+ * begins within `str` (for diagnostics). When natural succession is used, both
+ * `expr` and `expr_src` are set to `NULL`.
  *
  * If `endptr` is not `NULL`, then this routine will store the address of the
  * semicolon which terminates the enum definition, if one is present. If the
