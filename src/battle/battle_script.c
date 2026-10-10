@@ -11991,7 +11991,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
 
     data->tmpPtr[0] = sub_02012744(1, HEAP_ID_BATTLE);
 
-    if (Pokemon_GetValue(mon, MON_DATA_NO_PRINT_GENDER, NULL) == FALSE) {
+    if (Pokemon_GetValue(mon, MON_DATA_PRINT_GENDER, NULL) == FALSE) {
         gender = GENDER_NONE;
     } else {
         gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);

@@ -1207,7 +1207,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
             | (monDataBlockB->spDefIV << 25);
         break;
 
-    case MON_DATA_NO_PRINT_GENDER:
+    case MON_DATA_PRINT_GENDER:
         if ((monDataBlockA->species == SPECIES_NIDORAN_F || monDataBlockA->species == SPECIES_NIDORAN_M)
             && monDataBlockB->hasNickname == FALSE) {
             result = FALSE;
@@ -1773,7 +1773,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         monDataBlockB->spDefIV = (*u32Value >> 25) & 0x1F;
         break;
 
-    case MON_DATA_NO_PRINT_GENDER:
+    case MON_DATA_PRINT_GENDER:
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
         break;
@@ -2125,7 +2125,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_MET_TERRAIN:
     case MON_DATA_UNUSED_159:
     case MON_DATA_COMBINED_IVS:
-    case MON_DATA_NO_PRINT_GENDER:
+    case MON_DATA_PRINT_GENDER:
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
     case MON_DATA_SPECIES_NAME:

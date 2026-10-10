@@ -1076,7 +1076,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
     monData->isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_NO_PRINT_GENDER, NULL) == TRUE && monData->isEgg == FALSE) {
+    if (Pokemon_GetValue(mon, MON_DATA_PRINT_GENDER, NULL) == TRUE && monData->isEgg == FALSE) {
         monData->hideGender = FALSE;
     } else {
         monData->hideGender = TRUE;

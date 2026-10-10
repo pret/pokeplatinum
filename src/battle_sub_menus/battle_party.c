@@ -1248,10 +1248,10 @@ static void InitialisePartyPokemon(BattleParty *battleParty)
         battleParty->partyPokemon[i].type_2 = (u8)Pokemon_GetValue(battleParty->partyPokemon[i].mon, MON_DATA_TYPE_2, NULL);
         battleParty->partyPokemon[i].level = (u8)Pokemon_GetValue(battleParty->partyPokemon[i].mon, MON_DATA_LEVEL, NULL);
 
-        if (Pokemon_GetValue(battleParty->partyPokemon[i].mon, MON_DATA_NO_PRINT_GENDER, NULL) == TRUE) {
-            battleParty->partyPokemon[i].displayNidoranGender = FALSE;
+        if (Pokemon_GetValue(battleParty->partyPokemon[i].mon, MON_DATA_PRINT_GENDER, NULL) == TRUE) {
+            battleParty->partyPokemon[i].hideGenderMarker = FALSE;
         } else {
-            battleParty->partyPokemon[i].displayNidoranGender = TRUE;
+            battleParty->partyPokemon[i].hideGenderMarker = TRUE;
         }
 
         battleParty->partyPokemon[i].gender = Pokemon_GetGender(battleParty->partyPokemon[i].mon);

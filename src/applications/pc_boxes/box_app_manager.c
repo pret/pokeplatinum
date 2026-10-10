@@ -4109,7 +4109,7 @@ static void BoxApp_LoadBoxMonIntoPreview(BoxApplication *boxApp, BoxPokemon *box
     preview->type1 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_1, NULL);
     preview->type2 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_2, NULL);
 
-    if ((preview->isEgg == FALSE) && BoxPokemon_GetValue(boxMon, MON_DATA_NO_PRINT_GENDER, NULL)) {
+    if ((preview->isEgg == FALSE) && BoxPokemon_GetValue(boxMon, MON_DATA_PRINT_GENDER, NULL)) {
         preview->gender = SpeciesData_GetGenderOf(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL));
     } else {
         preview->gender = PREVIEW_GENDER_INVALID;

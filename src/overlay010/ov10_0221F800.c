@@ -2013,7 +2013,7 @@ static void ov10_02221D14(UnkStruct_ov10_0221FB28 *param0, Party *param1, u8 par
         param0->unk_214[v1 + param2].unk_10 = (u8)Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL);
         param0->unk_214[v1 + param2].unk_11 = (u8)Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
-        if (Pokemon_GetValue(v0, MON_DATA_NO_PRINT_GENDER, NULL) == 1) {
+        if (Pokemon_GetValue(v0, MON_DATA_PRINT_GENDER, NULL) == 1) {
             param0->unk_214[v1 + param2].unk_0E = 0;
         } else {
             param0->unk_214[v1 + param2].unk_0E = 1;
