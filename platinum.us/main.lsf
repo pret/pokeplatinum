@@ -1495,17 +1495,17 @@ Overlay end_credits
 	Object main.nef.p/src_cutscenes_end_credits_common.c.o
 }
 
-Overlay overlay100
+Overlay spear_pillar_cutscene
 {
 	After main
-	Object main.nef.p/src_overlay100_ov100_021D0D80.c.o
-	Object main.nef.p/src_overlay100_ov100_021D13E4.c.o
-	Object main.nef.p/src_overlay100_ov100_021D1C44.c.o
-	Object main.nef.p/src_overlay100_ov100_021D2F0C.c.o
-	Object main.nef.p/src_overlay100_ov100_021D400C.c.o
-	Object main.nef.p/src_overlay100_ov100_021D44C0.c.o
-	Object main.nef.p/src_overlay100_ov100_021D46C8.c.o
-	Object main.nef.p/src_overlay100_ov100_021D4E04.c.o
+	Object main.nef.p/src_cutscenes_spear_pillar_main.c.o
+	Object main.nef.p/src_cutscenes_spear_pillar_lake_guardians_arrival.c.o
+	Object main.nef.p/src_cutscenes_spear_pillar_giratina_intervention.c.o
+	Object main.nef.p/src_cutscenes_spear_pillar_dialga_palkia_arrival.c.o
+	Object main.nef.p/src_cutscenes_spear_pillar_light_ball.c.o
+	Object main.nef.p/src_cutscenes_spear_pillar_pose_sequence.c.o
+	Object main.nef.p/src_cutscenes_spear_pillar_common.c.o
+	Object main.nef.p/src_cutscenes_spear_pillar_screen_capture.c.o
 }
 
 Overlay overlay101

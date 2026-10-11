@@ -1,9 +1,9 @@
-#include "overlay100/ov100_021D400C.h"
+#include "cutscenes/spear_pillar/light_ball.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay100/struct_ov100_021D4104.h"
+#include "cutscenes/spear_pillar/structs.h"
 
 #include "math_util.h"
 #include "sprite_system.h"

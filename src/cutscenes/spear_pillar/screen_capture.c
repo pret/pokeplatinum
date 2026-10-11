@@ -1,11 +1,10 @@
-#include "overlay100/ov100_021D4E04.h"
+#include "cutscenes/spear_pillar/screen_capture.h"
 
 #include <nitro.h>
 #include <string.h>
 
+#include "cutscenes/spear_pillar/structs.h"
 #include "overlay005/struct_ov5_021DDF24_sub1.h"
-#include "overlay100/struct_ov100_021D4E3C.h"
-#include "overlay100/struct_ov100_021D4EBC.h"
 #include "overlay104/ov104_0223E894.h"
 
 #include "bg_window.h"

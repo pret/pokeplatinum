@@ -1,10 +1,9 @@
-#include "overlay100/ov100_021D44C0.h"
+#include "cutscenes/spear_pillar/pose_sequence.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay100/struct_ov100_021D49B4.h"
-#include "overlay100/struct_ov100_021D54D0.h"
+#include "cutscenes/spear_pillar/structs.h"
 
 #include "easy3d_object.h"
 

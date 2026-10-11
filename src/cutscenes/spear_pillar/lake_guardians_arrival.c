@@ -1,16 +1,14 @@
-#include "overlay100/ov100_021D13E4.h"
+#include "cutscenes/spear_pillar/lake_guardians_arrival.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/species.h"
 
-#include "overlay100/ov100_021D400C.h"
-#include "overlay100/ov100_021D46C8.h"
-#include "overlay100/ov100_021D4E04.h"
-#include "overlay100/struct_ov100_021D1808.h"
-#include "overlay100/struct_ov100_021D4DD8.h"
-#include "overlay100/struct_ov100_021D4EBC.h"
+#include "cutscenes/spear_pillar/common.h"
+#include "cutscenes/spear_pillar/light_ball.h"
+#include "cutscenes/spear_pillar/screen_capture.h"
+#include "cutscenes/spear_pillar/structs.h"
 
 #include "bg_window.h"
 #include "camera.h"

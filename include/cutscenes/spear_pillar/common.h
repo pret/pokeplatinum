@@ -1,16 +1,7 @@
-#ifndef POKEPLATINUM_OV100_021D46C8_H
-#define POKEPLATINUM_OV100_021D46C8_H
+#ifndef POKEPLATINUM_SPEAR_PILLAR_COMMON_H
+#define POKEPLATINUM_SPEAR_PILLAR_COMMON_H
 
-#include <nnsys.h>
-
-#include "struct_defs/struct_020985E4.h"
-
-#include "overlay100/struct_ov100_021D46C8.h"
-#include "overlay100/struct_ov100_021D4890.h"
-#include "overlay100/struct_ov100_021D49B4.h"
-#include "overlay100/struct_ov100_021D4DD8.h"
-
-#include "narc.h"
+#include "cutscenes/spear_pillar/structs.h"
 
 int SpearPillarCutscene_ShowMessage(CutsceneGraphics *graphics, SpearPillarCutsceneArgs *args, int textId);
 void SpearPillarCutscene_ClearMessage(CutsceneGraphics *graphics);
@@ -31,4 +22,4 @@ void SpearPillarCutscene_UpdateGuardianFlash(CutsceneGraphics *graphics, int gua
 void SpearPillarCutscene_SwapDisplay(int screenIs3D);
 void SpearPillarCutscene_SetBrightness(SpearPillarCutsceneData *cutscene, int brightness);
 
-#endif // POKEPLATINUM_OV100_021D46C8_H
+#endif // POKEPLATINUM_SPEAR_PILLAR_COMMON_H

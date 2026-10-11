@@ -6,9 +6,9 @@
 #include "struct_defs/struct_020985E4.h"
 #include "struct_defs/struct_0209862C.h"
 
+#include "cutscenes/spear_pillar/main.h"
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
-#include "overlay100/ov100_021D0D80.h"
 
 #include "field_system.h"
 #include "field_task.h"
@@ -18,7 +18,7 @@
 #include "screen_fade.h"
 #include "trainer_info.h"
 
-FS_EXTERN_OVERLAY(overlay100);
+FS_EXTERN_OVERLAY(spear_pillar_cutscene);
 
 void sub_020985E4(FieldTask *param0, SaveData *saveData)
 {
@@ -54,7 +54,7 @@ BOOL sub_0209862C(FieldTask *param0)
                 SpearPillarCutscene_Init,
                 SpearPillarCutscene_Main,
                 SpearPillarCutscene_Exit,
-                FS_OVERLAY_ID(overlay100)
+                FS_OVERLAY_ID(spear_pillar_cutscene)
             };
 
             FieldSystem_StartChildProcess(fieldSystem, &v2, v1->unk_04);

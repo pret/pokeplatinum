@@ -1,8 +1,7 @@
-#ifndef POKEPLATINUM_OV100_021D44C0_H
-#define POKEPLATINUM_OV100_021D44C0_H
+#ifndef POKEPLATINUM_SPEAR_PILLAR_POSE_SEQUENCE_H
+#define POKEPLATINUM_SPEAR_PILLAR_POSE_SEQUENCE_H
 
-#include "overlay100/struct_ov100_021D49B4.h"
-#include "overlay100/struct_ov100_021D54D0.h"
+#include "cutscenes/spear_pillar/structs.h"
 
 enum CutsceneModelPose {
     CUTSCENE_MODEL_POSE_NONE = 0,
@@ -19,4 +18,4 @@ void PoseSequence_Start(CutsceneModel *model, PoseStep *step);
 void PoseSequence_UpdateAnimFrame(CutsceneModel *model);
 void PoseSequence_UpdateMovement(CutsceneModel *model);
 
-#endif // POKEPLATINUM_OV100_021D44C0_H
+#endif // POKEPLATINUM_SPEAR_PILLAR_POSE_SEQUENCE_H

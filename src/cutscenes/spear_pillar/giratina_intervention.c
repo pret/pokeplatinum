@@ -1,17 +1,15 @@
-#include "overlay100/ov100_021D1C44.h"
+#include "cutscenes/spear_pillar/giratina_intervention.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/species.h"
 
-#include "overlay100/ov100_021D400C.h"
-#include "overlay100/ov100_021D44C0.h"
-#include "overlay100/ov100_021D46C8.h"
-#include "overlay100/ov100_021D4E04.h"
-#include "overlay100/struct_ov100_021D1C98.h"
-#include "overlay100/struct_ov100_021D4DD8.h"
-#include "overlay100/struct_ov100_021D54D0.h"
+#include "cutscenes/spear_pillar/common.h"
+#include "cutscenes/spear_pillar/light_ball.h"
+#include "cutscenes/spear_pillar/pose_sequence.h"
+#include "cutscenes/spear_pillar/screen_capture.h"
+#include "cutscenes/spear_pillar/structs.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -61,7 +59,7 @@ enum GiratinaInterventionExitStep {
 };
 
 static void GiratinaIntervention_InitSpriteSystem(GiratinaInterventionContext *context);
-static void SpearPillarCutscene_FreeLakeGuardianLights(GiratinaInterventionContext *context);
+static void GiratinaIntervention_FreeLakeGuardianLights(GiratinaInterventionContext *context);
 static void GiratinaIntervention_InitLakeGuardianLights(GiratinaInterventionContext *context);
 static void GiratinaIntervention_UpdateScene(GiratinaInterventionContext *context);
 static void GiratinaIntervention_InitCamera(Camera *camera, VecFx32 *target);
@@ -262,7 +260,7 @@ static void GiratinaIntervention_InitLakeGuardianLights(GiratinaInterventionCont
     }
 }
 
-static void SpearPillarCutscene_FreeLakeGuardianLights(GiratinaInterventionContext *context)
+static void GiratinaIntervention_FreeLakeGuardianLights(GiratinaInterventionContext *context)
 {
     for (int i = 0; i < 3; i++) {
         SysTask_Done(context->lights.guardianLights[i].task);
@@ -693,7 +691,7 @@ BOOL GiratinaIntervention_Exit(void *param)
 
     switch (context->step) {
     case GIRATINA_INTERVENTION_EXIT_STEP_FREE_LIGHTS:
-        SpearPillarCutscene_FreeLakeGuardianLights(context);
+        GiratinaIntervention_FreeLakeGuardianLights(context);
         ScreenScrollTask_Free(&context->lights.scroll);
         context->step++;
         break;

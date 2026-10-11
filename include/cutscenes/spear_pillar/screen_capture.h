@@ -1,11 +1,7 @@
-#ifndef POKEPLATINUM_OV100_021D4E04_H
-#define POKEPLATINUM_OV100_021D4E04_H
+#ifndef POKEPLATINUM_SPEAR_PILLAR_SCREEN_CAPTURE_H
+#define POKEPLATINUM_SPEAR_PILLAR_SCREEN_CAPTURE_H
 
-#include <nitro/gx.h>
-
-#include "overlay100/struct_ov100_021D4E3C.h"
-#include "overlay100/struct_ov100_021D4EBC.h"
-#include "overlay100/struct_ov100_021D4F9C_decl.h"
+#include "cutscenes/spear_pillar/structs.h"
 
 void ScreenScrollTask_Init(ScreenScrollTask *ssTask, u32 heapID);
 void ScreenScrollTask_Free(ScreenScrollTask *ssTask);
@@ -13,4 +9,4 @@ void ScreenScrollTask_Scroll(ScreenScrollTask *ssTask, u8 start, u8 end, u16 ang
 ScreenCapture *ScreenCapture_Start(ScreenCaptureTemplate *template);
 void ScreenCapture_End(ScreenCapture **capture, GXDispMode dispMode, GXBGMode bgMode, GXBG0As bg0As);
 
-#endif // POKEPLATINUM_OV100_021D4E04_H
+#endif // POKEPLATINUM_SPEAR_PILLAR_SCREEN_CAPTURE_H

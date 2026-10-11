@@ -1,15 +1,10 @@
-#include "overlay100/ov100_021D46C8.h"
+#include "cutscenes/spear_pillar/common.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020985E4.h"
-
-#include "overlay100/ov100_021D44C0.h"
-#include "overlay100/struct_ov100_021D46C8.h"
-#include "overlay100/struct_ov100_021D4890.h"
-#include "overlay100/struct_ov100_021D49B4.h"
-#include "overlay100/struct_ov100_021D4DD8.h"
+#include "cutscenes/spear_pillar/pose_sequence.h"
+#include "cutscenes/spear_pillar/structs.h"
 
 #include "bg_window.h"
 #include "camera.h"

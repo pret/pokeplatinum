@@ -1,16 +1,15 @@
-#include "overlay100/ov100_021D0D80.h"
+#include "cutscenes/spear_pillar/main.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/graphics.h"
 
-#include "overlay100/ov100_021D13E4.h"
-#include "overlay100/ov100_021D1C44.h"
-#include "overlay100/ov100_021D2F0C.h"
-#include "overlay100/ov100_021D46C8.h"
-#include "overlay100/struct_ov100_021D46C8.h"
-#include "overlay100/struct_ov100_021D4DD8.h"
+#include "cutscenes/spear_pillar/common.h"
+#include "cutscenes/spear_pillar/dialga_palkia_arrival.h"
+#include "cutscenes/spear_pillar/giratina_intervention.h"
+#include "cutscenes/spear_pillar/lake_guardians_arrival.h"
+#include "cutscenes/spear_pillar/structs.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -29,7 +28,7 @@
 #include "system.h"
 #include "vram_transfer.h"
 
-FS_EXTERN_OVERLAY(overlay100);
+FS_EXTERN_OVERLAY(spear_pillar_cutscene);
 
 enum CutsceneState {
     CUTSCENE_STATE_STAGE_INIT,
