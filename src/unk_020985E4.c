@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020985E4.h"
+#include "struct_defs/spear_pillar_cutscene_args.h"
 #include "struct_defs/struct_0209862C.h"
 
 #include "cutscenes/spear_pillar/main.h"

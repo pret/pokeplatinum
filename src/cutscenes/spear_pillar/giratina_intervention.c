@@ -413,10 +413,6 @@ BOOL GiratinaIntervention_Update(void *param)
             break;
         }
 
-        if (context->timer == 31) {
-            (void)0;
-        }
-
         if (context->graphics->tint.brightness > -6) {
             if (context->timer % 2) {
                 context->graphics->tint.brightness--;
@@ -609,22 +605,6 @@ BOOL GiratinaIntervention_Update(void *param)
 
         if (context->timer == 170) {
             SpearPillarCutscene_ShowMessage(context->graphics, context->args, 26);
-        }
-
-        if (context->timer == 180) {
-            (void)0;
-        }
-
-        if (context->timer == 210) {
-            (void)0;
-        }
-
-        if (context->timer == 220) {
-            (void)0;
-        }
-
-        if (context->timer == 230) {
-            (void)0;
         }
 
         if (context->models.unk_934[4].playing == 0) {

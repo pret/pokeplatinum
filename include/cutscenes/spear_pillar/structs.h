@@ -5,7 +5,7 @@
 #include <nitro/gx.h>
 #include <nnsys.h>
 
-#include "struct_defs/struct_020985E4.h"
+#include "struct_defs/spear_pillar_cutscene_args.h"
 
 #include "bg_window.h"
 #include "camera.h"
