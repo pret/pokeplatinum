@@ -9,7 +9,7 @@ dataproc_v1_dep = declare_dependency(
       'json.c',
     ),
 
-    c_args: dataproc_cflags,
+    c_args: dataproc_strict_cflags,
     implicit_include_directories: true,
     include_directories: dataproc_v1_inc,
     dependencies: dependency('yyjson'),
