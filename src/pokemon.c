@@ -252,7 +252,7 @@ enum TrainerClassFilesTypes {
     TRAINER_CLASS_NUM_FILETYPES,
 };
 
-static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
+static void BoxPokemon_InitWithParams(BoxPokemon *boxMon, int species, int level, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
 static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, void *dest);
 static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
 static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, const void *value);
@@ -378,14 +378,14 @@ BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt)
     return wasEncrypted;
 }
 
-void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
+void Pokemon_InitWith(Pokemon *mon, int species, int level, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
 {
     Pokemon_Init(mon);
 
-    sub_02073E18(&mon->box, monSpecies, monLevel, monIVs, useMonPersonalityParam, monPersonality, monOTIDSource, monOTID);
+    BoxPokemon_InitWithParams(&mon->box, species, level, monIVs, useMonPersonalityParam, monPersonality, monOTIDSource, monOTID);
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), 0);
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-    Pokemon_SetValue(mon, MON_DATA_LEVEL, &monLevel);
+    Pokemon_SetValue(mon, MON_DATA_LEVEL, &level);
 
     Mail *mail = Mail_New(HEAP_ID_SYSTEM);
 
@@ -402,7 +402,7 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Pokemon_CalcLevelAndStats(mon);
 }
 
-static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
+static void BoxPokemon_InitWithParams(BoxPokemon *boxMon, int species, int level, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
 {
     BoxPokemon_Init(boxMon);
 
@@ -424,18 +424,18 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
 
     BoxPokemon_SetValue(boxMon, MON_DATA_OT_ID, &monOTID);
     BoxPokemon_SetValue(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
-    BoxPokemon_SetValue(boxMon, MON_DATA_SPECIES, &monSpecies);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SPECIES, &species);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPECIES_NAME, NULL);
 
     u32 v1, v2; // TODO rename, these are used/reused as temp vars through the whole function.
 
-    v1 = Pokemon_GetSpeciesBaseExpAt(monSpecies, monLevel);
+    v1 = Pokemon_GetSpeciesBaseExpAt(species, level);
     BoxPokemon_SetValue(boxMon, MON_DATA_EXPERIENCE, &v1);
 
-    v1 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_BASE_FRIENDSHIP);
+    v1 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_BASE_FRIENDSHIP);
     BoxPokemon_SetValue(boxMon, MON_DATA_FRIENDSHIP, &v1);
 
-    BoxPokemon_SetValue(boxMon, MON_DATA_MET_LEVEL, &monLevel);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MET_LEVEL, &level);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &gGameVersion);
 
     v1 = ITEM_POKE_BALL;
@@ -470,8 +470,8 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
         BoxPokemon_SetValue(boxMon, MON_DATA_SPDEF_IV, &v2);
     }
 
-    v1 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_1);
-    v2 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_2);
+    v1 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
+    v2 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_2);
 
     if (v2 != ABILITY_NONE) {
         if (monPersonality & 1) {
@@ -490,52 +490,52 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
-void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature)
+void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 monIVs, u8 nature)
 {
-    u32 monPersonality;
+    u32 personality;
 
     do {
-        monPersonality = (LCRNG_Next() | (LCRNG_Next() << 16));
-    } while (monNature != Pokemon_GetNatureOf(monPersonality));
+        personality = (LCRNG_Next() | (LCRNG_Next() << 16));
+    } while (nature != Pokemon_GetNatureOf(personality));
 
-    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
+    Pokemon_InitWith(mon, species, level, monIVs, TRUE, personality, OTID_NOT_SET, 0);
 }
 
-void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 gender, u8 param5, u8 param6)
+void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 monIVs, u8 gender, u8 nature, u8 letter)
 {
-    u32 monPersonality;
+    u32 personality;
     u16 unownLetter;
 
-    // TODO enum value
-    if (param6 && param6 < 29) {
+    // Never reached.
+    if (letter && letter <  UNOWN_FORM_COUNT + 1) {
         do {
-            monPersonality = (LCRNG_Next() | (LCRNG_Next() << 16));
-            unownLetter = (((monPersonality & 0x3000000) >> 18) | ((monPersonality & 0x30000) >> 12) | ((monPersonality & 0x300) >> 6) | (monPersonality & 0x3)) % 28;
-        } while (param5 != Pokemon_GetNatureOf(monPersonality) || gender != Pokemon_GetGenderOf(monSpecies, monPersonality) || unownLetter != param6 - 1);
+            personality = (LCRNG_Next() | (LCRNG_Next() << 16));
+            unownLetter = (((personality & 0x3000000) >> 18) | ((personality & 0x30000) >> 12) | ((personality & 0x300) >> 6) | (personality & 0x3)) % 28;
+        } while (nature != Pokemon_GetNatureOf(personality) || gender != Pokemon_GetGenderOf(species, personality) || unownLetter != letter - 1);
     } else {
-        monPersonality = sub_02074128(monSpecies, gender, param5);
+        personality = Personality_CreateFromGenderAndNature(species, gender, nature);
     }
 
-    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
+    Pokemon_InitWith(mon, species, level, monIVs, TRUE, personality, OTID_NOT_SET, 0);
 }
 
-u32 sub_02074128(u16 monSpecies, u8 gender, u8 param2)
+u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature)
 {
-    u8 monGenderChance = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_GENDER_RATIO);
+    u8 genderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
 
     u32 result;
-    switch (monGenderChance) {
+    switch (genderRatio) {
     case GENDER_RATIO_MALE_ONLY:
     case GENDER_RATIO_FEMALE_ONLY:
     case GENDER_RATIO_NO_GENDER:
-        result = param2;
+        result = nature;
         break;
     default:
         if (gender == GENDER_MALE) {
-            result = 25 * ((monGenderChance / 25) + 1);
-            result += param2;
+            result = 25 * ((genderRatio / 25) + 1);
+            result += nature;
         } else {
-            result = param2;
+            result = nature;
         }
         break;
     }
@@ -544,9 +544,9 @@ u32 sub_02074128(u16 monSpecies, u8 gender, u8 param2)
 }
 
 // only used when encountering a roamer
-void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
+void Pokemon_InitAndCalcStats(Pokemon *mon, u16 species, u8 level, u32 monCombinedIVs, u32 monPersonality)
 {
-    Pokemon_InitWith(mon, monSpecies, monLevel, 0, TRUE, monPersonality, OTID_NOT_SET, 0);
+    Pokemon_InitWith(mon, species, level, 0, TRUE, monPersonality, OTID_NOT_SET, 0);
     Pokemon_SetValue(mon, MON_DATA_COMBINED_IVS, &monCombinedIVs);
     Pokemon_CalcLevelAndStats(mon);
 }
@@ -3403,13 +3403,13 @@ static const SpriteTemplate sSpriteTemplateTrainer = {
     .vramTransfer = TRUE,
 };
 
-static const int Unk_020F0588[] = {
-    0x0,
-    0x0,
-    0x1,
-    0x0,
-    0x0,
-    0x1
+static const int sBattlerTypeToSpritePriority[] = {
+    [BATTLER_TYPE_SOLO_PLAYER] = 0x0,
+    [BATTLER_TYPE_SOLO_ENEMY] = 0x0,
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = 0x1,
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = 0x0,
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = 0x0,
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = 0x1
 };
 
 ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *paletteData, int x, int y, enum TrainerClass trainerClass, int face, int battlerType, enum HeapID heapID)
@@ -3441,7 +3441,7 @@ ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, Spr
     spriteTemplate.resources[1] = 20010 + battlerType;
     spriteTemplate.resources[2] = 20007 + battlerType;
     spriteTemplate.resources[3] = 20007 + battlerType;
-    spriteTemplate.priority = Unk_020F0588[battlerType];
+    spriteTemplate.priority = sBattlerTypeToSpritePriority[battlerType];
 
     managedSprite = SpriteSystem_NewSprite(spriteSys, spriteMan, &spriteTemplate);
 
@@ -5238,10 +5238,10 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
     param1->originLanguage = monDataBlockA->originLanguage;
 
     int i;
-    for (i = 0; i < 4; i++) {
-        param1->unk_1C[i] = monDataBlockB->moves[i];
-        param1->unk_24[i] = monDataBlockB->moveCurrentPPs[i];
-        param1->unk_28[i] = monDataBlockB->movePPUps[i];
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        param1->moves[i] = monDataBlockB->moves[i];
+        param1->moveCurrentPPs[i] = monDataBlockB->moveCurrentPPs[i];
+        param1->movePPUps[i] = monDataBlockB->movePPUps[i];
     }
 
     param1->hpIV = monDataBlockB->hpIV;
@@ -5251,31 +5251,31 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
     param1->spAtkIV = monDataBlockB->spAtkIV;
     param1->spDefIV = monDataBlockB->spDefIV;
     param1->isEgg = monDataBlockB->isEgg;
-    param1->unk_2C_31 = monDataBlockB->hasNickname;
+    param1->hasNickname = monDataBlockB->hasNickname;
     param1->fatefulEncounter = monDataBlockB->fatefulEncounter;
     param1->gender = monDataBlockB->gender;
     param1->form = monDataBlockB->form;
 
-    for (i = 0; i < 10 + 1; i++) {
-        param1->unk_32[i] = monDataBlockC->nickname[i];
+    for (i = 0; i < MON_NAME_LEN + 1; i++) {
+        param1->nickname[i] = monDataBlockC->nickname[i];
     }
 
-    for (i = 0; i < 7 + 1; i++) {
-        param1->unk_48[i] = monDataBlockD->otName[i];
+    for (i = 0; i < TRAINER_NAME_LEN + 1; i++) {
+        param1->otName[i] = monDataBlockD->otName[i];
     }
 
     param1->pokeball = monDataBlockD->pokeball;
 
-    param1->unk_5C = mon->party.status;
+    param1->status = mon->party.status;
     param1->level = mon->party.level;
-    param1->unk_61 = mon->party.ballCapsuleID;
-    param1->unk_62 = mon->party.hp;
-    param1->unk_64 = mon->party.maxHP;
-    param1->unk_66 = mon->party.attack;
-    param1->unk_68 = mon->party.defense;
-    param1->unk_6A = mon->party.speed;
-    param1->unk_6C = mon->party.spAtk;
-    param1->unk_6E = mon->party.spDef;
+    param1->ballCapsuleID = mon->party.ballCapsuleID;
+    param1->hp = mon->party.hp;
+    param1->maxHP = mon->party.maxHP;
+    param1->attack = mon->party.attack;
+    param1->defense = mon->party.defense;
+    param1->speed = mon->party.speed;
+    param1->spAtk = mon->party.spAtk;
+    param1->spDef = mon->party.spDef;
 
     if (mon->box.partyDecrypted == FALSE) {
         Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
@@ -5314,10 +5314,10 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
     monDataBlockA->originLanguage = param0->originLanguage;
 
     int i;
-    for (i = 0; i < 4; i++) {
-        monDataBlockB->moves[i] = param0->unk_1C[i];
-        monDataBlockB->moveCurrentPPs[i] = param0->unk_24[i];
-        monDataBlockB->movePPUps[i] = param0->unk_28[i];
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        monDataBlockB->moves[i] = param0->moves[i];
+        monDataBlockB->moveCurrentPPs[i] = param0->moveCurrentPPs[i];
+        monDataBlockB->movePPUps[i] = param0->movePPUps[i];
     }
 
     monDataBlockB->hpIV = param0->hpIV;
@@ -5327,31 +5327,31 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
     monDataBlockB->spAtkIV = param0->spAtkIV;
     monDataBlockB->spDefIV = param0->spDefIV;
     monDataBlockB->isEgg = param0->isEgg;
-    monDataBlockB->hasNickname = param0->unk_2C_31;
+    monDataBlockB->hasNickname = param0->hasNickname;
     monDataBlockB->fatefulEncounter = param0->fatefulEncounter;
     monDataBlockB->gender = param0->gender;
     monDataBlockB->form = param0->form;
 
-    for (i = 0; i < 10 + 1; i++) {
-        monDataBlockC->nickname[i] = param0->unk_32[i];
+    for (i = 0; i < MON_NAME_LEN + 1; i++) {
+        monDataBlockC->nickname[i] = param0->nickname[i];
     }
 
-    for (i = 0; i < 7 + 1; i++) {
-        monDataBlockD->otName[i] = param0->unk_48[i];
+    for (i = 0; i < TRAINER_NAME_LEN + 1; i++) {
+        monDataBlockD->otName[i] = param0->otName[i];
     }
 
     monDataBlockD->pokeball = param0->pokeball;
 
-    mon->party.status = param0->unk_5C;
+    mon->party.status = param0->status;
     mon->party.level = param0->level;
-    mon->party.ballCapsuleID = param0->unk_61;
-    mon->party.hp = param0->unk_62;
-    mon->party.maxHP = param0->unk_64;
-    mon->party.attack = param0->unk_66;
-    mon->party.defense = param0->unk_68;
-    mon->party.speed = param0->unk_6A;
-    mon->party.spAtk = param0->unk_6C;
-    mon->party.spDef = param0->unk_6E;
+    mon->party.ballCapsuleID = param0->ballCapsuleID;
+    mon->party.hp = param0->hp;
+    mon->party.maxHP = param0->maxHP;
+    mon->party.attack = param0->attack;
+    mon->party.defense = param0->defense;
+    mon->party.speed = param0->speed;
+    mon->party.spAtk = param0->spAtk;
+    mon->party.spDef = param0->spDef;
 
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
     mon->box.checksum = Pokemon_GetDataChecksum(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4);

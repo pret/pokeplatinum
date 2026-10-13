@@ -127,11 +127,11 @@ BOOL BoxPokemon_EnterDecryptionContext(BoxPokemon *boxMon);
  */
 BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt);
 
-void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
-void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature);
-void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 gender, u8 param5, u8 param6);
-u32 sub_02074128(u16 monSpecies, u8 gender, u8 param2);
-void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality);
+void Pokemon_InitWith(Pokemon *mon, int species, int level, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
+void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 monIVs, u8 nature);
+void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 monIVs, u8 gender, u8 nature, u8 letter);
+u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature);
+void Pokemon_InitAndCalcStats(Pokemon *mon, u16 species, u8 level, u32 monCombinedIVs, u32 monPersonality);
 
 /**
  * @brief Calculates and stores the current level and stats for a given Pokemon based on its IVs, EVs etc.

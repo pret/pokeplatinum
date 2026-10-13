@@ -8,8 +8,8 @@ typedef struct {
     u32 unk_04;
     u16 unk_08;
     u16 unk_0A;
-    u16 unk_0C[LEARNED_MOVES_MAX];
-    u16 unk_14;
+    u16 moves[LEARNED_MOVES_MAX];
+    u16 species;
     u16 unk_16;
     u16 unk_18;
     u8 cool;
@@ -27,7 +27,7 @@ typedef struct {
     u16 unk_20_8 : 1;
     u16 unk_20_9 : 1;
     u16 unk_20_10 : 2;
-    u16 unk_20_12 : 2;
+    u16 gender : 2;
     u16 unk_20_14 : 2;
     u8 unk_22;
     u8 unk_23;

@@ -508,7 +508,7 @@ static void sub_020939E0(Contest *contest, int isGameCompleted, int isNatDexObta
     }
 
     for (i = 1; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        contest->unk_00.trainerGenders[i] = contest->unk_00.unk_10[i].unk_20_12;
+        contest->unk_00.trainerGenders[i] = contest->unk_00.unk_10[i].gender;
     }
 
     for (i = 1; i < CONTEST_NUM_PARTICIPANTS; i++) {
@@ -950,7 +950,7 @@ static void sub_02093C6C(SysTask *sysTask, void *param1)
         }
 
         for (; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
-            contest->unk_00.trainerGenders[contestantID] = contest->unk_00.unk_10[contestantID].unk_20_12;
+            contest->unk_00.trainerGenders[contestantID] = contest->unk_00.unk_10[contestantID].gender;
         }
     }
 

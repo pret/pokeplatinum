@@ -626,13 +626,13 @@ void sub_02095338(Contest *contest)
 void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *mon, enum HeapID heapID)
 {
     int i;
-    u16 v1;
-    u32 personality = sub_02074128(param0->unk_14, param0->unk_20_12, 0);
-    Pokemon_InitWith(mon, param0->unk_14, 10, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SHINY, 0xf0f0f0f);
+    u16 move;
+    u32 personality = Personality_CreateFromGenderAndNature(param0->species, param0->gender, 0);
+    Pokemon_InitWith(mon, param0->species, 10, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SHINY, 0xf0f0f0f);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        v1 = param0->unk_0C[i];
-        Pokemon_SetValue(mon, MON_DATA_MOVE1 + i, &v1);
+        move = param0->moves[i];
+        Pokemon_SetValue(mon, MON_DATA_MOVE1 + i, &move);
     }
 
     MessageLoader *contestOpponentNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_OPPONENT_NAMES, heapID);

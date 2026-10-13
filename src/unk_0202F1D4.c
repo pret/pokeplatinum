@@ -398,12 +398,12 @@ static BOOL sub_0202F794(SaveData *saveData, const BattleRecording *battleRecord
                     return 0;
                 }
 
-                if (v6->heldItem > 467) {
+                if (v6->heldItem > MAX_ITEMS - 1) {
                     return 0;
                 }
 
-                for (v5 = 0; v5 < 4; v5++) {
-                    if (v6->unk_1C[v5] > 467) {
+                for (v5 = 0; v5 < LEARNED_MOVES_MAX; v5++) {
+                    if (v6->moves[v5] > MAX_MOVES - 1) {
                         return 0;
                     }
                 }
