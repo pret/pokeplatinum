@@ -10,6 +10,8 @@ dataproc_cflags = [
     '-Wno-stringop-overflow',
 ]
 
+subdir('lib-v1')
+
 dataproc_dep = declare_dependency(
     include_directories: include_directories('lib/include'),
     link_with: static_library(
