@@ -95,14 +95,14 @@ void CameraPan_Start(CameraPan *cameraPan)
 {
     CameraAngle cameraAngle;
 
-    cameraPan->angleStep[0] = cameraPan->durationFrames;
-    cameraPan->angleStep[1] = ((65535 / 360) * cameraPan->angleDeltaX / cameraPan->durationFrames);
-    cameraPan->angleStep[2] = ((65535 / 360) * cameraPan->angleDeltaY / cameraPan->durationFrames);
-    cameraPan->angleStep[3] = ((65535 / 360) * cameraPan->angleDeltaZ / cameraPan->durationFrames);
+    cameraPan->angleStep.framesRemaining = cameraPan->durationFrames;
+    cameraPan->angleStep.x = ((65535 / 360) * cameraPan->angleDeltaX / cameraPan->durationFrames);
+    cameraPan->angleStep.y = ((65535 / 360) * cameraPan->angleDeltaY / cameraPan->durationFrames);
+    cameraPan->angleStep.z = ((65535 / 360) * cameraPan->angleDeltaZ / cameraPan->durationFrames);
 
-    cameraPan->positionStep[1] = cameraPan->positionDeltaX / cameraPan->durationFrames;
-    cameraPan->positionStep[2] = cameraPan->positionDeltaY / cameraPan->durationFrames;
-    cameraPan->positionStep[3] = cameraPan->positionDeltaZ / cameraPan->durationFrames;
+    cameraPan->positionStep.x = cameraPan->positionDeltaX / cameraPan->durationFrames;
+    cameraPan->positionStep.y = cameraPan->positionDeltaY / cameraPan->durationFrames;
+    cameraPan->positionStep.z = cameraPan->positionDeltaZ / cameraPan->durationFrames;
 
     cameraAngle = Camera_GetAngle(cameraPan->camera);
 
@@ -116,23 +116,23 @@ BOOL CameraPan_Update(CameraPan *cameraPan)
     BOOL panComplete = FALSE;
     CameraAngle cameraAngle = Camera_GetAngle(cameraPan->camera);
 
-    if (cameraPan->angleStep[0] == 0) {
+    if (cameraPan->angleStep.framesRemaining == 0) {
         return 1;
     }
 
-    if ((--cameraPan->angleStep[0]) == 0) {
+    if ((--cameraPan->angleStep.framesRemaining) == 0) {
         cameraAngle.x = cameraPan->cameraAngle.x;
         cameraAngle.y = cameraPan->cameraAngle.y;
         cameraAngle.z = cameraPan->cameraAngle.z;
         panComplete = TRUE;
     } else {
-        cameraAngle.x += (cameraPan->angleStep[1]);
-        cameraAngle.y += (cameraPan->angleStep[2]);
-        cameraAngle.z += (cameraPan->angleStep[3]);
+        cameraAngle.x += cameraPan->angleStep.x;
+        cameraAngle.y += cameraPan->angleStep.y;
+        cameraAngle.z += cameraPan->angleStep.z;
 
-        cameraPan->target->x += cameraPan->positionStep[1];
-        cameraPan->target->y += cameraPan->positionStep[2];
-        cameraPan->target->z += cameraPan->positionStep[3];
+        cameraPan->target->x += cameraPan->positionStep.x;
+        cameraPan->target->y += cameraPan->positionStep.y;
+        cameraPan->target->z += cameraPan->positionStep.z;
     }
 
     Camera_SetAngleAroundTarget(&cameraAngle, cameraPan->camera);

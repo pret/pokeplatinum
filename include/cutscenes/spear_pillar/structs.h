@@ -5,7 +5,7 @@
 #include <nitro/gx.h>
 #include <nnsys.h>
 
-#include "struct_defs/spear_pillar_cutscene_args.h"
+#include "cutscenes/spear_pillar/main.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -61,8 +61,20 @@ typedef struct CameraPan {
     fx32 positionDeltaX;
     fx32 positionDeltaY;
     fx32 positionDeltaZ;
-    s32 angleStep[5]; // [0] is the frames-remaining countdown, [1..3] are the per-frame angle step for x/y/z
-    fx32 positionStep[5]; // [1..3] are the per-frame position step for x/y/z
+    struct {
+        s32 framesRemaining;
+        s32 x;
+        s32 y;
+        s32 z;
+        s32 unused_10;
+    } angleStep;
+    struct {
+        fx32 unused_00;
+        fx32 x;
+        fx32 y;
+        fx32 z;
+        fx32 unused_10;
+    } positionStep;
     CameraAngle cameraAngle;
 } CameraPan;
 
