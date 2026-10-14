@@ -43,8 +43,8 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02030EA4.h"
 #include "vram_transfer.h"
+#include "wifi_plaza_question_data.h"
 
 typedef struct {
     u32 unk_00;
@@ -1190,12 +1190,12 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         break;
     case 17: {
         UnkStruct_ov66_0222E908 v7;
-        WiFiQuestions *v8;
+        WiFiPlazaQuestion *savedWiFiPlazaQuestion;
         BOOL v9;
 
-        v8 = SaveData_GetWiFiQuestions(param4->saveData);
-        v7.unk_00 = sub_02030ED0(v8);
-        v7.unk_04 = sub_02030ED4(v8);
+        savedWiFiPlazaQuestion = SaveData_GetWiFiPlazaQuestion(param4->saveData);
+        v7.questionNumber = WiFiPlazaQuestion_GetQuestionNumber(savedWiFiPlazaQuestion);
+        v7.selectedAnswer = WiFiPlazaQuestion_GetSelectedAnswer(savedWiFiPlazaQuestion);
         v9 = ov66_0222E924(param4->unk_04, ov66_0222E338(param4->unk_04));
 
         ov68_0225D8F0(param0, &param0->unk_A8, param1, param2, &v7, heapID, TEXT_COLOR(11, 12, 0), TEXT_COLOR(15, 14, 0), v9);
@@ -1291,7 +1291,7 @@ static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_
     v0 = ov68_0225DC58(param1, param2, 2);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00[1], FONT_MESSAGE, v0, 0, 48, TEXT_SPEED_NO_TRANSFER, param6, NULL);
 
-    if ((param4->unk_00 == param1->unk_04) && (param4->unk_04 < 3)) {
+    if ((param4->questionNumber == param1->unk_04) && (param4->selectedAnswer < 3)) {
         s32 v1;
         s32 v2;
         TextColor v3;
@@ -1310,7 +1310,7 @@ static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_
 
         Text_AddPrinterWithParamsAndColor(&param0->unk_00[5], FONT_MESSAGE, v0, v2, 0, TEXT_SPEED_NO_TRANSFER, v3, NULL);
 
-        v0 = ov68_0225DC58(param1, param2, param4->unk_04);
+        v0 = ov68_0225DC58(param1, param2, param4->selectedAnswer);
         v1 = Font_CalcStringWidth(FONT_MESSAGE, v0, 0);
         v2 = (((13 * 8) - v1) / 2);
 
@@ -1511,8 +1511,8 @@ static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_
             ov66_0222E908(v0, &v1);
             v4 = ov66_022335C0(UnkEnum_ov66_022335C0_00, language);
 
-            if ((v4 == 1) && (v1.unk_04 < 3)) {
-                param0->unk_00[v1.unk_04]++;
+            if ((v4 == 1) && (v1.selectedAnswer < 3)) {
+                param0->unk_00[v1.selectedAnswer]++;
                 param0->unk_0C++;
             }
         }

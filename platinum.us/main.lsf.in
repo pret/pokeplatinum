@@ -1,0 +1,1714 @@
+############################################################
+###       Linker spec file for Pokemon Platinum US       ###
+###      Pass this to the SDK's makelcf.exe utility      ###
+###           along with the ARM9-TS template.           ###
+###                        WIP                           ###
+############################################################
+
+Static main
+{
+	Address 0x02000000
+	StackSize 0 2048
+	Library libdwcaccount.a (.version)
+	Library libcard.a (.version)
+	Library libvct.a (.version)
+	Library libsoc.a (.version)
+	Library libcps.a (.version)
+	Library libssl.a (.version)
+	Object src/main.c
+	Object src/debug.c
+	Object src/list_menu.c
+	Object src/game_version.c
+	Object src/menu.c
+	Object src/charcode_util.c
+	Object src/render_text.c
+	Object src/font.c
+	Object src/palette.c
+	Object src/sound_system.c
+	Object src/sound.c
+	Object src/sound_playback.c
+	Object src/sound_chatot.c
+	Object src/game_overlay.c
+	Object src/sys_task_extensions.c
+	Object src/overlay_manager.c
+	Object src/narc.c
+	Object src/graphics.c
+	Object src/pokemon_sprite.c
+	Object src/sprite_util.c
+	Object src/sprite_resource.c
+	Object src/sprite_transfer.c
+	Object src/render_oam.c
+	Object src/brightness_controller.c
+	Object src/message.c
+	Object src/message_util.c
+	Object src/string_template.c
+	Object src/font_special_chars.c
+	Object src/sprite_system.c
+	Object src/sys_task.c
+	Object src/render_window.c
+	Object src/screen_fade.c
+	Object src/screen_fade_funcs.c
+	Object src/hardware_window.c
+	Object src/unk_02012744.c
+	Object src/character_sprite.c
+	Object src/rtc.c
+	Object src/string_list.c
+	Object src/screen_scroll_manager.c
+	Object src/particle_system.c
+	Object src/colored_arrow.c
+	Object src/easy_chat_sentence.c
+	Object src/easy_chat_words.c
+	Object src/password_word_bank.c
+	Object src/software_sprite.c
+	Object src/unk_0201567C.c
+	Object src/poffin_types.c
+	Object src/yes_no_touch_menu.c
+	Object src/pokemon_anim.c
+	Object src/unk_02017038.c
+	Object src/easy3d_object.c
+	Object src/play_time_manager.c
+	Object src/unk_02017498.c
+	Object src/system.c
+	Object src/heap.c
+	Object src/bg_window.c
+	Object src/easy3d.c
+	Object src/sys_task_manager.c
+	Object src/gfx_box_test.c
+	Object src/charcode.c
+	Object src/math_util.c
+	Object src/text.c
+	Object src/vram_transfer.c
+	Object src/cell_transfer.c
+	Object src/billboard_vram_transfer.c
+	Object src/grid_menu_cursor_position.c
+	Object src/ascii_util.c
+	Object src/fx_util.c
+	Object src/int_distance.c
+	Object src/touch_pad.c
+	Object src/char_transfer.c
+	Object src/pltt_transfer.c
+	Object src/gx_layers.c
+	Object src/camera.c
+	Object src/billboard.c
+	Object src/sprite.c
+	Object src/touch_screen.c
+	Object src/timer.c
+	Object src/error_handling.c
+	Object src/resource_collection.c
+	Object src/render_view.c
+	Object src/font_manager.c
+	Object src/string_gf.c
+	Object src/touch_screen_actions.c
+	Object src/billboard_gfx_sequence.c
+	Object src/unk_0202419C.c
+	Object src/hardware_palette.c
+	Object src/g3d_pipeline.c
+	Object src/boot.c
+	Object src/savedata/save_table.c
+	Object src/savedata.c
+	Object src/system_data.c
+	Object src/save_player.c
+	Object src/trainer_info.c
+	Object src/battle_regulation.c
+	Object src/daycare_save.c
+	Object src/pokedex.c
+	Object src/savedata_misc.c
+	Object src/game_options.c
+	Object src/berry_patches.c
+	Object src/persisted_map_features.c
+	Object src/pal_pad.c
+	Object src/mail.c
+	Object src/underground.c
+	Object src/unk_020298BC.c
+	Object src/poffin.c
+	Object src/wifi_list.c
+	Object src/record_mixed_rng.c
+	Object src/coins.c
+	Object src/journal.c
+	Object src/trainer_case_save_data.c
+	Object src/wifi_history_save_data.c
+	Object src/ball_seal_info.c
+	Object src/play_time.c
+	Object src/chatot_cry.c
+	Object src/game_records.c
+	Object src/wifi_battle_tower_save.c
+	Object src/ribbon_save_data.c
+	Object src/special_encounter.c
+	Object src/global_trade.c
+	Object src/mystery_gift.c
+	Object src/hall_of_fame_entries.c
+	Object src/unk_0202E2CC.c
+	Object src/rankings.c
+	Object src/pal_park_transfers.c
+	Object src/link_contest_records.c
+	Object src/save_catchrecords.c
+	Object src/unk_0202F1D4.c
+	Object src/battle_factory_save.c
+	Object src/battle_hall_save.c
+	Object src/battle_castle_save.c
+	Object src/battle_arcade_save.c
+	Object src/battle_frontier_save.c
+	Object src/battle_hall_win_records.c
+	Object src/unk_02030A80.c
+	Object src/unk_02030CE8.c
+	Object src/wifi_plaza_question_data.c
+	Object src/wireless_manager.c
+	Object src/comm_ring.c
+	Object src/unk_020322D8.c
+	Object src/unk_0203266C.c
+	Object src/unk_02032798.c
+	Object src/communication_information.c
+	Object src/unk_02033200.c
+	Object src/communication_system.c
+	Object src/unk_020363E8.c
+	Object src/comm_manager.c
+	Object src/unk_02038ED4.c
+	Object src/unk_02038F8C.c
+	Object src/unk_02038FFC.c
+	Object src/unk_0203909C.c
+	Object src/network_icon.c
+	Object src/unk_02039814.c
+	Object src/unk_02039A58.c
+	Object src/unk_02039A64.c
+	Object src/map_matrix.c
+	Object src/map_header.c
+	Object src/map_header_data.c
+	Object src/field_overworld_state.c
+	Object src/spawn_locations.c
+	Object src/field_overworld_weather.c
+	Object src/start_menu.c
+	Object src/unk_0203C954.c
+	Object src/field_system.c
+	Object src/location.c
+	Object src/unk_0203D1B8.c
+	Object src/field_script_context.c
+	Object src/script_manager.c
+	Object src/scrcmd.c
+	Object src/scrcmd_shop.c
+	Object src/scrcmd_contests.c
+	Object src/scrcmd_strings.c
+	Object src/scrcmd_jubilife_lottery.c
+	Object src/scrcmd_sound.c
+	Object src/scrcmd_trainer.c
+	Object src/scrcmd_group_connection.c
+	Object src/scrcmd_tv_broadcast.c
+	Object src/unk_020494DC.c
+	Object src/unk_02049D08.c
+	Object src/unk_0204AEE8.c
+	Object src/scrcmd_berry.c
+	Object src/scrcmd_mystery_gift.c
+	Object src/scrcmd_catching_show.c
+	Object src/scrcmd_coins.c
+	Object src/scrcmd_money.c
+	Object src/scrcmd_daycare.c
+	Object src/scrcmd_amity_square.c
+	Object src/scrcmd_party.c
+	Object src/scrcmd_fossil.c
+	Object src/scrcmd_game_corner_prize.c
+	Object src/scrcmd_system_flags.c
+	Object src/scrcmd_item.c
+	Object src/scrcmd_underground_inventory.c
+	Object src/scrcmd_party_mon_moves.c
+	Object src/scrcmd_dummy_23F_242.c
+	Object src/scrcmd_battle_factory.c
+	Object src/scrcmd_battle_hall.c
+	Object src/scrcmd_battle_castle.c
+	Object src/scrcmd_battle_arcade.c
+	Object src/binoculars_vista_lighthouse.c
+	Object src/vars_flags.c
+	Object src/field_task.c
+	Object src/encounter.c
+	Object src/enc_effects.c
+	Object src/field_battle_data_transfer.c
+	Object src/unk_020528D0.c
+	Object src/clear_game.c
+	Object src/field_map_change.c
+	Object src/unk_02054884.c
+	Object src/terrain_attributes.c
+	Object src/terrain_collision_manager.c
+	Object src/field_bgm.c
+	Object src/overworld_map_history.c
+	Object src/field_transition.c
+	Object src/unk_020559DC.c
+	Object src/berry_patch_manager.c
+	Object src/catching_show.c
+	Object src/poketch.c
+	Object src/unk_02056B30.c
+	Object src/goods.c
+	Object src/unk_0205749C.c
+	Object src/comm_player_manager.c
+	Object src/field_comm_manager.c
+	Object src/unk_0205A0D8.c
+	Object src/unk_0205B33C.c
+	Object src/unk_0205C22C.c
+	Object src/appearance.c
+	Object src/underground_map_transition.c
+	Object src/field_message.c
+	Object src/map_tile_behavior.c
+	Object src/unk_0205DFC4.c
+	Object src/battle_frontier_stats.c
+	Object src/player_avatar.c
+	Object src/player_move.c
+	Object src/map_object.c
+	Object src/unk_020EDBAC.c
+	Object src/map_object_move.c
+	Object src/unk_0206450C.c
+	Object src/unk_020655F4.c
+	Object src/unk_020673B8.c
+	Object src/berry_patch_graphics.c
+	Object src/trainer_encounter.c
+	Object src/dynamic_map_features.c
+	Object src/item_use_functions.c
+	Object src/pokeradar.c
+	Object src/unk_02069BE0.c
+	Object src/scroll_prompts.c
+	Object src/system_flags.c
+	Object src/system_vars.c
+	Object src/applications/town_map/context.c
+	Object src/unk_0206B9D8.c
+	Object src/great_marsh_lookout.c
+	Object src/trainer_case_badge_dirt.c
+	Object src/roaming_pokemon.c
+	Object src/npc_trade_task.c
+	Object src/cutscenes/boat_cutscene/boat_cutscene.c
+	Object src/tv_segment.c
+	Object src/rankings_machine.c
+	Object src/field_map_change_flags.c
+	Object src/field_move_tasks.c
+	Object src/unk_020711C8.c
+	Object src/overworld_anim_manager.c
+	Object src/platform_lift.c
+	Object src/persisted_map_features_init.c
+	Object src/map_header_util.c
+	Object src/trainer_case.c
+	Object src/unk_020722AC.c
+	Object src/unk_02073700.c
+	Object src/simple3d.c
+	Object src/pokemon.c
+	Object src/move_table.c
+	Object src/trainer_data.c
+	Object src/pc_boxes.c
+	Object src/pokemon_icon.c
+	Object src/party.c
+	Object src/dexmode_checker.c
+	Object src/height_weight_data.c
+	Object src/battle_regulation_validation.c
+	Object src/unk_0207A6DC.c
+	Object src/evolution.c
+	Object src/unk_0207C63C.c
+	Object src/type_icon.c
+	Object src/bag_context.c
+	Object src/item.c
+	Object src/bag.c
+	Object src/unk_0207DA28.c
+	Object src/unk_0207DFAC.c
+	Object src/unk_0207E060.c
+	Object src/applications/party_menu/main.c
+	Object src/applications/party_menu/windows.c
+	Object src/applications/party_menu/sprites.c
+	Object src/applications/party_menu/context_menu.c
+	Object src/applications/party_menu/callbacks.c
+	Object src/applications/naming_screen.c
+	Object src/unk_020890F4.c
+	Object src/unk_02089604.c
+	Object src/unk_0208A3F4.c
+	Object src/unk_0208B284.c
+	Object src/unk_0208BA78.c
+	Object src/unk_0208BEBC.c
+	Object src/unk_0208C010.c
+	Object src/unk_0208C098.c
+	Object src/applications/pokemon_summary_screen/main.c
+	Object src/applications/pokemon_summary_screen/sprites.c
+	Object src/applications/pokemon_summary_screen/window.c
+	Object src/applications/pokemon_summary_screen/3d_anim.c
+	Object src/applications/pokemon_summary_screen/subscreen.c
+	Object src/ribbon.c
+	Object src/unk_02092494.c
+	Object src/contest.c
+	Object src/unk_02094EDC.c
+	Object src/unk_02095AF0.c
+	Object src/applications/trade_room/comm.c
+	Object src/unk_02095E98.c
+	Object src/unk_020961E8.c
+	Object src/item_use_pokemon.c
+	Object src/berry_tag_data.c
+	Object src/berry_data.c
+	Object src/easy_chat_args.c
+	Object src/applications/mail.c
+	Object src/applications/capsule_menu/main.c
+	Object src/egg_hatch.c
+	Object src/unk_020985E4.c
+	Object src/pokedex_language.c
+	Object src/pokedex_heightweight.c
+	Object src/pokedex_data_index.c
+	Object src/rowan_intro_app_template.c
+	Object src/applications/poffin_case/main.c
+	Object src/poffin_sprite.c
+	Object src/unk_02099500.c
+	Object src/wifi_overlays.c
+	Object src/poffin_berry_selection_context.c
+	Object src/unk_020996D0.c
+	Object src/move_reminder_data.c
+	Object src/easy_chat_word_list.c
+	Object src/poketch_memory.c
+	Object src/unk_02099DFC.c
+	Object src/unk_0209A2C4.c
+	Object src/unk_0209A74C.c
+	Object src/unk_0209AA74.c
+	Object src/shop_misc.c
+	Object src/pokedex_memory.c
+	Object src/unk_0209ACF4.c
+	Object src/unk_0209B344.c
+	Object src/error_message_reset.c
+	Object src/battle_frontier.c
+	Object src/unk_0209BA80.c
+	Object src/unk_0209BDF8.c
+	Object src/unk_0209C194.c
+	Object src/unk_0209C370.c
+	Object src/unk_0209C390.c
+	Library libspl.a
+	Library libwvr.a
+	Library libdwcbm.a
+	Library libdwcaccount.a
+	Library libcrypto_static.a
+	Library libnnsfnd.a
+	Library libnnsgfd.a
+	Library libnnsg2d.a
+	Library libnnsg3d.a
+	Library libnnssnd.a
+	Library libfx.a
+	Library libgx.a
+	Library libos.a
+	Library libmi.a
+	Library libsnd.a
+	Library libpxi.a
+	Library libfs.a
+	Library libdgt.a
+	Library libcp.a
+	Library libspi.a
+	Library librtc.a
+	Library libcard.a
+	Library libwm.a
+	Library libctrdg.a
+	Library libmath.a
+	Library libstd.a
+	Library MSL_C_NITRO_Ai_LE.a
+	Library MSL_Extras_NITRO_Ai_LE.a
+	Library MSL_CPP_NITRO_Ai_LE.a
+	Library FP_fastI_v5t_LE.a
+	Library NITRO_Runtime_Ai_LE.a
+}
+
+Autoload ITCM
+{
+	Address 0x01FF8000
+	Library libos.a (.itcm)
+	Library libmi.a (.itcm)
+}
+
+Autoload DTCM
+{
+	Address 0x027E0000
+	Library libos.a (.dtcm)
+}
+
+Overlay dummy1
+{
+	After main
+}
+
+Overlay dummy2
+{
+	After main
+	Object src/dummy/dummy.c
+}
+
+Overlay dummy3
+{
+	After dummy2
+}
+
+Overlay dummy4
+{
+	After ITCM
+}
+
+Overlay nintendo_wfc
+{
+	After main
+	Object src/nintendo_wfc/main.c
+	Object src/nintendo_wfc/voice_chat.c
+	Library	libdwcauth.a
+	Library libdwcbase.a
+	Library libdwcac.a
+	Library libdwcgscommon.a
+	Library libdwcgsgp.a
+	Library libdwcgsgstats.a
+	Library libdwcgsgt2.a
+	Library libdwcgsnatneg.a
+	Library libdwcgsqr2.a
+	Library libdwcgsserverbrowsing.a
+	Library libvct.a
+	Library libsoc.a
+	Library libcps.a
+	Library libssl.a
+	Library libwcm.a
+	Library libstubsmd5.a
+}
+
+Overlay overlay5
+{
+	After main
+	Object src/overlay005/fieldmap.c
+	Object src/overlay005/ov5_021D1A94.c
+	Object src/overlay005/field_control.c
+	Object src/overlay005/sprite_resource_manager.c
+	Object src/overlay005/map_prop_animation.c
+	Object src/overlay005/ov5_021D431C.c
+	Object src/overlay005/area_light.c
+	Object src/overlay005/map_prop_material_shape.c
+	Object src/overlay005/fog_manager.c
+	Object src/overlay005/model_attributes.c
+	Object src/overlay005/field_camera.c
+	Object src/overlay005/ov5_021D5BC0.c
+	Object src/overlay005/texture_resource_manager.c
+	Object src/overlay005/ov5_021D5EB8.c
+	Object src/overlay005/vs_seeker.c
+	Object src/overlay005/field_menu.c
+	Object src/overlay005/script_message.c
+	Object src/overlay005/map_name_popup.c
+	Object src/overlay005/enable_poketch_task.c
+	Object src/overlay005/encounter_effect.c
+	Object src/overlay005/field_effect_manager.c
+	Object src/overlay005/ov5_021DFB54.c
+	Object src/overlay005/ov5_021E1154.c
+	Object src/overlay005/ov5_021E135C.c
+	Object src/overlay005/map_prop.c
+	Object src/overlay005/signpost.c
+	Object src/overlay005/save_info_window.c
+	Object src/overlay005/motion_blur.c
+	Object src/overlay005/field_motion_blur.c
+	Object src/overlay005/encounter_effect_core.c
+	Object src/overlay005/daycare.c
+	Object src/overlay005/land_data.c
+	Object src/overlay005/ov5_021EA714.c
+	Object src/overlay005/ov5_021EA874.c
+	Object src/overlay005/ov5_021EAFA4.c
+	Object src/overlay005/object_event_gfx_data.c
+	Object src/overlay005/ov5_021EB1A0.c
+	Object src/overlay005/ov5_021ECA70.c
+	Object src/overlay005/ov5_021ECC20.c
+	Object src/overlay005/ov5_021ECE40.c
+	Object src/overlay005/ov5_021EE75C.c
+	Object src/overlay005/size_contest.c
+	Object src/overlay005/loaded_map_buffers.c
+	Object src/overlay005/bdhc.c
+	Object src/overlay005/dynamic_terrain_height.c
+	Object src/overlay005/hblank_system.c
+	Object src/overlay005/ov5_021EF4BC.c
+	Object src/overlay005/area_data.c
+	Object src/overlay005/honey_tree.c
+	Object src/overlay005/ov5_021F007C.c
+	Object src/overlay005/field_effect_renderer.c
+	Object src/overlay005/resource_heap.c
+	Object src/overlay005/secret_base_props.c
+	Object src/overlay005/fishing.c
+	Object src/overlay005/footprint_type.c
+	Object src/overlay005/ov5_021F0EB0.c
+	Object src/overlay005/ov5_021F101C.c
+	Object src/overlay005/ov5_021F10E8.c
+	Object src/overlay005/ov5_021F134C.c
+	Object src/overlay005/ov5_021F17B8.c
+	Object src/overlay005/ov5_021F1CC8.c
+	Object src/overlay005/berry_patch_effects.c
+	Object src/overlay005/ov5_021F23D0.c
+	Object src/overlay005/surf_mount_renderer.c
+	Object src/overlay005/ov5_021F2850.c
+	Object src/overlay005/ov5_021F2A7C.c
+	Object src/overlay005/ov5_021F2BD0.c
+	Object src/overlay005/ov5_021F2D20.c
+	Object src/overlay005/ov5_021F3284.c
+	Object src/overlay005/ov5_021F348C.c
+	Object src/overlay005/ov5_021F37A8.c
+	Object src/overlay005/ov5_021F3A50.c
+	Object src/overlay005/ov5_021F3D00.c
+	Object src/overlay005/ov5_021F3E74.c
+	Object src/overlay005/ov5_021F4018.c
+	Object src/overlay005/veilstone_gym_object_renderer.c
+	Object src/overlay005/ov5_021F47B0.c
+	Object src/overlay005/ov5_021F4DAC.c
+	Object src/overlay005/ov5_021F4E08.c
+	Object src/overlay005/ov5_021F5060.c
+	Object src/overlay005/ov5_021F50BC.c
+	Object src/overlay005/ov5_021F5284.c
+	Object src/overlay005/ov5_021F5428.c
+	Object src/overlay005/ov5_021F55CC.c
+	Object src/overlay005/ov5_021F575C.c
+	Object src/overlay005/ov5_021F5894.c
+	Object src/overlay005/ov5_021F5A10.c
+	Object src/overlay005/ov5_021F600C.c
+	Object src/overlay005/ov5_021F61BC.c
+	Object src/overlay005/ov5_021F6454.c
+	Object src/overlay005/scrcmd_move_tutor.c
+	Object src/overlay005/villa_furniture.c
+	Object src/overlay005/dist_world_surf_mount_renderer.c
+}
+
+Overlay overlay6
+{
+	After overlay5
+	Object src/overlay006/ov6_0223E140.c
+	Object src/overlay006/wild_encounters.c
+	Object src/overlay006/great_marsh_lookout_sprite.c
+	Object src/overlay006/great_marsh_binoculars.c
+	Object src/overlay006/great_marsh_tram.c
+	Object src/overlay006/great_marsh_daily_encounters.c
+	Object src/overlay006/ov6_02243004.c
+	Object src/overlay006/radar_chain_records.c
+	Object src/overlay006/swarm.c
+	Object src/overlay006/hm_cut_in.c
+	Object src/overlay006/roamer_after_battle.c
+	Object src/overlay006/npc_trade.c
+	Object src/overlay006/tv_episode.c
+	Object src/overlay006/ov6_022465FC.c
+	Object src/overlay006/tv_commercials.c
+	Object src/overlay006/special_dates.c
+	Object src/overlay006/repel_step_update.c
+	Object src/overlay006/healing_machine_animation/pokecenter.c
+	Object src/overlay006/elevator_animation.c
+	Object src/overlay006/pc_animation.c
+	Object src/overlay006/field_warp.c
+	Object src/overlay006/trophy_garden_daily_encounters.c
+	Object src/overlay006/feebas_fishing.c
+	Object src/overlay006/dual_slot_encounters.c
+	Object src/overlay006/wallpaper_passwords.c
+	Object src/overlay006/link_contest_record_display.c
+	Object src/overlay006/healing_machine_animation/hall_of_fame.c
+	Object src/overlay006/lake_guardian_containment_units.c
+	Object src/overlay006/ov6_02248050.c
+	Object src/overlay006/ov6_02248948.c
+	Object src/overlay006/ov6_022489E4.c
+}
+
+Overlay overlay7
+{
+	After overlay6
+	Object src/overlay007/communication_club.c
+	Object src/overlay007/battle_regulation_menu.c
+	Object src/overlay007/accessory_shop.c
+	Object src/overlay007/shop_menu.c
+}
+
+Overlay gym_features
+{
+	After overlay6
+	Object src/overlay008/gym_features.c
+}
+
+Overlay overlay9
+{
+	After overlay6
+	Object src/overlay009/ov9_02249960.c
+}
+
+Overlay overlay10
+{
+	After nintendo_wfc
+	Object src/overlay010/ov10_0221F800.c
+}
+
+Overlay overlay11
+{
+	After nintendo_wfc
+	Object src/overlay011/move_palettes.c
+	Object src/overlay011/particle_helper.c
+}
+
+Overlay battle_anim
+{
+	After overlay11
+	Object src/battle_anim/battle_anim_system.c
+	Object src/battle_anim/battle_particle_util.c
+	Object src/battle_anim/emitter_callbacks.c
+	Object src/battle_anim/generic_emitter_callback.c
+	Object src/battle_anim/generic_emitter_callback_behavior.c
+	Object src/battle_anim/generic_emitter_callback_camera.c
+	Object src/battle_anim/battle_anim_helpers.c
+	Object src/battle_anim/script_func_tables.c
+	Object src/battle_anim/script_func_examples.c
+	Object src/battle_anim/script_funcs_3.c
+	Object src/battle_anim/script_funcs_0.c
+	Object src/battle_anim/script_funcs_4.c
+	Object src/battle_anim/script_func_mimic.c
+	Object src/battle_anim/script_funcs_1.c
+	Object src/battle_anim/script_funcs_2.c
+	Object src/battle_anim/script_funcs_status.c
+	Object src/battle_anim/script_funcs_stat_change.c
+	Object src/battle_anim/battle_anim_util.c
+	Object src/battle_anim/ov12_02235E94.c
+	Object src/battle_anim/ov12_02237E54.c
+	Object src/battle_anim/ov12_02237EFC.c
+	Object src/battle_anim/ov12_022380BC.c
+	Object src/battle_anim/is_form_symmetrical.c
+}
+
+Overlay battle_sub_menus
+{
+	After overlay11
+	Object src/battle_sub_menus/battle_party.c
+	Object src/battle_sub_menus/battle_party_text.c
+	Object src/battle_sub_menus/battle_party_sprites.c
+	Object src/battle_sub_menus/battle_party_buttons.c
+	Object src/battle_sub_menus/battle_bag.c
+	Object src/battle_sub_menus/battle_bag_text.c
+	Object src/battle_sub_menus/battle_bag_utils.c
+	Object src/battle_sub_menus/battle_bag_sprites.c
+	Object src/battle_sub_menus/battle_bag_buttons.c
+	Object src/battle_sub_menus/battle_sub_menu_cursor.c
+}
+
+Overlay trainer_ai
+{
+	After overlay11
+	Object src/battle/trainer_ai/trainer_ai.c
+	Object trainer_ai_script.o
+}
+
+Overlay dummy5
+{
+	After main
+}
+
+Overlay battle
+{
+	After battle_anim
+	Object src/battle/battle_main.c
+	Object src/battle/battle_system.c
+	Object src/battle/battle_script.c
+	Object src/battle/battle_controller_player.c
+	Object src/battle/battle_lib.c
+	Object src/battle/battle_io_command.c
+	Object src/battle/battle_display.c
+	Object src/battle/idle_bounce_anim.c
+	Object src/battle/battle_controller.c
+	Object src/battle/healthbox.c
+	Object src/battle/terrain.c
+	Object src/battle/battle_subscreen.c
+	Object src/battle/party_gauge.c
+	Object src/battle/cursor_renderer.c
+	Object src/battle/indicator.c
+	Object src/battle/stop_recording_task_data.c
+}
+
+Overlay overlay17
+{
+	After battle_anim
+	Object src/overlay017/ov17_0223B140.c
+	Object src/overlay017/ov17_0223CB1C.c
+	Object src/overlay017/ov17_0223DAD0.c
+	Object src/overlay017/ov17_0223F118.c
+	Object src/overlay017/ov17_0223F7E4.c
+	Object src/overlay017/ov17_02241270.c
+	Object src/overlay017/ov17_022413D8.c
+	Object src/overlay017/ov17_02243AC4.c
+	Object src/overlay017/ov17_02243C28.c
+	Object src/overlay017/ov17_02245F14.c
+	Object src/overlay017/ov17_02246ECC.c
+	Object src/overlay017/ov17_022476F8.c
+	Object src/overlay017/ov17_02247A48.c
+	Object src/overlay017/ov17_022492DC.c
+	Object src/overlay017/ov17_0224A0FC.c
+	Object src/overlay017/ov17_0224CFB8.c
+	Object src/overlay017/ov17_0224E930.c
+	Object src/overlay017/ov17_0224F080.c
+	Object src/overlay017/ov17_0224F18C.c
+	Object src/overlay017/ov17_0224F4D4.c
+	Object src/overlay017/ov17_02250744.c
+	Object src/overlay017/ov17_02251D6C.c
+	Object src/overlay017/ov17_02252A70.c
+	Object src/overlay017/ov17_02252AB0.c
+	Object src/overlay017/ov17_02252CEC.c
+}
+
+Overlay wfc_settings
+{
+	After nintendo_wfc
+	Object src/wfc_settings/wfc_settings.c
+	Library	libmb.a
+	Library libdwcutil.a
+}
+
+Overlay pc_boxes
+{
+	After main
+	Object src/applications/pc_boxes/box_app_manager.c
+	Object src/applications/pc_boxes/touch_dial.c
+	Object src/applications/pc_boxes/ov19_021D61B0.c
+	Object src/applications/pc_boxes/ov19_021D79F8.c
+	Object src/applications/pc_boxes/ov19_021D8B54.c
+	Object src/applications/pc_boxes/ov19_021DA270.c
+	Object src/applications/pc_boxes/ov19_021DA814.c
+	Object src/applications/pc_boxes/ov19_021DA92C.c
+	Object src/applications/pc_boxes/ov19_021DB2FC.c
+	Object src/applications/pc_boxes/ov19_021DB8E4.c
+	Object src/applications/pc_boxes/ov19_021DC5F0.c
+	Object src/applications/pc_boxes/ov19_021DCF88.c
+	Object src/applications/pc_boxes/ov19_021DE3E8.c
+	Object src/applications/pc_boxes/ov19_021DEC04.c
+	Object src/applications/pc_boxes/box_menu.c
+}
+
+Overlay easy_chat
+{
+	After main
+	Object src/applications/easy_chat/main.c
+	Object src/applications/easy_chat/ov20_021D2098.c
+	Object src/applications/easy_chat/ov20_021D2EA4.c
+	Object src/applications/easy_chat/ov20_021D3864.c
+	Object src/applications/easy_chat/categories.c
+	Object src/applications/easy_chat/ov20_021D40E8.c
+	Object src/applications/easy_chat/ov20_021D4728.c
+	Object src/applications/easy_chat/ov20_021D4E38.c
+	Object src/applications/easy_chat/abc_mode.c
+}
+
+Overlay pokedex
+{
+	After main
+	Object src/applications/pokedex/pokedex_main.c
+	Object src/applications/pokedex/footprint.c
+	Object src/applications/pokedex/pokedex_graphics.c
+	Object src/applications/pokedex/pokedex_sort.c
+	Object src/applications/pokedex/pokedex_updater.c
+	Object src/applications/pokedex/ov21_021D423C.c
+	Object src/applications/pokedex/ov21_021D4340.c
+	Object src/applications/pokedex/pokedex_text_manager.c
+	Object src/applications/pokedex/pokedex_panel.c
+	Object src/applications/pokedex/pokedex_field_map.c
+	Object src/applications/pokedex/pokedex_text.c
+	Object src/applications/pokedex/pokedex_enc_data.c
+	Object src/applications/pokedex/ov21_021D5AEC.c
+	Object src/applications/pokedex/ov21_021D76B0.c
+	Object src/applications/pokedex/pokedex_search.c
+	Object src/applications/pokedex/ov21_021D94BC.c
+	Object src/applications/pokedex/ov21_021DC9BC.c
+	Object src/applications/pokedex/ov21_021DDD2C.c
+	Object src/applications/pokedex/infomain.c
+	Object src/applications/pokedex/formmain.c
+	Object src/applications/pokedex/infomain_foreign.c
+	Object src/applications/pokedex/ov21_021E1924.c
+	Object src/applications/pokedex/ov21_021E29DC.c
+	Object src/applications/pokedex/ov21_021E3FFC.c
+	Object src/applications/pokedex/crysub.c
+	Object src/applications/pokedex/pokedex_height_check.c
+	Object src/applications/pokedex/ov21_021E68F4.c
+	Object src/applications/pokedex/ov21_021E737C.c
+	Object src/applications/pokedex/formsub.c
+	Object src/applications/pokedex/ov21_021E8D48.c
+}
+
+Overlay overlay22
+{
+	After overlay17
+	Object src/overlay022/ov22_02254DE0.c
+	Object src/overlay022/ov22_02255094.c
+	Object src/overlay022/ov22_02255D44.c
+	Object src/overlay022/ov22_022578F4.c
+	Object src/overlay022/ov22_02257F50.c
+	Object src/overlay022/ov22_022588F0.c
+	Object src/overlay022/ov22_0225894C.c
+	Object src/overlay022/ov22_022589E0.c
+	Object src/overlay022/ov22_02259098.c
+	Object src/overlay022/ov22_02259484.c
+	Object src/overlay022/ov22_02259560.c
+	Object src/overlay022/ov22_022597BC.c
+	Object src/overlay022/ov22_02259C58.c
+	Object src/overlay022/ov22_0225A428.c
+	Object src/overlay022/ov22_0225AF44.c
+	Object src/overlay022/ov22_0225AF8C.c
+	Object src/overlay022/ov22_0225B660.c
+}
+
+Overlay underground
+{
+	After overlay5
+	Object src/underground/mining.c
+	Object src/underground/spheres.c
+	Object src/underground/manager.c
+	Object src/underground/traps.c
+	Object src/underground/item_list_menu.c
+	Object src/underground/top_screen.c
+	Object src/underground/player_status.c
+	Object src/underground/comm_manager.c
+	Object src/underground/player.c
+	Object src/underground/secret_bases.c
+	Object src/underground/player_talk.c
+	Object src/underground/menus.c
+	Object src/underground/pc.c
+	Object src/underground/vendors.c
+	Object src/underground/records.c
+	Object src/underground/text_printer.c
+	Object src/underground/treasure_prices.c
+	Object src/underground/trap_prices.c
+	Object src/underground/decoration_menu.c
+	Object src/underground/base_decoration.c
+}
+
+Overlay poketch_unavailable
+{
+	After overlay9
+	Object src/applications/poketch/unavailable/graphics.c
+}
+
+Overlay poketch
+{
+	After overlay9
+	Object src/applications/poketch/poketch_system.c
+	Object src/applications/poketch/poketch_graphics.c
+	Object src/applications/poketch/poketch_task.c
+	Object src/applications/poketch/poketch_animation.c
+	Object src/applications/poketch/poketch_button.c
+	Object src/applications/poketch/poketch_map.c
+}
+
+Overlay poketch_digital_watch
+{
+	After poketch
+	Object src/applications/poketch/digital_watch/main.c
+	Object src/applications/poketch/digital_watch/graphics.c
+}
+
+Overlay poketch_stopwatch
+{
+	After poketch
+	Object src/applications/poketch/stopwatch/main.c
+	Object src/applications/poketch/stopwatch/graphics.c
+}
+
+Overlay poketch_calculator
+{
+	After poketch
+	Object src/applications/poketch/calculator/main.c
+	Object src/applications/poketch/calculator/graphics.c
+	Object src/applications/poketch/calculator/value.c
+}
+
+Overlay poketch_memo_pad
+{
+	After poketch
+	Object src/applications/poketch/memo_pad/main.c
+	Object src/applications/poketch/memo_pad/graphics.c
+}
+
+Overlay poketch_analog_watch
+{
+	After poketch
+	Object src/applications/poketch/analog_watch/main.c
+	Object src/applications/poketch/analog_watch/graphics.c
+}
+
+Overlay poketch_dot_artist
+{
+	After poketch
+	Object src/applications/poketch/dot_artist/main.c
+	Object src/applications/poketch/dot_artist/graphics.c
+}
+
+Overlay poketch_party_status
+{
+	After poketch
+	Object src/applications/poketch/party_status/main.c
+	Object src/applications/poketch/party_status/graphics.c
+}
+
+Overlay poketch_friendship_checker
+{
+	After poketch
+	Object src/applications/poketch/friendship_checker/main.c
+	Object src/applications/poketch/friendship_checker/graphics.c
+}
+
+Overlay poketch_dowsing_machine
+{
+	After poketch
+	Object src/applications/poketch/dowsing_machine/main.c
+	Object src/applications/poketch/dowsing_machine/graphics.c
+}
+
+Overlay poketch_counter
+{
+	After poketch
+	Object src/applications/poketch/counter/main.c
+	Object src/applications/poketch/counter/graphics.c
+}
+
+Overlay poketch_pedometer
+{
+	After poketch
+	Object src/applications/poketch/pedometer/main.c
+	Object src/applications/poketch/pedometer/graphics.c
+}
+
+Overlay poketch_backlight_toggle
+{
+	After poketch
+	Object src/applications/poketch/backlight_toggle/main.c
+	Object src/applications/poketch/backlight_toggle/graphics.c
+}
+
+Overlay poketch_unused_1
+{
+	After poketch
+	Object src/applications/poketch/unused/1/main.c
+	Object src/applications/poketch/unused/1/graphics.c
+}
+
+Overlay poketch_unused_2
+{
+	After poketch
+	Object src/applications/poketch/unused/2/main.c
+	Object src/applications/poketch/unused/2/graphics.c
+}
+
+Overlay poketch_daycare_checker
+{
+	After poketch
+	Object src/applications/poketch/daycare_checker/main.c
+	Object src/applications/poketch/daycare_checker/graphics.c
+}
+
+Overlay poketch_roulette
+{
+	After poketch
+	Object src/applications/poketch/roulette/main.c
+	Object src/applications/poketch/roulette/graphics.c
+}
+
+Overlay poketch_coin_toss
+{
+	After poketch
+	Object src/applications/poketch/coin_toss/main.c
+	Object src/applications/poketch/coin_toss/graphics.c
+}
+
+Overlay poketch_move_tester
+{
+	After poketch
+	Object src/applications/poketch/move_tester/main.c
+	Object src/applications/poketch/move_tester/graphics.c
+}
+
+Overlay poketch_matchup_checker
+{
+	After poketch
+	Object src/applications/poketch/matchup_checker/main.c
+	Object src/applications/poketch/matchup_checker/graphics.c
+}
+
+Overlay poketch_alarm_clock
+{
+	After poketch
+	Object src/applications/poketch/alarm_clock/main.c
+	Object src/applications/poketch/alarm_clock/graphics.c
+}
+
+Overlay poketch_kitchen_timer
+{
+	After poketch
+	Object src/applications/poketch/kitchen_timer/main.c
+	Object src/applications/poketch/kitchen_timer/graphics.c
+}
+
+Overlay poketch_marking_map
+{
+	After poketch
+	Object src/applications/poketch/marking_map/main.c
+	Object src/applications/poketch/marking_map/graphics.c
+}
+
+Overlay poketch_berry_searcher
+{
+	After poketch
+	Object src/applications/poketch/berry_searcher/main.c
+	Object src/applications/poketch/berry_searcher/graphics.c
+}
+
+Overlay poketch_color_changer
+{
+	After poketch
+	Object src/applications/poketch/color_changer/main.c
+	Object src/applications/poketch/color_changer/graphics.c
+}
+
+Overlay poketch_calendar
+{
+	After poketch
+	Object src/applications/poketch/calendar/main.c
+	Object src/applications/poketch/calendar/graphics.c
+}
+
+Overlay poketch_unused_3
+{
+	After poketch
+	Object src/applications/poketch/unused/3/main.c
+	Object src/applications/poketch/unused/3/graphics.c
+}
+
+Overlay poketch_link_searcher
+{
+	After poketch
+	Object src/applications/poketch/link_searcher/main.c
+	Object src/applications/poketch/link_searcher/graphics.c
+}
+
+Overlay poketch_trainer_counter
+{
+	After poketch
+	Object src/applications/poketch/trainer_counter/main.c
+	Object src/applications/poketch/trainer_counter/graphics.c
+}
+
+Overlay poketch_pokemon_history
+{
+	After poketch
+	Object src/applications/poketch/pokemon_history/main.c
+	Object src/applications/poketch/pokemon_history/graphics.c
+}
+
+Overlay poketch_unused_4
+{
+	After poketch
+	Object src/applications/poketch/unused/4/main.c
+	Object src/applications/poketch/unused/4/graphics.c
+}
+
+Overlay overlay56
+{
+	After poketch
+	Object src/overlay056/ov56_022561C0.c
+}
+
+Overlay game_start
+{
+	After main
+	Object src/game_start.c
+}
+
+Overlay overlay58
+{
+	After main
+	Object src/overlay058/ov58_021D0D80.c
+}
+
+Overlay overlay59
+{
+	After main
+	Object src/overlay059/ov59_021D0D80.c
+	Object src/overlay059/ov59_021D2A2C.c
+	Object src/overlay059/ov59_021D2B44.c
+	Object src/overlay059/ov59_021D2F88.c
+}
+
+Overlay http
+{
+	After nintendo_wfc
+	Object src/http/http_b64.c
+	Object src/http/http.c
+	Library	libdwcgsghttp.a
+	Library libdwcnd.a
+	Library libdwcnhttp.a
+}
+
+Overlay overlay61
+{
+	After http
+	Object src/overlay061/ov61_0222AE60.c
+	Object src/overlay061/ov61_0222B008.c
+	Object src/overlay061/ov61_0222BC4C.c
+	Object src/overlay061/ov61_0222BF44.c
+	Library libgds.a
+}
+
+Overlay overlay62
+{
+	After overlay61
+	Object src/overlay062/ov62_0222F2C0.c
+	Object src/overlay062/ov62_022300D8.c
+	Object src/overlay062/ov62_02231690.c
+	Object src/overlay062/ov62_02234A10.c
+	Object src/overlay062/ov62_02235278.c
+	Object src/overlay062/ov62_02235E64.c
+	Object src/overlay062/ov62_02236CBC.c
+	Object src/overlay062/ov62_02237D24.c
+	Object src/overlay062/ov62_02239D60.c
+	Object src/overlay062/ov62_0223CAEC.c
+	Object src/overlay062/ov62_0223DFA8.c
+	Object src/overlay062/ov62_0224112C.c
+	Object src/overlay062/ov62_02241204.c
+	Object src/overlay062/ov62_02246B00.c
+	Object src/overlay062/ov62_02247D74.c
+	Object src/overlay062/ov62_02248408.c
+}
+
+Overlay overlay63
+{
+	After http
+	Object src/overlay063/ov63_0222AE60.c
+	Object src/overlay063/ov63_0222BCE8.c
+	Object src/overlay063/ov63_0222BE18.c
+	Object src/overlay063/ov63_0222CA88.c
+	Object src/overlay063/ov63_0222CCE4.c
+	Object src/overlay063/ov63_0222D160.c
+	Object src/overlay063/ov63_0222D1C0.c
+	Object src/overlay063/ov63_0222D77C.c
+}
+
+Overlay overlay64
+{
+	After overlay63
+	Object src/overlay064/ov64_0222DCE0.c
+}
+
+Overlay overlay65
+{
+	After overlay63
+	Object src/overlay065/ov65_0222DCE0.c
+	Object src/overlay065/ov65_02235060.c
+	Object src/overlay065/ov65_02236474.c
+	Object src/overlay065/ov65_0223648C.c
+}
+
+Overlay overlay66
+{
+	After overlay63
+	Object src/overlay066/ov66_0222DCE0.c
+	Object src/overlay066/ov66_0222DDF0.c
+	Object src/overlay066/ov66_02230C44.c
+	Object src/overlay066/ov66_02231428.c
+	Object src/overlay066/ov66_0223177C.c
+	Object src/overlay066/ov66_022324F0.c
+	Object src/overlay066/ov66_022343A8.c
+	Object src/overlay066/ov66_02234EA8.c
+	Library	libdwcbm.a
+	Library libdwcaccount.a
+	Library libdwcppwlobby.a
+	Library libdwcilobby.a
+	Library libdwcgschat.a
+	Library libdwcenc.a
+}
+
+Overlay overlay67
+{
+	After overlay66
+	Object src/overlay067/ov67_0225C700.c
+}
+
+Overlay overlay68
+{
+	After overlay66
+	Object src/overlay068/ov68_0225C700.c
+}
+
+Overlay overlay69
+{
+	After overlay66
+	Object src/overlay069/ov69_0225C700.c
+}
+
+Overlay overlay70
+{
+	After overlay66
+	Object src/overlay070/ov70_0225C700.c
+	Object src/overlay070/ov70_0225C858.c
+	Object src/overlay070/ov70_0225C9B4.c
+	Object src/overlay070/ov70_0225D9A4.c
+	Object src/overlay070/ov70_02260A70.c
+	Object src/overlay070/ov70_02260B44.c
+	Object src/overlay070/ov70_02261E10.c
+	Object src/overlay070/ov70_02262DA8.c
+	Object src/overlay070/ov70_022630A4.c
+	Object src/overlay070/ov70_02265F38.c
+	Object src/overlay070/ov70_02266E9C.c
+	Object src/overlay070/ov70_02269190.c
+	Object src/overlay070/ov70_0226C338.c
+	Object src/overlay070/ov70_0226C60C.c
+	Object src/overlay070/ov70_0226C8B4.c
+	Object src/overlay070/ov70_0226CC74.c
+	Object src/overlay070/ov70_0226CE54.c
+}
+
+Overlay trainer_case
+{
+	After battle_anim
+	Object src/applications/trainer_case/main.c
+	Object src/applications/trainer_case/card_text.c
+	Object src/applications/trainer_case/sprites.c
+	Object src/applications/trainer_case/badge_chimes.c
+}
+
+Overlay signature
+{
+	After trainer_case
+	Object src/applications/signature.c
+}
+
+Overlay rowan_intro
+{
+	After main
+	Object src/applications/rowan_intro/rowan_intro_app.c
+	Object src/applications/rowan_intro/tv_app.c
+}
+
+Overlay options_menu
+{
+	After main
+	Object src/applications/options_menu.c
+}
+
+Overlay mail_viewer
+{
+	After main
+	Object src/applications/mail_viewer.c
+}
+
+Overlay capsule_menu
+{
+	After battle_anim
+	Object src/applications/capsule_menu/placement.c
+	Object src/applications/capsule_menu/graphics.c
+	Object src/applications/capsule_menu/manager.c
+}
+
+Overlay game_opening
+{
+	After main
+	Object src/applications/title_screen.c
+	Object src/game_opening/ov77_021D25B0.c
+	Object src/game_opening/ov77_021D54B0.c
+	Object src/game_opening/ov77_021D6670.c
+	Object src/game_opening/ov77_021D6C70.c
+}
+
+Overlay choose_starter
+{
+	After main
+	Object src/choose_starter/choose_starter_app.c
+}
+
+Overlay poffin_case
+{
+	After main
+	Object src/applications/poffin_case/manager.c
+	Object src/applications/poffin_case/menus.c
+	Object src/applications/poffin_case/sprites.c
+	Object src/applications/poffin_case/cutscene.c
+	Object src/applications/poffin_case/cutscene_sprite.c
+}
+
+Overlay town_map
+{
+	After main
+	Object src/applications/town_map/main.c
+	Object src/applications/town_map/graphics.c
+	Object src/applications/town_map/sprites.c
+	Object src/applications/town_map/fly_locations.c
+	Object src/applications/town_map/map_blocks.c
+}
+
+Overlay journal_display
+{
+	After main
+	Object src/applications/journal_display/journal_controller.c
+	Object src/applications/journal_display/journal_printer.c
+}
+
+Overlay poffin_berry_selection
+{
+	After battle_anim
+	Object src/applications/poffin_berry_selection/main.c
+	Object src/applications/poffin_berry_selection/callbacks.c
+}
+
+Overlay overlay83
+{
+	After poffin_berry_selection
+	Object src/overlay083/ov83_0223B5A0.c
+	Object src/overlay083/ov83_0223C958.c
+	Object src/overlay083/ov83_0223D144.c
+	Object src/overlay083/ov83_0223D150.c
+	Object src/overlay083/ov83_0223D4CC.c
+	Object src/overlay083/ov83_0223D6A8.c
+	Object src/overlay083/ov83_0223F7F4.c
+}
+
+Overlay bag
+{
+	After poffin_berry_selection
+	Object src/applications/bag/main.c
+	Object src/applications/bag/windows.c
+	Object src/applications/bag/sprites.c
+}
+
+Overlay berry_tag
+{
+	After bag
+	Object src/applications/berry_tag.c
+}
+
+Overlay hall_of_fame
+{
+	After battle_anim
+	Object src/cutscenes/hall_of_fame.c
+}
+
+Overlay pc_hall_of_fame
+{
+	After main
+	Object src/applications/pc_hall_of_fame/manager.c
+	Object src/applications/pc_hall_of_fame/display.c
+}
+
+Overlay trade_room
+{
+	After battle_anim
+	Object src/applications/trade_room/application.c
+	Object src/applications/trade_room/helpers.c
+}
+
+Overlay dummy6
+{
+	After main
+}
+
+Overlay battle_tower_records_app
+{
+	After main
+	Object src/applications/frontier/tower_records.c
+}
+
+Overlay move_reminder
+{
+	After main
+	Object src/applications/move_reminder.c
+}
+
+Overlay wifi_earth
+{
+	After main
+	Object src/applications/wifi_earth.c
+}
+
+Overlay cutscenes
+{
+	After main
+	Object src/cutscenes/boat_cutscene/canalave_ship.c
+	Object src/cutscenes/boat_cutscene/snowpoint_ship.c
+}
+
+Overlay gts_application
+{
+	After battle_anim
+	Object src/gts_application/networking.c
+	Object src/gts_application/application.c
+	Object src/gts_application/screens/main_menu.c
+	Object src/gts_application/screens/listing.c
+	Object src/gts_application/screens/search_listing.c
+	Object src/gts_application/screens/search.c
+	Object src/gts_application/screens/select_pokemon.c
+	Object src/gts_application/screens/deposit.c
+	Object src/gts_application/screens/network_handler.c
+	Object src/gts_application/avatar.c
+	Object src/gts_application/screens/pokemon_summary.c
+	Object src/gts_application/screens/trade.c
+	Object src/gts_application/screens/wfc_init.c
+}
+
+Overlay trade_sequence
+{
+	After gts_application
+	Object src/cutscenes/trade_sequence/main.c
+	Object src/cutscenes/trade_sequence/3d_scene.c
+	Object src/cutscenes/trade_sequence/send_phase.c
+	Object src/cutscenes/trade_sequence/tube_phase.c
+	Object src/cutscenes/trade_sequence/ball_flyby_phase.c
+	Object src/cutscenes/trade_sequence/wormhole_phase.c
+	Object src/cutscenes/trade_sequence/receive_ball_phase.c
+	Object src/cutscenes/trade_sequence/pokemon_reveal_phase.c
+	Object src/cutscenes/trade_sequence/receive_phase.c
+}
+
+Overlay wifi_battle_tower
+{
+	After battle_anim
+	Object src/wifi_battle_tower/http.c
+	Object src/wifi_battle_tower/application.c
+	Object src/wifi_battle_tower/screen.c
+}
+
+Overlay main_menu
+{
+	After http
+	Object src/main_menu/main_menu.c
+	Object src/main_menu/ranger_link.c
+	Object src/main_menu/ov97_0222D04C.c
+	Object src/main_menu/ov97_0222D2F8.c
+	Object src/main_menu/mystery_gift_app.c
+	Object src/main_menu/wonder_cards_app.c
+	Object src/main_menu/ov97_02232054.c
+	Object src/main_menu/ov97_02232200.c
+	Object src/main_menu/ov97_02232DC8.c
+	Object src/main_menu/ov97_02233408.c
+	Object src/main_menu/ov97_022337FC.c
+	Object src/main_menu/ov97_02233814.c
+	Object src/main_menu/gba_migrator.c
+	Object src/main_menu/ov97_02235D18.c
+	Object src/main_menu/gba_player.c
+	Object src/main_menu/gba_pokemon.c
+	Object src/main_menu/distribution_cartridge.c
+	Object src/main_menu/main_menu_util.c
+	Object src/main_menu/ov97_02238534.c
+	Object src/main_menu/ov97_02238D74.c
+	Object src/main_menu/gba_convert_string.c
+	Library libcrypto_ov97.a
+}
+
+Overlay overlay98
+{
+	After gts_application
+	Object src/overlay098/ov98_02246C20.c
+	Object src/overlay098/ov98_022471C8.c
+	Object src/overlay098/ov98_022499C8.c
+}
+
+Overlay end_credits
+{
+	After main
+	Object src/cutscenes/end_credits/main.c
+	Object src/cutscenes/end_credits/scenes.c
+	Object src/cutscenes/end_credits/scenes/bike_morning.c
+	Object src/cutscenes/end_credits/scenes/bike_day.c
+	Object src/cutscenes/end_credits/scenes/bike_night.c
+	Object src/cutscenes/end_credits/scenes/memories.c
+	Object src/cutscenes/end_credits/scenes/twinleaf.c
+	Object src/cutscenes/end_credits/scenes/fin.c
+	Object src/cutscenes/end_credits/strings.c
+	Object src/cutscenes/end_credits/common.c
+}
+
+Overlay spear_pillar_cutscene
+{
+	After main
+	Object src/cutscenes/spear_pillar/main.c
+	Object src/cutscenes/spear_pillar/lake_guardians_arrival.c
+	Object src/cutscenes/spear_pillar/giratina_intervention.c
+	Object src/cutscenes/spear_pillar/dialga_palkia_arrival.c
+	Object src/cutscenes/spear_pillar/light_ball.c
+	Object src/cutscenes/spear_pillar/pose_sequence.c
+	Object src/cutscenes/spear_pillar/common.c
+	Object src/cutscenes/spear_pillar/screen_capture.c
+}
+
+Overlay overlay101
+{
+	After main
+	Object src/overlay101/ov101_021D0D80.c
+	Object src/overlay101/ov101_021D1A28.c
+	Object src/overlay101/ov101_021D59AC.c
+	Object src/overlay101/ov101_021D7E48.c
+	Object src/overlay101/ov101_021D94D8.c
+}
+
+Overlay diploma
+{
+	After main
+	Object src/applications/diploma.c
+}
+
+Overlay dummy7
+{
+	After overlay63
+}
+
+Overlay overlay104
+{
+	After overlay63
+	Object src/overlay104/frontier_opponents.c
+	Object src/overlay104/frontier_script_manager.c
+	Object src/overlay104/frontier_script_context.c
+	Object src/overlay104/frontier_scenes.c
+	Object src/overlay104/frontier_communication.c
+	Object src/overlay104/frscrcmd.c
+	Object src/overlay104/ov104_02231F74.c
+	Object src/overlay104/frscrcmd_battle_factory.c
+	Object src/overlay104/battle_factory.c
+	Object src/overlay104/frscrcmd_battle_hall.c
+	Object src/overlay104/battle_hall.c
+	Object src/overlay104/frscrcmd_battle_castle.c
+	Object src/overlay104/battle_castle.c
+	Object src/overlay104/frscrcmd_battle_arcade.c
+	Object src/overlay104/battle_arcade.c
+	Object src/overlay104/frscrcmd_sound.c
+	Object src/overlay104/frscrcmd_battle_tower.c
+	Object src/overlay104/ov104_022394A4.c
+	Object src/overlay104/frscrcmd_wfc_facility_selector.c
+	Object src/overlay104/wfc_facility_selector.c
+	Object src/overlay104/ov104_0223A0C4.c
+	Object src/overlay104/battle_factory_helpers.c
+	Object src/overlay104/battle_hall_helpers.c
+	Object src/overlay104/battle_castle_helpers.c
+	Object src/overlay104/battle_arcade_helpers.c
+	Object src/overlay104/wfc_facility_selector_helpers.c
+	Object src/overlay104/frontier_graphics.c
+	Object src/overlay104/frontier_particle_system.c
+	Object src/overlay104/ov104_0223D768.c
+	Object src/overlay104/ov104_0223D860.c
+	Object src/overlay104/ov104_0223D9E4.c
+	Object src/overlay104/frontier_brain_encounter_effect.c
+	Object src/overlay104/ov104_0223E894.c
+}
+
+Overlay battle_factory_app
+{
+	After overlay104
+	Object src/applications/frontier/battle_factory/main.c
+	Object src/applications/frontier/battle_factory/sprite_manager.c
+	Object src/applications/frontier/battle_factory/helpers.c
+	Object src/applications/frontier/battle_factory/panel_sprite.c
+	Object src/applications/frontier/battle_factory/pokeball_sprite.c
+	Object src/applications/frontier/battle_factory/cursor.c
+	Object src/applications/frontier/battle_factory/windows.c
+}
+
+Overlay battle_hall_app
+{
+	After overlay104
+	Object src/applications/frontier/battle_hall/main.c
+	Object src/applications/frontier/battle_hall/sprite_manager.c
+	Object src/applications/frontier/battle_hall/sprites.c
+	Object src/applications/frontier/battle_hall/windows.c
+}
+
+Overlay battle_castle_app
+{
+	After overlay104
+	Object src/applications/frontier/battle_castle/self_app.c
+	Object src/applications/frontier/battle_castle/opponent_app.c
+	Object src/applications/frontier/battle_castle/sprite_manager.c
+	Object src/applications/frontier/battle_castle/sprites.c
+	Object src/applications/frontier/battle_castle/helpers.c
+	Object src/applications/frontier/battle_castle/windows.c
+}
+
+Overlay battle_arcade_app
+{
+	After overlay104
+	Object src/applications/frontier/battle_arcade/main.c
+	Object src/applications/frontier/battle_arcade/sprite_manager.c
+    Object src/applications/frontier/battle_arcade/sprites.c
+	Object src/applications/frontier/battle_arcade/windows.c
+}
+
+Overlay overlay109
+{
+	After main
+	Object src/overlay109/ov109_021D0D80.c
+	Object src/overlay109/ov109_021D3D50.c
+}
+
+Overlay frontier_records_app
+{
+	After main
+	Object src/applications/frontier/records/main.c
+	Object src/applications/frontier/records/windows.c
+}
+
+Overlay scratch_off_cards
+{
+	After main
+	Object src/applications/scratch_off_cards/main.c
+	Object src/applications/scratch_off_cards/sprite_manager.c
+	Object src/applications/scratch_off_cards/sprites.c
+	Object src/applications/scratch_off_cards/windows.c
+}
+
+Overlay overlay112
+{
+	After overlay66
+	Object src/overlay112/ov112_0225C700.c
+}
+
+Overlay overlay113
+{
+	After overlay66
+	Object src/overlay113/ov113_0225C700.c
+	Object src/overlay113/ov113_0225E368.c
+	Object src/overlay113/ov113_02260620.c
+	Object src/overlay113/ov113_022607D8.c
+}
+
+Overlay overlay114
+{
+	After overlay66
+	Object src/overlay114/ov114_0225C700.c
+	Object src/overlay114/ov114_02260038.c
+	Object src/overlay114/ov114_02260044.c
+}
+
+Overlay overlay115
+{
+	After overlay114
+	Object src/overlay115/ov115_02260440.c
+	Object src/overlay115/ov115_02260BBC.c
+	Object src/overlay115/ov115_02260CEC.c
+	Object src/overlay115/ov115_02265A18.c
+	Object src/overlay115/ov115_02265A24.c
+}
+
+Overlay overlay116
+{
+	After overlay114
+	Object src/overlay116/ov116_02260440.c
+	Object src/overlay116/ov116_022604C4.c
+	Object src/overlay116/ov116_02261870.c
+	Object src/overlay116/ov116_02262A44.c
+	Object src/overlay116/ov116_02262A8C.c
+	Object src/overlay116/ov116_0226432C.c
+	Object src/overlay116/ov116_02266FEC.c
+}
+
+Overlay overlay117
+{
+	After overlay114
+	Object src/overlay117/ov117_02260440.c
+	Object src/overlay117/ov117_02260668.c
+	Object src/overlay117/ov117_022626B0.c
+	Object src/overlay117/ov117_02263AF0.c
+	Object src/overlay117/ov117_02266498.c
+	Object src/overlay117/ov117_022665FC.c
+	Object src/overlay117/ov117_022666C0.c
+}
+
+Overlay party_menu_form_change
+{
+	After main
+	Object src/applications/party_menu/form_change.c
+}
+
+Overlay egg_hatch_cutscene
+{
+	After main
+	Object src/cutscenes/egg_hatch/graphics.c
+	Object src/cutscenes/egg_hatch/main.c
+}
+
+Overlay library_tv
+{
+	After main
+	Object src/library_tv/library_tv.c
+}
+
+Overlay dw_warp
+{
+	After main
+	Object src/dw_warp/dw_warp.c
+}

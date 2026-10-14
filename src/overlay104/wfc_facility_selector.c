@@ -147,7 +147,7 @@ static void SetupPartyMenu(BattleFrontier *frontier, WFCFacilitySelector *select
         GF_ASSERT(FALSE);
     }
 
-    sub_0209B988(frontier, &gPokemonPartyAppTemplate, selector->partyMenu, 0, NULL);
+    BattleFrontier_RunSubApp(frontier, &gPokemonPartyAppTemplate, selector->partyMenu, 0, NULL);
 }
 
 static void ProcessPartyMenuResults(BattleFrontier *frontier, WFCFacilitySelector *selector, FieldSystem *fieldSystem, enum HeapID heapID)
@@ -204,7 +204,7 @@ static void SetupSummaryApp(BattleFrontier *frontier, WFCFacilitySelector *selec
 
     PokemonSummaryScreen_FlagVisiblePages(selector->summaryApp, visiblePages);
     PokemonSummaryScreen_SetPlayerProfile(selector->summaryApp, SaveData_GetTrainerInfo(selector->saveData));
-    sub_0209B988(frontier, &gPokemonSummaryScreenApp, selector->summaryApp, 0, NULL);
+    BattleFrontier_RunSubApp(frontier, &gPokemonSummaryScreenApp, selector->summaryApp, 0, NULL);
 }
 
 static void ProcessSummaryAppResults(BattleFrontier *frontier, WFCFacilitySelector *selector, FieldSystem *fieldSystem, enum HeapID heapID)

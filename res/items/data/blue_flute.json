@@ -25,7 +25,7 @@
   "fieldPocket": "POCKET_BATTLE_ITEMS",
   "battlePocket": "BATTLE_POCKET_MASK_RECOVER_STATUS",
   "fieldUseFunc": "ITEM_USE_FUNC_NONE",
-  "battleUseFunc": 0,
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": {
     "healSleep": true
   }

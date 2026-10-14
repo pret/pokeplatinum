@@ -7,8 +7,8 @@
 
     .data
 
-    .long _02D6 - 4
-    .short 0xFD13
+    ScriptEntry _02D6
+    ScriptEntryEnd
 
     .balign 4, 0
 _0008:
@@ -744,7 +744,7 @@ _084E:
     FrontierScrCmd_25 4
     FrontierScrCmd_23 30
     CallBattleFactoryFunction BF_FUNC_STOP_CORRIDOR_ANIMATION, 0, 0, VAR_0x8008
-    FrontierScrCmd_03 FRONTIER_SCENE_FACTORY_BATTLE_ROOM
+    ChangeSceneWithinScript FRONTIER_SCENE_FACTORY_BATTLE_ROOM
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _00F8
     FrontierScrCmd_24 _0108
@@ -781,7 +781,7 @@ _0927:
     FrontierScrCmd_25 4
     FrontierScrCmd_23 30
     CallBattleFactoryFunction BF_FUNC_STOP_CORRIDOR_ANIMATION, 0, 0, VAR_0x8008
-    FrontierScrCmd_03 FRONTIER_SCENE_FACTORY_BATTLE_ROOM
+    ChangeSceneWithinScript FRONTIER_SCENE_FACTORY_BATTLE_ROOM
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _0100
     FrontierScrCmd_24 _0120
@@ -1396,7 +1396,7 @@ _1303:
     CallBattleFactoryFunction BF_FUNC_STOP_CORRIDOR_ANIMATION, 0, 0, VAR_0x8008
     FreeBattleRecording
     FreeBattleFactory
-    FrontierScrCmd_02
+    ExitFrontier
 
 _1358:
     FrontierScrCmd_C8 2
@@ -1412,7 +1412,7 @@ _1368:
     CallBattleFactoryFunction BF_FUNC_STOP_CORRIDOR_ANIMATION, 0, 0, VAR_0x8008
     FreeBattleRecording
     FreeBattleFactory
-    FrontierScrCmd_04 FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
+    ChangeScript FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
     End
 
 _137B:
@@ -1432,7 +1432,7 @@ _1391:
     GoToIfEq VAR_0x8008, 1, _13EA
     FrontierScrCmd_25 0
     FrontierScrCmd_25 4
-    FrontierScrCmd_03 FRONTIER_SCENE_FACTORY_CORRIDOR
+    ChangeSceneWithinScript FRONTIER_SCENE_FACTORY_CORRIDOR
     CallBattleFactoryFunction BF_FUNC_START_CORRIDOR_ANIMATION, 0, 0, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _0008
@@ -1444,7 +1444,7 @@ _13EA:
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
     FrontierScrCmd_25 4
-    FrontierScrCmd_03 FRONTIER_SCENE_FACTORY_CORRIDOR
+    ChangeSceneWithinScript FRONTIER_SCENE_FACTORY_CORRIDOR
     CallBattleFactoryFunction BF_FUNC_START_CORRIDOR_ANIMATION, 0, 0, VAR_0x8008
     GetPlayerObjEventGfx VAR_0x8007
     FrontierScrCmd_22 _0014

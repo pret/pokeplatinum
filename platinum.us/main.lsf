@@ -151,7 +151,7 @@ Static main
 	Object main.nef.p/src_battle_hall_win_records.c.o
 	Object main.nef.p/src_unk_02030A80.c.o
 	Object main.nef.p/src_unk_02030CE8.c.o
-	Object main.nef.p/src_unk_02030EA4.c.o
+	Object main.nef.p/src_wifi_plaza_question_data.c.o
 	Object main.nef.p/src_wireless_manager.c.o
 	Object main.nef.p/src_comm_ring.c.o
 	Object main.nef.p/src_unk_020322D8.c.o
@@ -409,7 +409,7 @@ Autoload ITCM
 Autoload DTCM
 {
 	Address 0x027E0000
-	Object libos.a (.dtcm)
+	Library libos.a (.dtcm)
 }
 
 Overlay dummy1
@@ -494,7 +494,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021EA714.c.o
 	Object main.nef.p/src_overlay005_ov5_021EA874.c.o
 	Object main.nef.p/src_overlay005_ov5_021EAFA4.c.o
-	Object main.nef.p/src_overlay005_ov5_021FAF40.c.o
+	Object main.nef.p/src_overlay005_object_event_gfx_data.c.o
 	Object main.nef.p/src_overlay005_ov5_021EB1A0.c.o
 	Object main.nef.p/src_overlay005_ov5_021ECA70.c.o
 	Object main.nef.p/src_overlay005_ov5_021ECC20.c.o
@@ -1392,10 +1392,10 @@ Overlay move_reminder
 	Object main.nef.p/src_applications_move_reminder.c.o
 }
 
-Overlay overlay92
+Overlay wifi_earth
 {
 	After main
-	Object main.nef.p/src_overlay092_ov92_021D0D80.c.o
+	Object main.nef.p/src_applications_wifi_earth.c.o
 }
 
 Overlay cutscenes

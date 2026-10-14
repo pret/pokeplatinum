@@ -164,13 +164,13 @@
     .long (\jump-.) / 4 - 1
     .endm
 
-    .macro IfLoadedinTable table:req, jump:req
+    .macro IfLoadedInTable table:req, jump:req
     .long AICMD_IFLOADEDINTABLE
     .long (\table-.) / 4 - 2
     .long (\jump-.) / 4 - 1
     .endm
 
-    .macro IfLoadedNotinTable table:req, jump:req
+    .macro IfLoadedNotInTable table:req, jump:req
     .long AICMD_IFLOADEDNOTINTABLE
     .long (\table-.) / 4 - 2
     .long (\jump-.) / 4 - 1

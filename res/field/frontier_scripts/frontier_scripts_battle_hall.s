@@ -7,8 +7,8 @@
 
     .data
 
-    .long _0326 - 4
-    .short 0xFD13
+    ScriptEntry _0326
+    ScriptEntryEnd
 
     .balign 4, 0
 _0008:
@@ -523,7 +523,7 @@ _0404:
     End
 
 _044A:
-    FrontierScrCmd_03 FRONTIER_SCENE_HALL_BATTLE_ROOM
+    ChangeSceneWithinScript FRONTIER_SCENE_HALL_BATTLE_ROOM
     CallBattleHallFunction BH_FUNC_IS_MULTIPLAYER_CHALLENGE, 0, 0, VAR_0x8008
     GoToIfEq VAR_0x8008, 1, _0476
     FrontierScrCmd_22 _0024
@@ -1237,7 +1237,7 @@ _101D:
     GoToIfEq VAR_0x8008, 3, _107B
     FreeBattleRecording
     FreeBattleHall
-    FrontierScrCmd_02
+    ExitFrontier
 
 _106B:
     FrontierScrCmd_C8 5
@@ -1252,7 +1252,7 @@ _1071:
 _107B:
     FreeBattleRecording
     FreeBattleHall
-    FrontierScrCmd_04 FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
+    ChangeScript FRONTIER_SCENE_WFC_FACILITY_SELECTOR, 1
     End
 
 _1087:

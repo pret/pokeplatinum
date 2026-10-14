@@ -409,7 +409,7 @@ static u8 TryUseItem(BattleBag *battleBag)
 
     if (battleBag->currentBattlePocket == ITEM_BATTLE_CATEGORY_BATTLE_ITEMS) {
         int partySlot = BattleBagTask_GetSelectedPartySlot(battleBag);
-        u32 itemBattleUse = Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_BATTLE_USE_FUNC, context->heapID);
+        u32 itemBattleUse = Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_BATTLE_USE_CATEGORY, context->heapID);
 
         if (context->embargoRemainingTurns != 0 && context->selectedBattleBagItem != ITEM_GUARD_SPEC && itemBattleUse != 3) {
             Pokemon *mon = BattleSystem_GetPartyPokemon(context->battleSys, context->battler, partySlot);

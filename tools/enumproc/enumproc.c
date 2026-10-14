@@ -60,9 +60,13 @@ strbuf_t slurp_stdin(void) {
     size_t  buflen = 0;
 
     while ((nread = getline(&line, &size, stdin)) != -1) {
-        if (buflen + nread >= cap) {
+        while (buflen + nread >= cap) {
             buf  = realloc(buf, cap * 2 * sizeof(*buf));
             cap *= 2;
+            if (buf == NULL) {
+                fprintf(stderr, "enumproc: allocation failure: %s\n", strerror(errno));
+                exit(EXIT_FAILURE);
+            }
         }
 
         memcpy(buf + buflen, line, nread);
@@ -109,7 +113,7 @@ static inline void push(incstack_t *stack, char *s, char *e, size_t linenum) {
     if (stack->len + 1 >= stack->cap) {
         size_t      new = stack->cap * 2;
         incentry_t *tmp = realloc(stack->data, new * sizeof(*stack->data));
-        if (tmp != NULL) {
+        if (tmp == NULL) {
             fputs("re-allocation failure\n", stderr);
             exit(EXIT_FAILURE);
         }
@@ -140,10 +144,12 @@ static size_t proc_linemark(const char *p, char **pend, incstack_t *stack) {
     char *endptr = NULL;
 
     size_t linenum = strtoul(p + 2, &endptr, 10); // endptr at space separator
-    endptr        += 2;                           // skip space + leading quote
+    if (endptr[0] != ' ' || endptr[1] != '"') goto early_exit; // malformed marker
+    endptr += 2;                                               // skip space + leading quote
 
     char *s = endptr; // start of filename
-    while (*endptr != '"') endptr++;
+    while (*endptr && *endptr != '"') endptr++;
+    if (*endptr != '"') goto early_exit; // unterminated filename
     char *e = endptr; // trailing-quote
 
     char *f = endptr + 1;
@@ -159,6 +165,7 @@ static size_t proc_linemark(const char *p, char **pend, incstack_t *stack) {
     }
 
 early_exit:
+    while (*endptr && *endptr != '\n') endptr++;
     if (pend) *pend = endptr;
     return linenum;
 }
@@ -179,10 +186,14 @@ static void report(strbuf_t content, size_t errpos, const char *fmt, ...) {
 
     // Find the line and column number for the error.
     while (p < e && (size_t)(p - s) < errpos) {
-        switch (*p) {
-        case '#' : line = proc_linemark(p, &p, &incs); col = 0; break;
-        case '\n': col = 0; line++; break;
-        }
+        bool is_linemark = *p == '#'
+                        && (p == s || p[-1] == '\n')
+                        && p[1] == ' '
+                        && p[2] >= '0'
+                        && p[2] <= '9';
+
+        if (is_linemark) { line = proc_linemark(p, &p, &incs); col = 0; }
+        else if (*p == '\n') { col = 0; line++; }
 
         col++;
         p++;
@@ -233,13 +244,15 @@ int main(int argc, char **argv) {
                 char *endptr = NULL;
                 if (member->expr != NULL) curr = libexpr_eval(member->expr, &endptr, &scope);
                 if (endptr && *endptr) {
-                    report(content, (size_t)(endptr - pool.data), "invalid expression");
+                    // Map `endptr` from `libenum`'s copy back to our source buffer
+                    size_t errpos = (member->expr_src - pool.data) + (endptr - member->expr);
+                    report(content, errpos, "invalid expression");
                     exit(EXIT_FAILURE);
                 }
 
                 if (scope.len + 1 >= scopecap) {
                     size_t newcap = scopecap * 2;
-                    var_t *newarr = realloc(scope.vars, newcap);
+                    var_t *newarr = realloc(scope.vars, newcap * sizeof(*scope.vars));
                     if (newarr == NULL) {
                         fprintf(stderr, "enumproc: allocation failure: %s\n", strerror(errno));
                         exit(EXIT_FAILURE);

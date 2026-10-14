@@ -1183,7 +1183,7 @@ static void PrintPokemonNameHeader(BattleParty *battleParty, u32 windowIndex, en
     String_Free(string);
     String_Free(formattedString);
 
-    if (pokemon->displayNidoranGender == FALSE && pokemon->isEgg == FALSE) {
+    if (pokemon->hideGenderMarker == FALSE && pokemon->isEgg == FALSE) {
         u32 genderIconXOffset;
         if (pokemon->gender == GENDER_MALE) {
             string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MaleIcon);
@@ -1954,7 +1954,7 @@ static void PrintSelectedPokemonName(BattleParty *battleParty, u32 partyIndex)
 
     formattedString = NULL;
 
-    if (pokemon->displayNidoranGender == FALSE && pokemon->isEgg == FALSE) {
+    if (pokemon->hideGenderMarker == FALSE && pokemon->isEgg == FALSE) {
         if (pokemon->gender == GENDER_MALE) {
             formattedString = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MaleIcon);
         } else if (pokemon->gender == GENDER_FEMALE) {

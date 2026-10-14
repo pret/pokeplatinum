@@ -88,7 +88,7 @@ for script_file in "${SCRIPT_FILES[@]}" ; do
 
     # Convert + clean-up
     $AS $MD -E -x assembler-with-cpp "${INCLUDE_ARGS[@]}" "$script_file" \
-        | $ENUMPROC \
+        | "$ENUMPROC" \
         | $AS -x assembler-with-cpp -o "$script_obj" -c -
     $OBJCOPY -O binary --file-alignment 4 "$script_obj" "$script_bin"
     $LD "$script_obj" -o "$script_obj.dummy"

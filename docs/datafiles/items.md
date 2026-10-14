@@ -33,7 +33,7 @@ they do not produce a data entry.
 | `fieldPocket`        | `define POCKET`                | The Bag pocket the item belongs to (Items, Medicine, etc.).                                    |
 | `battlePocket`       | `define BATTLE_POCKET_MASK`    | The battle pocket mask for use during battle.                                                  |
 | `fieldUseFunc`       | `define ITEM_USE_FUNC`         | The field-use function invoked from the overworld.                                             |
-| `battleUseFunc`      | `u8`                           | The battle-use function invoked from the battle menu.                                          |
+| `battleUseCategory`  | `u8`                           | The category of the item used in the battle system when used from the battle menu              |
 | `itemUseParams`      | `object` or `null`             | Detailed usage parameters. See below.                                                          |
 | `teachesMove`        | `enum Move`                    | The move taught by this TM or HM (only for TMs/HMs).                                           |
 | `berryData`          | `object`                       | Berry growth and flavor data (only for berries). See below.                                    |
@@ -91,6 +91,12 @@ or in battle. All fields are optional and default to `0` or `false`.
 When `fieldUseFunc` is set to `ITEM_USE_FUNC_BERRY`, `ITEM_USE_FUNC_EVO_STONE`,
 `ITEM_USE_FUNC_HEALING`, or any other use function that acts on a party Pokémon,
 this object is optional but will be used if present.
+
+When `battleUseCategory` is one of `BATTLE_USE_CATEGORY_NONE`,
+`BATTLE_USE_CATEGORY_POKE_BALL`, or `BATTLE_USE_CATEGORY_HEALING`, the value is
+not used in the game. Only the items _Poke Doll_ and _Fluffy Tail_ hold the
+value `BATTLE_USE_CATEGORY_ESCAPING`, and it is effectively used in the internal
+combat system.
 
 ### The `berryData` Object
 
@@ -158,7 +164,7 @@ The tool produces the following outputs:
     "fieldPocket": "POCKET_MEDICINE",
     "battlePocket": "BATTLE_POCKET_MASK_RECOVER_HP",
     "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
-    "battleUseFunc": 2,
+    "battleUseCategory": "BATTLE_USE_CATEGORY_HEALING",
     "itemUseParams": {
         "hpRestored": 20
     }

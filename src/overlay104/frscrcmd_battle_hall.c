@@ -113,7 +113,7 @@ BOOL FrontierScrCmd_OpenBattleHallApp(FrontierScriptContext *ctx)
         Party_AddPokemon(args->party, battleHall->partnersMon);
     }
 
-    sub_0209B988(ctx->scriptMan->frontier, &sBattleHallAppTemplate, args, 0, StoreBattleHallAppResult);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &sBattleHallAppTemplate, args, 0, StoreBattleHallAppResult);
     return TRUE;
 }
 
@@ -137,7 +137,7 @@ BOOL FrontierScrCmd_BattleHall_StartBattle(FrontierScriptContext *ctx)
     battleHall->dto = dto;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, BATTLE_TRAINER_sseq, 1);
-    sub_0209B988(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
+    BattleFrontier_RunSubApp(ctx->scriptMan->frontier, &gBattleApplicationTemplate, dto, 0, NULL);
 
     return TRUE;
 }

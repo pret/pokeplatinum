@@ -1,0 +1,95 @@
+{
+  "key": 37436,
+  "messages": [
+    {
+      "id": "WiFiEarth_Text_Welcome",
+      "en_US": [
+        "Welcome to Geonet, the high-tech\n",
+        "globe!\r"
+      ]
+    },
+    {
+      "id": "WiFiEarth_Text_MenuPrompt",
+      "en_US": "What would you like to do?"
+    },
+    {
+      "id": "WiFiEarth_Text_RegisterPrompt",
+      "en_US": [
+        "Here, you may register the location\n",
+        "of where you live.\r",
+        "That information may be provided to\n",
+        "friends and strangers through\r",
+        "DS Wireless Communications or over\n",
+        "Nintendo WFC.\r",
+        "Would you like to register your\n",
+        "home’s location area?"
+      ]
+    },
+    {
+      "id": "WiFiEarth_Text_SelectCountry",
+      "en_US": [
+        "Please select the location in which\n",
+        "you live."
+      ]
+    },
+    {
+      "id": "WiFiEarth_Text_SelectRegion",
+      "en_US": [
+        "Please select the area in which\n",
+        "you live."
+      ]
+    },
+    {
+      "id": "WiFiEarth_Text_ConfirmRegister",
+      "en_US": [
+        "Once registered, you may not change\n",
+        "your registered location data.\r",
+        "Should this location be registered\n",
+        "as where you live?"
+      ]
+    },
+    {
+      "id": "WiFiEarth_Text_CountryName",
+      "en_US": "{STRVAR_1 36, 0, 0}"
+    },
+    {
+      "id": "WiFiEarth_Text_RegionName",
+      "en_US": "{STRVAR_1 37, 0, 0}"
+    },
+    {
+      "id": "WiFiEarth_Text_Yes",
+      "en_US": "YES"
+    },
+    {
+      "id": "WiFiEarth_Text_No",
+      "en_US": "NO"
+    },
+    {
+      "id": "WiFiEarth_Text_SeeList",
+      "en_US": "SEE LIST"
+    },
+    {
+      "id": "WiFiEarth_Text_Register",
+      "en_US": "REGISTER"
+    },
+    {
+      "id": "WiFiEarth_Text_Exit",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "WiFiEarth_Text_RegisteredLocation",
+      "en_US": [
+        "Your registered location:\n",
+        "{STRVAR_1 36, 0, 0}\n",
+        "{STRVAR_1 37, 1, 0}"
+      ]
+    },
+    {
+      "id": "WiFiEarth_Text_InspectHint",
+      "en_US": [
+        "To display registered locations, line up\n",
+        "the cursor, and press the X Button."
+      ]
+    }
+  ]
+}

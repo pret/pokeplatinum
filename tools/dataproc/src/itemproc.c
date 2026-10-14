@@ -27,6 +27,7 @@ static enum_template_t enums[] = {
     include_defs("constants/items.h",             "PLUCK_EFFECT"),
     include_defs("constants/items.h",             "FLING_EFFECT"),
     include_defs("constants/items.h",             "ITEM_USE_FUNC"),
+    include_defs("constants/items.h",             "BATTLE_USE_CATEGORY"),
     include_defs("berry_data.h",                  "FIRMNESS"),
     include_defs("res/items/item_icon.naix",      NULL),
     include_enum("generated/item_hold_effects.h", "enum ItemHoldEffect"),
@@ -175,19 +176,19 @@ static void proc_params(datafile_t *df, ItemData *item);
 
 static void proc_item(datafile_t *df, const char *member) {
     ItemData item = {
-        .price            = u16(".price"),
-        .effectParam      = u8(".effectParam"),
-        .holdEffect       = enum_u8(".holdEffect", enum ItemHoldEffect),
-        .pluckEffect      = enum_u8(".pluckEffect", PLUCK_EFFECT),
-        .flingEffect      = enum_u8(".flingEffect", FLING_EFFECT),
-        .flingPower       = u8(".flingPower"),
-        .naturalGiftPower = u8(".naturalGiftPower"),
-        .preventToss      = boolean(".preventToss"),
-        .canRegister      = boolean(".canRegister"),
-        .fieldPocket      = towidth(enum_u8(".fieldPocket", POCKET), 4),
-        .battlePocket     = towidth(enum_u8(".battlePocket", BATTLE_POCKET_MASK), 5),
-        .fieldUseFunc     = enum_u8(".fieldUseFunc", ITEM_USE_FUNC),
-        .battleUseFunc    = u8(".battleUseFunc"),
+        .price             = u16(".price"),
+        .effectParam       = u8(".effectParam"),
+        .holdEffect        = enum_u8(".holdEffect", enum ItemHoldEffect),
+        .pluckEffect       = enum_u8(".pluckEffect", PLUCK_EFFECT),
+        .flingEffect       = enum_u8(".flingEffect", FLING_EFFECT),
+        .flingPower        = u8(".flingPower"),
+        .naturalGiftPower  = u8(".naturalGiftPower"),
+        .preventToss       = boolean(".preventToss"),
+        .canRegister       = boolean(".canRegister"),
+        .fieldPocket       = towidth(enum_u8(".fieldPocket", POCKET), 4),
+        .battlePocket      = towidth(enum_u8(".battlePocket", BATTLE_POCKET_MASK), 5),
+        .fieldUseFunc      = enum_u8(".fieldUseFunc", ITEM_USE_FUNC),
+        .battleUseCategory = enum_u8(".battleUseCategory", BATTLE_USE_CATEGORY),
     };
 
     datanode_t nat_gift_type = dp_get(df, ".naturalGiftType");

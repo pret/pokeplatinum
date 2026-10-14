@@ -7,9 +7,9 @@
 
 ScriptCommand(FRSCRCMD_NOOP,                                     FrontierScrCmd_Noop)
 ScriptCommand(FRSCRCMD_END,                                      FrontierScrCmd_End)
-ScriptCommand(FRSCRCMD_02,                                       FrontierScrCmd_02)
-ScriptCommand(FRSCRCMD_03,                                       FrontierScrCmd_03)
-ScriptCommand(FRSCRCMD_04,                                       FrontierScrCmd_04)
+ScriptCommand(FRSCRCMD_EXITFRONTIER,                             FrontierScrCmd_ExitFrontier)
+ScriptCommand(FRSCRCMD_CHANGESCENEWITHINSCRIPT,                  FrontierScrCmd_ChangeSceneWithinScript)
+ScriptCommand(FRSCRCMD_CHANGESCRIPT,                             FrontierScrCmd_ChangeScript)
 ScriptCommand(FRSCRCMD_WAITTIME,                                 FrontierScrCmd_WaitTime)
 ScriptCommand(FRSCRCMD_SETVARFROMVALUE,                          FrontierScrCmd_SetVarFromValue)
 ScriptCommand(FRSCRCMD_SETVARFROMVAR,                            FrontierScrCmd_SetVarFromVar)

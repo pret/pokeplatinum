@@ -3,8 +3,8 @@
 
     .data
 
-    .long _0142 - 4
-    .short 0xFD13
+    ScriptEntry _0142
+    ScriptEntryEnd
 
     .balign 4, 0
 _0008:
@@ -249,7 +249,7 @@ _0250:
     End
 
 _0270:
-    FrontierScrCmd_04 FRONTIER_SCENE_TOWER_MULTI_BATTLE_ROOM, 0
+    ChangeScript FRONTIER_SCENE_TOWER_MULTI_BATTLE_ROOM, 0
     End
 
 _0278:
