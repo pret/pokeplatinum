@@ -2,11 +2,11 @@
 # Unreferenced symbols:
 	.bss	(trainer_ai_script.o )
 	.ARM.attributes	(trainer_ai_script.o )
+	(src_debug.c.o )	[whole file]
 	gDummy	(src_applications_mail_viewer.c.o )
 	dummy	(src_game_opening_ov77_021D54B0.c.o )
 	.bss	(src_game_opening_ov77_021D54B0.c.o )
 	gDummyRangerLinkWirelessState	(src_main_menu_ranger_link.c.o )
-	(src_debug.c.o )	[whole file]
 
 
 # Link map of _start
