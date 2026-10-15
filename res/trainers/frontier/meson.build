@@ -1,25 +1,3 @@
-pl_btdpm_order = files('frontier_pokemon.order')
-
-frontier_trainer_consts = fs.read(frontier_trainers_txt).splitlines()
-frontier_trainer_stems = []
-frontier_trainer_files = []
-foreach trainer : frontier_trainer_consts
-    # `substring` here strips the `FRONTIER_TRAINER_` prefix
-    trainer_stem = trainer.substring(17).to_lower()
-    frontier_trainer_stems += trainer_stem
-    frontier_trainer_files += files(meson.current_source_dir() / 'data' / (trainer_stem + '.json'))
-endforeach
-
-frontier_pokemon_consts = fs.read(pl_btdpm_order).splitlines()
-frontier_pokemon_files = []
-foreach pokemon : frontier_pokemon_consts
-    frontier_pokemon_files += files(meson.current_source_dir() / 'pokemon' / (pokemon + '.json'))
-endforeach
-
-frontier_env = environment()
-frontier_env.append('TRAINERS', frontier_trainer_stems, separator: ';')
-frontier_env.append('POKEMON', frontier_pokemon_consts, separator: ';')
-
 frontier_data = custom_target('datagen_frontier_out',
     output: [
         'pl_btdtr.narc',
@@ -32,12 +10,9 @@ frontier_data = custom_target('datagen_frontier_out',
         frontierproc_exe,
         '-M', '@DEPFILE@',
         '-o', meson.current_build_dir(),
+        c_consts_headers['frontier_trainers'],
+        files('frontier_pokemon.order'),
         meson.current_source_dir(),
-    ],
-    env: frontier_env,
-    depend_files: [
-        frontier_trainer_files,
-        frontier_pokemon_files,
     ],
     depfile: 'frontier_data.d',
 )

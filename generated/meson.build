@@ -168,7 +168,6 @@ species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
 trainer_classes_txt = files('trainer_classes.txt')
 trainers_txt = files('trainers.txt')
-frontier_trainers_txt = files('frontier_trainers.txt')
 
 py_consts_env = environment()
 py_consts_env.append('PYTHONPATH', meson.project_build_root())
