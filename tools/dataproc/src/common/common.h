@@ -11,6 +11,11 @@
 
 #include "dataproc.h"
 
+// Zeroed allocation: `count` of elements, `size` of each element in bytes. If
+// at least one of `count` or `size` == 0, returns NULL. Aborts on an allocation
+// failure.
+void* Zalloc(size_t count, size_t size);
+
 // ==================================== CLI ====================================
 
 enum OptionKind {

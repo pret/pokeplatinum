@@ -27,11 +27,6 @@ char* String_VFormat(const char *fmt, va_list args);
 // Safe duplicator. Aborts on allocation failure.
 char* String_Dupe(const char *s);
 
-// Zeroed allocation: `count` of elements, `size` of each element in bytes. If
-// at least one of `count` or `size` == 0, returns NULL. Aborts on an allocation
-// failure.
-void* Zalloc(size_t count, size_t size);
-
 // Return the whole file, NUL-terminated. On failure, the returned
 // value is NULL and errno is set.
 char* File_Read(const char *path, size_t *size);
