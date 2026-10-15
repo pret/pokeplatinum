@@ -4,6 +4,7 @@ item_icon_narc = custom_target('item_icon.narc',
     output: [
         'item_icon.narc',
         'item_icon.naix',
+        'item_icon.recs',
     ],
     input: [
         item_icon_ncgrs,

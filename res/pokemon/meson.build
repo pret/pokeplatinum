@@ -274,6 +274,7 @@ pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
     output: [
         'pl_poke_icon.narc',
         'pl_poke_icon.naix',
+        'pl_poke_icon.recs',
     ],
     input: [
         icons_shared,

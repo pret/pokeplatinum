@@ -78,7 +78,7 @@ resdatproc_exe = executable(
     sources: files('src/resdatproc.c'),
     c_args: dataproc_cflags,
     include_directories: [ public_includes, toplevel_includes ],
-    dependencies: commonproc_dep,
+    dependencies: common_dep,
     native: true,
 )
 

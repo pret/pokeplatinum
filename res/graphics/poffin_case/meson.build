@@ -71,6 +71,7 @@ poffin_case_narc = custom_target('poru_gra.narc',
     output: [
         'poru_gra.narc',
         'poru_gra.naix',
+        'poru_gra.recs',
     ],
     input: [
         nclr,

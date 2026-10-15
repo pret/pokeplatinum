@@ -13,10 +13,10 @@ party_menu_resdat = custom_target('party_menu_resdat',
     ],
 
     input: [
-        party_menu_narc[1],
-        pokemon_summary_screen_narc[1],
-        pl_poke_icon_narc[1],
-        bag_graphics_narc[1],
+        party_menu_narc[2],
+        pokemon_summary_screen_narc[2],
+        pl_poke_icon_narc[2],
+        bag_graphics_narc[2],
     ],
 
     command: [
@@ -27,7 +27,6 @@ party_menu_resdat = custom_target('party_menu_resdat',
         '-D', 'NARC_INDEX_GRAPHIC__PL_BAG_GRA:@INPUT3@',
         '-p', 'party_menu',
         '-M', '@DEPFILE@',
-        '-N',
         '-o', meson.current_build_dir(),
         files('party_menu.json'),
     ],
@@ -45,14 +44,13 @@ poffin_case_resdat = custom_target('poffin_case_resdat',
         'poffin_case.h',
     ],
 
-    input: [ poffin_case_narc[1] ],
+    input: [ poffin_case_narc[2] ],
 
     command: [
         resdatproc_exe,
         '-D', 'NARC_INDEX_GRAPHIC__PORU_GRA:@INPUT0@',
         '-p', 'poffin_case',
         '-M', '@DEPFILE@',
-        '-N',
         '-o', meson.current_build_dir(),
         files('poffin_case.json'),
     ],
@@ -71,11 +69,11 @@ pokemon_summary_screen_resdat = custom_target('pokemon_summary_screen_resdat',
     ],
 
     input: [
-        pokemon_summary_screen_narc[1],
-        battle_sprites_narc[1],
-        pl_poke_icon_narc[1],
-        bag_graphics_narc[1],
-        party_menu_narc[1],
+        pokemon_summary_screen_narc[2],
+        battle_sprites_narc[2],
+        pl_poke_icon_narc[2],
+        bag_graphics_narc[2],
+        party_menu_narc[2],
     ],
 
     command: [
@@ -87,7 +85,6 @@ pokemon_summary_screen_resdat = custom_target('pokemon_summary_screen_resdat',
         '-D', 'NARC_INDEX_GRAPHIC__PL_PLIST_GRA:@INPUT4@',
         '-M', '@DEPFILE@',
         '-p', 'pokemon_summary_screen',
-        '-N',
         '-o', meson.current_build_dir(),
         files('pokemon_summary_screen.json'),
     ],
@@ -105,7 +102,7 @@ shop_menu_resdat = custom_target('shop_menu_resdat',
         'shop_menu.h',
     ],
 
-    input: [ shop_gra_narc[1], item_icon_narc[1] ],
+    input: [ shop_gra_narc[2], item_icon_narc[2] ],
 
     command: [
         resdatproc_exe,
@@ -113,7 +110,6 @@ shop_menu_resdat = custom_target('shop_menu_resdat',
         '-D', 'NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON:@INPUT1@',
         '-p', 'shop_menu',
         '-M', '@DEPFILE@',
-        '-N',
         '-o', meson.current_build_dir(),
         files('shop_menu.json'),
     ],
@@ -131,14 +127,13 @@ tower_records_resdat = custom_target('tower_records_resdat',
         'tower_records.h',
     ],
 
-    input: [ tower_records_narc[1] ],
+    input: [ tower_records_narc[2] ],
 
     command: [
         resdatproc_exe,
         '-D', 'NARC_INDEX_GRAPHIC__BTOWER:@INPUT0@',
         '-M', '@DEPFILE@',
         '-p', 'tower_records',
-        '-N',
         '-o', meson.current_build_dir(),
         files('tower_records.json'),
     ],
@@ -156,14 +151,13 @@ town_map_resdat = custom_target('town_map_resdat',
         'town_map.h',
     ],
 
-    input: [ town_map_graphics_narc[1] ],
+    input: [ town_map_graphics_narc[2] ],
 
     command: [
         resdatproc_exe,
         '-D', 'NARC_INDEX_GRAPHIC__TMAP_GRA:@INPUT0@',
         '-M', '@DEPFILE@',
         '-p', 'town_map',
-        '-N',
         '-o', meson.current_build_dir(),
         files('town_map.json'),
     ],
@@ -181,14 +175,13 @@ underground_map_transition_resdat = custom_target('underground_map_transition_re
         'underground_map_transition.h',
     ],
 
-    input: [ underground_map_transition_narc[1] ],
+    input: [ underground_map_transition_narc[2] ],
 
     command: [
         resdatproc_exe,
         '-D', 'NARC_INDEX_DATA__UGEFFECT_OBJ_GRAPHIC:@INPUT0@',
         '-M', '@DEPFILE@',
         '-p', 'underground_map_transition',
-        '-N',
         '-o', meson.current_build_dir(),
         files('underground_map_transition.json'),
     ],
@@ -200,9 +193,13 @@ underground_map_transition_dawn_resdat = custom_target('underground_map_transiti
     output: [
         'underground_map_transition_dawn_chars.resdat',
         'underground_map_transition_dawn_pltts.resdat',
+        'underground_map_transition_dawn_cells.resdat',
+        'underground_map_transition_dawn_anims.resdat',
+        'underground_map_transition_dawn.cldat',
+        'underground_map_transition_dawn.h',
     ],
 
-    input: [ underground_map_transition_narc[1] ],
+    input: [ underground_map_transition_narc[2] ],
 
     command: [
         resdatproc_exe,
@@ -210,8 +207,6 @@ underground_map_transition_dawn_resdat = custom_target('underground_map_transiti
         '-M', '@DEPFILE@',
         '-p', 'underground_map_transition_dawn',
         '-n', '1',
-        '-f', 'characters',
-        '-f', 'palettes',
         '-o', meson.current_build_dir(),
         files('underground_map_transition.json'),
     ],
@@ -226,7 +221,7 @@ underground_map_transition_templates_narc = custom_target('underground_map_trans
     ],
     input: [
         copy_gen.process(underground_map_transition_resdat),
-        copy_gen.process(underground_map_transition_dawn_resdat),
+        copy_gen.process(underground_map_transition_dawn_resdat[0], underground_map_transition_dawn_resdat[1]),
     ],
     command: [
         nitroarc_exe,

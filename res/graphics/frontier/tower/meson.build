@@ -2,6 +2,7 @@ tower_records_narc = custom_target('tower_records_narc',
     output: [
         'records.narc',
         'records.naix',
+        'records.recs',
     ],
 
     input: [
