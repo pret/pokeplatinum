@@ -11,7 +11,6 @@ prebuilt_files = [
     'fontoam.narc',
     'footprint_board.narc',
     'hiden_effect.narc',
-    'imageclip.narc',
     'library_tv.narc',
     'lobby_news.narc',
     'oekaki.narc',
